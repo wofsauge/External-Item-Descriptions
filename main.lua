@@ -73,6 +73,8 @@ if EIDConfig["Language"]=="en_us_detailed" and EIDConfig["Scale"] > 0.5 then
 	EIDConfig["Scale"] = 0.5
 end
 
+local lineHeight = 11
+
 local IconSprite = Sprite()
 IconSprite:Load("gfx/icons.anm2", true)
 
@@ -89,19 +91,19 @@ CardSprite:Load("gfx/cardfronts.anm2", true)
 local SacrificeCounter = 1
 if EIDConfig["DisplaySacrificeInfo"] then 
 
-function onNewFloor()
-	SacrificeCounter = 1
-end
-EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, onNewFloor)
+	function onNewFloor()
+		SacrificeCounter = 1
+	end
+	EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, onNewFloor)
 
-function onDamage(_,entity,_,flag,source)
-	if Game():GetRoom():GetType()==RoomType.ROOM_SACRIFICE and source.Type==0  and flag == DamageFlag.DAMAGE_SPIKES then
-		if SacrificeCounter<12 then
-			SacrificeCounter= SacrificeCounter+1
+	function onDamage(_,entity,_,flag,source)
+		if Game():GetRoom():GetType()==RoomType.ROOM_SACRIFICE and source.Type==0  and flag == DamageFlag.DAMAGE_SPIKES then
+			if SacrificeCounter<12 then
+				SacrificeCounter= SacrificeCounter+1
+			end
 		end
 	end
-end
-EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, onDamage,EntityType.ENTITY_PLAYER)
+	EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, onDamage,EntityType.ENTITY_PLAYER)
 
 end
 
@@ -132,7 +134,7 @@ function printDescription(desc)
 			IconSprite:Render(Vector(EIDConfig["XPosition"]-3*EIDConfig["Scale"],padding+offsetY), Vector(0,0), Vector(0,0))
 		end
 		if not EIDConfig["ShowItemName"] then
-			padding = padding+10*EIDConfig["Scale"]
+			padding = padding+lineHeight*EIDConfig["Scale"]
 		end
 	end
 	--Display Itemname
@@ -140,7 +142,7 @@ function printDescription(desc)
 		local offset = 0
 		if EIDConfig["ShowItemType"]then	if itemType==3 then  offset = 9 else  offset = 6 end end
 		Isaac.RenderScaledText(itemConfig:GetCollectible(desc[1]).Name, EIDConfig["XPosition"]+offset*EIDConfig["Scale"], padding-4,EIDConfig["Scale"],EIDConfig["Scale"],EIDConfig["ItemNameColor"][1] , EIDConfig["ItemNameColor"][2], EIDConfig["ItemNameColor"][3], EIDConfig["Transparency"])
-		padding = padding+10*EIDConfig["Scale"]
+		padding = padding+lineHeight*EIDConfig["Scale"]
 	end
 	
 	
@@ -164,7 +166,7 @@ function printDescription(desc)
 			IconSprite:Render(Vector(EIDConfig["XPosition"]+5*EIDConfig["Scale"],padding+5*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
 		end
 		if(EIDConfig["TransformationIcons"] or EIDConfig["TransformationText"] ) then
-			padding = padding+10*EIDConfig["Scale"]
+			padding = padding+lineHeight*EIDConfig["Scale"]
 		end
 	end
 	printBulletPoints(Description,padding)
@@ -191,7 +193,7 @@ function printTrinketDescription(desc,typ)
 			Description= desc[2][2]
 		end
 		Isaac.RenderScaledText(name, EIDConfig["XPosition"]+1*EIDConfig["Scale"], padding-4,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ItemNameColor"][1] , EIDConfig["ItemNameColor"][2], EIDConfig["ItemNameColor"][3], EIDConfig["Transparency"])
-		padding = padding+10*EIDConfig["Scale"]
+		padding = padding+lineHeight*EIDConfig["Scale"]
 	end
 	printBulletPoints(Description,padding)
 end
@@ -220,7 +222,7 @@ function printBulletPoints(Description,padding)
 			else
 				Isaac.RenderScaledText("  "..v, EIDConfig["XPosition"], padding,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["TextColor"][1] , EIDConfig["TextColor"][2], EIDConfig["TextColor"][3], EIDConfig["Transparency"])
 			end
-			padding = padding +10*EIDConfig["Scale"]
+			padding = padding +lineHeight*EIDConfig["Scale"]
 		end
 	end
 end
