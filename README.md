@@ -36,6 +36,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions).
 ### Possible Future Features
 - Support for the new DLC **Repentance** (With backwards compatibility)
 - Better font to support more special characters
+- Display if items need to be collected for achievement purposes
 - Change location of description so it sticks to the highlighted object
 - More Languages! (Language mod unification ?)
 
