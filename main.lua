@@ -63,10 +63,6 @@ end
 if not __eidEntityDescriptions then
   __eidEntityDescriptions = {};
 end
- 
-function getModDescription(list, id)
-  return (list) and (list[id])
-end
 
 --Makes textscale smaller, when using detailed english descriptions
 if EIDConfig["Language"]=="en_us_detailed" and EIDConfig["Scale"] > 0.5 then
@@ -74,7 +70,8 @@ if EIDConfig["Language"]=="en_us_detailed" and EIDConfig["Scale"] > 0.5 then
 end
 
 local lineHeight = 11
-
+local isDisplayingText= false
+local lastDescriptionEntity= nil
 local IconSprite = Sprite()
 IconSprite:Load("gfx/icons.anm2", true)
 
@@ -85,7 +82,24 @@ ArrowSprite:Play("Arrow",false)
 local CardSprite = Sprite()
 CardSprite:Load("gfx/cardfronts.anm2", true)
 
+---------------------------------------------------------------------------
+-------------------------Handle API Functions -----------------------------
 
+function EID:isDisplayingText()
+	return isDisplayingText
+end
+
+function EID:getTextPosition()
+	return Vector(EIDConfig["XPosition"],EIDConfig["YPosition"])
+end
+
+function EID:getLastDescribedEntity()
+	return lastDescriptionEntity
+end
+
+function getModDescription(list, id)
+  return (list) and (list[id])
+end
 ---------------------------------------------------------------------------
 -------------------------Handle Sacrifice Room-----------------------------
 local SacrificeCounter = 1
@@ -300,7 +314,8 @@ end
 ---------------------------On Render Function------------------------------
 local hideDescToggle= false
 
-local function onRender(t)	
+local function onRender(t)
+	isDisplayingText= false
 	local player = Isaac.GetPlayer(0)
 	local closest = nil
 	local closestDice = nil
@@ -327,7 +342,6 @@ local function onRender(t)
 	end 
 	
 		
-		
 	if dist/40>tonumber(EIDConfig["MaxDistance"]) or not closest.Type == EntityType.ENTITY_PICKUP  then
 		if Game():GetRoom():GetType()==RoomType.ROOM_SACRIFICE and EIDConfig["DisplaySacrificeInfo"] then
 			printTrinketDescription(sacrificeDescriptions[SacrificeCounter],"sacrifice")
@@ -338,13 +352,14 @@ local function onRender(t)
 		end
 		return
 	end
-	if closest==nil then return end
 	
+	if closest==nil then return end
+	lastDescriptionEntity = closest
+	isDisplayingText= true
 	
 	--Handle Indicators
 	renderIndicator(closest)
 	
-
 	--Handle Entities (specific)
 	if EIDConfig["EnableEntityDescriptions"] and type(closest:GetData()["EID_Description"]) ~= type(nil) then
 		printTrinketDescription({closest.Type,closest:GetData()["EID_Description"]},"custom")
