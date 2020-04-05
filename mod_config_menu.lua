@@ -100,6 +100,42 @@ if ModConfigMenu then
 	})
 
 	
+		------------Collectibles--------------
+		
+	ModConfigMenu.AddSetting("EID","General", {
+		Type = ModConfigMenuOptionType.BOOLEAN,
+		CurrentSetting = function()
+			return EIDConfig["DisplayItemInfo"]
+		end,
+		Display = function()
+			local onOff = "False"
+			if EIDConfig["DisplayItemInfo"] then
+				onOff = "True"
+			end
+			return "Collectible Infos: " .. onOff
+		end,
+		OnChange = function(currentBool)
+			EIDConfig["DisplayItemInfo"] = currentBool
+		end,
+	})
+		------------Trinkets--------------
+		
+	ModConfigMenu.AddSetting("EID","General", {
+		Type = ModConfigMenuOptionType.BOOLEAN,
+		CurrentSetting = function()
+			return EIDConfig["DisplayTrinketInfo"]
+		end,
+		Display = function()
+			local onOff = "False"
+			if EIDConfig["DisplayTrinketInfo"] then
+				onOff = "True"
+			end
+			return "Trinket Infos: " .. onOff
+		end,
+		OnChange = function(currentBool)
+			EIDConfig["DisplayTrinketInfo"] = currentBool
+		end,
+	})
 		------------CARDS--------------
 		
 	ModConfigMenu.AddSetting("EID","General", {

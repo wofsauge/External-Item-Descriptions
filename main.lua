@@ -314,6 +314,16 @@ end
 ---------------------------On Render Function------------------------------
 local hideDescToggle= false
 
+-- check if an entity is part of the describable entities
+local function isEntityAllowed(entity)
+	local isAllowed = false 
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EIDConfig["DisplayItemInfo"])
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EIDConfig["DisplayTrinketInfo"])
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EIDConfig["DisplayCardInfo"])
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EIDConfig["DisplayPillInfo"])
+	return entity.Type == EntityType.ENTITY_PICKUP and isAllowed and entity.SubType>0
+end
+
 local function onRender(t)
 	isDisplayingText= false
 	local player = Isaac.GetPlayer(0)
@@ -332,7 +342,7 @@ local function onRender(t)
 		end
 		if  Game():GetRoom():GetType()==RoomType.ROOM_DICE and entity.Type==1000 and entity.Variant== 76 then closestDice= entity end
 
-		if isModEntityDesc or (entity.Type == EntityType.ENTITY_PICKUP and (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE or entity.Variant == PickupVariant.PICKUP_TRINKET or entity.Variant == PickupVariant.PICKUP_TAROTCARD or entity.Variant == PickupVariant.PICKUP_PILL) and entity.SubType>0) then
+		if isModEntityDesc or isEntityAllowed(entity) then
 			local diff = entity.Position:__sub(player.Position);
 			if diff:Length() < dist then
 				closest = entity;
@@ -402,50 +412,46 @@ local function onRender(t)
 		end
 	--Handle Cards & Runes
     elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
-		if EIDConfig["DisplayCardInfo"] then
-			if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayCardInfoShop"] then renderQuestionMark() return end
-			if getModDescription(__eidCardDescriptions,closest.SubType) then
-				printTrinketDescription({closest.SubType,getModDescription(__eidCardDescriptions,closest.SubType)},"card")
-			elseif closest.SubType <= 54 then 
-				printTrinketDescription(cardDescriptions[closest.SubType],"card")
-				CardSprite:Play(tostring(closest.SubType))
-				CardSprite.Scale = Vector(EIDConfig["Scale"],EIDConfig["Scale"])
-				CardSprite:Update()
-				local offsetX = 0
-				if EIDConfig["ShowItemName"] then offsetX = 10 end
-				CardSprite:Render(Vector(EIDConfig["XPosition"]-9*EIDConfig["Scale"],posY+(12+offsetX)*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
-			else
-				printTrinketDescription({closest.SubType,itemConfig:GetCard(closest.SubType).Description})
-			end
+		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayCardInfoShop"] then renderQuestionMark() return end
+		if getModDescription(__eidCardDescriptions,closest.SubType) then
+			printTrinketDescription({closest.SubType,getModDescription(__eidCardDescriptions,closest.SubType)},"card")
+		elseif closest.SubType <= 54 then 
+			printTrinketDescription(cardDescriptions[closest.SubType],"card")
+			CardSprite:Play(tostring(closest.SubType))
+			CardSprite.Scale = Vector(EIDConfig["Scale"],EIDConfig["Scale"])
+			CardSprite:Update()
+			local offsetX = 0
+			if EIDConfig["ShowItemName"] then offsetX = 10 end
+			CardSprite:Render(Vector(EIDConfig["XPosition"]-9*EIDConfig["Scale"],posY+(12+offsetX)*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
+		else
+			printTrinketDescription({closest.SubType,itemConfig:GetCard(closest.SubType).Description})
 		end
 	--Handle Pills
     elseif closest.Variant == PickupVariant.PICKUP_PILL then
-		if EIDConfig["DisplayPillInfo"] then
-			if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayPillInfoShop"] then renderQuestionMark() return end
-			
-			local pillColor = closest.SubType
-			local pool = Game():GetItemPool()
-			local pillEffect = pool:GetPillEffect(pillColor)
-			local identified = pool:IsPillIdentified(pillColor)
-			if (identified or EIDConfig["ShowUnidentifiedPillDescriptions"]) then
-				if getModDescription(__eidPillDescriptions,pillEffect) then
-					printTrinketDescription({pillEffect,getModDescription(__eidPillDescriptions,pillEffect)},"pill")
-				elseif pillEffect < 47 then 
-					printTrinketDescription(pillDescriptions[pillEffect+1],"pill")
-				else  
-					Isaac.RenderScaledText(EIDConfig["ErrorMessage"], EIDConfig["XPosition"], posY,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3], EIDConfig["Transparency"])
-				end
-			else
-				Isaac.RenderScaledText(unidentifiedPillMessage, EIDConfig["XPosition"], posY,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3], EIDConfig["Transparency"])
+		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayPillInfoShop"] then renderQuestionMark() return end
+		
+		local pillColor = closest.SubType
+		local pool = Game():GetItemPool()
+		local pillEffect = pool:GetPillEffect(pillColor)
+		local identified = pool:IsPillIdentified(pillColor)
+		if (identified or EIDConfig["ShowUnidentifiedPillDescriptions"]) then
+			if getModDescription(__eidPillDescriptions,pillEffect) then
+				printTrinketDescription({pillEffect,getModDescription(__eidPillDescriptions,pillEffect)},"pill")
+			elseif pillEffect < 47 then 
+				printTrinketDescription(pillDescriptions[pillEffect+1],"pill")
+			else  
+				Isaac.RenderScaledText(EIDConfig["ErrorMessage"], EIDConfig["XPosition"], posY,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3], EIDConfig["Transparency"])
 			end
-			local pillsprite = closest:GetSprite()
-			pillsprite.Scale = Vector(EIDConfig["Scale"]*0.75,EIDConfig["Scale"]*0.75)
-			pillsprite:Update()
-			local offsetX = 0
-			if EIDConfig["ShowItemName"] and (identified or EIDConfig["ShowUnidentifiedPillDescriptions"]) then offsetX = 10 end
-			pillsprite:Render(Vector(EIDConfig["XPosition"]+2*EIDConfig["Scale"],posY+(11+offsetX)*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
-			pillsprite.Scale = Vector(1,1)
+		else
+			Isaac.RenderScaledText(unidentifiedPillMessage, EIDConfig["XPosition"], posY,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3], EIDConfig["Transparency"])
 		end
+		local pillsprite = closest:GetSprite()
+		pillsprite.Scale = Vector(EIDConfig["Scale"]*0.75,EIDConfig["Scale"]*0.75)
+		pillsprite:Update()
+		local offsetX = 0
+		if EIDConfig["ShowItemName"] and (identified or EIDConfig["ShowUnidentifiedPillDescriptions"]) then offsetX = 10 end
+		pillsprite:Render(Vector(EIDConfig["XPosition"]+2*EIDConfig["Scale"],posY+(11+offsetX)*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
+		pillsprite.Scale = Vector(1,1)
     end
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG)then	posY =EIDConfig["YPosition"] +30	end	
 end

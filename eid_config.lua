@@ -57,6 +57,12 @@ EIDConfig={
 	-- Toggle Display of the Item Type and Maximum Charges as an icon
 	-- Default = true
 	["ShowItemType"] = true,
+	-- Toggle Display of Collectible / Item descriptions
+	-- Default = true
+	["DisplayItemInfo"] = true,
+	-- Toggle Display of Trinket descriptions
+	-- Default = true
+	["DisplayTrinketInfo"] = true,
 	-- Set the RGB color of the Itemname text
 	-- Default = {0.8, 0.3, 0.8}
 	["ItemNameColor"] = {0.8, 0.3, 0.8},
