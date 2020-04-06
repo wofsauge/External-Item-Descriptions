@@ -316,7 +316,7 @@ local hideDescToggle= false
 
 -- check if an entity is part of the describable entities
 local function isEntityAllowed(entity)
-	local isAllowed = false 
+	local isAllowed = false
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EIDConfig["DisplayItemInfo"])
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EIDConfig["DisplayTrinketInfo"])
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EIDConfig["DisplayCardInfo"])
@@ -469,7 +469,11 @@ local json = require("json")
 	function OnGameStart(isSave)
 		--Loading Moddata--
 		if EID:HasData() then
-			EIDConfig = json.decode(Isaac.LoadModData(EID))
+			savedEIDConfig = json.decode(Isaac.LoadModData(EID))
+			
+			for key, value in pairs(EIDConfig) do
+				if savedEIDConfig[key]~=nil then EIDConfig[key]=savedEIDConfig[key] end
+			end
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStart)

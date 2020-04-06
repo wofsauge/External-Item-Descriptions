@@ -60,7 +60,7 @@ Same as aboth but the path is: /home/%YourUsernameHere%/.steam/steam/steamapps/w
 - Rickyy for creating the incredible polish language pack
 - Marcelino Cruz for creating the portuguese language pack
 - [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating a awesome new Languagepack and providing ideas for new functionalities</description>
-    <version>1.63</version>
+    <version>1.65</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
