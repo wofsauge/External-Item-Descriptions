@@ -337,7 +337,7 @@ local function onRender(t)
 	
 	for i, entity in ipairs(Isaac.GetRoomEntities()) do
 		local isModEntityDesc = false
-		if EIDConfig["EnableEntityDescriptions"] and (__eidEntityDescriptions[entity.Type.."."..entity.Variant.."."..entity.SubType]~=nil or type(entity:GetData()["EID_Description"]) ~= type(nil)) then 
+		if EIDConfig["EnableEntityDescriptions"] and (__eidEntityDescriptions[entity.Type.."."..entity.Variant.."."..entity.SubType]~=nil --[[or type(entity:GetData()["EID_Description"]) ~= type(nil)]]) then 
 			isModEntityDesc= true
 		end
 		if  Game():GetRoom():GetType()==RoomType.ROOM_DICE and entity.Type==1000 and entity.Variant== 76 then closestDice= entity end
@@ -470,7 +470,9 @@ local json = require("json")
 		--Loading Moddata--
 		if EID:HasData() then
 			savedEIDConfig = json.decode(Isaac.LoadModData(EID))
-			
+			-- hardcode Language usage
+			savedEIDConfig["Language"] = EIDConfig["Language"]
+			-- Only copy Saved config entries that exist in the save
 			for key, value in pairs(EIDConfig) do
 				if savedEIDConfig[key]~=nil then EIDConfig[key]=savedEIDConfig[key] end
 			end
