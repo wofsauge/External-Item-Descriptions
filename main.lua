@@ -125,11 +125,14 @@ end
 ---------------------------------------------------------------------------
 ---------------------------Printing Functions------------------------------
 local itemTypes= {"null","passive","active","familiar","trinket"}
-local posY=EIDConfig["YPosition"]
+local modifiedPosY = false -- When the player has the schoolbag it changes
+local function posY()
+	return modifiedPosY ~= false and modifiedPosY or EIDConfig["YPosition"]
+end
 
 function printDescription(desc)
 	local Description = desc[3]
-	local padding = posY
+	local padding = posY()
 	local itemType = itemConfig:GetCollectible(desc[1]).Type
 	
 	--Display ItemType / Charge
@@ -188,7 +191,7 @@ end
 
 function printTrinketDescription(desc,typ)
 	local Description = desc[2]
-	local padding = posY
+	local padding = posY()
 	--Display Itemname
 	if EIDConfig["ShowItemName"] then
 		local name= ""
@@ -271,8 +274,8 @@ function renderQuestionMark()
 	IconSprite:Play("CurseOfBlind")
 	IconSprite.Scale = Vector(EIDConfig["Scale"],EIDConfig["Scale"])
 	IconSprite:Update()
-	IconSprite:Render(Vector(EIDConfig["XPosition"]+5*EIDConfig["Scale"],posY+5*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
-	if Isaac.GetPlayer(0):HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG)then	posY =EIDConfig["YPosition"] -30	end
+	IconSprite:Render(Vector(EIDConfig["XPosition"]+5*EIDConfig["Scale"],posY()+5*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
+	if Isaac.GetPlayer(0):HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG)then	modifiedPosY =EIDConfig["YPosition"] -30	end
 end
 
 function renderIndicator(entity)
@@ -422,7 +425,7 @@ local function onRender(t)
 			CardSprite:Update()
 			local offsetX = 0
 			if EIDConfig["ShowItemName"] then offsetX = 10 end
-			CardSprite:Render(Vector(EIDConfig["XPosition"]-9*EIDConfig["Scale"],posY+(12+offsetX)*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
+			CardSprite:Render(Vector(EIDConfig["XPosition"]-9*EIDConfig["Scale"],posY()+(12+offsetX)*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
 		else
 			printTrinketDescription({closest.SubType,itemConfig:GetCard(closest.SubType).Description})
 		end
@@ -440,20 +443,20 @@ local function onRender(t)
 			elseif pillEffect < 47 then 
 				printTrinketDescription(pillDescriptions[pillEffect+1],"pill")
 			else  
-				Isaac.RenderScaledText(EIDConfig["ErrorMessage"], EIDConfig["XPosition"], posY,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3], EIDConfig["Transparency"])
+				Isaac.RenderScaledText(EIDConfig["ErrorMessage"], EIDConfig["XPosition"], posY(),EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3], EIDConfig["Transparency"])
 			end
 		else
-			Isaac.RenderScaledText(unidentifiedPillMessage, EIDConfig["XPosition"], posY,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3], EIDConfig["Transparency"])
+			Isaac.RenderScaledText(unidentifiedPillMessage, EIDConfig["XPosition"], posY(),EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3], EIDConfig["Transparency"])
 		end
 		local pillsprite = closest:GetSprite()
 		pillsprite.Scale = Vector(EIDConfig["Scale"]*0.75,EIDConfig["Scale"]*0.75)
 		pillsprite:Update()
 		local offsetX = 0
 		if EIDConfig["ShowItemName"] and (identified or EIDConfig["ShowUnidentifiedPillDescriptions"]) then offsetX = 10 end
-		pillsprite:Render(Vector(EIDConfig["XPosition"]+2*EIDConfig["Scale"],posY+(11+offsetX)*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
+		pillsprite:Render(Vector(EIDConfig["XPosition"]+2*EIDConfig["Scale"],posY()+(11+offsetX)*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
 		pillsprite.Scale = Vector(1,1)
     end
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG)then	posY =EIDConfig["YPosition"] +30	end	
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG)then	modifiedPosY =EIDConfig["YPosition"] +30	end	
 end
 
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
