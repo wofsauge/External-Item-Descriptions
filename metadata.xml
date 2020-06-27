@@ -39,7 +39,7 @@ Change the config.lua file to switch languages.
 https://moddingofisaac.com/mod/1079/external-item-descriptions
 
 
-[h1]You can use [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1603631350]&amp;quot;Mod config Menu&amp;quot;[/url] to customize this mod![/h1]
+[h1]You can use [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1603631350]&quot;Mod config Menu&quot;[/url] to customize this mod![/h1]
 
 [h1][b]For further Configuration:[/b][/h1]
 [b]Windows[/b]
@@ -60,7 +60,7 @@ Same as aboth but the path is: /home/%YourUsernameHere%/.steam/steam/steamapps/w
 - Rickyy for creating the incredible polish language pack
 - Marcelino Cruz for creating the portuguese language pack
 - [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating a awesome new Languagepack and providing ideas for new functionalities</description>
-    <version>1.65</version>
+    <version>1.67</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

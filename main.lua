@@ -1,68 +1,29 @@
-local EID = RegisterMod( "External Item Descriptions" ,1 );
+EID = RegisterMod( "External Item Descriptions" ,1 );
 local itemConfig = Isaac.GetItemConfig()
 
-local _, err = pcall(require, "eid_config")
-err = tostring(err)
-if not string.match(err, "attempt to call a nil value %(method 'ForceError'%)") then
-    if string.match(err, "true") then
-        err = "Error: require passed in config"
-    end
-    Isaac.DebugString(err)
-    print(err)
-end
-  require("mod_config_menu")
-  require("descriptions.ab+."..EIDConfig["Language"])
---[[
-EID features 6 tables for mods to define their descriptions:
-__eidTrinketDescriptions for trinkets
-__eidCardDescriptions for cards
-__eidPillDescriptions for pills
-__eidItemDescriptions for Collectibles / items
-__eidItemTransformations assigns transformation-informations to collectibles
-__eidEntityDescriptions for entities
-__eidEntityDescriptions["ID.Variant.Subtype"] = {"HEADLINE","DESCRIPTION"};
+require("eid_config")
+require("mod_config_menu")
+require("descriptions.ab+."..EIDConfig["Language"])
+require("eid_api")
 
-To assign a unique description for a specific entity:    entity:GetData()["EID_Description"] = {"HEADLINE","DESCRIPTION"}   
+--use some very hacky trickery to get the path to this mod
+local _, err = pcall(require, "")
+local _, basePathStart = string.find(err, "no file '", 1)
+local _, modPathStart = string.find(err, "no file '", basePathStart)
+local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
+modPath = string.gsub(modPath, "\\", "/")
+modPath = string.gsub(modPath, ":/", ":\\")
 
 
-For example: to add the item "My Item Name" and the Description "Most Fitting Description" do something like this:
+EID.font = Font() -- init font object
+EID.font:Load(modPath.."resources/font/default.fnt") -- load a font into the font object
+EID.font:SetMissingCharacter(2)
+if not EID.font:IsLoaded() then
+	Isaac.DebugString("EID - ERROR: Could not load font from '"..modPath.."resources/font/default.fnt".."'")
+end
+	
 
--- 1. Get your itemid
-local item = Isaac.GetItemIdByName("My Item Name");
--- 2. Make sure we're not adding to a nil table
-if not __eidItemDescriptions then
-  __eidItemDescriptions = {};
-end
--- 3. Add the description
-__eidItemDescriptions[item] = "Most Fitting Description";
-
---]]
-
-
----------------------------------------------------------------------------
-----------------------Handle Mod Compatibility-----------------------------
---[[
-  Init variables for other mods to hand over Descriptions
-  if they were not yet inited by another mod.
---]]
-if not __eidItemDescriptions then
-  __eidItemDescriptions = {};
-end
-if not __eidTrinketDescriptions then
-  __eidTrinketDescriptions = {};
-end
-if not __eidCardDescriptions then
-  __eidCardDescriptions = {};
-end
-if not __eidPillDescriptions then
-  __eidPillDescriptions = {};
-end
-if not __eidItemTransformations then
-  __eidItemTransformations = {};
-end
-if not __eidEntityDescriptions then
-  __eidEntityDescriptions = {};
-end
 
 --Makes textscale smaller, when using detailed english descriptions
 if EIDConfig["Language"]=="en_us_detailed" and EIDConfig["Scale"] > 0.5 then
@@ -82,24 +43,6 @@ ArrowSprite:Play("Arrow",false)
 local CardSprite = Sprite()
 CardSprite:Load("gfx/cardfronts.anm2", true)
 
----------------------------------------------------------------------------
--------------------------Handle API Functions -----------------------------
-
-function EID:isDisplayingText()
-	return isDisplayingText
-end
-
-function EID:getTextPosition()
-	return Vector(EIDConfig["XPosition"],EIDConfig["YPosition"])
-end
-
-function EID:getLastDescribedEntity()
-	return lastDescriptionEntity
-end
-
-function getModDescription(list, id)
-  return (list) and (list[id])
-end
 ---------------------------------------------------------------------------
 -------------------------Handle Sacrifice Room-----------------------------
 local SacrificeCounter = 1
@@ -158,7 +101,8 @@ function printDescription(desc)
 	if EIDConfig["ShowItemName"] then
 		local offset = 0
 		if EIDConfig["ShowItemType"]then	if itemType==3 then  offset = 9 else  offset = 6 end end
-		Isaac.RenderScaledText(itemConfig:GetCollectible(desc[1]).Name, EIDConfig["XPosition"]+offset*EIDConfig["Scale"], padding-4,EIDConfig["Scale"],EIDConfig["Scale"],EIDConfig["ItemNameColor"][1] , EIDConfig["ItemNameColor"][2], EIDConfig["ItemNameColor"][3], EIDConfig["Transparency"])
+		EID:renderString(itemConfig:GetCollectible(desc[1]).Name, Vector(EIDConfig["XPosition"]+offset*EIDConfig["Scale"], padding-4), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), EID:getNameColor(), false)
+		
 		padding = padding+lineHeight*EIDConfig["Scale"]
 	end
 	
@@ -174,7 +118,7 @@ function printDescription(desc)
 			else
 				transformationText=printTransformation(desc[2])
 			end
-			Isaac.RenderScaledText(transformationText, EIDConfig["XPosition"]+16*EIDConfig["Scale"], padding-1,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["TransformationColor"][1] , EIDConfig["TransformationColor"][2], EIDConfig["TransformationColor"][3], EIDConfig["Transparency"])
+			EID:renderString(transformationText, Vector(EIDConfig["XPosition"]+16*EIDConfig["Scale"], padding-1), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), EID:getTransformationColor(), false)
 		end
 		if EIDConfig["TransformationIcons"] and not(printTransformation(desc[2])=="Custom") then
 			IconSprite:Play("Transformation"..desc[2])
@@ -209,7 +153,8 @@ function printTrinketDescription(desc,typ)
 			name= desc[2][1]
 			Description= desc[2][2]
 		end
-		Isaac.RenderScaledText(name, EIDConfig["XPosition"]+1*EIDConfig["Scale"], padding-4,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ItemNameColor"][1] , EIDConfig["ItemNameColor"][2], EIDConfig["ItemNameColor"][3], EIDConfig["Transparency"])
+		EID:renderString(name, Vector(EIDConfig["XPosition"],padding), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), EID:getNameColor(), false)
+		
 		padding = padding+lineHeight*EIDConfig["Scale"]
 	end
 	printBulletPoints(Description,padding)
@@ -229,15 +174,16 @@ function printBulletPoints(Description,padding)
 			end
 		end
 		table.insert(array, text)
+		local textColor = EID:getTextColor()
 		for i, v in ipairs(array) do
 			if i== 1 then 
-				if string.sub(v, 2, 2)=="\001" or string.sub(v, 2, 2)=="\002" or string.sub(v, 2, 2)=="\003" then 
-					Isaac.RenderScaledText(string.sub(v, 2, 2)..string.sub(v,3,string.len(v)), EIDConfig["XPosition"], padding,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["TextColor"][1] , EIDConfig["TextColor"][2], EIDConfig["TextColor"][3], EIDConfig["Transparency"])
+				if string.sub(v, 2, 2)=="↑" or string.sub(v, 2, 2)=="↓" or string.sub(v, 2, 2)=="!" then 
+					EID:renderString("!"..string.sub(v,3,string.len(v)), Vector(EIDConfig["XPosition"],padding), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), textColor, false)
 				else
-					Isaac.RenderScaledText("\007"..v, EIDConfig["XPosition"], padding,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["TextColor"][1] , EIDConfig["TextColor"][2], EIDConfig["TextColor"][3], EIDConfig["Transparency"])
+					EID:renderString("\007"..v, Vector(EIDConfig["XPosition"],padding), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), textColor, false)
 				end
 			else
-				Isaac.RenderScaledText("  "..v, EIDConfig["XPosition"], padding,EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["TextColor"][1] , EIDConfig["TextColor"][2], EIDConfig["TextColor"][3], EIDConfig["Transparency"])
+				EID:renderString("  "..v, Vector(EIDConfig["XPosition"],padding), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), textColor, false)
 			end
 			padding = padding +lineHeight*EIDConfig["Scale"]
 		end
@@ -381,7 +327,7 @@ local function onRender(t)
 	
 	--Handle Entities (omni)
 	if EIDConfig["EnableEntityDescriptions"] and __eidEntityDescriptions[closest.Type.."."..closest.Variant.."."..closest.SubType] ~=nil then
-		printTrinketDescription({closest.Type,getModDescription(__eidEntityDescriptions,closest.Type.."."..closest.Variant.."."..closest.SubType)},"custom")
+		printTrinketDescription({closest.Type,EID:getModDescription(__eidEntityDescriptions,closest.Type.."."..closest.Variant.."."..closest.SubType)},"custom")
 		return
 	end
 	
@@ -390,23 +336,23 @@ local function onRender(t)
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
 		if closest.SubType <= 128 then
 			printTrinketDescription(trinketdescriptions[closest.SubType],"trinket")
-		elseif getModDescription(__eidTrinketDescriptions,closest.SubType) then
-			printTrinketDescription({closest.SubType,getModDescription(__eidTrinketDescriptions,closest.SubType)},"trinket")
+		elseif EID:getModDescription(__eidTrinketDescriptions,closest.SubType) then
+			printTrinketDescription({closest.SubType,EID:getModDescription(__eidTrinketDescriptions,closest.SubType)},"trinket")
 		else
 			printTrinketDescription({closest.SubType,itemConfig:GetTrinket(closest.SubType).Description})
 		end
 	--Handle Collectibles
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		if HasCurseBlind() and EIDConfig["DisableOnCurse"] then	renderQuestionMark() return	end
-		if getModDescription(__eidItemDescriptions,closest.SubType) then
+		if EID:getModDescription(__eidItemDescriptions,closest.SubType) then
 			local tranformation = "0"
-			if  getModDescription(__eidItemTransformations,closest.SubType) then
-				 tranformation = getModDescription(__eidItemTransformations,closest.SubType)
+			if  EID:getModDescription(__eidItemTransformations,closest.SubType) then
+				 tranformation = EID:getModDescription(__eidItemTransformations,closest.SubType)
 			end 
-			printDescription({closest.SubType,tranformation,getModDescription(__eidItemDescriptions,closest.SubType)})
+			printDescription({closest.SubType,tranformation,EID:getModDescription(__eidItemDescriptions,closest.SubType)})
 		elseif closest.SubType <= 552 then
-			if getModDescription(__eidItemTransformations,closest.SubType) then
-				printDescription({closest.SubType,getModDescription(__eidItemTransformations,closest.SubType),descriptarray[closest.SubType][3]})
+			if EID:getModDescription(__eidItemTransformations,closest.SubType) then
+				printDescription({closest.SubType,EID:getModDescription(__eidItemTransformations,closest.SubType),descriptarray[closest.SubType][3]})
 			else		
 				printDescription(descriptarray[closest.SubType])
 			end
@@ -416,8 +362,8 @@ local function onRender(t)
 	--Handle Cards & Runes
     elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayCardInfoShop"] then renderQuestionMark() return end
-		if getModDescription(__eidCardDescriptions,closest.SubType) then
-			printTrinketDescription({closest.SubType,getModDescription(__eidCardDescriptions,closest.SubType)},"card")
+		if EID:getModDescription(__eidCardDescriptions,closest.SubType) then
+			printTrinketDescription({closest.SubType,EID:getModDescription(__eidCardDescriptions,closest.SubType)},"card")
 		elseif closest.SubType <= 54 then 
 			printTrinketDescription(cardDescriptions[closest.SubType],"card")
 			CardSprite:Play(tostring(closest.SubType))
@@ -438,15 +384,15 @@ local function onRender(t)
 		local pillEffect = pool:GetPillEffect(pillColor)
 		local identified = pool:IsPillIdentified(pillColor)
 		if (identified or EIDConfig["ShowUnidentifiedPillDescriptions"]) then
-			if getModDescription(__eidPillDescriptions,pillEffect) then
-				printTrinketDescription({pillEffect,getModDescription(__eidPillDescriptions,pillEffect)},"pill")
+			if EID:getModDescription(__eidPillDescriptions,pillEffect) then
+				printTrinketDescription({pillEffect,EID:getModDescription(__eidPillDescriptions,pillEffect)},"pill")
 			elseif pillEffect < 47 then 
 				printTrinketDescription(pillDescriptions[pillEffect+1],"pill")
 			else  
-				Isaac.RenderScaledText(EIDConfig["ErrorMessage"], EIDConfig["XPosition"], posY(),EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3], EIDConfig["Transparency"])
+				EID:renderString(EIDConfig["ErrorMessage"], Vector(EIDConfig["XPosition"], posY()), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), EID:getErrorColor(), false)
 			end
 		else
-			Isaac.RenderScaledText(unidentifiedPillMessage, EIDConfig["XPosition"], posY(),EIDConfig["Scale"],EIDConfig["Scale"], EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3], EIDConfig["Transparency"])
+			EID:renderString(unidentifiedPillMessage, Vector(EIDConfig["XPosition"], posY()), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), EID:getErrorColor(), false)
 		end
 		local pillsprite = closest:GetSprite()
 		pillsprite.Scale = Vector(EIDConfig["Scale"]*0.75,EIDConfig["Scale"]*0.75)
@@ -488,5 +434,6 @@ local json = require("json")
 		EID.SaveData(EID, json.encode(EIDConfig))
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
-
 end
+
+--require("eid_debugging")

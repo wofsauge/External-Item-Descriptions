@@ -135,9 +135,3 @@ EIDConfig={
 --END CONFIG--
 -----------
 -----------
-
-
---Mod compatibility thing--	
-	
-EIDConfig:ForceError()
- 
