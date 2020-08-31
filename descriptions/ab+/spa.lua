@@ -857,5 +857,7 @@ transformations = {
 "Serafín",			-- 10
 "Super Bum",		-- 11
 "Bookworm (Ratón de Biblioteca)",			-- 12
-"Spider Baby (Bebé araña)"		-- 13
+"Spider Baby (Bebé araña)",		-- 13
+"Adult",			-- 14
+"Stompy"			-- 15
 }

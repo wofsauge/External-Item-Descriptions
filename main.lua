@@ -5,6 +5,7 @@ local lineHeight = 11
 local isDisplayingText= false
 local lastDescriptionEntity= nil
 local hideDescToggle= false
+EID.sacrificeCounter= 1
 
 local IconSprite = Sprite()
 IconSprite:Load("gfx/icons.anm2", true)
@@ -46,18 +47,17 @@ end
 
 ---------------------------------------------------------------------------
 -------------------------Handle Sacrifice Room-----------------------------
-local SacrificeCounter = 1
 if EIDConfig["DisplaySacrificeInfo"] then
 
     function onNewFloor()
-        SacrificeCounter = 1
+        EID.sacrificeCounter= 1
     end
     EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, onNewFloor)
 
     function onDamage(_,entity,_,flag,source)
         if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flag == DamageFlag.DAMAGE_SPIKES then
-            if SacrificeCounter<12 then
-                SacrificeCounter= SacrificeCounter+1
+            if EID.sacrificeCounter<12 then
+                EID.sacrificeCounter= EID.sacrificeCounter+1
             end
         end
     end
@@ -111,16 +111,16 @@ function printDescription(desc)
 	if not(desc[2]=="0" or desc[2]=="" or desc[2]==nil ) then
 		if EIDConfig["TransformationText"] then
 			local transformationText= ""
-			if not(printTransformation(desc[2])=="Custom") then
-				transformationText =printTransformation(desc[2])
+			if not(EID:getTransformation(desc[2])=="Custom") then
+				transformationText =EID:getTransformation(desc[2])
 			elseif not(transformations[desc[2]]) then --Custom transformationname
 				transformationText=desc[2]
 			else
-				transformationText=printTransformation(desc[2])
+				transformationText=EID:getTransformation(desc[2])
 			end
 			EID:renderString(transformationText, Vector(EIDConfig["XPosition"]+16*EIDConfig["Scale"], padding-1), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), EID:getTransformationColor(), false)
 		end
-		if EIDConfig["TransformationIcons"] and not(printTransformation(desc[2])=="Custom") then
+		if EIDConfig["TransformationIcons"] and not(EID:getTransformation(desc[2])=="Custom") then
 			IconSprite:Play("Transformation"..desc[2])
 			IconSprite.Scale = Vector(EIDConfig["Scale"],EIDConfig["Scale"])
 			IconSprite:Update()
@@ -176,26 +176,20 @@ function printBulletPoints(description, padding)
 		table.insert(array, text)
 		local textColor = EID:getTextColor()
 		for i, v in ipairs(array) do
+			local posX = EIDConfig["XPosition"]
 			local bpIcon = "  " -- no bulletpoint
 			if i == 1 then
 				bpIcon = EID:getBulletpointIcon(v)
+				if string.find(bpIcon,'\007') == nil then
+					v = string.sub(v, 3 + #bpIcon)
+					posX = posX - 2 -- Move a bit to the left, to center icons
+				end
 			end
-			EID:renderString(bpIcon..EID:replaceMarkupStrings(v), Vector(EIDConfig["XPosition"],padding), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), textColor, false)
+			EID:renderString(bpIcon..EID:replaceMarkupStrings(v), Vector(posX, padding), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), textColor, false)
 			padding = padding +lineHeight*EIDConfig["Scale"]
 		end
 	end
 end
-
-function printTransformation(transformationString)
-	local str="Custom";
-	for i = 0, #transformations-1 do
-		if (tonumber(transformationString)==i) then
-			str = tostring(transformations[i+1])
-		end
-	end
-	return str
-end
-
 
 
 ---------------------------------------------------------------------------
@@ -217,7 +211,7 @@ function renderQuestionMark()
 	IconSprite.Scale = Vector(EIDConfig["Scale"],EIDConfig["Scale"])
 	IconSprite:Update()
 	IconSprite:Render(Vector(EIDConfig["XPosition"]+5*EIDConfig["Scale"],posY()+5*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
-	if Isaac.GetPlayer(0):HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG)then	modifiedPosY =EIDConfig["YPosition"] -30	end
+	if Isaac.GetPlayer(0):HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then	modifiedPosY =EIDConfig["YPosition"] -30	end
 end
 
 function renderIndicator(entity)
@@ -284,7 +278,7 @@ local function onRender(t)
 		
 	if dist/40>tonumber(EIDConfig["MaxDistance"]) or not closest.Type == EntityType.ENTITY_PICKUP  then
 		if Game():GetRoom():GetType()==RoomType.ROOM_SACRIFICE and EIDConfig["DisplaySacrificeInfo"] then
-			printTrinketDescription(sacrificeDescriptions[SacrificeCounter],"sacrifice")
+			printTrinketDescription(sacrificeDescriptions[EID.sacrificeCounter],"sacrifice")
 		end
 		if Game():GetRoom():GetType()==RoomType.ROOM_DICE and EIDConfig["DisplayDiceInfo"] and type(closestDice) ~= type(nil) then
 			printTrinketDescription(diceDescriptions[closestDice.SubType+1],"dice")
@@ -383,7 +377,7 @@ local function onRender(t)
 		pillsprite:Render(Vector(EIDConfig["XPosition"]+2*EIDConfig["Scale"],posY()+(11+offsetX)*EIDConfig["Scale"]), Vector(0,0), Vector(0,0))
 		pillsprite.Scale = Vector(1,1)
     end
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG)then	modifiedPosY =EIDConfig["YPosition"] +30	end	
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then	modifiedPosY =EIDConfig["YPosition"] +30	end
 end
 
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)

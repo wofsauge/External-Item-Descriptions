@@ -46,16 +46,42 @@ end
 
 
 ---------------------------------------------------------------------------
+-------------------------Handle Custom Enum -----------------------------
+
+--maps the Player transformation from the enum PlayerForm to the internal transformation table
+-- Possible usages:		EID.TRANSFORMATION[ PlayerForm.PLAYERFORM_MUSHROOM ]
+-- 						EID.TRANSFORMATION.MUSHROOM
+EID.TRANSFORMATION = {
+	["GUPPY"] = 1,
+	["LORD_OF_THE_FLIES"] = 3,
+	["MUSHROOM"] = 2,
+	["ANGEL"] = 10,
+	["BOB"] = 8,
+	["SPUN"] = 5,
+	["MOM"] = 6,
+	["CONJOINED"] = 4,
+	["LEVIATHAN"] = 9,
+	["POOP"] = 7,
+	["BOOKWORM"] = 12,
+	["ADULT"] = 14,
+	["SPIDERBABY"] = 13,
+	["SUPERBUM"] = 11,
+}
+
+---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
 
+-- Returns if EID is displaying text right now
 function EID:isDisplayingText()
 	return isDisplayingText
 end
 
+-- returns the current text position
 function EID:getTextPosition()
 	return Vector(EIDConfig["XPosition"],EIDConfig["YPosition"])
 end
 
+-- returns the entity that is currently described. returns last described entity if currently not displaying text
 function EID:getLastDescribedEntity()
 	return lastDescriptionEntity
 end
@@ -64,6 +90,29 @@ function EID:getModDescription(list, id)
   return (list) and (list[id])
 end
 
+--Get the name of the given transformation by its ID
+function EID:getTransformation(id)
+	local str="Custom";
+	if (tonumber(id) <= #transformations-1) then
+		return transformations[tonumber(id)+1]
+	end
+	return str
+end
+
+-- check if an entity is part of the describable entities
+function EID:hasDescription(entity)
+	local isAllowed = false
+	if EIDConfig["EnableEntityDescriptions"] then
+		isAllowed = isAllowed or (__eidEntityDescriptions[entity.Type.."."..entity.Variant.."."..entity.SubType]~=nil --[[or type(entity:GetData()["EID_Description"]) ~= type(nil)]])
+	end
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EIDConfig["DisplayItemInfo"])
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EIDConfig["DisplayTrinketInfo"])
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EIDConfig["DisplayCardInfo"])
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EIDConfig["DisplayPillInfo"])
+	return entity.Type == EntityType.ENTITY_PICKUP and isAllowed and entity.SubType>0
+end
+
+-- Replaces shorthand-representations of a character with the internal reference
 function EID:replaceMarkupStrings(text)
 	text = string.gsub(text, "!!!", "ǃ") -- Turn 3 Exclamations into Warning
 	text = string.gsub(text, "\1", "↑") -- Legacy Up Arrow
@@ -76,10 +125,10 @@ function EID:replaceMarkupStrings(text)
 	return text
 end
 
---Returns
-EID:bulletIcons={"↑","↓","!","ǃ"}
+-- Returns the icon used for the bulletpoint. It will look at the first character in the given string.
+EID.bulletIcons={"↑","↓","!","ǃ"}
 function EID:getBulletpointIcon(text)
-	for i,v in ipairs(EID:bulletIcons) do
+	for i,v in ipairs(EID.bulletIcons) do
 		local iconPos = string.find(text,v)
 		if iconPos == 1 or iconPos == 2 then
 			return v
@@ -114,15 +163,3 @@ function EID:getErrorColor()
 	return KColor(EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3],EIDConfig["Transparency"],0,0,0)
 end
 
--- check if an entity is part of the describable entities
-function EID:hasDescription(entity)
-	local isAllowed = false
-	if EIDConfig["EnableEntityDescriptions"] then
-		isAllowed = isAllowed or (__eidEntityDescriptions[entity.Type.."."..entity.Variant.."."..entity.SubType]~=nil --[[or type(entity:GetData()["EID_Description"]) ~= type(nil)]])
-	end
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EIDConfig["DisplayItemInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EIDConfig["DisplayTrinketInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EIDConfig["DisplayCardInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EIDConfig["DisplayPillInfo"])
-	return entity.Type == EntityType.ENTITY_PICKUP and isAllowed and entity.SubType>0
-end
