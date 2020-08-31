@@ -1,6 +1,21 @@
 EID = RegisterMod( "External Item Descriptions" ,1 );
 local itemConfig = Isaac.GetItemConfig()
 
+local lineHeight = 11
+local isDisplayingText= false
+local lastDescriptionEntity= nil
+local hideDescToggle= false
+
+local IconSprite = Sprite()
+IconSprite:Load("gfx/icons.anm2", true)
+
+local ArrowSprite = Sprite()
+ArrowSprite:Load("gfx/icons.anm2", true)
+ArrowSprite:Play("Arrow",false)
+
+local CardSprite = Sprite()
+CardSprite:Load("gfx/cardfronts.anm2", true)
+
 require("eid_config")
 require("mod_config_menu")
 require("descriptions.ab+."..EIDConfig["Language"])
@@ -22,48 +37,33 @@ EID.font:SetMissingCharacter(2)
 if not EID.font:IsLoaded() then
 	Isaac.DebugString("EID - ERROR: Could not load font from '"..modPath.."resources/font/default.fnt".."'")
 end
-	
-
 
 --Makes textscale smaller, when using detailed english descriptions
 if EIDConfig["Language"]=="en_us_detailed" and EIDConfig["Scale"] > 0.5 then
 	EIDConfig["Scale"] = 0.5
 end
 
-local lineHeight = 11
-local isDisplayingText= false
-local lastDescriptionEntity= nil
-local IconSprite = Sprite()
-IconSprite:Load("gfx/icons.anm2", true)
-
-local ArrowSprite = Sprite()
-ArrowSprite:Load("gfx/icons.anm2", true)
-ArrowSprite:Play("Arrow",false)
-
-local CardSprite = Sprite()
-CardSprite:Load("gfx/cardfronts.anm2", true)
 
 ---------------------------------------------------------------------------
 -------------------------Handle Sacrifice Room-----------------------------
 local SacrificeCounter = 1
-if EIDConfig["DisplaySacrificeInfo"] then 
+if EIDConfig["DisplaySacrificeInfo"] then
 
-	function onNewFloor()
-		SacrificeCounter = 1
-	end
-	EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, onNewFloor)
+    function onNewFloor()
+        SacrificeCounter = 1
+    end
+    EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, onNewFloor)
 
-	function onDamage(_,entity,_,flag,source)
-		if Game():GetRoom():GetType()==RoomType.ROOM_SACRIFICE and source.Type==0  and flag == DamageFlag.DAMAGE_SPIKES then
-			if SacrificeCounter<12 then
-				SacrificeCounter= SacrificeCounter+1
-			end
-		end
-	end
-	EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, onDamage,EntityType.ENTITY_PLAYER)
+    function onDamage(_,entity,_,flag,source)
+        if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flag == DamageFlag.DAMAGE_SPIKES then
+            if SacrificeCounter<12 then
+                SacrificeCounter= SacrificeCounter+1
+            end
+        end
+    end
+    EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, onDamage,EntityType.ENTITY_PLAYER)
 
 end
-
 
 ---------------------------------------------------------------------------
 ---------------------------Printing Functions------------------------------
@@ -160,9 +160,9 @@ function printTrinketDescription(desc,typ)
 	printBulletPoints(Description,padding)
 end
 
-function printBulletPoints(Description,padding)
+function printBulletPoints(description, padding)
 	local textboxWidth=tonumber(EIDConfig["TextboxWidth"])
-	for line in string.gmatch(Description, '([^#]+)') do
+	for line in string.gmatch(description, '([^#]+)') do
 		local array={}
 		local text = ""
 		for word in string.gmatch(line, '([^ ]+)') do
@@ -176,24 +176,20 @@ function printBulletPoints(Description,padding)
 		table.insert(array, text)
 		local textColor = EID:getTextColor()
 		for i, v in ipairs(array) do
-			if i== 1 then 
-				if string.sub(v, 2, 2)=="↑" or string.sub(v, 2, 2)=="↓" or string.sub(v, 2, 2)=="!" then 
-					EID:renderString("!"..string.sub(v,3,string.len(v)), Vector(EIDConfig["XPosition"],padding), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), textColor, false)
-				else
-					EID:renderString("\007"..v, Vector(EIDConfig["XPosition"],padding), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), textColor, false)
-				end
-			else
-				EID:renderString("  "..v, Vector(EIDConfig["XPosition"],padding), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), textColor, false)
+			local bpIcon = "  " -- no bulletpoint
+			if i == 1 then
+				bpIcon = EID:getBulletpointIcon(v)
 			end
+			EID:renderString(bpIcon..EID:replaceMarkupStrings(v), Vector(EIDConfig["XPosition"],padding), Vector(EIDConfig["Scale"],EIDConfig["Scale"]), textColor, false)
 			padding = padding +lineHeight*EIDConfig["Scale"]
 		end
 	end
 end
 
-function printTransformation(S)
+function printTransformation(transformationString)
 	local str="Custom";
 	for i = 0, #transformations-1 do
-		if (tonumber(S)==i) then
+		if (tonumber(transformationString)==i) then
 			str = tostring(transformations[i+1])
 		end
 	end
@@ -261,17 +257,6 @@ end
 
 ---------------------------------------------------------------------------
 ---------------------------On Render Function------------------------------
-local hideDescToggle= false
-
--- check if an entity is part of the describable entities
-local function isEntityAllowed(entity)
-	local isAllowed = false
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EIDConfig["DisplayItemInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EIDConfig["DisplayTrinketInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EIDConfig["DisplayCardInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EIDConfig["DisplayPillInfo"])
-	return entity.Type == EntityType.ENTITY_PICKUP and isAllowed and entity.SubType>0
-end
 
 local function onRender(t)
 	isDisplayingText= false
@@ -285,13 +270,9 @@ local function onRender(t)
 	if hideDescToggle then return end
 	
 	for i, entity in ipairs(Isaac.GetRoomEntities()) do
-		local isModEntityDesc = false
-		if EIDConfig["EnableEntityDescriptions"] and (__eidEntityDescriptions[entity.Type.."."..entity.Variant.."."..entity.SubType]~=nil --[[or type(entity:GetData()["EID_Description"]) ~= type(nil)]]) then 
-			isModEntityDesc= true
-		end
 		if  Game():GetRoom():GetType()==RoomType.ROOM_DICE and entity.Type==1000 and entity.Variant== 76 then closestDice= entity end
 
-		if isModEntityDesc or isEntityAllowed(entity) then
+		if EID:hasDescription(entity) then
 			local diff = entity.Position:__sub(player.Position);
 			if diff:Length() < dist then
 				closest = entity;
