@@ -23,27 +23,25 @@ end
 __eidItemDescriptions[item] = "Most Fitting Description";
 
 --]]
-
 -- Init variables for other mods to hand over Descriptions if they were not yet inited by another mod.
 if not __eidItemDescriptions then
-  __eidItemDescriptions = {};
+	__eidItemDescriptions = {}
 end
 if not __eidTrinketDescriptions then
-  __eidTrinketDescriptions = {};
+	__eidTrinketDescriptions = {}
 end
 if not __eidCardDescriptions then
-  __eidCardDescriptions = {};
+	__eidCardDescriptions = {}
 end
 if not __eidPillDescriptions then
-  __eidPillDescriptions = {};
+	__eidPillDescriptions = {}
 end
 if not __eidItemTransformations then
-  __eidItemTransformations = {};
+	__eidItemTransformations = {}
 end
 if not __eidEntityDescriptions then
-  __eidEntityDescriptions = {};
+	__eidEntityDescriptions = {}
 end
-
 
 ---------------------------------------------------------------------------
 -------------------------Handle Custom Enum -----------------------------
@@ -65,7 +63,7 @@ EID.TRANSFORMATION = {
 	["BOOKWORM"] = 12,
 	["ADULT"] = 14,
 	["SPIDERBABY"] = 13,
-	["SUPERBUM"] = 11,
+	["SUPERBUM"] = 11
 }
 
 ---------------------------------------------------------------------------
@@ -78,7 +76,7 @@ end
 
 -- returns the current text position
 function EID:getTextPosition()
-	return Vector(EIDConfig["XPosition"],EIDConfig["YPosition"])
+	return Vector(EIDConfig["XPosition"], EIDConfig["YPosition"])
 end
 
 -- returns the entity that is currently described. returns last described entity if currently not displaying text
@@ -87,14 +85,14 @@ function EID:getLastDescribedEntity()
 end
 
 function EID:getModDescription(list, id)
-  return (list) and (list[id])
+	return (list) and (list[id])
 end
 
 --Get the name of the given transformation by its ID
 function EID:getTransformation(id)
-	local str="Custom";
-	if (tonumber(id) <= #transformations-1) then
-		return transformations[tonumber(id)+1]
+	local str = "Custom"
+	if (tonumber(id) <= #transformations - 1) then
+		return transformations[tonumber(id) + 1]
 	end
 	return str
 end
@@ -103,13 +101,15 @@ end
 function EID:hasDescription(entity)
 	local isAllowed = false
 	if EIDConfig["EnableEntityDescriptions"] then
-		isAllowed = isAllowed or (__eidEntityDescriptions[entity.Type.."."..entity.Variant.."."..entity.SubType]~=nil --[[or type(entity:GetData()["EID_Description"]) ~= type(nil)]])
+		isAllowed =
+			isAllowed or
+			(__eidEntityDescriptions[entity.Type .. "." .. entity.Variant .. "." .. entity.SubType] ~= nil) --[[or type(entity:GetData()["EID_Description"]) ~= type(nil)]]
 	end
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EIDConfig["DisplayItemInfo"])
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EIDConfig["DisplayTrinketInfo"])
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EIDConfig["DisplayCardInfo"])
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EIDConfig["DisplayPillInfo"])
-	return entity.Type == EntityType.ENTITY_PICKUP and isAllowed and entity.SubType>0
+	return entity.Type == EntityType.ENTITY_PICKUP and isAllowed and entity.SubType > 0
 end
 
 -- Replaces shorthand-representations of a character with the internal reference
@@ -126,40 +126,80 @@ function EID:replaceMarkupStrings(text)
 end
 
 -- Returns the icon used for the bulletpoint. It will look at the first character in the given string.
-EID.bulletIcons={"↑","↓","!","ǃ"}
+EID.bulletIcons = {"↑", "↓", "!", "ǃ"}
 function EID:getBulletpointIcon(text)
-	for i,v in ipairs(EID.bulletIcons) do
-		local iconPos = string.find(text,v)
+	for i, v in ipairs(EID.bulletIcons) do
+		local iconPos = string.find(text, v)
 		if iconPos == 1 or iconPos == 2 then
 			return v
 		end
 	end
-	return '\007'
+	return "\007"
 end
 
 --needs to be called in a render Callback
 -- args: string, Vector(int, int), Vector(float,float), KColor obj, bool
 function EID:renderString(str, position, scale, kcolor, centered)
-  	EID.font:DrawStringScaledUTF8(str, position.X, position.Y, scale.X ,scale.Y ,kcolor ,EID.font:GetStringWidthUTF8(str), centered)
+	EID.font:DrawStringScaledUTF8(
+		str,
+		position.X,
+		position.Y,
+		scale.X,
+		scale.Y,
+		kcolor,
+		EID.font:GetStringWidthUTF8(str),
+		centered
+	)
 end
 
 -- Get KColor object of "Entity Name" texts
 function EID:getNameColor()
-	return KColor(EIDConfig["ItemNameColor"][1] , EIDConfig["ItemNameColor"][2], EIDConfig["ItemNameColor"][3],EIDConfig["Transparency"],0,0,0)
+	return KColor(
+		EIDConfig["ItemNameColor"][1],
+		EIDConfig["ItemNameColor"][2],
+		EIDConfig["ItemNameColor"][3],
+		EIDConfig["Transparency"],
+		0,
+		0,
+		0
+	)
 end
 
 -- Get KColor object of "Description" texts
 function EID:getTextColor()
-	return KColor(EIDConfig["TextColor"][1] , EIDConfig["TextColor"][2], EIDConfig["TextColor"][3],EIDConfig["Transparency"],0,0,0)
+	return KColor(
+		EIDConfig["TextColor"][1],
+		EIDConfig["TextColor"][2],
+		EIDConfig["TextColor"][3],
+		EIDConfig["Transparency"],
+		0,
+		0,
+		0
+	)
 end
 
 -- Get KColor object of "Transformation" texts
 function EID:getTransformationColor()
-	return KColor(EIDConfig["TransformationColor"][1] , EIDConfig["TransformationColor"][2], EIDConfig["TransformationColor"][3],EIDConfig["Transparency"],0,0,0)
+	return KColor(
+		EIDConfig["TransformationColor"][1],
+		EIDConfig["TransformationColor"][2],
+		EIDConfig["TransformationColor"][3],
+		EIDConfig["Transparency"],
+		0,
+		0,
+		0
+	)
 end
 
 -- Get KColor object of "Error" texts
 function EID:getErrorColor()
-	return KColor(EIDConfig["ErrorColor"][1] , EIDConfig["ErrorColor"][2], EIDConfig["ErrorColor"][3],EIDConfig["Transparency"],0,0,0)
+	return KColor(
+		EIDConfig["ErrorColor"][1],
+		EIDConfig["ErrorColor"][2],
+		EIDConfig["ErrorColor"][3],
+		EIDConfig["Transparency"],
+		0,
+		0,
+		0
+	)
 end
-
