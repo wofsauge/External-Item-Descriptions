@@ -1,5 +1,5 @@
 local charsToDebug = {
-	EID:replaceMarkupStrings("!!! EID DEBUG MODE ACTIVATED !!!"), -- Header
+	"!!! EID DEBUG MODE ACTIVATED !!!", -- Header
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZ", -- Caps letters
 	"abcdefghijklmnopqrstuvwxyz1234567890", -- small letters + numbers
 	"western: Áá Àà Ââ Āā Ää Ãã Åå Ææ Éé Èè Êê Ēē Ëë Íí Ìì Îî Īī Ïï ", --
@@ -9,15 +9,20 @@ local charsToDebug = {
 	"cyrillic 2: Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя",
 	"polish: Ąą Ćć Ęę Łł Ńń Óó Śś Źź Żż",
 	"custom icons: ↑Positive ↓Negative \007bulletpoint !Exclamation ǃWarning !!!shortcut",
-	EID:replaceMarkupStrings(
-		"legacy icon Markup: \\1:\1Positive \\2:\2Negative \\3:\3Warning ! \\6:\6 heart \\5:\5 Key \\015:\015 Coin \\8\\189:\8\189 Bomb"
-	),
-	"emotes: ☆★〠♠♣♥♦♤♧♡♢☀☂♨♪♭♯♂♀"
+	"legacy icon Markup: \\1:\1Positive \\2:\2Negative \\3:\3Warning ! \\6:\6 heart \\5:\5 Key \\015:\015 Coin \\8\\189:\8\189 Bomb",
+	"emotes: ☆★〠♠♣♥♦♤♧♡♢☀☂♨♪♭♯♂♀",
+	"Markup main: |{{ArrowUp}}|{{ArrowDown}}|{{Warning}}|{{ERROR}}|",
+	"Markup numbers: |{{0}}|{{1}}|{{2}}|{{3}}|{{4}}|{{5}}|{{6}}|{{7}}|{{8}}|{{9}}|{{10}}|{{11}}|{{12}}|",
+	"Markup hearts: |{{Heart}}|{{HalfHeart}}|{{EthernalHeart}}|{{EmptyHeart}}|{{BlendedHeart}}|{{BoneHeart}}|{{HalfBoneHeart}}|{{EmptyBoneHeart}}|{{SoulHeart}}|{{HalfSoulHeart}}|{{BlackHeart}}|{{HalfBlackHeart}}|{{GoldenHeart}}|{{CoinHeart}}|{{HalfCoinHeart}}|{{EmptyCoinHeart}}|",
+	"Markup pickups: |{{Key}}|{{GoldenKey}}|{{Bomb}}|{{GoldenBomb}}|{{Coin}}|{{Card}}|{{RedCard}}|{{Collectible}}|{{Pill}}|{{Trinket}}|{{Battery}}|{{Rune}}|{{Slotmachine}}|",
+	"Markup roomtypes: |{{DevilRoom}}|{{AngelRoom}}|{{ChallengeRoom}}|{{IsaacsRoom}}|{{TreasureRoom}}|{{ArcadeRoom}}|{{BossRushRoom}}|{{Shop}}|{{SuperSecretRoom}}|{{BarrenRoom}}|{{MiniBoss}}|{{DiceRoom}}|{{GreedTreasureRoom}}|{{SecretRoom}}|{{Library}}|{{ChestRoom}}|{{BossRoom}}|{{CursedRoom}}|{{SacrificeRoom}}|",
+	"Markup roomshapes: |{{Room}}|{{RoomLongHorizontal}}|{{RoomLongThinHorizontal}}|{{RoomSmallHorizontal}}|{{RoomLBottomRight}}|{{RoomSmallVertical}}|{{RoomLBottomLeft}}|{{RoomLTopLeft}}|{{RoomL}}|{{RoomLongVertical}}|{{RoomXL}}|{{RoomLongThinVertical}}|"
 }
 
 local function onDebugRender(t)
 	for i, v in ipairs(charsToDebug) do
-		EID.font:DrawStringUTF8(v, 45, 20 + ((i - 1) * 15), KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
+		local pos = Vector(EIDConfig["XPosition"] * EIDConfig["Scale"], EIDConfig["YPosition"] - 25 + ((i - 1) * 14))
+		EID:renderString(v, pos, Vector(EIDConfig["Scale"], EIDConfig["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0), true)
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onDebugRender)

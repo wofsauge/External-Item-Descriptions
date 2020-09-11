@@ -102,8 +102,7 @@ function EID:hasDescription(entity)
 	local isAllowed = false
 	if EIDConfig["EnableEntityDescriptions"] then
 		isAllowed =
-			isAllowed or
-			(__eidEntityDescriptions[entity.Type .. "." .. entity.Variant .. "." .. entity.SubType] ~= nil) --[[or type(entity:GetData()["EID_Description"]) ~= type(nil)]]
+			isAllowed or (__eidEntityDescriptions[entity.Type .. "." .. entity.Variant .. "." .. entity.SubType] ~= nil) --[[or type(entity:GetData()["EID_Description"]) ~= type(nil)]]
 	end
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EIDConfig["DisplayItemInfo"])
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EIDConfig["DisplayTrinketInfo"])
@@ -113,26 +112,66 @@ function EID:hasDescription(entity)
 end
 
 -- Replaces shorthand-representations of a character with the internal reference
-function EID:replaceMarkupStrings(text)
-	text = string.gsub(text, "!!!", "ǃ") -- Turn 3 Exclamations into Warning
-	text = string.gsub(text, "\1", "↑") -- Legacy Up Arrow
-	text = string.gsub(text, "\2", "↓") -- Legacy Down Arrow
-	text = string.gsub(text, "\3", "ǃ") -- Legacy Warning
-	text = string.gsub(text, "\6", "\2HEART\2") -- Legacy Heart
-	text = string.gsub(text, "\5", "\2KEY\2") -- Legacy Key
-	text = string.gsub(text, "\015", "\2COIN\2") -- Legacy Coin
-	text = string.gsub(text, "\8\189", "\2BOMB\2") -- Legacy BOMB
+function EID:replaceShortMarkupStrings(text)
+	text = string.gsub(text, "!!!", "{{Warning}}") -- Turn 3 Exclamations into Warning
+	text = string.gsub(text, "↑", "{{ArrowUp}}") -- Up Arrow
+	text = string.gsub(text, "↓", "{{ArrowDown}}") -- Down Arrow
+	text = string.gsub(text, "\1", "{{ArrowUp}}") -- Legacy Up Arrow
+	text = string.gsub(text, "\2", "{{ArrowDown}}") -- Legacy Down Arrow
+	text = string.gsub(text, "\3", "{{Warning}}") -- Legacy Warning
+	text = string.gsub(text, "\6", "{{Heart}}") -- Legacy Heart
+	text = string.gsub(text, "\5", "{{Key}}") -- Legacy Key
+	text = string.gsub(text, "\015", "{{Coin}}") -- Legacy Coin
+	text = string.gsub(text, "\8\189", "{{Bomb}}") -- Legacy BOMB
 	return text
 end
 
--- Returns the icon used for the bulletpoint. It will look at the first character in the given string.
-EID.bulletIcons = {"↑", "↓", "!", "ǃ"}
-function EID:getBulletpointIcon(text)
-	for i, v in ipairs(EID.bulletIcons) do
-		local iconPos = string.find(text, v)
-		if iconPos == 1 or iconPos == 2 then
-			return v
-		end
+-- Generates a string with the defined pixel-length using a custom 1px wide character
+-- This will only work for this specific custom font
+function EID:generatePlaceholderString(length)
+	local placeholder = ""
+	for i = 1, length do
+		placeholder = placeholder .. "¤"
+	end
+	return placeholder
+end
+
+-- Returns the inlineIcon object of a given Iconstring
+-- can be used to validate an iconstring
+function EID:getIcon(str)
+	return EID.InlineIcons[string.gsub(str, "{{(.-)}}", function(a) return a end)] or nil
+end
+
+-- Returns the width of a given string in Pixels
+function EID:getStrWidth(str)
+	return EID.font:GetStringWidthUTF8(str)
+end
+
+-- Searches true the given string and replaces Iconplaceholders with icons.
+-- Returns the string without the placeholders but with an accurate space between lines.
+function EID:filterMarkup(text, textPosX, textPosY)
+	for word in string.gmatch(text, "{{.-}}") do
+		local textposition = string.find(text, word)
+		local lookup = EID:getIcon(word) or EID.InlineIcons["ERROR"]
+		local Xoffset = lookup[5] or 0
+		local prefixTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1))
+		EID.InlineIconSprite:SetFrame(lookup[1], lookup[2])
+		EID.InlineIconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
+		EID.InlineIconSprite:Render(
+			Vector((textPosX + prefixTextWidth + Xoffset) * EIDConfig["Scale"], textPosY),
+			Vector(0, 0),
+			Vector(0, 0)
+		)
+		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
+	end
+	return text
+end
+
+-- Returns the icon used for the bulletpoint. It will look at the first word in the given string.
+function EID:handleBulletpointIcon(text)
+	local firstWord = string.match(text, "([^%s]+)")
+	if EID:getIcon(firstWord) ~= nil then
+		return firstWord
 	end
 	return "\007"
 end
@@ -140,16 +179,9 @@ end
 --needs to be called in a render Callback
 -- args: string, Vector(int, int), Vector(float,float), KColor obj, bool
 function EID:renderString(str, position, scale, kcolor, centered)
-	EID.font:DrawStringScaledUTF8(
-		str,
-		position.X,
-		position.Y,
-		scale.X,
-		scale.Y,
-		kcolor,
-		EID.font:GetStringWidthUTF8(str),
-		centered
-	)
+	str = EID:replaceShortMarkupStrings(str)
+	str = EID:filterMarkup(str, position.X, position.Y)
+	EID.font:DrawStringScaledUTF8(str, position.X, position.Y, scale.X, scale.Y, kcolor, EID:getStrWidth(str), centered)
 end
 
 -- Get KColor object of "Entity Name" texts

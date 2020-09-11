@@ -10,6 +10,9 @@ EID.sacrificeCounter = 1
 local IconSprite = Sprite()
 IconSprite:Load("gfx/icons.anm2", true)
 
+EID.InlineIconSprite = Sprite()
+EID.InlineIconSprite:Load("gfx/eid_inline_icons.anm2", true)
+
 local ArrowSprite = Sprite()
 ArrowSprite:Load("gfx/icons.anm2", true)
 ArrowSprite:Play("Arrow", false)
@@ -20,6 +23,7 @@ CardSprite:Load("gfx/cardfronts.anm2", true)
 require("eid_config")
 require("mod_config_menu")
 require("descriptions.ab+." .. EIDConfig["Language"])
+require("eid_data")
 require("eid_api")
 
 --use some very hacky trickery to get the path to this mod
@@ -32,7 +36,7 @@ modPath = string.gsub(modPath, "\\", "/")
 modPath = string.gsub(modPath, ":/", ":\\")
 
 EID.font = Font() -- init font object
-EID.font:Load(modPath .. "resources/font/default.fnt") -- load a font into the font object
+EID.font:Load(modPath .. "resources/font/eid_default.fnt") -- load a font into the font object
 EID.font:SetMissingCharacter(2)
 if not EID.font:IsLoaded() then
 	Isaac.DebugString("EID - ERROR: Could not load font from '" .. modPath .. "resources/font/default.fnt" .. "'")
@@ -192,33 +196,43 @@ function printTrinketDescription(desc, typ)
 end
 
 function printBulletPoints(description, padding)
-	local textboxWidth = tonumber(EIDConfig["TextboxWidth"])
+	local textboxWidth = tonumber(EIDConfig["TextboxWidth"]) * 4
+	description = EID:replaceShortMarkupStrings(description)
 	for line in string.gmatch(description, "([^#]+)") do
-		local array = {}
+		local formatedLines = {}
 		local text = ""
+		local curLength = 0
 		for word in string.gmatch(line, "([^ ]+)") do
-			if string.len(text) + string.len(word) <= textboxWidth then
-				text = text .. " " .. word
+			local wordLength = EID:getStrWidth(word)
+			if EID:getIcon(word) ~= nil then
+				wordLength = EID:getIcon(word)[3]
+			end
+			if curLength + wordLength <= textboxWidth then
+				text = text .. word .. " "
+				curLength = curLength + wordLength
 			else
-				table.insert(array, text)
-				text = word
+				table.insert(formatedLines, text)
+				text = word .. " "
+				curLength = wordLength
 			end
 		end
-		table.insert(array, text)
+		table.insert(formatedLines, text)
 		local textColor = EID:getTextColor()
-		for i, v in ipairs(array) do
+		for i, lineToPrint in ipairs(formatedLines) do
+			-- render bulletpoint
 			local posX = EIDConfig["XPosition"]
-			local bpIcon = "  " -- no bulletpoint
 			if i == 1 then
-				bpIcon = EID:getBulletpointIcon(v)
-				if string.find(bpIcon, "\007") == nil then
-					v = string.sub(v, 3 + #bpIcon)
-					posX = posX - 2 -- Move a bit to the left, to center icons
+				local bpIcon = EID:handleBulletpointIcon(lineToPrint)
+				if EID:getIcon(bpIcon) ~= nil then
+					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "")
+					posX = posX - 2
 				end
+
+				EID:renderString(bpIcon, Vector(posX, padding), Vector(EIDConfig["Scale"], EIDConfig["Scale"]), textColor, false)
 			end
 			EID:renderString(
-				bpIcon .. EID:replaceMarkupStrings(v),
-				Vector(posX, padding),
+				lineToPrint,
+				Vector(posX + 12, padding),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 				textColor,
 				false
