@@ -1,3 +1,4 @@
+local showDebugChars = false
 local charsToDebug = {
 	"!!! EID DEBUG MODE ACTIVATED !!!", -- Header
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZ", -- Caps letters
@@ -19,10 +20,24 @@ local charsToDebug = {
 	"Markup roomshapes: |{{Room}}|{{RoomLongHorizontal}}|{{RoomLongThinHorizontal}}|{{RoomSmallHorizontal}}|{{RoomLBottomRight}}|{{RoomSmallVertical}}|{{RoomLBottomLeft}}|{{RoomLTopLeft}}|{{RoomL}}|{{RoomLongVertical}}|{{RoomXL}}|{{RoomLongThinVertical}}|"
 }
 
+-- Legacy Overriding descriptions
+__eidItemDescriptions[1] = "\1 Overriden"				-- 5.100.1 = Sad Onion
+__eidTrinketDescriptions[1] = "\2 Overriden "			-- 5.350.1 = swallowed penny
+__eidCardDescriptions[1] = "Overriden Card description" -- 5.300.1 = the fool
+__eidPillDescriptions[1] = "Test"						-- Doesnt seem to work
+
+-- Legacy add Description
+__eidItemTransformations[1] = "Test Transformation"
+__eidEntityDescriptions["5.10.1"] = {"Entity Name","Entity description"} -- Adds description to full red hearts
+
 local function onDebugRender(t)
-	for i, v in ipairs(charsToDebug) do
-		local pos = Vector(EIDConfig["XPosition"] * EIDConfig["Scale"], EIDConfig["YPosition"] - 25 + ((i - 1) * 14))
-		EID:renderString(v, pos, Vector(EIDConfig["Scale"], EIDConfig["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0), true)
-	end
+		for i, v in ipairs(charsToDebug) do
+			local pos = Vector(EIDConfig["XPosition"] * EIDConfig["Scale"], EIDConfig["YPosition"] - 15 + ((i - 1) * 14))
+			EID:renderString(v, pos, Vector(EIDConfig["Scale"], EIDConfig["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0), true)
+			
+			if not showDebugChars then
+				break
+			end
+		end
 end
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onDebugRender)

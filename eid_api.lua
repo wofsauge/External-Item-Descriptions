@@ -102,12 +102,24 @@ function EID:getModDescription(list, id)
 end
 
 --Get the name of the given transformation by its ID
-function EID:getTransformation(id)
+function EID:getTransformationName(id)
 	local str = "Custom"
-	if (tonumber(id) <= #transformations - 1) then
+	if tonumber(id) == nil then
+		return id
+	elseif EID:isVanillaTransformationID(id) then
 		return transformations[tonumber(id) + 1]
 	end
 	return str
+end
+
+--Returns true, if the transformation has a vanilla icon
+function EID:isVanillaTransformationID(id)
+	if tonumber(id) ~= nil then
+		if (tonumber(id) <= #transformations - 1) then
+			return true
+		end
+	end
+	return false
 end
 
 -- tries to get the ingame name of an item based on its ID

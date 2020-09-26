@@ -128,23 +128,15 @@ function printDescription(desc)
 	--Display Transformation
 	if not (desc[2] == "0" or desc[2] == "" or desc[2] == nil) then
 		if EIDConfig["TransformationText"] then
-			local transformationText = ""
-			if not (EID:getTransformation(desc[2]) == "Custom") then
-				transformationText = EID:getTransformation(desc[2])
-			elseif not (transformations[desc[2]]) then --Custom transformationname
-				transformationText = desc[2]
-			else
-				transformationText = EID:getTransformation(desc[2])
-			end
 			EID:renderString(
-				transformationText,
+				EID:getTransformationName(desc[2]),
 				Vector(EIDConfig["XPosition"] + 16 * EIDConfig["Scale"], padding - 1),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 				EID:getTransformationColor(),
 				false
 			)
 		end
-		if EIDConfig["TransformationIcons"] and not (EID:getTransformation(desc[2]) == "Custom") then
+		if EIDConfig["TransformationIcons"] and EID:isVanillaTransformationID(desc[2]) then
 			IconSprite:Play("Transformation" .. desc[2])
 			IconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
 			IconSprite:Update()
@@ -356,13 +348,13 @@ local function onRender(t)
 	--Handle Trinkets
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
 		--Handle Collectibles
-		if closest.SubType <= 128 then
-			printTrinketDescription(trinketdescriptions[closest.SubType], "trinket")
-		elseif EID:getModDescription(__eidTrinketDescriptions, closest.SubType) then
+		if EID:getModDescription(__eidTrinketDescriptions, closest.SubType) then
 			printTrinketDescription(
 				{closest.SubType, EID:getModDescription(__eidTrinketDescriptions, closest.SubType)},
 				"trinket"
 			)
+		elseif closest.SubType <= 128 then
+			printTrinketDescription(trinketdescriptions[closest.SubType], "trinket")
 		else
 			printTrinketDescription({closest.SubType, EID.itemConfig:GetTrinket(closest.SubType).Description})
 		end
