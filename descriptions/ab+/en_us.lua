@@ -9,7 +9,7 @@
 -- Example:  69|1|+1.0 Tears up |Example Item#Example Second Line
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning   | \6 = health   |  \5 Key   |   \015 = Coin   |  \8↑89 = Bomb
+-- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning 
 descriptarray={{"1","0","↑ +0.7 Tears up"},
 {"2","0","Triple shot#↓ Tears down"},
 {"3","0","Homing tears"},
