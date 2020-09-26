@@ -8,12 +8,17 @@
 -- '#' = starts new line of text
 -- Example:  69|1|+1.0 Tears up |Example Item#Example Second Line
 
--- French letter rendercheck : 
- --print("ùÙûÛüÜÿŸ àÀâÂæÆçÇ éÉèÈêÊëË ïÏîÎôÔœŒ")
+-- French letters : 
+ --ùÙûÛüÜÿŸ àÀâÂæÆçÇ éÉèÈêÊëË ïÏîÎôÔœŒ
 
 --Special character markup:
 -- \1 = Up Arrow   |  \2 = Down Arrow    | \3 = Warning !   | \6 = health   |  \5 Key   |   \015 = Coin   |  \8\189 = Bomb
-descriptarray={{"1","0","\1 +0.7 Cadence de tir"},
+
+
+-- init fr table
+EID.descriptions["fr"] = {}
+
+EID.descriptions["fr"].collectibles={{"1","0","\1 +0.7 Cadence de tir"},
 {"2","0","Triple tir#\2 Cadence de tir"},
 {"3","0","Larmes à tête chercheuse"},
 {"4","0","\1 +0.5 Dégât(s)#\1 +50% Multiplicateur de Dégât(s) #+ Recul"},
@@ -568,7 +573,7 @@ descriptarray={{"1","0","\1 +0.7 Cadence de tir"},
 }
 
 ---------- Trinkets ----------
-trinketdescriptions={{"1","Lâche une pièce quand vous vous faites toucher"},
+EID.descriptions["fr"].trinkets={{"1","Lâche une pièce quand vous vous faites toucher"},
 {"2","Plus de chances d'obtenir des récompenses en détruisant les cacas"},
 {"3","-1 charge nécessaire pour les objets activables"},
 {"4","Vous téléporte dans une salle aléatoire quand vous utilisez un objet"},
@@ -699,7 +704,7 @@ trinketdescriptions={{"1","Lâche une pièce quand vous vous faites toucher"},
 }
 
 ---------- Cards ----------
-cardDescriptions={{"1","Vous téléporte à la salle de départ"},
+EID.descriptions["fr"].cards={{"1","Vous téléporte à la salle de départ"},
 {"2","Larmes à tête chercheuse pour la salle"},
 {"3","Mom's Foot tombe sur un ennemi!"},
 {"4","\1 +2.35 Dégâts & +0.3 vitesse pour la salle"},
@@ -757,9 +762,9 @@ cardDescriptions={{"1","Vous téléporte à la salle de départ"},
 
 ---------- Pills ----------
 
-unidentifiedPillMessage = "- Pilule non identifiée"
+EID.descriptions["fr"].unidentifiedPill = "- Pilule non identifiée"
 
-pillDescriptions={
+EID.descriptions["fr"].pills={
 {"0","Fait apparaître un nuage de gaz"},
 {"1","Inflige 1 coeur de dégâts"},
 {"2","+2 Coeurs Bleus"},
@@ -810,9 +815,9 @@ pillDescriptions={
 } 
 
 ---------- Sacrifice Room ----------
-sacrificeDescriptionHeader = "[Prochaine récompense de sacrifice]"
+EID.descriptions["fr"].sacrificeHeader = "[Prochaine récompense de sacrifice]"
 
-sacrificeDescriptions={
+EID.descriptions["fr"].sacrifice={
 {"1","50% chances d'avoir 1 pièce#100% chances d'avoir 1 bombe, en étant au premier étage et en ayant vaincu le premier boss en moins d'une minute"},
 {"2","50% chances d'avoir 1 pièce#100% chances d'avoir 1 bombe, en étant au premier étage et en ayant vaincu le premier boss en moins d'une minute"},
 {"3","67% chances d'augmenter les probabilités d'avoir une Angel Room à la fin du combat de boss"},
@@ -827,9 +832,9 @@ sacrificeDescriptions={
 {"12","50% chances de vous téléporter à la Dark Room"}
 }
 ---------- Dice Room ----------
-diceDescriptionHeader = "[Effet de Dé]"
+EID.descriptions["fr"].diceHeader = "[Effet de Dé]"
 
-diceDescriptions={
+EID.descriptions["fr"].dice={
 {"1","Transforme tous vos objets#(n'affecte que les collectibles)"},
 {"2","Transforme tous les collectibles dans la salle"},
 {"3","Transforme tous les collectibles de l'étage"},
@@ -839,7 +844,7 @@ diceDescriptions={
 }
 
 ---------- Transformations ----------
-transformations = {
+EID.descriptions["fr"].transformations = {
 "",					-- 0 = none
 "Guppy",			-- 1
 "Fun Guy",			-- 2

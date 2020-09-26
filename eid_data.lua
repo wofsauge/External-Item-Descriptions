@@ -85,7 +85,7 @@ EID.InlineIcons = {
 }
 
 -- List of TransformationIcons based on their Name
---Format: [Ingame Name] = {Animationname, Width, Height, LeftOffset [Default: 0], TopOffset [Default: -3], IconSpriteObj (Optional)}
+--Format: [Ingame Name] = {Animationname, Width, Height, LeftOffset [Default: 0], TopOffset [Default: -3], IconSpriteObj [Default: EID.IconSprite]}
 EID.TransformationIcons = {
 	["Custom"] = {"TransformationCustom",11,16},
 	["Guppy"] = {"Transformation1",12,16},

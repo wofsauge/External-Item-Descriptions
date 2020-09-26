@@ -1,6 +1,6 @@
 	
 ------------------------------------------------------------------
------  Basic English descriptions based on Platinumgod.co.uk -----
+-----  Basic Spanish descriptions based on Platinumgod.co.uk -----
 ------------------------------------------------------------------
 
 -- Transformations: uses the number next to the transformation entry (can be found at the bottom of this file)
@@ -11,12 +11,13 @@
 -- Spanish letter rendercheck : 
 -- print("áéíóúüñÁÉÍÓÚÜÑ¿¡ |")
 
--- Spanish letter markup
--- ¡ = |   dont use Ñ or ¿
-
 --Special character markup:
 -- \1 = Up Arrow   |  \2 = Down Arrow    | \3 = Warning !   | \6 = health   |  \5 Key   |   \015 = Coin   |  \8\189 = Bomb
-descriptarray={{"1","0","\1 +0,7 de lágrimas"},
+
+-- init spa table
+EID.descriptions["spa"] = {}
+
+EID.descriptions["spa"].collectibles={{"1","0","\1 +0,7 de lágrimas"},
 {"2","0","Disparo triple#\2 Menos lágrimas"},
 {"3","0","Lágrimas teledirigidas"},
 {"4","0","\1 +0,5 de daño#\1 +50% de multiplicador de daño #+Empuje"},
@@ -27,7 +28,7 @@ descriptarray={{"1","0","\1 +0,7 de lágrimas"},
 {"9","3","Todas las moscas enemigas son aliadas"},
 {"10","3","+2 moscas orbitales"},
 {"11","2","\1 +1 de vida#Reaparece con la vida al completo"},
-{"12","2","\1 +1 de vida#\1 +0,3 de daño#\1 +50% de multiplicador de daño#\1 +5,25 de rango#\1 +0,3 de velocidad#\1 +0,5 de tamaño de lágrima#|Vida al completo!"},
+{"12","2","\1 +1 de vida#\1 +0,3 de daño#\1 +50% de multiplicador de daño#\1 +5,25 de rango#\1 +0,3 de velocidad#\1 +0,5 de tamaño de lágrima#¡Vida al completo!"},
 {"13","5","Toque venenoso#\2 -0,1 de velocidad#Los enemigos pueden soltar corazones negros al morir si están envenenados"},
 {"14","5","\1 +0,6 de velocidad#\1 +5,25 de rango#\1 +0,5 de tamaño de lágrima"},
 {"15","0","\1 +1 de vida#Vida al completo"},
@@ -35,7 +36,7 @@ descriptarray={{"1","0","\1 +0,7 de lágrimas"},
 {"17","0","+99 llaves"},
 {"18","0","+99 monedas"},
 {"19","0","+10 bombas"},
-{"20","0","|Vuela!"},
+{"20","0","¡Vuela!"},
 {"21","0","Muestra todos los iconos del mapa#No muestra el plano del mapa"},
 {"22","0","\1 +1 de vida"},
 {"23","0","\1 +1 de vida"},
@@ -62,12 +63,12 @@ descriptarray={{"1","0","\1 +0,7 de lágrimas"},
 {"44","0","Teletransporta a Isaac a una habitación aleatoria"},
 {"45","0","Cura 1 corazón rojo"},
 {"46","0","\1 +1,0 de suerte#Más probabilidad de ganar al apostar"},
-{"47","0","|Epic Fetus (Feto épico) a la carta!#Ataques aéreos dirigidos"},
+{"47","0","¡Epic Fetus (Feto épico) a la carta!#Ataques aéreos dirigidos"},
 {"48","0","Lágrimas penetrantes"},
 {"49","0","Rayo de Brimstone (azufre) con gran daño"},
 {"50","0","\1 +1 de daño"},
 {"51","9","\1 +1,0 de daño#\1 +10% probabilidad de Pacto con el Diablo"},
-{"52","0","|Lágrimas bomba!"},
+{"52","0","¡Lágrimas bomba!"},
 {"53","0","Acerca los recolectables al jugador"},
 {"54","0","Muestra el plano del mapa"},
 {"55","6","Posibilidad aleatoria de disparar una lágrima hacia atrás"},
@@ -167,15 +168,15 @@ descriptarray={{"1","0","\1 +0,7 de lágrimas"},
 {"149","8","Lágrimas explosivas"},
 {"150","0","Posibilidad de disparar dientes"},
 {"151","3","1/6 probabilidad de generar una mosca al golpear un enemigo"},
-{"152","0","|Láser permanente!#\2 -35% de daño"},
-{"153","13","|Disparo cuádruple!#\2 Menos lágrimas"},
+{"152","0","¡Láser permanente!#\2 -35% de daño"},
+{"153","13","¡Disparo cuádruple!#\2 Menos lágrimas"},
 {"154","0","\1 +2 de daño para el ojo izquierdo"},
 {"155","0","Flota por la habitación#Inflige daño por contacto"},
 {"156","0","Te da una carga cuando te golpean"},
 {"157","0","\1 Más daño cuando te golpean#Dura todo la planta"},
 {"158","0","Muestra el mapa completo#Genera una carta aleatoria o un corazón de alma"},
 {"159","9","Vuela#Lágrimas espectrales"},
-{"160","0","|Rayos de luz desde el cielo!"},
+{"160","0","¡Rayos de luz desde el cielo!"},
 {"161","0","Reaparece como ??? (Blue Baby(Bebé Azul))"},
 {"162","0","Probabilidad de ser invencible cuando te golpean"},
 {"163","0","Familiar de lágrimas espectrales"},
@@ -184,7 +185,7 @@ descriptarray={{"1","0","\1 +0,7 de lágrimas"},
 {"166","0","Cambia los recolectables"},
 {"167","4","Dispara dos lágrimas en forma de V"},
 {"168","0","Ataque aéreo controlable en lugar de lágrimas"},
-{"169","0","|Mega lágrimas!#\1 Más daño#\2 Menos lágrimas"},
+{"169","0","¡Mega lágrimas!#\1 Más daño#\2 Menos lágrimas"},
 {"170","0","Cae sobre los enemigos"},
 {"171","13","Ralentiza a los enemigos#Daña a todos los enemigos"},
 {"172","0","Cuchillo orbital"},
@@ -235,7 +236,7 @@ descriptarray={{"1","0","\1 +0,7 de lágrimas"},
 {"217","6","Probabilidad aleatoria de generar una araña azul al disparar"},
 {"218","0","Regenera la vida poco a poco#\1 +1 de vida"},
 {"219","0","\1 +1 contenedor de corazón vacío#Probabilidad aleatoria de dejar caer corazones cuando te golpean"},
-{"220","0","|Explosión de lágrimas!#+5 Bombas"},
+{"220","0","¡Explosión de lágrimas!#+5 Bombas"},
 {"221","0","Las lágrimas rebotan"},
 {"222","0","\1 Más daño#Lágrimas anti-gravedad"},
 {"223","0","Las explosiones te curan#+5 Bombas"},
@@ -252,9 +253,9 @@ descriptarray={{"1","0","\1 +0,7 de lágrimas"},
 {"234","0","Al matar a un enemigo genera arañas "},
 {"235","0","<El objeto no existe>"},
 {"236","7","Al tocar a los enemigos los convierte en caca"},
-{"237","0","|Dispara guadañas!#\1 +1,5 de daño#\2 -0,3 de lágrimas"},
-{"238","0","\3 |Pieza de llave para la puerte de Mega Satán!#Aparecen más Salas del Ángel"},
-{"239","0","\3 |Pieza de llave para la puerte de Mega Satán!#Aparecen más Salas del Ángel"},
+{"237","0","¡Dispara guadañas!#\1 +1,5 de daño#\2 -0,3 de lágrimas"},
+{"238","0","\3 ¡Pieza de llave para la puerte de Mega Satán!#Aparecen más Salas del Ángel"},
+{"239","0","\3 ¡Pieza de llave para la puerte de Mega Satán!#Aparecen más Salas del Ángel"},
 {"240","5","Todas las estadisticas \1/\2 un número aleatorio"},
 {"241","0","Duplica los recolectables que cojas"},
 {"242","0","Posibilidad de bloquear lágrimas"},
@@ -314,12 +315,12 @@ descriptarray={{"1","0","\1 +0,7 de lágrimas"},
 {"296","0","\3 Convierte:#2 corazones de alma/negros en un corazón rojo"},
 {"297","0","\3 ÚNICO USO \3#\3 Genera cosas en función del piso en el que se active:#B1: 2 corazones de alma #B2: 2 llaves y bombas#C1: 1 objeto de jefe#C2: B1+C1#D1: 4 corazones de alma#D2: 30 monedas#W1: 2 objetos de jefe#W2: Biblia#Sheol: 1 objeto del diablo+corazón negro#Catedral: 1 objeto de ángel + corazón de alma#Chest(cofre): 1 moneda"},
 {"298","0","Invencibilidad y más velocidad temporal"},
-{"299","0","|Te hace más rápido en las habitaciones hostiles!#Invencibilidad al alcanzar la velocidad suficiente"},
+{"299","0","¡Te hace más rápido en las habitaciones hostiles!#Invencibilidad al alcanzar la velocidad suficiente"},
 {"300","0","\1 +0,25 de velocidad#Tocar a los enemigos les daña"},
 {"301","0","+3 corazones de alma#Reduce a la mitad el daño que recibas en la habitación tras ser golpeado una vez"},
-{"302","0","|Rompe las rocas!"},
+{"302","0","¡Rompe las rocas!"},
 {"303","0","Posibilidad de ser invencible cuando te tocan"},
-{"304","0","+6 monedas / llaves / bombas#|Equilibra tus estadísticas!#\3 Cada estadística afectará también a otras estadísticas"},
+{"304","0","+6 monedas / llaves / bombas#¡Equilibra tus estadísticas!#\3 Cada estadística afectará también a otras estadísticas"},
 {"305","0","Lágrimas venenosas"},
 {"306","0","\1 +0,2 de velocidad#Lágrimas penetrantes"},
 {"307","0","\1 +1 Vida / Llave / Bomba / Moneda#\1 +0,5 de daño#\1 +0,1 de velocidad#\1 +1,5 de rango"},
@@ -341,7 +342,7 @@ descriptarray={{"1","0","\1 +0,7 de lágrimas"},
 {"323","0","Potencia las lágrimas#Carga al disparar"},
 {"324","0","Te teletransporta a:#Habitación Secreta / Error / Sala del tesoro"},
 {"325","0","Te corta la cabeza#La cabeza no se mueve#Controla tu cuerpo por separado"},
-{"326","0","Mantén hasta que la barra del objeto se vacíe para ser invencible#\3 |No mantengas demasiado tiempo!"},
+{"326","0","Mantén hasta que la barra del objeto se vacíe para ser invencible#\3 ¡No mantengas demasiado tiempo!"},
 {"327","0","Invencible cuando te golpean y estás a medio corazón"},
 {"328","0","Efecto de necronomicón cuando te golpean y estás a medio corazón"},
 {"329","0","Lágrima controlable"},
@@ -565,13 +566,13 @@ descriptarray={{"1","0","\1 +0,7 de lágrimas"},
 {"547","0","+1 un corazón de hueso#\1 +0,7 de lágrimas#Genera el trinket Mysterious Paper"},
 {"548","0","Familiar tipo boomerang#Inflige el doble del daño"},
 {"549","0","Remplaza todos los contenedores de corazón por 6 corazones de hueso#Perder un corazón de hueso dispara lágrimas en todas las direcciones"},
-{"550","0","Los pies de mamá te atacarán constantemente#Al usarlo los pies dejarán de caer en esta habitación#\3|Intenta ganar la Bossrush con esto!"},
+{"550","0","Los pies de mamá te atacarán constantemente#Al usarlo los pies dejarán de caer en esta habitación#\3¡Intenta ganar la Bossrush con esto!"},
 {"551","0","Segunda parte de la pala rota#Úsala en el montón de tierra en la \"Dark Room\"(La Sala oscura)"},
 {"552","6","Genera una trampilla hacia la siguiente planta#Úsala en el montón de tierra en la \"Dark Room\"(La Sala oscura)"},
 }
 
 ---------- Trinkets ----------
-trinketdescriptions={{"1","Generas monedas cuando te golpean"},
+EID.descriptions["spa"].trinkets={{"1","Generas monedas cuando te golpean"},
 {"2","Las cacas dejan caer más recolectables"},
 {"3","Se necesita 1 carga menos en los objetos activables"},
 {"4","Te teletransporta de manera aleatoria al usar un objeto"},
@@ -702,7 +703,7 @@ trinketdescriptions={{"1","Generas monedas cuando te golpean"},
 }
 
 ---------- Cards ----------
-cardDescriptions={{"1","Te teletransporta de nuevo al inicio"},
+EID.descriptions["spa"].cards={{"1","Te teletransporta de nuevo al inicio"},
 {"2","Lágrimas teledirigidas en la habitación actual"},
 {"3","El Pie de Mamá pisa a un enemigo"},
 {"4","\1 +2.35 de daño & +0,3 de velocidad en la habitación actual"},
@@ -760,9 +761,9 @@ cardDescriptions={{"1","Te teletransporta de nuevo al inicio"},
 
 ---------- Pills ----------
 
-unidentifiedPillMessage = "- Píldora sin identificar"
+EID.descriptions["spa"].unidentifiedPill = "- Píldora sin identificar"
 
-pillDescriptions={
+EID.descriptions["spa"].pills={
 {"0","Genera una nube de gas"},
 {"1","Inflige 1 corazón de daño"},
 {"2","+2 corazones de alma"},
@@ -813,9 +814,9 @@ pillDescriptions={
 } 
 
 ---------- Sacrifice Room ----------
-sacrificeDescriptionHeader = "[Siguiente pago de la Sala del Sacrificio]"
+EID.descriptions["spa"].sacrificeHeader = "[Siguiente pago de la Sala del Sacrificio]"
 
-sacrificeDescriptions={
+EID.descriptions["spa"].sacrifice={
 {"1","50% de probabilidad de 1 moneda#100% de probabilidad de 1 bomba, al matar al Jefe de B1 en menos de 1 minuto"},
 {"2","50% de probabilidad de 1 moneda#100% de probabilidad de 1 bomba, al matar al Jefe de B1 en menos de 1 minuto"},
 {"3","67% de más de probabilidad de que aparezca la Sala del Ángel en lugar de la del Diablo"},
@@ -831,9 +832,9 @@ sacrificeDescriptions={
 }
 
 ---------- Dice Room ----------
-diceDescriptionHeader = "[Efecto del dado]"
+EID.descriptions["spa"].diceHeader = "[Efecto del dado]"
 
-diceDescriptions={
+EID.descriptions["spa"].dice={
 {"1","Cambia tus objetos#(no afecta a los recolectables)"},
 {"2","Cambia los recolectables de la habitación"},
 {"3","Cambia todos los recolectables de la planta"},
@@ -843,7 +844,7 @@ diceDescriptions={
 }
 
 ---------- Transformations ----------
-transformations = {
+EID.descriptions["spa"].transformations = {
 "",					-- 0 = none
 "Guppy",			-- 1
 "Fun Guy (Tipo divertido)",			-- 2

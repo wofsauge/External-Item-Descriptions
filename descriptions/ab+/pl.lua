@@ -17,7 +17,11 @@
 -- \1 = Up Arrow   |  \2 = Down Arrow    | \3 = Warning !   | \6 = health   |  \5 Key   |   \015 = Coin   |  \8\189 = Bomb
 
 -- Polish Letter Markup: \165 = ê        \167 = Ê    \222 for ñ
-descriptarray={{"1","0","\1 +0.7 Szybkostrzelno¶ci"},
+
+-- init pl table
+EID.descriptions["pl"] = {}
+
+EID.descriptions["pl"].collectibles={{"1","0","\1 +0.7 Szybkostrzelno¶ci"},
 {"2","0","Potrójne strza³y#\2 Mniejsza Szybkostrzelno¶æ"},
 {"3","0","Samonaprowadzaj±ce si\165 ³zy"},
 {"4","0","\1 +0.5 Obra¿e\222#\1 Mno¿y obra¿enia +50% #+ ³zy odrzucaj± wrogów"},
@@ -572,7 +576,7 @@ descriptarray={{"1","0","\1 +0.7 Szybkostrzelno¶ci"},
 }
 
 ---------- Trinkets ----------
-trinketdescriptions={{"1","Drop coins when you get hit"},
+EID.descriptions["pl"].trinkets={{"1","Drop coins when you get hit"},
 {"2","More drops from poop"},
 {"3","-1 charge needed for spacebar items"},
 {"4","Randomly teleports you, when using an item"},
@@ -703,7 +707,7 @@ trinketdescriptions={{"1","Drop coins when you get hit"},
 }
 
 ---------- Cards ----------
-cardDescriptions={{"1","Teleports you back to the start"},
+EID.descriptions["pl"].cards={{"1","Teleports you back to the start"},
 {"2","Homing tears for current room"},
 {"3","Moms Foot stomps on an enemy!"},
 {"4","\1 +2.35 Damage & +0.3 Speed for current room"},
@@ -761,9 +765,9 @@ cardDescriptions={{"1","Teleports you back to the start"},
 
 ---------- Pills ----------
 
-unidentifiedPillMessage = "- Unidentified Pill"
+EID.descriptions["pl"].unidentifiedPill = "- Unidentified Pill"
 
-pillDescriptions={
+EID.descriptions["pl"].pills={
 {"0","Spawns a Gas cloud"},
 {"1","Deals 1 heart of damage"},
 {"2","+2 Soul Hearts"},
@@ -814,9 +818,9 @@ pillDescriptions={
 } 
 
 ---------- Sacrifice Room ----------
-sacrificeDescriptionHeader = "[Next Sacrifice Room payout]"
+EID.descriptions["pl"].sacrificeHeader = "[Next Sacrifice Room payout]"
 
-sacrificeDescriptions={
+EID.descriptions["pl"].sacrifice={
 {"1","50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 {"2","50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 {"3","67% chance for increased Angel Room chance"},
@@ -832,9 +836,9 @@ sacrificeDescriptions={
 }
 
 ---------- Dice Room ----------
-diceDescriptionHeader = "[Dice effect]"
+EID.descriptions["pl"].diceHeader = "[Dice effect]"
 
-diceDescriptions={
+EID.descriptions["pl"].dice={
 {"1","Rerolls all of your items#(only affect collectibles)"},
 {"2","Rerolls all pickups in the room"},
 {"3","Rerolls all pickups on the entire floor"},
@@ -844,7 +848,7 @@ diceDescriptions={
 }
 
 ---------- Transformations ----------
-transformations = {
+EID.descriptions["pl"].transformations = {
 "",					-- 0 = none
 "Guppy",			-- 1
 "Fun Guy",			-- 2

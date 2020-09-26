@@ -1,4 +1,20 @@
-descriptarray={{"1","0", "The Sad Onion / Тъжният лук", "© 0.7 Скорост на сълзите"},
+	
+------------------------------------------------------------------
+-----  Basic Bulgarian descriptions based on Platinumgod.co.uk -----
+------------------------------------------------------------------
+
+-- Transformations: uses the number next to the transformation entry (can be found at the bottom of this file)
+-- Item ID | transformation id| Description text 
+-- '#' = starts new line of text
+-- Example:  69|1|+1.0 Tears up |Example Item#Example Second Line
+
+--Special character markup:
+-- ^ = Up Arrow   |  v = Down Arrow    | ! = Warning 
+
+-- init bul table
+EID.descriptions["bul"] = {}
+
+EID.descriptions["bul"].collectibles={{"1","0", "The Sad Onion / Тъжният лук", "© 0.7 Скорост на сълзите"},
 {"2","0", "The Inner Eye / Вътрешно око", "Тройна стрелба#® 2 Скорост на сълзите"},
 {"3","0", "Spoon Bender / Огъната лъжица", "Самонасочващи се сълзи"},
 {"4","0", "Cricket's Head / Главата на Крикет", "© 0.5 Атака#© 50% Умножена атака #+ к отдаче"},
@@ -430,7 +446,7 @@ descriptarray={{"1","0", "The Sad Onion / Тъжният лук", "© 0.7 Скорост на сълзит
 }
 
 ---------- Trinkets ----------
-trinketdescriptions={{"1", "Swallowed Penny / Проглоченный Пенни", "При получении вами урона, на пол падает монетка"},
+EID.descriptions["bul"].trinkets={{"1", "Swallowed Penny / Проглоченный Пенни", "При получении вами урона, на пол падает монетка"},
 {"2", "Petrified Poop / Окаменевшая Какашка", "Больше предметов из какашек"},
 {"3", "AAA Battery / Батарейка ААА", "Уменьшает количество необходимых для предмета зарядов на 1"},
 {"4", "Broken Remote / Сломанный Пульт", "Телепортирует в случайную комнату, когда вы используете активный предмет"},
@@ -561,7 +577,7 @@ trinketdescriptions={{"1", "Swallowed Penny / Проглоченный Пенни", "При получени
 }
 
 ---------- Cards ----------
-cardDescriptions={{"1", "0 — The Fool / Дурак", "Телепортирует в начало уровня"},
+EID.descriptions["bul"].cards={{"1", "0 — The Fool / Дурак", "Телепортирует в начало уровня"},
 {"2", "I — The Magician / Маг", "Самонаводящиеся слезы в пределах комнаты"},
 {"3", "II — The High Priestess / Верховная Жрица", "Мамина Нога атакует случайного врага"},
 {"4", "III — The Empress / Императрица", "© 2.35 к урону и © 0.3 к скорости в пределах комнаты"},
@@ -619,9 +635,9 @@ cardDescriptions={{"1", "0 — The Fool / Дурак", "Телепортирует в начало уровня"}
 
 ---------- Pills ----------
 
-unidentifiedPillMessage = "- Неизвестная пилюля"
+EID.descriptions["bul"].unidentifiedPill = "- Неизвестная пилюля"
 
-pillDescriptions={
+EID.descriptions["bul"].pills={
 {"0", "Bad Gas / Вонючий Газ", " Создает облако ядовитого газа"},
 {"1", "Bad Trip / Плохой Приход", " Наносит урон в 1 сердце"},
 {"2", "Balls Of Steel / Стальные Яйца", " +2 Сердца Душ"},
@@ -672,9 +688,9 @@ pillDescriptions={
 } 
 
 ---------- Sacrifice Room ----------
-sacrificeDescriptionHeader = "[Комната Жертвоприношений - награда]"
+EID.descriptions["bul"].sacrificeHeader = "[Комната Жертвоприношений - награда]"
 
-sacrificeDescriptions={
+EID.descriptions["bul"].sacrifice={
 {"1", "", "50% шанс на 1 Монету#100% шанс на 1 Бомбу, если вы в Подвале 1 и убили Босса за 1 минуту."},
 {"2", "", "50% шанс на 1 Монету#100% шанс на 1 Бомбу, если вы в Подвале 1 и убили Босса за 1 минуту."},
 {"3", "", "67% вероятность повысить шанс появления Комнаты Ангела."},
@@ -690,20 +706,20 @@ sacrificeDescriptions={
 }
 
 ---------- Transformations ----------
-transformations = {
+EID.descriptions["bul"].transformations = {
 "",					-- 0 = none
 "Гаппи",			-- 1
-"Весельчак",			-- 2
-"Повелитель Мух",-- 3
+"Весельчак",		-- 2
+"Повелитель Мух",	-- 3
 "Соединенный",		-- 4
-"Передозировка",				-- 5
+"Передозировка",	-- 5
 "Мама",				-- 6
-"Вот Дерьмо!",			-- 7
+"Вот Дерьмо!",		-- 7
 "Боб",				-- 8
-"Левиафан",		-- 9
+"Левиафан",			-- 9
 "Серафим",			-- 10
-"Супер Бездельник",		-- 11
-"Книжный Червь",			-- 12
+"Супер Бездельник",	-- 11
+"Книжный Червь",	-- 12
 "Малыш-Паук",		-- 13
-"Топтун"		-- 14
+"Топтун"			-- 14
 }

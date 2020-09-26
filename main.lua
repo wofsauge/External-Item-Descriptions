@@ -1,5 +1,6 @@
 EID = RegisterMod("External Item Descriptions", 1)
 EID.itemConfig = Isaac.GetItemConfig()
+EID.descriptions = {} -- Table that holds all translation strings
 
 local lineHeight = 11
 local isDisplayingText = false
@@ -22,7 +23,16 @@ CardSprite:Load("gfx/cardfronts.anm2", true)
 
 require("eid_config")
 require("mod_config_menu")
-require("descriptions.ab+." .. EIDConfig["Language"])
+--languages
+require("descriptions.ab+.en_us")
+require("descriptions.ab+.en_us_detailed")
+require("descriptions.ab+.bul")
+require("descriptions.ab+.fr")
+--require("descriptions.ab+.pl")	-- WIP
+require("descriptions.ab+.pt")
+--require("descriptions.ab+.ru")    -- WIP
+require("descriptions.ab+.spa")
+
 require("eid_data")
 require("eid_api")
 
@@ -311,12 +321,12 @@ local function onRender(t)
 
 	if dist / 40 > tonumber(EIDConfig["MaxDistance"]) or not closest.Type == EntityType.ENTITY_PICKUP then
 		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EIDConfig["DisplaySacrificeInfo"] then
-			printTrinketDescription(sacrificeDescriptions[EID.sacrificeCounter], "sacrifice")
+			printTrinketDescription(EID:getDescriptionObj("sacrifice", EID.sacrificeCounter), "sacrifice")
 		end
 		if
 			Game():GetRoom():GetType() == RoomType.ROOM_DICE and EIDConfig["DisplayDiceInfo"] and type(closestDice) ~= type(nil)
 		 then
-			printTrinketDescription(diceDescriptions[closestDice.SubType + 1], "dice")
+			printTrinketDescription(EID:getDescriptionObj("dice", closestDice.SubType + 1), "dice")
 			renderIndicator(closestDice)
 		end
 		return
@@ -361,7 +371,7 @@ local function onRender(t)
 				"trinket"
 			)
 		elseif closest.SubType <= 128 then
-			printTrinketDescription(trinketdescriptions[closest.SubType], "trinket")
+			printTrinketDescription(EID:getDescriptionObj("trinkets",closest.SubType), "trinket")
 		else
 			printTrinketDescription({closest.SubType, EID.itemConfig:GetTrinket(closest.SubType).Description})
 		end
@@ -383,11 +393,11 @@ local function onRender(t)
 					{
 						closest.SubType,
 						EID:getModDescription(__eidItemTransformations, closest.SubType),
-						descriptarray[closest.SubType][3]
+						EID:getDescriptionObj("collectibles",closest.SubType)[3]
 					}
 				)
 			else
-				printDescription(descriptarray[closest.SubType])
+				printDescription(EID:getDescriptionObj("collectibles",closest.SubType))
 			end
 		else
 			printDescription({closest.SubType, "", EID.itemConfig:GetCollectible(closest.SubType).Description})
@@ -401,7 +411,7 @@ local function onRender(t)
 		if EID:getModDescription(__eidCardDescriptions, closest.SubType) then
 			printTrinketDescription({closest.SubType, EID:getModDescription(__eidCardDescriptions, closest.SubType)}, "card")
 		elseif closest.SubType <= 54 then
-			printTrinketDescription(cardDescriptions[closest.SubType], "card")
+			printTrinketDescription(EID:getDescriptionObj("cards", closest.SubType), "card")
 			CardSprite:Play(tostring(closest.SubType))
 			CardSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
 			CardSprite:Update()
@@ -431,7 +441,7 @@ local function onRender(t)
 			if EID:getModDescription(__eidPillDescriptions, pillEffect) then
 				printTrinketDescription({pillEffect, EID:getModDescription(__eidPillDescriptions, pillEffect)}, "pill")
 			elseif pillEffect < 47 then
-				printTrinketDescription(pillDescriptions[pillEffect + 1], "pill")
+				printTrinketDescription(EID:getDescriptionObj("pills", pillEffect + 1), "pill")
 			else
 				EID:renderString(
 					EIDConfig["ErrorMessage"],
@@ -443,7 +453,7 @@ local function onRender(t)
 			end
 		else
 			EID:renderString(
-				unidentifiedPillMessage,
+				EID:getDescriptionTable("unidentifiedPill"),
 				Vector(EIDConfig["XPosition"], posY()),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 				EID:getErrorColor(),

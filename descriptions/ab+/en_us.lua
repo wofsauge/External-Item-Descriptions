@@ -10,7 +10,11 @@
 
 --Special character markup:
 -- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning 
-descriptarray={{"1","0","↑ +0.7 Tears up"},
+
+-- init en_us table
+EID.descriptions["en_us"] = {}
+
+EID.descriptions["en_us"].collectibles={{"1","0","↑ +0.7 Tears up"},
 {"2","0","Triple shot#↓ Tears down"},
 {"3","0","Homing tears"},
 {"4","0","↑ +0.5 Damage up#↑ +50% Damage Multiplier"},
@@ -565,7 +569,7 @@ descriptarray={{"1","0","↑ +0.7 Tears up"},
 }
 
 ---------- Trinkets ----------
-trinketdescriptions={{"1","Drop 1 coin when you get hit"},
+EID.descriptions["en_us"].trinkets={{"1","Drop 1 coin when you get hit"},
 {"2","50% more drops from poop"},
 {"3","-1 charge needed for spacebar items"},
 {"4","Randomly teleports you, when using an item"},
@@ -696,7 +700,7 @@ trinketdescriptions={{"1","Drop 1 coin when you get hit"},
 }
 
 ---------- Cards ----------
-cardDescriptions={{"1","Teleports you back to the start"},
+EID.descriptions["en_us"].cards={{"1","Teleports you back to the start"},
 {"2","Homing tears for current room"},
 {"3","Moms Foot stomps on an enemy!"},
 {"4","↑ +2.35 Damage & +0.3 Speed for current room"},
@@ -754,9 +758,9 @@ cardDescriptions={{"1","Teleports you back to the start"},
 
 ---------- Pills ----------
 
-unidentifiedPillMessage = "- Unidentified Pill"
+EID.descriptions["en_us"].unidentifiedPill = "- Unidentified Pill"
 
-pillDescriptions={
+EID.descriptions["en_us"].pills={
 {"0","Spawns a Gas cloud"},
 {"1","Deals 1 heart of damage to you"},
 {"2","+2 Soul Hearts"},
@@ -807,9 +811,9 @@ pillDescriptions={
 } 
 
 ---------- Sacrifice Room ----------
-sacrificeDescriptionHeader = "[Next Sacrifice Room payout]"
+EID.descriptions["en_us"].sacrificeHeader = "[Next Sacrifice Room payout]"
 
-sacrificeDescriptions={
+EID.descriptions["en_us"].sacrifice={
 {"1","50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 {"2","50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 {"3","67% chance for increased Angel Room chance"},
@@ -825,9 +829,9 @@ sacrificeDescriptions={
 }
 
 ---------- Dice Room ----------
-diceDescriptionHeader = "[Dice effect]"
+EID.descriptions["en_us"].diceHeader = "[Dice effect]"
 
-diceDescriptions={
+EID.descriptions["en_us"].dice={
 {"1","Rerolls all of your items#(only affect collectibles)"},
 {"2","Rerolls all pickups in the room"},
 {"3","Rerolls all pickups on the entire floor"},
@@ -837,7 +841,7 @@ diceDescriptions={
 }
 
 ---------- Transformations ----------
-transformations = {
+EID.descriptions["en_us"].transformations = {
 "",					-- 0 = none
 "Guppy",			-- 1
 "Fun Guy",			-- 2

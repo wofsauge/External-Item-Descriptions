@@ -97,29 +97,31 @@ function EID:getLastDescribedEntity()
 	return lastDescriptionEntity
 end
 
+-- returns descriptions from the legacy mod descriptions
 function EID:getModDescription(list, id)
 	return (list) and (list[id])
 end
+
+-- returns the specified object table in the current language. 
+-- falls back to english if it doesnt exist 
+function EID:getDescriptionTable(objTable)
+	return EID.descriptions[EIDConfig["Language"]][objTable] or EID.descriptions["en_us"][objTable]
+end
+
+-- returns the description object of the specified object table translated with the current language
+-- falls back to english if the key isnt available
+function EID:getDescriptionObj(objTable, key)
+	return EID.descriptions[EIDConfig["Language"]][objTable][key] or EID.descriptions["en_us"][objTable][key]
+end
+
 
 --Get the name of the given transformation by its ID
 function EID:getTransformationName(id)
 	local str = "Custom"
 	if tonumber(id) == nil then
 		return id
-	elseif EID:isVanillaTransformationID(id) then
-		return transformations[tonumber(id) + 1]
 	end
-	return str
-end
-
---Returns true, if the transformation has a vanilla icon
-function EID:isVanillaTransformationID(id)
-	if tonumber(id) ~= nil then
-		if (tonumber(id) <= #transformations - 1) then
-			return true
-		end
-	end
-	return false
+	return EID:getDescriptionObj("transformations", tonumber(id) + 1) or str
 end
 
 -- tries to get the ingame name of an item based on its ID
@@ -133,9 +135,9 @@ function EID:getObjectName(objID, objType)
 	elseif objType == "pill" then
 		return EID.itemConfig:GetPillEffect(objID).Name
 	elseif objType == "sacrifice" then
-		return sacrificeDescriptionHeader
+		return EID:getDescriptionTable("sacrificeHeader")
 	elseif objType == "dice" then
-		return diceDescriptionHeader
+		return EID:getDescriptionTable("diceHeader")
 	elseif objType == "custom" then
 		return objID
 	end

@@ -8,7 +8,10 @@
 -- '#' = starts new line of text
 -- Example:  69|1|+1.0 Tears up |Example Item#Example Second Line
 
-descriptarray={{"1","0","+0.7 Tears up."},
+-- init en_us_detailed table
+EID.descriptions["en_us_detailed"] = {}
+
+EID.descriptions["en_us_detailed"].collectibles={{"1","0","+0.7 Tears up."},
 {"2","0","Triple shot. #Tears down - (Delay * 2.1) + 3."},
 {"3","0","Homing tears."},
 {"4","0","+0.5 Damage up.#1.5x Damage multiplier. #Increased knockback and tear size. #Damage multiplier does not stack with: #Magic Mushroom, #Book of Belial plus Blood of the Martyr, #Other Cricket's Heads."},
@@ -563,7 +566,7 @@ descriptarray={{"1","0","+0.7 Tears up."},
 }
 
 ---------- Trinkets ----------
-trinketdescriptions={{"1","Drops a penny, nickel or dime upon taking damage. #This effect not reduced by playing as the Keeper like other similar items are."},
+EID.descriptions["en_us_detailed"].trinkets={{"1","Drops a penny, nickel or dime upon taking damage. #This effect not reduced by playing as the Keeper like other similar items are."},
 {"2","Increases drop rate of pickups from poop to 50%."},
 {"3","Immediately gives one charge towards an item upon use. #Has no effect on items with only one bar of charge or those with automatic recharges. #Stacks with the 9 Volt, but does not work with The Battery. #Recharging an item by taking damage with the Habit will cause this trinket not to activate."},
 {"4","Upon using an active item, teleports the player to a random room which can appear on the map."},
@@ -694,7 +697,7 @@ trinketdescriptions={{"1","Drops a penny, nickel or dime upon taking damage. #Th
 }
 
 ---------- Cards ----------
-cardDescriptions={{"1","Teleports you back to the starting room of a floor."},
+EID.descriptions["en_us_detailed"].cards={{"1","Teleports you back to the starting room of a floor."},
 {"2","Grants homing tears for the current room."},
 {"3","Calls down Mom's foot to stomp on the enemy with the most health in the current room, dealing 300 damage. #If used in an empty room or during the fight with Mom, it will stomp on the player instead."},
 {"4","Grants the Whore of Babylon effect for the current room, increasing damage by 2.35 and speed by 0.3. #On Eve, it also increases her damage multiplier from 0.75 to 1.0."},
@@ -751,9 +754,9 @@ cardDescriptions={{"1","Teleports you back to the starting room of a floor."},
 }
 
 ---------- Pills ----------
-unidentifiedPillMessage = "- Unidentified Pill"
+EID.descriptions["en_us_detailed"].unidentifiedPill = "- Unidentified Pill"
 
-pillDescriptions={
+EID.descriptions["en_us_detailed"].pills={
 {"0","On use, the player farts, poisoning enemies around him."},
 {"1","Deals a full heart of damage to the player. #If the player has a single heart or less left, it turns into a Full Health pill. #The damage count as red heart damage for purposes of getting a Devil Deal."},
 {"2","Grants 2 soul hearts."},
@@ -804,9 +807,9 @@ pillDescriptions={
 } 
 
 ---------- Sacrifice Room ----------
-sacrificeDescriptionHeader = "[Next Sacrifice Room payout]"
+EID.descriptions["en_us_detailed"].sacrificeHeader = "[Next Sacrifice Room payout]"
 
-sacrificeDescriptions={
+EID.descriptions["en_us_detailed"].sacrifice={
 {"1","50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 {"2","50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 {"3","67% chance for increased Angel Room chance"},
@@ -822,9 +825,9 @@ sacrificeDescriptions={
 }
 
 ---------- Dice Room ----------
-diceDescriptionHeader = "[Dice effect]"
+EID.descriptions["en_us_detailed"].diceHeader = "[Dice effect]"
 
-diceDescriptions={
+EID.descriptions["en_us_detailed"].dice={
 {"1","Rerolls all of your items#(only affect collectibles)"},
 {"2","Rerolls all pickups in the room"},
 {"3","Rerolls all pickups on the entire floor"},
@@ -835,7 +838,7 @@ diceDescriptions={
 
 
 ---------- Transformations ----------
-transformations = {
+EID.descriptions["en_us_detailed"].transformations = {
 "",					-- 0 = none
 "Guppy",			-- 1
 "Fun Guy",			-- 2
