@@ -127,23 +127,30 @@ function printDescription(desc)
 
 	--Display Transformation
 	if not (desc[2] == "0" or desc[2] == "" or desc[2] == nil) then
+		local transformationName = EID:getTransformationName(desc[2])
+		local transformSprite = EID.TransformationIcons[transformationName]
+		if transformSprite == nil then
+			transformSprite = EID.TransformationIcons["Custom"]
+		end 
+		local iconOffsetX = transformSprite[4] or 0
+		local iconOffsetY = transformSprite[5] or -3
+		if EIDConfig["TransformationIcons"] then
+			local iconSprite = transformSprite[6] or IconSprite
+			iconSprite:Play(transformSprite[1])
+			iconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
+			iconSprite:Render(
+				Vector(EIDConfig["XPosition"] + iconOffsetX * EIDConfig["Scale"], padding + iconOffsetY * EIDConfig["Scale"]),
+				Vector(0, 0),
+				Vector(0, 0)
+			)
+		end
 		if EIDConfig["TransformationText"] then
 			EID:renderString(
-				EID:getTransformationName(desc[2]),
-				Vector(EIDConfig["XPosition"] + 16 * EIDConfig["Scale"], padding - 1),
+				transformationName,
+				Vector(EIDConfig["XPosition"] + (transformSprite[2]+iconOffsetX +3) * EIDConfig["Scale"], padding - 1),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 				EID:getTransformationColor(),
 				false
-			)
-		end
-		if EIDConfig["TransformationIcons"] and EID:isVanillaTransformationID(desc[2]) then
-			IconSprite:Play("Transformation" .. desc[2])
-			IconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
-			IconSprite:Update()
-			IconSprite:Render(
-				Vector(EIDConfig["XPosition"] + 5 * EIDConfig["Scale"], padding + 5 * EIDConfig["Scale"]),
-				Vector(0, 0),
-				Vector(0, 0)
 			)
 		end
 		if (EIDConfig["TransformationIcons"] or EIDConfig["TransformationText"]) then
@@ -201,7 +208,7 @@ function printBulletPoints(description, padding)
 		local textColor = EID:getTextColor()
 		for i, lineToPrint in ipairs(formatedLines) do
 			-- render bulletpoint
-			local posX = EIDConfig["XPosition"]
+			local posX = EIDConfig["XPosition"] 
 			if i == 1 then
 				local bpIcon = EID:handleBulletpointIcon(lineToPrint)
 				if EID:getIcon(bpIcon) ~= nil then
@@ -212,7 +219,7 @@ function printBulletPoints(description, padding)
 			end
 			EID:renderString(
 				lineToPrint,
-				Vector(posX + 12, padding),
+				Vector(posX + 12 * EIDConfig["Scale"], padding),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 				textColor,
 				false

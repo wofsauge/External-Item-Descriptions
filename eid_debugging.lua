@@ -21,7 +21,7 @@ local charsToDebug = {
 }
 
 -- Legacy Overriding descriptions
-__eidItemDescriptions[1] = "\1 Overriden"				-- 5.100.1 = Sad Onion
+__eidItemDescriptions[1] = "\1 Overriden description"	-- 5.100.1 = Sad Onion
 __eidTrinketDescriptions[1] = "\2 Overriden "			-- 5.350.1 = swallowed penny
 __eidCardDescriptions[1] = "Overriden Card description" -- 5.300.1 = the fool
 __eidPillDescriptions[1] = "Test"						-- Doesnt seem to work

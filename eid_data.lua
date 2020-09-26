@@ -83,3 +83,24 @@ EID.InlineIcons = {
     ["RoomLBottomLeft"] = {"roomshape", 10, 10, 10},
     ["RoomLBottomRight"] = {"roomshape", 11, 10, 10}
 }
+
+-- List of TransformationIcons based on their Name
+--Format: [Ingame Name] = {Animationname, Width, Height, LeftOffset [Default: 0], TopOffset [Default: -3], IconSpriteObj (Optional)}
+EID.TransformationIcons = {
+	["Custom"] = {"TransformationCustom",11,16},
+	["Guppy"] = {"Transformation1",12,16},
+	["Fun Guy"] = {"Transformation2",13,16},
+	["Lord of the Flies"] = {"Transformation3",14,16},
+	["Conjoined"] = {"Transformation4",18,16},
+	["Spun"] = {"Transformation5",8,16},
+	["Mom"] = {"Transformation6",7,16},
+	["Oh crap"] = {"Transformation7",15,16},
+	["Bob"] ={"Transformation8",14,16},
+	["Leviathan"] = {"Transformation9",13,16},
+	["Seraphim"] = {"Transformation10",21,16},
+	["Super Bum"] = {"Transformation11",15,16},
+	["Bookworm"] = {"Transformation12",11,16},
+	["Spider Baby"] = {"Transformation13",13,16,0},
+	["Adult"] = {"Transformation14",0,16},
+	["Stompy"] = {"Transformation15",0,16},
+}
