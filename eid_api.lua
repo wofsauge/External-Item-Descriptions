@@ -66,12 +66,25 @@ EID.TRANSFORMATION = {
 	["SUPERBUM"] = 11
 }
 
+-- List of item Types 
+EID.ItemTypeAnm2Names = {
+"null", 	-- 1
+"passive", 	-- 2
+"active", 	-- 3
+"familiar", -- 4
+"trinket" 	-- 5
+}
 ---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
 
 -- Returns if EID is displaying text right now
 function EID:isDisplayingText()
 	return isDisplayingText
+end
+
+-- Returns true, if curse of blind is active
+function EID:hasCurseBlind()
+	return Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND > 0
 end
 
 -- returns the current text position
@@ -158,7 +171,7 @@ function EID:filterMarkup(text, textPosX, textPosY)
 		EID.InlineIconSprite:SetFrame(lookup[1], lookup[2])
 		EID.InlineIconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
 		EID.InlineIconSprite:Render(
-			Vector((textPosX + prefixTextWidth + Xoffset) * EIDConfig["Scale"], textPosY),
+			Vector((textPosX + prefixTextWidth + Xoffset -2) * EIDConfig["Scale"], textPosY),
 			Vector(0, 0),
 			Vector(0, 0)
 		)

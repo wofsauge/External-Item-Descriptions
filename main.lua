@@ -67,7 +67,6 @@ end
 
 ---------------------------------------------------------------------------
 ---------------------------Printing Functions------------------------------
-local itemTypes = {"null", "passive", "active", "familiar", "trinket"}
 local modifiedPosY = false -- When the player has the schoolbag it changes
 local function posY()
 	return modifiedPosY ~= false and modifiedPosY or EIDConfig["YPosition"]
@@ -84,11 +83,11 @@ function printDescription(desc)
 		if EIDConfig["Scale"] < 1 then
 			offsetY = -1
 		end
-		IconSprite:Play(itemTypes[itemType])
+		IconSprite:Play(EID.ItemTypeAnm2Names[itemType])
 		IconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
 		IconSprite:Update()
 		IconSprite:Render(
-			Vector(EIDConfig["XPosition"] - 3 * EIDConfig["Scale"], padding + offsetY),
+			Vector(EIDConfig["XPosition"], padding + offsetY),
 			Vector(0, 0),
 			Vector(0, 0)
 		)
@@ -96,7 +95,7 @@ function printDescription(desc)
 			IconSprite:Play(itemConfig:GetCollectible(desc[1]).MaxCharges)
 			IconSprite:Update()
 			IconSprite:Render(
-				Vector(EIDConfig["XPosition"] - 3 * EIDConfig["Scale"], padding + offsetY),
+				Vector(EIDConfig["XPosition"], padding + offsetY),
 				Vector(0, 0),
 				Vector(0, 0)
 			)
@@ -109,9 +108,9 @@ function printDescription(desc)
 	if EIDConfig["ShowItemName"] then
 		local offset = 0
 		if EIDConfig["ShowItemType"] then
-			if itemType == 3 then
-				offset = 9
-			else
+			if itemType == 3 then -- active item
+				offset = 11
+			elseif itemType == 4 then -- familiar
 				offset = 6
 			end
 		end
@@ -184,7 +183,7 @@ function printTrinketDescription(desc, typ)
 		end
 		EID:renderString(
 			name,
-			Vector(EIDConfig["XPosition"], padding),
+			Vector(EIDConfig["XPosition"], padding - 4),
 			Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 			EID:getNameColor(),
 			false
@@ -225,7 +224,6 @@ function printBulletPoints(description, padding)
 				local bpIcon = EID:handleBulletpointIcon(lineToPrint)
 				if EID:getIcon(bpIcon) ~= nil then
 					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "")
-					posX = posX - 2
 				end
 
 				EID:renderString(bpIcon, Vector(posX, padding), Vector(EIDConfig["Scale"], EIDConfig["Scale"]), textColor, false)
@@ -244,17 +242,6 @@ end
 
 ---------------------------------------------------------------------------
 ---------------------------Handle Rendering--------------------------------
-function HasCurseBlind()
-	local num = Game():GetLevel():GetCurses()
-	local t = {}
-	while num > 0 do
-		rest = num % 2
-		t[#t + 1] = rest
-		num = (num - rest) / 2
-	end
-
-	return #t > 6 and t[7] == 1
-end
 
 function renderQuestionMark()
 	IconSprite:Play("CurseOfBlind")
@@ -391,7 +378,7 @@ local function onRender(t)
 		end
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Cards & Runes
-		if HasCurseBlind() and EIDConfig["DisableOnCurse"] then
+		if EID:hasCurseBlind() and EIDConfig["DisableOnCurse"] then
 			renderQuestionMark()
 			return
 		end
