@@ -1,5 +1,5 @@
 EID = RegisterMod("External Item Descriptions", 1)
-local itemConfig = Isaac.GetItemConfig()
+EID.itemConfig = Isaac.GetItemConfig()
 
 local lineHeight = 11
 local isDisplayingText = false
@@ -75,7 +75,7 @@ end
 function printDescription(desc)
 	local Description = desc[3]
 	local padding = posY()
-	local itemType = itemConfig:GetCollectible(desc[1]).Type
+	local itemType = EID.itemConfig:GetCollectible(desc[1]).Type
 
 	--Display ItemType / Charge
 	if EIDConfig["ShowItemType"] and (itemType == 3 or itemType == 4) then
@@ -92,7 +92,7 @@ function printDescription(desc)
 			Vector(0, 0)
 		)
 		if itemType == 3 then -- Display Charge
-			IconSprite:Play(itemConfig:GetCollectible(desc[1]).MaxCharges)
+			IconSprite:Play(EID.itemConfig:GetCollectible(desc[1]).MaxCharges)
 			IconSprite:Update()
 			IconSprite:Render(
 				Vector(EIDConfig["XPosition"], padding + offsetY),
@@ -115,7 +115,7 @@ function printDescription(desc)
 			end
 		end
 		EID:renderString(
-			itemConfig:GetCollectible(desc[1]).Name,
+			EID:getObjectName(desc[1], "collectible"),
 			Vector(EIDConfig["XPosition"] + offset * EIDConfig["Scale"], padding - 4),
 			Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 			EID:getNameColor(),
@@ -161,23 +161,13 @@ function printDescription(desc)
 	printBulletPoints(Description, padding)
 end
 
-function printTrinketDescription(desc, typ)
+function printTrinketDescription(desc, objType)
 	local Description = desc[2]
 	local padding = posY()
 	--Display Itemname
 	if EIDConfig["ShowItemName"] then
-		local name = ""
-		if typ == "trinket" then
-			name = itemConfig:GetTrinket(desc[1]).Name
-		elseif typ == "card" then
-			name = itemConfig:GetCard(desc[1]).Name
-		elseif typ == "pill" then
-			name = itemConfig:GetPillEffect(desc[1]).Name
-		elseif typ == "sacrifice" then
-			name = sacrificeDescriptionHeader
-		elseif typ == "dice" then
-			name = diceDescriptionHeader
-		elseif typ == "custom" then
+		local name =  EID:getObjectName(desc[1], objType)
+		if objType == "custom" then
 			name = desc[2][1]
 			Description = desc[2][2]
 		end
@@ -374,7 +364,7 @@ local function onRender(t)
 				"trinket"
 			)
 		else
-			printTrinketDescription({closest.SubType, itemConfig:GetTrinket(closest.SubType).Description})
+			printTrinketDescription({closest.SubType, EID.itemConfig:GetTrinket(closest.SubType).Description})
 		end
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Cards & Runes
@@ -401,7 +391,7 @@ local function onRender(t)
 				printDescription(descriptarray[closest.SubType])
 			end
 		else
-			printDescription({closest.SubType, "", itemConfig:GetCollectible(closest.SubType).Description})
+			printDescription({closest.SubType, "", EID.itemConfig:GetCollectible(closest.SubType).Description})
 		end
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Pills
@@ -426,7 +416,7 @@ local function onRender(t)
 				Vector(0, 0)
 			)
 		else
-			printTrinketDescription({closest.SubType, itemConfig:GetCard(closest.SubType).Description})
+			printTrinketDescription({closest.SubType, EID.itemConfig:GetCard(closest.SubType).Description})
 		end
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayPillInfoShop"] then

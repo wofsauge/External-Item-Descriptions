@@ -66,7 +66,7 @@ EID.TRANSFORMATION = {
 	["SUPERBUM"] = 11
 }
 
--- List of item Types 
+-- List of item Types
 EID.ItemTypeAnm2Names = {
 "null", 	-- 1
 "passive", 	-- 2
@@ -108,6 +108,25 @@ function EID:getTransformation(id)
 		return transformations[tonumber(id) + 1]
 	end
 	return str
+end
+
+-- tries to get the ingame name of an item based on its ID
+function EID:getObjectName(objID, objType)
+	if objType == "collectible" then
+		return EID.itemConfig:GetCollectible(objID).Name
+	elseif objType == "trinket" then
+		return EID.itemConfig:GetTrinket(objID).Name
+	elseif objType == "card" then
+		return EID.itemConfig:GetCard(objID).Name
+	elseif objType == "pill" then
+		return EID.itemConfig:GetPillEffect(objID).Name
+	elseif objType == "sacrifice" then
+		return sacrificeDescriptionHeader
+	elseif objType == "dice" then
+		return diceDescriptionHeader
+	elseif objType == "custom" then
+		return objID
+	end
 end
 
 -- check if an entity is part of the describable entities
