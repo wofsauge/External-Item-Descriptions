@@ -185,7 +185,12 @@ end
 -- Returns the inlineIcon object of a given Iconstring
 -- can be used to validate an iconstring
 function EID:getIcon(str)
-	return EID.InlineIcons[string.gsub(str, "{{(.-)}}", function(a) return a end)] or nil
+	local strTrimmed = string.gsub(str, "{{(.-)}}", function(a) return a end)
+	if #strTrimmed < #str then
+		return EID.InlineIcons[strTrimmed] or nil
+	else
+		return nil
+	end
 end
 
 -- Returns the width of a given string in Pixels
