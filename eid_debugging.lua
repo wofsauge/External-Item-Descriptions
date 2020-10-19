@@ -30,6 +30,17 @@ __eidPillDescriptions[1] = "Test"						-- Doesnt seem to work
 __eidItemTransformations[1] = "Test Transformation"
 __eidEntityDescriptions["5.10.1"] = {"Entity Name","Entity description"} -- Adds description to full red hearts
 
+-- test adding custom icons
+local dummySprite = Sprite()
+dummySprite:Load("gfx/eid_inline_icons.anm2", true)
+EID.InlineIcons["Test"] = {"hearts", 0, 9, 9, -1, 0, dummySprite}
+__eidItemDescriptions[2] = "{{Bomb}} Emote {{Key}} Test {{Test}} description {{InvalidMarkupThing}} cool"	-- 5.100.2 = Inner Eye
+
+
+-- test adding custom transformation icon
+EID.TransformationIcons["Test"] = {"hearts", 9, 9, -1, 0, dummySprite}
+__eidItemTransformations[2] = "Test"
+
 local function onDebugRender(t)
 		for i, v in ipairs(charsToDebug) do
 			local pos = Vector(EIDConfig["XPosition"] * EIDConfig["Scale"], EIDConfig["YPosition"] - 15 + ((i - 1) * 14))
