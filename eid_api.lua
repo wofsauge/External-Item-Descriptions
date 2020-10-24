@@ -109,11 +109,16 @@ function EID:getDescriptionTable(objTable)
 end
 
 -- returns the description object of the specified object table translated with the current language
--- falls back to english if the key isnt available
-function EID:getDescriptionObj(objTable, key)
-	return EID.descriptions[EIDConfig["Language"]][objTable][key] or EID.descriptions["en_us"][objTable][key]
+-- falls back to english if the objID isnt available
+function EID:getDescriptionObj(objTable, objID)
+	local tableEntry = EID.descriptions[EIDConfig["Language"]][objTable][tonumber(objID)] or EID.descriptions["en_us"][objTable][tonumber(objID)]
+	local description = {}
+	description.ID = tableEntry[1] or objID
+	description.Name = EID:getObjectName(objID, objTable) or objTable
+	description.Description = tableEntry[4] or tableEntry[3] or ""
+	description.Transformation = tableEntry[2] or "0"
+	return description
 end
-
 
 --Get the name of the given transformation by its ID
 function EID:getTransformationName(id)
@@ -126,13 +131,26 @@ end
 
 -- tries to get the ingame name of an item based on its ID
 function EID:getObjectName(objID, objType)
-	if objType == "collectible" then
+	local tableEntry = EID.descriptions[EIDConfig["Language"]][objType][tonumber(objID)] or EID.descriptions["en_us"][objType][tonumber(objID)]
+	if objType == "collectibles" then
+		if EIDConfig["Language"]~="en_us" and #tableEntry==4 then
+			return tableEntry[3]
+		end
 		return EID.itemConfig:GetCollectible(objID).Name
-	elseif objType == "trinket" then
+	elseif objType == "trinkets" then
+		if EIDConfig["Language"]~="en_us" and #tableEntry==3 then
+			return tableEntry[2]
+		end
 		return EID.itemConfig:GetTrinket(objID).Name
-	elseif objType == "card" then
+	elseif objType == "cards" then
+		if EIDConfig["Language"]~="en_us" and #tableEntry==3 then
+			return tableEntry[2]
+		end
 		return EID.itemConfig:GetCard(objID).Name
-	elseif objType == "pill" then
+	elseif objType == "pills" then
+		if EIDConfig["Language"]~="en_us" and #tableEntry==3 then
+			return tableEntry[2]
+		end
 		return EID.itemConfig:GetPillEffect(objID).Name
 	elseif objType == "sacrifice" then
 		return EID:getDescriptionTable("sacrificeHeader")
@@ -185,6 +203,7 @@ end
 -- Returns the inlineIcon object of a given Iconstring
 -- can be used to validate an iconstring
 function EID:getIcon(str)
+	if str == nil then return nil end
 	local strTrimmed = string.gsub(str, "{{(.-)}}", function(a) return a end)
 	if #strTrimmed < #str then
 		return EID.InlineIcons[strTrimmed] or nil

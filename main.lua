@@ -30,7 +30,7 @@ require("descriptions.ab+.bul")
 require("descriptions.ab+.fr")
 --require("descriptions.ab+.pl")	-- WIP
 require("descriptions.ab+.pt")
---require("descriptions.ab+.ru")    -- WIP
+require("descriptions.ab+.ru")    -- WIP
 require("descriptions.ab+.spa")
 
 require("eid_data")
@@ -83,9 +83,8 @@ local function posY()
 end
 
 function printDescription(desc)
-	local Description = desc[3]
 	local padding = posY()
-	local itemType = EID.itemConfig:GetCollectible(desc[1]).Type
+	local itemType = EID.itemConfig:GetCollectible(desc.ID).Type
 
 	--Display ItemType / Charge
 	if EIDConfig["ShowItemType"] and (itemType == 3 or itemType == 4) then
@@ -102,7 +101,7 @@ function printDescription(desc)
 			Vector(0, 0)
 		)
 		if itemType == 3 then -- Display Charge
-			IconSprite:Play(EID.itemConfig:GetCollectible(desc[1]).MaxCharges)
+			IconSprite:Play(EID.itemConfig:GetCollectible(desc.ID).MaxCharges)
 			IconSprite:Update()
 			IconSprite:Render(
 				Vector(EIDConfig["XPosition"], padding + offsetY),
@@ -125,7 +124,7 @@ function printDescription(desc)
 			end
 		end
 		EID:renderString(
-			EID:getObjectName(desc[1], "collectible"),
+			desc.Name,
 			Vector(EIDConfig["XPosition"] + offset * EIDConfig["Scale"], padding - 4),
 			Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 			EID:getNameColor(),
@@ -136,8 +135,8 @@ function printDescription(desc)
 	end
 
 	--Display Transformation
-	if not (desc[2] == "0" or desc[2] == "" or desc[2] == nil) then
-		local transformationName = EID:getTransformationName(desc[2])
+	if not (desc.Transformation == "0" or desc.Transformation == "" or desc.Transformation == nil) then
+		local transformationName = EID:getTransformationName(desc.Transformation)
 		local transformSprite = EID.TransformationIcons[transformationName]
 		if transformSprite == nil then
 			transformSprite = EID.TransformationIcons["Custom"]
@@ -167,21 +166,16 @@ function printDescription(desc)
 			padding = padding + lineHeight * EIDConfig["Scale"]
 		end
 	end
-	printBulletPoints(Description, padding)
+	printBulletPoints(desc.Description, padding)
 end
 
 function printTrinketDescription(desc, objType)
-	local Description = desc[2]
 	local padding = posY()
 	--Display Itemname
 	if EIDConfig["ShowItemName"] then
-		local name =  EID:getObjectName(desc[1], objType)
-		if objType == "custom" then
-			name = desc[2][1]
-			Description = desc[2][2]
-		end
+		
 		EID:renderString(
-			name,
+			desc.Name,
 			Vector(EIDConfig["XPosition"], padding - 4),
 			Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 			EID:getNameColor(),
@@ -190,7 +184,7 @@ function printTrinketDescription(desc, objType)
 
 		padding = padding + lineHeight * EIDConfig["Scale"]
 	end
-	printBulletPoints(Description, padding)
+	printBulletPoints(desc.Description, padding)
 end
 
 function printBulletPoints(description, padding)
@@ -205,7 +199,7 @@ function printBulletPoints(description, padding)
 			if EID:getIcon(word) ~= nil then
 				wordLength = EID:getIcon(word)[3]
 			end
-			if curLength + wordLength <= textboxWidth then
+			if curLength + wordLength <= textboxWidth or curLength < 25 then
 				text = text .. word .. " "
 				curLength = curLength + wordLength
 			else
@@ -368,10 +362,10 @@ local function onRender(t)
 		if EID:getModDescription(__eidTrinketDescriptions, closest.SubType) then
 			printTrinketDescription(
 				{closest.SubType, EID:getModDescription(__eidTrinketDescriptions, closest.SubType)},
-				"trinket"
+				"trinkets"
 			)
 		elseif closest.SubType <= 128 then
-			printTrinketDescription(EID:getDescriptionObj("trinkets",closest.SubType), "trinket")
+			printTrinketDescription(EID:getDescriptionObj("trinkets",closest.SubType), "trinkets")
 		else
 			printTrinketDescription({closest.SubType, EID.itemConfig:GetTrinket(closest.SubType).Description})
 		end
@@ -409,9 +403,9 @@ local function onRender(t)
 			return
 		end
 		if EID:getModDescription(__eidCardDescriptions, closest.SubType) then
-			printTrinketDescription({closest.SubType, EID:getModDescription(__eidCardDescriptions, closest.SubType)}, "card")
+			printTrinketDescription({closest.SubType, EID:getModDescription(__eidCardDescriptions, closest.SubType)}, "cards")
 		elseif closest.SubType <= 54 then
-			printTrinketDescription(EID:getDescriptionObj("cards", closest.SubType), "card")
+			printTrinketDescription(EID:getDescriptionObj("cards", closest.SubType), "cards")
 			CardSprite:Play(tostring(closest.SubType))
 			CardSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
 			CardSprite:Update()
@@ -439,9 +433,9 @@ local function onRender(t)
 		local identified = pool:IsPillIdentified(pillColor)
 		if (identified or EIDConfig["ShowUnidentifiedPillDescriptions"]) then
 			if EID:getModDescription(__eidPillDescriptions, pillEffect) then
-				printTrinketDescription({pillEffect, EID:getModDescription(__eidPillDescriptions, pillEffect)}, "pill")
+				printTrinketDescription({pillEffect, EID:getModDescription(__eidPillDescriptions, pillEffect)}, "pills")
 			elseif pillEffect < 47 then
-				printTrinketDescription(EID:getDescriptionObj("pills", pillEffect + 1), "pill")
+				printTrinketDescription(EID:getDescriptionObj("pills", pillEffect + 1), "pills")
 			else
 				EID:renderString(
 					EIDConfig["ErrorMessage"],
@@ -509,4 +503,4 @@ if ModConfigMenu then
 	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
 end
 
---require("eid_debugging")
+require("eid_debugging")
