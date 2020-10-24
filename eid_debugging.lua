@@ -43,8 +43,8 @@ __eidItemTransformations[2] = "Test"
 
 local function onDebugRender(t)
 		for i, v in ipairs(charsToDebug) do
-			local pos = Vector(EIDConfig["XPosition"] * EIDConfig["Scale"], EIDConfig["YPosition"] - 15 + ((i - 1) * 14))
-			EID:renderString(v, pos, Vector(EIDConfig["Scale"], EIDConfig["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0), true)
+			local pos = Vector(EIDConfig["XPosition"], EIDConfig["YPosition"] - 15 + ((i - 1) * 14))
+			EID:renderString(v, pos, Vector(EIDConfig["Scale"], EIDConfig["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0))
 			
 			if not showDebugChars then
 				break

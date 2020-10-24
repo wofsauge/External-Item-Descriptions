@@ -125,10 +125,9 @@ function printDescription(desc)
 		end
 		EID:renderString(
 			desc.Name,
-			Vector(EIDConfig["XPosition"] + offset * EIDConfig["Scale"], padding - 4),
+			Vector(EIDConfig["XPosition"] + offset, padding - 4),
 			Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
-			EID:getNameColor(),
-			false
+			EID:getNameColor()
 		)
 
 		padding = padding + lineHeight * EIDConfig["Scale"]
@@ -156,10 +155,9 @@ function printDescription(desc)
 		if EIDConfig["TransformationText"] then
 			EID:renderString(
 				transformationName,
-				Vector(EIDConfig["XPosition"] + (transformSprite[2]+iconOffsetX +3) * EIDConfig["Scale"], padding - 1),
+				Vector(EIDConfig["XPosition"] + (transformSprite[2]+iconOffsetX +3), padding - 1),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
-				EID:getTransformationColor(),
-				false
+				EID:getTransformationColor()
 			)
 		end
 		if (EIDConfig["TransformationIcons"] or EIDConfig["TransformationText"]) then
@@ -178,8 +176,7 @@ function printTrinketDescription(desc, objType)
 			desc.Name,
 			Vector(EIDConfig["XPosition"], padding - 4),
 			Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
-			EID:getNameColor(),
-			false
+			EID:getNameColor()
 		)
 
 		padding = padding + lineHeight * EIDConfig["Scale"]
@@ -219,14 +216,13 @@ function printBulletPoints(description, padding)
 					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "")
 				end
 
-				EID:renderString(bpIcon, Vector(posX, padding), Vector(EIDConfig["Scale"], EIDConfig["Scale"]), textColor, false)
+				EID:renderString(bpIcon, Vector(posX, padding), Vector(EIDConfig["Scale"], EIDConfig["Scale"]), textColor)
 			end
 			EID:renderString(
 				lineToPrint,
-				Vector(posX + 12 * EIDConfig["Scale"], padding),
+				Vector(posX + 12, padding),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
-				textColor,
-				false
+				textColor
 			)
 			padding = padding + lineHeight * EIDConfig["Scale"]
 		end
@@ -441,8 +437,7 @@ local function onRender(t)
 					EIDConfig["ErrorMessage"],
 					Vector(EIDConfig["XPosition"], posY()),
 					Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
-					EID:getErrorColor(),
-					false
+					EID:getErrorColor()
 				)
 			end
 		else
@@ -450,8 +445,7 @@ local function onRender(t)
 				EID:getDescriptionTable("unidentifiedPill"),
 				Vector(EIDConfig["XPosition"], posY()),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
-				EID:getErrorColor(),
-				false
+				EID:getErrorColor()
 			)
 		end
 		local pillsprite = closest:GetSprite()

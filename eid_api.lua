@@ -224,11 +224,11 @@ function EID:filterMarkup(text, textPosX, textPosY)
 		local textposition = string.find(text, word)
 		local lookup = EID:getIcon(word) or EID.InlineIcons["ERROR"]
 		local Xoffset = lookup[5] or 0
-		local prefixTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1))
+		local prefixTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1))*EIDConfig["Scale"]
 		EID.InlineIconSprite:SetFrame(lookup[1], lookup[2])
 		EID.InlineIconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
 		EID.InlineIconSprite:Render(
-			Vector((textPosX + prefixTextWidth + Xoffset -2) * EIDConfig["Scale"], textPosY),
+			Vector((textPosX + prefixTextWidth + Xoffset -1), textPosY),
 			Vector(0, 0),
 			Vector(0, 0)
 		)
@@ -248,10 +248,10 @@ end
 
 --needs to be called in a render Callback
 -- args: string, Vector(int, int), Vector(float,float), KColor obj, bool
-function EID:renderString(str, position, scale, kcolor, centered)
+function EID:renderString(str, position, scale, kcolor)
 	str = EID:replaceShortMarkupStrings(str)
 	str = EID:filterMarkup(str, position.X, position.Y)
-	EID.font:DrawStringScaledUTF8(str, position.X, position.Y, scale.X, scale.Y, kcolor, EID:getStrWidth(str), centered)
+	EID.font:DrawStringScaledUTF8(str, position.X, position.Y, scale.X, scale.Y, kcolor, 0, false)
 end
 
 -- Get KColor object of "Entity Name" texts
