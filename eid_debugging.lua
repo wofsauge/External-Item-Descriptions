@@ -24,7 +24,7 @@ local charsToDebug = {
 __eidItemDescriptions[1] = "\1 Overriden description"	-- 5.100.1 = Sad Onion
 __eidTrinketDescriptions[1] = "\2 Overriden "			-- 5.350.1 = swallowed penny
 __eidCardDescriptions[1] = "Overriden Card description" -- 5.300.1 = the fool
-__eidPillDescriptions[1] = "Test"						-- Doesnt seem to work
+__eidPillDescriptions[21] = "Test"						-- Pill Effect 20 = Hematemesis
 
 -- Legacy add Description
 __eidItemTransformations[1] = "Test Transformation"

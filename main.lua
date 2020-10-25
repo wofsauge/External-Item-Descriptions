@@ -167,23 +167,6 @@ function printDescription(desc)
 	printBulletPoints(desc.Description, padding)
 end
 
-function printTrinketDescription(desc)
-	local padding = posY()
-	--Display Itemname
-	if EIDConfig["ShowItemName"] then
-		
-		EID:renderString(
-			desc.Name,
-			Vector(EIDConfig["XPosition"], padding - 4),
-			Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
-			EID:getNameColor()
-		)
-
-		padding = padding + lineHeight * EIDConfig["Scale"]
-	end
-	printBulletPoints(desc.Description, padding)
-end
-
 function printBulletPoints(description, padding)
 	local textboxWidth = tonumber(EIDConfig["TextboxWidth"]) * 4
 	description = EID:replaceShortMarkupStrings(description)
@@ -311,12 +294,12 @@ local function onRender(t)
 
 	if dist / 40 > tonumber(EIDConfig["MaxDistance"]) or not closest.Type == EntityType.ENTITY_PICKUP then
 		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EIDConfig["DisplaySacrificeInfo"] then
-			printTrinketDescription(EID:getDescriptionObj("sacrifice", EID.sacrificeCounter), "sacrifice")
+			printDescription(EID:getDescriptionObj("sacrifice", EID.sacrificeCounter))
 		end
 		if
 			Game():GetRoom():GetType() == RoomType.ROOM_DICE and EIDConfig["DisplayDiceInfo"] and type(closestDice) ~= type(nil)
 		 then
-			printTrinketDescription(EID:getDescriptionObj("dice", closestDice.SubType + 1), "dice")
+			printDescription(EID:getDescriptionObj("dice", closestDice.SubType + 1))
 			renderIndicator(closestDice)
 		end
 		return
@@ -332,29 +315,22 @@ local function onRender(t)
 	renderIndicator(closest)
 
 	--Handle Entities (specific)
-	if EIDConfig["EnableEntityDescriptions"] and type(closest:GetData()["EID_Description"]) ~= type(nil) then
+--[[	if EIDConfig["EnableEntityDescriptions"] and type(closest:GetData()["EID_Description"]) ~= type(nil) then
 		printTrinketDescription({closest.Type, closest:GetData()["EID_Description"]}, "custom")
 		return
 	end
 
 	--Handle Entities (omni)
-	if
-		EIDConfig["EnableEntityDescriptions"] and
+	if EIDConfig["EnableEntityDescriptions"] and
 			__eidEntityDescriptions[closest.Type .. "." .. closest.Variant .. "." .. closest.SubType] ~= nil
 	 then
-		printTrinketDescription(
-			{
-				closest.Type,
-				EID:getModDescription(__eidEntityDescriptions, closest.Type .. "." .. closest.Variant .. "." .. closest.SubType)
-			},
-			"custom"
-		)
+		printDescription(EID:getDescriptionObj("custom", closest.Type .. "." .. closest.Variant .. "." .. closest.SubType))
 		return
-	end
+	end]]--
 
 	--Handle Trinkets
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
-		printTrinketDescription(EID:getDescriptionObj("trinkets",closest.SubType))
+		printDescription(EID:getDescriptionObj("trinkets",closest.SubType))
 		--Handle Collectibles
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		if EID:hasCurseBlind() and EIDConfig["DisableOnCurse"] then
@@ -368,7 +344,7 @@ local function onRender(t)
 			renderQuestionMark()
 			return
 		end
-		printTrinketDescription(EID:getDescriptionObj("cards", closest.SubType), "cards")
+		printDescription(EID:getDescriptionObj("cards", closest.SubType))
 		if closest.SubType <= 54 then
 			CardSprite:Play(tostring(closest.SubType))
 			CardSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
@@ -395,18 +371,7 @@ local function onRender(t)
 		local pillEffect = pool:GetPillEffect(pillColor)
 		local identified = pool:IsPillIdentified(pillColor)
 		if (identified or EIDConfig["ShowUnidentifiedPillDescriptions"]) then
-			if EID:getModDescription(__eidPillDescriptions, pillEffect) then
-				printTrinketDescription({pillEffect, EID:getModDescription(__eidPillDescriptions, pillEffect)}, "pills")
-			elseif pillEffect < 47 then
-				printTrinketDescription(EID:getDescriptionObj("pills", pillEffect + 1), "pills")
-			else
-				EID:renderString(
-					EIDConfig["ErrorMessage"],
-					Vector(EIDConfig["XPosition"], posY()),
-					Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
-					EID:getErrorColor()
-				)
-			end
+			printDescription(EID:getDescriptionObj("pills", pillEffect + 1))
 		else
 			EID:renderString(
 				EID:getDescriptionTable("unidentifiedPill"),
