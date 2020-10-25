@@ -16,6 +16,7 @@
 
 -- init spa table
 EID.descriptions["spa"] = {}
+EID.descriptions["spa"].custom = {} -- table for custom entity descriptions
 
 EID.descriptions["spa"].collectibles={
 {"1", "0", "", "↑ +0,7 de lágrimas"},

@@ -13,6 +13,7 @@
 
 -- init en_us table
 EID.descriptions["en_us"] = {}
+EID.descriptions["en_us"].custom = {} -- table for custom entity descriptions
 
 EID.descriptions["en_us"].collectibles={{"1", "0", "", "↑ +0.7 Tears up"},
 {"2", "0", "", "Triple shot#↓ Tears down"},

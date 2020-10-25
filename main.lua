@@ -84,8 +84,10 @@ end
 
 function printDescription(desc)
 	local padding = posY()
-	local itemType = EID.itemConfig:GetCollectible(desc.ID).Type
-
+	local itemType = -1
+	if tonumber(desc.ID)~=nil then
+		itemType = EID.itemConfig:GetCollectible(tonumber(desc.ID)).Type or -1
+	end
 	--Display ItemType / Charge
 	if EIDConfig["ShowItemType"] and (itemType == 3 or itemType == 4) then
 		local offsetY = 2 * EIDConfig["Scale"]
@@ -319,25 +321,24 @@ local function onRender(t)
 		printTrinketDescription({closest.Type, closest:GetData()["EID_Description"]}, "custom")
 		return
 	end
-
+	]]--
 	--Handle Entities (omni)
-	if EIDConfig["EnableEntityDescriptions"] and
-			__eidEntityDescriptions[closest.Type .. "." .. closest.Variant .. "." .. closest.SubType] ~= nil
-	 then
+	if EIDConfig["EnableEntityDescriptions"] then
 		printDescription(EID:getDescriptionObj("custom", closest.Type .. "." .. closest.Variant .. "." .. closest.SubType))
 		return
-	end]]--
+	end
+
 
 	--Handle Trinkets
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
-		printDescription(EID:getDescriptionObj("trinkets",closest.SubType))
+		printDescription(EID:getDescriptionObj("trinkets", closest.SubType))
 		--Handle Collectibles
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		if EID:hasCurseBlind() and EIDConfig["DisableOnCurse"] then
 			renderQuestionMark()
 			return
 		end
-		printDescription(EID:getDescriptionObj("collectibles",closest.SubType))
+		printDescription(EID:getDescriptionObj("collectibles", closest.SubType))
 		--Handle Cards & Runes
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayCardInfoShop"] then

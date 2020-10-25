@@ -20,6 +20,7 @@
 
 -- init pl table
 EID.descriptions["pl"] = {}
+EID.descriptions["pl"].custom = {} -- table for custom entity descriptions
 
 EID.descriptions["pl"].collectibles={{"1","0","\1 +0.7 Szybkostrzelno¶ci"},
 {"2","0","Potrójne strza³y#\2 Mniejsza Szybkostrzelno¶æ"},

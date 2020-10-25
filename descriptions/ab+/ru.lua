@@ -1,6 +1,7 @@
 
 -- init ru table
 EID.descriptions["ru"] = {}
+EID.descriptions["ru"].custom = {} -- table for custom entity descriptions
 
 EID.descriptions["ru"].collectibles={
 {"1", "0", "Грустный Лук", "\1 0.7 к скорострельности"},

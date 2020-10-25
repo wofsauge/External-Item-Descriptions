@@ -25,9 +25,9 @@ __eidItemDescriptions[1] = "\1 Overriden description"	-- 5.100.1 = Sad Onion
 __eidTrinketDescriptions[1] = "\2 Overriden "			-- 5.350.1 = swallowed penny
 __eidCardDescriptions[1] = "Overriden Card description" -- 5.300.1 = the fool
 __eidPillDescriptions[21] = "Test"						-- Pill Effect 20 = Hematemesis
+__eidItemTransformations[1] = "Test Transformation"		-- add custom transformation Text to Sad Onion
 
--- Legacy add Description
-__eidItemTransformations[1] = "Test Transformation"
+-- Legacy add Description to entity
 __eidEntityDescriptions["5.10.1"] = {"Entity Name","Entity description"} -- Adds description to full red hearts
 
 -- test adding custom icons

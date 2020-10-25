@@ -17,6 +17,7 @@
 
 -- init fr table
 EID.descriptions["fr"] = {}
+EID.descriptions["fr"].custom = {} -- table for custom entity descriptions
 
 EID.descriptions["fr"].collectibles={
 {"1", "0", "", "↑ +0.7 Cadence de tir"},

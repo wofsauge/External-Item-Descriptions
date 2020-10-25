@@ -16,6 +16,7 @@
 
 -- init pt table
 EID.descriptions["pt"] = {}
+EID.descriptions["pt"].custom = {} -- table for custom entity descriptions
 
 EID.descriptions["pt"].collectibles={
 {"1", "0", "", "↑ +0.7 lágrimas up"},

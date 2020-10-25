@@ -13,6 +13,7 @@
 
 -- init bul table
 EID.descriptions["bul"] = {}
+EID.descriptions["bul"].custom = {} -- table for custom entity descriptions
 
 EID.descriptions["bul"].collectibles={
 {"1", "0", "Тъжният лук", "\1 0.7 Скорост на сълзите"},

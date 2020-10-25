@@ -110,7 +110,7 @@ function EID:getLegacyModDescription(objTable, id)
 	elseif objTable == "transformation" then
 		return (__eidItemTransformations) and (__eidItemTransformations[id])
 	elseif objTable == "custom" then
-		return (__eidEntityDescriptions) and (__eidEntityDescriptions[id])
+		return (__eidEntityDescriptions) and (__eidEntityDescriptions[id][2])
 	end
 end
 
@@ -123,10 +123,11 @@ end
 -- returns the description object of the specified object table translated with the current language
 -- falls back to english if the objID isnt available
 function EID:getDescriptionObj(objTable, objID)
-	local tableEntry = EID.descriptions[EIDConfig["Language"]][objTable][tonumber(objID)] or EID.descriptions["en_us"][objTable][tonumber(objID)]
+	local tableEntry = EID.descriptions[EIDConfig["Language"]][objTable][objID] or EID.descriptions["en_us"][objTable][objID] or {}
 	
 	local description = {}
-	description.ID = tonumber(tableEntry[1]) or objID
+	description.ID = objID
+	
 	description.Name = EID:getObjectName(objID, objTable) or objTable
 	
 	local legacyModdedDescription = EID:getLegacyModDescription(objTable, objID)
@@ -152,7 +153,7 @@ end
 
 -- tries to get the ingame name of an item based on its ID
 function EID:getObjectName(objID, objType)
-	local tableEntry = EID.descriptions[EIDConfig["Language"]][objType][tonumber(objID)] or EID.descriptions["en_us"][objType][tonumber(objID)]
+	local tableEntry = EID.descriptions[EIDConfig["Language"]][objType][objID] or EID.descriptions["en_us"][objType][objID]
 	if objType == "collectibles" then
 		if EIDConfig["Language"]~="en_us" and #tableEntry==4 then
 			if tableEntry[3] ~= nil and tableEntry[3] ~= "" then
@@ -186,7 +187,7 @@ function EID:getObjectName(objID, objType)
 	elseif objType == "dice" then
 		return EID:getDescriptionTable("diceHeader")
 	elseif objType == "custom" then
-		return objID
+		return __eidEntityDescriptions[objID][1] or tableEntry[1] or objID
 	end
 end
 
