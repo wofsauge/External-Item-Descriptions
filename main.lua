@@ -323,8 +323,11 @@ local function onRender(t)
 	end
 	]]--
 	--Handle Entities (omni)
-	if EIDConfig["EnableEntityDescriptions"] then
-		printDescription(EID:getDescriptionObj("custom", closest.Type .. "." .. closest.Variant .. "." .. closest.SubType))
+	local objIDString = closest.Type .. "." .. closest.Variant .. "." .. closest.SubType
+	local tableEntry = EID.descriptions[EIDConfig["Language"]]["custom"][objIDString] 
+			or EID.descriptions["en_us"]["custom"][objIDString] or EID:getLegacyModDescription("custom", objIDString) or nil
+	if EIDConfig["EnableEntityDescriptions"] and tableEntry~=nil then
+		printDescription(EID:getDescriptionObj("custom", objIDString))
 		return
 	end
 

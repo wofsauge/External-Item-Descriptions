@@ -97,20 +97,20 @@ function EID:getLastDescribedEntity()
 	return lastDescriptionEntity
 end
 
--- returns descriptions from the legacy mod descriptions
+-- returns descriptions from the legacy mod descriptions if they exist
 function EID:getLegacyModDescription(objTable, id)
 	if objTable == "collectibles" then
-		return (__eidItemDescriptions) and (__eidItemDescriptions[id])
+		return __eidItemDescriptions[id]
 	elseif objTable == "trinkets" then
-		return (__eidTrinketDescriptions) and (__eidTrinketDescriptions[id])
+		return __eidTrinketDescriptions[id]
 	elseif objTable == "cards" then
-		return (__eidCardDescriptions) and (__eidCardDescriptions[id])
+		return __eidCardDescriptions[id]
 	elseif objTable == "pills" then
-		return (__eidPillDescriptions) and (__eidPillDescriptions[id])
+		return __eidPillDescriptions[id]
 	elseif objTable == "transformation" then
-		return (__eidItemTransformations) and (__eidItemTransformations[id])
+		return __eidItemTransformations[id]
 	elseif objTable == "custom" then
-		return (__eidEntityDescriptions) and (__eidEntityDescriptions[id][2])
+		return __eidEntityDescriptions[id] and __eidEntityDescriptions[id][2]
 	end
 end
 
@@ -195,8 +195,8 @@ end
 function EID:hasDescription(entity)
 	local isAllowed = false
 	if EIDConfig["EnableEntityDescriptions"] then
-		isAllowed =
-			isAllowed or (__eidEntityDescriptions[entity.Type .. "." .. entity.Variant .. "." .. entity.SubType] ~= nil) --[[or type(entity:GetData()["EID_Description"]) ~= type(nil)]]
+		isAllowed = __eidEntityDescriptions[entity.Type .. "." .. entity.Variant .. "." .. entity.SubType] ~= nil
+		--isAllowed = isAllowed or type(entity:GetData()["EID_Description"]) ~= type(nil)
 	end
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EIDConfig["DisplayItemInfo"])
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EIDConfig["DisplayTrinketInfo"])
