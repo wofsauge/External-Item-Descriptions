@@ -9,10 +9,10 @@ local charsToDebug = {
 	"cyrillic 1: Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо",
 	"cyrillic 2: Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя",
 	"polish: Ąą Ćć Ęę Łł Ńń Óó Śś Źź Żż",
-	"custom icons: ↑Positive ↓Negative \007bulletpoint !Exclamation ǃWarning !!!shortcut",
+	"custom icons: ↑Positive ↓Negative \007bulletpoint !Exclamation ǃWarning !!!3!shortcut ǂHashtag",
 	"legacy icon Markup: \\1:\1Positive \\2:\2Negative \\3:\3Warning ! \\6:\6 heart \\5:\5 Key \\015:\015 Coin \\8\\189:\8\189 Bomb",
 	"emotes: ☆★〠♠♣♥♦♤♧♡♢☀☂♨♪♭♯♂♀",
-	"Markup main: |{{ArrowUp}}|{{ArrowDown}}|{{Warning}}|{{ERROR}}|",
+	"Markup main: |{{ArrowUp}}|{{ArrowDown}}|{{Warning}}|{{ERROR}}|{{Hashtag}}",
 	"Markup numbers: |{{0}}|{{1}}|{{2}}|{{3}}|{{4}}|{{5}}|{{6}}|{{7}}|{{8}}|{{9}}|{{10}}|{{11}}|{{12}}|",
 	"Markup hearts: |{{Heart}}|{{HalfHeart}}|{{EthernalHeart}}|{{EmptyHeart}}|{{BlendedHeart}}|{{BoneHeart}}|{{HalfBoneHeart}}|{{EmptyBoneHeart}}|{{SoulHeart}}|{{HalfSoulHeart}}|{{BlackHeart}}|{{HalfBlackHeart}}|{{GoldenHeart}}|{{CoinHeart}}|{{HalfCoinHeart}}|{{EmptyCoinHeart}}|",
 	"Markup pickups: |{{Key}}|{{GoldenKey}}|{{Bomb}}|{{GoldenBomb}}|{{Coin}}|{{Card}}|{{RedCard}}|{{Collectible}}|{{Pill}}|{{Trinket}}|{{Battery}}|{{Rune}}|{{Slotmachine}}|",
@@ -35,7 +35,6 @@ local dummySprite = Sprite()
 dummySprite:Load("gfx/eid_inline_icons.anm2", true)
 EID.InlineIcons["Test"] = {"hearts", 0, 9, 9, -1, 0, dummySprite}
 __eidItemDescriptions[2] = "{{Bomb}} Emote {{Key}} Test {{Test}} description {{InvalidMarkupThing}} cool"	-- 5.100.2 = Inner Eye
-
 
 -- test adding custom transformation icon
 EID.TransformationIcons["Test"] = {"hearts", 9, 9, -1, 0, dummySprite}

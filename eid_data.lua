@@ -1,3 +1,18 @@
+-- Specific strings that will be replaced with something else. This is used to convert Shortcuts into internal markup.
+EID.TextReplacementPairs = {
+	{"!!!", "{{Warning}}"}, -- Turn 3 Exclamations into Warning
+	{"↑", "{{ArrowUp}}"}, -- Up Arrow
+	{"↓", "{{ArrowDown}}"}, -- Down Arrow
+	{"\1", "{{ArrowUp}}"}, -- Legacy Up Arrow
+	{"\2", "{{ArrowDown}}"}, -- Legacy Down Arrow
+	{"\3", "{{Warning}}"}, -- Legacy Warning
+	{"\6", "{{Heart}}"}, -- Legacy Heart
+	{"\5", "{{Key}}"}, -- Legacy Key
+	{"\015", "{{Coin}}"}, -- Legacy Coin
+	{"\8\189", "{{Bomb}}"}, -- Legacy BOMB
+	{"{{Hashtag}}", "ǂ"}, -- Hashtag
+}
+
 --Format: [SHORTCUT]= {Animationname, Frame, Width, Height, LeftOffset [Default: -1], TopOffset [Default: 0], SpriteObject [Default: EID.InlineIconSprite]}
 EID.InlineIcons = {
     ["ERROR"] = {"ERROR", 0, 10, 10},

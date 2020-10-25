@@ -113,7 +113,7 @@ end
 function EID:getDescriptionObj(objTable, objID)
 	local tableEntry = EID.descriptions[EIDConfig["Language"]][objTable][tonumber(objID)] or EID.descriptions["en_us"][objTable][tonumber(objID)]
 	local description = {}
-	description.ID = tableEntry[1] or objID
+	description.ID = tonumber(tableEntry[1]) or objID
 	description.Name = EID:getObjectName(objID, objTable) or objTable
 	description.Description = tableEntry[4] or tableEntry[3] or ""
 	description.Transformation = tableEntry[2] or "0"
@@ -177,16 +177,9 @@ end
 
 -- Replaces shorthand-representations of a character with the internal reference
 function EID:replaceShortMarkupStrings(text)
-	text = string.gsub(text, "!!!", "{{Warning}}") -- Turn 3 Exclamations into Warning
-	text = string.gsub(text, "↑", "{{ArrowUp}}") -- Up Arrow
-	text = string.gsub(text, "↓", "{{ArrowDown}}") -- Down Arrow
-	text = string.gsub(text, "\1", "{{ArrowUp}}") -- Legacy Up Arrow
-	text = string.gsub(text, "\2", "{{ArrowDown}}") -- Legacy Down Arrow
-	text = string.gsub(text, "\3", "{{Warning}}") -- Legacy Warning
-	text = string.gsub(text, "\6", "{{Heart}}") -- Legacy Heart
-	text = string.gsub(text, "\5", "{{Key}}") -- Legacy Key
-	text = string.gsub(text, "\015", "{{Coin}}") -- Legacy Coin
-	text = string.gsub(text, "\8\189", "{{Bomb}}") -- Legacy BOMB
+	for _,pair in ipairs(EID.TextReplacementPairs) do
+		text = string.gsub(text, pair[1], pair[2])
+	end
 	return text
 end
 
