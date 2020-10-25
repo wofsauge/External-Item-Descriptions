@@ -130,7 +130,7 @@ function EID:getDescriptionObj(objTable, objID)
 	description.Name = EID:getObjectName(objID, objTable) or objTable
 	
 	local legacyModdedDescription = EID:getLegacyModDescription(objTable, objID)
-	description.Description = legacyModdedDescription or tableEntry[4] or tableEntry[3] or tableEntry[2] or "MISSING DESCRIPTION"
+	description.Description = legacyModdedDescription or tableEntry[4] or "MISSING DESCRIPTION"
 	
 	local legacyModdedTransformation = nil
 	if objTable == "collectibles" then
@@ -155,22 +155,30 @@ function EID:getObjectName(objID, objType)
 	local tableEntry = EID.descriptions[EIDConfig["Language"]][objType][tonumber(objID)] or EID.descriptions["en_us"][objType][tonumber(objID)]
 	if objType == "collectibles" then
 		if EIDConfig["Language"]~="en_us" and #tableEntry==4 then
-			return tableEntry[3]
+			if tableEntry[3] ~= nil and tableEntry[3] ~= "" then
+				return tableEntry[3]
+			end
 		end
 		return EID.itemConfig:GetCollectible(objID).Name
 	elseif objType == "trinkets" then
 		if EIDConfig["Language"]~="en_us" and #tableEntry==3 then
-			return tableEntry[2]
+			if tableEntry[3] ~= nil and tableEntry[3] ~= "" then
+				return tableEntry[3]
+			end
 		end
 		return EID.itemConfig:GetTrinket(objID).Name
 	elseif objType == "cards" then
 		if EIDConfig["Language"]~="en_us" and #tableEntry==3 then
-			return tableEntry[2]
+			if tableEntry[3] ~= nil and tableEntry[3] ~= "" then
+				return tableEntry[3]
+			end
 		end
 		return EID.itemConfig:GetCard(objID).Name
 	elseif objType == "pills" then
 		if EIDConfig["Language"]~="en_us" and #tableEntry==3 then
-			return tableEntry[2]
+			if tableEntry[3] ~= nil and tableEntry[3] ~= "" then
+				return tableEntry[3]
+			end
 		end
 		return EID.itemConfig:GetPillEffect(objID).Name
 	elseif objType == "sacrifice" then

@@ -26,11 +26,11 @@ require("mod_config_menu")
 --languages
 require("descriptions.ab+.en_us")
 require("descriptions.ab+.en_us_detailed")
-require("descriptions.ab+.bul")
+require("descriptions.ab+.bul")		-- WIP
 require("descriptions.ab+.fr")
 --require("descriptions.ab+.pl")	-- WIP
 require("descriptions.ab+.pt")
-require("descriptions.ab+.ru")    -- WIP
+require("descriptions.ab+.ru")
 require("descriptions.ab+.spa")
 
 require("eid_data")
