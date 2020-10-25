@@ -26,7 +26,7 @@ EID.descriptions["en_us"].collectibles={{"1", "0", "", "↑ +0.7 Tears up"},
 {"9", "3", "", "All fly enemies are friendly"},
 {"10", "3", "", "+2 fly orbitals#Blocks enemy projectiles"},
 {"11", "2", "", "↑ +1 life#Respawn with full health"},
-{"12", "2", "", "↑ +1 Health up#↑ +0.3 Damage up#↑ +50% Damage Multiplier#↑ +5.25 Range up#↑ +0.3 Speed up#↑ +0.5 Tear Height#Full health!"},
+{"12", "2,15", "", "↑ +1 Health up#↑ +0.3 Damage up#↑ +50% Damage Multiplier#↑ +5.25 Range up#↑ +0.3 Speed up#↑ +0.5 Tear Height#Full health!"},
 {"13", "5", "", "Poison touch#↓ -0.1 Speed down#Enemies can drop black hearts if poisoned"},
 {"14", "5", "", "↑ +0.6 Speed up#↑ +5.25 Range up#↑ +0.5 Shot Height"},
 {"15", "0", "", "↑ +1 Health up#Full health"},
@@ -47,7 +47,7 @@ EID.descriptions["en_us"].collectibles={{"1", "0", "", "↑ +0.7 Tears up"},
 {"30", "6", "", "↑ +5.25 Range up#↑ +0.5 Tear Height"},
 {"31", "6", "", "↑ +5.25 Range up#↑ +0.5 Tear Height"},
 {"32", "0", "", "↑ +0.7 Tears up"},
-{"33", "10", "", "Flight for current room#Kills Mom Foot and Moms heart instantly#! Kills YOU when used on Satan"},
+{"33", "10,12", "", "Flight for current room#Kills Mom Foot and Moms heart instantly#! Kills YOU when used on Satan"},
 {"34", "12", "", "↑ +2 Damage up#↑ +12.5% devil deal chance#↑ +50% Damage Multiplier if you have Blood of the Martyr"},
 {"35", "12", "", "Deal 40 damage to everything in the room"},
 {"36", "7", "", "Spawns one poop#Can be placed next to a pit and destroyed to make a bridge"},
@@ -316,7 +316,7 @@ EID.descriptions["en_us"].collectibles={{"1", "0", "", "↑ +0.7 Tears up"},
 {"299", "0", "", "Get faster in hostile rooms!#Invincibility when fast enough"},
 {"300", "0", "", "↑ +0.25 Speed up#Touching enemies hurts them"},
 {"301", "0", "", "+3 Soul hearts#Halves taken damage in room when you already got hit"},
-{"302", "0", "", "Destroy rocks when walking over them"},
+{"302", "15", "", "Destroy rocks when walking over them"},
 {"303", "0", "", "Chance to get invincibility when hit#Converts negative pills into positive ones"},
 {"304", "0", "", "+6 Coins / Keys / Bombs#Balances your stats!#! Every stats up afterwards will affect other stats too"},
 {"305", "0", "", "Poison tears"},
@@ -774,7 +774,7 @@ EID.descriptions["en_us"].pills={
 {"6", "0", "", "↓ Health down"},
 {"7", "0", "", "↑ Health up"},
 {"8", "0", "", "No effect"},
-{"9", "0", "", "Eating 3 will give you Adult transformation"},
+{"9", "14", "", "Eating 3 will give you Adult transformation (+1 Red Heart)"},
 {"10", "0", "", "Adds 1 fly orbital"},
 {"11", "0", "", "↓ -2 Range down"},
 {"12", "0", "", "↑ +2.5 Range up"},
@@ -797,7 +797,7 @@ EID.descriptions["en_us"].pills={
 {"29", "0", "", "Take full heart damage for current room"},
 {"30", "0", "", "Spawn poop while walking for 2 seconds"},
 {"31", "0", "", "Curse of the maze effect for current floor"},
-{"32", "0", "", "You grow bigger#Doesn't affect your hitbox"},
+{"32", "15", "", "You grow bigger#Doesn't affect your hitbox"},
 {"33", "0", "", "You get smaller#Your hitbox gets smaller"},
 {"34", "0", "", "Spawn 1 blue spider per poop in room"},
 {"35", "0", "", "Spawn 1 blue spider per enemy in room#Spawns 1-3 blue spiders when no enemy is in the room"},
@@ -853,7 +853,7 @@ EID.descriptions["en_us"].transformations = {
 "Conjoined",		-- 4
 "Spun",				-- 5
 "Mom",				-- 6
-"Oh crap",			-- 7
+"Oh Crap",			-- 7
 "Bob",				-- 8
 "Leviathan",		-- 9
 "Seraphim",			-- 10

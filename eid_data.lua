@@ -64,7 +64,7 @@ EID.InlineIcons = {
     ["Collectible"] = {"Collectible", 0, 7, 7},
     ["Trinket"] = {"Trinket", 0, 7, 7},
     ["Slotmachine"] = {"Slotmachine", 0, 7, 7},
-    --Room Icons
+    -- Room Icons
     ["Shop"] = {"roomicons", 0, 7, 9},
     ["SecretRoom"] = {"roomicons", 1, 7, 9},
     ["SuperSecretRoom"] = {"roomicons", 2, 7, 9},
@@ -84,7 +84,7 @@ EID.InlineIcons = {
     ["ChestRoom"] = {"roomicons", 16, 8, 9},
     ["IsaacsRoom"] = {"roomicons", 17, 8, 9},
     ["BarrenRoom"] = {"roomicons", 18, 8, 9},
-    --Roomshape Icons
+    -- Roomshape Icons
     ["Room"] = {"roomshape", 0, 9, 9},
     ["RoomSmallHorizontal"] = {"roomshape", 1, 9, 9},
     ["RoomSmallVertical"] = {"roomshape", 2, 7, 6},
@@ -96,26 +96,22 @@ EID.InlineIcons = {
     ["RoomL"] = {"roomshape", 8, 10, 10},
     ["RoomLTopLeft"] = {"roomshape", 9, 10, 10},
     ["RoomLBottomLeft"] = {"roomshape", 10, 10, 10},
-    ["RoomLBottomRight"] = {"roomshape", 11, 10, 10}
-}
-
--- List of TransformationIcons based on their Name
---Format: [Ingame Name] = {Animationname, Width, Height, LeftOffset [Default: 0], TopOffset [Default: -3], IconSpriteObj [Default: EID.IconSprite]}
-EID.TransformationIcons = {
-	["Custom"] = {"TransformationCustom",11,16},
-	["Guppy"] = {"Transformation1",12,16},
-	["Fun Guy"] = {"Transformation2",13,16},
-	["Lord of the Flies"] = {"Transformation3",14,16},
-	["Conjoined"] = {"Transformation4",18,16},
-	["Spun"] = {"Transformation5",8,16},
-	["Mom"] = {"Transformation6",7,16},
-	["Oh crap"] = {"Transformation7",15,16},
-	["Bob"] ={"Transformation8",14,16},
-	["Leviathan"] = {"Transformation9",13,16},
-	["Seraphim"] = {"Transformation10",21,16},
-	["Super Bum"] = {"Transformation11",15,16},
-	["Bookworm"] = {"Transformation12",11,16},
-	["Spider Baby"] = {"Transformation13",13,16,0},
-	["Adult"] = {"Transformation14",0,16},
-	["Stompy"] = {"Transformation15",0,16},
+    ["RoomLBottomRight"] = {"roomshape", 11, 10, 10},
+	-- Transformation Icons
+	["CustomTransformation"] = {"TransformationCustom",0,11,14, 1, -1, EID.IconSprite},
+	["Guppy"] = {"Transformation1",0,10,13, 1, -1, EID.IconSprite},
+	["FunGuy"] = {"Transformation2",0,12,13, 0, -1, EID.IconSprite},
+	["LordoftheFlies"] = {"Transformation3",0,12,14, 0, -1, EID.IconSprite},
+	["Conjoined"] = {"Transformation4",0,16,15, -2, -1, EID.IconSprite},
+	["Spun"] = {"Transformation5",0,6,15, 4, -1, EID.IconSprite},
+	["Mom"] = {"Transformation6",0,6,16, 5, -1, EID.IconSprite},
+	["OhCrap"] = {"Transformation7",0,13,14, -1, -1, EID.IconSprite},
+	["Bob"] ={"Transformation8",0,12,13, 0, -1, EID.IconSprite},
+	["Leviathan"] = {"Transformation9",0,12,15, 0, -1, EID.IconSprite},
+	["Seraphim"] = {"Transformation10",0,19,14, -6, -1, EID.IconSprite},
+	["SuperBum"] = {"Transformation11",0,14,15, -1, -1, EID.IconSprite},
+	["Bookworm"] = {"Transformation12",0,10,14, 2, -1, EID.IconSprite},
+	["SpiderBaby"] = {"Transformation13",0,12,16, 1, -1, EID.IconSprite},
+	--["Adult"] = {"Transformation14",0,0,13, -1, -1, EID.IconSprite},
+	--["Stompy"] = {"Transformation15",0,0,13, -1, -1, EID.IconSprite},
 }

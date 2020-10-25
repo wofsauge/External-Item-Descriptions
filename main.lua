@@ -8,8 +8,8 @@ local lastDescriptionEntity = nil
 local hideDescToggle = false
 EID.sacrificeCounter = 1
 
-local IconSprite = Sprite()
-IconSprite:Load("gfx/icons.anm2", true)
+EID.IconSprite = Sprite()
+EID.IconSprite:Load("gfx/icons.anm2", true)
 
 EID.InlineIconSprite = Sprite()
 EID.InlineIconSprite:Load("gfx/eid_inline_icons.anm2", true)
@@ -94,18 +94,18 @@ function printDescription(desc)
 		if EIDConfig["Scale"] < 1 then
 			offsetY = -1
 		end
-		IconSprite:Play(EID.ItemTypeAnm2Names[itemType])
-		IconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
-		IconSprite:Update()
-		IconSprite:Render(
+		EID.IconSprite:Play(EID.ItemTypeAnm2Names[itemType])
+		EID.IconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
+		EID.IconSprite:Update()
+		EID.IconSprite:Render(
 			Vector(EIDConfig["XPosition"], padding + offsetY),
 			Vector(0, 0),
 			Vector(0, 0)
 		)
 		if itemType == 3 then -- Display Charge
-			IconSprite:Play(EID.itemConfig:GetCollectible(desc.ID).MaxCharges)
-			IconSprite:Update()
-			IconSprite:Render(
+			EID.IconSprite:Play(EID.itemConfig:GetCollectible(desc.ID).MaxCharges)
+			EID.IconSprite:Update()
+			EID.IconSprite:Render(
 				Vector(EIDConfig["XPosition"], padding + offsetY),
 				Vector(0, 0),
 				Vector(0, 0)
@@ -137,33 +137,38 @@ function printDescription(desc)
 
 	--Display Transformation
 	if not (desc.Transformation == "0" or desc.Transformation == "" or desc.Transformation == nil) then
-		local transformationName = EID:getTransformationName(desc.Transformation)
-		local transformSprite = EID.TransformationIcons[transformationName]
-		if transformSprite == nil then
-			transformSprite = EID.TransformationIcons["Custom"]
-		end 
-		local iconOffsetX = transformSprite[4] or 0
-		local iconOffsetY = transformSprite[5] or -3
-		if EIDConfig["TransformationIcons"] then
-			local iconSprite = transformSprite[6] or IconSprite
-			iconSprite:Play(transformSprite[1])
-			iconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
-			iconSprite:Render(
-				Vector(EIDConfig["XPosition"] + iconOffsetX * EIDConfig["Scale"], padding + iconOffsetY * EIDConfig["Scale"]),
-				Vector(0, 0),
-				Vector(0, 0)
-			)
-		end
-		if EIDConfig["TransformationText"] then
-			EID:renderString(
-				transformationName,
-				Vector(EIDConfig["XPosition"] + (transformSprite[2]+iconOffsetX +3), padding - 1),
-				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
-				EID:getTransformationColor()
-			)
-		end
-		if (EIDConfig["TransformationIcons"] or EIDConfig["TransformationText"]) then
-			padding = padding + lineHeight * EIDConfig["Scale"]
+		for transform in string.gmatch(desc.Transformation, "([^,]+)") do
+			local transformationName = EID:getTransformationName(transform)
+			local transformLineHeight = lineHeight
+			local defaultName = EID.descriptions["en_us"].transformations[tonumber(transform+1)]
+			local transformSprite = EID:getIcon(defaultName:gsub(" ", ""))
+			if transformSprite[1] == "ERROR" then
+				transformSprite = EID:getIcon("CustomTransformation")
+			end 
+			local iconOffsetX = transformSprite[5] or -1
+			local iconOffsetY = transformSprite[6] or -1
+			if EIDConfig["TransformationIcons"] then
+				transformLineHeight = math.max(lineHeight, transformSprite[4])
+				local iconSprite = transformSprite[7] or EID.InlineIconSprite
+				iconSprite:Play(transformSprite[1])
+				iconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
+				iconSprite:Render(
+					Vector(EIDConfig["XPosition"] + iconOffsetX * EIDConfig["Scale"], padding + iconOffsetY * EIDConfig["Scale"]),
+					Vector(0, 0),
+					Vector(0, 0)
+				)
+			end
+			if EIDConfig["TransformationText"] then
+				EID:renderString(
+					transformationName,
+					Vector(EIDConfig["XPosition"] + 17, padding - 1),
+					Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
+					EID:getTransformationColor()
+				)
+			end
+			if (EIDConfig["TransformationIcons"] or EIDConfig["TransformationText"]) then
+				padding = padding + transformLineHeight * EIDConfig["Scale"]
+			end
 		end
 	end
 	printBulletPoints(desc.Description, padding)

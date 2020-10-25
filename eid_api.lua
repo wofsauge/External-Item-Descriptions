@@ -107,7 +107,7 @@ function EID:getLegacyModDescription(objTable, id)
 		return __eidCardDescriptions[id]
 	elseif objTable == "pills" then
 		return __eidPillDescriptions[id]
-	elseif objTable == "transformation" then
+	elseif objTable == "transformations" then
 		return __eidItemTransformations[id]
 	elseif objTable == "custom" then
 		return __eidEntityDescriptions[id] and __eidEntityDescriptions[id][2]
@@ -146,9 +146,10 @@ end
 function EID:getTransformationName(id)
 	local str = "Custom"
 	if tonumber(id) == nil then
+		print("FAIL")
 		return id
 	end
-	return EID:getDescriptionObj("transformations", tonumber(id) + 1) or str
+	return EID:getObjectName(tonumber(id) + 1, "transformations") or str
 end
 
 -- tries to get the ingame name of an item based on its ID
@@ -182,6 +183,8 @@ function EID:getObjectName(objID, objType)
 			end
 		end
 		return EID.itemConfig:GetPillEffect(objID).Name
+	elseif objType == "transformations" then
+		return tableEntry
 	elseif objType == "sacrifice" then
 		return EID:getDescriptionTable("sacrificeHeader")
 	elseif objType == "dice" then
@@ -226,12 +229,12 @@ end
 -- Returns the inlineIcon object of a given Iconstring
 -- can be used to validate an iconstring
 function EID:getIcon(str)
-	if str == nil then return nil end
+	if str == nil then print("F") return EID.InlineIcons["ERROR"] end
 	local strTrimmed = string.gsub(str, "{{(.-)}}", function(a) return a end)
-	if #strTrimmed < #str then
-		return EID.InlineIcons[strTrimmed] or nil
+	if #strTrimmed <= #str then
+		return EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
 	else
-		return nil
+		return EID.InlineIcons["ERROR"]
 	end
 end
 
@@ -246,7 +249,7 @@ function EID:filterMarkup(text, textPosX, textPosY)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
-		local lookup = EID:getIcon(word) or EID.InlineIcons["ERROR"]
+		local lookup = EID:getIcon(word)
 		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1))*EIDConfig["Scale"]
 		table.insert(spriteTable,{lookup, preceedingTextWidth})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
