@@ -98,8 +98,20 @@ function EID:getLastDescribedEntity()
 end
 
 -- returns descriptions from the legacy mod descriptions
-function EID:getModDescription(list, id)
-	return (list) and (list[id])
+function EID:getLegacyModDescription(objTable, id)
+	if objTable == "collectibles" then
+		return (__eidItemDescriptions) and (__eidItemDescriptions[id])
+	elseif objTable == "trinkets" then
+		return (__eidTrinketDescriptions) and (__eidTrinketDescriptions[id])
+	elseif objTable == "cards" then
+		return (__eidCardDescriptions) and (__eidCardDescriptions[id])
+	elseif objTable == "pills" then
+		return (__eidPillDescriptions) and (__eidPillDescriptions[id])
+	elseif objTable == "transformation" then
+		return (__eidItemTransformations) and (__eidItemTransformations[id])
+	elseif objTable == "custom" then
+		return (__eidEntityDescriptions) and (__eidEntityDescriptions[id])
+	end
 end
 
 -- returns the specified object table in the current language. 
@@ -112,11 +124,20 @@ end
 -- falls back to english if the objID isnt available
 function EID:getDescriptionObj(objTable, objID)
 	local tableEntry = EID.descriptions[EIDConfig["Language"]][objTable][tonumber(objID)] or EID.descriptions["en_us"][objTable][tonumber(objID)]
+	
 	local description = {}
 	description.ID = tonumber(tableEntry[1]) or objID
 	description.Name = EID:getObjectName(objID, objTable) or objTable
-	description.Description = tableEntry[4] or tableEntry[3] or ""
-	description.Transformation = tableEntry[2] or "0"
+	
+	local legacyModdedDescription = EID:getLegacyModDescription(objTable, objID)
+	description.Description = legacyModdedDescription or tableEntry[4] or tableEntry[3] or tableEntry[2] or "MISSING DESCRIPTION"
+	
+	local legacyModdedTransformation = nil
+	if objTable == "collectibles" then
+		legacyModdedTransformation = EID:getLegacyModDescription("transformation", objID)
+	end
+	description.Transformation = legacyModdedTransformation or tableEntry[2] or "0"
+	
 	return description
 end
 
@@ -210,24 +231,35 @@ function EID:getStrWidth(str)
 	return EID.font:GetStringWidthUTF8(str)
 end
 
--- Searches true the given string and replaces Iconplaceholders with icons.
--- Returns the string without the placeholders but with an accurate space between lines.
+-- Searches thru the given string and replaces Iconplaceholders with icons.
+-- Returns 2 values. the string without the placeholders but with an accurate space between lines. and a table of all Inline Sprites
 function EID:filterMarkup(text, textPosX, textPosY)
+	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
 		local lookup = EID:getIcon(word) or EID.InlineIcons["ERROR"]
-		local Xoffset = lookup[5] or 0
-		local prefixTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1))*EIDConfig["Scale"]
-		EID.InlineIconSprite:SetFrame(lookup[1], lookup[2])
-		EID.InlineIconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
-		EID.InlineIconSprite:Render(
-			Vector((textPosX + prefixTextWidth + Xoffset -1), textPosY),
+		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1))*EIDConfig["Scale"]
+		table.insert(spriteTable,{lookup, preceedingTextWidth})
+		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
+	end
+	return text, spriteTable
+end
+
+--renders a list of given inline sprite objects returned by the "EID:filterMarkup()" function
+-- Table entry format: {EID.InlineIcons Object, Width of text preceeding the icon}
+function EID:renderInlineIcons(spriteTable, posX, posY)
+	for _,sprite in ipairs(spriteTable) do
+		local Xoffset = sprite[1][5] or -1
+		local Yoffset = sprite[1][6] or 0
+		local spriteObj = sprite[1][7] or EID.InlineIconSprite
+		spriteObj:SetFrame(sprite[1][1], sprite[1][2])
+		spriteObj.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
+		spriteObj:Render(
+			Vector((posX + sprite[2] + Xoffset), posY + Yoffset),
 			Vector(0, 0),
 			Vector(0, 0)
 		)
-		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
 	end
-	return text
 end
 
 -- Returns the icon used for the bulletpoint. It will look at the first word in the given string.
@@ -243,7 +275,8 @@ end
 -- args: string, Vector(int, int), Vector(float,float), KColor obj, bool
 function EID:renderString(str, position, scale, kcolor)
 	str = EID:replaceShortMarkupStrings(str)
-	str = EID:filterMarkup(str, position.X, position.Y)
+	str, spriteTable = EID:filterMarkup(str, position.X, position.Y)
+	EID:renderInlineIcons(spriteTable, position.X, position.Y)
 	EID.font:DrawStringScaledUTF8(str, position.X, position.Y, scale.X, scale.Y, kcolor, 0, false)
 end
 

@@ -167,7 +167,7 @@ function printDescription(desc)
 	printBulletPoints(desc.Description, padding)
 end
 
-function printTrinketDescription(desc, objType)
+function printTrinketDescription(desc)
 	local padding = posY()
 	--Display Itemname
 	if EIDConfig["ShowItemName"] then
@@ -354,54 +354,22 @@ local function onRender(t)
 
 	--Handle Trinkets
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
+		printTrinketDescription(EID:getDescriptionObj("trinkets",closest.SubType))
 		--Handle Collectibles
-		if EID:getModDescription(__eidTrinketDescriptions, closest.SubType) then
-			printTrinketDescription(
-				{closest.SubType, EID:getModDescription(__eidTrinketDescriptions, closest.SubType)},
-				"trinkets"
-			)
-		elseif closest.SubType <= 128 then
-			printTrinketDescription(EID:getDescriptionObj("trinkets",closest.SubType), "trinkets")
-		else
-			printTrinketDescription({closest.SubType, EID.itemConfig:GetTrinket(closest.SubType).Description})
-		end
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
-		--Handle Cards & Runes
 		if EID:hasCurseBlind() and EIDConfig["DisableOnCurse"] then
 			renderQuestionMark()
 			return
 		end
-		if EID:getModDescription(__eidItemDescriptions, closest.SubType) then
-			local tranformation = "0"
-			if EID:getModDescription(__eidItemTransformations, closest.SubType) then
-				tranformation = EID:getModDescription(__eidItemTransformations, closest.SubType)
-			end
-			printDescription({closest.SubType, tranformation, EID:getModDescription(__eidItemDescriptions, closest.SubType)})
-		elseif closest.SubType <= 552 then
-			if EID:getModDescription(__eidItemTransformations, closest.SubType) then
-				printDescription(
-					{
-						closest.SubType,
-						EID:getModDescription(__eidItemTransformations, closest.SubType),
-						EID:getDescriptionObj("collectibles",closest.SubType)[3]
-					}
-				)
-			else
-				printDescription(EID:getDescriptionObj("collectibles",closest.SubType))
-			end
-		else
-			printDescription({closest.SubType, "", EID.itemConfig:GetCollectible(closest.SubType).Description})
-		end
+		printDescription(EID:getDescriptionObj("collectibles",closest.SubType))
+		--Handle Cards & Runes
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
-		--Handle Pills
 		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayCardInfoShop"] then
 			renderQuestionMark()
 			return
 		end
-		if EID:getModDescription(__eidCardDescriptions, closest.SubType) then
-			printTrinketDescription({closest.SubType, EID:getModDescription(__eidCardDescriptions, closest.SubType)}, "cards")
-		elseif closest.SubType <= 54 then
-			printTrinketDescription(EID:getDescriptionObj("cards", closest.SubType), "cards")
+		printTrinketDescription(EID:getDescriptionObj("cards", closest.SubType), "cards")
+		if closest.SubType <= 54 then
 			CardSprite:Play(tostring(closest.SubType))
 			CardSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
 			CardSprite:Update()
@@ -414,9 +382,8 @@ local function onRender(t)
 				Vector(0, 0),
 				Vector(0, 0)
 			)
-		else
-			printTrinketDescription({closest.SubType, EID.itemConfig:GetCard(closest.SubType).Description})
 		end
+		--Handle Pills
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayPillInfoShop"] then
 			renderQuestionMark()
