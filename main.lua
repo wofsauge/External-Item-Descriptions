@@ -177,16 +177,18 @@ end
 function printBulletPoints(description, padding)
 	local textboxWidth = tonumber(EIDConfig["TextboxWidth"]) * 4
 	description = EID:replaceShortMarkupStrings(description)
+	
 	for line in string.gmatch(description, "([^#]+)") do
+		line = string.gsub(line, "([^%s])({{)", function(a,b) return a.." "..b end) -- add space between icons, if not already existing
 		local formatedLines = {}
 		local text = ""
 		local curLength = 0
-		for word in string.gmatch(line, "([^ ]+)") do
+		for word in string.gmatch(line, "([^%s]+)") do
 			local wordLength = EID:getStrWidth(word)
-			if EID:getIcon(word) ~= nil then
+			if EID:getIcon(word) ~= EID.InlineIcons["ERROR"] then
 				wordLength = EID:getIcon(word)[3]
 			end
-			if curLength + wordLength <= textboxWidth or curLength < 25 then
+			if curLength + wordLength <= textboxWidth or curLength < 12 then
 				text = text .. word .. " "
 				curLength = curLength + wordLength
 			else
@@ -202,7 +204,7 @@ function printBulletPoints(description, padding)
 			local posX = EIDConfig["XPosition"] 
 			if i == 1 then
 				local bpIcon = EID:handleBulletpointIcon(lineToPrint)
-				if EID:getIcon(bpIcon) ~= nil then
+				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
 					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "")
 				end
 
