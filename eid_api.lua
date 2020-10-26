@@ -277,7 +277,7 @@ end
 -- Returns the icon used for the bulletpoint. It will look at the first word in the given string.
 function EID:handleBulletpointIcon(text)
 	local firstWord = string.match(text, "([^%s]+)")
-	if EID:getIcon(firstWord) ~= nil then
+	if EID:getIcon(firstWord) ~=  EID.InlineIcons["ERROR"] then
 		return firstWord
 	end
 	return "\007"
