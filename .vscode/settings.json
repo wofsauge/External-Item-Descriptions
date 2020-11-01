@@ -1,0 +1,29 @@
+{
+    "Lua.diagnostics.globals": [
+        "__eidItemDescriptions",
+        "__eidTrinketDescriptions",
+        "__eidCardDescriptions",
+        "__eidPillDescriptions",
+        "__eidItemTransformations",
+        "__eidEntityDescriptions",
+        "Game",
+        "LevelCurse",
+        "Vector",
+        "PickupVariant",
+        "EntityType",
+        "Color",
+        "KColor",
+        "RegisterMod",
+        "Isaac",
+        "Sprite",
+        "Font",
+        "ModCallbacks",
+        "RoomType",
+        "DamageFlag",
+        "Input",
+        "CollectibleType",
+        "ModConfigMenu",
+        "Keyboard",
+        "ModConfigMenuOptionType"
+    ]
+}

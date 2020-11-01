@@ -84,7 +84,7 @@ local function posY()
 	return modifiedPosY ~= false and modifiedPosY or EIDConfig["YPosition"]
 end
 
-function printDescription(desc)
+function EID:printDescription(desc)
 	local padding = posY()
 	local itemType = -1
 	if tonumber(desc.ID) ~= nil then
@@ -197,10 +197,10 @@ end
 ---------------------------Handle Rendering--------------------------------
 
 function EID:renderQuestionMark()
-	IconSprite:Play("CurseOfBlind")
-	IconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
-	IconSprite:Update()
-	IconSprite:Render(
+	EID.IconSprite:Play("CurseOfBlind")
+	EID.IconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
+	EID.IconSprite:Update()
+	EID.IconSprite:Render(
 		Vector(EIDConfig["XPosition"] + 5 * EIDConfig["Scale"], posY() + 5 * EIDConfig["Scale"]),
 		Vector(0, 0),
 		Vector(0, 0)
@@ -275,12 +275,12 @@ local function onRender(t)
 
 	if dist / 40 > tonumber(EIDConfig["MaxDistance"]) or not closest.Type == EntityType.ENTITY_PICKUP then
 		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EIDConfig["DisplaySacrificeInfo"] then
-			printDescription(EID:getDescriptionObj("sacrifice", EID.sacrificeCounter))
+			EID:printDescription(EID:getDescriptionObj("sacrifice", EID.sacrificeCounter))
 		end
 		if
 			Game():GetRoom():GetType() == RoomType.ROOM_DICE and EIDConfig["DisplayDiceInfo"] and type(closestDice) ~= type(nil)
 		 then
-			printDescription(EID:getDescriptionObj("dice", closestDice.SubType + 1))
+			EID:printDescription(EID:getDescriptionObj("dice", closestDice.SubType + 1))
 			EID:renderIndicator(closestDice)
 		end
 		return
@@ -308,28 +308,28 @@ local function onRender(t)
 		EID:getLegacyModDescription("custom", objIDString) or
 		nil
 	if EIDConfig["EnableEntityDescriptions"] and tableEntry ~= nil then
-		printDescription(EID:getDescriptionObj("custom", objIDString))
+		EID:printDescription(EID:getDescriptionObj("custom", objIDString))
 		return
 	end
 
 	--Handle Trinkets
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
 		--Handle Collectibles
-		printDescription(EID:getDescriptionObj("trinkets", closest.SubType))
+		EID:printDescription(EID:getDescriptionObj("trinkets", closest.SubType))
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Cards & Runes
 		if EID:hasCurseBlind() and EIDConfig["DisableOnCurse"] then
 			EID:renderQuestionMark()
 			return
 		end
-		printDescription(EID:getDescriptionObj("collectibles", closest.SubType))
+		EID:printDescription(EID:getDescriptionObj("collectibles", closest.SubType))
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Pills
 		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayCardInfoShop"] then
 			EID:renderQuestionMark()
 			return
 		end
-		printDescription(EID:getDescriptionObj("cards", closest.SubType))
+		EID:printDescription(EID:getDescriptionObj("cards", closest.SubType))
 		if closest.SubType <= 54 then
 			CardSprite:Play(tostring(closest.SubType))
 			CardSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
@@ -355,7 +355,7 @@ local function onRender(t)
 		local pillEffect = pool:GetPillEffect(pillColor)
 		local identified = pool:IsPillIdentified(pillColor)
 		if (identified or EIDConfig["ShowUnidentifiedPillDescriptions"]) then
-			printDescription(EID:getDescriptionObj("pills", pillEffect + 1))
+			EID:printDescription(EID:getDescriptionObj("pills", pillEffect + 1))
 		else
 			EID:renderString(
 				EID:getDescriptionTable("unidentifiedPill"),
@@ -393,7 +393,7 @@ if ModConfigMenu then
 	function OnGameStart(isSave)
 		--Loading Moddata--
 		if EID:HasData() then
-			savedEIDConfig = json.decode(Isaac.LoadModData(EID))
+			local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
 			-- hardcode Language usage
 			savedEIDConfig["Language"] = EIDConfig["Language"]
 			-- Only copy Saved config entries that exist in the save
