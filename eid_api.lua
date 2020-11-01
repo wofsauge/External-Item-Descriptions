@@ -77,51 +77,50 @@ EID.ItemTypeAnm2Names = {
 ---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
 
--- Adds a description for a collectible. Optional parameters: itemName, language, transformations
-function EID:addCollectible(id, description, itemName, language, transformations)
+-- Adds a description for a collectible. Optional parameters: itemName, language
+function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	transformations = transformations or "0"
-	EID.descriptions[language].custom["collectible_" .. id] = {id, transformations, itemName, description}
+	EID.descriptions[language].custom["collectible_" .. id] = {id, itemName, description}
 end
 
--- Adds a description for a trinket. Optional parameters: itemName, language, transformations
-function EID:addTrinket(id, description, itemName, language, transformations)
+-- Adds a description for a trinket. Optional parameters: itemName, language
+function EID:addTrinket(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	transformations = transformations or "0"
-	EID.descriptions[language].custom["trinket_" .. id] = {id, transformations, itemName, description}
+	EID.descriptions[language].custom["trinket_" .. id] = {id, itemName, description}
 end
 
--- Adds a description for a card/rune. Optional parameters: itemName, language, transformations
-function EID:addCard(id, description, itemName, language, transformations)
+-- Adds a description for a card/rune. Optional parameters: itemName, language
+function EID:addCard(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	transformations = transformations or "0"
-	EID.descriptions[language].custom["card_" .. id] = {id, transformations, itemName, description}
+	EID.descriptions[language].custom["card_" .. id] = {id, itemName, description}
 end
 
--- Adds a description for a pilleffect id. Optional parameters: itemName, language, transformations
-function EID:addPill(id, description, itemName, language, transformations)
+-- Adds a description for a pilleffect id. Optional parameters: itemName, language
+function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	transformations = transformations or "0"
-	EID.descriptions[language].custom["pill_" .. id] = {id, transformations, itemName, description}
+	EID.descriptions[language].custom["pill_" .. id] = {id, itemName, description}
+end
+
+-- Adds transformations to an entity.
+function EID:addTransformation(targetType, targetIdentifier, transformationString, language)
+	EID.descriptions[language].custom["transformations_"..targetType.."_".. targetIdentifier] = {targetType, targetIdentifier, transformationString}
 end
 
 -- Adds a description for a pilleffect id. Optional parameters: language, transformations
 -- when subtype is -1 or empty, it will affect all subtypes of that entity
-function EID:addEntity(id, variant, subtype, entityName, description, language, transformations)
+function EID:addEntity(id, variant, subtype, entityName, description, language)
 	subtype = subtype or nil
 	language = language or "en_us"
-	transformations = transformations or "0"
 	EID.descriptions[language].custom[id .. "." .. variant .. "." .. subtype] = {
 		id,
 		variant,
 		subtype,
 		entityName,
-		description,
-		transformations
+		description
 	}
 end
 

@@ -22,6 +22,9 @@ local charsToDebug = {
 	"End of line",
 }
 
+-----------------------------------------------
+----------------LEGACY METHODS-----------------
+-----------------------------------------------
 ------ Legacy Overriding descriptions ------
 __eidItemDescriptions[1] = "\1 Overriden description"	-- 5.100.1 = Sad Onion
 __eidTrinketDescriptions[1] = "\2 Overriden "			-- 5.350.1 = swallowed penny
@@ -48,6 +51,16 @@ __eidItemTransformations[3] = "1,2,3,4,5,6,7,8,9,10,11,12,13"
 
 ------ Test: Description with colors ------
 __eidItemDescriptions[3] = "Some {{ColorRed}}long ass Test string with a lot of Words that sound interesting#With{{ColorBlink}} cool {{CR}}{{ColorRed}}C{{ColorGreen}}o{{ColorBlue}}l{{ColorYellow}}o{{ColorOrange}}r{{ColorPink}}s{{ColorWhite}} and a high amount of nifty {{ColorRainbow}}Swag "
+
+-----------------------------------------------
+------------------NEW METHODS------------------
+-----------------------------------------------
+------ Overriding descriptions------
+EID:addCollectible(5,"New override Method") 				-- minimal method
+EID:addCollectible(6,"New override Method","new Name","ru")	-- maximal method
+EID:addCard(2,"New override Method","new Name")				-- card
+EID:addPill(2,"New override Method","new Name")				-- pill
+EID:addEntity(5,10,2,"Custom Name","Custom description")	-- Entity
 
 local function onDebugRender(t)
 		for i, v in ipairs(charsToDebug) do
