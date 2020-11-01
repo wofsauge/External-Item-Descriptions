@@ -229,7 +229,7 @@ end
 -- Returns the inlineIcon object of a given Iconstring
 -- can be used to validate an iconstring
 function EID:getIcon(str)
-	if str == nil then print("F") return EID.InlineIcons["ERROR"] end
+	if str == nil then return EID.InlineIcons["ERROR"] end
 	local strTrimmed = string.gsub(str, "{{(.-)}}", function(a) return a end)
 	if #strTrimmed <= #str then
 		return EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
@@ -283,13 +283,77 @@ function EID:handleBulletpointIcon(text)
 	return "\007"
 end
 
---needs to be called in a render Callback
+-- Gets a KColor from a Markup-string (example Input: "{{ColorText}}")
+function EID:getColor(str, baseKColor)
+	if str == nil then return baseKColor end
+	local strTrimmed = string.gsub(str, "{{(.-)}}", function(a) return a end)
+	if #strTrimmed <= #str then
+		if type(EID.InlineColors[strTrimmed]) =="function" then
+			return EID.InlineColors[strTrimmed](baseKColor)
+		end
+		return EID.InlineColors[strTrimmed] or baseKColor
+	else
+		return baseKColor
+	end
+end
+
+-- Filters a given string and looks for Colormarkup. Splits the text into subsections limited by them.
+-- Returns: Table of subsections of the text, their respective KColor, and the width of the subsection
+function EID:filterColorMarkup(text, baseKColor)
+	local textPartsTable = {}
+	local lastColor = baseKColor
+	local lastPosition = 0
+	for word in string.gmatch(text, "{{.-}}") do
+		local textposition = string.find(text, word)
+		local lookup = EID:getColor(word, lastColor)
+		if lookup ~= lastColor then
+			local preceedingText = string.sub(text, lastPosition, textposition - 1)
+			local preceedingTextWidth = EID:getStrWidth(preceedingText)*EIDConfig["Scale"]
+			lastPosition = textposition
+			table.insert(textPartsTable,{preceedingText, lastColor, preceedingTextWidth})
+			lastColor = lookup
+			text = string.gsub(text, word, "", 1)
+		end
+	end
+	
+	table.insert(textPartsTable,{string.sub(text, lastPosition), lastColor,0})
+	return textPartsTable
+end
+
+-- Renders a given string using the EID Custom font. This will also apply any markup and render icons
+-- needs to be called in a render Callback
 -- args: string, Vector(int, int), Vector(float,float), KColor obj, bool
+-- Returns the last used KColor
 function EID:renderString(str, position, scale, kcolor)
 	str = EID:replaceShortMarkupStrings(str)
-	str, spriteTable = EID:filterMarkup(str, position.X, position.Y)
-	EID:renderInlineIcons(spriteTable, position.X, position.Y)
-	EID.font:DrawStringScaledUTF8(str, position.X, position.Y, scale.X, scale.Y, kcolor, 0, false)
+	EID.LastRenderCallColor = EID:copyKColor(kcolor) -- Save last Color for eventual Color Reset call
+	local textPartsTable = EID:filterColorMarkup(str, kcolor)
+	local offsetX = 0
+	for i, textPart in ipairs(textPartsTable) do
+		local strFiltered, spriteTable = EID:filterMarkup(textPart[1], position.X, position.Y)
+		EID:renderInlineIcons(spriteTable, position.X, position.Y)
+		EID.font:DrawStringScaledUTF8(strFiltered, position.X+offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
+		offsetX = offsetX + textPart[3]
+	end	
+	return textPartsTable[#textPartsTable][2]
+end
+
+-- Interpolates between 2 KColors with a given fraction. 
+function EID:interpolateColors(kColor1, kColor2, fraction)
+	local t =  KColor(
+		(kColor2.Red-kColor1.Red)*fraction+kColor1.Red,
+		(kColor2.Green-kColor1.Green)*fraction+kColor1.Green,
+		(kColor2.Blue-kColor1.Blue)*fraction+kColor1.Blue,
+		(kColor2.Alpha-kColor1.Alpha)*fraction+kColor1.Alpha,
+		0,
+		0,
+		0
+	)
+	return t
+end
+
+function EID:copyKColor(colorObj)
+	return KColor(colorObj.Red,colorObj.Green,colorObj.Blue,colorObj.Alpha,0,0,0)
 end
 
 -- Get KColor object of "Entity Name" texts

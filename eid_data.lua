@@ -11,6 +11,7 @@ EID.TextReplacementPairs = {
 	{"\015", "{{Coin}}"}, -- Legacy Coin
 	{"\8\189", "{{Bomb}}"}, -- Legacy BOMB
 	{"{{Hashtag}}", "ǂ"}, -- Hashtag
+	{"{{CR}}", "{{ColorReset}}"}, -- Shortcut for Color Resetting
 }
 
 --Format: [SHORTCUT]= {Animationname, Frame, Width, Height, LeftOffset [Default: -1], TopOffset [Default: 0], SpriteObject [Default: EID.InlineIconSprite]}
@@ -20,19 +21,19 @@ EID.InlineIcons = {
     ["ArrowDown"] = {"ArrowDown", 0, 8, 9},
     ["Warning"] = {"Warning", 0, 4, 9},
     -- Numbers
-    ["0"] = {"numbers", 0, 5, 7},
-    ["1"] = {"numbers", 1, 4, 7},
-    ["2"] = {"numbers", 2, 5, 7},
-    ["3"] = {"numbers", 3, 5, 7},
-    ["4"] = {"numbers", 4, 5, 7},
-    ["5"] = {"numbers", 5, 5, 7},
-    ["6"] = {"numbers", 6, 5, 7},
-    ["7"] = {"numbers", 7, 5, 7},
-    ["8"] = {"numbers", 8, 5, 7},
-    ["9"] = {"numbers", 9, 5, 7},
-    ["10"] = {"numbers", 10, 7, 7},
-    ["11"] = {"numbers", 11, 7, 7},
-    ["12"] = {"numbers", 12, 7, 7},
+    ["0"] = {"numbers", 0, 4, 7},
+    ["1"] = {"numbers", 1, 4, 7,-2},
+    ["2"] = {"numbers", 2, 4, 7},
+    ["3"] = {"numbers", 3, 4, 7},
+    ["4"] = {"numbers", 4, 4, 7},
+    ["5"] = {"numbers", 5, 4, 7},
+    ["6"] = {"numbers", 6, 4, 7},
+    ["7"] = {"numbers", 7, 4, 7},
+    ["8"] = {"numbers", 8, 4, 7},
+    ["9"] = {"numbers", 9, 4, 7},
+    ["10"] = {"numbers", 10, 6, 7},
+    ["11"] = {"numbers", 11, 6, 7},
+    ["12"] = {"numbers", 12, 6, 7},
     -- Hearts
     ["Heart"] = {"hearts", 0, 9, 9},
     ["HalfHeart"] = {"hearts", 1, 9, 9},
@@ -98,20 +99,93 @@ EID.InlineIcons = {
     ["RoomLBottomLeft"] = {"roomshape", 10, 10, 10},
     ["RoomLBottomRight"] = {"roomshape", 11, 10, 10},
 	-- Transformation Icons
-	["CustomTransformation"] = {"TransformationCustom",0,11,14, 1, -1, EID.IconSprite},
-	["Guppy"] = {"Transformation1",0,10,13, 1, -1, EID.IconSprite},
-	["FunGuy"] = {"Transformation2",0,12,13, 0, -1, EID.IconSprite},
-	["LordoftheFlies"] = {"Transformation3",0,12,14, 0, -1, EID.IconSprite},
-	["Conjoined"] = {"Transformation4",0,16,15, -2, -1, EID.IconSprite},
-	["Spun"] = {"Transformation5",0,6,15, 4, -1, EID.IconSprite},
-	["Mom"] = {"Transformation6",0,6,16, 5, -1, EID.IconSprite},
-	["OhCrap"] = {"Transformation7",0,13,14, -1, -1, EID.IconSprite},
-	["Bob"] ={"Transformation8",0,12,13, 0, -1, EID.IconSprite},
-	["Leviathan"] = {"Transformation9",0,12,15, 0, -1, EID.IconSprite},
-	["Seraphim"] = {"Transformation10",0,19,14, -6, -1, EID.IconSprite},
-	["SuperBum"] = {"Transformation11",0,14,15, -1, -1, EID.IconSprite},
-	["Bookworm"] = {"Transformation12",0,10,14, 2, -1, EID.IconSprite},
-	["SpiderBaby"] = {"Transformation13",0,12,16, 1, -1, EID.IconSprite},
+	["CustomTransformation"] = {"TransformationCustom",0,11,14, 0, -1, EID.IconSprite},
+	["Guppy"] = {"Transformation1",0,11,13, 0, -1, EID.IconSprite},
+	["FunGuy"] = {"Transformation2",0,13,13, 0, -1, EID.IconSprite},
+	["LordoftheFlies"] = {"Transformation3",0,14,14, 0, -1, EID.IconSprite},
+	["Conjoined"] = {"Transformation4",0,18,15, 0, -1, EID.IconSprite},
+	["Spun"] = {"Transformation5",0,7,15, 0, -1, EID.IconSprite},
+	["Mom"] = {"Transformation6",0,7,16, 0, -1, EID.IconSprite},
+	["OhCrap"] = {"Transformation7",0,15,14, 0, -1, EID.IconSprite},
+	["Bob"] ={"Transformation8",0,13,13, 0, -1, EID.IconSprite},
+	["Leviathan"] = {"Transformation9",0,13,15, 0, -1, EID.IconSprite},
+	["Seraphim"] = {"Transformation10",0,20,14, 0, -1, EID.IconSprite},
+	["SuperBum"] = {"Transformation11",0,14,15, 0, -1, EID.IconSprite},
+	["Bookworm"] = {"Transformation12",0,10,14, 0, -1, EID.IconSprite},
+	["SpiderBaby"] = {"Transformation13",0,13,16, 0, -1, EID.IconSprite},
 	--["Adult"] = {"Transformation14",0,0,13, -1, -1, EID.IconSprite},
 	--["Stompy"] = {"Transformation15",0,0,13, -1, -1, EID.IconSprite},
+}
+
+-- Table that holds Colors used for markup objects. Example: "{{ColorRed}}"
+-- Format: ["Shortcut"] = KColor
+-- callbacks receive 1 argument, containing the previously used Color object.
+EID.InlineColors ={
+	-- Default colors
+	["ColorText"] = function (_) return EID:getTextColor() end,
+	["ColorTransform"] = function (_) return EID:getTransformationColor() end,
+	["ColorError"] = function (_) return EID:getErrorColor() end,
+	["ColorObjName"] = function (_) return EID:getNameColor() end,
+	["ColorReset"] = function (_) return EID.LastRenderCallColor end,
+	
+	-- Basic Colors
+	["ColorBlack"] = KColor(0, 0, 0, 1, 0,0,0),
+	["ColorWhite"] = KColor(1, 1, 1, 1, 0,0,0),
+	["ColorRed"] = KColor(1, 0, 0, 1, 0,0,0),
+	["ColorLime"] = KColor(0, 1, 0, 1, 0,0,0),
+	["ColorBlue"] = KColor(0, 0, 1, 1, 0,0,0),
+	["ColorYellow"] = KColor(1, 1, 0, 1, 0,0,0),
+	["ColorCyan"] = KColor(0, 1, 1, 1, 0,0,0),
+	["ColorPink"] = KColor(1, 0, 1, 1, 0,0,0),
+	["ColorSilver"] = KColor(0.75, 0.75, 0.75, 1, 0,0,0),
+	["ColorGray"] = KColor(0.5, 0.5, 0.5, 1, 0,0,0),
+	["ColorMaroon"] = KColor(0.5, 0, 0, 1, 0,0,0),
+	["ColorOlive"] = KColor(0.5, 0.5, 0, 1, 0,0,0),
+	["ColorGreen"] = KColor(0, 0.5, 0, 1, 0,0,0),
+	["ColorPurple"] = KColor(0.5, 0, 0.5, 1, 0,0,0),
+	["ColorTeal"] = KColor(0, 0.5, 0.5, 1, 0,0,0),
+	["ColorNavy"] = KColor(0, 0, 0.5, 1, 0,0,0),
+	["ColorOrange"] = KColor(1, 0.54, 0, 1, 0,0,0),
+	-- Swag Colors
+	
+	-- Rainbow color effect
+	["ColorRainbow"] = function (_) 
+		local maxAnimTime = 80
+		local animTime = Game():GetFrameCount() % maxAnimTime
+		local c = EID.InlineColors
+		local colors = {c["ColorRed"],c["ColorYellow"],c["ColorLime"],c["ColorCyan"],c["ColorBlue"],c["ColorPink"]}
+		local colorFractions = (maxAnimTime-1)/#colors
+		local subAnm = math.floor(animTime/(colorFractions+1))+1
+		local primaryColorIndex = subAnm%(#colors+1)
+		if primaryColorIndex == 0 then primaryColorIndex = 1 end
+		local secondaryColorIndex = (subAnm+1)%(#colors+1)
+		if secondaryColorIndex == 0 then secondaryColorIndex = 1 end
+		return EID:interpolateColors(colors[primaryColorIndex], colors[secondaryColorIndex], (animTime%(colorFractions+1))/colorFractions)
+		end,
+	-- Text will blink frequently
+	["ColorBlink"] = function (color) 
+		local maxAnimTime = 40
+		local animTime = Game():GetFrameCount() % maxAnimTime
+		color = EID:copyKColor(color) or EID:getTextColor()
+		if animTime<maxAnimTime/2 then
+			color.Alpha = 1 *color.Alpha
+		else
+			color.Alpha = 0 *color.Alpha
+		end
+		return color
+		end,
+	-- Text will fade in and out
+	["ColorFade"] = function (color) 
+		local maxAnimTime = 30
+		local animTime = Game():GetFrameCount() % (maxAnimTime+10)
+		color = EID:copyKColor(color) or EID:getTextColor()
+		if animTime<maxAnimTime/2 then
+			color.Alpha = animTime/(maxAnimTime/2) *color.Alpha
+		elseif animTime<maxAnimTime then
+			color.Alpha = (1 - (animTime-(maxAnimTime/2))/(maxAnimTime/2)) *color.Alpha
+		else
+			color.Alpha = 0
+		end
+		return color
+		end,
 }

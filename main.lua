@@ -36,6 +36,8 @@ require("descriptions.ab+.spa")
 require("eid_data")
 require("eid_api")
 
+EID.LastRenderCallColor = EID:getTextColor()
+
 --use some very hacky trickery to get the path to this mod
 local _, err = pcall(require, "")
 local _, basePathStart = string.find(err, "no file '", 1)
@@ -208,9 +210,9 @@ function printBulletPoints(description, padding)
 					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "")
 				end
 
-				EID:renderString(bpIcon, Vector(posX, padding), Vector(EIDConfig["Scale"], EIDConfig["Scale"]), textColor)
+				textColor = EID:renderString(bpIcon, Vector(posX, padding), Vector(EIDConfig["Scale"], EIDConfig["Scale"]), textColor)
 			end
-			EID:renderString(
+			textColor = EID:renderString(
 				lineToPrint,
 				Vector(posX + 12, padding),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
