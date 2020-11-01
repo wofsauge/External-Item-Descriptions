@@ -1,4 +1,4 @@
-local showDebugChars = false
+local showDebugChars = true
 local charsToDebug = {
 	"!!! EID DEBUG MODE ACTIVATED !!!", -- Header
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890", -- Basic chars

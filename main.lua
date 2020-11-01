@@ -2,9 +2,9 @@ EID = RegisterMod("External Item Descriptions", 1)
 EID.itemConfig = Isaac.GetItemConfig()
 EID.descriptions = {} -- Table that holds all translation strings
 
+EID.isDisplayingText = false
+EID.lastDescriptionEntity = nil
 local lineHeight = 11
-local isDisplayingText = false
-local lastDescriptionEntity = nil
 local hideDescToggle = false
 EID.sacrificeCounter = 1
 
@@ -26,7 +26,7 @@ require("mod_config_menu")
 --languages
 require("descriptions.ab+.en_us")
 require("descriptions.ab+.en_us_detailed")
-require("descriptions.ab+.bul")		-- WIP
+require("descriptions.ab+.bul") -- WIP
 require("descriptions.ab+.fr")
 --require("descriptions.ab+.pl")	-- WIP
 require("descriptions.ab+.pt")
@@ -87,7 +87,7 @@ end
 function printDescription(desc)
 	local padding = posY()
 	local itemType = -1
-	if tonumber(desc.ID)~=nil then
+	if tonumber(desc.ID) ~= nil then
 		itemType = EID.itemConfig:GetCollectible(tonumber(desc.ID)).Type or -1
 	end
 	--Display ItemType / Charge
@@ -99,19 +99,11 @@ function printDescription(desc)
 		EID.IconSprite:Play(EID.ItemTypeAnm2Names[itemType])
 		EID.IconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
 		EID.IconSprite:Update()
-		EID.IconSprite:Render(
-			Vector(EIDConfig["XPosition"], padding + offsetY),
-			Vector(0, 0),
-			Vector(0, 0)
-		)
+		EID.IconSprite:Render(Vector(EIDConfig["XPosition"], padding + offsetY), Vector(0, 0), Vector(0, 0))
 		if itemType == 3 then -- Display Charge
 			EID.IconSprite:Play(EID.itemConfig:GetCollectible(desc.ID).MaxCharges)
 			EID.IconSprite:Update()
-			EID.IconSprite:Render(
-				Vector(EIDConfig["XPosition"], padding + offsetY),
-				Vector(0, 0),
-				Vector(0, 0)
-			)
+			EID.IconSprite:Render(Vector(EIDConfig["XPosition"], padding + offsetY), Vector(0, 0), Vector(0, 0))
 		end
 		if not EIDConfig["ShowItemName"] then
 			padding = padding + lineHeight * EIDConfig["Scale"]
@@ -152,7 +144,7 @@ function printDescription(desc)
 				local iconSprite = transformSprite[7] or EID.InlineIconSprite
 				iconSprite:Play(transformSprite[1])
 				iconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
-				iconSprite.Color = Color(1,1,1,EIDConfig["Transparency"],0,0,0)
+				iconSprite.Color = Color(1, 1, 1, EIDConfig["Transparency"], 0, 0, 0)
 				iconSprite:Render(
 					Vector(EIDConfig["XPosition"] + iconOffsetX * EIDConfig["Scale"], padding + iconOffsetY * EIDConfig["Scale"]),
 					Vector(0, 0),
@@ -160,7 +152,7 @@ function printDescription(desc)
 				)
 			end
 			if EIDConfig["TransformationText"] then
-				local textOffsetY = math.min(0,(iconHeight-9))/4
+				local textOffsetY = math.min(0, (iconHeight - 9)) / 4
 				EID:renderString(
 					transformationName,
 					Vector(EIDConfig["XPosition"] + iconWidth + 4, padding + textOffsetY),
@@ -173,10 +165,10 @@ function printDescription(desc)
 			end
 		end
 	end
-	printBulletPoints(desc.Description, padding)
+	EID:printBulletPoints(desc.Description, padding)
 end
 
-function printBulletPoints(description, padding)
+function EID:printBulletPoints(description, padding)
 	local textboxWidth = tonumber(EIDConfig["TextboxWidth"]) * 4
 	description = EID:replaceShortMarkupStrings(description)
 	for line in string.gmatch(description, "([^#]+)") do
@@ -184,21 +176,18 @@ function printBulletPoints(description, padding)
 		local textColor = EID:getTextColor()
 		for i, lineToPrint in ipairs(formatedLines) do
 			-- render bulletpoint
-			local posX = EIDConfig["XPosition"] 
+			local posX = EIDConfig["XPosition"]
 			if i == 1 then
 				local bpIcon = EID:handleBulletpointIcon(lineToPrint)
 				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
 					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "")
 				end
 
-				textColor = EID:renderString(bpIcon, Vector(posX, padding), Vector(EIDConfig["Scale"], EIDConfig["Scale"]), textColor)
+				textColor =
+					EID:renderString(bpIcon, Vector(posX, padding), Vector(EIDConfig["Scale"], EIDConfig["Scale"]), textColor)
 			end
-			textColor = EID:renderString(
-				lineToPrint,
-				Vector(posX + 12, padding),
-				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
-				textColor
-			)
+			textColor =
+				EID:renderString(lineToPrint, Vector(posX + 12, padding), Vector(EIDConfig["Scale"], EIDConfig["Scale"]), textColor)
 			padding = padding + lineHeight * EIDConfig["Scale"]
 		end
 	end
@@ -207,7 +196,7 @@ end
 ---------------------------------------------------------------------------
 ---------------------------Handle Rendering--------------------------------
 
-function renderQuestionMark()
+function EID:renderQuestionMark()
 	IconSprite:Play("CurseOfBlind")
 	IconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
 	IconSprite:Update()
@@ -221,7 +210,7 @@ function renderQuestionMark()
 	end
 end
 
-function renderIndicator(entity)
+function EID:renderIndicator(entity)
 	if EIDConfig["Indicator"] == "blink" then
 		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
 		entity:SetColor(Color(1, 1, 1, 1, c, c, c), 1, 1, false, false)
@@ -258,7 +247,7 @@ end
 ---------------------------On Render Function------------------------------
 
 local function onRender(t)
-	isDisplayingText = false
+	EID.isDisplayingText = false
 	local player = Isaac.GetPlayer(0)
 	local closest = nil
 	local closestDice = nil
@@ -292,7 +281,7 @@ local function onRender(t)
 			Game():GetRoom():GetType() == RoomType.ROOM_DICE and EIDConfig["DisplayDiceInfo"] and type(closestDice) ~= type(nil)
 		 then
 			printDescription(EID:getDescriptionObj("dice", closestDice.SubType + 1))
-			renderIndicator(closestDice)
+			EID:renderIndicator(closestDice)
 		end
 		return
 	end
@@ -300,42 +289,44 @@ local function onRender(t)
 	if closest == nil then
 		return
 	end
-	lastDescriptionEntity = closest
-	isDisplayingText = true
+	EID.lastDescriptionEntity = closest
+	EID.isDisplayingText = true
 
 	--Handle Indicators
-	renderIndicator(closest)
+	EID:renderIndicator(closest)
+	 --
 
 	--Handle Entities (specific)
---[[	if EIDConfig["EnableEntityDescriptions"] and type(closest:GetData()["EID_Description"]) ~= type(nil) then
+	--[[	if EIDConfig["EnableEntityDescriptions"] and type(closest:GetData()["EID_Description"]) ~= type(nil) then
 		printTrinketDescription({closest.Type, closest:GetData()["EID_Description"]}, "custom")
 		return
 	end
-	]]--
-	--Handle Entities (omni)
+	]] --Handle Entities (omni)
 	local objIDString = closest.Type .. "." .. closest.Variant .. "." .. closest.SubType
-	local tableEntry = EID.descriptions[EIDConfig["Language"]]["custom"][objIDString] 
-			or EID.descriptions["en_us"]["custom"][objIDString] or EID:getLegacyModDescription("custom", objIDString) or nil
-	if EIDConfig["EnableEntityDescriptions"] and tableEntry~=nil then
+	local tableEntry =
+		EID.descriptions[EIDConfig["Language"]]["custom"][objIDString] or EID.descriptions["en_us"]["custom"][objIDString] or
+		EID:getLegacyModDescription("custom", objIDString) or
+		nil
+	if EIDConfig["EnableEntityDescriptions"] and tableEntry ~= nil then
 		printDescription(EID:getDescriptionObj("custom", objIDString))
 		return
 	end
 
-
 	--Handle Trinkets
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
-		printDescription(EID:getDescriptionObj("trinkets", closest.SubType))
 		--Handle Collectibles
+		printDescription(EID:getDescriptionObj("trinkets", closest.SubType))
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
+		--Handle Cards & Runes
 		if EID:hasCurseBlind() and EIDConfig["DisableOnCurse"] then
-			renderQuestionMark()
+			EID:renderQuestionMark()
 			return
 		end
 		printDescription(EID:getDescriptionObj("collectibles", closest.SubType))
-		--Handle Cards & Runes
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
+		--Handle Pills
 		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayCardInfoShop"] then
-			renderQuestionMark()
+			EID:renderQuestionMark()
 			return
 		end
 		printDescription(EID:getDescriptionObj("cards", closest.SubType))
@@ -353,10 +344,9 @@ local function onRender(t)
 				Vector(0, 0)
 			)
 		end
-		--Handle Pills
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayPillInfoShop"] then
-			renderQuestionMark()
+			EID:renderQuestionMark()
 			return
 		end
 
