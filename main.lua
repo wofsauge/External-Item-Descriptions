@@ -178,27 +178,8 @@ end
 function printBulletPoints(description, padding)
 	local textboxWidth = tonumber(EIDConfig["TextboxWidth"]) * 4
 	description = EID:replaceShortMarkupStrings(description)
-	
 	for line in string.gmatch(description, "([^#]+)") do
-		line = string.gsub(line, "([^%s])({{)", function(a,b) return a.." "..b end) -- add space between icons, if not already existing
-		local formatedLines = {}
-		local text = ""
-		local curLength = 0
-		for word in string.gmatch(line, "([^%s]+)") do
-			local wordLength = EID:getStrWidth(word)
-			if EID:getIcon(word) ~= EID.InlineIcons["ERROR"] then
-				wordLength = EID:getIcon(word)[3]
-			end
-			if curLength + wordLength <= textboxWidth or curLength < 12 then
-				text = text .. word .. " "
-				curLength = curLength + wordLength
-			else
-				table.insert(formatedLines, text)
-				text = word .. " "
-				curLength = wordLength
-			end
-		end
-		table.insert(formatedLines, text)
+		local formatedLines = EID:fitTextToWidth(line, textboxWidth)
 		local textColor = EID:getTextColor()
 		for i, lineToPrint in ipairs(formatedLines) do
 			-- render bulletpoint

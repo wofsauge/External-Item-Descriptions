@@ -257,7 +257,7 @@ end
 
 -- Searches thru the given string and replaces Iconplaceholders with icons.
 -- Returns 2 values. the string without the placeholders but with an accurate space between lines. and a table of all Inline Sprites
-function EID:filterMarkup(text, textPosX, textPosY)
+function EID:filterIconMarkup(text, textPosX, textPosY)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
@@ -269,7 +269,7 @@ function EID:filterMarkup(text, textPosX, textPosY)
 	return text, spriteTable
 end
 
---renders a list of given inline sprite objects returned by the "EID:filterMarkup()" function
+--renders a list of given inline sprite objects returned by the "EID:filterIconMarkup()" function
 -- Table entry format: {EID.InlineIcons Object, Width of text preceeding the icon}
 function EID:renderInlineIcons(spriteTable, posX, posY)
 	for _,sprite in ipairs(spriteTable) do
@@ -328,8 +328,37 @@ function EID:filterColorMarkup(text, baseKColor)
 		end
 	end
 	
-	table.insert(textPartsTable,{string.sub(text, lastPosition), lastColor,0})
+	table.insert(textPartsTable,{string.sub(text, lastPosition), lastColor, 0})
 	return textPartsTable
+end
+
+-- Fits a given string to a specific width
+-- returns the string as a table of lines
+function EID:fitTextToWidth(str, textboxWidth)
+	local formatedLines = {}
+	local curLength = 0
+	local text = ""
+	for word in string.gmatch(str, "([^%s]+)") do
+		local colorFiltered = EID:filterColorMarkup(word, EID:getTextColor())
+		local filteredWord = ""
+		for _,filtered in ipairs(colorFiltered) do
+			filteredWord = filteredWord..filtered[1]
+		end
+		local strFiltered, spriteTable = EID:filterIconMarkup(filteredWord, 0, 0)
+		local wordLength = EID:getStrWidth(strFiltered)
+		
+		if curLength + wordLength <= textboxWidth or curLength < 12 then
+			text = text .. word .. " "
+			curLength = curLength + wordLength
+		else
+			print(text)
+			table.insert(formatedLines, text)
+			text = word .. " "
+			curLength = wordLength
+		end
+	end
+	table.insert(formatedLines, text)
+	return formatedLines
 end
 
 -- Renders a given string using the EID Custom font. This will also apply any markup and render icons
@@ -342,9 +371,9 @@ function EID:renderString(str, position, scale, kcolor)
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
 	local offsetX = 0
 	for i, textPart in ipairs(textPartsTable) do
-		local strFiltered, spriteTable = EID:filterMarkup(textPart[1], position.X, position.Y)
+		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1], position.X, position.Y)
 		EID:renderInlineIcons(spriteTable, position.X, position.Y)
-		EID.font:DrawStringScaledUTF8(strFiltered, position.X+offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
+		EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
 		offsetX = offsetX + textPart[3]
 	end	
 	return textPartsTable[#textPartsTable][2]

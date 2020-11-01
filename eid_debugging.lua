@@ -46,6 +46,9 @@ __eidItemTransformations[2] = "Some Test Transformation"
 ------ Test: Add all transformations to spoon bender ------
 __eidItemTransformations[3] = "1,2,3,4,5,6,7,8,9,10,11,12,13"
 
+------ Test: Description with colors ------
+__eidItemDescriptions[3] = "Some {{ColorRed}}long ass Test string with a lot of Words that sound interesting#With{{ColorBlink}} cool {{CR}}{{ColorRed}}C{{ColorGreen}}o{{ColorBlue}}l{{ColorYellow}}o{{ColorOrange}}r{{ColorPink}}s{{ColorWhite}} and a high amount of nifty {{ColorRainbow}}Swag "
+
 local function onDebugRender(t)
 		for i, v in ipairs(charsToDebug) do
 			local pos = Vector(EIDConfig["XPosition"], EIDConfig["YPosition"] - 15 + ((i - 1) * 14))

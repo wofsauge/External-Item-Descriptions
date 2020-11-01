@@ -163,7 +163,7 @@ EID.InlineColors ={
 		return EID:interpolateColors(colors[primaryColorIndex], colors[secondaryColorIndex], (animTime%(colorFractions+1))/colorFractions)
 		end,
 	-- Text will blink frequently
-	["ColorBlink"] = function (color) 
+	["ColorBlink"] = function (color)
 		local maxAnimTime = 40
 		local animTime = Game():GetFrameCount() % maxAnimTime
 		color = EID:copyKColor(color) or EID:getTextColor()
@@ -175,7 +175,7 @@ EID.InlineColors ={
 		return color
 		end,
 	-- Text will fade in and out
-	["ColorFade"] = function (color) 
+	["ColorFade"] = function (color)
 		local maxAnimTime = 30
 		local animTime = Game():GetFrameCount() % (maxAnimTime+10)
 		color = EID:copyKColor(color) or EID:getTextColor()
