@@ -262,7 +262,7 @@ function EID:filterIconMarkup(text, textPosX, textPosY)
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
 		local lookup = EID:getIcon(word)
-		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1))*EIDConfig["Scale"]
+		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EIDConfig["Scale"]
 		table.insert(spriteTable,{lookup, preceedingTextWidth})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
 	end
@@ -278,6 +278,7 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 		local spriteObj = sprite[1][7] or EID.InlineIconSprite
 		spriteObj:SetFrame(sprite[1][1], sprite[1][2])
 		spriteObj.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
+		spriteObj.Color = Color(1,1,1,EIDConfig["Transparency"],0,0,0)
 		spriteObj:Render(
 			Vector((posX + sprite[2] + Xoffset), posY + Yoffset),
 			Vector(0, 0),
@@ -296,17 +297,24 @@ function EID:handleBulletpointIcon(text)
 end
 
 -- Gets a KColor from a Markup-string (example Input: "{{ColorText}}")
+-- Returns the KColor object and a boolean value indicating if the given string was a color markup or not
 function EID:getColor(str, baseKColor)
-	if str == nil then return baseKColor end
-	local strTrimmed = string.gsub(str, "{{(.-)}}", function(a) return a end)
-	if #strTrimmed <= #str then
-		if type(EID.InlineColors[strTrimmed]) =="function" then
-			return EID.InlineColors[strTrimmed](baseKColor)
+	local color = baseKColor
+	local isColorMarkup = false
+	if str ~= nil then 
+		local strTrimmed = string.gsub(str, "{{(.-)}}", function(a) return a end)
+		if #strTrimmed <= #str then
+			if type(EID.InlineColors[strTrimmed]) =="function" then
+				color = EID.InlineColors[strTrimmed](color)
+			else
+				color = EID.InlineColors[strTrimmed] or color
+			end
+			isColorMarkup = type(EID.InlineColors[strTrimmed]) ~= type(nil)
 		end
-		return EID.InlineColors[strTrimmed] or baseKColor
-	else
-		return baseKColor
 	end
+	color = EID:copyKColor(color)
+	color.Alpha = math.min(color.Alpha, EIDConfig["Transparency"])
+	return color, isColorMarkup
 end
 
 -- Filters a given string and looks for Colormarkup. Splits the text into subsections limited by them.
@@ -317,8 +325,8 @@ function EID:filterColorMarkup(text, baseKColor)
 	local lastPosition = 0
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
-		local lookup = EID:getColor(word, lastColor)
-		if lookup ~= lastColor then
+		local lookup, isColor = EID:getColor(word, lastColor)
+		if isColor then
 			local preceedingText = string.sub(text, lastPosition, textposition - 1)
 			local preceedingTextWidth = EID:getStrWidth(preceedingText)*EIDConfig["Scale"]
 			lastPosition = textposition
@@ -351,7 +359,6 @@ function EID:fitTextToWidth(str, textboxWidth)
 			text = text .. word .. " "
 			curLength = curLength + wordLength
 		else
-			print(text)
 			table.insert(formatedLines, text)
 			text = word .. " "
 			curLength = wordLength
@@ -393,8 +400,14 @@ function EID:interpolateColors(kColor1, kColor2, fraction)
 	return t
 end
 
+-- Creates a copy of a KColor object. This prevents overwriting existing
 function EID:copyKColor(colorObj)
 	return KColor(colorObj.Red,colorObj.Green,colorObj.Blue,colorObj.Alpha,0,0,0)
+end
+
+-- Compares two KColors. Returns true if they are equal
+function EID:areColorsEqual(c1,c2)
+	return c1.Red == c2.Red and c1.Green == c2.Green and c1.Blue == c2.Blue and c1.Alpha == c2.Alpha
 end
 
 -- Get KColor object of "Entity Name" texts

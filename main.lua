@@ -152,6 +152,7 @@ function printDescription(desc)
 				local iconSprite = transformSprite[7] or EID.InlineIconSprite
 				iconSprite:Play(transformSprite[1])
 				iconSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
+				iconSprite.Color = Color(1,1,1,EIDConfig["Transparency"],0,0,0)
 				iconSprite:Render(
 					Vector(EIDConfig["XPosition"] + iconOffsetX * EIDConfig["Scale"], padding + iconOffsetY * EIDConfig["Scale"]),
 					Vector(0, 0),
