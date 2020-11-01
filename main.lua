@@ -141,14 +141,12 @@ function printDescription(desc)
 	if not (desc.Transformation == "0" or desc.Transformation == "" or desc.Transformation == nil) then
 		for transform in string.gmatch(desc.Transformation, "([^,]+)") do
 			local transformationName = EID:getTransformationName(transform)
-			local transformLineHeight = lineHeight
-			local defaultName = EID.descriptions["en_us"].transformations[tonumber(transform+1)]
-			local transformSprite = EID:getIcon(defaultName:gsub(" ", ""))
-			if transformSprite[1] == "ERROR" then
-				transformSprite = EID:getIcon("CustomTransformation")
-			end 
+			local transformSprite = EID:getTransformationIcon(transform)
+			local iconWidth = transformSprite[3] or -1
+			local iconHeight = transformSprite[4] or -1
 			local iconOffsetX = transformSprite[5] or -1
 			local iconOffsetY = transformSprite[6] or -1
+			local transformLineHeight = lineHeight
 			if EIDConfig["TransformationIcons"] then
 				transformLineHeight = math.max(lineHeight, transformSprite[4])
 				local iconSprite = transformSprite[7] or EID.InlineIconSprite
@@ -161,9 +159,10 @@ function printDescription(desc)
 				)
 			end
 			if EIDConfig["TransformationText"] then
+				local textOffsetY = math.min(0,(iconHeight-9))/4
 				EID:renderString(
 					transformationName,
-					Vector(EIDConfig["XPosition"] + 17, padding - 1),
+					Vector(EIDConfig["XPosition"] + iconWidth + 4, padding + textOffsetY),
 					Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 					EID:getTransformationColor()
 				)

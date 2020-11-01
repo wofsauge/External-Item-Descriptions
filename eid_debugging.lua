@@ -22,25 +22,29 @@ local charsToDebug = {
 	"End of line",
 }
 
--- Legacy Overriding descriptions
+------ Legacy Overriding descriptions ------
 __eidItemDescriptions[1] = "\1 Overriden description"	-- 5.100.1 = Sad Onion
 __eidTrinketDescriptions[1] = "\2 Overriden "			-- 5.350.1 = swallowed penny
 __eidCardDescriptions[1] = "Overriden Card description" -- 5.300.1 = the fool
 __eidPillDescriptions[21] = "Test"						-- Pill Effect 20 = Hematemesis
 __eidItemTransformations[1] = "Test Transformation"		-- add custom transformation Text to Sad Onion
---__eidItemTransformations[2] = "1,2,3,4,5,6,7,8,9,10,11,12,13"		-- add all transformations to inner eye
 
--- Legacy add Description to entity
+------ Legacy add Description to entity ------
 __eidEntityDescriptions["5.10.1"] = {"Entity Name","Entity description"} -- Adds description to full red hearts
 
--- test adding custom icons
+------ Test: adding custom icons ------
 local dummySprite = Sprite()
 dummySprite:Load("gfx/eid_inline_icons.anm2", true)
 EID.InlineIcons["Test"] = {"hearts", 0, 9, 9, -1, 0, dummySprite}
 __eidItemDescriptions[2] = "{{Bomb}} Emote {{Key}} Test {{Test}} description {{SomeInvalidInnerStuff}} cool"	-- 5.100.2 = Inner Eye
 
--- test adding custom transformation icon
-__eidItemTransformations[2] = "Test"
+------ Test: adding custom transformation icon ------
+EID.InlineIcons["SomeTestTransformation"] = {"hearts", 2, 9, 9, -1, 0, dummySprite}
+-- the Transformation icon will try to get an icon with the same name as the transformation, but without any spaces. Default Icon otherwise
+__eidItemTransformations[2] = "Some Test Transformation"
+
+------ Test: Add all transformations to spoon bender ------
+__eidItemTransformations[3] = "1,2,3,4,5,6,7,8,9,10,11,12,13"
 
 local function onDebugRender(t)
 		for i, v in ipairs(charsToDebug) do

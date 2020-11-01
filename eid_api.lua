@@ -135,7 +135,7 @@ function EID:getDescriptionObj(objTable, objID)
 	
 	local legacyModdedTransformation = nil
 	if objTable == "collectibles" then
-		legacyModdedTransformation = EID:getLegacyModDescription("transformation", objID)
+		legacyModdedTransformation = EID:getLegacyModDescription("transformations", objID)
 	end
 	description.Transformation = legacyModdedTransformation or tableEntry[2] or "0"
 	
@@ -146,7 +146,6 @@ end
 function EID:getTransformationName(id)
 	local str = "Custom"
 	if tonumber(id) == nil then
-		print("FAIL")
 		return id
 	end
 	return EID:getObjectName(tonumber(id) + 1, "transformations") or str
@@ -236,6 +235,19 @@ function EID:getIcon(str)
 	else
 		return EID.InlineIcons["ERROR"]
 	end
+end
+
+-- Returns the icon for a given transformation name or ID
+function EID:getTransformationIcon(str)
+	if str == nil then return EID.InlineIcons["ERROR"] end
+	if tonumber(str) ~= nil then
+		str = EID.descriptions["en_us"].transformations[tonumber(str+1)]
+	end
+	local transformSprite = EID:getIcon(str:gsub(" ", ""))
+	if transformSprite[1] == "ERROR" then
+		transformSprite = EID:getIcon("CustomTransformation")
+	end 
+	return transformSprite
 end
 
 -- Returns the width of a given string in Pixels
