@@ -63,7 +63,9 @@ EID.InlineIcons = {
 	["Pill"] = {"pickups", 8, 9, 9},
 	["Battery"] = {"pickups", 9, 8, 9},
 	["Collectible"] = {"Collectible", 0, 7, 7},
+	----- Use Markup "Collectible"+ ITEMID to render collectible sprites (example: {{Collectible1}} = Sad Onion)
 	["Trinket"] = {"Trinket", 0, 7, 7},
+	----- Use Markup "Trinket"+ ITEMID to render trinket sprites (example: {{Trinket1}} = Swallowed Penny)
 	["Slotmachine"] = {"Slotmachine", 0, 7, 7},
 	-- Room Icons
 	["Shop"] = {"roomicons", 0, 7, 9},

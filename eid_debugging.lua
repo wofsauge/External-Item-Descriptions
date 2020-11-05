@@ -67,6 +67,7 @@ dummySprite2:Load("gfx/eid_inline_icons.anm2", true)
 EID.InlineIcons["Test"] = {"pickups", -1, 9, 9, -1, 0, dummySprite2}
 
 __eidItemDescriptions[2] = "{{Bomb}} Emote {{Key}} Test {{Test}}{{TestIcon}} {{ColorBlackBlink}}description {{SomeInvalidInnerStuff}} cool" -- 5.100.2 = Inner Eye
+__eidItemDescriptions[6] = "This item as Inline Icon {{Collectible6}}#And here are others {{Collectible69}} {{Collectible16}} {{Collectible323}} {{Collectible345}} {{Collectible223}}#And some trinket sprites {{Trinket12}} {{Trinket22}} {{Trinket1}} {{Trinket55}} {{Trinket100}} {{Trinket123}}" -- 5.100.2 = Inner Eye
 
 ------ Test: adding custom transformation icon ------
 EID.InlineIcons["SomeTestTransformation"] = {"hearts", 2, 9, 9, -1, 0, dummySprite}

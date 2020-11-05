@@ -303,19 +303,34 @@ function EID:getIcon(str)
 	if str == nil then
 		return EID.InlineIcons["ERROR"]
 	end
-	local strTrimmed =
-		string.gsub(
-		str,
-		"{{(.-)}}",
-		function(a)
-			return a
-		end
-	)
+	local strTrimmed = string.gsub(str,"{{(.-)}}",function(a) return a end )
 	if #strTrimmed <= #str then
-		return EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
+		return EID:createItemIconObject(strTrimmed) or EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
 	else
 		return EID.InlineIcons["ERROR"]
 	end
+end
+
+-- Tries to read special markup used to generate icons for all Collectibles/Trinkets
+-- Returns an inlineIcon Object or nil if no parsing was possible
+function EID:createItemIconObject(str)
+	local collID,numReplace = string.gsub(str, "Collectible", "")
+	local item = nil
+	if numReplace>0 then
+		item = EID.itemConfig:GetCollectible(tonumber(collID))
+	end
+	local trinketID,numReplace2 = string.gsub(str, "Trinket", "")
+	if numReplace2>0 then
+		item = EID.itemConfig:GetTrinket(tonumber(trinketID))
+	end
+	if item == nil then
+		return nil
+	end
+	local spriteDummy = Sprite()
+	spriteDummy:Load("gfx/eid_inline_icons.anm2", true)
+	spriteDummy:ReplaceSpritesheet(1, item.GfxFileName)
+	spriteDummy:LoadGraphics()
+	return {"ItemIcon",0,7,7,-4,-2,spriteDummy}
 end
 
 -- Returns the icon for a given transformation name or ID

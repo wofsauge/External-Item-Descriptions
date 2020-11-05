@@ -14,6 +14,9 @@ EID.IconSprite:Load("gfx/icons.anm2", true)
 EID.InlineIconSprite = Sprite()
 EID.InlineIconSprite:Load("gfx/eid_inline_icons.anm2", true)
 
+EID.ItemSprite = Sprite()
+EID.ItemSprite:Load("gfx/005.100_collectible.anm2", true)
+
 local ArrowSprite = Sprite()
 ArrowSprite:Load("gfx/icons.anm2", true)
 ArrowSprite:Play("Arrow", false)
