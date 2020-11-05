@@ -106,7 +106,10 @@ function EID:addPill(id, description, itemName, language)
 end
 
 -- Adds transformations to an entity.
+-- valid target types: [collectible, trinket, card, pill, entity]
+-- when type = entity, targetIdentifier must be in the format ["ID.Variant.subtype"]. for any other type, it can just be the id
 function EID:addTransformation(targetType, targetIdentifier, transformationString, language)
+	language = language or "en_us"
 	EID.descriptions[language].custom["transformations_"..targetType.."_".. targetIdentifier] = {targetType, targetIdentifier, transformationString}
 end
 
@@ -122,6 +125,27 @@ function EID:addEntity(id, variant, subtype, entityName, description, language)
 		entityName,
 		description
 	}
+end
+
+-- Adds a new icon object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your icon)
+-- Shortcuts are case Sensitive! Shortcuts can be overriden with this function to allow for full control over everything
+-- Setting "animationFrame" to -1 will play the animation. The spriteObject needs to be of class Sprite() and have an .anm2 loaded
+-- default values: leftOffset= -1 , topOffset = 0
+function EID:addIcon(shortcut, animationName, animationFrame, width, height, leftOffset, topOffset, spriteObject)
+	leftOffset = leftOffset or -1
+	topOffset = topOffset or 0
+	EID.InlineIcons[shortcut] = {animationName, animationFrame, width, height, leftOffset, topOffset, spriteObject}
+end
+
+-- Adds a new color object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your color)
+-- Shortcuts are case Sensitive! Shortcuts can be overriden with this function to allow for full control over everything
+-- Define a callback to let it be called when interpreting the color-markup. define a kColor otherwise for a simple color change
+function EID:addColor(shortcut, kColor, callback)
+	if callback ~= nil then
+		EID.InlineColors[shortcut] = callback
+	else
+		EID.InlineColors[shortcut] = kColor
+	end
 end
 
 -- Returns if EID is displaying text right now

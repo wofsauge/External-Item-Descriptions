@@ -1,4 +1,4 @@
-local showDebugChars = true
+local showDebugChars = false
 local charsToDebug = {
 	"!!! EID DEBUG MODE ACTIVATED !!!", -- Header
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890", -- Basic chars
@@ -19,7 +19,7 @@ local charsToDebug = {
 	"Markup Main Colors: {{ColorText}}Text {{ColorTransform}}Transform {{ColorError}}Error {{ColorObjName}}ObjName",
 	"Markup Colors: {{ColorBlack}}Black {{ColorWhite}}White {{ColorRed}}Red {{ColorLime}}Lime {{ColorBlue}}Blue {{ColorYellow}}Yellow {{ColorCyan}}Cyan {{ColorPink}}Pink {{ColorSilver}}Silver {{ColorGray}}Gray {{ColorMaroon}}Maroon {{ColorOlive}}Olive {{ColorGreen}}Green {{ColorPurple}}Purple {{ColorTeal}}Teal {{ColorNavy}}Navy ",
 	"Markup swag Colors: {{ColorFade}}Fade {{CR}}{{ColorBlink}}Blink {{ColorRainbow}}Rainbow {{ColorBlink}}BlinkWithColor {{ColorFade}}BlinkColorFade",
-	"End of line",
+	"End of line"
 }
 
 -----------------------------------------------
@@ -33,16 +33,8 @@ __eidPillDescriptions[21] = "Test"						-- Pill Effect 20 = Hematemesis
 __eidItemTransformations[1] = "Test Transformation"		-- add custom transformation Text to Sad Onion
 
 ------ Legacy add Description to entity ------
-__eidEntityDescriptions["5.10.1"] = {"Entity Name","Entity description"} -- Adds description to full red hearts
+__eidEntityDescriptions["5.10.1"] = {"Entity Name", "Entity description"} -- Adds description to full red hearts
 
------- Test: adding custom icons ------
-local dummySprite = Sprite()
-dummySprite:Load("gfx/eid_inline_icons.anm2", true)
-EID.InlineIcons["Test"] = {"hearts", 0, 9, 9, -1, 0, dummySprite}
-__eidItemDescriptions[2] = "{{Bomb}} Emote {{Key}} Test {{Test}} description {{SomeInvalidInnerStuff}} cool"	-- 5.100.2 = Inner Eye
-
------- Test: adding custom transformation icon ------
-EID.InlineIcons["SomeTestTransformation"] = {"hearts", 2, 9, 9, -1, 0, dummySprite}
 -- the Transformation icon will try to get an icon with the same name as the transformation, but without any spaces. Default Icon otherwise
 __eidItemTransformations[2] = "Some Test Transformation"
 
@@ -50,17 +42,53 @@ __eidItemTransformations[2] = "Some Test Transformation"
 __eidItemTransformations[3] = "1,2,3,4,5,6,7,8,9,10,11,12,13"
 
 ------ Test: Description with colors ------
-__eidItemDescriptions[3] = "Some {{ColorRed}}long ass Test string with a lot of Words that sound interesting#With{{ColorBlink}} cool {{CR}}{{ColorRed}}C{{ColorGreen}}o{{ColorBlue}}l{{ColorYellow}}o{{ColorOrange}}r{{ColorPink}}s{{ColorWhite}} and a high amount of nifty {{ColorRainbow}}Swag "
+__eidItemDescriptions[3] =
+	"Some {{ColorRed}}long ass Test string with a lot of Words that sound interesting#With{{ColorBlink}} cool {{CR}}{{ColorRed}}C{{ColorGreen}}o{{ColorBlue}}l{{ColorYellow}}o{{ColorOrange}}r{{ColorPink}}s{{ColorWhite}} and a high amount of nifty {{ColorRainbow}}Swag "
 
 -----------------------------------------------
 ------------------NEW METHODS------------------
 -----------------------------------------------
 ------ Overriding descriptions------
-EID:addCollectible(5,"New override Method") 				-- minimal method
-EID:addCollectible(6,"New override Method","new Name","ru")	-- maximal method
-EID:addCard(2,"New override Method","new Name")				-- card
-EID:addPill(2,"New override Method","new Name")				-- pill
-EID:addEntity(5,10,2,"Custom Name","Custom description")	-- Entity
+EID:addCollectible(5, "New override Method") -- minimal method
+EID:addCollectible(6, "New override Method", "new Name", "ru") -- maximal method
+EID:addCard(2, "New override Method", "new Name") -- card
+EID:addPill(2, "New override Method", "new Name") -- pill
+EID:addEntity(5, 10, 2, "Custom Name", "Custom description") -- Entity
+EID:addTransformation("collectible", 5, "New transformation") -- Transformation
+
+------ Test: adding custom icons ------
+local dummySprite = Sprite()
+dummySprite:Load("gfx/eid_inline_icons.anm2", true)
+-- add animated icon using api function (Make sure to create new Sprite Obj when using animated icons. Reuse objects when only using static icons)
+EID:addIcon("TestIcon", "hearts", -1, 9, 9, -1, 0, dummySprite)
+-- add icon directly
+local dummySprite2 = Sprite()
+dummySprite2:Load("gfx/eid_inline_icons.anm2", true)
+EID.InlineIcons["Test"] = {"pickups", -1, 9, 9, -1, 0, dummySprite2}
+
+__eidItemDescriptions[2] = "{{Bomb}} Emote {{Key}} Test {{Test}}{{TestIcon}} {{ColorBlackBlink}}description {{SomeInvalidInnerStuff}} cool" -- 5.100.2 = Inner Eye
+
+------ Test: adding custom transformation icon ------
+EID.InlineIcons["SomeTestTransformation"] = {"hearts", 2, 9, 9, -1, 0, dummySprite}
+
+------ Test: adding custom icons ------
+EID:addColor("ColorTwitterBlue", KColor(0, 0.671875, 0.9296875, 1, 0, 0, 0), nil)
+EID:addColor(
+	"ColorBlackBlink",
+	nil,
+	function(color)
+		local maxAnimTime = 30
+		local animTime = Game():GetFrameCount() % maxAnimTime
+		color = EID:copyKColor(color) or EID:getTextColor()
+		if animTime < maxAnimTime / 2 then
+			color = KColor(0, 0, 0, 1 * color.Alpha, 0, 0, 0)
+		else
+			color = KColor(1, 1, 1, 1 * color.Alpha, 0, 0, 0)
+		end
+		return color
+	end
+)
+
 
 local function onDebugRender(t)
 		for i, v in ipairs(charsToDebug) do
