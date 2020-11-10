@@ -20,6 +20,7 @@ EID.InlineIcons = {
 	["ArrowUp"] = {"ArrowUp", 0, 8, 9},
 	["ArrowDown"] = {"ArrowDown", 0, 8, 9},
 	["Warning"] = {"Warning", 0, 4, 9},
+	["Blank"] = {"Blank", 0, 0, 0},
 	-- Numbers
 	["0"] = {"numbers", 0, 4, 7},
 	["1"] = {"numbers", 1, 4, 7, -2},

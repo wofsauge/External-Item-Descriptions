@@ -316,11 +316,11 @@ end
 function EID:createItemIconObject(str)
 	local collID,numReplace = string.gsub(str, "Collectible", "")
 	local item = nil
-	if numReplace>0 then
+	if numReplace>0 and collID~="" then
 		item = EID.itemConfig:GetCollectible(tonumber(collID))
 	end
 	local trinketID,numReplace2 = string.gsub(str, "Trinket", "")
-	if numReplace2>0 then
+	if numReplace2>0 and trinketID~="" then
 		item = EID.itemConfig:GetTrinket(tonumber(trinketID))
 	end
 	if item == nil then
