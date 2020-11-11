@@ -1,29 +1,4 @@
---[[
-EID features 6 tables for mods to define their descriptions:
-__eidTrinketDescriptions for trinkets
-__eidCardDescriptions for cards
-__eidPillDescriptions for pills
-__eidItemDescriptions for Collectibles / items
-__eidItemTransformations assigns transformation-informations to collectibles
-__eidEntityDescriptions for entities
-__eidEntityDescriptions["ID.Variant.Subtype"] = {"HEADLINE","DESCRIPTION"};
-
-To assign a unique description for a specific entity:    entity:GetData()["EID_Description"] = {"HEADLINE","DESCRIPTION"}   
-
-
-For example: to add the item "My Item Name" and the Description "Most Fitting Description" do something like this:
-
--- 1. Get your itemid
-local item = Isaac.GetItemIdByName("My Item Name");
--- 2. Make sure we're not adding to a nil table
-if not __eidItemDescriptions then
-  __eidItemDescriptions = {};
-end
--- 3. Add the description
-__eidItemDescriptions[item] = "Most Fitting Description";
-
---]]
--- Init variables for other mods to hand over Descriptions if they were not yet inited by another mod.
+-- Init legacy global variables for other mods to hand over Descriptions
 if not __eidItemDescriptions then
 	__eidItemDescriptions = {}
 end
@@ -113,7 +88,7 @@ function EID:addTransformation(targetType, targetIdentifier, transformationStrin
 	EID.descriptions[language].custom["transformations_"..targetType.."_".. targetIdentifier] = {targetType, targetIdentifier, transformationString}
 end
 
--- Adds a description for a pilleffect id. Optional parameters: language, transformations
+-- Adds a description for a an Entity. Optional parameters: language, transformations
 -- when subtype is -1 or empty, it will affect all subtypes of that entity
 function EID:addEntity(id, variant, subtype, entityName, description, language)
 	subtype = subtype or nil
@@ -500,17 +475,14 @@ function EID:interpolateColors(kColor1, kColor2, fraction)
 		(kColor2.Red - kColor1.Red) * fraction + kColor1.Red,
 		(kColor2.Green - kColor1.Green) * fraction + kColor1.Green,
 		(kColor2.Blue - kColor1.Blue) * fraction + kColor1.Blue,
-		(kColor2.Alpha - kColor1.Alpha) * fraction + kColor1.Alpha,
-		0,
-		0,
-		0
+		(kColor2.Alpha - kColor1.Alpha) * fraction + kColor1.Alpha
 	)
 	return t
 end
 
 -- Creates a copy of a KColor object. This prevents overwriting existing
 function EID:copyKColor(colorObj)
-	return KColor(colorObj.Red, colorObj.Green, colorObj.Blue, colorObj.Alpha, 0, 0, 0)
+	return KColor(colorObj.Red, colorObj.Green, colorObj.Blue, colorObj.Alpha)
 end
 
 -- Compares two KColors. Returns true if they are equal
@@ -524,10 +496,7 @@ function EID:getNameColor()
 		EIDConfig["ItemNameColor"][1],
 		EIDConfig["ItemNameColor"][2],
 		EIDConfig["ItemNameColor"][3],
-		EIDConfig["Transparency"],
-		0,
-		0,
-		0
+		EIDConfig["Transparency"]
 	)
 end
 
@@ -537,10 +506,7 @@ function EID:getTextColor()
 		EIDConfig["TextColor"][1],
 		EIDConfig["TextColor"][2],
 		EIDConfig["TextColor"][3],
-		EIDConfig["Transparency"],
-		0,
-		0,
-		0
+		EIDConfig["Transparency"]
 	)
 end
 
@@ -550,10 +516,7 @@ function EID:getTransformationColor()
 		EIDConfig["TransformationColor"][1],
 		EIDConfig["TransformationColor"][2],
 		EIDConfig["TransformationColor"][3],
-		EIDConfig["Transparency"],
-		0,
-		0,
-		0
+		EIDConfig["Transparency"]
 	)
 end
 
@@ -563,9 +526,6 @@ function EID:getErrorColor()
 		EIDConfig["ErrorColor"][1],
 		EIDConfig["ErrorColor"][2],
 		EIDConfig["ErrorColor"][3],
-		EIDConfig["Transparency"],
-		0,
-		0,
-		0
+		EIDConfig["Transparency"]
 	)
 end
