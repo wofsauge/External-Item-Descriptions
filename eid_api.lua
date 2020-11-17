@@ -80,12 +80,27 @@ function EID:addPill(id, description, itemName, language)
 	EID.descriptions[language].custom["pill_" .. id] = {id, itemName, description}
 end
 
--- Adds transformations to an entity.
--- valid target types: [collectible, trinket, card, pill, entity]
--- when type = entity, targetIdentifier must be in the format ["ID.Variant.subtype"]. for any other type, it can just be the id
-function EID:addTransformation(targetType, targetIdentifier, transformationString, language)
+-- Creates a new transformation with a given unique name and a display name
+function EID:createTransformation(uniqueName, displayName, language)
 	language = language or "en_us"
-	EID.descriptions[language].custom["transformations_"..targetType.."_".. targetIdentifier] = {targetType, targetIdentifier, transformationString}
+	if EID.CustomTransformations[uniqueName] == nil then
+		EID.CustomTransformations[uniqueName] = {}
+	end
+	EID.CustomTransformations[uniqueName][language] = displayName
+end
+
+-- Assigns transformations to an entity
+-- valid target types: [collectible, trinket, card, pill, entity]
+-- when type = entity, targetIdentifier must be in the format "ID.Variant.subtype". for any other type, it can just be the id
+-- EXAMPLE: EID:assignTransformation("collectible", 1, "My Transformation")
+function EID:assignTransformation(targetType, targetIdentifier, transformationString)
+	local entryID = EID:getIDVariantString(targetType)
+	if entryID ~= nil then
+		entryID = entryID.."."..targetIdentifier
+	else
+		entryID = targetIdentifier
+	end
+	EID.CustomTransformAssignments[entryID] = transformationString
 end
 
 -- Adds a description for a an Entity. Optional parameters: language, transformations
@@ -123,6 +138,27 @@ function EID:addColor(shortcut, kColor, callback)
 	end
 end
 
+-- function to turn entity type names into actual ingame ID.Variant pairs
+function EID:getIDVariantString(typeName)
+	if typeName == "collectible" or typeName == "collectibles" then return "5.100"
+	elseif typeName == "trinket" or typeName == "trinkets" then return "5.350."
+	elseif typeName == "card" or typeName == "cards" then return "5.300."
+	elseif typeName == "pill" or typeName == "pills" then return "5.70."
+	end
+	return nil
+end
+
+-- Loads a given font from a given file path and use it to render text
+function EID:loadFont(fontFileName)
+	EID.font:Load(fontFileName)
+	EID.font:SetMissingCharacter(2)
+	if not EID.font:IsLoaded() then
+		Isaac.DebugString("EID - ERROR: Could not load font from '" .. EID.modPath .. "resources/font/default.fnt" .. "'")
+		return false
+	end
+	return true
+end
+
 -- Returns if EID is displaying text right now
 function EID:isDisplayingText()
 	return EID.isDisplayingText
@@ -145,6 +181,7 @@ end
 
 -- returns descriptions from the legacy mod descriptions if they exist
 function EID:getLegacyModDescription(objTable, id)
+	id = tonumber(id)
 	if objTable == "collectibles" then
 		return __eidItemDescriptions[id]
 	elseif objTable == "trinkets" then
@@ -178,21 +215,45 @@ function EID:getDescriptionObj(objTable, objID)
 	description.Name = EID:getObjectName(objID, objTable) or objTable
 
 	local legacyModdedDescription = EID:getLegacyModDescription(objTable, objID)
-	description.Description = legacyModdedDescription or tableEntry[4] or "MISSING DESCRIPTION"
+	description.Description = legacyModdedDescription or tableEntry[3] or "MISSING DESCRIPTION"
 
-	local legacyModdedTransformation = nil
-	if objTable == "collectibles" then
-		legacyModdedTransformation = EID:getLegacyModDescription("transformations", objID)
+	local itemString = EID:getIDVariantString(objTable)
+	if itemString ~= nil then
+		itemString = itemString.."."..objID
+	else
+		itemString = objID
 	end
-	description.Transformation = legacyModdedTransformation or tableEntry[2] or "0"
+	description.fullItemString = itemString
+	description.Transformation = EID:getTransformation(itemString)
 
 	return description
 end
 
---Get the name of the given transformation by its ID
+-- Get the transformation uniqueName / ID of a given "ID.Variant.Subtype" pair
+-- Example: EID:getTransformation("5.100.34")  will return "12" which is the id for Bookworm
+function EID:getTransformation(entityIdentifier)
+	local custom = EID.CustomTransformAssignments[entityIdentifier]
+	local customLegacy = nil
+	local splitString = {}
+	for identifier in string.gsub(entityIdentifier,"%f[.]%.%f[^.]", "\0"):gmatch("%Z+") do 
+		table.insert(splitString,identifier)
+	end
+	if splitString[1] == "5" and splitString[2] == "100" then
+		customLegacy = EID:getLegacyModDescription("transformations", splitString[3])
+	end
+	local default = EID.EntityTransformations[entityIdentifier]
+	return custom or customLegacy or default or "0"
+end
+
+--Get the name of the given transformation by its uniqueName / ID
 function EID:getTransformationName(id)
 	local str = "Custom"
 	if tonumber(id) == nil then
+		-- get translated custom name
+		local customTransform = EID.CustomTransformations[id] 
+		if customTransform ~= nil then
+			return customTransform[EIDConfig["Language"]] or customTransform["en_us"] or id
+		end
 		return id
 	end
 	return EID:getObjectName(tonumber(id) + 1, "transformations") or str
@@ -202,30 +263,30 @@ end
 function EID:getObjectName(objID, objType)
 	local tableEntry = EID.descriptions[EIDConfig["Language"]][objType][objID] or EID.descriptions["en_us"][objType][objID]
 	if objType == "collectibles" then
-		if EIDConfig["Language"] ~= "en_us" and #tableEntry == 4 then
-			if tableEntry[3] ~= nil and tableEntry[3] ~= "" then
-				return tableEntry[3]
+		if EIDConfig["Language"] ~= "en_us" and #tableEntry == 3 then
+			if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
+				return tableEntry[2]
 			end
 		end
 		return EID.itemConfig:GetCollectible(objID).Name
 	elseif objType == "trinkets" then
 		if EIDConfig["Language"] ~= "en_us" and #tableEntry == 3 then
-			if tableEntry[3] ~= nil and tableEntry[3] ~= "" then
-				return tableEntry[3]
+			if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
+				return tableEntry[2]
 			end
 		end
 		return EID.itemConfig:GetTrinket(objID).Name
 	elseif objType == "cards" then
 		if EIDConfig["Language"] ~= "en_us" and #tableEntry == 3 then
-			if tableEntry[3] ~= nil and tableEntry[3] ~= "" then
-				return tableEntry[3]
+			if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
+				return tableEntry[2]
 			end
 		end
 		return EID.itemConfig:GetCard(objID).Name
 	elseif objType == "pills" then
 		if EIDConfig["Language"] ~= "en_us" and #tableEntry == 3 then
-			if tableEntry[3] ~= nil and tableEntry[3] ~= "" then
-				return tableEntry[3]
+			if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
+				return tableEntry[2]
 			end
 		end
 		return EID.itemConfig:GetPillEffect(objID).Name

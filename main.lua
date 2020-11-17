@@ -26,6 +26,8 @@ CardSprite:Load("gfx/cardfronts.anm2", true)
 
 require("eid_config")
 require("mod_config_menu")
+
+require("descriptions.ab+.transformations")
 --languages
 require("descriptions.ab+.en_us")
 require("descriptions.ab+.en_us_detailed")
@@ -46,16 +48,12 @@ local _, err = pcall(require, "")
 local _, basePathStart = string.find(err, "no file '", 1)
 local _, modPathStart = string.find(err, "no file '", basePathStart)
 local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
-local modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
-modPath = string.gsub(modPath, "\\", "/")
-modPath = string.gsub(modPath, ":/", ":\\")
+EID.modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
+EID.modPath = string.gsub(EID.modPath, "\\", "/")
+EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
 
 EID.font = Font() -- init font object
-EID.font:Load(modPath .. "resources/font/eid_default.fnt") -- load a font into the font object
-EID.font:SetMissingCharacter(2)
-if not EID.font:IsLoaded() then
-	Isaac.DebugString("EID - ERROR: Could not load font from '" .. modPath .. "resources/font/default.fnt" .. "'")
-end
+EID:loadFont(EID.modPath .. "resources/font/eid_default.fnt")
 
 --Makes textscale smaller, when using detailed english descriptions
 if EIDConfig["Language"] == "en_us_detailed" and EIDConfig["Scale"] > 0.5 then
@@ -65,19 +63,19 @@ end
 ---------------------------------------------------------------------------
 -------------------------Handle Sacrifice Room-----------------------------
 if EIDConfig["DisplaySacrificeInfo"] then
-	function onNewFloor()
+	function EID:onNewFloor()
 		EID.sacrificeCounter = 1
 	end
-	EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, onNewFloor)
+	EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
-	function onDamage(_, entity, _, flag, source)
+	function EID:onSacrificeDamage(_, _, flag, source)
 		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flag == DamageFlag.DAMAGE_SPIKES then
 			if EID.sacrificeCounter < 12 then
 				EID.sacrificeCounter = EID.sacrificeCounter + 1
 			end
 		end
 	end
-	EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, onDamage, EntityType.ENTITY_PLAYER)
+	EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EID.onSacrificeDamage, EntityType.ENTITY_PLAYER)
 end
 
 ---------------------------------------------------------------------------
