@@ -52,6 +52,9 @@ EIDConfig = {
 	-- Toggle Display of the Item Type and Maximum Charges as an icon
 	-- Default = true
 	["ShowItemType"] = true,
+	-- Toggle Display of Collectible / Trinket Icon next to Itemname
+	-- Default = true
+	["ShowItemIcon"] = true,
 	-- Toggle Display of Collectible / Item descriptions
 	-- Default = true
 	["DisplayItemInfo"] = true,

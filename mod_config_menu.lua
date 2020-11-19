@@ -267,6 +267,7 @@ if ModConfigMenu then
 			Minimum = 1,
 			Maximum = 6,
 			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = true;
 				return "Text Size: " .. EIDConfig["Scale"]
 			end,
 			OnChange = function(currentNum)
@@ -394,6 +395,26 @@ if ModConfigMenu then
 			end,
 			OnChange = function(currentBool)
 				EIDConfig["TransformationIcons"] = currentBool
+			end
+		}
+	)
+	ModConfigMenu.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenuOptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EIDConfig["ShowItemIcon"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EIDConfig["ShowItemIcon"] then
+					onOff = "True"
+				end
+				return "Display Item Icon: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EIDConfig["ShowItemIcon"] = currentBool
 			end
 		}
 	)

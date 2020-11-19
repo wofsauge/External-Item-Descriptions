@@ -52,7 +52,7 @@ EID:addEntity(5, 10, 2, "Custom Name", "Custom description") -- Entity
 ------ Test: adding custom transformation icon ------
 local dummySprite = Sprite()
 dummySprite:Load("gfx/eid_inline_icons.anm2", true)
-EID.InlineIcons["NewTransform1"] = {"hearts", 2, 9, 12, -1, 0,dummySprite}
+EID:addIcon("NewTransform1", "hearts", 2, 9, 9, -1, 0, dummySprite)
 -- the Transformation icon will try to get an icon with the same name as the transformation, but without any spaces. Default Icon otherwise
 EID:createTransformation("NewTransform1", "New transformation") -- Transformation
 EID:createTransformation("NewTransform1", "New russian transformation", "ru") -- add Transformation name in russian

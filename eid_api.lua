@@ -138,6 +138,18 @@ function EID:addColor(shortcut, kColor, callback)
 	end
 end
 
+-- Overrides all potentially displayed texts and permanently displays the given texts. Can be turned of again using the "EID:hidePermanentText()" function
+function EID:displayPermanentText(descriptionObject)
+	EID.permanentDisplayTextObj = descriptionObject
+	EID.isDisplayingPermanent = true
+end
+
+-- Hides permanently displayed text objects if they exist.
+function EID:hidePermanentText()
+	EID.permanentDisplayTextObj = nil
+	EID.isDisplayingPermanent = false
+end
+
 -- function to turn entity type names into actual ingame ID.Variant pairs
 function EID:getIDVariantString(typeName)
 	if typeName == "collectible" or typeName == "collectibles" then return "5.100"
@@ -205,26 +217,24 @@ end
 
 -- returns the description object of the specified object table translated with the current language
 -- falls back to english if the objID isnt available
-function EID:getDescriptionObj(objTable, objID)
+function EID:getDescriptionObj(objTable, Type, Variant, SubType)
+	objTable = objTable or "custom"
 	local tableEntry =
-		EID.descriptions[EIDConfig["Language"]][objTable][objID] or EID.descriptions["en_us"][objTable][objID] or {}
+		EID.descriptions[EIDConfig["Language"]][objTable][SubType] or EID.descriptions["en_us"][objTable][SubType] or {}
 
 	local description = {}
-	description.ID = objID
+	description.ObjectTable = objTable
+	description.ItemType = Type
+	description.ItemVariant = Variant
+	description.ID = SubType
 
-	description.Name = EID:getObjectName(objID, objTable) or objTable
+	description.Name = EID:getObjectName(SubType, objTable) or objTable
 
-	local legacyModdedDescription = EID:getLegacyModDescription(objTable, objID)
+	local legacyModdedDescription = EID:getLegacyModDescription(objTable, SubType)
 	description.Description = legacyModdedDescription or tableEntry[3] or "MISSING DESCRIPTION"
 
-	local itemString = EID:getIDVariantString(objTable)
-	if itemString ~= nil then
-		itemString = itemString.."."..objID
-	else
-		itemString = objID
-	end
-	description.fullItemString = itemString
-	description.Transformation = EID:getTransformation(itemString)
+	description.fullItemString = Type.."."..Variant.."."..SubType
+	description.Transformation = EID:getTransformation(description.fullItemString)
 
 	return description
 end
@@ -410,8 +420,6 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 		local Xoffset = sprite[1][5] or -1
 		local Yoffset = sprite[1][6] or 0
 		local spriteObj = sprite[1][7] or EID.InlineIconSprite
-		spriteObj.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
-		spriteObj.Color = Color(1, 1, 1, EIDConfig["Transparency"], 0, 0, 0)
 		if sprite[1][2] >=0 then
 			spriteObj:SetFrame(sprite[1][1], sprite[1][2])
 		elseif not spriteObj:IsPlaying(sprite[1][1]) or spriteObj:IsFinished(sprite[1][1]) then
@@ -419,8 +427,15 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 		else
 			spriteObj:Update()
 		end
-		spriteObj:Render(Vector((posX + sprite[2] + Xoffset), posY + Yoffset), Vector(0, 0), Vector(0, 0))
+		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset, posY + Yoffset)
 	end
+end
+
+-- helper function to render Icons in specific EID settins
+function EID:renderIcon(spriteObj, posX,posY)
+	spriteObj.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
+	spriteObj.Color = Color(1, 1, 1, EIDConfig["Transparency"], 0, 0, 0)
+	spriteObj:Render(Vector(posX, posY), Vector(0, 0), Vector(0, 0))
 end
 
 -- Returns the icon used for the bulletpoint. It will look at the first word in the given string.
