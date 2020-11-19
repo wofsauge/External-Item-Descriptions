@@ -46,7 +46,7 @@ EID.descriptions["en_us"].collectibles={
 {"30","","↑ +5.25 Range up#↑ +0.5 Tear Height"},
 {"31","","↑ +5.25 Range up#↑ +0.5 Tear Height"},
 {"32","","↑ +0.7 Tears up"},
-{"33","","Flight for current room#Kills Mom Foot and Moms heart instantly#! Kills YOU when used on Satan"},
+{"33","","Flight for current room#Kills Mom Foot and Moms heart instantly#!!! Kills YOU when used on Satan"},
 {"34","","↑ +2 Damage up#↑ +12.5% devil deal chance#↑ +50% Damage Multiplier if you have Blood of the Martyr"},
 {"35","","Deal 40 damage to everything in the room"},
 {"36","","Spawns one poop#Can be placed next to a pit and destroyed to make a bridge"},
