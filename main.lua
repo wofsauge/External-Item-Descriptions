@@ -56,7 +56,8 @@ EID.modPath = string.gsub(EID.modPath, "\\", "/")
 EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
 
 EID.font = Font() -- init font object
-EID:loadFont(EID.modPath .. "resources/font/eid_default.fnt")
+local fontFile = EIDConfig["FontType"] or "default"
+EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
 
 --Makes textscale smaller, when using detailed english descriptions
 if EIDConfig["Language"] == "en_us_detailed" and EIDConfig["Scale"] > 0.5 then

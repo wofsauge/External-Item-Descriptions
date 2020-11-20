@@ -12,6 +12,9 @@ EIDConfig = {
 	-- 							Russian (https://steamcommunity.com/sharedfiles/filedetails/?id=1552851879)
 	-- If you want to make a translation, please contact me :)
 	["Language"] = "en_us",
+	-- Change font type. Values are [default, borderless, inverted]
+	-- Default = "default"
+	["FontType"] = "default",
 	-- Change Width of the info boxes. (In characters)
 	-- Default = 25
 	["TextboxWidth"] = 25,

@@ -7,7 +7,7 @@ if ModConfigMenu then
 		end
 		return 1
 	end
-	
+
 	-- Language
 	local displayLanguage = {"English", "English (detailed)", "French",  "Portuguese", "Russian", "Spanish", "Bulgarian (WIP)", "Polish (WIP)", "Turkish (WIP)"}
 	local langLookup = {"en_us", "en_us_detailed", "fr", "pt", "ru", "spa", "bul", "pl", "turkish"}
@@ -29,7 +29,7 @@ if ModConfigMenu then
 			end
 		}
 	)
-
+	
 	-- Disable on Curse
 	ModConfigMenu.AddSetting(
 		"EID",
@@ -333,6 +333,29 @@ if ModConfigMenu then
 			end
 		}
 	)
+
+	local fontTypes = {"default","borderless","inverted"}
+	ModConfigMenu.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenuOptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(fontTypes, EIDConfig["FontType"])
+			end,
+			Minimum = 1,
+			Maximum = #fontTypes,
+			Display = function()
+				return "Font Type: " .. EIDConfig["FontType"]
+			end,
+			OnChange = function(currentNum)
+				EIDConfig["FontType"] = fontTypes[currentNum]
+				local fontFile = EIDConfig["FontType"] or "default"
+				EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
+			end
+		}
+	)
+
 	--------ShowItemName---------
 	ModConfigMenu.AddSetting(
 		"EID",
