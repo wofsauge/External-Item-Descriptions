@@ -1,6 +1,6 @@
 	
 ------------------------------------------------------------------
------  Basic English descriptions based on Platinumgod.co.uk -----
+-----  Basic DUMMY descriptions based on Platinumgod.co.uk -----
 ------------------------------------------------------------------
 
 -- FORMAT: Item ID | Name| Description
@@ -14,7 +14,7 @@ EID.descriptions["DUMMY"] = {}
 EID.descriptions["DUMMY"].custom = {} -- table for custom entity descriptions
 
 EID.descriptions["DUMMY"].collectibles={
-    {"1", "The Sad Onion", "↑ +0.7 Tears up#âÂ çÇ ğĞ ıI İİ îÎ öÖ şŞ üÜ ûÛ"},
+    {"1", "The Sad Onion", "↑ +0.7 Tears up"},
     {"2", "The Inner Eye", "Triple shot#↓ Tears down"},
     {"3", "Spoon Bender", "Homing tears"},
     {"4", "Cricket's Head", "↑ +0.5 Damage up#↑ +50% Damage Multiplier"},
