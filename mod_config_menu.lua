@@ -7,9 +7,28 @@ if ModConfigMenu then
 		end
 		return 1
 	end
-
-	ModConfigMenu.AddText("EID", "General", "Change Language in the Config file.")
-	ModConfigMenu.AddSpace("EID", "General")
+	
+	-- Language
+	local displayLanguage = {"English", "English (detailed)", "French",  "Portuguese", "Russian", "Spanish", "Bulgarian (WIP)", "Polish (WIP)", "Turkish (WIP)"}
+	local langLookup = {"en_us", "en_us_detailed", "fr", "pt", "ru", "spa", "bul", "pl", "turkish"}
+	ModConfigMenu.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenuOptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(langLookup, EIDConfig["Language"])
+			end,
+			Minimum = 1,
+			Maximum = #langLookup,
+			Display = function()
+				return "Language: " .. displayLanguage[AnIndexOf(langLookup, EIDConfig["Language"])]
+			end,
+			OnChange = function(currentNum)
+				EIDConfig["Language"] = langLookup[currentNum]
+			end
+		}
+	)
 
 	-- Disable on Curse
 	ModConfigMenu.AddSetting(
