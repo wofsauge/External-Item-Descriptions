@@ -32,6 +32,7 @@ require("mod_config_menu")
 require("descriptions.ab+.transformations")
 --languages
 require("descriptions.ab+.en_us")
+require("descriptions.ab+.turkish") -- WIP
 require("descriptions.ab+.en_us_detailed")
 require("descriptions.ab+.bul") -- WIP
 require("descriptions.ab+.fr")
