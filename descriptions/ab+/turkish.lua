@@ -276,6 +276,7 @@ EID.descriptions["turkish"].collectibles={
     {"260",	"Black Candle",	"Immunity to Curses#+1 Black heart#Higher devil/angel room chance"},
     {"261",	"Proptosis",	"↑ +100% Hasar#↓ Dealt damage decreases for traveled distance of the tear"},
     {"262",	"Missing Page 2",	"+1 black heart#When down to 1 Heart, damages all enemies in the room"},
+	{"263", "", "<item does not exist>"},
     {"264",	"Smart Fly",	"Orbital#When you get hit it attacks enemies#Deals 22.5 damage per second"},
     {"265",	"Dry Baby",	"When its hit by enemy tears, it has a 10% chance to damage all enemies in the room"},
     {"266",	"Juicy Sack",	"Leaves slowing creep#Spawns 1-2 friendly Örümceks after clearing a room"},
