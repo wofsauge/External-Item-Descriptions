@@ -51,6 +51,7 @@ EID.ItemTypeAnm2Names = {
 }
 ---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
+local nullVector = Vector(0,0)
 
 -- Adds a description for a collectible. Optional parameters: itemName, language
 function EID:addCollectible(id, description, itemName, language)
@@ -309,6 +310,7 @@ function EID:getObjectName(objID, objType)
 	elseif objType == "custom" then
 		return __eidEntityDescriptions[objID][1] or tableEntry[1] or objID
 	end
+	return ""
 end
 
 -- check if an entity is part of the describable entities
@@ -432,10 +434,10 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 end
 
 -- helper function to render Icons in specific EID settins
-function EID:renderIcon(spriteObj, posX,posY)
+function EID:renderIcon(spriteObj, posX, posY)
 	spriteObj.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
 	spriteObj.Color = Color(1, 1, 1, EIDConfig["Transparency"], 0, 0, 0)
-	spriteObj:Render(Vector(posX, posY), Vector(0, 0), Vector(0, 0))
+	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
 end
 
 -- Returns the icon used for the bulletpoint. It will look at the first word in the given string.

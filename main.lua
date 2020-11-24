@@ -45,6 +45,7 @@ require("eid_data")
 require("eid_api")
 
 EID.LastRenderCallColor = EID:getTextColor()
+local nullVector = Vector(0,0)
 
 --use some very hacky trickery to get the path to this mod
 local _, err = pcall(require, "")
@@ -227,7 +228,7 @@ function EID:renderIndicator(entity)
 	if EIDConfig["Indicator"] == "blink" then
 		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
 		entity:SetColor(Color(1, 1, 1, 1, c, c, c), 1, 1, false, false)
-		entity:Render(Vector(0, 0))
+		entity:Render(nullVector)
 		entity:SetColor(Color(1, 1, 1, 1, 0, 0, 0), 2, 1, false, false)
 	elseif EIDConfig["Indicator"] == "border" then
 		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
@@ -237,7 +238,7 @@ function EID:renderIndicator(entity)
 		entity:Render(Vector(1, 0))
 		entity:Render(Vector(-1, 0))
 		entity:SetColor(Color(1, 1, 1, 1, 0, 0, 0), 2, 1, false, false)
-		entity:Render(Vector(0, 0))
+		entity:Render(nullVector)
 	elseif EIDConfig["Indicator"] == "highlight" then
 		entity:SetColor(Color(1, 1, 1, 1, 255, 255, 255), 1, 1, false, false)
 		entity:Render(Vector(0, 1))
@@ -245,14 +246,14 @@ function EID:renderIndicator(entity)
 		entity:Render(Vector(1, 0))
 		entity:Render(Vector(-1, 0))
 		entity:SetColor(Color(1, 1, 1, 1, 0, 0, 0), 2, 1, false, false)
-		entity:Render(Vector(0, 0))
+		entity:Render(nullVector)
 	elseif EIDConfig["Indicator"] == "arrow" then
 		ArrowSprite:Update()
 		local ArrowOffset = Vector(0, -35)
 		if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
 			ArrowOffset = Vector(0, -62)
 		end
-		ArrowSprite:Render(Game():GetRoom():WorldToScreenPosition(entity.Position + ArrowOffset), Vector(0, 0), Vector(0, 0))
+		ArrowSprite:Render(Game():GetRoom():WorldToScreenPosition(entity.Position + ArrowOffset), nullVector, nullVector))
 	end
 end
 
@@ -381,8 +382,8 @@ local function onRender(t)
 			end
 			CardSprite:Render(
 				Vector(EIDConfig["XPosition"] - 9 * EIDConfig["Scale"], posY() + (12 + offsetX) * EIDConfig["Scale"]),
-				Vector(0, 0),
-				Vector(0, 0)
+				nullVector,
+				nullVector
 			)
 		end
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
@@ -414,8 +415,8 @@ local function onRender(t)
 		end
 		pillsprite:Render(
 			Vector(EIDConfig["XPosition"] + 2 * EIDConfig["Scale"], posY() + (11 + offsetX) * EIDConfig["Scale"]),
-			Vector(0, 0),
-			Vector(0, 0)
+			nullVector,
+			nullVector
 		)
 		pillsprite.Scale = Vector(1, 1)
 	end
