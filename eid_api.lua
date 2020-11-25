@@ -375,15 +375,15 @@ function EID:createItemIconObject(str)
 	if numReplace3 > 0 and cardID ~= "" and tonumber(cardID) ~= nil then
 		if tonumber(cardID)>54 then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
 		local spriteDummy = Sprite()
-		spriteDummy:Load("gfx/eid_cardfronts.anm2", true)
-		return {cardID,0,8,8,0,0,spriteDummy}
+		spriteDummy:Load("gfx/eid_cardspills.anm2", true)
+		return {"Cards",tonumber(cardID),8,8,0,0,spriteDummy}
 	end
 	local pillID,numReplace4 = string.gsub(str, "Pill", "")
 	if numReplace4 > 0 and pillID ~= "" and tonumber(pillID) ~= nil then
 		if tonumber(pillID)>13 then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
 		local spriteDummy = Sprite()
-		spriteDummy:Load("gfx/ui/ui_cardspills.anm2", true)
-		return {"PillsSmall",tonumber(pillID)-1,8,8,4,6,spriteDummy}
+		spriteDummy:Load("gfx/eid_cardspills.anm2", true)
+		return {"Pills",tonumber(pillID)-1,8,8,0,1,spriteDummy}
 	end
 	if item == nil then
 		return nil
