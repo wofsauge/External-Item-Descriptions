@@ -45,6 +45,7 @@ __eidItemDescriptions[3] =
 ------ Overriding descriptions------
 EID:addCollectible(2, "New override Method") -- minimal method
 EID:addCollectible(2, "New override Method", "new Name", "ru") -- maximal method
+EID:addTrinket(2, "New override Method") -- minimal method
 EID:addCard(2, "New override Method", "new Name") -- card
 EID:addPill(2, "New override Method", "new Name") -- pill
 EID:addEntity(5, 10, 2, "Custom Name", "Custom description") -- Entity 

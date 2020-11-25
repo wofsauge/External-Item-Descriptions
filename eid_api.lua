@@ -57,28 +57,28 @@ local nullVector = Vector(0,0)
 function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["collectible_" .. id] = {id, itemName, description}
+	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description}
 end
 
 -- Adds a description for a trinket. Optional parameters: itemName, language
 function EID:addTrinket(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["trinket_" .. id] = {id, itemName, description}
+	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description}
 end
 
 -- Adds a description for a card/rune. Optional parameters: itemName, language
 function EID:addCard(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["card_" .. id] = {id, itemName, description}
+	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description}
 end
 
 -- Adds a description for a pilleffect id. Optional parameters: itemName, language
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["pill_" .. id] = {id, itemName, description}
+	EID.descriptions[language].custom["5.70." .. id] = {id, itemName, description}
 end
 
 -- Creates a new transformation with a given unique name and a display name
@@ -154,11 +154,26 @@ end
 -- function to turn entity type names into actual ingame ID.Variant pairs
 function EID:getIDVariantString(typeName)
 	if typeName == "collectible" or typeName == "collectibles" then return "5.100"
-	elseif typeName == "trinket" or typeName == "trinkets" then return "5.350."
-	elseif typeName == "card" or typeName == "cards" then return "5.300."
-	elseif typeName == "pill" or typeName == "pills" then return "5.70."
+	elseif typeName == "trinket" or typeName == "trinkets" then return "5.350"
+	elseif typeName == "card" or typeName == "cards" then return "5.300"
+	elseif typeName == "pill" or typeName == "pills" then return "5.70"
+	elseif typeName == "sacrifice" then return "-999.-1"
+	elseif typeName == "dice" then return "-999.-2"
 	end
 	return nil
+end
+
+-- function to turn entity typ and variants into their EID table-name
+function EID:getTableName(Type, Variant)
+	local idString = Type.."."..Variant
+	if idString == "5.100" then return "collectibles"
+	elseif idString == "5.350" then return "trinkets"
+	elseif idString == "5.300" then return "cards"
+	elseif idString == "5.70" then return "pills"
+	elseif idString == "-999.-1" then return "sacrifice"
+	elseif idString == "-999.-2" then return "dice"
+	else return "custom"
+	end
 end
 
 -- Loads a given font from a given file path and use it to render text
@@ -192,22 +207,46 @@ function EID:getLastDescribedEntity()
 	return EID.lastDescriptionEntity
 end
 
--- returns descriptions from the legacy mod descriptions if they exist
-function EID:getLegacyModDescription(objTable, id)
-	id = tonumber(id)
-	if objTable == "collectibles" then
-		return __eidItemDescriptions[id]
-	elseif objTable == "trinkets" then
-		return __eidTrinketDescriptions[id]
-	elseif objTable == "cards" then
-		return __eidCardDescriptions[id]
-	elseif objTable == "pills" then
-		return __eidPillDescriptions[id]
-	elseif objTable == "transformations" then
-		return __eidItemTransformations[id]
-	elseif objTable == "custom" then
-		return __eidEntityDescriptions[id] and __eidEntityDescriptions[id][2]
+-- returns the description object of the specified entity
+-- falls back to english if the objID isnt available
+function EID:getDescriptionObj(Type, Variant, SubType)
+	local description = {}
+	description.ItemType = Type
+	description.ItemVariant = Variant
+	description.RealID = SubType
+	description.ID = SubType
+	if EID:getTableName(Type, Variant) =="pills" then
+		local pool = Game():GetItemPool()
+		description.ID = pool:GetPillEffect(SubType)+1
 	end
+	description.fullItemString = Type.."."..Variant.."."..description.ID
+	description.Name = EID:getObjectName(Type, Variant, description.ID)
+
+	local tableEntry = EID:getDescriptionData(Type, Variant, description.ID)
+	description.Description = tableEntry[3] or "MISSING DESCRIPTION"
+
+	description.Transformation = EID:getTransformation(description.fullItemString)
+
+	return description
+end
+
+-- returns description Object from the legacy mod descriptions if they exist
+function EID:getLegacyModDescription(Type, Variant, SubType)
+	local tableName = EID:getTableName(Type, Variant)
+	local customDesc = __eidEntityDescriptions[Type.."."..Variant.."."..SubType]
+	if tableName == "collectibles" and __eidItemDescriptions[SubType] then
+		return {"","",__eidItemDescriptions[SubType]}
+	elseif tableName == "trinkets" and __eidTrinketDescriptions[SubType] then
+		return{"","", __eidTrinketDescriptions[SubType]}
+	elseif tableName == "cards" and __eidCardDescriptions[SubType] then
+		return {"","",__eidCardDescriptions[SubType]}
+	elseif tableName == "pills" and __eidPillDescriptions[SubType-1] then
+		print(SubType)
+		return {"","",__eidPillDescriptions[SubType-1]}
+	elseif customDesc~=nil then
+		return {"", customDesc[1], customDesc[2]}
+	end
+	return nil
 end
 
 -- returns the specified object table in the current language.
@@ -216,28 +255,17 @@ function EID:getDescriptionTable(objTable)
 	return EID.descriptions[EIDConfig["Language"]][objTable] or EID.descriptions["en_us"][objTable]
 end
 
--- returns the description object of the specified object table translated with the current language
--- falls back to english if the objID isnt available
-function EID:getDescriptionObj(objTable, Type, Variant, SubType)
-	objTable = objTable or "custom"
-	local tableEntry =
-		EID.descriptions[EIDConfig["Language"]][objTable][SubType] or EID.descriptions["en_us"][objTable][SubType] or {}
-
-	local description = {}
-	description.ObjectTable = objTable
-	description.ItemType = Type
-	description.ItemVariant = Variant
-	description.ID = SubType
-
-	description.Name = EID:getObjectName(SubType, objTable) or objTable
-
-	local legacyModdedDescription = EID:getLegacyModDescription(objTable, SubType)
-	description.Description = legacyModdedDescription or tableEntry[3] or "MISSING DESCRIPTION"
-
-	description.fullItemString = Type.."."..Variant.."."..SubType
-	description.Transformation = EID:getTransformation(description.fullItemString)
-
-	return description
+-- returns the description data table related to a given id, variant and subtype
+-- falls back to english if it doesnt exist
+function EID:getDescriptionData(Type, Variant, SubType)
+	local fullString = Type.."."..Variant
+	local moddedDesc = EID.descriptions[EIDConfig["Language"]].custom[fullString.."."..SubType] or 
+						EID.descriptions["en_us"].custom[fullString.."."..SubType] or nil
+	local tableName = EID:getTableName(Type, Variant)
+	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, SubType)
+	local defaultDesc = EID.descriptions[EIDConfig["Language"]][tableName][SubType] or EID.descriptions["en_us"][tableName][SubType] or nil
+	
+	return moddedDesc or legacyModdedDescription or defaultDesc
 end
 
 -- Get the transformation uniqueName / ID of a given "ID.Variant.Subtype" pair
@@ -250,7 +278,7 @@ function EID:getTransformation(entityIdentifier)
 		table.insert(splitString,identifier)
 	end
 	if splitString[1] == "5" and splitString[2] == "100" then
-		customLegacy = EID:getLegacyModDescription("transformations", splitString[3])
+		customLegacy = __eidItemTransformations[splitString[3]]
 	end
 	local default = EID.EntityTransformations[entityIdentifier]
 	return custom or customLegacy or default or "0"
@@ -267,48 +295,32 @@ function EID:getTransformationName(id)
 		end
 		return id
 	end
-	return EID:getObjectName(tonumber(id) + 1, "transformations") or str
+	return EID:getDescriptionTable("transformations")[tonumber(id) + 1] or str
 end
 
 -- tries to get the ingame name of an item based on its ID
-function EID:getObjectName(objID, objType)
-	local tableEntry = EID.descriptions[EIDConfig["Language"]][objType][objID] or EID.descriptions["en_us"][objType][objID]
-	if objType == "collectibles" then
-		if EIDConfig["Language"] ~= "en_us" and #tableEntry == 3 then
-			if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
-				return tableEntry[2]
-			end
-		end
-		return EID.itemConfig:GetCollectible(objID).Name
-	elseif objType == "trinkets" then
-		if EIDConfig["Language"] ~= "en_us" and #tableEntry == 3 then
-			if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
-				return tableEntry[2]
-			end
-		end
-		return EID.itemConfig:GetTrinket(objID).Name
-	elseif objType == "cards" then
-		if EIDConfig["Language"] ~= "en_us" and #tableEntry == 3 then
-			if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
-				return tableEntry[2]
-			end
-		end
-		return EID.itemConfig:GetCard(objID).Name
-	elseif objType == "pills" then
-		if EIDConfig["Language"] ~= "en_us" and #tableEntry == 3 then
-			if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
-				return tableEntry[2]
-			end
-		end
-		return EID.itemConfig:GetPillEffect(objID).Name
-	elseif objType == "transformations" then
-		return tableEntry
-	elseif objType == "sacrifice" then
+function EID:getObjectName(Type, Variant, SubType)
+	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
+	local tableName = EID:getTableName(Type, Variant)
+	local name = nil
+	if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
+		name = tableEntry[2]
+	end
+	if tableName == "collectibles" then
+		return name or EID.itemConfig:GetCollectible(SubType).Name
+	elseif tableName == "trinkets" then
+		return name or EID.itemConfig:GetTrinket(SubType).Name
+	elseif tableName == "cards" then
+		return name or EID.itemConfig:GetCard(SubType).Name
+	elseif tableName == "pills" then
+		name = name or EID.itemConfig:GetPillEffect(SubType-1).Name
+		return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
+	elseif tableName == "sacrifice" then
 		return EID:getDescriptionTable("sacrificeHeader")
-	elseif objType == "dice" then
+	elseif tableName == "dice" then
 		return EID:getDescriptionTable("diceHeader")
-	elseif objType == "custom" then
-		return __eidEntityDescriptions[objID][1] or tableEntry[1] or objID
+	elseif tableName == "custom" then
+		return name or SubType
 	end
 	return ""
 end
@@ -359,7 +371,7 @@ function EID:getIcon(str)
 	end
 end
 
--- Tries to read special markup used to generate icons for all Collectibles/Trinkets and the default cards
+-- Tries to read special markup used to generate icons for all Collectibles/Trinkets and the default Cards/Pills
 -- Returns an inlineIcon Object or nil if no parsing was possible
 function EID:createItemIconObject(str)
 	local collID,numReplace = string.gsub(str, "Collectible", "")
@@ -374,7 +386,7 @@ function EID:createItemIconObject(str)
 	local cardID,numReplace3 = string.gsub(str, "Card", "")
 	if numReplace3 > 0 and cardID ~= "" and tonumber(cardID) ~= nil then
 		if tonumber(cardID)>54 then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
-		return {"Cards",tonumber(cardID)-1,8,8,0,0,EID.CardPillSprite}
+		return {"Cards",tonumber(cardID)-1,8,8,0,1,EID.CardPillSprite}
 	end
 	local pillID,numReplace4 = string.gsub(str, "Pill", "")
 	if numReplace4 > 0 and pillID ~= "" and tonumber(pillID) ~= nil then

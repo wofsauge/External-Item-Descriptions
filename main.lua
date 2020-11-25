@@ -105,6 +105,7 @@ function EID:printDescription(desc)
 	local offsetX = 0
 	if EIDConfig["ShowItemIcon"] then
 		local iconType = nil
+		local renderID = desc.ID
 		if desc.ItemType == 5 and desc.ItemVariant == 100 then
 			iconType = "Collectible"
 		elseif desc.ItemType == 5 and desc.ItemVariant == 350 then
@@ -113,12 +114,13 @@ function EID:printDescription(desc)
 			iconType = "Card"
 		elseif desc.ItemType == 5 and desc.ItemVariant == 70 then
 			iconType = "Pill"
+			renderID = desc.RealID
 		end
 		if iconType ~= nil then
 			offsetX = offsetX + 12
 			EID:renderString(
-				"{{" .. iconType .. desc.ID .. "}}",
-				Vector(EIDConfig["XPosition"], padding - 5),
+				"{{" .. iconType .. renderID .. "}}",
+				Vector(EIDConfig["XPosition"]-3, padding - 5),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 				EID:getNameColor()
 			)
@@ -280,7 +282,7 @@ local function onRender(t)
 	if MCMLoaded then
 		if MCM.IsVisible and EID.permanentDisplayTextObj == nil and EID.MCMCompat_isDisplayingEIDTab then
 			MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
-			local demoDescObj = EID:getDescriptionObj("collectibles", 5, 100, 33)
+			local demoDescObj = EID:getDescriptionObj(5, 100, 33)
 			demoDescObj.Name = "Demo Object Name"
 			demoDescObj.Transformation = "Demo Transformation"
 			demoDescObj.Description = "A very cool description as a demonstration of the power of EID!#\1 This is also a cool line#This line loves you {{Heart}}"
@@ -299,7 +301,6 @@ local function onRender(t)
 	end
 
 	if EID.isDisplayingPermanent and EID.permanentDisplayTextObj ~= nil then
-		print("Display")
 		EID:printDescription(EID.permanentDisplayTextObj)
 		EID.isDisplayingText = true
 		return
@@ -321,12 +322,12 @@ local function onRender(t)
 
 	if dist / 40 > tonumber(EIDConfig["MaxDistance"]) or not closest.Type == EntityType.ENTITY_PICKUP then
 		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EIDConfig["DisplaySacrificeInfo"] then
-			EID:printDescription(EID:getDescriptionObj("sacrifice", EID.sacrificeCounter))
+			EID:printDescription(EID:getDescriptionObj(-999, -1, EID.sacrificeCounter))
 		end
 		if
 			Game():GetRoom():GetType() == RoomType.ROOM_DICE and EIDConfig["DisplayDiceInfo"] and type(closestDice) ~= type(nil)
 		 then
-			EID:printDescription(EID:getDescriptionObj("dice", closestDice.SubType + 1))
+			EID:printDescription(EID:getDescriptionObj(-999, -2, closestDice.SubType + 1))
 			EID:renderIndicator(closestDice)
 		end
 		return
@@ -347,36 +348,25 @@ local function onRender(t)
 		return
 	end
 	]]
-	 --Handle Entities (omni)
-	local objIDString = closest.Type .. "." .. closest.Variant .. "." .. closest.SubType
-	local tableEntry =
-		EID.descriptions[EIDConfig["Language"]]["custom"][objIDString] or EID.descriptions["en_us"]["custom"][objIDString] or
-		EID:getLegacyModDescription("custom", objIDString) or
-		nil
-	if EIDConfig["EnableEntityDescriptions"] and tableEntry ~= nil then
-		EID:printDescription(EID:getDescriptionObj("custom", closest.Type, closest.Variant, closest.SubType))
-		return
-	end
-
-	--Handle Trinkets
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
-		--Handle Collectibles
-		EID:printDescription(EID:getDescriptionObj("trinkets", closest.Type, closest.Variant, closest.SubType))
+		--Handle Trinkets
+		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType))
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
-		--Handle Cards & Runes
+		--Handle Collectibles
 		if EID:hasCurseBlind() and EIDConfig["DisableOnCurse"] then
 			EID:renderQuestionMark()
 			return
 		end
-		EID:printDescription(EID:getDescriptionObj("collectibles", closest.Type, closest.Variant, closest.SubType))
+		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType))
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
-		--Handle Pills
+		--Handle Cards & Runes
 		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayCardInfoShop"] then
 			EID:renderQuestionMark()
 			return
 		end
-		EID:printDescription(EID:getDescriptionObj("cards", closest.Type, closest.Variant, closest.SubType))
+		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType))
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
+		--Handle Pills
 		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayPillInfoShop"] then
 			EID:renderQuestionMark()
 			return
@@ -384,10 +374,11 @@ local function onRender(t)
 
 		local pillColor = closest.SubType
 		local pool = Game():GetItemPool()
-		local pillEffect = pool:GetPillEffect(pillColor)
 		local identified = pool:IsPillIdentified(pillColor)
 		if (identified or EIDConfig["ShowUnidentifiedPillDescriptions"]) then
-			EID:printDescription(EID:getDescriptionObj("pills", closest.Type, closest.Variant, pillEffect + 1))
+			local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor)
+			descEntry["realSubType"] = pillColor
+			EID:printDescription(descEntry)
 		else
 			EID:renderString(
 				"{{Pill"..pillColor.."}} "..EID:getDescriptionTable("unidentifiedPill"),
@@ -396,6 +387,13 @@ local function onRender(t)
 				EID:getErrorColor()
 			)
 		end
+	elseif EIDConfig["EnableEntityDescriptions"] then
+		--Handle Entities (omni)
+		local descriptionEntry = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
+		if descriptionEntry~=nil then
+		   EID:printDescription(descriptionEntry)
+		   return
+	   end
 	end
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
 		modifiedPosY = EIDConfig["YPosition"] + 30
