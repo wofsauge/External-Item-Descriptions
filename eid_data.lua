@@ -61,14 +61,18 @@ EID.InlineIcons = {
 	["Rune"] = {"pickups", 5, 8, 9},
 	["Card"] = {"pickups", 6, 11, 11},
 	----- Use Markup "Card"+ ID to render card-front sprites (example: {{Card1}} = 01 - The Fool)
+	----- Modded Card-fronts need to be added manually! (Example in Wiki)
 	["RedCard"] = {"pickups", 7, 11, 11},
 	["Pill"] = {"pickups", 8, 9, 9},
 	----- Use Markup "Pill"+ ID to render pill sprites (example: {{Pill1}} = Blue Pill)
+	----- Modded Pill-Colors need to be added manually! (Example in Wiki)
 	["Battery"] = {"pickups", 9, 8, 9},
 	["Collectible"] = {"Collectible", 0, 7, 7},
 	----- Use Markup "Collectible"+ ITEMID to render collectible sprites (example: {{Collectible1}} = Sad Onion)
+	----- Modded Collectible-icons are automatically generated. No code needed!
 	["Trinket"] = {"Trinket", 0, 7, 7},
 	----- Use Markup "Trinket"+ ITEMID to render trinket sprites (example: {{Trinket1}} = Swallowed Penny)
+	----- Modded Trinket-icons are automatically generated. No code needed!
 	["Slotmachine"] = {"Slotmachine", 0, 7, 7},
 	-- Room Icons
 	["Shop"] = {"roomicons", 0, 7, 9},
