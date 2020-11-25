@@ -78,7 +78,7 @@ end
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.70." .. id] = {id, itemName, description}
+	EID.descriptions[language].custom["5.70." .. id+1] = {id+1, itemName, description}
 end
 
 -- Creates a new transformation with a given unique name and a display name
