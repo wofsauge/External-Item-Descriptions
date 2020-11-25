@@ -120,6 +120,6 @@ EID.EntityTransformations = {
     ["5.100.545"] = "12",
     ["5.100.552"] = "6",
     -- Pills
-    ["5.70.9"] = "14",
-    ["5.70.32"] = "15",
+    ["5.70.10"] = "14", -- Puberty (Adult Transform)
+    ["5.70.33"] = "15", -- One makes you larger (Stompy Transform)
 }
