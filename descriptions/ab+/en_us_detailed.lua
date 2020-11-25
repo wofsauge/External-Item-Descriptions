@@ -758,7 +758,7 @@ EID.descriptions["en_us_detailed"].cards={
 }
 
 ---------- Pills ----------
-EID.descriptions["en_us_detailed"].unidentifiedPill = "- Unidentified Pill"
+EID.descriptions["en_us_detailed"].unidentifiedPill = "Unidentified Pill"
 
 EID.descriptions["en_us_detailed"].pills={
 {"0", "", "On use, the player farts, poisoning enemies around him."},

@@ -23,9 +23,6 @@ local ArrowSprite = Sprite()
 ArrowSprite:Load("gfx/icons.anm2", true)
 ArrowSprite:Play("Arrow", false)
 
-local CardSprite = Sprite()
-CardSprite:Load("gfx/cardfronts.anm2", true)
-
 require("eid_config")
 require("mod_config_menu")
 
@@ -107,14 +104,18 @@ function EID:printDescription(desc)
 		local iconType = nil
 		if desc.ItemType == 5 and desc.ItemVariant == 100 then
 			iconType = "Collectible"
-		elseif  desc.ItemType == 5 and desc.ItemVariant == 350 then
+		elseif desc.ItemType == 5 and desc.ItemVariant == 350 then
 			iconType = "Trinket"
+		elseif desc.ItemType == 5 and desc.ItemVariant == 300 then
+			iconType = "Card"
+		elseif desc.ItemType == 5 and desc.ItemVariant == 70 then
+			iconType = "Pill"
 		end
 		if iconType ~= nil then
-			offsetX = offsetX + 16
+			offsetX = offsetX + 12
 			EID:renderString(
 				"{{" .. iconType .. desc.ID .. "}}",
-				Vector(EIDConfig["XPosition"], padding - 4),
+				Vector(EIDConfig["XPosition"], padding - 5),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 				EID:getNameColor()
 			)
@@ -253,7 +254,7 @@ function EID:renderIndicator(entity)
 		if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
 			ArrowOffset = Vector(0, -62)
 		end
-		ArrowSprite:Render(Game():GetRoom():WorldToScreenPosition(entity.Position + ArrowOffset), nullVector, nullVector))
+		ArrowSprite:Render(Game():GetRoom():WorldToScreenPosition(entity.Position + ArrowOffset), nullVector, nullVector)
 	end
 end
 
@@ -372,20 +373,6 @@ local function onRender(t)
 			return
 		end
 		EID:printDescription(EID:getDescriptionObj("cards", closest.Type, closest.Variant, closest.SubType))
-		if closest.SubType <= 54 then
-			CardSprite:Play(tostring(closest.SubType))
-			CardSprite.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
-			CardSprite:Update()
-			local offsetX = 0
-			if EIDConfig["ShowItemName"] then
-				offsetX = 10
-			end
-			CardSprite:Render(
-				Vector(EIDConfig["XPosition"] - 9 * EIDConfig["Scale"], posY() + (12 + offsetX) * EIDConfig["Scale"]),
-				nullVector,
-				nullVector
-			)
-		end
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		if closest:ToPickup():IsShopItem() and not EIDConfig["DisplayPillInfoShop"] then
 			EID:renderQuestionMark()
@@ -400,25 +387,12 @@ local function onRender(t)
 			EID:printDescription(EID:getDescriptionObj("pills", closest.Type, closest.Variant, pillEffect + 1))
 		else
 			EID:renderString(
-				EID:getDescriptionTable("unidentifiedPill"),
+				"{{Pill"..pillColor.."}} "..EID:getDescriptionTable("unidentifiedPill"),
 				Vector(EIDConfig["XPosition"], posY()),
 				Vector(EIDConfig["Scale"], EIDConfig["Scale"]),
 				EID:getErrorColor()
 			)
 		end
-		local pillsprite = closest:GetSprite()
-		pillsprite.Scale = Vector(EIDConfig["Scale"] * 0.75, EIDConfig["Scale"] * 0.75)
-		pillsprite:Update()
-		local offsetX = 0
-		if EIDConfig["ShowItemName"] and (identified or EIDConfig["ShowUnidentifiedPillDescriptions"]) then
-			offsetX = 10
-		end
-		pillsprite:Render(
-			Vector(EIDConfig["XPosition"] + 2 * EIDConfig["Scale"], posY() + (11 + offsetX) * EIDConfig["Scale"]),
-			nullVector,
-			nullVector
-		)
-		pillsprite.Scale = Vector(1, 1)
 	end
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
 		modifiedPosY = EIDConfig["YPosition"] + 30

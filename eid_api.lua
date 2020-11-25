@@ -359,17 +359,31 @@ function EID:getIcon(str)
 	end
 end
 
--- Tries to read special markup used to generate icons for all Collectibles/Trinkets
+-- Tries to read special markup used to generate icons for all Collectibles/Trinkets and the default cards
 -- Returns an inlineIcon Object or nil if no parsing was possible
 function EID:createItemIconObject(str)
 	local collID,numReplace = string.gsub(str, "Collectible", "")
 	local item = nil
-	if numReplace>0 and collID~="" then
+	if numReplace > 0 and collID ~= "" then
 		item = EID.itemConfig:GetCollectible(tonumber(collID))
 	end
 	local trinketID,numReplace2 = string.gsub(str, "Trinket", "")
-	if numReplace2>0 and trinketID~="" then
+	if numReplace2 > 0 and trinketID ~= "" then
 		item = EID.itemConfig:GetTrinket(tonumber(trinketID))
+	end
+	local cardID,numReplace3 = string.gsub(str, "Card", "")
+	if numReplace3 > 0 and cardID ~= "" and tonumber(cardID) ~= nil then
+		if tonumber(cardID)>54 then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
+		local spriteDummy = Sprite()
+		spriteDummy:Load("gfx/eid_cardfronts.anm2", true)
+		return {cardID,0,8,8,0,0,spriteDummy}
+	end
+	local pillID,numReplace4 = string.gsub(str, "Pill", "")
+	if numReplace4 > 0 and pillID ~= "" and tonumber(pillID) ~= nil then
+		if tonumber(pillID)>13 then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
+		local spriteDummy = Sprite()
+		spriteDummy:Load("gfx/ui/ui_cardspills.anm2", true)
+		return {"PillsSmall",tonumber(pillID)-1,8,8,4,6,spriteDummy}
 	end
 	if item == nil then
 		return nil

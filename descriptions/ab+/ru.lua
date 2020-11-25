@@ -756,7 +756,7 @@ EID.descriptions["ru"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["ru"].unidentifiedPill = "- Неизвестная пилюля"
+EID.descriptions["ru"].unidentifiedPill = "Неизвестная пилюля"
 
 EID.descriptions["ru"].pills={
 {"0", "Вонючий Газ", " Создает облако ядовитого газа"},

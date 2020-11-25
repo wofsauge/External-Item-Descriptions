@@ -761,7 +761,7 @@ EID.descriptions["en_us"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["en_us"].unidentifiedPill = "- Unidentified Pill"
+EID.descriptions["en_us"].unidentifiedPill = "Unidentified Pill"
 
 EID.descriptions["en_us"].pills={
 {"0", "", "Spawns a Gas cloud"},

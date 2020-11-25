@@ -763,7 +763,7 @@ EID.descriptions["pt"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["pt"].unidentifiedPill = "- Comprimido não identificado"
+EID.descriptions["pt"].unidentifiedPill = "Comprimido não identificado"
 
 EID.descriptions["pt"].pills={
 {"0", "", "Cria uma nuvem de gás"},

@@ -764,7 +764,7 @@ EID.descriptions["spa"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["spa"].unidentifiedPill = "- Píldora sin identificar"
+EID.descriptions["spa"].unidentifiedPill = "Píldora sin identificar"
 
 EID.descriptions["spa"].pills={
 {"0", "", "Genera una nube de gas"},
