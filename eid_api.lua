@@ -374,16 +374,12 @@ function EID:createItemIconObject(str)
 	local cardID,numReplace3 = string.gsub(str, "Card", "")
 	if numReplace3 > 0 and cardID ~= "" and tonumber(cardID) ~= nil then
 		if tonumber(cardID)>54 then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
-		local spriteDummy = Sprite()
-		spriteDummy:Load("gfx/eid_cardspills.anm2", true)
-		return {"Cards",tonumber(cardID),8,8,0,0,spriteDummy}
+		return {"Cards",tonumber(cardID)-1,8,8,0,0,EID.CardPillSprite}
 	end
 	local pillID,numReplace4 = string.gsub(str, "Pill", "")
 	if numReplace4 > 0 and pillID ~= "" and tonumber(pillID) ~= nil then
 		if tonumber(pillID)>13 then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
-		local spriteDummy = Sprite()
-		spriteDummy:Load("gfx/eid_cardspills.anm2", true)
-		return {"Pills",tonumber(pillID)-1,8,8,0,1,spriteDummy}
+		return {"Pills",tonumber(pillID)-1,9,8,0,1,EID.CardPillSprite}
 	end
 	if item == nil then
 		return nil
@@ -392,7 +388,7 @@ function EID:createItemIconObject(str)
 	spriteDummy:Load("gfx/eid_inline_icons.anm2", true)
 	spriteDummy:ReplaceSpritesheet(1, item.GfxFileName)
 	spriteDummy:LoadGraphics()
-	return {"ItemIcon",0,7,7,-4,-2,spriteDummy}
+	return {"ItemIcon",0,11,7,-2,-2,spriteDummy}
 end
 
 -- Returns the icon for a given transformation name or ID

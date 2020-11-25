@@ -16,6 +16,9 @@ EID.IconSprite:Load("gfx/icons.anm2", true)
 EID.InlineIconSprite = Sprite()
 EID.InlineIconSprite:Load("gfx/eid_inline_icons.anm2", true)
 
+EID.CardPillSprite = Sprite()
+EID.CardPillSprite:Load("gfx/eid_cardspills.anm2", true)
+
 EID.ItemSprite = Sprite()
 EID.ItemSprite:Load("gfx/005.100_collectible.anm2", true)
 
