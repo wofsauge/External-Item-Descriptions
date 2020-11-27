@@ -42,6 +42,12 @@ EID.DefaultConfig = {
 	-- look into the AB+ documentation for the key names
 	-- Default = Keyboard.KEY_F2
 	["HideKey"] = Keyboard.KEY_F2,
+	-- Initial displaystate. Can be used to change the toggle behavior of the "Hide Key" event
+	-- Default = false
+	["Hidden"] = false,
+	-- Hide the descriptions when in battle
+	-- Default = false
+	["HideInBattle"] = false,
 	-------------CURSE-------------
 
 	-- Display informations when the floor has curse of the blind ( ? - Items)

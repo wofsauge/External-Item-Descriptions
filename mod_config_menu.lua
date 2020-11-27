@@ -167,6 +167,26 @@ if MCMLoaded then
 			end
 		}
 	)
+	ModConfigMenu.AddSetting(
+		"EID",
+		"Rooms",
+		{
+			Type = ModConfigMenuOptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["HideInBattle"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["HideInBattle"] then
+					onOff = "True"
+				end
+				return "Hide in Battle: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["HideInBattle"] = currentBool
+			end
+		}
+	)
 
 	------------Collectibles--------------
 

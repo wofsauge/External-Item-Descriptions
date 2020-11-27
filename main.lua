@@ -263,12 +263,15 @@ local function onRender(t)
 	end
 	if EID.isHidden then
 		return
+	elseif EID.Config["HideInBattle"] then
+		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
+			return
+		end
 	end
-
-	local player = Isaac.GetPlayer(0)
-
+	
 	EID:renderMCMDummyDescription()
 
+	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
 		EID:addTextPosModifier("Schoolbag", Vector(0,30))
 	end
