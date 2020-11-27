@@ -1,4 +1,4 @@
-EIDConfig = {
+EID.DefaultConfig = {
 	-------GENERAL---------
 
 	-- Change language of the mod.

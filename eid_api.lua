@@ -18,9 +18,6 @@ if not __eidEntityDescriptions then
 	__eidEntityDescriptions = {}
 end
 
-EID.PositionModifiers = {}
-EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
-
 ---------------------------------------------------------------------------
 -------------------------Handle Custom Enum -----------------------------
 

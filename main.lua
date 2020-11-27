@@ -1,15 +1,26 @@
 EID = RegisterMod("External Item Descriptions", 1)
-EID.itemConfig = Isaac.GetItemConfig()
+-- important variables
+EID.GameVersion = "ab+"
+EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "ru", "spa", "bul", "pl", "turkish"}
 EID.descriptions = {} -- Table that holds all translation strings
 
+require("eid_config")
+EID.Config = EID.DefaultConfig
+EID.Config.Version = "3.0"
+EID.isHidden = EID.Config["Hidden"]
+
+-- general variables
+EID.PositionModifiers = {}
+EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 EID.isDisplayingText = false
 EID.isDisplayingPermanent = false
 EID.permanentDisplayTextObj = nil
 EID.lastDescriptionEntity = nil
-local lineHeight = 11
-local hideDescToggle = false
+EID.lineHeight = 11
 EID.sacrificeCounter = 1
+EID.itemConfig = Isaac.GetItemConfig()
 
+-- Sprite inits
 EID.IconSprite = Sprite()
 EID.IconSprite:Load("gfx/icons.anm2", true)
 
@@ -26,26 +37,20 @@ local ArrowSprite = Sprite()
 ArrowSprite:Load("gfx/icons.anm2", true)
 ArrowSprite:Play("Arrow", false)
 
-require("eid_config")
-EID.Config = EID.DefaultConfig
-EID.Config.Version = "3.0"
+------- Load all modules and other stuff ------
 require("mod_config_menu")
 
-require("descriptions.ab+.transformations")
+--transformation infos
+require("descriptions."..EID.GameVersion..".transformations")
 --languages
-require("descriptions.ab+.en_us")
-require("descriptions.ab+.turkish") -- WIP
-require("descriptions.ab+.en_us_detailed")
-require("descriptions.ab+.bul") -- WIP
-require("descriptions.ab+.fr")
-require("descriptions.ab+.pl")	-- WIP
-require("descriptions.ab+.pt")
-require("descriptions.ab+.ru")
-require("descriptions.ab+.spa")
+for _,lang in ipairs(EID.Languages) do
+	require("descriptions."..EID.GameVersion.."."..lang)
+end
 
 require("eid_data")
 require("eid_api")
 
+-------------- Load Font  -------------
 EID.LastRenderCallColor = EID:getTextColor()
 local nullVector = Vector(0,0)
 
@@ -130,7 +135,7 @@ function EID:printDescription(desc)
 			offsetX = offsetX + 8
 		end
 		if not EID.Config["ShowItemName"] then
-			renderPos.Y = renderPos.Y + lineHeight * EID.Config["Scale"]
+			renderPos.Y = renderPos.Y + EID.lineHeight * EID.Config["Scale"]
 		end
 	end
 	--Display Itemname
@@ -142,7 +147,7 @@ function EID:printDescription(desc)
 			EID:getNameColor()
 		)
 
-		renderPos.Y = renderPos.Y + lineHeight * EID.Config["Scale"]
+		renderPos.Y = renderPos.Y + EID.lineHeight * EID.Config["Scale"]
 	end
 
 	--Display Transformation
@@ -154,9 +159,9 @@ function EID:printDescription(desc)
 			local iconHeight = transformSprite[4] or -1
 			local iconOffsetX = transformSprite[5] or -1
 			local iconOffsetY = transformSprite[6] or -1
-			local transformLineHeight = lineHeight
+			local transformLineHeight = EID.lineHeight
 			if EID.Config["TransformationIcons"] then
-				transformLineHeight = math.max(lineHeight, transformSprite[4])
+				transformLineHeight = math.max(EID.lineHeight, transformSprite[4])
 				local iconSprite = transformSprite[7] or EID.InlineIconSprite
 				iconSprite:Play(transformSprite[1])
 				EID:renderIcon(
@@ -201,7 +206,7 @@ function EID:printBulletPoints(description, renderPos)
 				textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
 			end
 			textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Config["Scale"], 0), textScale, textColor)
-				renderPos.Y = renderPos.Y + lineHeight * EID.Config["Scale"]
+				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Config["Scale"]
 		end
 	end
 end
@@ -254,14 +259,14 @@ end
 local function onRender(t)
 	EID.isDisplayingText = false
 	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) then
-		hideDescToggle = not hideDescToggle
+		EID.isHidden = not EID.isHidden
 	end
-	if hideDescToggle then
+	if EID.isHidden then
 		return
 	end
 
 	local player = Isaac.GetPlayer(0)
-	
+
 	EID:renderMCMDummyDescription()
 
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
@@ -370,6 +375,8 @@ end
 
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
+-- only save and load configs when using MCM. Otherwise Config file changes arent calid
+if EID.MCMLoaded then
 	local json = require("json")
 	--------------------------------
 	--------Handle Savadata---------
@@ -385,6 +392,7 @@ EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 					EID.Config[key] = savedEIDConfig[key]
 				end
 			end
+			EID.isHidden = EID.Config["Hidden"]
 		end
 		end
 	end
@@ -395,5 +403,6 @@ EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 		EID.SaveData(EID, json.encode(EID.Config))
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
+end
 
 require("eid_debugging")

@@ -4,6 +4,7 @@ local MCMLoaded, MCM = pcall(require, "scripts.modconfig")
 EID.MCMCompat_isDisplayingEIDTab = false
 local MCMCompat_isDisplayingDummyMCMObj = false
 local MCMCompat_oldPermanentObj = false
+EID.MCMLoaded = MCMLoaded
 
 function EID:renderMCMDummyDescription()
 	if MCMLoaded then
@@ -41,22 +42,21 @@ if MCMLoaded then
 
 	-- Language
 	local displayLanguage = {"English", "English (detailed)", "French",  "Portuguese", "Russian", "Spanish", "Bulgarian (WIP)", "Polish (WIP)", "Turkish (WIP)"}
-	local langLookup = {"en_us", "en_us_detailed", "fr", "pt", "ru", "spa", "bul", "pl", "turkish"}
 	ModConfigMenu.AddSetting(
 		"EID",
 		"General",
 		{
 			Type = ModConfigMenuOptionType.NUMBER,
 			CurrentSetting = function()
-				return AnIndexOf(langLookup, EID.Config["Language"])
+				return AnIndexOf(EID.Languages, EID.Config["Language"])
 			end,
 			Minimum = 1,
-			Maximum = #langLookup,
+			Maximum = #(EID.Languages),
 			Display = function()
-				return "Language: " .. displayLanguage[AnIndexOf(langLookup, EID.Config["Language"])]
+				return "Language: " .. displayLanguage[AnIndexOf(EID.Languages, EID.Config["Language"])]
 			end,
 			OnChange = function(currentNum)
-				EID.Config["Language"] = langLookup[currentNum]
+				EID.Config["Language"] = EID.Languages[currentNum]
 			end
 		}
 	)
