@@ -18,6 +18,9 @@ if not __eidEntityDescriptions then
 	__eidEntityDescriptions = {}
 end
 
+EID.PositionModifiers = {}
+EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
+
 ---------------------------------------------------------------------------
 -------------------------Handle Custom Enum -----------------------------
 
@@ -199,7 +202,29 @@ end
 
 -- returns the current text position
 function EID:getTextPosition()
-	return Vector(EIDConfig["XPosition"], EIDConfig["YPosition"])
+	local posVector = EID.UsedPosition
+	for _,modifier in pairs(EID.PositionModifiers) do
+		posVector = posVector + modifier
+	end
+	return posVector
+end
+
+-- Adds a text position modifier Vector, which will be applied to the text position variable
+-- Useful to add small offsets. For example: for schoolbag HUD
+function EID:addTextPosModifier(identifier, modifierVector)
+	EID.PositionModifiers[identifier] = modifierVector
+end
+
+-- Removes a text position modifier Vector
+-- Useful to remove small offsets. For example: for schoolbag HUD
+function EID:removeTextPosModifier(identifier)
+	EID.PositionModifiers[identifier] = nil
+end
+
+-- Changes the initial position of all eid descriptions
+-- Useful to totally alter and override the current initial Overlay position
+function EID:alterTextPos(newPosVector)
+	EID.UsedPosition = newPosVector
 end
 
 -- returns the entity that is currently described. returns last described entity if currently not displaying text
@@ -252,18 +277,18 @@ end
 -- returns the specified object table in the current language.
 -- falls back to english if it doesnt exist
 function EID:getDescriptionTable(objTable)
-	return EID.descriptions[EIDConfig["Language"]][objTable] or EID.descriptions["en_us"][objTable]
+	return EID.descriptions[EID.Config["Language"]][objTable] or EID.descriptions["en_us"][objTable]
 end
 
 -- returns the description data table related to a given id, variant and subtype
 -- falls back to english if it doesnt exist
 function EID:getDescriptionData(Type, Variant, SubType)
 	local fullString = Type.."."..Variant
-	local moddedDesc = EID.descriptions[EIDConfig["Language"]].custom[fullString.."."..SubType] or 
+	local moddedDesc = EID.descriptions[EID.Config["Language"]].custom[fullString.."."..SubType] or 
 						EID.descriptions["en_us"].custom[fullString.."."..SubType] or nil
 	local tableName = EID:getTableName(Type, Variant)
 	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, SubType)
-	local defaultDesc = EID.descriptions[EIDConfig["Language"]][tableName][SubType] or EID.descriptions["en_us"][tableName][SubType] or nil
+	local defaultDesc = EID.descriptions[EID.Config["Language"]][tableName][SubType] or EID.descriptions["en_us"][tableName][SubType] or nil
 	
 	return moddedDesc or legacyModdedDescription or defaultDesc
 end
@@ -291,7 +316,7 @@ function EID:getTransformationName(id)
 		-- get translated custom name
 		local customTransform = EID.CustomTransformations[id] 
 		if customTransform ~= nil then
-			return customTransform[EIDConfig["Language"]] or customTransform["en_us"] or id
+			return customTransform[EID.Config["Language"]] or customTransform["en_us"] or id
 		end
 		return id
 	end
@@ -328,14 +353,14 @@ end
 -- check if an entity is part of the describable entities
 function EID:hasDescription(entity)
 	local isAllowed = false
-	if EIDConfig["EnableEntityDescriptions"] then
+	if EID.Config["EnableEntityDescriptions"] then
 		isAllowed = __eidEntityDescriptions[entity.Type .. "." .. entity.Variant .. "." .. entity.SubType] ~= nil
 	--isAllowed = isAllowed or type(entity:GetData()["EID_Description"]) ~= type(nil)
 	end
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EIDConfig["DisplayItemInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EIDConfig["DisplayTrinketInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EIDConfig["DisplayCardInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EIDConfig["DisplayPillInfo"])
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EID.Config["DisplayItemInfo"])
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EID.Config["DisplayCardInfo"])
+	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
 	return entity.Type == EntityType.ENTITY_PICKUP and isAllowed and entity.SubType > 0
 end
 
@@ -430,7 +455,7 @@ function EID:filterIconMarkup(text, textPosX, textPosY)
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
 		local lookup = EID:getIcon(word)
-		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EIDConfig["Scale"]
+		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Config["Scale"]
 		table.insert(spriteTable, {lookup, preceedingTextWidth})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
 	end
@@ -457,8 +482,8 @@ end
 
 -- helper function to render Icons in specific EID settins
 function EID:renderIcon(spriteObj, posX, posY)
-	spriteObj.Scale = Vector(EIDConfig["Scale"], EIDConfig["Scale"])
-	spriteObj.Color = Color(1, 1, 1, EIDConfig["Transparency"], 0, 0, 0)
+	spriteObj.Scale = Vector(EID.Config["Scale"], EID.Config["Scale"])
+	spriteObj.Color = Color(1, 1, 1, EID.Config["Transparency"], 0, 0, 0)
 	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
 end
 
@@ -495,7 +520,7 @@ function EID:getColor(str, baseKColor)
 		end
 	end
 	color = EID:copyKColor(color)
-	color.Alpha = math.min(color.Alpha, EIDConfig["Transparency"])
+	color.Alpha = math.min(color.Alpha, EID.Config["Transparency"])
 	return color, isColorMarkup
 end
 
@@ -510,7 +535,7 @@ function EID:filterColorMarkup(text, baseKColor)
 		local lookup, isColor = EID:getColor(word, lastColor)
 		if isColor then
 			local preceedingText = string.sub(text, lastPosition, textposition - 1)
-			local preceedingTextWidth = EID:getStrWidth(preceedingText) * EIDConfig["Scale"]
+			local preceedingTextWidth = EID:getStrWidth(preceedingText) * EID.Config["Scale"]
 			lastPosition = textposition
 			table.insert(textPartsTable, {preceedingText, lastColor, preceedingTextWidth})
 			lastColor = lookup
@@ -593,39 +618,39 @@ end
 -- Get KColor object of "Entity Name" texts
 function EID:getNameColor()
 	return KColor(
-		EIDConfig["ItemNameColor"][1],
-		EIDConfig["ItemNameColor"][2],
-		EIDConfig["ItemNameColor"][3],
-		EIDConfig["Transparency"]
+		EID.Config["ItemNameColor"][1],
+		EID.Config["ItemNameColor"][2],
+		EID.Config["ItemNameColor"][3],
+		EID.Config["Transparency"]
 	)
 end
 
 -- Get KColor object of "Description" texts
 function EID:getTextColor()
 	return KColor(
-		EIDConfig["TextColor"][1],
-		EIDConfig["TextColor"][2],
-		EIDConfig["TextColor"][3],
-		EIDConfig["Transparency"]
+		EID.Config["TextColor"][1],
+		EID.Config["TextColor"][2],
+		EID.Config["TextColor"][3],
+		EID.Config["Transparency"]
 	)
 end
 
 -- Get KColor object of "Transformation" texts
 function EID:getTransformationColor()
 	return KColor(
-		EIDConfig["TransformationColor"][1],
-		EIDConfig["TransformationColor"][2],
-		EIDConfig["TransformationColor"][3],
-		EIDConfig["Transparency"]
+		EID.Config["TransformationColor"][1],
+		EID.Config["TransformationColor"][2],
+		EID.Config["TransformationColor"][3],
+		EID.Config["Transparency"]
 	)
 end
 
 -- Get KColor object of "Error" texts
 function EID:getErrorColor()
 	return KColor(
-		EIDConfig["ErrorColor"][1],
-		EIDConfig["ErrorColor"][2],
-		EIDConfig["ErrorColor"][3],
-		EIDConfig["Transparency"]
+		EID.Config["ErrorColor"][1],
+		EID.Config["ErrorColor"][2],
+		EID.Config["ErrorColor"][3],
+		EID.Config["Transparency"]
 	)
 end

@@ -100,8 +100,8 @@ EID:addColor("ColorBlackBlink", nil, function(color)
 
 local function onDebugRender(t)
 		for i, v in ipairs(charsToDebug) do
-			local pos = Vector(EIDConfig["XPosition"], EIDConfig["YPosition"] - 15 + ((i - 1) * 14))
-			EID:renderString(v, pos, Vector(EIDConfig["Scale"], EIDConfig["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0))
+			local pos = EID.getTextPosition() + Vector(0, - 15 + ((i - 1) * 14))
+			EID:renderString(v, pos, Vector(EID.Config["Scale"], EID.Config["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0))
 			
 			if not showDebugChars then
 				break

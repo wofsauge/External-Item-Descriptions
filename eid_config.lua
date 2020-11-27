@@ -16,8 +16,8 @@ EIDConfig = {
 	-- Default = "default"
 	["FontType"] = "default",
 	-- Change Width of the info boxes. (In characters)
-	-- Default = 25
-	["TextboxWidth"] = 25,
+	-- Default = 100
+	["TextboxWidth"] = 100,
 	-- Change Size of the info boxes. Range: [0,...,1]
 	-- Default = 1
 	["Scale"] = 1,

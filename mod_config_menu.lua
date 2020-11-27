@@ -1,4 +1,35 @@
-if ModConfigMenu then
+
+-- MOD CONFIG MENU Compatibility
+local MCMLoaded, MCM = pcall(require, "scripts.modconfig")
+EID.MCMCompat_isDisplayingEIDTab = false
+local MCMCompat_isDisplayingDummyMCMObj = false
+local MCMCompat_oldPermanentObj = false
+
+function EID:renderMCMDummyDescription()
+	if MCMLoaded then
+		EID:addTextPosModifier("MCM_HudOffset", Vector(MCM.Config.HudOffset*2,MCM.Config.HudOffset))
+		if MCM.IsVisible and EID.permanentDisplayTextObj == nil and EID.MCMCompat_isDisplayingEIDTab then
+			MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
+			local demoDescObj = EID:getDescriptionObj(5, 100, 33)
+			demoDescObj.Name = "Demo Object Name"
+			demoDescObj.Transformation = "Demo Transformation"
+			demoDescObj.Description = "A very cool description as a demonstration of the power of EID!#\1 This is also a cool line#This line loves you {{Heart}}"
+			EID:displayPermanentText(demoDescObj)
+			MCMCompat_isDisplayingDummyMCMObj = true
+		elseif not MCM.IsVisible and MCMCompat_isDisplayingDummyMCMObj then
+			if MCMCompat_oldPermanentObj == nil then
+				EID:hidePermanentText()
+			else
+				EID.permanentDisplayTextObj = MCMCompat_oldPermanentObj
+			end
+			EID.MCMCompat_isDisplayingEIDTab = false
+			MCMCompat_oldPermanentObj = nil
+			MCMCompat_isDisplayingDummyMCMObj = false
+		end
+	end
+end
+
+if MCMLoaded then
 	function AnIndexOf(t, val)
 		for k, v in ipairs(t) do
 			if v == val then
@@ -17,15 +48,15 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.NUMBER,
 			CurrentSetting = function()
-				return AnIndexOf(langLookup, EIDConfig["Language"])
+				return AnIndexOf(langLookup, EID.Config["Language"])
 			end,
 			Minimum = 1,
 			Maximum = #langLookup,
 			Display = function()
-				return "Language: " .. displayLanguage[AnIndexOf(langLookup, EIDConfig["Language"])]
+				return "Language: " .. displayLanguage[AnIndexOf(langLookup, EID.Config["Language"])]
 			end,
 			OnChange = function(currentNum)
-				EIDConfig["Language"] = langLookup[currentNum]
+				EID.Config["Language"] = langLookup[currentNum]
 			end
 		}
 	)
@@ -37,17 +68,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["DisableOnCurse"]
+				return EID.Config["DisableOnCurse"]
 			end,
 			Display = function()
 				local onOff = "True"
-				if EIDConfig["DisableOnCurse"] then
+				if EID.Config["DisableOnCurse"] then
 					onOff = "False"
 				end
 				return 'Show on "Curse of Blind": ' .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["DisableOnCurse"] = currentBool
+				EID.Config["DisableOnCurse"] = currentBool
 			end
 		}
 	)
@@ -59,15 +90,15 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.NUMBER,
 			CurrentSetting = function()
-				return AnIndexOf(indicators, EIDConfig["Indicator"])
+				return AnIndexOf(indicators, EID.Config["Indicator"])
 			end,
 			Minimum = 1,
 			Maximum = 5,
 			Display = function()
-				return "Indicator: " .. EIDConfig["Indicator"]
+				return "Indicator: " .. EID.Config["Indicator"]
 			end,
 			OnChange = function(currentNum)
-				EIDConfig["Indicator"] = indicators[currentNum]
+				EID.Config["Indicator"] = indicators[currentNum]
 			end
 		}
 	)
@@ -79,17 +110,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["ShowUnidentifiedPillDescriptions"]
+				return EID.Config["ShowUnidentifiedPillDescriptions"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["ShowUnidentifiedPillDescriptions"] then
+				if EID.Config["ShowUnidentifiedPillDescriptions"] then
 					onOff = "True"
 				end
 				return "Show Unidentified Pilleffects: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["ShowUnidentifiedPillDescriptions"] = currentBool
+				EID.Config["ShowUnidentifiedPillDescriptions"] = currentBool
 			end
 		}
 	)
@@ -100,17 +131,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["DisplaySacrificeInfo"]
+				return EID.Config["DisplaySacrificeInfo"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["DisplaySacrificeInfo"] then
+				if EID.Config["DisplaySacrificeInfo"] then
 					onOff = "True"
 				end
 				return "Sacrifice Room Infos: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["DisplaySacrificeInfo"] = currentBool
+				EID.Config["DisplaySacrificeInfo"] = currentBool
 			end
 		}
 	)
@@ -122,17 +153,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["DisplayDiceInfo"]
+				return EID.Config["DisplayDiceInfo"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["DisplayDiceInfo"] then
+				if EID.Config["DisplayDiceInfo"] then
 					onOff = "True"
 				end
 				return "Dice Room Infos: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["DisplayDiceInfo"] = currentBool
+				EID.Config["DisplayDiceInfo"] = currentBool
 			end
 		}
 	)
@@ -145,17 +176,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["DisplayItemInfo"]
+				return EID.Config["DisplayItemInfo"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["DisplayItemInfo"] then
+				if EID.Config["DisplayItemInfo"] then
 					onOff = "True"
 				end
 				return "Collectible Infos: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["DisplayItemInfo"] = currentBool
+				EID.Config["DisplayItemInfo"] = currentBool
 			end
 		}
 	)
@@ -167,17 +198,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["DisplayTrinketInfo"]
+				return EID.Config["DisplayTrinketInfo"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["DisplayTrinketInfo"] then
+				if EID.Config["DisplayTrinketInfo"] then
 					onOff = "True"
 				end
 				return "Trinket Infos: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["DisplayTrinketInfo"] = currentBool
+				EID.Config["DisplayTrinketInfo"] = currentBool
 			end
 		}
 	)
@@ -189,17 +220,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["DisplayCardInfo"]
+				return EID.Config["DisplayCardInfo"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["DisplayCardInfo"] then
+				if EID.Config["DisplayCardInfo"] then
 					onOff = "True"
 				end
 				return "Card Infos: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["DisplayCardInfo"] = currentBool
+				EID.Config["DisplayCardInfo"] = currentBool
 			end
 		}
 	)
@@ -211,17 +242,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["DisplayPillInfo"]
+				return EID.Config["DisplayPillInfo"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["DisplayPillInfo"] then
+				if EID.Config["DisplayPillInfo"] then
 					onOff = "True"
 				end
 				return "Pill Infos: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["DisplayPillInfo"] = currentBool
+				EID.Config["DisplayPillInfo"] = currentBool
 			end
 		}
 	)
@@ -236,17 +267,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["DisplayCardInfoShop"]
+				return EID.Config["DisplayCardInfoShop"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["DisplayCardInfoShop"] then
+				if EID.Config["DisplayCardInfoShop"] then
 					onOff = "True"
 				end
 				return "Card Infos: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["DisplayCardInfoShop"] = currentBool
+				EID.Config["DisplayCardInfoShop"] = currentBool
 			end
 		}
 	)
@@ -258,17 +289,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["DisplayPillInfoShop"]
+				return EID.Config["DisplayPillInfoShop"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["DisplayPillInfoShop"] then
+				if EID.Config["DisplayPillInfoShop"] then
 					onOff = "True"
 				end
 				return "Pill Infos: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["DisplayPillInfoShop"] = currentBool
+				EID.Config["DisplayPillInfoShop"] = currentBool
 			end
 		}
 	)
@@ -281,16 +312,16 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.NUMBER,
 			CurrentSetting = function()
-				return AnIndexOf(textScales, EIDConfig["Scale"])
+				return AnIndexOf(textScales, EID.Config["Scale"])
 			end,
 			Minimum = 1,
 			Maximum = 6,
 			Display = function()
 				EID.MCMCompat_isDisplayingEIDTab = true;
-				return "Text Size: " .. EIDConfig["Scale"]
+				return "Text Size: " .. EID.Config["Scale"]
 			end,
 			OnChange = function(currentNum)
-				EIDConfig["Scale"] = textScales[currentNum]
+				EID.Config["Scale"] = textScales[currentNum]
 			end
 		}
 	)
@@ -302,14 +333,14 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.SCROLL,
 			CurrentSetting = function()
-				return AnIndexOf(distances, EIDConfig["MaxDistance"]) - 1
+				return AnIndexOf(distances, EID.Config["MaxDistance"]) - 1
 			end,
 			Display = function()
 				return "Display Distance: $scroll" ..
-					AnIndexOf(distances, EIDConfig["MaxDistance"]) - 1 .. " " .. EIDConfig["MaxDistance"] .. " Grids"
+					AnIndexOf(distances, EID.Config["MaxDistance"]) - 1 .. " " .. EID.Config["MaxDistance"] .. " Grids"
 			end,
 			OnChange = function(currentNum)
-				EIDConfig["MaxDistance"] = distances[currentNum + 1]
+				EID.Config["MaxDistance"] = distances[currentNum + 1]
 			end
 		}
 	)
@@ -322,14 +353,14 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.SCROLL,
 			CurrentSetting = function()
-				return AnIndexOf(transparencies, EIDConfig["Transparency"]) - 1
+				return AnIndexOf(transparencies, EID.Config["Transparency"]) - 1
 			end,
 			Display = function()
 				return "Transparency: $scroll" ..
-					AnIndexOf(transparencies, EIDConfig["Transparency"]) - 1 .. " " .. EIDConfig["Transparency"]
+					AnIndexOf(transparencies, EID.Config["Transparency"]) - 1 .. " " .. EID.Config["Transparency"]
 			end,
 			OnChange = function(currentNum)
-				EIDConfig["Transparency"] = transparencies[currentNum + 1]
+				EID.Config["Transparency"] = transparencies[currentNum + 1]
 			end
 		}
 	)
@@ -341,16 +372,16 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.NUMBER,
 			CurrentSetting = function()
-				return AnIndexOf(fontTypes, EIDConfig["FontType"])
+				return AnIndexOf(fontTypes, EID.Config["FontType"])
 			end,
 			Minimum = 1,
 			Maximum = #fontTypes,
 			Display = function()
-				return "Font Type: " .. EIDConfig["FontType"]
+				return "Font Type: " .. EID.Config["FontType"]
 			end,
 			OnChange = function(currentNum)
-				EIDConfig["FontType"] = fontTypes[currentNum]
-				local fontFile = EIDConfig["FontType"] or "default"
+				EID.Config["FontType"] = fontTypes[currentNum]
+				local fontFile = EID.Config["FontType"] or "default"
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
 			end
 		}
@@ -363,17 +394,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["ShowItemName"]
+				return EID.Config["ShowItemName"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["ShowItemName"] then
+				if EID.Config["ShowItemName"] then
 					onOff = "True"
 				end
 				return "Display Item Name: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["ShowItemName"] = currentBool
+				EID.Config["ShowItemName"] = currentBool
 			end
 		}
 	)
@@ -384,17 +415,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["ShowItemType"]
+				return EID.Config["ShowItemType"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["ShowItemType"] then
+				if EID.Config["ShowItemType"] then
 					onOff = "True"
 				end
 				return "Display Item Type: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["ShowItemType"] = currentBool
+				EID.Config["ShowItemType"] = currentBool
 			end
 		}
 	)
@@ -406,17 +437,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["TransformationText"]
+				return EID.Config["TransformationText"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["TransformationText"] then
+				if EID.Config["TransformationText"] then
 					onOff = "True"
 				end
 				return "Display Transformation Name: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["TransformationText"] = currentBool
+				EID.Config["TransformationText"] = currentBool
 			end
 		}
 	)
@@ -426,17 +457,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["TransformationIcons"]
+				return EID.Config["TransformationIcons"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["TransformationIcons"] then
+				if EID.Config["TransformationIcons"] then
 					onOff = "True"
 				end
 				return "Display Transformation Icon: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["TransformationIcons"] = currentBool
+				EID.Config["TransformationIcons"] = currentBool
 			end
 		}
 	)
@@ -446,17 +477,17 @@ if ModConfigMenu then
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EIDConfig["ShowItemIcon"]
+				return EID.Config["ShowItemIcon"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EIDConfig["ShowItemIcon"] then
+				if EID.Config["ShowItemIcon"] then
 					onOff = "True"
 				end
 				return "Display Item Icon: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EIDConfig["ShowItemIcon"] = currentBool
+				EID.Config["ShowItemIcon"] = currentBool
 			end
 		}
 	)
