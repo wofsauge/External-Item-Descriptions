@@ -53,7 +53,7 @@ if MCMLoaded then
 	---------------------------------General-----------------------------------
 	-- Language
 	local displayLanguage = {"English", "English (detailed)", "French",  "Portuguese", "Russian", "Spanish", "Bulgarian (WIP)", "Polish (WIP)", "Turkish (WIP)"}
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"General",
 		{
@@ -68,13 +68,14 @@ if MCMLoaded then
 			end,
 			OnChange = function(currentNum)
 				EID.Config["Language"] = EID.Languages[currentNum]
-			end
+			end,
+			Info = {"Changes the language.","Languages marked with (WIP) are incomplete"}
 		}
 	)
 	MCM.AddSpace("EID", "General")
 	
 	-- Disable on Curse
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"General",
 		{
@@ -96,7 +97,7 @@ if MCMLoaded then
 	)
 
 	--------ShowUnidentifiedPillDescriptions---------
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"General",
 		{
@@ -116,7 +117,7 @@ if MCMLoaded then
 			end
 		}
 	)
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"General",
 		{
@@ -133,7 +134,8 @@ if MCMLoaded then
 			end,
 			OnChange = function(currentBool)
 				EID.Config["HideInBattle"] = currentBool
-			end
+			end,
+			Info = {"Hides the descriptions when in a fight"}
 		}
 	)
 
@@ -141,7 +143,7 @@ if MCMLoaded then
 
 	--indicator
 	local indicators = {"arrow", "blink", "border", "highlight", "none"}
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"General",
 		{
@@ -156,7 +158,8 @@ if MCMLoaded then
 			end,
 			OnChange = function(currentNum)
 				EID.Config["Indicator"] = indicators[currentNum]
-			end
+			end,
+			Info = {"Highlights the currently described item"}
 		}
 	)
 	
@@ -164,7 +167,7 @@ if MCMLoaded then
 
 	-- maxDistance
 	local distances = {1, 1.5, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"General",
 		{
@@ -178,59 +181,17 @@ if MCMLoaded then
 			end,
 			OnChange = function(currentNum)
 				EID.Config["MaxDistance"] = distances[currentNum + 1]
-			end
+			end,
+			Info = {"Distance to the object until descriptions are displayed."}
 		}
 	)
 
 	---------------------------------------------------------------------------
 	---------------------------------Display-----------------------------------
-	--------Sacrifice Room---------
-	ModConfigMenu.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplaySacrificeInfo"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplaySacrificeInfo"] then
-					onOff = "True"
-				end
-				return "Sacrifice Room Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplaySacrificeInfo"] = currentBool
-			end
-		}
-	)
-
-	--------Dice Room---------
-	ModConfigMenu.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayDiceInfo"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayDiceInfo"] then
-					onOff = "True"
-				end
-				return "Dice Room Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayDiceInfo"] = currentBool
-			end
-		}
-	)
 
 	------------Collectibles--------------
 
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Display",
 		{
@@ -252,7 +213,7 @@ if MCMLoaded then
 	)
 	------------Trinkets--------------
 
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Display",
 		{
@@ -274,7 +235,7 @@ if MCMLoaded then
 	)
 	------------CARDS--------------
 
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Display",
 		{
@@ -296,7 +257,7 @@ if MCMLoaded then
 	)
 
 	------------PILLS--------------
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Display",
 		{
@@ -316,12 +277,55 @@ if MCMLoaded then
 			end
 		}
 	)
+	--------Sacrifice Room---------
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenuOptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisplaySacrificeInfo"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["DisplaySacrificeInfo"] then
+					onOff = "True"
+				end
+				return "Sacrifice Room Infos: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisplaySacrificeInfo"] = currentBool
+			end
+		}
+	)
 
-	ModConfigMenu.AddSpace("EID", "Display")
-	ModConfigMenu.AddText("EID", "Display", "Display Infos in Shops")
+	--------Dice Room---------
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenuOptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisplayDiceInfo"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["DisplayDiceInfo"] then
+					onOff = "True"
+				end
+				return "Dice Room Infos: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisplayDiceInfo"] = currentBool
+			end
+		}
+	)
+
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Display Infos in Shops")
 	------------CARDS--------------
 
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Display",
 		{
@@ -343,7 +347,7 @@ if MCMLoaded then
 	)
 
 	------------PILLS--------------
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Display",
 		{
@@ -368,7 +372,7 @@ if MCMLoaded then
 	---------------------------------Visuals-----------------------------------
 	-- Font Type
 	local fontTypes = {"default","borderless","inverted"}
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Visuals",
 		{
@@ -390,7 +394,7 @@ if MCMLoaded then
 	)
 	-- SCALE
 	local textScales = {0.5, 0.75, 1, 1.25, 1.5, 2}
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Visuals",
 		{
@@ -412,7 +416,7 @@ if MCMLoaded then
 
 	-- Transparency
 	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Visuals",
 		{
@@ -433,7 +437,7 @@ if MCMLoaded then
 	MCM.AddSpace("EID", "Visuals")
 
 	--------ShowItemName---------
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Visuals",
 		{
@@ -454,7 +458,7 @@ if MCMLoaded then
 		}
 	)
 	--------ShowItemType---------
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Visuals",
 		{
@@ -474,9 +478,29 @@ if MCMLoaded then
 			end
 		}
 	)
-	-------TRANSFORMATIONS---------
+	MCM.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenuOptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["ShowItemIcon"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["ShowItemIcon"] then
+					onOff = "True"
+				end
+				return "Display Item Icon: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["ShowItemIcon"] = currentBool
+			end
+		}
+	)
 
-	ModConfigMenu.AddSetting(
+	-------TRANSFORMATIONS---------
+	MCM.AddSetting(
 		"EID",
 		"Visuals",
 		{
@@ -496,7 +520,7 @@ if MCMLoaded then
 			end
 		}
 	)
-	ModConfigMenu.AddSetting(
+	MCM.AddSetting(
 		"EID",
 		"Visuals",
 		{
@@ -513,26 +537,6 @@ if MCMLoaded then
 			end,
 			OnChange = function(currentBool)
 				EID.Config["TransformationIcons"] = currentBool
-			end
-		}
-	)
-	ModConfigMenu.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["ShowItemIcon"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["ShowItemIcon"] then
-					onOff = "True"
-				end
-				return "Display Item Icon: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["ShowItemIcon"] = currentBool
 			end
 		}
 	)
