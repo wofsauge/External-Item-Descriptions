@@ -40,6 +40,17 @@ if MCMLoaded then
 		return 1
 	end
 
+	---------------------------------------------------------------------------
+	-----------------------------------Info------------------------------------
+	MCM.AddSpace("EID", "Info")
+	MCM.AddText("EID", "Info", function() return "External Item Descriptions" end)
+	MCM.AddSpace("EID", "Info")
+	MCM.AddText("EID", "Info", function() return "Version "..EID.Config.Version.." ("..EID.GameVersion..")" end)
+	MCM.AddSpace("EID", "Info")
+	MCM.AddText("EID", "Info", function() return "by Wofsauge" end)
+
+	---------------------------------------------------------------------------
+	---------------------------------General-----------------------------------
 	-- Language
 	local displayLanguage = {"English", "English (detailed)", "French",  "Portuguese", "Russian", "Spanish", "Bulgarian (WIP)", "Polish (WIP)", "Turkish (WIP)"}
 	ModConfigMenu.AddSetting(
@@ -60,6 +71,7 @@ if MCMLoaded then
 			end
 		}
 	)
+	MCM.AddSpace("EID", "General")
 	
 	-- Disable on Curse
 	ModConfigMenu.AddSetting(
@@ -82,6 +94,51 @@ if MCMLoaded then
 			end
 		}
 	)
+
+	--------ShowUnidentifiedPillDescriptions---------
+	ModConfigMenu.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenuOptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["ShowUnidentifiedPillDescriptions"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["ShowUnidentifiedPillDescriptions"] then
+					onOff = "True"
+				end
+				return "Show Unidentified Pill Effects: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["ShowUnidentifiedPillDescriptions"] = currentBool
+			end
+		}
+	)
+	ModConfigMenu.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenuOptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["HideInBattle"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["HideInBattle"] then
+					onOff = "True"
+				end
+				return "Hide in Battle: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["HideInBattle"] = currentBool
+			end
+		}
+	)
+
+	MCM.AddSpace("EID", "General")
+
 	--indicator
 	local indicators = {"arrow", "blink", "border", "highlight", "none"}
 	ModConfigMenu.AddSetting(
@@ -102,32 +159,35 @@ if MCMLoaded then
 			end
 		}
 	)
+	
+	MCM.AddSpace("EID", "General")
 
-	--------ShowUnidentifiedPillDescriptions---------
+	-- maxDistance
+	local distances = {1, 1.5, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	ModConfigMenu.AddSetting(
 		"EID",
 		"General",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenuOptionType.SCROLL,
 			CurrentSetting = function()
-				return EID.Config["ShowUnidentifiedPillDescriptions"]
+				return AnIndexOf(distances, EID.Config["MaxDistance"]) - 1
 			end,
 			Display = function()
-				local onOff = "False"
-				if EID.Config["ShowUnidentifiedPillDescriptions"] then
-					onOff = "True"
-				end
-				return "Show Unidentified Pilleffects: " .. onOff
+				return "Max Distance: $scroll" ..
+					AnIndexOf(distances, EID.Config["MaxDistance"]) - 1 .. " " .. EID.Config["MaxDistance"] .. " Grids"
 			end,
-			OnChange = function(currentBool)
-				EID.Config["ShowUnidentifiedPillDescriptions"] = currentBool
+			OnChange = function(currentNum)
+				EID.Config["MaxDistance"] = distances[currentNum + 1]
 			end
 		}
 	)
+
+	---------------------------------------------------------------------------
+	---------------------------------Display-----------------------------------
 	--------Sacrifice Room---------
 	ModConfigMenu.AddSetting(
 		"EID",
-		"Rooms",
+		"Display",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -149,7 +209,7 @@ if MCMLoaded then
 	--------Dice Room---------
 	ModConfigMenu.AddSetting(
 		"EID",
-		"Rooms",
+		"Display",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -167,32 +227,12 @@ if MCMLoaded then
 			end
 		}
 	)
-	ModConfigMenu.AddSetting(
-		"EID",
-		"Rooms",
-		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["HideInBattle"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["HideInBattle"] then
-					onOff = "True"
-				end
-				return "Hide in Battle: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["HideInBattle"] = currentBool
-			end
-		}
-	)
 
 	------------Collectibles--------------
 
 	ModConfigMenu.AddSetting(
 		"EID",
-		"General",
+		"Display",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -214,7 +254,7 @@ if MCMLoaded then
 
 	ModConfigMenu.AddSetting(
 		"EID",
-		"General",
+		"Display",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -236,7 +276,7 @@ if MCMLoaded then
 
 	ModConfigMenu.AddSetting(
 		"EID",
-		"General",
+		"Display",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -258,7 +298,7 @@ if MCMLoaded then
 	------------PILLS--------------
 	ModConfigMenu.AddSetting(
 		"EID",
-		"General",
+		"Display",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -277,13 +317,13 @@ if MCMLoaded then
 		}
 	)
 
-	ModConfigMenu.AddSpace("EID", "Rooms")
-	ModConfigMenu.AddText("EID", "Rooms", "Display Infos in Shops")
+	ModConfigMenu.AddSpace("EID", "Display")
+	ModConfigMenu.AddText("EID", "Display", "Display Infos in Shops")
 	------------CARDS--------------
 
 	ModConfigMenu.AddSetting(
 		"EID",
-		"Rooms",
+		"Display",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -305,7 +345,7 @@ if MCMLoaded then
 	------------PILLS--------------
 	ModConfigMenu.AddSetting(
 		"EID",
-		"Rooms",
+		"Display",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -324,71 +364,13 @@ if MCMLoaded then
 		}
 	)
 
-	-- SCALE
-	local textScales = {0.5, 0.75, 1, 1.25, 1.5, 2}
-	ModConfigMenu.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenuOptionType.NUMBER,
-			CurrentSetting = function()
-				return AnIndexOf(textScales, EID.Config["Scale"])
-			end,
-			Minimum = 1,
-			Maximum = 6,
-			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = true;
-				return "Text Size: " .. EID.Config["Scale"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["Scale"] = textScales[currentNum]
-			end
-		}
-	)
-	-- maxDistance
-	local distances = {1, 1.5, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	ModConfigMenu.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenuOptionType.SCROLL,
-			CurrentSetting = function()
-				return AnIndexOf(distances, EID.Config["MaxDistance"]) - 1
-			end,
-			Display = function()
-				return "Display Distance: $scroll" ..
-					AnIndexOf(distances, EID.Config["MaxDistance"]) - 1 .. " " .. EID.Config["MaxDistance"] .. " Grids"
-			end,
-			OnChange = function(currentNum)
-				EID.Config["MaxDistance"] = distances[currentNum + 1]
-			end
-		}
-	)
-
-	-- Transparency
-	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
-	ModConfigMenu.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenuOptionType.SCROLL,
-			CurrentSetting = function()
-				return AnIndexOf(transparencies, EID.Config["Transparency"]) - 1
-			end,
-			Display = function()
-				return "Transparency: $scroll" ..
-					AnIndexOf(transparencies, EID.Config["Transparency"]) - 1 .. " " .. EID.Config["Transparency"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["Transparency"] = transparencies[currentNum + 1]
-			end
-		}
-	)
-
+	---------------------------------------------------------------------------
+	---------------------------------Visuals-----------------------------------
+	-- Font Type
 	local fontTypes = {"default","borderless","inverted"}
 	ModConfigMenu.AddSetting(
 		"EID",
-		"Display",
+		"Visuals",
 		{
 			Type = ModConfigMenuOptionType.NUMBER,
 			CurrentSetting = function()
@@ -406,11 +388,54 @@ if MCMLoaded then
 			end
 		}
 	)
+	-- SCALE
+	local textScales = {0.5, 0.75, 1, 1.25, 1.5, 2}
+	ModConfigMenu.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenuOptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(textScales, EID.Config["Scale"])
+			end,
+			Minimum = 1,
+			Maximum = 6,
+			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = true;
+				return "Text Size: " .. EID.Config["Scale"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["Scale"] = textScales[currentNum]
+			end
+		}
+	)
+
+	-- Transparency
+	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
+	ModConfigMenu.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenuOptionType.SCROLL,
+			CurrentSetting = function()
+				return AnIndexOf(transparencies, EID.Config["Transparency"]) - 1
+			end,
+			Display = function()
+				return "Transparency: $scroll" ..
+					AnIndexOf(transparencies, EID.Config["Transparency"]) - 1 .. " " .. EID.Config["Transparency"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["Transparency"] = transparencies[currentNum + 1]
+			end
+		}
+	)
+
+	MCM.AddSpace("EID", "Visuals")
 
 	--------ShowItemName---------
 	ModConfigMenu.AddSetting(
 		"EID",
-		"Display",
+		"Visuals",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -431,7 +456,7 @@ if MCMLoaded then
 	--------ShowItemType---------
 	ModConfigMenu.AddSetting(
 		"EID",
-		"Display",
+		"Visuals",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -453,7 +478,7 @@ if MCMLoaded then
 
 	ModConfigMenu.AddSetting(
 		"EID",
-		"Display",
+		"Visuals",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -473,7 +498,7 @@ if MCMLoaded then
 	)
 	ModConfigMenu.AddSetting(
 		"EID",
-		"Display",
+		"Visuals",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -493,7 +518,7 @@ if MCMLoaded then
 	)
 	ModConfigMenu.AddSetting(
 		"EID",
-		"Display",
+		"Visuals",
 		{
 			Type = ModConfigMenuOptionType.BOOLEAN,
 			CurrentSetting = function()

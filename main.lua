@@ -390,13 +390,14 @@ if EID.MCMLoaded then
 			local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
 			-- Only copy Saved config entries that exist in the save
 			if savedEIDConfig.Version == EID.Config.Version then
-			for key, value in pairs(EID.Config) do
-				if savedEIDConfig[key] ~= nil then
-					EID.Config[key] = savedEIDConfig[key]
+				for key, value in pairs(EID.Config) do
+					if savedEIDConfig[key] ~= nil then
+						EID.Config[key] = savedEIDConfig[key]
+					end
 				end
+				EID.isHidden = EID.Config["Hidden"]
+				EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 			end
-			EID.isHidden = EID.Config["Hidden"]
-		end
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStart)
