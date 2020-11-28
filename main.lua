@@ -4,11 +4,6 @@ EID.GameVersion = "ab+"
 EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "ru", "spa", "bul", "pl", "turkish"}
 EID.descriptions = {} -- Table that holds all translation strings
 
----------LINUX USERS ONLY--------
-local linuxUsername= "%YourUsernameHere%"
-local linuxPath = "/home/"..linuxUsername.."/.steam/steam/steamapps/workshop/content/250900/836319872/"
----------------------------------
-
 require("eid_config")
 EID.Config = EID.DefaultConfig
 EID.Config.Version = "3.0"
@@ -55,20 +50,20 @@ end
 require("eid_data")
 require("eid_api")
 
--------------- Load Font  -------------
 EID.LastRenderCallColor = EID:getTextColor()
 local nullVector = Vector(0,0)
 
-
+---------------------------------------------------------------------------
+------------------------------- Load Font ---------------------------------
+local isWindows, _ = pcall(require,"LinuxDetectionFile")
 local isluadebug, os = pcall(require,"os")
-if isluadebug then
-	local modfolder ='external item descriptions_836319872' --release mod folder name
-	local userPath = os.tmpname()
-	userPath = string.gsub(userPath, "\\", "/")
-	local newPath = ""
-	if not string.find(userPath, "AppData") then
-		EID.modPath = linuxPath
-	else
+local modfolder ='external item descriptions_836319872' --release mod folder name
+if isWindows then
+	-- WINDOWS
+	if isluadebug then
+		local userPath = os.tmpname()
+		userPath = string.gsub(userPath, "\\", "/")
+		local newPath = ""
 		for str in string.gmatch(userPath, "([^/]+)") do
 			if str ~="AppData" then
 				newPath = newPath..str.."/"
@@ -77,21 +72,33 @@ if isluadebug then
 			end
 		end
 		EID.modPath = newPath.."Documents/My Games/Binding of Isaac Afterbirth+ Mods/"..modfolder.."/"
+	else
+		--use some very hacky trickery to get the path to this mod
+		local _, err = pcall(require, "")
+		local _, basePathStart = string.find(err, "no file '", 1)
+		local _, modPathStart = string.find(err, "no file '", basePathStart)
+		local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+		EID.modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
 	end
-else --your code here
-	--use some very hacky trickery to get the path to this mod
-	local _, err = pcall(require, "")
-	local _, basePathStart = string.find(err, "no file '", 1)
-	local _, modPathStart = string.find(err, "no file '", basePathStart)
-	local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
-	EID.modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
+	EID.modPath = string.gsub(EID.modPath, "\\", "/")
+	EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
+else
+	-- LINUX - Special thanks to jerb for providing these!
+	if isluadebug then
+		EID.modPath = os.getenv("HOME") .. "/.local/share/binding of isaac afterbirth+ mods/"..modfolder.."/"
+	else
+		-- only work if installed in the default location
+		EID.modPath = "../../../../../.local/share/binding of isaac afterbirth+ mods/"..modfolder.."/"
+	end
 end
-EID.modPath = string.gsub(EID.modPath, "\\", "/")
-EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
 
 EID.font = Font() -- init font object
 local fontFile = EID.Config["FontType"] or "default"
-EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
+local success = EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
+if not success then
+	Isaac.ConsoleOutput("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!")
+	return
+end
 
 ---------------------------------------------------------------------------
 -------------------------Handle Sacrifice Room-----------------------------
