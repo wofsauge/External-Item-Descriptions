@@ -263,7 +263,6 @@ function EID:getLegacyModDescription(Type, Variant, SubType)
 	elseif tableName == "cards" and __eidCardDescriptions[SubType] then
 		return {"","",__eidCardDescriptions[SubType]}
 	elseif tableName == "pills" and __eidPillDescriptions[SubType-1] then
-		print(SubType)
 		return {"","",__eidPillDescriptions[SubType-1]}
 	elseif customDesc~=nil then
 		return {"", customDesc[1], customDesc[2]}

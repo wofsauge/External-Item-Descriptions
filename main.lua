@@ -4,6 +4,11 @@ EID.GameVersion = "ab+"
 EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "ru", "spa", "bul", "pl", "turkish"}
 EID.descriptions = {} -- Table that holds all translation strings
 
+---------LINUX USERS ONLY--------
+local linuxUsername= "%YourUsernameHere%"
+local linuxPath = "/home/"..linuxUsername.."/.steam/steam/steamapps/workshop/content/250900/836319872/"
+---------------------------------
+
 require("eid_config")
 EID.Config = EID.DefaultConfig
 EID.Config.Version = "3.0"
@@ -54,12 +59,33 @@ require("eid_api")
 EID.LastRenderCallColor = EID:getTextColor()
 local nullVector = Vector(0,0)
 
---use some very hacky trickery to get the path to this mod
-local _, err = pcall(require, "")
-local _, basePathStart = string.find(err, "no file '", 1)
-local _, modPathStart = string.find(err, "no file '", basePathStart)
-local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
-EID.modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
+
+local isluadebug, os = pcall(require,"os")
+if isluadebug then
+	local modfolder ='external item descriptions_836319872' --release mod folder name
+	local userPath = os.tmpname()
+	userPath = string.gsub(userPath, "\\", "/")
+	local newPath = ""
+	if not string.find(userPath, "AppData") then
+		EID.modPath = linuxPath
+	else
+		for str in string.gmatch(userPath, "([^/]+)") do
+			if str ~="AppData" then
+				newPath = newPath..str.."/"
+			else
+				break
+			end
+		end
+		EID.modPath = newPath.."Documents/My Games/Binding of Isaac Afterbirth+ Mods/"..modfolder.."/"
+	end
+else --your code here
+	--use some very hacky trickery to get the path to this mod
+	local _, err = pcall(require, "")
+	local _, basePathStart = string.find(err, "no file '", 1)
+	local _, modPathStart = string.find(err, "no file '", basePathStart)
+	local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+	EID.modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
+end
 EID.modPath = string.gsub(EID.modPath, "\\", "/")
 EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
 
