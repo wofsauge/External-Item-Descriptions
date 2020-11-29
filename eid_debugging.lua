@@ -83,15 +83,15 @@ __eidItemDescriptions[6] = "This item as Inline Icon {{Collectible6}}#And here a
 
 
 ------ Test: adding custom icons ------
-EID:addColor("ColorTwitterBlue", KColor(0, 0.671875, 0.9296875, 1, 0, 0, 0), nil)
+EID:addColor("ColorTwitterBlue", KColor(0, 0.671875, 0.9296875, 1), nil)
 EID:addColor("ColorBlackBlink", nil, function(color)
 		local maxAnimTime = 30
 		local animTime = Game():GetFrameCount() % maxAnimTime
 		color = EID:copyKColor(color) or EID:getTextColor()
 		if animTime < maxAnimTime / 2 then
-			color = KColor(0, 0, 0, 1 * color.Alpha, 0, 0, 0)
+			color = KColor(0, 0, 0, 1 * color.Alpha)
 		else
-			color = KColor(1, 1, 1, 1 * color.Alpha, 0, 0, 0)
+			color = KColor(1, 1, 1, 1 * color.Alpha)
 		end
 		return color
 	end
