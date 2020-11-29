@@ -58,7 +58,8 @@ EID:addIcon("NewTransform1", "hearts", 2, 9, 9, -1, 0, dummySprite)
 EID:createTransformation("NewTransform1", "New transformation") -- Transformation
 EID:createTransformation("NewTransform1", "New russian transformation", "ru") -- add Transformation name in russian
 
-EID:assignTransformation("collectible", 5, "NewTransform1") -- Add Transformation to My Reflection
+EID:assignTransformation("collectible", 5, "NewTransform1,2,3") -- Add Transformation to My Reflection
+EID:removeTransformation("collectible", 5, "2") -- Removes a transformation
 
 ------ Test: Add all transformations + some customs ones to Inner Eye ------
 EID:assignTransformation("collectible", 2, "1,2,3,4,5,6,7,8,9,10,11,12,13,something Custom,NewTransform1")

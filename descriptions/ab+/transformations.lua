@@ -4,6 +4,9 @@ EID.CustomTransformations = {}
 -- Format: [ID.VARIANT.SUBTYPE] = "Transformation Basename or id"
 EID.CustomTransformAssignments = {}
 
+-- Format: [ID.VARIANT.SUBTYPE] = "Transformation Basename or id"
+EID.CustomTransformRemovals = {}
+
 -- default transformations
 -- Format: [ID.VARIANT.SUBTYPE] = "Transformation string"
 EID.EntityTransformations = {

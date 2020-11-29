@@ -90,7 +90,7 @@ function EID:createTransformation(uniqueName, displayName, language)
 	EID.CustomTransformations[uniqueName][language] = displayName
 end
 
--- Assigns transformations to an entity
+-- Assigns transformations to an entity (Adds to existing transformations)
 -- valid target types: [collectible, trinket, card, pill, entity]
 -- when type = entity, targetIdentifier must be in the format "ID.Variant.subtype". for any other type, it can just be the id
 -- EXAMPLE: EID:assignTransformation("collectible", 1, "My Transformation")
@@ -102,6 +102,24 @@ function EID:assignTransformation(targetType, targetIdentifier, transformationSt
 		entryID = targetIdentifier
 	end
 	EID.CustomTransformAssignments[entryID] = transformationString
+end
+
+-- Removes a transformation of an entity
+-- valid target types: [collectible, trinket, card, pill, entity]
+-- when type = entity, targetIdentifier must be in the format "ID.Variant.subtype". for any other type, it can just be the id
+-- EXAMPLE: EID:removeTransformation("collectible", 1, "My Transformation")
+function EID:removeTransformation(targetType, targetIdentifier, transformationString)
+	local entryID = EID:getIDVariantString(targetType)
+	if entryID ~= nil then
+		entryID = entryID.."."..targetIdentifier
+	else
+		entryID = targetIdentifier
+	end
+	if EID.CustomTransformRemovals[entryID] == nil then
+		EID.CustomTransformRemovals[entryID] = transformationString
+	else
+		EID.CustomTransformRemovals[entryID] = EID.CustomTransformRemovals[entryID]..","..transformationString
+	end
 end
 
 -- Adds a description for a an Entity. Optional parameters: language, transformations
@@ -245,7 +263,7 @@ function EID:getDescriptionObj(Type, Variant, SubType)
 	local tableEntry = EID:getDescriptionData(Type, Variant, description.ID)
 	description.Description =tableEntry and tableEntry[3] or "MISSING DESCRIPTION"
 
-	description.Transformation = EID:getTransformation(description.fullItemString)
+	description.Transformation = EID:getTransformation(Type, Variant, description.ID)
 
 	return description
 end
@@ -287,20 +305,35 @@ function EID:getDescriptionData(Type, Variant, SubType)
 	return moddedDesc or legacyModdedDescription or defaultDesc
 end
 
--- Get the transformation uniqueName / ID of a given "ID.Variant.Subtype" pair
--- Example: EID:getTransformation("5.100.34")  will return "12" which is the id for Bookworm
-function EID:getTransformation(entityIdentifier)
-	local custom = EID.CustomTransformAssignments[entityIdentifier]
+-- Get the transformation uniqueName / ID of a given entity
+-- Example: EID:getTransformation(5,100,34)  will return "12" which is the id for Bookworm
+function EID:getTransformation(id, variant, subType)
+	local entityString = id.."."..variant.."."..subType
+	local listToTest = ""
+	local default = EID.EntityTransformations[entityString]
+	if default~= nil then listToTest = default end
+
 	local customLegacy = nil
-	local splitString = {}
-	for identifier in string.gsub(entityIdentifier,"%f[.]%.%f[^.]", "\0"):gmatch("%Z+") do 
-		table.insert(splitString,identifier)
+	if id == 5 and variant == 100 then
+		customLegacy = __eidItemTransformations[subType]
+		if customLegacy~= nil then listToTest = listToTest..","..customLegacy end
 	end
-	if splitString[1] == "5" and splitString[2] == "100" then
-		customLegacy = __eidItemTransformations[splitString[3]]
+
+	local custom = EID.CustomTransformAssignments[entityString]
+	if custom~= nil then listToTest = listToTest..","..custom end
+
+	local transformationList = ""
+	local removedList = EID.CustomTransformRemovals[entityString]
+	for transform in string.gmatch(listToTest, "([^,]+)") do
+		local isRemoved = false
+		if removedList ~= nil then
+			for removedTransform in string.gmatch(removedList, "([^,]+)") do
+				if transform == removedTransform then isRemoved = true end
+			end
+		end
+		if not isRemoved then transformationList = transformationList..","..transform end
 	end
-	local default = EID.EntityTransformations[entityIdentifier]
-	return custom or customLegacy or default or "0"
+	return transformationList
 end
 
 --Get the name of the given transformation by its uniqueName / ID
