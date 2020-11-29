@@ -245,7 +245,7 @@ function EID:getDescriptionObj(Type, Variant, SubType)
 	description.Name = EID:getObjectName(Type, Variant, description.ID)
 
 	local tableEntry = EID:getDescriptionData(Type, Variant, description.ID)
-	description.Description = tableEntry[3] or "MISSING DESCRIPTION"
+	description.Description =tableEntry and tableEntry[3] or "MISSING DESCRIPTION"
 
 	description.Transformation = EID:getTransformation(description.fullItemString)
 
@@ -322,6 +322,7 @@ end
 -- tries to get the ingame name of an item based on its ID
 function EID:getObjectName(Type, Variant, SubType)
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
+	if tableEntry == nil then return "" end
 	local tableName = EID:getTableName(Type, Variant)
 	local name = nil
 	if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
@@ -485,7 +486,7 @@ end
 
 -- Returns the icon used for the bulletpoint. It will look at the first word in the given string.
 function EID:handleBulletpointIcon(text)
-	local firstWord = string.match(text, "([^%s]+)")
+	local firstWord = string.match(text, "{{.-}}")
 	if EID:getIcon(firstWord) ~= EID.InlineIcons["ERROR"] then
 		return firstWord
 	end
