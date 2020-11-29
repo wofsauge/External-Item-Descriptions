@@ -107,7 +107,7 @@ local function onDebugRender(t)
 		for i,v in ipairs(Isaac.FindByType(5,10,4,true,false)) do
 			if v:GetData()["EID_Description"] == nil then
 				local descTable = {
-					--["Name"] = "Some Item with seed ".. v.InitSeed ,
+					["Name"] = "Some Item with seed ".. v.InitSeed ,
 					["Description"] = "Test specific description#Init seed: ".. v.InitSeed,
 					["Transformation"] = "1,2"
 				} 
@@ -116,7 +116,7 @@ local function onDebugRender(t)
 		end
 
 		for i, v in ipairs(charsToDebug) do
-			local pos = EID.getTextPosition() + Vector(0, - 15 + ((i - 1) * 14))
+			local pos = EID.getTextPosition() + Vector(-5, - 15 + ((i - 1) * 14))
 			EID:renderString(v, pos, Vector(EID.Config["Scale"], EID.Config["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0))
 			
 			if not showDebugChars then
