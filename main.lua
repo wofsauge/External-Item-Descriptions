@@ -353,9 +353,9 @@ local function onRender(t)
 		local desc = closest:GetData()["EID_Description"]
 		local origDesc = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
 		if type(desc) == "table" then
-			origDesc.Description = desc.Description
-			origDesc.Name = desc.Name
-			origDesc.Transformation = desc.Transformation
+			origDesc.Description = desc.Description or origDesc.Description
+			origDesc.Name = desc.Name or origDesc.Name
+			origDesc.Transformation = desc.Transformation or origDesc.Transformation
 		else
 			origDesc.Description = desc
 		end

@@ -110,8 +110,6 @@ function EID:addEntity(id, variant, subtype, entityName, description, language)
 	subtype = subtype or nil
 	language = language or "en_us"
 	EID.descriptions[language].custom[id .. "." .. variant .. "." .. subtype] = {
-		id,
-		variant,
 		subtype,
 		entityName,
 		description
@@ -322,7 +320,7 @@ end
 -- tries to get the ingame name of an item based on its ID
 function EID:getObjectName(Type, Variant, SubType)
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
-	if tableEntry == nil then return "" end
+	if tableEntry == nil then return Type.."."..Variant.."."..SubType end
 	local tableName = EID:getTableName(Type, Variant)
 	local name = nil
 	if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
@@ -342,9 +340,9 @@ function EID:getObjectName(Type, Variant, SubType)
 	elseif tableName == "dice" then
 		return EID:getDescriptionTable("diceHeader")
 	elseif tableName == "custom" then
-		return name or SubType
+		return name or Type.."."..Variant.."."..SubType
 	end
-	return ""
+	return Type.."."..Variant.."."..SubType
 end
 
 -- check if an entity is part of the describable entities
@@ -352,6 +350,7 @@ function EID:hasDescription(entity)
 	local isAllowed = false
 	if EID.Config["EnableEntityDescriptions"] then
 		isAllowed = __eidEntityDescriptions[entity.Type .. "." .. entity.Variant .. "." .. entity.SubType] ~= nil
+		isAllowed = isAllowed or EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil
 		isAllowed = isAllowed or type(entity:GetData()["EID_Description"]) ~= type(nil)
 	end
 	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EID.Config["DisplayItemInfo"])

@@ -48,7 +48,7 @@ EID:addCollectible(2, "New override Method", "new Name", "ru") -- maximal method
 EID:addTrinket(2, "New override Method") -- minimal method
 EID:addCard(2, "New override Method", "new Name") -- card
 EID:addPill(2, "New override Method", "new Name") -- pilleffect 2 "Balls of steel"
-EID:addEntity(5, 10, 2, "Custom Name", "Custom description") -- Entity 
+EID:addEntity(5, 10, 2, "Custom Name", "New Custom description") -- Entity 
 
 ------ Test: adding custom transformation icon ------
 local dummySprite = Sprite()
@@ -99,15 +99,15 @@ EID:addColor("ColorBlackBlink", nil, function(color)
 
 
 local function onDebugRender(t)
-		for i,v in ipairs(Isaac.FindByType(5,10,2,true,false)) do
+		for i,v in ipairs(Isaac.FindByType(5,10,3,true,false)) do
 			if v:GetData()["EID_Description"] == nil then
 				v:GetData()["EID_Description"] = "Test specific description#Init seed: ".. v.InitSeed
 			end
 		end
-		for i,v in ipairs(Isaac.FindByType(5,10,3,true,false)) do
+		for i,v in ipairs(Isaac.FindByType(5,10,4,true,false)) do
 			if v:GetData()["EID_Description"] == nil then
 				local descTable = {
-					["Name"] = "Some Item with seed ".. v.InitSeed ,
+					--["Name"] = "Some Item with seed ".. v.InitSeed ,
 					["Description"] = "Test specific description#Init seed: ".. v.InitSeed,
 					["Transformation"] = "1,2"
 				} 
