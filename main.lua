@@ -61,7 +61,8 @@ if isluadebug then
     local userPath = os.tmpname()
     userPath = string.gsub(userPath, "\\", "/")
     local newPath = ""
-    if not string.find(userPath, "AppData") then
+	if not string.find(userPath, "AppData") then
+		-- Linux
         EID.modPath = os.getenv("HOME") .. "/.local/share/binding of isaac afterbirth+ mods/"..modfolder.."/"
     else
         for str in string.gmatch(userPath, "([^/]+)") do
