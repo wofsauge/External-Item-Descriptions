@@ -78,7 +78,7 @@ EID.InlineIcons["Test"] = {"pickups", -1, 9, 9, -1, 0, dummySprite3}
 --EID.InlineIcons["Card58"] = {"pickups", -1, 9, 9, -1, 0, dummySprite3}
 
 
-__eidItemDescriptions[2] = "{{Bomb}} Emote {{Key}} Test {{Test}}{{TestIcon}} {{ColorBlackBlink}}description {{SomeInvalidInnerStuff}} cool" -- 5.100.2 = Inner Eye
+__eidItemDescriptions[3] = "{{Bomb}} Emote {{Key}} Test {{Test}}{{TestIcon}} {{ColorBlackBlink}}description {{SomeInvalidInnerStuff}} cool" -- 5.100.2 = Inner Eye
 __eidItemDescriptions[6] = "This item as Inline Icon {{Collectible6}}#And here are others {{Collectible69}} {{Collectible16}} {{Collectible323}} {{Collectible345}} {{Collectible223}}#And some trinket sprites {{Trinket12}} {{Trinket22}} {{Trinket1}} {{Trinket55}} {{Trinket100}} {{Trinket123}}" -- 5.100.2 = Inner Eye
 
 
@@ -99,6 +99,22 @@ EID:addColor("ColorBlackBlink", nil, function(color)
 
 
 local function onDebugRender(t)
+		for i,v in ipairs(Isaac.FindByType(5,10,2,true,false)) do
+			if v:GetData()["EID_Description"] == nil then
+				v:GetData()["EID_Description"] = "Test specific description#Init seed: ".. v.InitSeed
+			end
+		end
+		for i,v in ipairs(Isaac.FindByType(5,10,3,true,false)) do
+			if v:GetData()["EID_Description"] == nil then
+				local descTable = {
+					["Name"] = "Some Item with seed ".. v.InitSeed ,
+					["Description"] = "Test specific description#Init seed: ".. v.InitSeed,
+					["Transformation"] = "1,2"
+				} 
+				v:GetData()["EID_Description"] = descTable
+			end
+		end
+
 		for i, v in ipairs(charsToDebug) do
 			local pos = EID.getTextPosition() + Vector(0, - 15 + ((i - 1) * 14))
 			EID:renderString(v, pos, Vector(EID.Config["Scale"], EID.Config["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0))

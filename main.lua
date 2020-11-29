@@ -348,12 +348,21 @@ local function onRender(t)
 	--Handle Indicators
 	EID:renderIndicator(closest)
 
-	--Handle Entities (specific)
-	--[[	if EID.Config["EnableEntityDescriptions"] and type(closest:GetData()["EID_Description"]) ~= type(nil) then
-		printTrinketDescription({closest.Type, closest:GetData()["EID_Description"]}, "custom")
+	--Handle GetData Entities (specific)
+	if EID.Config["EnableEntityDescriptions"] and type(closest:GetData()["EID_Description"]) ~= type(nil) then
+		local desc = closest:GetData()["EID_Description"]
+		local origDesc = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
+		if type(desc) == "table" then
+			origDesc.Description = desc.Description
+			origDesc.Name = desc.Name
+			origDesc.Transformation = desc.Transformation
+		else
+			origDesc.Description = desc
+		end
+		EID:printDescription(origDesc)
 		return
 	end
-	]]
+	
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
 		--Handle Trinkets
 		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType))
