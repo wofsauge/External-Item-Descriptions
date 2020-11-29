@@ -55,42 +55,35 @@ local nullVector = Vector(0,0)
 
 ---------------------------------------------------------------------------
 ------------------------------- Load Font ---------------------------------
-local isWindows, _ = pcall(require,"LinuxDetectionFile")
 local isluadebug, os = pcall(require,"os")
-local modfolder ='external item descriptions_836319872' --release mod folder name
-if isWindows then
-	-- WINDOWS
-	if isluadebug then
-		local userPath = os.tmpname()
-		userPath = string.gsub(userPath, "\\", "/")
-		local newPath = ""
-		for str in string.gmatch(userPath, "([^/]+)") do
-			if str ~="AppData" then
-				newPath = newPath..str.."/"
-			else
-				break
-			end
-		end
-		EID.modPath = newPath.."Documents/My Games/Binding of Isaac Afterbirth+ Mods/"..modfolder.."/"
-	else
-		--use some very hacky trickery to get the path to this mod
-		local _, err = pcall(require, "")
-		local _, basePathStart = string.find(err, "no file '", 1)
-		local _, modPathStart = string.find(err, "no file '", basePathStart)
-		local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
-		EID.modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
-	end
-	EID.modPath = string.gsub(EID.modPath, "\\", "/")
-	EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
+if isluadebug then
+    local modfolder ='external item descriptions_836319872' --release mod folder name
+    local userPath = os.tmpname()
+    userPath = string.gsub(userPath, "\\", "/")
+    local newPath = ""
+    if not string.find(userPath, "AppData") then
+        EID.modPath = os.getenv("HOME") .. "/.local/share/binding of isaac afterbirth+ mods/"..modfolder.."/"
+    else
+        for str in string.gmatch(userPath, "([^/]+)") do
+            if str ~="AppData" then
+                newPath = newPath..str.."/"
+            else
+                break
+            end
+        end
+        EID.modPath = newPath.."Documents/My Games/Binding of Isaac Afterbirth+ Mods/"..modfolder.."/"
+    end
 else
-	-- LINUX - Special thanks to jerb for providing these!
-	if isluadebug then
-		EID.modPath = os.getenv("HOME") .. "/.local/share/binding of isaac afterbirth+ mods/"..modfolder.."/"
-	else
-		-- only work if installed in the default location
-		EID.modPath = "../../../../../.local/share/binding of isaac afterbirth+ mods/"..modfolder.."/"
-	end
+    --use some very hacky trickery to get the path to this mod
+    local _, err = pcall(require, "")
+    local _, basePathStart = string.find(err, "no file '", 1)
+    local _, modPathStart = string.find(err, "no file '", basePathStart)
+    local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+    EID.modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
 end
+EID.modPath = string.gsub(EID.modPath, "\\", "/")
+EID.modPath = string.gsub(EID.modPath, "//", "/")
+EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
 
 EID.font = Font() -- init font object
 local fontFile = EID.Config["FontType"] or "default"
