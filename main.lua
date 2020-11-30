@@ -138,10 +138,10 @@ function EID:printDescription(desc)
 			renderID = desc.RealID
 		end
 		if iconType ~= nil then
-			offsetX = offsetX + 12
+			offsetX = offsetX + 14
 			EID:renderString(
 				"{{" .. iconType .. renderID .. "}}",
-				renderPos + (Vector(-3, -5) * EID.Config["Scale"]),
+				renderPos + (Vector(-3, -4) * EID.Config["Scale"]),
 				textScale,
 				EID:getNameColor()
 			)
@@ -245,7 +245,7 @@ end
 function EID:renderQuestionMark()
 	EID.IconSprite:Play("CurseOfBlind")
 	local pos = EID:getTextPosition()
-	EID:renderIcon(EID.IconSprite, pos.X + 5 * EID.Config["Scale"], pos.X + 5 * EID.Config["Scale"])
+	EID:renderIcon(EID.IconSprite, pos.X + 5 * EID.Config["Scale"], pos.Y + 5 * EID.Config["Scale"])
 end
 
 function EID:renderIndicator(entity)

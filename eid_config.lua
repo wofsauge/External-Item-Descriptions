@@ -30,8 +30,8 @@ EID.DefaultConfig = {
 	-- Default = 50
 	["XPosition"] = 50,
 	-- Set Y Position (Height) of the descriptiontext
-	-- Default = 33
-	["YPosition"] = 33,
+	-- Default = 35
+	["YPosition"] = 35,
 	-- Set the distance to an item in which informations will be displayed (in Tiles)
 	-- Default = 5
 	["MaxDistance"] = 5,
