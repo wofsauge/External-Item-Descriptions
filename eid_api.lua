@@ -215,8 +215,8 @@ end
 
 -- returns the current text position
 function EID:getTextPosition()
-	local posVector = EID.UsedPosition
-	for _,modifier in pairs(EID.PositionModifiers) do
+	local posVector = Vector(EID.UsedPosition.X,EID.UsedPosition.Y)
+	for a,modifier in pairs(EID.PositionModifiers) do
 		posVector = posVector + modifier
 	end
 	return posVector

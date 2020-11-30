@@ -302,6 +302,8 @@ local function onRender(t)
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
 		EID:addTextPosModifier("Schoolbag", Vector(0,30))
+	else
+		EID:removeTextPosModifier("Schoolbag")
 	end
 
 	if EID.isDisplayingPermanent and EID.permanentDisplayTextObj ~= nil then
