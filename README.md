@@ -6,22 +6,17 @@ For Afterbirth / Rebirth Version [click here](
 https://moddingofisaac.com/mod/1079/external-item-descriptions).
 
 ## FEATURES
-- Displays information for ALL 552 Collectibles, 128 Trinkets, cards, Runes and Pills in the game, including afterbirth+ and all boosterpacks (#1 - #5)
-- Displays if an item is needed for a transformation
-- Displays the Name and Type (Active / Familiar) of any collectible
-- Displays how many charges an item has
+- Displays information for all Collectibles, Trinkets, Cards, Runes, Pills and some Rooms
+- Displays **additional informations** like Itemtype, Charges, or Transformations
 - Display one of 4 different Indicators around the inspected item
-- Press F2 to hide/show the descriptions!
-- Displays what the next payout of the Sacrifice room can be
-- Displays a description of the effect of dice-rooms
-- Fully customize-able including features like:
-    - Custom language support
-    - Disabling the descriptions, when Curse of the blind is active (This is enabled on default)
-    - Customizable position, width and scale of the Textbox
-    - Modded item support!
-    - Custom item descriptions support
-    - Custom entity descriptions
-    - and much more
+- Mod support for nearly all mods!
+- Easy to use API ([Documentation here](https://github.com/wofsauge/External-Item-Descriptions/wiki))
+- A huge amount of custom options like:
+---- Indicators
+---- Font style
+---- Language
+---- and a lot of visual options!
+- **Press F2 to hide/show the descriptions!**
 
 ### Supported Languages
 - **English** (Default)
@@ -35,7 +30,6 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions).
 
 ### Possible Future Features
 - Support for the new DLC **Repentance** (With backwards compatibility)
-- Better font to support more special characters
 - Display if items need to be collected for achievement purposes
 - Change location of description so it sticks to the highlighted object
 - More Languages! (Language mod unification ?)
@@ -58,9 +52,11 @@ Same as Windows but the path is: */home/%YourUsernameHere%/.steam/steam/steamapp
 
 ## Special Thanks to
 - PLATINUMGOD.CO.UK for providing useful item descriptions
-- r0_0t for the functionality to read pill effects and for implementing the modded item-Support
-- Nicolas Delvaux for creating an awesome french language pack
-- Lidia Arroyo Purroy for creating the amazing spanish spanish language Pack
-- Rickyy for creating the incredible polish language pack
-- Marcelino Cruz for creating the portuguese language pack
+- Nicolas Delvaux for creating an awesome **French** language pack
+- Lidia Arroyo Purroy for creating the amazing **Spanish** language Pack
+- Rickyy for creating the incredible **Polish** language pack
+- Marcelino Cruz for creating the **Portuguese** language pack
+- hell2pay, fly_6, TrJ-VoRoN for creating the **Russian** language pack
+- Gothika_47 for creating the **Bulgarian** language pack
+- Mert Dutal for creating the **Turkish** language pack
 - [adc](https://steamcommunity.com/id/whytefang/) for creating a awesome new Languagepack and providing ideas for new functionalities
