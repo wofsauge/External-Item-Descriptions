@@ -100,29 +100,29 @@ EID:addColor("ColorBlackBlink", nil, function(color)
 
 
 local function onDebugRender(t)
-		for i,v in ipairs(Isaac.FindByType(5,10,3,true,false)) do
-			if v:GetData()["EID_Description"] == nil then
-				v:GetData()["EID_Description"] = "Test specific description#Init seed: ".. v.InitSeed
-			end
+	for i,v in ipairs(Isaac.FindByType(5,10,3,true,false)) do
+		if v:GetData()["EID_Description"] == nil then
+			v:GetData()["EID_Description"] = "Test specific description#Init seed: ".. v.InitSeed
 		end
-		for i,v in ipairs(Isaac.FindByType(5,10,4,true,false)) do
-			if v:GetData()["EID_Description"] == nil then
-				local descTable = {
-					["Name"] = "Some Item with seed ".. v.InitSeed ,
-					["Description"] = "Test specific description#Init seed: ".. v.InitSeed,
-					["Transformation"] = "1,2"
-				} 
-				v:GetData()["EID_Description"] = descTable
-			end
+	end
+	for i,v in ipairs(Isaac.FindByType(5,10,4,true,false)) do
+		if v:GetData()["EID_Description"] == nil then
+			local descTable = {
+				["Name"] = "Some Item with seed ".. v.InitSeed ,
+				["Description"] = "Test specific description#Init seed: ".. v.InitSeed,
+				["Transformation"] = "1,2"
+			} 
+			v:GetData()["EID_Description"] = descTable
 		end
+	end
 
-		for i, v in ipairs(charsToDebug) do
-			local pos = EID.getTextPosition() + Vector(-5, - 15 + ((i - 1) * 14))
-			EID:renderString(v, pos, Vector(EID.Config["Scale"], EID.Config["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0))
-			
-			if not showDebugChars then
-				break
-			end
+	for i, v in ipairs(charsToDebug) do
+		local pos = EID.getTextPosition() + Vector(-5, - 15 + ((i - 1) * 14))
+		EID:renderString(v, pos, Vector(EID.Config["Scale"], EID.Config["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0))
+		
+		if not showDebugChars then
+			break
 		end
+	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onDebugRender)

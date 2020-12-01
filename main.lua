@@ -13,7 +13,7 @@ EID.isHidden = EID.Config["Hidden"]
 -- general variables
 EID.PositionModifiers = {}
 EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
-EID.isDisplayingText = false
+EID.isDisplaying = false
 EID.isDisplayingPermanent = false
 EID.permanentDisplayTextObj = nil
 EID.lastDescriptionEntity = nil
@@ -285,7 +285,7 @@ end
 ---------------------------On Render Function------------------------------
 
 local function onRender(t)
-	EID.isDisplayingText = false
+	EID.isDisplaying = false
 	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) then
 		EID.isHidden = not EID.isHidden
 	end
@@ -308,7 +308,7 @@ local function onRender(t)
 
 	if EID.isDisplayingPermanent and EID.permanentDisplayTextObj ~= nil then
 		EID:printDescription(EID.permanentDisplayTextObj)
-		EID.isDisplayingText = true
+		EID.isDisplaying = true
 		return
 	end
 
@@ -346,7 +346,7 @@ local function onRender(t)
 		return
 	end
 	EID.lastDescriptionEntity = closest
-	EID.isDisplayingText = true
+	EID.isDisplaying = true
 
 	--Handle Indicators
 	EID:renderIndicator(closest)

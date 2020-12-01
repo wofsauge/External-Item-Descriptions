@@ -205,7 +205,7 @@ end
 
 -- Returns if EID is displaying text right now
 function EID:isDisplayingText()
-	return EID.isDisplayingText
+	return EID.isDisplaying
 end
 
 -- Returns true, if curse of blind is active
@@ -261,7 +261,7 @@ function EID:getDescriptionObj(Type, Variant, SubType)
 	description.Name = EID:getObjectName(Type, Variant, description.ID)
 
 	local tableEntry = EID:getDescriptionData(Type, Variant, description.ID)
-	description.Description =tableEntry and tableEntry[3] or "MISSING DESCRIPTION"
+	description.Description =tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, description.ID)
 
 	description.Transformation = EID:getTransformation(Type, Variant, description.ID)
 
@@ -353,11 +353,12 @@ end
 -- tries to get the ingame name of an item based on its ID
 function EID:getObjectName(Type, Variant, SubType)
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
-	if tableEntry == nil then return Type.."."..Variant.."."..SubType end
 	local tableName = EID:getTableName(Type, Variant)
 	local name = nil
-	if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
-		name = tableEntry[2]
+	if tableEntry ~= nil then
+		if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
+			name = tableEntry[2]
+		end
 	end
 	if tableName == "collectibles" then
 		return name or EID.itemConfig:GetCollectible(SubType).Name
@@ -378,6 +379,19 @@ function EID:getObjectName(Type, Variant, SubType)
 	return Type.."."..Variant.."."..SubType
 end
 
+-- tries to get the ingame description of an object, based on their description in the XML files
+function EID:getXMLDescription(Type, Variant, SubType)
+	local tableName = EID:getTableName(Type, Variant)
+	local desc= nil
+	if tableName == "collectibles" then
+		desc = EID.itemConfig:GetCollectible(SubType).Description
+	elseif tableName == "trinkets" then
+		desc = EID.itemConfig:GetTrinket(SubType).Description
+	elseif tableName == "cards" then
+		desc = EID.itemConfig:GetCard(SubType).Description
+	end
+	return desc or "(No Description available)"
+end
 -- check if an entity is part of the describable entities
 function EID:hasDescription(entity)
 	local isAllowed = false
