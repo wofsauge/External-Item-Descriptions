@@ -53,7 +53,7 @@
 or 
 [b]Windows[/b]
 1. Go to ..\Documents\My Games\Binding of Isaac Afterbirth+ Mods\External item descriptions\ 
-2. Open 'config.lua' with any texteditor
+2. Open 'eid_config.lua' with any texteditor
 3. Edit the Config
 4. Save the file
 5. Play the game
@@ -71,7 +71,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions
 - Rickyy for creating the incredible [b]Polish[/b] language pack
 - Marcelino Cruz for creating the [b]Portuguese[/b] language pack
 - hell2pay, fly_6, TrJ-VoRoN for creating the [b]Russian[/b] language pack
-- Gothika_47 for creating the [b]Bulgarian[/b] language pack
+- Gothika_47 and TST_Gogo_ for creating the [b]Bulgarian[/b] language pack
 - Mert Dutal for creating the [b]Turkish[/b] language pack
 - [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating an awesome new Languagepack and providing ideas for new functionalities
 
