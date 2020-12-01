@@ -1,3 +1,6 @@
+--for i,v in ipairs(x) do
+--    print("{\""..v[1].."\", \""..orig[i][2].."\", \""..v[3].."\"},")
+--end
 	
 ------------------------------------------------------------------
 -----  Basic DUMMY descriptions based on Platinumgod.co.uk -----
