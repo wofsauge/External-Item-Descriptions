@@ -14,6 +14,10 @@ EID.DefaultConfig = {
 	-- 						Italian (https://steamcommunity.com/sharedfiles/filedetails/?id=931392691)
 	-- If you want to make a translation, please contact me :)
 	["Language"] = "en_us",
+	-- Toggle if item names should be displayed in your language, english or both
+	-- States: 1 = english , 2 = translated,  3 = both
+	-- Default = 2
+	["TranslateItemName"] = 2,
 	-- Change font type. Values are [default, borderless, inverted]
 	-- Default = "default"
 	["FontType"] = "default",

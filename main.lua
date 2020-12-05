@@ -168,8 +168,20 @@ function EID:printDescription(desc)
 	end
 	--Display Itemname
 	if EID.Config["ShowItemName"] then
+		local curName = desc.Name
+		if EID.Config["TranslateItemName"] ~= 2 then
+			local curLanguage = EID.Config["Language"]
+			EID.Config["Language"] = "en_us"
+			local englishName = EID:getObjectName(desc.ItemType, desc.ItemVariant, desc.ID)
+			EID.Config["Language"] = curLanguage
+			if EID.Config["TranslateItemName"] == 1 then
+				curName = englishName
+			elseif EID.Config["TranslateItemName"] == 3 and curName ~= englishName then
+				curName = curName.." ("..englishName..")"
+			end
+		end
 		EID:renderString(
-			desc.Name,
+			curName,
 			renderPos + (Vector(offsetX, -4) * EID.Config["Scale"]),
 			textScale,
 			EID:getNameColor()

@@ -86,6 +86,27 @@ if MCMLoaded then
 			Info = {"Changes the language.","Languages marked with (WIP) are incomplete"}
 		}
 	)
+	-- Item Name Language
+	local translateStates = {"English", "Current Language", "Current + English"}
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenuOptionType.NUMBER,
+			CurrentSetting = function()
+				return EID.Config["TranslateItemName"]
+			end,
+			Minimum = 1,
+			Maximum = 3,
+			Display = function()
+				return "Name Language: " .. translateStates[EID.Config["TranslateItemName"]]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["TranslateItemName"] = currentNum
+			end,
+			Info = {"If translated names are available,","this changes how item names are displayed."}
+		}
+	)
 	MCM.AddSpace("EID", "General")
 	
 	-- Disable on Curse
