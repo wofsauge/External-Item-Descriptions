@@ -174,7 +174,7 @@ function EID:getIDVariantString(typeName)
 	elseif typeName == "card" or typeName == "cards" then return "5.300"
 	elseif typeName == "pill" or typeName == "pills" then return "5.70"
 	elseif typeName == "sacrifice" then return "-999.-1"
-	elseif typeName == "dice" then return "-999.-2"
+	elseif typeName == "dice" then return "1000.76"
 	end
 	return nil
 end
@@ -187,7 +187,7 @@ function EID:getTableName(Type, Variant)
 	elseif idString == "5.300" then return "cards"
 	elseif idString == "5.70" then return "pills"
 	elseif idString == "-999.-1" then return "sacrifice"
-	elseif idString == "-999.-2" then return "dice"
+	elseif idString == "1000.76" then return "dice"
 	else return "custom"
 	end
 end
@@ -395,16 +395,20 @@ end
 -- check if an entity is part of the describable entities
 function EID:hasDescription(entity)
 	local isAllowed = false
-	if EID.Config["EnableEntityDescriptions"] then
+	if EID.Config["EnableEntityDescriptions"] and EID:getTableName(entity.Type, entity.Variant) == "custom" then
 		isAllowed = __eidEntityDescriptions[entity.Type .. "." .. entity.Variant .. "." .. entity.SubType] ~= nil
 		isAllowed = isAllowed or EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil
 		isAllowed = isAllowed or type(entity:GetData()["EID_Description"]) ~= type(nil)
 	end
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EID.Config["DisplayItemInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EID.Config["DisplayCardInfo"])
-	isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
-	return entity.Type == EntityType.ENTITY_PICKUP and isAllowed and entity.SubType > 0
+	if entity.Type == EntityType.ENTITY_PICKUP then
+		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EID.Config["DisplayItemInfo"])
+		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
+		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EID.Config["DisplayCardInfo"])
+		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
+		return isAllowed and entity.SubType > 0
+	end
+	isAllowed = isAllowed or (entity.Type == 1000 and entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"])
+	return isAllowed
 end
 
 -- Replaces shorthand-representations of a character with the internal reference

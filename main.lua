@@ -313,13 +313,8 @@ local function onRender(t)
 	end
 
 	local closest = nil
-	local closestDice = nil
 	local dist = 10000
 	for i, entity in ipairs(Isaac.GetRoomEntities()) do
-		if Game():GetRoom():GetType() == RoomType.ROOM_DICE and entity.Type == 1000 and entity.Variant == 76 then
-			closestDice = entity
-		end
-
 		if EID:hasDescription(entity) then
 			local diff = entity.Position:__sub(player.Position)
 			if diff:Length() < dist then
@@ -332,12 +327,6 @@ local function onRender(t)
 	if dist / 40 > tonumber(EID.Config["MaxDistance"]) or not closest.Type == EntityType.ENTITY_PICKUP then
 		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
 			EID:printDescription(EID:getDescriptionObj(-999, -1, EID.sacrificeCounter))
-		end
-		if
-			Game():GetRoom():GetType() == RoomType.ROOM_DICE and EID.Config["DisplayDiceInfo"] and type(closestDice) ~= type(nil)
-		 then
-			EID:printDescription(EID:getDescriptionObj(-999, -2, closestDice.SubType + 1))
-			EID:renderIndicator(closestDice)
 		end
 		return
 	end
@@ -363,6 +352,11 @@ local function onRender(t)
 			origDesc.Description = desc
 		end
 		EID:printDescription(origDesc)
+		return
+	end
+
+	if closest.Type == 1000 and closest.Variant == 76 then
+		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1))
 		return
 	end
 	
