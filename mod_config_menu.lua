@@ -5,6 +5,7 @@ EID.MCMCompat_isDisplayingEIDTab = false
 local MCMCompat_isDisplayingDummyMCMObj = false
 local MCMCompat_oldPermanentObj = false
 EID.MCMLoaded = MCMLoaded
+local colorNameArray = {}
 
 function EID:renderMCMDummyDescription()
 	if MCMLoaded then
@@ -17,6 +18,7 @@ function EID:renderMCMDummyDescription()
 			demoDescObj.Description = "A very cool description as a demonstration of the power of EID!#\1 This is also a cool line#This line loves you {{Heart}}"
 			EID:displayPermanentText(demoDescObj)
 			MCMCompat_isDisplayingDummyMCMObj = true
+			EID:buildColorArray()
 		elseif not MCM.IsVisible and MCMCompat_isDisplayingDummyMCMObj then
 			if MCMCompat_oldPermanentObj == nil then
 				EID:hidePermanentText()
@@ -26,8 +28,19 @@ function EID:renderMCMDummyDescription()
 			EID.MCMCompat_isDisplayingEIDTab = false
 			MCMCompat_oldPermanentObj = nil
 			MCMCompat_isDisplayingDummyMCMObj = false
+			colorNameArray = {}
 		end
 	end
+end
+
+function EID:buildColorArray()
+	colorNameArray = {}
+	for k,v in pairs(EID.InlineColors) do
+		if k~="ColorText" and k~="ColorTransform" and k~="ColorError" and k~="ColorObjName" and k~="ColorReset" then
+			table.insert(colorNameArray,k)
+		end
+	end
+	table.sort(colorNameArray)
 end
 
 if MCMLoaded then
@@ -64,6 +77,7 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = #(EID.Languages),
 			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = false;
 				return "Language: " .. displayLanguage[AnIndexOf(EID.Languages, EID.Config["Language"])]
 			end,
 			OnChange = function(currentNum)
@@ -200,6 +214,7 @@ if MCMLoaded then
 				return EID.Config["DisplayItemInfo"]
 			end,
 			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = false;
 				local onOff = "False"
 				if EID.Config["DisplayItemInfo"] then
 					onOff = "True"
@@ -383,6 +398,7 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = #fontTypes,
 			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = true;
 				return "Font Type: " .. EID.Config["FontType"]
 			end,
 			OnChange = function(currentNum)
@@ -405,7 +421,6 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = 6,
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = true;
 				return "Text Size: " .. EID.Config["Scale"]
 			end,
 			OnChange = function(currentNum)
@@ -520,6 +535,7 @@ if MCMLoaded then
 			end
 		}
 	)
+	-------TRANSFORMATION ICON---------
 	MCM.AddSetting(
 		"EID",
 		"Visuals",
@@ -538,6 +554,102 @@ if MCMLoaded then
 			OnChange = function(currentBool)
 				EID.Config["TransformationIcons"] = currentBool
 			end
+		}
+	)
+
+	---------------------------------------------------------------------------
+	---------------------------------Visuals-----------------------------------
+
+	-- Text Color
+	MCM.AddSetting(
+		"EID",
+		"Colors",
+		{
+			Type = ModConfigMenuOptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(colorNameArray, EID.Config["TextColor"])
+			end,
+			Minimum = 0,
+			Maximum = 1000,
+			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = true;
+				return "Descriptions: " .. string.gsub(EID.Config["TextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TextColor"]).."/"..#colorNameArray..")"
+			end,
+			OnChange = function(currentNum)
+				if currentNum == 0 then currentNum = #colorNameArray end
+				if currentNum > #colorNameArray then currentNum = 1 end
+				EID.Config["TextColor"] = colorNameArray[currentNum]
+			end,
+			Info = {"Changes the color of normal texts."}
+		}
+	)
+	-- Name Color
+	MCM.AddSetting(
+		"EID",
+		"Colors",
+		{
+			Type = ModConfigMenuOptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(colorNameArray, EID.Config["ItemNameColor"])
+			end,
+			Minimum = 0,
+			Maximum = 1000,
+			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = true;
+				return "Names: " .. string.gsub(EID.Config["ItemNameColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemNameColor"]).."/"..#colorNameArray..")"
+			end,
+			OnChange = function(currentNum)
+				if currentNum == 0 then currentNum = #colorNameArray end
+				if currentNum > #colorNameArray then currentNum = 1 end
+				EID.Config["ItemNameColor"] = colorNameArray[currentNum]
+			end,
+			Info = {"Changes the color of name texts."}
+		}
+	)
+	-- Transform Color
+	MCM.AddSetting(
+		"EID",
+		"Colors",
+		{
+			Type = ModConfigMenuOptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(colorNameArray, EID.Config["TransformationColor"])
+			end,
+			Minimum = 0,
+			Maximum = 1000,
+			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = true;
+				return "Transformations: " .. string.gsub(EID.Config["TransformationColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TransformationColor"]).."/"..#colorNameArray..")"
+			end,
+			OnChange = function(currentNum)
+				if currentNum == 0 then currentNum = #colorNameArray end
+				if currentNum > #colorNameArray then currentNum = 1 end
+				EID.Config["TransformationColor"] = colorNameArray[currentNum]
+			end,
+			Info = {"Changes the color of transformation texts."}
+		}
+	)
+	-- Error Color
+	MCM.AddSetting(
+		"EID",
+		"Colors",
+		{
+			Type = ModConfigMenuOptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(colorNameArray, EID.Config["ErrorColor"])
+			end,
+			Minimum = 0,
+			Maximum = 1000,
+			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = true;
+				return "Errors: " .. string.gsub(EID.Config["ErrorColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ErrorColor"]).."/"..#colorNameArray..")"
+			end,
+			OnChange = function(currentNum)
+				if currentNum == 0 then currentNum = #colorNameArray end
+				if currentNum > #colorNameArray then currentNum = 1 end
+				EID.Config["ErrorColor"] = colorNameArray[currentNum]
+			end,
+			Info = {"Changes the color of error messages like Unknown pills"}
 		}
 	)
 end

@@ -72,9 +72,9 @@ EID.DefaultConfig = {
 	-- Toggle Display of Trinket descriptions
 	-- Default = true
 	["DisplayTrinketInfo"] = true,
-	-- Set the RGB color of the Itemname text
-	-- Default = {0.8, 0.3, 0.8}
-	["ItemNameColor"] = {0.8, 0.3, 0.8},
+	-- Set the color-name of the Itemname description text. Color names can be found& defined in "eid_data.lua"
+	-- Default = "ColorEIDObjName"
+	["ItemNameColor"] = "ColorEIDObjName",
 	-------TRANSFORMATIONS---------
 
 	-- Toggle Display of Transformation text
@@ -83,9 +83,9 @@ EID.DefaultConfig = {
 	-- Toggle Display of Transformation icons
 	-- Default = true
 	["TransformationIcons"] = true,
-	-- Set the RGB color of the Transformation text
-	-- Default = { 0.5, 0.5, 1}
-	["TransformationColor"] = {0.5, 0.5, 1},
+	-- Set the color-name of the Transformation description text. Color names can be found& defined in "eid_data.lua"
+	-- Default = "ColorEIDTransform"
+	["TransformationColor"] = "ColorEIDTransform",
 	------------CARDS--------------
 
 	-- Toggle Display of Card / Rune descriptions
@@ -120,12 +120,12 @@ EID.DefaultConfig = {
 	-- Error message displayed when an error occurs
 	-- Default = [Effect not defined]
 	["ErrorMessage"] = "[Effect not defined]",
-	-- Set the RGB color of the default description text
-	-- Default = { 1, 1, 1}
-	["TextColor"] = {1, 1, 1},
-	-- Set the RGB color of the Error text
-	-- Default = { 1, 0, 0}
-	["ErrorColor"] = {1, 0.4, 0.4},
+	-- Set the color-name of the default description text. Color names can be found& defined in "eid_data.lua"
+	-- Default = "ColorEIDText"
+	["TextColor"] = "ColorEIDText",
+	-- Set the color-name of the Error description text. Color names can be found& defined in "eid_data.lua"
+	-- Default = "ColorEIDError"
+	["ErrorColor"] = "ColorEIDError",
 	-- Enables or disables custom Descriptions for entities
 	-- Default = true
 	["EnableEntityDescriptions"] = true

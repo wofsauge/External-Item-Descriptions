@@ -664,40 +664,20 @@ end
 
 -- Get KColor object of "Entity Name" texts
 function EID:getNameColor()
-	return KColor(
-		EID.Config["ItemNameColor"][1],
-		EID.Config["ItemNameColor"][2],
-		EID.Config["ItemNameColor"][3],
-		EID.Config["Transparency"]
-	)
+	return EID:getColor(EID.Config["ItemNameColor"], EID.InlineColors["ColorEIDObjName"])
 end
 
 -- Get KColor object of "Description" texts
 function EID:getTextColor()
-	return KColor(
-		EID.Config["TextColor"][1],
-		EID.Config["TextColor"][2],
-		EID.Config["TextColor"][3],
-		EID.Config["Transparency"]
-	)
+	return EID:getColor(EID.Config["TextColor"], EID.InlineColors["ColorEIDText"])
 end
 
 -- Get KColor object of "Transformation" texts
 function EID:getTransformationColor()
-	return KColor(
-		EID.Config["TransformationColor"][1],
-		EID.Config["TransformationColor"][2],
-		EID.Config["TransformationColor"][3],
-		EID.Config["Transparency"]
-	)
+	return EID:getColor(EID.Config["TransformationColor"], EID.InlineColors["ColorEIDTransform"])
 end
 
 -- Get KColor object of "Error" texts
 function EID:getErrorColor()
-	return KColor(
-		EID.Config["ErrorColor"][1],
-		EID.Config["ErrorColor"][2],
-		EID.Config["ErrorColor"][3],
-		EID.Config["Transparency"]
-	)
+	return EID:getColor(EID.Config["ErrorColor"], EID.InlineColors["ColorEIDError"])
 end

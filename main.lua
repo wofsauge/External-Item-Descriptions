@@ -7,7 +7,7 @@ local enableDebug = false
 
 require("eid_config")
 EID.Config = EID.DefaultConfig
-EID.Config.Version = "3.0"
+EID.Config.Version = "3.1"
 EID.isHidden = EID.Config["Hidden"]
 
 -- general variables

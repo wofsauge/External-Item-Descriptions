@@ -137,6 +137,10 @@ EID.InlineColors = {
 	["ColorObjName"] = function(_) return EID:getNameColor() end,
 	["ColorReset"] = function(_) return EID.LastRenderCallColor end,
 	-- Basic Colors
+	["ColorEIDText"] = KColor(1, 1, 1, 1),
+	["ColorEIDTransform"] = KColor(0.5, 0.5, 1, 1),
+	["ColorEIDError"] = KColor(1, 0.4, 0.4, 1),
+	["ColorEIDObjName"] = KColor(0.8, 0.3, 0.8, 1),
 	["ColorBlack"] = KColor(0, 0, 0, 1),
 	["ColorWhite"] = KColor(1, 1, 1, 1),
 	["ColorRed"] = KColor(1, 0, 0, 1),
