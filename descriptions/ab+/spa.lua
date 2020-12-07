@@ -98,7 +98,7 @@ EID.descriptions["spa"].collectibles={
 {"80", "The Pact", "↑ +0,5 de daño#↑ +0,7 de lágrimas#+2 corazones de alma"},
 {"81", "Dead Cat", "↑ +9 vidas#Revive con 1 corazón"},
 {"82", "Lord of the Pit", "Vuela#↑ +0,3 de velocidad"},
-{"83", "The Nail", "+1 corazón de alma#↑ +0,7 de daño#↑ -0,18 de velocidad#Rompe rocas"},
+{"83", "The Nail", "+1 corazón de alma#↑ +0,7 de daño#↓ -0,18 de velocidad#Rompe rocas"},
 {"84", "We Need To Go Deeper!", "Genera una trampilla para saltar el nivel#10% de probabilidad de que se abra una trampilla a una planta secreta"},
 {"85", "Deck of Cards", "Genera 1 carta"},
 {"86", "Monstro's Tooth", "Invoca a Monstro, y este daña a un enemigo"},

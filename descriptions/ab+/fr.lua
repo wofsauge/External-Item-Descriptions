@@ -99,7 +99,7 @@ EID.descriptions["fr"].collectibles={
     {"80","","↑ +0.5 Dégât(s)#↑ +0.7 Cadence de tir#+2 Coeurs bleus"},
     {"81","","↑ #Réduit votre nombre de réceptacles de coeurs rouges à 1#+9 Vies#Réapparaissez avec un coeur rouge"},
     {"82","","Envol#↑ +0.3 Vitesse"},
-    {"83","","+1 Coeur bleu#↑ +0.7 Dégât(s)#↑ -0.18 Vitesse#Écrasez les rochers"},
+    {"83","","+1 Coeur bleu#↑ +0.7 Dégât(s)#↓ -0.18 Vitesse#Écrasez les rochers"},
     {"84","","Fait apparaître une trappe menant à l'étage suivant#10% de chances de trouver une échelle de cordes"},
     {"85","","Fait apparaître une carte"},
     {"86","","Fait atterrir Monstro Après quoi, il s'en va"},

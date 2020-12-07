@@ -98,7 +98,7 @@ EID.descriptions["pt"].collectibles={
     {"80","","↑ +0.5 Dano Up#↑ +0.7 lágrimas Up#+2 Coraçãoa de alma"},
     {"81","","↑ +9 vidas#Respawn com 1 Coração"},
     {"82","","Voar#↑ +0.3 Velocidade up"},
-    {"83","","+1 Coração de alma#↑ +0.7 Dano up#↑ -0.18 Velocidade down#Quebrar pedras"},
+    {"83","","+1 Coração de alma#↑ +0.7 Dano up#↓ -0.18 Velocidade down#Quebrar pedras"},
     {"84","","Cria um alçapão para pular o andar#10% chance de alçapão crawlspace"},
     {"85","","Spawna 1 Carta"},
     {"86","","Evocar Monstro por um pisão"},

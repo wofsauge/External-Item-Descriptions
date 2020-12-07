@@ -95,7 +95,7 @@ EID.descriptions["pl"].collectibles={
     {"80", "The Pact", "↑ +0.5 Obrażeń#↑ +0.7 Szybkostrzelności#+2 Serca Duszy"},
     {"81", "Dead Cat", "↑ +9 Żyć#Odradzasz siê z 1 Sercem"},
     {"82", "Lord of the Pit", "Latanie#↑ +0.3 Szybkości"},
-    {"83", "The Nail", "+1 Serce Duszy#↑ +0.7 Obrażeń#↑ -0.18 Szybkości#Rozwalasz kamienie"},
+    {"83", "The Nail", "+1 Serce Duszy#↑ +0.7 Obrażeń#↓ -0.18 Szybkości#Rozwalasz kamienie"},
     {"84", "We Need To Go Deeper!", "Tworzy klapê w podłodze dziêki której możesz pominąć piêtro#10% szans na klapê do Crawl Space"},
     {"85", "Deck of Cards", "Tworzy 1 Kartê"},
     {"86", "Monstro's Tooth", "Przyzywa Monstro który skacze na losowego wroga"},
