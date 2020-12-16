@@ -1,7 +1,7 @@
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
-EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "ru", "spa", "bul", "pl", "turkish"}
+EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "ru", "spa", "it", "bul", "pl", "turkish"}
 EID.descriptions = {} -- Table that holds all translation strings
 local enableDebug = false
 
