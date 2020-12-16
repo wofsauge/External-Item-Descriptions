@@ -421,7 +421,7 @@ EID.descriptions["DUMMY"].collectibles={
     {"402", "Chaos", "Pedestals will now be chosen from random itempools#Spawns 1-6 random pickups"},
     {"403", "Spider Mod", "Allows you to see your tear damage and the health bars of all enemies#Inflicts a random status effect on contact#Will randomly drop batteries"},
     {"404", "Farting Baby", "Blocks projectiles#If hit, it will fart, which will charms, poison or knockback enemies"},
-    {"405", "GB Bug", "Bounces around the room#Deals120 damage per second and applies a random status effect"},
+    {"405", "GB Bug", "Bounces around the room#Deals 120 damage per second and applies a random status effect"},
     {"406", "D8", "Reroll your stats#Will only affect damage, tears, range and speed"},
     {"407", "Purity", "↑ Boost one of your stats depending on the color of the aura around him#When you take damage, you will get a new aura#{{ColorRed}}Red{{CR}} = +4.0 Damage#{{ColorBlue}}Blue{{CR}} = -4 Tear Delay#{{ColorYellow}}Yellow{{CR}} = +0.5 Speed up#{{ColorOrange}}Orange{{CR}} = +7.5 Range up, +1 Tear height"},
     {"408", "Athame", "When you take damage, a black brimstone ring will appear around Isaac#Enemies killed with it have a chance to drop a black heart"},
