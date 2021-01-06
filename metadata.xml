@@ -46,7 +46,7 @@
 [/table]
 
 [img]https://i.imgur.com/J72fl8H.png[/img] [b]CHINESE[/b] version: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1290363695]EID Chinese Edition[/url] or alternatively [url=https://steamcommunity.com/sharedfiles/filedetails/?id=848295251]中文道具图鉴 Eid Chinese[/url]
-
+[img]https://i.imgur.com/scMz7Rk.png[/img] [b]KOREAN[/b] version: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1630138997]EID Korean[/url]
 [h1][b]------------------CONFIGURATION------------------[/b][/h1]
 [h1]You can use [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1603631350]'Mod config Menu'[/url] to customize this mod![/h1]
 or 
@@ -66,6 +66,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions
 [h1][b]------------------SPECIAL THANKS------------------[/b][/h1]
 - PLATINUMGOD.CO.UK for providing useful item descriptions
 - Nicolas Delvaux for creating an awesome [b]French[/b] language pack
+- Denkishi and 2G for creating the fantastic [b]Italian[/b] language pack
 - Lidia Arroyo Purroy for creating the amazing [b]Spanish[/b] language Pack
 - Rickyy for creating the incredible [b]Polish[/b] language pack
 - Marcelino Cruz for creating the [b]Portuguese[/b] language pack
@@ -75,7 +76,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions
 - [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating an awesome new Languagepack and providing ideas for new functionalities
 
 [img]https://i.imgur.com/P6a8043.png[/img] [url=https://github.com/wofsauge/External-Item-Descriptions]Any Problems? Visit this project on GitHub[/url]</description>
-    <version>3.10</version>
+    <version>3.13</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
