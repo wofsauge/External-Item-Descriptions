@@ -70,7 +70,7 @@ if MCMLoaded then
 		"EID",
 		"General",
 		{
-			Type = ModConfigMenuOptionType.NUMBER,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				return AnIndexOf(EID.Languages, EID.Config["Language"])
 			end,
@@ -92,7 +92,7 @@ if MCMLoaded then
 		"EID",
 		"General",
 		{
-			Type = ModConfigMenuOptionType.NUMBER,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				return EID.Config["TranslateItemName"]
 			end,
@@ -114,7 +114,7 @@ if MCMLoaded then
 		"EID",
 		"General",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["DisableOnCurse"]
 			end,
@@ -136,7 +136,7 @@ if MCMLoaded then
 		"EID",
 		"General",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["ShowUnidentifiedPillDescriptions"]
 			end,
@@ -156,7 +156,7 @@ if MCMLoaded then
 		"EID",
 		"General",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["HideInBattle"]
 			end,
@@ -182,7 +182,7 @@ if MCMLoaded then
 		"EID",
 		"General",
 		{
-			Type = ModConfigMenuOptionType.NUMBER,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				return AnIndexOf(indicators, EID.Config["Indicator"])
 			end,
@@ -206,7 +206,7 @@ if MCMLoaded then
 		"EID",
 		"General",
 		{
-			Type = ModConfigMenuOptionType.SCROLL,
+			Type = ModConfigMenu.OptionType.SCROLL,
 			CurrentSetting = function()
 				return AnIndexOf(distances, EID.Config["MaxDistance"]) - 1
 			end,
@@ -230,7 +230,7 @@ if MCMLoaded then
 		"EID",
 		"Display",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["DisplayItemInfo"]
 			end,
@@ -253,7 +253,7 @@ if MCMLoaded then
 		"EID",
 		"Display",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["DisplayTrinketInfo"]
 			end,
@@ -275,7 +275,7 @@ if MCMLoaded then
 		"EID",
 		"Display",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["DisplayCardInfo"]
 			end,
@@ -297,7 +297,7 @@ if MCMLoaded then
 		"EID",
 		"Display",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["DisplayPillInfo"]
 			end,
@@ -318,7 +318,7 @@ if MCMLoaded then
 		"EID",
 		"Display",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["DisplaySacrificeInfo"]
 			end,
@@ -340,7 +340,7 @@ if MCMLoaded then
 		"EID",
 		"Display",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["DisplayDiceInfo"]
 			end,
@@ -365,7 +365,7 @@ if MCMLoaded then
 		"EID",
 		"Display",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["DisplayCardInfoShop"]
 			end,
@@ -387,7 +387,7 @@ if MCMLoaded then
 		"EID",
 		"Display",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["DisplayPillInfoShop"]
 			end,
@@ -412,7 +412,7 @@ if MCMLoaded then
 		"EID",
 		"Visuals",
 		{
-			Type = ModConfigMenuOptionType.NUMBER,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				return AnIndexOf(fontTypes, EID.Config["FontType"])
 			end,
@@ -435,7 +435,7 @@ if MCMLoaded then
 		"EID",
 		"Visuals",
 		{
-			Type = ModConfigMenuOptionType.NUMBER,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				return AnIndexOf(textScales, EID.Config["Scale"])
 			end,
@@ -456,7 +456,7 @@ if MCMLoaded then
 		"EID",
 		"Visuals",
 		{
-			Type = ModConfigMenuOptionType.SCROLL,
+			Type = ModConfigMenu.OptionType.SCROLL,
 			CurrentSetting = function()
 				return AnIndexOf(transparencies, EID.Config["Transparency"]) - 1
 			end,
@@ -477,7 +477,7 @@ if MCMLoaded then
 		"EID",
 		"Visuals",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["ShowItemName"]
 			end,
@@ -498,7 +498,7 @@ if MCMLoaded then
 		"EID",
 		"Visuals",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["ShowItemType"]
 			end,
@@ -518,7 +518,7 @@ if MCMLoaded then
 		"EID",
 		"Visuals",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["ShowItemIcon"]
 			end,
@@ -540,7 +540,7 @@ if MCMLoaded then
 		"EID",
 		"Visuals",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["TransformationText"]
 			end,
@@ -561,7 +561,7 @@ if MCMLoaded then
 		"EID",
 		"Visuals",
 		{
-			Type = ModConfigMenuOptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
 				return EID.Config["TransformationIcons"]
 			end,
@@ -586,7 +586,7 @@ if MCMLoaded then
 		"EID",
 		"Colors",
 		{
-			Type = ModConfigMenuOptionType.NUMBER,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				return AnIndexOf(colorNameArray, EID.Config["TextColor"])
 			end,
@@ -609,7 +609,7 @@ if MCMLoaded then
 		"EID",
 		"Colors",
 		{
-			Type = ModConfigMenuOptionType.NUMBER,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				return AnIndexOf(colorNameArray, EID.Config["ItemNameColor"])
 			end,
@@ -632,7 +632,7 @@ if MCMLoaded then
 		"EID",
 		"Colors",
 		{
-			Type = ModConfigMenuOptionType.NUMBER,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				return AnIndexOf(colorNameArray, EID.Config["TransformationColor"])
 			end,
@@ -655,7 +655,7 @@ if MCMLoaded then
 		"EID",
 		"Colors",
 		{
-			Type = ModConfigMenuOptionType.NUMBER,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				return AnIndexOf(colorNameArray, EID.Config["ErrorColor"])
 			end,
