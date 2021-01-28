@@ -9,7 +9,11 @@ local colorNameArray = {}
 
 function EID:renderMCMDummyDescription()
 	if MCMLoaded then
-		EID:addTextPosModifier("MCM_HudOffset", Vector(MCM.Config.HudOffset*2,MCM.Config.HudOffset))
+		local mcmHudOffset = ModConfigMenu.Config["General"].HudOffset
+		if mcmHudOffset == nil and ScreenHelper then
+			mcmHudOffset = ScreenHelper.GetOffset()
+		end
+		EID:addTextPosModifier("MCM_HudOffset", Vector(mcmHudOffset * 2, mcmHudOffset))
 		if MCM.IsVisible and EID.permanentDisplayTextObj == nil and EID.MCMCompat_isDisplayingEIDTab then
 			MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
 			local demoDescObj = EID:getDescriptionObj(5, 100, 33)
