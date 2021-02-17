@@ -102,7 +102,7 @@ EID.descriptions["pl"].collectibles={
     {"87", "Loki's Horns", "Szansa na wystrzelenie łez w 4 strony"},
     {"88", "Little Chubby", "Familiar który szarżuje na przód"},
     {"89", "Spider Bite", "Łzy mają teraz szanse na spowolnienie wrogów"},
-    {"90", "The Small Rock", "↑ +1 Obrażeń#↑ +0.2 Szybkostrzelności#↑ -0.2 Szybkości"},
+    {"90", "The Small Rock", "↑ +1 Obrażeń#↑ +0.2 Szybkostrzelności#↓ -0.2 Szybkości"},
     {"91", "Spelunker Hat", "Ujawnia Sekretny Pokój jeśli jesteś obok niego"},
     {"92", "Super Bandage", "↑ +1 Serce#+2 Serca Duszy"},
     {"93", "The Gamekid", "Niewrażliwość + obrażenia kontaktowe#Zjedzenie wroga odnawia trochê Serca"},

@@ -102,7 +102,7 @@ EID.descriptions["spa"].collectibles={
     {"87", "Cuernos de Loki", "Posibilidad de disparar en 4 direcciones"},
     {"88", "Pequeño Chubby", "Familiar que carga hacia delante#Inflige 52,5 de daño por contacto cada segundo"},
     {"89", "Mordedura de araña", "Ralentiza a los enemigos"},
-    {"90", "The Small Rock", "↑ +1 de daño#↑ +0,2 de lágrimas#↑ -0,2 de velocidad"},
+    {"90", "The Small Rock", "↑ +1 de daño#↑ +0,2 de lágrimas#↓ -0,2 de velocidad"},
     {"91", "Casco de espeleólogo", "Muestra lo que hay detrás de las puertas"},
     {"92", "Supervendaje", "↑ +1 de vida#+2 corazones de alma"},
     {"93", "La consola", "Invencibilidad +daño por contacto#Comerse un enemigo recupera vida"},

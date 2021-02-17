@@ -105,7 +105,7 @@ EID.descriptions["pt"].collectibles={
     {"87","","Chance de disparar em 4 direções"},
     {"88","","Um familiar que avança e causa dano de toque"},
     {"89","","Chance de disparar lentidão"},
-    {"90","","↑ +1 Dano up#↑ +0.2 lágrimas Up#↑ -0.2 Velocidade Down"},
+    {"90","","↑ +1 Dano up#↑ +0.2 lágrimas Up#↓ -0.2 Velocidade Down"},
     {"91","","Revela o que há atrás das portas"},
     {"92","","↑ +1 Saúde up#+2 Coração de alma"},
     {"93","","Invencibilidade + dano de contato#Transforma o personagem em uma criatura semelhante ao Pac-Man por 5 segundos#Cura meio coração vermelho para cada dois inimigos mortos."},
