@@ -326,7 +326,7 @@ EID.descriptions["pt"].collectibles={
     {"308","","Rastro azul é deixado para trás de Isaac"},
     {"309","","↑ lágrimas up#Lágrimas de repulsão"},
     {"310","","↑ Dano X 2#↓ lágrimas down#↓ Velocidade de disparo menor"},
-    {"311","","Quando morto, respawn como Judas Negro#↓ (Dano X 2)"},
+    {"311","","Quando morto, respawn como Judas Negro#↑ (Dano x 2)"},
     {"312","","↑ +1 Saúde Up#Todos os corações vermelhos agora curam 2 recipientes"},
     {"313","","Ignore o primeiro hit em todos os quartos"},
     {"314","","↑ +1 Saúde Up#-0.4 Velocidade down#Você pode Quebrar pedras!"},

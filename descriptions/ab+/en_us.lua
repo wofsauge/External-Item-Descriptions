@@ -323,7 +323,7 @@ EID.descriptions["en_us"].collectibles={
 	{"308", "", "Leave trail of creep#Creep deals 6 damage per second"},
 	{"309", "", "↑ Tears up#Knockback tears"},
 	{"310", "", "↑ +100% Damage#↓ Tears down#↓ -0.5 Shoot speed down"},
-	{"311", "", "When dead, respawn as Black judas#↓ (Damage X 2)"},
+	{"311", "", "When dead, respawn as Black Judas#↑ (Damage x 2)"},
 	{"312", "", "↑ +1 Health up#All red hearts now heal double their value"},
 	{"313", "", "Ignore the first hit in every room"},
 	{"314", "", "↑ +1 Health up#↓ -0.4 Speed down#Destroy rocks when walking over them"},

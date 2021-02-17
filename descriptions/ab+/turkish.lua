@@ -324,7 +324,7 @@ EID.descriptions["turkish"].collectibles={
     {"308",	"Aquarius",	"Leave trail of creep#Creep deals 6 damage per second"},
     {"309",	"Pisces",	"↑ Gözyaşı büyür#Knockback tears"},
     {"310",	"Eve's Mascara",	"↑ +100% Damage#↓ Tears down#↓ -0.5 Shoot Hız düşer"},
-    {"311",	"Judas' Shadow",	"When dead, respawn as Black judas#↓ (Damage X 2)"},
+    {"311",	"Judas' Shadow",	"When dead, respawn as Black Judas#↑ (Damage x 2)"},
     {"312",	"Maggy's Bow",	"↑ +1 Can barı verir#All red hearts now heal double their value"},
     {"313",	"Holy Mantle",	"Ignore the first hit in every room"},
     {"314",	"Thunder Thighs",	"↑ +1 Can barı verir#↓ -0.4 Hız düşer#Destroy rocks when walking over them"},

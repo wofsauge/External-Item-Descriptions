@@ -323,7 +323,7 @@ EID.descriptions["pl"].collectibles={
     {"308", "Pisces", "Zostawiasz za sobą kałużê zadającą obrażenia"},
     {"309", "Eve's Mascara", "↑ Szybkostrzelność#Odrzucające łzy"},
     {"310", "Judas' Shadow", "↑ Obrażenia X 2#↓ Szybkostrzelność spada#↓ Prêdkość łez spada"},
-    {"311", "Maggy's Bow", "Po śmierci odradzasz siê jako Black Judas#↓ (Obrażenia X 2)"},
+    {"311", "Maggy's Bow", "Po śmierci odradzasz siê jako Black Judas#↑ (Obrażenia x 2)"},
     {"312", "Holy Mantle", "↑ +1 Serce#Wszystkie czerwone serca leczą teraz dwa kontenery"},
     {"313", "Thunder Thighs", "Ignoruje pierwsze otrzymane obrażenia w każdym pokoju"},
     {"314", "Strange Attractor", "↑ +1 Serce#-0.4 Szybkość#Możesz niszczyć skały!"},

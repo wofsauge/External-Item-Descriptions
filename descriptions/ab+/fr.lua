@@ -327,7 +327,7 @@ EID.descriptions["fr"].collectibles={
     {"308","","Laissz une trainée qui inflige des dégâts"},
     {"309","","↑ Cadence de tir#Larmes avec recul"},
     {"310","","↑ Dégât(s) X 2#↓ Cadence de tir#↓ Vitesse des larmes"},
-    {"311","","Une fois mort, réapparaîssez en Black Judas#↑ (Dégât(s) X 2)"},
+    {"311","","Une fois mort, réapparaîssez en Black Judas#↑ (Dégât(s) x 2)"},
     {"312","","↑ +1 Coeur Max#Les coeurs rouges vous soignent de deux coeurs"},
     {"313","","Ignorez le premier dégât reçu dans chaque salle"},
     {"314","","↑ +1 Coeur Max#-0.4 Vitesse#Vous pouvez détruire les rochers!"},

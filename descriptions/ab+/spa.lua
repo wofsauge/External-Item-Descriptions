@@ -323,7 +323,7 @@ EID.descriptions["spa"].collectibles={
     {"308", "Aquario", "Deja un rastro de creep#El creep inflige 6 de daño cada segundo"},
     {"309", "Piscis", "↑ Más lagrimas#Lágrimas con empuje"},
     {"310", "Máscara de pestañas de Eve", "↑ +100 % de daño#↓ Menos lágrimas#↓ -0,5 de velocidad de disparo"},
-    {"311", "Sombra de Judas", "Al morir, revive como un Judas oscuro#↓ (X2 de daño)"},
+    {"311", "Sombra de Judas", "Al morir, revive como un Judas oscuro#↑ (X2 de daño)"},
     {"312", "Lazo de Maggy", "↑ +1 de vida#Todos los corazones rojos curarán 2 contenedores"},
     {"313", "Manto sagrado", "Ignora el primer golpe de cada habitación"},
     {"314", "Piernas gordas", "↑ +1 de vida#-0,4 de velocidad#Rompes rocas al caminar"},
