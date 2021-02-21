@@ -560,7 +560,7 @@ EID.descriptions["DUMMY"].collectibles={
     {"541", "Marrow", "+1 Bone Heart#Spawns 3 Red Hearts"},
     {"542", "Slipped Rib", "Orbital#Reflects projectiles"},
     {"543", "Hallowed Ground", "Spawn white poop when you get hit#(White poop has a ↑ Tears up aura and can block damage)"},
-    {"544", "Pointy Rib", "Nail that levitates in front of isaac#Deals 6 times your damage"},
+    {"544", "Pointy Rib", "Nail that levitates in front of isaac#Deals your damage 6 times per second"},
     {"545", "Book of the Dead", "Spawns a bone orbital or charmed bony per enemy killed in the current room"},
     {"546", "Dad's Ring", "Grants an aura that freezes enemies in place"},
     {"547", "Divorce Papers", "+1 Bone Heart#↑ +0.7 Tears up#Spawns a Mysterious Paper trinket"},

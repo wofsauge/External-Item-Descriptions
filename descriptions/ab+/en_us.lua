@@ -556,7 +556,7 @@ EID.descriptions["en_us"].collectibles={
 	{"541", "", "+1 Bone Heart#Spawns 3 Red Hearts"},
 	{"542", "", "Orbital#Reflects projectiles"},
 	{"543", "", "Spawn white poop when you get hit#(White poop has a ↑ Tears up aura and can block damage)"},
-	{"544", "", "Nail that levitates in front of isaac#Deals 6 times your damage"},
+	{"544", "", "Nail that levitates in front of isaac#Deals your damage 6 times per second"},
 	{"545", "", "Spawns a bone orbital or charmed bony per enemy killed in the current room"},
 	{"546", "", "Grants an aura that freezes enemies in place"},
 	{"547", "", "+1 Bone Heart#↑ +0.7 Tears up#Spawns a Mysterious Paper trinket"},
