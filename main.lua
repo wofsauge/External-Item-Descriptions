@@ -51,6 +51,14 @@ end
 require("eid_data")
 require("eid_api")
 
+-- load Repentence descriptions
+if false then
+	EID.GameVersion = "rep"
+	for _,lang in ipairs(EID.Languages) do
+		local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
+	end
+end
+
 EID.LastRenderCallColor = EID:getTextColor()
 local nullVector = Vector(0,0)
 

@@ -652,6 +652,16 @@ function EID:interpolateColors(kColor1, kColor2, fraction)
 	return t
 end
 
+function EID:updateDescriptionsViaTable(changeTable, tableToUpdate, clearNames)
+	for k,v in pairs(changeTable) do
+		if clearNames then
+			tableToUpdate[k] = {""..k,"",v[3]}
+		else
+			tableToUpdate[k] = v
+		end
+	end
+end
+
 -- Creates a copy of a KColor object. This prevents overwriting existing
 function EID:copyKColor(colorObj)
 	return KColor(colorObj.Red, colorObj.Green, colorObj.Blue, colorObj.Alpha)
