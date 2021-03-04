@@ -201,24 +201,16 @@ function EID:printDescription(desc)
 	--Display Transformation
 	if not (desc.Transformation == "0" or desc.Transformation == "" or desc.Transformation == nil) then
 		for transform in string.gmatch(desc.Transformation, "([^,]+)") do
-			local transformationName = EID:getTransformationName(transform)
 			local transformSprite = EID:getTransformationIcon(transform)
-			local iconWidth = transformSprite[3] or -1
-			local iconHeight = transformSprite[4] or -1
-			local iconOffsetX = transformSprite[5] or -1
-			local iconOffsetY = transformSprite[6] or -1
 			local transformLineHeight = EID.lineHeight
 			if EID.Config["TransformationIcons"] then
 				transformLineHeight = math.max(EID.lineHeight, transformSprite[4])
-				local iconSprite = transformSprite[7] or EID.InlineIconSprite
-				iconSprite:Play(transformSprite[1])
-				EID:renderIcon(
-					iconSprite,
-					renderPos.X + iconOffsetX * EID.Config["Scale"],
-					renderPos.Y + iconOffsetY * EID.Config["Scale"]
-				)
+				EID:renderInlineIcons({{transformSprite,0}}, renderPos.X, renderPos.Y)
 			end
 			if EID.Config["TransformationText"] then
+				local transformationName = EID:getTransformationName(transform)
+				local iconWidth = transformSprite[3] or -1
+				local iconHeight = transformSprite[4] or -1
 				local textOffsetY = math.min(0, (iconHeight - 9)) / 4
 				EID:renderString(
 					transformationName,
