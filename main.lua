@@ -190,7 +190,7 @@ function EID:printDescription(desc)
 		end
 		EID:renderString(
 			curName,
-			renderPos + (Vector(offsetX, -4) * EID.Config["Scale"]),
+			renderPos + (Vector(offsetX, -3) * EID.Config["Scale"]),
 			textScale,
 			EID:getNameColor()
 		)

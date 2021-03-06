@@ -523,7 +523,7 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 		else
 			spriteObj:Update()
 		end
-		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset, posY + Yoffset)
+		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Config["Scale"], posY + Yoffset * EID.Config["Scale"])
 	end
 end
 
