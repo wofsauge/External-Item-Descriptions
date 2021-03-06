@@ -496,7 +496,7 @@ EID.descriptions["DUMMY"].collectibles={
     {"477", "Void", "!!! When used, consume any pedestal items in the room#Active item: Its effect will be added to Void's effect (Stacking the effects)#↑ Passive item: Small stat upgrade to a random stat"},
     {"478", "Pause", "Freezes all enemies in the room until you start shooting again#Touching a frozen enemy will hurt you"},
     {"479", "Smelter", "Consumes your trinket and gives you the effect permanently#More trinkets appear"},
-    {"480", "Compost", "Converts pickups into blue flies or spiders"},
+    {"480", "Compost", "Converts pickups into blue flies or spiders#Doubles your current blue flies/spiders#Spawns 1 blue fly or spider when you dont have any"},
     {"481", "Dataminer", "When used, ↑/↓ small amount on random stat#Random tear effect for current room#Fucks up all sprites"},
     {"482", "Clicker", "Transforms you into a different character#Removes the last item you collected"},
     {"483", "Mama Mega!", "!!! SINGLE USE ! #Affects whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens boss rush / hush door / secret rooms"},
