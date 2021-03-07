@@ -427,7 +427,7 @@ EID.descriptions["en_us"].collectibles={
 	{"412", "", "After taking damage 15 times, Isaac gains a permanent demon familiar#Up to 4 familiars possible"},
 	{"413", "", "After picking up 15 hearts, Isaac gains a permanent angelic familiar#Up to 5 familiars possible"},
 	{"414", "", "Two items now spawn in all treasure rooms#You can only choose one"},
-	{"415", "", "+2 Soul Hearts#↑ Damage X 2 if you don't have any damaged red heart containers"},
+	{"415", "", "+2 Soul Hearts#↑ Damage X 2 if you don't have any damaged red heart containers#Deactivates for the current room when damaged regardless of heart containers"},
 	{"416", "", "Allows you to carry two cards/pills/runes"},
 	{"417", "", "Bounces around the room with a damaging aura, dealing 129% of your damage every second#↑ +50% damage while standing in the aura,"},
 	{"418", "", "Gives you a different tear effect with every tear that you fire"},

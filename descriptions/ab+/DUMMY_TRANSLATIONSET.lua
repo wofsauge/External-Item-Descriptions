@@ -431,7 +431,7 @@ EID.descriptions["DUMMY"].collectibles={
     {"412", "Cambion Conception", "After taking damage 15 times, Isaac gains a permanent demon familiar#Up to 4 familiars possible"},
     {"413", "Immaculate Conception", "After picking up 15 hearts, Isaac gains a permanent angelic familiar#Up to 5 familiars possible"},
     {"414", "More Options", "Two items now spawn in all treasure rooms#You can only choose one"},
-    {"415", "Crown Of Light", "+2 Soul Hearts#↑ Damage X 2 if you don't have any damaged red heart containers"},
+    {"415", "Crown Of Light", "+2 Soul Hearts#↑ Damage X 2 if you don't have any damaged red heart containers#Deactivates for the current room when damaged regardless of heart containers"},
     {"416", "Deep Pockets", "Allows you to carry two cards/pills/runes"},
     {"417", "Succubus", "Bounces around the room with a damaging aura, dealing 129% of your damage every second#↑ +50% damage while standing in the aura,"},
     {"418", "Fruit Cake", "Gives you a different tear effect with every tear that you fire"},
