@@ -101,7 +101,13 @@ function EID:assignTransformation(targetType, targetIdentifier, transformationSt
 	else
 		entryID = targetIdentifier
 	end
-	EID.CustomTransformAssignments[entryID] = transformationString
+	if EID.CustomTransformAssignments[entryID] == nil then
+		EID.CustomTransformAssignments[entryID] = transformationString
+	else
+		EID:removeEntryFromString(EID.CustomTransformAssignments, entryID, transformationString)
+		EID.CustomTransformAssignments[entryID] = EID.CustomTransformAssignments[entryID]..","..transformationString
+	end
+	EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
 end
 
 -- Removes a transformation of an entity
@@ -118,8 +124,30 @@ function EID:removeTransformation(targetType, targetIdentifier, transformationSt
 	if EID.CustomTransformRemovals[entryID] == nil then
 		EID.CustomTransformRemovals[entryID] = transformationString
 	else
+		EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
 		EID.CustomTransformRemovals[entryID] = EID.CustomTransformRemovals[entryID]..","..transformationString
 	end
+	EID:removeEntryFromString(EID.CustomTransformAssignments, entryID, transformationString)
+end
+
+-- Removes a given value from the string inside a table. Example: "1,2,3", removing 2 will return "1,3"
+function EID:removeEntryFromString(sourceTable, entryKey, entryValue)
+	if sourceTable[entryKey] == nil then return end
+	local newEntry = ""
+	for str in string.gmatch(sourceTable[entryKey], "([^,]+)") do
+		local addToList = true
+		for removeStr in string.gmatch(entryValue, "([^,]+)") do
+			if removeStr == str then
+				addToList = false
+			end
+		end
+		if addToList then 
+			newEntry = newEntry..","..str
+		end
+	end
+	newEntry = newEntry:sub(2)
+	if newEntry == "" then newEntry = nil end
+	sourceTable[entryKey] = newEntry
 end
 
 -- Adds a description for a an Entity. Optional parameters: language, transformations
