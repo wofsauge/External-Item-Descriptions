@@ -74,6 +74,8 @@ EID.InlineIcons = {
 	----- Use Markup "Trinket"+ ITEMID to render trinket sprites (example: {{Trinket1}} = Swallowed Penny)
 	----- Modded Trinket-icons are automatically generated. No code needed!
 	["Slotmachine"] = {"Slotmachine", 0, 7, 7},
+	-- Behaviors
+	["Throwable"] = {"Behavior", 0, 9, 9},
 	-- Room Icons
 	["Shop"] = {"roomicons", 0, 8, 9, 0, 2},
 	["SecretRoom"] = {"roomicons", 1, 8, 9, 0, 2},
