@@ -306,7 +306,7 @@ EID.descriptions["en_us"].collectibles={
 	{"291", "", "!!! Insta kills Poop enemies & bosses!#Turns enemies into poop"},
 	{"292", "", "+1 Black heart"},
 	{"293", "", "Shoot brimstone lasers in all 4 directions"},
-	{"294", "", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger \"Wait What?\" when swaping it with a different active item and picking it up again"},
+	{"294", "", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger \"Wait What?\" when swapping it with a different active item and picking it up again"},
 	{"295", "", "Damages the whole room with 2x the player damage#Price: 1 coin"},
 	{"296", "", "!!! Convert:#2 Soul/Black hearts into 1 red heart"},
 	{"297", "", "!!! SINGLE USE !#!!! Drops things based on floor its activated on:#B1: 2 Soul Hearts#B2: 2 keys and bombs#C1: 1 Boss item#C2: B1+C1#D1: 4 Soul hearts#D2: 30 Coins#W1: 2 Boss items#W2: Bible#Sheol: 1 Devil item + Black heart#Cat: 1 Angel item + Soul heart#Chest: 1 Coin"},
