@@ -101,10 +101,10 @@ function EID:assignTransformation(targetType, targetIdentifier, transformationSt
 	else
 		entryID = targetIdentifier
 	end
+	EID:removeEntryFromString(EID.CustomTransformAssignments, entryID, transformationString)
 	if EID.CustomTransformAssignments[entryID] == nil then
 		EID.CustomTransformAssignments[entryID] = transformationString
 	else
-		EID:removeEntryFromString(EID.CustomTransformAssignments, entryID, transformationString)
 		EID.CustomTransformAssignments[entryID] = EID.CustomTransformAssignments[entryID]..","..transformationString
 	end
 	EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
@@ -121,10 +121,10 @@ function EID:removeTransformation(targetType, targetIdentifier, transformationSt
 	else
 		entryID = targetIdentifier
 	end
+	EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
 	if EID.CustomTransformRemovals[entryID] == nil then
 		EID.CustomTransformRemovals[entryID] = transformationString
 	else
-		EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
 		EID.CustomTransformRemovals[entryID] = EID.CustomTransformRemovals[entryID]..","..transformationString
 	end
 	EID:removeEntryFromString(EID.CustomTransformAssignments, entryID, transformationString)
