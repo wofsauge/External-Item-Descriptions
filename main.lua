@@ -52,11 +52,12 @@ require("eid_data")
 require("eid_api")
 
 -- load Repentence descriptions
-if false then
+if Isaac.GetEntityTypeByName("\68\111\103\109\97") == 950 then
 	EID.GameVersion = "rep"
 	for _,lang in ipairs(EID.Languages) do
 		local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
 	end
+	local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
 end
 
 EID.LastRenderCallColor = EID:getTextColor()
