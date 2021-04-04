@@ -52,6 +52,7 @@ EID.InlineIcons = {
 	["CoinHeart"] = {"hearts", 13, 9, 9},
 	["HalfCoinHeart"] = {"hearts", 14, 9, 9},
 	["EmptyCoinHeart"] = {"hearts", 15, 9, 9},
+	["RottenHeart"] = {"hearts", 16, 9, 9},
 	-- Pickups
 	["Key"] = {"pickups", 0, 7, 9},
 	["GoldenKey"] = {"pickups", 1, 7, 9},
