@@ -785,7 +785,7 @@ EID.descriptions["en_us"].pills={
 {"19", "", "Teleport to random room"},
 {"20", "", "Recharges your active item#Drops 1-2 batteries"},
 {"21", "", "Drains all but one heart container#Spawns 1-4 red hearts"},
-{"22", "", "You can't move for a few seconds"},
+{"22", "", "You can't move for 2 seconds"},
 {"23", "", "Opens secret room entrances on current floor"},
 {"24", "", "Charms all enemies in room"},
 {"25", "", "Hides the floor map"},
