@@ -8,7 +8,7 @@
 --Special character markup:
 -- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
 local newDescriptions = {
-	["5.70.14"] = {"14", "Golden Pill", "Random pill effect#Destroys itself after a few uses"} -- golden Pill
+	["5.70.14"] = {"14", "Golden Pill", "Random pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
 
 local repCollectibles={
@@ -20,24 +20,80 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us"].collec
 
 ---------- Trinkets ----------
 local repTrinkets={
-	[129] = {"", "Beth's Faith", "Spawns four Book Of Virtues orbitals around Isaac at the beginning of each floor"},
-	[130] = {"", "Blessed Penny", "Chance to spawn half a soul heart when picking up a coin"},
-	[131] = {"", "Brain Worm", "Missed tears will redirect themselves and travel sideways towards enemies"},
-	[132] = {"", "Broken Padlock", "Explosions can open locked doors and chests"},
-	[133] = {"", "Broken Syringe", "Adds a chance to gain a random syringe item effect each room"},
-	[134] = {"", "Chewed Pen", "Tears have a chance to slow enemies"},
-	[135] = {"", "Devil's Crown", "Treasure Rooms are replaced with unique Red Treasure Rooms, offering a Deal with the Devil in place of an item"},
-	[136] = {"", "Electric Penny", "Has a chance to generate an active item charge on a coin pickup"},
-	[137] = {"", "Exploded Firecracker", "Placed bombs explode almost instantly"},
-	[138] = {"", "Giant Bean", "Farts produced by Isaac or familiars will be twice as large"},
-	[139] = {"", "Jawbreaker", "Tears have a chance to become a tooth, dealing extra damage"},
-	[140] = {"", "Lighter", "Chance for enemies to burn when entering a room#Also makes enemies who expel gas clouds explode"},
-	[141] = {"", "'M", "Active items will be rerolled upon using"},
-	[142] = {"", "Myosotis", "Pickups left on current floor will appear in the starting room of the next floor"},
-	[143] = {"", "Old Capacitor", "Activated items don't charge, but batteries drop more frequently#The battery drop chance is dependent on the held item's rate of recharge"},
-	[144] = {"", "Perfection", "+10 Luck while held, trinket is destroyed when damage is taken#Drops from a floor boss every three floors without taking damage"},
-	[145] = {"", "Song of the Siren", "↑ Increases rate of fire of familiars"},
-	[146] = {"", "Teardrop Charm", "Tear-based effects have an extra chance of occurring"},
+    [10] = {"10", "", "Tears move in waves#↑ +0.4 Tears up#Grants spectral tears"}, -- Wiggle Worm
+    [11] = {"11", "", "Tears move in spirals with high speed#Grants spectral tears"}, -- Ring Worm
+    [26] = {"26", "", "Tears move in angular patterns#↑ +10 Range#Grants spectral tears"}, -- Hook Worm
+    [33] = {"33", "", "When down to half a heart, you get little Steven#High Chance to spawn a Gemini familar when taking damage"}, -- Umbilical Cord
+    [49] = {"49", "", "25% chance to drop half a heart when picking up coins"}, -- Bloody Penny
+    [50] = {"50", "", "25% chance to drop a bomb when picking up coins"}, -- Burnt Penny
+    [51] = {"51", "", "25% chance to drop a key when picking up coins"}, -- Flat Penny
+    [69] = {"69", "", "Camouflages the player randomly#Confuses enemies#Can be used to open the door to the \"Home\" floor"}, -- Faded Polaroid
+    [92] = {"92", "", "↑ Stat increases of your items are 20% more effective#↑ +0.2 Tears up#↑ -1 Tear Delay"}, -- Cracked Crown
+    [95] = {"95", "", "Randomly shoot poison Tooth tears#Enemies hit are attacked by a hand of Big Horn"}, -- Black tooth
+    [111] = {"111", "", "Item rooms {{TreasureRoom}} now appear in the Womb and Corpse"}, -- Bloody Crown
+	[119] = {"119","","Sets your red HP to 50% of your maximum upon entering the next floor#If your health is aboth that, it heals half a red heart"}, -- Stem Cell
+    [128] = {"128", "", "5% chance to gain a Bone Heart when taking damage"}, -- Finger Bone
+	
+	[129] = {"129","","Chance to shoot tooth tears"}, --  Jawbreaker
+	[130] = {"130","","Chance to shoot slowing tears"}, --  Chewed Pen
+	[131] = {"131","","Chance to drop half soul hearts when collecting coins"}, --  Blessed Penny
+	[132] = {"132","","Chance to gain a random syringe effect for current room"}, --  Broken Syringe
+	[133] = {"133","","Bombs placed by Isaac explode more quickly"}, --  Short Fuse
+	[134] = {"134","","Increases fart size"}, --  Gigante Bean
+	[135] = {"135","","Chance to apply burn effect to enemies upon entering a room"}, --  A Lighter
+	[136] = {"136","","Doors, key blocks and golden chests can be open with explosions"}, --  Broken Padlock
+	[137] = {"137","","When entering a new floor, up to 4 uncollected pickups from the previous floor spawn in the starting room"}, --  Myosotis
+	[138] = {"138","","Using an active item rerolls it"}, --  'M
+	[139] = {"139","","Luck-based tear effects occur more often"}, --  Teardrop Charm
+	[140] = {"140","","Picking up red hearts can convert them into blue spiders#Works even while at full health#Effect may consume hearts needed for healing"}, --  Apple of Sodom
+	[141] = {"141","","Increases fire rate of familiars"}, --  Forgotten Lullaby
+	[142] = {"142","","At the beginning of each floor, spawns 4 Book of Virtues {{Collectible584}} wisps"}, --  Beth's Faith
+	[143] = {"143","","Prevents active item from charging#Chance to spawn lil Battery when clearing a room"}, --  Old Capacitor
+	[144] = {"144","","Tears turn 90 degrees to target enemies that they may have missed"}, --  Brain Worm
+	[146] = {"146","","Treasure rooms {{TreasureRoom}} now contain devil deals"}, --  Devil's Crown
+	[147] = {"147","","Picking up coins can charge the Active Item"}, --  Charged Penny
+	[148] = {"148","","Causes familiars to circle around Isaac"}, --  Friendship Necklace
+	[149] = {"149","","Activates your active item upon taking damage"}, --  Panic Button
+	[150] = {"150","","Entering a room that requires a key brings you in a room resembling the Hush stage#Room acts as an in-between of the two rooms"}, --  Blue Key
+	[151] = {"151","","Causes spikes to retract, making them harmless#Also affects Curse Rooms {{CursedRoom}} doors, mimics and any spike obstacle"}, --  Flat File
+	[152] = {"152","","Makes it possible to spawn a second Planetarium#Planetariums can now spawn in the Womb"}, --  Telescope Lens
+	[153] = {"153","","Each room, grants the effects of a random Mom item"}, --  Mom's Lock
+	[154] = {"154","","When entering a new room, grants a temporary Dice consumable item#The Dice dissapears when leaving#Grants ability to hold two consumables"}, --  Dice Bag
+	[155] = {"155","","Spawns a Treasure Room {{TreasureRoom}} in Cathedral"}, --  Holy Crown
+	[156] = {"156","","Grants one heart container#Works for Keeper, too"}, --  Mother's Kiss
+	[157] = {"157","","Every 15 shots, shoot an Ipecac {{Collectible149}} + My Reflection {{Collectible5}} tear with a very high range value"}, --  Torn Card
+	[158] = {"158","","Upon hit, Isaac drops all of his Pickups#(Exception: Hearts, Cards, Pills, Runes)"}, --  Torn Pocket
+	[159] = {"159","","Replaces all new chests, with Locked Chest#Excepttion: Mega Chest"}, --  Gilded Key
+	[160] = {"160","","Spawns a Grab Bag upon traveling to the next floor"}, --  Lucky Sack
+	[161] = {"161","","Spawns a Treasure Room {{TreasureRoom}} in Sheol"}, --  Wicked Crown
+	[162] = {"162","","Chance to turn into Azazel when entering a new room"}, --  Azazel's Stump
+	[163] = {"163","","Spawns 2 friendly Dips upon clearing a room"}, --  Dingle Berry
+	[164] = {"164","","Spawns two extra bombs for each bomb placed"}, --  Ring Cap
+	[165] = {"165","","On Womb and beyond, replaces all pickup spawns with a random pickup#Bombs and Hearts are most common"}, --  Nuh Uh!
+	[166] = {"166","","Grants the effect of a random Passive Item each room"}, --  Modeling Clay
+	[167] = {"167","","Chance to spawn a friendly Bony when clearing a room"}, --  Polished Bone
+	[168] = {"168","","+1 bone heart container upon entering a new floor"}, --  Hollow Heart
+	[169] = {"169","","While held, counts towards the Guppy transformation"}, --  Kid's Drawing
+	[170] = {"170","","Grants the chance to automatically create Red Key rooms {{Collectible580}}"}, --  Crystal Key
+	[171] = {"171","","Devil deals use coins instead of hearts"}, --  Keeper's Bargain
+	[172] = {"172","","Teleport to a random room upon picking up a penny#Can teleport to secret rooms"}, --  Cursed Penny
+	[173] = {"173","","{{Warning}} ONE TIME USAGE {{Warning}}#Can be used to pay for a Devil deal without losing hearts"}, --  Your Soul
+	[174] = {"174","","+10% Deavil deal chance"}, --  Number Magnet
+	[175] = {"175","","Unlocks the passageway to the Hush fight, regardless of the run duration#Using Pandora's Box {{Collectible297}} spawns 6 items from random pools"}, --  Strange Key
+	[176] = {"176","","Spawns a blood clot familiar who mimics Isaacs movement, shoot direction and tear effects"}, --  Lil Clot
+	[177] = {"177","","Spawns a chest after clearing a mob Challenge Room, or a collectible after clearing a boss Challenge Room"}, --  Temporary Tattoo
+	[178] = {"178","","Player explodes upon taking damage"}, --  Swallowed M80
+	[179] = {"179","","Familiars movement will be controlled by the same inputs as the player"}, --  RC Remote
+	[180] = {"180","","Familiar that follows Isaac's exact movements and shoots spectral tears#Has same damage and tear effects as the player"}, --  Found Soul
+	[181] = {"181","","Triggers a seperate random active item when using an active item"}, --  Expansion Pack
+	[182] = {"182","","Once per floor, upon taking damage creates a wisp {{Collectible584}} and grants invincibility#Spawns 5 wisps upon entering an angel room#Creates a wisp when giving money to beggars"}, --  Beth's Essence
+	[183] = {"183","","Each room:#With no followers: Chance to grant Brother Bobby {{Collectible8}} and/or Sister Maggy {{Collectible67}}# With followers: Chance to add a duplicate that follower"}, --  The Twins
+	[184] = {"184","","Shops can sell familiars#Familiars will always be on discount"}, --  Adoption Papers
+	[185] = {"185","","Chance to spawn a random locusts when killing an enemy"}, --  Cricket Leg
+	[186] = {"186","","{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot button)#Grants 2 Familiar attack flies which he can aim and fire with"}, --  Apollyon's Best Friend
+	[187] = {"187","","33% chance of adding an extra blind item in item rooms#Reveals the blind item in alt path"}, --  Broken Glasses
+	[188] = {"188","","Adds a chance to petrify an enemy when entering the room#Killing the petrified enemy freezes it"}, --  Ice Cube
+	[189] = {"189","","Activates a 1 second shield upon killing an enemy"}, --  Sigil of Baphomet
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us"].trinkets, true)
 
@@ -103,6 +159,7 @@ local repPills={
 	[13] = {"12", "", "↑ +0.45 Range up"},
 	[42] = {"41", "", "Slow all enemies and Isaac in the room"},
 	[43] = {"42", "", "Speeds up all enemies and Isaac in the room#Triggers again after 30 and 60 seconds"},
+	
 	[48] = {"47", "", "↓ -0.15 Shot Speed down"},
 	[49] = {"48", "", "↑ +0.15 Shot Speed up"},
 	[50] = {"49", "", "↑ Increases 1 random stat#↓ Decreases 1 random other stat#Will not decrease with PHD"},

@@ -696,7 +696,7 @@ EID.descriptions["en_us"].trinkets={
     {"125", "", "Connects your familiars with beams of electricity#Deals 6 damage per beam"},
     {"126", "", "Spawns a blue fly when picking up a coin"},
     {"127", "", "Grants your familiars homing shots"},
-    {"128", "", "Small chance to gain a Bone Heart when taking damage"},
+    {"128", "", "2% chance to gain a Bone Heart when taking damage"},
 }
 
 ---------- Cards ----------
