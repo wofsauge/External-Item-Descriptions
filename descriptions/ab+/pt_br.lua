@@ -21,7 +21,7 @@ EID.descriptions["pt_br"].collectibles={
     {"2","","Tiro triplo#↓ lágrimas"},
     {"3","","Lágrimas teleguiada."},
     {"4","","↑ +0.5 Dano#↑ +50% multiplicador de Dano #+ Recuo"},
-    {"5","","Efeito bumerangue às lágrimas# ↑ +1,5 Alcance#↑ +0,6 Velocidade de tiro #↑ +1 Altura da lágrima"},
+    {"5","","Efeito bumerangue às lágrimas# ↑ +1,5 Alcance#↑ +0,6 Velocidade de disparo #↑ +1 Altura da lágrima"},
     {"6","","↑ +1.5 Lágrimas#↓ -15.78 Alcance#↑ +0.45 Altura da lágrima"},
     {"7","","↑ +1.0 Dano#↑ +50%/1,5 Dano se você tem o Book of Belial"},
     {"8","","Atira lágrimas normais (3.5 de dano)"},
@@ -700,7 +700,7 @@ EID.descriptions["pt_br"].trinkets={
 {"125", "", "Conecta seus familiares com raios de eletricidade"},
 {"126", "", "Cria uma mosca azul ao pegar uma moeda"},
 {"127", "", "Concede aos seus familiares tiros teleguiados"},
-{"128", "", "Pequena chance de ganhar um Coração de osso ao receber dano"},
+{"128", "", "2% de chance de ganhar um Coração de osso ao receber dano"},
 }
 
 ---------- Cards ----------
