@@ -12,37 +12,95 @@ local newDescriptions = {
 }
 
 local repCollectibles={
+	[13] = {"13", "", "Poison touch#↑ +0.2 Speed up"}, -- The Virus
+	[14] = {"14", "", "↑ +0.3 Speed up#↑ +5.25 Range up#↑ +0.5 Shot Height"}, -- Roid Rage
+	[22] = {"22", "", "↑ +1 Health up#Heals one heart"}, -- Lunch
+	[23] = {"23", "", "↑ +1 Health up#Heals one heart"}, -- Dinner
+	[24] = {"24", "", "↑ +1 Health up#Heals one heart"}, -- Dessert
+	[25] = {"25", "", "↑ +1 Health up#Heals one heart"}, -- Breakfast
+	[29] = {"29", "", "↑ +5.25 Range up#↑ +0.5 Tear Height#Spawns 3-6 Blue Flies"}, -- Moms Underwear
+	[30] = {"30", "", "↑ +5.25 Range up#↑ +0.5 Tear Height#Touched enemies take 12 damage"}, -- Mom's Heels
+	[31] = {"31", "", "↑ +5.25 Range up#↑ +0.5 Tear Height#Spawns 1 random heart"}, -- Mom's Lipstick
 	[40] = {"40", "", "Causes a big explosion at the players location#Deals 185 damage"}, -- Kamikaze!
 	[42] = {"42", "", "Throwable poison bomb#Deals 185 + you damage#Creates poison cloud"}, -- Bob's Rotten Head
 	[44] = {"44", "", "Teleports Isaac into a random room except I AM ERROR rooms#Influence direction a bit by moving in desired direction"}, -- Teleport
 	[45] = {"45", "", "Heal 1 red heart#Also heals other players for half a heart"}, -- Yum Heart
+	[46] = {"46", "", "↑ +1.0 Luck up#Better chance to win while gambling#Increases room clearing drop chance#Turns some bad pills into good ones"}, -- Lucky Foot
+	[55] = {"55", "", "Chance to shoot a tear backwards"}, -- Mom's Eye
+	[62] = {"62", "", "↑ +0.3 Damage up#Heals half a heart every 13 enemies killed"}, -- Charm of the Vampire
+	[64] = {"64", "", "-50% on shop items#Getting this item multiple times reduces the price further"}, -- Steam Sale
+	[67] = {"67", "", "Normal tear familiar#Deals 5 Damage per tear"}, -- Sister Maggy
+	[70] = {"70", "", "↑ +1.0 Damage up#↑ +0.2 Speed up"}, -- Growth Hormones
+	[72] = {"72", "", "+3 Soul Hearts#↑ 0.5 Tears up#Bible is more common"}, -- Rosary
+	[79] = {"79", "", "↑ +1.0 Damage up#↑ +0.2 Speed up#+1 Black Heart"}, -- The Mark
+	[80] = {"80", "", "↑ +0.5 Damage up#↑ +0.7 Tears up#+2 Black Hearts"}, -- The Pact
 	[83] = {"83", "", "+ Half Black heart#↑ +0.7 Damage up#↓ -0.18 Speed down#Deal contact Damage#Crush rocks"}, -- The Nail
+	[106] = {"106", "", "↑ Bomb damage x1.85#+5 Bombs"}, -- Mr. Mega
+	[121] = {"121", "", "↑ +1 Empty heart container#↑ +1.0 Damage up#↑ +0.25 Range up#↓ -0.2 Speed down#↑ +0.5 Tear Height"}, -- Odd Mushroom (Large)
 	[123] = {"123", "", "Spawns random familiar#Lasts for current floor"}, -- Monster Manual
+	[139] = {"139", "", "You can now hold 2 trinkets#Spawns 1 random trinket"}, -- Mom's Purse
+	[140] = {"140", "", "Poison bombs#+5 bombs#Bombs leave a poison cloud"}, -- Bob's Curse
+	[148] = {"148", "", "Spawn 2-6 flies when you get hit"}, -- Infestation
 	[147] = {"147", "", "Break rocks and damage enemies on swing#Hitting with the axe reduces its charge#Charge refills on stage transition"}, -- Notched Axe
 	[171] = {"171", "", "Slows down enemies for 4 seconds#10 Damage to all enemies#Enemies killed with it spawn blue spiders"}, -- Spider Butt
+	[178] = {"178", "", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot button)#Leaves pool of creep at the thrown location"},
 	[192] = {"192", "", "Homing tears for current room#↑ +3 Range up"}, -- Telepathy for Dummies
-	
+	[203] = {"203", "", "Chance to spawn the double version of pickups"}, -- Humbling Bundle
+	[205] = {"205", "", "- half Heart = Charges one slot of your active item when pressing space"}, -- Sharp Plug
+	[211] = {"211", "", "Spawn 3-5 spiders when getting hit"}, -- Spider Baby
+	[230] = {"230", "", "↑ +1.5 Damage up#↑ +0.2 Speed up#Fear tears#Converts all red heart container into Black hearts#+2 Black hearts"}, -- Abaddon
+	[232] = {"232", "", "Permanent slow effect for enemies#↑ +0.3 Speed up"}, -- Stop Watch
+	[245] = {"245", "", "Doubles all your shots#↓ -25% Damage"}, -- 20/20
+	[256] = {"256", "", "Burning bombs#+5 Bombs#Bombs deal contact damage"}, -- Hot Bombs
+	--{"261", "", "↑ +100% Damage up#↓ Dealt damage decreases for traveled distance of the tear"}, -- Proptosis ... Wiki not updated yet
+	[262] = {"262", "", "+1 black heart#When down to 1 Heart, damages all enemies in the room#Black hearts deal double damage"}, -- Missing Page 2
+	 
 	[263] = {"263", "", "Copies effects of held rune or soul stone#Drops 1 random rune on picked up"}, -- Clear Rune   (REPENTANCE ITEM)
-	
+	 
+	[273] = {"273", "", "Throwable bomb familiar#The explosion deals 100 Damage#The Damage ignores armor"}, -- Bob's Brain
+	[274] = {"274", "", "When getting hit, gain one midrange orbital#Orbital deals 150 damage per second"}, -- Best Bud
+	[276] = {"276", "", "Gain an invulnerable body#!!! When the heart familiar gets hit you take damage#Familiar charges up when fireing, releasing a burst of tears when releasing"}, -- Isaac's Heart
+	[278] = {"278", "", "!!! Converts:#1,5 Red hearts into 1 soul/black heart, a spider, a pill card or rune"}, -- Dark Bum
+	[280] = {"280", "", "Randomly spawns blue spiders when in a hostile room#Charmes enemies it comes in contact with"}, -- Sissy Longlegs
 	[283] = {"283", "", "Reroll all pedestals, stats, pickups and all your held passive items#Duplicates 1 random pickup in room#Restarts current room and respawns and rerolls its enemies#Rerolls rocks in room"}, -- D100
 	[285] = {"285", "", "Reroll all enemies in the room#Tries to reroll them into enemies with similar max HP"}, -- D10
 	[287] = {"287", "", "Reveals parts of the map#Only grants mapping effects you don't have already"}, -- Book of Secrets
 	[288] = {"288", "", "Spawn 4-8 blue spiders"}, -- Box of Spiders
 	[289] = {"289", "", "Throw red fire#The flame persists until it delt damage 5 times or after 10 seconds"}, -- Red Candle
 	[291] = {"291", "", "!!! Insta kills Poop enemies & bosses!#Turns enemies into poop#Extinguishes fire places#Turns lava-filled pits into walkable ground"}, -- Flush!
-	[291] = {"292", "", "+1 Black heart#When used before a boss fight, the boss room item will be a devil deal"}, -- Satanic Bible
+	[292] = {"292", "", "+1 Black heart#When used before a boss fight, the boss room item will be a devil deal"}, -- Satanic Bible
 	[294] = {"294", "", "Knocks back nearby enemies and projectiles#Enemies pushed into obstacles take 10 damage#10% chance to turn into the stronger \"Wait What?\" when swapping it with a different active item and picking it up again"}, -- Butter Bean
 	[295] = {"295", "", "Damages the whole room with 2x the player damage + 10 #Price: 1 coin"}, -- Magic Fingers
 	[296] = {"296", "", "!!! Convert:#1 Soul/Black heart into 1 red heart"}, -- Converter
+	[307] = {"307", "", "↑ +1 Health / Key / Bomb / Coin#↑ +0.93 Damage up#↑ +0.1 Speed up#↑ +0.75 Range up#Tears up"}, -- Capricorn
+	[308] = {"308", "", "Leave trail of creep#Creep deals 6 damage per second#Creep synergizes with tear effects"}, -- Aquarius
+	[328] = {"328", "", "↑ +1.0 Damage up#Damages all enemies in the room when getting hit and at half a red heart or none"}, -- The Negative
+	[331] = {"331", "", "Homing tears#↑ +0.93 Damage up#↑ +0.5 Range up#↓ -0.6 Tears down#↓ -30% Shot Speed down#↑ +0.8 Tear Height"}, -- Godhead
+	[336] = {"336", "", "Piercing + spectral tears↓ -1.5 Range up#↓ -0.4 Shot Speed down"}, -- Dead Onion
+	[344] = {"344", "", "+1 Black Heart#Spawns 2-3 Bomb pickups#Spawns the Match Stick {{Trinket41}} Trinket"}, -- Match Book
+	[346] = {"346", "", "↑ +1 Health up#Heals 2 hearts"}, -- A Snack
 	[352] = {"352", "", "Fires one large piercing spectral tear ((DMG+1) X 10)#When you took damage, all damage to the player is increased by 2 hearts"}, -- Glass Canon
+	[355] = {"355", "", "↑ +1.25 Range up#↑ +1 Luck up#+1 Soul Heart#↑ +0.5 Tear Height"}, -- Mom's Pearl
+	[369] = {"369", "", "↑ +3.0 Range up#↑ +1.5 Tear Height#Tears travel through walls and appear out of the opposite wall"}, -- Continuum
+	[372] = {"372", "", "Random chance to drop a micro battery or freeze all enemies in the room#Chance to add one charge to your spacebar item"}, -- Charged Baby
+	[376] = {"376", "", "Spawns 3 random Pickups#Shops instantly restock their items when you buy them#Restocked items have decreased cost"}, -- Restock
 	[382] = {"382", "", "Can be thrown at enemies to capture them#Next usage will respawn the same enemy as a friendly companion#Walking over the ball after capture will instantly recharge the item"}, -- Friendly Ball
+	[395] = {"395", "", "Gain the ability to charge and fire a laser ring that travels across the room#Damage based on the charge progress#100% damage on full charge"}, -- Tech X
+	[405] = {"405", "", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot button)#Rerolls enemies and pickup it comes in contact with"}, -- GB Bug
+	[416] = {"416", "", "Allows you to carry two cards/pills/runes#Spawns 1-3 coins if a room didnt yield a reward#Increases coin cap to 999"}, -- Deep Pockets
+	[448] = {"448", "", "When taking damage, chance to get ↑ +5 Range, spew red tears and leave a trail of blood creep, or spawn a red heart"}, -- Shard of Glass
+	[451] = {"451", "", "Drops a random card or rune on pickup#Doubles the effect of any card used#Some cards gain an extra effect"}, -- Tarot Cloth
+	[464] = {"464", "", "+2 Soul Hearts#Champion enemies and room drops appear more frequently#Priority of spawned pickups depends on what the player is missing most of"}, -- Glyph of Balance
 	[474] = {"474", "", "Turns into Glass Canon when used"}, -- broken Glass Canon
 	[489] = {"489", "", "Random Dice-effect each usage#Press the Drop button to cycle through the dices"}, -- D Infinity
+	[491] = {"491", "", "Drops a random pill every 7 rooms#Using a pill poisons all enemies in the room"}, -- Acid Baby
+	[494] = {"494", "", "Tears spawn 1-2 sparks of electricity on impact#Sparks deal half your damage#Sparks can jump between enemies"}, -- Jacobs Ladder
+	[503] = {"503", "", "Chance to fire tears that summon a Big Horn hand#The hand kills enemies instantly and deals damage to bosses#Running into enemies will deal 3.5 damage to them"}, -- Little Horn
 	[504] = {"504", "", "Spawns a fly turret that shoots at enemies#Each shot deals 3.5 damage"}, -- Brown Nugget
 	[523] = {"523", "", "When used, stores up to 6 Pick-Ups from the current room#Using it again will put them back on the floor again#This allows you to move things between rooms"}, -- Moving Box
+	[524] = {"524", "", "Tears will be connected with beams of electricity#Electricity damage equals 1/3 of your damage"}, -- Technology Zero
+	[543] = {"543", "", "Spawn white poop when you get hit#(White poop has a ↑ Tears and Damage up aura, grants homing tears and can block damage)"}, -- Hallowed Ground
 	
-	[178] = {"178", "", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot button)#Leaves pool of creep at the thrown location"},
-	[405] = {"405", "", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot button)#Rerolls enemies and pickup it comes in contact with"},
 
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us"].collectibles, true)
