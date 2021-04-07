@@ -1,6 +1,7 @@
 -------------------------------------------------------------
 -----  Basic Portuguese (Brazil) descriptions based on  -----
 -----                 Platinumgod.co.uk 				-----
+-----             By: LuanRoger and NotZin02            -----
 -------------------------------------------------------------
 
 -- FORMAT: Item ID | Name| Description
@@ -170,56 +171,56 @@ local repPills={
 -- EID:updateDescriptionsViaTable(repPills, EID.descriptions["pt_br"].pills, true)
 
 EID.descriptions["pt_br"].horsepills={
-	{"0", "", "Poisons entire room"},
-	{"1", "", "Deals 2 heart of damage to you"},
-	{"2", "", "+4 Soul Hearts"},
-	{"3", "", "Switches number of bombs with keys#Increases key and bomb count by 50%#Golden bombs and keys are also swapped"},
-	{"4", "", "Spawns some mega homing troll bombs at your position"},
-	{"5", "", "Full Health#+3 Soul Hearts"},
-	{"6", "", "↓ -2 Health down"},
-	{"7", "", "↑ +2 empty heart containers"},
-	{"8", "", "No effect"},
-	{"9", "", "No effect"}, -- Puberty
-	{"10", "", "Adds 1 Big Fan fly orbital {{Collectible279}}#There is no upper limit"},
-	{"11", "", "↓ -1.2 Range down"},
-	{"12", "", "↑ +0.9 Range up"},
-	{"13", "", "↓ -0.24 Speed down"},
-	{"14", "", "↑ +0.3 Speed up"},
-	{"15", "", "↓ -0.56 Tears down"},
-	{"16", "", "↑ +0.70 Tears up"},
-	{"17", "", "↓ -2 Luck down"},
-	{"18", "", "↑ +2 Luck up"},
+	{"0", "", "Envenamento ao entrar na sala"},
+	{"1", "", "Causa 2 corações de dano a você"},
+	{"2", "", "+4 Corações de alma"},
+	{"3", "", "Troca o número de bombas pelo número de chaves#Aumenta o número de bombas e chaves em 50%#Bombas douradas e chaves também são trocadas"},
+	{"4", "", "Gera algumas mega bombas trolls na sua posição"},
+	{"5", "", "Enche a vida#+3 Corações de alma"},
+	{"6", "", "↓ -2 Saúde"},
+	{"7", "", "↑ +2 espaço de corações vazios"},
+	{"8", "", "Sem efeito"},
+	{"9", "", "Sem efeito"}, -- Puberty
+	{"10", "", "Adiciona 1 Big Fan orbital {{Collectible279}}#Não há limite superior"},
+	{"11", "", "↓ -1.2 Alcance"},
+	{"12", "", "↑ +0.9 Alcance"},
+	{"13", "", "↓ -0.24 Velocidade"},
+	{"14", "", "↑ +0.3 Velocidade"},
+	{"15", "", "↓ -0.56 Lágrimas"},
+	{"16", "", "↑ +0.70 Lágrimas"},
+	{"17", "", "↓ -2 Sorte"},
+	{"18", "", "↑ +2 Sorte"},
 	{"19", "", "Teleport to random room"}, -- TODO
 	{"20", "", "Recharges your active item#Drops batteries"}, -- TODO
 	{"21", "", "Drains all but one heart container#Spawns red hearts"}, -- TODO
-	{"22", "", "You can't move for 4 seconds"},
-	{"23", "", "Opens secret room entrances on current floor#Grants full mapping"},
-	{"24", "", "Turns every enemy in the room permanently friendly"},
+	{"22", "", "Você não pode se mover por 4 segundos"},
+	{"23", "", "Abra a sala secreta do andar atual#Ganha visão do mapa"},
+	{"24", "", "Transforma cada inimigo da sala em amigo permanente"},
 	{"25", "", "Hides the floor map"}, --TODO
-	{"26", "", "Spawns room filling puddle on the ground which damages enemies"},
-	{"27", "", "Shoot diagonally for 60 seconds"},
+	{"26", "", "Enche a poça no chão, o que causa danos aos inimigos"},
+	{"27", "", "Atire na diagonal por 60 segundo"},
 	{"28", "", "Take only half the damage for current room"},  --TODO
 	{"29", "", "Take full heart damage for current room"}, --TODO
 	{"30", "", "Spawn poop while walking for 4 seconds"}, --TODO
 	{"31", "", "Curse of the maze effect for current floor"}, --TODO
-	{"32", "", "You grow a lot bigger#Doesn't affect your hitbox"},
-	{"33", "", "You get a lot smaller#Your hitbox gets smaller"},
-	{"34", "", "Spawn 2 blue spider per poop in room"},
-	{"35", "", "Spawn 2 blue spider per enemy in room#Spawns 2-6 blue spiders when no enemy is in the room"},
-	{"36", "", "Short invincibility effect#↑ #7 Damage up#↑ +3 Range up# persists for current room"},
-	{"37", "", "Pixelates the screen for 90 seconds"},
-	{"38", "", "Spawns 6 blue flies"},
-	{"39", "", "Spawn pool of long lasting slippery creep"},
-	{"40", "", "Spawn pool of long lasting slowing creep"},
+	{"32", "", "Aumenta seu tamanho#Não afeta sua hitbox"},
+	{"33", "", "diminui seu tamanho#Sua hitbox também diminui"},
+	{"34", "", "Gera 2 aranhas azuis por cocô na sala"},
+	{"35", "", "Gera 2 aranhas azuis por inimigo na sala#Gera 2-6 aranhas azuis quando não há inimigos na sala"},
+	{"36", "", "Curto efeito de invencibilidade#↑ #7 Dano#↑ +3 Alcance#Durante a sala atual"},
+	{"37", "", "Pixeliza a tela por 90 segundos"},
+	{"38", "", "Gera 6 moscas azuis"},
+	{"39", "", "Gera uma poça escorregadia"},
+	{"40", "", "Gera uma poça de lentidão"},
 	{"41", "", "Slow all enemies in room"}, --TODO
 	{"42", "", "Speed up for all enemies in room"}, --TODO
 	{"43", "", "Consume current trinket and gain its effect permanently"}, --TODO
-	{"44", "", "Shoots a cluster of ipecac tears"},
-	{"45", "", "Short invincibility#Fears all enemies# Two eaten enemies replenish half a heart"},
-	{"46", "", "Spawns last used pill as a horse pill"},
-	{"47", "", "↓ -0.3 Shot Speed down"},
-	{"48", "", "↑ +0.3 Shot Speed up"},
-	{"49", "", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with PHD"},
+	{"44", "", "Dispara um cacho de lágrimas de ipeca"},
+	{"45", "", "Curto efeito de invencibilidade#Amedronta todos os inimigos#Dois inimigos comidos reabastecem meio coração"},
+	{"46", "", "Gera a última pílula usada como horse"},
+	{"47", "", "↓ -0.3 Velocidade de disparo"},
+	{"48", "", "↑ +0.3 Velocidade de disparo"},
+	{"49", "", "↑ Aumenta 1 status aleatório duas vezes#↓ Diminue 1 status aleatório duas vezes#Não vai diminuir com PHD"},
 }
 
 ---------- Transformations ----------
