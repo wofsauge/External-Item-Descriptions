@@ -23,6 +23,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions).
 - **FRENCH** (by Nicolas Delvaux)
 - **SPANISH** (by Arroyo Purroy)
 - **PORTUGUESE** (by Marcelino Cruz)
+- **Brazilian - Portuguese** (by LuanRoger and NotZin02)
 - **BULGARIAN** (*WIP*, by TST_Gogo_, Gothika_47)
 - **POLISH** (*WIP*, by Rickyy)
 - **CHINESE** version: [EID Chinese Edition](https://steamcommunity.com/sharedfiles/filedetails/?id=1290363695) | alternative: [中文道具图鉴 Eid Chinese](https://steamcommunity.com/sharedfiles/filedetails/?id=848295251)
@@ -30,10 +31,9 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions).
 - **RUSSIAN** version: [External Item Description (Russian Language)](https://steamcommunity.com/sharedfiles/filedetails/?id=1552851879)
 
 ### Possible Future Features
-- Support for the new DLC **Repentance** (With backwards compatibility)
 - Display if items need to be collected for achievement purposes
 - Change location of description so it sticks to the highlighted object
-- More Languages! (Language mod unification ?)
+- More Languages!
 
 ## Configuration
 **Ingame Configuration**
@@ -57,6 +57,7 @@ Same as Windows but the path is: */home/%YourUsernameHere%/.steam/steam/steamapp
 - Lidia Arroyo Purroy for creating the amazing **Spanish** language Pack
 - Rickyy for creating the incredible **Polish** language pack
 - Marcelino Cruz for creating the **Portuguese** language pack
+- LuanRoger and NotZin02 for creating the **Brazilian - Portuguese** language pack
 - hell2pay, fly_6, TrJ-VoRoN for creating the **Russian** language pack
 - TST_Gogo_, Gothika_47 for creating the **Bulgarian** language pack
 - Mert Dutal for creating the **Turkish** language pack
