@@ -12,6 +12,35 @@ local newDescriptions = {
 }
 
 local repCollectibles={
+	[40] = {"40", "", "Causes a big explosion at the players location#Deals 185 damage"}, -- Kamikaze!
+	[42] = {"42", "", "Throwable poison bomb#Deals 185 + you damage#Creates poison cloud"}, -- Bob's Rotten Head
+	[44] = {"44", "", "Teleports Isaac into a random room except I AM ERROR rooms#Influence direction a bit by moving in desired direction"}, -- Teleport
+	[45] = {"45", "", "Heal 1 red heart#Also heals other players for half a heart"}, -- Yum Heart
+	[83] = {"83", "", "+ Half Black heart#↑ +0.7 Damage up#↓ -0.18 Speed down#Deal contact Damage#Crush rocks"}, -- The Nail
+	[123] = {"123", "", "Spawns random familiar#Lasts for current floor"}, -- Monster Manual
+	[147] = {"147", "", "Break rocks and damage enemies on swing#Hitting with the axe reduces its charge#Charge refills on stage transition"}, -- Notched Axe
+	[171] = {"171", "", "Slows down enemies for 4 seconds#10 Damage to all enemies#Enemies killed with it spawn blue spiders"}, -- Spider Butt
+	[192] = {"192", "", "Homing tears for current room#↑ +3 Range up"}, -- Telepathy for Dummies
+	
+	[263] = {"263", "", "Copies effects of held rune or soul stone#Drops 1 random rune on picked up"}, -- Clear Rune   (REPENTANCE ITEM)
+	
+	[283] = {"283", "", "Reroll all pedestals, stats, pickups and all your held passive items#Duplicates 1 random pickup in room#Restarts current room and respawns and rerolls its enemies#Rerolls rocks in room"}, -- D100
+	[285] = {"285", "", "Reroll all enemies in the room#Tries to reroll them into enemies with similar max HP"}, -- D10
+	[287] = {"287", "", "Reveals parts of the map#Only grants mapping effects you don't have already"}, -- Book of Secrets
+	[288] = {"288", "", "Spawn 4-8 blue spiders"}, -- Box of Spiders
+	[289] = {"289", "", "Throw red fire#The flame persists until it delt damage 5 times or after 10 seconds"}, -- Red Candle
+	[291] = {"291", "", "!!! Insta kills Poop enemies & bosses!#Turns enemies into poop#Extinguishes fire places#Turns lava-filled pits into walkable ground"}, -- Flush!
+	[291] = {"292", "", "+1 Black heart#When used before a boss fight, the boss room item will be a devil deal"}, -- Satanic Bible
+	[294] = {"294", "", "Knocks back nearby enemies and projectiles#Enemies pushed into obstacles take 10 damage#10% chance to turn into the stronger \"Wait What?\" when swapping it with a different active item and picking it up again"}, -- Butter Bean
+	[295] = {"295", "", "Damages the whole room with 2x the player damage + 10 #Price: 1 coin"}, -- Magic Fingers
+	[296] = {"296", "", "!!! Convert:#1 Soul/Black heart into 1 red heart"}, -- Converter
+	[352] = {"352", "", "Fires one large piercing spectral tear ((DMG+1) X 10)#When you took damage, all damage to the player is increased by 2 hearts"}, -- Glass Canon
+	[382] = {"382", "", "Can be thrown at enemies to capture them#Next usage will respawn the same enemy as a friendly companion#Walking over the ball after capture will instantly recharge the item"}, -- Friendly Ball
+	[474] = {"474", "", "Turns into Glass Canon when used"}, -- broken Glass Canon
+	[489] = {"489", "", "Random Dice-effect each usage#Press the Drop button to cycle through the dices"}, -- D Infinity
+	[504] = {"504", "", "Spawns a fly turret that shoots at enemies#Each shot deals 3.5 damage"}, -- Brown Nugget
+	[523] = {"523", "", "When used, stores up to 6 Pick-Ups from the current room#Using it again will put them back on the floor again#This allows you to move things between rooms"}, -- Moving Box
+	
 	[178] = {"178", "", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot button)#Leaves pool of creep at the thrown location"},
 	[405] = {"405", "", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot button)#Rerolls enemies and pickup it comes in contact with"},
 
@@ -41,7 +70,7 @@ local repTrinkets={
 	[133] = {"133","","Bombs placed by Isaac explode more quickly"}, --  Short Fuse
 	[134] = {"134","","Increases fart size"}, --  Gigante Bean
 	[135] = {"135","","Chance to apply burn effect to enemies upon entering a room"}, --  A Lighter
-	[136] = {"136","","Doors, key blocks and golden chests can be open with explosions"}, --  Broken Padlock
+	[136] = {"136","","Doors, key blocks and golden chests can be open with explosions#Can also open the Home door"}, --  Broken Padlock
 	[137] = {"137","","When entering a new floor, up to 4 uncollected pickups from the previous floor spawn in the starting room"}, --  Myosotis
 	[138] = {"138","","Using an active item rerolls it"}, --  'M
 	[139] = {"139","","Luck-based tear effects occur more often"}, --  Teardrop Charm
