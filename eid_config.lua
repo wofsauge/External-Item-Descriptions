@@ -32,11 +32,11 @@ EID.DefaultConfig = {
 	-- Default = 0.75
 	["Transparency"] = 0.75,
 	-- Set X Position (Width) of the descriptiontext
-	-- Default = 50
-	["XPosition"] = 50,
+	-- Default = 60 (with default rep Hud offset, otherwise 50 is recommended)
+	["XPosition"] = 60,
 	-- Set Y Position (Height) of the descriptiontext
-	-- Default = 35
-	["YPosition"] = 35,
+	-- Default = 45 (with default rep Hud offset, otherwise 35 is recommended)
+	["YPosition"] = 45,
 	-- Set the distance to an item in which informations will be displayed (in Tiles)
 	-- Default = 5
 	["MaxDistance"] = 5,
