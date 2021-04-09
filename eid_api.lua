@@ -208,12 +208,17 @@ function EID:getIDVariantString(typeName)
 end
 
 -- function to turn entity typ and variants into their EID table-name
-function EID:getTableName(Type, Variant)
+function EID:getTableName(Type, Variant, SubType)
 	local idString = Type.."."..Variant
 	if idString == "5.100" then return "collectibles"
 	elseif idString == "5.350" then return "trinkets"
 	elseif idString == "5.300" then return "cards"
-	elseif idString == "5.70" then return "pills"
+	elseif idString == "5.70" then 
+		if SubType <2049 then
+			return "pills"
+		else
+			return "horsepills"
+		end
 	elseif idString == "-999.-1" then return "sacrifice"
 	elseif idString == "1000.76" then return "dice"
 	else return "custom"
@@ -281,7 +286,7 @@ function EID:getDescriptionObj(Type, Variant, SubType)
 	description.ItemVariant = Variant
 	description.RealID = SubType
 	description.ID = SubType
-	if EID:getTableName(Type, Variant) =="pills" then
+	if EID:getTableName(Type, Variant, SubType) == "pills" or EID:getTableName(Type, Variant, SubType) == "horsepills" then
 		local pool = Game():GetItemPool()
 		description.ID = pool:GetPillEffect(SubType)+1
 	end
@@ -298,7 +303,7 @@ end
 
 -- returns description Object from the legacy mod descriptions if they exist
 function EID:getLegacyModDescription(Type, Variant, SubType)
-	local tableName = EID:getTableName(Type, Variant)
+	local tableName = EID:getTableName(Type, Variant, SubType)
 	local customDesc = __eidEntityDescriptions[Type.."."..Variant.."."..SubType]
 	if tableName == "collectibles" and __eidItemDescriptions[SubType] then
 		return {"","",__eidItemDescriptions[SubType]}
@@ -326,7 +331,7 @@ function EID:getDescriptionData(Type, Variant, SubType)
 	local fullString = Type.."."..Variant
 	local moddedDesc = EID.descriptions[EID.Config["Language"]].custom[fullString.."."..SubType] or 
 						EID.descriptions["en_us"].custom[fullString.."."..SubType] or nil
-	local tableName = EID:getTableName(Type, Variant)
+	local tableName = EID:getTableName(Type, Variant, SubType)
 	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, SubType)
 	local defaultDesc = EID.descriptions[EID.Config["Language"]][tableName][SubType] or EID.descriptions["en_us"][tableName][SubType] or nil
 	
@@ -381,7 +386,7 @@ end
 -- tries to get the ingame name of an item based on its ID
 function EID:getObjectName(Type, Variant, SubType)
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
-	local tableName = EID:getTableName(Type, Variant)
+	local tableName = EID:getTableName(Type, Variant, SubType)
 	local name = nil
 	if tableEntry ~= nil then
 		if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
@@ -409,7 +414,7 @@ end
 
 -- tries to get the ingame description of an object, based on their description in the XML files
 function EID:getXMLDescription(Type, Variant, SubType)
-	local tableName = EID:getTableName(Type, Variant)
+	local tableName = EID:getTableName(Type, Variant, SubType)
 	local desc= nil
 	if tableName == "collectibles" then
 		desc = EID.itemConfig:GetCollectible(SubType).Description
@@ -423,7 +428,7 @@ end
 -- check if an entity is part of the describable entities
 function EID:hasDescription(entity)
 	local isAllowed = false
-	if EID.Config["EnableEntityDescriptions"] and EID:getTableName(entity.Type, entity.Variant) == "custom" then
+	if EID.Config["EnableEntityDescriptions"] and EID:getTableName(entity.Type, entity.Variant, entity.SubType) == "custom" then
 		isAllowed = __eidEntityDescriptions[entity.Type .. "." .. entity.Variant .. "." .. entity.SubType] ~= nil
 		isAllowed = isAllowed or EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil
 		isAllowed = isAllowed or type(entity:GetData()["EID_Description"]) ~= type(nil)
