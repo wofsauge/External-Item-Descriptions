@@ -9,8 +9,7 @@ This mod displays detailed information about all items, trinkets, cards, runes a
 
 [img]https://i.imgur.com/qoH8G2c.png[/img] 
 [h1][b]Currently, the game disabled mod support for Repentance!!![/b] [/h1]
-This mod will support Repentance when mod support is enabled again (~1-2 weeks).
-The comment secion on this mod stays hidden for the duration of this,to prevent a repetition of the same questions.
+This mod will support Repentance when mod support is enabled again (~1 week).
 
 [img]https://i.imgur.com/P6a8043.png[/img] [url=https://github.com/wofsauge/External-Item-Descriptions]Any Problems or want to help? Visit this project on GitHub[/url]
 
@@ -89,7 +88,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions
 - Mert Dutal for creating the [b]Turkish[/b] language pack
 - [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating an awesome new Languagepack and providing ideas for new functionalities
 </description>
-    <version>3.29</version>
+    <version>3.30</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
