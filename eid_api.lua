@@ -81,6 +81,13 @@ function EID:addPill(id, description, itemName, language)
 	EID.descriptions[language].custom["5.70." .. id+1] = {id+1, itemName, description}
 end
 
+-- Adds a character specific description for the item "Birthright". Optional parameters: playerName, language
+function EID:addBirthright(characterId, description, playerName, language)
+	playerName = playerName or nil
+	language = language or "en_us"
+	EID.descriptions[language].birthright[characterId + 1] = {playerName, "", description}
+end
+
 -- Creates a new transformation with a given unique name and a display name
 function EID:createTransformation(uniqueName, displayName, language)
 	language = language or "en_us"
