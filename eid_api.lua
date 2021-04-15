@@ -197,10 +197,10 @@ end
 
 -- function to turn entity type names into actual ingame ID.Variant pairs
 function EID:getIDVariantString(typeName)
-	if typeName == "collectible" or typeName == "collectibles" then return "5.100"
+	if typeName == "collectible" or typeName == "collectibles" or typeName == "birthright" then return "5.100"
 	elseif typeName == "trinket" or typeName == "trinkets" then return "5.350"
 	elseif typeName == "card" or typeName == "cards" then return "5.300"
-	elseif typeName == "pill" or typeName == "pills" then return "5.70"
+	elseif typeName == "pill" or typeName == "pills" or typeName == "horsepills" or typeName == "horsepill" then return "5.70"
 	elseif typeName == "sacrifice" then return "-999.-1"
 	elseif typeName == "dice" then return "1000.76"
 	end
@@ -210,7 +210,12 @@ end
 -- function to turn entity typ and variants into their EID table-name
 function EID:getTableName(Type, Variant, SubType)
 	local idString = Type.."."..Variant
-	if idString == "5.100" then return "collectibles"
+	if idString == "5.100" then 
+		if SubType == 619 then
+			return "birthright"
+		else
+			return "collectibles"
+		end
 	elseif idString == "5.350" then return "trinkets"
 	elseif idString == "5.300" then return "cards"
 	elseif idString == "5.70" then 
@@ -286,9 +291,10 @@ function EID:getDescriptionObj(Type, Variant, SubType)
 	description.ItemVariant = Variant
 	description.RealID = SubType
 	description.ID = SubType
-	if EID:getTableName(Type, Variant, SubType) == "pills" or EID:getTableName(Type, Variant, SubType) == "horsepills" then
+	local tableName = EID:getTableName(Type, Variant, SubType)
+	if tableName == "pills" or tableName == "horsepills" then
 		local pool = Game():GetItemPool()
-		description.ID = pool:GetPillEffect(SubType)+1
+		description.ID = pool:GetPillEffect(SubType) + 1
 	end
 	description.fullItemString = Type.."."..Variant.."."..description.ID
 	description.Name = EID:getObjectName(Type, Variant, description.ID)
@@ -332,6 +338,9 @@ function EID:getDescriptionData(Type, Variant, SubType)
 	local moddedDesc = EID.descriptions[EID.Config["Language"]].custom[fullString.."."..SubType] or 
 						EID.descriptions["en_us"].custom[fullString.."."..SubType] or nil
 	local tableName = EID:getTableName(Type, Variant, SubType)
+	if tableName == "birthright" then
+		SubType = Isaac.GetPlayer(0).SubType + 1
+	end
 	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, SubType)
 	local defaultDesc = EID.descriptions[EID.Config["Language"]][tableName][SubType] or EID.descriptions["en_us"][tableName][SubType] or nil
 	
@@ -393,13 +402,13 @@ function EID:getObjectName(Type, Variant, SubType)
 			name = tableEntry[2]
 		end
 	end
-	if tableName == "collectibles" then
+	if tableName == "collectibles" or tableName == "birthright" then
 		return name or EID.itemConfig:GetCollectible(SubType).Name
 	elseif tableName == "trinkets" then
 		return name or EID.itemConfig:GetTrinket(SubType).Name
 	elseif tableName == "cards" then
 		return name or EID.itemConfig:GetCard(SubType).Name
-	elseif tableName == "pills" then
+	elseif tableName == "pills" or tableName == "horsepills" then
 		name = name or EID.itemConfig:GetPillEffect(SubType-1).Name
 		return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
 	elseif tableName == "sacrifice" then
@@ -416,7 +425,7 @@ end
 function EID:getXMLDescription(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local desc= nil
-	if tableName == "collectibles" then
+	if tableName == "collectibles" or tableName == "birthright" then
 		desc = EID.itemConfig:GetCollectible(SubType).Description
 	elseif tableName == "trinkets" then
 		desc = EID.itemConfig:GetTrinket(SubType).Description

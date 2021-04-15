@@ -382,7 +382,12 @@ local function onRender(t)
 			EID:renderQuestionMark()
 			return
 		end
-		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType))
+		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
+		-- Handle Birthright Character name display
+		if closest.SubType == 619 then
+			descriptionObj.Description = "{{CustomTransformation}} {{ColorGray}}"..player:GetName().."{{CR}}#"..descriptionObj.Description
+		end
+		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Cards & Runes
 		if closest:ToPickup():IsShopItem() and not EID.Config["DisplayCardInfoShop"] then

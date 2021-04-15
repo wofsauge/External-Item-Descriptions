@@ -413,7 +413,7 @@ local repCards={
 	[96] = {"96", "", "Gera 6 Book of Virtues {{Collectible584}} orbital com propriedades aleatórias"},
 	[97] = {"97", "", "Gera Esau como um personagem secundário temporário para a sala atual"},
 }
--- EID:updateDescriptionsViaTable(repCards, EID.descriptions["pt_br"].cards, true)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions["pt_br"].cards, true)
 
 ---------- Pills ----------
 
@@ -481,9 +481,3 @@ EID.descriptions["pt_br"].horsepills={
 	{"48", "", "↑ +0.3 Velocidade de disparo"},
 	{"49", "", "↑ Aumenta 1 status aleatório duas vezes#↓ Diminue 1 status aleatório duas vezes#Não vai diminuir com PHD"},
 }
-
----------- Transformations ----------
-
-local repTransformations={}
-EID:updateDescriptionsViaTable(repTransformations, EID.descriptions["pt_br"].transformations,false)
-

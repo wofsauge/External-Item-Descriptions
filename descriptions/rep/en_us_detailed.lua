@@ -1101,8 +1101,3 @@ local repPills={
 } 
 
 EID:updateDescriptionsViaTable(repPills, EID.descriptions["en_us_detailed"].pills, true)
-
----------- Transformations ----------
-
-local repTransformations={}
-EID:updateDescriptionsViaTable(repTransformations, EID.descriptions["en_us"].transformations,false)

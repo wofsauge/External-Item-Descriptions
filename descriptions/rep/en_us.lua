@@ -282,47 +282,49 @@ local repCollectibles={
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us"].collectibles, true)
 
---[[ Needs to be implemented and needs an API feature to add stuff to! 
 EID.descriptions["en_us"].birthright ={
-	{"Isaac", "", "All items cycle through two options"}, -- Isaac
-	{"Magdalene", "", ""}, -- Magdalene
-	{"Cain", "", ""}, -- Cain
-	{"Judas", "", ""}, -- Judas
-	{"Black Judas", "", ""}, -- Black Judas
-	{"???", "", "Soul hearts gained from health upgrades are doubled"}, -- ???
-	{"Eve", "", " Whore of Babylon is active regardless of health and  Dead Bird is active without taking damage"}, -- Eve
-	{"Samson", "", " Bloody Lust can gain 4 more damage boosts at the same +0.2 intervals, for a new maximum total of +14.0"}, -- Samson
-	{"Azazel", "", "Azazel's Brimstone beam becomes much wider, like  Mega Blast. No effect on damage"}, -- Azazel
-	{"Lazarus", "", "No direct effect, the item is triggered if Lazarus dies and becomes Lazarus Risen"}, -- Lazarus
-	{"Lazarus Risen", "", "Grants a slowly fading +21.6 damage bonus"}, -- Lazarus Risen
-	{"Eden", "", "Spawns 3 random items from random item pools. Only one can be taken"}, -- Eden
-	{"The Lost", "", "Prevents items with the internal tag "nolostbr" from spawning. In practice, this automatically rerolls most items that aren't beneficial to The Lost, namely ones that only give health, flight, and/or spectral tears or activate upon taking damage"}, -- The Lost
-	{"Lilith", "", ""}, -- Lilith
-	{"Keeper", "", ""}, -- Keeper
-	{"Apollyon", "", ""}, -- Apollyon
-	{"The Forgotten", "", "The Soul is unchained and free to move"}, -- The Forgotten
-	{"Bethany", "", "Activating an item using soul charges is sometimes free"}, -- Bethany
-	{"Jacob and Esau", "", "The character who picks up the item gains copies of three of the other character's passive items"}, -- Jacob and Esau
-	{"Tainted Isaac", "", "Adds 4 more slots for passive items"}, -- Tainted Isaac
-	{"Tainted Magdalene", "", "Adds 1 more red heart that doesn't drain"}, -- Tainted Magdalene
-	{"Tainted Cain", "", "The amount of pickups spawned from collecting an item is doubled"}, -- Tainted Cain
-	{"Tainted Judas", "", ""}, -- Tainted Judas
-	{"Tainted ???", "", "Increases the maximum number of carried poops to 29"}, -- Tainted ???
-	{"Tainted Eve", "", ""}, -- Tainted Eve
-	{"Tainted Samson", "", "The berserk timer gains 3 seconds instead of 1 when Tainted Samson kills an enemy"}, -- Tainted Samson
-	{"Tainted Azazel", "", "Doubles the size of Tainted Azazel's  Hemoptysis sneeze attack"}, -- Tainted Azazel
-	{"Tainted Lazarus", "", ""}, -- Tainted Lazarus
-	{"Dead Tainted Lazarus", "", ""}, -- Dead Tainted Lazarus
-	{"Tainted Eden", "", "Passive items gained before birthright will not be rerolled upon taking damage"}, -- Tainted Eden
-	{"Tainted Lost", "", "Grants an extra life that revives Tainted Lost in the same room and deals 200 damage to nearby enemies. It can hit the same enemy multiple times"}, -- Tainted Lost
-	{"Tainted Lilith", "", ""}, -- Tainted Lilith
-	{"Tainted Keeper", "", "Strongly attracts the coins dropped by defeating enemies from a short distance. No effect on other coins"}, -- Tainted Keeper
-	{"Tainted Apollyon", "", ""}, -- Tainted Apollyon
-	{"Tainted Forgotten", "", "Tainted Soul gains the  Recall ability, to retrieve the Tainted Forgotten automatically from a distance"}, -- Tainted Forgotten
-	{"Tainted Bethany", "", ""}, -- Tainted Bethany
-	{"Tainted Jacob", "", ""}, -- Tainted Jacob
+	{"Isaac", "", "All items cycle through two options"},
+	{"Magdalene", "", "<No effect yet>"},
+	{"Cain", "", "<No effect yet>"},
+	{"Judas", "", "<No effect yet>"},
+	{"???", "", "Soul hearts gained from health upgrades are doubled"},
+	{"Eve", "", "Whore of Babylon is active regardless of health#Dead Bird is active without taking damage"},
+	{"Samson", "", "Bloody Lust can gain 4 more damage boosts at the same +0.2 intervals, for a new maximum total of +14.0"},
+	{"Azazel", "", "Azazel's Brimstone beam becomes much wider, like Mega Blast#No effect on damage"},
+	{"Lazarus", "", "When dead, revive as Lazarus Risen#Lazarus Risen gains a slowly fading +21.6 damage bonus"},
+	{"Eden", "", "Spawns 3 random items from random item pools#Only one can be taken"},
+	{"The Lost", "", "Prevents items not beneficial to The Lost from spawning#Examples: ones that only give health, flight, and/or spectral tears or activate upon taking damage"},
+	{"Lazarus Risen", "", "Grants a slowly fading +21.6 damage bonus"},
+	{"Black Judas", "", "<No effect yet>"},
+	{"Lilith", "", "<No effect yet>"},
+	{"Keeper", "", "<No effect yet>"},
+	{"Apollyon", "", "<No effect yet>"},
+	{"The Forgotten", "", "The Soul is unchained and free to move"},
+	{"The Forgotten Soul", "", "The Soul is unchained and free to move"},
+	{"Bethany", "", "Activating an item using soul charges is sometimes free"},
+	{"Jacob", "", "The character who picks up the item gains copies of three of the other character's passive items"},
+	{"Esau", "", "The character who picks up the item gains copies of three of the other character's passive items"},
+	{"Tainted Isaac", "", "Adds 4 more slots for passive items"},
+	{"Tainted Magdalene", "", "Adds 1 more red heart that doesn't drain"},
+	{"Tainted Cain", "", "The amount of pickups spawned from collecting an item is doubled"},
+	{"Tainted Judas", "", "<No effect yet>"},
+	{"Tainted ???", "", "Increases the maximum number of carried poops to 29"},
+	{"Tainted Eve", "", "<No effect yet>"},
+	{"Tainted Samson", "", "The berserk timer gains 3 seconds instead of 1 when Tainted Samson kills an enemy"},
+	{"Tainted Azazel", "", "Doubles the size of Tainted Azazel's Hemoptysis {{Collectible726}} sneeze attack"},
+	{"Tainted Lazarus", "", "<No effect yet>"},
+	{"Tainted Eden", "", "Passive items gained before Birthright will not be rerolled upon taking damage"},
+	{"Tainted Lost", "", "+1 extra life that revives Tainted Lost in the same room and deals 200 damage to nearby enemies#Can hit the same enemy multiple times"},
+	{"Tainted Lilith", "", ""},
+	{"Tainted Keeper", "", "Strongly attracts the coins dropped by defeating enemies from a short distance#No effect on other coins"},
+	{"Tainted Apollyon", "", "<No effect yet>"},
+	{"Tainted Forgotten", "", "Tainted Soul gains the Recall ability {{Collectible714}}, to automatically retrieve the Tainted Forgotten from a distance"},
+	{"Tainted Bethany", "", "<No effect yet>"},
+	{"Tainted Jacob", "", "<No effect yet>"},
+	{"Dead Tainted Lazarus", "", "<No effect yet>"},
+	{"Tainted Jacob 2", "", "<No effect yet>"},
+	{"Tainted Forgotten Soul", "", "Tainted Soul gains the Recall ability {{Collectible714}}, to automatically retrieve the Tainted Forgotten from a distance"},
 }
-]]--
 
 ---------- Trinkets ----------
 local repTrinkets={
@@ -525,8 +527,4 @@ EID.descriptions["en_us"].horsepills={
 	{"49", "", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with PHD"},
 }
 
----------- Transformations ----------
-
-local repTransformations={}
-EID:updateDescriptionsViaTable(repTransformations, EID.descriptions["en_us"].transformations,false)
 
