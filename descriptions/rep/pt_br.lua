@@ -283,6 +283,50 @@ local repCollectibles={
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["pt_br"].collectibles, true)
 
+EID.descriptions["pt_br"].birthright ={
+	{"Isaac", "", "Todos os itens passam por duas opções"},
+	{"Magdalene", "", "<Sem efeito>"},
+	{"Cain", "", "<Sem efeito>"},
+	{"Judas", "", "<Sem feito>"},
+	{"???", "", "Corações de alma ganhos por atualizações de saúde são dobrados"},
+	{"Eve", "", "Whore of Babylon é ativado independentemente da saúde#Dead Bird é ativado sem precisar levar dano"},
+	{"Samson", "", "Bloody Lust pode conceder mais 4 de aumento de dano em um mesmo intervalo de +0.2, para um novo máximo de +14.0"},
+	{"Azazel", "", "O Brimstone do Azazel se torna muito mais amplo, como o Mega Blast#Sem efeito no dano"},
+	{"Lazarus", "", "Quando morto, reviva como Lazarus Ressuscitado#Lazarus Ressuscitado ganha um bônus de +21,6 Dano que diminui lentamente"},
+	{"Eden", "", "Gera 3 itens aleatórios de locais diferentes#Apenas um pode ser pego"},
+	{"The Lost", "", "Impede a geração de itens não benéficos para The Lost#Exemplos: aqueles que só dão saúde, vôo e/ou lágrimas espectrais ou itens que ativam ao receber dano"},
+	{"Lazarus Risen", "", "Concede um bônus de +21.6 Dano que diminui lentamente"},
+	{"Black Judas", "", "<Sem efeito>"},
+	{"Lilith", "", "<Sem efeito>"},
+	{"Keeper", "", "<Sem efeito>"},
+	{"Apollyon", "", "<Sem efeito>"},
+	{"The Forgotten", "", "The Soul é livre para se mover"},
+	{"The Forgotten Soul", "", "The Soul é livre para se mover"},
+	{"Bethany", "", "Ativar um item usando cargas de alma às vezes é grátis"},
+	{"Jacob", "", "O personagem que pegar o item ganha cópias de três dos itens passivos do outro personagem"},
+	{"Esau", "", "O personagem que pegar o item ganha cópias de três dos itens passivos do outro personagem"},
+	{"Tainted Isaac", "", "Adiciona mais 4 espaços para itens passivos"},
+	{"Tainted Magdalene", "", "Adiciona mais 1 coração vermelho que não esgota"},
+	{"Tainted Cain", "", "A quantidade de pickups gerados a partir da coleta de um item é dobrado"},
+	{"Tainted Judas", "", "<Sem efeito>"},
+	{"Tainted ???", "", "Aumenta o número máximo de cocôs transportados para 29"},
+	{"Tainted Eve", "", "<Sem efeito>"},
+	{"Tainted Samson", "", "O cronômetro furioso ganha 3 segundos em vez de 1 quando Tainted Samson mata um inimigo"},
+	{"Tainted Azazel", "", "Dobra o tamanho do ataque da Hemoptise {{Collectible726}} do Tainted Azazel"},
+	{"Tainted Lazarus", "", "<Sem efeito>"},
+	{"Tainted Eden", "", "Itens passivos ganhos antes do Birthright não serão trocados novamente ao receberem dano "},
+	{"Tainted Lost", "", "+1 vida extra que revive Tainted Lost na mesma sala e causa 200 de dano a inimigos próximos#Pode atingir o mesmo inimigo várias vezes"},
+	{"Tainted Lilith", "", "<Sem efeito>"},
+	{"Tainted Keeper", "", "Atrai fortemente as moedas soltas por inimigos derrotados de uma curta distância#Sem efeito nas outras moedas"},
+	{"Tainted Apollyon", "", "<Sem efeito>"},
+	{"Tainted Forgotten", "", "Tainted Soul ganha a habilidade do Recall {{Collectible714}}, para recuperar automaticamente o Tainted Forgotten à distância"},
+	{"Tainted Bethany", "", "<Sem efeito>"},
+	{"Tainted Jacob", "", "<Sem efeito>"},
+	{"Dead Tainted Lazarus", "", "<Sem efeito>"},
+	{"Tainted Jacob 2", "", "<Sem efeito>"},
+	{"Tainted Forgotten Soul", "", "Tainted Soul ganha a habilidade do Recall {{Collectible714}}, para recuperar automaticamente o Tainted Forgotten à distância"},
+}
+
 ---------- Trinkets ----------
 local repTrinkets={
 	[10] = {"10", "", "Lágrimas movem-se em ondas#↑ +0.4 Lágrimas#Lágrimas espectrais"}, -- Wiggle Worm
@@ -427,7 +471,7 @@ local repPills={
 	[49] = {"48", "", "↑ +0.15 Velocidade de disparo"},
 	[50] = {"49", "", "↑ Aumenta 1 status aleatório#↓ Diminua 1 algum outro status aleatório#Não diminuirá com PHD"},
 }
--- EID:updateDescriptionsViaTable(repPills, EID.descriptions["pt_br"].pills, true)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions["pt_br"].pills, true)
 
 EID.descriptions["pt_br"].horsepills={
 	{"0", "", "Envenamento ao entrar na sala"},
