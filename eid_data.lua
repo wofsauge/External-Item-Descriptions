@@ -1,3 +1,26 @@
+-- Item IDs that are skipped when using the Spindown dice
+EID.SpindownDiceSkipIDs = {
+	[43]=true,
+	[59]=true,
+	[61]=true,
+	[235]=true,
+	[587]=true,
+	[613]=true,
+	[620]=true,
+	[630]=true,
+	[648]=true,
+	[655]=true,
+	[648]=true,
+	[662]=true,
+	[666]=true,
+	[710]=true,
+	[711]=true,
+	[713]=true,
+	[714]=true,
+	[715]=true,
+	[718]=true
+}
+
 -- Specific strings that will be replaced with something else. This is used to convert Shortcuts into internal markup.
 EID.TextReplacementPairs = {
 	{"!!!", "{{Warning}}"}, -- Turn 3 Exclamations into Warning

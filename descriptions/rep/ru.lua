@@ -326,6 +326,8 @@ EID.descriptions["ru"].birthright ={
 	{"Иная Душа Забытого", "", "Получает возможность Родня хранителя {{Collectible714}} "}, --Tainted Forgotten Soul
 }
 
+EID.descriptions["ru"].spindownError = "Предмет исчезает"
+
 ---------- Trinkets ----------
 local repTrinkets={
     [10] = {"10", "Извивающийся червь", "Слезы двигаются волнами#↑ +0.4 Скорострельность#Дает спектральные слезы"}, -- Wiggle Worm

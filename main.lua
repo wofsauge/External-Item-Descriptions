@@ -403,6 +403,26 @@ local function onRender(t)
 				descriptionObj.Description = "{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3]
 			end
 		end
+		-- Handle Spindown Dice description addition
+		if player:GetActiveItem() == 723 then
+			descriptionObj.Description = descriptionObj.Description.."#{{Collectible723}} :"
+			local results = {}
+			local refID = closest.SubType
+			for i = 1,3 do
+				local spinnedID = EID:getSpindownResult(refID)
+				refID = spinnedID
+				if spinnedID > 0 then
+					descriptionObj.Description = descriptionObj.Description.."{{Collectible"..spinnedID.."}}"
+					if i ~=3 then
+						descriptionObj.Description = descriptionObj.Description.." ->"
+					end
+				else
+					local errorMsg = EID.descriptions[EID.Config["Language"]]["spindownError"] or EID.descriptions["en_us"]["spindownError"] or nil
+					descriptionObj.Description = descriptionObj.Description..errorMsg
+					break
+				end
+			end
+		end
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Cards & Runes

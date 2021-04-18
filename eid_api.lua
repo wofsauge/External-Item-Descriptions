@@ -699,6 +699,15 @@ function EID:updateDescriptionsViaTable(changeTable, tableToUpdate)
 	end
 end
 
+-- Converts a given CollectibleID into the respective Spindown dice result
+function EID:getSpindownResult(collectibleID)
+	local newID = collectibleID
+	repeat
+		newID = newID - 1
+	until( EID.SpindownDiceSkipIDs[newID] == nil)
+	return newID
+end
+
 -- Creates a copy of a KColor object. This prevents overwriting existing
 function EID:copyKColor(colorObj)
 	return KColor(colorObj.Red, colorObj.Green, colorObj.Blue, colorObj.Alpha)

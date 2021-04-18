@@ -326,6 +326,8 @@ EID.descriptions["en_us"].birthright ={
 	{"Tainted Forgotten Soul", "", "Tainted Soul gains the Recall ability {{Collectible714}}, to automatically retrieve the Tainted Forgotten from a distance"},
 }
 
+EID.descriptions["en_us"].spindownError = "Item disappears"
+
 ---------- Trinkets ----------
 local repTrinkets={
     [10] = {"10", "", "Tears move in waves#↑ +0.4 Tears up#Grants spectral tears"}, -- Wiggle Worm
