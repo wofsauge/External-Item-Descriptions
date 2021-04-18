@@ -280,7 +280,7 @@ local repCollectibles={
 	[729] = {"729", "", "Throws Isaac's head, while being able to fire tears at the spot it lands#Reactivating the item or stepping on the head reattaches it"}, --  Decap Attack
 	
 }
-EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us"].collectibles, true)
+EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us"].collectibles)
 
 EID.descriptions["en_us"].birthright ={
 	{"Isaac", "", "All items cycle through two options"},
@@ -403,7 +403,7 @@ local repTrinkets={
 	[188] = {"188", "", "Adds a chance to petrify an enemy when entering the room#Killing the petrified enemy freezes it"}, --  Ice Cube
 	[189] = {"189", "", "Activates a 1 second shield upon killing an enemy"}, --  Sigil of Baphomet
 }
-EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us"].trinkets, true)
+EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us"].trinkets)
 
 ---------- Cards ----------
 local repCards={
@@ -457,7 +457,7 @@ local repCards={
 	[96] = {"96", "", "Spawns 6 Book of Virtues {{Collectible584}} wisps with random properties"},
 	[97] = {"97", "", "Spawns Esau as a temporary secondary character for current room"},
 }
-EID:updateDescriptionsViaTable(repCards, EID.descriptions["en_us"].cards, true)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions["en_us"].cards)
 
 ---------- Pills ----------
 
@@ -472,7 +472,7 @@ local repPills={
 	[49] = {"48", "", "↑ +0.15 Shot Speed up"},
 	[50] = {"49", "", "↑ Increases 1 random stat#↓ Decreases 1 random other stat#Will not decrease with PHD"},
 }
-EID:updateDescriptionsViaTable(repPills, EID.descriptions["en_us"].pills, true)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions["en_us"].pills)
 
 EID.descriptions["en_us"].horsepills={
 	{"0", "", "Poisons entire room"},

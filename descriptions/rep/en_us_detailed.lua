@@ -737,13 +737,13 @@ local repCollectibles={{"1","","+0.7 Tears up. #Disappears if the Spindown Dice 
 {"723","","Rerolls all pedestal items in a room by subtracting their internal ID number by one until a valid item is rolled. This effect occurs per item and is independent of any other items in the room. #Unlockable items will be skipped if they are not unlocked. #Hidden items (Damocles and items specific to Tainted characters, generally) will always be skipped. #Certain items are very good to spin down, for example Blood Bag becomes Brimstone and Toothpicks becomes Sacred Heart."},
 {"724","","When Isaac gets hit by an enemy, a half or full red heart is launched out of him, which despawns after 1.5 seconds."},
 {"725","","When Isaac deals damage to an enemy, he has a chance to do one of a few things: #Hold up one of a few types of poop, #Fart, dealing 5 damage and poisoning nearby enemies, as well as spawning a toxic cloud. #Create a trail of brown creep that gives +1.0 Damage up, +1.3 Tears up, and other effects. #Drop 5 live bombs, similar to the Explosive Diarrhea pill. #Further information can be found on the wiki, there are a few big lists."},
-{"726","","Double-tapping a fire button causes Isaac to sneeze blood, dealing damage to enemies in front of him. #The sneeze deals damage equal to 1.5x Isaac's damage and pushes enemies back. #If the enemy is pushed into a wall/obstacle, they take 10 damage and deal 10 damage to enemies they collide with. #1 second cooldown."}
+{"726","","Double-tapping a fire button causes Isaac to sneeze blood, dealing damage to enemies in front of him. #The sneeze deals damage equal to 1.5x Isaac's damage and pushes enemies back. #If the enemy is pushed into a wall/obstacle, they take 10 damage and deal 10 damage to enemies they collide with. #1 second cooldown."},
 {"727","","Gives Isaac 5 bombs. #Isaac's bombs create ghosts when they explode, which rapidly chase and deal 2x Isaac's damage per second to enemies. #After 10 seconds, the ghost explodes, dealing 7 damage to nearby enemies up to 3 times. Isaac does not take damage from the explosion. "},
 {"728","","Spawns a demon familiar that's attached to Isaac and moves and fires in the direction Isaac shoots, using Isaac's damage, tears, range, shotspeed, and special tear effects. #Deals 0.75x Isaac's damage, of 1.0x if used by Lillith."},
 {"729","","Throws Isaac's head while allowing to shoot from the spot it lands, as well as dealing contact damage to nearby enemies. #Meanwhile, Isaac's body can no longer shoot tears. #The head can return by picking it up with the body, or by using the item again without requiring charges. #Both the throwing and retaking of the head can deal damages to enemies passing through."},
 }
 
-EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us_detailed"].collectibles, true)
+EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us_detailed"].collectibles)
 
 ---------- Trinkets ----------
 
@@ -939,7 +939,7 @@ local repTrinkets={
 {"189", "",  "Shields Isaac for 1 second after killing an enemy. #Adds 1 second to the shield timer if Isaac is still shielded after killing an enemy."}, 
 }
 
-EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us_detailed"].trinkets, true)
+EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us_detailed"].trinkets)
 
 ---------- Cards ----------
 
@@ -1043,7 +1043,7 @@ local repCards={
 {"97", "", "Spawns Esau as a temporary secondary character, controlled at the same time as Isaac. #Dies if his health runs out with no further consequences, and disappears when Isaac leaves the room."},
 }
 
-EID:updateDescriptionsViaTable(repCards, EID.descriptions["en_us_detailed"].cards, true)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions["en_us_detailed"].cards)
 
 ---------- Pills ----------
 
@@ -1100,4 +1100,4 @@ local repPills={
 {"49", "", "Increases one attribute and decreases another randomly, with the same power as standard attribute increase/decrease pills. #If taken with PHD, it will not reduce an attribute."},
 } 
 
-EID:updateDescriptionsViaTable(repPills, EID.descriptions["en_us_detailed"].pills, true)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions["en_us_detailed"].pills)

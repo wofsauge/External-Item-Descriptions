@@ -55,7 +55,10 @@ require("eid_api")
 if Isaac.GetEntityTypeByName("\68\111\103\109\97") == 950 then
 	EID.GameVersion = "rep"
 	for _,lang in ipairs(EID.Languages) do
-		local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
+		local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
+		if not wasSuccessful and not string.find(err, "not found") then
+			Isaac.ConsoleOutput("Load rep "..lang.." failed: "..tostring(err))
+		end
 	end
 	local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
 end
@@ -383,9 +386,14 @@ local function onRender(t)
 			return
 		end
 		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
-		-- Handle Birthright Character name display
+		-- Handle Birthright
 		if closest.SubType == 619 then
-			descriptionObj.Description = "{{CustomTransformation}} {{ColorGray}}"..player:GetName().."{{CR}}#"..descriptionObj.Description
+			local playerID = player.SubType + 1
+			local birthrightDesc = EID.descriptions[EID.Config["Language"]]["birthright"][playerID] or EID.descriptions["en_us"]["birthright"][playerID] or nil
+			if birthrightDesc ~=nil then
+				local playerName = birthrightDesc[1] or player:GetName()
+				descriptionObj.Description = "{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3]
+			end
 		end
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then

@@ -281,7 +281,7 @@ local repCollectibles={
 	[728] = {"728", "", "Gera um familiar demônio que está ligado ao personagem#Imita a lágrima do personagem, status e efeito"}, --  Gello
 	[729] = {"729", "", "Arranca a cabeça do personagem, ao mesmo tempo que é capaz de atirar lágrimas#Reativa o item ou pisar na cabeça o recoloca"}, --  Decap Attack
 }
-EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["pt_br"].collectibles, true)
+EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["pt_br"].collectibles)
 
 EID.descriptions["pt_br"].birthright ={
 	{"Isaac", "", "Todos os itens passam por duas opções"},
@@ -403,7 +403,7 @@ local repTrinkets={
 	[188] = {"188","","Adiciona uma chance de petrificar á um inimigo quando entra em uma sala#Matar o inimigo petrificado o congela"}, --  Ice Cube
 	[189] = {"189","","Ativa um escudo de 1 segundo ao matar um inimigo"}, --  Sigil of Baphomet
 }
-EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["pt_br"].trinkets, true)
+EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["pt_br"].trinkets)
 
 ---------- Cards ----------
 local repCards={
@@ -457,7 +457,7 @@ local repCards={
 	[96] = {"96", "", "Gera 6 Book of Virtues {{Collectible584}} orbital com propriedades aleatórias"},
 	[97] = {"97", "", "Gera Esau como um personagem secundário temporário para a sala atual"},
 }
-EID:updateDescriptionsViaTable(repCards, EID.descriptions["pt_br"].cards, true)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions["pt_br"].cards)
 
 ---------- Pills ----------
 
@@ -471,7 +471,7 @@ local repPills={
 	[49] = {"48", "", "↑ +0.15 Velocidade de disparo"},
 	[50] = {"49", "", "↑ Aumenta 1 status aleatório#↓ Diminua 1 algum outro status aleatório#Não diminuirá com PHD"},
 }
-EID:updateDescriptionsViaTable(repPills, EID.descriptions["pt_br"].pills, true)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions["pt_br"].pills)
 
 EID.descriptions["pt_br"].horsepills={
 	{"0", "", "Envenamento ao entrar na sala"},
