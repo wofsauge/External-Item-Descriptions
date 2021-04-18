@@ -45,7 +45,7 @@ This mod will support Repentance when mod support is enabled again (~1 week).
     [tr]
         [td]by Wofsauge[/td]
         [td]by Arroyo Purroy[/td]
-        [td]by hell2Pay, fly_6, TrJ-VoRon[/td]
+        [td]by hell2Pay, fly_6, TrJ-VoRon, Sekaz[/td]
         [td]by Denkishi, 2G[/td]
         [td]by Nicolas Delvaux[/td]
         [td]by Marcelino Cruz[/td]
@@ -83,12 +83,12 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions
 - Rickyy for creating the incredible [b]Polish[/b] language pack
 - Marcelino Cruz for creating the [b]Portuguese[/b] language pack
 - LuanRoger and NotZin02 for creating the [b]Brazilian - Portuguese[/b] language pack
-- hell2pay, fly_6, TrJ-VoRoN for creating the [b]Russian[/b] language pack
+- hell2pay, fly_6, TrJ-VoRoN and Sekaz for creating the [b]Russian[/b] language pack
 - Gothika_47 and TST_Gogo_ for creating the [b]Bulgarian[/b] language pack
 - Mert Dutal for creating the [b]Turkish[/b] language pack
 - [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating an awesome new Languagepack and providing ideas for new functionalities
 </description>
-    <version>3.31</version>
+    <version>3.32</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

@@ -316,10 +316,18 @@ local function onRender(t)
 	EID:renderMCMDummyDescription()
 
 	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
-		EID:addTextPosModifier("Schoolbag", Vector(0,30))
+	if EID.GameVersion == "ab+" then
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
+			EID:addTextPosModifier("Schoolbag", Vector(0,30))
+		else
+			EID:removeTextPosModifier("Schoolbag")
+		end
 	else
-		EID:removeTextPosModifier("Schoolbag")
+		if player.SubType == 21 then
+			EID:addTextPosModifier("Tained Isaac", Vector(0,30))
+		else
+			EID:removeTextPosModifier("Tained Isaac")
+		end
 	end
 
 	if EID.isDisplayingPermanent and EID.permanentDisplayTextObj ~= nil then
