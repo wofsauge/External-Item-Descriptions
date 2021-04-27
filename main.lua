@@ -61,6 +61,7 @@ if Isaac.GetEntityTypeByName("\68\111\103\109\97") == 950 then
 		end
 	end
 	local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
+	require("eid_bagOfCrafting")
 end
 
 EID.LastRenderCallColor = EID:getTextColor()
@@ -297,6 +298,85 @@ function EID:renderIndicator(entity)
 	end
 end
 
+local randResultCache = {}
+
+local function handleBagOfCraftingRendering()
+	local results = {}
+	local bagItems = {} -- TODO: Get content of Bag
+	local floorItems = {}
+	for i, entity in ipairs(Isaac.FindByType(5, -1, -1, true, false)) do
+		local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
+		if craftingIDs ~= nil then
+			for _,v in ipairs(craftingIDs) do
+				table.insert(floorItems, v)
+			end
+		end
+	end
+	-- Calculate result from pickups on floor
+	if #floorItems < 8 then
+		return false
+	end
+	
+	local queryString = table.concat(floorItems,",")
+	if randResultCache[queryString] == nil then
+		local randResults = {}
+
+		for i = 0, 250 do
+			local newTable = {}
+			local tableCopy = {table.unpack(floorItems)}
+			for k = 1, 8 do
+				local pos = math.random(1, #tableCopy)
+				table.insert(newTable, tableCopy[pos])
+				table.remove(tableCopy, pos)
+			end
+			table.sort(newTable, function(a, b) return a > b end)
+			randResults[table.concat(newTable,",")] = newTable
+		end
+		local calcResults = {}
+		for k, v in pairs(randResults) do
+			local resultID = EID:calculateBagOfCrafting(v)
+			if resultID > 0 then
+				table.insert(calcResults, {v, resultID})
+			end
+		end
+		randResultCache[queryString] = calcResults
+		results = calcResults
+	else
+		results = randResultCache[queryString]
+	end
+	
+	if #results == 0 then
+		return false
+	end
+	
+	local customDescObj = EID:getDescriptionObj(5, 100, 710)
+	local roomDesc = EID.descriptions[EID.Config["Language"]].CraftingRoomContent or EID.descriptions["en_us"].CraftingRoomContent
+	local resultDesc = EID.descriptions[EID.Config["Language"]].CraftingResults or EID.descriptions["en_us"].CraftingResults
+	customDescObj.Description = roomDesc.."#"..EID:tableToCraftingIconsMerged(floorItems).."#"..resultDesc
+	
+	local resultCount = 0
+	for quality = 4, 0, -1 do -- sort by result quality
+		for i, v in ipairs(results) do
+			if EID.itemWeightsLookup[v[2]]== quality then
+				customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ="
+				customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
+				resultCount = resultCount + 1
+				if resultCount > 9 then
+					if #results > 10 then
+						customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..(#results-10).." more"
+					end
+					break
+				end
+			end
+		end
+		if resultCount >9 then
+			break
+		end
+	end
+	EID:printDescription(customDescObj)
+	return true
+end
+
 ---------------------------------------------------------------------------
 ---------------------------On Render Function------------------------------
 
@@ -327,6 +407,12 @@ local function onRender(t)
 			EID:addTextPosModifier("Tained Isaac", Vector(0,30))
 		else
 			EID:removeTextPosModifier("Tained Isaac")
+		end
+		if player.SubType == 23 then
+			local success = handleBagOfCraftingRendering()
+			if success then
+				return
+			end
 		end
 	end
 
@@ -394,32 +480,34 @@ local function onRender(t)
 			return
 		end
 		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
-		-- Handle Birthright
-		if closest.SubType == 619 then
-			local playerID = player.SubType + 1
-			local birthrightDesc = EID.descriptions[EID.Config["Language"]]["birthright"][playerID] or EID.descriptions["en_us"]["birthright"][playerID] or nil
-			if birthrightDesc ~=nil then
-				local playerName = birthrightDesc[1] or player:GetName()
-				descriptionObj.Description = "{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3]
+		
+		if EID.GameVersion == "rep" then
+			-- Handle Birthright
+			if closest.SubType == 619 then
+				local playerID = player.SubType + 1
+				local birthrightDesc = EID.descriptions[EID.Config["Language"]]["birthright"][playerID] or EID.descriptions["en_us"]["birthright"][playerID] or nil
+				if birthrightDesc ~=nil then
+					local playerName = birthrightDesc[1] or player:GetName()
+					descriptionObj.Description = "{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3]
+				end
 			end
-		end
-		-- Handle Spindown Dice description addition
-		if player:GetActiveItem() == 723 then
-			descriptionObj.Description = descriptionObj.Description.."#{{Collectible723}} :"
-			local results = {}
-			local refID = closest.SubType
-			for i = 1,3 do
-				local spinnedID = EID:getSpindownResult(refID)
-				refID = spinnedID
-				if spinnedID > 0 then
-					descriptionObj.Description = descriptionObj.Description.."{{Collectible"..spinnedID.."}}"
-					if i ~=3 then
-						descriptionObj.Description = descriptionObj.Description.." ->"
+			-- Handle Spindown Dice description addition
+			if player:GetActiveItem() == 723 then
+				descriptionObj.Description = descriptionObj.Description.."#{{Collectible723}} :"
+				local refID = closest.SubType
+				for i = 1,3 do
+					local spinnedID = EID:getSpindownResult(refID)
+					refID = spinnedID
+					if spinnedID > 0 then
+						descriptionObj.Description = descriptionObj.Description.."{{Collectible"..spinnedID.."}}"
+						if i ~=3 then
+							descriptionObj.Description = descriptionObj.Description.." ->"
+						end
+					else
+						local errorMsg = EID.descriptions[EID.Config["Language"]]["spindownError"] or EID.descriptions["en_us"]["spindownError"] or nil
+						descriptionObj.Description = descriptionObj.Description..errorMsg
+						break
 					end
-				else
-					local errorMsg = EID.descriptions[EID.Config["Language"]]["spindownError"] or EID.descriptions["en_us"]["spindownError"] or nil
-					descriptionObj.Description = descriptionObj.Description..errorMsg
-					break
 				end
 			end
 		end

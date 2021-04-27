@@ -529,4 +529,6 @@ EID.descriptions["en_us"].horsepills={
 	{"49", "", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with PHD"},
 }
 
+EID.descriptions["en_us"].CraftingRoomContent = "Pickups in room:"
+EID.descriptions["en_us"].CraftingResults = "Results:"
 
