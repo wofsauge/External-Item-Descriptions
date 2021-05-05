@@ -65,7 +65,7 @@ EID.descriptions["spa"].collectibles={
     {"50", "Steven", "↑ +1 de daño"},
     {"51", "Pentagrama", "↑ +1,0 de daño#↑ +10% probabilidad de Pacto con el Diablo"},
     {"52", "Dr. Fetus", "¡Lágrimas bomba!"},
-    {"53", "Magneto", "Acerca los recolectables al jugador"},
+    {"53", "Imán", "Acerca los recolectables al jugador"},
     {"54", "Mapa del tesoro", "Muestra el plano del mapa"},
     {"55", "Ojo de Mamá", "Posibilidad  de disparar una lágrima hacia atrás#100 % de probabilidad si tienes 2 de suerte"},
     {"56", "Accidente con limón", "Crea una piscina de limonada#Inflige 66 de daño por contacto cada segundo"},
@@ -81,7 +81,7 @@ EID.descriptions["spa"].collectibles={
     {"66", "El reloj de arena", "Ralentiza a los enemigos durante 8 segundos"},
     {"67", "Hermana Maggy", "Familiar de lágrimas normales#Inflige 3,5 de daño"},
     {"68", "Tecnología", "Las lágrimas son láseres"},
-    {"69", "Leche con chocolate", "Carga las lágrimas#↑ hasta un 400 % más de daño#↓ Menos lágrimas"},
+    {"69", "Leche con chocolate", "Carga las lágrimas#↑ Hasta un 400 % más de daño#↓ Menos lágrimas"},
     {"70", "Hormonas de crecimiento", "↑ +1,0 de daño#↑ +0,4 de velocidad"},
     {"71", "Mini Champi", "↑ +0,3 de velocidad#↓ -4,25 de rango*#↑ +1,5 de tamaño de lágrima*#(*Ambas aumentan un poco el rango) ↑ Te haces más pequeño"},
     {"72", "Rosario", "+3 corazones de alma#La Biblia es más común"},
@@ -102,7 +102,7 @@ EID.descriptions["spa"].collectibles={
     {"87", "Cuernos de Loki", "Posibilidad de disparar en 4 direcciones"},
     {"88", "Pequeño Chubby", "Familiar que carga hacia delante#Inflige 52,5 de daño por contacto cada segundo"},
     {"89", "Mordedura de araña", "Ralentiza a los enemigos"},
-    {"90", "The Small Rock", "↑ +1 de daño#↑ +0,2 de lágrimas#↓ -0,2 de velocidad"},
+    {"90", "La pequeña roca", "↑ +1 de daño#↑ +0,2 de lágrimas#↓ -0,2 de velocidad"},
     {"91", "Casco de espeleólogo", "Muestra lo que hay detrás de las puertas"},
     {"92", "Supervendaje", "↑ +1 de vida#+2 corazones de alma"},
     {"93", "La consola", "Invencibilidad +daño por contacto#Comerse un enemigo recupera vida"},
@@ -146,7 +146,7 @@ EID.descriptions["spa"].collectibles={
     {"131", "Bolsa de bombas", "Deja caer 1 bomba cada pocas habitaciones"},
     {"132", "Un trozo de carbón", "Más daño basado en la distancia que recorra la lágrima"},
     {"133", "Pata de Guppy", "!!! Convierte:#1 corazón rojo en 3 corazones de alma"},
-    {"134", "Cola de Guppy", "Aparecen más cofres dorados"},
+    {"134", "Cola de Guppy", "Aparecen más cofres dorados#Menos llaves"},
     {"135", "Bolsa IV", "Banco de sangre portátil#Medio corazón = 1-3 monedas"},
     {"136", "Mejor amigo", "Muñeco explosivo#Atrae a los enemigos"},
     {"137", "Detonador remoto", "Detona bombas al gusto#+5 bombas"},
@@ -308,7 +308,7 @@ EID.descriptions["spa"].collectibles={
     {"293", "Cabeza de Krampus", "Dispara un rayo de brimstone (fuego infernal) en las 4 direcciones"},
     {"294", "Judía de mantequilla", "Repele a los enemigos y proyectiles cercanos#10 % de probabilidad de convertirse en \"Wait What?\" (Espera ¿qué?) al intercambiarlo por otro objeto activable y volverlo a coger"},
     {"295", "Dedos mágicos", "Daña toda la habitación con el doble de tu daño#Precio: 1 moneda"},
-    {"296", "Convertidor", "!!! Convierte:#2 corazones de alma/negros en un corazón rojo"},
+    {"296", "Conversor", "!!! Convierte:#2 corazones de alma/negros en un corazón rojo"},
     {"297", "Caja de Pandora", "!!! ÚNICO USO !#!!! Genera cosas en función del piso en el que se active:#B1: 2 corazones de alma #B2: 2 llaves y bombas#C1: 1 objeto de jefe#C2: B1+C1#D1: 4 corazones de alma#D2: 30 monedas#W1: 2 objetos de jefe#W2: Biblia#Sheol: 1 objeto del diablo+corazón negro#Catedral: 1 objeto de ángel + corazón de alma#Chest(cofre): 1 moneda"},
     {"298", "Muñón de unicornio", "Invencibilidad y +0,28 velocidad que dura hasta 6 segundos"},
     {"299", "Tauro", "¡Te hace más rápido en las habitaciones hostiles!#Invencibilidad al alcanzar la velocidad suficiente"},
@@ -358,7 +358,7 @@ EID.descriptions["spa"].collectibles={
     {"343", "Llave de candado", "↑ +1 de suerte#+1 corazón de alma#Genera 2 llaves"},
     {"344", "Libro de cerillas", "+1 corazón negro#Genera de 2 a 3 bombas"},
     {"345", "Synthol", "↑ +1,0 de daño#↑ +5,25 de rango#↑ +0,5 de tamaño de lágrima"},
-    {"346", "Snack", "↑ +1 de vida"},
+    {"346", "Libro de cerillas", "↑ +1 de vida"},
     {"347", "Diplopía", "!!! UN SOLO USO #Duplica los pedestales y consumibles de la habitación actual"},
     {"348", "Placebo", "Copia el efecto de la píldora que tienes"},
     {"349", "Níquel de madera", "50 % de probabilidad de generar una moneda aleatoria"},
@@ -431,7 +431,7 @@ EID.descriptions["spa"].collectibles={
     {"416", "Bolsillos profundos", "Te permite llevar dos cartas,píldoras o runas"},
     {"417", "Súcubo", "Familiar que rebota con un aura que inflige un 129 % de tu daño a los enemigos que estén dentro de ella#↑ Al quedarse sobre el aura, +50 % de multiplicador de daño"},
     {"418", "Tarta de frutas", "Otorga un efecto de lágrima diferente por cada lágrima que disparas"},
-    {"419", "Teletransporte 2.0", "Te teletransporta a una habitación sin explorar#Jerarquía: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}> Yo soy error (I Am Error)"},
+    {"419", "Teletransporte 2.0", "Te teletransporta a una habitación sin explorar#Jerarquía: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}> (I Am Error)"},
     {"420", "Polvo negro", "Caminar en círculo forma un símbolo de pentagrama en el suelo, que inflige 10 de daño por tick"},
     {"421", "Alubía roja", "Encanta a los enemigos cercanos y les inflige 5 de daño"},
     {"422", "Reloj de arena brillante", "Viaja en el tiempo y te deja en habitaciones anteriores, con las mismas estadísticas que tenías entonces"},
@@ -506,7 +506,7 @@ EID.descriptions["spa"].collectibles={
     {"491", "Bebé ácido", "Genera una píldora aleatoria cada tres habitaciones#Usar una píldora daña a los enemigos"},
     {"492", "¡EH, OYE!", "↑ +1 de suerte#Resalta la localización de salas secretas, rocas marcadas y trampillas"},
     {"493", "Adrenalina", "Por cada contenedor de corazón vacío:#↑ +0,2 de daño"},
-    {"494", "Escala de Jacob", "Lágrimas eléctricas que al impactar generan rayos#Los rayos infligen la mitad de tu daño"},
+    {"494", "", "Lágrimas eléctricas que al impactar generan rayos#Los rayos infligen la mitad de tu daño"},
     {"495", "Fantasma picante", "Probabilidad de disparar fuego en lugar de lágrimas#El fuego se mantiene hasta infligir daño 5 veces"},
     {"496", "Eutanasia", "Puede disparar jeringuillas que matan a los enemigos normales de un golpe#A los jefes les inflige el triple de tu daño"},
     {"497", "Ropa interior de camuflaje", "Al entrar a una habitación te camuflas hasta que disparas"},
@@ -539,7 +539,7 @@ EID.descriptions["spa"].collectibles={
     {"524", "Tecnología cero", "Las lágrimas están conectadas con rayos de electricidad#Los rayos infligen tu daño"},
     {"525", "Lepra", "Recibir daño genera un orbital#Máx. 3 orbitales a la vez#Si reciben demasiado daño, los orbitales pueden destruirse"},
     {"526", "Siete sellos", "Familiar con la forma y ataque de los jinetes#El jinete cambia pasados 10 segundos"},
-    {"527", "¡Sr. yo!", "!!! Familiar que hace tareas por ti:#Abrir llaves y cofres, traerte objetos, robar de la tienda o del pacto, luchar contra enemigos, explotar y activar placas de presión"},
+    {"527", "¡Sr. yo!", "!!! Familiar que hace tareas por ti:#Abrir puertas y cofres, traerte objetos, robar de la tienda o del pacto, luchar contra enemigos, explotar y activar placas de presión"},
     {"528", "Prisma angelical", "Prisma orbital#Las lágrimas que pasen por el prisma se separan en cuatro nuevas lágrimas"},
     {"529", "¡Pop!", "Las lágrimas son ojos que pueden rebotar entre ellos"},
     {"530", "Lista de la muerte", "Otorga una recompensa al matar enemigos en el orden que se indica"},
@@ -696,7 +696,7 @@ EID.descriptions["spa"].trinkets={
     {"125", "Cable de extensión", "Genera un láser entre los familiares"},
     {"126", "Moneda podrida", "Genera una mosca azul al coger monedas"},
     {"127", "Bebé doblado", "Las lágrimas de los familiares son teledirigidas"},
-    {"128", "Hueso de dedo", "Posibilidad de ganar un corazón de hueso cuando te golpean"},
+    {"128", "Dedo de hueso", "Posibilidad de ganar un corazón de hueso cuando te golpean"},
 }
  
 ---------- Cards ----------
@@ -704,7 +704,7 @@ EID.descriptions["spa"].cards={
     {"1", "0 - El loco", "Te teletransporta de nuevo al inicio"},
     {"2", "I - El mago", "Lágrimas teledirigidas en la habitación actual"},
     {"3", "II - La suma sacerdotisa", "El Pie de Mamá pisa a un enemigo"},
-    {"4", "III - La emperatriz", "↑ +2.35 de daño & +0,3 de velocidad en la habitación actual"},
+    {"4", "III - La emperatriz", "↑ +2,35 de daño & +0,3 de velocidad en la habitación actual"},
     {"5", "IV - El emperador", "Teletransporta a la sala del jefe ({{BossRoom}})"},
     {"6", "V - El hierofante", "Suelta 2 corazones de alma"},
     {"7", "VI - Los amantes", "Suelta 2 corazones rojos"},
@@ -744,7 +744,7 @@ EID.descriptions["spa"].cards={
     {"41", "Runa negra", "Inflige 40 de daño a todos los enemigos#Estadística aleatoria por cada objeto coleccionable de la habitación# (Destruye todos los objetos de la habitación)"},
     {"42", "Carta del caos", "Carta lanzable que mata al instante"},
     {"43", "Tarjeta de crédito", "Borra el precio de todos los objetos de la tienda actual o el Pacto con el Diablo, haciendo que todo sea gratis"},
-    {"44", "Carta de las reglas", "Al usarlo muestra \"helpful\" consejos"},
+    {"44", "Carta de las reglas", "Al usarlo muestra consejos \"útiles\" "},
     {"45", "Carta en contra de la humanidad", "Llena toda la habitación de caca"},
     {"46", "Rey suicida", "Te mata instantáneamente y genera 10 recolectables/coleccionables en el suelo"},
     {"47", "Carta sal de la cárcel gratis", "Abre todas las puertas de la habitación actual"},
@@ -775,7 +775,7 @@ EID.descriptions["spa"].pills={
     {"9", "Pubertad", "Al comer 3 te transformas en Adulto "},
     {"10", "Mosca bonita", "Añade 1 mosca orbital"},
     {"11", "Menos rango", "↓ -2 de rango"},
-    {"12", "Más rango", "↑ +2.5 de rango"},
+    {"12", "Más rango", "↑ +2,5 de rango"},
     {"13", "Menos velocidad", "↓ -0,12 de velocidad"},
     {"14", "Más velocidad", "↑ +0,15 de velocidad"},
     {"15", "Menos lágrimas", "↓ -0,28 de lágrimas"},
@@ -856,7 +856,7 @@ EID.descriptions["spa"].transformations = {
     "Leviatán",				-- 9
     "Serafín",				-- 10
     "Supervagabundo",		-- 11
-    "Ratón de Biblioteca",	-- 12
+    "Ratón de biblioteca",	-- 12
     "Bebé araña",		    -- 13
     "Adulto",				-- 14
     "Colosal"				-- 15
