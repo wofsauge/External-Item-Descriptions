@@ -419,7 +419,7 @@ EID.descriptions["en_us"].collectibles={
 	{"404", "", "Blocks projectiles#If hit, it will fart, which will charms, poison or knockback enemies"},
 	{"405", "", "Bounces around the room#Deals 120 damage per second and applies a random status effect"},
 	{"406", "", "Reroll your stats#Will only affect damage, tears, range and speed"},
-	{"407", "", "↑ Boost one of your stats depending on the color of the aura around him#When you take damage, you will get a new aura#{{ColorRed}}Red{{CR}} = +4.0 Damage#{{ColorBlue}}Blue{{CR}} = -4 Tear Delay#{{ColorYellow}}Yellow{{CR}} = +0.5 Speed up#{{ColorOrange}}Orange{{CR}} = +7.5 Range up, +1 Tear height"},
+	{"407", "", "↑ Boost one of your stats depending on the color of the aura around you#When you take damage, you will get a new aura#{{ColorRed}}Red{{CR}} = +4.0 Damage#{{ColorBlue}}Blue{{CR}} = -4 Tear Delay#{{ColorYellow}}Yellow{{CR}} = +0.5 Speed up#{{ColorOrange}}Orange{{CR}} = +7.5 Range up, +1 Tear height"},
 	{"408", "", "When you take damage, a black brimstone ring will appear around Isaac#Enemies killed with it have a chance to drop a black heart"},
 	{"409", "", "+2 Black Hearts#When Isaac has no red hearts, gain flight and chance to trigger a shield"},
 	{"410", "", "Chance to fire an eye across the screen which fires tears in the same direction as Isaac"},
