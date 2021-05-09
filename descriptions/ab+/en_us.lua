@@ -311,7 +311,7 @@ EID.descriptions["en_us"].collectibles={
 	{"296", "", "!!! Convert:#2 Soul/Black hearts into 1 red heart"},
 	{"297", "", "!!! SINGLE USE !#!!! Drops things based on floor its activated on:#B1: 2 Soul Hearts#B2: 2 keys and bombs#C1: 1 Boss item#C2: B1+C1#D1: 4 Soul hearts#D2: 30 Coins#W1: 2 Boss items#W2: Bible#Sheol: 1 Devil item + Black heart#Cat: 1 Angel item + Soul heart#Chest: 1 Coin"},
 	{"298", "", "Invincibility and +0.28 speed up for 6 seconds"},
-	{"299", "", "Get faster in hostile rooms!#Invincibility when fast enough"},
+	{"299", "", "Get faster in hostile rooms!#Invincibility when fast enough#↓ -0.3 Speed down"},
 	{"300", "", "↑ +0.25 Speed up#Touching enemies hurts them"},
 	{"301", "", "+3 Soul hearts#Halves taken damage in room when you already got hit"},
 	{"302", "", "Destroy rocks when walking over them"},
