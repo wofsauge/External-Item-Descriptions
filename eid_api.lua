@@ -296,7 +296,7 @@ function EID:getDescriptionObj(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	if tableName == "pills" or tableName == "horsepills" then
 		local pool = Game():GetItemPool()
-		description.ID = pool:GetPillEffect(SubType) + 1
+		description.ID = pool:GetPillEffect(SubType, Isaac.GetPlayer(0)) + 1
 	end
 	description.fullItemString = Type.."."..Variant.."."..description.ID
 	description.Name = EID:getObjectName(Type, Variant, description.ID)
