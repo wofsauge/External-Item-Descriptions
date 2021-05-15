@@ -130,14 +130,18 @@ end
 ------------------------Handle ALT FLOOR CHOICE----------------------------
 if REPENTANCE then
 	local altPathItemCounter = 0
+	local lastHidePosition = nullVector -- stores lastHide position to store Hide between Morphs / rerolls
 
 	function EID:onCollectibleInit(pickup)
-		if pickup.FrameCount > 0 then
+		if pickup:GetData()["EID_IsAltChoise"] ~= nil then
 			return
 		end
 		pickup:GetData()["EID_IsAltChoise"] = false
 		if Game():GetRoom():GetType() == RoomType.ROOM_TREASURE and Game():GetLevel():GetStageType() > 3 and pickup.OptionsPickupIndex == 1 then
-			pickup:GetData()["EID_IsAltChoise"] = altPathItemCounter == 1 and not Isaac.GetPlayer(0):HasCollectible(668)
+			if altPathItemCounter == 1 and not Isaac.GetPlayer(0):HasCollectible(668) or (pickup.Position - lastHidePosition):Length() < 0.1 then
+				pickup:GetData()["EID_IsAltChoise"] = true
+				lastHidePosition = pickup.Position
+			end
 			altPathItemCounter = altPathItemCounter + 1
 		end
 	end
@@ -145,6 +149,7 @@ if REPENTANCE then
 
 	function EID:resetAltPathCounter()
 		altPathItemCounter = 0
+		lastHidePosition = nullVector
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.resetAltPathCounter)
 end
@@ -482,7 +487,7 @@ local function onRender(t)
 	local closest = nil
 	local dist = 10000
 	for i, entity in ipairs(Isaac.GetRoomEntities()) do
-		if EID:hasDescription(entity) then
+		if EID:hasDescription(entity) and entity.FrameCount > 0 then
 			local diff = entity.Position:__sub(player.Position)
 			if diff:Length() < dist then
 				closest = entity
