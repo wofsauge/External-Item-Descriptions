@@ -127,6 +127,29 @@ if EID.Config["DisplaySacrificeInfo"] then
 end
 
 ---------------------------------------------------------------------------
+------------------------Handle ALT FLOOR CHOICE----------------------------
+if REPENTANCE then
+	local altPathItemCounter = 0
+
+	function EID:onCollectibleInit(pickup)
+		if pickup.FrameCount > 0 then
+			return
+		end
+		pickup:GetData()["EID_IsAltChoise"] = false
+		if Game():GetRoom():GetType() == RoomType.ROOM_TREASURE and Game():GetLevel():GetStageType() > 3 and pickup.OptionsPickupIndex == 1 then
+			pickup:GetData()["EID_IsAltChoise"] = altPathItemCounter == 1
+			altPathItemCounter = altPathItemCounter + 1
+		end
+	end
+	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, EID.onCollectibleInit, PickupVariant.PICKUP_COLLECTIBLE)
+
+	function EID:resetAltPathCounter()
+		altPathItemCounter = 0
+	end
+	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.resetAltPathCounter)
+end
+
+---------------------------------------------------------------------------
 ---------------------------Printing Functions------------------------------
 
 function EID:printDescription(desc)
@@ -490,13 +513,13 @@ local function onRender(t)
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Collectibles
-		if EID:hasCurseBlind() and EID.Config["DisableOnCurse"] then
+		if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (closest:GetData()["EID_IsAltChoise"] and EID.Config["DisableOnAltPath"]) then
 			EID:renderQuestionMark()
 			return
 		end
 		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
 		
-		if EID.GameVersion == "rep" then
+		if REPENTANCE then
 			-- Handle Birthright
 			if closest.SubType == 619 then
 				local playerID = player.SubType + 1
