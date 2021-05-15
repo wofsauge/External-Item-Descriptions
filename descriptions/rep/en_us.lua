@@ -410,7 +410,7 @@ local repTrinkets={
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us"].trinkets)
 
-EID.descriptions["en_us"].goldenTrinket = "GOLD: Doubled Effect!"
+EID.descriptions["en_us"].goldenTrinket = "GOLD: Effect doubled!"
 
 ---------- Cards ----------
 local repCards={

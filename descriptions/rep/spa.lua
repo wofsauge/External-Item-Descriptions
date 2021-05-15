@@ -408,126 +408,129 @@ local repTrinkets={
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["spa"].trinkets)
 
+EID.descriptions["spa"].goldenTrinket = "DORADO: ¡Efecto duplicado!"
 ---------- Cards ----------
 local repCards={
-	[27] = {"27", "", "Turns all pickups, chests and non-boss enemies into bombs"},
-	[28] = {"28", "", "Turns all pickups, chests and non-boss enemies into coins"},
-	[29] = {"29", "", "Turns all pickups, chests and non-boss enemies into keys"},
-	[30] = {"30", "", "Turns all pickups, chests and non-boss enemies into hearts"},
-	[39] = {"39", "", "Invincibility for 20 seconds"},
+	[27] = {"27", "", "Convierte todos los recolectables, cofres y enemigos no jefes en bombas"},
+	[28] = {"28", "", "Convierte todos los recolectables, cofres y enemigos no jefes en monedas"},
+	[29] = {"29", "", "Convierte todos los recolectables, cofres y enemigos no jefes en llaves"},
+	[30] = {"30", "", "Convierte todos los recolectables, cofres y enemigos no jefes en corazones"},
+	[39] = {"39", "", "Invencibilidad durante 20 segundos"},
 	
-	[55] = {"55", "", "Activates a random rune effect#The rune effect is weaker"},
-	[56] = {"56", "", "Drops all your hearts and pickups on the floor#Only half a heart left afterwards#Pickups can spawn as {{Collectible74}} {{Collectible19}} collectibles if amount is sufficient"},
-	[57] = {"57", "", "Grants big projectile and enemy repelling aura#Duration 1 minute"},
-	[58] = {"58", "", "Mom's foot stomps down repeatedly for 1 minute"},
-	[59] = {"59", "", "Temporary effect:#↑ +2 red hearts#↑ +1,35 de lágrimas"},
-	[60] = {"60", "", "Teleports you to an extra Boss room with extra loot"},
-	[61] = {"61", "", "Spawns 2 Bone Hearts"},
-	[62] = {"62", "", "Spawns 1 item from current room's item pool#Turns 1 red heart Container or 2 corazones de alma into a broken heart"},
-	[63] = {"63", "", "Turn into invincible immobile statue for 10 seconds#Extreme fire rate for duration"},
-	[64] = {"64", "", "Spawns 2-4 golden chests"},
-	[65] = {"65", "", "Turns pickups and items in the room into coins#Coin values are equal to their shop value"},
-	[66] = {"66", "", "Random dice room effect"},
-	[67] = {"67", "", "Enemies in room are weakened, slowed and take double damage"},
-	[68] = {"68", "", "Turns player into the Keeper for 30 seconds#Grants triple shot and speed down#Killed enemies drop random coins"},
-	[69] = {"69", "", "Invokes Book of the Dead effect {{Collectible545}}#(Spawns Bone entities for each enemy killed in room)"},
-	[70] = {"70", "", "Applies 5 random pill effects"},
-	[71] = {"71", "", "Invokes the Bible effect {{Collectible33}}#Grants Seraphim familiar {{Collectible390}}# For 30 seconds"},
-	[72] = {"72", "", "Spawns 6 clusters of random rocks and obstacles"},
-	[73] = {"73", "", "Removes oldest passive item#Spawns 2 random items from current room's item pool"},
-	[74] = {"74", "", "Teleports you to Ultra secret room#Pathway back will be made of red rooms"},
-	[75] = {"75", "", "Gain Spirit of the Night {{Collectible159}}#↑ +1,5 de daño# For the current level#Turns red hearts into bone hearts, but reverts once the effect ends#Applies Curse of Darkness"},
-	[76] = {"76", "", "Spawns a Restock Machine"},
-	[77] = {"77", "", "Spawns a trap door to a crawl space"},
-	[78] = {"78", "", "One time use Red Key {{Collectible580}}"},
-	[79] = {"79", "", "Spawns 1-12 red hearts"},
-	[80] = {"80", "", "Copies the effect of the most recently used pill, card, rune, soul stone or activated item"},
-	[81] = {"81", "", "Rerolls the items in the room#Cycle back to their original form after one second#Effect repeats"},
-	[82] = {"82", "", "Surrounds Isaac with a bubbling red aura for the current room#Enemies killed drop red half hearts that disappear in 2 secs"},
-	[83] = {"83", "", "Creates red rooms with Red Key {{Collectible580}} for every possible exit"},
-	[84] = {"84", "", "Turns Isaac into a phantom that can pass through enemies to paralyze them#After a few seconds, will attack them all, gaining damage bonus per target"},
-	[85] = {"85", "", "Causes 8 poison farts with brown creep#Then plants trail of 7 Butt Bombs#Standing in the creep gives ↑ +1,35 Tears and ↑ +1 Damage"},
-	[86] = {"86", "", "14 Dead Bird familiars fly in and attack enemies# Lasts for current room"},
-	[87] = {"87", "", "Turn into a berserk Samson with melee attack for 10 seconds#↑ +0,4 de velocidad#↑ Tears up#↑ +3 de daño"},
-	[88] = {"88", "", "Activates Mega Blast {{Collectible441}} for 7,5 secs"},
-	[89] = {"89", "", "Die and immediately revive at half a heart with some invincibility time#Item is automatically used upon taking fatal damage (like an extra life)"},
-	[90] = {"90", "", "Activates D6 {{Collectible105}} and D20 {{Collectible166}} effect#The rerolled items use random pools"},
-	[91] = {"91", "", "Die and turn into The Lost for current room"},
-	[92] = {"92", "", "Adds 1 random familiar"},
-	[93] = {"93", "", "Spawns 3-25 random coins"},
-	[94] = {"94", "", "Spawn 15 random locust flies"},
-	[95] = {"95", "", "Spawns The Forgotten as a temporary secondary character for current room"},
-	[96] = {"96", "", "Spawns 6 Book of Virtues {{Collectible584}} wisps with random properties"},
-	[97] = {"97", "", "Spawns Esau as a temporary secondary character for current room"},
+	[55] = {"55", "", "Activa un efecto de runa aleatoria#El efecto es débil"},
+	[56] = {"56", "", "Deja caer los corazones y recolectables al suelo#Te deja con medio corazón#Los recolectables pueden generarse como los recolectables {{Collectible74}} {{Collectible19}} si hay una cantidad suficiente"},
+	[57] = {"57", "", "Otorga un aura protectora contra los proyectiles grandes y los enemigos#Dura un minuto"},
+	[58] = {"58", "", "El pie de mamá pisa repetidamente durante 1 minuto"},
+	[59] = {"59", "", "Efecto temporal:#↑ +2 corazones rojos#↑ +1,35 de lágrimas"},
+	[60] = {"60", "", "Te teletransporta a una sala del jefe adicional con más recompensa"},
+	[61] = {"61", "", "Genera 2 corazones de hueso"},
+	[62] = {"62", "", "Genera un objeto de la pool de la sala actual#Convierte 1 corazón rojo o 2 corazones de alma en un corazón roto"},
+	[63] = {"63", "", "Te convierte en una estatua invencible durante 10 segundos#Gran velocidad de disparo mientras dure"},
+	[64] = {"64", "", "Genera de 2 a 4 corazones dorados"},
+	[65] = {"65", "", "Convierte los recolectables y objetos de la habitación en monedas#El valor de las monedas es el mismo que su precio en la tienda"},
+	[66] = {"66", "", "Efecto aleatorio de la sala de dados"},
+	[67] = {"67", "", "Los enemigos de la habitación se vuelven más débiles, lentos y reciben el doble de daño"},
+	[68] = {"68", "", "Te conviertes en Keeper durante 30 segundos#Otorga disparo triple y menos velocidad#os enemigos asesinados dejan caer monedas"},
+	[69] = {"69", "", "Otorga el efecto de Book of the Dead {{Collectible545}} (Libro de los muertos)#(Genera entidades de hueso por cada enemigo eliminado en la habitación)"},
+	[70] = {"70", "", "Aplica 5 efectos de píldora aleatorios"},
+	[71] = {"71", "", "Otorga el efecto de Bible  {{Collectible33}} (la Biblia)#Genera un  familiar Serafín {{Collectible390}}# Dura 30 segundos"},
+	[72] = {"72", "", "Genera 6 grupos de rocas y obstáculos aleatorios"},
+	[73] = {"73", "", "Elimina el objeto pasivo más antiguo#Genera 2 objetos aleatorios de la pool de la sala actual"},
+	[74] = {"74", "", "Te teletransporta a la sala ultrasecreta#El camino de vuelta será de habitaciones rojas"},
+	[75] = {"75", "", "Ganas el objeto Spirit of the Night {{Collectible159}} (Espíritu de la noche)#↑ +1,5 de daño# Dura en la planta actual#Convierte los corazones rojos en corazones de hueso, pero los devuelve al acabar el efecto#Aplica Curse of Darkness (Maldición de oscuridad)"},
+	[76] = {"76", "", "Genera  una máquina de restock"},
+	[77] = {"77", "", "Genera una trampilla"},
+	[78] = {"78", "", "Un solo uso de Red Key {{Collectible580}} (Llave roja)"},
+	[79] = {"79", "", "Genera de 1 a 12 corazones rojos"},
+	[80] = {"80", "", "Copia el efecto del último recolectable activado: píldora, carta, runa, piedra de alma u objeto activo"},
+	[81] = {"81", "", "Cambia los objetos de la habitación#Lo alterna con la forma original tras un segundo#El efecto se repite"},
+	[82] = {"82", "", "Te rodea con un aura roja burbujeante en la habitación actual#Los enemigos asesinados dejan caer medios corazones rojos que desaparecen en 2 segundos"},
+	[83] = {"83", "", "Crea habitaciones rojas con Red Key {{Collectible580}} (Llave roja) para cada posible salida"},
+	[84] = {"84", "", "Te convierte en un fantasma que puede atravesar enemigos y paralizarlos#Tras unos segundos, les ataca a todos, ganando una mejora de daño por cada objetivo"},
+	[85] = {"85", "", "Suelta 8 pedos venenososos con creep marrón#Después deja un rastro de 7 Butt Bombs (Bombas culo)#Quedarse en el creep otorga ↑ +1,35 de lágrimas y ↑ +1 de daño"},
+	[86] = {"86", "", "14 familiares Dead Bird (Pájaro muerto) atacan a los enemigos# Dura en la habitación actual"},
+	[87] = {"87", "", "Te convierte en Sansón berserker con ataque a melé durante 10 segundos#↑ +0,4 de velocidad#↑ Más lágrimas#↑ +3 de daño"},
+	[88] = {"88", "", "Activa Mega Blast {{Collectible441}} durante 7,5 segundos"},
+	[89] = {"89", "", "Mueres y revives inmediatamente con medio corazón y un rato de invencibilidad#El objeto se usa automáticamente al recibir un daño fatal (como una vida adicional)"},
+	[90] = {"90", "", "Activa el efecto de D6 {{Collectible105}} y el de D20 {{Collectible166}}#El objeto cambiado usa pools de objetos aleatorias"},
+	[91] = {"91", "", "Te convierte en The Lost en la habitación actual"},
+	[92] = {"92", "", "Añade un familiar aleatorio"},
+	[93] = {"93", "", "Genera de 3 a 25 monedas aleatorias"},
+	[94] = {"94", "", "Genera 15 langostas aleatorias"},
+	[95] = {"95", "", "Aparece The Forgotten como un segundo personaje en la habitación actual"},
+	[96] = {"96", "", "Genera 6 fuegos fatuos de Book of Virtues {{Collectible584}} (Libro de las virtudes) con propiedades aleatorias"},
+	[97] = {"97", "", "Aparece Esaú como un segundo personaje en la habitación actual"},
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions["spa"].cards)
 
 ---------- Pills ----------
 
 local repPills={
-	[4] = {"3", "", "Switches number of bombs with keys#Golden bombs and keys are also swapped"},
+	[4] = {"3", "", "Intercambia el número de bombas por el de llaves#Las llaves y bombas de oro también se intercambian"},
 	[12] = {"11", "", "↓ -0,6 de rango"},
 	[13] = {"12", "", "↑ +0,45 de rango"},
-	[42] = {"41", "", "Slow all enemies and Isaac in the room"},
-	[43] = {"42", "", "Speeds up all enemies and Isaac in the room#Triggers again after 30 and 60 seconds"},
+	[42] = {"41", "", "Te ralentiza a ti y a los enemigos de la habitación"},
+	[43] = {"42", "", "Aumenta tu velocidad y la de todos los enemigos de la habitación#Se vuelve a activas tras 30 y 60 segundos"},
 	
-	[48] = {"47", "", "↓ -0,15 Shot Speed down"},
-	[49] = {"48", "", "↑ +0,15 Shot Speed up"},
-	[50] = {"49", "", "↑ Increases 1 random stat#↓ Decreases 1 random other stat#Will not decrease with PHD"},
+	[48] = {"47", "", "↓ -0,15 de velocidad de disparo"},
+	[49] = {"48", "", "↑ +0,15 de velocidad de disparo"},
+	[50] = {"49", "", "↑ Aumenta una estadística aleatoria#↓ Disminuye otra estadística aleatoria#Si tienes PHD no bajará ninguna"},
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions["spa"].pills)
 
 EID.descriptions["spa"].horsepills={
-	{"0", "", "Poisons entire room"},
-	{"1", "", "Deals 2 heart of damage to you"},
+	{"0", "", "Envenena toda la habitación"},
+	{"1", "", "Te inflige 2 corazones de daño"},
 	{"2", "", "+4 corazones de alma"},
-	{"3", "", "Switches number of bombs with keys#Increases key and bomb count by 50  %#Golden bombs and keys are also swapped"},
-	{"4", "", "Spawns some mega homing troll bombs at your position"},
-	{"5", "", "Full Health#+3 corazones de alma"},
-	{"6", "", "↓ -2 Health down"},
-	{"7", "", "↑ +2 empty heart containers"},
-	{"8", "", "No effect"},
-	{"9", "", "No effect"}, -- Puberty
-	{"10", "", "Adds 1 Big Fan fly orbital {{Collectible279}}#There is no upper limit"},
+	{"3", "", "Intercambia el número de bombas y de llaves#Aumenta el número de llaves y de bombas en un 50 %#Las bombas y llaves doradas también se intercambian"},
+	{"4", "", "Genera enormes bombas troll teledirigidas en tu posición"},
+	{"5", "", "Vida al completo#+3 corazones de alma"},
+	{"6", "", "↓ -2 corazones"},
+	{"7", "", "↑ +2 contenedores de vida vacíos"},
+	{"8", "", "Sin efecto"},
+	{"9", "", "Sin efecto"}, -- Puberty
+	{"10", "", "Añade 1 mosca orbital Big Fan {{Collectible279}} (Gran fan)#No hay límite máximo"},
 	{"11", "", "↓ -1,2 de rango"},
 	{"12", "", "↑ +0,9 de rango"},
-	{"13", "", "↓ -0,24 Speed down"},
+	{"13", "", "↓ -0,24 de velocidad"},
 	{"14", "", "↑ +0,3 de velocidad"},
 	{"15", "", "↓ -0,56 de lágrimas"},
 	{"16", "", "↑ +0,70 de lágrimas"},
 	{"17", "", "↓ -2 de suerte"},
 	{"18", "", "↑ +2 de suerte"},
-	{"19", "", "Teleport to random room"}, -- TODO
-	{"20", "", "Recharges your active item#Drops batteries"}, -- TODO
-	{"21", "", "Drains all but one heart container#Spawns red hearts"}, -- TODO
-	{"22", "", "You can't move for 4 seconds"},
-	{"23", "", "Opens secret room entrances on current floor#Grants full mapping"},
-	{"24", "", "Turns every enemy in the room permanently friendly"},
-	{"25", "", "Hides the floor map"}, --TODO
-	{"26", "", "Spawns room filling puddle on the ground which damages enemies"},
-	{"27", "", "Shoot diagonally for 60 seconds"},
-	{"28", "", "Take only half the damage for current room"},  --TODO
-	{"29", "", "Take full heart damage for current room"}, --TODO
-	{"30", "", "Spawn poop while walking for 4 seconds"}, --TODO
-	{"31", "", "Curse of the maze effect for current floor"}, --TODO
-	{"32", "", "You grow a lot bigger#Doesn't affect your hitbox"},
-	{"33", "", "You get a lot smaller#Your hitbox gets smaller"},
-	{"34", "", "Spawn 2 blue spiders per poop in room"},
-	{"35", "", "Spawn 2 blue spiders per enemy in room#Spawns 2-6 blue spiders when no enemy is in the room"},
-	{"36", "", "Short invincibility effect#↑ #7 de daño#↑ +3 de rango# persists for current room"},
-	{"37", "", "Pixelates the screen for 90 seconds"},
-	{"38", "", "Spawns 6 blue flies"},
-	{"39", "", "Spawn pool of long lasting slippery creep"},
-	{"40", "", "Spawn pool of long lasting slowing creep"},
-	{"41", "", "Slow all enemies in room"}, --TODO
-	{"42", "", "Speed up for all enemies in room"}, --TODO
-	{"43", "", "Consume current trinket and gain its effect permanently"}, --TODO
-	{"44", "", "Shoots a cluster of ipecac tears"},
-	{"45", "", "Short invincibility#Fears all enemies# Two eaten enemies replenish half a heart"},
-	{"46", "", "Spawns last used pill as a horse pill"},
-	{"47", "", "↓ -0,3 Shot Speed down"},
-	{"48", "", "↑ +0,3 Shot Speed up"},
-	{"49", "", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with PHD"},
+	{"19", "", "Te teletransporta a una habitación aleatoria"}, -- TODO
+	{"20", "", "Recarga el objeto activo#Deja caer baterías"}, -- TODO
+	{"21", "", "Drena todos los contenedores de corazón menos uno#Genera corazones rojos"}, -- TODO
+	{"22", "", "No te puedes mover durante 4 segundos"},
+	{"23", "", "Abre las entradas de las habitaciones secretas de la planta actual#Muestra el mapa completo"},
+	{"24", "", "Convierte a cada enemigo de la habitación actual en amigo"},
+	{"25", "", "Oculta el mapa de esta planta"}, --TODO
+	{"26", "", "Genera un charco que cubre el suelo y daña a los enemigos"},
+	{"27", "", "Disparas en diagonal durante 60 segundos"},
+	{"28", "", "Te hacen la mitad de daño en la habitación actual"},  --TODO
+	{"29", "", "Te hace un corazón de daño en la habitación actual"}, --TODO
+	{"30", "", "Genera una caca mientras caminas durante 4 segundos"}, --TODO
+	{"31", "", "Efecto de Curse of the maze (Maldición del laberinto) en la planta actual"}, --TODO
+	{"32", "", "Te haces mucho más grande#No afecta a la hitbox"},
+	{"33", "", "Te haces mucho más pequeño#Tu hitbox se hace más pequeña"},
+	{"34", "", "Genera 2 arañas azules por cada caca de la habitación"},
+	{"35", "", "Genera 2 arañas azules por cada enemigo de la habitación#Genera de 2 a 6 arañas azules si no hay enemigos en la habitación"},
+	{"36", "", "Efecto de invencibilidad breve#↑ #7 de daño#↑ +3 de rango#Dura en la habitación actual"},
+	{"37", "", "Pixela la pantalla durante 30 segundos"},
+	{"38", "", "Invoca 6 moscas azules"},
+	{"39", "", "Genera una piscina de creep resbaladizo persistente"},
+	{"40", "", "Genera una piscina de creep ralentizante persistente"},
+	{"41", "", "Ralentiza a todos los enemigos de la habitación"}, --TODO
+	{"42", "", "Acelera a todos los enemigos de la habitación"}, --TODO
+	{"43", "", "Consume el trinket actual y ganas su efecto de manera permanente"}, --TODO
+	{"44", "", "Dispara un grupo de lágrimas de Ipecac"},
+	{"45", "", "Invencibilidad corta#Asusta a todos los enemigos#Comerse dos enemigos repone medio corazón"},
+	{"46", "", "Genera la última píldora usada como una píldora para caballos"},
+	{"47", "", "↓ -0,3 de velocidad de disparo"},
+	{"48", "", "↑ +0,3 de velocidad de disparo"},
+	{"49", "", "↑ Aumenta una estadística aleatoria dos veces#↓ Disminuye otra estadística aleatoria dos veces#Si tienes PHD no disminuye nada"},
 }
 
+EID.descriptions["spa"].CraftingRoomContent = "Recolectables de la habitación:"
+EID.descriptions["spa"].CraftingResults = "Resultados:"
 
