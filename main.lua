@@ -70,41 +70,46 @@ local nullVector = Vector(0,0)
 ---------------------------------------------------------------------------
 ------------------------------- Load Font ---------------------------------
 local isluadebug, os = pcall(require,"os")
-if isluadebug then
-    local modfolder ='external item descriptions_836319872' --release mod folder name
-    local userPath = os.tmpname()
-    userPath = string.gsub(userPath, "\\", "/")
-    local newPath = ""
-	if not string.find(userPath, "AppData") then
-		-- Linux
-        EID.modPath = os.getenv("HOME") .. "/.local/share/binding of isaac afterbirth+ mods/"..modfolder.."/"
-    else
-        for str in string.gmatch(userPath, "([^/]+)") do
-            if str ~="AppData" then
-                newPath = newPath..str.."/"
-            else
-                break
-            end
-        end
-        EID.modPath = newPath.."Documents/My Games/Binding of Isaac Afterbirth+ Mods/"..modfolder.."/"
-    end
+local modfolder ='external item descriptions_836319872' --release mod folder name
+if not REPENTANCE then
+	if isluadebug then
+		local userPath = os.tmpname()
+		userPath = string.gsub(userPath, "\\", "/")
+		local newPath = ""
+		if not string.find(userPath, "AppData") then
+			-- Linux
+			EID.modPath = os.getenv("HOME") .. "/.local/share/binding of isaac afterbirth+ mods/"..modfolder.."/"
+		else
+			for str in string.gmatch(userPath, "([^/]+)") do
+				if str ~="AppData" then
+					newPath = newPath..str.."/"
+				else
+					break
+				end
+			end
+			EID.modPath = newPath.."Documents/My Games/Binding of Isaac Afterbirth+ Mods/"..modfolder.."/"
+		end
+	else
+		--use some very hacky trickery to get the path to this mod
+		local _, err = pcall(require, "")
+		local _, basePathStart = string.find(err, "no file '", 1)
+		local _, modPathStart = string.find(err, "no file '", basePathStart)
+		local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+		EID.modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
+	end
+	EID.modPath = string.gsub(EID.modPath, "\\", "/")
+	EID.modPath = string.gsub(EID.modPath, "//", "/")
+	EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
 else
-    --use some very hacky trickery to get the path to this mod
-    local _, err = pcall(require, "")
-    local _, basePathStart = string.find(err, "no file '", 1)
-    local _, modPathStart = string.find(err, "no file '", basePathStart)
-    local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
-    EID.modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
+	EID.modPath = "../mods/"..modfolder.."/"
 end
-EID.modPath = string.gsub(EID.modPath, "\\", "/")
-EID.modPath = string.gsub(EID.modPath, "//", "/")
-EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
 
 EID.font = Font() -- init font object
 local fontFile = EID.Config["FontType"] or "default"
 local success = EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
 if not success then
-	Isaac.ConsoleOutput("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!")
+	Isaac.ConsoleOutput("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
+	Isaac.ConsoleOutput("File does not exist: "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
 	return
 end
 
