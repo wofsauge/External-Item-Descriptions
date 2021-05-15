@@ -129,6 +129,9 @@ EID.DefaultConfig = {
 	-- Higher numbers can cause more lag!
 	-- Default = 7
 	["BagOfCraftingResults"] = 7,
+	-- Changes the number of Results shown for the additional Spindown dice description
+	-- Default = 3
+	["SpindownDiceResults"] = 3,
 
 	-- Error message displayed when an error occurs
 	-- Default = [Effect not defined]

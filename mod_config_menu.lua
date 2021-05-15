@@ -69,7 +69,7 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	---------------------------------General-----------------------------------
 	-- Language
-	local displayLanguage = {"English", "English (detailed)", "French",  "Portuguese", "Portugues (Brasil)", "Russian", "Spanish", "Italian", "Bulgarian (WIP)", "Polish (WIP)", "German (WIP)", "Turkish (WIP)"}
+	local displayLanguage = {"English", "English (detailed)", "French (AB+)",  "Portuguese (AB+)", "Portugues (Brasil)", "Russian", "Spanish", "Italian (AB+)", "Bulgarian (WIP) (AB+)", "Polish (WIP) (AB+)", "German (WIP) (AB+)", "Turkish (WIP) (AB+)"}
 	MCM.AddSetting(
 		"EID",
 		"General",
@@ -131,6 +131,27 @@ if MCMLoaded then
 			end,
 			OnChange = function(currentBool)
 				EID.Config["DisableOnCurse"] = currentBool
+			end
+		}
+	)
+	-- Disable Alt Item option
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisableOnAltPath"]
+			end,
+			Display = function()
+				local onOff = "True"
+				if EID.Config["DisableOnAltPath"] then
+					onOff = "False"
+				end
+				return 'Show hidden alt-Path Item: ' .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisableOnAltPath"] = currentBool
 			end
 		}
 	)
@@ -407,7 +428,47 @@ if MCMLoaded then
 			end
 		}
 	)
-
+	
+	-- Spindown Dice results
+	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = function()
+				return AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1
+			end,
+			Display = function()
+				return "Spindown Dice: $scroll" ..
+					AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1 .. " " .. EID.Config["SpindownDiceResults"] .. " Items"
+			end,
+			OnChange = function(currentNum)
+				EID.Config["SpindownDiceResults"] = diceSteps[currentNum%#diceSteps + 1]
+			end,
+			Info = {"Preview of Items resulting when using the Spindown dice X times"}
+		}
+	)
+	
+	-- Bag of Crafting results
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = function()
+				return AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1
+			end,
+			Display = function()
+				return "Crafting bag: $scroll" ..
+					AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1 .. " " .. EID.Config["BagOfCraftingResults"] .. " Results"
+			end,
+			OnChange = function(currentNum)
+				EID.Config["BagOfCraftingResults"] = diceSteps[currentNum%#diceSteps + 1]
+			end,
+			Info = {"Preview of items currently craftable with Bag of crafting"}
+		}
+	)
 	---------------------------------------------------------------------------
 	---------------------------------Visuals-----------------------------------
 	-- Font Type

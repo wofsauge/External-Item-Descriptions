@@ -7,7 +7,7 @@ local enableDebug = false
 
 require("eid_config")
 EID.Config = EID.DefaultConfig
-EID.Config.Version = "3.1"
+EID.Config.Version = "3.2"
 EID.isHidden = EID.Config["Hidden"]
 
 -- general variables
@@ -388,15 +388,15 @@ local function handleBagOfCraftingRendering()
 				customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ="
 				customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
 				resultCount = resultCount + 1
-				if resultCount > 9 then
-					if #results > 10 then
-						customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..(#results-10).." more"
+				if resultCount > EID.Config["BagOfCraftingResults"]-1 then
+					if #results > EID.Config["BagOfCraftingResults"] then
+						customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..(#results-EID.Config["BagOfCraftingResults"]).." more"
 					end
 					break
 				end
 			end
 		end
-		if resultCount > EID.Config["BagOfCraftingResults"] then
+		if resultCount > EID.Config["BagOfCraftingResults"]-1 then
 			break
 		end
 	end
@@ -533,12 +533,12 @@ local function onRender(t)
 			if player:HasCollectible(723) then
 				descriptionObj.Description = descriptionObj.Description.."#{{Collectible723}} :"
 				local refID = closest.SubType
-				for i = 1,3 do
+				for i = 1,EID.Config["SpindownDiceResults"] do
 					local spinnedID = EID:getSpindownResult(refID)
 					refID = spinnedID
 					if spinnedID > 0 then
 						descriptionObj.Description = descriptionObj.Description.."{{Collectible"..spinnedID.."}}"
-						if i ~=3 then
+						if i ~= EID.Config["SpindownDiceResults"] then
 							descriptionObj.Description = descriptionObj.Description.." ->"
 						end
 					else
