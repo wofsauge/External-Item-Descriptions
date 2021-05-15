@@ -43,7 +43,7 @@ local repCollectibles={
 	[148] = {"148", "", "Spawn 2-6 flies when you get hit"}, -- Infestation
 	[147] = {"147", "", "Break rocks and damage enemies on swing#Hitting with the axe reduces its charge#Charge refills on stage transition"}, -- Notched Axe
 	[171] = {"171", "", "Slows down enemies for 4 seconds#10 Damage to all enemies#Enemies killed with it spawn blue spiders"}, -- Spider Butt
-	[178] = {"178", "", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot button)#Leaves pool of creep at the thrown location"},
+	[178] = {"178", "", "{{Throwable}} {{ColorOrange}}Throwable{{CR}}#Leaves pool of creep at the thrown location"},
 	[192] = {"192", "", "Homing tears for current room#↑ +3 Range up"}, -- Telepathy for Dummies
 	[203] = {"203", "", "Chance to spawn the double version of pickups"}, -- Humbling Bundle
 	[205] = {"205", "", "- half Heart = Charges one slot of your active item when pressing space"}, -- Sharp Plug

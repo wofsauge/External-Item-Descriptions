@@ -48,7 +48,7 @@ local repCollectibles={
 	[148] = {"148", "", "Gera 2-6 moscas quando você é danificado"}, -- Infestation
 	[147] = {"147", "", "Quebra pedras e danifica inimigos#Batendo com o machado reduz sua carga#Recarrega ao ir para o próximo andar"}, -- Notched Axe
 	[171] = {"171", "", "Atrasse os inimigos por 4 segundos#Cause 10 de dano á todos os inimigos#Inimigos mortos com isso gera aranhas azuir"}, -- Spider Butt
-	[178] = {"178", "", "{{Throwable}} {{ColorOrange}}Arremessável{{CR}} (Apertar duas vezes no botão de tiro)#Deixa uma poça no local arremessado"},
+	[178] = {"178", "", "{{Throwable}} {{ColorOrange}}Arremessável{{CR}}#Deixa uma poça no local arremessado"},
 	[192] = {"192", "", "Lágrimas teleguidas para a sala atual#↑ +3 Alcance"}, -- Telepathy for Dummies
 	[203] = {"203", "", "Chance de gerar a versão dupla de pickups"}, -- Humbling Bundle
 	[205] = {"205", "", "- Meio coração = Carrega um slot do seu item ativador ao pressionar a barra de espaço"}, -- Sharp Plug
