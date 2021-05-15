@@ -174,7 +174,7 @@ EID.descriptions["en_us"].collectibles={
 	{"159", "", "Flight#Spectral tears"},
 	{"160", "", "Spawns 5 beams of light near enemies#Deals your damage+20"},
 	{"161", "", "Respawn as ??? (Blue Baby) on death"},
-	{"162", "", "Chance for invincibility when Isaac get hit"},
+	{"162", "", "Chance for invincibility when Isaac gets hit"},
 	{"163", "", "Spectral tears familiar#Deals 3.5 damage per shot"},
 	{"164", "", "Spawns a blue fire#Deals contact damage#Blocks enemy tears#Despawns after 2 seconds"},
 	{"165", "", "↑ +1 Damage up#↑ +23% Shot speed up"},
