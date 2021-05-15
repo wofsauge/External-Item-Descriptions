@@ -52,7 +52,7 @@ require("eid_data")
 require("eid_api")
 
 -- load Repentence descriptions
-if Isaac.GetEntityTypeByName("\68\111\103\109\97") == 950 then
+if REPENTANCE then
 	EID.GameVersion = "rep"
 	for _,lang in ipairs(EID.Languages) do
 		local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
@@ -266,14 +266,18 @@ function EID:renderQuestionMark()
 end
 
 function EID:renderIndicator(entity)
+	local repDiv = 1
+	if REPENTANCE then
+		repDiv = 255
+	end
 	if EID.Config["Indicator"] == "blink" then
 		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
-		entity:SetColor(Color(1, 1, 1, 1, c, c, c), 1, 1, false, false)
+		entity:SetColor(Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv), 1, 1, false, false)
 		entity:Render(nullVector)
 		entity:SetColor(Color(1, 1, 1, 1, 0, 0, 0), 2, 1, false, false)
 	elseif EID.Config["Indicator"] == "border" then
 		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
-		entity:SetColor(Color(1, 1, 1, 1, c, c, c), 1, 1, false, false)
+		entity:SetColor(Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv), 1, 1, false, false)
 		entity:Render(Vector(0, 1))
 		entity:Render(Vector(0, -1))
 		entity:Render(Vector(1, 0))
@@ -281,7 +285,7 @@ function EID:renderIndicator(entity)
 		entity:SetColor(Color(1, 1, 1, 1, 0, 0, 0), 2, 1, false, false)
 		entity:Render(nullVector)
 	elseif EID.Config["Indicator"] == "highlight" then
-		entity:SetColor(Color(1, 1, 1, 1, 255, 255, 255), 1, 1, false, false)
+		entity:SetColor(Color(1, 1, 1, 1, 255/repDiv, 255/repDiv, 255/repDiv), 1, 1, false, false)
 		entity:Render(Vector(0, 1))
 		entity:Render(Vector(0, -1))
 		entity:Render(Vector(1, 0))
