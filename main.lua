@@ -507,7 +507,7 @@ local function onRender(t)
 				end
 			end
 			-- Handle Spindown Dice description addition
-			if player:GetActiveItem() == 723 then
+			if player:HasCollectible(723) then
 				descriptionObj.Description = descriptionObj.Description.."#{{Collectible723}} :"
 				local refID = closest.SubType
 				for i = 1,3 do
