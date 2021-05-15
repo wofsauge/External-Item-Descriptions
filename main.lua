@@ -116,8 +116,8 @@ if EID.Config["DisplaySacrificeInfo"] then
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
-	function EID:onSacrificeDamage(_, _, flag, source)
-		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flag == DamageFlag.DAMAGE_SPIKES then
+	function EID:onSacrificeDamage(_, _, flags, source)
+		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
 			if EID.sacrificeCounter < 12 then
 				EID.sacrificeCounter = EID.sacrificeCounter + 1
 			end
