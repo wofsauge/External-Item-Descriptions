@@ -332,6 +332,8 @@ end
 
 local randResultCache = {}
 
+EID.bagOfCraftingOffset = 0
+
 local function handleBagOfCraftingRendering()
 	local results = {}
 	local bagItems = {} -- TODO: Get content of Bag
@@ -373,11 +375,13 @@ local function handleBagOfCraftingRendering()
 		end
 		randResultCache[queryString] = calcResults
 		results = calcResults
+		EID.bagOfCraftingOffset = 0
 	else
 		results = randResultCache[queryString]
 	end
 	
 	if #results == 0 then
+		EID.bagOfCraftingOffset = 0
 		return false
 	end
 	
@@ -386,18 +390,37 @@ local function handleBagOfCraftingRendering()
 	local resultDesc = EID.descriptions[EID.Config["Language"]].CraftingResults or EID.descriptions["en_us"].CraftingResults
 	customDescObj.Description = roomDesc.."#"..EID:tableToCraftingIconsMerged(floorItems).."#"..resultDesc
 	
+	if Input.IsActionPressed(ButtonAction.ACTION_MAP, 0) or Input.IsActionPressed(ButtonAction.ACTION_MAP, 1) then
+		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, 1) then
+			EID.bagOfCraftingOffset = math.min(#results-(#results%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, 1) then
+			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
+		end
+		Isaac.GetPlayer(0).ControlsEnabled = false
+	else
+		Isaac.GetPlayer(0).ControlsEnabled = true
+	end
+	
 	local resultCount = 0
+	local skips = 0
 	for quality = 4, 0, -1 do -- sort by result quality
 		for i, v in ipairs(results) do
 			if EID.itemWeightsLookup[v[2]]== quality then
-				customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ="
-				customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
-				resultCount = resultCount + 1
-				if resultCount > EID.Config["BagOfCraftingResults"]-1 then
-					if #results > EID.Config["BagOfCraftingResults"] then
-						customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..(#results-EID.Config["BagOfCraftingResults"]).." more"
+				if skips < EID.bagOfCraftingOffset then
+					skips = skips + 1
+					if skips == EID.bagOfCraftingOffset then
+						customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..skips.." more"
 					end
-					break
+				else
+					customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ="
+					customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
+					resultCount = resultCount + 1
+					if resultCount > EID.Config["BagOfCraftingResults"]-1 then
+						if #results > EID.Config["BagOfCraftingResults"] then
+							customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..(#results-EID.Config["BagOfCraftingResults"]- skips).." more"
+						end
+						break
+					end
 				end
 			end
 		end
@@ -440,10 +463,12 @@ local function onRender(t)
 		else
 			EID:removeTextPosModifier("Tained HUD")
 		end
-		if player.SubType == 23 then
-			local success = handleBagOfCraftingRendering()
-			if success then
-				return
+		if player:HasCollectible(710) and EID.Config["DisplayBagOfCrafting"] ~= "never" then
+			if EID.Config["DisplayBagOfCrafting"] == "always" or (EID.Config["DisplayBagOfCrafting"] == "hold" and string.find(player:GetSprite():GetAnimation(), "PickupWalk")) then
+				local success = handleBagOfCraftingRendering()
+				if success then
+					return
+				end
 			end
 		end
 	end

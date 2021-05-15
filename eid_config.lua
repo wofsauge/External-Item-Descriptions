@@ -123,12 +123,18 @@ EID.DefaultConfig = {
 	-- Toggle Display of Diceroom descriptions
 	-- Default = true
 	["DisplayDiceInfo"] = true,
-	-------------MISC---------------
+	---------Bag of Crafting-----------
 	
+	-- Display-modes for Bag of Crafting descriptions
+	-- Options: "always", "hold", "never"
+	-- "always" = Always show Results, "hold" = Show when holding up bag, "never" = Never show results
+	-- Default = "always"
+	["DisplayBagOfCrafting"] = "always",
 	-- Changes the number of Results shown in the Bag of crafting description
 	-- Higher numbers can cause more lag!
 	-- Default = 7
 	["BagOfCraftingResults"] = 7,
+	-------------MISC---------------
 	-- Changes the number of Results shown for the additional Spindown dice description
 	-- Default = 3
 	["SpindownDiceResults"] = 3,

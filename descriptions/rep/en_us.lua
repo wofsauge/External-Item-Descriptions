@@ -535,5 +535,5 @@ EID.descriptions["en_us"].horsepills={
 }
 
 EID.descriptions["en_us"].CraftingRoomContent = "Pickups in room:"
-EID.descriptions["en_us"].CraftingResults = "Results:"
+EID.descriptions["en_us"].CraftingResults = "Results:#(Scroll: Hold TAB + Shoot △/▽)"
 

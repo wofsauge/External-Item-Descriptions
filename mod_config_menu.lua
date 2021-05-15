@@ -450,6 +450,30 @@ if MCMLoaded then
 		}
 	)
 	
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Bag of Crafting")
+	
+	-- Bag of Crafting Display
+	local bagDisplays = {"always","hold","never"}
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(bagDisplays, EID.Config["DisplayBagOfCrafting"])
+			end,
+			Minimum = 1,
+			Maximum = 3,
+			Display = function()
+				return "Display mode: " .. EID.Config["DisplayBagOfCrafting"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["DisplayBagOfCrafting"] = bagDisplays[currentNum]
+			end,
+			Info = {"always = Always show Results, hold = Show when holding up bag, never = Never show results"}
+		}
+	)
 	-- Bag of Crafting results
 	MCM.AddSetting(
 		"EID",
@@ -460,8 +484,8 @@ if MCMLoaded then
 				return AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1
 			end,
 			Display = function()
-				return "Crafting bag: $scroll" ..
-					AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1 .. " " .. EID.Config["BagOfCraftingResults"] .. " Results"
+				return "Displayed Results: $scroll" ..
+					AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1 .. " " .. EID.Config["BagOfCraftingResults"]
 			end,
 			OnChange = function(currentNum)
 				EID.Config["BagOfCraftingResults"] = diceSteps[currentNum%#diceSteps + 1]
