@@ -407,10 +407,10 @@ local function onRender(t)
 			EID:removeTextPosModifier("Schoolbag")
 		end
 	else
-		if player.SubType == 21 then
-			EID:addTextPosModifier("Tained Isaac", Vector(0,30))
+		if player.SubType == 21 or player.SubType == 25 then -- T-Isaac, T-Blue Baby
+			EID:addTextPosModifier("Tained HUD", Vector(0,30))
 		else
-			EID:removeTextPosModifier("Tained Isaac")
+			EID:removeTextPosModifier("Tained HUD")
 		end
 		if player.SubType == 23 then
 			local success = handleBagOfCraftingRendering()
