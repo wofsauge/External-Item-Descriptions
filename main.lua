@@ -137,7 +137,7 @@ if REPENTANCE then
 		end
 		pickup:GetData()["EID_IsAltChoise"] = false
 		if Game():GetRoom():GetType() == RoomType.ROOM_TREASURE and Game():GetLevel():GetStageType() > 3 and pickup.OptionsPickupIndex == 1 then
-			pickup:GetData()["EID_IsAltChoise"] = altPathItemCounter == 1
+			pickup:GetData()["EID_IsAltChoise"] = altPathItemCounter == 1 and not Isaac.GetPlayer(0):HasCollectible(668)
 			altPathItemCounter = altPathItemCounter + 1
 		end
 	end
