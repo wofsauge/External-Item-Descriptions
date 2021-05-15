@@ -407,6 +407,8 @@ local repTrinkets={
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us"].trinkets)
 
+EID.descriptions["en_us"].goldenTrinket = "GOLD: Doubled Effect!"
+
 ---------- Cards ----------
 local repCards={
 	[27] = {"27", "", "Turns all pickups, chests and non-boss enemies into bombs"},

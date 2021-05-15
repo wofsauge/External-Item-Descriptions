@@ -476,7 +476,18 @@ local function onRender(t)
 	
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
 		--Handle Trinkets
-		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType))
+		local trinketID = closest.SubType
+		local isGoldenTrinket = false
+		if trinketID > 32768 then
+			trinketID = trinketID - 32768
+			isGoldenTrinket = true
+		end
+		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, trinketID)
+		if isGoldenTrinket then
+			local goldenDesc = EID.descriptions[EID.Config["Language"]].goldenTrinket or EID.descriptions["en_us"].goldenTrinket or ""
+			descriptionObj.Description = "{{ColorGold}}"..goldenDesc.."#"..descriptionObj.Description
+		end
+		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Collectibles
 		if EID:hasCurseBlind() and EID.Config["DisableOnCurse"] then

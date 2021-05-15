@@ -62,7 +62,7 @@ EID.DefaultConfig = {
 	["DisableOnCurse"] = true,
 	-- Disable Item informations for the second Treasure room item on alt paths
 	-- Default = true
-	["DisableOnAltPath"] = true -- CURRENTLY NOT WORKING! 
+	["DisableOnAltPath"] = true, -- CURRENTLY NOT WORKING! 
 	----------ITEM NAMES-----------
 
 	-- Toggle Display of Collectible / Card and Pill names

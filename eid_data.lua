@@ -237,6 +237,28 @@ EID.InlineColors = {
 			(animTime % (colorFractions + 1)) / colorFractions
 		)
 	end,
+	-- Rainbow color effect
+	["ColorGold"] = function(_)
+		local maxAnimTime = 80
+		local animTime = Game():GetFrameCount() % maxAnimTime
+		local c = EID.InlineColors
+		local colors = {c["ColorYellow"], c["ColorOrange"]}
+		local colorFractions = (maxAnimTime - 1) / #colors
+		local subAnm = math.floor(animTime / (colorFractions + 1)) + 1
+		local primaryColorIndex = subAnm % (#colors + 1)
+		if primaryColorIndex == 0 then
+			primaryColorIndex = 1
+		end
+		local secondaryColorIndex = (subAnm + 1) % (#colors + 1)
+		if secondaryColorIndex == 0 then
+			secondaryColorIndex = 1
+		end
+		return EID:interpolateColors(
+			colors[primaryColorIndex],
+			colors[secondaryColorIndex],
+			(animTime % (colorFractions + 1)) / colorFractions
+		)
+	end,
 	-- Text will blink frequently
 	["ColorBlink"] = function(color)
 		local maxAnimTime = 40
