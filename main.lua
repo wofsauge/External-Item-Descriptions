@@ -289,32 +289,37 @@ function EID:renderQuestionMark()
 end
 
 function EID:renderIndicator(entity)
+	if EID.Config["Indicator"] == "none" then
+		return
+	end
 	local repDiv = 1
 	if REPENTANCE then
 		repDiv = 255
 	end
+	local sprite = entity:GetSprite()
+	local entityPos = Game():GetRoom():WorldToScreenPosition(entity.Position)
 	if EID.Config["Indicator"] == "blink" then
 		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
-		entity:SetColor(Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv), 1, 1, false, false)
-		entity:Render(nullVector)
-		entity:SetColor(Color(1, 1, 1, 1, 0, 0, 0), 2, 1, false, false)
+		sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
+		sprite:Render(entityPos, nullVector, nullVector)
+		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
 	elseif EID.Config["Indicator"] == "border" then
 		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
-		entity:SetColor(Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv), 1, 1, false, false)
-		entity:Render(Vector(0, 1))
-		entity:Render(Vector(0, -1))
-		entity:Render(Vector(1, 0))
-		entity:Render(Vector(-1, 0))
-		entity:SetColor(Color(1, 1, 1, 1, 0, 0, 0), 2, 1, false, false)
-		entity:Render(nullVector)
+		sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
+		sprite:Render(entityPos + Vector(0, 1), nullVector, nullVector)
+		sprite:Render(entityPos + Vector(0, -1), nullVector, nullVector)
+		sprite:Render(entityPos + Vector(1, 0), nullVector, nullVector)
+		sprite:Render(entityPos + Vector(-1, 0), nullVector, nullVector)
+		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
+		sprite:Render(entityPos, nullVector, nullVector)
 	elseif EID.Config["Indicator"] == "highlight" then
-		entity:SetColor(Color(1, 1, 1, 1, 255/repDiv, 255/repDiv, 255/repDiv), 1, 1, false, false)
-		entity:Render(Vector(0, 1))
-		entity:Render(Vector(0, -1))
-		entity:Render(Vector(1, 0))
-		entity:Render(Vector(-1, 0))
-		entity:SetColor(Color(1, 1, 1, 1, 0, 0, 0), 2, 1, false, false)
-		entity:Render(nullVector)
+		sprite.Color = Color(1, 1, 1, 1, 255/repDiv, 255/repDiv, 255/repDiv)
+		sprite:Render(entityPos + Vector(0, 1), nullVector, nullVector)
+		sprite:Render(entityPos + Vector(0, -1), nullVector, nullVector)
+		sprite:Render(entityPos + Vector(1, 0), nullVector, nullVector)
+		sprite:Render(entityPos + Vector(-1, 0), nullVector, nullVector)
+		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
+		sprite:Render(entityPos, nullVector, nullVector)
 	elseif EID.Config["Indicator"] == "arrow" then
 		ArrowSprite:Update()
 		local ArrowOffset = Vector(0, -35)
