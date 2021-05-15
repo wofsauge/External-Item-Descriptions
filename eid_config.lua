@@ -57,9 +57,12 @@ EID.DefaultConfig = {
 	["HideInBattle"] = false,
 	-------------CURSE-------------
 
-	-- Display informations when the floor has curse of the blind ( ? - Items)
+	-- Disable informations when the floor has curse of the blind ( ? - Items)
 	-- Default = true
 	["DisableOnCurse"] = true,
+	-- Disable Item informations for the second Treasure room item on alt paths
+	-- Default = true
+	["DisableOnAltPath"] = true -- CURRENTLY NOT WORKING! 
 	----------ITEM NAMES-----------
 
 	-- Toggle Display of Collectible / Card and Pill names
@@ -121,6 +124,11 @@ EID.DefaultConfig = {
 	-- Default = true
 	["DisplayDiceInfo"] = true,
 	-------------MISC---------------
+	
+	-- Changes the number of Results shown in the Bag of crafting description
+	-- Higher numbers can cause more lag!
+	-- Default = 7
+	["BagOfCraftingResults"] = 7,
 
 	-- Error message displayed when an error occurs
 	-- Default = [Effect not defined]

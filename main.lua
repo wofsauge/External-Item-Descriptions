@@ -373,7 +373,7 @@ local function handleBagOfCraftingRendering()
 				end
 			end
 		end
-		if resultCount >9 then
+		if resultCount > EID.Config["BagOfCraftingResults"] then
 			break
 		end
 	end
