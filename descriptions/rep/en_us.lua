@@ -55,10 +55,10 @@ local repCollectibles={
 	[232] = {"232", "Stop Watch", "Permanent slow effect for enemies#↑ +0.3 Speed up"}, -- Stop Watch
 	[245] = {"245", "20/20", "Doubles all your shots#↓ -25% Damage"}, -- 20/20
 	[256] = {"256", "Hot Bombs", "Burning bombs#+5 Bombs#Bombs deal contact damage"}, -- Hot Bombs
-	--{"261", "", "↑ +100% Damage up#↓ Dealt damage decreases for traveled distance of the tear"}, -- Proptosis ... Wiki not updated yet
+	[261] = {"261", "Proptosis", "↑ +0.5 Damage up#↓ Dealt damage decreases the longer the tear stays airborne#300% Damage at point blank range"}, -- Proptosis
 	[262] = {"262", "Missing Page 2", "+1 black heart#When down to 1 Heart, damages all enemies in the room#Black hearts deal double damage"}, -- Missing Page 2
 	 
-	[263] = {"263", "Clear Rune   (REPENTANCE ITEM)", "Copies effects of held rune or soul stone#Drops 1 random rune on picked up"}, -- Clear Rune   (REPENTANCE ITEM)
+	[263] = {"263", "Clear Rune", "Copies effects of held rune or soul stone#Drops 1 random rune on picked up"}, -- Clear Rune   (REPENTANCE ITEM)
 	 
 	[273] = {"273", "Bob's Brain", "Throwable bomb familiar#The explosion deals 100 Damage#The Damage ignores armor"}, -- Bob's Brain
 	[274] = {"274", "Best Bud", "When getting hit, gain one midrange orbital#Orbital deals 150 damage per second"}, -- Best Bud
@@ -97,6 +97,7 @@ local repCollectibles={
 	[416] = {"416", "Deep Pockets", "Spawns 1-3 coins if a room didn't yield a reward#Increases coin cap to 999"}, -- Deep Pockets
 	[448] = {"448", "Shard of Glass", "When taking damage, chance to get ↑ +5 Range, spew red tears and leave a trail of blood creep, or spawn a red heart"}, -- Shard of Glass
 	[451] = {"451", "Tarot Cloth", "Drops a random card or rune on pickup#Doubles the effect of any card used#Some cards gain an extra effect"}, -- Tarot Cloth
+	[456] = {"456", "Midnight Snack", "↑ +1 Health up"}, -- Midnight Snack
 	[464] = {"464", "Glyph of Balance", "+2 Soul Hearts#Champion enemies and room drops appear more frequently#Priority of spawned pickups depends on what the player is missing most of"}, -- Glyph of Balance
 	[474] = {"474", "broken Glass Canon", "Turns into Glass Canon when used"}, -- broken Glass Canon
 	[489] = {"489", "D Infinity", "Random Dice-effect each usage#Press the Drop button to cycle through the dices"}, -- D Infinity
