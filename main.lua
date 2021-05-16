@@ -71,7 +71,6 @@ local nullVector = Vector(0,0)
 ------------------------------- Load Font ---------------------------------
 local isluadebug, os = pcall(require,"os")
 local modfolder ='external item descriptions_836319872' --release mod folder name
-if not REPENTANCE then
 	if isluadebug then
 		local userPath = os.tmpname()
 		userPath = string.gsub(userPath, "\\", "/")
@@ -100,17 +99,26 @@ if not REPENTANCE then
 	EID.modPath = string.gsub(EID.modPath, "\\", "/")
 	EID.modPath = string.gsub(EID.modPath, "//", "/")
 	EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
-else
-	EID.modPath = "../mods/"..modfolder.."/"
-end
 
 EID.font = Font() -- init font object
 local fontFile = EID.Config["FontType"] or "default"
 local success = EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
 if not success then
-	Isaac.ConsoleOutput("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
-	Isaac.ConsoleOutput("File does not exist: "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
-	return
+	if REPENTANCE then
+		success = EID:loadFont("../mods/"..modfolder.."/resources/font/eid_"..fontFile..".fnt")
+		if not success then 
+			Isaac.ConsoleOutput("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
+			Isaac.ConsoleOutput("File not found (absolute path): "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt\n")
+			Isaac.ConsoleOutput("File not found (relative path): ../mods/"..modfolder.."/resources/font/eid_"..fontFile..".fnt")
+			return
+		else
+			EID.modPath = "../mods/"..modfolder.."/"
+		end
+	else
+		Isaac.ConsoleOutput("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
+		Isaac.ConsoleOutput("File does not exist: "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
+		return
+	end
 end
 
 ---------------------------------------------------------------------------
