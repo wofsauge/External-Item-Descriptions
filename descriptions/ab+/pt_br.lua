@@ -604,7 +604,7 @@ EID.descriptions["pt_br"].trinkets={
 {"29", "", "Gera uma mosca azul ao ser atingido"},
 {"30", "", "Atira lágrimas de veneno aleatoriamente"},
 {"31", "", "Atira lágrimas penetrantes aleatoriamente"},
-{"32", "", "Efeito aleatório de um cogumelo aleatório por sala#Pode revelar salas especiais no minimapa"},
+{"32", "", "Receba um efeito aleatório de cogumelo por sala#Pode revelar salas especiais no minimapa"},
 {"33", "", "Quando estiver com meio coração de saúde, você ganha o familiar Little Steven"},
 {"34", "", "Mais corações vermelhos surgem"},
 {"35", "", "↑ +2 Dano"},
