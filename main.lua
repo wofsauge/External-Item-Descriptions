@@ -142,7 +142,8 @@ if REPENTANCE then
 			return
 		end
 		pickup:GetData()["EID_IsAltChoise"] = false
-		if Game():GetRoom():GetType() == RoomType.ROOM_TREASURE and Game():GetLevel():GetStageType() > 3 and pickup.OptionsPickupIndex == 1 then
+
+		if Game():GetRoom():GetType() == RoomType.ROOM_TREASURE and Game():GetLevel():GetStageType() > 3 then
 			if altPathItemCounter == 1 and not Isaac.GetPlayer(0):HasCollectible(668) or (pickup.Position - lastHidePosition):Length() < 0.1 then
 				pickup:GetData()["EID_IsAltChoise"] = true
 				lastHidePosition = pickup.Position
