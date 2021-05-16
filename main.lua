@@ -18,7 +18,7 @@ EID.isDisplayingPermanent = false
 EID.permanentDisplayTextObj = nil
 EID.lastDescriptionEntity = nil
 EID.lineHeight = 11
-EID.sacrificeCounter = 1
+EID.sacrificeCounter = {}
 EID.itemConfig = Isaac.GetItemConfig()
 
 -- Sprite inits
@@ -125,14 +125,18 @@ end
 -------------------------Handle Sacrifice Room-----------------------------
 if EID.Config["DisplaySacrificeInfo"] then
 	function EID:onNewFloor()
-		EID.sacrificeCounter = 1
+		EID.sacrificeCounter = {}
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
 	function EID:onSacrificeDamage(_, _, flags, source)
 		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
-			if EID.sacrificeCounter < 12 then
-				EID.sacrificeCounter = EID.sacrificeCounter + 1
+			local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
+			if EID.sacrificeCounter[curRoomIndex] == nil then
+				EID.sacrificeCounter[curRoomIndex] = 1
+			end
+			if EID.sacrificeCounter[curRoomIndex] < 12 then
+				EID.sacrificeCounter[curRoomIndex] = EID.sacrificeCounter[curRoomIndex] + 1
 			end
 		end
 	end
@@ -514,7 +518,8 @@ local function onRender(t)
 
 	if dist / 40 > tonumber(EID.Config["MaxDistance"]) or not closest.Type == EntityType.ENTITY_PICKUP then
 		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
-			EID:printDescription(EID:getDescriptionObj(-999, -1, EID.sacrificeCounter))
+			local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
+			EID:printDescription(EID:getDescriptionObj(-999, -1, EID.sacrificeCounter[curRoomIndex] or 1))
 		end
 		return
 	end
