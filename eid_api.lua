@@ -397,7 +397,7 @@ function EID:getObjectName(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local name = nil
 	if tableEntry ~= nil then
-		if tableEntry[2] ~= nil and tableEntry[2] ~= "" then
+		if tableEntry[2] ~= nil and tableEntry[2] ~= "" and tableEntry[2] ~= EID.descriptions["en_us"][tableName][SubType] then
 			name = tableEntry[2]
 		end
 	end
