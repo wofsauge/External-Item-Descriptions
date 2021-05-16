@@ -459,7 +459,7 @@ EID.descriptions["en_us"].collectibles={
 	{"444", "Lead Pencil", "Every 15 tears fired, you fire a cluster of tears#Each tear in the cluster deals double damage"},
 	{"445", "Dog Tooth", "↑ +0.3 Damage up#↑ +0.1 Speed up#A wolf howls, if you enter a room next to a secret room#A barking sound will play when entering a room with a crawl space in it"},
 	{"446", "Dead Tooth", "While firing, you get a green aura that poisons any enemies in it#The poison deals your damage"},
-	{"447", "Linger Bean", "While firing, randomly spawns a poop cloud#The cloud deals your damage 5 times a second"},
+	{"447", "Linger Bean", "While firing without pause, spawns a poop cloud every 7.5 seconds#The cloud deals 3.5 damage 5 times a second#Cloud lasts 15 seconds#Can be moved by shooting it"},
 	{"448", "Shard of Glass", "When taking damage, chance to get ↑ +5 Range and leave a trail of blood creep, or spawn a red heart"},
 	{"449", "Metal Plate", "+1 Soul Heart#Enemy bullets have a 25% chance to be reflected as homing tears"},
 	{"450", "Eye of Greed", "Tears can turn enemies into gold"},
