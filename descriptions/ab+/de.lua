@@ -274,6 +274,7 @@ EID.descriptions["de"].collectibles={
     {"255", "Screw", "↑ +0.5 Tränen#↑ +0.2 Schussgeschwindigkeit"},
     {"256", "Hot Bombs", "Brennende Bomben#+5 Bomben"},
     {"257", "Fire Mind", "Chance für explodierende Tränen#Tränen bringen Gegner zum brennen"},
+	--[[
     {"258", "Missing No.", "Rerolls all your items every time you change the floor"},
     {"259", "Dark Matter", "↑ +1 Damage up#Chance to shoot fearing tears"},
     {"260", "Black Candle", "Immunity to Curses#+1 Black heart#Higher Devil{{DevilRoom}} / Angel{{AngelRoom}} room chance"},
@@ -569,10 +570,12 @@ EID.descriptions["de"].collectibles={
     {"550", "Broken Shovel", "Moms foot will constantly attack you#Using it stops moms foot for current room#!!! (Try to beat Bossrush with it!)"},
     {"551", "Broken Shovel", "Second part of a broken shovel#!!! Use the shovel on the hill of dirt in the \"Dark Room\""},
     {"552", "Mom's Shovel", "Spawns trapdoor to next floor#!!! Use the shovel on the hill of dirt in the \"Dark Room\"#!!! Unlocks something cool"}
+	]]--
 }
 
 ---------- Trinkets ----------
 EID.descriptions["de"].trinkets={
+--[[
     {"1", "Swallowed Penny", "Drop 1 coin when you get hit"},
     {"2", "Petrified Poop", "50% more drops from poop"},
     {"3", "AAA Battery", "-1 charge needed for spacebar items"},
@@ -701,10 +704,12 @@ EID.descriptions["de"].trinkets={
     {"126", "Rotten Penny", "Spawns a blue fly when picking up a coin"},
     {"127", "Baby-Bender", "Grants your familiars homing shots"},
     {"128", "Finger Bone", "Small chance to gain a Bone Heart when taking damage"},
+	]]--
 }
 
 ---------- Cards ----------
 EID.descriptions["de"].cards={
+--[[
     {"1", "0 - The Fool", "Teleports you back to the start"},
     {"2", "I - The Magician", "Homing tears for current room"},
     {"3", "II - The High Priestess", "Moms Foot stomps on an enemy!"},
@@ -759,6 +764,7 @@ EID.descriptions["de"].cards={
     {"52", "Huge Growth", "↑ +7 Damage up#↑ +30 Range up#↑ +Size up#Crush Rocks!#Effect lasts for current room"},
     {"53", "Ancient Recall", "Spawns 3 random cards when used"},
     {"54", "Era Walk", "Slow down enemies#↓ -0.5 Speed down#-1 Shot Speed down#Effect lasts for current room"},
+	]]--
 }
 
 
@@ -767,6 +773,7 @@ EID.descriptions["de"].cards={
 EID.descriptions["de"].unidentifiedPill = "Unidentifizierte Pille"
 
 EID.descriptions["de"].pills={
+--[[
     {"0", "Bad Gas", "Spawns a Gas cloud"},
     {"1", "Bad Trip", "Deals 1 heart of damage to you"},
     {"2", "Balls of Steel", "+2 Soul Hearts"},
@@ -814,13 +821,14 @@ EID.descriptions["de"].pills={
     {"44", "Horf!", "Shoots one ipecac tear"},
     {"45", "Feels like I'm walking on sunshine!", "Short invincibility"},
     {"46", "Vurp!", "Spawns last used pill"},
+	]]--
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["de"].sacrificeHeader = "[Next Sacrifice Room payout]"
+EID.descriptions["de"].sacrificeHeader = "[Nächste Opferungsbelohung]"
 
 EID.descriptions["de"].sacrifice={
-	{"1", "", "50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
+	--[[{"1", "", "50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"2", "", "50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"3", "", "67% chance for increased Angel{{AngelRoom}} Room chance"},
 	{"4", "", "50% chance for 1 random Chest"},
@@ -831,19 +839,19 @@ EID.descriptions["de"].sacrifice={
 	{"9", "", "100% chance to spawn \"Uriel\" boss"},
 	{"10", "", "50% chance for 7 soul hearts#50% chance for 30 coins"},
 	{"11", "", "100% chance to spawn \"Gabriel\" boss"},
-	{"12", "", "50% chance to teleport to \"Dark Room\" floor"},
+	{"12", "", "50% chance to teleport to \"Dark Room\" floor"},]]--
 }
 
 ---------- Dice Room ----------
 EID.descriptions["de"].diceHeader = "[Würfel Effekt]"
 
 EID.descriptions["de"].dice={
-    {"1", "", "Rerolls all of your items#(only affect collectibles)"},
+    --[[{"1", "", "Rerolls all of your items#(only affect collectibles)"},
     {"2", "", "Rerolls all pickups in the room"},
     {"3", "", "Rerolls all pickups on the entire floor"},
     {"4", "", "Rerolls all pedestal items on the floor#Doesnt affect Devil deals"},
     {"5", "", "Reroll and restart the current floor"},
-    {"6", "", "Reroll all of your items and all the pickups & items on the entire floor"}
+    {"6", "", "Reroll all of your items and all the pickups & items on the entire floor"}]]--
 }
 
 ---------- Transformations ----------
