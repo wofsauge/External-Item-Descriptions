@@ -47,12 +47,13 @@ local repCollectibles={
 	[140] = {"140", "", "Bombas envenenadas#+5 Bombas#Bombas deixam uma nuvem de veneno"}, -- Bob's Curse
 	[148] = {"148", "", "Gera 2-6 moscas quando você é danificado"}, -- Infestation
 	[147] = {"147", "", "Quebra pedras e danifica inimigos#Batendo com o machado reduz sua carga#Recarrega ao ir para o próximo andar"}, -- Notched Axe
+	[152] = {"152", "", "Atirar lasers!#Laser causa 13% do seu dano#↓33% Lágrimas"}, -- Technology 2
 	[171] = {"171", "", "Atrasse os inimigos por 4 segundos#Cause 10 de dano á todos os inimigos#Inimigos mortos com isso gera aranhas azuir"}, -- Spider Butt
 	[178] = {"178", "", "{{Throwable}} {{ColorOrange}}Arremessável{{CR}}#Deixa uma poça no local arremessado"},
 	[192] = {"192", "", "Lágrimas teleguidas para a sala atual#↑ +3 Alcance"}, -- Telepathy for Dummies
 	[194] = {"194", "", "↑ +0.16 Velocidade de disparo#+1 carta#+15% de chance de Planetarium"}, -- Magic 8 Ball
 	[203] = {"203", "", "Chance de gerar a versão dupla de pickups"}, -- Humbling Bundle
-	[205] = {"205", "", "- Meio coração = Carrega um slot do seu item ativador ao pressionar a barra de espaço"}, -- Sharp Plug
+	[205] = {"205", "", "-Meio coração = Carrega um slot do seu item ativador ao pressionar a barra de espaço"}, -- Sharp Plug
 	[211] = {"211", "", "Gera 3-5 aranhas quando é danificado"}, -- Spider Baby
 	[230] = {"230", "", "↑ +1.5 Dano#↑ +0.2 Velocidade#Lágrimas de medo#Converte todos os espaços de coração vermelho em corações negro#+2 Corações negro"}, -- Abaddon
 	[232] = {"232", "", "Efeito permanente de lentidão em inimigos#↑ +0.3 Velocidade"}, -- Stop Watch
@@ -104,6 +105,7 @@ local repCollectibles={
 	[494] = {"494", "", "Lágrimas geram 1-2 faíscas de eletricidade com o impacto#Faíscas causam metade do seu dano#Faíscas podem pular entre inimigos"}, -- Jacobs Ladder
 	[503] = {"503", "", "Chance de atirar lágrimas que invoca a mão do Big Horn#A mão mata inimigos instantaneamente e causa dano aos chefes#Correr em inimigos causará 3,5 de dano a eles"}, -- Little Horn
 	[504] = {"504", "", "Gera uma torreta voadora que atira nos inimigos#Cada tiro causa 3.5 de dano"}, -- Brown Nugget
+	[509] = {"509", "", "Orbital que dispara uma lágrima a cada 1/3 de segundo quando o inimigo está próximo#Causa 3.5 de dano por lágrima#Causa 30 de dano por segundo ao contato"}, -- Bloodshot Eye
 	[523] = {"523", "", "Quando ussado, guarde até 6 pick-ups da sala atual#Usando de novo coloca todos eles de volta no chão#Isso permite mover coisas entre salas"}, -- Moving Box
 	[524] = {"524", "", "Lágrimas serão conectadas por raios de eletricidade#Eletricidade causa dano igual a 1/3 do seu dano"}, -- Technology Zero
 	[543] = {"543", "", "Gera cocôs branco quando for danificado#(O cocô branco tem uma aura de ↑ Lágrimas e Dano, concede lágrimas teleguiadas e pode bloquear danos)"}, -- Hallowed Ground
@@ -397,7 +399,7 @@ local repTrinkets={
 	[178] = {"178","","O personagem explode ao receber dano"}, --  Swallowed M80
 	[179] = {"179","","O movimento dos familiares será controlado pelos mesmos comandos do jogador"}, --  RC Remote
 	[180] = {"180","","Familiare que seguem os movimentos exatos do personagem e disparam lágrimas espectrais#Tem o mesmo dano e efeito da lágrima do jogador"}, --  Found Soul
-	[181] = {"181","","Ativa um item ativador aleatório ao usar um item ativo"}, --  Expansion Pack
+	[181] = {"181","","Quando ativar um item ativador, há chance de ativar um outro aleatório"}, --  Expansion Pack
 	[182] = {"182","","Uma vez por andar, ao receber dano ganhe um orbital {{Collectible584}} e invencibilidade#gera 5 orbitais ao entrar em uma sala do anjo#Cria um orbital quando dá moedas á um mendigo"}, --  Beth's Essence
 	[183] = {"183","","Para cada sala:#Sem seguidores: Chance de ganhar um Brother Bobby {{Collectible8}} e/ou uma Sister Maggy {{Collectible67}}# Com seguidores: Chance de adicionar uma duplicata de um seguidor"}, --  The Twins
 	[184] = {"184","","Lojas podem vender familiares#Familiares vão sempre estar com desconto"}, --  Adoption Papers
@@ -408,6 +410,8 @@ local repTrinkets={
 	[189] = {"189","","Ativa um escudo de 1 segundo ao matar um inimigo"}, --  Sigil of Baphomet
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["pt_br"].trinkets)
+
+EID.descriptions["pt_br"].goldenTrinket = "DOURADO: Efeito Dobrado!"
 
 ---------- Cards ----------
 local repCards={
@@ -450,7 +454,7 @@ local repCards={
 	[86] = {"86", "", "14 familiares Dead Bird voam e atacam inimigos#Dura para a sala atual"},
 	[87] = {"87", "", "Transforme-se em Samson com ataques corpo-a-corpo por 10 segundos#↑ +0.4 Velocidade#↑ Lágrimas#↑ +3 Dano"},
 	[88] = {"88", "", "Ativa Mega Blast {{Collectible441}} por 7.5 segundos"},
-	[89] = {"89", "", "Morra e reviva instantaneamente com meio coração e algum tempo de invencibilidade#Usado automaticamente quando recebe um dano fatal (como uma vida extra)"},
+	[89] = {"89", "", "Ao morrer, reviva instantaneamente com meio coração e algum tempo de invencibilidade#Usado automaticamente quando recebe um dano fatal#Como uma vida extra"},
 	[90] = {"90", "", "Ativa o efeito do D6 {{Collectible105}} e D20 {{Collectible166}} #Os itens trocados vem de salas aleatórias"},
 	[91] = {"91", "", "Morra e transforme-se em The Lost para a sala atual"},
 	[92] = {"92", "", "Ganhe 1 familiar aleatório"},
@@ -477,54 +481,57 @@ local repPills={
 EID:updateDescriptionsViaTable(repPills, EID.descriptions["pt_br"].pills)
 
 EID.descriptions["pt_br"].horsepills={
-	{"0", "", "Envenamento ao entrar na sala"},
-	{"1", "", "Causa 2 corações de dano a você"},
-	{"2", "", "+4 Corações de alma"},
-	{"3", "", "Troca o número de bombas pelo número de chaves#Aumenta o número de bombas e chaves em 50%#Bombas douradas e chaves também são trocadas"},
-	{"4", "", "Gera algumas mega bombas trolls na sua posição"},
-	{"5", "", "Enche a vida#+3 Corações de alma"},
-	{"6", "", "↓ -2 Saúde"},
-	{"7", "", "↑ +2 espaço de corações vazios"},
-	{"8", "", "Sem efeito"},
+	{"0", "", "Envenamento ao entrar na sala"}, -- Bad Gas
+	{"1", "", "Causa 2 corações de dano a você"}, -- Bad Trip
+	{"2", "", "+4 Corações de alma"}, -- Balls of Steel
+	{"3", "", "Troca o número de bombas pelo número de chaves#Aumenta o número de bombas e chaves em 50%#Bombas douradas e chaves também são trocadas"}, -- Bombs are Key
+	{"4", "", "Gera algumas mega bombas trolls na sua posição"}, -- Explosive Diarrhea
+	{"5", "", "Enche a vida#+3 Corações de alma"}, -- Full Health
+	{"6", "", "↓ -2 Saúde"}, -- Health Down
+	{"7", "", "↑ +2 Espaços de corações vazios"}, -- Health Up
+	{"8", "", "Sem efeito"}, -- I Found Pills
 	{"9", "", "Sem efeito"}, -- Puberty
-	{"10", "", "Adiciona 1 Big Fan orbital {{Collectible279}}#Não há limite superior"},
-	{"11", "", "↓ -1.2 Alcance"},
-	{"12", "", "↑ +0.9 Alcance"},
-	{"13", "", "↓ -0.24 Velocidade"},
-	{"14", "", "↑ +0.3 Velocidade"},
-	{"15", "", "↓ -0.56 Lágrimas"},
-	{"16", "", "↑ +0.70 Lágrimas"},
-	{"17", "", "↓ -2 Sorte"},
-	{"18", "", "↑ +2 Sorte"},
-	{"19", "", "Teleport to random room"}, -- TODO
-	{"20", "", "Recharges your active item#Drops batteries"}, -- TODO
-	{"21", "", "Drains all but one heart container#Spawns red hearts"}, -- TODO
-	{"22", "", "Você não pode se mover por 4 segundos"},
-	{"23", "", "Abra a sala secreta do andar atual#Ganha visão do mapa"},
-	{"24", "", "Transforma cada inimigo da sala em amigo permanente"},
-	{"25", "", "Hides the floor map"}, --TODO
-	{"26", "", "Enche a poça no chão, o que causa danos aos inimigos"},
-	{"27", "", "Atire na diagonal por 60 segundo"},
-	{"28", "", "Take only half the damage for current room"},  --TODO
-	{"29", "", "Take full heart damage for current room"}, --TODO
-	{"30", "", "Spawn poop while walking for 4 seconds"}, --TODO
-	{"31", "", "Curse of the maze effect for current floor"}, --TODO
-	{"32", "", "Aumenta seu tamanho#Não afeta sua hitbox"},
-	{"33", "", "diminui seu tamanho#Sua hitbox também diminui"},
-	{"34", "", "Gera 2 aranhas azuis por cocô na sala"},
-	{"35", "", "Gera 2 aranhas azuis por inimigo na sala#Gera 2-6 aranhas azuis quando não há inimigos na sala"},
-	{"36", "", "Curto efeito de invencibilidade#↑ #7 Dano#↑ +3 Alcance#Durante a sala atual"},
-	{"37", "", "Pixeliza a tela por 90 segundos"},
-	{"38", "", "Gera 6 moscas azuis"},
-	{"39", "", "Gera uma poça escorregadia"},
-	{"40", "", "Gera uma poça de lentidão"},
-	{"41", "", "Slow all enemies in room"}, --TODO
-	{"42", "", "Speed up for all enemies in room"}, --TODO
-	{"43", "", "Consume current trinket and gain its effect permanently"}, --TODO
-	{"44", "", "Dispara um cacho de lágrimas de ipeca"},
-	{"45", "", "Curto efeito de invencibilidade#Amedronta todos os inimigos#Dois inimigos comidos reabastecem meio coração"},
-	{"46", "", "Gera a última pílula usada como horse"},
-	{"47", "", "↓ -0.3 Velocidade de disparo"},
-	{"48", "", "↑ +0.3 Velocidade de disparo"},
-	{"49", "", "↑ Aumenta 1 status aleatório duas vezes#↓ Diminue 1 status aleatório duas vezes#Não vai diminuir com PHD"},
+	{"10", "", "Adiciona 1 Big Fan orbital {{Collectible279}}#Não há limite superior"}, -- Pretty Fly
+	{"11", "", "↓ -1.2 Alcance"}, -- Range Down
+	{"12", "", "↑ +0.9 Alcance"}, -- Range Up
+	{"13", "", "↓ -0.24 Velocidade"}, -- Speed Down
+	{"14", "", "↑ +0.3 Velocidade"}, -- Speed Up
+	{"15", "", "↓ -0.56 Lágrimas"}, -- Tears Down
+	{"16", "", "↑ +0.70 Lágrimas"}, -- Tears Up
+	{"17", "", "↓ -2 Sorte"}, -- Luck Down
+	{"18", "", "↑ +2 Sorte"}, -- Luck Up
+	{"19", "", "Teletransporta para uma sala aleatória"}, -- Telepills
+	{"20", "", "Recarrega seu item de ativação#Gera baterias"}, -- 48 Hour Energy!
+	{"21", "", "Drena todos os seus espaços de corações, mas vai restar apenas um#Gera corações vermelhos"}, -- Hematemesis
+	{"22", "", "Você não pode se mover por 4 segundos"}, -- Paralysis
+	{"23", "", "Abra a sala secreta do andar atual#Ganha visão do mapa"}, -- I can see forever!
+	{"24", "", "Transforma cada inimigo da sala em amigo permanente"}, -- Pheromones
+	{"25", "", "Esconde o mapa do andar atual"}, -- Amnesia
+	{"26", "", "Enche a poça no chão, o que causa danos aos inimigos"}, -- Lemon Party
+	{"27", "", "Atire na diagonal por 60 segundo"}, -- R U a Wizard?
+	{"28", "", "Receba apenas metade do dano para a sala atual"},  -- Percs!
+	{"29", "", "Recebe um dano de coração cheio na sala atual"}, -- Addicted!
+	{"30", "", "Gera um cocô enquanto anda por 4 segundos"}, -- Re-Lax
+	{"31", "", "Efeito do Curse of the maze no andar atual"}, -- ???
+	{"32", "", "Aumenta seu tamanho#Não afeta sua hitbox"}, -- One makes you larger
+	{"33", "", "diminui seu tamanho#Sua hitbox também diminui"}, -- One makes you small
+	{"34", "", "Gera 2 aranhas azuis por cocô na sala"}, -- Infested!
+	{"35", "", "Gera 2 aranhas azuis por inimigo na sala#Gera 2-6 aranhas azuis quando não há inimigos na sala"}, -- Infested?
+	{"36", "", "Curto efeito de invencibilidade#↑ #7 Dano#↑ +3 Alcance#Durante a sala atual"}, -- Power Pill!
+	{"37", "", "Pixeliza a tela por 90 segundos"}, -- Retro Vision
+	{"38", "", "Gera 6 moscas azuis"}, -- Friends Till The End!
+	{"39", "", "Gera uma poça escorregadia"}, -- X-Lax
+	{"40", "", "Gera uma poça de lentidão"}, -- Something's wrong...
+	{"41", "", "Efeito de lentidão em todos os inimigos da sala"}, -- I'm Drowsy...
+	{"42", "", "Aumenta a velocidade de todos os inimigos da sala"}, --I'm Excited!!!
+	{"43", "", "Consome o trinket que segura e ganha o efeito dele permanentemente"}, -- Gulp!
+	{"44", "", "Dispara um cacho de lágrimas de ipecac"}, -- Horf!
+	{"45", "", "Curto efeito de invencibilidade#Amedronta todos os inimigos#Dois inimigos comidos reabastecem meio coração"}, -- Feels like I'm walking on sunshine!
+	{"46", "", "Gera a última pílula usada como horse"}, -- Vurp!
+	{"47", "", "↓ -0.3 Velocidade de disparo"}, -- Shot Speed Down
+	{"48", "", "↑ +0.3 Velocidade de disparo"}, -- Shot Speed Up
+	{"49", "", "↑ Aumenta 1 status aleatório duas vezes#↓ Diminue 1 status aleatório duas vezes#Não vai diminuir com PHD"}, -- Experimental Pill
 }
+
+EID.descriptions["pt_br"].CraftingRoomContent = "Pickups na sala:"
+EID.descriptions["pt_br"].CraftingResults = "Resultado:#(Rolar: Segurar TAB + Atirar △/▽)"
