@@ -150,9 +150,11 @@ if REPENTANCE then
 			return
 		end
 		pickup:GetData()["EID_IsAltChoise"] = false
-
-		if Game():GetRoom():GetType() == RoomType.ROOM_TREASURE and Game():GetLevel():GetStageType() > 3 then
-			if altPathItemCounter == 1 and not Isaac.GetPlayer(0):HasCollectible(668) or (pickup.Position - lastHidePosition):Length() < 0.1 then
+		local player = Isaac.GetPlayer(0)
+		local hasBrokenGrasses = player:HasTrinket(TrinketType.TRINKET_BROKEN_GLASSES)
+		local isRepStage = Game():GetLevel():GetStageType() >= StageType.STAGETYPE_REPENTANCE
+		if Game():GetRoom():GetType() == RoomType.ROOM_TREASURE and (isRepStage or hasBrokenGrasses) then
+			if altPathItemCounter == 1 and not player:HasCollectible(CollectibleType.COLLECTIBLE_DADS_NOTE) and ((isRepStage and not hasBrokenGrasses) or (not isRepStage and hasBrokenGrasses)) or (pickup.Position - lastHidePosition):Length() < 0.1 then
 				pickup:GetData()["EID_IsAltChoise"] = true
 				lastHidePosition = pickup.Position
 			end
