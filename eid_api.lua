@@ -293,11 +293,6 @@ function EID:getDescriptionObj(Type, Variant, SubType)
 	description.ItemVariant = Variant
 	description.RealID = SubType
 	description.ID = SubType
-	local tableName = EID:getTableName(Type, Variant, SubType)
-	if tableName == "pills" or tableName == "horsepills" then
-		local pool = Game():GetItemPool()
-		description.ID = pool:GetPillEffect(SubType, Isaac.GetPlayer(0)) + 1
-	end
 	description.fullItemString = Type.."."..Variant.."."..description.ID
 	description.Name = EID:getObjectName(Type, Variant, description.ID)
 
@@ -340,10 +335,24 @@ function EID:getDescriptionData(Type, Variant, SubType)
 	local moddedDesc = EID.descriptions[EID.Config["Language"]].custom[fullString.."."..SubType] or 
 						EID.descriptions["en_us"].custom[fullString.."."..SubType] or nil
 	local tableName = EID:getTableName(Type, Variant, SubType)
-	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, SubType)
-	local defaultDesc = EID.descriptions[EID.Config["Language"]][tableName][SubType] or EID.descriptions["en_us"][tableName][SubType] or nil
+	local adjustedID = EID:getAdjustedSubtype(Type, Variant, SubType)
+	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, adjustedID)
+	local defaultDesc = EID.descriptions[EID.Config["Language"]][tableName][adjustedID] or EID.descriptions["en_us"][tableName][adjustedID] or nil
 	
 	return moddedDesc or legacyModdedDescription or defaultDesc
+end
+
+-- Returns an adjusted SubType id for special cases like Horse Pills and Golden Trinkets
+function EID:getAdjustedSubtype(Type, Variant, SubType)
+	local tableName = EID:getTableName(Type, Variant, SubType)
+	if tableName == "pills" or tableName == "horsepills" then
+		if SubType == 14 then
+			return 9999
+		end
+		local pool = Game():GetItemPool()
+		SubType = pool:GetPillEffect(SubType, Isaac.GetPlayer(0)) + 1
+	end
+	return SubType
 end
 
 -- Get the transformation uniqueName / ID of a given entity
@@ -489,11 +498,11 @@ end
 function EID:createItemIconObject(str)
 	local collID,numReplace = string.gsub(str, "Collectible", "")
 	local item = nil
-	if numReplace > 0 and collID ~= "" then
+	if numReplace > 0 and collID ~= "" and tonumber(collID) ~= nil then
 		item = EID.itemConfig:GetCollectible(tonumber(collID))
 	end
 	local trinketID,numReplace2 = string.gsub(str, "Trinket", "")
-	if numReplace2 > 0 and trinketID ~= "" then
+	if numReplace2 > 0 and trinketID ~= "" and tonumber(trinketID) ~= nil then
 		item = EID.itemConfig:GetTrinket(tonumber(trinketID))
 	end
 	local cardID,numReplace3 = string.gsub(str, "Card", "")
