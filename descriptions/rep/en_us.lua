@@ -8,7 +8,6 @@
 --Special character markup:
 -- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
 local newDescriptions = {
-	--["5.70.14"] = {"14", "Golden Pill", "Random pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
 
 local repCollectibles={
@@ -26,6 +25,7 @@ local repCollectibles={
 	[44] = {"44", "Teleport", "Teleports Isaac into a random room except I AM ERROR rooms#Influence direction a bit by moving in desired direction"}, -- Teleport
 	[45] = {"45", "Yum Heart", "Heal 1 red heart#Also heals other players for half a heart"}, -- Yum Heart
 	[46] = {"46", "Lucky Foot", "↑ +1.0 Luck up#Better chance to win while gambling#Increases room clearing drop chance#Turns some bad pills into good ones"}, -- Lucky Foot
+	[53] = {"53", "Magneto", "Magnetic attraction for Pick-ups#Opens chests remotely, ignoring damage of spike chests"}, -- Magneto
 	[55] = {"55", "Mom's Eye", "Chance to shoot a tear backwards"}, -- Mom's Eye
 	[62] = {"62", "Charm of the Vampire", "↑ +0.3 Damage up#Heals half a heart every 13 enemies killed"}, -- Charm of the Vampire
 	[64] = {"64", "Steam Sale", "-50% on shop items#Getting this item multiple times reduces the price further"}, -- Steam Sale
@@ -45,12 +45,14 @@ local repCollectibles={
 	[152] = {"152", "Technology 2", "Permanent laser attack!#Laser deals 13% of your damage#↓ Tears down by 33%"}, -- Technology 2
 	[171] = {"171", "Spider Butt", "Slows down enemies for 4 seconds#10 Damage to all enemies#Enemies killed with it spawn blue spiders"}, -- Spider Butt
 	[178] = {"178", "", "{{Throwable}} {{ColorOrange}}Throwable{{CR}}#Leaves pool of creep at the thrown location"},
+	[188] = {"188", "Abel", "Mirrors your movement#Shoots towards the player#Deals 3.5 damage per shot#7.5 Damage if you play Cain"}, -- Abel
 	[192] = {"192", "Telepathy for Dummies", "Homing tears for current room#↑ +3 Range up"}, -- Telepathy for Dummies
 	[194] = {"194", "Magic 8 Ball", "↑ +0.16 Shot speed up#+1 card#+15% Planetarium chance"}, -- Magic 8 Ball
 	[203] = {"203", "Humbling Bundle", "Chance to spawn the double version of pickups"}, -- Humbling Bundle
 	[205] = {"205", "Sharp Plug", "- half Heart = Charges one slot of your active item when pressing space"}, -- Sharp Plug
 	[206] = {"206", "Guillotine", "↑ +1 Damage up#↑ +0.33 Tears up#Your Head is now an orbital#You will shoot from the head#The head deals 105 contact damage"}, -- Guillotine
 	[211] = {"211", "Spider Baby", "Spawn 3-5 spiders when getting hit"}, -- Spider Baby
+	[228] = {"228", "Mom's Perfume", "Chance to shoot fearing tears#↑ -1 tear delay that can go below capped value"}, -- Moms Perfume
 	[230] = {"230", "Abaddon", "↑ +1.5 Damage up#↑ +0.2 Speed up#Fear tears#Converts all red heart container into Black hearts#+2 Black hearts"}, -- Abaddon
 	[232] = {"232", "Stop Watch", "Permanent slow effect for enemies#↑ +0.3 Speed up"}, -- Stop Watch
 	[245] = {"245", "20/20", "Doubles all your shots#↓ -25% Damage"}, -- 20/20
@@ -75,7 +77,7 @@ local repCollectibles={
 	[294] = {"294", "Butter Bean", "Knocks back nearby enemies and projectiles#Enemies pushed into obstacles take 10 damage#10% chance to turn into the stronger \"Wait What?\" when swapping it with a different active item and picking it up again"}, -- Butter Bean
 	[295] = {"295", "Magic Fingers", "Damages the whole room with 2x the player damage + 10 #Price: 1 coin"}, -- Magic Fingers
 	[296] = {"296", "Converter", "!!! Convert:#1 Soul/Black heart into 1 red heart"}, -- Converter
-	[307] = {"307", "Capricorn", "↑ +1 Health / Key / Bomb / Coin#↑ +0.93 Damage up#↑ +0.1 Speed up#↑ +0.75 Range up#Tears up"}, -- Capricorn
+	[307] = {"307", "Capricorn", "↑ +1 Health / Key / Bomb / Coin#↑ +0.93 Damage up#↑ +0.1 Speed up#↑ +0.75 Range up#↑ -1 Tear delay that can go below capped value"}, -- Capricorn
 	[308] = {"308", "Aquarius", "Leave trail of creep#Creep deals 6 damage per second#Creep synergizes with tear effects"}, -- Aquarius
 	[328] = {"328", "The Negative", "↑ +1.0 Damage up#Damages all enemies in the room when getting hit and at half a red heart or none"}, -- The Negative
 	[331] = {"331", "Godhead", "Homing tears#↑ +0.93 Damage up#↑ +0.5 Range up#↓ -0.6 Tears down#↓ -30% Shot Speed down#↑ +0.8 Tear Height"}, -- Godhead
@@ -88,17 +90,19 @@ local repCollectibles={
 	[370] = {"370", "Mr. Dolly", "↑ +0.7 Tears up#↑ +1.5 Range up#↑ +0.5 Tear Height#Spawns 3 random hearts when picked up"}, -- Mr. Dolly
 	[372] = {"372", "Charged Baby", "Random chance to drop a micro battery or freeze all enemies in the room#Chance to add one charge to your spacebar item"}, -- Charged Baby
 	[375] = {"375", "Host hat", "20% chance to block tears#Grants explosion immunity"}, -- Host hat
-	[376] = {"376", "Restock", "Spawns 3 random Pickups#Shops instantly restock their items when you buy them#Restocked items have decreased cost"}, -- Restock
+	[376] = {"376", "Restock", "Spawns 3 random Pickups#Shops instantly restock their items when you buy them#Restocked items increase in price"}, -- Restock
 	[382] = {"382", "Friendly Ball", "Can be thrown at enemies to capture them#Next usage will respawn the same enemy as a friendly companion#Walking over the ball after capture will instantly recharge the item"}, -- Friendly Ball
 	[393] = {"393", "Serpent`s Kiss", "Random chance to shoot poison tears#Poison enemies on contact#Enemies killed with contact poison have a 20% chance to drop a black heart"}, -- Serpent`s Kiss
 	[395] = {"395", "Tech X", "Gain the ability to charge and fire a laser ring that travels across the room#Damage based on the charge progress#100% damage on full charge"}, -- Tech X
 	[399] = {"399", "Maw of the Void", "After firing tears for 3 seconds, a red cross appears on Isaac's head. Upon releasing the fire button, creates a black brimstone ring"}, -- Maw of the Void
 	[405] = {"405", "GB Bug", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot button)#Rerolls enemies and pickup it comes in contact with"}, -- GB Bug
 	[416] = {"416", "Deep Pockets", "Spawns 1-3 coins if a room didn't yield a reward#Increases coin cap to 999"}, -- Deep Pockets
+	[417] = {"417", "Succubus", "Bounces around the room with a damaging aura, dealing 7.5-10 damage every second#↑ +50% damage while standing in the aura"}, -- Succubus
 	[448] = {"448", "Shard of Glass", "When taking damage, chance to get ↑ +5 Range, spew red tears and leave a trail of blood creep, or spawn a red heart"}, -- Shard of Glass
 	[451] = {"451", "Tarot Cloth", "Drops a random card or rune on pickup#Doubles the effect of any card used#Some cards gain an extra effect"}, -- Tarot Cloth
 	[456] = {"456", "Midnight Snack", "↑ +1 Health up"}, -- Midnight Snack
 	[464] = {"464", "Glyph of Balance", "+2 Soul Hearts#Champion enemies and room drops appear more frequently#Priority of spawned pickups depends on what the player is missing most of"}, -- Glyph of Balance
+	[472] = {"472", "King Baby", "Other familiars follow it and shoot automatically at enemies#Stops moving when you are shooting#Will teleport back to you when you stop shooting"}, -- King Baby
 	[474] = {"474", "broken Glass Canon", "Turns into Glass Canon when used"}, -- broken Glass Canon
 	[489] = {"489", "D Infinity", "Random Dice-effect each usage#Press the Drop button to cycle through the dices"}, -- D Infinity
 	[491] = {"491", "Acid Baby", "Drops a random pill every 7 rooms#Using a pill poisons all enemies in the room"}, -- Acid Baby
@@ -212,7 +216,7 @@ local repCollectibles={
 	[652] = {"652", "Cube Baby", "Familiar that slides around when walked into#It slows and deals contact damage, freezing monsters it kills"}, --  Cube Baby
 	[653] = {"653", "Vade Retro", "While held, non-ghost enemies spawn small red ghosts on death#On use, causes the ghosts to explode"}, --  Vade Retro
 	[654] = {"654", "False PHD", "Identifies all pills#+1 Black heart#Converts good pills into bad pills#↑ Stat down pills grant damage up#Other pills drop black hearts on use"}, --  False PHD
-	[655] = {"655", "Spin to Win", "Adds spinning top orbital that blocks enemy shots and deals contact damage#When used,↑ +0.5 speed and greatly increases the rotation speed of orbitals"}, --  Spin to Win
+	[655] = {"655", "Spin to Win", "Adds spinning top orbital that blocks enemy shots#Deals 10.5 contact damage per second#When used,↑ +0.5 speed and greatly increases the rotation speed of orbitals"}, --  Spin to Win
 	[656] = {"656", "Damocles", "<Item not obtainable>"}, -- Damocles
 	[657] = {"657", "Vasculitis", "Enemies explode into tears upon death, which inherit the effects of Isaac's tears"}, --  Vasculitis
 	[658] = {"658", "Giant Cell", "Spawn micro-Isaacs when taking damage#They chase and shoot at nearby enemies"}, --  Giant Cell
@@ -342,12 +346,13 @@ local repTrinkets={
 	[10] = {"10", "Wiggle Worm", "Tears move in waves#↑ +0.4 Tears up#Grants spectral tears"}, -- Wiggle Worm
 	[11] = {"11", "Ring Worm", "Tears move in spirals with high speed#Grants spectral tears"}, -- Ring Worm
 	[26] = {"26", "Hook Worm", "Tears move in angular patterns#↑ +10 Range#Grants spectral tears"}, -- Hook Worm
+	[32] = {"32", "Liberty Cap", "Random mushroom effect per room"}, -- Liberty Cap
 	[33] = {"33", "Umbilical Cord", "When entering a room with less than half a red heart, you get little Steven#High Chance to spawn a Gemini familar when taking damage"}, -- Umbilical Cord
 	[49] = {"49", "Bloody Penny", "25% chance to drop half a heart when picking up coins"}, -- Bloody Penny
 	[50] = {"50", "Burnt Penny", "25% chance to drop a bomb when picking up coins"}, -- Burnt Penny
 	[51] = {"51", "Flat Penny", "25% chance to drop a key when picking up coins"}, -- Flat Penny
 	[69] = {"69", "Faded Polaroid", "Camouflages the player randomly#Confuses enemies#Can be used to open the door to the \"Home\" floor"}, -- Faded Polaroid
-	[92] = {"92", "Cracked Crown", "↑ Stat increases of your items are 20% more effective#↑ +0.2 Tears up#↑ -1 Tear Delay"}, -- Cracked Crown
+	[92] = {"92", "Cracked Crown", "↑ Stat increases of your items are 20% more effective"}, -- Cracked Crown
 	[95] = {"95", "Black tooth", "Randomly shoot poison Tooth tears#Enemies hit are attacked by a hand of Big Horn"}, -- Black tooth
 	[111] = {"111", "Bloody Crown", "Item rooms {{TreasureRoom}} now appear in the Womb and Corpse"}, -- Bloody Crown
 	[119] = {"119", "Stem Cell", "Sets your red HP to 50% of your maximum upon entering the next floor#If your health is above that, it heals half a red heart"}, -- Stem Cell
@@ -484,6 +489,7 @@ local repPills={
 	[48] = {"47", "Shot Speed Down", "↓ -0.15 Shot Speed down"}, -- Shot Speed Down
 	[49] = {"48", "Shot Speed Up", "↑ +0.15 Shot Speed up"}, -- Shot Speed Up
 	[50] = {"49", "Experimental Pill", "↑ Increases 1 random stat#↓ Decreases 1 random other stat#Will not decrease with PHD"}, -- Experimental Pill
+	[9999] = {"", "Golden Pill", "Random pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions["en_us"].pills)
 
@@ -538,6 +544,7 @@ EID.descriptions["en_us"].horsepills={
 	{"47", "Shot Speed Down", "↓ -0.3 Shot Speed down"}, -- Shot Speed Down
 	{"48", "Shot Speed Up", "↑ +0.3 Shot Speed up"}, -- Shot Speed Up
 	{"49", "Experimental Pill", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with PHD"}, -- Experimental Pill
+	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
 
 EID.descriptions["en_us"].CraftingRoomContent = "Pickups in room:"
