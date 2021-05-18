@@ -359,18 +359,27 @@ end
 local randResultCache = {}
 
 EID.bagOfCraftingOffset = 0
+EID.bagOfCraftingCurPickupCount = -1
+EID.bagOfCraftingLastQuery = {}
 
 local function handleBagOfCraftingRendering()
 	local results = {}
 	local bagItems = {} -- TODO: Get content of Bag
 	local floorItems = {}
-	for i, entity in ipairs(Isaac.FindByType(5, -1, -1, true, false)) do
-		local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
-		if craftingIDs ~= nil then
-			for _,v in ipairs(craftingIDs) do
-				table.insert(floorItems, v)
+	local pickups = Isaac.FindByType(5, -1, -1, true, false)
+	if EID.bagOfCraftingCurPickupCount ~= #pickups then 
+		for i, entity in ipairs(pickups) do
+			local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
+			if craftingIDs ~= nil then
+				for _,v in ipairs(craftingIDs) do
+					table.insert(floorItems, v)
+				end
 			end
 		end
+		EID.bagOfCraftingLastQuery = floorItems
+		EID.bagOfCraftingCurPickupCount = #pickups
+	else
+		floorItems = EID.bagOfCraftingLastQuery
 	end
 	-- Calculate result from pickups on floor
 	if #floorItems < 8 then
@@ -380,7 +389,6 @@ local function handleBagOfCraftingRendering()
 	local queryString = table.concat(floorItems,",")
 	if randResultCache[queryString] == nil then
 		local randResults = {}
-
 		for i = 0, 250 do
 			local newTable = {}
 			local tableCopy = {table.unpack(floorItems)}
