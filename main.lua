@@ -123,12 +123,14 @@ end
 
 ---------------------------------------------------------------------------
 -------------------------Handle Sacrifice Room-----------------------------
-if EID.Config["DisplaySacrificeInfo"] then
 	function EID:onNewFloor()
 		EID.sacrificeCounter = {}
+		EID.altPathItemCounter = {}
+		EID.lastHidePosition = {}
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
+if EID.Config["DisplaySacrificeInfo"] then
 	function EID:onSacrificeDamage(_, _, flags, source)
 		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
 			local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
@@ -146,8 +148,8 @@ end
 ---------------------------------------------------------------------------
 ------------------------Handle ALT FLOOR CHOICE----------------------------
 if REPENTANCE then
-	local altPathItemCounter = 0
-	local lastHidePosition = nullVector -- stores lastHide position to store Hide between Morphs / rerolls
+	EID.altPathItemCounter = {}
+	EID.lastHidePosition = {} -- stores lastHide position to store Hide between Morphs / rerolls
 
 	function EID:onCollectibleInit(pickup)
 		if pickup:GetData()["EID_IsAltChoise"] ~= nil then
@@ -158,20 +160,19 @@ if REPENTANCE then
 		local hasBrokenGrasses = player:HasTrinket(TrinketType.TRINKET_BROKEN_GLASSES)
 		local isRepStage = Game():GetLevel():GetStageType() >= StageType.STAGETYPE_REPENTANCE
 		if Game():GetRoom():GetType() == RoomType.ROOM_TREASURE and (isRepStage or hasBrokenGrasses) then
-			if altPathItemCounter == 1 and not player:HasCollectible(CollectibleType.COLLECTIBLE_DADS_NOTE) and ((isRepStage and not hasBrokenGrasses) or (not isRepStage and hasBrokenGrasses)) or (pickup.Position - lastHidePosition):Length() < 0.1 then
+			local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
+			local lastHidepos = EID.lastHidePosition[curRoomIndex] or nullVector
+			local curCounter = EID.altPathItemCounter[curRoomIndex] or 0
+			if curCounter == 1 and not player:HasCollectible(CollectibleType.COLLECTIBLE_DADS_NOTE) and ((isRepStage and not hasBrokenGrasses) or (not isRepStage and hasBrokenGrasses)) or (pickup.Position - lastHidepos):Length() < 0.1 then
 				pickup:GetData()["EID_IsAltChoise"] = true
-				lastHidePosition = pickup.Position
+				EID.lastHidePosition[curRoomIndex] = pickup.Position
 			end
-			altPathItemCounter = altPathItemCounter + 1
+			EID.altPathItemCounter[curRoomIndex] = curCounter + 1
+			print(EID.altPathItemCounter[curRoomIndex])
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, EID.onCollectibleInit, PickupVariant.PICKUP_COLLECTIBLE)
 
-	function EID:resetAltPathCounter()
-		altPathItemCounter = 0
-		lastHidePosition = nullVector
-	end
-	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.resetAltPathCounter)
 end
 
 ---------------------------------------------------------------------------
