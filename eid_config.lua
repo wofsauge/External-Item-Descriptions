@@ -55,6 +55,10 @@ EID.DefaultConfig = {
 	-- Hide the descriptions when in battle
 	-- Default = false
 	["HideInBattle"] = false,
+	-- Toggle obstruction based hiding, when the player has flight
+	-- Default = true
+	["DisableObstructionOnFlight"] = true,
+	
 	-------------CURSE-------------
 
 	-- Disable informations when the floor has curse of the blind ( ? - Items)
@@ -63,6 +67,7 @@ EID.DefaultConfig = {
 	-- Disable Item informations for the second Treasure room item on alt paths
 	-- Default = true
 	["DisableOnAltPath"] = true,
+	
 	----------ITEM NAMES-----------
 
 	-- Toggle Display of Collectible / Card and Pill names
@@ -83,6 +88,7 @@ EID.DefaultConfig = {
 	-- Set the color-name of the Itemname description text. Color names can be found& defined in "eid_data.lua"
 	-- Default = "ColorEIDObjName"
 	["ItemNameColor"] = "ColorEIDObjName",
+	
 	-------TRANSFORMATIONS---------
 
 	-- Toggle Display of Transformation text
@@ -94,6 +100,7 @@ EID.DefaultConfig = {
 	-- Set the color-name of the Transformation description text. Color names can be found& defined in "eid_data.lua"
 	-- Default = "ColorEIDTransform"
 	["TransformationColor"] = "ColorEIDTransform",
+	
 	------------CARDS--------------
 
 	-- Toggle Display of Card / Rune descriptions
@@ -102,6 +109,10 @@ EID.DefaultConfig = {
 	-- Toggle Display of Card / Rune descriptions when its a shop item
 	-- Default = false
 	["DisplayCardInfoShop"] = false,
+	-- Toggle Display of Card / Rune descriptions when its not accessable with walking. AKA behind rock, blocks, spikes
+	-- Default = false
+	["DisplayObstructedCardInfo"] = false,
+	
 	------------PILLS--------------
 
 	-- Toggle Display of Pill descriptions
@@ -110,19 +121,25 @@ EID.DefaultConfig = {
 	-- Toggle Display of Pill descriptions when its a shop item
 	-- Default = true
 	["DisplayPillInfoShop"] = true,
+	-- Toggle Display of Pill descriptions when its not accessable with walking. AKA behind rock, blocks, spikes
+	-- Default = true
+	["DisplayObstructedPillInfo"] = true,
 	-- Toggle Display of Pill descriptions that arent known to you yet
 	-- Default = false
 	["ShowUnidentifiedPillDescriptions"] = false,
+	
 	--------Sacrifice Room---------
 
 	-- Toggle Display of next Sacrifice room Payout descriptions
 	-- Default = true
 	["DisplaySacrificeInfo"] = true,
+	
 	--------Dice Room---------
 
 	-- Toggle Display of Diceroom descriptions
 	-- Default = true
 	["DisplayDiceInfo"] = true,
+	
 	---------Bag of Crafting-----------
 	
 	-- Display-modes for Bag of Crafting descriptions
@@ -134,7 +151,9 @@ EID.DefaultConfig = {
 	-- Higher numbers can cause more lag!
 	-- Default = 7
 	["BagOfCraftingResults"] = 7,
+	
 	-------------MISC---------------
+	
 	-- Changes the number of Results shown for the additional Spindown dice description
 	-- Default = 3
 	["SpindownDiceResults"] = 3,

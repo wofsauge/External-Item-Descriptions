@@ -381,6 +381,73 @@ if MCMLoaded then
 			end
 		}
 	)
+	
+	--------Obstruction---------
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Display Infos when obstructed")
+	
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisableObstructionOnFlight"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["DisableObstructionOnFlight"] then
+					onOff = "True"
+				end
+				return "Show again when having flight: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisableObstructionOnFlight"] = currentBool
+			end
+		}
+	)
+	
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisplayObstructedCardInfo"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["DisplayObstructedCardInfo"] then
+					onOff = "True"
+				end
+				return "Card Infos: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisplayObstructedCardInfo"] = currentBool
+			end
+		}
+	)
+
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisplayObstructedPillInfo"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["DisplayObstructedPillInfo"] then
+					onOff = "True"
+				end
+				return "Pill Infos: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisplayObstructedPillInfo"] = currentBool
+			end
+		}
+	)
 
 	MCM.AddSpace("EID", "Display")
 	MCM.AddText("EID", "Display", "Display Infos in Shops")

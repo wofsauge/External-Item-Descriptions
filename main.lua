@@ -168,7 +168,6 @@ if REPENTANCE then
 				EID.lastHidePosition[curRoomIndex] = pickup.Position
 			end
 			EID.altPathItemCounter[curRoomIndex] = curCounter + 1
-			print(EID.altPathItemCounter[curRoomIndex])
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, EID.onCollectibleInit, PickupVariant.PICKUP_COLLECTIBLE)
@@ -323,7 +322,7 @@ function EID:renderIndicator(entity)
 		repDiv = 255
 	end
 	local sprite = entity:GetSprite()
-	local entityPos = Game():GetRoom():WorldToScreenPosition(entity.Position)
+	local entityPos = Isaac.WorldToScreen(entity.Position)
 	if EID.Config["Indicator"] == "blink" then
 		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
 		sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
@@ -352,7 +351,7 @@ function EID:renderIndicator(entity)
 		if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
 			ArrowOffset = Vector(0, -62)
 		end
-		ArrowSprite:Render(Game():GetRoom():WorldToScreenPosition(entity.Position + ArrowOffset), nullVector, nullVector)
+		ArrowSprite:Render(Isaac.WorldToScreen(entity.Position + ArrowOffset), nullVector, nullVector)
 	end
 end
 
@@ -466,6 +465,51 @@ local function handleBagOfCraftingRendering()
 	return true
 end
 
+
+---------------------------------------------------------------------------
+---------------------------On Update Function------------------------------
+
+EID.lastDescriptionEntity = nil
+EID.lastDist = 0
+EID.pathCheckerEntity = nil
+EID.hasValidWalkingpath = true
+
+function EID:onGameUpdate()
+	EID.lastDescriptionEntity = nil
+	EID.lastDist = 10000
+	local player = Isaac.GetPlayer(0)
+	for i, entity in ipairs(Isaac.GetRoomEntities()) do
+		if EID:hasDescription(entity) and entity.FrameCount > 0 then
+			local diff = entity.Position:__sub(player.Position)
+			if diff:Length() < EID.lastDist then
+				EID.lastDescriptionEntity = entity
+				EID.lastDist = diff:Length()
+			end
+		end
+	end
+	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] then
+		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and player.CanFly) then
+			if EID.pathCheckerEntity ~= nil then
+				EID.pathCheckerEntity:Remove()
+				EID.pathCheckerEntity = nil
+				EID.hasValidWalkingpath = true
+			end
+			return
+		end
+		if EID.pathCheckerEntity == nil then
+			EID.pathCheckerEntity = Isaac.Spawn(17, 69420, 0, player.Position, nullVector, nil) -- Spawns the EID Helper entity
+			EID.pathCheckerEntity:AddEntityFlags (EntityFlag.FLAG_PERSISTENT)
+		elseif not EID.pathCheckerEntity:Exists() then
+			EID.pathCheckerEntity = nil
+		else
+			EID.pathCheckerEntity.Position = player.Position
+			EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos ( EID.lastDescriptionEntity.Position, false )
+		end
+	end
+end
+EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
+
+
 ---------------------------------------------------------------------------
 ---------------------------On Render Function------------------------------
 
@@ -513,30 +557,19 @@ local function onRender(t)
 		return
 	end
 
-	local closest = nil
-	local dist = 10000
-	for i, entity in ipairs(Isaac.GetRoomEntities()) do
-		if EID:hasDescription(entity) and entity.FrameCount > 0 then
-			local diff = entity.Position:__sub(player.Position)
-			if diff:Length() < dist then
-				closest = entity
-				dist = diff:Length()
-			end
-		end
-	end
+	local closest = EID.lastDescriptionEntity
 
-	if dist / 40 > tonumber(EID.Config["MaxDistance"]) or not closest.Type == EntityType.ENTITY_PICKUP then
+	if EID.lastDist / 40 > tonumber(EID.Config["MaxDistance"]) then
 		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
 			local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
 			EID:printDescription(EID:getDescriptionObj(-999, -1, EID.sacrificeCounter[curRoomIndex] or 1))
 		end
 		return
 	end
-
+	
 	if closest == nil then
 		return
 	end
-	EID.lastDescriptionEntity = closest
 	EID.isDisplaying = true
 
 	--Handle Indicators
@@ -617,14 +650,14 @@ local function onRender(t)
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Cards & Runes
-		if closest:ToPickup():IsShopItem() and not EID.Config["DisplayCardInfoShop"] then
+		if (closest:ToPickup():IsShopItem() and not EID.Config["DisplayCardInfoShop"]) or (not EID.Config["DisplayObstructedCardInfo"] and not EID.hasValidWalkingpath) then
 			EID:renderQuestionMark()
 			return
 		end
 		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType))
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		--Handle Pills
-		if closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"] then
+		if (closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]) or (not EID.Config["DisplayObstructedPillInfo"] and not EID.hasValidWalkingpath) then
 			EID:renderQuestionMark()
 			return
 		end
@@ -656,7 +689,7 @@ end
 
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
--- only save and load configs when using MCM. Otherwise Config file changes arent calid
+-- only save and load configs when using MCM. Otherwise Config file changes arent valid
 if EID.MCMLoaded then
 	local json = require("json")
 	--------------------------------
