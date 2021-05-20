@@ -358,14 +358,15 @@ end
 -- Get the transformation uniqueName / ID of a given entity
 -- Example: EID:getTransformation(5,100,34)  will return "12" which is the id for Bookworm
 function EID:getTransformation(id, variant, subType)
-	local entityString = id.."."..variant.."."..subType
+	local adjustedSubtype = EID:getAdjustedSubtype(id, variant, subType)
+	local entityString = id.."."..variant.."."..adjustedSubtype
 	local listToTest = ""
 	local default = EID.EntityTransformations[entityString]
 	if default~= nil then listToTest = default end
 
 	local customLegacy = nil
 	if id == 5 and variant == 100 then
-		customLegacy = __eidItemTransformations[subType]
+		customLegacy = __eidItemTransformations[adjustedSubtype]
 		if customLegacy~= nil then listToTest = listToTest..","..customLegacy end
 	end
 
