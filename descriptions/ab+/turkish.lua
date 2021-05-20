@@ -764,6 +764,7 @@ EID.descriptions["turkish"].cards={
 EID.descriptions["turkish"].unidentifiedPill = "Tanımlanamamış Hap"
 
 EID.descriptions["turkish"].pills={
+	{"0", "Bad Gas", "Poisons entire room"}, -- Bad Gas
     {"1",	"Bad Trip",	"Spawns a Gas cloud"},
     {"2",	"Balls of Steel",	"Deals 1 heart of damage to you"},
     {"3",	"Bombs are Key",	"+2 Ruh Kalbis"},
