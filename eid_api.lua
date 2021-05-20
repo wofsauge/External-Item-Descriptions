@@ -418,7 +418,8 @@ function EID:getObjectName(Type, Variant, SubType)
 	elseif tableName == "cards" then
 		return name or EID.itemConfig:GetCard(SubType).Name
 	elseif tableName == "pills" or tableName == "horsepills" then
-		name = name or EID.itemConfig:GetPillEffect(SubType-1).Name
+		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
+		name = name or EID.itemConfig:GetPillEffect(adjustedSubtype - 1).Name
 		return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
 	elseif tableName == "sacrifice" then
 		return EID:getDescriptionTable("sacrificeHeader")
