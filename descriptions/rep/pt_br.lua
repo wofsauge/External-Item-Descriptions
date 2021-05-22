@@ -344,7 +344,6 @@ local repTrinkets={
     [51] = {"51", "", "25% de chance de soltar uma chave quando pegar uma moeda"}, -- Flat Penny
     [69] = {"69", "", "Camufla o jogador aleatoriamente#Confunde inimigos#Pode ser ussado para abrir a porta para o andar \"Home\""}, -- Faded Polaroid
     [92] = {"92", "", "↑ Aumeta as estatísticas de seus itens em 20%"}, -- Cracked Crown
-    [95] = {"95", "", "Atira aleatoriamente um dente envenenado#Inimigos atingidos são atacados por uma mão do Big Horn"}, -- Black tooth
     [111] = {"111", "", "Salas do item {{TreasureRoom}} agora aparecem em the Womb e Corpse"}, -- Bloody Crown
 	[119] = {"119", "", "Define seu HP vermelho para 50% do seu máximo ao entrar no próximo andar#Se sua saúde está acima disso, cura meio coração vermelho"}, -- Stem Cell
     [128] = {"128", "", "5% de chance de ganhar um coração de osso ao receber dano"}, -- Finger Bone

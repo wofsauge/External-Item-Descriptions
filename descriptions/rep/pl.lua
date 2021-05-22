@@ -344,7 +344,6 @@ local repTrinkets={
     [51] = {"51", "", "25% chance to drop a key when picking up coins"}, -- Flat Penny
     [69] = {"69", "", "Camouflages the player randomly#Confuses enemies#Can be used to open the door to the \"Home\" floor"}, -- Faded Polaroid
     [92] = {"92", "", "↑ Stat increases of your items are 20% more effective"}, -- Cracked Crown
-    [95] = {"95", "", "Randomly shoot poison Tooth tears#Enemies hit are attacked by a hand of Big Horn"}, -- Black tooth
     [111] = {"111", "", "Item rooms {{TreasureRoom}} now appear in the Womb and Corpse"}, -- Bloody Crown
 	[119] = {"119", "", "Sets your red HP to 50% of your maximum upon entering the next floor#If your health is above that, it heals half a red heart"}, -- Stem Cell
     [128] = {"128", "", "5% chance to gain a Bone Heart when taking damage"}, -- Finger Bone
