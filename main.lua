@@ -4,6 +4,7 @@ EID.GameVersion = "ab+"
 EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "turkish"}
 EID.descriptions = {} -- Table that holds all translation strings
 local enableDebug = false
+local game = Game()
 
 require("eid_config")
 EID.Config = EID.DefaultConfig
@@ -132,8 +133,8 @@ end
 
 if EID.Config["DisplaySacrificeInfo"] then
 	function EID:onSacrificeDamage(_, _, flags, source)
-		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
-			local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
+		if game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 			if EID.sacrificeCounter[curRoomIndex] == nil then
 				EID.sacrificeCounter[curRoomIndex] = 1
 			end
@@ -158,9 +159,9 @@ if REPENTANCE then
 		pickup:GetData()["EID_IsAltChoise"] = false
 		local player = Isaac.GetPlayer(0)
 		local hasBrokenGrasses = player:HasTrinket(TrinketType.TRINKET_BROKEN_GLASSES)
-		local isRepStage = Game():GetLevel():GetStageType() >= StageType.STAGETYPE_REPENTANCE
-		if Game():GetRoom():GetType() == RoomType.ROOM_TREASURE and (isRepStage or hasBrokenGrasses) then
-			local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
+		local isRepStage = game:GetLevel():GetStageType() >= StageType.STAGETYPE_REPENTANCE
+		if game:GetRoom():GetType() == RoomType.ROOM_TREASURE and (isRepStage or hasBrokenGrasses) then
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 			local lastHidepos = EID.lastHidePosition[curRoomIndex] or nullVector
 			local curCounter = EID.altPathItemCounter[curRoomIndex] or 0
 			if curCounter == 1 and not player:HasCollectible(CollectibleType.COLLECTIBLE_DADS_NOTE) and ((isRepStage and not hasBrokenGrasses) or (not isRepStage and hasBrokenGrasses)) or (pickup.Position - lastHidepos):Length() < 0.1 then
@@ -475,18 +476,7 @@ EID.pathCheckerEntity = nil
 EID.hasValidWalkingpath = true
 
 function EID:onGameUpdate()
-	EID.lastDescriptionEntity = nil
-	EID.lastDist = 10000
 	local player = Isaac.GetPlayer(0)
-	for i, entity in ipairs(Isaac.GetRoomEntities()) do
-		if EID:hasDescription(entity) and entity.FrameCount > 0 then
-			local diff = entity.Position:__sub(player.Position)
-			if diff:Length() < EID.lastDist then
-				EID.lastDescriptionEntity = entity
-				EID.lastDist = diff:Length()
-			end
-		end
-	end
 	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] then
 		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and player.CanFly) then
 			if EID.pathCheckerEntity ~= nil then
@@ -499,6 +489,7 @@ function EID:onGameUpdate()
 		if EID.pathCheckerEntity == nil then
 			EID.pathCheckerEntity = Isaac.Spawn(17, 69420, 0, player.Position, nullVector, nil) -- Spawns the EID Helper entity
 			EID.pathCheckerEntity:AddEntityFlags (EntityFlag.FLAG_PERSISTENT)
+			EID.hasValidWalkingpath = false
 		elseif not EID.pathCheckerEntity:Exists() then
 			EID.pathCheckerEntity = nil
 		else
@@ -512,6 +503,7 @@ EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
 ---------------------------------------------------------------------------
 ---------------------------On Render Function------------------------------
+local searchPartitions = EntityPartition.FAMILIAR + EntityPartition.ENEMY + EntityPartition.PICKUP + EntityPartition.PLAYER + EntityPartition.EFFECT
 
 local function onRender(t)
 	EID.isDisplaying = false
@@ -556,13 +548,35 @@ local function onRender(t)
 		EID.isDisplaying = true
 		return
 	end
+	
+	EID.lastDescriptionEntity = nil
+	EID.lastDist = 10000
+	local player = Isaac.GetPlayer(0)
+	local entities = Isaac.FindInRadius(player.Position, tonumber(EID.Config["MaxDistance"])*40, searchPartitions)
+	for i, entity in ipairs(entities) do
+		print(entity.Type.." "..entity.Variant.." "..entity.SubType.."   "..tostring(EID:hasDescription(entity)))
+		if EID:hasDescription(entity) and entity.FrameCount > 0 then
+			local diff = entity.Position:__sub(player.Position)
+			if diff:Length() < EID.lastDist then
+				EID.lastDescriptionEntity = entity
+				EID.lastDist = diff:Length()
+			end
+		end
+	end
 
 	local closest = EID.lastDescriptionEntity
 
 	if EID.lastDist / 40 > tonumber(EID.Config["MaxDistance"]) then
-		if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
-			local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
+		if game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 			EID:printDescription(EID:getDescriptionObj(-999, -1, EID.sacrificeCounter[curRoomIndex] or 1))
+		end
+		if game:GetRoom():GetType() == RoomType.ROOM_DICE and EID.Config["DisplayDiceInfo"] then
+			local diceEntities = Isaac.FindByType(1000, EffectVariant.DICE_FLOOR, -1, true, false)
+			for _, e in ipairs(diceEntities) do
+				EID:printDescription(EID:getDescriptionObj(e.Type, e.Variant, e.SubType + 1))
+				return
+			end
 		end
 		return
 	end
@@ -570,6 +584,7 @@ local function onRender(t)
 	if closest == nil then
 		return
 	end
+	
 	EID.isDisplaying = true
 
 	--Handle Indicators
@@ -650,20 +665,28 @@ local function onRender(t)
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Cards & Runes
-		if (closest:ToPickup():IsShopItem() and not EID.Config["DisplayCardInfoShop"]) or (not EID.Config["DisplayObstructedCardInfo"] and not EID.hasValidWalkingpath) then
+		if  not EID.Config["DisplayObstructedCardInfo"] and closest.FrameCount < 3 then
+			-- small delay when having obstruction enabled & entering the room to prevent spoilers
+			return
+		end
+		if (closest:ToPickup():IsShopItem() and not EID.Config["DisplayCardInfoShop"]) or (not EID.Config["DisplayObstructedCardInfo"] and not EID.hasValidWalkingpath) or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
 			EID:renderQuestionMark()
 			return
 		end
 		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType))
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		--Handle Pills
+		if  not EID.Config["DisplayObstructedPillInfo"] and closest.FrameCount < 3 then
+			-- small delay when having obstruction enabled & entering the room to prevent spoilers
+			return
+		end
 		if (closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]) or (not EID.Config["DisplayObstructedPillInfo"] and not EID.hasValidWalkingpath) then
 			EID:renderQuestionMark()
 			return
 		end
 
 		local pillColor = closest.SubType
-		local pool = Game():GetItemPool()
+		local pool = game:GetItemPool()
 		local identified = pool:IsPillIdentified(pillColor)
 		if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) then
 			local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor)
