@@ -554,7 +554,6 @@ local function onRender(t)
 	local player = Isaac.GetPlayer(0)
 	local entities = Isaac.FindInRadius(player.Position, tonumber(EID.Config["MaxDistance"])*40, searchPartitions)
 	for i, entity in ipairs(entities) do
-		print(entity.Type.." "..entity.Variant.." "..entity.SubType.."   "..tostring(EID:hasDescription(entity)))
 		if EID:hasDescription(entity) and entity.FrameCount > 0 then
 			local diff = entity.Position:__sub(player.Position)
 			if diff:Length() < EID.lastDist then

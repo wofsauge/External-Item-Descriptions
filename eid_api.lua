@@ -52,6 +52,7 @@ EID.ItemTypeAnm2Names = {
 ---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
 local nullVector = Vector(0,0)
+local game = Game()
 
 -- Adds a description for a collectible. Optional parameters: itemName, language
 function EID:addCollectible(id, description, itemName, language)
@@ -250,7 +251,7 @@ end
 
 -- Returns true, if curse of blind is active
 function EID:hasCurseBlind()
-	return Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND > 0
+	return game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND > 0
 end
 
 -- returns the current text position
@@ -349,7 +350,7 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 		if SubType == 14 then
 			return 9999
 		end
-		local pool = Game():GetItemPool()
+		local pool = game:GetItemPool()
 		SubType = pool:GetPillEffect(SubType, Isaac.GetPlayer(0)) + 1
 	end
 	return SubType
