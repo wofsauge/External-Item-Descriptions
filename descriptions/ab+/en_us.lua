@@ -333,7 +333,7 @@ EID.descriptions["en_us"].collectibles={
 	{"318", "Gemini", "Close combat familiar#Deals 6 contact damage per second"},
 	{"319", "Cain's Other Eye", "Bounces around the room#Shoots towards Isaac#His damage equals your damage"},
 	{"320", "???'s Only Friend", "Controllable Fly#Deals 5 contact damage per second"},
-	{"321", "Samson's Chains", "dragable ball that can destroy rocks#Deals 10.7 contact damage per second"},
+	{"321", "Samson's Chains", "Draggable ball that can destroy rocks#Deals 10.7 contact damage per second"},
 	{"322", "Mongo Baby", "Copies the effect of one of your familiars#Deals double its damage"},
 	{"323", "Isaac's Tears", "Shoot 8 tears in all directions when used#Charges when shooting"},
 	{"324", "Undefined", "Teleports you to:#{{SecretRoom}}{{SuperSecretRoom}}Secret-, Error- or {{TreasureRoom}}Item-rooms"},
