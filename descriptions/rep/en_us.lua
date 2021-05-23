@@ -348,6 +348,19 @@ EID.descriptions["en_us"].birthright ={
 	{"Tainted Forgotten Soul", "", "Tainted Soul gains the Recall ability {{Collectible714}}, to automatically retrieve the Tainted Forgotten from a distance"},
 }
 
+-- Buffs caused by Binge Eater
+-- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
+EID.descriptions["en_us"].bingeEaterBuffs = {
+	[22] = {"22", "", "↑+0.5 Tears up#↑+1.5 Range up"}, -- Lunch
+	[23] = {"23", "", "↑+0.5 Tears up#↑+0.2 Shot Speed up"}, -- Dinner
+	[24] = {"24", "", "↑+1.0 Damage up#↑+0.2 Speed up"}, -- Dessert
+	[25] = {"25", "", "↑+0.2 Speed up#↑+1.5 Range up"}, -- Breakfast
+	[26] = {"26", "", "↑+1.0 Damage up#↑+1.5 Range up"}, -- Rotten Meat
+	[456] = {"456", "", "↑+1.0 Damage up#↑+1.0 Luck up"}, -- Midnight Snack
+	[346] = {"346", "", "↑+0.2 Shot Speed up#↑+1.0 Luck up"}, -- A Snack
+	[707] = {"707", "", "↑+0.5 Tears up#↑+1.0 Luck up"}, -- Supper
+}
+
 EID.descriptions["en_us"].spindownError = "Item disappears"
 
 ---------- Trinkets ----------

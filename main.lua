@@ -641,6 +641,14 @@ local function onRender(t)
 					descriptionObj.Description = "{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3]
 				end
 			end
+			-- Handle Bingeeater description addition
+			if player:HasCollectible(664) then
+				local bingeBuff = EID.descriptions[EID.Config["Language"]]["bingeEaterBuffs"][closest.SubType] or EID.descriptions["en_us"]["bingeEaterBuffs"][closest.SubType] or nil
+				if bingeBuff ~= nil then
+					local bingeStr = "#{{Collectible664}} "
+					descriptionObj.Description = descriptionObj.Description..bingeStr..bingeBuff[3]:gsub("#",bingeStr)
+				end
+			end
 			-- Handle Spindown Dice description addition
 			if player:HasCollectible(723) then
 				descriptionObj.Description = descriptionObj.Description.."#{{Collectible723}} :"
