@@ -11,6 +11,7 @@ local newDescriptions = {
 }
 
 local repCollectibles={
+	[6] = {"6", "Numer Jeden", "↑ +1.5 Szybkostrzelności#↓ -1.5 Zasięgu#↓ -20% mnożnika Zasięgu#↑ +0.76 Wysokości lotu łez"}, -- Number One
 	[13] = {"13", "Wirus", "Zatruwasz dotykiem#↑ +0.2 Prędkości"}, -- The Virus
 	[14] = {"14", "Furia na Sterydach", "↑ +0.3 Prędkości#↑ +5.25 Zasięgu#↑ +0.5 Wysokości Łez"}, -- Roid Rage
 	[22] = {"22", "Drugie Śniadanie", "↑ +1 Serce#Leczy jedno serce"}, -- Lunch
@@ -52,6 +53,8 @@ local repCollectibles={
 	[205] = {"205", "Ostra Wtyczka", "- pół serca = daje ci jeden ładunek aktywnego przedmiotu przy naciśnięciu spacji"}, -- Sharp Plug
 	[206] = {"206", "Gilotyna", "↑ +1 Obrażeń#↑ +0.33 Szybkostrzelności#Twoja głowa teraz orbituje wokół ciała#Strzelasz z głowy#Głowa zadaje 105 obrażeń kontaktowych"}, -- Guillotine
 	[211] = {"211", "Pajęcze Dziecię", "Pojawia 3-5 pająków, gdy zostaniesz trafiony"}, -- Spider Baby
+	[214] = {"214", "Anemik", "↑ +1.5 Zasięgu#Zostawiasz pod sobą maź, gdy zostaniesz trafiony"}, -- Anemic
+	[224] = {"224", "Ciało Cricketa", "↓ -20% Zasięgu#Łzy rozdzielają się na 4 przy trafieniu#Powstałe łezki zadają połowiczne obrażenia#↑ -1 opóźnienia wystrzału, które może zejść poniżej zablokowanej wartości"}, -- Cricket's Body
 	[228] = {"228", "Perfumy Mamy", "Szana na straszące wrogów strzały#↑ -1 opóźnienia wystrzału, które może zejść poniżej zablokowanej wartości"}, -- Moms Perfume
 	[230] = {"230", "Abaddon", "↑ +1.5 Obrażeń#↑ +0.2 Prędkości#Straszące wrogów łzy#Zamienia wszystkie Czerwone Serca na Czarne#+2 Czarne Serca"}, -- Abaddon
 	[232] = {"232", "Stop-Er", "Permanentny efekt spowolnienia#↑ +0.3 Prędkości"}, -- Stop Watch
@@ -70,7 +73,7 @@ local repCollectibles={
 	[280] = {"280", "Siostrzyczka Kosarzy", "Losowo tworzy niebieskie pająki w pokoju z wrogami#Zaurocza wrogów, z którymi wejdzie w kontakt"}, -- Sissy Longlegs
 	[283] = {"283", "D100", "Przelosowuje wszystkie piedestały i pickupy oraz wszystkie twoje statystyki i pasywne przedmioty#Duplikuje 1 losowy pickup w pokoju#Restartuje obecny pokój i odradza + przelosowuje przeciwników#Przelosowuje również kamienie"}, -- D100
 	[285] = {"285", "D10", "Przelosowuje wszystkich przeciwników w pokoju#Stara się przelosować ich w przeciwników o podobnym maksymalnym HP"}, -- D10
-	[287] = {"287", "Księga Tajemnic", "Daje efekt{{Collectible54}}Mapy Skarbów,{{Collectible21}}Kompasu lub{{Collectible246}}Niebieskiej Mapy na obecne piętro#Daje tylko efekt, którego jeszcze nie posiadasz#Jeżeli wszystkie te efekty są aktywne, dostajesz efekt {{Collectible76}}X-Ray w Oczach"}, -- Book of Secrets
+	[287] = {"287", "Księga Tajemnic", "Daje efekt{{Collectible54}}Mapy Skarbów,{{Collectible21}}Kompasu lub{{Collectible246}}Niebieskiej Mapy na obecne piętro#Daje tylko efekty, których jeszcze nie posiadasz#Jeżeli wszystkie te efekty są aktywne, dostajesz efekt {{Collectible76}}X-Ray w Oczach"}, -- Book of Secrets
 	[288] = {"288", "Pudełko Pająków", "Pojawia 4-8 niebieskich pająków"}, -- Box of Spiders
 	[289] = {"289", "Czerwona Świeca", "Rzuca czerwony płomień#Płomień zniknie po zadaniu obrażeń 5 razy lub po 10 sekundach"}, -- Red Candle
 	[291] = {"291", "Spłuczka!", "!!! Zabija przeciwników-kupy!#Zamienia normalnych przeciwników w kupy#Gasi ogniska#W Kopalni zamienia lawę w kładkę"}, -- Flush!
@@ -81,26 +84,29 @@ local repCollectibles={
 	[307] = {"307", "Koziorożec", "↑ +1 Serce{{Heart}}/Klucz{{Key}}/Bomba{{Bomb}}/Moneta{{Coin}}#↑ +0.93 Obrażeń#↑ +0.1 Prędkości#↑ +0.75 Zasięgu#↑ -1 opóźnienia wystrzału, które może zejść poniżej zablokowanej wartości"}, -- Capricorn
 	[308] = {"308", "Wodnik", "Zostawiasz za sobą maź#Zadaje ona 6 obrażeń na sekundę#Maź łączy się z efektami łez"}, -- Aquarius
 	[328] = {"328", "Negatyw", "↑ +1.0 Obrażeń#Gdy zostaniesz trafiony mając pół czerwonego serca lub kompletny jego brak, ranisz wszystkich wrogów w pokoju"}, -- The Negative
-	[331] = {"331", "Bóstwo", "Naprowadzane łzy#↑ +0.93 Obrażeń#↑ +0.5 Zasięgu#↓ -0.6 Szybkostrzelności#↓ -30% Prędkości Strzałów#↑ +0.8 Wysokości Lotu Łez"}, -- Godhead
-	[336] = {"336", "Martwa Cebula", "Penetrujące + Widmowe łzy#↓ -1.5 Zasięgu#↓ -0.4 Prędkości Strzałów"}, -- Dead Onion
+	[331] = {"331", "Bóstwo", "Naprowadzane łzy#↑ +0.5 Obrażeń#↑ +0.5 Zasięgu#↓ -0.3 Szybkostrzelności#↓ -0.3 Prędkości Strzałów#↑ +0.8 Wysokości Lotu Łez#Łzy otrzymują aurę, zadającą obrażenia"}, -- Godhead
+	[336] = {"336", "Martwa Cebula", "Penetrujące + Widmowe łzy#↓ -1.5 Zasięgu#↓ -0.4 Prędkości Strzałów#↑ +50% Wielkości łez"}, -- Dead Onion
+	[339] = {"339", "Agrafka", "↑ +1.5 Zasięgu#↑ +0.16 Prędkości Strzałów#+1 Czarne Serce#↑ +0.5 Wysokości lotu łez"}, -- Safety Pin
 	[344] = {"344", "Pudełko Zapałek", "+1 Czarne Serce#Tworzy 2-3 Bomby do podniesienia#Tworzy trynkiet{{Trinket41}}Zapałka"}, -- Match Book
+	[345] = {"345", "Synthol", "↑ +1.0 Obrażeń#↑ +1.5 Zasięgu#↑ +0.5 Wysokości lotu łez"}, -- Synthoil
 	[346] = {"346", "Przekąska", "↑ +1 Serce#Leczy 2 serca"}, -- A Snack
 	[352] = {"352", "Szklana Armata", "Strzela wielką widmową, penetrującą, łzą ((Obrażenia+1) X 10)#Gdy otrzymujesz obrażenia, są one zwiększone o 2 serca"}, -- Glass Canon
 	[355] = {"355", "Perły Mamy", "↑ +1.25 Zasięgu#↑ +1 Szczęścia#+1 Serce Duszy#↑ +0.5 Wysokości lotu łez"}, -- Mom's Pearl
-	[369] = {"369", "Continuum", "↑ +3.0 Range up#↑ +1.5 Tear Height#Tears travel through walls and appear out of the opposite wall"}, -- Continuum
-	[370] = {"370", "Mr. Dolly", "↑ +0.7 Tears up#↑ +1.5 Range up#↑ +0.5 Tear Height#Spawns 3 random hearts when picked up"}, -- Mr. Dolly
-	[372] = {"372", "Charged Baby", "Random chance to drop a micro battery or freeze all enemies in the room#Chance to add one charge to your spacebar item"}, -- Charged Baby
-	[375] = {"375", "Host hat", "20% chance to block tears#Grants explosion immunity"}, -- Host hat
-	[376] = {"376", "Restock", "Shops instantly restock their items when you buy them#Restocked items slowly increase in price again"}, -- Restock
-	[382] = {"382", "Friendly Ball", "Can be thrown at enemies to capture them#Next usage will respawn the same enemy as a friendly companion#Walking over the ball after capture will instantly recharge the item"}, -- Friendly Ball
-	[393] = {"393", "Serpent`s Kiss", "Random chance to shoot poison tears#Poison enemies on contact#Enemies killed with contact poison have a 20% chance to drop a black heart"}, -- Serpent`s Kiss
-	[395] = {"395", "Tech X", "Gain the ability to charge and fire a laser ring that travels across the room#Damage based on the charge progress#100% damage on full charge"}, -- Tech X
-	[399] = {"399", "Maw of the Void", "After firing tears for 3 seconds, a red cross appears on Isaac's head. Upon releasing the fire button, creates a black brimstone ring"}, -- Maw of the Void
+	[369] = {"369", "Kontinuum", "↑ +3.0 Zasięgu#↑ +1.5 Wysokości lotu łez#Łzy przechodzą przez ściany i wylatują z drugiej strony"}, -- Continuum
+	[370] = {"370", "Pan Laleczka", "↑ +0.7 Szybkostrzelności#↑ +1.5 Zasięgu#↑ +0.5 Wysokości lotu łez#Tworzy 3 losowe serca przy podniesieniu"}, -- Mr. Dolly
+	[372] = {"372", "Energiczne Dziecko", "Losowa szansa na upuszczenie mikro-baterii lub zamrożenie przeciwników w pokoju#Szansa na dodanie jednego ładunku do twojego przedmiotu aktywnego"}, -- Charged Baby
+	[375] = {"375", "Kapelusz Żywiciela", "20% szans na zablokowanie wrogiej łzy#Odporność na wybuchy"}, -- Host hat
+	[376] = {"376", "Uzupełniacz", "Sklepy natychmiast uzupełniają swoje zaopatrzenie, gdy tylko coś kupisz#Uzupełnione przedmioty zwiększają swoje ceny z każdym kolejnym zakupem"}, -- Restock
+	[382] = {"382", "Kula Przyjaźni", "Rzucona w przeciwnika nie-bossa złapie go#Następny rzut wypuści złapanego przeciwnika, który będzie walczyć dla ciebie#Przejście po kuli, która złapała wroga natychmiast odładuje ją"}, -- Friendly Ball
+	[393] = {"393", "Pocałunek Węża", "Losowa szansa na wystrzelenie trujących łez#Trujesz wrogów dotykiem#Wrogowie zabici trucizną z dotyku mają 20% szans na upuszczenie czarnego serca przy śmierci"}, -- Serpent`s Kiss
+	[395] = {"395", "Tech X", "Strzelasz laserowym kręgiem, który możesz ładować#Krąg ten leci przez cały pokój#Obrażenia są zależne od naładowania#100% obrażeń na pełnym naładowaniu"}, -- Tech X
+	[399] = {"399", "Paszcza z Pustki", "Po ciągłym strzelaniu przez 3 sekundy, na twojej głowie pojawi się czerwony krzyż. Po zaprzestaniu strzelania, tworzy krąg z czarnego lasera"}, -- Maw of the Void
 	[405] = {"405", "GB Bug", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot button)#Rerolls enemies and pickup it comes in contact with"}, -- GB Bug
 	[408] = {"408", "Athame", "When you take damage, a black brimstone ring will appear around Isaac"}, -- Athame
 	[416] = {"416", "Deep Pockets", "Spawns 1-3 coins if a room didn't yield a reward#Increases coin cap to 999"}, -- Deep Pockets
 	[417] = {"417", "Succubus", "Bounces around the room with a damaging aura, dealing 7.5-10 damage every second#↑ +50% damage while standing in the aura"}, -- Succubus
 	[437] = {"437", "D7", "Respawn all enemies of the room#Allows you to farm room clear rewards"}, -- D7
+	[440] = {"440", "Kidney Stone", "Randomly while firing you will stop firing and release a burst of tears and a kidney stone#↓ -17 Range down#↑ +2.0 Tear height"},
 	[448] = {"448", "Shard of Glass", "When taking damage, chance to get ↑ +5 Range, spew red tears and leave a trail of blood creep, or spawn a red heart"}, -- Shard of Glass
 	[451] = {"451", "Tarot Cloth", "Drops a random card or rune on pickup#Some cards gain an extra or doubled effect"}, -- Tarot Cloth
 	[456] = {"456", "Midnight Snack", "↑ +1 Health up"}, -- Midnight Snack
@@ -346,18 +352,24 @@ EID.descriptions["pl"].spindownError = "Przedmiot znika"
 
 ---------- Trinkets ----------
 local repTrinkets={
+	[1] = {"1", "Swallowed Penny", "Drop 1 coin when you get hit#0-1 if you play as Keeper"}, -- Swallowed Penny
 	[10] = {"10", "Wiggle Worm", "Tears move in waves#↑ +0.4 Tears up#Grants spectral tears"}, -- Wiggle Worm
 	[11] = {"11", "Ring Worm", "Tears move in spirals with high speed#Grants spectral tears"}, -- Ring Worm
 	[15] = {"15", "Lucky Rock", "33% chance to drop a coin when destroying rocks"},-- Lucky Rock
+	[24] = {"24", "Butt Penny", "Fart when picking up coins#Farts knockback and poison enemies"}, -- Butt Penny
 	[26] = {"26", "Hook Worm", "Tears move in angular patterns#↑ +10 Range#Grants spectral tears"}, -- Hook Worm
 	[32] = {"32", "Liberty Cap", "Random mushroom effect per room"}, -- Liberty Cap
 	[33] = {"33", "Umbilical Cord", "When entering a room with half a red heart or less, you get little Steven#High Chance to spawn a Gemini familar when taking damage"}, -- Umbilical Cord
+	[33] = {"48", "A Missing Page", "When getting hit, chance to damage all enemies in the room#Black hearts and {{Collectible35}} Necronomicon-like effects deal double damage"}, -- A Missing Page
 	[49] = {"49", "Bloody Penny", "25% chance to drop half a heart when picking up coins"}, -- Bloody Penny
 	[50] = {"50", "Burnt Penny", "25% chance to drop a bomb when picking up coins"}, -- Burnt Penny
 	[51] = {"51", "Flat Penny", "25% chance to drop a key when picking up coins"}, -- Flat Penny
+	[65] = {"65", "Tape Worm", "↑ +3 Range up#-50% Tear height"}, -- Tape Worm
+	[66] = {"66", "Lazy Worm", "↓ -0.5 Shot Speed down#↑ +2 Tear height"}, -- Lazy Worm
 	[69] = {"69", "Faded Polaroid", "Camouflages the player randomly#Confuses enemies#Can be used to open the door to the \"Home\" floor"}, -- Faded Polaroid
+	[80] = {"80", "Black Feather", "↑ +0.5 Damage up for each evil item held"}, -- Black Feather
 	[92] = {"92", "Cracked Crown", "↑ Stat increases of your items are 20% more effective"}, -- Cracked Crown
-	[95] = {"95", "Black tooth", "Randomly shoot poison Tooth tears"}, -- Black tooth
+	[101] = {"101", "Dim Bulb", "!!! While holding an uncharged active item:#↑ +1.5 Damage#↑ +0.5 Speed#↑ +1.5 Range#↑ +0.5 Tears#↑ +0.3 Shot Speed#↑ +2 Luck"},
 	[111] = {"111", "Bloody Crown", "Item rooms {{TreasureRoom}} now appear in the Womb and Corpse"}, -- Bloody Crown
 	[119] = {"119", "Stem Cell", "Sets your red HP to 50% of your maximum upon entering the next floor#If your health is above that, it heals half a red heart"}, -- Stem Cell
 	[128] = {"128", "Finger Bone", "5% chance to gain a Bone Heart when taking damage"}, -- Finger Bone
@@ -378,6 +390,7 @@ local repTrinkets={
 	[142] = {"142", "Beth's Faith", "At the beginning of each floor, spawns 4 Book of Virtues {{Collectible584}} wisps"}, --  Beth's Faith
 	[143] = {"143", "Old Capacitor", "Prevents active item from charging#Chance to spawn lil Battery when clearing a room"}, --  Old Capacitor
 	[144] = {"144", "Brain Worm", "Tears turn 90 degrees to target enemies that they may have missed"}, --  Brain Worm
+	[145] = {"145", "Perfection", "↑ +10 Luck up#Destroys itself when you take damage"}, --  Perfection
 	[146] = {"146", "Devil's Crown", "Treasure rooms {{TreasureRoom}} now contain devil deals"}, --  Devil's Crown
 	[147] = {"147", "Charged Penny", "Picking up coins can charge the Active Item"}, --  Charged Penny
 	[148] = {"148", "Friendship Necklace", "Causes familiars to circle around Isaac"}, --  Friendship Necklace
@@ -485,13 +498,13 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions["pl"].cards)
 
 local repPills={
 	[4] = {"3", "Bomby to Klucze", "Zamienia ilość bomb z kluczami#Złote bomby i klucze również"},
-	[12] = {"11", "Zasięg Spada", "↓ -0.6 Zasięgu"},
-	[13] = {"12", "Zasięg Rośnie", "↑ +0.45 Zasięgu"},
+	[12] = {"11", "Zasięg Maleje", "↓ -0.6 Zasięgu"},
+	[13] = {"12", "Zasięg Wzrasta", "↑ +0.45 Zasięgu"},
 	[42] = {"41", "Jestem śpiący...", "Spowalnia ciebie oraz przeciwników w tym pokoju"},
 	[43] = {"42", "Ekscytacja!", "Przyspiesza ciebie oraz przeciwników w tym pokoju#Ponawia się po 30 oraz 60 sekundach"},
 	
-	[48] = {"47", "Prędkość Strzałów Spada", "↓ -0.15 Prędkości Strzałów"},
-	[49] = {"48", "Prędkość Strzałów Rośnie", "↑ +0.15 Prędkości Strzałów"},
+	[48] = {"47", "Prędkość Strzałów Maleje", "↓ -0.15 Prędkości Strzałów"},
+	[49] = {"48", "Prędkość Strzałów Wzrasta", "↑ +0.15 Prędkości Strzałów"},
 	[50] = {"49", "Eksperymentalna Pigułka", "↑ Zwiększa 1 losową statystykę#↓ Zmniejsza 1 inną, losową statystykę#Nie zmniejsza, gdy masz Doktorat (PHD)"},
 	[9999] = {"", "Złota Pigułka", "Efekt losowej pigułki#Niszczy się po kilku użyciach"}, -- golden Pill
 }
@@ -509,14 +522,14 @@ EID.descriptions["pl"].horsepills={
 	{"8", "Znalazłem Pigułki", "Brak efektu"},
 	{"9", "Dorastanie", "Brak efektu"}, -- Puberty
 	{"10", "Muszka", "Dostajesz 1 Dużego Fana (Big Fan) {{Collectible279}}#Nie ma górnego limitu"},
-	{"11", "Zasięg Spada", "↓ -1.2 Zasięgu"},
-	{"12", "Zasięg Rośnie", "↑ +0.9 Zasięgu"},
-	{"13", "Prędkość Spada", "↓ -0.24 Prędkości"},
-	{"14", "Prędkość Rośnie", "↑ +0.3 Prędkości"},
-	{"15", "Szybkostrzelność Spada", "↓ -0.56 Szybkostrzelności"},
-	{"16", "Szybkostrzelność Rośnie", "↑ +0.70 Szybkostrzelności"},
-	{"17", "Szczęście Spada", "↓ -2 Szczęścia"},
-	{"18", "Szczęście Rośnie", "↑ +2 Szczęścia"},
+	{"11", "Zasięg Maleje", "↓ -1.2 Zasięgu"},
+	{"12", "Zasięg Wzrasta", "↑ +0.9 Zasięgu"},
+	{"13", "Prędkość Maleje", "↓ -0.24 Prędkości"},
+	{"14", "Prędkość Wzrasta", "↑ +0.3 Prędkości"},
+	{"15", "Szybkostrzelność Maleje", "↓ -0.56 Szybkostrzelności"},
+	{"16", "Szybkostrzelność Wzrasta", "↑ +0.70 Szybkostrzelności"},
+	{"17", "Szczęście Maleje", "↓ -2 Szczęścia"},
+	{"18", "Szczęście Wzrasta", "↑ +2 Szczęścia"},
 	{"19", "Telepigułka", "Teleport do losowego pokoju"}, -- TODO
 	{"20", "Energia na 48h!", "Odładowuje twój przedmiot aktywny#Upuszcza baterie"}, -- TODO
 	{"21", "Krwawe Wymioty", "Opróżnia wszystkie zasobniki na serca poza jednym#Tworzy czerwone serca"}, -- TODO
@@ -545,8 +558,8 @@ EID.descriptions["pl"].horsepills={
 	{"44", "Paw!", "Wystrzeliwujesz serię łez z efektem Wymiotnicy"},
 	{"45", "Jakbym stąpał po promykach słońca!", "Krótkotrwała nieśmiertelność bez zadawania obrażeń#Straszysz wszystkich wrogów# Odzyskujesz pół serca za 2 zjedzonych wrogów"},
 	{"46", "Refluks!", "Tworzy ostatnią połkniętą pigułkę jako końską pigułę"},
-	{"47", "Prędkość Strzałów Spada", "↓ -0.3 Prędkości Strzałów"},
-	{"48", "Prędkość Strzałów Rośnie", "↑ +0.3 Prędkości Strzałów"},
+	{"47", "Prędkość Strzałów Maleje", "↓ -0.3 Prędkości Strzałów"},
+	{"48", "Prędkość Strzałów Wzrasta", "↑ +0.3 Prędkości Strzałów"},
 	{"49", "Eksperymentalna Pigułka", "↑ Zwiększa 1 losową statystykę dwa razy#↓ Zmniejsza 1 inną, losową statystykę dwa razy#Nie zmniejsza, gdy masz Doktorat (PHD)"},
 	[9999] = {"", "Złota Pigułka", "Efekt losowej, końskiej pigułki#Niszczy się po kilku użyciach"}, -- golden Pill
 }
