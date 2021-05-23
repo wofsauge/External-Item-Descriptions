@@ -503,7 +503,7 @@ EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
 ---------------------------------------------------------------------------
 ---------------------------On Render Function------------------------------
-local searchPartitions = EntityPartition.FAMILIAR + EntityPartition.ENEMY + EntityPartition.PICKUP + EntityPartition.PLAYER + EntityPartition.EFFECT
+local searchPartitions = EntityPartition.FAMILIAR + EntityPartition.ENEMY + EntityPartition.PICKUP + EntityPartition.PLAYER
 
 local function onRender(t)
 	EID.isDisplaying = false
@@ -552,13 +552,17 @@ local function onRender(t)
 	EID.lastDescriptionEntity = nil
 	EID.lastDist = 10000
 	local player = Isaac.GetPlayer(0)
-	local entities = Isaac.FindInRadius(player.Position, tonumber(EID.Config["MaxDistance"])*40, searchPartitions)
-	for i, entity in ipairs(entities) do
-		if EID:hasDescription(entity) and entity.FrameCount > 0 then
-			local diff = entity.Position:__sub(player.Position)
-			if diff:Length() < EID.lastDist then
-				EID.lastDescriptionEntity = entity
-				EID.lastDist = diff:Length()
+	local searchGroups = {}
+	searchGroups[1] = Isaac.FindByType(EntityType.ENTITY_EFFECT, -1, -1, true, false)
+	searchGroups[2] = Isaac.FindInRadius(player.Position, tonumber(EID.Config["MaxDistance"])*40, searchPartitions)
+	for _, entitySearch in ipairs(searchGroups) do
+		for i, entity in ipairs(entitySearch) do
+			if EID:hasDescription(entity) and entity.FrameCount > 0 then
+				local diff = entity.Position:__sub(player.Position)
+				if diff:Length() < EID.lastDist then
+					EID.lastDescriptionEntity = entity
+					EID.lastDist = diff:Length()
+				end
 			end
 		end
 	end
@@ -569,13 +573,6 @@ local function onRender(t)
 		if game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
 			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 			EID:printDescription(EID:getDescriptionObj(-999, -1, EID.sacrificeCounter[curRoomIndex] or 1))
-		end
-		if game:GetRoom():GetType() == RoomType.ROOM_DICE and EID.Config["DisplayDiceInfo"] then
-			local diceEntities = Isaac.FindByType(1000, EffectVariant.DICE_FLOOR, -1, true, false)
-			for _, e in ipairs(diceEntities) do
-				EID:printDescription(EID:getDescriptionObj(e.Type, e.Variant, e.SubType + 1))
-				return
-			end
 		end
 		return
 	end
