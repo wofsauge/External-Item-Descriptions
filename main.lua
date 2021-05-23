@@ -497,6 +497,19 @@ function EID:onGameUpdate()
 			EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos ( EID.lastDescriptionEntity.Position, false )
 		end
 	end
+	
+	--Fix Overlapping Pedestals
+	local curPositions = {}
+	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+		local pos = entity.Position
+		for _, otherPos in ipairs(curPositions) do
+			if pos:Distance(otherPos) == 0 then
+				entity.Position = entity.Position + Vector(1,0)
+				break
+			end
+		end
+		table.insert(curPositions, entity.Position)
+	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
