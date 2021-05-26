@@ -1,4 +1,4 @@
-EID.DefaultConfig = {
+EID.UserConfig = {
 	-------GENERAL---------
 
 	-- Change language of the mod.
@@ -175,3 +175,58 @@ EID.DefaultConfig = {
 --END CONFIG--
 -----------
 -----------
+
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+-------- DO NOT EDIT FROM THIS POINT!!!!! --------
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+EID.DefaultConfig = {
+	["Language"] = "en_us",
+	["TranslateItemName"] = 2,
+	["FontType"] = "default",
+	["TextboxWidth"] = 100,
+	["Scale"] = 1,
+	["Transparency"] = 0.75,
+	["XPosition"] = 60,
+	["YPosition"] = 45,
+	["MaxDistance"] = 5,
+	["Indicator"] = "none",
+	["HideKey"] = Keyboard.KEY_F2,
+	["Hidden"] = false,
+	["HideInBattle"] = false,
+	["DisableObstructionOnFlight"] = true,
+	["DisableOnCurse"] = true,
+	["DisableOnAltPath"] = true,
+	["ShowItemName"] = true,
+	["ShowItemType"] = true,
+	["ShowItemIcon"] = true,
+	["DisplayItemInfo"] = true,
+	["DisplayTrinketInfo"] = true,
+	["ItemNameColor"] = "ColorEIDObjName",
+	["TransformationText"] = true,
+	["TransformationIcons"] = true,
+	["TransformationColor"] = "ColorEIDTransform",
+	["DisplayCardInfo"] = true,
+	["DisplayCardInfoShop"] = false,
+	["DisplayObstructedCardInfo"] = false,
+	["DisplayPillInfo"] = true,
+	["DisplayPillInfoShop"] = true,
+	["DisplayObstructedPillInfo"] = true,
+	["ShowUnidentifiedPillDescriptions"] = false,
+	["DisplaySacrificeInfo"] = true,
+	["DisplayDiceInfo"] = true,
+	["DisplayBagOfCrafting"] = "always",
+	["BagOfCraftingResults"] = 7,
+	["SpindownDiceResults"] = 3,
+	["ErrorMessage"] = "[Effect not defined]",
+	["TextColor"] = "ColorEIDText",
+	["ErrorColor"] = "ColorEIDError",
+	["EnableEntityDescriptions"] = true
+}

@@ -7,7 +7,7 @@ local enableDebug = false
 local game = Game()
 
 require("eid_config")
-EID.Config = EID.DefaultConfig
+EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
 EID.isHidden = EID.Config["Hidden"]
 
@@ -653,7 +653,8 @@ local function onRender(t)
 			end
 			-- Handle Bingeeater description addition
 			if player:HasCollectible(664) then
-				local bingeBuff = EID.descriptions[EID.Config["Language"]]["bingeEaterBuffs"][closest.SubType] or EID.descriptions["en_us"]["bingeEaterBuffs"][closest.SubType] or nil
+				local translatedDesc = EID.descriptions[EID.Config["Language"]]["bingeEaterBuffs"]
+				local bingeBuff = (translatedDesc and translatedDesc[closest.SubType]) or EID.descriptions["en_us"]["bingeEaterBuffs"][closest.SubType] or nil
 				if bingeBuff ~= nil then
 					local bingeStr = "#{{Collectible664}} "
 					descriptionObj.Description = descriptionObj.Description..bingeStr..bingeBuff[3]:gsub("#",bingeStr)
@@ -730,7 +731,7 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
 -- only save and load configs when using MCM. Otherwise Config file changes arent valid
-if EID.MCMLoaded then
+if EID.MCMLoaded or REPENTANCE then
 	local json = require("json")
 	--------------------------------
 	--------Handle Savadata---------
@@ -743,7 +744,9 @@ if EID.MCMLoaded then
 			if savedEIDConfig.Version == EID.Config.Version then
 				for key, value in pairs(EID.Config) do
 					if savedEIDConfig[key] ~= nil then
-						EID.Config[key] = savedEIDConfig[key]
+						if (EID.DefaultConfig[key] == value and savedEIDConfig[key] ~= EID.DefaultConfig[key]) or EID.MCMLoaded then
+							EID.Config[key] = savedEIDConfig[key]
+						end
 					end
 				end
 				EID.isHidden = EID.Config["Hidden"]
