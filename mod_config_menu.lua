@@ -517,6 +517,27 @@ if MCMLoaded then
 		}
 	)
 	
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisplaySoulstoneInfoShop"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["DisplaySoulstoneInfoShop"] then
+					onOff = "True"
+				end
+				return "Soulstone Infos: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisplaySoulstoneInfoShop"] = currentBool
+			end
+		}
+	)
+	
 	-- Spindown Dice results
 	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	MCM.AddSetting(
@@ -623,7 +644,8 @@ if MCMLoaded then
 			end,
 			OnChange = function(currentNum)
 				EID.Config["Scale"] = textScales[currentNum]
-			end
+			end,
+			Info = {"Change text size. CAN BE HARD TO READ IN SOME SETTINGS!"}
 		}
 	)
 

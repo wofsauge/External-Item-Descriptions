@@ -687,7 +687,8 @@ local function onRender(t)
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
-		if (closest:ToPickup():IsShopItem() and not EID.Config["DisplayCardInfoShop"]) or (not EID.Config["DisplayObstructedCardInfo"] and not EID.hasValidWalkingpath) or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
+		local hideinShop = closest:ToPickup():IsShopItem() and (((closest.SubType < 81 or closest.SubType > 97) and not EID.Config["DisplayCardInfoShop"]) or (closest.SubType >= 81 and not EID.Config["DisplaySoulstoneInfoShop"]))
+		if hideinShop or (not EID.Config["DisplayObstructedCardInfo"] and not EID.hasValidWalkingpath) or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
 			EID:renderQuestionMark()
 			return
 		end

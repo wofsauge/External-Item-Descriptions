@@ -112,6 +112,9 @@ EID.UserConfig = {
 	-- Toggle Display of Card / Rune descriptions when its a shop item
 	-- Default = false
 	["DisplayCardInfoShop"] = false,
+	-- Toggle Display of Soulstone descriptions when its a shop item
+	-- Default = true
+	["DisplaySoulstoneInfoShop"] = true,
 	-- Toggle Display of Card / Rune descriptions when its not accessable with walking. AKA behind rock, blocks, spikes
 	-- Default = false
 	["DisplayObstructedCardInfo"] = false,
@@ -219,6 +222,7 @@ EID.DefaultConfig = {
 	["TransformationColor"] = "ColorEIDTransform",
 	["DisplayCardInfo"] = true,
 	["DisplayCardInfoShop"] = false,
+	["DisplaySoulstoneInfoShop"] = true,
 	["DisplayObstructedCardInfo"] = false,
 	["DisplayPillInfo"] = true,
 	["DisplayPillInfoShop"] = true,
