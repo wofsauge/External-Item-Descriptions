@@ -635,7 +635,7 @@ local function onRender(t)
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Collectibles
-		if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (closest:GetData()["EID_IsAltChoise"] and EID.Config["DisableOnAltPath"]) then
+		if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (closest:GetData()["EID_IsAltChoise"] and EID.Config["DisableOnAltPath"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 			EID:renderQuestionMark()
 			return
 		end

@@ -134,6 +134,27 @@ if MCMLoaded then
 			end
 		}
 	)
+	-- Disable April Fools
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisableOnAprilFoolsChallenge"]
+			end,
+			Display = function()
+				local onOff = "True"
+				if EID.Config["DisableOnAprilFoolsChallenge"] then
+					onOff = "False"
+				end
+				return 'Show on April Fools Challenge: ' .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisableOnAprilFoolsChallenge"] = currentBool
+			end
+		}
+	)
 	-- Disable Alt Item option
 	MCM.AddSetting(
 		"EID",

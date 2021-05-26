@@ -67,6 +67,9 @@ EID.UserConfig = {
 	-- Disable Item informations for the second Treasure room item on alt paths
 	-- Default = true
 	["DisableOnAltPath"] = true,
+	-- Disable Item informations on the April fools challenge
+	-- Default = true
+	["DisableOnAprilFoolsChallenge"] = true,
 	
 	----------ITEM NAMES-----------
 
@@ -204,6 +207,7 @@ EID.DefaultConfig = {
 	["DisableObstructionOnFlight"] = true,
 	["DisableOnCurse"] = true,
 	["DisableOnAltPath"] = true,
+	["DisableOnAprilFoolsChallenge"] = true,
 	["ShowItemName"] = true,
 	["ShowItemType"] = true,
 	["ShowItemIcon"] = true,
