@@ -590,7 +590,7 @@ EID.descriptions["en_us"].trinkets={
 	{"19", "Paper Clip", "Unlock chests without using keys"},
 	{"20", "Monkey Paw", "When on half a heart, spawns a black heart#!!! 3 time usage"},
 	{"21", "Mysterious Paper", "Imitates \"Polaroid\", \"The Negative\", \"Missing Page\" and \"Missing Poster\""},
-	{"22", "Daemon's Tail", "Decreases spawnrate of hearts to 20%#Key drop change increased#Heart-Pickups turn into black hearts"},
+	{"22", "Daemon's Tail", "Decreases spawnrate of hearts to 20%#Key drop chance increased#Heart-Pickups turn into black hearts"},
 	{"23", "Missing Poster", "Respawn as \"The Lost\" when dying in a sacrifice room {{SacrificeRoom}} #If he is unlocked, you revive as him even outside sacrifice rooms"},
 	{"24", "Butt Penny", "Fart when picking up coins#Farts knockback enemies"},
 	{"25", "Mysterious Candy", "Fart or spawn poop every 30 seconds"},
