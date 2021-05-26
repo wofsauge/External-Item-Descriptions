@@ -469,7 +469,7 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions["spa"].cards)
 local repPills={
 	[4] = {"3", "", "Intercambia el número de bombas por el de llaves#Las llaves y bombas de oro también se intercambian"},
 	[12] = {"11", "", "↓ -0,6 de rango"},
-	[13] = {"12", "", "↑ +0,45 de rango"},
+	[13] = {"12", "", "↑ +0,75 de rango"},
 	[42] = {"41", "", "Te ralentiza a ti y a los enemigos de la habitación"},
 	[43] = {"42", "", "Aumenta tu velocidad y la de todos los enemigos de la habitación#Se vuelve a activas tras 30 y 60 segundos"},
 	

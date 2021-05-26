@@ -499,7 +499,7 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions["pl"].cards)
 local repPills={
 	[4] = {"3", "Bomby to Klucze", "Zamienia ilość bomb z kluczami#Złote bomby i klucze również"},
 	[12] = {"11", "Zasięg Maleje", "↓ -0.6 Zasięgu"},
-	[13] = {"12", "Zasięg Wzrasta", "↑ +0.45 Zasięgu"},
+	[13] = {"12", "Zasięg Wzrasta", "↑ +0.75 Zasięgu"},
 	[42] = {"41", "Jestem śpiący...", "Spowalnia ciebie oraz przeciwników w tym pokoju"},
 	[43] = {"42", "Ekscytacja!", "Przyspiesza ciebie oraz przeciwników w tym pokoju#Ponawia się po 30 oraz 60 sekundach"},
 	

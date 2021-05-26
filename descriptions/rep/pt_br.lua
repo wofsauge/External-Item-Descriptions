@@ -523,7 +523,7 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions["pt_br"].cards)
 local repPills={
 	[4] = {"3", "", "Troca o número de bombas com chaves#Bombas e chaves douradas também são trocadas"},
 	[12] = {"11", "", "↓ -0.6 Alcance"},
-	[13] = {"12", "", "↑ +0.45 Alcance"},
+	[13] = {"12", "", "↑ +0.75 Alcance"},
 	[42] = {"41", "", "Atrasse todos os inimigos e o personagem na sala"},
 	[43] = {"42", "", "Acelere todos os inimigos e o personagem na sala#Ativa novamente depois de 30 e 60 segundos"},
 	[48] = {"47", "", "↓ -0.15 Velocidade de disparo"},
