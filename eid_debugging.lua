@@ -64,7 +64,7 @@ EID:assignTransformation("collectible", 5, "2,3") -- add transformations again
 EID:removeTransformation("collectible", 5, "2,3") -- Removes transformations again
 
 ------ Test: Add all transformations + some customs ones to Inner Eye ------
-EID:assignTransformation("collectible", 2, "1,2,3,4,5,6,7,8,9,10,11,12,13,something Custom,NewTransform1")
+EID:assignTransformation("collectible", 2, "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,something Custom,NewTransform1")
 
 ------ Test: adding custom icons ------
 local dummySprite2 = Sprite()
