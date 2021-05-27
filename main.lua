@@ -231,6 +231,7 @@ function EID:printDescription(desc)
 	--Display Itemname
 	if EID.Config["ShowItemName"] then
 		local curName = desc.Name
+		local quality = EID.itemWeightsLookup[tonumber(desc.ID)]
 		if EID.Config["TranslateItemName"] ~= 2 then
 			local curLanguage = EID.Config["Language"]
 			EID.Config["Language"] = "en_us"
@@ -242,8 +243,12 @@ function EID:printDescription(desc)
 				curName = curName.." ("..englishName..")"
 			end
 		end
+		local withQual = curName
+		if EID.Config["ShowQuality"] then
+			withQual = curName.." - "..quality
+		end
 		EID:renderString(
-			curName,
+			withQual,
 			renderPos + (Vector(offsetX, -3) * EID.Config["Scale"]),
 			textScale,
 			EID:getNameColor()
