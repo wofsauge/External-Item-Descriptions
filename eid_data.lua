@@ -150,6 +150,13 @@ EID.InlineIcons = {
 	["SpiderBaby"] = {"Transformation13", 0, 12, 16, 0, -1, EID.IconSprite},
 	--["Adult"] = {"Transformation14",0,0,13, -1, -1, EID.IconSprite},
 	["Stompy"] = {"Transformation15",0,12,15, -1, -1, EID.IconSprite},
+	-- Quality
+	
+	["Quality0"] = {"Quality", 0, 10, 10, 0, 0},
+	["Quality1"] = {"Quality", 1, 10, 10, 0, 0},
+	["Quality2"] = {"Quality", 2, 10, 10, 0, 0},
+	["Quality3"] = {"Quality", 3, 10, 10, 0, 0},
+	["Quality4"] = {"Quality", 4, 10, 10, 0, 0},
 	-- Crafting
 	
 	["Crafting0"] = {"Crafting", 0, 14, 16, -2, -3},
