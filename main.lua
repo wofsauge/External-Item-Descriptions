@@ -9,6 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
+EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = EID.Config["Hidden"]
 
 -- general variables
@@ -743,9 +744,18 @@ if EID.MCMLoaded or REPENTANCE then
 			local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
 			-- Only copy Saved config entries that exist in the save
 			if savedEIDConfig.Version == EID.Config.Version then
+				local isDefaultConfig = true
 				for key, value in pairs(EID.Config) do
-					if savedEIDConfig[key] ~= nil then
-						if (EID.DefaultConfig[key] == value and savedEIDConfig[key] ~= EID.DefaultConfig[key]) or EID.MCMLoaded then
+					if EID.DefaultConfig[key] ~= value then
+						isDefaultConfig = false
+						print(key)
+						break
+					end
+				end
+				print(isDefaultConfig)
+				if isDefaultConfig or EID.MCMLoaded then
+					for key, value in pairs(EID.Config) do
+						if savedEIDConfig[key] ~= nil then
 							EID.Config[key] = savedEIDConfig[key]
 						end
 					end
