@@ -600,7 +600,17 @@ local function onRender(t)
 			EID:renderQuestionMark()
 			return
 		end
-		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType))
+		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
+		-- Handle Tarot Cloth description addition
+		if player:HasCollectible(451) then
+			local translatedDesc = EID.descriptions[EID.Config["Language"]]["tarotClothBuffs"]
+			local clothBuff = (translatedDesc and translatedDesc[closest.SubType]) or EID.descriptions["en_us"]["tarotClothBuffs"][closest.SubType] or nil
+			if clothBuff ~= nil then
+				local bingeStr = "#{{Collectible451}} "
+				descriptionObj.Description = descriptionObj.Description..bingeStr..clothBuff[3]:gsub("#",bingeStr)
+			end
+		end
+		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		--Handle Pills
 		if  not EID.Config["DisplayObstructedPillInfo"] and closest.FrameCount < 3 then

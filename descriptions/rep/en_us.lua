@@ -488,6 +488,41 @@ local repTrinkets={
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us"].trinkets)
 
+
+
+-- Card Buffs caused by Tarot Cloth
+-- Note: "#" will be replaced with "#{{Collectible451}} " automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+EID.descriptions["en_us"].tarotClothBuffs = {
+	[2] = {"2", "", "Also grants{{Collectible34}} The Book of Belial effect"}, -- I - The Magician
+	[3] = {"3", "", "A second foot strikes down shortly after the first"}, -- II - The High Priestess
+	[4] = {"4", "", "Quadruples the stat increases"}, -- III - The Empress
+	[5] = {"5", "", "If the boss wasn't defeated yet, grants 1 soul heart on top of teleporting"}, -- IV - The Emperor
+	[6] = {"6", "", "Spawns 3 Soul hearts"}, -- V - The Hierophant
+	[7] = {"7", "", "Spawns 3 Red hearts"}, -- VI - The Lovers
+	[8] = {"8", "", "Doubled duration"}, -- VII - The Chariot
+	[9] = {"9", "", "Doubled Pickup spawns"}, -- VIII - Justice
+	[10] = {"10", "", "Prevents Greed from spawning in the shop#Turns shop into a normal shop if greed was already fought in it"}, -- IX - The Hermit
+	[11] = {"11", "", "Spawns 2 Slot Machines"}, -- X - Wheel of Fortune
+	[12] = {"12", "", "Doubled stat increase, excluding dmg multiplier"}, -- XI - Strength
+	[14] = {"14", "", "Deals 80 damage"}, -- XIII - Death
+	[15] = {"15", "", "Spawns 2 Blood Donation Machines"}, -- XIV - Temperance
+	[16] = {"16", "", "Damage increase doubled"}, -- XV - The Devil
+	[17] = {"17", "", "Spawns 12 troll bombs"}, -- XVI - The Tower
+	[18] = {"18", "", "If the treasure room wasn't entered before, it will have two items to choose from"}, -- XVII - The Stars
+	[21] = {"21", "", "Spawns 2 beggars"}, -- XX - Judgement
+	[56] = {"56", "", "Drops all items alongside pickups, including Tarot Cloth"}, -- 0 - The Fool?
+	[59] = {"59", "", "Grants 3 temporary heart containers"}, -- III - The Empress?
+	[61] = {"61", "", "Spawns 6 Bone Hearts"}, -- V - The Hierophant?
+	[62] = {"62", "", "Adds 4 broken hearts and spawns 4 items"}, -- VI - The Lovers?
+	[64] = {"64", "", "Spawns 4-14 golden chests"}, -- VIII - Justice?
+	[70] = {"70", "", "Eat 20 pills"}, -- XIV - Temperance?
+	[72] = {"72", "", "Spawns 14 rock clusters"}, -- XVI - The Tower?
+	[73] = {"73", "", "Removes 2 items and spawns 4"}, -- XVII - The Stars?
+	[76] = {"76", "", "Spawns 2 restock machines"}, -- XX - Judgement?
+}
+
+
+
 EID.descriptions["en_us"].goldenTrinket = "GOLD: Effect doubled!"
 
 ---------- Cards ----------
