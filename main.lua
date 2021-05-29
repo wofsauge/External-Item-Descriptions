@@ -245,7 +245,6 @@ function EID:printDescription(desc)
 	--Display Itemname
 	if EID.Config["ShowItemName"] then
 		local curName = desc.Name
-		local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ID)).Quality)
 		if EID.Config["TranslateItemName"] ~= 2 then
 			local curLanguage = EID.Config["Language"]
 			EID.Config["Language"] = "en_us"
@@ -257,7 +256,8 @@ function EID:printDescription(desc)
 				curName = curName.." ("..englishName..")"
 			end
 		end
-		if EID.Config["ShowQuality"] then
+		if EID.Config["ShowQuality"] and desc.ItemVariant == PickupVariant.PICKUP_COLLECTIBLE then
+			local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ID)).Quality)
 			curName = curName.." - {{Quality"..quality.."}}"
 		end
 		EID:renderString(
