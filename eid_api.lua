@@ -53,6 +53,8 @@ EID.ItemTypeAnm2Names = {
 -------------------------Handle API Functions -----------------------------
 local nullVector = Vector(0,0)
 local game = Game()
+local maxCardID = REPENTANCE and 97 or 54
+local maxPillID = REPENTANCE and 14 or 13
 
 -- Adds a description for a collectible. Optional parameters: itemName, language
 function EID:addCollectible(id, description, itemName, language)
@@ -510,12 +512,12 @@ function EID:createItemIconObject(str)
 	end
 	local cardID,numReplace3 = string.gsub(str, "Card", "")
 	if numReplace3 > 0 and cardID ~= "" and tonumber(cardID) ~= nil then
-		if tonumber(cardID)>54 then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
+		if tonumber(cardID) > maxCardID then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
 		return {"Cards",tonumber(cardID)-1,8,8,0,1,EID.CardPillSprite}
 	end
 	local pillID,numReplace4 = string.gsub(str, "Pill", "")
 	if numReplace4 > 0 and pillID ~= "" and tonumber(pillID) ~= nil then
-		if tonumber(pillID)>13 then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
+		if tonumber(pillID) > maxPillID then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
 		return {"Pills",tonumber(pillID)-1,9,8,0,1,EID.CardPillSprite}
 	end
 	if item == nil then

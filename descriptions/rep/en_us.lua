@@ -114,7 +114,7 @@ local repCollectibles={
 	[328] = {"328", "The Negative", "↑ +1.0 Damage up#Damages all enemies in the room when getting hit and at half a red heart or none"}, -- The Negative
 	[330] = {"330", "Soy Milk", "↑ Very high Tears up: (fire rate x 5.5)#↓ -80% Damage down#Drastically reduces knockback"}, -- Soy Milk
 	[331] = {"331", "Godhead", "Homing tears#↑ +0.5 Damage up#↑ +0.5 Range up#↓ -0.3 Tears down#↓ -0.3 Shot Speed down#↑ +0.8 Tear Height#Tears gain a damaging aura"}, -- Godhead
-	[336] = {"336", "Dead Onion", "Piercing + spectral tears#↓ -1.5 Range up#↓ -0.4 Shot Speed down#↑ +50% Tear size"}, -- Dead Onion
+	[336] = {"336", "Dead Onion", "Piercing + spectral tears#↓ -1.5 Range down#↓ -0.4 Shot Speed down#↑ +50% Tear size"}, -- Dead Onion
 	[339] = {"339", "Safety Pin", "↑ +1.5 Range up#↑ +0.16 Shot Speed up#+1 Black Heart#↑ +0.5 Tear Height"}, -- Safety Pin
 	[342] = {"342", "Blue Cap", "↑ +1 Health up#↑ +0.7 Tears up#↓ -16% Shot Speed down#Heals 2 red hearts"}, -- Blue Cap
 	[344] = {"344", "Match Book", "+1 Black Heart#Spawns 2-3 Bomb pickups#Spawns the Match Stick {{Trinket41}} Trinket"}, -- Match Book
@@ -497,7 +497,7 @@ local repCards={
 	[29] = {"29", "Ace of Spades", "Turns all pickups, chests and non-boss enemies into keys"}, -- Ace of Spades
 	[30] = {"30", "Ace of Hearts", "Turns all pickups, chests and non-boss enemies into hearts"}, -- Ace of Hearts
 	[39] = {"39", "Algiz", "Invincibility for 20 seconds"}, -- Algiz
-	[51] = {"51", "Holy Card", "Grants the Holy Mantle effect#(Next damage you take is 0)äEffect lasts until damage is taken"}, -- Holy card
+	[51] = {"51", "Holy Card", "Grants the Holy Mantle effect#(Next damage you take is 0)#Effect lasts until damage is taken"}, -- Holy card
 	
 	[55] = {"55", "Rune Shard", "Activates a random rune effect#The rune effect is weaker"}, -- Rune Shard
 	[56] = {"56", "0 - The Fool?", "Drops all your hearts and pickups on the floor#Only half a heart left afterwards#Pickups can spawn as {{Collectible74}} {{Collectible19}} collectibles if amount is sufficient"}, -- 0 - The Fool?

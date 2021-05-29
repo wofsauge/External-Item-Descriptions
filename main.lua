@@ -9,6 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
+EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = EID.Config["Hidden"]
 
 -- general variables
@@ -24,10 +25,12 @@ EID.itemConfig = Isaac.GetItemConfig()
 
 -- Sprite inits
 EID.IconSprite = Sprite()
-EID.IconSprite:Load("gfx/icons.anm2", true)
+EID.IconSprite:Load("gfx/eid_transform_icons.anm2", true)
 
 EID.InlineIconSprite = Sprite()
 EID.InlineIconSprite:Load("gfx/eid_inline_icons.anm2", true)
+EID.InlineIconSprite2 = Sprite()
+EID.InlineIconSprite2:Load("gfx/eid_inline_icons.anm2", true)
 
 EID.CardPillSprite = Sprite()
 EID.CardPillSprite:Load("gfx/eid_cardspills.anm2", true)
@@ -36,7 +39,7 @@ EID.ItemSprite = Sprite()
 EID.ItemSprite:Load("gfx/005.100_collectible.anm2", true)
 
 local ArrowSprite = Sprite()
-ArrowSprite:Load("gfx/icons.anm2", true)
+ArrowSprite:Load("gfx/eid_transform_icons.anm2", true)
 ArrowSprite:Play("Arrow", false)
 
 ------- Load all modules and other stuff ------
@@ -217,11 +220,22 @@ function EID:printDescription(desc)
 		end
 		EID.IconSprite:Play(EID.ItemTypeAnm2Names[itemType])
 		EID:renderIcon(EID.IconSprite, renderPos.X + offsetX * EID.Config["Scale"], renderPos.Y + offsetY * EID.Config["Scale"])
-		if itemType == 3 then -- Display Charge
-			EID.IconSprite:Play(EID.itemConfig:GetCollectible(desc.ID).MaxCharges)
-			EID:renderIcon(EID.IconSprite, renderPos.X + offsetX * EID.Config["Scale"], renderPos.Y + offsetY * EID.Config["Scale"])
-			offsetX = offsetX + 11
-		elseif itemType == 4 then -- familiar
+		if itemType == 3 then
+		 -- Display Charge
+			offsetX = offsetX + 1
+			local curItemConfig = EID.itemConfig:GetCollectible(desc.ID)
+			if REPENTANCE and curItemConfig.ChargeType == ItemConfig.CHARGE_TIMED then
+				EID.InlineIconSprite2:SetFrame("pickups", 10) -- Timer Icon
+			elseif REPENTANCE and (curItemConfig.ChargeType == ItemConfig.CHARGE_SPECIAL or desc.ID == CollectibleType.COLLECTIBLE_BLANK_CARD or desc.ID == CollectibleType.COLLECTIBLE_PLACEBO or 
+			desc.ID == CollectibleType.COLLECTIBLE_CLEAR_RUNE or desc.ID == CollectibleType.COLLECTIBLE_D_INFINITY) then
+				EID.InlineIconSprite2:SetFrame("numbers", 13)
+			else
+				EID.InlineIconSprite2:SetFrame("numbers", curItemConfig.MaxCharges)
+			end
+			EID:renderIcon(EID.InlineIconSprite2, renderPos.X + offsetX * EID.Config["Scale"], renderPos.Y + offsetY * EID.Config["Scale"])
+			offsetX = offsetX + 8
+		elseif itemType == 4 then
+		-- familiar
 			offsetX = offsetX + 8
 		end
 		if not EID.Config["ShowItemName"] then
@@ -748,9 +762,18 @@ if EID.MCMLoaded or REPENTANCE then
 			local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
 			-- Only copy Saved config entries that exist in the save
 			if savedEIDConfig.Version == EID.Config.Version then
+				local isDefaultConfig = true
 				for key, value in pairs(EID.Config) do
-					if savedEIDConfig[key] ~= nil then
-						if (EID.DefaultConfig[key] == value and savedEIDConfig[key] ~= EID.DefaultConfig[key]) or EID.MCMLoaded then
+					if EID.DefaultConfig[key] ~= value then
+						isDefaultConfig = false
+						print(key)
+						break
+					end
+				end
+				print(isDefaultConfig)
+				if isDefaultConfig or EID.MCMLoaded then
+					for key, value in pairs(EID.Config) do
+						if savedEIDConfig[key] ~= nil then
 							EID.Config[key] = savedEIDConfig[key]
 						end
 					end

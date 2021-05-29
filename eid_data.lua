@@ -91,6 +91,7 @@ EID.InlineIcons = {
 	----- Use Markup "Pill"+ ID to render pill sprites (example: {{Pill1}} = Blue Pill)
 	----- Modded Pill-Colors need to be added manually! (Example in Wiki)
 	["Battery"] = {"pickups", 9, 8, 9},
+	["Timer"] = {"pickups", 10, 8, 9},
 	["Collectible"] = {"Collectible", 0, 7, 7},
 	----- Use Markup "Collectible"+ ITEMID to render collectible sprites (example: {{Collectible1}} = Sad Onion)
 	----- Modded Collectible-icons are automatically generated. No code needed!
@@ -134,22 +135,29 @@ EID.InlineIcons = {
 	["RoomLBottomLeft"] = {"roomshape", 10, 10, 10},
 	["RoomLBottomRight"] = {"roomshape", 11, 10, 10},
 	-- Transformation Icons
-	["CustomTransformation"] = {"TransformationCustom", 0, 11, 14, 0, -1, EID.IconSprite},
-	["Guppy"] = {"Transformation1", 0, 11, 13, 0, -1, EID.IconSprite},
-	["FunGuy"] = {"Transformation2", 0, 13, 13, 0, -1, EID.IconSprite},
-	["LordoftheFlies"] = {"Transformation3", 0, 14, 14, 0, -1, EID.IconSprite},
-	["Conjoined"] = {"Transformation4", 0, 18, 15, 0, -1, EID.IconSprite},
-	["Spun"] = {"Transformation5", 0, 7, 15, 0, -1, EID.IconSprite},
-	["Mom"] = {"Transformation6", 0, 7, 16, 0, -1, EID.IconSprite},
-	["OhCrap"] = {"Transformation7", 0, 15, 14, 0, -1, EID.IconSprite},
-	["Bob"] = {"Transformation8", 0, 13, 13, 0, -1, EID.IconSprite},
-	["Leviathan"] = {"Transformation9", 0, 13, 15, 0, -1, EID.IconSprite},
-	["Seraphim"] = {"Transformation10", 0, 20, 14, 0, -1, EID.IconSprite},
-	["SuperBum"] = {"Transformation11", 0, 14, 15, 0, -1, EID.IconSprite},
-	["Bookworm"] = {"Transformation12", 0, 10, 14, 0, -1, EID.IconSprite},
-	["SpiderBaby"] = {"Transformation13", 0, 13, 16, 0, -1, EID.IconSprite},
-	--["Adult"] = {"Transformation14",0,0,13, -1, -1, EID.IconSprite},
-	--["Stompy"] = {"Transformation15",0,0,13, -1, -1, EID.IconSprite},
+	["CustomTransformation"] = {"TransformationCustom", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Guppy"] = {"Transformation1", 0, 16, 16, 0, -1, EID.IconSprite},
+	["FunGuy"] = {"Transformation2", 0, 16, 16, 0, -1, EID.IconSprite},
+	["LordoftheFlies"] = {"Transformation3", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Conjoined"] = {"Transformation4", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Spun"] = {"Transformation5", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Mom"] = {"Transformation6", 0, 16, 16, 0, -1, EID.IconSprite},
+	["OhCrap"] = {"Transformation7", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Bob"] = {"Transformation8", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Leviathan"] = {"Transformation9", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Seraphim"] = {"Transformation10", 0, 16, 16, 0, -1, EID.IconSprite},
+	["SuperBum"] = {"Transformation11", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Bookworm"] = {"Transformation12", 0, 16, 16, 0, -1, EID.IconSprite},
+	["SpiderBaby"] = {"Transformation13", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Adult"] = {"Transformation14",0,16, 16, -1, -1, EID.IconSprite},
+	["Stompy"] = {"Transformation15",0,16, 16, -1, -1, EID.IconSprite},
+	-- Quality
+	
+	["Quality0"] = {"Quality", 0, 10, 10, 0, 0},
+	["Quality1"] = {"Quality", 1, 10, 10, 0, 0},
+	["Quality2"] = {"Quality", 2, 10, 10, 0, 0},
+	["Quality3"] = {"Quality", 3, 10, 10, 0, 0},
+	["Quality4"] = {"Quality", 4, 10, 10, 0, 0},
 	-- Crafting
 	
 	["Crafting0"] = {"Crafting", 0, 14, 16, -2, -3},
