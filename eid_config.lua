@@ -239,5 +239,6 @@ EID.DefaultConfig = {
 	["ErrorMessage"] = "[Effect not defined]",
 	["TextColor"] = "ColorEIDText",
 	["ErrorColor"] = "ColorEIDError",
-	["EnableEntityDescriptions"] = true
+	["EnableEntityDescriptions"] = true,
+	["ShowQuality"] = true
 }
