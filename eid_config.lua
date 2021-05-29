@@ -175,7 +175,10 @@ EID.UserConfig = {
 	["ErrorColor"] = "ColorEIDError",
 	-- Enables or disables custom Descriptions for entities
 	-- Default = true
-	["EnableEntityDescriptions"] = true
+	["EnableEntityDescriptions"] = true,
+	-- Enables or disables item quality after item name
+	-- Default = true
+	["ShowQuality"] = true
 }
 
 --END CONFIG--
@@ -236,5 +239,6 @@ EID.DefaultConfig = {
 	["ErrorMessage"] = "[Effect not defined]",
 	["TextColor"] = "ColorEIDText",
 	["ErrorColor"] = "ColorEIDError",
-	["EnableEntityDescriptions"] = true
+	["EnableEntityDescriptions"] = true,
+	["ShowQuality"] = true
 }

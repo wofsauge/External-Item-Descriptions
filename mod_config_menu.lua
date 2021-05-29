@@ -776,6 +776,27 @@ if MCMLoaded then
 			end
 		}
 	)
+	-------Quality ICON---------
+	MCM.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["ShowQuality"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["ShowQuality"] then
+					onOff = "True"
+				end
+				return "Display Qualtiy Info: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["ShowQuality"] = currentBool
+			end
+		}
+	)
 
 	---------------------------------------------------------------------------
 	---------------------------------Visuals-----------------------------------
