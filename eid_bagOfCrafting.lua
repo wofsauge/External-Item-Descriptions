@@ -391,9 +391,203 @@ function EID:calculateBagOfCrafting(components)
     return 25
 end
 
+------------------------------------------
+------------------------------------------
+-----------Bag content detection ---------
+------------------------------------------
+------------------------------------------
+
+
+local pickupsOnInit = {}
+
+EID:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collider,_)
+	if collider.Type ~= EntityType.ENTITY_PLAYER then
+		return
+	end
+	-- Remove pickups picked up normally
+	pickupsOnInitCorrected = {}
+	for _,e in ipairs (pickupsOnInit) do
+		if GetPtrHash(pickup) ~= GetPtrHash(e) then
+			table.insert(pickupsOnInitCorrected, e)
+		end
+	end
+	pickupsOnInit = pickupsOnInitCorrected
+end)
+
+EID:AddCallback(ModCallbacks.MC_POST_KNIFE_INIT, function(_, entity)
+	if entity.Variant ~= 4 then
+		return
+	end
+	pickupsOnInit = {}
+	for _,e in ipairs (Isaac.FindByType(EntityType.ENTITY_PICKUP, -1, -1, false, false)) do
+		if e:GetSprite():GetAnimation() ~= "Collect" then
+			table.insert(pickupsOnInit, e)
+		end
+	end
+end, 4)
+
+EID:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, function(_, bag)
+	if bag.Variant ~= 4 or bag.SubType ~= 4 then
+		return
+	end
+	for _,e in ipairs (pickupsOnInit) do
+		if e:GetSprite():GetAnimation() == "Collect" then
+			local craftingIDs = EID:getBagOfCraftingID(e.Variant, e.SubType)
+			if craftingIDs ~= nil then
+				for _,v in ipairs(craftingIDs) do
+					table.insert(EID.BagItems, v)
+				end
+			end
+		end
+	end
+	
+end, EntityType.ENTITY_KNIFE)
+
+local holdCounter = 0
+local function trackBagHolding()
+	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, 0)
+	if isCardHold and string.match(Isaac.GetPlayer(0):GetSprite():GetAnimation(), "PickupWalk") and #EID.BagItems>=8 then
+		holdCounter = holdCounter + 1
+		if holdCounter >= 55 then
+			EID.BagItems = {}
+		end
+	else
+		holdCounter = 0
+	end
+end
+
+-----------------------------
+-----------------------------
+-----------RENDERING---------
+-----------------------------
+-----------------------------
+
+local randResultCache = {}
+
+EID.bagOfCraftingOffset = 0
+EID.bagOfCraftingCurPickupCount = -1
+EID.bagOfCraftingLastQuery = {}
+EID.BagItems = {}
+
+
+function EID:handleBagOfCraftingRendering()
+	trackBagHolding()
+	local results = {}
+	local floorItems = {}
+	local pickups = Isaac.FindByType(5, -1, -1, true, false)
+	if EID.bagOfCraftingCurPickupCount ~= #pickups then 
+		for i, entity in ipairs(pickups) do
+			local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
+			if craftingIDs ~= nil then
+				for _,v in ipairs(craftingIDs) do
+					table.insert(floorItems, v)
+				end
+			end
+		end
+		EID.bagOfCraftingLastQuery = floorItems
+		EID.bagOfCraftingCurPickupCount = #pickups
+	else
+		floorItems = EID.bagOfCraftingLastQuery
+	end
+	
+	local itemQuery = {}
+	for i, v in ipairs(floorItems) do
+		table.insert(itemQuery, v)
+	end
+	for i, v in ipairs(EID.BagItems) do
+		table.insert(itemQuery, v)
+	end
+	-- Calculate result from pickups on floor
+	if #itemQuery < 8 then
+		return false
+	end
+	
+	local queryString = table.concat(itemQuery,",")
+	if randResultCache[queryString] == nil then
+		local randResults = {}
+		for i = 0, 250 do
+			local newTable = {}
+			local tableCopy = {table.unpack(itemQuery)}
+			for k = 1, 8 do
+				local pos = math.random(1, #tableCopy)
+				table.insert(newTable, tableCopy[pos])
+				table.remove(tableCopy, pos)
+			end
+			table.sort(newTable, function(a, b) return a > b end)
+			randResults[table.concat(newTable,",")] = newTable
+		end
+		local calcResults = {}
+		for k, v in pairs(randResults) do
+			local resultID = EID:calculateBagOfCrafting(v)
+			if resultID > 0 then
+				table.insert(calcResults, {v, resultID})
+			end
+		end
+		randResultCache[queryString] = calcResults
+		results = calcResults
+		EID.bagOfCraftingOffset = 0
+	else
+		results = randResultCache[queryString]
+	end
+	
+	if #results == 0 then
+		EID.bagOfCraftingOffset = 0
+		return false
+	end
+	
+	local customDescObj = EID:getDescriptionObj(5, 100, 710)
+	local roomDesc = EID.descriptions[EID.Config["Language"]].CraftingRoomContent or EID.descriptions["en_us"].CraftingRoomContent
+	local resultDesc = EID.descriptions[EID.Config["Language"]].CraftingResults or EID.descriptions["en_us"].CraftingResults
+	customDescObj.Description = "Items in Bag:#"..EID:tableToCraftingIconsMerged(EID.BagItems).."#"
+	customDescObj.Description = customDescObj.Description ..roomDesc.."#"..EID:tableToCraftingIconsMerged(floorItems).."#"..resultDesc
+	
+	if Input.IsActionPressed(ButtonAction.ACTION_MAP, 0) or Input.IsActionPressed(ButtonAction.ACTION_MAP, 1) then
+		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, 1) then
+			EID.bagOfCraftingOffset = math.min(#results-(#results%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, 1) then
+			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
+		end
+		Isaac.GetPlayer(0).ControlsEnabled = false
+	else
+		Isaac.GetPlayer(0).ControlsEnabled = true
+	end
+	
+	local resultCount = 0
+	local skips = 0
+	for quality = 4, 0, -1 do -- sort by result quality
+		for i, v in ipairs(results) do
+			if EID.itemWeightsLookup[v[2]]== quality then
+				if skips < EID.bagOfCraftingOffset then
+					skips = skips + 1
+					if skips == EID.bagOfCraftingOffset then
+						customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..skips.." more"
+					end
+				else
+					customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ="
+					customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
+					resultCount = resultCount + 1
+					if resultCount > EID.Config["BagOfCraftingResults"]-1 then
+						if #results > EID.Config["BagOfCraftingResults"] then
+							customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..(#results-EID.Config["BagOfCraftingResults"]- skips).." more"
+						end
+						break
+					end
+				end
+			end
+		end
+		if resultCount > EID.Config["BagOfCraftingResults"]-1 then
+			break
+		end
+	end
+	EID:printDescription(customDescObj)
+	return true
+end
+
+--[[
 Isaac.DebugString("Calculating: {1, 1, 1, 1, 1, 1, 1, 1}")
 Isaac.DebugString(EID:calculateBagOfCrafting({1, 1, 1, 1, 1, 1, 1, 1}))
 Isaac.DebugString("Calculating: {1, 1, 1, 1, 1, 1, 1, 2}")
 Isaac.DebugString(EID:calculateBagOfCrafting({1, 1, 1, 1, 1, 1, 1, 2}))
 Isaac.DebugString("Calculating: {1, 1, 1, 1, 1, 1, 1, 3}")
 Isaac.DebugString(EID:calculateBagOfCrafting({1, 1, 1, 1, 1, 1, 1, 3}))
+]]--

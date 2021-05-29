@@ -370,116 +370,6 @@ function EID:renderIndicator(entity)
 	end
 end
 
-local randResultCache = {}
-
-EID.bagOfCraftingOffset = 0
-EID.bagOfCraftingCurPickupCount = -1
-EID.bagOfCraftingLastQuery = {}
-
-local function handleBagOfCraftingRendering()
-	local results = {}
-	local bagItems = {} -- TODO: Get content of Bag
-	local floorItems = {}
-	local pickups = Isaac.FindByType(5, -1, -1, true, false)
-	if EID.bagOfCraftingCurPickupCount ~= #pickups then 
-		for i, entity in ipairs(pickups) do
-			local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
-			if craftingIDs ~= nil then
-				for _,v in ipairs(craftingIDs) do
-					table.insert(floorItems, v)
-				end
-			end
-		end
-		EID.bagOfCraftingLastQuery = floorItems
-		EID.bagOfCraftingCurPickupCount = #pickups
-	else
-		floorItems = EID.bagOfCraftingLastQuery
-	end
-	-- Calculate result from pickups on floor
-	if #floorItems < 8 then
-		return false
-	end
-	
-	local queryString = table.concat(floorItems,",")
-	if randResultCache[queryString] == nil then
-		local randResults = {}
-		for i = 0, 250 do
-			local newTable = {}
-			local tableCopy = {table.unpack(floorItems)}
-			for k = 1, 8 do
-				local pos = math.random(1, #tableCopy)
-				table.insert(newTable, tableCopy[pos])
-				table.remove(tableCopy, pos)
-			end
-			table.sort(newTable, function(a, b) return a > b end)
-			randResults[table.concat(newTable,",")] = newTable
-		end
-		local calcResults = {}
-		for k, v in pairs(randResults) do
-			local resultID = EID:calculateBagOfCrafting(v)
-			if resultID > 0 then
-				table.insert(calcResults, {v, resultID})
-			end
-		end
-		randResultCache[queryString] = calcResults
-		results = calcResults
-		EID.bagOfCraftingOffset = 0
-	else
-		results = randResultCache[queryString]
-	end
-	
-	if #results == 0 then
-		EID.bagOfCraftingOffset = 0
-		return false
-	end
-	
-	local customDescObj = EID:getDescriptionObj(5, 100, 710)
-	local roomDesc = EID.descriptions[EID.Config["Language"]].CraftingRoomContent or EID.descriptions["en_us"].CraftingRoomContent
-	local resultDesc = EID.descriptions[EID.Config["Language"]].CraftingResults or EID.descriptions["en_us"].CraftingResults
-	customDescObj.Description = roomDesc.."#"..EID:tableToCraftingIconsMerged(floorItems).."#"..resultDesc
-	
-	if Input.IsActionPressed(ButtonAction.ACTION_MAP, 0) or Input.IsActionPressed(ButtonAction.ACTION_MAP, 1) then
-		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, 1) then
-			EID.bagOfCraftingOffset = math.min(#results-(#results%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
-		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, 1) then
-			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
-		end
-		Isaac.GetPlayer(0).ControlsEnabled = false
-	else
-		Isaac.GetPlayer(0).ControlsEnabled = true
-	end
-	
-	local resultCount = 0
-	local skips = 0
-	for quality = 4, 0, -1 do -- sort by result quality
-		for i, v in ipairs(results) do
-			if EID.itemWeightsLookup[v[2]]== quality then
-				if skips < EID.bagOfCraftingOffset then
-					skips = skips + 1
-					if skips == EID.bagOfCraftingOffset then
-						customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..skips.." more"
-					end
-				else
-					customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ="
-					customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
-					resultCount = resultCount + 1
-					if resultCount > EID.Config["BagOfCraftingResults"]-1 then
-						if #results > EID.Config["BagOfCraftingResults"] then
-							customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..(#results-EID.Config["BagOfCraftingResults"]- skips).." more"
-						end
-						break
-					end
-				end
-			end
-		end
-		if resultCount > EID.Config["BagOfCraftingResults"]-1 then
-			break
-		end
-	end
-	EID:printDescription(customDescObj)
-	return true
-end
-
 
 ---------------------------------------------------------------------------
 ---------------------------On Update Function------------------------------
@@ -562,7 +452,7 @@ local function onRender(t)
 		end
 		if player:HasCollectible(710) and EID.Config["DisplayBagOfCrafting"] ~= "never" then
 			if EID.Config["DisplayBagOfCrafting"] == "always" or (EID.Config["DisplayBagOfCrafting"] == "hold" and string.find(player:GetSprite():GetAnimation(), "PickupWalk")) then
-				local success = handleBagOfCraftingRendering()
+				local success = EID:handleBagOfCraftingRendering()
 				if success then
 					return
 				end
@@ -761,11 +651,9 @@ if EID.MCMLoaded or REPENTANCE then
 				for key, value in pairs(EID.Config) do
 					if EID.DefaultConfig[key] ~= value then
 						isDefaultConfig = false
-						print(key)
 						break
 					end
 				end
-				print(isDefaultConfig)
 				if isDefaultConfig or EID.MCMLoaded then
 					for key, value in pairs(EID.Config) do
 						if savedEIDConfig[key] ~= nil then
