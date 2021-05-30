@@ -688,7 +688,7 @@ function EID:renderString(str, position, scale, kcolor)
 	local offsetX = 0
 	for i, textPart in ipairs(textPartsTable) do
 		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1], position.X, position.Y)
-		EID:renderInlineIcons(spriteTable, position.X, position.Y)
+		EID:renderInlineIcons(spriteTable, position.X + offsetX, position.Y)
 		EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
 		offsetX = offsetX + textPart[3]
 	end
