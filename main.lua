@@ -627,8 +627,8 @@ local function onRender(t)
 		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
 		-- Handle Tarot Cloth description addition
 		if player:HasCollectible(451) then
-			local translatedDesc = EID.descriptions[EID.Config["Language"]]["tarotClothBuffs"]
-			local clothBuff = (translatedDesc and translatedDesc[closest.SubType]) or EID.descriptions["en_us"]["tarotClothBuffs"][closest.SubType] or nil
+			local translatedDesc = EID.descriptions[EID.Config["Language"]]["tarotClothBuffs"] or EID.descriptions["en_us"]["tarotClothBuffs"]
+			local clothBuff = (translatedDesc and translatedDesc[closest.SubType]) or ( translatedDesc and translatedDesc[closest.SubType]) or nil
 			if clothBuff ~= nil then
 				local bingeStr = "#{{Collectible451}} "
 				descriptionObj.Description = descriptionObj.Description..bingeStr..clothBuff[3]:gsub("#",bingeStr)
