@@ -167,15 +167,10 @@ function EID:IsAltChoise(pickup)
 	end
 
 	local entitySprite = pickup:GetSprite()
-	local name
+	local name = entitySprite:GetAnimation()
 
-	if entitySprite:IsPlaying("Idle") then
-		name = "Idle"
-	elseif entitySprite:IsFinished("ShopIdle") then
-		-- for tainted keeper or shop items
-		name = "ShopIdle"
-	else
-		-- I don't know other animation names, so just ignore them
+	if name ~= "Idle" and name ~= "ShopIdle" then
+		-- Collectible can be ignored. its definetly not hidden
 		data["EID_IsAltChoise"] = false
 		return false
 	end
@@ -572,7 +567,7 @@ local function onRender(t)
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Collectibles
-		if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (EID:IsAltChoise(closest) and EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+		if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoise(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 			EID:renderQuestionMark()
 			return
 		end
