@@ -280,7 +280,7 @@ function EID:printDescription(desc)
 				curName = curName.." ("..englishName..")"
 			end
 		end
-		if EID.Config["ShowQuality"] and desc.ItemVariant == PickupVariant.PICKUP_COLLECTIBLE then
+		if REPENTANCE and EID.Config["ShowQuality"] and desc.ItemVariant == PickupVariant.PICKUP_COLLECTIBLE then
 			local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ID)).Quality)
 			curName = curName.." - {{Quality"..quality.."}}"
 		end
