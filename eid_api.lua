@@ -739,7 +739,7 @@ end
 -- Result: "3{{Crafting3}}2{{Crafting2}}3{{Crafting1}}"
 function EID:tableToCraftingIconsMerged(craftTable)
 	table.sort(craftTable, function(a, b) return a > b end)
-	filteredList = {}
+	local filteredList = {}
 	for _,nr in ipairs(craftTable) do
 		if filteredList[nr] == nil then
 			filteredList[nr] = 1

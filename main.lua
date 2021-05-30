@@ -679,10 +679,16 @@ if EID.MCMLoaded or REPENTANCE then
 	--------------------------------
 	--------Handle Savadata---------
 	--------------------------------
-	function OnGameStart(isSave)
+	function OnGameStart(_,isSave)
 		--Loading Moddata--
 		if EID:HasData() then
 			local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
+			if REPENTANCE and isSave then
+				EID.BagItems = savedEIDConfig["BagContent"]
+				savedEIDConfig["BagContent"] = nil
+			else
+				EID.BagItems = {}
+			end
 			-- Only copy Saved config entries that exist in the save
 			if savedEIDConfig.Version == EID.Config.Version then
 				local isDefaultConfig = true
@@ -708,6 +714,9 @@ if EID.MCMLoaded or REPENTANCE then
 
 	--Saving Moddata--
 	function SaveGame()
+		if REPENTANCE then
+			EID.Config["BagContent"] = EID.BagItems or {}
+		end
 		EID.SaveData(EID, json.encode(EID.Config))
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)

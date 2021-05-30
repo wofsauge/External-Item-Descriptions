@@ -405,7 +405,7 @@ EID:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collide
 		return
 	end
 	-- Remove pickups picked up normally
-	pickupsOnInitCorrected = {}
+	local pickupsOnInitCorrected = {}
 	for _,e in ipairs (pickupsOnInit) do
 		if GetPtrHash(pickup) ~= GetPtrHash(e) then
 			table.insert(pickupsOnInitCorrected, e)
@@ -440,7 +440,6 @@ EID:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, function(_, bag)
 			end
 		end
 	end
-	
 end, EntityType.ENTITY_KNIFE)
 
 local holdCounter = 0
@@ -494,6 +493,7 @@ function EID:handleBagOfCraftingRendering()
 	for i, v in ipairs(floorItems) do
 		table.insert(itemQuery, v)
 	end
+	
 	for i, v in ipairs(EID.BagItems) do
 		table.insert(itemQuery, v)
 	end
