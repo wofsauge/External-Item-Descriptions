@@ -129,8 +129,6 @@ end
 -------------------------Handle Sacrifice Room-----------------------------
 	function EID:onNewFloor()
 		EID.sacrificeCounter = {}
-		EID.altPathItemCounter = {}
-		EID.lastHidePosition = {}
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
@@ -151,31 +149,62 @@ end
 
 ---------------------------------------------------------------------------
 ------------------------Handle ALT FLOOR CHOICE----------------------------
-if REPENTANCE then
-	EID.altPathItemCounter = {}
-	EID.lastHidePosition = {} -- stores lastHide position to store Hide between Morphs / rerolls
 
-	function EID:onCollectibleInit(pickup)
-		if pickup:GetData()["EID_IsAltChoise"] ~= nil then
-			return
-		end
-		pickup:GetData()["EID_IsAltChoise"] = false
-		local player = Isaac.GetPlayer(0)
-		local hasBrokenGrasses = player:HasTrinket(TrinketType.TRINKET_BROKEN_GLASSES)
-		local isRepStage = game:GetLevel():GetStageType() >= StageType.STAGETYPE_REPENTANCE
-		if game:GetRoom():GetType() == RoomType.ROOM_TREASURE and (isRepStage or hasBrokenGrasses) then
-			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-			local lastHidepos = EID.lastHidePosition[curRoomIndex] or nullVector
-			local curCounter = EID.altPathItemCounter[curRoomIndex] or 0
-			if curCounter == 1 and not player:HasCollectible(CollectibleType.COLLECTIBLE_DADS_NOTE) and ((isRepStage and not hasBrokenGrasses) or (not isRepStage and hasBrokenGrasses)) or (pickup.Position - lastHidepos):Length() < 0.1 then
-				pickup:GetData()["EID_IsAltChoise"] = true
-				EID.lastHidePosition[curRoomIndex] = pickup.Position
-			end
-			EID.altPathItemCounter[curRoomIndex] = curCounter + 1
+local questionMarkSprite = Sprite()
+questionMarkSprite:Load("gfx/005.100_collectible.anm2",true)
+questionMarkSprite:ReplaceSpritesheet(1,"gfx/items/collectibles/questionmark.png")
+questionMarkSprite:LoadGraphics()
+
+function EID:IsAltChoise(pickup)
+	local data = pickup:GetData()
+	if data["EID_IsAltChoise"] ~= nil then
+		return data["EID_IsAltChoise"]
+	end
+
+	if not REPENTANCE then
+		data["EID_IsAltChoise"] = false
+		return false
+	end
+
+	local entitySprite = pickup:GetSprite()
+	local name
+
+	if entitySprite:IsPlaying("Idle") then
+		name = "Idle"
+	elseif entitySprite:IsFinished("ShopIdle") then
+		-- for tainted keeper or shop items
+		name = "ShopIdle"
+	else
+		-- I don't know other animation names, so just ignore them
+		data["EID_IsAltChoise"] = false
+		return false
+	end
+
+	questionMarkSprite:SetFrame(name,entitySprite:GetFrame())
+	-- check some point in entitySprite
+	for i = -70,0,2 do
+		local qcolor = questionMarkSprite:GetTexel(Vector(0,i),nullVector,1,1)
+		local ecolor = entitySprite:GetTexel(Vector(0,i),nullVector,1,1)
+		if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
+			-- it is not same with question mark sprite
+			data["EID_IsAltChoise"] = false
+			return false
 		end
 	end
-	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, EID.onCollectibleInit, PickupVariant.PICKUP_COLLECTIBLE)
 
+	--this may be a question mark, however, we will check it again to ensure it
+	for j = -3,3,2 do
+		for i = -71,0,2 do
+			local qcolor = questionMarkSprite:GetTexel(Vector(j,i),nullVector,1,1)
+			local ecolor = entitySprite:GetTexel(Vector(j,i),nullVector,1,1)
+			if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
+				data["EID_IsAltChoise"] = false
+				return false
+			end
+		end
+	end
+	data["EID_IsAltChoise"] = true
+	return true
 end
 
 ---------------------------------------------------------------------------
@@ -543,7 +572,7 @@ local function onRender(t)
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Collectibles
-		if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (closest:GetData()["EID_IsAltChoise"] and EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+		if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (EID:IsAltChoise(closest) and EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 			EID:renderQuestionMark()
 			return
 		end
