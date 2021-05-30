@@ -435,6 +435,9 @@ EID:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, function(_, bag)
 			local craftingIDs = EID:getBagOfCraftingID(e.Variant, e.SubType)
 			if craftingIDs ~= nil then
 				for _,v in ipairs(craftingIDs) do
+					if #EID.BagItems >= 8 then
+						table.remove(EID.BagItems, 1)
+					end
 					table.insert(EID.BagItems, v)
 				end
 			end
@@ -455,6 +458,21 @@ local function trackBagHolding()
 	end
 end
 
+local function shiftBagContent()
+	local newContent = {}
+	for i=2,#EID.BagItems do
+		table.insert(newContent, EID.BagItems[i])
+	end
+	table.insert(newContent, EID.BagItems[1])
+	EID.BagItems = newContent
+end
+
+local function detectBagContentShift()
+	if Input.IsActionTriggered(ButtonAction.ACTION_DROP, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_DROP, 1) then
+		shiftBagContent()
+	end
+end
+
 -----------------------------
 -----------------------------
 -----------RENDERING---------
@@ -471,6 +489,7 @@ EID.BagItems = {}
 
 function EID:handleBagOfCraftingRendering()
 	trackBagHolding()
+	detectBagContentShift()
 	local results = {}
 	local floorItems = {}
 	local pickups = Isaac.FindByType(5, -1, -1, true, false)
@@ -501,6 +520,7 @@ function EID:handleBagOfCraftingRendering()
 	if #itemQuery < 8 then
 		return false
 	end
+	table.sort(itemQuery, function(a, b) return a > b end)
 	
 	local queryString = table.concat(itemQuery,",")
 	if randResultCache[queryString] == nil then
@@ -537,8 +557,9 @@ function EID:handleBagOfCraftingRendering()
 	
 	local customDescObj = EID:getDescriptionObj(5, 100, 710)
 	local roomDesc = EID.descriptions[EID.Config["Language"]].CraftingRoomContent or EID.descriptions["en_us"].CraftingRoomContent
+	local bagContentDesc = EID.descriptions[EID.Config["Language"]].CraftingBagContent or EID.descriptions["en_us"].CraftingBagContent
 	local resultDesc = EID.descriptions[EID.Config["Language"]].CraftingResults or EID.descriptions["en_us"].CraftingResults
-	customDescObj.Description = "Items in Bag:#"..EID:tableToCraftingIconsMerged(EID.BagItems).."#"
+	customDescObj.Description = bagContentDesc.."#"..EID:tableToCraftingIconsMerged(EID.BagItems).."#"
 	customDescObj.Description = customDescObj.Description ..roomDesc.."#"..EID:tableToCraftingIconsMerged(floorItems).."#"..resultDesc
 	
 	if Input.IsActionPressed(ButtonAction.ACTION_MAP, 0) or Input.IsActionPressed(ButtonAction.ACTION_MAP, 1) then

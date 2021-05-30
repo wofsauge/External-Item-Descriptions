@@ -650,6 +650,7 @@ EID.descriptions["en_us"].horsepills={
 	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
 
+EID.descriptions["en_us"].CraftingBagContent = "Pickups in bag:"
 EID.descriptions["en_us"].CraftingRoomContent = "Pickups in room:"
 EID.descriptions["en_us"].CraftingResults = "Results:#(Scroll: Hold TAB + Shoot △/▽)"
 
