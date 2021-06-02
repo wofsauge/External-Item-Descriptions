@@ -316,7 +316,7 @@ EID.descriptions["pt_br"].collectibles={
     {"297","","!!! Uso único#!!! Solta itens com base no andar atual:#Basement 1: 2 Corações de alma#Basement 2: 2 chaves e 2 bombas#Caves 1: 1 Item de chefe#Caves 2: B1+C1#Depths 1: 4 Corações de alma#Depths 2: 30 moedas#Womb 1: 2 Items de Boss#Womb 2: Bíblia#Blue Womb: Nada#Sheol: 1 item Diabo + Coração negro#Cathedral: 1 Item de Anjo + Coração de alma#Chest: 1 moeda# Dark Room: Nada#The Void: Nada"},
     {"298","","!!! Você não pode disparar lágrimas enquanto o item estiver ativo#Invencibilidade por 5 segundos#↑ Velocidade"},
     {"299","","↓ -0.3 Velocidade#Enquanto estiver em uma sala hostil, cronometra sua velocidade para iniciar o efeito do My Little Unicorn"},
-    {"300","","↑ +0.25 Velocidade#Influge dano aos inimigos ao toca-los"},
+    {"300","","↑ +0.25 Velocidade#Infringe dano aos inimigos ao toca-los"},
     {"301","","+3 Corações de alma#Depois de ser atingido, ganhe redução de dano (-50% do dano recebido)"},
     {"302","","Quebra pedras ao tocá-las"},
     {"303","","Chance de obter invencibilidade ao ser atingido"},
