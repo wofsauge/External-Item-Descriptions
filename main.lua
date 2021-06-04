@@ -559,16 +559,7 @@ local function onRender(t)
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
 		--Handle Trinkets
 		local trinketID = closest.SubType
-		local isGoldenTrinket = false
-		if trinketID > 32768 then
-			trinketID = trinketID - 32768
-			isGoldenTrinket = true
-		end
 		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, trinketID)
-		if isGoldenTrinket then
-			local goldenDesc = EID:getDescriptionEntry("goldenTrinket") or ""
-			descriptionObj.Description = "{{ColorGold}}"..goldenDesc.."#"..descriptionObj.Description
-		end
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Collectibles

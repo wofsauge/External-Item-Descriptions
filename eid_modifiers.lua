@@ -115,4 +115,18 @@ local game = Game()
 	EID:addDescriptionModifier("Tarot Cloth", TarotClothCondition, TarotClothCallback)
 	
 	
+	
+	-- Handle Golden Trinket description addition
+	local function GoldenTrinketCondition(descObj)
+		return descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_TRINKET and descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG
+	end
+	
+	local function GoldenTrinketCallback(descObj)
+		local goldenDesc = EID:getDescriptionEntry("goldenTrinket") or ""
+		descObj.Description = "{{ColorGold}}"..goldenDesc.."#"..descObj.Description
+		return descObj
+	end
+	EID:addDescriptionModifier("Tarot Cloth", GoldenTrinketCondition, GoldenTrinketCallback)
+	
+	
 end

@@ -362,7 +362,11 @@ end
 -- Returns an adjusted SubType id for special cases like Horse Pills and Golden Trinkets
 function EID:getAdjustedSubtype(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
-	if tableName == "pills" or tableName == "horsepills" then
+	if tableName == "trinkets" then
+		if SubType > 32768 then 
+			return SubType - 32768
+		end
+	elseif tableName == "pills" or tableName == "horsepills" then
 		if SubType == 14 then
 			return 9999
 		end
@@ -420,8 +424,8 @@ end
 
 -- tries to get the ingame name of an item based on its ID
 function EID:getObjectName(Type, Variant, SubType)
-	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
+	local tableEntry = EID:getDescriptionData(Type, Variant, EID:getAdjustedSubtype(Type, Variant, SubType))
 	local name = nil
 	if tableEntry ~= nil then
 		if tableEntry[2] ~= nil and tableEntry[2] ~= "" and tableEntry[2] ~= EID.descriptions["en_us"][tableName][SubType] then
