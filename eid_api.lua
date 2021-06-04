@@ -294,7 +294,6 @@ function EID:getDescriptionObj(Type, Variant, SubType)
 	local description = {}
 	description.ItemType = Type
 	description.ItemVariant = Variant
-	description.RealID = SubType
 	description.ID = SubType
 	description.fullItemString = Type.."."..Variant.."."..description.ID
 	description.Name = EID:getObjectName(Type, Variant, description.ID)
@@ -303,7 +302,12 @@ function EID:getDescriptionObj(Type, Variant, SubType)
 	description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, description.ID)
 
 	description.Transformation = EID:getTransformation(Type, Variant, description.ID)
-
+	
+	for k,modifier in pairs(EID.DescModifiers) do
+		if modifier.condition(description) then
+			description = modifier.callback(description)
+		end
+	end
 	return description
 end
 
@@ -693,6 +697,21 @@ function EID:renderString(str, position, scale, kcolor)
 		offsetX = offsetX + textPart[3]
 	end
 	return textPartsTable[#textPartsTable][2]
+end
+
+-- Adds Description object modifiers.
+-- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
+function EID:addDescriptionModifier(modifierName, condition, callback)
+	EID.DescModifiers[modifierName] = {
+		condition = condition,
+		callback = callback
+	}
+end
+
+-- Removes a Description object modifier
+-- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
+function EID:removeDescriptionModifier(modifierName)
+	EID.DescModifiers[modifierName] = nil
 end
 
 -- Interpolates between 2 KColors with a given fraction.

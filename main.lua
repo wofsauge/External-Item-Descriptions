@@ -11,9 +11,11 @@ EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = EID.Config["Hidden"]
+EID.player = nil
 
 -- general variables
 EID.PositionModifiers = {}
+EID.DescModifiers = {}
 EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 EID.isDisplaying = false
 EID.isDisplayingPermanent = false
@@ -54,6 +56,7 @@ end
 
 require("eid_data")
 require("eid_api")
+require("eid_modifiers")
 
 -- load Repentence descriptions
 if REPENTANCE then
@@ -407,9 +410,9 @@ EID.pathCheckerEntity = nil
 EID.hasValidWalkingpath = true
 
 function EID:onGameUpdate()
-	local player = Isaac.GetPlayer(0)
+	EID.player = Isaac.GetPlayer(0)
 	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] then
-		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and player.CanFly) then
+		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
 			if EID.pathCheckerEntity ~= nil then
 				EID.pathCheckerEntity:Remove()
 				EID.pathCheckerEntity = nil
@@ -418,14 +421,14 @@ function EID:onGameUpdate()
 			return
 		end
 		if EID.pathCheckerEntity == nil then
-			EID.pathCheckerEntity = Isaac.Spawn(500, 69420, 0, player.Position, nullVector, nil) -- Spawns the EID Helper entity
+			EID.pathCheckerEntity = Isaac.Spawn(500, 69420, 0, EID.player.Position, nullVector, nil) -- Spawns the EID Helper entity
 			EID.pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 			EID.pathCheckerEntity:AddEntityFlags (EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER)
 			EID.hasValidWalkingpath = false
 		elseif not EID.pathCheckerEntity:Exists() then
 			EID.pathCheckerEntity = nil
 		else
-			EID.pathCheckerEntity.Position = player.Position
+			EID.pathCheckerEntity.Position = EID.player.Position
 			EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos ( EID.lastDescriptionEntity.Position, false )
 		end
 	end
@@ -465,21 +468,21 @@ local function onRender(t)
 	
 	EID:renderMCMDummyDescription()
 
-	local player = Isaac.GetPlayer(0)
+	EID.player = Isaac.GetPlayer(0)
 	if EID.GameVersion == "ab+" then
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
+		if EID.player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
 			EID:addTextPosModifier("Schoolbag", Vector(0,30))
 		else
 			EID:removeTextPosModifier("Schoolbag")
 		end
 	else
-		if player.SubType == 21 or player.SubType == 25 then -- T-Isaac, T-Blue Baby
+		if EID.player.SubType == 21 or EID.player.SubType == 25 then -- T-Isaac, T-Blue Baby
 			EID:addTextPosModifier("Tained HUD", Vector(0,30))
 		else
 			EID:removeTextPosModifier("Tained HUD")
 		end
-		if player:HasCollectible(710) and EID.Config["DisplayBagOfCrafting"] ~= "never" then
-			if EID.Config["DisplayBagOfCrafting"] == "always" or (EID.Config["DisplayBagOfCrafting"] == "hold" and string.find(player:GetSprite():GetAnimation(), "PickupWalk")) then
+		if EID.player:HasCollectible(710) and EID.Config["DisplayBagOfCrafting"] ~= "never" then
+			if EID.Config["DisplayBagOfCrafting"] == "always" or (EID.Config["DisplayBagOfCrafting"] == "hold" and string.find(EID.player:GetSprite():GetAnimation(), "PickupWalk")) then
 				local success = EID:handleBagOfCraftingRendering()
 				if success then
 					return
@@ -496,14 +499,13 @@ local function onRender(t)
 	
 	EID.lastDescriptionEntity = nil
 	EID.lastDist = 10000
-	local player = Isaac.GetPlayer(0)
 	local searchGroups = {}
 	searchGroups[1] = Isaac.FindByType(EntityType.ENTITY_EFFECT, -1, -1, true, false)
-	searchGroups[2] = Isaac.FindInRadius(player.Position, tonumber(EID.Config["MaxDistance"])*40, searchPartitions)
+	searchGroups[2] = Isaac.FindInRadius(EID.player.Position, tonumber(EID.Config["MaxDistance"])*40, searchPartitions)
 	for _, entitySearch in ipairs(searchGroups) do
 		for i, entity in ipairs(entitySearch) do
 			if EID:hasDescription(entity) and entity.FrameCount > 0 then
-				local diff = entity.Position:__sub(player.Position)
+				local diff = entity.Position:__sub(EID.player.Position)
 				if diff:Length() < EID.lastDist then
 					EID.lastDescriptionEntity = entity
 					EID.lastDist = diff:Length()
@@ -573,45 +575,6 @@ local function onRender(t)
 		end
 		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
 		
-		if REPENTANCE then
-			-- Handle Birthright
-			if closest.SubType == 619 then
-				local playerID = player.SubType + 1
-				local birthrightDesc = EID.descriptions[EID.Config["Language"]]["birthright"][playerID] or EID.descriptions["en_us"]["birthright"][playerID] or nil
-				if birthrightDesc ~=nil then
-					local playerName = birthrightDesc[1] or player:GetName()
-					descriptionObj.Description = "{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3]
-				end
-			end
-			-- Handle Bingeeater description addition
-			if player:HasCollectible(664) then
-				local translatedDesc = EID.descriptions[EID.Config["Language"]]["bingeEaterBuffs"]
-				local bingeBuff = (translatedDesc and translatedDesc[closest.SubType]) or EID.descriptions["en_us"]["bingeEaterBuffs"][closest.SubType] or nil
-				if bingeBuff ~= nil then
-					local bingeStr = "#{{Collectible664}} "
-					descriptionObj.Description = descriptionObj.Description..bingeStr..bingeBuff[3]:gsub("#",bingeStr)
-				end
-			end
-			-- Handle Spindown Dice description addition
-			if player:HasCollectible(723) then
-				descriptionObj.Description = descriptionObj.Description.."#{{Collectible723}} :"
-				local refID = closest.SubType
-				for i = 1,EID.Config["SpindownDiceResults"] do
-					local spinnedID = EID:getSpindownResult(refID)
-					refID = spinnedID
-					if spinnedID > 0 then
-						descriptionObj.Description = descriptionObj.Description.."{{Collectible"..spinnedID.."}}"
-						if i ~= EID.Config["SpindownDiceResults"] then
-							descriptionObj.Description = descriptionObj.Description.." ->"
-						end
-					else
-						local errorMsg = EID.descriptions[EID.Config["Language"]]["spindownError"] or EID.descriptions["en_us"]["spindownError"] or nil
-						descriptionObj.Description = descriptionObj.Description..errorMsg
-						break
-					end
-				end
-			end
-		end
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Cards & Runes
@@ -625,15 +588,6 @@ local function onRender(t)
 			return
 		end
 		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
-		-- Handle Tarot Cloth description addition
-		if player:HasCollectible(451) then
-			local translatedDesc = EID.descriptions[EID.Config["Language"]]["tarotClothBuffs"] or EID.descriptions["en_us"]["tarotClothBuffs"]
-			local clothBuff = (translatedDesc and translatedDesc[closest.SubType]) or ( translatedDesc and translatedDesc[closest.SubType]) or nil
-			if clothBuff ~= nil then
-				local bingeStr = "#{{Collectible451}} "
-				descriptionObj.Description = descriptionObj.Description..bingeStr..clothBuff[3]:gsub("#",bingeStr)
-			end
-		end
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		--Handle Pills
@@ -651,7 +605,6 @@ local function onRender(t)
 		local identified = pool:IsPillIdentified(pillColor)
 		if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) then
 			local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor)
-			descEntry["realSubType"] = pillColor
 			EID:printDescription(descEntry)
 		else
 			EID:renderString(
