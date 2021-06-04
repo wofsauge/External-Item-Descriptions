@@ -569,9 +569,11 @@ local function onRender(t)
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Collectibles
-		if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoise(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-			EID:renderQuestionMark()
-			return
+		if closest:GetData()["EID_DontHide"] ~= true then
+			if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoise(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+				EID:renderQuestionMark()
+				return
+			end
 		end
 		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
 		
@@ -582,10 +584,12 @@ local function onRender(t)
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
-		local hideinShop = closest:ToPickup():IsShopItem() and (((closest.SubType < 81 or closest.SubType > 97) and not EID.Config["DisplayCardInfoShop"]) or (closest.SubType >= 81 and not EID.Config["DisplaySoulstoneInfoShop"]))
-		if hideinShop or (not EID.Config["DisplayObstructedCardInfo"] and not EID.hasValidWalkingpath) or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
-			EID:renderQuestionMark()
-			return
+		if closest:GetData()["EID_DontHide"] ~= true then
+			local hideinShop = closest:ToPickup():IsShopItem() and (((closest.SubType < 81 or closest.SubType > 97) and not EID.Config["DisplayCardInfoShop"]) or (closest.SubType >= 81 and not EID.Config["DisplaySoulstoneInfoShop"]))
+			if hideinShop or (not EID.Config["DisplayObstructedCardInfo"] and not EID.hasValidWalkingpath) or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
+				EID:renderQuestionMark()
+				return
+			end
 		end
 		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
 		EID:printDescription(descriptionObj)
@@ -595,9 +599,11 @@ local function onRender(t)
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
-		if (closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]) or (not EID.Config["DisplayObstructedPillInfo"] and not EID.hasValidWalkingpath) then
-			EID:renderQuestionMark()
-			return
+		if closest:GetData()["EID_DontHide"] ~= true then
+			if (closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]) or (not EID.Config["DisplayObstructedPillInfo"] and not EID.hasValidWalkingpath) then
+				EID:renderQuestionMark()
+				return
+			end
 		end
 
 		local pillColor = closest.SubType
