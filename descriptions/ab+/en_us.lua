@@ -279,7 +279,7 @@ EID.descriptions["en_us"].collectibles={
 	{"264", "Smart Fly", "Orbital#When you get hit it attacks enemies#Deals 22.5 damage per second"},
 	{"265", "Dry Baby", "When its hit by enemy tears, it has a 10% chance to damage all enemies in the room"},
 	{"266", "Juicy Sack", "Leaves slowing creep#Spawns 1-2 friendly spiders after clearing a room"},
-	{"267", "Robo-Baby 2.0", "Shoots lasers#Deals 3.5 damage per shot"},
+	{"267", "Robo-Baby 2.0", "Shoots lasers#Deals 3.5 damage per shot#Moves in the direction you shoot"},
 	{"268", "Rotten Baby", "Spawns blue flies when the player is shooting"},
 	{"269", "Headless Baby", "Leaves creep which deals 6 damage per second"},
 	{"270", "Leech", "Heals half a heart when it kills an enemy#3.2 damage per second"},
