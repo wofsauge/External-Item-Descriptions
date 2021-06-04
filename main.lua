@@ -224,7 +224,6 @@ function EID:printDescription(desc)
 			iconType = "Card"
 		elseif desc.ItemType == 5 and desc.ItemVariant == 70 then
 			iconType = "Pill"
-			renderID = desc.RealID
 		end
 		if iconType ~= nil then
 			offsetX = offsetX + 14
@@ -419,8 +418,9 @@ function EID:onGameUpdate()
 			return
 		end
 		if EID.pathCheckerEntity == nil then
-			EID.pathCheckerEntity = Isaac.Spawn(17, 69420, 0, player.Position, nullVector, nil) -- Spawns the EID Helper entity
-			EID.pathCheckerEntity:AddEntityFlags (EntityFlag.FLAG_PERSISTENT)
+			EID.pathCheckerEntity = Isaac.Spawn(500, 69420, 0, player.Position, nullVector, nil) -- Spawns the EID Helper entity
+			EID.pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+			EID.pathCheckerEntity:AddEntityFlags (EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER)
 			EID.hasValidWalkingpath = false
 		elseif not EID.pathCheckerEntity:Exists() then
 			EID.pathCheckerEntity = nil
