@@ -1,16 +1,23 @@
 if REPENTANCE then
+local game = Game()
 
 	-- Handle Birthright
 	local function BirthrightCondition(descObj)
 		return descObj.ItemType == 5 and descObj.ItemVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ID == 619
 	end
 	local function BirthrightCallback(descObj)
-		local playerID = EID.player.SubType + 1
-		local translatedDesc = EID.descriptions[EID.Config["Language"]]["birthright"]
-		local birthrightDesc = (translatedDesc and translatedDesc[playerID]) or EID.descriptions["en_us"]["birthright"][playerID] or nil
-		if birthrightDesc ~=nil then
-			local playerName = birthrightDesc[1] or EID.player:GetName()
-			descObj.Description = "{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3]
+		descObj.Description = ""
+		for i = 0,game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if not player:IsSubPlayer() and player:GetMainTwin( ):GetPlayerType() == player:GetPlayerType() then
+				local playerID = player:GetPlayerType() + 1
+				local translatedDesc = EID.descriptions[EID.Config["Language"]]["birthright"]
+				local birthrightDesc = (translatedDesc and translatedDesc[playerID]) or EID.descriptions["en_us"]["birthright"][playerID] or nil
+				if birthrightDesc ~=nil then
+					local playerName = birthrightDesc[1] or player:GetName()
+					descObj.Description = descObj.Description.."{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#"
+				end
+			end
 		end
 		return descObj
 	end
@@ -20,7 +27,16 @@ if REPENTANCE then
 	
 	-- Handle Bingeeater description addition
 	local function BingeeaterCondition(descObj)
-		return descObj.ItemType == 5 and descObj.ItemVariant == PickupVariant.PICKUP_COLLECTIBLE and EID.player:HasCollectible(664)
+		if descObj.ItemType ~= 5 or descObj.ItemVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+			return false
+		end
+		for i = 0,game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER) then
+				return true
+			end
+		end
+		return false
 	end
 	local function BingeeaterCallback(descObj)
 		local translatedDesc = EID.descriptions[EID.Config["Language"]]["bingeEaterBuffs"]
@@ -33,9 +49,20 @@ if REPENTANCE then
 	end
 	EID:addDescriptionModifier("Bingeeater", BingeeaterCondition, BingeeaterCallback)
 	
+	
+	
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCondition(descObj)
-		return descObj.ItemType == 5 and descObj.ItemVariant == PickupVariant.PICKUP_COLLECTIBLE and EID.player:HasCollectible(723)
+		if descObj.ItemType ~= 5 or descObj.ItemVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+			return false
+		end
+		for i = 0,game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_SPINDOWN_DICE) then
+				return true
+			end
+		end
+		return false
 	end
 	local function SpindownDiceCallback(descObj)
 		descObj.Description = descObj.Description.."#{{Collectible723}} :"
@@ -61,7 +88,16 @@ if REPENTANCE then
 	
 	-- Handle Tarot Cloth description addition
 	local function TarotClothCondition(descObj)
-		return descObj.ItemType == 5 and descObj.ItemVariant == PickupVariant.PICKUP_TAROTCARD and EID.player:HasCollectible(451)
+		if descObj.ItemType ~= 5 or descObj.ItemVariant ~= PickupVariant.PICKUP_TAROTCARD then
+			return false
+		end
+		for i = 0,game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH) then
+				return true
+			end
+		end
+		return false
 	end
 	local function TarotClothCallback(descObj)
 		local translatedDesc = EID.descriptions[EID.Config["Language"]]["tarotClothBuffs"] or EID.descriptions["en_us"]["tarotClothBuffs"]
