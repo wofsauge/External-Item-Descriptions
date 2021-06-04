@@ -55,6 +55,7 @@ local nullVector = Vector(0,0)
 local game = Game()
 local maxCardID = REPENTANCE and 97 or 54
 local maxPillID = REPENTANCE and 14 or 13
+local dynamicSpriteCache = {} -- used to store sprite objects of collectible icons etc.
 
 -- Adds a description for a collectible. Optional parameters: itemName, language
 function EID:addCollectible(id, description, itemName, language)
@@ -527,11 +528,17 @@ function EID:createItemIconObject(str)
 	if item == nil then
 		return nil
 	end
-	local spriteDummy = Sprite()
-	spriteDummy:Load("gfx/eid_inline_icons.anm2", true)
-	spriteDummy:ReplaceSpritesheet(1, item.GfxFileName)
-	spriteDummy:LoadGraphics()
-	return {"ItemIcon",0,11,8,-2,-2,spriteDummy}
+	if dynamicSpriteCache[str] then
+		return dynamicSpriteCache[str]
+	else
+		local spriteDummy = Sprite()
+		spriteDummy:Load("gfx/eid_inline_icons.anm2", true)
+		spriteDummy:ReplaceSpritesheet(1, item.GfxFileName)
+		spriteDummy:LoadGraphics()
+		local newDynamicSprite = {"ItemIcon",0,11,8,-2,-2,spriteDummy}
+		dynamicSpriteCache[str] = newDynamicSprite
+		return newDynamicSprite
+	end
 end
 
 -- Returns the icon for a given transformation name or ID
