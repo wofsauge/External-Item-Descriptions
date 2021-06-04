@@ -6,7 +6,8 @@ if REPENTANCE then
 	end
 	local function BirthrightCallback(descObj)
 		local playerID = EID.player.SubType + 1
-		local birthrightDesc = EID.descriptions[EID.Config["Language"]]["birthright"][playerID] or EID.descriptions["en_us"]["birthright"][playerID] or nil
+		local translatedDesc = EID.descriptions[EID.Config["Language"]]["birthright"]
+		local birthrightDesc = (translatedDesc and translatedDesc[playerID]) or EID.descriptions["en_us"]["birthright"][playerID] or nil
 		if birthrightDesc ~=nil then
 			local playerName = birthrightDesc[1] or EID.player:GetName()
 			descObj.Description = "{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3]
