@@ -3,8 +3,9 @@ local game = Game()
 
 	-- Handle Birthright
 	local function BirthrightCondition(descObj)
-		return descObj.ItemType == 5 and descObj.ItemVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ID == 619
+		return descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ObjSubType == 619
 	end
+	
 	local function BirthrightCallback(descObj)
 		descObj.Description = ""
 		local describedPlayerTypes = {}
@@ -13,11 +14,10 @@ local game = Game()
 			local playerID = player:GetPlayerType()
 			if not player:IsSubPlayer() and player:GetMainTwin( ):GetPlayerType() == playerID and not describedPlayerTypes[playerID] then
 				describedPlayerTypes[playerID] = true
-				local translatedDesc = EID.descriptions[EID.Config["Language"]]["birthright"]
-				local birthrightDesc = (translatedDesc and translatedDesc[playerID+1]) or EID.descriptions["en_us"]["birthright"][playerID+1] or nil
+				local birthrightDesc = EID:getDescriptionEntry("birthright", playerID+1)
 				if birthrightDesc ~=nil then
 					local playerName = birthrightDesc[1] or player:GetName()
-					descObj.Description = descObj.Description.."{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#"
+					EID:appendToDescription(descObj, "{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
 				end
 			end
 		end
@@ -29,7 +29,7 @@ local game = Game()
 	
 	-- Handle Bingeeater description addition
 	local function BingeeaterCondition(descObj)
-		if descObj.ItemType ~= 5 or descObj.ItemVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 			return false
 		end
 		for i = 0,game:GetNumPlayers() - 1 do
@@ -40,12 +40,12 @@ local game = Game()
 		end
 		return false
 	end
+	
 	local function BingeeaterCallback(descObj)
-		local translatedDesc = EID.descriptions[EID.Config["Language"]]["bingeEaterBuffs"]
-		local bingeBuff = (translatedDesc and translatedDesc[descObj.ID]) or EID.descriptions["en_us"]["bingeEaterBuffs"][descObj.ID] or nil
+		local bingeBuff = EID:getDescriptionEntry("bingeEaterBuffs", descObj.ObjSubType)
 		if bingeBuff ~= nil then
-			local bingeStr = "#{{Collectible664}} "
-			descObj.Description = descObj.Description..bingeStr..bingeBuff[3]:gsub("#",bingeStr)
+			local iconStr = "#{{Collectible664}} "
+			EID:appendToDescription(descObj, iconStr..bingeBuff[3]:gsub("#",iconStr))
 		end
 		return descObj
 	end
@@ -55,7 +55,7 @@ local game = Game()
 	
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCondition(descObj)
-		if descObj.ItemType ~= 5 or descObj.ItemVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 			return false
 		end
 		for i = 0,game:GetNumPlayers() - 1 do
@@ -66,20 +66,21 @@ local game = Game()
 		end
 		return false
 	end
+	
 	local function SpindownDiceCallback(descObj)
-		descObj.Description = descObj.Description.."#{{Collectible723}} :"
-		local refID = descObj.ID
+		EID:appendToDescription(descObj, "#{{Collectible723}} :")
+		local refID = descObj.ObjSubType
 		for i = 1,EID.Config["SpindownDiceResults"] do
 			local spinnedID = EID:getSpindownResult(refID)
 			refID = spinnedID
 			if spinnedID > 0 then
-				descObj.Description = descObj.Description.."{{Collectible"..spinnedID.."}}"
+				EID:appendToDescription(descObj, "{{Collectible"..spinnedID.."}}")
 				if i ~= EID.Config["SpindownDiceResults"] then
-					descObj.Description = descObj.Description.." ->"
+					EID:appendToDescription(descObj, " ->")
 				end
 			else
-				local errorMsg = EID.descriptions[EID.Config["Language"]]["spindownError"] or EID.descriptions["en_us"]["spindownError"] or nil
-				descObj.Description = descObj.Description..errorMsg
+				local errorMsg = EID:getDescriptionEntry("spindownError") or ""
+				EID:appendToDescription(descObj, errorMsg)
 				break
 			end
 		end
@@ -88,9 +89,10 @@ local game = Game()
 	EID:addDescriptionModifier("Spindown Dice", SpindownDiceCondition, SpindownDiceCallback)
 	
 	
+	
 	-- Handle Tarot Cloth description addition
 	local function TarotClothCondition(descObj)
-		if descObj.ItemType ~= 5 or descObj.ItemVariant ~= PickupVariant.PICKUP_TAROTCARD then
+		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TAROTCARD then
 			return false
 		end
 		for i = 0,game:GetNumPlayers() - 1 do
@@ -101,12 +103,12 @@ local game = Game()
 		end
 		return false
 	end
+	
 	local function TarotClothCallback(descObj)
-		local translatedDesc = EID.descriptions[EID.Config["Language"]]["tarotClothBuffs"] or EID.descriptions["en_us"]["tarotClothBuffs"]
-		local clothBuff = (translatedDesc and translatedDesc[descObj.ID]) or ( translatedDesc and translatedDesc[descObj.ID]) or nil
+		local clothBuff = EID:getDescriptionEntry("tarotClothBuffs", descObj.ObjSubType)
 		if clothBuff ~= nil then
-			local bingeStr = "#{{Collectible451}} "
-			descObj.Description = descObj.Description..bingeStr..clothBuff[3]:gsub("#",bingeStr)
+			local iconStr = "#{{Collectible451}} "
+			EID:appendToDescription(descObj, iconStr..clothBuff[3]:gsub("#",iconStr))
 		end
 		return descObj
 	end

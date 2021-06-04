@@ -211,27 +211,24 @@ end
 function EID:printDescription(desc)
 	local textScale = Vector(EID.Config["Scale"], EID.Config["Scale"])
 	local renderPos = EID:getTextPosition()
-	local itemType = -1
-	if tonumber(desc.ID) ~= nil and desc.ItemType == 5 and desc.ItemVariant == 100 then
-		itemType = EID.itemConfig:GetCollectible(tonumber(desc.ID)).Type or -1
-	end
 	local offsetX = 0
 	if EID.Config["ShowItemIcon"] then
 		local iconType = nil
-		local renderID = desc.ID
-		if desc.ItemType == 5 and desc.ItemVariant == 100 then
-			iconType = "Collectible"
-		elseif desc.ItemType == 5 and desc.ItemVariant == 350 then
-			iconType = "Trinket"
-		elseif desc.ItemType == 5 and desc.ItemVariant == 300 then
-			iconType = "Card"
-		elseif desc.ItemType == 5 and desc.ItemVariant == 70 then
-			iconType = "Pill"
+		if desc.ObjType == 5 then
+			if desc.ObjVariant == 100 then
+				iconType = "Collectible"
+			elseif desc.ObjVariant == 350 then
+				iconType = "Trinket"
+			elseif desc.ObjVariant == 300 then
+				iconType = "Card"
+			elseif desc.ObjVariant == 70 then
+				iconType = "Pill"
+			end
 		end
 		if iconType ~= nil then
 			offsetX = offsetX + 14
 			EID:renderString(
-				"{{" .. iconType .. renderID .. "}}",
+				"{{" .. iconType .. desc.ObjSubType .. "}}",
 				renderPos + (Vector(-3, -4) * EID.Config["Scale"]),
 				textScale,
 				EID:getNameColor()
@@ -239,6 +236,10 @@ function EID:printDescription(desc)
 		end
 	end
 	--Display ItemType / Charge
+	local itemType = -1
+	if tonumber(desc.ObjSubType) ~= nil and desc.ObjType == 5 and desc.ObjVariant == 100 then
+		itemType = EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Type or -1
+	end
 	if EID.Config["ShowItemType"] and (itemType == 3 or itemType == 4) then
 		local offsetY = 2
 		if EID.Config["Scale"] < 1 then
@@ -249,11 +250,11 @@ function EID:printDescription(desc)
 		if itemType == 3 then
 		 -- Display Charge
 			offsetX = offsetX + 1
-			local curItemConfig = EID.itemConfig:GetCollectible(desc.ID)
+			local curItemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 			if REPENTANCE and curItemConfig.ChargeType == ItemConfig.CHARGE_TIMED then
 				EID.InlineIconSprite2:SetFrame("pickups", 10) -- Timer Icon
-			elseif REPENTANCE and (curItemConfig.ChargeType == ItemConfig.CHARGE_SPECIAL or desc.ID == CollectibleType.COLLECTIBLE_BLANK_CARD or desc.ID == CollectibleType.COLLECTIBLE_PLACEBO or 
-			desc.ID == CollectibleType.COLLECTIBLE_CLEAR_RUNE or desc.ID == CollectibleType.COLLECTIBLE_D_INFINITY) then
+			elseif REPENTANCE and (curItemConfig.ChargeType == ItemConfig.CHARGE_SPECIAL or desc.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or desc.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or 
+			desc.ObjSubType == CollectibleType.COLLECTIBLE_CLEAR_RUNE or desc.ObjSubType == CollectibleType.COLLECTIBLE_D_INFINITY) then
 				EID.InlineIconSprite2:SetFrame("numbers", 13)
 			else
 				EID.InlineIconSprite2:SetFrame("numbers", curItemConfig.MaxCharges)
@@ -274,7 +275,7 @@ function EID:printDescription(desc)
 		if EID.Config["TranslateItemName"] ~= 2 then
 			local curLanguage = EID.Config["Language"]
 			EID.Config["Language"] = "en_us"
-			local englishName = EID:getObjectName(desc.ItemType, desc.ItemVariant, desc.ID)
+			local englishName = EID:getObjectName(desc.ObjType, desc.ObjVariant, desc.ObjSubType)
 			EID.Config["Language"] = curLanguage
 			if EID.Config["TranslateItemName"] == 1 then
 				curName = englishName
@@ -282,8 +283,8 @@ function EID:printDescription(desc)
 				curName = curName.." ("..englishName..")"
 			end
 		end
-		if REPENTANCE and EID.Config["ShowQuality"] and desc.ItemVariant == PickupVariant.PICKUP_COLLECTIBLE then
-			local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ID)).Quality)
+		if REPENTANCE and EID.Config["ShowQuality"] and desc.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
+			local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Quality)
 			curName = curName.." - {{Quality"..quality.."}}"
 		end
 		EID:renderString(
@@ -564,7 +565,7 @@ local function onRender(t)
 		end
 		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, trinketID)
 		if isGoldenTrinket then
-			local goldenDesc = EID.descriptions[EID.Config["Language"]].goldenTrinket or EID.descriptions["en_us"].goldenTrinket or ""
+			local goldenDesc = EID:getDescriptionEntry("goldenTrinket") or ""
 			descriptionObj.Description = "{{ColorGold}}"..goldenDesc.."#"..descriptionObj.Description
 		end
 		EID:printDescription(descriptionObj)
@@ -615,7 +616,7 @@ local function onRender(t)
 			EID:printDescription(descEntry)
 		else
 			EID:renderString(
-				"{{Pill"..pillColor.."}} "..EID:getDescriptionTable("unidentifiedPill"),
+				"{{Pill"..pillColor.."}} "..EID:getDescriptionEntry("unidentifiedPill"),
 				EID:getTextPosition(),
 				Vector(EID.Config["Scale"], EID.Config["Scale"]),
 				EID:getErrorColor()

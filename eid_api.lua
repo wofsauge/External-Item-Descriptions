@@ -259,7 +259,7 @@ end
 
 -- returns the current text position
 function EID:getTextPosition()
-	local posVector = Vector(EID.UsedPosition.X,EID.UsedPosition.Y)
+	local posVector = Vector(EID.UsedPosition.X, EID.UsedPosition.Y)
 	for a,modifier in pairs(EID.PositionModifiers) do
 		posVector = posVector + modifier
 	end
@@ -289,20 +289,25 @@ function EID:getLastDescribedEntity()
 	return EID.lastDescriptionEntity
 end
 
+-- Appends a given string to the description of a given Description object
+function EID:appendToDescription(descObj, appendString)
+	descObj.Description = descObj.Description..appendString
+end
+
 -- returns the description object of the specified entity
 -- falls back to english if the objID isnt available
 function EID:getDescriptionObj(Type, Variant, SubType)
 	local description = {}
-	description.ItemType = Type
-	description.ItemVariant = Variant
-	description.ID = SubType
-	description.fullItemString = Type.."."..Variant.."."..description.ID
-	description.Name = EID:getObjectName(Type, Variant, description.ID)
+	description.ObjType = Type
+	description.ObjVariant = Variant
+	description.ObjSubType = SubType
+	description.fullItemString = Type.."."..Variant.."."..description.ObjSubType
+	description.Name = EID:getObjectName(Type, Variant, description.ObjSubType)
 
-	local tableEntry = EID:getDescriptionData(Type, Variant, description.ID)
-	description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, description.ID)
+	local tableEntry = EID:getDescriptionData(Type, Variant, description.ObjSubType)
+	description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, description.ObjSubType)
 
-	description.Transformation = EID:getTransformation(Type, Variant, description.ID)
+	description.Transformation = EID:getTransformation(Type, Variant, description.ObjSubType)
 	
 	for k,modifier in pairs(EID.DescModifiers) do
 		if modifier.condition(description) then
@@ -332,20 +337,24 @@ end
 
 -- returns the specified object table in the current language.
 -- falls back to english if it doesnt exist
-function EID:getDescriptionTable(objTable)
-	return EID.descriptions[EID.Config["Language"]][objTable] or EID.descriptions["en_us"][objTable]
+function EID:getDescriptionEntry(objTable, objID)
+	if not objID then
+		return EID.descriptions[EID.Config["Language"]][objTable] or EID.descriptions["en_us"][objTable]
+	else
+		local translatedTable = EID.descriptions[EID.Config["Language"]][objTable]
+		return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID])
+	end
 end
 
 -- returns the description data table related to a given id, variant and subtype
 -- falls back to english if it doesnt exist
 function EID:getDescriptionData(Type, Variant, SubType)
 	local fullString = Type.."."..Variant
-	local moddedDesc = EID.descriptions[EID.Config["Language"]].custom[fullString.."."..SubType] or 
-						EID.descriptions["en_us"].custom[fullString.."."..SubType] or nil
+	local moddedDesc = EID:getDescriptionEntry("custom", fullString.."."..SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local adjustedID = EID:getAdjustedSubtype(Type, Variant, SubType)
 	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, adjustedID)
-	local defaultDesc = EID.descriptions[EID.Config["Language"]][tableName][adjustedID] or EID.descriptions["en_us"][tableName][adjustedID] or nil
+	local defaultDesc = EID:getDescriptionEntry(tableName, adjustedID)
 	
 	return moddedDesc or legacyModdedDescription or defaultDesc
 end
@@ -406,7 +415,7 @@ function EID:getTransformationName(id)
 		end
 		return id
 	end
-	return EID:getDescriptionTable("transformations")[tonumber(id) + 1] or str
+	return EID:getDescriptionEntry("transformations")[tonumber(id) + 1] or str
 end
 
 -- tries to get the ingame name of an item based on its ID
@@ -430,9 +439,9 @@ function EID:getObjectName(Type, Variant, SubType)
 		name = name or EID.itemConfig:GetPillEffect(adjustedSubtype - 1).Name
 		return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
 	elseif tableName == "sacrifice" then
-		return EID:getDescriptionTable("sacrificeHeader")
+		return EID:getDescriptionEntry("sacrificeHeader")
 	elseif tableName == "dice" then
-		return EID:getDescriptionTable("diceHeader")
+		return EID:getDescriptionEntry("diceHeader")
 	elseif tableName == "custom" then
 		return name or Type.."."..Variant.."."..SubType
 	end
@@ -452,6 +461,7 @@ function EID:getXMLDescription(Type, Variant, SubType)
 	end
 	return desc or "(No Description available)"
 end
+
 -- check if an entity is part of the describable entities
 function EID:hasDescription(entity)
 	local isAllowed = false

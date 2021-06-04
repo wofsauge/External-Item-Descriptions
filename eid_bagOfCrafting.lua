@@ -571,9 +571,9 @@ function EID:handleBagOfCraftingRendering()
 	end
 	
 	local customDescObj = EID:getDescriptionObj(5, 100, 710)
-	local roomDesc = EID.descriptions[EID.Config["Language"]].CraftingRoomContent or EID.descriptions["en_us"].CraftingRoomContent
-	local bagContentDesc = EID.descriptions[EID.Config["Language"]].CraftingBagContent or EID.descriptions["en_us"].CraftingBagContent
-	local resultDesc = EID.descriptions[EID.Config["Language"]].CraftingResults or EID.descriptions["en_us"].CraftingResults
+	local roomDesc = EID:getDescriptionEntry("CraftingRoomContent")
+	local bagContentDesc = EID:getDescriptionEntry("CraftingBagContent")
+	local resultDesc = EID:getDescriptionEntry("CraftingResults")
 	local bagContentResult = ""
 	if #EID.BagItems >= 8 then
 		local recipe = EID:calculateBagOfCrafting(EID.BagItems)
