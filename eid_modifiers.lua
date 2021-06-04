@@ -7,12 +7,14 @@ local game = Game()
 	end
 	local function BirthrightCallback(descObj)
 		descObj.Description = ""
+		local describedPlayerTypes = {}
 		for i = 0,game:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
-			if not player:IsSubPlayer() and player:GetMainTwin( ):GetPlayerType() == player:GetPlayerType() then
-				local playerID = player:GetPlayerType() + 1
+			local playerID = player:GetPlayerType()
+			if not player:IsSubPlayer() and player:GetMainTwin( ):GetPlayerType() == playerID and not describedPlayerTypes[playerID] then
+				describedPlayerTypes[playerID] = true
 				local translatedDesc = EID.descriptions[EID.Config["Language"]]["birthright"]
-				local birthrightDesc = (translatedDesc and translatedDesc[playerID]) or EID.descriptions["en_us"]["birthright"][playerID] or nil
+				local birthrightDesc = (translatedDesc and translatedDesc[playerID+1]) or EID.descriptions["en_us"]["birthright"][playerID+1] or nil
 				if birthrightDesc ~=nil then
 					local playerName = birthrightDesc[1] or player:GetName()
 					descObj.Description = descObj.Description.."{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#"

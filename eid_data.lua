@@ -135,7 +135,7 @@ EID.InlineIcons = {
 	["RoomLBottomLeft"] = {"roomshape", 10, 10, 10},
 	["RoomLBottomRight"] = {"roomshape", 11, 10, 10},
 	-- Transformation Icons
-	["CustomTransformation"] = {"TransformationCustom", 0, 16, 16, 0, -1, EID.IconSprite},
+	["CustomTransformation"] = {"TransformationCustom", 0, 16, 16, -5, -1, EID.IconSprite},
 	["Guppy"] = {"Transformation1", 0, 16, 16, 0, -1, EID.IconSprite},
 	["FunGuy"] = {"Transformation2", 0, 16, 16, 0, -1, EID.IconSprite},
 	["LordoftheFlies"] = {"Transformation3", 0, 16, 16, 0, -1, EID.IconSprite},
