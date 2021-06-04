@@ -531,7 +531,7 @@ function EID:createItemIconObject(str)
 	spriteDummy:Load("gfx/eid_inline_icons.anm2", true)
 	spriteDummy:ReplaceSpritesheet(1, item.GfxFileName)
 	spriteDummy:LoadGraphics()
-	return {"ItemIcon",0,11,7,-2,-2,spriteDummy}
+	return {"ItemIcon",0,11,8,-2,-2,spriteDummy}
 end
 
 -- Returns the icon for a given transformation name or ID
