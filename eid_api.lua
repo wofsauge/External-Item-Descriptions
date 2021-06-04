@@ -357,7 +357,7 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 			return 9999
 		end
 		local pool = game:GetItemPool()
-		SubType = pool:GetPillEffect(SubType, Isaac.GetPlayer(0)) + 1
+		SubType = pool:GetPillEffect(SubType, EID.player) + 1
 	end
 	return SubType
 end

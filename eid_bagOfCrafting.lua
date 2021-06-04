@@ -448,13 +448,15 @@ end, EntityType.ENTITY_KNIFE)
 local holdCounter = 0
 local function trackBagHolding()
 	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, 0)
-	if isCardHold and string.match(Isaac.GetPlayer(0):GetSprite():GetAnimation(), "PickupWalk") and #EID.BagItems>=8 then
+	local animationName = EID.player:GetSprite():GetAnimation()
+	if isCardHold and string.match(animationName, "PickupWalk") and #EID.BagItems>=8 then
 		holdCounter = holdCounter + 1
-		if holdCounter >= 55 then
-			EID.BagItems = {}
-		end
 	else
-		holdCounter = 0
+		if isCardHold and holdCounter >= 30 and string.match(animationName, "Walk") and not string.match(animationName, "Pickup") then
+			EID.BagItems = {}
+		else
+			holdCounter = 0
+		end
 	end
 end
 
@@ -486,6 +488,17 @@ EID.bagOfCraftingCurPickupCount = -1
 EID.bagOfCraftingLastQuery = {}
 EID.BagItems = {}
 
+local isControlsBlocked = false
+
+local function toggleControls(value)
+	if not value then
+		EID.player.ControlsEnabled = false
+		isControlsBlocked = false
+	elseif not isControlsBlocked and value then
+		EID.player.ControlsEnabled = true
+		isControlsBlocked = false
+	end
+end
 
 function EID:handleBagOfCraftingRendering()
 	trackBagHolding()
@@ -518,6 +531,7 @@ function EID:handleBagOfCraftingRendering()
 	end
 	-- Calculate result from pickups on floor
 	if #itemQuery < 8 then
+		toggleControls(true)
 		return false
 	end
 	table.sort(itemQuery, function(a, b) return a > b end)
@@ -552,6 +566,7 @@ function EID:handleBagOfCraftingRendering()
 	
 	if #results == 0 then
 		EID.bagOfCraftingOffset = 0
+		toggleControls(true)
 		return false
 	end
 	
@@ -559,7 +574,12 @@ function EID:handleBagOfCraftingRendering()
 	local roomDesc = EID.descriptions[EID.Config["Language"]].CraftingRoomContent or EID.descriptions["en_us"].CraftingRoomContent
 	local bagContentDesc = EID.descriptions[EID.Config["Language"]].CraftingBagContent or EID.descriptions["en_us"].CraftingBagContent
 	local resultDesc = EID.descriptions[EID.Config["Language"]].CraftingResults or EID.descriptions["en_us"].CraftingResults
-	customDescObj.Description = bagContentDesc.."#"..EID:tableToCraftingIconsMerged(EID.BagItems).."#"
+	local bagContentResult = ""
+	if #EID.BagItems >= 8 then
+		local recipe = EID:calculateBagOfCrafting(EID.BagItems)
+		bagContentResult = "{{Collectible"..recipe.."}} "
+	end
+	customDescObj.Description = bagContentDesc.." (Beta)#"..bagContentResult..EID:tableToCraftingIconsMerged(EID.BagItems).."#"
 	customDescObj.Description = customDescObj.Description ..roomDesc.."#"..EID:tableToCraftingIconsMerged(floorItems).."#"..resultDesc
 	
 	if Input.IsActionPressed(ButtonAction.ACTION_MAP, 0) or Input.IsActionPressed(ButtonAction.ACTION_MAP, 1) then
@@ -568,9 +588,9 @@ function EID:handleBagOfCraftingRendering()
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, 1) then
 			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
 		end
-		Isaac.GetPlayer(0).ControlsEnabled = false
+		toggleControls(false)
 	else
-		Isaac.GetPlayer(0).ControlsEnabled = true
+		toggleControls(true)
 	end
 	
 	local resultCount = 0
