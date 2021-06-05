@@ -350,9 +350,9 @@ end
 -- falls back to english if it doesnt exist
 function EID:getDescriptionData(Type, Variant, SubType)
 	local fullString = Type.."."..Variant
-	local moddedDesc = EID:getDescriptionEntry("custom", fullString.."."..SubType)
-	local tableName = EID:getTableName(Type, Variant, SubType)
 	local adjustedID = EID:getAdjustedSubtype(Type, Variant, SubType)
+	local moddedDesc = EID:getDescriptionEntry("custom", fullString.."."..adjustedID)
+	local tableName = EID:getTableName(Type, Variant, adjustedID)
 	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, adjustedID)
 	local defaultDesc = EID:getDescriptionEntry(tableName, adjustedID)
 	
@@ -425,7 +425,7 @@ end
 -- tries to get the ingame name of an item based on its ID
 function EID:getObjectName(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
-	local tableEntry = EID:getDescriptionData(Type, Variant, EID:getAdjustedSubtype(Type, Variant, SubType))
+	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
 	local name = nil
 	if tableEntry ~= nil then
 		if tableEntry[2] ~= nil and tableEntry[2] ~= "" and tableEntry[2] ~= EID.descriptions["en_us"][tableName][SubType] then
