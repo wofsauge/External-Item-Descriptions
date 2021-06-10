@@ -451,8 +451,11 @@ local function trackBagHolding()
 	local animationName = EID.player:GetSprite():GetAnimation()
 	if isCardHold and string.match(animationName, "PickupWalk") and #EID.BagItems>=8 then
 		holdCounter = holdCounter + 1
+		if holdCounter < 30 then
+			EID.icount = EID.player:GetCollectibleCount()
+		end
 	else
-		if isCardHold and holdCounter >= 30 and string.match(animationName, "Walk") and not string.match(animationName, "Pickup") then
+		if isCardHold and holdCounter >= 30 and (string.match(animationName, "Walk") and not string.match(animationName, "Pickup") or (EID.player:GetCollectibleCount() ~= EID.icount)) then
 			EID.BagItems = {}
 		else
 			holdCounter = 0
@@ -487,6 +490,7 @@ EID.bagOfCraftingOffset = 0
 EID.bagOfCraftingCurPickupCount = -1
 EID.bagOfCraftingLastQuery = {}
 EID.BagItems = {}
+EID.icount = 0
 
 local isControlsBlocked = false
 
