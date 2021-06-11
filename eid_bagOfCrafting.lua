@@ -43,6 +43,7 @@ local pickupIDLookup = {
 	["10.7"] = {5}, -- gold heart
 	["10.8"] = {2}, -- half soul heart
 	["10.9"] = {1}, -- scared red heart
+	["10.10"] = {1, 2}, -- blended heart
 	["10.11"] = {6}, -- Bone heart
 	["10.12"] = {7}, -- Rotten heart
 	["20.1"] = {8}, -- Penny
@@ -451,8 +452,11 @@ local function trackBagHolding()
 	local animationName = EID.player:GetSprite():GetAnimation()
 	if isCardHold and string.match(animationName, "PickupWalk") and #EID.BagItems>=8 then
 		holdCounter = holdCounter + 1
+		if holdCounter < 30 then
+			EID.icount = EID.player:GetCollectibleCount()
+		end
 	else
-		if isCardHold and holdCounter >= 30 and string.match(animationName, "Walk") and not string.match(animationName, "Pickup") then
+		if isCardHold and holdCounter >= 30 and (string.match(animationName, "Walk") and not string.match(animationName, "Pickup") or (EID.player:GetCollectibleCount() ~= EID.icount)) then
 			EID.BagItems = {}
 		else
 			holdCounter = 0
@@ -487,6 +491,7 @@ EID.bagOfCraftingOffset = 0
 EID.bagOfCraftingCurPickupCount = -1
 EID.bagOfCraftingLastQuery = {}
 EID.BagItems = {}
+EID.icount = 0
 
 local isControlsBlocked = false
 
