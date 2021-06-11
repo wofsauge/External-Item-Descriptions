@@ -43,6 +43,7 @@ local pickupIDLookup = {
 	["10.7"] = {5}, -- gold heart
 	["10.8"] = {2}, -- half soul heart
 	["10.9"] = {1}, -- scared red heart
+	["10.10"] = {1, 2}, -- blended heart
 	["10.11"] = {6}, -- Bone heart
 	["10.12"] = {7}, -- Rotten heart
 	["20.1"] = {8}, -- Penny
