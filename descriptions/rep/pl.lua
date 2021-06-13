@@ -13,8 +13,10 @@ local newDescriptions = {
 local repCollectibles={
 	[5] = {"5", "Moje Odbicie", "Daje łzom efekt bumerangu#↑ +1.5 Zasięgu#↑ +60% dodatkowego Zasięgu#↑ +0.6 Prędkości strzałów#↑ +1 Wysokości lotu łez"}, -- My Reflection
 	[6] = {"6", "Numer Jeden", "↑ +1.5 Szybkostrzelności#↓ -1.5 Zasięgu#↓ -20% mnożnika Zasięgu#↑ +0.76 Wysokości lotu łez"}, -- Number One
+	[12] = {"12", "Magiczny Grzyb", "↑ +1 Zdrowia#↑ +0.3 Obrażeń#↑ +50% Mnożnik Obrażeń#↑ +1.5 Zasięgu#↑ +0.3 Prędkości#↑ +0.5 Wysokości lotu łez#Pełne zdrowie!"},
 	[13] = {"13", "Wirus", "Zatruwasz dotykiem#↑ +0.2 Prędkości"}, -- The Virus
 	[14] = {"14", "Furia na Sterydach", "↑ +0.3 Prędkości#↑ +1.5 Zasięgu#↑ +0.5 Wysokości lotu łez"}, -- Roid Rage
+	[18] = {"18", "Dolar", "+100 Monet"}, -- A Dollar
 	[22] = {"22", "Drugie Śniadanie", "↑ +1 Serce#Leczy jedno serce"}, -- Lunch
 	[23] = {"23", "Obiad", "↑ +1 Serce#Leczy jedno serce"}, -- Dinner
 	[24] = {"24", "Deser", "↑ +1 Serce#Leczy jedno serce"}, -- Dessert
@@ -98,12 +100,12 @@ local repCollectibles={
 	[289] = {"289", "Czerwona Świeca", "Rzuca czerwony płomień#Płomień zniknie po zadaniu obrażeń 5 razy lub po 10 sekundach"}, -- Red Candle
 	[291] = {"291", "Spłuczka!", "!!! Zabija przeciwników-kupy!#Zamienia normalnych przeciwników w kupy#Gasi ogniska#W Kopalni zamienia lawę w kładkę"}, -- Flush!
 	[292] = {"292", "Biblia Szatana", "+1 Czarne serce#Użyta przed walką z bossem sprawi, że przedmiot po tej walce będzie z puli przedmiotów w pokoju diabła"}, -- Satanic Bible
-	[294] = {"294", "Fasola Maślana", "Odrzuca pobliskich przeciwników i strzały#Wrogowie odbici w przeszkody otrzymują 10 obrażeń"}, -- Butter Bean
+	[294] = {"294", "Maślana Fasola", "Odrzuca pobliskich przeciwników i strzały#Wrogowie odbici w przeszkody otrzymują 10 obrażeń"}, -- Butter Bean
 	[295] = {"295", "Cudowne Pudełeczko", "Rani wszystkich wrogów w pokoju twoimi obrażeniami x2 + 10 #Koszt: 1 moneta {{Coin}}"}, -- Magic Fingers
 	[296] = {"296", "Przetwornik", "!!! Konwertuje:#1 Serce Duszy/Czarne w 1 Czerwone Serce"}, -- Converter
 	[297] = {"297", "Puszka Pandory", "!!! JEDNORAZOWE !#!!! Upuszcza przedmioty zależnie od piętra:#B1: 2 Serca Duszy#B2: 2 klucze i bomby#C1: 1 Przedmiot z bossa#C2: B1+C1#D1: 4 Serca Duszy#D2: 30 Monet#W1: 2 Przedmioty z bossów#W2: Biblia#Szeol: 1 Przedmiot Diabła{{DevilRoom}} + Czarne Serce#Katedra: 1 Przedmiot Anioła{{AngelRoom}} + Serce Duszy#Skrzynia: 1 Moneta#Dom: Czerwony Klucz {{Collectible580}}"}, -- Pandora's box
 	[300] = {"300", "Baran", "↑ +0.25 Prędkości#Dotykanie przeciwników ich rani#Odpowiednio szybki bieg sprawi, że nie otrzymasz obrażeń kontaktowych"}, -- Aries
-	[307] = {"307", "Koziorożec", "↑ +1 Serce{{Heart}}/Klucz{{Key}}/Bomba{{Bomb}}/Moneta{{Coin}}#↑ +0.93 Obrażeń#↑ +0.1 Prędkości#↑ +0.75 Zasięgu#↑ -1 opóźnienia wystrzału, które może zejść poniżej zablokowanej wartości"}, -- Capricorn
+	[307] = {"307", "Koziorożec", "↑ +1 Serce{{Heart}}/Klucz{{Key}}/Bomba{{Bomb}}/Moneta{{Coin}}#↑ +0.5 Obrażeń#↑ +0.1 Prędkości#↑ +0.75 Zasięgu#↑ -1 opóźnienia wystrzału, które może zejść poniżej zablokowanej wartości"}, -- Capricorn
 	[308] = {"308", "Wodnik", "Zostawiasz za sobą maź#Zadaje ona 66% twoich obrażeń na sekundę#Maź łączy się z efektami łez"}, -- Aquarius
 	[314] = {"314", "Masywne Uda", "↑ +1 Zdrowia#↓ -0.4 Prędkości#Leczy 1 serce#Niszczysz kamienie wchodząc w nie"}, -- Thunder Thighs
 	[315] = {"315", "Nietypowy Przyciągacz", "Magnetyczne łzy#Wpływa na wrogów, pickupy i trynkiety#Przedmioty będą przyciągane do miejsca, w którym wyląduje strzał"}, -- Strange Attractor
@@ -114,6 +116,7 @@ local repCollectibles={
 	[331] = {"331", "Bóstwo", "Naprowadzane łzy#↑ +0.5 Obrażeń#↑ +0.5 Zasięgu#↓ -0.3 Szybkostrzelności#↓ -0.3 Prędkości Strzałów#↑ +0.8 Wysokości Lotu Łez#Łzy otrzymują aurę, zadającą obrażenia"}, -- Godhead
 	[336] = {"336", "Martwa Cebula", "Penetrujące + Widmowe łzy#↓ -1.5 Zasięgu#↓ -0.4 Prędkości Strzałów#↑ +50% Wielkości łez"}, -- Dead Onion
 	[339] = {"339", "Agrafka", "↑ +1.5 Zasięgu#↑ +0.16 Prędkości Strzałów#+1 Czarne Serce#↑ +0.5 Wysokości lotu łez"}, -- Safety Pin
+	[342] = {"342", "Niebieściak", "↑ +1 Zdrowia#↑ +0.7 Szybkostrzelności#↓ -16% Prędkości Strzałów#Leczy 2 serca"}, -- Blue Cap
 	[344] = {"344", "Pudełko Zapałek", "+1 Czarne Serce#Tworzy 2-3 Bomby do podniesienia#Tworzy trynkiet{{Trinket41}}Zapałka"}, -- Match Book
 	[345] = {"345", "Synthol", "↑ +1.0 Obrażeń#↑ +1.5 Zasięgu#↑ +0.5 Wysokości lotu łez"}, -- Synthoil
 	[346] = {"346", "Przekąska", "↑ +1 Serce#Leczy 1 serce"}, -- A Snack
@@ -135,27 +138,39 @@ local repCollectibles={
 	[395] = {"395", "Tech X", "Strzelasz laserowym kręgiem, który możesz ładować#Krąg ten leci przez cały pokój#Obrażenia są zależne od naładowania#100% obrażeń na pełnym naładowaniu"}, -- Tech X
 	[397] = {"397", "Wiązka Holownicza", "Łzy podążają za słupem światła, dopasowując się do zmiany kierunku#↑ +0.5 Szybkostrzelności#↑ +1.5 Zasięgu#↑ +0.16 Prędkości Strzałów#↑ +0.5 Wysokości lotu łez"},
 	[399] = {"399", "Paszcza z Pustki", "Po ciągłym strzelaniu przez 3 sekundy, na twojej głowie pojawi się czerwony krzyż. Po zaprzestaniu strzelania, tworzy krąg z czarnego lasera"}, -- Maw of the Void
+	[401] = {"401", "Explosivo", "Szansa na wystrzelenie czegoś na wzór klejącej się bomby#Przyklejone łzy zadają obrażenia cyklicznie"}, -- Explosivo
+	[404] = {"404", "Pierdzący Dzieciak", "Blokuje pociski#Pierdzi, gdy zostanie trafiony, przy czym może przeciwników oczarować, zatruć lub odepchnąć#Pierdy zadają 5-6 obrażeń"}, -- Farting Baby
 	[405] = {"405", "GB Bug", "{{Throwable}} {{ColorOrange}}Do Rzucania{{CR}}#Przelosowuje przeciwników i pickupy, z którymi wejdzie w kontakt"}, -- GB Bug
+	[407] = {"407", "Czystość", "↑ Zwiększa jedną z twoich statystyk zależnie od koloru aury#Dostajesz nową aurę po otrzymaniu obrażeń#{{ColorRed}}Czerwona{{CR}} =#{{Blank}} +4.0 Obrażeń#{{ColorBlue}}Niebieska{{CR}} =#{{Blank}} -4 Opóźnienia wystrzału#{{ColorYellow}}Żółta{{CR}} = +0.5 Prędkości#{{ColorOrange}}Pomarańczowa{{CR}} =#{{Blank}} +3.0 Zasięgu,#{{Blank}} +1 Wysokości lotu łez"},
 	[408] = {"408", "Athame", "Po otrzymaniu obrażeń, wokół ciebie pojawi się krąg z czarnego lasera"}, -- Athame
 	[416] = {"416", "Głębokie Kieszenie", "Tworzy 1-3 monety, jeżeli nie dostałeś nagrody za pokój#Zwiększa limit monet do 999"}, -- Deep Pockets
 	[417] = {"417", "Sukkub", "Lata po pokoju mając na sobie raniącą aurę, która zadaje 7.5-10 obrażeń na sekundę#↑ +50% obrażeń, gdy stoisz w tej aurze"}, -- Succubus
+	[421] = {"421", "Fasola Nerkowata", "Nakłada efekt oczarowania na wszystkich pobliskich przeciwników"}, -- Kidney Bean
+	[426] = {"426", "Fan z Obsesją", "Śledzi każdy twój ruch z 0.66-sekundowym opóźnieniem#Zadaje 30 obrażeń kontaktowych na sekundę"}, -- Obsessed Fan
+	[430] = {"430", "Tata-Mucha", "Śledzi każdy twój ruch z 0.66-sekundowym opóźnieniem#Strzela w najbliższych wrogów łzami, zadającymi twoje obrażenia"}, -- papa Fly
+	[431] = {"431", "Wielowymiarowe Dziecko", "Śledzi każdy twój ruch z 0.66-sekundowym opóźnieniem#Łzy, które przez nie przelecą rozdzielą się na dwie i przyspieszą"},
 	[437] = {"437", "D7", "Odradza wszystkich przeciwników w pokoju#Pozwala na kilkukrotne zdobycie nagród za oczyszczenie pokoju"}, -- D7
-	[440] = {"440", "Kamień Nerkowy", "Losowo w trakcie strzelania przestaniesz strzelać, po czym wypuścisz serię pocisków i kamień nerkowy#↓ -17 Zasięgu#↑ +2.0 Wysokości lotu łez"},
-	[448] = {"448", "Kawałek Szkła", "Gdy otrzymasz obrażenia, masz szansę na ↑ +5 Zasięgu, plucie czerwonymi łzami i pozostawianie krwawej mazi,#{{Blank}} lub stworzenie czerwonego serca"}, -- Shard of Glass
+	[440] = {"440", "Kamień Nerkowy", "Losowo w trakcie strzelania przestaniesz strzelać, po czym wypuścisz serię pocisków i kamień nerkowy"},
+	[448] = {"448", "Kawałek Szkła", "Gdy otrzymasz obrażenia na czerwone serca. plujesz czerwonymi łazami#Wybierasz kierunek strzelając#Gdy jest aktywne, rani cię pół serca co 20 sekund#Zatrzymaj krwawienie lecząc czerwone serca"}, -- Shard of Glass
 	[451] = {"451", "Obrus do Tarota", "Przy podniesieniu upuszcza losową#{{Blank}} kartę {{Card}} lub runę {{Rune}}#Niektóre karty otrzymują dodatkowe lub zdwojone efekty"}, -- Tarot Cloth
-	[456] = {"456", "Nocna Przekąska", "↑ +1 Zdrowia"}, -- Midnight Snack
-	[464] = {"464", "Glyph of Balance", "+2 Soul Hearts#Champion enemies and room drops appear more frequently#Priority of spawned pickups depends on what the player is missing most of"}, -- Glyph of Balance
-	[472] = {"472", "King Baby", "Other familiars follow it and shoot automatically at enemies#Stops moving when you are shooting#Will teleport back to you when you stop shooting"}, -- King Baby
-	[474] = {"474", "broken Glass Canon", "Turns into Glass Canon when used"}, -- broken Glass Canon
-	[489] = {"489", "D Infinity", "Random Dice-effect each usage#Press the Drop button to cycle through the dices"}, -- D Infinity
-	[491] = {"491", "Acid Baby", "Drops a random pill every 7 rooms#Using a pill poisons all enemies in the room"}, -- Acid Baby
-	[494] = {"494", "Jacobs Ladder", "Tears spawn 1-2 sparks of electricity on impact#Sparks deal half your damage#Sparks can jump between enemies"}, -- Jacobs Ladder
-	[503] = {"503", "Little Horn", "Chance to fire tears that summon a Big Horn hand#The hand kills enemies instantly and deals damage to bosses#Running into enemies will deal 3.5 damage to them"}, -- Little Horn
-	[504] = {"504", "Brown Nugget", "Spawns a fly turret that shoots at enemies#Each shot deals 3.5 damage"}, -- Brown Nugget
-	[509] = {"509", "Bloodshot Eye", "Orbital that shoots a tear every 1/3rd second when enemy is nearby#Deals 3.5 damage per tear#Deals 30 contact damage per second"}, -- Bloodshot Eye
-	[523] = {"523", "Moving Box", "When used, stores up to 6 Pick-Ups from the current room#Using it again will put them back on the floor again#This allows you to move things between rooms"}, -- Moving Box
-	[524] = {"524", "Technology Zero", "Tears will be connected with beams of electricity#Electricity damage equals 1/3 of your damage"}, -- Technology Zero
-	[543] = {"543", "Hallowed Ground", "Spawn white poop when you get hit#(White poop has a ↑ Tears and Damage up aura, grants homing tears and can block damage)"}, -- Hallowed Ground
+	[453] = {"453", "Złamanie Otwarte", "Kościane łzy#Po trafieniu w cokolwiek, Łzy rozpadają się#{{Blank}} na 1-3 mniejsze#↑ +0.38 Zasięgu#↑ +1.0 Wysokości lotu łez"}, -- Compound Fracture
+	[455] = {"455", "Zgubiona Moneta Taty", "↑ +0.38 Zasięgu#Tworzy szczęśliwą monetę"},
+	[456] = {"456", "Nocna Przekąska", "↑ +1 Zdrowia#Leczy 1 czerwone serce"}, -- Midnight Snack
+	[464] = {"464", "Glif Równowagi", "+2 Serca Duszy#Pickupy z mistrzowskich przeciwników i za oczyszczenie pokoju wypadają częściej#Tworzone pickupy uzależnione są od tego, czego brakuje ci najbardziej"}, -- Glyph of Balance
+	[472] = {"472", "Dziecięcy Król", "Podążają za nim inni sojusznicy, którzy automatycznie strzelają we wrogów#Nie porusza się, gdy strzelasz#Gdy przestaniesz strzelać, teleportuje się do ciebie"}, -- King Baby
+	[474] = {"474", "Zepsuta Szklana Armata", "Użyta, zmienia się w#{{Blank}} Szklaną Armatę {{Collectible352}}"}, -- broken Glass Canon
+	[489] = {"489", "D Nieskończoność", "Efekt losowej Kości przy każdym użyciu#Naciśnij przycisk odpowiedzialny za wyrzucanie rzeczy, żeby zmieniać kości"}, -- D Infinity
+	[491] = {"491", "Kwaśne Dziecko", "Upuszcza losową pigułkę {{Pill}} co 7 pokoi#Użycie pigułki zatruwa wszystkich przeciwników w pokoju"}, -- Acid Baby
+	[493] = {"493", "Adrenalina", "Za każdy pusty w połowie zasobnik na serce:#↑ Zwiększone Obrażenia, obliczane metodą#{{Blank}} ((2 * BrakPołówki)#{{Blank}} ^ 1.6) * 0.1"}, -- Adrenaline
+	[494] = {"494", "Drabina Jakuba", "Przy kontakcie,#{{Blank}} łzy tworzą iskrę elektryczną#Iskry zadają połowę twoich obrażeń#Mogą przeskakiwać między wrogami"}, -- Jacobs Ladder
+	[503] = {"503", "Mały Róg", "Szansa na wystrzelenie łzy przyzywającej rękę bossa Big Horn#Ręka natychmiastowo zabija przeciwników nie-bossów, a bossom zadaje obrażenia#Wbieganie we wrogów#{{Blank}} zada im 3.5 obrażeń"}, -- Little Horn
+	[504] = {"504", "Brązowy Bobek", "Tworzy muchę-wieżyczkę, strzelającą w przeciwników#Każdy strzał zadaje 3.5 obrażeń"}, -- Brown Nugget
+	[509] = {"509", "Przekrwione Oko", "Orbituje wokół ciebie#Strzela łzą co 1/3 sekundy, gdy wróg jest w pobliżu#Zadaje 3.5 obrażeń na łzę#Zadaje 30 obrażeń kontaktowych na sekundę"}, -- Bloodshot Eye
+	[523] = {"523", "Pudło na Przenosiny", "Użyte, przechowuje do 10 losowych Pickupów z obecnego pokoju#Użyte ponownie wyrzuci swoją zawartość na ziemię#Możesz w ten sposób przenosić rzeczy między pokojami"}, -- Moving Box
+	[524] = {"524", "Technology Zero", "Łzy są połączone wiązką elektryczną#Elektryczność zadaje obrażenia równe 1/3 twoich"}, -- Technology Zero
+	[531] = {"531", "Hemolakria", "Łzy lecą łukiem#Przy kontakcie rozpadają się na wiele mniejszych#↓ Mniejsza Szybkostrzelność#↑ +50% Obrażeń#↑ Dodatkowo +1 Obrażeń"}, -- Haemolacria
+	[541] = {"541", "Szpik", "+1 Kościane Serce {{BoneHeart}}#Tworzy 3 Czerwone Serca#Szansa na stworzenie {{Trinket167}} Polished Bone, gdy opróźnisz Kościany zasobnik"}, -- Marrow
+	[543] = {"543", "Poświęcona Ziemia", "Tworzy białą kupę, gdy zostaniesz trafiony#Biała kupa może blokować obrażenia i ma aurę zwiększającą Obrażenia i Szybkostrzelność, oraz dającą efekt naprowadzanych łez"}, -- Hallowed Ground
 	
 	[553] = {"553", "Mucormycosis", "Chance to fire sticky spore tears#Spores blow up after 2.5 seconds, dealing damage, poison nearby enemies and releases more spores"}, --  Mucormycosis
 	[554] = {"554", "2Spooky", "Fears enemies in a small radius around you"}, --  2Spooky
@@ -166,7 +181,7 @@ local repCollectibles={
 	[559] = {"559", "120 Volt", "Repeatedly zaps close enemies#Electricity deals 75% of your damage"}, --  120 Volt
 	[560] = {"560", "It Hurts", "Releases a ring of 10 tears when getting hit#↑ +1.2 Tears up for first hit#↑ +0.4 for each additional hit"}, --  It Hurts
 	[561] = {"561", "Almond Milk", "↑ Fire Rate x 4#↓ Damage x 0.3#Tears gain random worm trinket effects"}, --  Almond Milk
-	[562] = {"562", "Rock Bottom", "Sets all stats to their base value#Prevents stats from being lowered for the rest of the run"}, --  Rock Bottom
+	[562] = {"562", "Rock Bottom", "Prevents stats from being lowered for the rest of the run"}, --  Rock Bottom
 	[563] = {"563", "Nancy Bombs", "+5 bombs#Bombs explode with a random bomb effect"}, --  Nancy Bombs
 	[564] = {"564", "A Bar of Soap", "↑ +0.5 Tears up#↑ +0.2 Shot Speed up"}, --  A Bar of Soap
 	[565] = {"565", "Blood Puppy", "Familiar that chases enemies#After killing enough enemies, it becomes more powerful but will also try to hurt you#Attacking it returns it to normal"}, --  Blood Puppy
@@ -236,7 +251,7 @@ local repCollectibles={
 	[629] = {"629", "Bot Fly", "Orbital that fires shielded tears"}, --  Bot Fly
 	[630] = {"630", "", "<Item does not exist>"},
 	[631] = {"631", "Meat Cleaver", "Splits enemies in the room into 2 smaller versions of themselves with much less health"}, --  Meat Cleaver
-	[632] = {"632", "Evil Charm", "↑ +2 Luck up#+ half a soul heart each floor"}, --  Evil Charm
+	[632] = {"632", "Evil Charm", "↑ +2 Luck up#Makes you immune to burn, confusion, fear, poison, and toxic gas"}, --  Evil Charm
 	[633] = {"633", "Dogma", "Grants flight and one-time Holy Mantle {{Collectible313}} effect#↑ +2.0 damage up#↑ +0.1 Speed up#If player has fewer than 6 hearts, heals him with combination of red and soul hearts"}, --  Dogma
 	[634] = {"634", "Purgatory", "While in a room with enemies, spawns cracks on the ground#Walking over these cracks summons exploding ghosts"}, --  Purgatory
 	[635] = {"635", "Stitches", "Passively spawns a familiar that moves in the direction Isaac shoots#On use, Isaac swaps places with the familiar and gains short invincibility#Teleporting onto things can damage or destroy them"}, --  Stitches
@@ -273,7 +288,7 @@ local repCollectibles={
 	[666] = {"666", "", "<Item does not exist>"},
 	[667] = {"667", "Strawman", "Spawns Keeper as a second character#If he dies, he spawns blue spiders#Item gets removed afterwards"}, --  Strawman
 	[668] = {"668", "Dad's Note", "Begins the sequence to access the Home floor"}, --  Dad's Note
-	[669] = {"669", "Sausage", "↑ +1.33 Damage up#↑ +0.2 Speed up#↑ +1.2 Shot Speed up#↑ +0.16 Range up#↑ +1 Luck up"}, --  Sausage
+	[669] = {"669", "Sausage", "↑ +1 Health up#↑ +1.33 Damage up#↑ +0.2 Speed up#↑ +1.2 Shot Speed up#↑ +0.16 Range up#↑ +1 Luck up"}, --  Sausage
 	[670] = {"670", "Options?", "If a room grants a clear reward, there will be two different rewards to chose from#Taking one causes the other to disappear"}, --  Options?
 	[671] = {"671", "Candy Heart", "Gives random permanent stat boost when healing with red heart pickups"}, --  Candy Heart
 	[672] = {"672", "A Pound of Flesh", "Devil deals now cost coins#Shop items now cost health#Consumables in shops are free but surrounded by spikes"}, --  A Pound of Flesh
@@ -313,7 +328,7 @@ local repCollectibles={
 	[706] = {"706", "Abyss", "Destroys all items in the room and spawns an attack fly familiar for each#Effects of fly depends on the items"}, --  Abyss
 	[707] = {"707", "Supper", "+1 red Heart container#Heals one heart"}, --  Supper
 	[708] = {"708", "Stapler", "↑ +1.0 damage#Prevents Isaac from firing tears from one eye"}, --  Stapler
-	[709] = {"709", "Suplex!", "Allows you to dash into and pick up enemies or bosses, then slam them into the ground#Slam can be controlled#Slam deals 50 damage ans spawns rock waves"}, --  Suplex!
+	[709] = {"709", "Suplex!", "Allows you to dash into and pick up enemies or bosses, then slam them into the ground#Slam can be controlled#Slam deals 50 damage and spawns rock waves"}, --  Suplex!
 	[710] = {"710", "Bag of Crafting", "Collects and holds up to 8 pickups#Holding the activate button crafts the pickups into an item#Quality of item is dependent on the quality of the pickups"}, --  Bag of Crafting
 	[711] = {"711", "Flip", "Switch characters between Tainted Lazarus and Dead Tainted Lazarus"}, --  Flip
 	[712] = {"712", "Lemegeton", "Spawns destroyable orbital item ghost#Effect of item is applied to the player#Items are chosen from current rooms item pool"}, --  Lemegeton
@@ -485,6 +500,41 @@ local repTrinkets={
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["pl"].trinkets)
 
+
+
+-- Card Buffs caused by Tarot Cloth
+-- Note: "#" will be replaced with "#{{Collectible451}} " automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+EID.descriptions["pl"].tarotClothBuffs = {
+	[2] = {"2", "", "Also grants{{Collectible34}} The Book of Belial effect"}, -- I - The Magician
+	[3] = {"3", "", "A second foot strikes down shortly after the first"}, -- II - The High Priestess
+	[4] = {"4", "", "Quadruples the stat increases"}, -- III - The Empress
+	[5] = {"5", "", "If the boss wasn't defeated yet, grants 1 soul heart on top of teleporting"}, -- IV - The Emperor
+	[6] = {"6", "", "Spawns 3 Soul hearts"}, -- V - The Hierophant
+	[7] = {"7", "", "Spawns 3 Red hearts"}, -- VI - The Lovers
+	[8] = {"8", "", "Doubled duration"}, -- VII - The Chariot
+	[9] = {"9", "", "Doubled Pickup spawns"}, -- VIII - Justice
+	[10] = {"10", "", "Prevents Greed from spawning in the shop#Turns shop into a normal shop if greed was already fought in it"}, -- IX - The Hermit
+	[11] = {"11", "", "Spawns 2 Slot Machines"}, -- X - Wheel of Fortune
+	[12] = {"12", "", "Doubled stat increase, excluding dmg multiplier"}, -- XI - Strength
+	[14] = {"14", "", "Deals 80 damage"}, -- XIII - Death
+	[15] = {"15", "", "Spawns 2 Blood Donation Machines"}, -- XIV - Temperance
+	[16] = {"16", "", "Damage increase doubled"}, -- XV - The Devil
+	[17] = {"17", "", "Spawns 12 troll bombs"}, -- XVI - The Tower
+	[18] = {"18", "", "If the treasure room wasn't entered before, it will have two items to choose from"}, -- XVII - The Stars
+	[21] = {"21", "", "Spawns 2 beggars"}, -- XX - Judgement
+	[56] = {"56", "", "Drops all items alongside pickups, including Tarot Cloth"}, -- 0 - The Fool?
+	[59] = {"59", "", "Grants 3 temporary heart containers"}, -- III - The Empress?
+	[61] = {"61", "", "Spawns 6 Bone Hearts"}, -- V - The Hierophant?
+	[62] = {"62", "", "Adds 4 broken hearts and spawns 4 items"}, -- VI - The Lovers?
+	[64] = {"64", "", "Spawns 4-14 golden chests"}, -- VIII - Justice?
+	[70] = {"70", "", "Eat 20 pills"}, -- XIV - Temperance?
+	[72] = {"72", "", "Spawns 14 rock clusters"}, -- XVI - The Tower?
+	[73] = {"73", "", "Removes 2 items and spawns 4"}, -- XVII - The Stars?
+	[76] = {"76", "", "Spawns 2 restock machines"}, -- XX - Judgement?
+}
+
+
+
 EID.descriptions["pl"].goldenTrinket = "ZŁOTE: Zdwojony Efekt!"
 
 ---------- Cards ----------
@@ -612,6 +662,7 @@ EID.descriptions["pl"].horsepills={
 	[9999] = {"", "Złota Pigułka", "Efekt losowej, końskiej pigułki#Niszczy się po kilku użyciach"}, -- golden Pill
 }
 
+EID.descriptions["pl"].CraftingBagContent = "Pickupy w torbie:"
 EID.descriptions["pl"].CraftingRoomContent = "Pickupy w pokoju:"
 EID.descriptions["pl"].CraftingResults = "Wyniki:#(Przewiń: Trzymaj TAB + Strzał △/▽)"
 
