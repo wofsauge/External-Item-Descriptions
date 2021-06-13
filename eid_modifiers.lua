@@ -126,7 +126,7 @@ local game = Game()
 		descObj.Description = "{{ColorGold}}"..goldenDesc.."#"..descObj.Description
 		return descObj
 	end
-	EID:addDescriptionModifier("Tarot Cloth", GoldenTrinketCondition, GoldenTrinketCallback)
+	EID:addDescriptionModifier("Golden Trinket", GoldenTrinketCondition, GoldenTrinketCallback)
 	
 	
 end
