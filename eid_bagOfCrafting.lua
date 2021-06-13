@@ -288,7 +288,8 @@ function EID:getBagOfCraftingID(Variant, SubType)
 	return nil
 end
 
-function EID:calculateBagOfCrafting(components)
+function EID:calculateBagOfCrafting(componentsTable)
+	local components = {table.unpack(componentsTable)}
     if components == nil or #components ~= 8 then
         return 0
     end
@@ -431,13 +432,24 @@ EID:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, function(_, bag)
 	if bag.Variant ~= 4 or bag.SubType ~= 4 then
 		return
 	end
+	
+	table.sort(pickupsOnInit, function (a,b)
+		return
+			 a:GetSprite():GetFrame() > b:GetSprite():GetFrame() or
+			(a:GetSprite():GetFrame() == b:GetSprite():GetFrame() and a.Index < b.Index)
+	end)
+	
 	for _,e in ipairs (pickupsOnInit) do
 		if e:GetSprite():GetAnimation() == "Collect" then
 			local craftingIDs = EID:getBagOfCraftingID(e.Variant, e.SubType)
 			if craftingIDs ~= nil then
 				for _,v in ipairs(craftingIDs) do
 					if #EID.BagItems >= 8 then
-						table.remove(EID.BagItems, 1)
+						local newContent = {}
+						for i=2,#EID.BagItems do
+							table.insert(newContent, EID.BagItems[i])
+						end
+						EID.BagItems = newContent
 					end
 					table.insert(EID.BagItems, v)
 				end
@@ -508,6 +520,14 @@ end
 function EID:handleBagOfCraftingRendering()
 	trackBagHolding()
 	detectBagContentShift()
+
+	if EID.Config["DisplayBagOfCrafting"] == "never" then
+		return false
+	end
+	if EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.player:GetSprite():GetAnimation(), "PickupWalk") then
+		return false
+	end
+	
 	local results = {}
 	local floorItems = {}
 	local pickups = Isaac.FindByType(5, -1, -1, true, false)

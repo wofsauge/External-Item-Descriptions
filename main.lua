@@ -484,12 +484,10 @@ local function onRender(t)
 		else
 			EID:removeTextPosModifier("Tained HUD")
 		end
-		if EID.player:HasCollectible(710) and EID.Config["DisplayBagOfCrafting"] ~= "never" then
-			if EID.Config["DisplayBagOfCrafting"] == "always" or (EID.Config["DisplayBagOfCrafting"] == "hold" and string.find(EID.player:GetSprite():GetAnimation(), "PickupWalk")) then
-				local success = EID:handleBagOfCraftingRendering()
-				if success then
-					return
-				end
+		if EID.player:HasCollectible(710) then
+			local success = EID:handleBagOfCraftingRendering()
+			if success then
+				return
 			end
 		end
 	end
