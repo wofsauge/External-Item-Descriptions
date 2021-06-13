@@ -670,4 +670,5 @@ EID.descriptions["en_us"].horsepills={
 EID.descriptions["en_us"].CraftingBagContent = "Pickups in bag:"
 EID.descriptions["en_us"].CraftingRoomContent = "Pickups in room:"
 EID.descriptions["en_us"].CraftingResults = "Results:#(Scroll: Hold TAB + Shoot △/▽)"
+EID.descriptions["en_us"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}This feature currently does not support games with modded items installed"
 

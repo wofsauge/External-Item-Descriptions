@@ -517,6 +517,34 @@ local function toggleControls(value)
 	end
 end
 
+local function GetMaxCollectibleID()
+    local id = CollectibleType.NUM_COLLECTIBLES-1
+    local step = 16
+    while step > 0 do
+        if Isaac.GetItemConfig():GetCollectible(id+step) ~= nil then
+            id = id + step
+        else
+            step = step // 2
+        end
+    end
+    
+    return id
+end
+local maxItemID = nil
+
+local function detectModdedItems()
+	if maxItemID == nil then
+		maxItemID = GetMaxCollectibleID()
+	end
+	if maxItemID > CollectibleType.NUM_COLLECTIBLES then
+		local customDescObj = EID:getDescriptionObj(5, 100, 710)
+		customDescObj.Description = EID.descriptions["en_us"].CraftingBagModError
+		EID:printDescription(customDescObj)
+		return true
+	end
+	return false
+end
+
 function EID:handleBagOfCraftingRendering()
 	trackBagHolding()
 	detectBagContentShift()
@@ -525,6 +553,9 @@ function EID:handleBagOfCraftingRendering()
 		return false
 	end
 	if EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.player:GetSprite():GetAnimation(), "PickupWalk") then
+		return false
+	end
+	if detectModdedItems() then
 		return false
 	end
 	
