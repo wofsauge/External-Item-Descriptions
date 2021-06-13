@@ -70,8 +70,13 @@ local game = Game()
 	local function SpindownDiceCallback(descObj)
 		EID:appendToDescription(descObj, "#{{Collectible723}} :")
 		local refID = descObj.ObjSubType
+		local hasCarBattery = EID.player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
 		for i = 1,EID.Config["SpindownDiceResults"] do
 			local spinnedID = EID:getSpindownResult(refID)
+			if hasCarBattery then
+				refID = spinnedID
+				spinnedID = EID:getSpindownResult(refID)
+			end
 			refID = spinnedID
 			if spinnedID > 0 then
 				EID:appendToDescription(descObj, "{{Collectible"..spinnedID.."}}")
@@ -83,6 +88,9 @@ local game = Game()
 				EID:appendToDescription(descObj, errorMsg)
 				break
 			end
+		end
+		if hasCarBattery then
+			EID:appendToDescription(descObj, " (Results with {{Collectible356}})")
 		end
 		return descObj
 	end
