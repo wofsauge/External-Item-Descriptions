@@ -65,6 +65,10 @@ if MCMLoaded then
 	MCM.AddText("EID", "Info", function() return "Version "..EID.Config.Version.." ("..EID.GameVersion..")" end)
 	MCM.AddSpace("EID", "Info")
 	MCM.AddText("EID", "Info", function() return "by Wofsauge" end)
+	MCM.AddSpace("EID", "Info")
+	MCM.AddText("EID", "Info", function() return EID.isHidden and"~~~~~~~~~~~~~~~~~~~~~~~~~~~" or "" end)
+	MCM.AddText("EID", "Info", function() return EID.isHidden and"~~~~~ CURRENTLY HIDDEN! ~~~~~" or "" end)
+	MCM.AddText("EID", "Info", function() return EID.isHidden and"~~~~~~~~ F2 to show ~~~~~~~~~" or "" end)
 
 	---------------------------------------------------------------------------
 	---------------------------------General-----------------------------------
@@ -112,6 +116,29 @@ if MCMLoaded then
 		}
 	)
 	MCM.AddSpace("EID", "General")
+	
+	-- Initial hiding
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.isHidden
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.isHidden then
+					onOff = "True"
+				end
+				return 'Is Hidden: ' .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["Hidden"] = currentBool
+				EID.isHidden  = currentBool
+			end
+		}
+	)
 	
 	-- Disable on Curse
 	MCM.AddSetting(

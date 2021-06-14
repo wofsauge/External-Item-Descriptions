@@ -673,6 +673,7 @@ if EID.MCMLoaded or REPENTANCE then
 		if REPENTANCE then
 			EID.Config["BagContent"] = EID.BagItems or {}
 		end
+		EID.Config["Hidden"] = EID.isHidden
 		EID.SaveData(EID, json.encode(EID.Config))
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
