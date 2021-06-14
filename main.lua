@@ -24,6 +24,7 @@ EID.lastDescriptionEntity = nil
 EID.lineHeight = 11
 EID.sacrificeCounter = {}
 EID.itemConfig = Isaac.GetItemConfig()
+EID.effectList = {["76"] = true}
 
 -- Sprite inits
 EID.IconSprite = Sprite()
@@ -501,8 +502,12 @@ local function onRender(t)
 	EID.lastDescriptionEntity = nil
 	EID.lastDist = 10000
 	local searchGroups = {}
-	searchGroups[1] = Isaac.FindByType(EntityType.ENTITY_EFFECT, -1, -1, true, false)
-	searchGroups[2] = Isaac.FindInRadius(EID.player.Position, tonumber(EID.Config["MaxDistance"])*40, searchPartitions)
+	
+	table.insert(searchGroups, Isaac.FindInRadius(EID.player.Position, tonumber(EID.Config["MaxDistance"])*40, searchPartitions))
+	for k,_ in pairs(EID.effectList) do
+		table.insert(searchGroups, Isaac.FindByType(EntityType.ENTITY_EFFECT, k, -1, true, false))
+	end
+	
 	for _, entitySearch in ipairs(searchGroups) do
 		for i, entity in ipairs(entitySearch) do
 			if EID:hasDescription(entity) and entity.FrameCount > 0 then

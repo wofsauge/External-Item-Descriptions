@@ -166,6 +166,9 @@ end
 function EID:addEntity(id, variant, subtype, entityName, description, language)
 	subtype = subtype or nil
 	language = language or "en_us"
+	if id == EntityType.ENTITY_EFFECT then
+		EID.effectList[variant] = true
+	end
 	EID.descriptions[language].custom[id .. "." .. variant .. "." .. subtype] = {
 		subtype,
 		entityName,
