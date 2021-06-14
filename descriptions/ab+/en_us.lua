@@ -621,7 +621,7 @@ EID.descriptions["en_us"].trinkets={
 	{"50", "Burnt Penny", "50% chance to drop a bomb when picking up coins"},
 	{"51", "Flat Penny", "50% chance to drop a key when picking up coins"},
 	{"52", "Counterfeit Penny", "50% chance to get +1 coin when picking up coins"},
-	{"53", "Tick", "-15% boss-health#Heals 1 red heart when entering a boss room ({{BossRoom}})"},
+	{"53", "Tick", "-15% boss-health#Heals 1 red heart when entering a boss room ({{BossRoom}})#!!! Once picked up, it can't be removed#Only removeable with {{Trinket41}}Match Stick or gulping"},
 	{"54", "Isaac's Head", "Familiar with piercing tears#Deals 3.5 damage per tear"},
 	{"55", "Maggy's Faith", "Get one eternal heart at the start of every floor"},
 	{"56", "Judas' Tongue", "Reduces devil deal prices from 2 heart containers into 1"},
