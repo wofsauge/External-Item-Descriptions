@@ -10,10 +10,10 @@
 -- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
 
 -- init en_us table
-EID.descriptions["turkish"] = {}
-EID.descriptions["turkish"].custom = {} -- table for custom entity descriptions
+EID.descriptions["tr_tr"] = {}
+EID.descriptions["tr_tr"].custom = {} -- table for custom entity descriptions
 
-EID.descriptions["turkish"].collectibles={
+EID.descriptions["tr_tr"].collectibles={
     {"1",   "Üzgün Soğan","↑ Gözyaşların 0,7 büyür"},
     {"2",   "Manevi Göz","Üçlü vuruş#↓ Gözyaşları küçülür"},
     {"3",   "Kaşık Bükücü","Takip eden gözyaşları"},
@@ -569,7 +569,7 @@ EID.descriptions["turkish"].collectibles={
 }
 
 ---------- Trinkets ----------
-EID.descriptions["turkish"].trinkets={
+EID.descriptions["tr_tr"].trinkets={
     {"1",	"Swallowed Penny",	"Drop 1 coin when you get hit"},
     {"2",	"Petrified Poop",	"50% more drops from poop"},
     {"3",	"AAA Battery",	"-1 charge needed for spacebar items"},
@@ -701,7 +701,7 @@ EID.descriptions["turkish"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["turkish"].cards={
+EID.descriptions["tr_tr"].cards={
     {"1",	"0 - The Fool",	"Teleports you back to the start"},
     {"2",	"I - The Magician",	"Homing tears for current room"},
     {"3",	"II - The High Priestess",	"Moms Foot stomps on an enemy!"},
@@ -761,9 +761,9 @@ EID.descriptions["turkish"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["turkish"].unidentifiedPill = "Tanımlanamamış Hap"
+EID.descriptions["tr_tr"].unidentifiedPill = "Tanımlanamamış Hap"
 
-EID.descriptions["turkish"].pills={
+EID.descriptions["tr_tr"].pills={
 	{"0", "Bad Gas", "Poisons entire room"}, -- Bad Gas
     {"1",	"Bad Trip",	"Spawns a Gas cloud"},
     {"2",	"Balls of Steel",	"Deals 1 heart of damage to you"},
@@ -814,9 +814,9 @@ EID.descriptions["turkish"].pills={
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["turkish"].sacrificeHeader = "[Next Sacrifice Room payout]"
+EID.descriptions["tr_tr"].sacrificeHeader = "[Next Sacrifice Room payout]"
 
-EID.descriptions["turkish"].sacrifice={
+EID.descriptions["tr_tr"].sacrifice={
     {"1", "", "50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
     {"2", "", "50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
     {"3", "", "67% chance for increased Angel Room chance"},
@@ -832,9 +832,9 @@ EID.descriptions["turkish"].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions["turkish"].diceHeader = "[Dice effect]"
+EID.descriptions["tr_tr"].diceHeader = "[Dice effect]"
 
-EID.descriptions["turkish"].dice={
+EID.descriptions["tr_tr"].dice={
     {"1", "", "Rerolls all of your items#(only affect collectibles)"},
     {"2", "", "Rerolls all pickups in the room"},
     {"3", "", "Rerolls all pickups on the entire floor"},
@@ -844,7 +844,7 @@ EID.descriptions["turkish"].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions["turkish"].transformations = {
+EID.descriptions["tr_tr"].transformations = {
     "",					-- 0 = none
     "Guppy",			-- 1
     "Fun Guy",			-- 2
