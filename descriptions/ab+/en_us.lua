@@ -270,7 +270,7 @@ EID.descriptions["en_us"].collectibles={
 	{"255", "Screw", "↑ +0.5 Tears up#↑ +0.2 Shot Speed up"},
 	{"256", "Hot Bombs", "Burning bombs#+5 Bombs"},
 	{"257", "Fire Mind", "Chance for exploding tears#Tears light enemies on fire"},
-	{"258", "Missing No.", "Rerolls all your items ans stats on pickup and every time you change the floor"},
+	{"258", "Missing No.", "Rerolls all your items and stats on pickup and every time you change the floor"},
 	{"259", "Dark Matter", "↑ +1 Damage up#Chance to shoot fearing tears"},
 	{"260", "Black Candle", "Immunity to Curses#+1 Black heart#Higher Devil{{DevilRoom}} / Angel{{AngelRoom}} room chance"},
 	{"261", "Proptosis", "↑ +100% Damage up#↓ Dealt damage decreases for traveled distance of the tear"},
