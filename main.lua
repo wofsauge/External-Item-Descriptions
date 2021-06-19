@@ -45,6 +45,10 @@ local ArrowSprite = Sprite()
 ArrowSprite:Load("gfx/eid_transform_icons.anm2", true)
 ArrowSprite:Play("Arrow", false)
 
+EID.CursorSprite = Sprite()
+EID.CursorSprite:Load("gfx/eid_transform_icons.anm2", true)
+EID.CursorSprite:Play("Cursor")
+
 local hudBBSprite = Sprite()
 hudBBSprite:Load("gfx/eid_transform_icons.anm2", true)
 hudBBSprite:Play("boundingBox")
@@ -423,8 +427,7 @@ end
 function EID:handleHoverHUD()
 	local mousePos = Input.GetMousePosition(false)
 	if EID.Config["ShowCursor"] then
-		EID.IconSprite:Play("Cursor")
-		EID:renderIcon(EID.IconSprite, mousePos.X/2, mousePos.Y/2)
+		EID.CursorSprite:Render(Vector(mousePos.X/2, mousePos.Y/2), nullVector, nullVector)
 	end
 	for k, v in pairs(EID.HUDElements) do
 		local hudElement = EID:handleHUDElement(v)
