@@ -45,6 +45,10 @@ local ArrowSprite = Sprite()
 ArrowSprite:Load("gfx/eid_transform_icons.anm2", true)
 ArrowSprite:Play("Arrow", false)
 
+local hudBBSprite = Sprite()
+hudBBSprite:Load("gfx/eid_transform_icons.anm2", true)
+hudBBSprite:Play("boundingBox")
+
 ------- Load all modules and other stuff ------
 require("mod_config_menu")
 
@@ -403,6 +407,33 @@ function EID:renderIndicator(entity)
 	end
 end
 
+function EID:renderHUDLocationIndicators()
+	local mousePos = Input.GetMousePosition(false)
+	Isaac.RenderScaledText("Mouse pos   X:"..mousePos.X.." Y:"..mousePos.Y, 100, 10, 0.5, 0.5, 1 ,1 ,1 ,1 )
+	Isaac.RenderScaledText("HUD Adjustment Preview!", 200, 10, 1, 1, 1 ,0.25 ,0.25 ,1 )
+	for k, v in pairs(EID.HUDElements) do
+		local hudElement = EID:handleHUDElement(v)
+		hudBBSprite.Scale = Vector(hudElement.width/2, hudElement.height/2)
+		hudBBSprite.Color = Color(1, 1, 1, EID.Config["Transparency"], 0, 0, 0)
+		hudBBSprite:Render(Vector(hudElement.x/2, hudElement.y/2), nullVector, nullVector)
+		Isaac.RenderScaledText(k, hudElement.x/2, hudElement.y/2, 0.5, 0.5, 1, 1, 1 ,1)
+	end
+end
+
+function EID:handleHoverHUD()
+	local mousePos = Input.GetMousePosition(false)
+	if EID.Config["ShowCursor"] then
+		EID.IconSprite:Play("Cursor")
+		EID:renderIcon(EID.IconSprite, mousePos.X/2, mousePos.Y/2)
+	end
+	for k, v in pairs(EID.HUDElements) do
+		local hudElement = EID:handleHUDElement(v)
+		if hudElement.x <= mousePos.X and (hudElement.x + hudElement.width) >= mousePos.X and hudElement.y <= mousePos.Y and (hudElement.y + hudElement.height) >= mousePos.Y then
+			return hudElement.descriptionObj() or nil
+		end
+	end
+	return nil
+end
 
 ---------------------------------------------------------------------------
 ---------------------------On Update Function------------------------------
@@ -502,8 +533,17 @@ local function onRender(t)
 	EID.lastDescriptionEntity = nil
 	EID.lastDist = 10000
 	local searchGroups = {}
+	local sourcePos = EID.player.Position
 	
-	table.insert(searchGroups, Isaac.FindInRadius(EID.player.Position, tonumber(EID.Config["MaxDistance"])*40, searchPartitions))
+	if EID.Config["EnableMouseControls"] then
+		local hudDescription = EID:handleHoverHUD()
+		if hudDescription then
+			EID:printDescription(hudDescription)
+			return
+		end
+	end
+	
+	table.insert(searchGroups, Isaac.FindInRadius(sourcePos, tonumber(EID.Config["MaxDistance"])*40, searchPartitions))
 	for k,_ in pairs(EID.effectList) do
 		table.insert(searchGroups, Isaac.FindByType(EntityType.ENTITY_EFFECT, k, -1, true, false))
 	end
@@ -511,7 +551,7 @@ local function onRender(t)
 	for _, entitySearch in ipairs(searchGroups) do
 		for i, entity in ipairs(entitySearch) do
 			if EID:hasDescription(entity) and entity.FrameCount > 0 then
-				local diff = entity.Position:__sub(EID.player.Position)
+				local diff = entity.Position:__sub(sourcePos)
 				if diff:Length() < EID.lastDist then
 					EID.lastDescriptionEntity = entity
 					EID.lastDist = diff:Length()

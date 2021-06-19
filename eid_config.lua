@@ -158,6 +158,16 @@ EID.UserConfig = {
 	-- Default = 7
 	["BagOfCraftingResults"] = 7,
 	
+	---------Mouse Controls-----------
+	
+	-- Toggles HUD descriptions based on the mouse position
+	-- Default = "false"
+	["EnableMouseControls"] = "false",
+	
+	-- Toggles the custom mouse cursor
+	-- Default = "true"
+	["ShowCursor"] = "true",
+	
 	-------------MISC---------------
 	
 	-- Changes the number of Results shown for the additional Spindown dice description
@@ -236,6 +246,8 @@ EID.DefaultConfig = {
 	["DisplayBagOfCrafting"] = "always",
 	["BagOfCraftingResults"] = 7,
 	["SpindownDiceResults"] = 3,
+	["UseMouseControls"] = "false",
+	["ShowCursor"] = "true",
 	["ErrorMessage"] = "[Effect not defined]",
 	["TextColor"] = "ColorEIDText",
 	["ErrorColor"] = "ColorEIDError",

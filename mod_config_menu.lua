@@ -1,41 +1,56 @@
 
 -- MOD CONFIG MENU Compatibility
 local MCMLoaded, MCM = pcall(require, "scripts.modconfig")
-EID.MCMCompat_isDisplayingEIDTab = false
+EID.MCMCompat_isDisplayingEIDTab = ""
 local MCMCompat_isDisplayingDummyMCMObj = false
 local MCMCompat_oldPermanentObj = false
 EID.MCMLoaded = MCMLoaded
 local colorNameArray = {}
+EID.MCMHudOffset = ModConfigMenu.Config["General"].HudOffset
+
+local function renderDummyDesc()
+	MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
+	local demoDescObj = EID:getDescriptionObj(5, 100, 33)
+	demoDescObj.Name = "Demo Object Name"
+	demoDescObj.Transformation = "Demo Transformation"
+	demoDescObj.Description = "A very cool description as a demonstration of the power of EID!#\1 This is also a cool line#This line loves you {{Heart}}"
+	EID:displayPermanentText(demoDescObj)
+end
+
+local function clearRenderDummyDesc()
+	if MCMCompat_oldPermanentObj == nil then
+		EID:hidePermanentText()
+	else
+		EID.permanentDisplayTextObj = MCMCompat_oldPermanentObj
+	end
+	MCMCompat_oldPermanentObj = nil
+	MCMCompat_isDisplayingDummyMCMObj = false
+end
 
 function EID:renderMCMDummyDescription()
 	if MCMLoaded then
-		local mcmHudOffset = ModConfigMenu.Config["General"].HudOffset
-		if mcmHudOffset == nil and ScreenHelper then
-			mcmHudOffset = ScreenHelper.GetOffset()
+		EID.MCMHudOffset = ModConfigMenu.Config["General"].HudOffset
+		if EID.MCMHudOffset == nil and ScreenHelper then
+			EID.MCMHudOffset = ScreenHelper.GetOffset()
 		end
-		EID:addTextPosModifier("MCM_HudOffset", Vector(mcmHudOffset * 2, mcmHudOffset))
-		if MCM.IsVisible and EID.permanentDisplayTextObj == nil and EID.MCMCompat_isDisplayingEIDTab then
-			MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
-			local demoDescObj = EID:getDescriptionObj(5, 100, 33)
-			demoDescObj.Name = "Demo Object Name"
-			demoDescObj.Transformation = "Demo Transformation"
-			demoDescObj.Description = "A very cool description as a demonstration of the power of EID!#\1 This is also a cool line#This line loves you {{Heart}}"
-			EID:displayPermanentText(demoDescObj)
+		EID:addTextPosModifier("MCM_HudOffset", Vector(EID.MCMHudOffset * 2, EID.MCMHudOffset))
+		if MCM.IsVisible and EID.MCMCompat_isDisplayingEIDTab ~= "" then
+			if EID.MCMCompat_isDisplayingEIDTab == "Mouse" and EID.Config["EnableMouseControls"] then
+				clearRenderDummyDesc()
+				EID:renderHUDLocationIndicators()
+			elseif EID.MCMCompat_isDisplayingEIDTab == "Visuals" and EID.permanentDisplayTextObj == nil then
+				renderDummyDesc()
+			end
 			MCMCompat_isDisplayingDummyMCMObj = true
 			EID:buildColorArray()
 		elseif not MCM.IsVisible and MCMCompat_isDisplayingDummyMCMObj then
-			if MCMCompat_oldPermanentObj == nil then
-				EID:hidePermanentText()
-			else
-				EID.permanentDisplayTextObj = MCMCompat_oldPermanentObj
-			end
-			EID.MCMCompat_isDisplayingEIDTab = false
-			MCMCompat_oldPermanentObj = nil
-			MCMCompat_isDisplayingDummyMCMObj = false
+			clearRenderDummyDesc()
+			EID.MCMCompat_isDisplayingEIDTab = ""
 			colorNameArray = {}
 		end
 	end
 end
+
 
 function EID:buildColorArray()
 	colorNameArray = {}
@@ -85,7 +100,7 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = #(EID.Languages),
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = false;
+				EID.MCMCompat_isDisplayingEIDTab = "";
 				return "Language: " .. displayLanguage[AnIndexOf(EID.Languages, EID.Config["Language"])]
 			end,
 			OnChange = function(currentNum)
@@ -308,7 +323,7 @@ if MCMLoaded then
 				return EID.Config["DisplayItemInfo"]
 			end,
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = false;
+				EID.MCMCompat_isDisplayingEIDTab = "";
 				local onOff = "False"
 				if EID.Config["DisplayItemInfo"] then
 					onOff = "True"
@@ -644,7 +659,7 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = #fontTypes,
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = true;
+				EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 				return "Font Type: " .. EID.Config["FontType"]
 			end,
 			OnChange = function(currentNum)
@@ -824,9 +839,60 @@ if MCMLoaded then
 			end
 		}
 	)
+	---------------------------------------------------------------------------
+	-----------------------------Mouse Controls--------------------------------
+	MCM.AddText("EID", "Mouse", function() return "! THIS FEATURE IS IN EARLY DEVELOPMENT !" end)
+	MCM.AddSpace("EID", "Mouse")
+	MCM.AddText("EID", "Mouse", function() return "MCM -> General -> Hud Offset" end)
+	MCM.AddText("EID", "Mouse", function() return "to adjust Hud Offset" end)
+	MCM.AddSpace("EID", "Mouse")
+	-- Enable mouse controls
+	MCM.AddSetting(
+		"EID",
+		"Mouse",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["EnableMouseControls"]
+			end,
+			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = "Mouse";
+				local onOff = "False"
+				if EID.Config["EnableMouseControls"] then
+					onOff = "True"
+				end
+				return "Enable Mouse controls: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["EnableMouseControls"] = currentBool
+			end,
+			Info = {"If enabled, allows to hover over certain HUD elements to get descriptions"}
+		}
+	)
+	-- Enable mouse controls
+	MCM.AddSetting(
+		"EID",
+		"Mouse",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["ShowCursor"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["ShowCursor"] then
+					onOff = "True"
+				end
+				return "Show Cursor: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["ShowCursor"] = currentBool
+			end,
+		}
+	)
 
 	---------------------------------------------------------------------------
-	---------------------------------Visuals-----------------------------------
+	---------------------------------Colors-----------------------------------
 
 	-- Text Color
 	MCM.AddSetting(
@@ -840,7 +906,7 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = true;
+				EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 				return "Descriptions: " .. string.gsub(EID.Config["TextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TextColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
@@ -863,7 +929,6 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = true;
 				return "Names: " .. string.gsub(EID.Config["ItemNameColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemNameColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
@@ -886,7 +951,6 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = true;
 				return "Transformations: " .. string.gsub(EID.Config["TransformationColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TransformationColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
@@ -909,7 +973,6 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = true;
 				return "Errors: " .. string.gsub(EID.Config["ErrorColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ErrorColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)

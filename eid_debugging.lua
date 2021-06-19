@@ -102,6 +102,8 @@ EID:addColor("ColorBlackBlink", nil, function(color)
 
 
 local function onDebugRender(t)
+	EID:renderHUDLocationIndicators()
+	
 	for i,v in ipairs(Isaac.FindByType(5,10,3,true,false)) do
 		if v:GetData()["EID_Description"] == nil then
 			v:GetData()["EID_Description"] = "Test specific description#Init seed: ".. v.InitSeed

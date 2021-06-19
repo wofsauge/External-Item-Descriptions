@@ -21,6 +21,57 @@ EID.SpindownDiceSkipIDs = {
 	[718]=true
 }
 
+EID.HUDElements = {
+	["Active1"] = {x = 20,y = 5, width = 65, height = 65, anchors={"TOP","LEFT"}, descriptionObj = function() 
+		local id = EID.player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)
+		if id == 0 then return nil end
+		return EID:getDescriptionObj(5, 100, id) 
+	end},
+	["Active2"] = {x = -5,y = 0, width = 35, height = 35, anchors={"TOP","LEFT"}, descriptionObj = function()
+		local id = EID.player:GetActiveItem(ActiveSlot.SLOT_SECONDARY)
+		if id == 0 then return nil end
+		return EID:getDescriptionObj(5, 100, id)
+	end},
+	["Trinket1"] = {x = 50,y = 0, width = 55, height = 65, anchors={"BOTTOM","LEFT"}, descriptionObj = function()
+		local id = EID.player:GetTrinket(0)
+		if id == 0 then return nil end
+		return EID:getDescriptionObj(5, 350, id)
+	end},
+	["Trinket2"] = {x = 0,y = 40, width = 55, height = 65, anchors={"BOTTOM","LEFT"}, descriptionObj = function()
+		local id = EID.player:GetTrinket(1)
+		if id == 0 then return nil end
+		return EID:getDescriptionObj(5, 350, id)
+	end},
+	["Pocket1"] = {x = 0,y = 5, width = 250, height = 40, anchors={"BOTTOM","RIGHT"}, descriptionObj = function()
+		local id = EID.player:GetCard(0)
+		if id ~= 0 then return EID:getDescriptionObj(5, 300, id) end
+		id = EID.player:GetPill(0)
+		if id ~= 0 then return EID:getDescriptionObj(5, 70, id) end
+		return nil
+	end},
+	["Pocket2"] = {x = 0,y = 40, width = 30, height = 30, anchors={"BOTTOM","RIGHT"}, descriptionObj = function()
+		local id = EID.player:GetCard(1)
+		if id ~= 0 then return EID:getDescriptionObj(5, 300, id) end
+		id = EID.player:GetPill(1)
+		if id ~= 0 then return EID:getDescriptionObj(5, 70, id) end
+		return nil
+	end},
+	["Pocket3"] = {x = 0,y = 70, width = 30, height = 25, anchors={"BOTTOM","RIGHT"}, descriptionObj = function()
+		local id = EID.player:GetCard(2)
+		if id ~= 0 then return EID:getDescriptionObj(5, 300, id) end
+		id = EID.player:GetPill(2)
+		if id ~= 0 then return EID:getDescriptionObj(5, 70, id) end
+		return nil
+	end},
+	["Pocket4"] = {x = 0,y = 95, width = 30, height = 20, anchors={"BOTTOM","RIGHT"}, descriptionObj = function()
+		local id = EID.player:GetCard(3)
+		if id ~= 0 then return EID:getDescriptionObj(5, 300, id) end
+		id = EID.player:GetPill(3)
+		if id ~= 0 then return EID:getDescriptionObj(5, 70, id) end
+		return nil
+	end}
+}
+
 -- Specific strings that will be replaced with something else. This is used to convert Shortcuts into internal markup.
 EID.TextReplacementPairs = {
 	{"!!!", "{{Warning}}"}, -- Turn 3 Exclamations into Warning
@@ -35,6 +86,7 @@ EID.TextReplacementPairs = {
 	{"\8\189", "{{Bomb}}"}, -- Legacy BOMB
 	{"{{Hashtag}}", "ǂ"}, -- Hashtag
 	{"{{CR}}", "{{ColorReset}}"}, -- Shortcut for Color Resetting
+	{"{{EthernalHeart}}", "{{EternalHeart}}"} -- fix spelling error
 }
 
 --Format: [SHORTCUT]= {Animationname, Frame, Width, Height, LeftOffset [Default: -1], TopOffset [Default: 0], SpriteObject [Default: EID.InlineIconSprite]}
@@ -61,7 +113,7 @@ EID.InlineIcons = {
 	-- Hearts
 	["Heart"] = {"hearts", 0, 9, 9},
 	["HalfHeart"] = {"hearts", 1, 9, 9},
-	["EthernalHeart"] = {"hearts", 2, 9, 9},
+	["EternalHeart"] = {"hearts", 2, 9, 9},
 	["EmptyHeart"] = {"hearts", 3, 9, 9},
 	["BlendedHeart"] = {"hearts", 4, 9, 9},
 	["BoneHeart"] = {"hearts", 5, 9, 9},
