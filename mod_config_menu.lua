@@ -6,7 +6,7 @@ local MCMCompat_isDisplayingDummyMCMObj = false
 local MCMCompat_oldPermanentObj = false
 EID.MCMLoaded = MCMLoaded
 local colorNameArray = {}
-EID.MCMHudOffset = ModConfigMenu.Config["General"].HudOffset
+EID.MCMHudOffset = 10
 
 local function renderDummyDesc()
 	MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
