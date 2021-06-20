@@ -806,25 +806,18 @@ function EID:handleHUDElement(hudElement)
 		alteredHudElement[k] = v
 	end
 	local screenSize = EID:GetScreenSize()
+	local hudOffset = EID.Config["HUDOffset"]
 	for _,v in ipairs(hudElement.anchors) do
 		if v == "TOP" then
-			if EID.MCMLoaded then
-				alteredHudElement.y = hudElement.y + EID.MCMHudOffset * 2
-			end
+			alteredHudElement.y = hudElement.y + hudOffset * 2
 		elseif v == "LEFT" then
-			if EID.MCMLoaded then
-				alteredHudElement.x = hudElement.x + EID.MCMHudOffset * 2
-			end
+			alteredHudElement.x = hudElement.x + hudOffset * 2
 		elseif v == "BOTTOM" then
 			alteredHudElement.y = screenSize.Y*2 - alteredHudElement.y - alteredHudElement.height
-			if EID.MCMLoaded then
-				alteredHudElement.y = alteredHudElement.y - EID.MCMHudOffset * 2
-			end
+			alteredHudElement.y = alteredHudElement.y - hudOffset * 2
 		elseif v == "RIGHT" then
 			alteredHudElement.x = screenSize.X*2 - alteredHudElement.x  - alteredHudElement.width
-			if EID.MCMLoaded then
-				alteredHudElement.x = alteredHudElement.x - EID.MCMHudOffset * 2
-			end
+			alteredHudElement.x = alteredHudElement.x - hudOffset * 2
 		end
 	end
 	return alteredHudElement

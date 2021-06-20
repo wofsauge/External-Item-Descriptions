@@ -30,11 +30,15 @@ EID.UserConfig = {
 	-- Set transparency of the background. Range: [0,...,1]
 	-- Default = 0.75
 	["Transparency"] = 0.75,
+	-- Set the HUD offset of the description. 
+	-- This should be set to the same number of "strokes" set in the ingame options for the "hud offset" value. (Range is 0 to 10)
+	-- Default = 10
+	["HUDOffset"] = 10,
 	-- Set X Position (Width) of the descriptiontext
-	-- Default = 60 (with default rep Hud offset, otherwise 50 is recommended)
+	-- Default = 60
 	["XPosition"] = 60,
 	-- Set Y Position (Height) of the descriptiontext
-	-- Default = 45 (with default rep Hud offset, otherwise 35 is recommended)
+	-- Default = 45
 	["YPosition"] = 45,
 	-- Set the distance to an item in which informations will be displayed (in Tiles)
 	-- Default = 5
@@ -215,6 +219,7 @@ EID.DefaultConfig = {
 	["TextboxWidth"] = 100,
 	["Scale"] = 1,
 	["Transparency"] = 0.75,
+	["HUDOffset"] = 10,
 	["XPosition"] = 60,
 	["YPosition"] = 45,
 	["MaxDistance"] = 5,
@@ -249,7 +254,7 @@ EID.DefaultConfig = {
 	["DisplayBagOfCrafting"] = "always",
 	["BagOfCraftingResults"] = 7,
 	["SpindownDiceResults"] = 3,
-	["UseMouseControls"] = false,
+	["EnableMouseControls"] = false,
 	["ShowCursor"] = false,
 	["ErrorMessage"] = "[Effect not defined]",
 	["TextColor"] = "ColorEIDText",

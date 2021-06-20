@@ -6,7 +6,6 @@ local MCMCompat_isDisplayingDummyMCMObj = false
 local MCMCompat_oldPermanentObj = false
 EID.MCMLoaded = MCMLoaded
 local colorNameArray = {}
-EID.MCMHudOffset = 10
 
 local function renderDummyDesc()
 	MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
@@ -29,11 +28,12 @@ end
 
 function EID:renderMCMDummyDescription()
 	if MCMLoaded then
-		EID.MCMHudOffset = ModConfigMenu.Config["General"].HudOffset
-		if EID.MCMHudOffset == nil and ScreenHelper then
-			EID.MCMHudOffset = ScreenHelper.GetOffset()
+		local hudOffset = ModConfigMenu.Config["General"].HudOffset
+		if hudOffset == nil and ScreenHelper then
+			hudOffset = ScreenHelper.GetOffset()
 		end
-		EID:addTextPosModifier("MCM_HudOffset", Vector((EID.MCMHudOffset * 2) - 20, EID.MCMHudOffset - 10))
+		EID.Config["HUDOffset"] = hudOffset
+		EID:addTextPosModifier("HudOffset", Vector((hudOffset * 2) - 20, hudOffset - 10))
 		if MCM.IsVisible and EID.MCMCompat_isDisplayingEIDTab ~= "" then
 			if EID.MCMCompat_isDisplayingEIDTab == "Mouse" and EID.Config["EnableMouseControls"] then
 				clearRenderDummyDesc()
