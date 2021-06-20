@@ -1,6 +1,5 @@
 EID.UserConfig = {
 	-------GENERAL---------
-
 	-- Change language of the mod.
 	-- Currently Supported: English = "en_us" (Default) , "en_us_detailed"
 	--                      French = "fr"  	    SPECIAL THANKS TO Nicolas Delvaux
@@ -118,6 +117,9 @@ EID.UserConfig = {
 	-- Toggle Display of Card / Rune descriptions when its not accessable with walking. AKA behind rock, blocks, spikes
 	-- Default = false
 	["DisplayObstructedCardInfo"] = false,
+	-- Toggle Display of Soulstone descriptions when its not accessable with walking. AKA behind rock, blocks, spikes
+	-- Default = true
+	["DisplayObstructedSoulstoneInfo"] = true,
 	
 	------------PILLS--------------
 
@@ -237,6 +239,7 @@ EID.DefaultConfig = {
 	["DisplayCardInfoShop"] = false,
 	["DisplaySoulstoneInfoShop"] = true,
 	["DisplayObstructedCardInfo"] = false,
+	["DisplayObstructedSoulstoneInfo"] = true,
 	["DisplayPillInfo"] = true,
 	["DisplayPillInfoShop"] = true,
 	["DisplayObstructedPillInfo"] = true,

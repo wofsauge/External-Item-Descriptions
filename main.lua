@@ -376,6 +376,8 @@ local isMirrorRoom = false
 function EID:onNewRoom()
 	if game:GetLevel():GetAbsoluteStage() == LevelStage.STAGE1_2 then
 		isMirrorRoom = IsMirror()
+	else
+		isMirrorRoom = false
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
@@ -477,7 +479,7 @@ EID.hasValidWalkingpath = true
 
 function EID:onGameUpdate()
 	EID.player = Isaac.GetPlayer(0)
-	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] then
+	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"] then
 		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
 			if EID.pathCheckerEntity ~= nil then
 				EID.pathCheckerEntity:Remove()
@@ -649,13 +651,15 @@ local function onRender(t)
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Cards & Runes
-		if  not EID.Config["DisplayObstructedCardInfo"] and closest.FrameCount < 3 then
+		if ( not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"]) and closest.FrameCount < 3 then
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
 		if closest:GetData()["EID_DontHide"] ~= true then
-			local hideinShop = closest:ToPickup():IsShopItem() and (((closest.SubType < 81 or closest.SubType > 97) and not EID.Config["DisplayCardInfoShop"]) or (closest.SubType >= 81 and not EID.Config["DisplaySoulstoneInfoShop"]))
-			if hideinShop or (not EID.Config["DisplayObstructedCardInfo"] and not EID.hasValidWalkingpath) or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
+			local isSoulstone = closest.SubType >= 81 and closest.SubType <= 97
+			local hideinShop = closest:ToPickup():IsShopItem() and ((not isSoulstone and not EID.Config["DisplayCardInfoShop"]) or (isSoulstone and not EID.Config["DisplaySoulstoneInfoShop"]))
+			local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or (not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and not EID.hasValidWalkingpath
+			if hideinShop or obstructed or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
 				EID:renderQuestionMark()
 				return
 			end
