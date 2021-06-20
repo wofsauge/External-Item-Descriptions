@@ -162,11 +162,11 @@ EID.UserConfig = {
 	
 	-- Toggles HUD descriptions based on the mouse position
 	-- Default = "false"
-	["EnableMouseControls"] = "false",
+	["EnableMouseControls"] = false,
 	
 	-- Toggles the custom mouse cursor
-	-- Default = "true"
-	["ShowCursor"] = "true",
+	-- Default = "false"
+	["ShowCursor"] = false,
 	
 	-------------MISC---------------
 	
@@ -246,8 +246,8 @@ EID.DefaultConfig = {
 	["DisplayBagOfCrafting"] = "always",
 	["BagOfCraftingResults"] = 7,
 	["SpindownDiceResults"] = 3,
-	["UseMouseControls"] = "false",
-	["ShowCursor"] = "true",
+	["UseMouseControls"] = false,
+	["ShowCursor"] = false,
 	["ErrorMessage"] = "[Effect not defined]",
 	["TextColor"] = "ColorEIDText",
 	["ErrorColor"] = "ColorEIDError",
