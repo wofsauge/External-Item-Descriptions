@@ -33,7 +33,7 @@ function EID:renderMCMDummyDescription()
 		if EID.MCMHudOffset == nil and ScreenHelper then
 			EID.MCMHudOffset = ScreenHelper.GetOffset()
 		end
-		EID:addTextPosModifier("MCM_HudOffset", Vector(EID.MCMHudOffset * 2, EID.MCMHudOffset))
+		EID:addTextPosModifier("MCM_HudOffset", Vector((EID.MCMHudOffset * 2) - 20, EID.MCMHudOffset - 10))
 		if MCM.IsVisible and EID.MCMCompat_isDisplayingEIDTab ~= "" then
 			if EID.MCMCompat_isDisplayingEIDTab == "Mouse" and EID.Config["EnableMouseControls"] then
 				clearRenderDummyDesc()
@@ -130,6 +130,54 @@ if MCMLoaded then
 			Info = {"If translated names are available,","this changes how item names are displayed."}
 		}
 	)
+
+	MCM.AddSpace("EID", "General")
+	
+	-- Position X
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return EID.Config["XPosition"]
+			end,
+			Minimum = 0,
+			Maximum = 500,
+			ModifyBy = 5,
+			Display = function()
+				return "Position X: " .. EID.Config["XPosition"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["XPosition"] = currentNum
+				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
+			end,
+			Info = {"Default = 60"}
+		}
+	)
+	-- Position Y
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return EID.Config["YPosition"]
+			end,
+			Minimum = 0,
+			Maximum = 500,
+			ModifyBy = 5,
+			Display = function()
+				return "Position Y: " .. EID.Config["YPosition"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["YPosition"] = currentNum
+				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
+			end,
+			Info = {"Default = 45"}
+		}
+	)
+	
 	MCM.AddSpace("EID", "General")
 	
 	-- Initial hiding
@@ -263,7 +311,6 @@ if MCMLoaded then
 	)
 
 	MCM.AddSpace("EID", "General")
-
 	--indicator
 	local indicators = {"arrow", "blink", "border", "highlight", "none"}
 	MCM.AddSetting(

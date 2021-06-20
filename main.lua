@@ -705,6 +705,7 @@ if EID.MCMLoaded or REPENTANCE then
 					end
 				end
 				EID.isHidden = EID.Config["Hidden"]
+				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 			end
 		end
