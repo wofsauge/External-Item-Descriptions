@@ -359,7 +359,26 @@ function EID:printBulletPoints(description, renderPos)
 		end
 	end
 end
+---------------------------------------------------------------------------
+---------------------------Handle New Room--------------------------------
+local function IsMirror()
+	local lvl = game:GetLevel()
+    for i=0,168 do
+        local data = lvl:GetRoomByIdx(i).Data
+        if data and data.Name == 'Knife Piece Room' then
+            return true
+        end
+    end
+    return false
+end
 
+local isMirrorRoom = false
+function EID:onNewRoom()
+	if game:GetLevel():GetAbsoluteStage() == LevelStage.STAGE1_2 then
+		isMirrorRoom = IsMirror()
+	end
+end
+EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 ---------------------------------------------------------------------------
 ---------------------------Handle Rendering--------------------------------
 
@@ -374,11 +393,16 @@ function EID:renderIndicator(entity)
 		return
 	end
 	local repDiv = 1
+	local entityPos = Isaac.WorldToScreen(entity.Position)
+	local sprite = entity:GetSprite()
 	if REPENTANCE then
 		repDiv = 255
+		if isMirrorRoom then
+			local screenCenter = EID:GetScreenSize()/2
+			entityPos.X = entityPos.X - (entityPos-screenCenter).X * 2
+			sprite.FlipX = true
+		end
 	end
-	local sprite = entity:GetSprite()
-	local entityPos = Isaac.WorldToScreen(entity.Position)
 	if EID.Config["Indicator"] == "blink" then
 		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
 		sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
@@ -408,6 +432,11 @@ function EID:renderIndicator(entity)
 			ArrowOffset = Vector(0, -62)
 		end
 		ArrowSprite:Render(Isaac.WorldToScreen(entity.Position + ArrowOffset), nullVector, nullVector)
+	end
+	if REPENTANCE then
+		if isMirrorRoom then
+			sprite.FlipX = false
+		end
 	end
 end
 
