@@ -529,10 +529,9 @@ local function onRender(t)
 	end
 	if EID.isHidden then
 		return
-	elseif EID.Config["HideInBattle"] then
-		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
-			return
-		end
+	end
+	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then --if if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu is currently in the "Visuals" tab of EID
+		return
 	end
 	
 	EID:renderMCMDummyDescription()
