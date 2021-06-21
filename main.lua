@@ -533,6 +533,8 @@ local function onRender(t)
 		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
 			return
 		end
+	elseif (ModConfigMenu and (ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu)) then --if the mod config menu exists, is opened and Hide Hud In Menu is enabled, then
+		return
 	end
 	
 	EID:renderMCMDummyDescription()
