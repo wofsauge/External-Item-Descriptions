@@ -534,6 +534,9 @@ local function onRender(t)
 			return
 		end
 	end
+	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then --if if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu is currently in the "Visuals" tab of EID
+		return
+	end
 	
 	EID:renderMCMDummyDescription()
 
