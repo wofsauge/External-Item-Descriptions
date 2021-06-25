@@ -139,10 +139,10 @@ end
 
 ---------------------------------------------------------------------------
 -------------------------Handle Sacrifice Room-----------------------------
-	function EID:onNewFloor()
-		EID.sacrificeCounter = {}
-	end
-	EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
+function EID:onNewFloor()
+	EID.sacrificeCounter = {}
+end
+EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
 if EID.Config["DisplaySacrificeInfo"] then
 	function EID:onSacrificeDamage(_, _, flags, source)
@@ -602,7 +602,10 @@ local function onRender(t)
 	if EID.lastDist / 40 > tonumber(EID.Config["MaxDistance"]) then
 		if game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
 			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-			EID:printDescription(EID:getDescriptionObj(-999, -1, EID.sacrificeCounter[curRoomIndex] or 1))
+			local curCounter = EID.sacrificeCounter[curRoomIndex] or 1
+			local sacrificeDesc = EID:getDescriptionObj(-999, -1, curCounter)
+			sacrificeDesc.Name = sacrificeDesc.Name.." ("..curCounter.."/12)"
+			EID:printDescription(sacrificeDesc)
 		end
 		return
 	end
@@ -757,7 +760,6 @@ if EID.MCMLoaded or REPENTANCE then
 		if REPENTANCE then
 			EID.Config["BagContent"] = EID.BagItems or {}
 		end
-		EID.Config["Hidden"] = EID.isHidden
 		EID.SaveData(EID, json.encode(EID.Config))
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
