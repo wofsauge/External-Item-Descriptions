@@ -173,7 +173,7 @@ function EID:IsAltChoise(pickup)
 		return data["EID_IsAltChoise"]
 	end
 
-	if not REPENTANCE then
+	if not REPENTANCE or game:GetLevel():GetStageType() < 4 or game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
 		data["EID_IsAltChoise"] = false
 		return false
 	end
