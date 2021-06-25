@@ -187,18 +187,17 @@ if MCMLoaded then
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EID.isHidden
+				return EID.Config["InitiallyHidden"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EID.isHidden then
+				if EID.Config["InitiallyHidden"] then
 					onOff = "True"
 				end
-				return 'Is Hidden: ' .. onOff
+				return 'Is initially Hidden: ' .. onOff
 			end,
 			OnChange = function(currentBool)
-				EID.Config["Hidden"] = currentBool
-				EID.isHidden  = currentBool
+				EID.Config["InitiallyHidden"] = currentBool
 			end
 		}
 	)

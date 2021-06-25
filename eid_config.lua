@@ -54,7 +54,7 @@ EID.UserConfig = {
 	["HideKey"] = Keyboard.KEY_F2,
 	-- Initial displaystate. Can be used to change the toggle behavior of the "Hide Key" event
 	-- Default = false
-	["Hidden"] = false,
+	["InitiallyHidden"] = false,
 	-- Hide the descriptions when in battle
 	-- Default = false
 	["HideInBattle"] = false,
@@ -167,11 +167,11 @@ EID.UserConfig = {
 	---------Mouse Controls-----------
 	
 	-- Toggles HUD descriptions based on the mouse position
-	-- Default = "false"
+	-- Default = false
 	["EnableMouseControls"] = false,
 	
 	-- Toggles the custom mouse cursor
-	-- Default = "false"
+	-- Default = false
 	["ShowCursor"] = false,
 	
 	-------------MISC---------------
@@ -225,7 +225,7 @@ EID.DefaultConfig = {
 	["MaxDistance"] = 5,
 	["Indicator"] = "none",
 	["HideKey"] = Keyboard.KEY_F2,
-	["Hidden"] = false,
+	["InitiallyHidden"] = false,
 	["HideInBattle"] = false,
 	["DisableObstructionOnFlight"] = true,
 	["DisableOnCurse"] = true,

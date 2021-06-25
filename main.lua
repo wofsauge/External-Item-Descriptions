@@ -10,7 +10,7 @@ require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
 EID.DefaultConfig.Version = EID.Config.Version
-EID.isHidden = EID.Config["Hidden"]
+EID.isHidden = false
 EID.player = nil
 
 -- general variables
@@ -728,19 +728,22 @@ if EID.MCMLoaded or REPENTANCE then
 			if savedEIDConfig.Version == EID.Config.Version then
 				local isDefaultConfig = true
 				for key, value in pairs(EID.Config) do
+					if type(value) ~= type(EID.DefaultConfig[key]) and key ~= "BagContent" then
+						print("EID Warning! : Config value '"..key.."' has wrong data-type. Resetting it to default...")
+						EID.Config[key] = EID.DefaultConfig[key]
+					end
 					if EID.DefaultConfig[key] ~= value then
 						isDefaultConfig = false
-						break
 					end
 				end
 				if isDefaultConfig or EID.MCMLoaded then
 					for key, value in pairs(EID.Config) do
-						if savedEIDConfig[key] ~= nil then
+						if savedEIDConfig[key] ~= nil and type(value) == type(savedEIDConfig[key]) then
 							EID.Config[key] = savedEIDConfig[key]
 						end
 					end
 				end
-				EID.isHidden = EID.Config["Hidden"]
+				EID.isHidden = EID.Config["InitiallyHidden"]
 				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 				EID:addTextPosModifier("HudOffset", Vector((EID.Config["HUDOffset"] * 2) - 20, EID.Config["HUDOffset"] - 10))
