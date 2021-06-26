@@ -24,7 +24,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions).
 - **SPANISH** (by Arroyo Purroy)
 - **PORTUGUESE** (by Marcelino Cruz)
 - **Brazilian - Portuguese** (by LuanRoger and NotZin02)
-- **RUSSIAN** (by hell2Pay, fly_6, Dezzelshipc, TrJ-VoRon and Sekaz)
+- **RUSSIAN** (by hell2Pay, fly_6, Dezzelshipc and Sekaz)
 - **ITALIAN** (by Denkishi, 2G)
 - **BULGARIAN** (*WIP*, by TST_Gogo_, Gothika_47)
 - **TURKISH** (by Cagdas Salur, Mert Dutal)
@@ -66,7 +66,7 @@ Same as Windows but the path is: */home/%YourUsernameHere%/.steam/steam/steamapp
 - Rickyy, Kennyluz and MERITT for creating the incredible **Polish** language pack
 - Marcelino Cruz for creating the **Portuguese** language pack
 - LuanRoger and NotZin02 for creating the **Brazilian - Portuguese** language pack
-- hell2pay, fly_6, Dezzelshipc, TrJ-VoRoN and Sekaz for creating the **Russian** language pack
+- hell2pay, fly_6, Dezzelshipc and Sekaz for creating the **Russian** language pack
 - TST_Gogo_, Gothika_47 for creating the **Bulgarian** language pack
 - Cagdas Salur and Mert Dutal for creating the **Turkish** language pack
 - Jake for the sweet **German** language pack
