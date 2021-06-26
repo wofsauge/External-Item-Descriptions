@@ -138,26 +138,6 @@ if not success then
 end
 
 ---------------------------------------------------------------------------
-----------------------Handle Achievements locked---------------------------
-function EID:evaluateAchievementState()
-	if not REPENTANCE then
-		EID.Config["HasAchievementsUnlocked"] = true
-	end
-	if EID.Config["HasAchievementsUnlocked"] then
-		return
-	end
-	local itemPool = game:GetItemPool()
-	for x = 0,50 do
-		local item = itemPool:GetCollectible(ItemPoolType.POOL_24, false, math.random(100000))
-		if item == 73 then
-			EID.Config["HasAchievementsUnlocked"] = true
-			return
-		end
-	end
-	EID.Config["HasAchievementsUnlocked"] = false
-end
-
----------------------------------------------------------------------------
 -------------------------Handle Sacrifice Room-----------------------------
 function EID:onNewFloor()
 	EID.sacrificeCounter = {}
@@ -496,15 +476,8 @@ EID.lastDescriptionEntity = nil
 EID.lastDist = 0
 EID.pathCheckerEntity = nil
 EID.hasValidWalkingpath = true
-local displayedAchievementWarn = false
 
 function EID:onGameUpdate()
-	if not displayedAchievementWarn then
-		if not EID.Config["HasAchievementsUnlocked"] then
-			game:GetHUD():ShowFortuneText("!!!!! WARNING !!!!!", "Achievements are disabled!","Kill mom once without mods","to enable them")
-			displayedAchievementWarn = true
-		end
-	end
 	EID.player = Isaac.GetPlayer(0)
 	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"] then
 		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
@@ -759,7 +732,7 @@ if EID.MCMLoaded or REPENTANCE then
 			if savedEIDConfig.Version == EID.Config.Version then
 				local isDefaultConfig = true
 				for key, value in pairs(EID.Config) do
-					if type(value) ~= type(EID.DefaultConfig[key]) and key ~= "BagContent" and key ~= "HasAchievementsUnlocked" then
+					if type(value) ~= type(EID.DefaultConfig[key]) and key ~= "BagContent" then
 						print("EID Warning! : Config value '"..key.."' has wrong data-type. Resetting it to default...")
 						EID.Config[key] = EID.DefaultConfig[key]
 					end
@@ -780,11 +753,6 @@ if EID.MCMLoaded or REPENTANCE then
 				EID:addTextPosModifier("HudOffset", Vector((EID.Config["HUDOffset"] * 2) - 20, EID.Config["HUDOffset"] - 10))
 			end
 			
-			if savedEIDConfig["HasAchievementsUnlocked"] then
-				EID.Config["HasAchievementsUnlocked"] = savedEIDConfig["HasAchievementsUnlocked"]
-			end
-			EID:evaluateAchievementState()
-			displayedAchievementWarn = EID.Config["HasAchievementsUnlocked"]
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStart)
