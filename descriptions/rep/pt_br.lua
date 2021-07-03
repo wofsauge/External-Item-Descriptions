@@ -632,6 +632,6 @@ EID.descriptions["pt_br"].horsepills={
 	{"49", "", "↑ Aumenta 1 status aleatório duas vezes#↓ Diminue 1 status aleatório duas vezes#Não vai diminuir com PHD"}, -- Experimental Pill
 }
 
-EID.descriptions["pt_br"].CraftingBagContent = "Pickups na mochila:"
-EID.descriptions["pt_br"].CraftingRoomContent = "Pickups na sala:"
+EID.descriptions["pt_br"].CraftingBagContent = "mochila:"
+EID.descriptions["pt_br"].CraftingRoomContent = "sala:"
 EID.descriptions["pt_br"].CraftingResults = "Resultado:#(Rolar: Segurar TAB + Atirar △/▽)"

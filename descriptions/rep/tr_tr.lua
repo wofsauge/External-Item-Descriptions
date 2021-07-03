@@ -668,8 +668,8 @@ EID.descriptions["tr_tr"].horsepills={
 	[9999] = {"", "Golden Pill", "Rastgele bir at hapı efekti#Birkaç kullanımdan sonra kendini yok eder"}, -- golden Pill
 }
 
-EID.descriptions["tr_tr"].CraftingBagContent = "Çantadaki pickuplar:"
-EID.descriptions["tr_tr"].CraftingRoomContent = "Odadaki pickuplar:"
+EID.descriptions["tr_tr"].CraftingBagContent = "Çantadaki:"
+EID.descriptions["tr_tr"].CraftingRoomContent = "Odadaki:"
 EID.descriptions["tr_tr"].CraftingResults = "Sonuçlar:#(Kaydır: TAB(basılı tut) + Ateş △/▽)"
 EID.descriptions["tr_tr"].CraftingBagModError = "!!! {{ColorRed}}HATA:#{{ColorRed}}Bu özellik şu anda modlu itemleri desteklemiyor"
 

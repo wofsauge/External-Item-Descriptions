@@ -501,7 +501,8 @@ local randResultCache = {}
 
 EID.bagOfCraftingOffset = 0
 EID.bagOfCraftingCurPickupCount = -1
-EID.bagOfCraftingLastQuery = {}
+EID.bagOfCraftingRoomQueries = {}
+EID.bagOfCraftingFloorQuery = {}
 EID.BagItems = {}
 EID.icount = 0
 
@@ -545,6 +546,15 @@ local function detectModdedItems()
 	return false
 end
 
+local function calcFloorItems()
+	EID.bagOfCraftingFloorQuery = {}
+	for _,v in pairs(EID.bagOfCraftingRoomQueries) do
+		for _,v1 in ipairs(v) do
+			table.insert(EID.bagOfCraftingFloorQuery, v1)
+		end
+	end
+end
+
 function EID:handleBagOfCraftingRendering()
 	trackBagHolding()
 	detectBagContentShift()
@@ -558,33 +568,36 @@ function EID:handleBagOfCraftingRendering()
 	if detectModdedItems() then
 		return false
 	end
+	local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
 	
 	local results = {}
-	local floorItems = {}
+	local roomItems = {}
 	local pickups = Isaac.FindByType(5, -1, -1, true, false)
 	if EID.bagOfCraftingCurPickupCount ~= #pickups then 
 		for i, entity in ipairs(pickups) do
 			local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
 			if craftingIDs ~= nil then
 				for _,v in ipairs(craftingIDs) do
-					table.insert(floorItems, v)
+					table.insert(roomItems, v)
 				end
 			end
 		end
-		EID.bagOfCraftingLastQuery = floorItems
+		EID.bagOfCraftingRoomQueries[curRoomIndex] = roomItems
 		EID.bagOfCraftingCurPickupCount = #pickups
+		calcFloorItems()
 	else
-		floorItems = EID.bagOfCraftingLastQuery
+		roomItems = EID.bagOfCraftingRoomQueries[curRoomIndex] or {}
 	end
 	
 	local itemQuery = {}
-	for i, v in ipairs(floorItems) do
+	for i, v in ipairs(EID.bagOfCraftingFloorQuery) do
 		table.insert(itemQuery, v)
 	end
 	
 	for i, v in ipairs(EID.BagItems) do
 		table.insert(itemQuery, v)
 	end
+	
 	-- Calculate result from pickups on floor
 	if #itemQuery < 8 then
 		toggleControls(true)
@@ -627,16 +640,35 @@ function EID:handleBagOfCraftingRendering()
 	end
 	
 	local customDescObj = EID:getDescriptionObj(5, 100, 710)
-	local roomDesc = EID:getDescriptionEntry("CraftingRoomContent")
-	local bagContentDesc = EID:getDescriptionEntry("CraftingBagContent")
-	local resultDesc = EID:getDescriptionEntry("CraftingResults")
-	local bagContentResult = ""
-	if #EID.BagItems >= 8 then
-		local recipe = EID:calculateBagOfCrafting(EID.BagItems)
-		bagContentResult = "{{Collectible"..recipe.."}} "
+	customDescObj.Description = ""
+	
+	if #EID.BagItems >0 then
+		if #EID.BagItems >= 8 then
+			local recipe = EID:calculateBagOfCrafting(EID.BagItems)
+			EID:appendToDescription(customDescObj, "{{Collectible"..recipe.."}} ")
+		end
+		local bagDesc = EID:getDescriptionEntry("CraftingBagContent").."(Beta)"
+		EID:appendToDescription(customDescObj, bagDesc..EID:tableToCraftingIconsMerged(EID.BagItems).."#")
 	end
-	customDescObj.Description = bagContentDesc.." (Beta)#"..bagContentResult..EID:tableToCraftingIconsMerged(EID.BagItems).."#"
-	customDescObj.Description = customDescObj.Description ..roomDesc.."#"..EID:tableToCraftingIconsMerged(floorItems).."#"..resultDesc
+	if #roomItems >0 then
+		if #roomItems == 8 then
+			local recipe = EID:calculateBagOfCrafting(roomItems)
+			EID:appendToDescription(customDescObj, "{{Collectible"..recipe.."}} ")
+		end
+		local roomDesc = EID:getDescriptionEntry("CraftingRoomContent")
+		EID:appendToDescription(customDescObj, roomDesc..EID:tableToCraftingIconsMerged(roomItems).."#")
+	end
+	if #EID.bagOfCraftingFloorQuery >0 and #roomItems ~= #EID.bagOfCraftingFloorQuery then
+		if #EID.bagOfCraftingFloorQuery == 8 then
+			local recipe = EID:calculateBagOfCrafting(EID.bagOfCraftingFloorQuery)
+			EID:appendToDescription(customDescObj, "{{Collectible"..recipe.."}} ")
+		end
+		local floorDesc = EID:getDescriptionEntry("CraftingFloorContent")
+		EID:appendToDescription(customDescObj, floorDesc..EID:tableToCraftingIconsMerged(EID.bagOfCraftingFloorQuery).."#")
+	end
+	
+	local resultDesc = EID:getDescriptionEntry("CraftingResults")
+	EID:appendToDescription(customDescObj, resultDesc)
 	
 	if Input.IsActionPressed(ButtonAction.ACTION_MAP, 0) or Input.IsActionPressed(ButtonAction.ACTION_MAP, 1) then
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, 1) then

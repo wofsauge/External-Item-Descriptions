@@ -665,8 +665,8 @@ EID.descriptions["pl"].horsepills={
 	[9999] = {"", "Złota Pigułka", "Efekt losowej, końskiej pigułki#Niszczy się po kilku użyciach"}, -- golden Pill
 }
 
-EID.descriptions["pl"].CraftingBagContent = "Pickupy w torbie:"
-EID.descriptions["pl"].CraftingRoomContent = "Pickupy w pokoju:"
+EID.descriptions["pl"].CraftingBagContent = "torbie:"
+EID.descriptions["pl"].CraftingRoomContent = "pokoju:"
 EID.descriptions["pl"].CraftingResults = "Wyniki:#(Przewiń: Trzymaj TAB + Strzał △/▽)"
 EID.descriptions["pl"].CraftingBagModError = "!!! {{ColorRed}}BŁĄD:#{{ColorRed}}Ta funkcja nie wspiera obecnie zmodowanych przedmiotów"
 

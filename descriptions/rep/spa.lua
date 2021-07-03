@@ -606,7 +606,7 @@ EID.descriptions["spa"].horsepills={
 }
 
 
-EID.descriptions["spa"].CraftingBagContent = "Recolectables en la bolsa:"
-EID.descriptions["spa"].CraftingRoomContent = "Recolectables de la habitación:"
+EID.descriptions["spa"].CraftingBagContent = "bolsa:"
+EID.descriptions["spa"].CraftingRoomContent = "habitación:"
 EID.descriptions["spa"].CraftingResults = "Resultados:"
 

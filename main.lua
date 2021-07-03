@@ -141,6 +141,10 @@ end
 -------------------------Handle Sacrifice Room-----------------------------
 function EID:onNewFloor()
 	EID.sacrificeCounter = {}
+	if REPENTANCE then
+		EID.bagOfCraftingRoomQueries = {}
+		EID.bagOfCraftingFloorQuery = {}
+	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
@@ -723,7 +727,9 @@ if EID.MCMLoaded or REPENTANCE then
 			local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
 			if REPENTANCE and isSave then
 				EID.BagItems = savedEIDConfig["BagContent"]
+				EID.bagOfCraftingRoomQueries = savedEIDConfig["BagFloorContent"]
 				savedEIDConfig["BagContent"] = nil
+				savedEIDConfig["BagFloorContent"] = nil
 			else
 				EID.BagItems = {}
 			end
@@ -732,7 +738,7 @@ if EID.MCMLoaded or REPENTANCE then
 			if savedEIDConfig.Version == EID.Config.Version then
 				local isDefaultConfig = true
 				for key, value in pairs(EID.Config) do
-					if type(value) ~= type(EID.DefaultConfig[key]) and key ~= "BagContent" then
+					if type(value) ~= type(EID.DefaultConfig[key]) and key ~= "BagContent" and key ~= "BagFloorContent" then
 						print("EID Warning! : Config value '"..key.."' has wrong data-type. Resetting it to default...")
 						EID.Config[key] = EID.DefaultConfig[key]
 					end
@@ -761,6 +767,7 @@ if EID.MCMLoaded or REPENTANCE then
 	function SaveGame()
 		if REPENTANCE then
 			EID.Config["BagContent"] = EID.BagItems or {}
+			EID.Config["BagFloorContent"] = EID.bagOfCraftingRoomQueries or {}
 		end
 		EID.SaveData(EID, json.encode(EID.Config))
 	end

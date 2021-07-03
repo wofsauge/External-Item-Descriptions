@@ -668,7 +668,7 @@ EID.descriptions["ru"].horsepills={
 	[9999] = {"", "Золотая пилюля", "Эффект случайной лошадиной пилюли#Исчезает после нескольких использований"}, -- golden Pill
 }
 
-EID.descriptions["ru"].CraftingBagContent = "Предметы в мешке:"
-EID.descriptions["ru"].CraftingRoomContent = "Предметы в комнате:"
+EID.descriptions["ru"].CraftingBagContent = "мешке:"
+EID.descriptions["ru"].CraftingRoomContent = "комнате:"
 EID.descriptions["ru"].CraftingResults = "Результаты:#(Листать: Зажать TAB + Стрелять △/▽)"
 EID.descriptions["ru"].CraftingBagModError = "!!! {{ColorRed}}ОШИБКА:#{{ColorRed}}Эта функция на данный момент не поддерживается с установленными модами"

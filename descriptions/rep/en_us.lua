@@ -667,8 +667,9 @@ EID.descriptions["en_us"].horsepills={
 	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
 
-EID.descriptions["en_us"].CraftingBagContent = "Pickups in bag:"
-EID.descriptions["en_us"].CraftingRoomContent = "Pickups in room:"
+EID.descriptions["en_us"].CraftingBagContent = "Bag:"
+EID.descriptions["en_us"].CraftingRoomContent = "Room:"
+EID.descriptions["en_us"].CraftingFloorContent = "Floor:"
 EID.descriptions["en_us"].CraftingResults = "Results:#(Scroll: Hold TAB + Shoot △/▽)"
 EID.descriptions["en_us"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}This feature currently does not support games with modded items installed"
 
