@@ -460,7 +460,7 @@ end, EntityType.ENTITY_KNIFE)
 
 local holdCounter = 0
 local function trackBagHolding()
-	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, 0)
+	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, 0) or Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, 1)
 	local animationName = EID.player:GetSprite():GetAnimation()
 	if isCardHold and string.match(animationName, "PickupWalk") and #EID.BagItems>=8 then
 		holdCounter = holdCounter + 1
