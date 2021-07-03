@@ -576,7 +576,7 @@ function EID:handleBagOfCraftingRendering()
 	if EID.bagOfCraftingCurPickupCount ~= #pickups then 
 		for i, entity in ipairs(pickups) do
 			local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
-			if craftingIDs ~= nil then
+			if craftingIDs ~= nil and not entity:ToPickup():IsShopItem() then
 				for _,v in ipairs(craftingIDs) do
 					table.insert(roomItems, v)
 				end
