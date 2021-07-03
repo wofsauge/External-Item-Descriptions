@@ -400,7 +400,7 @@ local repCollectibles={{"1","","+0.7 Tears up. #Disappears if the Spindown Dice 
 {"386","","Re-rolls obstacles in the current room into other obstacles. #Will not re-roll key blocks, fireplaces, stone grimaces or any other obstacle classified as an enemy."},
 {"387","","Familiar which projects a circular aura that slows down enemies and shots within it's radius. #Does not slow bosses, but will slow their shots."},
 {"388","","Familiar which collects keys, giving random chests in return. #Leaves a Little Battery upon picking up a charged key."},
-{"389","","Drops a random rune every few rooms. #If no rooms are unlocked, will instead drop cards."},
+{"389","","Drops a random rune every few rooms. #If no runes are unlocked, will instead drop cards."},
 {"390","","Familiar which fires homing tears which deal 10 damage, have -0.25 shot speed and a reduced fire rate."},
 {"391","","If there is more than one enemy in the current room, taking damage causes all enemies in the room to be charmed."},
 {"392","","Gives the player a random Zodiac item effect each floor. #Gaining Capricorn will not give the player a heart container, nor will Libra give consumables or Cancer give soul hearts."},
