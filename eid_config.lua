@@ -2,15 +2,15 @@ EID.UserConfig = {
 	-------GENERAL---------
 	-- Change language of the mod.
 	-- Currently Supported: English = "en_us" (Default) , "en_us_detailed"
-	--                      French = "fr"  	    SPECIAL THANKS TO Nicolas Delvaux
+	--						French = "fr"  	    SPECIAL THANKS TO Nicolas Delvaux
 	--						Polish = "pl"		SPECIAL THANKS TO Rickyy 						(WIP)
 	--						Spanish = "spa"		SPECIAL THANKS TO Lidia Arroyo Purroy
 	--						Portuguese = "pt"	SPECIAL THANKS TO Marcelino Cruz
-	--						Russian = "ru"		SPECIAL THANKS TO hell2pay, fly_6, TrJ-VoRoN
+	--						Russian = "ru"		SPECIAL THANKS TO hell2pay, fly_6
 	--						Italian = "it"		SPECIAL THANKS TO Denkishi, 2G
 	--						Bulgarian = "bul"	SPECIAL THANKS TO ,Gothika_47 					(WIP)
-	--						Turkish = "turkish"	SPECIAL THANKS TO Mert Dutal 					(WIP)
-	--                      Chinese (https://steamcommunity.com/sharedfiles/filedetails/?id=836319872)
+	--						Turkish = "turkish"	SPECIAL THANKS TO Mert Dutal
+	--						Chinese (https://steamcommunity.com/sharedfiles/filedetails/?id=836319872)
 	-- 						Italian (https://steamcommunity.com/sharedfiles/filedetails/?id=931392691)
 	-- If you want to make a translation, please contact me :)
 	["Language"] = "en_us",

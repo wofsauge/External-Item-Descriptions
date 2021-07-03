@@ -88,7 +88,7 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	---------------------------------General-----------------------------------
 	-- Language
-	local displayLanguage = {"English", "English (detailed)", "French (AB+)",  "Portuguese (AB+)", "Portugues (Brasil)", "Russian", "Spanish", "Italian (AB+)", "Bulgarian (WIP) (AB+)", "Polish (WIP) (AB+)", "German (WIP) (AB+)", "Turkish (WIP) (AB+)"}
+	local displayLanguage = {"English", "English (detailed)", "French (AB+)",  "Portuguese (AB+)", "Portugues (Brasil)", "Russian", "Spanish", "Italian (AB+)", "Bulgarian (WIP) (AB+)", "Polish (WIP)", "German (WIP) (AB+)", "Turkish"}
 	MCM.AddSetting(
 		"EID",
 		"General",
