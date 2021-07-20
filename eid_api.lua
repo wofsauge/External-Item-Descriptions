@@ -448,7 +448,7 @@ function EID:getObjectName(Type, Variant, SubType)
 	elseif tableName == "sacrifice" then
 		return EID:getDescriptionEntry("sacrificeHeader")
 	elseif tableName == "dice" then
-		return EID:getDescriptionEntry("diceHeader")
+		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
 	elseif tableName == "custom" then
 		return name or Type.."."..Variant.."."..SubType
 	end
@@ -632,14 +632,7 @@ function EID:getColor(str, baseKColor)
 	local color = baseKColor
 	local isColorMarkup = false
 	if str ~= nil then
-		local strTrimmed =
-			string.gsub(
-			str,
-			"{{(.-)}}",
-			function(a)
-				return a
-			end
-		)
+		local strTrimmed = string.gsub(str,"{{(.-)}}",function(a) return a end, 1)
 		if #strTrimmed <= #str then
 			if type(EID.InlineColors[strTrimmed]) == "function" then
 				color = EID.InlineColors[strTrimmed](color)
