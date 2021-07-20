@@ -78,8 +78,8 @@ local game = Game()
 				spinnedID = EID:getSpindownResult(refID)
 			end
 			refID = spinnedID
-			if spinnedID > 0 then
-				EID:appendToDescription(descObj, "{{Collectible"..spinnedID.."}}")
+			if refID > 0 and refID < 4294960000 then
+				EID:appendToDescription(descObj, "{{Collectible"..refID.."}}")
 				if i ~= EID.Config["SpindownDiceResults"] then
 					EID:appendToDescription(descObj, " ->")
 				end
