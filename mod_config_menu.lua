@@ -667,6 +667,50 @@ if MCMLoaded then
 			Info = {"Preview of Items resulting when using the Spindown dice X times"}
 		}
 	)
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Interaction with 'Options?'")
+
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisplayCardInfoOptions?"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["DisplayCardInfoOptions?"] then
+					onOff = "True"
+				end
+				return "Card Infos when spawned by 'Options?': " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisplayCardInfoOptions?"] = currentBool
+			end
+		}
+	)
+	
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisplayPillInfoOptions?"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["DisplayPillInfoOptions?"] then
+					onOff = "True"
+				end
+				return "Pill Infos when spawned by 'Options?': " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisplayPillInfoOptions?"] = currentBool
+			end
+		}
+	)
 	
 	MCM.AddSpace("EID", "Display")
 	MCM.AddText("EID", "Display", "Bag of Crafting")

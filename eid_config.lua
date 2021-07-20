@@ -124,6 +124,9 @@ EID.UserConfig = {
 	-- Toggle Display of Soulstone descriptions when its not accessable with walking. AKA behind rock, blocks, spikes
 	-- Default = true
 	["DisplayObstructedSoulstoneInfo"] = true,
+	-- Toggle Display of Card / Rune descriptions that are spawned with the Options? item
+	-- Default = false
+	["DisplayCardInfoOptions?"] = false,
 	
 	------------PILLS--------------
 
@@ -136,6 +139,9 @@ EID.UserConfig = {
 	-- Toggle Display of Pill descriptions when its not accessable with walking. AKA behind rock, blocks, spikes
 	-- Default = true
 	["DisplayObstructedPillInfo"] = true,
+	-- Toggle Display of Pill descriptions that are spawned with the Options? item
+	-- Default = true
+	["DisplayPillInfoOptions?"] = true,
 	-- Toggle Display of Pill descriptions that arent known to you yet
 	-- Default = false
 	["ShowUnidentifiedPillDescriptions"] = false,
@@ -245,8 +251,10 @@ EID.DefaultConfig = {
 	["DisplaySoulstoneInfoShop"] = true,
 	["DisplayObstructedCardInfo"] = false,
 	["DisplayObstructedSoulstoneInfo"] = true,
+	["DisplayCardInfoOptions?"] = false,
 	["DisplayPillInfo"] = true,
 	["DisplayPillInfoShop"] = true,
+	["DisplayPillInfoOptions?"] = true,
 	["DisplayObstructedPillInfo"] = true,
 	["ShowUnidentifiedPillDescriptions"] = false,
 	["DisplaySacrificeInfo"] = true,
