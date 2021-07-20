@@ -670,6 +670,6 @@ EID.descriptions["en_us"].horsepills={
 EID.descriptions["en_us"].CraftingBagContent = "Bag:"
 EID.descriptions["en_us"].CraftingRoomContent = "Room:"
 EID.descriptions["en_us"].CraftingFloorContent = "Floor:"
-EID.descriptions["en_us"].CraftingResults = "Results:#(Scroll: Hold TAB + Shoot △/▽)"
+EID.descriptions["en_us"].CraftingResults = "Results:#(Scroll: hold {{ButtonSelect}} + {{ButtonY}} {{ButtonA}})"
 EID.descriptions["en_us"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}This feature currently does not support games with modded items installed"
 

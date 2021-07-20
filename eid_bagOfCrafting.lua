@@ -486,7 +486,7 @@ local function shiftBagContent()
 end
 
 local function detectBagContentShift()
-	if Input.IsActionTriggered(ButtonAction.ACTION_DROP, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_DROP, 1) then
+	if Input.IsActionTriggered(ButtonAction.ACTION_DROP, EID.player.ControllerIndex) then
 		shiftBagContent()
 	end
 end
@@ -671,9 +671,9 @@ function EID:handleBagOfCraftingRendering()
 	EID:appendToDescription(customDescObj, resultDesc)
 	
 	if Input.IsActionPressed(ButtonAction.ACTION_MAP, 0) or Input.IsActionPressed(ButtonAction.ACTION_MAP, 1) then
-		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, 1) then
+		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) then
 			EID.bagOfCraftingOffset = math.min(#results-(#results%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
-		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, 0) or  Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, 1) then
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) then
 			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
 		end
 		toggleControls(false)

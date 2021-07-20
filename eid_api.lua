@@ -598,7 +598,7 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 	for _, sprite in ipairs(spriteTable) do
 		local Xoffset = sprite[1][5] or -1
 		local Yoffset = sprite[1][6] or 0
-		local spriteObj = sprite[1][7] or EID.InlineIconSprite
+		local spriteObj = (type(sprite[1][7]) == "function" and sprite[1][7]()) or sprite[1][7] or EID.InlineIconSprite
 		if sprite[1][2] >=0 then
 			spriteObj:SetFrame(sprite[1][1], sprite[1][2])
 		elseif not spriteObj:IsPlaying(sprite[1][1]) or spriteObj:IsFinished(sprite[1][1]) then

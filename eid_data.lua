@@ -88,6 +88,11 @@ EID.TextReplacementPairs = {
 	{"{{CR}}", "{{ColorReset}}"}, -- Shortcut for Color Resetting
 	{"{{EthernalHeart}}", "{{EternalHeart}}"} -- fix spelling error
 }
+local controllerSprites = Sprite()
+controllerSprites:Load("gfx/ui/buttons.anm2", true)
+local function getControllerSprite()
+	return (EID.player.ControllerIndex > 0 and controllerSprites) or EID.InlineIconSprite
+end
 
 --Format: [SHORTCUT]= {Animationname, Frame, Width, Height, LeftOffset [Default: -1], TopOffset [Default: 0], SpriteObject [Default: EID.InlineIconSprite]}
 EID.InlineIcons = {
@@ -210,6 +215,24 @@ EID.InlineIcons = {
 	["Quality2"] = {"Quality", 2, 10, 10, 0, 0},
 	["Quality3"] = {"Quality", 3, 10, 10, 0, 0},
 	["Quality4"] = {"Quality", 4, 10, 10, 0, 0},
+	-- Controller Button Icons (XBox based)
+	["ButtonY"] = {"XboxOne", 0, 9, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonA"] = {"XboxOne", 1, 9, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonB"] = {"XboxOne", 2, 9, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonX"] = {"XboxOne", 3, 9, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonDDown"] = {"XboxOne", 4, 9, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonDUp"] = {"XboxOne", 5, 8, 9, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonDRight"] = {"XboxOne", 6, 9, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonDLeft"] = {"XboxOne", 7, 9, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonLStick"] = {"XboxOne", 8, 8, 8, 3, 4, controllerSprites},
+	["ButtonRStick"] = {"XboxOne", 9, 8, 8, 3, 4, controllerSprites},
+	["ButtonLB"] = {"XboxOne", 10, 8, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonRB"] = {"XboxOne", 11, 8, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonLT"] = {"XboxOne", 12, 8, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonRT"] = {"XboxOne", 13, 8, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonSelect"] = {"XboxOne", 14, 8, 8, 3, 4, function(_) return getControllerSprite() end},
+	["ButtonMenu"] = {"XboxOne", 15, 8, 8, 3, 4, function(_) return getControllerSprite() end},
+	
 	-- Crafting
 	
 	["Crafting0"] = {"Crafting", 0, 14, 16, -2, -3},
