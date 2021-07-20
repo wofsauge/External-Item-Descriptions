@@ -466,7 +466,7 @@ function EID:getXMLDescription(Type, Variant, SubType)
 	elseif tableName == "cards" then
 		desc = EID.itemConfig:GetCard(SubType).Description
 	end
-	return desc or "(No Description available)"
+	return desc or "(no description available)"
 end
 
 -- check if an entity is part of the describable entities
