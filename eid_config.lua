@@ -49,7 +49,7 @@ EID.UserConfig = {
 	-- Default = "none"
 	["Indicator"] = "none",
 	-- Set the keybinding to toggle the descriptions
-	-- look into the AB+ documentation for the key names
+	-- look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
 	-- Default = Keyboard.KEY_F2
 	["HideKey"] = Keyboard.KEY_F2,
 	-- Initial displaystate. Can be used to change the toggle behavior of the "Hide Key" event
@@ -169,6 +169,10 @@ EID.UserConfig = {
 	-- Higher numbers can cause more lag!
 	-- Default = 7
 	["BagOfCraftingResults"] = 7,
+	-- Set the keybinding to toggle the scroll feature of the bag of crafting descriptions
+	-- look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
+	-- Default = ButtonAction.ACTION_MAP
+	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	
 	---------Mouse Controls-----------
 	
@@ -261,6 +265,7 @@ EID.DefaultConfig = {
 	["DisplayDiceInfo"] = true,
 	["DisplayBagOfCrafting"] = "always",
 	["BagOfCraftingResults"] = 7,
+	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["SpindownDiceResults"] = 3,
 	["EnableMouseControls"] = false,
 	["ShowCursor"] = false,

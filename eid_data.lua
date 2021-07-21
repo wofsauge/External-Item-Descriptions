@@ -21,6 +21,23 @@ EID.SpindownDiceSkipIDs = {
 	[718]=true
 }
 
+EID.ButtonToIconMap = {
+	[ButtonAction.ACTION_SHOOTUP] = "{{ButtonY}}",
+	[ButtonAction.ACTION_SHOOTDOWN] = "{{ButtonA}}",
+	[ButtonAction.ACTION_SHOOTRIGHT] = "{{ButtonB}}",
+	[ButtonAction.ACTION_SHOOTLEFT] = "{{ButtonX}}",
+	[ButtonAction.ACTION_DOWN] = "{{ButtonDDown}}",
+	[ButtonAction.ACTION_UP] = "{{ButtonDUp}}",
+	[ButtonAction.ACTION_RIGHT] = "{{ButtonDRight}}",
+	[ButtonAction.ACTION_LEFT] = "{{ButtonDLeft}}",
+	[ButtonAction.ACTION_BOMB] = "{{ButtonLB}}",
+	[ButtonAction.ACTION_PILLCARD] = "{{ButtonRB}}",
+	[ButtonAction.ACTION_ITEM] = "{{ButtonLT}}",
+	[ButtonAction.ACTION_DROP] = "{{ButtonRT}}",
+	[ButtonAction.ACTION_MAP] = "{{ButtonSelect}}",
+	[ButtonAction.ACTION_PAUSE] = "{{ButtonMenu}}",
+}
+
 EID.HUDElements = {
 	["Active1"] = {x = 20,y = 5, width = 65, height = 65, anchors={"TOP","LEFT"}, descriptionObj = function() 
 		local id = EID.player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)
@@ -86,7 +103,8 @@ EID.TextReplacementPairs = {
 	{"\8\189", "{{Bomb}}"}, -- Legacy BOMB
 	{"{{Hashtag}}", "ǂ"}, -- Hashtag
 	{"{{CR}}", "{{ColorReset}}"}, -- Shortcut for Color Resetting
-	{"{{EthernalHeart}}", "{{EternalHeart}}"} -- fix spelling error
+	{"{{EthernalHeart}}", "{{EternalHeart}}"}, -- fix spelling error
+	{"{{CONFIG_BoC_Toggle}}", function(_) return EID.ButtonToIconMap[EID.Config["BagOfCraftingToggleKey"]] or "{{ButtonSelect}}" end}, -- fix spelling error
 }
 local controllerSprites = Sprite()
 controllerSprites:Load("gfx/ui/buttons.anm2", true)

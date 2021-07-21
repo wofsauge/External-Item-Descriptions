@@ -671,5 +671,5 @@ EID.descriptions["ru"].horsepills={
 EID.descriptions["ru"].CraftingBagContent = "Мешок:"
 EID.descriptions["ru"].CraftingRoomContent = "Комната:"
 EID.descriptions["ru"].CraftingFloorContent = "Этаж:"
-EID.descriptions["ru"].CraftingResults = "Результаты:#(Листать: {{ButtonSelect}} + {{ButtonY}} {{ButtonA}})"
+EID.descriptions["ru"].CraftingResults = "Результаты:#(Листать: {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
 EID.descriptions["ru"].CraftingBagModError = "!!! {{ColorRed}}ОШИБКА:#{{ColorRed}}Эта функция на данный момент не поддерживается с установленными модами"

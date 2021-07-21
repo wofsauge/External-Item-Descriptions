@@ -460,7 +460,7 @@ end, EntityType.ENTITY_KNIFE)
 
 local holdCounter = 0
 local function trackBagHolding()
-	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, 0) or Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, 1)
+	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.player.ControllerIndex)
 	local animationName = EID.player:GetSprite():GetAnimation()
 	if isCardHold and string.match(animationName, "PickupWalk") and #EID.BagItems>=8 then
 		holdCounter = holdCounter + 1
@@ -669,8 +669,7 @@ function EID:handleBagOfCraftingRendering()
 	
 	local resultDesc = EID:getDescriptionEntry("CraftingResults")
 	EID:appendToDescription(customDescObj, resultDesc)
-	
-	if Input.IsActionPressed(ButtonAction.ACTION_MAP, 0) or Input.IsActionPressed(ButtonAction.ACTION_MAP, 1) then
+	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.player.ControllerIndex) then
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) then
 			EID.bagOfCraftingOffset = math.min(#results-(#results%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) then
