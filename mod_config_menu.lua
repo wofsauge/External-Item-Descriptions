@@ -711,50 +711,6 @@ if MCMLoaded then
 			end
 		}
 	)
-	
-	MCM.AddSpace("EID", "Display")
-	MCM.AddText("EID", "Display", "Bag of Crafting")
-	
-	-- Bag of Crafting Display
-	local bagDisplays = {"always","hold","never"}
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return AnIndexOf(bagDisplays, EID.Config["DisplayBagOfCrafting"])
-			end,
-			Minimum = 1,
-			Maximum = 3,
-			Display = function()
-				return "Display mode: " .. EID.Config["DisplayBagOfCrafting"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["DisplayBagOfCrafting"] = bagDisplays[currentNum]
-			end,
-			Info = {"always = Always show Results, hold = Show when holding up bag, never = Never show results"}
-		}
-	)
-	-- Bag of Crafting results
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.SCROLL,
-			CurrentSetting = function()
-				return AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1
-			end,
-			Display = function()
-				return "Displayed Results: $scroll" ..
-					AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1 .. " " .. EID.Config["BagOfCraftingResults"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["BagOfCraftingResults"] = diceSteps[currentNum%#diceSteps + 1]
-			end,
-			Info = {"Preview of items currently craftable with Bag of crafting"}
-		}
-	)
 	---------------------------------------------------------------------------
 	---------------------------------Visuals-----------------------------------
 	-- Font Type
@@ -948,6 +904,79 @@ if MCMLoaded then
 			OnChange = function(currentBool)
 				EID.Config["ShowQuality"] = currentBool
 			end
+		}
+	)
+	---------------------------------------------------------------------------
+	---------------------------------Visuals-----------------------------------
+	
+	-- Bag of Crafting Display
+	local bagDisplays = {"always","hold","never"}
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(bagDisplays, EID.Config["DisplayBagOfCrafting"])
+			end,
+			Minimum = 1,
+			Maximum = 3,
+			Display = function()
+				return "Display mode: " .. EID.Config["DisplayBagOfCrafting"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["DisplayBagOfCrafting"] = bagDisplays[currentNum]
+			end,
+			Info = {"always = Always show Results, hold = Show when holding up bag, never = Never show results"}
+		}
+	)
+	-- Bag of Crafting results
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = function()
+				return AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1
+			end,
+			Display = function()
+				return "Displayed Results: $scroll" ..
+					AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1 .. " " .. EID.Config["BagOfCraftingResults"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["BagOfCraftingResults"] = diceSteps[currentNum%#diceSteps + 1]
+			end,
+			Info = {"Preview of items currently craftable with Bag of crafting"}
+		}
+	)
+	
+	MCM.AddSpace("EID", "Crafting")
+	--------Clear Floor---------
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function() return true end,
+			Display = function() return "<---- Clear Floor item list ---->" end,
+			OnChange = function(currentBool)
+			EID.bagOfCraftingRoomQueries = {}
+			EID.bagOfCraftingFloorQuery = {}
+			EID.bagOfCraftingCurPickupCount = -1
+			end,
+			Info = {"Press SPACE to clear all currently detected Items on the stage"}
+		}
+	)
+	--------Clear bag---------
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function() return true end,
+			Display = function() return "<---- Clear Bag Content ---->" end,
+			OnChange = function(currentBool) EID.BagItems = {} end,
+			Info = {"Press SPACE to clear all currently detected Items on the bag"}
 		}
 	)
 	---------------------------------------------------------------------------
