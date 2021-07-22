@@ -565,7 +565,7 @@ function EID:handleBagOfCraftingRendering()
 	if EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.player:GetSprite():GetAnimation(), "PickupWalk") then
 		return false
 	end
-	if detectModdedItems() then
+	if detectModdedItems() or Game():GetRoom():GetFrameCount ()<2 then
 		return false
 	end
 	local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
@@ -573,7 +573,7 @@ function EID:handleBagOfCraftingRendering()
 	local results = {}
 	local roomItems = {}
 	local pickups = Isaac.FindByType(5, -1, -1, true, false)
-	if EID.bagOfCraftingCurPickupCount ~= #pickups then 
+	if EID.bagOfCraftingCurPickupCount ~= #pickups then
 		for i, entity in ipairs(pickups) do
 			local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
 			if craftingIDs ~= nil and not entity:ToPickup():IsShopItem() then
@@ -582,11 +582,11 @@ function EID:handleBagOfCraftingRendering()
 				end
 			end
 		end
-		EID.bagOfCraftingRoomQueries[curRoomIndex] = roomItems
+		EID.bagOfCraftingRoomQueries[curRoomIndex..""] = roomItems
 		EID.bagOfCraftingCurPickupCount = #pickups
 		calcFloorItems()
 	else
-		roomItems = EID.bagOfCraftingRoomQueries[curRoomIndex] or {}
+		roomItems = EID.bagOfCraftingRoomQueries[curRoomIndex..""] or {}
 	end
 	
 	local itemQuery = {}
