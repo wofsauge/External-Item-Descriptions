@@ -652,5 +652,5 @@ EID.descriptions["pt_br"].horsepills={
 
 EID.descriptions["pt_br"].CraftingBagContent = "Mochila:"
 EID.descriptions["pt_br"].CraftingRoomContent = "Sala:"
-EID.descriptions["pt_br"].CraftingResults = "Resultado:#(Rolar: Segurar {{ButtonSelect}} + {{ButtonY}} {{ButtonA}})"
+EID.descriptions["pt_br"].CraftingResults = "Resultado:#(Rolar: Segurar {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
 EID.descriptions["en_us"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}Este recurso atualmente não suporta jogos com itens modificados instalados"
