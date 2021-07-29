@@ -798,7 +798,7 @@ function EID:handleHUDElement(hudElement)
 	for k,v in pairs(hudElement) do
 		alteredHudElement[k] = v
 	end
-	local screenSize = EID:GetScreenSize()
+	local screenSize = EID:getScreenSize()
 	local hudOffset = EID.Config["HUDOffset"]
 	for _,v in ipairs(hudElement.anchors) do
 		if v == "TOP" then
@@ -816,7 +816,7 @@ function EID:handleHUDElement(hudElement)
 	return alteredHudElement
 end
 
-function EID:GetScreenSize()
+function EID:getScreenSize()
     local room = game:GetRoom()
     local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - Game().ScreenShakeOffset
     

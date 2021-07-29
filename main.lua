@@ -405,7 +405,7 @@ function EID:renderIndicator(entity)
 	if REPENTANCE then
 		repDiv = 255
 		if isMirrorRoom then
-			local screenCenter = EID:GetScreenSize()/2
+			local screenCenter = EID:getScreenSize()/2
 			entityPos.X = entityPos.X - (entityPos-screenCenter).X * 2
 			sprite.FlipX = true
 		end
