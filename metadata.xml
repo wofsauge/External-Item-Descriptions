@@ -42,7 +42,7 @@ This mod displays detailed information about all items, trinkets, cards, runes a
         [td]by Wofsauge[/td]
         [td]by Arroyo Purroy[/td]
         [td]by hell2Pay, fly_6, Dezzelshipc, Sekaz[/td]
-        [td]by Denkishi, 2G[/td]
+        [td]by Klyser8, Denkishi, 2G[/td]
         [td]by Nicolas Delvaux[/td]
         [td]by Marcelino Cruz[/td]
         [td]by LuanRoger, NotZin02[/td]
@@ -79,7 +79,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions
 [img]https://i.imgur.com/jrdGbna.png[/img]
 - PLATINUMGOD.CO.UK for providing useful item descriptions
 - Nicolas Delvaux for creating an awesome [b]French[/b] language pack
-- Denkishi and 2G for creating the fantastic [b]Italian[/b] language pack
+- Klyser8, Denkishi and 2G for creating the fantastic [b]Italian[/b] language pack
 - Lidia Arroyo Purroy for creating the amazing [b]Spanish[/b] language Pack
 - Rickyy, Kennyluz and MERITT for creating the incredible [b]Polish[/b] language pack
 - Marcelino Cruz for creating the [b]Portuguese[/b] language pack
@@ -90,7 +90,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions
 - Jake for the sweet [b]German[/b] language pack
 - [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating an awesome new Languagepack and providing ideas for new functionalities
 </description>
-    <version>3.69</version>
+    <version>3.70</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

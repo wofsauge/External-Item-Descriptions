@@ -25,7 +25,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions).
 - **PORTUGUESE** (by Marcelino Cruz)
 - **Brazilian - Portuguese** (by LuanRoger and NotZin02)
 - **RUSSIAN** (by hell2Pay, fly_6, Dezzelshipc and Sekaz)
-- **ITALIAN** (by Denkishi, 2G)
+- **ITALIAN** (by Klyser8, Denkishi, 2G)
 - **BULGARIAN** (*WIP*, by TST_Gogo_, Gothika_47)
 - **TURKISH** (by Cagdas Salur, Mert Dutal)
 - **POLISH** (*WIP*, by Rickyy, Kennyluz, MERITT)
@@ -61,7 +61,7 @@ Same as Windows but the path is: */home/%YourUsernameHere%/.steam/steam/steamapp
 ## Special Thanks to
 - PLATINUMGOD.CO.UK for providing useful item descriptions
 - Nicolas Delvaux for creating an awesome **French** language pack
-- Denkishi and 2G for creating the fantastic **Italian** language pack
+- Klyser8, Denkishi and 2G for creating the fantastic **Italian** language pack
 - Lidia Arroyo Purroy for creating the amazing **Spanish** language Pack
 - Rickyy, Kennyluz and MERITT for creating the incredible **Polish** language pack
 - Marcelino Cruz for creating the **Portuguese** language pack
