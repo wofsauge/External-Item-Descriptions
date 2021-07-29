@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
-EID.Config.ModVersion = "3.71"
+EID.ModVersion = "3.71"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -174,8 +174,8 @@ questionMarkSprite:LoadGraphics()
 
 function EID:IsAltChoise(pickup)
 	local data = pickup:GetData()
-	if data["EID_IsAltChoise"] ~= nil then
-		return data["EID_IsAltChoise"]
+	if EID:getEntityData(closest, "EID_IsAltChoise") then
+		return EID:getEntityData(closest, "EID_IsAltChoise")
 	end
 
 	if not REPENTANCE or game:GetLevel():GetStageType() < 4 or game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
@@ -625,8 +625,8 @@ local function onRender(t)
 	EID:renderIndicator(closest)
 
 	--Handle GetData Entities (specific)
-	if EID.Config["EnableEntityDescriptions"] and type(closest:GetData()["EID_Description"]) ~= type(nil) then
-		local desc = closest:GetData()["EID_Description"]
+	if EID.Config["EnableEntityDescriptions"] and EID:getEntityData(closest, "EID_Description") then
+		local desc = EID:getEntityData(closest, "EID_Description")
 		local origDesc = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
 		if type(desc) == "table" then
 			origDesc.Description = desc.Description or origDesc.Description
@@ -651,7 +651,7 @@ local function onRender(t)
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Collectibles
-		if closest:GetData()["EID_DontHide"] ~= true then
+		if EID:getEntityData(closest, "EID_DontHide") ~= true then
 			if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"]) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoise(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 				EID:renderQuestionMark()
 				return
@@ -666,7 +666,7 @@ local function onRender(t)
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
-		if closest:GetData()["EID_DontHide"] ~= true then
+		if EID:getEntityData(closest, "EID_DontHide") ~= true then
 			local isSoulstone = closest.SubType >= 81 and closest.SubType <= 97
 			local hideinShop = closest:ToPickup():IsShopItem() and ((not isSoulstone and not EID.Config["DisplayCardInfoShop"]) or (isSoulstone and not EID.Config["DisplaySoulstoneInfoShop"]))
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayCardInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
@@ -684,7 +684,7 @@ local function onRender(t)
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
-		if closest:GetData()["EID_DontHide"] ~= true then
+		if EID:getEntityData(closest, "EID_DontHide") ~= true then
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
 			if isOptionsSpawn or (closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]) or (not EID.Config["DisplayObstructedPillInfo"] and not EID.hasValidWalkingpath) then
 				EID:renderQuestionMark()

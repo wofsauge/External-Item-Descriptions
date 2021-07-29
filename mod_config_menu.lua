@@ -77,7 +77,7 @@ if MCMLoaded then
 	MCM.AddSpace("EID", "Info")
 	MCM.AddText("EID", "Info", function() return "External Item Descriptions" end)
 	MCM.AddSpace("EID", "Info")
-	MCM.AddText("EID", "Info", function() return "Version "..EID.Config.ModVersion .." ("..EID.GameVersion..")" end)
+	MCM.AddText("EID", "Info", function() return "Version "..EID.ModVersion .." ("..EID.GameVersion..")" end)
 	MCM.AddSpace("EID", "Info")
 	MCM.AddText("EID", "Info", function() return "by Wofsauge" end)
 	MCM.AddSpace("EID", "Info")

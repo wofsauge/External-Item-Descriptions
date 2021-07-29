@@ -826,6 +826,13 @@ function EID:getScreenSize()
     return Vector(rx*2 + 13*26, ry*2 + 7*26)
 end
 
+function EID:getEntityData(entity, str)
+	if entity ~= nil and entity:GetData() ~= nil then
+		return entity:GetData()[str]
+	end
+	return nil
+end
+
 -- Creates a copy of a KColor object. This prevents overwriting existing
 function EID:copyKColor(colorObj)
 	return KColor(colorObj.Red, colorObj.Green, colorObj.Blue, colorObj.Alpha)
