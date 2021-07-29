@@ -228,6 +228,7 @@ function EID:printDescription(desc)
 	local offsetX = 0
 	if EID.Config["ShowItemIcon"] then
 		local iconType = nil
+		local subType = desc.ObjSubType
 		if desc.ObjType == 5 then
 			if desc.ObjVariant == 100 then
 				iconType = "Collectible"
@@ -237,12 +238,15 @@ function EID:printDescription(desc)
 				iconType = "Card"
 			elseif desc.ObjVariant == 70 then
 				iconType = "Pill"
+				if subType >= 2049 then
+					subType = subType - 2048
+				end
 			end
 		end
 		if iconType ~= nil then
 			offsetX = offsetX + 14
 			EID:renderString(
-				"{{" .. iconType .. desc.ObjSubType .. "}}",
+				"{{" .. iconType .. subType .. "}}",
 				renderPos + (Vector(-3, -4) * EID.Config["Scale"]),
 				textScale,
 				EID:getNameColor()
@@ -699,6 +703,9 @@ local function onRender(t)
 			local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor)
 			EID:printDescription(descEntry)
 		else
+			if pillColor >= 2049 then
+				pillColor = pillColor - 2048
+			end
 			EID:renderString(
 				"{{Pill"..pillColor.."}} "..EID:getDescriptionEntry("unidentifiedPill"),
 				EID:getTextPosition(),
