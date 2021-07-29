@@ -452,7 +452,7 @@ function EID:renderIndicator(entity)
 end
 
 function EID:renderHUDLocationIndicators()
-	local mousePos = Input.GetMousePosition(false)
+	local mousePos = Isaac.WorldToRenderPosition(Input.GetMousePosition(true)) * 2
 	Isaac.RenderScaledText("Mouse pos   X:"..mousePos.X.." Y:"..mousePos.Y, 100, 10, 0.5, 0.5, 1 ,1 ,1 ,1 )
 	Isaac.RenderScaledText("HUD Adjustment Preview!", 200, 10, 1, 1, 1 ,0.25 ,0.25 ,1 )
 	for k, v in pairs(EID.HUDElements) do
@@ -465,7 +465,7 @@ function EID:renderHUDLocationIndicators()
 end
 
 function EID:handleHoverHUD()
-	local mousePos = Input.GetMousePosition(false)
+	local mousePos = Isaac.WorldToRenderPosition(Input.GetMousePosition(true)) * 2
 	if EID.Config["ShowCursor"] then
 		EID.CursorSprite:Render(Vector(mousePos.X/2, mousePos.Y/2), nullVector, nullVector)
 	end
