@@ -506,18 +506,6 @@ EID.bagOfCraftingFloorQuery = {}
 EID.BagItems = {}
 EID.icount = 0
 
-local isControlsBlocked = false
-
-local function toggleControls(value)
-	if not value then
-		EID.player.ControlsEnabled = false
-		isControlsBlocked = false
-	elseif not isControlsBlocked and value then
-		EID.player.ControlsEnabled = true
-		isControlsBlocked = false
-	end
-end
-
 local function GetMaxCollectibleID()
     local id = CollectibleType.NUM_COLLECTIBLES-1
     local step = 16
@@ -600,7 +588,6 @@ function EID:handleBagOfCraftingRendering()
 	
 	-- Calculate result from pickups on floor
 	if #itemQuery < 8 then
-		toggleControls(true)
 		return false
 	end
 	table.sort(itemQuery, function(a, b) return a > b end)
@@ -635,7 +622,6 @@ function EID:handleBagOfCraftingRendering()
 	
 	if #results == 0 then
 		EID.bagOfCraftingOffset = 0
-		toggleControls(true)
 		return false
 	end
 	
@@ -670,14 +656,12 @@ function EID:handleBagOfCraftingRendering()
 	local resultDesc = EID:getDescriptionEntry("CraftingResults")
 	EID:appendToDescription(customDescObj, resultDesc)
 	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.player.ControllerIndex) then
+		EID.player:SetShootingCooldown(2)
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) then
 			EID.bagOfCraftingOffset = math.min(#results-(#results%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) then
 			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
 		end
-		toggleControls(false)
-	else
-		toggleControls(true)
 	end
 	
 	local resultCount = 0
