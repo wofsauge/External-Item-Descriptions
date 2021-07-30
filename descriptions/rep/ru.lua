@@ -2,6 +2,8 @@
 -----  Basic Russian descriptions based on Platinumgod.co.uk, English and Russian Wikies -----
 ----------------------------------------------------------------------------------------------
 
+-- Last Sync with en_us: 29.07.2021
+
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
 

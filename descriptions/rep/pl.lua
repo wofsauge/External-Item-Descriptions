@@ -2,6 +2,8 @@
 -----  Basic English descriptions based on Platinumgod.co.uk -----
 ------------------------------------------------------------------
 
+-- Last Sync with en_us: ~never~
+
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
 

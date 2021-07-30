@@ -4,6 +4,8 @@
 -----             By: LuanRoger and NotZin02            -----
 -------------------------------------------------------------
 
+-- Last Sync with en_us: 22.07.2021
+
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
 

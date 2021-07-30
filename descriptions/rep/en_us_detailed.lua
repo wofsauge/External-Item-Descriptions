@@ -2,6 +2,8 @@
 ----- Detailed English descriptions based on the Binding of Isaac Wiki -----
 ----------------------------------------------------------------------------
 
+-- Last Sync with en_us: 03.07.2021
+
 -- Transformations: uses the number next to the transformation entry (can be found at the bottom of this file)
 
 -- Item ID | transformation id| Description text 
