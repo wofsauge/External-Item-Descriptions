@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
-EID.ModVersion = "3.71"
+EID.ModVersion = "3.72"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -173,13 +173,15 @@ questionMarkSprite:ReplaceSpritesheet(1,"gfx/items/collectibles/questionmark.png
 questionMarkSprite:LoadGraphics()
 
 function EID:IsAltChoise(pickup)
-	local data = pickup:GetData()
-	if EID:getEntityData(closest, "EID_IsAltChoise") then
-		return EID:getEntityData(closest, "EID_IsAltChoise")
+	if pickup:GetData() == nil then
+		return false
+	end
+	if EID:getEntityData(pickup, "EID_IsAltChoise") ~= nil then
+		return EID:getEntityData(pickup, "EID_IsAltChoise")
 	end
 
 	if not REPENTANCE or game:GetLevel():GetStageType() < 4 or game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
-		data["EID_IsAltChoise"] = false
+		pickup:GetData()["EID_IsAltChoise"] = false
 		return false
 	end
 
@@ -188,10 +190,10 @@ function EID:IsAltChoise(pickup)
 
 	if name ~= "Idle" and name ~= "ShopIdle" then
 		-- Collectible can be ignored. its definetly not hidden
-		data["EID_IsAltChoise"] = false
+		pickup:GetData()["EID_IsAltChoise"] = false
 		return false
 	end
-
+	
 	questionMarkSprite:SetFrame(name,entitySprite:GetFrame())
 	-- check some point in entitySprite
 	for i = -70,0,2 do
@@ -199,7 +201,7 @@ function EID:IsAltChoise(pickup)
 		local ecolor = entitySprite:GetTexel(Vector(0,i),nullVector,1,1)
 		if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
 			-- it is not same with question mark sprite
-			data["EID_IsAltChoise"] = false
+			pickup:GetData()["EID_IsAltChoise"] = false
 			return false
 		end
 	end
@@ -210,12 +212,13 @@ function EID:IsAltChoise(pickup)
 			local qcolor = questionMarkSprite:GetTexel(Vector(j,i),nullVector,1,1)
 			local ecolor = entitySprite:GetTexel(Vector(j,i),nullVector,1,1)
 			if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
-				data["EID_IsAltChoise"] = false
+				pickup:GetData()["EID_IsAltChoise"] = false
 				return false
 			end
 		end
 	end
-	data["EID_IsAltChoise"] = true
+	print("calc")
+	pickup:GetData()["EID_IsAltChoise"] = true
 	return true
 end
 
