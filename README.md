@@ -28,7 +28,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions).
 - **ITALIAN** (by Klyser8, Denkishi, 2G)
 - **BULGARIAN** (*WIP*, by TST_Gogo_, Gothika_47)
 - **TURKISH** (by Cagdas Salur, Mert Dutal)
-- **POLISH** (*WIP*, by Rickyy, Kennyluz, MERITT)
+- **POLISH** (by Rickyy, Kennyluz, MERITT, DimonoKingoKongo )
 - **CHINESE** version: [EID Chinese Edition](https://steamcommunity.com/sharedfiles/filedetails/?id=1290363695) | alternative: [中文道具图鉴 Eid Chinese](https://steamcommunity.com/sharedfiles/filedetails/?id=848295251)
 
 
@@ -63,7 +63,7 @@ Same as Windows but the path is: */home/%YourUsernameHere%/.steam/steam/steamapp
 - Nicolas Delvaux for creating an awesome **French** language pack
 - Klyser8, Denkishi and 2G for creating the fantastic **Italian** language pack
 - Lidia Arroyo Purroy for creating the amazing **Spanish** language Pack
-- Rickyy, Kennyluz and MERITT for creating the incredible **Polish** language pack
+- Rickyy, Kennyluz, DimonoKingoKongo and MERITT for creating the incredible **Polish** language pack
 - Marcelino Cruz for creating the **Portuguese** language pack
 - LuanRoger and NotZin02 for creating the **Brazilian - Portuguese** language pack
 - hell2pay, fly_6, Dezzelshipc and Sekaz for creating the **Russian** language pack
