@@ -515,7 +515,7 @@ EID.descriptions["pl"].tarotClothBuffs = {
 	[7] = {"7", "", "Pojawia 3 czerwone serca"}, -- VI - The Lovers
 	[8] = {"8", "", "Podwójna długośc efektu"}, -- VII - The Chariot
 	[9] = {"9", "", "podwaja pojawione Rzeczy"}, -- VIII - Justice
-	[10] = {"10", "", "zapobiega przed pojawianiem się greeda w sklepie"#Turns shop into a normal shop if greed was already fought in it"}, -- IX - The Hermit
+	[10] = {"10", "", "zapobiega przed pojawianiem się greeda w sklepie"}, -- IX - The Hermit
 	[11] = {"11", "", "Pojawia 2 maszyny do gier"}, -- X - Wheel of Fortune
 	[12] = {"12", "", "Podwaja zwiększenia zstatystyk nie wliczając obrażeń"}, -- XI - Strength
 	[14] = {"14", "", "Zadaje 80 punktów obrażeń"}, -- XIII - Death
@@ -548,7 +548,7 @@ local repCards={
 	[51] = {"51", "Święta Karta", "Daje efekt#{{Blank}} Świętego Okrycia {{Collectible313}}#(Neguje następne otrzymane obrażenia)#Efekt utrzymuje się do następnego otrzymania obrażeń"}, -- Holy card
 	
 	[55] = {"55", "Odłamek Runy", "Aktywuje efekt losowej runy#Efekt ten jest słabszy"},
-	[56] = {"56", "0 - Głupiec?", "Wyrzuca wszystkie twoje serca i pickupy na ziemię#Pozostawia postać z połówką czerwonego serca#Pickupy mogą pojawić {{Collectible74}} {{Collectible19}} rzeczy jeśli jest ich za mało"},Efekt trwa 1 minutę"},
+	[56] = {"56", "0 - Głupiec?", "Wyrzuca wszystkie twoje serca i pickupy na ziemię#Pozostawia postać z połówką czerwonego serca#Pickupy mogą pojawić {{Collectible74}} {{Collectible19}} rzeczy jeśli jest ich za mało#Efekt trwa 1 minutę"},
 	[58] = {"58", "II - Kapłanka?", "Noga matki uderza bez przerwy przez 1 minutę"},
 	[59] = {"59", "III - Cesarzowa?", "Czasowy efekt:#↑ +2 Czerowne serca#↑ +1.35 Szybkostrzelności"},
 	[60] = {"60", "IV - Cesarz?", "Teleportuje do dodatkowej walki z bossem z dodatkowym przedmiotem"},
@@ -587,7 +587,7 @@ local repCards={
 	[93] = {"93", "Dusza Dozorcy", "Poawia od 3 do 25 monet"},
 	[94] = {"94", "Dusza Apollyona", "Pojawia 15 losowych much lokustów"},
 	[95] = {"95", "Dusza Zapomnianego", "Pojawia Forgottena jako drugą postać do końca pokoju"},
-	[96] = {"96", "Dusza Betani", pojaiwa 6 płomyków z księgi płomyków {{Collectible584}}z losowymi efektami"},
+	[96] = {"96", "Dusza Betani","pojaiwa 6 płomyków z księgi płomyków {{Collectible584}}z losowymi efektami"},
 	[97] = {"97", "Dusza Jakuba i Ezawa", "Pojawia Esau jako drugą postać do końca pokoju"},
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions["pl"].cards)
