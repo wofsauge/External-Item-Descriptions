@@ -675,7 +675,7 @@ EID.descriptions["en_us"].trinkets={
 	{"104", "Wish Bone", "Chance to spawn a pedestal item when getting hit#Gets destroyed afterwards"},
 	{"105", "Bag Lunch", "Chance to spawn Lunch {{Collectible22}} when getting hit#Gets destroyed afterwards"},
 	{"106", "Lost Cork", "Increases the radius of any creep you produce"},
-	{"107", "Crow Heart", "Damage taken will ignore spirit / black hearts, causing your red heart containers to be depleted first"},
+	{"107", "Crow Heart", "Damage taken will ignore soul / black hearts, causing your red heart containers to be depleted first"},
 	{"108", "Walnut", "Chance to drop random pickup / trinket when getting hit by an explosion#Gets destroyed afterwards"},
 	{"109", "Duct Tape", "Causes any familiar you have to stop moving"},
 	{"110", "Silver Dollar", "Shops {{Shop}} will now appear in the womb"},
