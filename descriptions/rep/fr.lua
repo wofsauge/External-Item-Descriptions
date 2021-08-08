@@ -6,9 +6,6 @@
 -- '#' = starts new line of text
 --Special character markup:
 -- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
-local newDescriptions = {
-	--["5.70.14"] = {"14", "Golden Pill", "Random pill effect#Destroys itself after a few uses"}, -- golden Pill
-}
 
 local repCollectibles={
 	[5] = {"5", "My reflexion", "Donne un effet boomerang aux larmes#↑ +1.5 Portée#↑ +60% Portée supplémentaire#↑ +0.6 Vitesse des larmes#↑ +1 Hauteur des larmes"}, -- My Reflection
@@ -163,7 +160,7 @@ local repCollectibles={
 	[474] = {"474", "", "Se change en Glass Canon"}, -- broken Glass Canon
 	[489] = {"489", "", "Effet de dé aléatoire à chaque utilisation#Cyclez les dés en appuyant sur la touche pour lâcher vos objets"}, -- D Infinity
 	[491] = {"491", "", "Fait apparaître une pilule aléatoire toutes les 7 salles#Utiliser une pilule empoisonne tous les ennemis dans la salle"}, -- Acid Baby
-	[493] = {"493", "Adrenaline", "Pour chaque coeur rouge vide :#↑ Dégâts ", -- Adrenaline
+	[493] = {"493", "Adrenaline", "Pour chaque coeur rouge vide :#↑ Dégâts "}, -- Adrenaline
 	[494] = {"494", "", "Les larmes provoquent 1-2 éclairs électriques à l'impact#Les éclairs infligent la moitié de vos dégâts#Les éclairs peuvent se propager d'un ennemi à l'autre"}, -- Jacobs Ladder
 	[503] = {"503", "", "Chance de tirer une larme qui fait apparaître une main de Big Horn#La main tue instantanément les ennemis et inflige des dégâts aux boss#Courir sur les ennemis leur infligera des dégâts"}, -- Little Horn
 	[504] = {"504", "", "Fait apparaître une mouche sentinelle qui tire sur les ennemis"}, -- Brown Nugget
@@ -401,7 +398,7 @@ EID.descriptions["fr"].birthright ={
 
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
-EID.descriptions["en_us"].bingeEaterBuffs = {
+EID.descriptions["fr"].bingeEaterBuffs = {
 	[22] = {"22", "", "↑+0.5 Cadence de tir#↑+1.5 Portée"}, -- Lunch
 	[23] = {"23", "", "↑+0.5 Cadence de tir#↑+0.2 Vitesse des larmes"}, -- Dinner
 	[24] = {"24", "", "↑+1.0 Dégâts#↑+0.2 Vitesse"}, -- Dessert
@@ -668,6 +665,6 @@ EID.descriptions["fr"].horsepills={
 EID.descriptions["fr"].CraftingBagContent = "Sac:"
 EID.descriptions["fr"].CraftingRoomContent = "Salle:"
 EID.descriptions["fr"].CraftingFloorContent = "Étage:"
-EID.descriptions["fr"].CraftingResults = "Results:#(Scroll: Hold TAB + Shoot △/▽)"
+EID.descriptions["fr"].CraftingResults = "Results:#(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
 EID.descriptions["fr"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}This feature currently does not support games with modded items installed"
 
