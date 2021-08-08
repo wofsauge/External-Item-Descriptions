@@ -9,8 +9,6 @@
 
 --Special character markup:
 -- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
-local newDescriptions = {
-}
 
 local repCollectibles={
 	[5] = {"5", "My Reflection", "Gives tears a boomerang effect#↑ +1.5 Range up#↑ +60% additional Range up#↑ +0.6 Shot Speed up#↑ +1 Tear Height"}, -- My Reflection
@@ -478,14 +476,14 @@ local repTrinkets={
 	[161] = {"161", "Wicked Crown", "Spawns a Treasure Room {{TreasureRoom}} and Shop {{Shop}} in Sheol"}, --  Wicked Crown
 	[162] = {"162", "Azazel's Stump", "Chance to turn into Azazel when entering a new room"}, --  Azazel's Stump
 	[163] = {"163", "Dingle Berry", "Spawns 2 friendly Dips upon clearing a room"}, --  Dingle Berry
-	[164] = {"164", "Ring Cap", "Spawns two extra bombs for each bomb placed"}, --  Ring Cap
+	[164] = {"164", "Ring Cap", "Spawns one extra bomb for each bomb placed"}, --  Ring Cap
 	[165] = {"165", "Nuh Uh!", "On Womb and beyond, replaces all pickup spawns with a random pickup#Bombs and Hearts are most common"}, --  Nuh Uh!
 	[166] = {"166", "Modeling Clay", "Grants the effect of a random Passive Item each room"}, --  Modeling Clay
 	[167] = {"167", "Polished Bone", "Chance to spawn a friendly Bony when clearing a room"}, --  Polished Bone
 	[168] = {"168", "Hollow Heart", "+1 bone heart container upon entering a new floor"}, --  Hollow Heart
 	[169] = {"169", "Kid's Drawing", "While held, counts towards the Guppy transformation"}, --  Kid's Drawing
 	[170] = {"170", "Crystal Key", "Grants the chance to automatically create Red Key rooms {{Collectible580}} each time you clear a room"}, --  Crystal Key
-	[171] = {"171", "Keeper's Bargain", "Devil deals use coins instead of hearts"}, --  Keeper's Bargain
+	[171] = {"171", "Keeper's Bargain", "Chance for Devil deals to cost coins instead of hearts"}, --  Keeper's Bargain
 	[172] = {"172", "Cursed Penny", "Teleport to a random room upon picking up a penny#Can teleport to secret rooms"}, --  Cursed Penny
 	[173] = {"173", "Your Soul", "{{Warning}} ONE TIME USAGE {{Warning}}#Can be used to pay for a Devil deal without losing hearts"}, --  Your Soul
 	[174] = {"174", "Number Magnet", "+10% Devil deal chance"}, --  Number Magnet
