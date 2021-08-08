@@ -609,5 +609,6 @@ EID.descriptions["spa"].horsepills={
 
 EID.descriptions["spa"].CraftingBagContent = "bolsa:"
 EID.descriptions["spa"].CraftingRoomContent = "habitación:"
-EID.descriptions["spa"].CraftingResults = "Resultados:"
+EID.descriptions["spa"].CraftingFloorContent = "escenario:"
+EID.descriptions["spa"].CraftingResults = "Resultados:#(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
 
