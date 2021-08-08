@@ -3,9 +3,10 @@ EID.UserConfig = {
 	-- Change language of the mod.
 	-- Currently Supported: English = "en_us" (Default) , "en_us_detailed"
 	--						French = "fr"  	    SPECIAL THANKS TO Nicolas Delvaux
-	--						Polish = "pl"		SPECIAL THANKS TO Rickyy 						(WIP)
+	--						Polish = "pl"		SPECIAL THANKS TO Rickyy
 	--						Spanish = "spa"		SPECIAL THANKS TO Lidia Arroyo Purroy
 	--						Portuguese = "pt"	SPECIAL THANKS TO Marcelino Cruz
+	--						Brazilian Portuguese = "pt_br"	SPECIAL THANKS TO Marcelino Cruz
 	--						Russian = "ru"		SPECIAL THANKS TO hell2pay, fly_6
 	--						Italian = "it"		SPECIAL THANKS TO Denkishi, 2G
 	--						Bulgarian = "bul"	SPECIAL THANKS TO ,Gothika_47 					(WIP)
