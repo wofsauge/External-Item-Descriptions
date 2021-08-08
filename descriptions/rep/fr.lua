@@ -1,6 +1,7 @@
 -----  Basic French descriptions based on Platinumgod.co.uk -----
 ------------------------------------------------------------------
 
+-- Last Sync with en_us: 08.08.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -471,14 +472,14 @@ local repTrinkets={
 	[161] = {"161", "", "Fait apparaître une Item Room {{TreasureRoom}} dans Sheol"}, --  Wicked Crown
 	[162] = {"162", "", "Chance de se transformer en Azazel en entrant dans une nouvelle salle"}, --  Azazel's Stump
 	[163] = {"163", "", "Fait apparaître une goutte de caca alliée en terminant une salle"}, --  Dingle Berry
-	[164] = {"164", "", "Fait apparaître deux bombes supplémentaires pour chaque bombe posée"}, --  Ring Cap
+	[164] = {"164", "", "Fait apparaître une bombes supplémentaire pour chaque bombe posée"}, --  Ring Cap
 	[165] = {"165", "", "Au Womb et au-delà, remplace tous les collectibles qui apparaissent#Les bombes et les coeurs sont plus fréquents"}, --  Nuh Uh!
 	[166] = {"166", "", "Confère l'effet d'un objet passif aléatoire à chaque salle"}, --  Modeling Clay
 	[167] = {"167", "", "Chance de faire apparaître un squelette allié en terminant une salle"}, --  Polished Bone
 	[168] = {"168", "", "+1 réceptacle de coeur d'os en commençant un nouvel étage"}, --  Hollow Heart
 	[169] = {"169", "", "Quand tenu, est considéré comme un objet participant à la transformation de Guppy"}, --  Kid's Drawing
 	[170] = {"170", "", "Confère la chance d'automatiquement créer des salle de Red Key {{Collectible580}}"}, --  Crystal Key
-	[171] = {"171", "", "Les Devil Deals coûtent des pièces"}, --  Keeper's Bargain
+	[171] = {"171", "", "Les Devil Deals peuvent parfois coûter des pièces plutôt que de la vie"}, --  Keeper's Bargain
 	[172] = {"172", "", "Vous téléporte dans une salle aléatoire en ramassant un penny#Peut vous téléporter dans une salle secrète"}, --  Cursed Penny
 	[173] = {"173", "", "{{Warning}} USAGE UNIQUE {{Warning}}#Peut être utilisé pour payer un Devil Deal sans perdre de coeurs"}, --  Your Soul
 	[174] = {"174", "", "+10% Chances de Devil Deal "}, --  Number Magnet

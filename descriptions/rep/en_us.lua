@@ -2,7 +2,7 @@
 -----  Basic English descriptions based on Platinumgod.co.uk -----
 ------------------------------------------------------------------
 
--- Last Update: 21.07.2021
+-- Last Update: 08.08.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
