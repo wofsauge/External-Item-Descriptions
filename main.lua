@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
-EID.ModVersion = "3.74"
+EID.ModVersion = "3.76"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -373,14 +373,10 @@ end
 ---------------------------------------------------------------------------
 ---------------------------Handle New Room--------------------------------
 local function IsMirror()
-	local lvl = game:GetLevel()
-    for i=0,168 do
-        local data = lvl:GetRoomByIdx(i).Data
-        if data and data.Name == 'Knife Piece Room' then
-            return true
-        end
-    end
-    return false
+	local level = game:GetLevel()
+	local id = level:GetCurrentRoomIndex()
+
+	return GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 1))
 end
 
 local isMirrorRoom = false
