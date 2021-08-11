@@ -362,7 +362,7 @@ EID.descriptions["en_us"].collectibles={
 	{"347", "Diplopia", "!!! SINGLE USE !#Duplicates any pedestals/ consumables in the current room"},
 	{"348", "Placebo", "Copies the effect of the pill you are currently holding"},
 	{"349", "Wooden Nickel", "50% chance to spawn a random coin"},
-	{"350", "Toxic Shock", "At the start of every room every enemy gets a poison effect"},
+	{"350", "Toxic Shock", "At the start of every room every enemy gets a poison effect#Killed enemies leave puddle of creep"},
 	{"351", "Mega Bean", "Freeze all enemies in the current room#Deals 5 damage and poison any enemies nearby#Sends wave of spikes across the room#!!! Can be used to open secret rooms"},
 	{"352", "Glass Cannon", "↓ Reduces your health to half a heart#Fires one large piercing spectral tear ((DMG+1) X 10)"},
 	{"353", "Bomber Boy", "+5 bombs#Bombs will now explode in a cross-shaped pattern"},
