@@ -546,6 +546,14 @@ end
 function EID:handleBagOfCraftingRendering()
 	trackBagHolding()
 	detectBagContentShift()
+	
+	if EID.isHidden then
+		return
+	elseif EID.Config["HideInBattle"] then
+		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
+			return
+		end
+	end
 
 	if EID.Config["DisplayBagOfCrafting"] == "never" then
 		return false
