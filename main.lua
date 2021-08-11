@@ -172,16 +172,16 @@ questionMarkSprite:Load("gfx/005.100_collectible.anm2",true)
 questionMarkSprite:ReplaceSpritesheet(1,"gfx/items/collectibles/questionmark.png")
 questionMarkSprite:LoadGraphics()
 
-function EID:IsAltChoise(pickup)
+function EID:IsAltChoice(pickup)
 	if pickup:GetData() == nil then
 		return false
 	end
-	if EID:getEntityData(pickup, "EID_IsAltChoise") ~= nil then
-		return EID:getEntityData(pickup, "EID_IsAltChoise")
+	if EID:getEntityData(pickup, "EID_IsAltChoice") ~= nil then
+		return EID:getEntityData(pickup, "EID_IsAltChoice")
 	end
 
 	if not REPENTANCE or game:GetLevel():GetStageType() < 4 or game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
-		pickup:GetData()["EID_IsAltChoise"] = false
+		pickup:GetData()["EID_IsAltChoice"] = false
 		return false
 	end
 
@@ -190,7 +190,7 @@ function EID:IsAltChoise(pickup)
 
 	if name ~= "Idle" and name ~= "ShopIdle" then
 		-- Collectible can be ignored. its definetly not hidden
-		pickup:GetData()["EID_IsAltChoise"] = false
+		pickup:GetData()["EID_IsAltChoice"] = false
 		return false
 	end
 	
@@ -201,7 +201,7 @@ function EID:IsAltChoise(pickup)
 		local ecolor = entitySprite:GetTexel(Vector(0,i),nullVector,1,1)
 		if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
 			-- it is not same with question mark sprite
-			pickup:GetData()["EID_IsAltChoise"] = false
+			pickup:GetData()["EID_IsAltChoice"] = false
 			return false
 		end
 	end
@@ -212,13 +212,12 @@ function EID:IsAltChoise(pickup)
 			local qcolor = questionMarkSprite:GetTexel(Vector(j,i),nullVector,1,1)
 			local ecolor = entitySprite:GetTexel(Vector(j,i),nullVector,1,1)
 			if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
-				pickup:GetData()["EID_IsAltChoise"] = false
+				pickup:GetData()["EID_IsAltChoice"] = false
 				return false
 			end
 		end
 	end
-	print("calc")
-	pickup:GetData()["EID_IsAltChoise"] = true
+	pickup:GetData()["EID_IsAltChoice"] = true
 	return true
 end
 
@@ -659,7 +658,7 @@ local function onRender(t)
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Collectibles
 		if EID:getEntityData(closest, "EID_DontHide") ~= true then
-			if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"]) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoise(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+			if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"]) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 				EID:renderQuestionMark()
 				return
 			end
