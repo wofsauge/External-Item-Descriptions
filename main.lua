@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
-EID.ModVersion = "3.76"
+EID.ModVersion = "3.77"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -462,10 +462,20 @@ function EID:renderHUDLocationIndicators()
 	end
 end
 
+local lastMousePos = Vector(0,0)
+local lastMouseMove = 0
+
 function EID:handleHoverHUD()
-	local mousePos = Isaac.WorldToRenderPosition(Input.GetMousePosition(true)) * 2
+	local mousePos = Isaac.WorldToScreen(Input.GetMousePosition(true))
+	if mousePos:Distance(lastMousePos) > 2 then
+		lastMousePos = mousePos
+		lastMouseMove = game:GetFrameCount()
+	end
+	if game:GetFrameCount() - lastMouseMove > 60 * 3 then
+		return nil
+	end
 	if EID.Config["ShowCursor"] then
-		EID.CursorSprite:Render(Vector(mousePos.X/2, mousePos.Y/2), nullVector, nullVector)
+		EID.CursorSprite:Render(Vector(mousePos.X, mousePos.Y), nullVector, nullVector)
 	end
 	for k, v in pairs(EID.HUDElements) do
 		local hudElement = EID:handleHUDElement(v)
