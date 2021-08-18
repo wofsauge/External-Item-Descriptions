@@ -169,7 +169,7 @@ local repCollectibles={
 	[523] = {"523", "", "Stocke jusqu'à 6 collectibles de la salle#Pose au sol les collectibles stockés"}, -- Moving Box
 	[524] = {"524", "", "Les larmes sont reliées par des arcs électriques#L'électricité inflige 1/3 de vos dégâts"}, -- Technology Zero
 	[531] = {"531", "Haemolacria", "Vous tirez des larmes en cloche#Les larmes se séparent en larmes plus petites à l'impact#↓ Cadence de tir#↑ +50% Dégâts#↑ +1 Dégâts"}, -- Haemolacria
-	[541] = {"541", "Marrow", "+1 Coeur d'os#Fait apparaître 3 coeurs rouges#Chance de faire apparaître le trinket {{Trinket167}} Polished Bone quand un coeur d'os est perdu"}, -- Marrow
+	[541] = {"541", "Marrow", "+1 Coeur d'os#Fait apparaître 3 coeurs rouges"}, -- Marrow
 	[543] = {"543", "", "Fait apparaître un caca blanc quand vous vous faites toucher#(Le caca blanc a une aura qui augmente vos dégâts et votre cadence de tir et qui rend vos larmes autoguidées et capables de bloquer les tirs ennemis)"}, -- Hallowed Ground
 	------PAUSE-----------
 	[553] = {"553", "", "Chance de tirer une spore collante#Les spores explosent après 2.5 secondes, infligeant des dégâts et empoisonnant les ennemis proches tout en libérant d'autres spores"}, --  Mucormycosis

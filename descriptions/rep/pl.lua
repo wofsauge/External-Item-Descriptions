@@ -171,7 +171,7 @@ local repCollectibles={
 	[523] = {"523", "Pudło na Przenosiny", "Użyte, przechowuje do 10 losowych Pickupów z obecnego pokoju#Użyte ponownie wyrzuci swoją zawartość na ziemię#Możesz w ten sposób przenosić rzeczy między pokojami"}, -- Moving Box
 	[524] = {"524", "Technology Zero", "Łzy są połączone wiązką elektryczną#Elektryczność zadaje obrażenia równe 1/3 twoich"}, -- Technology Zero
 	[531] = {"531", "Hemolakria", "Łzy lecą łukiem#Przy kontakcie rozpadają się na wiele mniejszych#↓ Mniejsza Szybkostrzelność#↑ +50% Obrażeń#↑ Dodatkowo +1 Obrażeń"}, -- Haemolacria
-	[541] = {"541", "Szpik", "+1 Kościane Serce {{BoneHeart}}#Tworzy 3 Czerwone Serca#Szansa na stworzenie {{Trinket167}} Polished Bone, gdy opróźnisz Kościany zasobnik"}, -- Marrow
+	[541] = {"541", "Szpik", "+1 Kościane Serce {{BoneHeart}}#Tworzy 3 Czerwone Serca"}, -- Marrow
 	[543] = {"543", "Poświęcona Ziemia", "Tworzy białą kupę, gdy zostaniesz trafiony#Biała kupa może blokować obrażenia i ma aurę zwiększającą Obrażenia i Szybkostrzelność, oraz dającą efekt naprowadzanych łez"}, -- Hallowed Ground
 	
 	[553] = {"553", "Mucormycosis", "Losowa szansa na wystrzelenie przylepnych zarodników#Zarodniki wybuchają po 2.5 sekundach, zadają obrażenia, zatruwają pobliskich przeciwników i wypuszczają więcej zarodników"}, --  Mucormycosis

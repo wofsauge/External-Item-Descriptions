@@ -104,7 +104,7 @@ EID.descriptions["en_us"].collectibles={
 	{"89", "Spider Bite", "Chance to shoot slowing tears"},
 	{"90", "The Small Rock", "↑ +1 Damage up#↑ +0.2 Tears up#↓ -0.2 Speed down"},
 	{"91", "Spelunker Hat", "Reveals the room type of adjacent rooms#Can also reveal Secret Rooms, Super Secret Rooms, and Mini-Boss Rooms"},
-	{"92", "Super Bandage", "↑ +1 Health up#+2 Soul heart"},
+	{"92", "Super Bandage", "↑ +1 Health up#+2 Soul heart#Heals one heart"},
 	{"93", "The Gamekid", "Invincibility +contact damage#Eating an enemy regenerates health"},
 	{"94", "Sack of Pennies", "Drops a random coin every 2 rooms"},
 	{"95", "Robo-Baby", "Laser tears#Deals 3.5 damage per shot"},
@@ -834,7 +834,7 @@ EID.descriptions["en_us"].sacrifice={
 EID.descriptions["en_us"].diceHeader = "[Dice effect]"
 
 EID.descriptions["en_us"].dice={
-	{"1", "", "Rerolls all of your items#(only affect collectibles)"},
+	{"1", "", "Rerolls all your collectibles into items from the Treasure Room {{TreasureRoom}} item pool"},
 	{"2", "", "Rerolls all pickups in the room"},
 	{"3", "", "Rerolls all pickups on the entire floor"},
 	{"4", "", "Rerolls all pedestal items on the floor#Doesnt affect Devil deals"},

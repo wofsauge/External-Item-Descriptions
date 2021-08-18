@@ -171,7 +171,7 @@ local repCollectibles={
 	[523] = {"523", "Caja de mudanza", "Guarda hasta seis recolectables de la habitación#Al volver  a usarlo suelta los recolectables#Te permite mover cosas entre habitaciones"}, -- Caja de mudanza
 	[524] = {"524", "Tecnología cero", "Las lágrimas están conectadas con rayos de electricidad#Los rayos infligen 1/3 de tu daño"}, -- Tecnología cero
 	[531] = {"531", "Hemolacria", "Las lágrimas salen en forma de arco#Al impactar, explotan en lágrimas más pequeñas#↓ Menos lágrimas#↑ +50 % de daño↑ +1 de daño adicional"},
-	[541] = {"541", "Médula", "+1 corazón de hueso#Genera 3 corazones rojos#Posibilidad de generar un {{Trinket167}} Polished Bone (Hueso pulido) cuando se rompa un corazón de hueso"},
+	[541] = {"541", "Médula", "+1 corazón de hueso#Genera 3 corazones rojos"},
 	[543] = {"543", "Tierra sagrada", "Genera una caca blanca cuando te golpean#(La caca blanca tiene un aura que aumenta las lágrimas, las hace teledirigidas y puede bloquear daño)"}, -- Tierra sagrada
 	
 	[553] = {"553", "Mucormicosis", "Posibilidad de disparar lágrimas de espora que se pegan al enemigo#Las esporas explotan tras 2,5 segundos, soltando más esporas e infligiendo daño y envenenando a enemigos cercanos"}, --  Mucormicosis

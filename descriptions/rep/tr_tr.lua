@@ -176,7 +176,7 @@ local repCollectibles={
 	[523] = {"523", "Taşınma Kolisi", "Kullanıldığında, odada 10 pickupa kadar içinde saklayabilir#Tekrar kullanıldığında hepsini yere çıkartır#Odalar arasında eşya taşımak için kullanılabilir"}, -- Moving Box
 	[524] = {"524", "Teknoloji 00", "Gözyaşları elektrik ile bağlanır#Elektrik hasarı senin hasarının 1/3üne eşit olur"}, -- Technology Zero
 	[531] = {"531", "Kan Gözyaşı", "Gözyaşları yüksekten uçar#Gözyaşları değdiğinde küçük parçalara ayrılır#↓ Gözyaşı azalır#↑ +50% Hasar#↑ +1 ekstra Hasar"}, -- Haemolacria
-	[541] = {"541", "İlik", "+1 Kemik kalp#3 kırmızı kalp oluşturur#Kemik kalp bittiğinde {{Trinket167}} Polished Bone trinketi oluşturma şansı"}, -- Marrow
+	[541] = {"541", "İlik", "+1 Kemik kalp#3 kırmızı kalp oluşturur"}, -- Marrow
 	[543] = {"543", "Çukur", "Hasar aldığında beyaz bok düşürür#(Beyaz bok ↑ Gözyaşı ve Hasar aurası, Balistik gözyaşı ve hasar bloklama)"}, -- Hallowed Ground
 	
 	[553] = {"553", "Mukormikoz", "Yapışkan spor gözyaşları atma şansı#Sporlar 2.5 saniye sonra patlar, hasar verir, yakın düşmanları zehirler ve daha fazla spor salar"}, --  Mucormycosis

@@ -48,7 +48,7 @@ local repCollectibles={
 	[110] = {"110", "Mom's Contacts", "Chance to shoot Freezing Tears#↑ +0.38 Range up#↑ +0.5 Tear Height"}, -- Mom's Contacts
 	[121] = {"121", "Odd Mushroom (Large)", "↑ +1 Empty heart container#↑ +1.0 Damage up#↑ +0.38 Range up#↓ -0.2 Speed down#↑ +0.5 Tear Height"}, -- Odd Mushroom (Large)
 	[123] = {"123", "Monster Manual", "Spawns random familiar#Lasts for current floor"}, -- Monster Manual
-	[129] = {"129", "Bucket of Lard", "↑ +2 heart container#↓ -0.2 Speed down#Heals half a heart"}, -- Bucket of Lard
+	[129] = {"129", "Bucket of Lard", "↑ +2 full red heart container#↓ -0.2 Speed down"}, -- Bucket of Lard
 	[138] = {"138", "Stigmata", "↑ +1 Health up#↑ +0.3 Damage up#Heals 1 red heart"}, -- Stigmata
 	[139] = {"139", "Mom's Purse", "You can now hold 2 trinkets#Spawns 1 random trinket"}, -- Mom's Purse
 	[140] = {"140", "Bob's Curse", "Poison bombs#+5 bombs#Bombs leave a poison cloud"}, -- Bob's Curse
@@ -173,7 +173,7 @@ local repCollectibles={
 	[523] = {"523", "Moving Box", "When used, stores up to 10 Pick-Ups from the current room#Using it again will put them back on the floor again#This allows you to move things between rooms"}, -- Moving Box
 	[524] = {"524", "Technology Zero", "Tears will be connected with beams of electricity#Electricity damage equals 1/3 of your damage"}, -- Technology Zero
 	[531] = {"531", "Haemolacria", "Tears fly in an arc#Tears burst into smaller tears on impact#↓ Tears down#↑ +50% Damage up#↑ +1 additional Damage up"}, -- Haemolacria
-	[541] = {"541", "Marrow", "+1 Bone Heart#Spawns 3 Red Hearts#Chance to spawn a {{Trinket167}} Polished Bone when a bone heart is depleated"}, -- Marrow
+	[541] = {"541", "Marrow", "+1 Bone Heart#Spawns 3 Red Hearts"}, -- Marrow
 	[543] = {"543", "Hallowed Ground", "Spawn white poop when you get hit#(White poop has a ↑ Tears and Damage up aura, grants homing tears and can block damage)"}, -- Hallowed Ground
 	
 	[553] = {"553", "Mucormycosis", "Chance to fire sticky spore tears#Spores blow up after 2.5 seconds, dealing damage, poison nearby enemies and releases more spores"}, --  Mucormycosis
@@ -270,7 +270,7 @@ local repCollectibles={
 	[644] = {"644", "Consolation Prize", "Increases your lowest stat#Drops either 3 coins, 1 bomb, or 1 key depending on what you have the least of"}, --  Consolation Prize
 	[645] = {"645", "Tinytoma", "Teratoma orbital#Blocks shots#Deals contact damage#Splits into smaller versions of itself upon taking 3 hits#The smaller versions break into blue spiders#Respawns 5 seconds after it's fully gone"}, --  Tinytoma
 	[646] = {"646", "Brimstone Bombs", "+5 bombs#Bombs release 4 Brimstone lasers in the cardinal directions"}, --  Brimstone Bombs
-	[647] = {"647", "4.5 Volt", "Active items don't charge when clearing rooms#They charge by dealing damage to enemies#60 Damage = 1 charge"}, --  4.5 Volt
+	[647] = {"647", "4.5 Volt", "Active items don't charge when clearing rooms#They charge by dealing damage to enemies#Formula: 40 + 20 * stage"}, --  4.5 Volt
 	[648] = {"648", "", "<Item does not exist>"},
 	[649] = {"649", "Fruity Plum", "Mini Baby Plum familiar#Propels itself diagonally around the room, firing tears behind itself"}, --  Fruity Plum
 	[650] = {"650", "Plum Flute", "Summons friendly Baby Plum in the current room for 10 seconds"}, --  Plum Flute

@@ -175,7 +175,7 @@ local repCollectibles={
 	[523] = {"523", "Scatola da Trasloco", "Quando usato, contiene fino a 10 oggetti/consumabili nella stanza#Usando l'oggetto nuovamente, togli gli oggetti dalla scatola#Da' la possibilita' di muovere oggetti da una stanza all'altra"}, -- Moving Box
 	[524] = {"524", "Tecnologia: Zero", "Lacrime sono connesse con elettricita'#Elettricita' fa 33% dei tuoi danni"}, -- Technology Zero
 	[531] = {"531", "Emolacria", "Lacrime volano in un arco#Lacrime si dividono in altre lacrime all'impatto#↓ Lacrime#↑ +50% Danni#↑ +1 Danni aggiuntivi"}, -- Haemolacria
-	[541] = {"541", "Midollo", "+1 Cuore D'osso#Evoca 3 Cuori Rossi#Possibilita' di evocare {{Trinket167}} Osso Levigato quando un Cuore D'osso viene perso"}, -- Marrow
+	[541] = {"541", "Midollo", "+1 Cuore D'osso#Evoca 3 Cuori Rossi"}, -- Marrow
 	[543] = {"543", "Terreno Consacrato", "Evoca una cacca bianca quando ferito#(Cacca bianca ha un aura che aumenta lacrime e danni, e rende le tue lacrime a ricerca)"}, -- Hallowed Ground
 	
 	[553] = {"553", "Mucormicosi", "Possibilita' di sparare lacrime spora appiccicose#Spore esplodono dopo 2.5 secondi, infliggendo danni ed avvelenando nemici#Quando esplode, rilascia altre spore"}, --  Mucormycosis
