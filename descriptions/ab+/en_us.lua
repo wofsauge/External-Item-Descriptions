@@ -194,7 +194,7 @@ EID.descriptions["en_us"].collectibles={
 	{"179", "Fate", "Flight#+1 eternal heart"},
 	{"180", "The Black Bean", "Fart when touched"},
 	{"181", "White Pony", "Grants flight while hold#Sets your speed to 1.5 if you have less than 1.5#Holy Dash on use"},
-	{"182", "Sacred Heart", "Homing tears#↑ +1 Health up#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#↑ +4.125 Range up"},
+	{"182", "Sacred Heart", "Homing tears#↑ +1 Health up#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#↑ +4.125 Range up#Full Health"},
 	{"183", "Tooth Picks", "↑ +0.7 Tears up.#↑ +0.16 Shot Speed up"},
 	{"184", "Holy Grail", "Grants flight#↑ +1 Health up"},
 	{"185", "Dead Dove", "Flight#Spectral tears"},

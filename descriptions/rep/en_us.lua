@@ -1,6 +1,6 @@
-------------------------------------------------------------------
------  Basic English descriptions based on Platinumgod.co.uk -----
-------------------------------------------------------------------
+---------------------------------------
+-----  Basic English descriptions -----
+---------------------------------------
 
 -- Last Update: 08.08.2021
 
@@ -43,7 +43,7 @@ local repCollectibles={
 	[80] = {"80", "The Pact", "↑ +0.5 Damage up#↑ +0.7 Tears up#+2 Black Hearts"}, -- The Pact
 	[83] = {"83", "The Nail", "+ Half Black heart#↑ +2.0 Damage up#↓ -0.18 Speed down#Deal contact Damage#Crush rocks"}, -- The Nail
 	[98] = {"98", "The Relic", "Spawns 1 Soul heart every 7-8 rooms"}, -- The Relic
-	[101] = {"101", "The Halo", "↑ +1 Health up#↑ +0.3 Damage up#↑ +0.2 Tears up#↑ +0.38 Range up#↑ +0.3 Speed up#↑ +0.5 Tear Height"}, -- The Halo
+	[101] = {"101", "The Halo", "↑ +1 Health up#↑ +0.3 Damage up#↑ +0.2 Tears up#↑ +0.38 Range up#↑ +0.3 Speed up#↑ +0.5 Tear Height#Heals one heart"}, -- The Halo
 	[106] = {"106", "Mr. Mega", "↑ Bomb damage x1.85#+5 Bombs"}, -- Mr. Mega
 	[110] = {"110", "Mom's Contacts", "Chance to shoot Freezing Tears#↑ +0.38 Range up#↑ +0.5 Tear Height"}, -- Mom's Contacts
 	[121] = {"121", "Odd Mushroom (Large)", "↑ +1 Empty heart container#↑ +1.0 Damage up#↑ +0.38 Range up#↓ -0.2 Speed down#↑ +0.5 Tear Height"}, -- Odd Mushroom (Large)
@@ -60,7 +60,7 @@ local repCollectibles={
 	[171] = {"171", "Spider Butt", "Slows down enemies for 4 seconds#10 Damage to all enemies#Enemies killed with it spawn blue spiders"}, -- Spider Butt
 	[176] = {"176", "Stem Cells", "↑ +1 Health up#↑ +0.16 Shot Speed up#Heals 1 red heart"}, -- Stem Cells
 	[178] = {"178", "Holy Water", "{{Throwable}} {{ColorOrange}}Throwable{{CR}}#Leaves pool of creep at the thrown location"}, -- Holy Water
-	[182] = {"182", "Sacred Heart", "Homing tears#↑ +1 Health up#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#↑ +0.5 Range up"}, -- Sacred Heart
+	[182] = {"182", "Sacred Heart", "Homing tears#↑ +1 Health up#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#↑ +0.5 Range up#Full Health"}, -- Sacred Heart
 	[184] = {"184", "Holy Grail", "Grants flight#↑ +1 Health up#Heals 1 red heart"}, -- Holy Grail
 	[188] = {"188", "Abel", "Mirrors your movement#Shoots towards the player#Deals 3.5 damage per shot#7.5 Damage if you play Cain"}, -- Abel
 	[192] = {"192", "Telepathy for Dummies", "Homing tears for current room#↑ +3 Range up"}, -- Telepathy for Dummies
@@ -123,6 +123,7 @@ local repCollectibles={
 	[346] = {"346", "A Snack", "↑ +1 Health up#Heals 1 red heart"}, -- A Snack
 	[350] = {"350", "Toxic Shock", "At the start of every room every enemy gets a poison effect#Killed enemies leave puddle of creep#Grants immunity for toxic clouds"}, -- Toxic Shock
 	[352] = {"352", "Glass Canon", "Fires one large piercing spectral tear ((DMG+1) X 10)#When you take damage:#↓All damage to you deals full 2 hearts#↑+ 1.5 Range"}, -- Glass Canon
+	[354] = {"354", "Crack Jacks", "↑ +1 Health up#Spawns random trinket on the floor#Heals one heart"}, -- Crack Jacks
 	[355] = {"355", "Mom's Pearl", "↑ +0.38 Range up#↑ +1 Luck up#+1 Soul Heart#↑ +0.5 Tear Height"}, -- Mom's Pearl
 	[360] = {"360", "Incubus", "Shoots the same tears as Isaac in terms of stats and effects#Deals 100% your damage when playing as Lilith#Deals 75% your damage otherwise"}, -- Incubus
 	[366] = {"366", "Scatter Bombs", "+5 bombs#Causes your bombs to explode into 4-5 tiny bombs"}, -- Scatter Bombs
@@ -208,13 +209,13 @@ local repCollectibles={
 	[582] = {"582", "Wavy Cap", "↑ +0.75 Fire rate#↓ -0.03 Speed down#Distorts screen#Effect can be stacked"}, --  Wavy Cap
 	[583] = {"583", "Rocket in a Jar", "+5 bombs#If walking, placed bombs turn into rockets that shoots in the walking direction"}, --  Rocket in a Jar
 	[584] = {"584", "Book of Virtues", "Spawns an orbital Wisp familiar that fires spectral tears but can be destroyed#Can be combined with a second active Item to create themed wisps#Turns first Devil Room into an Angel Room"}, --  Book of Virtues
-	[585] = {"585", "Alabaster Box", "Spawns three soul hearts and two angel room items#Must be charged by picking up soul hearts"}, --  Alabaster Box
+	[585] = {"585", "Alabaster Box", "Spawns three soul hearts and two angel room items#Must be charged by picking up soul hearts#Only spawns 2 soul hearts and 1 angel item if a Devil Deal was taken previously"}, --  Alabaster Box
 	[586] = {"586", "The Stairway", "Spawns a ladder at the start of every floor, leading to a unique Angel Room item shop"}, --  The Stairway
 	[587] = {"587", "Menorah (Unused but skripted)", "<Item does not exist>"}, -- Menorah (Unused but skripted)
 	[588] = {"588", "Sol", "Reveals the location of the Boss room {{BossRoom}}#Upon defeating a boss, activates XIX - The Sun {{Card20}}#Also fully recharges active item, and +3 damage and +1 luck for the rest of the floor"}, --  Sol
 	[589] = {"589", "Luna", "Adds an extra Secret Room{{SecretRoom}} and Super Secret Room{{SuperSecretRoom}} to each floor#Secret Rooms contain a beam of light that give tears up for the current floor and give half a soul heart"}, --  Luna
 	[590] = {"590", "Mercurius", "↑ +0.4 Speed up#Doors stay open after entering a room"}, --  Mercurius
-	[591] = {"591", "Venus", "+1 red Heart container#Full health#Close enemies become charmed"}, --  Venus
+	[591] = {"591", "Venus", "+1 red Heart container#Heals one heart#Close enemies become charmed"}, --  Venus
 	[592] = {"592", "Terra", "↑ +1.0 Damage up#Replaces tears with rocks#They deal variable damage#Can destroy obstacles#Increased knockback"}, --  Terra
 	[593] = {"593", "Mars", "Dash by double-tapping the movement key#Becoming invulnerable and dealing 4x your damage#3 seconds cooldown"}, --  Mars
 	[594] = {"594", "Jupiter", "+2 red Heart containers#↓ -0.3 Speed down#Build up Speed while standing still for up to +0.5 Speed#Release a poisoning gas cloud when moving again"}, --  Jupiter
@@ -244,7 +245,7 @@ local repCollectibles={
 	[618] = {"618", "Rotten Tomato", "Chance to fire tears that Mark enemies#Marked enemies are attacked by other enemies"}, --  Rotten Tomato
 	[619] = {"619", "Birthright", "Has a different effect for each character"}, --  Birthright
 	[620] = {"620", "", "<Item does not exist>"},
-	[621] = {"621", "Red Stew", "Full health#↑ +21.6 Damage up#Damage up wears off over the next 3 minutes"}, --  Red Stew
+	[621] = {"621", "Red Stew", "Full health#↑ +21.6 Damage up#Damage up wears off over the next 3 minutes#Killing enemies while effect is active extends the time"}, --  Red Stew
 	[622] = {"622", "Genesis", "{{Warning}} ONE TIME USAGE {{Warning}}#Removes all of Isaac's items and pickups#Teleports you to a unique bedroom with pickups, chests and a trapdoor#For every item lost, Treasure Rooms {{TreasureRoom}} show a set of 3 items to choose from"}, --  Genesis
 	[623] = {"623", "Sharp Key", "+5 keys#Throw your key to deal damage, destroy obstacles, or open doors#Enemies killed with it have a chance to spawn the content of a chest, including items"}, --  Sharp Key
 	[624] = {"624", "Booster Pack", "Spawns 5 random cards"}, --  Booster Pack
@@ -292,7 +293,7 @@ local repCollectibles={
 	[666] = {"666", "", "<Item does not exist>"},
 	[667] = {"667", "Strawman", "Spawns Keeper as a second character#If he dies, he spawns blue spiders#Item gets removed afterwards"}, --  Strawman
 	[668] = {"668", "Dad's Note", "Begins the sequence to access the Home floor#Trinkets left in previous {{TreasureRoom}} Treasure or {{BossRoom}} Boss rooms turn into {{Card78}} Cracked Key"}, --  Dad's Note
-	[669] = {"669", "Sausage", "↑ +1 Health up#↑ +1.33 Damage up#↑ +0.2 Speed up#↑ +1.2 Shot Speed up#↑ +0.16 Range up#↑ +1 Luck up"}, --  Sausage
+	[669] = {"669", "Sausage", "↑ +1 Health up#↑ +0.5 Damage up#↑ +0.2 Speed up#↑ +1.2 Shot Speed up#↑ +0.16 Range up#↑ +1 Luck up"}, --  Sausage
 	[670] = {"670", "Options?", "If a room grants a clear reward, there will be two different rewards to chose from#Taking one causes the other to disappear"}, --  Options?
 	[671] = {"671", "Candy Heart", "Gives random permanent stat boost when healing with red heart pickups"}, --  Candy Heart
 	[672] = {"672", "A Pound of Flesh", "Devil deals now cost coins#Shop items now cost health#Consumables in shops are free but surrounded by spikes"}, --  A Pound of Flesh
