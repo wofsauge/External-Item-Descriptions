@@ -1,6 +1,6 @@
-------------------------------------------------------------------
------  Basic Portuguese descriptions based on Platinumgod.co.uk -----
-------------------------------------------------------------------
+------------------------------------------
+-----  Basic Portuguese descriptions -----
+------------------------------------------
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text

@@ -1,7 +1,6 @@
-------------------------------------------------------------------------------
------  Basic Portuguese (Brazil) descriptions based on Platinumgod.co.uk -----
------                   and Marcelino Cruz translation                   -----
-------------------------------------------------------------------------------
+---------------------------------------------------------------------
+-----  Basic Portuguese (Brazil) descriptions by Marcelino Cruz -----
+---------------------------------------------------------------------
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text

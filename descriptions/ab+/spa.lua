@@ -1,6 +1,6 @@
-------------------------------------------------------------------
------  Basic Spanish descriptions based on Platinumgod.co.uk -----
-------------------------------------------------------------------
+---------------------------------------
+-----  Basic Spanish descriptions -----
+---------------------------------------
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text

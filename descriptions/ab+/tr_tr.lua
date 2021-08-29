@@ -1,6 +1,6 @@
-------------------------------------------------------------------
------  Basic English descriptions based on Platinumgod.co.uk -----
-------------------------------------------------------------------
+---------------------------------------
+-----  Basic Turkish descriptions -----
+---------------------------------------
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text

@@ -59,7 +59,7 @@ To reset the config delete all the "save[NUMBER].dat" files from the following f
 Same as Windows but the path is: */home/%YourUsernameHere%/.steam/steam/steamapps/workshop/content/250900/836319872*
 
 ## Special Thanks to
-- PLATINUMGOD.CO.UK for providing useful item descriptions
+- The Binding of Isaac wiki and platinumgod.co.uk for providing useful item descriptions
 - Nicolas Delvaux for creating an awesome **French** language pack
 - Klyser8, Denkishi and 2G for creating the fantastic **Italian** language pack
 - Lidia Arroyo Purroy for creating the amazing **Spanish** language Pack

@@ -1,6 +1,6 @@
-------------------------------------------------------------------
------  Basic Italian descriptions based on Platinumgod.co.uk -----
-------------------------------------------------------------------
+---------------------------------------
+-----  Basic Italian descriptions -----
+---------------------------------------
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text

@@ -1,6 +1,6 @@
-------------------------------------------------------------------
------  Basic Russian descriptions based on Platinumgod.co.uk -----
-------------------------------------------------------------------
+----------------------------------------
+-----  Basic Russian descriptions  -----
+----------------------------------------
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text

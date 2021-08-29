@@ -1,7 +1,7 @@
-------------------------------------------------------------------
------  Basic English descriptions based on Platinumgod.co.uk -----
------          Translated to Turkish by Çağdaş Salur         -----
-------------------------------------------------------------------
+-------------------------------------------------
+-----  Basic Turkish descriptions           -----
+----- Translated to Turkish by Çağdaş Salur -----
+-------------------------------------------------
 
 -- Last Sync with en_us: 03.07.2021
 

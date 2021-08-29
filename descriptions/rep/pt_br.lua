@@ -1,8 +1,7 @@
--------------------------------------------------------------
------  Basic Portuguese (Brazil) descriptions based on  -----
------                 Platinumgod.co.uk 				-----
------             By: LuanRoger and NotZin02            -----
--------------------------------------------------------------
+---------------------------------------------------
+-----  Basic Portuguese (Brazil) descriptions -----
+-----             By: LuanRoger and NotZin0   -----
+---------------------------------------------------
 
 -- Last Sync with en_us: 22.07.2021
 

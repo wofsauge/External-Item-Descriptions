@@ -1,7 +1,7 @@
 	
-------------------------------------------------------------------
------  Basic Bulgarian descriptions based on Platinumgod.co.uk -----
-------------------------------------------------------------------
+-----------------------------------------
+-----  Basic Bulgarian descriptions -----
+-----------------------------------------
 
 -- Transformations: uses the number next to the transformation entry (can be found at the bottom of this file)
 -- Item ID | transformation id| Description text 
