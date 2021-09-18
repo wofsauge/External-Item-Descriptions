@@ -48,7 +48,7 @@ EID.descriptions["en_us"].collectibles={
 	{"33", "The Bible", "Flight for current room#Kills Mom Foot and Moms heart instantly#!!! Kills YOU when used on Satan"},
 	{"34", "The Book of Belial", "↑ +2 Damage up#↑ +12.5% devil deal chance#↑ +50% Damage Multiplier if you have Blood of the Martyr"},
 	{"35", "The Necronomicon", "Deal 40 damage to everything in the room"},
-	{"36", "The Poop", "Spawns one poop#Can be placed next to a pit and destroyed with a bomb to make a bridge"},
+	{"36", "The Poop", "Spawns one poop and knockback enemies#Can be placed next to a pit and destroyed with a bomb to make a bridge"},
 	{"37", "Mr. Boom", "Drops a large bomb below the player which deals 110 damage"},
 	{"38", "Tammy's Head", "Fires 10 tears in a circle around Isaac"},
 	{"39", "Mom's Bra", "Freeze all enemies in the current room for 4 secs"},
