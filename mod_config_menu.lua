@@ -906,6 +906,27 @@ if MCMLoaded then
 			end
 		}
 	)
+	-------Object ID---------
+	MCM.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["ShowObjectID"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["ShowObjectID"] then
+					onOff = "True"
+				end
+				return "Display Object ID: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["ShowObjectID"] = currentBool
+			end
+		}
+	)
 	---------------------------------------------------------------------------
 	---------------------------------Visuals-----------------------------------
 	

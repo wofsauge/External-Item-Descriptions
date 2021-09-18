@@ -190,6 +190,10 @@ EID.UserConfig = {
 	-- Changes the number of Results shown for the additional Spindown dice description
 	-- Default = 3
 	["SpindownDiceResults"] = 3,
+	
+	-- Show ID of described object in the format "Type.Variant.SubType" next to the name
+	-- Default = false
+	["ShowObjectID"] = false,
 
 	-- Error message displayed when an error occurs
 	-- Default = [Effect not defined]
@@ -274,5 +278,6 @@ EID.DefaultConfig = {
 	["TextColor"] = "ColorEIDText",
 	["ErrorColor"] = "ColorEIDError",
 	["EnableEntityDescriptions"] = true,
-	["ShowQuality"] = true
+	["ShowQuality"] = true,
+	["ShowObjectID"] = false,
 }

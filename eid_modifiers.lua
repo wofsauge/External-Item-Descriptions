@@ -137,4 +137,15 @@ local game = Game()
 	EID:addDescriptionModifier("Golden Trinket", GoldenTrinketCondition, GoldenTrinketCallback)
 	
 	
+	
+	-- Handle ItemID
+	local function ItemIDCondition(descObj)
+		return EID.Config["ShowObjectID"] and descObj.ObjType > 0
+	end
+	
+	local function ItemIDCallback(descObj)
+		descObj.Name = descObj.Name.."{{ColorGray}} "..descObj.ObjType.."."..descObj.ObjVariant.."."..descObj.ObjSubType
+		return descObj
+	end
+	EID:addDescriptionModifier("ItemID", ItemIDCondition, ItemIDCallback)
 end
