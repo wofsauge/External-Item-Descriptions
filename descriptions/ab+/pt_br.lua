@@ -1,7 +1,6 @@
----------------------------------------------------
------  Basic Portuguese (Brazil) descriptions -----
------         By: LuanRoger and NotZin0       -----
----------------------------------------------------
+---------------------------------------------------------------------
+-----  Basic Portuguese (Brazil) descriptions by Marcelino Cruz -----
+---------------------------------------------------------------------
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -108,7 +107,7 @@ EID.descriptions["pt_br"].collectibles={
     {"89","","Chance de disparar lagrimas de lentidão"},
     {"90","","↑ +1 Dano#↑ +0.2 Lágrimas#↓ -0.2 Velocidade"},
     {"91","","Revela o tipo de salas adjacentes#Revela salas secretas"},
-    {"92","","↑ +1 Saúde#+2 Coração de alma#Cura um coração"},
+    {"92","","↑ +1 Saúde#+2 Coração de alma"},
     {"93","","Invencibilidade#↑ +40 Dano ao contato#Cura meio coração vermelho para cada dois inimigos mortos."},
     {"94","","Solta moedas aleatórias a cada 2 salas"},
     {"95","","Familiar que atira lasers"},
@@ -198,7 +197,7 @@ EID.descriptions["pt_br"].collectibles={
     {"179","","Voo#+1 Coração eterno"},
     {"180","","Peidar quando é atingido"},
     {"181","","#Voo#Arrancada em uma direção cruzando a tela (40 de dano ao contato)#Efeito Crack The Sky"},
-    {"182","","Lágrimas Teleguiada#↑ +1 Saúde#↑ 230% + 1 Dano#↓ -0.4 Lágrimas#↓ -0.25 Velocidade de disparo#↑ +4.125 Alcance#Vida Cheia"},
+    {"182","","Lágrimas Teleguiada#↑ +1 Saúde#↑ 230% + 1 Dano#↓ -0.4 Lágrimas#↓ -0.25 Velocidade de disparo#↑ +4.125 Alcance"},
     {"183","","↑ +0.7 Lágrimas.#↑ +0.16 Velocidade de disparo"},
     {"184","","Voo#↑ +1 Saúde"},
     {"185","","Voo#Lágrimas espectrais"},
@@ -328,7 +327,7 @@ EID.descriptions["pt_br"].collectibles={
     {"309","","↑ Lágrimas#Lágrimas com maio recuo"},
     {"310","","↑ +2X Dano#↓ -2X Lágrimas#↓ -0.5 Velocidade de disparo"},
     {"311","","Quando morto, renasce como Judas Negro"},
-    {"312","","↑ +1 Saúde#Cura um coração#Todos os corações vermelhos curam o dobro"},
+    {"312","","↑ +1 Saúde#Agora, todos os corações vermelhos curam 2 recipientes"},
     {"313","","Ignore o primeiro dano em todas as salas"},
     {"314","","↑ +1 Saúde#-0.4 Velocidade#Quebrar pedras ao tocá-las"},
     {"315","","Inimigos e pickups são atraídos pelas lágrimas"},
@@ -366,7 +365,7 @@ EID.descriptions["pt_br"].collectibles={
     {"347","","!!! USO ÚNICO#Duplica todos os itens de pedestal ou consumíveis na sala atual"},
     {"348","","Copia o efeito da pílula que você está segurando no momento"},
     {"349","","50% de chance de largar uma moeda aleatória"},
-    {"350","","No início de cada sala, todo inimigo fica envenedado#Inimigos mortos deixam uma poça"},
+    {"350","","No início de cada sala, todo inimigo recebe um efeito de veneno"},
     {"351","","Congele todos os inimigos na sala atual#Causa dano de envenenamento a qualquer inimigo próximo#Envia uma onda de espinhos pela sala#Pode ser usado para abrir salas secretas"},
     {"352","","!!! Reduz a sua saúde para meio coração#Dispara uma grande lágrima espectral penetrante ((seu dano + 1) X 10)"},
     {"353","","+5 Bombas#Bombas agora explodem em forma de cruz"},
@@ -694,7 +693,7 @@ EID.descriptions["pt_br"].trinkets={
 {"119", "", "Cura meio coração vermelho depois de ir para o próximo andar"},
 {"120", "", "Recarrega totalmente seu item ativador no início de uma batalha contra um chefe"},
 {"121", "", "Protege você do primeiro dano que recebe em cada andar"},
-{"122", "", "Ao usar o item de ativação, ele voltará em um pedestal no chão#Quando receber dano, há 2% chance de soltar um de seus itens passivos"},
+{"122", "", "Ao usar o item de ativação deixará cair em um pedestal#Existe uma pequena chance de soltar um de seus itens passivos#Itens de ativação de uso único poderão ser consumidos"},
 {"123", "", "Faz com que os chefes Anjos deixem itens normais em vez de peças da chave"},
 {"124", "", "A última porta que você usou permanece aberta"},
 {"125", "", "Conecta seus familiares com raios de eletricidade"},
@@ -838,7 +837,7 @@ EID.descriptions["pt_br"].sacrifice={
 EID.descriptions["pt_br"].diceHeader = "[Efeito do Dado]"
 
 EID.descriptions["pt_br"].dice={
-{"1", "", "Troca todos os seus coletáveis em itens da Sala do Tesouro {{TreasureRoom}}"},
+{"1", "", "!!! Afeta apenas itens passivos#Troca todos os seus itens"},
 {"2", "", "Troca todos os pickups na sala"},
 {"3", "", "Troca todos os pickups em todo o piso"},
 {"4", "", "!!! Não afeta as ofertas do demônio#Troca todos os itens de pedestal no andar"},
