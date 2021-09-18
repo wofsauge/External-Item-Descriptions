@@ -180,7 +180,7 @@ function EID:IsAltChoice(pickup)
 		return EID:getEntityData(pickup, "EID_IsAltChoice")
 	end
 
-	if not REPENTANCE or game:GetLevel():GetStageType() < 4 or game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
+	if not REPENTANCE or game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
 		pickup:GetData()["EID_IsAltChoice"] = false
 		return false
 	end

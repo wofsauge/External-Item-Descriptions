@@ -899,7 +899,7 @@ if MCMLoaded then
 				if EID.Config["ShowQuality"] then
 					onOff = "True"
 				end
-				return "Display Quality Info: " .. onOff
+				return "Display Qualtiy Info: " .. onOff
 			end,
 			OnChange = function(currentBool)
 				EID.Config["ShowQuality"] = currentBool
