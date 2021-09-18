@@ -138,8 +138,8 @@ EID.UserConfig = {
 	-- Default = true
 	["DisplayPillInfoShop"] = true,
 	-- Toggle Display of Pill descriptions when its not accessable with walking. AKA behind rock, blocks, spikes
-	-- Default = true
-	["DisplayObstructedPillInfo"] = true,
+	-- Default = false
+	["DisplayObstructedPillInfo"] = false,
 	-- Toggle Display of Pill descriptions that are spawned with the Options? item
 	-- Default = true
 	["DisplayPillInfoOptions?"] = true,
@@ -260,7 +260,7 @@ EID.DefaultConfig = {
 	["DisplayPillInfo"] = true,
 	["DisplayPillInfoShop"] = true,
 	["DisplayPillInfoOptions?"] = true,
-	["DisplayObstructedPillInfo"] = true,
+	["DisplayObstructedPillInfo"] = false,
 	["ShowUnidentifiedPillDescriptions"] = false,
 	["DisplaySacrificeInfo"] = true,
 	["DisplayDiceInfo"] = true,
