@@ -907,7 +907,7 @@ local repTrinkets={
 {"155", "",  "Causes a Treasure Room and Shop to generate in Cathedral."}, 
 {"156", "",  "Grants one heart container while held. #Will be filled the first time the trinket is picked up. #Can exceed the coin heart limit as Keeper."}, 
 {"157", "",  "Every 15 shots, Isaac will shoot an Ipecac + My Reflection tear with a very high range value."}, 
-{"158", "",  "Upon taking damage, Isaac drops all of his Pickups (excluding hearts and consumables)."}, 
+{"158", "",  "Upon taking damage, Isaac drops 2 of his Pickups (excluding hearts and consumables).#These pickups are subjected to standard drop rules which will usually result in a net positive.#E.g. Isaac can lose 2 coins from is inventory but get a nickel or a dime."}, 
 {"159", "",  "Replaces all new chests, except Mega Chests, with Locked Chests."}, 
 {"160", "",  "Spawns a Grab Bag upon traveling to the next floor."}, 
 {"161", "",  "Causes a Treasure Room and Shop to generate in Sheol."}, 
