@@ -673,5 +673,5 @@ EID.descriptions["en_us"].CraftingBagContent = "Bag:"
 EID.descriptions["en_us"].CraftingRoomContent = "Room:"
 EID.descriptions["en_us"].CraftingFloorContent = "Floor:"
 EID.descriptions["en_us"].CraftingResults = "Results:#(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
-EID.descriptions["en_us"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}This feature currently does not support games with modded items installed"
+EID.descriptions["en_us"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}The \"Crafting result calculation\" feature currently does not work when item mods are installed!#{{ColorRed}}Please uninstall the item mods or deactivate the Bag of Crafting descriptions in the config"
 
