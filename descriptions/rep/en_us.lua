@@ -2,7 +2,7 @@
 -----  Basic English descriptions -----
 ---------------------------------------
 
--- Last Update: 08.08.2021
+-- Last Update: 05.10.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -180,7 +180,7 @@ local repCollectibles={
 	
 	[553] = {"553", "Mucormycosis", "Chance to fire sticky spore tears#Spores blow up after 2.5 seconds, dealing damage, poison nearby enemies and releases more spores"}, --  Mucormycosis
 	[554] = {"554", "2Spooky", "Fears enemies in a small radius around you"}, --  2Spooky
-	[555] = {"555", "Golden Razor", "Converts 5 coins into +1.2 Damage up for the current room"}, --  Golden Razor
+	[555] = {"555", "Golden Razor", "Converts 5 coins into +1.2 Damage up for the current room#Spawns 5 coins on pickup"}, --  Golden Razor
 	[556] = {"556", "Sulfur", "Grants Brimstone {{Collectible118}} for the current room"}, --  Sulfur
 	[557] = {"557", "Fortune Cookie", "Gives Isaac a fortune, soul heart, tarot card, or trinket"}, --  Fortune Cookie
 	[558] = {"558", "Eye Sore", "Chance to fire 1-2 extra tears in random directions"}, --  Eye Sore
@@ -230,7 +230,7 @@ local repCollectibles={
 	[602] = {"602", "Member Card", "Adds a trapdoor to every shop that leads to a second shop with a unique stock"}, --  Member Card
 	[603] = {"603", "Battery Pack", "Spawns 2-4 batteries#Fully recharges your active item"}, --  Battery Pack
 	[604] = {"604", "Mom's Bracelet", "Allows picking up and throwing rocks, TNT, poops, Hosts, and other obstacles#Allows carrying them between rooms"}, --  Mom's Bracelet
-	[605] = {"605", "The Scooper", "Summons a Peeper familiar for the current room, which leaves a trail of red creep"}, --  The Scooper
+	[605] = {"605", "The Scooper", "Summons a Peeper familiar for the current room, which leaves a trail of red creep#Tears shot from the right eye will deal 34% more damage"}, --  The Scooper
 	[606] = {"606", "Ocular Rift", "Chance to fire tears that create rifts where they land#Pulls in nearby enemies, pickups, and projectiles"}, --  Ocular Rift
 	[607] = {"607", "Boiled Baby", "Familiar that fires chaotic bursts of tears in all directions#Deals 3.5 or 5.3 damage per tear"}, --  Boiled Baby
 	[608] = {"608", "Freezer Baby", "Familiar that shoots petrifying tears#Freezes monsters upon killing them"}, --  Freezer Baby
@@ -289,7 +289,7 @@ local repCollectibles={
 	[661] = {"661", "Quints", "Spawns a stationary shooting familiar at the location where an enemy died#Up to 5 familiars"}, --  Quints
 	[662] = {"662", "Pacifist (Cut item)", "<Item does not exist>"}, -- Pacifist (Cut item)
 	[663] = {"663", "Tooth and Nail", "Turn invincible every 6 seconds for 1 second#Flashes right before transition"}, --  Tooth and Nail
-	[664] = {"664", "Binge Eater", "+1 red Heart Container#Item pedestals periodically switch between food items and the item they would hold otherwise#Picking up a food item grants temporary +3.6 damage boost and 2 small permanent stat ups"}, --  Binge Eater
+	[664] = {"664", "Binge Eater", "+1 red Heart Container#Full health#Item pedestals periodically switch between food items and the item they would hold otherwise#Picking up a food item grants temporary +3.6 damage boost and 2 small permanent stat ups"}, --  Binge Eater
 	[665] = {"665", "Guppy's Eye", "Shows the contents of Chests, Sacks, and Fire Places before they're opened"}, --  Guppy's Eye
 	[666] = {"666", "", "<Item does not exist>"},
 	[667] = {"667", "Strawman", "Spawns Keeper as a second character#If he dies, he spawns blue spiders#Item gets removed afterwards"}, --  Strawman
@@ -432,7 +432,7 @@ local repTrinkets={
 	[49] = {"49", "Bloody Penny", "25% chance to drop half a heart when picking up coins"}, -- Bloody Penny
 	[50] = {"50", "Burnt Penny", "25% chance to drop a bomb when picking up coins"}, -- Burnt Penny
 	[51] = {"51", "Flat Penny", "25% chance to drop a key when picking up coins"}, -- Flat Penny
-	[65] = {"65", "Tape Worm", "↑ +3 Range up#-50% Tear height"}, -- Tape Worm
+	[65] = {"65", "Tape Worm", "↑ +3 Range up"}, -- Tape Worm
 	[66] = {"66", "Lazy Worm", "↓ -0.5 Shot Speed down#↑ +2 Tear height"}, -- Lazy Worm
 	[69] = {"69", "Faded Polaroid", "Camouflages the player randomly#Confuses enemies#Can be used to open the door to the \"Home\" floor"}, -- Faded Polaroid
 	[80] = {"80", "Black Feather", "↑ +0.5 Damage up for each evil item held"}, -- Black Feather
