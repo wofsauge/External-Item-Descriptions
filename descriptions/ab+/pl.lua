@@ -664,7 +664,7 @@ EID.descriptions["pl"].trinkets={
     {"93", "", "Latający przeciwnicy stają się przyjaźni"},
     {"94", "", "Podwaja wszystkie niebieskie muchy/pająki"},
     {"95", "", "Losowo strzelasz trującymi Zębowymi łzami"},
-    {"96", "", "Strzały poruszają się szybkim, spiralnym wzorem#Widmowe łzy#↑ +4 Zasięg"},
+    {"96", "", "Strzały poruszają się szybkim, spiralnym wzorem#Widmowe łzy#↑ +1.5 Zasięg"},
     {"97", "", "Szansa na orbitującego sojusznika, który blokuje strzały, po dostaniu obrażenia 12-20 razy#Do +2 Możliwych sojuszników"},
     {"98", "", "Szansa na klejąco-trujące łzy"},
     {"99", "", "Szansa na odbijające łzy"},
