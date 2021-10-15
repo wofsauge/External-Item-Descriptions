@@ -1,5 +1,5 @@
 ---------------------------------------
------  Basic Spanish descriptions -----
+-----  Basic French descriptions -----
 ---------------------------------------
 
 -- FORMAT: Item ID | Name| Description

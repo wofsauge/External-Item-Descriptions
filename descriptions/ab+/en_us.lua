@@ -664,7 +664,7 @@ EID.descriptions["en_us"].trinkets={
 	{"93", "Used Diaper", "Chance for Fly enemies to become friendly"},
 	{"94", "Fish Tail", "Doubles all blue Fly / Spider spawns"},
 	{"95", "Black Tooth", "Randomly shoot poison Tooth tears"},
-	{"96", "Ouroboros Worm", "Tears move quickly in a spiral pattern#Spectral tears#↑ +4 Range"},
+	{"96", "Ouroboros Worm", "Tears move quickly in a spiral pattern#Spectral tears#↑ +1.5 Range"},
 	{"97", "Tonsil", "Chance to get a projectile blocking familiar after taking damage 12-20 times#Up to +2 Familiars possible"},
 	{"98", "Nose Goblin", "Chance to shoot sticky poison tears"},
 	{"99", "Super Ball", "Chance to shoot bouncy tears"},
