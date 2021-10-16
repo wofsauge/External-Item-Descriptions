@@ -834,7 +834,7 @@ EID.descriptions["en_us"].sacrifice={
 EID.descriptions["en_us"].diceHeader = "[Dice effect]"
 
 EID.descriptions["en_us"].dice={
-	{"1", "", "Rerolls all your collectibles into items from the Treasure Room {{TreasureRoom}} item pool"},
+	{"1", "", "Rerolls all your collectibles into items from random item pools"},
 	{"2", "", "Rerolls all pickups in the room"},
 	{"3", "", "Rerolls all pickups on the entire floor"},
 	{"4", "", "Rerolls all pedestal items on the floor#Doesnt affect Devil deals"},
