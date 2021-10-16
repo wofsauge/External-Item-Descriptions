@@ -359,7 +359,7 @@ function EID:printBulletPoints(description, renderPos)
 			if i == 1 then
 				local bpIcon = EID:handleBulletpointIcon(lineToPrint)
 				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
-					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "")
+					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
 					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Config["Scale"], 0), textScale , textColor)
 				else
 					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
