@@ -760,50 +760,50 @@ function EID:getSpindownResult(collectibleID)
 end
 
 function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
-    local itemPool = Game():GetItemPool()
-    local itemConfig = Isaac.GetItemConfig()
-    for i= 1, GetMaxCollectibleID() do
-        if ItemConfig.Config.IsValidCollectible(i) and i ~= collectibleID then
-            itemPool:AddRoomBlacklist(i)
-        end
-    end
-    local room = Game():GetRoom()
-    local isUnlocked = false
-    for i = 0,1 do -- some samples to make sure
-        local collID = itemPool:GetCollectible(itemPoolOfItem, false)
-        if collID == collectibleID then
-            isUnlocked = true
-            break
-        end
-    end
-    itemPool:ResetRoomBlacklist()
-    return isUnlocked
+	local itemPool = Game():GetItemPool()
+	local itemConfig = Isaac.GetItemConfig()
+	for i= 1, GetMaxCollectibleID() do
+		if ItemConfig.Config.IsValidCollectible(i) and i ~= collectibleID then
+			itemPool:AddRoomBlacklist(i)
+		end
+	end
+	local room = Game():GetRoom()
+	local isUnlocked = false
+	for i = 0,1 do -- some samples to make sure
+		local collID = itemPool:GetCollectible(itemPoolOfItem, false)
+		if collID == collectibleID then
+			isUnlocked = true
+			break
+		end
+	end
+	itemPool:ResetRoomBlacklist()
+	return isUnlocked
 end
 
 function EID:isCollectibleUnlockedAnyPool(collectibleID)
-    local itemConfig = Isaac.GetItemConfig()
-    if EID.itemUnlockStates[collectibleID] == nil then
-        local itemPoolNum = 0
-        while EID:isCollectibleUnlocked(collectibleID, itemPoolNum) == false do
-            if itemPoolNum == ItemPoolType.NUM_ITEMPOOLS - 1 then
+	local itemConfig = Isaac.GetItemConfig()
+	if EID.itemUnlockStates[collectibleID] == nil then
+		local itemPoolNum = 0
+		while EID:isCollectibleUnlocked(collectibleID, itemPoolNum) == false do
+			if itemPoolNum == ItemPoolType.NUM_ITEMPOOLS - 1 then
 				if itemConfig:GetCollectible(collectibleID).Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST then
 					--print("item " .. tostring(collectibleID) .. " is tagged as quest!")
 					EID.itemUnlockStates[collectibleID] = true
 					return true
 				end
-                --print("couldn't find item " .. tostring(collectibleID) .. " in any item pools")
-                EID.itemUnlockStates[collectibleID] = false
-                return false
-            end
-            itemPoolNum = itemPoolNum + 1
-        end
-        --print("found item " .. tostring(collectibleID) .. " unlocked in pool " .. tostring(itemPoolNum))
-        EID.itemUnlockStates[collectibleID] = true
-        return true
-    else
-    --print("item " .. tostring(collectibleID) .. " was already cached: " .. tostring(EID.itemUnlockStates[collectibleID]))
-    return EID.itemUnlockStates[collectibleID]
-    end
+				--print("couldn't find item " .. tostring(collectibleID) .. " in any item pools")
+				EID.itemUnlockStates[collectibleID] = false
+				return false
+			end
+			itemPoolNum = itemPoolNum + 1
+		end
+		--print("found item " .. tostring(collectibleID) .. " unlocked in pool " .. tostring(itemPoolNum))
+		EID.itemUnlockStates[collectibleID] = true
+		return true
+	else
+	--print("item " .. tostring(collectibleID) .. " was already cached: " .. tostring(EID.itemUnlockStates[collectibleID]))
+	return EID.itemUnlockStates[collectibleID]
+	end
 end
 
 -- Converts a given table into a string containing the crafting icons of the table
