@@ -506,6 +506,11 @@ EID.bagOfCraftingFloorQuery = {}
 EID.BagItems = {}
 EID.icount = 0
 
+EID.lockedResults = nil
+EID.refreshNextTick = false
+EID.downHeld = 0
+EID.upHeld = 0
+
 local function GetMaxCollectibleID()
     local id = CollectibleType.NUM_COLLECTIBLES-1
     local step = 16
@@ -564,11 +569,12 @@ function EID:handleBagOfCraftingRendering()
 	if detectModdedItems() or Game():GetRoom():GetFrameCount ()<2 then
 		return false
 	end
-	local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
+	local curRoomIndex = Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex
 	
 	local results = {}
 	local roomItems = {}
 	local pickups = Isaac.FindByType(5, -1, -1, true, false)
+
 	if EID.bagOfCraftingCurPickupCount ~= #pickups then
 		for i, entity in ipairs(pickups) do
 			local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
@@ -586,34 +592,93 @@ function EID:handleBagOfCraftingRendering()
 	end
 	
 	local itemQuery = {}
+	local itemCount = {}
+	
+	--max 8 copies of a single item in our list, to avoid repeat recipes
 	for i, v in ipairs(EID.bagOfCraftingFloorQuery) do
-		table.insert(itemQuery, v)
+		if (not itemCount[v] or itemCount[v] < 8) then
+			table.insert(itemQuery, v)
+			if (not itemCount[v]) then itemCount[v] = 1
+			else itemCount[v] = itemCount[v] + 1 end
+		end
 	end
 	
 	for i, v in ipairs(EID.BagItems) do
-		table.insert(itemQuery, v)
+		if (not itemCount[v] or itemCount[v] < 8) then
+			table.insert(itemQuery, v)
+			if (not itemCount[v]) then itemCount[v] = 1
+			else itemCount[v] = itemCount[v] + 1 end
+		end
 	end
 	
 	-- Calculate result from pickups on floor
 	if #itemQuery < 8 then
 		return false
 	end
-	table.sort(itemQuery, function(a, b) return a > b end)
 	
-	local queryString = table.concat(itemQuery,",")
-	if randResultCache[queryString] == nil then
-		local randResults = {}
-		for i = 0, 250 do
-			local newTable = {}
-			local tableCopy = {table.unpack(itemQuery)}
-			for k = 1, 8 do
-				local pos = math.random(1, #tableCopy)
-				table.insert(newTable, tableCopy[pos])
-				table.remove(tableCopy, pos)
-			end
-			table.sort(newTable, function(a, b) return a > b end)
-			randResults[table.concat(newTable,",")] = newTable
+	local function qualitySort(a, b)
+		if (pickupValues[a+1] == pickupValues[b+1]) then
+			return a > b
+		else
+			return pickupValues[a+1] > pickupValues[b+1]
 		end
+	end
+	
+	--sort by ingredient quality
+	table.sort(itemQuery, qualitySort)
+
+	local queryString = table.concat(itemQuery,",")
+	if EID.lockedResults ~= nil then
+		results = randResultCache[EID.lockedResults]
+	elseif randResultCache[queryString] == nil or EID.refreshNextTick then
+		local randResults = {}
+		local skipRandom = false
+		--check every single possible recipe for our highest value pickups
+		--limit it in the options, since the number of total combinations quickly grows (nCr):
+		--12 = 495, 13 = 1287, 14 = 3003, 15 = 6435, 16 = 12870
+		local mostValuable = {}
+		--we have less items than our threshold; every single recipe will be listed
+		if (#itemQuery <= EID.Config["BagOfCraftingCombinationMax"]) then
+			mostValuable = itemQuery
+			skipRandom = true
+		else
+			for i=1,EID.Config["BagOfCraftingCombinationMax"] do
+				mostValuable[i] = itemQuery[i]
+			end
+		end
+		--this combination algorithm was adopted from this Java code: https://stackoverflow.com/a/16256122
+		--note that it will run into duplicates, for example if you have eight pennies and a key, it can't tell the difference between
+		--PPPPPPPK (pennies 1-7) and PPPPPPPK (pennies 2-8) and PPPPPPPK (pennies 1-4,6-8) etc..., I don't know of a way to prevent that
+		local function combinations(arr, length, startPos, tempResult)
+		  local length = length or 8
+		  local startPos = startPos or 1
+		  local tempResult = tempResult or {}
+		  if (length == 0) then
+			randResults[table.concat(tempResult,",")] = {table.unpack(tempResult)}
+			return
+		  end
+		  for i = startPos, #arr-length+1 do
+			tempResult[8-length+1] = arr[i]
+			combinations(arr,length-1,i+1,tempResult)
+		  end
+		end
+		combinations(mostValuable)
+		
+		--do random pulls for some more recipe choices
+		if (not skipRandom) then
+			for i = 0, EID.Config["BagOfCraftingRandomResults"] do
+				local newTable = {}
+				local tableCopy = {table.unpack(itemQuery)}
+				for k = 1, 8 do
+					local pos = math.random(1, #tableCopy)
+					table.insert(newTable, tableCopy[pos])
+					table.remove(tableCopy, pos)
+				end
+				table.sort(newTable, qualitySort)
+				randResults[table.concat(newTable,",")] = newTable
+			end
+		end
+
 		local calcResults = {}
 		for k, v in pairs(randResults) do
 			local resultID = EID:calculateBagOfCrafting(v)
@@ -623,7 +688,18 @@ function EID:handleBagOfCraftingRendering()
 		end
 		randResultCache[queryString] = calcResults
 		results = calcResults
-		EID.bagOfCraftingOffset = 0
+		--sort our final results by quality, then alphabetical item name
+		table.sort(results, function(a, b)
+			if (EID.itemWeightsLookup[a[2]] == EID.itemWeightsLookup[b[2]]) then
+				return (EID:getObjectName(5, 100, a[2]) < EID:getObjectName(5, 100, b[2]))
+			else
+				return (EID.itemWeightsLookup[a[2]] > EID.itemWeightsLookup[b[2]])
+			end
+		end)
+		
+		--don't reset our location on refresh, so you can more easily refresh for lower quality recipes
+		if (not EID.refreshNextTick) then EID.bagOfCraftingOffset = 0 end
+		EID.refreshNextTick = false
 	else
 		results = randResultCache[queryString]
 	end
@@ -667,38 +743,66 @@ function EID:handleBagOfCraftingRendering()
 		EID.player:SetShootingCooldown(2)
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) then
 			EID.bagOfCraftingOffset = math.min(#results-(#results%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
+			EID.downHeld = Isaac.GetTime()
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) then
 			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
+			EID.upHeld = Isaac.GetTime()
+		--lock the current results so you can actually do a recipe that you've scrolled down to without losing it
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTLEFT, EID.player.ControllerIndex) then
+			if (EID.lockedResults == nil) then EID.lockedResults = queryString
+			else EID.lockedResults = nil end
+		--refresh the recipes
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTRIGHT, EID.player.ControllerIndex) then
+			if (EID.lockedResults == nil) then EID.refreshNextTick = true end
+		end
+		--scroll pages quickly if the button is held
+		if Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) and Isaac.GetTime() - EID.downHeld > 750 then
+			EID.bagOfCraftingOffset = math.min(#results-(#results%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
+			EID.downHeld = Isaac.GetTime() - 700
+		elseif Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) and Isaac.GetTime() - EID.upHeld > 750 then
+			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
+			EID.upHeld = Isaac.GetTime() - 700
 		end
 	end
+	--fix bug with being allowed to go to an empty page if recipe count = multiple of page size (or if we refresh on last page)
+	if (EID.bagOfCraftingOffset >= #results) then EID.bagOfCraftingOffset = EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
 	
 	local resultCount = 0
 	local skips = 0
-	for quality = 4, 0, -1 do -- sort by result quality
-		for i, v in ipairs(results) do
-			if EID.itemWeightsLookup[v[2]]== quality then
-				if skips < EID.bagOfCraftingOffset then
-					skips = skips + 1
-					if skips == EID.bagOfCraftingOffset then
-						customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..skips.." more"
-					end
-				else
-					customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ="
-					customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
-					resultCount = resultCount + 1
-					if resultCount > EID.Config["BagOfCraftingResults"]-1 then
-						if #results > EID.Config["BagOfCraftingResults"] then
-							customDescObj.Description = customDescObj.Description.."#{{Blank}} ...+"..(#results-EID.Config["BagOfCraftingResults"]- skips).." more"
-						end
-						break
-					end
-				end
+	local prevItem = 0
+	
+	local qualities = { [0] = "{{ColorSilver}}", "{{ColorLime}}", "{{ColorTransform}}", "{{ColorObjName}}", "{{ColorGold}}" }
+	local prefix = "#{{Blank}} "
+	if (EID.lockedResults) then
+		prefix = "#{{Trinket159}} "
+	end
+	
+	--results is now sorted by quality and item name, and doesn't iterate over the entire table, instead starting at the page offset
+	if (EID.bagOfCraftingOffset > 0) then
+		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..EID.bagOfCraftingOffset.." more"
+	end
+	for i=EID.bagOfCraftingOffset+1,EID.bagOfCraftingOffset+EID.Config["BagOfCraftingResults"] do
+		local v = results[i]
+		if (not v) then break end
+		if (not EID.Config["BagOfCraftingDisplayNames"]) then
+			customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} " .. " ="
+		--only display the item name if it's the first occurrence
+		else
+			if (prevItem ~= v[2]) then
+				--substring the first 18 characters of the item name so it fits on one line; is there a way to get around desc line length limits?
+				customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ".. qualities[EID.itemWeightsLookup[v[2]]] ..
+				string.sub(EID:getObjectName(5, 100, v[2]),1,18).."#"
+			else
+				customDescObj.Description = customDescObj.Description.."#"
 			end
 		end
-		if resultCount > EID.Config["BagOfCraftingResults"]-1 then
-			break
-		end
+		customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
+		prevItem = v[2]
 	end
+	if (EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"] < #results) then
+		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..(#results-EID.Config["BagOfCraftingResults"]-EID.bagOfCraftingOffset).." more"
+	end
+
 	EID:printDescription(customDescObj)
 	return true
 end
