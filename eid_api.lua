@@ -751,10 +751,11 @@ end
 
 -- Converts a given CollectibleID into the respective Spindown dice result
 function EID:getSpindownResult(collectibleID)
+	local config = Isaac.GetItemConfig()
 	local newID = collectibleID
 	repeat
 		newID = newID - 1
-	until( EID.SpindownDiceSkipIDs[newID] == nil)
+	until config:GetCollectible(newID) and not config:GetCollectible(newID).Hidden
 	return newID
 end
 
