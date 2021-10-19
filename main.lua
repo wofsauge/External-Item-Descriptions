@@ -26,6 +26,7 @@ EID.lineHeight = 11
 EID.sacrificeCounter = {}
 EID.itemConfig = Isaac.GetItemConfig()
 EID.effectList = {["76"] = true}
+EID.itemUnlockStates = {}
 
 -- Sprite inits
 EID.IconSprite = Sprite()
