@@ -755,7 +755,7 @@ function EID:getSpindownResult(collectibleID)
 	local newID = collectibleID
 	repeat
 		newID = newID - 1
-	until (config:GetCollectible(newID) and EID:isCollectibleUnlockedAnyPool(newID) and not config:GetCollectible(newID).Hidden) or newID == CollectibleType.COLLECTIBLE_NULL
+	until (config:GetCollectible(newID) and not config:GetCollectible(newID).Hidden) or newID == CollectibleType.COLLECTIBLE_NULL
 	return newID
 end
 
