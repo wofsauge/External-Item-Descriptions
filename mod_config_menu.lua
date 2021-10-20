@@ -1032,6 +1032,28 @@ if MCMLoaded then
 			Info = {"If on, each result takes two lines; lower your displayed results accordingly"}
 		}
 	)
+	-- Bag of Crafting Breakfast recipes
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["BagOfCraftingDisplayBreakfast"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["BagOfCraftingDisplayBreakfast"] then
+					onOff = "True"
+				end
+				return "Show Locked Recipes: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["BagOfCraftingDisplayBreakfast"] = currentBool
+			end,
+			Info = {"Recipes for locked items turn into Breakfast, filling the list with essentially useless recipes"}
+		}
+	)
 	
 	MCM.AddSpace("EID", "Crafting")
 	--------Clear Floor---------
