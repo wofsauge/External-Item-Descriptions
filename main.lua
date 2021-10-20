@@ -535,6 +535,22 @@ function EID:onGameUpdate()
 end
 EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
+local hasShownAchievementWarning = false
+local function renderAchievementInfo()
+	if game:GetFrameCount() < 10*30 then
+		local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
+		if not hasCubeOfMeatUnlocked then
+			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
+			demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+			EID:displayPermanentText(demoDescObj)
+			hasShownAchievementWarning = true
+		end 
+	elseif hasShownAchievementWarning then
+		EID:hidePermanentText()
+	end
+end
+
 
 ---------------------------------------------------------------------------
 ---------------------------On Render Function------------------------------
@@ -550,6 +566,7 @@ local function onRender(t)
 	end
 	
 	EID:renderMCMDummyDescription()
+	renderAchievementInfo()
 
 	EID.player = Isaac.GetPlayer(0)
 	if EID.GameVersion == "ab+" then
@@ -790,6 +807,8 @@ if EID.MCMLoaded or REPENTANCE then
 			EID.Config["BagFloorContent"] = EID.bagOfCraftingRoomQueries or {}
 		end
 		EID.SaveData(EID, json.encode(EID.Config))
+		EID:hidePermanentText()
+		EID.itemUnlockStates[CollectibleType.COLLECTIBLE_CUBE_OF_MEAT] = nil
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
 end
