@@ -491,6 +491,51 @@ if MCMLoaded then
 		}
 	)
 	
+	-- Spindown Dice results
+	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = function()
+				return AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1
+			end,
+			Display = function()
+				return "Spindown Dice: $scroll" ..
+					AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1 .. " " .. EID.Config["SpindownDiceResults"] .. " Items"
+			end,
+			OnChange = function(currentNum)
+				EID.Config["SpindownDiceResults"] = diceSteps[currentNum%#diceSteps + 1]
+			end,
+			Info = {"Preview of Items resulting when using the Spindown dice X times"}
+		}
+	)
+	-- 
+	
+	-- Spindown Dice skip locked items
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["SpindownDiceSkipLocked"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["SpindownDiceSkipLocked"] then
+					onOff = "True"
+				end
+				return "Skip Locked Items: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["SpindownDiceSkipLocked"] = currentBool
+			end,
+			Info = {"Skip locked items in the preview just as the dice will; the method to check for unlock status is not perfect, though"}
+		}
+	)
+	
 	--------Obstruction---------
 	MCM.AddSpace("EID", "Display")
 	MCM.AddText("EID", "Display", "Display Infos when obstructed")
@@ -647,26 +692,6 @@ if MCMLoaded then
 		}
 	)
 	
-	-- Spindown Dice results
-	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.SCROLL,
-			CurrentSetting = function()
-				return AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1
-			end,
-			Display = function()
-				return "Spindown Dice: $scroll" ..
-					AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1 .. " " .. EID.Config["SpindownDiceResults"] .. " Items"
-			end,
-			OnChange = function(currentNum)
-				EID.Config["SpindownDiceResults"] = diceSteps[currentNum%#diceSteps + 1]
-			end,
-			Info = {"Preview of Items resulting when using the Spindown dice X times"}
-		}
-	)
 	MCM.AddSpace("EID", "Display")
 	MCM.AddText("EID", "Display", "Interaction with 'Options?'")
 
@@ -1051,7 +1076,7 @@ if MCMLoaded then
 			OnChange = function(currentBool)
 				EID.Config["BagOfCraftingDisplayBreakfast"] = currentBool
 			end,
-			Info = {"Recipes for locked items turn into Breakfast, filling the list with essentially useless recipes"}
+			Info = {"Recipes for locked items turn into Breakfast, cluttering the list; the method to check for unlock status is not perfect, though"}
 		}
 	)
 	

@@ -186,8 +186,9 @@ EID.UserConfig = {
 	-- Default = false
 	["BagOfCraftingDisplayNames"] = false,
 	-- Display locked item recipes, which will all turn into Breakfast
-	-- Default = false
-	["BagOfCraftingDisplayBreakfast"] = false,
+	-- However, there are false positives with this, as the current state of item pools is checked to determine an item's locked status
+	-- Default = true
+	["BagOfCraftingDisplayBreakfast"] = true,
 	
 	---------Mouse Controls-----------
 	
@@ -204,6 +205,10 @@ EID.UserConfig = {
 	-- Changes the number of Results shown for the additional Spindown dice description
 	-- Default = 3
 	["SpindownDiceResults"] = 3,
+	
+	-- Spindown dice preview can skip over locked items, however the method for determining an item's locked status is not perfect
+	-- Default = false
+	["SpindownDiceSkipLocked"] = false,
 	
 	-- Show ID of described object in the format "Type.Variant.SubType" next to the name
 	-- Default = false
@@ -290,6 +295,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingDisplayNames"] = false,
 	["BagOfCraftingDisplayBreakfast"] = false,
 	["SpindownDiceResults"] = 3,
+	["SpindownDiceSkipLocked"] = false,
 	["EnableMouseControls"] = false,
 	["ShowCursor"] = false,
 	["ErrorMessage"] = "[Effect not defined]",
