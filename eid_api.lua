@@ -759,10 +759,26 @@ function EID:getSpindownResult(collectibleID)
 	return newID
 end
 
+function EID:GetMaxCollectibleID()
+    local id = CollectibleType.NUM_COLLECTIBLES-1
+    local step = 16
+    while step > 0 do
+        if Isaac.GetItemConfig():GetCollectible(id+step) ~= nil then
+            id = id + step
+        else
+            step = step // 2
+        end
+    end
+    
+    return id
+end
+
+local maxCollectibleID = nil
 function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 	local itemPool = Game():GetItemPool()
 	local itemConfig = Isaac.GetItemConfig()
-	for i= 1, GetMaxCollectibleID() do
+	if (not maxCollectibleID) then maxCollectibleID = EID:GetMaxCollectibleID() end
+	for i= 1, maxCollectibleID do
 		if ItemConfig.Config.IsValidCollectible(i) and i ~= collectibleID then
 			itemPool:AddRoomBlacklist(i)
 		end
@@ -822,20 +838,20 @@ end
 -- Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
 -- Example input: {1,1,1,2,2,3,3,3}
 -- Result: "3{{Crafting3}}2{{Crafting2}}3{{Crafting1}}"
+local emptyPickupTable = {}
+for i=1,25 do emptyPickupTable[i] = 0 end
 function EID:tableToCraftingIconsMerged(craftTable)
 	local sortedList = {table.unpack(craftTable)}
 	table.sort(sortedList, function(a, b) return a > b end)
-	local filteredList = {}
+	local filteredList = {table.unpack(emptyPickupTable)}
 	for _,nr in ipairs(sortedList) do
-		if filteredList[nr] == nil then
-			filteredList[nr] = 1
-		else
-			filteredList[nr] = filteredList[nr] +1
-		end
+		filteredList[nr] = filteredList[nr] +1
 	end
 	local iconString = ""
-	for nr,count in pairs(filteredList) do
-		iconString = iconString..count.."{{Crafting"..nr.."}}"
+	for nr,count in ipairs(filteredList) do
+		if (count > 0) then
+			iconString = iconString..count.."{{Crafting"..nr.."}}"
+		end
 	end
 	return iconString
 end
