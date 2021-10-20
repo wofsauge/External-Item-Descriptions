@@ -291,6 +291,9 @@ EID.InlineColors = {
 	["ColorTeal"] = KColor(0, 0.5, 0.5, 1),
 	["ColorNavy"] = KColor(0, 0, 0.5, 1),
 	["ColorOrange"] = KColor(1, 0.54, 0, 1),
+	["ColorPastelBlue"] = KColor(0.3882, 0.5216, 1, 1),
+	["ColorLavender"] = KColor(0.7451, 0.3686, 1, 1),
+	["ColorLightOrange"] = KColor(1, 0.6353, 0.3686, 1),
 	-- Swag Colors
 
 	-- Rainbow color effect

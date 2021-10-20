@@ -760,11 +760,9 @@ function EID:handleBagOfCraftingRendering()
 	--fix bug with being allowed to go to an empty page if recipe count = multiple of page size (or if we refresh on last page)
 	if (EID.bagOfCraftingOffset >= #results) then EID.bagOfCraftingOffset = EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
 	
-	local resultCount = 0
-	local skips = 0
 	local prevItem = 0
 	
-	local qualities = { [0] = "{{ColorSilver}}", "{{ColorLime}}", "{{ColorTransform}}", "{{ColorObjName}}", "{{ColorGold}}" }
+	local qualities = { [0] = "{{ColorSilver}}", "{{ColorLime}}", "{{ColorPastelBlue}}", "{{ColorLavender}}", "{{ColorLightOrange}}" }
 	local prefix = "#{{Blank}} "
 	if (EID.lockedResults) then
 		prefix = "#{{Trinket159}} "
@@ -776,17 +774,17 @@ function EID:handleBagOfCraftingRendering()
 	end
 	for i=EID.bagOfCraftingOffset+1,EID.bagOfCraftingOffset+EID.Config["BagOfCraftingResults"] do
 		local v = results[i]
-		if (not v) then break end
+		if not v then break end
 		
-		if (not EID.Config["BagOfCraftingDisplayNames"]) then
+		if not EID.Config["BagOfCraftingDisplayNames"] then
 			customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} "
 			--tack on Breakfast image to locked recipes
-			if (v[3]) then customDescObj.Description = customDescObj.Description.."{{Collectible25}}" end
+			if v[3] then customDescObj.Description = customDescObj.Description.."({{Collectible25}})" end
 			--color the equals sign with the item quality, so the order of the list can make sense
 			customDescObj.Description = customDescObj.Description.. qualities[EID.itemWeightsLookup[v[2]]] .. "={{CR}}"
 		--only display the item name if it's the first occurrence
 		else
-			if (prevItem ~= v[2]) then
+			if prevItem ~= v[2] then
 				--substring the first 18 characters of the item name so it fits on one line; is there a way to get around desc line length limits?
 				customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ".. qualities[EID.itemWeightsLookup[v[2]]] ..
 				string.sub(EID:getObjectName(5, 100, v[2]),1,18).."#"
@@ -794,7 +792,7 @@ function EID:handleBagOfCraftingRendering()
 				customDescObj.Description = customDescObj.Description.."#"
 			end
 			--replace recipe bulletpoint with Breakfast on locked recipes
-			if (v[3]) then customDescObj.Description = customDescObj.Description.." {{Collectible25}} " end
+			if v[3] then customDescObj.Description = customDescObj.Description.." {{Collectible25}} " end
 		end
 		
 		customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
@@ -807,12 +805,3 @@ function EID:handleBagOfCraftingRendering()
 	EID:printDescription(customDescObj)
 	return true
 end
-
---[[
-Isaac.DebugString("Calculating: {1, 1, 1, 1, 1, 1, 1, 1}")
-Isaac.DebugString(EID:calculateBagOfCrafting({1, 1, 1, 1, 1, 1, 1, 1}))
-Isaac.DebugString("Calculating: {1, 1, 1, 1, 1, 1, 1, 2}")
-Isaac.DebugString(EID:calculateBagOfCrafting({1, 1, 1, 1, 1, 1, 1, 2}))
-Isaac.DebugString("Calculating: {1, 1, 1, 1, 1, 1, 1, 3}")
-Isaac.DebugString(EID:calculateBagOfCrafting({1, 1, 1, 1, 1, 1, 1, 3}))
-]]--
