@@ -755,7 +755,7 @@ function EID:getSpindownResult(collectibleID)
 	local newID = collectibleID
 	repeat
 		newID = newID - 1
-		--note: the order of this statement is important so that the item is checked for being in a pool (to display a ? if it isn't)
+	--note: the order of the SkipLocked check statement is important so that the item is checked for being in a pool either way (to display a ? if it isn't)
 	until (config:GetCollectible(newID) and (EID:isCollectibleUnlockedAnyPool(newID) or not EID.Config["SpindownDiceSkipLocked"]) and not config:GetCollectible(newID).Hidden) or newID == CollectibleType.COLLECTIBLE_NULL
 	return newID
 end
