@@ -755,14 +755,31 @@ function EID:getSpindownResult(collectibleID)
 	local newID = collectibleID
 	repeat
 		newID = newID - 1
-	until (config:GetCollectible(newID) and EID:isCollectibleUnlockedAnyPool(newID) and not config:GetCollectible(newID).Hidden) or newID == CollectibleType.COLLECTIBLE_NULL
+	--note: the order of the SkipLocked check statement is important so that the item is checked for being in a pool either way (to display a ? if it isn't)
+	until (config:GetCollectible(newID) and (EID:isCollectibleUnlockedAnyPool(newID) or not EID.Config["SpindownDiceSkipLocked"]) and not config:GetCollectible(newID).Hidden) or newID == CollectibleType.COLLECTIBLE_NULL
 	return newID
 end
 
+function EID:GetMaxCollectibleID()
+    local id = CollectibleType.NUM_COLLECTIBLES-1
+    local step = 16
+    while step > 0 do
+        if Isaac.GetItemConfig():GetCollectible(id+step) ~= nil then
+            id = id + step
+        else
+            step = step // 2
+        end
+    end
+    
+    return id
+end
+
+local maxCollectibleID = nil
 function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 	local itemPool = Game():GetItemPool()
-	local itemConfig = Isaac.GetItemConfig()
-	for i= 1, GetMaxCollectibleID() do
+	--local itemConfig = Isaac.GetItemConfig()
+	if (not maxCollectibleID) then maxCollectibleID = EID:GetMaxCollectibleID() end
+	for i= 1, maxCollectibleID do
 		if ItemConfig.Config.IsValidCollectible(i) and i ~= collectibleID then
 			itemPool:AddRoomBlacklist(i)
 		end
@@ -782,27 +799,35 @@ end
 
 function EID:isCollectibleUnlockedAnyPool(collectibleID)
 	local itemConfig = Isaac.GetItemConfig()
+	local item = itemConfig:GetCollectible(collectibleID)
 	if EID.itemUnlockStates[collectibleID] == nil then
-		local itemPoolNum = 0
-		while EID:isCollectibleUnlocked(collectibleID, itemPoolNum) == false do
-			if itemPoolNum == ItemPoolType.NUM_ITEMPOOLS - 1 then
-				if itemConfig:GetCollectible(collectibleID).Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST then
-					--print("item " .. tostring(collectibleID) .. " is tagged as quest!")
-					EID.itemUnlockStates[collectibleID] = true
-					return true
-				end
-				--print("couldn't find item " .. tostring(collectibleID) .. " in any item pools")
-				EID.itemUnlockStates[collectibleID] = false
-				return false
-			end
-			itemPoolNum = itemPoolNum + 1
+		--whitelist all quest items and items with no associated achievement
+		if (item.AchievementID == -1 or item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then
+			--print("item " .. tostring(collectibleID) .. " is tagged as quest or has no achievement ID!")
+			EID.itemUnlockStates[collectibleID] = true
+			return true
 		end
-		--print("found item " .. tostring(collectibleID) .. " unlocked in pool " .. tostring(itemPoolNum))
-		EID.itemUnlockStates[collectibleID] = true
-		return true
+		--blacklist all hidden items
+		if (item.Hidden) then
+			--print("item " .. tostring(collectibleID) .. " is tagged as hidden!")
+			EID.itemUnlockStates[collectibleID] = false
+			return false
+		end
+		--iterate through the pools this item can be in
+		for k,v in ipairs(EID.CollectiblesPools[collectibleID]) do
+			if (EID:isCollectibleUnlocked(collectibleID, v)) then
+				--print("found item " .. tostring(collectibleID) .. " unlocked in pool " .. tostring(v))
+				EID.itemUnlockStates[collectibleID] = true
+				return true
+			end
+		end
+		--note: some items will still be missed by this, if they've been taken out of their pools (especially when in Greed Mode)
+		--print("couldn't find item " .. tostring(collectibleID) .. " in any item pools")
+		EID.itemUnlockStates[collectibleID] = false
+		return false
 	else
-	--print("item " .. tostring(collectibleID) .. " was already cached: " .. tostring(EID.itemUnlockStates[collectibleID]))
-	return EID.itemUnlockStates[collectibleID]
+		--print("item " .. tostring(collectibleID) .. " was already cached: " .. tostring(EID.itemUnlockStates[collectibleID]))
+		return EID.itemUnlockStates[collectibleID]
 	end
 end
 
@@ -822,20 +847,20 @@ end
 -- Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
 -- Example input: {1,1,1,2,2,3,3,3}
 -- Result: "3{{Crafting3}}2{{Crafting2}}3{{Crafting1}}"
+local emptyPickupTable = {}
+for i=1,25 do emptyPickupTable[i] = 0 end
 function EID:tableToCraftingIconsMerged(craftTable)
 	local sortedList = {table.unpack(craftTable)}
 	table.sort(sortedList, function(a, b) return a > b end)
-	local filteredList = {}
+	local filteredList = {table.unpack(emptyPickupTable)}
 	for _,nr in ipairs(sortedList) do
-		if filteredList[nr] == nil then
-			filteredList[nr] = 1
-		else
-			filteredList[nr] = filteredList[nr] +1
-		end
+		filteredList[nr] = filteredList[nr] +1
 	end
 	local iconString = ""
-	for nr,count in pairs(filteredList) do
-		iconString = iconString..count.."{{Crafting"..nr.."}}"
+	for nr,count in ipairs(filteredList) do
+		if (count > 0) then
+			iconString = iconString..count.."{{Crafting"..nr.."}}"
+		end
 	end
 	return iconString
 end

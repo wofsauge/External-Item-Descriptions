@@ -511,24 +511,11 @@ EID.refreshNextTick = false
 EID.downHeld = 0
 EID.upHeld = 0
 
-local function GetMaxCollectibleID()
-    local id = CollectibleType.NUM_COLLECTIBLES-1
-    local step = 16
-    while step > 0 do
-        if Isaac.GetItemConfig():GetCollectible(id+step) ~= nil then
-            id = id + step
-        else
-            step = step // 2
-        end
-    end
-    
-    return id
-end
 local maxItemID = nil
 
 local function detectModdedItems()
 	if maxItemID == nil then
-		maxItemID = GetMaxCollectibleID()
+		maxItemID = EID:GetMaxCollectibleID()
 	end
 	if maxItemID > CollectibleType.NUM_COLLECTIBLES then
 		local customDescObj = EID:getDescriptionObj(5, 100, 710)
@@ -683,7 +670,13 @@ function EID:handleBagOfCraftingRendering()
 		for k, v in pairs(randResults) do
 			local resultID = EID:calculateBagOfCrafting(v)
 			if resultID > 0 then
-				table.insert(calcResults, {v, resultID})
+				if (not EID:isCollectibleUnlockedAnyPool(resultID)) then
+					if (EID.Config["BagOfCraftingDisplayBreakfast"]) then
+						table.insert(calcResults, {v, resultID, 25})
+					end
+				else
+					table.insert(calcResults, {v, resultID})
+				end
 			end
 		end
 		randResultCache[queryString] = calcResults
@@ -784,8 +777,13 @@ function EID:handleBagOfCraftingRendering()
 	for i=EID.bagOfCraftingOffset+1,EID.bagOfCraftingOffset+EID.Config["BagOfCraftingResults"] do
 		local v = results[i]
 		if (not v) then break end
+		
 		if (not EID.Config["BagOfCraftingDisplayNames"]) then
-			customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} " .. " ="
+			customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} "
+			--tack on Breakfast image to locked recipes
+			if (v[3]) then customDescObj.Description = customDescObj.Description.."{{Collectible25}}" end
+			--color the equals sign with the item quality, so the order of the list can make sense
+			customDescObj.Description = customDescObj.Description.. qualities[EID.itemWeightsLookup[v[2]]] .. "={{CR}}"
 		--only display the item name if it's the first occurrence
 		else
 			if (prevItem ~= v[2]) then
@@ -795,7 +793,10 @@ function EID:handleBagOfCraftingRendering()
 			else
 				customDescObj.Description = customDescObj.Description.."#"
 			end
+			--replace recipe bulletpoint with Breakfast on locked recipes
+			if (v[3]) then customDescObj.Description = customDescObj.Description.." {{Collectible25}} " end
 		end
+		
 		customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
 		prevItem = v[2]
 	end
