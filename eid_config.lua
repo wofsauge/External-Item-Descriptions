@@ -176,8 +176,8 @@ EID.UserConfig = {
 	["BagOfCraftingCombinationMax"] = 12,
 	-- Changes the number of random recipes calculated
 	-- Higher numbers will cause lag spikes on new pickup sets!
-	-- Default = 500
-	["BagOfCraftingRandomResults"] = 500,
+	-- Default = 400
+	["BagOfCraftingRandomResults"] = 400,
 	-- Set the keybinding to toggle the scroll feature of the bag of crafting descriptions
 	-- look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_MAP
@@ -185,6 +185,9 @@ EID.UserConfig = {
 	-- Display craftable item names, moving the recipe to a new line
 	-- Default = false
 	["BagOfCraftingDisplayNames"] = false,
+	-- Display locked item recipes, which will all turn into Breakfast
+	-- Default = false
+	["BagOfCraftingDisplayBreakfast"] = false,
 	
 	---------Mouse Controls-----------
 	
@@ -282,9 +285,10 @@ EID.DefaultConfig = {
 	["DisplayBagOfCrafting"] = "always",
 	["BagOfCraftingResults"] = 7,
 	["BagOfCraftingCombinationMax"] = 12,
-	["BagOfCraftingRandomResults"] = 500,
+	["BagOfCraftingRandomResults"] = 400,
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["BagOfCraftingDisplayNames"] = false,
+	["BagOfCraftingDisplayBreakfast"] = false,
 	["SpindownDiceResults"] = 3,
 	["EnableMouseControls"] = false,
 	["ShowCursor"] = false,
