@@ -569,7 +569,7 @@ EID.descriptions["en_us"].collectibles={
 
 ---------- Trinkets ----------
 EID.descriptions["en_us"].trinkets={
-	{"1", "Swallowed Penny", "Drop 1 coin when you get hit"},
+	{"1", "Swallowed Penny", "Spawns 1 coin when you get hit"},
 	{"2", "Petrified Poop", "50% more drops from poop"},
 	{"3", "AAA Battery", "-1 charge needed for spacebar items"},
 	{"4", "Broken Remote", "Randomly teleports you, when using an item"},

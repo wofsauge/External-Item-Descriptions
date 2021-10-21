@@ -420,7 +420,7 @@ EID.descriptions["en_us"].spindownError = "Item disappears"
 ---------- Trinkets ----------
 
 local repTrinkets={
-	[1] = {"1", "Swallowed Penny", "Drop 1 coin when you get hit#0-1 if you play as Keeper"}, -- Swallowed Penny
+	[1] = {"1", "Swallowed Penny", "Spawns 1 coin when you get hit#0-1 if you play as Keeper"}, -- Swallowed Penny
 	[10] = {"10", "Wiggle Worm", "Tears move in waves#↑ +0.4 Tears up#Grants spectral tears"}, -- Wiggle Worm
 	[11] = {"11", "Ring Worm", "Tears move in spirals with high speed#Grants spectral tears"}, -- Ring Worm
 	[15] = {"15", "Lucky Rock", "33% chance to drop a coin when destroying rocks"},-- Lucky Rock
