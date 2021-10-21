@@ -176,8 +176,8 @@ EID.UserConfig = {
 	["BagOfCraftingCombinationMax"] = 12,
 	-- Changes the number of random recipes calculated
 	-- Higher numbers will cause lag spikes on new pickup sets!
-	-- Default = 500
-	["BagOfCraftingRandomResults"] = 500,
+	-- Default = 400
+	["BagOfCraftingRandomResults"] = 400,
 	-- Set the keybinding to toggle the scroll feature of the bag of crafting descriptions
 	-- look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_MAP
@@ -185,6 +185,10 @@ EID.UserConfig = {
 	-- Display craftable item names, moving the recipe to a new line
 	-- Default = false
 	["BagOfCraftingDisplayNames"] = false,
+	-- Display locked item recipes, which will all turn into Breakfast
+	-- However, there are false positives with this, as the current state of item pools is checked to determine an item's locked status
+	-- Default = true
+	["BagOfCraftingDisplayBreakfast"] = true,
 	
 	---------Mouse Controls-----------
 	
@@ -201,6 +205,10 @@ EID.UserConfig = {
 	-- Changes the number of Results shown for the additional Spindown dice description
 	-- Default = 3
 	["SpindownDiceResults"] = 3,
+	
+	-- Spindown dice preview can skip over locked items, however the method for determining an item's locked status is not perfect
+	-- Default = false
+	["SpindownDiceSkipLocked"] = false,
 	
 	-- Show ID of described object in the format "Type.Variant.SubType" next to the name
 	-- Default = false
@@ -282,10 +290,12 @@ EID.DefaultConfig = {
 	["DisplayBagOfCrafting"] = "always",
 	["BagOfCraftingResults"] = 7,
 	["BagOfCraftingCombinationMax"] = 12,
-	["BagOfCraftingRandomResults"] = 500,
+	["BagOfCraftingRandomResults"] = 400,
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["BagOfCraftingDisplayNames"] = false,
+	["BagOfCraftingDisplayBreakfast"] = true,
 	["SpindownDiceResults"] = 3,
+	["SpindownDiceSkipLocked"] = false,
 	["EnableMouseControls"] = false,
 	["ShowCursor"] = false,
 	["ErrorMessage"] = "[Effect not defined]",

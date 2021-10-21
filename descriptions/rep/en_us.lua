@@ -59,6 +59,7 @@ local repCollectibles={
 	[155] = {"155", "The Peeper", "Floats around the room#Deals 17.1 contact damage per second#Tears shot from isaacs left eye deal 34% more damage"}, -- The Peeper
 	[158] = {"158", "Crystal Ball", "Reveal full map#Drops random Card or soul heart#While held:#↑ +15% Planetatium chance#100% if a treasure room was skipped"}, -- Crystal Ball
 	[171] = {"171", "Spider Butt", "Slows down enemies for 4 seconds#10 Damage to all enemies#Enemies killed with it spawn blue spiders"}, -- Spider Butt
+	[172] = {"172", "Sacrificial Dagger", "Orbital knife#Blocks enemy shots#Deals 112.5 damage per second"}, -- Sacrificial Dagger
 	[176] = {"176", "Stem Cells", "↑ +1 Health up#↑ +0.16 Shot Speed up#Heals 1 red heart"}, -- Stem Cells
 	[178] = {"178", "Holy Water", "{{Throwable}} {{ColorOrange}}Throwable{{CR}}#Leaves pool of creep at the thrown location"}, -- Holy Water
 	[182] = {"182", "Sacred Heart", "Homing tears#↑ +1 Health up#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#↑ +0.5 Range up#Full Health"}, -- Sacred Heart
@@ -675,3 +676,5 @@ EID.descriptions["en_us"].CraftingFloorContent = "Floor:"
 EID.descriptions["en_us"].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
 EID.descriptions["en_us"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}The \"Crafting result calculation\" feature currently does not work when item mods are installed!#{{ColorRed}}Please uninstall the item mods or deactivate the Bag of Crafting descriptions in the config"
 
+EID.descriptions["en_us"].AchievementWarningTitle = "{{ColorYellow}}!!! WARNING !!!"
+EID.descriptions["en_us"].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled."
