@@ -262,7 +262,7 @@ EID.descriptions["en_us"].collectibles={
 	{"247", "BFFS!", "Your familiars deal double damage"},
 	{"248", "Hive Mind", "Blue Spiders/flies deal double damage"},
 	{"249", "There's Options", "2 Boss items spawn instead of 1#!!! Only one can be taken"},
-	{"250", "BOGO Bombs", "Double all bomb-drops"},
+	{"250", "Bogo Bombs", "All bomb drops become double bombs"},
 	{"251", "Starter Deck", "You can carry 2 Cards#Turns all Pills into Cards#Spawns 1 random card on pickup"},
 	{"252", "Little Baggy", "You can carry 2 Pills#Turns all Cards into Pills#Spawns 1 random pill on pickup"},
 	{"253", "Magic Scab", "↑ +1 Luck up#↑ +1 Health up"},
