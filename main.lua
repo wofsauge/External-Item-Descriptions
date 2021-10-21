@@ -377,7 +377,7 @@ local function IsMirror()
 	local level = game:GetLevel()
 	local id = level:GetCurrentRoomIndex()
 
-	return GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 1))
+	return id >=0 and GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 1))
 end
 
 local isMirrorRoom = false
