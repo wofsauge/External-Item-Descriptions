@@ -664,7 +664,7 @@ EID.descriptions["spa"].trinkets={
 	{"93", "Pañal usado", "Posibilidad de que las moscas enemigas sean aliadas"},
 	{"94", "Cola de pez", "Duplica todas las moscas y arañas azules"},
 	{"95", "Diente negro", "Posibilidad de disparar un diente negro aleatoriamente"},
-	{"96", "Serpiente Uróboros", "Las lágrimas se mueven rápido en espiral#Lágrimas espectrales#↑ +1.5 de rango"},
+	{"96", "Serpiente Uróboros", "Las lágrimas se mueven rápido en espiral#Lágrimas espectrales#↑ +4 de rango"},
 	{"97", "Amígdala", "Posibilidad de recibir un familiar cuando te golpean de 12 a 20 veces#Hasta 2 familiares"},
 	{"98", "Nariz de duende", "Probabilidad de disparar lágrimas venenosas que se pegan a los enemigos"},
 	{"99", "Superbola", "Probabilidad de disparar lágrimas que rebotan"},

@@ -667,7 +667,7 @@ EID.descriptions["pt_br"].trinkets={
 	{"93", "", "Moscas Inimigas agora são amigáveis"},
 	{"94", "", "O dobro de moscas e aranhas serão geradas"},
 	{"95", "", "Atire lágrimas de veneno aleatoriamente"},
-	{"96", "", "As lágrimas se movem rapidamente em um padrão espiral#↑ +1.5 Alcance"},
+	{"96", "", "As lágrimas se movem rapidamente em um padrão espiral#↑ +4 Alcance"},
 	{"97", "", "!!! Este processo pode acontecer apenas 2 vezes antes que o familiar seja destruído#Quando atingido, há uma pequena chance de ganhar o familiar Tonsil#Bloqueia os tiros do inimigo"},
 	{"98", "", "Chance de atirar lágrimas venenosas"},
 	{"99", "", "Chance de atirar lágrimas saltitantes"},
