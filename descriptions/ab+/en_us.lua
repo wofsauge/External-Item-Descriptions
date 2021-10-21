@@ -309,7 +309,7 @@ EID.descriptions["en_us"].collectibles={
 	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger \"Wait What?\" when swapping it with a different active item and picking it up again"},
 	{"295", "Magic Fingers", "Damages the whole room with 2x the player damage#Price: 1 coin"},
 	{"296", "Converter", "!!! Convert:#2 Soul/Black hearts into 1 red heart"},
-	{"297", "Pandora's Box", "!!! SINGLE USE !#!!! Drops things based on floor its activated on:#B1: 2 Soul Hearts#B2: 2 keys and bombs#C1: 1 Boss item#C2: B1+C1#D1: 4 Soul hearts#D2: 20 Coins#W1: 2 Boss items#W2: Bible#Sheol: 1 Devil item + Black heart#Cat: 1 Angel item + Soul heart#Chest: 1 Coin"},
+	{"297", "Pandora's Box", "!!! SINGLE USE !#!!! Spawns items or consumables based on the floor it's activated on:#B1: 2 Soul Hearts#B2: 2 bombs and 2 keys#C1: 1 Boss item#C2: B1+C1#D1: 4 Soul Hearts#D2: 20 Coins#W1: 2 Boss items#W2: {{Collectible33}}The Bible#???: Nothing#Void: Nothing#Sheol: 1 Devil item + 1 Black heart#Dark Room: Unlocks {{Collectible523}}Moving Box#Cat: 1 Angel item + 1 Eternal heart#Chest: 1 Coin"},
 	{"298", "Unicorn Stump", "Invincibility and +0.28 speed up for 6 seconds"},
 	{"299", "Taurus", "Get faster in hostile rooms!#Invincibility when fast enough#↓ -0.3 Speed down"},
 	{"300", "Aries", "↑ +0.25 Speed up#Touching enemies hurts them"},
