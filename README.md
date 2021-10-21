@@ -12,10 +12,10 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions).
 - Mod support for nearly all mods!
 - Easy to use API ([Documentation here](https://github.com/wofsauge/External-Item-Descriptions/wiki))
 - A huge amount of custom options like:
-    - Indicators
-    - Font style
-    - Language
-    - and a lot of visual options!
+	- Indicators
+	- Font style
+	- Language
+	- and a lot of visual options!
 - **Press F2 to hide/show the descriptions!**
 
 ### Supported Languages

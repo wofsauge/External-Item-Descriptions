@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <name>!!~External item descriptions</name>
-    <directory>external item descriptions</directory>
-    <id>836319872</id>
-    <description>[img]https://i.imgur.com/l9nbaxP.png[/img]
+	<name>!!~External item descriptions</name>
+	<directory>external item descriptions</directory>
+	<id>836319872</id>
+	<description>[img]https://i.imgur.com/l9nbaxP.png[/img]
 
 This mod displays detailed information about all items, trinkets, cards, runes and pills DIRECTLY onto your screen. Say goodbye to your browsertab with platinumgod open ;)
 
@@ -26,30 +26,30 @@ This mod displays detailed information about all items, trinkets, cards, runes a
 [img]https://i.imgur.com/NqSBJqj.png[/img]
 [img]https://i.imgur.com/Hkv0pcO.png[/img]
 [table]
-    [tr]
-        [th]ENGLISH[/th]
-        [th]SPANISH[/th]
-        [th]RUSSIAN[/th]
-        [th]ITALIAN[/th]
-        [th]FRENCH[/th]
-        [th]PORTUGUESE[/th]
-        [th]BRAZILIAN PORTUGUESE[/th]
-        [th]BULGARIAN[/th]
-        [th]TURKISH[/th]
-        [th]POLISH[/th]
-    [/tr]
-    [tr]
-        [td]by Wofsauge[/td]
-        [td]by Arroyo Purroy[/td]
-        [td]by hell2Pay, fly_6, Dezzelshipc, Sekaz[/td]
-        [td]by Klyser8, Denkishi, 2G[/td]
-        [td]by Nicolas Delvaux[/td]
-        [td]by Marcelino Cruz[/td]
-        [td]by LuanRoger, NotZin02[/td]
-        [td]by TST_Gogo_, Gothika_47[/td]
-        [td]by Cagdas Salur, Mert Dutal[/td]
-        [td]by Rickyy, Kennyluz,DimonoKingoKongo, MERITT [/td]
-    [/tr]
+	[tr]
+		[th]ENGLISH[/th]
+		[th]SPANISH[/th]
+		[th]RUSSIAN[/th]
+		[th]ITALIAN[/th]
+		[th]FRENCH[/th]
+		[th]PORTUGUESE[/th]
+		[th]BRAZILIAN PORTUGUESE[/th]
+		[th]BULGARIAN[/th]
+		[th]TURKISH[/th]
+		[th]POLISH[/th]
+	[/tr]
+	[tr]
+		[td]by Wofsauge[/td]
+		[td]by Arroyo Purroy[/td]
+		[td]by hell2Pay, fly_6, Dezzelshipc, Sekaz[/td]
+		[td]by Klyser8, Denkishi, 2G[/td]
+		[td]by Nicolas Delvaux[/td]
+		[td]by Marcelino Cruz[/td]
+		[td]by LuanRoger, NotZin02[/td]
+		[td]by TST_Gogo_, Gothika_47[/td]
+		[td]by Cagdas Salur, Mert Dutal[/td]
+		[td]by Rickyy, Kennyluz,DimonoKingoKongo, MERITT [/td]
+	[/tr]
 [/table]
 
 [img]https://i.imgur.com/J72fl8H.png[/img] [b]CHINESE[/b] version: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1290363695]EID Chinese Edition[/url] or alternatively [url=https://steamcommunity.com/sharedfiles/filedetails/?id=848295251]中文道具图鉴 Eid Chinese[/url]
@@ -90,13 +90,13 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions
 - Jake for the sweet [b]German[/b] language pack
 - [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating an awesome new Languagepack and providing ideas for new functionalities
 </description>
-    <version>3.84</version>
-    <visibility>Public</visibility>
-    <tag id="Lua"/>
-    <tag id="Items"/>
-    <tag id="Active Items"/>
-    <tag id="Trinkets"/>
-    <tag id="Pills"/>
-    <tag id="Cards"/>
-    <tag id="Tweaks"/>
+	<version>3.84</version>
+	<visibility>Public</visibility>
+	<tag id="Lua"/>
+	<tag id="Items"/>
+	<tag id="Active Items"/>
+	<tag id="Trinkets"/>
+	<tag id="Pills"/>
+	<tag id="Cards"/>
+	<tag id="Tweaks"/>
 </metadata>

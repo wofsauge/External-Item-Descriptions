@@ -12,7 +12,8 @@
 -- ãÃ áÁ àÀ âÂ çÇ éÉ êÊ íÍ õÕ óÓ ôÔ úÚ
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+
 local newDescriptions = {
 	["5.70.14"] = {"14", "Golden Pill", "Efeito aleatório de pílula#Destrói-se após alguns usos"} -- golden Pill
 }

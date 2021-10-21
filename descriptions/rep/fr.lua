@@ -6,8 +6,9 @@
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
+
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 local repCollectibles={
 	[5] = {"5", "My reflexion", "Donne un effet boomerang aux larmes#↑ +1.5 Portée#↑ +60% Portée supplémentaire#↑ +0.6 Vitesse des larmes#↑ +1 Hauteur des larmes"}, -- My Reflection

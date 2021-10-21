@@ -8,7 +8,7 @@
 --Special character markup:
 -- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
 
--- init en_us table
+-- init it table
 EID.descriptions["it"] = {}
 EID.descriptions["it"].custom = {} -- table for custom entity descriptions
 

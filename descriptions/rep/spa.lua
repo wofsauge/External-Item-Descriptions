@@ -1,13 +1,15 @@
 ---------------------------------------
 -----  Basic spanish descriptions -----
 ---------------------------------------
+
 -- Last Sync with en_us: 03.07.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+
 local newDescriptions = {
 	--["5.70.14"] = {"14", "Golden Pill", "Random pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
