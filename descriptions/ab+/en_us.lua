@@ -387,7 +387,7 @@ EID.descriptions["en_us"].collectibles={
 	{"372", "Charged Baby", "Random chance to drop a battery or freeze all enemies in the room#Chance to add one charge to your spacebar item"},
 	{"373", "Dead Eye", "↑ +12.5% damage up for every tear that successfully hits an enemy(max. +100%)"},
 	{"374", "Holy Light", "Random chance to fire a Holy tear, which will spawn a beam of light on hit#The beam deals 4x your damage"},
-	{"375", "Host Hat", "20% chance to block tears#Get immune to explosions/Stomps from Mom's and Satan's foot"},
+	{"375", "Host Hat", "Grants explosion immunity and immunity from Mom's and Satan's foot stomps#20% chance to block tears"},
 	{"376", "Restock", "Spawns 3 random Pickups#Shops instantly restock their items when you buy them"},
 	{"377", "Bursting Sack", "Spider enemies no longer target or deal contact damage to Isaac"},
 	{"378", "No. 2", "Firing tears for 3 seconds drops a Butt Bomb"},
