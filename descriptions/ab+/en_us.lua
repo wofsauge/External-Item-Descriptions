@@ -256,7 +256,7 @@ EID.descriptions["en_us"].collectibles={
 	{"241", "Contract from Below", "Doubles all pickup drops#Doesn't affect Greed mode"},
 	{"242", "Infamy", "50% chance to block tears"},
 	{"243", "Trinity Shield", "Tear blocking shield"},
-	{"244", "Tech.5", "Fire random laser-type tears"},
+	{"244", "Tech.5", "Fire random laser shots"},
 	{"245", "20/20", "Doubles all your shots"},
 	{"246", "Blue Map", "Reveals secret rooms"},
 	{"247", "BFFS!", "Your familiars deal double damage"},
