@@ -437,6 +437,7 @@ local repTrinkets={
 	[69] = {"69", "Faded Polaroid", "Camouflages the player randomly#Confuses enemies#Can be used to open the door to the \"Home\" floor"}, -- Faded Polaroid
 	[80] = {"80", "Black Feather", "↑ +0.5 Damage up for each evil item held"}, -- Black Feather
 	[92] = {"92", "Cracked Crown", "↑ Stat increases of your items are 20% more effective"}, -- Cracked Crown
+	[96] = {"96", "Ouroboros Worm", "Tears move quickly in a spiral pattern#Spectral tears#↑ +1.5 Range"}, -- Ouroboros Worm
 	[101] = {"101", "Dim Bulb", "!!! While holding an uncharged active item:#↑ +1.5 Damage#↑ +0.5 Speed#↑ +1.5 Range#↑ +0.5 Tears#↑ +0.3 Shot Speed#↑ +2 Luck"},
 	[110] = {"110", "Silver Dollar", "Shops {{Shop}} will now appear in the Womb and Corpse"},
 	[111] = {"111", "Bloody Crown", "Item rooms {{TreasureRoom}} now appear in the Womb and Corpse"}, -- Bloody Crown

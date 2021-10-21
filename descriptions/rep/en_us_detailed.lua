@@ -846,7 +846,7 @@ local repTrinkets={
 	{"93", "", "Grants the Skatole effect on some rooms. #When the effect happens, attack, dart and ring flies become black flies, pooters and super pooters do not shoot, and boom flies move more slowly."},
 	{"94", "", "Many items and trinkets that generate blue flies, spiders or locusts will generate twice as many. #A full list of interactions can be found on the wiki. #Does double flies from the Guppy transformation."},
 	{"95", "", "Grants a chance to fire a black tooth that poisons enemies. #These teeth deal 2x the player's tear damage."},
-	{"96", "", "Tears move in a large spiral pattern. #Grants spectral tears. #+4.0 range. #+2.0 tear height. #A luck dependent chance to fire a homing shot. #This chance increases to 100% at 9 or higher luck."},
+	{"96", "", "Tears move in a large spiral pattern. #Grants spectral tears. #+1.5 range. #+2.0 tear height. #A luck dependent chance to fire a homing shot. #This chance increases to 100% at 9 or higher luck."},
 	{"97", "", "Upon taking damage, the player has a chance to spawn a familiar that follows the player, blocking enemy shots. #This can happen twice. #Upon spawning a familiar, the player gains a passive item representing the familiar, meaning the trinket can be dropped without losing it."},
 	{"98", "", "Grants a chance to fire a homing booger which sticks to enemies and damages it once per second, for up to 60 seconds or until the enemy dies. #As this effect is almost identical to the item Sinus Infection, all synergies that apply to it apply to Nose Goblin as well."},
 	{"99", "", "Grants a chance to fire tears that bounce of enemies and obstacles."},

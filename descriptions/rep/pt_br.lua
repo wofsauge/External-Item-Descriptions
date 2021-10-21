@@ -429,6 +429,7 @@ local repTrinkets={
     [69] = {"69", "", "Camufla o jogador aleatoriamente#Confunde inimigos#Pode ser ussado para abrir a porta para o andar \"Home\""}, -- Faded Polaroid
 	[80] = {"80", "", "↑ +0.5 Dano para cada item maligno que estiver segurando"}, -- Black Feather
     [92] = {"92", "", "↑ Aumeta as estatísticas de seus itens em 20%"}, -- Cracked Crown
+	[96] = {"96", "", "As lágrimas se movem rapidamente em um padrão espiral#↑ +1.5 Alcance"}, -- Ouroboros Worm
 	[101] = {"101", "", "!!! Enquanto segurar um item ativador descarregado:#↑ +1.5 Dano#↑ +0.5 Velocidade#↑ +1.5 Alcance#↑ +0.5 Lágrima#↑ +0.3 Velocidade de disparo#↑ +2 Sorte"}, -- Dim Bulb
 	[110] = {"110", "", "Lojas {{Shop}} vão aparecer no Womb e Corpse"}, -- Silver Dollar
     [111] = {"111", "", "Salas do item {{TreasureRoom}} agora aparecem em the Womb e Corpse"}, -- Bloody Crown

@@ -438,6 +438,7 @@ local repTrinkets={
 	[69] = {"69", "Solmuş Polaroid", "Rastgele oyuncuya kamuflaj verir#Düşmanların kafasını karıştırır#\"Home\" katına giden kapıyı açmak için kullanılabilir"}, -- Faded Polaroid
 	[80] = {"80", "Siyah Tüy", "Tutulan her şeytan itemi için ↑ +0.5 Hasar"}, -- Black Feather
 	[92] = {"92", "Çatlak Taç", "İtemlerinin ↑ Özellik artışı artık 20% daha efektif"}, -- Cracked Crown
+	[96] = {"96", "Ouroboros Solucanı", "Gözyaşları hızlıca spiral halinde ilerler#Hayalet gözyaşı#↑ +1.5 Menzil"}, -- Ouroboros Worm
 	[101] = {"101", "Sönmüş Ampül", "!!! Şarjı boş bir aktif item tutartken:#↑ +1.5 hasar#↑ +0.5 Speed#↑ +1.5 Range#↑ +0.5 Tears#↑ +0.3 Shot Speed#↑ +2 Luck"},
 	[110] = {"110", "Gümüş Dolar", "Dükkanlar artık {{Shop}} The Womb ve Corpse katlarında da çıkar"},
 	[111] = {"111", "Kanlı Taç", "Hazine odaları {{TreasureRoom}} The Womb ve Corpse katında da çıkar"}, -- Bloody Crown

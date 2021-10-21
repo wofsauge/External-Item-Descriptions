@@ -412,6 +412,7 @@ local repTrinkets={
 	[51] = {"51", "Moneda plana", "25 % de posibilidad de dejar una llave al coger monedas"}, -- Moneda plana
 	[69] = {"69", "Polaroid descolorida", "Te camufla de manera aleatoria#Desorienta a los enemigos#Puede usarse para abrir la puerta hacia la planta \"Home\" (Casa)"}, -- Polaroid descolorida
 	[92] = {"92", "Corona rota", "↑ Las estadísticas basadas en tus objetos son un 20 % más efectivas"}, -- Corona rota
+	[96] = {"96", "Serpiente Uróboros", "Las lágrimas se mueven rápido en espiral#Lágrimas espectrales#↑ +1.5 de rango"}, -- Ouroboros Worm
 	[111] = {"111", "Corona sangrienta", "Las salas del tesoro {{TreasureRoom}} aparecen en el Womb (Útero) y Corpse (Cadáver)"}, -- Corona sangrienta
 	[119] = {"119", "Célula madre", "Reduce tus corazones rojos al 50 % de tu máximo al entrar en la siguiente planta#Si tu vida está por encima, cura medio corazón rojo"}, -- Célula madre
 	[128] = {"128", "Dedo de hueso", "5 % de posibilidad de ganar un corazón de hueso al recibir daño"}, -- Dedo de hueso
