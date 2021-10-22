@@ -498,6 +498,7 @@ end
 -----------------------------
 
 local randResultCache = {}
+local calcResultCache = {}
 
 EID.bagOfCraftingOffset = 0
 EID.bagOfCraftingCurPickupCount = -1
@@ -508,6 +509,8 @@ EID.icount = 0
 
 EID.lockedResults = nil
 EID.refreshNextTick = false
+EID.refreshPosition = 0
+EID.bagOfCraftingRefreshes = 0
 EID.downHeld = 0
 EID.upHeld = 0
 
@@ -616,19 +619,30 @@ function EID:handleBagOfCraftingRendering()
 
 	local queryString = table.concat(itemQuery,",")
 	if EID.lockedResults ~= nil then
-		results = randResultCache[EID.lockedResults]
-	elseif randResultCache[queryString] == nil or EID.refreshNextTick then
-		local randResults = {}
+		results = calcResultCache[EID.lockedResults]
+	elseif calcResultCache[queryString] == nil or EID.refreshNextTick then
+		--build on top of our previous recipe lists, if possible
+		local randResults = randResultCache[queryString] or {}
 		local skipRandom = false
 		--check every single possible recipe for our highest value pickups
 		--limit it in the options, since the number of total combinations quickly grows (nCr):
 		--12 = 495, 13 = 1287, 14 = 3003, 15 = 6435, 16 = 12870
 		local mostValuable = {}
+		
+		--shift our thorough check forward one ingredient each refresh (it will find duplicates, but spamming refresh will get a lot of variety)
+		if (EID.refreshNextTick) then
+			EID.bagOfCraftingRefreshes = EID.bagOfCraftingRefreshes + 1
+			if (#itemQuery >= EID.Config["BagOfCraftingCombinationMax"] + EID.bagOfCraftingRefreshes) then
+				for i=1,EID.Config["BagOfCraftingCombinationMax"] do
+					mostValuable[i] = itemQuery[i+EID.bagOfCraftingRefreshes]
+				end
+			end
 		--we have less items than our threshold; every single recipe will be listed
-		if (#itemQuery <= EID.Config["BagOfCraftingCombinationMax"]) then
+		elseif (#itemQuery <= EID.Config["BagOfCraftingCombinationMax"]) then
 			mostValuable = itemQuery
 			skipRandom = true
 		else
+		--grab the X most valuable ingredients
 			for i=1,EID.Config["BagOfCraftingCombinationMax"] do
 				mostValuable[i] = itemQuery[i]
 			end
@@ -649,7 +663,7 @@ function EID:handleBagOfCraftingRendering()
 			combinations(arr,length-1,i+1,tempResult)
 		  end
 		end
-		combinations(mostValuable)
+		if (#mostValuable >= 8) then combinations(mostValuable) end
 		
 		--do random pulls for some more recipe choices
 		if (not skipRandom) then
@@ -679,22 +693,33 @@ function EID:handleBagOfCraftingRendering()
 				end
 			end
 		end
-		randResultCache[queryString] = calcResults
+		calcResultCache[queryString] = calcResults
+		randResultCache[queryString] = randResults
 		results = calcResults
 		--sort our final results by quality, then alphabetical item name
 		table.sort(results, function(a, b)
-			if (EID.itemWeightsLookup[a[2]] == EID.itemWeightsLookup[b[2]]) then
+			if EID.itemWeightsLookup[a[2]] == EID.itemWeightsLookup[b[2]] then
 				return (EID:getObjectName(5, 100, a[2]) < EID:getObjectName(5, 100, b[2]))
 			else
 				return (EID.itemWeightsLookup[a[2]] > EID.itemWeightsLookup[b[2]])
 			end
 		end)
 		
-		--don't reset our location on refresh, so you can more easily refresh for lower quality recipes
-		if (not EID.refreshNextTick) then EID.bagOfCraftingOffset = 0 end
+		if not EID.refreshNextTick then
+			EID.bagOfCraftingOffset = 0
+			EID.bagOfCraftingRefreshes = 0
+		--jump to the item we were looking at before, so you can more easily refresh for variants of recipes
+		elseif EID.bagOfCraftingOffset > 0 then
+			for k,v in ipairs(results) do
+				if (v[2] == EID.refreshPosition) then
+					EID.bagOfCraftingOffset = k-1
+					break
+				end
+			end
+		end
 		EID.refreshNextTick = false
 	else
-		results = randResultCache[queryString]
+		results = calcResultCache[queryString]
 	end
 	
 	if #results == 0 then
@@ -746,7 +771,10 @@ function EID:handleBagOfCraftingRendering()
 			else EID.lockedResults = nil end
 		--refresh the recipes
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTRIGHT, EID.player.ControllerIndex) then
-			if (EID.lockedResults == nil) then EID.refreshNextTick = true end
+			if (EID.lockedResults == nil) then
+				EID.refreshNextTick = true
+				if (results[EID.bagOfCraftingOffset+1]) then EID.refreshPosition = results[EID.bagOfCraftingOffset+1][2] end
+			end
 		end
 		--scroll pages quickly if the button is held
 		if Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) and Isaac.GetTime() - EID.downHeld > 750 then
