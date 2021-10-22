@@ -776,7 +776,6 @@ end
 local maxCollectibleID = nil
 function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 	local itemPool = Game():GetItemPool()
-	--local itemConfig = Isaac.GetItemConfig()
 	if (not maxCollectibleID) then maxCollectibleID = EID:GetMaxCollectibleID() end
 	for i= 1, maxCollectibleID do
 		if ItemConfig.Config.IsValidCollectible(i) and i ~= collectibleID then
@@ -785,7 +784,7 @@ function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 	end
 	local isUnlocked = false
 	for i = 0,1 do -- some samples to make sure
-		local collID = itemPool:GetCollectible(itemPoolOfItem, false)
+		local collID = itemPool:GetCollectible(itemPoolOfItem, false, 1)
 		if collID == collectibleID then
 			isUnlocked = true
 			break
@@ -799,18 +798,18 @@ function EID:isCollectibleUnlockedAnyPool(collectibleID)
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if EID.itemUnlockStates[collectibleID] == nil then
 		--whitelist all quest items and items with no associated achievement
-		if (item.AchievementID == -1 or item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then
+		if item.AchievementID == -1 or (item.Tags and item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then
 			EID.itemUnlockStates[collectibleID] = true
 			return true
 		end
 		--blacklist all hidden items
-		if (item.Hidden) then
+		if item.Hidden then
 			EID.itemUnlockStates[collectibleID] = false
 			return false
 		end
 		--iterate through the pools this item can be in
-		for k,v in ipairs(EID.CollectiblesPools[collectibleID]) do
-			if (EID:isCollectibleUnlocked(collectibleID, v)) then
+		for k,itemPoolID in ipairs(EID.CollectiblesPools[collectibleID]) do
+			if (itemPoolID < ItemPoolType.NUM_ITEMPOOLS and EID:isCollectibleUnlocked(collectibleID, itemPoolID)) then
 				EID.itemUnlockStates[collectibleID] = true
 				return true
 			end
