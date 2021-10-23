@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
-EID.ModVersion = "3.84"
+EID.ModVersion = "3.85"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -537,7 +537,7 @@ EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
 local hasShownAchievementWarning = false
 local function renderAchievementInfo()
-	if game:GetFrameCount() < 10*30 then
+	if REPENTANCE and game:GetFrameCount() < 10*30 then
 		local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
 		if not hasCubeOfMeatUnlocked then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
