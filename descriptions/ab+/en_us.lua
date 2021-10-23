@@ -6,7 +6,7 @@
 -- '#' = starts new line of text
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 -- init en_us table
 EID.descriptions["en_us"] = {}
@@ -256,13 +256,13 @@ EID.descriptions["en_us"].collectibles={
 	{"241", "Contract from Below", "Doubles all pickup drops#Doesn't affect Greed mode"},
 	{"242", "Infamy", "50% chance to block tears"},
 	{"243", "Trinity Shield", "Tear blocking shield"},
-	{"244", "Tech.5", "Fire random laser-type tears"},
+	{"244", "Tech.5", "Fire random laser shots"},
 	{"245", "20/20", "Doubles all your shots"},
 	{"246", "Blue Map", "Reveals secret rooms"},
 	{"247", "BFFS!", "Your familiars deal double damage"},
 	{"248", "Hive Mind", "Blue Spiders/flies deal double damage"},
 	{"249", "There's Options", "2 Boss items spawn instead of 1#!!! Only one can be taken"},
-	{"250", "BOGO Bombs", "Double all bomb-drops"},
+	{"250", "Bogo Bombs", "All bomb drops become double bombs"},
 	{"251", "Starter Deck", "You can carry 2 Cards#Turns all Pills into Cards#Spawns 1 random card on pickup"},
 	{"252", "Little Baggy", "You can carry 2 Pills#Turns all Cards into Pills#Spawns 1 random pill on pickup"},
 	{"253", "Magic Scab", "↑ +1 Luck up#↑ +1 Health up"},
@@ -309,7 +309,7 @@ EID.descriptions["en_us"].collectibles={
 	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger \"Wait What?\" when swapping it with a different active item and picking it up again"},
 	{"295", "Magic Fingers", "Damages the whole room with 2x the player damage#Price: 1 coin"},
 	{"296", "Converter", "!!! Convert:#2 Soul/Black hearts into 1 red heart"},
-	{"297", "Pandora's Box", "!!! SINGLE USE !#!!! Drops things based on floor its activated on:#B1: 2 Soul Hearts#B2: 2 keys and bombs#C1: 1 Boss item#C2: B1+C1#D1: 4 Soul hearts#D2: 20 Coins#W1: 2 Boss items#W2: Bible#Sheol: 1 Devil item + Black heart#Cat: 1 Angel item + Soul heart#Chest: 1 Coin"},
+	{"297", "Pandora's Box", "!!! SINGLE USE !#!!! Spawns items or consumables based on the floor it's activated on:#B1: 2 Soul Hearts#B2: 2 bombs and 2 keys#C1: 1 Boss item#C2: B1+C1#D1: 4 Soul Hearts#D2: 20 Coins#W1: 2 Boss items#W2: {{Collectible33}}The Bible#???: Nothing#Void: Nothing#Sheol: 1 Devil item + 1 Black heart#Dark Room: Unlocks {{Collectible523}}Moving Box#Cat: 1 Angel item + 1 Eternal heart#Chest: 1 Coin"},
 	{"298", "Unicorn Stump", "Invincibility and +0.28 speed up for 6 seconds"},
 	{"299", "Taurus", "Get faster in hostile rooms!#Invincibility when fast enough#↓ -0.3 Speed down"},
 	{"300", "Aries", "↑ +0.25 Speed up#Touching enemies hurts them"},
@@ -387,7 +387,7 @@ EID.descriptions["en_us"].collectibles={
 	{"372", "Charged Baby", "Random chance to drop a battery or freeze all enemies in the room#Chance to add one charge to your spacebar item"},
 	{"373", "Dead Eye", "↑ +12.5% damage up for every tear that successfully hits an enemy(max. +100%)"},
 	{"374", "Holy Light", "Random chance to fire a Holy tear, which will spawn a beam of light on hit#The beam deals 4x your damage"},
-	{"375", "Host Hat", "20% chance to block tears#Get immune to explosions/Stomps from Mom's and Satan's foot"},
+	{"375", "Host Hat", "Grants explosion immunity and immunity from Mom's and Satan's foot stomps#20% chance to block tears"},
 	{"376", "Restock", "Spawns 3 random Pickups#Shops instantly restock their items when you buy them"},
 	{"377", "Bursting Sack", "Spider enemies no longer target or deal contact damage to Isaac"},
 	{"378", "No. 2", "Firing tears for 3 seconds drops a Butt Bomb"},
@@ -569,7 +569,7 @@ EID.descriptions["en_us"].collectibles={
 
 ---------- Trinkets ----------
 EID.descriptions["en_us"].trinkets={
-	{"1", "Swallowed Penny", "Drop 1 coin when you get hit"},
+	{"1", "Swallowed Penny", "Spawns 1 coin when you get hit"},
 	{"2", "Petrified Poop", "50% more drops from poop"},
 	{"3", "AAA Battery", "-1 charge needed for spacebar items"},
 	{"4", "Broken Remote", "Randomly teleports you, when using an item"},
@@ -664,7 +664,7 @@ EID.descriptions["en_us"].trinkets={
 	{"93", "Used Diaper", "Chance for Fly enemies to become friendly"},
 	{"94", "Fish Tail", "Doubles all blue Fly / Spider spawns"},
 	{"95", "Black Tooth", "Randomly shoot poison Tooth tears"},
-	{"96", "Ouroboros Worm", "Tears move quickly in a spiral pattern#Spectral tears#↑ +1.5 Range"},
+	{"96", "Ouroboros Worm", "Tears move quickly in a spiral pattern#Spectral tears#↑ +4 Range"},
 	{"97", "Tonsil", "Chance to get a projectile blocking familiar after taking damage 12-20 times#Up to +2 Familiars possible"},
 	{"98", "Nose Goblin", "Chance to shoot sticky poison tears"},
 	{"99", "Super Ball", "Chance to shoot bouncy tears"},

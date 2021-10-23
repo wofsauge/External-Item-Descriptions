@@ -760,17 +760,17 @@ function EID:getSpindownResult(collectibleID)
 end
 
 function EID:GetMaxCollectibleID()
-    local id = CollectibleType.NUM_COLLECTIBLES-1
-    local step = 16
-    while step > 0 do
-        if EID.itemConfig:GetCollectible(id+step) ~= nil then
-            id = id + step
-        else
-            step = step // 2
-        end
-    end
-    
-    return id
+	local id = CollectibleType.NUM_COLLECTIBLES-1
+	local step = 16
+	while step > 0 do
+		if EID.itemConfig:GetCollectible(id+step) ~= nil then
+			id = id + step
+		else
+			step = step // 2
+		end
+	end
+		
+	return id
 end
 
 local maxCollectibleID = nil
@@ -881,13 +881,13 @@ function EID:handleHUDElement(hudElement)
 end
 
 function EID:getScreenSize()
-    local room = game:GetRoom()
-    local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - Game().ScreenShakeOffset
-    
-    local rx = pos.X + 60 * 26 / 40
-    local ry = pos.Y + 140 * (26 / 40)
-    
-    return Vector(rx*2 + 13*26, ry*2 + 7*26)
+	local room = game:GetRoom()
+	local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - Game().ScreenShakeOffset
+	
+	local rx = pos.X + 60 * 26 / 40
+	local ry = pos.Y + 140 * (26 / 40)
+
+	return Vector(rx*2 + 13*26, ry*2 + 7*26)
 end
 
 function EID:getEntityData(entity, str)

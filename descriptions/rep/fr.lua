@@ -6,8 +6,9 @@
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
+
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 local repCollectibles={
 	[5] = {"5", "My reflexion", "Donne un effet boomerang aux larmes#↑ +1.5 Portée#↑ +60% Portée supplémentaire#↑ +0.6 Vitesse des larmes#↑ +1 Hauteur des larmes"}, -- My Reflection
@@ -400,6 +401,7 @@ EID.descriptions["fr"].birthright ={
 
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
+
 EID.descriptions["fr"].bingeEaterBuffs = {
 	[22] = {"22", "", "↑+0.5 Cadence de tir#↑+1.5 Portée"}, -- Lunch
 	[23] = {"23", "", "↑+0.5 Cadence de tir#↑+0.2 Vitesse des larmes"}, -- Dinner
@@ -410,10 +412,10 @@ EID.descriptions["fr"].bingeEaterBuffs = {
 	[346] = {"346", "", "↑+0.2 Vitesse des larmes#↑+1.0 Chance"}, -- A Snack
 	[707] = {"707", "", "↑+0.5 Cadence de tir#↑+1.0 Chance"}, -- Supper
 }
-
 EID.descriptions["fr"].spindownError = "Item disappears"
 
 ---------- Trinkets ----------
+
 local repTrinkets={
 	[1] = {"1", "Swallowed Penny", "Fait tomber 1 pièce quand vous vous faites toucher#0-1 si vous jouez Keeper"}, -- Swallowed Penny
     [10] = {"10", "", "Les larmes bougent en vagues#↑ +0.4 Cadence de tir#Larmes spectrales"}, -- Wiggle Worm
@@ -502,10 +504,9 @@ local repTrinkets={
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["fr"].trinkets)
 
-
-
 -- Card Buffs caused by Tarot Cloth
--- Note: "#" will be replaced with "#{{Collectible451}} " automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+-- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+
 EID.descriptions["fr"].tarotClothBuffs = {
 	[2] = {"2", "", "Donne également l'effet Book of Belial{{Collectible34}} "}, -- I - The Magician
 	[3] = {"3", "", "Un second pied tombe peu de temps après le premier"}, -- II - The High Priestess
@@ -534,12 +535,10 @@ EID.descriptions["fr"].tarotClothBuffs = {
 	[73] = {"73", "", "Retire 2 objets et en fait apparaître 4"}, -- XVII - The Stars?
 	[76] = {"76", "", "Fait apparaître 2 machines de reroll"}, -- XX - Judgement?
 }
-
-
-
 EID.descriptions["fr"].goldenTrinket = "GOLD: Effect doubled!"
 
 ---------- Cards ----------
+
 local repCards={
 	[27] = {"27", "", "Transforme tous les collectibles, coffres et ennemis en bombes"},
 	[28] = {"28", "", "Transforme tous les collectibles, coffres et ennemis en pièces"},
@@ -547,7 +546,6 @@ local repCards={
 	[30] = {"30", "", "Transforme tous les collectibles, coffres et ennemis en coeurs"},
 	[39] = {"39", "", "Incinvibilité pendant 20 secondes"},
 	[51] = {"51", "Holy Card", "Donne l'effet de Holy Mantle#(Annule le prochain dégât reçu)#Ne fonctionne qu'une fois"}, -- Holy card
-	
 	[55] = {"55", "", "Effet de rune aléatoire#L'effet est plus faible que la rune imitée"},
 	[56] = {"56", "", "Fait tomber tous vos coeurs et collectibles sur le sol#Vous laisse à un demi coeur#Fait apparaître {{Collectible74}} {{Collectible19}} si le nombre de collectibles est insuffisant"},
 	[57] = {"57", "", "Vous donne une grande aura qui dévie les tirs ennemis#Dure 1 minute"},
@@ -669,4 +667,3 @@ EID.descriptions["fr"].CraftingRoomContent = "Salle:"
 EID.descriptions["fr"].CraftingFloorContent = "Étage:"
 EID.descriptions["fr"].CraftingResults = "Results:#(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
 EID.descriptions["fr"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}This feature currently does not support games with modded items installed"
-

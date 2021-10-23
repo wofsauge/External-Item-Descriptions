@@ -8,7 +8,8 @@
 -- '#' = starts new line of text
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+
 local newDescriptions = {
 }
 
@@ -87,9 +88,7 @@ local repCollectibles={
 	[256] = {"256", "Bombe Incandescenti", "Bombe infuocate#+5 Bombe##Immunita' al fuoco#Bombe fanno danni al contatto"}, -- Hot Bombs
 	[261] = {"261", "Proptosi", "↑ +0.5 Danni#↓ Danno della lacrima diminuisce piu' e' in volo#300% Danni a bruciapelo"}, -- Proptosis
 	[262] = {"262", "Seconda Pagina Mancante", "+1 Cuore Nero#Quando ad un cuore o meno, infligge 80 danni a tutti i nemici nella stanza#Cuori Neri ed effetti Necronomicon fanno doppi danni"}, -- Missing Page 2
-	 
 	[263] = {"263", "Runa Chiara", "Copia l'effetto della runa o pietra spirituale corrente#Evoca una runa casuale quando ottenuto"}, -- Clear Rune   (REPENTANCE ITEM)
-	 
 	[273] = {"273", "Cervello di Bob", "Famiglio esplosivo lanciabile#L'esplosione fa 100 danni e avvelena#Il danno ignora armatura"}, -- Bob's Brain
 	[274] = {"274", "Miglior Bocciolo", "Quando ferito, ottieni un orbitale di gittata media#L'orbitale fa 150 danni al secondo"}, -- Best Bud
 	[275] = {"275", "Piccolo Brimstone", "Spara un laser di Brimstone#Il laser fa 2 danni per tick, per un totale di 20 danni"}, -- Lil Brimston
@@ -177,7 +176,6 @@ local repCollectibles={
 	[531] = {"531", "Emolacria", "Lacrime volano in un arco#Lacrime si dividono in altre lacrime all'impatto#↓ Lacrime#↑ +50% Danni#↑ +1 Danni aggiuntivi"}, -- Haemolacria
 	[541] = {"541", "Midollo", "+1 Cuore D'osso#Evoca 3 Cuori Rossi"}, -- Marrow
 	[543] = {"543", "Terreno Consacrato", "Evoca una cacca bianca quando ferito#(Cacca bianca ha un aura che aumenta lacrime e danni, e rende le tue lacrime a ricerca)"}, -- Hallowed Ground
-	
 	[553] = {"553", "Mucormicosi", "Possibilita' di sparare lacrime spora appiccicose#Spore esplodono dopo 2.5 secondi, infliggendo danni ed avvelenando nemici#Quando esplode, rilascia altre spore"}, --  Mucormycosis
 	[554] = {"554", "S1nistr0", "Impaurisci nemici attorno a te"}, --  2Spooky
 	[555] = {"555", "Rasoio Dorato", "Converte 5 monete in +1.2 Danni per la stanza corrente"}, --  Golden Razor
@@ -355,7 +353,6 @@ local repCollectibles={
 	[727] = {"727", "Bombe Fantasma", "+5 bombe#Le tue bombe evocano fantasmi che danneggiano nemici ed esplodono dopo 10 secondi"}, --  Ghost Bombs
 	[728] = {"728", "Gello", "Evoca un famiglio demoniaco connesso ad Isaac#Imita le lacrime di Isaac, le loro statistiche e effetti"}, --  Gello
 	[729] = {"729", "Attacco di Decapaggio", "Tira la testa di Isaac, e quando atterra puo' sparare lacrime#Riattivare l'oggetto o camminare sulla testa la raccoglie"}, --  Decap Attack
-	
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["it"].collectibles)
 
@@ -442,7 +439,6 @@ local repTrinkets={
 	[111] = {"111", "Corona Sanguinante", "Stanze del tesoro {{TreasureRoom}} possono esser trovate nel\"Womb\", \"Utero\", \"Scarred Womb\" e \"Corpse\""}, -- Bloody Crown
 	[119] = {"119", "Cellula Staminale", "All'inizio del prossimo piano, imposta la tua vita rosa al 50% del massimo#Se la tua vita e' superiore al 50%, ti cura di mezzo cuore"}, -- Stem Cell
 	[128] = {"128", "Osso del Dito", "5% di possibilita' di ottenere un Cuore d'Osso quando ferito"}, -- Finger Bone
-	
 	[129] = {"129", "Spaccamascelle", "Possibilita' bassa di sparare denti al posto che lacrime"}, --  Jawbreaker
 	[130] = {"130", "Penna Masticata", "Possibilita' di sparare lacrime rallentanti"}, --  Chewed Pen
 	[131] = {"131", "Penny Benedetto", "Possibilita' di evocare Cuori Spirito quando raccogli una moneta"}, --  Blessed Penny
@@ -507,10 +503,9 @@ local repTrinkets={
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["it"].trinkets)
 
-
-
 -- Card Buffs caused by Tarot Cloth
--- Note: "#" will be replaced with "#{{Collectible451}} " automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+-- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+
 EID.descriptions["it"].tarotClothBuffs = {
 	[2] = {"2", "", "In aggiunta, concede l'effetto del {{Collectible34}} Libro di Belial"}, -- I - The Magician
 	[3] = {"3", "", "Poco dopo il piede di Mamma viene evocato, ne viene evocato un secondo"}, -- II - The High Priestess
@@ -539,12 +534,10 @@ EID.descriptions["it"].tarotClothBuffs = {
 	[73] = {"73", "", "Rimuove 2 oggetti da isaac e ne crea 4"}, -- XVII - The Stars?
 	[76] = {"76", "", "Evoca 2 Macchine Rifornimento"}, -- XX - Judgement?
 }
-
-
-
 EID.descriptions["it"].goldenTrinket = "ORO: Effetto raddoppiato!"
 
 ---------- Cards ----------
+
 local repCards={
 	[27] = {"27", "Asso di Fiori", "Trasforma tutti i consumabili, casse e nemici (esclusi boss) in bombe"}, -- Ace of Clubs
 	[28] = {"28", "Asso di Quadri", "Trasforma tutti i consumabili, casse e nemici (esclusi boss) in penny"}, -- Ace of Diamonds
@@ -552,7 +545,6 @@ local repCards={
 	[30] = {"30", "Asso di Cuori", "Trasforma tutti i consumabili, casse e nemici (esclusi boss) in Cuori Rossi"}, -- Ace of Hearts
 	[39] = {"39", "Algiz", "Invincibilita' per 20 secondi"}, -- Algiz
 	[51] = {"51", "Carta Santa", "Concede l'effetto del Manto Sacro#(Prossimi danni che prendi son ridotti a 0)#Uso singolo"}, -- Holy card
-	
 	[55] = {"55", "Frammento di Runa", "Attiva l'effetto di una runa casuale#L'effetto e' ridotto"}, -- Rune Shard
 	[56] = {"56", "0 - Lo Stolto?", "Lascia tutti i tuoi consumabili e cuori a terra#Ti lascia a mezzo cuore#Consumabili possono essere rimpiazzati da: {{Collectible74}} {{Collectible19}}"}, -- 0 - The Fool?
 	[57] = {"57", "I - Il Mago?", "Concede un aura repellente ai proiettili e nemici#Durata: 1 minuto"}, -- I - The Magician?
