@@ -538,14 +538,17 @@ EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 local hasShownAchievementWarning = false
 local function renderAchievementInfo()
 	if REPENTANCE and game:GetFrameCount() < 10*30 then
-		local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
-		if not hasCubeOfMeatUnlocked then
-			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-			demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
-			EID:displayPermanentText(demoDescObj)
-			hasShownAchievementWarning = true
-		end 
+		local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
+		if not hasBookOfRevelationsUnlocked then
+			local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
+			if not hasCubeOfMeatUnlocked then
+				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+				demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
+				demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+				EID:displayPermanentText(demoDescObj)
+				hasShownAchievementWarning = true
+			end
+		end
 	elseif hasShownAchievementWarning then
 		EID:hidePermanentText()
 	end
