@@ -669,7 +669,7 @@ EID.descriptions["en_us"].trinkets={
 	{"98", "Nose Goblin", "Chance to shoot sticky poison tears"},
 	{"99", "Super Ball", "Chance to shoot bouncy tears"},
 	{"100", "Vibrant Bulb", "!!! While holding a fully charged active item:#↑ +0.5 Damage#↑ +0.25 Speed#↑ +0.75 Range#↑ +0.2 Tears#↑ +0.1 Shot speed#↑ +1 Luck"},
-	{"101", "Dim Bulb", "!!! While holding an uncharged active item:#↑ +1.5 Damage#↑ +0.5 Speed#↑ +1.5 Range#↑ +0.4 Tears#↑ +0.3 Shot Speed#↑ +2 Luck"},
+	{"101", "Dim Bulb", "!!! While holding an completely uncharged active item:#↑ +1.5 Damage#↑ +0.5 Speed#↑ +1.5 Range#↑ +0.4 Tears#↑ +0.3 Shot Speed#↑ +2 Luck"},
 	{"102", "Fragmented Card", "+1 extra secret room per floor while held"},
 	{"103", "Equality!", "!!! When coin, key and bomb-count are equal:#Turns half consumables into double consumables"},
 	{"104", "Wish Bone", "Chance to spawn a pedestal item when hit#Gets destroyed afterwards"},
