@@ -6,7 +6,7 @@
 -- '#' = starts new line of text
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 -- init tr_tr table
 EID.descriptions["tr_tr"] = {}
@@ -664,7 +664,7 @@ EID.descriptions["tr_tr"].trinkets={
 	{"93", "Kullanılmış Bebek Bezi", "Sinek düşmanlarının arkadaş olma ihtimali olur"},
 	{"94", "Balık Kuyruğu", "Bütün çıkan mavi sinek/örümcekleri ikiye katla"},
 	{"95", "Siyah Diş", "Zehirli diş gözyaşı atma ihtimali"},
-	{"96", "Ouroboros Solucanı", "Gözyaşları hızlıca spiral halinde ilerler#Hayalet gözyaşı#↑ +1.5 Menzil"},
+	{"96", "Ouroboros Solucanı", "Gözyaşları hızlıca spiral halinde ilerler#Hayalet gözyaşı#↑ +4 Menzil"},
 	{"97", "Bademcik", "12-20 defa hasar alınca bloklayıcı arkadaş verir#2 arkadaşa kadar"},
 	{"98", "Burun Goblini", "Yapışkan zehirli gözyaşı atma ihtimali"},
 	{"99", "Süper Top", "Seken gözyaşı atma ihtimali"},

@@ -2,7 +2,7 @@ EID.UserConfig = {
 	-------GENERAL---------
 	-- Change language of the mod.
 	-- Currently Supported: English = "en_us" (Default) , "en_us_detailed"
-	--						French = "fr"  	    SPECIAL THANKS TO Nicolas Delvaux
+	--						French = "fr"  		SPECIAL THANKS TO Nicolas Delvaux
 	--						Polish = "pl"		SPECIAL THANKS TO Rickyy
 	--						Spanish = "spa"		SPECIAL THANKS TO Lidia Arroyo Purroy
 	--						Portuguese = "pt"	SPECIAL THANKS TO Marcelino Cruz

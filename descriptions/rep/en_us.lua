@@ -8,7 +8,7 @@
 -- '#' = starts new line of text
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 local repCollectibles={
 	[5] = {"5", "My Reflection", "Gives tears a boomerang effect#↑ +1.5 Range up#↑ +60% additional Range up#↑ +0.6 Shot Speed up#↑ +1 Tear Height"}, -- My Reflection
@@ -87,9 +87,7 @@ local repCollectibles={
 	[256] = {"256", "Hot Bombs", "Burning bombs#+5 Bombs##You can no longer take fire damage#Bombs deal contact damage"}, -- Hot Bombs
 	[261] = {"261", "Proptosis", "↑ +0.5 Damage up#↓ Dealt damage decreases the longer the tear stays airborne#300% Damage at point blank range"}, -- Proptosis
 	[262] = {"262", "Missing Page 2", "+1 black heart#When down to 1 Heart, damages all enemies in the room#Black hearts and Necronomicon effects deal double damage"}, -- Missing Page 2
-	 
-	[263] = {"263", "Clear Rune", "Copies effects of held rune or soul stone#Drops 1 random rune on picked up"}, -- Clear Rune   (REPENTANCE ITEM)
-	 
+	[263] = {"263", "Clear Rune", "Copies the effects of held rune or soul stone#Drops 1 random rune on pickup"}, -- Clear Rune   (REPENTANCE ITEM)
 	[273] = {"273", "Bob's Brain", "Throwable bomb familiar#The explosion deals 100 Damage#The Damage ignores armor"}, -- Bob's Brain
 	[274] = {"274", "Best Bud", "When getting hit, gain one midrange orbital#Orbital deals 150 damage per second"}, -- Best Bud
 	[275] = {"275", "Lil Brimstone", "Shoots a brimstone laser#Shot deals 2 damage per tick, for a total of 20 damage"}, -- Lil Brimston
@@ -106,7 +104,7 @@ local repCollectibles={
 	[294] = {"294", "Butter Bean", "Knocks back nearby enemies and projectiles#Enemies pushed into obstacles take 10 damage"}, -- Butter Bean
 	[295] = {"295", "Magic Fingers", "Damages the whole room with 2x the player damage + 10 #Price: 1 coin"}, -- Magic Fingers
 	[296] = {"296", "Converter", "!!! Convert:#1 Soul/Black heart into 1 red heart"}, -- Converter
-	[297] = {"297", "Pandora's Box", "!!! SINGLE USE !#!!! Drops things based on floor its activated on:#B1: 2 Soul Hearts#B2: 2 keys and bombs#C1: 1 Boss item#C2: B1+C1#D1: 4 Soul hearts#D2: 20 Coins#W1: 2 Boss items#W2: Bible#Sheol: 1 Devil item + Black heart#Cat: 1 Angel item + Soul heart#Chest: 1 Coin#Home: Red Key"}, -- Pandora's box
+	[297] = {"297", "Pandora's Box", "!!! SINGLE USE !#!!! Spawns items or consumables based on the floor it's activated on:#B1: 2 Soul hearts#B2: 2 bombs and 2 keys#C1: 1 Boss item#C2: B1+C1#D1: 4 Soul hearts#D2: 20 Coins#W1: 2 Boss items#W2: {{Collectible33}}The Bible#???: Nothing#Void: Nothing#Sheol: 1 Devil item + 1 Black heart#Dark Room: Unlocks {{Collectible523}}Moving Box#Cat: 1 Angel item + 1 Eternal heart#Chest: 1 Coin#Home: {{Collectible580}}Red Key"}, -- Pandora's box
 	[300] = {"300", "Aries", "↑ +0.25 Speed up#Touching enemies hurts them#Running fast enough will prevent contact damage"}, -- Aries
 	[307] = {"307", "Capricorn", "↑ +1 Health / Key / Bomb / Coin#↑ +0.5 Damage up#↑ +0.1 Speed up#↑ +0.75 Range up#↑ -1 Tear delay that can go below capped value"}, -- Capricorn
 	[308] = {"308", "Aquarius", "Leave trail of creep#Creep deals 66% your damage per second#Creep synergizes with tear effects"}, -- Aquarius
@@ -133,7 +131,7 @@ local repCollectibles={
 	[370] = {"370", "Mr. Dolly", "↑ +0.7 Tears up#↑ +1.5 Range up#↑ +0.5 Tear Height#Spawns 3 random hearts when picked up"}, -- Mr. Dolly
 	[372] = {"372", "Charged Baby", "Random chance to drop a micro battery or freeze all enemies in the room#Chance to add one charge to your spacebar item"}, -- Charged Baby
 	[374] = {"374", "Holy Light", "Random chance to fire a Holy tear, which will spawn a beam of light on hit#The beam deals 3x your damage"}, -- Holy Light
-	[375] = {"375", "Host hat", "20% chance to block tears#Grants explosion immunity"}, -- Host hat
+	[375] = {"375", "Host hat", "Grants explosion immunity#20% chance to block tears"}, -- Host hat
 	[376] = {"376", "Restock", "Shops instantly restock their items when you buy them#Restocked items slowly increase in price again"}, -- Restock
 	[382] = {"382", "Friendly Ball", "Can be thrown at enemies to capture them#Next usage will respawn the same enemy as a friendly companion#Walking over the ball after capture will instantly recharge the item"}, -- Friendly Ball
 	[384] = {"384", "Lil Gurdy", "Will launch and slide around the room#Deals 5-20 contact damage per hit depending on charge duration"}, -- Lil Gurdy
@@ -178,7 +176,6 @@ local repCollectibles={
 	[531] = {"531", "Haemolacria", "Tears fly in an arc#Tears burst into smaller tears on impact#↓ Tears down#↑ +50% Damage up#↑ +1 additional Damage up"}, -- Haemolacria
 	[541] = {"541", "Marrow", "+1 Bone Heart#Spawns 3 Red Hearts"}, -- Marrow
 	[543] = {"543", "Hallowed Ground", "Spawn white poop when you get hit#(White poop has a ↑ Tears and Damage up aura, grants homing tears and can block damage)"}, -- Hallowed Ground
-	
 	[553] = {"553", "Mucormycosis", "Chance to fire sticky spore tears#Spores blow up after 2.5 seconds, dealing damage, poison nearby enemies and releases more spores"}, --  Mucormycosis
 	[554] = {"554", "2Spooky", "Fears enemies in a small radius around you"}, --  2Spooky
 	[555] = {"555", "Golden Razor", "Converts 5 coins into +1.2 Damage up for the current room#Spawns 5 coins on pickup"}, --  Golden Razor
@@ -406,6 +403,7 @@ EID.descriptions["en_us"].birthright ={
 
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
+
 EID.descriptions["en_us"].bingeEaterBuffs = {
 	[22] = {"22", "", "↑+0.5 Tears up#↑+1.5 Range up"}, -- Lunch
 	[23] = {"23", "", "↑+0.5 Tears up#↑+0.2 Shot Speed up"}, -- Dinner
@@ -420,8 +418,9 @@ EID.descriptions["en_us"].bingeEaterBuffs = {
 EID.descriptions["en_us"].spindownError = "Item disappears"
 
 ---------- Trinkets ----------
+
 local repTrinkets={
-	[1] = {"1", "Swallowed Penny", "Drop 1 coin when you get hit#0-1 if you play as Keeper"}, -- Swallowed Penny
+	[1] = {"1", "Swallowed Penny", "Spawns 1 coin when you get hit#0-1 if you play as Keeper"}, -- Swallowed Penny
 	[10] = {"10", "Wiggle Worm", "Tears move in waves#↑ +0.4 Tears up#Grants spectral tears"}, -- Wiggle Worm
 	[11] = {"11", "Ring Worm", "Tears move in spirals with high speed#Grants spectral tears"}, -- Ring Worm
 	[15] = {"15", "Lucky Rock", "33% chance to drop a coin when destroying rocks"},-- Lucky Rock
@@ -438,12 +437,12 @@ local repTrinkets={
 	[69] = {"69", "Faded Polaroid", "Camouflages the player randomly#Confuses enemies#Can be used to open the door to the \"Home\" floor"}, -- Faded Polaroid
 	[80] = {"80", "Black Feather", "↑ +0.5 Damage up for each evil item held"}, -- Black Feather
 	[92] = {"92", "Cracked Crown", "↑ Stat increases of your items are 20% more effective"}, -- Cracked Crown
+	[96] = {"96", "Ouroboros Worm", "Tears move quickly in a spiral pattern#Spectral tears#↑ +1.5 Range"}, -- Ouroboros Worm
 	[101] = {"101", "Dim Bulb", "!!! While holding an uncharged active item:#↑ +1.5 Damage#↑ +0.5 Speed#↑ +1.5 Range#↑ +0.5 Tears#↑ +0.3 Shot Speed#↑ +2 Luck"},
 	[110] = {"110", "Silver Dollar", "Shops {{Shop}} will now appear in the Womb and Corpse"},
 	[111] = {"111", "Bloody Crown", "Item rooms {{TreasureRoom}} now appear in the Womb and Corpse"}, -- Bloody Crown
 	[119] = {"119", "Stem Cell", "Sets your red HP to 50% of your maximum upon entering the next floor#If your health is above that, it heals half a red heart"}, -- Stem Cell
 	[128] = {"128", "Finger Bone", "5% chance to gain a Bone Heart when taking damage"}, -- Finger Bone
-	
 	[129] = {"129", "Jawbreaker", "Chance to shoot tooth tears"}, --  Jawbreaker
 	[130] = {"130", "Chewed Pen", "Chance to shoot slowing tears"}, --  Chewed Pen
 	[131] = {"131", "Blessed Penny", "Chance to drop half soul hearts when collecting coins"}, --  Blessed Penny
@@ -508,10 +507,9 @@ local repTrinkets={
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us"].trinkets)
 
-
-
 -- Card Buffs caused by Tarot Cloth
--- Note: "#" will be replaced with "#{{Collectible451}} " automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+-- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+
 EID.descriptions["en_us"].tarotClothBuffs = {
 	[2] = {"2", "", "Also grants{{Collectible34}} The Book of Belial effect"}, -- I - The Magician
 	[3] = {"3", "", "A second foot strikes down shortly after the first"}, -- II - The High Priestess
@@ -540,12 +538,10 @@ EID.descriptions["en_us"].tarotClothBuffs = {
 	[73] = {"73", "", "Removes 2 items and spawns 4"}, -- XVII - The Stars?
 	[76] = {"76", "", "Spawns 2 restock machines"}, -- XX - Judgement?
 }
-
-
-
 EID.descriptions["en_us"].goldenTrinket = "GOLD: Effect doubled!"
 
 ---------- Cards ----------
+
 local repCards={
 	[27] = {"27", "Ace of Clubs", "Turns all pickups, chests and non-boss enemies into bombs"}, -- Ace of Clubs
 	[28] = {"28", "Ace of Diamonds", "Turns all pickups, chests and non-boss enemies into coins"}, -- Ace of Diamonds
@@ -553,7 +549,6 @@ local repCards={
 	[30] = {"30", "Ace of Hearts", "Turns all pickups, chests and non-boss enemies into hearts"}, -- Ace of Hearts
 	[39] = {"39", "Algiz", "Invincibility for 20 seconds"}, -- Algiz
 	[51] = {"51", "Holy Card", "Grants the Holy Mantle effect#(Next damage you take is 0)#Effect lasts until damage is taken"}, -- Holy card
-	
 	[55] = {"55", "Rune Shard", "Activates a random rune effect#The rune effect is weaker"}, -- Rune Shard
 	[56] = {"56", "0 - The Fool?", "Drops all your hearts and pickups on the floor#Only half a heart left afterwards#Pickups can spawn as {{Collectible74}} {{Collectible19}} collectibles if amount is sufficient"}, -- 0 - The Fool?
 	[57] = {"57", "I - The Magician?", "Grants big projectile and enemy repelling aura#Duration 1 minute"}, -- I - The Magician?
@@ -675,6 +670,5 @@ EID.descriptions["en_us"].CraftingRoomContent = "Room:"
 EID.descriptions["en_us"].CraftingFloorContent = "Floor:"
 EID.descriptions["en_us"].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
 EID.descriptions["en_us"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}The \"Crafting result calculation\" feature currently does not work when item mods are installed!#{{ColorRed}}Please uninstall the item mods or deactivate the Bag of Crafting descriptions in the config"
-
 EID.descriptions["en_us"].AchievementWarningTitle = "{{ColorYellow}}!!! WARNING !!!"
 EID.descriptions["en_us"].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled."
