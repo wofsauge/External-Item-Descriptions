@@ -6,7 +6,7 @@
 -- '#' = starts new line of text
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 -- init tr_tr table
 EID.descriptions["tr_tr"] = {}

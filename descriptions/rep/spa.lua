@@ -1,13 +1,15 @@
 ---------------------------------------
 -----  Basic spanish descriptions -----
 ---------------------------------------
+
 -- Last Sync with en_us: 03.07.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+
 local newDescriptions = {
 	--["5.70.14"] = {"14", "Golden Pill", "Random pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
@@ -86,9 +88,7 @@ local repCollectibles={
 	[256] = {"256", "Bombas calientes", "Las bombas queman#+5 bombas#Las bombas infligen daño por contacto"}, -- Bombas calientes
 	[261] = {"261", "Proptósis", "↑ +0,5 de daño#↓ Cuanto más rato esté la lágrima en el aire, menos daño infligirá#300 % de daño si disparas a quemarropa"}, -- Proptósis
 	[262] = {"262", "Página perdida 2", "+1 corazón negro#Al tener menos de 1 corazón dañas a todos los enemigos de la habitación#Los corazones negros infligen el doble de daño"}, -- Página perdida 2
-	 
 	[263] = {"263", "Runa de claridad", "Copia el efecto de la runa o la piedra de alma que tengas#Genera 1 runa aleatoria al cogerlo"}, -- Runa de claridad
-	 
 	[273] = {"273", "Cerebro de Bob", "Familiar bomba lanzable#La explosión inflige 100 de daño#El daño ignora la armadura"}, -- Cerebro de Bob
 	[274] = {"274", "Mejor amigo", "Al ser golpeado, ganas un orbital de rango medio#Inflige 150 de daño cada segundo"}, -- Mejor amigo
 	[276] = {"276", "Corazón de Isaac", "Gana un cuerpo invulnerable#!!! Cuando golpean al familiar corazón te hacen daño#El familiar se carga mientras disparas, soltando un grupo de lágrimas al soltar"}, -- Corazón de Isaac
@@ -173,7 +173,6 @@ local repCollectibles={
 	[531] = {"531", "Hemolacria", "Las lágrimas salen en forma de arco#Al impactar, explotan en lágrimas más pequeñas#↓ Menos lágrimas#↑ +50 % de daño↑ +1 de daño adicional"},
 	[541] = {"541", "Médula", "+1 corazón de hueso#Genera 3 corazones rojos"},
 	[543] = {"543", "Tierra sagrada", "Genera una caca blanca cuando te golpean#(La caca blanca tiene un aura que aumenta las lágrimas, las hace teledirigidas y puede bloquear daño)"}, -- Tierra sagrada
-	
 	[553] = {"553", "Mucormicosis", "Posibilidad de disparar lágrimas de espora que se pegan al enemigo#Las esporas explotan tras 2,5 segundos, soltando más esporas e infligiendo daño y envenenando a enemigos cercanos"}, --  Mucormicosis
 	[554] = {"554", "Muy fantasmagórico", "Asusta a los enemigos en un radio pequeño a tu alrededor"}, --   Muy fantasmagórico
 	[555] = {"555", "Navaja de oro", "Convierte 5 momedas en +1,2 de daño en la habitación actual"}, --  Navaja de oro
@@ -401,6 +400,7 @@ EID.descriptions["spa"].birthright ={
 EID.descriptions["spa"].spindownError = "El objeto desaparece"
 
 ---------- Trinkets ----------
+
 local repTrinkets={
 	[1] = {"1", "Moneda tragada", "Generas monedas cuando te golpean"},
 	[10] = {"10", "Gusano ondulante", "Las lágrimas se mueven en ondas#↑ +0,4 de lágrimas#Otorga lágrimas espectrales"}, -- Gusano ondulante
@@ -412,10 +412,10 @@ local repTrinkets={
 	[51] = {"51", "Moneda plana", "25 % de posibilidad de dejar una llave al coger monedas"}, -- Moneda plana
 	[69] = {"69", "Polaroid descolorida", "Te camufla de manera aleatoria#Desorienta a los enemigos#Puede usarse para abrir la puerta hacia la planta \"Home\" (Casa)"}, -- Polaroid descolorida
 	[92] = {"92", "Corona rota", "↑ Las estadísticas basadas en tus objetos son un 20 % más efectivas"}, -- Corona rota
+	[96] = {"96", "Serpiente Uróboros", "Las lágrimas se mueven rápido en espiral#Lágrimas espectrales#↑ +1.5 de rango"}, -- Ouroboros Worm
 	[111] = {"111", "Corona sangrienta", "Las salas del tesoro {{TreasureRoom}} aparecen en el Womb (Útero) y Corpse (Cadáver)"}, -- Corona sangrienta
 	[119] = {"119", "Célula madre", "Reduce tus corazones rojos al 50 % de tu máximo al entrar en la siguiente planta#Si tu vida está por encima, cura medio corazón rojo"}, -- Célula madre
 	[128] = {"128", "Dedo de hueso", "5 % de posibilidad de ganar un corazón de hueso al recibir daño"}, -- Dedo de hueso
-	
 	[129] = {"129", "Rompemandíbulas", "Probabilidad de disparar lágrimas diente"}, --  Rompemandíbulas
 	[130] = {"130", "Boli mordido", "Probabilidad de disparar lágrimas ralentizantes"}, --  Boli mordido
 	[131] = {"131", "Moneda bendita", "Probabilidad de dejar caer medio corazón de alma al coger monedas"}, --  Moneda bendita
@@ -481,7 +481,9 @@ local repTrinkets={
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["spa"].trinkets)
 
 EID.descriptions["spa"].goldenTrinket = "DORADO: ¡Efecto duplicado!"
+
 ---------- Cards ----------
+
 local repCards={
 	[27] = {"27", "", "Convierte todos los recolectables, cofres y enemigos no jefes en bombas"},
 	[28] = {"28", "", "Convierte todos los recolectables, cofres y enemigos no jefes en monedas"},
@@ -489,7 +491,6 @@ local repCards={
 	[30] = {"30", "", "Convierte todos los recolectables, cofres y enemigos no jefes en corazones"},
 	[39] = {"39", "", "Invencibilidad durante 20 segundos"},
 	[51] = {"51", "Carta sagrada", "Otorga el efecto de Manto Sagrado (Holy Mantle) la planta actual#(El siguiente daño recibido es 0)"},
-	
 	[55] = {"55", "", "Activa un efecto de runa aleatoria#El efecto es débil"},
 	[56] = {"56", "", "Deja caer los corazones y recolectables al suelo#Te deja con medio corazón#Los recolectables pueden generarse como los recolectables {{Collectible74}} {{Collectible19}} si hay una cantidad suficiente"},
 	[57] = {"57", "", "Otorga un aura protectora contra los proyectiles grandes y los enemigos#Dura un minuto"},
@@ -611,4 +612,3 @@ EID.descriptions["spa"].CraftingBagContent = "bolsa:"
 EID.descriptions["spa"].CraftingRoomContent = "habitación:"
 EID.descriptions["spa"].CraftingFloorContent = "escenario:"
 EID.descriptions["spa"].CraftingResults = "Resultados:#(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
-

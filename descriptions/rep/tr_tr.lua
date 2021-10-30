@@ -9,7 +9,8 @@
 -- '#' = starts new line of text
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+
 local newDescriptions = {
 }
 
@@ -88,9 +89,7 @@ local repCollectibles={
 	[256] = {"256", "Sıcak Bomba", "Yanan bomba#+5 bomba##Ateşten artık hasar almazsın#bomba dokunma hasarı verir"}, -- Hot Bomb
 	[261] = {"261", "Proptosis", "↑ +0.5 Hasar#↓ Hasar gözyaşı havada kaldıkça artar#Sıfır mesafede 300% Hasar"}, -- Proptosis
 	[262] = {"262", "Kayıp Sayfa 2", "+1 Siyah kalp#1 kalbe düştüğünde odadaki canavarlara hasar verır#Siyah kalp ve Necronomicon efekti iki katı hasar verir"}, -- Missing Page 2
-	 
 	[263] = {"263", "Boş Rune", "Eldeki rune ve ruh taşı efektini kopyalar#Alındığında 1 rune düşürür"}, -- Clear Rune   (REPENTANCE ITEM)
-	 
 	[273] = {"273", "Amca Beyin Beyni", "Atılabilir bomba arkadaşı#Patlama 100 hasar verir#Hasar kalkanı görmezden gelir"}, -- Bob's Brain
 	[274] = {"274", "En İyi Arkadaş", "Hasar alındığında, orta menzil yörünge arkadaşı verir#Yörünge arkadaşı saniyede 150 hasar verir"}, -- Best Bud
 	[275] = {"275", "Minik Brimstone", "Brimstone lazeri atar#Tik başına 2 hasar verir, toplamda 20 hasar"}, -- Lil Brimston
@@ -178,7 +177,6 @@ local repCollectibles={
 	[531] = {"531", "Kan Gözyaşı", "Gözyaşları yüksekten uçar#Gözyaşları değdiğinde küçük parçalara ayrılır#↓ Gözyaşı azalır#↑ +50% Hasar#↑ +1 ekstra Hasar"}, -- Haemolacria
 	[541] = {"541", "İlik", "+1 Kemik kalp#3 kırmızı kalp oluşturur"}, -- Marrow
 	[543] = {"543", "Çukur", "Hasar aldığında beyaz bok düşürür#(Beyaz bok ↑ Gözyaşı ve Hasar aurası, Balistik gözyaşı ve hasar bloklama)"}, -- Hallowed Ground
-	
 	[553] = {"553", "Mukormikoz", "Yapışkan spor gözyaşları atma şansı#Sporlar 2.5 saniye sonra patlar, hasar verir, yakın düşmanları zehirler ve daha fazla spor salar"}, --  Mucormycosis
 	[554] = {"554", "Ürkütücü", "Etrafındaki küçük çaptaki düşmanları korkutur"}, --  2Spooky
 	[555] = {"555", "Altın Jilet", "Oda için 5 Altını +1.2 Hasara çevirir"}, --  Golden Razor
@@ -405,7 +403,8 @@ EID.descriptions["tr_tr"].birthright ={
 }
 
 -- Buffs caused by Binge Eater
--- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
+-- Note: "#" will be replaced with "#{{Collectible664}}" automatically, in order to add Binge eater icon infront of each buff-bulletpoint
+
 EID.descriptions["tr_tr"].bingeEaterBuffs = {
 	[22] = {"22", "", "↑+0.5 Gözyaşı#↑+1.5 Menzil"}, -- Lunch
 	[23] = {"23", "", "↑+0.5 Gözyaşı#↑+0.2 Gözyaşı hızı"}, -- Dinner
@@ -420,6 +419,7 @@ EID.descriptions["tr_tr"].bingeEaterBuffs = {
 EID.descriptions["tr_tr"].spindownError = "Item yok olur"
 
 ---------- Trinkets ----------
+
 local repTrinkets={
 	[1] = {"1", "Yutulmuş Para", "Hasar aldığında 1 altın düşürür#Keeper ile oynarsan 0-1"}, -- Swallowed Penny
 	[10] = {"10", "Kıvrılan Solucan", "Gözyaşları dalgalar halinde ilerler#↑ +0.4 Gözyaşı#Hayalet gözyaşları verir"}, -- Wiggle Worm
@@ -433,17 +433,17 @@ local repTrinkets={
 	[49] = {"49", "Kanlı Para", "25% şans ile altın toplarken yarım kalp düşürür"}, -- Bloody Penny
 	[50] = {"50", "Yanık Para", "25% şans ile altın toplarken bomba düşürür"}, -- Burnt Penny
 	[51] = {"51", "Düz Para", "25% şans ile altın toplarken anahtar düşürür"}, -- Flat Penny
-	[65] = {"65", "Bağırsak Solucanı", "↑ +3 Menzil#-50% Gözyaşı yüksekliği"}, -- Tape Worm
+	[65] = {"65", "Bağırsak Solucanı", "↑ +3 Menzil"}, -- Tape Worm
 	[66] = {"66", "Tembel Solucan", "↓ -0.5 Atış hızı eksilir#↑ +2 Gözyaşı yüksekliği"}, -- Lazy Worm
 	[69] = {"69", "Solmuş Polaroid", "Rastgele oyuncuya kamuflaj verir#Düşmanların kafasını karıştırır#\"Home\" katına giden kapıyı açmak için kullanılabilir"}, -- Faded Polaroid
 	[80] = {"80", "Siyah Tüy", "Tutulan her şeytan itemi için ↑ +0.5 Hasar"}, -- Black Feather
 	[92] = {"92", "Çatlak Taç", "İtemlerinin ↑ Özellik artışı artık 20% daha efektif"}, -- Cracked Crown
+	[96] = {"96", "Ouroboros Solucanı", "Gözyaşları hızlıca spiral halinde ilerler#Hayalet gözyaşı#↑ +1.5 Menzil"}, -- Ouroboros Worm
 	[101] = {"101", "Sönmüş Ampül", "!!! Şarjı boş bir aktif item tutartken:#↑ +1.5 hasar#↑ +0.5 Speed#↑ +1.5 Range#↑ +0.5 Tears#↑ +0.3 Shot Speed#↑ +2 Luck"},
 	[110] = {"110", "Gümüş Dolar", "Dükkanlar artık {{Shop}} The Womb ve Corpse katlarında da çıkar"},
 	[111] = {"111", "Kanlı Taç", "Hazine odaları {{TreasureRoom}} The Womb ve Corpse katında da çıkar"}, -- Bloody Crown
 	[119] = {"119", "Kök Hücre", "Sonraki kata girerken canını maximum kırmızı canının 50%sine ayarlar#Eğer canın bundan yüksek ise, yarım kırmızı kalp iyileştirir"}, -- Stem Cell
 	[128] = {"128", "Parmak Kemiği", "5% şans ile hasar alınca kemik kalbi verir"}, -- Finger Bone
-	
 	[129] = {"129", "Akide Şekeri", "Diş gözyaşı atma şansı"}, --  Jawbreaker
 	[130] = {"130", "Çiğnenmiş Kalem", "Yavaşlatma gözyaşı atma şansı"}, --  Chewed Pen
 	[131] = {"131", "Kutsanmış Para", "Altın toplarken yarım Ruh Kalbi düşürme şansı"}, --  Blessed Penny
@@ -508,10 +508,9 @@ local repTrinkets={
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["tr_tr"].trinkets)
 
-
-
 -- Card Buffs caused by Tarot Cloth
--- Note: "#" will be replaced with "#{{Collectible451}} " automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+-- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+
 EID.descriptions["tr_tr"].tarotClothBuffs = {
 	[2] = {"2", "", "{{Collectible34}} The Book of Belial efektini sağlar"}, -- I - The Magician
 	[3] = {"3", "", "İlk ayaktan hemen sonra ikinci bir ayak iner"}, -- II - The High Priestess
@@ -541,11 +540,10 @@ EID.descriptions["tr_tr"].tarotClothBuffs = {
 	[76] = {"76", "", "2 stok makinası çıkartır"}, -- XX - Judgement?
 }
 
-
-
 EID.descriptions["tr_tr"].goldenTrinket = "ALTIN: Efekt iki katı!"
 
 ---------- Cards ----------
+
 local repCards={
 	[27] = {"27", "Sinek Ası", "Bütün pickup, kasa, ve boss olmayan düşmanları bombaya çevirir"}, -- Ace of Clubs
 	[28] = {"28", "Karo Ası", "Bütün pickup, kasa, ve boss olmayan düşmanları altına çevirir"}, -- Ace of Diamonds
@@ -553,7 +551,6 @@ local repCards={
 	[30] = {"30", "Kupa Ası", "Bütün pickup, kasa, ve boss olmayan düşmanları kalbe çevirir"}, -- Ace of Hearts
 	[39] = {"39", "Korumacılık", "20 saniyeliğine dokunulmazlık"}, -- Algiz
 	[51] = {"51", "Kutsal Kart", "Holy Mantle efekti verir#(Sonrakı alınan hasar 0)#Efekt hasar alana kadar sürer"}, -- Holy card
-	
 	[55] = {"55", "Rune Parçası", "Rastgele bir rune efekti aktive eder#Rune efekti daha zayıftır"}, -- Rune Shard
 	[56] = {"56", "0 - Deli?", "Bütün kalplerini ve pickuplarını yere bırakır#Sadece yarım kalp kalır#Pickuplar {{Collectible74}} {{Collectible19}} olarak tekrar değişir miktar yetersiz ise"}, -- 0 - The Fool?
 	[57] = {"57", "I - Sihirbaz?", "Büyük bir ateş ve düşmanları iten bir aura verir#1 dakikalığına"}, -- I - The Magician?
@@ -674,4 +671,3 @@ EID.descriptions["tr_tr"].CraftingBagContent = "Çantadaki:"
 EID.descriptions["tr_tr"].CraftingRoomContent = "Odadaki:"
 EID.descriptions["tr_tr"].CraftingResults = "Sonuçlar:#(Kaydır: TAB(basılı tut) + Ateş △/▽)"
 EID.descriptions["tr_tr"].CraftingBagModError = "!!! {{ColorRed}}HATA:#{{ColorRed}}Bu özellik şu anda modlu itemleri desteklemiyor"
-

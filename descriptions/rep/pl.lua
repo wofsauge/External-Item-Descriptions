@@ -6,7 +6,8 @@
 -- '#' = starts new line of text
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+
 local newDescriptions = {
 }
 
@@ -85,9 +86,7 @@ local repCollectibles={
 	[256] = {"256", "Gorące Bomby", "Płonące bomby#+5 Bomb#Nie otrzymujesz już obrażeń od ognia#Bomby zadają obrażenia kontaktowe"}, -- Hot Bombs
 	[261] = {"261", "Wytrzeszcz", "↑ +0.5 Obrażeń#↓ Obrażenia spadają z każdą chwilą, w której łza znajduje się w powietrzu#300% Obrażeń w najlepszym wypadku"}, -- Proptosis
 	[262] = {"262", "Zgubiona Kartka 2", "+1 Czarne Serce#Kiedy twoje zdrowie spadnie do 1 Serca, ranisz wszystkich wrogów w pokoju#Czarne Serca i efekt Nekronomikonu zadają podwójne obrażenia"}, -- Missing Page 2
-	 
-	[263] = {"263", "Przejrzysta Runa", "Kopiuje efekt trzymanej runy lub kamienia duszy#Upuszcza 1 losową runę przy podniesieniu"}, -- Clear Rune   (REPENTANCE ITEM)
-	 
+	[263] = {"263", "Przejrzysta Runa", "Kopiuje efekt trzymanej runy lub kamienia duszy#Upuszcza 1 losową runę przy podniesieniu"}, -- Clear Rune   (REPENTANCE ITEM) 
 	[273] = {"273", "Mózg Boba", "Rzucany sojusznik w stylu bomby#Wybuch zadaje 100 Obrażeń#Obrażenia te ignorują pancerz"}, -- Bob's Brain
 	[274] = {"274", "Najlepszy Kumpel", "Kiedy zostaniesz trafiony, dostajesz orbitującego sojusznika#Zadaje on 150 obrażeń na sekundę"}, -- Best Bud
 	[275] = {"275", "Mały Piekielnik", "Strzela laserem z Ognia Piekielnego{{Collectible118}}#Strzały zadają 2 obrażeń na tick czasu, łącznie zadając 20 obrażeń"}, -- Lil Brimston
@@ -173,7 +172,6 @@ local repCollectibles={
 	[531] = {"531", "Hemolakria", "Łzy lecą łukiem#Przy kontakcie rozpadają się na wiele mniejszych#↓ Mniejsza Szybkostrzelność#↑ +50% Obrażeń#↑ Dodatkowo +1 Obrażeń"}, -- Haemolacria
 	[541] = {"541", "Szpik", "+1 Kościane Serce {{BoneHeart}}#Tworzy 3 Czerwone Serca"}, -- Marrow
 	[543] = {"543", "Poświęcona Ziemia", "Tworzy białą kupę, gdy zostaniesz trafiony#Biała kupa może blokować obrażenia i ma aurę zwiększającą Obrażenia i Szybkostrzelność, oraz dającą efekt naprowadzanych łez"}, -- Hallowed Ground
-	
 	[553] = {"553", "Mucormycosis", "Losowa szansa na wystrzelenie przylepnych zarodników#Zarodniki wybuchają po 2.5 sekundach, zadają obrażenia, zatruwają pobliskich przeciwników i wypuszczają więcej zarodników"}, --  Mucormycosis
 	[554] = {"554", "2Spooky", "Straszy przeciwników w małym zasięgu od ciebie"}, --  2Spooky
 	[555] = {"555", "Złota żyletka", "Zamienia twoje 5 monet na +1.2 Obrażeń w aktualnym pokoju"}, --  Golden Razor
@@ -350,8 +348,7 @@ local repCollectibles={
 	[726] = {"726", "Krwioplucoe", "Podwójne kliknięcie przycisku strzału sprawia że postać kicha krwią#Zadaje 150% obrażeń postaci trafionym przeciwnikom#Odładowywyje się 1 sekundę"}, --  Hemoptysis
 	[727] = {"727", "Duchowe bomby", "+5 bomb#Bomby Pojawiają duchy które zadają obrażenia przeciwnikom i eksplodują po 10 sekundach"}, --  Ghost Bombs
 	[728] = {"728", "Gello", "Pojawia demonicznego sojusznika prztwierdzonego do postaci#Kopiuje on wszystkie efekty i statystyki"}, --  Gello
-	[729] = {"729", "Dakapito atak", "Rzuca głową postaci która po wylądowaniu jest stacjonara i dalej strzela#Ponowne użycie lub nadepnięcie na głowę przyczepia ją spowrotem"}, --  Decap Attack
-	
+	[729] = {"729", "Dakapito atak", "Rzuca głową postaci która po wylądowaniu jest stacjonara i dalej strzela#Ponowne użycie lub nadepnięcie na głowę przyczepia ją spowrotem"}, --  Decap Attack	
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["pl"].collectibles)
 
@@ -428,84 +425,84 @@ local repTrinkets={
 	[49] = {"49", "Krwawy Pieniążek", "25% szans na upuszczenie połowy serca, gdy podniesiesz monetę"}, -- Bloody Penny
 	[50] = {"50", "Spalony Pieniążek", "25% szans na upuszczenie bomby, gdy podniesiesz monetę"}, -- Burnt Penny
 	[51] = {"51", "Płaski Pieniążek", "25% szans na upuszczenie klucza, gdy podniesiesz monetę"}, -- Flat Penny
-	[65] = {"65", "Tape Worm", "↑ +3 Zasięgu#-50% Wysokości lotu łez"}, -- Tape Worm
+	[65] = {"65", "Tape Worm", "↑ +3 Zasięgu"}, -- Tape Worm
 	[66] = {"66", "Lazy Worm", "↓ -0.5 Zmniejszona Prędkość Strzałów#↑ +2 Wysokości lotu łez"}, -- Lazy Worm
 	[69] = {"69", "Faded Polaroid", "Losowo kamufluje gracza#Dezorientuje przeciwników#Może zostać użyty do otwarcia drzwi na piętro \"Dom/Home\""}, -- Faded Polaroid
 	[80] = {"80", "Czarne pióro", "↑ +0.5 Obrażeń za każdy diabelski przedmiot, jaki mamy."}, -- Black Feather
 	[92] = {"92", "Pęknięta Korona", "↑ Przedmioty zwiększające Twoje statystyki są o 20% bardziej efektywne"}, -- Cracked Crown
+	[96] = {"96", "", "Strzały poruszają się szybkim, spiralnym wzorem#Widmowe łzy#↑ +1.5 Zasięg"}, -- Ouroboros Worm
 	[101] = {"101", "Dim Bulb", "!!! Gdy trzymasz nienaładowany przedmiot aktywny:#↑ +1.5 Obrażeń#↑ +0.5 Prędkości#↑ +1.5 Zasięgu#↑ +0.5 Szybkostrzelności#↑ +0.3 Prędkości strzałów#↑ +2 Szczęścia"},
 	[110] = {"110", "Silver Dollar", "Sklepy{{Shop}} mogą się pojawić na piętrze W1/W2 i odpowiedniku#{{Blank}} z alternatywnej ścieżki"},
 	[111] = {"111", "Krwawa Korona", "Pokój Skarbów{{TreasureRoom}} pojawia się na piętrach W1-W2"}, -- Bloody Crown
-        [119] = {"119", "Komórka Macierzysta", "Ustawia twoje czerwone serca na 50% maksymalnej wartości po przejściu na kolejne piętro#Jeśli Twoje zdrowie jest powyżej tego, leczy Cię połowę czerwonego serca"}, -- Stem Cell
-        [128] = {"128", "Kość z palca", "5% szans na otrzymanie Kościanego Serca, gdy otrzymasz obrażenia"}, -- Finger Bone
-        [129] = {"129", "Łamiszczęka", "Szansa na strzał zębowymi łzami"}, --  Jawbreaker
-        [130] = {"130", "Pogryziony Długopis", "Szansa na strzał spowolniającymi łzami"}, --  Chewed Pen
-        [131] = {"131", "Pobogosławiony Cent", "Szansa na upuszczenie połowy serca duszy, gdy podniesiesz monetę"}, --  Blessed Penny
-        [132] = {"132", "Rozbita Strzykawka", "Szansa na otrzymanie losowego efektu strzykawki dla aktualnego pokoju"}, --  Broken Syringe
-        [133] = {"133", "Temperament", "Bomby położone przez Ciebie, będą eksplodować szybciej"}, --  Short Fuse
-        [134] = {"134", "Gigantyczna Fasola", "Zwiększona wielkość pierda"}, --  Gigante Bean
-        [135] = {"135", "Zapaliczka", "Szansa na aktywację efektu podpalenia na przeciwnikach wchodząc do pokoju"}, --  A Lighter
-        [136] = {"136", "Pęknięta kłódka", "Wybuchami można teraz otworzyć drzwi, blokady na klucz i złote skrzynki#Otwiera również drzwi od Domu (Home)"}, --  Broken Padlock
-        [137] = {"137", "Niezapominajka", "Wchodząc na nowym poziom, do 4 niepodniesionych pickupów z poprzedniego poziomu, pojawią się na startowej lokacji"}, --  Myosotis
-        [138] = {"138", "'M", "Użycie aktywnego przedmiotu, przelosowuje go"}, --  'M
-        [139] = {"139", "Urokliwa łza", "Efekty łez bazujące na szczęściu będą występować częściej"}, --  Teardrop Charm
-        [140] = {"140", "Jabłko sodu", "Podnoszenie czerwonego serca może przemienić je w niebieskie pająki#Działa również mając pełne zdrowie#Efekt może konsumować serca potrzebne do leczenia"}, --  Apple of Sodom
-        [141] = {"141", "Zapomniana Kołysanka", "Zwiększa szybkostrzelność sojuszników"}, --  Forgotten Lullaby
-        [142] = {"142", "Wiara Elżbiety", "Na starcie każdego poziomu, pojawia 4 sojuszników z#{{Blank}} Book of Virtues{{Collectible584}}"}, --  Beth's Faith
-        [143] = {"143", "Stary Kondensator", "Zapobiega ładowaniu aktywnego przedmiotu#Szansa na pojawienie się małej baterii po wyczyszczeniu pokoju"}, --  Old Capacitor
-        [144] = {"144", "Pasożyt Neurotropowy", "Łzy obracają się o 90 stopni, aby wycelować w przeciwników, których mogły przegapić"}, --  Brain Worm
-        [145] = {"145", "Perfekcja", "↑ +10 Szczęścia#Niszczy się po otrzymaniu obrażeń"}, --  Perfection
-        [146] = {"146", "Diabelska Korona", "Pokoje Skarbów{{TreasureRoom}} zawierają teraz oferty Diabła"}, --  Devil's Crown
-        [147] = {"147", "Naładowany Cent", "Podnoszenie monet może ładować Aktywny Przedmiot"}, --  Charged Penny
-        [148] = {"148", "Naszyjnik Przyjaźni", "Powoduje, że sojusznicy krążą wokół Ciebie"}, --  Friendship Necklace
-        [149] = {"149", "Przycisk Alarmowy", "Aktywuje Twój Aktywny Przedmiot po otrzymaniu obrażeń"}, --  Panic Button
-        [150] = {"150", "Niebieski Klucz", "Wchodząc do pokoju, do którego potrzebny jest klucz, przenosi Cię do pokoju przypominającego poziom Husha#Pokój pełni rolę pośrednika między dwoma pokojami"}, --  Blue Key
-        [151] = {"151", "Kartotekowa baza danych", "Powoduje schowanie się kolców, zmieniając je w nieszkodliwe#Efekt działa również w Przeklętym Pokoju, skrzynki mim i jakiekolwiek inne przeszkody z kolcami"}, --  Flat File
-        [152] = {"152", "Soczewka Teleskopu", "Sprawia, że możliwe jest pojawienie się drugiego Planetarium#Planetarium może się teraz pojawić na piętrach W1-W2"}, --  Telescope Lens
-        [153] = {"153", "Kucyk Matki", "Każdy pokój, gwarantuje efekt losowego przedmiotu Matki"}, --  Mom's Lock
-        [154] = {"154", "Worek kości do gry", "Wchodząc do nowego pokoju, gwarantuje tymczasową Kostkę#Kostka znika po opuszczeniu pokoju#Gwarantuje zdolność do trzymania dwóch przedmiotów jednocześnie"}, --  Dice Bag
-        [155] = {"155", "Święta korona", "Pokój Skarbów{{TreasureRoom}} i Sklep{{Shop}} pojawiają się w Katedrze"}, --  Holy Crown
-        [156] = {"156", "Matczyny pocałunek", "Gwarantuje 1 zasobnik na serca#Działa również u Dozorcy/Keepera"}, --  Mother's Kiss
-        [157] = {"157", "Podarta karta", "Co 15 strzałów, strzelasz łzą Wymiotnicy{{Collectible149}} + Moje Odbicie{{Collectible5}}, która ma bardzo daleki zasięg"}, --  Torn Card
-        [158] = {"158", "Podarta sakiewka", "Po otrzymaniu obrażeń, upuszczasz wszystkie swoje pickupy#(Wyjątkiem są: Serca, Karty, Tabletki, Runy)"}, --  Torn Pocket
-        [159] = {"159", "Pozłacany klucz", "+1 klucz#Zamienia wszystkie nowe skrzynki w Złote Skrzynki#Wszystkie Złote Skrzynki zawierają dodatkowe karty, pigułki lub trynkiety#Wyjątek: Olbrzymia Skrzynia, Stara Skrzynia"}, --  Gilded Key
-        [160] = {"160", "Szczęśliwa sakwa", "Pojawia Worek po podróży na kolejny poziom"}, --  Lucky Sack
-        [161] = {"161", "Niegodziwa korona", "Pokój Skarbów{{TreasureRoom}} i Sklep{{Shop}} pojawiają się w Szeolu"}, --  Wicked Crown
-        [162] = {"162", "Kikut Azazela", "Szansa na zamienienie się w Azazela po wejściu do pokoju"}, --  Azazel's Stump
-        [163] = {"163", "Kupko jagoda", "Pojawia 2 przyjazne Kupy po wyczyszczeniu pokoju"}, --  Dingle Berry
-        [164] = {"164", "Kapiszony", "Stawiasz dwie bomby zamiast jednej#Tylko jedna zostaje usunięta z ekwipunku"}, --  Ring Cap
-        [165] = {"165", "Nuh Uh!", "Na poziomie W1 i dalszym, zamienia wszystkie monety i klucze na inne losowe pickupy#Bomby i Serca są bardziej powszechne"}, --  Nuh Uh!
-        [166] = {"166", "Modelina", "Gwarantuje efekt losowego Pasywnego Przedmiotu w każdym pokoju"}, --  Modeling Clay
-        [167] = {"167", "Wypolerowana kośc", "Szansa na pojawienie się sojuszniczego Bony'ego po wyczyszczeniu pokoju"}, --  Polished Bone
-        [168] = {"168", "Puste serce", "+1 Kościany zasobnik na serca po wejściu na nowy poziom"}, --  Hollow Heart
-        [169] = {"169", "Dziecięcy obrazek", "Gdy trzymasz, liczy się do transformacji w Guppy'iego"}, --  Kid's Drawing
-        [170] = {"170", "Kryształowy klucz", "Gwarantuje szansę na automatyczne stworzenie pokoju Czerwonym Kluczem{{Collectible580}} przy każdym oczyszczeniu pokoju"}, --  Crystal Key
-        [171] = {"171", "Okazja Keepera", "Oferty Diabła są teraz za monety zamiast za serca"}, --  Keeper's Bargain
-        [172] = {"172", "Przeklęty cent", "Teleportuje Cię do losowego pokoju po podniesieniu monety#Może teleportować do Sekretnego Pokoju"}, --  Cursed Penny
-        [173] = {"173", "Twoja dusza", "{{Warning}} JEDNORAZOWE UŻYCIE {{Warning}}#Może zostać użyte w ofercie Diabła zamiast tracić serca"}, --  Your Soul
-        [174] = {"174", "Magnes cyfrowy", "+10% szansy na Pokój Diabła"}, --  Number Magnet
-        [175] = {"175", "Dziwny klucz", "Odblokowuje przejście do walki z Hushem, niezależnie od trwania przebiegu rozgrywki#Użycie Puszki Pandory{{Collectible297}} pojawia 6 przedmiotów z losowej puli"}, --  Strange Key
-        [176] = {"176", "Mały zakrzep", "Pojawia sojuszniczego zakrzepa, który porusza się jak Ty, strzela w tym samym kierunku i z tymi samymi efektami łez"}, --  Lil Clot
-        [177] = {"177", "Tymczasowy tatuaż", "Pojawia skrzynkę po ukończeniu Wyzwania walki z przeciwnikami lub przedmiot po ukończeniu Wyzwania z Bossem"}, --  Temporary Tattoo
-        [178] = {"178", "Połknięta Petarda", "Wybuchasz po otrzymaniu obrażenia"}, --  Swallowed M80
-        [179] = {"179", "Zdalny kontrolel", "Poruszanie się sojuszników może być kontrolowane przez Ciebie"}, --  RC Remote
-        [180] = {"180", "Znaleziona dusza", "Sojusznik, który porusza się jak Ty i strzela widmowymi łzami#Posiada takie same obrażenia i efekt łez jak Ty"}, --  Found Soul
-        [181] = {"181", "Paczka rozszerzeń", "Używa innego losowego Aktywnego Przedmiotu, gdy używasz swojego Aktywnego Przedmiotu"}, --  Expansion Pack
-        [182] = {"182", "Istota Elżbiety", "Raz na pokój, gdy dostaniesz obrażenie, tworzysz sojuszniczy Ognik{{Collectible584}} i gwarantuje nietykalność#Tworzy 5 sojuszniczych Ogników po wejściu do Pokoju Aniołów#Tworzy sojuszniczy Ognik, gdy dajesz monety żebrakom"}, --  Beth's Essence
-        [183] = {"183", "bliźniaki", "Co pokój:#Bez sojuszników: Szansa na Braciszka Robercika{{Collectible8}} i/lub Siostrę Madzię{{Collectible67}}# Z sojusznikami: Szansa na kopię swojego sojusznika"}, --  The Twins
-        [184] = {"184", "Dokumenty Adopcyjne", "Sklep może sprzedawać sojuszników#Sojusznicy będą zawsze na przecenie"}, --  Adoption Papers
-        [185] = {"185", "Noga Crickieta", "Szansa na pojawienie się Szarańczy (Locust) po zabiciu przeciwnika"}, --  Cricket Leg
-        [186] = {"186", "Najlepszy ziomo Appolyona", "{{Throwable}} {{ColorOrange}}Do rzucania{{CR}} (podwójne kliknięcie przycisku strzału)#Gwarantuje 1 sojuszniczą muchę, którą możesz celować i strzelać"}, --  Apollyon's Best Friend
-        [187] = {"187", "Połamane Okulary", "33% szans na otrzymanie dodatkowego niewidzialnego przedmiotu w Pokoju Skarbów#Odkrywa niewidzialny przedmiot w alternatywnej ścieżce"}, --  Broken Glasses
-        [188] = {"188", "Kostka lodu", "Szansa na sparaliżowanie przeciwnika, kiedy wchodzisz do pokoju#Zabicie sparaliżowanego przeciwnika zamraża go"}, --  Ice Cube
-        [189] = {"189", "Pieczęć Bahometa", "Aktywuje tarczę na 1 sekundę po zabiciu przeciwnika"}, --  Sigil of Baphomet
+	[119] = {"119", "Komórka Macierzysta", "Ustawia twoje czerwone serca na 50% maksymalnej wartości po przejściu na kolejne piętro#Jeśli Twoje zdrowie jest powyżej tego, leczy Cię połowę czerwonego serca"}, -- Stem Cell
+	[128] = {"128", "Kość z palca", "5% szans na otrzymanie Kościanego Serca, gdy otrzymasz obrażenia"}, -- Finger Bone
+	[129] = {"129", "Łamiszczęka", "Szansa na strzał zębowymi łzami"}, --  Jawbreaker
+	[130] = {"130", "Pogryziony Długopis", "Szansa na strzał spowolniającymi łzami"}, --  Chewed Pen
+	[131] = {"131", "Pobogosławiony Cent", "Szansa na upuszczenie połowy serca duszy, gdy podniesiesz monetę"}, --  Blessed Penny
+	[132] = {"132", "Rozbita Strzykawka", "Szansa na otrzymanie losowego efektu strzykawki dla aktualnego pokoju"}, --  Broken Syringe
+	[133] = {"133", "Temperament", "Bomby położone przez Ciebie, będą eksplodować szybciej"}, --  Short Fuse
+	[134] = {"134", "Gigantyczna Fasola", "Zwiększona wielkość pierda"}, --  Gigante Bean
+	[135] = {"135", "Zapaliczka", "Szansa na aktywację efektu podpalenia na przeciwnikach wchodząc do pokoju"}, --  A Lighter
+	[136] = {"136", "Pęknięta kłódka", "Wybuchami można teraz otworzyć drzwi, blokady na klucz i złote skrzynki#Otwiera również drzwi od Domu (Home)"}, --  Broken Padlock
+	[137] = {"137", "Niezapominajka", "Wchodząc na nowym poziom, do 4 niepodniesionych pickupów z poprzedniego poziomu, pojawią się na startowej lokacji"}, --  Myosotis
+	[138] = {"138", "'M", "Użycie aktywnego przedmiotu, przelosowuje go"}, --  'M
+	[139] = {"139", "Urokliwa łza", "Efekty łez bazujące na szczęściu będą występować częściej"}, --  Teardrop Charm
+	[140] = {"140", "Jabłko sodu", "Podnoszenie czerwonego serca może przemienić je w niebieskie pająki#Działa również mając pełne zdrowie#Efekt może konsumować serca potrzebne do leczenia"}, --  Apple of Sodom
+	[141] = {"141", "Zapomniana Kołysanka", "Zwiększa szybkostrzelność sojuszników"}, --  Forgotten Lullaby
+	[142] = {"142", "Wiara Elżbiety", "Na starcie każdego poziomu, pojawia 4 sojuszników z#{{Blank}} Book of Virtues{{Collectible584}}"}, --  Beth's Faith
+	[143] = {"143", "Stary Kondensator", "Zapobiega ładowaniu aktywnego przedmiotu#Szansa na pojawienie się małej baterii po wyczyszczeniu pokoju"}, --  Old Capacitor
+	[144] = {"144", "Pasożyt Neurotropowy", "Łzy obracają się o 90 stopni, aby wycelować w przeciwników, których mogły przegapić"}, --  Brain Worm
+	[145] = {"145", "Perfekcja", "↑ +10 Szczęścia#Niszczy się po otrzymaniu obrażeń"}, --  Perfection
+	[146] = {"146", "Diabelska Korona", "Pokoje Skarbów{{TreasureRoom}} zawierają teraz oferty Diabła"}, --  Devil's Crown
+	[147] = {"147", "Naładowany Cent", "Podnoszenie monet może ładować Aktywny Przedmiot"}, --  Charged Penny
+	[148] = {"148", "Naszyjnik Przyjaźni", "Powoduje, że sojusznicy krążą wokół Ciebie"}, --  Friendship Necklace
+	[149] = {"149", "Przycisk Alarmowy", "Aktywuje Twój Aktywny Przedmiot po otrzymaniu obrażeń"}, --  Panic Button
+	[150] = {"150", "Niebieski Klucz", "Wchodząc do pokoju, do którego potrzebny jest klucz, przenosi Cię do pokoju przypominającego poziom Husha#Pokój pełni rolę pośrednika między dwoma pokojami"}, --  Blue Key
+	[151] = {"151", "Kartotekowa baza danych", "Powoduje schowanie się kolców, zmieniając je w nieszkodliwe#Efekt działa również w Przeklętym Pokoju, skrzynki mim i jakiekolwiek inne przeszkody z kolcami"}, --  Flat File
+	[152] = {"152", "Soczewka Teleskopu", "Sprawia, że możliwe jest pojawienie się drugiego Planetarium#Planetarium może się teraz pojawić na piętrach W1-W2"}, --  Telescope Lens
+	[153] = {"153", "Kucyk Matki", "Każdy pokój, gwarantuje efekt losowego przedmiotu Matki"}, --  Mom's Lock
+	[154] = {"154", "Worek kości do gry", "Wchodząc do nowego pokoju, gwarantuje tymczasową Kostkę#Kostka znika po opuszczeniu pokoju#Gwarantuje zdolność do trzymania dwóch przedmiotów jednocześnie"}, --  Dice Bag
+	[155] = {"155", "Święta korona", "Pokój Skarbów{{TreasureRoom}} i Sklep{{Shop}} pojawiają się w Katedrze"}, --  Holy Crown
+	[156] = {"156", "Matczyny pocałunek", "Gwarantuje 1 zasobnik na serca#Działa również u Dozorcy/Keepera"}, --  Mother's Kiss
+	[157] = {"157", "Podarta karta", "Co 15 strzałów, strzelasz łzą Wymiotnicy{{Collectible149}} + Moje Odbicie{{Collectible5}}, która ma bardzo daleki zasięg"}, --  Torn Card
+	[158] = {"158", "Podarta sakiewka", "Po otrzymaniu obrażeń, upuszczasz wszystkie swoje pickupy#(Wyjątkiem są: Serca, Karty, Tabletki, Runy)"}, --  Torn Pocket
+	[159] = {"159", "Pozłacany klucz", "+1 klucz#Zamienia wszystkie nowe skrzynki w Złote Skrzynki#Wszystkie Złote Skrzynki zawierają dodatkowe karty, pigułki lub trynkiety#Wyjątek: Olbrzymia Skrzynia, Stara Skrzynia"}, --  Gilded Key
+	[160] = {"160", "Szczęśliwa sakwa", "Pojawia Worek po podróży na kolejny poziom"}, --  Lucky Sack
+	[161] = {"161", "Niegodziwa korona", "Pokój Skarbów{{TreasureRoom}} i Sklep{{Shop}} pojawiają się w Szeolu"}, --  Wicked Crown
+	[162] = {"162", "Kikut Azazela", "Szansa na zamienienie się w Azazela po wejściu do pokoju"}, --  Azazel's Stump
+	[163] = {"163", "Kupko jagoda", "Pojawia 2 przyjazne Kupy po wyczyszczeniu pokoju"}, --  Dingle Berry
+	[164] = {"164", "Kapiszony", "Stawiasz dwie bomby zamiast jednej#Tylko jedna zostaje usunięta z ekwipunku"}, --  Ring Cap
+	[165] = {"165", "Nuh Uh!", "Na poziomie W1 i dalszym, zamienia wszystkie monety i klucze na inne losowe pickupy#Bomby i Serca są bardziej powszechne"}, --  Nuh Uh!
+	[166] = {"166", "Modelina", "Gwarantuje efekt losowego Pasywnego Przedmiotu w każdym pokoju"}, --  Modeling Clay
+	[167] = {"167", "Wypolerowana kośc", "Szansa na pojawienie się sojuszniczego Bony'ego po wyczyszczeniu pokoju"}, --  Polished Bone
+	[168] = {"168", "Puste serce", "+1 Kościany zasobnik na serca po wejściu na nowy poziom"}, --  Hollow Heart
+	[169] = {"169", "Dziecięcy obrazek", "Gdy trzymasz, liczy się do transformacji w Guppy'iego"}, --  Kid's Drawing
+	[170] = {"170", "Kryształowy klucz", "Gwarantuje szansę na automatyczne stworzenie pokoju Czerwonym Kluczem{{Collectible580}} przy każdym oczyszczeniu pokoju"}, --  Crystal Key
+	[171] = {"171", "Okazja Keepera", "Oferty Diabła są teraz za monety zamiast za serca"}, --  Keeper's Bargain
+	[172] = {"172", "Przeklęty cent", "Teleportuje Cię do losowego pokoju po podniesieniu monety#Może teleportować do Sekretnego Pokoju"}, --  Cursed Penny
+	[173] = {"173", "Twoja dusza", "{{Warning}} JEDNORAZOWE UŻYCIE {{Warning}}#Może zostać użyte w ofercie Diabła zamiast tracić serca"}, --  Your Soul
+	[174] = {"174", "Magnes cyfrowy", "+10% szansy na Pokój Diabła"}, --  Number Magnet
+	[175] = {"175", "Dziwny klucz", "Odblokowuje przejście do walki z Hushem, niezależnie od trwania przebiegu rozgrywki#Użycie Puszki Pandory{{Collectible297}} pojawia 6 przedmiotów z losowej puli"}, --  Strange Key
+	[176] = {"176", "Mały zakrzep", "Pojawia sojuszniczego zakrzepa, który porusza się jak Ty, strzela w tym samym kierunku i z tymi samymi efektami łez"}, --  Lil Clot
+	[177] = {"177", "Tymczasowy tatuaż", "Pojawia skrzynkę po ukończeniu Wyzwania walki z przeciwnikami lub przedmiot po ukończeniu Wyzwania z Bossem"}, --  Temporary Tattoo
+	[178] = {"178", "Połknięta Petarda", "Wybuchasz po otrzymaniu obrażenia"}, --  Swallowed M80
+	[179] = {"179", "Zdalny kontrolel", "Poruszanie się sojuszników może być kontrolowane przez Ciebie"}, --  RC Remote
+	[180] = {"180", "Znaleziona dusza", "Sojusznik, który porusza się jak Ty i strzela widmowymi łzami#Posiada takie same obrażenia i efekt łez jak Ty"}, --  Found Soul
+	[181] = {"181", "Paczka rozszerzeń", "Używa innego losowego Aktywnego Przedmiotu, gdy używasz swojego Aktywnego Przedmiotu"}, --  Expansion Pack
+	[182] = {"182", "Istota Elżbiety", "Raz na pokój, gdy dostaniesz obrażenie, tworzysz sojuszniczy Ognik{{Collectible584}} i gwarantuje nietykalność#Tworzy 5 sojuszniczych Ogników po wejściu do Pokoju Aniołów#Tworzy sojuszniczy Ognik, gdy dajesz monety żebrakom"}, --  Beth's Essence
+	[183] = {"183", "bliźniaki", "Co pokój:#Bez sojuszników: Szansa na Braciszka Robercika{{Collectible8}} i/lub Siostrę Madzię{{Collectible67}}# Z sojusznikami: Szansa na kopię swojego sojusznika"}, --  The Twins
+	[184] = {"184", "Dokumenty Adopcyjne", "Sklep może sprzedawać sojuszników#Sojusznicy będą zawsze na przecenie"}, --  Adoption Papers
+	[185] = {"185", "Noga Crickieta", "Szansa na pojawienie się Szarańczy (Locust) po zabiciu przeciwnika"}, --  Cricket Leg
+	[186] = {"186", "Najlepszy ziomo Appolyona", "{{Throwable}} {{ColorOrange}}Do rzucania{{CR}} (podwójne kliknięcie przycisku strzału)#Gwarantuje 1 sojuszniczą muchę, którą możesz celować i strzelać"}, --  Apollyon's Best Friend
+	[187] = {"187", "Połamane Okulary", "33% szans na otrzymanie dodatkowego niewidzialnego przedmiotu w Pokoju Skarbów#Odkrywa niewidzialny przedmiot w alternatywnej ścieżce"}, --  Broken Glasses
+	[188] = {"188", "Kostka lodu", "Szansa na sparaliżowanie przeciwnika, kiedy wchodzisz do pokoju#Zabicie sparaliżowanego przeciwnika zamraża go"}, --  Ice Cube
+	[189] = {"189", "Pieczęć Bahometa", "Aktywuje tarczę na 1 sekundę po zabiciu przeciwnika"}, --  Sigil of Baphomet
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["pl"].trinkets)
 
-
-
 -- Card Buffs caused by Tarot Cloth
--- Note: "#" will be replaced with "#{{Collectible451}} " automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+-- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+
 EID.descriptions["pl"].tarotClothBuffs = {
 	[2] = {"2", "", "Aktywuje efekt{{Collectible34}}Księgi Beliala"}, -- I - The Magician
 	[3] = {"3", "", "Druga noga uderza zaraz po pierwszej"}, -- II - The High Priestess
@@ -533,12 +530,10 @@ EID.descriptions["pl"].tarotClothBuffs = {
 	[73] = {"73", "", "Usuwa 2 przedmioty w zamian pojawiając 4"}, -- XVII - The Stars?
 	[76] = {"76", "", "Pojawia 2 maszyny do zmiany przedmiotów"}, -- XX - Judgement?
 }
-
-
-
 EID.descriptions["pl"].goldenTrinket = "ZŁOTE: Zdwojony Efekt!"
 
 ---------- Cards ----------
+
 local repCards={
 	[27] = {"27", "As Trefl", "Zmienia wszystkie pickupy, skrzynki i wrogów nie-bossów#{{Blank}} w bomby"},
 	[28] = {"28", "As Karo", "Zmienia wszystkie pickupy, skrzynki i wrogów nie-bossów#{{Blank}} w monety"},
@@ -546,7 +541,6 @@ local repCards={
 	[30] = {"30", "As Kier", "Zmienia wszystkie pickupy, skrzynki i wrogów nie-bossów#{{Blank}} w serca"},
 	[39] = {"39", "Algiz", "Nieśmiertelność na 20 sekund"},
 	[51] = {"51", "Święta Karta", "Daje efekt#{{Blank}} Świętego Okrycia {{Collectible313}}#(Neguje następne otrzymane obrażenia)#Efekt utrzymuje się do następnego otrzymania obrażeń"}, -- Holy card
-	
 	[55] = {"55", "Odłamek Runy", "Aktywuje efekt losowej runy#Efekt ten jest słabszy"},
 	[56] = {"56", "0 - Głupiec?", "Wyrzuca wszystkie twoje serca i pickupy na ziemię#Pozostawia postać z połówką czerwonego serca#Pickupy mogą pojawić {{Collectible74}} {{Collectible19}} rzeczy jeśli jest ich za mało#Efekt trwa 1 minutę"},
 	[58] = {"58", "II - Kapłanka?", "Noga matki uderza bez przerwy przez 1 minutę"},
@@ -600,7 +594,6 @@ local repPills={
 	[13] = {"12", "Zasięg Wzrasta", "↑ +0.75 Zasięgu"},
 	[42] = {"41", "Jestem śpiący...", "Spowalnia ciebie oraz przeciwników w tym pokoju"},
 	[43] = {"42", "Ekscytacja!", "Przyspiesza ciebie oraz przeciwników w tym pokoju#Ponawia się po 30 oraz 60 sekundach"},
-	
 	[48] = {"47", "Prędkość Strzałów Maleje", "↓ -0.15 Prędkości Strzałów"},
 	[49] = {"48", "Prędkość Strzałów Wzrasta", "↑ +0.15 Prędkości Strzałów"},
 	[50] = {"49", "Eksperymentalna Pigułka", "↑ Zwiększa 1 losową statystykę#↓ Zmniejsza 1 inną, losową statystykę#Nie zmniejsza, gdy masz Doktorat (PHD)"},
@@ -666,4 +659,3 @@ EID.descriptions["pl"].CraftingBagContent = "torbie:"
 EID.descriptions["pl"].CraftingRoomContent = "pokoju:"
 EID.descriptions["pl"].CraftingResults = "Wyniki:#(Przewiń: Trzymaj TAB + Strzał △/▽)"
 EID.descriptions["pl"].CraftingBagModError = "!!! {{ColorRed}}BŁĄD:#{{ColorRed}}Ta funkcja nie wspiera obecnie zmodowanych przedmiotów"
-

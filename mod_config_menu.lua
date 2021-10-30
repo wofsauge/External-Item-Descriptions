@@ -491,6 +491,51 @@ if MCMLoaded then
 		}
 	)
 	
+	-- Spindown Dice results
+	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = function()
+				return AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1
+			end,
+			Display = function()
+				return "Spindown Dice: $scroll" ..
+					AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1 .. " " .. EID.Config["SpindownDiceResults"] .. " Items"
+			end,
+			OnChange = function(currentNum)
+				EID.Config["SpindownDiceResults"] = diceSteps[currentNum%#diceSteps + 1]
+			end,
+			Info = {"Preview of Items resulting when using the Spindown dice X times"}
+		}
+	)
+	-- 
+	
+	-- Spindown Dice skip locked items
+	MCM.AddSetting(
+		"EID",
+		"Display",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["SpindownDiceSkipLocked"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["SpindownDiceSkipLocked"] then
+					onOff = "True"
+				end
+				return "Skip Locked Items: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["SpindownDiceSkipLocked"] = currentBool
+			end,
+			Info = {"Skip locked items in the preview just as the dice will; the method to check for unlock status is not perfect, though"}
+		}
+	)
+	
 	--------Obstruction---------
 	MCM.AddSpace("EID", "Display")
 	MCM.AddText("EID", "Display", "Display Infos when obstructed")
@@ -647,26 +692,6 @@ if MCMLoaded then
 		}
 	)
 	
-	-- Spindown Dice results
-	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.SCROLL,
-			CurrentSetting = function()
-				return AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1
-			end,
-			Display = function()
-				return "Spindown Dice: $scroll" ..
-					AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1 .. " " .. EID.Config["SpindownDiceResults"] .. " Items"
-			end,
-			OnChange = function(currentNum)
-				EID.Config["SpindownDiceResults"] = diceSteps[currentNum%#diceSteps + 1]
-			end,
-			Info = {"Preview of Items resulting when using the Spindown dice X times"}
-		}
-	)
 	MCM.AddSpace("EID", "Display")
 	MCM.AddText("EID", "Display", "Interaction with 'Options?'")
 
@@ -965,9 +990,93 @@ if MCMLoaded then
 					AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1 .. " " .. EID.Config["BagOfCraftingResults"]
 			end,
 			OnChange = function(currentNum)
-				EID.Config["BagOfCraftingResults"] = diceSteps[currentNum%#diceSteps + 1]
+				EID.Config["BagOfCraftingResults"] = diceSteps[currentNum + 1]
 			end,
-			Info = {"Preview of items currently craftable with Bag of crafting"}
+			Info = {"Page size for the preview of items currently craftable with Bag of Crafting"}
+		}
+	)
+	-- Bag of Crafting thorough recipe checks
+	local combSteps = {8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18}
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = function()
+				return AnIndexOf(combSteps, EID.Config["BagOfCraftingCombinationMax"]) - 1
+			end,
+			Display = function()
+				return "Thorough Calculations: $scroll" ..
+					AnIndexOf(combSteps, EID.Config["BagOfCraftingCombinationMax"]) - 1 .. " " .. EID.Config["BagOfCraftingCombinationMax"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["BagOfCraftingCombinationMax"] = combSteps[currentNum + 1]
+			end,
+			Info = {"Get every recipe for the X best components; setting this high will cause lag spikes (12 = 500 combinations, 14 = 3,000, 16 = 13,000)"}
+		}
+	)
+	-- Bag of Crafting random recipe checks
+	local calcSteps = {200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200}
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = function()
+				return AnIndexOf(calcSteps, EID.Config["BagOfCraftingRandomResults"]) - 1
+			end,
+			Display = function()
+				return "Random Calculations: $scroll" ..
+					AnIndexOf(calcSteps, EID.Config["BagOfCraftingRandomResults"]) - 1 .. " " .. EID.Config["BagOfCraftingRandomResults"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["BagOfCraftingRandomResults"] = calcSteps[currentNum + 1]
+			end,
+			Info = {"An additional X number of randomly chosen recipes will be checked, changing each pickup spawn/despawn or refresh"}
+		}
+	)
+	-- Bag of Crafting item names
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["BagOfCraftingDisplayNames"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["BagOfCraftingDisplayNames"] then
+					onOff = "True"
+				end
+				return "Show Item Names: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["BagOfCraftingDisplayNames"] = currentBool
+			end,
+			Info = {"If on, each result takes two lines; lower your displayed results accordingly"}
+		}
+	)
+	-- Bag of Crafting Breakfast recipes
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["BagOfCraftingDisplayBreakfast"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["BagOfCraftingDisplayBreakfast"] then
+					onOff = "True"
+				end
+				return "Show Locked Recipes: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["BagOfCraftingDisplayBreakfast"] = currentBool
+			end,
+			Info = {"Recipes for locked items turn into Breakfast, cluttering the list; the method to check for unlock status is not perfect, though"}
 		}
 	)
 	

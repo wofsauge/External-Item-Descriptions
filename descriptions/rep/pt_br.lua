@@ -12,7 +12,8 @@
 -- ãÃ áÁ àÀ âÂ çÇ éÉ êÊ íÍ õÕ óÓ ôÔ úÚ
 
 --Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+
 local newDescriptions = {
 	["5.70.14"] = {"14", "Golden Pill", "Efeito aleatório de pílula#Destrói-se após alguns usos"} -- golden Pill
 }
@@ -407,10 +408,10 @@ EID.descriptions["pt_br"].bingeEaterBuffs = {
 	[346] = {"346", "", "↑+0.2 Velocidade de disparo#↑+1.0 Sorte"}, -- A Snack
 	[707] = {"707", "", "↑+0.5 Lágrimas#↑+1.0 Sorte"}, -- Supper
 }
-
 EID.descriptions["pt_br"].spindownError = "Item desapareceu"
 
 ---------- Trinkets ----------
+
 local repTrinkets={
 	[1] = {"1", "", "Solta 1 moeda quando for atingido#0-1 se você estiver jogando com o Keeper"}, -- Swallowed Penny
 	[10] = {"10", "", "Lágrimas movem-se em ondas#↑ +0.4 Lágrimas#Lágrimas espectrais"}, -- Wiggle Worm
@@ -423,11 +424,12 @@ local repTrinkets={
     [49] = {"49", "", "25% de chance de soltar meio coração quando pegar uma moeda"}, -- Bloody Penny
     [50] = {"50", "", "25% de chance de soltar uma bomba quando pegar uma moeda"}, -- Burnt Penny
     [51] = {"51", "", "25% de chance de soltar uma chave quando pegar uma moeda"}, -- Flat Penny
-	[65] = {"65", "", "↑ +3 Alcance#↓ -50% Altura da lágrima"}, -- Tape Worm
+	[65] = {"65", "", "↑ +3 Alcance"}, -- Tape Worm
 	[66] = {"66", "", "↓ -0.5 Velocidade de disparo#↑ +2 Altura da lágrima"}, -- Lazy Worm
     [69] = {"69", "", "Camufla o jogador aleatoriamente#Confunde inimigos#Pode ser ussado para abrir a porta para o andar \"Home\""}, -- Faded Polaroid
 	[80] = {"80", "", "↑ +0.5 Dano para cada item maligno que estiver segurando"}, -- Black Feather
     [92] = {"92", "", "↑ Aumeta as estatísticas de seus itens em 20%"}, -- Cracked Crown
+	[96] = {"96", "", "As lágrimas se movem rapidamente em um padrão espiral#↑ +1.5 Alcance"}, -- Ouroboros Worm
 	[101] = {"101", "", "!!! Enquanto segurar um item ativador descarregado:#↑ +1.5 Dano#↑ +0.5 Velocidade#↑ +1.5 Alcance#↑ +0.5 Lágrima#↑ +0.3 Velocidade de disparo#↑ +2 Sorte"}, -- Dim Bulb
 	[110] = {"110", "", "Lojas {{Shop}} vão aparecer no Womb e Corpse"}, -- Silver Dollar
     [111] = {"111", "", "Salas do item {{TreasureRoom}} agora aparecem em the Womb e Corpse"}, -- Bloody Crown
@@ -498,7 +500,8 @@ local repTrinkets={
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["pt_br"].trinkets)
 
 -- Card Buffs caused by Tarot Cloth
--- Note: "#" will be replaced with "#{{Collectible451}} " automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+-- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+
 EID.descriptions["pt_br"].tarotClothBuffs = {
 	[2] = {"2", "", "Também concede o efeito do {{Collectible34}} The Book of Belial"}, -- I - The Magician
 	[3] = {"3", "", "Um segundo pé pisa logo após o primeiro"}, -- II - The High Priestess
@@ -527,10 +530,10 @@ EID.descriptions["pt_br"].tarotClothBuffs = {
 	[73] = {"73", "", "Remove 2 itens e gera 4"}, -- XVII - The Stars?
 	[76] = {"76", "", "Gera 2 máquinas de restock"}, -- XX - Judgement?
 }
-
 EID.descriptions["pt_br"].goldenTrinket = "DOURADO: Efeito Dobrado!"
 
 ---------- Cards ----------
+
 local repCards={
 	[27] = {"27", "", "Troca todos os pickups, baús e inimigos não chefes em bombas"},
 	[28] = {"28", "", "Troca todos os pickups, baús e inimigos não chefes em moedas"},
