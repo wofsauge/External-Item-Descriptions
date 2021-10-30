@@ -2,7 +2,7 @@
 -----  Basic English descriptions -----
 ---------------------------------------
 
--- Last Update: 05.10.2021
+-- Last Update: 30.10.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
