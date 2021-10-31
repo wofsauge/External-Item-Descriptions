@@ -354,6 +354,29 @@ if MCMLoaded then
 			Info = {"Distance to the object until descriptions are displayed."}
 		}
 	)
+	
+	-- disable achievements
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisableAchievementCheck"]
+			end,
+			Display = function()
+				local onOff = "Enabled"
+				if EID.Config["DisableAchievementCheck"] then
+					onOff = "Disabled"
+				end
+				return "Achievement warning: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisableAchievementCheck"] = currentBool
+			end,
+			Info = {"Use this to turn off the achievement warning"}
+		}
+	)
 
 	---------------------------------------------------------------------------
 	---------------------------------Display-----------------------------------

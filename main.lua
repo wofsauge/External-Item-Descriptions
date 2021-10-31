@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
-EID.ModVersion = "3.85"
+EID.ModVersion = "3.87"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -404,6 +404,9 @@ function EID:renderIndicator(entity)
 	end
 	local repDiv = 1
 	local entityPos = Isaac.WorldToScreen(entity.Position)
+	if entity:GetData() and entity:GetData()["EID_RenderOffset"] then
+		entityPos = entityPos + entity:GetData()["EID_RenderOffset"]
+	end
 	local sprite = entity:GetSprite()
 	if REPENTANCE then
 		repDiv = 255
@@ -416,25 +419,8 @@ function EID:renderIndicator(entity)
 	if EID.Config["Indicator"] == "blink" then
 		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
 		sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
-		sprite:Render(entityPos, nullVector, nullVector)
+		EID:renderEntity(entity, sprite, entityPos)
 		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
-	elseif EID.Config["Indicator"] == "border" then
-		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
-		sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
-		sprite:Render(entityPos + Vector(0, 1), nullVector, nullVector)
-		sprite:Render(entityPos + Vector(0, -1), nullVector, nullVector)
-		sprite:Render(entityPos + Vector(1, 0), nullVector, nullVector)
-		sprite:Render(entityPos + Vector(-1, 0), nullVector, nullVector)
-		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
-		sprite:Render(entityPos, nullVector, nullVector)
-	elseif EID.Config["Indicator"] == "highlight" then
-		sprite.Color = Color(1, 1, 1, 1, 255/repDiv, 255/repDiv, 255/repDiv)
-		sprite:Render(entityPos + Vector(0, 1), nullVector, nullVector)
-		sprite:Render(entityPos + Vector(0, -1), nullVector, nullVector)
-		sprite:Render(entityPos + Vector(1, 0), nullVector, nullVector)
-		sprite:Render(entityPos + Vector(-1, 0), nullVector, nullVector)
-		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
-		sprite:Render(entityPos, nullVector, nullVector)
 	elseif EID.Config["Indicator"] == "arrow" then
 		ArrowSprite:Update()
 		local ArrowOffset = Vector(0, -35)
@@ -442,12 +428,34 @@ function EID:renderIndicator(entity)
 			ArrowOffset = Vector(0, -62)
 		end
 		ArrowSprite:Render(Isaac.WorldToScreen(entity.Position + ArrowOffset), nullVector, nullVector)
+	else
+		if EID.Config["Indicator"] == "border" then
+			local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
+			sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
+		elseif EID.Config["Indicator"] == "highlight" then
+			sprite.Color = Color(1, 1, 1, 1, 255/repDiv, 255/repDiv, 255/repDiv)
+		end
+		EID:renderEntity(entity, sprite, entityPos + Vector(0, 1))
+		EID:renderEntity(entity, sprite, entityPos  +Vector(0, -1))
+		EID:renderEntity(entity, sprite, entityPos + Vector(1, 0))
+		EID:renderEntity(entity, sprite, entityPos + Vector(-1, 0))
+		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
+		EID:renderEntity(entity, sprite, entityPos)
 	end
 	if REPENTANCE then
 		if isMirrorRoom then
 			sprite.FlipX = false
 		end
 	end
+end
+
+function EID:renderEntity(entity, sprite, position)
+	if entity.Type == 5 and entity.Variant == 100 then
+		sprite:RenderLayer(1, position, nullVector, nullVector)
+	else
+		sprite:Render(position, nullVector, nullVector)
+	end
+
 end
 
 function EID:renderHUDLocationIndicators()
@@ -497,6 +505,20 @@ EID.hasValidWalkingpath = true
 
 function EID:onGameUpdate()
 	EID.player = Isaac.GetPlayer(0)
+	--Fix Overlapping Pedestals
+	local curPositions = {}
+	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+		local pos = entity.Position
+		for _, otherPos in ipairs(curPositions) do
+			if pos:Distance(otherPos[2]) == 0 then
+				entity.Position = entity.Position + Vector(1,0)
+				entity:GetData()["EID_RenderOffset"] = Vector(10,0)
+				otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
+			end
+		end
+		table.insert(curPositions, {entity, entity.Position})
+	end
+	
 	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"] then
 		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
 			if EID.pathCheckerEntity ~= nil then
@@ -520,24 +542,12 @@ function EID:onGameUpdate()
 		end
 	end
 	
-	--Fix Overlapping Pedestals
-	local curPositions = {}
-	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
-		local pos = entity.Position
-		for _, otherPos in ipairs(curPositions) do
-			if pos:Distance(otherPos) == 0 then
-				entity.Position = entity.Position + Vector(1,0)
-				break
-			end
-		end
-		table.insert(curPositions, entity.Position)
-	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
 local hasShownAchievementWarning = false
 local function renderAchievementInfo()
-	if REPENTANCE and game:GetFrameCount() < 10*30 then
+	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 and game.Challenge == 0 then
 		local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
 		if not hasBookOfRevelationsUnlocked then
 			local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
@@ -812,6 +822,7 @@ if EID.MCMLoaded or REPENTANCE then
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()
 		EID.itemUnlockStates[CollectibleType.COLLECTIBLE_CUBE_OF_MEAT] = nil
+		EID.itemUnlockStates[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS] = nil
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
 end
