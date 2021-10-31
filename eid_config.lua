@@ -62,6 +62,9 @@ EID.UserConfig = {
 	-- Toggle obstruction based hiding, when the player has flight
 	-- Default = true
 	["DisableObstructionOnFlight"] = true,
+	-- If set to true, the mod will no longer check if the save game has achievements unlocked
+	-- Default = false
+	["DisableAchievementCheck"] = false,
 	
 	-------------CURSE-------------
 
@@ -262,6 +265,7 @@ EID.DefaultConfig = {
 	["InitiallyHidden"] = false,
 	["HideInBattle"] = false,
 	["DisableObstructionOnFlight"] = true,
+	["DisableAchievementCheck"] = false,
 	["DisableOnCurse"] = true,
 	["DisableOnAltPath"] = true,
 	["DisableOnAprilFoolsChallenge"] = true,

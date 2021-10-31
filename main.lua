@@ -537,7 +537,7 @@ EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
 local hasShownAchievementWarning = false
 local function renderAchievementInfo()
-	if REPENTANCE and game:GetFrameCount() < 10*30 then
+	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 and game.Challenge == 0 then
 		local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
 		if not hasBookOfRevelationsUnlocked then
 			local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
@@ -812,6 +812,7 @@ if EID.MCMLoaded or REPENTANCE then
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()
 		EID.itemUnlockStates[CollectibleType.COLLECTIBLE_CUBE_OF_MEAT] = nil
+		EID.itemUnlockStates[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS] = nil
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
 end
