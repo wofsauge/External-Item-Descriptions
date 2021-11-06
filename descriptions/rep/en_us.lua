@@ -49,6 +49,7 @@ local repCollectibles={
 	[121] = {"121", "Odd Mushroom (Large)", "↑ +1 heart container#↑ +1 Damage up#↑ +0.38 Range up#↓ -0.2 Speed down"}, -- Odd Mushroom (Large)
 	[123] = {"123", "Monster Manual", "Spawns random familiar#Lasts for current floor"}, -- Monster Manual
 	[129] = {"129", "Bucket of Lard", "↑ +2 full red heart container#↓ -0.2 Speed down"}, -- Bucket of Lard
+	[135] = {"135", "IV Bag", "Portable blood bank#Half a heart = 1-2 Coin#1 coin on Hard Mode#0-1 coin as Keeper"}, --IV Bag
 	[138] = {"138", "Stigmata", "↑ +1 Health up#↑ +0.3 Damage up#Heals 1 red heart"}, -- Stigmata
 	[139] = {"139", "Mom's Purse", "You can now hold 2 trinkets#Spawns 1 random trinket"}, -- Mom's Purse
 	[140] = {"140", "Bob's Curse", "Poison bombs#+5 bombs#Bombs leave a poison cloud"}, -- Bob's Curse
@@ -420,7 +421,7 @@ EID.descriptions["en_us"].spindownError = "Item disappears"
 ---------- Trinkets ----------
 
 local repTrinkets={
-	[1] = {"1", "Swallowed Penny", "Spawns 1 coin when you get hit#0-1 if you play as Keeper"}, -- Swallowed Penny
+	[1] = {"1", "Swallowed Penny", "Spawns 1 coin when you get hit#0-1 as Keeper"}, -- Swallowed Penny
 	[10] = {"10", "Wiggle Worm", "Tears move in waves#↑ +0.4 Tears up#Grants spectral tears"}, -- Wiggle Worm
 	[11] = {"11", "Ring Worm", "Tears move in spirals with high speed#Grants spectral tears"}, -- Ring Worm
 	[15] = {"15", "Lucky Rock", "33% chance to drop a coin when destroying rocks"},-- Lucky Rock
