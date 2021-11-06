@@ -2,7 +2,7 @@
 -----  Basic English descriptions -----
 ---------------------------------------
 
--- Last Update: 30.10.2021
+-- Last Update: 05.11.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -56,7 +56,7 @@ local repCollectibles={
 	[148] = {"148", "Infestation", "Spawn 2-6 flies when you get hit"}, -- Infestation
 	[149] = {"149", "Ipecac", "Explosive poison tears#↑ +40 Damage up#↓ -0.2 Shot Speed down#↓ Tears down"}, -- Ipecac
 	[152] = {"152", "Technology 2", "Permanent laser attack!#Laser deals 13% of your damage#↓ Tears down by 33%"}, -- Technology 2
-	[155] = {"155", "The Peeper", "Floats around the room#Deals 17.1 contact damage per second#Tears shot from Isaac's left eye deal 34% more damage"}, -- The Peeper
+	[155] = {"155", "The Peeper", "Floats around the room#Deals 17.1 contact damage per second#↑ Tears shot from Isaac's left eye deal 34% more damage"}, -- The Peeper
 	[158] = {"158", "Crystal Ball", "Reveal full map#Drops random Card or Soul Heart#While held:#↑ +15% Planetarium chance#100% if a Treasure Room was skipped"}, -- Crystal Ball
 	[171] = {"171", "Spider Butt", "Slows down enemies for 4 seconds#10 Damage to all enemies#Enemies killed with it spawn blue spiders"}, -- Spider Butt
 	[172] = {"172", "Sacrificial Dagger", "Orbital knife#Blocks enemy shots#Deals 112.5 damage per second"}, -- Sacrificial Dagger
@@ -84,7 +84,7 @@ local repCollectibles={
 	[248] = {"248", "Hive Mind", "Blue Spiders/flies deal double damage#Spider/fly based familiars become stronger"}, -- Hive Mind
 	[253] = {"253", "Magic Scab", "↑ +1 Luck up#↑ +1 Health up#Heals 1 red heart"}, -- Magic Scab
 	[254] = {"254", "Blood Clot", "↑ +1 Damage up#↑ +1.5 Range up#!!! Applies only for the left eye"}, -- Blood Clot
-	[256] = {"256", "Hot Bombs", "Burning bombs#+5 Bombs##You can no longer take fire damage#Bombs deal contact damage"}, -- Hot Bombs
+	[256] = {"256", "Hot Bombs", "Burning bombs#+5 Bombs#You can no longer take fire damage#Bombs deal contact damage"}, -- Hot Bombs
 	[261] = {"261", "Proptosis", "↑ +0.5 Damage up#↓ Dealt damage decreases the longer the tear stays airborne#300% Damage at point blank range"}, -- Proptosis
 	[262] = {"262", "Missing Page 2", "+1 Black Heart#When down to 1 Heart, damages all enemies in the room#Black Hearts and Necronomicon effects deal double damage"}, -- Missing Page 2
 	[263] = {"263", "Clear Rune", "Copies the effects of held rune or soul stone#Drops 1 random rune on pickup"}, -- Clear Rune   (REPENTANCE ITEM)
@@ -136,7 +136,7 @@ local repCollectibles={
 	[382] = {"382", "Friendly Ball", "Can be thrown at enemies to capture them#Next usage will respawn the same enemy as a friendly companion#Walking over the ball after capture will instantly recharge the item"}, -- Friendly Ball
 	[384] = {"384", "Lil Gurdy", "Will launch and slide around the room#Deals 5-20 contact damage per hit depending on charge duration"}, -- Lil Gurdy
 	[389] = {"389", "Rune Bag", "Drops a random rune every 7-8 rooms#Can also drop Soul Stones"}, -- Rune Bag
-	[393] = {"393", "Serpent`s Kiss", "Random chance to shoot poison tears#Poison enemies on contact#Enemies killed with contact poison have a 20% chance to drop a Black Heart"}, -- Serpent`s Kiss
+	[393] = {"393", "Serpent's Kiss", "Random chance to shoot poison tears#Poison enemies on contact#Enemies killed with contact poison have a 20% chance to drop a Black Heart"}, -- Serpent's Kiss
 	[394] = {"394", "Marked", "Fire tears automatically directed at a red target on the ground which is controlled by the player#↑ +0.7 Tears up#↑ +3 Range up#↑ +0.3 Tear Height#Familiars shoot towards the target"}, -- Marked
 	[395] = {"395", "Tech X", "Gain the ability to charge and fire a laser ring that travels across the room#Damage based on the charge progress#100% damage on full charge"}, -- Tech X
 	[397] = {"397", "Tractor Beam", "Isaac's tears now travel directly forwards following a beam of light, but will also move sideways based on your player movement#↑ +0.5 Tears up#↑ +1.5 Range up#↑ +0.16 Shot Speed up#↑ +0.5 Tear Height"},
@@ -178,7 +178,7 @@ local repCollectibles={
 	[543] = {"543", "Hallowed Ground", "Spawn white poop when you get hit#(White poop has a ↑ Tears and Damage up aura, grants homing tears and can block damage)"}, -- Hallowed Ground
 	[553] = {"553", "Mucormycosis", "Chance to fire sticky spore tears#Spores blow up after 2.5 seconds, dealing damage, poison nearby enemies and releases more spores"}, --  Mucormycosis
 	[554] = {"554", "2Spooky", "Fears enemies in a small radius around you"}, --  2Spooky
-	[555] = {"555", "Golden Razor", "Converts 5 coins into +1.2 Damage up for the current room#Spawns 5 coins on pickup"}, --  Golden Razor
+	[555] = {"555", "Golden Razor", "Converts 5 coins into +1.2 Damage up for the current room#Gain 5 coins on pickup"}, --  Golden Razor
 	[556] = {"556", "Sulfur", "Grants {{Collectible118}} Brimstone for the current room"}, --  Sulfur
 	[557] = {"557", "Fortune Cookie", "Gives Isaac a fortune, Soul Heart, tarot card, or trinket"}, --  Fortune Cookie
 	[558] = {"558", "Eye Sore", "Chance to fire 1-2 extra tears in random directions"}, --  Eye Sore
@@ -199,8 +199,8 @@ local repCollectibles={
 	[573] = {"573", "Immaculate Heart", "+1 Red Heart container#↑ +20% Damage up#Full health#Chance to fire orbiting spectral tears"}, --  Immaculate Heart
 	[574] = {"574", "Monstrance", "Gain two circular auras that damage enemies#The inner aura deals more damage"}, --  Monstrance
 	[575] = {"575", "The Intruder", "A familiar buried inside your head, firing 4 slowing tears#Upon taking damage, can exit the head"}, --  The Intruder
-	[576] = {"576", "Dirty Mind", "Destroying poop spawns 1-4 friendly Dips#Dip type depends on the poop type"}, --  Dirty Mind
-	[577] = {"577", "Damocles", "{{Warning}} ONE TIME USAGE {{Warning}}#Spawns a sword above your head, which doubles all item pedestals and Beggar rewards#Kills you at a random time when taking damage from an enemy after you used the item"}, --  Damocles
+	[576] = {"576", "Dirty Mind", "All Dip (small poop) enemies are friendly#Destroying poop spawns 1-4 Dips#Dip type depends on the poop type#Rocks may be replaced with poops"}, --  Dirty Mind
+	[577] = {"577", "Damocles", "{{Warning}} ONE TIME USAGE {{Warning}}#Spawns a sword above your head, which doubles all item pedestals#Does not double Shop, Chest, or Devil deal items#!!! Kills you at a random time after taking damage from an enemy"}, --  Damocles
 	[578] = {"578", "Free Lemonade", "Creates a large pool of yellow creep"}, --  Free Lemonade
 	[579] = {"579", "Spirit Sword", "Instead of tears, Isaac swings a sword#Deals 3x your damage#Does a spin attack + projectile shot on charge up#Fire projectiles with normal swings on full health"}, --  Spirit Sword
 	[580] = {"580", "Red Key", "Creates a new room adjacent to a viable wall, indicated by a door outline of a door#Rooms can be special rooms# A room outside the 13x13 floor map will teleport you to the I AM ERROR room"}, --  Red Key
@@ -216,23 +216,23 @@ local repCollectibles={
 	[590] = {"590", "Mercurius", "↑ +0.4 Speed up#Doors stay open after entering a room"}, --  Mercurius
 	[591] = {"591", "Venus", "+1 red Heart container#Heals one heart#Close enemies become charmed"}, --  Venus
 	[592] = {"592", "Terra", "↑ +1 Damage up#Replaces tears with rocks#They deal variable damage#Can destroy obstacles#Increased knockback"}, --  Terra
-	[593] = {"593", "Mars", "Dash by double-tapping the movement key#Becoming invulnerable and dealing 4x your damage#3 seconds cooldown"}, --  Mars
-	[594] = {"594", "Jupiter", "+2 empty red Heart containers#↓ -0.3 Speed down#Heals half a heart#Build up Speed while standing still for up to +0.5 Speed#Release a poisoning gas cloud when moving again"}, --  Jupiter
+	[593] = {"593", "Mars", "Dash by double-tapping a movement key, becoming invincible and dealing 4x your damage#3 seconds cooldown"}, --  Mars
+	[594] = {"594", "Jupiter", "+2 empty red Heart containers#Heals half a heart#↓ -0.3 Speed down#Build up Speed while standing still for up to +0.5 Speed#Release a poison gas cloud when moving again"}, --  Jupiter
 	[595] = {"595", "Saturnus", "A circle surrounds you#Upon entering a room, 7 tears will orbit in it#Chance to catch enemy projectiles in orbit"}, --  Saturnus
 	[596] = {"596", "Uranus", "Shoot ice tears, which slow enemies and freeze monsters they kill#Touching frozen enemies slide away and explode into 6 ice shards"}, --  Uranus
-	[597] = {"597", "Neptunus", "Builds a massive tears bonus over 3 seconds while not firing##Shooting again will release stored tears#The tear bonus falls off as you fire"}, --  Neptunus
+	[597] = {"597", "Neptunus", "Builds a massive tears bonus over 3 seconds while not firing#Shooting again will release stored tears#The tear bonus falls off as you fire"}, --  Neptunus
 	[598] = {"598", "Pluto", "↑ +0.7 Tears up#Significantly shrinks Isaac, allowing him to squeeze between objects#Projectiles can pass over him"}, --  Pluto
-	[599] = {"599", "Voodoo Head", "Spawns an additional {{CursedRoom}}Curse Room  each floor"}, --  Voodoo Head
+	[599] = {"599", "Voodoo Head", "Spawns an additional {{CursedRoom}}Curse Room each floor"}, --  Voodoo Head
 	[600] = {"600", "Eye Drops", "↑ Decreases tear delay in your left eye by 28%"}, --  Eye Drops
 	[601] = {"601", "Act of Contrition", "↑ 0.7 Tears up#+1 Eternal Heart#Allows Angel Rooms to appear even if a Devil deal has been taken before"}, --  Act of Contrition
 	[602] = {"602", "Member Card", "Adds a trapdoor to every shop that leads to a second shop with a unique stock"}, --  Member Card
 	[603] = {"603", "Battery Pack", "Spawns 2-4 batteries#Fully recharges your active item"}, --  Battery Pack
 	[604] = {"604", "Mom's Bracelet", "Allows picking up and throwing rocks, TNT, poops, Hosts, and other obstacles#Allows carrying them between rooms"}, --  Mom's Bracelet
-	[605] = {"605", "The Scooper", "Summons a Peeper familiar for the current room, which leaves a trail of red creep#Tears shot from the right eye will deal 34% more damage"}, --  The Scooper
+	[605] = {"605", "The Scooper", "Summons a Peeper familiar for the current room, which leaves a trail of red creep#↑ Tears shot from the right eye will deal 34% more damage"}, --  The Scooper
 	[606] = {"606", "Ocular Rift", "Chance to fire tears that create rifts where they land#Pulls in nearby enemies, pickups, and projectiles"}, --  Ocular Rift
 	[607] = {"607", "Boiled Baby", "Familiar that fires chaotic bursts of tears in all directions#Deals 3.5 or 5.3 damage per tear"}, --  Boiled Baby
 	[608] = {"608", "Freezer Baby", "Familiar that shoots petrifying tears#Freezes monsters upon killing them"}, --  Freezer Baby
-	[609] = {"609", "Eternal D6", "Rerolls all items in the room#Items have a chance to disappear"}, --  Eternal D6
+	[609] = {"609", "Eternal D6", "Rerolls pedestals in current room#Items have a 30% chance to disappear"}, --  Eternal D6
 	[610] = {"610", "Bird Cage", "Familiar that leaps on an enemy on the first hit in the room#Deals 45 damage and releasing a rock wave#Chases enemies afterwards"}, --  Bird Cage
 	[611] = {"611", "Larynx", "Makes you shout, damaging and pushing nearby enemies#Shout gets stronger the more charges the item has"}, --  Larynx
 	[612] = {"612", "Lost Soul", "Soul familiar that dies in one hit, respawning at the start of the next floor#If it survives an entire floor, it spawns 3 Soul Hearts, 2 Eternal Hearts, or an item"}, --  Lost Soul
@@ -248,7 +248,7 @@ local repCollectibles={
 	[622] = {"622", "Genesis", "{{Warning}} ONE TIME USAGE {{Warning}}#Removes all of Isaac's items and pickups#Teleports you to a unique bedroom with pickups, chests and a trapdoor#For every item lost, it shows a set of 3 items to choose from"}, --  Genesis
 	[623] = {"623", "Sharp Key", "+5 keys#Throw your key to deal damage, destroy obstacles, or open doors#Enemies killed with it have a chance to spawn the content of a chest, including items"}, --  Sharp Key
 	[624] = {"624", "Booster Pack", "Spawns 5 random cards"}, --  Booster Pack
-	[625] = {"625", "Mega Mush", "Gigantifies you for 30 seconds#Increases damage and range#Grants invulnerability and ability to crush enemies and obstacles#Effect persists between rooms"}, --  Mega Mush
+	[625] = {"625", "Mega Mush", "Gigantifies you for 30 seconds#Increases damage and range#Grants invincibility and ability to crush enemies and obstacles#Effect persists between rooms"}, --  Mega Mush
 	[626] = {"626", "Knife Piece 1", "First part of the knife familiar"}, --  Knife Piece 1
 	[627] = {"627", "Knife Piece 2", "Makes knife familiar with {{Collectible627}} Knife Piece 1#Damages enemies#Can open a certain flesh door"}, --  Knife Piece 2
 	[628] = {"628", "Death Certificate", "{{Warning}} ONE TIME USAGE {{Warning}}#Takes you to a floor containing every item in the game#After taking an item, return to the room you came from"}, --  Death Certificate
@@ -283,7 +283,7 @@ local repCollectibles={
 	[657] = {"657", "Vasculitis", "Enemies explode into tears upon death, which inherit the effects of Isaac's tears"}, --  Vasculitis
 	[658] = {"658", "Giant Cell", "Spawn micro-Isaacs when taking damage#They chase and shoot at nearby enemies"}, --  Giant Cell
 	[659] = {"659", "Tropicamide", "↑ +1.5 Range up#Increases tear size"}, --  Tropicamide
-	[660] = {"660", "Card Reading", "Spawns two portals at the beginning of each floor#Portals disappear when leaving the room#{{ColorRed}}Red: {{CR}}{{BossRoom}}Boss Room#{{ColorYellow}}Yellow: {{CR}}{{TreasureRoom}}Item Room#{{ColorBlue}}Blue: {{CR}}{{SecretRoom}}Secret Room"}, --  Card Reading
+	[660] = {"660", "Card Reading", "Spawns two portals at the start of each floor#Portals disappear when leaving the room#{{ColorRed}}Red: {{CR}}{{BossRoom}}Boss Room#{{ColorYellow}}Yellow: {{CR}}{{TreasureRoom}}Item Room#{{ColorBlue}}Blue: {{CR}}{{SecretRoom}}Secret Room"}, --  Card Reading
 	[661] = {"661", "Quints", "Spawns a stationary shooting familiar at the location where an enemy died#Up to 5 familiars"}, --  Quints
 	[662] = {"662", "Pacifist (Cut item)", "<Item does not exist>"}, -- Pacifist (Cut item)
 	[663] = {"663", "Tooth and Nail", "Turn invincible every 6 seconds for 1 second#Flashes right before transition"}, --  Tooth and Nail
@@ -298,7 +298,7 @@ local repCollectibles={
 	[672] = {"672", "A Pound of Flesh", "Devil deals now cost coins#Shop items now cost health#Consumables in shops are free but surrounded by spikes"}, --  A Pound of Flesh
 	[673] = {"673", "Redemption", "Grants 1 Soul Heart and +1 damage when entering a {{DevilRoom}}Devil Room and not taking any item/pickup"}, --  Redemption
 	[674] = {"674", "Spirit Shackles", "On death, Isaac's ghost is chained to his dead body and he can continue to fight with half a heart#Return to life after 10 seconds#Must be recharged by picking up a Soul Heart"}, --  Spirit Shackles
-	[675] = {"675", "Cracked Orb", "When taking damage, reveals random room on floor#Also unlocks doors that require keys#Can open Mega Satan door#Can reveal ultra secret room"}, --  Cracked Orb
+	[675] = {"675", "Cracked Orb", "When taking damage, reveals random room on floor#Also unlocks doors that require keys#Can open Mega Satan door#Can reveal Ultra Secret Room"}, --  Cracked Orb
 	[676] = {"676", "Empty Heart", "When having an empty heart container at the start of a new floor, grants another one#Bone Hearts dont count"}, --  Empty Heart
 	[677] = {"677", "Astral Projection", "When getting hit, stops time for 3 seconds#Isaac becomes a ghost and leaves his body#In ghost form gain flight, spectral tears and also negate next hit taken"}, --  Astral Projection
 	[678] = {"678", "C Section", "!!! Currently non-functional!#Launch a baby attached via umbilical cord#Deals 3x contact damage#Baby shoots tears and walks when fire button is held#Returns when button is released"}, --  C Section
@@ -307,7 +307,7 @@ local repCollectibles={
 	[681] = {"681", "Lil Portal", "Deals contact damage and flies forward#Consumes pickups in its path#Each one will increase its size, damage, and spawn a Blue Fly#Every four pickups, it spawns a portal to an unexplored room"}, --  Lil Portal
 	[682] = {"682", "Worm Friend", "Causes a tentacle to burst out of the ground#Can hold an enemy and deal damage"}, --  Worm Friend
 	[683] = {"683", "Bone Spurs", "Enemies spawn floating bones on death#Bones block projectiles and deal contact damage"}, --  Bone Spurs
-	[684] = {"684", "Hungry Soul", "Chance to spawn ghosts when killing an enemy#Ghosts chase enemies and deal contact damage#After 5 seconds, the ghost explodes, dealing 7 damage to nearby enemies#You don’t take damage from the explosion"}, --  Hungry Soul
+	[684] = {"684", "Hungry Soul", "Chance to spawn ghosts when killing an enemy#Ghosts chase enemies and deal contact damage#After 5 seconds, the ghost explodes, dealing 7 damage to nearby enemies#You don't take damage from the explosion"}, --  Hungry Soul
 	[685] = {"685", "Jar of Wisps", "Spawns random wisps that shoot various tears, block shots, and deal contact damage#Number of wisps spawned increases the more it's used"}, --  Jar of Wisps
 	[686] = {"686", "Soul Locket", "Grants a permanent stat boost whenever you pick up a Soul Heart#Spawns a Soul Heart on pickup"}, --  Soul Locket
 	[687] = {"687", "Friend Finder", "Spawns a random friendly monster that mimics Isaac's movements and attacks"}, --  Friend Finder
@@ -427,7 +427,7 @@ local repTrinkets={
 	[24] = {"24", "Butt Penny", "Fart when picking up coins#Higher chance for coins to spawn from poop#Farts poison and knockback enemies and projectiles"}, -- Butt Penny
 	[26] = {"26", "Hook Worm", "Tears move in angular patterns#↑ +1.5 Range#Grants spectral tears"}, -- Hook Worm
 	[32] = {"32", "Liberty Cap", "Random mushroom effect per room"}, -- Liberty Cap
-	[33] = {"33", "Umbilical Cord", "When entering a room with half a red heart or less, you get little Steven#High Chance to spawn a Gemini familar when taking damage"}, -- Umbilical Cord
+	[33] = {"33", "Umbilical Cord", "At half a Red Heart or less, you gain#{{Blank}} {{Collectible100}} Little Steven#High chance to spawn Gemini familiars for the room when taking damage"}, -- Umbilical Cord
 	[48] = {"48", "A Missing Page", "When getting hit, chance to damage all enemies in the room#Black Hearts and {{Collectible35}}Necronomicon-like effects deal double damage"}, -- A Missing Page
 	[49] = {"49", "Bloody Penny", "25% chance to drop half a heart when picking up coins"}, -- Bloody Penny
 	[50] = {"50", "Burnt Penny", "25% chance to drop a bomb when picking up coins"}, -- Burnt Penny
@@ -473,7 +473,7 @@ local repTrinkets={
 	[156] = {"156", "Mother's Kiss", "Grants one heart container#Works for Keeper, too"}, --  Mother's Kiss
 	[157] = {"157", "Torn Card", "Every 15 shots, shoot an {{Collectible149}}Ipecac+{{Collectible5}}Reflection tear with a very high range value"}, --  Torn Card
 	[158] = {"158", "Torn Pocket", "Upon hit, Isaac drops 2 of his coins, keys or bombs#The pickups can be replaced with other variants, such as golden keys, nickels, dimes, etc."}, --  Torn Pocket
-	[159] = {"159", "Gilded Key", "+1 key#Replaces all new chests, with Locked Chest#All Locked Chests can also contain extra cards, pills or trinkets#Exception: Mega Chest, old Chest"}, --  Gilded Key
+	[159] = {"159", "Gilded Key", "+1 key#Replaces all chests (except Old/Mega) with Golden Chests#Golden Chests can contain extra cards, pills or trinkets"}, --  Gilded Key
 	[160] = {"160", "Lucky Sack", "Spawns a Grab Bag upon traveling to the next floor"}, --  Lucky Sack
 	[161] = {"161", "Wicked Crown", "Spawns a {{TreasureRoom}}Treasure Room and {{Shop}}Shop in Sheol"}, --  Wicked Crown
 	[162] = {"162", "Azazel's Stump", "Chance to turn into Azazel when entering a new room"}, --  Azazel's Stump
@@ -532,7 +532,7 @@ EID.descriptions["en_us"].tarotClothBuffs = {
 	[59] = {"59", "", "Grants 3 temporary heart containers"}, -- III - The Empress?
 	[61] = {"61", "", "Spawns 6 Bone Hearts"}, -- V - The Hierophant?
 	[62] = {"62", "", "Adds 4 broken hearts and spawns 4 items"}, -- VI - The Lovers?
-	[64] = {"64", "", "Spawns 4-14 golden chests"}, -- VIII - Justice?
+	[64] = {"64", "", "Spawns 4-14 Golden Chests"}, -- VIII - Justice?
 	[70] = {"70", "", "Eat 20 pills"}, -- XIV - Temperance?
 	[72] = {"72", "", "Spawns 14 rock clusters"}, -- XVI - The Tower?
 	[73] = {"73", "", "Removes 2 items and spawns 4"}, -- XVII - The Stars?
@@ -552,13 +552,13 @@ local repCards={
 	[55] = {"55", "Rune Shard", "Activates a random rune effect#The rune effect is weaker"}, -- Rune Shard
 	[56] = {"56", "0 - The Fool?", "Drops all your hearts and pickups on the floor#Only half a heart left afterwards#Coins and bombs are dropped efficiently, spawning {{Collectible74}}/{{Collectible19}} pedestals if possible"}, -- 0 - The Fool?
 	[57] = {"57", "I - The Magician?", "Grants big projectile and enemy repelling aura#Duration 1 minute"}, -- I - The Magician?
-	[58] = {"58", "II - The High Priestess?", "Mom's foot stomps down repeatedly for 1 minute"}, -- II - The High Priestess?
+	[58] = {"58", "II - The High Priestess?", "Mom's Foot stomps down repeatedly for 1 minute"}, -- II - The High Priestess?
 	[59] = {"59", "III - The Empress?", "Grants for 1 minute:#↑ +2 red hearts#↑ +1.35 Tears up"}, -- III - The Empress?
 	[60] = {"60", "IV - The Emperor?", "Teleports you to an extra Boss room with extra loot#The boss is chosen from two floors deeper than the current one"}, -- IV - The Emperor?
 	[61] = {"61", "V - The Hierophant?", "Spawns 2 Bone Hearts"}, -- V - The Hierophant?
 	[62] = {"62", "VI - The Lovers?", "Spawns 1 item from current room's item pool#Turns 1 Red Heart Container or 2 Soul Hearts into a broken heart"}, -- VI - The Lovers?
 	[63] = {"63", "VII - The Chariot?", "Turn into invincible immobile statue for 10 seconds#Extreme fire rate for duration"}, -- VII - The Chariot?
-	[64] = {"64", "VIII - Justice?", "Spawns 2-4 golden chests"}, -- VIII - Justice?
+	[64] = {"64", "VIII - Justice?", "Spawns 2-4 Golden Chests"}, -- VIII - Justice?
 	[65] = {"65", "IX - The Hermit?", "Turns pickups and items in the room into coins#Coin values are equal to their shop value"}, -- IX - The Hermit?
 	[66] = {"66", "X - Wheel of Fortune?", "Random dice room effect"}, -- X - Wheel of Fortune?
 	[67] = {"67", "XI - Strength?", "Enemies in room are weakened, slowed and take double damage"}, -- XI - Strength?
@@ -568,7 +568,7 @@ local repCards={
 	[71] = {"71", "XV - The Devil?", "Invokes {{Collectible33}} The Bible effect#Grants {{Collectible390}} Seraphim for 30 seconds"}, -- XV - The Devil?
 	[72] = {"72", "XVI - The Tower?", "Spawns 6 clusters of random rocks and obstacles#Clusters will often contain Tinted Rocks"}, -- XVI - The Tower?
 	[73] = {"73", "XVII - The Stars?", "Removes oldest passive item#Spawns 2 random items from current room's item pool"}, -- XVII - The Stars?
-	[74] = {"74", "XVIII - The Moon?", "Teleports you to Ultra secret room#Pathway back will be made of red rooms"}, -- XVIII - The Moon?
+	[74] = {"74", "XVIII - The Moon?", "Teleports you to Ultra Secret Room#Pathway back will be made of red rooms"}, -- XVIII - The Moon?
 	[75] = {"75", "XIX - The Sun?", "For the current floor:#↑ Gain {{Collectible159}} Spirit of the Night#↑ +1.5 Damage up#Turns your Red Hearts into Bone Hearts#Applies Curse of Darkness"}, -- XIX - The Sun?
 	[76] = {"76", "XX - Judgement?", "Spawns a Restock Machine"}, -- XX - Judgement?
 	[77] = {"77", "XXI - The World?", "Spawns a trap door to a crawl space"}, -- XXI - The World?
@@ -648,7 +648,7 @@ EID.descriptions["en_us"].horsepills={
 	{"33", "One makes you small", "You get a lot smaller#Your hitbox gets smaller"}, -- One makes you small
 	{"34", "Infested!", "Spawn 2 blue spiders per poop in room"}, -- Infested!
 	{"35", "Infested?", "Spawn 2 blue spiders per enemy in room#Spawns 2-6 blue spiders when no enemy is in the room"}, -- Infested?
-	{"36", "Power Pill!", "Short invincibility effect#↑ #7 Damage up#↑ +3 Range up# persists for current room"}, -- Power Pill!
+	{"36", "Power Pill!", "Short invincibility effect#↑ #7 Damage up#↑ +3 Range up#Persists for current room"}, -- Power Pill!
 	{"37", "Retro Vision", "Pixelates the screen for 90 seconds"}, -- Retro Vision
 	{"38", "Friends Till The End!", "Spawns 6 blue flies"}, -- Friends Till The End!
 	{"39", "X-Lax", "Spawn pool of long lasting slippery creep"}, -- X-Lax
@@ -657,7 +657,7 @@ EID.descriptions["en_us"].horsepills={
 	{"42", "I'm Excited!!!", "Speed up for all enemies in room"}, --I'm Excited!!!
 	{"43", "Gulp!", "Consume current trinket and gain its effect permanently"}, -- Gulp!
 	{"44", "Horf!", "Shoots a cluster of ipecac tears"}, -- Horf!
-	{"45", "Feels like I'm walking on sunshine!", "Short invincibility#Fears all enemies# Two eaten enemies replenish half a heart"}, -- Feels like I'm walking on sunshine!
+	{"45", "Feels like I'm walking on sunshine!", "Short invincibility#Fears all enemies#Deal 40 contact damage#Two eaten enemies replenish half a heart"}, -- Feels like I'm walking on sunshine!
 	{"46", "Vurp!", "Spawns last used pill as a horse pill"}, -- Vurp!
 	{"47", "Shot Speed Down", "↓ -0.3 Shot Speed down"}, -- Shot Speed Down
 	{"48", "Shot Speed Up", "↑ +0.3 Shot Speed up"}, -- Shot Speed Up
