@@ -584,7 +584,7 @@ EID.descriptions["en_us"].trinkets={
 	{"13", "Store Credit", "One shop item for free"},
 	{"14", "Callus", "Prevents damage from creep and spikes"},
 	{"15", "Lucky Rock", "Destroying rocks spawns coins"},
-	{"16", "Mom's Toenail", "Mom's foot stomps enemies every 60 seconds"},
+	{"16", "Mom's Toenail", "Mom's Foot stomps enemies every 60 seconds"},
 	{"17", "Black Lipstick", "More Black Hearts appear"},
 	{"18", "Bible Tract", "More Eternal Hearts appear"},
 	{"19", "Paper Clip", "Unlock chests without using keys"},
