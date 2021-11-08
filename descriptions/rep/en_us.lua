@@ -381,7 +381,7 @@ EID.descriptions["en_us"].birthright ={
 	{"Bethany", "", "Activating an item using soul charges is sometimes free"},
 	{"Jacob", "", "The character who picks up the item gains copies of three of the other character's passive items"},
 	{"Esau", "", "The character who picks up the item gains copies of three of the other character's passive items"},
-	{"Tainted Isaac", "", "Adds 4 more slots for passive items"},
+	{"Tainted Isaac", "", "Adds 4 more slots for passive items#Does not consume a slot itself"},
 	{"Tainted Magdalene", "", "Adds 1 more red heart that doesn't drain"},
 	{"Tainted Cain", "", "The amount of pickups spawned from collecting an item is doubled"},
 	{"Tainted Judas", "", "<No effect yet>"},
