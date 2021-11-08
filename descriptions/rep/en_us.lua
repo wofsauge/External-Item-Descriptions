@@ -39,6 +39,7 @@ local repCollectibles={
 	[71] = {"71", "Mini Mush", "↑ +0.3 Speed up#↑ +1.5 Range up#↑ Size down"}, -- Mini Mush
 	[72] = {"72", "Rosary", "+3 Soul Hearts#↑ 0.5 Tears up#Bible is more common"}, -- Rosary
 	[77] = {"77", "My Little Unicorn", "Invincibility#20 contact damage"}, -- My Little Unicorn
+	[78] = {"78", "Book of Revelations", "+1 Soul Heart#A Horseman replaces the boss if used#↑ +17.5% Devil or Angel Room chance"}, -- Book of Revelations
 	[79] = {"79", "The Mark", "↑ +1 Damage up#↑ +0.2 Speed up#+1 Black Heart"}, -- The Mark
 	[80] = {"80", "The Pact", "↑ +0.5 Damage up#↑ +0.7 Tears up#+2 Black Hearts"}, -- The Pact
 	[83] = {"83", "The Nail", "+ Half Black Heart#↑ +2 Damage up#↓ -0.18 Speed down#Deal contact Damage#Crush rocks"}, -- The Nail
