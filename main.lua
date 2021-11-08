@@ -495,6 +495,15 @@ function EID:handleHoverHUD()
 	return nil
 end
 
+function EID:setPlayer()
+	local p = Isaac.GetPlayer(0)
+	if p.SubType == PlayerType.PLAYER_THEFORGOTTEN_B then
+		EID.player = p:GetOtherTwin()
+	else
+		EID.player = p
+	end
+end
+
 ---------------------------------------------------------------------------
 ---------------------------On Update Function------------------------------
 
@@ -504,7 +513,7 @@ EID.pathCheckerEntity = nil
 EID.hasValidWalkingpath = true
 
 function EID:onGameUpdate()
-	EID.player = Isaac.GetPlayer(0)
+	EID:setPlayer()
 	--Fix Overlapping Pedestals
 	local curPositions = {}
 	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
@@ -581,7 +590,7 @@ local function onRender(t)
 	EID:renderMCMDummyDescription()
 	renderAchievementInfo()
 
-	EID.player = Isaac.GetPlayer(0)
+	EID:setPlayer()
 	if EID.GameVersion == "ab+" then
 		if EID.player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
 			EID:addTextPosModifier("Schoolbag", Vector(0,30))
