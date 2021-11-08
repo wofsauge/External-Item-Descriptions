@@ -84,7 +84,7 @@ EID.descriptions["en_us"].collectibles={
 	{"69", "Chocolate Milk", "Chargeable tears#↑ up to 400% Damage#↓ Tears down"},
 	{"70", "Growth Hormones", "↑ +1 Damage up#↑ +0.4 Speed up"},
 	{"71", "Mini Mush", "↑ +0.3 Speed up#↓ -4.25 Range down*#↑ +1.5 Tear Height*#(*both add up to a slight Range up)#↑ Size down"},
-	{"72", "Rosary", "+3 Soul Hearts##{{Collectible33}}The Bible is added to all item pools"},
+	{"72", "Rosary", "+3 Soul Hearts#{{Collectible33}} The Bible is added to all item pools"},
 	{"73", "Cube of Meat", "LVL1: Orbital#LVL2: Shooting orbital#LVL3: Meat Boy LVL1#LVL4: Meat Boy LVL2"},
 	{"74", "A Quarter", "+25 coins"},
 	{"75", "PHD", "Better pills# +1 pill#Heals 2 hearts#More money from Blood Donation Machines"},
