@@ -37,8 +37,9 @@ local repCollectibles={
 	[67] = {"67", "Sister Maggy", "Normal tear familiar#Deals 6 Damage per tear"}, -- Sister Maggy
 	[70] = {"70", "Growth Hormones", "↑ +1 Damage up#↑ +0.2 Speed up"}, -- Growth Hormones
 	[71] = {"71", "Mini Mush", "↑ +0.3 Speed up#↑ +1.5 Range up#↑ Size down"}, -- Mini Mush
-	[72] = {"72", "Rosary", "+3 Soul Hearts#↑ 0.5 Tears up#Bible is more common"}, -- Rosary
+	[72] = {"72", "Rosary", "+3 Soul Hearts#↑ 0.5 Tears up#{{Collectible33}} The Bible is added to all item pools"}, -- Rosary
 	[77] = {"77", "My Little Unicorn", "Invincibility#20 contact damage"}, -- My Little Unicorn
+	[78] = {"78", "Book of Revelations", "+1 Soul Heart#A Horseman replaces the boss if used#↑ +17.5% Devil or Angel Room chance"}, -- Book of Revelations
 	[79] = {"79", "The Mark", "↑ +1 Damage up#↑ +0.2 Speed up#+1 Black Heart"}, -- The Mark
 	[80] = {"80", "The Pact", "↑ +0.5 Damage up#↑ +0.7 Tears up#+2 Black Hearts"}, -- The Pact
 	[83] = {"83", "The Nail", "+ Half Black Heart#↑ +2 Damage up#↓ -0.18 Speed down#Deal contact Damage#Crush rocks"}, -- The Nail
@@ -266,7 +267,7 @@ local repCollectibles={
 	[639] = {"639", "Yuck Heart", "Grants a Rotten Heart upon use"}, --  Yuck Heart
 	[640] = {"640", "Urn of Souls", "Spews a stream of flames#Gains charges each time an enemy dies"}, --  Urn of Souls
 	[641] = {"641", "Akeldama", "Creates a chain of tears behind you while in combat#The tears deal 3.5 damage"}, --  Akeldama
-	[642] = {"642", "Magic Skin", "Consumes 1 Heart Container or 2 Soul Hearts to spawn an item of the current item pool#Also grants a broken heart container that can never be filled#{{Warning}} Single Use item for The Lost#The more times the item is used, the higher the chance it replaces future item spawns if you dont hold the item anymore"}, --  Magic Skin
+	[642] = {"642", "Magic Skin", "Consumes 1 Heart Container or 2 Soul Hearts and replaces them with a Broken Heart#Spawns an item from the current room's item pool#{{Warning}} Single use item for The Lost#The more times it's used, the higher the chance it replaces future items if Isaac isn't holding it"}, --  Magic Skin
 	[643] = {"643", "Revelation", "Grants flight and 2 Soul Hearts#Shooting for 2.5 seconds will fire a holy laser when fire button is released"}, --  Revelation
 	[644] = {"644", "Consolation Prize", "Increases your lowest stat#Drops either 3 coins, 1 bomb, or 1 key depending on what you have the least of"}, --  Consolation Prize
 	[645] = {"645", "Tinytoma", "Teratoma orbital#Blocks shots#Deals contact damage#Splits into smaller versions of itself upon taking 3 hits#The smaller versions break into blue spiders#Respawns 5 seconds after it's fully gone"}, --  Tinytoma
@@ -300,7 +301,7 @@ local repCollectibles={
 	[673] = {"673", "Redemption", "Grants 1 Soul Heart and +1 damage when entering a {{DevilRoom}}Devil Room and not taking any item/pickup"}, --  Redemption
 	[674] = {"674", "Spirit Shackles", "On death, Isaac's ghost is chained to his dead body and he can continue to fight with half a heart#Return to life after 10 seconds#Must be recharged by picking up a Soul Heart"}, --  Spirit Shackles
 	[675] = {"675", "Cracked Orb", "When taking damage, reveals random room on floor#Also unlocks doors that require keys#Can open Mega Satan door#Can reveal Ultra Secret Room"}, --  Cracked Orb
-	[676] = {"676", "Empty Heart", "When having an empty heart container at the start of a new floor, grants another one#Bone Hearts dont count"}, --  Empty Heart
+	[676] = {"676", "Empty Heart", "When having an empty heart container at the start of a new floor, grants another one#Bone Hearts don't count"}, --  Empty Heart
 	[677] = {"677", "Astral Projection", "When getting hit, stops time for 3 seconds#Isaac becomes a ghost and leaves his body#In ghost form gain flight, spectral tears and also negate next hit taken"}, --  Astral Projection
 	[678] = {"678", "C Section", "!!! Currently non-functional!#Launch a baby attached via umbilical cord#Deals 3x contact damage#Baby shoots tears and walks when fire button is held#Returns when button is released"}, --  C Section
 	[679] = {"679", "Lil Abaddon", "Familiar which shoots a mini {{Collectible399}} Maw of the Void attack"}, --  Lil Abaddon
@@ -380,7 +381,7 @@ EID.descriptions["en_us"].birthright ={
 	{"Bethany", "", "Activating an item using soul charges is sometimes free"},
 	{"Jacob", "", "The character who picks up the item gains copies of three of the other character's passive items"},
 	{"Esau", "", "The character who picks up the item gains copies of three of the other character's passive items"},
-	{"Tainted Isaac", "", "Adds 4 more slots for passive items"},
+	{"Tainted Isaac", "", "Adds 4 more slots for passive items#Does not consume a slot itself"},
 	{"Tainted Magdalene", "", "Adds 1 more red heart that doesn't drain"},
 	{"Tainted Cain", "", "The amount of pickups spawned from collecting an item is doubled"},
 	{"Tainted Judas", "", "<No effect yet>"},
