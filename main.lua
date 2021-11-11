@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
-EID.ModVersion = "3.88"
+EID.ModVersion = "3.89"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -497,13 +497,23 @@ end
 
 function EID:setPlayer()
 	local p = Isaac.GetPlayer(0)
-	if p.SubType == PlayerType.PLAYER_THEFORGOTTEN_B then
+	if REPENTANCE and p.SubType == PlayerType.PLAYER_THEFORGOTTEN_B then
 		EID.player = p:GetOtherTwin()
 	else
 		EID.player = p
 	end
 end
 
+if REPENTANCE then
+	function EID:removeWrongGuppyEyeInfo(effectEntity)
+		if EID.pathCheckerEntity ~= nil and effectEntity.Parent ~= nil then
+			if GetPtrHash(effectEntity.Parent) == GetPtrHash(EID.pathCheckerEntity) then
+				effectEntity:Remove()
+			end
+		end
+	end
+	EID:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EID.removeWrongGuppyEyeInfo, EffectVariant.PICKUP_GHOST)
+end
 ---------------------------------------------------------------------------
 ---------------------------On Update Function------------------------------
 
@@ -542,6 +552,7 @@ function EID:onGameUpdate()
 			EID.pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 			EID.pathCheckerEntity:AddEntityFlags (EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER)
 			EID.pathCheckerEntity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+			EID.pathCheckerEntity.Visible = false
 			EID.hasValidWalkingpath = false
 		elseif not EID.pathCheckerEntity:Exists() then
 			EID.pathCheckerEntity = nil
