@@ -51,6 +51,7 @@ EID.UserConfig = {
 	["Indicator"] = "none",
 	-- Set the keybinding to toggle the descriptions
 	-- look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
+	-- if you want to map it onto a controller button, you need to use the "ButtonAction" enum instead of the Keyboard enum https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = Keyboard.KEY_F2
 	["HideKey"] = Keyboard.KEY_F2,
 	-- Initial displaystate. Can be used to change the toggle behavior of the "Hide Key" event

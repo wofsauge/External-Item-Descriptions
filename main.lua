@@ -591,7 +591,7 @@ local searchPartitions = EntityPartition.FAMILIAR + EntityPartition.ENEMY + Enti
 
 local function onRender(t)
 	EID.isDisplaying = false
-	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) then
+	if Input.IsButtonTriggered(EID.Config["HideKey"], EID.player.ControllerIndex or 0) then
 		EID.isHidden = not EID.isHidden
 	end
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then --if if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu is currently in the "Visuals" tab of EID
