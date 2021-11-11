@@ -436,14 +436,18 @@ function EID:getObjectName(Type, Variant, SubType)
 		end
 	end
 	if tableName == "collectibles" then
-		return name or EID.itemConfig:GetCollectible(SubType).Name
+		local vanillaName = EID.itemConfig:GetCollectible(SubType).Name
+		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
 	elseif tableName == "trinkets" then
-		return name or EID.itemConfig:GetTrinket(SubType).Name
+		local vanillaName = EID.itemConfig:GetTrinket(SubType).Name
+		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
 	elseif tableName == "cards" then
-		return name or EID.itemConfig:GetCard(SubType).Name
+		local vanillaName = EID.itemConfig:GetCard(SubType).Name
+		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
-		name = name or EID.itemConfig:GetPillEffect(adjustedSubtype - 1).Name
+		local vanillaName = EID.itemConfig:GetPillEffect(adjustedSubtype - 1).Name
+		name = name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
 		return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
 	elseif tableName == "sacrifice" then
 		return EID:getDescriptionEntry("sacrificeHeader")

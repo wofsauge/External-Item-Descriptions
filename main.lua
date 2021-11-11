@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
-EID.ModVersion = "3.89"
+EID.ModVersion = "3.90"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -591,6 +591,8 @@ local searchPartitions = EntityPartition.FAMILIAR + EntityPartition.ENEMY + Enti
 
 local function onRender(t)
 	EID.isDisplaying = false
+	EID:setPlayer()
+	
 	if Input.IsButtonTriggered(EID.Config["HideKey"], EID.player.ControllerIndex or 0) then
 		EID.isHidden = not EID.isHidden
 	end
@@ -602,7 +604,6 @@ local function onRender(t)
 	-- Disabling Achievement detection for now, since it breaks on some occasions since new patch
 	--renderAchievementInfo()
 
-	EID:setPlayer()
 	if EID.GameVersion == "ab+" then
 		if EID.player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
 			EID:addTextPosModifier("Schoolbag", Vector(0,30))
