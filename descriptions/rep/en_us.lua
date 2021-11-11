@@ -43,6 +43,7 @@ local repCollectibles={
 	[79] = {"79", "The Mark", "↑ +1 Damage up#↑ +0.2 Speed up#+1 Black Heart"}, -- The Mark
 	[80] = {"80", "The Pact", "↑ +0.5 Damage up#↑ +0.7 Tears up#+2 Black Hearts"}, -- The Pact
 	[83] = {"83", "The Nail", "+ Half Black Heart#↑ +2 Damage up#↓ -0.18 Speed down#Deal contact Damage#Crush rocks"}, -- The Nail
+	[91] = {"91", "Spelunker Hat", "Reveals the room type of up to 2 adjacent rooms#Can also reveal Secret Rooms, Super Secret Rooms and Mini-Boss Rooms#Blocks projectiles falling from above"}, -- Spelunker Hat
 	[98] = {"98", "The Relic", "Spawns 1 Soul Heart every 7-8 rooms"}, -- The Relic
 	[101] = {"101", "The Halo", "↑ +1 Health up#↑ +0.3 Damage up#↑ +0.2 Tears up#↑ +0.38 Range up#↑ +0.3 Speed up#↑ +0.5 Tear Height#Heals one heart"}, -- The Halo
 	[106] = {"106", "Mr. Mega", "↑ Bomb damage x1.85#+5 Bombs"}, -- Mr. Mega
@@ -64,7 +65,7 @@ local repCollectibles={
 	[172] = {"172", "Sacrificial Dagger", "Orbital knife#Blocks enemy shots#Deals 112.5 damage per second"}, -- Sacrificial Dagger
 	[176] = {"176", "Stem Cells", "↑ +1 Health up#↑ +0.16 Shot Speed up#Heals 1 red heart"}, -- Stem Cells
 	[178] = {"178", "Holy Water", "{{Throwable}} {{ColorOrange}}Throwable{{CR}}#Leaves pool of creep that petrifies enemies"}, -- Holy Water
-	[182] = {"182", "Sacred Heart", "Homing tears#↑ +1 Health up#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#↑ +0.5 Range up#Full Health"}, -- Sacred Heart
+	[182] = {"182", "Sacred Heart", "↑ +1 Health up#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#Homing tears#Full Health"}, -- Sacred Heart
 	[184] = {"184", "Holy Grail", "Grants flight#↑ +1 Health up#Heals 1 red heart"}, -- Holy Grail
 	[188] = {"188", "Abel", "Mirrors your movement#Shoots towards the player#Deals 3.5 damage per shot#7.5 Damage if you play Cain"}, -- Abel
 	[192] = {"192", "Telepathy for Dummies", "Homing tears for current room#↑ +3 Range up"}, -- Telepathy for Dummies
@@ -116,7 +117,7 @@ local repCollectibles={
 	[326] = {"326", "Breath of Life", "Hold down space till chargebar is empty for invincibility#Beams of light will strike enemies that touch you when invincible#!!! Don't hold it for too long!"}, -- Breath of Life
 	[328] = {"328", "The Negative", "↑ +1 Damage up#Damages all enemies in the room when getting hit and at half a red heart or none"}, -- The Negative
 	[330] = {"330", "Soy Milk", "↑ Very high Tears up: (fire rate x 5.5)#↓ -80% Damage down#Drastically reduces knockback"}, -- Soy Milk
-	[331] = {"331", "Godhead", "Homing tears#↑ +0.5 Damage up#↑ +0.5 Range up#↓ -0.3 Tears down#↓ -0.3 Shot Speed down#↑ +0.8 Tear Height#Tears gain a damaging aura"}, -- Godhead
+	[331] = {"331", "Godhead", "↑ +0.5 Damage up#↓ -0.3 Tears down#↓ -0.3 Shot Speed down#↑ +0.8 Tear Height#Tears gain a damaging aura#Homing tears"}, -- Godhead
 	[336] = {"336", "Dead Onion", "Piercing + spectral tears#↓ -1.5 Range down#↓ -0.4 Shot Speed down#↑ +50% Tear size"}, -- Dead Onion
 	[339] = {"339", "Safety Pin", "↑ +1.5 Range up#↑ +0.16 Shot Speed up#+1 Black Heart#↑ +0.5 Tear Height"}, -- Safety Pin
 	[342] = {"342", "Blue Cap", "↑ +1 Health up#↑ +0.7 Tears up#↓ -16% Shot Speed down#Heals 1 red heart"}, -- Blue Cap
@@ -332,7 +333,7 @@ local repCollectibles={
 	[704] = {"704", "Berserk!", "Berserk mode for 5 seconds:#↑ +0.4 Speed up#↑ Tears up#↑ +3 Damage up#Restricts attacks to a melee weapon"}, --  Berserk!
 	[705] = {"705", "Dark Arts", "When used, gain ↑ +1 speed and ability to walk through enemies/bullets for 1 second#Shortly increases damage by 1 for each enemy touched#Damages touched enemies with 3x your damage"}, --  Dark Arts
 	[706] = {"706", "Abyss", "Destroys all items in the room and spawns an attack fly familiar for each#Effects of fly depends on the items"}, --  Abyss
-	[707] = {"707", "Supper", "+1 Health up#Heals one heart"}, --  Supper
+	[707] = {"707", "Supper", "↑ +1 Health up#Heals one heart"}, --  Supper
 	[708] = {"708", "Stapler", "↑ +1 Damage up#Prevents Isaac from firing tears from one eye"}, --  Stapler
 	[709] = {"709", "Suplex!", "Allows you to dash into and pick up enemies or bosses, then slam them into the ground#Slam can be controlled#Slam deals 50 damage and spawns rock waves"}, --  Suplex!
 	[710] = {"710", "Bag of Crafting", "Collects and holds up to 8 pickups#Holding the activate button crafts the pickups into an item#Quality of item is dependent on the quality of the pickups"}, --  Bag of Crafting
@@ -364,7 +365,7 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us"].collec
 
 EID.descriptions["en_us"].birthright ={
 	{"Isaac", "", "All items cycle through two options"},
-	{"Magdalene", "", "+1 Health up#Maximum heart limit is raised to 18"},
+	{"Magdalene", "", "↑ +1 Health up#Maximum heart limit is raised to 18"},
 	{"Cain", "", "↑ +1 Luck up#All floors will contain an upgraded Arcade Room except for Dark Room and Chest"},
 	{"Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#Receive {{Collectible34}} The Book of Belial if you're not currently holding it#The damage boost received from it scales with the amount of charges the active item above it has"},
 	{"???", "", "Soul Hearts gained from health upgrades are doubled"},
@@ -377,7 +378,7 @@ EID.descriptions["en_us"].birthright ={
 	{"Lazarus Risen", "", "Grants a slowly fading +21.6 damage bonus"},
 	{"Black Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#Receive {{Collectible34}} The Book of Belial if you're not currently holding it#The damage boost received from it scales with the amount of charges the active item above it has"},
 	{"Lilith", "", "Familiars are positioned in front of Lilith's face"},
-	{"Keeper", "", "+1 Health up#Raises HP cap by 1"},
+	{"Keeper", "", "↑ +1 Health up#Raises HP cap by 1"},
 	{"Apollyon", "", "Using {{Collectible477}} Void has a chance to spawn an item that was previously voided#Stat bonuses are kept#The more items voided, the higher the chance for an item to spawn upon use"},
 	{"The Forgotten", "", "The Soul is unchained and free to move"},
 	{"The Forgotten Soul", "", "The Soul is unchained and free to move"},
