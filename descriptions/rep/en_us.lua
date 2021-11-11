@@ -289,7 +289,7 @@ local repCollectibles={
 	[661] = {"661", "Quints", "Spawns a stationary shooting familiar at the location where an enemy died#Up to 5 familiars"}, --  Quints
 	[662] = {"662", "Pacifist (Cut item)", "<Item does not exist>"}, -- Pacifist (Cut item)
 	[663] = {"663", "Tooth and Nail", "Turn invincible every 6 seconds for 1 second#Flashes right before transition"}, --  Tooth and Nail
-	[664] = {"664", "Binge Eater", "+1 red Heart Container#Full health#Item pedestals periodically switch between food items and the item they would hold otherwise#Picking up a food item grants temporary +3.6 damage boost and 2 small permanent stat ups"}, --  Binge Eater
+	[664] = {"664", "Binge Eater", "+1 red Heart Container#Full health#Item pedestals periodically switch between food items and the item they would hold otherwise#Picking up a food item grants temporary +3.6 damage boost, 2 small permanent stat ups and a permanent -0.03 speed down#Food items heal 3 Red Hearts"}, --  Binge Eater
 	[665] = {"665", "Guppy's Eye", "Shows the contents of Chests, Sacks, and Fire Places before they're opened"}, --  Guppy's Eye
 	[666] = {"666", "", "<Item does not exist>"},
 	[667] = {"667", "Strawman", "Spawns Keeper as a second character#If he dies, he spawns blue spiders#Item gets removed afterwards"}, --  Strawman
@@ -303,7 +303,7 @@ local repCollectibles={
 	[675] = {"675", "Cracked Orb", "When taking damage, reveals random room on floor#Also unlocks doors that require keys#Can open Mega Satan door#Can reveal Ultra Secret Room"}, --  Cracked Orb
 	[676] = {"676", "Empty Heart", "When having an empty heart container at the start of a new floor, grants another one#Bone Hearts don't count"}, --  Empty Heart
 	[677] = {"677", "Astral Projection", "When getting hit, stops time for 3 seconds#Isaac becomes a ghost and leaves his body#In ghost form gain flight, spectral tears and also negate next hit taken"}, --  Astral Projection
-	[678] = {"678", "C Section", "!!! Currently non-functional!#Launch a baby attached via umbilical cord#Deals 3x contact damage#Baby shoots tears and walks when fire button is held#Returns when button is released"}, --  C Section
+	[678] = {"678", "C Section", "Gain a short delay charge attack that fires homing, spectral fetus tears"}, --  C Section
 	[679] = {"679", "Lil Abaddon", "Familiar which shoots a mini {{Collectible399}} Maw of the Void attack"}, --  Lil Abaddon
 	[680] = {"680", "Montezuma's Revenge", "While firing, charge up a short-ranged Brimstone#Shoots behind you"}, --  Montezuma's Revenge
 	[681] = {"681", "Lil Portal", "Deals contact damage and flies forward#Consumes pickups in its path#Each one will increase its size, damage, and spawn a Blue Fly#Every four pickups, it spawns a portal to an unexplored room"}, --  Lil Portal
@@ -355,15 +355,18 @@ local repCollectibles={
 	[727] = {"727", "Ghost Bombs", "+5 bombs#Bombs spawn ghosts that deal contact damage and explode after 10 seconds"}, --  Ghost Bombs
 	[728] = {"728", "Gello", "Spawns a demon familiar that's attached to Isaac#Mimics Isaac's tears, stats and effects"}, --  Gello
 	[729] = {"729", "Decap Attack", "Throws Isaac's head, while being able to fire tears at the spot it lands#Reactivating the item or stepping on the head reattaches it"}, --  Decap Attack
-	
+	[730] = {"730", "Glass Eye", "↑ +0.75 Damage up#↑ +1 Luck up"}, -- Glass Eye
+	[731] = {"731", "Stye", "↑ +1 Damage up#Range up#!!! Applies only for the right eye"}, --  Stye //TBD: How much range up, doesn't say on the wiki and I can't test yet
+	[732] = {"732", "Mom's Ring", "↑ +1 Damage up#Spawns a rune or soul stone on pickup"}, --  Mom's Ring
+
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us"].collectibles)
 
 EID.descriptions["en_us"].birthright ={
 	{"Isaac", "", "All items cycle through two options"},
-	{"Magdalene", "", "<No effect yet>"},
-	{"Cain", "", "<No effect yet>"},
-	{"Judas", "", "<No effect yet>"},
+	{"Magdalene", "", "+1 Health up#Maximum heart limit is raised to 18"},
+	{"Cain", "", "↑ +1 Luck up#All floors will contain an upgraded Arcade Room except for Dark Room and Chest"},
+	{"Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#Receive {{Collectible34}} The Book of Belial if you're not currently holding it#The damage boost received from it scales with the amount of charges the active item above it has"},
 	{"???", "", "Soul Hearts gained from health upgrades are doubled"},
 	{"Eve", "", "Whore of Babylon is active regardless of health#Dead Bird is active without taking damage"},
 	{"Samson", "", "Bloody Lust can gain 4 more damage boosts at the same +0.2 intervals, for a new maximum total of +14.0"},
@@ -372,10 +375,10 @@ EID.descriptions["en_us"].birthright ={
 	{"Eden", "", "Spawns 3 random items from random item pools#Only one can be taken"},
 	{"The Lost", "", "Prevents items not beneficial to The Lost from spawning#Examples: ones that only give health, flight, and/or spectral tears or activate upon taking damage"},
 	{"Lazarus Risen", "", "Grants a slowly fading +21.6 damage bonus"},
-	{"Black Judas", "", "<No effect yet>"},
-	{"Lilith", "", "<No effect yet>"},
-	{"Keeper", "", "<No effect yet>"},
-	{"Apollyon", "", "<No effect yet>"},
+	{"Black Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#Receive {{Collectible34}} The Book of Belial if you're not currently holding it#The damage boost received from it scales with the amount of charges the active item above it has"},
+	{"Lilith", "", "Familiars are positioned in front of Lilith's face"},
+	{"Keeper", "", "+1 Health up#Raises HP cap by 1"},
+	{"Apollyon", "", "Using {{Collectible477}} Void has a chance to spawn an item that was previously voided#Stat bonuses are kept#The more items voided, the higher the chance for an item to spawn upon use"},
 	{"The Forgotten", "", "The Soul is unchained and free to move"},
 	{"The Forgotten Soul", "", "The Soul is unchained and free to move"},
 	{"Bethany", "", "Activating an item using soul charges is sometimes free"},
@@ -384,22 +387,22 @@ EID.descriptions["en_us"].birthright ={
 	{"Tainted Isaac", "", "Adds 4 more slots for passive items#Does not consume a slot itself"},
 	{"Tainted Magdalene", "", "Adds 1 more red heart that doesn't drain"},
 	{"Tainted Cain", "", "The amount of pickups spawned from collecting an item is doubled"},
-	{"Tainted Judas", "", "<No effect yet>"},
+	{"Tainted Judas", "", "Doubles the duration of {{Collectible705}} Dark Arts"},
 	{"Tainted ???", "", "Increases the maximum number of carried poops to 29"},
-	{"Tainted Eve", "", "<No effect yet>"},
+	{"Tainted Eve", "", "Red Heart clots spawn hearts on death that disappear after 2 seconds"},
 	{"Tainted Samson", "", "The berserk timer gains 3 seconds instead of 1 when Tainted Samson kills an enemy"},
-	{"Tainted Azazel", "", "Doubles the size of Tainted Azazel's {{Collectible726}}Hemoptysis sneeze attack"},
-	{"Tainted Lazarus", "", "<No effect yet>"},
+	{"Tainted Azazel", "", "Doubles the size of Tainted Azazel's {{Collectible726}} Hemoptysis sneeze attack"},
+	{"Tainted Lazarus", "", "The other version of T. Lazarus will be available as a ghost#He is immune to damage, but can fire tears#Both characters receive the Birthright effect"},
 	{"Tainted Eden", "", "Passive items gained before Birthright will not be rerolled upon taking damage"},
 	{"Tainted Lost", "", "+1 extra life that revives Tainted Lost in the same room and deals 200 damage to nearby enemies#Can hit the same enemy multiple times"},
-	{"Tainted Lilith", "", ""},
+	{"Tainted Lilith", "", "Familiars that normally follow Tainted Lilith will instead act like her {{Collectible728}} Gello"},
 	{"Tainted Keeper", "", "Strongly attracts the coins dropped by defeating enemies from a short distance#No effect on other coins"},
-	{"Tainted Apollyon", "", "<No effect yet>"},
+	{"Tainted Apollyon", "", "If the fire button is held, locusts will continuously damage enemies instead of returning"},
 	{"Tainted Forgotten", "", "Tainted Soul gains the {{Collectible714}} Recall ability, to retrieve the Tainted Forgotten from a distance"},
-	{"Tainted Bethany", "", "<No effect yet>"},
-	{"Tainted Jacob", "", "<No effect yet>"},
-	{"Dead Tainted Lazarus", "", "<No effect yet>"},
-	{"Tainted Jacob 2", "", "<No effect yet>"},
+	{"Tainted Bethany", "", "Spawns four random item wisps of high quality with significantly higher HP than normal"},
+	{"Tainted Jacob", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus will always charge at the same time"},
+	{"Dead Tainted Lazarus", "", "The other version of T. Lazarus will be available as a ghost#He is immune to damage, but can fire tears#Both characters receive the Birthright effect"},
+	{"Tainted Jacob 2", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus will always charge at the same time"},
 	{"Tainted Forgotten Soul", "", "Tainted Soul gains the {{Collectible714}} Recall ability, to retrieve the Tainted Forgotten from a distance"},
 }
 
@@ -407,14 +410,14 @@ EID.descriptions["en_us"].birthright ={
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
 
 EID.descriptions["en_us"].bingeEaterBuffs = {
-	[22] = {"22", "", "↑+0.5 Tears up#↑+1.5 Range up"}, -- Lunch
-	[23] = {"23", "", "↑+0.5 Tears up#↑+0.2 Shot Speed up"}, -- Dinner
-	[24] = {"24", "", "↑+1 Damage up#↑+0.2 Speed up"}, -- Dessert
-	[25] = {"25", "", "↑+0.2 Speed up#↑+1.5 Range up"}, -- Breakfast
-	[26] = {"26", "", "↑+1 Damage up#↑+1.5 Range up"}, -- Rotten Meat
-	[456] = {"456", "", "↑+1 Damage up#↑+1 Luck up"}, -- Midnight Snack
-	[346] = {"346", "", "↑+0.2 Shot Speed up#↑+1 Luck up"}, -- A Snack
-	[707] = {"707", "", "↑+0.5 Tears up#↑+1 Luck up"}, -- Supper
+	[22] = {"22", "", "↑ +0.5 Tears up#↑ +1.5 Range up#↓ -0.03 Speed down"}, -- Lunch
+	[23] = {"23", "", "↑ +0.5 Tears up#↑ +0.2 Shot Speed up#↓ -0.03 Speed down"}, -- Dinner
+	[24] = {"24", "", "↑ +1 Damage up#↑ +0.2 Shot Speed up#↓ -0.03 Speed down"}, -- Dessert
+	[25] = {"25", "", "↑ +0.2 Shot Speed up#↑ +1.5 Range up#↓ -0.03 Speed down"}, -- Breakfast
+	[26] = {"26", "", "↑ +1 Damage up#↑ +1.5 Range up#↓ -0.03 Speed down"}, -- Rotten Meat
+	[456] = {"456", "", "↑ +1 Damage up#↑ +1 Luck up#↓ -0.03 Speed down"}, -- Midnight Snack
+	[346] = {"346", "", "↑ +0.2 Shot Speed up#↑ +1 Luck up#↓ -0.03 Speed down"}, -- A Snack
+	[707] = {"707", "", "↑ +0.5 Tears up#↑+1 Luck up#↓ -0.03 Speed down"}, -- Supper
 }
 
 EID.descriptions["en_us"].spindownError = "Item disappears"
