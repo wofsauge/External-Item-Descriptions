@@ -607,7 +607,7 @@ EID.descriptions["en_us"].trinkets={
 	{"36", "Rusted Key", "More keys appear"},
 	{"37", "Goat Hoof", "↑ +0.15 Speed up"},
 	{"38", "Mom's Pearl", "More Soul Hearts appear"},
-	{"39", "Cancer", "↑ Tears up"},
+	{"39", "Cancer", "↑ -2 Tear Delay down"},
 	{"40", "Red Patch", "↑ Chance to get +1.8 Damage up when getting hit"},
 	{"41", "Match Stick", "More Bombs appear#!!! Removes \"The Tick\""},
 	{"42", "Lucky Toe", "↑ +1 Luck up#Chance to get more drops"},
