@@ -1,17 +1,17 @@
 --[[
 "Guppy",			-- 1
 "Fun Guy",			-- 2
-"Lord of the Flies",-- 3
-"Conjoined",		-- 4
+"Lord of the Flies",		-- 3
+"Conjoined",			-- 4
 "Spun",				-- 5
 "Mom",				-- 6
 "Oh Crap",			-- 7
 "Bob",				-- 8
-"Leviathan",		-- 9
+"Leviathan",			-- 9
 "Seraphim",			-- 10
-"Super Bum",		-- 11
+"Super Bum",			-- 11
 "Bookworm",			-- 12
-"Spider Baby",		-- 13
+"Spider Baby",			-- 13
 "Adult",			-- 14
 "Stompy"			-- 15
 ]]--
@@ -56,6 +56,7 @@ local repTransformations = {
 	["5.100.698"] = "4",
 	["5.100.439"] = "6", -- Mom
 	["5.100.604"] = "6",
+	["5.100.732"] = "6",
 	["5.100.9"] = "3,7", -- Oh Crap
 	["5.100.209"] = "7",
 	["5.100.378"] = "7",
