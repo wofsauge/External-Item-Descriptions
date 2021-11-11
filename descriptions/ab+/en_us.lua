@@ -64,7 +64,7 @@ EID.descriptions["en_us"].collectibles={
 	{"49", "Shoop da Whoop!", "High damage brimstone laser"},
 	{"50", "Steven", "↑ +1 Damage up"},
 	{"51", "Pentagram", "↑ +1 Damage up#↑ +10% Devil/Angel Room chance"},
-	{"52", "Dr. Fetus", "Bomb tears!"},
+	{"52", "Dr. Fetus", "Bomb tears#Each bomb deals 5x your damage + 30#↓ Tear Delay x 2.5"},
 	{"53", "Magneto", "Magnetic attraction for pickups"},
 	{"54", "Treasure Map", "Reveals the floor-layout"},
 	{"55", "Mom's Eye", "Chance to shoot a tear backwards#Chance is 100% at 2 Luck"},
