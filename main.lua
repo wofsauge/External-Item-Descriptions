@@ -588,7 +588,8 @@ local function onRender(t)
 	end
 	
 	EID:renderMCMDummyDescription()
-	renderAchievementInfo()
+	-- Disabling Achievement detection for now, since it breaks on some occasions since new patch
+	--renderAchievementInfo()
 
 	EID:setPlayer()
 	if EID.GameVersion == "ab+" then
@@ -603,12 +604,13 @@ local function onRender(t)
 		else
 			EID:removeTextPosModifier("Tained HUD")
 		end
-		if EID.player:HasCollectible(710) then
+		-- Disabling Bag of Crafting for now, since it doesnt work after patch
+		--[[if EID.player:HasCollectible(710) then
 			local success = EID:handleBagOfCraftingRendering()
 			if success then
 				return
 			end
-		end
+		end]]--
 	end
 	
 	if EID.isHidden then
