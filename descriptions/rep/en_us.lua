@@ -483,8 +483,7 @@ local repTrinkets={
 	[149] = {"149", "Panic Button", "Activates your active item upon taking damage"}, --  Panic Button
 	[150] = {"150", "Blue Key", "Entering a room that requires a key brings you in a room resembling the Hush stage#Room acts as an in-between of the two rooms"}, --  Blue Key
 	[151] = {"151", "Flat File", "Causes spikes to retract, making them harmless#Also affects {{CursedRoom}}Curse Room doors, mimics and any spike obstacle"}, --  Flat File
-	[152] = {"152", "Telescope Lens", "Makes it possible to spawn a second Planetarium#Planetariums can now spawn in the Womb and Corpse"}, --  Telescope Lens
-	[153] = {"153", "Mom's Lock", "Each room, grants the effects of a random Mom item"}, --  Mom's Lock
+	[152] = {"152", "Telescope Lens", "Increases the chance for a Planetarium to spawn by 24%#A second Planetarium can spawn, keeping the chance at 15% after entering the first one#Planetariums can now spawn in the Womb and Corpse"}, --  Telescope Lens	[153] = {"153", "Mom's Lock", "Each room, grants the effects of a random Mom item"}, --  Mom's Lock
 	[154] = {"154", "Dice Bag", "When entering a new room, grants a temporary Dice consumable item#The Dice disappears when leaving#Grants ability to hold two consumables"}, --  Dice Bag
 	[155] = {"155", "Holy Crown", "Spawns a {{TreasureRoom}}Treasure Room and {{Shop}}Shop in Cathedral"}, --  Holy Crown
 	[156] = {"156", "Mother's Kiss", "Grants one heart container#Works for Keeper, too"}, --  Mother's Kiss
