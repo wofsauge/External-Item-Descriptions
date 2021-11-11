@@ -367,7 +367,7 @@ local repCollectibles={
 	[728] = {"728", "Gello", "Spawns a demon familiar that's attached to Isaac#Mimics Isaac's tears, stats and effects"}, --  Gello
 	[729] = {"729", "Decap Attack", "Throws Isaac's head, while being able to fire tears at the spot it lands#Reactivating the item or stepping on the head reattaches it"}, --  Decap Attack
 	[730] = {"730", "Glass Eye", "↑ +0.75 Damage up#↑ +1 Luck up"}, -- Glass Eye
-	[731] = {"731", "Stye", "!!! Applies only for the right eye#↑ +1 Damage up#↑ Range up#↓ Shot Speed down"}, --  Stye //TBD: How much range up, doesn't say on the wiki and I can't test yet
+	[731] = {"731", "Stye", "!!! Applies only for the right eye#↑ +1 Damage up#↑ +7 Range up#↓ -0.3 Shot Speed down"}, --  Stye //TBD: How much range up, doesn't say on the wiki and I can't test yet
 	[732] = {"732", "Mom's Ring", "↑ +1 Damage up#Spawns a random rune or soul stone on pickup"}, --  Mom's Ring
 
 }
