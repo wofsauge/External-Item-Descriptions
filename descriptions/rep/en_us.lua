@@ -354,7 +354,7 @@ local repCollectibles={
 	[715] = {"715", "Hold", "Preserves one poop bomb inside that can be used later"}, --  Hold
 	[716] = {"716", "Keeper's Sack", "Gives range, speed, or damage up when buying things from shops#Spawns 3 coins and 1 key on pickup"}, --  Keeper's Sack
 	[717] = {"717", "Keeper's Kin", "Rocks and props spawn 2 blue spiders when destroyed#Rocks can occasionally spawn blue spiders when in a hostile room"}, --  Keeper's Kin
-	[718] = {"718", "Keeper's Robe (Cut item)", "<Item does not exist>"}, -- Keepers Robe (Cut item)
+	[718] = {"718", "Keeper's Robe (Cut item)", "<Item does not exist>"}, --  Keepers Robe (Cut item)
 	[719] = {"719", "Keeper's Box", "Spawns a random shop item/pickup"}, --  Keeper's Box
 	[720] = {"720", "Everything Jar", "Spawns certain pickups based on how many charges it has#If fully charged, it has a strong random effect#Charge Rewards:#{{Blank}} 1:{{Collectible36}} 2:{{Coin}} 3:{{Bomb}} 4:{{Key}}#{{Blank}} 5:{{Heart}} 6:{{Pill}} 7:{{Card}} 8:{{SoulHeart}}#{{Blank}} 9:{{GoldenHeart}} 10:{{GoldenKey}} 11:{{GoldenBomb}}"}, --  Everything Jar
 	[721] = {"721", "TMTRAINER", "Causes all future items to be 'glitched'#Grants them completely random effects"}, --  TMTRAINER
@@ -366,8 +366,8 @@ local repCollectibles={
 	[727] = {"727", "Ghost Bombs", "+5 bombs#Bombs spawn ghosts that deal contact damage and explode after 10 seconds"}, --  Ghost Bombs
 	[728] = {"728", "Gello", "Spawns a demon familiar that's attached to Isaac#Mimics Isaac's tears, stats and effects"}, --  Gello
 	[729] = {"729", "Decap Attack", "Throws Isaac's head, while being able to fire tears at the spot it lands#Reactivating the item or stepping on the head reattaches it"}, --  Decap Attack
-	[730] = {"730", "Glass Eye", "↑ +0.75 Damage up#↑ +1 Luck up"}, -- Glass Eye
-	[731] = {"731", "Stye", "!!! Applies only for the right eye#↑ +1 Damage up#↑ +7 Range up#↓ -0.3 Shot Speed down"}, --  Stye //TBD: How much range up, doesn't say on the wiki and I can't test yet
+	[730] = {"730", "Glass Eye", "↑ +0.75 Damage up#↑ +1 Luck up"}, --  Glass Eye
+	[731] = {"731", "Stye", "!!! Applies only for the right eye#↑ +1 Damage up#↑ +7 Range up#↓ -0.3 Shot Speed down"}, --  Stye
 	[732] = {"732", "Mom's Ring", "↑ +1 Damage up#Spawns a random rune or soul stone on pickup"}, --  Mom's Ring
 
 }
