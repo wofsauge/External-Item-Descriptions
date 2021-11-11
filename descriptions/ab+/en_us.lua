@@ -380,7 +380,7 @@ EID.descriptions["en_us"].collectibles={
 	{"365", "Lost Fly", "Moves along walls/obstacles in the room#Deals 105 contact damage per second"},
 	{"366", "Scatter Bombs", "+5 bombs#Causes your bombs to explode into 2-4 tiny bombs"},
 	{"367", "Sticky Bombs", "+5 bombs#When a bomb kills an enemy, it spawns blue spiders#Causes your bombs to stick to enemies"},
-	{"368", "Epiphora", "Shooting in one direction increases your fire rate by up to 200%"},
+	{"368", "Epiphora", "Shooting in one direction decreases your tear delay by up to 200%"},
 	{"369", "Continuum", "↑ +2.25 Range up#↑ +1.5 Tear Height#Tears travel through walls and appear out of the opposite wall"},
 	{"370", "Mr. Dolly", "↑ +0.7 Tears up#↑ +5.25 Range up#↑ +0.5 Tear Height#Spawns 3 random hearts when picked up"},
 	{"371", "Curse of the Tower", "Spawn 6 troll bombs every time you get hit#These are affected by bomb items"},
