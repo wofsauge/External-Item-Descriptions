@@ -656,7 +656,7 @@ EID.descriptions["en_us"].trinkets={
 	{"85", "Karma", "Using a Donation Machine can heal you or spawn a beggar"},
 	{"86", "Lil Larva", "Destroying poop spawns a blue fly"},
 	{"87", "Mom's Locket", "Heal half a heart when using keys#Turns half hearts into full hearts"},
-	{"88", "NO!", "Very low chance for spacebar items in {{TreasureRoom}}Treasure Rooms"},
+	{"88", "NO!", "Prevents active items from being generated in all item pools},
 	{"89", "Child Leash", "Familiars stay closer to you"},
 	{"90", "Brown Cap", "Poop explodes when destroyed"},
 	{"91", "Meconium", "Increases chance for Black Poops to spawn#Chance to spawn a Black Heart when black poop is destroyed"},
