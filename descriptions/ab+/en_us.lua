@@ -495,7 +495,7 @@ EID.descriptions["en_us"].collectibles={
 	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles your current blue flies/spiders#Spawns 1 blue fly or spider when you dont have any"},
 	{"481", "Dataminer", "When used, ↑/↓ small amount on random stat#Random tear effect for current room#Fucks up all sprites"},
 	{"482", "Clicker", "Transforms you into a different character#Removes the last item you collected"},
-	{"483", "Mama Mega!", "!!! SINGLE USE ! #Affects whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens boss rush / hush door / secret rooms"},
+	{"483", "Mama Mega!", "!!! SINGLE USE ! #Affects whole floor#Explodes all obstacles#Deals 200 damage to all enemies#Opens the door to Boss Rush, Hush and all secret rooms"},
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawn a wave of rocks#Can open rooms and break rocks"},
 	{"485", "Crooked Penny", "50% chance to double all items, consumables and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"},
 	{"486", "Dull Razor", "Hurts you without damaging you#Can trigger item effects"},
