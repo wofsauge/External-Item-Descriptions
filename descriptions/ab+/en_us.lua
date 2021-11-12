@@ -754,7 +754,7 @@ EID.descriptions["en_us"].cards={
 	{"51", "Holy Card", "Grants the Holy Mantle effect for one room#(Prevents damage once)#25% chance to spawn another Holy Card"},
 	{"52", "Huge Growth", "↑ +7 Damage up#↑ +30 Range up#↑ +Size up#Crush Rocks!#Effect lasts for current room"},
 	{"53", "Ancient Recall", "Spawns 3 random cards when used"},
-	{"54", "Era Walk", "Slow down enemies#↑ -0.5 Speed up#-1 Shot Speed down#Effect lasts for current room"},
+	{"54", "Era Walk", "Slow down enemies#↑ +0.5 Speed up#↓ -1 Shot Speed down#Effect lasts for current room"},
 }
 
 

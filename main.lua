@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
-EID.ModVersion = "3.90"
+EID.ModVersion = "3.92"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -568,15 +568,19 @@ EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 local hasShownAchievementWarning = false
 local function renderAchievementInfo()
 	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 and game.Challenge == 0 then
-		local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
-		if not hasBookOfRevelationsUnlocked then
-			local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
-			if not hasCubeOfMeatUnlocked then
-				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-				demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-				demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
-				EID:displayPermanentText(demoDescObj)
-				hasShownAchievementWarning = true
+		local characterID = Game():GetPlayer(0):GetPlayerType()
+		--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
+		if (characterID < 21) then
+			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
+			if not hasBookOfRevelationsUnlocked then
+				local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
+				if not hasCubeOfMeatUnlocked then
+					local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+					demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
+					demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+					EID:displayPermanentText(demoDescObj)
+					hasShownAchievementWarning = true
+				end
 			end
 		end
 	elseif hasShownAchievementWarning then
@@ -593,7 +597,10 @@ local function onRender(t)
 	EID.isDisplaying = false
 	EID:setPlayer()
 	
-	if Input.IsButtonTriggered(EID.Config["HideKey"], EID.player.ControllerIndex or 0) then
+	--Controller hide keys are 0 through 26, keyboard hide keys are 32+
+	local hidekeyType = 0
+	if EID.Config["HideKey"] < 32 then hidekeyType = EID.player.ControllerIndex end
+	if Input.IsButtonTriggered(EID.Config["HideKey"], hidekeyType) then
 		EID.isHidden = not EID.isHidden
 	end
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then --if if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu is currently in the "Visuals" tab of EID
@@ -601,7 +608,7 @@ local function onRender(t)
 	end
 	
 	EID:renderMCMDummyDescription()
-	-- Disabling Achievement detection for now, since it breaks on some occasions since new patch
+	-- Deactivated Achievement info, because it still doesnt work. propably because itempool data is outdated
 	--renderAchievementInfo()
 
 	if EID.GameVersion == "ab+" then
