@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
-EID.ModVersion = "3.91"
+EID.ModVersion = "3.92"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -608,7 +608,8 @@ local function onRender(t)
 	end
 	
 	EID:renderMCMDummyDescription()
-	renderAchievementInfo()
+	-- Deactivated Achievement info, because it still doesnt work. propably because itempool data is outdated
+	--renderAchievementInfo()
 
 	if EID.GameVersion == "ab+" then
 		if EID.player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
