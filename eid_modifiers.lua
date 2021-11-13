@@ -53,6 +53,32 @@ local game = Game()
 	
 	
 	
+		-- Handle Book of Virtues description addition
+	local function BookOfVirtuesCondition(descObj)
+		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+			return false
+		end
+		for i = 0,game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) then
+				return true
+			end
+		end
+		return false
+	end
+	
+	local function BookOfVirtuesCallback(descObj)
+		local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", descObj.ObjSubType)
+		if wispType ~= nil then
+			local iconStr = "#{{Collectible584}} "
+			EID:appendToDescription(descObj, iconStr..wispType[1]:gsub("#",iconStr))
+		end
+		return descObj
+	end
+	EID:addDescriptionModifier("Book of Virtues", BookOfVirtuesCondition, BookOfVirtuesCallback)
+	
+	
+	
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCondition(descObj)
 		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
@@ -122,7 +148,6 @@ local game = Game()
 		return descObj
 	end
 	EID:addDescriptionModifier("Tarot Cloth", TarotClothCondition, TarotClothCallback)
-	
 	
 	
 	-- Handle Golden Trinket description addition
