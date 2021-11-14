@@ -104,7 +104,7 @@ EID.descriptions["en_us"].collectibles={
 	{"89", "Spider Bite", "Chance to shoot slowing tears"},
 	{"90", "The Small Rock", "↑ +1 Damage up#↑ +0.2 Tears up#↓ -0.2 Speed down"},
 	{"91", "Spelunker Hat", "Reveals the room type of adjacent rooms#Can also reveal Secret Rooms, Super Secret Rooms, and Mini-Boss Rooms"},
-	{"92", "Super Bandage", "↑ +1 Health up#+2 Soul Hearts#Heals one heart"},
+	{"92", "Super Bandage", "↑ +1 Health up#+2 Soul Hearts#Heals one Red Heart"},
 	{"93", "The Gamekid", "Short invincibility#Fears all enemies#Deal 40 contact damage#Two eaten enemies replenish half a heart"},
 	{"94", "Sack of Pennies", "Drops a random coin every 2 rooms"},
 	{"95", "Robo-Baby", "Laser tears#Deals 3.5 damage per shot"},
@@ -229,7 +229,7 @@ EID.descriptions["en_us"].collectibles={
 	{"214", "Anemic", "↑ +5 Range up#Leave creep on floor when getting hit"},
 	{"215", "Goat Head", "↑ 100% chance for {{DevilRoom}}Devil/{{AngelRoom}}Angel Rooms"},
 	{"216", "Ceremonial Robes", "↑ +1 Damage up#+3 Black Hearts"},
-	{"217", "Mom's Wig", "Random chance to spawn blue spider when shooting tears#Heals one heart"},
+	{"217", "Mom's Wig", "Random chance to spawn blue spider when shooting tears#Heals one Red Heart"},
 	{"218", "Placenta", "↑ +1 Health up#Regenerate health slowly"},
 	{"219", "Old Bandage", "↑ +1 Empty heart container#Random chance to drop Red Hearts when getting hit"},
 	{"220", "Sad Bombs", "Tear explosion!#+5 Bombs"},
@@ -324,7 +324,7 @@ EID.descriptions["en_us"].collectibles={
 	{"309", "Pisces", "↑ -1 Tear Delay#Increases tear knockback"},
 	{"310", "Eve's Mascara", "↑ +100% Damage up#↓ -50% Tears down#↓ -0.5 Shot speed down"},
 	{"311", "Judas' Shadow", "When dead, respawn as Black Judas#↑ (Damage x 2)"},
-	{"312", "Maggy's Bow", "↑ +1 Health up#Heals one heart#All Red Hearts now heal double their value"},
+	{"312", "Maggy's Bow", "↑ +1 Health up#Heals one Red Heart#All Red Hearts now heal double their value"},
 	{"313", "Holy Mantle", "Ignore the first hit in every room"},
 	{"314", "Thunder Thighs", "↑ +1 Health up#↓ -0.4 Speed down#Destroy rocks when walking over them"},
 	{"315", "Strange Attractor", "Magnetic tears#Affects enemies, pickups and trinkets"},
@@ -369,7 +369,7 @@ EID.descriptions["en_us"].collectibles={
 	{"354", "Crack Jacks", "↑ +1 Health up#Spawns random trinket on the floor"},
 	{"355", "Mom's Pearls", "↑ +1.25 Range up#↑ +1 Luck up#↑ +0.5 Tear Height"},
 	{"356", "Car Battery", "Causes your spacebar item to activate twice when used"},
-	{"357", "Box of Friends", "Duplicate your familiars for the current room"},
+	{"357", "Box of Friends", "Duplicate your familiars for the current room#If you have no familiars, {{Collectible113}} Demon Baby will spawn for the current room"},
 	{"358", "The Wiz", "Fire 2 tears at once diagonally, similar to R U A WIZARD#Spectral tears"},
 	{"359", "8 Inch Nails", "↑ +1.5 Damage up#Increases knockback"},
 	{"360", "Incubus", "Shoots the same tears as Isaac in terms of damage, stats and effects"},
@@ -819,27 +819,27 @@ EID.descriptions["en_us"].sacrifice={
 	{"1", "", "50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"2", "", "50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"3", "", "67% chance for increased {{AngelRoom}}Angel Room chance"},
-	{"4", "", "50% chance for 1 random Chest"},
-	{"5", "", "33% chance for 3 Coin#67% chance for increased Angel{{AngelRoom}} Room chance"},
-	{"6", "", "33% chance for teleport to {{AngelRoom}}Angel Room#Teleports to {{DevilRoom}}Devil Room when its door was spawned on this floor already#67% chance for random Chest"},
+	{"4", "", "50% chance for 1 random chest"},
+	{"5", "", "33% chance for 3 Coins#67% chance for increased {{AngelRoom}}Angel Room chance"},
+	{"6", "", "33% chance for a teleport to the {{AngelRoom}}Angel Room#Teleports to the {{DevilRoom}}Devil Room instead if its door was spawned on the current floor#67% chance for random chest"},
 	{"7", "", "33% chance for 1 random {{AngelRoom}}Angel Room item#67% chance for 1 Soul Heart"},
 	{"8", "", "100% chance for 7 troll bombs"},
-	{"9", "", "100% chance to spawn \"Uriel\" boss"},
+	{"9", "", "100% chance to spawn \"Uriel\""},
 	{"10", "", "50% chance for 7 Soul Hearts#50% chance for 30 coins"},
-	{"11", "", "100% chance to spawn \"Gabriel\" boss"},
-	{"12", "", "50% chance to teleport to \"Dark Room\" floor"},
+	{"11", "", "100% chance to spawn \"Gabriel\""},
+	{"12", "", "50% chance to teleport to the \"Dark Room\""},
 }
 
 ---------- Dice Room ----------
-EID.descriptions["en_us"].diceHeader = "[Dice effect]"
+EID.descriptions["en_us"].diceHeader = "[Dice effects]"
 
 EID.descriptions["en_us"].dice={
-	{"1", "", "Rerolls all your collectibles into items from random item pools"},
+	{"1", "", "Rerolls all your passive items into a random item from the room pool it was acquired from"},
 	{"2", "", "Rerolls all pickups in the room"},
-	{"3", "", "Rerolls all pickups on the entire floor"},
-	{"4", "", "Rerolls all pedestal items on the floor#Doesn't affect Devil deals"},
-	{"5", "", "Reroll and restart the current floor"},
-	{"6", "", "Reroll all of your items and all the pickups & items on the entire floor"}
+	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
+	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room, {{Shop}}Shop or {{Library}}Library"},
+	{"5", "", "Rerolls and restarts the current floor"},
+	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items"}
 }
 
 ---------- Transformations ----------
@@ -847,10 +847,10 @@ EID.descriptions["en_us"].transformations = {
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Lord of the Flies",-- 3
+	"Beelzebub",		-- 3
 	"Conjoined",		-- 4
 	"Spun",				-- 5
-	"Mom",				-- 6
+	"Yes Mother?",		-- 6
 	"Oh Crap",			-- 7
 	"Bob",				-- 8
 	"Leviathan",		-- 9

@@ -50,6 +50,60 @@ local game = Game()
 		return descObj
 	end
 	EID:addDescriptionModifier("Bingeeater", BingeeaterCondition, BingeeaterCallback)
+
+
+
+	-- Handle Book of Belial description for Judas' Birthright addition
+	local function BookofBelialCondition(descObj)
+		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+			return false
+		end
+		for i = 0,game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			local playerType = player:GetPlayerType()
+
+			if (playerType == PlayerType.PLAYER_JUDAS or playerType == PlayerType.PLAYER_BLACKJUDAS) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+				return true
+			end
+		end
+		return false
+	end
+	
+	local function BookofBelialCallback(descObj)
+		local belialBuff = EID:getDescriptionEntry("bookOfBelialBuffs", descObj.ObjSubType)
+		if belialBuff ~= nil then
+			local iconStr = "#{{Collectible34}} "
+			EID:appendToDescription(descObj, iconStr..belialBuff[3]:gsub("#",iconStr))
+		end
+		return descObj
+	end
+	EID:addDescriptionModifier("BookofBelial", BookofBelialCondition, BookofBelialCallback)
+	
+	
+	
+		-- Handle Book of Virtues description addition
+	local function BookOfVirtuesCondition(descObj)
+		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+			return false
+		end
+		for i = 0,game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) then
+				return true
+			end
+		end
+		return false
+	end
+	
+	local function BookOfVirtuesCallback(descObj)
+		local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", descObj.ObjSubType)
+		if wispType ~= nil then
+			local iconStr = "#{{Collectible584}} "
+			EID:appendToDescription(descObj, iconStr..wispType[1]:gsub("#",iconStr))
+		end
+		return descObj
+	end
+	EID:addDescriptionModifier("Book of Virtues", BookOfVirtuesCondition, BookOfVirtuesCallback)
 	
 	
 	
@@ -122,7 +176,6 @@ local game = Game()
 		return descObj
 	end
 	EID:addDescriptionModifier("Tarot Cloth", TarotClothCondition, TarotClothCallback)
-	
 	
 	
 	-- Handle Golden Trinket description addition
