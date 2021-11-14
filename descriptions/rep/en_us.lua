@@ -431,6 +431,43 @@ EID.descriptions["en_us"].bingeEaterBuffs = {
 	[707] = {"707", "", "↑ +0.5 Tears up#↑+1 Luck up#↓ -0.03 Speed down"}, -- Supper
 }
 
+-- Buffs caused by Book of Belial with Judas' Birthright
+-- Note: "#" will be replaced with "#{{Collectible34}} " automatically, in order to add Book of Belial icon infront of each buff-bulletpoint
+
+EID.descriptions["en_us"].bookOfBelialBuffs = {
+	[40] = {"40", "", "Also invokes the effect of {{Collectible35}} Necronomicon"}, -- Kamikaze!
+	[126] = {"126", "", "Also invokes the effect of {{Collectible35}} Necronomicon"}, -- Razor Blade
+	[127] = {"127", "", "Grants a damage up for the entirety of the next floor"}, -- Forget me Now
+	[133] = {"133", "", "Grants a permanent damage up"}, -- Guppy's Paw
+	[135] = {"135", "", "Grants a damage up with each use"}, -- IV Bag
+	[147] = {"147", "", "The axe has increased durability, knockback, can be used faster, sets enemies on fire and drops more pickups when destroying poops and obstacles"}, -- Notched Axe
+	[186] = {"186", "", "Also invokes the effect of {{Collectible126}} Razor Blade"}, -- Blood Rights
+	[282] = {"282", "", "Leaves a trail of fire that deals contact damage and sets enemies on fire"}, -- How to Jump
+	[290] = {"290", "", "Expends one heart a time, grants a damage up and leaves red creep on the ground"}, -- The Jar
+	[295] = {"295", "", "Has a chance to invoke the effect of {{Collectible555}} Golden Razor"}, -- Magic Fingers
+	[297] = {"297", "", "Spawns a demonic familiar along with the floor-based drop"}, -- Pandora's Box
+	[323] = {"323", "", "Launched tears have boosted damage"}, -- Isaac's Tears
+	[352] = {"352", "", "Activates Book of Belial when broken - damage up persists until the cannon is fixed"}, -- Glass Cannon
+	[475] = {"475", "", "Respawns you as Dark Judas if you have an extra life"}, -- Plan C
+	[482] = {"482", "", "Replaces the most recently acquired item with {{Collectible51}} Pentagram"}, -- Clicker
+	[487] = {"487", "", "Increased damage up"}, -- Potato Peeler
+	[536] = {"536", "", "Grants +10.8 temporary damage up for every sacrificed familiar that slowly fades away similarly to {{Collectible621}} Red Stew"}, -- Sacrificial Altar
+	[555] = {"555", "", "Damages everything in the room and applies the {{Collectible202}} Midas' Touch effect on them"}, -- Golden Razor
+	[563] = {"563", "", "Ghosts will home in on enemies"}, -- Vade Retro
+	[577] = {"577", "", "Grants a permanent damage up"}, -- Damocles
+	[582] = {"582", "", "Grants an additional damage up for the rest of the floor based on the current amount of uses"}, -- Wavy Cap
+	[585] = {"585", "", "Changes the payout to 2 Black Hearts and 1 Devil Deal item#Becomes 3 hearts and 2 items if a Devil Deal has been taken"}, -- Alabaster Box
+	[622] = {"622", "", "Grants a free {{Collectible51}} Pentagram"}, -- Genesis
+	[623] = {"623", "", "Also invokes the effect of {{Collectible126}} Razor Blade"}, -- Sharp Key
+	[635] = {"635", "", "Creates a {{Collectible705}} Dark Arts line between you and Stitches"}, -- Stitches
+	[640] = {"640", "", "Launches a {{Collectible118}} Brimstone beam instead"}, -- Urn of Souls
+	[642] = {"642", "", "Grants a permanent damage up"}, -- Magic Skin
+	[685] = {"685", "", "Grants {{Collectible292}} Satanic Bible wisps that boost Devil Deal chance"}, -- Jar of Wisps
+	[705] = {"705", "", "Allows gain of temporary damage ups"}, -- Dark Arts
+	[710] = {"710", "", "Picking up Red Hearts has a chance to replace them with a Black Heart"}, -- Bag of Crafting
+	[729] = {"729", "", "Grants a huge damage and tears up when the head is detached"}, -- Decap Attack
+}
+
 EID.descriptions["en_us"].spindownError = "Item disappears"
 
 ---------- Trinkets ----------
