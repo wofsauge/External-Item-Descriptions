@@ -812,7 +812,7 @@ function EID:isCollectibleUnlockedAnyPool(collectibleID)
 			return false
 		end
 		--iterate through the pools this item can be in
-		for k,itemPoolID in ipairs(EID.CollectiblesPools[collectibleID]) do
+		for k,itemPoolID in ipairs(EID.XMLItemIsInPools[collectibleID]) do
 			if (itemPoolID < ItemPoolType.NUM_ITEMPOOLS and EID:isCollectibleUnlocked(collectibleID, itemPoolID)) then
 				EID.itemUnlockStates[collectibleID] = true
 				return true
@@ -843,7 +843,7 @@ end
 -- Example input: {1,1,1,2,2,3,3,3}
 -- Result: "3{{Crafting3}}2{{Crafting2}}3{{Crafting1}}"
 local emptyPickupTable = {}
-for i=1,25 do emptyPickupTable[i] = 0 end
+for i=1,29 do emptyPickupTable[i] = 0 end
 function EID:tableToCraftingIconsMerged(craftTable)
 	local sortedList = {table.unpack(craftTable)}
 	table.sort(sortedList, function(a, b) return a > b end)
