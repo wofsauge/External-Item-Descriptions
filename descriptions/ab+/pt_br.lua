@@ -2,6 +2,8 @@
 -----  Basic Portuguese (Brazil) descriptions by Marcelino Cruz -----
 ---------------------------------------------------------------------
 
+-- Last Sync with en_us: 30.10.2021
+
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
 
@@ -757,7 +759,7 @@ EID.descriptions["pt_br"].cards={
 	{"51", "", "Concede o efeito Holy Mantle por uma sala"},
 	{"52", "", "!!! Efeito dura para a sala atual#↑ +7 Dano#↑ +30 Alcance#Aumenta seu tamanho#Quebra pedras ao contato"},
 	{"53", "", "Gera 3 cartas aleatórias quando usadas"},
-	{"54", "", "Diminui a velocidade dos inimigos e das lágrimas do personagem#↑ Velocidade para a sala atual"},
+	{"54", "", "Diminui a velocidade dos inimigos#↓ -0.5 Velocidade#↓ -1 Velocidade de disparo"},
 }
 
 
