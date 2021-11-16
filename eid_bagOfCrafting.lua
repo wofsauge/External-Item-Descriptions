@@ -442,7 +442,7 @@ local function shiftBagContent()
 	EID.BagItems = newContent
 end
 
--- only Tainted Cain's consumable slot bag can have its ingredients shifted
+-- only Tainted Cain's consumable slot bag can have its ingredients shifted... probably?
 local function detectBagContentShift()
 	if Input.IsActionTriggered(ButtonAction.ACTION_DROP, EID.player.ControllerIndex) and IsTaintedCain() then
 		shiftBagContent()
@@ -653,12 +653,10 @@ function EID:handleBagOfCraftingRendering()
 		local calcResults = {}
 		for k, v in pairs(randResults) do
 			local resultID, lockedAchievementID = EID:calculateBagOfCrafting(v)
-			if resultID > 0 then
-				if (not EID:isCollectibleUnlockedAnyPool(resultID) and resultID ~= lockedAchievementID) then
-					table.insert(calcResults, {v, resultID, lockedAchievementID})
-				else
-					table.insert(calcResults, {v, resultID})
-				end
+			if resultID ~= lockedAchievementID then
+				table.insert(calcResults, {v, resultID, lockedAchievementID})
+			else
+				table.insert(calcResults, {v, resultID})
 			end
 		end
 		calcResultCache[queryString] = calcResults
