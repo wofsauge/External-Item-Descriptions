@@ -66,6 +66,7 @@ for _,lang in ipairs(EID.Languages) do
 end
 
 require("eid_data")
+require("eid_xmlData")
 require("eid_api")
 require("eid_modifiers")
 
@@ -608,8 +609,8 @@ local function onRender(t)
 	end
 	
 	EID:renderMCMDummyDescription()
-	-- Deactivated Achievement info, because it still doesnt work. propably because itempool data is outdated
-	--renderAchievementInfo()
+
+	renderAchievementInfo()
 
 	if EID.GameVersion == "ab+" then
 		if EID.player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
@@ -624,12 +625,12 @@ local function onRender(t)
 			EID:removeTextPosModifier("Tained HUD")
 		end
 		-- Disabling Bag of Crafting for now, since it doesnt work after patch
-		--[[if EID.player:HasCollectible(710) then
+		if EID.player:HasCollectible(710) then
 			local success = EID:handleBagOfCraftingRendering()
 			if success then
 				return
 			end
-		end]]--
+		end
 	end
 	
 	if EID.isHidden then
