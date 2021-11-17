@@ -932,7 +932,7 @@ local repTrinkets={
 	{"179", "",  "Instead of trailing behind Isaac, familiars are directly controlled by the same inputs as Isaac's."}, 
 	{"180", "",  "Summons a familiar that follows Isaac's exact movements, akin to Jacob and Esau, and shoots spectral tears. #Deals 0.4x Isaac's damage and gives Isaac a 0.8x damage multiplier while it's alive. #When Isaac places a bomb, the familiar will as well. #Can press buttons. #Dies after taking any damage and repsawns on the next floor."}, 
 	{"181", "",  "Upon use of active item, triggers the use of another random active item."}, 
-	{"182", "",  "Once per floor, upon taking damage creates a wisp orbital and gives a few seconds of invincibility. #Upon entering an angel room, spawns 5 wisp orbitals. #Giving money to beggars creates a wisp orbital."}, 
+	{"182", "",  "Upon entering an angel room, spawns 5 wisp orbitals. #Giving money to beggars creates a wisp orbital."}, 
 	{"183", "",  "Adds a chance to duplicate one of Isaac's familiars when entering a new room. #If Isaac has no familiars, instead spawns Brother Bobby or Sister Maggy."}, 
 	{"184", "",  "Shops now sell Familiars. #Familiars on sale will always be sold for 10 cents instead of the usual price of 15."}, 
 	{"185", "",  "Has the chance to spawn yellow locusts, green locusts, black locusts, red locusts, or white locusts when killing an enemy."}, 

@@ -362,8 +362,8 @@ local repCollectibles={
 	[722] = {"722", "Anima Sola", "Chains down the nearest enemy for 5 seconds, preventing them from acting"}, -- Anima Sola
 	[723] = {"723", "Spindown Dice", "Transforms all items in the room by decreasing their internal ID number by one"}, -- Spindown Dice
 	[724] = {"724", "Hypercoagulation", "When getting hit by an enemy, drops a half or full red heart#Spawned hearts despawn after 1.5 seconds"}, -- Hypercoagulation
-	[725] = {"725", "IBS", "When dealing damage, chance to trigger an effect:#Throw poop#Create buffing creep#Fart#Drop 5 live bombs"}, -- IBS
-	[726] = {"726", "Hemoptysis", "Double-tapping a fire button to sneeze blood#Deals 150% your damage to enemies in front of you#1 second cooldown"}, -- Hemoptysis
+	[725] = {"725", "IBS", "After dealing enough damage:#Throw poop#Create buffing creep#Fart#Drop 5 live bombs"}, -- IBS
+	[726] = {"726", "Hemoptysis", "Double-tap a fire button to sneeze blood#Deals 150% your damage to enemies in front of you#1 second cooldown"}, -- Hemoptysis
 	[727] = {"727", "Ghost Bombs", "+5 bombs#Bombs spawn ghosts that deal contact damage and explode after 10 seconds"}, -- Ghost Bombs
 	[728] = {"728", "Gello", "Spawns a demon familiar that's attached to Isaac#Mimics Isaac's tears, stats and effects"}, -- Gello
 	[729] = {"729", "Decap Attack", "Throws Isaac's head, while being able to fire tears at the spot it lands#Reactivating the item or stepping on the head reattaches it"}, -- Decap Attack
@@ -399,7 +399,7 @@ EID.descriptions["en_us"].birthright ={
 	{"Tainted Isaac", "", "Adds 4 more slots for passive items#Does not consume a slot itself"},
 	{"Tainted Magdalene", "", "Adds 1 more red heart that doesn't drain"},
 	{"Tainted Cain", "", "The amount of pickups spawned from collecting an item is doubled"},
-	{"Tainted Judas", "", "Doubles the duration of {{Collectible705}} Dark Arts#!!! Currently bugged and not working"},
+	{"Tainted Judas", "", "Increases the range in which {{Collectible705}} Dark Arts hits enemies and tears"},
 	{"Tainted ???", "", "Increases the maximum number of carried poops to 29"},
 	{"Tainted Eve", "", "Red Heart clots spawn hearts on death that disappear after 2 seconds"},
 	{"Tainted Samson", "", "The berserk timer gains 3 seconds instead of 1 when Tainted Samson kills an enemy"},
@@ -552,7 +552,7 @@ local repTrinkets={
 	[179] = {"179", "RC Remote", "Familiars movement will be controlled by the same inputs as the player"}, -- RC Remote
 	[180] = {"180", "Found Soul", "Familiar that follows Isaac's exact movements and shoots spectral tears#Has same damage and tear effects as the player"}, -- Found Soul
 	[181] = {"181", "Expansion Pack", "Triggers a separate random active item when using an active item"}, -- Expansion Pack
-	[182] = {"182", "Beth's Essence", "Once per floor, upon taking damage creates a wisp{{Collectible584}} and grants invincibility#Spawns 5 wisps upon entering an Angel Room#Creates a wisp when giving money to beggars"}, -- Beth's Essence
+	[182] = {"182", "Beth's Essence", "Spawns 5 wisps upon entering an Angel Room#Creates a wisp when giving money to beggars"}, -- Beth's Essence
 	[183] = {"183", "The Twins", "50% chance to duplicate a familiar each room#Grants{{Collectible8}}Brother Bobby or{{Collectible67}}Sister Maggy if you have no familiars"}, -- The Twins
 	[184] = {"184", "Adoption Papers", "Shops can sell familiars#Familiars will always be on discount"}, -- Adoption Papers
 	[185] = {"185", "Cricket Leg", "Chance to spawn a random locust when killing an enemy"}, -- Cricket Leg

@@ -189,10 +189,9 @@ EID.UserConfig = {
 	-- Display craftable item names, moving the recipe to a new line
 	-- Default = false
 	["BagOfCraftingDisplayNames"] = false,
-	-- Display locked item recipes, which will all turn into Breakfast
-	-- However, there are false positives with this, as the current state of item pools is checked to determine an item's locked status
+	-- Hide the recipe list when in battle
 	-- Default = true
-	["BagOfCraftingDisplayBreakfast"] = true,
+	["BagOfCraftingHideInBattle"] = true,
 	
 	---------Mouse Controls-----------
 	
@@ -298,7 +297,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingRandomResults"] = 400,
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["BagOfCraftingDisplayNames"] = false,
-	["BagOfCraftingDisplayBreakfast"] = true,
+	["BagOfCraftingHideInBattle"] = true,
 	["SpindownDiceResults"] = 3,
 	["SpindownDiceSkipLocked"] = false,
 	["EnableMouseControls"] = false,
