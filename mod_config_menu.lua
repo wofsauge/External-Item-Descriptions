@@ -1080,26 +1080,26 @@ if MCMLoaded then
 			Info = {"If on, each result takes two lines; lower your displayed results accordingly"}
 		}
 	)
-	-- Bag of Crafting Breakfast recipes
+	-- Bag of Crafting Hide in Battle
 	MCM.AddSetting(
 		"EID",
 		"Crafting",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
-				return EID.Config["BagOfCraftingDisplayBreakfast"]
+				return EID.Config["BagOfCraftingHideInBattle"]
 			end,
 			Display = function()
 				local onOff = "False"
-				if EID.Config["BagOfCraftingDisplayBreakfast"] then
+				if EID.Config["BagOfCraftingHideInBattle"] then
 					onOff = "True"
 				end
-				return "Show Locked Recipes: " .. onOff
+				return "Hide in Battle: " .. onOff
 			end,
 			OnChange = function(currentBool)
-				EID.Config["BagOfCraftingDisplayBreakfast"] = currentBool
+				EID.Config["BagOfCraftingHideInBattle"] = currentBool
 			end,
-			Info = {"Recipes for locked items turn into Breakfast, cluttering the list; the method to check for unlock status is not perfect, though"}
+			Info = {"Hides the recipe list when in a fight"}
 		}
 	)
 	
