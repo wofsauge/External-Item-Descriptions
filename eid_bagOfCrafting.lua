@@ -176,6 +176,22 @@ local lockedRecipes = {}
 --If the seed changes, the above two tables will be wiped
 local lastSeedUsed = 0
 
+--A list of item IDs, sorted by quality, then by name, to help with sorting our recipe list faster
+local sortedIDs = {}
+for i = 1, EID.XMLMaxItemID do
+	if EID.XMLItemQualities[i] ~= nil then
+		table.insert(sortedIDs, i)
+	end
+end
+
+table.sort(sortedIDs, function(a, b)
+	if EID.XMLItemQualities[a] == EID.XMLItemQualities[b] then
+		return (EID:getObjectName(5, 100, a) < EID:getObjectName(5, 100, b))
+	else
+		return (EID.XMLItemQualities[a] > EID.XMLItemQualities[b])
+	end
+end)
+
 local customRNGSeed = 0x77777770
 local customRNGShift = {0,0,0}
 
@@ -457,6 +473,7 @@ end
 
 local randResultCache = {}
 local calcResultCache = {}
+local numResults = 0
 
 EID.bagOfCraftingOffset = 0
 EID.bagOfCraftingCurPickupCount = -1
@@ -593,6 +610,7 @@ function EID:handleBagOfCraftingRendering()
 	elseif calcResultCache[queryString] == nil or EID.refreshNextTick then
 		--build on top of our previous recipe lists, if possible
 		local randResults = randResultCache[queryString] or {}
+		local newResults = {}
 		local skipRandom = false
 		--check every single possible recipe for our highest value pickups
 		--limit it in the options, since the number of total combinations quickly grows (nCr):
@@ -625,7 +643,11 @@ function EID:handleBagOfCraftingRendering()
 		  local startPos = startPos or 1
 		  local tempResult = tempResult or {}
 		  if (length == 0) then
-			randResults[table.concat(tempResult,",")] = {table.unpack(tempResult)}
+			local resultString = table.concat(tempResult,",")
+			if (randResults[resultString] == nil) then
+				randResults[resultString] = {table.unpack(tempResult)}
+				newResults[resultString] = {table.unpack(tempResult)}
+			end
 			return
 		  end
 		  for i = startPos, #arr-length+1 do
@@ -646,49 +668,54 @@ function EID:handleBagOfCraftingRendering()
 					table.remove(tableCopy, pos)
 				end
 				table.sort(newTable, qualitySort)
-				randResults[table.concat(newTable,",")] = newTable
+				local resultString = table.concat(newTable,",")
+				if (randResults[resultString] == nil) then
+					randResults[resultString] = {table.unpack(newTable)}
+					newResults[resultString] = {table.unpack(newTable)}
+				end
 			end
 		end
-
-		local calcResults = {}
-		for k, v in pairs(randResults) do
+		
+		local sortedResults = {}
+		if (calcResultCache[queryString]) then
+			sortedResults = calcResultCache[queryString]
+		else
+			for k, v in ipairs(sortedIDs) do
+				sortedResults[v] = {}
+			end
+		end
+		
+		for k, v in pairs(newResults) do
 			local resultID, lockedAchievementID = EID:calculateBagOfCrafting(v)
 			if resultID ~= lockedAchievementID then
-				table.insert(calcResults, {v, resultID, lockedAchievementID})
+				table.insert(sortedResults[resultID], {v, resultID, lockedAchievementID})
 			else
-				table.insert(calcResults, {v, resultID})
+				table.insert(sortedResults[resultID], {v, resultID})
 			end
 		end
-		calcResultCache[queryString] = calcResults
+		calcResultCache[queryString] = sortedResults
 		randResultCache[queryString] = randResults
-		results = calcResults
-		--sort our final results by quality, then alphabetical item name
-		table.sort(results, function(a, b)
-			if EID.XMLItemQualities[a[2]] == EID.XMLItemQualities[b[2]] then
-				return (EID:getObjectName(5, 100, a[2]) < EID:getObjectName(5, 100, b[2]))
-			else
-				return (EID.XMLItemQualities[a[2]] > EID.XMLItemQualities[b[2]])
+		results = sortedResults
+		
+		numResults = 0
+		for k,v in ipairs(sortedIDs) do
+			if (EID.refreshNextTick and EID.bagOfCraftingOffset > 0 and v == EID.refreshPosition) then
+				--jump to the item we were looking at before, so you can more easily refresh for variants of recipes
+				EID.bagOfCraftingOffset = numResults
 			end
-		end)
+			numResults = numResults + #results[v]
+		end
 		
 		if not EID.refreshNextTick then
 			EID.bagOfCraftingOffset = 0
 			EID.bagOfCraftingRefreshes = 0
-		--jump to the item we were looking at before, so you can more easily refresh for variants of recipes
-		elseif EID.bagOfCraftingOffset > 0 then
-			for k,v in ipairs(results) do
-				if (v[2] == EID.refreshPosition) then
-					EID.bagOfCraftingOffset = k-1
-					break
-				end
-			end
 		end
 		EID.refreshNextTick = false
 	else
 		results = calcResultCache[queryString]
 	end
 	
-	if #results == 0 then
+	if numResults == 0 then
 		EID.bagOfCraftingOffset = 0
 		return false
 	end
@@ -726,7 +753,7 @@ function EID:handleBagOfCraftingRendering()
 	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.player.ControllerIndex) then
 		EID.player:SetShootingCooldown(2)
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) then
-			EID.bagOfCraftingOffset = math.min(#results-(#results%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
+			EID.bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
 			EID.downHeld = Isaac.GetTime()
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) then
 			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
@@ -739,12 +766,11 @@ function EID:handleBagOfCraftingRendering()
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTRIGHT, EID.player.ControllerIndex) then
 			if (EID.lockedResults == nil) then
 				EID.refreshNextTick = true
-				if (results[EID.bagOfCraftingOffset+1]) then EID.refreshPosition = results[EID.bagOfCraftingOffset+1][2] end
 			end
 		end
 		--scroll pages quickly if the button is held
 		if Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) and Isaac.GetTime() - EID.downHeld > 750 then
-			EID.bagOfCraftingOffset = math.min(#results-(#results%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
+			EID.bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
 			EID.downHeld = Isaac.GetTime() - 700
 		elseif Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) and Isaac.GetTime() - EID.upHeld > 750 then
 			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
@@ -752,7 +778,7 @@ function EID:handleBagOfCraftingRendering()
 		end
 	end
 	--fix bug with being allowed to go to an empty page if recipe count = multiple of page size (or if we refresh on last page)
-	if (EID.bagOfCraftingOffset >= #results) then EID.bagOfCraftingOffset = EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
+	if (EID.bagOfCraftingOffset >= numResults) then EID.bagOfCraftingOffset = EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
 	
 	local prevItem = 0
 	
@@ -762,38 +788,48 @@ function EID:handleBagOfCraftingRendering()
 		prefix = "#{{Trinket159}} "
 	end
 	
-	--results is now sorted by quality and item name, and doesn't iterate over the entire table, instead starting at the page offset
+	--results is now a table of tables for each item, so we have to iterate over the table using sortedIDs
 	if (EID.bagOfCraftingOffset > 0) then
 		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..EID.bagOfCraftingOffset.." more"
 	end
-	for i=EID.bagOfCraftingOffset+1,EID.bagOfCraftingOffset+EID.Config["BagOfCraftingResults"] do
-		local v = results[i]
-		if not v then break end
-		
-		if not EID.Config["BagOfCraftingDisplayNames"] then
-			customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} "
-			--tack on the secondary recipe image to achievement-locked recipes
-			if v[3] then customDescObj.Description = customDescObj.Description.."({{Collectible" .. v[3] .. "}})" end
-			--color the equals sign with the item quality, so the order of the list can make sense
-			customDescObj.Description = customDescObj.Description.. qualities[EID.XMLItemQualities[v[2]]] .. "={{CR}}"
-		--only display the item name if it's the first occurrence
+	local curOffset = 0
+	EID.refreshPosition = -1
+	for k,id in ipairs(sortedIDs) do
+		if (curOffset + #results[id] <= EID.bagOfCraftingOffset) then curOffset = curOffset + #results[id]
 		else
-			if prevItem ~= v[2] then
-				--substring the first 18 characters of the item name so it fits on one line; is there a way to get around desc line length limits?
-				customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ".. qualities[EID.XMLItemQualities[v[2]]] ..
-				string.sub(EID:getObjectName(5, 100, v[2]),1,18).."#"
-			else
-				customDescObj.Description = customDescObj.Description.."#"
+			if (EID.refreshPosition == -1) then EID.refreshPosition = id end
+			for k2, v in ipairs(results[id]) do
+				curOffset = curOffset + 1
+				if (curOffset > EID.bagOfCraftingOffset+EID.Config["BagOfCraftingResults"]) then break end
+				if not v then break end
+				if (curOffset > EID.bagOfCraftingOffset) then
+					if not EID.Config["BagOfCraftingDisplayNames"] then
+						customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} "
+						--tack on the secondary recipe image to achievement-locked recipes
+						if v[3] then customDescObj.Description = customDescObj.Description.."({{Collectible" .. v[3] .. "}})" end
+						--color the equals sign with the item quality, so the order of the list can make sense
+						customDescObj.Description = customDescObj.Description.. qualities[EID.XMLItemQualities[v[2]]] .. "={{CR}}"
+					--only display the item name if it's the first occurrence
+					else
+						if prevItem ~= v[2] then
+							--substring the first 18 characters of the item name so it fits on one line; is there a way to get around desc line length limits?
+							customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ".. qualities[EID.XMLItemQualities[v[2]]] ..
+							string.sub(EID:getObjectName(5, 100, v[2]),1,18).."#"
+						else
+							customDescObj.Description = customDescObj.Description.."#"
+						end
+						--replace recipe bulletpoint with the secondary recipe on achievement-locked recipes
+						if v[3] then customDescObj.Description = customDescObj.Description.." {{Collectible" .. v[3] .. "}} " end
+					end
+					
+					customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
+					prevItem = v[2]
+				end
 			end
-			--replace recipe bulletpoint with the secondary recipe on achievement-locked recipes
-			if v[3] then customDescObj.Description = customDescObj.Description.." {{Collectible" .. v[3] .. "}} " end
 		end
-		
-		customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
-		prevItem = v[2]
 	end
-	if (EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"] < #results) then
-		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..(#results-EID.Config["BagOfCraftingResults"]-EID.bagOfCraftingOffset).." more"
+	if (EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"] < numResults) then
+		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..(numResults-EID.Config["BagOfCraftingResults"]-EID.bagOfCraftingOffset).." more"
 	end
 
 	EID:printDescription(customDescObj)
