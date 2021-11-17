@@ -336,7 +336,7 @@ EID.descriptions["en_us"].collectibles={
 	{"321", "Samson's Chains", "Draggable ball that can destroy rocks#Deals 10.7 contact damage per second"},
 	{"322", "Mongo Baby", "Copies the effect of one of your familiars#Deals double its damage"},
 	{"323", "Isaac's Tears", "Shoot 8 tears in all directions when used#Charges when shooting"},
-	{"324", "Undefined", "Teleports you to:#{{SecretRoom}}{{SuperSecretRoom}}Secret, Error or {{TreasureRoom}}Treasure Rooms"},
+	{"324", "Undefined", "Teleports you to the {{TreasureRoom}}Treasure, {{SecretRoom}}Secret, {{SuperSecretRoom}}Super Secret or I AM ERROR Room"},
 	{"325", "Scissors", "Cut off your head#Head turns into stationary familiar#Control your body separately"},
 	{"326", "Breath of Life", "Hold down space till chargebar is empty for invincibility#!!! Don't hold it for too long!"},
 	{"327", "The Polaroid", "Invincibility when getting hit and at half a Red Heart or none"},
