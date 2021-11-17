@@ -399,7 +399,7 @@ EID.descriptions["en_us"].birthright ={
 	{"Tainted Isaac", "", "Adds 4 more slots for passive items#Does not consume a slot itself"},
 	{"Tainted Magdalene", "", "Adds 1 more red heart that doesn't drain"},
 	{"Tainted Cain", "", "The amount of pickups spawned from collecting an item is doubled"},
-	{"Tainted Judas", "", "Doubles the duration of {{Collectible705}} Dark Arts"},
+	{"Tainted Judas", "", "Increases the range in which {{Collectible705}} Dark Arts hits enemies and tears"},
 	{"Tainted ???", "", "Increases the maximum number of carried poops to 29"},
 	{"Tainted Eve", "", "Red Heart clots spawn hearts on death that disappear after 2 seconds"},
 	{"Tainted Samson", "", "The berserk timer gains 3 seconds instead of 1 when Tainted Samson kills an enemy"},
