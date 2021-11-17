@@ -1094,7 +1094,7 @@ if MCMLoaded then
 				if EID.Config["BagOfCraftingHideInBattle"] then
 					onOff = "True"
 				end
-				return "Show Item Names: " .. onOff
+				return "Hide in Battle: " .. onOff
 			end,
 			OnChange = function(currentBool)
 				EID.Config["BagOfCraftingHideInBattle"] = currentBool
