@@ -362,8 +362,8 @@ local repCollectibles={
 	[722] = {"722", "Anima Sola", "Chains down the nearest enemy for 5 seconds, preventing them from acting"}, -- Anima Sola
 	[723] = {"723", "Spindown Dice", "Transforms all items in the room by decreasing their internal ID number by one"}, -- Spindown Dice
 	[724] = {"724", "Hypercoagulation", "When getting hit by an enemy, drops a half or full red heart#Spawned hearts despawn after 1.5 seconds"}, -- Hypercoagulation
-	[725] = {"725", "IBS", "When dealing damage, chance to trigger an effect:#Throw poop#Create buffing creep#Fart#Drop 5 live bombs"}, -- IBS
-	[726] = {"726", "Hemoptysis", "Double-tapping a fire button to sneeze blood#Deals 150% your damage to enemies in front of you#1 second cooldown"}, -- Hemoptysis
+	[725] = {"725", "IBS", "After dealing enough damage:#Throw poop#Create buffing creep#Fart#Drop 5 live bombs"}, -- IBS
+	[726] = {"726", "Hemoptysis", "Double-tap a fire button to sneeze blood#Deals 150% your damage to enemies in front of you#1 second cooldown"}, -- Hemoptysis
 	[727] = {"727", "Ghost Bombs", "+5 bombs#Bombs spawn ghosts that deal contact damage and explode after 10 seconds"}, -- Ghost Bombs
 	[728] = {"728", "Gello", "Spawns a demon familiar that's attached to Isaac#Mimics Isaac's tears, stats and effects"}, -- Gello
 	[729] = {"729", "Decap Attack", "Throws Isaac's head, while being able to fire tears at the spot it lands#Reactivating the item or stepping on the head reattaches it"}, -- Decap Attack
@@ -399,7 +399,7 @@ EID.descriptions["en_us"].birthright ={
 	{"Tainted Isaac", "", "Adds 4 more slots for passive items#Does not consume a slot itself"},
 	{"Tainted Magdalene", "", "Adds 1 more red heart that doesn't drain"},
 	{"Tainted Cain", "", "The amount of pickups spawned from collecting an item is doubled"},
-	{"Tainted Judas", "", "Doubles the duration of {{Collectible705}} Dark Arts#!!! Currently bugged and not working"},
+	{"Tainted Judas", "", "Doubles the duration of {{Collectible705}} Dark Arts"},
 	{"Tainted ???", "", "Increases the maximum number of carried poops to 29"},
 	{"Tainted Eve", "", "Red Heart clots spawn hearts on death that disappear after 2 seconds"},
 	{"Tainted Samson", "", "The berserk timer gains 3 seconds instead of 1 when Tainted Samson kills an enemy"},
