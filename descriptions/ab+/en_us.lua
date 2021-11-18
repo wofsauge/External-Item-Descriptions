@@ -844,20 +844,20 @@ EID.descriptions["en_us"].dice={
 
 ---------- Transformations ----------
 EID.descriptions["en_us"].transformations = {
-	"",					-- 0 = none
+	"",				-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Beelzebub",		-- 3
-	"Conjoined",		-- 4
+	"Lord of the Flies",		-- 3
+	"Conjoined",			-- 4
 	"Spun",				-- 5
-	"Yes Mother?",		-- 6
+	"Mom",				-- 6
 	"Oh Crap",			-- 7
 	"Bob",				-- 8
-	"Leviathan",		-- 9
+	"Leviathan",			-- 9
 	"Seraphim",			-- 10
-	"Super Bum",		-- 11
+	"Super Bum",			-- 11
 	"Bookworm",			-- 12
-	"Spider Baby",		-- 13
+	"Spider Baby",			-- 13
 	"Adult",			-- 14
 	"Stompy"			-- 15
 }
