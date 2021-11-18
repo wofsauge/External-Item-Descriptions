@@ -32,6 +32,9 @@ function EID:renderMCMDummyDescription()
 		if hudOffset == nil and ScreenHelper then
 			hudOffset = ScreenHelper.GetOffset()
 		end
+		if REPENTANCE then
+			hudOffset = (Options.HUDOffset * 10)
+		end
 		EID.Config["HUDOffset"] = hudOffset
 		EID:addTextPosModifier("HudOffset", Vector((hudOffset * 2) - 20, hudOffset - 10))
 		if MCM.IsVisible and EID.MCMCompat_isDisplayingEIDTab ~= "" then
