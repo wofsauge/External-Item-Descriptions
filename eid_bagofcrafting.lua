@@ -49,7 +49,7 @@ local pickupIDLookup = {
 	["10.7"] = {5}, -- gold heart
 	["10.8"] = {2}, -- half soul heart
 	["10.9"] = {1}, -- scared red heart
-	["10.10"] = {1, 2}, -- blended heart
+	["10.10"] = {2, 1}, -- blended heart
 	["10.11"] = {6}, -- Bone heart
 	["10.12"] = {7}, -- Rotten heart
 	["20.1"] = {8}, -- Penny
@@ -225,6 +225,110 @@ function EID:getBagOfCraftingID(Variant, SubType)
 	return nil
 end
 
+--not a very unified set; [7] = The Poop, [9] = The Left Hand; these aren't too important, they are poop nugget and cracked key
+--however, [26] should be Planetarium, we need Planetarium and Ultra Secret Room icons added to the PNG
+local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
+[5]="{{SecretRoom}}",[7]="{{Collectible36}}",[8]="{{ChestRoom}}",[9]="{{Trinket61}}",[12]="{{CursedRoom}}",[26]="{{Collectible158}}" }
+
+function EID:simulateBagOfCrafting(componentsTable)
+	local components = componentsTable
+	local compTotalWeight = 0
+	local compCounts = {}
+	for i = 1, #componentShifts do
+		compCounts[i] = 0
+	end
+	for _, compId in ipairs(components) do
+		if (_ > 8) then break end
+		compCounts[compId + 1] = compCounts[compId + 1] + 1
+		compTotalWeight = compTotalWeight + pickupValues[compId + 1]
+	end
+	
+	local poolWeights = {
+		{idx = 0, weight = 1},
+		{idx = 1, weight = 2},
+		{idx = 2, weight = 2},
+		{idx = 3, weight = compCounts[4] * 10},
+		{idx = 4, weight = compCounts[5] * 10},
+		{idx = 5, weight = compCounts[7] * 5},
+		{idx = 7, weight = compCounts[30] * 10},
+		{idx = 8, weight = compCounts[6] * 10},
+		{idx = 9, weight = compCounts[26] * 10},
+		{idx = 12, weight = compCounts[8] * 10},
+	}
+	if compCounts[9] + compCounts[2] + compCounts[13] + compCounts[16] == 0 then
+		table.insert(poolWeights, {idx = 26, weight = compCounts[24] * 10})
+	end
+	
+	for k,v in ipairs(poolWeights) do
+		v.totalWeight = 0
+	end
+	local totalWeight = 0
+	
+	local qualityWeights = {[0]=0, 0, 0, 0, 0}
+	
+	for _, poolWeight in ipairs(poolWeights) do
+		if poolWeight.weight > 0 then
+			local qualityMin = 0
+			local qualityMax = 1
+			local n = compTotalWeight
+			if (poolWeight.idx >= 3) and (poolWeight.idx <= 5) then
+				n = n - 5
+			end
+			if n > 34 then
+				qualityMin = 4
+				qualityMax = 4
+			elseif n > 26 then
+				qualityMin = 3
+				qualityMax = 4
+			elseif n > 22 then
+				qualityMin = 2
+				qualityMax = 4
+			elseif n > 18 then
+				qualityMin = 2
+				qualityMax = 3
+			elseif n > 14 then
+				qualityMin = 1
+				qualityMax = 2
+			elseif n > 8 then
+				qualityMin = 0
+				qualityMax = 2
+			end
+			local pool = EID.XMLItemPools[poolWeight.idx + 1]
+			
+			for _, item in ipairs(pool) do
+				local quality = EID.XMLItemQualities[item[1]]
+				if quality >= qualityMin and quality <= qualityMax  then
+					local w = item[2] * poolWeight.weight
+					poolWeight.totalWeight = poolWeight.totalWeight + w
+					qualityWeights[quality] = qualityWeights[quality] + w
+					totalWeight = totalWeight + w
+				end
+			end
+		end
+	end
+	
+	local poolString = ""
+	local firstAfterBoss = false
+	for k,v in ipairs(poolWeights) do
+		if (v.weight > 0) then
+			--line break after boss pool
+			if (firstAfterBoss) then poolString = poolString .. " " end
+			poolString = poolString .. poolToIcon[v.idx] .. ":" .. math.floor(v.totalWeight/totalWeight*100+0.5) .. "%,"
+			if (k == 3) then firstAfterBoss = true else firstAfterBoss = false end
+		end
+	end
+	poolString = string.sub(poolString,1,-2) .. "#"
+	for i=0,4 do
+		local v = qualityWeights[i]
+		if (v > 0) then
+			poolString = poolString .. "{{Quality" .. i .. "}}:" .. math.floor(v/totalWeight*100+0.5) .. "%,"
+		end
+	end
+	poolString = string.sub(poolString,1,-2)
+	
+	return compTotalWeight, poolString
+end
+
 function EID:calculateBagOfCrafting(componentsTable)
 	local components = {table.unpack(componentsTable)}
 	if components == nil or #components ~= 8 then
@@ -294,9 +398,6 @@ function EID:calculateBagOfCrafting(componentsTable)
 			if n > 34 then
 				qualityMin = 4
 				qualityMax = 4
-			elseif n > 30 then
-				qualityMin = 3
-				qualityMax = 4
 			elseif n > 26 then
 				qualityMin = 3
 				qualityMax = 4
@@ -334,7 +435,8 @@ function EID:calculateBagOfCrafting(componentsTable)
 	while true do
 		local t = nextFloat()
 		local target = t * totalWeight
-		for k,v in pairs(itemWeights) do
+		for k,v in ipairs(itemWeights) do
+			print(k)
 			target = target - v
 			if target < 0 then
 				if firstOption then
@@ -458,7 +560,7 @@ local function shiftBagContent()
 	EID.BagItems = newContent
 end
 
--- only Tainted Cain's consumable slot bag can have its ingredients shifted... probably?
+-- only Tainted Cain's consumable slot bag can have its ingredients shifted
 local function detectBagContentShift()
 	if Input.IsActionTriggered(ButtonAction.ACTION_DROP, EID.player.ControllerIndex) and IsTaintedCain() then
 		shiftBagContent()
@@ -730,6 +832,8 @@ function EID:handleBagOfCraftingRendering()
 		end
 		local bagDesc = EID:getDescriptionEntry("CraftingBagContent").."(Beta)"
 		EID:appendToDescription(customDescObj, bagDesc..EID:tableToCraftingIconsMerged(EID.BagItems).."#")
+		--debug the bag order
+		--EID:appendToDescription(customDescObj, EID:tableToCraftingIconsFull(EID.BagItems, false).."#")
 	end
 	if #roomItems >0 then
 		if #roomItems == 8 then
@@ -748,6 +852,51 @@ function EID:handleBagOfCraftingRendering()
 		EID:appendToDescription(customDescObj, floorDesc..EID:tableToCraftingIconsMerged(EID.bagOfCraftingFloorQuery).."#")
 	end
 	
+	--Simplified mode WIP
+	--total weight, quality min, quality max, pool weights, total weight
+	local mostValuableSimp = {}
+	for i=1,8 do
+		mostValuableSimp[i] = itemQuery[i]
+	end
+	
+	local bagQuality, bagResult = EID:simulateBagOfCrafting(EID.BagItems)
+	local bestQuality, bestResult = EID:simulateBagOfCrafting(mostValuableSimp)
+	
+	EID:appendToDescription(customDescObj, "Bag Quality: " .. bagQuality .. "#" .. bagResult .. "#")
+	EID:appendToDescription(customDescObj, "Best Quality: " .. bestQuality .. " (" .. EID:tableToCraftingIconsFull(mostValuableSimp, false) .. ")#" .. bestResult .. "#")
+	
+	--[[if bagResult[2] ~= bagResult[3] then
+		EID:appendToDescription(customDescObj, "Best Quality: " .. bagResult[1] .. " ({{Quality" .. bagResult[2] .. "}}-{{Quality" .. bagResult[3] .. "}})#")
+	else
+		EID:appendToDescription(customDescObj, "Best Quality: " .. bagResult[1] .. " ({{Quality" .. bagResult[2] .. "}})#")
+	end
+	local poolString = ""
+	local first = true
+	local firstAfterBoss = false
+	for k,v in ipairs(bagResult[4]) do
+		if (v.weight > 0) then
+			if (not first) then poolString = poolString .. "," end
+			--line break after boss pool
+			if (firstAfterBoss) then poolString = poolString .. " " end
+
+			poolString = poolString .. poolToIcon[v.idx] .. ":" .. math.floor(v.totalWeight/bagResult[6]*100+0.5) .. "%"
+			
+			first = false
+			if (k == 3) then firstAfterBoss = true else firstAfterBoss = false end
+		end
+	end
+	poolString = poolString .. "#"
+	first = true
+	for i=0,4 do
+		local v = bagResult[5][i]
+		if (v > 0) then
+			if (not first) then poolString = poolString .. "," end
+			poolString = poolString .. "{{Quality" .. i .. "}}:" .. math.floor(v/bagResult[6]*100+0.5) .. "%"
+			first = false
+		end
+	end
+	EID:appendToDescription(customDescObj, poolString .. "#")
+	]]
 	local resultDesc = EID:getDescriptionEntry("CraftingResults")
 	EID:appendToDescription(customDescObj, resultDesc)
 	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.player.ControllerIndex) then
