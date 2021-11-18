@@ -66,7 +66,7 @@ for _,lang in ipairs(EID.Languages) do
 end
 
 require("eid_data")
-require("eid_xmlData")
+require("eid_xmldata")
 require("eid_api")
 require("eid_modifiers")
 
@@ -80,7 +80,7 @@ if REPENTANCE then
 		end
 	end
 	local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
-	require("eid_bagOfCrafting")
+	require("eid_bagofcrafting")
 end
 
 EID.LastRenderCallColor = EID:getTextColor()
