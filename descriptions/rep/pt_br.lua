@@ -682,4 +682,4 @@ EID.descriptions["pt_br"].CraftingResults = "(Rolar: Segurar {{CONFIG_BoC_Toggle
 EID.descriptions["pt_br"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}O \"Crafting result calculation\" atualmente não é suportado quando mods são instalados!#{{ColorRed}}Por favor desinstale os mods ou desative a descrição do Bag of Crafting nas configurações"
 
 EID.descriptions["pt_br"].AchievementWarningTitle = "{{ColorYellow}}!!! ALERTA !!!"
-EID.descriptions["pt_br"].AchievementWarningText = "Conquista estão desabilitadas!#Para possibilitar a progressão e as conquistas, é preciso primeiro matar a Mãe (Depths II) sem nenhum mods habilitado".
+EID.descriptions["pt_br"].AchievementWarningText = "Conquista estão desabilitadas!#Para possibilitar a progressão e as conquistas, é preciso primeiro matar a Mãe (Depths II) sem nenhum mods habilitado."

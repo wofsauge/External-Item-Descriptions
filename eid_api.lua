@@ -868,6 +868,9 @@ function EID:handleHUDElement(hudElement)
 	end
 	local screenSize = EID:getScreenSize()
 	local hudOffset = EID.Config["HUDOffset"]
+	if REPENTANCE then
+		hudOffset = (Options.HUDOffset * 10)
+	end
 	for _,v in ipairs(hudElement.anchors) do
 		if v == "TOP" then
 			alteredHudElement.y = hudElement.y + hudOffset * 2
