@@ -764,7 +764,8 @@ function EID:getSpindownResult(collectibleID)
 end
 
 function EID:GetMaxCollectibleID()
-	local id = CollectibleType.NUM_COLLECTIBLES-1
+	--start a little lower than NUM_COLLECTIBLES, due to mods with outdated items.xmls that are missing newer items
+	local id = CollectibleType.NUM_COLLECTIBLES-17
 	local step = 16
 	while step > 0 do
 		if EID.itemConfig:GetCollectible(id+step) ~= nil then
