@@ -598,12 +598,12 @@ local function onRender(t)
 	EID.isDisplaying = false
 	EID:setPlayer()
 	
-	--Controller hide keys are 0 through 26, keyboard hide keys are 32+
-	local hidekeyType = 0
-	if EID.Config["HideKey"] < 32 then hidekeyType = EID.player.ControllerIndex end
-	if Input.IsButtonTriggered(EID.Config["HideKey"], hidekeyType) then
+	--Keyboard hide keys are 32+, controller hide keys have their own option now so don't allow controller inputs in it
+	if EID.Config["HideKey"] < 32 then EID.Config["HideKey"] = -1 end
+	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
 		EID.isHidden = not EID.isHidden
 	end
+	
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then --if if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu is currently in the "Visuals" tab of EID
 		return
 	end
@@ -624,7 +624,6 @@ local function onRender(t)
 		else
 			EID:removeTextPosModifier("Tained HUD")
 		end
-		-- Disabling Bag of Crafting for now, since it doesnt work after patch
 		if EID.player:HasCollectible(710) then
 			local success = EID:handleBagOfCraftingRendering()
 			if success then
