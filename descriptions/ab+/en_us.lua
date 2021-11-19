@@ -20,7 +20,7 @@ EID.descriptions["en_us"].collectibles={
 	{"5", "My Reflection", "Gives tears a boomerang effect#↑ +1.5 Range up#↑ +0.6 Shot Speed up#↑ +1 Tear Height"},
 	{"6", "Number One", "↑ +1.5 Tears up#↓ -17.62 Range down#↑ +0.76 Tear Height"},
 	{"7", "Blood of the Martyr", "↑ +1 Damage up#↑ +50% if you have Book of Belial or Devil Card effect active"},
-	{"8", "Brother Bobby", "Normal tear familiar#Deals 3.5 Damage per tear"},
+	{"8", "Brother Bobby", "Normal tear familiar#Deals 3.5 damage per tear"},
 	{"9", "Skatole", "All fly enemies are friendly"},
 	{"10", "Halo of Flies", "+2 fly orbitals#Blocks enemy projectiles"},
 	{"11", "1up!", "↑ +1 life#Respawn with full health"},
@@ -68,8 +68,8 @@ EID.descriptions["en_us"].collectibles={
 	{"53", "Magneto", "Magnetic attraction for pickups"},
 	{"54", "Treasure Map", "Reveals the floor-layout"},
 	{"55", "Mom's Eye", "Chance to shoot a tear backwards#Chance is 100% at 2 Luck"},
-	{"56", "Lemon Mishap", "Drop a pool of lemonade#Deals 66 contact Damage per second"},
-	{"57", "Distant Admiration", "Mid-range fly orbital#Deals 75 contact Damage per second"},
+	{"56", "Lemon Mishap", "Drop a pool of lemonade#Deals 66 contact damage per second"},
+	{"57", "Distant Admiration", "Mid-range fly orbital#Deals 75 contact damage per second"},
 	{"58", "Book of Shadows", "Invincibility for 10 secs"},
 	{"59", "", "<item does not exist>"},
 	{"60", "The Ladder", "Walk over small gaps"},
@@ -79,9 +79,9 @@ EID.descriptions["en_us"].collectibles={
 	{"64", "Steam Sale", "-50% on shop items#Getting this item two times will make everything free"},
 	{"65", "Anarchist Cookbook", "Spawn 6 troll bombs near the center of the room"},
 	{"66", "The Hourglass", "Slow down enemies for 8 secs"},
-	{"67", "Sister Maggy", "Normal tear familiar#Deals 3.5 Damage per tear"},
+	{"67", "Sister Maggy", "Normal tear familiar#Deals 3.5 damage per tear"},
 	{"68", "Technology", "Tears are now lasers"},
-	{"69", "Chocolate Milk", "Chargeable tears#↑ up to 400% Damage#↓ Tears down"},
+	{"69", "Chocolate Milk", "Chargeable tears#↑ Up to 400% Damage#↓ Tears down"},
 	{"70", "Growth Hormones", "↑ +1 Damage up#↑ +0.4 Speed up"},
 	{"71", "Mini Mush", "↑ +0.3 Speed up#↓ -4.25 Range down*#↑ +1.5 Tear Height*#(*both add up to a slight Range up)#↑ Size down"},
 	{"72", "Rosary", "+3 Soul Hearts#{{Collectible33}} The Bible is added to all item pools"},
@@ -181,13 +181,13 @@ EID.descriptions["en_us"].collectibles={
 	{"166", "D20", "Reroll pickups"},
 	{"167", "Harlequin Baby", "Shoots two tears in a V-shaped pattern#Deals 4 damage per shot"},
 	{"168", "Epic Fetus", "Controllable airstrike instead of tears#Deals 20 times your damage"},
-	{"169", "Polyphemus", "↑ +100% Damage up#↑ +4 Additional Damage up#↓ Tears down"},
+	{"169", "Polyphemus", "↑ +100% Damage up#↑ +4 additional Damage up#↓ Tears down"},
 	{"170", "Daddy Longlegs", "Stomps on enemies#Deals 40 damage per second"},
-	{"171", "Spider Butt", "Slows down enemies for 4 seconds#10 Damage to all enemies"},
+	{"171", "Spider Butt", "Slows down enemies for 4 seconds#10 damage to all enemies"},
 	{"172", "Sacrificial Dagger", "Orbital knife#Blocks enemy shots#Deals 225 damage per second"},
 	{"173", "Mitre", "Higher chance to find Soul Hearts"},
 	{"174", "Rainbow Baby", "Shoots random tears#Deals 3-5 damage per shot"},
-	{"175", "Dad's Key", "Opens all doors in the current room, including Secret Rooms, Challenge Rooms, and the Mega Satan door"},
+	{"175", "Dad's Key", "Opens all doors in the room, including {{SecretRoom}}{{SuperSecretRoom}}Secret Rooms, {{ChallengeRoom}}{{BossRushRoom}}Challenge Rooms, and the Mega Satan door"},
 	{"176", "Stem Cells", "↑ +1 Health up#↑ +0.16 Shot Speed up"},
 	{"177", "Portable Slot", "Portable slot machine"},
 	{"178", "Holy Water", "Leaves pool of creep when you get hit#Deals 24 damage per second"},
@@ -198,7 +198,7 @@ EID.descriptions["en_us"].collectibles={
 	{"183", "Tooth Picks", "↑ +0.7 Tears up.#↑ +0.16 Shot Speed up"},
 	{"184", "Holy Grail", "Grants flight#↑ +1 Health up"},
 	{"185", "Dead Dove", "Flight#Spectral tears"},
-	{"186", "Blood Rights", "↑ Deal 40 Damage to every enemy#↓ Deals 1 heart of damage to you#Prioritizes Red Hearts"},
+	{"186", "Blood Rights", "↑ Deal 40 damage to every enemy#↓ Deals 1 heart of damage to you#Prioritizes Red Hearts"},
 	{"187", "Guppy's Hairball", "Growing hairball#Swings around you#Grows when it kills an enemy#Bigger ball deals more damage"},
 	{"188", "Abel", "Mirrors your movement#Shoots towards the player#Deals 3.5 damage per shot"},
 	{"189", "SMB Super Fan", "↑ +1 Health up#↑ +0.3 Damage up#↑ +0.2 Tears up#↑ +0.5 Range up#↑ +0.2 Speed up#↑ +1 Tear Height#Full health"},
@@ -847,10 +847,10 @@ EID.descriptions["en_us"].transformations = {
 	"",				-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Lord of the Flies",		-- 3
+	"Beelzebub",		-- 3
 	"Conjoined",			-- 4
 	"Spun",				-- 5
-	"Mom",				-- 6
+	"Yes Mother?",				-- 6
 	"Oh Crap",			-- 7
 	"Bob",				-- 8
 	"Leviathan",			-- 9
