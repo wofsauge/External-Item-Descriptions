@@ -185,7 +185,6 @@ for i = 1, EID.XMLMaxItemID do
 end
 
 --don't sort if there's a collectible ID discrepancy
-print(EID:GetMaxCollectibleID())
 if EID:GetMaxCollectibleID() == EID.XMLMaxItemID then
 	table.sort(sortedIDs, function(a, b)
 		if EID.XMLItemQualities[a] == EID.XMLItemQualities[b] then
