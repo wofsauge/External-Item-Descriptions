@@ -1049,6 +1049,53 @@ if MCMLoaded then
 			Info = {"always = Always show Results, hold = Show when holding up bag, never = Never show results"}
 		}
 	)
+	-- Bag of Crafting Hide in Battle
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["BagOfCraftingHideInBattle"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["BagOfCraftingHideInBattle"] then
+					onOff = "True"
+				end
+				return "Hide in Battle: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["BagOfCraftingHideInBattle"] = currentBool
+			end,
+			Info = {"Hides the recipe list when in a fight"}
+		}
+	)
+	-- Bag of Crafting No Recipes Mode
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["BagOfCraftingSimplifiedMode"]
+			end,
+			Display = function()
+				local onOff = "Off"
+				if EID.Config["BagOfCraftingSimplifiedMode"] then
+					onOff = "On"
+				end
+				return "No Recipes Mode: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["BagOfCraftingSimplifiedMode"] = currentBool
+			end,
+			Info = {"No Recipes Mode shows quality and item pool percentages instead of exact recipes, for a more intended experience"}
+		}
+	)
+	
+	MCM.AddSpace("EID", "Crafting")
+	
 	-- Bag of Crafting results
 	MCM.AddSetting(
 		"EID",
@@ -1130,36 +1177,28 @@ if MCMLoaded then
 			Info = {"If on, each result takes two lines; lower your displayed results accordingly"}
 		}
 	)
-	-- Bag of Crafting Hide in Battle
+	
+	MCM.AddSpace("EID", "Crafting")
+	
+	EID:AddHotkeySetting("Crafting", false, "CraftingHideKey", "Toggle (Keyboard)", "Press this key to toggle the crafting display, allowing you to check descriptions of items/pickups on the floor")
+	EID:AddHotkeySetting("Crafting", true, "CraftingHideButton", "Toggle (Controller)", "Press this button to toggle the crafting display (Left Stick or Right Stick recommended; most other buttons will not work)")
+	
+	EID:AddHotkeySetting("Crafting", false, "CraftingResultKey", "Result Toggle (Keyboard)", "Press this key to toggle the description of the item ready to be crafted")
+	EID:AddHotkeySetting("Crafting", true, "CraftingResultButton", "Result Toggle (Controller)", "Press this button to toggle the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)")
+	
+	MCM.AddSpace("EID", "Crafting")
+	--------Clear bag---------
 	MCM.AddSetting(
 		"EID",
 		"Crafting",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["BagOfCraftingHideInBattle"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["BagOfCraftingHideInBattle"] then
-					onOff = "True"
-				end
-				return "Hide in Battle: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["BagOfCraftingHideInBattle"] = currentBool
-			end,
-			Info = {"Hides the recipe list when in a fight"}
+			CurrentSetting = function() return true end,
+			Display = function() return "<---- Clear Bag Content ---->" end,
+			OnChange = function(currentBool) EID.BagItems = {} end,
+			Info = {"Press this to clear all currently detected items on the bag"}
 		}
 	)
-	
-	EID:AddHotkeySetting("Crafting", false, "CraftingHideKey", "Toggle (Keyboard)", "Press this key to toggle the crafting display, allowing you to check descriptions of items/pickups on the floor")
-	EID:AddHotkeySetting("Crafting", true, "CraftingHideButton", "Display Toggle (Controller)", "Press this button to toggle the crafting display (Left Stick or Right Stick recommended; most other buttons will not work)")
-	
-	EID:AddHotkeySetting("Crafting", false, "CraftingResultKey", "Result Info Toggle (Keyboard)", "Press this key to toggle showing the description of the item ready to be crafted")
-	EID:AddHotkeySetting("Crafting", true, "CraftingResultButton", "Result Info Toggle (Controller)", "Press this key to toggle showing the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)")
-	
-	MCM.AddSpace("EID", "Crafting")
 	--------Clear Floor---------
 	MCM.AddSetting(
 		"EID",
@@ -1173,21 +1212,10 @@ if MCMLoaded then
 			EID.bagOfCraftingFloorQuery = {}
 			EID.bagOfCraftingCurPickupCount = -1
 			end,
-			Info = {"Press SPACE to clear all currently detected Items on the stage"}
+			Info = {"Press this to clear all currently detected items on the floor"}
 		}
 	)
-	--------Clear bag---------
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function() return true end,
-			Display = function() return "<---- Clear Bag Content ---->" end,
-			OnChange = function(currentBool) EID.BagItems = {} end,
-			Info = {"Press SPACE to clear all currently detected Items on the bag"}
-		}
-	)
+	
 	---------------------------------------------------------------------------
 	-----------------------------Mouse Controls--------------------------------
 	MCM.AddText("EID", "Mouse", function() return "! THIS FEATURE IS IN EARLY DEVELOPMENT !" end)
