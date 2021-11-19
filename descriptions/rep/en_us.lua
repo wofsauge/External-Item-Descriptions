@@ -904,3 +904,4 @@ EID.descriptions["en_us"].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}}
 EID.descriptions["en_us"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}The \"Crafting result calculation\" feature currently does not work when item mods are installed!#{{ColorRed}}Please uninstall the item mods or deactivate the Bag of Crafting descriptions in the config"
 EID.descriptions["en_us"].AchievementWarningTitle = "{{ColorYellow}}!!! WARNING !!!"
 EID.descriptions["en_us"].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)"
+EID.descriptions["en_us"].OutdatedModWarningText = "An outdated mod is reducing your number of items! This could cause crashes, especially on entering the Knife Piece 2 area!#Please uninstall mods with an outdated resources/items.xml file"
