@@ -192,6 +192,12 @@ EID.UserConfig = {
 	-- "always" = Always show Results, "hold" = Show when holding up bag, "never" = Never show results
 	-- Default = "always"
 	["DisplayBagOfCrafting"] = "always",
+	-- Hide the recipe list when in battle
+	-- Default = true
+	["BagOfCraftingHideInBattle"] = true,
+	-- Simplified / No Recipes Mode shows quality and item pool percentages instead of exact recipes, for a more intended experience
+	-- Default = false
+	["BagOfCraftingSimplifiedMode"] = false,
 	-- Changes the number of Results shown in the Bag of crafting description
 	-- Higher numbers can cause more lag!
 	-- Default = 7
@@ -211,9 +217,6 @@ EID.UserConfig = {
 	-- Display craftable item names, moving the recipe to a new line
 	-- Default = false
 	["BagOfCraftingDisplayNames"] = false,
-	-- Hide the recipe list when in battle
-	-- Default = true
-	["BagOfCraftingHideInBattle"] = true,
 	-- Set the keybinding to toggle the crafting display, so you can see descriptions of items/pickups on the floor
 	-- look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
 	-- Default = Keyboard.KEY_F3
@@ -339,6 +342,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["BagOfCraftingDisplayNames"] = false,
 	["BagOfCraftingHideInBattle"] = true,
+	["BagOfCraftingSimplifiedMode"] = false,
 	["CraftingHideKey"] = Keyboard.KEY_F3,
 	["CraftingHideButton"] = -1,
 	["CraftingResultKey"] = Keyboard.KEY_F4,
