@@ -65,6 +65,49 @@ function EID:buildColorArray()
 	table.sort(colorNameArray)
 end
 
+function EID:AddHotkeySetting(category, isController, optionName, displayText, infoText)
+	local optionType = ModConfigMenu.OptionType.KEYBIND_KEYBOARD
+	local hotkeyToString = InputHelper.KeyboardToString
+	local deviceString = "keyboard"
+	local backString = "ESCAPE"
+	if isController then
+		optionType = ModConfigMenu.OptionType.KEYBIND_CONTROLLER
+		hotkeyToString = InputHelper.ControllerToString
+		deviceString = "controller"
+		backString = "BACK"
+	end
+	MCM.AddSetting(
+		"EID",
+		category,
+		{
+			Type = optionType,
+			CurrentSetting = function()
+				return EID.Config[optionName]
+			end,
+			Display = function()
+				local key = "None"
+				if (hotkeyToString[EID.Config[optionName]]) then key = hotkeyToString[EID.Config[optionName]] end
+				return displayText .. ": " .. key
+			end,
+			OnChange = function(currentNum)
+				EID.Config[optionName] = currentNum or -1
+			end,
+			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
+			PopupWidth = 280,
+			Popup = function()
+				local currentValue = EID.Config[optionName]
+				local keepSettingString = ""
+				if currentValue > -1 then
+					local currentSettingString = hotkeyToString[currentValue]
+					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
+				end
+				return "Press a button on your "..deviceString.." to change this setting.$newline$newline" .. keepSettingString .. "Press "..backString.." to go back and clear this setting."				
+			end,
+			Info = {infoText}
+		}
+	)
+end
+
 if MCMLoaded then
 	function AnIndexOf(t, val)
 		for k, v in ipairs(t) do
@@ -133,7 +176,11 @@ if MCMLoaded then
 			Info = {"If translated names are available,","this changes how item names are displayed."}
 		}
 	)
-
+	
+	-- Hide Key
+	EID:AddHotkeySetting("General", false, "HideKey", "Toggle (Keyboard)", "Press this key to toggle the description display")
+	EID:AddHotkeySetting("General", true, "HideButton", "Toggle (Controller)", "Press this button to toggle the description display (Left Stick or Right Stick recommended; most other buttons will not work)")
+	
 	MCM.AddSpace("EID", "General")
 	
 	-- Position X
@@ -1105,6 +1152,12 @@ if MCMLoaded then
 			Info = {"Hides the recipe list when in a fight"}
 		}
 	)
+	
+	EID:AddHotkeySetting("Crafting", false, "CraftingHideKey", "Toggle (Keyboard)", "Press this key to toggle the crafting display, allowing you to check descriptions of items/pickups on the floor")
+	EID:AddHotkeySetting("Crafting", true, "CraftingHideButton", "Display Toggle (Controller)", "Press this button to toggle the crafting display (Left Stick or Right Stick recommended; most other buttons will not work)")
+	
+	EID:AddHotkeySetting("Crafting", false, "CraftingResultKey", "Result Info Toggle (Keyboard)", "Press this key to toggle showing the description of the item ready to be crafted")
+	EID:AddHotkeySetting("Crafting", true, "CraftingResultButton", "Result Info Toggle (Controller)", "Press this key to toggle showing the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)")
 	
 	MCM.AddSpace("EID", "Crafting")
 	--------Clear Floor---------
