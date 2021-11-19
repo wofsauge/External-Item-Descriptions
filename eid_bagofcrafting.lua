@@ -225,10 +225,8 @@ function EID:getBagOfCraftingID(Variant, SubType)
 	return nil
 end
 
---not a very unified set; [7] = The Poop, [9] = The Left Hand; these aren't too important, they are poop nugget and cracked key
---however, [26] should be Planetarium, we need Planetarium and Ultra Secret Room icons added to the PNG
 local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
-[5]="{{SecretRoom}}",[7]="{{Collectible36}}",[8]="{{ChestRoom}}",[9]="{{Trinket61}}",[12]="{{CursedRoom}}",[26]="{{Collectible158}}" }
+[5]="{{SecretRoom}}",[7]="{{PoopRoomIcon}}",[8]="{{GoldenChestRoomIcon}}",[9]="{{RedChestRoomIcon}}",[12]="{{CursedRoom}}",[26]="{{Planetarium}}" }
 
 function EID:simulateBagOfCrafting(componentsTable)
 	local components = componentsTable
@@ -436,7 +434,6 @@ function EID:calculateBagOfCrafting(componentsTable)
 		local t = nextFloat()
 		local target = t * totalWeight
 		for k,v in ipairs(itemWeights) do
-			print(k)
 			target = target - v
 			if target < 0 then
 				if firstOption then
@@ -591,6 +588,9 @@ EID.bagOfCraftingRefreshes = 0
 EID.downHeld = 0
 EID.upHeld = 0
 
+EID.craftingIsHidden = false
+EID.showCraftingResult = false
+
 local maxItemID = nil
 
 local function detectModdedItems()
@@ -620,12 +620,32 @@ function EID:handleBagOfCraftingRendering()
 	trackBagActivated()
 	detectBagContentShift()
 	
-	if EID.isHidden then
+	if Input.IsButtonTriggered(EID.Config["CraftingHideKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingHideButton"], EID.player.ControllerIndex) then
+		EID.craftingIsHidden = not EID.craftingIsHidden
+	end
+	
+	if Input.IsButtonTriggered(EID.Config["CraftingResultKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingResultButton"], EID.player.ControllerIndex) then
+		EID.showCraftingResult = not EID.showCraftingResult
+	end
+	
+	if EID.isHidden or EID.craftingIsHidden then
 		return
 	elseif EID.Config["BagOfCraftingHideInBattle"] then
 		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
 			return
 		end
+	end
+	
+	if EID.showCraftingResult and #EID.BagItems >= 8 then
+		local craftingResult, backupResult = EID:calculateBagOfCrafting(EID.BagItems)
+		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
+		local backupObj = EID:getDescriptionObj(5, 100, backupResult)
+		if (backupResult ~= craftingResult) then
+			EID:appendToDescription(descriptionObj,"#!!! If this item's locked, it will turn into#{{Collectible" .. backupResult .. "}} " ..
+			EID:getObjectName(5, 100, backupResult) .. "#" .. backupObj.Description)
+		end
+		EID:printDescription(descriptionObj)
+		return true
 	end
 
 	if EID.Config["DisplayBagOfCrafting"] == "never" then
