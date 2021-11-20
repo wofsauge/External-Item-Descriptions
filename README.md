@@ -45,7 +45,7 @@ Simply install &quot;[Mod config Menu](https://steamcommunity.com/sharedfiles/fi
 ### Windows
 1. With Repentance: `steamapps\common\The Binding of Isaac Rebirth\mods\external item descriptions_836319872\`
 1. With  AB+: `..\Documents\My Games\Binding of Isaac Afterbirth+ Mods\External item descriptions\`
-2. Open `config.lua` with any text editor
+2. Open `eid_config.lua` with any text editor
 3. Edit the config
 4. Save the file
 5. Play the game
