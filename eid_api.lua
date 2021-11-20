@@ -800,6 +800,8 @@ function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 end
 
 function EID:isCollectibleUnlockedAnyPool(collectibleID)
+	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data; currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
+	if not REPENTANCE then return true end
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if EID.itemUnlockStates[collectibleID] == nil then
 		--whitelist all quest items and items with no associated achievement
