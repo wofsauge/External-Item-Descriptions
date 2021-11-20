@@ -632,6 +632,9 @@ function EID:handleBagOfCraftingRendering()
 	trackBagActivated()
 	detectBagContentShift()
 	
+	local tableToCraftingIcons = EID.tableToCraftingIconsMerged
+	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIcons = EID.tableToCraftingIconsFull end
+	
 	--prevent our hotkeys from triggering as they're set
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
 		if Input.IsButtonTriggered(EID.Config["CraftingHideKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingHideButton"], EID.player.ControllerIndex) then
@@ -778,9 +781,11 @@ function EID:handleBagOfCraftingRendering()
 		
 		local bagQuality, bagResult = EID:simulateBagOfCrafting(EID.BagItems)
 		local bestQuality, bestResult = EID:simulateBagOfCrafting(mostValuableSimp)
+		local bagQualityDesc = EID:getDescriptionEntry("CraftingBagQuality")
+		local bestQualityDesc = EID:getDescriptionEntry("CraftingBestQuality")
 		
-		EID:appendToDescription(customDescObj, "Bag Quality: " .. bagQuality .. "#" .. bagResult .. "#")
-		EID:appendToDescription(customDescObj, "Best Quality: " .. bestQuality .. " " .. EID:tableToCraftingIconsFull(mostValuableSimp, false) .. "#" .. bestResult .. "#")
+		if (#EID.BagItems > 0) then EID:appendToDescription(customDescObj, bagQualityDesc .. " " .. bagQuality .. "#" .. bagResult .. "#") end
+		EID:appendToDescription(customDescObj, bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIcons(self,mostValuableSimp) .. "#" .. bestResult .. "#")
 		
 		EID:printDescription(customDescObj)
 		return true
@@ -1018,7 +1023,7 @@ function EID:handleBagOfCraftingRendering()
 						if v[3] then customDescObj.Description = customDescObj.Description.." {{Collectible" .. v[3] .. "}} " end
 					end
 					
-					customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
+					customDescObj.Description = customDescObj.Description..tableToCraftingIcons(self,v[1])
 					prevItem = v[2]
 				end
 			end
