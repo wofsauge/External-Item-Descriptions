@@ -711,7 +711,7 @@ EID.descriptions["en_us"].cards={
 	{"8", "VII - The Chariot", "Invincibility + contact damage for 6 seconds"},
 	{"9", "VIII - Justice", "Spawns 1 bomb, 1 key, 1 coin, 1 heart"},
 	{"10", "IX - The Hermit", "Teleports you to the {{Shop}}Shop"},
-	{"11", "X - Wheel of Fortune", "Spawns a Slot- or Fortune Machine"},
+	{"11", "X - Wheel of Fortune", "Spawns a Slot or Fortune Machine"},
 	{"12", "XI - Strength", "↑ +1 Health up#↑ +0.3 Damage up#↑ +50% Damage#↑ +5.25 Range up#↑ +0.3 Speed up#For current room"},
 	{"13", "XII - The Hanged Man", "Grants flight for current room"},
 	{"14", "XIII - Death", "Deals 40 damage to all enemies in the room"},
