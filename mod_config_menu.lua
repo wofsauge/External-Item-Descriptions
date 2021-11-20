@@ -1063,7 +1063,7 @@ if MCMLoaded then
 	---------------------------------Visuals-----------------------------------
 	
 	-- Bag of Crafting Display
-	local bagDisplays = {"Always","Hold","Never"}
+	local bagDisplays = {"always","hold","never"}
 	MCM.AddSetting(
 		"EID",
 		"Crafting",
