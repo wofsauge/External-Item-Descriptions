@@ -374,20 +374,9 @@ function EID:printBulletPoints(description, renderPos)
 end
 ---------------------------------------------------------------------------
 ---------------------------Handle New Room--------------------------------
-local function IsMirror()
-	local level = game:GetLevel()
-	local id = level:GetCurrentRoomIndex()
-
-	return id >=0 and GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 1))
-end
-
 local isMirrorRoom = false
 function EID:onNewRoom()
-	if game:GetLevel():GetAbsoluteStage() == LevelStage.STAGE1_2 then
-		isMirrorRoom = IsMirror()
-	else
-		isMirrorRoom = false
-	end
+	isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 ---------------------------------------------------------------------------
@@ -405,6 +394,11 @@ function EID:renderIndicator(entity)
 	end
 	local repDiv = 1
 	local entityPos = Isaac.WorldToScreen(entity.Position)
+	local ArrowOffset = Vector(0, -35)
+	if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
+		ArrowOffset = Vector(0, -62)
+	end
+	local arrowPos = Isaac.WorldToScreen(entity.Position + ArrowOffset)
 	if entity:GetData() and entity:GetData()["EID_RenderOffset"] then
 		entityPos = entityPos + entity:GetData()["EID_RenderOffset"]
 	end
@@ -414,6 +408,7 @@ function EID:renderIndicator(entity)
 		if isMirrorRoom then
 			local screenCenter = EID:getScreenSize()/2
 			entityPos.X = entityPos.X - (entityPos-screenCenter).X * 2
+			arrowPos.X = arrowPos.X - (arrowPos-screenCenter).X * 2
 			sprite.FlipX = true
 		end
 	end
@@ -424,11 +419,7 @@ function EID:renderIndicator(entity)
 		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
 	elseif EID.Config["Indicator"] == "arrow" then
 		ArrowSprite:Update()
-		local ArrowOffset = Vector(0, -35)
-		if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
-			ArrowOffset = Vector(0, -62)
-		end
-		ArrowSprite:Render(Isaac.WorldToScreen(entity.Position + ArrowOffset), nullVector, nullVector)
+		ArrowSprite:Render(arrowPos, nullVector, nullVector)
 	else
 		if EID.Config["Indicator"] == "border" then
 			local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
@@ -437,7 +428,7 @@ function EID:renderIndicator(entity)
 			sprite.Color = Color(1, 1, 1, 1, 255/repDiv, 255/repDiv, 255/repDiv)
 		end
 		EID:renderEntity(entity, sprite, entityPos + Vector(0, 1))
-		EID:renderEntity(entity, sprite, entityPos  +Vector(0, -1))
+		EID:renderEntity(entity, sprite, entityPos + Vector(0, -1))
 		EID:renderEntity(entity, sprite, entityPos + Vector(1, 0))
 		EID:renderEntity(entity, sprite, entityPos + Vector(-1, 0))
 		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
