@@ -217,6 +217,9 @@ EID.UserConfig = {
 	-- Display craftable item names, moving the recipe to a new line
 	-- Default = false
 	["BagOfCraftingDisplayNames"] = false,
+	-- Display recipes as 8 icons instead of grouped ingredients
+	-- Default = false
+	["BagOfCraftingDisplayIcons"] = false,
 	-- Set the keybinding to toggle the crafting display, so you can see descriptions of items/pickups on the floor
 	-- look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
 	-- Default = Keyboard.KEY_F3
@@ -341,6 +344,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingRandomResults"] = 400,
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["BagOfCraftingDisplayNames"] = false,
+	["BagOfCraftingDisplayIcons"] = false,
 	["BagOfCraftingHideInBattle"] = true,
 	["BagOfCraftingSimplifiedMode"] = false,
 	["CraftingHideKey"] = Keyboard.KEY_F3,
