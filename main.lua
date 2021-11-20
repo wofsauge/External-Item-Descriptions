@@ -88,36 +88,25 @@ local nullVector = Vector(0,0)
 
 ---------------------------------------------------------------------------
 ------------------------------- Load Font ---------------------------------
-local isluadebug, os = pcall(require,"os")
 local modfolder ='external item descriptions_836319872' --release mod folder name
-	if isluadebug then
-		local userPath = os.tmpname()
-		userPath = string.gsub(userPath, "\\", "/")
-		local newPath = ""
-		if not string.find(userPath, "AppData") then
-			-- Linux
-			EID.modPath = os.getenv("HOME") .. "/.local/share/binding of isaac afterbirth+ mods/"..modfolder.."/"
-		else
-			for str in string.gmatch(userPath, "([^/]+)") do
-				if str ~="AppData" then
-					newPath = newPath..str.."/"
-				else
-					break
-				end
-			end
-			EID.modPath = newPath.."Documents/My Games/Binding of Isaac Afterbirth+ Mods/"..modfolder.."/"
-		end
-	else
-		--use some very hacky trickery to get the path to this mod
-		local _, err = pcall(require, "")
-		local _, basePathStart = string.find(err, "no file '", 1)
-		local _, modPathStart = string.find(err, "no file '", basePathStart)
-		local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
-		EID.modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
-	end
-	EID.modPath = string.gsub(EID.modPath, "\\", "/")
-	EID.modPath = string.gsub(EID.modPath, "//", "/")
-	EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
+
+local function GetCurrentModPath()
+    if debug then
+        return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
+    end
+    --use some very hacky trickery to get the path to this mod
+    local _, err = pcall(require, "")
+    local _, basePathStart = string.find(err, "no file '", 1)
+    local _, modPathStart = string.find(err, "no file '", basePathStart)
+    local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+    local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
+    modPath = string.gsub(modPath, "\\", "/")
+	modPath = string.gsub(modPath, "//", "/")
+	modPath = string.gsub(modPath, ":/", ":\\")
+    
+    return modPath
+end
+EID.modPath = GetCurrentModPath()
 
 EID.font = Font() -- init font object
 local fontFile = EID.Config["FontType"] or "default"
@@ -376,7 +365,9 @@ end
 ---------------------------Handle New Room--------------------------------
 local isMirrorRoom = false
 function EID:onNewRoom()
-	isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
+	if REPENTANCE then
+		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
+	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 ---------------------------------------------------------------------------
