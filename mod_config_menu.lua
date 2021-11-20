@@ -65,7 +65,33 @@ function EID:buildColorArray()
 	table.sort(colorNameArray)
 end
 
-function EID:AddHotkeySetting(category, isController, optionName, displayText, infoText)
+function EID:AddBooleanSetting(category, optionName, displayText, onText, offText, infoText)
+	if (type(infoText) == "string") then infoText = {infoText} end
+	MCM.AddSetting(
+		"EID",
+		category,
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config[optionName]
+			end,
+			Display = function()
+				local onOff = offText
+				if EID.Config[optionName] then
+					onOff = onText
+				end
+				return displayText .. ": " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config[optionName] = currentBool
+			end,
+			Info = infoText
+		}
+	)
+end
+
+function EID:AddHotkeySetting(category, optionName, displayText, infoText, isController)
+	if (type(infoText) == "string") then infoText = {infoText} end
 	local optionType = ModConfigMenu.OptionType.KEYBIND_KEYBOARD
 	local hotkeyToString = InputHelper.KeyboardToString
 	local deviceString = "keyboard"
@@ -103,7 +129,7 @@ function EID:AddHotkeySetting(category, isController, optionName, displayText, i
 				end
 				return "Press a button on your "..deviceString.." to change this setting.$newline$newline" .. keepSettingString .. "Press "..backString.." to go back and clear this setting."				
 			end,
-			Info = {infoText}
+			Info = infoText
 		}
 	)
 end
@@ -178,8 +204,8 @@ if MCMLoaded then
 	)
 	
 	-- Hide Key
-	EID:AddHotkeySetting("General", false, "HideKey", "Toggle (Keyboard)", "Press this key to toggle the description display")
-	EID:AddHotkeySetting("General", true, "HideButton", "Toggle (Controller)", "Press this button to toggle the description display (Left Stick or Right Stick recommended; most other buttons will not work)")
+	EID:AddHotkeySetting("General", "HideKey", "Toggle (Keyboard)", "Press this key to toggle the description display", false)
+	EID:AddHotkeySetting("General", "HideButton", "Toggle (Controller)", "Press this button to toggle the description display (Left Stick or Right Stick recommended; most other buttons will not work)", true)
 	
 	MCM.AddSpace("EID", "General")
 	
@@ -1059,9 +1085,9 @@ if MCMLoaded then
 				return EID.Config["BagOfCraftingHideInBattle"]
 			end,
 			Display = function()
-				local onOff = "False"
+				local onOff = "No"
 				if EID.Config["BagOfCraftingHideInBattle"] then
-					onOff = "True"
+					onOff = "Yes"
 				end
 				return "Hide in Battle: " .. onOff
 			end,
@@ -1072,31 +1098,19 @@ if MCMLoaded then
 		}
 	)
 	-- Bag of Crafting No Recipes Mode
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["BagOfCraftingSimplifiedMode"]
-			end,
-			Display = function()
-				local onOff = "Off"
-				if EID.Config["BagOfCraftingSimplifiedMode"] then
-					onOff = "On"
-				end
-				return "No Recipes Mode: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["BagOfCraftingSimplifiedMode"] = currentBool
-			end,
-			Info = {"No Recipes Mode shows quality and item pool percentages instead of exact recipes, for a more intended experience"}
-		}
-	)
-	
+	EID:AddBooleanSetting("Crafting",
+		"BagOfCraftingSimplifiedMode",
+		"No Recipes Mode", "On", "Off",
+		"No Recipes Mode shows quality and item pool percentages instead of exact recipes, for a more intended experience")
+	-- Bag of Crafting 8 icons toggle
+	EID:AddBooleanSetting("Crafting",
+		"BagOfCraftingDisplayIcons",
+		"Show Recipes as", "8 Icons", "Groups",
+		"Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients")
+		
 	MCM.AddSpace("EID", "Crafting")
 	
-	-- Bag of Crafting results
+	-- Bag of Crafting results per page
 	MCM.AddSetting(
 		"EID",
 		"Crafting",
@@ -1180,11 +1194,19 @@ if MCMLoaded then
 	
 	MCM.AddSpace("EID", "Crafting")
 	
-	EID:AddHotkeySetting("Crafting", false, "CraftingHideKey", "Toggle (Keyboard)", "Press this key to toggle the crafting display, allowing you to check descriptions of items/pickups on the floor")
-	EID:AddHotkeySetting("Crafting", true, "CraftingHideButton", "Toggle (Controller)", "Press this button to toggle the crafting display (Left Stick or Right Stick recommended; most other buttons will not work)")
+	EID:AddHotkeySetting("Crafting",
+		"CraftingHideKey", "Toggle (Keyboard)",
+		"Press this key to toggle the crafting display, allowing you to check descriptions of items/pickups on the floor", false)
+	EID:AddHotkeySetting("Crafting",
+		"CraftingHideButton", "Toggle (Controller)",
+		"Press this button to toggle the crafting display (Left Stick or Right Stick recommended; most other buttons will not work)", true)
 	
-	EID:AddHotkeySetting("Crafting", false, "CraftingResultKey", "Result Toggle (Keyboard)", "Press this key to toggle the description of the item ready to be crafted")
-	EID:AddHotkeySetting("Crafting", true, "CraftingResultButton", "Result Toggle (Controller)", "Press this button to toggle the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)")
+	EID:AddHotkeySetting("Crafting",
+		"CraftingResultKey", "Result Toggle (Keyboard)",
+		"Press this key to toggle the description of the item ready to be crafted", false)
+	EID:AddHotkeySetting("Crafting",
+		"CraftingResultButton", "Result Toggle (Controller)",
+		"Press this button to toggle the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)", true)
 	
 	MCM.AddSpace("EID", "Crafting")
 	--------Clear bag---------
