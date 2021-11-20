@@ -136,6 +136,8 @@ end
 
 if MCMLoaded then
 	function AnIndexOf(t, val)
+		--check for 0th term, to help with how OptionType.SCROLL works (returns value between 0 and 10)
+		if t[0] and t[0] == val then return 0 end
 		for k, v in ipairs(t) do
 			if v == val then
 				return k
@@ -204,8 +206,12 @@ if MCMLoaded then
 	)
 	
 	-- Hide Key
-	EID:AddHotkeySetting("General", "HideKey", "Toggle (Keyboard)", "Press this key to toggle the description display", false)
-	EID:AddHotkeySetting("General", "HideButton", "Toggle (Controller)", "Press this button to toggle the description display (Left Stick or Right Stick recommended; most other buttons will not work)", true)
+	EID:AddHotkeySetting("General",
+		"HideKey", "Toggle (Keyboard)",
+		"Press this key to toggle the description display", false)
+	EID:AddHotkeySetting("General",
+		"HideButton", "Toggle (Controller)",
+		"Press this button to toggle the description display (Left Stick or Right Stick recommended; most other buttons will not work)", true)
 	
 	MCM.AddSpace("EID", "General")
 	
@@ -590,6 +596,8 @@ if MCMLoaded then
 		}
 	)
 	
+	MCM.AddSpace("EID", "Display")
+	
 	-- Spindown Dice results
 	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
 	MCM.AddSetting(
@@ -605,7 +613,7 @@ if MCMLoaded then
 					AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1 .. " " .. EID.Config["SpindownDiceResults"] .. " Items"
 			end,
 			OnChange = function(currentNum)
-				EID.Config["SpindownDiceResults"] = diceSteps[currentNum%#diceSteps + 1]
+				EID.Config["SpindownDiceResults"] = diceSteps[currentNum + 1]
 			end,
 			Info = {"Preview of Items resulting when using the Spindown dice X times"}
 		}
@@ -1055,7 +1063,7 @@ if MCMLoaded then
 	---------------------------------Visuals-----------------------------------
 	
 	-- Bag of Crafting Display
-	local bagDisplays = {"always","hold","never"}
+	local bagDisplays = {"Always","Hold","Never"}
 	MCM.AddSetting(
 		"EID",
 		"Crafting",
@@ -1067,36 +1075,19 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = 3,
 			Display = function()
-				return "Display mode: " .. EID.Config["DisplayBagOfCrafting"]
+				return "Display Mode: " .. EID.Config["DisplayBagOfCrafting"]
 			end,
 			OnChange = function(currentNum)
 				EID.Config["DisplayBagOfCrafting"] = bagDisplays[currentNum]
 			end,
-			Info = {"always = Always show Results, hold = Show when holding up bag, never = Never show results"}
+			Info = {"Always = Always show Results, Hold = Show when holding up bag, Never = Never show results"}
 		}
 	)
 	-- Bag of Crafting Hide in Battle
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["BagOfCraftingHideInBattle"]
-			end,
-			Display = function()
-				local onOff = "No"
-				if EID.Config["BagOfCraftingHideInBattle"] then
-					onOff = "Yes"
-				end
-				return "Hide in Battle: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["BagOfCraftingHideInBattle"] = currentBool
-			end,
-			Info = {"Hides the recipe list when in a fight"}
-		}
-	)
+	EID:AddBooleanSetting("Crafting",
+		"BagOfCraftingHideInBattle",
+		"Hide in Battle", "Yes", "No",
+		"Hides the recipe list when in a fight")
 	-- Bag of Crafting No Recipes Mode
 	EID:AddBooleanSetting("Crafting",
 		"BagOfCraftingSimplifiedMode",
@@ -1105,7 +1096,7 @@ if MCMLoaded then
 	-- Bag of Crafting 8 icons toggle
 	EID:AddBooleanSetting("Crafting",
 		"BagOfCraftingDisplayIcons",
-		"Show Recipes as", "8 Icons", "Groups",
+		"Show Recipes/Best Bag as", "8 Icons", "Groups",
 		"Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients")
 		
 	MCM.AddSpace("EID", "Crafting")
