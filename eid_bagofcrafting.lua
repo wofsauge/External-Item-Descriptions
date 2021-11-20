@@ -311,7 +311,7 @@ function EID:simulateBagOfCrafting(componentsTable)
 	local poolString = ""
 	local firstAfterBoss = false
 	for k,v in ipairs(poolWeights) do
-		if (v.weight > 0) then
+		if (v.totalWeight > 0) then
 			--line break after boss pool
 			if (firstAfterBoss) then poolString = poolString .. " " end
 			poolString = poolString .. poolToIcon[v.idx] .. ":" .. math.floor(v.totalWeight/totalWeight*100+0.5) .. "%,"
@@ -762,6 +762,10 @@ function EID:handleBagOfCraftingRendering()
 		end
 		
 		if #EID.BagItems >0 then
+			if #EID.BagItems >= 8 then
+				local recipe = EID:calculateBagOfCrafting(EID.BagItems)
+				EID:appendToDescription(customDescObj, "{{Collectible"..recipe.."}} ")
+			end
 			local bagDesc = EID:getDescriptionEntry("CraftingBagContent").."(Beta)"
 			EID:appendToDescription(customDescObj, bagDesc..EID:tableToCraftingIconsMerged(EID.BagItems).."#")
 		end
@@ -785,7 +789,7 @@ function EID:handleBagOfCraftingRendering()
 		local bestQualityDesc = EID:getDescriptionEntry("CraftingBestQuality")
 		
 		if (#EID.BagItems > 0) then EID:appendToDescription(customDescObj, bagQualityDesc .. " " .. bagQuality .. "#" .. bagResult .. "#") end
-		EID:appendToDescription(customDescObj, bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIcons(self,mostValuableSimp) .. "#" .. bestResult .. "#")
+		if (bestQuality > bagQuality) then EID:appendToDescription(customDescObj, bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIcons(self,mostValuableSimp) .. "#" .. bestResult .. "#") end
 		
 		EID:printDescription(customDescObj)
 		return true
