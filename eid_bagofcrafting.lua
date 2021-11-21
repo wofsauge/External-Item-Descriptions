@@ -49,7 +49,7 @@ local pickupIDLookup = {
 	["10.7"] = {5}, -- gold heart
 	["10.8"] = {2}, -- half soul heart
 	["10.9"] = {1}, -- scared red heart
-	["10.10"] = {1, 2}, -- blended heart
+	["10.10"] = {2, 1}, -- blended heart
 	["10.11"] = {6}, -- Bone heart
 	["10.12"] = {7}, -- Rotten heart
 	["20.1"] = {8}, -- Penny
@@ -184,13 +184,16 @@ for i = 1, EID.XMLMaxItemID do
 	end
 end
 
-table.sort(sortedIDs, function(a, b)
-	if EID.XMLItemQualities[a] == EID.XMLItemQualities[b] then
-		return (EID:getObjectName(5, 100, a) < EID:getObjectName(5, 100, b))
-	else
-		return (EID.XMLItemQualities[a] > EID.XMLItemQualities[b])
-	end
-end)
+--don't sort if there's a collectible ID discrepancy
+if EID:GetMaxCollectibleID() == EID.XMLMaxItemID then
+	table.sort(sortedIDs, function(a, b)
+		if EID.XMLItemQualities[a] == EID.XMLItemQualities[b] then
+			return (EID:getObjectName(5, 100, a) < EID:getObjectName(5, 100, b))
+		else
+			return (EID.XMLItemQualities[a] > EID.XMLItemQualities[b])
+		end
+	end)
+end
 
 local customRNGSeed = 0x77777770
 local customRNGShift = {0,0,0}
@@ -223,6 +226,108 @@ function EID:getBagOfCraftingID(Variant, SubType)
 		return {22}
 	end
 	return nil
+end
+
+local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
+[5]="{{SecretRoom}}",[7]="{{PoopRoomIcon}}",[8]="{{GoldenChestRoomIcon}}",[9]="{{RedChestRoomIcon}}",[12]="{{CursedRoom}}",[26]="{{Planetarium}}" }
+
+function EID:simulateBagOfCrafting(componentsTable)
+	local components = componentsTable
+	local compTotalWeight = 0
+	local compCounts = {}
+	for i = 1, #componentShifts do
+		compCounts[i] = 0
+	end
+	for _, compId in ipairs(components) do
+		if (_ > 8) then break end
+		compCounts[compId + 1] = compCounts[compId + 1] + 1
+		compTotalWeight = compTotalWeight + pickupValues[compId + 1]
+	end
+	
+	local poolWeights = {
+		{idx = 0, weight = 1},
+		{idx = 1, weight = 2},
+		{idx = 2, weight = 2},
+		{idx = 3, weight = compCounts[4] * 10},
+		{idx = 4, weight = compCounts[5] * 10},
+		{idx = 5, weight = compCounts[7] * 5},
+		{idx = 7, weight = compCounts[30] * 10},
+		{idx = 8, weight = compCounts[6] * 10},
+		{idx = 9, weight = compCounts[26] * 10},
+		{idx = 12, weight = compCounts[8] * 10},
+	}
+	if compCounts[9] + compCounts[2] + compCounts[13] + compCounts[16] == 0 then
+		table.insert(poolWeights, {idx = 26, weight = compCounts[24] * 10})
+	end
+	
+	for k,v in ipairs(poolWeights) do
+		v.totalWeight = 0
+	end
+	local totalWeight = 0
+	
+	local qualityWeights = {[0]=0, 0, 0, 0, 0}
+	
+	for _, poolWeight in ipairs(poolWeights) do
+		if poolWeight.weight > 0 then
+			local qualityMin = 0
+			local qualityMax = 1
+			local n = compTotalWeight
+			if (poolWeight.idx >= 3) and (poolWeight.idx <= 5) then
+				n = n - 5
+			end
+			if n > 34 then
+				qualityMin = 4
+				qualityMax = 4
+			elseif n > 26 then
+				qualityMin = 3
+				qualityMax = 4
+			elseif n > 22 then
+				qualityMin = 2
+				qualityMax = 4
+			elseif n > 18 then
+				qualityMin = 2
+				qualityMax = 3
+			elseif n > 14 then
+				qualityMin = 1
+				qualityMax = 2
+			elseif n > 8 then
+				qualityMin = 0
+				qualityMax = 2
+			end
+			local pool = EID.XMLItemPools[poolWeight.idx + 1]
+			
+			for _, item in ipairs(pool) do
+				local quality = EID.XMLItemQualities[item[1]]
+				if quality >= qualityMin and quality <= qualityMax  then
+					local w = item[2] * poolWeight.weight
+					poolWeight.totalWeight = poolWeight.totalWeight + w
+					qualityWeights[quality] = qualityWeights[quality] + w
+					totalWeight = totalWeight + w
+				end
+			end
+		end
+	end
+	
+	local poolString = ""
+	local firstAfterBoss = false
+	for k,v in ipairs(poolWeights) do
+		if (v.totalWeight > 0) then
+			--line break after boss pool
+			if (firstAfterBoss) then poolString = poolString .. " " end
+			poolString = poolString .. poolToIcon[v.idx] .. ":" .. math.floor(v.totalWeight/totalWeight*100+0.5) .. "%,"
+			if (k == 3) then firstAfterBoss = true else firstAfterBoss = false end
+		end
+	end
+	poolString = string.sub(poolString,1,-2) .. "#"
+	for i=0,4 do
+		local v = qualityWeights[i]
+		if (v > 0) then
+			poolString = poolString .. "{{Quality" .. i .. "}}:" .. math.floor(v/totalWeight*100+0.5) .. "%,"
+		end
+	end
+	poolString = string.sub(poolString,1,-2)
+	
+	return compTotalWeight, poolString
 end
 
 function EID:calculateBagOfCrafting(componentsTable)
@@ -294,9 +399,6 @@ function EID:calculateBagOfCrafting(componentsTable)
 			if n > 34 then
 				qualityMin = 4
 				qualityMax = 4
-			elseif n > 30 then
-				qualityMin = 3
-				qualityMax = 4
 			elseif n > 26 then
 				qualityMin = 3
 				qualityMax = 4
@@ -334,7 +436,7 @@ function EID:calculateBagOfCrafting(componentsTable)
 	while true do
 		local t = nextFloat()
 		local target = t * totalWeight
-		for k,v in pairs(itemWeights) do
+		for k,v in ipairs(itemWeights) do
 			target = target - v
 			if target < 0 then
 				if firstOption then
@@ -458,7 +560,7 @@ local function shiftBagContent()
 	EID.BagItems = newContent
 end
 
--- only Tainted Cain's consumable slot bag can have its ingredients shifted... probably?
+-- only Tainted Cain's consumable slot bag can have its ingredients shifted
 local function detectBagContentShift()
 	if Input.IsActionTriggered(ButtonAction.ACTION_DROP, EID.player.ControllerIndex) and IsTaintedCain() then
 		shiftBagContent()
@@ -489,6 +591,9 @@ EID.bagOfCraftingRefreshes = 0
 EID.downHeld = 0
 EID.upHeld = 0
 
+EID.craftingIsHidden = false
+EID.showCraftingResult = false
+
 local maxItemID = nil
 
 local function detectModdedItems()
@@ -496,9 +601,6 @@ local function detectModdedItems()
 		maxItemID = EID:GetMaxCollectibleID()
 	end
 	if maxItemID > EID.XMLMaxItemID then
-		local customDescObj = EID:getDescriptionObj(5, 100, 710)
-		customDescObj.Description = EID.descriptions["en_us"].CraftingBagModError
-		EID:printDescription(customDescObj)
 		return true
 	end
 	return false
@@ -513,12 +615,36 @@ local function calcFloorItems()
 	end
 end
 
+--code from InputHelper in MCM
+local HotkeyToString = {}
+for key,num in pairs(Keyboard) do
+	local keyString = key
+	local keyStart, keyEnd = string.find(keyString, "KEY_")
+	keyString = string.sub(keyString, keyEnd+1, string.len(keyString))
+	keyString = string.gsub(keyString, "_", " ")
+	HotkeyToString[num] = keyString
+end
+
 function EID:handleBagOfCraftingRendering()
 	trackBagHolding()
 	trackBagActivated()
 	detectBagContentShift()
 	
-	if EID.isHidden then
+	local tableToCraftingIcons = EID.tableToCraftingIconsMerged
+	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIcons = EID.tableToCraftingIconsFull end
+	
+	--prevent our hotkeys from triggering as they're set
+	if not ModConfigMenu or not ModConfigMenu.IsVisible then
+		if Input.IsButtonTriggered(EID.Config["CraftingHideKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingHideButton"], EID.player.ControllerIndex) then
+			EID.craftingIsHidden = not EID.craftingIsHidden
+		end
+		
+		if Input.IsButtonTriggered(EID.Config["CraftingResultKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingResultButton"], EID.player.ControllerIndex) then
+			EID.showCraftingResult = not EID.showCraftingResult
+		end
+	end
+	
+	if EID.isHidden or EID.craftingIsHidden then
 		return
 	elseif EID.Config["BagOfCraftingHideInBattle"] then
 		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
@@ -532,8 +658,20 @@ function EID:handleBagOfCraftingRendering()
 	if EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.player:GetSprite():GetAnimation(), "PickupWalk") then
 		return false
 	end
-	if detectModdedItems() or Game():GetRoom():GetFrameCount ()<2 then
+	if Game():GetRoom():GetFrameCount ()<2 then
 		return false
+	end
+	
+	if EID.showCraftingResult and #EID.BagItems >= 8 then
+		local craftingResult, backupResult = EID:calculateBagOfCrafting(EID.BagItems)
+		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
+		local backupObj = EID:getDescriptionObj(5, 100, backupResult)
+		if (backupResult ~= craftingResult) then
+			EID:appendToDescription(descriptionObj,"#!!! If this item's locked, it will turn into#{{Collectible" .. backupResult .. "}} " ..
+			EID:getObjectName(5, 100, backupResult) .. "#" .. backupObj.Description)
+		end
+		EID:printDescription(descriptionObj)
+		return true
 	end
 	
 	local curSeed = Game():GetSeeds():GetStartSeed()
@@ -603,6 +741,57 @@ function EID:handleBagOfCraftingRendering()
 	
 	--sort by ingredient quality
 	table.sort(itemQuery, qualitySort)
+
+	--Simplified Mode display
+	if (EID.Config["BagOfCraftingSimplifiedMode"] or detectModdedItems()) then
+		local customDescObj = EID:getDescriptionObj(5, 100, 710)
+		customDescObj.Description = ""
+		
+		local hotkeyString = ""
+		if HotkeyToString[EID.Config["CraftingHideKey"]] then
+			hotkeyString = "Hide: " .. HotkeyToString[EID.Config["CraftingHideKey"]]
+		end
+		if #EID.BagItems >= 8 and HotkeyToString[EID.Config["CraftingResultKey"]] then
+			if hotkeyString ~= "" then hotkeyString = hotkeyString .. ", " end
+			hotkeyString = hotkeyString .. "Preview: " .. HotkeyToString[EID.Config["CraftingResultKey"]]
+		end
+		if hotkeyString ~= "" then
+			EID:appendToDescription(customDescObj, "!!! " .. hotkeyString .. "#")
+		end
+		
+		if #EID.BagItems >0 then
+			if #EID.BagItems >= 8 then
+				local recipe = EID:calculateBagOfCrafting(EID.BagItems)
+				EID:appendToDescription(customDescObj, "{{Collectible"..recipe.."}} ")
+			end
+			local bagDesc = EID:getDescriptionEntry("CraftingBagContent").."(Beta)"
+			EID:appendToDescription(customDescObj, bagDesc..EID:tableToCraftingIconsMerged(EID.BagItems).."#")
+		end
+		if #roomItems >0 then
+			local roomDesc = EID:getDescriptionEntry("CraftingRoomContent")
+			EID:appendToDescription(customDescObj, roomDesc..EID:tableToCraftingIconsMerged(roomItems).."#")
+		end
+		if #EID.bagOfCraftingFloorQuery >0 and #roomItems ~= #EID.bagOfCraftingFloorQuery then
+			local floorDesc = EID:getDescriptionEntry("CraftingFloorContent")
+			EID:appendToDescription(customDescObj, floorDesc..EID:tableToCraftingIconsMerged(EID.bagOfCraftingFloorQuery).."#")
+		end
+		
+		local mostValuableSimp = {}
+		for i=1,8 do
+			mostValuableSimp[i] = itemQuery[i]
+		end
+		
+		local bagQuality, bagResult = EID:simulateBagOfCrafting(EID.BagItems)
+		local bestQuality, bestResult = EID:simulateBagOfCrafting(mostValuableSimp)
+		local bagQualityDesc = EID:getDescriptionEntry("CraftingBagQuality")
+		local bestQualityDesc = EID:getDescriptionEntry("CraftingBestQuality")
+		
+		if (#EID.BagItems > 0) then EID:appendToDescription(customDescObj, bagQualityDesc .. " " .. bagQuality .. "#" .. bagResult .. "#") end
+		if (bestQuality > bagQuality) then EID:appendToDescription(customDescObj, bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIcons(self,mostValuableSimp) .. "#" .. bestResult .. "#") end
+		
+		EID:printDescription(customDescObj)
+		return true
+	end
 
 	local queryString = table.concat(itemQuery,",")
 	if EID.lockedResults ~= nil then
@@ -723,6 +912,18 @@ function EID:handleBagOfCraftingRendering()
 	local customDescObj = EID:getDescriptionObj(5, 100, 710)
 	customDescObj.Description = ""
 	
+	local hotkeyString = ""
+	if HotkeyToString[EID.Config["CraftingHideKey"]] then
+		hotkeyString = "Hide: " .. HotkeyToString[EID.Config["CraftingHideKey"]]
+	end
+	if #EID.BagItems >= 8 and HotkeyToString[EID.Config["CraftingResultKey"]] then
+		if hotkeyString ~= "" then hotkeyString = hotkeyString .. ", " end
+		hotkeyString = hotkeyString .. "Preview: " .. HotkeyToString[EID.Config["CraftingResultKey"]]
+	end
+	if hotkeyString ~= "" then
+		EID:appendToDescription(customDescObj, "!!! " .. hotkeyString .. "#")
+	end
+	
 	if #EID.BagItems >0 then
 		if #EID.BagItems >= 8 then
 			local recipe = EID:calculateBagOfCrafting(EID.BagItems)
@@ -730,6 +931,8 @@ function EID:handleBagOfCraftingRendering()
 		end
 		local bagDesc = EID:getDescriptionEntry("CraftingBagContent").."(Beta)"
 		EID:appendToDescription(customDescObj, bagDesc..EID:tableToCraftingIconsMerged(EID.BagItems).."#")
+		--debug the bag order
+		--EID:appendToDescription(customDescObj, EID:tableToCraftingIconsFull(EID.BagItems, false).."#")
 	end
 	if #roomItems >0 then
 		if #roomItems == 8 then
@@ -822,7 +1025,7 @@ function EID:handleBagOfCraftingRendering()
 						if v[3] then customDescObj.Description = customDescObj.Description.." {{Collectible" .. v[3] .. "}} " end
 					end
 					
-					customDescObj.Description = customDescObj.Description..EID:tableToCraftingIconsMerged(v[1])
+					customDescObj.Description = customDescObj.Description..tableToCraftingIcons(self,v[1])
 					prevItem = v[2]
 				end
 			end

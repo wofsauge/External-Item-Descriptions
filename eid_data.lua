@@ -144,6 +144,7 @@ EID.InlineIcons = {
 	----- Modded Pill-Colors need to be added manually! (Example in Wiki)
 	["Battery"] = {"pickups", 9, 8, 9},
 	["Timer"] = {"pickups", 10, 8, 9},
+	["PoopPickup"] = {"pickups", 11, 8, 9},
 	["Collectible"] = {"Collectible", 0, 7, 7},
 	----- Use Markup "Collectible"+ ITEMID to render collectible sprites (example: {{Collectible1}} = Sad Onion)
 	----- Modded Collectible-icons are automatically generated. No code needed!
@@ -173,6 +174,12 @@ EID.InlineIcons = {
 	["ChestRoom"] = {"roomicons", 16, 8, 9, 0, 2},
 	["IsaacsRoom"] = {"roomicons", 17, 8, 9, 0, 2},
 	["BarrenRoom"] = {"roomicons", 18, 8, 9, 0, 2},
+	["UltraSecretRoom"] = {"roomicons", 19, 8, 9, 0, 2},
+	["Planetarium"] = {"roomicons", 20, 8, 9, 0, 2},
+	["PoopRoomIcon"] = {"roomicons", 21, 8, 9, 0, 2},
+	["RedChestRoomIcon"] = {"roomicons", 22, 8, 9, 0, 2},
+	["GoldenChestRoomIcon"] = {"roomicons", 23, 8, 9, 0, 2},
+	
 	-- Roomshape Icons
 	["Room"] = {"roomshape", 0, 9, 9, 0, 2},
 	["RoomSmallHorizontal"] = {"roomshape", 1, 9, 9},
@@ -191,9 +198,11 @@ EID.InlineIcons = {
 	["Guppy"] = {"Transformation1", 0, 16, 16, 0, -1, EID.IconSprite},
 	["FunGuy"] = {"Transformation2", 0, 16, 16, 0, -1, EID.IconSprite},
 	["LordoftheFlies"] = {"Transformation3", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Beelzebub"] = {"Transformation3", 0, 16, 16, 0, -1, EID.IconSprite},
 	["Conjoined"] = {"Transformation4", 0, 16, 16, 0, -1, EID.IconSprite},
 	["Spun"] = {"Transformation5", 0, 16, 16, 0, -1, EID.IconSprite},
 	["Mom"] = {"Transformation6", 0, 16, 16, 0, -1, EID.IconSprite},
+	["YesMother?"] = {"Transformation6", 0, 16, 16, 0, -1, EID.IconSprite},
 	["OhCrap"] = {"Transformation7", 0, 16, 16, 0, -1, EID.IconSprite},
 	["Bob"] = {"Transformation8", 0, 16, 16, 0, -1, EID.IconSprite},
 	["Leviathan"] = {"Transformation9", 0, 16, 16, 0, -1, EID.IconSprite},

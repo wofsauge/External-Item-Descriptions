@@ -88,36 +88,25 @@ local nullVector = Vector(0,0)
 
 ---------------------------------------------------------------------------
 ------------------------------- Load Font ---------------------------------
-local isluadebug, os = pcall(require,"os")
 local modfolder ='external item descriptions_836319872' --release mod folder name
-	if isluadebug then
-		local userPath = os.tmpname()
-		userPath = string.gsub(userPath, "\\", "/")
-		local newPath = ""
-		if not string.find(userPath, "AppData") then
-			-- Linux
-			EID.modPath = os.getenv("HOME") .. "/.local/share/binding of isaac afterbirth+ mods/"..modfolder.."/"
-		else
-			for str in string.gmatch(userPath, "([^/]+)") do
-				if str ~="AppData" then
-					newPath = newPath..str.."/"
-				else
-					break
-				end
-			end
-			EID.modPath = newPath.."Documents/My Games/Binding of Isaac Afterbirth+ Mods/"..modfolder.."/"
-		end
-	else
-		--use some very hacky trickery to get the path to this mod
-		local _, err = pcall(require, "")
-		local _, basePathStart = string.find(err, "no file '", 1)
-		local _, modPathStart = string.find(err, "no file '", basePathStart)
-		local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
-		EID.modPath = string.sub(err, modPathStart + 1, modPathEnd - 1)
-	end
-	EID.modPath = string.gsub(EID.modPath, "\\", "/")
-	EID.modPath = string.gsub(EID.modPath, "//", "/")
-	EID.modPath = string.gsub(EID.modPath, ":/", ":\\")
+
+local function GetCurrentModPath()
+    if debug then
+        return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
+    end
+    --use some very hacky trickery to get the path to this mod
+    local _, err = pcall(require, "")
+    local _, basePathStart = string.find(err, "no file '", 1)
+    local _, modPathStart = string.find(err, "no file '", basePathStart)
+    local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+    local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
+    modPath = string.gsub(modPath, "\\", "/")
+	modPath = string.gsub(modPath, "//", "/")
+	modPath = string.gsub(modPath, ":/", ":\\")
+    
+    return modPath
+end
+EID.modPath = GetCurrentModPath()
 
 EID.font = Font() -- init font object
 local fontFile = EID.Config["FontType"] or "default"
@@ -374,19 +363,10 @@ function EID:printBulletPoints(description, renderPos)
 end
 ---------------------------------------------------------------------------
 ---------------------------Handle New Room--------------------------------
-local function IsMirror()
-	local level = game:GetLevel()
-	local id = level:GetCurrentRoomIndex()
-
-	return id >=0 and GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 1))
-end
-
 local isMirrorRoom = false
 function EID:onNewRoom()
-	if game:GetLevel():GetAbsoluteStage() == LevelStage.STAGE1_2 then
-		isMirrorRoom = IsMirror()
-	else
-		isMirrorRoom = false
+	if REPENTANCE then
+		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
@@ -405,6 +385,11 @@ function EID:renderIndicator(entity)
 	end
 	local repDiv = 1
 	local entityPos = Isaac.WorldToScreen(entity.Position)
+	local ArrowOffset = Vector(0, -35)
+	if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
+		ArrowOffset = Vector(0, -62)
+	end
+	local arrowPos = Isaac.WorldToScreen(entity.Position + ArrowOffset)
 	if entity:GetData() and entity:GetData()["EID_RenderOffset"] then
 		entityPos = entityPos + entity:GetData()["EID_RenderOffset"]
 	end
@@ -414,6 +399,7 @@ function EID:renderIndicator(entity)
 		if isMirrorRoom then
 			local screenCenter = EID:getScreenSize()/2
 			entityPos.X = entityPos.X - (entityPos-screenCenter).X * 2
+			arrowPos.X = arrowPos.X - (arrowPos-screenCenter).X * 2
 			sprite.FlipX = true
 		end
 	end
@@ -424,11 +410,7 @@ function EID:renderIndicator(entity)
 		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
 	elseif EID.Config["Indicator"] == "arrow" then
 		ArrowSprite:Update()
-		local ArrowOffset = Vector(0, -35)
-		if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
-			ArrowOffset = Vector(0, -62)
-		end
-		ArrowSprite:Render(Isaac.WorldToScreen(entity.Position + ArrowOffset), nullVector, nullVector)
+		ArrowSprite:Render(arrowPos, nullVector, nullVector)
 	else
 		if EID.Config["Indicator"] == "border" then
 			local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
@@ -437,7 +419,7 @@ function EID:renderIndicator(entity)
 			sprite.Color = Color(1, 1, 1, 1, 255/repDiv, 255/repDiv, 255/repDiv)
 		end
 		EID:renderEntity(entity, sprite, entityPos + Vector(0, 1))
-		EID:renderEntity(entity, sprite, entityPos  +Vector(0, -1))
+		EID:renderEntity(entity, sprite, entityPos + Vector(0, -1))
 		EID:renderEntity(entity, sprite, entityPos + Vector(1, 0))
 		EID:renderEntity(entity, sprite, entityPos + Vector(-1, 0))
 		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
@@ -567,20 +549,29 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
 local hasShownAchievementWarning = false
+
 local function renderAchievementInfo()
-	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 and game.Challenge == 0 then
-		local characterID = Game():GetPlayer(0):GetPlayerType()
-		--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
-		if (characterID < 21) then
-			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
-			if not hasBookOfRevelationsUnlocked then
-				local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
-				if not hasCubeOfMeatUnlocked then
-					local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-					demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-					demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
-					EID:displayPermanentText(demoDescObj)
-					hasShownAchievementWarning = true
+	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 then
+		if EID:GetMaxCollectibleID() < EID.XMLMaxItemID then
+			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
+			demoDescObj.Description = EID:getDescriptionEntry("OutdatedModWarningText") or ""
+			EID:displayPermanentText(demoDescObj)
+			hasShownAchievementWarning = true
+		else
+			local characterID = Game():GetPlayer(0):GetPlayerType()
+			--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
+			if characterID < 21 and game.Challenge == 0 then
+				local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
+				if not hasBookOfRevelationsUnlocked then
+					local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
+					if not hasCubeOfMeatUnlocked then
+						local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+						demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
+						demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+						EID:displayPermanentText(demoDescObj)
+						hasShownAchievementWarning = true
+					end
 				end
 			end
 		end
@@ -598,18 +589,18 @@ local function onRender(t)
 	EID.isDisplaying = false
 	EID:setPlayer()
 	
-	--Controller hide keys are 0 through 26, keyboard hide keys are 32+
-	local hidekeyType = 0
-	if EID.Config["HideKey"] < 32 then hidekeyType = EID.player.ControllerIndex end
-	if Input.IsButtonTriggered(EID.Config["HideKey"], hidekeyType) then
+	--Keyboard hide keys are 32+, controller hide keys have their own option now so don't allow controller inputs in it
+	if EID.Config["HideKey"] < 32 then EID.Config["HideKey"] = -1 end
+	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
 		EID.isHidden = not EID.isHidden
 	end
+	
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then --if if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu is currently in the "Visuals" tab of EID
 		return
 	end
 	
 	EID:renderMCMDummyDescription()
-
+	
 	renderAchievementInfo()
 
 	if EID.GameVersion == "ab+" then
@@ -624,7 +615,6 @@ local function onRender(t)
 		else
 			EID:removeTextPosModifier("Tained HUD")
 		end
-		-- Disabling Bag of Crafting for now, since it doesnt work after patch
 		if EID.player:HasCollectible(710) then
 			local success = EID:handleBagOfCraftingRendering()
 			if success then
@@ -676,6 +666,7 @@ local function onRender(t)
 			end
 		end
 	end
+
 
 	local closest = EID.lastDescriptionEntity
 

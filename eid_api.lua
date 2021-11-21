@@ -764,7 +764,8 @@ function EID:getSpindownResult(collectibleID)
 end
 
 function EID:GetMaxCollectibleID()
-	local id = CollectibleType.NUM_COLLECTIBLES-1
+	--start a little lower than NUM_COLLECTIBLES, due to mods with outdated items.xmls that are missing newer items
+	local id = CollectibleType.NUM_COLLECTIBLES-17
 	local step = 16
 	while step > 0 do
 		if EID.itemConfig:GetCollectible(id+step) ~= nil then
@@ -799,6 +800,8 @@ function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 end
 
 function EID:isCollectibleUnlockedAnyPool(collectibleID)
+	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data; currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
+	if not REPENTANCE then return true end
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if EID.itemUnlockStates[collectibleID] == nil then
 		--whitelist all quest items and items with no associated achievement
@@ -828,10 +831,11 @@ end
 
 -- Converts a given table into a string containing the crafting icons of the table
 -- Example input: {1,2,3,4,5,6,7,8}
--- Result: "{{Crafting8}}{{Crafting7}}{{Crafting6}}{{Crafting5}}{{Crafting4}}{{Crafting3}}{{Crafting2}}{{Crafting1}}"
-function EID:tableToCraftingIconsFull(craftTable)
+-- Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
+function EID:tableToCraftingIconsFull(craftTable, sortTable)
+	if (sortTable == nil) then sortTable = true end
 	local sortedList = {table.unpack(craftTable)}
-	table.sort(sortedList, function(a, b) return a > b end)
+	if (sortTable) then table.sort(sortedList, function(a, b) return a < b end) end
 	local iconString = ""
 	for _,nr in ipairs(sortedList) do
 		iconString = iconString.."{{Crafting"..nr.."}}"
@@ -841,12 +845,11 @@ end
 
 -- Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
 -- Example input: {1,1,1,2,2,3,3,3}
--- Result: "3{{Crafting3}}2{{Crafting2}}3{{Crafting1}}"
+-- Result: "3{{Crafting1}}2{{Crafting2}}3{{Crafting3}}"
 local emptyPickupTable = {}
 for i=1,29 do emptyPickupTable[i] = 0 end
 function EID:tableToCraftingIconsMerged(craftTable)
 	local sortedList = {table.unpack(craftTable)}
-	table.sort(sortedList, function(a, b) return a > b end)
 	local filteredList = {table.unpack(emptyPickupTable)}
 	for _,nr in ipairs(sortedList) do
 		filteredList[nr] = filteredList[nr] +1
