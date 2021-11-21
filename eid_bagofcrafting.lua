@@ -601,9 +601,7 @@ local function detectModdedItems()
 		maxItemID = EID:GetMaxCollectibleID()
 	end
 	if maxItemID > EID.XMLMaxItemID then
-		local customDescObj = EID:getDescriptionObj(5, 100, 710)
-		customDescObj.Description = EID.descriptions["en_us"].CraftingBagModError
-		EID:printDescription(customDescObj)
+		return true
 	end
 	return false
 end
@@ -660,7 +658,7 @@ function EID:handleBagOfCraftingRendering()
 	if EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.player:GetSprite():GetAnimation(), "PickupWalk") then
 		return false
 	end
-	if detectModdedItems() or Game():GetRoom():GetFrameCount ()<2 then
+	if Game():GetRoom():GetFrameCount ()<2 then
 		return false
 	end
 	
@@ -745,7 +743,7 @@ function EID:handleBagOfCraftingRendering()
 	table.sort(itemQuery, qualitySort)
 
 	--Simplified Mode display
-	if (EID.Config["BagOfCraftingSimplifiedMode"]) then
+	if (EID.Config["BagOfCraftingSimplifiedMode"] or detectModdedItems()) then
 		local customDescObj = EID:getDescriptionObj(5, 100, 710)
 		customDescObj.Description = ""
 		
