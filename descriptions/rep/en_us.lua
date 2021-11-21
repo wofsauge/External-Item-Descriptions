@@ -39,7 +39,7 @@ local repCollectibles={
 	[67] = {"67", "Sister Maggy", "Normal tear familiar#Deals 6 damage per tear"}, -- Sister Maggy
 	[70] = {"70", "Growth Hormones", "↑ +1 Damage up#↑ +0.2 Speed up"}, -- Growth Hormones
 	[71] = {"71", "Mini Mush", "↑ +0.3 Speed up#↑ +1.5 Range up#↑ Size down"}, -- Mini Mush
-	[72] = {"72", "Rosary", "+3 Soul Hearts#↑ 0.5 Tears up#{{Collectible33}} The Bible is added to all item pools"}, -- Rosary
+	[72] = {"72", "Rosary", "+3 Soul Hearts#↑ 0.5 Tears up#{{Collectible33}}The Bible is added to all item pools"}, -- Rosary
 	[77] = {"77", "My Little Unicorn", "Invincibility#20 contact damage"}, -- My Little Unicorn
 	[78] = {"78", "Book of Revelations", "+1 Soul Heart#A Horseman replaces the current floor's boss if used#↑ +17.5% Devil or Angel Room chance"}, -- Book of Revelations
 	[79] = {"79", "The Mark", "↑ +1 Damage up#↑ +0.2 Speed up#+1 Black Heart"}, -- The Mark
@@ -105,7 +105,7 @@ local repCollectibles={
 	[280] = {"280", "Sissy Longlegs", "Randomly spawns blue spiders when in a hostile room#Charms enemies it comes in contact with"}, -- Sissy Longlegs
 	[283] = {"283", "D100", "Reroll all pedestals, stats, pickups and all your held passive items#Duplicates 1 random pickup in room#Restarts current room and respawns and rerolls its enemies#Rerolls rocks in room"}, -- D100
 	[285] = {"285", "D10", "Reroll all enemies in the room#Tries to reroll them into enemies with similar max HP"}, -- D10
-	[287] = {"287", "Book of Secrets", "Grants {{Collectible54}}Treasure Map, {{Collectible21}}Compass or {{Collectible246}}Blue Map for current floor when used#Only grants mapping effects you don't have already#If all effects are active, grants {{Collectible76}}X-Ray Vision"}, -- Book of Secrets
+	[287] = {"287", "Book of Secrets", "Grants {{Collectible54}}Treasure Map, {{Collectible21}}Compass or {{Collectible246}}Blue Map for the current floor when used#Only grants mapping effects you don't have already#If all effects are active, grants {{Collectible76}}X-Ray Vision"}, -- Book of Secrets
 	[288] = {"288", "Box of Spiders", "Spawn 4-8 blue spiders"}, -- Box of Spiders
 	[289] = {"289", "Red Candle", "Throw red fire#The flame persists until it has dealt 23 damage 5 times or after 10 seconds"}, -- Red Candle
 	[291] = {"291", "Flush!", "Turns all non-boss enemies into poop#Instantly kills poop enemies and bosses#Extinguishes fire places and fills the room with water#Turns lava-filled pits into walkable ground"}, -- Flush!
@@ -177,7 +177,7 @@ local repCollectibles={
 	[464] = {"464", "Glyph of Balance", "+2 Soul Hearts#Champion enemies and room drops appear more frequently#Priority of spawned pickups depends on what the player is missing most of"}, -- Glyph of Balance
 	[472] = {"472", "King Baby", "Other familiars follow it and shoot automatically at enemies#Stops moving when you are shooting#Will teleport back to you when you stop shooting"}, -- King Baby
 	[474] = {"474", "Broken Glass Cannon", "Turns into Glass Cannon when used"}, -- Broken Glass Cannon
-	[489] = {"489", "D Infinity", "Acts as any die item except for {{Collectible723}} Spindown Dice#Change the current die with the drop key#Charge time varies based on the current die and updates when used"}, -- D Infinity
+	[489] = {"489", "D Infinity", "Acts as any die item except for {{Collectible723}}Spindown Dice#Change the current die with the drop key#Charge time varies based on the current die and updates when used"}, -- D Infinity
 	[491] = {"491", "Acid Baby", "Drops a random pill every 7 rooms#Using a pill poisons all enemies in the room"}, -- Acid Baby
 	[493] = {"493", "Adrenaline", "↑ Damage up for every empty Red Heart container#Follows a formula, some examples are:#+0.3 at 1#+0.92 at 2#+1.76 at 3#+2.79 at 4#+3.98 at 5"}, -- Adrenaline
 	[494] = {"494", "Jacob's Ladder", "Tears spawn one spark of electricity on impact#Sparks deal half your damage#Sparks can jump between enemies"}, -- Jacobs Ladder
@@ -193,7 +193,7 @@ local repCollectibles={
 	[553] = {"553", "Mucormycosis", "Chance to fire sticky spore tears#Spores blow up after 2.5 seconds, dealing damage, poison nearby enemies and releases more spores"}, -- Mucormycosis
 	[554] = {"554", "2Spooky", "Fears enemies in a small radius around you"}, -- 2Spooky
 	[555] = {"555", "Golden Razor", "Converts 5 coins into +1.2 Damage up for the current room#Gain 5 coins on pickup"}, -- Golden Razor
-	[556] = {"556", "Sulfur", "Grants {{Collectible118}} Brimstone for the current room"}, -- Sulfur
+	[556] = {"556", "Sulfur", "Grants {{Collectible118}}Brimstone for the current room"}, -- Sulfur
 	[557] = {"557", "Fortune Cookie", "Gives Isaac a fortune, Soul Heart, tarot card, or trinket"}, -- Fortune Cookie
 	[558] = {"558", "Eye Sore", "Chance to fire 1-2 extra tears in random directions"}, -- Eye Sore
 	[559] = {"559", "120 Volt", "Repeatedly zaps close enemies#Electricity deals 75% of your damage"}, -- 120 Volt
@@ -264,7 +264,7 @@ local repCollectibles={
 	[624] = {"624", "Booster Pack", "Spawns 5 random cards"}, -- Booster Pack
 	[625] = {"625", "Mega Mush", "Gigantifies you for 30 seconds#Increases damage and range#Grants invincibility and ability to crush enemies and obstacles#Effect persists between rooms"}, -- Mega Mush
 	[626] = {"626", "Knife Piece 1", "First part of the knife familiar"}, -- Knife Piece 1
-	[627] = {"627", "Knife Piece 2", "Makes knife familiar with {{Collectible627}} Knife Piece 1#Damages enemies#Can open a certain flesh door"}, -- Knife Piece 2
+	[627] = {"627", "Knife Piece 2", "Makes knife familiar with {{Collectible627}}Knife Piece 1#Damages enemies#Can open a certain flesh door"}, -- Knife Piece 2
 	[628] = {"628", "Death Certificate", "{{Warning}} SINGLE USE {{Warning}}#Takes you to a floor containing every item in the game#After taking an item, return to the room you came from"}, -- Death Certificate
 	[629] = {"629", "Bot Fly", "Orbital that fires shielded tears"}, -- Bot Fly
 	[630] = {"630", "", "<Item does not exist>"},
@@ -316,7 +316,7 @@ local repCollectibles={
 	[676] = {"676", "Empty Heart", "When having an empty heart container at the start of a new floor, grants another one#Bone Hearts don't count"}, -- Empty Heart
 	[677] = {"677", "Astral Projection", "When getting hit, stops time for 3 seconds#Isaac becomes a ghost and leaves his body#In ghost form gain flight, spectral tears and also negate next hit taken"}, -- Astral Projection
 	[678] = {"678", "C Section", "Gain a short delay charge attack that fires homing, spectral fetus tears"}, -- C Section
-	[679] = {"679", "Lil Abaddon", "Familiar which shoots a mini {{Collectible399}} Maw of the Void attack"}, -- Lil Abaddon
+	[679] = {"679", "Lil Abaddon", "Familiar which shoots a mini {{Collectible399}}Maw of the Void attack"}, -- Lil Abaddon
 	[680] = {"680", "Montezuma's Revenge", "While firing, charge up a short-ranged Brimstone#Shoots behind you"}, -- Montezuma's Revenge
 	[681] = {"681", "Lil Portal", "Deals contact damage and flies forward#Consumes pickups in its path#Each one will increase its size, damage, and spawn a Blue Fly#Every four pickups, it spawns a portal to an unexplored room"}, -- Lil Portal
 	[682] = {"682", "Worm Friend", "Causes a tentacle to burst out of the ground and grab an enemy#Grabbed enemies take damage, are slowed and cannot move"}, -- Worm Friend
@@ -377,8 +377,8 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us"].collec
 EID.descriptions["en_us"].birthright ={
 	{"Isaac", "", "All items cycle between two options"},
 	{"Magdalene", "", "↑ +1 Health up#Maximum heart limit is raised to 18"},
-	{"Cain", "", "↑ +1 Luck up#All floors will contain an upgraded Arcade Room except for Dark Room and Chest#Greatly increases {{Collectible46}} Lucky Foot's chances of winning effect"},
-	{"Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#Receive {{Collectible34}} The Book of Belial if you're not currently holding it#The damage boost received from it scales with the amount of charges the active item above it has#Grants special effects for certain active items"},
+	{"Cain", "", "↑ +1 Luck up#All floors will contain an upgraded Arcade Room except for Dark Room and Chest#Greatly increases {{Collectible46}}Lucky Foot's chances of winning effect"},
+	{"Judas", "", "{{Collectible34}}The Book of Belial becomes a passive item similar to {{Collectible584}}Book of Virtues#Receive {{Collectible34}}The Book of Belial if you're not currently holding it#The damage boost received from it scales with the amount of charges the active item above it has#Grants special effects for certain active items"},
 	{"???", "", "Soul Hearts gained from health upgrades are doubled#!!! Health down pills will remove 2 soul hearts"},
 	{"Eve", "", "Whore of Babylon is active regardless of health#Dead Bird is active without taking damage"},
 	{"Samson", "", "Bloody Lust can gain 4 more damage boosts at the same +0.2 intervals, for a new maximum total of +14"},
@@ -387,10 +387,10 @@ EID.descriptions["en_us"].birthright ={
 	{"Eden", "", "Spawns 3 random items from random item pools#Only one can be taken"},
 	{"The Lost", "", "Prevents items not beneficial to The Lost from spawning#Examples: items that only give health, flight, and/or spectral tears or activate upon taking damage"},
 	{"Lazarus Risen", "", "Grants a slowly fading +21.6 damage bonus"},
-	{"Black Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#Receive {{Collectible34}} The Book of Belial if you're not currently holding it#The damage boost received from it scales with the amount of charges the active item above it has"},
+	{"Black Judas", "", "{{Collectible34}}The Book of Belial becomes a passive item similar to {{Collectible584}}Book of Virtues#Receive {{Collectible34}}The Book of Belial if you're not currently holding it#The damage boost received from it scales with the amount of charges the active item above it has"},
 	{"Lilith", "", "Familiars are positioned in front of Lilith's face"},
 	{"Keeper", "", "↑ +1 Health up#Raises HP cap by 1"},
-	{"Apollyon", "", "Using {{Collectible477}} Void has a chance to spawn an item that was previously voided#Stat bonuses are kept#The more items voided, the higher the chance for an item to spawn upon use"},
+	{"Apollyon", "", "Using {{Collectible477}}Void has a chance to spawn an item that was previously voided#Stat bonuses are kept#The more items voided, the higher the chance for an item to spawn upon use"},
 	{"The Forgotten", "", "The Soul is unchained and free to move"},
 	{"The Forgotten Soul", "", "The Soul is unchained and free to move"},
 	{"Bethany", "", "Activating an item using soul charges is sometimes free"},
@@ -399,23 +399,23 @@ EID.descriptions["en_us"].birthright ={
 	{"Tainted Isaac", "", "Adds 4 more slots for passive items#Does not consume a slot itself"},
 	{"Tainted Magdalene", "", "Adds 1 more red heart that doesn't drain"},
 	{"Tainted Cain", "", "The amount of pickups spawned from collecting an item is doubled"},
-	{"Tainted Judas", "", "Increases the range in which {{Collectible705}} Dark Arts hits enemies and tears"},
+	{"Tainted Judas", "", "Increases the range in which {{Collectible705}}Dark Arts hits enemies and tears"},
 	{"Tainted ???", "", "Increases the maximum number of carried poops to 29"},
 	{"Tainted Eve", "", "Red Heart clots spawn hearts on death that disappear after 2 seconds"},
 	{"Tainted Samson", "", "The berserk timer gains 3 seconds instead of 1 when Tainted Samson kills an enemy"},
-	{"Tainted Azazel", "", "Doubles the size of Tainted Azazel's {{Collectible726}} Hemoptysis sneeze attack"},
+	{"Tainted Azazel", "", "Doubles the size of Tainted Azazel's {{Collectible726}}Hemoptysis sneeze attack"},
 	{"Tainted Lazarus", "", "The other version of T. Lazarus will be available as a ghost#He is immune to damage, but can fire tears#Both characters receive the Birthright effect"},
 	{"Tainted Eden", "", "Passive items gained before Birthright will not be rerolled upon taking damage"},
 	{"Tainted Lost", "", "Grants an extra life that revives Tainted Lost in the same room and deals 200 damage to nearby enemies#Can hit the same enemy multiple times"},
-	{"Tainted Lilith", "", "Familiars that normally follow Tainted Lilith will instead act like her {{Collectible728}} Gello"},
+	{"Tainted Lilith", "", "Familiars that normally follow Tainted Lilith will instead act like her {{Collectible728}}Gello"},
 	{"Tainted Keeper", "", "Strongly attracts the coins dropped by defeating enemies from a short distance#No effect on other coins"},
 	{"Tainted Apollyon", "", "If the fire button is held, locusts will continuously damage enemies instead of returning"},
-	{"Tainted Forgotten", "", "Tainted Soul gains the {{Collectible714}} Recall ability, to retrieve the Tainted Forgotten from a distance"},
+	{"Tainted Forgotten", "", "Tainted Soul gains the {{Collectible714}}Recall ability, to retrieve the Tainted Forgotten from a distance"},
 	{"Tainted Bethany", "", "Spawns four random item wisps of high quality with significantly higher HP than normal"},
 	{"Tainted Jacob", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus will always charge at the same time"},
 	{"Dead Tainted Lazarus", "", "The other version of T. Lazarus will be available as a ghost#He is immune to damage, but can fire tears#Both characters receive the Birthright effect"},
 	{"Tainted Jacob 2", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus will always charge at the same time#Using {{Collectible722}} Anima Sola chains them both"},
-	{"Tainted Forgotten Soul", "", "Tainted Soul gains the {{Collectible714}} Recall ability, to retrieve the Tainted Forgotten from a distance"},
+	{"Tainted Forgotten Soul", "", "Tainted Soul gains the {{Collectible714}}Recall ability, to retrieve the Tainted Forgotten from a distance"},
 }
 
 -- Buffs caused by Binge Eater
@@ -436,34 +436,34 @@ EID.descriptions["en_us"].bingeEaterBuffs = {
 -- Note: "#" will be replaced with "#{{Collectible34}} " automatically, in order to add Book of Belial icon infront of each buff-bulletpoint
 
 EID.descriptions["en_us"].bookOfBelialBuffs = {
-	[40] = {"40", "", "Also invokes the effect of {{Collectible35}} Necronomicon"}, -- Kamikaze!
-	[126] = {"126", "", "Also invokes the effect of {{Collectible35}} Necronomicon"}, -- Razor Blade
+	[40] = {"40", "", "Also invokes the effect of {{Collectible35}}Necronomicon"}, -- Kamikaze!
+	[126] = {"126", "", "Also invokes the effect of {{Collectible35}}Necronomicon"}, -- Razor Blade
 	[127] = {"127", "", "Grants a damage up for the entirety of the next floor"}, -- Forget me Now
 	[133] = {"133", "", "Grants a permanent damage up"}, -- Guppy's Paw
 	[135] = {"135", "", "Grants a damage up with each use"}, -- IV Bag
 	[147] = {"147", "", "The axe has increased durability, knockback, can be used faster, sets enemies on fire and drops more pickups when destroying poops and obstacles"}, -- Notched Axe
-	[186] = {"186", "", "Also invokes the effect of {{Collectible126}} Razor Blade"}, -- Blood Rights
+	[186] = {"186", "", "Also invokes the effect of {{Collectible126}}Razor Blade"}, -- Blood Rights
 	[282] = {"282", "", "Leaves a trail of fire that deals contact damage and sets enemies on fire"}, -- How to Jump
 	[290] = {"290", "", "Expends one heart a time, grants a damage up and leaves red creep on the ground"}, -- The Jar
-	[295] = {"295", "", "Has a chance to invoke the effect of {{Collectible555}} Golden Razor"}, -- Magic Fingers
+	[295] = {"295", "", "Has a chance to invoke the effect of {{Collectible555}}Golden Razor"}, -- Magic Fingers
 	[297] = {"297", "", "Spawns a demonic familiar along with the floor-based drop"}, -- Pandora's Box
 	[323] = {"323", "", "Launched tears have boosted damage"}, -- Isaac's Tears
 	[352] = {"352", "", "Activates Book of Belial when broken - damage up persists until the cannon is fixed"}, -- Glass Cannon
 	[475] = {"475", "", "Respawns you as Dark Judas if you have an extra life"}, -- Plan C
-	[482] = {"482", "", "Replaces the most recently acquired item with {{Collectible51}} Pentagram"}, -- Clicker
+	[482] = {"482", "", "Replaces the most recently acquired item with {{Collectible51}}Pentagram"}, -- Clicker
 	[487] = {"487", "", "Increased damage up"}, -- Potato Peeler
-	[536] = {"536", "", "Grants +10.8 temporary damage up for every sacrificed familiar that slowly fades away similarly to {{Collectible621}} Red Stew"}, -- Sacrificial Altar
-	[555] = {"555", "", "Damages everything in the room and applies the {{Collectible202}} Midas' Touch effect on them"}, -- Golden Razor
+	[536] = {"536", "", "Grants +10.8 temporary damage up for every sacrificed familiar that slowly fades away similarly to {{Collectible621}}Red Stew"}, -- Sacrificial Altar
+	[555] = {"555", "", "Damages everything in the room and applies the {{Collectible202}}Midas' Touch effect on them"}, -- Golden Razor
 	[563] = {"563", "", "Ghosts will home in on enemies"}, -- Vade Retro
 	[577] = {"577", "", "Grants a permanent damage up"}, -- Damocles
 	[582] = {"582", "", "Grants an additional damage up for the rest of the floor based on the current amount of uses"}, -- Wavy Cap
 	[585] = {"585", "", "Changes the payout to 2 Black Hearts and 1 Devil Deal item#Becomes 3 hearts and 2 items if a Devil Deal has been taken"}, -- Alabaster Box
-	[622] = {"622", "", "Grants a free {{Collectible51}} Pentagram"}, -- Genesis
-	[623] = {"623", "", "Also invokes the effect of {{Collectible126}} Razor Blade"}, -- Sharp Key
-	[635] = {"635", "", "Creates a {{Collectible705}} Dark Arts line between you and Stitches"}, -- Stitches
-	[640] = {"640", "", "Launches a {{Collectible118}} Brimstone beam instead"}, -- Urn of Souls
+	[622] = {"622", "", "Grants a free {{Collectible51}}Pentagram"}, -- Genesis
+	[623] = {"623", "", "Also invokes the effect of {{Collectible126}}Razor Blade"}, -- Sharp Key
+	[635] = {"635", "", "Creates a {{Collectible705}}Dark Arts line between you and Stitches"}, -- Stitches
+	[640] = {"640", "", "Launches a {{Collectible118}}Brimstone beam instead"}, -- Urn of Souls
 	[642] = {"642", "", "Grants a permanent damage up"}, -- Magic Skin
-	[685] = {"685", "", "Grants {{Collectible292}} Satanic Bible wisps that boost Devil Deal chance"}, -- Jar of Wisps
+	[685] = {"685", "", "Grants {{Collectible292}}Satanic Bible wisps that boost Devil Deal chance"}, -- Jar of Wisps
 	[705] = {"705", "", "Allows gain of temporary damage ups"}, -- Dark Arts
 	[710] = {"710", "", "Picking up Red Hearts has a chance to replace them with a Black Heart"}, -- Bag of Crafting
 	[729] = {"729", "", "Grants a huge damage and tears up when the head is detached"}, -- Decap Attack
@@ -481,7 +481,7 @@ local repTrinkets={
 	[24] = {"24", "Butt Penny", "Fart when picking up coins#Higher chance for coins to spawn from poop#Farts poison and knockback enemies and projectiles"}, -- Butt Penny
 	[26] = {"26", "Hook Worm", "Tears move in angular patterns#↑ +1.5 Range#Grants spectral tears"}, -- Hook Worm
 	[32] = {"32", "Liberty Cap", "Random mushroom effect per room"}, -- Liberty Cap
-	[33] = {"33", "Umbilical Cord", "At half a Red Heart or less, you gain#{{Blank}} {{Collectible100}} Little Steven#High chance to spawn Gemini familiars for the room when taking damage"}, -- Umbilical Cord
+	[33] = {"33", "Umbilical Cord", "At half a Red Heart or less, you gain#{{Blank}} {{Collectible100}}Little Steven#High chance to spawn Gemini familiars for the room when taking damage"}, -- Umbilical Cord
 	[39] = {"39", "Cancer", "↑ +1 Fire Rate up"},
 	[48] = {"48", "A Missing Page", "When getting hit, chance to damage all enemies in the room#Black Hearts and {{Collectible35}}Necronomicon-like effects deal double damage"}, -- A Missing Page
 	[49] = {"49", "Bloody Penny", "25% chance to drop half a heart when picking up coins"}, -- Bloody Penny
@@ -527,7 +527,7 @@ local repTrinkets={
 	[154] = {"154", "Dice Bag", "When entering a new room, grants a temporary Dice consumable item#The Dice disappears when leaving#Grants ability to hold two consumables"}, -- Dice Bag
 	[155] = {"155", "Holy Crown", "Spawns a {{TreasureRoom}}Treasure Room and {{Shop}}Shop in Cathedral"}, -- Holy Crown
 	[156] = {"156", "Mother's Kiss", "Grants one heart container while held#Works for Keeper, too"}, -- Mother's Kiss
-	[157] = {"157", "Torn Card", "Every 15 shots, shoot an {{Collectible149}} Ipecac + {{Collectible5}} My Reflection tear with a very high range value"}, -- Torn Card
+	[157] = {"157", "Torn Card", "Every 15 shots, shoot an {{Collectible149}}Ipecac + {{Collectible5}}My Reflection tear with a very high range value"}, -- Torn Card
 	[158] = {"158", "Torn Pocket", "Upon hit, Isaac drops 2 of his coins, keys or bombs#The pickups can be replaced with other variants, such as golden keys, nickels, dimes, etc."}, -- Torn Pocket
 	[159] = {"159", "Gilded Key", "+1 key#Replaces all chests (except Old/Mega) with Golden Chests#Golden Chests can contain extra cards, pills or trinkets"}, -- Gilded Key
 	[160] = {"160", "Lucky Sack", "Spawns a Grab Bag upon traveling to the next floor"}, -- Lucky Sack
@@ -540,12 +540,12 @@ local repTrinkets={
 	[167] = {"167", "Polished Bone", "Chance to spawn a friendly Bony when clearing a room"}, -- Polished Bone
 	[168] = {"168", "Hollow Heart", "+1 Bone Heart upon entering a new floor"}, -- Hollow Heart
 	[169] = {"169", "Kid's Drawing", "While held, counts towards the Guppy transformation"}, -- Kid's Drawing
-	[170] = {"170", "Crystal Key", "Grants the chance to automatically create {{Collectible580}} Red Key rooms each time you clear a room"}, -- Crystal Key
+	[170] = {"170", "Crystal Key", "Grants the chance to automatically create {{Collectible580}}Red Key rooms each time you clear a room"}, -- Crystal Key
 	[171] = {"171", "Keeper's Bargain", "Chance for Devil deals to cost coins instead of hearts"}, -- Keeper's Bargain
 	[172] = {"172", "Cursed Penny", "Teleport to a random room upon picking up a penny#Can teleport to secret rooms"}, -- Cursed Penny
 	[173] = {"173", "Your Soul", "One Devil deal item for free"}, -- Your Soul
 	[174] = {"174", "Number Magnet", "+10% Devil Room chance#Prevents Krampus from appearing in Devil Rooms#Devil Rooms will be special variants with more deals, Black Hearts and enemies"}, -- Number Magnet
-	[175] = {"175", "Strange Key", "Unlocks the passageway to the Hush fight, regardless of the run duration#Using {{Collectible297}} Pandora's Box spawns 6 items from random pools"}, -- Strange Key
+	[175] = {"175", "Strange Key", "Unlocks the passageway to the Hush fight, regardless of the run duration#Using {{Collectible297}}Pandora's Box spawns 6 items from random pools"}, -- Strange Key
 	[176] = {"176", "Lil Clot", "Spawns a blood clot familiar who mimics Isaac's movement, shoot direction and tear effects"}, -- Lil Clot
 	[177] = {"177", "Temporary Tattoo", "Spawns a chest after clearing a mob Challenge Room, or a collectible after clearing a boss Challenge Room"}, -- Temporary Tattoo
 	[178] = {"178", "Swallowed M80", "Player explodes upon taking damage"}, -- Swallowed M80
@@ -778,7 +778,7 @@ local repCards={
 	[39] = {"39", "Algiz", "Invincibility for 20 seconds"}, -- Algiz
 	[51] = {"51", "Holy Card", "Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken"}, -- Holy card
 	[55] = {"55", "Rune Shard", "Activates a random rune effect#The rune effect is weaker"}, -- Rune Shard
-	[56] = {"56", "0 - The Fool?", "Drops all your hearts and pickups on the floor#Only half a heart left afterwards#Coins and bombs are dropped efficiently, spawning {{Collectible74}}/{{Collectible19}} pedestals if possible"}, -- 0 - The Fool?
+	[56] = {"56", "0 - The Fool?", "Drops all your hearts and pickups on the floor, leaving you with half a heart#Coins and bombs may be dropped as {{Collectible74}}The Quarter or {{Collectible19}}Boom! if possible"}, -- 0 - The Fool?
 	[57] = {"57", "I - The Magician?", "Grants an aura that repels enemies and projectiles for 1 minute"}, -- I - The Magician?
 	[58] = {"58", "II - The High Priestess?", "Mom's Foot stomps down repeatedly for 1 minute"}, -- II - The High Priestess?
 	[59] = {"59", "III - The Empress?", "Grants for 1 minute:#↑ +2 Health up#↑ +1.35 Tears up"}, -- III - The Empress?
@@ -791,28 +791,28 @@ local repCards={
 	[66] = {"66", "X - Wheel of Fortune?", "Random dice room effect"}, -- X - Wheel of Fortune?
 	[67] = {"67", "XI - Strength?", "Enemies in room are weakened, slowed and take double damage"}, -- XI - Strength?
 	[68] = {"68", "XII - The Hanged Man?", "Turns player into the Keeper for 30 seconds#Grants triple shot and speed down#Killed enemies drop random coins"}, -- XII - The Hanged Man?
-	[69] = {"69", "XIII - Death?", "Invokes {{Collectible545}} Book of the Dead effect#(Spawns Bone entities for each enemy killed in room)"}, -- XIII - Death?
+	[69] = {"69", "XIII - Death?", "Invokes {{Collectible545}}Book of the Dead effect#Spawns Bone entities for each enemy killed in room"}, -- XIII - Death?
 	[70] = {"70", "XIV - Temperance?", "Eat 5 random pills"}, -- XIV - Temperance?
-	[71] = {"71", "XV - The Devil?", "Invokes {{Collectible33}} The Bible effect#Grants {{Collectible390}} Seraphim and flight for 30 seconds"}, -- XV - The Devil?
+	[71] = {"71", "XV - The Devil?", "Invokes {{Collectible33}}The Bible effect#Grants {{Collectible390}}Seraphim and flight for 30 seconds"}, -- XV - The Devil?
 	[72] = {"72", "XVI - The Tower?", "Spawns 6 clusters of random rocks and obstacles#Clusters will often contain Tinted Rocks"}, -- XVI - The Tower?
 	[73] = {"73", "XVII - The Stars?", "Removes oldest passive item (ignoring starting items)#Spawns 2 random items from current room's item pool"}, -- XVII - The Stars?
 	[74] = {"74", "XVIII - The Moon?", "Teleports you to the {{UltraSecretRoom}}Ultra Secret Room#Pathway back will be made of red rooms"}, -- XVIII - The Moon?
-	[75] = {"75", "XIX - The Sun?", "For the current floor:#↑ Gain {{Collectible159}} Spirit of the Night#↑ +1.5 Damage up#Turns your Red Hearts into Bone Hearts#Applies Curse of Darkness"}, -- XIX - The Sun?
+	[75] = {"75", "XIX - The Sun?", "For the current floor:#↑ Gain {{Collectible159}}Spirit of the Night#↑ +1.5 Damage up#Turns your Red Hearts into Bone Hearts#Applies Curse of Darkness"}, -- XIX - The Sun?
 	[76] = {"76", "XX - Judgement?", "Spawns a Restock Machine"}, -- XX - Judgement?
 	[77] = {"77", "XXI - The World?", "Spawns a trap door to a crawl space"}, -- XXI - The World?
-	[78] = {"78", "Cracked Key", "One time use {{Collectible580}} Red Key"}, -- Cracked Key
+	[78] = {"78", "Cracked Key", "One time use {{Collectible580}}Red Key"}, -- Cracked Key
 	[79] = {"79", "Queen of Hearts", "Spawns 1-20 red hearts"}, -- Queen of Hearts
 	[80] = {"80", "Wild Card", "Copies the effect of the most recently used pill, card, rune, soul stone or activated item"}, -- Wild Card
 	[81] = {"81", "Soul of Isaac", "Rerolls the items in the room#Cycle back to their original form after one second#Effect repeats"}, -- Soul of Isaac
-	[82] = {"82", "Soul of Magdalene", "Surrounds Isaac with a bubbling red aura for the current room#Enemies killed drop red half hearts that disappear in 2 secs"}, -- Soul of Magdalene
-	[83] = {"83", "Soul of Cain", "Opens all doors in the room#Creates red rooms with {{Collectible580}} Red Key for every possible exit"}, -- Soul of Cain
+	[82] = {"82", "Soul of Magdalene", "Surrounds Isaac with a bubbling red aura for the current room#Enemies killed drop red half hearts that disappear in 2 seconds"}, -- Soul of Magdalene
+	[83] = {"83", "Soul of Cain", "Opens all doors in the room#Creates red rooms with {{Collectible580}}Red Key for every possible exit"}, -- Soul of Cain
 	[84] = {"84", "Soul of Judas", "Turns Isaac into a phantom that can pass through enemies to paralyze them#After a few seconds, will attack them all, gaining damage bonus per target"}, -- Soul of Judas
 	[85] = {"85", "Soul of ???", "Causes 8 poison farts with brown creep#Then plants trail of 7 Butt Bombs#Standing in the creep gives ↑ +1.35 Tears and ↑ +1 Damage"}, -- Soul of ???
 	[86] = {"86", "Soul of Eve", "14 Dead Bird familiars fly in and attack enemies# Lasts for current room"}, -- Soul of Eve
 	[87] = {"87", "Soul of Samson", "Turn into a berserk Samson with melee attack for 10 seconds#↑ +0.4 Speed up#↑ Tears up#↑ +3 Damage up"}, -- Soul of Samson
-	[88] = {"88", "Soul of Azazel", "Activates {{Collectible441}} Mega Blast for 7.5 secs"}, -- Soul of Azazel
+	[88] = {"88", "Soul of Azazel", "Activates {{Collectible441}}Mega Blast for 7.5 seconds"}, -- Soul of Azazel
 	[89] = {"89", "Soul of Lazarus", "Die and immediately revive at half a heart with some invincibility time#Item is automatically used upon taking fatal damage (like an extra life)"}, -- Soul of Lazarus
-	[90] = {"90", "Soul of Eden", "Rerolls pedestals and pickups in current room#The rerolled items use random pools {{Collectible402}}"}, -- Soul of Eden
+	[90] = {"90", "Soul of Eden", "Rerolls pedestals and pickups in current room#The rerolled items use random pools"}, -- Soul of Eden
 	[91] = {"91", "Soul of the Lost", "Die and turn into The Lost for current room#You can take one {{DevilRoom}}Devil Room item for free, the rest will disappear#You can enter the Mausoleum or Gehenna door for free"}, -- Soul of the Lost
 	[92] = {"92", "Soul of Lilith", "Adds 1 random familiar"}, -- Soul of Lilith
 	[93] = {"93", "Soul of the Keeper", "Spawns 1-25 random coins"}, -- Soul of the Keeper
@@ -850,7 +850,7 @@ EID.descriptions["en_us"].horsepills={
 	{"7", "Health Up", "↑ +2 empty heart containers"}, -- Health Up
 	{"8", "I Found Pills", "No effect"}, -- I Found Pills
 	{"9", "Puberty", "No effect"}, -- Puberty
-	{"10", "Pretty Fly", "Adds 1 {{Collectible279}} Big Fan fly orbital#There is no upper limit"}, -- Pretty Fly
+	{"10", "Pretty Fly", "Adds 1 {{Collectible279}}Big Fan fly orbital#There is no upper limit"}, -- Pretty Fly
 	{"11", "Range Down", "↓ -1.2 Range down"}, -- Range Down
 	{"12", "Range Up", "↑ +0.9 Range up"}, -- Range Up
 	{"13", "Speed Down", "↓ -0.24 Speed down"}, -- Speed Down
