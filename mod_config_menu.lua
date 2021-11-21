@@ -56,6 +56,7 @@ end
 
 
 function EID:buildColorArray()
+	if (colorNameArray[1] ~= nil) then return end
 	colorNameArray = {}
 	for k,v in pairs(EID.InlineColors) do
 		if k~="ColorText" and k~="ColorTransform" and k~="ColorError" and k~="ColorObjName" and k~="ColorReset" then
@@ -1296,6 +1297,7 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
+				if EID.Config["TextColor"] == nil then EID.Config["TextColor"] = EID.DefaultConfig["TextColor"] end
 				EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 				return "Descriptions: " .. string.gsub(EID.Config["TextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TextColor"]).."/"..#colorNameArray..")"
 			end,
@@ -1319,6 +1321,7 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
+				if EID.Config["ItemNameColor"] == nil then EID.Config["ItemNameColor"] = EID.DefaultConfig["ItemNameColor"] end
 				return "Names: " .. string.gsub(EID.Config["ItemNameColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemNameColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
@@ -1341,6 +1344,7 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
+				if EID.Config["TransformationColor"] == nil then EID.Config["TransformationColor"] = EID.DefaultConfig["TransformationColor"] end
 				return "Transformations: " .. string.gsub(EID.Config["TransformationColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TransformationColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
@@ -1363,6 +1367,7 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
+				if EID.Config["ErrorColor"] == nil then EID.Config["ErrorColor"] = EID.DefaultConfig["ErrorColor"] end
 				return "Errors: " .. string.gsub(EID.Config["ErrorColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ErrorColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
