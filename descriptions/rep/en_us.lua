@@ -54,7 +54,7 @@ local repCollectibles={
 	[118] = {"118", "Brimstone", "Charge a blood laser that deals constant damage#↓ -67% Fire Rate down"}, -- Brimstone
 	[121] = {"121", "Odd Mushroom (Large)", "↑ +1 Health up#↑ +1 Damage up#↑ +0.38 Range up#↓ -0.2 Speed down"}, -- Odd Mushroom (Large)
 	[123] = {"123", "Monster Manual", "Spawns a random familiar#Lasts for current floor"}, -- Monster Manual
-	[129] = {"129", "Bucket of Lard", "↑ +2 HP up#↓ -0.2 Speed down"}, -- Bucket of Lard
+	[129] = {"129", "Bucket of Lard", "↑ +2 Health up#↓ -0.2 Speed down"}, -- Bucket of Lard
 	[135] = {"135", "IV Bag", "Portable blood bank#Half a heart = 1-2 coins#1 coin on Hard Mode#0-1 coin as Keeper"}, -- IV Bag
 	[138] = {"138", "Stigmata", "↑ +1 Health up#↑ +0.3 Damage up#Heals 1 Red Heart"}, -- Stigmata
 	[139] = {"139", "Mom's Purse", "You can now hold 2 trinkets#Spawns 1 random trinket"}, -- Mom's Purse
