@@ -683,7 +683,7 @@ local repCollectibles={
 	{"666", "" ,"<There is an issue if you are seeing this. Contact somebody!>"},
 	{"667", "" ,"Spawns Keeper as an extra character alongside Isaac, who is controlled exactly like Esau. #Keeper will have his base stats, heal with coins, 3 coin hearts, and is unable to pick up items. #If Keeper dies, he spawns several blue spiders and Strawman is removed from Isaac's inventory."},
 	{"668", "" ,"ASCEND ASCEND ASCEND ASCEND (with or without Gorb, he will know!) "},
-	{"669", "" ,"Full heals Isaac's red heart containers#Gives Isaac a heart container. #+0.2 Speed up. #+0.5 Damage up. #+0.5 Tears up. #+1.5 Range up. #+0.2 Shot speed up. #+1.0 Luck up.#+6.9% chance to get a Devil/Angel Room#+6.9% chance to find a {{Planetarium}}Planetarium."},
+	{"669", "" ,"Fully heals Isaac's red heart containers#Gives Isaac a heart container. #+0.2 Speed up. #+0.5 Damage up. #+0.5 Tears up. #+1.5 Range up. #+0.2 Shot speed up. #+1.0 Luck up.#+6.9% chance to get a Devil/Angel Room#+6.9% chance to find a {{Planetarium}}Planetarium."},
 	{"670", "" ,"Upon completing a room, if a room clear reward would spawn, another, different reward spawns next to it. If Isaac takes/opens one, the other disappears."},
 	{"671", "" ,"Gives Isaac one of the following stat boosts per half heart healed with red heart pickups: #+0.02 Speed up. #+0.05 Tears up. #+0.10 Damage up. #+0.15 Range up. #+0.02 Shot speed up. #+0.10 Luck up."},
 	{"672", "" ,"Devil Deals cost coins; shop items cost health. #Consumables are free but surrounded by spikes and cannot be moved by explosions. #Immunity to spikes does not prevent damage from these spikes."},
