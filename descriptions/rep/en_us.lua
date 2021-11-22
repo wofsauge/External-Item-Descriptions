@@ -34,6 +34,7 @@ local repCollectibles={
 	[52] = {"52", "Dr. Fetus", "Bomb tears#Each bomb deals 10x your damage#If that results in over 60 damage, it instead deals 5x your damage + 30#↓ -60% Tears down"}, --Dr. Fetus
 	[53] = {"53", "Magneto", "Magnetic attraction for pickups#Opens chests remotely, ignoring damage of spike chests"}, -- Magneto
 	[55] = {"55", "Mom's Eye", "Chance to shoot a tear backwards"}, -- Mom's Eye
+	[59] = {"59", "The Book of Belial", "<Item not obtainable>"}, -- The Book of Belial (Judas's Birthright Version)
 	[62] = {"62", "Charm of the Vampire", "↑ +0.3 Damage up#Heals half a heart for every 13 enemies killed"}, -- Charm of the Vampire
 	[64] = {"64", "Steam Sale", "-50% on shop items price#Getting this item multiple times reduces the price further"}, -- Steam Sale
 	[67] = {"67", "Sister Maggy", "Normal tear familiar#Deals 6 damage per tear"}, -- Sister Maggy
