@@ -436,6 +436,7 @@ function EID:getObjectName(Type, Variant, SubType)
 		end
 	end
 	if tableName == "collectibles" then
+		if EID.itemConfig:GetCollectible(SubType) == nil then return Type.."."..Variant.."."..SubType end
 		local vanillaName = EID.itemConfig:GetCollectible(SubType).Name
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
 	elseif tableName == "trinkets" then
@@ -764,8 +765,7 @@ function EID:getSpindownResult(collectibleID)
 end
 
 function EID:GetMaxCollectibleID()
-	--start a little lower than NUM_COLLECTIBLES, due to mods with outdated items.xmls that are missing newer items
-	local id = CollectibleType.NUM_COLLECTIBLES-17
+	local id = CollectibleType.NUM_COLLECTIBLES-1
 	local step = 16
 	while step > 0 do
 		if EID.itemConfig:GetCollectible(id+step) ~= nil then
@@ -803,6 +803,7 @@ function EID:isCollectibleUnlockedAnyPool(collectibleID)
 	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data; currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
 	if not REPENTANCE then return true end
 	local item = EID.itemConfig:GetCollectible(collectibleID)
+	if item == nil then return false end
 	if EID.itemUnlockStates[collectibleID] == nil then
 		--whitelist all quest items and items with no associated achievement
 		if item.AchievementID == -1 or (item.Tags and item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then
