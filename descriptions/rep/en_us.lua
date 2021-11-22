@@ -14,7 +14,7 @@ local repCollectibles={
 	[2] = {"2", "The Inner Eye", "Triple shot#↓ -49% Fire Rate down"},
 	[5] = {"5", "My Reflection", "Gives tears a boomerang effect#↑ +1.5 Range up#↑ +60% additional Range up#↑ +0.6 Shot Speed up#↑ +1 Tear Height"}, -- My Reflection
 	[6] = {"6", "Number One", "↑ +1.5 Tears up#↓ -1.5 Range down#↓ -20% additional Range down#↑ +0.76 Tear Height"}, -- Number One
-	[12] = {"12", "Magic Mushroom", "↑ +1 Health up#↑ +0.3 Damage up#↑ +50% Damage Multiplier#↑ +1.5 Range up#↑ +0.3 Speed up#↑ +0.5 Tear Height#Full health!"},
+	[12] = {"12", "Magic Mushroom", "↑ +1 Health up#Full health#↑ +0.3 Damage up#↑ +50% Damage Multiplier#↑ +1.5 Range up#↑ +0.3 Speed up#↑ +0.5 Tear Height"},
 	[13] = {"13", "The Virus", "Poison touch#↑ +0.2 Speed up"}, -- The Virus
 	[14] = {"14", "Roid Rage", "↑ +0.3 Speed up#↑ +1.5 Range up#↑ +0.5 Tear Height"}, -- Roid Rage
 	[18] = {"18", "A Dollar", "+100 Coins"}, -- A Dollar
@@ -53,7 +53,7 @@ local repCollectibles={
 	[118] = {"118", "Brimstone", "Charge a blood laser that deals constant damage#↓ -67% Fire Rate down"}, -- Brimstone
 	[121] = {"121", "Odd Mushroom (Large)", "↑ +1 Health up#↑ +1 Damage up#↑ +0.38 Range up#↓ -0.2 Speed down"}, -- Odd Mushroom (Large)
 	[123] = {"123", "Monster Manual", "Spawns a random familiar#Lasts for current floor"}, -- Monster Manual
-	[129] = {"129", "Bucket of Lard", "↑ +2 full red heart container#↓ -0.2 Speed down"}, -- Bucket of Lard
+	[129] = {"129", "Bucket of Lard", "↑ +2 HP up#↓ -0.2 Speed down"}, -- Bucket of Lard
 	[135] = {"135", "IV Bag", "Portable blood bank#Half a heart = 1-2 Coins#1 coin on Hard Mode#0-1 coin as Keeper"}, --IV Bag
 	[138] = {"138", "Stigmata", "↑ +1 Health up#↑ +0.3 Damage up#Heals 1 red heart"}, -- Stigmata
 	[139] = {"139", "Mom's Purse", "You can now hold 2 trinkets#Spawns 1 random trinket"}, -- Mom's Purse
@@ -70,7 +70,7 @@ local repCollectibles={
 	[172] = {"172", "Sacrificial Dagger", "Orbital knife#Blocks enemy shots#Deals 112.5 damage per second"}, -- Sacrificial Dagger
 	[176] = {"176", "Stem Cells", "↑ +1 Health up#↑ +0.16 Shot Speed up#Heals 1 red heart"}, -- Stem Cells
 	[178] = {"178", "Holy Water", "{{Throwable}} {{ColorOrange}}Throwable{{CR}}#Launches itself in the direction Isaac shoots#Breaks and deals 7 damage when touching an enemy#Leaves a pool of damaging creep that petrifies enemies"}, -- Holy Water
-	[182] = {"182", "Sacred Heart", "↑ +1 Health up#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#Homing tears#Full Health"}, -- Sacred Heart
+	[182] = {"182", "Sacred Heart", "↑ +1 Health up#Full health#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#Homing tears"}, -- Sacred Heart
 	[184] = {"184", "Holy Grail", "Grants flight#↑ +1 Health up#Heals 1 red heart"}, -- Holy Grail
 	[188] = {"188", "Abel", "Mirrors your movement#Shoots towards the player#Deals 3.5 damage per shot#7.5 Damage if you play Cain"}, -- Abel
 	[192] = {"192", "Telepathy for Dummies", "Homing tears for current room#↑ +3 Range up"}, -- Telepathy for Dummies
@@ -210,7 +210,7 @@ local repCollectibles={
 	[570] = {"570", "Playdough Cookie", "Grants multicolored tears with different status effects"}, -- Playdough Cookie
 	[571] = {"571", "Orphan Socks", "Prevents damage from creep and floor spikes#↑ +0.3 Speed up#↑ +2 Soul Hearts"}, -- Orphan Socks
 	[572] = {"572", "Eye of the Occult", "Controllable tears#↑ +1 Damage up#↑ +7.5 Range up#↓ -0.16 Shot Speed down"}, -- Eye of the Occult
-	[573] = {"573", "Immaculate Heart", "+1 Red Heart container#↑ +20% Damage up#Full health#Chance to fire orbiting spectral tears"}, -- Immaculate Heart
+	[573] = {"573", "Immaculate Heart", "+1 Health up#↑ +20% Damage up#Chance to fire orbiting spectral tears"}, -- Immaculate Heart
 	[574] = {"574", "Monstrance", "Gain two circular auras that damage enemies#The inner aura deals more damage"}, -- Monstrance
 	[575] = {"575", "The Intruder", "A familiar buried inside your head, firing 4 slowing tears#Upon taking damage, can exit the head"}, -- The Intruder
 	[576] = {"576", "Dirty Mind", "All Dip (small poop) enemies are friendly#Destroying poop spawns 1-4 Dips#Dip type depends on the poop type#Rocks may be replaced with poops"}, -- Dirty Mind
@@ -258,7 +258,7 @@ local repCollectibles={
 	[618] = {"618", "Rotten Tomato", "Chance to fire tears that Mark enemies#Marked enemies are attacked by other enemies"}, -- Rotten Tomato
 	[619] = {"619", "Birthright", "Has a different effect for each character"}, -- Birthright
 	[620] = {"620", "", "<Item does not exist>"},
-	[621] = {"621", "Red Stew", "Full health#↑ +21.6 Damage up#Damage up wears off over the next 3 minutes#Killing enemies while effect is active extends the time"}, -- Red Stew
+	[621] = {"621", "Red Stew", "↑ +21.6 Damage up#Damage up wears off over the next 3 minutes#Killing enemies while effect is active extends the time#Full health"}, -- Red Stew
 	[622] = {"622", "Genesis", "{{Warning}} SINGLE USE {{Warning}}#Removes all of Isaac's items and pickups#Teleports you to a unique bedroom with pickups, chests and a trapdoor#For every item lost, it shows a set of 3 items to choose from"}, -- Genesis
 	[623] = {"623", "Sharp Key", "+5 keys#Throw your key to deal damage, destroy obstacles, or open doors#Enemies killed with it have a chance to spawn the content of a chest, including items"}, -- Sharp Key
 	[624] = {"624", "Booster Pack", "Spawns 5 random cards"}, -- Booster Pack
@@ -685,9 +685,9 @@ EID.descriptions["en_us"].bookOfVirtuesWisps = {
 	[386] = {"5% chance for tears to reroll grid objects (except Poop and TNT) on hit"}, -- D12
 	[396] = {"Cannot shoot tears#Each portal has 1 wisp"}, -- Ventricle Razor
 	[406] = {"Random damage and fire rate"}, -- D8
-	[419] = {"20% chance for tears to teleport enemies#Wisp flickers every 5 seconds"}, -- Teleport 2.0
+	[419] = {"20% chance for tears to teleport enemies#Wisps flicker every 5 seconds"}, -- Teleport 2.0
 	[421] = {"Charm fart when destroyed"}, -- Kidney Bean
-	[422] = {"30% chance for Petrify tears"}, -- Glowing Hour Glass
+	[422] = {"30% chance to shoot petrifying tears"}, -- Glowing Hour Glass
 	[427] = {"Bounces harmlessly around the room, exploding when shot by Isaac#Cannot shoot tears or deal contact damage"}, -- Mine Crafter
 	[434] = {"Wisps are spawned instead of flies#Up to 5 flies makes 1 wisp with increased health and damage"}, -- Jar of Flies
 	[437] = {"D7 effect when hit for the first time"}, -- D7
@@ -801,7 +801,7 @@ local repCards={
 	[76] = {"76", "XX - Judgement?", "Spawns a Restock Machine"}, -- XX - Judgement?
 	[77] = {"77", "XXI - The World?", "Spawns a trap door to a crawl space"}, -- XXI - The World?
 	[78] = {"78", "Cracked Key", "One time use {{Collectible580}}Red Key"}, -- Cracked Key
-	[79] = {"79", "Queen of Hearts", "Spawns 1-20 red hearts"}, -- Queen of Hearts
+	[79] = {"79", "Queen of Hearts", "Spawns 1-20 Red Hearts"}, -- Queen of Hearts
 	[80] = {"80", "Wild Card", "Copies the effect of the most recently used pill, card, rune, soul stone or activated item"}, -- Wild Card
 	[81] = {"81", "Soul of Isaac", "Rerolls the items in the room#Cycle back to their original form after one second#Effect repeats"}, -- Soul of Isaac
 	[82] = {"82", "Soul of Magdalene", "Surrounds Isaac with a bubbling red aura for the current room#Enemies killed drop red half hearts that disappear in 2 seconds"}, -- Soul of Magdalene
@@ -845,7 +845,7 @@ EID.descriptions["en_us"].horsepills={
 	{"2", "Balls of Steel", "+4 Soul Hearts"}, -- Balls of Steel
 	{"3", "Bombs are Key", "Switches number of bombs with keys#Increases key and bomb count by 50%#Golden bombs and keys are also swapped"}, -- Bombs are Key
 	{"4", "Explosive Diarrhea", "Spawns some mega homing troll bombs at your position"}, -- Explosive Diarrhea
-	{"5", "Full Health", "Full Health#+3 Soul Hearts"}, -- Full Health
+	{"5", "Full Health", "Full health#+3 Soul Hearts"}, -- Full Health
 	{"6", "Health Down", "↓ -2 Health down"}, -- Health Down
 	{"7", "Health Up", "↑ +2 empty heart containers"}, -- Health Up
 	{"8", "I Found Pills", "No effect"}, -- I Found Pills
