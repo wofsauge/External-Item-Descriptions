@@ -184,16 +184,13 @@ for i = 1, EID.XMLMaxItemID do
 	end
 end
 
---don't sort if there's a collectible ID discrepancy
-if EID:GetMaxCollectibleID() == EID.XMLMaxItemID then
-	table.sort(sortedIDs, function(a, b)
-		if EID.XMLItemQualities[a] == EID.XMLItemQualities[b] then
-			return (EID:getObjectName(5, 100, a) < EID:getObjectName(5, 100, b))
-		else
-			return (EID.XMLItemQualities[a] > EID.XMLItemQualities[b])
-		end
-	end)
-end
+table.sort(sortedIDs, function(a, b)
+	if EID.XMLItemQualities[a] == EID.XMLItemQualities[b] then
+		return (EID:getObjectName(5, 100, a) < EID:getObjectName(5, 100, b))
+	else
+		return (EID.XMLItemQualities[a] > EID.XMLItemQualities[b])
+	end
+end)
 
 local customRNGSeed = 0x77777770
 local customRNGShift = {0,0,0}
@@ -601,6 +598,9 @@ local function detectModdedItems()
 		maxItemID = EID:GetMaxCollectibleID()
 	end
 	if maxItemID > EID.XMLMaxItemID then
+		return true
+	end
+	if EID.itemConfig:GetCollectible(EID.XMLMaxItemID) == nil then
 		return true
 	end
 	return false
