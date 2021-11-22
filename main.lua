@@ -551,27 +551,19 @@ EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 local hasShownAchievementWarning = false
 
 local function renderAchievementInfo()
-	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 then
-		if EID:GetMaxCollectibleID() < EID.XMLMaxItemID then
-			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-			demoDescObj.Description = EID:getDescriptionEntry("OutdatedModWarningText") or ""
-			EID:displayPermanentText(demoDescObj)
-			hasShownAchievementWarning = true
-		else
-			local characterID = Game():GetPlayer(0):GetPlayerType()
-			--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
-			if characterID < 21 and game.Challenge == 0 then
-				local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
-				if not hasBookOfRevelationsUnlocked then
-					local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
-					if not hasCubeOfMeatUnlocked then
-						local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-						demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-						demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
-						EID:displayPermanentText(demoDescObj)
-						hasShownAchievementWarning = true
-					end
+	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 and game.Challenge == 0 then
+		local characterID = Game():GetPlayer(0):GetPlayerType()
+		--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
+		if characterID < 21 then
+			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
+			if not hasBookOfRevelationsUnlocked then
+				local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
+				if not hasCubeOfMeatUnlocked then
+					local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+					demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
+					demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+					EID:displayPermanentText(demoDescObj)
+					hasShownAchievementWarning = true
 				end
 			end
 		end
