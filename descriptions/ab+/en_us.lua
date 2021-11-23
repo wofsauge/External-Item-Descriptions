@@ -834,12 +834,12 @@ EID.descriptions["en_us"].sacrifice={
 EID.descriptions["en_us"].diceHeader = "[Dice effects]"
 
 EID.descriptions["en_us"].dice={
-	{"1", "", "Rerolls all your passive items into a random item from the room pool it was acquired from"},
+	{"1", "", "Rerolls all your passive and active items into a random item from the room pool it was acquired from"},
 	{"2", "", "Rerolls all pickups in the room"},
 	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
 	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room, {{Shop}}Shop or {{Library}}Library"},
 	{"5", "", "Rerolls and restarts the current floor"},
-	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items"}
+	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items, including everything on the floor"}
 }
 
 ---------- Transformations ----------
