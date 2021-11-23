@@ -448,7 +448,7 @@ function EID:getObjectName(Type, Variant, SubType)
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
 		local vanillaName = EID.itemConfig:GetPillEffect(adjustedSubtype - 1).Name
-		name = name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
+		name = name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][adjustedSubtype][2] or vanillaName
 		return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
 	elseif tableName == "sacrifice" then
 		return EID:getDescriptionEntry("sacrificeHeader")
