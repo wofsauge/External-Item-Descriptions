@@ -1,3 +1,21 @@
+local Controller = Controller or {}
+Controller.DPAD_LEFT = 0
+Controller.DPAD_RIGHT = 1
+Controller.DPAD_UP = 2
+Controller.DPAD_DOWN = 3
+Controller.BUTTON_A = 4
+Controller.BUTTON_B = 5
+Controller.BUTTON_X = 6
+Controller.BUTTON_Y = 7
+Controller.BUMPER_LEFT = 8
+Controller.TRIGGER_LEFT = 9
+Controller.STICK_LEFT = 10
+Controller.BUMPER_RIGHT = 11
+Controller.TRIGGER_RIGHT = 12
+Controller.STICK_RIGHT = 13
+Controller.BUTTON_BACK = 14
+Controller.BUTTON_START = 15
+
 EID.UserConfig = {
 	-------GENERAL---------
 	-- Change language of the mod.
@@ -41,6 +59,12 @@ EID.UserConfig = {
 	-- Set Y Position (Height) of the descriptiontext
 	-- Default = 45
 	["YPosition"] = 45,
+	-- Sets the local rendering mode of the description text below currently inspected object
+	-- Default = false
+	["LocalMode"] = false,
+	-- Change Size of the info boxes for LocalMode. Range: [0,...,1]
+	-- Default = 0.5
+	["LocalScale"] = 0.5,
 	-- Set the distance to an item in which informations will be displayed (in Tiles)
 	-- Default = 5
 	["MaxDistance"] = 5,
@@ -51,9 +75,13 @@ EID.UserConfig = {
 	["Indicator"] = "none",
 	-- Set the keybinding to toggle the descriptions
 	-- look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
-	-- if you want to map it onto a controller button, you need to use the "ButtonAction" enum instead of the Keyboard enum https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = Keyboard.KEY_F2
 	["HideKey"] = Keyboard.KEY_F2,
+	-- Set the controller binding to toggle the descriptions
+	-- Use the Controller enum at the top of this file, or a number
+	-- Of note are Controller.STICK_LEFT and Controller.STICK_RIGHT, which aren't used in-game with default controls
+	-- Default = none (-1)
+	["HideButton"] = -1,
 	-- Initial displaystate. Can be used to change the toggle behavior of the "Hide Key" event
 	-- Default = false
 	["InitiallyHidden"] = false,
@@ -170,6 +198,12 @@ EID.UserConfig = {
 	-- "always" = Always show Results, "hold" = Show when holding up bag, "never" = Never show results
 	-- Default = "always"
 	["DisplayBagOfCrafting"] = "always",
+	-- Hide the recipe list when in battle
+	-- Default = true
+	["BagOfCraftingHideInBattle"] = true,
+	-- Simplified / No Recipes Mode shows quality and item pool percentages instead of exact recipes, for a more intended experience
+	-- Default = false
+	["BagOfCraftingSimplifiedMode"] = false,
 	-- Changes the number of Results shown in the Bag of crafting description
 	-- Higher numbers can cause more lag!
 	-- Default = 7
@@ -189,9 +223,27 @@ EID.UserConfig = {
 	-- Display craftable item names, moving the recipe to a new line
 	-- Default = false
 	["BagOfCraftingDisplayNames"] = false,
-	-- Hide the recipe list when in battle
-	-- Default = true
-	["BagOfCraftingHideInBattle"] = true,
+	-- Display recipes as 8 icons instead of grouped ingredients
+	-- Default = false
+	["BagOfCraftingDisplayIcons"] = false,
+	-- Set the keybinding to toggle the crafting display, so you can see descriptions of items/pickups on the floor
+	-- look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
+	-- Default = Keyboard.KEY_F3
+	["CraftingHideKey"] = Keyboard.KEY_F3,
+	-- Set the controller binding to toggle the crafting display, so you can see descriptions of items/pickups on the floor
+	-- Use the Controller enum at the top of this file, or a number
+	-- Of note are Controller.STICK_LEFT and Controller.STICK_RIGHT, which aren't used in-game with default controls
+	-- Default = none (-1)
+	["CraftingHideButton"] = -1,
+	-- Set the keybinding to toggle viewing the description of the item ready to be crafted in the bag
+	-- look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
+	-- Default = Keyboard.KEY_F3
+	["CraftingResultKey"] = Keyboard.KEY_F4,
+	-- Set the controller binding to toggle viewing the description of the item ready to be crafted in the bag
+	-- Use the Controller enum at the top of this file, or a number
+	-- Of note are Controller.STICK_LEFT and Controller.STICK_RIGHT, which aren't used in-game with default controls
+	-- Default = none (-1)
+	["CraftingResultButton"] = -1,
 	
 	---------Mouse Controls-----------
 	
@@ -259,9 +311,12 @@ EID.DefaultConfig = {
 	["HUDOffset"] = 10,
 	["XPosition"] = 60,
 	["YPosition"] = 45,
+	["LocalMode"] = true,
+	["LocalScale"] = 0.5,
 	["MaxDistance"] = 5,
 	["Indicator"] = "none",
 	["HideKey"] = Keyboard.KEY_F2,
+	["HideButton"] = -1,
 	["InitiallyHidden"] = false,
 	["HideInBattle"] = false,
 	["DisableObstructionOnFlight"] = true,
@@ -297,7 +352,13 @@ EID.DefaultConfig = {
 	["BagOfCraftingRandomResults"] = 400,
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["BagOfCraftingDisplayNames"] = false,
+	["BagOfCraftingDisplayIcons"] = false,
 	["BagOfCraftingHideInBattle"] = true,
+	["BagOfCraftingSimplifiedMode"] = false,
+	["CraftingHideKey"] = Keyboard.KEY_F3,
+	["CraftingHideButton"] = -1,
+	["CraftingResultKey"] = Keyboard.KEY_F4,
+	["CraftingResultButton"] = -1,
 	["SpindownDiceResults"] = 3,
 	["SpindownDiceSkipLocked"] = false,
 	["EnableMouseControls"] = false,
