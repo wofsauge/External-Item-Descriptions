@@ -436,6 +436,7 @@ function EID:getObjectName(Type, Variant, SubType)
 		end
 	end
 	if tableName == "collectibles" then
+		if EID.itemConfig:GetCollectible(SubType) == nil then return Type.."."..Variant.."."..SubType end
 		local vanillaName = EID.itemConfig:GetCollectible(SubType).Name
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
 	elseif tableName == "trinkets" then
@@ -447,7 +448,7 @@ function EID:getObjectName(Type, Variant, SubType)
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
 		local vanillaName = EID.itemConfig:GetPillEffect(adjustedSubtype - 1).Name
-		name = name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
+		name = name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][adjustedSubtype][2] or vanillaName
 		return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
 	elseif tableName == "sacrifice" then
 		return EID:getDescriptionEntry("sacrificeHeader")
@@ -589,7 +590,7 @@ function EID:filterIconMarkup(text, textPosX, textPosY)
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
 		local lookup = EID:getIcon(word)
-		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Config["Scale"]
+		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Scale
 		table.insert(spriteTable, {lookup, preceedingTextWidth})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
 	end
@@ -610,13 +611,13 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 		else
 			spriteObj:Update()
 		end
-		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Config["Scale"], posY + Yoffset * EID.Config["Scale"])
+		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale)
 	end
 end
 
 -- helper function to render Icons in specific EID settins
 function EID:renderIcon(spriteObj, posX, posY)
-	spriteObj.Scale = Vector(EID.Config["Scale"], EID.Config["Scale"])
+	spriteObj.Scale = Vector(EID.Scale, EID.Scale)
 	spriteObj.Color = Color(1, 1, 1, EID.Config["Transparency"], 0, 0, 0)
 	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
 end
@@ -662,7 +663,7 @@ function EID:filterColorMarkup(text, baseKColor)
 		local lookup, isColor = EID:getColor(word, lastColor)
 		if isColor then
 			local preceedingText = string.sub(text, lastPosition, textposition - 1)
-			local preceedingTextWidth = EID:getStrWidth(preceedingText) * EID.Config["Scale"]
+			local preceedingTextWidth = EID:getStrWidth(preceedingText) * EID.Scale
 			lastPosition = textposition
 			table.insert(textPartsTable, {preceedingText, lastColor, preceedingTextWidth})
 			lastColor = lookup
@@ -756,10 +757,12 @@ end
 -- Converts a given CollectibleID into the respective Spindown dice result
 function EID:getSpindownResult(collectibleID)
 	local newID = collectibleID
+	local attempts = 0
 	repeat
 		newID = newID - 1
+		attempts = attempts + 1
 	--note: the order of the SkipLocked check statement is important so that the item is checked for being in a pool either way (to display a ? if it isn't)
-	until (EID.itemConfig:GetCollectible(newID) and (EID:isCollectibleUnlockedAnyPool(newID) or not EID.Config["SpindownDiceSkipLocked"]) and not EID.itemConfig:GetCollectible(newID).Hidden) or newID == CollectibleType.COLLECTIBLE_NULL
+	until (EID.itemConfig:GetCollectible(newID) and (EID:isCollectibleUnlockedAnyPool(newID) or not EID.Config["SpindownDiceSkipLocked"]) and not EID.itemConfig:GetCollectible(newID).Hidden) or newID == CollectibleType.COLLECTIBLE_NULL or attempts > 10
 	return newID
 end
 
@@ -799,7 +802,10 @@ function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 end
 
 function EID:isCollectibleUnlockedAnyPool(collectibleID)
+	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data; currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
+	if not REPENTANCE then return true end
 	local item = EID.itemConfig:GetCollectible(collectibleID)
+	if item == nil then return false end
 	if EID.itemUnlockStates[collectibleID] == nil then
 		--whitelist all quest items and items with no associated achievement
 		if item.AchievementID == -1 or (item.Tags and item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then
@@ -828,10 +834,11 @@ end
 
 -- Converts a given table into a string containing the crafting icons of the table
 -- Example input: {1,2,3,4,5,6,7,8}
--- Result: "{{Crafting8}}{{Crafting7}}{{Crafting6}}{{Crafting5}}{{Crafting4}}{{Crafting3}}{{Crafting2}}{{Crafting1}}"
-function EID:tableToCraftingIconsFull(craftTable)
+-- Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
+function EID:tableToCraftingIconsFull(craftTable, sortTable)
+	if (sortTable == nil) then sortTable = true end
 	local sortedList = {table.unpack(craftTable)}
-	table.sort(sortedList, function(a, b) return a > b end)
+	if (sortTable) then table.sort(sortedList, function(a, b) return a < b end) end
 	local iconString = ""
 	for _,nr in ipairs(sortedList) do
 		iconString = iconString.."{{Crafting"..nr.."}}"
@@ -841,12 +848,11 @@ end
 
 -- Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
 -- Example input: {1,1,1,2,2,3,3,3}
--- Result: "3{{Crafting3}}2{{Crafting2}}3{{Crafting1}}"
+-- Result: "3{{Crafting1}}2{{Crafting2}}3{{Crafting3}}"
 local emptyPickupTable = {}
 for i=1,29 do emptyPickupTable[i] = 0 end
 function EID:tableToCraftingIconsMerged(craftTable)
 	local sortedList = {table.unpack(craftTable)}
-	table.sort(sortedList, function(a, b) return a > b end)
 	local filteredList = {table.unpack(emptyPickupTable)}
 	for _,nr in ipairs(sortedList) do
 		filteredList[nr] = filteredList[nr] +1
@@ -868,6 +874,9 @@ function EID:handleHUDElement(hudElement)
 	end
 	local screenSize = EID:getScreenSize()
 	local hudOffset = EID.Config["HUDOffset"]
+	if REPENTANCE then
+		hudOffset = (Options.HUDOffset * 10)
+	end
 	for _,v in ipairs(hudElement.anchors) do
 		if v == "TOP" then
 			alteredHudElement.y = hudElement.y + hudOffset * 2
