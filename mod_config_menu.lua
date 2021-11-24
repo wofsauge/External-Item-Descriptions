@@ -1,4 +1,5 @@
 
+
 -- MOD CONFIG MENU Compatibility
 local MCMLoaded, MCM = pcall(require, "scripts.modconfig")
 EID.MCMCompat_isDisplayingEIDTab = ""
@@ -32,6 +33,9 @@ function EID:renderMCMDummyDescription()
 		if hudOffset == nil and ScreenHelper then
 			hudOffset = ScreenHelper.GetOffset()
 		end
+		if REPENTANCE then
+			hudOffset = (Options.HUDOffset * 10)
+		end
 		EID.Config["HUDOffset"] = hudOffset
 		EID:addTextPosModifier("HudOffset", Vector((hudOffset * 2) - 20, hudOffset - 10))
 		if MCM.IsVisible and EID.MCMCompat_isDisplayingEIDTab ~= "" then
@@ -53,6 +57,7 @@ end
 
 
 function EID:buildColorArray()
+	if (colorNameArray[1] ~= nil) then return end
 	colorNameArray = {}
 	for k,v in pairs(EID.InlineColors) do
 		if k~="ColorText" and k~="ColorTransform" and k~="ColorError" and k~="ColorObjName" and k~="ColorReset" then
@@ -62,8 +67,79 @@ function EID:buildColorArray()
 	table.sort(colorNameArray)
 end
 
+function EID:AddBooleanSetting(category, optionName, displayText, onText, offText, infoText)
+	if (type(infoText) == "string") then infoText = {infoText} end
+	MCM.AddSetting(
+		"EID",
+		category,
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config[optionName]
+			end,
+			Display = function()
+				local onOff = offText
+				if EID.Config[optionName] then
+					onOff = onText
+				end
+				return displayText .. ": " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config[optionName] = currentBool
+			end,
+			Info = infoText
+		}
+	)
+end
+
+function EID:AddHotkeySetting(category, optionName, displayText, infoText, isController)
+	if (type(infoText) == "string") then infoText = {infoText} end
+	local optionType = ModConfigMenu.OptionType.KEYBIND_KEYBOARD
+	local hotkeyToString = InputHelper.KeyboardToString
+	local deviceString = "keyboard"
+	local backString = "ESCAPE"
+	if isController then
+		optionType = ModConfigMenu.OptionType.KEYBIND_CONTROLLER
+		hotkeyToString = InputHelper.ControllerToString
+		deviceString = "controller"
+		backString = "BACK"
+	end
+	MCM.AddSetting(
+		"EID",
+		category,
+		{
+			Type = optionType,
+			CurrentSetting = function()
+				return EID.Config[optionName]
+			end,
+			Display = function()
+				local key = "None"
+				if (hotkeyToString[EID.Config[optionName]]) then key = hotkeyToString[EID.Config[optionName]] end
+				return displayText .. ": " .. key
+			end,
+			OnChange = function(currentNum)
+				EID.Config[optionName] = currentNum or -1
+			end,
+			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
+			PopupWidth = 280,
+			Popup = function()
+				local currentValue = EID.Config[optionName]
+				local keepSettingString = ""
+				if currentValue > -1 then
+					local currentSettingString = hotkeyToString[currentValue]
+					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
+				end
+				return "Press a button on your "..deviceString.." to change this setting.$newline$newline" .. keepSettingString .. "Press "..backString.." to go back and clear this setting."				
+			end,
+			Info = infoText
+		}
+	)
+end
+
 if MCMLoaded then
 	function AnIndexOf(t, val)
+		--check for 0th term, to help with how OptionType.SCROLL works (returns value between 0 and 10)
+		if t[0] and t[0] == val then return 0 end
 		for k, v in ipairs(t) do
 			if v == val then
 				return k
@@ -130,7 +206,15 @@ if MCMLoaded then
 			Info = {"If translated names are available,","this changes how item names are displayed."}
 		}
 	)
-
+	
+	-- Hide Key
+	EID:AddHotkeySetting("General",
+		"HideKey", "Toggle (Keyboard)",
+		"Press this key to toggle the description display", false)
+	EID:AddHotkeySetting("General",
+		"HideButton", "Toggle (Controller)",
+		"Press this button to toggle the description display (Left Stick or Right Stick recommended; most other buttons will not work)", true)
+	
 	MCM.AddSpace("EID", "General")
 	
 	-- Position X
@@ -514,6 +598,8 @@ if MCMLoaded then
 		}
 	)
 	
+	MCM.AddSpace("EID", "Display")
+	
 	-- Spindown Dice results
 	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
 	MCM.AddSetting(
@@ -529,7 +615,7 @@ if MCMLoaded then
 					AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1 .. " " .. EID.Config["SpindownDiceResults"] .. " Items"
 			end,
 			OnChange = function(currentNum)
-				EID.Config["SpindownDiceResults"] = diceSteps[currentNum%#diceSteps + 1]
+				EID.Config["SpindownDiceResults"] = diceSteps[currentNum + 1]
 			end,
 			Info = {"Preview of Items resulting when using the Spindown dice X times"}
 		}
@@ -784,6 +870,30 @@ if MCMLoaded then
 			end
 		}
 	)
+
+	-- LOCAL MODE
+	MCM.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["LocalMode"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["LocalMode"] then
+					onOff = "True"
+				end
+				return "Local Mode: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["LocalMode"] = currentBool
+			end,
+			Info = {"Sets the local rendering mode of the description text below currently inspected object"}
+		}
+	)
+	
 	-- SCALE
 	local textScales = {0.5, 0.75, 1, 1.25, 1.5, 2}
 	MCM.AddSetting(
@@ -797,7 +907,11 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = 6,
 			Display = function()
-				return "Text Size: " .. EID.Config["Scale"]
+				if EID.Config["LocalMode"] then
+					return "Text Size (Pickup Description): " .. EID.Config["LocalScale"]
+				else
+					return "Text Size (All Description): " .. EID.Config["Scale"]
+				end
 			end,
 			OnChange = function(currentNum)
 				EID.Config["Scale"] = textScales[currentNum]
@@ -991,15 +1105,33 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = 3,
 			Display = function()
-				return "Display mode: " .. EID.Config["DisplayBagOfCrafting"]
+				return "Display Mode: " .. EID.Config["DisplayBagOfCrafting"]
 			end,
 			OnChange = function(currentNum)
 				EID.Config["DisplayBagOfCrafting"] = bagDisplays[currentNum]
 			end,
-			Info = {"always = Always show Results, hold = Show when holding up bag, never = Never show results"}
+			Info = {"Always = Always show Results, Hold = Show when holding up bag, Never = Never show results"}
 		}
 	)
-	-- Bag of Crafting results
+	-- Bag of Crafting Hide in Battle
+	EID:AddBooleanSetting("Crafting",
+		"BagOfCraftingHideInBattle",
+		"Hide in Battle", "Yes", "No",
+		"Hides the recipe list when in a fight")
+	-- Bag of Crafting No Recipes Mode
+	EID:AddBooleanSetting("Crafting",
+		"BagOfCraftingSimplifiedMode",
+		"No Recipes Mode", "On", "Off",
+		"No Recipes Mode shows quality and item pool percentages instead of exact recipes, for a more intended experience")
+	-- Bag of Crafting 8 icons toggle
+	EID:AddBooleanSetting("Crafting",
+		"BagOfCraftingDisplayIcons",
+		"Show Recipes/Best Bag as", "8 Icons", "Groups",
+		"Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients")
+		
+	MCM.AddSpace("EID", "Crafting")
+	
+	-- Bag of Crafting results per page
 	MCM.AddSetting(
 		"EID",
 		"Crafting",
@@ -1080,30 +1212,36 @@ if MCMLoaded then
 			Info = {"If on, each result takes two lines; lower your displayed results accordingly"}
 		}
 	)
-	-- Bag of Crafting Hide in Battle
+	
+	MCM.AddSpace("EID", "Crafting")
+	
+	EID:AddHotkeySetting("Crafting",
+		"CraftingHideKey", "Toggle (Keyboard)",
+		"Press this key to toggle the crafting display, allowing you to check descriptions of items/pickups on the floor", false)
+	EID:AddHotkeySetting("Crafting",
+		"CraftingHideButton", "Toggle (Controller)",
+		"Press this button to toggle the crafting display (Left Stick or Right Stick recommended; most other buttons will not work)", true)
+	
+	EID:AddHotkeySetting("Crafting",
+		"CraftingResultKey", "Result Toggle (Keyboard)",
+		"Press this key to toggle the description of the item ready to be crafted", false)
+	EID:AddHotkeySetting("Crafting",
+		"CraftingResultButton", "Result Toggle (Controller)",
+		"Press this button to toggle the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)", true)
+	
+	MCM.AddSpace("EID", "Crafting")
+	--------Clear bag---------
 	MCM.AddSetting(
 		"EID",
 		"Crafting",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["BagOfCraftingHideInBattle"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["BagOfCraftingHideInBattle"] then
-					onOff = "True"
-				end
-				return "Hide in Battle: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["BagOfCraftingHideInBattle"] = currentBool
-			end,
-			Info = {"Hides the recipe list when in a fight"}
+			CurrentSetting = function() return true end,
+			Display = function() return "<---- Clear Bag Content ---->" end,
+			OnChange = function(currentBool) EID.BagItems = {} end,
+			Info = {"Press this to clear all currently detected items on the bag"}
 		}
 	)
-	
-	MCM.AddSpace("EID", "Crafting")
 	--------Clear Floor---------
 	MCM.AddSetting(
 		"EID",
@@ -1117,21 +1255,10 @@ if MCMLoaded then
 			EID.bagOfCraftingFloorQuery = {}
 			EID.bagOfCraftingCurPickupCount = -1
 			end,
-			Info = {"Press SPACE to clear all currently detected Items on the stage"}
+			Info = {"Press this to clear all currently detected items on the floor"}
 		}
 	)
-	--------Clear bag---------
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function() return true end,
-			Display = function() return "<---- Clear Bag Content ---->" end,
-			OnChange = function(currentBool) EID.BagItems = {} end,
-			Info = {"Press SPACE to clear all currently detected Items on the bag"}
-		}
-	)
+	
 	---------------------------------------------------------------------------
 	-----------------------------Mouse Controls--------------------------------
 	MCM.AddText("EID", "Mouse", function() return "! THIS FEATURE IS IN EARLY DEVELOPMENT !" end)
@@ -1199,6 +1326,7 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
+				if EID.Config["TextColor"] == nil then EID.Config["TextColor"] = EID.DefaultConfig["TextColor"] end
 				EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 				return "Descriptions: " .. string.gsub(EID.Config["TextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TextColor"]).."/"..#colorNameArray..")"
 			end,
@@ -1222,6 +1350,7 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
+				if EID.Config["ItemNameColor"] == nil then EID.Config["ItemNameColor"] = EID.DefaultConfig["ItemNameColor"] end
 				return "Names: " .. string.gsub(EID.Config["ItemNameColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemNameColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
@@ -1244,6 +1373,7 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
+				if EID.Config["TransformationColor"] == nil then EID.Config["TransformationColor"] = EID.DefaultConfig["TransformationColor"] end
 				return "Transformations: " .. string.gsub(EID.Config["TransformationColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TransformationColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
@@ -1266,6 +1396,7 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
+				if EID.Config["ErrorColor"] == nil then EID.Config["ErrorColor"] = EID.DefaultConfig["ErrorColor"] end
 				return "Errors: " .. string.gsub(EID.Config["ErrorColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ErrorColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
