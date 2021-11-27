@@ -837,7 +837,7 @@ EID.descriptions["en_us"].dice={
 	{"1", "", "Rerolls all your passive and active items into a random item from the room pool it was acquired from"},
 	{"2", "", "Rerolls all pickups in the room"},
 	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
-	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room, {{Shop}}Shop or {{Library}}Library"},
+	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
 	{"5", "", "Rerolls and restarts the current floor"},
 	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items, including everything on the floor"}
 }
@@ -847,10 +847,10 @@ EID.descriptions["en_us"].transformations = {
 	"",				-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Beelzebub",		-- 3
+	"Beelzebub",			-- 3
 	"Conjoined",			-- 4
 	"Spun",				-- 5
-	"Yes Mother?",				-- 6
+	"Yes Mother?",			-- 6
 	"Oh Crap",			-- 7
 	"Bob",				-- 8
 	"Leviathan",			-- 9
