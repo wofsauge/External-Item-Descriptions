@@ -2,7 +2,7 @@
 -----  Basic spanish descriptions -----
 ---------------------------------------
 
--- Last Sync with en_us: 03.07.2021
+-- Last Sync with en_us: 11.27.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -331,25 +331,25 @@ local repCollectibles={
 	[708] = {"708", "Grapadora", "↑ +1,0 de daño#Ahora solo disparas con un ojo"}, --  Grapadora
 	[709] = {"709", "¡Suplex!", "Te permite correr, levantar a enemigos o jefes y estamparlos contra el suelo#Se puede controlar#Estampar inflige 50 de daño y genera una ola de rocas"}, --  ¡Suplex!
 	[710] = {"710", "Bolsa de trabajo", "Recoge y mantiene hasta 8 recolectables#Mantener el botón del activable convierte los recolectables en un objeto#La calidad del objeto dependerá de la de los recolectables"}, --  Bolsa de trabajo
-	[711] = {"711", "Voltear", "Cambia entre los personajes Lázaro Contaminado y Lázaro Contaminado Muerto"}, --  Voltear
+	[711] = {"711", "Inversión", "Al entrar una habitación con un pedestal, un objeto fantasma aparecerá detras#Tras el uso, el objeto fantasma intercambiará lugar con el otro#Ambos objetos se pueden tomar si es que Inversión se usa después de tomar un objeto#!!! EL objeto fantasma desaparecerá si tomas el primer objeto y sales de la habitación"}, -- Inversión
 	[712] = {"712", "Lemegeton", "Invoca el fantasma de un objeto pasivo aleatorio#El efecto del objeto se aplica al jugador#Los objetos dependen de la pool de objetos de la habitación actual"}, --  Lemegeton
 	[713] = {"713", "Sumptorio", "Mantener el botón de disparar convierte, cada 2 segundos, medio corazón en familiares que pueden ser destrozados#Activar el objeto convierte de nuevo a los familiares en corazones#El tipo de corazón cambia el comportamiento del familiar"}, --  Sumptorio
 	[714] = {"714", "Recuperar", "Devuelve el cuerpo de Forgotten desde culquier distancia"}, --  Recuperar
-	[715] = {"715", "Bote", "Guarda una caca bomba dentro para usarla más tarde"}, --  Bote
-	[716] = {"716", "El saco de Keeper", "Aumenta el rango, la velocidad, o el daño al comprar cosas de la tienda#Genera 3 monedas y llave al recogerlo"}, --  El saco de Keeper
-	[717] = {"717", "Pariente de Keeper", "Las rocas y jarrones generan 2 arañas azules al romperlos"}, --  Pariente de Keeper
+	[715] = {"715", "Vaso de recolección", "Guarda una caca bomba dentro para usarla más tarde"}, --  Bote
+	[716] = {"716", "Bolsa del guardián", "Aumenta el rango, la velocidad, o el daño al comprar cosas de la tienda#Genera 3 monedas y llave al recogerlo"}, --  El saco de Keeper
+	[717] = {"717", "Familiar del guardián", "Las rocas y jarrones generan 2 arañas azules al romperlos"}, --  Pariente de Keeper
 	[718] = {"718", "Keepers Robe (Cut item)", "<Item does not exist>"}, -- Keepers Robe (Cut item)
-	[719] = {"719", "La caja de Keeper", "Genera un objeto o recolectable aleatorio de tienda"}, --  La caja de Keeper
-	[720] = {"720", "Tarro de todo", "Genera algunos recolectables basados en las cargas que tenga#Si está cargado al completo, tiene un efecto aleatorio más único#Recompensas según cargas: 1:caca 2:{{Coin}} 3:{{Bomb}} 4:{{Key}} 5:{{Heart}} 6:{{Pill}} 7:{{Card}} 8:{{SoulHeart}} 9:{{GoldenHeart}} 10:{{GoldenKey}} 11:{{GoldenBomb}}"}, --  Tarro de todo
+	[719] = {"719", "Cajita del guardián", "Genera un objeto o recolectable aleatorio de tienda"}, --  La caja de Keeper
+	[720] = {"720", "Omnifrasco", "Genera algunos recolectables basados en las cargas que tenga#Si está cargado al completo, tiene un efecto aleatorio más único#Recompensas según cargas: 1:caca 2:{{Coin}} 3:{{Bomb}} 4:{{Key}} 5:{{Heart}} 6:{{Pill}} 7:{{Card}} 8:{{SoulHeart}} 9:{{GoldenHeart}} 10:{{GoldenKey}} 11:{{GoldenBomb}}"}, --  Tarro de todo
 	[721] = {"721", "ENTRENADOR TM", "Hace que los objetos futuros estén 'glitcheados'#Tienen efectos completamente aleatorios them completely random effects"}, --  ENTRENADOR TM
 	[722] = {"722", "Anima Sola", "Encadena al enemigo más cercano durante 5 segundos, evitando que actúen"}, --  Anima Sola
-	[723] = {"723", "Dado de 20 caras", "Cambia todos los objetos de la habitación por otro restándole 1 al identificador interno para obtener el nuevo objeto generado."}, --  Dado cuenta vidas
-	[724] = {"724", "Hipercoagulación", "Al ser golpeado por un enemigo, genera medio o un corazón rojo#Los corazones que han aparecido desaparecen tras 1,5 segundos"}, --  Hipercoagulación
-	[725] = {"725", "Síndrome del intestino irritable", "Al dañar a un enemigo, posibilidad de:#Lanzar una caca#Crear gases#Tira pedos#Generar 5 bombas troll"}, --  Síndrome del intestino irritable
+	[723] = {"723", "Dado contador", "Cambia todos los objetos de la habitación por otro restándole 1 al identificador interno para obtener el nuevo objeto generado."}, --  Dado cuenta vidas
+	[724] = {"724", "Sangre espesa", "Al ser golpeado por un enemigo, genera medio o un corazón rojo#Los corazones que han aparecido desaparecen tras 1,5 segundos"}, --  Hipercoagulación
+	[725] = {"725", "Colon irritable", "Al dañar a un enemigo, posibilidad de:#Lanzar una caca#Crear gases#Tira pedos#Generar 5 bombas troll"}, --  Síndrome del intestino irritable
 	[726] = {"726", "Hemoptisis", "Al pulsar dos veces el botón de disparar estornudas sangre#Inflige el 150 % de tu daño a los enemigos delante de ti#Enfriamiento de un segundo"}, --  Hemoptisis
 	[727] = {"727", "Bombas fantasma", "+5 bombas#Las bombas generan fantasmas que infligen daño y explotan tras 10 segundos"}, --  Bombas fantasma
 	[728] = {"728", "Gello", "Genera un familiar demoníaco atado a ti#Copia tus lágrimas, estadísticas y efectos"}, --  Gello
-	[729] = {"729", "Ataque de decapitación", "Lanza tu cabeza y te permite disparar lágrimas desde donde caiga#Al reactivar el objeto o pisar la cabeza la recuperas"}, --  Ataque de decapitación
+	[729] = {"729", "Muerte per cápita", "Lanza tu cabeza y te permite disparar lágrimas desde donde caiga#Al reactivar el objeto o pisar la cabeza la recuperas"}, --  Ataque de decapitación
 	[730] = {"730", "Ojo de cristal", "↑ +0.75 de daño#↑ +1 de suerte"}, -- Ojo de cristal
 	[731] = {"731", "Orzuelo", "↑ +28% de daño#↑ +7.0 de alcance#↓ -0.3 de velocidad de tiro#Sólo aplica al ojo derecho"}, -- Orzuelo
 	[732] = {"732", "Anillo de Mamá", "↑ +1.0 de daño#Genera una runa o piedra de alma al tomarlo"}, -- Anillo de Mamá
@@ -383,12 +383,12 @@ EID.descriptions["spa"].birthright ={
 {"Tainted Cain", "Caín contaminado", "La cantidad de recolectables que se generan al coger un objeto se duplica"},
 {"Tainted Judas", "Judas contaminado", "Usar {{Collectible705}} Artes Oscuras otorga un aura con área de ataque mayor"},
 {"Tainted ???", "??? contaminado", "Aumenta el número máximo de cacas que puedes llevar a 29"},
-{"Tainted Eve", "Eve contaminada", "Los <placeholder> generados de corazones rojos sueltan medio corazón rojo que desaparece al morir"},
+{"Tainted Eve", "Eva contaminada", "Los coágulos generados de corazones rojos sueltan medio corazón rojo que desaparece al morir"},
 {"Tainted Samson", "Sansón contaminado", "El contador del modo berserker gana 3 segundos en lugar de 1 cuando Tainted Samson (Sansón contaminado) mata a un enemigo"},
 {"Tainted Azazel", "Azazel contaminado", "El tamaño de Hemoptysis {{Collectible726}}, el ataque de Tainted Azazel (Azazel contaminado) es el doble de grande"},
 {"Tainted Lazarus", "Lázaro contaminado", "El Lázaro que no se esté usando estará presente como un fantasma, siendo controlado como J&E#No puede recibir daño ni interactuar con el entorno#La versión fantasma hace su daño x0.2#La otra versión hace su daño x0.8"},
-{"Tainted Eden", "Eden contaminado", "Los objetos pasivos conseguidos antes de Primogenitura no cambian al recibir daño"},
-{"Tainted Lost", "Lost contaminado", "Otorga una vida extra que revive a Tainted Lost (Lost contaminado) en la misma habitación y causa 200 de daño a los enemigos cercanos#Puede golpear al mismo enemigo varias veces"},
+{"Tainted Eden", "Edén contaminado", "Los objetos pasivos conseguidos antes de Primogenitura no cambian al recibir daño"},
+{"Tainted Lost", "El Perdido contaminado", "Otorga una vida extra que revive a Tainted Lost (Lost contaminado) en la misma habitación y causa 200 de daño a los enemigos cercanos#Puede golpear al mismo enemigo varias veces"},
 {"Tainted Lilith", "Lilith contaminada", "Los familiares son lanzados junto a Gello"},
 {"Tainted Keeper", "Keeper contaminado", "Atrae las monedas que sueltan los enemigos cercanos al morir#No afecta al resto de monedas"},
 {"Tainted Apollyon", "Apolión contaminado", "Las langostas se quedan atacando a un enemigo mientras se siga disparando"},
