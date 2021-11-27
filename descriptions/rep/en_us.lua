@@ -77,7 +77,7 @@ local repCollectibles={
 	[192] = {"192", "Telepathy for Dummies", "Homing tears for current room#↑ +3 Range up"}, -- Telepathy for Dummies
 	[193] = {"193", "MEAT!", "↑ +1 Health up#↑ +0.3 Damage up#Heals 1 Red Heart"}, -- MEAT!
 	[194] = {"194", "Magic 8 Ball", "↑ +0.16 Shot Speed up#+1 card#+15% {{Planetarium}}Planetarium chance"}, -- Magic 8 Ball
-	[197] = {"197", "Jesus Juice", "↑ +0.5 Damage up#↑ +0.38 Range up.#↑ +0.5 Tear Height"}, -- Jesus Juice
+	[197] = {"197", "Jesus Juice", "↑ +0.5 Damage up#↑ +0.38 Range up#↑ +0.5 Tear Height"}, -- Jesus Juice
 	[203] = {"203", "Humbling Bundle", "Chance to spawn the double version of pickups"}, -- Humbling Bundle
 	[205] = {"205", "Sharp Plug", "- half Heart = Charges one slot of your active item when pressing space"}, -- Sharp Plug
 	[206] = {"206", "Guillotine", "↑ +1 Damage up#↑ +0.5 Fire Rate up#Your head is now an orbital which doesn't take damage and deals 105 contact damage#You will still shoot from the head"}, -- Guillotine
