@@ -951,7 +951,7 @@ local repCards={
 	{"2", "", "Grants homing tears and +3.0 range for the current room."},
 	{"3", "", "Calls down Mom's foot to stomp on the enemy with the most health in the current room, dealing 300 damage. #If used in an empty room or during the fight with Mom, it will stomp on the player instead."},
 	{"4", "", "Grants the Whore of Babylon effect for the current room, increasing damage by 2.35 and speed by 0.3. #On Eve, it also increases her damage multiplier from 0.75 to 1.0."},
-	{"5", "", "Teleports you to into the boss room of a floor and gives Isaac one Soul heart."},
+	{"5", "", "Teleports you into the boss room of a floor."},
 	{"6", "", "Spawns 2 soul hearts."},
 	{"7", "", "Spawns 2 full red hearts. If used in a super secret room that contains black or eternal hearts, it will spawn those types of hearts instead."},
 	{"8", "", "Grants the effect of My Little Unicorn, giving you invulnerability and the ability to deal contact damage, but removing your ability to shoot tears, for 6 seconds."},
