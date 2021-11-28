@@ -393,6 +393,10 @@ function EID:renderIndicator(entity)
 	if entity:GetData() and entity:GetData()["EID_RenderOffset"] then
 		entityPos = entityPos + entity:GetData()["EID_RenderOffset"]
 	end
+	-- Move highlights a bit to fit onto the alt Item layout of Flip / Tainted Laz
+	if REPENTANCE and entity.Variant == 100 and EID.player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) then
+		entityPos = entityPos + Vector(2.5,2.5)
+	end
 	local sprite = entity:GetSprite()
 	if REPENTANCE then
 		repDiv = 255
