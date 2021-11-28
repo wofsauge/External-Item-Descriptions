@@ -195,7 +195,7 @@ EID.descriptions["en_us"].collectibles={
 	{"180", "The Black Bean", "Fart when touched"},
 	{"181", "White Pony", "Grants flight while hold#Sets your speed to 1.5 if you have less than 1.5#Holy Dash on use"},
 	{"182", "Sacred Heart", "↑ +1 Health up#Full health#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#↑ +4.125 Range up#Homing tears"},
-	{"183", "Tooth Picks", "↑ +0.7 Tears up.#↑ +0.16 Shot Speed up"},
+	{"183", "Tooth Picks", "↑ +0.7 Tears up#↑ +0.16 Shot Speed up"},
 	{"184", "Holy Grail", "Grants flight#↑ +1 Health up"},
 	{"185", "Dead Dove", "Flight#Spectral tears"},
 	{"186", "Blood Rights", "↑ Deal 40 damage to every enemy#↓ Deals 1 heart of damage to you#Prioritizes Red Hearts"},
@@ -209,7 +209,7 @@ EID.descriptions["en_us"].collectibles={
 	{"194", "Magic 8 Ball", "↑ +0.16 Shot speed up#+1 card"},
 	{"195", "Mom's Coin Purse", "Drops 4 Pills"},
 	{"196", "Squeezy", "Spawns 2 Soul Hearts#↑ +0.4 Tears up"},
-	{"197", "Jesus Juice", "↑ +0.5 Damage up#↑ +0.25 Range up.#↑ +0.5 Tear Height"},
+	{"197", "Jesus Juice", "↑ +0.5 Damage up#↑ +0.25 Range up#↑ +0.5 Tear Height"},
 	{"198", "Box", "Spawns 1 pickup of each kind"},
 	{"199", "Mom's Key", "+2 Keys#More drops from chests"},
 	{"200", "Mom's Eyeshadow", "Chance to shoot charming tears"},
@@ -313,7 +313,7 @@ EID.descriptions["en_us"].collectibles={
 	{"298", "Unicorn Stump", "Invincibility and +0.28 speed up for 6 seconds"},
 	{"299", "Taurus", "Get faster in hostile rooms!#Invincibility when fast enough#↓ -0.3 Speed down"},
 	{"300", "Aries", "↑ +0.25 Speed up#Touching enemies hurts them"},
-	{"301", "Cancer", "+3 Soul hearts#Halves taken damage in room when you already got hit"},
+	{"301", "Cancer", "+3 Soul Hearts#Halves taken damage in room when you already got hit"},
 	{"302", "Leo", "Destroy rocks when walking over them"},
 	{"303", "Virgo", "Chance to get invincibility when hit#Converts negative pills into positive ones"},
 	{"304", "Libra", "+6 Coins / Keys / Bombs#Balances your stats!#!!! Every stats up afterwards will affect other stats too"},
@@ -450,7 +450,7 @@ EID.descriptions["en_us"].collectibles={
 	{"435", "Lil Loki", "Shoots 4 tears in a cross pattern#Deals 3.5 damage per shot"},
 	{"436", "Milk!", "After taking damage, you gain a Tears up for the rest of the room"},
 	{"437", "D7", "Respawn all enemies of the room#Allows you to farm room clear rewards#!!! If used in a greed fight, it can reroll the room into a Shop"},
-	{"438", "Binky", "+1 Soul heart#↑ +0.7 Tears up#↑ Makes Isaac very small, reducing his hitbox size"},
+	{"438", "Binky", "+1 Soul Heart#↑ +0.7 Tears up#↑ Makes Isaac very small, reducing his hitbox size"},
 	{"439", "Mom's Box", "Spawns a random trinket#↑ +1 Luck while held#While held, doubles the effect of trinkets"},
 	{"440", "Kidney Stone", "Randomly while firing you will stop firing and release a burst of tears and a kidney stone#↓ -0.2 Speed down#↓ -17 Range down#↑ +2 Tear Height"},
 	{"441", "Mega Blast", "Fires a huge Mega Satan laser for 15 seconds#The laser persists between rooms and floors"},
@@ -520,7 +520,7 @@ EID.descriptions["en_us"].collectibles={
 	{"505", "Poke Go", "Chance to spawn a charmed enemy when entering a hostile room"},
 	{"506", "Backstabber", "Tears can cause bleeding, which deals 10% damage of the enemies total health every 5 seconds"},
 	{"507", "Sharp Straw", "Deals your damage + 10% damage equal to the maximum health of the enemy#Affects all enemies in the room#Chance to drop half hearts when it deals damage"},
-	{"508", "Mom's Razor", "Orbital that causes bleeding, which deals 10% damage of the enemies total health every 5 seconds.#Deals 300% your damage on contact per second"},
+	{"508", "Mom's Razor", "Orbital that causes bleeding, which deals 10% damage of the enemy's total health every 5 seconds#Deals 300% your damage on contact per second"},
 	{"509", "Bloodshot Eye", "Orbital that shoots a tear every 2 seconds in a random direction#Deals 3.5 damage per tear#Deals 30 contact damage per second"},
 	{"510", "Delirious", "Spawns a friendly white delirium version of a boss for the current room"},
 	{"511", "Angry Fly", "Orbits around a random enemy until that enemy dies#Deals 30 contact damage per second to other enemies"},
@@ -837,7 +837,7 @@ EID.descriptions["en_us"].dice={
 	{"1", "", "Rerolls all your passive and active items into a random item from the room pool it was acquired from"},
 	{"2", "", "Rerolls all pickups in the room"},
 	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
-	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room, {{Shop}}Shop or {{Library}}Library"},
+	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
 	{"5", "", "Rerolls and restarts the current floor"},
 	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items, including everything on the floor"}
 }
@@ -847,10 +847,10 @@ EID.descriptions["en_us"].transformations = {
 	"",				-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Beelzebub",		-- 3
+	"Beelzebub",			-- 3
 	"Conjoined",			-- 4
 	"Spun",				-- 5
-	"Yes Mother?",				-- 6
+	"Yes Mother?",			-- 6
 	"Oh Crap",			-- 7
 	"Bob",				-- 8
 	"Leviathan",			-- 9
