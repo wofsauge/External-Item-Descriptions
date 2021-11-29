@@ -526,7 +526,7 @@ EID.descriptions["en_us"].collectibles={
 	{"511", "Angry Fly", "Orbits around a random enemy until that enemy dies#Deals 30 contact damage per second to other enemies"},
 	{"512", "Black Hole", "Throwable black hole, which sucks in everything#Deals 0.4 damage every tick#Destroys nearby rocks#Lasts 6 seconds"},
 	{"513", "Bozo", "↑ +0.1 Damage up#+1 Soul Heart#Random chance to charm/fear an enemy#Random chance to spawn a rainbow poop upon taking damage"},
-	{"514", "Broken Modem", "Causes random enemies to 'lag' at random intervals, causing them to shortly freeze#25% chance to double room clear drops"},
+	{"514", "Broken Modem", "Causes random enemies to 'lag' at random intervals, causing them to shortly freeze#Chance to freeze and remove enemy bullets#25% chance to double room clear drops"},
 	{"515", "Mystery Gift", "!!! SINGLE USE !#Spawns a random item from the current room's item pool#Chance to spawn Lump of Coal or The Poop instead"},
 	{"516", "Sprinkler", "Spawns a Sprinkler that rotates in a circle, spraying your tears in all directions"},
 	{"517", "Fast Bombs", "+7 Bombs#Allows you to rapidly place bombs on the ground"},
