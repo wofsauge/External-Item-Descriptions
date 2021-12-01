@@ -403,7 +403,7 @@ EID.descriptions["spa"].birthright ={
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
 
-EID.descriptions["en_us"].bingeEaterBuffs = {
+EID.descriptions["spa"].bingeEaterBuffs = {
 	[22] = {"22", "", "↑ +0.5 de lágrimas#↑ +1.5 de alcance#↓ -0.03 de velocidad"}, -- Lunch
 	[23] = {"23", "", "↑ +0.5 de lágrimas#↑ +0.2 de velocidad de lágrima#↓ -0.03 de velocidad"}, -- Dinner
 	[24] = {"24", "", "↑ +1 de daño#↑ +0.2 de velocidad de lágrima#↓ -0.03 de velocidad"}, -- Dessert
