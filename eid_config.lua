@@ -85,7 +85,8 @@ EID.UserConfig = {
 	-- Toggle obstruction based hiding, when the player has flight
 	-- Default = true
 	["DisableObstructionOnFlight"] = true,
-	-- If set to true, the mod will no longer check if the save game has achievements unlocked
+	-- If set to true, the mod will no longer display a warning if the save game doesn't have achievements unlocked
+	-- This also disables warnings for using an outdated game version, and for having potentially modded Bag of Crafting recipes
 	-- Default = false
 	["DisableAchievementCheck"] = false,
 	
