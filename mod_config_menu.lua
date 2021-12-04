@@ -32,7 +32,7 @@ function EID:renderMCMDummyDescription()
 		if hudOffset == nil and ScreenHelper then
 			hudOffset = ScreenHelper.GetOffset()
 		end
-		if REPENTANCE and Options then
+		if REPENTANCE then
 			hudOffset = (Options.HUDOffset * 10)
 		end
 		EID.Config["HUDOffset"] = hudOffset
@@ -285,29 +285,6 @@ if MCMLoaded then
 		}
 	)
 	
-	-- disable the warnings that display at the start of new runs
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisableAchievementCheck"]
-			end,
-			Display = function()
-				local onOff = "Enabled"
-				if EID.Config["DisableAchievementCheck"] then
-					onOff = "Disabled"
-				end
-				return "Start of Run Warnings: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisableAchievementCheck"] = currentBool
-			end,
-			Info = {"Toggle the achievement, outdated game version, and modded crafting recipes warnings"}
-		}
-	)
-	
 	-- Disable on Curse
 	MCM.AddSetting(
 		"EID",
@@ -458,6 +435,29 @@ if MCMLoaded then
 				EID.Config["MaxDistance"] = distances[currentNum + 1]
 			end,
 			Info = {"Distance to the object until descriptions are displayed."}
+		}
+	)
+	
+	-- disable achievements
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisableAchievementCheck"]
+			end,
+			Display = function()
+				local onOff = "Enabled"
+				if EID.Config["DisableAchievementCheck"] then
+					onOff = "Disabled"
+				end
+				return "Achievement warning: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisableAchievementCheck"] = currentBool
+			end,
+			Info = {"Use this to turn off the achievement warning"}
 		}
 	)
 
@@ -869,6 +869,29 @@ if MCMLoaded then
 			end
 		}
 	)
+
+	-- LOCAL MODE
+	MCM.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["LocalMode"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["LocalMode"] then
+					onOff = "True"
+				end
+				return "Local Mode: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["LocalMode"] = currentBool
+			end,
+			Info = {"Sets the local rendering mode of the description text below currently inspected object"}
+		}
+	)
 	-- SCALE
 	local textScales = {0.5, 0.75, 1, 1.25, 1.5, 2}
 	MCM.AddSetting(
@@ -882,7 +905,11 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = 6,
 			Display = function()
-				return "Text Size: " .. EID.Config["Scale"]
+				if EID.Config["LocalMode"] then
+					return "Text Size (Pickup Description): " .. EID.Config["LocalScale"]
+				else
+					return "Text Size (All Description): " .. EID.Config["Scale"]
+				end
 			end,
 			OnChange = function(currentNum)
 				EID.Config["Scale"] = textScales[currentNum]
@@ -890,7 +917,30 @@ if MCMLoaded then
 			Info = {"Change text size. CAN BE HARD TO READ IN SOME SETTINGS!"}
 		}
 	)
-
+	local textScales = {0.5, 0.75, 1, 1.25, 1.5, 2}
+	MCM.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(textScales, EID.Config["Scale"])
+			end,
+			Minimum = 1,
+			Maximum = 6,
+			Display = function()
+				if EID.Config["LocalMode"] then
+					return "Text Size (Room Description): " .. EID.Config["Scale"]
+				else
+					return ""
+				end
+			end,
+			OnChange = function(currentNum)
+				EID.Config["Scale"] = textScales[currentNum]
+			end,
+			Info = {"Change text size. CAN BE HARD TO READ IN SOME SETTINGS!"}
+		}
+   )
 	-- Transparency
 	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
 	MCM.AddSetting(
