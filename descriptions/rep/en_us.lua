@@ -339,7 +339,7 @@ local repCollectibles={
 	[697] = {"697", "Vanishing Twin", "Familiar that becomes a clone of the boss when entering the boss room#Defeating it drops an extra item#Clone is slower and has 75% of the original boss health"}, -- Vanishing Twin
 	[698] = {"698", "Twisted Pair", "Two familiars that stand by your side#Fire tears equal to yours, but with only 37.5% of your damage"}, -- Twisted Pair
 	[699] = {"699", "Azazel's Rage", "Build rage every time a room is cleared#After 4 rooms, fires a large Brimstone laser when entering the next room"}, -- Azazel's Rage
-	[700] = {"700", "Echo Chamber", "When Isaac uses a Card, Pill, or Rune, he also uses a copy of the previous three Cards/Pills/Runes he used after picking up Echo Chamber"}, -- Echo Chamber
+	[700] = {"700", "Echo Chamber", "When Isaac uses a Card, Pill, or Rune, he also uses a copy of the last 3 Cards/Pills/Runes he used after picking up Echo Chamber"}, -- Echo Chamber
 	[701] = {"701", "Isaac's Tomb", "Spawns an Old Chest at the start of every floor#Can contain Soul Hearts, trinkets or items from Angel Rooms or Mom or Dad themed"}, -- Isaac's Tomb
 	[702] = {"702", "Vengeful Spirit", "After taking damage, spawns an orbital wisp that lasts for the entire floor#Maximum of 6#They fire tears but do not block shots"}, -- Vengeful Spirit
 	[703] = {"703", "Esau Jr.", "Swaps between the current character and Esau Jr., who has 3 Black Hearts, +2 damage and flight#Characters have independent items and health#{{Warning}} Dying as either character ends the run"}, -- Esau Jr.
@@ -478,10 +478,10 @@ EID.descriptions["en_us"].spindownError = "Item disappears"
 local repTrinkets={
 	[1] = {"1", "Swallowed Penny", "Spawns 1 coin when you get hit#0-1 as Keeper"}, -- Swallowed Penny
 	[10] = {"10", "Wiggle Worm", "Tears move in waves#↑ +0.4 Tears up#Grants spectral tears"}, -- Wiggle Worm
-	[11] = {"11", "Ring Worm", "Tears move in spirals with high speed#Grants spectral tears"}, -- Ring Worm
+	[11] = {"11", "Ring Worm", "Tears move in spirals with high speed#↑ +0.4 Tears up#Grants spectral tears"}, -- Ring Worm
 	[15] = {"15", "Lucky Rock", "33% chance to drop a coin when destroying rocks"},-- Lucky Rock
 	[24] = {"24", "Butt Penny", "Fart when picking up coins#Higher chance for coins to spawn from poop#Farts poison and knockback enemies and projectiles"}, -- Butt Penny
-	[26] = {"26", "Hook Worm", "Tears move in angular patterns#↑ +1.5 Range#Grants spectral tears"}, -- Hook Worm
+	[26] = {"26", "Hook Worm", "Tears move in angular patterns#↑ +0.4 Tears up#↑ +1.5 Range up#Grants spectral tears"}, -- Hook Worm
 	[32] = {"32", "Liberty Cap", "Random mushroom effect per room"}, -- Liberty Cap
 	[33] = {"33", "Umbilical Cord", "At half a Red Heart or less, you gain#{{Blank}} {{Collectible100}}Little Steven#High chance to spawn Gemini familiars for the room when taking damage"}, -- Umbilical Cord
 	[39] = {"39", "Cancer", "↑ +1 Fire Rate up"},
@@ -494,7 +494,7 @@ local repTrinkets={
 	[69] = {"69", "Faded Polaroid", "Camouflages the player randomly#Confuses enemies#Can be used to open the door to the \"Home\" floor"}, -- Faded Polaroid
 	[80] = {"80", "Black Feather", "↑ +0.5 Damage up for each evil item held"}, -- Black Feather
 	[92] = {"92", "Cracked Crown", "↑ Stat increases of your items are 20% more effective"}, -- Cracked Crown
-	[96] = {"96", "Ouroboros Worm", "Tears move quickly in a spiral pattern#Spectral tears#↑ +1.5 Range"}, -- Ouroboros Worm
+	[96] = {"96", "Ouroboros Worm", "Tears move quickly in a spiral pattern#↑ +0.4 Tears up#↑ +1.5 Range up#Grants spectral tears#Chance for homing tears"}, -- Ouroboros Worm
 	[101] = {"101", "Dim Bulb", "!!! While holding a completely uncharged active item:#↑ +1.5 Damage#↑ +0.5 Speed#↑ +1.5 Range#↑ +0.5 Tears#↑ +0.3 Shot Speed#↑ +2 Luck"},
 	[110] = {"110", "Silver Dollar", "{{Shop}}Shops will now appear in the Womb and Corpse"},
 	[111] = {"111", "Bloody Crown", "{{TreasureRoom}}Treasure Rooms now appear in the Womb and Corpse"}, -- Bloody Crown
@@ -892,7 +892,7 @@ EID.descriptions["en_us"].horsepills={
 	{"47", "Shot Speed Down", "↓ -0.3 Shot Speed down"}, -- Shot Speed Down
 	{"48", "Shot Speed Up", "↑ +0.3 Shot Speed up"}, -- Shot Speed Up
 	{"49", "Experimental Pill", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with PHD"}, -- Experimental Pill
-	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- golden Pill
+	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- Golden Pill
 }
 
 EID.descriptions["en_us"].CraftingBagContent = "Bag:"
@@ -902,8 +902,14 @@ EID.descriptions["en_us"].CraftingFloorContent = "Floor:"
 EID.descriptions["en_us"].CraftingBagQuality = "Bag Quality:"
 EID.descriptions["en_us"].CraftingBestQuality = "Best Quality:"
 
+EID.descriptions["en_us"].CraftingHideKey = "Hide:"
+EID.descriptions["en_us"].CraftingPreviewKey = "Preview:"
+
 EID.descriptions["en_us"].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
-EID.descriptions["en_us"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}The \"Crafting result calculation\" feature currently does not work when item mods are installed!#{{ColorRed}}Please uninstall the item mods or deactivate the Bag of Crafting descriptions in the config"
+
 EID.descriptions["en_us"].AchievementWarningTitle = "{{ColorYellow}}!!! WARNING !!!"
-EID.descriptions["en_us"].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)"
-EID.descriptions["en_us"].OutdatedModWarningText = "An outdated mod is reducing your number of items! This could cause crashes, especially on entering the Knife Piece 2 area!#Please uninstall mods with an outdated resources/items.xml file"
+EID.descriptions["en_us"].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)#(This warning can be disabled in the config)"
+
+EID.descriptions["en_us"].OldGameVersionWarningText = "Your version of Repentance is not up-to-date!#Only the newest version is officially supported#(This warning can be disabled in the config)"
+
+EID.descriptions["en_us"].ModdedRecipesWarningText = "Modded items are likely to make the crafting recipe calculation inaccurate!#Use the No Recipes display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
