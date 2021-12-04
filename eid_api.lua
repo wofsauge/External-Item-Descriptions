@@ -440,8 +440,9 @@ function EID:getObjectName(Type, Variant, SubType)
 		local vanillaName = EID.itemConfig:GetCollectible(SubType).Name
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
 	elseif tableName == "trinkets" then
-		local vanillaName = EID.itemConfig:GetTrinket(SubType).Name
-		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
+		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
+		local vanillaName = EID.itemConfig:GetTrinket(adjustedSubtype).Name
+		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][adjustedSubtype][2] or vanillaName
 	elseif tableName == "cards" then
 		local vanillaName = EID.itemConfig:GetCard(SubType).Name
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName

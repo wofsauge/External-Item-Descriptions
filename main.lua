@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2"
-EID.ModVersion = "3.92"
+EID.ModVersion = "3.99"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -394,6 +394,10 @@ function EID:renderIndicator(entity)
 	if entity:GetData() and entity:GetData()["EID_RenderOffset"] then
 		entityPos = entityPos + entity:GetData()["EID_RenderOffset"]
 	end
+	-- Move highlights a bit to fit onto the alt Item layout of Flip / Tainted Laz
+	if REPENTANCE and entity.Variant == 100 and EID.player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) then
+		entityPos = entityPos + Vector(2.5,2.5)
+	end
 	local sprite = entity:GetSprite()
 	if REPENTANCE then
 		repDiv = 255
@@ -444,9 +448,16 @@ end
 
 function EID:PositionLocalMode(entity)
 	if EID.Config["LocalMode"] then
-		EID:alterTextPos(Isaac.WorldToScreen(entity.Position - Vector(50,-20)))
+		EID:alterTextPos(Isaac.WorldToScreen(entity.Position - Vector(35,-20)))
+		if REPENTANCE then
+			if isMirrorRoom then
+				EID:alterTextPos(Isaac.WorldToScreen(entity.Position - Vector(-35,-20)))
+				local screenCenter = EID:getScreenSize()/2
+				EID.UsedPosition.X = EID.UsedPosition.X - (EID.UsedPosition-screenCenter).X * 2
+			end
+		end
 		if entity:ToPickup() and entity:ToPickup():IsShopItem() then
-			EID:alterTextPos(Isaac.WorldToScreen(entity.Position - Vector(50,-40)))
+			EID:alterTextPos(Isaac.WorldToScreen(entity.Position - Vector(35,-40)))
 		end
 	else
 		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
@@ -829,7 +840,7 @@ if EID.MCMLoaded or REPENTANCE then
 			
 			-- Only copy Saved config entries that exist in the save
 			if savedEIDConfig.Version == EID.Config.Version then
-				local isDefaultConfig = false
+				local isDefaultConfig = true
 				for key, value in pairs(EID.Config) do
 					if type(value) ~= type(EID.DefaultConfig[key]) and key ~= "BagContent" and key ~= "BagFloorContent" then
 						print("EID Warning! : Config value '"..key.."' has wrong data-type. Resetting it to default...")
