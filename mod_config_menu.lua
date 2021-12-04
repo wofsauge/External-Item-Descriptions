@@ -869,6 +869,28 @@ if MCMLoaded then
 			end
 		}
 	)
+
+	-- LOCAL MODE
+	MCM.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["LocalMode"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["LocalMode"] then
+					onOff = "True"
+				end
+				return "Local Mode: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["LocalMode"] = currentBool
+			end,
+			Info = {"Sets the local rendering mode of the description text below currently inspected object"}
+		}
 	-- SCALE
 	local textScales = {0.5, 0.75, 1, 1.25, 1.5, 2}
 	MCM.AddSetting(
@@ -882,7 +904,10 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = 6,
 			Display = function()
-				return "Text Size: " .. EID.Config["Scale"]
+				if EID.Config["LocalMode"] then
+					return "Text Size (Pickup Description): " .. EID.Config["LocalScale"]
+				else
+					return "Text Size (All Description): " .. EID.Config["Scale"]
 			end,
 			OnChange = function(currentNum)
 				EID.Config["Scale"] = textScales[currentNum]
@@ -890,7 +915,30 @@ if MCMLoaded then
 			Info = {"Change text size. CAN BE HARD TO READ IN SOME SETTINGS!"}
 		}
 	)
-
+	local textScales = {0.5, 0.75, 1, 1.25, 1.5, 2}
+	MCM.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(textScales, EID.Config["Scale"])
+			end,
+			Minimum = 1,
+			Maximum = 6,
+			Display = function()
+				if EID.Config["LocalMode"] then
+					return "Text Size (Room Description): " .. EID.Config["Scale"]
+				else
+					return ""
+				end
+			end,
+			OnChange = function(currentNum)
+				EID.Config["Scale"] = textScales[currentNum]
+			end,
+			Info = {"Change text size. CAN BE HARD TO READ IN SOME SETTINGS!"}
+		}
+   )
 	-- Transparency
 	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
 	MCM.AddSetting(

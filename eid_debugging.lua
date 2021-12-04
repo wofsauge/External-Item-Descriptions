@@ -122,7 +122,7 @@ local function onDebugRender(t)
 
 	for i, v in ipairs(charsToDebug) do
 		local pos = EID.getTextPosition() + Vector(-5, - 15 + ((i - 1) * 14))
-		EID:renderString(v, pos, Vector(EID.Config["Scale"], EID.Config["Scale"]), KColor(1, 1, 1, 1, 0, 0, 0))
+		EID:renderString(v, pos, Vector(EID.Scale, EID.Scale), KColor(1, 1, 1, 1, 0, 0, 0))
 		
 		if not showDebugChars then
 			break
@@ -130,3 +130,4 @@ local function onDebugRender(t)
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onDebugRender)
+

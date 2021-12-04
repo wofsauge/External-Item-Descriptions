@@ -59,6 +59,12 @@ EID.UserConfig = {
 	-- Set Y Position (Height) of the descriptiontext
 	-- Default = 45
 	["YPosition"] = 45,
+	-- Sets the local rendering mode of the description text below currently inspected object
+	-- Default = false
+	["LocalMode"] = false,
+	-- Change Size of the info boxes for LocalMode. Range: [0,...,1]
+	-- Default = 0.5
+	["LocalScale"] = 0.5,
 	-- Set the distance to an item in which informations will be displayed (in Tiles)
 	-- Default = 5
 	["MaxDistance"] = 5,
@@ -306,6 +312,8 @@ EID.DefaultConfig = {
 	["HUDOffset"] = 10,
 	["XPosition"] = 60,
 	["YPosition"] = 45,
+	["LocalMode"] = true,
+	["LocalScale"] = 0.5,
 	["MaxDistance"] = 5,
 	["Indicator"] = "none",
 	["HideKey"] = Keyboard.KEY_F2,
