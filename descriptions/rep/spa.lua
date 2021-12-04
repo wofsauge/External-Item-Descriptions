@@ -594,15 +594,15 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions["spa"].cards)
 ---------- Pills ----------
 
 local repPills={
-	[4] = {"3", "", "Intercambia el número de bombas por el de llaves#Las llaves y bombas de oro también se intercambian"},
-	[12] = {"11", "", "↓ -0,6 de rango"},
-	[13] = {"12", "", "↑ +0,75 de rango"},
-	[42] = {"41", "", "Te ralentiza a ti y a los enemigos de la habitación"},
-	[43] = {"42", "", "Aumenta tu velocidad y la de todos los enemigos de la habitación#Se vuelve a activas tras 30 y 60 segundos"},
+	[4] = {"3", "Las bombas son la «clave»", "Intercambia el número de bombas por el de llaves#Las llaves y bombas de oro también se intercambian"},
+	[12] = {"11", "- Alcance", "↓ -0,6 de alcance"},
+	[13] = {"12", "+ Alcance", "↑ +0,75 de alcance"},
+	[42] = {"41", "Tengo sueño...", "Te ralentiza a ti y a los enemigos de la habitación"},
+	[43] = {"42", "¡¡¡TENGO MUCHA ENERGÍA!!!", "Aumenta tu velocidad y la de todos los enemigos de la habitación#Se vuelve a activas tras 30 y 60 segundos"},
 	
-	[48] = {"47", "", "↓ -0,15 de velocidad de disparo"},
-	[49] = {"48", "", "↑ +0,15 de velocidad de disparo"},
-	[50] = {"49", "", "↑ Aumenta una estadística aleatoria#↓ Disminuye otra estadística aleatoria#Si tienes PHD no bajará ninguna"},
+	[48] = {"47", "- Velocidad de lágrimas", "↓ -0,15 de velocidad de disparo"},
+	[49] = {"48", "+ Velocidad de lágrimas", "↑ +0,15 de velocidad de disparo"},
+	[50] = {"49", "Píldora experimental", "↑ Aumenta una estadística aleatoria#↓ Disminuye otra estadística aleatoria#Si tienes PHD no bajará ninguna"},
 	[9999] = {"", "Píldora dorada", "Efecto de píldora de caballo aleatorio#Se destruye tras unos cuantos usos"}, -- golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions["spa"].pills)
@@ -669,8 +669,18 @@ EID.descriptions["spa"].CraftingFloorContent = "Piso:"
 EID.descriptions["spa"].CraftingBagQuality = "Calidad:"
 EID.descriptions["spa"].CraftingBestQuality = "Mejor Calidad:"
 
+EID.descriptions["spa"].CraftingHideKey = "Oculto:"
+EID.descriptions["spa"].CraftingPreviewKey = "Prevista:"
+
+EID.descriptions["spa"].CraftingResults = "(Desplazar: mantén {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Bloquear: {{ButtonX}}, Refrescar: {{ButtonB}})"
+
+
 EID.descriptions["spa"].CraftingResults = "(Desplazar: Mantén {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Bloquear: {{ButtonX}}, Reiniciar: {{ButtonB}})"
 EID.descriptions["spa"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}El \"Cálculo de Recetas\" actualmente no funciona con mods que añaden objetos!#{{ColorRed}}Por favor desinstala los mods de objetos o desactiva las descripciones de Bag of Crafting en la configuración"
 EID.descriptions["spa"].AchievementWarningTitle = "{{ColorYellow}}!!! ADVERTENCIA !!!"
-EID.descriptions["spa"].AchievementWarningText = "¡Los logros están deshabilitados!#Para poder progresar en el juego, primero debes matar a Mamá (Depths II) sin mods habilitados.#(Si ya derrotaste a Mamá, este mensaje es un bug, ignóralo)"
+EID.descriptions["spa"].AchievementWarningText = "¡Los logros están deshabilitados!#Para poder progresar en el juego, primero debes matar a Mamá (Depths II) sin mods habilitados.#(Si ya derrotaste a Mamá, este mensaje es un bug, ignóralo)#(Este aviso puede ser desactivado en la configuración)"
 EID.descriptions["spa"].OutdatedModWarningText = "¡Un mod sin actualizar está reduciendo la cantidad de objetos! Esto puede causar crasheos, especialmente al entrar al area de la Pieza del cuchillo 2!#Por favor desinstala los mods con los archivos resources/items.xml desactualizados"
+
+EID.descriptions["spa"].OldGameVersionWarningText = "Tu versión de Repentance no es la más reciente#La versión más reciente es la única con soporte oficial#(Este aviso puede ser desactivado en la configuración)"
+
+EID.descriptions["spa"].ModdedRecipesWarningText = "Los objetos modeados pueden provocar cálculos incorrectos#Usa el modo No Recipes o desactiva el cálculo de la Bolsa de trabajo si es que los cálculos son incorrectos#(Este aviso puede ser desactivado en la configuración)"
