@@ -891,6 +891,7 @@ if MCMLoaded then
 			end,
 			Info = {"Sets the local rendering mode of the description text below currently inspected object"}
 		}
+	)
 	-- SCALE
 	local textScales = {0.5, 0.75, 1, 1.25, 1.5, 2}
 	MCM.AddSetting(
@@ -908,6 +909,7 @@ if MCMLoaded then
 					return "Text Size (Pickup Description): " .. EID.Config["LocalScale"]
 				else
 					return "Text Size (All Description): " .. EID.Config["Scale"]
+				end
 			end,
 			OnChange = function(currentNum)
 				EID.Config["Scale"] = textScales[currentNum]
