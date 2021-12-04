@@ -59,12 +59,6 @@ EID.UserConfig = {
 	-- Set Y Position (Height) of the descriptiontext
 	-- Default = 45
 	["YPosition"] = 45,
-	-- Sets the local rendering mode of the description text below currently inspected object
-	-- Default = false
-	["LocalMode"] = false,
-	-- Change Size of the info boxes for LocalMode. Range: [0,...,1]
-	-- Default = 0.5
-	["LocalScale"] = 0.5,
 	-- Set the distance to an item in which informations will be displayed (in Tiles)
 	-- Default = 5
 	["MaxDistance"] = 5,
@@ -95,6 +89,21 @@ EID.UserConfig = {
 	-- This also disables warnings for using an outdated game version, and for having potentially modded Bag of Crafting recipes
 	-- Default = false
 	["DisableAchievementCheck"] = false,
+	
+	-------Display Modes---------
+
+	-- Sets the display mode of the description text. 
+	-- possible values: default, local
+	--   "default": text will be displayed in the top-left of the screen.
+	--   "local": text will be displayed under the described object.
+	-- Default = "default"
+	["DisplayMode"] = "default",
+	-- Change Size of the info boxes for LocalMode.
+	-- Default = 0.5
+	["LocalScale"] = 0.5,
+	-- Changes the position of the text in local mode, relative to the described object to be centered. Set to false to make it left-aligned
+	-- Default = true
+	["LocalModeCentered"] = true,
 	
 	-------------CURSE-------------
 
@@ -312,8 +321,9 @@ EID.DefaultConfig = {
 	["HUDOffset"] = 10,
 	["XPosition"] = 60,
 	["YPosition"] = 45,
-	["LocalMode"] = true,
+	["DisplayMode"] = "default",
 	["LocalScale"] = 0.5,
+	["LocalModeCentered"] = true,
 	["MaxDistance"] = 5,
 	["Indicator"] = "none",
 	["HideKey"] = Keyboard.KEY_F2,

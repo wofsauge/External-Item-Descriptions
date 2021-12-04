@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.3"
-EID.ModVersion = "4.0"
+EID.ModVersion = "3.100"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -441,23 +441,25 @@ function EID:ScaleValue(entity)
 	if entity.Variant == EffectVariant.DICE_FLOOR then
 		EID.Scale = EID.Config["Scale"]
 		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
-	elseif EID.Config["LocalMode"] then
+	elseif EID.Config["DisplayMode"] == "local" then
 		EID.Scale = EID.Config["LocalScale"]
 	end
 end
 
 function EID:PositionLocalMode(entity)
-	if EID.Config["LocalMode"] then
-		EID:alterTextPos(Isaac.WorldToScreen(entity.Position - Vector(35,-20)))
+	if EID.Config["DisplayMode"] == "local" then
+		local textBoxWidth = EID.Config["LocalModeCentered"] and tonumber(EID.Config["TextboxWidth"])/2 * EID.Scale or -30
+		local textPosOffset = Vector(-textBoxWidth, 20)
+		EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
 		if REPENTANCE then
 			if isMirrorRoom then
-				EID:alterTextPos(Isaac.WorldToScreen(entity.Position - Vector(-35,-20)))
+				EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset * Vector(-1,0)))
 				local screenCenter = EID:getScreenSize()/2
 				EID.UsedPosition.X = EID.UsedPosition.X - (EID.UsedPosition-screenCenter).X * 2
 			end
 		end
 		if entity:ToPickup() and entity:ToPickup():IsShopItem() then
-			EID:alterTextPos(Isaac.WorldToScreen(entity.Position - Vector(35,-40)))
+			EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
 		end
 	else
 		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
