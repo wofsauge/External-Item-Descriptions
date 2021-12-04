@@ -593,7 +593,7 @@ EID.showCraftingResult = false
 
 local maxItemID = nil
 
-local function detectModdedItems()
+function EID:DetectModdedItems()
 	if maxItemID == nil then
 		maxItemID = EID:GetMaxCollectibleID()
 	end
@@ -743,7 +743,7 @@ function EID:handleBagOfCraftingRendering()
 	table.sort(itemQuery, qualitySort)
 
 	--Simplified Mode display
-	if (EID.Config["BagOfCraftingSimplifiedMode"] or detectModdedItems()) then
+	if (EID.Config["BagOfCraftingSimplifiedMode"] or EID:DetectModdedItems()) then
 		local customDescObj = EID:getDescriptionObj(5, 100, 710)
 		customDescObj.Description = ""
 		
