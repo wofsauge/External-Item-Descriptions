@@ -32,7 +32,7 @@ function EID:renderMCMDummyDescription()
 		if hudOffset == nil and ScreenHelper then
 			hudOffset = ScreenHelper.GetOffset()
 		end
-		if REPENTANCE then
+		if REPENTANCE and Options then
 			hudOffset = (Options.HUDOffset * 10)
 		end
 		EID.Config["HUDOffset"] = hudOffset
@@ -285,6 +285,29 @@ if MCMLoaded then
 		}
 	)
 	
+	-- disable the warnings that display at the start of new runs
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["DisableAchievementCheck"]
+			end,
+			Display = function()
+				local onOff = "Enabled"
+				if EID.Config["DisableAchievementCheck"] then
+					onOff = "Disabled"
+				end
+				return "Start of Run Warnings: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["DisableAchievementCheck"] = currentBool
+			end,
+			Info = {"Toggle the achievement, outdated game version, and modded crafting recipes warnings"}
+		}
+	)
+	
 	-- Disable on Curse
 	MCM.AddSetting(
 		"EID",
@@ -437,29 +460,29 @@ if MCMLoaded then
 			Info = {"Distance to the object until descriptions are displayed."}
 		}
 	)
-	
-	-- disable achievements
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisableAchievementCheck"]
-			end,
-			Display = function()
-				local onOff = "Enabled"
-				if EID.Config["DisableAchievementCheck"] then
-					onOff = "Disabled"
-				end
-				return "Achievement warning: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisableAchievementCheck"] = currentBool
-			end,
-			Info = {"Use this to turn off the achievement warning"}
-		}
-	)
+ 
+						
+				
+		
+			
+   
+										   
+							  
+												
+	   
+					   
+						   
+												 
+					   
+	   
+										   
+	   
+								   
+													   
+	   
+														  
+   
+  
 
 	---------------------------------------------------------------------------
 	---------------------------------Display-----------------------------------
@@ -1429,3 +1452,4 @@ if MCMLoaded then
 		}
 	)
 end
+
