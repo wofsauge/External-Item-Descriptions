@@ -8,8 +8,8 @@ local game = Game()
 
 require("eid_config")
 EID.Config = EID.UserConfig
-EID.Config.Version = "3.2"
-EID.ModVersion = "3.99"
+EID.Config.Version = "3.3"
+EID.ModVersion = "4.0"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
