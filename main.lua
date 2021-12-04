@@ -584,8 +584,8 @@ EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 local hasShownAchievementWarning = false
 
 local function renderAchievementInfo()
-	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 and game.Challenge == 0 then
-				-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
+	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 then
+		-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
 		-- 1.7.6 (Nov. 16, 2021): The Options object (to read the game's options like HUD Offset)
 		if Options == nil then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
@@ -601,18 +601,19 @@ local function renderAchievementInfo()
 			hasShownAchievementWarning = true
 		else
 			-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
-		local characterID = Game():GetPlayer(0):GetPlayerType()
-		--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
-		if characterID < 21 then
-			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
-			if not hasBookOfRevelationsUnlocked then
-				local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
-				if not hasCubeOfMeatUnlocked then
-					local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-					demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-					demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
-					EID:displayPermanentText(demoDescObj)
-					hasShownAchievementWarning = true
+			local characterID = Game():GetPlayer(0):GetPlayerType()
+			--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
+			if characterID < 21 and game.Challenge == 0 then
+				local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
+				if not hasBookOfRevelationsUnlocked then
+					local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
+					if not hasCubeOfMeatUnlocked then
+						local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+						demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
+						demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+						EID:displayPermanentText(demoDescObj)
+						hasShownAchievementWarning = true
+					end
 				end
 			end
 		end
