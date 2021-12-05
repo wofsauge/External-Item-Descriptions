@@ -598,7 +598,7 @@ local repPills={
 	[12] = {"11", "- Alcance", "↓ -0,6 de alcance"},
 	[13] = {"12", "+ Alcance", "↑ +0,75 de alcance"},
 	[42] = {"41", "Tengo sueño...", "Te ralentiza a ti y a los enemigos de la habitación"},
-	[43] = {"42", "¡¡¡TENGO MUCHA ENERGÍA!!!", "Aumenta tu velocidad y la de todos los enemigos de la habitación#Se vuelve a activas tras 30 y 60 segundos"},
+	[43] = {"42", "¡¡TENGO MUCHA ENERGÍA!!", "Aumenta tu velocidad y la de todos los enemigos de la habitación#Se vuelve a activas tras 30 y 60 segundos"},
 	
 	[48] = {"47", "- Velocidad de lágrimas", "↓ -0,15 de velocidad de disparo"},
 	[49] = {"48", "+ Velocidad de lágrimas", "↑ +0,15 de velocidad de disparo"},
