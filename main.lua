@@ -8,8 +8,8 @@ local game = Game()
 
 require("eid_config")
 EID.Config = EID.UserConfig
-EID.Config.Version = "3.2"
-EID.ModVersion = "3.99"
+EID.Config.Version = "3.3"
+EID.ModVersion = "3.100"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -18,6 +18,7 @@ EID.player = nil
 EID.PositionModifiers = {}
 EID.DescModifiers = {}
 EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
+EID.Scale = EID.Config["Scale"]
 EID.isDisplaying = false
 EID.isDisplayingPermanent = false
 EID.permanentDisplayTextObj = nil
@@ -216,7 +217,7 @@ end
 ---------------------------Printing Functions------------------------------
 
 function EID:printDescription(desc)
-	local textScale = Vector(EID.Config["Scale"], EID.Config["Scale"])
+	local textScale = Vector(EID.Scale, EID.Scale)
 	local renderPos = EID:getTextPosition()
 	local offsetX = 0
 	if EID.Config["ShowItemIcon"] then
@@ -240,7 +241,7 @@ function EID:printDescription(desc)
 			offsetX = offsetX + 14
 			EID:renderString(
 				"{{" .. iconType .. subType .. "}}",
-				renderPos + (Vector(-3, -4) * EID.Config["Scale"]),
+				renderPos + (Vector(-3, -4) * EID.Scale),
 				textScale,
 				EID:getNameColor()
 			)
@@ -253,11 +254,11 @@ function EID:printDescription(desc)
 	end
 	if EID.Config["ShowItemType"] and (itemType == 3 or itemType == 4) then
 		local offsetY = 2
-		if EID.Config["Scale"] < 1 then
+		if EID.Scale < 1 then
 			offsetY = -1
 		end
 		EID.IconSprite:Play(EID.ItemTypeAnm2Names[itemType])
-		EID:renderIcon(EID.IconSprite, renderPos.X + offsetX * EID.Config["Scale"], renderPos.Y + offsetY * EID.Config["Scale"])
+		EID:renderIcon(EID.IconSprite, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale)
 		if itemType == 3 then
 		 -- Display Charge
 			offsetX = offsetX + 1
@@ -270,14 +271,14 @@ function EID:printDescription(desc)
 			else
 				EID.InlineIconSprite2:SetFrame("numbers", curItemConfig.MaxCharges)
 			end
-			EID:renderIcon(EID.InlineIconSprite2, renderPos.X + offsetX * EID.Config["Scale"], renderPos.Y + offsetY * EID.Config["Scale"])
+			EID:renderIcon(EID.InlineIconSprite2, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale)
 			offsetX = offsetX + 8
 		elseif itemType == 4 then
 		-- familiar
 			offsetX = offsetX + 8
 		end
 		if not EID.Config["ShowItemName"] then
-			renderPos.Y = renderPos.Y + EID.lineHeight * EID.Config["Scale"]
+			renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 		end
 	end
 	--Display Itemname
@@ -300,12 +301,12 @@ function EID:printDescription(desc)
 		end
 		EID:renderString(
 			curName,
-			renderPos + (Vector(offsetX, -3) * EID.Config["Scale"]),
+			renderPos + (Vector(offsetX, -3) * EID.Scale),
 			textScale,
 			EID:getNameColor()
 		)
 
-		renderPos.Y = renderPos.Y + EID.lineHeight * EID.Config["Scale"]
+		renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 	end
 
 	--Display Transformation
@@ -324,13 +325,13 @@ function EID:printDescription(desc)
 				local textOffsetY = math.min(0, (iconHeight - 9)) / 4
 				EID:renderString(
 					transformationName,
-					renderPos + (Vector(iconWidth + 4, textOffsetY)* EID.Config["Scale"]),
+					renderPos + (Vector(iconWidth + 4, textOffsetY)* EID.Scale),
 					textScale,
 					EID:getTransformationColor()
 				)
 			end
 			if (EID.Config["TransformationIcons"] or EID.Config["TransformationText"]) then
-				renderPos.Y = renderPos.Y + transformLineHeight * EID.Config["Scale"]
+				renderPos.Y = renderPos.Y + transformLineHeight * EID.Scale
 			end
 		end
 	end
@@ -339,7 +340,7 @@ end
 
 function EID:printBulletPoints(description, renderPos)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
-	local textScale = Vector(EID.Config["Scale"], EID.Config["Scale"])
+	local textScale = Vector(EID.Scale, EID.Scale)
 	description = EID:replaceShortMarkupStrings(description)
 
 	for line in string.gmatch(description, "([^#]+)") do
@@ -351,13 +352,13 @@ function EID:printBulletPoints(description, renderPos)
 				local bpIcon = EID:handleBulletpointIcon(lineToPrint)
 				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
 					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
-					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Config["Scale"], 0), textScale , textColor)
+					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor)
 				else
 					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
 				end
 			end
-			textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Config["Scale"], 0), textScale, textColor)
-				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Config["Scale"]
+			textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
+				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 		end
 	end
 end
@@ -376,7 +377,7 @@ EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 function EID:renderQuestionMark()
 	EID.IconSprite:Play("CurseOfBlind")
 	local pos = EID:getTextPosition()
-	EID:renderIcon(EID.IconSprite, pos.X + 5 * EID.Config["Scale"], pos.Y + 5 * EID.Config["Scale"])
+	EID:renderIcon(EID.IconSprite, pos.X + 5 * EID.Scale, pos.Y + 5 * EID.Scale)
 end
 
 function EID:renderIndicator(entity)
@@ -433,6 +434,36 @@ function EID:renderIndicator(entity)
 		if isMirrorRoom then
 			sprite.FlipX = false
 		end
+	end
+end
+
+function EID:ScaleValue(entity)
+	if entity.Variant == EffectVariant.DICE_FLOOR then
+		EID.Scale = EID.Config["Scale"]
+		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
+	elseif EID.Config["DisplayMode"] == "local" then
+		EID.Scale = EID.Config["LocalScale"]
+	end
+end
+
+function EID:PositionLocalMode(entity)
+	if EID.Config["DisplayMode"] == "local" then
+		local textBoxWidth = EID.Config["LocalModeCentered"] and tonumber(EID.Config["TextboxWidth"])/2 * EID.Scale or -30
+		local textPosOffset = Vector(-textBoxWidth, 20)
+		EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
+		if REPENTANCE then
+			if isMirrorRoom then
+				EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset * Vector(-1,0)))
+				local screenCenter = EID:getScreenSize()/2
+				EID.UsedPosition.X = EID.UsedPosition.X - (EID.UsedPosition-screenCenter).X * 2
+			end
+		end
+		if entity:ToPickup() and entity:ToPickup():IsShopItem() then
+			EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
+		end
+	else
+		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
+		EID.Scale = EID.Config["Scale"]
 	end
 end
 
@@ -689,6 +720,8 @@ local function onRender(t)
 			local curCounter = EID.sacrificeCounter[curRoomIndex] or 1
 			local sacrificeDesc = EID:getDescriptionObj(-999, -1, curCounter)
 			sacrificeDesc.Name = sacrificeDesc.Name.." ("..curCounter.."/12)"
+			EID:alterTextPos(Vector(EID.Config["XPosition"], EID.Config["YPosition"]))
+			EID.Scale = EID.Config["Scale"]
 			EID:printDescription(sacrificeDesc)
 		end
 		return
@@ -703,6 +736,11 @@ local function onRender(t)
 	--Handle Indicators
 	EID:renderIndicator(closest)
 
+	--Local Mode
+	EID:PositionLocalMode(closest)
+
+	--Scale Value
+	EID:ScaleValue(closest)
 	--Handle GetData Entities (specific)
 	if EID.Config["EnableEntityDescriptions"] and EID:getEntityData(closest, "EID_Description") then
 		local desc = EID:getEntityData(closest, "EID_Description")
@@ -784,7 +822,7 @@ local function onRender(t)
 			EID:renderString(
 				"{{Pill"..pillColor.."}} "..EID:getDescriptionEntry("unidentifiedPill"),
 				EID:getTextPosition(),
-				Vector(EID.Config["Scale"], EID.Config["Scale"]),
+				Vector(EID.Scale, EID.Scale),
 				EID:getErrorColor()
 			)
 		end
@@ -840,6 +878,7 @@ if EID.MCMLoaded or REPENTANCE then
 				end
 				EID.isHidden = EID.Config["InitiallyHidden"]
 				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
+				EID.Scale = EID.Config["Scale"]
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 				if REPENTANCE then
 					EID:addTextPosModifier("HudOffset", Vector(((Options.HUDOffset * 10) * 2) - 20, (Options.HUDOffset * 10) - 10))

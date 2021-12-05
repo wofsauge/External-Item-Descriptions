@@ -72,6 +72,21 @@ EID.UserConfig = {
 	-- Default = false
 	["DisableAchievementCheck"] = false,
 	
+	-------Display Modes---------
+
+	-- Sets the display mode of the description text. 
+	-- possible values: default, local
+	--   "default": text will be displayed in the top-left of the screen.
+	--   "local": text will be displayed under the described object.
+	-- Default = "default"
+	["DisplayMode"] = "default",
+	-- Change Size of the info boxes for LocalMode.
+	-- Default = 0.5
+	["LocalScale"] = 0.5,
+	-- Changes the position of the text in local mode, relative to the described object to be centered. Set to false to make it left-aligned
+	-- Default = true
+	["LocalModeCentered"] = true,
+	
 	-------------CURSE-------------
 
 	-- Disable informations when the floor has curse of the blind ( ? - Items)
@@ -293,6 +308,9 @@ EID.DefaultConfig = {
 	["HUDOffset"] = 10,
 	["XPosition"] = 60,
 	["YPosition"] = 45,
+	["DisplayMode"] = "default",
+	["LocalScale"] = 0.5,
+	["LocalModeCentered"] = true,
 	["MaxDistance"] = 5,
 	["Indicator"] = "none",
 	["HideKey"] = Keyboard.KEY_F2,
