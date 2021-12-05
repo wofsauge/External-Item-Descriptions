@@ -874,14 +874,14 @@ function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	local iconString = ""
 	for nr,count in ipairs(filteredList) do
 		if (count > 0) then
-			local completedColoring = indicateCompleteContent and EID:bagContaingsItem(nr, count) and "{{ColorBagComplete}}" or "" 
+			local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, count) and "{{ColorBagComplete}}" or "" 
 			iconString = iconString..completedColoring..count.."{{Crafting"..nr.."}}{{CR}}"
 		end
 	end
 	return iconString
 end
 
-function EID:bagContaingsItem(itemID, itemCount)
+function EID:bagContainsItem(itemID, itemCount)
 	local foundCount = 0
 	for _, bagItem in ipairs(EID.BagItems) do
 		if bagItem == itemID then
