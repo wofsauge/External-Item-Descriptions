@@ -665,7 +665,7 @@ local function getFloorItemsString(showPreviews, roomItems)
 			local recipe = EID:calculateBagOfCrafting(EID.BagItems)
 			floorString = floorString .. "{{Collectible"..recipe.."}} "
 		end
-		local bagDesc = EID:getDescriptionEntry("CraftingBagContent").."(Beta)"
+		local bagDesc = EID:getDescriptionEntry("CraftingBagContent")
 		floorString = floorString .. bagDesc.. EID:tableToCraftingIconsMerged(EID.BagItems).."#"
 		--debug the bag order
 		--EID:appendToDescription(customDescObj, EID:tableToCraftingIconsFull(EID.BagItems, false).."#")
