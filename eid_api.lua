@@ -777,14 +777,27 @@ function EID:GetMaxCollectibleID()
 			step = step // 2
 		end
 	end
-		
+	
 	return id
 end
 
 local maxCollectibleID = nil
+function EID:DetectModdedItems()
+	if maxCollectibleID == nil then
+		maxCollectibleID = EID:GetMaxCollectibleID()
+	end
+	if maxCollectibleID > EID.XMLMaxItemID then
+		return true
+	end
+	if EID.itemConfig:GetCollectible(EID.XMLMaxItemID) == nil then
+		return true
+	end
+	return false
+end
+
 function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 	local itemPool = Game():GetItemPool()
-	if (not maxCollectibleID) then maxCollectibleID = EID:GetMaxCollectibleID() end
+	if maxCollectibleID == nil then maxCollectibleID = EID:GetMaxCollectibleID() end
 	for i= 1, maxCollectibleID do
 		if ItemConfig.Config.IsValidCollectible(i) and i ~= collectibleID then
 			itemPool:AddRoomBlacklist(i)
