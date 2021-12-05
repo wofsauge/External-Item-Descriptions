@@ -54,8 +54,8 @@ EID.UserConfig = {
 	-- Default = Keyboard.KEY_F2
 	["HideKey"] = Keyboard.KEY_F2,
 	-- Set the controller binding to toggle the descriptions
-	-- Use the Controller enum at the top of this file, or a number
-	-- Of note are Controller.STICK_LEFT and Controller.STICK_RIGHT, which aren't used in-game with default controls
+	-- Use the Controller names here: https://github.com/wofsauge/External-Item-Descriptions/blob/master/mod_config_menu.lua#L1 or a number
+	-- Of note are Controller.STICK_LEFT and Controller.STICK_RIGHT (pushing the sticks in), which aren't used in-game with default controls
 	-- Default = none (-1)
 	["HideButton"] = -1,
 	-- Initial displaystate. Can be used to change the toggle behavior of the "Hide Key" event
@@ -237,8 +237,8 @@ EID.UserConfig = {
 	-- Default = Keyboard.KEY_F3
 	["CraftingResultKey"] = Keyboard.KEY_F4,
 	-- Set the controller binding to toggle viewing the description of the item ready to be crafted in the bag
-	-- Use the Controller enum at the top of this file, or a number
-	-- Of note are Controller.STICK_LEFT and Controller.STICK_RIGHT, which aren't used in-game with default controls
+	-- Use the Controller names here: https://github.com/wofsauge/External-Item-Descriptions/blob/master/mod_config_menu.lua#L1 or a number
+	-- Of note are Controller.STICK_LEFT and Controller.STICK_RIGHT (pushing the sticks in), which aren't used in-game with default controls
 	-- Default = none (-1)
 	["CraftingResultButton"] = -1,
 	
