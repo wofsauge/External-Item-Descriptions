@@ -1,21 +1,3 @@
-local Controller = Controller or {}
-Controller.DPAD_LEFT = 0
-Controller.DPAD_RIGHT = 1
-Controller.DPAD_UP = 2
-Controller.DPAD_DOWN = 3
-Controller.BUTTON_A = 4
-Controller.BUTTON_B = 5
-Controller.BUTTON_X = 6
-Controller.BUTTON_Y = 7
-Controller.BUMPER_LEFT = 8
-Controller.TRIGGER_LEFT = 9
-Controller.STICK_LEFT = 10
-Controller.BUMPER_RIGHT = 11
-Controller.TRIGGER_RIGHT = 12
-Controller.STICK_RIGHT = 13
-Controller.BUTTON_BACK = 14
-Controller.BUTTON_START = 15
-
 EID.UserConfig = {
 	-------GENERAL---------
 	-- Change language of the mod.
@@ -188,17 +170,22 @@ EID.UserConfig = {
 	
 	---------Bag of Crafting-----------
 	
-	-- Display-modes for Bag of Crafting descriptions
+	-- When to show the Bag of Crafting display
 	-- Options: "always", "hold", "never"
 	-- "always" = Always show Results, "hold" = Show when holding up bag, "never" = Never show results
 	-- Default = "always"
 	["DisplayBagOfCrafting"] = "always",
+	-- Display modes for the Bag of Crafting display
+	-- Options: "Recipe List", "Preview Only", "No Recipes"
+	-- The recipe list is a detailed calculated list of recipes based on what you have available on the floor
+	-- Preview Only shows the description of the item you can currently craft in your bag
+	-- No Recipes shows percentages of what item you might get from your bag / best option on the floor, for a more intended experience
+	-- (No Recipes is recommended if you have modded items)
+	-- Default = "Recipe List"
+	["BagOfCraftingDisplayMode"] = "Recipe List",
 	-- Hide the recipe list when in battle
 	-- Default = true
 	["BagOfCraftingHideInBattle"] = true,
-	-- Simplified / No Recipes Mode shows quality and item pool percentages instead of exact recipes, for a more intended experience
-	-- Default = false
-	["BagOfCraftingSimplifiedMode"] = false,
 	-- Changes the number of Results shown in the Bag of crafting description
 	-- Higher numbers can cause more lag!
 	-- Default = 7
@@ -226,8 +213,8 @@ EID.UserConfig = {
 	-- Default = Keyboard.KEY_F3
 	["CraftingHideKey"] = Keyboard.KEY_F3,
 	-- Set the controller binding to toggle the crafting display, so you can see descriptions of items/pickups on the floor
-	-- Use the Controller enum at the top of this file, or a number
-	-- Of note are Controller.STICK_LEFT and Controller.STICK_RIGHT, which aren't used in-game with default controls
+	-- Use the Controller names here: https://github.com/wofsauge/External-Item-Descriptions/blob/master/mod_config_menu.lua#L1 or a number
+	-- Of note are Controller.STICK_LEFT and Controller.STICK_RIGHT (pushing the sticks in), which aren't used in-game with default controls
 	-- Default = none (-1)
 	["CraftingHideButton"] = -1,
 	-- Set the keybinding to toggle viewing the description of the item ready to be crafted in the bag
@@ -347,7 +334,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingDisplayNames"] = false,
 	["BagOfCraftingDisplayIcons"] = false,
 	["BagOfCraftingHideInBattle"] = true,
-	["BagOfCraftingSimplifiedMode"] = false,
+	["BagOfCraftingDisplayMode"] = "Recipe List",
 	["CraftingHideKey"] = Keyboard.KEY_F3,
 	["CraftingHideButton"] = -1,
 	["CraftingResultKey"] = Keyboard.KEY_F4,
