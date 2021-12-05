@@ -904,6 +904,7 @@ EID.descriptions["en_us"].CraftingBestQuality = "Best Quality:"
 
 EID.descriptions["en_us"].CraftingHideKey = "Hide:"
 EID.descriptions["en_us"].CraftingPreviewKey = "Preview:"
+EID.descriptions["en_us"].CraftingPreviewBackup = "!!! If this item's locked, it will turn into"
 
 EID.descriptions["en_us"].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
 
