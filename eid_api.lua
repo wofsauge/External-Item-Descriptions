@@ -777,14 +777,27 @@ function EID:GetMaxCollectibleID()
 			step = step // 2
 		end
 	end
-		
+	
 	return id
 end
 
 local maxCollectibleID = nil
+function EID:DetectModdedItems()
+	if maxCollectibleID == nil then
+		maxCollectibleID = EID:GetMaxCollectibleID()
+	end
+	if maxCollectibleID > EID.XMLMaxItemID then
+		return true
+	end
+	if EID.itemConfig:GetCollectible(EID.XMLMaxItemID) == nil then
+		return true
+	end
+	return false
+end
+
 function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 	local itemPool = Game():GetItemPool()
-	if (not maxCollectibleID) then maxCollectibleID = EID:GetMaxCollectibleID() end
+	if maxCollectibleID == nil then maxCollectibleID = EID:GetMaxCollectibleID() end
 	for i= 1, maxCollectibleID do
 		if ItemConfig.Config.IsValidCollectible(i) and i ~= collectibleID then
 			itemPool:AddRoomBlacklist(i)
@@ -861,14 +874,14 @@ function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	local iconString = ""
 	for nr,count in ipairs(filteredList) do
 		if (count > 0) then
-			local completedColoring = indicateCompleteContent and EID:bagContaingsItem(nr, count) and "{{ColorBagComplete}}" or "" 
+			local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, count) and "{{ColorBagComplete}}" or "" 
 			iconString = iconString..completedColoring..count.."{{Crafting"..nr.."}}{{CR}}"
 		end
 	end
 	return iconString
 end
 
-function EID:bagContaingsItem(itemID, itemCount)
+function EID:bagContainsItem(itemID, itemCount)
 	local foundCount = 0
 	for _, bagItem in ipairs(EID.BagItems) do
 		if bagItem == itemID then
