@@ -564,7 +564,7 @@ local function renderAchievementInfo()
 			demoDescObj.Description = EID:getDescriptionEntry("OldGameVersionWarningText") or ""
 			EID:displayPermanentText(demoDescObj)
 			hasShownAchievementWarning = true
-		elseif EID.player:HasCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and not EID.Config.BagOfCraftingSimplifiedMode then
+		elseif EID.player:HasCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and EID.Config.BagOfCraftingDisplayMode ~= "No Recipes" then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("ModdedRecipesWarningText") or ""
@@ -608,13 +608,12 @@ local function onRender(t)
 		EID.isHidden = not EID.isHidden
 	end
 	
-	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then --if if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu is currently in the "Visuals" tab of EID
+	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then --if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu isn't currently in the "Visuals" or "Crafting" tab of EID
 		return
 	end
 	
-	EID:renderMCMDummyDescription()
-	
 	renderAchievementInfo()
+	EID:renderMCMDummyDescription()
 
 	if EID.GameVersion == "ab+" then
 		if EID.player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
@@ -627,12 +626,6 @@ local function onRender(t)
 			EID:addTextPosModifier("Tained HUD", Vector(0,30))
 		else
 			EID:removeTextPosModifier("Tained HUD")
-		end
-		if EID.player:HasCollectible(710) then
-			local success = EID:handleBagOfCraftingRendering()
-			if success then
-				return
-			end
 		end
 	end
 	
@@ -648,6 +641,13 @@ local function onRender(t)
 		EID:printDescription(EID.permanentDisplayTextObj)
 		EID.isDisplaying = true
 		return
+	end
+	
+	if REPENTANCE and EID.player:HasCollectible(710) then
+		local success = EID:handleBagOfCraftingRendering()
+		if success then
+			return
+		end
 	end
 	
 	EID.lastDescriptionEntity = nil
