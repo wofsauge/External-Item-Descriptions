@@ -333,17 +333,18 @@ function EID:calculateBagOfCrafting(componentsTable)
 		return 0
 	end
 
-	customRNGSeed = Game():GetSeeds():GetStartSeed()
+	customRNGSeed = lastSeedUsed
 	table.sort(components)
+	local componentsAsString = table.concat(components, ",")
 
 	--Check the fixed recipes. Currently, the fixed recipes ignore item unlock status
-	local cacheResult = EID.XMLRecipes[table.concat(components, ",")]
+	local cacheResult = EID.XMLRecipes[componentsAsString]
 	if cacheResult ~= nil then
 		return cacheResult, cacheResult
 	end
 	
-	cacheResult = calculatedRecipes[table.concat(components, ",")]
-	local lockedResult = lockedRecipes[table.concat(components, ",")]
+	cacheResult = calculatedRecipes[componentsAsString]
+	local lockedResult = lockedRecipes[componentsAsString]
 
 	if cacheResult ~= nil then
 		return cacheResult, lockedResult
@@ -424,6 +425,7 @@ function EID:calculateBagOfCrafting(componentsTable)
 			end
 		end
 	end
+	--unsure if this emergency Breakfast would ever occur, without massively modified item pools at least, but it's in the game's code
 	if totalWeight <= 0 then
 		return 25, 25
 	end
@@ -437,12 +439,14 @@ function EID:calculateBagOfCrafting(componentsTable)
 			target = target - v
 			if target < 0 then
 				if firstOption then
-					calculatedRecipes[table.concat(components, ",")] = firstOption
-					lockedRecipes[table.concat(components, ",")] = k
+					calculatedRecipes[componentsAsString] = firstOption
+					lockedRecipes[componentsAsString] = k
 					return firstOption, k
 				else
 					--Don't do the 2nd pass if this item is definitely unlocked
 					if EID:isCollectibleUnlockedAnyPool(k) then
+						calculatedRecipes[componentsAsString] = k
+						lockedRecipes[componentsAsString] = k
 						return k, k
 					else
 						firstOption = k
@@ -690,6 +694,16 @@ local function getFloorItemsString(showPreviews, roomItems)
 end
 
 function EID:handleBagOfCraftingRendering()
+	local curSeed = Game():GetSeeds():GetStartSeed()
+	--reset our calculated recipes when the game seed changes
+	if (curSeed ~= lastSeedUsed) then
+		calculatedRecipes = {}
+		lockedRecipes = {}
+		calcResultCache = {}
+		randResultCache = {}
+	end
+	lastSeedUsed = curSeed
+	
 	trackBagHolding()
 	trackBagActivated()
 	detectBagContentShift()
@@ -729,16 +743,6 @@ function EID:handleBagOfCraftingRendering()
 	if Game():GetRoom():GetFrameCount() < 2 then
 		return false
 	end
-	
-	local curSeed = Game():GetSeeds():GetStartSeed()
-	--reset our calculated recipes when the game seed changes
-	if (curSeed ~= lastSeedUsed) then
-		calculatedRecipes = {}
-		lockedRecipes = {}
-		calcResultCache = {}
-		randResultCache = {}
-	end
-	lastSeedUsed = curSeed
 	
 	--Display the result of the 8 items in our bag
 	if (showCraftingResult or EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") and #EID.BagItems >= 8 then
@@ -861,7 +865,7 @@ function EID:handleBagOfCraftingRendering()
 				mostValuable[i] = itemQuery[i]
 			end
 		end
-
+		
 		if (#mostValuable >= 8) then combinations(mostValuable, nil, nil, nil, randResults, newResults) end
 		
 		--do random pulls for some more recipe choices
