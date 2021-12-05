@@ -528,10 +528,10 @@ local function trackBagHolding()
 	if isCardHold and string.match(animationName, "PickupWalk") and #EID.BagItems>=8 then
 		holdCounter = holdCounter + 1
 		if holdCounter < 30 then
-			EID.icount = EID.player:GetCollectibleCount()
+			icount = EID.player:GetCollectibleCount()
 		end
 	else
-		if isCardHold and holdCounter >= 30 and (string.match(animationName, "Walk") and not string.match(animationName, "Pickup") or (EID.player:GetCollectibleCount() ~= EID.icount)) then
+		if isCardHold and holdCounter >= 30 and (string.match(animationName, "Walk") and not string.match(animationName, "Pickup") or (EID.player:GetCollectibleCount() ~= icount)) then
 			EID.BagItems = {}
 		else
 			holdCounter = 0
@@ -574,37 +574,23 @@ local randResultCache = {}
 local calcResultCache = {}
 local numResults = 0
 
-EID.bagOfCraftingOffset = 0
+--these aren't local so that they can be saved and reloaded, or cleared in the Mod Config Menu
 EID.bagOfCraftingCurPickupCount = -1
 EID.bagOfCraftingRoomQueries = {}
 EID.bagOfCraftingFloorQuery = {}
 EID.BagItems = {}
-EID.icount = 0
 
-EID.lockedResults = nil
-EID.refreshNextTick = false
-EID.refreshPosition = 0
-EID.bagOfCraftingRefreshes = 0
-EID.downHeld = 0
-EID.upHeld = 0
+local icount = 0
+local bagOfCraftingOffset = 0
+local lockedResults = nil
+local refreshNextTick = false
+local refreshPosition = 0
+local bagOfCraftingRefreshes = 0
+local downHeld = 0
+local upHeld = 0
 
-EID.craftingIsHidden = false
-EID.showCraftingResult = false
-
-local maxItemID = nil
-
-function EID:DetectModdedItems()
-	if maxItemID == nil then
-		maxItemID = EID:GetMaxCollectibleID()
-	end
-	if maxItemID > EID.XMLMaxItemID then
-		return true
-	end
-	if EID.itemConfig:GetCollectible(EID.XMLMaxItemID) == nil then
-		return true
-	end
-	return false
-end
+local craftingIsHidden = false
+local showCraftingResult = false
 
 local function calcFloorItems()
 	EID.bagOfCraftingFloorQuery = {}
@@ -642,8 +628,7 @@ local function combinations(arr, length, startPos, tempResult, randResults, newR
 	tempResult[8-length+1] = arr[i]
 	combinations(arr,length-1, i+1, tempResult, randResults, newResults)
   end
-end
-
+end																								  
 --code from InputHelper in MCM
 local HotkeyToString = {}
 for key,num in pairs(Keyboard) do
@@ -654,6 +639,56 @@ for key,num in pairs(Keyboard) do
 	HotkeyToString[num] = keyString
 end
 
+local function getHotkeyString()
+	local hotkeyString = ""
+	local hideDesc = EID:getDescriptionEntry("CraftingHideKey")
+	local previewDesc = EID:getDescriptionEntry("CraftingPreviewKey")
+	--we have a binding for a keyboard hide key
+	if HotkeyToString[EID.Config["CraftingHideKey"]] then
+		hotkeyString = hideDesc .. " " .. HotkeyToString[EID.Config["CraftingHideKey"]]
+	end
+	--we have a binding for a keyboard preview toggle key, and a full bag, and aren't on Preview Only mode
+	if #EID.BagItems >= 8 and EID.Config["BagOfCraftingDisplayMode"] ~= "Preview Only" and HotkeyToString[EID.Config["CraftingResultKey"]] then
+		if hotkeyString ~= "" then hotkeyString = hotkeyString .. ", " end
+		hotkeyString = hotkeyString .. previewDesc .. " " .. HotkeyToString[EID.Config["CraftingResultKey"]]
+	end
+	if hotkeyString ~= "" then
+		hotkeyString = "!!! " .. hotkeyString .. "#"
+	end
+	return hotkeyString
+end
+
+local function getFloorItemsString(showPreviews, roomItems)
+	local floorString = ""
+	if #EID.BagItems >0 then
+		if showPreviews and #EID.BagItems >= 8 then
+			local recipe = EID:calculateBagOfCrafting(EID.BagItems)
+			floorString = floorString .. "{{Collectible"..recipe.."}} "
+		end
+		local bagDesc = EID:getDescriptionEntry("CraftingBagContent")
+		floorString = floorString .. bagDesc.. EID:tableToCraftingIconsMerged(EID.BagItems).."#"
+		--debug the bag order
+		--EID:appendToDescription(customDescObj, EID:tableToCraftingIconsFull(EID.BagItems, false).."#")
+	end
+	if #roomItems >0 then
+		if showPreviews and #roomItems == 8 then
+			local recipe = EID:calculateBagOfCrafting(roomItems)
+			floorString = floorString .. "{{Collectible"..recipe.."}} "
+		end
+		local roomDesc = EID:getDescriptionEntry("CraftingRoomContent")
+		floorString = floorString .. roomDesc..EID:tableToCraftingIconsMerged(roomItems).."#"
+	end
+	if #EID.bagOfCraftingFloorQuery >0 and #roomItems ~= #EID.bagOfCraftingFloorQuery then
+		if showPreviews and #EID.bagOfCraftingFloorQuery == 8 then
+			local recipe = EID:calculateBagOfCrafting(EID.bagOfCraftingFloorQuery)
+			floorString = floorString .. "{{Collectible"..recipe.."}} "
+		end
+		local floorDesc = EID:getDescriptionEntry("CraftingFloorContent")
+		floorString = floorString .. floorDesc..EID:tableToCraftingIconsMerged(EID.bagOfCraftingFloorQuery).."#"
+	end
+	return floorString
+end
+
 function EID:handleBagOfCraftingRendering()
 	trackBagHolding()
 	trackBagActivated()
@@ -662,18 +697,22 @@ function EID:handleBagOfCraftingRendering()
 	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
 	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIconsFunc = EID.tableToCraftingIconsFull end
 	
+	local customDescObj = EID:getDescriptionObj(5, 100, 710)
+	customDescObj.Description = ""
+	
 	--prevent our hotkeys from triggering as they're set
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
 		if Input.IsButtonTriggered(EID.Config["CraftingHideKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingHideButton"], EID.player.ControllerIndex) then
-			EID.craftingIsHidden = not EID.craftingIsHidden
+			craftingIsHidden = not craftingIsHidden
 		end
 		
 		if Input.IsButtonTriggered(EID.Config["CraftingResultKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingResultButton"], EID.player.ControllerIndex) then
-			EID.showCraftingResult = not EID.showCraftingResult
+			showCraftingResult = not showCraftingResult
 		end
 	end
 	
-	if EID.isHidden or EID.craftingIsHidden then
+	--determine if we should display anything at all, display item preview if applicable, and figure out our room/floor's pickup contents
+	if EID.isHidden or craftingIsHidden then
 		return
 	elseif EID.Config["BagOfCraftingHideInBattle"] then
 		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
@@ -687,20 +726,8 @@ function EID:handleBagOfCraftingRendering()
 	if EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.player:GetSprite():GetAnimation(), "PickupWalk") then
 		return false
 	end
-	if Game():GetRoom():GetFrameCount ()<2 then
+	if Game():GetRoom():GetFrameCount() < 2 then
 		return false
-	end
-	
-	if EID.showCraftingResult and #EID.BagItems >= 8 then
-		local craftingResult, backupResult = EID:calculateBagOfCrafting(EID.BagItems)
-		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
-		local backupObj = EID:getDescriptionObj(5, 100, backupResult)
-		if (backupResult ~= craftingResult) then
-			EID:appendToDescription(descriptionObj,"#!!! If this item's locked, it will turn into#{{Collectible" .. backupResult .. "}} " ..
-			EID:getObjectName(5, 100, backupResult) .. "#" .. backupObj.Description)
-		end
-		EID:printDescription(descriptionObj)
-		return true
 	end
 	
 	local curSeed = Game():GetSeeds():GetStartSeed()
@@ -712,6 +739,24 @@ function EID:handleBagOfCraftingRendering()
 		randResultCache = {}
 	end
 	lastSeedUsed = curSeed
+	
+	--Display the result of the 8 items in our bag
+	if (showCraftingResult or EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") and #EID.BagItems >= 8 then
+		local craftingResult, backupResult = EID:calculateBagOfCrafting(EID.BagItems)
+		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
+		--prepend the Hide/Preview hotkeys to the description
+		descriptionObj.Description = getHotkeyString() .. descriptionObj.Description
+		local backupObj = EID:getDescriptionObj(5, 100, backupResult)
+		if (backupResult ~= craftingResult) then
+			local backupDesc = EID:getDescriptionEntry("CraftingPreviewBackup")
+			EID:appendToDescription(descriptionObj,"#" .. backupDesc .. "#{{Collectible" .. backupResult .. "}} " ..
+			EID:getObjectName(5, 100, backupResult) .. "#" .. backupObj.Description)
+		end
+		EID:printDescription(descriptionObj)
+		return true
+	end
+	--if we're in Preview Only mode, then we have nothing more to do
+	if (EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") then return false end
 	
 	local curRoomIndex = Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex
 	
@@ -760,65 +805,35 @@ function EID:handleBagOfCraftingRendering()
 		return false
 	end
 	
-	
 	--sort by ingredient quality
 	table.sort(itemQuery, qualitySort)
 
-	--Simplified Mode display
-	if (EID.Config["BagOfCraftingSimplifiedMode"] or EID:DetectModdedItems()) then
-		local customDescObj = EID:getDescriptionObj(5, 100, 710)
-		customDescObj.Description = ""
+	--No Recipes Mode display
+	if (EID.Config["BagOfCraftingDisplayMode"] == "No Recipes") then
+		EID:appendToDescription(customDescObj, getHotkeyString())
+		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
 		
-		local hotkeyString = ""
-		if HotkeyToString[EID.Config["CraftingHideKey"]] then
-			hotkeyString = "Hide: " .. HotkeyToString[EID.Config["CraftingHideKey"]]
-		end
-		if #EID.BagItems >= 8 and HotkeyToString[EID.Config["CraftingResultKey"]] then
-			if hotkeyString ~= "" then hotkeyString = hotkeyString .. ", " end
-			hotkeyString = hotkeyString .. "Preview: " .. HotkeyToString[EID.Config["CraftingResultKey"]]
-		end
-		if hotkeyString ~= "" then
-			EID:appendToDescription(customDescObj, "!!! " .. hotkeyString .. "#")
-		end
-		
-		if #EID.BagItems >0 then
-			if #EID.BagItems >= 8 then
-				local recipe = EID:calculateBagOfCrafting(EID.BagItems)
-				EID:appendToDescription(customDescObj, "{{Collectible"..recipe.."}} ")
-			end
-			local bagDesc = EID:getDescriptionEntry("CraftingBagContent").."(Beta)"
-			EID:appendToDescription(customDescObj, bagDesc..EID:tableToCraftingIconsMerged(EID.BagItems).."#")
-		end
-		if #roomItems >0 then
-			local roomDesc = EID:getDescriptionEntry("CraftingRoomContent")
-			EID:appendToDescription(customDescObj, roomDesc..EID:tableToCraftingIconsMerged(roomItems).."#")
-		end
-		if #EID.bagOfCraftingFloorQuery >0 and #roomItems ~= #EID.bagOfCraftingFloorQuery then
-			local floorDesc = EID:getDescriptionEntry("CraftingFloorContent")
-			EID:appendToDescription(customDescObj, floorDesc..EID:tableToCraftingIconsMerged(EID.bagOfCraftingFloorQuery).."#")
-		end
-		
-		local mostValuableSimp = {}
+		local mostValuableBag = {}
 		for i=1,8 do
-			mostValuableSimp[i] = itemQuery[i]
+			mostValuableBag[i] = itemQuery[i]
 		end
 		
 		local bagQuality, bagResult = EID:simulateBagOfCrafting(EID.BagItems)
-		local bestQuality, bestResult = EID:simulateBagOfCrafting(mostValuableSimp)
+		local bestQuality, bestResult = EID:simulateBagOfCrafting(mostValuableBag)
 		local bagQualityDesc = EID:getDescriptionEntry("CraftingBagQuality")
 		local bestQualityDesc = EID:getDescriptionEntry("CraftingBestQuality")
 		
 		if (#EID.BagItems > 0) then EID:appendToDescription(customDescObj, bagQualityDesc .. " " .. bagQuality .. "#" .. bagResult .. "#") end
-		if (bestQuality > bagQuality) then EID:appendToDescription(customDescObj, bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIconsFunc(self, mostValuableSimp, true) .. "#" .. bestResult .. "#") end
+		if (bestQuality > bagQuality) then EID:appendToDescription(customDescObj, bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIconsFunc(self,mostValuableBag, true) .. "#" .. bestResult .. "#") end
 		
 		EID:printDescription(customDescObj)
 		return true
 	end
 
 	local queryString = table.concat(itemQuery,",")
-	if EID.lockedResults ~= nil then
-		results = calcResultCache[EID.lockedResults]
-	elseif calcResultCache[queryString] == nil or EID.refreshNextTick then
+	if lockedResults ~= nil then
+		results = calcResultCache[lockedResults]
+	elseif calcResultCache[queryString] == nil or refreshNextTick then
 		--build on top of our previous recipe lists, if possible
 		local randResults = randResultCache[queryString] or {}
 		local newResults = {}
@@ -829,11 +844,11 @@ function EID:handleBagOfCraftingRendering()
 		local mostValuable = {}
 		
 		--shift our thorough check forward one ingredient each refresh (it will find duplicates, but spamming refresh will get a lot of variety)
-		if (EID.refreshNextTick) then
-			EID.bagOfCraftingRefreshes = EID.bagOfCraftingRefreshes + 1
-			if (#itemQuery >= EID.Config["BagOfCraftingCombinationMax"] + EID.bagOfCraftingRefreshes) then
+		if (refreshNextTick) then
+			bagOfCraftingRefreshes = bagOfCraftingRefreshes + 1
+			if (#itemQuery >= EID.Config["BagOfCraftingCombinationMax"] + bagOfCraftingRefreshes) then
 				for i=1,EID.Config["BagOfCraftingCombinationMax"] do
-					mostValuable[i] = itemQuery[i+EID.bagOfCraftingRefreshes]
+					mostValuable[i] = itemQuery[i+bagOfCraftingRefreshes]
 				end
 			end
 		--we have less items than our threshold; every single recipe will be listed
@@ -891,127 +906,85 @@ function EID:handleBagOfCraftingRendering()
 		
 		numResults = 0
 		for k,v in ipairs(sortedIDs) do
-			if (EID.refreshNextTick and EID.bagOfCraftingOffset > 0 and v == EID.refreshPosition) then
+			if (refreshNextTick and bagOfCraftingOffset > 0 and v == refreshPosition) then
 				--jump to the item we were looking at before, so you can more easily refresh for variants of recipes
-				EID.bagOfCraftingOffset = numResults
+				bagOfCraftingOffset = numResults
 			end
 			numResults = numResults + #results[v]
 		end
 		
-		if not EID.refreshNextTick then
-			EID.bagOfCraftingOffset = 0
-			EID.bagOfCraftingRefreshes = 0
+		if not refreshNextTick then
+			bagOfCraftingOffset = 0
+			bagOfCraftingRefreshes = 0
 		end
-		EID.refreshNextTick = false
+		refreshNextTick = false
 	else
 		results = calcResultCache[queryString]
 	end
 	
 	if numResults == 0 then
-		EID.bagOfCraftingOffset = 0
+		bagOfCraftingOffset = 0
 		return false
 	end
 	
-	local customDescObj = EID:getDescriptionObj(5, 100, 710)
-	customDescObj.Description = ""
-	
-	local hotkeyString = ""
-	if HotkeyToString[EID.Config["CraftingHideKey"]] then
-		hotkeyString = "Hide: " .. HotkeyToString[EID.Config["CraftingHideKey"]]
-	end
-	if #EID.BagItems >= 8 and HotkeyToString[EID.Config["CraftingResultKey"]] then
-		if hotkeyString ~= "" then hotkeyString = hotkeyString .. ", " end
-		hotkeyString = hotkeyString .. "Preview: " .. HotkeyToString[EID.Config["CraftingResultKey"]]
-	end
-	if hotkeyString ~= "" then
-		EID:appendToDescription(customDescObj, "!!! " .. hotkeyString .. "#")
-	end
-	
-	-- Bag content display
-	if #EID.BagItems >0 then
-		if #EID.BagItems >= 8 then
-			local recipe = EID:calculateBagOfCrafting(EID.BagItems)
-			EID:appendToDescription(customDescObj, "{{Collectible"..recipe.."}} ")
-		end
-		local bagDesc = EID:getDescriptionEntry("CraftingBagContent")
-		EID:appendToDescription(customDescObj, bagDesc..EID:tableToCraftingIconsMerged(EID.BagItems).."#")
-		--debug the bag order
-		--EID:appendToDescription(customDescObj, EID:tableToCraftingIconsFull(EID.BagItems, false).."#")
-	end
-	-- Room content display
-	if #roomItems >0 then
-		if #roomItems == 8 then
-			local recipe = EID:calculateBagOfCrafting(roomItems)
-			EID:appendToDescription(customDescObj, "{{Collectible"..recipe.."}} ")
-		end
-		local roomDesc = EID:getDescriptionEntry("CraftingRoomContent")
-		EID:appendToDescription(customDescObj, roomDesc..EID:tableToCraftingIconsMerged(roomItems).."#")
-	end
-	-- Floot content display
-	if #EID.bagOfCraftingFloorQuery >0 and #roomItems ~= #EID.bagOfCraftingFloorQuery then
-		if #EID.bagOfCraftingFloorQuery == 8 then
-			local recipe = EID:calculateBagOfCrafting(EID.bagOfCraftingFloorQuery)
-			EID:appendToDescription(customDescObj, "{{Collectible"..recipe.."}} ")
-		end
-		local floorDesc = EID:getDescriptionEntry("CraftingFloorContent")
-		EID:appendToDescription(customDescObj, floorDesc..EID:tableToCraftingIconsMerged(EID.bagOfCraftingFloorQuery).."#")
-	end
+	EID:appendToDescription(customDescObj, getHotkeyString())
+	EID:appendToDescription(customDescObj, getFloorItemsString(true, roomItems))
 	
 	local resultDesc = EID:getDescriptionEntry("CraftingResults")
 	EID:appendToDescription(customDescObj, resultDesc)
 	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.player.ControllerIndex) then
 		EID.player:SetShootingCooldown(2)
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) then
-			EID.bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
-			EID.downHeld = Isaac.GetTime()
+			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
+			downHeld = Isaac.GetTime()
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) then
-			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
-			EID.upHeld = Isaac.GetTime()
+			bagOfCraftingOffset = math.max(0, bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
+			upHeld = Isaac.GetTime()
 		--lock the current results so you can actually do a recipe that you've scrolled down to without losing it
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTLEFT, EID.player.ControllerIndex) then
-			if (EID.lockedResults == nil) then EID.lockedResults = queryString
-			else EID.lockedResults = nil end
+			if (lockedResults == nil) then lockedResults = queryString
+			else lockedResults = nil end
 		--refresh the recipes
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTRIGHT, EID.player.ControllerIndex) then
-			if (EID.lockedResults == nil) then
-				EID.refreshNextTick = true
+			if (lockedResults == nil) then
+				refreshNextTick = true
 			end
 		end
 		--scroll pages quickly if the button is held
-		if Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) and Isaac.GetTime() - EID.downHeld > 750 then
-			EID.bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
-			EID.downHeld = Isaac.GetTime() - 700
-		elseif Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) and Isaac.GetTime() - EID.upHeld > 750 then
-			EID.bagOfCraftingOffset = math.max(0, EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
-			EID.upHeld = Isaac.GetTime() - 700
+		if Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) and Isaac.GetTime() - downHeld > 750 then
+			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
+			downHeld = Isaac.GetTime() - 700
+		elseif Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) and Isaac.GetTime() - upHeld > 750 then
+			bagOfCraftingOffset = math.max(0, bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
+			upHeld = Isaac.GetTime() - 700
 		end
 	end
 	--fix bug with being allowed to go to an empty page if recipe count = multiple of page size (or if we refresh on last page)
-	if (EID.bagOfCraftingOffset >= numResults) then EID.bagOfCraftingOffset = EID.bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
+	if (bagOfCraftingOffset >= numResults) then bagOfCraftingOffset = bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
 	
 	local prevItem = 0
 	
 	local qualities = { [0] = "{{ColorSilver}}", "{{ColorLime}}", "{{ColorPastelBlue}}", "{{ColorLavender}}", "{{ColorLightOrange}}" }
 	local prefix = "#{{Blank}} "
-	if (EID.lockedResults) then
+	if (lockedResults) then
 		prefix = "#{{Trinket159}} "
 	end
 	
 	--results is now a table of tables for each item, so we have to iterate over the table using sortedIDs
-	if (EID.bagOfCraftingOffset > 0) then
-		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..EID.bagOfCraftingOffset.." more"
+	if (bagOfCraftingOffset > 0) then
+		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..bagOfCraftingOffset.." more"
 	end
 	local curOffset = 0
-	EID.refreshPosition = -1
+	refreshPosition = -1
 	for k,id in ipairs(sortedIDs) do
-		if (curOffset + #results[id] <= EID.bagOfCraftingOffset) then curOffset = curOffset + #results[id]
+		if (curOffset + #results[id] <= bagOfCraftingOffset) then curOffset = curOffset + #results[id]
 		else
-			if (EID.refreshPosition == -1) then EID.refreshPosition = id end
+			if (refreshPosition == -1) then refreshPosition = id end
 			for k2, v in ipairs(results[id]) do
 				curOffset = curOffset + 1
-				if (curOffset > EID.bagOfCraftingOffset+EID.Config["BagOfCraftingResults"]) then break end
+				if (curOffset > bagOfCraftingOffset+EID.Config["BagOfCraftingResults"]) then break end
 				if not v then break end
-				if (curOffset > EID.bagOfCraftingOffset) then
+				if (curOffset > bagOfCraftingOffset) then
 					if not EID.Config["BagOfCraftingDisplayNames"] then
 						customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} "
 						--tack on the secondary recipe image to achievement-locked recipes
@@ -1037,8 +1010,8 @@ function EID:handleBagOfCraftingRendering()
 			end
 		end
 	end
-	if (EID.bagOfCraftingOffset + EID.Config["BagOfCraftingResults"] < numResults) then
-		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..(numResults-EID.Config["BagOfCraftingResults"]-EID.bagOfCraftingOffset).." more"
+	if (bagOfCraftingOffset + EID.Config["BagOfCraftingResults"] < numResults) then
+		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..(numResults-EID.Config["BagOfCraftingResults"]-bagOfCraftingOffset).." more"
 	end
 
 	EID:printDescription(customDescObj)

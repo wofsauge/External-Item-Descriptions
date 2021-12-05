@@ -1,3 +1,20 @@
+Controller = Controller or {}
+Controller.DPAD_LEFT = 0
+Controller.DPAD_RIGHT = 1
+Controller.DPAD_UP = 2
+Controller.DPAD_DOWN = 3
+Controller.BUTTON_A = 4
+Controller.BUTTON_B = 5
+Controller.BUTTON_X = 6
+Controller.BUTTON_Y = 7
+Controller.BUMPER_LEFT = 8
+Controller.TRIGGER_LEFT = 9
+Controller.STICK_LEFT = 10
+Controller.BUMPER_RIGHT = 11
+Controller.TRIGGER_RIGHT = 12
+Controller.STICK_RIGHT = 13
+Controller.BUTTON_BACK = 14
+Controller.BUTTON_START = 15
 
 -- MOD CONFIG MENU Compatibility
 local MCMLoaded, MCM = pcall(require, "scripts.modconfig")
@@ -43,6 +60,8 @@ function EID:renderMCMDummyDescription()
 				EID:renderHUDLocationIndicators()
 			elseif EID.MCMCompat_isDisplayingEIDTab == "Visuals" and EID.permanentDisplayTextObj == nil then
 				renderDummyDesc()
+			elseif EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
+				clearRenderDummyDesc()
 			end
 			MCMCompat_isDisplayingDummyMCMObj = true
 			EID:buildColorArray()
@@ -1136,7 +1155,8 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = 3,
 			Display = function()
-				return "Display Mode: " .. EID.Config["DisplayBagOfCrafting"]
+				EID.MCMCompat_isDisplayingEIDTab = "Crafting"
+				return "Show Display: " .. EID.Config["DisplayBagOfCrafting"]
 			end,
 			OnChange = function(currentNum)
 				EID.Config["DisplayBagOfCrafting"] = bagDisplays[currentNum]
@@ -1144,16 +1164,32 @@ if MCMLoaded then
 			Info = {"Always = Always show Results, Hold = Show when holding up bag, Never = Never show results"}
 		}
 	)
+	-- Bag of Crafting Display Mode
+	local bagDisplayModes = {"Recipe List","Preview Only","No Recipes"}
+	MCM.AddSetting(
+		"EID",
+		"Crafting",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(bagDisplayModes, EID.Config["BagOfCraftingDisplayMode"])
+			end,
+			Minimum = 1,
+			Maximum = 3,
+			Display = function()
+				return "Display Mode: " .. EID.Config["BagOfCraftingDisplayMode"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["BagOfCraftingDisplayMode"] = bagDisplayModes[currentNum]
+			end,
+			Info = {"Toggle showing a list of calculated recipes, showing just an item preview when the bag is full, or showing percentages of what item you might get (No Recipes is recommended if using modded items)"}
+		}
+	)
 	-- Bag of Crafting Hide in Battle
 	EID:AddBooleanSetting("Crafting",
 		"BagOfCraftingHideInBattle",
 		"Hide in Battle", "Yes", "No",
 		"Hides the recipe list when in a fight")
-	-- Bag of Crafting No Recipes Mode
-	EID:AddBooleanSetting("Crafting",
-		"BagOfCraftingSimplifiedMode",
-		"No Recipes Mode", "On", "Off",
-		"No Recipes Mode shows quality and item pool percentages instead of exact recipes, for a more intended experience")
 	-- Bag of Crafting 8 icons toggle
 	EID:AddBooleanSetting("Crafting",
 		"BagOfCraftingDisplayIcons",
@@ -1161,6 +1197,7 @@ if MCMLoaded then
 		"Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients")
 		
 	MCM.AddSpace("EID", "Crafting")
+	MCM.AddText("EID", "Crafting", function() return "Recipe List Options" end)
 	
 	-- Bag of Crafting results per page
 	MCM.AddSetting(
@@ -1255,7 +1292,7 @@ if MCMLoaded then
 	
 	EID:AddHotkeySetting("Crafting",
 		"CraftingResultKey", "Result Toggle (Keyboard)",
-		"Press this key to toggle the description of the item ready to be crafted", false)
+		"Press this key to toggle the description of the item ready to be crafted in Recipe List/No Recipe Mode", false)
 	EID:AddHotkeySetting("Crafting",
 		"CraftingResultButton", "Result Toggle (Controller)",
 		"Press this button to toggle the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)", true)

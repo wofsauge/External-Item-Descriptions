@@ -186,6 +186,7 @@ local repCollectibles={
 	[503] = {"503", "Little Horn", "Chance to fire tears that summon a Big Horn hand#The hand kills enemies instantly and deals damage to bosses#Running into enemies will deal 3.5 damage to them"}, -- Little Horn
 	[504] = {"504", "Brown Nugget", "Spawns a fly turret that shoots at enemies#Each shot deals 3.5 damage"}, -- Brown Nugget
 	[509] = {"509", "Bloodshot Eye", "Orbital that shoots a tear every 1/3rd second when enemy is nearby#Deals 3.5 damage per tear#Deals 30 contact damage per second"}, -- Bloodshot Eye
+	[517] = {"517", "Fast Bombs", "+7 Bombs#Allows you to rapidly place bombs on the ground#Bombs don't knockback each other"}, -- Fast Bombs
 	[523] = {"523", "Moving Box", "When used, stores up to 10 pickups from the current room#Using it again will put them back on the floor again#This allows you to move things between rooms"}, -- Moving Box
 	[524] = {"524", "Technology Zero", "Tears will be connected with beams of electricity#Electricity damage equals 1/3 of your damage"}, -- Technology Zero
 	[531] = {"531", "Haemolacria", "Tears fly in an arc#Tears burst into smaller tears on impact#↓ Tears down#↑ +50% Damage up#↑ +1 additional Damage up"}, -- Haemolacria
@@ -578,7 +579,7 @@ EID.descriptions["en_us"].tarotClothBuffs = {
 	[7] = {"7", "", "Spawns 3 Red Hearts"}, -- VI - The Lovers
 	[8] = {"8", "", "Doubled duration"}, -- VII - The Chariot
 	[9] = {"9", "", "Doubled pickup spawns"}, -- VIII - Justice
-	[10] = {"10", "", "Prevents Greed from spawning in the shop#Turns shop into a normal shop if greed was already fought in it"}, -- IX - The Hermit
+	[10] = {"10", "", "Prevents Greed from spawning in the shop#Turns shop into a normal shop if Greed was already fought in it"}, -- IX - The Hermit
 	[11] = {"11", "", "Spawns 2 Slot Machines"}, -- X - Wheel of Fortune
 	[12] = {"12", "", "Doubled stat increase, excluding dmg multiplier"}, -- XI - Strength
 	[14] = {"14", "", "Deals 80 damage"}, -- XIII - Death
@@ -904,6 +905,7 @@ EID.descriptions["en_us"].CraftingBestQuality = "Best Quality:"
 
 EID.descriptions["en_us"].CraftingHideKey = "Hide:"
 EID.descriptions["en_us"].CraftingPreviewKey = "Preview:"
+EID.descriptions["en_us"].CraftingPreviewBackup = "!!! If this item's locked, it will turn into"
 
 EID.descriptions["en_us"].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
 
