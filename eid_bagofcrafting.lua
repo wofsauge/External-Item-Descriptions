@@ -615,6 +615,35 @@ local function calcFloorItems()
 	end
 end
 
+local function qualitySort(a, b)
+	if (pickupValues[a+1] == pickupValues[b+1]) then
+		return a > b
+	else
+		return pickupValues[a+1] > pickupValues[b+1]
+	end
+end
+
+--this combination algorithm was adopted from this Java code: https://stackoverflow.com/a/16256122
+--note that it will run into duplicates, for example if you have eight pennies and a key, it can't tell the difference between
+--PPPPPPPK (pennies 1-7) and PPPPPPPK (pennies 2-8) and PPPPPPPK (pennies 1-4,6-8) etc..., I don't know of a way to prevent that
+local function combinations(arr, length, startPos, tempResult, randResults, newResults)
+  local length = length or 8
+  local startPos = startPos or 1
+  local tempResult = tempResult or {}
+  if (length == 0) then
+	local resultString = table.concat(tempResult,",")
+	if (randResults[resultString] == nil) then
+		randResults[resultString] = {table.unpack(tempResult)}
+		newResults[resultString] = {table.unpack(tempResult)}
+	end
+	return
+  end
+  for i = startPos, #arr-length+1 do
+	tempResult[8-length+1] = arr[i]
+	combinations(arr,length-1, i+1, tempResult, randResults, newResults)
+  end
+end
+
 --code from InputHelper in MCM
 local HotkeyToString = {}
 for key,num in pairs(Keyboard) do
@@ -630,8 +659,8 @@ function EID:handleBagOfCraftingRendering()
 	trackBagActivated()
 	detectBagContentShift()
 	
-	local tableToCraftingIcons = EID.tableToCraftingIconsMerged
-	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIcons = EID.tableToCraftingIconsFull end
+	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
+	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIconsFunc = EID.tableToCraftingIconsFull end
 	
 	--prevent our hotkeys from triggering as they're set
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
@@ -731,13 +760,6 @@ function EID:handleBagOfCraftingRendering()
 		return false
 	end
 	
-	local function qualitySort(a, b)
-		if (pickupValues[a+1] == pickupValues[b+1]) then
-			return a > b
-		else
-			return pickupValues[a+1] > pickupValues[b+1]
-		end
-	end
 	
 	--sort by ingredient quality
 	table.sort(itemQuery, qualitySort)
@@ -787,7 +809,7 @@ function EID:handleBagOfCraftingRendering()
 		local bestQualityDesc = EID:getDescriptionEntry("CraftingBestQuality")
 		
 		if (#EID.BagItems > 0) then EID:appendToDescription(customDescObj, bagQualityDesc .. " " .. bagQuality .. "#" .. bagResult .. "#") end
-		if (bestQuality > bagQuality) then EID:appendToDescription(customDescObj, bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIcons(self,mostValuableSimp) .. "#" .. bestResult .. "#") end
+		if (bestQuality > bagQuality) then EID:appendToDescription(customDescObj, bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIconsFunc(self, mostValuableSimp, true) .. "#" .. bestResult .. "#") end
 		
 		EID:printDescription(customDescObj)
 		return true
@@ -824,27 +846,8 @@ function EID:handleBagOfCraftingRendering()
 				mostValuable[i] = itemQuery[i]
 			end
 		end
-		--this combination algorithm was adopted from this Java code: https://stackoverflow.com/a/16256122
-		--note that it will run into duplicates, for example if you have eight pennies and a key, it can't tell the difference between
-		--PPPPPPPK (pennies 1-7) and PPPPPPPK (pennies 2-8) and PPPPPPPK (pennies 1-4,6-8) etc..., I don't know of a way to prevent that
-		local function combinations(arr, length, startPos, tempResult)
-		  local length = length or 8
-		  local startPos = startPos or 1
-		  local tempResult = tempResult or {}
-		  if (length == 0) then
-			local resultString = table.concat(tempResult,",")
-			if (randResults[resultString] == nil) then
-				randResults[resultString] = {table.unpack(tempResult)}
-				newResults[resultString] = {table.unpack(tempResult)}
-			end
-			return
-		  end
-		  for i = startPos, #arr-length+1 do
-			tempResult[8-length+1] = arr[i]
-			combinations(arr,length-1,i+1,tempResult)
-		  end
-		end
-		if (#mostValuable >= 8) then combinations(mostValuable) end
+
+		if (#mostValuable >= 8) then combinations(mostValuable, nil, nil, nil, randResults, newResults) end
 		
 		--do random pulls for some more recipe choices
 		if (not skipRandom) then
@@ -924,16 +927,18 @@ function EID:handleBagOfCraftingRendering()
 		EID:appendToDescription(customDescObj, "!!! " .. hotkeyString .. "#")
 	end
 	
+	-- Bag content display
 	if #EID.BagItems >0 then
 		if #EID.BagItems >= 8 then
 			local recipe = EID:calculateBagOfCrafting(EID.BagItems)
 			EID:appendToDescription(customDescObj, "{{Collectible"..recipe.."}} ")
 		end
-		local bagDesc = EID:getDescriptionEntry("CraftingBagContent").."(Beta)"
+		local bagDesc = EID:getDescriptionEntry("CraftingBagContent")
 		EID:appendToDescription(customDescObj, bagDesc..EID:tableToCraftingIconsMerged(EID.BagItems).."#")
 		--debug the bag order
 		--EID:appendToDescription(customDescObj, EID:tableToCraftingIconsFull(EID.BagItems, false).."#")
 	end
+	-- Room content display
 	if #roomItems >0 then
 		if #roomItems == 8 then
 			local recipe = EID:calculateBagOfCrafting(roomItems)
@@ -942,6 +947,7 @@ function EID:handleBagOfCraftingRendering()
 		local roomDesc = EID:getDescriptionEntry("CraftingRoomContent")
 		EID:appendToDescription(customDescObj, roomDesc..EID:tableToCraftingIconsMerged(roomItems).."#")
 	end
+	-- Floot content display
 	if #EID.bagOfCraftingFloorQuery >0 and #roomItems ~= #EID.bagOfCraftingFloorQuery then
 		if #EID.bagOfCraftingFloorQuery == 8 then
 			local recipe = EID:calculateBagOfCrafting(EID.bagOfCraftingFloorQuery)
@@ -1025,7 +1031,7 @@ function EID:handleBagOfCraftingRendering()
 						if v[3] then customDescObj.Description = customDescObj.Description.." {{Collectible" .. v[3] .. "}} " end
 					end
 					
-					customDescObj.Description = customDescObj.Description..tableToCraftingIcons(self,v[1])
+					customDescObj.Description = customDescObj.Description..tableToCraftingIconsFunc(self, v[1], true)
 					prevItem = v[2]
 				end
 			end

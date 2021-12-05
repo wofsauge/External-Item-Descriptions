@@ -852,7 +852,7 @@ end
 -- Result: "3{{Crafting1}}2{{Crafting2}}3{{Crafting3}}"
 local emptyPickupTable = {}
 for i=1,29 do emptyPickupTable[i] = 0 end
-function EID:tableToCraftingIconsMerged(craftTable)
+function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
 	local filteredList = {table.unpack(emptyPickupTable)}
 	for _,nr in ipairs(sortedList) do
@@ -861,12 +861,22 @@ function EID:tableToCraftingIconsMerged(craftTable)
 	local iconString = ""
 	for nr,count in ipairs(filteredList) do
 		if (count > 0) then
-			iconString = iconString..count.."{{Crafting"..nr.."}}"
+			local completedColoring = indicateCompleteContent and EID:bagContaingsItem(nr, count) and "{{ColorBagComplete}}" or "" 
+			iconString = iconString..completedColoring..count.."{{Crafting"..nr.."}}{{CR}}"
 		end
 	end
 	return iconString
 end
 
+function EID:bagContaingsItem(itemID, itemCount)
+	local foundCount = 0
+	for _, bagItem in ipairs(EID.BagItems) do
+		if bagItem == itemID then
+			foundCount = foundCount + 1
+		end
+	end
+	return foundCount == itemCount
+end
 
 function EID:handleHUDElement(hudElement)
 	local alteredHudElement = {}
