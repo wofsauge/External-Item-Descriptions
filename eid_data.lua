@@ -382,3 +382,13 @@ EID.InlineColors = {
 	end,
 }
 
+-- Data table for a trinket's ability to be doubled/tripled by Mom's Box or being Golden
+-- Due to only a few exceptions needing special rules, most of these are just a single number, which will be found in the description and multiplied
+-- Exceptions will use a table to figure out what to do with them:
+-- textToReplace: A table of text to find and replace; trinkets with multiple numbers to multiply will use this
+-- maxMultiplier: assumed to be 3, so there will only be 2 here, if a trinket can never be tripled
+--
+EID.GoldenTrinketData = {
+	
+	[1] = 1, [5] = {textToReplace = {2}, maxMultiplier = 2}, [10] = 0.4, [11] = 0.4, 
+}
