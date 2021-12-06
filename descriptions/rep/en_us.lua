@@ -563,9 +563,20 @@ local repTrinkets={
 	[187] = {"187", "Broken Glasses", "33% chance of adding an extra blind item in {{TreasureRoom}}Treasure Rooms#Chance to reveal the blind item in alt path"}, -- Broken Glasses
 	[188] = {"188", "Ice Cube", "Adds a chance to petrify an enemy when entering the room#Killing the petrified enemy freezes it"}, -- Ice Cube
 	[189] = {"189", "Sigil of Baphomet", "Activates a 1 second shield upon killing an enemy"}, -- Sigil of Baphomet
-
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us"].trinkets)
+EID.descriptions["en_us"].goldenTrinket = "Effect doubled!"
+EID.descriptions["en_us"].goldenMomsBoxTrinket = "Effect tripled!"
+
+-- Most trinkets that can be doubled or tripled just have the numbers in their description multiplied
+-- A few trinkets have odd edge cases where their effect completely changes, can only be doubled, or is different depending on if it's Mom's Box or Golden
+-- In EID.GoldenTrinketData, "replace" means to completely overwrite the old description with these, "append" means to just add this on
+EID.descriptions["en_us"].momsBoxEffects = {
+}
+EID.descriptions["en_us"].goldenTrinketEffects = {
+}
+EID.descriptions["en_us"].goldenMomsBoxEffects = {
+}
 
 -- Card Buffs caused by Tarot Cloth
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
@@ -598,7 +609,6 @@ EID.descriptions["en_us"].tarotClothBuffs = {
 	[73] = {"73", "", "Removes 2 items and spawns 4"}, -- XVII - The Stars?
 	[76] = {"76", "", "Spawns 2 Restock Machines"}, -- XX - Judgement?
 }
-EID.descriptions["en_us"].goldenTrinket = "GOLD: Effect doubled!"
 
 -- Book of Virtues wisp types
 EID.descriptions["en_us"].bookOfVirtuesWisps = {
