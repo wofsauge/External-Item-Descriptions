@@ -751,7 +751,7 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us_detailed
 ---------- Trinkets ----------
 
 local repTrinkets={
-	{"1", "", "Drops a penny, nickel or dime upon taking damage. #Spawns 0-1 coins as The Keeper."},
+	{"1", "", "Drops 1 penny, nickel or dime upon taking damage. #Spawns 0-1 coins as The Keeper."},
 	{"2", "", "Increases drop rate of pickups from poop to 50%."},
 	{"3", "", "Immediately gives one charge towards an item upon use. #Has no effect on items with only one bar of charge or those with automatic recharges. #Stacks with the 9 Volt, but does not work with The Battery. #Recharging an item by taking damage with the Habit will cause this trinket not to activate."},
 	{"4", "", "Upon using an active item, teleports the player to a random room which can appear on the map."},
