@@ -350,7 +350,7 @@ local repCollectibles={
 	[727] = {"727", "Bombas fantasma", "+5 bombas#Las bombas generan fantasmas que infligen daño y explotan tras 10 segundos"}, --  Bombas fantasma
 	[728] = {"728", "Gello", "Genera un familiar demoníaco atado a ti#Copia tus lágrimas, estadísticas y efectos"}, --  Gello
 	[729] = {"729", "Muerte per cápita", "Lanza tu cabeza y te permite disparar lágrimas desde donde caiga#Al reactivar el objeto o pisar la cabeza la recuperas"}, --  Ataque de decapitación
-	[730] = {"730", "Ojo de cristal", "↑ +0.75 de daño#↑ +1 de suerte"}, -- Ojo de cristal
+	[730] = {"730", "Ojo de vidrio", "↑ +0.75 de daño#↑ +1 de suerte"}, -- Ojo de cristal
 	[731] = {"731", "Orzuelo", "↑ +28% de daño#↑ +7.0 de alcance#↓ -0.3 de velocidad de tiro#Sólo aplica al ojo derecho"}, -- Orzuelo
 	[732] = {"732", "Anillo de Mamá", "↑ +1.0 de daño#Genera una runa o piedra de alma al tomarlo"}, -- Anillo de Mamá
 }
@@ -363,9 +363,9 @@ EID.descriptions["spa"].birthright ={
 {"Judas", "", "{{Collectible34}}El Libro de Belial actúa como un objeto pasivo, similar a {{Collectible584}}El Libro de las Virtudes, el aumento de daño escala con la carga de los objetos activos"},
 {"???", "", "Los corazones de alma recibidos de aumentos de vida se duplican"},
 {"Eve", "Eva", "Whore of Babylon se activa sin depender de la vida#Dead Bird se activa sin recibir daño"},
-{"Samson", "San'són", "Bloody Lust puede ganar 4 mejoras de daño hasta un máximo de +14,0"},
+{"Samson", "Sansón", "Bloody Lust puede ganar 4 mejoras de daño hasta un máximo de +14,0"},
 {"Azazel", "", "El Brimstone de Azazel es más ancho, como el de Mega Blast#No varía el daño"},
-{"Lazarus", "Lázaro", "Al morir, revive como Lazarus Risen (Lázaro resucitado)#Lazarus Risen gana una mejora de daño de +21,6 que se pierde poco a poco"},
+{"Lazarus", "Lázaro", "Al morir, revive como Lázaro resucitado#Lázaro resucitado gana una mejora de daño de +21,6 que se pierde poco a poco"},
 {"Eden", "Edén", "Genera 3 objetos aleatorios de pools de objetos aleatorias#Solo se puede coger uno"},
 {"The Lost", "El Perdido", "Evita que aparezcan los objetos inútiles para The Lost#Ejemplos: los que dan vida, vuelo, lágrimas espectrales o los que se activan al recibir daño"},
 {"Lazarus Risen", "Lázaro Resucitado", "Otorga una mejora de daño de +21,6 que se pierde poco a poco"},
@@ -373,8 +373,8 @@ EID.descriptions["spa"].birthright ={
 {"Lilith", "", "Los familiares se colocan frente a Lilith, mejor control de ataque"},
 {"Keeper", "", "↑ +1 moneda de salud, el límite de salud llega a 4"},
 {"Apollyon", "Apolión", "Posibilidad de generar un objeto destruído anteriormente#Mientras más objetos consumidos, más posibilidad de generarlo#No afecta a objetos activos"},
-{"The Forgotten", "El Olvidado", "The Soul (El alma) no está atado y se mueve libremente"},
-{"The Forgotten Soul", "El Alma", "The Soul (El alma) no está atado y se mueve libremente"},
+{"The Forgotten", "El Olvidado", "El alma no está atado y se mueve libremente"},
+{"The Forgotten Soul", "El Alma", "El alma no está atado y se mueve libremente"},
 {"Bethany", "", "Activar un objeto usando cargas de alma a veces es gratis"},
 {"Jacob", "", "El personaje que recoge un objeto obtiene copias de tres objetos pasivos del otro personaje"},
 {"Esau", "Esaú", "El personaje que recoge un objeto obtiene copias de tres objetos pasivos del otro personaje"},
@@ -384,20 +384,20 @@ EID.descriptions["spa"].birthright ={
 {"Tainted Judas", "Judas contaminado", "Usar {{Collectible705}} Artes Oscuras otorga un aura con área de ataque mayor"},
 {"Tainted ???", "??? contaminado", "Aumenta el número máximo de cacas que puedes llevar a 29"},
 {"Tainted Eve", "Eva contaminada", "Los coágulos generados de corazones rojos sueltan medio corazón rojo que desaparece al morir"},
-{"Tainted Samson", "Sansón contaminado", "El contador del modo berserker gana 3 segundos en lugar de 1 cuando Tainted Samson (Sansón contaminado) mata a un enemigo"},
-{"Tainted Azazel", "Azazel contaminado", "El tamaño de Hemoptysis {{Collectible726}}, el ataque de Tainted Azazel (Azazel contaminado) es el doble de grande"},
-{"Tainted Lazarus", "Lázaro contaminado", "El Lázaro que no se esté usando estará presente como un fantasma, siendo controlado como J&E#No puede recibir daño ni interactuar con el entorno#La versión fantasma hace su daño x0.2#La otra versión hace su daño x0.8"},
+{"Tainted Samson", "Sansón contaminado", "El contador del modo berserker gana 3 segundos en lugar de 1 cuando Sansón contaminado mata a un enemigo"},
+{"Tainted Azazel", "Azazel contaminado", "El tamaño de Hemoptysis {{Collectible726}}, el ataque de Azazel contaminado es el doble de grande"},
+{"Tainted Lazarus", "Lázaro contaminado", "El Lázaro que no se esté usando estará presente como un fantasma, siendo controlado como J&E#No puede recibir daño ni interactuar con el entorno#La versión fantasma hace su daño al 25%"},
 {"Tainted Eden", "Edén contaminado", "Los objetos pasivos conseguidos antes de Primogenitura no cambian al recibir daño"},
 {"Tainted Lost", "El Perdido contaminado", "Otorga una vida extra que revive a Tainted Lost (Lost contaminado) en la misma habitación y causa 200 de daño a los enemigos cercanos#Puede golpear al mismo enemigo varias veces"},
 {"Tainted Lilith", "Lilith contaminada", "Los familiares son lanzados junto a Gello"},
 {"Tainted Keeper", "Keeper contaminado", "Atrae las monedas que sueltan los enemigos cercanos al morir#No afecta al resto de monedas"},
 {"Tainted Apollyon", "Apolión contaminado", "Las langostas se quedan atacando a un enemigo mientras se siga disparando"},
-{"Tainted Forgotten", "Forgotten contaminado", "Tainted Soul (Alma contaminada) gana la habilidad Recall (Recuperar) {{Collectible714}}, recuperar automáticamente a Tainted Forgotten (Forgotten contaminado) desde la distancia"},
+{"Tainted Forgotten", "Forgotten contaminado", "El alma contaminada gana la habilidad {{Collectible714}} Llamado, puedes (Forgotten contaminado) desde la distancia"},
 {"Tainted Bethany", "Bethany contaminada", "Genera 4 grandes fuegos fatuos#Tienen mayor durabilidad que los regulares"},
 {"Tainted Jacob", "Jacob contaminado", "Otro Dark Esau aparecerá#Al usar {{Collectible722}} Anima Sola, ambos serán encadenados, ambos pueden ser soltados uno a uno"},
-{"Dead Tainted Lazarus", "Lázaro contaminado muerto", "El Lázaro que no se esté usando estará presente como un fantasma, siendo controlado como J&E#No puede recibir daño ni interactuar con el entorno#La versión fantasma hace su daño x<número>"},
+{"Dead Tainted Lazarus", "Lázaro contaminado muerto", "El Lázaro que no se esté usando estará presente como un fantasma, siendo controlado como J&E#No puede recibir daño ni interactuar con el entorno#La versión fantasma hace su daño al 25%"},
 {"Tainted Jacob 2", "Jacob contaminado 1", "Otro Dark Esau aparecerá#Al usar {{Collectible722}} Anima Sola, ambos serán encadenados, ambos pueden ser soltados uno a uno"},
-{"Tainted Forgotten Soul", "El alma contaminada", "Tainted Soul (El alma contaminada) gana la habilidad Recall (Recuperar) {{Collectible714}}, recuperar automáticamente a Tainted Forgotten (Forgotten contaminado) desde la distancia"},
+{"Tainted Forgotten Soul", "El alma contaminada", "Tainted Soul (El alma contaminada) gana la habilidad Recall (Recuperar) {{Collectible714}}, puedes recuperar automáticamente a Forgotten contaminado desde la distancia"},
 }
 
 -- Buffs caused by Binge Eater
@@ -423,7 +423,7 @@ EID.descriptions["spa"].bookOfBelialBuffs = {
 	[127] = {"127", "", "Aumento de daño durante todo el nuevo piso"}, -- Forget me Now
 	[133] = {"133", "", "Aumento de daño permanente"}, -- Guppy's Paw
 	[135] = {"135", "", "Aumento de daño por cada uso"}, -- IV Bag
-	[147] = {"147", "", "El pico tiene mayor velocidad, empuje, velocidar, prende a los enemigos en fuego y suelta más recolectables al romper cacas y obstáculos"}, -- Notched Axe
+	[147] = {"147", "", "El pico tiene mayor velocidad, empuje, duración, prende a los enemigos en fuego y suelta más recolectables al romper cacas y obstáculos"}, -- Notched Axe
 	[186] = {"186", "", "También activa el efecto de {{Collectible126}} Cuchilla"}, -- Blood Rights
 	[282] = {"282", "", "Deja un rastro de fuego que quema a los enemigos"}, -- How to Jump
 	[290] = {"290", "", "Gasta un corazón a la vez, Otorga un aumento de daño y deja creep rojo en el suelo"}, -- The Jar
@@ -439,7 +439,7 @@ EID.descriptions["spa"].bookOfBelialBuffs = {
 	[563] = {"563", "", "Los fantasmas irán a los enemigos"}, -- Vade Retro
 	[577] = {"577", "", "Aumento de daño permanente"}, -- Damocles
 	[582] = {"582", "", "Aumento de daño adicional por el resto del piso basado en la cantidad de veces que se usó"}, -- Wavy Cap
-	[585] = {"585", "", "Cambia las recompensas por 2 corazones negros y un objeto de trato con el Dianlo#Serán 3 corazones negros y 2 objetos si ya se hizo un trato con el diablo"}, -- Alabaster Box
+	[585] = {"585", "", "Cambia las recompensas por 2 corazones negros y un objeto de trato con el Diablo#Serán 3 corazones negros y 2 objetos si ya se hizo un trato con el diablo"}, -- Alabaster Box
 	[622] = {"622", "", "Otorga gratuitamente un {{Collectible51}} Pentáculo"}, -- Genesis
 	[623] = {"623", "", "También activa el efecto de {{Collectible126}} Cuchilla"}, -- Sharp Key
 	[635] = {"635", "", "Crea una línea de {{Collectible705}} Artes Oscuras entre tú y Pespuntes"}, -- Stitches
@@ -583,10 +583,10 @@ local repCards={
 	[90] = {"90", "Alma de Edén", "Activa el efecto de D6 {{Collectible105}} y el de D20 {{Collectible166}}#El objeto cambiado usa pools de objetos aleatorias"},
 	[91] = {"91", "Alma del perdido", "Te convierte en The Lost en la habitación actual"},
 	[92] = {"92", "Alma de Lilith", "Añade un familiar aleatorio"},
-	[93] = {"93", "Alma del custodio", "Genera de 3 a 25 monedas aleatorias"},
+	[93] = {"93", "Alma de Keeper", "Genera de 3 a 25 monedas aleatorias"},
 	[94] = {"94", "Alma de Apolión", "Genera 15 langostas aleatorias"},
-	[95] = {"95", "Alma de los olvidados", "Aparece The Forgotten como un segundo personaje en la habitación actual"},
-	[96] = {"96", "Alma de Betania", "Genera 6 fuegos fatuos de Book of Virtues {{Collectible584}} (Libro de las virtudes) con propiedades aleatorias"},
+	[95] = {"95", "Alma del olvidado", "Aparece The Forgotten como un segundo personaje en la habitación actual"},
+	[96] = {"96", "Alma de Bethany", "Genera 6 fuegos fatuos de Book of Virtues {{Collectible584}} (Libro de las virtudes) con propiedades aleatorias"},
 	[97] = {"97", "Alma de Jacob y Esaú", "Aparece Esaú como un segundo personaje en la habitación actual"},
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions["spa"].cards)
