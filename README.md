@@ -40,7 +40,7 @@ For the Afterbirth/Rebirth version [click here](https://moddingofisaac.com/mod/1
 
 ### In-game Configuration
 
-Simply install &quot;[Mod config Menu](https://steamcommunity.com/sharedfiles/filedetails/?id=1603631350)&quot;. All configuration except the language setting can be changed with it in game.
+Simply install &quot;[Mod config Menu - Continued](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818)&quot;. All configuration except the language setting can be changed with it in game.
 
 ### Windows
 1. With Repentance: `steamapps\common\The Binding of Isaac Rebirth\mods\external item descriptions_836319872\`
