@@ -701,28 +701,28 @@ EID.descriptions["spa"].trinkets={
  
 ---------- Cards ----------
 EID.descriptions["spa"].cards={
-	{"1", "0 - El loco", "Te teletransporta de nuevo al inicio"},
-	{"2", "I - El mago", "Lágrimas teledirigidas en la habitación actual"},
-	{"3", "II - La suma sacerdotisa", "El Pie de Mamá pisa a un enemigo"},
-	{"4", "III - La emperatriz", "↑ +2,35 de daño & +0,3 de velocidad en la habitación actual"},
-	{"5", "IV - El emperador", "Teletransporta a la sala del jefe ({{BossRoom}})"},
-	{"6", "V - El hierofante", "Suelta 2 corazones de alma"},
-	{"7", "VI - Los amantes", "Suelta 2 corazones rojos"},
-	{"8", "VII - El carro", "Invencibilidad + daño por contacto durante 6 segundos"},
+	{"1", "0 - El Bufón", "Te teletransporta de nuevo al inicio"},
+	{"2", "I - El Mago", "Lágrimas teledirigidas en la habitación actual"},
+	{"3", "II - La Suma Sacerdotisa", "El Pie de Mamá pisa a un enemigo"},
+	{"4", "III - La Emperatriz", "↑ +2,35 de daño & +0,3 de velocidad en la habitación actual"},
+	{"5", "IV - El Emperador", "Teletransporta a la sala del jefe ({{BossRoom}})"},
+	{"6", "V - El Sumo Sacerdote", "Suelta 2 corazones de alma"},
+	{"7", "VI - Los Enamorados", "Suelta 2 corazones rojos"},
+	{"8", "VII - El Carruaje", "Invencibilidad + daño por contacto durante 6 segundos"},
 	{"9", "VIII - Justicia", "Genera 1 bomba, 1 llave, 1 moneda, 1 corazón"},
-	{"10", "IX - El ermitaño", "Teletransporta a la tienda {{Shop}}"},
-	{"11", "X - Rueda de la fortuna", "Genera una tragaperras o una máquina de la fortuna"},
+	{"10", "IX - El Ermitaño", "Teletransporta a la tienda {{Shop}}"},
+	{"11", "X - La Rueda de la Fortuna", "Genera una tragaperras o una máquina de la fortuna"},
 	{"12", "XI - Fuerza", "↑ +1 de vida#↑ +0,3 de daño#+50 % de daño#↑5,25 de rango#↑ +0,3 de velocidad#Durante la habitación actual"},
-	{"13", "XII - El colgado", "Permite volar en la habitación actual"},
+	{"13", "XII - El Colgado", "Permite volar en la habitación actual"},
 	{"14", "XIII - Muerte", "Inflige 40 de daño a todos los enemigos de la habitación"},
 	{"15", "XIV - Templanza", "Genera una máquina de donación de sangre"},
 	{"16", "XV - El Diablo", "↑ +2 de daño en la habitación actual"},
-	{"17", "XVI - La torre", "Invoca bombas troll"},
-	{"18", "XVII - Las estrellas", "Teletransporta a la sala del tesoro ({{TreasureRoom}})"},
-	{"19", "XVIII - La luna", "Teletransporta a la sala secreta ({{SecretRoom}})"},
-	{"20", "XIX - El sol", "Inflige 100 de daño a todos los enemigos #Vida al completo#Muestra el mapa completo"},
+	{"17", "XVI - La Torre", "Invoca bombas troll"},
+	{"18", "XVII - Las Estrellas", "Teletransporta a la sala del tesoro ({{TreasureRoom}})"},
+	{"19", "XVIII - La Luna", "Teletransporta a la sala secreta ({{SecretRoom}})"},
+	{"20", "XIX - El Sol", "Inflige 100 de daño a todos los enemigos #Vida al completo#Muestra el mapa completo"},
 	{"21", "XX - Juicio", "Genera un mendigo"},
-	{"22", "XXI - El mundo", "Muestra el mapa completo y los tipos de habitación"},
+	{"22", "XXI - El Mundo", "Muestra el mapa completo y los tipos de habitación"},
 	{"23", "2 de tréboles", "Duplica las bombas"},
 	{"24", "2 de diamantes", "Duplica el dinero"},
 	{"25", "2 de picas", "Duplica las llaves"},
@@ -731,7 +731,7 @@ EID.descriptions["spa"].cards={
 	{"28", "As de diamantes", "Convierte todos los recolectables en monedas"},
 	{"29", "As de picas", "Convierte todos los recolectables en llaves"},
 	{"30", "As de corazones", "Convierte todos los recolectables en corazones"},
-	{"31", "Comodín", "Teletransporta a la sala del Diablo{{DevilRoom}}/Ángel{{AngelRoom}}"},
+	{"31", "Joker", "Teletransporta a la sala del Diablo{{DevilRoom}}/Ángel{{AngelRoom}}"},
 	{"32", "Hagalaz", "Destruye todas las rocas de la habitación"},
 	{"33", "Jera", "Duplica los recolectables de la habitación"},
 	{"34", "Ehwaz", "Genera una trampilla"},
@@ -740,21 +740,21 @@ EID.descriptions["spa"].cards={
 	{"37", "Perthro", "Cambia los objetos coleccionables"},
 	{"38", "Berkano", "Genera 3 arañas azules y 3 moscas azules"},
 	{"39", "Algiz", "Invencibilidad durante 30 segundos"},
-	{"40", "Runa vacía", "Efecto de runa aleatorio#25 % de probabilidad de que vuelva a aparecer"},
+	{"40", "Runa en blanco", "Efecto de runa aleatorio#25 % de probabilidad de que vuelva a aparecer"},
 	{"41", "Runa negra", "Inflige 40 de daño a todos los enemigos#Estadística aleatoria por cada objeto coleccionable de la habitación# (Destruye todos los objetos de la habitación)"},
 	{"42", "Carta del caos", "Carta lanzable que mata al instante"},
 	{"43", "Tarjeta de crédito", "Borra el precio de todos los objetos de la tienda actual o el Pacto con el Diablo, haciendo que todo sea gratis"},
-	{"44", "Carta de las reglas", "Al usarlo muestra consejos \"útiles\" "},
-	{"45", "Carta en contra de la humanidad", "Llena toda la habitación de caca"},
+	{"44", "Carta de reglas", "Al usarlo muestra consejos \"útiles\" "},
+	{"45", "Una Carta Contra la Humanidad", "Llena toda la habitación de caca"},
 	{"46", "Rey suicida", "Te mata instantáneamente y genera 10 recolectables/coleccionables en el suelo"},
-	{"47", "Carta sal de la cárcel gratis", "Abre todas las puertas de la habitación actual"},
-	{"48", "Carta ¿?", "Activa el objeto activable sin gastar cargas "},
-	{"49", "Dado roto", "Cambia todos los pedestales y recolectables de la habitación actual"},
+	{"47", "Carta Sal Libre de Prisión", "Abre todas las puertas de la habitación actual"},
+	{"48", "¿? Carta", "Activa el objeto activable sin gastar cargas "},
+	{"49", "Fragmento de Dado", "Cambia todos los pedestales y recolectables de la habitación actual"},
 	{"50", "Contacto de emergencia", "Dos manos de Mamá caen y cogen a un enemigo"},
 	{"51", "Carta sagrada", "Otorga el efecto de Manto Sagrado (Holy Mantle) en una habitación#(El siguiente daño recibido es 0)#25 % de probabilidad de generar otra carta sagrada"},
-	{"52", "Enorme crecimiento", "↑ +7 de daño#↑ +30 de rango#↑ +Tamaño#Rompe rocas#El efecto es para la habitación actual"},
-	{"53", "Memoria antigua", "Al usarla genera 3 cartas aleatorias"},
-	{"54", "Paseo de época", "Ralentiza a los enemigos#↓ -0,5 de velocidad#-1 de velocidad de disparo#El efecto es para la habitación actual"},
+	{"52", "Gran Crecimiento", "↑ +7 de daño#↑ +30 de rango#↑ +Tamaño#Rompe rocas#El efecto es para la habitación actual"},
+	{"53", "Recuerdo Antiguo", "Al usarla genera 3 cartas aleatorias"},
+	{"54", "Caminando una Era", "Ralentiza a los enemigos#↓ -0,5 de velocidad#-1 de velocidad de disparo#El efecto es para la habitación actual"},
 }
  
  
@@ -846,18 +846,18 @@ EID.descriptions["spa"].dice={
 EID.descriptions["spa"].transformations = {
 	"",						-- 0 = none
 	"Guppy",				-- 1
-	"Tipo divertido",		-- 2
+	"Fungi",				-- 2
 	"Señor de las moscas",  -- 3
-	"Unidos",				-- 4
-	"Colocado",				-- 5
-	"Mamá",					-- 6
-	"Oh, mierda",			-- 7
+	"Siameses",				-- 4
+	"Adicto",				-- 5
+	"¿Sí, madre?",			-- 6
+	"Me cago en...",		-- 7
 	"Bob",					-- 8
 	"Leviatán",				-- 9
 	"Serafín",				-- 10
-	"Supervagabundo",		-- 11
+	"Super-pordiosero",		-- 11
 	"Ratón de biblioteca",	-- 12
 	"Bebé araña",			-- 13
 	"Adulto",				-- 14
-	"Colosal"				-- 15
+	"Gigante"				-- 15
 }
