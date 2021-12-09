@@ -600,7 +600,7 @@ EID.descriptions["en_us"].trinkets={
 	{"29", "Fish Head", "Spawn 1 blue fly when getting hit"},
 	{"30", "Pinky Eye", "10% chance to shoot poison tears"},
 	{"31", "Push Pin", "10% chance to shoot piercing spectral tears"},
-	{"32", "Liberty Cap", "Random mushroom effect per room#Can reveal special rooms on the minimap"},
+	{"32", "Liberty Cap", "25% chance for a random mushroom effect per room#Can reveal special rooms on the minimap"},
 	{"33", "Umbilical Cord", "When damaged to half a Red Heart, you gain#{{Blank}} {{Collectible100}}Little Steven for the current room"},
 	{"34", "Child's Heart", "10% chance for room clear reward to be a random heart#High chance for a bonus heart from chests"},
 	{"35", "Curved Horn", "↑ +2 Damage up"},
