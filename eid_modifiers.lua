@@ -178,56 +178,14 @@ local game = Game()
 	EID:addDescriptionModifier("Tarot Cloth", TarotClothCondition, TarotClothCallback)
 	
 	
-	local hasBox = false
-	local isGolden = false
-	
-	-- Handle Golden Trinket / Mom's Box description addition
+	-- Handle Golden Trinket description addition
 	local function GoldenTrinketCondition(descObj)
-		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TRINKET then
-			return false
-		end
-		--check if our effect is doubled or tripled here
-		hasBox = false
-		isGolden = false
-		if descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG then
-			isGolden = true
-		end
-		for i = 0,game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_MOMS_BOX) then
-				hasBox = true
-			end
-		end
-		return isGolden or hasBox
+		return descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_TRINKET and descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG
 	end
 	
 	local function GoldenTrinketCallback(descObj)
-		local trinketID = descObj.ObjSubType % TrinketType.TRINKET_GOLDEN_FLAG
-		local data = EID.GoldenTrinketData[trinketID]
-		local multiplier = 2
-		local count = 0
-		if (isGolden and hasBox) then multiplier = 3 end
-		
-		if data then
-			-- Simple multiplication of the first instance of a single number in the trinket's description
-			if type(data) == "number" then
-				descObj.Description, count = string.gsub(descObj.Description, tostring(data), "{{ColorGold}}" .. tostring(data*multiplier) .. "{{CR}}", 1)
-			-- We need to follow instructions to handle this trinket's exceptions
-			elseif type(data) == "table" then
-				if (data.maxMultiplier) then multiplier = math.min(data.maxMultiplier, multiplier) end
-				if (data.textToReplace) then
-					for k,v in ipairs(data.textToReplace) do
-						descObj.Description, count = string.gsub(descObj.Description, tostring(v), "{{ColorGold}}" .. tostring(v*multiplier) .. "{{CR}}", 1)
-					end
-				end
-			end
-			-- we didn't replace anything; maybe English (Detailed) or other language didn't have the number? append a simple "effect is doubled/tripled"
-			if count == 0 then
-				local goldenDesc = EID:getDescriptionEntry("goldenTrinket") or ""
-				if multiplier == 3 then goldenDesc = EID:getDescriptionEntry("goldenMomsBoxTrinket") or "" end
-				descObj.Description = descObj.Description .. "#" .. "{{ColorGold}}"..goldenDesc
-			end
-		end
+		local goldenDesc = EID:getDescriptionEntry("goldenTrinket") or ""
+		descObj.Description = "{{ColorGold}}"..goldenDesc.."#"..descObj.Description
 		return descObj
 	end
 	EID:addDescriptionModifier("Golden Trinket", GoldenTrinketCondition, GoldenTrinketCallback)
