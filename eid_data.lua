@@ -385,10 +385,13 @@ EID.InlineColors = {
 -- Data table for a trinket's ability to be doubled/tripled by Mom's Box or being Golden
 -- Due to only a few exceptions needing special rules, most of these are just a single number, which will be found in the description and multiplied
 -- Exceptions will use a table to figure out what to do with them:
--- textToReplace: A table of text to find and replace; trinkets with multiple numbers to multiply will use this
--- maxMultiplier: assumed to be 3, so there will only be 2 here, if a trinket can never be tripled
---
+-- t: text to replace. A table of text to find and replace; trinkets with multiple numbers to multiply will use this
+-- mult: max multiplier. assumed to be 3, some max out at 2, a few go 1x/2x/4x
+-- append / replace?: add text (Rainbow Worm, NO!) or entirely replace the trinket's description (Tick) by checking this table name
 EID.GoldenTrinketData = {
+	-- Swallowed Penny, Purple Heart (max 2x), a couple Worms, Black Lipstick (max 2x), Bible Tract (max 2x), Monkey's Paw
+	[1] = 1, [5] = {t={2}, mult=2}, [10] = 0.4, [11] = 0.4, [17] = {t={1}, mult=2}, [18] = {t={3}, mult=2}, [20] = 1,
+	-- Hook Worm (two stats), Whip Worm, Fish Head, Liberty Cap (max 4x)
+	[26] = {t={0.4, 1.5}}, [27] = 0.5, [29] = 1, [32] = {t={25}, mult=4},
 	
-	[1] = 1, [5] = {textToReplace = {2}, maxMultiplier = 2}, [10] = 0.4, [11] = 0.4, 
 }
