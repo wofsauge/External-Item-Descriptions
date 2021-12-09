@@ -160,6 +160,7 @@ local repCollectibles={
 	[405] = {"405", "GB Bug", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot)#Rerolls enemies and pickups it comes in contact with"}, -- GB Bug
 	[407] = {"407", "Purity", "↑ Boosts one of your stats depending on the color of the aura around you#When you take damage and after you enter a new room, you will get a new aura:#{{ColorRed}}Red{{CR}} = +4 Damage up#{{ColorBlue}}Blue{{CR}} = +2 Fire Rate up#{{ColorYellow}}Yellow{{CR}} = +0.5 Speed up#{{ColorOrange}}Orange{{CR}} = +3 Range up, +1 Tear Height up"},
 	[408] = {"408", "Athame", "When you take damage, a black brimstone ring will appear around Isaac"}, -- Athame
+	[415] = {"415", "Crown Of Light", "+2 Soul Hearts#If you don't have any damaged Red Heart containers:#↑ +100% Damage up#↑ +1.5 Range up#↑ +0.5 Tear Height#↓ -0.3 Shot Speed down#Deactivates for the current room when damaged at all"}, -- Crown Of Light
 	[416] = {"416", "Deep Pockets", "Spawns 1-3 coins if a room didn't yield a reward#Increases coin cap to 999"}, -- Deep Pockets
 	[417] = {"417", "Succubus", "Bounces around the room with a damaging aura, dealing 7.5-10 damage every second#↑ +50% damage while standing in the aura"}, -- Succubus
 	[421] = {"421", "Kidney Bean", "Applies charm effect to any enemies in close range"}, -- Kidney Bean
@@ -483,7 +484,7 @@ local repTrinkets={
 	[15] = {"15", "Lucky Rock", "33% chance to drop a coin when destroying rocks"},-- Lucky Rock
 	[24] = {"24", "Butt Penny", "Fart when picking up coins#Higher chance for coins to spawn from poop#Farts poison and knockback enemies and projectiles"}, -- Butt Penny
 	[26] = {"26", "Hook Worm", "Tears move in angular patterns#↑ +0.4 Tears up#↑ +1.5 Range up#Grants spectral tears"}, -- Hook Worm
-	[32] = {"32", "Liberty Cap", "Random mushroom effect per room"}, -- Liberty Cap
+	[32] = {"32", "Liberty Cap", "25% chance for a random mushroom effect per room"}, -- Liberty Cap
 	[33] = {"33", "Umbilical Cord", "At half a Red Heart or less, you gain#{{Blank}} {{Collectible100}}Little Steven#High chance to spawn Gemini familiars for the room when taking damage"}, -- Umbilical Cord
 	[39] = {"39", "Cancer", "↑ +1 Fire Rate up"},
 	[48] = {"48", "A Missing Page", "When getting hit, chance to damage all enemies in the room#Black Hearts and {{Collectible35}}Necronomicon-like effects deal double damage"}, -- A Missing Page
@@ -566,11 +567,11 @@ local repTrinkets={
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us"].trinkets)
 EID.descriptions["en_us"].goldenTrinket = "Effect doubled!"
-EID.descriptions["en_us"].goldenMomsBoxTrinket = "Effect tripled!"
+EID.descriptions["en_us"].tripledTrinket = "Effect tripled!"
+EID.descriptions["en_us"].quadrupledTrinket = "Effect quadrupled!"
 
 -- Most trinkets that can be doubled or tripled just have the numbers in their description multiplied
 -- A few trinkets have odd edge cases where their effect completely changes, can only be doubled, or is different depending on if it's Mom's Box or Golden
--- In EID.GoldenTrinketData, "replace" means to completely overwrite the old description with these, "append" means to just add this on
 EID.descriptions["en_us"].momsBoxEffects = {
 }
 EID.descriptions["en_us"].goldenTrinketEffects = {
