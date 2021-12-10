@@ -7,7 +7,7 @@
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
 
---Special character markup:
+-- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 local repCollectibles={
@@ -418,28 +418,28 @@ EID.descriptions["fr"].spindownError = "Item disappears"
 
 local repTrinkets={
 	[1] = {"1", "Swallowed Penny", "Fait tomber 1 pièce quand vous vous faites toucher#0-1 si vous jouez Keeper"}, -- Swallowed Penny
-    [10] = {"10", "", "Les larmes bougent en vagues#↑ +0.4 Cadence de tir#Larmes spectrales"}, -- Wiggle Worm
-    [11] = {"11", "", "Les larmes bougent en spirales à haute vitesse#Larmes spectrales"}, -- Ring Worm
+	[10] = {"10", "", "Les larmes bougent en vagues#↑ +0.4 Cadence de tir#Larmes spectrales"}, -- Wiggle Worm
+	[11] = {"11", "", "Les larmes bougent en spirales à haute vitesse#Larmes spectrales"}, -- Ring Worm
 	[15] = {"15", "Lucky Rock", "33% de chances d'obtenir une pièce en détruisant un rocher"},-- Lucky Rock
 	[24] = {"24", "Butt Penny", "Produit un pet quand vous ramassez une pièce#Les pets repoussent et empoisonnent les ennemis"}, -- Butt Penny
-    [26] = {"26", "", "Les larmes font des angles#↑ +10 Portée#Larmes spectrales"}, -- Hook Worm
+	[26] = {"26", "", "Les larmes font des angles#↑ +10 Portée#Larmes spectrales"}, -- Hook Worm
 	[32] = {"32", "Liberty Cap", "Effet de champignon aléatoire pour la salle"}, -- Liberty Cap
-    [33] = {"33", "", "En tombant à un demi coeur rouge, confère Little Steven#Grande chance de faire apparaître un familier Gemini en vous faisant toucher"}, -- Umbilical Cord
+	[33] = {"33", "", "En tombant à un demi coeur rouge, confère Little Steven#Grande chance de faire apparaître un familier Gemini en vous faisant toucher"}, -- Umbilical Cord
 	[48] = {"48", "A Missing Page", "En vous faisant toucher, chance d'infliger des dégâts à tous les ennemis dans la salle#Les coeurs noirs et les effets similaires au Necronomicon {{Collectible35}} infligent le double de dégâts"}, -- A Missing Page
-    [49] = {"49", "", "25% de chances de faire tomber un demi coeur rouge en rammassant une pièce"}, -- Bloody Penny
-    [50] = {"50", "", "25% de chances de faire tomber une bombe en ramassant une pièce"}, -- Burnt Penny
-    [51] = {"51", "", "25% de chances de faire tomber une clé en ramassant une pièce"}, -- Flat Penny
+	[49] = {"49", "", "25% de chances de faire tomber un demi coeur rouge en rammassant une pièce"}, -- Bloody Penny
+	[50] = {"50", "", "25% de chances de faire tomber une bombe en ramassant une pièce"}, -- Burnt Penny
+	[51] = {"51", "", "25% de chances de faire tomber une clé en ramassant une pièce"}, -- Flat Penny
 	[65] = {"65", "Tape Worm", "↑ +3 Portée"}, -- Tape Worm
 	[66] = {"66", "Lazy Worm", "↓ -0.5 Vitesse des larmes#↑ +2 Hauteur des larmes"}, -- Lazy Worm
-    [69] = {"69", "", "Camouflage aléatoire#Rend les ennemis confus#Peut être utilisé pour ouvrir la porte vers l'étage \"Home\""}, -- Faded Polaroid
+	[69] = {"69", "", "Camouflage aléatoire#Rend les ennemis confus#Peut être utilisé pour ouvrir la porte vers l'étage \"Home\""}, -- Faded Polaroid
 	[80] = {"80", "Black Feather", "↑ +0.5 Dégâts pour chaque objet démoniaque en votre possession"}, -- Black Feather
-    [92] = {"92", "", "↑ Les bonus de stats donnés par vos objets augmentent de 20%#↑ +0.2 Cadence de tir#↑ -1 Délai des larmes"}, -- Cracked Crown
-    [95] = {"95", "", "Chance de tirer des dents empoisonnées#Les ennemis touchés sont attaqués par la main de Big Horn"}, -- Black tooth
+	[92] = {"92", "", "↑ Les bonus de stats donnés par vos objets augmentent de 20%#↑ +0.2 Cadence de tir#↑ -1 Délai des larmes"}, -- Cracked Crown
+	[95] = {"95", "", "Chance de tirer des dents empoisonnées#Les ennemis touchés sont attaqués par la main de Big Horn"}, -- Black tooth
 	[101] = {"101", "Dim Bulb", "!!! En ayant un objet actif déchargé :#↑ +1.5 Dégâts#↑ +0.5 Vitesse#↑ +1.5 Portée#↑ +0.5 Cadence de tir#↑ +0.3 Vitesse des larmes#↑ +2 Chance"},
 	[110] = {"110", "Silver Dollar", "Les shops {{Shop}} apparaissent désormais dans le Womb et le Corpse"},
-    [111] = {"111", "", "Les Item rooms {{TreasureRoom}} apparaissent désormais dans le Womb et le Corpse"}, -- Bloody Crown
+	[111] = {"111", "", "Les Item rooms {{TreasureRoom}} apparaissent désormais dans le Womb et le Corpse"}, -- Bloody Crown
 	[119] = {"119", "", "Au début de chaque étage, soigne des coeurs rouges pour avoir 50% de votre vie max#Si vous avez plus de 50% de vie, vous soigne un demi coeur rouge"}, -- Stem Cell
-    [128] = {"128", "", "5% de chances de gagner un coeur d'os en vous faisant toucher"}, -- Finger Bone
+	[128] = {"128", "", "5% de chances de gagner un coeur d'os en vous faisant toucher"}, -- Finger Bone
 	[129] = {"129", "", "Chance de tirer des dents"}, --  Jawbreaker
 	[130] = {"130", "", "Chance de tirer des larmes ralentissantes"}, --  Chewed Pen
 	[131] = {"131", "", "Chance de faire tomber un demi coeur bleu en ramassant une pièce"}, --  Blessed Penny

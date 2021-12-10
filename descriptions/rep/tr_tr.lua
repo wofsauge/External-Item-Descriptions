@@ -1,5 +1,5 @@
 -------------------------------------------------
------  Basic Turkish descriptions           -----
+-----  		Basic Turkish descriptions		-----
 ----- Translated to Turkish by Çağdaş Salur -----
 -------------------------------------------------
 
@@ -8,7 +8,7 @@
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
 
---Special character markup:
+-- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 local newDescriptions = {

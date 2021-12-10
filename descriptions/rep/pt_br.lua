@@ -1,7 +1,7 @@
----------------------------------------------------
------  Basic Portuguese (Brazil) descriptions -----
------          By: LuanRoger and NotZin0      -----
----------------------------------------------------
+----------------------------------------------------
+-----  Basic Portuguese (Brazil) descriptions  -----
+-----		By: LuanRoger and NotZin0		   -----
+----------------------------------------------------
 
 -- Last Sync with en_us: 11.11.2021
 
@@ -11,7 +11,7 @@
 -- Portuguese (Brazil) letters: 
 -- ãÃ áÁ àÀ âÂ çÇ éÉ êÊ íÍ õÕ óÓ ôÔ úÚ
 
---Special character markup:
+-- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 local newDescriptions = {
@@ -436,27 +436,27 @@ EID.descriptions["pt_br"].spindownError = "Item desapareceu"
 local repTrinkets={
 	[1] = {"1", "", "Gera 1 moeda quando for atingido#0-1 com o Keeper"}, -- Swallowed Penny
 	[10] = {"10", "", "Lágrimas movem-se em ondas#↑ +0.4 Lágrimas#Lágrimas espectrais"}, -- Wiggle Worm
-    [11] = {"11", "", "Lágrimas movem-se em espiral em alta velocidade#Lágrimas espectrais"}, -- Ring Worm
+	[11] = {"11", "", "Lágrimas movem-se em espiral em alta velocidade#Lágrimas espectrais"}, -- Ring Worm
 	[15] = {"15", "", "33% de chance de gerar uma moeda quando destruir rochas"},-- Lucky Rock
 	[24] = {"24", "", "Peide ao pegar moedas#Maior chance de gerar moedas em cocôs#Peido causa recuo e envenenamento em inimigos e projéteis"}, -- Butt Penny
-    [26] = {"26", "", "Lágrimas movem-se em padrões angulares#↑ +1.5 Alcance#Lágrimas espectrais"}, -- Hook Worm
-    [33] = {"33", "", "Quando estiver com um coração vermelho ou menos, ganhe um#{{Blank}} {{Collectible100}} Little Steven#Alta chance de gerar um familiar Gemini para a sala atual ao receber dano"}, -- Umbilical Cord
+	[26] = {"26", "", "Lágrimas movem-se em padrões angulares#↑ +1.5 Alcance#Lágrimas espectrais"}, -- Hook Worm
+	[33] = {"33", "", "Quando estiver com um coração vermelho ou menos, ganhe um#{{Blank}} {{Collectible100}} Little Steven#Alta chance de gerar um familiar Gemini para a sala atual ao receber dano"}, -- Umbilical Cord
 	[39] = {"39", "", "↑ +1 Velocidade de disparo"}, -- Cancer
 	[48] = {"48", "", "Chance de quando for atingido, danificar todos os inimigos na sala#Corações negors e {{Collectible35}} efeitos como Necronomicon causam o dobro de dano"}, -- A Missing Page
-    [49] = {"49", "", "25% de chance de soltar meio coração quando pegar uma moeda"}, -- Bloody Penny
-    [50] = {"50", "", "25% de chance de soltar uma bomba quando pegar uma moeda"}, -- Burnt Penny
-    [51] = {"51", "", "25% de chance de soltar uma chave quando pegar uma moeda"}, -- Flat Penny
+	[49] = {"49", "", "25% de chance de soltar meio coração quando pegar uma moeda"}, -- Bloody Penny
+	[50] = {"50", "", "25% de chance de soltar uma bomba quando pegar uma moeda"}, -- Burnt Penny
+	[51] = {"51", "", "25% de chance de soltar uma chave quando pegar uma moeda"}, -- Flat Penny
 	[65] = {"65", "", "↑ +3 Alcance"}, -- Tape Worm
 	[66] = {"66", "", "↓ -0.5 Velocidade de disparo#↑ +2 Altura da lágrima"}, -- Lazy Worm
-    [69] = {"69", "", "Camufla o jogador aleatoriamente#Confunde inimigos#Pode ser ussado para abrir a porta para o andar \"Home\""}, -- Faded Polaroid
+	[69] = {"69", "", "Camufla o jogador aleatoriamente#Confunde inimigos#Pode ser ussado para abrir a porta para o andar \"Home\""}, -- Faded Polaroid
 	[80] = {"80", "", "↑ +0.5 Dano para cada item maligno que estiver segurando"}, -- Black Feather
-    [92] = {"92", "", "↑ Aumeta as estatísticas de seus itens em 20%"}, -- Cracked Crown
+	[92] = {"92", "", "↑ Aumeta as estatísticas de seus itens em 20%"}, -- Cracked Crown
 	[96] = {"96", "", "As lágrimas se movem rapidamente em um padrão espiral#Lágrimas spectrais#↑ +1.5 Alcance"}, -- Ouroboros Worm
 	[101] = {"101", "", "!!! Enquanto segurar um item ativador descarregado:#↑ +1.5 Dano#↑ +0.5 Velocidade#↑ +1.5 Alcance#↑ +0.5 Lágrima#↑ +0.3 Velocidade de disparo#↑ +2 Sorte"}, -- Dim Bulb
 	[110] = {"110", "", "Lojas {{Shop}} vão aparecer no Womb e Corpse"}, -- Silver Dollar
-    [111] = {"111", "", "Salas do item {{TreasureRoom}} agora aparecem em the Womb e Corpse"}, -- Bloody Crown
+	[111] = {"111", "", "Salas do item {{TreasureRoom}} agora aparecem em the Womb e Corpse"}, -- Bloody Crown
 	[119] = {"119", "", "Define seu HP vermelho para 50% do seu máximo ao entrar no próximo andar#Se sua saúde está acima disso, cura meio coração vermelho"}, -- Stem Cell
-    [128] = {"128", "", "5% de chance de ganhar um coração de osso ao receber dano"}, -- Finger Bone
+	[128] = {"128", "", "5% de chance de ganhar um coração de osso ao receber dano"}, -- Finger Bone
 	[129] = {"129","","Chance de atirar dentes"}, --  Jawbreaker
 	[130] = {"130","","Chance de atirar lágrimas de lentidão"}, --  Chewed Pen
 	[131] = {"131","","Chance de soltar meio coração de alma quando pegar uma moeda"}, --  Blessed Penny

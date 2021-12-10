@@ -8,7 +8,7 @@
 -- Portuguese letters: 
 -- ãÃ áÁ àÀ âÂ çÇ éÉ êÊ íÍ õÕ óÓ ôÔ úÚ üÜ 
 
---Special character markup:
+-- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 -- init pt table
