@@ -10,7 +10,7 @@
 -- Portuguese (Brazil) letters: 
 -- ãÃ áÁ àÀ âÂ çÇ éÉ êÊ íÍ õÕ óÓ ôÔ úÚ
 
---Special character markup:
+-- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 -- init pt_br table

@@ -5,8 +5,8 @@
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
 
---Special character markup:
--- ↑ = Up Arrow   |  ↓ = Down Arrow    | ! = Warning
+-- Special character markup:
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 -- init it table
 EID.descriptions["it"] = {}
@@ -844,20 +844,20 @@ EID.descriptions["it"].dice={
 
 ---------- Transformations ----------
 EID.descriptions["it"].transformations = {
-    "",					-- 0 = none
-    "Guppy",			-- 1
-    "Fun Guy",			-- 2
-    "Lord of the Flies",-- 3
-    "Conjoined",		-- 4
-    "Spun",				-- 5
-    "Mom",				-- 6
-    "Oh Crap",			-- 7
-    "Bob",				-- 8
-    "Leviathan",		-- 9
-    "Seraphim",			-- 10
-    "Super Bum",		-- 11
-    "Bookworm",			-- 12
-    "Spider Baby",		-- 13
-    "Adulto",			-- 14
-    "Stompy"			-- 15
+	"",					-- 0 = none
+	"Guppy",			-- 1
+	"Fun Guy",			-- 2
+	"Lord of the Flies",-- 3
+	"Conjoined",		-- 4
+	"Spun",				-- 5
+	"Mom",				-- 6
+	"Oh Crap",			-- 7
+	"Bob",				-- 8
+	"Leviathan",		-- 9
+	"Seraphim",			-- 10
+	"Super Bum",		-- 11
+	"Bookworm",			-- 12
+	"Spider Baby",		-- 13
+	"Adulto",			-- 14
+	"Stompy"			-- 15
 }
