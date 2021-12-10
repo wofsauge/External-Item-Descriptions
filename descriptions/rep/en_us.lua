@@ -171,7 +171,7 @@ local repCollectibles={
 	[431] = {"431", "Multidimensional Baby", "Follows your movement pattern on a 0.66 second delay#Tears that pass through it will split up and gain a speed boost"},
 	[437] = {"437", "D7", "Respawn all enemies of the room#Allows you to farm room clear rewards"}, -- D7
 	[440] = {"440", "Kidney Stone", "Randomly while firing you will stop firing and release a burst of tears and a kidney stone"}, -- Kidney Stone
-	[442] = {"442", "Dark Prince's Crown", "!!! While at 1 full red heart:#↑ +2 Fire Rate up#↑ +1.5 Range up#↑ +0.2 Shot Speed up#Doesn't work with characters without red HP"}, -- Dark Princes Crown
+	[442] = {"442", "Dark Prince's Crown", "!!! While at 1 full red heart:#↑ +2 Fire Rate up#↑ +1.5 Range up#↑ +0.2 Shot Speed up#Doesn't work with characters without red HP"}, -- Dark Prince's Crown
 	[444] = {"444", "Lead Pencil", "Every 15 tears fired, you fire a cluster of tears"}, -- Lead Pencil
 	[448] = {"448", "Shard of Glass", "When taking red heart damage, spew red tears#Control direction with shooting buttons#When active, deals half a heart of damage every 20 seconds#Stop bleeding by healing red HP"}, -- Shard of Glass
 	[451] = {"451", "Tarot Cloth", "Drops a random card or rune on pickup#Some cards gain an extra or doubled effect"}, -- Tarot Cloth
@@ -788,6 +788,7 @@ EID.descriptions["en_us"].bookOfVirtuesWisps = {
 ---------- Cards ----------
 
 local repCards={
+	[12] = {"12", "XI - Strength", "↑ +1 Health up#↑ +0.3 Damage up#↑ +50% Damage#↑ +5.25 Range up#↑ +0.3 Speed up#For current room"}, -- XI - Strength
 	[27] = {"27", "Ace of Clubs", "Turns all pickups, chests and non-boss enemies into bombs"}, -- Ace of Clubs
 	[28] = {"28", "Ace of Diamonds", "Turns all pickups, chests and non-boss enemies into coins"}, -- Ace of Diamonds
 	[29] = {"29", "Ace of Spades", "Turns all pickups, chests and non-boss enemies into keys"}, -- Ace of Spades
@@ -816,7 +817,7 @@ local repCards={
 	[74] = {"74", "XVIII - The Moon?", "Teleports you to the {{UltraSecretRoom}}Ultra Secret Room#Pathway back will be made of red rooms"}, -- XVIII - The Moon?
 	[75] = {"75", "XIX - The Sun?", "For the current floor:#↑ Gain {{Collectible159}}Spirit of the Night#↑ +1.5 Damage up#Turns your Red Hearts into Bone Hearts#Applies Curse of Darkness"}, -- XIX - The Sun?
 	[76] = {"76", "XX - Judgement?", "Spawns a Restock Machine"}, -- XX - Judgement?
-	[77] = {"77", "XXI - The World?", "Spawns a trap door to a crawl space"}, -- XXI - The World?
+	[77] = {"77", "XXI - The World?", "Spawns a trap door to a crawlspace"}, -- XXI - The World?
 	[78] = {"78", "Cracked Key", "One time use {{Collectible580}}Red Key"}, -- Cracked Key
 	[79] = {"79", "Queen of Hearts", "Spawns 1-20 Red Hearts"}, -- Queen of Hearts
 	[80] = {"80", "Wild Card", "Copies the effect of the most recently used pill, card, rune, soul stone or activated item"}, -- Wild Card
