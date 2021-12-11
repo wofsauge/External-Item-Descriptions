@@ -925,6 +925,11 @@ EID.descriptions["en_us"].CraftingPreviewBackup = "!!! If this item's locked, it
 
 EID.descriptions["en_us"].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
 
+EID.descriptions["en_us"].BlankCardCharge = "Blank Card charge:" 
+EID.descriptions["en_us"].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed" 
+EID.descriptions["en_us"].ClearRuneCharge = "Clear Rune charge:" 
+EID.descriptions["en_us"].PlaceboCharge = "Placebo charge:" 
+
 EID.descriptions["en_us"].AchievementWarningTitle = "{{ColorYellow}}!!! WARNING !!!"
 EID.descriptions["en_us"].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)#(This warning can be disabled in the config)"
 

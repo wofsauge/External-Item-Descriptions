@@ -202,4 +202,94 @@ local game = Game()
 		return descObj
 	end
 	EID:addDescriptionModifier("ItemID", ItemIDCondition, ItemIDCallback)
+
+
+	
+	-- Handle Blank Card description addition
+	local blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[49]=true,[50]=true,[55]=true,[78]=true}
+	local function BlankCardCondition(descObj)
+		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TAROTCARD or blankCardHidden[descObj.ObjSubType] or descObj.ObjSubType > 80 then
+			return false
+		end
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BLANK_CARD) then
+				return true
+			end
+		end
+		return false
+	end
+	
+	local function BlankCardCallback(descObj)
+		local text = EID:getDescriptionEntry("BlankCardCharge")
+		local charge = EID.cardMetadata[descObj.ObjSubType]
+		if text ~= nil and charge ~= nil then
+			local iconStr = "#{{Collectible286}} {{ColorSilver}}"
+			if descObj.ObjSubType == 48 then -- ? card
+				text = EID:getDescriptionEntry("BlankCardQCard")
+				EID:appendToDescription(descObj, iconStr..text:gsub("#",iconStr))
+			else
+				EID:appendToDescription(descObj, iconStr..text.." {{"..charge.mimiccharge.."}}{{Battery}}")
+			end
+		end
+		return descObj
+	end
+	EID:addDescriptionModifier("Blank Card", BlankCardCondition, BlankCardCallback)
+	
+
+
+	-- Handle Clear Rune description addition
+	local runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[55]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
+	local function ClearRuneCondition(descObj)
+		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TAROTCARD or not runeIDs[descObj.ObjSubType] then
+			return false
+		end
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_CLEAR_RUNE) then
+				return true
+			end
+		end
+		return false
+	end
+	
+	local function ClearRuneCallback(descObj)
+		local text = EID:getDescriptionEntry("ClearRuneCharge")
+		local charge = EID.cardMetadata[descObj.ObjSubType]
+		if text ~= nil and charge ~= nil then
+			local iconStr = "#{{Collectible263}} {{ColorSilver}}"
+			EID:appendToDescription(descObj, iconStr..text.." {{"..charge.mimiccharge.."}}{{Battery}}")
+		end
+		return descObj
+	end
+	EID:addDescriptionModifier("Clear Rune", ClearRuneCondition, ClearRuneCallback)
+	
+
+
+	-- Handle Placebo description addition
+	local function PlaceboCondition(descObj)
+		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_PILL then
+			return false
+		end
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_PLACEBO) then
+				return true
+			end
+		end
+		return false
+	end
+	
+	local function PlaceboCallback(descObj)
+		local text = EID:getDescriptionEntry("PlaceboCharge")
+		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
+		local charge = EID.pillMetadata[adjustedID-1]
+		if text ~= nil and charge ~= nil then
+			local iconStr = "#{{Collectible348}} {{ColorSilver}}"
+			EID:appendToDescription(descObj, iconStr..text.." {{"..charge.mimiccharge.."}}{{Battery}}")
+		end
+		return descObj
+	end
+	EID:addDescriptionModifier("Placebo", PlaceboCondition, PlaceboCallback)
+
 end
