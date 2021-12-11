@@ -15,20 +15,20 @@ local newDescriptions = {
 }
 
 local repCollectibles={
-	[5] = {"5", "Mi reflejo", "Otorga un efecto bumerán a las lágrimas#↑ +1,5 de rango#↑ +60 % de rango adicional#↑ +0,6 de velocidad de disparo#↑ +1 de tamaño de lágrima"},
-	[6] = {"6", "Número 1", "↑ +1,5 de lágrimas#↓ -1,5 de rango#↓ -20 % de rango adicional#↑ +0,76 de tamaño de lágrima"},
-	[12] = {"12", "Hongo mágico", "↑ +1 de vida#↑ +0,3 de daño#↑ +50 % de multiplicador de daño#↑ +1,5 de rango#↑ +0,3 de velocidad#↑ +0,5 de tamaño de lágrima#¡Vida al completo!"},
+	[5] = {"5", "Mi reflejo", "Otorga un efecto bumerán a las lágrimas#↑ +1,5 de alcance#↑ +60 % de alcance adicional#↑ +0,6 de velocidad de disparo#↑ +1 de tamaño de lágrima"},
+	[6] = {"6", "Número 1", "↑ +1,5 de lágrimas#↓ -1,5 de alcance#↓ -20 % de alcance adicional#↑ +0,76 de tamaño de lágrima"},
+	[12] = {"12", "Hongo mágico", "↑ +1 de vida#↑ +0,3 de daño#↑ +50 % de multiplicador de daño#↑ +1,5 de alcance#↑ +0,3 de velocidad#↑ +0,5 de tamaño de lágrima#¡Vida al completo!"},
 	[13] = {"13", "El virus", "Toque venenoso#↑ +0,2 de velocidad"}, -- El virus
-	[14] = {"14", "Furia por esteroides", "↑ +0,3 de velocidad#↑ +5,25 de rango#↑ +0,5 de tamaño de lágrima"}, -- Furia de esteroides
+	[14] = {"14", "Furia por esteroides", "↑ +0,3 de velocidad#↑ +5,25 de alcance#↑ +0,5 de tamaño de lágrima"}, -- Furia de esteroides
 	[18] = {"18", "El dólar", "+100 monedas"},
 	[22] = {"22", "Almuerzo", "↑ +1 de vida#Cura un corazón"}, -- Almuerzo
 	[23] = {"23", "Cena", "↑ +1 de vida#Cura un corazón"}, -- Cena
 	[24] = {"24", "Postre", "↑ +1 de vida#Cura un corazón"}, -- Postre
 	[25] = {"25", "Desayuno", "↑ +1 de vida#Cura un corazón"}, -- Desayuno
 	[26] = {"26", "Carne podrida", "↑ +1 de vida#Cura un corazón"},
-	[29] = {"29", "Ropa interior de Mamá", "↑ +1,5 de rango#↑ +0,5 de tamaño de lágrima#Genera de 3 a 6 moscas azules"}, -- Ropa interior de Mamá
-	[30] = {"30", "Tacones de Mamá", "↑ +1,5 de rango#↑ +0,5 de tamaño de lágrima#Tocar a los enemigos inflige 12 de daño"}, -- Tacones de Mamá
-	[31] = {"31", "Pintalabios de Mamá", "↑ +2,25 de rango#↑ +0,5 de tamaño de lágrima#Genera un corazón aleatorio"}, -- Pintalabios de Mamá
+	[29] = {"29", "Ropa interior de Mamá", "↑ +1,5 de alcance#↑ +0,5 de tamaño de lágrima#Genera de 3 a 6 moscas azules"}, -- Ropa interior de Mamá
+	[30] = {"30", "Tacones de Mamá", "↑ +1,5 de alcance#↑ +0,5 de tamaño de lágrima#Tocar a los enemigos inflige 12 de daño"}, -- Tacones de Mamá
+	[31] = {"31", "Pintalabios de Mamá", "↑ +2,25 de alcance#↑ +0,5 de tamaño de lágrima#Genera un corazón aleatorio"}, -- Pintalabios de Mamá
 	[40] = {"40", "¡Kamikaze!", "Provoca una gran explosión en la ubicación del jugador#Inflige 185 de daño"}, -- ¡Kamikaze!
 	[42] = {"42", "Cabeza podrida de Bob", "Bomba venenosa lanzable#Inflige 185 + tu daño#Crea una nube de veneno"}, -- Cabeza podrida de Bob
 	[44] = {"44", "¡Teletransporte!", "Teletransporta a Isaac a una habitación aleatoria (excepto a la habitación I AM ERROR)#Puedes influir un poco en la dirección al avanzar hacia allí"}, -- ¡Teletransporte!
@@ -40,17 +40,17 @@ local repCollectibles={
 	[64] = {"64", "Oferta de Steam", "-50 % en la compra de objetos#Tener varios hace que el precio sea todavía inferior"}, -- Oferta de Steam
 	[67] = {"67", "Hermana Maggy", "Familiar de lágrimas normales#Inflige 5 de daño"}, -- Hermana Maggy
 	[70] = {"70", "Hormonas de crecimiento", "↑ +1,0 de daño#↑ +0,2 de velocidad"}, -- Hormonas de crecimiento
-	[71] = {"71", "Mini Champi", "↑ +0,3 de velocidad#↑ +1,5 de rango*# ↑ Te haces más pequeño"},
+	[71] = {"71", "Mini Champi", "↑ +0,3 de velocidad#↑ +1,5 de alcance*# ↑ Te haces más pequeño"},
 	[72] = {"72", "Rosario", "+3 corazones de alma#↑ 0,5 de lágrimas#La Biblia es más común"}, -- Rosario
 	[77] = {"77", "Mi pequeño unicornio", "Invencibilidad + 20 de daño por contacto"},
 	[79] = {"79", "La marca", "↑ +1,0 de daño#↑ +0,2 de velocidad#+1 corazón negro"}, -- La marca
 	[80] = {"80", "El pacto", "↑ +0,5 de daño#↑ +0,7 de lágrimas#+2 corazones negros"}, -- El pacto
 	[83] = {"83", "El clavo", "+ Medio corazón negro#↑ +0,7 de daño#↓ -0,18 de velocidad#Inflige daño por contacto#Rompe rocas"}, -- El clavo
 	[98] = {"98", "La reliquia", "Suelta 1 corazón de alma cada 7-8 habitaciones"},
-	[101] = {"101", "El halo", "↑ + 1 de vida#↑ +0,3 de daño#↑ +0,2 de lágrimas#↑ +0,38 de rango#↑ +0,3 de velocidad#↑ +0,5 de tamaño de lágrima"},
+	[101] = {"101", "El halo", "↑ + 1 de vida#↑ +0,3 de daño#↑ +0,2 de lágrimas#↑ +0,38 de alcance#↑ +0,3 de velocidad#↑ +0,5 de tamaño de lágrima"},
 	[106] = {"106", "Sr. Mega", "↑ x1,85 el daño de bomba #+5 bombas"}, -- Sr. Mega
-	[110] = {"110", "Lentillas de Mamá", "Probabilidad de disparar lágrimas congelantes#↑ +0,38 de rango#↑ +0,5 de tamaño de lágrima"},
-	[121] = {"121", "Champiñón raro (grande)", "↑ +1 contenedor de corazon vacío#↑ +1,0 de daño#↑ +0,25 de rango#↓ -0,2 de velocidad#↑ +0,5 de tamaño de lágrima"}, -- Champiñón raro (grande)
+	[110] = {"110", "Lentillas de Mamá", "Probabilidad de disparar lágrimas congelantes#↑ +0,38 de alcance#↑ +0,5 de tamaño de lágrima"},
+	[121] = {"121", "Champiñón raro (grande)", "↑ +1 contenedor de corazon vacío#↑ +1,0 de daño#↑ +0,25 de alcance#↓ -0,2 de velocidad#↑ +0,5 de tamaño de lágrima"}, -- Champiñón raro (grande)
 	[123] = {"123", "Manual de monstruos", "Familiar aleatorio#Se mantiene en la planta actual"}, -- Manual de monstruos
 	[138] = {"138", "Estigma", "↑ +1 de vida#↑ +0,3 de daño#Cura un corazón"},
 	[139] = {"139", "Bolso de Mamá", "Puedes tener 2 trinkets#Genera 1 trinket aleatorio"}, -- Bolso de Mamá
@@ -66,17 +66,17 @@ local repCollectibles={
 	[182] = {"182", "Corazón sagrado", "Lágrimas teledirigidas#↑ +1 de vida#↑ 230 % + 1 de daño#↓ -0,4 de lágrimas#↓ -0,25 de velocidad de disparo#↑ +0,5 de rango"},
 	[184] = {"184", "Santo Grial", "↑ +1 de vida#Permite volar#+1 de vida#Cura un corazón rojo"},
 	[188] = {"188", "Abel", "Copia tus movimientos#Dispara hacia el jugador#Inflige 3,5 de daño#7,5 de daño si eres Caín"},
-	[192] = {"192", "Telepatía para tontos", "Lágrimas teledirigidas en la habitación actual#↑ +3 de rango"}, -- Telepatía para tontos
+	[192] = {"192", "Telepatía para tontos", "Lágrimas teledirigidas en la habitación actual#↑ +3 de alcance"}, -- Telepatía para tontos
 	[193] = {"193", "¡CARNE!", "↑ +1 de vida#↑ +0,3 de daño#Cura un corazón"},
 	[194] = {"194", "Bola 8 mágica", "↑ +0,16 de velocidad de disparo#+1 carta#+15 % de probabilidad de que aparezca el Planetarium"},
-	[197] = {"197", "Zumo de Jesús", "↑ +0,5 de daño#↑ +0,38 de rango#↑ +0,5 de tamaño de lágrima"},
+	[197] = {"197", "Zumo de Jesús", "↑ +0,5 de daño#↑ +0,38 de alcance#↑ +0,5 de tamaño de lágrima"},
 	[203] = {"203", "Paquete modesto", "Probabilidad de duplicar los recolectables"}, -- Paquete modesto
 	[205] = {"205", "Enchufe puntual", "- medio corazón = Da una carga al objeto cuando pulsas espacio a cambio de medio corazón"}, -- Enchufe puntual
 	[206] = {"206", "Guillotina", "↑ +1 de daño#↑ + 0,33 de lágrimas#Tu cabeza es un orbital#Disparas desde la cabeza#La cabeza inflige 105 de daño por contacto"},
 	[211] = {"211", "Bebé araña", "Genera de tres a cinco arañas cuando te golpean"}, -- Bebé araña
-	[214] = {"214", "Anémico", "↑ +1,5 de rango#Deja creep en el suelo cuando te golpean"},
+	[214] = {"214", "Anémico", "↑ +1,5 de alcance#Deja creep en el suelo cuando te golpean"},
 	[218] = {"218", "Placenta", "Regenera la vida poco a poco#↑ +1 de vida#Cura 1 corazón"},
-	[224] = {"224", "El cuerpo de Cricket", "↑ Más lágrimas (puede sobrepasar el valor límite)#↓ -20 % de rango#Las lágrimas se dividen en 4 al impactar#Las lágrimas partidas infligen la mitad de daño"},
+	[224] = {"224", "El cuerpo de Cricket", "↑ Más lágrimas (puede sobrepasar el valor límite)#↓ -20 % de alcance#Las lágrimas se dividen en 4 al impactar#Las lágrimas partidas infligen la mitad de daño"},
 	[228] = {"228", "Perfume de Mamá", "Las lágrimas asustan a los enemigos#↑ Más lágrimas (puede sobrepasar el valor límite)"},
 	[230] = {"230", "Abadón", "↑ +1,5 de daño#↑ +0,2 de velocidad#Las lágrimas asustan#Convierte todos los corazones rojos en corazones negros#+2 corazones negros"}, -- Abadón
 	[232] = {"232", "Cronómetro", "Efecto ralentizante permanente para los enemigos#↑ +0,3 de velocidad"}, -- Cronómetro
@@ -84,13 +84,13 @@ local repCollectibles={
 	[245] = {"245", "20/20", "Duplica los disparos#↓ -25 % de daño"}, -- 20/20
 	[248] = {"248", "Mente colmena", "Las moscas y arañas azules duplican su daño#Las moscas y arañas de los familiares son más fuertes"},
 	[253] = {"253", "Costra mágica", "↑ +1 de suerte#↑ +1 de vida#Cura un corazón"},
-	[254] = {"254", "Coágulo", "↑ +1 de daño#↑ +1,5 de rango#!!! Solo se aplica al ojo izquierdo"},
+	[254] = {"254", "Coágulo", "↑ +1 de daño#↑ +1,5 de alcance#!!! Solo se aplica al ojo izquierdo"},
 	[256] = {"256", "Bombas calientes", "Las bombas queman#+5 bombas#Las bombas infligen daño por contacto"}, -- Bombas calientes
 	[261] = {"261", "Proptósis", "↑ +0,5 de daño#↓ Cuanto más rato esté la lágrima en el aire, menos daño infligirá#300 % de daño si disparas a quemarropa"}, -- Proptósis
 	[262] = {"262", "Página perdida 2", "+1 corazón negro#Al tener menos de 1 corazón dañas a todos los enemigos de la habitación#Los corazones negros infligen el doble de daño"}, -- Página perdida 2
-	[263] = {"263", "Runa de claridad", "Copia el efecto de la runa o la piedra de alma que tengas#Genera 1 runa aleatoria al cogerlo"}, -- Runa de claridad
+	[263] = {"263", "Runa limpia", "Copia el efecto de la runa o la piedra de alma que tengas#Genera 1 runa aleatoria al cogerlo"}, -- Runa de claridad
 	[273] = {"273", "Cerebro de Bob", "Familiar bomba lanzable#La explosión inflige 100 de daño#El daño ignora la armadura"}, -- Cerebro de Bob
-	[274] = {"274", "Mejor amigo", "Al ser golpeado, ganas un orbital de rango medio#Inflige 150 de daño cada segundo"}, -- Mejor amigo
+	[274] = {"274", "Mejor amigo", "Al ser golpeado, ganas un orbital de alcance medio#Inflige 150 de daño cada segundo"}, -- Mejor amigo
 	[276] = {"276", "Corazón de Isaac", "Gana un cuerpo invulnerable#!!! Cuando golpean al familiar corazón te hacen daño#El familiar se carga mientras disparas, soltando un grupo de lágrimas al soltar"}, -- Corazón de Isaac
 	[278] = {"278", "Vagabundo oscuro", "!!! Convierte:#1,5 corazones rojos en 1 corazón de alma/negro, araña, píldora, carta o runa"}, -- Vagabundo oscuro
 	[280] = {"280", "Sissy patas largas", "Invoca arañas azules en habitaciones hostiles aleatorias#Encanta a los enemigos al tocarlos"}, -- Sissy patas largas
@@ -106,27 +106,27 @@ local repCollectibles={
 	[296] = {"296", "Conversor", "!!! Convierte:#1 corazón de alma/negro en un corazón rojo"}, -- Conversor
 	[297] = {"297", "Caja de Pandora", "!!! UN SOLO USO#!!! Genera cosas en función del piso en el que se active:#B1: 2 corazones de alma #B2: 2 llaves y bombas#C1: 1 objeto de jefe#C2: B1+C1#D1: 4 corazones de alma#D2: 30 monedas#W1: 2 objetos de jefe#W2: Biblia#Sheol: 1 objeto del diablo+corazón negro#Catedral: 1 objeto de ángel + corazón de alma#Chest(cofre): 1 moneda#Home: Red Key(llave roja)"},
 	[300] = {"300", "Aries", "↑ +0,25 de velocidad#Tocar a los enemigos les daña#Correr lo suficiente evitará el daño por contacto"},
-	[307] = {"307", "Capricornio", "↑ +1 de vida / llave / bomba / moneda#↑ +0,93 de daño#↑ +0,1 de velocidad#↑ +0,75 de rango#Más lágrimas"}, -- Capricornio
+	[307] = {"307", "Capricornio", "↑ +1 de vida / llave / bomba / moneda#↑ +0,93 de daño#↑ +0,1 de velocidad#↑ +0,75 de alcance#Más lágrimas"}, -- Capricornio
 	[308] = {"308", "Aquario", "Deja un rastro de creep#El creep inflige 6 de daño cada segundo#El creep hace sinergia con el efecto de lágrima"}, -- Aquario
 	[314] = {"314", "Piernas gordas", "↑ +1 de vida#-0,4 de velocidad#Cura un corazón#Rompes rocas al caminar"},
 	[315] = {"315", "Atrayente extraño", "Lágrimas magnéticas#Afecta a los enemigos, recolectables y trinkets#Los objetos irán donde caiga la lágrima"},
 	[320] = {"320", "El único amigo de ???", "Mosca controlable#Inflige 3,5 de daño por contacto por tick"},
 	[326] = {"326", "Soplo de vida", "Mantén hasta que la barra del objeto se vacíe para ser invencible#Caerán rayos de luz sobre los enemigos que te toquen mientras eres invencible#!!! ¡No mantengas demasiado tiempo!"},
 	[328] = {"328", "El negativo", "↑ +1,0 de daño#Daña a todos los enemigos de la habitación si te golpean teniendo medio corazón de vida roja o ninguno"}, -- El negativo
-	[331] = {"331", "Cabeza de Dios", "Lágrimas teledirigidas#↑ +0,5 de daño#↑ +1,2 de rango#↓ -0,3 de lágrimas#↓ -30 % de velocidad de disparo#↑ +0,8 de tamaño de lágrima#Las lágrimas ganan un daño de aura"}, -- Cabeza de Dios
-	[336] = {"336", "Cebolla muerta", "Lágrimas espectrales y penetrantes#↑ +0,25 de rango#↓ -0,4 de velocidad de disparo#↑ +50 % de tamaño de lágrima"}, -- Cebolla muerta
-	[339] = {"339", "Imperdible", "↑ +1,5 de rango#↑ +0,16 de velocidad de disparo#+1 corazón negro#↑ +0,5 de tamaño de lágrima"},
+	[331] = {"331", "Cabeza de Dios", "Lágrimas teledirigidas#↑ +0,5 de daño#↑ +1,2 de alcance#↓ -0,3 de lágrimas#↓ -30 % de velocidad de disparo#↑ +0,8 de tamaño de lágrima#Las lágrimas ganan un daño de aura"}, -- Cabeza de Dios
+	[336] = {"336", "Cebolla muerta", "Lágrimas espectrales y penetrantes#↑ +0,25 de alcance#↓ -0,4 de velocidad de disparo#↑ +50 % de tamaño de lágrima"}, -- Cebolla muerta
+	[339] = {"339", "Imperdible", "↑ +1,5 de alcance#↑ +0,16 de velocidad de disparo#+1 corazón negro#↑ +0,5 de tamaño de lágrima"},
 	[342] = {"342", "Gorra azul", "↑ +1 de vida#↑ +0,7 de lágrimas#↓ -16 % de velocidad de disparo#Cura 2 corazones rojos"},
 	[344] = {"344", "Libro de cerillas", "+1 corazón negro#Genera de 2 a 3 bombas#Genera el trinket Cerilla {{Trinket41}}"}, -- Libro de cerillas
-	[345] = {"345", "Synthol", "↑ +1,0 de daño#↑ +1,5 de rango#↑ +0,5 de tamaño de lágrima"},
+	[345] = {"345", "Synthol", "↑ +1,0 de daño#↑ +1,5 de alcance#↑ +0,5 de tamaño de lágrima"},
 	[346] = {"346", "Snack", "↑ +1 de vida#Cura 1 corazón"}, -- Snack
 	[350] = {"350", "Choque tóxico", "Al entrar en cada habitación los enemigos se envenenan#Inmunidad a las nubes tóxicas"},
 	[352] = {"352", "Cañón de vidrio", "Dispara una gran lágrima espectral y penetrante ((+1 daño) X 10)#Cuando te golpean, el daño es de dos corazones#El cañón se rompe y debe volver a cargarse"}, -- Cañón de vidrio
-	[355] = {"355", "Perlas de Mamá", "↑ +1,25 de rango#↑ +1 de suerte#+1 corazón de alma#↑ +0,5 de tamaño de lágrima"}, -- Perlas de Mamá
+	[355] = {"355", "Perlas de Mamá", "↑ +1,25 de alcance#↑ +1 de suerte#+1 corazón de alma#↑ +0,5 de tamaño de lágrima"}, -- Perlas de Mamá
 	[360] = {"360", "Íncubo", "Familiar que dispara lágrimas con las mismas estadísticas y efectos que las tuyas#Inflige 100 % de daño al jugar con Lilith#Si no, inflige el 75 % de daño"},
 	[366] = {"366", "Bombas de dispersión", "+5 bombas#Hace que las bombas exploten en 4-5 bombas pequeñas"},
-	[369] = {"369", "Continuum", "↑ +3,0 de rango#↑ +1,5 de tamaño de lágrima#Las lágrimas atraviesan las paredes y aparecen por la pared contraria"}, -- Continuum
-	[370] = {"370", "Sr. muñequita", "↑ +0,7 de lágrimas#↑ +1,5 de rango#↑ +0,5 de tamaño de lágrima#Genera 3 corazones aleatorios al cogerlo"}, -- Mr. Dolly
+	[369] = {"369", "Continuum", "↑ +3,0 de alcance#↑ +1,5 de tamaño de lágrima#Las lágrimas atraviesan las paredes y aparecen por la pared contraria"}, -- Continuum
+	[370] = {"370", "Sr. muñequita", "↑ +0,7 de lágrimas#↑ +1,5 de alcance#↑ +0,5 de tamaño de lágrima#Genera 3 corazones aleatorios al cogerlo"}, -- Mr. Dolly
 	[372] = {"372", "Bebé cargado", "Posibilidad de dejar caer una batería pequeña o de congelar a los enemigos#Puede agregar una carga a tu objeto activable"}, -- Bebé cargado
 	[374] = {"374", "Luz sagrada", "Posibilidad de disparar una lágrima sagrada, que hará que caigan rayos de luz desde el cielo#El rayo inflige tres veces tu daño"},
 	[375] = {"375", "Sombrero de Host", "20 % de posibilidad de evitar lágrimas#Inmune a explosiones"}, -- Host hat
@@ -134,14 +134,14 @@ local repCollectibles={
 	[382] = {"382", "Bola amigable", "Se lanza a los enemigos para capturarlos#Cuando vuelvas a usarlo lo revivirá como aliado#Pasar por encima de la bola después de la captura recargará instantáneamente el objeto"}, -- Bola amigable
 	[384] = {"384", "Pequeño Gurdy", "Rebota por la habitación#Inflige de 5 a 20 de daño por contacto dependiendo de cuánto lo hayas cargado"},
 	[393] = {"393", "Beso de serpiente", "Posibilidad de lanzar lágrimas venenosas#Envenena al tocar#20 % de posibilidad de que los enemigos envenenados dejen caer un corazón negro"},
-	[394] = {"394", "Marcado", "Dispara lágrimas automáticamente dirigidas por la cruz roja del suelo que puedes controlar#↑ +0,7 de lágrimas#↑ +0,3 de tamaño de lágrima#↑ +3,0 de rango#Los familiares disparan hacia la cruz"},
+	[394] = {"394", "Marcado", "Dispara lágrimas automáticamente dirigidas por la cruz roja del suelo que puedes controlar#↑ +0,7 de lágrimas#↑ +0,3 de tamaño de lágrima#↑ +3,0 de alcance#Los familiares disparan hacia la cruz"},
 	[395] = {"395", "Tecnología X", "Cargas y disparas anillos láser que viajan a través de la habitación#Daño basado en la carga#100 % de daño al cargarlo al completo"}, -- Tecnología X
-	[397] = {"397", "Rayo tractor", "Las lágrimas viajan en línea recta siguiendo un rayo de luz, pero se mueven hacia los lados basándose en tu movimiento #↑ +0,5 de lágrimas#↑ +1,5 de rango#↑ +0,16 de velocidad de disparo#↑ +0,5 de tamaño de lágrima"},
+	[397] = {"397", "Rayo tractor", "Las lágrimas viajan en línea recta siguiendo un rayo de luz, pero se mueven hacia los lados basándose en tu movimiento #↑ +0,5 de lágrimas#↑ +1,5 de alcance#↑ +0,16 de velocidad de disparo#↑ +0,5 de tamaño de lágrima"},
 	[399] = {"399", "Fauces del vacío", "Tras disparar lágrimas durante 3 segundos, crea un anillo negro que daña a los enemigos que están dentro de él"}, -- Maw of the Void
 	[401] = {"401", "Explosivo", "Posibilidad de disparar bombas pegajosas#Las lágrimas pegadas infligen daño al impactar"},
 	[404] = {"404", "Bebé pedorro", "Bloquea los proyectiles#Si le golpean se tirará un pedo, lo que envenenará, empujará o encantará a los enemigos cercanos#Los pedos infligen 5-6 de daño"},
 	[405] = {"405", "Error de juego", "{{Throwable}} {{ColorOrange}}Lanzable{{CR}} (usar dos veces el botón de disparo)#Cambia los enemigos y recolectables que toca"}, -- Error de juego
-	[407] = {"407", "Pureza", "↑ Potencia una estadística dependiendo del color del aura que te rodea#Al recibir daño cambia el color del aura#{{ColorRed}}Rojo{{CR}} = +4,0 de daño#{{ColorBlue}}Azul{{CR}} = -4 de retraso de lágrima#{{ColorYellow}}Amarillo{{CR}} = +0,5 de velocidad#{{ColorOrange}}Naranja{{CR}} = +3,0 de rango, +1 de tamaño de lágrima"},
+	[407] = {"407", "Pureza", "↑ Potencia una estadística dependiendo del color del aura que te rodea#Al recibir daño cambia el color del aura#{{ColorRed}}Rojo{{CR}} = +4,0 de daño#{{ColorBlue}}Azul{{CR}} = -4 de retraso de lágrima#{{ColorYellow}}Amarillo{{CR}} = +0,5 de velocidad#{{ColorOrange}}Naranja{{CR}} = +3,0 de alcance, +1 de tamaño de lágrima"},
 	[408] = {"408", "Athame", "Al recibir daño, aparece un anillo negro alrededor de Isaac que inflige daño por contacto"},
 	[416] = {"416", "Bolsillos profundos", "Genera de 1 a 3 monedas si no ha habido recompensa en la habitación#Aumenta el máximo de monedas a 999"}, -- Bolsillos profundos
 	[417] = {"417", "Súcubo", "Familiar que rebota con un aura que inflige 7,5-10 de daño cada segundo a los enemigos que estén dentro de ella#↑ Al quedarse sobre el aura, +50 % de daño"},
@@ -151,12 +151,12 @@ local repCollectibles={
 	[431] = {"431", "Bebé multidimensional", "Sigue tus movimientos con 0,66 segundos de retraso#Las lágrimas que lo traspasen se dividen y ganan una mejora de velocidad"},
 	[437] = {"437", "D7", "Vuelve a generar enemigos y te permite conseguir recompensas al acabar la habitación"},
 	[440] = {"440", "Piedra en el riñón", "De manera aleatoria dejas de disparar hasta que lanzas un grupo de lágrimas y piedra del riñón"},
-	[442] = {"442", "Corona del príncipe oscuro", "!!! Al tener un corazón rojo lleno:#↑ +1,5 de rango#↑ +2,0 de lágrimas#↑ +0,2 de velocidad de disparo#(No funciona con personajes que no tienen vida roja"},
+	[442] = {"442", "Corona del príncipe oscuro", "!!! Al tener un corazón rojo lleno:#↑ +1,5 de alcance#↑ +2,0 de lágrimas#↑ +0,2 de velocidad de disparo#(No funciona con personajes que no tienen vida roja"},
 	[444] = {"444", "Lápiz", "Cada 15 lágrimas disparas un grupo de lágrimas"},
-	[448] = {"448", "Trozo de vidrio", "Cuando te golpean, posibilidad de ganar ↑ +5 de rango, soltar lágrimas rojas o dejar un rastro de creep sangriento o generar un corazón rojo"}, -- Trozo de vidrio
+	[448] = {"448", "Trozo de vidrio", "Cuando te golpean, posibilidad de ganar ↑ +5 de alcance, soltar lágrimas rojas o dejar un rastro de creep sangriento o generar un corazón rojo"}, -- Trozo de vidrio
 	[451] = {"451", "Tapete de Tarot", "Genera una carta aleatoria#Duplica el uso de cualquier carta#Algunas cartas ganan un efecto adicional"}, -- Tapete de Tarot
-	[453] = {"453", "Fractura compuesta", "Lágrimas de hueso#Al golpear, las lágrimas se separan en 1-3 trozos de hueso pequeños#↑ +0,38 de rango#+1,0 de tamaño de lágrima"},
-	[455] = {"455", "Moneda perdida de Papá", "↑ +0,38 de rango#Deja caer un penique de la suerte"},
+	[453] = {"453", "Fractura compuesta", "Lágrimas de hueso#Al golpear, las lágrimas se separan en 1-3 trozos de hueso pequeños#↑ +0,38 de alcance#+1,0 de tamaño de lágrima"},
+	[455] = {"455", "Moneda perdida de Papá", "↑ +0,38 de alcance#Deja caer un penique de la suerte"},
 	[456] = {"456", "Pan mohoso", "↑ +1 de vida#Cura un corazón"},
 	[464] = {"464", "Glifo de balance", "+2 corazones de alma#Los enemigos campeones y las habitaciones generan recolectables más frecuentemente#La prioridad de los recolectables varía en función de lo que más necesites"}, -- Glifo de balance
 	[472] = {"472", "Rey bebé", "Le siguen otros familiares y dispara automaticamente a los enemigos#No se mueve mientras disparas#Se teletransporta a ti cuando dejas de disparar"},
@@ -192,7 +192,7 @@ local repCollectibles={
 	[569] = {"569", "Juramento de sangre", "Te apuñala al inicio de la planta, y te deja con medio corazón rojo#Incrementa las estadísticas de la planta:#↑ Daño + 0,15 * Corazones perdidos^2#↑ Velocidad + 0,05*Corazones perdidos"}, --  Juramento de sangre
 	[570] = {"570", "Galleta de plastilina", "Garantiza lágrimas multicolores con efectos aleatorios"}, --  Galleta de plastilina
 	[571] = {"571", "Calcetines de huérfano", "Evita el daño del creep y de los pinchos del suelo#↑ +0,3 de velocidad#↑ +2 corazones de alma"}, --  Calcetines de huérfano
-	[572] = {"572", "El ojo de lo oculto", "Lágrimas controlables#↑ +1 de daño#↑ +7,5 de rango#↓ -0,16 de velocidad de disparo"}, --  El ojo de lo oculto
+	[572] = {"572", "El ojo de lo oculto", "Lágrimas controlables#↑ +1 de daño#↑ +7,5 de alcance#↓ -0,16 de velocidad de disparo"}, --  El ojo de lo oculto
 	[573] = {"573", "Corazón inmaculado", "+1 corazón rojo#↑ +20 % de daño#Vida al completo#Posibilidad de disparar lágrimas espectrales que orbitan"}, --  Corazón inmaculado
 	[574] = {"574", "Ostensorio", "Gana dos auras circulares que dañan a los enemigos#El aura interna inflige más daño"}, --  Ostensorio
 	[575] = {"575", "El intruso", "Un familiar arácnido dentro de tu cabeza, dispara 4 lágrimas ralentizantes#Al recibir daño, puede salir de tu cabeza"}, --  El intruso
@@ -245,7 +245,7 @@ local repCollectibles={
 	[622] = {"622", "Génesis", "{{Warning}} UN SOLO USO {{Warning}}#Elimina todos tus objetos y recolectables#Te teletransporta a una habitación única con recolectables, cofres y una trampilla#Por cada objeto perdido, las habitaciones del tesoro {{TreasureRoom}} muestran 3 tipos de objetos entre los que escoger"}, --  Génesis
 	[623] = {"623", "Llave afilada", "+5 llaves#Lanza tus llaves para infligir daño, destrozar obstáculos y abrir puertas"}, --  Llave afilada
 	[624] = {"624", "Paquete de refuerzo", "Genera 5 cartas aleatorias"}, --  Paquete de refuerzo
-	[625] = {"625", "Mega seta", "Te haces gigante durante 30 segundos#Aumenta el daño y el rango#Otorga invulnerabilidad y habilidad para destrozar enemigos y obstáculos#El efecto se mantiene entre habitaciones"}, --  Mega seta
+	[625] = {"625", "Mega seta", "Te haces gigante durante 30 segundos#Aumenta el daño y el alcance#Otorga invulnerabilidad y habilidad para destrozar enemigos y obstáculos#El efecto se mantiene entre habitaciones"}, --  Mega seta
 	[626] = {"626", "Primera parte del cuchillo", "Primera parte del cuchillo familiar"}, --  Primera parte del cuchillo
 	[627] = {"627", "Segunda parte del cuchillo", "Al combinarla con la Primera parte del cuchillo {{Collectible627}}, crea un cuchillo familiar#Daña a los enemigos#Abre la puerta de carne"}, --  Segunda parte del cuchillo
 	[628] = {"628", "Certificado de defunción", "{{Warning}} UN SOLO USO {{Warning}}#Te lleva a un piso que contiene todos los objetos del juego#Tras coger un objeto, te devuelve a la habitación en la que estabas"}, --  Certificado de defunción
@@ -279,7 +279,7 @@ local repCollectibles={
 	[656] = {"656", "Damocles", "<Item not obtainable>"}, -- Damocles
 	[657] = {"657", "Vasculitis", "Los enemigos sueltan lágrimas al morir que aplica tus efectos de lágrima"}, --  Vasculitis
 	[658] = {"658", "Célula gigante", "Al recibir daño genera mini Isaacs#Persiguen y disparan a los enemigos cercanos"}, --  Célula gigante
-	[659] = {"659", "Tropicamida", "↑ +1,5 de rango#Aumenta el tamaño de la lágrima"}, --  Tropicamida
+	[659] = {"659", "Tropicamida", "↑ +1,5 de alcance#Aumenta el tamaño de la lágrima"}, --  Tropicamida
 	[660] = {"660", "Lectura de cartas", "Genera dos portales al inicio de cada planta#Los portales desaparecen al dejar la habitación#{{ColorRed}}Rojo: {{CR}}Sala del jefe #{{ColorYellow}}Amarillo: {{CR}}Sala del tesoro#{{ColorBlue}}Azul: {{CR}}Habitación secreta"}, --  Lectura de cartas
 	[661] = {"661", "Quintillizos", "Al morir los enemigos, se genera en ese lugar un familiar estático que dispara#Hasta 5 familiares"}, --  Quintillizos
 	[662] = {"662", "Pacifista (Cut item)", "<Item does not exist>"}, -- Pacifista (Cut item)
@@ -289,7 +289,7 @@ local repCollectibles={
 	[666] = {"666", "", "<Item does not exist>"},
 	[667] = {"667", "Hombre de paja", "Genera un personaje como de Keeper#Si muere, genera arañas azules#El objeto acaba desapareciendo"}, --  Hombre de paja
 	[668] = {"668", "Nota de papá", "Inicia la sequencia de acceso a la planta de Casa"}, --  Nota de papá
-	[669] = {"669", "Salchicha", "↑ +0,5 de daño#↑ +0,2 de velocidad#↑ +1,2 de velocidad de disparo#↑ +0,16 de rango#↑ +1 de suerte"}, --  Salchicha
+	[669] = {"669", "Salchicha", "↑ +0,5 de daño#↑ +0,2 de velocidad#↑ +1,2 de velocidad de disparo#↑ +0,16 de alcance#↑ +1 de suerte"}, --  Salchicha
 	[670] = {"670", "¿Opciones?", "Si limpiar una habitación genera una recompensa, habrá dos para elegir#Coger una hace que la otra desaparezca"}, --  ¿Opciones?
 	[671] = {"671", "Corazón de caramelo", "Otorga una mejora permanente aleatoria de estadísticas al curarse"}, --  Corazón de caramelo
 	[672] = {"672", "Una libra de carne", "Los pactos del diablo ahora cuestan monedas#Los objetos de las tiendas cuestan vida#Los recolectables en las tiendas son gratis pero están rodeados con pinchos"}, --  Una libra de carne
@@ -336,7 +336,7 @@ local repCollectibles={
 	[713] = {"713", "Sumptorium", "Mantener el botón de disparar convierte, cada 2 segundos, medio corazón en familiares que pueden ser destrozados#Activar el objeto convierte de nuevo a los familiares en corazones#El tipo de corazón cambia el comportamiento del familiar"}, --  Sumptorio
 	[714] = {"714", "Llamado", "Devuelve el cuerpo de Forgotten desde culquier distancia"}, --  Recuperar
 	[715] = {"715", "Frasco", "Guarda una caca bomba dentro para usarla más tarde"}, --  Bote
-	[716] = {"716", "Bolsa de Keeper", "Aumenta el rango, la velocidad, o el daño al comprar cosas de la tienda#Genera 3 monedas y llave al recogerlo"}, --  El saco de Keeper
+	[716] = {"716", "Bolsa de Keeper", "Aumenta el alcance, la velocidad, o el daño al comprar cosas de la tienda#Genera 3 monedas y llave al recogerlo"}, --  El saco de Keeper
 	[717] = {"717", "Parientes de Keeper", "Las rocas y jarrones generan 2 arañas azules al romperlos"}, --  Pariente de Keeper
 	[718] = {"718", "Keepers Robe (Cut item)", "<Item does not exist>"}, -- Keepers Robe (Cut item)
 	[719] = {"719", "Caja de Keeper", "Genera un objeto o recolectable aleatorio de tienda"}, --  La caja de Keeper
@@ -360,14 +360,14 @@ EID.descriptions["spa"].birthright ={
 {"Isaac", "", "Los objetos cambian entre dos objetos"},
 {"Magdalene", "Magdalena", "↑ +1 corazón, límite de corazones aumentado a 18"},
 {"Cain", "Caín", "↑ +1 de suerte#Todos los pisos tienen Arcades garantizados menos Cofre y Cuarto oscuro#Mejores arcades"},
-{"Judas", "", "{{Collectible34}}El Libro de Belial actúa como un objeto pasivo, similar a {{Collectible584}}El Libro de las Virtudes, el aumento de daño escala con la carga de los objetos activos"},
+{"Judas", "", "{{Collectible34}} El Libro de Belial actúa como un objeto pasivo, similar a {{Collectible584}} El Libro de las Virtudes, el aumento de daño escala con la carga de los objetos activos#Varios objetos activos reciben interacciones especiales"},
 {"???", "", "Los corazones de alma recibidos de aumentos de vida se duplican"},
 {"Eve", "Eva", "Whore of Babylon se activa sin depender de la vida#Dead Bird se activa sin recibir daño"},
 {"Samson", "Sansón", "Bloody Lust puede ganar 4 mejoras de daño hasta un máximo de +14,0"},
 {"Azazel", "", "El Brimstone de Azazel es más ancho, como el de Mega Blast#No varía el daño"},
 {"Lazarus", "Lázaro", "Al morir, revive como Lázaro resucitado#Lázaro resucitado gana una mejora de daño de +21,6 que se pierde poco a poco"},
 {"Eden", "Edén", "Genera 3 objetos aleatorios de pools de objetos aleatorias#Solo se puede coger uno"},
-{"The Lost", "El Perdido", "Evita que aparezcan los objetos inútiles para The Lost#Ejemplos: los que dan vida, vuelo, lágrimas espectrales o los que se activan al recibir daño"},
+{"The Lost", "El Perdido", "Evita la aparición de objetos inútiles para El Perdido#Ejemplos: Aumentos de daño, vuelo, lágrimas espectrales o los que requieren daño para activarse"},
 {"Lazarus Risen", "Lázaro Resucitado", "Otorga una mejora de daño de +21,6 que se pierde poco a poco"},
 {"Black Judas", "Judas Oscuro", "{{Collectible34}} El Libro de Belial actúa como un objeto pasivo, similar a {{Collectible584}} El Libro de las Virtudes, el aumento de daño escala con la carga de los objetos activos"},
 {"Lilith", "", "Los familiares se colocan frente a Lilith, mejor control de ataque"},
@@ -385,7 +385,7 @@ EID.descriptions["spa"].birthright ={
 {"Tainted ???", "??? contaminado", "Aumenta el número máximo de cacas que puedes llevar a 29"},
 {"Tainted Eve", "Eva contaminada", "Los coágulos generados de corazones rojos sueltan medio corazón rojo que desaparece al morir"},
 {"Tainted Samson", "Sansón contaminado", "El contador del modo berserker gana 3 segundos en lugar de 1 cuando Sansón contaminado mata a un enemigo"},
-{"Tainted Azazel", "Azazel contaminado", "El tamaño de Hemoptsis {{Collectible726}}, el ataque de Azazel contaminado es el doble de grande"},
+{"Tainted Azazel", "Azazel contaminado", "El tamaño de Hemoptisis {{Collectible726}}, el ataque de Azazel contaminado es el doble de grande"},
 {"Tainted Lazarus", "Lázaro contaminado", "El Lázaro que no se esté usando estará presente como un fantasma, siendo controlado como J&E#No puede recibir daño ni interactuar con el entorno#La versión fantasma hace su daño al 25%"},
 {"Tainted Eden", "Edén contaminado", "Los objetos pasivos conseguidos antes de Primogenitura no cambian al recibir daño"},
 {"Tainted Lost", "El Perdido contaminado", "Otorga una vida extra que revive a Tainted Lost (Lost contaminado) en la misma habitación y causa 200 de daño a los enemigos cercanos#Puede golpear al mismo enemigo varias veces"},
@@ -459,7 +459,7 @@ local repTrinkets={
 	[1] = {"1", "Moneda tragada", "Generas monedas cuando te golpean"},
 	[10] = {"10", "Gusano ondulante", "Las lágrimas se mueven en ondas#↑ +0,4 de lágrimas#Otorga lágrimas espectrales"}, -- Gusano ondulante
 	[11] = {"11", "Gusano anillo", "Las lágrimas se mueven en espirales a gran velocidad#Otorga lágrimas espectrales"}, -- Gusano anillo
-	[26] = {"26", "Gusano de gancho", "Las lágrimas se mueven en ángulos#↑ +1.5 rango#Otorga lágrimas espectrales"}, -- Gusano de gancho
+	[26] = {"26", "Gusano de gancho", "Las lágrimas se mueven en ángulos#↑ +1.5 de alcance#Otorga lágrimas espectrales"}, -- Gusano de gancho
 	[33] = {"33", "Cordón umbilical", "Al tener medio corazón, aparece un pequeño Steven#Gran posibilidad de que aparezca un familiar Géminis al recibir daño"}, -- Cordón umbilical
 	[49] = {"49", "Moneda sangrienta", "25 % de posibilidad de dejar caer medio corazón al coger monedas"}, -- Moneda sangrienta
 	[50] = {"50", "Moneda quemada", "25 % de posibilidad de dejar una bomba al coger monedas"}, -- Moneda quemada
@@ -561,7 +561,7 @@ local repCards={
 	[68] = {"68", "XII - ¿El Colgado?", "Te conviertes en Keeper durante 30 segundos#Otorga disparo triple y menos velocidad#Los enemigos asesinados dejan caer monedas"},
 	[69] = {"69", "XIII - ¿Muerte?", "Otorga el efecto de Book of the Dead {{Collectible545}} (Libro de los muertos)#(Genera entidades de hueso por cada enemigo eliminado en la habitación)"},
 	[70] = {"70", "XIV - ¿Templanza?", "Aplica 5 efectos de píldora aleatorios"},
-	[71] = {"71", "XV - ¿El Diablo?", "Otorga el efecto de Bible {{Collectible33}} (la Biblia)#Genera un  familiar Serafín {{Collectible390}}# Dura 30 segundos"},
+	[71] = {"71", "XV - ¿El Diablo?", "Otorga el efecto de {{Collectible33}} La Biblia#Genera un familiar Serafín {{Collectible390}}# Dura 30 segundos"},
 	[72] = {"72", "XVI - ¿La Torre?", "Genera 6 grupos de rocas y obstáculos aleatorios"},
 	[73] = {"73", "XVII - ¿Las Estrellas?", "Elimina el objeto pasivo más antiguo#Genera 2 objetos aleatorios de la pool de la sala actual"},
 	[74] = {"74", "XVIII - ¿La Luna?", "Te teletransporta a la sala ultrasecreta#El camino de vuelta será de habitaciones rojas"},
@@ -671,9 +671,14 @@ EID.descriptions["spa"].CraftingBestQuality = "Mejor Calidad:"
 
 EID.descriptions["spa"].CraftingHideKey = "Oculto:"
 EID.descriptions["spa"].CraftingPreviewKey = "Prevista:"
+EID.descriptions["spa"].CraftingPreviewBackup = "!!! Si este objeto está bloqueado, se convertirá en"
 
 EID.descriptions["spa"].CraftingResults = "(Desplazar: mantén {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Bloquear: {{ButtonX}}, Refrescar: {{ButtonB}})"
 
+EID.descriptions["spa"].BlankCardCharge = "Cargas de Carta en Blanco:" 
+EID.descriptions["spa"].BlankCardQCard = "Te teletransporta a la habitación de I Am Error#Tanto Carta en blanco como la ¿? carta se destruirán" 
+EID.descriptions["spa"].ClearRuneCharge = "Cargas de Runa limpia:" 
+EID.descriptions["spa"].PlaceboCharge = "Cargas de Placebo:" 
 
 EID.descriptions["spa"].CraftingResults = "(Desplazar: Mantén {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Bloquear: {{ButtonX}}, Reiniciar: {{ButtonB}})"
 EID.descriptions["spa"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}El \"Cálculo de Recetas\" actualmente no funciona con mods que añaden objetos!#{{ColorRed}}Por favor desinstala los mods de objetos o desactiva las descripciones de Bag of Crafting en la configuración"
