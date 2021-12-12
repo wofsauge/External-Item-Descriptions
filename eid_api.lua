@@ -339,13 +339,14 @@ function EID:getLegacyModDescription(Type, Variant, SubType)
 end
 
 -- returns the specified object table in the current language.
--- falls back to english if it doesnt exist
-function EID:getDescriptionEntry(objTable, objID)
+-- falls back to english if it doesnt exist, unless specified otherwise
+function EID:getDescriptionEntry(objTable, objID, noFallback)
 	if not objID then
 		return EID.descriptions[EID.Config["Language"]][objTable] or EID.descriptions["en_us"][objTable]
 	else
 		local translatedTable = EID.descriptions[EID.Config["Language"]][objTable]
-		return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID])
+		if noFallback then return translatedTable and translatedTable[objID]
+		else return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]) end
 	end
 end
 
