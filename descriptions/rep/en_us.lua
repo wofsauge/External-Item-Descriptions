@@ -14,7 +14,7 @@ local repCollectibles={
 	[2] = {"2", "The Inner Eye", "Triple shot#↓ -49% Fire Rate down"},
 	[5] = {"5", "My Reflection", "Gives tears a boomerang effect#↑ +1.5 Range up#↑ +60% additional Range up#↑ +0.6 Shot Speed up#"}, -- My Reflection
 	[6] = {"6", "Number One", "↑ +1.5 Tears up#↓ -1.5 Range down#↓ -20% additional Range down#↓ -75% Tear Height"}, -- Number One
-	[12] = {"12", "Magic Mushroom", "↑ +1 Health up#Full health#↑ +0.3 Damage up#↑ +50% Damage Multiplier#↑ +1.5 Range up#↑ +0.3 Speed up"}, -- Magic Mushroom
+	[12] = {"12", "Magic Mushroom", "↑ +1 Health up#Full health#↑ +0.3 Damage up#↑ +50% Damage Multiplier#↑ +1.5 Range up#↑ +0.3 Speed up#Size up"}, -- Magic Mushroom
 	[13] = {"13", "The Virus", "Poison touch#↑ +0.2 Speed up"}, -- The Virus
 	[14] = {"14", "Roid Rage", "↑ +0.3 Speed up#↑ +1.5 Range up"}, -- Roid Rage
 	[18] = {"18", "A Dollar", "+100 coins"}, -- A Dollar
@@ -45,7 +45,7 @@ local repCollectibles={
 	[78] = {"78", "Book of Revelations", "+1 Soul Heart#A Horseman replaces the current floor's boss if used#↑ +17.5% {{DevilRoom}}Devil or {{AngelRoom}}Angel Room chance"}, -- Book of Revelations
 	[79] = {"79", "The Mark", "↑ +1 Damage up#↑ +0.2 Speed up#+1 Black Heart"}, -- The Mark
 	[80] = {"80", "The Pact", "↑ +0.5 Damage up#↑ +0.7 Tears up#+2 Black Hearts"}, -- The Pact
-	[83] = {"83", "The Nail", "+ Half Black Heart#↑ +2 Damage up#↓ -0.18 Speed down#Deal contact damage#Crush rocks"}, -- The Nail
+	[83] = {"83", "The Nail", "+ Half Black Heart#↑ +2 Damage up#↓ -0.18 Speed down#Deal contact damage#Destroy rocks when walking over them"}, -- The Nail
 	[91] = {"91", "Spelunker Hat", "Reveals the room type of up to 2 adjacent rooms#Can also reveal Secret Rooms, Super Secret Rooms and Mini-Boss Rooms#Blocks projectiles falling from above"}, -- Spelunker Hat
 	[98] = {"98", "The Relic", "Spawns 1 Soul Heart every 7-8 rooms"}, -- The Relic
 	[101] = {"101", "The Halo", "↑ +1 Health up#↑ +0.3 Damage up#↑ +0.2 Tears up#↑ +0.38 Range up#↑ +0.3 Speed up#Heals 1 Red Heart"}, -- The Halo
@@ -216,7 +216,7 @@ local repCollectibles={
 	[569] = {"569", "Blood Oath", "Stabs you at the beginning of each floor, draining all but one half red heart#Increases stats for the floor:#↑ Damage + 0.15 * HeartsLost^2#↑ Speed + 0.05*HeartsLost"}, -- Blood Oath
 	[570] = {"570", "Playdough Cookie", "Grants multicolored tears with different status effects"}, -- Playdough Cookie
 	[571] = {"571", "Orphan Socks", "Prevents damage from creep and floor spikes#↑ +0.3 Speed up#↑ +2 Soul Hearts"}, -- Orphan Socks
-	[572] = {"572", "Eye of the Occult", "Controllable tears#↑ +1 Damage up#↑ +7.5 Range up#↓ -0.16 Shot Speed down"}, -- Eye of the Occult
+	[572] = {"572", "Eye of the Occult", "Controllable tears#↑ +1 Damage up#↑ +2 Range up#↓ -0.16 Shot Speed down"}, -- Eye of the Occult
 	[573] = {"573", "Immaculate Heart", "+1 Health up#Full health#↑ +20% Damage up#Chance to fire orbiting spectral tears"}, -- Immaculate Heart
 	[574] = {"574", "Monstrance", "Gain two circular auras that damage enemies#The inner aura deals more damage"}, -- Monstrance
 	[575] = {"575", "The Intruder", "A familiar buried inside your head, firing 4 slowing tears#Upon taking damage, can exit the head"}, -- The Intruder
@@ -349,7 +349,7 @@ local repCollectibles={
 	[702] = {"702", "Vengeful Spirit", "After taking damage, spawns an orbital wisp that lasts for the entire floor#Maximum of 6#They fire tears but do not block shots"}, -- Vengeful Spirit
 	[703] = {"703", "Esau Jr.", "Swaps between the current character and Esau Jr., who has 3 Black Hearts, +2 damage and flight#Characters have independent items and health#{{Warning}} Dying as either character ends the run"}, -- Esau Jr.
 	[704] = {"704", "Berserk!", "Berserk mode for 5 seconds:#↑ +0.4 Speed up#↑ Tears up#↑ +3 Damage up#Restricts attacks to a melee weapon"}, -- Berserk!
-	[705] = {"705", "Dark Arts", "When used, gain ↑ +1 Speed and ability to walk through enemies/bullets for 1 second#Shortly increases damage by 1 for each enemy touched#Damages touched enemies with 3x your damage"}, -- Dark Arts
+	[705] = {"705", "Dark Arts", "Gain +1 Speed and walk through enemies and bullets for 1 second#On touch, deal 2x your damage + 3.5 damage per touched enemy#Explosion on effect end that deals damage equal to how much you dealt"}, -- Dark Arts
 	[706] = {"706", "Abyss", "Destroys all items in the room and spawns an attack fly familiar for each#Effects of fly depends on the items"}, -- Abyss
 	[707] = {"707", "Supper", "↑ +1 Health up#Heals 1 Red Heart"}, -- Supper
 	[708] = {"708", "Stapler", "↑ +1 Damage up#Prevents Isaac from firing tears from one eye"}, -- Stapler
@@ -490,7 +490,7 @@ local repTrinkets={
 	[32] = {"32", "Liberty Cap", "25% chance for a random mushroom effect per room"}, -- Liberty Cap
 	[33] = {"33", "Umbilical Cord", "At half a Red Heart or less, you gain#{{Blank}} {{Collectible100}}Little Steven#High chance to spawn Gemini familiars for the room when taking damage"}, -- Umbilical Cord
 	[39] = {"39", "Cancer", "↑ +1 Fire Rate up"},
-	[48] = {"48", "A Missing Page", "When getting hit, chance to damage all enemies in the room#Black Hearts and {{Collectible35}}Necronomicon-like effects deal double damage"}, -- A Missing Page
+	[48] = {"48", "A Missing Page", "When hit, 5% chance to deal 80 damage to all enemies in the room#Black Hearts and {{Collectible35}}Necronomicon-like effects deal 2x damage"}, -- A Missing Page
 	[49] = {"49", "Bloody Penny", "25% chance to drop half a heart when picking up coins"}, -- Bloody Penny
 	[50] = {"50", "Burnt Penny", "25% chance to drop a bomb when picking up coins"}, -- Burnt Penny
 	[51] = {"51", "Flat Penny", "25% chance to drop a key when picking up coins"}, -- Flat Penny
@@ -575,11 +575,19 @@ EID.descriptions["en_us"].quadrupledTrinket = "Effect quadrupled!"
 
 -- Most trinkets that can be doubled or tripled just have the numbers in their description multiplied
 -- A few trinkets have odd edge cases where their effect completely changes, can only be doubled, or is different depending on if it's Mom's Box or Golden
-EID.descriptions["en_us"].momsBoxEffects = {
-}
 EID.descriptions["en_us"].goldenTrinketEffects = {
-}
-EID.descriptions["en_us"].goldenMomsBoxEffects = {
+	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
+	[46] = { "half a heart", "a heart", "one and a half hearts" },
+	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
+	[53] = {
+		"-{{ColorGold}}30{{CR}}% boss health#Heals {{ColorGold}}2{{CR}} Red Hearts when entering a {{BossRoom}}Boss Room#{{ColorGold}}Removable!",
+		"-{{ColorGold}}30{{CR}}% boss health#Heals {{ColorGold}}2{{CR}} Red Hearts when entering a {{BossRoom}}Boss Room#!!! Once picked up, it can't be removed#Only removeable with {{Trinket41}}Match Stick or gulping",
+		"-{{ColorGold}}30{{CR}}% boss health#Heals {{ColorGold}}3{{CR}} Red Hearts when entering a {{BossRoom}}Boss Room#{{ColorGold}}Removable!",
+	},
+	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
+	[64] = { "Worm's stat boosts are doubled", "Worm's stat boosts are tripled", "Worm's stat boosts are quadrupled", },
+	-- Error (append): Same behavior as Rainbow Worm
+	[75] = { "Trinket effect is doubled if possible", "Trinket effect is tripled if possible", "Trinket effect is quadrupled if possible", },
 }
 
 -- Card Buffs caused by Tarot Cloth
@@ -794,7 +802,8 @@ local repCards={
 	[29] = {"29", "Ace of Spades", "Turns all pickups, chests and non-boss enemies into keys"}, -- Ace of Spades
 	[30] = {"30", "Ace of Hearts", "Turns all pickups, chests and non-boss enemies into hearts"}, -- Ace of Hearts
 	[39] = {"39", "Algiz", "Invincibility for 20 seconds"}, -- Algiz
-	[51] = {"51", "Holy Card", "Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken"}, -- Holy card
+	[51] = {"51", "Holy Card", "Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken"}, -- Holy Card
+	[52] = {"52", "Huge Growth", "↑ +7 Damage up#↑ +3 Range up#Destroy rocks when walking over them#Size up#Effect lasts for current room"}, -- Huge Growth
 	[55] = {"55", "Rune Shard", "Activates a random rune effect#The rune effect is weaker"}, -- Rune Shard
 	[56] = {"56", "0 - The Fool?", "Drops all your hearts and pickups on the floor, leaving you with half a heart#Coins and bombs may be dropped as {{Collectible74}}The Quarter or {{Collectible19}}Boom! if possible"}, -- 0 - The Fool?
 	[57] = {"57", "I - The Magician?", "Grants an aura that repels enemies and projectiles for 1 minute"}, -- I - The Magician?
