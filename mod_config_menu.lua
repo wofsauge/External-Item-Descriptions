@@ -369,28 +369,31 @@ if MCMLoaded then
 			end
 		}
 	)
-	-- Disable Alt Item option
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisableOnAltPath"]
-			end,
-			Display = function()
-				local onOff = "True"
-				if EID.Config["DisableOnAltPath"] then
-					onOff = "False"
+	
+	if REPENTANCE then
+		-- Disable Alt Item option
+		MCM.AddSetting(
+			"EID",
+			"General",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function()
+					return EID.Config["DisableOnAltPath"]
+				end,
+				Display = function()
+					local onOff = "True"
+					if EID.Config["DisableOnAltPath"] then
+						onOff = "False"
+					end
+					return 'Show hidden alt-Path Item: ' .. onOff
+				end,
+				OnChange = function(currentBool)
+					EID.Config["DisableOnAltPath"] = currentBool
 				end
-				return 'Show hidden alt-Path Item: ' .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisableOnAltPath"] = currentBool
-			end
-		}
-	)
-
+			}
+		)
+	end
+	
 	--------ShowUnidentifiedPillDescriptions---------
 	MCM.AddSetting(
 		"EID",
@@ -616,52 +619,55 @@ if MCMLoaded then
 		}
 	)
 	
-	MCM.AddSpace("EID", "Display")
-	
-	-- Spindown Dice results
 	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.SCROLL,
-			CurrentSetting = function()
-				return AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1
-			end,
-			Display = function()
-				return "Spindown Dice: $scroll" ..
-					AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1 .. " " .. EID.Config["SpindownDiceResults"] .. " Items"
-			end,
-			OnChange = function(currentNum)
-				EID.Config["SpindownDiceResults"] = diceSteps[currentNum + 1]
-			end,
-			Info = {"Preview of Items resulting when using the Spindown dice X times"}
-		}
-	)
-	-- 
+	if REPENTANCE then
 	
-	-- Spindown Dice skip locked items
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["SpindownDiceSkipLocked"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["SpindownDiceSkipLocked"] then
-					onOff = "True"
-				end
-				return "Skip Locked Items: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["SpindownDiceSkipLocked"] = currentBool
-			end,
-			Info = {"Skip locked items in the preview just as the dice will; the method to check for unlock status is not perfect, though"}
-		}
-	)
+		MCM.AddSpace("EID", "Display")
+	
+		-- Spindown Dice results
+		MCM.AddSetting(
+			"EID",
+			"Display",
+			{
+				Type = ModConfigMenu.OptionType.SCROLL,
+				CurrentSetting = function()
+					return AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1
+				end,
+				Display = function()
+					return "Spindown Dice: $scroll" ..
+						AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1 .. " " .. EID.Config["SpindownDiceResults"] .. " Items"
+				end,
+				OnChange = function(currentNum)
+					EID.Config["SpindownDiceResults"] = diceSteps[currentNum + 1]
+				end,
+				Info = {"Preview of Items resulting when using the Spindown dice X times"}
+			}
+		)
+		-- 
+		
+		-- Spindown Dice skip locked items
+		MCM.AddSetting(
+			"EID",
+			"Display",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function()
+					return EID.Config["SpindownDiceSkipLocked"]
+				end,
+				Display = function()
+					local onOff = "False"
+					if EID.Config["SpindownDiceSkipLocked"] then
+						onOff = "True"
+					end
+					return "Skip Locked Items: " .. onOff
+				end,
+				OnChange = function(currentBool)
+					EID.Config["SpindownDiceSkipLocked"] = currentBool
+				end,
+				Info = {"Skip locked items in the preview just as the dice will; the method to check for unlock status is not perfect, though"}
+			}
+		)
+	end
 	
 	--------Obstruction---------
 	MCM.AddSpace("EID", "Display")
@@ -709,27 +715,29 @@ if MCMLoaded then
 		}
 	)
 	
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayObstructedSoulstoneInfo"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayObstructedSoulstoneInfo"] then
-					onOff = "True"
+	if REPENTANCE then
+		MCM.AddSetting(
+			"EID",
+			"Display",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function()
+					return EID.Config["DisplayObstructedSoulstoneInfo"]
+				end,
+				Display = function()
+					local onOff = "False"
+					if EID.Config["DisplayObstructedSoulstoneInfo"] then
+						onOff = "True"
+					end
+					return "Soulstone Infos: " .. onOff
+				end,
+				OnChange = function(currentBool)
+					EID.Config["DisplayObstructedSoulstoneInfo"] = currentBool
 				end
-				return "Soulstone Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayObstructedSoulstoneInfo"] = currentBool
-			end
-		}
-	)
-
+			}
+		)
+	end
+	
 	MCM.AddSetting(
 		"EID",
 		"Display",
@@ -798,71 +806,73 @@ if MCMLoaded then
 		}
 	)
 	
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplaySoulstoneInfoShop"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplaySoulstoneInfoShop"] then
-					onOff = "True"
+	if REPENTANCE then
+		MCM.AddSetting(
+			"EID",
+			"Display",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function()
+					return EID.Config["DisplaySoulstoneInfoShop"]
+				end,
+				Display = function()
+					local onOff = "False"
+					if EID.Config["DisplaySoulstoneInfoShop"] then
+						onOff = "True"
+					end
+					return "Soulstone Infos: " .. onOff
+				end,
+				OnChange = function(currentBool)
+					EID.Config["DisplaySoulstoneInfoShop"] = currentBool
 				end
-				return "Soulstone Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplaySoulstoneInfoShop"] = currentBool
-			end
-		}
-	)
+			}
+		)
 	
-	MCM.AddSpace("EID", "Display")
-	MCM.AddText("EID", "Display", "Interaction with 'Options?'")
+		MCM.AddSpace("EID", "Display")
+		MCM.AddText("EID", "Display", "Interaction with 'Options?'")
 
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayCardInfoOptions?"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayCardInfoOptions?"] then
-					onOff = "True"
+		MCM.AddSetting(
+			"EID",
+			"Display",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function()
+					return EID.Config["DisplayCardInfoOptions?"]
+				end,
+				Display = function()
+					local onOff = "False"
+					if EID.Config["DisplayCardInfoOptions?"] then
+						onOff = "True"
+					end
+					return "Card Infos when spawned by 'Options?': " .. onOff
+				end,
+				OnChange = function(currentBool)
+					EID.Config["DisplayCardInfoOptions?"] = currentBool
 				end
-				return "Card Infos when spawned by 'Options?': " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayCardInfoOptions?"] = currentBool
-			end
-		}
-	)
-	
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayPillInfoOptions?"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayPillInfoOptions?"] then
-					onOff = "True"
+			}
+		)
+		
+		MCM.AddSetting(
+			"EID",
+			"Display",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function()
+					return EID.Config["DisplayPillInfoOptions?"]
+				end,
+				Display = function()
+					local onOff = "False"
+					if EID.Config["DisplayPillInfoOptions?"] then
+						onOff = "True"
+					end
+					return "Pill Infos when spawned by 'Options?': " .. onOff
+				end,
+				OnChange = function(currentBool)
+					EID.Config["DisplayPillInfoOptions?"] = currentBool
 				end
-				return "Pill Infos when spawned by 'Options?': " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayPillInfoOptions?"] = currentBool
-			end
-		}
-	)
+			}
+		)
+	end
 	---------------------------------------------------------------------------
 	---------------------------------Visuals-----------------------------------
 	-- Font Type
@@ -1097,27 +1107,30 @@ if MCMLoaded then
 			end
 		}
 	)
-	-------Quality ICON---------
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["ShowQuality"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["ShowQuality"] then
-					onOff = "True"
+	
+	if REPENTANCE then
+		-------Quality ICON---------
+		MCM.AddSetting(
+			"EID",
+			"Visuals",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function()
+					return EID.Config["ShowQuality"]
+				end,
+				Display = function()
+					local onOff = "False"
+					if EID.Config["ShowQuality"] then
+						onOff = "True"
+					end
+					return "Display Quality Info: " .. onOff
+				end,
+				OnChange = function(currentBool)
+					EID.Config["ShowQuality"] = currentBool
 				end
-				return "Display Quality Info: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["ShowQuality"] = currentBool
-			end
-		}
-	)
+			}
+		)
+	end
 	-------Object ID---------
 	MCM.AddSetting(
 		"EID",
@@ -1140,192 +1153,194 @@ if MCMLoaded then
 		}
 	)
 	---------------------------------------------------------------------------
-	---------------------------------Visuals-----------------------------------
+	-----------------------------BAG OF CRAFTING-------------------------------
 	
-	-- Bag of Crafting Display
-	local bagDisplays = {"always","hold","never"}
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return AnIndexOf(bagDisplays, EID.Config["DisplayBagOfCrafting"])
-			end,
-			Minimum = 1,
-			Maximum = 3,
-			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = "Crafting"
-				return "Show Display: " .. EID.Config["DisplayBagOfCrafting"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["DisplayBagOfCrafting"] = bagDisplays[currentNum]
-			end,
-			Info = {"Always = Always show Results, Hold = Show when holding up bag, Never = Never show results"}
-		}
-	)
-	-- Bag of Crafting Display Mode
-	local bagDisplayModes = {"Recipe List","Preview Only","No Recipes"}
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return AnIndexOf(bagDisplayModes, EID.Config["BagOfCraftingDisplayMode"])
-			end,
-			Minimum = 1,
-			Maximum = 3,
-			Display = function()
-				return "Display Mode: " .. EID.Config["BagOfCraftingDisplayMode"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["BagOfCraftingDisplayMode"] = bagDisplayModes[currentNum]
-			end,
-			Info = {"Toggle showing a list of calculated recipes, showing just an item preview when the bag is full, or showing percentages of what item you might get (No Recipes is recommended if using modded items)"}
-		}
-	)
-	-- Bag of Crafting Hide in Battle
-	EID:AddBooleanSetting("Crafting",
-		"BagOfCraftingHideInBattle",
-		"Hide in Battle", "Yes", "No",
-		"Hides the recipe list when in a fight")
-	-- Bag of Crafting 8 icons toggle
-	EID:AddBooleanSetting("Crafting",
-		"BagOfCraftingDisplayIcons",
-		"Show Recipes/Best Bag as", "8 Icons", "Groups",
-		"Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients")
+	if REPENTANCE then
+		-- Bag of Crafting Display
+		local bagDisplays = {"always","hold","never"}
+		MCM.AddSetting(
+			"EID",
+			"Crafting",
+			{
+				Type = ModConfigMenu.OptionType.NUMBER,
+				CurrentSetting = function()
+					return AnIndexOf(bagDisplays, EID.Config["DisplayBagOfCrafting"])
+				end,
+				Minimum = 1,
+				Maximum = 3,
+				Display = function()
+					EID.MCMCompat_isDisplayingEIDTab = "Crafting"
+					return "Show Display: " .. EID.Config["DisplayBagOfCrafting"]
+				end,
+				OnChange = function(currentNum)
+					EID.Config["DisplayBagOfCrafting"] = bagDisplays[currentNum]
+				end,
+				Info = {"Always = Always show Results, Hold = Show when holding up bag, Never = Never show results"}
+			}
+		)
+		-- Bag of Crafting Display Mode
+		local bagDisplayModes = {"Recipe List","Preview Only","No Recipes"}
+		MCM.AddSetting(
+			"EID",
+			"Crafting",
+			{
+				Type = ModConfigMenu.OptionType.NUMBER,
+				CurrentSetting = function()
+					return AnIndexOf(bagDisplayModes, EID.Config["BagOfCraftingDisplayMode"])
+				end,
+				Minimum = 1,
+				Maximum = 3,
+				Display = function()
+					return "Display Mode: " .. EID.Config["BagOfCraftingDisplayMode"]
+				end,
+				OnChange = function(currentNum)
+					EID.Config["BagOfCraftingDisplayMode"] = bagDisplayModes[currentNum]
+				end,
+				Info = {"Toggle showing a list of calculated recipes, showing just an item preview when the bag is full, or showing percentages of what item you might get (No Recipes is recommended if using modded items)"}
+			}
+		)
+		-- Bag of Crafting Hide in Battle
+		EID:AddBooleanSetting("Crafting",
+			"BagOfCraftingHideInBattle",
+			"Hide in Battle", "Yes", "No",
+			"Hides the recipe list when in a fight")
+		-- Bag of Crafting 8 icons toggle
+		EID:AddBooleanSetting("Crafting",
+			"BagOfCraftingDisplayIcons",
+			"Show Recipes/Best Bag as", "8 Icons", "Groups",
+			"Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients")
+			
+		MCM.AddSpace("EID", "Crafting")
+		MCM.AddText("EID", "Crafting", function() return "Recipe List Options" end)
 		
-	MCM.AddSpace("EID", "Crafting")
-	MCM.AddText("EID", "Crafting", function() return "Recipe List Options" end)
-	
-	-- Bag of Crafting results per page
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.SCROLL,
-			CurrentSetting = function()
-				return AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1
-			end,
-			Display = function()
-				return "Displayed Results: $scroll" ..
-					AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1 .. " " .. EID.Config["BagOfCraftingResults"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["BagOfCraftingResults"] = diceSteps[currentNum + 1]
-			end,
-			Info = {"Page size for the preview of items currently craftable with Bag of Crafting"}
-		}
-	)
-	-- Bag of Crafting thorough recipe checks
-	local combSteps = {8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18}
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.SCROLL,
-			CurrentSetting = function()
-				return AnIndexOf(combSteps, EID.Config["BagOfCraftingCombinationMax"]) - 1
-			end,
-			Display = function()
-				return "Thorough Calculations: $scroll" ..
-					AnIndexOf(combSteps, EID.Config["BagOfCraftingCombinationMax"]) - 1 .. " " .. EID.Config["BagOfCraftingCombinationMax"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["BagOfCraftingCombinationMax"] = combSteps[currentNum + 1]
-			end,
-			Info = {"Get every recipe for the X best components; setting this high will cause lag spikes (12 = 500 combinations, 14 = 3,000, 16 = 13,000)"}
-		}
-	)
-	-- Bag of Crafting random recipe checks
-	local calcSteps = {200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200}
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.SCROLL,
-			CurrentSetting = function()
-				return AnIndexOf(calcSteps, EID.Config["BagOfCraftingRandomResults"]) - 1
-			end,
-			Display = function()
-				return "Random Calculations: $scroll" ..
-					AnIndexOf(calcSteps, EID.Config["BagOfCraftingRandomResults"]) - 1 .. " " .. EID.Config["BagOfCraftingRandomResults"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["BagOfCraftingRandomResults"] = calcSteps[currentNum + 1]
-			end,
-			Info = {"An additional X number of randomly chosen recipes will be checked, changing each pickup spawn/despawn or refresh"}
-		}
-	)
-	-- Bag of Crafting item names
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["BagOfCraftingDisplayNames"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["BagOfCraftingDisplayNames"] then
-					onOff = "True"
-				end
-				return "Show Item Names: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["BagOfCraftingDisplayNames"] = currentBool
-			end,
-			Info = {"If on, each result takes two lines; lower your displayed results accordingly"}
-		}
-	)
-	
-	MCM.AddSpace("EID", "Crafting")
-	
-	EID:AddHotkeySetting("Crafting",
-		"CraftingHideKey", "Toggle (Keyboard)",
-		"Press this key to toggle the crafting display, allowing you to check descriptions of items/pickups on the floor", false)
-	EID:AddHotkeySetting("Crafting",
-		"CraftingHideButton", "Toggle (Controller)",
-		"Press this button to toggle the crafting display (Left Stick or Right Stick recommended; most other buttons will not work)", true)
-	
-	EID:AddHotkeySetting("Crafting",
-		"CraftingResultKey", "Result Toggle (Keyboard)",
-		"Press this key to toggle the description of the item ready to be crafted in Recipe List/No Recipe Mode", false)
-	EID:AddHotkeySetting("Crafting",
-		"CraftingResultButton", "Result Toggle (Controller)",
-		"Press this button to toggle the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)", true)
-	
-	MCM.AddSpace("EID", "Crafting")
-	--------Clear bag---------
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function() return true end,
-			Display = function() return "<---- Clear Bag Content ---->" end,
-			OnChange = function(currentBool) EID.BagItems = {} end,
-			Info = {"Press this to clear all currently detected items on the bag"}
-		}
-	)
-	--------Clear Floor---------
-	MCM.AddSetting(
-		"EID",
-		"Crafting",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function() return true end,
-			Display = function() return "<---- Clear Floor item list ---->" end,
-			OnChange = function(currentBool)
-			EID.bagOfCraftingRoomQueries = {}
-			EID.bagOfCraftingFloorQuery = {}
-			EID.bagOfCraftingCurPickupCount = -1
-			end,
-			Info = {"Press this to clear all currently detected items on the floor"}
-		}
-	)
+		-- Bag of Crafting results per page
+		MCM.AddSetting(
+			"EID",
+			"Crafting",
+			{
+				Type = ModConfigMenu.OptionType.SCROLL,
+				CurrentSetting = function()
+					return AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1
+				end,
+				Display = function()
+					return "Displayed Results: $scroll" ..
+						AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1 .. " " .. EID.Config["BagOfCraftingResults"]
+				end,
+				OnChange = function(currentNum)
+					EID.Config["BagOfCraftingResults"] = diceSteps[currentNum + 1]
+				end,
+				Info = {"Page size for the preview of items currently craftable with Bag of Crafting"}
+			}
+		)
+		-- Bag of Crafting thorough recipe checks
+		local combSteps = {8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18}
+		MCM.AddSetting(
+			"EID",
+			"Crafting",
+			{
+				Type = ModConfigMenu.OptionType.SCROLL,
+				CurrentSetting = function()
+					return AnIndexOf(combSteps, EID.Config["BagOfCraftingCombinationMax"]) - 1
+				end,
+				Display = function()
+					return "Thorough Calculations: $scroll" ..
+						AnIndexOf(combSteps, EID.Config["BagOfCraftingCombinationMax"]) - 1 .. " " .. EID.Config["BagOfCraftingCombinationMax"]
+				end,
+				OnChange = function(currentNum)
+					EID.Config["BagOfCraftingCombinationMax"] = combSteps[currentNum + 1]
+				end,
+				Info = {"Get every recipe for the X best components; setting this high will cause lag spikes (12 = 500 combinations, 14 = 3,000, 16 = 13,000)"}
+			}
+		)
+		-- Bag of Crafting random recipe checks
+		local calcSteps = {200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200}
+		MCM.AddSetting(
+			"EID",
+			"Crafting",
+			{
+				Type = ModConfigMenu.OptionType.SCROLL,
+				CurrentSetting = function()
+					return AnIndexOf(calcSteps, EID.Config["BagOfCraftingRandomResults"]) - 1
+				end,
+				Display = function()
+					return "Random Calculations: $scroll" ..
+						AnIndexOf(calcSteps, EID.Config["BagOfCraftingRandomResults"]) - 1 .. " " .. EID.Config["BagOfCraftingRandomResults"]
+				end,
+				OnChange = function(currentNum)
+					EID.Config["BagOfCraftingRandomResults"] = calcSteps[currentNum + 1]
+				end,
+				Info = {"An additional X number of randomly chosen recipes will be checked, changing each pickup spawn/despawn or refresh"}
+			}
+		)
+		-- Bag of Crafting item names
+		MCM.AddSetting(
+			"EID",
+			"Crafting",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function()
+					return EID.Config["BagOfCraftingDisplayNames"]
+				end,
+				Display = function()
+					local onOff = "False"
+					if EID.Config["BagOfCraftingDisplayNames"] then
+						onOff = "True"
+					end
+					return "Show Item Names: " .. onOff
+				end,
+				OnChange = function(currentBool)
+					EID.Config["BagOfCraftingDisplayNames"] = currentBool
+				end,
+				Info = {"If on, each result takes two lines; lower your displayed results accordingly"}
+			}
+		)
+		
+		MCM.AddSpace("EID", "Crafting")
+		
+		EID:AddHotkeySetting("Crafting",
+			"CraftingHideKey", "Toggle (Keyboard)",
+			"Press this key to toggle the crafting display, allowing you to check descriptions of items/pickups on the floor", false)
+		EID:AddHotkeySetting("Crafting",
+			"CraftingHideButton", "Toggle (Controller)",
+			"Press this button to toggle the crafting display (Left Stick or Right Stick recommended; most other buttons will not work)", true)
+		
+		EID:AddHotkeySetting("Crafting",
+			"CraftingResultKey", "Result Toggle (Keyboard)",
+			"Press this key to toggle the description of the item ready to be crafted in Recipe List/No Recipe Mode", false)
+		EID:AddHotkeySetting("Crafting",
+			"CraftingResultButton", "Result Toggle (Controller)",
+			"Press this button to toggle the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)", true)
+		
+		MCM.AddSpace("EID", "Crafting")
+		--------Clear bag---------
+		MCM.AddSetting(
+			"EID",
+			"Crafting",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function() return true end,
+				Display = function() return "<---- Clear Bag Content ---->" end,
+				OnChange = function(currentBool) EID.BagItems = {} end,
+				Info = {"Press this to clear all currently detected items on the bag"}
+			}
+		)
+		--------Clear Floor---------
+		MCM.AddSetting(
+			"EID",
+			"Crafting",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function() return true end,
+				Display = function() return "<---- Clear Floor item list ---->" end,
+				OnChange = function(currentBool)
+				EID.bagOfCraftingRoomQueries = {}
+				EID.bagOfCraftingFloorQuery = {}
+				EID.bagOfCraftingCurPickupCount = -1
+				end,
+				Info = {"Press this to clear all currently detected items on the floor"}
+			}
+		)
+	end
 	
 	---------------------------------------------------------------------------
 	-----------------------------Mouse Controls--------------------------------
