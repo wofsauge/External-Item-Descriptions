@@ -93,7 +93,7 @@ EID.descriptions["en_us"].collectibles={
 	{"78", "Book of Revelations", "+1 Soul Heart#Higher horsemen chance if used#↑ +17.5% Devil/Angel Room chance"},
 	{"79", "The Mark", "↑ +1 Damage up#↑ +0.2 Speed up#+1 Soul Heart"},
 	{"80", "The Pact", "↑ +0.5 Damage up#↑ +0.7 Tears up#+2 Soul Hearts"},
-	{"81", "Dead Cat", "↑ +9 lives#Respawn with 1 HP#↓ Sets your Red Heart containers to 1"},
+	{"81", "Dead Cat", "↑ +9 lives#Respawn with 1 HP#↓ Sets your Red Heart containers to 1#Characters that can't have Red Hearts get set to 1 Soul/Black Heart"},
 	{"82", "Lord of the Pit", "Flight#↑ +0.3 Speed up"},
 	{"83", "The Nail", "+1 Soul Heart#↑ +0.7 Damage up#↓ -0.18 Speed down#Deal contact damage#Destroy rocks when walking over them"},
 	{"84", "We Need To Go Deeper!", "Spawns a trapdoor to skip the floor#10% chance for crawlspace trapdoor"},
