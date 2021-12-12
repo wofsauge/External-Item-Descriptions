@@ -292,4 +292,29 @@ local game = Game()
 	end
 	EID:addDescriptionModifier("Placebo", PlaceboCondition, PlaceboCallback)
 
+
+	-- Handle Abyss description addition
+	local function AbyssCondition(descObj)
+		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+			return false
+		end
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_ABYSS) then
+				return true
+			end
+		end
+		return false
+	end
+	
+	local function AbyssCallback(descObj)
+		local text = EID:getDescriptionEntry("abyssSynergies", descObj.ObjSubType)
+		if text ~= nil then
+			local iconStr = "#{{Collectible706}} {{ColorRed}}"
+			EID:appendToDescription(descObj, iconStr..text)
+		end
+		return descObj
+	end
+	EID:addDescriptionModifier("Abyss", AbyssCondition, AbyssCallback)
+
 end

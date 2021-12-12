@@ -794,6 +794,25 @@ EID.descriptions["en_us"].bookOfVirtuesWisps = {
 	
 }
 
+-- Special Locust effects when Item was eaten by Abyss
+EID.descriptions["en_us"].abyssSynergies = {
+	[2] = "Three normal locusts", -- The Inner Eye
+	[3] = "Purple homing locust", -- Spoon Bender
+	[4] = "Red large locust that deals triple damage", -- Cricket's Head
+	[6] = "Yellow fast short range locust that deals damage more quickly", -- Number One
+	[7] = "Red locust that deals double damage", -- Blood of the Martyr
+	[10] = "Two gray locusts that deal half damage", -- Halo of Flies
+	[13] = "Green locust that poisons enemies", -- The Virus
+	[103] = "Green locust that poisons enemies", -- The Common Cold
+	[118] = "Gray larger locust that is otherwise normal", -- Brimstone
+	[149] = "Large, slow, green locust that deals x1.5 your damage and poisons enemies", -- Ipecac
+	[153] = "Four normal locusts", -- Mutant Spider
+	[257] = "Orange, burning locust that sets enemies on fire", -- Fire Mind
+	[305] = "Green locust that poisons enemies", -- Scorpio
+	[374] = "Cyan, glowing locust that can spawn beams of light that deal deal 3x your damage", -- Holy Light
+	[494] = "Light blue locust with arcs of electricity that deals 0.1 damage per tick", -- Jacob's Ladder
+	[559] = "Light blue locust with arcs of electricity that deals 0.1 damage per tick", -- 120 Volt
+}
 ---------- Cards ----------
 
 local repCards={
@@ -920,6 +939,7 @@ EID.descriptions["en_us"].horsepills={
 	{"49", "Experimental Pill", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with PHD"}, -- Experimental Pill
 	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- Golden Pill
 }
+
 
 EID.descriptions["en_us"].CraftingBagContent = "Bag:"
 EID.descriptions["en_us"].CraftingRoomContent = "Room:"
