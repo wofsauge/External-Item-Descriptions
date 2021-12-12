@@ -788,7 +788,7 @@ EID.descriptions["ru"].goldenTrinketEffects = {
 ---------- Cards ----------
 
 local repCards={
-	[12] = {"12", "XI - Сила", "↑ +1 к здоровью#↑ +0.3 к урону#↑ +50% множитель урона#↑ +1.5 дальность#↑ +0.5 высоты слезы#↑ +0.3 скорости#В пределах комнаты"},, -- XI - Strength
+	[12] = {"12", "XI - Сила", "↑ +1 к здоровью#↑ +0.3 к урону#↑ +50% множитель урона#↑ +1.5 дальность#↑ +0.5 высоты слезы#↑ +0.3 скорости#В пределах комнаты"}, -- XI - Strength
 	[18] = {"18", "XVII - Звёзды", "Телепортирует в {{TreasureRoom}} Комнату Сокровищ, если она есть на уровне#Если есть Планетарий, то телепортирует в него"},
 	[27] = {"27", "Туз Треф", "Превращает все подбираемые предметы, сундуки и монстров в Бомбы"},
 	[28] = {"28", "Туз Бубен", "Превращает все подбираемые предметы, сундуки и монстров в Монеты"},
@@ -928,10 +928,10 @@ EID.descriptions["ru"].CraftingPreviewBackup = "!!! Если артефакт н
 
 EID.descriptions["ru"].CraftingResults = "(Листать: зажать {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Заблокировать: {{ButtonX}}, Обновить: {{ButtonB}})"
 
-EID.descriptions["en_us"].BlankCardCharge = "Заряд Пустой карты:" 
-EID.descriptions["en_us"].BlankCardQCard = "Телепортирует в комнату Я-ОШИБКА#Пустая карта и ?-карта будут уничтожены" 
-EID.descriptions["en_us"].ClearRuneCharge = "Заряд Чистой руны:" 
-EID.descriptions["en_us"].PlaceboCharge = "Заряд Плацебо:" 
+EID.descriptions["ru"].BlankCardCharge = "Заряд Пустой карты:" 
+EID.descriptions["ru"].BlankCardQCard = "Телепортирует в комнату Я-ОШИБКА#Пустая карта и ?-карта будут уничтожены" 
+EID.descriptions["ru"].ClearRuneCharge = "Заряд Чистой руны:" 
+EID.descriptions["ru"].PlaceboCharge = "Заряд Плацебо:" 
 
 EID.descriptions["ru"].AchievementWarningTitle = "{{ColorYellow}}!!! ВНИМАНИЕ !!!"
 EID.descriptions["ru"].AchievementWarningText = "Достижения отключены!#Чтобы включить прогресс и достижения, вам сначала нужно убить Маму (Глубины II) без включенных модов#(Если вы уже убили Маму, то это сообщение баг и вы можете его игнорировать)#(Это предупреждение можно выключить в конфиге)"
