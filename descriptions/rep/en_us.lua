@@ -335,7 +335,7 @@ local repCollectibles={
 	[688] = {"688", "Inner Child", "+1 extra life#Respawn in current room with half a heart, massive size down, and +0.2 speed"}, -- Inner Child
 	[689] = {"689", "Glitched Crown", "Item pedestals quickly cycle between 5 random items"}, -- Glitched Crown
 	[690] = {"690", "Belly Jelly", "Causes enemies to bounce off of Isaac#Bouncing them against obstacles deals damage#50% chance that Isaac ignores contact damage#50% chance to deflect enemy projectiles"}, -- Belly Jelly
-	[691] = {"691", "Sacred Orb", "Prevents low-quality (0-1) items from spawning#Greatly increases the quality of spawned items"}, -- Sacred Orb
+	[691] = {"691", "Sacred Orb", "Prevents Quality {{Quality0}}/{{Quality1}} items from spawning#33% chance to reroll items with Quality {{Quality2}}"}, -- Sacred Orb
 	[692] = {"692", "Sanguine Bond", "Spawns a set of spikes in the {{DevilRoom}}Devil Room#Taking damage from the spikes can grant a reward:#35%: Nothing#33%: +0.5 Damage up#15%: 6 pennies#10%: 2 Black Hearts#5%: Random Devil item#2%: Leviathan transformation"}, -- Sanguine Bond //PERCENTAGES NOT CONFIRMED, updated in patch, taken from Wiki
 	[693] = {"693", "The Swarm", "Grants 9 orbital flies which turn into Blue Flies after they block a shot#Spawns a new fly every room cleared"}, -- The Swarm
 	[694] = {"694", "Heartbreak", "Grants 3 broken hearts#↑ +0.25 Damage for every broken heart#Every fatal hit will add 2 more broken hearts#You die at 12 broken hearts"}, -- Heartbreak
@@ -418,7 +418,7 @@ EID.descriptions["en_us"].birthright ={
 	{"Tainted Keeper", "", "Strongly attracts the coins dropped by defeating enemies from a short distance#No effect on other coins"},
 	{"Tainted Apollyon", "", "If the fire button is held, locusts will continuously damage enemies instead of returning"},
 	{"Tainted Forgotten", "", "Tainted Soul gains the {{Collectible714}}Recall ability, to retrieve the Tainted Forgotten from a distance"},
-	{"Tainted Bethany", "", "Spawns four random item wisps of high quality with significantly higher HP than normal"},
+	{"Tainted Bethany", "", "Spawns four random item wisps of Quality {{Quality3}} and {{Quality4}} with significantly higher HP than normal"},
 	{"Tainted Jacob", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus will always charge at the same time"},
 	{"Dead Tainted Lazarus", "", "The other version of T. Lazarus will be available as a ghost#He is immune to damage, but can fire tears#Both characters receive the Birthright effect"},
 	{"Tainted Jacob 2", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus will always charge at the same time#Using {{Collectible722}} Anima Sola chains them both"},
@@ -503,10 +503,9 @@ local repTrinkets={
 	[101] = {"101", "Dim Bulb", "!!! While holding a completely uncharged active item:#↑ +1.5 Damage#↑ +0.5 Speed#↑ +1.5 Range#↑ +0.5 Tears#↑ +0.3 Shot Speed#↑ +2 Luck"},
 	[110] = {"110", "Silver Dollar", "{{Shop}}Shops will now appear in the Womb and Corpse"},
 	[111] = {"111", "Bloody Crown", "{{TreasureRoom}}Treasure Rooms now appear in the Womb and Corpse"}, -- Bloody Crown
-	[119] = {"119", "Stem Cell", "Sets your red HP to 50% of your maximum upon entering the next floor#If your health is above that, it heals half a red heart"}, -- Stem Cell
-	[122] =	{"122", "Butter!", "Using your active item will drop it onto a pedestal on the ground#When taking damage, you will drop one of your passive items"},
-	[128] = {"128", "Finger Bone", "5% chance to gain a Bone Heart when taking damage"}, -- Finger Bone
-	[129] = {"129", "Jawbreaker", "Chance to shoot tooth tears"}, -- Jawbreaker
+	[119] = {"119", "Stem Cell", "Heals half of your empty Red/Bone Hearts upon traveling to the next floor#Minimum half a heart healed"}, -- Stem Cell
+	[128] = {"128", "Finger Bone", "4% chance to gain a Bone Heart when taking damage"}, -- Finger Bone
+	[129] = {"129", "Jawbreaker", "Chance to shoot teeth#Teeth deal 3.2x your damage#100% chance at 9 Luck"}, -- Jawbreaker
 	[130] = {"130", "Chewed Pen", "Chance to shoot slowing tears"}, -- Chewed Pen
 	[131] = {"131", "Blessed Penny", "Chance to drop Half Soul Hearts when collecting coins"}, -- Blessed Penny
 	[132] = {"132", "Broken Syringe", "Chance to gain a random syringe effect for current room"}, -- Broken Syringe
@@ -588,6 +587,10 @@ EID.descriptions["en_us"].goldenTrinketEffects = {
 	[64] = { "Worm's stat boosts are doubled", "Worm's stat boosts are tripled", "Worm's stat boosts are quadrupled", },
 	-- Error (append): Same behavior as Rainbow Worm
 	[75] = { "Trinket effect is doubled if possible", "Trinket effect is tripled if possible", "Trinket effect is quadrupled if possible", },
+	-- NO!
+	[88] = { "Prevents Quality {{Quality0}} items from spawning" },
+	-- Brown Cap
+	[90] = { "Explosion deals double damage" },
 }
 
 -- Card Buffs caused by Tarot Cloth
