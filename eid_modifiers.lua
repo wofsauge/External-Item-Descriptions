@@ -178,14 +178,96 @@ local game = Game()
 	EID:addDescriptionModifier("Tarot Cloth", TarotClothCondition, TarotClothCallback)
 	
 	
-	-- Handle Golden Trinket description addition
+	local hasBox = false
+	local isGolden = false
+	
+	-- Handle Golden Trinket / Mom's Box description addition
 	local function GoldenTrinketCondition(descObj)
-		return descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_TRINKET and descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG
+		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TRINKET then
+			return false
+		end
+		--check if our effect is doubled or tripled here
+		hasBox = false
+		isGolden = false
+		if descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG then
+			isGolden = true
+		end
+		for i = 0,game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_MOMS_BOX) then
+				hasBox = true
+			end
+		end
+		return isGolden or hasBox
 	end
 	
 	local function GoldenTrinketCallback(descObj)
-		local goldenDesc = EID:getDescriptionEntry("goldenTrinket") or ""
-		descObj.Description = "{{ColorGold}}"..goldenDesc.."#"..descObj.Description
+		local trinketID = descObj.ObjSubType % TrinketType.TRINKET_GOLDEN_FLAG
+		local data = EID.GoldenTrinketData[trinketID]
+		local multiplier = 2
+		local textChoice = 1
+		if isGolden and hasBox then
+			multiplier = 3
+			textChoice = 3
+		elseif hasBox then
+			textChoice = 2
+		end
+		local count = 0
+		
+		if data then
+			if type(data) == "number" then
+				data = {t={data}}
+			end
+			
+			--custom multipliers (either manually defined, or just changing the max multiplier to 2 or 4 instead of 3
+			if data.mults then
+				if isGolden and hasBox then multiplier = data.mults[2]
+				else multiplier = data.mults[1] end
+			elseif data.mult and isGolden and hasBox then multiplier = data.mult end
+			
+			--replacing numeric text based on our multiplier
+			if (data.t) then
+				for _,v in ipairs(data.t) do
+					count = 0
+					--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
+					descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
+						if (s == tostring(v) and count == 0) then
+							count = count + 1
+							return "{{ColorGold}}" .. string.format("%g",v*multiplier) .. "{{ColorText}}"
+						end
+					end)
+				end
+			--replacing a phrase, such as "half a heart"
+			elseif data.findReplace then
+				local textTable = EID:getDescriptionEntry("goldenTrinketEffects", trinketID)
+				if textTable then
+					descObj.Description, count = string.gsub(descObj.Description, textTable[1], "{{ColorGold}}" .. textTable[multiplier] .. "{{ColorText}}", 1)
+				end
+			--append some new text to the description
+			elseif data.append then
+				local textTable = EID:getDescriptionEntry("goldenTrinketEffects", trinketID)
+				if textTable then
+					textChoice = math.min(textChoice, #textTable) -- some items have only 1 append description
+					descObj.Description = descObj.Description .. "#{{ColorGold}}" .. textTable[textChoice]
+					count = 1
+				end
+			--the nuclear option: replacing the entire description; 1 = Gold, 2 = Mom's Box, 3 = Both
+			--only replace if the chosen language has defined it
+			elseif data.fullReplace then
+				local textTable = EID:getDescriptionEntry("goldenTrinketEffects", trinketID, true)
+				if (textTable) then
+					descObj.Description = textTable[textChoice]
+					count = 1
+				end
+			end
+			-- we didn't replace everything; maybe English (Detailed) or other language didn't have the number? append a simple "effect is doubled/tripled"
+			if count == 0 then
+				local goldenDesc = EID:getDescriptionEntry("goldenTrinket") or ""
+				if multiplier == 3 then goldenDesc = EID:getDescriptionEntry("tripledTrinket") or ""
+				elseif multiplier == 4 then goldenDesc = EID:getDescriptionEntry("quadrupledTrinket") end
+				descObj.Description = descObj.Description .. "#" .. "{{ColorGold}}"..goldenDesc
+			end
+		end
 		return descObj
 	end
 	EID:addDescriptionModifier("Golden Trinket", GoldenTrinketCondition, GoldenTrinketCallback)
