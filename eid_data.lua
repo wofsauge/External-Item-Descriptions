@@ -385,13 +385,22 @@ EID.InlineColors = {
 -- Data table for a trinket's ability to be doubled/tripled by Mom's Box or being Golden
 -- Due to only a few exceptions needing special rules, most of these are just a single number, which will be found in the description and multiplied
 -- Exceptions will use a table to figure out what to do with them:
--- t: text to replace. A table of text to find and replace; trinkets with multiple numbers to multiply will use this
+-- t: text to multiply. A table of text to find and multiply by the multiplier; trinkets with multiple numbers to multiply will use this
 -- mult: max multiplier. assumed to be 3, some max out at 2, a few go 1x/2x/4x
--- append / replace?: add text (Rainbow Worm, NO!) or entirely replace the trinket's description (Tick) by checking this table name
+-- mults: custom multipliers. A Missing Page's damage goes from 80 to 120 to 160; so its multipliers are 1.5 and 2, instead of 2 and 3
+-- append / findReplace / fullReplace: add text (Rainbow Worm, NO!) or entirely replace the trinket's description (Tick) from goldenTrinketEffects
 EID.GoldenTrinketData = {
 	-- Swallowed Penny, Purple Heart (max 2x), a couple Worms, Black Lipstick (max 2x), Bible Tract (max 2x), Monkey's Paw
 	[1] = 1, [5] = {t={2}, mult=2}, [10] = 0.4, [11] = 0.4, [17] = {t={1}, mult=2}, [18] = {t={3}, mult=2}, [20] = 1,
-	-- Hook Worm (two stats), Whip Worm, Fish Head, Liberty Cap (max 4x)
-	[26] = {t={0.4, 1.5}}, [27] = 0.5, [29] = 1, [32] = {t={25}, mult=4},
+	-- Hook Worm (two stats), Whip Worm, Fish Head, Liberty Cap (max 4x), Curved Horn, Goat Hoof, Mom's Pearl (2x becomes 3x)
+	[26] = {t={0.4, 1.5}}, [27] = 0.5, [29] = 1, [32] = {t={25}, mult=4}, [35] = 2, [37] = 0.15, [38] = {t={10}, mult=2},
+	-- Cancer, Lucky Toe (just the Luck Up), Isaac's Fork (heart heal amount), A Missing Page (damage + necronomicon multiplier), Tick (the biggest pain)
+	[39] = 1, [42] = 1, [46] = {findReplace = true}, [48] = {t={2, 80},mults={1.5,2}}, [53] = {fullReplace = true},
+	-- Maggy's Faith, Rainbow Worm, Tape Worm, Lazy Worm, Louse, Watch Battery (just the charge amount), Exploding Cap, Stud Finder
+	[55] = 1, [64] = {append = true}, [65] = {t={3,2}}, [66] = 0.5, [70] = 1, [72] = 1, [73] = 10, [74] = {t={0.5}, mult=2},
+	-- Error (same as Rainbow Worm), Second Hand (max 2x -> 3x), Black Feather, Blind Rage, Golden Horse Shoe, Karma, Lil Larva
+	[75] = {append = true}, [78] = {t={2}, mults={1.5,1.5}}, [80] = 0.5, [81] = 2, [82] = {t={15}, mult=2}, [85] = {t={1,1,1}}, [86] = {t={1}, mult=2},
+	-- NO!, Brown Cap, Cracked Crown, Ouroboros Worm, 
+	[88] = {append = true}, [90] = {append = true, mult=2}, [92] = 20, [96] = {t={0.4, 1.5}},
 	
 }
