@@ -138,6 +138,7 @@ function EID:onNewFloor()
 	if REPENTANCE then
 		EID.bagOfCraftingRoomQueries = {}
 		EID.bagOfCraftingFloorQuery = {}
+		EID.CraneItemType = {}
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
