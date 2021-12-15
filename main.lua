@@ -214,6 +214,21 @@ function EID:IsAltChoice(pickup)
 end
 
 ---------------------------------------------------------------------------
+-------------------------Handle Crane Game-----------------------------
+
+function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, seed)
+	if itemPoolType == ItemPoolType.POOL_CRANE_GAME then
+		local cranes = Isaac.FindByType(6, 16)
+		for _, crane in pairs(cranes) do
+			if not EID:getEntityData(crane, "EID_CraneItemType") then
+				crane:GetData()["EID_CraneItemType"] = selectedCollectible
+			end
+		end
+	end
+end
+EID:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, EID.postGetCollectible)
+
+---------------------------------------------------------------------------
 ---------------------------Printing Functions------------------------------
 
 function EID:printDescription(desc)
@@ -755,10 +770,25 @@ local function onRender(t)
 		EID:printDescription(origDesc)
 		return
 	end
-
+	
 	if closest.Type == 1000 and closest.Variant == 76 then
 		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1))
 		return
+	end
+	
+	if closest.Type == 6 and closest.Variant == 16 then
+		--Handle Crane Game
+		if EID:getEntityData(closest, "EID_CraneItemType") then
+			if EID:getEntityData(closest, "EID_DontHide") ~= true then
+				if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+					EID:renderQuestionMark()
+					return
+				end
+			end
+			local descriptionObj = EID:getDescriptionObj(5, 100, EID:getEntityData(closest, "EID_CraneItemType"))
+			
+			EID:printDescription(descriptionObj)
+		end
 	end
 	
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
