@@ -195,6 +195,13 @@ EID.UserConfig = {
 	-- Default = true
 	["DisplayDiceInfo"] = true,
 	
+	--------Crane Game---------
+	-- REPENTANCE ONLY!!!
+	
+	-- Toggle Display for items inside of a Crane Game
+	-- Default = true
+	["DisplayCraneInfo"] = true,
+	
 	---------Bag of Crafting-----------
 	-- REPENTANCE ONLY!!!
 	
@@ -355,6 +362,7 @@ EID.DefaultConfig = {
 	["DisplaySacrificeInfo"] = true,
 	["DisplayDiceInfo"] = true,
 	["DisplayBagOfCrafting"] = "always",
+	["DisplayCraneInfo"] = true,
 	["BagOfCraftingResults"] = 7,
 	["BagOfCraftingCombinationMax"] = 12,
 	["BagOfCraftingRandomResults"] = 400,

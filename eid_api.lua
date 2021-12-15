@@ -491,7 +491,10 @@ function EID:hasDescription(entity)
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
 		return isAllowed and entity.SubType > 0
 	end
-	isAllowed = isAllowed or (entity.Type == 1000 and entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"]) or (entity.Type == 6 and entity.Variant == 16 and (not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize")))
+	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and REPENTANCE then
+		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize")
+	end
+	isAllowed = isAllowed or (entity.Type == 1000 and entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"])
 	return isAllowed
 end
 

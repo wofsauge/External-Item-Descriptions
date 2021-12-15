@@ -619,9 +619,33 @@ if MCMLoaded then
 		}
 	)
 	
+
+	
 	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
 	if REPENTANCE then
 	
+		--------Crane Game---------
+		MCM.AddSetting(
+			"EID",
+			"Display",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function()
+					return EID.Config["DisplayCraneInfo"]
+				end,
+				Display = function()
+					local onOff = "False"
+					if EID.Config["DisplayCraneInfo"] then
+						onOff = "True"
+					end
+					return "Crane Game Infos: " .. onOff
+				end,
+				OnChange = function(currentBool)
+					EID.Config["DisplayCraneInfo"] = currentBool
+				end
+			}
+		)
+		
 		MCM.AddSpace("EID", "Display")
 	
 		-- Spindown Dice results
