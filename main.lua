@@ -28,6 +28,7 @@ EID.sacrificeCounter = {}
 EID.itemConfig = Isaac.GetItemConfig()
 EID.effectList = {["76"] = true}
 EID.itemUnlockStates = {}
+EID.CraneItemType = {}
 
 -- Sprite inits
 EID.IconSprite = Sprite()
@@ -218,10 +219,11 @@ end
 
 function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, seed)
 	if itemPoolType == ItemPoolType.POOL_CRANE_GAME then
-		local cranes = Isaac.FindByType(6, 16)
-		for _, crane in pairs(cranes) do
-			if not EID:getEntityData(crane, "EID_CraneItemType") then
-				crane:GetData()["EID_CraneItemType"] = selectedCollectible
+		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+			if not crane:GetSprite():IsPlaying("Broken") then
+				if not EID.CraneItemType[tostring(crane.InitSeed)] then
+					EID.CraneItemType[tostring(crane.InitSeed)] = selectedCollectible
+				end
 			end
 		end
 	end
@@ -557,6 +559,7 @@ EID.hasValidWalkingpath = true
 
 function EID:onGameUpdate()
 	EID:setPlayer()
+	
 	--Fix Overlapping Pedestals
 	local curPositions = {}
 	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
@@ -569,6 +572,14 @@ function EID:onGameUpdate()
 			end
 		end
 		table.insert(curPositions, {entity, entity.Position})
+	end
+	
+	for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+		if EID.CraneItemType[tostring(crane.InitSeed)] then
+			if crane:GetSprite():IsPlaying("Prize") then
+				EID.CraneItemType[tostring(crane.InitSeed)] = nil
+			end
+		end
 	end
 	
 	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"] then
@@ -778,14 +789,16 @@ local function onRender(t)
 	
 	if closest.Type == 6 and closest.Variant == 16 then
 		--Handle Crane Game
-		if EID:getEntityData(closest, "EID_CraneItemType") then
+		
+		if EID.CraneItemType[tostring(closest.InitSeed)] then
 			if EID:getEntityData(closest, "EID_DontHide") ~= true then
 				if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 					EID:renderQuestionMark()
 					return
 				end
 			end
-			local descriptionObj = EID:getDescriptionObj(5, 100, EID:getEntityData(closest, "EID_CraneItemType"))
+			local collectibleID = EID.CraneItemType[tostring(closest.InitSeed)]
+			local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID)
 			
 			EID:printDescription(descriptionObj)
 			return
@@ -882,8 +895,10 @@ if EID.MCMLoaded or REPENTANCE then
 			if REPENTANCE and isSave then
 				EID.BagItems = savedEIDConfig["BagContent"]
 				EID.bagOfCraftingRoomQueries = savedEIDConfig["BagFloorContent"]
+				EID.CraneItemType = savedEIDConfig["CraneItemType"]
 				savedEIDConfig["BagContent"] = nil
 				savedEIDConfig["BagFloorContent"] = nil
+				savedEIDConfig["CraneItemType"] = nil
 			else
 				EID.BagItems = {}
 			end
@@ -927,6 +942,7 @@ if EID.MCMLoaded or REPENTANCE then
 		if REPENTANCE then
 			EID.Config["BagContent"] = EID.BagItems or {}
 			EID.Config["BagFloorContent"] = EID.bagOfCraftingRoomQueries or {}
+			EID.Config["CraneItemType"] = EID.CraneItemType or {}
 		end
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()
