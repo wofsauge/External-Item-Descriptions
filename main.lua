@@ -788,6 +788,7 @@ local function onRender(t)
 			local descriptionObj = EID:getDescriptionObj(5, 100, EID:getEntityData(closest, "EID_CraneItemType"))
 			
 			EID:printDescription(descriptionObj)
+			return
 		end
 	end
 	
