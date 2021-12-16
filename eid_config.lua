@@ -93,6 +93,7 @@ EID.UserConfig = {
 	-- Default = true
 	["DisableOnCurse"] = true,
 	-- Disable Item informations for the second Treasure room item on alt paths
+	-- REPENTANCE ONLY!!!
 	-- Default = true
 	["DisableOnAltPath"] = true,
 	-- Disable Item informations on the April fools challenge
@@ -119,6 +120,13 @@ EID.UserConfig = {
 	-- Set the color-name of the Itemname description text. Color names can be found& defined in "eid_data.lua"
 	-- Default = "ColorEIDObjName"
 	["ItemNameColor"] = "ColorEIDObjName",
+	-- Show ID of described object in the format "Type.Variant.SubType" next to the name
+	-- Default = false
+	["ShowObjectID"] = false,
+	-- Enables or disables item quality after item name
+	-- REPENTANCE ONLY!!!
+	-- Default = true
+	["ShowQuality"] = true,
 	
 	-------TRANSFORMATIONS---------
 
@@ -141,15 +149,18 @@ EID.UserConfig = {
 	-- Default = false
 	["DisplayCardInfoShop"] = false,
 	-- Toggle Display of Soulstone descriptions when its a shop item
+	-- REPENTANCE ONLY!!!
 	-- Default = true
 	["DisplaySoulstoneInfoShop"] = true,
 	-- Toggle Display of Card / Rune descriptions when its not accessable with walking. AKA behind rock, blocks, spikes
 	-- Default = false
 	["DisplayObstructedCardInfo"] = false,
 	-- Toggle Display of Soulstone descriptions when its not accessable with walking. AKA behind rock, blocks, spikes
+	-- REPENTANCE ONLY!!!
 	-- Default = true
 	["DisplayObstructedSoulstoneInfo"] = true,
 	-- Toggle Display of Card / Rune descriptions that are spawned with the Options? item
+	-- REPENTANCE ONLY!!!
 	-- Default = false
 	["DisplayCardInfoOptions?"] = false,
 	
@@ -165,6 +176,7 @@ EID.UserConfig = {
 	-- Default = false
 	["DisplayObstructedPillInfo"] = false,
 	-- Toggle Display of Pill descriptions that are spawned with the Options? item
+	-- REPENTANCE ONLY!!!
 	-- Default = true
 	["DisplayPillInfoOptions?"] = true,
 	-- Toggle Display of Pill descriptions that arent known to you yet
@@ -184,6 +196,7 @@ EID.UserConfig = {
 	["DisplayDiceInfo"] = true,
 	
 	---------Bag of Crafting-----------
+	-- REPENTANCE ONLY!!!
 	
 	-- When to show the Bag of Crafting display
 	-- Options: "always", "hold", "never"
@@ -255,16 +268,14 @@ EID.UserConfig = {
 	-------------MISC---------------
 	
 	-- Changes the number of Results shown for the additional Spindown dice description
+	-- REPENTANCE ONLY!!!
 	-- Default = 3
 	["SpindownDiceResults"] = 3,
 	
 	-- Spindown dice preview can skip over locked items, however the method for determining an item's locked status is not perfect
+	-- REPENTANCE ONLY!!!
 	-- Default = false
 	["SpindownDiceSkipLocked"] = false,
-	
-	-- Show ID of described object in the format "Type.Variant.SubType" next to the name
-	-- Default = false
-	["ShowObjectID"] = false,
 
 	-- Error message displayed when an error occurs
 	-- Default = [Effect not defined]
@@ -278,9 +289,6 @@ EID.UserConfig = {
 	-- Enables or disables custom Descriptions for entities
 	-- Default = true
 	["EnableEntityDescriptions"] = true,
-	-- Enables or disables item quality after item name
-	-- Default = true
-	["ShowQuality"] = true
 }
 
 --END CONFIG--
@@ -328,6 +336,8 @@ EID.DefaultConfig = {
 	["DisplayItemInfo"] = true,
 	["DisplayTrinketInfo"] = true,
 	["ItemNameColor"] = "ColorEIDObjName",
+	["ShowQuality"] = true,
+	["ShowObjectID"] = false,
 	["TransformationText"] = true,
 	["TransformationIcons"] = true,
 	["TransformationColor"] = "ColorEIDTransform",
@@ -365,6 +375,4 @@ EID.DefaultConfig = {
 	["TextColor"] = "ColorEIDText",
 	["ErrorColor"] = "ColorEIDError",
 	["EnableEntityDescriptions"] = true,
-	["ShowQuality"] = true,
-	["ShowObjectID"] = false,
 }

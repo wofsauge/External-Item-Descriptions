@@ -7,7 +7,7 @@
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
 
---Special character markup:
+-- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
 local repCollectibles={
@@ -184,6 +184,7 @@ local repCollectibles={
 	[464] = {"464", "Glyph of Balance", "+2 Soul Hearts#Champion enemies and room drops appear more frequently#Priority of spawned pickups depends on what the player is missing most of"}, -- Glyph of Balance
 	[472] = {"472", "King Baby", "Other familiars follow it and shoot automatically at enemies#Stops moving when you are shooting#Will teleport back to you when you stop shooting"}, -- King Baby
 	[474] = {"474", "Broken Glass Cannon", "Turns into Glass Cannon when used"}, -- Broken Glass Cannon
+	[476] =	{"476", "D1", "Duplicates 1 random pickup in the current room#Duplicated pickups may not be identical to the original"}, -- D1
 	[489] = {"489", "D Infinity", "Acts as any die item except for {{Collectible723}}Spindown Dice#Change the current die with the drop key#Charge time varies based on the current die and updates when used"}, -- D Infinity
 	[491] = {"491", "Acid Baby", "Drops a random pill every 7 rooms#Using a pill poisons all enemies in the room"}, -- Acid Baby
 	[493] = {"493", "Adrenaline", "↑ Damage up for every empty Red Heart container#Follows a formula, some examples are:#+0.3 at 1#+0.92 at 2#+1.76 at 3#+2.79 at 4#+3.98 at 5"}, -- Adrenaline
@@ -800,6 +801,25 @@ EID.descriptions["en_us"].bookOfVirtuesWisps = {
 	
 }
 
+-- Special Locust effects when Item was eaten by Abyss
+EID.descriptions["en_us"].abyssSynergies = {
+	[2] = "Three normal locusts", -- The Inner Eye
+	[3] = "Purple homing locust", -- Spoon Bender
+	[4] = "Red large locust that deals triple damage", -- Cricket's Head
+	[6] = "Yellow fast short range locust that deals damage more quickly", -- Number One
+	[7] = "Red locust that deals double damage", -- Blood of the Martyr
+	[10] = "Two gray locusts that deal half damage", -- Halo of Flies
+	[13] = "Green locust that poisons enemies", -- The Virus
+	[103] = "Green locust that poisons enemies", -- The Common Cold
+	[118] = "Gray larger locust that is otherwise normal", -- Brimstone
+	[149] = "Large, slow, green locust that deals x1.5 your damage and poisons enemies", -- Ipecac
+	[153] = "Four normal locusts", -- Mutant Spider
+	[257] = "Orange, burning locust that sets enemies on fire", -- Fire Mind
+	[305] = "Green locust that poisons enemies", -- Scorpio
+	[374] = "Cyan, glowing locust that can spawn beams of light that deal deal 3x your damage", -- Holy Light
+	[494] = "Light blue locust with arcs of electricity that deals 0.1 damage per tick", -- Jacob's Ladder
+	[559] = "Light blue locust with arcs of electricity that deals 0.1 damage per tick", -- 120 Volt
+}
 ---------- Cards ----------
 
 local repCards={
@@ -927,6 +947,7 @@ EID.descriptions["en_us"].horsepills={
 	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- Golden Pill
 }
 
+
 EID.descriptions["en_us"].CraftingBagContent = "Bag:"
 EID.descriptions["en_us"].CraftingRoomContent = "Room:"
 EID.descriptions["en_us"].CraftingFloorContent = "Floor:"
@@ -939,6 +960,11 @@ EID.descriptions["en_us"].CraftingPreviewKey = "Preview:"
 EID.descriptions["en_us"].CraftingPreviewBackup = "!!! If this item's locked, it will turn into"
 
 EID.descriptions["en_us"].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
+
+EID.descriptions["en_us"].BlankCardCharge = "Blank Card charge:" 
+EID.descriptions["en_us"].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed" 
+EID.descriptions["en_us"].ClearRuneCharge = "Clear Rune charge:" 
+EID.descriptions["en_us"].PlaceboCharge = "Placebo charge:" 
 
 EID.descriptions["en_us"].AchievementWarningTitle = "{{ColorYellow}}!!! WARNING !!!"
 EID.descriptions["en_us"].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)#(This warning can be disabled in the config)"
