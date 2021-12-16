@@ -917,7 +917,7 @@ if EID.MCMLoaded or REPENTANCE then
 			if savedEIDConfig.Version == EID.Config.Version then
 				local isDefaultConfig = true
 				for key, value in pairs(EID.Config) do
-					if type(value) ~= type(EID.DefaultConfig[key]) and key ~= "BagContent" and key ~= "BagFloorContent" then
+					if type(value) ~= type(EID.DefaultConfig[key]) and key ~= "BagContent" and key ~= "BagFloorContent" and key ~= "CraneItemType" then
 						print("EID Warning! : Config value '"..key.."' has wrong data-type. Resetting it to default...")
 						EID.Config[key] = EID.DefaultConfig[key]
 					end
