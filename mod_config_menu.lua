@@ -304,28 +304,30 @@ if MCMLoaded then
 		}
 	)
 	
-	-- disable the warnings that display at the start of new runs
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisableAchievementCheck"]
-			end,
-			Display = function()
-				local onOff = "Enabled"
-				if EID.Config["DisableAchievementCheck"] then
-					onOff = "Disabled"
-				end
-				return "Start of Run Warnings: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisableAchievementCheck"] = currentBool
-			end,
-			Info = {"Toggle the achievement, outdated game version, and modded crafting recipes warnings"}
-		}
-	)
+	if REPENTANCE then
+		-- disable the warnings that display at the start of new runs
+		MCM.AddSetting(
+			"EID",
+			"General",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function()
+					return EID.Config["DisableAchievementCheck"]
+				end,
+				Display = function()
+					local onOff = "Enabled"
+					if EID.Config["DisableAchievementCheck"] then
+						onOff = "Disabled"
+					end
+					return "Start of Run Warnings: " .. onOff
+				end,
+				OnChange = function(currentBool)
+					EID.Config["DisableAchievementCheck"] = currentBool
+				end,
+				Info = {"Toggle the achievement, outdated game version, and modded crafting recipes warnings"}
+			}
+		)
+	end
 	
 	-- Disable on Curse
 	MCM.AddSetting(
