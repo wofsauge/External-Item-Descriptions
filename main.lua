@@ -574,6 +574,7 @@ function EID:onGameUpdate()
 			EID.hasValidWalkingpath = false
 		elseif not EID.pathCheckerEntity:Exists() then
 			EID.pathCheckerEntity = nil
+			EID.hasValidWalkingpath = false
 		else
 			EID.pathCheckerEntity.Position = EID.player.Position
 			EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos ( EID.lastDescriptionEntity.Position, false )
@@ -787,7 +788,7 @@ local function onRender(t)
 			local isSoulstone = closest.SubType >= 81 and closest.SubType <= 97
 			local hideinShop = closest:ToPickup():IsShopItem() and ((not isSoulstone and not EID.Config["DisplayCardInfoShop"]) or (isSoulstone and not EID.Config["DisplaySoulstoneInfoShop"]))
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayCardInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
-			local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or (not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and not EID.hasValidWalkingpath
+			local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or (not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and (not EID.hasValidWalkingpath or EID.pathCheckerEntity == nil)
 			if isOptionsSpawn or hideinShop or obstructed or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
 				EID:renderQuestionMark()
 				return
@@ -802,8 +803,9 @@ local function onRender(t)
 			return
 		end
 		if EID:getEntityData(closest, "EID_DontHide") ~= true then
+			Isaac.DebugString("hello! " .. tostring(EID.hasValidWalkingpath))
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
-			if isOptionsSpawn or (closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]) or (not EID.Config["DisplayObstructedPillInfo"] and not EID.hasValidWalkingpath) then
+			if isOptionsSpawn or (closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]) or (not EID.Config["DisplayObstructedPillInfo"] and (not EID.hasValidWalkingpath or EID.pathCheckerEntity == nil)) then
 				EID:renderQuestionMark()
 				return
 			end
