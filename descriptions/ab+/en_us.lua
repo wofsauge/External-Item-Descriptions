@@ -76,7 +76,7 @@ EID.descriptions["en_us"].collectibles={
 	{"61", "", "<item does not exist>"},
 	{"62", "Charm of the Vampire", "Heals half a heart every 13 enemies killed"},
 	{"63", "The Battery", "Active items can now be charged up twice"},
-	{"64", "Steam Sale", "-50% on shop items' prices#Getting this item two times will make everything free"},
+	{"64", "Steam Sale", "-50% on shop items#Getting this item two times will make everything free"},
 	{"65", "Anarchist Cookbook", "Spawn 6 troll bombs near the center of the room"},
 	{"66", "The Hourglass", "Slow down enemies for 8 secs"},
 	{"67", "Sister Maggy", "Normal tear familiar#Deals 3.5 damage per tear"},
