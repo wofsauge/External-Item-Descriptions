@@ -848,7 +848,6 @@ local function onRender(t)
 			return
 		end
 		if EID:getEntityData(closest, "EID_DontHide") ~= true then
-			Isaac.DebugString("hello! " .. tostring(EID.hasValidWalkingpath))
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
 			if isOptionsSpawn or (closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]) or (not EID.Config["DisplayObstructedPillInfo"] and (not EID.hasValidWalkingpath or EID.pathCheckerEntity == nil)) then
 				EID:renderQuestionMark()
