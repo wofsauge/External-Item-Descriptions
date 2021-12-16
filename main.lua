@@ -28,6 +28,7 @@ EID.sacrificeCounter = {}
 EID.itemConfig = Isaac.GetItemConfig()
 EID.effectList = {["76"] = true}
 EID.itemUnlockStates = {}
+EID.CraneItemType = {}
 
 -- Sprite inits
 EID.IconSprite = Sprite()
@@ -137,6 +138,7 @@ function EID:onNewFloor()
 	if REPENTANCE then
 		EID.bagOfCraftingRoomQueries = {}
 		EID.bagOfCraftingFloorQuery = {}
+		EID.CraneItemType = {}
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
@@ -212,6 +214,22 @@ function EID:IsAltChoice(pickup)
 	pickup:GetData()["EID_IsAltChoice"] = true
 	return true
 end
+
+---------------------------------------------------------------------------
+-------------------------Handle Crane Game-----------------------------
+
+function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, seed)
+	if itemPoolType == ItemPoolType.POOL_CRANE_GAME then
+		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+			if not crane:GetSprite():IsPlaying("Broken") then
+				if not EID.CraneItemType[tostring(crane.InitSeed)] then
+					EID.CraneItemType[tostring(crane.InitSeed)] = selectedCollectible
+				end
+			end
+		end
+	end
+end
+EID:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, EID.postGetCollectible)
 
 ---------------------------------------------------------------------------
 ---------------------------Printing Functions------------------------------
@@ -542,6 +560,7 @@ EID.hasValidWalkingpath = true
 
 function EID:onGameUpdate()
 	EID:setPlayer()
+	
 	--Fix Overlapping Pedestals
 	local curPositions = {}
 	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
@@ -554,6 +573,14 @@ function EID:onGameUpdate()
 			end
 		end
 		table.insert(curPositions, {entity, entity.Position})
+	end
+	
+	for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+		if EID.CraneItemType[tostring(crane.InitSeed)] then
+			if crane:GetSprite():IsPlaying("Prize") then
+				EID.CraneItemType[tostring(crane.InitSeed)] = nil
+			end
+		end
 	end
 	
 	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"] then
@@ -755,10 +782,28 @@ local function onRender(t)
 		EID:printDescription(origDesc)
 		return
 	end
-
+	
 	if closest.Type == 1000 and closest.Variant == 76 then
 		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1))
 		return
+	end
+	
+	if closest.Type == 6 and closest.Variant == 16 then
+		--Handle Crane Game
+		
+		if EID.CraneItemType[tostring(closest.InitSeed)] then
+			if EID:getEntityData(closest, "EID_DontHide") ~= true then
+				if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+					EID:renderQuestionMark()
+					return
+				end
+			end
+			local collectibleID = EID.CraneItemType[tostring(closest.InitSeed)]
+			local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID)
+			
+			EID:printDescription(descriptionObj)
+			return
+		end
 	end
 	
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
@@ -851,8 +896,10 @@ if EID.MCMLoaded or REPENTANCE then
 			if REPENTANCE and isSave then
 				EID.BagItems = savedEIDConfig["BagContent"]
 				EID.bagOfCraftingRoomQueries = savedEIDConfig["BagFloorContent"]
+				EID.CraneItemType = savedEIDConfig["CraneItemType"]
 				savedEIDConfig["BagContent"] = nil
 				savedEIDConfig["BagFloorContent"] = nil
+				savedEIDConfig["CraneItemType"] = nil
 			else
 				EID.BagItems = {}
 			end
@@ -896,6 +943,7 @@ if EID.MCMLoaded or REPENTANCE then
 		if REPENTANCE then
 			EID.Config["BagContent"] = EID.BagItems or {}
 			EID.Config["BagFloorContent"] = EID.bagOfCraftingRoomQueries or {}
+			EID.Config["CraneItemType"] = EID.CraneItemType or {}
 		end
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()
