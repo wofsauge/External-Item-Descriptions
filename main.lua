@@ -413,8 +413,12 @@ function EID:renderIndicator(entity)
 		entityPos = entityPos + entity:GetData()["EID_RenderOffset"]
 	end
 	-- Move highlights a bit to fit onto the alt Item layout of Flip / Tainted Laz
-	if REPENTANCE and entity.Variant == 100 and EID.player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) then
-		entityPos = entityPos + Vector(2.5,2.5)
+	if REPENTANCE then
+		if entity.Variant == 100 and EID.player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) then
+			entityPos = entityPos + Vector(2.5,2.5)
+		elseif entity.Type == 6 and entity.Variant == 16 then
+			entityPos = entityPos + Vector(0,-5)
+		end
 	end
 	local sprite = entity:GetSprite()
 	if REPENTANCE then
@@ -488,6 +492,8 @@ end
 function EID:renderEntity(entity, sprite, position)
 	if entity.Type == 5 and entity.Variant == 100 then
 		sprite:RenderLayer(1, position, nullVector, nullVector)
+	elseif entity.Type == 6 and entity.Variant == 16 then -- Crane Game
+		sprite:RenderLayer(2, position, nullVector, nullVector)
 	else
 		sprite:Render(position, nullVector, nullVector)
 	end
@@ -575,10 +581,12 @@ function EID:onGameUpdate()
 		table.insert(curPositions, {entity, entity.Position})
 	end
 	
-	for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
-		if EID.CraneItemType[tostring(crane.InitSeed)] then
-			if crane:GetSprite():IsPlaying("Prize") then
-				EID.CraneItemType[tostring(crane.InitSeed)] = nil
+	if REPENTANCE and EID.CraneItemType ~= nil then
+		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+			if EID.CraneItemType[tostring(crane.InitSeed)] then
+				if crane:GetSprite():IsPlaying("Prize") then
+					EID.CraneItemType[tostring(crane.InitSeed)] = nil
+				end
 			end
 		end
 	end
