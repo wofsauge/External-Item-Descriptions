@@ -888,7 +888,7 @@ local repPills={
 	
 	[48] = {"47", "Shot Speed Down", "↓ -0.15 Shot Speed down"}, -- Shot Speed Down
 	[49] = {"48", "Shot Speed Up", "↑ +0.15 Shot Speed up"}, -- Shot Speed Up
-	[50] = {"49", "Experimental Pill", "↑ Increases 1 random stat#↓ Decreases 1 random other stat#Will not decrease with PHD"}, -- Experimental Pill
+	[50] = {"49", "Experimental Pill", "↑ Increases 1 random stat#↓ Decreases 1 random other stat#Will not decrease with {{Collectible75}}PHD#Will not increase with {{Collectible654}}False PHD"}, -- Experimental Pill
 	[9999] = {"", "Golden Pill", "Random pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions["en_us"].pills)
@@ -943,7 +943,7 @@ EID.descriptions["en_us"].horsepills={
 	{"46", "Vurp!", "Spawns last used pill as a horse pill"}, -- Vurp!
 	{"47", "Shot Speed Down", "↓ -0.3 Shot Speed down"}, -- Shot Speed Down
 	{"48", "Shot Speed Up", "↑ +0.3 Shot Speed up"}, -- Shot Speed Up
-	{"49", "Experimental Pill", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with PHD"}, -- Experimental Pill
+	{"49", "Experimental Pill", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with {{Collectible75}}PHD#Will not increase with {{Collectible654}}False PHD"}, -- Experimental Pill
 	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- Golden Pill
 }
 
@@ -965,6 +965,10 @@ EID.descriptions["en_us"].BlankCardCharge = "Blank Card charge:"
 EID.descriptions["en_us"].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed" 
 EID.descriptions["en_us"].ClearRuneCharge = "Clear Rune charge:" 
 EID.descriptions["en_us"].PlaceboCharge = "Placebo charge:" 
+
+EID.descriptions["en_us"].FalsePHDHeart = "Spawns 1 Black Heart"
+EID.descriptions["en_us"].FalsePHDDamage = "+0.6 Damage up"
+EID.descriptions["en_us"].FalsePHDHorseDamage = "+1.2 Damage up"
 
 EID.descriptions["en_us"].AchievementWarningTitle = "{{ColorYellow}}!!! WARNING !!!"
 EID.descriptions["en_us"].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)#(This warning can be disabled in the config)"
