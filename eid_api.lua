@@ -371,7 +371,7 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 			return SubType - 32768
 		end
 	elseif tableName == "pills" or tableName == "horsepills" then
-		if SubType == 14 then
+		if SubType % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then
 			return 9999
 		end
 		local pool = game:GetItemPool()
@@ -451,7 +451,11 @@ function EID:getObjectName(Type, Variant, SubType)
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
-		local vanillaName = EID.itemConfig:GetPillEffect(adjustedSubtype - 1).Name
+		local vanillaName = nil
+		-- fix Gold Pill bug
+		if EID.itemConfig:GetPillEffect(adjustedSubtype - 1) then
+			vanillaName = EID.itemConfig:GetPillEffect(adjustedSubtype - 1).Name
+		end
 		name = name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][adjustedSubtype][2] or vanillaName
 		return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
 	elseif tableName == "sacrifice" then
