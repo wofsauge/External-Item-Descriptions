@@ -374,6 +374,40 @@ local game = Game()
 		return descObj
 	end
 	EID:addDescriptionModifier("Placebo", PlaceboCondition, PlaceboCallback)
+	
+	-- Handle False PHD description addition
+	local function FalsePHDCondition(descObj)
+		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_PILL then
+			return false
+		end
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD) then
+				return true
+			end
+		end
+		return false
+	end
+	
+	local function FalsePHDCallback(descObj)
+		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
+		local horse = descObj.ObjSubType > 2048
+		local data = EID.pillMetadata[adjustedID-1]
+		if data ~= nil then
+			local damageUp = string.find(data.class,"3") and (string.find(data.class,"-") or adjustedID-1 == PillEffect.PILLEFFECT_EXPERIMENTAL)
+			local blackHeart = (string.find(data.class,"2") or string.find(data.class,"1")) and string.find(data.class,"-")
+			local text = ""
+			if damageUp and horse then text = EID:getDescriptionEntry("FalsePHDHorseDamage")
+			elseif damageUp then text = EID:getDescriptionEntry("FalsePHDDamage")
+			elseif blackHeart then text = EID:getDescriptionEntry("FalsePHDHeart") end
+			if text ~= "" then
+				local iconStr = "#{{Collectible654}} "
+				EID:appendToDescription(descObj, iconStr..text)
+			end
+		end
+		return descObj
+	end
+	EID:addDescriptionModifier("False PHD", FalsePHDCondition, FalsePHDCallback)
 
 
 	-- Handle Abyss description addition
