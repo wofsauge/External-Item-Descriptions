@@ -574,8 +574,7 @@ function EID:onGameUpdate()
 		local pos = entity.Position
 		for _, otherPos in ipairs(curPositions) do
 			if pos:Distance(otherPos[2]) == 0 then
-				-- adjust the position so Mega Chests can have both descriptions viewable
-				entity.Position = entity.Position + Vector(1,0)
+				--entity.Position = entity.Position + Vector(1,0)
 				entity:GetData()["EID_RenderOffset"] = Vector(10,0)
 				otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
 			end
@@ -750,6 +749,10 @@ local function onRender(t)
 		for i, entity in ipairs(entitySearch) do
 			if EID:hasDescription(entity) and entity.FrameCount > 0 then
 				local diff = entity.Position:__sub(sourcePos)
+				-- break ties with the render offset (for Mega Chest double collectibles)
+				if diff:Length() == EID.lastDist and entity:GetData()["EID_RenderOffset"] then
+					diff = diff + entity:GetData()["EID_RenderOffset"]
+				end
 				if diff:Length() < EID.lastDist then
 					EID.lastDescriptionEntity = entity
 					EID.lastDist = diff:Length()
