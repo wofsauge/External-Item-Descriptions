@@ -13,7 +13,7 @@
 local repCollectibles={
 	[2] = {"2", "The Inner Eye", "Triple shot#↓ -49% Fire Rate down"},
 	[5] = {"5", "My Reflection", "Gives tears a boomerang effect#↑ +1.5 Range up#↑ +60% additional Range up#↑ +0.6 Shot Speed up#"}, -- My Reflection
-	[6] = {"6", "Number One", "↑ +1.5 Tears up#↓ -1.5 Range down#↓ -20% additional Range down#↓ -75% Tear Height"}, -- Number One
+	[6] = {"6", "Number One", "↑ +1.5 Tears up#↓ -1.5 Range down#↓ -20% additional Range down"}, -- Number One
 	[12] = {"12", "Magic Mushroom", "↑ +1 Health up#Full health#↑ +0.3 Damage up#↑ +50% Damage Multiplier#↑ +1.5 Range up#↑ +0.3 Speed up#Size up"}, -- Magic Mushroom
 	[13] = {"13", "The Virus", "Poison touch#↑ +0.2 Speed up"}, -- The Virus
 	[14] = {"14", "Roid Rage", "↑ +0.3 Speed up#↑ +1.5 Range up"}, -- Roid Rage
@@ -498,7 +498,7 @@ local repTrinkets={
 	[49] = {"49", "Bloody Penny", "25% chance to drop half a heart when picking up coins"}, -- Bloody Penny
 	[50] = {"50", "Burnt Penny", "25% chance to drop a bomb when picking up coins"}, -- Burnt Penny
 	[51] = {"51", "Flat Penny", "25% chance to drop a key when picking up coins"}, -- Flat Penny
-	[65] = {"65", "Tape Worm", "↑ +3 Range up#↑ 2x Tear Height"}, -- Tape Worm
+	[65] = {"65", "Tape Worm", "↑ +3 Range up"}, -- Tape Worm
 	[66] = {"66", "Lazy Worm", "↓ -0.5 Shot Speed down"}, -- Lazy Worm
 	[69] = {"69", "Faded Polaroid", "Camouflages the player randomly#Confuses enemies#Can be used to open the door to the \"Home\" floor"}, -- Faded Polaroid
 	[80] = {"80", "Black Feather", "↑ +0.5 Damage up for each evil item held"}, -- Black Feather
