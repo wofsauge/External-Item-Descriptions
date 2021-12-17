@@ -395,7 +395,8 @@ local game = Game()
 		local data = EID.pillMetadata[adjustedID-1]
 		if data ~= nil then
 			local damageUp = string.find(data.class,"3") and (string.find(data.class,"-") or adjustedID-1 == PillEffect.PILLEFFECT_EXPERIMENTAL)
-			local blackHeart = (string.find(data.class,"2") or string.find(data.class,"1")) and string.find(data.class,"-")
+			-- why doesn't I'm Excited have a - in the xml data yet spawn a black heart...
+			local blackHeart = (string.find(data.class,"2") or string.find(data.class,"1")) and (string.find(data.class,"-") or adjustedID-1 == PillEffect.PILLEFFECT_IM_EXCITED)
 			local text = ""
 			if damageUp and horse then text = EID:getDescriptionEntry("FalsePHDHorseDamage")
 			elseif damageUp then text = EID:getDescriptionEntry("FalsePHDDamage")
