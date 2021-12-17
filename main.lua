@@ -886,6 +886,7 @@ local function onRender(t)
 		local pillColor = closest.SubType
 		local pool = game:GetItemPool()
 		local identified = pool:IsPillIdentified(pillColor)
+		if REPENTANCE and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
 		if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) then
 			local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor)
 			EID:printDescription(descEntry)
