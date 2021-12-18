@@ -1,3 +1,4 @@
+local game = Game()
 local pickupValues = {
   0x00000000, -- 0 None
   -- Hearts
@@ -83,7 +84,7 @@ local pickupIDLookup = {
 local function IsTaintedCain()
 	--no clue how the display works for co-op, as far as I can tell we're only caring about player 1
 	--this check is necessary for some ingredient tracking now that Bag of Crafting is usable by everyone
-	return Game():GetPlayer(0):GetPlayerType() == 23
+	return game:GetPlayer(0):GetPlayerType() == 23
 end
 
 local componentShifts = {
@@ -694,7 +695,7 @@ local function getFloorItemsString(showPreviews, roomItems)
 end
 
 function EID:handleBagOfCraftingRendering()
-	local curSeed = Game():GetSeeds():GetStartSeed()
+	local curSeed = game:GetSeeds():GetStartSeed()
 	--reset our calculated recipes when the game seed changes
 	if (curSeed ~= lastSeedUsed) then
 		calculatedRecipes = {}
@@ -726,7 +727,7 @@ function EID:handleBagOfCraftingRendering()
 	end
 	
 	--determine if we should display anything at all, display item preview if applicable, and figure out our room/floor's pickup contents
-	if EID.isHidden or craftingIsHidden then
+	if EID.isHidden or craftingIsHidden or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
 		return
 	elseif EID.Config["BagOfCraftingHideInBattle"] then
 		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
@@ -740,7 +741,7 @@ function EID:handleBagOfCraftingRendering()
 	if EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.player:GetSprite():GetAnimation(), "PickupWalk") then
 		return false
 	end
-	if Game():GetRoom():GetFrameCount() < 2 then
+	if game:GetRoom():GetFrameCount() < 2 then
 		return false
 	end
 	
@@ -762,7 +763,7 @@ function EID:handleBagOfCraftingRendering()
 	--if we're in Preview Only mode, then we have nothing more to do
 	if (EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") then return false end
 	
-	local curRoomIndex = Game():GetLevel():GetCurrentRoomDesc().SafeGridIndex
+	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().SafeGridIndex
 	
 	local results = {}
 	local roomItems = {}

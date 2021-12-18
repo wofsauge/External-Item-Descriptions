@@ -563,6 +563,7 @@ EID.lastDescriptionEntity = nil
 EID.lastDist = 0
 EID.pathCheckerEntity = nil
 EID.hasValidWalkingpath = true
+EID.pathfindingTo = nil
 
 function EID:onGameUpdate()
 	EID:setPlayer()
@@ -573,7 +574,7 @@ function EID:onGameUpdate()
 		local pos = entity.Position
 		for _, otherPos in ipairs(curPositions) do
 			if pos:Distance(otherPos[2]) == 0 then
-				entity.Position = entity.Position + Vector(1,0)
+				--entity.Position = entity.Position + Vector(1,0)
 				entity:GetData()["EID_RenderOffset"] = Vector(10,0)
 				otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
 			end
@@ -598,6 +599,7 @@ function EID:onGameUpdate()
 				EID.pathCheckerEntity = nil
 				EID.hasValidWalkingpath = true
 			end
+			EID.pathfindingTo = EID.lastDescriptionEntity
 			return
 		end
 		if EID.pathCheckerEntity == nil then
@@ -609,15 +611,23 @@ function EID:onGameUpdate()
 			EID.hasValidWalkingpath = false
 		elseif not EID.pathCheckerEntity:Exists() then
 			EID.pathCheckerEntity = nil
-			EID.hasValidWalkingpath = false
 		else
 			EID.pathCheckerEntity.Position = EID.player.Position
 			EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos ( EID.lastDescriptionEntity.Position, false )
+			EID.pathfindingTo = EID.lastDescriptionEntity
 		end
 	end
 	
 end
 EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
+
+-- this can be called when moving between two different pickups
+function EID:updatePathfinding()
+	if not EID.pathCheckerEntity or not EID.lastDescriptionEntity then return end
+	EID.pathCheckerEntity.Position = EID.player.Position
+	EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos ( EID.lastDescriptionEntity.Position, false )
+	EID.pathfindingTo = EID.lastDescriptionEntity
+end
 
 local hasShownAchievementWarning = false
 
@@ -739,6 +749,10 @@ local function onRender(t)
 		for i, entity in ipairs(entitySearch) do
 			if EID:hasDescription(entity) and entity.FrameCount > 0 then
 				local diff = entity.Position:__sub(sourcePos)
+				-- break ties with the render offset (for Mega Chest double collectibles)
+				if diff:Length() == EID.lastDist and entity:GetData()["EID_RenderOffset"] then
+					diff = diff + entity:GetData()["EID_RenderOffset"]
+				end
 				if diff:Length() < EID.lastDist then
 					EID.lastDescriptionEntity = entity
 					EID.lastDist = diff:Length()
@@ -815,6 +829,8 @@ local function onRender(t)
 		end
 	end
 	
+	if EID.pathfindingTo and EID.pathfindingTo.Index ~= closest.Index then EID:updatePathfinding() end
+	
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
 		--Handle Trinkets
 		local trinketID = closest.SubType
@@ -833,7 +849,8 @@ local function onRender(t)
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Cards & Runes
-		if ( not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"]) and closest.FrameCount < 3 then
+		if (not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"]) and
+			(closest.FrameCount < 3 or EID.pathfindingTo == nil) then
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
@@ -851,13 +868,16 @@ local function onRender(t)
 		EID:printDescription(descriptionObj)
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		--Handle Pills
-		if  not EID.Config["DisplayObstructedPillInfo"] and closest.FrameCount < 3 then
+		if not EID.Config["DisplayObstructedPillInfo"] and
+			(closest.FrameCount < 3 or EID.pathfindingTo == nil) then
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
 		if EID:getEntityData(closest, "EID_DontHide") ~= true then
+			local hideinShop = closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
-			if isOptionsSpawn or (closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]) or (not EID.Config["DisplayObstructedPillInfo"] and not EID.hasValidWalkingpath) then
+			local obstructed = not EID.Config["DisplayObstructedPillInfo"] and not EID.hasValidWalkingpath
+			if isOptionsSpawn or hideinShop or obstructed then
 				EID:renderQuestionMark()
 				return
 			end
@@ -866,6 +886,7 @@ local function onRender(t)
 		local pillColor = closest.SubType
 		local pool = game:GetItemPool()
 		local identified = pool:IsPillIdentified(pillColor)
+		if REPENTANCE and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
 		if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) then
 			local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor)
 			EID:printDescription(descEntry)

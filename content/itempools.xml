@@ -1,6 +1,0 @@
-<ItemPools>
-	<Pool Name="unused24">
-		<!--Cube of Meat-->
-		<Item Id="73" Weight="100" DecreaseBy="0.4" RemoveOn="0.1"/>
-	</Pool>
-</ItemPools>
