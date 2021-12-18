@@ -47,10 +47,13 @@ recipeIngredients["~"] = 25
 recipesXML = ET.parse(filePath+'recipes.xml').getroot()
 for recipe in recipesXML.findall('recipe'):
     input = recipe.get('input')
-    convertedInput = ""
+    convertedInput = []
     for char in input:
-        convertedInput += str(recipeIngredients[char])+","
-    recipies.append({"input": convertedInput.rstrip(","), "output": recipe.get('output')})
+        convertedInput.append(recipeIngredients[char])
+
+    convertedInput.sort()
+    convertedInput = str(convertedInput).replace(" ","").replace("[","").replace("]","")
+    recipies.append({"input": convertedInput, "output": recipe.get('output')})
 
 # Read items_metadata.xml
 items_metadataXML = ET.parse(filePath+'items_metadata.xml').getroot()
