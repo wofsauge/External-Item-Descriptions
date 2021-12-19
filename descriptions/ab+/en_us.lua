@@ -181,7 +181,7 @@ EID.descriptions["en_us"].collectibles={
 	{"166", "D20", "Reroll pickups"},
 	{"167", "Harlequin Baby", "Shoots two tears in a V-shaped pattern#Deals 4 damage per shot"},
 	{"168", "Epic Fetus", "Controllable airstrike instead of tears#Deals 20 times your damage"},
-	{"169", "Polyphemus", "↑ +100% Damage up#↑ +4 additional Damage up#↓ Tears down"},
+	{"169", "Polyphemus", "↑ +100% Damage up#↑ +4 additional Damage up#↓ Tears down#Tears keep going after killing an enemy"},
 	{"170", "Daddy Longlegs", "Stomps on enemies#Deals 40 damage per second"},
 	{"171", "Spider Butt", "Slows down enemies for 4 seconds#10 damage to all enemies"},
 	{"172", "Sacrificial Dagger", "Orbital knife#Blocks enemy shots#Deals 225 damage per second"},
