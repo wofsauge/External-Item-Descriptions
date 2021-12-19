@@ -81,7 +81,7 @@ local repCollectibles={
 	[194] = {"194", "Magic 8 Ball", "↑ +0.16 Shot Speed up#+1 card#+15% {{Planetarium}}Planetarium chance"}, -- Magic 8 Ball
 	[197] = {"197", "Jesus Juice", "↑ +0.5 Damage up#↑ +0.38 Range up"}, -- Jesus Juice
 	[203] = {"203", "Humbling Bundle", "Chance to spawn the double version of pickups"}, -- Humbling Bundle
-	[205] = {"205", "Sharp Plug", "- half Heart = Charges one slot of your active item when pressing space"}, -- Sharp Plug
+	[205] = {"205", "Sharp Plug", "On use, fully recharges your active item at the cost of half a heart per charge#Prioritizes Red Hearts"}, -- Sharp Plug
 	[206] = {"206", "Guillotine", "↑ +1 Damage up#↑ +0.5 Fire Rate up#Your head is now an orbital which doesn't take damage and deals 105 contact damage#You will still shoot from the head"}, -- Guillotine
 	[211] = {"211", "Spiderbaby", "Spawn 3-5 Blue Spiders upon taking damage"}, -- Spiderbaby
 	[214] = {"214", "Anemic", "↑ +1.5 Range up#Leave a trail of damaging creep upon taking damage"}, -- Anemic
@@ -236,7 +236,7 @@ local repCollectibles={
 	[585] = {"585", "Alabaster Box", "Spawns three Soul Hearts and two Angel Room items#Must be charged by picking up Soul Hearts#Only spawns 2 Soul Hearts and 1 Angel item if a Devil deal was taken previously"}, -- Alabaster Box
 	[586] = {"586", "The Stairway", "Spawns a ladder at the start of every floor, leading to a unique Angel Room item shop"}, -- The Stairway
 	[587] = {"587", "Menorah (Unused but scripted)", "<Item does not exist>"}, -- Menorah (Unused but scripted)
-	[588] = {"588", "Sol", "Reveals the location of the {{BossRoom}}Boss Room#Upon defeating a boss, activates XIX - The Sun {{Card20}}#Also fully recharges active item, and +3 damage and +1 luck for the rest of the floor"}, -- Sol
+	[588] = {"588", "Sol", "Reveals the location of the {{BossRoom}}Boss Room#Upon defeating a boss:#Activates {{Card20}}The Sun#Fully recharges your active item#Removes any Curses#↑ +3 Damage and +1 Luck for the rest of the floor"}, -- Sol
 	[589] = {"589", "Luna", "Adds an extra {{SecretRoom}}Secret Room and {{SuperSecretRoom}}Super Secret Room to each floor#Secret Rooms contain a beam of light that give tears up for the current floor and give half a Soul Heart#Reveals one {{SecretRoom}}Secret Room each floor"}, -- Luna
 	[590] = {"590", "Mercurius", "↑ +0.4 Speed up#Doors stay open after entering a room"}, -- Mercurius
 	[591] = {"591", "Venus", "+1 Health up#Heals 1 Red Heart#Close enemies become charmed"}, -- Venus
@@ -914,7 +914,7 @@ EID.descriptions["en_us"].horsepills={
 	{"17", "Luck Down", "↓ -2 Luck down"}, -- Luck Down
 	{"18", "Luck Up", "↑ +2 Luck up"}, -- Luck Up
 	{"19", "Telepills", "Teleport to random room"}, -- Telepills
-	{"20", "48 Hour Energy!", "Recharges your active item#Drops batteries"}, -- 48 Hour Energy!
+	{"20", "48 Hour Energy!", "Fully recharges your active item#Drops 3-4 batteries"}, -- 48 Hour Energy!
 	{"21", "Hematemesis", "Drains all but one heart container#Spawns red hearts"}, -- Hematemesis
 	{"22", "Paralysis", "You can't move for 4 seconds"}, -- Paralysis
 	{"23", "I can see forever!", "Opens secret room entrances on current floor#Grants full mapping"}, -- I can see forever!
