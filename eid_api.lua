@@ -767,6 +767,7 @@ end
 
 -- Converts a given CollectibleID into the respective Spindown dice result
 function EID:getSpindownResult(collectibleID)
+	if collectibleID <= 0 or collectibleID > 4294960000 then return 0 end
 	local newID = collectibleID
 	local attempts = 0
 	repeat
