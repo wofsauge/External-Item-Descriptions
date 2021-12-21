@@ -574,7 +574,6 @@ function EID:onGameUpdate()
 		local pos = entity.Position
 		for _, otherPos in ipairs(curPositions) do
 			if pos:Distance(otherPos[2]) == 0 then
-				--entity.Position = entity.Position + Vector(1,0)
 				entity:GetData()["EID_RenderOffset"] = Vector(10,0)
 				otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
 			end
