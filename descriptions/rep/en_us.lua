@@ -138,7 +138,7 @@ local repCollectibles={
 	[345] = {"345", "Synthoil", "↑ +1 Damage up#↑ +1.5 Range up"}, -- Synthoil
 	[346] = {"346", "A Snack", "↑ +1 Health up#Heals 1 Red Heart"}, -- A Snack
 	[350] = {"350", "Toxic Shock", "At the start of every room every enemy gets a poison effect#Killed enemies leave puddle of creep#Grants immunity for toxic clouds"}, -- Toxic Shock
-	[352] = {"352", "Glass Cannon", "Fires one large piercing spectral tear ((DMG x 10) + 10)#!!! When you take damage:#↓ You will lose an extra 2 hearts of health#↑ + 1.5 Range up#Self-damage does not count"}, -- Glass Cannon
+	[352] = {"352", "Glass Cannon", "Fires one large piercing spectral tear ((DMG x 10) + 10)#!!! When you take damage:#↓ You will lose an extra 2 hearts of health#↑ +1.5 Range up and leave blood creep for the room#The extra damage can't kill you#Self-damage does not count"}, -- Glass Cannon
 	[354] = {"354", "Crack Jacks", "↑ +1 Health up#Spawns random trinket on the floor#Heals 1 Red Heart"}, -- Crack Jacks
 	[355] = {"355", "Mom's Pearls", "↑ +0.38 Range up#↑ +1 Luck up#+1 Soul Heart"}, -- Mom's Pearls
 	[360] = {"360", "Incubus", "Gain a demonic familiar that shoots the same tears as Isaac#Deals 75% of your damage unless playing as Lilith"}, -- Incubus
@@ -351,7 +351,7 @@ local repCollectibles={
 	[700] = {"700", "Echo Chamber", "When Isaac uses a Card, Pill, or Rune, he also uses a copy of the last 3 Cards/Pills/Runes he used after picking up Echo Chamber"}, -- Echo Chamber
 	[701] = {"701", "Isaac's Tomb", "Spawns an Old Chest at the start of every floor#Can contain Soul Hearts, trinkets or items from Angel Rooms or Mom or Dad themed"}, -- Isaac's Tomb
 	[702] = {"702", "Vengeful Spirit", "After taking damage, spawns an orbital wisp that lasts for the entire floor#Maximum of 6#They fire tears but do not block shots"}, -- Vengeful Spirit
-	[703] = {"703", "Esau Jr.", "Swaps between the current character and Esau Jr., who has 3 Black Hearts, +2 damage and flight#Characters have independent items and health#{{Warning}} Dying as either character ends the run"}, -- Esau Jr.
+	[703] = {"703", "Esau Jr.", "Swaps between the current character and Esau Jr., who has 3 Black Hearts, +2 Damage and flight#Characters have independent items and health#On first use, he gains random passive items equal to how many you have#{{Warning}} Dying as either character ends the run"}, -- Esau Jr.
 	[704] = {"704", "Berserk!", "Berserk mode for 5 seconds:#↑ +0.4 Speed up#↑ Tears up#↑ +3 Damage up#Restricts attacks to a melee weapon"}, -- Berserk!
 	[705] = {"705", "Dark Arts", "Gain +1 Speed and walk through enemies and bullets for 1 second#On touch, deal 2x your damage + 3.5 damage per touched enemy#Explosion on effect end that deals damage equal to how much you dealt"}, -- Dark Arts
 	[706] = {"706", "Abyss", "Destroys all items in the room and spawns an attack fly familiar for each#Effects of fly depends on the items"}, -- Abyss
@@ -844,7 +844,7 @@ local repCards={
 	[94] = {"94", "Soul of Apollyon", "Spawn 15 random locust flies"}, -- Soul of Apollyon
 	[95] = {"95", "Soul of the Forgotten", "Spawns The Forgotten as a temporary secondary character for current room"}, -- Soul of the Forgotten
 	[96] = {"96", "Soul of Bethany", "Spawns 6 {{Collectible584}}Book of Virtues wisps with random properties"}, -- Soul of Bethany
-	[97] = {"97", "Soul of Jacob and Esau", "Spawns Esau as a temporary secondary character for current room"}, -- Soul of Jacob and Esau
+	[97] = {"97", "Soul of Jacob and Esau", "Spawns Esau as a temporary secondary character for current room#He spawns with random passive items equal to how many you have"}, -- Soul of Jacob and Esau
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions["en_us"].cards)
 
