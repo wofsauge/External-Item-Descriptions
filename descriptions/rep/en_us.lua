@@ -981,4 +981,4 @@ EID.descriptions["en_us"].AchievementWarningText = "Achievements are disabled!#I
 
 EID.descriptions["en_us"].OldGameVersionWarningText = "Your version of Repentance is not up-to-date!#Only the newest version is officially supported#(This warning can be disabled in the config)"
 
-EID.descriptions["en_us"].ModdedRecipesWarningText = "Modded items are likely to make the crafting recipe calculation inaccurate!#Use the No Recipes display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
+EID.descriptions["en_us"].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Use the No Recipes display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
