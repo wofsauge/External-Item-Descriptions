@@ -450,7 +450,7 @@ EID.descriptions["en_us"].collectibles={
 	{"435", "Lil Loki", "Shoots 4 tears in a cross pattern#Deals 3.5 damage per shot"},
 	{"436", "Milk!", "After taking damage, you gain a Tears up for the rest of the room"},
 	{"437", "D7", "Respawn all enemies of the room#Allows you to farm room clear rewards#!!! If used in a Greed fight, it can reroll the room into a Shop"},
-	{"438", "Binky", "+1 Soul Heart#↑ +0.7 Tears up#↑ Makes Isaac very small, reducing his hitbox size"},
+	{"438", "Binky", "+1 Soul Heart#↑ +0.75 Tears up#↑ Makes Isaac very small, reducing his hitbox size"},
 	{"439", "Mom's Box", "Spawns a random trinket#↑ +1 Luck while held#While held, doubles the effect of trinkets"},
 	{"440", "Kidney Stone", "Randomly while firing you will stop firing and release a burst of tears and a kidney stone#↓ -0.2 Speed down#↓ -17 Range down#↑ +2 Tear Height"},
 	{"441", "Mega Blast", "Fires a huge Mega Satan laser for 15 seconds#The laser persists between rooms and floors"},
