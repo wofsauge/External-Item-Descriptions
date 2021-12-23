@@ -158,7 +158,7 @@ local repCollectibles={
 	[395] = {"395", "Tech X", "Charge and fire a laser ring that travels across the room#Higher damage with longer charge#100% damage on full charge"}, -- Tech X
 	[397] = {"397", "Tractor Beam", "Isaac's tears now travel directly forward following a beam of light, but will also move sideways based on your player movement#↑ +1 Fire Rate up#↑ +1.5 Range up#↑ +0.16 Shot Speed up"},
 	[399] = {"399", "Maw of the Void", "After firing tears for 3 seconds, a red cross appears on Isaac's head. Upon releasing the fire button, creates a black brimstone ring"}, -- Maw of the Void
-	[401] = {"401", "Explosivo", "25% chance to fire sticky bomb tears#Sticky tears deal your damage periodically#Upon explosion, they deal your damage + 60"}, -- Explosivo
+	[401] = {"401", "Explosivo", "25% chance to fire sticky bomb tears#They explode after a few seconds and deal your damage + 60"}, -- Explosivo
 	[404] = {"404", "Farting Baby", "Blocks projectiles#If hit, it will fart, which will charms, poison or knockback enemies#The farts deal 5-6 damage"}, -- Farting Baby
 	[405] = {"405", "GB Bug", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot)#Rerolls enemies and pickups it comes in contact with"}, -- GB Bug
 	[407] = {"407", "Purity", "↑ Boosts one of your stats depending on the color of the aura around you#When you take damage and after you enter a new room, you will get a new aura:#{{ColorRed}}Red{{CR}} = +4 Damage up#{{ColorBlue}}Blue{{CR}} = +2 Fire Rate up#{{ColorYellow}}Yellow{{CR}} = +0.5 Speed up#{{ColorOrange}}Orange{{CR}} = +3 Range up"},
