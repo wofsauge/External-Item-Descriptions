@@ -641,7 +641,7 @@ local function renderAchievementInfo()
 			demoDescObj.Description = EID:getDescriptionEntry("OldGameVersionWarningText") or ""
 			EID:displayPermanentText(demoDescObj)
 			hasShownAchievementWarning = true
-		elseif EID.player:HasCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and EID.Config.BagOfCraftingDisplayMode ~= "No Recipes" then
+		elseif EID.player:HasCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and (EID.Config.BagOfCraftingDisplayMode == "Recipe List" or EID.Config.BagOfCraftingDisplayMode == "Preview Only") then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("ModdedRecipesWarningText") or ""
