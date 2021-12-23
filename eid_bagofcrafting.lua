@@ -883,9 +883,14 @@ function EID:handleBagOfCraftingRendering()
 	
 	--sort by ingredient quality
 	table.sort(itemQuery, qualitySort)
-
+	
 	--No Recipes Mode display
-	if (EID.Config["BagOfCraftingDisplayMode"] == "No Recipes") then
+	if EID.Config["BagOfCraftingDisplayMode"] == "Pickups Only" then
+		EID:appendToDescription(customDescObj, getHotkeyString())
+		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
+		EID:printDescription(customDescObj)
+		return true
+	elseif EID.Config["BagOfCraftingDisplayMode"] == "No Recipes" then
 		EID:appendToDescription(customDescObj, getHotkeyString())
 		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
 		
