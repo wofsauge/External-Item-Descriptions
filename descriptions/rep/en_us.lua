@@ -59,7 +59,7 @@ local repCollectibles={
 	[135] = {"135", "IV Bag", "Portable blood bank#Half a heart = 1-2 coins#1 coin on Hard Mode#0-1 coin as Keeper"}, -- IV Bag
 	[138] = {"138", "Stigmata", "↑ +1 Health up#↑ +0.3 Damage up#Heals 1 Red Heart"}, -- Stigmata
 	[139] = {"139", "Mom's Purse", "You can now hold 2 trinkets#Spawns 1 random trinket"}, -- Mom's Purse
-	[140] = {"140", "Bob's Curse", "Poison bombs#+5 bombs#Bombs leave a poison cloud"}, -- Bob's Curse
+	[140] = {"140", "Bob's Curse", "Poison bombs#+5 bombs#Bombs leave a poison cloud#Makes you immune to poison damage"}, -- Bob's Curse
 	[147] = {"147", "Notched Axe", "Break rocks and damage enemies on swing#Hitting with the axe reduces its charge#Charge refills on stage transition"}, -- Notched Axe
 	[148] = {"148", "Infestation", "Spawn 2-6 flies when you get hit"}, -- Infestation
 	[149] = {"149", "Ipecac", "Explosive poison tears#↑ +40 Damage up#↓ -0.2 Shot Speed down#↓ -67% Fire Rate down#↓ Minor Range down"}, -- Ipecac
