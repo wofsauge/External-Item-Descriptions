@@ -211,10 +211,11 @@ EID.UserConfig = {
 	-- Default = "always"
 	["DisplayBagOfCrafting"] = "always",
 	-- Display modes for the Bag of Crafting display
-	-- Options: "Recipe List", "Preview Only", "No Recipes"
+	-- Options: "Recipe List", "Preview Only", "No Recipes", "Pickups Only"
 	-- The recipe list is a detailed calculated list of recipes based on what you have available on the floor
 	-- Preview Only shows the description of the item you can currently craft in your bag
 	-- No Recipes shows percentages of what item you might get from your bag / best option on the floor, for a more intended experience
+	-- Pickups Only just shows the room/floor pickup count
 	-- (No Recipes is recommended if you have modded items)
 	-- Default = "Recipe List"
 	["BagOfCraftingDisplayMode"] = "Recipe List",

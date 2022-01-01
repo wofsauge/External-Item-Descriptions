@@ -1205,7 +1205,7 @@ if MCMLoaded then
 			}
 		)
 		-- Bag of Crafting Display Mode
-		local bagDisplayModes = {"Recipe List","Preview Only","No Recipes"}
+		local bagDisplayModes = {"Recipe List","Preview Only","No Recipes","Pickups Only"}
 		MCM.AddSetting(
 			"EID",
 			"Crafting",
@@ -1215,14 +1215,14 @@ if MCMLoaded then
 					return AnIndexOf(bagDisplayModes, EID.Config["BagOfCraftingDisplayMode"])
 				end,
 				Minimum = 1,
-				Maximum = 3,
+				Maximum = 4,
 				Display = function()
 					return "Display Mode: " .. EID.Config["BagOfCraftingDisplayMode"]
 				end,
 				OnChange = function(currentNum)
 					EID.Config["BagOfCraftingDisplayMode"] = bagDisplayModes[currentNum]
 				end,
-				Info = {"Toggle showing a list of calculated recipes, showing just an item preview when the bag is full, or showing percentages of what item you might get (No Recipes is recommended if using modded items)"}
+				Info = {"Toggle showing a list of recipes, an item preview when bag is full, what item pool/quality you might get, or only the floor pickups"}
 			}
 		)
 		-- Bag of Crafting Hide in Battle

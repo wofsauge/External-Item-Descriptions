@@ -170,6 +170,14 @@ local componentShifts = {
 	{0x00000011, 0x0000000F, 0x0000001A}
 }
 
+local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
+[5]="{{SecretRoom}}",[7]="{{PoopRoomIcon}}",[8]="{{GoldenChestRoomIcon}}",[9]="{{RedChestRoomIcon}}",[12]="{{CursedRoom}}",[26]="{{Planetarium}}" }
+
+local CraftingMaxItemID = EID.XMLMaxItemID
+local CraftingFixedRecipes = EID.XMLRecipes
+local CraftingItemPools = EID.XMLItemPools
+local CraftingItemQualities = EID.XMLItemQualities
+
 --These are recipes that have already been calculated, plus the contents of recipes.xml
 local calculatedRecipes = {}
 --Backup recipes in case of potential achievement lock
@@ -179,19 +187,26 @@ local lastSeedUsed = 0
 
 --A list of item IDs, sorted by quality, then by name, to help with sorting our recipe list faster
 local sortedIDs = {}
-for i = 1, EID.XMLMaxItemID do
-	if EID.XMLItemQualities[i] ~= nil then
-		table.insert(sortedIDs, i)
-	end
-end
 
-table.sort(sortedIDs, function(a, b)
-	if EID.XMLItemQualities[a] == EID.XMLItemQualities[b] then
-		return (EID:getObjectName(5, 100, a) < EID:getObjectName(5, 100, b))
-	else
-		return (EID.XMLItemQualities[a] > EID.XMLItemQualities[b])
+local function sortAllItems()
+	sortedIDs = {}
+	
+	for i = 1, CraftingMaxItemID do
+		if CraftingItemQualities[i] ~= nil then
+			table.insert(sortedIDs, i)
+		end
 	end
-end)
+
+	table.sort(sortedIDs, function(a, b)
+		if CraftingItemQualities[a] == CraftingItemQualities[b] then
+			return (EID:getObjectName(5, 100, a) < EID:getObjectName(5, 100, b))
+		else
+			return (CraftingItemQualities[a] > CraftingItemQualities[b])
+		end
+	end)
+end
+-- delay the initial sort until needed, as it's a tad slow
+local sortNeeded = true
 
 local customRNGSeed = 0x77777770
 local customRNGShift = {0,0,0}
@@ -225,9 +240,6 @@ function EID:getBagOfCraftingID(Variant, SubType)
 	end
 	return nil
 end
-
-local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
-[5]="{{SecretRoom}}",[7]="{{PoopRoomIcon}}",[8]="{{GoldenChestRoomIcon}}",[9]="{{RedChestRoomIcon}}",[12]="{{CursedRoom}}",[26]="{{Planetarium}}" }
 
 function EID:simulateBagOfCrafting(componentsTable)
 	local components = componentsTable
@@ -292,10 +304,10 @@ function EID:simulateBagOfCrafting(componentsTable)
 				qualityMin = 0
 				qualityMax = 2
 			end
-			local pool = EID.XMLItemPools[poolWeight.idx + 1]
+			local pool = CraftingItemPools[poolWeight.idx + 1]
 			
 			for _, item in ipairs(pool) do
-				local quality = EID.XMLItemQualities[item[1]]
+				local quality = CraftingItemQualities[item[1]]
 				if quality >= qualityMin and quality <= qualityMax  then
 					local w = item[2] * poolWeight.weight
 					poolWeight.totalWeight = poolWeight.totalWeight + w
@@ -339,7 +351,7 @@ function EID:calculateBagOfCrafting(componentsTable)
 	local componentsAsString = table.concat(components, ",")
 
 	--Check the fixed recipes. Currently, the fixed recipes ignore item unlock status
-	local cacheResult = EID.XMLRecipes[componentsAsString]
+	local cacheResult = CraftingFixedRecipes[componentsAsString]
 	if cacheResult ~= nil then
 		return cacheResult, cacheResult
 	end
@@ -382,7 +394,7 @@ function EID:calculateBagOfCrafting(componentsTable)
 
 	local itemWeights = {}
 
-	local maxItemID = EID.XMLMaxItemID
+	local maxItemID = CraftingMaxItemID
 	for i = 1, maxItemID do
 		itemWeights[i] = 0
 	end
@@ -414,10 +426,10 @@ function EID:calculateBagOfCrafting(componentsTable)
 				qualityMin = 0
 				qualityMax = 2
 			end
-			local pool = EID.XMLItemPools[poolWeight.idx + 1]
+			local pool = CraftingItemPools[poolWeight.idx + 1]
 			
 			for _, item in ipairs(pool) do
-				local quality = EID.XMLItemQualities[item[1]]
+				local quality = CraftingItemQualities[item[1]]
 				if quality >= qualityMin and quality <= qualityMax  then
 					local w = item[2] * poolWeight.weight
 					itemWeights[item[1]] = itemWeights[item[1]] + w
@@ -458,6 +470,64 @@ function EID:calculateBagOfCrafting(componentsTable)
 		end
 	end
 end
+
+-- simple table of tables copy function
+local function deepcopy(orig)
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        copy = {}
+        for orig_key, orig_value in next, orig, nil do
+            copy[deepcopy(orig_key)] = deepcopy(orig_value)
+        end
+        setmetatable(copy, deepcopy(getmetatable(orig)))
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
+end
+
+local moddedCrafting = false
+-- Check for modded items past the known max item ID on game start (can also support game updates)
+-- Only works if the new items are at Weight 1.0 in their item pools, but better than nothing
+local function GameStartCrafting()
+	if EID.itemConfig:GetCollectible(EID.XMLMaxItemID+1) ~= nil then
+		-- Items past max ID detected; copy our XML tables so we can add to them
+		CraftingMaxItemID = EID.XMLMaxItemID
+		CraftingItemPools = deepcopy(EID.XMLItemPools)
+		CraftingItemQualities = deepcopy(EID.XMLItemQualities)
+		-- Add new item qualities
+		local coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
+		while coll ~= nil do
+			CraftingMaxItemID = CraftingMaxItemID + 1
+			CraftingItemQualities[coll.ID] = coll.Quality
+			coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
+		end
+		local itemPool = game:GetItemPool()
+		-- Add new items to the crafting item pools, assuming Weight 1.0
+		for poolNum,_ in pairs(poolToIcon) do
+			for i=1,EID.XMLMaxItemID do itemPool:AddRoomBlacklist(i) end
+			
+			local collID = itemPool:GetCollectible(poolNum, false, 1, 25)
+			while collID ~= 25 do
+				table.insert(CraftingItemPools[poolNum+1], {collID, 1.0})
+				itemPool:AddRoomBlacklist(collID)
+				collID = itemPool:GetCollectible(poolNum, false, 1, 25)
+			end
+			
+			itemPool:ResetRoomBlacklist()
+		end
+		moddedCrafting = true
+		sortNeeded = true
+	elseif moddedCrafting then
+		CraftingMaxItemID = EID.XMLMaxItemID
+		CraftingItemPools = EID.XMLItemPools
+		CraftingItemQualities = EID.XMLItemQualities
+		moddedCrafting = false
+		sortNeeded = true
+	end
+end
+EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, GameStartCrafting)
 
 ------------------------------------------
 ------------------------------------------
@@ -702,6 +772,7 @@ function EID:handleBagOfCraftingRendering()
 		lockedRecipes = {}
 		calcResultCache = {}
 		randResultCache = {}
+		lockedResults = nil
 	end
 	lastSeedUsed = curSeed
 	
@@ -812,9 +883,14 @@ function EID:handleBagOfCraftingRendering()
 	
 	--sort by ingredient quality
 	table.sort(itemQuery, qualitySort)
-
+	
 	--No Recipes Mode display
-	if (EID.Config["BagOfCraftingDisplayMode"] == "No Recipes") then
+	if EID.Config["BagOfCraftingDisplayMode"] == "Pickups Only" then
+		EID:appendToDescription(customDescObj, getHotkeyString())
+		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
+		EID:printDescription(customDescObj)
+		return true
+	elseif EID.Config["BagOfCraftingDisplayMode"] == "No Recipes" then
 		EID:appendToDescription(customDescObj, getHotkeyString())
 		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
 		
@@ -833,6 +909,11 @@ function EID:handleBagOfCraftingRendering()
 		
 		EID:printDescription(customDescObj)
 		return true
+	end
+	
+	if sortNeeded then
+		sortAllItems()
+		sortNeeded = false
 	end
 
 	local queryString = table.concat(itemQuery,",")
@@ -995,12 +1076,12 @@ function EID:handleBagOfCraftingRendering()
 						--tack on the secondary recipe image to achievement-locked recipes
 						if v[3] then customDescObj.Description = customDescObj.Description.."({{Collectible" .. v[3] .. "}})" end
 						--color the equals sign with the item quality, so the order of the list can make sense
-						customDescObj.Description = customDescObj.Description.. qualities[EID.XMLItemQualities[v[2]]] .. "={{CR}}"
+						customDescObj.Description = customDescObj.Description.. qualities[CraftingItemQualities[v[2]]] .. "={{CR}}"
 					--only display the item name if it's the first occurrence
 					else
 						if prevItem ~= v[2] then
 							--substring the first 18 characters of the item name so it fits on one line; is there a way to get around desc line length limits?
-							customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ".. qualities[EID.XMLItemQualities[v[2]]] ..
+							customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ".. qualities[CraftingItemQualities[v[2]]] ..
 							string.sub(EID:getObjectName(5, 100, v[2]),1,18).."#"
 						else
 							customDescObj.Description = customDescObj.Description.."#"

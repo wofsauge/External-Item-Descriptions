@@ -408,6 +408,6 @@ EID.GoldenTrinketData = {
 	[159] = {goldenOnly = true, fullReplace = true, mult=1}, [160] = 1, [162] = {t={50}, mults={1.32, 2}}, [163] = {t={1},mult=2}, [164] = 1, 
 	-- Modeling Clay, Polished Bone (25, 33, 50), Hollow Heart, Kid's Drawing, Crystal Key
 	[166] = {t={50},mult=2}, [167] = {t={25}, mults={1.32, 2}}, [168] = 1, [169] = {t={1}, goldenOnly = true, mult = 2}, [170] = {t={33}, mults={1.5,3}},
-	-- Lil Clot, Swallowed M80, The Twins (default text), Cricket Leg (1/6, 2/6, 3/6), Apollyon's Best Friend, Broken Glasses
-	[176] = 1, [178] = {t={50},mult=2}, [183] = 0, [185] = 1, [186] = 1, [187] = {t={50,50}, mult=2},
+	-- Lil Clot, Swallowed M80, The Twins (default text), Cricket Leg (17%, 1 in 6), Apollyon's Best Friend, Broken Glasses
+	[176] = 1, [178] = {t={50},mult=2}, [183] = 0, [185] = 17, [186] = 1, [187] = {t={50,50}, mult=2},
 }
