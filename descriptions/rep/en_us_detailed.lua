@@ -154,7 +154,7 @@ local repCollectibles={
 	{"137", "" ,"On pickup for the first time in a run, grants 5 bombs. #Regular bombs will no longer explode automatically. #On use, all bombs on the room explode immediately. #Does not control Troll bombs or Mega Troll bombs."},
 	{"138", "" ,"Grants one red heart container.#+0.3 Damage up."},
 	{"139", "" ,"You can now hold 2 trinkets at once. #Can hold two identical trinkets. #Spawns a random trinket on pick up."},
-	{"140", "" ,"Grants 5 bombs. #Causes the player's bombs to leave a green poison cloud after exploding."},
+	{"140", "" ,"Grants 5 bombs. #Causes the player's bombs to leave a green poison cloud after exploding.#Makes the player immune to poison damage, e.g. the poison clouds spawned when destroying Mushrooms."},
 	{"141", "" ,"Spawns 7 random coins. #These can be pennies, nickels, or dimes."},
 	{"142", "" ,"Once per room, when the player is reduced to their last half heart they are granted one soul heart. #Leaving and re-entering a room will allow this effect to trigger again. #Will not protect you from lethal damage if you take damage at one half heart while Scapular is active. #Does not recharge between waves in Greed Mode. #Does nothing for The Lost or The Keeper."},
 	{"143", "" ,"+0.3 Speed up.#+0.2 Shot speed up."},
