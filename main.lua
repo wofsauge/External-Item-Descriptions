@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = "4.6"
+EID.ModVersion = "4.7"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -574,7 +574,6 @@ function EID:onGameUpdate()
 		local pos = entity.Position
 		for _, otherPos in ipairs(curPositions) do
 			if pos:Distance(otherPos[2]) == 0 then
-				--entity.Position = entity.Position + Vector(1,0)
 				entity:GetData()["EID_RenderOffset"] = Vector(10,0)
 				otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
 			end
