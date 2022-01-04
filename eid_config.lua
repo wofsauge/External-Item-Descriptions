@@ -10,7 +10,7 @@ EID.UserConfig = {
 	--						Russian = "ru"		SPECIAL THANKS TO hell2pay, fly_6
 	--						Italian = "it"		SPECIAL THANKS TO Denkishi, 2G
 	--						Bulgarian = "bul"	SPECIAL THANKS TO ,Gothika_47 					(WIP)
-	--						Turkish = "turkish"	SPECIAL THANKS TO Mert Dutal
+	--						Turkish = "tr_tr"	SPECIAL THANKS TO Mert Dutal
 	--						Chinese (https://steamcommunity.com/sharedfiles/filedetails/?id=836319872)
 	-- 						Italian (https://steamcommunity.com/sharedfiles/filedetails/?id=931392691)
 	-- If you want to make a translation, please contact me :)
