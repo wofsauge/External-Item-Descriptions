@@ -392,7 +392,7 @@ EID.descriptions["en_us"].birthright ={
 	{"Magdalene", "", "↑ +1 Health up#Maximum heart limit is raised to 18"},
 	{"Cain", "", "↑ +1 Luck up#All floors will contain an upgraded Arcade Room except for Dark Room and Chest#Greatly increases {{Collectible46}}Lucky Foot's chances of winning effect"},
 	{"Judas", "", "{{Collectible34}}The Book of Belial becomes a passive item similar to {{Collectible584}}Book of Virtues#Receive {{Collectible34}}The Book of Belial if you're not currently holding it#The damage boost received from it scales with the amount of charges the active item above it has#Grants special effects for certain active items"},
-	{"???", "", "Soul Hearts gained from health upgrades are doubled#!!! Health down pills will remove 2 soul hearts"},
+	{"???", "", "Soul Hearts gained from health upgrades are doubled"},
 	{"Eve", "", "Whore of Babylon is active regardless of health#Dead Bird is active without taking damage"},
 	{"Samson", "", "Bloody Lust can gain 4 more damage boosts at the same +0.2 intervals, for a new maximum total of +14"},
 	{"Azazel", "", "Azazel's Brimstone beam becomes much wider, like Mega Blast#No effect on damage"},
@@ -814,7 +814,7 @@ local repCards={
 	[64] = {"64", "VIII - Justice?", "Spawns 2-4 Golden Chests"}, -- VIII - Justice?
 	[65] = {"65", "IX - The Hermit?", "Turns pickups and items in the room into coins#Coin values are equal to their shop value"}, -- IX - The Hermit?
 	[66] = {"66", "X - Wheel of Fortune?", "Random dice room effect"}, -- X - Wheel of Fortune?
-	[67] = {"67", "XI - Strength?", "Enemies in room are weakened, slowed and take double damage"}, -- XI - Strength?
+	[67] = {"67", "XI - Strength?", "Enemies in current room are weakened, slowed and take double damage#Lasts 1 minute"}, -- XI - Strength?
 	[68] = {"68", "XII - The Hanged Man?", "Turns player into the Keeper for 30 seconds#Grants triple shot and speed down#Killed enemies drop random coins"}, -- XII - The Hanged Man?
 	[69] = {"69", "XIII - Death?", "Invokes {{Collectible545}}Book of the Dead effect#Spawns Bone entities for each enemy killed in room"}, -- XIII - Death?
 	[70] = {"70", "XIV - Temperance?", "Eat 5 random pills"}, -- XIV - Temperance?
