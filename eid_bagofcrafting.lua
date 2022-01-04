@@ -509,10 +509,18 @@ local function GameStartCrafting()
 			for i=1,EID.XMLMaxItemID do itemPool:AddRoomBlacklist(i) end
 			
 			local collID = itemPool:GetCollectible(poolNum, false, 1, 25)
+			local idsToAdd = {}
 			while collID ~= 25 do
-				table.insert(CraftingItemPools[poolNum+1], {collID, 1.0})
+				table.insert(idsToAdd, {collID, 1.0})
 				itemPool:AddRoomBlacklist(collID)
 				collID = itemPool:GetCollectible(poolNum, false, 1, 25)
+			end
+			-- sort ids since thats the most likely way people add items to the itempool
+			table.sort(idsToAdd, function (a,b)
+				return a[1] < b[1]
+			end)
+			for _,v in ipairs(idsToAdd) do
+				table.insert(CraftingItemPools[poolNum+1], v)
 			end
 			
 			itemPool:ResetRoomBlacklist()
