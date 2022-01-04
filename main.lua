@@ -12,7 +12,7 @@ EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings
 EID.ModVersion = "4.7"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
-EID.players = {}
+EID.player = nil
 
 -- general variables
 EID.PositionModifiers = {}
@@ -414,7 +414,7 @@ function EID:renderIndicator(entity)
 	end
 	-- Move highlights a bit to fit onto the alt Item layout of Flip / Tainted Laz
 	if REPENTANCE then
-		if entity.Variant == 100 and EID.players[1]:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) then
+		if entity.Variant == 100 and EID.player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) then
 			entityPos = entityPos + Vector(2.5,2.5)
 		elseif entity.Type == 6 and entity.Variant == 16 then
 			entityPos = entityPos + Vector(0,-5)
@@ -537,29 +537,13 @@ function EID:handleHoverHUD()
 	return nil
 end
 
-function EID:setPlayers(functionCheck, ...)
-	local args = {...}
-	local players = {}
-	for i=1, game:GetNumPlayers() do
-		local player = Isaac.GetPlayer(i-1)
-		local argsPassed = true
-		if type(functionCheck) == "function" then
-			for j=1, #args do
-				if args[j] == "player" then
-					args[j] = player
-				elseif args[j] == "currentPlayer" then
-					args[j] = i
-				end
-			end
-			if not functionCheck(table.unpack(args)) then
-				argsPassed = false
-			end
-		end
-		if argsPassed then
-			players[#players+1] = player
-		end
+function EID:setPlayer()
+	local p = Isaac.GetPlayer(0)
+	if REPENTANCE and p.SubType == PlayerType.PLAYER_THEFORGOTTEN_B then
+		EID.player = p:GetOtherTwin()
+	else
+		EID.player = p
 	end
-	EID.players = players
 end
 
 if REPENTANCE then
@@ -582,7 +566,7 @@ EID.hasValidWalkingpath = true
 EID.pathfindingTo = nil
 
 function EID:onGameUpdate()
-	EID:setPlayers()
+	EID:setPlayer()
 	
 	--Fix Overlapping Pedestals
 	local curPositions = {}
@@ -608,7 +592,7 @@ function EID:onGameUpdate()
 	end
 	
 	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"] then
-		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and EID.players[1].CanFly) then
+		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
 			if EID.pathCheckerEntity ~= nil then
 				EID.pathCheckerEntity:Remove()
 				EID.pathCheckerEntity = nil
@@ -618,7 +602,7 @@ function EID:onGameUpdate()
 			return
 		end
 		if EID.pathCheckerEntity == nil then
-			EID.pathCheckerEntity = game:Spawn(17, 3169, EID.players[1].Position, nullVector, EID.players[1] ,0 , 4354) -- Spawns the EID Helper entity with seed that doesnt spawn rewards
+			EID.pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player ,0 , 4354) -- Spawns the EID Helper entity with seed that doesnt spawn rewards
 			EID.pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 			EID.pathCheckerEntity:AddEntityFlags (EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER)
 			EID.pathCheckerEntity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
@@ -627,7 +611,7 @@ function EID:onGameUpdate()
 		elseif not EID.pathCheckerEntity:Exists() then
 			EID.pathCheckerEntity = nil
 		else
-			EID.pathCheckerEntity.Position = EID.players[1].Position
+			EID.pathCheckerEntity.Position = EID.player.Position
 			EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos ( EID.lastDescriptionEntity.Position, false )
 			EID.pathfindingTo = EID.lastDescriptionEntity
 		end
@@ -639,7 +623,7 @@ EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 -- this can be called when moving between two different pickups
 function EID:updatePathfinding()
 	if not EID.pathCheckerEntity or not EID.lastDescriptionEntity then return end
-	EID.pathCheckerEntity.Position = EID.players[1].Position
+	EID.pathCheckerEntity.Position = EID.player.Position
 	EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos ( EID.lastDescriptionEntity.Position, false )
 	EID.pathfindingTo = EID.lastDescriptionEntity
 end
@@ -656,7 +640,7 @@ local function renderAchievementInfo()
 			demoDescObj.Description = EID:getDescriptionEntry("OldGameVersionWarningText") or ""
 			EID:displayPermanentText(demoDescObj)
 			hasShownAchievementWarning = true
-		elseif EID.players[1]:HasCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and (EID.Config.BagOfCraftingDisplayMode == "Recipe List" or EID.Config.BagOfCraftingDisplayMode == "Preview Only") then
+		elseif EID.player:HasCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and (EID.Config.BagOfCraftingDisplayMode == "Recipe List" or EID.Config.BagOfCraftingDisplayMode == "Preview Only") then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("ModdedRecipesWarningText") or ""
@@ -692,11 +676,11 @@ local searchPartitions = EntityPartition.FAMILIAR + EntityPartition.ENEMY + Enti
 
 local function onRender(t)
 	EID.isDisplaying = false
-	EID:setPlayers()
+	EID:setPlayer()
 	
 	--Keyboard hide keys are 32+, controller hide keys have their own option now so don't allow controller inputs in it
 	if EID.Config["HideKey"] < 32 then EID.Config["HideKey"] = -1 end
-	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.players[1].ControllerIndex) then
+	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
 		EID.isHidden = not EID.isHidden
 	end
 	
@@ -708,13 +692,13 @@ local function onRender(t)
 	EID:renderMCMDummyDescription()
 
 	if EID.GameVersion == "ab+" then
-		if EID.players[1]:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
+		if EID.player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
 			EID:addTextPosModifier("Schoolbag", Vector(0,30))
 		else
 			EID:removeTextPosModifier("Schoolbag")
 		end
 	else
-		if EID.players[1]:GetPlayerType() == PlayerType.PLAYER_ISAAC_B or EID.players[1]:GetPlayerType() == PlayerType.PLAYER_XXX_B then
+		if EID.player.SubType == 21 or EID.player.SubType == 25 then -- T-Isaac, T-Blue Baby
 			EID:addTextPosModifier("Tained HUD", Vector(0,30))
 		else
 			EID:removeTextPosModifier("Tained HUD")
@@ -735,7 +719,7 @@ local function onRender(t)
 		return
 	end
 	
-	if REPENTANCE and EID.players[1]:HasCollectible(710) then
+	if REPENTANCE and EID.player:HasCollectible(710) then
 		local success = EID:handleBagOfCraftingRendering()
 		if success then
 			return
@@ -745,7 +729,7 @@ local function onRender(t)
 	EID.lastDescriptionEntity = nil
 	EID.lastDist = 10000
 	local searchGroups = {}
-	local sourcePos = EID.players[1].Position
+	local sourcePos = EID.player.Position
 	
 	if EID.Config["EnableMouseControls"] then
 		local hudDescription = EID:handleHoverHUD()
