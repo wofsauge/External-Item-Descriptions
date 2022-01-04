@@ -143,7 +143,7 @@ local repCollectibles={
 	{"126", "" ,"On use this deals one heart of damage to the player and increases your damage by 1.2 for the current room. #Like Blood Banks and similar items, this deals damage to red and eternal hearts before damaging soul hearts. #Does not affect Devil or Angel room chances."},
 	{"127", "" ,"Re-rolls the entire floor and causes the player to spawn as if they had just started a new floor. #Does not remove anything gained on the floor before use. #If used on the Chest or the Dark Room after opening the door to Mega Satan, the Golden Key will not re-open the door. #If used on an XL floor, this item can separate them into two floors."},
 	{"128", "" ,"Fly orbital that deals 2 damage per tick, 30 damage per second, on contact.#This orbital rotates far away from the player, instead of right around them like normal orbitals."},
-	{"129", "" ,"Grants 2 empty red heart containers.#-0.2 Speed down.#Heals half a red heart."},
+	{"129", "" ,"Grants 2 full red heart containers.#-0.2 Speed down."},
 	{"130", "" ,"Grants flight while held. #If the player's speed is below 1.5, increases the player's speed to 1.5 while held.#On use, the player charges in the direction the pony is facing. #Grants invulnerability and deals 4 times Isaac's damage plus a flat 28 contact damage to enemies while charging."},
 	{"131", "" ,"Drops 1 bomb every 3 rooms. #This bomb can be a normal bomb, a 1+1 bomb, a Troll bomb or a Golden bomb."},
 	{"132", "" ,"Tears gain a flat damage bonus based on travel distance, which starts at 0 and increases to roughly +6 at a standard room's width. #This is not the cap, and can increase further in larger rooms."},
