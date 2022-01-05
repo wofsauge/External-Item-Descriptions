@@ -371,7 +371,7 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 			return SubType - 32768
 		end
 	elseif tableName == "pills" or tableName == "horsepills" then
-		if SubType % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then
+		if REPENTANCE and SubType % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then
 			return 9999
 		end
 		local pool = game:GetItemPool()
