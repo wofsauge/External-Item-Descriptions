@@ -270,6 +270,20 @@ EID.InlineIcons = {
 	["Crafting28"] = {"Crafting", 28, 14, 16, -2, -3},
 	["Crafting29"] = {"Crafting", 29, 14, 16, -2, -3},
 	["Crafting30"] = {"Crafting", 30, 14, 16, -2, -3},
+	
+	-- Stats
+	["Damage"] = {"Stats", 0, 16, 16, 0, 8},
+	["Speed"] = {"Stats", 1, 16, 16, 0, 8},
+	["Tears"] = {"Stats", 2, 16, 16, 0, 8},
+	["Range"] = {"Stats", 3, 16, 16, 0, 8},
+	["Shotspeed"] = {"Stats", 4, 16, 16, 0, 8},
+	["Luck"] = {"Stats", 5, 16, 16, 0, 8},
+	["AngelChance"] = {"Stats", 6, 16, 16, 0, 8},
+	["DevilChance"] = {"Stats", 7, 16, 16, 0, 8},
+	["AngelDevilChance"] = {"Stats", 8, 16, 16, 0, 8},
+	["PlanetariumChance"] = {"Stats", 9, 16, 16, 0, 8},
+	["Crone"] = {"Stats", 10, 16, 16, 0, 8},
+	
 }
 
 -- Table that holds Colors used for markup objects. Example: "{{ColorRed}}"
