@@ -167,6 +167,10 @@ questionMarkSprite:ReplaceSpritesheet(1,"gfx/items/collectibles/questionmark.png
 questionMarkSprite:LoadGraphics()
 
 function EID:IsAltChoice(pickup)
+	-- do not run this while Curse of the Blind is active, since this function is really just a "is collectible pedestal a red question mark" check
+	if game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND == LevelCurse.CURSE_OF_BLIND then
+		return false
+	end
 	if pickup:GetData() == nil then
 		return false
 	end

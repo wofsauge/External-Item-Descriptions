@@ -328,7 +328,7 @@ EID.descriptions["en_us"].collectibles={
 	{"313", "Holy Mantle", "Ignore the first hit in every room"},
 	{"314", "Thunder Thighs", "↑ +1 Health up#↓ -0.4 Speed down#Destroy rocks when walking over them"},
 	{"315", "Strange Attractor", "Magnetic tears#Affects enemies, pickups and trinkets"},
-	{"316", "Cursed Eye", "Charged wave of tears#!!! When hit while partially charged, teleports you to a random room"},
+	{"316", "Cursed Eye", "Charged wave of tears#!!! When hit while partially charged, teleports you to a random room#Does not teleport if you have {{Collectible260}}Black Candle"},
 	{"317", "Mysterious Liquid", "Tears leave creep#Creep deals 30 damage per second"},
 	{"318", "Gemini", "Close combat familiar#Deals 6 contact damage per second"},
 	{"319", "Cain's Other Eye", "Bounces around the room#Shoots towards Isaac#His damage equals your damage"},
