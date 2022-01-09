@@ -10,16 +10,16 @@ For the Afterbirth/Rebirth version [click here](https://moddingofisaac.com/mod/1
 
 ## Features
 - Displays information for all collectibles, trinkets, cards, runes, pills and some rooms
-- Displays **additional information** like item type, charges, transformations, spindown Dice Results and Bag of Crafting recipes
+- Displays **additional information** like item type, charges, transformations, Spindown Dice results and Bag of Crafting recipes
 - Displays one of 4 different indicators around the inspected item
 - Mod support for nearly all mods!
 - Easy to use API ([Documentation here](https://github.com/wofsauge/External-Item-Descriptions/wiki))
 - A huge amount of custom options like:
 	- Indicators
-	- Font style
-	- Language
-	- and a lot of visual options!
-- **Press F2 to hide/show the description!**
+	- Font styles
+	- Languages
+	- And a lot of visual options!
+- **Press F2 to hide/show the descriptions!**
 
 ### Supported Languages
 - **English** (Default)
@@ -44,10 +44,11 @@ For the Afterbirth/Rebirth version [click here](https://moddingofisaac.com/mod/1
 
 ### In-game Configuration
 
-Simply install &quot;[Mod config Menu - Continued](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818)&quot;. All configuration except the language setting can be changed with it in game.
+Simply install &quot;[Mod Config Menu - Continued](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818)&quot;. All configuration except the language setting can be changed with it in game.
 
+Or:
 ### Windows
-1. With Repentance: `steamapps\common\The Binding of Isaac Rebirth\mods\external item descriptions_836319872\`
+1. With Repentance: `..\steamapps\common\The Binding of Isaac Rebirth\mods\external item descriptions_836319872\`
 1. With  AB+: `..\Documents\My Games\Binding of Isaac Afterbirth+ Mods\External item descriptions\`
 2. Open `eid_config.lua` with any text editor
 3. Edit the config
