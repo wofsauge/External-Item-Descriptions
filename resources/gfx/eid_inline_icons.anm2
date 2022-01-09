@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="Unknown" CreatedOn="08/01/2022 09:08:39 p. m." Version="80" Fps="3"/>
+	<Info CreatedBy="Unknown" CreatedOn="08/01/2022 09:28:20 p. m." Version="81" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="eid_inline_icons.png" Id="0"/>
