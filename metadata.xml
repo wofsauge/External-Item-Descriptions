@@ -38,6 +38,7 @@ This mod displays detailed information about all items, trinkets, cards, runes a
 		[th]BULGARIAN[/th]
 		[th]TURKISH[/th]
 		[th]POLISH[/th]
+		[th]KOREAN[/th]
 	[/tr]
 	[tr]
 		[td]by Wofsauge[/td]
@@ -50,6 +51,7 @@ This mod displays detailed information about all items, trinkets, cards, runes a
 		[td]by TST_Gogo_, Gothika_47[/td]
 		[td]by Cagdas Salur, Mert Dutal[/td]
 		[td]by Rickyy, Kennyluz,DimonoKingoKongo, MERITT [/td]
+		[td]by Blackcreamtea[/td]
 	[/tr]
 [/table]
 
@@ -89,6 +91,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions
 - Gothika_47 and TST_Gogo_ for creating the [b]Bulgarian[/b] language pack
 - Cagdas Salur and Mert Dutal for creating the [b]Turkish[/b] language pack
 - Jake for the sweet [b]German[/b] language pack
+- Blackcreamtea for the awesome [b]Korean[/b] language pack
 - [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating an awesome new Languagepack and providing ideas for new functionalities
 </description>
     <version>4.9</version>
