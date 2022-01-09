@@ -14,7 +14,7 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Korean"
 
-EID.descriptions[languageCode].fonts = {"korean_gulim", "korean_dotum"} -- Fonts to be used with this languagepack
+EID.descriptions[languageCode].fonts = {"korean_hcrdotum", "korean_gulim", "korean_dotum"} -- Fonts to be used with this languagepack
 
 EID.descriptions[languageCode].collectibles={
 	-- Original
