@@ -991,31 +991,31 @@ EID.descriptions[languageCode].horsepills={
 
 ---------- Misc, Text
 
-EID.descriptions["ko"].CraftingBagContent = "현재 픽업:"
-EID.descriptions["ko"].CraftingRoomContent = "방:"
-EID.descriptions["ko"].CraftingFloorContent = "스테이지:"
+EID.descriptions[languageCode].CraftingBagContent = "현재 픽업:"
+EID.descriptions[languageCode].CraftingRoomContent = "방:"
+EID.descriptions[languageCode].CraftingFloorContent = "스테이지:"
 
-EID.descriptions["ko"].CraftingBagQuality = "픽업 등급:"
-EID.descriptions["ko"].CraftingBestQuality = "최고 등급:"
+EID.descriptions[languageCode].CraftingBagQuality = "픽업 등급:"
+EID.descriptions[languageCode].CraftingBestQuality = "최고 등급:"
 
-EID.descriptions["ko"].CraftingHideKey = "설명 숨기기:"
-EID.descriptions["ko"].CraftingPreviewKey = "미리보기:"
-EID.descriptions["ko"].CraftingPreviewBackup = "!!! 아이템이 언락되어 있지 않을 경우 결과가 달라질 수 있습니다."
+EID.descriptions[languageCode].CraftingHideKey = "설명 숨기기:"
+EID.descriptions[languageCode].CraftingPreviewKey = "미리보기:"
+EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 언락되어 있지 않을 경우 결과가 달라질 수 있습니다."
 
-EID.descriptions["ko"].CraftingResults = "(스크롤: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#고정: {{ButtonX}}, 새로고침: {{ButtonB}})"
+EID.descriptions[languageCode].CraftingResults = "(스크롤: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#고정: {{ButtonX}}, 새로고침: {{ButtonB}})"
 
-EID.descriptions["ko"].BlankCardCharge = "Blank Card 충전량:" 
-EID.descriptions["ko"].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다." 
-EID.descriptions["ko"].ClearRuneCharge = "Clear Rune 충전량:" 
-EID.descriptions["ko"].PlaceboCharge = "Placebo 충전량:" 
+EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:" 
+EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다." 
+EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune 충전량:" 
+EID.descriptions[languageCode].PlaceboCharge = "Placebo 충전량:" 
 
-EID.descriptions["ko"].FalsePHDHeart = "블랙하트 1개 드랍"
-EID.descriptions["ko"].FalsePHDDamage = "공격력 +0.6"
-EID.descriptions["ko"].FalsePHDHorseDamage = "공격력 +1.2"
+EID.descriptions[languageCode].FalsePHDHeart = "블랙하트 1개 드랍"
+EID.descriptions[languageCode].FalsePHDDamage = "공격력 +0.6"
+EID.descriptions[languageCode].FalsePHDHorseDamage = "공격력 +1.2"
 
-EID.descriptions["ko"].AchievementWarningTitle = "{{ColorYellow}}!!! 경고 !!!"
-EID.descriptions["ko"].AchievementWarningText = "지금 모드를 적용하면 도전과제가 언락되지 않습니다!#모든 모드를 비활성화 한 상태에서 6 스테이지 (Depths II) 보스를 클리어하셔야#모드 적용 중에도 도전과제를 언락할 수 있습니다.#(일반 게임에서 화면 왼쪽에 트로피 금지 아이콘이 없을 경우 이 메세지를 비활성화 하셔도 됩니다.)#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
+EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! 경고 !!!"
+EID.descriptions[languageCode].AchievementWarningText = "지금 모드를 적용하면 도전과제가 언락되지 않습니다!#모든 모드를 비활성화 한 상태에서 6 스테이지 (Depths II) 보스를 클리어하셔야#모드 적용 중에도 도전과제를 언락할 수 있습니다.#(일반 게임에서 화면 왼쪽에 트로피 금지 아이콘이 없을 경우 이 메세지를 비활성화 하셔도 됩니다.)#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
 
-EID.descriptions["ko"].OldGameVersionWarningText = "리펜턴스가 최신 버전이 아닙니다!#최신 버전이 아닐 경우 모드 오류가 발생할 수 있습니다.#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
+EID.descriptions[languageCode].OldGameVersionWarningText = "리펜턴스가 최신 버전이 아닙니다!#최신 버전이 아닐 경우 모드 오류가 발생할 수 있습니다.#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
 
-EID.descriptions["ko"].ModdedRecipesWarningText = "아이템 추가 모드나 아이템 배열 변경 모드가 적용되어 있을 경우 조합법이 일치하지 않을 수 있습니다.#조합법 설명을 숨기거나 DisplayBagOfCrafting를 No Recipe로 설정해 주세요.#(config 설정을 수정하여 해당 메세지를 비활성화 할 수 있습니다.)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "아이템 추가 모드나 아이템 배열 변경 모드가 적용되어 있을 경우 조합법이 일치하지 않을 수 있습니다.#조합법 설명을 숨기거나 DisplayBagOfCrafting를 No Recipe로 설정해 주세요.#(config 설정을 수정하여 해당 메세지를 비활성화 할 수 있습니다.)"
