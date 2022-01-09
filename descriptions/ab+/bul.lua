@@ -7,12 +7,16 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "bul"
 
 -- init bul table
-EID.descriptions["bul"] = {}
-EID.descriptions["bul"].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode] = {}
+EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode].languageName = "Bulgarian (WIP) (AB+)"
 
-EID.descriptions["bul"].collectibles={
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+
+EID.descriptions[languageCode].collectibles={
 	{"1", "Тъжният лук", "↑ 0.7 Скорост на сълзите"},
 	{"2", "Вътрешно око", "Тройна стрелба#↓ 2 Скорост на сълзите"},
 	{"3", "Огъната лъжица", "Самонасочващи се сълзи"},
@@ -568,7 +572,7 @@ EID.descriptions["bul"].collectibles={
 }
 
 ---------- Trinkets ----------
-EID.descriptions["bul"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "Погълната монета", "Когато понесете щета, монета пада на пода"},
 	{"2", "Вкаменена трева", "50% повече дропове от изпражненията"},
 	{"3", "AAA батерия", "Намалява размера на таксата за активния предмет с 1"},
@@ -700,7 +704,7 @@ EID.descriptions["bul"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["bul"].cards={
+EID.descriptions[languageCode].cards={
 	--[[{"1", "Дурак", "Телепортирует в начало уровня"},
 	{"2", "Маг", "Самонаводящиеся слезы в пределах комнаты"},
 	{"3", "Верховная Жрица", "Мамина Нога атакует случайного врага"},
@@ -760,9 +764,9 @@ EID.descriptions["bul"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["bul"].unidentifiedPill = nil--"Неизвестная пилюля"
+EID.descriptions[languageCode].unidentifiedPill = nil--"Неизвестная пилюля"
 
-EID.descriptions["bul"].pills={
+EID.descriptions[languageCode].pills={
 	--[[{"0", "Вонючий Газ", " Создает облако ядовитого газа"},
 	{"1", "Плохой Приход", " Наносит урон в 1 сердце"},
 	{"2", "Стальные Яйца", " +2 Сердца Душ"},
@@ -813,9 +817,9 @@ EID.descriptions["bul"].pills={
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["bul"].sacrificeHeader = nil--"[Комната Жертвоприношений - награда]"
+EID.descriptions[languageCode].sacrificeHeader = nil--"[Комната Жертвоприношений - награда]"
 
-EID.descriptions["bul"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	--[[{"1", "", "50% шанс на 1 Монету#100% шанс на 1 Бомбу, если вы в Подвале 1 и убили Босса за 1 минуту."},
 	{"2", "", "50% шанс на 1 Монету#100% шанс на 1 Бомбу, если вы в Подвале 1 и убили Босса за 1 минуту."},
 	{"3", "", "67% вероятность повысить шанс появления Комнаты Ангела."},
@@ -831,9 +835,9 @@ EID.descriptions["bul"].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions["bul"].diceHeader = "[Dice effect]"
+EID.descriptions[languageCode].diceHeader = "[Dice effect]"
 
-EID.descriptions["bul"].dice={
+EID.descriptions[languageCode].dice={
 	--[[{"1", "", "Rerolls all of your items#(only affect collectibles)"},
 	{"2", "", "Rerolls all pickups in the room"},
 	{"3", "", "Rerolls all pickups on the entire floor"},
@@ -843,7 +847,7 @@ EID.descriptions["bul"].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions["bul"].transformations = {
+EID.descriptions[languageCode].transformations = {
 	--[["",					-- 0 = none
 	"Гаппи",			-- 1
 	"Весельчак",		-- 2

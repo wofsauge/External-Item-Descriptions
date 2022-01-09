@@ -7,12 +7,16 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "pl"
 
 -- init pl table
-EID.descriptions["pl"] = {}
-EID.descriptions["pl"].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode] = {}
+EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode].languageName = "Polish"
 
-EID.descriptions["pl"].collectibles={
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+
+EID.descriptions[languageCode].collectibles={
 	{"1", "Smutna Cebula", "↑ +0.7 Szybkostrzelności"},
 	{"2", "Wewnętrzne Oko", "Potrójny strzał#↓ Mniejsza Szybkostrzelność"},
 	{"3", "Wygięta Łyżka", "Naprowadzane łzy"},
@@ -568,7 +572,7 @@ EID.descriptions["pl"].collectibles={
 }
 
 ---------- Trinkets ----------
-EID.descriptions["pl"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "Połknięty Pieniążek", "Upuszcza 1 monetę, gdy otrzymasz obrażenia"},
 	{"2", "Skamieniała Kupa", "50% więcej pickupów z kup"},
 	{"3", "Bateria AAA", "-1 potrzebnego ładunku do przedmiotu aktywnego"},
@@ -700,7 +704,7 @@ EID.descriptions["pl"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["pl"].cards={
+EID.descriptions[languageCode].cards={
 	{"1", "0 - Głupiec", "Teleportuje cię na start piętra"},
 	{"2", "I - Mag", "Samonaprowadzające łzy w tym pokoju"},
 	{"3", "II - Kapłanka", "Stopa Mamy depta przeciwnika, zadając mu 300 obrażeń"},
@@ -760,9 +764,9 @@ EID.descriptions["pl"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["pl"].unidentifiedPill = "Nieznana Pigułka"
+EID.descriptions[languageCode].unidentifiedPill = "Nieznana Pigułka"
 
-EID.descriptions["pl"].pills={
+EID.descriptions[languageCode].pills={
 	{"0", "Wzdęcia", "Tworzy chmurę Gazu"},
 	{"1", "Potknięcie", "Tracisz 1 serce"},
 	{"2", "Jaja ze Stali", "+2 Serca Duszy"},
@@ -813,9 +817,9 @@ EID.descriptions["pl"].pills={
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["pl"].sacrificeHeader = "[Następna wypłata Pokoju Poświęceń]"
+EID.descriptions[languageCode].sacrificeHeader = "[Następna wypłata Pokoju Poświęceń]"
 
-EID.descriptions["pl"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50% szans na 1 Monetę#100% szans na 1 Bombę na piętrze Piwnica 1 po zabiciu Bossa w mniej niż minutę"},
 	{"2", "", "50% szans na 1 Monetę#100% szans na 1 Bombę na piętrze Piwnica 1 po zabiciu Bossa w mniej niż minutę"},
 	{"3", "", "67% szans na zwiększenie szansy na otwarcie Pokoju Anioła{{AngelRoom}}"},
@@ -831,9 +835,9 @@ EID.descriptions["pl"].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions["pl"].diceHeader = "[Efekt kości]"
+EID.descriptions[languageCode].diceHeader = "[Efekt kości]"
 
-EID.descriptions["pl"].dice={
+EID.descriptions[languageCode].dice={
 	{"1", "", "Przelosowuje twoje przedmioty#(brak wpływu na pickupy np. klucze)"},
 	{"2", "", "Przelosowuje pickupy w pokoju"},
 	{"3", "", "Przelosowuje pickupy na całym piętrze"},
@@ -843,7 +847,7 @@ EID.descriptions["pl"].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions["pl"].transformations = {
+EID.descriptions[languageCode].transformations = {
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2

@@ -7,12 +7,16 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "en_us"
 
 -- init en_us table
-EID.descriptions["en_us"] = {}
-EID.descriptions["en_us"].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode] = {}
+EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode].languageName = "English"
 
-EID.descriptions["en_us"].collectibles={
+EID.descriptions[languageCode].fonts = {"default", "inverted", "borderless"} -- Fonts to be used with this languagepack
+
+EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ +0.7 Tears up"},
 	{"2", "The Inner Eye", "Triple shot#↓ Tears down"},
 	{"3", "Spoon Bender", "Homing tears"},
@@ -568,7 +572,7 @@ EID.descriptions["en_us"].collectibles={
 }
 
 ---------- Trinkets ----------
-EID.descriptions["en_us"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "Swallowed Penny", "Spawns 1 coin when you get hit"},
 	{"2", "Petrified Poop", "50% chance to get drops from poop"},
 	{"3", "AAA Battery", "-1 charge needed for active items"},
@@ -700,7 +704,7 @@ EID.descriptions["en_us"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["en_us"].cards={
+EID.descriptions[languageCode].cards={
 	{"1", "0 - The Fool", "Teleports you back to the start"},
 	{"2", "I - The Magician", "Homing tears for current room"},
 	{"3", "II - The High Priestess", "Mom's Foot stomps on an enemy!"},
@@ -760,9 +764,9 @@ EID.descriptions["en_us"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["en_us"].unidentifiedPill = "Unidentified Pill"
+EID.descriptions[languageCode].unidentifiedPill = "Unidentified Pill"
 
-EID.descriptions["en_us"].pills={
+EID.descriptions[languageCode].pills={
 	{"0", "Bad Gas", "Spawns a Gas cloud"},
 	{"1", "Bad Trip", "Deals 1 heart of damage to you"},
 	{"2", "Balls of Steel", "+2 Soul Hearts"},
@@ -813,9 +817,9 @@ EID.descriptions["en_us"].pills={
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["en_us"].sacrificeHeader = "[Next Sacrifice Room payout]"
+EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
 
-EID.descriptions["en_us"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50% chance for 1 coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"2", "", "50% chance for 1 coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"3", "", "67% chance for increased {{AngelRoom}}Angel Room chance"},
@@ -831,9 +835,9 @@ EID.descriptions["en_us"].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions["en_us"].diceHeader = "[Dice effects]"
+EID.descriptions[languageCode].diceHeader = "[Dice effects]"
 
-EID.descriptions["en_us"].dice={
+EID.descriptions[languageCode].dice={
 	{"1", "", "Rerolls all your passive and active items into a random item from the room pool it was acquired from"},
 	{"2", "", "Rerolls all pickups in the room"},
 	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
@@ -843,7 +847,7 @@ EID.descriptions["en_us"].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions["en_us"].transformations = {
+EID.descriptions[languageCode].transformations = {
 	"",				-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2

@@ -7,9 +7,7 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
-
-local newDescriptions = {
-}
+local languageCode = "pl"
 
 local repCollectibles={
 	[5] = {"5", "Moje Odbicie", "Daje łzom efekt bumerangu#↑ +1.5 Zasięgu#↑ +60% dodatkowego Zasięgu#↑ +0.6 Prędkości strzałów#↑ +1 Wysokości lotu łez"}, -- My Reflection
@@ -350,9 +348,9 @@ local repCollectibles={
 	[728] = {"728", "Gello", "Pojawia demonicznego sojusznika prztwierdzonego do postaci#Kopiuje on wszystkie efekty i statystyki"}, --  Gello
 	[729] = {"729", "Dakapito atak", "Rzuca głową postaci która po wylądowaniu jest stacjonara i dalej strzela#Ponowne użycie lub nadepnięcie na głowę przyczepia ją spowrotem"}, --  Decap Attack	
 }
-EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["pl"].collectibles)
+EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
-EID.descriptions["pl"].birthright ={
+EID.descriptions[languageCode].birthright ={
 	{"Isaac", "Izaak", "Wszystkie przedmioty przewijają się przez 2 opcje"},
 	{"Magdalene", "Magdalena", "<No effect yet>"},
 	{"Cain", "Kain", "<No effect yet>"},
@@ -398,18 +396,18 @@ EID.descriptions["pl"].birthright ={
 
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
-EID.descriptions["pl"].bingeEaterBuffs = {
-	[22] = {"22", "", "↑+0.5 Szybkostrzelności#↑+1.5 Zasięgu"}, -- Lunch
-	[23] = {"23", "", "↑+0.5 Szybkostrzelności#↑+0.2 Prędkości Strzałów"}, -- Dinner
-	[24] = {"24", "", "↑+1.0 Obrażeń#↑+0.2 Prędkości"}, -- Dessert
-	[25] = {"25", "", "↑+0.2 Prędkości#↑+1.5 Zasięgu"}, -- Breakfast
-	[26] = {"26", "", "↑+1.0 Obrażeń#↑+1.5 Zasięgu"}, -- Rotten Meat
-	[456] = {"456", "", "↑+1.0 Obrażeń#↑+1.0 Szczęścia"}, -- Midnight Snack
-	[346] = {"346", "", "↑+0.2 Prędkości Strzałów#↑+1.0 Szczęścia"}, -- A Snack
-	[707] = {"707", "", "↑+0.5 Szybkostrzelności#↑+1.0 Szczęścia"}, -- Supper
+EID.descriptions[languageCode].bingeEaterBuffs = {
+	[22] = "↑+0.5 Szybkostrzelności#↑+1.5 Zasięgu", -- Lunch
+	[23] = "↑+0.5 Szybkostrzelności#↑+0.2 Prędkości Strzałów", -- Dinner
+	[24] = "↑+1.0 Obrażeń#↑+0.2 Prędkości", -- Dessert
+	[25] = "↑+0.2 Prędkości#↑+1.5 Zasięgu", -- Breakfast
+	[26] = "↑+1.0 Obrażeń#↑+1.5 Zasięgu", -- Rotten Meat
+	[456] = "↑+1.0 Obrażeń#↑+1.0 Szczęścia", -- Midnight Snack
+	[346] = "↑+0.2 Prędkości Strzałów#↑+1.0 Szczęścia", -- A Snack
+	[707] = "↑+0.5 Szybkostrzelności#↑+1.0 Szczęścia", -- Supper
 }
 
-EID.descriptions["pl"].spindownError = "Przedmiot znika"
+EID.descriptions[languageCode].spindownError = "Przedmiot znika"
 
 ---------- Trinkets ----------
 local repTrinkets={
@@ -498,39 +496,39 @@ local repTrinkets={
 	[188] = {"188", "Kostka lodu", "Szansa na sparaliżowanie przeciwnika, kiedy wchodzisz do pokoju#Zabicie sparaliżowanego przeciwnika zamraża go"}, --  Ice Cube
 	[189] = {"189", "Pieczęć Bahometa", "Aktywuje tarczę na 1 sekundę po zabiciu przeciwnika"}, --  Sigil of Baphomet
 }
-EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["pl"].trinkets)
+EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
 
 -- Card Buffs caused by Tarot Cloth
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
 
-EID.descriptions["pl"].tarotClothBuffs = {
-	[2] = {"2", "", "Aktywuje efekt{{Collectible34}}Księgi Beliala"}, -- I - The Magician
-	[3] = {"3", "", "Druga noga uderza zaraz po pierwszej"}, -- II - The High Priestess
-	[4] = {"4", "", "Poczwarza Obrażenia postaci przy użyciu"}, -- III - The Empress
-	[5] = {"5", "", "Jeśli Boss nie został pokonany, otrzymujesz 1 serce duszy przy teleportacji"}, -- IV - The Emperor
-	[6] = {"6", "", "Pojawia 3 serca duszy"}, -- V - The Hierophant
-	[7] = {"7", "", "Pojawia 3 czerwone serca"}, -- VI - The Lovers
-	[8] = {"8", "", "Podwójna długośc efektu"}, -- VII - The Chariot
-	[9] = {"9", "", "podwaja pojawione Rzeczy"}, -- VIII - Justice
-	[10] = {"10", "", "zapobiega przed pojawianiem się greeda w sklepie"}, -- IX - The Hermit
-	[11] = {"11", "", "Pojawia 2 maszyny do gier"}, -- X - Wheel of Fortune
-	[12] = {"12", "", "Podwaja zwiększenia zstatystyk nie wliczając obrażeń"}, -- XI - Strength
-	[14] = {"14", "", "Zadaje 80 punktów obrażeń"}, -- XIII - Death
-	[15] = {"15", "", "Pojawia 2 maszyny do oddawania krwi"}, -- XIV - Temperance
-	[16] = {"16", "", "Zwiększenie obrażeń jest podwojone"}, -- XV - The Devil
-	[17] = {"17", "", "Postać ma 2 przedmioty do wyboru jeśli jeszcze nie odwiedziła Treasure roomu"}, -- XVII - The Stars
-	[21] = {"21", "", "pojawia 2 żebraków"}, -- XX - Judgement
-	[56] = {"56", "", "Wyrzuca wszystkie przedmioty i pickupy wliczając cerate do tarota"}, -- 0 - The Fool?
-	[59] = {"59", "", "Dodaje 3 tymczasowe kontenery na serca"}, -- III - The Empress?
-	[61] = {"61", "", "Pojawia 6 kościanych serc"}, -- V - The Hierophant?
-	[62] = {"62", "", "Dodaje 4 złamane serca i pojawia 4 przedmioty"}, -- VI - The Lovers?
-	[64] = {"64", "", "pojawia od 4-14 Złotych skrzyń"}, -- VIII - Justice?
-	[70] = {"70", "", "postać zjada 20 piguł"}, -- XIV - Temperance?
-	[72] = {"72", "", "Pojawia 14 kamieni"}, -- XVI - The Tower?
-	[73] = {"73", "", "Usuwa 2 przedmioty w zamian pojawiając 4"}, -- XVII - The Stars?
-	[76] = {"76", "", "Pojawia 2 maszyny do zmiany przedmiotów"}, -- XX - Judgement?
+EID.descriptions[languageCode].tarotClothBuffs = {
+	[2] = "Aktywuje efekt{{Collectible34}}Księgi Beliala", -- I - The Magician
+	[3] = "Druga noga uderza zaraz po pierwszej", -- II - The High Priestess
+	[4] = "Poczwarza Obrażenia postaci przy użyciu", -- III - The Empress
+	[5] = "Jeśli Boss nie został pokonany, otrzymujesz 1 serce duszy przy teleportacji", -- IV - The Emperor
+	[6] = "Pojawia 3 serca duszy", -- V - The Hierophant
+	[7] = "Pojawia 3 czerwone serca", -- VI - The Lovers
+	[8] = "Podwójna długośc efektu", -- VII - The Chariot
+	[9] = "podwaja pojawione Rzeczy", -- VIII - Justice
+	[10] = "zapobiega przed pojawianiem się greeda w sklepie", -- IX - The Hermit
+	[11] = "Pojawia 2 maszyny do gier", -- X - Wheel of Fortune
+	[12] = "Podwaja zwiększenia zstatystyk nie wliczając obrażeń", -- XI - Strength
+	[14] = "Zadaje 80 punktów obrażeń", -- XIII - Death
+	[15] = "Pojawia 2 maszyny do oddawania krwi", -- XIV - Temperance
+	[16] = "Zwiększenie obrażeń jest podwojone", -- XV - The Devil
+	[17] = "Postać ma 2 przedmioty do wyboru jeśli jeszcze nie odwiedziła Treasure roomu", -- XVII - The Stars
+	[21] = "pojawia 2 żebraków", -- XX - Judgement
+	[56] = "Wyrzuca wszystkie przedmioty i pickupy wliczając cerate do tarota", -- 0 - The Fool?
+	[59] = "Dodaje 3 tymczasowe kontenery na serca", -- III - The Empress?
+	[61] = "Pojawia 6 kościanych serc", -- V - The Hierophant?
+	[62] = "Dodaje 4 złamane serca i pojawia 4 przedmioty", -- VI - The Lovers?
+	[64] = "pojawia od 4-14 Złotych skrzyń", -- VIII - Justice?
+	[70] = "postać zjada 20 piguł", -- XIV - Temperance?
+	[72] = "Pojawia 14 kamieni", -- XVI - The Tower?
+	[73] = "Usuwa 2 przedmioty w zamian pojawiając 4", -- XVII - The Stars?
+	[76] = "Pojawia 2 maszyny do zmiany przedmiotów", -- XX - Judgement?
 }
-EID.descriptions["pl"].goldenTrinket = "ZŁOTE: Zdwojony Efekt!"
+EID.descriptions[languageCode].goldenTrinket = "ZŁOTE: Zdwojony Efekt!"
 
 ---------- Cards ----------
 
@@ -584,7 +582,7 @@ local repCards={
 	[96] = {"96", "Dusza Betani","pojaiwa 6 płomyków z księgi płomyków {{Collectible584}}z losowymi efektami"},
 	[97] = {"97", "Dusza Jakuba i Ezawa", "Pojawia Esau jako drugą postać do końca pokoju"},
 }
-EID:updateDescriptionsViaTable(repCards, EID.descriptions["pl"].cards)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
 ---------- Pills ----------
 
@@ -599,9 +597,9 @@ local repPills={
 	[50] = {"49", "Eksperymentalna Pigułka", "↑ Zwiększa 1 losową statystykę#↓ Zmniejsza 1 inną, losową statystykę#Nie zmniejsza, gdy masz Doktorat (PHD)"},
 	[9999] = {"", "Złota Pigułka", "Efekt losowej pigułki#Niszczy się po kilku użyciach"}, -- golden Pill
 }
-EID:updateDescriptionsViaTable(repPills, EID.descriptions["pl"].pills)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
-EID.descriptions["pl"].horsepills={
+EID.descriptions[languageCode].horsepills={
 	{"0", "Wzdęcia", "Zatruwa cały pokój"},
 	{"1", "Potknięcie", "Tracisz 2 serca"},
 	{"2", "Jaja e Stali", "+4 Serca Duszy"},
@@ -655,7 +653,7 @@ EID.descriptions["pl"].horsepills={
 	[9999] = {"", "Złota Pigułka", "Efekt losowej, końskiej pigułki#Niszczy się po kilku użyciach"}, -- golden Pill
 }
 
-EID.descriptions["pl"].CraftingBagContent = "torbie:"
-EID.descriptions["pl"].CraftingRoomContent = "pokoju:"
-EID.descriptions["pl"].CraftingResults = "Wyniki:#(Przewiń: Trzymaj TAB + Strzał △/▽)"
-EID.descriptions["pl"].CraftingBagModError = "!!! {{ColorRed}}BŁĄD:#{{ColorRed}}Ta funkcja nie wspiera obecnie zmodowanych przedmiotów"
+EID.descriptions[languageCode].CraftingBagContent = "torbie:"
+EID.descriptions[languageCode].CraftingRoomContent = "pokoju:"
+EID.descriptions[languageCode].CraftingResults = "Wyniki:#(Przewiń: Trzymaj TAB + Strzał △/▽)"
+EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}BŁĄD:#{{ColorRed}}Ta funkcja nie wspiera obecnie zmodowanych przedmiotów"

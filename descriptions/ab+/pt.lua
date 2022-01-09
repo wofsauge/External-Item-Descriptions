@@ -10,12 +10,16 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "pt"
 
 -- init pt table
-EID.descriptions["pt"] = {}
-EID.descriptions["pt"].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode] = {}
+EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode].languageName = "Portuguese (AB+)"
 
-EID.descriptions["pt"].collectibles={
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+
+EID.descriptions[languageCode].collectibles={
 	{"1", "", "↑ +0.7 lágrimas up"},
 	{"2", "", "Tiro triplo#↓ lágrimas down"},
 	{"3", "", "lágrimas de teleguiada."},
@@ -571,7 +575,7 @@ EID.descriptions["pt"].collectibles={
 }
 
 ---------- Trinkets ----------
-EID.descriptions["pt"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "", "Solte moedas quando for atingido"},
 	{"2", "", "Mais drops de cocô"},
 	{"3", "", "-1 carga necessária para itens da barra de espaço "},
@@ -703,7 +707,7 @@ EID.descriptions["pt"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["pt"].cards={
+EID.descriptions[languageCode].cards={
 	{"1", "", "Teleporta você de volta ao início"},
 	{"2", "", "Lágrimas de teleguiada para o quarto atual"},
 	{"3", "", "Mães pé pisa em um inimigo!"},
@@ -763,9 +767,9 @@ EID.descriptions["pt"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["pt"].unidentifiedPill = "Comprimido não identificado"
+EID.descriptions[languageCode].unidentifiedPill = "Comprimido não identificado"
 
-EID.descriptions["pt"].pills={
+EID.descriptions[languageCode].pills={
 	{"0", "", "Cria uma nuvem de gás"},
 	{"1", "", "Causa 1 coração de dano"},
 	{"2", "", "+2 Corações de Alma"},
@@ -816,9 +820,9 @@ EID.descriptions["pt"].pills={
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["pt"].sacrificeHeader = "[Pagamento do próximo quarto de sacrifício]"
+EID.descriptions[languageCode].sacrificeHeader = "[Pagamento do próximo quarto de sacrifício]"
 
-EID.descriptions["pt"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50% chance de 1 moeda#100% chance de 1 bomba, quando em B1 e matou o chefe em menos de 1 minuto"},
 	{"2", "", "50% chance de 1 moeda#100% de chance de 1 bomba, quando estiver em B1 e matou o chefe em menos de 1 minuto"},
 	{"3", "", "67% chance de aumentar a chance da Sala dos Anjos"},
@@ -834,9 +838,9 @@ EID.descriptions["pt"].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions["pt"].diceHeader = "[Dice effect]"
+EID.descriptions[languageCode].diceHeader = "[Dice effect]"
 
-EID.descriptions["pt"].dice={
+EID.descriptions[languageCode].dice={
 	{"1", "", "Rola novamente todos os seus itens#(afeta apenas itens colecionáveis)"},
 	{"2", "", "Rola novamente todos os captadores na sala"},
 	{"3", "", "Rola novamente todos os captadores em todo o piso"},
@@ -846,7 +850,7 @@ EID.descriptions["pt"].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions["pt"].transformations = {
+EID.descriptions[languageCode].transformations = {
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2

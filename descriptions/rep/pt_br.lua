@@ -13,10 +13,7 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
-
-local newDescriptions = {
-	["5.70.14"] = {"14", "Golden Pill", "Efeito aleatório de pílula#Destrói-se após alguns usos"} -- golden Pill
-}
+local languageCode = "pt_br"
 
 local repCollectibles={
 	[2] = {"2", "", "Disparo triplo#↓ -49% Velocidade de disparo"},
@@ -373,9 +370,9 @@ local repCollectibles={
 	[731] = {"731", "", "!!! Apenas para o olho direito#↑ +1 Dano#↑ Alcance#↓ Velocidade de disparo"}, --  Stye //TBD: How much range up, doesn't say on the wiki and I can't test yet
 	[732] = {"732", "", "↑ +1 Dano#Gera uma runa ou alma aleatória ao pegar"}, --  Mom's Ring
 }
-EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["pt_br"].collectibles)
+EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
-EID.descriptions["pt_br"].birthright ={
+EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "Todos os itens passam por duas opções"},
 	{"Magdalene", "", "↑ +1 Saúde#Limite máximo de corações sobe para 18"},
 	{"Cain", "", "↑ +1 Sorte#Todos os andares irão conter uma Sala de Jogo melhorada exeto para a Dark Room e Sala do Tesouro#Aumenta as chances de ativação do {{Collectible46}} Lucky Foot"},
@@ -419,17 +416,17 @@ EID.descriptions["pt_br"].birthright ={
 	{"Tainted Forgotten Soul", "", "Tainted Soul ganha a habilidade do Recall {{Collectible714}}, para recuperar automaticamente o Tainted Forgotten à distância"},
 }
 
-EID.descriptions["pt_br"].bingeEaterBuffs = {
-	[22] = {"22", "", "↑ +0.5 Lágrimas#↑ +1.5 Alcance#↓ -0.03 Velocidade"}, -- Lunch
-	[23] = {"23", "", "↑ +0.5 Lágrimas#↑ +0.2 Velocidade de disparo#↓ -0.03 Velocidade"}, -- Dinner
-	[24] = {"24", "", "↑ +1 Dano#↑ +0.2 Velocidade de disparo#↓ -0.03 Velocidade"}, -- Dessert
-	[25] = {"25", "", "↑ +0.2 Velocidade de disparo#↑ +1.5 Alcance#↓ -0.03 Velocidade"}, -- Breakfast
-	[26] = {"26", "", "↑ +1 Dano#↑ +1.5 Alcance#↓ -0.03 Velocidade"}, -- Rotten Meat
-	[456] = {"456", "", "↑ +1 Dano#↑ +1 Sorte#↓ -0.03 Velocidade"}, -- Midnight Snack
-	[346] = {"346", "", "↑ +0.2 Velocidade de disparo#↑ +1 Sorte#↓ -0.03 Velocidade"}, -- A Snack
-	[707] = {"707", "", "↑ +0.5 Lágrimas#↑ +1 Sorte#↓ -0.03 Velocidade"}, -- Supper
+EID.descriptions[languageCode].bingeEaterBuffs = {
+	[22] = "↑ +0.5 Lágrimas#↑ +1.5 Alcance#↓ -0.03 Velocidade", -- Lunch
+	[23] = "↑ +0.5 Lágrimas#↑ +0.2 Velocidade de disparo#↓ -0.03 Velocidade", -- Dinner
+	[24] = "↑ +1 Dano#↑ +0.2 Velocidade de disparo#↓ -0.03 Velocidade", -- Dessert
+	[25] = "↑ +0.2 Velocidade de disparo#↑ +1.5 Alcance#↓ -0.03 Velocidade", -- Breakfast
+	[26] = "↑ +1 Dano#↑ +1.5 Alcance#↓ -0.03 Velocidade", -- Rotten Meat
+	[456] = "↑ +1 Dano#↑ +1 Sorte#↓ -0.03 Velocidade", -- Midnight Snack
+	[346] = "↑ +0.2 Velocidade de disparo#↑ +1 Sorte#↓ -0.03 Velocidade", -- A Snack
+	[707] = "↑ +0.5 Lágrimas#↑ +1 Sorte#↓ -0.03 Velocidade", -- Supper
 }
-EID.descriptions["pt_br"].spindownError = "Item desapareceu"
+EID.descriptions[languageCode].spindownError = "Item desapareceu"
 
 ---------- Trinkets ----------
 
@@ -519,40 +516,40 @@ local repTrinkets={
 	[188] = {"188","","Adiciona uma chance de petrificar á um inimigo quando entra em uma sala#Matar o inimigo petrificado o congela"}, --  Ice Cube
 	[189] = {"189","","Ativa um escudo de 1 segundo ao matar um inimigo"}, --  Sigil of Baphomet
 }
-EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["pt_br"].trinkets)
+EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
 
 -- Card Buffs caused by Tarot Cloth
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
 
-EID.descriptions["pt_br"].tarotClothBuffs = {
-	[2] = {"2", "", "Também concede o efeito do {{Collectible34}} The Book of Belial"}, -- I - The Magician
-	[3] = {"3", "", "Um segundo pé pisa logo após o primeiro"}, -- II - The High Priestess
-	[4] = {"4", "", "Quadruplica o aumento de estatísticas"}, -- III - The Empress
-	[5] = {"5", "", "Se o chefe ainda não foi derrotado, concede 1 Coração de alma"}, -- IV - The Emperor
-	[6] = {"6", "", "Gera 3 Corações de alma"}, -- V - The Hierophant
-	[7] = {"7", "", "Gera 3 Corações vermelhos"}, -- VI - The Lovers
-	[8] = {"8", "", "Duração dobrada"}, -- VII - The Chariot
-	[9] = {"9", "", "Geração de pickup dobrada"}, -- VIII - Justice
-	[10] = {"10", "", "Impede que o Greed apareça na loja#Transforma a loja em uma loja normal se o Greed já foi derrotado"}, -- IX - The Hermit
-	[11] = {"11", "", "Gera 2 Máquinas caça-níqueis"}, -- X - Wheel of Fortune
-	[12] = {"12", "", "Aumento de estatísticas duplicado, excluindo o multiplicador de dano"}, -- XI - Strength
-	[14] = {"14", "", "Causa 80 de dano"}, -- XIII - Death
-	[15] = {"15", "", "Gera 2 Máquinas de doação de sangue"}, -- XIV - Temperance
-	[16] = {"16", "", "Dano aumentado é dobrado"}, -- XV - The Devil
-	[17] = {"17", "", "Gera 12 Bombas trolls"}, -- XVI - The Tower
-	[18] = {"18", "", "Se a sala do tesouro não foi acessada ainda, ela terá dois itens para escolher"}, -- XVII - The Stars
-	[21] = {"21", "", "Gera 2 mendigos"}, -- XX - Judgement
-	[56] = {"56", "", "Solta todos os itens junto com os pickups, incluindo Tarot Cloth"}, -- 0 - The Fool?
-	[59] = {"59", "", "Garante 3 espaços de corações temporários"}, -- III - The Empress?
-	[61] = {"61", "", "Gera 6 Corações de osso"}, -- V - The Hierophant?
-	[62] = {"62", "", "Adiciona 4 corações quebrados e gera 4 itens"}, -- VI - The Lovers?
-	[64] = {"64", "", "Gera 4-14 Baús Dourados"}, -- VIII - Justice?
-	[70] = {"70", "", "Come 20 pílulas"}, -- XIV - Temperance?
-	[72] = {"72", "", "Gera 14 aglomerados de rochas"}, -- XVI - The Tower?
-	[73] = {"73", "", "Remove 2 itens e gera 4"}, -- XVII - The Stars?
-	[76] = {"76", "", "Gera 2 máquinas de restock"}, -- XX - Judgement?
+EID.descriptions[languageCode].tarotClothBuffs = {
+	[2] = "Também concede o efeito do {{Collectible34}} The Book of Belial", -- I - The Magician
+	[3] = "Um segundo pé pisa logo após o primeiro", -- II - The High Priestess
+	[4] = "Quadruplica o aumento de estatísticas", -- III - The Empress
+	[5] = "Se o chefe ainda não foi derrotado, concede 1 Coração de alma", -- IV - The Emperor
+	[6] = "Gera 3 Corações de alma", -- V - The Hierophant
+	[7] = "Gera 3 Corações vermelhos", -- VI - The Lovers
+	[8] = "Duração dobrada", -- VII - The Chariot
+	[9] = "Geração de pickup dobrada", -- VIII - Justice
+	[10] = "Impede que o Greed apareça na loja#Transforma a loja em uma loja normal se o Greed já foi derrotado", -- IX - The Hermit
+	[11] = "Gera 2 Máquinas caça-níqueis", -- X - Wheel of Fortune
+	[12] = "Aumento de estatísticas duplicado, excluindo o multiplicador de dano", -- XI - Strength
+	[14] = "Causa 80 de dano", -- XIII - Death
+	[15] = "Gera 2 Máquinas de doação de sangue", -- XIV - Temperance
+	[16] = "Dano aumentado é dobrado", -- XV - The Devil
+	[17] = "Gera 12 Bombas trolls", -- XVI - The Tower
+	[18] = "Se a sala do tesouro não foi acessada ainda, ela terá dois itens para escolher", -- XVII - The Stars
+	[21] = "Gera 2 mendigos", -- XX - Judgement
+	[56] = "Solta todos os itens junto com os pickups, incluindo Tarot Cloth", -- 0 - The Fool?
+	[59] = "Garante 3 espaços de corações temporários", -- III - The Empress?
+	[61] = "Gera 6 Corações de osso", -- V - The Hierophant?
+	[62] = "Adiciona 4 corações quebrados e gera 4 itens", -- VI - The Lovers?
+	[64] = "Gera 4-14 Baús Dourados", -- VIII - Justice?
+	[70] = "Come 20 pílulas", -- XIV - Temperance?
+	[72] = "Gera 14 aglomerados de rochas", -- XVI - The Tower?
+	[73] = "Remove 2 itens e gera 4", -- XVII - The Stars?
+	[76] = "Gera 2 máquinas de restock", -- XX - Judgement?
 }
-EID.descriptions["pt_br"].goldenTrinket = "DOURADO: Efeito Dobrado!"
+EID.descriptions[languageCode].goldenTrinket = "DOURADO: Efeito Dobrado!"
 
 ---------- Cards ----------
 
@@ -607,7 +604,7 @@ local repCards={
 	[96] = {"96", "", "Gera 6 Book of Virtues {{Collectible584}} orbital com propriedades aleatórias"},
 	[97] = {"97", "", "Gera Esau como um personagem secundário temporário para a sala atual"},
 }
-EID:updateDescriptionsViaTable(repCards, EID.descriptions["pt_br"].cards)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
 ---------- Pills ----------
 
@@ -621,9 +618,9 @@ local repPills={
 	[49] = {"48", "", "↑ +0.15 Velocidade de disparo"},
 	[50] = {"49", "", "↑ Aumenta 1 status aleatório#↓ Diminua 1 algum outro status aleatório#Não diminuirá com PHD"},
 }
-EID:updateDescriptionsViaTable(repPills, EID.descriptions["pt_br"].pills)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
-EID.descriptions["pt_br"].horsepills={
+EID.descriptions[languageCode].horsepills={
 	{"0", "", "Envenamento ao entrar na sala"}, -- Bad Gas
 	{"1", "", "Causa 2 corações de dano a você"}, -- Bad Trip
 	{"2", "", "+4 Corações de alma"}, -- Balls of Steel
@@ -676,10 +673,10 @@ EID.descriptions["pt_br"].horsepills={
 	{"49", "", "↑ Aumenta 1 status aleatório duas vezes#↓ Diminue 1 status aleatório duas vezes#Não vai diminuir com PHD"}, -- Experimental Pill
 }
 
-EID.descriptions["pt_br"].CraftingBagContent = "Mochila:"
-EID.descriptions["pt_br"].CraftingRoomContent = "Sala:"
-EID.descriptions["pt_br"].CraftingResults = "(Rolar: Segurar {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Travar: {{ButtonX}}, Atualizar: {{ButtonB}})"
-EID.descriptions["pt_br"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}O \"Crafting result calculation\" atualmente não é suportado quando mods são instalados!#{{ColorRed}}Por favor desinstale os mods ou desative a descrição do Bag of Crafting nas configurações"
+EID.descriptions[languageCode].CraftingBagContent = "Mochila:"
+EID.descriptions[languageCode].CraftingRoomContent = "Sala:"
+EID.descriptions[languageCode].CraftingResults = "(Rolar: Segurar {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Travar: {{ButtonX}}, Atualizar: {{ButtonB}})"
+EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}O \"Crafting result calculation\" atualmente não é suportado quando mods são instalados!#{{ColorRed}}Por favor desinstale os mods ou desative a descrição do Bag of Crafting nas configurações"
 
-EID.descriptions["pt_br"].AchievementWarningTitle = "{{ColorYellow}}!!! ALERTA !!!"
-EID.descriptions["pt_br"].AchievementWarningText = "Conquista estão desabilitadas!#Para possibilitar a progressão e as conquistas, é preciso primeiro matar a Mãe (Depths II) sem nenhum mods habilitado"
+EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! ALERTA !!!"
+EID.descriptions[languageCode].AchievementWarningText = "Conquista estão desabilitadas!#Para possibilitar a progressão e as conquistas, é preciso primeiro matar a Mãe (Depths II) sem nenhum mods habilitado"

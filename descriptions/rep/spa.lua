@@ -10,9 +10,7 @@
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
-local newDescriptions = {
-	--["5.70.14"] = {"14", "Golden Pill", "Random pill effect#Destroys itself after a few uses"}, -- golden Pill
-}
+local languageCode = "spa"
 
 local repCollectibles={
 	[5] = {"5", "Mi reflejo", "Otorga un efecto bumerán a las lágrimas#↑ +1,5 de alcance#↑ +60 % de alcance adicional#↑ +0,6 de velocidad de disparo#↑ +1 de tamaño de lágrima"},
@@ -354,9 +352,9 @@ local repCollectibles={
 	[731] = {"731", "Orzuelo", "↑ +28% de daño#↑ +7.0 de alcance#↓ -0.3 de velocidad de tiro#Sólo aplica al ojo derecho"}, -- Orzuelo
 	[732] = {"732", "Anillo de Mamá", "↑ +1.0 de daño#Genera una runa o piedra de alma al tomarlo"}, -- Anillo de Mamá
 }
-EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["spa"].collectibles)
+EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
-EID.descriptions["spa"].birthright ={
+EID.descriptions[languageCode].birthright ={
 {"Isaac", "", "Los objetos cambian entre dos objetos"},
 {"Magdalene", "Magdalena", "↑ +1 corazón, límite de corazones aumentado a 18"},
 {"Cain", "Caín", "↑ +1 de suerte#Todos los pisos tienen Arcades garantizados menos Cofre y Cuarto oscuro#Mejores arcades"},
@@ -403,227 +401,227 @@ EID.descriptions["spa"].birthright ={
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
 
-EID.descriptions["spa"].bingeEaterBuffs = {
-	[22] = {"22", "", "↑ +0.5 de lágrimas#↑ +1.5 de alcance#↓ -0.03 de velocidad"}, -- Lunch
-	[23] = {"23", "", "↑ +0.5 de lágrimas#↑ +0.2 de velocidad de lágrima#↓ -0.03 de velocidad"}, -- Dinner
-	[24] = {"24", "", "↑ +1 de daño#↑ +0.2 de velocidad de lágrima#↓ -0.03 de velocidad"}, -- Dessert
-	[25] = {"25", "", "↑ +0.2 de velocidad de lágrima#↑ +1.5 de alcance#↓ -0.03 de velocidad"}, -- Breakfast
-	[26] = {"26", "", "↑ +1 de daño#↑ +1.5 de alcance#↓ -0.03 de velocidad"}, -- Rotten Meat
-	[456] = {"456", "", "↑ +1 de daño#↑ +1 de suerte#↓ -0.03 de velocidad"}, -- Midnight Snack
-	[346] = {"346", "", "↑ +0.2 de velocidad de lágrima#↑ +1 de suerte#↓ -0.03 de velocidad"}, -- A Snack
-	[707] = {"707", "", "↑ +0.5 de lágrimas#↑+1 de suerte#↓ -0.03 de velocidad"}, -- Supper
+EID.descriptions[languageCode].bingeEaterBuffs = {
+	[22] = "↑ +0.5 de lágrimas#↑ +1.5 de alcance#↓ -0.03 de velocidad", -- Lunch
+	[23] = "↑ +0.5 de lágrimas#↑ +0.2 de velocidad de lágrima#↓ -0.03 de velocidad", -- Dinner
+	[24] = "↑ +1 de daño#↑ +0.2 de velocidad de lágrima#↓ -0.03 de velocidad", -- Dessert
+	[25] = "↑ +0.2 de velocidad de lágrima#↑ +1.5 de alcance#↓ -0.03 de velocidad", -- Breakfast
+	[26] = "↑ +1 de daño#↑ +1.5 de alcance#↓ -0.03 de velocidad", -- Rotten Meat
+	[456] = "↑ +1 de daño#↑ +1 de suerte#↓ -0.03 de velocidad", -- Midnight Snack
+	[346] = "↑ +0.2 de velocidad de lágrima#↑ +1 de suerte#↓ -0.03 de velocidad", -- A Snack
+	[707] = "↑ +0.5 de lágrimas#↑+1 de suerte#↓ -0.03 de velocidad", -- Supper
 }
 
 -- Buffs caused by Book of Belial with Judas' Birthright
 -- Note: "#" will be replaced with "#{{Collectible34}} " automatically, in order to add Book of Belial icon infront of each buff-bulletpoint
 
-EID.descriptions["spa"].bookOfBelialBuffs = {
-	[40] = {"40", "", "También activa el efecto de {{Collectible35}} El Necronomicón"}, -- Kamikaze!
-	[126] = {"126", "", "También activa el efecto de {{Collectible35}} El Necronomicón"}, -- Razor Blade
-	[127] = {"127", "", "Aumento de daño durante todo el nuevo piso"}, -- Forget me Now
-	[133] = {"133", "", "Aumento de daño permanente"}, -- Guppy's Paw
-	[135] = {"135", "", "Aumento de daño por cada uso"}, -- IV Bag
-	[147] = {"147", "", "El pico tiene mayor velocidad, empuje, duración, prende a los enemigos en fuego y suelta más recolectables al romper cacas y obstáculos"}, -- Notched Axe
-	[186] = {"186", "", "También activa el efecto de {{Collectible126}} Cuchilla"}, -- Blood Rights
-	[282] = {"282", "", "Deja un rastro de fuego que quema a los enemigos"}, -- How to Jump
-	[290] = {"290", "", "Gasta un corazón a la vez, Otorga un aumento de daño y deja creep rojo en el suelo"}, -- The Jar
-	[295] = {"295", "", "Probabilidad de activar el efecto de {{Collectible555}} Cuchilla dorada"}, -- Magic Fingers
-	[297] = {"297", "", "Genera un familiar demoniaco junto a la recompensa basada en el piso"}, -- Pandora's Box
-	[323] = {"323", "", "Las lágrimas lanzadas tienen un aumento de daño"}, -- Isaac's Tears
-	[352] = {"352", "", "Activa el Libro de Belial al romperse - el daño persiste hasta que el cañón es reparado"}, -- Glass Cannon
-	[475] = {"475", "", "Reapareces como Dark Judas si tienes una vida extra"}, -- Plan C
-	[482] = {"482", "", "Reemplaza el objeto adquirido más reciente por {{Collectible51}} Pentáculo"}, -- Clicker
-	[487] = {"487", "", "Incrementa el aumento de daño"}, -- Potato Peeler
-	[536] = {"536", "", "+10.8 de daño temporal por cada familiar sacrificado, disminuye con el tiempo igual que {{Collectible621}} Asado rojo"}, -- Sacrificial Altar
-	[555] = {"555", "", "Daña a todos los enemigos de la sala y aplica el efecto de {{Collectible202}} Toque de Midas en ellos"}, -- Golden Razor
-	[563] = {"563", "", "Los fantasmas irán a los enemigos"}, -- Vade Retro
-	[577] = {"577", "", "Aumento de daño permanente"}, -- Damocles
-	[582] = {"582", "", "Aumento de daño adicional por el resto del piso basado en la cantidad de veces que se usó"}, -- Wavy Cap
-	[585] = {"585", "", "Cambia las recompensas por 2 corazones negros y un objeto de trato con el Diablo#Serán 3 corazones negros y 2 objetos si ya se hizo un trato con el diablo"}, -- Alabaster Box
-	[622] = {"622", "", "Otorga gratuitamente un {{Collectible51}} Pentáculo"}, -- Genesis
-	[623] = {"623", "", "También activa el efecto de {{Collectible126}} Cuchilla"}, -- Sharp Key
-	[635] = {"635", "", "Crea una línea de {{Collectible705}} Artes Oscuras entre tú y Pespuntes"}, -- Stitches
-	[640] = {"640", "", "Lanza un rayo de {{Collectible118}} Azufre"}, -- Urn of Souls
-	[642] = {"642", "", "Aumento de daño permanente"}, -- Magic Skin
-	[685] = {"685", "", "Otorga 6 fuegos fatuos de {{Collectible292}} Biblia satánica que aumentan la posibilidad de sala del Diablo"}, -- Jar of Wisps
-	[705] = {"705", "", "Permite tener un aumento temporal de daño"}, -- Dark Arts
-	[710] = {"710", "", "Tomar corazones rojos da la posibilidad de cambiarlos por corazones negros"}, -- Bag of Crafting
-	[729] = {"729", "", "Gran aumento de daño y lágrimas cuando la cabeza es lanzada"}, -- Decap Attack
+EID.descriptions[languageCode].bookOfBelialBuffs = {
+	[40] = "También activa el efecto de {{Collectible35}} El Necronomicón", -- Kamikaze!
+	[126] = "También activa el efecto de {{Collectible35}} El Necronomicón", -- Razor Blade
+	[127] = "Aumento de daño durante todo el nuevo piso", -- Forget me Now
+	[133] = "Aumento de daño permanente", -- Guppy's Paw
+	[135] = "Aumento de daño por cada uso", -- IV Bag
+	[147] = "El pico tiene mayor velocidad, empuje, duración, prende a los enemigos en fuego y suelta más recolectables al romper cacas y obstáculos", -- Notched Axe
+	[186] = "También activa el efecto de {{Collectible126}} Cuchilla", -- Blood Rights
+	[282] = "Deja un rastro de fuego que quema a los enemigos", -- How to Jump
+	[290] = "Gasta un corazón a la vez, Otorga un aumento de daño y deja creep rojo en el suelo", -- The Jar
+	[295] = "Probabilidad de activar el efecto de {{Collectible555}} Cuchilla dorada", -- Magic Fingers
+	[297] = "Genera un familiar demoniaco junto a la recompensa basada en el piso", -- Pandora's Box
+	[323] = "Las lágrimas lanzadas tienen un aumento de daño", -- Isaac's Tears
+	[352] = "Activa el Libro de Belial al romperse - el daño persiste hasta que el cañón es reparado", -- Glass Cannon
+	[475] = "Reapareces como Dark Judas si tienes una vida extra", -- Plan C
+	[482] = "Reemplaza el objeto adquirido más reciente por {{Collectible51}} Pentáculo", -- Clicker
+	[487] = "Incrementa el aumento de daño", -- Potato Peeler
+	[536] = "+10.8 de daño temporal por cada familiar sacrificado, disminuye con el tiempo igual que {{Collectible621}} Asado rojo", -- Sacrificial Altar
+	[555] = "Daña a todos los enemigos de la sala y aplica el efecto de {{Collectible202}} Toque de Midas en ellos", -- Golden Razor
+	[563] = "Los fantasmas irán a los enemigos", -- Vade Retro
+	[577] = "Aumento de daño permanente", -- Damocles
+	[582] = "Aumento de daño adicional por el resto del piso basado en la cantidad de veces que se usó", -- Wavy Cap
+	[585] = "Cambia las recompensas por 2 corazones negros y un objeto de trato con el Diablo#Serán 3 corazones negros y 2 objetos si ya se hizo un trato con el diablo", -- Alabaster Box
+	[622] = "Otorga gratuitamente un {{Collectible51}} Pentáculo", -- Genesis
+	[623] = "También activa el efecto de {{Collectible126}} Cuchilla", -- Sharp Key
+	[635] = "Crea una línea de {{Collectible705}} Artes Oscuras entre tú y Pespuntes", -- Stitches
+	[640] = "Lanza un rayo de {{Collectible118}} Azufre", -- Urn of Souls
+	[642] = "Aumento de daño permanente", -- Magic Skin
+	[685] = "Otorga 6 fuegos fatuos de {{Collectible292}} Biblia satánica que aumentan la posibilidad de sala del Diablo", -- Jar of Wisps
+	[705] = "Permite tener un aumento temporal de daño", -- Dark Arts
+	[710] = "Tomar corazones rojos da la posibilidad de cambiarlos por corazones negros", -- Bag of Crafting
+	[729] = "Gran aumento de daño y lágrimas cuando la cabeza es lanzada", -- Decap Attack
 }
 
 -- Book of Virtues wisp types
-EID.descriptions["spa"].bookOfVirtuesWisps = {
-	[33] = {"Disparos teledirigidos"}, -- The Bible
-	[34] = {"Disparos con daño x2"}, -- The Book of Belial
-	[35] = {"3.5% de poribilidad de lanzar lágrimas horrorizadoras#Se activa el efecto del Necronomicón al destruirse"}, -- The Necronomicon
-	[36] = {"2.5% de posibilidad de disparos de {{Collectible236}} E. Coli"}, -- The Poop
-	[37] = {"Generan bombas de dispersión al destruirse"}, -- Mr. Boom 
-	[38] = {"Disparos rápidos e imprecisos"}, -- Tammy's Head
-	[39] = {"5% de posibilidad de disparos petrificadores"}, -- Mom's Bra
-	[40] = {"Disparos explosivos#Explotan al destruirse"}, -- Kamikaze!
-	[41] = {"7.5% de posibilidad de disparos horrorizadores"}, -- Mom's Pad
-	[42] = {"7.5% de posibilidad de disparos de {{Collectible149}} Ipecac"}, -- Bob's Rotten Head
-	[44] = {"10% de posibilidad de disparos que teletransportan enemigos#Los fuegos parpadean cada 5 segundos"}, -- Teleport!
-	[45] = {"20% de posibilidad de que un enemigo suelte un corazón al morir"}, -- Yum Heart
-	[47] = {"Disparos con daño al 1/2#Todos los fuegos generados por el objeto lanzarán 3 disparos explosivos hacia donde apunte la cruz tras usarse"}, -- Doctor's Remote
-	[49] = {"No puede disparar normalmente#Lanzará un disparo de Kamehame... ¡¿Eeeeeeh?! al usarlo"}, -- Shoop da Whoop!
-	[56] = {"Disparos rápidos de corto rango#Los fuegos dejarán caer creep amarillo"}, -- Lemon Mishap
-	[58] = {"Inmunidad a proyectiles"}, -- Book of Shadows
-	[65] = {"Genera una bomba troll al destruírse"}, -- Anarchist Cookbook
-	[66] = {"Ralentiza a los enemigos por 3 segundos al destruirse"}, -- The Hourglass
-	[77] = {"Daño de contacto extra"}, -- My Little Unicorn
-	[78] = {"No puede disparar#Genera un Familiar de {{Collectible562}} 7 Sellos al destruirse#Duran una habitación"}, -- Book of Revelations
-	[83] = {"Disparos con empuje"}, -- The Nail
-	[84] = {"Sin efecto especial"}, -- We Need to Go Deeper!
-	[85] = {"Genera una carta al destruirse"}, -- Deck of Cards
-	[86] = {"Disparos dentales"}, -- Monstro's Tooth
-	[93] = {"Disparos anti-gravitatorios#Capacidad de lanzar disparos horrorizadoras"}, -- The Gamekid
-	[97] = {"Genera 1 de 8 fuegos: {{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#Los efectos explosivos son comunes"}, -- The Book of Sin
-	[102] = {"Genera 1 de 6 fuegos de distinto color con distintos efectos#Posibilidad de envenenar, petrificar, confundir, , lanzar disparos de Bombas Troll, O generar una araña enemiga al destruírse#Los 6 fuegos generan píldoras al destruirse"}, -- Mom's Bottle of Pills
-	[105] = {"Genera un fuego extra por cada objeto reroleado"}, -- The D6
-	[107] = {"Disparos pentrantes"}, -- The Pinking Shears
-	[111] = {"Pedo venenoso al destruirse"}, -- The Bean
-	[123] = {"Disparos aleatorios"}, -- Monster Manual
-	[124] = {"Genera un fuego de lo que sea que imitó"}, -- Dead Sea Scrolls
-	[126] = {"Fuego de alto PV"}, -- Razor Blade
-	[127] = {"Fuego de PC infinito por todo el nuevo piso"}, -- Forget Me Now
-	[130] = {"No puede disparar#Los fuegos cargarán hacia donde dispares"}, -- A Pony
-	[133] = {"3 fuegos de alto PV"}, -- Guppy's Paw
-	[135] = {"Sin efecto especial"}, -- IV Bag
-	[136] = {"7.5% de posibilidad lanzar disparos marcadores#Los enemigos marcados atacarán a otros enemigos"}, -- Best Friend
-	[137] = {"1 fuego por bomba detonada#Los disparos también pueden ser detonados a distancia"}, -- Remote Detonator
-	[145] = {"Se generan fuegos en vez de moscas#Generan una mosca azul al destruirse"}, -- Guppy's Head
-	[146] = {"Disparos teledirigidos"}, -- Prayer Card
-	[147] = {"Romper rocas puede generar 1 de 5 fuegos de varios materiales#posibilidad de efectos de carbón, confusión, monedas, daño doble o disparos láser"}, -- Notched Axe
-	[158] = {"Disparos apuntados#Genera fuegos de alto PV"}, -- Crystal Ball
-	[160] = {"Generan rayos de luz al contacto"}, -- Crack the Sky
-	[164] = {"Fuego de una sola habitación"}, -- The Candle
-	[166] = {"Destruye todos los recolectables#Posibilidad de generar un fuego por cada recolectable destruido"}, -- D20
-	[171] = {"7.5% de posibilidad de lanzar disparos realentizadores"}, -- Spider Butt
-	[175] = {"Los fuegos abren cofres/puertas al contacto#Puede abrir las puertas a Mega Satán, Cadaver y al Ascenso"}, -- Dad's Key
-	[177] = {"Genera un fuego basado en la recompensa ganada"}, -- Portable Slot
-	[181] = {"10% de lanzar disparos de {{Collectible374}} Luz Sagrada"}, -- White Pony
-	[186] = {"Fuego de alto PV"}, -- Blood Rights
-	[192] = {"Disparos teledirigidos"}, -- Telepathy for Dummies
-	[263] = {"15% de posibilidad de que los enemigos suelten una runa al morir#Generan una runa al destruirse"}, -- Clear Rune
-	[282] = {"Hasta 6 fuegos inmóviles"}, -- How to Jump
-	[283] = {"Rerolea todos tus fuegos, añadiendo uno aleatorio#No cambia el Libro de las Virtudes"}, -- D100
-	[284] = {"Elimina todos los fuegos#Otorga un fuego aleatorio por cada 2 objetos conseguidos#No cambia el Libro de las Virtudes"}, -- D4
-	[285] = {"10% de posibilidad de activar el efecto del D10 al golpear"}, -- D10
-	[286] = {"15% de posibilidad de que un enemigo suelte una carta al morir#Generan una carta al destruirse"}, -- Blank Card
-	[287] = {"Se activa el efecto del {{Collectible675}} Orbe roto al destruise"}, -- Book of Secrets
-	[288] = {"Se generan fuegos en vez de arañás#Generan una araña azul al destruirse"}, -- Box of Spiders
-	[289] = {"Fuegos de una sola habitación#Lágrimas de flamas rojkas"}, -- Red Candle
-	[290] = {"Crea un fuego por corazón#Posibilidad de generar {{HalfHeart}} medio corazón al destruirse"}, -- The Jar
-	[291] = {"Genera un fuego extra por cada enemigo transformado en caca"}, -- Flush!
-	[292] = {"+10% de posibilidad de {{DevilRoom}}sala del Diablo o {{AngelRoom}} sala del Ángel por cada fuego de la Biblia Satánica"}, -- Satanic Bible
-	[293] = {"Dispara un láser en 4 direcciones al destruirse"}, -- Head of Krampus
-	[294] = {"Fuego de una sola habitación#No puede disparar#El efecto del Frijol Mantequilla se activa al destruirse"}, -- Butter Bean
-	[295] = {"Posibilidad de soltar una moneda al destruirse"}, -- Magic Fingers
-	[296] = {"Sin efecto especial"}, -- Converter
-	[297] = {"Sin efecto especial"}, -- Pandora's Box
-	[298] = {"No pueden disparar#Inmunidad al daño por contacto#No harán daño de contacto hasta que el Paso de unicornio se active"}, -- Unicorn Stump, Hasta acá lo voy a dejar por el momento, cuando me despierte y limpie continuaré
-	[323] = {"Genera 3 fuegos#Tiempo de vida de 3 segundos"}, -- Isaac's Tears
-	[324] = {"Disparos de la {{Collectible570}} Galleta de plastilina"}, -- Undefined
-	[325] = {"Conjunto de disparos arqueados"}, -- Scissors
-	[326] = {"Genera un fuego al recibir daño"}, -- Breath of Life
-	[338] = {"Fuego de una sola habitación#Disparos de búmeran"}, -- The Boomerang
-	[347] = {"Disparos de 20/20#Duplica tus otros fuegos"}, -- Diplopia
-	[348] = {"Genera una píldora al destruirse"}, -- Placebo
-	[349] = {"50% de generar una moneda al destruirse"}, -- Wooden Nickel
-	[351] = {"Todos los fuegos del Mega Frijol lanzan una onda de piedra al usar el objeto#Pedo venenoso y petrificador al destruirse"}, -- Mega Bean
-	[352] = {"Si un fuego del Cañón de cristal se destruye, los otros lo harán#Persisten entre habitaciones"}, -- Glass Cannon
-	[357] = {"Duplica tus fuegos durante la habitación"}, -- Box of Friends
-	[382] = {"Los enemigos pueden generar un fuego con disparo regular, teledirigido, explosivo, o de {{Collectible118}} Azufre al morir, dependiendo de su set de movimientos"}, -- Friendly Ball
-	[383] = {"Los disparos de los fuegos pueden ser detonados, transformándose en 6 lágrimas del jugador#Lanza lágrimas del jugador al destruirse#Persisten entre habitaciones"}, -- Tear Detonator
-	[386] = {"5% de posibilidad de que los disparos cambien los objetos del ambiente al golpearlos (exceptuando popó y TNT)"}, -- D12
-	[396] = {"No pueden disparar#Cada pasadizo tendrá un fuego"}, -- Ventricle Razor
-	[406] = {"Daño y cadencia de tiro aleatorias"}, -- D8
-	[419] = {"20% de posibilidad de que las lágrimas teletransporten enemigos#Los fuegos parpedean cada 5 segundos"}, -- Teleport 2.0
-	[421] = {"Genera un pedo encantador al destruirse"}, -- Kidney Bean
-	[422] = {"30% de posibilidad de lanzar disparos petrificadores"}, -- Glowing Hour Glass
-	[427] = {"Genera un fuego que rebota por la habitación, Explotarán al hacer contacto con una lágrima del jugador#No puede disparar o hacer daño por contacto"}, -- Mine Crafter
-	[434] = {"Se generan fuegos en vez de moscas#De 5 moscas en adelante se generará un fuego con salud y daño incrementado 1"}, -- Jar of Flies
-	[437] = {"Efecto del D7 al hacer daño por contacto#Sólo se activa una vez"}, -- D7
-	[439] = {"Sin efecto especial"}, -- Mom's Box
-	[441] = {"Lágrimas del {{Collectible275}} Mini-Azufre (Disparo cargado)#Dispararán de forma continua mientras se use Mega Ráfaga"}, -- Mega Blast
-	[475] = {"8 fuegos de daño elevado"}, -- Plan C
-	[476] = {"Genera un fuego si no se duplica un recolectable"}, -- D1
-	[477] = {"Genera los fuegos de todos los objetos activos absorvidos#No genera fuegos por sí solo"}, -- Void
-	[478] = {"Pausa a todos los enemigos y permite disparar por 3 segundos"}, -- Pause
-	[479] = {"Posibilidad de generar un trinket al destruirse"}, -- Smelter
-	[480] = {"La salud del fuego aumentará dependiendo de los recolectables reciclados"}, -- Compost
-	[481] = {"5% de posibilidad de lanzar disparos que transformen a los enemigos en fuegos aleatorios"}, -- Dataminer
-	[482] = {"Genera un fuego aleatorio"}, -- Clicker
-	[483] = {"8 fuegos que generan una bomba troll al destruirse"}, -- Mama Mega!
-	[484] = {"Fuego de una sola habitación#No puede disparar#Se activa el efecto de Espera... ¿qué? al destruirse"}, -- Wait What?
-	[485] = {"Los fuegos de la Moneda Doblada pueden ser duplicados o totalmente destruidos si uno se daña"}, -- Crooked Penny
-	[486] = {"No puede disparar#Posibilidad de negar el daño recibido"}, -- Dull Razor
-	[487] = {"Fuego permanente#Acecha y dispara a los enemigos#No bloquea disparos ni hace daño por contacto"}, -- Potato Peeler
-	[488] = {"Genera un fuego de lo que sea que imitó (Fuego aleatorio si no fue un objeto activo)"}, -- Metronome
-	[489] = {"Genera un fuego normal en adición a fuego del dado imitado"}, -- D Infinity
-	[490] = {"Genera un fuego aleatorio#Resurge en la siguiente habitación si fue destruido"}, -- Eden's Soul
-	[504] = {"Fuego de una sola habitación#Disparos rápidos y apuntados"}, -- Brown Nugget
-	[507] = {"Posibilidad de generar fuegos al matar"}, -- Sharp Straw
-	[510] = {"Disparos del {{Collectible229}} Pulmón de Monstro, {{Collectible268}} Bebé Podrido, {{Collectible87}} Cuernos de Loki o {{Collectible118}} Azufre"}, -- Delirious
-	[512] = {"Disparos magnéticos"}, -- Black Hole
-	[515] = {"Genera un fuego aleatorio#"}, -- Mystery Gift
-	[516] = {"Disparos en 8 direcciones imitando al Aspersor"}, -- Sprinkler
-	[521] = {"Disparo triple#All Coupon tears are destroyed if you make a purchase"}, -- Coupon
-	[522] = {"Captured projectiles turn into wisps"}, -- Telekinesis
-	[523] = {"Los fuegos se generan al soltar el contenido de la caja#Generan un recolectable al destruirse"}, -- Moving Box
-	[527] = {"No pueden disparar#Pueden abrir cofres y puertas en las habitaciones vacías"}, -- Mr. ME!
-	[536] = {"Convierte todos los fuegos en {{HalfHeart}} Medios corazones#Genera un fuego bastante fuerte al sacrificar"}, -- Sacrificial Altar
-	[545] = {"Los fuegos generan un Bony amistoso al destruirse"}, -- Book of the Dead
-	[550] = {"10% de posibilidad de lanzar un disparo que genere un pisotón sobre el enemigo"}, -- Broken Shovel
-	[552] = {"10% de posibilidad de lanzar un disparo que genere un pisotón sobre el enemigo#Genera un fuego de alto PV que no dispara"}, -- Mom's Shovel
-	[555] = {"15% de lanzar un disparo con el efecto del {{Collectible202}} Toque de midas"}, -- Golden Razor
-	[556] = {"Disparos láser de corto alcance"}, -- Sulfur
-	[557] = {"{{ArrowUp}} +0.2 de suerte por cada fuego de la Galleta de la fortuna"}, -- Fortune Cookie
-	[577] = {"Sin efecto especial"}, -- Damocles
-	[578] = {"Los fuegos dejan caer creep amarillo"}, -- Free Lemonade
-	[580] = {"Posibilidad de generar puertas rojas al entrar a una nueva habitación"}, -- Red Key
-	[582] = {"Hasta 1 fuego del Hongo Mareante"}, -- Wavy Cap
-	[584] = {"Sin beneficio por copias múltiples"}, -- Book of Virtues
-	[585] = {"Genera 8 fuegos"}, -- Alabaster Box
-	[604] = {"Fuego de una habitación#Se generan 3 fuegos cuando algo que lanzaste aterriza#10% de posibilidad de lanzar disparos que confunden"}, -- Mom's Bracelet
-	[605] = {"Sin efecto especial"}, -- The Scooper
-	[609] = {"Fuego invisible#50% de posibilidad de que todos los fuegos del D6 Eterno se destruyan al usarse"}, -- Eternal D6
-	[611] = {"Daño y salud aumentados en base a las cargas tras utilizarlo"}, -- Larynx
-	[622] = {"3 fuegos#Remueve todos los otros fuegos "}, -- Genesis
-	[623] = {"Sin efecto especial"}, -- Sharp Key
-	[631] = {"Parte tus fuegos a la mitad (Mitad de salud y daño)#Los fuegos se destruyen si se parten 3 veces"}, -- Meat Cleaver
-	[635] = {"Deja un fuego estacionario#Hasta 6 fuegos estacionarios"}, -- Stitches
-	[636] = {"No hay fuego"}, -- R Key
-	[638] = {"Elimina enemigos no-jefes al contacto"}, -- Eraser
-	[639] = {"No puede disparar#Genera una mosca azul al limpiar una sala"}, -- Yuck Heart
-	[640] = {"Posibilidad de lanzar una flama azul"}, -- Urn of Souls
-	[642] = {"Disparos venenosos"}, -- Magic Skin
-	[650] = {"Cuando Ciruelita dispare de forma diagonal, Todos los fuegos de la Flauta Ciruela lo harán"}, -- Plum Flute
-	[653] = {"No hay fuegos#Los fantasmas rojos pueden disparar lágrimas"}, -- Vade Retro
-	[655] = {"Fuegos temporales al usarse"}, -- Spin to Win
-	[685] = {"Duplica todos los fuegos generados, añade uno extra"}, -- Jar of Wisps
-	[687] = {"Genera un fuego aleatorio"}, -- Friend Finder
-	[703] = {"Sin efecto especial"}, -- Esau Jr.
-	[704] = {"Fuego de alto PV#No puede disparar"}, -- Berserk
-	[705] = {"Fuego de una habitación generado por enemigo asesinado"}, -- Dark Arts
-	[706] = {"Fuego de alto PV#No puede disparar"}, -- Abyss
-	[709] = {"Fuego de una habitación#Se generan 3 fuegos en donde aterrices"}, -- Suplex
-	[710] = {"Genera un fuego aleatorio al momento de fabricar"}, -- Bag of Crafting
-	[711] = {"Sin efecto especial"}, -- Flip
-	[712] = {"Los fuegos de objetos lanzan disparos teledirigidos"}, -- Lemegeton
-	[713] = {"No hay fuego"}, -- Sumptorium
-	[719] = {"20% de posibilidad de que un enemigo suelte un fuego al morir"}, -- Keeper's Box
-	[720] = {"Genera un fuego aleatorio"}, -- Everything Jar
-	[722] = {"Orbita alrededor del enemigo encadenado mientras le dispara#El fuego morirá cuando el enemigo lo haga"}, -- Anima Sola
-	[723] = {"Rerolea todos los fuegos, convirtiéndolos a uno del mismo tipo"}, -- Spindown Dice
-	[728] = {"Todos los fuegos orbitarán a Gello"}, -- Gello
-	[729] = {"Fuego estacionario"}, -- Decap Attack
+EID.descriptions[languageCode].bookOfVirtuesWisps = {
+	[33] = "Disparos teledirigidos", -- The Bible
+	[34] = "Disparos con daño x2", -- The Book of Belial
+	[35] = "3.5% de poribilidad de lanzar lágrimas horrorizadoras#Se activa el efecto del Necronomicón al destruirse", -- The Necronomicon
+	[36] = "2.5% de posibilidad de disparos de {{Collectible236}} E. Coli", -- The Poop
+	[37] = "Generan bombas de dispersión al destruirse", -- Mr. Boom 
+	[38] = "Disparos rápidos e imprecisos", -- Tammy's Head
+	[39] = "5% de posibilidad de disparos petrificadores", -- Mom's Bra
+	[40] = "Disparos explosivos#Explotan al destruirse", -- Kamikaze!
+	[41] = "7.5% de posibilidad de disparos horrorizadores", -- Mom's Pad
+	[42] = "7.5% de posibilidad de disparos de {{Collectible149}} Ipecac", -- Bob's Rotten Head
+	[44] = "10% de posibilidad de disparos que teletransportan enemigos#Los fuegos parpadean cada 5 segundos", -- Teleport!
+	[45] = "20% de posibilidad de que un enemigo suelte un corazón al morir", -- Yum Heart
+	[47] = "Disparos con daño al 1/2#Todos los fuegos generados por el objeto lanzarán 3 disparos explosivos hacia donde apunte la cruz tras usarse", -- Doctor's Remote
+	[49] = "No puede disparar normalmente#Lanzará un disparo de Kamehame... ¡¿Eeeeeeh?! al usarlo", -- Shoop da Whoop!
+	[56] = "Disparos rápidos de corto rango#Los fuegos dejarán caer creep amarillo", -- Lemon Mishap
+	[58] = "Inmunidad a proyectiles", -- Book of Shadows
+	[65] = "Genera una bomba troll al destruírse", -- Anarchist Cookbook
+	[66] = "Ralentiza a los enemigos por 3 segundos al destruirse", -- The Hourglass
+	[77] = "Daño de contacto extra", -- My Little Unicorn
+	[78] = "No puede disparar#Genera un Familiar de {{Collectible562}} 7 Sellos al destruirse#Duran una habitación", -- Book of Revelations
+	[83] = "Disparos con empuje", -- The Nail
+	[84] = "Sin efecto especial", -- We Need to Go Deeper!
+	[85] = "Genera una carta al destruirse", -- Deck of Cards
+	[86] = "Disparos dentales", -- Monstro's Tooth
+	[93] = "Disparos anti-gravitatorios#Capacidad de lanzar disparos horrorizadoras", -- The Gamekid
+	[97] = "Genera 1 de 8 fuegos: {{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#Los efectos explosivos son comunes", -- The Book of Sin
+	[102] = "Genera 1 de 6 fuegos de distinto color con distintos efectos#Posibilidad de envenenar, petrificar, confundir, , lanzar disparos de Bombas Troll, O generar una araña enemiga al destruírse#Los 6 fuegos generan píldoras al destruirse", -- Mom's Bottle of Pills
+	[105] = "Genera un fuego extra por cada objeto reroleado", -- The D6
+	[107] = "Disparos pentrantes", -- The Pinking Shears
+	[111] = "Pedo venenoso al destruirse", -- The Bean
+	[123] = "Disparos aleatorios", -- Monster Manual
+	[124] = "Genera un fuego de lo que sea que imitó", -- Dead Sea Scrolls
+	[126] = "Fuego de alto PV", -- Razor Blade
+	[127] = "Fuego de PC infinito por todo el nuevo piso", -- Forget Me Now
+	[130] = "No puede disparar#Los fuegos cargarán hacia donde dispares", -- A Pony
+	[133] = "3 fuegos de alto PV", -- Guppy's Paw
+	[135] = "Sin efecto especial", -- IV Bag
+	[136] = "7.5% de posibilidad lanzar disparos marcadores#Los enemigos marcados atacarán a otros enemigos", -- Best Friend
+	[137] = "1 fuego por bomba detonada#Los disparos también pueden ser detonados a distancia", -- Remote Detonator
+	[145] = "Se generan fuegos en vez de moscas#Generan una mosca azul al destruirse", -- Guppy's Head
+	[146] = "Disparos teledirigidos", -- Prayer Card
+	[147] = "Romper rocas puede generar 1 de 5 fuegos de varios materiales#posibilidad de efectos de carbón, confusión, monedas, daño doble o disparos láser", -- Notched Axe
+	[158] = "Disparos apuntados#Genera fuegos de alto PV", -- Crystal Ball
+	[160] = "Generan rayos de luz al contacto", -- Crack the Sky
+	[164] = "Fuego de una sola habitación", -- The Candle
+	[166] = "Destruye todos los recolectables#Posibilidad de generar un fuego por cada recolectable destruido", -- D20
+	[171] = "7.5% de posibilidad de lanzar disparos realentizadores", -- Spider Butt
+	[175] = "Los fuegos abren cofres/puertas al contacto#Puede abrir las puertas a Mega Satán, Cadaver y al Ascenso", -- Dad's Key
+	[177] = "Genera un fuego basado en la recompensa ganada", -- Portable Slot
+	[181] = "10% de lanzar disparos de {{Collectible374}} Luz Sagrada", -- White Pony
+	[186] = "Fuego de alto PV", -- Blood Rights
+	[192] = "Disparos teledirigidos", -- Telepathy for Dummies
+	[263] = "15% de posibilidad de que los enemigos suelten una runa al morir#Generan una runa al destruirse", -- Clear Rune
+	[282] = "Hasta 6 fuegos inmóviles", -- How to Jump
+	[283] = "Rerolea todos tus fuegos, añadiendo uno aleatorio#No cambia el Libro de las Virtudes", -- D100
+	[284] = "Elimina todos los fuegos#Otorga un fuego aleatorio por cada 2 objetos conseguidos#No cambia el Libro de las Virtudes", -- D4
+	[285] = "10% de posibilidad de activar el efecto del D10 al golpear", -- D10
+	[286] = "15% de posibilidad de que un enemigo suelte una carta al morir#Generan una carta al destruirse", -- Blank Card
+	[287] = "Se activa el efecto del {{Collectible675}} Orbe roto al destruise", -- Book of Secrets
+	[288] = "Se generan fuegos en vez de arañás#Generan una araña azul al destruirse", -- Box of Spiders
+	[289] = "Fuegos de una sola habitación#Lágrimas de flamas rojkas", -- Red Candle
+	[290] = "Crea un fuego por corazón#Posibilidad de generar {{HalfHeart}} medio corazón al destruirse", -- The Jar
+	[291] = "Genera un fuego extra por cada enemigo transformado en caca", -- Flush!
+	[292] = "+10% de posibilidad de {{DevilRoom}}sala del Diablo o {{AngelRoom}} sala del Ángel por cada fuego de la Biblia Satánica", -- Satanic Bible
+	[293] = "Dispara un láser en 4 direcciones al destruirse", -- Head of Krampus
+	[294] = "Fuego de una sola habitación#No puede disparar#El efecto del Frijol Mantequilla se activa al destruirse", -- Butter Bean
+	[295] = "Posibilidad de soltar una moneda al destruirse", -- Magic Fingers
+	[296] = "Sin efecto especial", -- Converter
+	[297] = "Sin efecto especial", -- Pandora's Box
+	[298] = "No pueden disparar#Inmunidad al daño por contacto#No harán daño de contacto hasta que el Paso de unicornio se active", -- Unicorn Stump, Hasta acá lo voy a dejar por el momento, cuando me despierte y limpie continuaré
+	[323] = "Genera 3 fuegos#Tiempo de vida de 3 segundos", -- Isaac's Tears
+	[324] = "Disparos de la {{Collectible570}} Galleta de plastilina", -- Undefined
+	[325] = "Conjunto de disparos arqueados", -- Scissors
+	[326] = "Genera un fuego al recibir daño", -- Breath of Life
+	[338] = "Fuego de una sola habitación#Disparos de búmeran", -- The Boomerang
+	[347] = "Disparos de 20/20#Duplica tus otros fuegos", -- Diplopia
+	[348] = "Genera una píldora al destruirse", -- Placebo
+	[349] = "50% de generar una moneda al destruirse", -- Wooden Nickel
+	[351] = "Todos los fuegos del Mega Frijol lanzan una onda de piedra al usar el objeto#Pedo venenoso y petrificador al destruirse", -- Mega Bean
+	[352] = "Si un fuego del Cañón de cristal se destruye, los otros lo harán#Persisten entre habitaciones", -- Glass Cannon
+	[357] = "Duplica tus fuegos durante la habitación", -- Box of Friends
+	[382] = "Los enemigos pueden generar un fuego con disparo regular, teledirigido, explosivo, o de {{Collectible118}} Azufre al morir, dependiendo de su set de movimientos", -- Friendly Ball
+	[383] = "Los disparos de los fuegos pueden ser detonados, transformándose en 6 lágrimas del jugador#Lanza lágrimas del jugador al destruirse#Persisten entre habitaciones", -- Tear Detonator
+	[386] = "5% de posibilidad de que los disparos cambien los objetos del ambiente al golpearlos (exceptuando popó y TNT)", -- D12
+	[396] = "No pueden disparar#Cada pasadizo tendrá un fuego", -- Ventricle Razor
+	[406] = "Daño y cadencia de tiro aleatorias", -- D8
+	[419] = "20% de posibilidad de que las lágrimas teletransporten enemigos#Los fuegos parpedean cada 5 segundos", -- Teleport 2.0
+	[421] = "Genera un pedo encantador al destruirse", -- Kidney Bean
+	[422] = "30% de posibilidad de lanzar disparos petrificadores", -- Glowing Hour Glass
+	[427] = "Genera un fuego que rebota por la habitación, Explotarán al hacer contacto con una lágrima del jugador#No puede disparar o hacer daño por contacto", -- Mine Crafter
+	[434] = "Se generan fuegos en vez de moscas#De 5 moscas en adelante se generará un fuego con salud y daño incrementado 1", -- Jar of Flies
+	[437] = "Efecto del D7 al hacer daño por contacto#Sólo se activa una vez", -- D7
+	[439] = "Sin efecto especial", -- Mom's Box
+	[441] = "Lágrimas del {{Collectible275}} Mini-Azufre (Disparo cargado)#Dispararán de forma continua mientras se use Mega Ráfaga", -- Mega Blast
+	[475] = "8 fuegos de daño elevado", -- Plan C
+	[476] = "Genera un fuego si no se duplica un recolectable", -- D1
+	[477] = "Genera los fuegos de todos los objetos activos absorvidos#No genera fuegos por sí solo", -- Void
+	[478] = "Pausa a todos los enemigos y permite disparar por 3 segundos", -- Pause
+	[479] = "Posibilidad de generar un trinket al destruirse", -- Smelter
+	[480] = "La salud del fuego aumentará dependiendo de los recolectables reciclados", -- Compost
+	[481] = "5% de posibilidad de lanzar disparos que transformen a los enemigos en fuegos aleatorios", -- Dataminer
+	[482] = "Genera un fuego aleatorio", -- Clicker
+	[483] = "8 fuegos que generan una bomba troll al destruirse", -- Mama Mega!
+	[484] = "Fuego de una sola habitación#No puede disparar#Se activa el efecto de Espera... ¿qué? al destruirse", -- Wait What?
+	[485] = "Los fuegos de la Moneda Doblada pueden ser duplicados o totalmente destruidos si uno se daña", -- Crooked Penny
+	[486] = "No puede disparar#Posibilidad de negar el daño recibido", -- Dull Razor
+	[487] = "Fuego permanente#Acecha y dispara a los enemigos#No bloquea disparos ni hace daño por contacto", -- Potato Peeler
+	[488] = "Genera un fuego de lo que sea que imitó (Fuego aleatorio si no fue un objeto activo)", -- Metronome
+	[489] = "Genera un fuego normal en adición a fuego del dado imitado", -- D Infinity
+	[490] = "Genera un fuego aleatorio#Resurge en la siguiente habitación si fue destruido", -- Eden's Soul
+	[504] = "Fuego de una sola habitación#Disparos rápidos y apuntados", -- Brown Nugget
+	[507] = "Posibilidad de generar fuegos al matar", -- Sharp Straw
+	[510] = "Disparos del {{Collectible229}} Pulmón de Monstro, {{Collectible268}} Bebé Podrido, {{Collectible87}} Cuernos de Loki o {{Collectible118}} Azufre", -- Delirious
+	[512] = "Disparos magnéticos", -- Black Hole
+	[515] = "Genera un fuego aleatorio#", -- Mystery Gift
+	[516] = "Disparos en 8 direcciones imitando al Aspersor", -- Sprinkler
+	[521] = "Disparo triple#All Coupon tears are destroyed if you make a purchase", -- Coupon
+	[522] = "Captured projectiles turn into wisps", -- Telekinesis
+	[523] = "Los fuegos se generan al soltar el contenido de la caja#Generan un recolectable al destruirse", -- Moving Box
+	[527] = "No pueden disparar#Pueden abrir cofres y puertas en las habitaciones vacías", -- Mr. ME!
+	[536] = "Convierte todos los fuegos en {{HalfHeart}} Medios corazones#Genera un fuego bastante fuerte al sacrificar", -- Sacrificial Altar
+	[545] = "Los fuegos generan un Bony amistoso al destruirse", -- Book of the Dead
+	[550] = "10% de posibilidad de lanzar un disparo que genere un pisotón sobre el enemigo", -- Broken Shovel
+	[552] = "10% de posibilidad de lanzar un disparo que genere un pisotón sobre el enemigo#Genera un fuego de alto PV que no dispara", -- Mom's Shovel
+	[555] = "15% de lanzar un disparo con el efecto del {{Collectible202}} Toque de midas", -- Golden Razor
+	[556] = "Disparos láser de corto alcance", -- Sulfur
+	[557] = "{{ArrowUp}} +0.2 de suerte por cada fuego de la Galleta de la fortuna", -- Fortune Cookie
+	[577] = "Sin efecto especial", -- Damocles
+	[578] = "Los fuegos dejan caer creep amarillo", -- Free Lemonade
+	[580] = "Posibilidad de generar puertas rojas al entrar a una nueva habitación", -- Red Key
+	[582] = "Hasta 1 fuego del Hongo Mareante", -- Wavy Cap
+	[584] = "Sin beneficio por copias múltiples", -- Book of Virtues
+	[585] = "Genera 8 fuegos", -- Alabaster Box
+	[604] = "Fuego de una habitación#Se generan 3 fuegos cuando algo que lanzaste aterriza#10% de posibilidad de lanzar disparos que confunden", -- Mom's Bracelet
+	[605] = "Sin efecto especial", -- The Scooper
+	[609] = "Fuego invisible#50% de posibilidad de que todos los fuegos del D6 Eterno se destruyan al usarse", -- Eternal D6
+	[611] = "Daño y salud aumentados en base a las cargas tras utilizarlo", -- Larynx
+	[622] = "3 fuegos#Remueve todos los otros fuegos ", -- Genesis
+	[623] = "Sin efecto especial", -- Sharp Key
+	[631] = "Parte tus fuegos a la mitad (Mitad de salud y daño)#Los fuegos se destruyen si se parten 3 veces", -- Meat Cleaver
+	[635] = "Deja un fuego estacionario#Hasta 6 fuegos estacionarios", -- Stitches
+	[636] = "No hay fuego", -- R Key
+	[638] = "Elimina enemigos no-jefes al contacto", -- Eraser
+	[639] = "No puede disparar#Genera una mosca azul al limpiar una sala", -- Yuck Heart
+	[640] = "Posibilidad de lanzar una flama azul", -- Urn of Souls
+	[642] = "Disparos venenosos", -- Magic Skin
+	[650] = "Cuando Ciruelita dispare de forma diagonal, Todos los fuegos de la Flauta Ciruela lo harán", -- Plum Flute
+	[653] = "No hay fuegos#Los fantasmas rojos pueden disparar lágrimas", -- Vade Retro
+	[655] = "Fuegos temporales al usarse", -- Spin to Win
+	[685] = "Duplica todos los fuegos generados, añade uno extra", -- Jar of Wisps
+	[687] = "Genera un fuego aleatorio", -- Friend Finder
+	[703] = "Sin efecto especial", -- Esau Jr.
+	[704] = "Fuego de alto PV#No puede disparar", -- Berserk
+	[705] = "Fuego de una habitación generado por enemigo asesinado", -- Dark Arts
+	[706] = "Fuego de alto PV#No puede disparar", -- Abyss
+	[709] = "Fuego de una habitación#Se generan 3 fuegos en donde aterrices", -- Suplex
+	[710] = "Genera un fuego aleatorio al momento de fabricar", -- Bag of Crafting
+	[711] = "Sin efecto especial", -- Flip
+	[712] = "Los fuegos de objetos lanzan disparos teledirigidos", -- Lemegeton
+	[713] = "No hay fuego", -- Sumptorium
+	[719] = "20% de posibilidad de que un enemigo suelte un fuego al morir", -- Keeper's Box
+	[720] = "Genera un fuego aleatorio", -- Everything Jar
+	[722] = "Orbita alrededor del enemigo encadenado mientras le dispara#El fuego morirá cuando el enemigo lo haga", -- Anima Sola
+	[723] = "Rerolea todos los fuegos, convirtiéndolos a uno del mismo tipo", -- Spindown Dice
+	[728] = "Todos los fuegos orbitarán a Gello", -- Gello
+	[729] = "Fuego estacionario", -- Decap Attack
 	
 }
 
 -- Special Locust effects when Item was eaten by Abyss
-EID.descriptions["spa"].abyssSynergies = {
+EID.descriptions[languageCode].abyssSynergies = {
 	[2] = "3 langostas regulares", -- The Inner Eye
 	[3] = "Langostas purpuras teledirigidas", -- Spoon Bender
 	[4] = "Langosta grande que inflinge el triple de tu daño", -- Cricket's Head
@@ -642,7 +640,7 @@ EID.descriptions["spa"].abyssSynergies = {
 	[559] = "Langosta azul claro con arcos de electricidad, inflingen 0.1 de daño por toque", -- 120 Volt
 }
 
-EID.descriptions["spa"].spindownError = "El objeto desaparece"
+EID.descriptions[languageCode].spindownError = "El objeto desaparece"
 
 ---------- Trinkets ----------
 
@@ -723,9 +721,9 @@ local repTrinkets={
 	[188] = {"188", "Cubo de hielo", "Posibilidad de petrificar a un enemigo al entrar en la habitación#Matar al enemigo petrificado lo congela"}, --  Cubo de hielo
 	[189] = {"189", "Sello de Baphomet", "Activa un escudo de un segundo al matar a un enemigo"}, --  Sello de Baphomet
 }
-EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["spa"].trinkets)
+EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
 
-EID.descriptions["spa"].goldenTrinket = "DORADO: ¡Efecto duplicado!"
+EID.descriptions[languageCode].goldenTrinket = "DORADO: ¡Efecto duplicado!"
 
 ---------- Cards ----------
 
@@ -780,7 +778,7 @@ local repCards={
 	[96] = {"96", "Alma de Bethany", "Genera 6 fuegos fatuos de Book of Virtues {{Collectible584}} (Libro de las virtudes) con propiedades aleatorias"},
 	[97] = {"97", "Alma de Jacob y Esaú", "Aparece Esaú como un segundo personaje en la habitación actual"},
 }
-EID:updateDescriptionsViaTable(repCards, EID.descriptions["spa"].cards)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
 ---------- Pills ----------
 
@@ -796,9 +794,9 @@ local repPills={
 	[50] = {"49", "Píldora experimental", "↑ Aumenta una estadística aleatoria#↓ Disminuye otra estadística aleatoria#Si tienes PHD no bajará ninguna"},
 	[9999] = {"", "Píldora dorada", "Efecto de píldora de caballo aleatorio#Se destruye tras unos cuantos usos"}, -- golden Pill
 }
-EID:updateDescriptionsViaTable(repPills, EID.descriptions["spa"].pills)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
-EID.descriptions["spa"].horsepills={
+EID.descriptions[languageCode].horsepills={
 	{"0", "", "Envenena toda la habitación"},
 	{"1", "", "Te inflige 2 corazones de daño"},
 	{"2", "", "+4 corazones de alma"},
@@ -853,30 +851,30 @@ EID.descriptions["spa"].horsepills={
 }
 
 
-EID.descriptions["spa"].CraftingBagContent = "Bolsa:"
-EID.descriptions["spa"].CraftingRoomContent = "Sala:"
-EID.descriptions["spa"].CraftingFloorContent = "Piso:"
+EID.descriptions[languageCode].CraftingBagContent = "Bolsa:"
+EID.descriptions[languageCode].CraftingRoomContent = "Sala:"
+EID.descriptions[languageCode].CraftingFloorContent = "Piso:"
 
-EID.descriptions["spa"].CraftingBagQuality = "Calidad:"
-EID.descriptions["spa"].CraftingBestQuality = "Mejor Calidad:"
+EID.descriptions[languageCode].CraftingBagQuality = "Calidad:"
+EID.descriptions[languageCode].CraftingBestQuality = "Mejor Calidad:"
 
-EID.descriptions["spa"].CraftingHideKey = "Oculto:"
-EID.descriptions["spa"].CraftingPreviewKey = "Prevista:"
-EID.descriptions["spa"].CraftingPreviewBackup = "!!! Si este objeto está bloqueado, se convertirá en"
+EID.descriptions[languageCode].CraftingHideKey = "Oculto:"
+EID.descriptions[languageCode].CraftingPreviewKey = "Prevista:"
+EID.descriptions[languageCode].CraftingPreviewBackup = "!!! Si este objeto está bloqueado, se convertirá en"
 
-EID.descriptions["spa"].CraftingResults = "(Desplazar: mantén {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Bloquear: {{ButtonX}}, Refrescar: {{ButtonB}})"
+EID.descriptions[languageCode].CraftingResults = "(Desplazar: mantén {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Bloquear: {{ButtonX}}, Refrescar: {{ButtonB}})"
 
-EID.descriptions["spa"].BlankCardCharge = "Cargas de Carta en Blanco:" 
-EID.descriptions["spa"].BlankCardQCard = "Te teletransporta a la habitación de I Am Error#Tanto Carta en blanco como la ¿? carta se destruirán" 
-EID.descriptions["spa"].ClearRuneCharge = "Cargas de Runa limpia:" 
-EID.descriptions["spa"].PlaceboCharge = "Cargas de Placebo:" 
+EID.descriptions[languageCode].BlankCardCharge = "Cargas de Carta en Blanco:" 
+EID.descriptions[languageCode].BlankCardQCard = "Te teletransporta a la habitación de I Am Error#Tanto Carta en blanco como la ¿? carta se destruirán" 
+EID.descriptions[languageCode].ClearRuneCharge = "Cargas de Runa limpia:" 
+EID.descriptions[languageCode].PlaceboCharge = "Cargas de Placebo:" 
 
-EID.descriptions["spa"].CraftingResults = "(Desplazar: Mantén {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Bloquear: {{ButtonX}}, Reiniciar: {{ButtonB}})"
-EID.descriptions["spa"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}El \"Cálculo de Recetas\" actualmente no funciona con mods que añaden objetos!#{{ColorRed}}Por favor desinstala los mods de objetos o desactiva las descripciones de Bag of Crafting en la configuración"
-EID.descriptions["spa"].AchievementWarningTitle = "{{ColorYellow}}!!! ADVERTENCIA !!!"
-EID.descriptions["spa"].AchievementWarningText = "¡Los logros están deshabilitados!#Para poder progresar en el juego, primero debes vencer a Mamá (Depths II) sin mods habilitados.#(Si ya derrotaste a Mamá, este mensaje es un bug, ignóralo)#(Este aviso puede ser desactivado en la configuración)"
-EID.descriptions["spa"].OutdatedModWarningText = "¡Un mod sin actualizar está reduciendo la cantidad de objetos! Esto puede causar crasheos, especialmente al entrar al area de la Pieza del cuchillo 2#Por favor, desinstala los mods con el archivo resources/items.xml desactualizado"
+EID.descriptions[languageCode].CraftingResults = "(Desplazar: Mantén {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Bloquear: {{ButtonX}}, Reiniciar: {{ButtonB}})"
+EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}El \"Cálculo de Recetas\" actualmente no funciona con mods que añaden objetos!#{{ColorRed}}Por favor desinstala los mods de objetos o desactiva las descripciones de Bag of Crafting en la configuración"
+EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! ADVERTENCIA !!!"
+EID.descriptions[languageCode].AchievementWarningText = "¡Los logros están deshabilitados!#Para poder progresar en el juego, primero debes vencer a Mamá (Depths II) sin mods habilitados.#(Si ya derrotaste a Mamá, este mensaje es un bug, ignóralo)#(Este aviso puede ser desactivado en la configuración)"
+EID.descriptions[languageCode].OutdatedModWarningText = "¡Un mod sin actualizar está reduciendo la cantidad de objetos! Esto puede causar crasheos, especialmente al entrar al area de la Pieza del cuchillo 2#Por favor, desinstala los mods con el archivo resources/items.xml desactualizado"
 
-EID.descriptions["spa"].OldGameVersionWarningText = "Tu versión de Repentance no es la más reciente#La versión más reciente es la única con soporte oficial#(Este aviso puede ser desactivado en la configuración)"
+EID.descriptions[languageCode].OldGameVersionWarningText = "Tu versión de Repentance no es la más reciente#La versión más reciente es la única con soporte oficial#(Este aviso puede ser desactivado en la configuración)"
 
-EID.descriptions["spa"].ModdedRecipesWarningText = "Los objetos modeados pueden provocar cálculos incorrectos#Usa el modo No Recipes o desactiva el cálculo de la Bolsa de trabajo si es que los cálculos son incorrectos#(Este aviso puede ser desactivado en la configuración)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Los objetos modeados pueden provocar cálculos incorrectos#Usa el modo No Recipes o desactiva el cálculo de la Bolsa de trabajo si es que los cálculos son incorrectos#(Este aviso puede ser desactivado en la configuración)"

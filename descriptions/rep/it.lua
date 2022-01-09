@@ -9,9 +9,7 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
-
-local newDescriptions = {
-}
+local languageCode = "it"
 
 local repCollectibles={
 	[5] = {"5", "Mio Riflesso", "Lacrime sparate ottengono un effetto boomerang#↑ +1.5 Gittata#↑ +60% Gittata aggiuntiva#↑ +0.6 Velocita' di tiro#↑ +1 Altezza Lacrime"}, -- My Reflection
@@ -354,9 +352,9 @@ local repCollectibles={
 	[728] = {"728", "Gello", "Evoca un famiglio demoniaco connesso ad Isaac#Imita le lacrime di Isaac, le loro statistiche e effetti"}, --  Gello
 	[729] = {"729", "Attacco di Decapaggio", "Tira la testa di Isaac, e quando atterra puo' sparare lacrime#Riattivare l'oggetto o camminare sulla testa la raccoglie"}, --  Decap Attack
 }
-EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["it"].collectibles)
+EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
-EID.descriptions["it"].birthright ={
+EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "Ogni piedistallo ha due oggetti tra cui scegliere"},
 	{"Magdalene", "", "<Nessun effetto>"},
 	{"Cain", "", "<Nessun effetto>"},
@@ -402,18 +400,18 @@ EID.descriptions["it"].birthright ={
 
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
-EID.descriptions["it"].bingeEaterBuffs = {
-	[22] = {"22", "", "↑+0.5 Lacrime#↑+1.5 Gittata"}, -- Lunch
-	[23] = {"23", "", "↑+0.5 Lacrime#↑+0.2 Velocita' di tiro"}, -- Dinner
-	[24] = {"24", "", "↑+1.0 Danni#↑+0.2 Velocita'"}, -- Dessert
-	[25] = {"25", "", "↑+0.2 Velocita'#↑+1.5 Gittata"}, -- Breakfast
-	[26] = {"26", "", "↑+1.0 Danni#↑+1.5 Gittata"}, -- Rotten Meat
-	[456] = {"456", "", "↑+1.0 Danni#↑+1.0 Fortuna"}, -- Midnight Snack
-	[346] = {"346", "", "↑+0.2 Velocita' di tiro#↑+1.0 Fortuna"}, -- A Snack
-	[707] = {"707", "", "↑+0.5 Lacrime#↑+1.0 Fortuna"}, -- Supper
+EID.descriptions[languageCode].bingeEaterBuffs = {
+	[22] = "↑+0.5 Lacrime#↑+1.5 Gittata", -- Lunch
+	[23] = "↑+0.5 Lacrime#↑+0.2 Velocita' di tiro", -- Dinner
+	[24] = "↑+1.0 Danni#↑+0.2 Velocita'", -- Dessert
+	[25] = "↑+0.2 Velocita'#↑+1.5 Gittata", -- Breakfast
+	[26] = "↑+1.0 Danni#↑+1.5 Gittata", -- Rotten Meat
+	[456] = "↑+1.0 Danni#↑+1.0 Fortuna", -- Midnight Snack
+	[346] = "↑+0.2 Velocita' di tiro#↑+1.0 Fortuna", -- A Snack
+	[707] = "↑+0.5 Lacrime#↑+1.0 Fortuna", -- Supper
 }
 
-EID.descriptions["it"].spindownError = "Item disappears"
+EID.descriptions[languageCode].spindownError = "Item disappears"
 
 ---------- Trinkets ----------
 local repTrinkets={
@@ -501,40 +499,40 @@ local repTrinkets={
 	[188] = {"188", "Cubetto di Ghiaccio", "Possibilita' di pietrificare un nemico quando entri in una stanza#Se il nemico pietrificato e' ucciso, viene congelato"}, --  Ice Cube
 	[189] = {"189", "Sigillo di Baphomet", "Attiva uno scudo di 1 secondo quando uccidi un nemico"}, --  Sigil of Baphomet
 }
-EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["it"].trinkets)
+EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
 
 -- Card Buffs caused by Tarot Cloth
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
 
-EID.descriptions["it"].tarotClothBuffs = {
-	[2] = {"2", "", "In aggiunta, concede l'effetto del {{Collectible34}} Libro di Belial"}, -- I - The Magician
-	[3] = {"3", "", "Poco dopo il piede di Mamma viene evocato, ne viene evocato un secondo"}, -- II - The High Priestess
-	[4] = {"4", "", "Quadruplica le statistiche bonus"}, -- III - The Empress
-	[5] = {"5", "", "Se il boss non e' ancora stato battuto, in aggiunta al teletrasporto concede un Cuore Spirito"}, -- IV - The Emperor
-	[6] = {"6", "", "Evoca 3 Cuori Spirito"}, -- V - The Hierophant
-	[7] = {"7", "", "Evoca 3 Cuori Rossi"}, -- VI - The Lovers
-	[8] = {"8", "", "Durata raddoppiata"}, -- VII - The Chariot
-	[9] = {"9", "", "Doppi consumabili"}, -- VIII - Justice
-	[10] = {"10", "", "Impedisce a Greed di essere trovato nel negozio#Se Greed e' stato combattuto nel negozio, il negozio viene resettato"}, -- IX - The Hermit
-	[11] = {"11", "", "Evoca due slot machine"}, -- X - Wheel of Fortune
-	[12] = {"12", "", "Raddoppia le statistiche bonus, apparte il moltiplicatore danni"}, -- XI - Strength
-	[14] = {"14", "", "Infligge 80 danni al posto che 40"}, -- XIII - Death
-	[15] = {"15", "", "Evoca 2 macchine per la donazione di sangue"}, -- XIV - Temperance
-	[16] = {"16", "", "Aumento di danni raddoppiato"}, -- XV - The Devil
-	[17] = {"17", "", "Evoca 12 bombe troll invece che 6"}, -- XVI - The Tower
-	[18] = {"18", "", "Se la stanza del tesoro e' ancora chiusa, avra' due piedistalli tra cui scegliere"}, -- XVII - The Stars
-	[21] = {"21", "", "Evoca 2 mendicanti"}, -- XX - Judgement
-	[56] = {"56", "", "Isaac lascia a terra tutti gli oggetti e consumabili, incluso il "}, -- 0 - The Fool?
-	[59] = {"59", "", "Concede 3 Cuori Rossi temporanei"}, -- III - The Empress?
-	[61] = {"61", "", "Evoca 6 Cuori d'Osso"}, -- V - The Hierophant?
-	[62] = {"62", "", "Adds 4 broken hearts and spawns 4 items"}, -- VI - The Lovers?
-	[64] = {"64", "", "Evoca 4-14 casse dorate"}, -- VIII - Justice?
-	[70] = {"70", "", "Mangia 20 pillole"}, -- XIV - Temperance?
-	[72] = {"72", "", "Evoca 14 ammassi di rocce"}, -- XVI - The Tower?
-	[73] = {"73", "", "Rimuove 2 oggetti da isaac e ne crea 4"}, -- XVII - The Stars?
-	[76] = {"76", "", "Evoca 2 Macchine Rifornimento"}, -- XX - Judgement?
+EID.descriptions[languageCode].tarotClothBuffs = {
+	[2] = "In aggiunta, concede l'effetto del {{Collectible34}} Libro di Belial", -- I - The Magician
+	[3] = "Poco dopo il piede di Mamma viene evocato, ne viene evocato un secondo", -- II - The High Priestess
+	[4] = "Quadruplica le statistiche bonus", -- III - The Empress
+	[5] = "Se il boss non e' ancora stato battuto, in aggiunta al teletrasporto concede un Cuore Spirito", -- IV - The Emperor
+	[6] = "Evoca 3 Cuori Spirito", -- V - The Hierophant
+	[7] = "Evoca 3 Cuori Rossi", -- VI - The Lovers
+	[8] = "Durata raddoppiata", -- VII - The Chariot
+	[9] = "Doppi consumabili", -- VIII - Justice
+	[10] = "Impedisce a Greed di essere trovato nel negozio#Se Greed e' stato combattuto nel negozio, il negozio viene resettato", -- IX - The Hermit
+	[11] = "Evoca due slot machine", -- X - Wheel of Fortune
+	[12] = "Raddoppia le statistiche bonus, apparte il moltiplicatore danni", -- XI - Strength
+	[14] = "Infligge 80 danni al posto che 40", -- XIII - Death
+	[15] = "Evoca 2 macchine per la donazione di sangue", -- XIV - Temperance
+	[16] = "Aumento di danni raddoppiato", -- XV - The Devil
+	[17] = "Evoca 12 bombe troll invece che 6", -- XVI - The Tower
+	[18] = "Se la stanza del tesoro e' ancora chiusa, avra' due piedistalli tra cui scegliere", -- XVII - The Stars
+	[21] = "Evoca 2 mendicanti", -- XX - Judgement
+	[56] = "Isaac lascia a terra tutti gli oggetti e consumabili, incluso il ", -- 0 - The Fool?
+	[59] = "Concede 3 Cuori Rossi temporanei", -- III - The Empress?
+	[61] = "Evoca 6 Cuori d'Osso", -- V - The Hierophant?
+	[62] = "Adds 4 broken hearts and spawns 4 items", -- VI - The Lovers?
+	[64] = "Evoca 4-14 casse dorate", -- VIII - Justice?
+	[70] = "Mangia 20 pillole", -- XIV - Temperance?
+	[72] = "Evoca 14 ammassi di rocce", -- XVI - The Tower?
+	[73] = "Rimuove 2 oggetti da isaac e ne crea 4", -- XVII - The Stars?
+	[76] = "Evoca 2 Macchine Rifornimento", -- XX - Judgement?
 }
-EID.descriptions["it"].goldenTrinket = "ORO: Effetto raddoppiato!"
+EID.descriptions[languageCode].goldenTrinket = "ORO: Effetto raddoppiato!"
 
 ---------- Cards ----------
 
@@ -589,7 +587,7 @@ local repCards={
 	[96] = {"96", "Anima di Bethany", "Evoca 6 'Wisp' {{Collectible584}} con proprieta' casuali"}, -- Soul of Bethany
 	[97] = {"97", "Anima di Jacon ed Esau", "Evoca Esau come personaggio aggiuntivo extra (per la stanza corrente)"}, -- Soul of Jacob and Esau
 }
-EID:updateDescriptionsViaTable(repCards, EID.descriptions["it"].cards)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
 ---------- Pills ----------
 
@@ -605,9 +603,9 @@ local repPills={
 	[50] = {"49", "Pillola Sperimentale", "↑ Aumenta 1 statistica casuale#↓ Diminuisce 1 statistica casuale#Aumenta solo la statistica se si possiede il PHD"}, -- Experimental Pill
 	[9999] = {"", "Pillola Dorata", "Effetto di una pillola casuale#Si autodistrugge dopo qualche uso"}, -- golden Pill
 }
-EID:updateDescriptionsViaTable(repPills, EID.descriptions["it"].pills)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
-EID.descriptions["it"].horsepills={
+EID.descriptions[languageCode].horsepills={
 	{"0", "Gas Nocivo", "Avvelena tutta la stanza"}, -- Bad Gas
 	{"1", "Brutta Trip", "Prendi 2 Cuori di danno"}, -- Bad Trip
 	{"2", "Palle d'Acciaio", "+4 Cuori Spirito"}, -- Balls of Steel
@@ -661,8 +659,8 @@ EID.descriptions["it"].horsepills={
 	[9999] = {"", "Pillola Dorata", "Effetto di una pillola per cavalli casuale#Si autodistrugge dopo qualche uso"}, -- golden Pill
 }
 
-EID.descriptions["it"].CraftingBagContent = "Borsa:"
-EID.descriptions["it"].CraftingRoomContent = "Stanza:"
-EID.descriptions["it"].CraftingFloorContent = "Piano:"
-EID.descriptions["it"].CraftingResults = "Risultato:#(Scorri: premi {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
-EID.descriptions["it"].CraftingBagModError = "!!! {{ColorRed}}ERRORE:#{{ColorRed}}Questa feature non supporta certe mod!"
+EID.descriptions[languageCode].CraftingBagContent = "Borsa:"
+EID.descriptions[languageCode].CraftingRoomContent = "Stanza:"
+EID.descriptions[languageCode].CraftingFloorContent = "Piano:"
+EID.descriptions[languageCode].CraftingResults = "Risultato:#(Scorri: premi {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
+EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERRORE:#{{ColorRed}}Questa feature non supporta certe mod!"

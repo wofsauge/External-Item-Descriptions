@@ -7,12 +7,16 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "tr_tr"
 
 -- init tr_tr table
-EID.descriptions["tr_tr"] = {}
-EID.descriptions["tr_tr"].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode] = {}
+EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode].languageName = "Turkish"
 
-EID.descriptions["tr_tr"].collectibles={
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+
+EID.descriptions[languageCode].collectibles={
 	{"1", "Üzgün Soğan", "↑ +0.7 Gözyaşı"},
 	{"2", "Kalp Gözü", "Üçlü atış#↓ Gözyaşı azalır"},
 	{"3", "Kaşık bükücü", "Takip eden gözyaşları"},
@@ -568,7 +572,7 @@ EID.descriptions["tr_tr"].collectibles={
 }
 
 ---------- Trinkets ----------
-EID.descriptions["tr_tr"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "Swallowed Penny", "Drop 1 coin when you get hit"},
 	{"2", "Taşlaşmıs Bok", "Boklardan 50% fazla şey düşer"},
 	{"3", "AAA Pil", "Aktif itemler için -1 şarj gerekir"},
@@ -700,7 +704,7 @@ EID.descriptions["tr_tr"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["tr_tr"].cards={
+EID.descriptions[languageCode].cards={
 	{"1", "0 - Deli", "Katın başladığı odaya ışınlar"},
 	{"2", "I - Sihirbaz", "Oda için takip eden gözyaşları"},
 	{"3", "II - Baş Rahibe", "Annenin ayağı düşmanın üstüne basar!"},
@@ -760,9 +764,9 @@ EID.descriptions["tr_tr"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["tr_tr"].unidentifiedPill = "Tanımlanmamış Hap"
+EID.descriptions[languageCode].unidentifiedPill = "Tanımlanmamış Hap"
 
-EID.descriptions["tr_tr"].pills={
+EID.descriptions[languageCode].pills={
 	{"0", "Kötü Gaz", "Gaz bulutu çıkartır"},
 	{"1", "Kötü Kafa", "Sana 1 kalp hasar verir"},
 	{"2", "Çelik Taşaklar", "+2 Ruh Kalbi"},
@@ -813,9 +817,9 @@ EID.descriptions["tr_tr"].pills={
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["tr_tr"].sacrificeHeader = "[Sonraki feda odası ödülü]"
+EID.descriptions[languageCode].sacrificeHeader = "[Sonraki feda odası ödülü]"
 
-EID.descriptions["tr_tr"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50% ihtimal ile 1 Altın#100% ihtimal ile 1 Bomba, B1de iken 1dk altında boss öldürüldüğünde"},
 	{"2", "", "50% ihtimal ile 1 Altın#100% ihtimal ile 1 Bomba, B1de iken 1dk altında boss öldürüldüğünde"},
 	{"3", "", "67% ihtimal ile arttırışmış Melek{{AngelRoom}} odası şansı"},
@@ -831,9 +835,9 @@ EID.descriptions["tr_tr"].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions["tr_tr"].diceHeader = "[Zar efekti]"
+EID.descriptions[languageCode].diceHeader = "[Zar efekti]"
 
-EID.descriptions["tr_tr"].dice={
+EID.descriptions[languageCode].dice={
 	{"1", "", "Tüm itemlerini değiştirir#(sadece toplanabilir itemleri etkiler)"},
 	{"2", "", "Odadaki tüm pickupları değiştir"},
 	{"3", "", "Kattaki tüm pickupları değiştir"},
@@ -843,7 +847,7 @@ EID.descriptions["tr_tr"].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions["tr_tr"].transformations = {
+EID.descriptions[languageCode].transformations = {
 	"",					-- 0 = none
 	"Şerbet",			-- 1
 	"Eğlenceli",			-- 2

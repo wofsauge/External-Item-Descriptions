@@ -9,6 +9,7 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "en_us"
 
 local repCollectibles={
 	[2] = {"2", "The Inner Eye", "Triple shot#↓ -49% Fire Rate down"},
@@ -383,11 +384,11 @@ local repCollectibles={
 	[732] = {"732", "Mom's Ring", "↑ +1 Damage up#Spawns a random rune or soul stone on pickup"}, -- Mom's Ring
 
 }
-EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us"].collectibles)
+EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
 ---------- Modifiers ----------
 
-EID.descriptions["en_us"].birthright ={
+EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "All items cycle between two options"},
 	{"Magdalene", "", "↑ +1 Health up#Maximum heart limit is raised to 18"},
 	{"Cain", "", "↑ +1 Luck up#All floors will contain an upgraded Arcade Room except for Dark Room and Chest#Greatly increases {{Collectible46}}Lucky Foot's chances of winning effect"},
@@ -434,227 +435,227 @@ EID.descriptions["en_us"].birthright ={
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
 
-EID.descriptions["en_us"].bingeEaterBuffs = {
-	[22] = {"22", "", "↑ +0.5 Tears up#↑ +1.5 Range up#↓ -0.03 Speed down"}, -- Lunch
-	[23] = {"23", "", "↑ +0.5 Tears up#↑ +0.2 Shot Speed up#↓ -0.03 Speed down"}, -- Dinner
-	[24] = {"24", "", "↑ +1 Damage up#↑ +0.2 Shot Speed up#↓ -0.03 Speed down"}, -- Dessert
-	[25] = {"25", "", "↑ +0.2 Shot Speed up#↑ +1.5 Range up#↓ -0.03 Speed down"}, -- Breakfast
-	[26] = {"26", "", "↑ +1 Damage up#↑ +1.5 Range up#↓ -0.03 Speed down"}, -- Rotten Meat
-	[456] = {"456", "", "↑ +1 Damage up#↑ +1 Luck up#↓ -0.03 Speed down"}, -- Midnight Snack
-	[346] = {"346", "", "↑ +0.2 Shot Speed up#↑ +1 Luck up#↓ -0.03 Speed down"}, -- A Snack
-	[707] = {"707", "", "↑ +0.5 Tears up#↑+1 Luck up#↓ -0.03 Speed down"}, -- Supper
+EID.descriptions[languageCode].bingeEaterBuffs = {
+	[22] = "↑ +0.5 Tears up#↑ +1.5 Range up#↓ -0.03 Speed down", -- Lunch
+	[23] = "↑ +0.5 Tears up#↑ +0.2 Shot Speed up#↓ -0.03 Speed down", -- Dinner
+	[24] = "↑ +1 Damage up#↑ +0.2 Shot Speed up#↓ -0.03 Speed down", -- Dessert
+	[25] = "↑ +0.2 Shot Speed up#↑ +1.5 Range up#↓ -0.03 Speed down", -- Breakfast
+	[26] = "↑ +1 Damage up#↑ +1.5 Range up#↓ -0.03 Speed down", -- Rotten Meat
+	[456] = "↑ +1 Damage up#↑ +1 Luck up#↓ -0.03 Speed down", -- Midnight Snack
+	[346] = "↑ +0.2 Shot Speed up#↑ +1 Luck up#↓ -0.03 Speed down", -- A Snack
+	[707] = "↑ +0.5 Tears up#↑+1 Luck up#↓ -0.03 Speed down", -- Supper
 }
 
 -- Buffs caused by Book of Belial with Judas' Birthright
 -- Note: "#" will be replaced with "#{{Collectible34}} " automatically, in order to add Book of Belial icon infront of each buff-bulletpoint
 
-EID.descriptions["en_us"].bookOfBelialBuffs = {
-	[40] = {"40", "", "Also invokes the effect of {{Collectible35}}Necronomicon"}, -- Kamikaze!
-	[126] = {"126", "", "Also invokes the effect of {{Collectible35}}Necronomicon"}, -- Razor Blade
-	[127] = {"127", "", "Grants a damage up for the entirety of the next floor"}, -- Forget me Now
-	[133] = {"133", "", "Grants a permanent damage up"}, -- Guppy's Paw
-	[135] = {"135", "", "Grants a damage up with each use"}, -- IV Bag
-	[147] = {"147", "", "The axe has increased durability, knockback, can be used faster, sets enemies on fire and drops more pickups when destroying poops and obstacles"}, -- Notched Axe
-	[186] = {"186", "", "Also invokes the effect of {{Collectible126}}Razor Blade"}, -- Blood Rights
-	[282] = {"282", "", "Leaves a trail of fire that deals contact damage and sets enemies on fire"}, -- How to Jump
-	[290] = {"290", "", "Expends one heart a time, grants a damage up and leaves red creep on the ground"}, -- The Jar
-	[295] = {"295", "", "Has a chance to invoke the effect of {{Collectible555}}Golden Razor"}, -- Magic Fingers
-	[297] = {"297", "", "Spawns a demonic familiar along with the floor-based drop"}, -- Pandora's Box
-	[323] = {"323", "", "Launched tears have boosted damage"}, -- Isaac's Tears
-	[352] = {"352", "", "Activates Book of Belial when broken - damage up persists until the cannon is fixed"}, -- Glass Cannon
-	[475] = {"475", "", "Respawns you as Dark Judas if you have an extra life"}, -- Plan C
-	[482] = {"482", "", "Replaces the most recently acquired item with {{Collectible51}}Pentagram"}, -- Clicker
-	[487] = {"487", "", "Increased damage up"}, -- Potato Peeler
-	[536] = {"536", "", "Grants +10.8 temporary damage up for every sacrificed familiar that slowly fades away similarly to {{Collectible621}}Red Stew"}, -- Sacrificial Altar
-	[555] = {"555", "", "Damages everything in the room and applies the {{Collectible202}}Midas' Touch effect on them"}, -- Golden Razor
-	[563] = {"563", "", "Ghosts will home in on enemies"}, -- Vade Retro
-	[577] = {"577", "", "Grants a permanent damage up"}, -- Damocles
-	[582] = {"582", "", "Grants an additional damage up for the rest of the floor based on the current amount of uses"}, -- Wavy Cap
-	[585] = {"585", "", "Changes the payout to 2 Black Hearts and 1 Devil Deal item#Becomes 3 hearts and 2 items if a Devil Deal has been taken"}, -- Alabaster Box
-	[622] = {"622", "", "Grants a free {{Collectible51}}Pentagram"}, -- Genesis
-	[623] = {"623", "", "Also invokes the effect of {{Collectible126}}Razor Blade"}, -- Sharp Key
-	[635] = {"635", "", "Creates a {{Collectible705}}Dark Arts line between you and Stitches"}, -- Stitches
-	[640] = {"640", "", "Launches a {{Collectible118}}Brimstone beam instead"}, -- Urn of Souls
-	[642] = {"642", "", "Grants a permanent damage up"}, -- Magic Skin
-	[685] = {"685", "", "Grants {{Collectible292}}Satanic Bible wisps that boost Devil Deal chance"}, -- Jar of Wisps
-	[705] = {"705", "", "Allows gain of temporary damage ups"}, -- Dark Arts
-	[710] = {"710", "", "Picking up Red Hearts has a chance to replace them with a Black Heart"}, -- Bag of Crafting
-	[729] = {"729", "", "Grants a huge damage and tears up when the head is detached"}, -- Decap Attack
+EID.descriptions[languageCode].bookOfBelialBuffs = {
+	[40] = "Also invokes the effect of {{Collectible35}}Necronomicon", -- Kamikaze!
+	[126] = "Also invokes the effect of {{Collectible35}}Necronomicon", -- Razor Blade
+	[127] = "Grants a damage up for the entirety of the next floor", -- Forget me Now
+	[133] = "Grants a permanent damage up", -- Guppy's Paw
+	[135] = "Grants a damage up with each use", -- IV Bag
+	[147] = "The axe has increased durability, knockback, can be used faster, sets enemies on fire and drops more pickups when destroying poops and obstacles", -- Notched Axe
+	[186] = "Also invokes the effect of {{Collectible126}}Razor Blade", -- Blood Rights
+	[282] = "Leaves a trail of fire that deals contact damage and sets enemies on fire", -- How to Jump
+	[290] = "Expends one heart a time, grants a damage up and leaves red creep on the ground", -- The Jar
+	[295] = "Has a chance to invoke the effect of {{Collectible555}}Golden Razor", -- Magic Fingers
+	[297] = "Spawns a demonic familiar along with the floor-based drop", -- Pandora's Box
+	[323] = "Launched tears have boosted damage", -- Isaac's Tears
+	[352] = "Activates Book of Belial when broken - damage up persists until the cannon is fixed", -- Glass Cannon
+	[475] = "Respawns you as Dark Judas if you have an extra life", -- Plan C
+	[482] = "Replaces the most recently acquired item with {{Collectible51}}Pentagram", -- Clicker
+	[487] = "Increased damage up", -- Potato Peeler
+	[536] = "Grants +10.8 temporary damage up for every sacrificed familiar that slowly fades away similarly to {{Collectible621}}Red Stew", -- Sacrificial Altar
+	[555] = "Damages everything in the room and applies the {{Collectible202}}Midas' Touch effect on them", -- Golden Razor
+	[563] = "Ghosts will home in on enemies", -- Vade Retro
+	[577] = "Grants a permanent damage up", -- Damocles
+	[582] = "Grants an additional damage up for the rest of the floor based on the current amount of uses", -- Wavy Cap
+	[585] = "Changes the payout to 2 Black Hearts and 1 Devil Deal item#Becomes 3 hearts and 2 items if a Devil Deal has been taken", -- Alabaster Box
+	[622] = "Grants a free {{Collectible51}}Pentagram", -- Genesis
+	[623] = "Also invokes the effect of {{Collectible126}}Razor Blade", -- Sharp Key
+	[635] = "Creates a {{Collectible705}}Dark Arts line between you and Stitches", -- Stitches
+	[640] = "Launches a {{Collectible118}}Brimstone beam instead", -- Urn of Souls
+	[642] = "Grants a permanent damage up", -- Magic Skin
+	[685] = "Grants {{Collectible292}}Satanic Bible wisps that boost Devil Deal chance", -- Jar of Wisps
+	[705] = "Allows gain of temporary damage ups", -- Dark Arts
+	[710] = "Picking up Red Hearts has a chance to replace them with a Black Heart", -- Bag of Crafting
+	[729] = "Grants a huge damage and tears up when the head is detached", -- Decap Attack
 }
 
 -- Book of Virtues wisp types
-EID.descriptions["en_us"].bookOfVirtuesWisps = {
-	[33] = {"Homing tears"}, -- The Bible
-	[34] = {"Double damage tears"}, -- The Book of Belial
-	[35] = {"3.5% chance for Fear tears#Necronomicon effect when destroyed"}, -- The Necronomicon
-	[36] = {"2.5% chance for Ecoli tears"}, -- The Poop
-	[37] = {"Spawns scatter bombs when destroyed"}, -- Mr. Boom
-	[38] = {"Rapid, inaccurate tears"}, -- Tammy's Head
-	[39] = {"5% chance for Petrify tears"}, -- Mom's Bra
-	[40] = {"Explosive tears#Explodes when destroyed"}, -- Kamikaze!
-	[41] = {"7.5% chance for Fear tears"}, -- Mom's Pad
-	[42] = {"7.5% chance for Ipecac tears"}, -- Bob's Rotten Head
-	[44] = {"10% chance for tears to teleport enemies#Wisps flicker every 5 seconds"}, -- Teleport!
-	[45] = {"20% chance for enemy to drop heart on kill"}, -- Yum Heart
-	[47] = {"Half damage tears#All Doctor's Remote wisps shoot 3 explosive tears towards the crosshair on use"}, -- Doctor's Remote
-	[49] = {"Cannot shoot tears#All Shoop da Whoop! wisps fire lasers on use"}, -- Shoop da Whoop!
-	[56] = {"Rapid, low range tears#Wisp drips yellow creep"}, -- Lemon Mishap
-	[58] = {"Immune to projectiles"}, -- Book of Shadows
-	[65] = {"Spawns a Troll Bomb when destroyed"}, -- Anarchist Cookbook
-	[66] = {"Slows enemies for 3 seconds when destroyed"}, -- The Hourglass
-	[77] = {"Extra contact damage"}, -- My Little Unicorn
-	[78] = {"Cannot shoot tears#Spawns a 7 Seals familiar for the room when destroyed"}, -- Book of Revelations
-	[83] = {"Knockback tears"}, -- The Nail
-	[84] = {"No special effect"}, -- We Need to Go Deeper!
-	[85] = {"Spawns a card when destroyed"}, -- Deck of Cards
-	[86] = {"Tooth tears"}, -- Monstro's Tooth
-	[93] = {"Anti-gravity tears#Chance for Fear tears"}, -- The Gamekid
-	[97] = {"Spawns 1 of 8 wisps: {{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#Explosive effects are likely"}, -- The Book of Sin
-	[102] = {"Spawns 1 of 6 wisp colors with random effects each run#Chance for Poison, Petrify, Confusion, Burn, Troll Bomb tears, or spawning an enemy spider when destroyed#All 6 spawn a pill when destroyed"}, -- Mom's Bottle of Pills
-	[105] = {"Spawns an extra wisp per rerolled item"}, -- The D6
-	[107] = {"Piercing tears"}, -- The Pinking Shears
-	[111] = {"Poison fart when destroyed"}, -- The Bean
-	[123] = {"Random tears"}, -- Monster Manual
-	[124] = {"Spawns the wisp of what it mimics"}, -- Dead Sea Scrolls
-	[126] = {"High HP wisp"}, -- Razor Blade
-	[127] = {"Infinite HP wisp for the new floor"}, -- Forget Me Now
-	[130] = {"Cannot fire tears#Wisps charge in the direction you fire"}, -- A Pony
-	[133] = {"3 high HP wisps"}, -- Guppy's Paw
-	[135] = {"No special effect"}, -- IV Bag
-	[136] = {"7.5% chance for Mark tears#Marked enemies are attacked by other enemies"}, -- Best Friend
-	[137] = {"1 wisp per bomb detonated#Wisp's tears can also be remote detonated"}, -- Remote Detonator
-	[145] = {"Wisps are spawned instead of flies#Spawns a Blue Fly when destroyed"}, -- Guppy's Head
-	[146] = {"Homing tears"}, -- Prayer Card
-	[147] = {"Breaking rocks can randomly spawn 1 of 5 material wisps#Chance for coal, Confusion, coin, double damage, or laser tears"}, -- Notched Axe
-	[158] = {"Fast, aimed tears"}, -- Crystal Ball
-	[160] = {"Summons beams of light on contact"}, -- Crack the Sky
-	[164] = {"Single room wisp"}, -- The Candle
-	[166] = {"Destroys all pickups, with a chance to spawn a wisp for each"}, -- D20
-	[171] = {"7.5% chance for Slow tears"}, -- Spider Butt
-	[175] = {"Wisps open locked chests/doors on touch, including the Mega Satan, Ascent, and Corpse doors"}, -- Dad's Key
-	[177] = {"Spawns a wisp based on the reward you win"}, -- Portable Slot
-	[181] = {"10% chance for Holy Light tears"}, -- White Pony
-	[186] = {"High HP wisp"}, -- Blood Rights
-	[192] = {"Homing tears"}, -- Telepathy for Dummies
-	[263] = {"15% chance for enemy to drop rune on kill#Spawns a rune when destroyed"}, -- Clear Rune
-	[282] = {"Up to 6 stationary wisps"}, -- How to Jump
-	[283] = {"Rerolls your wisps, plus 1 random wisp#Doesn't reroll Book of Virtues"}, -- D100
-	[284] = {"Removes all wisps, and gives a random wisp per 2 items owned#Doesn't reroll Book of Virtues"}, -- D4
-	[285] = {"10% chance for D10 effect on hit"}, -- D10
-	[286] = {"15% chance for enemy to drop card on kill#Spawns a card when destroyed"}, -- Blank Card
-	[287] = {"Cracked Orb effect when destroyed"}, -- Book of Secrets
-	[288] = {"Wisps are spawned instead of spiders#Spawns a Blue Spider when destroyed"}, -- Box of Spiders
-	[289] = {"Single room wisp#Red flame tears"}, -- Red Candle
-	[290] = {"Creates a wisp per heart instead#Chance to spawn a half heart when destroyed"}, -- The Jar
-	[291] = {"Spawns an extra wisp per pooped enemy"}, -- Flush!
-	[292] = {"+10% {{DevilRoom}}Devil or {{AngelRoom}}Angel Room chance per Satanic Bible wisp"}, -- Satanic Bible
-	[293] = {"Fires 4-way laser when destroyed"}, -- Head of Krampus
-	[294] = {"Single room wisp#Cannot shoot tears#Butter Bean effect when destroyed"}, -- Butter Bean
-	[295] = {"Chance to drop a coin when destroyed"}, -- Magic Fingers
-	[296] = {"No special effect"}, -- Converter
-	[297] = {"No special effect"}, -- Pandora's Box
-	[298] = {"Cannot shoot tears#Immune to contact damage#Doesn't deal contact damage unless Unicorn Stump is active"}, -- Unicorn Stump
-	[323] = {"Spawns 6 wisps#3 second lifetime"}, -- Isaac's Tears
-	[324] = {"Playdough Cookie tears"}, -- Undefined
-	[325] = {"Arcing cluster tears"}, -- Scissors
-	[326] = {"Spawns wisp on taking damage"}, -- Breath of Life
-	[338] = {"Single room wisp#Boomerang tears"}, -- The Boomerang
-	[347] = {"20/20 tears#Doubles your other wisps"}, -- Diplopia
-	[348] = {"Spawns a pill when destroyed"}, -- Placebo
-	[349] = {"50% chance to spawn a coin when destroyed"}, -- Wooden Nickel
-	[351] = {"All Mega Bean wisps send a rock wave out on use#Petrify + poison fart when destroyed"}, -- Mega Bean
-	[352] = {"All Glass Cannon wisps are destroyed when one is destroyed#Persists between rooms"}, -- Glass Cannon
-	[357] = {"Duplicate your wisps for the current room"}, -- Box of Friends
-	[382] = {"Captured enemies spawn a normal, homing, explosive, or Brimstone wisp on death, depending on their moveset"}, -- Friendly Ball
-	[383] = {"Wisp's tears can be detonated, turning into 6 of Isaac's tears#Burst into Isaac's tears when destroyed#Persists between rooms"}, -- Tear Detonator
-	[386] = {"5% chance for tears to reroll grid objects (except Poop and TNT) on hit"}, -- D12
-	[396] = {"Cannot shoot tears#Each portal has 1 wisp"}, -- Ventricle Razor
-	[406] = {"Random damage and fire rate"}, -- D8
-	[419] = {"20% chance for tears to teleport enemies#Wisps flicker every 5 seconds"}, -- Teleport 2.0
-	[421] = {"Charm fart when destroyed"}, -- Kidney Bean
-	[422] = {"30% chance to shoot petrifying tears"}, -- Glowing Hour Glass
-	[427] = {"Bounces harmlessly around the room, exploding when shot by Isaac#Cannot shoot tears or deal contact damage"}, -- Mine Crafter
-	[434] = {"Wisps are spawned instead of flies#Up to 5 flies makes 1 wisp with increased health and damage"}, -- Jar of Flies
-	[437] = {"D7 effect when hit for the first time"}, -- D7
-	[439] = {"No special effect"}, -- Mom's Box
-	[441] = {"Lil Brimstone tears (requires releasing the fire button)#All Mega Blast wisps fire continuously during a Mega Blast"}, -- Mega Blast
-	[475] = {"8 high damage wisps"}, -- Plan C
-	[476] = {"Spawns a second wisp if no pickup was duplicated"}, -- D1
-	[477] = {"Spawns the wisps of all absorbed active items#Doesn't spawn a wisp itself"}, -- Void
-	[478] = {"Pauses all enemies and shots for 3 seconds when destroyed"}, -- Pause
-	[479] = {"Chance to spawn a trinket when destroyed"}, -- Smelter
-	[480] = {"Wisp's health increases the more pickups were destroyed"}, -- Compost
-	[481] = {"5% chance for tears to transform enemies into random wisps"}, -- Dataminer
-	[482] = {"Spawns a random wisp"}, -- Clicker
-	[483] = {"8 wisps that spawn a Golden Troll Bomb when destroyed"}, -- Mama Mega!
-	[484] = {"Single room wisp#Cannot shoot tears#Wait What? effect when destroyed"}, -- Wait What?
-	[485] = {"All Crooked Penny wisps are destroyed or duplicated when one is damaged"}, -- Crooked Penny
-	[486] = {"Cannot fire tears#Chance to negate Isaac taking damage"}, -- Dull Razor
-	[487] = {"Permanent wisp#Chases enemies to shoot them#Doesn't block shots or deal contact damage"}, -- Potato Peeler
-	[488] = {"Spawns the wisp of what it mimics (random if not an active item)"}, -- Metronome
-	[489] = {"Spawns a normal wisp in addition to the wisp effects of the mimicked dice"}, -- D Infinity
-	[490] = {"Spawns a random wisp#Respawns after clearing a room if destroyed"}, -- Eden's Soul
-	[504] = {"Single room wisp#Rapid, aimed tears"}, -- Brown Nugget
-	[507] = {"Chance to spawn a wisp on kill"}, -- Sharp Straw
-	[510] = {"Monstro's Lung, Rotten Baby, Loki's Horns or Brimstone tears"}, -- Delirious
-	[512] = {"Magnet tears"}, -- Black Hole
-	[515] = {"Spawns a random wisp#Respawns after clearing a room if destroyed"}, -- Mystery Gift
-	[516] = {"Tears fire in 8 directions like Sprinkler"}, -- Sprinkler
-	[521] = {"Triple shot#All Coupon tears are destroyed if you make a purchase"}, -- Coupon
-	[522] = {"Captured projectiles turn into wisps"}, -- Telekinesis
-	[523] = {"Wisp only spawns when dropping items#Spawns a random pickup when destroyed"}, -- Moving Box
-	[527] = {"Cannot fire tears#On room clear, wisps open chests/doors"}, -- Mr. ME!
-	[536] = {"Converts all wisps into Half Red Hearts#Spawns a strong wisp on sacrifice"}, -- Sacrificial Altar
-	[545] = {"Spawns a friendly Bony when destroyed"}, -- Book of the Dead
-	[550] = {"10% chance for tears to trigger a stomp on the enemy"}, -- Broken Shovel
-	[552] = {"10% chance for tears to trigger a stomp on the enemy#Also spawns a high HP wisp that cannot shoot tears"}, -- Mom's Shovel
-	[555] = {"15% chance for Midas' Touch tears"}, -- Golden Razor
-	[556] = {"Short range laser tears"}, -- Sulfur
-	[557] = {"+0.2 Luck per Fortune Cookie wisp"}, -- Fortune Cookie
-	[577] = {"No special effect"}, -- Damocles
-	[578] = {"Wisp drips yellow creep"}, -- Free Lemonade
-	[580] = {"Chance to create Red Doors when entering a new room"}, -- Red Key
-	[582] = {"Max 1 Wavy Cap wisp"}, -- Wavy Cap
-	[584] = {"No benefit from multiple copies"}, -- Book of Virtues
-	[585] = {"8 wisps"}, -- Alabaster Box
-	[604] = {"Single room wisp#3 wisps created where something lands#10% chance for Confusion tears"}, -- Mom's Bracelet
-	[605] = {"No special effect"}, -- The Scooper
-	[609] = {"Invincible wisp#50% chance for all Eternal D6 wisps to be destroyed on use"}, -- Eternal D6
-	[611] = {"Health and damage increases based on charges"}, -- Larynx
-	[622] = {"3 wisps#Removes all other wisps"}, -- Genesis
-	[623] = {"No special effect"}, -- Sharp Key
-	[631] = {"Splits your wisps in half (half health and damage)#Wisps are destroyed if split a third time"}, -- Meat Cleaver
-	[635] = {"Leaves a stationary wisp behind#Up to 6 stationary wisps"}, -- Stitches
-	[636] = {"No wisp"}, -- R Key
-	[638] = {"Erases non-boss enemies on contact"}, -- Eraser
-	[639] = {"Cannot shoot tears#Spawns a Blue Fly on room clear"}, -- Yuck Heart
-	[640] = {"Chance for blue flame tears"}, -- Urn of Souls
-	[642] = {"Poison tears"}, -- Magic Skin
-	[650] = {"When Baby Plum bounces diagonally, all Plum Flute wisps do so as well"}, -- Plum Flute
-	[653] = {"No wisps#Red ghosts can fire tears"}, -- Vade Retro
-	[655] = {"Temporary wisps during use"}, -- Spin to Win
-	[685] = {"Doubles the wisps spawned, plus 1"}, -- Jar of Wisps
-	[687] = {"Spawns a random wisp"}, -- Friend Finder
-	[703] = {"No special effect"}, -- Esau Jr.
-	[704] = {"High HP wisp#Cannot shoot tears"}, -- Berserk
-	[705] = {"Single room wisp per enemy killed"}, -- Dark Arts
-	[706] = {"High HP wisp#Cannot shoot tears"}, -- Abyss
-	[709] = {"Single room wisp#3 wisps created where you land"}, -- Suplex
-	[710] = {"Spawns a random wisp on craft"}, -- Bag of Crafting
-	[711] = {"No special effect"}, -- Flip
-	[712] = {"The item wisps can fire homing tears"}, -- Lemegeton
-	[713] = {"No wisp"}, -- Sumptorium
-	[719] = {"20% chance for enemy to drop coin on kill"}, -- Keeper's Box
-	[720] = {"Spawns a random wisp"}, -- Everything Jar
-	[722] = {"Orbits the chained enemy, shooting at them#Wisp dies when enemy dies"}, -- Anima Sola
-	[723] = {"Rerolls your wisps to the same type"}, -- Spindown Dice
-	[728] = {"All wisps will orbit Gello"}, -- Gello
-	[729] = {"Stationary wisp"}, -- Decap Attack
+EID.descriptions[languageCode].bookOfVirtuesWisps = {
+	[33] = "Homing tears", -- The Bible
+	[34] = "Double damage tears", -- The Book of Belial
+	[35] = "3.5% chance for Fear tears#Necronomicon effect when destroyed", -- The Necronomicon
+	[36] = "2.5% chance for Ecoli tears", -- The Poop
+	[37] = "Spawns scatter bombs when destroyed", -- Mr. Boom
+	[38] = "Rapid, inaccurate tears", -- Tammy's Head
+	[39] = "5% chance for Petrify tears", -- Mom's Bra
+	[40] = "Explosive tears#Explodes when destroyed", -- Kamikaze!
+	[41] = "7.5% chance for Fear tears", -- Mom's Pad
+	[42] = "7.5% chance for Ipecac tears", -- Bob's Rotten Head
+	[44] = "10% chance for tears to teleport enemies#Wisps flicker every 5 seconds", -- Teleport!
+	[45] = "20% chance for enemy to drop heart on kill", -- Yum Heart
+	[47] = "Half damage tears#All Doctor's Remote wisps shoot 3 explosive tears towards the crosshair on use", -- Doctor's Remote
+	[49] = "Cannot shoot tears#All Shoop da Whoop! wisps fire lasers on use", -- Shoop da Whoop!
+	[56] = "Rapid, low range tears#Wisp drips yellow creep", -- Lemon Mishap
+	[58] = "Immune to projectiles", -- Book of Shadows
+	[65] = "Spawns a Troll Bomb when destroyed", -- Anarchist Cookbook
+	[66] = "Slows enemies for 3 seconds when destroyed", -- The Hourglass
+	[77] = "Extra contact damage", -- My Little Unicorn
+	[78] = "Cannot shoot tears#Spawns a 7 Seals familiar for the room when destroyed", -- Book of Revelations
+	[83] = "Knockback tears", -- The Nail
+	[84] = "No special effect", -- We Need to Go Deeper!
+	[85] = "Spawns a card when destroyed", -- Deck of Cards
+	[86] = "Tooth tears", -- Monstro's Tooth
+	[93] = "Anti-gravity tears#Chance for Fear tears", -- The Gamekid
+	[97] = "Spawns 1 of 8 wisps: {{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#Explosive effects are likely", -- The Book of Sin
+	[102] = "Spawns 1 of 6 wisp colors with random effects each run#Chance for Poison, Petrify, Confusion, Burn, Troll Bomb tears, or spawning an enemy spider when destroyed#All 6 spawn a pill when destroyed", -- Mom's Bottle of Pills
+	[105] = "Spawns an extra wisp per rerolled item", -- The D6
+	[107] = "Piercing tears", -- The Pinking Shears
+	[111] = "Poison fart when destroyed", -- The Bean
+	[123] = "Random tears", -- Monster Manual
+	[124] = "Spawns the wisp of what it mimics", -- Dead Sea Scrolls
+	[126] = "High HP wisp", -- Razor Blade
+	[127] = "Infinite HP wisp for the new floor", -- Forget Me Now
+	[130] = "Cannot fire tears#Wisps charge in the direction you fire", -- A Pony
+	[133] = "3 high HP wisps", -- Guppy's Paw
+	[135] = "No special effect", -- IV Bag
+	[136] = "7.5% chance for Mark tears#Marked enemies are attacked by other enemies", -- Best Friend
+	[137] = "1 wisp per bomb detonated#Wisp's tears can also be remote detonated", -- Remote Detonator
+	[145] = "Wisps are spawned instead of flies#Spawns a Blue Fly when destroyed", -- Guppy's Head
+	[146] = "Homing tears", -- Prayer Card
+	[147] = "Breaking rocks can randomly spawn 1 of 5 material wisps#Chance for coal, Confusion, coin, double damage, or laser tears", -- Notched Axe
+	[158] = "Fast, aimed tears", -- Crystal Ball
+	[160] = "Summons beams of light on contact", -- Crack the Sky
+	[164] = "Single room wisp", -- The Candle
+	[166] = "Destroys all pickups, with a chance to spawn a wisp for each", -- D20
+	[171] = "7.5% chance for Slow tears", -- Spider Butt
+	[175] = "Wisps open locked chests/doors on touch, including the Mega Satan, Ascent, and Corpse doors", -- Dad's Key
+	[177] = "Spawns a wisp based on the reward you win", -- Portable Slot
+	[181] = "10% chance for Holy Light tears", -- White Pony
+	[186] = "High HP wisp", -- Blood Rights
+	[192] = "Homing tears", -- Telepathy for Dummies
+	[263] = "15% chance for enemy to drop rune on kill#Spawns a rune when destroyed", -- Clear Rune
+	[282] = "Up to 6 stationary wisps", -- How to Jump
+	[283] = "Rerolls your wisps, plus 1 random wisp#Doesn't reroll Book of Virtues", -- D100
+	[284] = "Removes all wisps, and gives a random wisp per 2 items owned#Doesn't reroll Book of Virtues", -- D4
+	[285] = "10% chance for D10 effect on hit", -- D10
+	[286] = "15% chance for enemy to drop card on kill#Spawns a card when destroyed", -- Blank Card
+	[287] = "Cracked Orb effect when destroyed", -- Book of Secrets
+	[288] = "Wisps are spawned instead of spiders#Spawns a Blue Spider when destroyed", -- Box of Spiders
+	[289] = "Single room wisp#Red flame tears", -- Red Candle
+	[290] = "Creates a wisp per heart instead#Chance to spawn a half heart when destroyed", -- The Jar
+	[291] = "Spawns an extra wisp per pooped enemy", -- Flush!
+	[292] = "+10% {{DevilRoom}}Devil or {{AngelRoom}}Angel Room chance per Satanic Bible wisp", -- Satanic Bible
+	[293] = "Fires 4-way laser when destroyed", -- Head of Krampus
+	[294] = "Single room wisp#Cannot shoot tears#Butter Bean effect when destroyed", -- Butter Bean
+	[295] = "Chance to drop a coin when destroyed", -- Magic Fingers
+	[296] = "No special effect", -- Converter
+	[297] = "No special effect", -- Pandora's Box
+	[298] = "Cannot shoot tears#Immune to contact damage#Doesn't deal contact damage unless Unicorn Stump is active", -- Unicorn Stump
+	[323] = "Spawns 6 wisps#3 second lifetime", -- Isaac's Tears
+	[324] = "Playdough Cookie tears", -- Undefined
+	[325] = "Arcing cluster tears", -- Scissors
+	[326] = "Spawns wisp on taking damage", -- Breath of Life
+	[338] = "Single room wisp#Boomerang tears", -- The Boomerang
+	[347] = "20/20 tears#Doubles your other wisps", -- Diplopia
+	[348] = "Spawns a pill when destroyed", -- Placebo
+	[349] = "50% chance to spawn a coin when destroyed", -- Wooden Nickel
+	[351] = "All Mega Bean wisps send a rock wave out on use#Petrify + poison fart when destroyed", -- Mega Bean
+	[352] = "All Glass Cannon wisps are destroyed when one is destroyed#Persists between rooms", -- Glass Cannon
+	[357] = "Duplicate your wisps for the current room", -- Box of Friends
+	[382] = "Captured enemies spawn a normal, homing, explosive, or Brimstone wisp on death, depending on their moveset", -- Friendly Ball
+	[383] = "Wisp's tears can be detonated, turning into 6 of Isaac's tears#Burst into Isaac's tears when destroyed#Persists between rooms", -- Tear Detonator
+	[386] = "5% chance for tears to reroll grid objects (except Poop and TNT) on hit", -- D12
+	[396] = "Cannot shoot tears#Each portal has 1 wisp", -- Ventricle Razor
+	[406] = "Random damage and fire rate", -- D8
+	[419] = "20% chance for tears to teleport enemies#Wisps flicker every 5 seconds", -- Teleport 2.0
+	[421] = "Charm fart when destroyed", -- Kidney Bean
+	[422] = "30% chance to shoot petrifying tears", -- Glowing Hour Glass
+	[427] = "Bounces harmlessly around the room, exploding when shot by Isaac#Cannot shoot tears or deal contact damage", -- Mine Crafter
+	[434] = "Wisps are spawned instead of flies#Up to 5 flies makes 1 wisp with increased health and damage", -- Jar of Flies
+	[437] = "D7 effect when hit for the first time", -- D7
+	[439] = "No special effect", -- Mom's Box
+	[441] = "Lil Brimstone tears (requires releasing the fire button)#All Mega Blast wisps fire continuously during a Mega Blast", -- Mega Blast
+	[475] = "8 high damage wisps", -- Plan C
+	[476] = "Spawns a second wisp if no pickup was duplicated", -- D1
+	[477] = "Spawns the wisps of all absorbed active items#Doesn't spawn a wisp itself", -- Void
+	[478] = "Pauses all enemies and shots for 3 seconds when destroyed", -- Pause
+	[479] = "Chance to spawn a trinket when destroyed", -- Smelter
+	[480] = "Wisp's health increases the more pickups were destroyed", -- Compost
+	[481] = "5% chance for tears to transform enemies into random wisps", -- Dataminer
+	[482] = "Spawns a random wisp", -- Clicker
+	[483] = "8 wisps that spawn a Golden Troll Bomb when destroyed", -- Mama Mega!
+	[484] = "Single room wisp#Cannot shoot tears#Wait What? effect when destroyed", -- Wait What?
+	[485] = "All Crooked Penny wisps are destroyed or duplicated when one is damaged", -- Crooked Penny
+	[486] = "Cannot fire tears#Chance to negate Isaac taking damage", -- Dull Razor
+	[487] = "Permanent wisp#Chases enemies to shoot them#Doesn't block shots or deal contact damage", -- Potato Peeler
+	[488] = "Spawns the wisp of what it mimics (random if not an active item)", -- Metronome
+	[489] = "Spawns a normal wisp in addition to the wisp effects of the mimicked dice", -- D Infinity
+	[490] = "Spawns a random wisp#Respawns after clearing a room if destroyed", -- Eden's Soul
+	[504] = "Single room wisp#Rapid, aimed tears", -- Brown Nugget
+	[507] = "Chance to spawn a wisp on kill", -- Sharp Straw
+	[510] = "Monstro's Lung, Rotten Baby, Loki's Horns or Brimstone tears", -- Delirious
+	[512] = "Magnet tears", -- Black Hole
+	[515] = "Spawns a random wisp#Respawns after clearing a room if destroyed", -- Mystery Gift
+	[516] = "Tears fire in 8 directions like Sprinkler", -- Sprinkler
+	[521] = "Triple shot#All Coupon tears are destroyed if you make a purchase", -- Coupon
+	[522] = "Captured projectiles turn into wisps", -- Telekinesis
+	[523] = "Wisp only spawns when dropping items#Spawns a random pickup when destroyed", -- Moving Box
+	[527] = "Cannot fire tears#On room clear, wisps open chests/doors", -- Mr. ME!
+	[536] = "Converts all wisps into Half Red Hearts#Spawns a strong wisp on sacrifice", -- Sacrificial Altar
+	[545] = "Spawns a friendly Bony when destroyed", -- Book of the Dead
+	[550] = "10% chance for tears to trigger a stomp on the enemy", -- Broken Shovel
+	[552] = "10% chance for tears to trigger a stomp on the enemy#Also spawns a high HP wisp that cannot shoot tears", -- Mom's Shovel
+	[555] = "15% chance for Midas' Touch tears", -- Golden Razor
+	[556] = "Short range laser tears", -- Sulfur
+	[557] = "+0.2 Luck per Fortune Cookie wisp", -- Fortune Cookie
+	[577] = "No special effect", -- Damocles
+	[578] = "Wisp drips yellow creep", -- Free Lemonade
+	[580] = "Chance to create Red Doors when entering a new room", -- Red Key
+	[582] = "Max 1 Wavy Cap wisp", -- Wavy Cap
+	[584] = "No benefit from multiple copies", -- Book of Virtues
+	[585] = "8 wisps", -- Alabaster Box
+	[604] = "Single room wisp#3 wisps created where something lands#10% chance for Confusion tears", -- Mom's Bracelet
+	[605] = "No special effect", -- The Scooper
+	[609] = "Invincible wisp#50% chance for all Eternal D6 wisps to be destroyed on use", -- Eternal D6
+	[611] = "Health and damage increases based on charges", -- Larynx
+	[622] = "3 wisps#Removes all other wisps", -- Genesis
+	[623] = "No special effect", -- Sharp Key
+	[631] = "Splits your wisps in half (half health and damage)#Wisps are destroyed if split a third time", -- Meat Cleaver
+	[635] = "Leaves a stationary wisp behind#Up to 6 stationary wisps", -- Stitches
+	[636] = "No wisp", -- R Key
+	[638] = "Erases non-boss enemies on contact", -- Eraser
+	[639] = "Cannot shoot tears#Spawns a Blue Fly on room clear", -- Yuck Heart
+	[640] = "Chance for blue flame tears", -- Urn of Souls
+	[642] = "Poison tears", -- Magic Skin
+	[650] = "When Baby Plum bounces diagonally, all Plum Flute wisps do so as well", -- Plum Flute
+	[653] = "No wisps#Red ghosts can fire tears", -- Vade Retro
+	[655] = "Temporary wisps during use", -- Spin to Win
+	[685] = "Doubles the wisps spawned, plus 1", -- Jar of Wisps
+	[687] = "Spawns a random wisp", -- Friend Finder
+	[703] = "No special effect", -- Esau Jr.
+	[704] = "High HP wisp#Cannot shoot tears", -- Berserk
+	[705] = "Single room wisp per enemy killed", -- Dark Arts
+	[706] = "High HP wisp#Cannot shoot tears", -- Abyss
+	[709] = "Single room wisp#3 wisps created where you land", -- Suplex
+	[710] = "Spawns a random wisp on craft", -- Bag of Crafting
+	[711] = "No special effect", -- Flip
+	[712] = "The item wisps can fire homing tears", -- Lemegeton
+	[713] = "No wisp", -- Sumptorium
+	[719] = "20% chance for enemy to drop coin on kill", -- Keeper's Box
+	[720] = "Spawns a random wisp", -- Everything Jar
+	[722] = "Orbits the chained enemy, shooting at them#Wisp dies when enemy dies", -- Anima Sola
+	[723] = "Rerolls your wisps to the same type", -- Spindown Dice
+	[728] = "All wisps will orbit Gello", -- Gello
+	[729] = "Stationary wisp", -- Decap Attack
 	
 }
 
 -- Special Locust effects when Item was eaten by Abyss
-EID.descriptions["en_us"].abyssSynergies = {
+EID.descriptions[languageCode].abyssSynergies = {
 	[2] = "Three normal locusts", -- The Inner Eye
 	[3] = "Purple homing locust", -- Spoon Bender
 	[4] = "Red large locust that deals triple damage", -- Cricket's Head
@@ -764,14 +765,14 @@ local repTrinkets={
 	[188] = {"188", "Ice Cube", "20% chance to petrify enemies when entering a room#Killing a petrified enemy freezes it"}, -- Ice Cube
 	[189] = {"189", "Sigil of Baphomet", "Activates a 1 second shield upon killing an enemy#Killing enemies while shielded adds 1 more second"}, -- Sigil of Baphomet
 }
-EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us"].trinkets)
-EID.descriptions["en_us"].goldenTrinket = "Effect doubled!"
-EID.descriptions["en_us"].tripledTrinket = "Effect tripled!"
-EID.descriptions["en_us"].quadrupledTrinket = "Effect quadrupled!"
+EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
+EID.descriptions[languageCode].goldenTrinket = "Effect doubled!"
+EID.descriptions[languageCode].tripledTrinket = "Effect tripled!"
+EID.descriptions[languageCode].quadrupledTrinket = "Effect quadrupled!"
 
 -- Most trinkets that can be doubled or tripled just have the numbers in their description multiplied
 -- A few trinkets have odd edge cases where their effect completely changes, or is different depending on if it's Mom's Box or Golden
-EID.descriptions["en_us"].goldenTrinketEffects = {
+EID.descriptions[languageCode].goldenTrinketEffects = {
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
 	[46] = { "half a heart", "a heart", "one and a half hearts" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
@@ -846,38 +847,38 @@ local repCards={
 	[96] = {"96", "Soul of Bethany", "Spawns 6 {{Collectible584}}Book of Virtues wisps with random properties"}, -- Soul of Bethany
 	[97] = {"97", "Soul of Jacob and Esau", "Spawns Esau as a temporary secondary character for current room#He spawns with random passive items equal to how many you have"}, -- Soul of Jacob and Esau
 }
-EID:updateDescriptionsViaTable(repCards, EID.descriptions["en_us"].cards)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
 -- Card Buffs caused by Tarot Cloth
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
 
-EID.descriptions["en_us"].tarotClothBuffs = {
-	[2] = {"2", "", "Also grants {{Collectible34}}The Book of Belial effect"}, -- I - The Magician
-	[3] = {"3", "", "A second foot strikes down shortly after the first"}, -- II - The High Priestess
-	[4] = {"4", "", "Doubles the stat increases"}, -- III - The Empress
-	[5] = {"5", "", "If the boss wasn't defeated yet, grants 1 Soul Heart as well"}, -- IV - The Emperor
-	[6] = {"6", "", "Spawns 3 Soul Hearts"}, -- V - The Hierophant
-	[7] = {"7", "", "Spawns 3 Red Hearts"}, -- VI - The Lovers
-	[8] = {"8", "", "Doubled duration"}, -- VII - The Chariot
-	[9] = {"9", "", "Doubled pickup spawns"}, -- VIII - Justice
-	[10] = {"10", "", "Prevents Greed from spawning in the shop#Turns shop into a normal shop if Greed was already fought in it"}, -- IX - The Hermit
-	[11] = {"11", "", "Spawns 2 Slot Machines"}, -- X - Wheel of Fortune
-	[12] = {"12", "", "Doubled stat increase, excluding dmg multiplier"}, -- XI - Strength
-	[14] = {"14", "", "Deals 80 damage"}, -- XIII - Death
-	[15] = {"15", "", "Spawns 2 Blood Donation Machines"}, -- XIV - Temperance
-	[16] = {"16", "", "Damage increase doubled"}, -- XV - The Devil
-	[17] = {"17", "", "Spawns 12 troll bombs"}, -- XVI - The Tower
-	[18] = {"18", "", "If the Treasure Room wasn't entered before, it will have two items to choose from"}, -- XVII - The Stars
-	[21] = {"21", "", "Spawns 2 Beggars"}, -- XX - Judgement
-	[56] = {"56", "", "Drops all items alongside pickups, including Tarot Cloth"}, -- 0 - The Fool?
-	[59] = {"59", "", "↑ +3 Health up"}, -- III - The Empress?
-	[61] = {"61", "", "Spawns 3 Bone Hearts"}, -- V - The Hierophant?
-	[62] = {"62", "", "Adds 2 Broken Hearts and spawns 2 items"}, -- VI - The Lovers?
-	[64] = {"64", "", "Spawns 4-14 Golden Chests"}, -- VIII - Justice?
-	[70] = {"70", "", "Eat 10 random pills"}, -- XIV - Temperance?
-	[72] = {"72", "", "Spawns 14 rock clusters"}, -- XVI - The Tower?
-	[73] = {"73", "", "Removes 2 items and spawns 4"}, -- XVII - The Stars?
-	[76] = {"76", "", "Spawns 2 Restock Machines"}, -- XX - Judgement?
+EID.descriptions[languageCode].tarotClothBuffs = {
+	[2] = "Also grants {{Collectible34}}The Book of Belial effect", -- I - The Magician
+	[3] = "A second foot strikes down shortly after the first", -- II - The High Priestess
+	[4] = "Doubles the stat increases", -- III - The Empress
+	[5] = "If the boss wasn't defeated yet, grants 1 Soul Heart as well", -- IV - The Emperor
+	[6] = "Spawns 3 Soul Hearts", -- V - The Hierophant
+	[7] = "Spawns 3 Red Hearts", -- VI - The Lovers
+	[8] = "Doubled duration", -- VII - The Chariot
+	[9] = "Doubled pickup spawns", -- VIII - Justice
+	[10] ="Prevents Greed from spawning in the shop#Turns shop into a normal shop if Greed was already fought in it", -- IX - The Hermit
+	[11] = "Spawns 2 Slot Machines", -- X - Wheel of Fortune
+	[12] = "Doubled stat increase, excluding dmg multiplier", -- XI - Strength
+	[14] = "Deals 80 damage", -- XIII - Death
+	[15] = "Spawns 2 Blood Donation Machines", -- XIV - Temperance
+	[16] = "Damage increase doubled", -- XV - The Devil
+	[17] = "Spawns 12 troll bombs", -- XVI - The Tower
+	[18] = "If the Treasure Room wasn't entered before, it will have two items to choose from", -- XVII - The Stars
+	[21] = "Spawns 2 Beggars", -- XX - Judgement
+	[56] = "Drops all items alongside pickups, including Tarot Cloth", -- 0 - The Fool?
+	[59] = "↑ +3 Health up", -- III - The Empress?
+	[61] = "Spawns 3 Bone Hearts", -- V - The Hierophant?
+	[62] = "Adds 2 Broken Hearts and spawns 2 items", -- VI - The Lovers?
+	[64] = "Spawns 4-14 Golden Chests", -- VIII - Justice?
+	[70] = "Eat 10 random pills", -- XIV - Temperance?
+	[72] = "Spawns 14 rock clusters", -- XVI - The Tower?
+	[73] = "Removes 2 items and spawns 4", -- XVII - The Stars?
+	[76] = "Spawns 2 Restock Machines", -- XX - Judgement?
 }
 
 ---------- Pills ----------
@@ -894,9 +895,9 @@ local repPills={
 	[50] = {"49", "Experimental Pill", "↑ Increases 1 random stat#↓ Decreases 1 random other stat#Will not decrease with {{Collectible75}}PHD#Will not increase with {{Collectible654}}False PHD"}, -- Experimental Pill
 	[9999] = {"", "Golden Pill", "Random pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
-EID:updateDescriptionsViaTable(repPills, EID.descriptions["en_us"].pills)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
-EID.descriptions["en_us"].horsepills={
+EID.descriptions[languageCode].horsepills={
 	{"0", "Bad Gas", "Poisons entire room"}, -- Bad Gas
 	{"1", "Bad Trip", "Deals 2 hearts of damage to you"}, -- Bad Trip
 	{"2", "Balls of Steel", "+4 Soul Hearts"}, -- Balls of Steel
@@ -952,33 +953,33 @@ EID.descriptions["en_us"].horsepills={
 
 ---------- Misc. Text ----------
 
-EID.descriptions["en_us"].spindownError = "Item disappears"
+EID.descriptions[languageCode].spindownError = "Item disappears"
 
-EID.descriptions["en_us"].CraftingBagContent = "Bag:"
-EID.descriptions["en_us"].CraftingRoomContent = "Room:"
-EID.descriptions["en_us"].CraftingFloorContent = "Floor:"
+EID.descriptions[languageCode].CraftingBagContent = "Bag:"
+EID.descriptions[languageCode].CraftingRoomContent = "Room:"
+EID.descriptions[languageCode].CraftingFloorContent = "Floor:"
 
-EID.descriptions["en_us"].CraftingBagQuality = "Bag Quality:"
-EID.descriptions["en_us"].CraftingBestQuality = "Best Quality:"
+EID.descriptions[languageCode].CraftingBagQuality = "Bag Quality:"
+EID.descriptions[languageCode].CraftingBestQuality = "Best Quality:"
 
-EID.descriptions["en_us"].CraftingHideKey = "Hide:"
-EID.descriptions["en_us"].CraftingPreviewKey = "Preview:"
-EID.descriptions["en_us"].CraftingPreviewBackup = "!!! If this item's locked, it will turn into"
+EID.descriptions[languageCode].CraftingHideKey = "Hide:"
+EID.descriptions[languageCode].CraftingPreviewKey = "Preview:"
+EID.descriptions[languageCode].CraftingPreviewBackup = "!!! If this item's locked, it will turn into"
 
-EID.descriptions["en_us"].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
+EID.descriptions[languageCode].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
 
-EID.descriptions["en_us"].BlankCardCharge = "Blank Card charge:" 
-EID.descriptions["en_us"].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed" 
-EID.descriptions["en_us"].ClearRuneCharge = "Clear Rune charge:" 
-EID.descriptions["en_us"].PlaceboCharge = "Placebo charge:" 
+EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:" 
+EID.descriptions[languageCode].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed" 
+EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune charge:" 
+EID.descriptions[languageCode].PlaceboCharge = "Placebo charge:" 
 
-EID.descriptions["en_us"].FalsePHDHeart = "Spawns 1 Black Heart"
-EID.descriptions["en_us"].FalsePHDDamage = "+0.6 Damage up"
-EID.descriptions["en_us"].FalsePHDHorseDamage = "+1.2 Damage up"
+EID.descriptions[languageCode].FalsePHDHeart = "Spawns 1 Black Heart"
+EID.descriptions[languageCode].FalsePHDDamage = "+0.6 Damage up"
+EID.descriptions[languageCode].FalsePHDHorseDamage = "+1.2 Damage up"
 
-EID.descriptions["en_us"].AchievementWarningTitle = "{{ColorYellow}}!!! WARNING !!!"
-EID.descriptions["en_us"].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)#(This warning can be disabled in the config)"
+EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! WARNING !!!"
+EID.descriptions[languageCode].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)#(This warning can be disabled in the config)"
 
-EID.descriptions["en_us"].OldGameVersionWarningText = "Your version of Repentance is not up-to-date!#Only the newest version is officially supported#(This warning can be disabled in the config)"
+EID.descriptions[languageCode].OldGameVersionWarningText = "Your version of Repentance is not up-to-date!#Only the newest version is officially supported#(This warning can be disabled in the config)"
 
-EID.descriptions["en_us"].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Use the No Recipes display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Use the No Recipes display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"

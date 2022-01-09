@@ -13,6 +13,7 @@
 -- Example:  69|1|+1.0 Tears up |Example Item#Example Second Line
 
 -- init en_us_detailed table
+local languageCode = "en_us_detailed"
 
 local repCollectibles={
 	{"1", "" ,"+0.7 Tears up. #Disappears if the Spindown Dice is used on it."},
@@ -747,7 +748,7 @@ local repCollectibles={
 	--Glass Eye, Stye, Mom's Ring go here
 }
 
-EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["en_us_detailed"].collectibles)
+EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
 ---------- Trinkets ----------
 
@@ -943,7 +944,7 @@ local repTrinkets={
 	{"189", "",  "Shields Isaac for 1 second after killing an enemy. #Adds 1 second to the shield timer if Isaac is still shielded after killing an enemy."}, 
 }
 
-EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["en_us_detailed"].trinkets)
+EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
 
 ---------- Cards ----------
 
@@ -1047,7 +1048,7 @@ local repCards={
 	{"97", "", "Spawns Esau as a temporary secondary character, controlled at the same time as Isaac. #Dies if his health runs out with no further consequences, and disappears when Isaac leaves the room."},
 }
 
-EID:updateDescriptionsViaTable(repCards, EID.descriptions["en_us_detailed"].cards)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
 ---------- Pills ----------
 
@@ -1104,4 +1105,4 @@ local repPills={
 	{"49", "", "Increases one attribute and decreases another randomly, with the same power as standard attribute increase/decrease pills. #If taken with PHD, it will not reduce an attribute."},
 } 
 
-EID:updateDescriptionsViaTable(repPills, EID.descriptions["en_us_detailed"].pills)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)

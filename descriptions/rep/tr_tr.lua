@@ -11,8 +11,7 @@
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
-local newDescriptions = {
-}
+local languageCode = "tr_tr"
 
 local repCollectibles={
 	[5] = {"5", "Yansımam", "Bumerang efekti verır#↑ +1.5 Menzil#↑ +60% ekstra Menzil#↑ +0.6 Gözyaşı hızı#↑ +1 Gözyaşı yüksekliği"}, -- My Reflection
@@ -356,9 +355,9 @@ local repCollectibles={
 	[729] = {"729", "Kafa Koparma Atağı", "Isaac'in kafasını atar, düştüğü yere ateş edebilir#İtemi tekrar aktive etmek ya da kafanın üstüne basmak kafayı tekrar takar"}, --  Decap Attack
 	
 }
-EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["tr_tr"].collectibles)
+EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
-EID.descriptions["tr_tr"].birthright ={
+EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "Alınacak tüm itemler iki seçenek arasında değişir"},
 	{"Magdalene", "", "<No effect yet>"},
 	{"Cain", "", "<No effect yet>"},
@@ -405,18 +404,18 @@ EID.descriptions["tr_tr"].birthright ={
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}}" automatically, in order to add Binge eater icon infront of each buff-bulletpoint
 
-EID.descriptions["tr_tr"].bingeEaterBuffs = {
-	[22] = {"22", "", "↑+0.5 Gözyaşı#↑+1.5 Menzil"}, -- Lunch
-	[23] = {"23", "", "↑+0.5 Gözyaşı#↑+0.2 Gözyaşı hızı"}, -- Dinner
-	[24] = {"24", "", "↑+1.0 Hasar#↑+0.2 Hız"}, -- Dessert
-	[25] = {"25", "", "↑+0.2 Hız#↑+1.5 Menzil"}, -- Breakfast
-	[26] = {"26", "", "↑+1.0 Hasar#↑+1.5 Menzil"}, -- Rotten Meat
-	[456] = {"456", "", "↑+1.0 Hasar#↑+1.0 Şans"}, -- Midnight Snack
-	[346] = {"346", "", "↑+0.2 Gözyaşı hızı#↑+1.0 Şans"}, -- A Snack
-	[707] = {"707", "", "↑+0.5 Gözyaşı#↑+1.0 Şans"}, -- Supper
+EID.descriptions[languageCode].bingeEaterBuffs = {
+	[22] = "↑+0.5 Gözyaşı#↑+1.5 Menzil", -- Lunch
+	[23] = "↑+0.5 Gözyaşı#↑+0.2 Gözyaşı hızı", -- Dinner
+	[24] = "↑+1.0 Hasar#↑+0.2 Hız", -- Dessert
+	[25] = "↑+0.2 Hız#↑+1.5 Menzil", -- Breakfast
+	[26] = "↑+1.0 Hasar#↑+1.5 Menzil", -- Rotten Meat
+	[456] = "↑+1.0 Hasar#↑+1.0 Şans", -- Midnight Snack
+	[346] = "↑+0.2 Gözyaşı hızı#↑+1.0 Şans", -- A Snack
+	[707] = "↑+0.5 Gözyaşı#↑+1.0 Şans", -- Supper
 }
 
-EID.descriptions["tr_tr"].spindownError = "Item yok olur"
+EID.descriptions[languageCode].spindownError = "Item yok olur"
 
 ---------- Trinkets ----------
 
@@ -506,41 +505,41 @@ local repTrinkets={
 	[188] = {"188", "Buz Küpü", "Odaya girdiğinde düşmanı buz yapma şansı"}, --  Ice Cube
 	[189] = {"189", "Baphometin İmzası", "Düşman öldürüldüğünde 1 saniyelik kalkan aktive eder"}, --  Sigil of Baphomet
 }
-EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["tr_tr"].trinkets)
+EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
 
 -- Card Buffs caused by Tarot Cloth
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
 
-EID.descriptions["tr_tr"].tarotClothBuffs = {
-	[2] = {"2", "", "{{Collectible34}} The Book of Belial efektini sağlar"}, -- I - The Magician
-	[3] = {"3", "", "İlk ayaktan hemen sonra ikinci bir ayak iner"}, -- II - The High Priestess
-	[4] = {"4", "", "Özellik artışlarını dört katına çıkartır"}, -- III - The Empress
-	[5] = {"5", "", "Boss henüz yenilmedi ise, ışınlanmanın üzerine 1 Ruh kalbi verir"}, -- IV - The Emperor
-	[6] = {"6", "", "3 Ruh Kalbi oluşturur"}, -- V - The Hierophant
-	[7] = {"7", "", "3 kırmızı kalp oluşturur"}, -- VI - The Lovers
-	[8] = {"8", "", "Süre iki katı"}, -- VII - The Chariot
-	[9] = {"9", "", "Ödül iki katı"}, -- VIII - Justice
-	[10] = {"10", "", "Greedin dükkanda çıkmasına engel olur#Greed ile savaşıldıysa dükkanı normal dükkana çevirir"}, -- IX - The Hermit
-	[11] = {"11", "", "2 Slot Makinası çıkartır"}, -- X - Wheel of Fortune
-	[12] = {"12", "", "İki katı özellik artışı, hasar yüzdesi hariç"}, -- XI - Strength
-	[14] = {"14", "", "80 hasar verir"}, -- XIII - Death
-	[15] = {"15", "", "2 Kan bankası makinası çıkartır"}, -- XIV - Temperance
-	[16] = {"16", "", "Hasar artışı iki katına çıkar"}, -- XV - The Devil
-	[17] = {"17", "", "12 troll bombası çıkartır"}, -- XVI - The Tower
-	[18] = {"18", "", "Hazie odasına henüz girilmedi ise, seçilebilecek 2 item gösterilir"}, -- XVII - The Stars
-	[21] = {"21", "", "2 dilenci çıkartır"}, -- XX - Judgement
-	[56] = {"56", "", "Pickupların dışında tüm itemleri de düşürür, Tarot Cloth dahil"}, -- 0 - The Fool?
-	[59] = {"59", "", "3 geçici kalp konteynırı verir"}, -- III - The Empress?
-	[61] = {"61", "", "6 kemik kalpi çıkartır"}, -- V - The Hierophant?
-	[62] = {"62", "", "4 kırık kalp ve 4 item çıkartır"}, -- VI - The Lovers?
-	[64] = {"64", "", "4-14 altın kasa çıkartır"}, -- VIII - Justice?
-	[70] = {"70", "", "20 hap iç"}, -- XIV - Temperance?
-	[72] = {"72", "", "14 taş grubu çıkartır"}, -- XVI - The Tower?
-	[73] = {"73", "", "2 item siler ve 4 çıkartır"}, -- XVII - The Stars?
-	[76] = {"76", "", "2 stok makinası çıkartır"}, -- XX - Judgement?
+EID.descriptions[languageCode].tarotClothBuffs = {
+	[2] = "{{Collectible34}} The Book of Belial efektini sağlar", -- I - The Magician
+	[3] = "İlk ayaktan hemen sonra ikinci bir ayak iner", -- II - The High Priestess
+	[4] = "Özellik artışlarını dört katına çıkartır", -- III - The Empress
+	[5] = "Boss henüz yenilmedi ise, ışınlanmanın üzerine 1 Ruh kalbi verir", -- IV - The Emperor
+	[6] = "3 Ruh Kalbi oluşturur", -- V - The Hierophant
+	[7] = "3 kırmızı kalp oluşturur", -- VI - The Lovers
+	[8] = "Süre iki katı", -- VII - The Chariot
+	[9] = "Ödül iki katı", -- VIII - Justice
+	[10] = "Greedin dükkanda çıkmasına engel olur#Greed ile savaşıldıysa dükkanı normal dükkana çevirir", -- IX - The Hermit
+	[11] = "2 Slot Makinası çıkartır", -- X - Wheel of Fortune
+	[12] = "İki katı özellik artışı, hasar yüzdesi hariç", -- XI - Strength
+	[14] = "80 hasar verir", -- XIII - Death
+	[15] = "2 Kan bankası makinası çıkartır", -- XIV - Temperance
+	[16] = "Hasar artışı iki katına çıkar", -- XV - The Devil
+	[17] = "12 troll bombası çıkartır", -- XVI - The Tower
+	[18] = "Hazie odasına henüz girilmedi ise, seçilebilecek 2 item gösterilir", -- XVII - The Stars
+	[21] = "2 dilenci çıkartır", -- XX - Judgement
+	[56] = "Pickupların dışında tüm itemleri de düşürür, Tarot Cloth dahil", -- 0 - The Fool?
+	[59] = "3 geçici kalp konteynırı verir", -- III - The Empress?
+	[61] = "6 kemik kalpi çıkartır", -- V - The Hierophant?
+	[62] = "4 kırık kalp ve 4 item çıkartır", -- VI - The Lovers?
+	[64] = "4-14 altın kasa çıkartır", -- VIII - Justice?
+	[70] = "20 hap iç", -- XIV - Temperance?
+	[72] = "14 taş grubu çıkartır", -- XVI - The Tower?
+	[73] = "2 item siler ve 4 çıkartır", -- XVII - The Stars?
+	[76] = "2 stok makinası çıkartır", -- XX - Judgement?
 }
 
-EID.descriptions["tr_tr"].goldenTrinket = "ALTIN: Efekt iki katı!"
+EID.descriptions[languageCode].goldenTrinket = "ALTIN: Efekt iki katı!"
 
 ---------- Cards ----------
 
@@ -595,7 +594,7 @@ local repCards={
 	[96] = {"96", "Bethanyin Ruhu", "Rastgele özelliklerle 6 Book of Virtues {{Collectible584}} wispi çıkar"}, -- Soul of Bethany
 	[97] = {"97", "Jacob and Esaunun Ruhu", "Oda için Esauyu geçici ikinci karakter olarak çıkartır"}, -- Soul of Jacob and Esau
 }
-EID:updateDescriptionsViaTable(repCards, EID.descriptions["tr_tr"].cards)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
 ---------- Pills ----------
 
@@ -611,9 +610,9 @@ local repPills={
 	[50] = {"49", "Deneysel Hap", "↑ Rastgele 1 özelliği arttır#↓ Rastgele 1 diğer özelliği azaltır#PHD ile azalmaz"}, -- Experimental Pill
 	[9999] = {"", "Altın Hap", "Rastgele hap efekti#Birkaç kullanımdan sonra kendini yok eder"}, -- golden Pill
 }
-EID:updateDescriptionsViaTable(repPills, EID.descriptions["tr_tr"].pills)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
-EID.descriptions["tr_tr"].horsepills={
+EID.descriptions[languageCode].horsepills={
 	{"0", "Kötü Gaz", "Tüm odayı zehirler"}, -- Bad Gas
 	{"1", "Kötü Kafa", "Sana 2 kalp hasar verir"}, -- Bad Trip
 	{"2", "Çelik Taşaklar", "+4 Ruh Kalbi"}, -- Balls of Steel
@@ -667,7 +666,7 @@ EID.descriptions["tr_tr"].horsepills={
 	[9999] = {"", "Golden Pill", "Rastgele bir at hapı efekti#Birkaç kullanımdan sonra kendini yok eder"}, -- golden Pill
 }
 
-EID.descriptions["tr_tr"].CraftingBagContent = "Çantadaki:"
-EID.descriptions["tr_tr"].CraftingRoomContent = "Odadaki:"
-EID.descriptions["tr_tr"].CraftingResults = "Sonuçlar:#(Kaydır: TAB(basılı tut) + Ateş △/▽)"
-EID.descriptions["tr_tr"].CraftingBagModError = "!!! {{ColorRed}}HATA:#{{ColorRed}}Bu özellik şu anda modlu itemleri desteklemiyor"
+EID.descriptions[languageCode].CraftingBagContent = "Çantadaki:"
+EID.descriptions[languageCode].CraftingRoomContent = "Odadaki:"
+EID.descriptions[languageCode].CraftingResults = "Sonuçlar:#(Kaydır: TAB(basılı tut) + Ateş △/▽)"
+EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}HATA:#{{ColorRed}}Bu özellik şu anda modlu itemleri desteklemiyor"

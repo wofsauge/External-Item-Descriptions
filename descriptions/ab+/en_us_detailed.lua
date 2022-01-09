@@ -2,16 +2,16 @@
 ----- Detailed English descriptions based on the Binding of Isaac Wiki -----
 ----------------------------------------------------------------------------
 
--- Transformations: uses the number next to the transformation entry (can be found at the bottom of this file)
--- Item ID | transformation id| Description text 
--- '#' = starts new line of text
--- Example:  69|1|+1.0 Tears up |Example Item#Example Second Line
+local languageCode = "en_us_detailed"
 
 -- init en_us_detailed table
-EID.descriptions["en_us_detailed"] = {}
-EID.descriptions["en_us_detailed"].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode] = {}
+EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode].languageName = "English (detailed)"
 
-EID.descriptions["en_us_detailed"].collectibles={
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+
+EID.descriptions[languageCode].collectibles={
 	{"1", "", "+0.7 Tears up."},
 	{"2", "", "Triple shot. #Tears down - (Delay * 2.1) + 3."},
 	{"3", "", "Homing tears."},
@@ -567,7 +567,7 @@ EID.descriptions["en_us_detailed"].collectibles={
 	}
 
 ---------- Trinkets ----------
-EID.descriptions["en_us_detailed"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "", "Drops 1 penny, nickel or dime upon taking damage. #This effect is not reduced by playing as the Keeper like other similar items are."},
 	{"2", "", "Increases drop rate of pickups from poop to 50%."},
 	{"3", "", "Immediately gives one charge towards an item upon use. #Has no effect on items with only one bar of charge or those with automatic recharges. #Stacks with the 9 Volt, but does not work with The Battery. #Recharging an item by taking damage with the Habit will cause this trinket not to activate."},
@@ -699,7 +699,7 @@ EID.descriptions["en_us_detailed"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["en_us_detailed"].cards={
+EID.descriptions[languageCode].cards={
 	{"1", "", "Teleports you back to the starting room of a floor."},
 	{"2", "", "Grants homing tears for the current room."},
 	{"3", "", "Calls down Mom's foot to stomp on the enemy with the most health in the current room, dealing 300 damage. #If used in an empty room or during the fight with Mom, it will stomp on the player instead."},
@@ -757,9 +757,9 @@ EID.descriptions["en_us_detailed"].cards={
 }
 
 ---------- Pills ----------
-EID.descriptions["en_us_detailed"].unidentifiedPill = "Unidentified Pill"
+EID.descriptions[languageCode].unidentifiedPill = "Unidentified Pill"
 
-EID.descriptions["en_us_detailed"].pills={
+EID.descriptions[languageCode].pills={
 	{"0", "", "On use, the player farts, poisoning enemies around him."},
 	{"1", "", "Deals a full heart of damage to the player. #If the player has a single heart or less left, it turns into a Full Health pill. #The damage count as red heart damage for purposes of getting a Devil Deal."},
 	{"2", "", "Grants 2 soul hearts."},
@@ -810,9 +810,9 @@ EID.descriptions["en_us_detailed"].pills={
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["en_us_detailed"].sacrificeHeader = "[Next Sacrifice Room payout]"
+EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
 
-EID.descriptions["en_us_detailed"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"2", "", "50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"3", "", "67% chance for increased Angel Room chance"},
@@ -828,9 +828,9 @@ EID.descriptions["en_us_detailed"].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions["en_us_detailed"].diceHeader = "[Dice effect]"
+EID.descriptions[languageCode].diceHeader = "[Dice effect]"
 
-EID.descriptions["en_us_detailed"].dice={
+EID.descriptions[languageCode].dice={
 	{"1", "", "Rerolls all of your items#(only affect collectibles)"},
 	{"2", "", "Rerolls all pickups in the room"},
 	{"3", "", "Rerolls all pickups on the entire floor"},
@@ -841,7 +841,7 @@ EID.descriptions["en_us_detailed"].dice={
 
 
 ---------- Transformations ----------
-EID.descriptions["en_us_detailed"].transformations = {
+EID.descriptions[languageCode].transformations = {
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
