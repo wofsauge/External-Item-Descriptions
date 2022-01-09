@@ -45,7 +45,7 @@ local game = Game()
 		local bingeBuff = EID:getDescriptionEntry("bingeEaterBuffs", descObj.ObjSubType)
 		if bingeBuff ~= nil then
 			local iconStr = "#{{Collectible664}} "
-			EID:appendToDescription(descObj, iconStr..bingeBuff[3]:gsub("#",iconStr))
+			EID:appendToDescription(descObj, iconStr..bingeBuff:gsub("#",iconStr))
 		end
 		return descObj
 	end
@@ -73,7 +73,7 @@ local game = Game()
 		local belialBuff = EID:getDescriptionEntry("bookOfBelialBuffs", descObj.ObjSubType)
 		if belialBuff ~= nil then
 			local iconStr = "#{{Collectible34}} "
-			EID:appendToDescription(descObj, iconStr..belialBuff[3]:gsub("#",iconStr))
+			EID:appendToDescription(descObj, iconStr..belialBuff:gsub("#",iconStr))
 		end
 		return descObj
 	end
@@ -99,7 +99,7 @@ local game = Game()
 		local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", descObj.ObjSubType)
 		if wispType ~= nil then
 			local iconStr = "#{{Collectible584}} "
-			EID:appendToDescription(descObj, iconStr..wispType[1]:gsub("#",iconStr))
+			EID:appendToDescription(descObj, iconStr..wispType:gsub("#",iconStr))
 		end
 		return descObj
 	end
@@ -171,7 +171,7 @@ local game = Game()
 		local clothBuff = EID:getDescriptionEntry("tarotClothBuffs", descObj.ObjSubType)
 		if clothBuff ~= nil then
 			local iconStr = "#{{Collectible451}} "
-			EID:appendToDescription(descObj, iconStr..clothBuff[3]:gsub("#",iconStr))
+			EID:appendToDescription(descObj, iconStr..clothBuff:gsub("#",iconStr))
 		end
 		return descObj
 	end

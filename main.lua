@@ -58,7 +58,6 @@ hudBBSprite:Load("gfx/eid_transform_icons.anm2", true)
 hudBBSprite:Play("boundingBox")
 
 ------- Load all modules and other stuff ------
-require("mod_config_menu")
 
 --transformation infos
 require("descriptions."..EID.GameVersion..".transformations")
@@ -66,7 +65,9 @@ require("descriptions."..EID.GameVersion..".transformations")
 for _,lang in ipairs(EID.Languages) do
 	require("descriptions."..EID.GameVersion.."."..lang)
 end
+table.sort(EID.Languages)
 
+require("mod_config_menu")
 require("eid_data")
 require("eid_xmldata")
 require("eid_api")
@@ -111,6 +112,7 @@ end
 EID.modPath = GetCurrentModPath()
 
 EID.font = Font() -- init font object
+EID:fixDefinedFont()
 local fontFile = EID.Config["FontType"] or "default"
 local success = EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
 if not success then
@@ -959,6 +961,7 @@ if EID.MCMLoaded or REPENTANCE then
 				EID.isHidden = EID.Config["InitiallyHidden"]
 				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 				EID.Scale = EID.Config["Scale"]
+				EID:fixDefinedFont()
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 				if REPENTANCE then
 					EID:addTextPosModifier("HudOffset", Vector(((Options.HUDOffset * 10) * 2) - 20, (Options.HUDOffset * 10) - 10))

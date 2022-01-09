@@ -945,6 +945,19 @@ function EID:getEntityData(entity, str)
 	return nil
 end
 
+-- Function to fix font compatibility. Resets config font to a value compatible with your current language
+function EID:fixDefinedFont()
+	local curLang = EID.Config["Language"]
+	local curFont = EID.Config["FontType"]
+	for _, v in ipairs(EID.descriptions[curLang].fonts) do
+		if curFont == v then
+			return false
+		end
+	end
+	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1]
+	return true
+end
+
 -- Creates a copy of a KColor object. This prevents overwriting existing
 function EID:copyKColor(colorObj)
 	return KColor(colorObj.Red, colorObj.Green, colorObj.Blue, colorObj.Alpha)

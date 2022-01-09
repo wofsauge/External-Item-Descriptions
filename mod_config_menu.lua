@@ -33,6 +33,30 @@ local function renderDummyDesc()
 	EID:displayPermanentText(demoDescObj)
 end
 
+-- get list of all defined fonts per language file
+local fonts = {}
+for k, pack in pairs(EID.descriptions) do
+	if pack.fonts then
+		for _,fontToAdd in ipairs(pack.fonts) do
+			local exists = false
+			for _,font in ipairs(fonts) do
+				if font == fontToAdd then
+					exists = true
+					break
+				end
+			end
+			if not exists then
+				table.insert(fonts, fontToAdd)
+			end
+		end
+	end
+end
+-- get list of all defined Language names
+local displayLanguage = {}
+for k, lang in ipairs(EID.Languages) do
+	table.insert(displayLanguage, EID.descriptions[lang].languageName)
+end
+
 local function clearRenderDummyDesc()
 	if MCMCompat_oldPermanentObj == nil then
 		EID:hidePermanentText()
@@ -182,7 +206,6 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	---------------------------------General-----------------------------------
 	-- Language
-	local displayLanguage = {"English", "English (detailed)", "French", "Portuguese (AB+)", "Portugues (Brasil)", "Russian", "Spanish", "Italian", "Bulgarian (WIP) (AB+)", "Polish", "German (WIP) (AB+)", "Turkish"}
 	MCM.AddSetting(
 		"EID",
 		"General",
@@ -199,6 +222,10 @@ if MCMLoaded then
 			end,
 			OnChange = function(currentNum)
 				EID.Config["Language"] = EID.Languages[currentNum]
+				local isFixed = EID:fixDefinedFont()
+				if isFixed then
+					EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
+				end
 			end,
 			Info = {"Changes the language.","Languages marked with (WIP) are incomplete"}
 		}
@@ -902,23 +929,23 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	---------------------------------Visuals-----------------------------------
 	-- Font Type
-	local fontTypes = {"default","borderless","inverted"}
 	MCM.AddSetting(
 		"EID",
 		"Visuals",
 		{
 			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
-				return AnIndexOf(fontTypes, EID.Config["FontType"])
+				return AnIndexOf(fonts, EID.Config["FontType"])
 			end,
 			Minimum = 1,
-			Maximum = #fontTypes,
+			Maximum = #fonts,
 			Display = function()
 				EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 				return "Font Type: " .. EID.Config["FontType"]
 			end,
 			OnChange = function(currentNum)
-				EID.Config["FontType"] = fontTypes[currentNum]
+				EID.Config["FontType"] = fonts[currentNum]
+				EID:fixDefinedFont()
 				local fontFile = EID.Config["FontType"] or "default"
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
 			end
