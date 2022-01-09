@@ -291,6 +291,7 @@ EID.InlineIcons = {
 	["AngelDevilChance"] = {"Stats", 8, 16, 16, 0, 8},
 	["PlanetariumChance"] = {"Stats", 9, 16, 16, 0, 8},
 	["Crone"] = {"Stats", 10, 16, 16, 0, 8},
+	["Tearsize"] = {"Stats", 11, 16, 16, 0, 8},
 	
 }
 
