@@ -806,16 +806,16 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[46] = { "반칸", "한칸", "한칸 반" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
 	[53] = {
-		"방 입장 시 체력이 60 이상인 적의 체력을 30% 깎습니다.#보스방 입장 시 체력을 한칸 회복합니다.",
-		"!!! 교체불가#방 입장 시 체력이 60 이상인 적의 체력을 15% 깎습니다.#보스방 입장 시 체력을 한칸 회복합니다.",
-		"방 입장 시 체력이 60 이상인 적의 체력을 15% 깎습니다.#보스방 입장 시 체력을 반칸 회복합니다.",
+		"방 입장 시 체력이 60 이상인 적의 체력을 {{ColorGold}}30%{{CR}} 깎습니다.#보스방 입장 시 체력을 {{ColorGold}}두칸{{CR}} 회복합니다.",
+		"!!! 교체불가#방 입장 시 체력이 60 이상인 적의 체력을 {{ColorGold}}30%{{CR}} 깎습니다.#보스방 입장 시 체력을 {{ColorGold}}두칸{{CR}} 회복합니다.",
+		"방 입장 시 체력이 60 이상인 적의 체력을 {{ColorGold}}30%{{CR}} 깎습니다.#보스방 입장 시 체력을 {{ColorGold}}세칸{{CR}} 회복합니다.",
 	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
 	[64] = { "일부 벌레 장신구의 능력치 증가 효과 2배", "일부 벌레 장신구의 능력치 증가 효과 3배", "일부 벌레 장신구의 능력치 증가 효과 4배", },
 	-- Error (append): Same behavior as Rainbow Worm
 	[75] = { "일부 장신구의 효과 2배", "일부 장신구의 효과 3배", "일부 장신구의 효과 4배", },
 	-- NO!
-	[88] = { "등급이 0 이하인 아이템이 등장하지 않습니다." },
+	[88] = { "{{Quality0}}등급인 아이템이 등장하지 않습니다." },
 	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
 	[159] = { "모든 상자가 황금 상자로 교체됩니다.#상자에서 카드 또는 장신구가 추가적으로 드랍됩니다." },
 }
@@ -823,7 +823,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 ---------- Cards ----------
 local repCards={
 	[12] = {"12", "XI - 힘", "그 방에서 최대 체력 +1, 공격력 +0.3, 공격력 배율 +50%, 사거리 +1.5, 이동속도 +0.3"}, -- XI - Strength
-	[12] = {"18", "XVII - 별", "{{Planetarium}}천체관으로 순간이동합니다.#천체관이 없으면 {{TreasureRoom}}보물방으로 순간이동합니다."}, -- XVII - The Stars
+	[18] = {"18", "XVII - 별", "{{Planetarium}}천체관으로 순간이동합니다.#천체관이 없으면 {{TreasureRoom}}보물방으로 순간이동합니다."}, -- XVII - The Stars
 	[27] = {"27", "클로버 A", "방 안의 모든 적과 픽업을 폭탄으로 바꿉니다."}, -- Ace of Clubs
 	[28] = {"28", "다이아 A", "방 안의 모든 적과 픽업을 동전으로 바꿉니다."}, -- Ace of Diamonds
 	[29] = {"29", "스페이드 A", "방 안의 모든 적과 픽업을 열쇠로 바꿉니다."}, -- Ace of Spades
