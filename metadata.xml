@@ -1,111 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-	<name>!!~External item descriptions</name>
-	<directory>external item descriptions</directory>
-	<id>836319872</id>
-	<description>[img]https://i.imgur.com/l9nbaxP.png[/img]
-		This mod displays detailed information about all items, trinkets, cards, runes and pills DIRECTLY onto your screen. Say goodbye to your browser tab with platinumgod open ;)
+    <name>!!~External item descriptions</name>
+    <directory>external item descriptions</directory>
+    <id>836319872</id>
+    <description>[img]https://i.imgur.com/l9nbaxP.png[/img]
+This mod displays detailed information about all items, trinkets, cards, runes and pills DIRECTLY onto your screen. Say goodbye to your browser tab with platinumgod open ;)
 
-		[img]https://i.imgur.com/bRGqujD.png[/img] [url=https://discord.gg/HhD4vMM4bZ]Need help or want to chat? Join our Discord server![/url]
-		[img]https://i.imgur.com/P6a8043.png[/img] [url=https://github.com/wofsauge/External-Item-Descriptions]Check this project out on GitHub![/url]
+[img]https://i.imgur.com/bRGqujD.png[/img] [url=https://discord.gg/HhD4vMM4bZ]Need help or want to chat? Join our Discord server![/url]
+[img]https://i.imgur.com/P6a8043.png[/img] [url=https://github.com/wofsauge/External-Item-Descriptions]Check this project out on GitHub![/url]
 
-		[img]https://i.imgur.com/QmqdAmr.png[/img]
-		[list]
-		[*] [b]Compatible with Afterbirth+ and Repentance[/b]
-		[*] Displays information for all collectibles, trinkets, cards, runes, pills, horsepills and some rooms
-		[*] Displays [b]additional information[/b] like item type, charges, transformations, Spindown Dice results and Bag of Crafting recipes
-		[*] Displays one of 4 different indicators around the inspected item
-		[*] Mod support for nearly all mods!
-		[*] Easy to use API ([url=https://github.com/wofsauge/External-Item-Descriptions/wiki]Documentation here[/url])
-		[*] A huge amount of custom options like:
-		[list]
-		[*] Indicators
-		[*] Font styles
-		[*] Languages
-		[*] And a lot of visual options!
-		[/list]
-		[/list]
+[img]https://i.imgur.com/QmqdAmr.png[/img]
+[list]
+[*] [b]Compatible with Afterbirth+ and Repentance[/b]
+[*] Displays information for all collectibles, trinkets, cards, runes, pills, horsepills and some rooms
+[*] Displays [b]additional information[/b] like item type, charges, transformations, Spindown Dice results and Bag of Crafting recipes
+[*] Displays one of 4 different indicators around the inspected item
+[*] Mod support for nearly all mods!
+[*] Easy to use API ([url=https://github.com/wofsauge/External-Item-Descriptions/wiki]Documentation here[/url])
+[*] A huge amount of custom options like:
+[list]
+[*] Indicators
+[*] Font styles
+[*] Languages
+[*] And a lot of visual options!
+[/list]
+[/list]
 
-		[b]Press F2 to hide/show the descriptions![/b]
+[b]Press F2 to hide/show the descriptions![/b]
 
-		[img]https://i.imgur.com/NqSBJqj.png[/img]
-		[img]https://i.imgur.com/Hkv0pcO.png[/img]
-		[table]
-		[tr]
-		[th]ENGLISH[/th]
-		[th]SPANISH[/th]
-		[th]RUSSIAN[/th]
-		[th]ITALIAN[/th]
-		[th]FRENCH[/th]
-		[th]PORTUGUESE[/th]
-		[th]BRAZILIAN PORTUGUESE[/th]
-		[th]BULGARIAN[/th]
-		[th]TURKISH[/th]
-		[th]POLISH[/th]
-		[th]KOREAN[/th]
-		[/tr]
-		[tr]
-		[td]by Wofsauge[/td]
-		[td]by Arroyo Purroy[/td]
-		[td]by hell2Pay, fly_6, Dezzelshipc, Sekaz[/td]
-		[td]by Klyser8, Denkishi, 2G[/td]
-		[td]by Nicolas Delvaux[/td]
-		[td]by Marcelino Cruz[/td]
-		[td]by LuanRoger, NotZin02[/td]
-		[td]by TST_Gogo_, Gothika_47[/td]
-		[td]by Cagdas Salur, Mert Dutal[/td]
-		[td]by Rickyy, Kennyluz,DimonoKingoKongo, MERITT[/td]
-		[td]by Blackcreamtea[/td]
-		[/tr]
-		[/table]
+[img]https://i.imgur.com/NqSBJqj.png[/img]
+[img]https://i.imgur.com/Hkv0pcO.png[/img]
+[table]
+[tr]
+[th]ENGLISH[/th]
+[th]SPANISH[/th]
+[th]RUSSIAN[/th]
+[th]ITALIAN[/th]
+[th]FRENCH[/th]
+[th]PORTUGUESE[/th]
+[th]BRAZILIAN PORTUGUESE[/th]
+[th]BULGARIAN[/th]
+[th]TURKISH[/th]
+[th]POLISH[/th]
+[th]KOREAN[/th]
+[/tr]
+[tr]
+[td]by Wofsauge[/td]
+[td]by Arroyo Purroy[/td]
+[td]by hell2Pay, fly_6, Dezzelshipc, Sekaz[/td]
+[td]by Klyser8, Denkishi, 2G[/td]
+[td]by Nicolas Delvaux[/td]
+[td]by Marcelino Cruz[/td]
+[td]by LuanRoger, NotZin02[/td]
+[td]by TST_Gogo_, Gothika_47[/td]
+[td]by Cagdas Salur, Mert Dutal[/td]
+[td]by Rickyy, Kennyluz,DimonoKingoKongo, MERITT[/td]
+[td]by Blackcreamtea, 미카[/td]
+[/tr]
+[/table]
 
-		[img]https://i.imgur.com/J72fl8H.png[/img] [b]CHINESE[/b] version: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1290363695]EID Chinese Edition[/url] or alternatively [url=https://steamcommunity.com/sharedfiles/filedetails/?id=848295251]中文道具图鉴 Eid Chinese[/url]
+[img]https://i.imgur.com/J72fl8H.png[/img] [b]CHINESE[/b] version: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1290363695]EID Chinese Edition[/url] or alternatively [url=https://steamcommunity.com/sharedfiles/filedetails/?id=848295251]中文道具图鉴 Eid Chinese[/url]
 
-		[img]https://i.imgur.com/PFTZnfC.png[/img]
-		Simply install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818]'Mod Config Menu - Continued'[/url]. All configuration except the language setting can be changed with it in game.
+[img]https://i.imgur.com/PFTZnfC.png[/img]
+Simply install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818]'Mod Config Menu - Continued'[/url]. All configuration except the language setting can be changed with it in game.
 
-		Or:
+Or:
 
-		[h1]Windows[/h1]
-		1. With Repentance: ..\steamapps\common\The Binding of Isaac Rebirth\mods\external item descriptions_836319872\
-		1. With AB+: ..\Documents\My Games\Binding of Isaac Afterbirth+ Mods\External item descriptions\
-		2. Open "eid_config.lua" with any texteditor
-		3. Edit the config
-		4. Save the file
-		5. Play the game
+[h1]Windows[/h1]
+1. With Repentance: ..\steamapps\common\The Binding of Isaac Rebirth\mods\external item descriptions_836319872\
+1. With AB+: ..\Documents\My Games\Binding of Isaac Afterbirth+ Mods\External item descriptions\
+2. Open &quot;eid_config.lua&quot; with any texteditor
+3. Edit the config
+4. Save the file
+5. Play the game
 
-		To reset the config to default, delete all the "save[NUMBER].dat" files from the following folder:
-		1. With Repentance: ..\steamapps\common\The Binding of Isaac Rebirth\data\external item descriptions\
-		1. With AB+: ..\Documents\My Games\Binding of Isaac Afterbirth+ Mods\External item descriptions\
+To reset the config to default, delete all the &quot;save[NUMBER].dat&quot; files from the following folder:
+1. With Repentance: ..\steamapps\common\The Binding of Isaac Rebirth\data\external item descriptions\
+1. With AB+: ..\Documents\My Games\Binding of Isaac Afterbirth+ Mods\External item descriptions\
 
-		[h1]Linux[/h1]
-		Same as Windows, but the path is: /home/%Username%/.steam/steam/steamapps/workshop/content/250900/836319872
+[h1]Linux[/h1]
+Same as Windows, but the path is: /home/%Username%/.steam/steam/steamapps/workshop/content/250900/836319872
 
-		[img]https://i.imgur.com/CywNd0N.png[/img]
-		https://moddingofisaac.com/mod/1079/external-item-descriptions
+[img]https://i.imgur.com/CywNd0N.png[/img]
+https://moddingofisaac.com/mod/1079/external-item-descriptions
 
-		[img]https://i.imgur.com/jrdGbna.png[/img]
-		- The Binding of Isaac Wiki and platinumgod.co.uk for providing useful item descriptions
-		- Nicolas Delvaux for creating an awesome [b]French[/b] language pack
-		- Klyser8, Denkishi and 2G for creating the fantastic [b]Italian[/b] language pack
-		- Lidia Arroyo Purroy for creating the amazing [b]Spanish[/b] language Pack
-		- Rickyy, Kennyluz, DimonoKingoKongo and MERITT for creating the incredible [b]Polish[/b] language pack
-		- Marcelino Cruz for creating the [b]Portuguese[/b] language pack
-		- LuanRoger and NotZin02 for creating the [b]Brazilian - Portuguese[/b] language pack
-		- hell2pay, fly_6, Dezzelshipc and Sekaz for creating the [b]Russian[/b] language pack
-		- Gothika_47 and TST_Gogo_ for creating the [b]Bulgarian[/b] language pack
-		- Cagdas Salur and Mert Dutal for creating the [b]Turkish[/b] language pack
-		- Jake for the sweet [b]German[/b] language pack
-		- Blackcreamtea for the awesome [b]Korean[/b] language pack
-		- [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating an awesome new Languagepack and providing ideas for new functionalities
-	</description>
-	<version>4.9</version>
-	<visibility>Public</visibility>
-	<tag id="Lua" />
-	<tag id="Items" />
-	<tag id="Active Items" />
-	<tag id="Trinkets" />
-	<tag id="Pills" />
-	<tag id="Cards" />
-	<tag id="Tweaks" />
+[img]https://i.imgur.com/jrdGbna.png[/img]
+- The Binding of Isaac Wiki and platinumgod.co.uk for providing useful item descriptions
+- Nicolas Delvaux for creating an awesome [b]French[/b] language pack
+- Klyser8, Denkishi and 2G for creating the fantastic [b]Italian[/b] language pack
+- Lidia Arroyo Purroy for creating the amazing [b]Spanish[/b] language Pack
+- Rickyy, Kennyluz, DimonoKingoKongo and MERITT for creating the incredible [b]Polish[/b] language pack
+- Marcelino Cruz for creating the [b]Portuguese[/b] language pack
+- LuanRoger and NotZin02 for creating the [b]Brazilian - Portuguese[/b] language pack
+- hell2pay, fly_6, Dezzelshipc and Sekaz for creating the [b]Russian[/b] language pack
+- Gothika_47 and TST_Gogo_ for creating the [b]Bulgarian[/b] language pack
+- Cagdas Salur and Mert Dutal for creating the [b]Turkish[/b] language pack
+- Jake for the sweet [b]German[/b] language pack
+- Blackcreamtea and 미카 for the awesome [b]Korean[/b] language pack
+- [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating an awesome new Languagepack and providing ideas for new functionalities</description>
+    <version>4.10</version>
+    <visibility>Public</visibility>
+    <tag id="Lua"/>
+    <tag id="Items"/>
+    <tag id="Active Items"/>
+    <tag id="Trinkets"/>
+    <tag id="Pills"/>
+    <tag id="Cards"/>
+    <tag id="Tweaks"/>
 </metadata>

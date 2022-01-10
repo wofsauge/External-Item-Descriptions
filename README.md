@@ -32,7 +32,7 @@ For the Afterbirth/Rebirth version [click here](https://moddingofisaac.com/mod/1
 - **Bulgarian** (*WIP*, by TST_Gogo_, Gothika_47)
 - **Turkish** (by Cagdas Salur, Mert Dutal)
 - **Polish** (by Rickyy, Kennyluz, MERITT, DimonoKingoKongo)
-- **Korean** (by Blackcreamtea)
+- **Korean** (by Blackcreamtea, 미카)
 - **Chinese** version: [EID Chinese Edition](https://steamcommunity.com/sharedfiles/filedetails/?id=1290363695) | alternative: [中文道具图鉴 Eid Chinese](https://steamcommunity.com/sharedfiles/filedetails/?id=848295251)
 
 ### Possible Future Features
@@ -76,5 +76,5 @@ Same as Windows, but the path is: `/home/%YourUsernameHere%/.steam/steam/steamap
 - TST_Gogo_, Gothika_47 for creating the **Bulgarian** language pack
 - Cagdas Salur and Mert Dutal for creating the **Turkish** language pack
 - Jake for the sweet **German** language pack
-- Blackcreamtea for the awesome **Korean** language pack
+- Blackcreamtea and 미카 for the awesome **Korean** language pack
 - [adc](https://steamcommunity.com/id/whytefang/) for creating an awesome new language pack and providing ideas for new functionalities

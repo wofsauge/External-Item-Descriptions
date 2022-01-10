@@ -1,6 +1,8 @@
 -- 스탯 순서: 체력 - 빨간하트 - 블랙하트 - 소울하트 - 공격력 - 연사 - 사거리 - 이동속도 - 탄속 - 행운 - 효과
 local languageCode = "ko_kr"
 
+-- Last Sync with en_us: 10.01.2022
+
 local repCollectibles={
 	-- Original
     [2] = {"2", "내면의 눈", "↓ 연사 x0.51#공격이 3발로 나갑니다."}, -- The Inner Eye
