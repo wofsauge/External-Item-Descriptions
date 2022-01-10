@@ -15,6 +15,9 @@ local maxNumber = 4294967296
 local spawnedItems = 0
 
 local logLocation = os.getenv("SYSTEMDRIVE") .. "/Users/" .. os.getenv("USERNAME") .. "/Documents/My Games/Binding of Isaac Repentance/log.txt"
+local logFound = false
+local logCursor = 0
+
 local newLogLocation = os.getenv("SYSTEMDRIVE") .. "/Users/" .. os.getenv("USERNAME") .. "/Documents/My Games/Binding of Isaac Repentance/log2.txt"
 local secondaryLog = io.open(newLogLocation, "w+")
 secondaryLog:write("[EID] For performance and accuracy reasons, reading glitched item descriptions from the log file requires wiping the log regularly, so while you have TMTRAINER, most of the log will be moved here\n")
@@ -23,14 +26,17 @@ secondaryLog:write("[EID] For performance and accuracy reasons, reading glitched
 --currently english only
 local attributeConversions = {
 	chain = "",
+	active = "On use:",
 	pickup_collected = "When you collect a pickup:",
-	enemy_kill = "On enemy kill, chance to:",
+	enemy_kill = "On kill, chance to:",
 	
 	
-	area_damage = "Deal {1} area damage", 
+	area_damage = "Deal {1} damage to all enemies in the room", 
 	add_temporary_effect = "Gain {1} for the room",
 	convert_entities = "Convert all {1} in the room to {2}",
-	
+	use_active_item = "Use {1}",
+	spawn_entity = "Spawn a {1}",
+	fart = "Fart with size {1}",
 }
 
 local function parseEffectLine(raw)
@@ -46,16 +52,18 @@ local function parseEffectLine(raw)
 	local replacements = {}
 	local extraText = ""
 	-- switch statement for how to handle the words after the effect type
-	if effectType == "add_temporary_effect" then
+	if effectType == "add_temporary_effect" or effectType == "use_active_item" then
 		-- remainder of line = collectible name that's granted for the room
 		local name = ""
 		for i=6,#words do
 			name = name .. words[i]
 			if (i ~= #words) then name = name .. " " end
 		end
+		replacements[1] = name
 	elseif effectType == "convert_entities" then
-		local replacements[1] = words[6]
-		local replacements[2] = words[8]
+		--figure out how to convert entity numbers
+		replacements[1] = words[6]
+		replacements[2] = words[8]
 	end
 	
 	local eidString = ""
@@ -64,14 +72,28 @@ local function parseEffectLine(raw)
 	for k,v in ipairs(replacements) do
 		eidString = string.gsub(eidString, "{" .. k .. "}", v)
 	end
+	return eidString
 end
 
 --work on how resuming a game works (determine current id by checking if item ids exist)
 
 local function GameStartTMTRAINER(_,isSave)
-	if not isSave then spawnedItems = 0
+	local theLog = io.open(logLocation, "r")
+	if (theLog == nil) then
+		print("[EID] Could not find the log file at " .. logLocation .. "; glitched item descriptions won't work!")
+		logFound = false
+		return
 	else
+		logFound = true
+	end
+	spawnedItems = 0
+	if isSave then
 		--check what item ID we're on
+		local config = Isaac.GetItemConfig()
+		while config:GetCollectible(maxNumber - spawnedItems - 1) ~= nil do
+			spawnedItems = spawnedItems + 1
+		end
+		print("resuming at " .. (maxNumber - spawnedItems - 1))
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, GameStartTMTRAINER)
@@ -88,7 +110,7 @@ end)
 ]]
 
 local function CheckLogForItems(_)
-	if (game:GetFrameCount() % 5 ~= 0 or not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)) then return end
+	if (not logFound or game:GetFrameCount() % 5 ~= 0 or not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)) then return end
 	local logLines = io.lines(logLocation)
 	local numEffects = 0
 	local itemScore = 0
@@ -108,13 +130,14 @@ local function CheckLogForItems(_)
 					itemScore = tonumber(s)
 				end
 			end
-			eidDesc = "Score: " .. itemScore
+			eidDesc = "Score: " .. itemScore .. "#"
 		elseif numEffects > 0 then
 			numEffects = numEffects - 1
 			table.insert(effects, line)
-			eidDesc = eidDesc .. "#" .. line
+			eidDesc = eidDesc .. parseEffectLine(line)
+			-- also display the unparsed line for debug purposes (REMOVE THIS)
+			eidDesc = eidDesc .. "(" .. line .. ")#"
 			if numEffects == 0 then
-				print("adding " .. tostring(maxNumber - spawnedItems) .. ", " .. eidDesc)
 				EID:addCollectible(maxNumber - spawnedItems, eidDesc)
 			end
 		end
