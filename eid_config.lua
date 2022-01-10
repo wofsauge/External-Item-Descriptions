@@ -120,26 +120,28 @@ EID.UserConfig = {
     -- Toggle display of trinket descriptions
     -- Default = true
     ["DisplayTrinketInfo"] = true,
-    -- Set the color-name of the Itemname description text. Color names can be found& defined in "eid_data.lua"
+    -- Set the color of the item name text
+    -- Color names are defined in "eid_data.lua" (line 300)
     -- Default = "ColorEIDObjName"
     ["ItemNameColor"] = "ColorEIDObjName",
-    -- Show ID of described object in the format "Type.Variant.SubType" next to the name
+    -- Display the ID of described object in the format "Type.Variant.SubType" next to the name
     -- Default = false
     ["ShowObjectID"] = false,
-    -- Enables or disables item quality after item name
+    -- Enables or disables item quality icon after item name
     -- REPENTANCE ONLY!!!
     -- Default = true
     ["ShowQuality"] = true,
 
     -------TRANSFORMATIONS---------
 
-    -- Toggle display of Transformation text
+    -- Toggle display of transformation names
     -- Default = true
     ["TransformationText"] = true,
-    -- Toggle display of Transformation icons
+    -- Toggle display of transformation icons
     -- Default = true
     ["TransformationIcons"] = true,
-    -- Set the color-name of the Transformation description text. Color names can be found& defined in "eid_data.lua"
+    -- Set the color of the Transformation description text
+    -- Color names are defined in "eid_data.lua" (line 300)
     -- Default = "ColorEIDTransform"
     ["TransformationColor"] = "ColorEIDTransform",
 
@@ -289,11 +291,11 @@ EID.UserConfig = {
     -- Error message displayed when an error occurs
     -- Default = [Effect not defined]
     ["ErrorMessage"] = "[Effect not defined]",
-    -- Set the color name of the default description text
+    -- Set the color of the default description text
     -- Color names are defined in "eid_data.lua" (line 300)
     -- Default = "ColorEIDText"
     ["TextColor"] = "ColorEIDText",
-    -- Set the color name of the error description text
+    -- Set the color of the error description text
     -- Color names are defined in "eid_data.lua" (line 300)
     -- Default = "ColorEIDError"
     ["ErrorColor"] = "ColorEIDError",
