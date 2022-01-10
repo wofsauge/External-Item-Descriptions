@@ -765,6 +765,17 @@ function EID:updateDescriptionsViaTable(changeTable, tableToUpdate)
 	end
 end
 
+-- Checks if any player has a given collectible ID, for modifiers
+function EID:PlayersHaveCollectible(collectibleID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player:HasCollectible(collectibleID) then
+			return true
+		end
+	end
+	return false
+end
+
 -- Converts a given CollectibleID into the respective Spindown dice result
 function EID:getSpindownResult(collectibleID)
 	if collectibleID <= 0 or collectibleID > 4294960000 then return 0 end

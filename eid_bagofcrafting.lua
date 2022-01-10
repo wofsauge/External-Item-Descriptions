@@ -1,4 +1,5 @@
 local game = Game()
+
 local pickupValues = {
   0x00000000, -- 0 None
   -- Hearts
@@ -491,7 +492,7 @@ local moddedCrafting = false
 -- Check for modded items past the known max item ID on game start (can also support game updates)
 -- Only works if the new items are at Weight 1.0 in their item pools, but better than nothing
 local function GameStartCrafting()
-	if EID.itemConfig:GetCollectible(EID.XMLMaxItemID+1) ~= nil then
+	if not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) and EID.itemConfig:GetCollectible(EID.XMLMaxItemID+1) ~= nil then
 		-- Items past max ID detected; copy our XML tables so we can add to them
 		CraftingMaxItemID = EID.XMLMaxItemID
 		CraftingItemPools = deepcopy(EID.XMLItemPools)
@@ -509,18 +510,10 @@ local function GameStartCrafting()
 			for i=1,EID.XMLMaxItemID do itemPool:AddRoomBlacklist(i) end
 			
 			local collID = itemPool:GetCollectible(poolNum, false, 1, 25)
-			local idsToAdd = {}
-			while collID ~= 25 do
-				table.insert(idsToAdd, {collID, 1.0})
+			while collID ~= 25 and collID > 0 do
+				table.insert(CraftingItemPools[poolNum+1], {collID, 1.0})
 				itemPool:AddRoomBlacklist(collID)
 				collID = itemPool:GetCollectible(poolNum, false, 1, 25)
-			end
-			-- sort ids since thats the most likely way people add items to the itempool
-			table.sort(idsToAdd, function (a,b)
-				return a[1] < b[1]
-			end)
-			for _,v in ipairs(idsToAdd) do
-				table.insert(CraftingItemPools[poolNum+1], v)
 			end
 			
 			itemPool:ResetRoomBlacklist()
