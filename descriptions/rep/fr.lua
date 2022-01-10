@@ -9,6 +9,7 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "fr"
 
 local repCollectibles={
 	[5] = {"5", "My reflexion", "Donne un effet boomerang aux larmes#↑ +1.5 Portée#↑ +60% Portée supplémentaire#↑ +0.6 Vitesse des larmes#↑ +1 Hauteur des larmes"}, -- My Reflection
@@ -353,9 +354,9 @@ local repCollectibles={
 	[729] = {"729", "", "Lance la tête d'Isaac, tout en étant capable de tirer des larmes à l'endroit d'arrivée du lancer#Réactiver l'objet ou marcher sur la tête permet de la réattacher"}, --  Decap Attack
 	
 }
-EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions["fr"].collectibles)
+EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
-EID.descriptions["fr"].birthright ={
+EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "Tous les objets cyclent entre deux rotations"},
 	{"Magdalene", "", "<Pas encore d'effet>"},
 	{"Cain", "", "<Pas encore d'effet>"},
@@ -402,17 +403,17 @@ EID.descriptions["fr"].birthright ={
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
 
-EID.descriptions["fr"].bingeEaterBuffs = {
-	[22] = {"22", "", "↑+0.5 Cadence de tir#↑+1.5 Portée"}, -- Lunch
-	[23] = {"23", "", "↑+0.5 Cadence de tir#↑+0.2 Vitesse des larmes"}, -- Dinner
-	[24] = {"24", "", "↑+1.0 Dégâts#↑+0.2 Vitesse"}, -- Dessert
-	[25] = {"25", "", "↑+0.2 Vitesse#↑+1.5 Portée"}, -- Breakfast
-	[26] = {"26", "", "↑+1.0 Dégâts#↑+1.5 Portée"}, -- Rotten Meat
-	[456] = {"456", "", "↑+1.0 Dégâts#↑+1.0 Chance"}, -- Midnight Snack
-	[346] = {"346", "", "↑+0.2 Vitesse des larmes#↑+1.0 Chance"}, -- A Snack
-	[707] = {"707", "", "↑+0.5 Cadence de tir#↑+1.0 Chance"}, -- Supper
+EID.descriptions[languageCode].bingeEaterBuffs = {
+	[22] = "↑+0.5 Cadence de tir#↑+1.5 Portée", -- Lunch
+	[23] = "↑+0.5 Cadence de tir#↑+0.2 Vitesse des larmes", -- Dinner
+	[24] = "↑+1.0 Dégâts#↑+0.2 Vitesse", -- Dessert
+	[25] = "↑+0.2 Vitesse#↑+1.5 Portée", -- Breakfast
+	[26] = "↑+1.0 Dégâts#↑+1.5 Portée", -- Rotten Meat
+	[456] = "↑+1.0 Dégâts#↑+1.0 Chance", -- Midnight Snack
+	[346] = "↑+0.2 Vitesse des larmes#↑+1.0 Chance", -- A Snack
+	[707] = "↑+0.5 Cadence de tir#↑+1.0 Chance", -- Supper
 }
-EID.descriptions["fr"].spindownError = "Item disappears"
+EID.descriptions[languageCode].spindownError = "Item disappears"
 
 ---------- Trinkets ----------
 
@@ -502,40 +503,40 @@ local repTrinkets={
 	[188] = {"188", "", "Ajoute une chance de pétrifier un ennemi en entrant dans une salle#Tuer un ennemi pétrifié le transforme en glace"}, --  Ice Cube
 	[189] = {"189", "", "Active un bouclier d'une seconde en tuant un ennemi"}, --  Sigil of Baphomet
 }
-EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions["fr"].trinkets)
+EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
 
 -- Card Buffs caused by Tarot Cloth
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
 
-EID.descriptions["fr"].tarotClothBuffs = {
-	[2] = {"2", "", "Donne également l'effet Book of Belial{{Collectible34}} "}, -- I - The Magician
-	[3] = {"3", "", "Un second pied tombe peu de temps après le premier"}, -- II - The High Priestess
-	[4] = {"4", "", "Quadruple l'augmentation de stats"}, -- III - The Empress
-	[5] = {"5", "", "Si le boss n'a pas encore été vaincu, donne un coeur bleu en supplément"}, -- IV - The Emperor
-	[6] = {"6", "", "Fait apparaître 3 coeurs bleus"}, -- V - The Hierophant
-	[7] = {"7", "", "Fait apparaître 3 coeurs rouges"}, -- VI - The Lovers
-	[8] = {"8", "", "Durée doublée"}, -- VII - The Chariot
-	[9] = {"9", "", "La quantité de collectible obtenue est doublée"}, -- VIII - Justice
-	[10] = {"10", "", "Empêche Greed d'apparaître dans les Shops#Si Greed a déjà été combattu dans l'étage, fait apparaître un Shop sur le lieu du combat"}, -- IX - The Hermit
-	[11] = {"11", "", "Fait apparaître 2 machines de casino"}, -- X - Wheel of Fortune
-	[12] = {"12", "", "Double l'effet, ne prend pas en compte les multiplicateurs de dégâts"}, -- XI - Strength
-	[14] = {"14", "", "Inflige 80 de dégâts à tous les ennemis"}, -- XIII - Death
-	[15] = {"15", "", "Fait apparaître 2 machines de don du sang"}, -- XIV - Temperance
-	[16] = {"16", "", "L'augmentation des dégâts est doublée"}, -- XV - The Devil
-	[17] = {"17", "", "Fait apparaître 12 bombes trolles"}, -- XVI - The Tower
-	[18] = {"18", "", "Si l'Item room n'a pas encore été visitée, vous aurez le choix entre 2 objets"}, -- XVII - The Stars
-	[21] = {"21", "", "Fait apparaître 2 mendiants"}, -- XX - Judgement
-	[56] = {"56", "", "Vous fait lâcher tous vos collectibles ainsi que Tarot Cloth"}, -- 0 - The Fool?
-	[59] = {"59", "", "Confère 3 réceptacles de coeurs temporaires"}, -- III - The Empress?
-	[61] = {"61", "", "Fait apparaître 6 coeurs d'os"}, -- V - The Hierophant?
-	[62] = {"62", "", "Fait apparaître 4 coeurs brisés et apparaître 4 objets"}, -- VI - The Lovers?
-	[64] = {"64", "", "Fait apparaître 4-14 coffres dorés"}, -- VIII - Justice?
-	[70] = {"70", "", "Mange 20 pilules"}, -- XIV - Temperance?
-	[72] = {"72", "", "Fait apparaître 14 rochers aléatoires"}, -- XVI - The Tower?
-	[73] = {"73", "", "Retire 2 objets et en fait apparaître 4"}, -- XVII - The Stars?
-	[76] = {"76", "", "Fait apparaître 2 machines de reroll"}, -- XX - Judgement?
+EID.descriptions[languageCode].tarotClothBuffs = {
+	[2] = "Donne également l'effet Book of Belial{{Collectible34}} ", -- I - The Magician
+	[3] = "Un second pied tombe peu de temps après le premier", -- II - The High Priestess
+	[4] = "Quadruple l'augmentation de stats", -- III - The Empress
+	[5] = "Si le boss n'a pas encore été vaincu, donne un coeur bleu en supplément", -- IV - The Emperor
+	[6] = "Fait apparaître 3 coeurs bleus", -- V - The Hierophant
+	[7] = "Fait apparaître 3 coeurs rouges", -- VI - The Lovers
+	[8] = "Durée doublée", -- VII - The Chariot
+	[9] = "La quantité de collectible obtenue est doublée", -- VIII - Justice
+	[10] = "Empêche Greed d'apparaître dans les Shops#Si Greed a déjà été combattu dans l'étage, fait apparaître un Shop sur le lieu du combat", -- IX - The Hermit
+	[11] = "Fait apparaître 2 machines de casino", -- X - Wheel of Fortune
+	[12] = "Double l'effet, ne prend pas en compte les multiplicateurs de dégâts", -- XI - Strength
+	[14] = "Inflige 80 de dégâts à tous les ennemis", -- XIII - Death
+	[15] = "Fait apparaître 2 machines de don du sang", -- XIV - Temperance
+	[16] = "L'augmentation des dégâts est doublée", -- XV - The Devil
+	[17] = "Fait apparaître 12 bombes trolles", -- XVI - The Tower
+	[18] = "Si l'Item room n'a pas encore été visitée, vous aurez le choix entre 2 objets", -- XVII - The Stars
+	[21] = "Fait apparaître 2 mendiants", -- XX - Judgement
+	[56] = "Vous fait lâcher tous vos collectibles ainsi que Tarot Cloth", -- 0 - The Fool?
+	[59] = "Confère 3 réceptacles de coeurs temporaires", -- III - The Empress?
+	[61] = "Fait apparaître 6 coeurs d'os", -- V - The Hierophant?
+	[62] = "Fait apparaître 4 coeurs brisés et apparaître 4 objets", -- VI - The Lovers?
+	[64] = "Fait apparaître 4-14 coffres dorés", -- VIII - Justice?
+	[70] = "Mange 20 pilules", -- XIV - Temperance?
+	[72] = "Fait apparaître 14 rochers aléatoires", -- XVI - The Tower?
+	[73] = "Retire 2 objets et en fait apparaître 4", -- XVII - The Stars?
+	[76] = "Fait apparaître 2 machines de reroll", -- XX - Judgement?
 }
-EID.descriptions["fr"].goldenTrinket = "GOLD: Effect doubled!"
+EID.descriptions[languageCode].goldenTrinket = "GOLD: Effect doubled!"
 
 ---------- Cards ----------
 
@@ -590,7 +591,7 @@ local repCards={
 	[96] = {"96", "", "Fait apparaître 6 flammèches du Book of Virtues {{Collectible584}} avec une propriété aléatoire"},
 	[97] = {"97", "", "Fait apparaître Esau en tant que personnages secondaire pour la salle actuelle"},
 }
-EID:updateDescriptionsViaTable(repCards, EID.descriptions["fr"].cards)
+EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
 ---------- Pills ----------
 
@@ -606,9 +607,9 @@ local repPills={
 	[50] = {"49", "", "↑ Augmente une stat aléatoire#↓ Baisse une autre stat aléatoire#Si vous avez le PHD, aucune stat ne sera baissée"},
 	[9999] = {"", "Golden Pill", "Effet de pilule aléatoire#S'autodétruit après quelques utilisations"}, -- golden Pill
 }
-EID:updateDescriptionsViaTable(repPills, EID.descriptions["fr"].pills)
+EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
-EID.descriptions["fr"].horsepills={
+EID.descriptions[languageCode].horsepills={
 	{"0", "", "Empoisonne la salle entière"},
 	{"1", "", "Vous inflige 2 coeurs de dégâts"},
 	{"2", "", "+4 Coeurs bleus"},
@@ -662,8 +663,8 @@ EID.descriptions["fr"].horsepills={
 	[9999] = {"", "Golden Pill", "Effet de <<Horse Pill>> aléatoire#S'autodétruit après quelques utilisations"}, -- golden Pill
 }
 
-EID.descriptions["fr"].CraftingBagContent = "Sac:"
-EID.descriptions["fr"].CraftingRoomContent = "Salle:"
-EID.descriptions["fr"].CraftingFloorContent = "Étage:"
-EID.descriptions["fr"].CraftingResults = "Results:#(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
-EID.descriptions["fr"].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}This feature currently does not support games with modded items installed"
+EID.descriptions[languageCode].CraftingBagContent = "Sac:"
+EID.descriptions[languageCode].CraftingRoomContent = "Salle:"
+EID.descriptions[languageCode].CraftingFloorContent = "Étage:"
+EID.descriptions[languageCode].CraftingResults = "Results:#(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
+EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}This feature currently does not support games with modded items installed"

@@ -10,16 +10,16 @@ For the Afterbirth/Rebirth version [click here](https://moddingofisaac.com/mod/1
 
 ## Features
 - Displays information for all collectibles, trinkets, cards, runes, pills and some rooms
-- Displays **additional information** like item type, charges, transformations, spindown Dice Results and Bag of Crafting recipes
+- Displays **additional information** like item type, charges, transformations, Spindown Dice results and Bag of Crafting recipes
 - Displays one of 4 different indicators around the inspected item
 - Mod support for nearly all mods!
 - Easy to use API ([Documentation here](https://github.com/wofsauge/External-Item-Descriptions/wiki))
 - A huge amount of custom options like:
 	- Indicators
-	- Font style
-	- Language
-	- and a lot of visual options!
-- **Press F2 to hide/show the description!**
+	- Font styles
+	- Languages
+	- And a lot of visual options!
+- **Press F2 to hide/show the descriptions!**
 
 ### Supported Languages
 - **English** (Default)
@@ -31,7 +31,8 @@ For the Afterbirth/Rebirth version [click here](https://moddingofisaac.com/mod/1
 - **Italian** (by Klyser8, Denkishi, 2G)
 - **Bulgarian** (*WIP*, by TST_Gogo_, Gothika_47)
 - **Turkish** (by Cagdas Salur, Mert Dutal)
-- **Polish** (by Rickyy, Kennyluz, MERITT, DimonoKingoKongo )
+- **Polish** (by Rickyy, Kennyluz, MERITT, DimonoKingoKongo)
+- **Korean** (by Blackcreamtea)
 - **Chinese** version: [EID Chinese Edition](https://steamcommunity.com/sharedfiles/filedetails/?id=1290363695) | alternative: [中文道具图鉴 Eid Chinese](https://steamcommunity.com/sharedfiles/filedetails/?id=848295251)
 
 ### Possible Future Features
@@ -43,10 +44,11 @@ For the Afterbirth/Rebirth version [click here](https://moddingofisaac.com/mod/1
 
 ### In-game Configuration
 
-Simply install &quot;[Mod config Menu - Continued](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818)&quot;. All configuration except the language setting can be changed with it in game.
+Simply install &quot;[Mod Config Menu - Continued](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818)&quot;. All configuration except the language setting can be changed with it in game.
 
+Or:
 ### Windows
-1. With Repentance: `steamapps\common\The Binding of Isaac Rebirth\mods\external item descriptions_836319872\`
+1. With Repentance: `..\steamapps\common\The Binding of Isaac Rebirth\mods\external item descriptions_836319872\`
 1. With  AB+: `..\Documents\My Games\Binding of Isaac Afterbirth+ Mods\External item descriptions\`
 2. Open `eid_config.lua` with any text editor
 3. Edit the config
@@ -74,4 +76,5 @@ Same as Windows, but the path is: `/home/%YourUsernameHere%/.steam/steam/steamap
 - TST_Gogo_, Gothika_47 for creating the **Bulgarian** language pack
 - Cagdas Salur and Mert Dutal for creating the **Turkish** language pack
 - Jake for the sweet **German** language pack
+- Blackcreamtea for the awesome **Korean** language pack
 - [adc](https://steamcommunity.com/id/whytefang/) for creating an awesome new language pack and providing ideas for new functionalities

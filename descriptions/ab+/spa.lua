@@ -7,12 +7,16 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "spa"
  
 -- init spa table
-EID.descriptions["spa"] = {}
-EID.descriptions["spa"].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode] = {}
+EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode].languageName = "Spanish"
+
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
  
-EID.descriptions["spa"].collectibles={
+EID.descriptions[languageCode].collectibles={
 	{"1", "Cebolla triste", "↑ +0,7 de lágrimas"},
 	{"2", "El Ojo Interior", "Disparo triple#↓ Menos lágrimas"},
 	{"3", "Doblador de cucharas", "Lágrimas teledirigidas"},
@@ -568,7 +572,7 @@ EID.descriptions["spa"].collectibles={
 }
  
 ---------- Trinkets ----------
-EID.descriptions["spa"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "Moneda tragada", "Generas 1 moneda cuando te golpean"},
 	{"2", "Caca petrificada", "Las cacas dejan caer más recolectables"},
 	{"3", "Pila AAA", "Se necesita 1 carga menos en los objetos activables"},
@@ -700,7 +704,7 @@ EID.descriptions["spa"].trinkets={
 }
  
 ---------- Cards ----------
-EID.descriptions["spa"].cards={
+EID.descriptions[languageCode].cards={
 	{"1", "0 - El Bufón", "Te teletransporta de nuevo al inicio"},
 	{"2", "I - El Mago", "Lágrimas teledirigidas en la habitación actual"},
 	{"3", "II - La Suma Sacerdotisa", "El Pie de Mamá pisa a un enemigo"},
@@ -760,9 +764,9 @@ EID.descriptions["spa"].cards={
  
 ---------- Pills ----------
  
-EID.descriptions["spa"].unidentifiedPill = "Píldora sin identificar"
+EID.descriptions[languageCode].unidentifiedPill = "Píldora sin identificar"
  
-EID.descriptions["spa"].pills={
+EID.descriptions[languageCode].pills={
 	{"0", "Vaya pedo", "Genera una nube de gas"},
 	{"1", "Mal viaje", "Inflige 1 corazón de daño"},
 	{"2", "Bolas de acero", "+2 corazones de alma"},
@@ -813,9 +817,9 @@ EID.descriptions["spa"].pills={
 } 
  
 ---------- Sacrifice Room ----------
-EID.descriptions["spa"].sacrificeHeader = "[Siguiente pago de la sala del Sacrificio]"
+EID.descriptions[languageCode].sacrificeHeader = "[Siguiente pago de la sala del Sacrificio]"
  
-EID.descriptions["spa"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50 % de probabilidad de 1 moneda#100 % de probabilidad de 1 bomba, al matar al Jefe de B1 en menos de 1 minuto"},
 	{"2", "", "50 % de probabilidad de 1 moneda#100 % de probabilidad de 1 bomba, al matar al Jefe de B1 en menos de 1 minuto"},
 	{"3", "", "67 % más de probabilidad de que aparezca la sala del Ángel{{AngelRoom}} en lugar de la del Diablo"},
@@ -831,9 +835,9 @@ EID.descriptions["spa"].sacrifice={
 }
  
 ---------- Dice Room ----------
-EID.descriptions["spa"].diceHeader = "[Efecto del dado]"
+EID.descriptions[languageCode].diceHeader = "[Efecto del dado]"
  
-EID.descriptions["spa"].dice={
+EID.descriptions[languageCode].dice={
 	{"1", "", "Cambia tus objetos#(no afecta a los recolectables)"},
 	{"2", "", "Cambia los recolectables de la habitación"},
 	{"3", "", "Cambia todos los recolectables de la planta"},
@@ -843,7 +847,7 @@ EID.descriptions["spa"].dice={
 }
  
 ---------- Transformations ----------
-EID.descriptions["spa"].transformations = {
+EID.descriptions[languageCode].transformations = {
 	"",						-- 0 = none
 	"Guppy",				-- 1
 	"Fungi",				-- 2

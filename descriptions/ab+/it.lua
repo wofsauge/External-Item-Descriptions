@@ -7,12 +7,16 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "it"
 
 -- init it table
-EID.descriptions["it"] = {}
-EID.descriptions["it"].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode] = {}
+EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode].languageName = "Italian"
 
-EID.descriptions["it"].collectibles={
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+
+EID.descriptions[languageCode].collectibles={
 	{"1", "La Cipolla Triste", "+0.7 Lacrime"},
 	{"2", "L'occhio Interiore", "Triple shot#↓ Lacrime"},
 	{"3", "Cucchiaio Torto", "Lacrime a ricerca"},
@@ -568,7 +572,7 @@ EID.descriptions["it"].collectibles={
 }
 
 ---------- Trinkets ----------
-EID.descriptions["it"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "Penny Inghiottito", "Lasci soldi quando vieni colpito"},
 	{"2", "Cacca Pietrificata", "Piu' tesori dalle cacche!"},
 	{"3", "Batterie AAA", "Rimuove una carica massima dal tuo oggetto attivo"},
@@ -700,7 +704,7 @@ EID.descriptions["it"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["it"].cards={
+EID.descriptions[languageCode].cards={
 	{"1", "0 - Lo Stolto", "Ti teletrasporta all'inizio"},
 	{"2", "I - Il Mago", "Lacrime a ricerca per la stanza attuale"},
 	{"3", "II - L'Alta Sacerdotessa", "Il piede di mamma schiaccia un nemico!"},
@@ -760,9 +764,9 @@ EID.descriptions["it"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["it"].unidentifiedPill = "Pillola non identificata"
+EID.descriptions[languageCode].unidentifiedPill = "Pillola non identificata"
 
-EID.descriptions["it"].pills={
+EID.descriptions[languageCode].pills={
 	{"0", "Gas Nocivo", "Fai una scorreggia"},
 	{"1", "Brutta Trip", "Ti danneggia"},
 	{"2", "Palle d'Acciaio", "+2 Cuori d'anima"},
@@ -813,9 +817,9 @@ EID.descriptions["it"].pills={
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["it"].sacrificeHeader = "[Prossimi Drop Stanza del Sacrificio]"
+EID.descriptions[languageCode].sacrificeHeader = "[Prossimi Drop Stanza del Sacrificio]"
 
-EID.descriptions["it"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50% chance per 1 Moneta#100% chance per 1 Bomba, sul B1 se hai sconfitto il Boss in meno di un minuto"},
 	{"2", "", "50% chance per 1 Moneta#100% chance per 1 Bomba, sul B1 se hai sconfitto il Boss in meno di un minuto"},
 	{"3", "", "67% chance di aumento possibilita' della Stanza{{AngelRoom}} dell'Angelo"},
@@ -831,9 +835,9 @@ EID.descriptions["it"].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions["it"].diceHeader = "[Effetto dadi]"
+EID.descriptions[languageCode].diceHeader = "[Effetto dadi]"
 
-EID.descriptions["it"].dice={
+EID.descriptions[languageCode].dice={
 	{"1", "", "Rerolla tutti i tuoi oggetti#(ha effetto solo sui collezionabili)"},
 	{"2", "", "Rerolla tutti i consumabili nella stanza"},
 	{"3", "", "Rerolla tutti i consumabili nell'intero piano"},
@@ -843,7 +847,7 @@ EID.descriptions["it"].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions["it"].transformations = {
+EID.descriptions[languageCode].transformations = {
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2

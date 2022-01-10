@@ -128,6 +128,8 @@ EID.InlineIcons = {
 	["HalfCoinHeart"] = {"hearts", 14, 9, 9},
 	["EmptyCoinHeart"] = {"hearts", 15, 9, 9},
 	["RottenHeart"] = {"hearts", 16, 9, 9},
+	["BrokenHeart"] = {"hearts", 17, 9, 9},
+	["HolyMantle"] = {"hearts", 18, 14, 16, -1, -2},
 	-- Pickups
 	["Key"] = {"pickups", 0, 7, 9},
 	["GoldenKey"] = {"pickups", 1, 7, 9},
@@ -179,6 +181,12 @@ EID.InlineIcons = {
 	["PoopRoomIcon"] = {"roomicons", 21, 8, 9, 0, 2},
 	["RedChestRoomIcon"] = {"roomicons", 22, 8, 9, 0, 2},
 	["GoldenChestRoomIcon"] = {"roomicons", 23, 8, 9, 0, 2},
+	["RedTreasureRoom"] = {"roomicons", 24, 8, 9, 0, 2},
+	["MegaChestRoomIcon"] = {"roomicons", 25, 8, 9, 0, 2},
+	["Confessional"] = {"roomicons", 26, 8, 9, 0, 2},
+	["CraneGame"] = {"roomicons", 27, 8, 9, 0, 2},
+	["MirrorRoom"] = {"roomicons", 28, 8, 9, 0, 2},
+	["LadderRoom"] = {"roomicons", 29, 8, 9, 0, 2},
 	
 	-- Roomshape Icons
 	["Room"] = {"roomshape", 0, 9, 9, 0, 2},
@@ -283,6 +291,7 @@ EID.InlineIcons = {
 	["AngelDevilChance"] = {"Stats", 8, 16, 16, 0, 8},
 	["PlanetariumChance"] = {"Stats", 9, 16, 16, 0, 8},
 	["Crone"] = {"Stats", 10, 16, 16, 0, 8},
+	["Tearsize"] = {"Stats", 11, 16, 16, 0, 8},
 	
 }
 

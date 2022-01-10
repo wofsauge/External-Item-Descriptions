@@ -7,12 +7,16 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "ru"
 
 -- init ru table
-EID.descriptions["ru"] = {}
-EID.descriptions["ru"].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode] = {}
+EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode].languageName = "Russian"
 
-EID.descriptions["ru"].collectibles={
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+
+EID.descriptions[languageCode].collectibles={
 	{"1", "Грустный лук", "↑ +0.7 к скорострельности"},
 	{"2", "Внутренний глаз", "Тройной выстрел#↓ Уменьшает скорострельность"},
 	{"3", "Сгибатель ложек", "Самонаводящиеся слезы"},
@@ -568,7 +572,7 @@ EID.descriptions["ru"].collectibles={
 }
 
 ---------- Trinkets ----------
-EID.descriptions["ru"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "Проглоченный пенни", "При получении вами урона, на пол падает монетка"},
 	{"2", "Окаменевшая какашка", "Больше предметов из какашек"},
 	{"3", "Батарейка ААА", "Уменьшает количество необходимых для предмета зарядов на 1"},
@@ -700,7 +704,7 @@ EID.descriptions["ru"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["ru"].cards={
+EID.descriptions[languageCode].cards={
 	{"1", "0 - Дурак", "Телепортирует в начало уровня"},
 	{"2", "I - Маг", "Самонаводящиеся слезы в пределах комнаты"},
 	{"3", "II - Верховная жрица", "Мамина Нога атакует случайного врага"},
@@ -760,9 +764,9 @@ EID.descriptions["ru"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["ru"].unidentifiedPill = "Неизвестная пилюля"
+EID.descriptions[languageCode].unidentifiedPill = "Неизвестная пилюля"
 
-EID.descriptions["ru"].pills={
+EID.descriptions[languageCode].pills={
 	{"0", "Вонючий газ", " Создает облако ядовитого газа"},
 	{"1", "Плохой приход", " Наносит урон в 1 сердце"},
 	{"2", "Стальные яйца", " +2 Сердца Душ"},
@@ -813,9 +817,9 @@ EID.descriptions["ru"].pills={
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["ru"].sacrificeHeader = "[Комната жертвоприношений - следующая награда]"
+EID.descriptions[languageCode].sacrificeHeader = "[Комната жертвоприношений - следующая награда]"
 
-EID.descriptions["ru"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50% шанс на 1 Монету#100% шанс на 1 Бомбу, если вы в Подвале 1 и убили Босса за 1 минуту"},
 	{"2", "", "50% шанс на 1 Монету#100% шанс на 1 Бомбу, если вы в Подвале 1 и убили Босса за 1 минуту"},
 	{"3", "", "67% вероятность повысить шанс появления {{AngelRoom}}Комнаты Ангела"},
@@ -831,9 +835,9 @@ EID.descriptions["ru"].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions["ru"].diceHeader = "[Комната игральной кости]"
+EID.descriptions[languageCode].diceHeader = "[Комната игральной кости]"
 
-EID.descriptions["ru"].dice={
+EID.descriptions[languageCode].dice={
 	{"1", "", "Меняет все пассивные и активный артефакты персонажа на случайные из пула той комнаты, в которой они были получены"},
 	{"2", "", "Меняет все подбираемые предметы в данной комнате"},
 	{"3", "", "Меняет все подбираемые предметы на данном этаже#Не влияет на комнаты {{DevilRoom}} Дьявола/{{AngelRoom}} Ангела"},
@@ -843,7 +847,7 @@ EID.descriptions["ru"].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions["ru"].transformations = {
+EID.descriptions[languageCode].transformations = {
 	"",			-- 0 = none
 	"Гаппи",		-- 1
 	"Весельчак",		-- 2

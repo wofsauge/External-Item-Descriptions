@@ -765,6 +765,17 @@ function EID:updateDescriptionsViaTable(changeTable, tableToUpdate)
 	end
 end
 
+-- Checks if any player has a given collectible ID, for modifiers
+function EID:PlayersHaveCollectible(collectibleID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player:HasCollectible(collectibleID) then
+			return true
+		end
+	end
+	return false
+end
+
 -- Converts a given CollectibleID into the respective Spindown dice result
 function EID:getSpindownResult(collectibleID)
 	if collectibleID <= 0 or collectibleID > 4294960000 then return 0 end
@@ -943,6 +954,19 @@ function EID:getEntityData(entity, str)
 		return entity:GetData()[str]
 	end
 	return nil
+end
+
+-- Function to fix font compatibility. Resets config font to a value compatible with your current language
+function EID:fixDefinedFont()
+	local curLang = EID.Config["Language"]
+	local curFont = EID.Config["FontType"]
+	for _, v in ipairs(EID.descriptions[curLang].fonts) do
+		if curFont == v then
+			return false
+		end
+	end
+	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1]
+	return true
 end
 
 -- Creates a copy of a KColor object. This prevents overwriting existing

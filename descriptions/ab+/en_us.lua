@@ -7,12 +7,16 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "en_us"
 
 -- init en_us table
-EID.descriptions["en_us"] = {}
-EID.descriptions["en_us"].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode] = {}
+EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode].languageName = "English"
 
-EID.descriptions["en_us"].collectibles={
+EID.descriptions[languageCode].fonts = {"default", "inverted", "borderless"} -- Fonts to be used with this languagepack
+
+EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ +0.7 Tears up"},
 	{"2", "The Inner Eye", "Triple shot#↓ Tears down"},
 	{"3", "Spoon Bender", "Homing tears"},
@@ -33,7 +37,7 @@ EID.descriptions["en_us"].collectibles={
 	{"18", "A Dollar", "+99 coins"},
 	{"19", "Boom!", "+10 Bombs"},
 	{"20", "Transcendence", "Flight!"},
-	{"21", "The Compass", "Reveals all icons on the map#Does not show the layout of the map"},
+	{"21", "The Compass", "Reveals icons on the map#Does not show the layout of the map"},
 	{"22", "Lunch", "↑ +1 Health up"},
 	{"23", "Dinner", "↑ +1 Health up"},
 	{"24", "Dessert", "↑ +1 Health up"},
@@ -196,7 +200,7 @@ EID.descriptions["en_us"].collectibles={
 	{"181", "White Pony", "Grants flight while held#Sets your speed to 1.5 if you have less than 1.5#Holy Dash on use"},
 	{"182", "Sacred Heart", "↑ +1 Health up#Full health#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#↑ +0.38 Range up#↑ +0.75 Tear Height#Homing tears"},
 	{"183", "Tooth Picks", "↑ +0.7 Tears up#↑ +0.16 Shot Speed up"},
-	{"184", "Holy Grail", "Grants flight#↑ +1 Health up"},
+	{"184", "Holy Grail", "Flight#↑ +1 Health up"},
 	{"185", "Dead Dove", "Flight#Spectral tears"},
 	{"186", "Blood Rights", "↑ Deal 40 damage to every enemy#↓ Deals 1 heart of damage to you#Prioritizes Red Hearts"},
 	{"187", "Guppy's Hairball", "Growing hairball#Swings around you#Grows when it kills an enemy#Bigger ball deals more damage"},
@@ -381,7 +385,7 @@ EID.descriptions["en_us"].collectibles={
 	{"366", "Scatter Bombs", "+5 bombs#Causes your bombs to explode into 2-4 tiny bombs"},
 	{"367", "Sticky Bombs", "+5 bombs#When a bomb kills an enemy, it spawns blue spiders#Causes your bombs to stick to enemies"},
 	{"368", "Epiphora", "Shooting in one direction gradually decreases your tear delay by up to 200%"},
-	{"369", "Continuum", "↑ +2.25 Range up#↑ +1.5 Tear Height#Tears travel through walls and appear out of the opposite wall"},
+	{"369", "Continuum", "↑ +2.25 Range up#↑ +1.5 Tear Height#Spectral tears#Tears travel through walls and appear out of the opposite wall"},
 	{"370", "Mr. Dolly", "↑ +0.7 Tears up#↑ +5.25 Range up#↑ +0.5 Tear Height#Spawns 3 random hearts when picked up"},
 	{"371", "Curse of the Tower", "Spawn 6 troll bombs every time you get hit#These are affected by bomb items"},
 	{"372", "Charged Baby", "Random chance to drop a battery or freeze all enemies in the room#Chance to add one charge to your active item"},
@@ -472,7 +476,7 @@ EID.descriptions["en_us"].collectibles={
 	{"457", "Cone Head", "+1 Soul Heart#20% chance to ignore damage"},
 	{"458", "Belly Button", "Spawns a random trinket on pickup#Grants 1 extra trinket slot"},
 	{"459", "Sinus Infection", "20% chance to shoot sticky poison tears#Deals your damage each second#Sticks for 60 seconds"},
-	{"460", "Glaucoma", "5% chance to shoot concussive tears"},
+	{"460", "Glaucoma", "5% chance to shoot concussive tears#Makes the screen slightly darker"},
 	{"461", "Parasitoid", "15% chance to shoot egg sacks#Spawns slowing creep on hit#Spawns a blue spider or fly on hit"},
 	{"462", "Eye of Belial", "↑ +1.5 Range up#↑ +1 Tear Height#Grants piercing tears#After hitting the first enemy, the tear deals double damage and gains a homing effect"},
 	{"463", "Sulfuric Acid", "↑ +0.3 Damage up#Chance to destroy rocks and open doors with your tears"},
@@ -533,7 +537,7 @@ EID.descriptions["en_us"].collectibles={
 	{"518", "Buddy in a Box", "Familiar which looks like a random coop Baby#Has a random tear effect#Will be randomized every floor"},
 	{"519", "Lil Delirium", "A familiar that transforms into other random familiars every 10 seconds"},
 	{"520", "Jumper Cables", "+1 charge for your active item for every 15 enemies killed"},
-	{"521", "Coupon", "When used, causes one random item in the {{Shop}}Shop or {{DevilRoom}}Devil Room to become free"},
+	{"521", "Coupon", "When used, causes one random item in the {{Shop}}Shop or {{DevilRoom}}Devil Room to become free#While held, guarantees one Shop item will be on sale"},
 	{"522", "Telekinesis", "Enemy projectiles close to you are held in place for 3 seconds#They get thrown away from you afterwards#Recharges after 3 seconds"},
 	{"523", "Moving Box", "When used, stores all pickups from the current room#Using it again will put them back on the floor again#This allows you to move things between rooms"},
 	{"524", "Technology Zero", "Tears will be connected with beams of electricity#Electricity damage equals your damage"},
@@ -568,7 +572,7 @@ EID.descriptions["en_us"].collectibles={
 }
 
 ---------- Trinkets ----------
-EID.descriptions["en_us"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "Swallowed Penny", "Spawns 1 coin when you get hit"},
 	{"2", "Petrified Poop", "50% chance to get drops from poop"},
 	{"3", "AAA Battery", "-1 charge needed for active items"},
@@ -700,7 +704,7 @@ EID.descriptions["en_us"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["en_us"].cards={
+EID.descriptions[languageCode].cards={
 	{"1", "0 - The Fool", "Teleports you back to the start"},
 	{"2", "I - The Magician", "Homing tears for current room"},
 	{"3", "II - The High Priestess", "Mom's Foot stomps on an enemy!"},
@@ -741,7 +745,7 @@ EID.descriptions["en_us"].cards={
 	{"38", "Berkano", "Summons 3 blue spiders and 3 blue flies"},
 	{"39", "Algiz", "Invincibility for 30 seconds"},
 	{"40", "Blank Rune", "Random rune effect#25% chance to drop itself again"},
-	{"41", "Black Rune", "Deals 40 damage to all enemies#Random stat up for every pedestal items in the room#(Destroys all pedestals in room)"},
+	{"41", "Black Rune", "Deals 40 damage to all enemies#Converts all pedestal items in the room into random stat ups#Converts all pickups in the room into blue flies"},
 	{"42", "Chaos Card", "Throwable instant kill-card"},
 	{"43", "Credit Card", "Removes the price from all items in the current shop or Devil deal, making everything free"},
 	{"44", "Rules Card", "Displays \"helpful\" tips on use"},
@@ -760,9 +764,9 @@ EID.descriptions["en_us"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["en_us"].unidentifiedPill = "Unidentified Pill"
+EID.descriptions[languageCode].unidentifiedPill = "Unidentified Pill"
 
-EID.descriptions["en_us"].pills={
+EID.descriptions[languageCode].pills={
 	{"0", "Bad Gas", "Spawns a Gas cloud"},
 	{"1", "Bad Trip", "Deals 1 heart of damage to you"},
 	{"2", "Balls of Steel", "+2 Soul Hearts"},
@@ -813,9 +817,9 @@ EID.descriptions["en_us"].pills={
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["en_us"].sacrificeHeader = "[Next Sacrifice Room payout]"
+EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
 
-EID.descriptions["en_us"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50% chance for 1 coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"2", "", "50% chance for 1 coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"3", "", "67% chance for increased {{AngelRoom}}Angel Room chance"},
@@ -831,9 +835,9 @@ EID.descriptions["en_us"].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions["en_us"].diceHeader = "[Dice effects]"
+EID.descriptions[languageCode].diceHeader = "[Dice effects]"
 
-EID.descriptions["en_us"].dice={
+EID.descriptions[languageCode].dice={
 	{"1", "", "Rerolls all your passive and active items into a random item from the room pool it was acquired from"},
 	{"2", "", "Rerolls all pickups in the room"},
 	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
@@ -843,7 +847,7 @@ EID.descriptions["en_us"].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions["en_us"].transformations = {
+EID.descriptions[languageCode].transformations = {
 	"",				-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2

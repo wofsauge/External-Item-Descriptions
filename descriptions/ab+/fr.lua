@@ -10,12 +10,16 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+local languageCode = "fr"
 
 -- init fr table
-EID.descriptions["fr"] = {}
-EID.descriptions["fr"].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode] = {}
+EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
+EID.descriptions[languageCode].languageName = "French"
 
-EID.descriptions["fr"].collectibles={
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+
+EID.descriptions[languageCode].collectibles={
 	{"1", "", "↑ +0.7 Cadence de tir"},
 	{"2", "", "Triple tir#↓ Cadence de tir"},
 	{"3", "", "Larmes à tête chercheuse"},
@@ -572,7 +576,7 @@ EID.descriptions["fr"].collectibles={
 }
 
 ---------- Trinkets ----------
-EID.descriptions["fr"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "", "Lâche une pièce quand vous vous faites toucher"},
 	{"2", "", "Plus de chances d'obtenir des récompenses en détruisant les cacas"},
 	{"3", "", "-1 charge nécessaire pour les objets activables"},
@@ -704,7 +708,7 @@ EID.descriptions["fr"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["fr"].cards={
+EID.descriptions[languageCode].cards={
 	{"1", "", "Vous téléporte à la salle de départ"},
 	{"2", "", "Larmes à tête chercheuse pour la salle"},
 	{"3", "", "Mom's Foot tombe sur un ennemi!"},
@@ -764,9 +768,9 @@ EID.descriptions["fr"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["fr"].unidentifiedPill = "Pilule non identifiée"
+EID.descriptions[languageCode].unidentifiedPill = "Pilule non identifiée"
 
-EID.descriptions["fr"].pills={
+EID.descriptions[languageCode].pills={
 	{"0", "", "Fait apparaître un nuage de gaz"},
 	{"1", "", "Inflige 1 coeur de dégâts"},
 	{"2", "", "+2 Coeurs Bleus"},
@@ -817,9 +821,9 @@ EID.descriptions["fr"].pills={
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions["fr"].sacrificeHeader = "[Prochaine récompense de sacrifice]"
+EID.descriptions[languageCode].sacrificeHeader = "[Prochaine récompense de sacrifice]"
 
-EID.descriptions["fr"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50% chances d'avoir 1 pièce#100% chances d'avoir 1 bombe, en étant au premier étage et en ayant vaincu le premier boss en moins d'une minute"},
 	{"2", "", "50% chances d'avoir 1 pièce#100% chances d'avoir 1 bombe, en étant au premier étage et en ayant vaincu le premier boss en moins d'une minute"},
 	{"3", "", "67% chances d'augmenter les probabilités d'avoir une Angel Room à la fin du combat de boss"},
@@ -834,9 +838,9 @@ EID.descriptions["fr"].sacrifice={
 	{"12", "", "50% chances de vous téléporter à la Dark Room"},
 }
 ---------- Dice Room ----------
-EID.descriptions["fr"].diceHeader = "[Effet de Dé]"
+EID.descriptions[languageCode].diceHeader = "[Effet de Dé]"
 
-EID.descriptions["fr"].dice={
+EID.descriptions[languageCode].dice={
 	{"1", "", "Transforme tous vos objets#(n'affecte que les collectibles)"},
 	{"2", "", "Transforme tous les collectibles dans la salle"},
 	{"3", "", "Transforme tous les collectibles de l'étage"},
@@ -846,7 +850,7 @@ EID.descriptions["fr"].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions["fr"].transformations = {
+EID.descriptions[languageCode].transformations = {
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2

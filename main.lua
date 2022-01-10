@@ -1,7 +1,7 @@
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
-EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr"}
+EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr"}
 EID.descriptions = {} -- Table that holds all translation strings
 local enableDebug = false
 local game = Game()
@@ -58,7 +58,6 @@ hudBBSprite:Load("gfx/eid_transform_icons.anm2", true)
 hudBBSprite:Play("boundingBox")
 
 ------- Load all modules and other stuff ------
-require("mod_config_menu")
 
 --transformation infos
 require("descriptions."..EID.GameVersion..".transformations")
@@ -66,7 +65,9 @@ require("descriptions."..EID.GameVersion..".transformations")
 for _,lang in ipairs(EID.Languages) do
 	require("descriptions."..EID.GameVersion.."."..lang)
 end
+table.sort(EID.Languages)
 
+require("mod_config_menu")
 require("eid_data")
 require("eid_xmldata")
 require("eid_api")
@@ -111,6 +112,7 @@ end
 EID.modPath = GetCurrentModPath()
 
 EID.font = Font() -- init font object
+EID:fixDefinedFont()
 local fontFile = EID.Config["FontType"] or "default"
 local success = EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
 if not success then
@@ -654,7 +656,7 @@ local function renderAchievementInfo()
 			-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 			local characterID = Game():GetPlayer(0):GetPlayerType()
 			--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
-			if characterID < 21 and game.Challenge == 0 then
+			if characterID < 21 and game.Challenge == 0 and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
 				local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
 				if not hasBookOfRevelationsUnlocked then
 					local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
@@ -959,6 +961,7 @@ if EID.MCMLoaded or REPENTANCE then
 				EID.isHidden = EID.Config["InitiallyHidden"]
 				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 				EID.Scale = EID.Config["Scale"]
+				EID:fixDefinedFont()
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 				if REPENTANCE then
 					EID:addTextPosModifier("HudOffset", Vector(((Options.HUDOffset * 10) * 2) - 20, (Options.HUDOffset * 10) - 10))

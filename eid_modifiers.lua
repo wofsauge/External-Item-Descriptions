@@ -32,11 +32,8 @@ local game = Game()
 		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 			return false
 		end
-		for i = 0,game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER) then
-				return true
-			end
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER) then
+			return true
 		end
 		return false
 	end
@@ -45,7 +42,7 @@ local game = Game()
 		local bingeBuff = EID:getDescriptionEntry("bingeEaterBuffs", descObj.ObjSubType)
 		if bingeBuff ~= nil then
 			local iconStr = "#{{Collectible664}} "
-			EID:appendToDescription(descObj, iconStr..bingeBuff[3]:gsub("#",iconStr))
+			EID:appendToDescription(descObj, iconStr..bingeBuff:gsub("#",iconStr))
 		end
 		return descObj
 	end
@@ -73,7 +70,7 @@ local game = Game()
 		local belialBuff = EID:getDescriptionEntry("bookOfBelialBuffs", descObj.ObjSubType)
 		if belialBuff ~= nil then
 			local iconStr = "#{{Collectible34}} "
-			EID:appendToDescription(descObj, iconStr..belialBuff[3]:gsub("#",iconStr))
+			EID:appendToDescription(descObj, iconStr..belialBuff:gsub("#",iconStr))
 		end
 		return descObj
 	end
@@ -86,11 +83,8 @@ local game = Game()
 		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 			return false
 		end
-		for i = 0,game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) then
-				return true
-			end
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) then
+			return true
 		end
 		return false
 	end
@@ -99,7 +93,7 @@ local game = Game()
 		local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", descObj.ObjSubType)
 		if wispType ~= nil then
 			local iconStr = "#{{Collectible584}} "
-			EID:appendToDescription(descObj, iconStr..wispType[1]:gsub("#",iconStr))
+			EID:appendToDescription(descObj, iconStr..wispType:gsub("#",iconStr))
 		end
 		return descObj
 	end
@@ -112,11 +106,8 @@ local game = Game()
 		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 			return false
 		end
-		for i = 0,game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_SPINDOWN_DICE) then
-				return true
-			end
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SPINDOWN_DICE) then
+			return true
 		end
 		return false
 	end
@@ -158,11 +149,8 @@ local game = Game()
 		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TAROTCARD then
 			return false
 		end
-		for i = 0,game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH) then
-				return true
-			end
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH) then
+			return true
 		end
 		return false
 	end
@@ -171,7 +159,7 @@ local game = Game()
 		local clothBuff = EID:getDescriptionEntry("tarotClothBuffs", descObj.ObjSubType)
 		if clothBuff ~= nil then
 			local iconStr = "#{{Collectible451}} "
-			EID:appendToDescription(descObj, iconStr..clothBuff[3]:gsub("#",iconStr))
+			EID:appendToDescription(descObj, iconStr..clothBuff:gsub("#",iconStr))
 		end
 		return descObj
 	end
@@ -192,11 +180,8 @@ local game = Game()
 		if descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG then
 			isGolden = true
 		end
-		for i = 0,game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_MOMS_BOX) then
-				hasBox = true
-			end
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_MOMS_BOX) then
+			hasBox = true
 		end
 		return isGolden or hasBox
 	end
@@ -297,11 +282,8 @@ local game = Game()
 		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TAROTCARD or blankCardHidden[descObj.ObjSubType] or descObj.ObjSubType > 80 then
 			return false
 		end
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_BLANK_CARD) then
-				return true
-			end
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_BLANK_CARD) then
+			return true
 		end
 		return false
 	end
@@ -330,11 +312,8 @@ local game = Game()
 		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TAROTCARD or not runeIDs[descObj.ObjSubType] then
 			return false
 		end
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_CLEAR_RUNE) then
-				return true
-			end
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_CLEAR_RUNE) then
+			return true
 		end
 		return false
 	end
@@ -357,11 +336,8 @@ local game = Game()
 		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_PILL then
 			return false
 		end
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_PLACEBO) then
-				return true
-			end
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_PLACEBO) then
+			return true
 		end
 		return false
 	end
@@ -383,11 +359,8 @@ local game = Game()
 		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_PILL then
 			return false
 		end
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD) then
-				return true
-			end
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD) then
+			return true
 		end
 		return false
 	end
@@ -419,11 +392,8 @@ local game = Game()
 		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 			return false
 		end
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_ABYSS) then
-				return true
-			end
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_ABYSS) then
+			return true
 		end
 		return false
 	end
