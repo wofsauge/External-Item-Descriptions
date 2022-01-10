@@ -94,20 +94,21 @@ local nullVector = Vector(0,0)
 local modfolder ='external item descriptions_836319872' --release mod folder name
 
 local function GetCurrentModPath()
-    if debug then
-        return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
-    end
-    --use some very hacky trickery to get the path to this mod
-    local _, err = pcall(require, "")
-    local _, basePathStart = string.find(err, "no file '", 1)
-    local _, modPathStart = string.find(err, "no file '", basePathStart)
-    local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
-    local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
-    modPath = string.gsub(modPath, "\\", "/")
+	if debug then
+		if REPENTANCE then require("eid_tmtrainer") end
+		return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
+	end
+	--use some very hacky trickery to get the path to this mod
+	local _, err = pcall(require, "")
+	local _, basePathStart = string.find(err, "no file '", 1)
+	local _, modPathStart = string.find(err, "no file '", basePathStart)
+	local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+	local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
+	modPath = string.gsub(modPath, "\\", "/")
 	modPath = string.gsub(modPath, "//", "/")
 	modPath = string.gsub(modPath, ":/", ":\\")
-    
-    return modPath
+
+	return modPath
 end
 EID.modPath = GetCurrentModPath()
 
