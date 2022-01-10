@@ -935,7 +935,7 @@ local repPills={
 	-- Repentance
 	[48] = {"47", "탄속 감소", "↓ 탄속 -0.15"}, -- Shot Speed Down
 	[49] = {"48", "탄속 증가", "↑ 탄속 +0.15"}, -- Shot Speed Up
-	[50] = {"49", "실험용 알약", "랜덤한 능력치 두가지가 증가하거나 감소합니다."}, -- Experimental Pill
+	[50] = {"49", "실험용 알약", "랜덤한 능력치 두가지가 증가하거나 감소합니다.#{{Collectible75}}PHD, {{Collectible46}}Lucky Foot 혹은 {{Collectible303}}Virgo 보유 시 능력치가 감소하지 않습니다.#{{Collectible654}}False PHD 보유 시 능력치가 증가하지 않습니다."}, -- Experimental Pill
     [9999] = {"", "황금 알약", "일반 알약에서 나오지 않는 알약 효과가 랜덤하게 발동됩니다.#사라지기 전까지 무제한으로 사용할 수 있습니다."} -- golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
@@ -991,7 +991,7 @@ EID.descriptions[languageCode].horsepills={
 	{"46", "끄어억!", "마지막으로 사용한 알약을 대형 알약으로 드랍합니다."}, -- Vurp!
 	{"47", "탄속 감소", "↓ 탄속 -0.3"}, -- Shot Speed Down
 	{"48", "탄속 증가", "↑ 탄속 +0.3"}, -- Shot Speed Up
-	{"49", "실험용 알약", "랜덤한 능력치 두가지가 증가하거나 감소합니다."}, -- Experimental Pill
+	{"49", "실험용 알약", "랜덤한 능력치 두가지가 증가하거나 감소합니다.#{{Collectible75}}PHD, {{Collectible46}}Lucky Foot 혹은 {{Collectible303}}Virgo 보유 시 능력치가 감소하지 않습니다.#{{Collectible654}}False PHD 보유 시 능력치가 증가하지 않습니다."}, -- Experimental Pill
     [9999] = {"", "황금 알약", "일반 알약에서 나오지 않는 알약 효과가 랜덤하게 발동됩니다.#사라지기 전까지 무제한으로 사용할 수 있습니다."}, -- Golden Pill
 }
 
