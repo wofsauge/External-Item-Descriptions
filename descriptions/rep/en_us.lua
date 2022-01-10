@@ -145,7 +145,7 @@ local repCollectibles={
 	[360] = {"360", "Incubus", "Gain a demonic familiar that shoots the same tears as Isaac#Deals 75% of your damage unless playing as Lilith"}, -- Incubus
 	[366] = {"366", "Scatter Bombs", "+5 bombs#Causes your bombs to explode into 4-5 tiny bombs"}, -- Scatter Bombs
 	[368] =	{"368", "Epiphora", "Shooting in one direction gradually increases your fire rate by up to 200%"}, -- Epiphora
-	[369] = {"369", "Continuum", "↑ +3 Range up#Tears travel through walls and appear out of the opposite wall"}, -- Continuum
+	[369] = {"369", "Continuum", "↑ +3 Range up#Spectral tears#Tears travel through walls and appear out of the opposite wall"}, -- Continuum
 	[370] = {"370", "Mr. Dolly", "↑ +0.7 Tears up#↑ +1.5 Range up#Spawns 3 random hearts when picked up"}, -- Mr. Dolly
 	[372] = {"372", "Charged Baby", "Random chance to drop a battery or freeze all enemies in the room#Chance to add one charge to your active item"}, -- Charged Baby
 	[374] = {"374", "Holy Light", "10% chance to shoot Holy tears, which will spawn a beam of light on hit#The beam deals 3x your damage#50% chance at 9 Luck"}, -- Holy Light
@@ -375,7 +375,7 @@ local repCollectibles={
 	[723] = {"723", "Spindown Dice", "Transforms all items in the room by decreasing their internal ID number by one"}, -- Spindown Dice
 	[724] = {"724", "Hypercoagulation", "Upon taking enemy damage, drop a half or full Red Heart#Spawned hearts launch out and despawn after 1.5 seconds"}, -- Hypercoagulation
 	[725] = {"725", "IBS", "After dealing enough damage:#Throw poop#Create buffing creep#Fart#Drop 5 live bombs"}, -- IBS
-	[726] = {"726", "Hemoptysis", "Double-tap a fire button to sneeze blood#Deals 150% your damage to enemies in front of you#1 second cooldown"}, -- Hemoptysis
+	[726] = {"726", "Hemoptysis", "Double-tap a fire button to sneeze blood#Deals 150% your damage to enemies in front of you#1 second cooldown#Affected enemies take extra damage from Brimstone beams"}, -- Hemoptysis
 	[727] = {"727", "Ghost Bombs", "+5 bombs#Bombs spawn ghosts that deal contact damage and explode after 10 seconds"}, -- Ghost Bombs
 	[728] = {"728", "Gello", "Spawns a demon familiar that's attached to Isaac#Mimics Isaac's tears, stats and effects"}, -- Gello
 	[729] = {"729", "Decap Attack", "Throws Isaac's head, dealing contact damage and shooting tears from where it lands#Reactivating the item or stepping on the head reattaches it"}, -- Decap Attack
@@ -421,7 +421,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Lazarus", "", "The other version of T. Lazarus will be available as a ghost#He is immune to damage, but can fire tears#Both characters receive the Birthright effect"},
 	{"Tainted Eden", "", "Passive and active items gained before Birthright will not be rerolled upon taking damage#Active items stop being protected if dropped"},
 	{"Tainted Lost", "", "Grants an extra life that revives Tainted Lost in the same room and deals 200 damage to nearby enemies#Can hit the same enemy multiple times"},
-	{"Tainted Lilith", "", "Familiars that normally follow Tainted Lilith will instead act like her {{Collectible728}}Gello"},
+	{"Tainted Lilith", "", "Familiars that normally follow Tainted Lilith will instead act like her {{Collectible728}}Gello#The melee attack does 3 more damage per familiar"},
 	{"Tainted Keeper", "", "Strongly attracts the coins dropped by defeating enemies from a short distance#No effect on other coins"},
 	{"Tainted Apollyon", "", "If the fire button is held, locusts will continuously damage enemies instead of returning"},
 	{"Tainted Forgotten", "", "Tainted Soul gains the {{Collectible714}}Recall ability, to retrieve the Tainted Forgotten from a distance"},
@@ -892,7 +892,7 @@ local repPills={
 	
 	[48] = {"47", "Shot Speed Down", "↓ -0.15 Shot Speed down"}, -- Shot Speed Down
 	[49] = {"48", "Shot Speed Up", "↑ +0.15 Shot Speed up"}, -- Shot Speed Up
-	[50] = {"49", "Experimental Pill", "↑ Increases 1 random stat#↓ Decreases 1 random other stat#Will not decrease with {{Collectible75}}PHD#Will not increase with {{Collectible654}}False PHD"}, -- Experimental Pill
+	[50] = {"49", "Experimental Pill", "↑ Increases 1 random stat#↓ Decreases 1 random other stat#Will not decrease with {{Collectible75}}PHD, {{Collectible46}}Lucky Foot or {{Collectible303}}Virgo#Will not increase with {{Collectible654}}False PHD"}, -- Experimental Pill
 	[9999] = {"", "Golden Pill", "Random pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
@@ -947,7 +947,7 @@ EID.descriptions[languageCode].horsepills={
 	{"46", "Vurp!", "Spawns last used pill as a horse pill"}, -- Vurp!
 	{"47", "Shot Speed Down", "↓ -0.3 Shot Speed down"}, -- Shot Speed Down
 	{"48", "Shot Speed Up", "↑ +0.3 Shot Speed up"}, -- Shot Speed Up
-	{"49", "Experimental Pill", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with {{Collectible75}}PHD#Will not increase with {{Collectible654}}False PHD"}, -- Experimental Pill
+	{"49", "Experimental Pill", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with {{Collectible75}}PHD, {{Collectible46}}Lucky Foot or {{Collectible303}}Virgo#Will not increase with {{Collectible654}}False PHD"}, -- Experimental Pill
 	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- Golden Pill
 }
 

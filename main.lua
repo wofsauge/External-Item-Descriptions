@@ -656,7 +656,7 @@ local function renderAchievementInfo()
 			-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 			local characterID = Game():GetPlayer(0):GetPlayerType()
 			--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
-			if characterID < 21 and game.Challenge == 0 then
+			if characterID < 21 and game.Challenge == 0 and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
 				local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
 				if not hasBookOfRevelationsUnlocked then
 					local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
