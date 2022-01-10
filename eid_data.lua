@@ -355,7 +355,7 @@ EID.InlineColors = {
 			(animTime % (colorFractions + 1)) / colorFractions
 		)
 	end,
-	-- Rainbow color effect
+	-- Gold rainbow color effect
 	["ColorGold"] = function(_)
 		local maxAnimTime = 80
 		local animTime = Game():GetFrameCount() % maxAnimTime
