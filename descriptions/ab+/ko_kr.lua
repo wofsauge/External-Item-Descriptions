@@ -764,7 +764,7 @@ EID.descriptions[languageCode].cards={
 }
 
 ---------- Pills ----------
-EID.descriptions[languageCode].unidentifiedPill = "Unidentified Pill"
+EID.descriptions[languageCode].unidentifiedPill = "확인되지 않은 알약"
 
 EID.descriptions[languageCode].pills={
 	-- Original
