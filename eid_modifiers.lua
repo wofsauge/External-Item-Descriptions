@@ -431,7 +431,7 @@ local game = Game()
 		if flipItemID ~= nil or infoText ~= nil then
 			local itemName = EID:getObjectName(5, 100, flipItemID)
 			local appendText = "#{{Collectible711}} -> {{Collectible"..flipItemID.."}} "..itemName
-			appendText = appendText .. "#"..infoText
+			appendText = appendText .. "#{{Blank}} "..infoText
 			EID:appendToDescription(descObj, appendText)
 		end
 		return descObj
