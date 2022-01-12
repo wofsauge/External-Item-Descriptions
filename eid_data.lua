@@ -292,6 +292,15 @@ EID.InlineIcons = {
 	["PlanetariumChance"] = {"Stats", 9, 16, 16, 7, 6},
 	["Crone"] = {"Stats", 10, 16, 16, 7, 6},
 	["Tearsize"] = {"Stats", 11, 16, 16, 7, 6},
+	["DamageAB"] = {"Stats", 12, 16, 16, 7, 6},
+	["SpeedAB"] = {"Stats", 13, 16, 16, 7, 6},
+	["TearsAB"] = {"Stats", 14, 16, 16, 7, 6},
+	["RangeAB"] = {"Stats", 15, 16, 16, 7, 6},
+	["ShotspeedAB"] = {"Stats", 16, 16, 16, 7, 6},
+	["LuckAB"] = {"Stats", 17, 16, 16, 7, 6},
+	["AngelChanceAB"] = {"Stats", 18, 16, 16, 7, 6},
+	["DevilChanceAB"] = {"Stats", 19, 16, 16, 7, 6},
+	["TearsizeAB"] = {"Stats", 20, 16, 16, 7, 6},
 	
 }
 
