@@ -13,8 +13,12 @@
 local languageCode = "spa"
 
 local repCollectibles={
-	[5] = {"5", "Mi reflejo", "Otorga un efecto bumerán a las lágrimas#↑ {{Range}} Alcance x1.6 + 1.5#↑ {{Shotspeed}} Vel. de tiro +0.6 de velocidad de disparo#↑ Tamaño de lágrima +1.0"},
+	[1] = {"1", "Cebolla triste", "↑ {{Tears}} Lágrimas +0.7"},
+	[2] = {"2", "El Ojo Interior", "Disparo triple#↓ {{Tears}} Menos lágrimas"},
+	[4] = {"4", "Cabeza de Cricket", "↑ {{Damage}} Daño x1.5 + 0.5#↑ Más empuje"},
+	[5] = {"5", "Mi reflejo", "Otorga un efecto bumerán a las lágrimas#↑ {{Range}} Alcance x1.6 + 1.5#↑ {{Shotspeed}} Vel. de tiro +0.6 de velocidad de disparo#↑{{Tearsize}} Tamaño de lágrima +1.0"},
 	[6] = {"6", "Número 1", "↑ {{Tears}} Lágrimas +1.5#↓ {{Range}} Rango x0.8 - 1.5#↑ Tamaño de lágrima +0.76"},
+	[7] = {"7", "Sangre del mártir", "↑ {{Damage}} Daño +1.0#↑ {{Damage}} +50 % si usas {{Collectible34}} El Libro de Belial"},
 	[12] = {"12", "Hongo mágico", "↑ +1 de vida#↑ {{Speed}} Velocidad +0.3#↑ {{Damage}} Daño x1.5 + 0.3#↑ {{Range}} Alcance +1.5#↑ Tamaño de lágrimas +0.5#¡Vida al completo!"},
 	[13] = {"13", "El virus", "↑ {{Speed}} Velocidad +0.2#Toque venenoso"}, -- El virus
 	[14] = {"14", "Furia por esteroides", "↑ {{Speed}} Velocidad +0.3#↑ {{Range}} Alcance +5.25#↑ Tamaño de lágrimas +0,5"}, -- Furia de esteroides
@@ -24,14 +28,20 @@ local repCollectibles={
 	[24] = {"24", "Postre", "↑ +1 de vida#Cura un corazón"}, -- Postre
 	[25] = {"25", "Desayuno", "↑ +1 de vida#Cura un corazón"}, -- Desayuno
 	[26] = {"26", "Carne podrida", "↑ +1 de vida#Cura un corazón"},
-	[29] = {"29", "Ropa interior de Mamá", "↑ {{Range}} Alcance +1.5#↑ Tamaño de lágrimas +0,5#Genera de 3 a 6 moscas azules"}, -- Ropa interior de Mamá
+	[27] = {"27", "Cuchara de madera", "↑ {{Speed}} Velocidad +0.3"},
+	[28] = {"28", "El cinturón", "↑ {{Speed}} Velocidad +0.3"},
+	[29] = {"29", "Ropa interior de Mamá", "↑ {{Range}} Alcance +1.5#↑ {{Tearsize}} Tamaño de lágrimas +0,5#Genera de 3 a 6 moscas azules"}, -- Ropa interior de Mamá
 	[30] = {"30", "Tacones de Mamá", "↑ {{Range}} Alcance +1.5#↑ Tamaño de lágrimas +0,5#Tocar a los enemigos inflige 12 de daño"}, -- Tacones de Mamá
 	[31] = {"31", "Pintalabios de Mamá", "↑ {{Range}} Alcance +2.25#↑ Tamaño de lágrimas +0,5#Genera un corazón aleatorio"}, -- Pintalabios de Mamá
+	[32] = {"32", "Percha de Alambre", "↑ {{Tears}} Lágrimas +0.7"},
+	[34] = {"34", "Libro de Belial", "↑ {{Damage}} Daño +2#↑ {{DevilChance}} +12,5% de probabilidad de Pacto con el Diablo#↑ {{Damage}} +50% de multiplicador de daño si tienes {{Collectible7}} Sangre del mártir"},
 	[40] = {"40", "¡Kamikaze!", "Provoca una gran explosión en la ubicación del jugador#Inflige 185 de daño"}, -- ¡Kamikaze!
 	[42] = {"42", "Cabeza podrida de Bob", "Bomba venenosa lanzable#Inflige 185 + tu daño#Crea una nube de veneno"}, -- Cabeza podrida de Bob
 	[44] = {"44", "¡Teletransporte!", "Teletransporta a Isaac a una habitación aleatoria (excepto a la habitación I AM ERROR)#Puedes influir un poco en la dirección al avanzar hacia allí"}, -- ¡Teletransporte!
 	[45] = {"45", "Corazón Ñam", "Cura 1 corazón rojo#También cura medio corazón a otros jugadores"}, -- Corazón Ñam
-	[46] = {"46", "Pie de la suerte", "↑ {{Luck}} Suerte +1.0#Más probabilidad de ganar al apostar#Aumenta las posibilidades de que caiga un recolectable al limpiar una habitación#Cambia algunas píldoras malas por buenas"}, -- Pie de la suerte
+	[46] = {"46", "Pie de la suerte", "↑ {{Luck}} Suerte +1.0#Más probabilidad de ganar al apostar#Aumenta las posibilidades de que caiga un recolectable al limpiar una habitación#Cambia todas píldoras malas por buenas"}, -- Pie de la suerte
+	[50] = {"50", "Steven", "↑ {{Damage}} Daño +1"},
+	[51] = {"51", "Pentáculo", "↑ {{Damage}} Daño +1#↑ {{DevilChance}} +10% probabilidad de Pacto con el Diablo"},
 	[53] = {"53", "Imán", "Acerca los recolectables al jugador#Abre cofres a distancia, ignorando el daño de los cofres de pinchos"},
 	[55] = {"55", "Ojo de Mamá", "Posibilidad de disparar una lágrima hacia atrás"}, -- Ojo de Mamá
 	[62] = {"62", "Encanto del vampiro", "↑ {{Damage}} Daño +0.3#Cura medio corazón cada 13 enemigos asesinados"}, -- Encanto del vampiro
@@ -41,14 +51,20 @@ local repCollectibles={
 	[71] = {"71", "Mini Champi", "↑ {{Speed}} Velocidad +0.3#↑ {{Range}} Alcance +1.5# ↑ Te haces más pequeño"},
 	[72] = {"72", "Rosario", "↑ {{Tears}} Lágrimas +0.5#{{SoulHeart}}+3 corazones de alma#La Biblia es más común"}, -- Rosario
 	[77] = {"77", "Mi pequeño unicornio", "Invencibilidad + 20 de daño por contacto"},
+	[78] = {"78", "Libro de Revelaciones", "+{{SoulHeart}} 1 corazón de alma# Más probabilidad de que aparezcan jinetes#↑ {{DevilChance}} +17,5 % probabilidad de Pacto con el Diablo"},
 	[79] = {"79", "La marca", "↑ {{Speed}} Velocidad +0.2#↑ {{Damage}} Daño +1.0#{{BlackHeart}} +1 corazón negro"}, -- La marca
 	[80] = {"80", "El pacto", "↑ {{Tears}} Lágrimas +0.7#↑ {{Damage}} Daño +0.5#{{BlackHeart}} +2 corazones negros"}, -- El pacto
-	[83] = {"83", "El clavo", "+ Medio corazón negro#↓ {{Speed}} Velocidad -0.18#↑ {{Damage}} Daño +0.7#Inflige daño por contacto#Rompe rocas"}, -- El clavo
-	[98] = {"98", "La reliquia", "Suelta 1 corazón de alma cada 7-8 habitaciones"},
+	[82] = {"82", "Señor del Abismo", "Vuela#↑ {{Speed}} Velocidad +0.3"},
+	[83] = {"83", "El clavo", "{{HalfBlackHeart}} + Medio corazón negro#↓ {{Speed}} Velocidad -0.18#↑ {{Damage}} Daño +0.7#Inflige daño por contacto#Rompe rocas"}, -- El clavo
+	[90] = {"90", "La Roca pequeña", "↓ {{Speed}} Velocidad -0.2#↑ {{Damage}} Daño +1↑ {{Tears}} Lágrimas +0.2#"},
+	[98] = {"98", "La reliquia", "{{SoulHeart}} Suelta 1 corazón de alma cada 7-8 habitaciones"},
 	[101] = {"101", "El halo", "↑ + 1 de vida#↑ {{Speed}} Velocidad +0.3#↑ {{Tears}} Lágrimas +0.2#↑ {{Damage}} +0.3#↑ {{Range}} Alcance +0.38#↑ Tamaño de lágrimas +0.5"},
 	[106] = {"106", "Sr. Mega", "↑ x1,85 el daño de bomba #+5 bombas"}, -- Sr. Mega
+	[109] = {"109", "Dinero = Poder", "↑ {{Damage}} +0,04 de daño por cada moneda que tengas"},
 	[110] = {"110", "Lentillas de Mamá", "Probabilidad de disparar lágrimas congelantes#↑ {{Range}} Alcance +0.38#↑ Tamaño de lágrimas +0.5"},
-	[121] = {"121", "Champiñón raro (grande)", "↑ +1 contenedor de corazon vacío#↓ {{Speed}} Velocidad -0.2#↑ {{Daño}} Daño +1.0#↑ {{Range}} Alcance +0.25#↑ Tamaño de lágrimas +0.5"}, -- Champiñón raro (grande)
+	[119] = {"119", "Bolsa de Sangre", "↑ {{Heart}} +1 de vida#↑ {{Speed}} +0,3 de velocidad# {{Heart}} Cura 5 corazones"},
+	[120] = {"120", "Hongo Raro (pequeño)", "↑ +1,7 de lágrimas#↑ +0,3 de velocidad#↓ 10 % menos de daño#↓ -0,4 de daño menos adicional"},--Hasta acá lo dejo
+	[121] = {"121", "Hongo raro (grande)", "↑ +1 contenedor de corazon vacío#↓ {{Speed}} Velocidad -0.2#↑ {{Daño}} Daño +1.0#↑ {{Range}} Alcance +0.25#↑ Tamaño de lágrimas +0.5"}, -- Champiñón raro (grande)
 	[123] = {"123", "Manual de monstruos", "Familiar aleatorio#Se mantiene en la planta actual"}, -- Manual de monstruos
 	[138] = {"138", "Estigma", "↑ {{Heart}} +1 de vida#Cura un corazón#↑ {{Damage}} Daño +0.3"},
 	[139] = {"139", "Bolso de Mamá", "Puedes tener 2 trinkets#Genera 1 trinket aleatorio"}, -- Bolso de Mamá
@@ -356,20 +372,20 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 
 EID.descriptions[languageCode].birthright ={
 {"Isaac", "", "Los objetos cambian entre dos objetos"},
-{"Magdalene", "Magdalena", "↑ +1 corazón, límite de corazones aumentado a 18"},
-{"Cain", "Caín", "↑ +1 de suerte#Todos los pisos tienen Arcades garantizados menos Cofre y Cuarto oscuro#Mejores arcades"},
+{"Magdalene", "Magdalena", "↑ {{Heart}} +1 corazón, límite de corazones aumentado a 18"},
+{"Cain", "Caín", "↑ {{Luck}} Suerte +1#{{ArcadeRoom}} Todos los pisos tienen Arcades garantizados menos Cofre y Cuarto oscuro#{{ArcadeRoom}} Mejores arcades"},
 {"Judas", "", "{{Collectible34}} El Libro de Belial actúa como un objeto pasivo, similar a {{Collectible584}} El Libro de las Virtudes, el aumento de daño escala con la carga de los objetos activos#Varios objetos activos reciben interacciones especiales"},
-{"???", "", "Los corazones de alma recibidos de aumentos de vida se duplican"},
+{"???", "", "{{ArrowUp}} {{SoulHeart}} Los corazones de alma recibidos de aumentos de vida se duplican"},
 {"Eve", "Eva", "Whore of Babylon se activa sin depender de la vida#Dead Bird se activa sin recibir daño"},
 {"Samson", "Sansón", "Bloody Lust puede ganar 4 mejoras de daño hasta un máximo de +14,0"},
 {"Azazel", "", "El Brimstone de Azazel es más ancho, como el de Mega Blast#No varía el daño"},
 {"Lazarus", "Lázaro", "Al morir, revive como Lázaro resucitado#Lázaro resucitado gana una mejora de daño de +21,6 que se pierde poco a poco"},
 {"Eden", "Edén", "Genera 3 objetos aleatorios de pools de objetos aleatorias#Solo se puede coger uno"},
-{"The Lost", "El Perdido", "Evita la aparición de objetos inútiles para El Perdido#Ejemplos: Aumentos de daño, vuelo, lágrimas espectrales o los que requieren daño para activarse"},
+{"The Lost", "El Perdido", "Evita la aparición de objetos inútiles para El Perdido#Ejemplos: Aumentos de vida, vuelo, lágrimas espectrales o los que requieren daño para activarse"},
 {"Lazarus Risen", "Lázaro Resucitado", "Otorga una mejora de daño de +21,6 que se pierde poco a poco"},
 {"Black Judas", "Judas Oscuro", "{{Collectible34}} El Libro de Belial actúa como un objeto pasivo, similar a {{Collectible584}} El Libro de las Virtudes, el aumento de daño escala con la carga de los objetos activos"},
 {"Lilith", "", "Los familiares se colocan frente a Lilith, mejor control de ataque"},
-{"Keeper", "", "↑ +1 moneda de salud, el límite de salud llega a 4"},
+{"Keeper", "", "↑ {{Coin}} +1 moneda de salud, el límite de salud llega a 4"},
 {"Apollyon", "Apolión", "Posibilidad de generar un objeto destruído anteriormente#Mientras más objetos consumidos, más posibilidad de generarlo#No afecta a objetos activos"},
 {"The Forgotten", "El Olvidado", "El alma no está atado y se mueve libremente"},
 {"The Forgotten Soul", "El Alma", "El alma no está atado y se mueve libremente"},
@@ -377,8 +393,8 @@ EID.descriptions[languageCode].birthright ={
 {"Jacob", "", "El personaje que recoge un objeto obtiene copias de tres objetos pasivos del otro personaje"},
 {"Esau", "Esaú", "El personaje que recoge un objeto obtiene copias de tres objetos pasivos del otro personaje"},
 {"Tainted Isaac", "Isaac contaminado", "Añade 4 espacios adicionales para objetos pasivos"},
-{"Tainted Magdalene", "Magdalena contaminada", "Añade 1 al límite de corazones"},
-{"Tainted Cain", "Caín contaminado", "La cantidad de recolectables que se generan al coger un objeto se duplica"},
+{"Tainted Magdalene", "Magdalena contaminada", "{{Heart}} Añade 1 al límite de corazones"},
+{"Tainted Cain", "Caín contaminado", "La cantidad de recolectables que se generan al coger un objeto se duplica"}, -- Y hasta acá se queda esto
 {"Tainted Judas", "Judas contaminado", "Usar {{Collectible705}} Artes Oscuras otorga un aura con área de ataque mayor"},
 {"Tainted ???", "??? contaminado", "Aumenta el número máximo de cacas que puedes llevar a 29"},
 {"Tainted Eve", "Eva contaminada", "Los coágulos generados de corazones rojos sueltan medio corazón rojo que desaparece al morir"},
@@ -878,3 +894,9 @@ EID.descriptions[languageCode].OutdatedModWarningText = "¡Un mod sin actualizar
 EID.descriptions[languageCode].OldGameVersionWarningText = "Tu versión de Repentance no es la más reciente#La versión más reciente es la única con soporte oficial#(Este aviso puede ser desactivado en la configuración)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Los objetos modeados pueden provocar cálculos incorrectos#Usa el modo No Recipes o desactiva el cálculo de la Bolsa de trabajo si es que los cálculos son incorrectos#(Este aviso puede ser desactivado en la configuración)"
+
+EID.descriptions[languageCode].FlipItemToggleInfo = "(Mantén presionado {{ButtonSelect}} para mostrar la descripción)"
+
+EID.descriptions[languageCode].FalsePHDHeart = "Genera {{BlackHeart}} 1 corazón negro"
+EID.descriptions[languageCode].FalsePHDDamage = "{{Damage}} Daño +0.6"
+EID.descriptions[languageCode].FalsePHDHorseDamage = "{{Damage}} Daño +1.2"
