@@ -13,6 +13,7 @@ local game = Game()
 -- glitched items start at 4294967295
 local maxNumber = 4294967296
 local spawnedItems = 0
+local lastEffectTrigger = "chain"
 
 local logLocation = os.getenv("SYSTEMDRIVE") .. "/Users/" .. os.getenv("USERNAME") .. "/Documents/My Games/Binding of Isaac Repentance/log.txt"
 local logFound = false
@@ -23,76 +24,22 @@ local debugLog = io.open(debugLogLocation, "w+")
 
 -- all possible attributes
 --local itemConfigItemAttributes = { "AchievementID", "AddBlackHearts", "AddBombs", "AddCoins", "AddHearts", "AddKeys", "AddMaxHearts", "AddSoulHearts", "CacheFlags", "ChargeType", "ClearEffectsOnRemove", "Costume", "Description", "DevilPrice", "Discharged", "GfxFileName", "Hidden", "ID", "InitCharge", "MaxCharges", "MaxCooldown", "Name", "PassiveCache", "PersistentEffect", "Quality", "ShopPrice", "Special", "Tags", "Type" }
--- the traits here will be listed in this order
+-- the traits here will be checked and listed in this order
 local itemConfigItemAttributes = { "AddMaxHearts", "AddHearts", "AddSoulHearts", "AddBlackHearts", "AddBombs", "AddCoins", "AddKeys", "CacheFlags" }
-local cacheFlagNames = { [0] = "Damage", "Fire Delay", "Shot Speed", "Range", "Speed", "Tear Effects", "Tear Color", "Flying", "Weapon", "Familiars", "Luck", "Size", "Color", "Pickup Vision", [16] = "All Stats" }
-
--- cache flags: math.pow(2, i) | flags ~= 0
-
---currently english only
-local attributeConversions = {
-	--chain = "Then: ",
-	chain = "",
-	active = "On use:",
-	pickup_collected = "When you collect a pickup:", --chance to?
-	enemy_kill = "On kill, chance to:",
-	damage_taken = "When you take damage:", --chance to?
-	entity_spawned = "When a {{ColorGray}}{T1}{{ColorText}} is spawned, chance to:",
-	tear_fire = "When you fire a tear, chance to:",
-	enemy_hit = "On hitting an enemy, chance to:",
-	room_clear = "On room clear:", --chance to?
-	
-	area_damage = "Deal {1} damage in an area around you", 
-	add_temporary_effect = "Gain {1} for the room",
-	convert_entities = "Convert all {{ColorGray}}{1}{{ColorText}} in the room to {{ColorGray}}{2}{{ColorText}}",
-	use_active_item = "Use {1}",
-	spawn_entity = "Spawn a {{ColorGray}}{1}{{ColorText}}",
-	fart = "Fart with size {1}",
-	
-	AddBlackHearts = "{1} Black Heart",
-	AddBombs = "{1} Bomb",
-	AddCoins = "{1} Coin",
-	AddHearts = "Heals {1} Red Heart",
-	AddKeys = "{1} Key",
-	AddMaxHearts = "{1} Heart Container",
-	AddSoulHearts = "{1} Soul Heart",
-	
-}
-
---999.-1?
---1000.50: Laser Impact? It couldn't find that?
-local genericEntityNames = {
-	["2.-1"] = "tear",
-	["4.-1"] = "lit Bomb",
-	["5.-1"] = "pickup",
-	["5.10"] = "Heart",
-	["5.20"] = "Coin",
-	["5.30"] = "Key",
-	["5.40"] = "Bomb pickup",
-	["5.69"] = "Grab Bag",
-	["5.70"] = "Pill",
-	["5.300"] = "Card",
-	
-	["9.-1"] = "projectile",
-	["999.-1"] = "grid-aligned object",
-	["1000.0"] = "effect",
-}
-
-local lastEffectTrigger = "chain"
 
 local function entityToName(e, plural)
-	-- -1 is often used as an "any of this type", so converting it to 0 can help
+	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
+	-- -1 is often used as an "any of this type", even if there's only one of that type, so converting it to 0 can help find names
 	local eWithZero = string.gsub(e, "-1", "0")
 	plural = plural or false
-	local name = genericEntityNames[e] or EID.XMLEntityNames[e] or genericEntityNames[eWithZero] or EID.XMLEntityNames[eWithZero] or "NO NAME"
-	if name == "NO NAME" then
-		debugLog:write(e .. "\n")
-		debugLog:flush()
-		print(e)
-	elseif plural then
-		name = name .. "s"
-	end
-	if name == "NO NAME" then return e end
+	local name = localizedNames[e] or EID.XMLEntityNames[e] or localizedNames[eWithZero] or EID.XMLEntityNames[eWithZero] or e
+	
+	--debug print entities with no name yet
+	if name == e then print("Report this: No name found for " .. e) end
+	
+	--language check?
+	if plural then name = name .. localizedNames["pluralize"] end
+
 	return name
 end
 
@@ -115,9 +62,6 @@ local function parseEffectLine(raw)
 	local fullEffect = ""
 	for i=5,#words do fullEffect = fullEffect .. words[i] .. " " end
 	
-	
-	local extraText = ""
-	-- switch statement for how to handle the words after the effect type
 	if effectType == "add_temporary_effect" or effectType == "use_active_item" then
 		-- remainder of line = collectible name that's granted for the room
 		local name = ""
@@ -135,20 +79,63 @@ local function parseEffectLine(raw)
 	elseif effectType == "fart" then
 		replacements[1] = words[6]
 	elseif effectType == "area_damage" then
-		--It also has flags in words[8] but they don't seem very useful, usually all zeroes
 		replacements[1] = words[6]
+		-- bug with chain "Then:"! maybe we should just show the 0's since it matters
 		if words[6] == "0" then printEffect = false end
 	end
 	
+	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
 	local eidString = ""
-	if effectTrigger ~= lastEffectTrigger then eidString = eidString .. (attributeConversions[effectTrigger] or effectTrigger) .. "#" end
-	if printEffect then eidString = eidString .. (attributeConversions[effectType] or fullEffect) .. extraText .. "#" end
+	if effectTrigger ~= lastEffectTrigger then eidString = eidString .. (localizedNames[effectTrigger] or (effectTrigger .. "#")) end
+	if printEffect then eidString = eidString .. (localizedNames[effectType] or fullEffect) .. "#" end
 	for k,v in ipairs(triggerReplacements) do eidString = string.gsub(eidString, "{T" .. k .. "}", v) end
 	for k,v in ipairs(replacements) do eidString = string.gsub(eidString, "{" .. k .. "}", v) end
 	
 	if effectTrigger ~= "chain" then lastEffectTrigger = effectTrigger end
 	return eidString
 end
+
+local function CheckItemConfigItem(id)
+	-- check for the item ID's ItemConfig attributes (hearts added on pickup, cacheflags affected)
+	-- unfortunately there doesn't seem to be any way to know exactly how it will affect the cacheflag stats
+	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
+	local config = Isaac.GetItemConfig()
+	local item = config:GetCollectible(maxNumber - spawnedItems)
+	local attributes = ""
+	for k,v in ipairs(itemConfigItemAttributes) do
+		local attrib = item[v]
+		if attrib ~= 0 then
+			if (v == "CacheFlags") then
+				local flagString = localizedNames["cacheFlagStart"]
+				if attrib == CacheFlag.CACHE_ALL then
+					flagString = flagString .. localizedNames[16]
+				else
+					for i=0, 13 do
+						if 2^i & attrib ~= 0 then
+							flagString = flagString .. localizedNames[i] .. ", "
+						end
+					end
+					flagString = string.sub(flagString, 0, -3) -- remove final comma
+				end
+				attributes = attributes .. flagString .. "#"
+			else
+				-- the Add Heart attributes count half a heart as 1, so divide the value in half
+				if string.find(v, "Hearts") then attrib = attrib / 2 end
+				-- the g flag removes .0 in numbers like 1.0 (caused by the hearts division)
+				local s = string.format("%.4g",attrib)
+				if attrib > 0 then s = "+" .. s end
+				attributes = attributes .. string.gsub(localizedNames[v], "{1}", s)
+				if attrib ~= 1 and attrib ~= -1 then attributes = attributes .. localizedNames["pluralize"] end
+				attributes = attributes .. "#"
+			end
+		end
+	end
+	return attributes
+end
+
+--TODO: Add an option for displaying glitched item descriptions check it here
+-- Move the item config part to API, it can be used without luadebug
+-- bag of crafting hold use to reset bag
 
 local function CheckLogForItems(_)
 	if (not logFound or game:GetFrameCount() % 5 ~= 0 or not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)) then return end
@@ -176,50 +163,11 @@ local function CheckLogForItems(_)
 			numEffects = numEffects - 1
 			eidDesc = eidDesc .. parseEffectLine(line)
 			if numEffects == 0 then
-				-- Glowing Hour Glass type effects will cause the game to reload all items, check if our desc is equal to the first one
+				-- Glowing Hour Glass type effects seem to cause the game to reload all items, check if our desc is equal to the first one
 				if (EID:getDescriptionObj(5, 100, maxNumber - 1).Description == eidDesc) then spawnedItems = 1 end
 				
-				-- check for the item's ItemConfig attributes
-				local config = Isaac.GetItemConfig()
-				local item = config:GetCollectible(maxNumber - spawnedItems)
-				print(item)
-				debugLog:write((maxNumber - spawnedItems) .. "\n")
-				local attributes = ""
-				for k,v in ipairs(itemConfigItemAttributes) do
-					local attrib = item[v]
-					if attrib ~= 0 then
-						if (v == "CacheFlags") then
-							local flagString = "Might affect "
-							if attrib == CacheFlag.CACHE_ALL then
-								flagString = flagString .. cacheFlagNames[16]
-							else
-								for i=0, 13 do
-									if 2^i & attrib ~= 0 then
-										flagString = flagString .. cacheFlagNames[i] .. ", "
-									end
-								end
-								flagString = string.sub(flagString, 0, -3)
-							end
-							attributes = attributes .. flagString .. "#"
-						else
-							-- the Add Heart attributes count half a heart as 1, so divide the value in half
-							if string.find(v, "Hearts") then attrib = attrib / 2 end
-							-- the g flag removes .0 in numbers like 1.0 (caused by the hearts division)
-							local s = string.format("%.4g",attrib)
-							if attrib > 0 then s = "+" .. s end
-							attributes = attributes .. string.gsub(attributeConversions[v], "{1}", s)
-							--things like this don't localize well at all...
-							if attrib > 1 or attrib < -1 then attributes = attributes .. "s" end
-							attributes = attributes .. "#"
-						end
-					end
-					debugLog:write(v .. ": " .. tostring(item[v]) .. "\n")
-				end
-				eidDesc = attributes .. eidDesc
-				debugLog:flush()
-				
+				eidDesc = CheckItemConfigItem(maxNumber - spawnedItems) .. eidDesc
 				EID:addCollectible(maxNumber - spawnedItems, eidDesc)
-				--print("adding " .. (maxNumber - spawnedItems))
 			end
 		end
 
@@ -235,12 +183,14 @@ local function GameStartTMTRAINER(_,isSave)
 	local theLog = io.open(logLocation, "r")
 	if (theLog == nil) then
 		print("[EID] Could not find the log file at " .. logLocation .. "; glitched item descriptions won't work!")
+		Isaac.DebugString("[EID] Could not find the log file at " .. logLocation .. "; glitched item descriptions won't work!")
 		logFound = false
 		return
 	else
 		logFound = true
 	end
 	
+	-- luckily, when the game reloads, it also reloads all glitched items, so resuming works perfectly as long as we start at the beginning
 	spawnedItems = 0
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, GameStartTMTRAINER)
