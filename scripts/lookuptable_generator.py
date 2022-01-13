@@ -9,7 +9,7 @@ filePath = "D:\\Programme\\Steam\\steamapps\\common\\The Binding of Isaac Rebirt
 # take second element for sort
 def sortByID(elem):
     return elem["id"]
-recipies = []
+recipes = []
 itemQuality = []
 itempools = {}
 itemIDToPool = {}
@@ -55,7 +55,7 @@ for recipe in recipesXML.findall('recipe'):
 
     convertedInput.sort()
     convertedInput = str(convertedInput).replace(" ","").replace("[","").replace("]","")
-    recipies.append({"input": convertedInput, "output": recipe.get('output')})
+    recipes.append({"input": convertedInput, "output": recipe.get('output')})
 
 # Read items_metadata.xml
 items_metadataXML = ET.parse(filePath+'items_metadata.xml').getroot()
@@ -100,7 +100,7 @@ for entity in entitiesXML.findall('entity'):
     theName = entity.get('name')
     if entity.get('variant'):
         theID += "." + entity.get('variant')
-    if entity.get('subtype'):
+    if entity.get('subtype') and entity.get('subtype') != "0":
         theID += "." + entity.get('subtype')
     if theName[0] == '#':
         theName = theName[1:].replace('_',' ').title()
@@ -119,7 +119,7 @@ newfile.write("EID.XMLMaxItemID = "+str(maxItemID) + "\n")
 
 newfile.write("--The fixed recipes, for use in Bag of Crafting\n")
 newfile.write("EID.XMLRecipes = {")
-for recipe in recipies:
+for recipe in recipes:
     newfile.write("[\""+recipe["input"]+"\"] = "+str(recipe["output"])+", ")
 newfile.write("}\n\n")
 
