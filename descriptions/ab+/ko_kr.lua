@@ -6,9 +6,20 @@ local languageCode = "ko_kr"
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Korean"
+--[[ 
+    Description for Korean fonts :
+    korean_hcrdotum(함초롬돋움) - Default Korean font that was used from former EID Korean. Recommended LineHeight : 10
+    korean_lanapixel(Lanapixel) - Used for official translation for TBoI : Repentance. Recommended LineHeight : 11
+    korean_soyakkoma(소야꼬마9) - A fancy font that improves readability. Borderless/Inverted version available. Recommended LineHeight : 13
+    korean_soyanon(소야논8) - A fancy font that that was used from former EID Korean. Recommended LineHeight : 11
+    korean_galmoori9(갈무리9) - A font that inspired from Nintendo DS Korean font. Recommended LineHeight : 11
+    korean_galmoori11(갈무리11) - A font that inspired from Nintendo DS Korean font. Used for unofficial Korean mod by Blackcreamtea. Recommended LineHeight : 13
 
-EID.descriptions[languageCode].fonts = {"korean_hcrdotum"--[[ , "korean_gulim", "korean_dotum" ]]} -- Fonts to be used with this languagepack
--- Only HCR_Dotum is compatible with current markup. Other fonts from pre-EID Korean has inline icon issues.
+    korean_galmoori9, korean_galmoori11 is added for community request.
+ ]]
+EID.descriptions[languageCode].fonts = {"korean_hcrdotum", "korean_lanapixel", "korean_soyakkoma", "korean_soyakkoma_borderless", "korean_soyakkoma_inverted", "korean_soyanon", "korean_galmoori9", "korean_galmoori11"} -- Fonts to be used with this languagepack
+
+
 
 EID.descriptions[languageCode].collectibles={
 	-- Original
