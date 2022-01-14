@@ -382,7 +382,6 @@ function EID:printDescription(desc)
 				curName = curName .. "{{".. EID.ModIndicator[desc.ModName].Icon .."}}"
 			end
 		end
-		print(EID.Config["ModIndicatorDisplay"])
 
 		EID:renderString(
 			curName,
