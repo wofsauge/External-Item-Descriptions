@@ -1206,6 +1206,26 @@ if MCMLoaded then
 			}
 		)
 	end
+	-------Mod indicator for modded items---------
+	local modIndicatorDisplays = {"Both","Name only","Icon only", "None"}
+	MCM.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(modIndicatorDisplays, EID.Config["ModIndicatorDisplay"])
+			end,
+			Minimum = 1,
+			Maximum = #modIndicatorDisplays,
+			Display = function()
+				return "Mod indicator displayed for: " .. EID.Config["ModIndicatorDisplay"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["ModIndicatorDisplay"] = modIndicatorDisplays[currentNum]
+			end
+		}
+	)
 	-------Object ID---------
 	MCM.AddSetting(
 		"EID",
@@ -1563,6 +1583,30 @@ if MCMLoaded then
 				EID.Config["ErrorColor"] = colorNameArray[currentNum]
 			end,
 			Info = {"Changes the color of error messages like Unknown pills"}
+		}
+	)
+	-- Mod indicator Color
+	MCM.AddSetting(
+		"EID",
+		"Colors",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(colorNameArray, EID.Config["ModIndicatorTextColor"])
+			end,
+			Minimum = 0,
+			Maximum = 1000,
+			Display = function()
+				if EID.Config["ModIndicatorTextColor"] == nil then EID.Config["TextColor"] = EID.DefaultConfig["ModIndicatorTextColor"] end
+				EID.MCMCompat_isDisplayingEIDTab = "Visuals";
+				return "Mod Indicator: " .. string.gsub(EID.Config["ModIndicatorTextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ModIndicatorTextColor"]).."/"..#colorNameArray..")"
+			end,
+			OnChange = function(currentNum)
+				if currentNum == 0 then currentNum = #colorNameArray end
+				if currentNum > #colorNameArray then currentNum = 1 end
+				EID.Config["ModIndicatorTextColor"] = colorNameArray[currentNum]
+			end,
+			Info = {"Changes the color of mod indicator texts (as long as they are enabled)."}
 		}
 	)
 end

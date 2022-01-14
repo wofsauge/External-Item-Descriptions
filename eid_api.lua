@@ -49,6 +49,7 @@ EID.ItemTypeAnm2Names = {
 	"familiar", -- 4
 	"trinket" -- 5
 }
+
 ---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
 local nullVector = Vector(0,0)
@@ -61,28 +62,28 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description}
+	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description, EID._currentMod}
 end
 
 -- Adds a description for a trinket. Optional parameters: itemName, language
 function EID:addTrinket(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description}
+	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description, EID._currentMod}
 end
 
 -- Adds a description for a card/rune. Optional parameters: itemName, language
 function EID:addCard(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description}
+	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description, EID._currentMod}
 end
 
 -- Adds a description for a pilleffect id. Optional parameters: itemName, language
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.70." .. id+1] = {id+1, itemName, description}
+	EID.descriptions[language].custom["5.70." .. id+1] = {id+1, itemName, description, EID._currentMod}
 end
 
 -- Adds a character specific description for the item "Birthright". Optional parameters: playerName, language
@@ -320,6 +321,9 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity)
 
 	description.Transformation = EID:getTransformation(Type, Variant, SubType)
 	
+	description.ModName = tableEntry and tableEntry[4]
+	description.ModName = tableEntry and tableEntry[4]
+
 	for k,modifier in pairs(EID.DescModifiers) do
 		if modifier.condition(description) then
 			description = modifier.callback(description)
@@ -1044,4 +1048,16 @@ end
 -- Get KColor object of "Error" texts
 function EID:getErrorColor()
 	return EID:getColor(EID.Config["ErrorColor"], EID.InlineColors["ColorEIDError"])
+end
+
+-- Specify the name of the mod which will be displayed next to the item name
+-- By default EID takes the mod name
+function EID:setModIndicatorName(newName)
+	EID.ModIndicator[EID._currentMod].Name = newName
+end
+-- Set an icon for the mod which will be displayed next to the item name
+function EID:setModIndicatorIcon(iconMarkup, override)
+	if override == nil then override = true end -- overide previous value if not specified
+	if EID.ModIndicator[EID._currentMod].Icon ~= nil and override == false then return end
+	EID.ModIndicator[EID._currentMod].Icon = iconMarkup
 end

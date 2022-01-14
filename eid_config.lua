@@ -131,6 +131,12 @@ EID.UserConfig = {
     -- REPENTANCE ONLY!!!
     -- Default = true
     ["ShowQuality"] = true,
+    -- Set the mod indicator display
+    -- Default = "Both"
+    ["ModIndicatorDisplay"] = "None",
+    -- Set the mod indicator text color
+    -- Default = "ColorLightOrange"
+    ["ModIndicatorTextColor"] = "ColorLightOrange",
 
     -------TRANSFORMATIONS---------
 
@@ -359,6 +365,8 @@ EID.DefaultConfig = {
     ["DisplayTrinketInfo"] = true,
     ["ItemNameColor"] = "ColorEIDObjName",
     ["ShowQuality"] = true,
+    ["ModIndicatorDisplay"] = "None",
+    ["ModIndicatorTextColor"] = "ColorLightOrange",
     ["ShowObjectID"] = false,
     ["TransformationText"] = true,
     ["TransformationIcons"] = true,
