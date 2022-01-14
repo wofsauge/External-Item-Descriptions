@@ -2,17 +2,17 @@ EID.UserConfig = {
 	---------- General ----------
 	-- Change the language of the mod
 	-- Currently Supported: English = "en_us" (Default), "en_us_detailed" (More detailed descriptions)
-	--						French = "fr"					SPECIAL THANKS TO Nicolas Delvaux
-	--						Polish = "pl"					SPECIAL THANKS TO Rickyy
-	--						Spanish = "spa"					SPECIAL THANKS TO Lidia Arroyo Purroy
-	--						Portuguese = "pt"				SPECIAL THANKS TO Marcelino Cruz
+	--						French = "fr"			SPECIAL THANKS TO Nicolas Delvaux
+	--						Polish = "pl"			SPECIAL THANKS TO Rickyy
+	--						Spanish = "spa"			SPECIAL THANKS TO Lidia Arroyo Purroy
+	--						Portuguese = "pt"		SPECIAL THANKS TO Marcelino Cruz
 	--						Brazilian Portuguese = "pt_br"	SPECIAL THANKS TO Marcelino Cruz
-	--						Russian = "ru"					SPECIAL THANKS TO hell2pay, fly_6
-	--						Italian = "it"					SPECIAL THANKS TO Denkishi, 2G
-	--						Bulgarian = "bul"				SPECIAL THANKS TO Gothika_47
-	--						Turkish = "tr_tr"				SPECIAL THANKS TO Mert Dutal
-	--						Korean = "ko_kr"				SPECIAL THANKS TO Blackcreamtea and 미카
-	--						Chinese (https://steamcommunity.com/sharedfiles/filedetails/?id=2490406789)
+	--						Russian = "ru"			SPECIAL THANKS TO hell2pay, fly_6
+	--						Italian = "it"			SPECIAL THANKS TO Denkishi, 2G
+	--						Bulgarian = "bul"		SPECIAL THANKS TO Gothika_47
+	--						Turkish = "tr_tr"		SPECIAL THANKS TO Mert Dutal
+	--						Korean = "ko_kr"		SPECIAL THANKS TO Blackcreamtea and 미카
+	--						Chinese = "zh_cn"		SPECIAL THANKS TO Xheepey87
 	--
 	-- If you want to make a translation, please contact me :) (wofsauge)
 	--
