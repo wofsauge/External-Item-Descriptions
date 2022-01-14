@@ -18,7 +18,6 @@ EID.descriptions[languageCode].custom = {} -- table for custom entity descriptio
 EID.descriptions[languageCode].languageName = "Korean"
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].languageName = "Korean"
 --[[
 	Description for Korean fonts :
 	korean_hcrdotum(함초롬돋움) - Default Korean font that was used from former EID Korean. Recommended LineHeight : 10
@@ -29,7 +28,7 @@ EID.descriptions[languageCode].languageName = "Korean"
 	korean_galmoori11(갈무리11) - A font that inspired from Nintendo DS Korean font. Used for unofficial Korean mod by Blackcreamtea. Recommended LineHeight : 13
 
 	korean_galmoori9, korean_galmoori11 is added for community request.
- ]]
+]]
 EID.descriptions[languageCode].fonts = {"korean_hcrdotum", "korean_lanapixel", "korean_soyakkoma", "korean_soyakkoma_borderless", "korean_soyakkoma_inverted", "korean_soyanon", "korean_galmoori9", "korean_galmoori11"}
 
 ---------- Collectibles ----------
