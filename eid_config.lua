@@ -183,6 +183,14 @@ EID.UserConfig = {
 	-- Default = false
 	["ShowUnidentifiedPillDescriptions"] = false,
 	
+	------------Glitched Items--------------
+	-- Toggle Display of Glitched Item (TMTRAINER) descriptions
+	-- Note: The --luadebug launch option is required for more detailed glitched item descriptions
+	-- This option allows mods to have access to your files and should be turned on at your own risk!
+	-- Without --luadebug, you still can see the effect the item will have on your Hearts, and what stats it might modify
+	-- Default = true
+	["DisplayGlitchedItemInfo"] = true,
+	
 	--------Sacrifice Room---------
 
 	-- Toggle Display of next Sacrifice room Payout descriptions
@@ -360,6 +368,7 @@ EID.DefaultConfig = {
 	["DisplayPillInfoOptions?"] = true,
 	["DisplayObstructedPillInfo"] = false,
 	["ShowUnidentifiedPillDescriptions"] = false,
+	["DisplayGlitchedItemInfo"] = true,
 	["DisplaySacrificeInfo"] = true,
 	["DisplayDiceInfo"] = true,
 	["DisplayBagOfCrafting"] = "always",
