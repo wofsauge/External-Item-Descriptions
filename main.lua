@@ -57,11 +57,15 @@ local hudBBSprite = Sprite()
 hudBBSprite:Load("gfx/eid_transform_icons.anm2", true)
 hudBBSprite:Play("boundingBox")
 
-EID._currentMod = ""
 
+EID.ModIndicator = { }
+-- Overwriting "RegisterMod" to track which mods are loading
+-- Useful to associate items to mods
+EID._currentMod = ""
 local OldRegisterMod = RegisterMod
 RegisterMod = function (modName, apiVersion)
 	EID._currentMod = modName
+	EID.ModIndicator[modName] = { Name = modName, Icon = nil }
 	return OldRegisterMod(modName, apiVersion)
 end
 
@@ -376,9 +380,15 @@ function EID:printDescription(desc)
 			curName = curName.." - {{Quality"..quality.."}}"
 		end
 
-		if EID.Config["ShowModName"] and desc.ModName then
-			curName = curName .. " {{ColorWhite}}" .. desc.ModName
+		if desc.ModName then
+			if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
+				curName = curName .. " {{ColorWhite}}" .. EID.ModIndicator[desc.ModName].Name
+			end
+			if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Icon only" and EID.ModIndicator[desc.ModName].Icon then
+				curName = curName .. "{{".. EID.ModIndicator[desc.ModName].Icon .."}}"
+			end
 		end
+		print(EID.Config["ModIndicatorDisplay"])
 
 		EID:renderString(
 			curName,

@@ -49,7 +49,6 @@ EID.ItemTypeAnm2Names = {
 	"familiar", -- 4
 	"trinket" -- 5
 }
-EID.MODS = { }
 
 ---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
@@ -1048,4 +1047,12 @@ end
 -- Get KColor object of "Error" texts
 function EID:getErrorColor()
 	return EID:getColor(EID.Config["ErrorColor"], EID.InlineColors["ColorEIDError"])
+end
+
+
+function EID:addModIndicatorName(newName)
+	EID.ModIndicator[EID._currentMod].Name = newName
+end
+function EID:addModIndicatorIcon(iconMarkup)
+	EID.ModIndicator[EID._currentMod].Icon = iconMarkup
 end

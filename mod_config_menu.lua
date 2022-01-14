@@ -1206,24 +1206,23 @@ if MCMLoaded then
 			}
 		)
 	end
-	-------Mod name for modded items---------
+	-------Mod indicator for modded items---------
+	local modIndicatorDisplays = {"Both","Name only","Icon only", "None"}
 	MCM.AddSetting(
 		"EID",
 		"Visuals",
 		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
-				return EID.Config["ShowModName"]
+				return AnIndexOf(modIndicatorDisplays, EID.Config["ModIndicatorDisplay"])
 			end,
+			Minimum = 1,
+			Maximum = #modIndicatorDisplays,
 			Display = function()
-				local onOff = "False"
-				if EID.Config["ShowModName"] then
-					onOff = "True"
-				end
-				return "Display mod name: " .. onOff
+				return "Mod indicator displayed for: " .. EID.Config["ModIndicatorDisplay"]
 			end,
-			OnChange = function(currentBool)
-				EID.Config["ShowModName"] = currentBool
+			OnChange = function(currentNum)
+				EID.Config["ModIndicatorDisplay"] = modIndicatorDisplays[currentNum]
 			end
 		}
 	)
