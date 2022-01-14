@@ -134,6 +134,9 @@ EID.UserConfig = {
     -- Set the mod indicator display
     -- Default = "Both"
     ["ModIndicatorDisplay"] = "Both",
+    -- Set the mod indicator text color
+    -- Default = "ColorLightOrange"
+    ["ModIndicatorTextColor"] = "ColorLightOrange",
 
     -------TRANSFORMATIONS---------
 
@@ -355,6 +358,7 @@ EID.DefaultConfig = {
     ["ItemNameColor"] = "ColorEIDObjName",
     ["ShowQuality"] = true,
     ["ModIndicatorDisplay"] = "Both",
+    ["ModIndicatorTextColor"] = "ColorLightOrange",
     ["ShowObjectID"] = false,
     ["TransformationText"] = true,
     ["TransformationIcons"] = true,
