@@ -1010,10 +1010,12 @@ function EID:getErrorColor()
 	return EID:getColor(EID.Config["ErrorColor"], EID.InlineColors["ColorEIDError"])
 end
 
-
+-- Specify the name of the mod which will be displayed next to the item name
+-- By default EID takes the mod name
 function EID:setModIndicatorName(newName)
 	EID.ModIndicator[EID._currentMod].Name = newName
 end
+-- Set an icon for the mod which will be displayed next to the item name
 function EID:setModIndicatorIcon(iconMarkup, override)
 	if override == nil then override = true end -- overide previous value if not specified
 	if EID.ModIndicator[EID._currentMod].Icon ~= nil and override == false then return end
