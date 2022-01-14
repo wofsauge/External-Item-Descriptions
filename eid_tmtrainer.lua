@@ -121,6 +121,10 @@ local function CheckLogForItems(_)
 				eidDesc = EID:CheckGlitchedItemConfig(maxNumber - spawnedItems) .. eidDesc
 				EID:addCollectible(maxNumber - spawnedItems, eidDesc)
 			end
+		elseif string.find(line, "Game ended;") then
+			spawnedItems = 0
+			lastEffectTrigger = "chain"
+			eidDesc = ""
 		end
 
 		line = theLog:read()
@@ -146,3 +150,9 @@ local function GameStartTMTRAINER(_,isSave)
 	spawnedItems = 0
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, GameStartTMTRAINER)
+
+local function GameEndTMTRAINER()
+	-- Our cursor spot in the log gets wiped if mods are reloaded; can't think of a better way than this
+	Isaac.DebugString("[EID] Game ended; ignore previous glitched items in the log!")
+end
+EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, GameEndTMTRAINER)
