@@ -299,18 +299,20 @@ end
 
 -- returns the description object of the specified entity
 -- falls back to english if the objID isnt available
-function EID:getDescriptionObj(Type, Variant, SubType)
+-- entity is optional
+function EID:getDescriptionObj(Type, Variant, SubType, entity)
 	local description = {}
 	description.ObjType = Type
 	description.ObjVariant = Variant
 	description.ObjSubType = SubType
-	description.fullItemString = Type.."."..Variant.."."..SubType
-	description.Name = EID:getObjectName(Type, Variant, SubType)
+	description.fullItemString = Type.."."..Variant.."."..description.ObjSubType
+	description.Name = EID:getObjectName(Type, Variant, description.ObjSubType)
+	description.Entity = entity or nil
 
-	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
-	description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, SubType) end
-	
-	description.Transformation = EID:getTransformation(Type, Variant, SubType)
+	local tableEntry = EID:getDescriptionData(Type, Variant, description.ObjSubType)
+	description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, description.ObjSubType)
+
+	description.Transformation = EID:getTransformation(Type, Variant, description.ObjSubType)
 	
 	for k,modifier in pairs(EID.DescModifiers) do
 		if modifier.condition(description) then
