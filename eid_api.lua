@@ -322,6 +322,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity)
 	description.Transformation = EID:getTransformation(Type, Variant, SubType)
 	
 	description.ModName = tableEntry and tableEntry[4]
+	description.ModName = tableEntry and tableEntry[4]
 
 	for k,modifier in pairs(EID.DescModifiers) do
 		if modifier.condition(description) then
