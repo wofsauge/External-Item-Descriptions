@@ -784,9 +784,6 @@ function EID:handleBagOfCraftingRendering()
 	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
 	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIconsFunc = EID.tableToCraftingIconsFull end
 	
-	local customDescObj = EID:getDescriptionObj(5, 100, 710)
-	customDescObj.Description = ""
-	
 	--prevent our hotkeys from triggering as they're set
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
 		if Input.IsButtonTriggered(EID.Config["CraftingHideKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingHideButton"], EID.player.ControllerIndex) then
@@ -884,6 +881,9 @@ function EID:handleBagOfCraftingRendering()
 	
 	--sort by ingredient quality
 	table.sort(itemQuery, qualitySort)
+	
+	local customDescObj = EID:getDescriptionObj(5, 100, 710)
+	customDescObj.Description = ""
 	
 	--No Recipes Mode display
 	if EID.Config["BagOfCraftingDisplayMode"] == "Pickups Only" then
