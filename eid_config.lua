@@ -133,7 +133,7 @@ EID.UserConfig = {
     ["ShowQuality"] = true,
     -- Set the mod indicator display
     -- Default = "Both"
-    ["ModIndicatorDisplay"] = "Both",
+    ["ModIndicatorDisplay"] = "None",
     -- Set the mod indicator text color
     -- Default = "ColorLightOrange"
     ["ModIndicatorTextColor"] = "ColorLightOrange",
@@ -357,7 +357,7 @@ EID.DefaultConfig = {
     ["DisplayTrinketInfo"] = true,
     ["ItemNameColor"] = "ColorEIDObjName",
     ["ShowQuality"] = true,
-    ["ModIndicatorDisplay"] = "Both",
+    ["ModIndicatorDisplay"] = "None",
     ["ModIndicatorTextColor"] = "ColorLightOrange",
     ["ShowObjectID"] = false,
     ["TransformationText"] = true,
