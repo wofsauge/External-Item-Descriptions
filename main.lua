@@ -812,6 +812,23 @@ local function onRender(t)
 		return
 	end
 	
+	--Handle Glitched Items
+	if closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
+		local glitchedObj = EID.getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
+		local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
+		
+		-- force the default glitchy description if option is off
+		if not EID.Config["DisplayGlitchedItemInfo"] then
+			glitchedObj.Description = glitchedDesc
+		-- grab the Item Config info if eid_tmtrainer.lua hasn't taken care of it
+		elseif not debug then
+			glitchedObj.Description = EID:CheckGlitchedItemConfig(closest.SubType) .. glitchedDesc
+		end
+		
+		EID:printDescription(glitchedObj)
+		return
+	end
+	
 	if closest.Type == 1000 and closest.Variant == 76 then
 		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1))
 		return
