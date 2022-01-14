@@ -354,10 +354,15 @@ function EID:printDescription(desc)
 			EID.Config["Language"] = curLanguage
 			if EID.Config["TranslateItemName"] == 1 then
 				curName = englishName
-			elseif EID.Config["TranslateItemName"] == 3 and curName ~= englishName then
+			elseif EID.Config["TranslateItemName"] == 3 and curName ~= englishName and not EID.isDisplayingPermanent then
 				curName = curName.." ("..englishName..")"
 			end
 		end
+		-- Display Entity ID
+		if EID.Config["ShowObjectID"] and desc.ObjType > 0 then
+			curName = curName.." {{ColorGray}}"..desc.ObjType.."."..desc.ObjVariant.."."..desc.ObjSubType
+		end
+		-- Display Quality
 		if REPENTANCE and EID.Config["ShowQuality"] and desc.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 			local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Quality)
 			curName = curName.." - {{Quality"..quality.."}}"
@@ -865,7 +870,7 @@ local function onRender(t)
 	
 	--Handle Glitched Items
 	if closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
-		local glitchedObj = EID.getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
+		local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
 		local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
 		
 		-- force the default glitchy description if option is off
