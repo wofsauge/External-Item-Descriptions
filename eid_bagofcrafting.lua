@@ -664,6 +664,7 @@ local refreshPosition = 0
 local bagOfCraftingRefreshes = 0
 local downHeld = 0
 local upHeld = 0
+local resetBagCounter = 0
 
 local craftingIsHidden = false
 local showCraftingResult = false
@@ -1020,7 +1021,7 @@ function EID:handleBagOfCraftingRendering()
 	local resultDesc = EID:getDescriptionEntry("CraftingResults")
 	EID:appendToDescription(customDescObj, resultDesc)
 	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.player.ControllerIndex) then
-		EID.player:SetShootingCooldown(2)
+		EID.player.ControlsCooldown = 2
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) then
 			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
 			downHeld = Isaac.GetTime()
@@ -1044,6 +1045,16 @@ function EID:handleBagOfCraftingRendering()
 		elseif Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) and Isaac.GetTime() - upHeld > 750 then
 			bagOfCraftingOffset = math.max(0, bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
 			upHeld = Isaac.GetTime() - 700
+		end
+		--reset bag contents when holding Use Pill/Card
+		if Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.player.ControllerIndex) then
+			resetBagCounter = resetBagCounter + 1
+			if resetBagCounter > 120 then
+				EID.BagItems = {}
+				resetBagCounter = 0
+			end
+		else
+			resetBagCounter = 0
 		end
 	end
 	--fix bug with being allowed to go to an empty page if recipe count = multiple of page size (or if we refresh on last page)
