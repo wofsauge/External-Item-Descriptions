@@ -1,12 +1,13 @@
 --------------------------------------
------  Basic German descriptions -----
+-----  Basic German descriptions  ----
 --------------------------------------
 
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
 local languageCode = "de"
 
 -- init de table
@@ -14,8 +15,10 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "German (WIP) (AB+)"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ +0.7 Mehr Tränen"},
 	{"2", "The Inner Eye", "Dreifachschuss#↓ Weniger Tränen"},
@@ -311,7 +314,7 @@ EID.descriptions[languageCode].collectibles={
 	{"291", "Flush!", "!!! Instakills Poop enemies & bosses!#Turns enemies into poop"},
 	{"292", "Satanic Bible", "+1 Black Heart"},
 	{"293", "Head of Krampus", "Shoot brimstone lasers in all 4 directions"},
-	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger \"Wait What?\" when swapping it with a different active item and picking it up again"},
+	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger {{Collectible484}}Wait What? when swapping it with a different active item and picking it up again"},
 	{"295", "Magic Fingers", "Damages the whole room with 2x the player damage#Price: 1 coin"},
 	{"296", "Converter", "!!! Convert:#2 Soul/Black Hearts into 1 Red Heart Container"},
 	{"297", "Pandora's Box", "!!! SINGLE USE, spawns items based on floor:#B1: 2 Soul Hearts#B2: 2 bombs and 2 keys#C1: 1 Boss item#C2: B1+C1#D1: 4 Soul Hearts#D2: 20 coins#W1: 2 Boss items#W2: {{Collectible33}}The Bible#???/Void: Nothing#Sheol: 1 Devil item + 1 Black Heart#Dark Room: Unlocks {{Collectible523}}Moving Box#Cat: 1 Angel item + 1 Eternal Heart#Chest: 1 coin"},
@@ -333,7 +336,7 @@ EID.descriptions[languageCode].collectibles={
 	{"313", "Holy Mantle", "Ignore the first hit in every room"},
 	{"314", "Thunder Thighs", "↑ +1 Health up#↓ -0.4 Speed down#Destroy rocks when walking over them"},
 	{"315", "Strange Attractor", "Magnetic tears#Affects enemies, pickups and trinkets"},
-	{"316", "Cursed Eye", "Charged wave of tears#When charging and getting hit, teleports you to a random room"},
+	{"316", "Cursed Eye", "Charged wave of tears#!!! When hit while partially charged, teleports you to a random room#Does not teleport if you have {{Collectible260}}Black Candle"},
 	{"317", "Mysterious Liquid", "Tears leave creep#Creep deals 30 damage per second"},
 	{"318", "Gemini", "Close combat familiar#Deals 6 contact damage per second"},
 	{"319", "Cain's Other Eye", "Bounces around the room#Shoots towards Isaac#His damage equals your damage"},
@@ -357,7 +360,7 @@ EID.descriptions[languageCode].collectibles={
 	{"337", "Broken Watch", "Slows down or speeds up every 4th room"},
 	{"338", "The Boomerang", "Throwable boomerang#Stuns enemies and deals 2x your damage on hit#Can grab items"},
 	{"339", "Safety Pin", "↑ +5.25 Range up#↑ +0.16 Shot Speed up#↑ +0.5 Tear Height#+1 Black Heart"},
-	{"340", "Caffeine Pill", "↑ +0.3 Speed up#↑ Size down#Gives you a random pill when picked up"},
+	{"340", "Caffeine Pill", "↑ +0.3 Speed up#↑ Size down#Spawns a random pill when picked up"},
 	{"341", "Torn Photo", "↑ +0.7 Tears up#↑ +0.16 Shot Speed up"},
 	{"342", "Blue Cap", "↑ +1 Health up#↑ +0.7 Tears up#↓ -16% Shot Speed down"},
 	{"343", "Latch Key", "↑ +1 Luck up#+1 Soul Heart#Spawns 2 keys"},
@@ -386,7 +389,7 @@ EID.descriptions[languageCode].collectibles={
 	{"366", "Scatter Bombs", "+5 bombs#Causes your bombs to explode into 2-4 tiny bombs"},
 	{"367", "Sticky Bombs", "+5 bombs#When a bomb kills an enemy, it spawns blue spiders#Causes your bombs to stick to enemies"},
 	{"368", "Epiphora", "Shooting in one direction gradually decreases your tear delay by up to 200%"},
-	{"369", "Continuum", "↑ +2.25 Range up#↑ +1.5 Tear Height#Tears travel through walls and appear out of the opposite wall"},
+	{"369", "Continuum", "↑ +2.25 Range up#↑ +1.5 Tear Height#Spectral tears#Tears travel through walls and appear out of the opposite wall"},
 	{"370", "Mr. Dolly", "↑ +0.7 Tears up#↑ +5.25 Range up#↑ +0.5 Tear Height#Spawns 3 random hearts when picked up"},
 	{"371", "Curse of the Tower", "Spawn 6 troll bombs every time you get hit#These are affected by bomb items"},
 	{"372", "Charged Baby", "Random chance to drop a battery or freeze all enemies in the room#Chance to add one charge to your active item"},
@@ -455,17 +458,17 @@ EID.descriptions[languageCode].collectibles={
 	{"435", "Lil Loki", "Shoots 4 tears in a cross pattern#Deals 3.5 damage per shot"},
 	{"436", "Milk!", "After taking damage, you gain a Tears up for the rest of the room"},
 	{"437", "D7", "Respawn all enemies of the room#Allows you to farm room clear rewards#!!! If used in a Greed fight, it can reroll the room into a Shop"},
-	{"438", "Binky", "+1 Soul Heart#↑ +0.7 Tears up#↑ Makes Isaac very small, reducing his hitbox size"},
+	{"438", "Binky", "+1 Soul Heart#↑ +0.75 Tears up#↑ Makes Isaac very small, reducing his hitbox size"},
 	{"439", "Mom's Box", "Spawns a random trinket#↑ +1 Luck while held#While held, doubles the effect of trinkets"},
 	{"440", "Kidney Stone", "Randomly while firing you will stop firing and release a burst of tears and a kidney stone#↓ -0.2 Speed down#↓ -17 Range down#↑ +2 Tear Height"},
 	{"441", "Mega Blast", "Fires a huge Mega Satan laser for 15 seconds#The laser persists between rooms and floors"},
-	{"442", "Dark Princes Crown", "!!! While at 1 full red heart:#↑ +1.5 Range up#↑ +0.75 Tears up#↑ +0.2 Shot Speed up#↑ +1 Tear Height#Does not work with characters without red HP"}, -- Dark Princes Crown (apostrophe added to the name in Repentance)
+	{"442", "Dark Prince's Crown", "!!! While at 1 full Red Heart:#↑ +1.5 Range up#↑ +0.75 Tears up#↑ +0.2 Shot Speed up#↑ +1 Tear Height#Does not work with characters without red HP"}, -- Dark Princes Crown (apostrophe added to the name in Repentance)
 	{"443", "Apple!", "Randomly fire razor blades which deal 400% damage#↑ +0.3 Tears up"},
 	{"444", "Lead Pencil", "Every 15 tears fired, you fire a cluster of tears#Each tear in the cluster deals double damage"},
 	{"445", "Dog Tooth", "↑ +0.3 Damage up#↑ +0.1 Speed up#A wolf howls if you enter a room next to a {{SecretRoom}}{{SuperSecretRoom}}Secret Room#A barking sound will play when entering a room with a crawlspace under a rock"},
 	{"446", "Dead Tooth", "While firing, you get a green aura that poisons any enemies in it#The poison deals your damage"},
 	{"447", "Linger Bean", "While firing without pause, spawns a poop cloud every 7.5 seconds#The cloud deals 3.5 damage 5 times a second#Cloud lasts 15 seconds#Can be moved by shooting it"},
-	{"448", "Shard of Glass", "When taking damage, chance to get ↑ +5 Range and leave a trail of blood creep, or spawn a red heart"},
+	{"448", "Shard of Glass", "When taking damage, chance to get ↑ +5 Range and leave a trail of blood creep, or spawn a Red Heart"},
 	{"449", "Metal Plate", "+1 Soul Heart#Enemy bullets have a 25% chance to be reflected as concussive tears"},
 	{"450", "Eye of Greed", "Every 20 tears, shoot a coin tear that turns enemies into gold#This costs 1 coin#Hit enemies drop a coin"},
 	{"451", "Tarot Cloth", "Drops a random card or rune on pickup#Doubles the effect of any card used"},
@@ -477,7 +480,7 @@ EID.descriptions[languageCode].collectibles={
 	{"457", "Cone Head", "+1 Soul Heart#20% chance to ignore damage"},
 	{"458", "Belly Button", "Spawns a random trinket on pickup#Grants 1 extra trinket slot"},
 	{"459", "Sinus Infection", "20% chance to shoot sticky poison tears#Deals your damage each second#Sticks for 60 seconds"},
-	{"460", "Glaucoma", "5% chance to shoot concussive tears"},
+	{"460", "Glaucoma", "5% chance to shoot concussive tears#Makes the screen slightly darker"},
 	{"461", "Parasitoid", "15% chance to shoot egg sacks#Spawns slowing creep on hit#Spawns a blue spider or fly on hit"},
 	{"462", "Eye of Belial", "↑ +1.5 Range up#↑ +1 Tear Height#Grants piercing tears#After hitting the first enemy, the tear deals double damage and gains a homing effect"},
 	{"463", "Sulfuric Acid", "↑ +0.3 Damage up#Chance to destroy rocks and open doors with your tears"},
@@ -504,7 +507,7 @@ EID.descriptions[languageCode].collectibles={
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawn a wave of rocks#Can open rooms and break rocks"},
 	{"485", "Crooked Penny", "50% chance to double all items, consumables and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"},
 	{"486", "Dull Razor", "Hurts you without damaging you#Can trigger item effects"},
-	{"487", "Potato Peeler", "Removes one Red Heart Container and gives you ↑ +0.2 Damage up and a \"Cube of Meat\""},
+	{"487", "Potato Peeler", "Removes one Red Heart Container and gives you ↑ +0.2 Damage up and a {{Collectible73}}Cube of Meat"},
 	{"488", "Metronome", "Grants a random item's effect for the current room"},
 	{"489", "D Infinity", "Random dice effect each use"},
 	{"490", "Eden's Soul", "!!! SINGLE USE !!!#Spawns 2 random items depending on the current rooms item pool"},
@@ -538,7 +541,7 @@ EID.descriptions[languageCode].collectibles={
 	{"518", "Buddy in a Box", "Familiar which looks like a random coop Baby#Has a random tear effect#Will be randomized every floor"},
 	{"519", "Lil Delirium", "A familiar that transforms into other random familiars every 10 seconds"},
 	{"520", "Jumper Cables", "+1 charge for your active item for every 15 enemies killed"},
-	{"521", "Coupon", "When used, causes one random item in the {{Shop}}Shop or {{DevilRoom}}Devil Room to become free"},
+	{"521", "Coupon", "When used, causes one random item in the {{Shop}}Shop or {{DevilRoom}}Devil Room to become free#While held, guarantees one Shop item will be on sale"},
 	{"522", "Telekinesis", "Enemy projectiles close to you are held in place for 3 seconds#They get thrown away from you afterwards#Recharges after 3 seconds"},
 	{"523", "Moving Box", "When used, stores all pickups from the current room#Using it again will put them back on the floor again#This allows you to move things between rooms"},
 	{"524", "Technology Zero", "Tears will be connected with beams of electricity#Electricity damage equals your damage"},
@@ -554,7 +557,7 @@ EID.descriptions[languageCode].collectibles={
 	{"534", "Schoolbag", "Allows holding 2 active items#Switch between them by pressing the Drop button (hold button as \"The Forgotten\")"},
 	{"535", "Blanket", "+1 Soul Heart#Heals 1 Red Heart#Grants a shield when entering a boss room"},
 	{"536", "Sacrificial Altar", "!!! SINGLE USE !!!#Sacrifice 1-2 familiars to spawn a Devil item#Turns your blue spiders/flies into coins"},
-	{"537", "Lil Spewer", "Spawns a random pill#Familiar that fires a line of creep#Creeptype changes everytime the player uses a pill"},
+	{"537", "Lil Spewer", "Spawns a random pill#Familiar that fires a line of creep#Creep type changes everytime the player uses a pill"},
 	{"538", "Marbles", "Spawns 3 random trinkets#Taking damage can add the effect of your trinket permanently"},
 	{"539", "Mystery Egg", "Spawn a charmed enemy when you get hit#Spawns stronger friends the more rooms are cleared without taking damage"},
 	{"540", "Flat Stone", "Tears bounce off the floor#Tears cause splash damage on every bounce"},
@@ -731,7 +734,7 @@ EID.descriptions[languageCode].cards={
 	{"23", "2 of Clubs", "Duplicate your bombs"},
 	{"24", "2 of Diamonds", "Duplicate your money"},
 	{"25", "2 of Spades", "Duplicate your keys"},
-	{"26", "2 of Hearts", "Duplicate your red hearts#Only has a healing effect"},
+	{"26", "2 of Hearts", "Duplicate your Red Hearts#Only has a healing effect"},
 	{"27", "Ace of Clubs", "Turns all pickups into bombs"},
 	{"28", "Ace of Diamonds", "Turns all pickups into coins"},
 	{"29", "Ace of Spades", "Turns all pickups into keys"},
@@ -746,7 +749,7 @@ EID.descriptions[languageCode].cards={
 	{"38", "Berkano", "Summons 3 blue spiders and 3 blue flies"},
 	{"39", "Algiz", "Invincibility for 30 seconds"},
 	{"40", "Blank Rune", "Random rune effect#25% chance to drop itself again"},
-	{"41", "Black Rune", "Deals 40 damage to all enemies#Random stat up for every pedestal items in the room#(Destroys all pedestals in room)"},
+	{"41", "Black Rune", "Deals 40 damage to all enemies#Converts all pedestal items in the room into random stat ups#Converts all pickups in the room into blue flies"},
 	{"42", "Chaos Card", "Throwable instant kill-card"},
 	{"43", "Credit Card", "Removes the price from all items in the current shop or Devil deal, making everything free"},
 	{"44", "Rules Card", "Displays \"helpful\" tips on use"},
@@ -762,9 +765,7 @@ EID.descriptions[languageCode].cards={
 	{"54", "Era Walk", "Slow down enemies#↑ +0.5 Speed up#↓ -1 Shot Speed down#Effect lasts for current room"},
 }
 
-
 ---------- Pills ----------
-
 EID.descriptions[languageCode].unidentifiedPill = "Unidentifizierte Pille"
 
 EID.descriptions[languageCode].pills={
@@ -788,7 +789,7 @@ EID.descriptions[languageCode].pills={
 	{"17", "Luck Down", "↓ -1 Luck down"},
 	{"18", "Luck Up", "↑ +1 Luck up"},
 	{"19", "Telepills", "Teleport to random room"},
-	{"20", "48 Hour Energy!", "Recharges your active item#Drops 1-2 batteries"},
+	{"20", "48 Hour Energy!", "Fully recharges your active item#Drops 1-2 batteries"},
 	{"21", "Hematemesis", "Drains all but one heart container#Spawns 1-4 Red Hearts"},
 	{"22", "Paralysis", "You can't move for 2 seconds"},
 	{"23", "I can see forever!", "Opens secret room entrances on current floor"},
@@ -812,10 +813,10 @@ EID.descriptions[languageCode].pills={
 	{"41", "I'm Drowsy...", "Slow all enemies in room"},
 	{"42", "I'm Excited!!!", "Speed up for all enemies in room"},
 	{"43", "Gulp!", "Consume current trinket and gain its effect permanently"},
-	{"44", "Horf!", "Shoots one ipecac tear"},
+	{"44", "Horf!", "Shoots one {{Collectible149}}Ipecac tear"},
 	{"45", "Feels like I'm walking on sunshine!", "Short invincibility"},
 	{"46", "Vurp!", "Spawns last used pill"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Nächste Opferungsbelohung]"
@@ -835,6 +836,7 @@ EID.descriptions[languageCode].sacrifice={
 	{"12", "", "50% chance to teleport to the \"Dark Room\""},
 }
 
+
 ---------- Dice Room ----------
 EID.descriptions[languageCode].diceHeader = "[Würfel Effekt]"
 
@@ -844,25 +846,26 @@ EID.descriptions[languageCode].dice={
 	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
 	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
 	{"5", "", "Rerolls and restarts the current floor"},
-	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items, including everything on the floor"}
+	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items, including everything on the floor"},
 }
 
+
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
-	"",				-- 0 = none
+EID.descriptions[languageCode].transformations={
+	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Beelzebub",			-- 3
-	"Conjoined",			-- 4
+	"Beelzebub",		-- 3
+	"Conjoined",		-- 4
 	"Spun",				-- 5
-	"Yes Mother?",			-- 6
+	"Yes Mother?",		-- 6
 	"Oh Crap",			-- 7
 	"Bob",				-- 8
-	"Leviathan",			-- 9
+	"Leviathan",		-- 9
 	"Seraphim",			-- 10
-	"Super Bum",			-- 11
+	"Super Bum",		-- 11
 	"Bookworm",			-- 12
-	"Spider Baby",			-- 13
+	"Spider Baby",		-- 13
 	"Adult",			-- 14
 	"Stompy"			-- 15
 }

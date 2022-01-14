@@ -1,12 +1,13 @@
 -----------------------------------------
------  Basic Bulgarian descriptions -----
+-----  Basic Bulgarian descriptions  ----
 -----------------------------------------
 
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
 local languageCode = "bul"
 
 -- init bul table
@@ -14,8 +15,10 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Bulgarian (WIP) (AB+)"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "Тъжният лук", "↑ 0.7 Скорост на сълзите"},
 	{"2", "Вътрешно око", "Тройна стрелба#↓ 2 Скорост на сълзите"},
@@ -705,163 +708,161 @@ EID.descriptions[languageCode].trinkets={
 
 ---------- Cards ----------
 EID.descriptions[languageCode].cards={
-	--[[{"1", "Дурак", "Телепортирует в начало уровня"},
-	{"2", "Маг", "Самонаводящиеся слезы в пределах комнаты"},
-	{"3", "Верховная Жрица", "Мамина Нога атакует случайного врага"},
-	{"4", "Императрица", "↑ 2.35 к урону и ↑ 0.3 к скорости в пределах комнаты"},
-	{"5", "Император", "Телепортирует в комнату с Боссом"},
-	{"6", "Иерофант", "Создает 2 Сердца Души"},
-	{"7", "Влюбленные", "Создает 2 Красных Сердца"},
-	{"8", "Колесница", "Неуязвимость + контактный урон на 6 секунд"},
-	{"9", "Правосудие", "Создает 1 бомбу, 1 ключ, 1 монету, 1 сердце"},
-	{"10", "Отшельник", "Телепортирует в магазин, если он есть на уровне"},
-	{"11", "Колесо Фортуны", "Создает игровой автомат"},
-	{"12", "Сила", "↑ 1 к здоровью#↑ 0.3 к урону#↑ 0.3 к скорости#В пределах комнаты"},
-	{"13", "Повешенный", "Полет в пределах комнаты"},
-	{"14", "Смерть", "Наносит 40 урона всем врагам в комнате"},
-	{"15", "Умеренность", "Создает автомат для сдачи крови"},
-	{"16", "Дьявол", "↑ 2 к урону в пределах комнаты"},
-	{"17", "Башня", "Создает тролль-бомбы"},
-	{"18", "Звезды", "Телепортирует в золотую комнату, если она есть на уровне"},
-	{"19", "Луна", "Телепортирует в секретную комнату"},
-	{"20", "Солнце", "Наносит 100 урона всем врагам в комнате#Восстанавливает здоровье#Показывает всю карту уровня"},
-	{"21", "Страшный Суд", "Создает попрошайку"},
-	{"22", "Мир", "Показывает всю карту уровня"},
-	{"23", "Двойка Треф", "Удваивает количество ваших бомб"},
-	{"24", "Двойка Бубен", "Удваивает количество ваших монет"},
-	{"25", "Двойка Пик", "Удваивает количество ваших ключей"},
-	{"26", "Двойка Червей", "Удваивает количество ваших красных сердцец#Лечит, но не создает новые сердца"},
-	{"27", "Туз Треф", "Превращает все предметы на полу в бомбы"},
-	{"28", "Туз Бубен", "Превращает все предметы на полу в монеты"},
-	{"29", "Туз Пик", "Превращает все предметы на полу в ключи"},
-	{"30", "Туз Червей", "Превращает все предметы на полу в сердца"},
-	{"31", "Джокер", "Телепортирует в комнату ангела/дьявола"},
-	{"32", "Хагалаз", "Уничтожает все камни в комнате"},
-	{"33", "Йера", "Дублирует все предметы в комнате"},
-	{"34", "Эваз", "Создает на полу люк на следующий уровень"},
-	{"35", "Дагаз", "+1 Сердце Души#Снимает текущий эффект проклятия"},
-	{"36", "Ансуз", "Открывает абсолютно всю карту уровня"},
-	{"37", "Пертро", "Меняет артефакты на пьедесталах в комнате"},
-	{"38", "Беркано", "Призывает 3 союзных мух и 3 союзных пауков"},
-	{"39", "Альгиз", "Неуязвимость на 30 секунд"},
-	{"40", "Пустая Руна", "Эффект случайной руны"},
-	{"41", "Черная Руна", "Наносит урон всем врагам в комнате#Поглощает все артефакты в комнате#Взамен дает + к случайным характеистикам персонажа"},
-	{"42", "Карта Хаоса", "Выбрасывается и мгновенно убивает любого врага (даже Босса)"},
-	{"43", "Кредитная Карта", "Делает бесплатными все предметы в комнате#Работает как в магазине, так и в комнате Дьявола"},
-	{"44", "Карта Правил", "Дает полезный совет"},
-	{"45", "Карта Против Человечества", "Вся комната заполняется какашками"},
-	{"46", "Король-Самоубийца", "Убивает вас и создает 10 предметов/артефактов в комнате"},
-	{"47", "Свободный Выход", "Открывает все двери в комнате"},
-	{"48", "? Карта", "Активирует ваш активный предмет без использования заряда"},
-	{"49", "Осколок Кости", "Меняет артефакты и предметы в комнате"},
-	{"50", "Экстренный Контакт", "Две Мамины Руки прижимают к земле случайных врагов"},
-	{"51", "Святая Карта", "Дает эффект Святой Мантии (блокирует урон и исчезает)"},
-	{"52", "Огромный Рост", "↑ 7 к урону#↑ 30 дальность стрельбы#Вы становитесь больше#Эффект остается в пределах коматы"},
-	{"53", "Древний Зов", "Создает на полу 3 случайные карты"},
-	{"54", "Прогулка По Эпохе", "Замедляет всех врагов и немного ускоряет вас#Эффект остается в пределах комнаты"},--]]
+	{"1", "0 - The Fool", "Teleports you back to the start"},
+	{"2", "I - The Magician", "Homing tears for current room"},
+	{"3", "II - The High Priestess", "Mom's Foot stomps on an enemy!"},
+	{"4", "III - The Empress", "↑ +2.35 Damage & +0.3 Speed for current room"},
+	{"5", "IV - The Emperor", "Teleports you to the {{BossRoom}}Boss Room"},
+	{"6", "V - The Hierophant", "Drops 2 Soul Hearts"},
+	{"7", "VI - The Lovers", "Drops 2 Red Hearts"},
+	{"8", "VII - The Chariot", "Invincibility + contact damage for 6 seconds"},
+	{"9", "VIII - Justice", "Spawns 1 bomb, 1 key, 1 coin, 1 heart"},
+	{"10", "IX - The Hermit", "Teleports you to the {{Shop}}Shop"},
+	{"11", "X - Wheel of Fortune", "Spawns a Slot or Fortune Machine"},
+	{"12", "XI - Strength", "↑ +1 Health up#↑ +0.3 Damage up#↑ +50% Damage#↑ +5.25 Range up#↑ +0.5 Tear Height#↑ +0.3 Speed up#For current room"},
+	{"13", "XII - The Hanged Man", "Grants flight for current room"},
+	{"14", "XIII - Death", "Deals 40 damage to all enemies in the room"},
+	{"15", "XIV - Temperance", "Spawns a Blood Donation Machine#Spawns a Devil Beggar in Greed Mode"},
+	{"16", "XV - The Devil", "↑ +2 Damage up for current room"},
+	{"17", "XVI - The Tower", "Spawns 6 troll bombs"},
+	{"18", "XVII - The Stars", "Teleports you to the {{TreasureRoom}}Treasure Room"},
+	{"19", "XVIII - The Moon", "Teleports you to the {{SecretRoom}}Secret Room"},
+	{"20", "XIX - The Sun", "Deals 100 damage to all enemies#Full health#Reveals entire map"},
+	{"21", "XX - Judgement", "Spawns a Beggar or Devil Beggar"},
+	{"22", "XXI - The World", "Reveals the entire map and shows all roomtypes"},
+	{"23", "2 of Clubs", "Duplicate your bombs"},
+	{"24", "2 of Diamonds", "Duplicate your money"},
+	{"25", "2 of Spades", "Duplicate your keys"},
+	{"26", "2 of Hearts", "Duplicate your Red Hearts#Only has a healing effect"},
+	{"27", "Ace of Clubs", "Turns all pickups into bombs"},
+	{"28", "Ace of Diamonds", "Turns all pickups into coins"},
+	{"29", "Ace of Spades", "Turns all pickups into keys"},
+	{"30", "Ace of Hearts", "Turns all pickups into hearts"},
+	{"31", "Joker", "Teleports you to the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
+	{"32", "Hagalaz", "Destroy all rocks in the room"},
+	{"33", "Jera", "Duplicate all pickups in room"},
+	{"34", "Ehwaz", "Spawns a trapdoor"},
+	{"35", "Dagaz", "+1 Soul Heart#Removes curse effects"},
+	{"36", "Ansuz", "Full mapping for this floor"},
+	{"37", "Perthro", "Reroll all pedestal items"},
+	{"38", "Berkano", "Summons 3 blue spiders and 3 blue flies"},
+	{"39", "Algiz", "Invincibility for 30 seconds"},
+	{"40", "Blank Rune", "Random rune effect#25% chance to drop itself again"},
+	{"41", "Black Rune", "Deals 40 damage to all enemies#Converts all pedestal items in the room into random stat ups#Converts all pickups in the room into blue flies"},
+	{"42", "Chaos Card", "Throwable instant kill-card"},
+	{"43", "Credit Card", "Removes the price from all items in the current shop or Devil deal, making everything free"},
+	{"44", "Rules Card", "Displays \"helpful\" tips on use"},
+	{"45", "A Card Against Humanity", "Fills the whole room with poop"},
+	{"46", "Suicide King", "Instantly kills you and spawns 10 pickup / Collectibles on the floor"},
+	{"47", "Get Out Of Jail Free Card", "Open all doors in the current room"},
+	{"48", "? Card", "Activates your active item for free"},
+	{"49", "Dice Shard", "Rerolls pedestals and pickups in current room"},
+	{"50", "Emergency Contact", "Two of Mom's Hands come down and grab an enemy"},
+	{"51", "Holy Card", "Grants the Holy Mantle effect for one room#(Prevents damage once)#25% chance to spawn another Holy Card"},
+	{"52", "Huge Growth", "↑ +7 Damage up#↑ +30 Range up#Destroy rocks when walking over them#Size up#Effect lasts for current room"},
+	{"53", "Ancient Recall", "Spawns 3 random cards when used"},
+	{"54", "Era Walk", "Slow down enemies#↑ +0.5 Speed up#↓ -1 Shot Speed down#Effect lasts for current room"},
 }
 
-
 ---------- Pills ----------
-
-EID.descriptions[languageCode].unidentifiedPill = nil--"Неизвестная пилюля"
+EID.descriptions[languageCode].unidentifiedPill = "Unidentified Pill"
 
 EID.descriptions[languageCode].pills={
-	--[[{"0", "Вонючий Газ", " Создает облако ядовитого газа"},
-	{"1", "Плохой Приход", " Наносит урон в 1 сердце"},
-	{"2", "Стальные Яйца", " +2 Сердца Душ"},
-	{"3", "Бомбы = Ключи", " Меняет количество имеющихся бомб и ключей местами"},
-	{"4", "Взрывная Диарея", " Создает 5 тролль-бомб"},
-	{"5", "Полное Здоровье", " Восстанавливает здоровье"},
-	{"6", "– Здоровье", " ↓ к здоровью"},
-	{"7", "+ Здоровье", " ↑ к здоровью"},
-	{"8", "Я Нашел Пилюли", " Без эффекта"},
-	{"9", "Зрелость", " 3 такие пилюли превратят вас во Взрослого"},
-	{"10", "Милая Мушка", " Дает 1 орбитальную муху"},
-	{"11", "– Дальность", " ↓ 2 дальность стрельбы"},
-	{"12", "+ Дальность", " ↑ 2.5 дальность стрельбы"},
-	{"13", "– Скорость", " ↓ 0.12 скорость"},
-	{"14", "+ Скорость", " ↑ 0.15 скорость"},
-	{"15", "– Скорострельность", " ↓ 0.28 скорострельность"},
-	{"16", "+ Скорострельность", " ↑ 0.35 скорострельность"},
-	{"17", "– Удача", " ↓ 1 удача"},
-	{"18", "+ Удача", " ↑ 1 удача"},
-	{"19", "Телепилюли", " Телепортирует в случайную комнату"},
-	{"20", "Энергия на 48 Часов", " Перезаряжает ваш активный предмет#Создает 1-2 батарейки"},
-	{"21", "Кровавая Рвота", " Опустошает все красные сердца, кроме одного#Создает 1-4 красных сердца на полу"},
-	{"22", "Паралич", " Вас парализует на несколько секунд"},
-	{"23", "Я Могу Видеть Вечно", " Открывает все секретные комнаты на этаже"},
-	{"24", "Феромоны", " Очаровавывает всех врагов в комнате"},
-	{"25", "Амнезия", " Скрывает карту этажа (Проклятие Потерянного)"},
-	{"26", "Лимонная Вечеринка", " Создает под вами большую лужу на полу, которая наносит врагам урон"},
-	{"27", "Ты волшебник?", " Стрельба по-диагонали#Эффект длится 30 секунд"},
-	{"28", "Обезболивающее", " Любой урон в комнате отнимает половину сердца"},
-	{"29", "Зависимый", " Любой урон в комнате отнимает целое сердце"},
-	{"30", "Расслабься", " Под вами в течение 2 секунд появляются кучки"},
-	{"31", "???", " Эффект Проклятия Путаницы (Maze) на весь этаж"},
-	{"32", "Она сделает тебя крупнее", " Вы становитесь больше#Не влияет на ваш хитбокс#Необходима для трансформации 'Топтун'"},
-	{"33", "Она сделает тебя меньше", " Вы становитесь меньше#Ваш хитбокс становится меньше"},
-	{"34", "Зараженный!", " Призывает 1 союзного паука на каждую кучку в комнате"},
-	{"35", "Зараженный?", " Призывает 1 союзного паука на каждого врага в комнате"},
-	{"36", "Пилюля Силы", " Короткая неуязвимость"},
-	{"37", "Ретро Зрение", " Делает экран пиксельным на 30 секунд"},
-	{"38", "Друзья До Конца!", " Призывает 3 союзных мух"},
-	{"39", "Вялый", " Создает под вами скользкую лужу"},
-	{"40", "Что-то не так...", " Создает под вами лужу из замедляющей слизи"},
-	{"41", "Я Сонный", " Замедляет всех врагов в комнате"},
-	{"42", "Я Возбужден!!", " Ускоряет всех врагов в комнате"},
-	{"43", "Глотай!", " Поглощает переносимые брелоки и дает их эффект навсегда"},
-	{"44", "Хорф!", " Делает один выстрел рвотным корнем"},
-	{"45", "Похоже, я иду на рассвет!", " Короткая неуязвимость"},
-	{"46", "Вжух!", " Дает последнюю использованную пилюлю"},]]--
-} 
+	{"0", "Bad Gas", "Spawns a gas cloud"},
+	{"1", "Bad Trip", "Deals 1 heart of damage to you"},
+	{"2", "Balls of Steel", "+2 Soul Hearts"},
+	{"3", "Bombs are Key", "Switches number of bombs with keys"},
+	{"4", "Explosive Diarrhea", "Spawns 5 bombs over a period of five seconds at your position"},
+	{"5", "Full Health", "Full health"},
+	{"6", "Health Down", "↓ Health down"},
+	{"7", "Health Up", "↑ Health up"},
+	{"8", "I Found Pills", "No effect"},
+	{"9", "Puberty", "Eating 3 will give you the {{}} Adult transformation (+1 Red Heart)"},
+	{"10", "Pretty Fly", "Adds 1 fly orbital"},
+	{"11", "Range Down", "↓ -2 Range down"},
+	{"12", "Range Up", "↑ +2.5 Range up"},
+	{"13", "Speed Down", "↓ -0.12 Speed down"},
+	{"14", "Speed Up", "↑ +0.15 Speed up"},
+	{"15", "Tears Down", "↓ -0.28 Tears down"},
+	{"16", "Tears Up", "↑ +0.35 Tears up"},
+	{"17", "Luck Down", "↓ -1 Luck down"},
+	{"18", "Luck Up", "↑ +1 Luck up"},
+	{"19", "Telepills", "Teleports you to a random room#Small chance to teleport you to the I AM ERROR room"},
+	{"20", "48 Hour Energy!", "Fully recharges your active item#Drops 1-2 batteries"},
+	{"21", "Hematemesis", "Drains all but one heart container#Spawns 1-4 Red Hearts"},
+	{"22", "Paralysis", "You can't move for 2 seconds"},
+	{"23", "I can see forever!", "Opens secret room entrances on current floor"},
+	{"24", "Pheromones", "Charms all enemies in the room"},
+	{"25", "Amnesia", "Hides the floor map"},
+	{"26", "Lemon Party", "Spawns a large puddle on the ground which damages enemies"},
+	{"27", "R U A Wizard?", "Shoot diagonally for 30 seconds"},
+	{"28", "Percs!", "Take only half the damage for current room"},
+	{"29", "Addicted!", "Take full heart damage for current room"},
+	{"30", "Re-Lax", "Spawn poop while walking for 2 seconds"},
+	{"31", "???", "Curse of the Maze effect for current floor"},
+	{"32", "One makes you larger", "You grow bigger#Doesn't affect your hitbox"},
+	{"33", "One makes you small", "You get smaller#Your hitbox gets smaller"},
+	{"34", "Infested!", "Spawn 1 blue spider per poop in room"},
+	{"35", "Infested?", "Spawn 1 blue spider per enemy in room#Spawns 1-3 blue spiders when no enemy is in the room"},
+	{"36", "Power Pill!", "Short invincibility effect"},
+	{"37", "Retro Vision", "Pixelates the screen for 30 seconds"},
+	{"38", "Friends Till The End!", "Spawns 3 blue flies"},
+	{"39", "X-Lax", "Spawn pool of slippery creep"},
+	{"40", "Something's wrong...", "Spawn pool of slowing creep"},
+	{"41", "I'm Drowsy...", "Slow all enemies in room"},
+	{"42", "I'm Excited!!!", "Speed up for all enemies in room"},
+	{"43", "Gulp!", "Consume current trinket and gain its effect permanently"},
+	{"44", "Horf!", "Shoots one {{Collectible149}}Ipecac tear"},
+	{"45", "Feels like I'm walking on sunshine!", "Short invincibility effect"},
+	{"46", "Vurp!", "Spawns last used pill"},
+}
 
 ---------- Sacrifice Room ----------
-EID.descriptions[languageCode].sacrificeHeader = nil--"[Комната Жертвоприношений - награда]"
+EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
 
 EID.descriptions[languageCode].sacrifice={
-	--[[{"1", "", "50% шанс на 1 Монету#100% шанс на 1 Бомбу, если вы в Подвале 1 и убили Босса за 1 минуту."},
-	{"2", "", "50% шанс на 1 Монету#100% шанс на 1 Бомбу, если вы в Подвале 1 и убили Босса за 1 минуту."},
-	{"3", "", "67% вероятность повысить шанс появления Комнаты Ангела."},
-	{"4", "", "50% шанс на 1 случайный Сундук"},
-	{"5", "", "33% шанс на 3 Монеты#67% вероятность повысить шанс появления Комнаты Ангела."},
-	{"6", "", "33% шанс телепортироваться в комнату Ангела/Дьявола#67% шанс на случайный сундук"},
-	{"7", "", "33% шанс на 1 случайный предмет из Комнаты Ангела#67% шанс на 1 Сердце Души"},
-	{"8", "", "100% вероятность появления 7 тролль-бомб"},
-	{"9", "", "100% шанс появления босса \"Уриил\" "},
-	{"10", "", "50% шанс на 7 Сердец Души#50% шанс на 30 монет"},
-	{"11", "", "100% шанс появления босса \"Гавриил\" "},
-	{"12", "", "50% шанс телепортироваться на этаж \"Темная комната\" "},]]
+	{"1", "", "50% chance for 1 coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
+	{"2", "", "50% chance for 1 coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
+	{"3", "", "67% chance for increased {{AngelRoom}}Angel Room chance"},
+	{"4", "", "50% chance for 1 random chest"},
+	{"5", "", "33% chance for 3 coins#67% chance for increased {{AngelRoom}}Angel Room chance"},
+	{"6", "", "33% chance for a teleport to the {{AngelRoom}}Angel Room#Teleports to the {{DevilRoom}}Devil Room instead if its door was spawned on the current floor#67% chance for random chest"},
+	{"7", "", "33% chance for 1 random {{AngelRoom}}Angel Room item#67% chance for 1 Soul Heart"},
+	{"8", "", "100% chance for 7 troll bombs"},
+	{"9", "", "100% chance to spawn \"Uriel\""},
+	{"10", "", "50% chance for 7 Soul Hearts#50% chance for 30 coins"},
+	{"11", "", "100% chance to spawn \"Gabriel\""},
+	{"12", "", "50% chance to teleport to the \"Dark Room\""},
 }
 
 ---------- Dice Room ----------
-EID.descriptions[languageCode].diceHeader = "[Dice effect]"
+EID.descriptions[languageCode].diceHeader = "[Dice Room effects]"
 
 EID.descriptions[languageCode].dice={
-	--[[{"1", "", "Rerolls all of your items#(only affect collectibles)"},
+	{"1", "", "Rerolls all your passive and active items into a random item from the room pool it was acquired from"},
 	{"2", "", "Rerolls all pickups in the room"},
-	{"3", "", "Rerolls all pickups on the entire floor"},
-	{"4", "", "Rerolls all pedestal items on the floor#Doesnt affect Devil deals"},
-	{"5", "", "Reroll and restart the current floor"},
-	{"6", "", "Reroll all of your items and all the pickups & items on the entire floor"}]]--
+	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
+	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
+	{"5", "", "Rerolls and restarts the current floor"},
+	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items, including everything on the floor"},
 }
 
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
-	--[["",					-- 0 = none
-	"Гаппи",			-- 1
-	"Весельчак",		-- 2
-	"Повелитель Мух",	-- 3
-	"Соединенный",		-- 4
-	"Передозировка",	-- 5
-	"Мама",				-- 6
-	"Вот Дерьмо!",		-- 7
-	"Боб",				-- 8
-	"Левиафан",			-- 9
-	"Серафим",			-- 10
-	"Супер Бездельник",	-- 11
-	"Книжный Червь",	-- 12
-	"Малыш-Паук",		-- 13
-	"възрастен",		-- 14
-	"Stompy"			-- 15]]--
+EID.descriptions[languageCode].transformations={
+	"",					-- 0 = none
+	"Guppy",			-- 1
+	"Fun Guy",			-- 2
+	"Beelzebub",		-- 3
+	"Conjoined",		-- 4
+	"Spun",				-- 5
+	"Yes Mother?",		-- 6
+	"Oh Crap",			-- 7
+	"Bob",				-- 8
+	"Leviathan",		-- 9
+	"Seraphim",			-- 10
+	"Super Bum",		-- 11
+	"Bookworm",			-- 12
+	"Spider Baby",		-- 13
+	"Adult",			-- 14
+	"Stompy"			-- 15
 }

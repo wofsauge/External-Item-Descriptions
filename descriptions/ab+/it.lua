@@ -1,12 +1,13 @@
 ---------------------------------------
------  Basic Italian descriptions -----
+-----  Basic Italian descriptions  ----
 ---------------------------------------
 
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
 local languageCode = "it"
 
 -- init it table
@@ -14,8 +15,10 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Italian"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "La Cipolla Triste", "+0.7 Lacrime"},
 	{"2", "L'occhio Interiore", "Triple shot#↓ Lacrime"},
@@ -761,9 +764,7 @@ EID.descriptions[languageCode].cards={
 	{"54", "A passeggio fra le Ere", "Rallenta i nemici e le lacrime ma ti garantisce velocita' aumentata#L'effetto dura per la stanza attuale"},
 }
 
-
 ---------- Pills ----------
-
 EID.descriptions[languageCode].unidentifiedPill = "Pillola non identificata"
 
 EID.descriptions[languageCode].pills={
@@ -814,7 +815,7 @@ EID.descriptions[languageCode].pills={
 	{"44", "Horf!", "Spara una lacrima di Ipecac"},
 	{"45", "Sto camminando a mezzo metro da terra!", "Invincibilita' temporanea"},
 	{"46", "Vurp!", "Evoca l'ultima pillola utilizzata"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Prossimi Drop Stanza del Sacrificio]"
@@ -843,18 +844,18 @@ EID.descriptions[languageCode].dice={
 	{"3", "", "Rerolla tutti i consumabili nell'intero piano"},
 	{"4", "", "Rerolla tutti gli oggetti dei piedistalli che si trovano a terra#Ad eccezione dei Patti col Diavolo"},
 	{"5", "", "Rerolla e ricomincia il piano"},
-	{"6", "", "Rerolla tutti i tuoi oggetti, tutti i consumabili & gli oggetti su tutto il piano"}
+	{"6", "", "Rerolla tutti i tuoi oggetti, tutti i consumabili & gli oggetti su tutto il piano"},
 }
 
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
+EID.descriptions[languageCode].transformations={
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Lord of the Flies",-- 3
+	"Beelzebub",		-- 3
 	"Conjoined",		-- 4
 	"Spun",				-- 5
-	"Mom",				-- 6
+	"Yes Mother?",		-- 6
 	"Oh Crap",			-- 7
 	"Bob",				-- 8
 	"Leviathan",		-- 9
@@ -862,6 +863,6 @@ EID.descriptions[languageCode].transformations = {
 	"Super Bum",		-- 11
 	"Bookworm",			-- 12
 	"Spider Baby",		-- 13
-	"Adulto",			-- 14
+	"Adult",			-- 14
 	"Stompy"			-- 15
 }

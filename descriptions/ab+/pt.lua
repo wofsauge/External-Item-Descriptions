@@ -1,15 +1,15 @@
 ------------------------------------------
------  Basic Portuguese descriptions -----
+-----  Basic Portuguese descriptions  ----
 ------------------------------------------
 
 -- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
-
--- Portuguese letters: 
--- ãÃ áÁ àÀ âÂ çÇ éÉ êÊ íÍ õÕ óÓ ôÔ úÚ üÜ 
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
+-- Portuguese letters: ãÃ áÁ àÀ âÂ çÇ éÉ êÊ íÍ õÕ óÓ ôÔ úÚ üÜ
+
 local languageCode = "pt"
 
 -- init pt table
@@ -17,8 +17,10 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Portuguese (AB+)"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "", "↑ +0.7 lágrimas up"},
 	{"2", "", "Tiro triplo#↓ lágrimas down"},
@@ -817,7 +819,7 @@ EID.descriptions[languageCode].pills={
 	{"44", "", "Atira uma lágrima ipecac"},
 	{"45", "", "Invencibilidade curta"},
 	{"46", "", "Spawns última pílula usada"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Pagamento do próximo quarto de sacrifício]"
@@ -838,7 +840,7 @@ EID.descriptions[languageCode].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions[languageCode].diceHeader = "[Dice effect]"
+EID.descriptions[languageCode].diceHeader = "[Dice Room effects]"
 
 EID.descriptions[languageCode].dice={
 	{"1", "", "Rola novamente todos os seus itens#(afeta apenas itens colecionáveis)"},
@@ -846,19 +848,19 @@ EID.descriptions[languageCode].dice={
 	{"3", "", "Rola novamente todos os captadores em todo o piso"},
 	{"4", "", "Rola novamente todos os itens do pedestal no chão # Não afeta as ofertas do Devil"},
 	{"5", "", "Rolar novamente e reiniciar o piso atual"},
-	{"6", "", "Rolar novamente todos os seus itens e todos os itens e captadores em todo o andar"}
+	{"6", "", "Rolar novamente todos os seus itens e todos os itens e captadores em todo o andar"},
 }
 
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
+EID.descriptions[languageCode].transformations={
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Lord of the Flies",-- 3
+	"Beelzebub",		-- 3
 	"Conjoined",		-- 4
 	"Spun",				-- 5
-	"Mom",				-- 6
-	"Oh crap",			-- 7
+	"Yes Mother?",		-- 6
+	"Oh Crap",			-- 7
 	"Bob",				-- 8
 	"Leviathan",		-- 9
 	"Seraphim",			-- 10

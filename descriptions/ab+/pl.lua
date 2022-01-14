@@ -1,12 +1,13 @@
 --------------------------------------
------  Basic Polish descriptions -----
+-----  Basic Polish descriptions  ----
 --------------------------------------
 
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
 local languageCode = "pl"
 
 -- init pl table
@@ -14,8 +15,10 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Polish"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "Smutna Cebula", "↑ +0.7 Szybkostrzelności"},
 	{"2", "Wewnętrzne Oko", "Potrójny strzał#↓ Mniejsza Szybkostrzelność"},
@@ -761,9 +764,7 @@ EID.descriptions[languageCode].cards={
 	{"54", "Historyczna Przechadzka", "Spowalnia wrogów#↓ -0.5 Prędkości#-1 Prędkości Strzałów#Efekt tylko na ten pokój"},
 }
 
-
 ---------- Pills ----------
-
 EID.descriptions[languageCode].unidentifiedPill = "Nieznana Pigułka"
 
 EID.descriptions[languageCode].pills={
@@ -814,7 +815,7 @@ EID.descriptions[languageCode].pills={
 	{"44", "Paw!", "Wystrzeliwujesz jedną łzę z efektem Wymiotnicy"},
 	{"45", "Jakbym stąpał po promykach słońca!", "Krótkotrwała nieśmiertelność bez zadawania obrażeń"},
 	{"46", "Refluks!", "Tworzy ostatnią połkniętą pigułkę"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Następna wypłata Pokoju Poświęceń]"
@@ -843,18 +844,18 @@ EID.descriptions[languageCode].dice={
 	{"3", "", "Przelosowuje pickupy na całym piętrze"},
 	{"4", "", "Przelosowuje wszystkie przedmioty na piętrze#Brak wpływu na oferty Diabła"},
 	{"5", "", "Przelosowuje i restartuje całe piętro"},
-	{"6", "", "Przelosowuje twoje przedmioty oraz przedmioty i pickupy na piętrze"}
+	{"6", "", "Przelosowuje twoje przedmioty oraz przedmioty i pickupy na piętrze"},
 }
 
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
+EID.descriptions[languageCode].transformations={
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Lord of the Flies",-- 3
+	"Beelzebub",		-- 3
 	"Conjoined",		-- 4
 	"Spun",				-- 5
-	"Mom",				-- 6
+	"Yes Mother?",		-- 6
 	"Oh Crap",			-- 7
 	"Bob",				-- 8
 	"Leviathan",		-- 9
