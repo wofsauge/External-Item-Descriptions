@@ -300,7 +300,6 @@ end
 -- returns the description object of the specified entity
 -- falls back to english if the objID isnt available
 function EID:getDescriptionObj(Type, Variant, SubType)
-	
 	local description = {}
 	description.ObjType = Type
 	description.ObjVariant = Variant
