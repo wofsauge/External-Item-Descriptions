@@ -664,6 +664,7 @@ local refreshPosition = 0
 local bagOfCraftingRefreshes = 0
 local downHeld = 0
 local upHeld = 0
+local resetBagCounter = 0
 
 local craftingIsHidden = false
 local showCraftingResult = false
@@ -714,23 +715,41 @@ for key,num in pairs(Keyboard) do
 	keyString = string.gsub(keyString, "_", " ")
 	HotkeyToString[num] = keyString
 end
+--convert controller enum to buttons
+local ControllerToString = { [0] = "{{ButtonDLeft}}", "{{ButtonDRight}}", "{{ButtonDUp}}", "{{ButtonDDown}}",
+"{{ButtonA}}", "{{ButtonB}}", "{{ButtonX}}", "{{ButtonY}}", "{{ButtonLB}}", "{{ButtonLT}}", "{{ButtonLStick}}", 
+"{{ButtonRB}}", "{{ButtonRT}}", "{{ButtonRStick}}", "{{ButtonSelect}}", "{{ButtonMenu}}" }
 
 local function getHotkeyString()
 	local hotkeyString = ""
 	local hideDesc = EID:getDescriptionEntry("CraftingHideKey")
 	local previewDesc = EID:getDescriptionEntry("CraftingPreviewKey")
-	--we have a binding for a keyboard hide key
-	if HotkeyToString[EID.Config["CraftingHideKey"]] then
-		hotkeyString = hideDesc .. " " .. HotkeyToString[EID.Config["CraftingHideKey"]]
+	
+	local controllerEnabled = EID.player.ControllerIndex > 0
+	local hideKey = HotkeyToString[EID.Config["CraftingHideKey"]]
+	local hideButton = controllerEnabled and ControllerToString[EID.Config["CraftingHideButton"]]
+	local previewKey = HotkeyToString[EID.Config["CraftingResultKey"]]
+	local previewButton = controllerEnabled and ControllerToString[EID.Config["CraftingResultButton"]]
+	
+	if hideKey or hideButton then hotkeyString = hideDesc .. " " end
+	if hideKey and hideButton then
+		hotkeyString = hotkeyString .. hideKey .. "/" .. hideButton
+	else
+		hotkeyString = hotkeyString .. (hideKey or hideButton)
 	end
-	--we have a binding for a keyboard preview toggle key, and a full bag, and aren't on Preview Only mode
-	if #EID.BagItems >= 8 and EID.Config["BagOfCraftingDisplayMode"] ~= "Preview Only" and HotkeyToString[EID.Config["CraftingResultKey"]] then
-		if hotkeyString ~= "" then hotkeyString = hotkeyString .. ", " end
-		hotkeyString = hotkeyString .. previewDesc .. " " .. HotkeyToString[EID.Config["CraftingResultKey"]]
+	
+	if #EID.BagItems >= 8 and EID.Config["BagOfCraftingDisplayMode"] ~= "Preview Only" then
+		if previewKey or previewButton then hotkeyString = hotkeyString .. ", " .. previewDesc .. " " end
+		if previewKey and previewButton then
+			hotkeyString = hotkeyString .. previewKey .. "/" .. previewButton
+		else
+			hotkeyString = hotkeyString .. (previewKey or previewButton)
+		end
 	end
 	if hotkeyString ~= "" then
 		hotkeyString = "!!! " .. hotkeyString .. "#"
 	end
+	
 	return hotkeyString
 end
 
@@ -783,9 +802,6 @@ function EID:handleBagOfCraftingRendering()
 	
 	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
 	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIconsFunc = EID.tableToCraftingIconsFull end
-	
-	local customDescObj = EID:getDescriptionObj(5, 100, 710)
-	customDescObj.Description = ""
 	
 	--prevent our hotkeys from triggering as they're set
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
@@ -884,6 +900,9 @@ function EID:handleBagOfCraftingRendering()
 	
 	--sort by ingredient quality
 	table.sort(itemQuery, qualitySort)
+	
+	local customDescObj = EID:getDescriptionObj(5, 100, 710)
+	customDescObj.Description = ""
 	
 	--No Recipes Mode display
 	if EID.Config["BagOfCraftingDisplayMode"] == "Pickups Only" then
@@ -1020,7 +1039,7 @@ function EID:handleBagOfCraftingRendering()
 	local resultDesc = EID:getDescriptionEntry("CraftingResults")
 	EID:appendToDescription(customDescObj, resultDesc)
 	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.player.ControllerIndex) then
-		EID.player:SetShootingCooldown(2)
+		EID.player.ControlsCooldown = 2
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) then
 			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
 			downHeld = Isaac.GetTime()
@@ -1044,6 +1063,16 @@ function EID:handleBagOfCraftingRendering()
 		elseif Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) and Isaac.GetTime() - upHeld > 750 then
 			bagOfCraftingOffset = math.max(0, bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
 			upHeld = Isaac.GetTime() - 700
+		end
+		--reset bag contents when holding Use Pill/Card
+		if Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.player.ControllerIndex) then
+			resetBagCounter = resetBagCounter + 1
+			if resetBagCounter > 120 then
+				EID.BagItems = {}
+				resetBagCounter = 0
+			end
+		else
+			resetBagCounter = 0
 		end
 	end
 	--fix bug with being allowed to go to an empty page if recipe count = multiple of page size (or if we refresh on last page)

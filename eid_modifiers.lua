@@ -262,20 +262,6 @@ local game = Game()
 	EID:addDescriptionModifier("Golden Trinket", GoldenTrinketCondition, GoldenTrinketCallback)
 	
 	
-	
-	-- Handle ItemID
-	local function ItemIDCondition(descObj)
-		return EID.Config["ShowObjectID"] and descObj.ObjType > 0
-	end
-	
-	local function ItemIDCallback(descObj)
-		descObj.Name = descObj.Name.."{{ColorGray}} "..descObj.ObjType.."."..descObj.ObjVariant.."."..descObj.ObjSubType
-		return descObj
-	end
-	EID:addDescriptionModifier("ItemID", ItemIDCondition, ItemIDCallback)
-
-
-	
 	-- Handle Blank Card description addition
 	local blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[49]=true,[50]=true,[55]=true,[78]=true}
 	local function BlankCardCondition(descObj)

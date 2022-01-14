@@ -311,14 +311,14 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity)
 	description.ObjType = Type
 	description.ObjVariant = Variant
 	description.ObjSubType = SubType
-	description.fullItemString = Type.."."..Variant.."."..description.ObjSubType
-	description.Name = EID:getObjectName(Type, Variant, description.ObjSubType)
+	description.fullItemString = Type.."."..Variant.."."..SubType
+	description.Name = EID:getObjectName(Type, Variant, SubType)
 	description.Entity = entity or nil
 
-	local tableEntry = EID:getDescriptionData(Type, Variant, description.ObjSubType)
-	description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, description.ObjSubType)
+	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
+	description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, SubType)
 
-	description.Transformation = EID:getTransformation(Type, Variant, description.ObjSubType)
+	description.Transformation = EID:getTransformation(Type, Variant, SubType)
 	
 	for k,modifier in pairs(EID.DescModifiers) do
 		if modifier.condition(description) then
@@ -506,7 +506,7 @@ function EID:hasDescription(entity)
 		return isAllowed and entity.SubType > 0
 	end
 	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and REPENTANCE then
-		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize")
+		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize") and EID.CraneItemType[tostring(entity.InitSeed)]
 	end
 	isAllowed = isAllowed or (entity.Type == 1000 and entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"])
 	return isAllowed
@@ -782,6 +782,45 @@ function EID:PlayersHaveCollectible(collectibleID)
 		end
 	end
 	return false
+end
+
+-- Obtains information about glitched items from the ItemConfig (hearts added on pickup, cacheflags affected), returns string of info
+local itemConfigItemAttributes = { "AddMaxHearts", "AddHearts", "AddSoulHearts", "AddBlackHearts", "AddBombs", "AddCoins", "AddKeys", "CacheFlags" }
+function EID:CheckGlitchedItemConfig(id)
+	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
+	local config = Isaac.GetItemConfig()
+	local item = config:GetCollectible(id)
+	if not item then return "" end
+	local attributes = ""
+	for k,v in ipairs(itemConfigItemAttributes) do
+		local val = item[v]
+		if val ~= 0 then
+			if (v == "CacheFlags") then
+				local flagString = localizedNames["cacheFlagStart"]
+				if val == CacheFlag.CACHE_ALL then
+					flagString = flagString .. localizedNames[16]
+				else
+					for i=0, 13 do
+						if 2^i & val ~= 0 then
+							flagString = flagString .. localizedNames[i] .. ", "
+						end
+					end
+					flagString = string.sub(flagString, 0, -3) -- remove final comma
+				end
+				attributes = attributes .. flagString .. "#"
+			else
+				-- the Add Heart attributes count half a heart as 1, so divide the value in half
+				if string.find(v, "Hearts") then val = val / 2 end
+				-- the g flag removes .0 in numbers like 1.0 (caused by the hearts division)
+				local s = string.format("%.4g",val)
+				if val > 0 then s = "+" .. s end
+				attributes = attributes .. string.gsub(localizedNames[v], "{1}", s)
+				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] end
+				attributes = attributes .. "#"
+			end
+		end
+	end
+	return attributes
 end
 
 -- Converts a given CollectibleID into the respective Spindown dice result

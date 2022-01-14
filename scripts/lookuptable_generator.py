@@ -4,17 +4,19 @@
 import xml.etree.ElementTree as ET
 
 filePath = "D:\\Programme\\Steam\\steamapps\\common\\The Binding of Isaac Rebirth\\resources-dlc3\\"
+# filePath = "D:\\Program Files\\Steam\\steamapps\\common\\The Binding of Isaac Rebirth\\resources-dlc3\\"
 
 # take second element for sort
 def sortByID(elem):
     return elem["id"]
-recipies = []
+recipes = []
 itemQuality = []
 itempools = {}
 itemIDToPool = {}
 maxItemID = 0
 cardMetadatas = []
 pillMetadatas = []
+entityNames = []
 
 recipeIngredients = {}
 #Poop, Penny
@@ -53,7 +55,7 @@ for recipe in recipesXML.findall('recipe'):
 
     convertedInput.sort()
     convertedInput = str(convertedInput).replace(" ","").replace("[","").replace("]","")
-    recipies.append({"input": convertedInput, "output": recipe.get('output')})
+    recipes.append({"input": convertedInput, "output": recipe.get('output')})
 
 # Read items_metadata.xml
 items_metadataXML = ET.parse(filePath+'items_metadata.xml').getroot()
@@ -90,6 +92,19 @@ for pilleffect in pocketitemsXML.findall('pilleffect'):
     pillMetadatas.append({ "id": pilleffect.get('id'), "mimiccharge": pilleffect.get('mimiccharge', 0), "class":pilleffect.get('class')})
 pillMetadatas.sort(key=sortByID)
 
+# Read entities2.xml
+entitiesXML = ET.parse(filePath+'entities2.xml').getroot()
+
+for entity in entitiesXML.findall('entity'):
+    theID = entity.get('id')
+    theName = entity.get('name')
+    if entity.get('variant'):
+        theID += "." + entity.get('variant')
+    if entity.get('subtype') and entity.get('subtype') != "0":
+        theID += "." + entity.get('subtype')
+    if theName[0] == '#':
+        theName = theName[1:].replace('_',' ').title()
+    entityNames.append({ "id": theID, "name": theName })
 
 #Write xml file
 
@@ -104,7 +119,7 @@ newfile.write("EID.XMLMaxItemID = "+str(maxItemID) + "\n")
 
 newfile.write("--The fixed recipes, for use in Bag of Crafting\n")
 newfile.write("EID.XMLRecipes = {")
-for recipe in recipies:
+for recipe in recipes:
     newfile.write("[\""+recipe["input"]+"\"] = "+str(recipe["output"])+", ")
 newfile.write("}\n\n")
 
@@ -137,9 +152,15 @@ for card in cardMetadatas:
 newfile.write("}\n\n")
 
 newfile.write("EID.pillMetadata = {")
-
-
 for pill in pillMetadatas:
     newfile.write("["+pill['id']+"] = {mimiccharge="+str(pill['mimiccharge'])+", class=\""+str(pill['class'])+"\"}, ")
 
-newfile.write("}\n")
+newfile.write("}\n\n")
+
+
+newfile.write("--The name of each entity, for use in glitched item descriptions\n")
+newfile.write("EID.XMLEntityNames = {")
+for entity in entityNames:
+    newfile.write("[\""+entity['id']+"\"] = \""+entity['name']+"\", ")
+newfile.write("}\n\n")
+

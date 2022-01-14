@@ -94,20 +94,21 @@ local nullVector = Vector(0,0)
 local modfolder ='external item descriptions_836319872' --release mod folder name
 
 local function GetCurrentModPath()
-    if debug then
-        return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
-    end
-    --use some very hacky trickery to get the path to this mod
-    local _, err = pcall(require, "")
-    local _, basePathStart = string.find(err, "no file '", 1)
-    local _, modPathStart = string.find(err, "no file '", basePathStart)
-    local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
-    local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
-    modPath = string.gsub(modPath, "\\", "/")
+	if debug then
+		if REPENTANCE then require("eid_tmtrainer") end
+		return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
+	end
+	--use some very hacky trickery to get the path to this mod
+	local _, err = pcall(require, "")
+	local _, basePathStart = string.find(err, "no file '", 1)
+	local _, modPathStart = string.find(err, "no file '", basePathStart)
+	local modPathEnd, _ = string.find(err, ".lua'", modPathStart)
+	local modPath = string.sub(err, modPathStart+1, modPathEnd-1)
+	modPath = string.gsub(modPath, "\\", "/")
 	modPath = string.gsub(modPath, "//", "/")
 	modPath = string.gsub(modPath, ":/", ":\\")
-    
-    return modPath
+
+	return modPath
 end
 EID.modPath = GetCurrentModPath()
 
@@ -353,10 +354,15 @@ function EID:printDescription(desc)
 			EID.Config["Language"] = curLanguage
 			if EID.Config["TranslateItemName"] == 1 then
 				curName = englishName
-			elseif EID.Config["TranslateItemName"] == 3 and curName ~= englishName then
+			elseif EID.Config["TranslateItemName"] == 3 and curName ~= englishName and not EID.isDisplayingPermanent then
 				curName = curName.." ("..englishName..")"
 			end
 		end
+		-- Display Entity ID
+		if EID.Config["ShowObjectID"] and desc.ObjType > 0 then
+			curName = curName.." {{ColorGray}}"..desc.ObjType.."."..desc.ObjVariant.."."..desc.ObjSubType
+		end
+		-- Display Quality
 		if REPENTANCE and EID.Config["ShowQuality"] and desc.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 			local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Quality)
 			curName = curName.." - {{Quality"..quality.."}}"
@@ -859,6 +865,23 @@ local function onRender(t)
 			origDesc.Description = desc
 		end
 		EID:printDescription(origDesc)
+		return
+	end
+	
+	--Handle Glitched Items
+	if closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
+		local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
+		local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
+		
+		-- force the default glitchy description if option is off
+		if not EID.Config["DisplayGlitchedItemInfo"] then
+			glitchedObj.Description = glitchedDesc
+		-- grab the Item Config info if eid_tmtrainer.lua hasn't taken care of it
+		elseif not debug then
+			glitchedObj.Description = EID:CheckGlitchedItemConfig(closest.SubType) .. glitchedDesc
+		end
+		
+		EID:printDescription(glitchedObj)
 		return
 	end
 	

@@ -227,7 +227,7 @@ EID.InlineIcons = {
 	["Quality2"] = {"Quality", 2, 10, 10, 0, 0},
 	["Quality3"] = {"Quality", 3, 10, 10, 0, 0},
 	["Quality4"] = {"Quality", 4, 10, 10, 0, 0},
-	-- Controller Button Icons (XBox based)
+	-- Controller Button Icons dynamically return either Controller or Keyboard key sprites
 	["ButtonY"] = {"XboxOne", 0, 9, 8, 3, 4, function(_) return getControllerSprite() end},
 	["ButtonA"] = {"XboxOne", 1, 9, 8, 3, 4, function(_) return getControllerSprite() end},
 	["ButtonB"] = {"XboxOne", 2, 9, 8, 3, 4, function(_) return getControllerSprite() end},

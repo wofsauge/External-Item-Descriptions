@@ -951,6 +951,62 @@ EID.descriptions[languageCode].horsepills={
 	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- Golden Pill
 }
 
+---------- Glitched Item Descriptions ----------
+
+EID.descriptions[languageCode].GlitchedItemText = {
+	-- This will be appended to words to pluralize them, make it "" to not pluralize
+	pluralize = "s",
+	
+	-- Item Config info
+	AddBlackHearts = "{1} Black Heart",
+	AddBombs = "{1} Bomb",
+	AddCoins = "{1} Coin",
+	AddHearts = "Heals {1} Red Heart",
+	AddKeys = "{1} Key",
+	AddMaxHearts = "{1} Heart Container",
+	AddSoulHearts = "{1} Soul Heart",
+	
+	-- Cache Flag names
+	cacheFlagStart = "May affect ",
+	[0] = "Damage", "Fire Rate", "Shot Speed", "Range", "Speed", "Tear Effects", "Tear Color", "Flight", "Attack Type", "Familiars", "Luck", "Size", "Color", "Chest Contents", [16] = "All Stats",
+	
+	-- Attribute triggers
+	chain = "Then: ",
+	active = "On use:#",
+	pickup_collected = "When you collect a pickup:#", --chance to?
+	enemy_kill = "On kill, chance to:#",
+	damage_taken = "When you take damage:#", --chance to?
+	entity_spawned = "When a {{ColorGray}}{T1}{{ColorText}} is spawned:#",
+	tear_fire = "When you fire a tear, chance to:#",
+	enemy_hit = "On hitting an enemy, chance to:#",
+	room_clear = "On room clear:#", --chance to?
+	
+	-- Attribute effects
+	area_damage = "Deal {1} damage in an area around you", 
+	add_temporary_effect = "Gain {1} for the room",
+	convert_entities = "Convert all {{ColorGray}}{1}{{ColorText}} in the room to {{ColorGray}}{2}{{ColorText}}",
+	use_active_item = "Use {1}",
+	spawn_entity = "Spawn a {{ColorGray}}{1}{{ColorText}}",
+	fart = "Fart with size {1}",
+	
+	-- Generic entity names not obtained from entities2.xml
+	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
+	["4.-1"] = "lit Bomb",
+	["5.0"] = "pickup",
+	["5.10"] = "Heart",
+	["5.20"] = "Coin",
+	["5.30"] = "Key",
+	["5.40"] = "Bomb pickup",
+	["5.69"] = "Grab Bag",
+	["5.70"] = "Pill",
+	["5.90"] = "Battery", 
+	["5.300"] = "Card",
+	["9.-1"] = "enemy projectile",
+	["999.-1"] = "grid object",
+	["1000.0"] = "effect",
+	
+}
+
 ---------- Misc. Text ----------
 
 EID.descriptions[languageCode].spindownError = "Item disappears"
@@ -966,7 +1022,7 @@ EID.descriptions[languageCode].CraftingHideKey = "Hide:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Preview:"
 EID.descriptions[languageCode].CraftingPreviewBackup = "!!! If this item's locked, it will turn into"
 
-EID.descriptions[languageCode].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
+EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:"
 EID.descriptions[languageCode].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed"
