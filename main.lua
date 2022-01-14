@@ -382,9 +382,9 @@ function EID:printDescription(desc)
 
 		if desc.ModName then
 			if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
-				curName = curName .. " {{ColorWhite}}" .. EID.ModIndicator[desc.ModName].Name
+				curName = curName .. " {{"..EID.Config["ModIndicatorTextColor"].."}}" .. EID.ModIndicator[desc.ModName].Name
 			end
-			if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Icon only" and EID.ModIndicator[desc.ModName].Icon then
+			if (EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Icon only") and EID.ModIndicator[desc.ModName].Icon then
 				curName = curName .. "{{".. EID.ModIndicator[desc.ModName].Icon .."}}"
 			end
 		end
