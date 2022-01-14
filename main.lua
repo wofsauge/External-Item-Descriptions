@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = "4.9"
+EID.ModVersion = "4.11"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -142,6 +142,7 @@ function EID:onNewFloor()
 		EID.bagOfCraftingRoomQueries = {}
 		EID.bagOfCraftingFloorQuery = {}
 		EID.CraneItemType = {}
+		EID.flipItemPositions = {}
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
@@ -223,20 +224,57 @@ function EID:IsAltChoice(pickup)
 end
 
 ---------------------------------------------------------------------------
--------------------------Handle Crane Game-----------------------------
+--------------------Handle Crane Game & Flip Item--------------------------
 
-function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, seed)
-	if itemPoolType == ItemPoolType.POOL_CRANE_GAME then
-		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
-			if not crane:GetSprite():IsPlaying("Broken") then
-				if not EID.CraneItemType[tostring(crane.InitSeed)] then
-					EID.CraneItemType[tostring(crane.InitSeed)] = selectedCollectible
+if REPENTANCE then
+	EID.flipItemPositions = {}
+	local lastGetItemResult = {nil, nil, nil} -- itemID, Frame, gridIndex
+
+	function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, seed)
+		-- Handle flip item
+		local curFrame = Isaac.GetFrameCount()
+		if not decrease and curFrame == lastGetItemResult[2] and lastGetItemResult[1] ~= nil then
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+			EID.flipItemPositions[curRoomIndex][lastGetItemResult[3]] = selectedCollectible
+		end
+
+		-- Handle crane game
+		if itemPoolType == ItemPoolType.POOL_CRANE_GAME then
+			for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+				if not crane:GetSprite():IsPlaying("Broken") then
+					if not EID.CraneItemType[tostring(crane.InitSeed)] then
+						EID.CraneItemType[tostring(crane.InitSeed)] = selectedCollectible
+					end
 				end
 			end
 		end
+		
+		-- save last real collectible. for Flip Item handling
+		if decrease then
+			lastGetItemResult = {selectedCollectible, curFrame, nil}
+		end
 	end
+	EID:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, EID.postGetCollectible)
+
+	-- Handle Flip Item spawn
+	function EID:postPickupInit(entity)
+		local curFrame = Isaac.GetFrameCount()
+		if entity.SubType == lastGetItemResult[1] and curFrame == lastGetItemResult[2] then
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+			if EID.flipItemPositions[curRoomIndex] == nil then
+				EID.flipItemPositions[curRoomIndex] = {}
+			end
+			local gridPos = game:GetRoom():GetGridIndex(entity.Position)
+			local flipEntry = EID.flipItemPositions[curRoomIndex][gridPos]
+			if not flipEntry then
+				lastGetItemResult[3] = gridPos
+			else
+				entity:GetData()["EID_FlipItemID"] = flipEntry
+			end
+		end
+	end
+	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit)
 end
-EID:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, EID.postGetCollectible)
 
 ---------------------------------------------------------------------------
 ---------------------------Printing Functions------------------------------
@@ -390,12 +428,25 @@ end
 ---------------------------------------------------------------------------
 ---------------------------Handle New Room--------------------------------
 local isMirrorRoom = false
-function EID:onNewRoom()
-	if REPENTANCE then
+if REPENTANCE then
+	function EID:onNewRoom()
 		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
+		
+		-- Handle Flip Item
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID.flipItemPositions[curRoomIndex] then
+			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
+			for _, pedestal in ipairs(pedestals) do
+				local gridPos = game:GetRoom():GetGridIndex(pedestal.Position)
+				local flipEntry = EID.flipItemPositions[curRoomIndex][gridPos]
+				if flipEntry then
+					pedestal:GetData()["EID_FlipItemID"] = flipEntry
+				end
+			end
+		end
 	end
+	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 end
-EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 ---------------------------------------------------------------------------
 ---------------------------Handle Rendering--------------------------------
 
@@ -800,7 +851,7 @@ local function onRender(t)
 	--Handle GetData Entities (specific)
 	if EID.Config["EnableEntityDescriptions"] and EID:getEntityData(closest, "EID_Description") then
 		local desc = EID:getEntityData(closest, "EID_Description")
-		local origDesc = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
+		local origDesc = EID:getDescriptionObjByEntity(closest)
 		if type(desc) == "table" then
 			origDesc.Description = desc.Description or origDesc.Description
 			origDesc.Name = desc.Name or origDesc.Name
@@ -830,7 +881,7 @@ local function onRender(t)
 	end
 	
 	if closest.Type == 1000 and closest.Variant == 76 then
-		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1))
+		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1, closest))
 		return
 	end
 	
@@ -845,7 +896,7 @@ local function onRender(t)
 				end
 			end
 			local collectibleID = EID.CraneItemType[tostring(closest.InitSeed)]
-			local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID)
+			local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID, closest)
 			
 			EID:printDescription(descriptionObj)
 			return
@@ -856,9 +907,9 @@ local function onRender(t)
 	
 	if closest.Variant == PickupVariant.PICKUP_TRINKET then
 		--Handle Trinkets
-		local trinketID = closest.SubType
-		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, trinketID)
+		local descriptionObj = EID:getDescriptionObjByEntity(closest)
 		EID:printDescription(descriptionObj)
+
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Collectibles
 		if EID:getEntityData(closest, "EID_DontHide") ~= true then
@@ -867,9 +918,9 @@ local function onRender(t)
 				return
 			end
 		end
-		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
-		
+		local descriptionObj = EID:getDescriptionObjByEntity(closest)
 		EID:printDescription(descriptionObj)
+
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Cards & Runes
 		if (not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"]) and
@@ -887,8 +938,9 @@ local function onRender(t)
 				return
 			end
 		end
-		local descriptionObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
+		local descriptionObj = EID:getDescriptionObjByEntity(closest)
 		EID:printDescription(descriptionObj)
+
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		--Handle Pills
 		if not EID.Config["DisplayObstructedPillInfo"] and
@@ -911,7 +963,7 @@ local function onRender(t)
 		local identified = pool:IsPillIdentified(pillColor)
 		if REPENTANCE and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
 		if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) then
-			local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor)
+			local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor, closest)
 			EID:printDescription(descEntry)
 		else
 			if pillColor >= 2049 then
@@ -926,7 +978,7 @@ local function onRender(t)
 		end
 	elseif EID.Config["EnableEntityDescriptions"] then
 		--Handle Entities (omni)
-		local descriptionEntry = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
+		local descriptionEntry = EID:getDescriptionObjByEntity(closest)
 		if descriptionEntry~=nil then
 		   EID:printDescription(descriptionEntry)
 		   return
@@ -944,15 +996,37 @@ if EID.MCMLoaded or REPENTANCE then
 	--------------------------------
 	function OnGameStart(_,isSave)
 		--Loading Moddata--
+		local configIgnoreList = {
+			["BagContent"] = true,
+			["BagFloorContent"] = true,
+			["CraneItemType"] = true,
+			["FlipItemPositions"] = true,
+		}
+
 		if EID:HasData() then
 			local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
-			if REPENTANCE and isSave then
-				EID.BagItems = savedEIDConfig["BagContent"]
-				EID.bagOfCraftingRoomQueries = savedEIDConfig["BagFloorContent"]
-				EID.CraneItemType = savedEIDConfig["CraneItemType"]
-				savedEIDConfig["BagContent"] = nil
-				savedEIDConfig["BagFloorContent"] = nil
-				savedEIDConfig["CraneItemType"] = nil
+			if REPENTANCE then
+				EID.flipItemPositions = {}
+				if isSave then
+					EID.BagItems = savedEIDConfig["BagContent"]
+					EID.bagOfCraftingRoomQueries = savedEIDConfig["BagFloorContent"]
+					EID.CraneItemType = savedEIDConfig["CraneItemType"]
+
+					-- turn list back into dict because json cant save dict indices.
+					local flipItemTable = {}
+					for _, v in ipairs(savedEIDConfig["FlipItemPositions"]) do
+						local roomContent = {}
+						for _, v1 in ipairs(v[2]) do
+							roomContent[v1[1]] = v1[2]
+						end
+						flipItemTable[v[1]] = roomContent
+					end
+
+					EID.flipItemPositions = flipItemTable
+					for k, _ in pairs(configIgnoreList) do
+						savedEIDConfig[k] = nil
+					end
+				end
 			else
 				EID.BagItems = {}
 			end
@@ -961,7 +1035,7 @@ if EID.MCMLoaded or REPENTANCE then
 			if savedEIDConfig.Version == EID.Config.Version then
 				local isDefaultConfig = true
 				for key, value in pairs(EID.Config) do
-					if type(value) ~= type(EID.DefaultConfig[key]) and key ~= "BagContent" and key ~= "BagFloorContent" and key ~= "CraneItemType" then
+					if type(value) ~= type(EID.DefaultConfig[key]) and not configIgnoreList[key] then
 						print("EID Warning! : Config value '"..key.."' has wrong data-type. Resetting it to default...")
 						EID.Config[key] = EID.DefaultConfig[key]
 					end
@@ -998,6 +1072,17 @@ if EID.MCMLoaded or REPENTANCE then
 			EID.Config["BagContent"] = EID.BagItems or {}
 			EID.Config["BagFloorContent"] = EID.bagOfCraftingRoomQueries or {}
 			EID.Config["CraneItemType"] = EID.CraneItemType or {}
+
+			-- turn dictionary into list because json cant save dict indices.
+			local flipItemTable = {}
+			for k, v in pairs(EID.flipItemPositions) do
+				local roomContent = {}
+				for k1, v1 in pairs(v) do
+					table.insert(roomContent, {k1,v1})
+				end
+				table.insert(flipItemTable, {k,roomContent})
+			end
+			EID.Config["FlipItemPositions"] = flipItemTable or {}
 		end
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()

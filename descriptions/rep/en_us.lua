@@ -1024,10 +1024,12 @@ EID.descriptions[languageCode].CraftingPreviewBackup = "!!! If this item's locke
 
 EID.descriptions[languageCode].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
 
-EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:" 
-EID.descriptions[languageCode].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed" 
-EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune charge:" 
-EID.descriptions[languageCode].PlaceboCharge = "Placebo charge:" 
+EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:"
+EID.descriptions[languageCode].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed"
+EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune charge:"
+EID.descriptions[languageCode].PlaceboCharge = "Placebo charge:"
+EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{ButtonSelect}} to show description)"
+
 
 EID.descriptions[languageCode].FalsePHDHeart = "Spawns 1 Black Heart"
 EID.descriptions[languageCode].FalsePHDDamage = "+0.6 Damage up"

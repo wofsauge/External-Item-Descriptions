@@ -408,4 +408,34 @@ local game = Game()
 	end
 	EID:addDescriptionModifier("Abyss", AbyssCondition, AbyssCallback)
 
+
+	-- Handle Flip description addition
+	local function FlipCondition(descObj)
+		if not REPENTANCE or not EID:getEntityData(descObj.Entity, "EID_FlipItemID") then
+			return false
+		end
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) then
+			return true
+		end
+		return false
+	end
+	
+	local function FlipCallback(descObj)
+		local flipItemID = EID:getEntityData(descObj.Entity, "EID_FlipItemID")
+		if Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) then
+			local descEntry = EID:getDescriptionObj(5, 100, flipItemID)
+			return descEntry
+		end
+
+		local infoText = EID:getDescriptionEntry("FlipItemToggleInfo")
+		if flipItemID ~= nil or infoText ~= nil then
+			local itemName = EID:getObjectName(5, 100, flipItemID)
+			local appendText = "#{{Collectible711}} -> {{Collectible"..flipItemID.."}} "..itemName
+			appendText = appendText .. "#{{Blank}} "..infoText
+			EID:appendToDescription(descObj, appendText)
+		end
+		return descObj
+	end
+	EID:addDescriptionModifier("Flip", FlipCondition, FlipCallback)
+
 end
