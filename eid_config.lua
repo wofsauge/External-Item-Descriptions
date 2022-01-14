@@ -131,9 +131,9 @@ EID.UserConfig = {
     -- REPENTANCE ONLY!!!
     -- Default = true
     ["ShowQuality"] = true,
-    -- Display mod name for modded items
-    -- Default = true
-    ["ShowModName"] = true,
+    -- Set the mod indicator display
+    -- Default = "Both"
+    ["ModIndicatorDisplay"] = "Both",
 
     -------TRANSFORMATIONS---------
 
@@ -354,7 +354,7 @@ EID.DefaultConfig = {
     ["DisplayTrinketInfo"] = true,
     ["ItemNameColor"] = "ColorEIDObjName",
     ["ShowQuality"] = true,
-    ["ShowModName"] = true,
+    ["ModIndicatorDisplay"] = "Both",
     ["ShowObjectID"] = false,
     ["TransformationText"] = true,
     ["TransformationIcons"] = true,
