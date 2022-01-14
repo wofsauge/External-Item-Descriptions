@@ -14,6 +14,7 @@ local game = Game()
 local maxNumber = 4294967296
 local spawnedItems = 0
 local lastEffectTrigger = "chain"
+local descOne = ""
 
 local logLocation = os.getenv("SYSTEMDRIVE") .. "/Users/" .. os.getenv("USERNAME") .. "/Documents/My Games/Binding of Isaac Repentance/log.txt"
 local logFound = false
@@ -85,10 +86,6 @@ local function parseEffectLine(raw)
 	return eidString
 end
 
---TODO: Add an option for displaying glitched item descriptions check it here
--- Move the item config part to API, it can be used without luadebug
--- bag of crafting hold use to reset bag
-
 local function CheckLogForItems(_)
 	if not EID.Config["DisplayGlitchedItemInfo"] or not logFound or game:GetFrameCount() % 5 ~= 0 or not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then return end
 	
@@ -116,10 +113,11 @@ local function CheckLogForItems(_)
 			eidDesc = eidDesc .. parseEffectLine(line)
 			if numEffects == 0 then
 				-- Glowing Hour Glass type effects seem to cause the game to reload all items, check if our desc is equal to the first one
-				if (EID:getDescriptionObj(5, 100, maxNumber - 1).Description == eidDesc) then spawnedItems = 1 end
+				if (descOne == eidDesc) then spawnedItems = 1 end
 				
 				eidDesc = EID:CheckGlitchedItemConfig(maxNumber - spawnedItems) .. eidDesc
 				EID:addCollectible(maxNumber - spawnedItems, eidDesc)
+				if spawnedItems == 1 then descOne = eidDesc end
 			end
 		elseif string.find(line, "Game ended;") then
 			spawnedItems = 0
