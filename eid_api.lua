@@ -1011,9 +1011,11 @@ function EID:getErrorColor()
 end
 
 
-function EID:addModIndicatorName(newName)
+function EID:setModIndicatorName(newName)
 	EID.ModIndicator[EID._currentMod].Name = newName
 end
-function EID:addModIndicatorIcon(iconMarkup)
+function EID:setModIndicatorIcon(iconMarkup, override)
+	if override == nil then override = true end -- overide previous value if not specified
+	if EID.ModIndicator[EID._currentMod].Icon ~= nil and override == false then return end
 	EID.ModIndicator[EID._currentMod].Icon = iconMarkup
 end
