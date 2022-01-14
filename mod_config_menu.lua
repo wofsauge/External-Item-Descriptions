@@ -1206,6 +1206,27 @@ if MCMLoaded then
 			}
 		)
 	end
+	-------Mod name for modded items---------
+	MCM.AddSetting(
+		"EID",
+		"Visuals",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return EID.Config["ShowModName"]
+			end,
+			Display = function()
+				local onOff = "False"
+				if EID.Config["ShowModName"] then
+					onOff = "True"
+				end
+				return "Display mod name: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				EID.Config["ShowModName"] = currentBool
+			end
+		}
+	)
 	-------Object ID---------
 	MCM.AddSetting(
 		"EID",

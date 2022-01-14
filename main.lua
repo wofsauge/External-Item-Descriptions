@@ -57,6 +57,14 @@ local hudBBSprite = Sprite()
 hudBBSprite:Load("gfx/eid_transform_icons.anm2", true)
 hudBBSprite:Play("boundingBox")
 
+EID._currentMod = ""
+
+local OldRegisterMod = RegisterMod
+RegisterMod = function (modName, apiVersion)
+	EID._currentMod = modName
+	return OldRegisterMod(modName, apiVersion)
+end
+
 ------- Load all modules and other stuff ------
 
 --transformation infos
@@ -367,6 +375,11 @@ function EID:printDescription(desc)
 			local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Quality)
 			curName = curName.." - {{Quality"..quality.."}}"
 		end
+
+		if EID.Config["ShowModName"] and desc.ModName then
+			curName = curName .. " {{ColorWhite}}" .. desc.ModName
+		end
+
 		EID:renderString(
 			curName,
 			renderPos + (Vector(offsetX, -3) * EID.Scale),
@@ -404,6 +417,7 @@ function EID:printDescription(desc)
 		end
 	end
 	EID:printBulletPoints(desc.Description, renderPos)
+
 end
 
 function EID:printBulletPoints(description, renderPos)
