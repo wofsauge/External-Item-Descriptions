@@ -992,6 +992,64 @@ EID.descriptions[languageCode].horsepills={
     [9999] = {"", "황금 알약", "일반 알약에서 나오지 않는 알약 효과가 랜덤하게 발동됩니다.#사라지기 전까지 무제한으로 사용할 수 있습니다."}, -- Golden Pill
 }
 
+
+---------- Glitched Item Descriptions ----------
+
+EID.descriptions[languageCode].GlitchedItemText = {
+	-- This will be appended to words to pluralize them, make it "" to not pluralize
+	pluralize = "",
+	
+	-- Item Config info
+	AddBlackHearts = "블랙하트 {1}",
+	AddBombs = "폭탄 {1}",
+	AddCoins = "동전 {1}",
+	AddHearts = "빨간하트 {1}",
+	AddKeys = "열쇠 {1}",
+	AddMaxHearts = "최대체력 {1}",
+	AddSoulHearts = "소울하트 {1}",
+	
+	-- Cache Flag names
+	cacheFlagStart = "다음 수치가 변경될 수 있음: ",
+	[0] = "공격력", "연사", "탄속", "사거리", "이동속도", "눈물효과", "눈물색깔", "비행", "공격 유형", "패밀리어", "행운", "캐릭터의 크기", "캐릭터의 색깔", "상자 내용물", [16] = "모든 능력치",
+	
+	-- Attribute triggers
+	chain = "{{ColorCyan}}그 다음:{{ColorText}} ",
+	active = "{{ColorCyan}}아이템 사용 시:#",
+	pickup_collected = "{{ColorCyan}}픽업을 주울 시:#", --chance to?
+	enemy_kill = "{{ColorCyan}}적을 죽일 시 확률적으로 발동:#",
+	damage_taken = "{{ColorCyan}}캐릭터가 피격 시:#", --chance to?
+	entity_spawned = "{{ColorCyan}}{T1}{{ColorText}}이/가 소환될 시:#",
+	tear_fire = "{{ColorCyan}}눈물 발사 시 확률적으로 발동:#",
+	enemy_hit = "{{ColorCyan}}적들이 피격 시 확률적으로 발동:#",
+	room_clear = "{{ColorCyan}}방 클리어 시:#", --chance to?
+	
+	-- Attribute effects
+	area_damage = "캐릭터 주변의 적에게 {1} 의 피해를 줍니다.", 
+	add_temporary_effect = "현재 방에서 {1} 아이템의 효과를 얻습니다.",
+	convert_entities = "방 안의 {{ColorGray}}{1}{{ColorText}}을/를 {{ColorGray}}{2}{{ColorText}}(으)로 바꿉니다.",
+	use_active_item = "{1}을/를 사용합니다.",
+	spawn_entity = "{{ColorGray}}{1}{{ColorText}}을/를 소환합니다.",
+	fart = "{1}의 크기만큼 방귀를 뀝니다.",
+	
+	-- Generic entity names not obtained from entities2.xml
+	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
+	["4.-1"] = "설치한 폭탄",
+	["5.0"] = "픽업",
+	["5.10"] = "하트",
+	["5.20"] = "동전",
+	["5.30"] = "열쇠",
+	["5.40"] = "폭탄(픽업)",
+	["5.69"] = "자루",
+	["5.70"] = "알약",
+	["5.90"] = "배터리", 
+	["5.300"] = "카드",
+	["9.-1"] = "적 탄환",
+	["999.-1"] = "장애물",
+	["1000.0"] = "효과",
+	
+}
+
+
 ---------- Misc, Text
 
 local repDiceEffects = {
