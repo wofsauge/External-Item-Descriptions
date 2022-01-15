@@ -11,9 +11,8 @@ EID.UserConfig = {
     --						Italian = "it"		SPECIAL THANKS TO Denkishi, 2G
     --						Bulgarian = "bul"	SPECIAL THANKS TO Gothika_47
     --						Turkish = "tr_tr"	SPECIAL THANKS TO Mert Dutal
-    --						Korean = "ko_kr"	SPECIAL THANKS TO Blackcreamtea and 미카
-    --						Chinese (https://steamcommunity.com/sharedfiles/filedetails/?id=836319872)
-    -- 						Italian (https://steamcommunity.com/sharedfiles/filedetails/?id=931392691)
+    --						Korean = "ko_kr"	SPECIAL THANKS TO Blackcreamtea, 미카
+    --						Chinese = "zh_cn"   SPECIAL THANKS TO Xheepey87, frto027
     --
     -- If you want to make a translation, please contact me :) (wofsauge)
     --
