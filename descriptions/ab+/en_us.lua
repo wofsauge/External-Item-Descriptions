@@ -14,7 +14,7 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "English"
 
-EID.descriptions[languageCode].fonts = {"default", "inverted", "borderless"} -- Fonts to be used with this languagepack
+EID.descriptions[languageCode].fonts = {{name="default", lineHeight=11}, {name="inverted", lineHeight=11}, {name="borderless", lineHeight=11}} -- Fonts to be used with this languagepack 
 
 EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ +0.7 Tears up"},

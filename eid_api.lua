@@ -1012,11 +1012,12 @@ function EID:fixDefinedFont()
 	local curLang = EID.Config["Language"]
 	local curFont = EID.Config["FontType"]
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
-		if curFont == v then
+		if curFont == v.name then
 			return false
 		end
 	end
-	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1]
+	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1].name
+	EID.lineHeight = EID.descriptions[curLang].fonts[1].lineHeight
 	return true
 end
 

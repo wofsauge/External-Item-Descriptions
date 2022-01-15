@@ -16,7 +16,7 @@ EID.descriptions[languageCode].custom = {} -- table for custom entity descriptio
 EID.descriptions[languageCode].languageName = "Chinese"
 
 -- Fonts to be used with this languagepack
-EID.descriptions[languageCode].fonts = {"default_cn"}
+EID.descriptions[languageCode].fonts = {{name = "default_cn", lineHeight = 14}}
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={

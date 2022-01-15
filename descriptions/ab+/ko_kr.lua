@@ -16,7 +16,7 @@ EID.descriptions[languageCode].languageName = "Korean"
 
     korean_galmoori9, korean_galmoori11 is added for community request.
  ]]
-EID.descriptions[languageCode].fonts = {"korean_hcrdotum", "korean_lanapixel", "korean_soyakkoma", "korean_soyakkoma_borderless", "korean_soyakkoma_inverted", "korean_soyanon", "korean_galmoori9", "korean_galmoori11"} -- Fonts to be used with this languagepack
+EID.descriptions[languageCode].fonts = {{name="korean_hcrdotum", lineHeight=14}, {name="korean_lanapixel", lineHeight=14}, {name="korean_soyakkoma", lineHeight=14}, {name="korean_soyakkoma_borderless", lineHeight=14}, {name="korean_soyakkoma_inverted", lineHeight=14}, {name="korean_soyanon", lineHeight=14}, {name="korean_galmoori9", lineHeight=14}, {name="korean_galmoori11", lineHeight=14}} -- Fonts to be used with this languagepack
 
 
 

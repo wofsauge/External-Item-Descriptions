@@ -1081,6 +1081,8 @@ if EID.MCMLoaded or REPENTANCE then
 				EID.isHidden = EID.Config["InitiallyHidden"]
 				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 				EID.Scale = EID.Config["Scale"]
+				EID.lineHeight = EID.Config["LineHeight"]
+				
 				EID:fixDefinedFont()
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 				if REPENTANCE then
@@ -1112,6 +1114,7 @@ if EID.MCMLoaded or REPENTANCE then
 			end
 			EID.Config["FlipItemPositions"] = flipItemTable or {}
 		end
+		EID.Config["LineHeight"] = EID.lineHeight
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()
 		EID.itemUnlockStates[CollectibleType.COLLECTIBLE_CUBE_OF_MEAT] = nil

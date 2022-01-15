@@ -44,6 +44,9 @@ EID.UserConfig = {
     -- Set the Y Position (height) of the description texts
     -- Default = 45
     ["YPosition"] = 45,
+    -- Set the height of a line, effectivly changing the distance between two lines of text
+    -- Default = 11    (11 for English, 14 for Korean / Chinese)
+    ["LineHeight"] = 11,
     -- Set the distance between an item and its information display (in tiles)
     -- Default = 5
     ["MaxDistance"] = 5,
@@ -344,6 +347,7 @@ EID.DefaultConfig = {
     ["HUDOffset"] = 10,
     ["XPosition"] = 60,
     ["YPosition"] = 45,
+    ["LineHeight"] = 11,
     ["DisplayMode"] = "default",
     ["LocalScale"] = 0.5,
     ["LocalModeCentered"] = true,

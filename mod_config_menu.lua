@@ -27,26 +27,28 @@ local colorNameArray = {}
 local function renderDummyDesc()
 	MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
 	local demoDescObj = EID:getDescriptionObj(5, 100, 33)
-	demoDescObj.Name = "Demo Object Name"
-	demoDescObj.Transformation = "Demo Transformation"
-	demoDescObj.Description = "A very cool description as a demonstration of the power of EID!#\1 This is also a cool line#This line loves you {{Heart}}"
+	demoDescObj.Name = EID:getDescriptionEntry("MCM","demoObjectName")
+	demoDescObj.Transformation = EID:getDescriptionEntry("MCM","demoObjectTransformation")
+	demoDescObj.Description = EID:getDescriptionEntry("MCM","demoObjectText")
 	EID:displayPermanentText(demoDescObj)
 end
 
 -- get list of all defined fonts per language file
 local fonts = {}
+local fontNames = {}
 for k, pack in pairs(EID.descriptions) do
 	if pack.fonts then
 		for _,fontToAdd in ipairs(pack.fonts) do
 			local exists = false
-			for _,font in ipairs(fonts) do
-				if font == fontToAdd then
+			for _,font in ipairs(fontNames) do
+				if font == fontToAdd.name then
 					exists = true
 					break
 				end
 			end
 			if not exists then
 				table.insert(fonts, fontToAdd)
+				table.insert(fontNames, fontToAdd.name)
 			end
 		end
 	end
@@ -306,6 +308,48 @@ if MCMLoaded then
 			Info = {"Default = 45"}
 		}
 	)
+	-- Line Height
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return EID.lineHeight
+			end,
+			Minimum = 1,
+			Maximum = 100,
+			Display = function()
+				return "Line Height: " .. EID.lineHeight
+			end,
+			OnChange = function(currentNum)
+				EID.lineHeight = currentNum
+			end,
+			Info = {"Default = 11","Lineheight will automatically change when changing a font/language"}
+		}
+	)
+	-- Textbox Width
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return EID.Config["TextboxWidth"]
+			end,
+			Minimum = 1,
+			Maximum = 500,
+			ModifyBy = 5,
+			Display = function()
+				return "Textbox Width: " .. EID.Config["TextboxWidth"]
+			end,
+			OnChange = function(currentNum)
+				EID.Config["TextboxWidth"] = currentNum
+			end,
+			Info = {"Default = 100","Width of the EID textbox, in pixels"}
+		}
+	)
+	
 	
 	MCM.AddSpace("EID", "General")
 	
@@ -957,16 +1001,17 @@ if MCMLoaded then
 		{
 			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
-				return AnIndexOf(fonts, EID.Config["FontType"])
+				return AnIndexOf(fontNames, EID.Config["FontType"])
 			end,
 			Minimum = 1,
-			Maximum = #fonts,
+			Maximum = #fontNames,
 			Display = function()
 				EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 				return "Font Type: " .. EID.Config["FontType"]
 			end,
 			OnChange = function(currentNum)
-				EID.Config["FontType"] = fonts[currentNum]
+				EID.Config["FontType"] = fontNames[currentNum]
+				EID.lineHeight = fonts[currentNum].lineHeight
 				EID:fixDefinedFont()
 				local fontFile = EID.Config["FontType"] or "default"
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
@@ -1598,7 +1643,6 @@ if MCMLoaded then
 			Maximum = 1000,
 			Display = function()
 				if EID.Config["ModIndicatorTextColor"] == nil then EID.Config["TextColor"] = EID.DefaultConfig["ModIndicatorTextColor"] end
-				EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 				return "Mod Indicator: " .. string.gsub(EID.Config["ModIndicatorTextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ModIndicatorTextColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
