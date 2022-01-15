@@ -162,7 +162,7 @@ local repCollectibles={
 	[369] = {"369", "Continuum", "↑ {{Range}} Alcance +3.0#↑ Tamaño de lágrimas +1.5#Las lágrimas atraviesan las paredes y aparecen por la pared contraria"}, -- Continuum
 	[370] = {"370", "Sr. muñequita", "↑ {{Tears}} Lágrimas +0.7#↑ {{Range}} Alcance +1.5#↑ Tamaño de lágrimas +0.5#{{Heart}} Genera 3 corazones aleatorios al cogerlo"}, -- Mr. Dolly
 	[372] = {"372", "Bebé cargado", "Posibilidad de dejar caer una batería pequeña o de congelar a los enemigos#Puede agregar una carga a tu objeto activable"}, -- Bebé cargado
-	[373]	{"373", "Ojo Muerto", "↑ {{Damage}} +12,5 % de daño por cada lágrima que golpee a un enemigo (máximo +100 %)#Fallar reinicia el daño"},
+	[373] =	{"373", "Ojo Muerto", "↑ {{Damage}} +12,5 % de daño por cada lágrima que golpee a un enemigo (máximo +100 %)#Fallar reinicia el daño"},
 	[374] = {"374", "Luz sagrada", "Posibilidad de disparar una lágrima sagrada, que hará que caigan rayos de luz desde el cielo#El rayo inflige tres veces tu daño"},
 	[375] = {"375", "Sombrero de Host", "20 % de posibilidad de evitar lágrimas#Inmune a explosiones"}, -- Host hat
 	[376] = {"376", "Reabastecimiento", "Genera 3 recolectables#Las tiendas reponen los objetos que compres instantáneamente#El precio de los objetos repuestos aumenta"}, -- Reabastecimiento
