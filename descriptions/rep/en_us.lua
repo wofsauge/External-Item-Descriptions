@@ -971,15 +971,15 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	[0] = "Damage", "Fire Rate", "Shot Speed", "Range", "Speed", "Tear Effects", "Tear Color", "Flight", "Attack Type", "Familiars", "Luck", "Size", "Color", "Chest Contents", [16] = "All Stats",
 	
 	-- Attribute triggers
-	chain = "Then: ",
-	active = "On use:#",
-	pickup_collected = "When you collect a pickup:#", --chance to?
-	enemy_kill = "On kill, chance to:#",
-	damage_taken = "When you take damage:#", --chance to?
-	entity_spawned = "When a {{ColorGray}}{T1}{{ColorText}} is spawned:#",
-	tear_fire = "When you fire a tear, chance to:#",
-	enemy_hit = "On hitting an enemy, chance to:#",
-	room_clear = "On room clear:#", --chance to?
+	chain = "{{ColorCyan}}Then:{{ColorText}} ",
+	active = "{{ColorCyan}}On use:#",
+	pickup_collected = "{{ColorCyan}}When you collect a pickup:#", --chance to?
+	enemy_kill = "{{ColorCyan}}On kill, chance to:#",
+	damage_taken = "{{ColorCyan}}When you take damage:#", --chance to?
+	entity_spawned = "When a {{ColorCyan}}{T1}{{ColorText}} is spawned:#",
+	tear_fire = "{{ColorCyan}}When you fire a tear, chance to:#",
+	enemy_hit = "{{ColorCyan}}On hitting an enemy, chance to:#",
+	room_clear = "{{ColorCyan}}On room clear:#", --chance to?
 	
 	-- Attribute effects
 	area_damage = "Deal {1} damage in an area around you", 
