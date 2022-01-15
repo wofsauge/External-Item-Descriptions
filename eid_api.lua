@@ -1075,6 +1075,7 @@ end
 function EID:setModIndicatorName(newName)
 	EID.ModIndicator[EID._currentMod].Name = newName
 end
+
 -- Set an icon for the mod which will be displayed next to the item name
 function EID:setModIndicatorIcon(iconMarkup, override)
 	if override == nil then override = true end -- overide previous value if not specified

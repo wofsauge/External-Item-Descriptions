@@ -980,3 +980,12 @@ EID.descriptions[languageCode].AchievementWarningText = "成就已禁用！#为�
 EID.descriptions[languageCode].OldGameVersionWarningText = "你的忏悔版本不是最新的！#只有官方最新版才支持这一功能#(这条警告可以在设置中禁用)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "含有模组的道具可能会使合成配方计算不准确！#如果你的配方不正确，请使用无配方模式或者关闭合成袋的显示#(这条警告可以在设置中禁用)"
+
+
+-- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
+if EID.enableDebug then
+	EID.descriptions[languageCode].repCollectibles = repCollectibles
+	EID.descriptions[languageCode].repTrinkets = repTrinkets
+	EID.descriptions[languageCode].repCards = repCards
+	EID.descriptions[languageCode].repPills = repPills
+end

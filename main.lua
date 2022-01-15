@@ -3,7 +3,7 @@ EID = RegisterMod("External Item Descriptions", 1)
 EID.GameVersion = "ab+"
 EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn"}
 EID.descriptions = {} -- Table that holds all translation strings
-local enableDebug = false
+EID.enableDebug = false
 local game = Game()
 
 require("eid_config")
@@ -1126,6 +1126,6 @@ if EID.MCMLoaded or REPENTANCE then
 	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
 end
 
-if enableDebug then
+if EID.enableDebug then
 	require("eid_debugging")
 end

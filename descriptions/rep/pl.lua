@@ -657,3 +657,12 @@ EID.descriptions[languageCode].CraftingBagContent = "torbie:"
 EID.descriptions[languageCode].CraftingRoomContent = "pokoju:"
 EID.descriptions[languageCode].CraftingResults = "Wyniki:#(Przewiń: Trzymaj TAB + Strzał △/▽)"
 EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}BŁĄD:#{{ColorRed}}Ta funkcja nie wspiera obecnie zmodowanych przedmiotów"
+
+
+-- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
+if EID.enableDebug then
+	EID.descriptions[languageCode].repCollectibles = repCollectibles
+	EID.descriptions[languageCode].repTrinkets = repTrinkets
+	EID.descriptions[languageCode].repCards = repCards
+	EID.descriptions[languageCode].repPills = repPills
+end

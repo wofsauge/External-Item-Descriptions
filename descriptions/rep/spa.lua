@@ -1025,3 +1025,12 @@ EID.descriptions[languageCode].MCM = {
 	DemoObjectTransformation = "Transformación demostrativa",
 	DemoObjectText = "Este texto está en español#¡Una larga y genial descripción para demostrar los saltos de línea causados por la anchura de texto de EID!#\1 Esta linea también es genial#Esta linea te ama {{Heart}}",
 } 
+
+
+-- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
+if EID.enableDebug then
+	EID.descriptions[languageCode].repCollectibles = repCollectibles
+	EID.descriptions[languageCode].repTrinkets = repTrinkets
+	EID.descriptions[languageCode].repCards = repCards
+	EID.descriptions[languageCode].repPills = repPills
+end

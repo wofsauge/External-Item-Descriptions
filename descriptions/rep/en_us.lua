@@ -1041,3 +1041,12 @@ EID.descriptions[languageCode].AchievementWarningText = "Achievements are disabl
 EID.descriptions[languageCode].OldGameVersionWarningText = "Your version of Repentance is not up-to-date!#Only the newest version is officially supported#(This warning can be disabled in the config)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Use the No Recipes display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
+
+
+-- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
+if EID.enableDebug then
+	EID.descriptions[languageCode].repCollectibles = repCollectibles
+	EID.descriptions[languageCode].repTrinkets = repTrinkets
+	EID.descriptions[languageCode].repCards = repCards
+	EID.descriptions[languageCode].repPills = repPills
+end
