@@ -885,8 +885,9 @@ function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 end
 
 function EID:isCollectibleUnlockedAnyPool(collectibleID)
-	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data; currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
-	if not REPENTANCE then return true end
+	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data
+	--Currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
+	if not REPENTANCE or EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then return true end
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if item == nil then return false end
 	if EID.itemUnlockStates[collectibleID] == nil then
