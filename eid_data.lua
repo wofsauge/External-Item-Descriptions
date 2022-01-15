@@ -15,6 +15,12 @@ EID.ButtonToIconMap = {
 	[ButtonAction.ACTION_PAUSE] = "{{ButtonMenu}}",
 }
 
+-- List of Effect variants that should be handled for descriptions
+EID.effectList = {
+	["76"] = true,
+}
+
+-- List of HUD elements, their position and usage
 EID.HUDElements = {
 	["Active1"] = {x = 20,y = 5, width = 65, height = 65, anchors={"TOP","LEFT"}, descriptionObj = function() 
 		local id = EID.player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)
