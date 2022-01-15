@@ -26,8 +26,8 @@ EID.UserConfig = {
     -- Default = "default"
     ["FontType"] = "default",
     -- Change the width of the info boxes (in characters).
-    -- Default = 100
-    ["TextboxWidth"] = 100,
+    -- Default = 115
+    ["TextboxWidth"] = 115,
     -- Change the size of the info boxes. Range: [0,...,1]
     -- Default = 1
     ["Scale"] = 1,
@@ -341,7 +341,7 @@ EID.DefaultConfig = {
     ["Language"] = "en_us",
     ["TranslateItemName"] = 2,
     ["FontType"] = "default",
-    ["TextboxWidth"] = 100,
+    ["TextboxWidth"] = 115,
     ["Scale"] = 1,
     ["Transparency"] = 0.75,
     ["HUDOffset"] = 10,
