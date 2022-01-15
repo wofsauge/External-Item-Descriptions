@@ -409,14 +409,14 @@ local game = Game()
 	local function FlipCallback(descObj)
 		local flipItemID = EID:getEntityData(descObj.Entity, "EID_FlipItemID")
 		if Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) then
-			local descEntry = EID:getDescriptionObj(5, 100, flipItemID)
+			local descEntry = EID:getDescriptionObj(5, 100, flipItemID[2])
 			return descEntry
 		end
 
 		local infoText = EID:getDescriptionEntry("FlipItemToggleInfo")
 		if flipItemID ~= nil or infoText ~= nil then
-			local itemName = EID:getObjectName(5, 100, flipItemID)
-			local appendText = "#{{Collectible711}} -> {{Collectible"..flipItemID.."}} "..itemName
+			local itemName = EID:getObjectName(5, 100, flipItemID[2])
+			local appendText = "#{{Collectible711}} -> {{Collectible"..flipItemID[2].."}} "..itemName
 			appendText = appendText .. "#{{Blank}} "..infoText
 			EID:appendToDescription(descObj, appendText)
 		end
