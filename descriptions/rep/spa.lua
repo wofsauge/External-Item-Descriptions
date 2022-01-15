@@ -2,7 +2,7 @@
 -----  Basic spanish descriptions -----
 ---------------------------------------
 
--- Last Sync with en_us: 12.26.2021
+-- Last Sync with en_us: 01.15.2022
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -830,6 +830,37 @@ local repCards={
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
+
+---------- Tarot Cloth Buffs ----------
+EID.descriptions[languageCode].tarotClothBuffs = {
+	[2] = "También otorga el efecto de {{Collectible34}} El libro de Belial", -- I - The Magician
+	[3] = "Un segundo pie atacará en cuanto el primero lo haga", -- II - The High Priestess
+	[4] = "Duplica el aumento de estadísticas", -- III - The Empress
+	[5] = "Si el jefe no ha sido derrotado, Recibes un {{SoulHeart}} Corazón de alma", -- IV - The Emperor
+	[6] = "Genera 3 corazones de alma", -- V - The Hierophant
+	[7] = "Genera 3 corazones rojos", -- VI - The Lovers
+	[8] = "Duración duplicada", -- VII - The Chariot
+	[9] = "Duplica la generación de recolectables", -- VIII - Justice
+	[10] ="Evita que Codicia aparezca en las tiendas#Si ya se peleó contra Codicia, la tienda regresará a la normalidad", -- IX - The Hermit
+	[11] = "Genera 2 máquinas tragaperras", -- X - Wheel of Fortune
+	[12] = "Duplica el aumento de estadísticas, excepto el multiplicador de daño", -- XI - Strength
+	[14] = "Inflinge 80 de daño", -- XIII - Death
+	[15] = "Genera 2 Máquinas de donación de sangre", -- XIV - Temperance
+	[16] = "Aumento de daño duplicado", -- XV - The Devil
+	[17] = "Genera 12 bombas troll", -- XVI - The Tower
+	[18] = "Si no se ha entrado a la sala del tesoro, esta tendrá 2 posibles opciones", -- XVII - The Stars
+	[21] = "Genera 2 mendigos", -- XX - Judgement
+	[56] = "Sueltas tanto los recolectables como los objetos, Incluyendo el Tapete de tarot", -- 0 - The Fool?
+	[59] = "↑ Salud +3", -- III - The Empress?
+	[61] = "Genera 3 corazones de hueso", -- V - The Hierophant?
+	[62] = "Añade 2 corazones rotos y genera 2 objetos", -- VI - The Lovers?
+	[64] = "Genera 4-14 cofres dorados", -- VIII - Justice?
+	[70] = "Consumes 10 píldoras", -- XIV - Temperance?
+	[72] = "Generas 14 agrupaciones de rocas", -- XVI - The Tower?
+	[73] = "Retira 2 objetos y genera otros 4", -- XVII - The Stars?
+	[76] = "Generan 4 máquinas de reabastecimiento", -- XX - Judgement?
+}
+
 ---------- Pills ----------
 
 local repPills={
@@ -900,7 +931,61 @@ EID.descriptions[languageCode].horsepills={
 	[9999] = {"", "Píldora dorada", "Efecto de píldora de caballo aleatorio#Se destruye tras unos cuantos usos"}, -- Píldora dorada
 }
 
+---------- Glitched Items Descriptions ----------
+	-- This will be appended to words to pluralize them, make it "" to not pluralize
+	pluralize = "s",
 
+EID.descriptions[languageCode].GlitchedItemText = {
+		-- Item Config info
+	AddBlackHearts = "{1} Corazón/zones negro/s",
+	AddBombs = "{1} Bomba/s",
+	AddCoins = "{1} Moneda/s",
+	AddHearts = "Cura {1} Corazón/es rojo/s",
+	AddKeys = "{1} Llave/s",
+	AddMaxHearts = "{1} Contendor/es de Corazón",
+	AddSoulHearts = "{1} Corazón/zones de alma",
+	
+	-- Cache Flag names
+	cacheFlagStart = "Puede afectar ",
+	[0] = "Daño", "Lágrimas", "Vel. de tiro", "Alcance", "Velocidad", "Efectos de lágrima", "Color de lágrima", "Vuelo", "Tipo de ataque", "Familiares", "Suerte", "Tamaño", "Color", "Contenido de cofres", [16] = "Todas las estadísticas",
+	
+	-- Attribute triggers
+	chain = "Que: ",
+	active = "Al usarse:#",
+	pickup_collected = "Al tomar un recolectable:#", --chance to?
+	enemy_kill = "Al matar, Posibilidad de:#",
+	damage_taken = "Al recibir daño:#", --chance to?
+	entity_spawned = "Cuando un {{ColorGray}}{T1}{{ColorText}} Se genera:#",
+	tear_fire = "Al disparar una lágrima, posibilidad de:#",
+	enemy_hit = "Al golpear un enemigo, posibilidad de:#",
+	room_clear = "Al limpiar una sala:#", --chance to?
+	
+	-- Attribute effects
+	area_damage = "Hace {1} de daño en el área", 
+	add_temporary_effect = "Gana {1} Durante la sala",
+	convert_entities = "Convierte todos los {{ColorGray}}{1}{{ColorText}} de la sala en {{ColorGray}}{2}{{ColorText}}",
+	use_active_item = "Usa {1}",
+	spawn_entity = "Genera un {{ColorGray}}{1}{{ColorText}}",
+	fart = "Suelta un pedo de tamaño {1}",
+	
+	-- Generic entity names not obtained from entities2.xml
+	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
+	["4.-1"] = "lit Bomb",
+	["5.0"] = "pickup",
+	["5.10"] = "Heart",
+	["5.20"] = "Coin",
+	["5.30"] = "Key",
+	["5.40"] = "Bomb pickup",
+	["5.69"] = "Grab Bag",
+	["5.70"] = "Pill",
+	["5.90"] = "Battery", 
+	["5.300"] = "Card",
+	["9.-1"] = "enemy projectile",
+	["999.-1"] = "grid object",
+	["1000.0"] = "effect",	
+}
+
+---------- Misc. Text ----------
 EID.descriptions[languageCode].CraftingBagContent = "Bolsa:"
 EID.descriptions[languageCode].CraftingRoomContent = "Sala:"
 EID.descriptions[languageCode].CraftingFloorContent = "Piso:"
@@ -908,7 +993,7 @@ EID.descriptions[languageCode].CraftingFloorContent = "Piso:"
 EID.descriptions[languageCode].CraftingBagQuality = "Calidad:"
 EID.descriptions[languageCode].CraftingBestQuality = "Mejor Calidad:"
 
-EID.descriptions[languageCode].CraftingHideKey = "Oculto:"
+EID.descriptions[languageCode].CraftingHideKey = "Ocultar:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Prevista:"
 EID.descriptions[languageCode].CraftingPreviewBackup = "!!! Si este objeto está bloqueado, se convertirá en"
 
@@ -934,3 +1019,9 @@ EID.descriptions[languageCode].FlipItemToggleInfo = "(Mantén presionado {{Butto
 EID.descriptions[languageCode].FalsePHDHeart = "Genera {{BlackHeart}} 1 corazón negro"
 EID.descriptions[languageCode].FalsePHDDamage = "{{Damage}} Daño +0.6"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "{{Damage}} Daño +1.2"
+
+EID.descriptions[languageCode].MCM = {
+	DemoObjectName = "Nombre de objeto demostrativo",
+	DemoObjectTransformation = "Transformación demostrativa",
+	DemoObjectText = "Este texto está en español#¡Una larga y genial descripción para demostrar los saltos de línea causados por la anchura de texto de EID!#\1 Esta linea también es genial#Esta linea te ama {{Heart}}",
+} 
