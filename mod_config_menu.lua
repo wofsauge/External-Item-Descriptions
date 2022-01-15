@@ -27,9 +27,9 @@ local colorNameArray = {}
 local function renderDummyDesc()
 	MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
 	local demoDescObj = EID:getDescriptionObj(5, 100, 33)
-	demoDescObj.Name = EID:getDescriptionEntry("MCM","demoObjectName")
-	demoDescObj.Transformation = EID:getDescriptionEntry("MCM","demoObjectTransformation")
-	demoDescObj.Description = EID:getDescriptionEntry("MCM","demoObjectText")
+	demoDescObj.Name = EID:getDescriptionEntry("MCM","DemoObjectName")
+	demoDescObj.Transformation = EID:getDescriptionEntry("MCM","DemoObjectTransformation")
+	demoDescObj.Description = EID:getDescriptionEntry("MCM","DemoObjectText")
 	EID:displayPermanentText(demoDescObj)
 end
 
@@ -219,7 +219,7 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = #(EID.Languages),
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = "";
+				EID.MCMCompat_isDisplayingEIDTab = "Visuals"
 				return "Language: " .. displayLanguage[AnIndexOf(EID.Languages, EID.Config["Language"])]
 			end,
 			OnChange = function(currentNum)

@@ -865,3 +865,12 @@ EID.descriptions[languageCode].transformations = {
 	"Adult",			-- 14
 	"Stompy"			-- 15
 }
+
+
+---------- MISC ----------
+
+EID.descriptions[languageCode].MCM = {
+	DemoObjectName = "Demo Object Name",
+	DemoObjectTransformation = "Demo Transformation",
+	DemoObjectText = "This text is in english#A very cool and long description to simulate linebreaks caused by EID textbox width!#\1 This is also a cool line#This line loves you {{Heart}}",
+}
