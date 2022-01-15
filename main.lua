@@ -135,7 +135,7 @@ if not success then
 end
 
 ---------------------------------------------------------------------------
--------------------------Handle Sacrifice Room-----------------------------
+-------------Handle Sacrifice Room & Resetting Floor Trackers--------------
 function EID:onNewFloor()
 	EID.sacrificeCounter = {}
 	if REPENTANCE then
@@ -224,7 +224,7 @@ function EID:IsAltChoice(pickup)
 end
 
 ---------------------------------------------------------------------------
---------------------Handle Crane Game & Flip Item--------------------------
+-----------------Handle Crane Game & Flip Item Callbacks-------------------
 
 if REPENTANCE then
 	EID.flipItemPositions = {}
