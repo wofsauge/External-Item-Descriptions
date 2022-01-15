@@ -17,7 +17,7 @@ local game = Game()
 				local birthrightDesc = EID:getDescriptionEntry("birthright", playerID+1)
 				if birthrightDesc ~=nil then
 					local playerName = birthrightDesc[1] or player:GetName()
-					EID:appendToDescription(descObj, "{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
+					EID:appendToDescription(descObj, (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}").." {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
 				end
 			end
 		end
