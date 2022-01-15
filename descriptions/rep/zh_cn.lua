@@ -13,8 +13,8 @@ local languageCode = "zh_cn"
 local repCollectibles={
 	[2] = {"2", "内眼", "三重眼泪#↓ -49%发射速度"}, -- The Inner Eye
 	[5] = {"5", "我的镜像", "眼泪有回旋效果#↑ +1.5射程#↑ +60%额外射程↑ +0.6弹速"}, -- My Reflection
-	[6] = {"6", "小号", "↑ +1.5射速#↓ -1.5射程#↓ -20%额外射程#↓ -75%眼泪高度"}, -- Number One
-	[12] = {"12", "魔法蘑菇", "↑ +1心之容器#满心#↑ +0.3伤害#↑ +50%伤害倍数#↑ +1.5射程#↑ +0.3移速"}, -- Magic Mushroom
+	[6] = {"6", "小号", "↑ +1.5射速#↓ -1.5射程#↓ -20%额外射程"}, -- Number One
+	[12] = {"12", "魔法蘑菇", "↑ +1心之容器#满心#↑ +0.3伤害#↑ +50%伤害倍数#↑ +1.5射程#↑ +0.3移速#体型变大"}, -- Magic Mushroom
 	[13] = {"13", "病毒", "接触敌人使其中毒#↑ +0.2移速"}, -- The Virus
 	[14] = {"14", "过量类固醇", "↑ +0.3移速#↑ +1.5射程"}, -- Roid Rage
 	[18] = {"18", "一美元", "+100硬币"}, -- A Dollar
@@ -36,7 +36,7 @@ local repCollectibles={
 	[55] = {"55", "老妈的眼睛", "几率向后发射眼泪"}, -- Mom's Eye
 	[59] = {"59", "彼列之书", "<道具无法获得>"}, -- The Book of Belial (Judas's Birthright Version)
 	[62] = {"62", "吸血鬼之魅", "↑ +0.3伤害#每杀死13个敌人治疗半红心"}, -- Charm of the Vampire
-	[64] = {"64", "Steam大促", "商店物品价格-50%#多次获得会降得更低"}, -- Steam Sale
+	[64] = {"64", "Steam大促", "商店物品五折#多次获得会降得更低"}, -- Steam Sale
 	[67] = {"67", "玛姬姐妹", "普通眼泪跟班#每次射击造成6伤害"}, -- Sister Maggy
 	[70] = {"70", "生长激素", "↑ +1.0伤害#↑ +0.2移速"}, -- Growth Hormones
 	[71] = {"71", "小蘑菇", "↑ +0.3移速#↑ +1.5射程#↑ 体型缩小"}, -- Mini Mush
@@ -45,7 +45,7 @@ local repCollectibles={
 	[78] = {"78", "启示录", "+1魂心#使用后天启骑士会替代本层Boss#↑ +17.5% {{DevilRoom}}恶魔房或{{AngelRoom}}天使房几率"}, -- Book of Revelations
 	[79] = {"79", "咒印", "↑ +1.0伤害#↑ +0.2移速#+1黑心"}, -- The Mark
 	[80] = {"80", "契约", "↑ +0.5伤害#↑ +0.7射速#+2黑心"}, -- The Pact
-	[83] = {"83", "钉子", "+半黑心#↑ +2.0伤害#↓ -0.18移速#造成接触伤害#粉碎岩石"}, -- The Nail
+	[83] = {"83", "钉子", "+半黑心#↑ +2.0伤害#↓ -0.18移速#造成接触伤害#粉碎经过的岩石"}, -- The Nail
 	[91] = {"91", "探窟帽", "揭示相邻房间的类型#也可以揭示隐藏房，超级隐藏房和小Boss房#阻挡上方弹幕的伤害"}, -- Spelunker Hat
 	[98] = {"98", "圣遗物", "每7-8个房间生成1魂心"}, -- The Relic
 	[101] = {"101", "光环", "↑ +1心之容器#↑ +0.3伤害#↑ +0.2射速#↑ +0.38射程#↑ +0.3移速#治疗1红心"}, -- The Halo
@@ -66,7 +66,7 @@ local repCollectibles={
 	[153] = {"153", "变异蜘蛛", "四重眼泪!#↓ -58%发射速度"}, -- Mutant Spider
 	[155] = {"155", "窥眼", "在房间内四处漂浮的跟班#每秒造成17.1接触伤害#↑ 角色左眼伤害+34%"}, -- The Peeper
 	[158] = {"158", "水晶球", "揭示全图#掉落随机卡牌或魂心#持有时：#↑ +15%星象房几率#如果跳过道具房则为100%"}, -- Crystal Ball
-	[169] =	{"169", "巨人独眼", "↑ +100%伤害#↑ +4额外伤害#↓ -58%发射速度"}, -- Polyphemus
+	[169] =	{"169", "巨人独眼", "↑ +100%伤害#↑ +4额外伤害#↓ -58%发射速度#眼泪杀死敌人后会继续前进"}, -- Polyphemus
 	[171] = {"171", "蜘蛛屁股", "使敌人减速4秒#所有敌人受到10伤害#被它杀死的敌人生成蓝蜘蛛"}, -- Spider Butt
 	[172] = {"172", "献祭匕首", "菜刀环绕物#阻挡敌人的弹幕#每秒造成112.5伤害"}, -- Sacrificial Dagger
 	[176] = {"176", "干细胞", "↑ +1心之容器#↑ +0.16弹速#治疗1红心"}, -- Stem Cells
@@ -216,7 +216,7 @@ local repCollectibles={
 	[569] = {"569", "血誓", "在每一层开始时只保留半红心#在本层获得以下效果：#↑ +0.15*整红心损失数^2的伤害#↑ +0.05*半红心损失数的移速"}, --  Blood Oath
 	[570] = {"570", "黏土饼干", "使眼泪变为彩色，不同颜色的眼泪有不同的状态效果"}, --  Playdough Cookie
 	[571] = {"571", "孤儿的袜子", "免疫来自水迹和尖刺的伤害#↑ +0.3移速#↑ +2魂心"}, --  Orphan Socks
-	[572] = {"572", "邪道之眼", "眼泪飞行中可控制#↑ +1伤害#↑ +7.5射程#↓ -0.16弹速"}, --  Eye of the Occult
+	[572] = {"572", "邪道之眼", "眼泪飞行中可控制#↑ +1伤害#↑ +2射程#↓ -0.16弹速"}, --  Eye of the Occult
 	[573] = {"573", "无瑕圣心", "+1心之容器#满血#↑ +20%伤害#几率发射环绕自己的幽灵眼泪"}, --  Immaculate Heart
 	[574] = {"574", "圣体匣", "获得2个对敌人造成伤害的光环#内环伤害更高"}, --  Monstrance
 	[575] = {"575", "侵体蜘蛛", "生成1个住在脑袋里的跟班，发射4颗减速眼泪#受伤时跑出来"}, --  The Intruder
@@ -335,7 +335,7 @@ local repCollectibles={
 	[688] = {"688", "内在孩童", "+1额外生命#在所在房间内复活，复活时拥有半红心，体型大幅减小，+0.2移速"}, --  Inner Child
 	[689] = {"689", "错误王冠", "道具在5个随机选择间快速切换"}, --  Glitched Crown
 	[690] = {"690", "肚肚软糖", "接触时弹开敌人#敌人被弹到障碍物上时受到伤害#有50%几率使角色免疫接触伤害#有50%几率反射敌人弹幕"}, --  Belly Jelly
-	[691] = {"691", "十字圣球", "阻止低品质道具(0-1)生成#大大提升高生成道具的品质"}, --  Sacred Orb
+	[691] = {"691", "十字圣球", "阻止品质{{Quality0}}/{{Quality1}}道具生成#33%几率重置道具为品质{{Quality2}}"}, --  Sacred Orb
 	[692] = {"692", "血色羁绊", "在恶魔房间内生成地刺#在地刺上献祭，可以获得以下奖励：#35%几率为6硬币#15%几率为+0.5伤害#5%几率为2黑心#2%几率为随机道具#1%几率变形为利维坦"}, --  Sanguine Bond
 	[693] = {"693", "虫群", "获得8只环绕苍蝇，苍蝇被击中时变为蓝色苍蝇#每清理1个房间，生成1只环绕苍蝇"}, --  The Swarm
 	[694] = {"694", "心碎", "获得3碎心#每个碎心+0.25伤害#受致命伤害时增加2碎心#碎心达到 12个时死亡"}, --  Heartbreak
@@ -348,8 +348,8 @@ local repCollectibles={
 	[701] = {"701", "以撒的坟墓", "在每层开始时生成1个老箱子#老箱子含有魂心，饰品或天堂房间道具，或老爸，老妈相关的道具"}, --  Isaac's Tomb
 	[702] = {"702", "复仇之魂", "受伤时，生成灵火环绕跟班，在所在层持续#最多6个#发射眼泪，但无法阻挡敌人弹幕"}, --  Vengeful Spirit
 	[703] = {"703", "小以扫", "使用时在当前角色和小以扫之间切换，小以扫初始拥有3黑心，+2 伤害和飞行#2个角色不共享生命值和道具#{{Warning}} 任意角色死亡，游戏结束"}, --  Esau Jr.
-	[704] = {"704", "狂怒！", "使用时，进入狂暴状态5秒：#↑ +0.4移速#↑ 射速提升#↑ +3.0伤害1只能使用特定近战武器"}, --  Berserk!
-	[705] = {"705", "暗仪刺刀", "使用时+1.0移速，在1秒内可穿过敌人和弹幕#在此时间内接触越多，提升的伤害越多，伤害会衰减#结束时对所有敌人造成角色伤害x3+3.5的伤害"}, --  Dark Arts
+	[704] = {"704", "狂怒！", "使用时进入狂暴状态5秒：#↑ +0.4移速#↑ 射速提升#↑ +3.0伤害1只能使用特定近战武器"}, --  Berserk!
+	[705] = {"705", "暗仪刺刀", "使用时在1秒内+1.0移速，可穿过敌人和弹幕#对每个接触的敌人造成角色伤害x2+3.5的伤害，每经过1个敌人再+3.5#效果结束时的爆炸伤害等于之前伤害的总和"}, --  Dark Arts
 	[706] = {"706", "无底坑", "摧毁房间内所有道具，每摧毁1个，生成一只攻击型苍蝇跟班#苍蝇具有的效果与摧毁的道具有关"}, --  Abyss
 	[707] = {"707", "晚餐", "↑ +1心之容器#治疗1红心"}, --  Supper
 	[708] = {"708", "订书机", "↑ +1.0伤害#眼泪只从一只眼睛发射"}, --  Stapler
@@ -420,7 +420,7 @@ EID.descriptions[languageCode].birthright ={
 	{"堕化店主", "", "强力吸引短距离消灭的敌人掉落的硬币#对其他硬币无效果"},
 	{"堕化亚玻伦", "", "如果按住发射键，蝗虫会持续对敌人造成伤害而不返回"},
 	{"堕化遗骸", "", "堕化灵魂获得 {{Collectible714}} 召回能力，自动将堕化遗骸从远处取回"},
-	{"堕化伯大尼", "", "生成4个随机高质量道具的魂火，血量比正常魂火高很多"},
+	{"堕化伯大尼", "", "生成4个品质{{Quality3}}和{{Quality4}}的随机道具魂火，血量比正常魂火高很多"},
 	{"堕化雅各", "", "黑暗以扫分为两个#两者都会同时冲刺"},
 	{"死亡的堕化拉撒路", "", "死亡的堕化拉撒路作为幻影出现#幻影免疫伤害，可以发射眼泪#两个角色都有长子权份的效果"},
 	{"堕化雅各2", "", "黑暗以扫分为两个#两者都会同时冲刺#使用 {{Collectible722}} 孤魂铁索可将两者拴住"},
@@ -650,24 +650,24 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[729] = {"不动的魂火"}, -- Decap Attack
 }
 
--- Special Locust effects when Item was eaten by Abyss -- TODO: translate
+-- Special Locust effects when Item was eaten by Abyss
 EID.descriptions[languageCode].abyssSynergies = {
-	[2] = "Three normal locusts", -- The Inner Eye
-	[3] = "Purple homing locust", -- Spoon Bender
-	[4] = "Red large locust that deals triple damage", -- Cricket's Head
-	[6] = "Yellow fast short range locust that deals damage more quickly", -- Number One
-	[7] = "Red locust that deals double damage", -- Blood of the Martyr
-	[10] = "Two gray locusts that deal half damage", -- Halo of Flies
-	[13] = "Green locust that poisons enemies", -- The Virus
-	[103] = "Green locust that poisons enemies", -- The Common Cold
-	[118] = "Gray larger locust that is otherwise normal", -- Brimstone
-	[149] = "Large, slow, green locust that deals x1.5 your damage and poisons enemies", -- Ipecac
-	[153] = "Four normal locusts", -- Mutant Spider
-	[257] = "Orange, burning locust that sets enemies on fire", -- Fire Mind
-	[305] = "Green locust that poisons enemies", -- Scorpio
-	[374] = "Cyan, glowing locust that can spawn beams of light that deal 3x your damage", -- Holy Light
-	[494] = "Light blue locust with arcs of electricity that deals 0.1 damage per tick", -- Jacob's Ladder
-	[559] = "Light blue locust with arcs of electricity that deals 0.1 damage per tick", -- 120 Volt
+	[2] = "3只普通蝗虫", -- The Inner Eye
+	[3] = "紫色跟踪蝗虫", -- Spoon Bender
+	[4] = "红色大蝗虫，能造成3倍伤害", -- Cricket's Head
+	[6] = "黄色短距离快速蝗虫，能快速造成伤害", -- Number One
+	[7] = "红色蝗虫，能造成双倍伤害", -- Blood of the Martyr
+	[10] = "2只UI色蝗虫，能造成一半伤害", -- Halo of Flies
+	[13] = "绿色蝗虫，能使敌人中毒", -- The Virus
+	[103] = "绿色蝗虫，能使敌人中毒", -- The Common Cold
+	[118] = "较大的灰色蝗虫，其他性质正常", -- Brimstone
+	[149] = "绿色缓慢大蝗虫，能造成1.5倍角色伤害并使敌人中毒", -- Ipecac
+	[153] = "4只普通蝗虫", -- Mutant Spider
+	[257] = "橙色燃烧的蝗虫，能使敌人着火", -- Fire Mind
+	[305] = "绿色蝗虫，能使敌人中毒", -- Scorpio
+	[374] = "青色发光蝗虫，能生成光束造成3倍角色伤害", -- Holy Light
+	[494] = "淡蓝色蝗虫，带有造成50%电击伤害的电弧", -- Jacob's Ladder
+	[559] = "淡蓝色蝗虫，带有造成50%电击伤害的电弧", -- 120 Volt
 }
 
 ---------- Trinkets ----------
@@ -682,12 +682,12 @@ local repTrinkets={
 	[32] = {"32", "裸盖蘑菇", "每个房间25%几率出现随机蘑菇效果"}, -- Liberty Cap
 	[33] = {"33", "脐带", "当进入房间后不多于半心时，获得小史蒂文#受伤时高几率生成双子座的跟班"}, -- Umbilical Cord
 	[39] = {"39", "癌症", "↑ +1发射速度"}, -- Cancer
-	[48] = {"48", "遗失的书页", "受伤时几率对房间内所有敌人造成40伤害#黑心和类似 {{Collectible35}} 死灵书的效果造成双倍伤害"}, -- A Missing Page
+	[48] = {"48", "遗失的书页", "受伤时5有%几率对房间内所有敌人造成80伤害#黑心和类似 {{Collectible35}} 死灵书的效果造成双倍伤害"}, -- A Missing Page
 	[49] = {"49", "染血硬币", "捡起硬币时有25%几率掉落半红心"}, -- Bloody Penny
 	[50] = {"50", "焦灼硬币", "捡起硬币时有25%几率掉落炸弹"}, -- Burnt Penny
 	[51] = {"51", "扁平硬币", "捡起硬币时有25%几率掉落钥匙"}, -- Flat Penny
-	[65] = {"65", "长条虫", "↑ +3射程#↑ 眼泪高度x2"}, -- Tape Worm
-	[66] = {"66", "懒散虫", "↓ -0.5弹速#↑ +2眼泪高度"}, -- Lazy Worm
+	[65] = {"65", "长条虫", "↑ +3射程"}, -- Tape Worm
+	[66] = {"66", "懒散虫", "↓ -0.5弹速"}, -- Lazy Worm
 	[69] = {"69", "褪色的全家福", "随机使角色伪装#迷惑敌人#可以用于打开前往\"家\"的门"}, -- Faded Polaroid
 	[80] = {"80", "黑色羽毛", "↑ 每持有1个恶魔道具+0.5伤害"}, -- Black Feather
 	[92] = {"92", "碎裂的王冠", "↑ 使道具原始增益提高20%"}, -- Cracked Crown
@@ -695,9 +695,9 @@ local repTrinkets={
 	[101] = {"101", "暗灯泡", "!!! 当主动道具无充能时：#↑ +1.5伤害#↑ +0.5移速#↑ +1.5射程#↑ +0.5射速#↑ +0.3弹速#↑ +2运气"}, -- Dim Bulb
 	[110] = {"110", "银币", "{{Shop}}商店会出现在子宫层和腐尸层"},
 	[111] = {"111", "染血王冠", "{{TreasureRoom}}道具房会出现在子宫层和腐尸层"}, -- Bloody Crown
-	[119] = {"119", "干细胞", "进入下一层时将红心量设置为最大量的50%#如果血量已不低于50%，则治疗半红心"}, -- Stem Cell
-	[128] = {"128", "指骨", "受伤时有5%几率获得骨心"}, -- Finger Bone
-	[129] = {"129", "崩掉牙", "几率发射牙齿眼泪"}, --  Jawbreaker
+	[119] = {"119", "干细胞", "进入下一层时治疗空的心之容器/骨心的一半#至少治疗半红心"}, -- Stem Cell
+	[128] = {"128", "指骨", "受伤时有4%几率获得骨心"}, -- Finger Bone
+	[129] = {"129", "崩掉牙", "几率发射牙齿眼泪#牙齿造成3.2倍角色伤害#运气为9时几率为100%"}, --  Jawbreaker
 	[130] = {"130", "嚼烂的笔", "几率发射减速眼泪"}, --  Chewed Pen
 	[131] = {"131", "神圣硬币", "捡起硬币时几率掉落半魂心"}, --  Blessed Penny
 	[132] = {"132", "损坏的注射器", "几率在所在房间内获得随机药剂效果"}, --  Broken Syringe
@@ -887,7 +887,7 @@ local repPills={
 	[43] = {"42", "好兴奋！！！", "使房间内所有敌人和角色加速#在30-60秒后再次触发一次"}, -- I'm Excited!!!
 	[48] = {"47", "弹速下降", "↓ -0.15弹速"}, -- Shot Speed Down
 	[49] = {"48", "弹速上升", "↑ +0.15弹速"}, -- Shot Speed Up
-	[50] = {"49", "实验性胶囊", "↑ 提升1项随机属性#↓ 降低另外1项随机属性#有药学博士证书时不降属性"}, -- Experimental Pill
+	[50] = {"49", "实验性胶囊", "↑ 提升1项随机属性#↓ 降低另外1项随机属性#有 {{Collectible75}} 药学博士证时不降属性#有 {{Collectible654}} 伪造药学博士证时不升属性"}, -- Experimental Pill
 	[9999] = {"", "", "随机胶囊效果#使用几次后摧毁"}, -- Golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
@@ -944,7 +944,7 @@ EID.descriptions[languageCode].horsepills={
 	{"46", "嗝！", "生成上次使用的大胶囊"}, -- Vurp!
 	{"47", "弹速下降", "↓ -0.3弹速"}, -- Shot Speed Down
 	{"48", "弹速上升", "↑ +0.3弹速"}, -- Shot Speed Up
-	{"49", "实验性胶囊", "↑ 提升1项随机属性两次#↓ 降低另外1项随机属性两次#有药学博士证书时不降属性提升"}, -- Experimental Pill
+	{"49", "实验性胶囊", "↑ 提升1项随机属性两次#↓ 降低另外1项随机属性两次#有 {{Collectible75}} 药学博士证时不降属性#有 {{Collectible654}} 伪造药学博士证"}, -- Experimental Pill
 	[9999] = {"", "", "随机胶囊效果#使用几次后摧毁"}, -- Golden Pill
 }
 
@@ -970,9 +970,9 @@ EID.descriptions[languageCode].BlankCardQCard = "传送至错误房#空白卡牌
 EID.descriptions[languageCode].ClearRuneCharge = "透明符文充能：" 
 EID.descriptions[languageCode].PlaceboCharge = "安慰剂充能：" 
 
-EID.descriptions[languageCode].FalsePHDHeart = "Spawns 1 Black Heart"
-EID.descriptions[languageCode].FalsePHDDamage = "+0.6 Damage up"
-EID.descriptions[languageCode].FalsePHDHorseDamage = "+1.2 Damage up"
+EID.descriptions[languageCode].FalsePHDHeart = "生成1黑心"
+EID.descriptions[languageCode].FalsePHDDamage = "+0.6伤害"
+EID.descriptions[languageCode].FalsePHDHorseDamage = "+1.2伤害"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! 警告 !!!"
 EID.descriptions[languageCode].AchievementWarningText = "成就已禁用！#为了启用进度和成就，你需要击败老妈(深牢II)而不开启任何模组#(如果你打过了，那么这条警告的出现是bug，无视就好)#(这条警告可以在设置中禁用)"
