@@ -542,7 +542,14 @@ function EID:getIcon(str)
 	end
 	local strTrimmed = string.gsub(str,"{{(.-)}}",function(a) return a end )
 	if #strTrimmed <= #str then
-		return EID:createItemIconObject(strTrimmed) or EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
+		local itemIconObj = EID:createItemIconObject(strTrimmed)
+		if itemIconObj then return itemIconObj end
+
+		if type(EID.InlineIcons[strTrimmed]) == "function" then
+			return EID.InlineIcons[strTrimmed](str) or EID.InlineIcons["ERROR"]
+		end
+
+		return EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
 	else
 		return EID.InlineIcons["ERROR"]
 	end
@@ -612,9 +619,14 @@ function EID:filterIconMarkup(text, textPosX, textPosY)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
+
+		local callback = EID._NextIconModifier
+		EID._NextIconModifier = nil
+		
 		local lookup = EID:getIcon(word)
 		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Scale
-		table.insert(spriteTable, {lookup, preceedingTextWidth})
+
+		table.insert(spriteTable, {lookup, preceedingTextWidth, callback})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
 	end
 	return text, spriteTable
@@ -627,21 +639,26 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 		local Xoffset = sprite[1][5] or -1
 		local Yoffset = sprite[1][6] or 0
 		local spriteObj = (type(sprite[1][7]) == "function" and sprite[1][7]()) or sprite[1][7] or EID.InlineIconSprite
-		if sprite[1][2] >=0 then
+		if sprite[1][2] >= 0 then
 			spriteObj:SetFrame(sprite[1][1], sprite[1][2])
 		elseif not spriteObj:IsPlaying(sprite[1][1]) or spriteObj:IsFinished(sprite[1][1]) then
 			spriteObj:Play(sprite[1][1],true)
 		else
 			spriteObj:Update()
 		end
-		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale)
+
+		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale, sprite[3])
 	end
 end
 
 -- helper function to render Icons in specific EID settins
-function EID:renderIcon(spriteObj, posX, posY)
+function EID:renderIcon(spriteObj, posX, posY, callback)
 	spriteObj.Scale = Vector(EID.Scale, EID.Scale)
 	spriteObj.Color = Color(1, 1, 1, EID.Config["Transparency"], 0, 0, 0)
+	if callback then
+		callback(spriteObj)
+	end
+
 	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
 end
 
@@ -921,13 +938,18 @@ end
 -- Converts a given table into a string containing the crafting icons of the table
 -- Example input: {1,2,3,4,5,6,7,8}
 -- Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
-function EID:tableToCraftingIconsFull(craftTable, sortTable)
-	if (sortTable == nil) then sortTable = true end
+local emptyPickupTable = {}
+for i=1,29 do emptyPickupTable[i] = 0 end
+function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
-	if (sortTable) then table.sort(sortedList, function(a, b) return a < b end) end
+	table.sort(sortedList, function(a, b) return a < b end)
+	local visitedItemCount = {table.unpack(emptyPickupTable)}
+
 	local iconString = ""
 	for _,nr in ipairs(sortedList) do
-		iconString = iconString.."{{Crafting"..nr.."}}"
+		visitedItemCount[nr] = visitedItemCount[nr] + 1
+		local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, visitedItemCount[nr], false) and "{{IconGreenTint}}" or "" 
+		iconString = iconString..completedColoring.."{{Crafting"..nr.."}}"
 	end
 	return iconString
 end
@@ -935,32 +957,30 @@ end
 -- Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
 -- Example input: {1,1,1,2,2,3,3,3}
 -- Result: "3{{Crafting1}}2{{Crafting2}}3{{Crafting3}}"
-local emptyPickupTable = {}
-for i=1,29 do emptyPickupTable[i] = 0 end
 function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
 	local filteredList = {table.unpack(emptyPickupTable)}
 	for _,nr in ipairs(sortedList) do
-		filteredList[nr] = filteredList[nr] +1
+		filteredList[nr] = filteredList[nr] + 1
 	end
 	local iconString = ""
 	for nr,count in ipairs(filteredList) do
 		if (count > 0) then
-			local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, count) and "{{ColorBagComplete}}" or "" 
+			local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, count, true) and "{{ColorBagComplete}}" or "" 
 			iconString = iconString..completedColoring..count.."{{Crafting"..nr.."}}{{CR}}"
 		end
 	end
 	return iconString
 end
 
-function EID:bagContainsItem(itemID, itemCount)
+function EID:bagContainsItem(itemID, itemCount, checkExactAmount)
 	local foundCount = 0
 	for _, bagItem in ipairs(EID.BagItems) do
 		if bagItem == itemID then
 			foundCount = foundCount + 1
 		end
 	end
-	return foundCount == itemCount
+	return checkExactAmount and foundCount == itemCount or itemCount <= foundCount 
 end
 
 function EID:handleHUDElement(hudElement)

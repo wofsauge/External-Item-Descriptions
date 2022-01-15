@@ -96,6 +96,12 @@ EID.InlineIcons = {
 	["ArrowDown"] = {"ArrowDown", 0, 8, 9},
 	["Warning"] = {"Warning", 0, 4, 9},
 	["Blank"] = {"Blank", 0, 0, 0},
+	["IconGreenTint"] = function(_)
+		EID._NextIconModifier = function(sprite)
+			sprite.Color = Color(1, 1, 1, EID.Config["Transparency"] * 0.5, 0, 0.5, 0)
+		end
+		return {"Blank", 0, 0, 0}
+	 end,
 	-- Numbers
 	["0"] = {"numbers", 0, 4, 7},
 	["1"] = {"numbers", 1, 4, 7, -2},
