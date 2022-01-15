@@ -221,7 +221,7 @@ local game = Game()
 								if multiplier == 2 then v = 16.5
 								elseif multiplier == 3 then v = (1/6)*100 end -- convert 17% to 33% or 50%
 							elseif v == 33 and (multiplier == 1.5 or multiplier == 3) then v = (1/3)*100 end -- convert 33% to 50% or 100%
-							return "{{ColorGold}}" .. string.format("%.4g",v*multiplier) .. "{{ColorText}}"
+							return "{{ColorGold}}" .. string.format("%.4g",v*multiplier) .. "{{CR}}"
 						end
 					end)
 				end

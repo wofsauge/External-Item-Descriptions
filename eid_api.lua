@@ -732,7 +732,6 @@ end
 -- Returns the last used KColor
 function EID:renderString(str, position, scale, kcolor)
 	str = EID:replaceShortMarkupStrings(str)
-	EID.LastRenderCallColor = EID:copyKColor(kcolor) -- Save last Color for eventual Color Reset call
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
 	local offsetX = 0
 	for i, textPart in ipairs(textPartsTable) do

@@ -433,7 +433,6 @@ function EID:printBulletPoints(description, renderPos)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
 	local textScale = Vector(EID.Scale, EID.Scale)
 	description = EID:replaceShortMarkupStrings(description)
-
 	for line in string.gmatch(description, "([^#]+)") do
 		local formatedLines = EID:fitTextToWidth(line, textboxWidth)
 		local textColor = EID:getTextColor()
@@ -447,6 +446,7 @@ function EID:printBulletPoints(description, renderPos)
 				else
 					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
 				end
+				EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
 			end
 			textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
 				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
