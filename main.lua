@@ -45,6 +45,9 @@ EID.CardPillSprite:Load("gfx/eid_cardspills.anm2", true)
 EID.ItemSprite = Sprite()
 EID.ItemSprite:Load("gfx/005.100_collectible.anm2", true)
 
+EID.PlayerSprite = Sprite()
+EID.PlayerSprite:Load("gfx/eid_player_icons.anm2", true)
+
 local ArrowSprite = Sprite()
 ArrowSprite:Load("gfx/eid_transform_icons.anm2", true)
 ArrowSprite:Play("Arrow", false)

@@ -16,7 +16,7 @@ EID.descriptions[languageCode].languageName = "Korean"
 
     korean_galmoori9, korean_galmoori11 is added for community request.
  ]]
-EID.descriptions[languageCode].fonts = {{name="korean_hcrdotum", lineHeight=14}, {name="korean_lanapixel", lineHeight=14}, {name="korean_soyakkoma", lineHeight=14}, {name="korean_soyakkoma_borderless", lineHeight=14}, {name="korean_soyakkoma_inverted", lineHeight=14}, {name="korean_soyanon", lineHeight=14}, {name="korean_galmoori9", lineHeight=14}, {name="korean_galmoori11", lineHeight=14}} -- Fonts to be used with this languagepack
+EID.descriptions[languageCode].fonts = {{name="korean_hcrdotum", lineHeight=11}, {name="korean_lanapixel", lineHeight=12}, {name="korean_soyakkoma", lineHeight=13}, {name="korean_soyakkoma_borderless", lineHeight=13}, {name="korean_soyakkoma_inverted", lineHeight=13}, {name="korean_soyanon", lineHeight=12}, {name="korean_galmoori9", lineHeight=12}, {name="korean_galmoori11", lineHeight=14}} -- Fonts to be used with this languagepack
 
 
 
@@ -878,4 +878,13 @@ EID.descriptions[languageCode].transformations = {
 	"Spider Baby",		-- 13
 	"Adult",			-- 14
 	"Stompy"			-- 15
+}
+
+
+---------- MISC ----------
+
+EID.descriptions[languageCode].MCM = {
+	DemoObjectName = "아이템 설명 모드 표시용",
+	DemoObjectTransformation = "테스트 변신 세트 표시",
+	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#매우 긴 한 줄 설명이 한국어로 작성되었습니다. 현재 너비에 따라 자동으로 줄바꿈이 이루어집니다.#\1 이것 또한 새로운 한글 라인입니다.#이 줄은 당신을 사랑한답니다{{Heart}}",
 }

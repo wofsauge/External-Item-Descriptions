@@ -286,7 +286,7 @@ local repCollectibles={
 	[611] = {"611", "후두", "사용 시 주변 적에게 피해를 주고 적을 밀쳐냅니다.#충전량에 상관없이 사용할 수 있으며 충전량 한칸 당 범위와 공격력이 28 증가합니다."}, -- Larynx
 	[612] = {"612", "잃어버린 영혼", "캐릭터의 뒤를 따라다니며 적에게 맞을 시 사라지고 다음 스테이지에서 재소환됩니다.#영혼이 사라지지 않은 상태에서 다음 스테이지로 넘어갈 시 이터널 하트 2~3개 또는 보물방이나 천사방 아이템을 드랍합니다."}, -- Lost Soul
 	[613] = {"613", "", "<item does not exist>"}, -- 
-	[614] = {"614", "혈액 폭탄", "↑ 최대 체력 +1#↑ 빨간하트 +5#폭탄이 터질 때 터진 자리에 15초간 빨간 장판이 생기며 장판에 닿은 적은 초당 20의 피해를 입습니다.#폭탄이 0개일 때 체력 0.5칸을 소모해 폭탄을 설치할 수 있습니다.#!!! 이 아이템으로 인한 피해는 패널티 피격으로 간주됩니다."}, -- Blood Bombs
+	[614] = {"614", "혈액 폭탄", "↑ 최대 체력 +1#↑ 빨간하트 +5#폭탄이 터질 때 터진 자리에 15초간 빨간 장판이 생기며 장판에 닿은 적은 초당 20의 피해를 입습니다.#폭탄이 0개일 때 체력 0.5칸을 소모해 폭탄을 설치할 수 있습니다."}, -- Blood Bombs
 	[615] = {"615", "꼬마 덤피", "방안을 돌아다니며 때때로 적을 밀쳐내는 방귀나 독방귀를 뀝니다."}, -- Lil Dumpy
 	[616] = {"616", "버즈아이", "공격 시 8%의 확률로 공격력 x2 ~ x4의 지속 불꽃을 날립니다.#!!! {{Luck}}행운 수치 비례: 행운 11 이상일 때 50% 확률"}, -- Birds Eye
 	[617] = {"617", "자철석", "17%의 확률로 맞은 적에게 자력 효과가 부여되는 공격이 나갑니다.#!!! {{Luck}}행운 수치 비례: 행운 10 이상일 때 100% 확률"}, -- Lodestone
@@ -319,7 +319,7 @@ local repCollectibles={
 	[644] = {"644", "위로상", "가장 낮은 능력치가 특정 수치만큼 증가합니다.# {{Damage}}공격력: +1#{{Blank}} {{Tears}}연사: 0.5#{{Blank}} {{Speed}}이동속도: 0.2#{{Blank}} {{Range}}사거리: 1.5#가장 적게 소지중인 픽업 아이템을 특정 갯수만큼 드랍합니다.#{{Blank}} 동전 3개는 폭탄/열쇠 1개와 같은 양으로 계산됩니다."}, -- Consolation Prize
 	[645] = {"645", "타이니토마", "캐릭터 주위를 돌며 적의 탄환을 막고 접촉한 적에게 3.5의 피해를 줍니다.#적과 3번 접촉 시 2조각으로 분열하며 2번 분열 시 파괴되어 파란 아군 거미를 3마리 소환합니다."}, -- Tinytoma
 	[646] = {"646", "유황불 폭탄", "↑ 폭탄 +5#폭탄이 터질 때 폭탄 기준 4방향으로 적에게 최대 160의 피해를 주는 혈사포를 발사합니다."}, -- Brimstone Bombs
-	[647] = {"647", "4.5볼트 건전지", "방을 클리어해도 액티브 아이템이 충전되지 않습니다.#적에게 일정량의 피해를 줄 때마다 액티브 충전량을 한칸 충전합니다.#!!! 한 칸 충전에 필요한 피해량:#{{Blank}} (현재 스테이지 * 20) + 40"}, -- 4.5 Volt
+	[647] = {"647", "4.5볼트 건전지", "!!! 방을 클리어해도 액티브 아이템이 충전되지 않습니다.#적에게 일정량의 피해를 줄 때마다 액티브 충전량을 한칸 충전합니다.#!!! 한 칸 충전에 필요한 피해량:#{{Blank}} (현재 스테이지 * 20) + 40"}, -- 4.5 Volt
 	[648] = {"648", "", "<item does not exist>"}, -- 
 	[649] = {"649", "탱탱한 플럼", "방 안을 돌아다니며 대각선 방향으로 눈물 다발을 발사합니다."}, -- Frutiy Plum
 	[650] = {"650", "플럼 피리", "사용 시 10초 동안 아군 Baby Plum 보스를 소환합니다."}, -- Plum Flute
@@ -991,6 +991,64 @@ EID.descriptions[languageCode].horsepills={
 	{"49", "실험용 알약", "랜덤한 능력치 두가지가 증가하거나 감소합니다.#{{Collectible75}}PHD, {{Collectible46}}Lucky Foot 혹은 {{Collectible303}}Virgo 보유 시 능력치가 감소하지 않습니다.#{{Collectible654}}False PHD 보유 시 능력치가 증가하지 않습니다."}, -- Experimental Pill
     [9999] = {"", "황금 알약", "일반 알약에서 나오지 않는 알약 효과가 랜덤하게 발동됩니다.#사라지기 전까지 무제한으로 사용할 수 있습니다."}, -- Golden Pill
 }
+
+
+---------- Glitched Item Descriptions ----------
+
+EID.descriptions[languageCode].GlitchedItemText = {
+	-- This will be appended to words to pluralize them, make it "" to not pluralize
+	pluralize = "",
+	
+	-- Item Config info
+	AddBlackHearts = "블랙하트 {1}",
+	AddBombs = "폭탄 {1}",
+	AddCoins = "동전 {1}",
+	AddHearts = "빨간하트 {1}",
+	AddKeys = "열쇠 {1}",
+	AddMaxHearts = "최대체력 {1}",
+	AddSoulHearts = "소울하트 {1}",
+	
+	-- Cache Flag names
+	cacheFlagStart = "다음 수치가 변경될 수 있음: ",
+	[0] = "공격력", "연사", "탄속", "사거리", "이동속도", "눈물효과", "눈물색깔", "비행", "공격 유형", "패밀리어", "행운", "캐릭터의 크기", "캐릭터의 색깔", "상자 내용물", [16] = "모든 능력치",
+	
+	-- Attribute triggers
+	chain = "{{ColorCyan}}그 다음:{{ColorText}} ",
+	active = "{{ColorCyan}}아이템 사용 시:#",
+	pickup_collected = "{{ColorCyan}}픽업을 주울 시:#", --chance to?
+	enemy_kill = "{{ColorCyan}}적을 죽일 시 확률적으로 발동:#",
+	damage_taken = "{{ColorCyan}}캐릭터가 피격 시:#", --chance to?
+	entity_spawned = "{{ColorCyan}}{T1}{{ColorText}}이/가 소환될 시:#",
+	tear_fire = "{{ColorCyan}}눈물 발사 시 확률적으로 발동:#",
+	enemy_hit = "{{ColorCyan}}적들이 피격 시 확률적으로 발동:#",
+	room_clear = "{{ColorCyan}}방 클리어 시:#", --chance to?
+	
+	-- Attribute effects
+	area_damage = "캐릭터 주변의 적에게 {1} 의 피해를 줍니다.", 
+	add_temporary_effect = "현재 방에서 {1} 아이템의 효과를 얻습니다.",
+	convert_entities = "방 안의 {{ColorGray}}{1}{{ColorText}}을/를 {{ColorGray}}{2}{{ColorText}}(으)로 바꿉니다.",
+	use_active_item = "{1}을/를 사용합니다.",
+	spawn_entity = "{{ColorGray}}{1}{{ColorText}}을/를 소환합니다.",
+	fart = "{1}의 크기만큼 방귀를 뀝니다.",
+	
+	-- Generic entity names not obtained from entities2.xml
+	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
+	["4.-1"] = "설치한 폭탄",
+	["5.0"] = "픽업",
+	["5.10"] = "하트",
+	["5.20"] = "동전",
+	["5.30"] = "열쇠",
+	["5.40"] = "폭탄(픽업)",
+	["5.69"] = "자루",
+	["5.70"] = "알약",
+	["5.90"] = "배터리", 
+	["5.300"] = "카드",
+	["9.-1"] = "적 탄환",
+	["999.-1"] = "장애물",
+	["1000.0"] = "효과",
+	
+}
+
 
 ---------- Misc, Text
 
