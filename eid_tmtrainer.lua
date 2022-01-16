@@ -28,7 +28,7 @@ local function entityToName(e, plural)
 	local name = localizedNames[e] or EID.XMLEntityNames[e] or localizedNames[eWithZero] or EID.XMLEntityNames[eWithZero] or e
 	
 	--print out entities with no name yet
-	if name == e then print("No name found for " .. e .. " (could be modded)")
+	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)")
 	elseif plural then name = name .. localizedNames["pluralize"] end
 	
 	return name
