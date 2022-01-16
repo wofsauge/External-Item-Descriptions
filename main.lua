@@ -65,10 +65,10 @@ EID.ModIndicator = { }
 -- Useful to associate items to mods
 EID._currentMod = ""
 local OldRegisterMod = RegisterMod
-RegisterMod = function (modName, apiVersion)
+RegisterMod = function (modName, apiVersion, ...)
 	EID._currentMod = modName
 	EID.ModIndicator[modName] = { Name = modName, Icon = nil }
-	return OldRegisterMod(modName, apiVersion)
+	return OldRegisterMod(modName, apiVersion, ...)
 end
 
 ------- Load all modules and other stuff ------
