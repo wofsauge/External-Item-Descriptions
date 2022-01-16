@@ -244,13 +244,27 @@ local initialItemNext = false
 local flipItemNext = false
 if REPENTANCE then
 	EID.flipItemPositions = {}
-	local lastGetItemResult = {nil, nil, nil} -- itemID, Frame, gridIndex
+	EID.flipItemSeeds = {}
 	
-	function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, seed)
+	local lastGetItemResult = {nil, nil, nil, nil} -- itemID, Frame, gridIndex, InitSeed
+	
+	function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, _)
+		-- Handle Crane Game
+		if itemPoolType == ItemPoolType.POOL_CRANE_GAME then
+			for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+				if not crane:GetSprite():IsPlaying("Broken") then
+					if not EID.CraneItemType[tostring(crane.InitSeed)] then
+						EID.CraneItemType[tostring(crane.InitSeed)] = selectedCollectible
+					end
+				end
+			end
+		end
+		
 		-- Handle Flip item
 		-- PRE_ROOM_ENTITY_SPAWN sets us up to watch for the first POST_GET_COLLECTIBLE for this pedestal
 		-- (Tainted Isaac and Glitched Crown cause additional calls that have to be ignored)
 		-- POST_PICKUP_INIT occurs right before the Flip item is decided, so it sets us up to watch for the Flip item
+		-- (it also watches for item rerolls to fill the new entity's GetData)
 		-- POST_NEW_ROOM then handles putting the result in the entity's GetData
 		local curFrame = Isaac.GetFrameCount()
 		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
@@ -260,12 +274,35 @@ if REPENTANCE then
 				if EID.flipItemPositions[curRoomIndex] == nil then
 					EID.flipItemPositions[curRoomIndex] = {}
 				end
-				EID.flipItemPositions[curRoomIndex][lastGetItemResult[3]] = selectedCollectible
+				EID.flipItemPositions[curRoomIndex][lastGetItemResult[4]] = {selectedCollectible, lastGetItemResult[3]}
 			end
 		end
 		
-		-- Check if Flip item pedestals have moved (restock/Greed shops)
+		initialItemNext = false
+		flipItemNext = false
+	end
+	EID:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, EID.postGetCollectible)
+
+	-- Handle Flip Item spawn
+	function EID:preRoomEntitySpawn(entityType, variant, subtype, gridIndex, _)
+		flipItemNext = false
+		if entityType == 5 and (variant == 100 or variant == 150) then
+			lastGetItemResult = {nil, Isaac.GetFrameCount(), gridIndex, nil}
+			initialItemNext = true
+		end
+	end
+	EID:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, EID.preRoomEntitySpawn)
+	
+	function EID:postPickupInit(entity)
+		flipItemNext = true
+		lastGetItemResult[4] = entity.InitSeed
+		
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local gridPos = game:GetRoom():GetGridIndex(entity.Position)
+		
+		-- Check if Flip item pedestals have moved (restock/Greed shops, Damocles)
 		-- BUG if you leave the room before the new shop item spawns??
+		--[[
 		if EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 			for _, pedestal in ipairs(pedestals) do
@@ -278,61 +315,63 @@ if REPENTANCE then
 				end
 			end
 		end
-		
-		-- Handle Crane Game
-		if itemPoolType == ItemPoolType.POOL_CRANE_GAME then
-			for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
-				if not crane:GetSprite():IsPlaying("Broken") then
-					if not EID.CraneItemType[tostring(crane.InitSeed)] then
-						EID.CraneItemType[tostring(crane.InitSeed)] = selectedCollectible
+		]]
+		print(entity:ToPickup().ShopItemId)
+		-- Update a Flip item's init seed after D6 rerolls or using Flip (aka Grid Index didn't change, Init Seed did)
+		if EID.flipItemPositions[curRoomIndex] and not EID.flipItemPositions[curRoomIndex][entity.InitSeed] then
+			-- Check pedestal grid indexes (fixes bugs with restock shops)
+			EID:CheckFlipGridIndexes()
+			for k,v in pairs(EID.flipItemPositions[curRoomIndex]) do
+			
+				--[[if v[3] == entity.Index then
+					print("index match!")
+					EID.flipItemPositions[curRoomIndex][entity.InitSeed] = v
+					EID.flipItemPositions[curRoomIndex][k] = nil
+				end]]
+				if v[2] == gridPos then
+					print(k)
+					print(EID.flipItemPositions[curRoomIndex][k][1])
+					EID.flipItemPositions[curRoomIndex][entity.InitSeed] = v
+					EID.flipItemPositions[curRoomIndex][k] = nil
+					
+					--k = entity.InitSeed --does this work lol
+					print(entity.InitSeed)
+					print(EID.flipItemPositions[curRoomIndex][entity.InitSeed][1])
+					break
+				end
+			end
+		end
+		-- Give this new entity its Flip Item data if possible
+		local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed]
+		if flipEntry then
+			entity:GetData()["EID_FlipItemID"] = flipEntry[1]
+		end
+	end
+	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit, PickupVariant.PICKUP_COLLECTIBLE)
+	
+	-- Before using D6, double-check all flippable pedestal's grid index, since their init seed will change
+	-- (Note that items like D100, Cracked Dice, and Dice Shard all trigger a D6 PRE_USE_ITEM)
+	-- Before using Flip, swap all flippable pedestal's current item with the flip one (also, fix grid index if needed)
+	function EID:CheckFlipGridIndexes(collectibleType)
+		if collectibleType == CollectibleType.COLLECTIBLE_FLIP or collectibleType == CollectibleType.COLLECTIBLE_D6 or collectibleType == CollectibleType.COLLECTIBLE_ETERNAL_D6 or collectibleType == true then
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+			if EID.flipItemPositions[curRoomIndex] then
+				local pedestals = Isaac.FindByType(5, 100, -1, true, false)
+				for _, pedestal in ipairs(pedestals) do
+					if EID.flipItemPositions[curRoomIndex][pedestal.InitSeed] then
+						local gridPos = game:GetRoom():GetGridIndex(pedestal.Position)
+						EID.flipItemPositions[curRoomIndex][pedestal.InitSeed][2] = gridPos
+						if collectibleType == CollectibleType.COLLECTIBLE_FLIP then
+							-- don't swap a flip shadow with an empty pedestal!
+							if pedestal.SubType == 0 then EID.flipItemPositions[curRoomIndex][pedestal.InitSeed] = nil
+							else EID.flipItemPositions[curRoomIndex][pedestal.InitSeed][1] = pedestal.SubType end
+						end
 					end
 				end
 			end
 		end
-		
-		initialItemNext = false
-		flipItemNext = false
 	end
-	EID:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, EID.postGetCollectible)
-
-	-- Handle Flip Item spawn
-	function EID:preRoomEntitySpawn(entityType, variant, subtype, gridIndex, seed)
-		flipItemNext = false
-		if entityType == 5 and (variant == 100 or variant == 150) then
-			lastGetItemResult = {nil, Isaac.GetFrameCount(), gridIndex}
-			initialItemNext = true
-		end
-	end
-	EID:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, EID.preRoomEntitySpawn)
-	
-	function EID:postPickupInit(entity)
-		flipItemNext = true
-		
-		-- Keep the Flip item the same for pedestal rerolls
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-		local gridPos = game:GetRoom():GetGridIndex(entity.Position)
-		local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][gridPos]
-		if flipEntry then entity:GetData()["EID_FlipItemID"] = flipEntry end
-	end
-	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit, PickupVariant.PICKUP_COLLECTIBLE)
-	
-	function EID:preUseFlip(_)
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-		if EID.flipItemPositions[curRoomIndex] then
-			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
-			for _, pedestal in ipairs(pedestals) do
-				local gridPos = game:GetRoom():GetGridIndex(pedestal.Position)
-				if EID.flipItemPositions[curRoomIndex][gridPos] then
-					-- don't swap a flip shadow with an empty pedestal!
-					if pedestal.SubType == 0 then EID.flipItemPositions[curRoomIndex][gridPos] = nil
-					else EID.flipItemPositions[curRoomIndex][gridPos] = pedestal.SubType end
-					--postPickupInit will take care of assigning it to the entity's data
-				end
-				
-			end
-		end
-	end
-	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.preUseFlip, CollectibleType.COLLECTIBLE_FLIP)
+	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckFlipGridIndexes)
 end
 
 ---------------------------------------------------------------------------
@@ -505,6 +544,7 @@ end
 local isMirrorRoom = false
 if REPENTANCE then
 	function EID:onNewRoom()
+		print("in post_new_room")
 		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
 		
 		-- Handle Flip Item
@@ -514,12 +554,10 @@ if REPENTANCE then
 		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 			for _, pedestal in ipairs(pedestals) do
-				local gridPos = game:GetRoom():GetGridIndex(pedestal.Position)
-				local flipEntry = EID.flipItemPositions[curRoomIndex][gridPos]
+				local flipEntry = EID.flipItemPositions[curRoomIndex][pedestal.InitSeed]
 				if flipEntry then
-					pedestal:GetData()["EID_FlipItemID"] = flipEntry
-					pedestal:GetData()["EID_FlipItemPedestalIndex"] = pedestal.Index
-					pedestal:GetData()["EID_FlipItemPedestalGrid"] = gridPos
+					pedestal:GetData()["EID_FlipItemID"] = flipEntry[1]
+					flipEntry[2] = game:GetRoom():GetGridIndex(pedestal.Position)
 				end
 			end
 		end
