@@ -11,9 +11,8 @@ EID.UserConfig = {
     --						Italian = "it"		SPECIAL THANKS TO Denkishi, 2G
     --						Bulgarian = "bul"	SPECIAL THANKS TO Gothika_47
     --						Turkish = "tr_tr"	SPECIAL THANKS TO Mert Dutal
-    --						Korean = "ko_kr"	SPECIAL THANKS TO Blackcreamtea and 미카
-    --						Chinese (https://steamcommunity.com/sharedfiles/filedetails/?id=836319872)
-    -- 						Italian (https://steamcommunity.com/sharedfiles/filedetails/?id=931392691)
+    --						Korean = "ko_kr"	SPECIAL THANKS TO Blackcreamtea, 미카
+    --						Chinese = "zh_cn"   SPECIAL THANKS TO Xheepey87, frto027
     --
     -- If you want to make a translation, please contact me :) (wofsauge)
     --
@@ -26,8 +25,8 @@ EID.UserConfig = {
     -- Default = "default"
     ["FontType"] = "default",
     -- Change the width of the info boxes (in characters).
-    -- Default = 100
-    ["TextboxWidth"] = 100,
+    -- Default = 115
+    ["TextboxWidth"] = 115,
     -- Change the size of the info boxes. Range: [0,...,1]
     -- Default = 1
     ["Scale"] = 1,
@@ -44,6 +43,9 @@ EID.UserConfig = {
     -- Set the Y Position (height) of the description texts
     -- Default = 45
     ["YPosition"] = 45,
+    -- Set the height of a line, effectivly changing the distance between two lines of text
+    -- Default = 11    (11 for English, 14 for Korean / Chinese)
+    ["LineHeight"] = 11,
     -- Set the distance between an item and its information display (in tiles)
     -- Default = 5
     ["MaxDistance"] = 5,
@@ -131,6 +133,12 @@ EID.UserConfig = {
     -- REPENTANCE ONLY!!!
     -- Default = true
     ["ShowQuality"] = true,
+    -- Set the mod indicator display
+    -- Default = "Both"
+    ["ModIndicatorDisplay"] = "None",
+    -- Set the mod indicator text color
+    -- Default = "ColorLightOrange"
+    ["ModIndicatorTextColor"] = "ColorLightOrange",
 
     -------TRANSFORMATIONS---------
 
@@ -332,12 +340,13 @@ EID.DefaultConfig = {
     ["Language"] = "en_us",
     ["TranslateItemName"] = 2,
     ["FontType"] = "default",
-    ["TextboxWidth"] = 100,
+    ["TextboxWidth"] = 115,
     ["Scale"] = 1,
     ["Transparency"] = 0.75,
     ["HUDOffset"] = 10,
     ["XPosition"] = 60,
     ["YPosition"] = 45,
+    ["LineHeight"] = 11,
     ["DisplayMode"] = "default",
     ["LocalScale"] = 0.5,
     ["LocalModeCentered"] = true,
@@ -359,6 +368,8 @@ EID.DefaultConfig = {
     ["DisplayTrinketInfo"] = true,
     ["ItemNameColor"] = "ColorEIDObjName",
     ["ShowQuality"] = true,
+    ["ModIndicatorDisplay"] = "None",
+    ["ModIndicatorTextColor"] = "ColorLightOrange",
     ["ShowObjectID"] = false,
     ["TransformationText"] = true,
     ["TransformationIcons"] = true,

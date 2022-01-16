@@ -33,7 +33,7 @@ For the Afterbirth/Rebirth version [click here](https://moddingofisaac.com/mod/1
 - **Turkish** (by Cagdas Salur, Mert Dutal)
 - **Polish** (by Rickyy, Kennyluz, MERITT, DimonoKingoKongo)
 - **Korean** (by Blackcreamtea, 미카)
-- **Chinese** version: [EID Chinese Edition](https://steamcommunity.com/sharedfiles/filedetails/?id=1290363695) | alternative: [中文道具图鉴 Eid Chinese](https://steamcommunity.com/sharedfiles/filedetails/?id=848295251)
+- **Chinese** (by Xheepey87, frto027) Alternative versions: [EID Chinese Edition](https://steamcommunity.com/sharedfiles/filedetails/?id=1290363695) | [中文道具图鉴 Eid Chinese](https://steamcommunity.com/sharedfiles/filedetails/?id=848295251)
 
 ### Possible Future Features
 - Display if items need to be collected for achievement purposes

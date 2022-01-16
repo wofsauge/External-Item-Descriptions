@@ -664,3 +664,12 @@ EID.descriptions[languageCode].CraftingRoomContent = "Stanza:"
 EID.descriptions[languageCode].CraftingFloorContent = "Piano:"
 EID.descriptions[languageCode].CraftingResults = "Risultato:#(Scorri: premi {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}})"
 EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERRORE:#{{ColorRed}}Questa feature non supporta certe mod!"
+
+
+-- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
+if EID.enableDebug then
+	EID.descriptions[languageCode].repCollectibles = repCollectibles
+	EID.descriptions[languageCode].repTrinkets = repTrinkets
+	EID.descriptions[languageCode].repCards = repCards
+	EID.descriptions[languageCode].repPills = repPills
+end

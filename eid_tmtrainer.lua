@@ -61,7 +61,7 @@ local function parseEffectLine(raw)
 			if (i ~= #words) then name = name .. " " end
 		end
 		
-		replacements[1] = "{{Collectible" .. Isaac.GetItemIdByName(name) .. "}}" .. name
+		replacements[1] = "{{Collectible" .. Isaac.GetItemIdByName(name) .. "}} " .. name
 	elseif effectType == "convert_entities" then
 		replacements[1] = entityToName(words[6], true)
 		replacements[2] = entityToName(words[8])

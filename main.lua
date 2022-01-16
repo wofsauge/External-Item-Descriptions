@@ -1,9 +1,9 @@
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
-EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr"}
+EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn"}
 EID.descriptions = {} -- Table that holds all translation strings
-local enableDebug = false
+EID.enableDebug = false
 local game = Game()
 
 require("eid_config")
@@ -26,7 +26,6 @@ EID.lastDescriptionEntity = nil
 EID.lineHeight = 11
 EID.sacrificeCounter = {}
 EID.itemConfig = Isaac.GetItemConfig()
-EID.effectList = {["76"] = true}
 EID.itemUnlockStates = {}
 EID.CraneItemType = {}
 
@@ -45,6 +44,9 @@ EID.CardPillSprite:Load("gfx/eid_cardspills.anm2", true)
 EID.ItemSprite = Sprite()
 EID.ItemSprite:Load("gfx/005.100_collectible.anm2", true)
 
+EID.PlayerSprite = Sprite()
+EID.PlayerSprite:Load("gfx/eid_player_icons.anm2", true)
+
 local ArrowSprite = Sprite()
 ArrowSprite:Load("gfx/eid_transform_icons.anm2", true)
 ArrowSprite:Play("Arrow", false)
@@ -56,6 +58,18 @@ EID.CursorSprite:Play("Cursor")
 local hudBBSprite = Sprite()
 hudBBSprite:Load("gfx/eid_transform_icons.anm2", true)
 hudBBSprite:Play("boundingBox")
+
+
+EID.ModIndicator = { }
+-- Overwriting "RegisterMod" to track which mods are loading
+-- Useful to associate items to mods
+EID._currentMod = ""
+local OldRegisterMod = RegisterMod
+RegisterMod = function (modName, apiVersion)
+	EID._currentMod = modName
+	EID.ModIndicator[modName] = { Name = modName, Icon = nil }
+	return OldRegisterMod(modName, apiVersion)
+end
 
 ------- Load all modules and other stuff ------
 
@@ -412,6 +426,16 @@ function EID:printDescription(desc)
 			local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Quality)
 			curName = curName.." - {{Quality"..quality.."}}"
 		end
+
+		if desc.ModName then
+			if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
+				curName = curName .. " {{"..EID.Config["ModIndicatorTextColor"].."}}" .. EID.ModIndicator[desc.ModName].Name
+			end
+			if (EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Icon only") and EID.ModIndicator[desc.ModName].Icon then
+				curName = curName .. "{{".. EID.ModIndicator[desc.ModName].Icon .."}}"
+			end
+		end
+
 		EID:renderString(
 			curName,
 			renderPos + (Vector(offsetX, -3) * EID.Scale),
@@ -449,13 +473,13 @@ function EID:printDescription(desc)
 		end
 	end
 	EID:printBulletPoints(desc.Description, renderPos)
+
 end
 
 function EID:printBulletPoints(description, renderPos)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
 	local textScale = Vector(EID.Scale, EID.Scale)
 	description = EID:replaceShortMarkupStrings(description)
-
 	for line in string.gmatch(description, "([^#]+)") do
 		local formatedLines = EID:fitTextToWidth(line, textboxWidth)
 		local textColor = EID:getTextColor()
@@ -469,6 +493,7 @@ function EID:printBulletPoints(description, renderPos)
 				else
 					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
 				end
+				EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
 			end
 			textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
 				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
@@ -1107,6 +1132,8 @@ if EID.MCMLoaded or REPENTANCE then
 				EID.isHidden = EID.Config["InitiallyHidden"]
 				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 				EID.Scale = EID.Config["Scale"]
+				EID.lineHeight = EID.Config["LineHeight"]
+				
 				EID:fixDefinedFont()
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 				if REPENTANCE then
@@ -1138,6 +1165,7 @@ if EID.MCMLoaded or REPENTANCE then
 			end
 			EID.Config["FlipItemPositions"] = flipItemTable or {}
 		end
+		EID.Config["LineHeight"] = EID.lineHeight
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()
 		EID.itemUnlockStates[CollectibleType.COLLECTIBLE_CUBE_OF_MEAT] = nil
@@ -1146,6 +1174,6 @@ if EID.MCMLoaded or REPENTANCE then
 	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
 end
 
-if enableDebug then
+if EID.enableDebug then
 	require("eid_debugging")
 end

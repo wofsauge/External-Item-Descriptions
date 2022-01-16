@@ -762,8 +762,6 @@ local function getFloorItemsString(showPreviews, roomItems)
 		end
 		local bagDesc = EID:getDescriptionEntry("CraftingBagContent")
 		floorString = floorString .. bagDesc.. EID:tableToCraftingIconsMerged(EID.BagItems).."#"
-		--debug the bag order
-		--EID:appendToDescription(customDescObj, EID:tableToCraftingIconsFull(EID.BagItems, false).."#")
 	end
 	if #roomItems >0 then
 		if showPreviews and #roomItems == 8 then
