@@ -239,14 +239,32 @@ if REPENTANCE then
 		-- POST_PICKUP_INIT occurs right before the Flip item is decided, so it sets us up to watch for the Flip item
 		-- POST_NEW_ROOM then handles putting the result in the entity's GetData
 		local curFrame = Isaac.GetFrameCount()
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		if curFrame == lastGetItemResult[2] then
 			if initialItemNext then lastGetItemResult[1] = selectedCollectible
-			elseif flipItemNext then
-				local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+			elseif flipItemNext and lastGetItemResult[1] then
 				if EID.flipItemPositions[curRoomIndex] == nil then
 					EID.flipItemPositions[curRoomIndex] = {}
 				end
 				EID.flipItemPositions[curRoomIndex][lastGetItemResult[3]] = selectedCollectible
+			end
+		end
+		
+		-- Check if Flip item pedestals have moved (restock/Greed shops)
+		-- BUG if you leave the room before the new shop item spawns??
+		if EID.flipItemPositions[curRoomIndex] then
+			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
+			for _, pedestal in ipairs(pedestals) do
+				local gridPos = game:GetRoom():GetGridIndex(pedestal.Position)
+				local oldGridPos = pedestal:GetData()["EID_FlipItemPedestalGrid"]
+				print(gridPos) print(oldGridPos)
+				if EID.flipItemPositions[curRoomIndex][oldGridPos] and gridPos ~= oldGridPos then
+					print("chaing a position!")
+					EID.flipItemPositions[curRoomIndex][oldGridPos] = nil
+					EID.flipItemPositions[curRoomIndex][gridPos] = gridPos
+					pedestal:GetData()["EID_FlipItemPedestalGrid"] = gridPos
+				end
+				--index is unnecessary?
 			end
 		end
 		
@@ -286,6 +304,24 @@ if REPENTANCE then
 		if flipEntry then entity:GetData()["EID_FlipItemID"] = flipEntry end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit)
+	
+	function EID:preUseFlip(_)
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		if EID.flipItemPositions[curRoomIndex] then
+			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
+			for _, pedestal in ipairs(pedestals) do
+				local gridPos = game:GetRoom():GetGridIndex(pedestal.Position)
+				if EID.flipItemPositions[curRoomIndex][gridPos] then
+					-- don't swap a flip shadow with an empty pedestal!
+					if pedestal.SubType == 0 then EID.flipItemPositions[curRoomIndex][gridPos] = nil
+					else EID.flipItemPositions[curRoomIndex][gridPos] = pedestal.SubType end
+					--postPickupInit will take care of assigning it to the entity's data
+				end
+				
+			end
+		end
+	end
+	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.preUseFlip, CollectibleType.COLLECTIBLE_FLIP)
 end
 
 ---------------------------------------------------------------------------
@@ -460,6 +496,8 @@ if REPENTANCE then
 				local flipEntry = EID.flipItemPositions[curRoomIndex][gridPos]
 				if flipEntry then
 					pedestal:GetData()["EID_FlipItemID"] = flipEntry
+					pedestal:GetData()["EID_FlipItemPedestalIndex"] = pedestal.Index
+					pedestal:GetData()["EID_FlipItemPedestalGrid"] = gridPos
 				end
 			end
 		end
