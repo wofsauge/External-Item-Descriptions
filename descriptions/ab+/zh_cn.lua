@@ -2,6 +2,9 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
+-- Last Sync Revise: 2022.01.16
+-- Last Full Check: N/A -- I will have a full check someday else.
+
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
@@ -848,30 +851,32 @@ EID.descriptions[languageCode].dice={
 }
 
 ---------- Transformations ----------
+
+-- Using customary name for better understanding.
 EID.descriptions[languageCode].transformations={
-	"",					-- 0 = none
-	"Guppy",			-- 1
-	"Fun Guy",			-- 2
-	"Beelzebub",		-- 3
-	"Conjoined",		-- 4
-	"Spun",				-- 5
-	"Yes Mother?",		-- 6
-	"Oh Crap",			-- 7
-	"Bob",				-- 8
-	"Leviathan",		-- 9
-	"Seraphim",			-- 10
-	"Super Bum",		-- 11
-	"Bookworm",			-- 12
-	"Spider Baby",		-- 13
-	"Adult",			-- 14
-	"Stompy"			-- 15
+	"",			   -- 0 = none
+	"嗝屁猫套装",	       -- 1
+	"蘑菇套装",			-- 2
+	"苍蝇套装",			-- 3
+	"连体套装",			-- 4
+	"嗑药套装",			-- 5
+	"妈妈套装",			-- 6
+	"便便套装",			-- 7
+	"鲍勃套装",			-- 8
+	"恶魔套装",			-- 9
+	"天使套装",			-- 10
+	"乞丐套装",			-- 11
+	"书虫套装",			-- 12
+	"蜘蛛套装",			-- 13
+	"成人套装",			-- 14
+	"践踏套装"			-- 15
 }
 
 
 ---------- MISC ----------
 
 EID.descriptions[languageCode].MCM = {
-	DemoObjectName = "Demo Object Name",
-	DemoObjectTransformation = "Demo Transformation",
-	DemoObjectText = "This text is in english#A very cool and long description to simulate linebreaks caused by EID textbox width!#\1 This is also a cool line#This line loves you {{Heart}}",
+	DemoObjectName = "项目名预览",
+	DemoObjectTransformation = "套装预览",
+	DemoObjectText = "这份文本是中文的#这是一条非常酷的长文本，用来模拟EID文本框自动分行功能！#\1 这也是一条非常酷的文本#祝使用愉快{{Heart}}",
 } 
