@@ -1,78 +1,81 @@
 EID.UserConfig = {
-	---------- General ----------
-	-- Change the language of the mod
-	-- Currently Supported: English = "en_us" (Default), "en_us_detailed" (More detailed descriptions)
-	--						French = "fr"			SPECIAL THANKS TO Nicolas Delvaux
-	--						Polish = "pl"			SPECIAL THANKS TO Rickyy
-	--						Spanish = "spa"			SPECIAL THANKS TO Lidia Arroyo Purroy
-	--						Portuguese = "pt"		SPECIAL THANKS TO Marcelino Cruz
-	--						Brazilian Portuguese = "pt_br"	SPECIAL THANKS TO Marcelino Cruz
-	--						Russian = "ru"			SPECIAL THANKS TO hell2pay, fly_6
-	--						Italian = "it"			SPECIAL THANKS TO Denkishi, 2G
-	--						Bulgarian = "bul"		SPECIAL THANKS TO Gothika_47
-	--						Turkish = "tr_tr"		SPECIAL THANKS TO Mert Dutal
-	--						Korean = "ko_kr"		SPECIAL THANKS TO Blackcreamtea and 미카
-	--						Chinese = "zh_cn"		SPECIAL THANKS TO Xheepey87
-	--
-	-- If you want to make a translation, please contact me :) (wofsauge)
-	--
-	["Language"] = "en_us",
-	-- Change if item names should be displayed in English, your translated language or both
-	-- States: 1 = English , 2 = translated,  3 = both
-	-- Default = 2
-	["TranslateItemName"] = 2,
-	-- Change font type. Values are [default, borderless, inverted]
-	-- Default = "default"
-	["FontType"] = "default",
-	-- Change the width of the info boxes (in characters).
-	-- Default = 100
-	["TextboxWidth"] = 100,
-	-- Change the size of the info boxes. Range: [0,...,1]
-	-- Default = 1
-	["Scale"] = 1,
-	-- Set the background transparency. Range: [0,...,1]
-	-- Default = 0.75
-	["Transparency"] = 0.75,
-	-- Set the HUD offset of the descriptions
-	-- This should be set to the same number of "strokes" set in the in-game options for the "hud offset" value (range is 0 to 10)
-	-- Default = 10
-	["HUDOffset"] = 10,
-	-- Set the X Position (width) of the description texts
-	-- Default = 60
-	["XPosition"] = 60,
-	-- Set the Y Position (height) of the description texts
-	-- Default = 45
-	["YPosition"] = 45,
-	-- Set the distance between an item and its information display (in tiles)
-	-- Default = 5
-	["MaxDistance"] = 5,
-	-- Select the type of the indicator that highlights the currently inspected object
-	-- Options: ["arrow", "blink", "border", "highlight", "none"].
-	-- Arrow = Moving arrow pointing at the item | Blink = The whole sprite blinks white | Border = Blinking white border around the sprite | Highlight = White border around the sprite |  None = No indicator
-	-- Default = "none"
-	["Indicator"] = "none",
-	-- Set the keybind to toggle the description display
-	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
-	-- Default = Keyboard.KEY_F2
-	["HideKey"] = Keyboard.KEY_F2,
-	-- Set the controller binding to toggle the description display
-	-- Use the controller names here: https://github.com/wofsauge/External-Item-Descriptions/blob/master/mod_config_menu.lua#L1 or a number
-	-- Controller.STICK_LEFT and Controller.STICK_RIGHT (pushing the sticks in), which aren't used in-game with default controls
-	-- Default = none (-1)
-	["HideButton"] = -1,
-	-- Initial display state. Can be used to change the toggle behavior of the "Hide Key" event
-	-- Default = false
-	["InitiallyHidden"] = false,
-	-- Hide the descriptions when in battle
-	-- Default = false
-	["HideInBattle"] = false,
-	-- Toggle obstruction based hiding, when the player has flight
-	-- Default = true
-	["DisableObstructionOnFlight"] = true,
-	-- If set to true, the mod will no longer display a warning if the save game doesn't have achievements unlocked
-	-- This also disables warnings for using an outdated game version and for having potentially modded Bag of Crafting recipes
-	-- Default = false
-	["DisableAchievementCheck"] = false,
+    -------GENERAL---------
+    -- Change the language of the mod
+    -- Currently Supported: English = "en_us" (Default), "en_us_detailed" (More detailed descriptions)
+    --						French = "fr"  		SPECIAL THANKS TO Nicolas Delvaux
+    --						Polish = "pl"		SPECIAL THANKS TO Rickyy
+    --						Spanish = "spa"		SPECIAL THANKS TO Lidia Arroyo Purroy
+    --						Portuguese = "pt"	SPECIAL THANKS TO Marcelino Cruz
+    --						Brazilian Portuguese = "pt_br"	SPECIAL THANKS TO Marcelino Cruz
+    --						Russian = "ru"		SPECIAL THANKS TO hell2pay, fly_6
+    --						Italian = "it"		SPECIAL THANKS TO Denkishi, 2G
+    --						Bulgarian = "bul"	SPECIAL THANKS TO Gothika_47
+    --						Turkish = "tr_tr"	SPECIAL THANKS TO Mert Dutal
+    --						Korean = "ko_kr"	SPECIAL THANKS TO Blackcreamtea, 미카
+    --						Chinese = "zh_cn"   SPECIAL THANKS TO Xheepey87, frto027
+    --
+    -- If you want to make a translation, please contact me :) (wofsauge)
+    --
+    ["Language"] = "en_us",
+    -- Change if item names should be displayed in English, your translated language or both
+    -- States: 1 = English , 2 = translated,  3 = both
+    -- Default = 2
+    ["TranslateItemName"] = 2,
+    -- Change font type. Values are [default, borderless, inverted]
+    -- Default = "default"
+    ["FontType"] = "default",
+    -- Change the width of the info boxes (in characters).
+    -- Default = 115
+    ["TextboxWidth"] = 115,
+    -- Change the size of the info boxes. Range: [0,...,1]
+    -- Default = 1
+    ["Scale"] = 1,
+    -- Set the background transparency. Range: [0,...,1]
+    -- Default = 0.75
+    ["Transparency"] = 0.75,
+    -- Set the HUD offset of the descriptions
+    -- This should be set to the same number of "strokes" set in the in-game options for the "hud offset" value (range is 0 to 10)
+    -- Default = 10
+    ["HUDOffset"] = 10,
+    -- Set the X Position (width) of the description texts
+    -- Default = 60
+    ["XPosition"] = 60,
+    -- Set the Y Position (height) of the description texts
+    -- Default = 45
+    ["YPosition"] = 45,
+    -- Set the height of a line, effectivly changing the distance between two lines of text
+    -- Default = 11    (11 for English, 14 for Korean / Chinese)
+    ["LineHeight"] = 11,
+    -- Set the distance between an item and its information display (in tiles)
+    -- Default = 5
+    ["MaxDistance"] = 5,
+    -- Select the type of the indicator that highlights the currently inspected object
+    -- Options: ["arrow", "blink", "border", "highlight", "none"].
+    -- Arrow = Moving arrow pointing at the item | Blink = The whole sprite blinks white | Border = Blinking white border around the sprite | Highlight = White border around the sprite |  None = No indicator
+    -- Default = "none"
+    ["Indicator"] = "none",
+    -- Set the keybind to toggle the description display
+    -- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
+    -- Default = Keyboard.KEY_F2
+    ["HideKey"] = Keyboard.KEY_F2,
+    -- Set the controller binding to toggle the description display
+    -- Use the controller names here: https://github.com/wofsauge/External-Item-Descriptions/blob/master/mod_config_menu.lua#L1 or a number
+    -- Controller.STICK_LEFT and Controller.STICK_RIGHT (pushing the sticks in), which aren't used in-game with default controls
+    -- Default = none (-1)
+    ["HideButton"] = -1,
+    -- Initial display state. Can be used to change the toggle behavior of the "Hide Key" event
+    -- Default = false
+    ["InitiallyHidden"] = false,
+    -- Hide the descriptions when in battle
+    -- Default = false
+    ["HideInBattle"] = false,
+    -- Toggle obstruction based hiding, when the player has flight
+    -- Default = true
+    ["DisableObstructionOnFlight"] = true,
+    -- If set to true, the mod will no longer display a warning if the save game doesn't have achievements unlocked
+    -- This also disables warnings for using an outdated game version and for having potentially modded Bag of Crafting recipes
+    -- Default = false
+    ["DisableAchievementCheck"] = false,
 
 	---------- Display Modes -----------
 
@@ -104,32 +107,38 @@ EID.UserConfig = {
 
 	---------- Item Names ----------
 
-	-- Toggle display of collectible or Card and Pill names
-	-- Default = true
-	["ShowItemName"] = true,
-	-- Toggle display of item type and maximum charge icons
-	-- Default = true
-	["ShowItemType"] = true,
-	-- Toggle display of collectible or trinket icons next to the item name
-	-- Default = true
-	["ShowItemIcon"] = true,
-	-- Toggle display of collectible descriptions
-	-- Default = true
-	["DisplayItemInfo"] = true,
-	-- Toggle display of trinket descriptions
-	-- Default = true
-	["DisplayTrinketInfo"] = true,
-	-- Set the color of the item name text
-	-- Color names are defined in "eid_data.lua" (line 300)
-	-- Default = "ColorEIDObjName"
-	["ItemNameColor"] = "ColorEIDObjName",
-	-- Display the ID of described object in the format "Type.Variant.SubType" next to the name
-	-- Default = false
-	["ShowObjectID"] = false,
-	-- Enables or disables item quality icon after item name
-	-- REPENTANCE ONLY!!!
-	-- Default = true
-	["ShowQuality"] = true,
+    -- Toggle display of collectible or Card and Pill names
+    -- Default = true
+    ["ShowItemName"] = true,
+    -- Toggle display of item type and maximum charge icons
+    -- Default = true
+    ["ShowItemType"] = true,
+    -- Toggle display of collectible or trinket icons next to the item name
+    -- Default = true
+    ["ShowItemIcon"] = true,
+    -- Toggle display of collectible descriptions
+    -- Default = true
+    ["DisplayItemInfo"] = true,
+    -- Toggle display of trinket descriptions
+    -- Default = true
+    ["DisplayTrinketInfo"] = true,
+    -- Set the color of the item name text
+    -- Color names are defined in "eid_data.lua" (line 300)
+    -- Default = "ColorEIDObjName"
+    ["ItemNameColor"] = "ColorEIDObjName",
+    -- Display the ID of described object in the format "Type.Variant.SubType" next to the name
+    -- Default = false
+    ["ShowObjectID"] = false,
+    -- Enables or disables item quality icon after item name
+    -- REPENTANCE ONLY!!!
+    -- Default = true
+    ["ShowQuality"] = true,
+    -- Set the mod indicator display
+    -- Default = "Both"
+    ["ModIndicatorDisplay"] = "None",
+    -- Set the mod indicator text color
+    -- Default = "ColorLightOrange"
+    ["ModIndicatorTextColor"] = "ColorLightOrange",
 
 	---------- Transformations ----------
 
@@ -187,7 +196,16 @@ EID.UserConfig = {
 	-- Default = false
 	["ShowUnidentifiedPillDescriptions"] = false,
 
-	---------- Sacrifice Room ----------
+    ---------- Glitched Items ---------
+  
+    -- Toggle Display of Glitched Item (TMTRAINER) descriptions
+    -- Note: The --luadebug launch option is required for more detailed glitched item descriptions
+    -- This option allows mods to have access to your files and should be turned on at your own risk!
+    -- Without --luadebug, you still can see the effect the item will have on your Hearts, and what stats it might modify
+    -- Default = true
+    ["DisplayGlitchedItemInfo"] = true,
+
+    ---------- Sacrifice Room ----------
 
 	-- Toggle display of the next Sacrifice Room payout description
 	-- Default = true
@@ -321,73 +339,77 @@ EID.UserConfig = {
 --------------------------------------------------
 
 EID.DefaultConfig = {
-	["Language"] = "en_us",
-	["TranslateItemName"] = 2,
-	["FontType"] = "default",
-	["TextboxWidth"] = 100,
-	["Scale"] = 1,
-	["Transparency"] = 0.75,
-	["HUDOffset"] = 10,
-	["XPosition"] = 60,
-	["YPosition"] = 45,
-	["DisplayMode"] = "default",
-	["LocalScale"] = 0.5,
-	["LocalModeCentered"] = true,
-	["MaxDistance"] = 5,
-	["Indicator"] = "none",
-	["HideKey"] = Keyboard.KEY_F2,
-	["HideButton"] = -1,
-	["InitiallyHidden"] = false,
-	["HideInBattle"] = false,
-	["DisableObstructionOnFlight"] = true,
-	["DisableAchievementCheck"] = false,
-	["DisableOnCurse"] = true,
-	["DisableOnAltPath"] = true,
-	["DisableOnAprilFoolsChallenge"] = true,
-	["ShowItemName"] = true,
-	["ShowItemType"] = true,
-	["ShowItemIcon"] = true,
-	["DisplayItemInfo"] = true,
-	["DisplayTrinketInfo"] = true,
-	["ItemNameColor"] = "ColorEIDObjName",
-	["ShowQuality"] = true,
-	["ShowObjectID"] = false,
-	["TransformationText"] = true,
-	["TransformationIcons"] = true,
-	["TransformationColor"] = "ColorEIDTransform",
-	["DisplayCardInfo"] = true,
-	["DisplayCardInfoShop"] = false,
-	["DisplaySoulstoneInfoShop"] = true,
-	["DisplayObstructedCardInfo"] = false,
-	["DisplayObstructedSoulstoneInfo"] = true,
-	["DisplayCardInfoOptions?"] = false,
-	["DisplayPillInfo"] = true,
-	["DisplayPillInfoShop"] = true,
-	["DisplayPillInfoOptions?"] = true,
-	["DisplayObstructedPillInfo"] = false,
-	["ShowUnidentifiedPillDescriptions"] = false,
-	["DisplaySacrificeInfo"] = true,
-	["DisplayDiceInfo"] = true,
-	["DisplayBagOfCrafting"] = "always",
-	["DisplayCraneInfo"] = true,
-	["BagOfCraftingResults"] = 7,
-	["BagOfCraftingCombinationMax"] = 12,
-	["BagOfCraftingRandomResults"] = 400,
-	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
-	["BagOfCraftingDisplayNames"] = false,
-	["BagOfCraftingDisplayIcons"] = false,
-	["BagOfCraftingHideInBattle"] = true,
-	["BagOfCraftingDisplayMode"] = "Recipe List",
-	["CraftingHideKey"] = Keyboard.KEY_F3,
-	["CraftingHideButton"] = -1,
-	["CraftingResultKey"] = Keyboard.KEY_F4,
-	["CraftingResultButton"] = -1,
-	["SpindownDiceResults"] = 3,
-	["SpindownDiceSkipLocked"] = false,
-	["EnableMouseControls"] = false,
-	["ShowCursor"] = false,
-	["ErrorMessage"] = "[Effect not defined]",
-	["TextColor"] = "ColorEIDText",
-	["ErrorColor"] = "ColorEIDError",
-	["EnableEntityDescriptions"] = true
+    ["Language"] = "en_us",
+    ["TranslateItemName"] = 2,
+    ["FontType"] = "default",
+    ["TextboxWidth"] = 115,
+    ["Scale"] = 1,
+    ["Transparency"] = 0.75,
+    ["HUDOffset"] = 10,
+    ["XPosition"] = 60,
+    ["YPosition"] = 45,
+    ["LineHeight"] = 11,
+    ["DisplayMode"] = "default",
+    ["LocalScale"] = 0.5,
+    ["LocalModeCentered"] = true,
+    ["MaxDistance"] = 5,
+    ["Indicator"] = "none",
+    ["HideKey"] = Keyboard.KEY_F2,
+    ["HideButton"] = -1,
+    ["InitiallyHidden"] = false,
+    ["HideInBattle"] = false,
+    ["DisableObstructionOnFlight"] = true,
+    ["DisableAchievementCheck"] = false,
+    ["DisableOnCurse"] = true,
+    ["DisableOnAltPath"] = true,
+    ["DisableOnAprilFoolsChallenge"] = true,
+    ["ShowItemName"] = true,
+    ["ShowItemType"] = true,
+    ["ShowItemIcon"] = true,
+    ["DisplayItemInfo"] = true,
+    ["DisplayTrinketInfo"] = true,
+    ["ItemNameColor"] = "ColorEIDObjName",
+    ["ShowQuality"] = true,
+    ["ModIndicatorDisplay"] = "None",
+    ["ModIndicatorTextColor"] = "ColorLightOrange",
+    ["ShowObjectID"] = false,
+    ["TransformationText"] = true,
+    ["TransformationIcons"] = true,
+    ["TransformationColor"] = "ColorEIDTransform",
+    ["DisplayCardInfo"] = true,
+    ["DisplayCardInfoShop"] = false,
+    ["DisplaySoulstoneInfoShop"] = true,
+    ["DisplayObstructedCardInfo"] = false,
+    ["DisplayObstructedSoulstoneInfo"] = true,
+    ["DisplayCardInfoOptions?"] = false,
+    ["DisplayPillInfo"] = true,
+    ["DisplayPillInfoShop"] = true,
+    ["DisplayPillInfoOptions?"] = true,
+    ["DisplayObstructedPillInfo"] = false,
+    ["ShowUnidentifiedPillDescriptions"] = false,
+    ["DisplayGlitchedItemInfo"] = true,
+    ["DisplaySacrificeInfo"] = true,
+    ["DisplayDiceInfo"] = true,
+    ["DisplayBagOfCrafting"] = "always",
+    ["DisplayCraneInfo"] = true,
+    ["BagOfCraftingResults"] = 7,
+    ["BagOfCraftingCombinationMax"] = 12,
+    ["BagOfCraftingRandomResults"] = 400,
+    ["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
+    ["BagOfCraftingDisplayNames"] = false,
+    ["BagOfCraftingDisplayIcons"] = false,
+    ["BagOfCraftingHideInBattle"] = true,
+    ["BagOfCraftingDisplayMode"] = "Recipe List",
+    ["CraftingHideKey"] = Keyboard.KEY_F3,
+    ["CraftingHideButton"] = -1,
+    ["CraftingResultKey"] = Keyboard.KEY_F4,
+    ["CraftingResultButton"] = -1,
+    ["SpindownDiceResults"] = 3,
+    ["SpindownDiceSkipLocked"] = false,
+    ["EnableMouseControls"] = false,
+    ["ShowCursor"] = false,
+    ["ErrorMessage"] = "[Effect not defined]",
+    ["TextColor"] = "ColorEIDText",
+    ["ErrorColor"] = "ColorEIDError",
+    ["EnableEntityDescriptions"] = true
 }

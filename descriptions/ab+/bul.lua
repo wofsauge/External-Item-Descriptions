@@ -708,161 +708,36 @@ EID.descriptions[languageCode].trinkets={
 
 ---------- Cards ----------
 EID.descriptions[languageCode].cards={
-	{"1", "0 - The Fool", "Teleports you back to the start"},
-	{"2", "I - The Magician", "Homing tears for current room"},
-	{"3", "II - The High Priestess", "Mom's Foot stomps on an enemy!"},
-	{"4", "III - The Empress", "↑ +2.35 Damage & +0.3 Speed for current room"},
-	{"5", "IV - The Emperor", "Teleports you to the {{BossRoom}}Boss Room"},
-	{"6", "V - The Hierophant", "Drops 2 Soul Hearts"},
-	{"7", "VI - The Lovers", "Drops 2 Red Hearts"},
-	{"8", "VII - The Chariot", "Invincibility + contact damage for 6 seconds"},
-	{"9", "VIII - Justice", "Spawns 1 bomb, 1 key, 1 coin, 1 heart"},
-	{"10", "IX - The Hermit", "Teleports you to the {{Shop}}Shop"},
-	{"11", "X - Wheel of Fortune", "Spawns a Slot or Fortune Machine"},
-	{"12", "XI - Strength", "↑ +1 Health up#↑ +0.3 Damage up#↑ +50% Damage#↑ +5.25 Range up#↑ +0.5 Tear Height#↑ +0.3 Speed up#For current room"},
-	{"13", "XII - The Hanged Man", "Grants flight for current room"},
-	{"14", "XIII - Death", "Deals 40 damage to all enemies in the room"},
-	{"15", "XIV - Temperance", "Spawns a Blood Donation Machine#Spawns a Devil Beggar in Greed Mode"},
-	{"16", "XV - The Devil", "↑ +2 Damage up for current room"},
-	{"17", "XVI - The Tower", "Spawns 6 troll bombs"},
-	{"18", "XVII - The Stars", "Teleports you to the {{TreasureRoom}}Treasure Room"},
-	{"19", "XVIII - The Moon", "Teleports you to the {{SecretRoom}}Secret Room"},
-	{"20", "XIX - The Sun", "Deals 100 damage to all enemies#Full health#Reveals entire map"},
-	{"21", "XX - Judgement", "Spawns a Beggar or Devil Beggar"},
-	{"22", "XXI - The World", "Reveals the entire map and shows all roomtypes"},
-	{"23", "2 of Clubs", "Duplicate your bombs"},
-	{"24", "2 of Diamonds", "Duplicate your money"},
-	{"25", "2 of Spades", "Duplicate your keys"},
-	{"26", "2 of Hearts", "Duplicate your Red Hearts#Only has a healing effect"},
-	{"27", "Ace of Clubs", "Turns all pickups into bombs"},
-	{"28", "Ace of Diamonds", "Turns all pickups into coins"},
-	{"29", "Ace of Spades", "Turns all pickups into keys"},
-	{"30", "Ace of Hearts", "Turns all pickups into hearts"},
-	{"31", "Joker", "Teleports you to the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
-	{"32", "Hagalaz", "Destroy all rocks in the room"},
-	{"33", "Jera", "Duplicate all pickups in room"},
-	{"34", "Ehwaz", "Spawns a trapdoor"},
-	{"35", "Dagaz", "+1 Soul Heart#Removes curse effects"},
-	{"36", "Ansuz", "Full mapping for this floor"},
-	{"37", "Perthro", "Reroll all pedestal items"},
-	{"38", "Berkano", "Summons 3 blue spiders and 3 blue flies"},
-	{"39", "Algiz", "Invincibility for 30 seconds"},
-	{"40", "Blank Rune", "Random rune effect#25% chance to drop itself again"},
-	{"41", "Black Rune", "Deals 40 damage to all enemies#Converts all pedestal items in the room into random stat ups#Converts all pickups in the room into blue flies"},
-	{"42", "Chaos Card", "Throwable instant kill-card"},
-	{"43", "Credit Card", "Removes the price from all items in the current shop or Devil deal, making everything free"},
-	{"44", "Rules Card", "Displays \"helpful\" tips on use"},
-	{"45", "A Card Against Humanity", "Fills the whole room with poop"},
-	{"46", "Suicide King", "Instantly kills you and spawns 10 pickup / Collectibles on the floor"},
-	{"47", "Get Out Of Jail Free Card", "Open all doors in the current room"},
-	{"48", "? Card", "Activates your active item for free"},
-	{"49", "Dice Shard", "Rerolls pedestals and pickups in current room"},
-	{"50", "Emergency Contact", "Two of Mom's Hands come down and grab an enemy"},
-	{"51", "Holy Card", "Grants the Holy Mantle effect for one room#(Prevents damage once)#25% chance to spawn another Holy Card"},
-	{"52", "Huge Growth", "↑ +7 Damage up#↑ +30 Range up#Destroy rocks when walking over them#Size up#Effect lasts for current room"},
-	{"53", "Ancient Recall", "Spawns 3 random cards when used"},
-	{"54", "Era Walk", "Slow down enemies#↑ +0.5 Speed up#↓ -1 Shot Speed down#Effect lasts for current room"},
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
 }
 
 ---------- Pills ----------
-EID.descriptions[languageCode].unidentifiedPill = "Unidentified Pill"
+EID.descriptions[languageCode].unidentifiedPill = nil-- Not yet Translated!
 
 EID.descriptions[languageCode].pills={
-	{"0", "Bad Gas", "Spawns a gas cloud"},
-	{"1", "Bad Trip", "Deals 1 heart of damage to you"},
-	{"2", "Balls of Steel", "+2 Soul Hearts"},
-	{"3", "Bombs are Key", "Switches number of bombs with keys"},
-	{"4", "Explosive Diarrhea", "Spawns 5 bombs over a period of five seconds at your position"},
-	{"5", "Full Health", "Full health"},
-	{"6", "Health Down", "↓ Health down"},
-	{"7", "Health Up", "↑ Health up"},
-	{"8", "I Found Pills", "No effect"},
-	{"9", "Puberty", "Eating 3 will give you the {{}} Adult transformation (+1 Red Heart)"},
-	{"10", "Pretty Fly", "Adds 1 fly orbital"},
-	{"11", "Range Down", "↓ -2 Range down"},
-	{"12", "Range Up", "↑ +2.5 Range up"},
-	{"13", "Speed Down", "↓ -0.12 Speed down"},
-	{"14", "Speed Up", "↑ +0.15 Speed up"},
-	{"15", "Tears Down", "↓ -0.28 Tears down"},
-	{"16", "Tears Up", "↑ +0.35 Tears up"},
-	{"17", "Luck Down", "↓ -1 Luck down"},
-	{"18", "Luck Up", "↑ +1 Luck up"},
-	{"19", "Telepills", "Teleports you to a random room#Small chance to teleport you to the I AM ERROR room"},
-	{"20", "48 Hour Energy!", "Fully recharges your active item#Drops 1-2 batteries"},
-	{"21", "Hematemesis", "Drains all but one heart container#Spawns 1-4 Red Hearts"},
-	{"22", "Paralysis", "You can't move for 2 seconds"},
-	{"23", "I can see forever!", "Opens secret room entrances on current floor"},
-	{"24", "Pheromones", "Charms all enemies in the room"},
-	{"25", "Amnesia", "Hides the floor map"},
-	{"26", "Lemon Party", "Spawns a large puddle on the ground which damages enemies"},
-	{"27", "R U A Wizard?", "Shoot diagonally for 30 seconds"},
-	{"28", "Percs!", "Take only half the damage for current room"},
-	{"29", "Addicted!", "Take full heart damage for current room"},
-	{"30", "Re-Lax", "Spawn poop while walking for 2 seconds"},
-	{"31", "???", "Curse of the Maze effect for current floor"},
-	{"32", "One makes you larger", "You grow bigger#Doesn't affect your hitbox"},
-	{"33", "One makes you small", "You get smaller#Your hitbox gets smaller"},
-	{"34", "Infested!", "Spawn 1 blue spider per poop in room"},
-	{"35", "Infested?", "Spawn 1 blue spider per enemy in room#Spawns 1-3 blue spiders when no enemy is in the room"},
-	{"36", "Power Pill!", "Short invincibility effect"},
-	{"37", "Retro Vision", "Pixelates the screen for 30 seconds"},
-	{"38", "Friends Till The End!", "Spawns 3 blue flies"},
-	{"39", "X-Lax", "Spawn pool of slippery creep"},
-	{"40", "Something's wrong...", "Spawn pool of slowing creep"},
-	{"41", "I'm Drowsy...", "Slow all enemies in room"},
-	{"42", "I'm Excited!!!", "Speed up for all enemies in room"},
-	{"43", "Gulp!", "Consume current trinket and gain its effect permanently"},
-	{"44", "Horf!", "Shoots one {{Collectible149}}Ipecac tear"},
-	{"45", "Feels like I'm walking on sunshine!", "Short invincibility effect"},
-	{"46", "Vurp!", "Spawns last used pill"},
-}
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
+} 
 
 ---------- Sacrifice Room ----------
-EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
+EID.descriptions[languageCode].sacrificeHeader = nil-- Not yet Translated!
 
 EID.descriptions[languageCode].sacrifice={
-	{"1", "", "50% chance for 1 coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
-	{"2", "", "50% chance for 1 coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
-	{"3", "", "67% chance for increased {{AngelRoom}}Angel Room chance"},
-	{"4", "", "50% chance for 1 random chest"},
-	{"5", "", "33% chance for 3 coins#67% chance for increased {{AngelRoom}}Angel Room chance"},
-	{"6", "", "33% chance for a teleport to the {{AngelRoom}}Angel Room#Teleports to the {{DevilRoom}}Devil Room instead if its door was spawned on the current floor#67% chance for random chest"},
-	{"7", "", "33% chance for 1 random {{AngelRoom}}Angel Room item#67% chance for 1 Soul Heart"},
-	{"8", "", "100% chance for 7 troll bombs"},
-	{"9", "", "100% chance to spawn \"Uriel\""},
-	{"10", "", "50% chance for 7 Soul Hearts#50% chance for 30 coins"},
-	{"11", "", "100% chance to spawn \"Gabriel\""},
-	{"12", "", "50% chance to teleport to the \"Dark Room\""},
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
 }
 
 ---------- Dice Room ----------
-EID.descriptions[languageCode].diceHeader = "[Dice Room effects]"
+EID.descriptions[languageCode].diceHeader = nil -- Not yet Translated!
 
 EID.descriptions[languageCode].dice={
-	{"1", "", "Rerolls all your passive and active items into a random item from the room pool it was acquired from"},
-	{"2", "", "Rerolls all pickups in the room"},
-	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
-	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
-	{"5", "", "Rerolls and restarts the current floor"},
-	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items, including everything on the floor"},
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
 }
 
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations={
-	"",					-- 0 = none
-	"Guppy",			-- 1
-	"Fun Guy",			-- 2
-	"Beelzebub",		-- 3
-	"Conjoined",		-- 4
-	"Spun",				-- 5
-	"Yes Mother?",		-- 6
-	"Oh Crap",			-- 7
-	"Bob",				-- 8
-	"Leviathan",		-- 9
-	"Seraphim",			-- 10
-	"Super Bum",		-- 11
-	"Bookworm",			-- 12
-	"Spider Baby",		-- 13
-	"Adult",			-- 14
-	"Stompy"			-- 15
+EID.descriptions[languageCode].transformations = {
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
 }

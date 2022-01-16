@@ -49,6 +49,7 @@ EID.ItemTypeAnm2Names = {
 	"familiar", -- 4
 	"trinket" -- 5
 }
+
 ---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
 local nullVector = Vector(0,0)
@@ -61,28 +62,28 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description}
+	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description, EID._currentMod}
 end
 
 -- Adds a description for a trinket. Optional parameters: itemName, language
 function EID:addTrinket(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description}
+	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description, EID._currentMod}
 end
 
 -- Adds a description for a card/rune. Optional parameters: itemName, language
 function EID:addCard(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description}
+	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description, EID._currentMod}
 end
 
 -- Adds a description for a pilleffect id. Optional parameters: itemName, language
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.70." .. id+1] = {id+1, itemName, description}
+	EID.descriptions[language].custom["5.70." .. id+1] = {id+1, itemName, description, EID._currentMod}
 end
 
 -- Adds a character specific description for the item "Birthright". Optional parameters: playerName, language
@@ -263,7 +264,7 @@ end
 -- returns the current text position
 function EID:getTextPosition()
 	local posVector = Vector(EID.UsedPosition.X, EID.UsedPosition.Y)
-	for a,modifier in pairs(EID.PositionModifiers) do
+	for _, modifier in pairs(EID.PositionModifiers) do
 		posVector = posVector + modifier
 	end
 	return posVector
@@ -311,15 +312,18 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity)
 	description.ObjType = Type
 	description.ObjVariant = Variant
 	description.ObjSubType = SubType
-	description.fullItemString = Type.."."..Variant.."."..description.ObjSubType
-	description.Name = EID:getObjectName(Type, Variant, description.ObjSubType)
+	description.fullItemString = Type.."."..Variant.."."..SubType
+	description.Name = EID:getObjectName(Type, Variant, SubType)
 	description.Entity = entity or nil
 
-	local tableEntry = EID:getDescriptionData(Type, Variant, description.ObjSubType)
-	description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, description.ObjSubType)
+	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
+	description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, SubType)
 
-	description.Transformation = EID:getTransformation(Type, Variant, description.ObjSubType)
+	description.Transformation = EID:getTransformation(Type, Variant, SubType)
 	
+	description.ModName = tableEntry and tableEntry[4]
+	description.ModName = tableEntry and tableEntry[4]
+
 	for k,modifier in pairs(EID.DescModifiers) do
 		if modifier.condition(description) then
 			description = modifier.callback(description)
@@ -480,6 +484,7 @@ end
 function EID:getXMLDescription(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local desc= nil
+	if SubType == 0 then return "(no description available)" end
 	if tableName == "collectibles" then
 		desc = EID.itemConfig:GetCollectible(SubType).Description
 	elseif tableName == "trinkets" then
@@ -503,10 +508,10 @@ function EID:hasDescription(entity)
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EID.Config["DisplayCardInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
-		return isAllowed and entity.SubType > 0
+		return isAllowed and (entity.SubType > 0 or EID:getEntityData(entity, "EID_FlipItemID"))
 	end
 	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and REPENTANCE then
-		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize")
+		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize") and EID.CraneItemType[tostring(entity.InitSeed)]
 	end
 	isAllowed = isAllowed or (entity.Type == 1000 and entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"])
 	return isAllowed
@@ -538,7 +543,14 @@ function EID:getIcon(str)
 	end
 	local strTrimmed = string.gsub(str,"{{(.-)}}",function(a) return a end )
 	if #strTrimmed <= #str then
-		return EID:createItemIconObject(strTrimmed) or EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
+		local itemIconObj = EID:createItemIconObject(strTrimmed)
+		if itemIconObj then return itemIconObj end
+
+		if type(EID.InlineIcons[strTrimmed]) == "function" then
+			return EID.InlineIcons[strTrimmed](str) or EID.InlineIcons["ERROR"]
+		end
+
+		return EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
 	else
 		return EID.InlineIcons["ERROR"]
 	end
@@ -608,9 +620,14 @@ function EID:filterIconMarkup(text, textPosX, textPosY)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
+
+		local callback = EID._NextIconModifier
+		EID._NextIconModifier = nil
+		
 		local lookup = EID:getIcon(word)
 		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Scale
-		table.insert(spriteTable, {lookup, preceedingTextWidth})
+
+		table.insert(spriteTable, {lookup, preceedingTextWidth, callback})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
 	end
 	return text, spriteTable
@@ -623,21 +640,26 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 		local Xoffset = sprite[1][5] or -1
 		local Yoffset = sprite[1][6] or 0
 		local spriteObj = (type(sprite[1][7]) == "function" and sprite[1][7]()) or sprite[1][7] or EID.InlineIconSprite
-		if sprite[1][2] >=0 then
+		if sprite[1][2] >= 0 then
 			spriteObj:SetFrame(sprite[1][1], sprite[1][2])
 		elseif not spriteObj:IsPlaying(sprite[1][1]) or spriteObj:IsFinished(sprite[1][1]) then
 			spriteObj:Play(sprite[1][1],true)
 		else
 			spriteObj:Update()
 		end
-		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale)
+
+		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale, sprite[3])
 	end
 end
 
 -- helper function to render Icons in specific EID settins
-function EID:renderIcon(spriteObj, posX, posY)
+function EID:renderIcon(spriteObj, posX, posY, callback)
 	spriteObj.Scale = Vector(EID.Scale, EID.Scale)
 	spriteObj.Color = Color(1, 1, 1, EID.Config["Transparency"], 0, 0, 0)
+	if callback then
+		callback(spriteObj)
+	end
+
 	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
 end
 
@@ -728,7 +750,6 @@ end
 -- Returns the last used KColor
 function EID:renderString(str, position, scale, kcolor)
 	str = EID:replaceShortMarkupStrings(str)
-	EID.LastRenderCallColor = EID:copyKColor(kcolor) -- Save last Color for eventual Color Reset call
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
 	local offsetX = 0
 	for i, textPart in ipairs(textPartsTable) do
@@ -782,6 +803,45 @@ function EID:PlayersHaveCollectible(collectibleID)
 		end
 	end
 	return false
+end
+
+-- Obtains information about glitched items from the ItemConfig (hearts added on pickup, cacheflags affected), returns string of info
+local itemConfigItemAttributes = { "AddMaxHearts", "AddHearts", "AddSoulHearts", "AddBlackHearts", "AddBombs", "AddCoins", "AddKeys", "CacheFlags" }
+function EID:CheckGlitchedItemConfig(id)
+	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
+	local config = Isaac.GetItemConfig()
+	local item = config:GetCollectible(id)
+	if not item then return "" end
+	local attributes = ""
+	for k,v in ipairs(itemConfigItemAttributes) do
+		local val = item[v]
+		if val ~= 0 then
+			if (v == "CacheFlags") then
+				local flagString = localizedNames["cacheFlagStart"]
+				if val == CacheFlag.CACHE_ALL then
+					flagString = flagString .. localizedNames[16]
+				else
+					for i=0, 13 do
+						if 2^i & val ~= 0 then
+							flagString = flagString .. localizedNames[i] .. ", "
+						end
+					end
+					flagString = string.sub(flagString, 0, -3) -- remove final comma
+				end
+				attributes = attributes .. flagString .. "#"
+			else
+				-- the Add Heart attributes count half a heart as 1, so divide the value in half
+				if string.find(v, "Hearts") then val = val / 2 end
+				-- the g flag removes .0 in numbers like 1.0 (caused by the hearts division)
+				local s = string.format("%.4g",val)
+				if val > 0 then s = "+" .. s end
+				attributes = attributes .. string.gsub(localizedNames[v], "{1}", s)
+				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] end
+				attributes = attributes .. "#"
+			end
+		end
+	end
+	return attributes
 end
 
 -- Converts a given CollectibleID into the respective Spindown dice result
@@ -846,8 +906,9 @@ function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 end
 
 function EID:isCollectibleUnlockedAnyPool(collectibleID)
-	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data; currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
-	if not REPENTANCE then return true end
+	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data
+	--Currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
+	if not REPENTANCE or EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then return true end
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if item == nil then return false end
 	if EID.itemUnlockStates[collectibleID] == nil then
@@ -879,13 +940,18 @@ end
 -- Converts a given table into a string containing the crafting icons of the table
 -- Example input: {1,2,3,4,5,6,7,8}
 -- Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
-function EID:tableToCraftingIconsFull(craftTable, sortTable)
-	if (sortTable == nil) then sortTable = true end
+local emptyPickupTable = {}
+for i=1,29 do emptyPickupTable[i] = 0 end
+function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
-	if (sortTable) then table.sort(sortedList, function(a, b) return a < b end) end
+	table.sort(sortedList, function(a, b) return a < b end)
+	local visitedItemCount = {table.unpack(emptyPickupTable)}
+
 	local iconString = ""
 	for _,nr in ipairs(sortedList) do
-		iconString = iconString.."{{Crafting"..nr.."}}"
+		visitedItemCount[nr] = visitedItemCount[nr] + 1
+		local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, visitedItemCount[nr], false) and "{{IconGreenTint}}" or "" 
+		iconString = iconString..completedColoring.."{{Crafting"..nr.."}}"
 	end
 	return iconString
 end
@@ -893,32 +959,30 @@ end
 -- Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
 -- Example input: {1,1,1,2,2,3,3,3}
 -- Result: "3{{Crafting1}}2{{Crafting2}}3{{Crafting3}}"
-local emptyPickupTable = {}
-for i=1,29 do emptyPickupTable[i] = 0 end
 function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
 	local filteredList = {table.unpack(emptyPickupTable)}
 	for _,nr in ipairs(sortedList) do
-		filteredList[nr] = filteredList[nr] +1
+		filteredList[nr] = filteredList[nr] + 1
 	end
 	local iconString = ""
 	for nr,count in ipairs(filteredList) do
 		if (count > 0) then
-			local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, count) and "{{ColorBagComplete}}" or "" 
+			local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, count, true) and "{{ColorBagComplete}}" or "" 
 			iconString = iconString..completedColoring..count.."{{Crafting"..nr.."}}{{CR}}"
 		end
 	end
 	return iconString
 end
 
-function EID:bagContainsItem(itemID, itemCount)
+function EID:bagContainsItem(itemID, itemCount, checkExactAmount)
 	local foundCount = 0
 	for _, bagItem in ipairs(EID.BagItems) do
 		if bagItem == itemID then
 			foundCount = foundCount + 1
 		end
 	end
-	return foundCount == itemCount
+	return checkExactAmount and foundCount == itemCount or itemCount <= foundCount 
 end
 
 function EID:handleHUDElement(hudElement)
@@ -969,11 +1033,12 @@ function EID:fixDefinedFont()
 	local curLang = EID.Config["Language"]
 	local curFont = EID.Config["FontType"]
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
-		if curFont == v then
+		if curFont == v.name then
 			return false
 		end
 	end
-	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1]
+	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1].name
+	EID.lineHeight = EID.descriptions[curLang].fonts[1].lineHeight
 	return true
 end
 
@@ -1005,4 +1070,17 @@ end
 -- Get KColor object of "Error" texts
 function EID:getErrorColor()
 	return EID:getColor(EID.Config["ErrorColor"], EID.InlineColors["ColorEIDError"])
+end
+
+-- Specify the name of the mod which will be displayed next to the item name
+-- By default EID takes the mod name
+function EID:setModIndicatorName(newName)
+	EID.ModIndicator[EID._currentMod].Name = newName
+end
+
+-- Set an icon for the mod which will be displayed next to the item name
+function EID:setModIndicatorIcon(iconMarkup, override)
+	if override == nil then override = true end -- overide previous value if not specified
+	if EID.ModIndicator[EID._currentMod].Icon ~= nil and override == false then return end
+	EID.ModIndicator[EID._currentMod].Icon = iconMarkup
 end

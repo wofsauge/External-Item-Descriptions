@@ -16,7 +16,7 @@ EID.descriptions[languageCode].custom = {} -- table for custom entity descriptio
 EID.descriptions[languageCode].languageName = "English"
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts={"default", "inverted", "borderless"}
+EID.descriptions[languageCode].fonts = {{name="default", lineHeight=11}, {name="inverted", lineHeight=11}, {name="borderless", lineHeight=11}}
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
@@ -865,4 +865,13 @@ EID.descriptions[languageCode].transformations={
 	"Spider Baby",		-- 13
 	"Adult",			-- 14
 	"Stompy"			-- 15
+}
+
+
+---------- MISC ----------
+
+EID.descriptions[languageCode].MCM = {
+	DemoObjectName = "Demo Object Name",
+	DemoObjectTransformation = "Demo Transformation",
+	DemoObjectText = "This text is in english#A very cool and long description to simulate linebreaks caused by EID textbox width!#\1 This is also a cool line#This line loves you {{Heart}}",
 }
