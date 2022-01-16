@@ -480,6 +480,7 @@ end
 function EID:getXMLDescription(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local desc= nil
+	if SubType == 0 then return "(no description available)" end
 	if tableName == "collectibles" then
 		desc = EID.itemConfig:GetCollectible(SubType).Description
 	elseif tableName == "trinkets" then
@@ -503,7 +504,7 @@ function EID:hasDescription(entity)
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EID.Config["DisplayCardInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
-		return isAllowed and entity.SubType > 0
+		return isAllowed and (entity.SubType > 0 or EID:getEntityData(entity, "EID_FlipItemID"))
 	end
 	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and REPENTANCE then
 		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize") and EID.CraneItemType[tostring(entity.InitSeed)]
