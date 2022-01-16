@@ -249,7 +249,7 @@ if REPENTANCE then
 		local curFrame = Isaac.GetFrameCount()
 		if not decrease and curFrame == lastGetItemResult[2] and lastGetItemResult[1] ~= nil then
 			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-			EID.flipItemPositions[curRoomIndex][lastGetItemResult[3]] = {lastGetItemResult[1], selectedCollectible}
+			EID.flipItemPositions[curRoomIndex][lastGetItemResult[3]] = selectedCollectible
 		end
 
 		-- Handle crane game
@@ -288,22 +288,6 @@ if REPENTANCE then
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit)
-
-	-- Handle Flip Item usage
-	function EID:onFlipUse(_)
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-		if EID.flipItemPositions[curRoomIndex] ~= nil then
-			for _,collectible in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
-				local gridPos = game:GetRoom():GetGridIndex(collectible.Position)
-				local entry = EID.flipItemPositions[curRoomIndex][gridPos]
-				if entry then
-					EID.flipItemPositions[curRoomIndex][gridPos] = {entry[2], entry[1]}
-					collectible:GetData()["EID_FlipItemID"] = {entry[2], entry[1]}
-				end
-			end
-		end
-	end
-	EID:AddCallback(ModCallbacks.MC_USE_ITEM, EID.onFlipUse, CollectibleType.COLLECTIBLE_FLIP)
 end
 
 ---------------------------------------------------------------------------
