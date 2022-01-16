@@ -244,7 +244,6 @@ local initialItemNext = false
 local flipItemNext = false
 if REPENTANCE then
 	EID.flipItemPositions = {}
-	EID.flipItemSeeds = {}
 	
 	local lastGetItemResult = {nil, nil, nil, nil} -- itemID, Frame, gridIndex, InitSeed
 	
