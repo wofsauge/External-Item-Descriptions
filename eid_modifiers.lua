@@ -408,7 +408,8 @@ local game = Game()
 	
 	local function FlipCallback(descObj)
 		local flipItemID = EID:getEntityData(descObj.Entity, "EID_FlipItemID")
-		if Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) then
+		if flipItemID <= 0 then return descObj end
+		if descObj.ObjSubType == 0 or Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) then
 			local descEntry = EID:getDescriptionObj(5, 100, flipItemID)
 			return descEntry
 		end

@@ -484,6 +484,7 @@ end
 function EID:getXMLDescription(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local desc= nil
+	if SubType == 0 then return "(no description available)" end
 	if tableName == "collectibles" then
 		desc = EID.itemConfig:GetCollectible(SubType).Description
 	elseif tableName == "trinkets" then
@@ -507,7 +508,7 @@ function EID:hasDescription(entity)
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EID.Config["DisplayCardInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
-		return isAllowed and entity.SubType > 0
+		return isAllowed and (entity.SubType > 0 or EID:getEntityData(entity, "EID_FlipItemID"))
 	end
 	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and REPENTANCE then
 		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize") and EID.CraneItemType[tostring(entity.InitSeed)]
@@ -905,8 +906,9 @@ function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 end
 
 function EID:isCollectibleUnlockedAnyPool(collectibleID)
-	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data; currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
-	if not REPENTANCE then return true end
+	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data
+	--Currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
+	if not REPENTANCE or EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then return true end
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if item == nil then return false end
 	if EID.itemUnlockStates[collectibleID] == nil then

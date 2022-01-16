@@ -648,28 +648,30 @@ if MCMLoaded then
 			end
 		}
 	)
-	------------Glitched Items--------------
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayGlitchedItemInfo"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayGlitchedItemInfo"] then
-					onOff = "True"
-				end
-				return "Glitched Item Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayGlitchedItemInfo"] = currentBool
-			end,
-			Info = {"Note: The --luadebug launch option is required for more detailed glitched item descriptions"}
-		}
-	)
+	if REPENTANCE then
+		------------Glitched Items--------------
+		MCM.AddSetting(
+			"EID",
+			"Display",
+			{
+				Type = ModConfigMenu.OptionType.BOOLEAN,
+				CurrentSetting = function()
+					return EID.Config["DisplayGlitchedItemInfo"]
+				end,
+				Display = function()
+					local onOff = "False"
+					if EID.Config["DisplayGlitchedItemInfo"] then
+						onOff = "True"
+					end
+					return "Glitched Item Infos: " .. onOff
+				end,
+				OnChange = function(currentBool)
+					EID.Config["DisplayGlitchedItemInfo"] = currentBool
+				end,
+				Info = {"Note: The --luadebug launch option is required for more detailed glitched item descriptions"}
+			}
+		)
+	end
 	--------Sacrifice Room---------
 	MCM.AddSetting(
 		"EID",
