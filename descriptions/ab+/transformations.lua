@@ -7,9 +7,9 @@ EID.CustomTransformAssignments = {}
 -- Format: [ID.VARIANT.SUBTYPE] = "Transformation Basename or id"
 EID.CustomTransformRemovals = {}
 
--- default transformations
+-- Default transformations
 -- Format: [ID.VARIANT.SUBTYPE] = "Transformation string"
-EID.EntityTransformations = {
+EID.EntityTransformations={
 	-- Collectibles
 	["5.100.8"] = "4",
 	["5.100.9"] = "3",
@@ -122,6 +122,6 @@ EID.EntityTransformations = {
 	["5.100.545"] = "12",
 	["5.100.552"] = "6",
 	-- Pills
-	["5.70.10"] = "14", -- Puberty (Adult Transform)
-	["5.70.33"] = "15", -- One makes you larger (Stompy Transform)
+	["5.70.10"] = "14", -- Puberty (Adult transformation)
+	["5.70.33"] = "15", -- One makes you larger (Stompy transformation)
 }

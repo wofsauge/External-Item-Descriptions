@@ -2,14 +2,14 @@
 -----  Basic French descriptions  -----
 ---------------------------------------
 
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
-
--- French letters :
- --ùÙûÛüÜÿŸ àÀâÂæÆçÇ éÉèÈêÊëË ïÏîÎôÔœŒ
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
+-- French letters: ùÙûÛüÜÿŸ àÀâÂæÆçÇ éÉèÈêÊëË ïÏîÎôÔœŒ
+
 local languageCode = "fr"
 
 -- init fr table
@@ -17,8 +17,10 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "French"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "", "↑ +0.7 Cadence de tir"},
 	{"2", "", "Triple tir#↓ Cadence de tir"},
@@ -572,7 +574,6 @@ EID.descriptions[languageCode].collectibles={
 	{"550", "", "Mom's Foot ne cessera de vous viser#Utiliser cet objet empêchera Mom's Foot de vous tomber dessus#!!! (Essayez de terminer le Boss Rush avec la pelle en votre possession)"},
 	{"551", "", "Deuxième partie d'une pelle brisée#!!! Utilisez la pelle près de la pile de terre dans la 'Dark Room'"},
 	{"552", "", "Fait apparaître une trappe vers l'étage suivant#!!! Utilisez la pelle près de la pile de terre dans la 'Dark Room'#!!! Débloque quelque chose de cool"},
-		
 }
 
 ---------- Trinkets ----------
@@ -765,9 +766,7 @@ EID.descriptions[languageCode].cards={
 	{"54", "", "Ralentit les ennemis et les larmes d'Isaac et augmente sa vitesse#L'effet s'estompe en changeant de salle"},
 }
 
-
 ---------- Pills ----------
-
 EID.descriptions[languageCode].unidentifiedPill = "Pilule non identifiée"
 
 EID.descriptions[languageCode].pills={
@@ -818,7 +817,7 @@ EID.descriptions[languageCode].pills={
 	{"44", "", "Tire une larme d'Isaac"},
 	{"45", "", "Courte invincibilité"},
 	{"46", "", "Lâche une copie de la dernière pilule consommée"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Prochaine récompense de sacrifice]"
@@ -837,6 +836,7 @@ EID.descriptions[languageCode].sacrifice={
 	{"11", "", "100% chance de faire apparaître le boss 'Gabriel'"},
 	{"12", "", "50% chances de vous téléporter à la Dark Room"},
 }
+
 ---------- Dice Room ----------
 EID.descriptions[languageCode].diceHeader = "[Effet de Dé]"
 
@@ -850,15 +850,15 @@ EID.descriptions[languageCode].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
+EID.descriptions[languageCode].transformations= {
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Lord of the Flies",-- 3
+	"Beelzebub",		-- 3
 	"Conjoined",		-- 4
 	"Spun",				-- 5
-	"Mom",				-- 6
-	"Oh crap",			-- 7
+	"Yes Mother?",		-- 6
+	"Oh Crap",			-- 7
 	"Bob",				-- 8
 	"Leviathan",		-- 9
 	"Seraphim",			-- 10

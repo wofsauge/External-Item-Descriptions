@@ -1,12 +1,13 @@
 -----------------------------------------
------  Basic Bulgarian descriptions -----
+-----  Basic Bulgarian descriptions  ----
 -----------------------------------------
 
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
 local languageCode = "bul"
 
 -- init bul table
@@ -14,8 +15,10 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Bulgarian (WIP) (AB+)"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "Тъжният лук", "↑ 0.7 Скорост на сълзите"},
 	{"2", "Вътрешно око", "Тройна стрелба#↓ 2 Скорост на сълзите"},
@@ -709,9 +712,7 @@ EID.descriptions[languageCode].cards={
 	-- Copy & Paste entries from en_us and continue translating from that
 }
 
-
 ---------- Pills ----------
-
 EID.descriptions[languageCode].unidentifiedPill = nil-- Not yet Translated!
 
 EID.descriptions[languageCode].pills={
