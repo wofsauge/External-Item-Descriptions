@@ -257,14 +257,11 @@ if REPENTANCE then
 			for _, pedestal in ipairs(pedestals) do
 				local gridPos = game:GetRoom():GetGridIndex(pedestal.Position)
 				local oldGridPos = pedestal:GetData()["EID_FlipItemPedestalGrid"]
-				print(gridPos) print(oldGridPos)
 				if EID.flipItemPositions[curRoomIndex][oldGridPos] and gridPos ~= oldGridPos then
-					print("chaing a position!")
 					EID.flipItemPositions[curRoomIndex][oldGridPos] = nil
 					EID.flipItemPositions[curRoomIndex][gridPos] = gridPos
 					pedestal:GetData()["EID_FlipItemPedestalGrid"] = gridPos
 				end
-				--index is unnecessary?
 			end
 		end
 		
@@ -303,7 +300,7 @@ if REPENTANCE then
 		local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][gridPos]
 		if flipEntry then entity:GetData()["EID_FlipItemID"] = flipEntry end
 	end
-	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit)
+	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit, PickupVariant.PICKUP_COLLECTIBLE)
 	
 	function EID:preUseFlip(_)
 		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
