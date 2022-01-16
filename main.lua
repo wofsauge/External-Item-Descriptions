@@ -247,7 +247,7 @@ if REPENTANCE then
 	
 	local lastGetItemResult = {nil, nil, nil, nil} -- itemID, Frame, gridIndex, InitSeed
 	
-	function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, _)
+	function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, seed)
 		-- Handle Crane Game
 		if itemPoolType == ItemPoolType.POOL_CRANE_GAME then
 			for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
@@ -283,7 +283,7 @@ if REPENTANCE then
 	EID:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, EID.postGetCollectible)
 
 	-- Handle Flip Item spawn
-	function EID:preRoomEntitySpawn(entityType, variant, subtype, gridIndex, _)
+	function EID:preRoomEntitySpawn(entityType, variant, subtype, gridIndex, seed)
 		flipItemNext = false
 		if entityType == 5 and (variant == 100 or variant == 150) then
 			lastGetItemResult = {nil, Isaac.GetFrameCount(), gridIndex, nil}
@@ -338,7 +338,7 @@ if REPENTANCE then
 			end
 		end
 	end
-	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckFlipGridIndexes)
+	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckFlipGridIndexes, CollectibleType.COLLECTIBLE_FLIP)
 end
 
 ---------------------------------------------------------------------------
