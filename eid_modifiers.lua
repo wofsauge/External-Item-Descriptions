@@ -106,7 +106,7 @@ local game = Game()
 		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 			return false
 		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SPINDOWN_DICE) then
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SPINDOWN_DICE) or (EID.absorbedSpindown and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_VOID)) then
 			return true
 		end
 		return false
