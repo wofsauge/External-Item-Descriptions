@@ -28,6 +28,7 @@ EID.sacrificeCounter = {}
 EID.itemConfig = Isaac.GetItemConfig()
 EID.itemUnlockStates = {}
 EID.CraneItemType = {}
+EID.absorbedSpindown = false
 
 -- Sprite inits
 EID.IconSprite = Sprite()
@@ -186,7 +187,7 @@ questionMarkSprite:LoadGraphics()
 
 function EID:IsAltChoice(pickup)
 	-- do not run this while Curse of the Blind is active, since this function is really just a "is collectible pedestal a red question mark" check
-	if game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND == LevelCurse.CURSE_OF_BLIND then
+	if EID:hasCurseBlind() then
 		return false
 	end
 	if pickup:GetData() == nil then
@@ -246,6 +247,7 @@ if REPENTANCE then
 	EID.flipItemPositions = {}
 	
 	local lastGetItemResult = {nil, nil, nil, nil} -- itemID, Frame, gridIndex, InitSeed
+	local lastFrameGridChecked = 0
 	
 	function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, seed)
 		-- Handle Crane Game
@@ -301,8 +303,8 @@ if REPENTANCE then
 		
 		-- Update a Flip item's init seed after D6 rerolls or using Flip (aka Grid Index didn't change, Init Seed did)
 		if EID.flipItemPositions[curRoomIndex] and not EID.flipItemPositions[curRoomIndex][entity.InitSeed] then
-			-- Fix pedestal grid indexes (fixes bugs with restock shops, hopefully it isn't laggy)
-			EID:CheckFlipGridIndexes()
+			-- Check if any Flip pedestals have changed grid indexes (fixes bugs with restock shops)
+			if lastFrameGridChecked ~= Isaac.GetFrameCount() then EID:CheckFlipGridIndexes() end
 			for k,v in pairs(EID.flipItemPositions[curRoomIndex]) do
 				if v[2] == gridPos then
 					EID.flipItemPositions[curRoomIndex][entity.InitSeed] = v
@@ -321,6 +323,7 @@ if REPENTANCE then
 	
 	-- Before using Flip, swap all flippable pedestal's current item with the flip one (also, fix grid index if needed)
 	function EID:CheckFlipGridIndexes(collectibleType)
+		lastFrameGridChecked = Isaac.GetFrameCount()
 		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		if EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
@@ -339,6 +342,18 @@ if REPENTANCE then
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckFlipGridIndexes, CollectibleType.COLLECTIBLE_FLIP)
+	
+	-- Watch for a Void absorbing a Spindown Dice
+	function EID:CheckVoidAbsorbs(collectibleType)
+		local pedestals = Isaac.FindByType(5, 100, -1, true, false)
+		for _, pedestal in ipairs(pedestals) do
+			if pedestal.SubType == CollectibleType.COLLECTIBLE_SPINDOWN_DICE then
+				EID.absorbedSpindown = true
+				return
+			end
+		end
+	end
+	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckVoidAbsorbs, CollectibleType.COLLECTIBLE_VOID)
 end
 
 ---------------------------------------------------------------------------
@@ -507,11 +522,16 @@ function EID:printBulletPoints(description, renderPos)
 	end
 end
 ---------------------------------------------------------------------------
----------------------------Handle New Room--------------------------------
+----------------------------Handle New Room--------------------------------
 local isMirrorRoom = false
+local isDeathCertRoom = false
 if REPENTANCE then
 	function EID:onNewRoom()
 		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
+		
+		local level = game:GetLevel()
+		local id = level:GetCurrentRoomIndex()
+		isDeathCertRoom = (id >=0 and GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 2)))
 		
 		-- Handle Flip Item
 		initialItemNext = false
@@ -995,7 +1015,7 @@ local function onRender(t)
 	elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 		--Handle Collectibles
 		if EID:getEntityData(closest, "EID_DontHide") ~= true then
-			if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"]) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+			if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 				EID:renderQuestionMark()
 				return
 			end
@@ -1083,16 +1103,22 @@ if EID.MCMLoaded or REPENTANCE then
 			["BagFloorContent"] = true,
 			["CraneItemType"] = true,
 			["FlipItemPositions"] = true,
+			["AbsorbedSpindownDice"] = true,
 		}
 
 		if EID:HasData() then
 			local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
 			if REPENTANCE then
+				EID.BagItems = {}
+				EID.CraneItemType = {}
 				EID.flipItemPositions = {}
+				EID.absorbedSpindown = false
+				
 				if isSave then
 					EID.BagItems = savedEIDConfig["BagContent"]
 					EID.bagOfCraftingRoomQueries = savedEIDConfig["BagFloorContent"]
 					EID.CraneItemType = savedEIDConfig["CraneItemType"]
+					EID.absorbedSpindown = savedEIDConfig["AbsorbedSpindownDice"]
 
 					-- turn list back into dict because json cant save dict indices.
 					local flipItemTable = {}
@@ -1109,8 +1135,6 @@ if EID.MCMLoaded or REPENTANCE then
 						savedEIDConfig[k] = nil
 					end
 				end
-			else
-				EID.BagItems = {}
 			end
 			
 			-- Only copy Saved config entries that exist in the save
@@ -1156,6 +1180,7 @@ if EID.MCMLoaded or REPENTANCE then
 			EID.Config["BagContent"] = EID.BagItems or {}
 			EID.Config["BagFloorContent"] = EID.bagOfCraftingRoomQueries or {}
 			EID.Config["CraneItemType"] = EID.CraneItemType or {}
+			EID.Config["AbsorbedSpindownDice"] = EID.absorbedSpindown or false
 
 			-- turn dictionary into list because json cant save dict indices.
 			local flipItemTable = {}
