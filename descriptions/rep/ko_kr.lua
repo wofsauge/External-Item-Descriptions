@@ -1053,7 +1053,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	room_clear = "{{ColorCyan}}방 클리어 시:#", --chance to?
 
 	-- Attribute effects
-	area_damage = "캐릭터 주변의 적에게 {1} 의 피해를 줍니다.",
+	area_damage = "캐릭터 주변의 적에게 {1}의 피해를 줍니다.",
 	add_temporary_effect = "현재 방에서 {1} 아이템의 효과를 얻습니다.",
 	convert_entities = "방 안의 {{ColorGray}}{1}{{ColorText}}을/를 {{ColorGray}}{2}{{ColorText}}(으)로 바꿉니다.",
 	use_active_item = "{1}을/를 사용합니다.",
@@ -1110,7 +1110,7 @@ EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
 EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."
 EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune 충전량:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo 충전량:"
-EID.descriptions[languageCode].FlipItemToggleInfo = "({{ButtonSelect}} 버튼을 꾹 눌러 설명 보기)"
+EID.descriptions[languageCode].FlipItemToggleInfo = "( {{ButtonSelect}} 버튼을 꾹 눌러 설명 보기)"
 
 EID.descriptions[languageCode].FalsePHDHeart = "블랙하트 1개 드랍"
 EID.descriptions[languageCode].FalsePHDDamage = "{{Damage}}공격력 +0.6"
