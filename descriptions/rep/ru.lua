@@ -933,6 +933,11 @@ EID.descriptions[languageCode].BlankCardCharge = "Заряд Пустой кар
 EID.descriptions[languageCode].BlankCardQCard = "Телепортирует в комнату Я-ОШИБКА#Пустая карта и ?-карта будут уничтожены" 
 EID.descriptions[languageCode].ClearRuneCharge = "Заряд Чистой руны:" 
 EID.descriptions[languageCode].PlaceboCharge = "Заряд Плацебо:" 
+EID.descriptions[languageCode].FlipItemToggleInfo = "(Зажми {{ButtonSelect}} чтобы показать описание)"
+
+EID.descriptions[languageCode].FalsePHDHeart = "Создаёт 1 Чёрное Сердце"
+EID.descriptions[languageCode].FalsePHDDamage = "+0.6 Урона"
+EID.descriptions[languageCode].FalsePHDHorseDamage = "+1.2 Уронаp"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! ВНИМАНИЕ !!!"
 EID.descriptions[languageCode].AchievementWarningText = "Достижения отключены!#Чтобы включить прогресс и достижения, вам сначала нужно убить Маму (Глубины II) без включенных модов#(Если вы уже убили Маму, то это сообщение баг и вы можете его игнорировать)#(Это предупреждение можно выключить в конфиге)"
