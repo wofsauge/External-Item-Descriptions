@@ -245,6 +245,7 @@ local initialItemNext = false
 local flipItemNext = false
 if REPENTANCE then
 	EID.flipItemPositions = {}
+	EID.flipMaxIndex = -1
 	
 	local lastGetItemResult = {nil, nil, nil, nil} -- itemID, Frame, gridIndex, InitSeed
 	local lastFrameGridChecked = 0
@@ -303,7 +304,7 @@ if REPENTANCE then
 		
 		-- Update a Flip item's init seed after D6 rerolls or using Flip (aka Grid Index didn't change, Init Seed did)
 		if EID.flipItemPositions[curRoomIndex] and not EID.flipItemPositions[curRoomIndex][entity.InitSeed] then
-			-- Check if any Flip pedestals have changed grid indexes (fixes bugs with restock shops)
+			-- Check if any Flip pedestals have changed grid indexes (fixes bugs with Greed shops)
 			if lastFrameGridChecked ~= Isaac.GetFrameCount() then EID:CheckFlipGridIndexes() end
 			for k,v in pairs(EID.flipItemPositions[curRoomIndex]) do
 				if v[2] == gridPos then
@@ -320,6 +321,15 @@ if REPENTANCE then
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit, PickupVariant.PICKUP_COLLECTIBLE)
+	
+	function EID:CheckPedestalIndex(entity)
+		-- Only pedestals with indexes that were present at room load can be flip pedestals; fixes shop restock machines
+		if EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed] and entity.Index > EID.flipMaxIndex then
+			EID.flipItemPositions[curRoomIndex][entity.InitSeed] = nil
+			entity:GetData()["EID_FlipItemID"] = nil
+		end
+	end
+	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, EID.CheckPedestalIndex, PickupVariant.PICKUP_COLLECTIBLE)
 	
 	-- Before using Flip, swap all flippable pedestal's current item with the flip one (also, fix grid index if needed)
 	function EID:CheckFlipGridIndexes(collectibleType)
@@ -536,12 +546,14 @@ if REPENTANCE then
 		-- Handle Flip Item
 		initialItemNext = false
 		flipItemNext = false
+		EID.flipMaxIndex = -1
 		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID.flipItemPositions[curRoomIndex] then
+		if EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 			for _, pedestal in ipairs(pedestals) do
 				local flipEntry = EID.flipItemPositions[curRoomIndex][pedestal.InitSeed]
 				if flipEntry then
+					if pedestal.Index > EID.flipMaxIndex then EID.flipMaxIndex = pedestal.Index end
 					pedestal:GetData()["EID_FlipItemID"] = flipEntry[1]
 				end
 			end
