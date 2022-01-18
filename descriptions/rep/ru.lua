@@ -933,8 +933,22 @@ EID.descriptions[languageCode].BlankCardCharge = "Заряд Пустой кар
 EID.descriptions[languageCode].BlankCardQCard = "Телепортирует в комнату Я-ОШИБКА#Пустая карта и ?-карта будут уничтожены" 
 EID.descriptions[languageCode].ClearRuneCharge = "Заряд Чистой руны:" 
 EID.descriptions[languageCode].PlaceboCharge = "Заряд Плацебо:" 
+EID.descriptions[languageCode].FlipItemToggleInfo = "(Зажми {{ButtonSelect}} чтобы показать описание)"
+
+EID.descriptions[languageCode].FalsePHDHeart = "Создаёт 1 Чёрное Сердце"
+EID.descriptions[languageCode].FalsePHDDamage = "+0.6 Урона"
+EID.descriptions[languageCode].FalsePHDHorseDamage = "+1.2 Уронаp"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! ВНИМАНИЕ !!!"
 EID.descriptions[languageCode].AchievementWarningText = "Достижения отключены!#Чтобы включить прогресс и достижения, вам сначала нужно убить Маму (Глубины II) без включенных модов#(Если вы уже убили Маму, то это сообщение баг и вы можете его игнорировать)#(Это предупреждение можно выключить в конфиге)"
 EID.descriptions[languageCode].OldGameVersionWarningText = "Ваша версия Repentance не обновлена!#Только самая последняя версия официально поддерживается#(Это предупреждение можно выключить в конфиге)"
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Предметы из модов могут сделать расчёт крафтов неточным!#Используйте режим отображения \"No Recipes\" или отключите отображение Крафт-Мешка, если ваши рецепты неверны#(Это предупреждение можно выключить в конфиге)"
+
+
+-- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
+if EID.enableDebug then
+	EID.descriptions[languageCode].repCollectibles = repCollectibles
+	EID.descriptions[languageCode].repTrinkets = repTrinkets
+	EID.descriptions[languageCode].repCards = repCards
+	EID.descriptions[languageCode].repPills = repPills
+end

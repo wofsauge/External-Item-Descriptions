@@ -15,6 +15,12 @@ EID.ButtonToIconMap = {
 	[ButtonAction.ACTION_PAUSE] = "{{ButtonMenu}}",
 }
 
+-- List of Effect variants that should be handled for descriptions
+EID.effectList = {
+	["76"] = true,
+}
+
+-- List of HUD elements, their position and usage
 EID.HUDElements = {
 	["Active1"] = {x = 20,y = 5, width = 65, height = 65, anchors={"TOP","LEFT"}, descriptionObj = function() 
 		local id = EID.player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)
@@ -96,6 +102,12 @@ EID.InlineIcons = {
 	["ArrowDown"] = {"ArrowDown", 0, 8, 9},
 	["Warning"] = {"Warning", 0, 4, 9},
 	["Blank"] = {"Blank", 0, 0, 0},
+	["IconGreenTint"] = function(_)
+		EID._NextIconModifier = function(sprite)
+			sprite.Color = Color(1, 1, 1, EID.Config["Transparency"] * 0.5, 0, 0.5, 0)
+		end
+		return {"Blank", 0, 0, 0}
+	 end,
 	-- Numbers
 	["0"] = {"numbers", 0, 4, 7},
 	["1"] = {"numbers", 1, 4, 7, -2},
@@ -227,7 +239,7 @@ EID.InlineIcons = {
 	["Quality2"] = {"Quality", 2, 10, 10, 0, 0},
 	["Quality3"] = {"Quality", 3, 10, 10, 0, 0},
 	["Quality4"] = {"Quality", 4, 10, 10, 0, 0},
-	-- Controller Button Icons (XBox based)
+	-- Controller Button Icons dynamically return either Controller or Keyboard key sprites
 	["ButtonY"] = {"XboxOne", 0, 9, 8, 3, 4, function(_) return getControllerSprite() end},
 	["ButtonA"] = {"XboxOne", 1, 9, 8, 3, 4, function(_) return getControllerSprite() end},
 	["ButtonB"] = {"XboxOne", 2, 9, 8, 3, 4, function(_) return getControllerSprite() end},
@@ -301,6 +313,49 @@ EID.InlineIcons = {
 	["AngelChanceAB"] = {"Stats", 18, 16, 16, 7, 6},
 	["DevilChanceAB"] = {"Stats", 19, 16, 16, 7, 6},
 	["TearsizeAB"] = {"Stats", 20, 16, 16, 7, 6},
+
+	-- Player Icons for Birthright
+	["Player0"] = {"Players", 0, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player1"] = {"Players", 1, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player2"] = {"Players", 2, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player3"] = {"Players", 3, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player4"] = {"Players", 4, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player5"] = {"Players", 5, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player6"] = {"Players", 6, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player7"] = {"Players", 7, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player8"] = {"Players", 8, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player9"] = {"Players", 9, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player10"] = {"Players", 10, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player11"] = {"Players", 11, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player12"] = {"Players", 12, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player13"] = {"Players", 13, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player14"] = {"Players", 14, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player15"] = {"Players", 15, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player16"] = {"Players", 16, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player17"] = {"Players", 17, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player18"] = {"Players", 18, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player19"] = {"Players", 19, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player20"] = {"Players", 20, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player21"] = {"Players", 21, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player22"] = {"Players", 22, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player23"] = {"Players", 23, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player24"] = {"Players", 24, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player25"] = {"Players", 25, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player26"] = {"Players", 26, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player27"] = {"Players", 27, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player28"] = {"Players", 28, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player29"] = {"Players", 29, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player30"] = {"Players", 30, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player31"] = {"Players", 31, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player32"] = {"Players", 32, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player33"] = {"Players", 33, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player34"] = {"Players", 34, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player35"] = {"Players", 35, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player36"] = {"Players", 36, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player37"] = {"Players", 37, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player38"] = {"Players", 38, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player39"] = {"Players", 39, 12, 12, -1, 1, EID.PlayerSprite},
+	["Player40"] = {"Players", 40, 12, 12, -1, 1, EID.PlayerSprite},
 	
 }
 

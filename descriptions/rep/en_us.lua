@@ -214,7 +214,7 @@ local repCollectibles={
 	[562] = {"562", "Rock Bottom", "Prevents stats from being lowered for the rest of the run"}, -- Rock Bottom
 	[563] = {"563", "Nancy Bombs", "+5 bombs#Bombs explode with a random bomb effect"}, -- Nancy Bombs
 	[564] = {"564", "A Bar of Soap", "↑ +0.5 Tears up#↑ +0.2 Shot Speed up"}, -- A Bar of Soap
-	[565] = {"565", "Blood Puppy", "Familiar that chases enemies#After killing enough enemies, it becomes more powerful but will also try to hurt you#Attacking it returns it to normal"}, -- Blood Puppy
+	[565] = {"565", "Blood Puppy", "Familiar that chases enemies#After killing 15 enemies, it deals more damage, drops half a heart every 10 kills, but will also try to hurt you#After killing 40 enemies, it deals even more damage, drops full hearts, and can destroy rocks#Attacking it returns it to normal"}, -- Blood Puppy
 	[566] = {"566", "Dream Catcher", "+1 half Soul Heart when entering a new floor#Displays upcoming Treasure Room item and boss in the stage transition nightmare"}, -- Dream Catcher
 	[567] = {"567", "Paschal Candle", "↑ +0.4 Fire Rate up for every room cleared without taking damage#Up to +2 Fire Rate possible"}, -- Paschal Candle
 	[568] = {"568", "Divine Intervention", "Double tapping a fire key creates a shield#Shield lasts 1 second, pushes enemies away and reflects enemy projectiles and lasers"}, -- Divine Intervention
@@ -951,6 +951,62 @@ EID.descriptions[languageCode].horsepills={
 	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- Golden Pill
 }
 
+---------- Glitched Item Descriptions ----------
+
+EID.descriptions[languageCode].GlitchedItemText = {
+	-- This will be appended to words to pluralize them, make it "" to not pluralize
+	pluralize = "s",
+	
+	-- Item Config info
+	AddBlackHearts = "{1} Black Heart",
+	AddBombs = "{1} Bomb",
+	AddCoins = "{1} Coin",
+	AddHearts = "Heals {1} Red Heart",
+	AddKeys = "{1} Key",
+	AddMaxHearts = "{1} Heart Container",
+	AddSoulHearts = "{1} Soul Heart",
+	
+	-- Cache Flag names
+	cacheFlagStart = "May affect ",
+	[0] = "Damage", "Fire Rate", "Shot Speed", "Range", "Speed", "Tear Effects", "Tear Color", "Flight", "Attack Type", "Familiars", "Luck", "Size", "Color", "Chest Contents", [16] = "All Stats",
+	
+	-- Attribute triggers
+	chain = "{{ColorCyan}}Then:{{CR}} ",
+	active = "{{ColorCyan}}On use:#",
+	pickup_collected = "{{ColorCyan}}When you collect a pickup:#", --chance to?
+	enemy_kill = "{{ColorCyan}}On kill, chance to:#",
+	damage_taken = "{{ColorCyan}}When you take damage:#", --chance to?
+	entity_spawned = "When a {{ColorCyan}}{T1}{{CR}} is spawned:#",
+	tear_fire = "{{ColorCyan}}When you fire a tear, chance to:#",
+	enemy_hit = "{{ColorCyan}}On hitting an enemy, chance to:#",
+	room_clear = "{{ColorCyan}}On room clear:#", --chance to?
+	
+	-- Attribute effects
+	area_damage = "Deal {1} damage in an area around you", 
+	add_temporary_effect = "Gain {1} for the room",
+	convert_entities = "Convert all {{ColorGray}}{1}{{CR}} in the room to {{ColorGray}}{2}{{CR}}",
+	use_active_item = "Use {1}",
+	spawn_entity = "Spawn a {{ColorGray}}{1}{{CR}}",
+	fart = "Fart with size {1}",
+	
+	-- Generic entity names not obtained from entities2.xml
+	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
+	["4.-1"] = "lit Bomb",
+	["5.0"] = "pickup",
+	["5.10"] = "Heart",
+	["5.20"] = "Coin",
+	["5.30"] = "Key",
+	["5.40"] = "Bomb pickup",
+	["5.69"] = "Grab Bag",
+	["5.70"] = "Pill",
+	["5.90"] = "Battery", 
+	["5.300"] = "Card",
+	["9.-1"] = "enemy projectile",
+	["999.-1"] = "grid object",
+	["1000.0"] = "effect",
+	
+}
+
 ---------- Misc. Text ----------
 
 EID.descriptions[languageCode].spindownError = "Item disappears"
@@ -966,7 +1022,7 @@ EID.descriptions[languageCode].CraftingHideKey = "Hide:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Preview:"
 EID.descriptions[languageCode].CraftingPreviewBackup = "!!! If this item's locked, it will turn into"
 
-EID.descriptions[languageCode].CraftingResults = "(Scroll: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Lock: {{ButtonX}}, Refresh: {{ButtonB}})"
+EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:"
 EID.descriptions[languageCode].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed"
@@ -985,3 +1041,12 @@ EID.descriptions[languageCode].AchievementWarningText = "Achievements are disabl
 EID.descriptions[languageCode].OldGameVersionWarningText = "Your version of Repentance is not up-to-date!#Only the newest version is officially supported#(This warning can be disabled in the config)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Use the No Recipes display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
+
+
+-- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
+if EID.enableDebug then
+	EID.descriptions[languageCode].repCollectibles = repCollectibles
+	EID.descriptions[languageCode].repTrinkets = repTrinkets
+	EID.descriptions[languageCode].repCards = repCards
+	EID.descriptions[languageCode].repPills = repPills
+end

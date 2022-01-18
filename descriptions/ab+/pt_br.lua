@@ -1,26 +1,26 @@
----------------------------------------------------------------------
------  Basic Portuguese (Brazil) descriptions by Marcelino Cruz -----
----------------------------------------------------------------------
+----------------------------------------------------
+-----  Basic Brazilian Portuguese descriptions  -----
+----------------------------------------------------
 
--- Last Sync with en_us: 30.10.2021
-
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
-
--- Portuguese (Brazil) letters: 
--- ãÃ áÁ àÀ âÂ çÇ éÉ êÊ íÍ õÕ óÓ ôÔ úÚ
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
+-- Brazilian Portuguese letters: ãÃ áÁ àÀ âÂ çÇ éÉ êÊ íÍ õÕ óÓ ôÔ úÚ
+
 local languageCode = "pt_br"
 
 -- init pt_br table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Portugues (Brasil)"
+EID.descriptions[languageCode].languageName = "Brazilian Portuguese"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "", "↑ +0.7 lágrimas"},
 	{"2", "", "Tiro triplo#↓ lágrimas"},
@@ -819,7 +819,7 @@ EID.descriptions[languageCode].pills={
 	{"44", "", "Atira uma lágrima explosiva"},
 	{"45", "", "Curto efeito de invencibilidade"},
 	{"46", "", "Gera a última pílula usada"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Pagamento da próxima sala de sacrifício]"
@@ -848,19 +848,19 @@ EID.descriptions[languageCode].dice={
 	{"3", "", "Troca todos os pickups em todo o piso"},
 	{"4", "", "!!! Não afeta as ofertas do demônio#Troca todos os itens de pedestal no andar"},
 	{"5", "", "Troca e reinicia o andar atual"},
-	{"6", "", "Troca todos os seus itens#Troca todos os itens e pickups no andar"}
+	{"6", "", "Troca todos os seus itens#Troca todos os itens e pickups no andar"},
 }
 
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
+EID.descriptions[languageCode].transformations={
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Lord of the Flies",-- 3
+	"Beelzebub",		-- 3
 	"Conjoined",		-- 4
 	"Spun",				-- 5
-	"Mom",				-- 6
-	"Oh crap",			-- 7
+	"Yes Mother?",		-- 6
+	"Oh Crap",			-- 7
 	"Bob",				-- 8
 	"Leviathan",		-- 9
 	"Seraphim",			-- 10

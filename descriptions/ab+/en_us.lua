@@ -2,11 +2,12 @@
 -----  Basic English descriptions -----
 ---------------------------------------
 
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
 local languageCode = "en_us"
 
 -- init en_us table
@@ -14,8 +15,10 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "English"
 
-EID.descriptions[languageCode].fonts = {"default", "inverted", "borderless"} -- Fonts to be used with this languagepack
+-- Fonts to be used with this language pack
+EID.descriptions[languageCode].fonts = {{name="default", lineHeight=11}, {name="inverted", lineHeight=11}, {name="borderless", lineHeight=11}}
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ +0.7 Tears up"},
 	{"2", "The Inner Eye", "Triple shot#↓ Tears down"},
@@ -458,13 +461,13 @@ EID.descriptions[languageCode].collectibles={
 	{"439", "Mom's Box", "Spawns a random trinket#↑ +1 Luck while held#While held, doubles the effect of trinkets"},
 	{"440", "Kidney Stone", "Randomly while firing you will stop firing and release a burst of tears and a kidney stone#↓ -0.2 Speed down#↓ -17 Range down#↑ +2 Tear Height"},
 	{"441", "Mega Blast", "Fires a huge Mega Satan laser for 15 seconds#The laser persists between rooms and floors"},
-	{"442", "Dark Princes Crown", "!!! While at 1 full red heart:#↑ +1.5 Range up#↑ +0.75 Tears up#↑ +0.2 Shot Speed up#↑ +1 Tear Height#Does not work with characters without red HP"}, -- Dark Princes Crown (apostrophe added to the name in Repentance)
+	{"442", "Dark Prince's Crown", "!!! While at 1 full Red Heart:#↑ +1.5 Range up#↑ +0.75 Tears up#↑ +0.2 Shot Speed up#↑ +1 Tear Height#Does not work with characters without red HP"}, -- Dark Princes Crown (apostrophe added to the name in Repentance)
 	{"443", "Apple!", "Randomly fire razor blades which deal 400% damage#↑ +0.3 Tears up"},
 	{"444", "Lead Pencil", "Every 15 tears fired, you fire a cluster of tears#Each tear in the cluster deals double damage"},
 	{"445", "Dog Tooth", "↑ +0.3 Damage up#↑ +0.1 Speed up#A wolf howls if you enter a room next to a {{SecretRoom}}{{SuperSecretRoom}}Secret Room#A barking sound will play when entering a room with a crawlspace under a rock"},
 	{"446", "Dead Tooth", "While firing, you get a green aura that poisons any enemies in it#The poison deals your damage"},
 	{"447", "Linger Bean", "While firing without pause, spawns a poop cloud every 7.5 seconds#The cloud deals 3.5 damage 5 times a second#Cloud lasts 15 seconds#Can be moved by shooting it"},
-	{"448", "Shard of Glass", "When taking damage, chance to get ↑ +5 Range and leave a trail of blood creep, or spawn a red heart"},
+	{"448", "Shard of Glass", "When taking damage, chance to get ↑ +5 Range and leave a trail of blood creep, or spawn a Red Heart"},
 	{"449", "Metal Plate", "+1 Soul Heart#Enemy bullets have a 25% chance to be reflected as concussive tears"},
 	{"450", "Eye of Greed", "Every 20 tears, shoot a coin tear that turns enemies into gold#This costs 1 coin#Hit enemies drop a coin"},
 	{"451", "Tarot Cloth", "Drops a random card or rune on pickup#Doubles the effect of any card used"},
@@ -496,7 +499,7 @@ EID.descriptions[languageCode].collectibles={
 	{"477", "Void", "!!! When used, consume any pedestal items in the room#Active item: Its effect will be added to Void's effect (Stacking the effects)#↑ Passive item: Small stat upgrade to a random stat"},
 	{"478", "Pause", "Freezes all enemies in the room until you start shooting again#Touching a frozen enemy will hurt you#Enemies unfreeze after 30 seconds"},
 	{"479", "Smelter", "Consumes your trinket and gives you the effect permanently#More trinkets appear"},
-	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles your current blue flies/spiders#Spawns 1 blue fly or spider when you dont have any"},
+	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles your current blue flies/spiders#Spawns 1 blue fly or spider when you don't have any"},
 	{"481", "Dataminer", "When used, ↑/↓ small amount on random stat#Random tear effect for current room#Fucks up all sprites"},
 	{"482", "Clicker", "Transforms you into a different character#Removes the last item you collected"},
 	{"483", "Mama Mega!", "!!! SINGLE USE !!!#Affects whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss Rush, Hush and all secret rooms"},
@@ -726,11 +729,11 @@ EID.descriptions[languageCode].cards={
 	{"19", "XVIII - The Moon", "Teleports you to the {{SecretRoom}}Secret Room"},
 	{"20", "XIX - The Sun", "Deals 100 damage to all enemies#Full health#Reveals entire map"},
 	{"21", "XX - Judgement", "Spawns a Beggar or Devil Beggar"},
-	{"22", "XXI - The World", "Reveals the entire map and shows all roomtypes"},
+	{"22", "XXI - The World", "Reveals the entire map and shows all room types"},
 	{"23", "2 of Clubs", "Duplicate your bombs"},
 	{"24", "2 of Diamonds", "Duplicate your money"},
 	{"25", "2 of Spades", "Duplicate your keys"},
-	{"26", "2 of Hearts", "Duplicate your red hearts#Only has a healing effect"},
+	{"26", "2 of Hearts", "Duplicate your Red Hearts#Only has a healing effect"},
 	{"27", "Ace of Clubs", "Turns all pickups into bombs"},
 	{"28", "Ace of Diamonds", "Turns all pickups into coins"},
 	{"29", "Ace of Spades", "Turns all pickups into keys"},
@@ -761,22 +764,20 @@ EID.descriptions[languageCode].cards={
 	{"54", "Era Walk", "Slow down enemies#↑ +0.5 Speed up#↓ -1 Shot Speed down#Effect lasts for current room"},
 }
 
-
 ---------- Pills ----------
-
 EID.descriptions[languageCode].unidentifiedPill = "Unidentified Pill"
 
 EID.descriptions[languageCode].pills={
-	{"0", "Bad Gas", "Spawns a Gas cloud"},
+	{"0", "Bad Gas", "Spawns a gas cloud"},
 	{"1", "Bad Trip", "Deals 1 heart of damage to you"},
 	{"2", "Balls of Steel", "+2 Soul Hearts"},
 	{"3", "Bombs are Key", "Switches number of bombs with keys"},
-	{"4", "Explosive Diarrhea", "Spawns 5 troll bombs at your position"},
+	{"4", "Explosive Diarrhea", "Spawns 5 bombs over a period of five seconds at your position"},
 	{"5", "Full Health", "Full health"},
 	{"6", "Health Down", "↓ Health down"},
 	{"7", "Health Up", "↑ Health up"},
 	{"8", "I Found Pills", "No effect"},
-	{"9", "Puberty", "Eating 3 will give you Adult transformation (+1 Red Heart)"},
+	{"9", "Puberty", "Eating 3 will give you the {{}} Adult transformation (+1 Red Heart)"},
 	{"10", "Pretty Fly", "Adds 1 fly orbital"},
 	{"11", "Range Down", "↓ -2 Range down"},
 	{"12", "Range Up", "↑ +2.5 Range up"},
@@ -786,14 +787,14 @@ EID.descriptions[languageCode].pills={
 	{"16", "Tears Up", "↑ +0.35 Tears up"},
 	{"17", "Luck Down", "↓ -1 Luck down"},
 	{"18", "Luck Up", "↑ +1 Luck up"},
-	{"19", "Telepills", "Teleport to random room"},
+	{"19", "Telepills", "Teleports you to a random room#Small chance to teleport you to the I AM ERROR room"},
 	{"20", "48 Hour Energy!", "Fully recharges your active item#Drops 1-2 batteries"},
 	{"21", "Hematemesis", "Drains all but one heart container#Spawns 1-4 Red Hearts"},
 	{"22", "Paralysis", "You can't move for 2 seconds"},
 	{"23", "I can see forever!", "Opens secret room entrances on current floor"},
-	{"24", "Pheromones", "Charms all enemies in room"},
+	{"24", "Pheromones", "Charms all enemies in the room"},
 	{"25", "Amnesia", "Hides the floor map"},
-	{"26", "Lemon Party", "Spawns large puddle on the ground which damages enemies"},
+	{"26", "Lemon Party", "Spawns a large puddle on the ground which damages enemies"},
 	{"27", "R U A Wizard?", "Shoot diagonally for 30 seconds"},
 	{"28", "Percs!", "Take only half the damage for current room"},
 	{"29", "Addicted!", "Take full heart damage for current room"},
@@ -811,10 +812,10 @@ EID.descriptions[languageCode].pills={
 	{"41", "I'm Drowsy...", "Slow all enemies in room"},
 	{"42", "I'm Excited!!!", "Speed up for all enemies in room"},
 	{"43", "Gulp!", "Consume current trinket and gain its effect permanently"},
-	{"44", "Horf!", "Shoots one ipecac tear"},
-	{"45", "Feels like I'm walking on sunshine!", "Short invincibility"},
+	{"44", "Horf!", "Shoots one {{Collectible149}}Ipecac tear"},
+	{"45", "Feels like I'm walking on sunshine!", "Short invincibility effect"},
 	{"46", "Vurp!", "Spawns last used pill"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
@@ -835,7 +836,7 @@ EID.descriptions[languageCode].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions[languageCode].diceHeader = "[Dice effects]"
+EID.descriptions[languageCode].diceHeader = "[Dice Room effects]"
 
 EID.descriptions[languageCode].dice={
 	{"1", "", "Rerolls all your passive and active items into a random item from the room pool it was acquired from"},
@@ -843,25 +844,34 @@ EID.descriptions[languageCode].dice={
 	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
 	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
 	{"5", "", "Rerolls and restarts the current floor"},
-	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items, including everything on the floor"}
+	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items, including everything on the floor"},
 }
 
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
-	"",				-- 0 = none
+EID.descriptions[languageCode].transformations={
+	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fun Guy",			-- 2
-	"Beelzebub",			-- 3
-	"Conjoined",			-- 4
+	"Beelzebub",		-- 3
+	"Conjoined",		-- 4
 	"Spun",				-- 5
-	"Yes Mother?",			-- 6
+	"Yes Mother?",		-- 6
 	"Oh Crap",			-- 7
 	"Bob",				-- 8
-	"Leviathan",			-- 9
+	"Leviathan",		-- 9
 	"Seraphim",			-- 10
-	"Super Bum",			-- 11
+	"Super Bum",		-- 11
 	"Bookworm",			-- 12
-	"Spider Baby",			-- 13
+	"Spider Baby",		-- 13
 	"Adult",			-- 14
 	"Stompy"			-- 15
+}
+
+
+---------- MISC ----------
+
+EID.descriptions[languageCode].MCM = {
+	DemoObjectName = "Demo Object Name",
+	DemoObjectTransformation = "Demo Transformation",
+	DemoObjectText = "This text is in english#A very cool and long description to simulate linebreaks caused by EID textbox width!#\1 This is also a cool line#This line loves you {{Heart}}",
 }

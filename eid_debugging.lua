@@ -1,4 +1,55 @@
 local showDebugChars = false
+
+
+-- check integrity of language files
+
+local languageFilesToCheck = {"spa"} -- EID.Languages -- single file check {"ko_kr"}
+
+-- count en_us entries for stats
+local count = 0
+function EID:countEntries(t)
+	for k, v in pairs(t) do
+		count = count + 1
+		if type(t[k]) == "table" then
+			EID:countEntries(t[k])
+		end
+	end
+end
+EID:countEntries(EID.descriptions["en_us"])
+local enUSEntries = count
+print("en_us entries: "..enUSEntries)
+
+for i,lang in ipairs(languageFilesToCheck) do
+	print("Now checking integrity of languagefile: "..lang)
+	-- Generic function to compare two tables
+	function EID:compareTables(table1, table2, prevKey, progress)
+		for k, v in pairs(table1) do
+			progress[1] = progress[1] + 1
+			if not table2[k] then
+				print(" Table '"..prevKey.."' does not contain key: "..k)
+				progress[2] = progress[2] + 1
+			elseif type(table2[k]) == "table" then
+				EID:compareTables(table1[k], table2[k], k, progress)
+			end
+		end
+	end
+	local progress = {0, 0}
+	EID:compareTables(EID.descriptions["en_us"], EID.descriptions[lang], lang, progress)
+
+	local errors = (enUSEntries - progress[1])-progress[2]
+	print("Errors found: "..errors .." / "..enUSEntries)
+	print("Translation progress: "..((enUSEntries-errors)/enUSEntries*100).."%")
+
+end
+
+
+
+
+
+
+
+
+
 local charsToDebug = {
 	"!!! EID DEBUG MODE ACTIVATED !!!", -- Header
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890", -- Basic chars

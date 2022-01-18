@@ -93,4 +93,4 @@ local repTransformations = {
 	-- Trinkets
 	["5.350.169"] = "1",
 }
-EID:updateDescriptionsViaTable(repTransformations, EID.EntityTransformations, false)
+EID:updateDescriptionsViaTable(repTransformations, EID.EntityTransformations)

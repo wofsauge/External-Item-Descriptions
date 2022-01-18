@@ -1,6 +1,12 @@
-----------------------------------------------------------------------------
------ Detailed English descriptions based on the Binding of Isaac Wiki -----
-----------------------------------------------------------------------------
+-----------------------------------------
+----  Detailed English descriptions  ----
+-----------------------------------------
+
+-- FORMAT: Item ID | Name | Description
+
+-- Special character markup:
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
 local languageCode = "en_us_detailed"
 
@@ -9,8 +15,10 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "English (detailed)"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "", "+0.7 Tears up."},
 	{"2", "", "Triple shot. #Tears down - (Delay * 2.1) + 3."},
@@ -564,7 +572,7 @@ EID.descriptions[languageCode].collectibles={
 	{"550", "", "While held, Mom's foot will frequently stomp around or on the player. #Using the item will stop this effect until you enter another room. #On Boss Rush, this effect only lasts for one wave. #This effect does not happen on the Mom fight. #Will disappear if you pick up another active item and leave the room. #One of two parts necessary to create Mom's Shovel; the other is obtained by beating Boss Rush while holding it."},
 	{"551", "", "Second part of Mom's Shovel.#Use Mom's Shovel on the hill of dirt in the Dark Room to unlock a secret character. #Picking up this item will complete the shovel and stop the stomping effect for the rest of this run."},
 	{"552", "", "Spawns a trapdoor that leads to the next floor.#10% chance to lead to a Crawl Space or a Black Market instead. #Crawl Spaces and Black Markets are identified by the ladder in the hole, instead of just a black void. #Use Mom's Shovel on the hill of dirt in the Dark Room to unlock a secret character."},
-	}
+}
 
 ---------- Trinkets ----------
 EID.descriptions[languageCode].trinkets={
@@ -807,55 +815,54 @@ EID.descriptions[languageCode].pills={
 	{"44", "", "Upon use, the player shoots an explosive tear with the Ipecac explosion and poison effect that always deals 200 damage."},
 	{"45", "", "Temporarily grants the Unicorn Stump effect, granting invulnerability and increased speed for 5 seconds. #Does not grant the ability to deal contact damage."},
 	{"46", "", "Upon use, spawns a copy of the last pill consumed. #If there are no previously taken pills, will spawn another Vurp! pill."},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
 
 EID.descriptions[languageCode].sacrifice={
-	{"1", "", "50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
-	{"2", "", "50% chance for 1 Coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
-	{"3", "", "67% chance for increased Angel Room chance"},
-	{"4", "", "50% chance for 1 random Chest"},
-	{"5", "", "33% chance for 3 Coin#67% chance for increased Angel Room chance"},
-	{"6", "", "33% chance for teleport to Angel/Devil Room#67% chance for random Chest"},
-	{"7", "", "33% chance for 1 random Angel Room item#67% chance for 1 soul heart"},
+	{"1", "", "50% chance for 1 coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
+	{"2", "", "50% chance for 1 coin#100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
+	{"3", "", "67% chance for increased {{AngelRoom}}Angel Room chance"},
+	{"4", "", "50% chance for 1 random chest"},
+	{"5", "", "33% chance for 3 coins#67% chance for increased {{AngelRoom}}Angel Room chance"},
+	{"6", "", "33% chance for a teleport to the {{AngelRoom}}Angel Room#Teleports to the {{DevilRoom}}Devil Room instead if its door was spawned on the current floor#67% chance for random chest"},
+	{"7", "", "33% chance for 1 random {{AngelRoom}}Angel Room item#67% chance for 1 Soul Heart"},
 	{"8", "", "100% chance for 7 troll bombs"},
-	{"9", "", "100% chance to spawn \"Uriel\" boss"},
-	{"10", "", "50% chance for 7 soul hearts#50% chance for 30 coins"},
-	{"11", "", "100% chance to spawn \"Gabriel\" boss"},
-	{"12", "", "50% chance to teleport to \"Dark Room\" floor"},
+	{"9", "", "100% chance to spawn \"Uriel\""},
+	{"10", "", "50% chance for 7 Soul Hearts#50% chance for 30 coins"},
+	{"11", "", "100% chance to spawn \"Gabriel\""},
+	{"12", "", "50% chance to teleport to the \"Dark Room\""},
 }
 
 ---------- Dice Room ----------
-EID.descriptions[languageCode].diceHeader = "[Dice effect]"
+EID.descriptions[languageCode].diceHeader = "[Dice Room effects]"
 
 EID.descriptions[languageCode].dice={
-	{"1", "", "Rerolls all of your items#(only affect collectibles)"},
+	{"1", "", "Rerolls all your passive and active items into a random item from the room pool it was acquired from"},
 	{"2", "", "Rerolls all pickups in the room"},
-	{"3", "", "Rerolls all pickups on the entire floor"},
-	{"4", "", "Rerolls all pedestal items on the floor#Doesnt affect Devil deals"},
-	{"5", "", "Reroll and restart the current floor"},
-	{"6", "", "Reroll all of your items and all the pickups & items on the entire floor"}
+	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
+	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
+	{"5", "", "Rerolls and restarts the current floor"},
+	{"6", "", "Rerolls all your items, pickups, trinkets and pedestal items, including everything on the floor"},
 }
 
-
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
-	"",					-- 0 = none
-	"Guppy",			-- 1
-	"Fun Guy",			-- 2
-	"Lord of the Flies",-- 3
-	"Conjoined",		-- 4
-	"Spun",				-- 5
-	"Mom",				-- 6
-	"Oh crap",			-- 7
-	"Bob",				-- 8
-	"Leviathan",		-- 9
-	"Seraphim",			-- 10
-	"Super Bum",		-- 11
-	"Bookworm",			-- 12
-	"Spider Baby",		-- 13
-	"Adult",			-- 14
-	"Stompy"			-- 15
+EID.descriptions[languageCode].transformations={
+	"",						-- 0 = none
+	"Guppy",				-- 1
+	"Fun Guy",				-- 2
+	"Lord of the Flies",	-- 3
+	"Conjoined",			-- 4
+	"Spun",					-- 5
+	"Yes Mother?",			-- 6
+	"Oh Crap",				-- 7
+	"Bob",					-- 8
+	"Leviathan",			-- 9
+	"Seraphim",				-- 10
+	"Super Bum",			-- 11
+	"Bookworm",				-- 12
+	"Spider Baby",			-- 13
+	"Adult",				-- 14
+	"Stompy"				-- 15
 }

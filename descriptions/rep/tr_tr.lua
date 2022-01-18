@@ -670,3 +670,13 @@ EID.descriptions[languageCode].CraftingBagContent = "Çantadaki:"
 EID.descriptions[languageCode].CraftingRoomContent = "Odadaki:"
 EID.descriptions[languageCode].CraftingResults = "Sonuçlar:#(Kaydır: TAB(basılı tut) + Ateş △/▽)"
 EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}HATA:#{{ColorRed}}Bu özellik şu anda modlu itemleri desteklemiyor"
+
+
+
+-- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
+if EID.enableDebug then
+	EID.descriptions[languageCode].repCollectibles = repCollectibles
+	EID.descriptions[languageCode].repTrinkets = repTrinkets
+	EID.descriptions[languageCode].repCards = repCards
+	EID.descriptions[languageCode].repPills = repPills
+end

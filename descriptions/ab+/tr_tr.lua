@@ -1,12 +1,13 @@
 ---------------------------------------
------  Basic Turkish descriptions -----
+-----  Basic Turkish descriptions  ----
 ---------------------------------------
 
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
 local languageCode = "tr_tr"
 
 -- init tr_tr table
@@ -14,8 +15,10 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Turkish"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "Üzgün Soğan", "↑ +0.7 Gözyaşı"},
 	{"2", "Kalp Gözü", "Üçlü atış#↓ Gözyaşı azalır"},
@@ -761,9 +764,7 @@ EID.descriptions[languageCode].cards={
 	{"54", "Era Yürüyüşü", "Düşmanları yavaşlatır#↓ -0.5 Hız azalır#-1 Gözyaşı hızı azalır#Efekt oda boyunca sürer"},
 }
 
-
 ---------- Pills ----------
-
 EID.descriptions[languageCode].unidentifiedPill = "Tanımlanmamış Hap"
 
 EID.descriptions[languageCode].pills={
@@ -814,7 +815,7 @@ EID.descriptions[languageCode].pills={
 	{"44", "Horf!", "Bir ipecac gözyaşı atar"},
 	{"45", "Güneş Işığında Yürüyorum!", "Kısa süreli dokunulmazlık efekti"},
 	{"46", "Vurp!", "Son kullanılan hapı çıkartır"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Sonraki feda odası ödülü]"
@@ -843,25 +844,25 @@ EID.descriptions[languageCode].dice={
 	{"3", "", "Kattaki tüm pickupları değiştir"},
 	{"4", "", "Kattaki tüm itemleri değiştir#Şeytan anlaşmasını etkilemez"},
 	{"5", "", "Kattaki değiştir ve tekrar başlat"},
-	{"6", "", "Kattaki tüm pickupları ve itemleri, üzerindeki itemleri değiştir"}
+	{"6", "", "Kattaki tüm pickupları ve itemleri, üzerindeki itemleri değiştir"},
 }
 
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
+EID.descriptions[languageCode].transformations={
 	"",					-- 0 = none
 	"Şerbet",			-- 1
-	"Eğlenceli",			-- 2
-	"Sinek Tanrısı",-- 3
+	"Eğlenceli",		-- 2
+	"Sinek Tanrısı",	-- 3
 	"Tek Parça",		-- 4
-	"Kafalar",				-- 5
+	"Kafalar",			-- 5
 	"Anne",				-- 6
-	"Bok",			-- 7
-	"Amca Bey",				-- 8
+	"Bok",				-- 7
+	"Amca Bey",			-- 8
 	"Leviathan",		-- 9
 	"Seraphim",			-- 10
 	"Süper Evsiz",		-- 11
-	"Kitap Kurdu",			-- 12
-	"Örümcek Bebek",		-- 13
+	"Kitap Kurdu",		-- 12
+	"Örümcek Bebek",	-- 13
 	"Yetişkin",			-- 14
 	"Stompy"			-- 15
 }
