@@ -1,12 +1,13 @@
 --------------------------------------
------  Basic German descriptions -----
+-----  Basic German descriptions  ----
 --------------------------------------
 
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
 local languageCode = "de"
 
 -- init de table
@@ -14,8 +15,10 @@ EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "German (WIP) (AB+)"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ +0.7 Mehr Tränen"},
 	{"2", "The Inner Eye", "Dreifachschuss#↓ Weniger Tränen"},
@@ -290,15 +293,13 @@ EID.descriptions[languageCode].cards={
 	-- Copy & Paste entries from en_us and continue translating from that
 }
 
-
 ---------- Pills ----------
-
 EID.descriptions[languageCode].unidentifiedPill = "Unidentifizierte Pille"
 
 EID.descriptions[languageCode].pills={
 	-- Not yet Translated!
 	-- Copy & Paste entries from en_us and continue translating from that
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Nächste Opferungsbelohung]"

@@ -13,7 +13,7 @@ This mod displays detailed information about all items, trinkets, cards, runes a
 [list]
 [*] [b]Compatible with Afterbirth+ and Repentance[/b]
 [*] Displays information for all collectibles, trinkets, cards, runes, pills, horsepills and some rooms
-[*] Displays [b]additional information[/b] like item type, charges, transformations, Spindown Dice results and Bag of Crafting recipes
+[*] Displays [b]additional information[/b] like item type, charges, transformations, Spindown Dice results, Bag of Crafting recipes, TMTRAINER item effects (Detailed informations require --luadebug flag!), and much much more!
 [*] Displays one of 4 different indicators around the inspected item
 [*] Mod support for nearly all mods!
 [*] Easy to use API ([url=https://github.com/wofsauge/External-Item-Descriptions/wiki]Documentation here[/url])
@@ -62,7 +62,7 @@ This mod displays detailed information about all items, trinkets, cards, runes a
 [/table]
 
 [img]https://i.imgur.com/PFTZnfC.png[/img]
-Simply install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818]'Mod Config Menu - Continued'[/url]. All configuration except the language setting can be changed with it in game.
+Simply install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818]'Mod Config Menu - Continued'[/url]. You can use it to configure the mod while playing.
 
 Or:
 
@@ -98,7 +98,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions
 - Jake for the sweet [b]German[/b] language pack
 - Blackcreamtea and 미카 for the awesome [b]Korean[/b] language pack
 - [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating an awesome new Languagepack and providing ideas for new functionalities</description>
-    <version>4.11</version>
+    <version>4.12</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

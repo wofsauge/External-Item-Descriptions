@@ -1,21 +1,24 @@
 ---------------------------------------
------  Basic Spanish descriptions -----
+-----  Basic Spanish descriptions  ----
 ---------------------------------------
 
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
 local languageCode = "spa"
- 
+
 -- init spa table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Spanish"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
- 
+
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "Cebolla triste", "↑ {{TearsAB}} Lágrimas +0.7"},
 	{"2", "El Ojo Interior", "Disparo triple#↓ {{TearsAB}} Menos lágrimas"},
@@ -570,7 +573,7 @@ EID.descriptions[languageCode].collectibles={
 	{"551", "Pala rota", "Segunda parte de la pala rota#Úsala en el montón de tierra en la \"Dark Room\"(La sala oscura)"},
 	{"552", "Pala de Mamá", "Genera una trampilla hacia la siguiente planta#Úsala en el montón de tierra en la \"Dark Room\"(La sala oscura)"},
 }
- 
+
 ---------- Trinkets ----------
 EID.descriptions[languageCode].trinkets={
 	{"1", "Moneda tragada", "Generas 1 moneda cuando te golpean"},
@@ -702,7 +705,7 @@ EID.descriptions[languageCode].trinkets={
 	{"127", "Bebé doblado", "Las lágrimas de los familiares son teledirigidas"},
 	{"128", "Dedo de hueso", "Posibilidad de ganar un corazón de hueso cuando te golpean"},
 }
- 
+
 ---------- Cards ----------
 EID.descriptions[languageCode].cards={
 	{"1", "0 - El Bufón", "Te teletransporta de nuevo al inicio"},
@@ -760,12 +763,10 @@ EID.descriptions[languageCode].cards={
 	{"53", "Recuerdo Antiguo", "Al usarla genera 3 cartas aleatorias"},
 	{"54", "Caminando una Era", "Ralentiza a los enemigos#↓ -0,5 de velocidad#-1 de velocidad de disparo#El efecto es para la habitación actual"},
 }
- 
- 
+
 ---------- Pills ----------
- 
 EID.descriptions[languageCode].unidentifiedPill = "Píldora sin identificar"
- 
+
 EID.descriptions[languageCode].pills={
 	{"0", "Vaya pedo", "Genera una nube de gas"},
 	{"1", "Mal viaje", "Inflige 1 corazón de daño"},
@@ -814,11 +815,11 @@ EID.descriptions[languageCode].pills={
 	{"44", "¡Horf!", "Dispara una lágrima de Ipecac"},
 	{"45", "¡Es como si caminara sobre el sol!", "Efecto de invencibilidad corto"},
 	{"46", "¡Vurp!", "Genera la última píldora usada"},
-} 
- 
+}
+
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Siguiente pago de la sala del Sacrificio]"
- 
+
 EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50 % de probabilidad de 1 moneda#100 % de probabilidad de 1 bomba, al matar al Jefe de B1 en menos de 1 minuto"},
 	{"2", "", "50 % de probabilidad de 1 moneda#100 % de probabilidad de 1 bomba, al matar al Jefe de B1 en menos de 1 minuto"},
@@ -833,10 +834,10 @@ EID.descriptions[languageCode].sacrifice={
 	{"11", "", "100 % de probabilidad de generar al ángel \"Gabriel\""},
 	{"12", "", "50 % de probabilidad de teletransportar al piso de la  \"Dark Room\" (Habitación Oscura)"},
 }
- 
+
 ---------- Dice Room ----------
 EID.descriptions[languageCode].diceHeader = "[Efecto del dado]"
- 
+
 EID.descriptions[languageCode].dice={
 	{"1", "", "Cambia tus objetos#(no afecta a los recolectables)"},
 	{"2", "", "Cambia los recolectables de la habitación"},
@@ -845,23 +846,23 @@ EID.descriptions[languageCode].dice={
 	{"5", "", "Cambia y reinicia la planta actual"},
 	{"6", "", "Cambia todos tus objetos y recolectables, además de los objetos de toda la planta"}
 }
- 
+
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
-	"",						-- 0 = none
-	"Guppy",				-- 1
-	"Fungi",				-- 2
-	"Señor de las moscas",  -- 3
-	"Siameses",				-- 4
-	"Adicto",				-- 5
-	"¿Sí, madre?",			-- 6
-	"Me cago en...",		-- 7
-	"Bob",					-- 8
-	"Leviatán",				-- 9
-	"Serafín",				-- 10
-	"Super-pordiosero",		-- 11
-	"Ratón de biblioteca",	-- 12
-	"Bebé araña",			-- 13
-	"Adulto",				-- 14
-	"Gigante"				-- 15
+EID.descriptions[languageCode].transformations={
+	"",							-- 0 = none
+	"Guppy",					-- 1
+	"Fungi",					-- 2
+	"Señor de las moscas",		-- 3
+	"Siameses",					-- 4
+	"Adicto",					-- 5
+	"¿Sí, madre?",				-- 6
+	"Me cago en...",			-- 7
+	"Bob",						-- 8
+	"Leviatán",					-- 9
+	"Serafín",					-- 10
+	"Super-pordiosero",			-- 11
+	"Ratón de biblioteca",		-- 12
+	"Bebé araña",				-- 13
+	"Adulto",					-- 14
+	"Gigante"					-- 15
 }
