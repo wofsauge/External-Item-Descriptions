@@ -334,7 +334,7 @@ if REPENTANCE then
 					flipEntry[2] = gridPos
 					if collectibleType == CollectibleType.COLLECTIBLE_FLIP then
 						-- don't swap a flip shadow with an empty pedestal!
-						if pedestal.SubType == 0 then flipEntry = nil
+						if pedestal.SubType == 0 then EID.flipItemPositions[curRoomIndex][pedestal.InitSeed] = nil
 						else flipEntry[1] = pedestal.SubType end
 					end
 				end
