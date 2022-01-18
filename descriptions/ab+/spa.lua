@@ -1,27 +1,30 @@
 ---------------------------------------
------  Basic Spanish descriptions -----
+-----  Basic Spanish descriptions  ----
 ---------------------------------------
 
--- FORMAT: Item ID | Name| Description
--- '#' = starts new line of text
+-- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
 local languageCode = "spa"
- 
+
 -- init spa table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Spanish"
 
+-- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
- 
+
+---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "Cebolla triste", "↑ {{TearsAB}} Lágrimas +0.7"},
 	{"2", "El Ojo Interior", "Disparo triple#↓ {{TearsAB}} Menos lágrimas"},
 	{"3", "Doblador de cucharas", "Lágrimas teledirigidas"},
 	{"4", "Cabeza de Cricket", "↑ {{DamageAB}} Daño x1.5 + 0.5#↑ Más empuje"},
-	{"5", "Mi reflejo", "Otorga un efecto boomerang a las lágrimas#↑ {{RangeAB}} Alcance +1.5#↑ {{ShotspeedAB}} Vel. de tiro +0.6 de velocidad#↑ {{TearsizeAB}} Tamaño de lágrimas +1"},
+	{"5", "Mi reflejo", "Otorga un efecto boomerang a las lágrimas#↑ {{RangeAB}} Alcance +1.5#↑ {{ShotspeedAB}} Vel. de tiro +0.6#↑ {{TearsizeAB}} Tamaño de lágrimas +1"},
 	{"6", "Número 1", "↑{{TearsAB}} Lágrimas +1.5#↓ {{RangeAB}} Alcance -15,78#↑ {{TearsizeAB}} Tamaño de lágrimas +0.45"},
 	{"7", "Sangre del mártir", "↑ {{DamageAB}} Daño +1.0#"},
 	{"8", "Hermano Bobby", "Familiar de lágrimas normales#Lágrimas de 3,5 de daño"},
@@ -181,7 +184,7 @@ EID.descriptions[languageCode].collectibles={
 	{"162", "Cruz celta", "Probabilidad de ser invencible cuando te golpean"},
 	{"163", "Bebé fantasma", "Familiar de lágrimas espectrales#Inflige 3,5 de daño"},
 	{"164", "La Vela", "Genera un fuego azul#Inflige daño por contacto#Bloquea lágrimas enemigas#Desaparece tras 2 segundos"},
-	{"165", "Gato de nueve colas", "↑ {{DamageAB}} Daño#↑ {{ShotspeedAB}} Vel. de tiro +0.23"},
+	{"165", "Gato de nueve colas", "↑ {{DamageAB}} Daño +1#↑ {{ShotspeedAB}} Vel. de tiro +0.23"},
 	{"166", "D20", "Cambia los recolectables"},
 	{"167", "Bebé arlequín", "Dispara dos lágrimas en forma de V#Inflige 4 de daño"},
 	{"168", "Fetus épico", "Ataque aéreo controlable en lugar de lágrimas#Inflige 20 veces tu daño"},
@@ -570,7 +573,7 @@ EID.descriptions[languageCode].collectibles={
 	{"551", "Pala rota", "Segunda parte de la pala rota#Úsala en el montón de tierra en la \"Dark Room\"(La sala oscura)"},
 	{"552", "Pala de Mamá", "Genera una trampilla hacia la siguiente planta#Úsala en el montón de tierra en la \"Dark Room\"(La sala oscura)"},
 }
- 
+
 ---------- Trinkets ----------
 EID.descriptions[languageCode].trinkets={
 	{"1", "Moneda tragada", "Generas 1 moneda cuando te golpean"},
@@ -702,27 +705,27 @@ EID.descriptions[languageCode].trinkets={
 	{"127", "Bebé doblado", "Las lágrimas de los familiares son teledirigidas"},
 	{"128", "Dedo de hueso", "Posibilidad de ganar un corazón de hueso cuando te golpean"},
 }
- 
+
 ---------- Cards ----------
 EID.descriptions[languageCode].cards={
 	{"1", "0 - El Bufón", "Te teletransporta de nuevo al inicio"},
 	{"2", "I - El Mago", "Lágrimas teledirigidas en la habitación actual"},
 	{"3", "II - La Suma Sacerdotisa", "El Pie de Mamá pisa a un enemigo"},
-	{"4", "III - La Emperatriz", "↑ +2,35 de daño & +0,3 de velocidad en la habitación actual"},
+	{"4", "III - La Emperatriz", "Durante la habitación, recibes: #↑ {{DamageAB}} Daño +2.35 de daño#↑ {{SpeedAB}} Velocidad +0.3"},
 	{"5", "IV - El Emperador", "Teletransporta a la sala del jefe ({{BossRoom}})"},
-	{"6", "V - El Sumo Sacerdote", "Suelta 2 corazones de alma"},
-	{"7", "VI - Los Enamorados", "Suelta 2 corazones rojos"},
+	{"6", "V - El Sumo Sacerdote", "{{SoulHeart}} Suelta 2 corazones de alma"},
+	{"7", "VI - Los Enamorados", "{{Heart}} Suelta 2 corazones rojos"},
 	{"8", "VII - El Carruaje", "Invencibilidad + daño por contacto durante 6 segundos"},
 	{"9", "VIII - Justicia", "Genera 1 bomba, 1 llave, 1 moneda, 1 corazón"},
 	{"10", "IX - El Ermitaño", "Teletransporta a la tienda {{Shop}}"},
 	{"11", "X - La Rueda de la Fortuna", "Genera una tragaperras o una máquina de la fortuna"},
-	{"12", "XI - Fuerza", "↑ +1 de vida#↑ +0,3 de daño#+50 % de daño#↑5,25 de Alcance#↑ +0,3 de velocidad#Durante la habitación actual"},
+	{"12", "XI - Fuerza", "Durante la habitación actual, recibes: #↑ {{Heart}} +1 de vida#↑ {{SpeedAB}} Velocidad +0.3#↑{{RangeAB}} Alcance +5.25#↑ {{DamageAB}} Daño +50% y +0.3"},
 	{"13", "XII - El Colgado", "Permite volar en la habitación actual"},
 	{"14", "XIII - Muerte", "Inflige 40 de daño a todos los enemigos de la habitación"},
 	{"15", "XIV - Templanza", "Genera una máquina de donación de sangre"},
-	{"16", "XV - El Diablo", "↑ +2 de daño en la habitación actual"},
+	{"16", "XV - El Diablo", "↑ {{DamageAB}} Daño +2 durante la habitación actual"},
 	{"17", "XVI - La Torre", "Invoca bombas troll"},
-	{"18", "XVII - Las Estrellas", "Teletransporta a la sala del tesoro ({{TreasureRoom}})"},
+	{"18", "XVII - Las Estrellas", "{{TreasureRoom}} Te teletransporta a la sala del tesoro"},
 	{"19", "XVIII - La Luna", "Teletransporta a la sala secreta ({{SecretRoom}})"},
 	{"20", "XIX - El Sol", "Inflige 100 de daño a todos los enemigos #Vida al completo#Muestra el mapa completo"},
 	{"21", "XX - Juicio", "Genera un mendigo"},
@@ -755,21 +758,19 @@ EID.descriptions[languageCode].cards={
 	{"48", "¿? Carta", "Activa el objeto activable sin gastar cargas "},
 	{"49", "Fragmento de Dado", "Cambia todos los pedestales y recolectables de la habitación actual"},
 	{"50", "Contacto de emergencia", "Dos manos de Mamá caen y cogen a un enemigo"},
-	{"51", "Carta sagrada", "Otorga el efecto de Manto Sagrado (Holy Mantle) en una habitación#(El siguiente daño recibido es 0)#25 % de probabilidad de generar otra carta sagrada"},
-	{"52", "Gran Crecimiento", "↑ +7 de daño#↑ +30 de Alcance#↑ +Tamaño#Rompe rocas#El efecto es para la habitación actual"},
+	{"51", "Carta sagrada", "Otorga el efecto de {{Collectible313}} Manto Sagrado en una habitación#25 % de probabilidad de generar otra carta sagrada"},
+	{"52", "Gran Crecimiento", "Durante la habitación actual, recibes: #↑ {{DamageAB}} Daño +7#↑ {{RangeAB}} Alcance +30#↑ +Tamaño#Capacidad de romper rocas"},
 	{"53", "Recuerdo Antiguo", "Al usarla genera 3 cartas aleatorias"},
-	{"54", "Caminando una Era", "Ralentiza a los enemigos#↓ -0,5 de velocidad#-1 de velocidad de disparo#El efecto es para la habitación actual"},
+	{"54", "Caminando una Era", "Durante la habitación actual, recibes: #↑ {{SpeedAB}} Velocidad +0.5#{{ShotspeedAB}} Vel. de tiro 0.40#Los enemigos se ralentizan"},
 }
- 
- 
+
 ---------- Pills ----------
- 
 EID.descriptions[languageCode].unidentifiedPill = "Píldora sin identificar"
- 
+
 EID.descriptions[languageCode].pills={
 	{"0", "Vaya pedo", "Genera una nube de gas"},
 	{"1", "Mal viaje", "Inflige 1 corazón de daño"},
-	{"2", "Bolas de acero", "+2 corazones de alma"},
+	{"2", "Bolas de acero", "{{SoulHeart}} +2 corazones de alma"},
 	{"3", "Las bombas son llaves", "Cambia el número de bombas por el de llaves"},
 	{"4", "Diarrea explosiva", "Invoca 5 bombas troll"},
 	{"5", "Salud completa", "Vida al completo"},
@@ -778,14 +779,14 @@ EID.descriptions[languageCode].pills={
 	{"8", "Sin efecto", "Sin efecto"},
 	{"9", "Pubertad", "Al comer 3 te transformas en Adulto "},
 	{"10", "Mosca bonita", "Añade 1 mosca orbital"},
-	{"11", "Menos Alcance", "↓ -2 de Alcance"},
-	{"12", "Más Alcance", "↑ +2,5 de Alcance"},
-	{"13", "Menos velocidad", "↓ -0,12 de velocidad"},
-	{"14", "Más velocidad", "↑ +0,15 de velocidad"},
-	{"15", "Menos lágrimas", "↓ -0,28 de lágrimas"},
-	{"16", "Más lágrimas", "↑ +0,35 de lágrimas"},
-	{"17", "Menos suerte", "↓ -1 de suerte"},
-	{"18", "Más suerte", "↑ +1 de suerte"},
+	{"11", "Menos Alcance", "↓ {{RangeAB}} Alcance -2"},
+	{"12", "Más Alcance", "↑ {{RangeAB}} Alcance +2.5"},
+	{"13", "Menos velocidad", "↓ {{SpeedAB}} Velocidad -0.12"},
+	{"14", "Más velocidad", "↑ {{SpeedAB}} Valocidad +0.15"},
+	{"15", "Menos lágrimas", "↓ {{TearsAB}} Lágrimas -0.28"},
+	{"16", "Más lágrimas", "↑ {{TearsAB}} Lágrimas +0.35"},
+	{"17", "Menos suerte", "↓ {{LuckAB}} Suerte -2"} ,
+	{"18", "Más suerte", "↑ {{LuckAB}} Suerte +1"},
 	{"19", "¡Teletransporta!", "Teletransporta a una habitación aleatoria"},
 	{"20", "¡48 horas de energía!", "Recarga tu objeto activable#Genera 1 o 2 baterías"},
 	{"21", "Hematémesis", "Drena todos los corazones menos el último#Genera de 1 a 4 corazones rojos"},
@@ -814,11 +815,11 @@ EID.descriptions[languageCode].pills={
 	{"44", "¡Horf!", "Dispara una lágrima de Ipecac"},
 	{"45", "¡Es como si caminara sobre el sol!", "Efecto de invencibilidad corto"},
 	{"46", "¡Vurp!", "Genera la última píldora usada"},
-} 
- 
+}
+
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Siguiente pago de la sala del Sacrificio]"
- 
+
 EID.descriptions[languageCode].sacrifice={
 	{"1", "", "50 % de probabilidad de 1 moneda#100 % de probabilidad de 1 bomba, al matar al Jefe de B1 en menos de 1 minuto"},
 	{"2", "", "50 % de probabilidad de 1 moneda#100 % de probabilidad de 1 bomba, al matar al Jefe de B1 en menos de 1 minuto"},
@@ -833,10 +834,10 @@ EID.descriptions[languageCode].sacrifice={
 	{"11", "", "100 % de probabilidad de generar al ángel \"Gabriel\""},
 	{"12", "", "50 % de probabilidad de teletransportar al piso de la  \"Dark Room\" (Habitación Oscura)"},
 }
- 
+
 ---------- Dice Room ----------
 EID.descriptions[languageCode].diceHeader = "[Efecto del dado]"
- 
+
 EID.descriptions[languageCode].dice={
 	{"1", "", "Cambia tus objetos#(no afecta a los recolectables)"},
 	{"2", "", "Cambia los recolectables de la habitación"},
@@ -845,23 +846,23 @@ EID.descriptions[languageCode].dice={
 	{"5", "", "Cambia y reinicia la planta actual"},
 	{"6", "", "Cambia todos tus objetos y recolectables, además de los objetos de toda la planta"}
 }
- 
+
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
-	"",						-- 0 = none
-	"Guppy",				-- 1
-	"Fungi",				-- 2
-	"Señor de las moscas",  -- 3
-	"Siameses",				-- 4
-	"Adicto",				-- 5
-	"¿Sí, madre?",			-- 6
-	"Me cago en...",		-- 7
-	"Bob",					-- 8
-	"Leviatán",				-- 9
-	"Serafín",				-- 10
-	"Super-pordiosero",		-- 11
-	"Ratón de biblioteca",	-- 12
-	"Bebé araña",			-- 13
-	"Adulto",				-- 14
-	"Gigante"				-- 15
+EID.descriptions[languageCode].transformations={
+	"",							-- 0 = none
+	"Guppy",					-- 1
+	"Fungi",					-- 2
+	"Señor de las moscas",		-- 3
+	"Siameses",					-- 4
+	"Adicto",					-- 5
+	"¿Sí, madre?",				-- 6
+	"Me cago en...",			-- 7
+	"Bob",						-- 8
+	"Leviatán",					-- 9
+	"Serafín",					-- 10
+	"Super-pordiosero",			-- 11
+	"Ratón de biblioteca",		-- 12
+	"Bebé araña",				-- 13
+	"Adulto",					-- 14
+	"Gigante"					-- 15
 }
