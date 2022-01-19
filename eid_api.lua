@@ -530,11 +530,7 @@ end
 -- Generates a string with the defined pixel-length using a custom 1px wide character
 -- This will only work for this specific custom font
 function EID:generatePlaceholderString(length)
-	local placeholder = ""
-	for i = 1, length do
-		placeholder = placeholder .. "¤"
-	end
-	return placeholder
+	return string.rep("¤", length)
 end
 
 -- Returns the inlineIcon object of a given Iconstring
@@ -795,11 +791,11 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 				local word = sub(str, word_begin_index, cursor)
 				
 				local colorFiltered = EID:filterColorMarkup(word, EID:getTextColor())
-				local filteredWord = ""
+				local filteredWord = {}
 				for _, filtered in ipairs(colorFiltered) do
-					filteredWord = filteredWord .. filtered[1]
+					table.insert(filteredWord, filtered[1])
 				end
-				local strFiltered, spriteTable = EID:filterIconMarkup(filteredWord, 0, 0)
+				local strFiltered, spriteTable = EID:filterIconMarkup(table.concat(filteredWord), 0, 0)
 				local wordLength = EID:getStrWidth(strFiltered)
 		
 				if curLength + wordLength <= textboxWidth or curLength < 12 then
