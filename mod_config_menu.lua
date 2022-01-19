@@ -1014,6 +1014,7 @@ if MCMLoaded then
 			OnChange = function(currentNum)
 				EID.Config["FontType"] = fontNames[currentNum]
 				EID.lineHeight = fonts[currentNum].lineHeight
+				EID.Config["TextboxWidth"] = fonts[currentNum].textboxWidth
 				EID:fixDefinedFont()
 				local fontFile = EID.Config["FontType"] or "default"
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
@@ -1080,6 +1081,11 @@ if MCMLoaded then
 			Info = {"Change text size. CAN BE HARD TO READ IN SOME SETTINGS!"}
 		}
 	)
+	-- SCALE Hotkey
+	EID:AddHotkeySetting("Visuals",
+	"ScaleKey", "Toggle Scale (Keyboard)",
+	"Press or hold this key to toggle the scale.", false)
+
 	-- Transparency
 	MCM.AddSetting(
 		"EID",

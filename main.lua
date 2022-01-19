@@ -323,10 +323,15 @@ if REPENTANCE then
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit, PickupVariant.PICKUP_COLLECTIBLE)
 	
 	function EID:CheckPedestalIndex(entity)
-		-- Only pedestals with indexes that were present at room load can be flip pedestals; fixes shop restock machines
-		if EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed] and entity.Index > EID.flipMaxIndex then
-			EID.flipItemPositions[curRoomIndex][entity.InitSeed] = nil
-			entity:GetData()["EID_FlipItemID"] = nil
+		-- Only pedestals with indexes that were present at room load can be flip pedestals
+		-- Fixes shop restock machines and Diplopia... mostly. At least while you're in the room.
+		if entity:GetData()["EID_FlipItemID"] and entity.Index > EID.flipMaxIndex then
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+			local gridPos = game:GetRoom():GetGridIndex(entity.Position)
+			local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed]
+			-- only wipe the data if the grid index matches (so Diplopia pedestals don't)
+			if flipEntry and gridPos == flipEntry[2] then EID.flipItemPositions[curRoomIndex][entity.InitSeed] = nil end
+			entity:GetData()["EID_FlipItemID"] = nil 
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, EID.CheckPedestalIndex, PickupVariant.PICKUP_COLLECTIBLE)
@@ -364,6 +369,69 @@ if REPENTANCE then
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckVoidAbsorbs, CollectibleType.COLLECTIBLE_VOID)
+end
+
+---------------------------------------------------------------------------
+--------------------------Handle Scale Shortcut----------------------------
+
+local scaleMin = 0.1
+local scaleMax = 2
+local scaleSpeed = 0.01 -- scale size per frame
+local scaleToBigger = true
+local scaleHoldFrame = 0
+local function handleScaleKey()
+	local ScaleKey = EID.Config["ScaleKey"]
+
+	-- press and hold ScaleKey
+	if Input.IsButtonPressed(ScaleKey, 0) then
+		if scaleHoldFrame > 60 then
+			local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalScale" or "Scale")
+			if scaleToBigger then
+				local newScale = EID.Scale + scaleSpeed
+
+				EID.Scale = newScale
+				EID.Config[scaleConfigName] = newScale
+
+				if newScale > scaleMax then
+					scaleToBigger = false
+				end
+			else
+				local newScale = EID.Scale - scaleSpeed
+
+				EID.Scale = newScale
+				EID.Config[scaleConfigName] = newScale
+
+				if newScale < scaleMin then
+					scaleToBigger = true
+				end
+			end
+		else
+			scaleHoldFrame = scaleHoldFrame + 1
+		end
+	end
+	-- press ScaleKey
+	if Input.IsButtonTriggered(ScaleKey, 0) then
+		scaleHoldFrame = 0
+		local scale
+		local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalScale" or "Scale")
+
+		scale = EID.Scale
+
+		-- switch between 1, 1.5 and 0.5
+
+		if math.abs(scale - 1) < 0.01 then
+			scale = 1.5
+		elseif math.abs(scale - 1.5) < 0.01 then
+			scale = 0.5
+		elseif math.abs(scale - 0.5) < 0.01 then
+			scale = 1
+		else
+			scale = 1
+		end
+
+		EID.Config[scaleConfigName] = scale
+		EID.Scale = scale
+	end
 end
 
 ---------------------------------------------------------------------------
@@ -512,7 +580,7 @@ function EID:printBulletPoints(description, renderPos)
 	local textScale = Vector(EID.Scale, EID.Scale)
 	description = EID:replaceShortMarkupStrings(description)
 	for line in string.gmatch(description, "([^#]+)") do
-		local formatedLines = EID:fitTextToWidth(line, textboxWidth)
+		local formatedLines = EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID.Config["Language"]])
 		local textColor = EID:getTextColor()
 		for i, lineToPrint in ipairs(formatedLines) do
 			-- render bulletpoint
@@ -855,6 +923,8 @@ local function onRender(t)
 	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
 		EID.isHidden = not EID.isHidden
 	end
+
+	handleScaleKey()
 	
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then --if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu isn't currently in the "Visuals" or "Crafting" tab of EID
 		return
