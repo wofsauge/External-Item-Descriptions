@@ -264,7 +264,7 @@ end
 -- returns the current text position
 function EID:getTextPosition()
 	local posVector = Vector(EID.UsedPosition.X, EID.UsedPosition.Y)
-	for a,modifier in pairs(EID.PositionModifiers) do
+	for _, modifier in pairs(EID.PositionModifiers) do
 		posVector = posVector + modifier
 	end
 	return posVector
@@ -484,6 +484,7 @@ end
 function EID:getXMLDescription(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local desc= nil
+	if SubType == 0 then return "(no description available)" end
 	if tableName == "collectibles" then
 		desc = EID.itemConfig:GetCollectible(SubType).Description
 	elseif tableName == "trinkets" then
@@ -507,7 +508,9 @@ function EID:hasDescription(entity)
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EID.Config["DisplayCardInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
-		return isAllowed and entity.SubType > 0
+		return isAllowed and (entity.SubType > 0 or
+			-- For Flip descriptions, allow 5.100.0 pedestals to have descriptions under VERY specific criteria!
+			(REPENTANCE and EID:getEntityData(entity, "EID_FlipItemID") and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP)))
 	end
 	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and REPENTANCE then
 		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize") and EID.CraneItemType[tostring(entity.InitSeed)]
@@ -527,11 +530,7 @@ end
 -- Generates a string with the defined pixel-length using a custom 1px wide character
 -- This will only work for this specific custom font
 function EID:generatePlaceholderString(length)
-	local placeholder = ""
-	for i = 1, length do
-		placeholder = placeholder .. "¤"
-	end
-	return placeholder
+	return string.rep("¤", length)
 end
 
 -- Returns the inlineIcon object of a given Iconstring
@@ -542,7 +541,14 @@ function EID:getIcon(str)
 	end
 	local strTrimmed = string.gsub(str,"{{(.-)}}",function(a) return a end )
 	if #strTrimmed <= #str then
-		return EID:createItemIconObject(strTrimmed) or EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
+		local itemIconObj = EID:createItemIconObject(strTrimmed)
+		if itemIconObj then return itemIconObj end
+
+		if type(EID.InlineIcons[strTrimmed]) == "function" then
+			return EID.InlineIcons[strTrimmed](str) or EID.InlineIcons["ERROR"]
+		end
+
+		return EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
 	else
 		return EID.InlineIcons["ERROR"]
 	end
@@ -612,9 +618,14 @@ function EID:filterIconMarkup(text, textPosX, textPosY)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
+
+		local callback = EID._NextIconModifier
+		EID._NextIconModifier = nil
+		
 		local lookup = EID:getIcon(word)
 		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Scale
-		table.insert(spriteTable, {lookup, preceedingTextWidth})
+
+		table.insert(spriteTable, {lookup, preceedingTextWidth, callback})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
 	end
 	return text, spriteTable
@@ -627,21 +638,26 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 		local Xoffset = sprite[1][5] or -1
 		local Yoffset = sprite[1][6] or 0
 		local spriteObj = (type(sprite[1][7]) == "function" and sprite[1][7]()) or sprite[1][7] or EID.InlineIconSprite
-		if sprite[1][2] >=0 then
+		if sprite[1][2] >= 0 then
 			spriteObj:SetFrame(sprite[1][1], sprite[1][2])
 		elseif not spriteObj:IsPlaying(sprite[1][1]) or spriteObj:IsFinished(sprite[1][1]) then
 			spriteObj:Play(sprite[1][1],true)
 		else
 			spriteObj:Update()
 		end
-		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale)
+
+		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale, sprite[3])
 	end
 end
 
 -- helper function to render Icons in specific EID settins
-function EID:renderIcon(spriteObj, posX, posY)
+function EID:renderIcon(spriteObj, posX, posY, callback)
 	spriteObj.Scale = Vector(EID.Scale, EID.Scale)
 	spriteObj.Color = Color(1, 1, 1, EID.Config["Transparency"], 0, 0, 0)
+	if callback then
+		callback(spriteObj)
+	end
+
 	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
 end
 
@@ -700,29 +716,103 @@ end
 
 -- Fits a given string to a specific width
 -- returns the string as a table of lines
-function EID:fitTextToWidth(str, textboxWidth)
+function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formatedLines = {}
 	local curLength = 0
-	local text = ""
-	for word in string.gmatch(str, "([^%s]+)") do
-		local colorFiltered = EID:filterColorMarkup(word, EID:getTextColor())
-		local filteredWord = ""
-		for _, filtered in ipairs(colorFiltered) do
-			filteredWord = filteredWord .. filtered[1]
-		end
-		local strFiltered, spriteTable = EID:filterIconMarkup(filteredWord, 0, 0)
-		local wordLength = EID:getStrWidth(strFiltered)
+	local text = {}
 
-		if curLength + wordLength <= textboxWidth or curLength < 12 then
-			text = text .. word .. " "
-			curLength = curLength + wordLength
-		else
-			table.insert(formatedLines, text)
-			text = word .. " "
-			curLength = wordLength
+	local cursor = 1
+	local word_begin_index = 1
+
+	local byte = string.byte -- for speed up
+	local sub = string.sub
+	local byte_space = string.byte(' ')
+
+	while cursor <= #str do
+		-- ascii word: 0x0xxxxxxx
+		-- utf8 word (sequence): 0x11xxxxxx 0x10xxxxxx 0x10xxxxxx ... 0x10xxxxxx
+		-- see https://en.wikipedia.org/wiki/UTF-8
+		-- we can only break after space, or before 0x11xxxxxx
+		local can_break_after_cursor = false
+		local cur, next = byte(str,cursor), byte(str,cursor+1)
+		if
+			-- cond#1: we can break at the end of string
+			cursor == #str or
+			-- cond#2: we can break after space
+		 	cur == byte_space or 
+			-- handle utf8 characters
+			(breakUtf8Chars and(
+			 -- cond#3: we can break if the next character is 0x11xxxxxx
+			 ((next & 0xC0) == 0xC0) or 
+			 -- cond#4: we can also break if the current is 0x10xxxxxx while the next is ascii but not space
+			 (((cur & 0xC0) == 0x80) and (next~= byte_space and (next & 0x80) == 0x00))  
+			))
+			then
+				--[[
+					-------------------ascii only---------------
+					word will be separated by spaces.
+					wordA |wordB  |wordC |^%@&Q%#^&#@!! |aksldj
+					      ↑
+					      cond#2
+					we may break after every space.
+					spaces | | | | | |woops
+					       ↑
+					       cond#2
+					-------------------UTF8 only----------------
+					word is 0x11xxxxxx followed by several 0x10xxxxxx until the next 0x11xxxxxx (not included)
+					你|好|，|世|界|！|↑|↑|↑|↑
+					  ↑
+					  cond#3
+					byte data of a word:
+					[0x11xxxxxx,0x10xxxxxx,0x10xxxxxx, (next is 0x11xxxxxx, cond#3)] 
+					--------------------ascii->utf8------------
+					utf8 word must start with 0x11xxxxxx, so cond#3 split before it.
+					word|世|界
+					    |  ↑
+					    ↑  cond#3
+					    cond#3
+					
+					world |means |世|界
+					             ↑
+					             cond#2
+					-------------------utf8->ascii--------------
+					世|界|是|world
+					     | ↑
+					     ↑ cond#4
+					     cond#3
+					世|界|是 |world
+					     |   ↑
+					     ↑   cond#2
+					     cond#3
+				]]
+
+				-- we can break after str[cursor]
+				local word = sub(str, word_begin_index, cursor)
+				
+				local colorFiltered = EID:filterColorMarkup(word, EID:getTextColor())
+				local filteredWord = {}
+				for _, filtered in ipairs(colorFiltered) do
+					table.insert(filteredWord, filtered[1])
+				end
+				local strFiltered, spriteTable = EID:filterIconMarkup(table.concat(filteredWord), 0, 0)
+				local wordLength = EID:getStrWidth(strFiltered)
+		
+				if curLength + wordLength <= textboxWidth or curLength < 12 then
+					table.insert(text, word)
+					curLength = curLength + wordLength
+				else
+					table.insert(formatedLines, table.concat(text))
+					text = { word }
+					curLength = wordLength
+				end
+
+				-- next word starts here
+				word_begin_index = cursor + 1
 		end
+		cursor = cursor + 1
 	end
-	table.insert(formatedLines, text)
+
+	table.insert(formatedLines, table.concat(text))
 	return formatedLines
 end
 
@@ -732,7 +822,6 @@ end
 -- Returns the last used KColor
 function EID:renderString(str, position, scale, kcolor)
 	str = EID:replaceShortMarkupStrings(str)
-	EID.LastRenderCallColor = EID:copyKColor(kcolor) -- Save last Color for eventual Color Reset call
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
 	local offsetX = 0
 	for i, textPart in ipairs(textPartsTable) do
@@ -889,8 +978,9 @@ function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 end
 
 function EID:isCollectibleUnlockedAnyPool(collectibleID)
-	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data; currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
-	if not REPENTANCE then return true end
+	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data
+	--Currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
+	if not REPENTANCE or EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then return true end
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if item == nil then return false end
 	if EID.itemUnlockStates[collectibleID] == nil then
@@ -922,13 +1012,18 @@ end
 -- Converts a given table into a string containing the crafting icons of the table
 -- Example input: {1,2,3,4,5,6,7,8}
 -- Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
-function EID:tableToCraftingIconsFull(craftTable, sortTable)
-	if (sortTable == nil) then sortTable = true end
+local emptyPickupTable = {}
+for i=1,29 do emptyPickupTable[i] = 0 end
+function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
-	if (sortTable) then table.sort(sortedList, function(a, b) return a < b end) end
+	table.sort(sortedList, function(a, b) return a < b end)
+	local visitedItemCount = {table.unpack(emptyPickupTable)}
+
 	local iconString = ""
 	for _,nr in ipairs(sortedList) do
-		iconString = iconString.."{{Crafting"..nr.."}}"
+		visitedItemCount[nr] = visitedItemCount[nr] + 1
+		local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, visitedItemCount[nr], false) and "{{IconGreenTint}}" or "" 
+		iconString = iconString..completedColoring.."{{Crafting"..nr.."}}"
 	end
 	return iconString
 end
@@ -936,32 +1031,30 @@ end
 -- Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
 -- Example input: {1,1,1,2,2,3,3,3}
 -- Result: "3{{Crafting1}}2{{Crafting2}}3{{Crafting3}}"
-local emptyPickupTable = {}
-for i=1,29 do emptyPickupTable[i] = 0 end
 function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
 	local filteredList = {table.unpack(emptyPickupTable)}
 	for _,nr in ipairs(sortedList) do
-		filteredList[nr] = filteredList[nr] +1
+		filteredList[nr] = filteredList[nr] + 1
 	end
 	local iconString = ""
 	for nr,count in ipairs(filteredList) do
 		if (count > 0) then
-			local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, count) and "{{ColorBagComplete}}" or "" 
+			local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, count, true) and "{{ColorBagComplete}}" or "" 
 			iconString = iconString..completedColoring..count.."{{Crafting"..nr.."}}{{CR}}"
 		end
 	end
 	return iconString
 end
 
-function EID:bagContainsItem(itemID, itemCount)
+function EID:bagContainsItem(itemID, itemCount, checkExactAmount)
 	local foundCount = 0
 	for _, bagItem in ipairs(EID.BagItems) do
 		if bagItem == itemID then
 			foundCount = foundCount + 1
 		end
 	end
-	return foundCount == itemCount
+	return checkExactAmount and foundCount == itemCount or itemCount <= foundCount 
 end
 
 function EID:handleHUDElement(hudElement)
@@ -1012,11 +1105,13 @@ function EID:fixDefinedFont()
 	local curLang = EID.Config["Language"]
 	local curFont = EID.Config["FontType"]
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
-		if curFont == v then
+		if curFont == v.name then
 			return false
 		end
 	end
-	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1]
+	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1].name
+	EID.lineHeight = EID.descriptions[curLang].fonts[1].lineHeight
+	EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth
 	return true
 end
 
@@ -1055,6 +1150,7 @@ end
 function EID:setModIndicatorName(newName)
 	EID.ModIndicator[EID._currentMod].Name = newName
 end
+
 -- Set an icon for the mod which will be displayed next to the item name
 function EID:setModIndicatorIcon(iconMarkup, override)
 	if override == nil then override = true end -- overide previous value if not specified

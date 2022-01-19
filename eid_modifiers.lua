@@ -17,7 +17,7 @@ local game = Game()
 				local birthrightDesc = EID:getDescriptionEntry("birthright", playerID+1)
 				if birthrightDesc ~=nil then
 					local playerName = birthrightDesc[1] or player:GetName()
-					EID:appendToDescription(descObj, "{{CustomTransformation}} {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
+					EID:appendToDescription(descObj, (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}").." {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
 				end
 			end
 		end
@@ -106,7 +106,7 @@ local game = Game()
 		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 			return false
 		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SPINDOWN_DICE) then
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SPINDOWN_DICE) or (EID.absorbedSpindown and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_VOID)) then
 			return true
 		end
 		return false
@@ -221,7 +221,7 @@ local game = Game()
 								if multiplier == 2 then v = 16.5
 								elseif multiplier == 3 then v = (1/6)*100 end -- convert 17% to 33% or 50%
 							elseif v == 33 and (multiplier == 1.5 or multiplier == 3) then v = (1/3)*100 end -- convert 33% to 50% or 100%
-							return "{{ColorGold}}" .. string.format("%.4g",v*multiplier) .. "{{ColorText}}"
+							return "{{ColorGold}}" .. string.format("%.4g",v*multiplier) .. "{{CR}}"
 						end
 					end)
 				end
@@ -408,7 +408,8 @@ local game = Game()
 	
 	local function FlipCallback(descObj)
 		local flipItemID = EID:getEntityData(descObj.Entity, "EID_FlipItemID")
-		if Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) then
+		if flipItemID <= 0 then return descObj end
+		if descObj.ObjSubType == 0 or Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) then
 			local descEntry = EID:getDescriptionObj(5, 100, flipItemID)
 			return descEntry
 		end

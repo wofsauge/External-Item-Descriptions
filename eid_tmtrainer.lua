@@ -20,6 +20,18 @@ local logLocation = os.getenv("SYSTEMDRIVE") .. "/Users/" .. os.getenv("USERNAME
 local logFound = false
 local logCursor = 0
 
+local triggerColors = {
+	chain = "{{ColorSilver}}",
+	active = "{{ColorLime}}",
+	pickup_collected = "{{ColorYellow}}",
+	enemy_kill = "{{ColorRed}}",
+	damage_taken = "{{ColorRed}}",
+	entity_spawned = "",
+	tear_fire = "{{ColorCyan}}",
+	enemy_hit = "{{ColorEIDError}}",
+	room_clear = "{{ColorOrange}}",
+}
+
 local function entityToName(e, plural)
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
 	-- -1 is often used as an "any of this type", even if there's only one of that type, so converting it to 0 can help find names
@@ -28,10 +40,10 @@ local function entityToName(e, plural)
 	local name = localizedNames[e] or EID.XMLEntityNames[e] or localizedNames[eWithZero] or EID.XMLEntityNames[eWithZero] or e
 	
 	--print out entities with no name yet
-	if name == e then print("No name found for " .. e .. " (could be modded)")
+	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)")
 	elseif plural then name = name .. localizedNames["pluralize"] end
 	
-	return name
+	return "{{ColorGray}}" .. name .. "{{CR}}"
 end
 
 local function parseEffectLine(raw)
@@ -61,7 +73,7 @@ local function parseEffectLine(raw)
 			if (i ~= #words) then name = name .. " " end
 		end
 		
-		replacements[1] = "{{Collectible" .. Isaac.GetItemIdByName(name) .. "}}" .. name
+		replacements[1] = "{{Collectible" .. Isaac.GetItemIdByName(name) .. "}} " .. name
 	elseif effectType == "convert_entities" then
 		replacements[1] = entityToName(words[6], true)
 		replacements[2] = entityToName(words[8])
@@ -77,7 +89,7 @@ local function parseEffectLine(raw)
 	
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
 	local eidString = ""
-	if effectTrigger ~= lastEffectTrigger then eidString = eidString .. (localizedNames[effectTrigger] or (effectTrigger .. "#")) end
+	if effectTrigger ~= lastEffectTrigger then eidString = eidString .. triggerColors[effectTrigger] .. (localizedNames[effectTrigger] or (effectTrigger .. "#")) end
 	if printEffect then eidString = eidString .. (localizedNames[effectType] or fullEffect) .. "#" end
 	for k,v in ipairs(triggerReplacements) do eidString = string.gsub(eidString, "{T" .. k .. "}", v) end
 	for k,v in ipairs(replacements) do eidString = string.gsub(eidString, "{" .. k .. "}", v) end
@@ -87,8 +99,11 @@ local function parseEffectLine(raw)
 end
 
 local function CheckLogForItems(_)
-	if not EID.Config["DisplayGlitchedItemInfo"] or not logFound or game:GetFrameCount() % 5 ~= 0 or not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then return end
-	
+	-- Check log.txt every 5 frames if there's a collectible we haven't read the data for yet
+	-- (Should work well for Corrupted Data)
+	if game:GetFrameCount() % 5 ~= 0 or not EID.Config["DisplayGlitchedItemInfo"] or not logFound or
+		Isaac.GetItemConfig():GetCollectible(maxNumber - spawnedItems - 1) == nil then return end
+		
 	local numEffects = 0
 	local itemScore = 0
 	local eidDesc = ""

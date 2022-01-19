@@ -214,7 +214,7 @@ local repCollectibles={
 	[562] = {"562", "Rock Bottom", "Prevents stats from being lowered for the rest of the run"}, -- Rock Bottom
 	[563] = {"563", "Nancy Bombs", "+5 bombs#Bombs explode with a random bomb effect"}, -- Nancy Bombs
 	[564] = {"564", "A Bar of Soap", "↑ +0.5 Tears up#↑ +0.2 Shot Speed up"}, -- A Bar of Soap
-	[565] = {"565", "Blood Puppy", "Familiar that chases enemies#After killing enough enemies, it becomes more powerful but will also try to hurt you#Attacking it returns it to normal"}, -- Blood Puppy
+	[565] = {"565", "Blood Puppy", "Familiar that chases enemies#After killing 15 enemies, it deals more damage, drops half a heart every 10 kills, but will also try to hurt you#After killing 40 enemies, it deals even more damage, drops full hearts, and can destroy rocks#Attacking it returns it to normal"}, -- Blood Puppy
 	[566] = {"566", "Dream Catcher", "+1 half Soul Heart when entering a new floor#Displays upcoming Treasure Room item and boss in the stage transition nightmare"}, -- Dream Catcher
 	[567] = {"567", "Paschal Candle", "↑ +0.4 Fire Rate up for every room cleared without taking damage#Up to +2 Fire Rate possible"}, -- Paschal Candle
 	[568] = {"568", "Divine Intervention", "Double tapping a fire key creates a shield#Shield lasts 1 second, pushes enemies away and reflects enemy projectiles and lasers"}, -- Divine Intervention
@@ -971,12 +971,12 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	[0] = "Damage", "Fire Rate", "Shot Speed", "Range", "Speed", "Tear Effects", "Tear Color", "Flight", "Attack Type", "Familiars", "Luck", "Size", "Color", "Chest Contents", [16] = "All Stats",
 	
 	-- Attribute triggers
-	chain = "Then: ",
+	chain = "Then:{{CR}} ",
 	active = "On use:#",
 	pickup_collected = "When you collect a pickup:#", --chance to?
 	enemy_kill = "On kill, chance to:#",
 	damage_taken = "When you take damage:#", --chance to?
-	entity_spawned = "When a {{ColorGray}}{T1}{{ColorText}} is spawned:#",
+	entity_spawned = "When a {T1} is spawned:#",
 	tear_fire = "When you fire a tear, chance to:#",
 	enemy_hit = "On hitting an enemy, chance to:#",
 	room_clear = "On room clear:#", --chance to?
@@ -984,9 +984,9 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	-- Attribute effects
 	area_damage = "Deal {1} damage in an area around you", 
 	add_temporary_effect = "Gain {1} for the room",
-	convert_entities = "Convert all {{ColorGray}}{1}{{ColorText}} in the room to {{ColorGray}}{2}{{ColorText}}",
+	convert_entities = "Convert all {1} in the room to {2}",
 	use_active_item = "Use {1}",
-	spawn_entity = "Spawn a {{ColorGray}}{1}{{ColorText}}",
+	spawn_entity = "Spawn a {1}",
 	fart = "Fart with size {1}",
 	
 	-- Generic entity names not obtained from entities2.xml
@@ -1041,3 +1041,12 @@ EID.descriptions[languageCode].AchievementWarningText = "Achievements are disabl
 EID.descriptions[languageCode].OldGameVersionWarningText = "Your version of Repentance is not up-to-date!#Only the newest version is officially supported#(This warning can be disabled in the config)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Use the No Recipes display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
+
+
+-- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
+if EID.enableDebug then
+	EID.descriptions[languageCode].repCollectibles = repCollectibles
+	EID.descriptions[languageCode].repTrinkets = repTrinkets
+	EID.descriptions[languageCode].repCards = repCards
+	EID.descriptions[languageCode].repPills = repPills
+end

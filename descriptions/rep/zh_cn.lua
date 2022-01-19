@@ -175,7 +175,7 @@ local repCollectibles={
 	[440] = {"440", "肾结石", "发射眼泪时几率进行蓄力攻击#松开发射键后发射肾结石和一串眼泪"}, -- Kidney Stone
 	[442] = {"442", "黑王子之冠", "!!! 仅有1红心时：#↑ +2发射速度#↑ +1.5射程#↑ +0.2弹速#没有红心的角色无效)"}, -- Dark Princes Crown
 	[444] = {"444", "铅笔", "每发射15颗眼泪，发射一串眼泪"}, -- Lead Pencil
-	[448] = {"448", "玻璃碎片", "受减红心的伤时：#在角色周围喷洒眼泪#攻击时控制喷出眼泪的方向#每20秒受到半红心伤害#直到捡到红心或无红心效果终止#不致死#受伤时有25%几率掉落1红心"}, -- Shard of Glass
+	[448] = {"448", "玻璃碎片", "受减红心的伤时，喷出红色眼泪#攻击时控制喷出眼泪的方向#生效后，每20秒受到半心伤害#直到捡到红心或无红心为止#不致死"}, -- Shard of Glass
 	[451] = {"451", "塔罗牌桌布", "掉落1个随机卡牌或符文#某些卡牌有额外或双倍效果"}, -- Tarot Cloth
 	[453] = {"453", "复杂性骨折", "↑ +0.38射程#骨头眼泪#眼泪击中时碎成1-3个小骨头碎片"}, -- Compound Fracture
 	[455] = {"455", "老爸丢失的硬币", "↑ +0.38射程#生成1运气硬币"},
@@ -549,7 +549,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[291] = "每有1便便类敌人额外生成1魂火", -- Flush!
 	[292] = "每有1此类魂火+10%{{DevilRoom}}恶魔房或{{AngelRoom}}天使房几率", -- Satanic Bible
 	[293] = "摧毁时发射4向激光", -- Head of Krampus
-	[294] = "单房间魂火#不能发射眼泪#摧毁时产生棉豆的效果", -- Butter Bean
+	[294] = "单房间魂火#不能发射眼泪#摧毁时产生棉豆效果", -- Butter Bean
 	[295] = "摧毁时几率掉落1硬币", -- Magic Fingers
 	[296] = "无特殊效果", -- Converter
 	[297] = "无特殊效果", -- Pandora's Box
@@ -605,6 +605,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[523] = "魂火只在掉落物品时生成#摧毁时生成随机掉落物", -- Moving Box
 	[527] = "不能发射眼泪#清理房间后，魂火会打来箱子/门", -- Mr. ME!
 	[536] = "将所有魂火变成半红心#献祭时生成1强力魂火", -- Sacrificial Altar
+
 	[545] = "摧毁时生成1友好的骷髅仔", -- Book of the Dead
 	[550] = "眼泪有10%几率对敌人触发践踏", -- Broken Shovel
 	[552] = "眼泪有10%几率对敌人触发践踏#另会生成1个高血量魂火，不能发射眼泪", -- Mom's Shovel
@@ -850,7 +851,7 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
 
 EID.descriptions[languageCode].tarotClothBuffs = {
-	[2] = "同时获得{{Collectible34}}彼列之书效果", -- I - The Magician
+	[2] = "同时获得 {{Collectible34}} 彼列之书效果", -- I - The Magician
 	[3] = "第一只脚落下后马上落下第二只", -- II - The High Priestess
 	[4] = "属性提升量为4倍", -- III - The Empress
 	[5] = "如果Boss尚未击败，传送时获得1魂心", -- IV - The Emperor
@@ -1044,4 +1045,4 @@ if EID.enableDebug then
 	EID.descriptions[languageCode].repTrinkets = repTrinkets
 	EID.descriptions[languageCode].repCards = repCards
 	EID.descriptions[languageCode].repPills = repPills
-end 
+end
