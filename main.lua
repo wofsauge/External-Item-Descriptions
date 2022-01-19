@@ -512,7 +512,7 @@ function EID:printBulletPoints(description, renderPos)
 	local textScale = Vector(EID.Scale, EID.Scale)
 	description = EID:replaceShortMarkupStrings(description)
 	for line in string.gmatch(description, "([^#]+)") do
-		local formatedLines = EID:fitTextToWidth(line, textboxWidth)
+		local formatedLines = EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID.Config["Language"]])
 		local textColor = EID:getTextColor()
 		for i, lineToPrint in ipairs(formatedLines) do
 			-- render bulletpoint

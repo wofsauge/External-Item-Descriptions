@@ -720,28 +720,103 @@ end
 
 -- Fits a given string to a specific width
 -- returns the string as a table of lines
-function EID:fitTextToWidth(str, textboxWidth)
+function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formatedLines = {}
 	local curLength = 0
 	local text = ""
-	for word in string.gmatch(str, "([^%s]+)") do
-		local colorFiltered = EID:filterColorMarkup(word, EID:getTextColor())
-		local filteredWord = ""
-		for _, filtered in ipairs(colorFiltered) do
-			filteredWord = filteredWord .. filtered[1]
-		end
-		local strFiltered, spriteTable = EID:filterIconMarkup(filteredWord, 0, 0)
-		local wordLength = EID:getStrWidth(strFiltered)
 
-		if curLength + wordLength <= textboxWidth or curLength < 12 then
-			text = text .. word .. " "
-			curLength = curLength + wordLength
-		else
-			table.insert(formatedLines, text)
-			text = word .. " "
-			curLength = wordLength
+	local cursor = 1
+	local word_begin_index = 1
+
+	local byte = string.byte -- for speed up
+	local sub = string.sub
+	local byte_space = string.byte(' ')
+
+	while cursor <= #str do
+		-- ascii word: 0x0xxxxxxx
+		-- utf8 word (sequence): 0x11xxxxxx 0x10xxxxxx 0x10xxxxxx ... 0x10xxxxxx
+		-- see https://en.wikipedia.org/wiki/UTF-8
+		-- we can only break after space, or before 0x11xxxxxx
+		local can_break_after_cursor = false
+		local cur, next = byte(str,cursor), byte(str,cursor+1)
+		if
+		    -- cond#1: we can break at the end of string
+			cursor == #str or
+			-- cond#2: we can break after space
+		 	cur == byte_space or 
+			-- handle utf8 characters
+			(breakUtf8Chars and(
+			 -- cond#3: we can break if the next character is 0x11xxxxxx
+			 ((next & 0xC0) == 0xC0) or 
+			 -- cond#4: we can also break if the current is 0x10xxxxxx while the next is ascii but not space
+			 (((cur & 0xC0) == 0x80) and (next~= byte_space and (next & 0x80) == 0x00))  
+			))
+			then
+
+				--[[
+					-------------------ascii only---------------
+					word will be separated by spaces.
+					wordA |wordB  |wordC |^%@&Q%#^&#@!! |aksldj
+					      ↑
+					      cond#2
+					we may break after every space.
+					spaces | | | | | |woops
+					       ↑
+					       cond#2
+					-------------------UTF8 only----------------
+					word is 0x11xxxxxx followed by several 0x10xxxxxx until the next 0x11xxxxxx (not included)
+					你|好|，|世|界|！|↑|↑|↑|↑
+					  ↑
+					  cond#3
+					byte data of a word:
+					[0x11xxxxxx,0x10xxxxxx,0x10xxxxxx, (next is 0x11xxxxxx, cond#3)] 
+					--------------------ascii->utf8------------
+					utf8 word must start with 0x11xxxxxx, so cond#3 split before it.
+					word|世|界
+					    |  ↑
+					    ↑  cond#3
+					    cond#3
+					
+					world |means |世|界
+					             ↑
+					             cond#2
+					-------------------utf8->ascii--------------
+					世|界|是|world
+					     | ↑
+					     ↑ cond#4
+					     cond#3
+					世|界|是 |world
+					     |   ↑
+					     ↑   cond#4
+					     cond#3
+				]]
+
+				-- we can break after str[cursor]
+				local word = sub(str, word_begin_index, cursor)
+				
+				local colorFiltered = EID:filterColorMarkup(word, EID:getTextColor())
+				local filteredWord = ""
+				for _, filtered in ipairs(colorFiltered) do
+					filteredWord = filteredWord .. filtered[1]
+				end
+				local strFiltered, spriteTable = EID:filterIconMarkup(filteredWord, 0, 0)
+				local wordLength = EID:getStrWidth(strFiltered)
+		
+				if curLength + wordLength <= textboxWidth or curLength < 12 then
+					text = text .. word
+					curLength = curLength + wordLength
+				else
+					table.insert(formatedLines, text)
+					text = word
+					curLength = wordLength
+				end
+
+				-- next word starts here
+				word_begin_index = cursor + 1
 		end
+		cursor = cursor + 1
 	end
+
 	table.insert(formatedLines, text)
 	return formatedLines
 end
