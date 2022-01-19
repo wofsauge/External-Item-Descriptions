@@ -2,6 +2,9 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
+-- Last Sync Revise: 2022.01.19
+-- Last Full Check: N/A -- I will have a full check someday else.
+
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
@@ -40,7 +43,7 @@ local repCollectibles={
 	[67] = {"67", "玛姬姐妹", "普通眼泪跟班#每次射击造成6伤害"}, -- Sister Maggy
 	[70] = {"70", "生长激素", "↑ +1.0伤害#↑ +0.2移速"}, -- Growth Hormones
 	[71] = {"71", "小蘑菇", "↑ +0.3移速#↑ +1.5射程#↑ 体型缩小"}, -- Mini Mush
-	[72] = {"72", "念珠", "+3魂心#↑ +0.5射速# {{Collectible33}} 圣经添加至所有道具池"}, -- Rosary
+	[72] = {"72", "念珠", "+3魂心#↑ +0.5射速#{{Collectible33}}圣经添加至所有道具池"}, -- Rosary
 	[77] = {"77", "彩虹独角兽", "无敌#每秒造成20接触伤害"}, -- My Little Unicorn
 	[78] = {"78", "启示录", "+1魂心#使用后天启骑士会替代本层Boss#↑ +17.5% {{DevilRoom}}恶魔房或{{AngelRoom}}天使房几率"}, -- Book of Revelations
 	[79] = {"79", "咒印", "↑ +1.0伤害#↑ +0.2移速#+1黑心"}, -- The Mark
@@ -108,7 +111,7 @@ local repCollectibles={
 	[280] = {"280", "长腿蛛妹妹", "在有敌人的房间里随机生成蓝蜘蛛#最多5只#魅惑接触的敌人"}, -- Sissy Longlegs
 	[283] = {"283", "一百面骰", "重置所有底座道具，属性，掉落物，持有的被动道具#复制房间内随机1掉落物#重新开始所在房间并重新生成敌人，并将敌人重置#重置房间内所有岩石"}, -- D100
 	[285] = {"285", "十面骰", "重置房间内所有敌人#尝试将敌人重置成最大生命近似的敌人"}, -- D10
-	[287] = {"287", "秘密之书", "施加 {{Collectible54}}藏宝图， {{Collectible21}}罗盘， {{Collectible246}}蓝地图的效果之一#只产生未拥有的效果#如果三者都已拥有，施加 {{Collectible76}}X光透视效果"}, -- Book of Secrets
+	[287] = {"287", "秘密之书", "施加{{Collectible54}}藏宝图，{{Collectible21}}罗盘，{{Collectible246}}蓝地图的效果之一#只产生未拥有的效果#如果三者都已拥有，施加{{Collectible76}}X光透视效果"}, -- Book of Secrets
 	[288] = {"288", "蜘蛛盒", "生成4-8只蓝蜘蛛"}, -- Box of Spiders
 	[289] = {"289", "红蜡烛", "投掷红火#火焰造成或抵挡5次伤害后或10秒后消失"}, -- Red Candle
 	[291] = {"291", "冲水！", "使所有非Boss敌人变成便便#立即杀死便便敌人和Boss#熄灭火堆并将房间充满水#将岩浆坑变成可行走的地面"}, -- Flush!
@@ -116,7 +119,7 @@ local repCollectibles={
 	[294] = {"294", "棉豆", "击退附近的敌人和弹幕#将敌人击退到障碍物上会造成10伤害"}, -- Butter Bean
 	[295] = {"295", "魔术手指", "对房间内所有敌人造成角色伤害x2+10的伤害#价格：1硬币"}, -- Magic Fingers
 	[296] = {"296", "转换器", "!!! 转换：#1魂心或黑心变成1心之容器"}, -- Converter
-	[297] = {"297", "潘多拉魔盒", "{{Warning}} 一次性 {{Warning}}(按F5调整字大小)#根据所在层掉落以下物品：#1章1：2魂心#1章2：2钥匙+2炸弹#2章1：1Boss房道具#2章2：1章1+2章1#3章1：4魂心#3章2：20硬币#4章1：2Boss房道具#4章2： {{Collectible33}} 圣经#???：无#暗室：解锁 {{Collectible523}} 搬家盒#地狱：1恶魔房道具+1黑心#大教堂：1天使房道具+1永恒之心#宝箱层：1硬币#家： {{Collectible580}} 红钥匙#若有迷宫诅咒则为章节1层"}, -- Pandora's Box
+	[297] = {"297", "潘多拉魔盒", "{{Warning}} 一次性，根据所在层掉落以下物品：#1章1：2魂心#1章2：2钥匙+2炸弹#2章1：1Boss房道具#2章2：1章1+2章1#3章1：4魂心#3章2：20硬币#4章1：2Boss房道具#4章2：{{Collectible33}}圣经#???：无#暗室：解锁{{Collectible523}}搬家盒#地狱：1恶魔房道具+1黑心#大教堂：1天使房道具+1永恒之心#宝箱层：1硬币#家：{{Collectible580}}红钥匙#若有迷宫诅咒则为章节1层"}, -- Pandora's Box
 	[300] = {"300", "白羊座", "↑ +0.25移速#对敌人造成25接触伤害#移速不低于为0.85才能造成伤害，且自己不会受伤"}, -- Aries
 	[307] = {"307", "摩羯座", "↑ +1心之容器#↑ +0.5伤害#↑ +0.1移速#↑ +0.75射程#↑ +0.5发射速度#给予1炸弹，硬币和钥匙"}, -- Capricorn
 	[308] = {"308", "水瓶座", "留下水迹#水迹每秒造成66%的角色伤害的接触伤害#水迹与眼泪效果有协同效应"}, -- Aquarius
@@ -181,9 +184,9 @@ local repCollectibles={
 	[462] = {"462", "彼列之眼", "↑ +1.5射程#穿透眼泪#眼泪击中第1个敌人后，造成双倍伤害并获得跟踪效果"}, -- Eye of Belial
 	[464] = {"464", "平衡符号", "+2魂心#精英怪掉落掉落物更频繁#生成掉落物的优先级取决于角色最缺少的掉落物"}, -- Glyph of Balance
 	[472] = {"472", "国王宝宝", "其他跟班都会跟着他并自动射击敌人#角色发射时停止移动#停止发射后传送回角色位置"}, -- King Baby
-	[474] = {"474", "损坏的玻璃大炮", "使用时变成玻璃大炮"}, -- broken Glass Canon
+	[474] = {"474", "损坏的玻璃大炮", "使用时变成玻璃大炮"}, -- Broken Glass Canon
 	[476] =	{"476", "一面骰", "复制房间中随机1个掉落物#复制的掉落物可能与原来的不同"},
-	[489] = {"489", "无限面骰", "可作为任何骰子， {{Collectible723}} 计数二十面骰除外#按丢弃键改变当前骰子#根据骰子改变充能，且使用时更新"}, -- D Infinity
+	[489] = {"489", "无限面骰", "可作为任何骰子，{{Collectible723}}计数二十面骰除外#按丢弃键改变当前骰子#根据骰子改变充能，且使用时更新"}, -- D Infinity
 	[491] = {"491", "毒瘾宝宝", "每7个房间掉落1随机胶囊#使用胶囊会使房间内所有敌人中毒"}, -- Acid Baby
 	[493] = {"493", "肾上腺素", "↑ 空的心之容器提高伤害#根据公式，一些例子如下：#1空心+0.3#2空心+0.92,3空心+1.76#4空心+2.79#5空心+3.98"}, -- Adrenaline
 	[494] = {"494", "雅各布天梯", "眼泪击中时会生成1道随机方向电弧#电弧造成角色伤害一半的伤害#电弧可以在敌人间跳跃"}, -- Jacobs Ladder
@@ -202,7 +205,7 @@ local repCollectibles={
 	[553] = {"553", "毛霉菌病", "25%几率发射粘性孢子眼泪#孢子在命中后2.5秒爆炸，造成伤害，使附近敌人中毒，并释放更多孢子"}, --  Mucormycosis
 	[554] = {"554", "恐怖如斯", "使近距离内的敌人恐惧"}, --  2Spooky
 	[555] = {"555", "金剃刀片", "将5硬币转换成+1.2伤害，所在房间内有效#生成5硬币"}, --  Golden Razor
-	[556] = {"556", "炼金硫磺", "所在房间获得 {{Collectible118}} 硫磺火"}, --  Sulfur
+	[556] = {"556", "炼金硫磺", "所在房间获得{{Collectible118} 硫磺火"}, --  Sulfur
 	[557] = {"557", "幸运饼干", "获得1魂心，1张塔罗牌，1个饰品，或1条预言"}, --  Fortune Cookie
 	[558] = {"558", "眼瘤", "几率向随机方向发射1-3颗额外眼泪"}, --  Eye Sore
 	[559] = {"559", "220伏", "连续电击近距离的敌人#电击伤害为角色伤害的75%"}, --  120 Volt
@@ -211,7 +214,7 @@ local repCollectibles={
 	[562] = {"562", "谷底石", "本局游戏中属性不会再降低"}, --  Rock Bottom
 	[563] = {"563", "魅彩炸弹", "+5炸弹#炸弹具有随机爆炸效果"}, --  Nancy Bombs
 	[564] = {"564", "肥皂", "↑ +0.57射速#↑ +0.2弹速"}, --  A Bar of Soap
-	[565] = {"565", "嗜血小宠", "会追逐敌人的跟班#击杀敌人会变强，但也会尝试对角色造成伤害#被角色攻击时恢复正常"}, --  Blood Puppy
+	[565] = {"565", "嗜血小宠", "会追逐敌人的跟班#击杀15个敌人后，会造成更多伤害，每击杀10个敌人掉落半红心，但也会尝试对角色造成伤害#击杀40个敌人后，会造成更多伤害，掉落整红心，可以摧毁岩石#被角色攻击时恢复正常"}, --  Blood Puppy
 	[566] = {"566", "捕梦网", "进入新一层时+半魂心#在过场动画中显示下一层的道具房和Boss"}, --  Dream Catcher
 	[567] = {"567", "逾越节蜡烛", "↑ 完成房间且不受伤害则+0.4发射速度#最多叠加到+2发射速度"}, --  Paschal Candle
 	[568] = {"568", "神圣干预", "双击攻击键生成护盾#护盾持续1秒，能推开敌人，反弹敌人弹幕和激光"}, --  Divine Intervention
@@ -272,14 +275,14 @@ local repCollectibles={
 	[623] = {"623", "尖头钥匙", "+5钥匙#使用时发射1钥匙，可造成伤害，摧毁障碍物，打开箱子或门#被其杀死的敌人有几率掉落箱子里的内容，包括道具"}, --  Sharp Key
 	[624] = {"624", "扩展包", "生成5张随机卡牌"}, --  Booster Pack
 	[625] = {"625", "超级蘑菇", "巨化，持续30秒#提升伤害和射程#持续时间内无敌，能踩碎障碍物和敌人#效果可在多个房间内持续"}, --  Mega Mush
-	[626] = {"626", "菜刀碎片1", "厨刀跟班的第一部件"}, --  Knife Piece 1
-	[627] = {"627", "菜刀碎片2", "与 {{Collectible626}} 厨刀部件结合，生成1个厨刀跟班#可刺杀敌人#能刺开某个血肉之门"}, --  Knife Piece 2
+	[626] = {"626", "菜刀碎片1", "菜刀跟班的第一部件"}, --  Knife Piece 1
+	[627] = {"627", "菜刀碎片2", "与{{Collectible626}}才刀部件结合，生成1个菜刀跟班#可刺杀敌人#能刺开某个血肉之门"}, --  Knife Piece 2
 	[628] = {"628", "死亡证明", "{{Warning}} 一次性 {{Warning}}#传送至含有所有游戏道具的房间#捡起1个道具后回到之前的房间"}, --  Death Certificate
 	[629] = {"629", "机器苍蝇", "环绕物，能发射护盾眼泪"}, --  Bot Fly
 	[630] = {"630", "", "<道具不存在>"},
 	[631] = {"631", "切肉刀", "使敌人分裂为2个小型的，其血量大幅降低"}, --  Meat Cleaver
 	[632] = {"632", "邪眼护符", "↑ +2运气#免疫烧伤，混乱，毒气"}, --  Evil Charm
-	[633] = {"633", "教条", "获得飞行和单次 {{Collectible313}} 神圣斗篷效果#↑ +2.0伤害#↑ +0.1移速#如果角色少于6心则以红心和魂心治疗至6心"}, --  Dogma
+	[633] = {"633", "教条", "获得飞行和单次{{Collectible313}}神圣斗篷效果#↑ +2.0伤害#↑ +0.1移速#如果角色少于6心则以红心和魂心治疗至6心"}, --  Dogma
 	[634] = {"634", "炼狱恶鬼", "在有敌人的房间内地面生成裂缝#走过裂缝时会召唤爆炸幽灵"}, --  Purgatory
 	[635] = {"635", "织布魔偶", "在房间内生成1个跟班，随角色发射方向移动，造成接触伤害#使用时角色与跟班和其所在位置的内容互换位置，获得短时间无敌#传送的敌人受到大量伤害"}, --  Stitches
 	[636] = {"636", "R键", "{{Warning}} 一次性 {{Warning}}#将角色带到新一局开始层#保留道具和掉落物"}, --  R Key
@@ -325,7 +328,7 @@ local repCollectibles={
 	[676] = {"676", "空虚之心", "在开始新一层时，若拥有空的心之容器，获得1个空的心之容器#骨心不计"}, --  Empty Heart
 	[677] = {"677", "灵魂出窍", "受伤时，暂停时间3秒#此时间内变为幽灵#幽灵具有飞行和幽灵眼泪，且免疫一次伤害"}, --  Astral Projection
 	[678] = {"678", "剖腹产", "获得短延迟蓄力攻击，发射婴儿样式的跟踪幽灵眼泪"}, --  C Section
-	[679] = {"679", "亚巴顿宝宝", "发射迷你 {{Collectible399}} 虚空之口进行攻击的跟班"}, --  Lil Abaddon
+	[679] = {"679", "亚巴顿宝宝", "发射迷你{{Collectible399}}虚空之口进行攻击的跟班"}, --  Lil Abaddon
 	[680] = {"680", "水土不服症", "发射时，可蓄力发射短程硫磺火#从角色后方发射"}, --  Montezuma's Revenge
 	[681] = {"681", "黑洞宝宝", "向发射方向飞行，并造成接触伤害的跟班#飞行时吸收掉落物#每吸收1个，增加体积和伤害，生成1只蓝苍蝇#每吸收4个，生成1个通向未探索房间的传送门"}, --  Lil Portal
 	[682] = {"682", "触手朋友", "地面伸出一条触手，并束缚敌人#受缚的敌人受到伤害，减速并无法移动"}, --  Worm Friend
@@ -388,20 +391,20 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 EID.descriptions[languageCode].birthright ={
 	{"以撒", "", "所有道具在2个选择间切换"},
 	{"抹大拉", "", "↑ +1心之容器#心上限提高到18"},
-	{"该隐", "", "↑ +1运气#除暗室和宝箱层外，所有层都含有一个升级的赌博房#极大增强 {{Collectible46}} 幸运脚的获胜几率提高的效果"},
-	{"犹大", "", "{{Collectible34}} 彼列之书变成类似于 {{Collectible584}} 美德之书的被动道具#如果未持有 {{Collectible34}} 彼列之书则获得彼列之书#获得的伤害加成与在其上的主动道具充能量成比例#对特定的主动道具会获得特殊效果"},
+	{"该隐", "", "↑ +1运气#除暗室和宝箱层外，所有层都含有一个升级的赌博房#极大增强{{Collectible46}}幸运脚的获胜几率提高的效果"},
+	{"犹大", "", "{{Collectible34}}彼列之书变成类似于{{Collectible584}}美德之书的被动道具#如果未持有{{Collectible34}}彼列之书则获得彼列之书#获得的伤害加成与在其上的主动道具充能量成比例#对特定的主动道具会获得特殊效果"},
 	{"???", "", "生命提升获得的魂心翻倍"},
 	{"夏娃", "", "无论血量如何，巴比伦娼妇始终激活#不受伤死鸟也会激活"},
 	{"参孙", "", "嗜血获得额外4次伤害加成，新的上限为+14伤害"},
-	{"阿撒泻勒", "", "阿撒泻勒的硫磺火变得更宽，就像超级吐息一样#对伤害无影响"},
+	{"阿撒泻勒", "", "阿撒泻勒的硫磺火变得更宽，就像超级喷射一样#对伤害无影响"},
 	{"拉撒路", "", "无特殊效果，除非死亡并以复活的拉撒路重生#复活的拉撒路+21.6额外伤害，并逐渐减退"},
 	{"伊甸", "", "从随机道具池生成3个随机道具#只能拿1个"},
 	{"游魂", "", "不再产生对游魂无好处的道具#比如：生命提升，飞行，幽灵眼泪，受伤有效的道具"},
 	{"复活的拉撒路", "", "获得+21.6额外伤害，并逐渐减退"},
-	{"黑暗犹大", "", "{{Collectible34}} 彼列之书变成类似于 {{Collectible584}} 美德之书的被动道具#如果未持有 {{Collectible34}} 彼列之书则获得彼列之书#获得的伤害加成与在其上的主动道具充能量成比例"},
+	{"黑暗犹大", "", "{{Collectible34}}彼列之书变成类似于{{Collectible584}}美德之书的被动道具#如果未持有{{Collectible34}}彼列之书则获得彼列之书#获得的伤害加成与在其上的主动道具充能量成比例"},
 	{"莉莉丝", "", "跟班在莉莉丝面前位置"},
 	{"店主", "", "↑ +1心之容器"},
-	{"亚玻伦", "", "使用 {{Collectible477}} 虚空时有几率生成之前被虚空化的道具#属性加成保留#使用的次数越多，生成道具的几率越高"},
+	{"亚玻伦", "", "使用{{Collectible477}}虚空时有几率生成之前被虚空化的道具#属性加成保留#使用的次数越多，生成道具的几率越高"},
 	{"遗骸", "", "灵魂不再受锁，可自由移动"},
 	{"遗骸之魂", "", "灵魂不再受锁，可自由移动"},
 	{"伯大尼", "", "使用魂心充能主动道具时几率不消耗魂心"},
@@ -410,23 +413,23 @@ EID.descriptions[languageCode].birthright ={
 	{"堕化以撒", "", "增加4个额外被动道具槽位#本身不占用槽位"},
 	{"堕化抹大拉", "", "增加1不流失的红心"},
 	{"堕化该隐", "", "道具生成的掉落物数量翻倍"},
-	{"堕化犹大", "", " {{Collectible705}} 暗仪刺刀击中敌人和弹幕的范围变大"},
+	{"堕化犹大", "", "{{Collectible705}}暗仪刺刀击中敌人和弹幕的范围变大"},
 	{"堕化???", "", "增加便便最大携带量为29"},
 	{"堕化夏娃", "", "死亡的红心血凝块生成红心，2秒后消失"},
 	{"堕化参孙", "", "堕化参孙杀死敌人时狂暴计时器增加3秒而不是1秒"},
-	{"堕化阿撒泻勒", "", "堕化阿撒泻勒的 {{Collectible726}} 咳血喷嚏攻击大小加倍"},
+	{"堕化阿撒泻勒", "", "堕化阿撒泻勒的{{Collectible726}}咯血症攻击大小加倍"},
 	{"堕化拉撒路", "", "死亡的堕化拉撒路作为幻影出现#幻影免疫伤害，可以发射眼泪#两个角色都有长子权份的效果"},
 	{"堕化伊甸", "", "在长子权之前拿到的被动和主动道具不再因为受伤而重置"},
 	{"堕化游魂", "", "获得1额外生命#复活的游魂在相同房间中重生并对附近敌人造成200伤害"},
 	{"堕化莉莉丝", "", "正常跟随堕化莉莉丝的跟班与{{Collectible728}}格罗行为一致#每个跟班造成的近战伤害+3"},
 	{"堕化店主", "", "强力吸引短距离消灭的敌人掉落的硬币#对其他硬币无效果"},
 	{"堕化亚玻伦", "", "如果按住发射键，蝗虫会持续对敌人造成伤害而不返回"},
-	{"堕化遗骸", "", "堕化灵魂获得 {{Collectible714}} 召回能力，自动将堕化遗骸从远处取回"},
+	{"堕化遗骸", "", "堕化灵魂获得{{Collectible714}}召回能力，自动将堕化遗骸从远处取回"},
 	{"堕化伯大尼", "", "生成4个品质{{Quality3}}和{{Quality4}}的随机道具魂火，血量比正常魂火高很多"},
 	{"堕化雅各", "", "黑暗以扫分为两个#两者都会同时冲刺"},
 	{"死亡的堕化拉撒路", "", "死亡的堕化拉撒路作为幻影出现#幻影免疫伤害，可以发射眼泪#两个角色都有长子权份的效果"},
-	{"堕化雅各2", "", "黑暗以扫分为两个#两者都会同时冲刺#使用 {{Collectible722}} 孤魂铁索可将两者拴住"},
-	{"堕化遗骸之魂", "", "堕化灵魂获得 {{Collectible714}} 召回能力，自动将堕化遗骸从远处取回"},
+	{"堕化雅各2", "", "黑暗以扫分为两个#两者都会同时冲刺#使用{{Collectible722}}孤魂铁索可将两者拴住"},
+	{"堕化遗骸之魂", "", "堕化灵魂获得{{Collectible714}}召回能力，自动将堕化遗骸从远处取回"},
 }
 
 -- Buffs caused by Binge Eater
@@ -482,7 +485,6 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 }
 
 -- Book of Virtues wisp types
--- TODO: finish translating some of the descriptions
 EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[33] = "跟踪眼泪", -- The Bible
 	[34] = "双倍伤害眼泪", -- The Book of Belial
@@ -509,7 +511,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[85] = "摧毁时生成1卡牌", -- Deck of Cards
 	[86] = "牙齿眼泪", -- Monstro's Tooth
 	[93] = "反重力眼泪#几率为恐惧眼泪", -- The Gamekid
-	[97] = "8选1魂火： {{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#很有可能为爆炸效果", -- The Book of Sin
+	[97] = "8选1魂火：{{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#很有可能为爆炸效果", -- The Book of Sin
 	[102] = "6选1魂火，每局随机#几率为中毒，石化，迷惑，烧伤，即爆炸弹眼泪，或者在摧毁时生成1红蜘蛛#摧毁时生成1胶囊", -- Mom's Bottle of Pills
 	[105] = "每重置1个道具额外生成1魂火", -- The D6
 	[107] = "穿透眼泪", -- The Pinking Shears
@@ -549,7 +551,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[291] = "每有1便便类敌人额外生成1魂火", -- Flush!
 	[292] = "每有1此类魂火+10%{{DevilRoom}}恶魔房或{{AngelRoom}}天使房几率", -- Satanic Bible
 	[293] = "摧毁时发射4向激光", -- Head of Krampus
-	[294] = "单房间魂火#不能发射眼泪#摧毁时产生棉豆效果", -- Butter Bean
+	[294] = "单房间魂火#不能发射眼泪#摧毁时产生棉豆的效果", -- Butter Bean
 	[295] = "摧毁时几率掉落1硬币", -- Magic Fingers
 	[296] = "无特殊效果", -- Converter
 	[297] = "无特殊效果", -- Pandora's Box
@@ -566,45 +568,45 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[352] = "摧毁时摧毁所有此类魂火#魂火在切换房间时保留", -- Glass Cannon
 	[357] = "所在房间内复制魂火", -- Box of Friends
 	[382] = "捕获敌人死亡时会生成1个普通，跟踪，爆炸，或硫磺火魂火，与敌人行动方式有关", -- Friendly Ball
-	[383] = "Wisp's tears can be detonated, turning into 6 of Isaac's tears#Burst into Isaac's tears when destroyed#Persists between rooms", -- Tear Detonator
-	[386] = "5% chance for tears to reroll grid objects (except Poop and TNT) on hit", -- D12
+	[383] = "魂火的眼泪能被引爆，变成6个角色眼泪#摧毁时爆出角色眼泪#在不同房间能够保留", -- Tear Detonator
+	[386] = "5%几率发射击中时能重置方格物体(除便便和TNT)的眼泪", -- D12
 	[396] = "不能发射眼泪#每个传送门有1魂火", -- Ventricle Razor
 	[406] = "随机伤害和射速", -- D8
-	[419] = "20% chance for tears to teleport enemies#Wisp flickers every 5 seconds", -- Teleport 2.0
+	[419] = "20%几率发射传送敌人的眼泪#魂火每5秒进行闪烁", -- Teleport 2.0
 	[421] = "摧毁时产生魅惑屁", -- Kidney Bean
 	[422] = "30%几率发射石化眼泪", -- Glowing Hour Glass
-	[427] = "Bounces harmlessly around the room, exploding when shot by Isaac#Cannot shoot tears or deal contact damage", -- Mine Crafter
-	[434] = "Wisps are spawned instead of flies#Up to 5 flies makes 1 wisp with increased health and damage", -- Jar of Flies
-	[437] = "D7 effect when hit for the first time", -- D7
+	[427] = "在房间中弹动，被角色击中时爆炸#不能发射眼泪，也不造成接触伤害", -- Mine Crafter
+	[434] = "使用时生成魂火而不是苍蝇#最多5苍蝇产生1个血量和伤害有所增强的魂火", -- Jar of Flies
+	[437] = "第一次击中时产生七面骰效果", -- D7
 	[439] = "无特殊效果", -- Mom's Box
-	[441] = "Lil Brimstone tears (requires releasing the fire button)#All Mega Blast wisps fire continuously during a Mega Blast", -- Mega Blast
+	[441] = "小硫磺火眼泪(需要释放发射键)#所有此类魂火在超级喷射使用期间持续发射", -- Mega Blast
 	[475] = "8个高伤害魂火", -- Plan C
 	[476] = "如果没复制掉落物则生成第二个魂火", -- D1
-	[477] = "Spawns the wisps of all absorbed active items#Doesn't spawn a wisp itself", -- Void
-	[478] = "Pauses all enemies and shots for 3 seconds when destroyed", -- Pause
-	[479] = "Chance to spawn a trinket when destroyed", -- Smelter
-	[480] = "Wisp's health increases the more pickups were destroyed", -- Compost
-	[481] = "5% chance for tears to transform enemies into random wisps", -- Dataminer
+	[477] = "生成所有吸收的主动道具的魂火#本身不生成魂火", -- Void
+	[478] = "摧毁时暂停所有敌人和弹幕3秒", -- Pause
+	[479] = "摧毁时几率生成1视频", -- Smelter
+	[480] = "摧毁的掉落物越多，生成的魂火血量越高", -- Compost
+	[481] = "5%几率发射将敌人变成随机魂火的眼泪", -- Dataminer
 	[482] = "生成1随机魂火", -- Clicker
 	[483] = "8个在摧毁时生成金即爆炸弹的魂火", -- Mama Mega!
-	[484] = "Single room wisp#Cannot shoot tears#Wait What? effect when destroyed", -- Wait What?
-	[485] = "All Crooked Penny wisps are destroyed or duplicated when one is damaged", -- Crooked Penny
-	[486] = "Cannot fire tears#Chance to negate Isaac taking damage", -- Dull Razor
-	[487] = "Permanent wisp#Chases enemies to shoot them#Doesn't block shots or deal contact damage", -- Potato Peeler
-	[488] = "Spawns the wisp of what it mimics (random if not an active item)", -- Metronome
-	[489] = "Spawns a normal wisp in addition to the wisp effects of the mimicked dice", -- D Infinity
-	[490] = "Spawns a random wisp#Respawns after clearing a room if destroyed", -- Eden's Soul
+	[484] = "单房间魂火#不能发射眼泪#摧毁时产生等等，啥？的效果", -- Wait What?
+	[485] = "所有此类魂火在其中一个受伤时摧毁或复制", -- Crooked Penny
+	[486] = "不能发射眼泪#几率抵消角色受到的伤害", -- Dull Razor
+	[487] = "永久魂火#追逐敌人并发射眼泪#不阻挡弹幕也不造成接触伤害", -- Potato Peeler
+	[488] = "生成模仿道具的魂火(如果不是主动道具则随机)", -- Metronome
+	[489] = "生成1普通魂火，带有模仿的骰子的魂火效果", -- D Infinity
+	[490] = "生成1随机魂火#若被摧毁，则清理房间后重生", -- Eden's Soul
 	[504] = "单房间魂火#快速，自动瞄准的眼泪", -- Brown Nugget
 	[507] = "击杀时几率生成1魂火", -- Sharp Straw
-	[510] = "Monstro's Lung, Rotten Baby, Loki's Horns or Brimstone tears", -- Delirious
+	[510] = "萌死戳的肺，腐烂宝宝，洛基的角或硫磺火眼泪", -- Delirious
 	[512] = "磁性眼泪", -- Black Hole
-	[515] = "Spawns a random wisp#Respawns after clearing a room if destroyed", -- Mystery Gift
-	[516] = "Tears fire in 8 directions like Sprinkler", -- Sprinkler
-	[521] = "Triple shot#All Coupon tears are destroyed if you make a purchase", -- Coupon
-	[522] = "Captured projectiles turn into wisps", -- Telekinesis
-	[523] = "Wisp only spawns when dropping items#Spawns a random pickup when destroyed", -- Moving Box
-	[527] = "Cannot fire tears#On room clear, wisps open chests/doors", -- Mr. ME!
-	[536] = "Converts all wisps into Half Red Hearts#Spawns a strong wisp on sacrifice", -- Sacrificial Altar
+	[515] = "生成1随机魂火#若被摧毁，则清理房间后重生", -- Mystery Gift
+	[516] = "发射像洒水器一样的8向眼泪", -- Sprinkler
+	[521] = "三重眼泪#如果买东西，摧毁所有的此类魂火", -- Coupon
+	[522] = "捕捉的弹幕会变成魂火", -- Telekinesis
+	[523] = "魂火只在掉落物品时生成#摧毁时生成随机掉落物", -- Moving Box
+	[527] = "不能发射眼泪#清理房间后，魂火会打来箱子/门", -- Mr. ME!
+	[536] = "将所有魂火变成半红心#献祭时生成1强力魂火", -- Sacrificial Altar
 	[545] = "摧毁时生成1友好的骷髅仔", -- Book of the Dead
 	[550] = "眼泪有10%几率对敌人触发践踏", -- Broken Shovel
 	[552] = "眼泪有10%几率对敌人触发践踏#另会生成1个高血量魂火，不能发射眼泪", -- Mom's Shovel
@@ -617,13 +619,13 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[582] = "最多1个此类魂火", -- Wavy Cap
 	[584] = "多个复制无效果", -- Book of Virtues
 	[585] = "8魂火", -- Alabaster Box
-	[604] = "Single room wisp#3 wisps created where something lands#10% chance for Confusion tears", -- Mom's Bracelet
+	[604] = "单房间魂火#东西落地时生成3魂火#10%几率发射迷惑眼泪", -- Mom's Bracelet
 	[605] = "无特殊效果", -- The Scooper
-	[609] = "Invincible wisp#50% chance for all Eternal D6 wisps to be destroyed on use", -- Eternal D6
+	[609] = "无敌的魂火#使用时有50%几率摧毁所有此类魂火", -- Eternal D6
 	[611] = "血量和伤害根据充能提升", -- Larynx
 	[622] = "3魂火#移除所有其他魂火", -- Genesis
 	[623] = "无特殊效果", -- Sharp Key
-	[631] = "Splits your wisps in half (half health and damage)#Wisps are destroyed if split a third time", -- Meat Cleaver
+	[631] = "将你的魂火分割成两份(血量和伤害减半)#第三次分割时摧毁魂火", -- Meat Cleaver
 	[635] = "留下1个不动的魂火#最多6个此类魂火", -- Stitches
 	[636] = "无魂火", -- R Key
 	[638] = "接触时消除非Boss敌人", -- Eraser
@@ -684,7 +686,7 @@ local repTrinkets={
 	[32] = {"32", "裸盖蘑菇", "每个房间25%几率出现随机蘑菇效果"}, -- Liberty Cap
 	[33] = {"33", "脐带", "当进入房间后不多于半心时，获得小史蒂文#受伤时高几率生成双子座的跟班"}, -- Umbilical Cord
 	[39] = {"39", "癌症", "↑ +1发射速度"}, -- Cancer
-	[48] = {"48", "遗失的书页", "受伤时5有%几率对房间内所有敌人造成80伤害#黑心和类似 {{Collectible35}} 死灵书的效果造成双倍伤害"}, -- A Missing Page
+	[48] = {"48", "遗失的书页", "受伤时5有%几率对房间内所有敌人造成80伤害#黑心和类似{{Collectible35}}死灵之书的效果造成双倍伤害"}, -- A Missing Page
 	[49] = {"49", "染血硬币", "捡起硬币时有25%几率掉落半红心"}, -- Bloody Penny
 	[50] = {"50", "焦灼硬币", "捡起硬币时有25%几率掉落炸弹"}, -- Burnt Penny
 	[51] = {"51", "扁平硬币", "捡起硬币时有25%几率掉落钥匙"}, -- Flat Penny
@@ -713,7 +715,7 @@ local repTrinkets={
 	[139] = {"139", "泪滴护符", "对基于运气的眼泪效果+3运气"}, --  Teardrop Charm
 	[140] = {"140", "所多玛之果", "捡起红心可将其变成蓝蜘蛛#满血时也有效#效果可能会消耗用于治疗的红心"}, --  Apple of Sodom
 	[141] = {"141", "失落摇篮曲", "提高跟班的射速"}, --  Forgotten Lullaby
-	[142] = {"142", "伯大尼的信仰", "到下一层时生成4个 {{Collectible584}} 美德之书魂火"}, --  Beth's Faith
+	[142] = {"142", "伯大尼的信仰", "到下一层时生成4个{{Collectible584}}美德之书魂火"}, --  Beth's Faith
 	[143] = {"143", "老旧电容", "阻止主动道具充能#清理房间后有20%几率生成电池"}, --  Old Capacitor
 	[144] = {"144", "脑形虫", "眼泪如果会打不中敌人，则90度转向敌人"}, --  Brain Worm
 	[145] = {"145", "满分考卷", "↑ +10运气#持有时受到怪物，尖刺等非主动伤害时摧毁"}, -- Perfection
@@ -728,7 +730,7 @@ local repTrinkets={
 	[154] = {"154", "骰子袋", "每次进入新房间，有50%几率获得1个一次性的随机骰子#离开房间后消失"}, --  Dice Bag
 	[155] = {"155", "神圣王冠", "在大教堂里生成{{TreasureRoom}}道具房和商店{{Shop}}"}, --  Holy Crown
 	[156] = {"156", "母亲的吻", "持有时获得1心之容器#对店主也有效"}, --  Mother's Kiss
-	[157] = {"157", "扑克牌残片", "每15次发射，发射1个 {{Collectible149}} 吐根酊+ {{Collectible5}} 我的镜像眼泪，其射程值极高"}, --  Torn Card
+	[157] = {"157", "扑克牌残片", "每15次发射，发射1个{{Collectible149}}吐根酊+{{Collectible5}}我的镜像眼泪，其射程值极高"}, --  Torn Card
 	[158] = {"158", "破损的口袋", "受伤时角色掉落2个所持掉落物#(除了：心，卡牌，胶囊，符文)"}, --  Torn Pocket
 	[159] = {"159", "镀金钥匙", "首次捡起时+1钥匙#以金箱子替换所有新箱子#所有金箱子包含卡牌，胶囊或饰品#对巨型箱子无效"}, --  Gilded Key
 	[160] = {"160", "幸运袋", "到下一层时生成1福袋"}, --  Lucky Sack
@@ -741,12 +743,12 @@ local repTrinkets={
 	[167] = {"167", "抛光骨头", "清理房间后有25%几率生成友好的骷髅仔"}, --  Polished Bone
 	[168] = {"168", "空壳心", "进入新一层时+1骨心"}, --  Hollow Heart
 	[169] = {"169", "儿童涂鸦", "持有时当做1个嗝屁猫套装道具"}, --  Kid's Drawing
-	[170] = {"170", "水晶钥匙", "清理房间后有33%几率自动创造 {{Collectible580}} 红钥匙房间#红房间中几率降低"}, --  Crystal Key
+	[170] = {"170", "水晶钥匙", "清理房间后有33%几率自动创造{{Collectible580}}红钥匙房间#红房间中几率降低"}, --  Crystal Key
 	[171] = {"171", "店主的协议", "50%几率使恶魔交易花费硬币而不是心"}, --  Keeper's Bargain
 	[172] = {"172", "诅咒硬币", "捡起硬币时传送至随机房间#可以传送到隐藏房"}, --  Cursed Penny
 	[173] = {"173", "你的灵魂", "免费进行一次恶魔交易"}, --  Your Soul
 	[174] = {"174", "数字冰箱贴", "+10%恶魔房几率"}, --  Number Magnet
-	[175] = {"175", "奇怪的钥匙", "解锁死寂战通道，不再限时#使用 {{Collectible297}} 潘多拉的盒子时从随机道具池生成6个道具，原效果失效#使用后两者都会被消耗"}, --  Strange Key
+	[175] = {"175", "奇怪的钥匙", "解锁窒息胎战通道，不再限时#使用{{Collectible297}}潘多拉的盒子时从随机道具池生成6个道具，原效果失效#使用后两者都会被消耗"}, --  Strange Key
 	[176] = {"176", "小血团", "生成1个血块跟班，模仿角色的行动，发射方向和眼泪效果#如果跟班死亡则在下一个房间重生"}, --  Lil Clot
 	[177] = {"177", "纹身贴", "清理{{ChallengeRoom}}挑战房后生成1箱子，清理{{BossRushRoom}}Boss挑战房后生成1道具"}, --  Temporary Tattoo
 	[178] = {"178", "被吞下的M80鞭炮", "受伤时有50%几率爆炸"}, --  Swallowed M80
@@ -754,7 +756,7 @@ local repTrinkets={
 	[180] = {"180", "复得游魂", "精确跟随角色移动的跟班，发射幽灵眼泪#属性与角色一样，造成一半伤害#一击死亡#新一层重生"}, --  Found Soul
 	[181] = {"181", "扩展电路板", "使用主动道具时随机触发另1个1-2充能的主动道具"}, --  Expansion Pack
 	[182] = {"182", "伯大尼的精华", "进入天使房时生成5魂火#当给乞丐钱时有25%几率生成1魂火"}, --  Beth's Essence
-	[183] = {"183", "双胞胎", "每个房间有50%几率复制1个跟班#没有跟班则以 {{Collectible8}} 弟弟波比或 {{Collectible67}} 妹妹玛姬代替"}, --  The Twins
+	[183] = {"183", "双胞胎", "每个房间有50%几率复制1个跟班#没有跟班则以{{Collectible8}}波比兄弟或{{Collectible67}}玛姬姐妹代替"}, --  The Twins
 	[184] = {"184", "领养协议书", "{{Shop}}商店的跟班卖10硬币"}, --  Adoption Papers
 	[185] = {"185", "蟋蟀腿", "杀死敌人时有17%几率生成1只随机蝗虫"}, --  Cricket Leg
 	[186] = {"186", "亚玻伦的挚友", "生成1只天启蝗虫"}, --  Apollyon's Best Friend
@@ -769,31 +771,29 @@ EID.descriptions[languageCode].quadrupledTrinket = "四倍效果！"
 
 -- Most trinkets that can be doubled or tripled just have the numbers in their description multiplied
 -- A few trinkets have odd edge cases where their effect completely changes, or is different depending on if it's Mom's Box or Golden
--- TODO: translate
 EID.descriptions[languageCode].goldenTrinketEffects = {
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
-	[46] = { "half a heart", "a heart", "one and a half hearts" },
+	[46] = { "半红心", "1红心", "1.5红心" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
 	[53] = {
-		"-{{ColorGold}}30{{CR}}% boss health#Heals {{ColorGold}}2{{CR}} Red Hearts when entering a {{BossRoom}}Boss Room#{{ColorGold}}Removable!",
-		"-{{ColorGold}}30{{CR}}% boss health#Heals {{ColorGold}}2{{CR}} Red Hearts when entering a {{BossRoom}}Boss Room#!!! Once picked up, it can't be removed#Only removeable with {{Trinket41}}Match Stick or gulping",
-		"-{{ColorGold}}30{{CR}}% boss health#Heals {{ColorGold}}3{{CR}} Red Hearts when entering a {{BossRoom}}Boss Room#{{ColorGold}}Removable!",
+		"-{{ColorGold}}30{{CR}}%Boss血量#进入{{BossRoom}}Boss房时治疗{{ColorGold}}2{{CR}}红心#{{ColorGold}}可被替换！",
+		"-{{ColorGold}}30{{CR}}%Boss血量#进入{{BossRoom}}Boss房时治疗{{ColorGold}}2{{CR}}红心#!!! 捡起后无法被其他饰品替换#只能被{{Trinket41}}火柴棒移除或吞下",
+		"-{{ColorGold}}30{{CR}}%Boss血量#进入{{BossRoom}}Boss房时治疗{{ColorGold}}3{{CR}}红心#{{ColorGold}}可被替换！",
 	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
-	[64] = { "Worm's stat boosts are doubled", "Worm's stat boosts are tripled", "Worm's stat boosts are quadrupled", },
+	[64] = { "双倍蠕虫属性效果", "三倍蠕虫属性效果", "四倍蠕虫属性效果", },
 	-- Error (append): Same behavior as Rainbow Worm
-	[75] = { "Trinket effect is doubled if possible", "Trinket effect is tripled if possible", "Trinket effect is quadrupled if possible", },
+	[75] = { "如果可能，双倍饰品效果", "如果可能，三倍饰品效果", "如果可能，四倍饰品效果", },
 	-- NO!
-	[88] = { "Prevents Quality {{Quality0}} items from spawning" },
+	[88] = { "阻止品质{{Quality0}}道具生成" },
 	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
-	[159] = { "Replaces all chests (except Old/Mega) with Golden Chests#Golden Chests can contain extra cards, pills or trinkets" },
+	[159] = { "以金箱子代替所有箱子(旧/大箱子除外)#金箱子中含有额外的卡牌，胶囊或饰品" },
 }
 
 ---------- Cards ----------
--- TODO: check if comments match the card names, they were mass copy and pasted
 
 local repCards={
-	[2] = {"2", "I - The Magician", "Homing tears and +3 Range for current room"}, -- I - The Magician -- TODO: translate
+	[2] = {"2", "I-魔术师", "所在房间内眼泪有跟踪效果并+3射程"}, -- I - The Magician
 	[12] = {"12", "XI-力量", "↑ +1心之容器#↑ +0.3伤害#↑ +50%伤害#↑ +5.25射程#↑ +0.3移速#仅所在房间"}, -- XI - Strength
 	[27] = {"27", "梅花A", "将所有掉落物，箱子，非Boss敌人变成炸弹"}, -- Ace of Clubs
 	[28] = {"28", "方片A", "将所有掉落物，箱子，非Boss敌人变成硬币"}, -- Ace of Diamonds
@@ -801,9 +801,9 @@ local repCards={
 	[30] = {"30", "红桃A", "将所有掉落物，箱子，非Boss敌人变成红心"}, -- Ace of Hearts
 	[39] = {"39", "保护符文", "无敌20秒"}, -- Algiz
 	[51] = {"51", "神圣卡", "获得神圣斗篷效果#(即免疫一次伤害)#受到伤害前始终有效"}, -- Holy Card
-	[52] = {"52", "Huge Growth", "↑ +7 Damage up#↑ +3 Range up#Destroy rocks when walking over them#Size up#Effect lasts for current room"}, -- Huge Growth -- TODO: translate
+	[52] = {"52", "变巨术", "↑ +7伤害#↑ +3射程#粉碎经过的岩石#体型变大#效果在所在房间持续"}, -- Huge Growth
 	[55] = {"55", "符文碎片", "随机符文效果#触发的符文效果较弱"}, -- Rune Shard
-	[56] = {"56", "0-愚者？", "将所有心和掉落物掉在地上#只保留半心#如果数量充足，可作为 {{Collectible74}} 25美分和 {{Collectible19}} 嘣！生成"}, -- 0 - The Fool?
+	[56] = {"56", "0-愚者？", "将所有心和掉落物掉在地上#只保留半心#如果数量充足，可作为{{Collectible74}}25美分和{{Collectible19}}轰！生成"}, -- 0 - The Fool?
 	[57] = {"57", "I-魔术师？", "生成较大的光环，排斥弹幕和敌人#持续1分钟"}, -- I - The Magician?
 	[58] = {"58", "II-女祭司？", "妈腿持续践踏1分钟"}, -- II - The High Priestess?
 	[59] = {"59", "III-皇后？", "获得1分钟效果：#↑ +2红心#↑ +1.35射速"}, -- III - The Empress?
@@ -816,26 +816,26 @@ local repCards={
 	[66] = {"66", "X-命运之轮？", "随机骰子房效果"}, -- X - Wheel of Fortune?
 	[67] = {"67", "XI-力量？", "使当前房间内的敌人虚弱，减速并受到双倍伤害#持续1分钟"}, -- XI - Strength?
 	[68] = {"68", "XII-倒吊人？", "将角色变为店主30秒#获得三重射击并降低移速#杀死敌人掉落随机硬币"}, -- XII - The Hanged Man?
-	[69] = {"69", "XIII-死亡？", "产生 {{Collectible545}} 死者之书的效果#(所在房间内每杀死1个敌人生成1个骨头实体)"}, -- XIII - Death?
+	[69] = {"69", "XIII-死亡？", "产生{{Collectible545}}亡者之书的效果#(所在房间内每杀死1个敌人生成1个骨头实体)"}, -- XIII - Death?
 	[70] = {"70", "XIV-节制？", "施加5个随机胶囊效果"}, -- XIV - Temperance?
-	[71] = {"71", "XV-恶魔？", "产生 {{Collectible33}} 圣经的效果#获得 {{Collectible390}} 炽天使#持续30秒"}, -- XV - The Devil?
+	[71] = {"71", "XV-恶魔？", "产生{{Collectible33}}圣经的效果#获得{{Collectible390}}撒拉弗#持续30秒"}, -- XV - The Devil?
 	[72] = {"72", "XVI-塔？", "生成6堆随机岩石和障碍物#其中经常会有标记石头"}, -- XVI - The Tower?
 	[73] = {"73", "XVII-星星？", "移除最旧的被动道具(初始道具除外)#从所在房间的道具池中生成2个随机道具"}, -- XVII - The Stars?
 	[74] = {"74", "XVIII-月亮？", "传送至终极隐藏房#返回的路由红房间构成"}, -- XVIII - The Moon?
-	[75] = {"75", "XIX-太阳？", "获得 {{Collectible159}} 夜之魂#↑ +1.5伤害#在所在层持续#将红心转化为骨心，但效果结束后恢复#施加黑暗诅咒"}, -- XIX - The Sun?
+	[75] = {"75", "XIX-太阳？", "获得{{Collectible159}}夜之精灵#↑ +1.5伤害#在所在层持续#将红心转化为骨心，但效果结束后恢复#施加黑暗诅咒"}, -- XIX - The Sun?
 	[76] = {"76", "XX-审判？", "生成1台补货机"}, -- XX - Judgement?
 	[77] = {"77", "XXI-世界？", "生成1个暗门"}, -- XXI - The World?
-	[78] = {"78", "红钥匙碎片", "一次性的 {{Collectible580}} 红钥匙"}, -- Cracked Key
+	[78] = {"78", "红钥匙碎片", "一次性的{{Collectible580}}红钥匙"}, -- Cracked Key
 	[79] = {"79", "红桃Q", "生成1-12红心"}, -- Queen of Hearts
 	[80] = {"80", "万用牌", "复制上一次使用过的胶囊，卡牌，符文，魂石或主动道具的效果"}, -- Wild Card
 	[81] = {"81", "以撒的魂石", "重置房间内的道具#1秒周期地与原道具循环切换#多次使用则所有重置都循环切换"}, -- Soul of Isaac
 	[82] = {"82", "抹大拉的魂石", "所在房间内角色被冒泡的红色光环围绕#被杀死的敌人掉落半红心，但2秒后消失"}, -- Soul of Magdalene
-	[83] = {"83", "该隐的魂石", "打开房间中所有门#与 {{Collectible580}} 红钥匙类似，创造所有可能的红房间"}, -- Soul of Cain
+	[83] = {"83", "该隐的魂石", "打开房间中所有门#与{{Collectible580}}红钥匙类似，创造所有可能的红房间"}, -- Soul of Cain
 	[84] = {"84", "犹大的魂石", "将角色变成幻影，经过角色路径的敌人会被麻痹#几秒后，攻击所有麻痹的敌人，每个目标会对伤害有加成"}, -- Soul of Judas
 	[85] = {"85", "???的魂石", "产生8团毒气并留下棕色水迹#然后放置7个大便炸弹#站在水迹中会有+1.35射速并+1伤害"}, -- Soul of ???
 	[86] = {"86", "夏娃的魂石", "14只死鸟跟班飞入并攻击敌人#所在房间有效"}, -- Soul of Eve
 	[87] = {"87", "参孙的魂石", "变成狂暴参孙，使用近战攻击10秒#↑ +0.4移速#↑ 射速提升#↑ +3伤害"}, -- Soul of Samson
-	[88] = {"88", "阿撒泻勒的魂石", "产生{{Collectible441}}超级吐息的效果7.5秒"}, -- Soul of Azazel
+	[88] = {"88", "阿撒泻勒的魂石", "产生{{Collectible441}}超级喷射的效果7.5秒"}, -- Soul of Azazel
 	[89] = {"89", "拉撒路的魂石", "死亡并立即以半心复活，并在一段时间内无敌#受致命伤时自动使用"}, -- Soul of Lazarus
 	[90] = {"90", "伊甸的魂石", "重置所在房间的底座道具和掉落物#道具使用随机道具池进行重置"}, -- Soul of Eden
 	[91] = {"91", "游魂的魂石", "所在房间角色死亡并变成游魂#免费拿{{DevilRoom}}恶魔房1个道具，剩下的会消失"}, -- Soul of the Lost
@@ -843,7 +843,7 @@ local repCards={
 	[93] = {"93", "店主的魂石", "生成3-25随机硬币"}, -- Soul of the Keeper
 	[94] = {"94", "亚玻伦的魂石", "生成15只随机蝗虫"}, -- Soul of Apollyon
 	[95] = {"95", "遗骸的魂石", "所在房间生成遗骸作为临时第二角色"}, -- Soul of the Forgotten
-	[96] = {"96", "伯大尼的魂石", "生成6个随机属性的 {{Collectible584}} 美德之书的魂火"}, -- Soul of Bethany
+	[96] = {"96", "伯大尼的魂石", "生成6个随机属性的{{Collectible584}}美德之书的魂火"}, -- Soul of Bethany
 	[97] = {"97", "雅各与以扫的魂石", "所在房间生成以扫作为临时第二角色#以扫含有与角色等量的随机被动道具"}, -- Soul of Jacob and Esau
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
@@ -852,7 +852,7 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
 
 EID.descriptions[languageCode].tarotClothBuffs = {
-	[2] = "同时获得 {{Collectible34}} 彼列之书效果", -- I - The Magician
+	[2] = "同时获得{{Collectible34}}彼列之书效果", -- I - The Magician
 	[3] = "第一只脚落下后马上落下第二只", -- II - The High Priestess
 	[4] = "属性提升量为4倍", -- III - The Empress
 	[5] = "如果Boss尚未击败，传送时获得1魂心", -- IV - The Emperor
@@ -890,7 +890,7 @@ local repPills={
 	[43] = {"42", "好兴奋！！！", "使房间内所有敌人和角色加速#在30-60秒后再次触发一次"}, -- I'm Excited!!!
 	[48] = {"47", "弹速下降", "↓ -0.15弹速"}, -- Shot Speed Down
 	[49] = {"48", "弹速上升", "↑ +0.15弹速"}, -- Shot Speed Up
-	[50] = {"49", "实验性胶囊", "↑ 提升1项随机属性#↓ 降低另外1项随机属性#有{{Collectible75}}药学博士证，{{Collectible46}}幸运脚或{{Collectible303}}处女座时不降属性#有 {{Collectible654}} 伪造药学博士证时不升属性"}, -- Experimental Pill
+	[50] = {"49", "实验性胶囊", "↑ 提升1项随机属性#↓ 降低另外1项随机属性#有{{Collectible75}}药学博士证，{{Collectible46}}幸运脚或{{Collectible303}}处女座时不降属性#有{{Collectible654}}伪造药学博士证时不升属性"}, -- Experimental Pill
 	[9999] = {"", "", "随机胶囊效果#使用几次后摧毁"}, -- Golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
@@ -906,7 +906,7 @@ EID.descriptions[languageCode].horsepills={
 	{"7", "体力上升", "↑ +2空的心之容器"}, -- Health Up
 	{"8", "我找到枚怪药", "无效果"}, -- I Found Pills
 	{"9", "青春期", "无效果"}, -- Puberty
-	{"10", "漂亮苍蝇", "添加1个 {{Collectible279}} 大粉丝苍蝇环绕物#无上限"}, -- Pretty Fly
+	{"10", "漂亮苍蝇", "添加1个{{Collectible279}}大粉丝苍蝇环绕物#无上限"}, -- Pretty Fly
 	{"11", "射程下降", "↓ -1.2射程"}, -- Range Down
 	{"12", "射程上升", "↑ +0.9射程"}, -- Range Up
 	{"13", "移速下降", "↓ -0.24移速"}, -- Speed Down
@@ -945,7 +945,7 @@ EID.descriptions[languageCode].horsepills={
 	{"46", "嗝！", "生成上次使用的大胶囊"}, -- Vurp!
 	{"47", "弹速下降", "↓ -0.3弹速"}, -- Shot Speed Down
 	{"48", "弹速上升", "↑ +0.3弹速"}, -- Shot Speed Up
-	{"49", "实验性胶囊", "↑ 提升1项随机属性两次#↓ 降低另外1项随机属性两次#有 {{Collectible75}} 药学博士证，{{Collectible46}}幸运脚或{{Collectible303}}处女座时不降属性#有 {{Collectible654}} 伪造药学博士证"}, -- Experimental Pill
+	{"49", "实验性胶囊", "↑ 提升1项随机属性两次#↓ 降低另外1项随机属性两次#有{{Collectible75}}药学博士证，{{Collectible46}}幸运脚或{{Collectible303}}处女座时不降属性#有{{Collectible654}}伪造药学博士证"}, -- Experimental Pill
 	[9999] = {"", "", "随机胶囊效果#使用几次后摧毁"}, -- Golden Pill
 }
 
@@ -953,55 +953,55 @@ EID.descriptions[languageCode].horsepills={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- This will be appended to words to pluralize them, make it "" to not pluralize
-	pluralize = "s",
+	pluralize = "",
 
 	-- Item Config info
-	AddBlackHearts = "{1} Black Heart",
-	AddBombs = "{1} Bomb",
-	AddCoins = "{1} Coin",
-	AddHearts = "Heals {1} Red Heart",
-	AddKeys = "{1} Key",
-	AddMaxHearts = "{1} Heart Container",
-	AddSoulHearts = "{1} Soul Heart",
+	AddBlackHearts = "{1}黑心",
+	AddBombs = "{1}炸弹",
+	AddCoins = "{1}硬币",
+	AddHearts = "治疗{1}红心",
+	AddKeys = "{1}钥匙",
+	AddMaxHearts = "{1}心之容器",
+	AddSoulHearts = "{1}魂心",
 
 	-- Cache Flag names
-	cacheFlagStart = "May affect ",
-	[0] = "Damage", "Fire Rate", "Shot Speed", "Range", "Speed", "Tear Effects", "Tear Color", "Flight", "Attack Type", "Familiars", "Luck", "Size", "Color", "Chest Contents", [16] = "All Stats",
+	cacheFlagStart = "可能会影响",
+	[0] = "伤害", "射速", "弹速", "射程", "移速", "眼泪效果", "眼泪颜色", "飞行", "攻击类型", "跟班", "幸运", "大小", "颜色", "箱子内容物", [16] = "所有属性",
 
 	-- Attribute triggers
-	chain = "{{ColorCyan}}Then:{{CR}} ",
-	active = "{{ColorCyan}}On use:#",
-	pickup_collected = "{{ColorCyan}}When you collect a pickup:#", --chance to?
-	enemy_kill = "{{ColorCyan}}On kill, chance to:#",
-	damage_taken = "{{ColorCyan}}When you take damage:#", --chance to?
-	entity_spawned = "When a {{ColorCyan}}{T1}{{CR}} is spawned:#",
-	tear_fire = "{{ColorCyan}}When you fire a tear, chance to:#",
-	enemy_hit = "{{ColorCyan}}On hitting an enemy, chance to:#",
-	room_clear = "{{ColorCyan}}On room clear:#", --chance to?
+	chain = "{{ColorCyan}}然后：{{CR}} ",
+	active = "{{ColorCyan}}使用时：#",
+	pickup_collected = "{{ColorCyan}}捡到掉落物时：#", --chance to?
+	enemy_kill = "{{ColorCyan}}击杀时，几率：#",
+	damage_taken = "{{ColorCyan}}受伤时：#", --chance to?
+	entity_spawned = "当生成{{ColorCyan}}{T1}{{CR}}时：#",
+	tear_fire = "{{ColorCyan}}角色发射眼泪时，几率：#",
+	enemy_hit = "{{ColorCyan}}击中敌人时，几率：#",
+	room_clear = "{{ColorCyan}}清理房间后：#", --chance to?
 
 	-- Attribute effects
-	area_damage = "Deal {1} damage in an area around you", 
-	add_temporary_effect = "Gain {1} for the room",
-	convert_entities = "Convert all {{ColorGray}}{1}{{CR}} in the room to {{ColorGray}}{2}{{CR}}",
-	use_active_item = "Use {1}",
-	spawn_entity = "Spawn a {{ColorGray}}{1}{{CR}}",
-	fart = "Fart with size {1}",
+	area_damage = "在角色周围造成{1}伤害", 
+	add_temporary_effect = "所在房间获得{1}效果",
+	convert_entities = "将房间中所有{{ColorGray}}{1}{{CR}}变成{{ColorGray}}{2}{{CR}}",
+	use_active_item = "使用{1}",
+	spawn_entity = "生成1个{{ColorGray}}{1}{{CR}}",
+	fart = "放屁，大小为{1}",
 
 	-- Generic entity names not obtained from entities2.xml
 	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
-	["4.-1"] = "lit Bomb",
-	["5.0"] = "pickup",
-	["5.10"] = "Heart",
-	["5.20"] = "Coin",
-	["5.30"] = "Key",
-	["5.40"] = "Bomb pickup",
-	["5.69"] = "Grab Bag",
-	["5.70"] = "Pill",
-	["5.90"] = "Battery", 
-	["5.300"] = "Card",
-	["9.-1"] = "enemy projectile",
-	["999.-1"] = "grid object",
-	["1000.0"] = "effect",
+	["4.-1"] = "即爆炸弹",
+	["5.0"] = "掉落物",
+	["5.10"] = "心",
+	["5.20"] = "硬币",
+	["5.30"] = "钥匙",
+	["5.40"] = "炸弹掉落物",
+	["5.69"] = "福袋",
+	["5.70"] = "胶囊",
+	["5.90"] = "电池", 
+	["5.300"] = "卡牌",
+	["9.-1"] = "敌人弹幕",
+	["999.-1"] = "方格物体",
+	["1000.0"] = "效果",
 
 }
 
