@@ -723,7 +723,7 @@ end
 function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formatedLines = {}
 	local curLength = 0
-	local text = ""
+	local text = {}
 
 	local cursor = 1
 	local word_begin_index = 1
@@ -740,7 +740,7 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 		local can_break_after_cursor = false
 		local cur, next = byte(str,cursor), byte(str,cursor+1)
 		if
-		    -- cond#1: we can break at the end of string
+			-- cond#1: we can break at the end of string
 			cursor == #str or
 			-- cond#2: we can break after space
 		 	cur == byte_space or 
@@ -803,11 +803,11 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 				local wordLength = EID:getStrWidth(strFiltered)
 		
 				if curLength + wordLength <= textboxWidth or curLength < 12 then
-					text = text .. word
+					table.insert(text, word)
 					curLength = curLength + wordLength
 				else
-					table.insert(formatedLines, text)
-					text = word
+					table.insert(formatedLines, table.concat(text))
+					text = { word }
 					curLength = wordLength
 				end
 
@@ -817,7 +817,7 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 		cursor = cursor + 1
 	end
 
-	table.insert(formatedLines, text)
+	table.insert(formatedLines, table.concat(text))
 	return formatedLines
 end
 
