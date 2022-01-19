@@ -448,40 +448,38 @@ EID.descriptions[languageCode].bingeEaterBuffs = {
 
 -- Buffs caused by Book of Belial with Judas' Birthright
 -- Note: "#" will be replaced with "#{{Collectible34}} " automatically, in order to add Book of Belial icon infront of each buff-bulletpoint
-
--- TODO: needs to be fully translated
 EID.descriptions[languageCode].bookOfBelialBuffs = {
-	[40] = "Also invokes the effect of {{Collectible35}}Necronomicon", -- Kamikaze!
-	[126] = "Also invokes the effect of {{Collectible35}}Necronomicon", -- Razor Blade
-	[127] = "Grants a damage up for the entirety of the next floor", -- Forget me Now
-	[133] = "Grants a permanent damage up", -- Guppy's Paw
-	[135] = "Grants a damage up with each use", -- IV Bag
-	[147] = "The axe has increased durability, knockback, can be used faster, sets enemies on fire and drops more pickups when destroying poops and obstacles", -- Notched Axe
-	[186] = "Also invokes the effect of {{Collectible126}}Razor Blade", -- Blood Rights
-	[282] = "Leaves a trail of fire that deals contact damage and sets enemies on fire", -- How to Jump
-	[290] = "Expends one heart a time, grants a damage up and leaves red creep on the ground", -- The Jar
-	[295] = "Has a chance to invoke the effect of {{Collectible555}}Golden Razor", -- Magic Fingers
-	[297] = "Spawns a demonic familiar along with the floor-based drop", -- Pandora's Box
-	[323] = "Launched tears have boosted damage", -- Isaac's Tears
-	[352] = "Activates Book of Belial when broken - damage up persists until the cannon is fixed", -- Glass Cannon
-	[475] = "Respawns you as Dark Judas if you have an extra life", -- Plan C
-	[482] = "Replaces the most recently acquired item with {{Collectible51}}Pentagram", -- Clicker
-	[487] = "Increased damage up", -- Potato Peeler
-	[536] = "Grants +10.8 temporary damage up for every sacrificed familiar that slowly fades away similarly to {{Collectible621}}Red Stew", -- Sacrificial Altar
-	[555] = "Damages everything in the room and applies the {{Collectible202}}Midas' Touch effect on them", -- Golden Razor
-	[563] = "Ghosts will home in on enemies", -- Vade Retro
-	[577] = "Grants a permanent damage up", -- Damocles
-	[582] = "Grants an additional damage up for the rest of the floor based on the current amount of uses", -- Wavy Cap
-	[585] = "Changes the payout to 2 Black Hearts and 1 Devil Deal item#Becomes 3 hearts and 2 items if a Devil Deal has been taken", -- Alabaster Box
-	[622] = "Grants a free {{Collectible51}}Pentagram", -- Genesis
-	[623] = "Also invokes the effect of {{Collectible126}}Razor Blade", -- Sharp Key
-	[635] = "Creates a {{Collectible705}}Dark Arts line between you and Stitches", -- Stitches
-	[640] = "Launches a {{Collectible118}}Brimstone beam instead", -- Urn of Souls
-	[642] = "Grants a permanent damage up", -- Magic Skin
-	[685] = "Grants {{Collectible292}}Satanic Bible wisps that boost Devil Deal chance", -- Jar of Wisps
-	[705] = "Allows gain of temporary damage ups", -- Dark Arts
-	[710] = "Picking up Red Hearts has a chance to replace them with a Black Heart", -- Bag of Crafting
-	[729] = "Grants a huge damage and tears up when the head is detached", -- Decap Attack
+	[40] = "同时产生{{Collectible35}}死灵之书效果", -- Kamikaze!
+	[126] = "同时产生{{Collectible35}}死灵之书效果", -- Razor Blade
+	[127] = "下一层中获得伤害提升", -- Forget me Now
+	[133] = "获得永久伤害提升", -- Guppy's Paw
+	[135] = "每次使用获得伤害提升", -- IV Bag
+	[147] = "铁镐耐久，击退提高，使用速度更快，使敌人着火，摧毁便便和障碍物时掉落更多掉落物", -- Notched Axe
+	[186] = "同时产生{{Collectible126}}剃刀片效果", -- Blood Rights
+	[282] = "留下一路火焰，能造成接触伤害并使敌人着火", -- How to Jump
+	[290] = "一次消耗1心，获得伤害提升并在地上留下血迹", -- The Jar
+	[295] = "有几率产生{{Collectible555}}金剃刀片效果", -- Magic Fingers
+	[297] = "除正常奖励外，还生成1个恶魔类跟班", -- Pandora's Box
+	[323] = "发射的眼泪伤害增强", -- Isaac's Tears
+	[352] = "破碎时激活彼列之书，伤害提升在大炮修复完之前保留", -- Glass Cannon
+	[475] = "若能重生，重生为黑暗犹大", -- Plan C
+	[482] = "将最后获得的道具换成{{Collectible51}}五芒星", -- Clicker
+	[487] = "获得更高的永久伤害提升", -- Potato Peeler
+	[536] = "每献祭1个跟班获得10.8临时伤害提升，像{{Collectible621}}红豆汤一样会缓慢降低", -- Sacrificial Altar
+	[555] = "对房间中的敌人造成伤害并施加{{Collectible202}}弥达斯之触", -- Golden Razor
+	[563] = "幽灵会跟踪敌人", -- Vade Retro
+	[577] = "获得永久伤害提升", -- Damocles
+	[582] = "根据当前剩余使用次数，在所在层获得额外伤害", -- Wavy Cap
+	[585] = "将奖励改为2黑心和1恶魔房道具#如果做过恶魔交易则变为3黑心和2恶魔房道具", -- Alabaster Box
+	[622] = "获得免费的{{Collectible51}}五芒星", -- Genesis
+	[623] = "同时产生{{Collectible126}}剃刀片效果", -- Sharp Key
+	[635] = "在你和织布魔偶之间产生1个{{Collectible705}}暗仪刺刀", -- Stitches
+	[640] = "发射{{Collectible118}}硫磺火而不是火焰", -- Urn of Souls
+	[642] = "获得永久伤害提升", -- Magic Skin
+	[685] = "获得{{Collectible292}}撒但圣经魂火，能够提高恶魔交易几率", -- Jar of Wisps
+	[705] = "能够获得临时伤害提升", -- Dark Arts
+	[710] = "捡起红心时有几率将其替换成黑心", -- Bag of Crafting
+	[729] = "当头分离时，获得高额的伤害和射速提升", -- Decap Attack
 }
 
 -- Book of Virtues wisp types
