@@ -29,7 +29,7 @@ EID.descriptions[languageCode].languageName = "Korean"
 
 	korean_galmoori9, korean_galmoori11 is added for community request.
  ]]
-EID.descriptions[languageCode].fonts = {{name="korean_hcrdotum", lineHeight=11}, {name="korean_lanapixel", lineHeight=12}, {name="korean_soyakkoma", lineHeight=13}, {name="korean_soyakkoma_borderless", lineHeight=13}, {name="korean_soyakkoma_inverted", lineHeight=13}, {name="korean_soyanon", lineHeight=12}, {name="korean_galmoori9", lineHeight=12}, {name="korean_galmoori11", lineHeight=14}}
+EID.descriptions[languageCode].fonts = {{name="korean_hcrdotum", lineHeight=11, textboxWidth = 115}, {name="korean_lanapixel", lineHeight=12, textboxWidth = 115}, {name="korean_soyakkoma", lineHeight=13, textboxWidth = 115}, {name="korean_soyakkoma_borderless", lineHeight=13, textboxWidth = 115}, {name="korean_soyakkoma_inverted", lineHeight=13, textboxWidth = 115}, {name="korean_soyanon", lineHeight=12, textboxWidth = 115}, {name="korean_galmoori9", lineHeight=12, textboxWidth = 115}, {name="korean_galmoori11", lineHeight=14, textboxWidth = 115}}
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={

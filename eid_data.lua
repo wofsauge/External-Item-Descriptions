@@ -498,3 +498,7 @@ EID.GoldenTrinketData = {
 	-- Lil Clot, Swallowed M80, The Twins (default text), Cricket Leg (17%, 1 in 6), Apollyon's Best Friend, Broken Glasses
 	[176] = 1, [178] = {t={50},mult=2}, [183] = 0, [185] = 17, [186] = 1, [187] = {t={50,50}, mult=2},
 }
+
+EID.BreakUtf8CharsLanguage = {
+	['zh_cn'] = true
+}

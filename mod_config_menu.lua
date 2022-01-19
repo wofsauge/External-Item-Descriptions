@@ -1014,6 +1014,7 @@ if MCMLoaded then
 			OnChange = function(currentNum)
 				EID.Config["FontType"] = fontNames[currentNum]
 				EID.lineHeight = fonts[currentNum].lineHeight
+				EID.Config["TextboxWidth"] = fonts[currentNum].textboxWidth
 				EID:fixDefinedFont()
 				local fontFile = EID.Config["FontType"] or "default"
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
