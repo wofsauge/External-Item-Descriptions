@@ -1081,6 +1081,11 @@ if MCMLoaded then
 			Info = {"Change text size. CAN BE HARD TO READ IN SOME SETTINGS!"}
 		}
 	)
+	-- SCALE Hotkey
+	EID:AddHotkeySetting("Visuals",
+	"ScaleKey", "Toggle Scale (Keyboard)",
+	"Press or hold this key to toggle the scale.", false)
+
 	-- Transparency
 	MCM.AddSetting(
 		"EID",

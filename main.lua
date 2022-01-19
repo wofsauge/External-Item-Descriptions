@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = "4.12"
+EID.ModVersion = "4.13"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -369,6 +369,69 @@ if REPENTANCE then
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckVoidAbsorbs, CollectibleType.COLLECTIBLE_VOID)
+end
+
+---------------------------------------------------------------------------
+--------------------------Handle Scale Shortcut----------------------------
+
+local scaleMin = 0.1
+local scaleMax = 2
+local scaleSpeed = 0.01 -- scale size per frame
+local scaleToBigger = true
+local scaleHoldFrame = 0
+local function handleScaleKey()
+	local ScaleKey = EID.Config["ScaleKey"]
+
+	-- press and hold ScaleKey
+	if Input.IsButtonPressed(ScaleKey, 0) then
+		if scaleHoldFrame > 60 then
+			local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalScale" or "Scale")
+			if scaleToBigger then
+				local newScale = EID.Scale + scaleSpeed
+
+				EID.Scale = newScale
+				EID.Config[scaleConfigName] = newScale
+
+				if newScale > scaleMax then
+					scaleToBigger = false
+				end
+			else
+				local newScale = EID.Scale - scaleSpeed
+
+				EID.Scale = newScale
+				EID.Config[scaleConfigName] = newScale
+
+				if newScale < scaleMin then
+					scaleToBigger = true
+				end
+			end
+		else
+			scaleHoldFrame = scaleHoldFrame + 1
+		end
+	end
+	-- press ScaleKey
+	if Input.IsButtonTriggered(ScaleKey, 0) then
+		scaleHoldFrame = 0
+		local scale
+		local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalScale" or "Scale")
+
+		scale = EID.Scale
+
+		-- switch between 1, 1.5 and 0.5
+
+		if math.abs(scale - 1) < 0.01 then
+			scale = 1.5
+		elseif math.abs(scale - 1.5) < 0.01 then
+			scale = 0.5
+		elseif math.abs(scale - 0.5) < 0.01 then
+			scale = 1
+		else
+			scale = 1
+		end
+
+		EID.Config[scaleConfigName] = scale
+		EID.Scale = scale
+	end
 end
 
 ---------------------------------------------------------------------------
@@ -860,6 +923,8 @@ local function onRender(t)
 	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
 		EID.isHidden = not EID.isHidden
 	end
+
+	handleScaleKey()
 	
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then --if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu isn't currently in the "Visuals" or "Crafting" tab of EID
 		return
