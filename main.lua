@@ -383,55 +383,55 @@ local function handleScaleKey()
 	local ScaleKey = EID.Config["ScaleKey"]
 
 	-- press and hold ScaleKey
-    if Input.IsButtonPressed(ScaleKey, 0) then
-        if scaleHoldFrame > 60 then
-            local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalScale" or "Scale")
-            if scaleToBigger then
-                local newScale = EID.Scale + scaleSpeed
+	if Input.IsButtonPressed(ScaleKey, 0) then
+		if scaleHoldFrame > 60 then
+			local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalScale" or "Scale")
+			if scaleToBigger then
+				local newScale = EID.Scale + scaleSpeed
 
-                EID.Scale = newScale
+				EID.Scale = newScale
 				EID.Config[scaleConfigName] = newScale
 
-                if newScale > scaleMax then
-                    scaleToBigger = false
-                end
-            else
-                local newScale = EID.Scale - scaleSpeed
+				if newScale > scaleMax then
+					scaleToBigger = false
+				end
+			else
+				local newScale = EID.Scale - scaleSpeed
 
-                EID.Scale = newScale
+				EID.Scale = newScale
 				EID.Config[scaleConfigName] = newScale
 
-                if newScale < scaleMin then
-                    scaleToBigger = true
-                end
-            end
-        else
-            scaleHoldFrame = scaleHoldFrame + 1
-        end
-    end
-    -- press ScaleKey
-    if Input.IsButtonTriggered(ScaleKey, 0) then
-        scaleHoldFrame = 0
-        local scale
+				if newScale < scaleMin then
+					scaleToBigger = true
+				end
+			end
+		else
+			scaleHoldFrame = scaleHoldFrame + 1
+		end
+	end
+	-- press ScaleKey
+	if Input.IsButtonTriggered(ScaleKey, 0) then
+		scaleHoldFrame = 0
+		local scale
 		local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalScale" or "Scale")
 
-        scale = EID.Scale
+		scale = EID.Scale
 
 		-- switch between 1, 1.5 and 0.5
 
-        if math.abs(scale - 1) < 0.01 then
-            scale = 1.5
-        elseif math.abs(scale - 1.5) < 0.01 then
-            scale = 0.5
-        elseif math.abs(scale - 0.5) < 0.01 then
-            scale = 1
-        else
-            scale = 1
-        end
+		if math.abs(scale - 1) < 0.01 then
+			scale = 1.5
+		elseif math.abs(scale - 1.5) < 0.01 then
+			scale = 0.5
+		elseif math.abs(scale - 0.5) < 0.01 then
+			scale = 1
+		else
+			scale = 1
+		end
 
-        EID.Config[scaleConfigName] = scale
-        EID.Scale = scale
-    end
+		EID.Config[scaleConfigName] = scale
+		EID.Scale = scale
+	end
 end
 
 ---------------------------------------------------------------------------
