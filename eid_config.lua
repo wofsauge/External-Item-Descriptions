@@ -30,6 +30,9 @@ EID.UserConfig = {
 	-- Change the size of the info boxes. Range: [0,...,1]
 	-- Default = 1
 	["Scale"] = 1,
+	-- Press or hold the key to change scale.
+	-- Default = Keyboard.KEY_F5
+	["ScaleKey"] = Keyboard.KEY_F5,
 	-- Set the background transparency. Range: [0,...,1]
 	-- Default = 0.75
 	["Transparency"] = 0.75,
@@ -344,6 +347,7 @@ EID.DefaultConfig = {
 	["FontType"] = "default",
 	["TextboxWidth"] = 115,
 	["Scale"] = 1,
+	["ScaleKey"] = Keyboard.KEY_F5,
 	["Transparency"] = 0.75,
 	["HUDOffset"] = 10,
 	["XPosition"] = 60,
