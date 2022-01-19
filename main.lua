@@ -323,10 +323,15 @@ if REPENTANCE then
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit, PickupVariant.PICKUP_COLLECTIBLE)
 	
 	function EID:CheckPedestalIndex(entity)
-		-- Only pedestals with indexes that were present at room load can be flip pedestals; fixes shop restock machines
-		if EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed] and entity.Index > EID.flipMaxIndex then
-			EID.flipItemPositions[curRoomIndex][entity.InitSeed] = nil
-			entity:GetData()["EID_FlipItemID"] = nil
+		-- Only pedestals with indexes that were present at room load can be flip pedestals
+		-- Fixes shop restock machines and Diplopia... mostly. At least while you're in the room.
+		if entity:GetData()["EID_FlipItemID"] and entity.Index > EID.flipMaxIndex then
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+			local gridPos = game:GetRoom():GetGridIndex(entity.Position)
+			local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed]
+			-- only wipe the data if the grid index matches (so Diplopia pedestals don't)
+			if flipEntry and gridPos == flipEntry[2] then EID.flipItemPositions[curRoomIndex][entity.InitSeed] = nil end
+			entity:GetData()["EID_FlipItemID"] = nil 
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, EID.CheckPedestalIndex, PickupVariant.PICKUP_COLLECTIBLE)

@@ -971,22 +971,22 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	[0] = "Damage", "Fire Rate", "Shot Speed", "Range", "Speed", "Tear Effects", "Tear Color", "Flight", "Attack Type", "Familiars", "Luck", "Size", "Color", "Chest Contents", [16] = "All Stats",
 	
 	-- Attribute triggers
-	chain = "{{ColorCyan}}Then:{{CR}} ",
-	active = "{{ColorCyan}}On use:#",
-	pickup_collected = "{{ColorCyan}}When you collect a pickup:#", --chance to?
-	enemy_kill = "{{ColorCyan}}On kill, chance to:#",
-	damage_taken = "{{ColorCyan}}When you take damage:#", --chance to?
-	entity_spawned = "When a {{ColorCyan}}{T1}{{CR}} is spawned:#",
-	tear_fire = "{{ColorCyan}}When you fire a tear, chance to:#",
-	enemy_hit = "{{ColorCyan}}On hitting an enemy, chance to:#",
-	room_clear = "{{ColorCyan}}On room clear:#", --chance to?
+	chain = "Then:{{CR}} ",
+	active = "On use:#",
+	pickup_collected = "When you collect a pickup:#", --chance to?
+	enemy_kill = "On kill, chance to:#",
+	damage_taken = "When you take damage:#", --chance to?
+	entity_spawned = "When a {T1} is spawned:#",
+	tear_fire = "When you fire a tear, chance to:#",
+	enemy_hit = "On hitting an enemy, chance to:#",
+	room_clear = "On room clear:#", --chance to?
 	
 	-- Attribute effects
 	area_damage = "Deal {1} damage in an area around you", 
 	add_temporary_effect = "Gain {1} for the room",
-	convert_entities = "Convert all {{ColorGray}}{1}{{CR}} in the room to {{ColorGray}}{2}{{CR}}",
+	convert_entities = "Convert all {1} in the room to {2}",
 	use_active_item = "Use {1}",
-	spawn_entity = "Spawn a {{ColorGray}}{1}{{CR}}",
+	spawn_entity = "Spawn a {1}",
 	fart = "Fart with size {1}",
 	
 	-- Generic entity names not obtained from entities2.xml
