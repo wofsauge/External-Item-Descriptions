@@ -748,7 +748,6 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 			 (((cur & 0xC0) == 0x80) and (next~= byte_space and (next & 0x80) == 0x00))  
 			))
 			then
-
 				--[[
 					-------------------ascii only---------------
 					word will be separated by spaces.
@@ -783,7 +782,7 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 					     cond#3
 					世|界|是 |world
 					     |   ↑
-					     ↑   cond#4
+					     ↑   cond#2
 					     cond#3
 				]]
 
