@@ -85,7 +85,7 @@ local pickupIDLookup = {
 local function IsTaintedCain()
 	--no clue how the display works for co-op, as far as I can tell we're only caring about player 1
 	--this check is necessary for some ingredient tracking now that Bag of Crafting is usable by everyone
-	return game:GetPlayer(0):GetPlayerType() == 23
+	return EID.player:GetPlayerType() == 23
 end
 
 local componentShifts = {
@@ -256,27 +256,24 @@ function EID:simulateBagOfCrafting(componentsTable)
 	end
 	
 	local poolWeights = {
-		{idx = 0, weight = 1},
-		{idx = 1, weight = 2},
-		{idx = 2, weight = 2},
-		{idx = 3, weight = compCounts[4] * 10},
-		{idx = 4, weight = compCounts[5] * 10},
-		{idx = 5, weight = compCounts[7] * 5},
-		{idx = 7, weight = compCounts[30] * 10},
-		{idx = 8, weight = compCounts[6] * 10},
-		{idx = 9, weight = compCounts[26] * 10},
-		{idx = 12, weight = compCounts[8] * 10},
+		{idx = 0, weight = 1, totalWeight = 0},
+		{idx = 1, weight = 2, totalWeight = 0},
+		{idx = 2, weight = 2, totalWeight = 0},
+		{idx = 3, weight = compCounts[4] * 10, totalWeight = 0},
+		{idx = 4, weight = compCounts[5] * 10, totalWeight = 0},
+		{idx = 5, weight = compCounts[7] * 5, totalWeight = 0},
+		{idx = 7, weight = compCounts[30] * 10, totalWeight = 0},
+		{idx = 8, weight = compCounts[6] * 10, totalWeight = 0},
+		{idx = 9, weight = compCounts[26] * 10, totalWeight = 0},
+		{idx = 12, weight = compCounts[8] * 10}, totalWeight = 0,
 	}
 	if compCounts[9] + compCounts[2] + compCounts[13] + compCounts[16] == 0 then
 		table.insert(poolWeights, {idx = 26, weight = compCounts[24] * 10})
 	end
 	
-	for k,v in ipairs(poolWeights) do
-		v.totalWeight = 0
-	end
 	local totalWeight = 0
 	
-	local qualityWeights = {[0]=0, 0, 0, 0, 0}
+	local qualityWeights = {[0] = 0, 0, 0, 0, 0}
 	
 	for _, poolWeight in ipairs(poolWeights) do
 		if poolWeight.weight > 0 then
@@ -326,7 +323,7 @@ function EID:simulateBagOfCrafting(componentsTable)
 			--line break after boss pool
 			if (firstAfterBoss) then poolString = poolString .. " " end
 			poolString = poolString .. poolToIcon[v.idx] .. ":" .. math.floor(v.totalWeight/totalWeight*100+0.5) .. "%,"
-			if (k == 3) then firstAfterBoss = true else firstAfterBoss = false end
+			firstAfterBoss = (k == 3)
 		end
 	end
 	poolString = string.sub(poolString,1,-2) .. "#"
@@ -656,7 +653,6 @@ EID.bagOfCraftingRoomQueries = {}
 EID.bagOfCraftingFloorQuery = {}
 EID.BagItems = {}
 
-local icount = 0
 local bagOfCraftingOffset = 0
 local lockedResults = nil
 local refreshNextTick = false
@@ -863,7 +859,7 @@ function EID:handleBagOfCraftingRendering()
 	local pickups = Isaac.FindByType(5, -1, -1, true, false)
 
 	if EID.bagOfCraftingCurPickupCount ~= #pickups then
-		for i, entity in ipairs(pickups) do
+		for _, entity in ipairs(pickups) do
 			local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
 			if craftingIDs ~= nil and not entity:ToPickup():IsShopItem() then
 				for _,v in ipairs(craftingIDs) do
@@ -882,7 +878,7 @@ function EID:handleBagOfCraftingRendering()
 	local itemCount = {}
 	
 	--max 8 copies of a single item in our list, to avoid repeat recipes
-	for i, v in ipairs(EID.bagOfCraftingFloorQuery) do
+	for _, v in ipairs(EID.bagOfCraftingFloorQuery) do
 		if (not itemCount[v] or itemCount[v] < 8) then
 			table.insert(itemQuery, v)
 			if (not itemCount[v]) then itemCount[v] = 1
@@ -890,7 +886,7 @@ function EID:handleBagOfCraftingRendering()
 		end
 	end
 	
-	for i, v in ipairs(EID.BagItems) do
+	for _, v in ipairs(EID.BagItems) do
 		if (not itemCount[v] or itemCount[v] < 8) then
 			table.insert(itemQuery, v)
 			if (not itemCount[v]) then itemCount[v] = 1
@@ -998,12 +994,12 @@ function EID:handleBagOfCraftingRendering()
 		if (calcResultCache[queryString]) then
 			sortedResults = calcResultCache[queryString]
 		else
-			for k, v in ipairs(sortedIDs) do
+			for _, v in ipairs(sortedIDs) do
 				sortedResults[v] = {}
 			end
 		end
 		
-		for k, v in pairs(newResults) do
+		for _, v in pairs(newResults) do
 			local resultID, lockedAchievementID = EID:calculateBagOfCrafting(v)
 			if resultID ~= lockedAchievementID then
 				table.insert(sortedResults[resultID], {v, resultID, lockedAchievementID})
@@ -1016,7 +1012,7 @@ function EID:handleBagOfCraftingRendering()
 		results = sortedResults
 		
 		numResults = 0
-		for k,v in ipairs(sortedIDs) do
+		for _,v in ipairs(sortedIDs) do
 			if (refreshNextTick and bagOfCraftingOffset > 0 and v == refreshPosition) then
 				--jump to the item we were looking at before, so you can more easily refresh for variants of recipes
 				bagOfCraftingOffset = numResults
@@ -1097,11 +1093,11 @@ function EID:handleBagOfCraftingRendering()
 	end
 	local curOffset = 0
 	refreshPosition = -1
-	for k,id in ipairs(sortedIDs) do
+	for _,id in ipairs(sortedIDs) do
 		if (curOffset + #results[id] <= bagOfCraftingOffset) then curOffset = curOffset + #results[id]
 		else
 			if (refreshPosition == -1) then refreshPosition = id end
-			for k2, v in ipairs(results[id]) do
+			for _, v in ipairs(results[id]) do
 				curOffset = curOffset + 1
 				if (curOffset > bagOfCraftingOffset+EID.Config["BagOfCraftingResults"]) then break end
 				if not v then break end
