@@ -43,7 +43,7 @@ local function entityToName(e, plural)
 	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)")
 	elseif plural then name = name .. localizedNames["pluralize"] end
 	
-	return "{{ColorGray}}" .. name .. "{{CR}}"
+	return name
 end
 
 local function parseEffectLine(raw)
@@ -58,7 +58,7 @@ local function parseEffectLine(raw)
 	local effectTrigger = words[3]
 	if (string.find(effectTrigger, "entity_spawned")) then
 		effectTrigger = "entity_spawned"
-		triggerReplacements[1] = entityToName(string.sub(words[3], 16, -2))
+		triggerReplacements[1] = "{{ColorEIDObjName}}" .. entityToName(string.sub(words[3], 16, -2)) .. "{{CR}}"
 	end
 	-- words[4] = "->"
 	local effectType = words[5]
@@ -75,10 +75,10 @@ local function parseEffectLine(raw)
 		
 		replacements[1] = "{{Collectible" .. Isaac.GetItemIdByName(name) .. "}} " .. name
 	elseif effectType == "convert_entities" then
-		replacements[1] = entityToName(words[6], true)
-		replacements[2] = entityToName(words[8])
+		replacements[1] = "{{ColorGray}}" .. entityToName(words[6], true) .. "{{CR}}"
+		replacements[2] = "{{ColorGray}}" .. entityToName(words[8])
 	elseif effectType == "spawn_entity" then
-		replacements[1] = entityToName(words[6])
+		replacements[1] = "{{ColorGray}}" .. entityToName(words[6])
 	elseif effectType == "fart" then
 		replacements[1] = words[6]
 	elseif effectType == "area_damage" then
