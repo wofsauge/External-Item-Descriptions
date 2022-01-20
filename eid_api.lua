@@ -906,8 +906,9 @@ function EID:CheckGlitchedItemConfig(id)
 				if string.find(v, "Hearts") then val = val / 2 end
 				-- the g flag removes .0 in numbers like 1.0 (caused by the hearts division)
 				local s = string.format("%.4g",val)
-				if val > 0 then s = "+" .. s end
-				attributes = attributes .. string.gsub(localizedNames[v], "{1}", s)
+				local prefix = "↑ "
+				if val > 0 then s = "+" .. s else prefix = "↓ " end
+				attributes = attributes .. prefix .. string.gsub(localizedNames[v], "{1}", s)
 				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] end
 				attributes = attributes .. "#"
 			end
