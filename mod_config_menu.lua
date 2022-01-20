@@ -346,7 +346,7 @@ if MCMLoaded then
 			OnChange = function(currentNum)
 				EID.Config["TextboxWidth"] = currentNum
 			end,
-			Info = {"Default = 100","Width of the EID textbox, in pixels"}
+			Info = {"Default = 115, varies per language","Width of the EID textbox, in pixels"}
 		}
 	)
 	
