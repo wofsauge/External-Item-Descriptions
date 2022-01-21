@@ -1107,7 +1107,7 @@ function EID:handleBagOfCraftingRendering()
 				if not v then break end
 				if (curOffset > bagOfCraftingOffset) then
 					if not EID.Config["BagOfCraftingDisplayNames"] then
-						customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} "
+						customDescObj.Description = customDescObj.Description.."#{{Collectible"..v[2].."}} "
 						--tack on the secondary recipe image to achievement-locked recipes
 						if v[3] then customDescObj.Description = customDescObj.Description.."({{Collectible" .. v[3] .. "}})" end
 						--color the equals sign with the item quality, so the order of the list can make sense
@@ -1116,13 +1116,13 @@ function EID:handleBagOfCraftingRendering()
 					else
 						if prevItem ~= v[2] then
 							--substring the first 18 characters of the item name so it fits on one line; is there a way to get around desc line length limits?
-							customDescObj.Description = customDescObj.Description.."# {{Collectible"..v[2].."}} ".. qualities[CraftingItemQualities[v[2]]] ..
+							customDescObj.Description = customDescObj.Description.."#{{Collectible"..v[2].."}} ".. qualities[CraftingItemQualities[v[2]]] ..
 							string.sub(EID:getObjectName(5, 100, v[2]),1,18).."#"
 						else
 							customDescObj.Description = customDescObj.Description.."#"
 						end
 						--replace recipe bulletpoint with the secondary recipe on achievement-locked recipes
-						if v[3] then customDescObj.Description = customDescObj.Description.." {{Collectible" .. v[3] .. "}} " end
+						if v[3] then customDescObj.Description = customDescObj.Description.."{{Collectible" .. v[3] .. "}} " end
 					end
 					
 					customDescObj.Description = customDescObj.Description..tableToCraftingIconsFunc(self, v[1], true)
