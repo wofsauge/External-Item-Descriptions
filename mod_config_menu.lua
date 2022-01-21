@@ -24,8 +24,12 @@ local MCMCompat_oldPermanentObj = false
 EID.MCMLoaded = MCMLoaded
 local colorNameArray = {}
 
-local function renderDummyDesc()
-	MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
+local function renderDummyDesc(reload)
+	if reload then
+		MCMCompat_oldPermanentObj = nil
+	else
+		MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
+	end
 	local demoDescObj = EID:getDescriptionObj(5, 100, 33)
 	demoDescObj.Name = EID:getDescriptionEntry("MCM","DemoObjectName")
 	demoDescObj.Transformation = EID:getDescriptionEntry("MCM","DemoObjectTransformation")
@@ -228,6 +232,7 @@ if MCMLoaded then
 				if isFixed then
 					EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 				end
+				renderDummyDesc(true)
 			end,
 			Info = {"Changes the language.","Languages marked with (WIP) are incomplete"}
 		}
