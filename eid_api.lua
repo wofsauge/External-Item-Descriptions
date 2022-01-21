@@ -1113,8 +1113,8 @@ function EID:fixDefinedFont()
 		end
 	end
 	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1].name
-	EID.lineHeight = EID.descriptions[curLang].fonts[1].lineHeight
-	EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth
+	EID.Config["LineHeight"] = EID.descriptions[curLang].fonts[1].lineHeight or EID.DefaultConfig["LineHeight"]
+	EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth or EID.DefaultConfig["TextboxWidth"]
 	return true
 end
 
