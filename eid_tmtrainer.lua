@@ -102,10 +102,9 @@ local function CheckLogForItems(_)
 	-- Check log.txt every 5 frames if there's a collectible we haven't read the data for yet
 	-- (Should work well for Corrupted Data)
 	if game:GetFrameCount() % 5 ~= 0 or not EID.Config["DisplayGlitchedItemInfo"] or not logFound or
-		Isaac.GetItemConfig():GetCollectible(maxNumber - spawnedItems - 1) == nil then return end
+		EID.itemConfig:GetCollectible(maxNumber - spawnedItems - 1) == nil then return end
 		
 	local numEffects = 0
-	local itemScore = 0
 	local eidDesc = ""
 	
 	local theLog = io.open(logLocation, "r")
@@ -114,7 +113,6 @@ local function CheckLogForItems(_)
 	local line = theLog:read()
 	while line ~= nil do
 		if string.find(line, "initialized with") then
-			local count = 0
 			spawnedItems = spawnedItems + 1
 			lastEffectTrigger = "chain"
 			eidDesc = ""
