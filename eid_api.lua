@@ -324,8 +324,13 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity)
 	description.ModName = tableEntry and tableEntry[4]
 	description.ModName = tableEntry and tableEntry[4]
 
-	for k,modifier in pairs(EID.DescModifiers) do
-		if modifier.condition(description) then
+	for _,modifier in pairs(EID.DescModifiers) do
+		local result = modifier.condition(description)
+		if type(result) == "table" then
+			for _,callback in ipairs(result) do
+				description = callback(description)
+			end
+		elseif result then
 			description = modifier.callback(description)
 		end
 	end
