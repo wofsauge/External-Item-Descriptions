@@ -801,8 +801,8 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 				end
 				local strFiltered, spriteTable = EID:filterIconMarkup(table.concat(filteredWord), 0, 0)
 				local wordLength = EID:getStrWidth(strFiltered)
-		
-				if curLength + wordLength <= textboxWidth or curLength < 12 then
+				
+				if curLength + wordLength <= textboxWidth or curLength < 17 then
 					table.insert(text, word)
 					curLength = curLength + wordLength
 				else
