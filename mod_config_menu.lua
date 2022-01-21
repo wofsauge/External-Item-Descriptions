@@ -320,17 +320,17 @@ if MCMLoaded then
 		{
 			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
-				return EID.lineHeight
+				return EID.Config["LineHeight"]
 			end,
 			Minimum = 1,
 			Maximum = 100,
 			Display = function()
-				return "Line Height: " .. EID.lineHeight
+				return "Line Height: " .. EID.Config["LineHeight"]
 			end,
 			OnChange = function(currentNum)
-				EID.lineHeight = currentNum
+				EID.Config["LineHeight"] = currentNum
 			end,
-			Info = {"Default = 11","Lineheight will automatically change when changing a font/language"}
+			Info = {"Default = 11","Line height will automatically change when changing a font/language"}
 		}
 	)
 	-- Textbox Width
@@ -351,7 +351,7 @@ if MCMLoaded then
 			OnChange = function(currentNum)
 				EID.Config["TextboxWidth"] = currentNum
 			end,
-			Info = {"Default = 115, varies per language","Width of the EID textbox, in pixels"}
+			Info = {"Default = 130, varies per language","Width of the EID textbox, in pixels"}
 		}
 	)
 	

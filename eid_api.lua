@@ -323,8 +323,13 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity)
 	
 	description.ModName = tableEntry and tableEntry[4]
 
-	for _, modifier in pairs(EID.DescModifiers) do
-		if modifier.condition(description) then
+	for _,modifier in pairs(EID.DescModifiers) do
+		local result = modifier.condition(description)
+		if type(result) == "table" then
+			for _,callback in ipairs(result) do
+				description = callback(description)
+			end
+		elseif result then
 			description = modifier.callback(description)
 		end
 	end
@@ -794,8 +799,8 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 				end
 				local strFiltered, spriteTable = EID:filterIconMarkup(table.concat(filteredWord), 0, 0)
 				local wordLength = EID:getStrWidth(strFiltered)
-		
-				if curLength + wordLength <= textboxWidth or curLength < 12 then
+				
+				if curLength + wordLength <= textboxWidth or curLength < 17 then
 					table.insert(text, word)
 					curLength = curLength + wordLength
 				else
@@ -1108,8 +1113,8 @@ function EID:fixDefinedFont()
 		end
 	end
 	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1].name
-	EID.lineHeight = EID.descriptions[curLang].fonts[1].lineHeight
-	EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth
+	EID.Config["LineHeight"] = EID.descriptions[curLang].fonts[1].lineHeight or EID.DefaultConfig["LineHeight"]
+	EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth or EID.DefaultConfig["TextboxWidth"]
 	return true
 end
 
