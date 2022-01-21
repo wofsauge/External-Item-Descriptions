@@ -292,7 +292,7 @@ local repCollectibles={
 	[639] = {"639", "难吃的心", "使用时获得1腐心"}, --  Yuck Heart
 	[640] = {"640", "灵魂之瓮", "喷射火焰#敌人死亡时获得充能"}, --  Urn of Souls
 	[641] = {"641", "血田", "战斗时，在身体后方生成一串眼泪#眼泪造成3.5伤害"}, --  Akeldama
-	[642] = {"642", "玄奇驴皮", "将1心之容器或2魂心变为1碎心#从当前房间道具池中生成1个道具#使用次数越多，若不再持有，则后续生成的道具被玄奇驴皮替换的几率越大#如果当前层的底座道具有玄奇驴皮则降低该几率#{{Warning}}游魂：一次性#{{Warning}}"}, --  Magic Skin
+	[642] = {"642", "玄奇驴皮", "将1心之容器或2魂心变为1碎心#从当前房间道具池中生成1个道具#使用次数越多，若不再持有，则后续生成的道具被玄奇驴皮替换的几率越大#如果当前层的底座道具有玄奇驴皮则降低该几率#{{Warning}} 游魂：一次性"}, --  Magic Skin
 	[643] = {"643", "终末天启", "获得飞行能力和2魂心#连续发射眼泪2.5秒可蓄力发射神圣光线"}, --  Revelation
 	[644] = {"644", "安慰奖", "提升最低的属性#根据持有数量最少的掉落物，生成3硬币，1钥匙或1炸弹"}, --  Consolation Prize
 	[645] = {"645", "小畸胎瘤", "畸胎瘤环绕物#阻挡弹幕#造成接触伤害#被击中3次时分裂成小畸胎瘤#小畸胎瘤被摧毁时产生蓝蜘蛛#被完全摧毁后5秒复活"}, --  Tinytoma
@@ -370,7 +370,7 @@ local repCollectibles={
 	[717] = {"717", "店主的亲友", "岩石和障碍物在被摧毁时生成2只蓝蜘蛛#岩石在有敌人的房间中偶尔会产生蓝蜘蛛"}, --  Keeper's Kin
 	[718] = {"718", "", "<道具不存在>"}, -- Keepers Robe (Cut item)
 	[719] = {"719", "店主的盒子", "生成1个商店出售的物品或掉落物"}, --  Keeper's Box
-	[720] = {"720", "百宝罐", "使用时生成掉落物，使用时的充能不同，效果不同#满充能时具有强力随机效果#充能：1:Poop 2:{{Coin}} 3:{{Bomb}} 4:{{Key}} 5:{{Heart}} 6:{{Pill}} 7:{{Card}} 8:{{SoulHeart}} 9:{{GoldenHeart}} 10:{{GoldenKey}} 11:{{GoldenBomb}}"}, --  Everything Jar
+	[720] = {"720", "百宝罐", "使用时生成掉落物，使用时的充能不同，效果不同#满充能时具有强力随机效果#充能：1:便便 2:{{Coin}} 3:{{Bomb}} 4:{{Key}} 5:{{Heart}} 6:{{Pill}} 7:{{Card}} 8:{{SoulHeart}} 9:{{GoldenHeart}} 10:{{GoldenKey}} 11:{{GoldenBomb}}"}, --  Everything Jar
 	[721] = {"721", "错误技", "使未来获得的所有物品混乱#其效果完全随机"}, --  TMTRAINER
 	[722] = {"722", "孤魂铁索", "禁锢离角色最近的敌人5秒"}, --  Anima Sola
 	[723] = {"723", "计数二十面骰", "将房间内所有道具转变为内部ID减1的道具"}, --  Spindown Dice
@@ -1019,7 +1019,7 @@ EID.descriptions[languageCode].CraftingHideKey = "隐藏："
 EID.descriptions[languageCode].CraftingPreviewKey = "预览："
 EID.descriptions[languageCode].CraftingPreviewBackup =  "!!! 如果该道具锁定，则会变为"
 
-EID.descriptions[languageCode].CraftingResults =  "(滚动：按住 {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}，锁定：{{ButtonX}}，刷新：{{ButtonB}})，重置袋：按住 {{ButtonRB}}"
+EID.descriptions[languageCode].CraftingResults =  "(滚动：按住 {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}，锁定：{{ButtonX}}，刷新：{{ButtonB}}，重置袋：按住 {{ButtonRB}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "空白卡牌充能：" 
 EID.descriptions[languageCode].BlankCardQCard = "传送至错误房#空白卡牌和？卡牌会被摧毁" 
