@@ -2,7 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Sync Revise: 2022.01.19
+-- Last Sync Revise: 2022.01.21
 -- Last Full Check: N/A -- I will have a full check someday else.
 
 -- FORMAT: Item ID | Name | Description
