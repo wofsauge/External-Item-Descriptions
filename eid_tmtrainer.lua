@@ -56,6 +56,8 @@ local function parseEffectLine(raw)
 	
 	-- words[1] = "[INFO]", words[2] = "-"
 	local effectTrigger = words[3]
+	-- the effects list is rarely interrupted by music loading log entries, just ignore it and have a slightly inaccurate desc
+	if effectTrigger == "Queued" then return "" end
 	if (string.find(effectTrigger, "entity_spawned")) then
 		effectTrigger = "entity_spawned"
 		triggerReplacements[1] = "{{ColorEIDObjName}}" .. entityToName(string.sub(words[3], 16, -2)) .. "{{CR}}"
