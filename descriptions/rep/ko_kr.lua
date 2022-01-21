@@ -178,7 +178,7 @@ local repCollectibles={
 	[384] = {"384", "꼬마 거디", "공격키를 누르고 있는 동안 충전되며 공격키를 떼면 공격했던 방향으로 돌진해 벽에 튕겨다니며 적을 공격합니다.#충전량에 따라 공격력과 거리가 증가합니다."}, -- Lil Gurdy
 	[389] = {"389", "룬 가방", "방 8개 클리어 시 룬 및 영혼석을 하나 드랍합니다."}, -- Rune Bag
 	[393] = {"393", "독뱀의 키스", "확률적으로 적을 중독시키는 공격이 나갑니다.#적에게 접촉시 12의 피해를 주고 적을 중독시킵니다.#접촉으로 중독된 적이 죽을때 20% 확률로 블랙하트가 드랍됩니다."}, -- Serpent's Kiss
-	[394] = {"394", "조준", "↑ {{Tears}}연사 +0.7#↑ {{Range}}사거리 +3.15#조준점을 조종하여 조준점이 있는 방향을 향해 눈물을 발사할 수 있습니다.#패밀리어들이 조준점을 향해 공격합니다."}, -- Marked
+	[394] = {"394", "조준", "↑ {{Tears}}연사 +0.7#↑ {{Range}}사거리 +3.15#조준점을 조종하여 조준점이 있는 방향을 향해 눈물을 자동으로 발사합니다.#패밀리어들이 조준점을 향해 공격합니다.#{{ButtonRT}}버튼을 눌러 자동 공격을 멈출 수 있습니다."}, -- Marked
 	[395] = {"395", "기계 X", "공격이 충전형 레이저 고리 공격으로 변경됩니다.#레이저 공격력은 충전량에 따라 x0.25 ~ x1로 증감합니다.#레이저는 사거리 제한이 없으며 적과 장애물을 관통합니다."}, -- Tech X
 	[397] = {"397", "조종 광선", "↑ {{Tears}}연사 +0.5#↑ {{Range}}사거리 +1.5#↑ {{Shotspeed}}탄속 +0.16#눈물이 캐릭터가 바라보는 방향의 일직선으로만 나갑니다."}, -- Tractor Beam
 	[399] = {"399", "공허의 구렁텅이", "공격키를 2.5초 이상 누르면 충전되며 공격키를 떼면 캐릭터 주위에 검은 고리가 둘러집니다.#고리는 다단히트로 접촉한 적에게 최대 30번의 피해를 줍니다."}, -- Maw Of The Void
@@ -1105,7 +1105,7 @@ EID.descriptions[languageCode].CraftingHideKey = "숨기기:"
 EID.descriptions[languageCode].CraftingPreviewKey = "미리보기:"
 EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 언락되어 있지 않을 경우 결과가 달라질 수 있습니다."
 
-EID.descriptions[languageCode].CraftingResults = "(스크롤: hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#고정: {{ButtonX}}, 새로고침: {{ButtonB}})"
+EID.descriptions[languageCode].CraftingResults = "(스크롤: {{CONFIG_BoC_Toggle}} 꾹 누름 + {{ButtonY}} {{ButtonA}},#고정: {{ButtonX}}, 새로고침: {{ButtonB}},#초기화: {{ButtonRB}} 꾹 누르기)"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
 EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."
