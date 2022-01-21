@@ -165,8 +165,9 @@ local repCollectibles={
 	[407] = {"407", "纯洁", "↑ 根据角色光环颜色对角色属性进行增强#受伤或进入新房间时，获得新的光环：#{{ColorRed}}红色{{CR}} = +4伤害#{{ColorBlue}}蓝色{{CR}} = +2发射速度#{{ColorYellow}}黄色{{CR}} = +0.5移速#{{ColorOrange}}橙色{{CR}} = +3.0射程"},
 	[408] = {"408", "祭祀之刃", "受伤时在角色周围产生黑色硫磺火圈"}, -- Athame
 	[415] = {"415", "光明之冠", "+2魂心#如果没有不满的心之容器：#↑ +100%伤害#↑ +1.5射程#↓ -0.3弹速#受伤后，当前房间无论心之容器是否是满的，效果消失"}, -- Crown Of Light
-	[416] = {"416", "深口袋", "能携带2个卡牌/胶囊/符文#如果房间没有奖励，生成1-3硬币#提高硬币上限为999"}, -- Deep Pockets
+	[416] = {"416", "深口袋", "如果房间没有奖励，生成1-3硬币#提高硬币上限为999"}, -- Deep Pockets
 	[417] = {"417", "魅魔", "在房间内漂浮的跟班，产生伤害光环，每秒造成7-10的伤害#↑ 站在光环中+50%伤害"}, -- Succubus
+	[419] = {"419", "传送2.0", "传送至另1个未探索的随机房间#等级：{{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}>{{DiceRoom}}> {{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}>{{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}/{{AngelRoom}}>错误房"},
 	[421] = {"421", "腰豆", "使用时将任何范围内的敌人魅惑"}, -- Kidney Bean
 	[426] = {"426", "狂热粉丝", "跟随角色移动的跟班，有0.66秒延迟#每秒造成30接触伤害"}, -- Obsessed Fan
 	[430] = {"430", "狙击蝇老爹", "跟随角色移动的跟班，有0.66秒延迟#向附近敌人发射眼泪，造成与角色伤害相等的伤害"}, -- Papa Fly
@@ -175,7 +176,7 @@ local repCollectibles={
 	[440] = {"440", "肾结石", "发射眼泪时几率进行蓄力攻击#松开发射键后发射肾结石和一串眼泪"}, -- Kidney Stone
 	[442] = {"442", "黑王子之冠", "!!! 仅有1红心时：#↑ +2发射速度#↑ +1.5射程#↑ +0.2弹速#没有红心的角色无效)"}, -- Dark Princes Crown
 	[444] = {"444", "铅笔", "每发射15颗眼泪，发射一串眼泪"}, -- Lead Pencil
-	[448] = {"448", "玻璃碎片", "受减红心的伤时，喷出红色眼泪#攻击时控制喷出眼泪的方向#生效后，每20秒受到半心伤害#直到捡到红心或无红心为止#不致死"}, -- Shard of Glass
+	[448] = {"448", "玻璃碎片", "受减红心的伤时：#在角色周围喷洒眼泪#攻击时控制喷出眼泪的方向#每20秒受到半红心伤害#直到捡到红心或无红心效果终止#不致死#受伤时有25%几率掉落1红心"}, -- Shard of Glass
 	[451] = {"451", "塔罗牌桌布", "掉落1个随机卡牌或符文#某些卡牌有额外或双倍效果"}, -- Tarot Cloth
 	[453] = {"453", "复杂性骨折", "↑ +0.38射程#骨头眼泪#眼泪击中时碎成1-3个小骨头碎片"}, -- Compound Fracture
 	[455] = {"455", "老爸丢失的硬币", "↑ +0.38射程#生成1运气硬币"},
@@ -243,7 +244,7 @@ local repCollectibles={
 	[591] = {"591", "金星", "↑ +1心之容器#治疗1红心#近距离内的敌人受到魅惑"}, --  Venus
 	[592] = {"592", "地球", "↑ +1.0伤害#眼泪变为石头#每颗伤害不定#可摧毁障碍物#击退增强"}, --  Terra
 	[593] = {"593", "火星", "双击移动方向键进行冲锋#冲锋时无敌，造成角色伤害x4的伤害#3秒冷却时间"}, --  Mars
-	[594] = {"594", "木星", "↑ +2心之容器#治疗半红心#↓ -0.3移速#不移动时累积至多0.5移速#移动时向后释放毒气"}, --  Jupiter
+	[594] = {"594", "木星", "↑ +2心之容器#治疗半红心#↓ -0.3移速#不移动时累积至多0.5移速#移动时向后释放毒气#角色免疫中毒伤害"}, --  Jupiter
 	[595] = {"595", "土星", "生成1个轨道#进入房间时生成7颗眼泪在轨道上环绕#轨道有几率捕获敌人的弹幕"}, --  Saturnus
 	[596] = {"596", "天王星", "发射冰冻眼泪，对敌人造成减速效果，击杀时使敌人冻结#冻结的敌人可以推开，撞碎时向四周发射6个冰锥"}, --  Uranus
 	[597] = {"597", "海王星", "不发射眼泪时积攒眼泪，最多持续3秒##发射时射出大量眼泪#发射时积攒的眼泪逐渐减少"}, --  Neptunus
@@ -316,7 +317,7 @@ local repCollectibles={
 	[664] = {"664", "大胃王", "↑ +1心之容器#满血#所有道具会周期性地切换为食物道具#捡起食物道具时获得临时+3.6伤害，永久提升2项属性并永久-0.03移速#食物道具治疗3红心"}, --  Binge Eater
 	[665] = {"665", "嗝屁猫的眼睛", "显示所有箱子，福袋，火堆的内容"}, --  Guppy's Eye
 	[666] = {"666", "", "<道具不存在>"},
-	[667] = {"667", "稻草人", "生成店主作为第二个角色#店主死亡时生成蓝蜘蛛#店主死亡时该道具消失#店主活着时恶魔交易花费硬币#!!! 店主能够捡起道具，包括剧情道具，死亡时也会永久移除"}, --  Strawman
+	[667] = {"667", "稻草人", "+1炸弹#生成店主作为第二个角色#店主死亡时生成蓝蜘蛛#店主死亡时该道具消失#店主活着时恶魔交易花费硬币#!!! 店主能够捡起道具，包括剧情道具，死亡时也会永久移除"}, --  Strawman
 	[668] = {"668", "老爸的便条", "踏上回家的路#留在之前{{TreasureRoom}}道具房或{{BossRoom}}Boss房的饰品会变成 {{Card78}} 破裂的钥匙"}, --  Dad's Note
 	[669] = {"669", "腊肠", "↑ +1心之容器#满血#↑ +0.5伤害#↑ +0.2移速#↑ +1.2弹速#↑ +0.16射程#↑ +1运气#↑ +6.9%{{DevilRoom}}恶魔房或{{AngelRoom}}天使房几率#↑ +6.9%{{Planetarium}}星象房几率"}, --  Sausage
 	[670] = {"670", "选择？", "如果清理的房间有奖励，产生2种不同的奖励#捡起其一后另1个奖励消失"}, --  Options?
@@ -549,7 +550,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[291] = "每有1便便类敌人额外生成1魂火", -- Flush!
 	[292] = "每有1此类魂火+10%{{DevilRoom}}恶魔房或{{AngelRoom}}天使房几率", -- Satanic Bible
 	[293] = "摧毁时发射4向激光", -- Head of Krampus
-	[294] = "单房间魂火#不能发射眼泪#摧毁时产生棉豆效果", -- Butter Bean
+	[294] = "单房间魂火#不能发射眼泪#摧毁时产生棉豆的效果", -- Butter Bean
 	[295] = "摧毁时几率掉落1硬币", -- Magic Fingers
 	[296] = "无特殊效果", -- Converter
 	[297] = "无特殊效果", -- Pandora's Box
@@ -605,7 +606,6 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[523] = "魂火只在掉落物品时生成#摧毁时生成随机掉落物", -- Moving Box
 	[527] = "不能发射眼泪#清理房间后，魂火会打来箱子/门", -- Mr. ME!
 	[536] = "将所有魂火变成半红心#献祭时生成1强力魂火", -- Sacrificial Altar
-
 	[545] = "摧毁时生成1友好的骷髅仔", -- Book of the Dead
 	[550] = "眼泪有10%几率对敌人触发践踏", -- Broken Shovel
 	[552] = "眼泪有10%几率对敌人触发践踏#另会生成1个高血量魂火，不能发射眼泪", -- Mom's Shovel
@@ -851,7 +851,7 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
 
 EID.descriptions[languageCode].tarotClothBuffs = {
-	[2] = "同时获得 {{Collectible34}} 彼列之书效果", -- I - The Magician
+	[2] = "同时获得{{Collectible34}}彼列之书效果", -- I - The Magician
 	[3] = "第一只脚落下后马上落下第二只", -- II - The High Priestess
 	[4] = "属性提升量为4倍", -- III - The Empress
 	[5] = "如果Boss尚未击败，传送时获得1魂心", -- IV - The Emperor
@@ -968,22 +968,22 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	[0] = "伤害", "射速", "弹速", "射程", "移速", "眼泪效果", "眼泪颜色", "飞行", "攻击类型", "跟班", "幸运", "大小", "颜色", "箱子内容物", [16] = "所有属性",
 
 	-- Attribute triggers
-	chain = "{{ColorCyan}}然后：{{CR}} ",
-	active = "{{ColorCyan}}使用时：#",
-	pickup_collected = "{{ColorCyan}}捡到掉落物时：#", --chance to?
-	enemy_kill = "{{ColorCyan}}击杀时，几率：#",
-	damage_taken = "{{ColorCyan}}受伤时：#", --chance to?
-	entity_spawned = "当生成{{ColorCyan}}{T1}{{CR}}时：#",
-	tear_fire = "{{ColorCyan}}角色发射眼泪时，几率：#",
-	enemy_hit = "{{ColorCyan}}击中敌人时，几率：#",
-	room_clear = "{{ColorCyan}}清理房间后：#", --chance to?
+	chain = "然后：{{CR}}",
+	active = "使用时：#",
+	pickup_collected = "捡到掉落物时：#", --chance to?
+	enemy_kill = "击杀时，几率：#",
+	damage_taken = "受伤时：#", --chance to?
+	entity_spawned = "当生成{T1}时：#",
+	tear_fire = "角色发射眼泪时，几率：#",
+	enemy_hit = "击中敌人时，几率：#",
+	room_clear = "清理房间后：#", --chance to?
 
 	-- Attribute effects
 	area_damage = "在角色周围造成{1}伤害", 
 	add_temporary_effect = "所在房间获得{1}效果",
-	convert_entities = "将房间中所有{{ColorGray}}{1}{{CR}}变成{{ColorGray}}{2}{{CR}}",
+	convert_entities = "将房间中所有{1}变成{2}",
 	use_active_item = "使用{1}",
-	spawn_entity = "生成1个{{ColorGray}}{1}{{CR}}",
+	spawn_entity = "生成1个{1}",
 	fart = "放屁，大小为{1}",
 
 	-- Generic entity names not obtained from entities2.xml

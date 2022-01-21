@@ -43,7 +43,7 @@ local function entityToName(e, plural)
 	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)")
 	elseif plural then name = name .. localizedNames["pluralize"] end
 	
-	return "{{ColorGray}}" .. name .. "{{CR}}"
+	return name
 end
 
 local function parseEffectLine(raw)
@@ -56,9 +56,11 @@ local function parseEffectLine(raw)
 	
 	-- words[1] = "[INFO]", words[2] = "-"
 	local effectTrigger = words[3]
+	-- the effects list is rarely interrupted by music loading log entries, just ignore it and have a slightly inaccurate desc
+	if effectTrigger == "Queued" then return "" end
 	if (string.find(effectTrigger, "entity_spawned")) then
 		effectTrigger = "entity_spawned"
-		triggerReplacements[1] = entityToName(string.sub(words[3], 16, -2))
+		triggerReplacements[1] = "{{ColorEIDObjName}}" .. entityToName(string.sub(words[3], 16, -2)) .. "{{CR}}"
 	end
 	-- words[4] = "->"
 	local effectType = words[5]
@@ -75,10 +77,10 @@ local function parseEffectLine(raw)
 		
 		replacements[1] = "{{Collectible" .. Isaac.GetItemIdByName(name) .. "}} " .. name
 	elseif effectType == "convert_entities" then
-		replacements[1] = entityToName(words[6], true)
-		replacements[2] = entityToName(words[8])
+		replacements[1] = "{{ColorGray}}" .. entityToName(words[6], true) .. "{{CR}}"
+		replacements[2] = "{{ColorGray}}" .. entityToName(words[8])
 	elseif effectType == "spawn_entity" then
-		replacements[1] = entityToName(words[6])
+		replacements[1] = "{{ColorGray}}" .. entityToName(words[6])
 	elseif effectType == "fart" then
 		replacements[1] = words[6]
 	elseif effectType == "area_damage" then
@@ -102,10 +104,9 @@ local function CheckLogForItems(_)
 	-- Check log.txt every 5 frames if there's a collectible we haven't read the data for yet
 	-- (Should work well for Corrupted Data)
 	if game:GetFrameCount() % 5 ~= 0 or not EID.Config["DisplayGlitchedItemInfo"] or not logFound or
-		Isaac.GetItemConfig():GetCollectible(maxNumber - spawnedItems - 1) == nil then return end
+		EID.itemConfig:GetCollectible(maxNumber - spawnedItems - 1) == nil then return end
 		
 	local numEffects = 0
-	local itemScore = 0
 	local eidDesc = ""
 	
 	local theLog = io.open(logLocation, "r")
@@ -114,7 +115,6 @@ local function CheckLogForItems(_)
 	local line = theLog:read()
 	while line ~= nil do
 		if string.find(line, "initialized with") then
-			local count = 0
 			spawnedItems = spawnedItems + 1
 			lastEffectTrigger = "chain"
 			eidDesc = ""

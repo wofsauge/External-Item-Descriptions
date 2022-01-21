@@ -16,7 +16,7 @@ EID.descriptions[languageCode].custom = {} -- table for custom entity descriptio
 EID.descriptions[languageCode].languageName = "English"
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts = {{name="default", lineHeight=11, textboxWidth = 115}, {name="inverted", lineHeight=11, textboxWidth = 115}, {name="borderless", lineHeight=11, textboxWidth = 115}}
+EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
@@ -451,7 +451,7 @@ EID.descriptions[languageCode].collectibles={
 	{"429", "Head of the Keeper", "Enemies have a 5% chance to drop a Penny when hit with your tears"},
 	{"430", "Papa Fly", "Follows your movement pattern on a 1 second delay#Fires tears at nearby enemies that deal damage equal to your damage"},
 	{"431", "Multidimensional Baby", "Follows your movement pattern on a 2 second delay#Tears that pass through it will split up and gain a speed boost"},
-	{"432", "Glitter Bombs", "+5 bombs#Bombs have a chance to drop random pickups when they explode"},
+	{"432", "Glitter Bombs", "+5 bombs#Bombs have a chance to drop random pickups or charm enemies when they explode#"},
 	{"433", "My Shadow", "Each time you take damage, it will apply a fear effect to all enemies and spawn a friendly black charger#The charger deals 5 damage per second"},
 	{"434", "Jar of Flies", "Every time you kill an enemy a blue fly will be added to the Jar#Up to 20 flies#Using the item will release all the flies"},
 	{"435", "Lil Loki", "Shoots 4 tears in a cross pattern#Deals 3.5 damage per shot"},
@@ -502,7 +502,7 @@ EID.descriptions[languageCode].collectibles={
 	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles your current blue flies/spiders#Spawns 1 blue fly or spider when you don't have any"},
 	{"481", "Dataminer", "When used, ↑/↓ small amount on random stat#Random tear effect for current room#Fucks up all sprites"},
 	{"482", "Clicker", "Transforms you into a different character#Removes the last item you collected"},
-	{"483", "Mama Mega!", "!!! SINGLE USE !!!#Affects whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss Rush, Hush and all secret rooms"},
+	{"483", "Mama Mega!", "!!! SINGLE USE !!!#Affects whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss Rush, Hush and all secret rooms#!!! If you have a Golden Bomb, consumes it on use instead of Mama Mega"},
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawn a wave of rocks#Can open rooms and break rocks"},
 	{"485", "Crooked Penny", "50% chance to double all items, consumables and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"},
 	{"486", "Dull Razor", "Hurts you without damaging you#Can trigger item effects"},

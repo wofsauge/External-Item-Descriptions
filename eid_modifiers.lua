@@ -1,11 +1,7 @@
 if REPENTANCE then
-local game = Game()
+	local game = Game()
 
 	-- Handle Birthright
-	local function BirthrightCondition(descObj)
-		return descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ObjSubType == 619
-	end
-	
 	local function BirthrightCallback(descObj)
 		descObj.Description = ""
 		local describedPlayerTypes = {}
@@ -23,22 +19,9 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("Birthright", BirthrightCondition, BirthrightCallback)
-	
-	
 	
 	-- Handle Bingeeater description addition
-	local function BingeeaterCondition(descObj)
-		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-			return false
-		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER) then
-			return true
-		end
-		return false
-	end
-	
-	local function BingeeaterCallback(descObj)
+	local function BingeEaterCallback(descObj)
 		local bingeBuff = EID:getDescriptionEntry("bingeEaterBuffs", descObj.ObjSubType)
 		if bingeBuff ~= nil then
 			local iconStr = "#{{Collectible664}} "
@@ -46,27 +29,9 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("Bingeeater", BingeeaterCondition, BingeeaterCallback)
-
-
 
 	-- Handle Book of Belial description for Judas' Birthright addition
-	local function BookofBelialCondition(descObj)
-		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-			return false
-		end
-		for i = 0,game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			local playerType = player:GetPlayerType()
-
-			if (playerType == PlayerType.PLAYER_JUDAS or playerType == PlayerType.PLAYER_BLACKJUDAS) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-				return true
-			end
-		end
-		return false
-	end
-	
-	local function BookofBelialCallback(descObj)
+	local function BookOfBelialCallback(descObj)
 		local belialBuff = EID:getDescriptionEntry("bookOfBelialBuffs", descObj.ObjSubType)
 		if belialBuff ~= nil then
 			local iconStr = "#{{Collectible34}} "
@@ -74,21 +39,8 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("BookofBelial", BookofBelialCondition, BookofBelialCallback)
 	
-	
-	
-		-- Handle Book of Virtues description addition
-	local function BookOfVirtuesCondition(descObj)
-		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-			return false
-		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) then
-			return true
-		end
-		return false
-	end
-	
+	-- Handle Book of Virtues description addition
 	local function BookOfVirtuesCallback(descObj)
 		local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", descObj.ObjSubType)
 		if wispType ~= nil then
@@ -97,21 +49,8 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("Book of Virtues", BookOfVirtuesCondition, BookOfVirtuesCallback)
-	
-	
 	
 	-- Handle Spindown Dice description addition
-	local function SpindownDiceCondition(descObj)
-		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-			return false
-		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SPINDOWN_DICE) or (EID.absorbedSpindown and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_VOID)) then
-			return true
-		end
-		return false
-	end
-	
 	local function SpindownDiceCallback(descObj)
 		EID:appendToDescription(descObj, "#{{Collectible723}} :")
 		local refID = descObj.ObjSubType
@@ -140,21 +79,8 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("Spindown Dice", SpindownDiceCondition, SpindownDiceCallback)
-	
-	
 	
 	-- Handle Tarot Cloth description addition
-	local function TarotClothCondition(descObj)
-		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TAROTCARD then
-			return false
-		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH) then
-			return true
-		end
-		return false
-	end
-	
 	local function TarotClothCallback(descObj)
 		local clothBuff = EID:getDescriptionEntry("tarotClothBuffs", descObj.ObjSubType)
 		if clothBuff ~= nil then
@@ -163,29 +89,12 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("Tarot Cloth", TarotClothCondition, TarotClothCallback)
 	
 	
 	local hasBox = false
 	local isGolden = false
 	
-	-- Handle Golden Trinket / Mom's Box description addition
-	local function GoldenTrinketCondition(descObj)
-		if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TRINKET then
-			return false
-		end
-		--check if our effect is doubled or tripled here
-		hasBox = false
-		isGolden = false
-		if descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG then
-			isGolden = true
-		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_MOMS_BOX) then
-			hasBox = true
-		end
-		return isGolden or hasBox
-	end
-	
+	-- Handle Golden Trinket / Mom's Box description addition	
 	local function GoldenTrinketCallback(descObj)
 		local trinketID = descObj.ObjSubType % TrinketType.TRINKET_GOLDEN_FLAG
 		local data = EID.GoldenTrinketData[trinketID]
@@ -259,21 +168,9 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("Golden Trinket", GoldenTrinketCondition, GoldenTrinketCallback)
-	
 	
 	-- Handle Blank Card description addition
 	local blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[49]=true,[50]=true,[55]=true,[78]=true}
-	local function BlankCardCondition(descObj)
-		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TAROTCARD or blankCardHidden[descObj.ObjSubType] or descObj.ObjSubType > 80 then
-			return false
-		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_BLANK_CARD) then
-			return true
-		end
-		return false
-	end
-	
 	local function BlankCardCallback(descObj)
 		local text = EID:getDescriptionEntry("BlankCardCharge")
 		local charge = EID.cardMetadata[descObj.ObjSubType]
@@ -288,22 +185,9 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("Blank Card", BlankCardCondition, BlankCardCallback)
-	
-
 
 	-- Handle Clear Rune description addition
 	local runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[55]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
-	local function ClearRuneCondition(descObj)
-		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_TAROTCARD or not runeIDs[descObj.ObjSubType] then
-			return false
-		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_CLEAR_RUNE) then
-			return true
-		end
-		return false
-	end
-	
 	local function ClearRuneCallback(descObj)
 		local text = EID:getDescriptionEntry("ClearRuneCharge")
 		local charge = EID.cardMetadata[descObj.ObjSubType]
@@ -313,21 +197,8 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("Clear Rune", ClearRuneCondition, ClearRuneCallback)
-	
-
 
 	-- Handle Placebo description addition
-	local function PlaceboCondition(descObj)
-		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_PILL then
-			return false
-		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_PLACEBO) then
-			return true
-		end
-		return false
-	end
-	
 	local function PlaceboCallback(descObj)
 		local text = EID:getDescriptionEntry("PlaceboCharge")
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
@@ -338,19 +209,8 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("Placebo", PlaceboCondition, PlaceboCallback)
 	
 	-- Handle False PHD description addition
-	local function FalsePHDCondition(descObj)
-		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_PILL then
-			return false
-		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD) then
-			return true
-		end
-		return false
-	end
-	
 	local function FalsePHDCallback(descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 		local horse = descObj.ObjSubType > 2048
@@ -370,20 +230,8 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("False PHD", FalsePHDCondition, FalsePHDCallback)
-
 
 	-- Handle Abyss description addition
-	local function AbyssCondition(descObj)
-		if not REPENTANCE or descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-			return false
-		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_ABYSS) then
-			return true
-		end
-		return false
-	end
-	
 	local function AbyssCallback(descObj)
 		local text = EID:getDescriptionEntry("abyssSynergies", descObj.ObjSubType)
 		if text ~= nil then
@@ -392,20 +240,8 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("Abyss", AbyssCondition, AbyssCallback)
-
 
 	-- Handle Flip description addition
-	local function FlipCondition(descObj)
-		if not REPENTANCE or not EID:getEntityData(descObj.Entity, "EID_FlipItemID") then
-			return false
-		end
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) then
-			return true
-		end
-		return false
-	end
-	
 	local function FlipCallback(descObj)
 		local flipItemID = EID:getEntityData(descObj.Entity, "EID_FlipItemID")
 		if flipItemID <= 0 then return descObj end
@@ -423,6 +259,87 @@ local game = Game()
 		end
 		return descObj
 	end
-	EID:addDescriptionModifier("Flip", FlipCondition, FlipCallback)
+	
+	
+	--------------------------------
+	-- Although individual conditions/callbacks work well for mods to be able to add through the API,
+	-- As we kept adding callbacks for vanilla items, a lot of code got repeated over and over
+	-- This one-condition setup fixes that and can only help performance
+	-- It also allows us to pick the order that modifiers are appended to descriptions (stats/effects first, then reroll/flip/recharge info)
+	
+	local collectiblesToCheck = { CollectibleType.COLLECTIBLE_BINGE_EATER, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES,
+		CollectibleType.COLLECTIBLE_SPINDOWN_DICE, CollectibleType.COLLECTIBLE_VOID,
+		CollectibleType.COLLECTIBLE_TAROT_CLOTH, CollectibleType.COLLECTIBLE_MOMS_BOX,
+		CollectibleType.COLLECTIBLE_BLANK_CARD, CollectibleType.COLLECTIBLE_CLEAR_RUNE, CollectibleType.COLLECTIBLE_PLACEBO, 
+		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP,
+	}
+	local collectiblesOwned = {}
+
+	local function EIDConditions(descObj)
+		-- currently, only pickup descriptions have modifiers
+		if descObj.ObjType ~= 5 then return false end
+		
+		-- recheck the players' owned collectibles periodically, not every frame
+		if game:GetFrameCount() % 10 == 0 then
+			local numPlayers = game:GetNumPlayers()
+			local players = {}; for i = 0, numPlayers - 1 do players[i] = Isaac.GetPlayer(i) end
+			for _,v in ipairs(collectiblesToCheck) do
+				collectiblesOwned[v] = false
+				for i = 0, numPlayers - 1 do
+					if players[i]:HasCollectible(v) then
+						collectiblesOwned[v] = true
+						break
+					end
+				end
+			end
+			-- Birthright Book of Belial
+			collectiblesOwned[59] = false
+			for i = 0, numPlayers - 1 do
+				local playerType = players[i]:GetPlayerType()
+				if (playerType == PlayerType.PLAYER_JUDAS or playerType == PlayerType.PLAYER_BLACKJUDAS) and players[i]:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+					collectiblesOwned[59] = true
+					break
+				end
+			end
+			
+		end
+		
+		local callbacks = {}
+		
+		-- Collectible Pedestal Callbacks
+		if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
+			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
+			-- Check Birthright first because it overwrites the description instead of appending to it
+			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
+			
+			if collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
+			if collectiblesOwned[59] then table.insert(callbacks, BookOfBelialCallback) end
+			if collectiblesOwned[584] then table.insert(callbacks, BookOfVirtuesCallback) end
+			if collectiblesOwned[706] then table.insert(callbacks, AbyssCallback) end
+			
+			if collectiblesOwned[723] or (EID.absorbedSpindown and collectiblesOwned[477]) then table.insert(callbacks, SpindownDiceCallback) end
+			if collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
+		-- Card / Rune Callbacks
+		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
+			if collectiblesOwned[451] then table.insert(callbacks, TarotClothCallback) end
+			
+			if collectiblesOwned[286] and not blankCardHidden[descObj.ObjSubType] and descObj.ObjSubType <= 80 then table.insert(callbacks, BlankCardCallback) end
+			if collectiblesOwned[263] and runeIDs[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
+		-- Pill Callbacks
+		elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
+			if collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
+			
+			if collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
+		-- Trinket Callbacks
+		elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
+			-- Golden Trinket / Mom's Box
+			isGolden = (descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG)
+			hasBox = collectiblesOwned[439]
+			if isGolden or hasBox then table.insert(callbacks, GoldenTrinketCallback) end
+		end
+		
+		return callbacks
+	end
+	EID:addDescriptionModifier("EID Repentance", EIDConditions, nil)
 
 end

@@ -24,8 +24,12 @@ local MCMCompat_oldPermanentObj = false
 EID.MCMLoaded = MCMLoaded
 local colorNameArray = {}
 
-local function renderDummyDesc()
-	MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
+local function renderDummyDesc(reload)
+	if reload then
+		MCMCompat_oldPermanentObj = nil
+	else
+		MCMCompat_oldPermanentObj = EID.permanentDisplayTextObj
+	end
 	local demoDescObj = EID:getDescriptionObj(5, 100, 33)
 	demoDescObj.Name = EID:getDescriptionEntry("MCM","DemoObjectName")
 	demoDescObj.Transformation = EID:getDescriptionEntry("MCM","DemoObjectTransformation")
@@ -228,6 +232,7 @@ if MCMLoaded then
 				if isFixed then
 					EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 				end
+				renderDummyDesc(true)
 			end,
 			Info = {"Changes the language.","Languages marked with (WIP) are incomplete"}
 		}
@@ -315,17 +320,17 @@ if MCMLoaded then
 		{
 			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
-				return EID.lineHeight
+				return EID.Config["LineHeight"]
 			end,
 			Minimum = 1,
 			Maximum = 100,
 			Display = function()
-				return "Line Height: " .. EID.lineHeight
+				return "Line Height: " .. EID.Config["LineHeight"]
 			end,
 			OnChange = function(currentNum)
-				EID.lineHeight = currentNum
+				EID.Config["LineHeight"] = currentNum
 			end,
-			Info = {"Default = 11","Lineheight will automatically change when changing a font/language"}
+			Info = {"Default = 11","Line height will automatically change when changing a font/language"}
 		}
 	)
 	-- Textbox Width
@@ -346,7 +351,7 @@ if MCMLoaded then
 			OnChange = function(currentNum)
 				EID.Config["TextboxWidth"] = currentNum
 			end,
-			Info = {"Default = 100","Width of the EID textbox, in pixels"}
+			Info = {"Default = 130, varies per language","Width of the EID textbox, in pixels"}
 		}
 	)
 	

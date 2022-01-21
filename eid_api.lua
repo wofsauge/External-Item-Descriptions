@@ -322,10 +322,14 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity)
 	description.Transformation = EID:getTransformation(Type, Variant, SubType)
 	
 	description.ModName = tableEntry and tableEntry[4]
-	description.ModName = tableEntry and tableEntry[4]
 
-	for k,modifier in pairs(EID.DescModifiers) do
-		if modifier.condition(description) then
+	for _,modifier in pairs(EID.DescModifiers) do
+		local result = modifier.condition(description)
+		if type(result) == "table" then
+			for _,callback in ipairs(result) do
+				description = callback(description)
+			end
+		elseif result then
 			description = modifier.callback(description)
 		end
 	end
@@ -733,7 +737,6 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 		-- utf8 word (sequence): 0x11xxxxxx 0x10xxxxxx 0x10xxxxxx ... 0x10xxxxxx
 		-- see https://en.wikipedia.org/wiki/UTF-8
 		-- we can only break after space, or before 0x11xxxxxx
-		local can_break_after_cursor = false
 		local cur, next = byte(str,cursor), byte(str,cursor+1)
 		if
 			-- cond#1: we can break at the end of string
@@ -796,8 +799,8 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 				end
 				local strFiltered, spriteTable = EID:filterIconMarkup(table.concat(filteredWord), 0, 0)
 				local wordLength = EID:getStrWidth(strFiltered)
-		
-				if curLength + wordLength <= textboxWidth or curLength < 12 then
+				
+				if curLength + wordLength <= textboxWidth or curLength < 17 then
 					table.insert(text, word)
 					curLength = curLength + wordLength
 				else
@@ -824,7 +827,7 @@ function EID:renderString(str, position, scale, kcolor)
 	str = EID:replaceShortMarkupStrings(str)
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
 	local offsetX = 0
-	for i, textPart in ipairs(textPartsTable) do
+	for _, textPart in ipairs(textPartsTable) do
 		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1], position.X, position.Y)
 		EID:renderInlineIcons(spriteTable, position.X + offsetX, position.Y)
 		EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
@@ -881,11 +884,10 @@ end
 local itemConfigItemAttributes = { "AddMaxHearts", "AddHearts", "AddSoulHearts", "AddBlackHearts", "AddBombs", "AddCoins", "AddKeys", "CacheFlags" }
 function EID:CheckGlitchedItemConfig(id)
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
-	local config = Isaac.GetItemConfig()
-	local item = config:GetCollectible(id)
+	local item = EID.itemConfig:GetCollectible(id)
 	if not item then return "" end
 	local attributes = ""
-	for k,v in ipairs(itemConfigItemAttributes) do
+	for _,v in ipairs(itemConfigItemAttributes) do
 		local val = item[v]
 		if val ~= 0 then
 			if (v == "CacheFlags") then
@@ -906,8 +908,9 @@ function EID:CheckGlitchedItemConfig(id)
 				if string.find(v, "Hearts") then val = val / 2 end
 				-- the g flag removes .0 in numbers like 1.0 (caused by the hearts division)
 				local s = string.format("%.4g",val)
-				if val > 0 then s = "+" .. s end
-				attributes = attributes .. string.gsub(localizedNames[v], "{1}", s)
+				local prefix = "↑ "
+				if val > 0 then s = "+" .. s else prefix = "↓ " end
+				attributes = attributes .. prefix .. string.gsub(localizedNames[v], "{1}", s)
 				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] end
 				attributes = attributes .. "#"
 			end
@@ -958,7 +961,7 @@ function EID:DetectModdedItems()
 end
 
 function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
-	local itemPool = Game():GetItemPool()
+	local itemPool = game:GetItemPool()
 	if maxCollectibleID == nil then maxCollectibleID = EID:GetMaxCollectibleID() end
 	for i= 1, maxCollectibleID do
 		if ItemConfig.Config.IsValidCollectible(i) and i ~= collectibleID then
@@ -966,7 +969,7 @@ function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 		end
 	end
 	local isUnlocked = false
-	for i = 0,1 do -- some samples to make sure
+	for i = 0, 1 do -- some samples to make sure
 		local collID = itemPool:GetCollectible(itemPoolOfItem, false, 1)
 		if collID == collectibleID then
 			isUnlocked = true
@@ -995,7 +998,7 @@ function EID:isCollectibleUnlockedAnyPool(collectibleID)
 			return false
 		end
 		--iterate through the pools this item can be in
-		for k,itemPoolID in ipairs(EID.XMLItemIsInPools[collectibleID]) do
+		for _,itemPoolID in ipairs(EID.XMLItemIsInPools[collectibleID]) do
 			if (itemPoolID < ItemPoolType.NUM_ITEMPOOLS and EID:isCollectibleUnlocked(collectibleID, itemPoolID)) then
 				EID.itemUnlockStates[collectibleID] = true
 				return true
@@ -1013,14 +1016,14 @@ end
 -- Example input: {1,2,3,4,5,6,7,8}
 -- Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
 local emptyPickupTable = {}
-for i=1,29 do emptyPickupTable[i] = 0 end
+for i=1, 29 do emptyPickupTable[i] = 0 end
 function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
 	table.sort(sortedList, function(a, b) return a < b end)
 	local visitedItemCount = {table.unpack(emptyPickupTable)}
 
 	local iconString = ""
-	for _,nr in ipairs(sortedList) do
+	for _, nr in ipairs(sortedList) do
 		visitedItemCount[nr] = visitedItemCount[nr] + 1
 		local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, visitedItemCount[nr], false) and "{{IconGreenTint}}" or "" 
 		iconString = iconString..completedColoring.."{{Crafting"..nr.."}}"
@@ -1034,11 +1037,11 @@ end
 function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
 	local filteredList = {table.unpack(emptyPickupTable)}
-	for _,nr in ipairs(sortedList) do
+	for _, nr in ipairs(sortedList) do
 		filteredList[nr] = filteredList[nr] + 1
 	end
 	local iconString = ""
-	for nr,count in ipairs(filteredList) do
+	for nr, count in ipairs(filteredList) do
 		if (count > 0) then
 			local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, count, true) and "{{ColorBagComplete}}" or "" 
 			iconString = iconString..completedColoring..count.."{{Crafting"..nr.."}}{{CR}}"
@@ -1085,7 +1088,7 @@ end
 
 function EID:getScreenSize()
 	local room = game:GetRoom()
-	local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - Game().ScreenShakeOffset
+	local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - game.ScreenShakeOffset
 	
 	local rx = pos.X + 60 * 26 / 40
 	local ry = pos.Y + 140 * (26 / 40)
@@ -1110,8 +1113,8 @@ function EID:fixDefinedFont()
 		end
 	end
 	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1].name
-	EID.lineHeight = EID.descriptions[curLang].fonts[1].lineHeight
-	EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth
+	EID.Config["LineHeight"] = EID.descriptions[curLang].fonts[1].lineHeight or EID.DefaultConfig["LineHeight"]
+	EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth or EID.DefaultConfig["TextboxWidth"]
 	return true
 end
 
