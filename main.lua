@@ -30,6 +30,9 @@ EID.itemUnlockStates = {}
 EID.CraneItemType = {}
 EID.absorbedSpindown = false
 
+EID.GameUpdateCount = 0
+EID.GameRenderCount = 0
+
 -- Sprite inits
 EID.IconSprite = Sprite()
 EID.IconSprite:Load("gfx/eid_transform_icons.anm2", true)
@@ -804,10 +807,10 @@ end
 EID.lastDescriptionEntity = nil
 EID.lastDist = 0
 EID.pathCheckerEntity = nil
-EID.hasValidWalkingpath = true
-EID.pathfindingTo = nil
 
 function EID:onGameUpdate()
+	-- Increases by 30 per second; doesn't update while paused
+	EID.GameUpdateCount = EID.GameUpdateCount + 1
 	EID:setPlayer()
 	
 	--Fix Overlapping Pedestals
@@ -824,7 +827,8 @@ function EID:onGameUpdate()
 		table.insert(curPositions, {entity, entity.Position})
 	end
 	
-	if REPENTANCE and EID.CraneItemType ~= nil then
+	-- this could run less frequently, probably does have to be in update though
+	if REPENTANCE then
 		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
 			if EID.CraneItemType[tostring(crane.InitSeed)] then
 				if crane:GetSprite():IsPlaying("Prize") then
@@ -833,46 +837,33 @@ function EID:onGameUpdate()
 			end
 		end
 	end
-	
-	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"] then
-		if EID.lastDescriptionEntity == nil or EID.lastDescriptionEntity:GetData()["EID_Pathfound"] or (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
-			if EID.pathCheckerEntity ~= nil then
-				EID.pathCheckerEntity:Remove()
-				EID.pathCheckerEntity = nil
-				EID.hasValidWalkingpath = true
-			end
-			EID.pathfindingTo = EID.lastDescriptionEntity
-			return
-		end
-		if EID.pathCheckerEntity == nil then
-			-- Spawns the EID Helper entity with seed that doesnt spawn rewards
-			EID.pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player, 0, 4354)
-			EID.pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
-			EID.pathCheckerEntity:AddEntityFlags (EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
-			if REPENTANCE then EID.pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY) end
-			EID.pathCheckerEntity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
-			EID.pathCheckerEntity.Visible = false
-			EID.hasValidWalkingpath = false
-		elseif not EID.pathCheckerEntity:Exists() then
-			EID.pathCheckerEntity = nil
-		else
-			EID.pathCheckerEntity.Position = EID.player.Position
-			EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(EID.lastDescriptionEntity.Position, false)
-			EID.pathfindingTo = EID.lastDescriptionEntity
-			EID.lastDescriptionEntity:GetData()["EID_Pathfound"] = EID.hasValidWalkingpath
-		end
-	end
-	
 end
 EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
--- this can be called when moving between two different pickups
-function EID:updatePathfinding()
-	if not EID.pathCheckerEntity or not EID.lastDescriptionEntity then return end
-	EID.pathCheckerEntity.Position = EID.player.Position
-	EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(EID.lastDescriptionEntity.Position, false)
-	EID.pathfindingTo = EID.lastDescriptionEntity
-	EID.lastDescriptionEntity:GetData()["EID_Pathfound"] = EID.hasValidWalkingpath
+local lastPathfindCheck = { -1, -1 }
+local function attemptPathfind(entity)
+	if (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
+		entity:GetData()["EID_Pathfound"] = true
+		return true
+	end
+	if entity.Index == lastPathfindCheck[1] and EID.GameUpdateCount - lastPathfindCheck[2] < 30 then return false end
+	
+	-- Spawn a custom NPC entity to attempt a pathfind to the target pickup, then remove it afterwards
+	EID.pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player, 0, 4354)
+	EID.pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+	-- Not sure how much of this flagging is needed now that the entity is immediately removed afterwards
+	EID.pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
+	if REPENTANCE then EID.pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY) end
+	EID.pathCheckerEntity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+	EID.pathCheckerEntity.Visible = false -- it's invisible anyway?
+	
+	EID.pathCheckerEntity.Position = EID.player.Position -- not needed, it spawned at our position?
+	local success = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
+	entity:GetData()["EID_Pathfound"] = success
+	EID.pathCheckerEntity:Remove()
+	EID.pathCheckerEntity = nil
+	lastPathfindCheck = { entity.Index, EID.GameUpdateCount }
+	return success
 end
 
 local hasShownAchievementWarning = false
@@ -922,6 +913,9 @@ end
 local searchPartitions = EntityPartition.FAMILIAR + EntityPartition.ENEMY + EntityPartition.PICKUP + EntityPartition.PLAYER
 
 local function onRender(t)
+	-- Increases by 60 per second, ignores pauses
+	EID.GameRenderCount = EID.GameRenderCount + 1
+	
 	EID.isDisplaying = false
 	EID:setPlayer()
 	
@@ -1088,8 +1082,6 @@ local function onRender(t)
 		end
 	end
 	
-	if EID.pathfindingTo and EID.pathfindingTo.Index ~= closest.Index then EID:updatePathfinding() end
-	
 	if closest.Variant == 110 then
 		--Handle Broken Shovel
 		local descriptionObj = EID:getDescriptionObj(5, 100, 550, closest)
@@ -1112,8 +1104,7 @@ local function onRender(t)
 
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Cards & Runes
-		if (not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"]) and
-			(closest.FrameCount < 3 or EID.pathfindingTo == nil) then
+		if (not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"]) and closest.FrameCount < 3 then
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
@@ -1121,7 +1112,9 @@ local function onRender(t)
 			local isSoulstone = closest.SubType >= 81 and closest.SubType <= 97
 			local hideinShop = closest:ToPickup():IsShopItem() and ((not isSoulstone and not EID.Config["DisplayCardInfoShop"]) or (isSoulstone and not EID.Config["DisplaySoulstoneInfoShop"]))
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayCardInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
-			local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or (not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and not EID.hasValidWalkingpath
+			local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or
+			(not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and
+			(not EID:getEntityData(closest,"EID_Pathfound") and not attemptPathfind(closest))
 			if isOptionsSpawn or hideinShop or obstructed or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
 				EID:renderQuestionMark()
 				return
@@ -1132,15 +1125,15 @@ local function onRender(t)
 
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		--Handle Pills
-		if not EID.Config["DisplayObstructedPillInfo"] and
-			(closest.FrameCount < 3 or EID.pathfindingTo == nil) then
+		if not EID.Config["DisplayObstructedPillInfo"] and closest.FrameCount < 3 then
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
 		if EID:getEntityData(closest, "EID_DontHide") ~= true then
 			local hideinShop = closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
-			local obstructed = not EID.Config["DisplayObstructedPillInfo"] and not EID.hasValidWalkingpath
+			local obstructed = not EID.Config["DisplayObstructedPillInfo"] and
+			(not EID:getEntityData(closest,"EID_Pathfound") and not attemptPathfind(closest))
 			if isOptionsSpawn or hideinShop or obstructed then
 				EID:renderQuestionMark()
 				return
