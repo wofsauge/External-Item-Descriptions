@@ -790,7 +790,7 @@ function EID:setPlayer()
 	end
 end
 
--- is this needed if pathchecker uses a no reward seed?
+-- is this needed if pathchecker uses a no reward seed? (and isn't even present for a render?)
 if REPENTANCE then
 	function EID:removeWrongGuppyEyeInfo(effectEntity)
 		if EID.pathCheckerEntity ~= nil and effectEntity.Parent ~= nil then
@@ -840,13 +840,14 @@ function EID:onGameUpdate()
 end
 EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
-local lastPathfindCheck = { -1, -1 }
+local lastPathfindIndex = -1
+local lastPathfindFrame = -1
 local function attemptPathfind(entity)
 	if (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
 		entity:GetData()["EID_Pathfound"] = true
 		return true
 	end
-	if entity.Index == lastPathfindCheck[1] and EID.GameUpdateCount - lastPathfindCheck[2] < 30 then return false end
+	if entity.Index == lastPathfindIndex and EID.GameUpdateCount - lastPathfindFrame < 30 then return false end
 	
 	-- Spawn a custom NPC entity to attempt a pathfind to the target pickup, then remove it afterwards
 	EID.pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player, 0, 4354)
@@ -860,9 +861,8 @@ local function attemptPathfind(entity)
 	EID.pathCheckerEntity.Position = EID.player.Position -- not needed, it spawned at our position?
 	local success = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
 	entity:GetData()["EID_Pathfound"] = success
-	EID.pathCheckerEntity:Remove()
-	EID.pathCheckerEntity = nil
-	lastPathfindCheck = { entity.Index, EID.GameUpdateCount }
+	EID.pathCheckerEntity:Remove(); EID.pathCheckerEntity = nil
+	lastPathfindIndex = entity.Index; lastPathfindFrame = EID.GameUpdateCount
 	return success
 end
 
