@@ -1,0 +1,5 @@
+<entities anm2root="gfx/" version="5">
+	<entity anm2path="eid_blank.anm2" baseHP="0" boss="0" champion="0" friction="1" id="17" name="EID_PATHCHECKER" shadowSize="0" stageHP="0" gridCollision="none" variant="3169" shutdoors="false">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+</entities>
