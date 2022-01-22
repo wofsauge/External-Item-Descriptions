@@ -290,12 +290,15 @@ if REPENTANCE then
 		flipItemNext = false
 		if entityType == 5 and (variant == 100 or variant == 150) then
 			lastGetItemResult = {nil, Isaac.GetFrameCount(), gridIndex, nil}
-			initialItemNext = true
+			-- Pedestals in need of a random item will call GET_COLLECTIBLE; fixed pedestals (Knife Piece 1) will not
+			if subtype == 0 then initialItemNext = true
+			else lastGetItemResult[1] = subtype end
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, EID.preRoomEntitySpawn)
 	
 	function EID:postPickupInit(entity)
+		initialItemNext = false
 		flipItemNext = true
 		lastGetItemResult[4] = entity.InitSeed
 		
@@ -787,16 +790,6 @@ function EID:setPlayer()
 	end
 end
 
-if REPENTANCE then
-	function EID:removeWrongGuppyEyeInfo(effectEntity)
-		if EID.pathCheckerEntity ~= nil and effectEntity.Parent ~= nil then
-			if GetPtrHash(effectEntity.Parent) == GetPtrHash(EID.pathCheckerEntity) then
-				effectEntity:Remove()
-			end
-		end
-	end
-	EID:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EID.removeWrongGuppyEyeInfo, EffectVariant.PICKUP_GHOST)
-end
 ---------------------------------------------------------------------------
 ---------------------------On Update Function------------------------------
 
@@ -844,9 +837,8 @@ function EID:onGameUpdate()
 			return
 		end
 		if EID.pathCheckerEntity == nil then
-			EID.pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player ,0 , 4354) -- Spawns the EID Helper entity with seed that doesnt spawn rewards
-			-- Spawns an Ultra Greed Door and makes it invisible and intangible (not fully tested yet)
-			--EID.pathCheckerEntity = game:Spawn(294, 0, EID.player.Position, nullVector, EID.player, 0, 0)
+			-- Spawns an Ultra Greed Door and makes it invisible and intangible to act as a Pathfinding NPC that can't be rerolled and has no AI
+			EID.pathCheckerEntity = game:Spawn(294, 0, EID.player.Position, nullVector, EID.player, 0, 0)
 			EID.pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 			EID.pathCheckerEntity:AddEntityFlags (EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
 			if REPENTANCE then EID.pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY) end
