@@ -2,7 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Sync Revise: 2022.01.21
+-- Last Sync Revise: 2022.01.22
 -- Last Full Check: N/A -- I will have a full check someday else.
 
 -- FORMAT: Item ID | Name | Description
@@ -29,6 +29,7 @@ local repCollectibles={
 	[29] = {"29", "老妈的内裤", "↑ +1.5射程#生成3-6只蓝苍蝇"}, -- Moms Underwear
 	[30] = {"30", "老妈的高跟鞋", "↑ +1.5射程#能对敌人造成12接触伤害"}, -- Mom's Heels
 	[31] = {"31", "老妈的口红", "↑ +2.25射程#生成1随机心"}, -- Mom's Lipstick
+	[37] = {"37", "炸弹先生", "在角色下方放置1个大炸弹，造成185伤害"}, -- Mr. Boom
 	[40] = {"40", "神风！", "在角色位置造成1次大爆炸#造成185伤害"}, -- Kamikaze!
 	[42] = {"42", "鲍勃的烂头", "可投掷的有毒炸弹#造成185+角色伤害#产生毒气"}, -- Bob's Rotten Head
 	[44] = {"44", "传送！", "将角色传送到除错误房外的房间#向所需方向移动可稍微影响传送方向"}, -- Teleport
@@ -326,7 +327,7 @@ local repCollectibles={
 	[673] = {"673", "赎罪", "进入恶魔房间但不捡任何物品时，下一层+1魂心，+1伤害"}, --  Redemption
 	[674] = {"674", "灵魂枷锁", "死亡时，灵魂被锁链束缚在尸体上，可以继续战斗，血量为半个魂心#10 秒后复活#此效果捡起魂心后才能再次发动"}, --  Spirit Shackles
 	[675] = {"675", "碎裂的宝珠", "受伤时，显示本层1个随机房间#并打开此房间需要钥匙的门#可以打开超级撒但房间#可显示终极隐藏房间"}, --  Cracked Orb
-	[676] = {"676", "空虚之心", "在开始新一层时，若拥有空的心之容器，获得1个空的心之容器#骨心不计"}, --  Empty Heart
+	[676] = {"676", "空虚之心", "在开始新一层时，若只有1红心或更少，获得1空的心之容器#对无法获得红心的角色无效"}, --  Empty Heart
 	[677] = {"677", "灵魂出窍", "受伤时，暂停时间3秒#此时间内变为幽灵#幽灵具有飞行和幽灵眼泪，且免疫一次伤害"}, --  Astral Projection
 	[678] = {"678", "剖腹产", "获得短延迟蓄力攻击，发射婴儿样式的跟踪幽灵眼泪"}, --  C Section
 	[679] = {"679", "亚巴顿宝宝", "发射迷你{{Collectible399}}虚空之口进行攻击的跟班"}, --  Lil Abaddon
@@ -1032,7 +1033,7 @@ EID.descriptions[languageCode].FalsePHDDamage = "+0.6伤害"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "+1.2伤害"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! 警告 !!!"
-EID.descriptions[languageCode].AchievementWarningText = "成就已禁用！#为了启用进度和成就，你需要击败老妈(深牢II)而不开启任何模组#(如果你打过了，那么这条警告的出现是bug，无视就好)#(这条警告可以在设置中禁用)"
+EID.descriptions[languageCode].AchievementWarningText = "成就已禁用！#为了启用进度和成就，你需要击败老妈(深牢II)而不开启任何模组#(如果你打过了，那么这条警告的出现是bug，无视就好)#(这条警告可在设置中禁用)"
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "你的忏悔版本不是最新的！#只有官方最新版才支持这一功能#(这条警告可以在设置中禁用)"
 
