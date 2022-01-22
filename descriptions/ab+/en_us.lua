@@ -777,7 +777,7 @@ EID.descriptions[languageCode].pills={
 	{"6", "Health Down", "↓ Health down"},
 	{"7", "Health Up", "↑ Health up"},
 	{"8", "I Found Pills", "No effect"},
-	{"9", "Puberty", "Eating 3 will give you the {{}} Adult transformation (+1 Red Heart)"},
+	{"9", "Puberty", "No effect#Eating 3 will give you the Adult transformation (+1 Red Heart)"},
 	{"10", "Pretty Fly", "Adds 1 fly orbital"},
 	{"11", "Range Down", "↓ -2 Range down"},
 	{"12", "Range Up", "↑ +2.5 Range up"},

@@ -162,20 +162,18 @@ function EID:onNewFloor()
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
-if EID.Config["DisplaySacrificeInfo"] then
-	function EID:onSacrificeDamage(_, _, flags, source)
-		if game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
-			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-			if EID.sacrificeCounter[curRoomIndex] == nil then
-				EID.sacrificeCounter[curRoomIndex] = 1
-			end
-			if EID.sacrificeCounter[curRoomIndex] < 12 then
-				EID.sacrificeCounter[curRoomIndex] = EID.sacrificeCounter[curRoomIndex] + 1
-			end
+function EID:onSacrificeDamage(_, _, flags, source)
+	if EID.Config["DisplaySacrificeInfo"] and game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		if EID.sacrificeCounter[curRoomIndex] == nil then
+			EID.sacrificeCounter[curRoomIndex] = 1
+		end
+		if EID.sacrificeCounter[curRoomIndex] < 12 then
+			EID.sacrificeCounter[curRoomIndex] = EID.sacrificeCounter[curRoomIndex] + 1
 		end
 	end
-	EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EID.onSacrificeDamage, EntityType.ENTITY_PLAYER)
 end
+EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EID.onSacrificeDamage, EntityType.ENTITY_PLAYER)
 
 ---------------------------------------------------------------------------
 ------------------------Handle ALT FLOOR CHOICE----------------------------
@@ -290,12 +288,15 @@ if REPENTANCE then
 		flipItemNext = false
 		if entityType == 5 and (variant == 100 or variant == 150) then
 			lastGetItemResult = {nil, Isaac.GetFrameCount(), gridIndex, nil}
-			initialItemNext = true
+			-- Pedestals in need of a random item will call GET_COLLECTIBLE; fixed pedestals (Knife Piece 1) will not
+			if subtype == 0 then initialItemNext = true
+			else lastGetItemResult[1] = subtype end
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, EID.preRoomEntitySpawn)
 	
 	function EID:postPickupInit(entity)
+		initialItemNext = false
 		flipItemNext = true
 		lastGetItemResult[4] = entity.InitSeed
 		
@@ -573,7 +574,6 @@ function EID:printDescription(desc)
 		end
 	end
 	EID:printBulletPoints(desc.Description, renderPos)
-
 end
 
 function EID:printBulletPoints(description, renderPos)
@@ -787,16 +787,6 @@ function EID:setPlayer()
 	end
 end
 
-if REPENTANCE then
-	function EID:removeWrongGuppyEyeInfo(effectEntity)
-		if EID.pathCheckerEntity ~= nil and effectEntity.Parent ~= nil then
-			if GetPtrHash(effectEntity.Parent) == GetPtrHash(EID.pathCheckerEntity) then
-				effectEntity:Remove()
-			end
-		end
-	end
-	EID:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EID.removeWrongGuppyEyeInfo, EffectVariant.PICKUP_GHOST)
-end
 ---------------------------------------------------------------------------
 ---------------------------On Update Function------------------------------
 
@@ -834,7 +824,7 @@ function EID:onGameUpdate()
 	end
 	
 	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"] then
-		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
+		if EID.lastDescriptionEntity == nil or EID.lastDescriptionEntity:GetData()["EID_Pathfound"] or (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
 			if EID.pathCheckerEntity ~= nil then
 				EID.pathCheckerEntity:Remove()
 				EID.pathCheckerEntity = nil
@@ -844,9 +834,8 @@ function EID:onGameUpdate()
 			return
 		end
 		if EID.pathCheckerEntity == nil then
-			EID.pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player ,0 , 4354) -- Spawns the EID Helper entity with seed that doesnt spawn rewards
-			-- Spawns an Ultra Greed Door and makes it invisible and intangible (not fully tested yet)
-			--EID.pathCheckerEntity = game:Spawn(294, 0, EID.player.Position, nullVector, EID.player, 0, 0)
+			-- Spawns an Ultra Greed Door and makes it invisible and intangible to act as a Pathfinding NPC that can't be rerolled and has no AI
+			EID.pathCheckerEntity = game:Spawn(294, 0, EID.player.Position, nullVector, EID.player, 0, 0)
 			EID.pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 			EID.pathCheckerEntity:AddEntityFlags (EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
 			if REPENTANCE then EID.pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY) end
@@ -859,6 +848,7 @@ function EID:onGameUpdate()
 			EID.pathCheckerEntity.Position = EID.player.Position
 			EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(EID.lastDescriptionEntity.Position, false)
 			EID.pathfindingTo = EID.lastDescriptionEntity
+			EID.lastDescriptionEntity:GetData()["EID_Pathfound"] = EID.hasValidWalkingpath
 		end
 	end
 	
@@ -871,6 +861,7 @@ function EID:updatePathfinding()
 	EID.pathCheckerEntity.Position = EID.player.Position
 	EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(EID.lastDescriptionEntity.Position, false)
 	EID.pathfindingTo = EID.lastDescriptionEntity
+	EID.lastDescriptionEntity:GetData()["EID_Pathfound"] = EID.hasValidWalkingpath
 end
 
 local hasShownAchievementWarning = false
