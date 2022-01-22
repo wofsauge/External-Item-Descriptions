@@ -509,6 +509,7 @@ function EID:hasDescription(entity)
 	end
 	if entity.Type == EntityType.ENTITY_PICKUP then
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EID.Config["DisplayItemInfo"])
+		isAllowed = isAllowed or (entity.Variant == 110 and entity:GetSprite():IsPlaying("Idle") and EID.Config["DisplayItemInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EID.Config["DisplayCardInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])

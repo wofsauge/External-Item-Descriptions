@@ -1079,7 +1079,11 @@ local function onRender(t)
 	
 	if EID.pathfindingTo and EID.pathfindingTo.Index ~= closest.Index then EID:updatePathfinding() end
 	
-	if closest.Variant == PickupVariant.PICKUP_TRINKET then
+	if closest.Variant == 110 then
+		--Handle Broken Shovel
+		local descriptionObj = EID:getDescriptionObj(5, 100, 550, closest)
+		EID:printDescription(descriptionObj)
+	elseif closest.Variant == PickupVariant.PICKUP_TRINKET then
 		--Handle Trinkets
 		local descriptionObj = EID:getDescriptionObjByEntity(closest)
 		EID:printDescription(descriptionObj)
