@@ -39,7 +39,7 @@ EID.descriptions[languageCode].collectibles={
 	{"4", "크리켓의 머리", "↑ {{Damage}}공격력 +0.5#↑ {{Damage}}공격력 배율 x1.5"}, -- Cricket's Head
 	{"5", "나의 모습", "↑ {{Range}}사거리 +1.5#↑ {{Shotspeed}}탄속 +0.6#공격이 캐릭터가 있는 방향으로 되돌아옵니다."}, -- My Reflection
 	{"6", "오줌싸개", "↑ {{Tears}}연사 +1.5#↓ {{Range}}사거리 -15.78"}, -- Number One
-	{"7", "순교자의 피", "↑ {{Damage}}공격력 +1#{{Collectible35}}Necronomicon, 혹은 {{Card14}}The Death 효과가 발동 중인 경우 {{Damage}}공격력 배율 x1.5"}, -- Blood of the Martyr
+	{"7", "순교자의 피", "↑ {{Damage}}공격력 +1#{{Collectible34}}Book of the Belial, 혹은 {{Card16}}The Devil 효과가 발동 중인 경우 {{Damage}}공격력 배율 x1.5"}, -- Blood of the Martyr
 	{"8", "보비", "공격하는 방향으로 공격력 3.5의 눈물을 발사합니다."}, -- Brother Bobby
 	{"9", "스카톨", "파리류 적들이 공격하지 않거나 약해집니다."}, -- Skatole
 	{"10", "파리떼", "캐릭터 주변을 돌며 적의 탄환을 막아주는 2마리의 파리 배리어를 얻습니다."}, -- Halo of Flies
