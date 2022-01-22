@@ -162,20 +162,18 @@ function EID:onNewFloor()
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
-if EID.Config["DisplaySacrificeInfo"] then
-	function EID:onSacrificeDamage(_, _, flags, source)
-		if game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
-			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-			if EID.sacrificeCounter[curRoomIndex] == nil then
-				EID.sacrificeCounter[curRoomIndex] = 1
-			end
-			if EID.sacrificeCounter[curRoomIndex] < 12 then
-				EID.sacrificeCounter[curRoomIndex] = EID.sacrificeCounter[curRoomIndex] + 1
-			end
+function EID:onSacrificeDamage(_, _, flags, source)
+	if EID.Config["DisplaySacrificeInfo"] and game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		if EID.sacrificeCounter[curRoomIndex] == nil then
+			EID.sacrificeCounter[curRoomIndex] = 1
+		end
+		if EID.sacrificeCounter[curRoomIndex] < 12 then
+			EID.sacrificeCounter[curRoomIndex] = EID.sacrificeCounter[curRoomIndex] + 1
 		end
 	end
-	EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EID.onSacrificeDamage, EntityType.ENTITY_PLAYER)
 end
+EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EID.onSacrificeDamage, EntityType.ENTITY_PLAYER)
 
 ---------------------------------------------------------------------------
 ------------------------Handle ALT FLOOR CHOICE----------------------------
@@ -576,7 +574,6 @@ function EID:printDescription(desc)
 		end
 	end
 	EID:printBulletPoints(desc.Description, renderPos)
-
 end
 
 function EID:printBulletPoints(description, renderPos)
@@ -827,7 +824,7 @@ function EID:onGameUpdate()
 	end
 	
 	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"] then
-		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
+		if EID.lastDescriptionEntity == nil or EID.lastDescriptionEntity:GetData()["EID_Pathfound"] or (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
 			if EID.pathCheckerEntity ~= nil then
 				EID.pathCheckerEntity:Remove()
 				EID.pathCheckerEntity = nil
@@ -851,6 +848,7 @@ function EID:onGameUpdate()
 			EID.pathCheckerEntity.Position = EID.player.Position
 			EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(EID.lastDescriptionEntity.Position, false)
 			EID.pathfindingTo = EID.lastDescriptionEntity
+			EID.lastDescriptionEntity:GetData()["EID_Pathfound"] = EID.hasValidWalkingpath
 		end
 	end
 	
@@ -863,6 +861,7 @@ function EID:updatePathfinding()
 	EID.pathCheckerEntity.Position = EID.player.Position
 	EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(EID.lastDescriptionEntity.Position, false)
 	EID.pathfindingTo = EID.lastDescriptionEntity
+	EID.lastDescriptionEntity:GetData()["EID_Pathfound"] = EID.hasValidWalkingpath
 end
 
 local hasShownAchievementWarning = false
