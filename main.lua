@@ -855,7 +855,6 @@ EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.CollectibleSpawnedThisFram
 
 -- Pathchecking
 local pathCheckerEntity = nil
-local lastPathfindIndex = -1
 local lastPathfindFrame = -1
 
 local function attemptPathfind(entity)
@@ -863,7 +862,7 @@ local function attemptPathfind(entity)
 		pathsChecked[entity.InitSeed] = true
 		return true
 	end
-	if entity.Index == lastPathfindIndex and EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
+	if EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
 	
 	-- Spawn a custom NPC entity to attempt a pathfind to the target pickup, then remove it afterwards
 	pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player, 0, 4354)
@@ -877,8 +876,9 @@ local function attemptPathfind(entity)
 	
 	local success = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
 	pathsChecked[entity.InitSeed] = success
-	pathCheckerEntity:Remove(); pathCheckerEntity = nil
-	lastPathfindIndex = entity.Index; lastPathfindFrame = EID.GameUpdateCount
+	pathCheckerEntity:Remove()
+	pathCheckerEntity = nil
+	lastPathfindFrame = EID.GameUpdateCount
 	return success
 end
 
