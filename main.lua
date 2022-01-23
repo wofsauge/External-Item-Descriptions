@@ -298,7 +298,7 @@ if REPENTANCE then
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, EID.preRoomEntitySpawn)
 	
-	function EID:postPickupInit(entity)
+	function EID:postPickupInitFlip(entity)
 		initialItemNext = false
 		flipItemNext = true
 		lastGetItemResult[4] = entity.InitSeed
@@ -324,7 +324,7 @@ if REPENTANCE then
 			entity:GetData()["EID_FlipItemID"] = flipEntry[1]
 		end
 	end
-	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit, PickupVariant.PICKUP_COLLECTIBLE)
+	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInitFlip, PickupVariant.PICKUP_COLLECTIBLE)
 	
 	function EID:CheckPedestalIndex(entity)
 		-- Only pedestals with indexes that were present at room load can be flip pedestals
@@ -790,45 +790,33 @@ function EID:setPlayer()
 	end
 end
 
--- is this needed if pathchecker uses a no reward seed? (and isn't even present for a render?)
-if REPENTANCE then
-	function EID:removeWrongGuppyEyeInfo(effectEntity)
-		if EID.pathCheckerEntity ~= nil and effectEntity.Parent ~= nil then
-			if GetPtrHash(effectEntity.Parent) == GetPtrHash(EID.pathCheckerEntity) then
-				effectEntity:Remove()
-			end
-		end
-	end
-	EID:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EID.removeWrongGuppyEyeInfo, EffectVariant.PICKUP_GHOST)
-end
 ---------------------------------------------------------------------------
 ---------------------------On Update Function------------------------------
+-- Runs 30 times a second; doesn't update while paused
 
-EID.lastDescriptionEntity = nil
-EID.lastDist = 0
-EID.pathCheckerEntity = nil
-
+local collSpawned = false
 function EID:onGameUpdate()
-	-- Increases by 30 per second; doesn't update while paused
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
-	EID:setPlayer()
 	
-	--Fix Overlapping Pedestals
-	-- PERFORMANCENOTE move this to a post pickup init or something
-	local curPositions = {}
-	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
-		local pos = entity.Position
-		for _, otherPos in ipairs(curPositions) do
-			if pos:Distance(otherPos[2]) == 0 then
-				entity:GetData()["EID_RenderOffset"] = Vector(10,0)
-				otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
+	-- Fix Overlapping Pedestals if a collectible spawned this frame (needed for Mega Chest)
+	if collSpawned then
+		collSpawned = false
+		local curPositions = {}
+		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			local pos = entity.Position
+			for _, otherPos in ipairs(curPositions) do
+				if pos:Distance(otherPos[2]) == 0 then
+					print("yo " .. EID.GameUpdateCount .. " found overlap " .. entity.SubType .. "," .. otherPos[1].SubType)
+					entity:GetData()["EID_RenderOffset"] = Vector(10,0)
+					otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
+				end
 			end
+			table.insert(curPositions, {entity, entity.Position})
 		end
-		table.insert(curPositions, {entity, entity.Position})
 	end
 	
-	-- this could run less frequently, probably does have to be in update though
-	if REPENTANCE then
+	-- Remove Crane Game item data if it's giving the prize out
+	if REPENTANCE and EID.GameUpdateCount % 15 == 0 then
 		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
 			if EID.CraneItemType[tostring(crane.InitSeed)] then
 				if crane:GetSprite():IsPlaying("Prize") then
@@ -840,6 +828,14 @@ function EID:onGameUpdate()
 end
 EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
+-- Wait until all collectibles spawning this frame have spawned before checking if there's an overlap
+function EID:CollectibleSpawnedThisFrame(entity)
+	collSpawned = true
+end
+EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.CollectibleSpawnedThisFrame, PickupVariant.PICKUP_COLLECTIBLE)
+
+-- Pathchecking
+local pathCheckerEntity = nil
 local lastPathfindIndex = -1
 local lastPathfindFrame = -1
 local function attemptPathfind(entity)
@@ -850,18 +846,18 @@ local function attemptPathfind(entity)
 	if entity.Index == lastPathfindIndex and EID.GameUpdateCount - lastPathfindFrame < 30 then return false end
 	
 	-- Spawn a custom NPC entity to attempt a pathfind to the target pickup, then remove it afterwards
-	EID.pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player, 0, 4354)
-	EID.pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+	pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player, 0, 4354)
+	pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 	-- Not sure how much of this flagging is needed now that the entity is immediately removed afterwards
-	EID.pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
-	if REPENTANCE then EID.pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY) end
-	EID.pathCheckerEntity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
-	EID.pathCheckerEntity.Visible = false -- it's invisible anyway?
+	pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
+	if REPENTANCE then pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY) end
+	pathCheckerEntity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+	pathCheckerEntity.Visible = false -- it's invisible anyway?
 	
-	EID.pathCheckerEntity.Position = EID.player.Position -- not needed, it spawned at our position?
-	local success = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
+	pathCheckerEntity.Position = EID.player.Position -- not needed, it spawned at our position?
+	local success = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
 	entity:GetData()["EID_Pathfound"] = success
-	EID.pathCheckerEntity:Remove(); EID.pathCheckerEntity = nil
+	pathCheckerEntity:Remove(); pathCheckerEntity = nil
 	lastPathfindIndex = entity.Index; lastPathfindFrame = EID.GameUpdateCount
 	return success
 end
@@ -878,14 +874,15 @@ local function renderAchievementInfo()
 			demoDescObj.Description = EID:getDescriptionEntry("OldGameVersionWarningText") or ""
 			EID:displayPermanentText(demoDescObj)
 			hasShownAchievementWarning = true
+		-- Bag of Crafting modded items check
 		elseif EID.player:HasCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and (EID.Config.BagOfCraftingDisplayMode == "Recipe List" or EID.Config.BagOfCraftingDisplayMode == "Preview Only") then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("ModdedRecipesWarningText") or ""
 			EID:displayPermanentText(demoDescObj)
 			hasShownAchievementWarning = true
+		-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 		else
-			-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 			local characterID = EID.player:GetPlayerType()
 			--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
 			if characterID < 21 and game.Challenge == 0 and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
@@ -911,6 +908,9 @@ end
 ---------------------------------------------------------------------------
 ---------------------------On Render Function------------------------------
 local searchPartitions = EntityPartition.FAMILIAR + EntityPartition.ENEMY + EntityPartition.PICKUP + EntityPartition.PLAYER
+
+EID.lastDescriptionEntity = nil
+EID.lastDist = 0
 
 local function onRender(t)
 	-- Increases by 60 per second, ignores pauses
