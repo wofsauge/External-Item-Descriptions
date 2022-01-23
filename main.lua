@@ -441,6 +441,10 @@ end
 ---------------------------------------------------------------------------
 ---------------------------Printing Functions------------------------------
 
+local previousFormattedLines = {}
+local previousBulletpoints = {}
+local previousDesc = ""
+
 function EID:printDescription(desc)
 	local textScale = Vector(EID.Scale, EID.Scale)
 	local renderPos = EID:getTextPosition()
@@ -576,6 +580,11 @@ function EID:printDescription(desc)
 			end
 		end
 	end
+	if previousDesc ~= desc.Description then
+		previousFormattedLines = {}
+		previousBulletpoints = {}
+		previousDesc = desc.Description
+	end
 	EID:printBulletPoints(desc.Description, renderPos)
 end
 
@@ -583,24 +592,31 @@ function EID:printBulletPoints(description, renderPos)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
 	local textScale = Vector(EID.Scale, EID.Scale)
 	description = EID:replaceShortMarkupStrings(description)
-	for line in string.gmatch(description, "([^#]+)") do
-		local formatedLines = EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID.Config["Language"]])
-		local textColor = EID:getTextColor()
-		for i, lineToPrint in ipairs(formatedLines) do
-			-- render bulletpoint
-			if i == 1 then
-				local bpIcon = EID:handleBulletpointIcon(lineToPrint)
-				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
-					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
-					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor)
-				else
-					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
-				end
-				EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
+	if #previousFormattedLines == 0 then
+		for line in string.gmatch(description, "([^#]+)") do
+			previousBulletpoints[#previousFormattedLines+1] = true
+			for _,v in ipairs(EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID.Config["Language"]])) do
+				table.insert(previousFormattedLines, v)
 			end
-			textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
-				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 		end
+	end
+	
+	local textColor = EID:getTextColor()
+	for i, lineToPrint in ipairs(previousFormattedLines) do
+		-- render bulletpoint
+		if previousBulletpoints[i] then
+			textColor = EID:getTextColor()
+			local bpIcon = EID:handleBulletpointIcon(lineToPrint)
+			if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
+				lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
+				textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor)
+			else
+				textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
+			end
+			EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
+		end
+		textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
+			renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 	end
 end
 ---------------------------------------------------------------------------
