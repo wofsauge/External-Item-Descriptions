@@ -29,6 +29,7 @@ EID.itemConfig = Isaac.GetItemConfig()
 EID.itemUnlockStates = {}
 EID.CraneItemType = {}
 EID.absorbedSpindown = false
+local pathsChecked = {}
 
 EID.GameUpdateCount = 0
 EID.GameRenderCount = 0
@@ -155,6 +156,7 @@ end
 ---------------------------------------------------------------------------
 -------------Handle Sacrifice Room & Resetting Floor Trackers--------------
 function EID:onNewFloor()
+	pathsChecked = {}
 	EID.sacrificeCounter = {}
 	if REPENTANCE then
 		EID.bagOfCraftingRoomQueries = {}
@@ -806,7 +808,6 @@ function EID:onGameUpdate()
 			local pos = entity.Position
 			for _, otherPos in ipairs(curPositions) do
 				if pos:Distance(otherPos[2]) == 0 then
-					print("yo " .. EID.GameUpdateCount .. " found overlap " .. entity.SubType .. "," .. otherPos[1].SubType)
 					entity:GetData()["EID_RenderOffset"] = Vector(10,0)
 					otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
 				end
@@ -838,9 +839,10 @@ EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.CollectibleSpawnedThisFram
 local pathCheckerEntity = nil
 local lastPathfindIndex = -1
 local lastPathfindFrame = -1
+
 local function attemptPathfind(entity)
 	if (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
-		entity:GetData()["EID_Pathfound"] = true
+		pathsChecked[entity.InitSeed] = true
 		return true
 	end
 	if entity.Index == lastPathfindIndex and EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
@@ -850,13 +852,13 @@ local function attemptPathfind(entity)
 	pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 	-- Not sure how much of this flagging is needed now that the entity is immediately removed afterwards
 	pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
-	if REPENTANCE then pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY) end
+	if REPENTANCE then pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY) end -- can it even be queried in this brief time?
 	pathCheckerEntity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
 	pathCheckerEntity.Visible = false -- it's invisible anyway?
-	
 	pathCheckerEntity.Position = EID.player.Position -- not needed, it spawned at our position?
+	
 	local success = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
-	entity:GetData()["EID_Pathfound"] = success
+	pathsChecked[entity.InitSeed] = success
 	pathCheckerEntity:Remove(); pathCheckerEntity = nil
 	lastPathfindIndex = entity.Index; lastPathfindFrame = EID.GameUpdateCount
 	return success
@@ -1114,7 +1116,7 @@ local function onRender(t)
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayCardInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
 			local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or
 			(not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and
-			(not EID:getEntityData(closest,"EID_Pathfound") and not attemptPathfind(closest))
+			(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
 			if isOptionsSpawn or hideinShop or obstructed or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
 				EID:renderQuestionMark()
 				return
@@ -1133,7 +1135,7 @@ local function onRender(t)
 			local hideinShop = closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
 			local obstructed = not EID.Config["DisplayObstructedPillInfo"] and
-			(not EID:getEntityData(closest,"EID_Pathfound") and not attemptPathfind(closest))
+			(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
 			if isOptionsSpawn or hideinShop or obstructed then
 				EID:renderQuestionMark()
 				return
