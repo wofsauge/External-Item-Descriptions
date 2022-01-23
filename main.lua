@@ -30,6 +30,7 @@ EID.itemUnlockStates = {}
 EID.CraneItemType = {}
 EID.absorbedSpindown = false
 local pathsChecked = {}
+local altPathItemChecked = {}
 
 EID.GameUpdateCount = 0
 EID.GameRenderCount = 0
@@ -163,6 +164,7 @@ function EID:onNewFloor()
 		EID.bagOfCraftingFloorQuery = {}
 		EID.CraneItemType = {}
 		EID.flipItemPositions = {}
+		altPathItemChecked = {}
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
@@ -190,18 +192,14 @@ questionMarkSprite:LoadGraphics()
 
 function EID:IsAltChoice(pickup)
 	-- do not run this while Curse of the Blind is active, since this function is really just a "is collectible pedestal a red question mark" check
-	if EID:hasCurseBlind() then
+	if not REPENTANCE or EID:hasCurseBlind() then
 		return false
 	end
-	if pickup:GetData() == nil then
-		return false
+	if altPathItemChecked[pickup.InitSeed] ~= nil then
+		return altPathItemChecked[pickup.InitSeed]
 	end
-	if EID:getEntityData(pickup, "EID_IsAltChoice") ~= nil then
-		return EID:getEntityData(pickup, "EID_IsAltChoice")
-	end
-
-	if not REPENTANCE or game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
-		pickup:GetData()["EID_IsAltChoice"] = false
+	if game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
+		altPathItemChecked[pickup.InitSeed] = false
 		return false
 	end
 
@@ -209,35 +207,35 @@ function EID:IsAltChoice(pickup)
 	local name = entitySprite:GetAnimation()
 
 	if name ~= "Idle" and name ~= "ShopIdle" then
-		-- Collectible can be ignored. its definetly not hidden
-		pickup:GetData()["EID_IsAltChoice"] = false
+		-- Collectible can be ignored. It's definitely not hidden
+		altPathItemChecked[pickup.InitSeed] = false
 		return false
 	end
 	
 	questionMarkSprite:SetFrame(name,entitySprite:GetFrame())
 	-- check some point in entitySprite
-	for i = -70,0,2 do
+	for i = -50,20,3 do
 		local qcolor = questionMarkSprite:GetTexel(Vector(0,i),nullVector,1,1)
 		local ecolor = entitySprite:GetTexel(Vector(0,i),nullVector,1,1)
 		if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
 			-- it is not same with question mark sprite
-			pickup:GetData()["EID_IsAltChoice"] = false
+			altPathItemChecked[pickup.InitSeed] = false
 			return false
 		end
 	end
-
+	
 	--this may be a question mark, however, we will check it again to ensure it
-	for j = -3,3,2 do
-		for i = -71,0,2 do
+	for j = -1,1,1 do
+		for i = -71,0,3 do
 			local qcolor = questionMarkSprite:GetTexel(Vector(j,i),nullVector,1,1)
 			local ecolor = entitySprite:GetTexel(Vector(j,i),nullVector,1,1)
 			if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
-				pickup:GetData()["EID_IsAltChoice"] = false
+				altPathItemChecked[pickup.InitSeed] = false
 				return false
 			end
 		end
 	end
-	pickup:GetData()["EID_IsAltChoice"] = true
+	altPathItemChecked[pickup.InitSeed] = true
 	return true
 end
 
