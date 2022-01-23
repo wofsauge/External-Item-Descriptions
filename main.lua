@@ -581,11 +581,15 @@ function EID:printDescription(desc)
 		end
 	end
 	if previousDesc ~= desc.Description then
-		previousFormattedLines = {}
-		previousBulletpoints = {}
+		EID:clearDescriptionCache()
 		previousDesc = desc.Description
 	end
 	EID:printBulletPoints(desc.Description, renderPos)
+end
+
+function EID:clearDescriptionCache()
+	previousFormattedLines = {}
+	previousBulletpoints = {}
 end
 
 function EID:printBulletPoints(description, renderPos)
