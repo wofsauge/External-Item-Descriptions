@@ -843,7 +843,7 @@ local function attemptPathfind(entity)
 		entity:GetData()["EID_Pathfound"] = true
 		return true
 	end
-	if entity.Index == lastPathfindIndex and EID.GameUpdateCount - lastPathfindFrame < 30 then return false end
+	if entity.Index == lastPathfindIndex and EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
 	
 	-- Spawn a custom NPC entity to attempt a pathfind to the target pickup, then remove it afterwards
 	pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player, 0, 4354)
