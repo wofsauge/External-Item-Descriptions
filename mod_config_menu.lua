@@ -350,6 +350,7 @@ if MCMLoaded then
 			end,
 			OnChange = function(currentNum)
 				EID.Config["TextboxWidth"] = currentNum
+				EID:clearDescriptionCache()
 			end,
 			Info = {"Default = 130, varies per language","Width of the EID textbox, in pixels"}
 		}
@@ -561,6 +562,21 @@ if MCMLoaded then
 		}
 	)
 
+	--------Reset to default
+	MCM.AddSpace("EID", "General")
+	
+	MCM.AddSetting(
+		"EID",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function() return true end,
+			Display = function() return "<---- RESET CONFIG TO DEFAULT ---->" end,
+			OnChange = function(currentBool) EID.Config = EID.DefaultConfig end,
+			Info = {"Press this reset the config back to its default values"}
+		}
+	)
+	
 	---------------------------------------------------------------------------
 	---------------------------------Display-----------------------------------
 

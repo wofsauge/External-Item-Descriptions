@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = "4.13"
+EID.ModVersion = "4.14"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil
@@ -29,6 +29,11 @@ EID.itemConfig = Isaac.GetItemConfig()
 EID.itemUnlockStates = {}
 EID.CraneItemType = {}
 EID.absorbedSpindown = false
+local pathsChecked = {}
+local altPathItemChecked = {}
+
+EID.GameUpdateCount = 0
+EID.GameRenderCount = 0
 
 -- Sprite inits
 EID.IconSprite = Sprite()
@@ -152,30 +157,30 @@ end
 ---------------------------------------------------------------------------
 -------------Handle Sacrifice Room & Resetting Floor Trackers--------------
 function EID:onNewFloor()
+	pathsChecked = {}
 	EID.sacrificeCounter = {}
 	if REPENTANCE then
 		EID.bagOfCraftingRoomQueries = {}
 		EID.bagOfCraftingFloorQuery = {}
 		EID.CraneItemType = {}
 		EID.flipItemPositions = {}
+		altPathItemChecked = {}
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
-if EID.Config["DisplaySacrificeInfo"] then
-	function EID:onSacrificeDamage(_, _, flags, source)
-		if game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
-			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-			if EID.sacrificeCounter[curRoomIndex] == nil then
-				EID.sacrificeCounter[curRoomIndex] = 1
-			end
-			if EID.sacrificeCounter[curRoomIndex] < 12 then
-				EID.sacrificeCounter[curRoomIndex] = EID.sacrificeCounter[curRoomIndex] + 1
-			end
+function EID:onSacrificeDamage(_, _, flags, source)
+	if EID.Config["DisplaySacrificeInfo"] and game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		if EID.sacrificeCounter[curRoomIndex] == nil then
+			EID.sacrificeCounter[curRoomIndex] = 1
+		end
+		if EID.sacrificeCounter[curRoomIndex] < 12 then
+			EID.sacrificeCounter[curRoomIndex] = EID.sacrificeCounter[curRoomIndex] + 1
 		end
 	end
-	EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EID.onSacrificeDamage, EntityType.ENTITY_PLAYER)
 end
+EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EID.onSacrificeDamage, EntityType.ENTITY_PLAYER)
 
 ---------------------------------------------------------------------------
 ------------------------Handle ALT FLOOR CHOICE----------------------------
@@ -187,18 +192,14 @@ questionMarkSprite:LoadGraphics()
 
 function EID:IsAltChoice(pickup)
 	-- do not run this while Curse of the Blind is active, since this function is really just a "is collectible pedestal a red question mark" check
-	if EID:hasCurseBlind() then
+	if not REPENTANCE or EID:hasCurseBlind() then
 		return false
 	end
-	if pickup:GetData() == nil then
-		return false
+	if altPathItemChecked[pickup.InitSeed] ~= nil then
+		return altPathItemChecked[pickup.InitSeed]
 	end
-	if EID:getEntityData(pickup, "EID_IsAltChoice") ~= nil then
-		return EID:getEntityData(pickup, "EID_IsAltChoice")
-	end
-
-	if not REPENTANCE or game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
-		pickup:GetData()["EID_IsAltChoice"] = false
+	if game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
+		altPathItemChecked[pickup.InitSeed] = false
 		return false
 	end
 
@@ -206,35 +207,35 @@ function EID:IsAltChoice(pickup)
 	local name = entitySprite:GetAnimation()
 
 	if name ~= "Idle" and name ~= "ShopIdle" then
-		-- Collectible can be ignored. its definetly not hidden
-		pickup:GetData()["EID_IsAltChoice"] = false
+		-- Collectible can be ignored. It's definitely not hidden
+		altPathItemChecked[pickup.InitSeed] = false
 		return false
 	end
 	
 	questionMarkSprite:SetFrame(name,entitySprite:GetFrame())
 	-- check some point in entitySprite
-	for i = -70,0,2 do
+	for i = -50,20,3 do
 		local qcolor = questionMarkSprite:GetTexel(Vector(0,i),nullVector,1,1)
 		local ecolor = entitySprite:GetTexel(Vector(0,i),nullVector,1,1)
 		if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
 			-- it is not same with question mark sprite
-			pickup:GetData()["EID_IsAltChoice"] = false
+			altPathItemChecked[pickup.InitSeed] = false
 			return false
 		end
 	end
-
+	
 	--this may be a question mark, however, we will check it again to ensure it
-	for j = -3,3,2 do
-		for i = -71,0,2 do
+	for j = -1,1,1 do
+		for i = -71,0,3 do
 			local qcolor = questionMarkSprite:GetTexel(Vector(j,i),nullVector,1,1)
 			local ecolor = entitySprite:GetTexel(Vector(j,i),nullVector,1,1)
 			if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
-				pickup:GetData()["EID_IsAltChoice"] = false
+				altPathItemChecked[pickup.InitSeed] = false
 				return false
 			end
 		end
 	end
-	pickup:GetData()["EID_IsAltChoice"] = true
+	altPathItemChecked[pickup.InitSeed] = true
 	return true
 end
 
@@ -290,12 +291,15 @@ if REPENTANCE then
 		flipItemNext = false
 		if entityType == 5 and (variant == 100 or variant == 150) then
 			lastGetItemResult = {nil, Isaac.GetFrameCount(), gridIndex, nil}
-			initialItemNext = true
+			-- Pedestals in need of a random item will call GET_COLLECTIBLE; fixed pedestals (Knife Piece 1) will not
+			if subtype == 0 then initialItemNext = true
+			else lastGetItemResult[1] = subtype end
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, EID.preRoomEntitySpawn)
 	
-	function EID:postPickupInit(entity)
+	function EID:postPickupInitFlip(entity)
+		initialItemNext = false
 		flipItemNext = true
 		lastGetItemResult[4] = entity.InitSeed
 		
@@ -320,7 +324,7 @@ if REPENTANCE then
 			entity:GetData()["EID_FlipItemID"] = flipEntry[1]
 		end
 	end
-	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInit, PickupVariant.PICKUP_COLLECTIBLE)
+	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInitFlip, PickupVariant.PICKUP_COLLECTIBLE)
 	
 	function EID:CheckPedestalIndex(entity)
 		-- Only pedestals with indexes that were present at room load can be flip pedestals
@@ -436,6 +440,10 @@ end
 
 ---------------------------------------------------------------------------
 ---------------------------Printing Functions------------------------------
+
+local previousFormattedLines = {}
+local previousBulletpoints = {}
+local previousDesc = ""
 
 function EID:printDescription(desc)
 	local textScale = Vector(EID.Scale, EID.Scale)
@@ -572,32 +580,47 @@ function EID:printDescription(desc)
 			end
 		end
 	end
+	if previousDesc ~= desc.Description then
+		EID:clearDescriptionCache()
+		previousDesc = desc.Description
+	end
 	EID:printBulletPoints(desc.Description, renderPos)
+end
 
+function EID:clearDescriptionCache()
+	previousFormattedLines = {}
+	previousBulletpoints = {}
 end
 
 function EID:printBulletPoints(description, renderPos)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
 	local textScale = Vector(EID.Scale, EID.Scale)
 	description = EID:replaceShortMarkupStrings(description)
-	for line in string.gmatch(description, "([^#]+)") do
-		local formatedLines = EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID.Config["Language"]])
-		local textColor = EID:getTextColor()
-		for i, lineToPrint in ipairs(formatedLines) do
-			-- render bulletpoint
-			if i == 1 then
-				local bpIcon = EID:handleBulletpointIcon(lineToPrint)
-				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
-					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
-					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor)
-				else
-					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
-				end
-				EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
+	if #previousFormattedLines == 0 then
+		for line in string.gmatch(description, "([^#]+)") do
+			previousBulletpoints[#previousFormattedLines+1] = true
+			for _,v in ipairs(EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID.Config["Language"]])) do
+				table.insert(previousFormattedLines, v)
 			end
-			textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
-				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 		end
+	end
+	
+	local textColor = EID:getTextColor()
+	for i, lineToPrint in ipairs(previousFormattedLines) do
+		-- render bulletpoint
+		if previousBulletpoints[i] then
+			textColor = EID:getTextColor()
+			local bpIcon = EID:handleBulletpointIcon(lineToPrint)
+			if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
+				lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
+				textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor)
+			else
+				textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
+			end
+			EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
+		end
+		textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
+			renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 	end
 end
 ---------------------------------------------------------------------------
@@ -787,43 +810,32 @@ function EID:setPlayer()
 	end
 end
 
-if REPENTANCE then
-	function EID:removeWrongGuppyEyeInfo(effectEntity)
-		if EID.pathCheckerEntity ~= nil and effectEntity.Parent ~= nil then
-			if GetPtrHash(effectEntity.Parent) == GetPtrHash(EID.pathCheckerEntity) then
-				effectEntity:Remove()
-			end
-		end
-	end
-	EID:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EID.removeWrongGuppyEyeInfo, EffectVariant.PICKUP_GHOST)
-end
 ---------------------------------------------------------------------------
 ---------------------------On Update Function------------------------------
+-- Runs 30 times a second; doesn't update while paused
 
-EID.lastDescriptionEntity = nil
-EID.lastDist = 0
-EID.pathCheckerEntity = nil
-EID.hasValidWalkingpath = true
-EID.pathfindingTo = nil
-
+local collSpawned = false
 function EID:onGameUpdate()
-	EID:setPlayer()
+	EID.GameUpdateCount = EID.GameUpdateCount + 1
 	
-	--Fix Overlapping Pedestals
-	-- PERFORMANCENOTE move this to a post pickup init or something
-	local curPositions = {}
-	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
-		local pos = entity.Position
-		for _, otherPos in ipairs(curPositions) do
-			if pos:Distance(otherPos[2]) == 0 then
-				entity:GetData()["EID_RenderOffset"] = Vector(10,0)
-				otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
+	-- Fix Overlapping Pedestals if a collectible spawned this frame (needed for Mega Chest)
+	if collSpawned then
+		collSpawned = false
+		local curPositions = {}
+		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			local pos = entity.Position
+			for _, otherPos in ipairs(curPositions) do
+				if pos:Distance(otherPos[2]) == 0 then
+					entity:GetData()["EID_RenderOffset"] = Vector(10,0)
+					otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
+				end
 			end
+			table.insert(curPositions, {entity, entity.Position})
 		end
-		table.insert(curPositions, {entity, entity.Position})
 	end
 	
-	if REPENTANCE and EID.CraneItemType ~= nil then
+	-- Remove Crane Game item data if it's giving the prize out
+	if REPENTANCE and EID.GameUpdateCount % 15 == 0 then
 		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
 			if EID.CraneItemType[tostring(crane.InitSeed)] then
 				if crane:GetSprite():IsPlaying("Prize") then
@@ -832,45 +844,42 @@ function EID:onGameUpdate()
 			end
 		end
 	end
-	
-	if not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedPillInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"] then
-		if EID.lastDescriptionEntity == nil or (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
-			if EID.pathCheckerEntity ~= nil then
-				EID.pathCheckerEntity:Remove()
-				EID.pathCheckerEntity = nil
-				EID.hasValidWalkingpath = true
-			end
-			EID.pathfindingTo = EID.lastDescriptionEntity
-			return
-		end
-		if EID.pathCheckerEntity == nil then
-			EID.pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player ,0 , 4354) -- Spawns the EID Helper entity with seed that doesnt spawn rewards
-			-- Spawns an Ultra Greed Door and makes it invisible and intangible (not fully tested yet)
-			--EID.pathCheckerEntity = game:Spawn(294, 0, EID.player.Position, nullVector, EID.player, 0, 0)
-			EID.pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
-			EID.pathCheckerEntity:AddEntityFlags (EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
-			if REPENTANCE then EID.pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY) end
-			EID.pathCheckerEntity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
-			EID.pathCheckerEntity.Visible = false
-			EID.hasValidWalkingpath = false
-		elseif not EID.pathCheckerEntity:Exists() then
-			EID.pathCheckerEntity = nil
-		else
-			EID.pathCheckerEntity.Position = EID.player.Position
-			EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(EID.lastDescriptionEntity.Position, false)
-			EID.pathfindingTo = EID.lastDescriptionEntity
-		end
-	end
-	
 end
 EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
--- this can be called when moving between two different pickups
-function EID:updatePathfinding()
-	if not EID.pathCheckerEntity or not EID.lastDescriptionEntity then return end
-	EID.pathCheckerEntity.Position = EID.player.Position
-	EID.hasValidWalkingpath = EID.pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(EID.lastDescriptionEntity.Position, false)
-	EID.pathfindingTo = EID.lastDescriptionEntity
+-- Wait until all collectibles spawning this frame have spawned before checking if there's an overlap
+function EID:CollectibleSpawnedThisFrame(entity)
+	collSpawned = true
+end
+EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.CollectibleSpawnedThisFrame, PickupVariant.PICKUP_COLLECTIBLE)
+
+-- Pathchecking
+local pathCheckerEntity = nil
+local lastPathfindFrame = -1
+
+local function attemptPathfind(entity)
+	if (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
+		pathsChecked[entity.InitSeed] = true
+		return true
+	end
+	if EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
+	
+	-- Spawn a custom NPC entity to attempt a pathfind to the target pickup, then remove it afterwards
+	pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player, 0, 4354)
+	pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+	-- Not sure how much of this flagging is needed now that the entity is immediately removed afterwards
+	pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
+	if REPENTANCE then pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY) end -- can it even be queried in this brief time?
+	pathCheckerEntity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+	pathCheckerEntity.Visible = false -- it's invisible anyway?
+	pathCheckerEntity.Position = EID.player.Position -- not needed, it spawned at our position?
+	
+	local success = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
+	pathsChecked[entity.InitSeed] = success
+	pathCheckerEntity:Remove()
+	pathCheckerEntity = nil
+	lastPathfindFrame = EID.GameUpdateCount
+	return success
 end
 
 local hasShownAchievementWarning = false
@@ -885,14 +894,15 @@ local function renderAchievementInfo()
 			demoDescObj.Description = EID:getDescriptionEntry("OldGameVersionWarningText") or ""
 			EID:displayPermanentText(demoDescObj)
 			hasShownAchievementWarning = true
+		-- Bag of Crafting modded items check
 		elseif EID.player:HasCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and (EID.Config.BagOfCraftingDisplayMode == "Recipe List" or EID.Config.BagOfCraftingDisplayMode == "Preview Only") then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("ModdedRecipesWarningText") or ""
 			EID:displayPermanentText(demoDescObj)
 			hasShownAchievementWarning = true
+		-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 		else
-			-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 			local characterID = EID.player:GetPlayerType()
 			--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
 			if characterID < 21 and game.Challenge == 0 and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
@@ -919,7 +929,13 @@ end
 ---------------------------On Render Function------------------------------
 local searchPartitions = EntityPartition.FAMILIAR + EntityPartition.ENEMY + EntityPartition.PICKUP + EntityPartition.PLAYER
 
+EID.lastDescriptionEntity = nil
+EID.lastDist = 0
+
 local function onRender(t)
+	-- Increases by 60 per second, ignores pauses
+	EID.GameRenderCount = EID.GameRenderCount + 1
+	
 	EID.isDisplaying = false
 	EID:setPlayer()
 	
@@ -1086,9 +1102,11 @@ local function onRender(t)
 		end
 	end
 	
-	if EID.pathfindingTo and EID.pathfindingTo.Index ~= closest.Index then EID:updatePathfinding() end
-	
-	if closest.Variant == PickupVariant.PICKUP_TRINKET then
+	if closest.Variant == 110 then
+		--Handle Broken Shovel
+		local descriptionObj = EID:getDescriptionObj(5, 100, 550, closest)
+		EID:printDescription(descriptionObj)
+	elseif closest.Variant == PickupVariant.PICKUP_TRINKET then
 		--Handle Trinkets
 		local descriptionObj = EID:getDescriptionObjByEntity(closest)
 		EID:printDescription(descriptionObj)
@@ -1106,8 +1124,7 @@ local function onRender(t)
 
 	elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 		--Handle Cards & Runes
-		if (not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"]) and
-			(closest.FrameCount < 3 or EID.pathfindingTo == nil) then
+		if (not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"]) and closest.FrameCount < 3 then
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
@@ -1115,7 +1132,9 @@ local function onRender(t)
 			local isSoulstone = closest.SubType >= 81 and closest.SubType <= 97
 			local hideinShop = closest:ToPickup():IsShopItem() and ((not isSoulstone and not EID.Config["DisplayCardInfoShop"]) or (isSoulstone and not EID.Config["DisplaySoulstoneInfoShop"]))
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayCardInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
-			local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or (not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and not EID.hasValidWalkingpath
+			local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or
+			(not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and
+			(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
 			if isOptionsSpawn or hideinShop or obstructed or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
 				EID:renderQuestionMark()
 				return
@@ -1126,15 +1145,15 @@ local function onRender(t)
 
 	elseif closest.Variant == PickupVariant.PICKUP_PILL then
 		--Handle Pills
-		if not EID.Config["DisplayObstructedPillInfo"] and
-			(closest.FrameCount < 3 or EID.pathfindingTo == nil) then
+		if not EID.Config["DisplayObstructedPillInfo"] and closest.FrameCount < 3 then
 			-- small delay when having obstruction enabled & entering the room to prevent spoilers
 			return
 		end
 		if EID:getEntityData(closest, "EID_DontHide") ~= true then
 			local hideinShop = closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]
 			local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
-			local obstructed = not EID.Config["DisplayObstructedPillInfo"] and not EID.hasValidWalkingpath
+			local obstructed = not EID.Config["DisplayObstructedPillInfo"] and
+			(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
 			if isOptionsSpawn or hideinShop or obstructed then
 				EID:renderQuestionMark()
 				return
