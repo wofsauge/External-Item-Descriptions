@@ -815,14 +815,32 @@ end
 -- Runs 30 times a second; doesn't update while paused
 
 local collSpawned = false
+local function VoidRNGNext(num)
+	num = num ~ ((num >> 5) & 4294967295)
+	num = num ~ ((num << 9) & 4294967295)
+	num = num ~ ((num >> 7) & 4294967295)
+	return num >> 0;
+end
+-- Speed, Fire Rate, Damage, Range, Shot Speed, Luck
+-- (Same order as it is on the Extra Hud)
+local voidStatUps = { 0.2, 0.5, 1, 1.5, 0.2, 1 }
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
 	
-	-- Fix Overlapping Pedestals if a collectible spawned this frame (needed for Mega Chest)
+	
 	if collSpawned then
 		collSpawned = false
+		local numVoidable = 0
+		local numBlackRunable = 0
+		-- THIS INCLUDES UNPURCHASED SHOP ITEMS??? and both choice items also, which is OK for AB+ but not for Rep!
 		local curPositions = {}
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			if entity.SubType > 0 then
+				numBlackRunable = numBlackRunable + 1
+				if EID.itemConfig:GetCollectible(entity.SubType).Type ~= 3 then numVoidable = numVoidable + 1 end
+			end
+			
+			-- Fix Overlapping Pedestals if a collectible spawned this frame (needed for Mega Chest)
 			local pos = entity.Position
 			for _, otherPos in ipairs(curPositions) do
 				if pos:Distance(otherPos[2]) == 0 then
@@ -831,6 +849,32 @@ function EID:onGameUpdate()
 				end
 			end
 			table.insert(curPositions, {entity, entity.Position})
+		end
+		
+		-- Recalculate our total Void stat-ups if a collectible spawned this frame
+		-- NOTE: NEED AB+ NUMBERS STILL
+		-- THIS COULD APPLY TO BLACK RUNE AS WELL, WHATS ITS RNG??? getplayer:getcardrng?
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_VOID) then
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+			local increases = {0, 0, 0, 0, 0, 0}
+			--CHANGE THIS TO THE PLAYER THAT HAS VOID
+			local startRNG = Isaac.GetPlayer(0):GetCollectibleRNG(CollectibleType.COLLECTIBLE_VOID):GetSeed()
+			startRNG = VoidRNGNext(startRNG)
+			for pedestals = 1, numVoidable do
+				local statTable = {1,2,3,4,5,6}
+				-- perform 5 random swaps of our stat table
+				for i = 6, 2, -1 do
+					startRNG = VoidRNGNext(startRNG)
+					local result = (startRNG % i) + 1
+					local temp = statTable[i]
+					statTable[i] = statTable[result]
+					statTable[result] = temp
+				end
+				-- the first two entries in the stat table get increased
+				increases[statTable[1]] = increases[statTable[1]] + voidStatUps[statTable[1]]
+				increases[statTable[2]] = increases[statTable[2]] + voidStatUps[statTable[2]]
+			end
+			for i,v in ipairs(increases) do print(v) end
 		end
 	end
 	
