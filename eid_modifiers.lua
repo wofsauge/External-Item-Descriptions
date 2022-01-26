@@ -50,6 +50,7 @@ if REPENTANCE then
 		return descObj
 	end
 	
+	local inSpindownPreview = false
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCallback(descObj)
 		EID:appendToDescription(descObj, "#{{Collectible723}} :")
@@ -63,6 +64,12 @@ if REPENTANCE then
 			end
 			refID = spinnedID
 			if refID > 0 and refID < 4294960000 then
+				if i == 1 and Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) then
+					inSpindownPreview = true
+					local descEntry = EID:getDescriptionObj(5, 100, refID)
+					inSpindownPreview = false
+					return descEntry
+				end
 				EID:appendToDescription(descObj, "{{Collectible"..refID.."}}")
 				if EID.itemUnlockStates[refID] == false then EID:appendToDescription(descObj, "?") end
 				if i ~= EID.Config["SpindownDiceResults"] then
@@ -77,6 +84,7 @@ if REPENTANCE then
 		if hasCarBattery then
 			EID:appendToDescription(descObj, " (Results with {{Collectible356}})")
 		end
+		EID:appendToDescription(descObj, "#{{Blank}} ".. EID:getDescriptionEntry("FlipItemToggleInfo"))
 		return descObj
 	end
 	
@@ -317,7 +325,7 @@ if REPENTANCE then
 			if collectiblesOwned[584] then table.insert(callbacks, BookOfVirtuesCallback) end
 			if collectiblesOwned[706] then table.insert(callbacks, AbyssCallback) end
 			
-			if collectiblesOwned[723] or (EID.absorbedSpindown and collectiblesOwned[477]) then table.insert(callbacks, SpindownDiceCallback) end
+			if (collectiblesOwned[723] or (EID.absorbedSpindown and collectiblesOwned[477])) and not inSpindownPreview then table.insert(callbacks, SpindownDiceCallback) end
 			if collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
