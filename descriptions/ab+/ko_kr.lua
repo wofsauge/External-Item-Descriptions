@@ -270,8 +270,8 @@ EID.descriptions[languageCode].collectibles={
 	{"235", "", "<item does not exist>"}, --
 	{"236", "대장균", "적에게 접촉 시 접촉한 적을 똥으로 만듭니다."}, -- E. Coli
 	{"237", "죽음의 손길", "↑ {{Damage}}공격력 +1.5#↓ {{Tears}}연사 -0.3#공격이 적을 관통합니다."}, -- Death's Touch
-	{"238", "열쇠 조각 1", "Key Piece 2와 조합 시 최종보스 문을 열 수 있습니다.# {{AngelChance}}천사방 확률 증가"}, -- Key Piece 1
-	{"239", "열쇠 조각 2", "Key Piece 1와 조합 시 최종보스 문을 열 수 있습니다.# {{AngelChance}}천사방 확률 증가"}, -- Key Piece 2
+	{"238", "열쇠 조각 1", "Key Piece 2와 조합 시 최종보스 문을 열 수 있습니다.#↑ {{AngelChance}}천사방 확률 +25%"}, -- Key Piece 1
+	{"239", "열쇠 조각 2", "Key Piece 1와 조합 시 최종보스 문을 열 수 있습니다.#↑ {{AngelChance}}천사방 확률 +25%"}, -- Key Piece 2
 	{"240", "임상시험", "모든 능력치가 랜덤으로 증가하거나 감소합니다."}, -- Experimental Treatment
 	{"241", "지하로부터의 계약", "방 클리어 보상이 두배로 나오는 대신 보상이 드랍될 확률이 33% 감소합니다."}, -- Contract from Below
 	{"242", "악명", "적 탄환에 맞았을 때 50% 확률로 피해를 무시합니다."}, -- Infamy
@@ -595,7 +595,7 @@ EID.descriptions[languageCode].trinkets={
 	{"4", "고장난 조종기", "액티브 아이템 사용 시 스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Broken Remote
 	{"5", "퍼플 하트 훈장", "적이 챔피언의 형태로 나올 확률이 증가합니다."}, -- Purple Heart
 	{"6", "깨진 자석", "동전이 캐릭터에게 끌려옵니다."}, -- Broken Magnet
-	{"7", "묵주 구슬", "↑ {{AngelChance}}천사방 확률 +25%#{{Library}}책방과 {{Shop}}상점에서 {{Collectible33}}The Bible이 등장할 확률이 증가합니다."}, -- Rosary Bead
+	{"7", "묵주 구슬", "↑ {{AngelChance}}천사방 확률 +50%#{{Library}}책방과 {{Shop}}상점에서 {{Collectible33}}The Bible이 등장할 확률이 증가합니다."}, -- Rosary Bead
 	{"8", "카트리지", "피격 시 5%의 확률로 6초간 무적 상태가 되며 접촉한 적에게 40의 피해를 입힙니다.#!!! {{Luck}}행운 수치 비례"}, -- Cartridge
 	{"9", "파동벌레", "눈물이 커졌다 작아졌다를 반복하며 날아갑니다."}, -- Pulse Worm
 	{"10", "씰룩벌레", "↑ {{Tears}}연사 +0.3#눈물이 파동 곡선을 그리며 날아갑니다."}, -- Wiggle Worm
