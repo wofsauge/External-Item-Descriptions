@@ -282,13 +282,15 @@ if REPENTANCE then
 		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP,
 	}
 	local collectiblesOwned = {}
-
+	local lastCheck = 0
+	
 	local function EIDConditions(descObj)
 		-- currently, only pickup descriptions have modifiers
 		if descObj.ObjType ~= 5 then return false end
 		
 		-- recheck the players' owned collectibles periodically, not every frame
-		if game:GetFrameCount() % 10 == 0 then
+		if EID.GameUpdateCount >= lastCheck + 15 then
+			lastCheck = EID.GameUpdateCount
 			local numPlayers = game:GetNumPlayers()
 			local players = {}; for i = 0, numPlayers - 1 do players[i] = Isaac.GetPlayer(i) end
 			for _,v in ipairs(collectiblesToCheck) do
