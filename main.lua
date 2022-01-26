@@ -628,16 +628,7 @@ end
 local isMirrorRoom = false
 local isDeathCertRoom = false
 if REPENTANCE then
-	function EID:onNewRoom()
-		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
-		
-		local level = game:GetLevel()
-		local id = level:GetCurrentRoomIndex()
-		isDeathCertRoom = (id >=0 and GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 2)))
-		
-		-- Handle Flip Item
-		initialItemNext = false
-		flipItemNext = false
+	function EID:AssignFlipItems()
 		EID.flipMaxIndex = -1
 		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		if EID.flipItemPositions[curRoomIndex] then
@@ -650,6 +641,18 @@ if REPENTANCE then
 				end
 			end
 		end
+	end
+	function EID:onNewRoom()
+		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
+		
+		local level = game:GetLevel()
+		local id = level:GetCurrentRoomIndex()
+		isDeathCertRoom = (id >=0 and GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 2)))
+		
+		-- Handle Flip Item
+		initialItemNext = false
+		flipItemNext = false
+		EID:AssignFlipItems()
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 end
@@ -1279,6 +1282,7 @@ if EID.MCMLoaded or REPENTANCE then
 					for k, _ in pairs(configIgnoreList) do
 						savedEIDConfig[k] = nil
 					end
+					EID:AssignFlipItems()
 				end
 			end
 			
