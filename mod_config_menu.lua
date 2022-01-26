@@ -126,6 +126,7 @@ function EID:AddBooleanSetting(category, optionName, displayText, params)
 				return EID.Config[optionName]
 			end,
 			Display = params.displayFunc or function()
+				if params.displayingTab then EID.MCMCompat_isDisplayingEIDTab = params.displayingTab end
 				local onOff = params.offText or "False"
 				if EID.Config[optionName] then
 					onOff = params.onText or "True"
@@ -581,7 +582,7 @@ if MCMLoaded then
 	---------------------------------Display-----------------------------------
 	
 	-- Simple toggles of what descriptions the user wants displayed
-	EID:AddBooleanSetting("Display", "DisplayItemInfo", "Collectible Infos")
+	EID:AddBooleanSetting("Display", "DisplayItemInfo", "Collectible Infos", {displayingTab = ""})
 	EID:AddBooleanSetting("Display", "DisplayTrinketInfo", "Trinket Infos")
 	EID:AddBooleanSetting("Display", "DisplayCardInfo", "Card Infos")
 	EID:AddBooleanSetting("Display", "DisplayPillInfo", "Pill Infos")
