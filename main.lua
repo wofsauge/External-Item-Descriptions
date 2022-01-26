@@ -818,18 +818,33 @@ end
 -- Runs 30 times a second; doesn't update while paused
 
 local collSpawned = false
+
+EID.VoidStatIncreases = {}
+EID.BlackRuneStatIncreases = {}
 local function VoidRNGNext(num)
 	num = num ~ ((num >> 5) & 4294967295)
 	num = num ~ ((num << 9) & 4294967295)
 	num = num ~ ((num >> 7) & 4294967295)
 	return num >> 0;
 end
--- Speed, Fire Rate, Damage, Range, Shot Speed, Luck
--- (Same order as it is on the Extra Hud)
-local voidStatUps = { 0.2, 0.5, 1, 1.5, 0.2, 1 }
+local function GetTwoIncreases(rng, tbl)
+	local statTable = {1,2,3,4,5,6}
+	-- perform 5 random swaps of our stat table
+	for i = 6, 2, -1 do
+		rng = VoidRNGNext(rng)
+		local result = (rng % i) + 1
+		local temp = statTable[i]
+		statTable[i] = statTable[result]
+		statTable[result] = temp
+	end
+	-- the first two entries in the stat table get increased
+	tbl[statTable[1]] = tbl[statTable[1]] + 1
+	tbl[statTable[2]] = tbl[statTable[2]] + 1
+	return rng
+end
+
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
-	
 	
 	if collSpawned then
 		collSpawned = false
@@ -855,29 +870,23 @@ function EID:onGameUpdate()
 		end
 		
 		-- Recalculate our total Void stat-ups if a collectible spawned this frame
-		-- NOTE: NEED AB+ NUMBERS STILL
-		-- THIS COULD APPLY TO BLACK RUNE AS WELL, WHATS ITS RNG??? getplayer:getcardrng?
+		-- THIS COULD APPLY TO BLACK RUNE AS WELL
 		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_VOID) then
 			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 			local increases = {0, 0, 0, 0, 0, 0}
+			local runeIncreases = {0, 0, 0, 0, 0, 0}
 			--CHANGE THIS TO THE PLAYER THAT HAS VOID
 			local startRNG = Isaac.GetPlayer(0):GetCollectibleRNG(CollectibleType.COLLECTIBLE_VOID):GetSeed()
-			startRNG = VoidRNGNext(startRNG)
-			for pedestals = 1, numVoidable do
-				local statTable = {1,2,3,4,5,6}
-				-- perform 5 random swaps of our stat table
-				for i = 6, 2, -1 do
-					startRNG = VoidRNGNext(startRNG)
-					local result = (startRNG % i) + 1
-					local temp = statTable[i]
-					statTable[i] = statTable[result]
-					statTable[result] = temp
-				end
-				-- the first two entries in the stat table get increased
-				increases[statTable[1]] = increases[statTable[1]] + voidStatUps[statTable[1]]
-				increases[statTable[2]] = increases[statTable[2]] + voidStatUps[statTable[2]]
+			local runeRNG = Isaac.GetPlayer(0):GetCardRNG(Card.RUNE_BLACK):GetSeed()
+			-- in Repentance, an additional RNG call is done before the 5 for stat ups
+			if REPENTANCE then startRNG = VoidRNGNext(startRNG) end
+			for pedestals = 1, 1 do
+				startRNG = GetTwoIncreases(startRNG, increases)
+				runeRNG = GetTwoIncreases(runeRNG, runeIncreases)
+				break -- only doing 1 preview for now
 			end
-			for i,v in ipairs(increases) do print(v) end
+			EID.VoidStatIncreases = increases
+			EID.BlackRuneStatIncreases = runeIncreases
 		end
 	end
 	
