@@ -188,6 +188,7 @@ local repCollectibles={
 	[472] = {"472", "King Baby", "Other familiars follow it and shoot automatically at enemies#Stops moving when you are shooting#Will teleport back to you when you stop shooting"}, -- King Baby
 	[474] = {"474", "Broken Glass Cannon", "Turns into Glass Cannon when used"}, -- Broken Glass Cannon
 	[476] =	{"476", "D1", "Duplicates 1 random pickup in the current room#Duplicated pickups may not be identical to the original"}, -- D1
+	[477] = {"477", "Void", "!!! When used, consumes all pedestal items in the room#Active item: Its effect will activate every future use of Void#↑ Passive item: Small stat upgrade to two random stats"},
 	[489] = {"489", "D Infinity", "Acts as any die item except for {{Collectible723}}Spindown Dice#Change the current die with the drop key#Charge time varies based on the current die and updates when used"}, -- D Infinity
 	[491] = {"491", "Acid Baby", "Drops a random pill every 7 rooms#Using a pill poisons all enemies in the room"}, -- Acid Baby
 	[493] = {"493", "Adrenaline", "↑ Damage up for every empty Red Heart container#Follows a formula, some examples are:#+0.3 at 1#+0.92 at 2#+1.76 at 3#+2.79 at 4#+3.98 at 5"}, -- Adrenaline
@@ -1011,6 +1012,9 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 ---------- Misc. Text ----------
 
+-- Void stat names: Replace "Tears" with "Fire Rate"
+EID.descriptions[languageCode].VoidNames[2] = EID.descriptions[languageCode].GlitchedItemText[1]
+
 EID.descriptions[languageCode].spindownError = "Item disappears"
 
 EID.descriptions[languageCode].CraftingBagContent = "Bag:"
@@ -1030,7 +1034,7 @@ EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:"
 EID.descriptions[languageCode].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed"
 EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune charge:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo charge:"
-EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{ButtonSelect}} to show description)"
+EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{ButtonSelect}} (Map) to show description)"
 
 
 EID.descriptions[languageCode].FalsePHDHeart = "Spawns 1 Black Heart"

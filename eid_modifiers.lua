@@ -1,6 +1,107 @@
-if REPENTANCE then
-	local game = Game()
+local game = Game()
 
+-- Afterbirth+ modifiers
+local collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, }
+-- Repentance modifiers
+if REPENTANCE then collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID,
+	CollectibleType.COLLECTIBLE_BINGE_EATER, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, CollectibleType.COLLECTIBLE_SPINDOWN_DICE, 
+	CollectibleType.COLLECTIBLE_TAROT_CLOTH, CollectibleType.COLLECTIBLE_MOMS_BOX,
+	CollectibleType.COLLECTIBLE_BLANK_CARD, CollectibleType.COLLECTIBLE_CLEAR_RUNE, CollectibleType.COLLECTIBLE_PLACEBO, 
+	CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP,
+} end
+local collectiblesOwned = {}
+local blackRuneOwned = false
+local lastCheck = 0
+
+local function CheckPlayersCollectibles()
+	-- recheck the players' owned collectibles periodically, not every frame
+	if EID.GameUpdateCount >= lastCheck + 15 then
+		lastCheck = EID.GameUpdateCount
+		local numPlayers = game:GetNumPlayers()
+		local players = {}; for i = 0, numPlayers - 1 do players[i] = Isaac.GetPlayer(i) end
+		for _,v in ipairs(collectiblesToCheck) do
+			collectiblesOwned[v] = false
+			for i = 0, numPlayers - 1 do
+				if players[i]:HasCollectible(v) then
+					collectiblesOwned[v] = true
+					break
+				end
+			end
+		end
+		blackRuneOwned = false
+		for i = 0, numPlayers - 1 do
+			for j = 0, 1 do
+				if players[i]:GetCard(j) == Card.RUNE_BLACK then
+					blackRuneOwned = true
+					break
+				end
+			end
+		end
+		-- Birthright Book of Belial
+		-- Could this be changed to just checking for having Collectible 59? (Check interaction with Clicker etc)
+		if REPENTANCE then
+			collectiblesOwned[59] = false
+			for i = 0, numPlayers - 1 do
+				local playerType = players[i]:GetPlayerType()
+				if (playerType == PlayerType.PLAYER_JUDAS or playerType == PlayerType.PLAYER_BLACKJUDAS) and players[i]:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+					collectiblesOwned[59] = true
+					break
+				end
+			end
+		end
+	end
+end
+
+-- Handle Void (the only modifier that is applied to AB+ at the moment)
+-- Speed, Tears, Damage, Range, Shot Speed, Luck
+local voidIntro = EID:getDescriptionEntry("VoidText")
+local voidNames = EID:getDescriptionEntry("VoidNames")
+local voidStatUps = { 0.2, 0.5, 1, 0.5, 0.2, 1 }
+if REPENTANCE then voidStatUps[4] = 1.5 end
+
+local function VoidCallback(descObj)
+	if EID.itemConfig:GetCollectible(descObj.ObjSubType).Type ~= 3 then
+		EID:appendToDescription(descObj, "#{{Collectible477}} " .. voidIntro .. "#")
+		for i,v in ipairs(EID.VoidStatIncreases) do
+			if v > 0 then
+				EID:appendToDescription(descObj, "{{Collectible477}} +" .. v*voidStatUps[i] .. " " .. voidNames[i] .. "#")
+			end
+		end
+	end
+	return descObj
+end
+local function BlackRuneCallback(descObj)
+	EID:appendToDescription(descObj, "#{{Card41}} " .. voidIntro .. "#")
+	for i,v in ipairs(EID.BlackRuneStatIncreases) do
+		if v > 0 then
+			EID:appendToDescription(descObj, "{{Card41}} +" .. v*voidStatUps[i] .. " " .. voidNames[i] .. "#")
+		end
+	end
+	return descObj
+end
+
+local function EIDConditionsAB(descObj)
+	-- currently, only pickup descriptions have modifiers
+	if descObj.ObjType ~= 5 then return false end
+	
+	CheckPlayersCollectibles()
+	
+	local callbacks = {}
+	
+	-- Collectible Pedestal Callbacks
+	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
+		if EID.Config["DisplayVoidStatInfo"] then
+			if collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
+			if blackRuneOwned then table.insert(callbacks, BlackRuneCallback) end
+		end
+	end
+	
+	return callbacks
+end
+EID:addDescriptionModifier("EID Afterbirth+", EIDConditionsAB, nil)
+
+
+if REPENTANCE then
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
 		descObj.Description = ""
@@ -50,6 +151,7 @@ if REPENTANCE then
 		return descObj
 	end
 	
+	local inSpindownPreview = false
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCallback(descObj)
 		EID:appendToDescription(descObj, "#{{Collectible723}} :")
@@ -63,6 +165,12 @@ if REPENTANCE then
 			end
 			refID = spinnedID
 			if refID > 0 and refID < 4294960000 then
+				if i == 1 and Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) then
+					inSpindownPreview = true
+					local descEntry = EID:getDescriptionObj(5, 100, refID)
+					inSpindownPreview = false
+					return descEntry
+				end
 				EID:appendToDescription(descObj, "{{Collectible"..refID.."}}")
 				if EID.itemUnlockStates[refID] == false then EID:appendToDescription(descObj, "?") end
 				if i ~= EID.Config["SpindownDiceResults"] then
@@ -77,6 +185,7 @@ if REPENTANCE then
 		if hasCarBattery then
 			EID:appendToDescription(descObj, " (Results with {{Collectible356}})")
 		end
+		EID:appendToDescription(descObj, "#{{Blank}} ".. EID:getDescriptionEntry("FlipItemToggleInfo"))
 		return descObj
 	end
 	
@@ -267,42 +376,11 @@ if REPENTANCE then
 	-- This one-condition setup fixes that and can only help performance
 	-- It also allows us to pick the order that modifiers are appended to descriptions (stats/effects first, then reroll/flip/recharge info)
 	
-	local collectiblesToCheck = { CollectibleType.COLLECTIBLE_BINGE_EATER, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES,
-		CollectibleType.COLLECTIBLE_SPINDOWN_DICE, CollectibleType.COLLECTIBLE_VOID,
-		CollectibleType.COLLECTIBLE_TAROT_CLOTH, CollectibleType.COLLECTIBLE_MOMS_BOX,
-		CollectibleType.COLLECTIBLE_BLANK_CARD, CollectibleType.COLLECTIBLE_CLEAR_RUNE, CollectibleType.COLLECTIBLE_PLACEBO, 
-		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP,
-	}
-	local collectiblesOwned = {}
-
 	local function EIDConditions(descObj)
 		-- currently, only pickup descriptions have modifiers
 		if descObj.ObjType ~= 5 then return false end
 		
-		-- recheck the players' owned collectibles periodically, not every frame
-		if game:GetFrameCount() % 10 == 0 then
-			local numPlayers = game:GetNumPlayers()
-			local players = {}; for i = 0, numPlayers - 1 do players[i] = Isaac.GetPlayer(i) end
-			for _,v in ipairs(collectiblesToCheck) do
-				collectiblesOwned[v] = false
-				for i = 0, numPlayers - 1 do
-					if players[i]:HasCollectible(v) then
-						collectiblesOwned[v] = true
-						break
-					end
-				end
-			end
-			-- Birthright Book of Belial
-			collectiblesOwned[59] = false
-			for i = 0, numPlayers - 1 do
-				local playerType = players[i]:GetPlayerType()
-				if (playerType == PlayerType.PLAYER_JUDAS or playerType == PlayerType.PLAYER_BLACKJUDAS) and players[i]:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-					collectiblesOwned[59] = true
-					break
-				end
-			end
-			
-		end
+		CheckPlayersCollectibles()
 		
 		local callbacks = {}
 		
@@ -317,7 +395,7 @@ if REPENTANCE then
 			if collectiblesOwned[584] then table.insert(callbacks, BookOfVirtuesCallback) end
 			if collectiblesOwned[706] then table.insert(callbacks, AbyssCallback) end
 			
-			if collectiblesOwned[723] or (EID.absorbedSpindown and collectiblesOwned[477]) then table.insert(callbacks, SpindownDiceCallback) end
+			if (collectiblesOwned[723] or (EID.absorbedSpindown and collectiblesOwned[477])) and not inSpindownPreview then table.insert(callbacks, SpindownDiceCallback) end
 			if collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then

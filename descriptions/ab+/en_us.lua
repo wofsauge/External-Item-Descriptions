@@ -496,7 +496,7 @@ EID.descriptions[languageCode].collectibles={
 	{"474", "Tonsil", "Blocks enemy projectiles"},
 	{"475", "Plan C", "!!! SINGLE USE !!!#Deals 9,999,999 damage to all enemies and kills you 3 seconds later"},
 	{"476", "D1", "Duplicates 1 random pickup in the current room"},
-	{"477", "Void", "!!! When used, consume any pedestal items in the room#Active item: Its effect will be added to Void's effect (Stacking the effects)#↑ Passive item: Small stat upgrade to a random stat"},
+	{"477", "Void", "!!! When used, consumes all pedestal items in the room#Active item: Its effect activates, and will activate every future use of Void#↑ Passive item: Small stat upgrade to two random stats"},
 	{"478", "Pause", "Freezes all enemies in the room until you start shooting again#Touching a frozen enemy will hurt you#Enemies unfreeze after 30 seconds"},
 	{"479", "Smelter", "Consumes your trinket and gives you the effect permanently#More trinkets appear"},
 	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles your current blue flies/spiders#Spawns 1 blue fly or spider when you don't have any"},
@@ -869,6 +869,9 @@ EID.descriptions[languageCode].transformations={
 
 
 ---------- MISC ----------
+
+EID.descriptions[languageCode].VoidText = "If absorbed, gain:"
+EID.descriptions[languageCode].VoidNames = {"Speed", "Tears", "Damage", "Range", "Shot Speed", "Luck"}
 
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Demo Object Name",

@@ -628,16 +628,7 @@ end
 local isMirrorRoom = false
 local isDeathCertRoom = false
 if REPENTANCE then
-	function EID:onNewRoom()
-		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
-		
-		local level = game:GetLevel()
-		local id = level:GetCurrentRoomIndex()
-		isDeathCertRoom = (id >=0 and GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 2)))
-		
-		-- Handle Flip Item
-		initialItemNext = false
-		flipItemNext = false
+	function EID:AssignFlipItems()
 		EID.flipMaxIndex = -1
 		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		if EID.flipItemPositions[curRoomIndex] then
@@ -650,6 +641,18 @@ if REPENTANCE then
 				end
 			end
 		end
+	end
+	function EID:onNewRoom()
+		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
+		
+		local level = game:GetLevel()
+		local id = level:GetCurrentRoomIndex()
+		isDeathCertRoom = (id >=0 and GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 2)))
+		
+		-- Handle Flip Item
+		initialItemNext = false
+		flipItemNext = false
+		EID:AssignFlipItems()
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 end
@@ -815,14 +818,47 @@ end
 -- Runs 30 times a second; doesn't update while paused
 
 local collSpawned = false
+
+EID.VoidStatIncreases = {}
+EID.BlackRuneStatIncreases = {}
+local function VoidRNGNext(num)
+	num = num ~ ((num >> 5) & 4294967295)
+	num = num ~ ((num << 9) & 4294967295)
+	num = num ~ ((num >> 7) & 4294967295)
+	return num >> 0;
+end
+local function GetTwoIncreases(rng, tbl)
+	local statTable = {1,2,3,4,5,6}
+	-- perform 5 random swaps of our stat table
+	for i = 6, 2, -1 do
+		rng = VoidRNGNext(rng)
+		local result = (rng % i) + 1
+		local temp = statTable[i]
+		statTable[i] = statTable[result]
+		statTable[result] = temp
+	end
+	-- the first two entries in the stat table get increased
+	tbl[statTable[1]] = tbl[statTable[1]] + 1
+	tbl[statTable[2]] = tbl[statTable[2]] + 1
+	return rng
+end
+
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
 	
-	-- Fix Overlapping Pedestals if a collectible spawned this frame (needed for Mega Chest)
 	if collSpawned then
 		collSpawned = false
+		local numVoidable = 0
+		local numBlackRunable = 0
+		-- THIS INCLUDES UNPURCHASED SHOP ITEMS??? and both choice items also, which is OK for AB+ but not for Rep!
 		local curPositions = {}
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			if entity.SubType > 0 then
+				numBlackRunable = numBlackRunable + 1
+				if EID.itemConfig:GetCollectible(entity.SubType).Type ~= 3 then numVoidable = numVoidable + 1 end
+			end
+			
+			-- Fix Overlapping Pedestals if a collectible spawned this frame (needed for Mega Chest)
 			local pos = entity.Position
 			for _, otherPos in ipairs(curPositions) do
 				if pos:Distance(otherPos[2]) == 0 then
@@ -831,6 +867,26 @@ function EID:onGameUpdate()
 				end
 			end
 			table.insert(curPositions, {entity, entity.Position})
+		end
+		
+		-- Recalculate our total Void stat-ups if a collectible spawned this frame
+		-- THIS COULD APPLY TO BLACK RUNE AS WELL
+		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_VOID) then
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+			local increases = {0, 0, 0, 0, 0, 0}
+			local runeIncreases = {0, 0, 0, 0, 0, 0}
+			--CHANGE THIS TO THE PLAYER THAT HAS VOID
+			local startRNG = Isaac.GetPlayer(0):GetCollectibleRNG(CollectibleType.COLLECTIBLE_VOID):GetSeed()
+			local runeRNG = Isaac.GetPlayer(0):GetCardRNG(Card.RUNE_BLACK):GetSeed()
+			-- in Repentance, an additional RNG call is done before the 5 for stat ups
+			if REPENTANCE then startRNG = VoidRNGNext(startRNG) end
+			for pedestals = 1, 1 do
+				startRNG = GetTwoIncreases(startRNG, increases)
+				runeRNG = GetTwoIncreases(runeRNG, runeIncreases)
+				break -- only doing 1 preview for now
+			end
+			EID.VoidStatIncreases = increases
+			EID.BlackRuneStatIncreases = runeIncreases
 		end
 	end
 	
@@ -862,7 +918,8 @@ local function attemptPathfind(entity)
 		pathsChecked[entity.InitSeed] = true
 		return true
 	end
-	if EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
+	-- Don't reattempt pathfinding more than 3 times a second, unless this is a new entity
+	if pathsChecked[entity.InitSeed] == false and EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
 	
 	-- Spawn a custom NPC entity to attempt a pathfind to the target pickup, then remove it afterwards
 	pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player, 0, 4354)
@@ -1234,6 +1291,7 @@ if EID.MCMLoaded or REPENTANCE then
 					for k, _ in pairs(configIgnoreList) do
 						savedEIDConfig[k] = nil
 					end
+					EID:AssignFlipItems()
 				end
 			end
 			
