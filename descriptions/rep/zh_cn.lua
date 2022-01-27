@@ -2,8 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Sync Revise: 2022.01.22
--- Last Full Check: N/A -- I will have a full check someday else.
+-- Last Update: 2022.01.27
 
 -- FORMAT: Item ID | Name | Description
 
@@ -46,7 +45,7 @@ local repCollectibles={
 	[71] = {"71", "小蘑菇", "↑ +0.3移速#↑ +1.5射程#↑ 体型缩小"}, -- Mini Mush
 	[72] = {"72", "念珠", "+3魂心#↑ +0.5射速#{{Collectible33}}圣经添加至所有道具池"}, -- Rosary
 	[77] = {"77", "彩虹独角兽", "无敌#每秒造成20接触伤害"}, -- My Little Unicorn
-	[78] = {"78", "启示录", "+1魂心#使用后天启骑士会替代本层Boss#↑ +17.5% {{DevilRoom}}恶魔房或{{AngelRoom}}天使房几率"}, -- Book of Revelations
+	[78] = {"78", "启示录", "+1魂心#使用后天启骑士会替代本层Boss#↑ +17.5% {{DevilRoom}}恶魔房/{{AngelRoom}}天使房几率"}, -- Book of Revelations
 	[79] = {"79", "咒印", "↑ +1.0伤害#↑ +0.2移速#+1黑心"}, -- The Mark
 	[80] = {"80", "契约", "↑ +0.5伤害#↑ +0.7射速#+2黑心"}, -- The Pact
 	[83] = {"83", "钉子", "+半黑心#↑ +2.0伤害#↓ -0.18移速#造成接触伤害#粉碎经过的岩石"}, -- The Nail
@@ -168,7 +167,7 @@ local repCollectibles={
 	[415] = {"415", "光明之冠", "+2魂心#如果没有不满的心之容器：#↑ +100%伤害#↑ +1.5射程#↓ -0.3弹速#受伤后，当前房间无论心之容器是否是满的，效果消失"}, -- Crown Of Light
 	[416] = {"416", "深口袋", "如果房间没有奖励，生成1-3硬币#提高硬币上限为999"}, -- Deep Pockets
 	[417] = {"417", "魅魔", "在房间内漂浮的跟班，产生伤害光环，每秒造成7-10的伤害#↑ 站在光环中+50%伤害"}, -- Succubus
-	[419] = {"419", "传送2.0", "传送至另1个未探索的随机房间#等级：{{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}>{{DiceRoom}}> {{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}>{{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}/{{AngelRoom}}>错误房"},
+	[419] = {"419", "传送2.0", "传送至另1个未探索的随机房间#等级：{{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{Planetarium}}>{{SacrificeRoom}}>{{DiceRoom}}> {{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}>{{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}/{{AngelRoom}}>错误房"},
 	[421] = {"421", "腰豆", "使用时将任何范围内的敌人魅惑"}, -- Kidney Bean
 	[426] = {"426", "狂热粉丝", "跟随角色移动的跟班，有0.66秒延迟#每秒造成30接触伤害"}, -- Obsessed Fan
 	[430] = {"430", "狙击蝇老爹", "跟随角色移动的跟班，有0.66秒延迟#向附近敌人发射眼泪，造成与角色伤害相等的伤害"}, -- Papa Fly
@@ -187,7 +186,8 @@ local repCollectibles={
 	[464] = {"464", "平衡符号", "+2魂心#精英怪掉落掉落物更频繁#生成掉落物的优先级取决于角色最缺少的掉落物"}, -- Glyph of Balance
 	[472] = {"472", "国王宝宝", "其他跟班都会跟着他并自动射击敌人#角色发射时停止移动#停止发射后传送回角色位置"}, -- King Baby
 	[474] = {"474", "损坏的玻璃大炮", "使用时变成玻璃大炮"}, -- Broken Glass Canon
-	[476] =	{"476", "一面骰", "复制房间中随机1个掉落物#复制的掉落物可能与原来的不同"},
+	[476] =	{"476", "一面骰", "复制房间中随机1个掉落物#复制的掉落物可能与原来的不同"}, -- D1
+	[477] = {"477", "虚空", "!!! 使用时消耗房间中所有底座道具#主动道具：以后每次使用虚空时会激活其效果#↑ 被动道具：随机小幅提升2项属性"}, -- Void
 	[489] = {"489", "无限面骰", "可作为任何骰子，{{Collectible723}}计数二十面骰除外#按丢弃键改变当前骰子#根据骰子改变充能，且使用时更新"}, -- D Infinity
 	[491] = {"491", "毒瘾宝宝", "每7个房间掉落1随机胶囊#使用胶囊会使房间内所有敌人中毒"}, -- Acid Baby
 	[493] = {"493", "肾上腺素", "↑ 空的心之容器提高伤害#根据公式，一些例子如下：#1空心+0.3#2空心+0.92,3空心+1.76#4空心+2.79#5空心+3.98"}, -- Adrenaline
@@ -235,7 +235,7 @@ local repCollectibles={
 	[581] = {"581", "灵能苍蝇", "环绕苍蝇跟班#自动反弹附近的弹幕#造成接触伤害"}, --  Psy Fly
 	[582] = {"582", "迷幻蘑菇", "↑ +0.75发射速度#↓ -0.03移速#扭曲画面#效果可叠加"}, --  Wavy Cap
 	[583] = {"583", "罐中火箭", "+5炸弹#若发射时放置炸弹，改为向发射的方向发射火箭"}, --  Rocket in a Jar
-	[584] = {"584", "美德之书", "使用时生成1个魂火环绕跟班，发射幽灵眼泪，但可被摧毁#与其它主动道具结合时可产生特殊魂火#将第一个{{DevilRoom}}恶魔房变成{{AngelRoom}}天使房，并提升{{AngelRoom}}天使房几率#恶魔交易后仍会出现天使房"}, --  Book of Virtues
+	[584] = {"584", "美德之书", "使用时生成1个魂火环绕跟班，发射幽灵眼泪，但可被摧毁#与其它主动道具结合时可产生特殊魂火#将第一个{{DevilRoom}}恶魔房变成{{AngelRoom}}天使房，并提升{{AngelRoom}}天使房几率25%#恶魔交易后仍会出现天使房"}, --  Book of Virtues
 	[585] = {"585", "白玉香膏盒", "使用时生成3魂心和2个天使房道具#只能通过捡起魂心充能#若已进行过恶魔交易，则生成2魂心和1个天使房道具"}, --  Alabaster Box
 	[586] = {"586", "天堂阶梯", "在每一层的初始房间生成梯子，通向1个特殊的天使房道具商店"}, --  The Stairway
 	[587] = {"587", "", "<道具不存在>"}, -- Menorah (Unused but skripted)
@@ -252,7 +252,7 @@ local repCollectibles={
 	[598] = {"598", "冥王星", "↑ +0.7射速#体积缩小，可以挤进障碍物间隙#弹幕会从头顶飞过"}, --  Pluto
 	[599] = {"599", "巫毒娃娃头", "每层额外生成1个{{CursedRoom}}诅咒房"}, --  Voodoo Head
 	[600] = {"600", "眼药水", "!!! 只对左眼有效：#↑ +28%发射速度#一段时间内第一次发射总是双发"}, --  Eye Drops
-	[601] = {"601", "痛悔短祷", "↑ +0.7射速#+1永恒之心#进行过恶魔交易后天使房仍然会出现#减缓受红心伤害减少恶魔房和天使房的几率"}, --  Act of Contrition
+	[601] = {"601", "痛悔短祷", "↑ +0.7射速#+1永恒之心#进行过恶魔交易后天使房仍然会出现#减缓受红心伤害减少{{DevilRoom}}恶魔房/{{AngelRoom}}天使房的几率"}, --  Act of Contrition
 	[602] = {"602", "会员卡", "在商店内生成1个暗门，通向高级商店"}, --  Member Card
 	[603] = {"603", "电池组", "生成2-4电池#对当前主动道具充能"}, --  Battery Pack
 	[604] = {"604", "老妈的手镯", "可以捡起岩石，TNT，便便，友好粪滴，寄居骷髅等障碍物进行投掷#捡起的东西可以带入下1个房间"}, --  Mom's Bracelet
@@ -320,7 +320,7 @@ local repCollectibles={
 	[666] = {"666", "", "<道具不存在>"},
 	[667] = {"667", "稻草人", "+1炸弹#生成店主作为第二个角色#店主死亡时生成蓝蜘蛛#店主死亡时该道具消失#店主活着时恶魔交易花费硬币#!!! 店主能够捡起道具，包括剧情道具，死亡时也会永久移除"}, --  Strawman
 	[668] = {"668", "老爸的便条", "踏上回家的路#留在之前{{TreasureRoom}}道具房或{{BossRoom}}Boss房的饰品会变成 {{Card78}} 破裂的钥匙"}, --  Dad's Note
-	[669] = {"669", "腊肠", "↑ +1心之容器#满血#↑ +0.5伤害#↑ +0.2移速#↑ +1.2弹速#↑ +0.16射程#↑ +1运气#↑ +6.9%{{DevilRoom}}恶魔房或{{AngelRoom}}天使房几率#↑ +6.9%{{Planetarium}}星象房几率"}, --  Sausage
+	[669] = {"669", "腊肠", "↑ +1心之容器#满血#↑ +0.5伤害#↑ +0.2移速#↑ +1.2弹速#↑ +0.16射程#↑ +1运气#↑ +6.9%{{DevilRoom}}恶魔房/{{AngelRoom}}天使房几率#↑ +6.9%{{Planetarium}}星象房几率"}, --  Sausage
 	[670] = {"670", "选择？", "如果清理的房间有奖励，产生2种不同的奖励#捡起其一后另1个奖励消失"}, --  Options?
 	[671] = {"671", "糖心", "捡起红心时获得永久的属性提升"}, --  Candy Heart
 	[672] = {"672", "一磅肉", "恶魔交易消耗硬币#商店里的道具消耗心之容器#商店里的 其它物品免费，但被尖刺环绕"}, --  A Pound of Flesh
@@ -747,7 +747,7 @@ local repTrinkets={
 	[171] = {"171", "店主的协议", "50%几率使恶魔交易花费硬币而不是心"}, --  Keeper's Bargain
 	[172] = {"172", "诅咒硬币", "捡起硬币时传送至随机房间#可以传送到隐藏房"}, --  Cursed Penny
 	[173] = {"173", "你的灵魂", "免费进行一次恶魔交易"}, --  Your Soul
-	[174] = {"174", "数字冰箱贴", "+10%恶魔房几率"}, --  Number Magnet
+	[174] = {"174", "数字冰箱贴", "+10%恶魔房几率#防止恶魔交易中出现坎卜斯"}, --  Number Magnet
 	[175] = {"175", "奇怪的钥匙", "解锁窒息胎战通道，不再限时#使用{{Collectible297}}潘多拉的盒子时从随机道具池生成6个道具，原效果失效#使用后两者都会被消耗"}, --  Strange Key
 	[176] = {"176", "小血团", "生成1个血块跟班，模仿角色的行动，发射方向和眼泪效果#如果跟班死亡则在下一个房间重生"}, --  Lil Clot
 	[177] = {"177", "纹身贴", "清理{{ChallengeRoom}}挑战房后生成1箱子，清理{{BossRushRoom}}Boss挑战房后生成1道具"}, --  Temporary Tattoo
@@ -1007,6 +1007,9 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 ---------- Misc. Text ----------
 
+-- Void stat names: Replace "Tears" with "Fire Rate"
+EID.descriptions[languageCode].VoidNames[2] = EID.descriptions[languageCode].GlitchedItemText[1]
+
 EID.descriptions[languageCode].spindownError = "道具消失"
 
 EID.descriptions[languageCode].CraftingBagContent = "袋中："
@@ -1026,7 +1029,7 @@ EID.descriptions[languageCode].BlankCardCharge = "空白卡牌充能："
 EID.descriptions[languageCode].BlankCardQCard = "传送至错误房#空白卡牌和？卡牌会被摧毁" 
 EID.descriptions[languageCode].ClearRuneCharge = "透明符文充能：" 
 EID.descriptions[languageCode].PlaceboCharge = "安慰剂充能：" 
-EID.descriptions[languageCode].FlipItemToggleInfo = "(按住{{ButtonSelect}}来显示描述)"
+EID.descriptions[languageCode].FlipItemToggleInfo = "(按住{{ButtonSelect}}(地图)来显示描述)"
 
 EID.descriptions[languageCode].FalsePHDHeart = "生成1黑心"
 EID.descriptions[languageCode].FalsePHDDamage = "+0.6伤害"

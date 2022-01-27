@@ -30,9 +30,9 @@ EID.UserConfig = {
 	-- Change the size of the info boxes. Range: [0,...,1]
 	-- Default = 1
 	["Scale"] = 1,
-	-- Press or hold the key to change scale.
-	-- Default = Keyboard.KEY_F5
-	["ScaleKey"] = Keyboard.KEY_F5,
+	-- Press or hold the key to change scale. Keyboard.KEY_F5 is recommended
+	-- Default = none
+	["ScaleKey"] = -1,
 	-- Set the background transparency. Range: [0,...,1]
 	-- Default = 0.75
 	["Transparency"] = 0.75,
@@ -226,6 +226,11 @@ EID.UserConfig = {
 	-- REPENTANCE ONLY!!!
 	-- Default = true
 	["DisplayCraneInfo"] = true,
+	
+	---------- Void Stat Increases ----------
+	-- Toggle display of what stats will increase on Void absorption
+	-- Default = false
+	["DisplayVoidStatInfo"] = false,
 
 	---------- Bag of Crafting ------------
 
@@ -347,7 +352,7 @@ EID.DefaultConfig = {
 	["FontType"] = "default",
 	["TextboxWidth"] = 130,
 	["Scale"] = 1,
-	["ScaleKey"] = Keyboard.KEY_F5,
+	["ScaleKey"] = -1,
 	["Transparency"] = 0.75,
 	["HUDOffset"] = 10,
 	["XPosition"] = 60,
@@ -396,6 +401,7 @@ EID.DefaultConfig = {
 	["DisplayDiceInfo"] = true,
 	["DisplayBagOfCrafting"] = "always",
 	["DisplayCraneInfo"] = true,
+	["DisplayVoidStatInfo"] = false,
 	["BagOfCraftingResults"] = 7,
 	["BagOfCraftingCombinationMax"] = 12,
 	["BagOfCraftingRandomResults"] = 400,
