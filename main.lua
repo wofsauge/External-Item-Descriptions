@@ -995,6 +995,7 @@ local function onRender(t)
 	
 	EID.isDisplaying = false
 	EID:setPlayer()
+	EID.TabPreviewID = 0
 	
 	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
 		EID.isHidden = not EID.isHidden
