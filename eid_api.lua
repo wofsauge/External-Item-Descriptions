@@ -328,6 +328,8 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity)
 		if type(result) == "table" then
 			for _,callback in ipairs(result) do
 				description = callback(description)
+				-- If the modifier loads a different description obj (which also goes through the modifier checks), we should stop our checks so text doesn't get printed twice
+				if description.ObjSubType ~= SubType then break end
 			end
 		elseif result then
 			description = modifier.callback(description)
