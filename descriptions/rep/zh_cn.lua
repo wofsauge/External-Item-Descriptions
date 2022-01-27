@@ -2,8 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2022.01.26
--- Last Full Check: N/A -- I will have a full check someday else.
+-- Last Update: 2022.01.27
 
 -- FORMAT: Item ID | Name | Description
 
@@ -187,7 +186,8 @@ local repCollectibles={
 	[464] = {"464", "平衡符号", "+2魂心#精英怪掉落掉落物更频繁#生成掉落物的优先级取决于角色最缺少的掉落物"}, -- Glyph of Balance
 	[472] = {"472", "国王宝宝", "其他跟班都会跟着他并自动射击敌人#角色发射时停止移动#停止发射后传送回角色位置"}, -- King Baby
 	[474] = {"474", "损坏的玻璃大炮", "使用时变成玻璃大炮"}, -- Broken Glass Canon
-	[476] =	{"476", "一面骰", "复制房间中随机1个掉落物#复制的掉落物可能与原来的不同"},
+	[476] =	{"476", "一面骰", "复制房间中随机1个掉落物#复制的掉落物可能与原来的不同"}, -- D1
+	[477] = {"477", "虚空", "!!! 使用时消耗房间中所有底座道具#主动道具：以后每次使用虚空时会激活其效果#↑ 被动道具：随机小幅提升2项属性"}, -- Void
 	[489] = {"489", "无限面骰", "可作为任何骰子，{{Collectible723}}计数二十面骰除外#按丢弃键改变当前骰子#根据骰子改变充能，且使用时更新"}, -- D Infinity
 	[491] = {"491", "毒瘾宝宝", "每7个房间掉落1随机胶囊#使用胶囊会使房间内所有敌人中毒"}, -- Acid Baby
 	[493] = {"493", "肾上腺素", "↑ 空的心之容器提高伤害#根据公式，一些例子如下：#1空心+0.3#2空心+0.92,3空心+1.76#4空心+2.79#5空心+3.98"}, -- Adrenaline
@@ -1007,6 +1007,9 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 ---------- Misc. Text ----------
 
+-- Void stat names: Replace "Tears" with "Fire Rate"
+EID.descriptions[languageCode].VoidNames[2] = EID.descriptions[languageCode].GlitchedItemText[1]
+
 EID.descriptions[languageCode].spindownError = "道具消失"
 
 EID.descriptions[languageCode].CraftingBagContent = "袋中："
@@ -1026,7 +1029,7 @@ EID.descriptions[languageCode].BlankCardCharge = "空白卡牌充能："
 EID.descriptions[languageCode].BlankCardQCard = "传送至错误房#空白卡牌和？卡牌会被摧毁" 
 EID.descriptions[languageCode].ClearRuneCharge = "透明符文充能：" 
 EID.descriptions[languageCode].PlaceboCharge = "安慰剂充能：" 
-EID.descriptions[languageCode].FlipItemToggleInfo = "(按住{{ButtonSelect}}来显示描述)"
+EID.descriptions[languageCode].FlipItemToggleInfo = "(按住{{ButtonSelect}}(地图)来显示描述)"
 
 EID.descriptions[languageCode].FalsePHDHeart = "生成1黑心"
 EID.descriptions[languageCode].FalsePHDDamage = "+0.6伤害"
