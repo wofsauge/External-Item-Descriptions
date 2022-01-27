@@ -115,27 +115,28 @@ function EID:buildColorArray()
 	table.sort(colorNameArray)
 end
 
-function EID:AddBooleanSetting(category, optionName, displayText, onText, offText, infoText)
-	if (type(infoText) == "string") then infoText = {infoText} end
+function EID:AddBooleanSetting(category, optionName, displayText, params)
+	if type(params) ~= "table" then params = {} end
+	if params.repOnly and not REPENTANCE then return end
 	MCM.AddSetting(
-		"EID",
-		category,
+		"EID", category,
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
+			CurrentSetting = params.currentSettingFunc or function()
 				return EID.Config[optionName]
 			end,
-			Display = function()
-				local onOff = offText
+			Display = params.displayFunc or function()
+				if params.displayingTab then EID.MCMCompat_isDisplayingEIDTab = params.displayingTab end
+				local onOff = params.offText or "False"
 				if EID.Config[optionName] then
-					onOff = onText
+					onOff = params.onText or "True"
 				end
 				return displayText .. ": " .. onOff
 			end,
-			OnChange = function(currentBool)
+			OnChange = params.onChangeFunc or function(currentBool)
 				EID.Config[optionName] = currentBool
 			end,
-			Info = infoText
+			Info = params.infoText or {}
 		}
 	)
 end
@@ -579,190 +580,21 @@ if MCMLoaded then
 	
 	---------------------------------------------------------------------------
 	---------------------------------Display-----------------------------------
-
-	------------Collectibles--------------
-
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayItemInfo"]
-			end,
-			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = "";
-				local onOff = "False"
-				if EID.Config["DisplayItemInfo"] then
-					onOff = "True"
-				end
-				return "Collectible Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayItemInfo"] = currentBool
-			end
-		}
-	)
-	------------Trinkets--------------
-
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayTrinketInfo"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayTrinketInfo"] then
-					onOff = "True"
-				end
-				return "Trinket Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayTrinketInfo"] = currentBool
-			end
-		}
-	)
-	------------CARDS--------------
-
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayCardInfo"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayCardInfo"] then
-					onOff = "True"
-				end
-				return "Card Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayCardInfo"] = currentBool
-			end
-		}
-	)
-
-	------------PILLS--------------
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayPillInfo"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayPillInfo"] then
-					onOff = "True"
-				end
-				return "Pill Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayPillInfo"] = currentBool
-			end
-		}
-	)
-	if REPENTANCE then
-		------------Glitched Items--------------
-		MCM.AddSetting(
-			"EID",
-			"Display",
-			{
-				Type = ModConfigMenu.OptionType.BOOLEAN,
-				CurrentSetting = function()
-					return EID.Config["DisplayGlitchedItemInfo"]
-				end,
-				Display = function()
-					local onOff = "False"
-					if EID.Config["DisplayGlitchedItemInfo"] then
-						onOff = "True"
-					end
-					return "Glitched Item Infos: " .. onOff
-				end,
-				OnChange = function(currentBool)
-					EID.Config["DisplayGlitchedItemInfo"] = currentBool
-				end,
-				Info = {"Note: The --luadebug launch option is required for more detailed glitched item descriptions"}
-			}
-		)
-	end
-	--------Sacrifice Room---------
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplaySacrificeInfo"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplaySacrificeInfo"] then
-					onOff = "True"
-				end
-				return "Sacrifice Room Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplaySacrificeInfo"] = currentBool
-			end
-		}
-	)
-
-	--------Dice Room---------
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayDiceInfo"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayDiceInfo"] then
-					onOff = "True"
-				end
-				return "Dice Room Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayDiceInfo"] = currentBool
-			end
-		}
-	)
 	
-
+	-- Simple toggles of what descriptions the user wants displayed
+	EID:AddBooleanSetting("Display", "DisplayItemInfo", "Collectible Infos", {displayingTab = ""})
+	EID:AddBooleanSetting("Display", "DisplayTrinketInfo", "Trinket Infos")
+	EID:AddBooleanSetting("Display", "DisplayCardInfo", "Card Infos")
+	EID:AddBooleanSetting("Display", "DisplayPillInfo", "Pill Infos")
+	EID:AddBooleanSetting("Display", "DisplayGlitchedItemInfo", "Glitched Item Infos", {repOnly = true,
+	infoText = "Note: The --luadebug launch option is required for more detailed glitched item descriptions; this can be dangerous!"})
+	EID:AddBooleanSetting("Display", "DisplaySacrificeInfo", "Sacrifice Room Infos")
+	EID:AddBooleanSetting("Display", "DisplayDiceInfo", "Dice Room Infos")
+	EID:AddBooleanSetting("Display", "DisplayCraneInfo", "Crane Game Infos", {repOnly = true})
+	EID:AddBooleanSetting("Display", "DisplayVoidStatInfo", "Void Stat Increase Infos")
 	
 	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
 	if REPENTANCE then
-	
-		--------Crane Game---------
-		MCM.AddSetting(
-			"EID",
-			"Display",
-			{
-				Type = ModConfigMenu.OptionType.BOOLEAN,
-				CurrentSetting = function()
-					return EID.Config["DisplayCraneInfo"]
-				end,
-				Display = function()
-					local onOff = "False"
-					if EID.Config["DisplayCraneInfo"] then
-						onOff = "True"
-					end
-					return "Crane Game Infos: " .. onOff
-				end,
-				OnChange = function(currentBool)
-					EID.Config["DisplayCraneInfo"] = currentBool
-				end
-			}
-		)
 		
 		MCM.AddSpace("EID", "Display")
 	
@@ -788,27 +620,8 @@ if MCMLoaded then
 		-- 
 		
 		-- Spindown Dice skip locked items
-		MCM.AddSetting(
-			"EID",
-			"Display",
-			{
-				Type = ModConfigMenu.OptionType.BOOLEAN,
-				CurrentSetting = function()
-					return EID.Config["SpindownDiceSkipLocked"]
-				end,
-				Display = function()
-					local onOff = "False"
-					if EID.Config["SpindownDiceSkipLocked"] then
-						onOff = "True"
-					end
-					return "Skip Locked Items: " .. onOff
-				end,
-				OnChange = function(currentBool)
-					EID.Config["SpindownDiceSkipLocked"] = currentBool
-				end,
-				Info = {"Skip locked items in the preview just as the dice will; the method to check for unlock status is not perfect, though"}
-			}
-		)
+		EID:AddBooleanSetting("Display", "SpindownDiceSkipLocked", "Skip Locked Items",
+		{repOnly = true, infoText = "Skip locked items in the preview just as the dice will; the method to check for unlock status is not perfect, though"})
 	end
 	
 	--------Obstruction---------
@@ -1369,15 +1182,13 @@ if MCMLoaded then
 			}
 		)
 		-- Bag of Crafting Hide in Battle
-		EID:AddBooleanSetting("Crafting",
-			"BagOfCraftingHideInBattle",
-			"Hide in Battle", "Yes", "No",
-			"Hides the recipe list when in a fight")
+		EID:AddBooleanSetting("Crafting", "BagOfCraftingHideInBattle", "Hide in Battle",
+		{onText = "Yes", offText = "No",
+		infoText = "Hides the recipe list when in a fight"})
 		-- Bag of Crafting 8 icons toggle
-		EID:AddBooleanSetting("Crafting",
-			"BagOfCraftingDisplayIcons",
-			"Show Recipes/Best Bag as", "8 Icons", "Groups",
-			"Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients")
+		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayIcons", "Show Recipes/Best Bag as",
+		{onText = "8 Icons", offText = "Groups",
+		infoText = "Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients"})
 			
 		MCM.AddSpace("EID", "Crafting")
 		MCM.AddText("EID", "Crafting", function() return "Recipe List Options" end)

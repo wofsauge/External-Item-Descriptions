@@ -127,10 +127,10 @@ local function CheckLogForItems(_)
 			numEffects = numEffects - 1
 			eidDesc = eidDesc .. parseEffectLine(line)
 			if numEffects == 0 then
-				-- Glowing Hour Glass type effects seem to cause the game to reload all items, check if our desc is equal to the first one
+				eidDesc = EID:CheckGlitchedItemConfig(maxNumber - spawnedItems) .. eidDesc
+				-- Glowing Hour Glass type effects cause the game to reload all items, check if our desc is equal to the first one
 				if (descOne == eidDesc) then spawnedItems = 1 end
 				
-				eidDesc = EID:CheckGlitchedItemConfig(maxNumber - spawnedItems) .. eidDesc
 				EID:addCollectible(maxNumber - spawnedItems, eidDesc)
 				if spawnedItems == 1 then descOne = eidDesc end
 			end
