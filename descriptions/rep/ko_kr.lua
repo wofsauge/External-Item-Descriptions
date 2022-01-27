@@ -1114,7 +1114,7 @@ EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
 EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."
 EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune 충전량:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo 충전량:"
-EID.descriptions[languageCode].FlipItemToggleInfo = "( {{ButtonSelect}} 버튼을 꾹 눌러 설명 보기)"
+EID.descriptions[languageCode].FlipItemToggleInfo = "( {{ButtonSelect}} (맵 펼치기) 버튼을 꾹 눌러 설명 보기)"
 
 EID.descriptions[languageCode].FalsePHDHeart = "블랙하트 1개 드랍"
 EID.descriptions[languageCode].FalsePHDDamage = "{{Damage}}공격력 +0.6"
