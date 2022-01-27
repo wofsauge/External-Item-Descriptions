@@ -1,5 +1,9 @@
 local game = Game()
 
+EID.TabPreviewID = 0
+-- Modifiers switching the previewed description can cause infinite loops or undesired text, use this to help prevent it
+local inPreview = false
+
 -- Afterbirth+ modifiers
 local collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, }
 -- Repentance modifiers
@@ -52,21 +56,34 @@ local function CheckPlayersCollectibles()
 	end
 end
 
+function EID:TabCallback(descObj)
+	if EID.TabPreviewID == 0 then return descObj end
+	inPreview = true
+	local descEntry = EID:getDescriptionObj(5, 100, EID.TabPreviewID)
+	inPreview = false
+	return descEntry
+end
+
 -- Handle Void (the only modifier that is applied to AB+ at the moment)
--- Speed, Tears, Damage, Range, Shot Speed, Luck
-local voidIntro = EID:getDescriptionEntry("VoidText")
-local voidNames = EID:getDescriptionEntry("VoidNames")
 local voidStatUps = { 0.2, 0.5, 1, 0.5, 0.2, 1 }
 if REPENTANCE then voidStatUps[4] = 1.5 end
 
-local function VoidCallback(descObj)
-	if EID.itemConfig:GetCollectible(descObj.ObjSubType).Type ~= 3 then
-		EID:appendToDescription(descObj, "#{{Collectible477}} " .. voidIntro .. "#")
+local function VoidCallback(descObj, isRune)
+	local voidIntro = EID:getDescriptionEntry("VoidText")
+	local voidNames = EID:getDescriptionEntry("VoidNames")
+	-- Replace "Tears" with "Fire Rate"
+	if REPENTANCE then voidNames[2] = EID:getDescriptionEntry("GlitchedItemText", 1) end
+	local prefix = "{{Collectible477}} "
+	if isRune then prefix = "{{Card41}} " end
+	if EID.itemConfig:GetCollectible(descObj.ObjSubType).Type ~= 3 or isRune then
+		EID:appendToDescription(descObj, "#" .. prefix .. voidIntro .. "#")
 		for i,v in ipairs(EID.VoidStatIncreases) do
 			if v > 0 then
-				EID:appendToDescription(descObj, "{{Collectible477}} +" .. v*voidStatUps[i] .. " " .. voidNames[i] .. "#")
+				EID:appendToDescription(descObj, prefix .. "+" .. v*voidStatUps[i] .. " " .. voidNames[i] .. "#")
 			end
 		end
+	else
+		-- unique Void interactions with active items?
 	end
 	return descObj
 end
@@ -151,12 +168,12 @@ if REPENTANCE then
 		return descObj
 	end
 	
-	local inSpindownPreview = false
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCallback(descObj)
 		EID:appendToDescription(descObj, "#{{Collectible723}} :")
 		local refID = descObj.ObjSubType
 		local hasCarBattery = EID.player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+		local firstID = 0
 		for i = 1,EID.Config["SpindownDiceResults"] do
 			local spinnedID = EID:getSpindownResult(refID)
 			if hasCarBattery then
@@ -165,12 +182,7 @@ if REPENTANCE then
 			end
 			refID = spinnedID
 			if refID > 0 and refID < 4294960000 then
-				if i == 1 and Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) then
-					inSpindownPreview = true
-					local descEntry = EID:getDescriptionObj(5, 100, refID)
-					inSpindownPreview = false
-					return descEntry
-				end
+				if i == 1 then firstID = refID end
 				EID:appendToDescription(descObj, "{{Collectible"..refID.."}}")
 				if EID.itemUnlockStates[refID] == false then EID:appendToDescription(descObj, "?") end
 				if i ~= EID.Config["SpindownDiceResults"] then
@@ -185,7 +197,10 @@ if REPENTANCE then
 		if hasCarBattery then
 			EID:appendToDescription(descObj, " (Results with {{Collectible356}})")
 		end
-		EID:appendToDescription(descObj, "#{{Blank}} ".. EID:getDescriptionEntry("FlipItemToggleInfo"))
+		if firstID ~= 0 and EID.TabPreviewID == 0 then
+			EID.TabPreviewID = firstID
+			EID:appendToDescription(descObj, "#{{Blank}} ".. EID:getDescriptionEntry("FlipItemToggleInfo"))
+		end
 		return descObj
 	end
 	
@@ -353,22 +368,23 @@ if REPENTANCE then
 	-- Handle Flip description addition
 	local function FlipCallback(descObj)
 		local flipItemID = EID:getEntityData(descObj.Entity, "EID_FlipItemID")
-		if flipItemID <= 0 then return descObj end
-		if descObj.ObjSubType == 0 or Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) then
-			local descEntry = EID:getDescriptionObj(5, 100, flipItemID)
-			return descEntry
+		if not flipItemID or flipItemID <= 0 then return descObj end
+		-- Empty pedestal
+		if descObj.ObjSubType == 0 then
+			return EID:getDescriptionObj(5, 100, flipItemID)
 		end
-
+		
 		local infoText = EID:getDescriptionEntry("FlipItemToggleInfo")
-		if flipItemID ~= nil or infoText ~= nil then
-			local itemName = EID:getObjectName(5, 100, flipItemID)
-			local appendText = "#{{Collectible711}} -> {{Collectible"..flipItemID.."}} "..itemName
+		local itemName = EID:getObjectName(5, 100, flipItemID)
+		local appendText = "#{{Collectible711}} -> {{Collectible"..flipItemID.."}} "..itemName
+		if EID.TabPreviewID == 0 then
+			EID.TabPreviewID = flipItemID
 			appendText = appendText .. "#{{Blank}} "..infoText
-			EID:appendToDescription(descObj, appendText)
 		end
+		EID:appendToDescription(descObj, appendText)
+		
 		return descObj
 	end
-	
 	
 	--------------------------------
 	-- Although individual conditions/callbacks work well for mods to be able to add through the API,
@@ -395,8 +411,11 @@ if REPENTANCE then
 			if collectiblesOwned[584] then table.insert(callbacks, BookOfVirtuesCallback) end
 			if collectiblesOwned[706] then table.insert(callbacks, AbyssCallback) end
 			
-			if (collectiblesOwned[723] or (EID.absorbedSpindown and collectiblesOwned[477])) and not inSpindownPreview then table.insert(callbacks, SpindownDiceCallback) end
 			if collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
+			if (collectiblesOwned[723] or (EID.absorbedSpindown and collectiblesOwned[477])) then table.insert(callbacks, SpindownDiceCallback) end
+			-- currently, only Repentance collectible modifiers have Tab previews so put it here
+			if Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) and not inPreview then table.insert(callbacks, TabCallback) end
+			
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
 			if collectiblesOwned[451] then table.insert(callbacks, TarotClothCallback) end
