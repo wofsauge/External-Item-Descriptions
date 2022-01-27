@@ -1012,9 +1012,6 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 ---------- Misc. Text ----------
 
--- Void stat names: Replace "Tears" with "Fire Rate"
-EID.descriptions[languageCode].VoidNames[2] = EID.descriptions[languageCode].GlitchedItemText[1]
-
 EID.descriptions[languageCode].spindownError = "Item disappears"
 
 EID.descriptions[languageCode].CraftingBagContent = "Bag:"
