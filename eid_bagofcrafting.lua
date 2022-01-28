@@ -830,21 +830,16 @@ function EID:handleBagOfCraftingRendering()
 	--Display the result of the 8 items in our bag
 	if (showCraftingResult or EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") and #EID.BagItems >= 8 then
 		local craftingResult, backupResult = EID:calculateBagOfCrafting(EID.BagItems)
-		if Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) then
-			local descriptionObj = EID:getDescriptionObj(5, 100, backupResult)
-			descriptionObj.Description = getHotkeyString() .. descriptionObj.Description
-			EID:printDescription(descriptionObj)
-			return true
-		end
+		if (backupResult ~= craftingResult) then EID.TabPreviewID = backupResult end
 		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
-		local infoText = EID:getDescriptionEntry("FlipItemToggleInfo")
 		--prepend the Hide/Preview hotkeys to the description
 		descriptionObj.Description = getHotkeyString() .. descriptionObj.Description
-		local backupObjName = EID:getObjectName(5, 100, backupResult)
-		if (backupResult ~= craftingResult) then
+		if (backupResult ~= craftingResult and descriptionObj.ObjSubType == craftingResult) then
 			local backupDesc = EID:getDescriptionEntry("CraftingPreviewBackup")
+			local backupObjName = EID:getObjectName(5, 100, backupResult)
+			local tabText = EID:getDescriptionEntry("FlipItemToggleInfo")
 			EID:appendToDescription(descriptionObj,"#" .. backupDesc .. "#{{Collectible" .. backupResult .. "}} " ..
-			backupObjName .. "#{{Blank}} " .. infoText)
+			backupObjName .. "#{{Blank}} " .. tabText)
 		end
 		EID:printDescription(descriptionObj)
 		return true

@@ -500,7 +500,7 @@ EID.descriptions[languageCode].collectibles={
 	{"478", "Pause", "Freezes all enemies in the room until you start shooting again#Touching a frozen enemy will hurt you#Enemies unfreeze after 30 seconds"},
 	{"479", "Smelter", "Consumes your trinket and gives you the effect permanently#More trinkets appear"},
 	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles your current blue flies/spiders#Spawns 1 blue fly or spider when you don't have any"},
-	{"481", "Dataminer", "When used, ↑/↓ small amount on random stat#Random tear effect for current room#Fucks up all sprites"},
+	{"481", "Dataminer", "When used, ↑/↓ small amount on random stat#Random tear effect for current room#Corrupts all sprites and music for current room"},
 	{"482", "Clicker", "Transforms you into a different character#Removes the last item you collected"},
 	{"483", "Mama Mega!", "!!! SINGLE USE !!!#Affects whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss Rush, Hush and all secret rooms#!!! If you have a Golden Bomb, consumes it on use instead of Mama Mega"},
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawn a wave of rocks#Can open rooms and break rocks"},
