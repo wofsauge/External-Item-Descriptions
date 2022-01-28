@@ -1012,7 +1012,8 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 ---------- Misc. Text ----------
 
-EID.descriptions[languageCode].VoidShopText = "If absorbed after purchase, gain:"
+EID.descriptions[languageCode].VoidShopText = "If absorbed right after pickup, gain:"
+EID.descriptions[languageCode].VoidOptionText = " will be absorbed instead"
 
 EID.descriptions[languageCode].spindownError = "Item disappears"
 
