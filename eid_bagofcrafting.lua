@@ -191,16 +191,18 @@ local sortedIDs = {}
 
 local function sortAllItems()
 	sortedIDs = {}
+	local objectNames = {}
 	
 	for i = 1, CraftingMaxItemID do
 		if CraftingItemQualities[i] ~= nil then
 			table.insert(sortedIDs, i)
+			objectNames[i] = EID:getObjectName(5, 100, i)
 		end
 	end
 
 	table.sort(sortedIDs, function(a, b)
 		if CraftingItemQualities[a] == CraftingItemQualities[b] then
-			return (EID:getObjectName(5, 100, a) < EID:getObjectName(5, 100, b))
+			return (objectNames[a] < objectNames[b])
 		else
 			return (CraftingItemQualities[a] > CraftingItemQualities[b])
 		end
@@ -226,8 +228,9 @@ local function nextFloat()
 	return RNGNext() * multi;
 end
 
+-- Convert a pickup's ID into what ingredient it counts as
 function EID:getBagOfCraftingID(Variant, SubType)
-	local entry = pickupIDLookup[""..Variant.."."..SubType]
+	local entry = pickupIDLookup[Variant.."."..SubType]
 	if entry ~= nil then
 		return entry
 	elseif Variant == 300 then
@@ -242,6 +245,7 @@ function EID:getBagOfCraftingID(Variant, SubType)
 	return nil
 end
 
+-- NO RECIPES MODE: Get percentages of what quality / item pool a given set of 8 ingredients can yield
 function EID:simulateBagOfCrafting(componentsTable)
 	local components = componentsTable
 	local compTotalWeight = 0
@@ -533,64 +537,37 @@ EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, GameStartCrafting)
 ------------------------------------------
 ------------------------------------------
 
-
-local pickupsOnInit = {}
+local pickupsCollected = {} -- table of collected pickup indexes, reset each room
+local pickupsJustTouched = {} -- one-frame flags of pickups a player/pickup-collector has touched, so the bag doesn't think it collected it
 
 EID:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collider,_)
-	if collider.Type ~= EntityType.ENTITY_PLAYER then
-		return
+	if collider.Type == EntityType.ENTITY_PLAYER or collider.Type == EntityType.ENTITY_FAMILIAR or 
+		collider.Type == EntityType.ENTITY_BUMBINO or collider.Type == EntityType.ENTITY_ULTRA_GREED then
+		pickupsJustTouched[pickup.Index] = true
 	end
-	-- Remove pickups picked up normally
-	local pickupsOnInitCorrected = {}
-	for _,e in ipairs (pickupsOnInit) do
-		if GetPtrHash(pickup) ~= GetPtrHash(e) then
-			table.insert(pickupsOnInitCorrected, e)
-		end
-	end
-	pickupsOnInit = pickupsOnInitCorrected
 end)
 
-EID:AddCallback(ModCallbacks.MC_POST_KNIFE_INIT, function(_, entity)
-	if entity.Variant ~= 4 then
-		return
-	end
-	pickupsOnInit = {}
-	for _,e in ipairs (Isaac.FindByType(EntityType.ENTITY_PICKUP, -1, -1, false, false)) do
-		if e:GetSprite():GetAnimation() ~= "Collect" then
-			table.insert(pickupsOnInit, e)
-		end
-	end
-end, 4)
-
-EID:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, function(_, bag)
-	if bag.Variant ~= 4 or bag.SubType ~= 4 then
-		return
-	end
-	
-	table.sort(pickupsOnInit, function (a,b)
-		return
-			 a:GetSprite():GetFrame() > b:GetSprite():GetFrame() or
-			(a:GetSprite():GetFrame() == b:GetSprite():GetFrame() and a.Index < b.Index)
-	end)
-	
-	for _,e in ipairs (pickupsOnInit) do
-		if e:GetSprite():GetAnimation() == "Collect" then
-			local craftingIDs = EID:getBagOfCraftingID(e.Variant, e.SubType)
+EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pickup)
+	if pickup:GetSprite():GetAnimation() == "Collect" and not pickupsCollected[pickup.Index] then
+		pickupsCollected[pickup.Index] = true
+		if not pickupsJustTouched[pickup.Index] then
+			print(pickup.Index .. "," .. pickup:GetSprite():GetFrame() .. "," .. Isaac.GetTime())
+			local craftingIDs = EID:getBagOfCraftingID(pickup.Variant, pickup.SubType)
 			if craftingIDs ~= nil then
 				for _,v in ipairs(craftingIDs) do
-					if #EID.BagItems >= 8 then
-						local newContent = {}
-						for i=2,#EID.BagItems do
-							table.insert(newContent, EID.BagItems[i])
-						end
-						EID.BagItems = newContent
-					end
+					if #EID.BagItems >= 8 then table.remove(EID.BagItems, 1) end
 					table.insert(EID.BagItems, v)
 				end
 			end
 		end
 	end
-end, EntityType.ENTITY_KNIFE)
+	pickupsJustTouched[pickup.Index] = nil
+end)
+
+EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function(_)
+	-- We're using the pickup indexes for quick checking, which reset on each new room
+	pickupsCollected = {}
+end)
 
 --Tainted Cain "hold to craft" check
 local holdCounter = 0
@@ -612,14 +589,11 @@ local function trackBagHolding()
 	end
 end
 
-local function trackBagActivated()
-	if IsTaintedCain() then return end
-	if Input.IsActionTriggered(ButtonAction.ACTION_ITEM, EID.player.ControllerIndex) and #EID.BagItems >= 8 then
-		EID.BagItems = {}
-		-- SCHOOLBAG BREAKS THIS!!! but it's better than nothing
-		-- and, technically, if the active item bag has 8 items, it's impossible to fill it without first emptying it, and then we're synced again
-	end
-end
+--Active slot "press to craft" check
+EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, _, _, _, _, slot)
+	if slot ~= 0 or #EID.BagItems < 8 then return end
+	EID.BagItems = {}
+end, CollectibleType.COLLECTIBLE_BAG_OF_CRAFTING)
 
 local function shiftBagContent()
 	local newContent = {}
@@ -629,7 +603,6 @@ local function shiftBagContent()
 	table.insert(newContent, EID.BagItems[1])
 	EID.BagItems = newContent
 end
-
 -- only Tainted Cain's consumable slot bag can have its ingredients shifted
 local function detectBagContentShift()
 	if Input.IsActionTriggered(ButtonAction.ACTION_DROP, EID.player.ControllerIndex) and IsTaintedCain() then
@@ -791,7 +764,6 @@ function EID:handleBagOfCraftingRendering()
 	lastSeedUsed = curSeed
 	
 	trackBagHolding()
-	trackBagActivated()
 	detectBagContentShift()
 	
 	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
@@ -847,6 +819,7 @@ function EID:handleBagOfCraftingRendering()
 	--if we're in Preview Only mode, then we have nothing more to do
 	if (EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") then return false end
 	
+	-- check what pickups are available in this room
 	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().SafeGridIndex
 	
 	local results = {}
@@ -872,6 +845,7 @@ function EID:handleBagOfCraftingRendering()
 	local itemQuery = {}
 	local itemCount = {}
 	
+	-- Merge our list of the floor's pickups and our bag's pickups
 	--max 8 copies of a single item in our list, to avoid repeat recipes
 	for _, v in ipairs(EID.bagOfCraftingFloorQuery) do
 		if (not itemCount[v] or itemCount[v] < 8) then
