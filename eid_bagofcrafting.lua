@@ -269,10 +269,10 @@ function EID:simulateBagOfCrafting(componentsTable)
 		{idx = 7, weight = compCounts[30] * 10, totalWeight = 0},
 		{idx = 8, weight = compCounts[6] * 10, totalWeight = 0},
 		{idx = 9, weight = compCounts[26] * 10, totalWeight = 0},
-		{idx = 12, weight = compCounts[8] * 10}, totalWeight = 0,
+		{idx = 12, weight = compCounts[8] * 10, totalWeight = 0},
 	}
 	if compCounts[9] + compCounts[2] + compCounts[13] + compCounts[16] == 0 then
-		table.insert(poolWeights, {idx = 26, weight = compCounts[24] * 10})
+		table.insert(poolWeights, {idx = 26, weight = compCounts[24] * 10, totalWeight = 0})
 	end
 	
 	local totalWeight = 0
@@ -750,6 +750,8 @@ local function getFloorItemsString(showPreviews, roomItems)
 	end
 	return floorString
 end
+
+--local function 
 
 function EID:handleBagOfCraftingRendering()
 	local curSeed = game:GetSeeds():GetStartSeed()
