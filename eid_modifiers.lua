@@ -60,27 +60,48 @@ end
 -- Handle Void (the only modifier that is applied to AB+ at the moment)
 local voidStatUps = { 0.2, 0.5, 1, 0.5, 0.2, 1 }
 if REPENTANCE then voidStatUps[4] = 1.5 end
+local lastVoidCheck = -30
+EID.VoidStatIncreases = {{},{},{}}
+EID.BlackRuneStatIncreases = {{},{},{}}
+EID.VoidOptionIndexes = {}
 
 local function VoidCallback(descObj, isRune)
+	-- Recheck RNG periodically (picking up passive collectibles will change the Void results without any easy trigger to track)
+	-- Do both Void and Rune here since they could both be requested in the same frame
+	if EID.GameUpdateCount >= lastVoidCheck + 30 or EID.RecheckVoid then
+		EID:VoidRoomCheck()
+		if collectiblesOwned[477] then EID:VoidRNGCheck(Isaac.GetPlayer(collectiblesOwned[477]), false) end
+		if blackRuneOwned then EID:VoidRNGCheck(Isaac.GetPlayer(blackRuneOwned), true) end
+		lastVoidCheck = EID.GameUpdateCount
+		EID.RecheckVoid = false
+	end
+	
+	local prefix = (isRune and "{{Card41}} ") or "{{Collectible477}} "
+	local pickup = descObj.Entity and descObj.Entity:ToPickup()
+	local isAltOption = false
+	-- Test if this is an Option pedestal, Repentance only absorbs the lowest index one
+	if REPENTANCE then
+		local optionIndex = pickup and pickup.OptionsPickupIndex
+		local firstOption = EID.VoidOptionIndexes[optionIndex]
+		if (REPENTANCE and optionIndex and optionIndex ~= 0 and descObj.ObjSubType ~= firstOption) then
+			EID:appendToDescription(descObj, "#" .. prefix .. "{{Collectible"..firstOption..
+			"}}" .. EID:getObjectName(5, 100, firstOption) .. EID:getDescriptionEntry("VoidOptionText"))
+			isAltOption = true
+		end
+	end
+	-- Print Stat up info if Black Rune or non-active item
 	if isRune or EID.itemConfig:GetCollectible(descObj.ObjSubType).Type ~= 3 then
-		-- Determine our text and tables to read from based on the desc entity and if this is Void or Black Rune
-		-- Afterbirth+ can't really do anything with Void and a shop item, so just return
-		local shopItem = descObj.Entity and descObj.Entity:ToPickup():IsShopItem()
+		local shopItem = pickup and pickup:IsShopItem()
+		-- Afterbirth+ really can't do anything with Void and a shop item, so just return
 		if (not REPENTANCE and shopItem) then return descObj end
 		
-		local voidIntro = (shopItem and EID:getDescriptionEntry("VoidShopText")) or EID:getDescriptionEntry("VoidText")
+		local voidIntro = ((shopItem or isAltOption) and EID:getDescriptionEntry("VoidShopText")) or EID:getDescriptionEntry("VoidText")
 		local voidNames = EID:getDescriptionEntry("VoidNames")
 		-- Replace "Tears" with "Fire Rate"
 		if REPENTANCE then voidNames[2] = EID:getDescriptionEntry("GlitchedItemText", 1) end
 		
-		local prefix = (isRune and "{{Card41}} ") or "{{Collectible477}} "
-		
-		--still need to figure out best way to not check RNG every frame
-		local player = (isRune and Isaac.GetPlayer(blackRuneOwned)) or Isaac.GetPlayer(collectiblesOwned[477])
-		EID:VoidRNGCheck(player, isRune)
-		
 		local eidTable = (isRune and EID.BlackRuneStatIncreases) or EID.VoidStatIncreases
-		local increases = (inPreview and eidTable[3]) or (shopItem and eidTable[2]) or eidTable[1]
+		local increases = ((inPreview or isAltOption) and eidTable[3]) or (shopItem and eidTable[2]) or eidTable[1]
 
 		EID:appendToDescription(descObj, "#" .. prefix .. voidIntro .. "#")
 		for i,v in ipairs(increases) do
@@ -88,8 +109,9 @@ local function VoidCallback(descObj, isRune)
 				EID:appendToDescription(descObj, prefix .. "+" .. string.format("%.4g",v*voidStatUps[i]) .. " " .. voidNames[i] .. "#")
 			end
 		end
-	else
-		-- unique Void interactions with active items?
+	-- Print unique synergies with Void and Active Items
+	elseif not isRune then
+		
 	end
 	return descObj
 end
