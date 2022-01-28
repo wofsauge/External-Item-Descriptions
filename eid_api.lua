@@ -1228,3 +1228,20 @@ function EID:setModIndicatorIcon(iconMarkup, override)
 	if EID.ModIndicator[EID._currentMod].Icon ~= nil and override == false then return end
 	EID.ModIndicator[EID._currentMod].Icon = iconMarkup
 end
+
+EID.Coroutines = {}
+-- Add a coroutine to be ran 60 times a second
+function EID:addCoroutine(name, func, overwrite)
+	if overwrite or EID.Coroutines[name] == nil then EID.Coroutines[name] = coroutine.create(func) end
+end
+
+function EID:removeCoroutine(name)
+	EID.Coroutines[name] = nil
+end
+
+-- ran 60 times a second in main game render
+function EID:resumeCoroutines()
+	for k,v in pairs(EID.Coroutines) do
+		if coroutine.resume(v) == false then EID:removeCoroutine(k) end
+	end
+end
