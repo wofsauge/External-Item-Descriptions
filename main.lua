@@ -28,7 +28,7 @@ EID.sacrificeCounter = {}
 EID.itemConfig = Isaac.GetItemConfig()
 EID.itemUnlockStates = {}
 EID.CraneItemType = {}
-EID.absorbedSpindown = false
+EID.absorbedItems = {}
 local pathsChecked = {}
 local altPathItemChecked = {}
 
@@ -362,13 +362,13 @@ if REPENTANCE then
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckFlipGridIndexes, CollectibleType.COLLECTIBLE_FLIP)
 	
-	-- Watch for a Void absorbing a Spindown Dice
+	-- Watch for a Void absorbing active items
+	-- (Note: Doesn't differentiate between different players if both players have Void...)
 	function EID:CheckVoidAbsorbs(collectibleType)
 		local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 		for _, pedestal in ipairs(pedestals) do
-			if pedestal.SubType == CollectibleType.COLLECTIBLE_SPINDOWN_DICE then
-				EID.absorbedSpindown = true
-				return
+			if pedestal.SubType > 0 and EID.itemConfig:GetCollectible(pedestal.SubType).Type == 3 then
+				EID.absorbedItems[pedestal.SubType] = true
 			end
 		end
 	end
@@ -843,21 +843,58 @@ local function GetTwoIncreases(rng, tbl)
 	return rng
 end
 
+local numVoidable = 0
+local numRunable = 0
+
+-- Count the number of absorbable pedestals in the room
+function EID:VoidRoomCheck()
+	numVoidable = 0
+	numRunable = 0
+	local indexesFound = {}
+	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+		local pickup = entity:ToPickup()
+		-- Count this pedestal if it's not an active (or this is Black Rune), not a shop item, and (in Repentance) the first of its option index
+		-- TEST IF VOID ALWAYS ABSORBS THE FIRST OF ITS OPTION INDEX
+		if entity.SubType > 0 and not pickup:IsShopItem() and
+		(not REPENTANCE or pickup.OptionsPickupIndex == 0 or indexesFound[pickup.OptionsPickupIndex] ~= true) then
+			numRunable = numRunable + 1
+			indexesFound[pickup.OptionsPickupIndex] = true
+			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE) then numVoidable = numVoidable + 1 end
+		end
+	end
+end
+function EID:VoidRNGCheck(player, isRune)
+	-- increases = the stats from the absorbable pedestals in the room
+	local increases = {0, 0, 0, 0, 0, 0}
+	-- absorbing after buying a shop item can need 1 extra stat increase set; Tab previews need only 1 stat increase
+	local shopItemIncreases = {}; local singleIncreases = {}
+	
+	local startRNG = (isRune and player:GetCardRNG(Card.RUNE_BLACK):GetSeed()) or player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_VOID):GetSeed()
+	local count = (isRune and numRunable) or numVoidable
+	local eidTable = (isRune and EID.BlackRuneStatIncreases) or EID.VoidStatIncreases
+	
+	-- in Repentance, an additional RNG call is done before the 5 for stat ups when using Void
+	if REPENTANCE and not isRune then startRNG = VoidRNGNext(startRNG) end
+	for i = 1, count do
+		startRNG = GetTwoIncreases(startRNG, increases)
+		if i == 1 then eidTable[3] = {table.unpack(increases)} end
+	end
+	eidTable[1] = {table.unpack(increases)}
+	-- do an extra check for what you'd get if you Void with a shop item above your head
+	GetTwoIncreases(startRNG, increases)
+	eidTable[2] = {table.unpack(increases)}
+	-- if there were no absorbable pedestals, the "single increase" stats are the same as the "one extra" stats
+	if count == 0 then eidTable[3] = {table.unpack(increases)} end
+end
+
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
 	
 	if collSpawned then
 		collSpawned = false
-		local numVoidable = 0
-		local numBlackRunable = 0
-		-- THIS INCLUDES UNPURCHASED SHOP ITEMS??? and both choice items also, which is OK for AB+ but not for Rep!
+
 		local curPositions = {}
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
-			if entity.SubType > 0 then
-				numBlackRunable = numBlackRunable + 1
-				if EID.itemConfig:GetCollectible(entity.SubType).Type ~= 3 then numVoidable = numVoidable + 1 end
-			end
-			
 			-- Fix Overlapping Pedestals if a collectible spawned this frame (needed for Mega Chest)
 			local pos = entity.Position
 			for _, otherPos in ipairs(curPositions) do
@@ -871,23 +908,7 @@ function EID:onGameUpdate()
 		
 		-- Recalculate our total Void stat-ups if a collectible spawned this frame
 		-- THIS COULD APPLY TO BLACK RUNE AS WELL
-		if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_VOID) then
-			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-			local increases = {0, 0, 0, 0, 0, 0}
-			local runeIncreases = {0, 0, 0, 0, 0, 0}
-			--CHANGE THIS TO THE PLAYER THAT HAS VOID
-			local startRNG = Isaac.GetPlayer(0):GetCollectibleRNG(CollectibleType.COLLECTIBLE_VOID):GetSeed()
-			local runeRNG = Isaac.GetPlayer(0):GetCardRNG(Card.RUNE_BLACK):GetSeed()
-			-- in Repentance, an additional RNG call is done before the 5 for stat ups
-			if REPENTANCE then startRNG = VoidRNGNext(startRNG) end
-			for pedestals = 1, 1 do
-				startRNG = GetTwoIncreases(startRNG, increases)
-				runeRNG = GetTwoIncreases(runeRNG, runeIncreases)
-				break -- only doing 1 preview for now
-			end
-			EID.VoidStatIncreases = increases
-			EID.BlackRuneStatIncreases = runeIncreases
-		end
+		EID:VoidRoomCheck()
 	end
 	
 	-- Remove Crane Game item data if it's giving the prize out
@@ -1261,7 +1282,7 @@ if EID.MCMLoaded or REPENTANCE then
 			["BagFloorContent"] = true,
 			["CraneItemType"] = true,
 			["FlipItemPositions"] = true,
-			["AbsorbedSpindownDice"] = true,
+			["AbsorbedItems"] = true,
 		}
 
 		if EID:HasData() then
@@ -1270,13 +1291,13 @@ if EID.MCMLoaded or REPENTANCE then
 				EID.BagItems = {}
 				EID.CraneItemType = {}
 				EID.flipItemPositions = {}
-				EID.absorbedSpindown = false
+				EID.absorbedItems = {}
 				
 				if isSave then
 					EID.BagItems = savedEIDConfig["BagContent"] or {}
 					EID.bagOfCraftingRoomQueries = savedEIDConfig["BagFloorContent"] or {}
 					EID.CraneItemType = savedEIDConfig["CraneItemType"] or {}
-					EID.absorbedSpindown = savedEIDConfig["AbsorbedSpindownDice"] or false
+					EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
 
 					-- turn list back into dict because json cant save dict indices.
 					local flipItemTable = {}
@@ -1338,7 +1359,7 @@ if EID.MCMLoaded or REPENTANCE then
 			EID.Config["BagContent"] = EID.BagItems or {}
 			EID.Config["BagFloorContent"] = EID.bagOfCraftingRoomQueries or {}
 			EID.Config["CraneItemType"] = EID.CraneItemType or {}
-			EID.Config["AbsorbedSpindownDice"] = EID.absorbedSpindown or false
+			EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
 
 			-- turn dictionary into list because json cant save dict indices.
 			local flipItemTable = {}
