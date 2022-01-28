@@ -1012,6 +1012,8 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 ---------- Misc. Text ----------
 
+EID.descriptions[languageCode].VoidShopText = "If absorbed after purchase, gain:"
+
 EID.descriptions[languageCode].spindownError = "Item disappears"
 
 EID.descriptions[languageCode].CraftingBagContent = "Bag:"
