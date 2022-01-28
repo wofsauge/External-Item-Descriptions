@@ -959,7 +959,7 @@ function EID:VoidRoomCheck()
 		if entity.SubType > 0 and not pickup:IsShopItem() and
 		(not REPENTANCE or pickup.OptionsPickupIndex == 0 or EID.VoidOptionIndexes[pickup.OptionsPickupIndex] == nil) then
 			numRunable = numRunable + 1
-			EID.VoidOptionIndexes[pickup.OptionsPickupIndex] = entity.SubType
+			if REPENTANCE then EID.VoidOptionIndexes[pickup.OptionsPickupIndex] = entity.SubType end
 			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE) then numVoidable = numVoidable + 1 end
 		end
 	end
