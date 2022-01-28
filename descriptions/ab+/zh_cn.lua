@@ -2,8 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2022.01.26
--- Last Full Check: N/A -- I will have a full check someday else.
+-- Last Update: 2022.01.27
 
 -- FORMAT: Item ID | Name | Description
 
@@ -499,7 +498,7 @@ EID.descriptions[languageCode].collectibles={
 	{"474", "损坏的玻璃大炮", "阻挡敌人弹幕"},
 	{"475", "计划C", "{{Warning}} 一次性 {{Warning}}#对所有敌人造成9,999,999伤害并在3秒后杀死角色"},
 	{"476", "一面骰", "复制房间中随机1个掉落物"},
-	{"477", "虚空", "!!! 使用时消耗所有房间中底座道具#主动道具：其效果叠加到虚空的效果中#↑ 被动道具：随机小幅提升1项属性"},
+	{"477", "虚空", "!!! 使用时消耗房间中所有底座道具#主动道具：激活其效果，以后每次使用虚空时也会激活#↑ 被动道具：随机小幅提升2项属性"},
 	{"478", "暂停", "使房间内所有敌人石化，直到过了30秒或角色重新射击为止#接触石化的敌人仍会受伤"},
 	{"479", "熔炉", "消耗饰品并永久给予饰品效果#饰品出现得更多"},
 	{"480", "堆肥", "将掉落物变成蓝苍蝇或蓝蜘蛛#使当前的蓝苍蝇/蓝蜘蛛翻倍#如果什么都没有就生成1只蓝苍蝇或蓝蜘蛛"},
@@ -874,6 +873,9 @@ EID.descriptions[languageCode].transformations={
 
 
 ---------- MISC ----------
+
+EID.descriptions[languageCode].VoidText = "若吸收，获得："
+EID.descriptions[languageCode].VoidNames = {"移速", "射速", "伤害", "射程", "弹速", "运气"}
 
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "项目名预览",
