@@ -1093,7 +1093,8 @@ local repDiceEffects = {
 }
 EID:updateDescriptionsViaTable(repDiceEffects, EID.descriptions[languageCode].dice)
 
-EID.descriptions[languageCode].VoidNames[2] = EID.descriptions[languageCode].GlitchedItemText[1]
+EID.descriptions[languageCode].VoidShopText = "아이템을 드는 도중 흡수 시 이하 능력치 증가:"
+EID.descriptions[languageCode].VoidOptionText = " 아이템이 대신 흡수됨"
 
 EID.descriptions[languageCode].spindownError = "아이템 사라짐"
 
