@@ -125,7 +125,7 @@ local repCollectibles={
 	[280] = {"280", "Sissy patas largas", "Invoca arañas azules en habitaciones hostiles aleatorias#Encanta a los enemigos al tocarlos"}, -- Sissy patas largas
 	[283] = {"283", "D100", "Cambia todos los pedestales, estadísticas, recolectables y tus objetos pasivos#Duplica un recolectable aleatorio de la habitación#Reinicia la planta actual y genera y cambia los enemigos#Cambia las rocas"}, -- D100
 	[285] = {"285", "D10", "Cambia todos los enemigos de la habitación#Los intenta sustituir por enemigos con una vida máxima similar"}, -- D10
-	[287] = {"287", "Libro de secretos", "Otorga {{Collectible54}}Treasure Map (Mapa del tesoro), {{Collectible21}}Compass (Brújula) o {{Collectible246}}Blue Map (Mapa azul) en la planta en la que lo uses#Solo otorga efectos de mapa que no tengas ya#Si están todos los efectos activos,otorga {{Collectible76}}X-Ray Vision (visión de rayos X)"}, -- Libro de secretos
+	[287] = {"287", "Libro de secretos", "Otorga {{Collectible54}} Mapa del tesoro, {{Collectible21}} La Brújula o {{Collectible246}} el Mapa azul en la planta en la que lo uses#Solo otorga efectos de mapa que no tengas ya#Si están todos los efectos activos,otorga {{Collectible76}} Visión de rayos X"}, -- Libro de secretos
 	[288] = {"288", "Caja de arañas", "Invoca de 4 a 8 arañas azules"}, -- Caja de arañas
 	[289] = {"289", "Vela roja", "Lanza fuego rojo#La llama persiste hasta infligir 23 de daño 5 veces o durante 10 segundos"}, -- Vela roja
 	[291] = {"291", "¡Flus-flus!", "!!! Mata a enemigos y jefes caca de manera instantánea#Convierte a los enemigos en caca#Extingue los fuegos#Convierte las fosas llenas de lava en suelo"}, -- ¡Flus-flus!
@@ -133,7 +133,7 @@ local repCollectibles={
 	[294] = {"294", "Judía de mantequilla", "Repele a los enemigos y proyectiles cercanos#Los enemigos lanzados contra obstáculos reciben 10 de daño"}, -- Judía de mantequilla
 	[295] = {"295", "Dedos mágicos", "Daña toda la habitación con el doble de tu daño + 10 #Precio: 1 moneda"}, -- Dedos mágicos
 	[296] = {"296", "Conversor", "!!! Convierte:#1 corazón de alma/negro en un corazón rojo"}, -- Conversor
-	[297] = {"297", "Caja de Pandora", "!!! UN SOLO USO#!!! Genera cosas en función del piso en el que se active:#B1: 2 corazones de alma #B2: 2 llaves y bombas#C1: 1 objeto de jefe#C2: B1+C1#D1: 4 corazones de alma#D2: 30 monedas#W1: 2 objetos de jefe#W2: Biblia#Sheol: 1 objeto del diablo+corazón negro#Catedral: 1 objeto de ángel + corazón de alma#Chest(cofre): 1 moneda#Home: Red Key(llave roja)"},
+	[297] = {"297", "Caja de Pandora", "!!! UN SOLO USO#!!! Genera cosas en base al piso:#B1: 2 {{SoulHeart}} / B2: 2 {{Key}} y {{Bomb}}#C1: 1 objeto {{BossRoom}} / C2: B1+C1#D1: 4 {{SoulHeart}} / D2: 30 {{Coin}}#W1: 2 objetos {{BossRoom}} / W2: {{Collectible33}}#Sheol: 1 objeto {{DevilRoom}} + {{BlackHeart}} / Catedral: 1 objeto {{AngelRoom}} + {{SoulHeart}}#Cofre: 1 {{Coin}}#Home: {{Collectible580}}"},
 	[300] = {"300", "Aries", "↑ {{Velocidad}} Velocidad +0.25#Tocar a los enemigos les daña#Correr lo suficiente evitará el daño por contacto"},
 	[307] = {"307", "Capricornio", "↑ {{Heart}} +1 de vida / {{Key}} llave / {{Bomb}} bomba / {{Coin}} moneda#↑ {{Speed}} Velocidad +0.1#↑ {{Tears}} Lágrimas +0.50#↑ {{Damage}} Daño +0.93#↑ {{Range}} Alcance +0.75 #"}, -- Capricornio
 	[308] = {"308", "Aquario", "Deja un rastro de creep#El creep inflige 6 de daño cada segundo#El creep hace sinergia con el efecto de lágrima"}, -- Aquario
@@ -147,7 +147,7 @@ local repCollectibles={
 	[328] = {"328", "El negativo", "↑ {{Damage}} Daño +1.0#Daña a todos los enemigos de la habitación si te golpean teniendo medio corazón de vida roja o ninguno"}, -- El negativo
 	[331] = {"331", "Deidad", "Lágrimas teledirigidas#↓ {{Tears}} Lágrimas -0.3#↑ {{Damage}} Daño +0.5#↑ {{Range}} Alcance +1.2#↓ {{Shotspeed}} Vel. de tiro -30%#↑ Tamaño de lágrimas +0.8#Las lágrimas ganan un aura con daño plano de 2"}, -- Cabeza de Dios
 	[336] = {"336", "Cebolla muerta", "Lágrimas espectrales y penetrantes#↑ {{Range}} Alcance +0.25#↓ {{Shotspeed}} Vel. de tiro -0.4#↑ Tamaño de lágrimas +50%"}, -- Cebolla muerta
-	[339] = {"339", "Imperdible", "↑ {{Range}} Alcance +1.5#↑ {{Shotspeed}} Velocidad de disparo +0.16#{{Black Heart}} +1 corazón negro#↑ Tamaño de lágrimas +0.5"},
+	[339] = {"339", "Imperdible", "↑ {{Range}} Alcance +1.5#↑ {{Shotspeed}} Velocidad de disparo +0.16#{{BlackHeart}} +1 corazón negro#↑ Tamaño de lágrimas +0.5"},
 	[341] = {"341", "Foto destruida", "↑ {{Tears}} Lágrimas +0.7#↑ {{Shotspeed}} Vel. de tiro +16%"},
 	[342] = {"342", "Hongo azul", "↑ +1 de vida#↑ {{Tears}} Lágrimas +0.7#↓ {{Shotspeed}} Vel. de tiro -16%#Cura 2 corazones rojos"},
 	[343] = {"343", "Llave de casa", "↑ {{Luck}} Suerte +1#↑ {{SoulHeart}} +1 corazón de alma#{{Key}} Genera 2 llaves"},
@@ -241,7 +241,7 @@ local repCollectibles={
 	[568] = {"568", "Intervención divina", "Al tocar dos veces una tecla de disparo se crea un escudo#El escudo dura un segundo, aleja a los enemigos y refleja proyectiles y láseres enemigos"}, --  Intervención divina
 	[569] = {"569", "Juramento de sangre", "Te apuñala al inicio de la planta, y te deja con medio corazón rojo#Incrementa las estadísticas durante todo el piso:#↑ {{Damage}} Daño + 0,15 * Corazones perdidos^2#↑ {{Speed}} Velocidad + 0,05*Corazones perdidos"}, --  Juramento de sangre
 	[570] = {"570", "Galleta de plastilina", "Garantiza lágrimas multicolores con efectos aleatorios"}, --  Galleta de plastilina
-	[571] = {"571", "Calcetines de huérfano", "Evita el daño del creep y de los pinchos del suelo#↑ {{Speed}} Velocidad +0.3#↑ {{Soul Heart}} +2 corazones de alma"}, --  Calcetines de huérfano
+	[571] = {"571", "Calcetines de huérfano", "Evita el daño del creep y de los pinchos del suelo#↑ {{Speed}} Velocidad +0.3#↑ {{SoulHeart}} +2 corazones de alma"}, --  Calcetines de huérfano
 	[572] = {"572", "El ojo de lo oculto", "Lágrimas controlables#↑ {{Damage}} Daño +1.0#↑ {{Range}} Alcance +7.5#↓ {{Shotspeed}} Vel. de tiro -0.16"}, --  El ojo de lo oculto
 	[573] = {"573", "Corazón inmaculado", "+1 corazón rojo#↑ {{Damage}} Daño +20%#Vida al completo#Posibilidad de disparar lágrimas espectrales que orbitan"}, --  Corazón inmaculado
 	[574] = {"574", "Ostensorio", "Gana dos auras circulares que dañan a los enemigos#El aura interna inflige más daño"}, --  Ostensorio
@@ -382,7 +382,7 @@ local repCollectibles={
 	[709] = {"709", "¡Suplex!", "Te permite correr, levantar a enemigos o jefes y estamparlos contra el suelo#Se puede controlar#Estampar inflige 50 de daño y genera una ola de rocas"}, --  ¡Suplex!
 	[710] = {"710", "Bolsa de trabajo", "Recoge y mantiene hasta 8 recolectables#Mantener el botón del activable convierte los recolectables en un objeto#La calidad del objeto dependerá de la de los recolectables"}, --  Bolsa de trabajo
 	[711] = {"711", "Cambio", "Al entrar una habitación con un pedestal, un objeto fantasma aparecerá detras#Tras el uso, el objeto fantasma intercambiará lugar con el otro#Ambos objetos se pueden tomar si es que Cambio se usa después de tomar un objeto#!!! EL objeto fantasma desaparecerá si tomas el primer objeto y sales de la habitación"}, -- Inversión
-	[712] = {"712", "Lemegeton", "Invoca el fantasma de un objeto pasivo aleatorio#El efecto del objeto se aplica al jugador#Los objetos dependen de la pool de objetos de la habitación actual"}, --  Lemegeton
+	[712] = {"712", "Lemegeton", "Invoca el fantasma de un objeto pasivo aleatorio#El efecto del objeto se aplica al jugador#Tiene 25% de posibilidad de ser de la pool de la sala actual#En cambio, será de la pool del Tesoro/Tienda/Jefe"}, --  Lemegeton
 	[713] = {"713", "Sumptorium", "Mantener el botón de disparar convierte, cada 2 segundos, medio corazón en familiares que pueden ser destrozados#Activar el objeto convierte de nuevo a los familiares en corazones#El tipo de corazón cambia el comportamiento del familiar"}, --  Sumptorio
 	[714] = {"714", "Llamado", "Devuelve el cuerpo de Forgotten desde culquier distancia"}, --  Recuperar
 	[715] = {"715", "Frasco", "Guarda una caca bomba dentro para usarla más tarde"}, --  Bote
@@ -960,7 +960,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	
 	-- Cache Flag names
 	cacheFlagStart = "Puede afectar ",
-	[0] = "Daño", "Lágrimas", "Vel. de tiro", "Alcance", "Velocidad", "Efectos de lágrima", "Color de lágrima", "Vuelo", "Tipo de ataque", "Familiares", "Suerte", "Tamaño", "Color", "Contenido de cofres", [16] = "Todas las estadísticas",
+	[0] = "{{Damage}} Daño", "{{Tears}} Lágrimas", "{{Shotspeed}} Vel. de tiro", "{{Range}} Alcance", "Velocidad", "Efectos de lágrima", "Color de lágrima", "Vuelo", "Tipo de ataque", "Familiares", "Suerte", "Tamaño", "Color", "Contenido de cofres", [16] = "Todas las estadísticas",
 	
 	-- Attribute triggers
 	chain = "Que: ",
@@ -999,6 +999,13 @@ EID.descriptions[languageCode].GlitchedItemText = {
 }
 
 ---------- Misc. Text ----------
+-- Void stuff
+EID.descriptions[languageCode].VoidNames = {"de Velocidad {{Speed}}", "de Lágrimas {{Tears}}", "de Daño {{Damage}}", "de Alcance {{Range}}", "de Vel. de tiro {{Shotspeed}}", "de Suerte {{Luck}}"}
+EID.descriptions[languageCode].VoidShopText = "Si se absorbe justo después de tomarlo, ganarás:"
+EID.descriptions[languageCode].VoidOptionText = " Será absorbido en su lugar"
+-- Void stuff end
+
+-- Bag of Crafting stuff
 EID.descriptions[languageCode].CraftingBagContent = "Bolsa:"
 EID.descriptions[languageCode].CraftingRoomContent = "Sala:"
 EID.descriptions[languageCode].CraftingFloorContent = "Piso:"
@@ -1010,35 +1017,38 @@ EID.descriptions[languageCode].CraftingHideKey = "Ocultar:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Prevista:"
 EID.descriptions[languageCode].CraftingPreviewBackup = "!!! Si este objeto está bloqueado, se convertirá en"
 
+EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}El \"Cálculo de Recetas\" actualmente no funciona con mods que añaden objetos!#{{ColorRed}}Por favor desinstala los mods de objetos o desactiva las descripciones de Bag of Crafting en la configuración"
 EID.descriptions[languageCode].CraftingResults = "(Desplazar: mantén {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Bloquear: {{ButtonX}}, Refrescar: {{ButtonB}})"
+-- Bag of Crafting stuff end
 
+-- Mimic items charges
 EID.descriptions[languageCode].BlankCardCharge = "Cargas de Carta en Blanco:" 
 EID.descriptions[languageCode].BlankCardQCard = "Te teletransporta a la habitación de I Am Error#Tanto Carta en blanco como la ¿? carta se destruirán" 
 EID.descriptions[languageCode].ClearRuneCharge = "Cargas de Runa limpia:" 
 EID.descriptions[languageCode].PlaceboCharge = "Cargas de Placebo:" 
+-- Mimic items charges end
 
-EID.descriptions[languageCode].CraftingResults = "(Desplazar: Mantén {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Bloquear: {{ButtonX}}, Reiniciar: {{ButtonB}})"
-EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}El \"Cálculo de Recetas\" actualmente no funciona con mods que añaden objetos!#{{ColorRed}}Por favor desinstala los mods de objetos o desactiva las descripciones de Bag of Crafting en la configuración"
+-- Warnings
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! ADVERTENCIA !!!"
 EID.descriptions[languageCode].AchievementWarningText = "¡Los logros están deshabilitados!#Para poder progresar en el juego, primero debes vencer a Mamá (Depths II) sin mods habilitados.#(Si ya derrotaste a Mamá, este mensaje es un bug, ignóralo)#(Este aviso puede ser desactivado en la configuración)"
 EID.descriptions[languageCode].OutdatedModWarningText = "¡Un mod sin actualizar está reduciendo la cantidad de objetos! Esto puede causar crasheos, especialmente al entrar al area de la Pieza del cuchillo 2#Por favor, desinstala los mods con el archivo resources/items.xml desactualizado"
-
 EID.descriptions[languageCode].OldGameVersionWarningText = "Tu versión de Repentance no es la más reciente#La versión más reciente es la única con soporte oficial#(Este aviso puede ser desactivado en la configuración)"
-
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Los objetos modeados pueden provocar cálculos incorrectos#Usa el modo No Recipes o desactiva el cálculo de la Bolsa de trabajo si es que los cálculos son incorrectos#(Este aviso puede ser desactivado en la configuración)"
+-- Warnings end
 
-EID.descriptions[languageCode].FlipItemToggleInfo = "(Mantén presionado {{ButtonSelect}} para mostrar la descripción)"
-
+-- False PHD modifier
 EID.descriptions[languageCode].FalsePHDHeart = "Genera {{BlackHeart}} 1 corazón negro"
 EID.descriptions[languageCode].FalsePHDDamage = "{{Damage}} Daño +0.6"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "{{Damage}} Daño +1.2"
+-- False PHD modifier end
+
+EID.descriptions[languageCode].FlipItemToggleInfo = "(Mantén presionado {{ButtonSelect}} para mostrar la descripción)"
 
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Nombre de objeto demostrativo",
 	DemoObjectTransformation = "Transformación demostrativa",
 	DemoObjectText = "Este texto está en español#¡Una larga y genial descripción para demostrar los saltos de línea causados por la anchura de texto de EID!#\1 Esta linea también es genial#Esta linea te ama {{Heart}}",
 } 
-
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
