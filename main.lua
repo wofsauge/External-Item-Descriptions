@@ -818,74 +818,7 @@ end
 -- Runs 30 times a second; doesn't update while paused
 
 local collSpawned = false
-
-EID.VoidStatIncreases = {}
-EID.BlackRuneStatIncreases = {}
-local function VoidRNGNext(num)
-	num = num ~ ((num >> 5) & 4294967295)
-	num = num ~ ((num << 9) & 4294967295)
-	num = num ~ ((num >> 7) & 4294967295)
-	return num >> 0;
-end
-local function GetTwoIncreases(rng, tbl)
-	local statTable = {1,2,3,4,5,6}
-	-- perform 5 random swaps of our stat table
-	for i = 6, 2, -1 do
-		rng = VoidRNGNext(rng)
-		local result = (rng % i) + 1
-		local temp = statTable[i]
-		statTable[i] = statTable[result]
-		statTable[result] = temp
-	end
-	-- the first two entries in the stat table get increased
-	tbl[statTable[1]] = tbl[statTable[1]] + 1
-	tbl[statTable[2]] = tbl[statTable[2]] + 1
-	return rng
-end
-
-local numVoidable = 0
-local numRunable = 0
-
--- Count the number of absorbable pedestals in the room
-function EID:VoidRoomCheck()
-	numVoidable = 0
-	numRunable = 0
-	local indexesFound = {}
-	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
-		local pickup = entity:ToPickup()
-		-- Count this pedestal if it's not an active (or this is Black Rune), not a shop item, and (in Repentance) the first of its option index
-		-- TEST IF VOID ALWAYS ABSORBS THE FIRST OF ITS OPTION INDEX
-		if entity.SubType > 0 and not pickup:IsShopItem() and
-		(not REPENTANCE or pickup.OptionsPickupIndex == 0 or indexesFound[pickup.OptionsPickupIndex] ~= true) then
-			numRunable = numRunable + 1
-			indexesFound[pickup.OptionsPickupIndex] = true
-			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE) then numVoidable = numVoidable + 1 end
-		end
-	end
-end
-function EID:VoidRNGCheck(player, isRune)
-	-- increases = the stats from the absorbable pedestals in the room
-	local increases = {0, 0, 0, 0, 0, 0}
-	-- absorbing after buying a shop item can need 1 extra stat increase set; Tab previews need only 1 stat increase
-	local shopItemIncreases = {}; local singleIncreases = {}
-	
-	local startRNG = (isRune and player:GetCardRNG(Card.RUNE_BLACK):GetSeed()) or player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_VOID):GetSeed()
-	local count = (isRune and numRunable) or numVoidable
-	local eidTable = (isRune and EID.BlackRuneStatIncreases) or EID.VoidStatIncreases
-	
-	-- in Repentance, an additional RNG call is done before the 5 for stat ups when using Void
-	if REPENTANCE and not isRune then startRNG = VoidRNGNext(startRNG) end
-	for i = 1, count do
-		startRNG = GetTwoIncreases(startRNG, increases)
-		if i == 1 then eidTable[3] = {table.unpack(increases)} end
-	end
-	eidTable[1] = {table.unpack(increases)}
-	-- do an extra check for what you'd get if you Void with a shop item above your head
-	GetTwoIncreases(startRNG, increases)
-	eidTable[2] = {table.unpack(increases)}
-	-- if there were no absorbable pedestals, the "single increase" stats are the same as the "one extra" stats
-	if count == 0 then eidTable[3] = {table.unpack(increases)} end
-end
+EID.RecheckVoid = false
 
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
@@ -906,9 +839,7 @@ function EID:onGameUpdate()
 			table.insert(curPositions, {entity, entity.Position})
 		end
 		
-		-- Recalculate our total Void stat-ups if a collectible spawned this frame
-		-- THIS COULD APPLY TO BLACK RUNE AS WELL
-		EID:VoidRoomCheck()
+		EID.RecheckVoid = true
 	end
 	
 	-- Remove Crane Game item data if it's giving the prize out
@@ -924,7 +855,7 @@ function EID:onGameUpdate()
 end
 EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
--- Wait until all collectibles spawning this frame have spawned before checking if there's an overlap
+-- Wait until all collectibles spawning this frame have spawned before checking what we need to check about them
 function EID:CollectibleSpawnedThisFrame(entity)
 	collSpawned = true
 end
