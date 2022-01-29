@@ -688,6 +688,10 @@ local resetBagCounter = 0
 local craftingIsHidden = false
 local showCraftingResult = false
 
+local prevSimplifiedDesc = ""
+local prevListDesc = ""
+local refreshTextbox = false
+
 --this combination algorithm was adopted from this Java code: https://stackoverflow.com/a/16256122
 --note that it will run into duplicates, for example if you have eight pennies and a key, it can't tell the difference between
 --PPPPPPPK (pennies 1-7) and PPPPPPPK (pennies 2-8) and PPPPPPPK (pennies 1-4,6-8) etc..., I don't know of a way to prevent that
@@ -877,6 +881,7 @@ local function RecipeCrunchCoroutine()
 		bagOfCraftingRefreshes = 0
 	end
 	isRefresh = false
+	refreshTextbox = true
 end
 
 function EID:handleBagOfCraftingRendering()
@@ -968,6 +973,7 @@ function EID:handleBagOfCraftingRendering()
 		EID.bagOfCraftingCurPickupCount = #pickups
 		calcHeldItems()
 		calcFloorItems()
+		refreshTextbox = true
 	else
 		roomItems = EID.bagOfCraftingRoomQueries[curRoomIndex..""] or {}
 	end
@@ -994,6 +1000,7 @@ function EID:handleBagOfCraftingRendering()
 	end
 	-- sort by ingredient quality, as high quality recipes are more important to check
 	table.sort(itemQuery, qualitySort)
+	queryString = table.concat(itemQuery,",")
 	
 	----------------------------------------------
 	
@@ -1010,19 +1017,30 @@ function EID:handleBagOfCraftingRendering()
 		EID:appendToDescription(customDescObj, getHotkeyString())
 		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
 		
+		prevListDesc = ""
+		if not refreshTextbox and prevSimplifiedDesc ~= "" then
+			EID:appendToDescription(customDescObj, prevSimplifiedDesc)
+			EID:printDescription(customDescObj)
+			return true
+		end
+
+		-- The floor item text can change without our total item query string changing, so only cache what comes after that
+		prevSimplifiedDesc = ""
+		refreshTextbox = false
+		
 		local mostValuableBag = {}
 		for i=1,8 do
 			mostValuableBag[i] = itemQuery[i]
 		end
-		
 		local bagQuality, bagResult = EID:simulateBagOfCrafting(EID.BagItems)
 		local bestQuality, bestResult = EID:simulateBagOfCrafting(mostValuableBag)
 		local bagQualityDesc = EID:getDescriptionEntry("CraftingBagQuality")
 		local bestQualityDesc = EID:getDescriptionEntry("CraftingBestQuality")
 		
-		if (#EID.BagItems > 0) then EID:appendToDescription(customDescObj, bagQualityDesc .. " " .. bagQuality .. "#" .. bagResult .. "#") end
-		if (bestQuality > bagQuality) then EID:appendToDescription(customDescObj, bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIconsFunc(self,mostValuableBag, true) .. "#" .. bestResult .. "#") end
+		if (#EID.BagItems > 0) then prevSimplifiedDesc = prevSimplifiedDesc .. bagQualityDesc .. " " .. bagQuality .. "#" .. bagResult .. "#" end
+		if (bestQuality > bagQuality) then prevSimplifiedDesc = prevSimplifiedDesc .. bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIconsFunc(self,mostValuableBag, true) .. "#" .. bestResult .. "#" end
 		
+		EID:appendToDescription(customDescObj, prevSimplifiedDesc)
 		EID:printDescription(customDescObj)
 		return true
 	end
@@ -1033,7 +1051,6 @@ function EID:handleBagOfCraftingRendering()
 		sortNeeded = false
 	end
 	
-	queryString = table.concat(itemQuery,",")
 	if lockedResults ~= nil then
 		currentRecipesList = calcResultCache[lockedResults]
 	elseif (calcResultCache[queryString] == nil or refreshNextTick) and EID.Coroutines["RecipeCrunch"] == nil then
@@ -1074,11 +1091,7 @@ function EID:handleBagOfCraftingRendering()
 		return false
 	end
 	
-	EID:appendToDescription(customDescObj, getHotkeyString())
-	EID:appendToDescription(customDescObj, getFloorItemsString(true, roomItems))
-	
-	local resultDesc = EID:getDescriptionEntry("CraftingResults")
-	EID:appendToDescription(customDescObj, resultDesc)
+	local prevOffset = bagOfCraftingOffset
 	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.player.ControllerIndex) then
 		EID.player.ControlsCooldown = 2
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) then
@@ -1119,6 +1132,23 @@ function EID:handleBagOfCraftingRendering()
 	--fix bug with being allowed to go to an empty page if recipe count = multiple of page size (or if we refresh on last page)
 	if (bagOfCraftingOffset >= numResults) then bagOfCraftingOffset = bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
 	
+	EID:appendToDescription(customDescObj, getHotkeyString())
+	EID:appendToDescription(customDescObj, getFloorItemsString(true, roomItems))
+	
+	prevSimplifiedDesc = ""
+	if not refreshTextbox and prevListDesc ~= "" and bagOfCraftingOffset == prevOffset then
+		EID:appendToDescription(customDescObj, prevListDesc)
+		EID:printDescription(customDescObj)
+		return true
+	end
+	
+	-- The floor item text can change without our total item query string changing, so only cache what comes after that
+	prevListDesc = ""
+	refreshTextbox = false
+	
+	local resultDesc = EID:getDescriptionEntry("CraftingResults")
+	prevListDesc = prevListDesc .. resultDesc
+	
 	local prevItem = 0
 	
 	local qualities = { [0] = "{{ColorSilver}}", "{{ColorLime}}", "{{ColorPastelBlue}}", "{{ColorLavender}}", "{{ColorLightOrange}}" }
@@ -1129,7 +1159,7 @@ function EID:handleBagOfCraftingRendering()
 	
 	--currentRecipesList is now a table of tables for each item, so we have to iterate over the table using sortedIDs
 	if (bagOfCraftingOffset > 0) then
-		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..bagOfCraftingOffset.." more"
+		prevListDesc = prevListDesc .. prefix .. "...+"..bagOfCraftingOffset.." more"
 	end
 	local curOffset = 0
 	refreshPosition = -1
@@ -1143,34 +1173,35 @@ function EID:handleBagOfCraftingRendering()
 				if not v then break end
 				if (curOffset > bagOfCraftingOffset) then
 					if not EID.Config["BagOfCraftingDisplayNames"] then
-						customDescObj.Description = customDescObj.Description.."#{{Collectible"..v[2].."}} "
+						prevListDesc = prevListDesc .."#{{Collectible"..v[2].."}} "
 						--tack on the secondary recipe image to achievement-locked recipes
-						if v[3] then customDescObj.Description = customDescObj.Description.."({{Collectible" .. v[3] .. "}})" end
+						if v[3] then prevListDesc = prevListDesc .."({{Collectible" .. v[3] .. "}})" end
 						--color the equals sign with the item quality, so the order of the list can make sense
-						customDescObj.Description = customDescObj.Description.. qualities[CraftingItemQualities[v[2]]] .. "={{CR}}"
+						prevListDesc = prevListDesc .. qualities[CraftingItemQualities[v[2]]] .. "={{CR}}"
 					--only display the item name if it's the first occurrence
 					else
 						if prevItem ~= v[2] then
 							--substring the first 18 characters of the item name so it fits on one line; is there a way to get around desc line length limits?
-							customDescObj.Description = customDescObj.Description.."#{{Collectible"..v[2].."}} ".. qualities[CraftingItemQualities[v[2]]] ..
+							prevListDesc = prevListDesc .."#{{Collectible"..v[2].."}} ".. qualities[CraftingItemQualities[v[2]]] ..
 							string.sub(EID:getObjectName(5, 100, v[2]),1,18).."#"
 						else
-							customDescObj.Description = customDescObj.Description.."#"
+							prevListDesc = prevListDesc .."#"
 						end
 						--replace recipe bulletpoint with the secondary recipe on achievement-locked recipes
-						if v[3] then customDescObj.Description = customDescObj.Description.."{{Collectible" .. v[3] .. "}} " end
+						if v[3] then prevListDesc = prevListDesc .."{{Collectible" .. v[3] .. "}} " end
 					end
 					
-					customDescObj.Description = customDescObj.Description..tableToCraftingIconsFunc(self, v[1], true)
+					prevListDesc = prevListDesc .. tableToCraftingIconsFunc(self, v[1], true)
 					prevItem = v[2]
 				end
 			end
 		end
 	end
 	if (bagOfCraftingOffset + EID.Config["BagOfCraftingResults"] < numResults) then
-		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..(numResults-EID.Config["BagOfCraftingResults"]-bagOfCraftingOffset).." more"
+		prevListDesc = prevListDesc .. prefix .. "...+"..(numResults-EID.Config["BagOfCraftingResults"]-bagOfCraftingOffset).." more"
 	end
 
+	EID:appendToDescription(customDescObj, prevListDesc)
 	EID:printDescription(customDescObj)
 	return true
 end
