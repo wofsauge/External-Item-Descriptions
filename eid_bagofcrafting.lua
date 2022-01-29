@@ -481,6 +481,35 @@ function EID:calculateBagOfCrafting(componentsTable)
 	end
 end
 
+local function calcHeldItems()
+	EID.bagOfCraftingInventoryQuery = {}
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		for j = 0, 3 do
+			local card = EID:getBagOfCraftingID(300, player:GetCard(j))
+			local pill = EID:getBagOfCraftingID(70, player:GetPill(j))
+			-- assume the card/pill is only 1 ingredient
+			if card then table.insert(EID.bagOfCraftingInventoryQuery, card[1]) end
+			if pill then table.insert(EID.bagOfCraftingInventoryQuery, pill[1]) end
+		end
+	end
+end
+local function calcFloorItems()
+	EID.bagOfCraftingFloorQuery = {}
+	for _,v in pairs(EID.bagOfCraftingRoomQueries) do
+		for _,v1 in ipairs(v) do
+			table.insert(EID.bagOfCraftingFloorQuery, v1)
+		end
+	end
+end
+local function qualitySort(a, b)
+	if (pickupValues[a+1] == pickupValues[b+1]) then
+		return a > b
+	else
+		return pickupValues[a+1] > pickupValues[b+1]
+	end
+end
+
 -- simple table of tables copy function, for modded recipe support (to make a local copy of the XML data tables so we can then add on to them)
 local function deepcopy(orig)
     local orig_type = type(orig)
@@ -561,7 +590,6 @@ local function checkForPickups()
 		if pickup:GetSprite():GetAnimation() == "Collect" and not pickupsCollected[pickup.Index] then
 			pickupsCollected[pickup.Index] = true
 			if not pickupsJustTouched[pickup.Index] then
-				print(pickup.Index .. "," .. pickup:GetSprite():GetFrame() .. "," .. Isaac.GetTime())
 				local craftingIDs = EID:getBagOfCraftingID(pickup.Variant, pickup.SubType)
 				if craftingIDs ~= nil then
 					recheckPickups = true
@@ -579,6 +607,15 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function(_)
 	-- We're using the pickup indexes for quick checking, which reset on each new room
 	pickupsCollected = {}
+end)
+
+-- Using a Card/Pill will change our inventory craftable items, so force a refresh then
+-- (Note: Items that directly add a card/pill to you, i.e. Bottle of Pills, also need a refresh, but aren't tracked for performance)
+EID:AddCallback(ModCallbacks.MC_USE_CARD, function(_)
+	recheckPickups = true
+end)
+EID:AddCallback(ModCallbacks.MC_USE_PILL, function(_)
+	recheckPickups = true
 end)
 
 --Tainted Cain "hold to craft" check
@@ -651,55 +688,32 @@ local resetBagCounter = 0
 local craftingIsHidden = false
 local showCraftingResult = false
 
-local function calcHeldItems()
-	EID.bagOfCraftingInventoryQuery = {}
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
-		for j = 0, 3 do
-			local card = EID:getBagOfCraftingID(300, player:GetCard(j))
-			local pill = EID:getBagOfCraftingID(70, player:GetPill(j))
-			-- assume the card/pill is only 1 ingredient
-			if card then table.insert(EID.bagOfCraftingInventoryQuery, card[1]) end
-			if pill then table.insert(EID.bagOfCraftingInventoryQuery, pill[1]) end
-		end
-	end
-end
-local function calcFloorItems()
-	EID.bagOfCraftingFloorQuery = {}
-	for _,v in pairs(EID.bagOfCraftingRoomQueries) do
-		for _,v1 in ipairs(v) do
-			table.insert(EID.bagOfCraftingFloorQuery, v1)
-		end
-	end
-end
-
-local function qualitySort(a, b)
-	if (pickupValues[a+1] == pickupValues[b+1]) then
-		return a > b
-	else
-		return pickupValues[a+1] > pickupValues[b+1]
-	end
-end
-
 --this combination algorithm was adopted from this Java code: https://stackoverflow.com/a/16256122
 --note that it will run into duplicates, for example if you have eight pennies and a key, it can't tell the difference between
 --PPPPPPPK (pennies 1-7) and PPPPPPPK (pennies 2-8) and PPPPPPPK (pennies 1-4,6-8) etc..., I don't know of a way to prevent that
+local coTimer = 0
+-- number of milliseconds we allow these to run without yielding (1/60th of a second = 16.66667 milliseconds)
+local coTimerLength = 5
 local function combinations(arr, length, startPos, tempResult, randResults, newResults)
-  local length = length or 8
-  local startPos = startPos or 1
-  local tempResult = tempResult or {}
-  if (length == 0) then
-	local resultString = table.concat(tempResult,",")
-	if (randResults[resultString] == nil) then
-		randResults[resultString] = {table.unpack(tempResult)}
-		newResults[resultString] = {table.unpack(tempResult)}
+	if Isaac.GetTime() > coTimer + coTimerLength then
+		coroutine.yield()
+		coTimer = Isaac.GetTime()
 	end
-	return
-  end
-  for i = startPos, #arr-length+1 do
-	tempResult[8-length+1] = arr[i]
-	combinations(arr,length-1, i+1, tempResult, randResults, newResults)
-  end
+	local length = length or 8
+	local startPos = startPos or 1
+	local tempResult = tempResult or {}
+	if (length == 0) then
+		local resultString = table.concat(tempResult,",")
+		if (randResults[resultString] == nil) then
+			randResults[resultString] = {table.unpack(tempResult)}
+			newResults[resultString] = {table.unpack(tempResult)}
+		end
+		return
+	end
+	for i = startPos, #arr-length+1 do
+		tempResult[8-length+1] = arr[i]
+		combinations(arr,length-1, i+1, tempResult, randResults, newResults)
+	end
 end																								  
 --code from InputHelper in MCM
 local HotkeyToString = {}
@@ -785,15 +799,84 @@ end
 -- This list will be modified once the coroutine finishes; until then it will have the last finished list
 local currentRecipesList = {}
 
+local itemQuery = {}
+local mostValuable = {}
+local randResults = {}
+local newResults = {}
+local skipRandom = false
+local isRefresh = false
+local queryString = ""
+
 local function RecipeCrunchCoroutine()
-	local timer = Isaac.GetTime()
+	coTimer = Isaac.GetTime()
 	
+	-- Fill randResults/newResults with every possible combination of our most valuable ingredients
+	-- The number is has an option to limit it in the config, since the number of total combinations quickly grows (nCr):
+	-- 12 = 495, 13 = 1287, 14 = 3003, 15 = 6435, 16 = 12870
+	combinations(mostValuable, nil, nil, nil, randResults, newResults)
 	
-	
-	if Isaac.GetTime() > timer + 1 then
-		coroutine.yield()
-		timer = Isaac.GetTime()
+	--do random pulls for some more recipe choices
+	if (not skipRandom) then
+		for i = 0, EID.Config["BagOfCraftingRandomResults"] do
+			if Isaac.GetTime() > coTimer + coTimerLength then
+				coroutine.yield()
+				coTimer = Isaac.GetTime()
+			end
+			local newTable = {}
+			local tableCopy = {table.unpack(itemQuery)}
+			for k = 1, 8 do
+				local pos = math.random(1, #tableCopy)
+				table.insert(newTable, tableCopy[pos])
+				table.remove(tableCopy, pos)
+			end
+			table.sort(newTable, qualitySort)
+			local resultString = table.concat(newTable,",")
+			if (randResults[resultString] == nil) then
+				randResults[resultString] = {table.unpack(newTable)}
+				newResults[resultString] = {table.unpack(newTable)}
+			end
+		end
 	end
+	
+	local sortedResults = {}
+	if (calcResultCache[queryString]) then
+		sortedResults = calcResultCache[queryString]
+	else
+		for _, v in ipairs(sortedIDs) do
+			sortedResults[v] = {}
+		end
+	end
+	
+	for _, v in pairs(newResults) do
+		if Isaac.GetTime() > coTimer + coTimerLength then
+			coroutine.yield()
+			coTimer = Isaac.GetTime()
+		end
+		local resultID, lockedAchievementID = EID:calculateBagOfCrafting(v)
+		if resultID ~= lockedAchievementID then
+			table.insert(sortedResults[resultID], {v, resultID, lockedAchievementID})
+		else
+			table.insert(sortedResults[resultID], {v, resultID})
+		end
+	end
+	calcResultCache[queryString] = sortedResults
+	randResultCache[queryString] = randResults
+	currentRecipesList = sortedResults
+	
+	numResults = 0
+	for _,v in ipairs(sortedIDs) do
+		if (isRefresh and bagOfCraftingOffset > 0 and v == refreshPosition) then
+			--jump to the item we were looking at before, so you can more easily refresh for variants of recipes
+			bagOfCraftingOffset = numResults
+		end
+		numResults = numResults + #currentRecipesList[v]
+	end
+	
+	if not isRefresh then
+		bagOfCraftingOffset = 0
+		bagOfCraftingRefreshes = 0
+	end
+	isRefresh = false
 end
 
 function EID:handleBagOfCraftingRendering()
@@ -889,7 +972,7 @@ function EID:handleBagOfCraftingRendering()
 		roomItems = EID.bagOfCraftingRoomQueries[curRoomIndex..""] or {}
 	end
 	
-	local itemQuery = {}
+	itemQuery = {}
 	local itemCount = {}
 	
 	-- Merge our list of the floor's pickups, held cards/pills, and our bag's pickups
@@ -950,16 +1033,16 @@ function EID:handleBagOfCraftingRendering()
 		sortNeeded = false
 	end
 	
-	-- keep the results between frames, it shouldn't be local here
-	local queryString = table.concat(itemQuery,",")
+	queryString = table.concat(itemQuery,",")
 	if lockedResults ~= nil then
 		currentRecipesList = calcResultCache[lockedResults]
-	elseif calcResultCache[queryString] == nil or refreshNextTick then
+	elseif (calcResultCache[queryString] == nil or refreshNextTick) and EID.Coroutines["RecipeCrunch"] == nil then
+		isRefresh = refreshNextTick
 		--build on top of our previous recipe lists, if possible
-		local randResults = randResultCache[queryString] or {}
-		local newResults = {}
-		local skipRandom = false
-		local mostValuable = {}
+		randResults = randResultCache[queryString] or {}
+		newResults = {}
+		skipRandom = false
+		mostValuable = {}
 		
 		--shift our thorough check forward one ingredient each refresh (it will find duplicates, but spamming refresh will get a lot of variety)
 		if (refreshNextTick) then
@@ -980,67 +1063,10 @@ function EID:handleBagOfCraftingRendering()
 			end
 		end
 		
-		--check every single possible recipe for our highest value pickups
-		--limit it in the options, since the number of total combinations quickly grows (nCr):
-		--12 = 495, 13 = 1287, 14 = 3003, 15 = 6435, 16 = 12870
-		if (#mostValuable >= 8) then combinations(mostValuable, nil, nil, nil, randResults, newResults) end
-		
-		--do random pulls for some more recipe choices
-		if (not skipRandom) then
-			for i = 0, EID.Config["BagOfCraftingRandomResults"] do
-				local newTable = {}
-				local tableCopy = {table.unpack(itemQuery)}
-				for k = 1, 8 do
-					local pos = math.random(1, #tableCopy)
-					table.insert(newTable, tableCopy[pos])
-					table.remove(tableCopy, pos)
-				end
-				table.sort(newTable, qualitySort)
-				local resultString = table.concat(newTable,",")
-				if (randResults[resultString] == nil) then
-					randResults[resultString] = {table.unpack(newTable)}
-					newResults[resultString] = {table.unpack(newTable)}
-				end
-			end
-		end
-		
-		local sortedResults = {}
-		if (calcResultCache[queryString]) then
-			sortedResults = calcResultCache[queryString]
-		else
-			for _, v in ipairs(sortedIDs) do
-				sortedResults[v] = {}
-			end
-		end
-		
-		for _, v in pairs(newResults) do
-			local resultID, lockedAchievementID = EID:calculateBagOfCrafting(v)
-			if resultID ~= lockedAchievementID then
-				table.insert(sortedResults[resultID], {v, resultID, lockedAchievementID})
-			else
-				table.insert(sortedResults[resultID], {v, resultID})
-			end
-		end
-		calcResultCache[queryString] = sortedResults
-		randResultCache[queryString] = randResults
-		currentRecipesList = sortedResults
-		
-		numResults = 0
-		for _,v in ipairs(sortedIDs) do
-			if (refreshNextTick and bagOfCraftingOffset > 0 and v == refreshPosition) then
-				--jump to the item we were looking at before, so you can more easily refresh for variants of recipes
-				bagOfCraftingOffset = numResults
-			end
-			numResults = numResults + #currentRecipesList[v]
-		end
-		
-		if not refreshNextTick then
-			bagOfCraftingOffset = 0
-			bagOfCraftingRefreshes = 0
-		end
+		EID:addCoroutine("RecipeCrunch", RecipeCrunchCoroutine)
 		refreshNextTick = false
 	else
-		currentRecipesList = calcResultCache[queryString]
+		currentRecipesList = calcResultCache[queryString] or currentRecipesList
 	end
 	
 	if numResults == 0 then
