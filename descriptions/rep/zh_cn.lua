@@ -2,7 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2022.01.27
+-- Last Update: 2022.01.29
 
 -- FORMAT: Item ID | Name | Description
 
@@ -186,7 +186,7 @@ local repCollectibles={
 	[464] = {"464", "平衡符号", "+2魂心#精英怪掉落掉落物更频繁#生成掉落物的优先级取决于角色最缺少的掉落物"}, -- Glyph of Balance
 	[472] = {"472", "国王宝宝", "其他跟班都会跟着他并自动射击敌人#角色发射时停止移动#停止发射后传送回角色位置"}, -- King Baby
 	[474] = {"474", "损坏的玻璃大炮", "使用时变成玻璃大炮"}, -- Broken Glass Canon
-	[476] =	{"476", "一面骰", "复制房间中随机1个掉落物#复制的掉落物可能与原来的不同"}, -- D1
+	[476] = {"476", "一面骰", "复制房间中随机1个掉落物#复制的掉落物可能与原来的不同"}, -- D1
 	[477] = {"477", "虚空", "!!! 使用时消耗房间中所有底座道具#主动道具：以后每次使用虚空时会激活其效果#↑ 被动道具：随机小幅提升2项属性"}, -- Void
 	[489] = {"489", "无限面骰", "可作为任何骰子，{{Collectible723}}计数二十面骰除外#按丢弃键改变当前骰子#根据骰子改变充能，且使用时更新"}, -- D Infinity
 	[491] = {"491", "毒瘾宝宝", "每7个房间掉落1随机胶囊#使用胶囊会使房间内所有敌人中毒"}, -- Acid Baby
@@ -1009,6 +1009,9 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 -- Void stat names: Replace "Tears" with "Fire Rate"
 EID.descriptions[languageCode].VoidNames[2] = EID.descriptions[languageCode].GlitchedItemText[1]
+
+EID.descriptions[languageCode].VoidShopText = "若在拾取后立即吸收，获得："
+EID.descriptions[languageCode].VoidOptionText = "会被吸收"
 
 EID.descriptions[languageCode].spindownError = "道具消失"
 
