@@ -1014,19 +1014,18 @@ function EID:handleBagOfCraftingRendering()
 		EID:printDescription(customDescObj)
 		return true
 	elseif EID.Config["BagOfCraftingDisplayMode"] == "No Recipes" then
-		EID:appendToDescription(customDescObj, getHotkeyString())
-		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
-		
 		prevListDesc = ""
 		if not refreshTextbox and prevSimplifiedDesc ~= "" then
 			EID:appendToDescription(customDescObj, prevSimplifiedDesc)
 			EID:printDescription(customDescObj)
 			return true
 		end
-
-		-- The floor item text can change without our total item query string changing, so only cache what comes after that
+		
 		prevSimplifiedDesc = ""
 		refreshTextbox = false
+		
+		prevSimplifiedDesc = prevSimplifiedDesc .. getHotkeyString()
+		prevSimplifiedDesc = prevSimplifiedDesc .. getFloorItemsString(false, roomItems)
 		
 		local mostValuableBag = {}
 		for i=1,8 do
@@ -1102,6 +1101,7 @@ function EID:handleBagOfCraftingRendering()
 			upHeld = Isaac.GetTime()
 		--lock the current results so you can actually do a recipe that you've scrolled down to without losing it
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTLEFT, EID.player.ControllerIndex) then
+			refreshTextbox = true
 			if (lockedResults == nil) then lockedResults = queryString
 			else lockedResults = nil end
 		--refresh the recipes
@@ -1123,6 +1123,7 @@ function EID:handleBagOfCraftingRendering()
 			resetBagCounter = resetBagCounter + 1
 			if resetBagCounter > 120 then
 				EID.BagItems = {}
+				recheckPickups = true
 				resetBagCounter = 0
 			end
 		else
@@ -1132,9 +1133,6 @@ function EID:handleBagOfCraftingRendering()
 	--fix bug with being allowed to go to an empty page if recipe count = multiple of page size (or if we refresh on last page)
 	if (bagOfCraftingOffset >= numResults) then bagOfCraftingOffset = bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
 	
-	EID:appendToDescription(customDescObj, getHotkeyString())
-	EID:appendToDescription(customDescObj, getFloorItemsString(true, roomItems))
-	
 	prevSimplifiedDesc = ""
 	if not refreshTextbox and prevListDesc ~= "" and bagOfCraftingOffset == prevOffset then
 		EID:appendToDescription(customDescObj, prevListDesc)
@@ -1142,10 +1140,11 @@ function EID:handleBagOfCraftingRendering()
 		return true
 	end
 	
-	-- The floor item text can change without our total item query string changing, so only cache what comes after that
 	prevListDesc = ""
 	refreshTextbox = false
 	
+	prevListDesc = prevListDesc .. getHotkeyString()
+	prevListDesc = prevListDesc .. getFloorItemsString(true, roomItems)
 	local resultDesc = EID:getDescriptionEntry("CraftingResults")
 	prevListDesc = prevListDesc .. resultDesc
 	
