@@ -419,7 +419,7 @@ if REPENTANCE then
 			if collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
 			if collectiblesOwned[723] or (EID.absorbedItems[723] and collectiblesOwned[477]) then table.insert(callbacks, SpindownDiceCallback) end
 			-- currently, only Repentance collectible modifiers have Tab previews so put it here
-			if Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) and not inPreview then table.insert(callbacks, TabCallback) end
+			if EID.player and Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) and not inPreview then table.insert(callbacks, TabCallback) end
 			
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then

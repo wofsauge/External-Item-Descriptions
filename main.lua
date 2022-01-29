@@ -944,6 +944,7 @@ EID.lastDist = 0
 local function onRender(t)
 	-- Increases by 60 per second, ignores pauses
 	EID.GameRenderCount = EID.GameRenderCount + 1
+	EID:resumeCoroutines()
 	
 	EID.isDisplaying = false
 	EID:setPlayer()
