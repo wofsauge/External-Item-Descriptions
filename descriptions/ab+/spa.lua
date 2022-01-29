@@ -866,3 +866,13 @@ EID.descriptions[languageCode].transformations={
 	"Adulto",					-- 14
 	"Gigante"					-- 15
 }
+
+---------- Misc. text ----------
+EID.descriptions[languageCode].VoidText = "Si lo absorbes, ganarás:"
+EID.descriptions[languageCode].VoidNames = {"de Velocidad {{SpeedAB}}", "de Lágrimas {{TearsAB}}", "de Daño {{DamageAB}}", "de Alcance {{RangeAB}}", "de Vel. de tiro {{ShotspeedAB}}", "de Suerte {{LuckAB}}"}
+
+EID.descriptions[languageCode].MCM = {
+	DemoObjectName = "Nombre de objeto demostrativo",
+	DemoObjectTransformation = "Transformación demostrativa",
+	DemoObjectText = "Este texto está en español#¡Una larga y genial descripción para demostrar los saltos de línea causados por la anchura de texto de EID!#\1 Esta linea también es genial#Esta linea te ama {{Heart}}",
+} 
