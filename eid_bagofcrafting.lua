@@ -546,7 +546,7 @@ EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, GameStartCrafting)
 ------------------------------------------
 
 local pickupsCollected = {} -- table of collected pickup indexes, reset each room
-local pickupsJustTouched = {} -- one-frame flags of pickups a player/pickup-collector has touched, so the bag doesn't think it collected it
+local pickupsJustTouched = {} -- flags of pickups a player/pickup-collector has touched, so the bag doesn't think it collected it
 
 EID:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collider,_)
 	if collider.Type == EntityType.ENTITY_PLAYER or collider.Type == EntityType.ENTITY_FAMILIAR or 
@@ -556,24 +556,25 @@ EID:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collide
 end)
 
 -- Formerly a MC_POST_PICKUP_UPDATE, but moved to this so that it's only called when we own a bag
---move it
-EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pickup)
-	if pickup:GetSprite():GetAnimation() == "Collect" and not pickupsCollected[pickup.Index] then
-		pickupsCollected[pickup.Index] = true
-		if not pickupsJustTouched[pickup.Index] then
-			print(pickup.Index .. "," .. pickup:GetSprite():GetFrame() .. "," .. Isaac.GetTime())
-			local craftingIDs = EID:getBagOfCraftingID(pickup.Variant, pickup.SubType)
-			if craftingIDs ~= nil then
-				recheckPickups = true
-				for _,v in ipairs(craftingIDs) do
-					if #EID.BagItems >= 8 then table.remove(EID.BagItems, 1) end
-					table.insert(EID.BagItems, v)
+local function checkForPickups()
+	for _,pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, -1, -1, false, false)) do
+		if pickup:GetSprite():GetAnimation() == "Collect" and not pickupsCollected[pickup.Index] then
+			pickupsCollected[pickup.Index] = true
+			if not pickupsJustTouched[pickup.Index] then
+				print(pickup.Index .. "," .. pickup:GetSprite():GetFrame() .. "," .. Isaac.GetTime())
+				local craftingIDs = EID:getBagOfCraftingID(pickup.Variant, pickup.SubType)
+				if craftingIDs ~= nil then
+					recheckPickups = true
+					for _,v in ipairs(craftingIDs) do
+						if #EID.BagItems >= 8 then table.remove(EID.BagItems, 1) end
+						table.insert(EID.BagItems, v)
+					end
 				end
 			end
 		end
+		pickupsJustTouched[pickup.Index] = nil
 	end
-	pickupsJustTouched[pickup.Index] = nil
-end)
+end
 
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function(_)
 	-- We're using the pickup indexes for quick checking, which reset on each new room
@@ -781,9 +782,18 @@ local function getFloorItemsString(showPreviews, roomItems)
 	return floorString
 end
 
-
+-- This list will be modified once the coroutine finishes; until then it will have the last finished list
+local currentRecipesList = {}
 
 local function RecipeCrunchCoroutine()
+	local timer = Isaac.GetTime()
+	
+	
+	
+	if Isaac.GetTime() > timer + 1 then
+		coroutine.yield()
+		timer = Isaac.GetTime()
+	end
 end
 
 function EID:handleBagOfCraftingRendering()
@@ -801,12 +811,13 @@ function EID:handleBagOfCraftingRendering()
 	-- watch for holding the Craft button, and pressing the ingredient shift button
 	trackBagHolding()
 	detectBagContentShift()
+	if EID.GameRenderCount % 2 == 0 then checkForPickups() end
 	
 	-- load the function we need for Show Recipes as Groups / 8 Icons
 	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
 	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIconsFunc = EID.tableToCraftingIconsFull end
 	
-	-- Check for Hide/Preview hotkeys; prevent them from triggering as they're set in MCM
+	-- Check for Hide/Preview hotkeys; prevent them from triggering while in MCM
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
 		if Input.IsButtonTriggered(EID.Config["CraftingHideKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingHideButton"], EID.player.ControllerIndex) then
 			craftingIsHidden = not craftingIsHidden
@@ -940,10 +951,9 @@ function EID:handleBagOfCraftingRendering()
 	end
 	
 	-- keep the results between frames, it shouldn't be local here
-	local results = {}
 	local queryString = table.concat(itemQuery,",")
 	if lockedResults ~= nil then
-		results = calcResultCache[lockedResults]
+		currentRecipesList = calcResultCache[lockedResults]
 	elseif calcResultCache[queryString] == nil or refreshNextTick then
 		--build on top of our previous recipe lists, if possible
 		local randResults = randResultCache[queryString] or {}
@@ -1013,7 +1023,7 @@ function EID:handleBagOfCraftingRendering()
 		end
 		calcResultCache[queryString] = sortedResults
 		randResultCache[queryString] = randResults
-		results = sortedResults
+		currentRecipesList = sortedResults
 		
 		numResults = 0
 		for _,v in ipairs(sortedIDs) do
@@ -1021,7 +1031,7 @@ function EID:handleBagOfCraftingRendering()
 				--jump to the item we were looking at before, so you can more easily refresh for variants of recipes
 				bagOfCraftingOffset = numResults
 			end
-			numResults = numResults + #results[v]
+			numResults = numResults + #currentRecipesList[v]
 		end
 		
 		if not refreshNextTick then
@@ -1030,7 +1040,7 @@ function EID:handleBagOfCraftingRendering()
 		end
 		refreshNextTick = false
 	else
-		results = calcResultCache[queryString]
+		currentRecipesList = calcResultCache[queryString]
 	end
 	
 	if numResults == 0 then
@@ -1091,17 +1101,17 @@ function EID:handleBagOfCraftingRendering()
 		prefix = "#{{Trinket159}} "
 	end
 	
-	--results is now a table of tables for each item, so we have to iterate over the table using sortedIDs
+	--currentRecipesList is now a table of tables for each item, so we have to iterate over the table using sortedIDs
 	if (bagOfCraftingOffset > 0) then
 		customDescObj.Description = customDescObj.Description.. prefix .. "...+"..bagOfCraftingOffset.." more"
 	end
 	local curOffset = 0
 	refreshPosition = -1
 	for _,id in ipairs(sortedIDs) do
-		if (curOffset + #results[id] <= bagOfCraftingOffset) then curOffset = curOffset + #results[id]
+		if (curOffset + #currentRecipesList[id] <= bagOfCraftingOffset) then curOffset = curOffset + #currentRecipesList[id]
 		else
 			if (refreshPosition == -1) then refreshPosition = id end
-			for _, v in ipairs(results[id]) do
+			for _, v in ipairs(currentRecipesList[id]) do
 				curOffset = curOffset + 1
 				if (curOffset > bagOfCraftingOffset+EID.Config["BagOfCraftingResults"]) then break end
 				if not v then break end
