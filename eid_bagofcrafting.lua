@@ -83,8 +83,7 @@ local pickupIDLookup = {
 }
 
 local function IsTaintedCain()
-	--no clue how the display works for co-op, as far as I can tell we're only caring about player 1
-	--this check is necessary for some ingredient tracking now that Bag of Crafting is usable by everyone
+	-- this check is necessary for tracking Bag usage since Tainted Cain's pocket bag works differently than everyone else's
 	return EID.player:GetPlayerType() == 23
 end
 
@@ -171,6 +170,7 @@ local componentShifts = {
 	{0x00000011, 0x0000000F, 0x0000001A}
 }
 
+-- The icon each item pool will use in the No Recipes display
 local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
 [5]="{{SecretRoom}}",[7]="{{PoopRoomIcon}}",[8]="{{GoldenChestRoomIcon}}",[9]="{{RedChestRoomIcon}}",[12]="{{CursedRoom}}",[26]="{{Planetarium}}" }
 
@@ -210,6 +210,7 @@ local function sortAllItems()
 end
 -- delay the initial sort until needed, as it's a tad slow
 local sortNeeded = true
+local recheckPickups = false
 
 local customRNGSeed = 0x77777770
 local customRNGShift = {0,0,0}
@@ -234,13 +235,19 @@ function EID:getBagOfCraftingID(Variant, SubType)
 	if entry ~= nil then
 		return entry
 	elseif Variant == 300 then
-		if SubType > 80 or (SubType >= 32 and SubType <= 41) or SubType == 55 then -- runes
+		if SubType == 0 then -- player:GetCard() returned 0
+			return nil
+		elseif SubType > 80 or (SubType >= 32 and SubType <= 41) or SubType == 55 then -- runes
 			return {23}
 		else -- cards
 			return {21}
 		end 
 	elseif Variant == 70 then -- pills
-		return {22}
+		if SubType == 0 then -- player:GetPill() returned 0
+			return nil
+		else
+			return {22}
+		end
 	end
 	return nil
 end
@@ -342,6 +349,7 @@ function EID:simulateBagOfCrafting(componentsTable)
 	return compTotalWeight, poolString
 end
 
+-- The main function that takes 8 ingredients and tells you what collectible you will get in return
 function EID:calculateBagOfCrafting(componentsTable)
 	local components = {table.unpack(componentsTable)}
 	if components == nil or #components ~= 8 then
@@ -473,7 +481,7 @@ function EID:calculateBagOfCrafting(componentsTable)
 	end
 end
 
--- simple table of tables copy function
+-- simple table of tables copy function, for modded recipe support (to make a local copy of the XML data tables so we can then add on to them)
 local function deepcopy(orig)
     local orig_type = type(orig)
     local copy
@@ -547,6 +555,8 @@ EID:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collide
 	end
 end)
 
+-- Formerly a MC_POST_PICKUP_UPDATE, but moved to this so that it's only called when we own a bag
+--move it
 EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pickup)
 	if pickup:GetSprite():GetAnimation() == "Collect" and not pickupsCollected[pickup.Index] then
 		pickupsCollected[pickup.Index] = true
@@ -554,6 +564,7 @@ EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pickup)
 			print(pickup.Index .. "," .. pickup:GetSprite():GetFrame() .. "," .. Isaac.GetTime())
 			local craftingIDs = EID:getBagOfCraftingID(pickup.Variant, pickup.SubType)
 			if craftingIDs ~= nil then
+				recheckPickups = true
 				for _,v in ipairs(craftingIDs) do
 					if #EID.BagItems >= 8 then table.remove(EID.BagItems, 1) end
 					table.insert(EID.BagItems, v)
@@ -623,6 +634,7 @@ local numResults = 0
 --these aren't local so that they can be saved and reloaded, or cleared in the Mod Config Menu
 EID.bagOfCraftingCurPickupCount = -1
 EID.bagOfCraftingRoomQueries = {}
+EID.bagOfCraftingInventoryQuery = {}
 EID.bagOfCraftingFloorQuery = {}
 EID.BagItems = {}
 
@@ -638,6 +650,19 @@ local resetBagCounter = 0
 local craftingIsHidden = false
 local showCraftingResult = false
 
+local function calcHeldItems()
+	EID.bagOfCraftingInventoryQuery = {}
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		for j = 0, 3 do
+			local card = EID:getBagOfCraftingID(300, player:GetCard(j))
+			local pill = EID:getBagOfCraftingID(70, player:GetPill(j))
+			-- assume the card/pill is only 1 ingredient
+			if card then table.insert(EID.bagOfCraftingInventoryQuery, card[1]) end
+			if pill then table.insert(EID.bagOfCraftingInventoryQuery, pill[1]) end
+		end
+	end
+end
 local function calcFloorItems()
 	EID.bagOfCraftingFloorQuery = {}
 	for _,v in pairs(EID.bagOfCraftingRoomQueries) do
@@ -746,16 +771,24 @@ local function getFloorItemsString(showPreviews, roomItems)
 			floorString = floorString .. "{{Collectible"..recipe.."}} "
 		end
 		local floorDesc = EID:getDescriptionEntry("CraftingFloorContent")
-		floorString = floorString .. floorDesc..EID:tableToCraftingIconsMerged(EID.bagOfCraftingFloorQuery).."#"
+		floorString = floorString .. floorDesc..EID:tableToCraftingIconsMerged(EID.bagOfCraftingFloorQuery)
+	end
+	if #EID.bagOfCraftingInventoryQuery > 0 then
+		floorString = floorString .. "(+" .. EID:tableToCraftingIconsMerged(EID.bagOfCraftingInventoryQuery) .. ")#"
+	else
+		floorString = floorString .. "#"
 	end
 	return floorString
 end
 
---local function 
+
+
+local function RecipeCrunchCoroutine()
+end
 
 function EID:handleBagOfCraftingRendering()
+	-- reset our calculated recipes when the game seed changes
 	local curSeed = game:GetSeeds():GetStartSeed()
-	--reset our calculated recipes when the game seed changes
 	if (curSeed ~= lastSeedUsed) then
 		calculatedRecipes = {}
 		lockedRecipes = {}
@@ -765,13 +798,15 @@ function EID:handleBagOfCraftingRendering()
 	end
 	lastSeedUsed = curSeed
 	
+	-- watch for holding the Craft button, and pressing the ingredient shift button
 	trackBagHolding()
 	detectBagContentShift()
 	
+	-- load the function we need for Show Recipes as Groups / 8 Icons
 	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
 	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIconsFunc = EID.tableToCraftingIconsFull end
 	
-	--prevent our hotkeys from triggering as they're set
+	-- Check for Hide/Preview hotkeys; prevent them from triggering as they're set in MCM
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
 		if Input.IsButtonTriggered(EID.Config["CraftingHideKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingHideButton"], EID.player.ControllerIndex) then
 			craftingIsHidden = not craftingIsHidden
@@ -782,7 +817,7 @@ function EID:handleBagOfCraftingRendering()
 		end
 	end
 	
-	--determine if we should display anything at all, display item preview if applicable, and figure out our room/floor's pickup contents
+	-- Determine if we should display anything at all
 	if EID.isHidden or craftingIsHidden or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
 		return
 	elseif EID.Config["BagOfCraftingHideInBattle"] then
@@ -790,7 +825,6 @@ function EID:handleBagOfCraftingRendering()
 			return
 		end
 	end
-
 	if EID.Config["DisplayBagOfCrafting"] == "never" then
 		return false
 	end
@@ -801,12 +835,12 @@ function EID:handleBagOfCraftingRendering()
 		return false
 	end
 	
-	--Display the result of the 8 items in our bag
+	-- Display the result of the 8 items in our bag if applicable
 	if (showCraftingResult or EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") and #EID.BagItems >= 8 then
 		local craftingResult, backupResult = EID:calculateBagOfCrafting(EID.BagItems)
 		if (backupResult ~= craftingResult) then EID.TabPreviewID = backupResult end
 		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
-		--prepend the Hide/Preview hotkeys to the description
+		-- prepend the Hide/Preview hotkeys to the description
 		descriptionObj.Description = getHotkeyString() .. descriptionObj.Description
 		if (backupResult ~= craftingResult and descriptionObj.ObjSubType == craftingResult) then
 			local backupDesc = EID:getDescriptionEntry("CraftingPreviewBackup")
@@ -818,20 +852,19 @@ function EID:handleBagOfCraftingRendering()
 		EID:printDescription(descriptionObj)
 		return true
 	end
-	--if we're in Preview Only mode, then we have nothing more to do
+	-- if we're in Preview Only mode, then we have nothing more to do
 	if (EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") then return false end
 	
-	-- check what pickups are available in this room
+	-- Check what pickups are available in this room
 	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().SafeGridIndex
-	
-	local results = {}
 	local roomItems = {}
 	local pickups = Isaac.FindByType(5, -1, -1, true, false)
 
-	if EID.bagOfCraftingCurPickupCount ~= #pickups then
+	if EID.bagOfCraftingCurPickupCount ~= #pickups or recheckPickups then
+		recheckPickups = false
 		for _, entity in ipairs(pickups) do
 			local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
-			if craftingIDs ~= nil and not entity:ToPickup():IsShopItem() then
+			if craftingIDs ~= nil and not entity:ToPickup():IsShopItem() and entity:GetSprite():GetAnimation() ~= "Collect" then
 				for _,v in ipairs(craftingIDs) do
 					table.insert(roomItems, v)
 				end
@@ -839,6 +872,7 @@ function EID:handleBagOfCraftingRendering()
 		end
 		EID.bagOfCraftingRoomQueries[curRoomIndex..""] = roomItems
 		EID.bagOfCraftingCurPickupCount = #pickups
+		calcHeldItems()
 		calcFloorItems()
 	else
 		roomItems = EID.bagOfCraftingRoomQueries[curRoomIndex..""] or {}
@@ -847,36 +881,32 @@ function EID:handleBagOfCraftingRendering()
 	local itemQuery = {}
 	local itemCount = {}
 	
-	-- Merge our list of the floor's pickups and our bag's pickups
-	--max 8 copies of a single item in our list, to avoid repeat recipes
-	for _, v in ipairs(EID.bagOfCraftingFloorQuery) do
-		if (not itemCount[v] or itemCount[v] < 8) then
-			table.insert(itemQuery, v)
-			if (not itemCount[v]) then itemCount[v] = 1
-			else itemCount[v] = itemCount[v] + 1 end
+	-- Merge our list of the floor's pickups, held cards/pills, and our bag's pickups
+	-- max 8 copies of a single item in our list, to avoid repeat recipes
+	local tablesToMerge = { EID.bagOfCraftingFloorQuery, EID.bagOfCraftingInventoryQuery, EID.BagItems }
+	for _, tbl in ipairs(tablesToMerge) do
+		for _, v in ipairs(tbl) do
+			if (not itemCount[v] or itemCount[v] < 8) then
+					table.insert(itemQuery, v)
+					if (not itemCount[v]) then itemCount[v] = 1
+					else itemCount[v] = itemCount[v] + 1 end
+			end
 		end
 	end
 	
-	for _, v in ipairs(EID.BagItems) do
-		if (not itemCount[v] or itemCount[v] < 8) then
-			table.insert(itemQuery, v)
-			if (not itemCount[v]) then itemCount[v] = 1
-			else itemCount[v] = itemCount[v] + 1 end
-		end
-	end
-	
-	-- Calculate result from pickups on floor
+	-- Nothing to do if there's less than 8 pickups detected
 	if #itemQuery < 8 then
 		return false
 	end
-	
-	--sort by ingredient quality
+	-- sort by ingredient quality, as high quality recipes are more important to check
 	table.sort(itemQuery, qualitySort)
+	
+	----------------------------------------------
 	
 	local customDescObj = EID:getDescriptionObj(5, 100, 710)
 	customDescObj.Description = ""
 	
-	--No Recipes Mode display
+	-- Pickups Only / No Recipes Mode display
 	if EID.Config["BagOfCraftingDisplayMode"] == "Pickups Only" then
 		EID:appendToDescription(customDescObj, getHotkeyString())
 		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
@@ -903,11 +933,14 @@ function EID:handleBagOfCraftingRendering()
 		return true
 	end
 	
+	-- Recipe List display
 	if sortNeeded then
 		sortAllItems()
 		sortNeeded = false
 	end
-
+	
+	-- keep the results between frames, it shouldn't be local here
+	local results = {}
 	local queryString = table.concat(itemQuery,",")
 	if lockedResults ~= nil then
 		results = calcResultCache[lockedResults]
@@ -916,9 +949,6 @@ function EID:handleBagOfCraftingRendering()
 		local randResults = randResultCache[queryString] or {}
 		local newResults = {}
 		local skipRandom = false
-		--check every single possible recipe for our highest value pickups
-		--limit it in the options, since the number of total combinations quickly grows (nCr):
-		--12 = 495, 13 = 1287, 14 = 3003, 15 = 6435, 16 = 12870
 		local mostValuable = {}
 		
 		--shift our thorough check forward one ingredient each refresh (it will find duplicates, but spamming refresh will get a lot of variety)
@@ -940,6 +970,9 @@ function EID:handleBagOfCraftingRendering()
 			end
 		end
 		
+		--check every single possible recipe for our highest value pickups
+		--limit it in the options, since the number of total combinations quickly grows (nCr):
+		--12 = 495, 13 = 1287, 14 = 3003, 15 = 6435, 16 = 12870
 		if (#mostValuable >= 8) then combinations(mostValuable, nil, nil, nil, randResults, newResults) end
 		
 		--do random pulls for some more recipe choices
