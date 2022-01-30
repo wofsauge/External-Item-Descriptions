@@ -834,8 +834,8 @@ EID.descriptions[languageCode].pills={
 EID.descriptions[languageCode].sacrificeHeader = "희생 보상"
 
 EID.descriptions[languageCode].sacrifice={
-	{"1", "희생 1회", "[50%] {{Coin}}동전 1개#[100%] 1분 이내로 스테이지 보스 클리어 시 {{Bomb}}폭탄 1개"},
-	{"2", "희생 2회", "[50%] {{Coin}}동전 1개#[100%] 1분 이내로 스테이지 보스 클리어 시 {{Bomb}}폭탄 1개"},
+	{"1", "희생 1회", "[50%] {{Coin}}동전 1개#[100%] 1분 이내로 1스테이지 보스 클리어 시 {{Bomb}}폭탄 1개"},
+	{"2", "희생 2회", "[50%] {{Coin}}동전 1개#[100%] 1분 이내로 1스테이지 보스 클리어 시 {{Bomb}}폭탄 1개"},
 	{"3", "희생 3회", "[67%] {{AngelChance}}천사방 확률 +15%"},
 	{"4", "희생 4회", "[50%] 상자 1개"},
 	{"5", "희생 5회", "[67%] {{AngelChance}}천사방 확률 +50%#[33%] {{Coin}}동전 3개"},
