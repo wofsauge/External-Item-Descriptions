@@ -390,7 +390,6 @@ local function handleScaleKey()
 	-- press and hold ScaleKey
 	if Input.IsButtonPressed(ScaleKey, 0) then
 		if scaleHoldFrame > 60 then
-			EID.MCM_OptionChanged = true
 			local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalScale" or "Scale")
 			if scaleToBigger then
 				local newScale = EID.Scale + scaleSpeed
@@ -417,7 +416,6 @@ local function handleScaleKey()
 	end
 	-- press ScaleKey
 	if Input.IsButtonTriggered(ScaleKey, 0) then
-		EID.MCM_OptionChanged = true
 		scaleHoldFrame = 0
 		local scale
 		local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalScale" or "Scale")
@@ -444,37 +442,13 @@ end
 ---------------------------------------------------------------------------
 ---------------------------Printing Functions------------------------------
 
+local previousFormattedLines = {}
+local previousBulletpoints = {}
 local previousDesc = ""
-local previousRenderPos = Vector.Zero
-EID.CachingDescription = false
-EID.CachedIcons = {}
-EID.CachedStrings = {}
 
 function EID:printDescription(desc)
-	local renderPos = EID:getTextPosition()
-	
-	EID.CachingDescription = false
-	if previousDesc == desc.Description and not EID.OptionChanged and not EID.MCM_OptionChanged then
-		local localModeDiff = renderPos - previousRenderPos
-		-- Drawing our currently saved description
-		for _,icon in ipairs(EID.CachedIcons) do
-			icon[1]:SetFrame(icon[5], icon[6])
-			EID:renderIcon(icon[1], icon[2] + localModeDiff.X, icon[3] + localModeDiff.Y, icon[4])
-		end
-		for i,str in ipairs(EID.CachedStrings) do
-			EID.font:DrawStringScaledUTF8(str[1], str[2] + localModeDiff.X, str[3] + localModeDiff.Y, EID.Scale, EID.Scale, str[4], 0, false)
-		end
-		return
-	else
-		-- Drawing a new description
-		EID.CachingDescription = true
-		EID.CachedIcons = {}
-		EID.CachedStrings = {}
-		previousDesc = desc.Description
-		previousRenderPos = Vector(renderPos.X, renderPos.Y)
-	end
-	
 	local textScale = Vector(EID.Scale, EID.Scale)
+	local renderPos = EID:getTextPosition()
 	local offsetX = 0
 	EID.lineHeight = EID.Config["LineHeight"]
 	if EID.Config["ShowItemIcon"] then
@@ -511,6 +485,9 @@ function EID:printDescription(desc)
 	end
 	if EID.Config["ShowItemType"] and (itemType == 3 or itemType == 4) then
 		local offsetY = 2
+		if EID.Scale < 1 then
+			offsetY = -1
+		end
 		EID.IconSprite:Play(EID.ItemTypeAnm2Names[itemType])
 		EID:renderIcon(EID.IconSprite, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale)
 		if itemType == 3 then
@@ -526,8 +503,14 @@ function EID:printDescription(desc)
 				EID.InlineIconSprite2:SetFrame("numbers", curItemConfig.MaxCharges)
 			end
 			EID:renderIcon(EID.InlineIconSprite2, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale)
+			offsetX = offsetX + 8
+		elseif itemType == 4 then
+		-- familiar
+			offsetX = offsetX + 8
 		end
-		offsetX = offsetX + 8
+		if not EID.Config["ShowItemName"] then
+			renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
+		end
 	end
 	--Display Itemname
 	if EID.Config["ShowItemName"] then
@@ -552,7 +535,7 @@ function EID:printDescription(desc)
 			local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Quality)
 			curName = curName.." - {{Quality"..quality.."}}"
 		end
-		-- Display the mod this item is from
+
 		if desc.ModName then
 			if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
 				curName = curName .. " {{"..EID.Config["ModIndicatorTextColor"].."}}" .. EID.ModIndicator[desc.ModName].Name
@@ -568,9 +551,9 @@ function EID:printDescription(desc)
 			textScale,
 			EID:getNameColor()
 		)
+
+		renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 	end
-	
-	renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 
 	--Display Transformation
 	if not (desc.Transformation == "0" or desc.Transformation == "" or desc.Transformation == nil) then
@@ -598,31 +581,47 @@ function EID:printDescription(desc)
 			end
 		end
 	end
+	if previousDesc ~= desc.Description then
+		EID:clearDescriptionCache()
+		previousDesc = desc.Description
+	end
 	EID:printBulletPoints(desc.Description, renderPos)
+end
+
+function EID:clearDescriptionCache()
+	previousFormattedLines = {}
+	previousBulletpoints = {}
 end
 
 function EID:printBulletPoints(description, renderPos)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
 	local textScale = Vector(EID.Scale, EID.Scale)
 	description = EID:replaceShortMarkupStrings(description)
-	for line in string.gmatch(description, "([^#]+)") do
-		local formatedLines = EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID.Config["Language"]])
-		local textColor = EID:getTextColor()
-		for i, lineToPrint in ipairs(formatedLines) do
-			-- render bulletpoint
-			if i == 1 then
-				local bpIcon = EID:handleBulletpointIcon(lineToPrint)
-				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
-					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
-					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor)
-				else
-					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
-				end
-				EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
+	if #previousFormattedLines == 0 then
+		for line in string.gmatch(description, "([^#]+)") do
+			previousBulletpoints[#previousFormattedLines+1] = true
+			for _,v in ipairs(EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID.Config["Language"]])) do
+				table.insert(previousFormattedLines, v)
 			end
-			textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
-				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 		end
+	end
+	
+	local textColor = EID:getTextColor()
+	for i, lineToPrint in ipairs(previousFormattedLines) do
+		-- render bulletpoint
+		if previousBulletpoints[i] then
+			textColor = EID:getTextColor()
+			local bpIcon = EID:handleBulletpointIcon(lineToPrint)
+			if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
+				lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
+				textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor)
+			else
+				textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
+			end
+			EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
+		end
+		textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
+			renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 	end
 end
 ---------------------------------------------------------------------------
@@ -942,13 +941,10 @@ local searchPartitions = EntityPartition.FAMILIAR + EntityPartition.ENEMY + Enti
 
 EID.lastDescriptionEntity = nil
 EID.lastDist = 0
-EID.OptionChanged = false
 
 local function onRender(t)
 	-- Increases by 60 per second, ignores pauses
 	EID.GameRenderCount = EID.GameRenderCount + 1
-	EID.OptionChanged = EID.MCM_OptionChanged
-	EID.MCM_OptionChanged = false
 	EID:resumeCoroutines()
 	
 	EID.isDisplaying = false
