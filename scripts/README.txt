@@ -15,7 +15,7 @@ https://github.com/wofsauge/IsaacSavegameReader
 
 
 SHA-256 Hash:
-632c2c91f65e8a42c5007d0037e137568710c9ebe5b19e43e3700ad5379102c7
+776d4593660d59e647fc2d213429c1ea02ab230f24bdab8237270395c47d82ca
 
 Virus total scan:
-https://www.virustotal.com/gui/file-analysis/Y2I3NGQxNDA0NDk0ZmUyMWI1NzRjZTJlN2U1MWQ2NjU6MTY0MzU3NTYyMQ==
+https://www.virustotal.com/gui/file-analysis/NTE5ZWQyZWRlYThhNDBhZTE2NmQ0ZjJiZWEwMzJjOGQ6MTY0MzU4MDA4Nw==
