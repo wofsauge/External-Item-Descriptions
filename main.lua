@@ -29,6 +29,7 @@ EID.itemConfig = Isaac.GetItemConfig()
 EID.itemUnlockStates = {}
 EID.CraneItemType = {}
 EID.absorbedItems = {}
+EID.CollectedItems = {}
 local pathsChecked = {}
 local altPathItemChecked = {}
 
@@ -823,7 +824,8 @@ EID.RecheckVoid = false
 
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
-	
+	EID:checkPlayersForMissingItems()
+
 	if collSpawned then
 		collSpawned = false
 
@@ -946,6 +948,7 @@ local function onRender(t)
 	-- Increases by 60 per second, ignores pauses
 	EID.GameRenderCount = EID.GameRenderCount + 1
 	EID:resumeCoroutines()
+
 	
 	EID.isDisplaying = false
 	EID:setPlayer()
@@ -1205,21 +1208,31 @@ EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 -- only save and load configs when using MCM. Otherwise Config file changes arent valid
 if EID.MCMLoaded or REPENTANCE then
 	local json = require("json")
+	local configIgnoreList = {
+		["BagContent"] = true,
+		["BagFloorContent"] = true,
+		["CraneItemType"] = true,
+		["FlipItemPositions"] = true,
+		["AbsorbedItems"] = true,
+		["CollectedItems"] = true,
+	}
 	--------------------------------
 	--------Handle Savadata---------
 	--------------------------------
 	function OnGameStart(_,isSave)
 		--Loading Moddata--
-		local configIgnoreList = {
-			["BagContent"] = true,
-			["BagFloorContent"] = true,
-			["CraneItemType"] = true,
-			["FlipItemPositions"] = true,
-			["AbsorbedItems"] = true,
-		}
 
 		if EID:HasData() then
 			local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
+			
+			-- collection progress
+			EID.CollectedItems = savedEIDConfig["CollectedItems"] or {}
+			if EID.Config["SaveGameNumber"] > 0 then
+				for _, id in ipairs(EID.CollectedItems) do
+					EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[id] = nil
+				end
+			end
+
 			if REPENTANCE then
 				EID.BagItems = {}
 				EID.CraneItemType = {}
@@ -1305,6 +1318,8 @@ if EID.MCMLoaded or REPENTANCE then
 			end
 			EID.Config["FlipItemPositions"] = flipItemTable or {}
 		end
+		EID.Config["CollectedItems"] = EID.CollectedItems
+
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()
 		EID.itemUnlockStates[CollectibleType.COLLECTIBLE_CUBE_OF_MEAT] = nil

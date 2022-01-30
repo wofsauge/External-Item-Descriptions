@@ -1261,6 +1261,21 @@ end
 
 -- Returns true if an item needs to be collected for the collection page
 function EID:requiredForCollectionPage(itemID)
-	if game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() or not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 then return false end
+	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
 	return not EID.SaveGame[EID.Config["SaveGameNumber"]].ItemCollection[itemID]
+end
+
+-- Updates the item collection state of the players, based on the QueuedItem value.
+-- TODO: also check for D100 / MissingNo Item collections
+function EID:checkPlayersForMissingItems()
+	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return end
+	if EID.GameUpdateCount % 5 ~= 0 then return end
+
+	for i = 0, game:GetNumPlayers() - 1 do 
+		local player = Isaac.GetPlayer(i)
+		if player.QueuedItem.Item and EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[player.QueuedItem.Item.ID] then
+			table.insert(EID.CollectedItems, player.QueuedItem.Item.ID)
+			EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[player.QueuedItem.Item.ID] = nil
+		end
+	end
 end
