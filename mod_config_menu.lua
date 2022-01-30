@@ -23,6 +23,7 @@ local MCMCompat_isDisplayingDummyMCMObj = false
 local MCMCompat_oldPermanentObj = false
 EID.MCMLoaded = MCMLoaded
 local colorNameArray = {}
+EID.MCM_OptionChanged = false
 
 local function renderDummyDesc(reload)
 	if reload then
@@ -135,6 +136,7 @@ function EID:AddBooleanSetting(category, optionName, displayText, params)
 			end,
 			OnChange = params.onChangeFunc or function(currentBool)
 				EID.Config[optionName] = currentBool
+				EID.MCM_OptionChanged = true
 			end,
 			Info = params.infoText or {}
 		}
@@ -168,6 +170,7 @@ function EID:AddHotkeySetting(category, optionName, displayText, infoText, isCon
 			end,
 			OnChange = function(currentNum)
 				EID.Config[optionName] = currentNum or -1
+				EID.MCM_OptionChanged = true
 			end,
 			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
 			PopupWidth = 280,
@@ -228,6 +231,8 @@ if MCMLoaded then
 				return "Language: " .. displayLanguage[AnIndexOf(EID.Languages, EID.Config["Language"])]
 			end,
 			OnChange = function(currentNum)
+				EID.MCM_OptionChanged = true
+				EID.RefreshBagTextbox = true -- Crafting isn't open so it won't notice MCM_OptionChanged, but definitely needs to refresh
 				EID.Config["Language"] = EID.Languages[currentNum]
 				local isFixed = EID:fixDefinedFont()
 				if isFixed then
@@ -330,6 +335,7 @@ if MCMLoaded then
 			end,
 			OnChange = function(currentNum)
 				EID.Config["LineHeight"] = currentNum
+				EID.MCM_OptionChanged = true
 			end,
 			Info = {"Default = 11","Line height will automatically change when changing a font/language"}
 		}
@@ -351,7 +357,7 @@ if MCMLoaded then
 			end,
 			OnChange = function(currentNum)
 				EID.Config["TextboxWidth"] = currentNum
-				EID:clearDescriptionCache()
+				EID.MCM_OptionChanged = true
 			end,
 			Info = {"Default = 130, varies per language","Width of the EID textbox, in pixels"}
 		}
@@ -857,6 +863,7 @@ if MCMLoaded then
 	)
 
 	-- Display Mode
+	-- Note: MCM's dummy desc doesn't play well with changing this at the moment!
 	local displayModes = {"default", "local"}
 	local displayModeTips = {"default: text will be displayed in the top-left of the screen.", "local: text will be displayed under the described object."}
 	MCM.AddSetting(
@@ -905,6 +912,7 @@ if MCMLoaded then
 				end
 			end,
 			OnChange = function(currentNum)
+				EID.MCM_OptionChanged = true
 				if EID.Config["DisplayMode"] == "local" then
 					EID.Config["LocalScale"] = textScales[currentNum]
 				else
@@ -920,7 +928,7 @@ if MCMLoaded then
 	"ScaleKey", "Toggle Scale (Keyboard)",
 	"Press or hold this key to toggle the scale.", false)
 
-	-- Transparency
+	-- Local Mode Centered or not
 	MCM.AddSetting(
 		"EID",
 		"Visuals",
@@ -937,6 +945,7 @@ if MCMLoaded then
 				return "Local mode centered: " .. onOff
 			end,
 			OnChange = function(currentBool)
+				EID.MCM_OptionChanged = true
 				EID.Config["LocalModeCentered"] = currentBool
 			end
 		}
@@ -957,142 +966,23 @@ if MCMLoaded then
 					AnIndexOf(transparencies, EID.Config["Transparency"]) - 1 .. " " .. EID.Config["Transparency"]
 			end,
 			OnChange = function(currentNum)
+				EID.MCM_OptionChanged = true
 				EID.Config["Transparency"] = transparencies[currentNum + 1]
 			end
 		}
 	)
 
 	MCM.AddSpace("EID", "Visuals")
-
-	--------ShowItemName---------
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["ShowItemName"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["ShowItemName"] then
-					onOff = "True"
-				end
-				return "Display Item Name: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["ShowItemName"] = currentBool
-			end
-		}
-	)
-	--------ShowItemType---------
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["ShowItemType"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["ShowItemType"] then
-					onOff = "True"
-				end
-				return "Display Item Type: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["ShowItemType"] = currentBool
-			end
-		}
-	)
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["ShowItemIcon"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["ShowItemIcon"] then
-					onOff = "True"
-				end
-				return "Display Item Icon: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["ShowItemIcon"] = currentBool
-			end
-		}
-	)
-
-	-------TRANSFORMATIONS---------
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["TransformationText"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["TransformationText"] then
-					onOff = "True"
-				end
-				return "Display Transformation Name: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["TransformationText"] = currentBool
-			end
-		}
-	)
-	-------TRANSFORMATION ICON---------
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["TransformationIcons"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["TransformationIcons"] then
-					onOff = "True"
-				end
-				return "Display Transformation Icon: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["TransformationIcons"] = currentBool
-			end
-		}
-	)
 	
-	if REPENTANCE then
-		-------Quality ICON---------
-		MCM.AddSetting(
-			"EID",
-			"Visuals",
-			{
-				Type = ModConfigMenu.OptionType.BOOLEAN,
-				CurrentSetting = function()
-					return EID.Config["ShowQuality"]
-				end,
-				Display = function()
-					local onOff = "False"
-					if EID.Config["ShowQuality"] then
-						onOff = "True"
-					end
-					return "Display Quality Info: " .. onOff
-				end,
-				OnChange = function(currentBool)
-					EID.Config["ShowQuality"] = currentBool
-				end
-			}
-		)
-	end
+	-- Simple toggles of what is shown in the title and transformation lines of a description
+	EID:AddBooleanSetting("Visuals", "ShowItemName", "Display Item Name")
+	EID:AddBooleanSetting("Visuals", "ShowItemType", "Display Item Type")
+	EID:AddBooleanSetting("Visuals", "ShowItemIcon", "Display Item Icon")
+	EID:AddBooleanSetting("Visuals", "TransformationText", "Display Transformation Name")
+	EID:AddBooleanSetting("Visuals", "TransformationIcons", "Display Transformation Icon")
+	EID:AddBooleanSetting("Visuals", "ShowQuality", "Display Quality Info", {repOnly = true})
+	EID:AddBooleanSetting("Visuals", "ShowObjectID", "Display Object ID")
+	
 	-------Mod indicator for modded items---------
 	local modIndicatorDisplays = {"Both","Name only","Icon only", "None"}
 	MCM.AddSetting(
@@ -1109,31 +999,12 @@ if MCMLoaded then
 				return "Mod indicator displayed for: " .. EID.Config["ModIndicatorDisplay"]
 			end,
 			OnChange = function(currentNum)
+				EID.MCM_OptionChanged = true
 				EID.Config["ModIndicatorDisplay"] = modIndicatorDisplays[currentNum]
 			end
 		}
 	)
-	-------Object ID---------
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["ShowObjectID"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["ShowObjectID"] then
-					onOff = "True"
-				end
-				return "Display Object ID: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["ShowObjectID"] = currentBool
-			end
-		}
-	)
+	
 	---------------------------------------------------------------------------
 	-----------------------------BAG OF CRAFTING-------------------------------
 	
@@ -1155,6 +1026,7 @@ if MCMLoaded then
 					return "Show Display: " .. EID.Config["DisplayBagOfCrafting"]
 				end,
 				OnChange = function(currentNum)
+					EID.MCM_OptionChanged = true
 					EID.Config["DisplayBagOfCrafting"] = bagDisplays[currentNum]
 				end,
 				Info = {"Always = Always show Results, Hold = Show when holding up bag, Never = Never show results"}
@@ -1176,6 +1048,7 @@ if MCMLoaded then
 					return "Display Mode: " .. EID.Config["BagOfCraftingDisplayMode"]
 				end,
 				OnChange = function(currentNum)
+					EID.MCM_OptionChanged = true
 					EID.Config["BagOfCraftingDisplayMode"] = bagDisplayModes[currentNum]
 				end,
 				Info = {"Toggle showing a list of recipes, an item preview when bag is full, what item pool/quality you might get, or only the floor pickups"}
@@ -1207,6 +1080,7 @@ if MCMLoaded then
 						AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1 .. " " .. EID.Config["BagOfCraftingResults"]
 				end,
 				OnChange = function(currentNum)
+					EID.MCM_OptionChanged = true
 					EID.Config["BagOfCraftingResults"] = diceSteps[currentNum + 1]
 				end,
 				Info = {"Page size for the preview of items currently craftable with Bag of Crafting"}
@@ -1269,6 +1143,7 @@ if MCMLoaded then
 					return "Show Item Names: " .. onOff
 				end,
 				OnChange = function(currentBool)
+					EID.MCM_OptionChanged = true
 					EID.Config["BagOfCraftingDisplayNames"] = currentBool
 				end,
 				Info = {"If on, each result takes two lines; lower your displayed results accordingly"}
@@ -1394,6 +1269,7 @@ if MCMLoaded then
 				return "Descriptions: " .. string.gsub(EID.Config["TextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TextColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
+				EID.MCM_OptionChanged = true
 				if currentNum == 0 then currentNum = #colorNameArray end
 				if currentNum > #colorNameArray then currentNum = 1 end
 				EID.Config["TextColor"] = colorNameArray[currentNum]
@@ -1417,6 +1293,7 @@ if MCMLoaded then
 				return "Names: " .. string.gsub(EID.Config["ItemNameColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemNameColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
+				EID.MCM_OptionChanged = true
 				if currentNum == 0 then currentNum = #colorNameArray end
 				if currentNum > #colorNameArray then currentNum = 1 end
 				EID.Config["ItemNameColor"] = colorNameArray[currentNum]
@@ -1440,6 +1317,7 @@ if MCMLoaded then
 				return "Transformations: " .. string.gsub(EID.Config["TransformationColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TransformationColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
+				EID.MCM_OptionChanged = true
 				if currentNum == 0 then currentNum = #colorNameArray end
 				if currentNum > #colorNameArray then currentNum = 1 end
 				EID.Config["TransformationColor"] = colorNameArray[currentNum]
@@ -1463,6 +1341,7 @@ if MCMLoaded then
 				return "Errors: " .. string.gsub(EID.Config["ErrorColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ErrorColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
+				EID.MCM_OptionChanged = true
 				if currentNum == 0 then currentNum = #colorNameArray end
 				if currentNum > #colorNameArray then currentNum = 1 end
 				EID.Config["ErrorColor"] = colorNameArray[currentNum]
@@ -1486,6 +1365,7 @@ if MCMLoaded then
 				return "Mod Indicator: " .. string.gsub(EID.Config["ModIndicatorTextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ModIndicatorTextColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
+				EID.MCM_OptionChanged = true
 				if currentNum == 0 then currentNum = #colorNameArray end
 				if currentNum > #colorNameArray then currentNum = 1 end
 				EID.Config["ModIndicatorTextColor"] = colorNameArray[currentNum]

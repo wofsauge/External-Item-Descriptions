@@ -688,9 +688,8 @@ local resetBagCounter = 0
 local craftingIsHidden = false
 local showCraftingResult = false
 
-local prevSimplifiedDesc = ""
-local prevListDesc = ""
-local refreshTextbox = false
+local prevDesc = ""
+EID.RefreshBagTextbox = false
 
 --this combination algorithm was adopted from this Java code: https://stackoverflow.com/a/16256122
 --note that it will run into duplicates, for example if you have eight pennies and a key, it can't tell the difference between
@@ -881,7 +880,7 @@ local function RecipeCrunchCoroutine()
 		bagOfCraftingRefreshes = 0
 	end
 	isRefresh = false
-	refreshTextbox = true
+	EID.RefreshBagTextbox = true
 end
 
 function EID:handleBagOfCraftingRendering()
@@ -973,7 +972,7 @@ function EID:handleBagOfCraftingRendering()
 		EID.bagOfCraftingCurPickupCount = #pickups
 		calcHeldItems()
 		calcFloorItems()
-		refreshTextbox = true
+		EID.RefreshBagTextbox = true
 	else
 		roomItems = EID.bagOfCraftingRoomQueries[curRoomIndex..""] or {}
 	end
@@ -1014,18 +1013,17 @@ function EID:handleBagOfCraftingRendering()
 		EID:printDescription(customDescObj)
 		return true
 	elseif EID.Config["BagOfCraftingDisplayMode"] == "No Recipes" then
-		prevListDesc = ""
-		if not refreshTextbox and prevSimplifiedDesc ~= "" then
-			EID:appendToDescription(customDescObj, prevSimplifiedDesc)
+		if not EID.RefreshBagTextbox and prevDesc ~= "" and not EID.OptionChanged then
+			EID:appendToDescription(customDescObj, prevDesc)
 			EID:printDescription(customDescObj)
 			return true
 		end
 		
-		prevSimplifiedDesc = ""
-		refreshTextbox = false
+		prevDesc = ""
+		EID.RefreshBagTextbox = false
 		
-		prevSimplifiedDesc = prevSimplifiedDesc .. getHotkeyString()
-		prevSimplifiedDesc = prevSimplifiedDesc .. getFloorItemsString(false, roomItems)
+		prevDesc = prevDesc .. getHotkeyString()
+		prevDesc = prevDesc .. getFloorItemsString(false, roomItems)
 		
 		local mostValuableBag = {}
 		for i=1,8 do
@@ -1036,10 +1034,10 @@ function EID:handleBagOfCraftingRendering()
 		local bagQualityDesc = EID:getDescriptionEntry("CraftingBagQuality")
 		local bestQualityDesc = EID:getDescriptionEntry("CraftingBestQuality")
 		
-		if (#EID.BagItems > 0) then prevSimplifiedDesc = prevSimplifiedDesc .. bagQualityDesc .. " " .. bagQuality .. "#" .. bagResult .. "#" end
-		if (bestQuality > bagQuality) then prevSimplifiedDesc = prevSimplifiedDesc .. bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIconsFunc(self,mostValuableBag, true) .. "#" .. bestResult .. "#" end
+		if (#EID.BagItems > 0) then prevDesc = prevDesc .. bagQualityDesc .. " " .. bagQuality .. "#" .. bagResult .. "#" end
+		if (bestQuality > bagQuality) then prevDesc = prevDesc .. bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIconsFunc(self,mostValuableBag, true) .. "#" .. bestResult .. "#" end
 		
-		EID:appendToDescription(customDescObj, prevSimplifiedDesc)
+		EID:appendToDescription(customDescObj, prevDesc)
 		EID:printDescription(customDescObj)
 		return true
 	end
@@ -1101,7 +1099,7 @@ function EID:handleBagOfCraftingRendering()
 			upHeld = Isaac.GetTime()
 		--lock the current results so you can actually do a recipe that you've scrolled down to without losing it
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTLEFT, EID.player.ControllerIndex) then
-			refreshTextbox = true
+			EID.RefreshBagTextbox = true
 			if (lockedResults == nil) then lockedResults = queryString
 			else lockedResults = nil end
 		--refresh the recipes
@@ -1133,20 +1131,19 @@ function EID:handleBagOfCraftingRendering()
 	--fix bug with being allowed to go to an empty page if recipe count = multiple of page size (or if we refresh on last page)
 	if (bagOfCraftingOffset >= numResults) then bagOfCraftingOffset = bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
 	
-	prevSimplifiedDesc = ""
-	if not refreshTextbox and prevListDesc ~= "" and bagOfCraftingOffset == prevOffset then
-		EID:appendToDescription(customDescObj, prevListDesc)
+	if not EID.RefreshBagTextbox and prevDesc ~= "" and bagOfCraftingOffset == prevOffset and not EID.OptionChanged then
+		EID:appendToDescription(customDescObj, prevDesc)
 		EID:printDescription(customDescObj)
 		return true
 	end
 	
-	prevListDesc = ""
-	refreshTextbox = false
+	prevDesc = ""
+	EID.RefreshBagTextbox = false
 	
-	prevListDesc = prevListDesc .. getHotkeyString()
-	prevListDesc = prevListDesc .. getFloorItemsString(true, roomItems)
+	prevDesc = prevDesc .. getHotkeyString()
+	prevDesc = prevDesc .. getFloorItemsString(true, roomItems)
 	local resultDesc = EID:getDescriptionEntry("CraftingResults")
-	prevListDesc = prevListDesc .. resultDesc
+	prevDesc = prevDesc .. resultDesc
 	
 	local prevItem = 0
 	
@@ -1158,7 +1155,7 @@ function EID:handleBagOfCraftingRendering()
 	
 	--currentRecipesList is now a table of tables for each item, so we have to iterate over the table using sortedIDs
 	if (bagOfCraftingOffset > 0) then
-		prevListDesc = prevListDesc .. prefix .. "...+"..bagOfCraftingOffset.." more"
+		prevDesc = prevDesc .. prefix .. "...+"..bagOfCraftingOffset.." more"
 	end
 	local curOffset = 0
 	refreshPosition = -1
@@ -1172,35 +1169,35 @@ function EID:handleBagOfCraftingRendering()
 				if not v then break end
 				if (curOffset > bagOfCraftingOffset) then
 					if not EID.Config["BagOfCraftingDisplayNames"] then
-						prevListDesc = prevListDesc .."#{{Collectible"..v[2].."}} "
+						prevDesc = prevDesc .."#{{Collectible"..v[2].."}} "
 						--tack on the secondary recipe image to achievement-locked recipes
-						if v[3] then prevListDesc = prevListDesc .."({{Collectible" .. v[3] .. "}})" end
+						if v[3] then prevDesc = prevDesc .."({{Collectible" .. v[3] .. "}})" end
 						--color the equals sign with the item quality, so the order of the list can make sense
-						prevListDesc = prevListDesc .. qualities[CraftingItemQualities[v[2]]] .. "={{CR}}"
+						prevDesc = prevDesc .. qualities[CraftingItemQualities[v[2]]] .. "={{CR}}"
 					--only display the item name if it's the first occurrence
 					else
 						if prevItem ~= v[2] then
 							--substring the first 18 characters of the item name so it fits on one line; is there a way to get around desc line length limits?
-							prevListDesc = prevListDesc .."#{{Collectible"..v[2].."}} ".. qualities[CraftingItemQualities[v[2]]] ..
+							prevDesc = prevDesc .."#{{Collectible"..v[2].."}} ".. qualities[CraftingItemQualities[v[2]]] ..
 							string.sub(EID:getObjectName(5, 100, v[2]),1,18).."#"
 						else
-							prevListDesc = prevListDesc .."#"
+							prevDesc = prevDesc .."#"
 						end
 						--replace recipe bulletpoint with the secondary recipe on achievement-locked recipes
-						if v[3] then prevListDesc = prevListDesc .."{{Collectible" .. v[3] .. "}} " end
+						if v[3] then prevDesc = prevDesc .."{{Collectible" .. v[3] .. "}} " end
 					end
 					
-					prevListDesc = prevListDesc .. tableToCraftingIconsFunc(self, v[1], true)
+					prevDesc = prevDesc .. tableToCraftingIconsFunc(self, v[1], true)
 					prevItem = v[2]
 				end
 			end
 		end
 	end
 	if (bagOfCraftingOffset + EID.Config["BagOfCraftingResults"] < numResults) then
-		prevListDesc = prevListDesc .. prefix .. "...+"..(numResults-EID.Config["BagOfCraftingResults"]-bagOfCraftingOffset).." more"
+		prevDesc = prevDesc .. prefix .. "...+"..(numResults-EID.Config["BagOfCraftingResults"]-bagOfCraftingOffset).." more"
 	end
 
-	EID:appendToDescription(customDescObj, prevListDesc)
+	EID:appendToDescription(customDescObj, prevDesc)
 	EID:printDescription(customDescObj)
 	return true
 end
