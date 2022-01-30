@@ -871,6 +871,9 @@ EID.descriptions[languageCode].transformations={
 EID.descriptions[languageCode].VoidText = "Si lo absorbes, ganarás:"
 EID.descriptions[languageCode].VoidNames = {"de Velocidad {{SpeedAB}}", "de Lágrimas {{TearsAB}}", "de Daño {{DamageAB}}", "de Alcance {{RangeAB}}", "de Vel. de tiro {{ShotspeedAB}}", "de Suerte {{LuckAB}}"}
 
+EID.descriptions[languageCode].CollectionPageInfo = "¡Debes tomar este objeto para completar la pagina de colección!"
+
+
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Nombre de objeto demostrativo",
 	DemoObjectTransformation = "Transformación demostrativa",
