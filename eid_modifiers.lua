@@ -101,7 +101,7 @@ local function VoidCallback(descObj, isRune)
 		if REPENTANCE then voidNames[2] = EID:getDescriptionEntry("GlitchedItemText", 1) end
 		
 		local eidTable = (isRune and EID.BlackRuneStatIncreases) or EID.VoidStatIncreases
-		local increases = ((inPreview or isAltOption) and eidTable[3]) or (shopItem and eidTable[2]) or eidTable[1]
+		local increases = ((isAltOption or not descObj.Entity) and eidTable[3]) or (shopItem and eidTable[2]) or eidTable[1]
 
 		EID:appendToDescription(descObj, "#" .. prefix .. voidIntro .. "#")
 		for i,v in ipairs(increases) do
@@ -418,8 +418,6 @@ if REPENTANCE then
 			
 			if collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
 			if collectiblesOwned[723] or (EID.absorbedItems[723] and collectiblesOwned[477]) then table.insert(callbacks, SpindownDiceCallback) end
-			-- currently, only Repentance collectible modifiers have Tab previews so put it here
-			if EID.player and Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) and not inPreview then table.insert(callbacks, TabCallback) end
 			
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
@@ -465,3 +463,10 @@ local function EIDConditionsAB(descObj)
 	return callbacks
 end
 EID:addDescriptionModifier("EID Afterbirth+", EIDConditionsAB, nil)
+
+local function TabConditions(descObj)
+	if EID.player and Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) and not inPreview then return true end
+	return false
+end
+
+EID:addDescriptionModifier("EID Tab Previews", TabConditions, TabCallback)
