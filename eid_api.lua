@@ -323,13 +323,13 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity)
 	
 	description.ModName = tableEntry and tableEntry[4]
 
-	for _,modifier in pairs(EID.DescModifiers) do
+	for _,modifier in ipairs(EID.DescModifiers) do
 		local result = modifier.condition(description)
 		if type(result) == "table" then
 			for _,callback in ipairs(result) do
-				description = callback(description)
 				-- If the modifier loads a different description obj (which also goes through the modifier checks), we should stop our checks so text doesn't get printed twice
 				if description.ObjSubType ~= SubType then break end
+				description = callback(description)
 			end
 		elseif result then
 			description = modifier.callback(description)
@@ -849,16 +849,22 @@ end
 -- Adds Description object modifiers.
 -- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
 function EID:addDescriptionModifier(modifierName, condition, callback)
-	EID.DescModifiers[modifierName] = {
+	table.insert(EID.DescModifiers, {
+		name = modifierName,
 		condition = condition,
 		callback = callback
-	}
+	})
 end
 
 -- Removes a Description object modifier
 -- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
 function EID:removeDescriptionModifier(modifierName)
-	EID.DescModifiers[modifierName] = nil
+	for i,v in ipairs(EID.DescModifiers) do
+		if v[name] == modifierName then
+			table.remove(EID.DescModifiers,i)
+			return
+		end
+	end
 end
 
 -- Interpolates between 2 KColors with a given fraction.
