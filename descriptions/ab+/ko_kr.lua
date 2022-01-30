@@ -29,7 +29,7 @@ EID.descriptions[languageCode].languageName = "Korean"
 
 	korean_galmoori9, korean_galmoori11 is added for community request.
  ]]
-EID.descriptions[languageCode].fonts = {{name="korean_hcrdotum", lineHeight=11, textboxWidth = 115}, {name="korean_lanapixel", lineHeight=12, textboxWidth = 115}, {name="korean_soyakkoma", lineHeight=13, textboxWidth = 115}, {name="korean_soyakkoma_borderless", lineHeight=13, textboxWidth = 115}, {name="korean_soyakkoma_inverted", lineHeight=13, textboxWidth = 115}, {name="korean_soyanon", lineHeight=12, textboxWidth = 115}, {name="korean_galmoori9", lineHeight=12, textboxWidth = 115}, {name="korean_galmoori11", lineHeight=14, textboxWidth = 115}}
+EID.descriptions[languageCode].fonts = {{name="korean_hcrdotum", lineHeight=11, textboxWidth = 150}, {name="korean_lanapixel", lineHeight=12, textboxWidth = 150}, {name="korean_soyakkoma", lineHeight=13, textboxWidth = 150}, {name="korean_soyakkoma_borderless", lineHeight=13, textboxWidth = 150}, {name="korean_soyakkoma_inverted", lineHeight=13, textboxWidth = 150}, {name="korean_soyanon", lineHeight=12, textboxWidth = 150}, {name="korean_galmoori9", lineHeight=12, textboxWidth = 150}, {name="korean_galmoori11", lineHeight=14, textboxWidth = 160}}
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
@@ -834,8 +834,8 @@ EID.descriptions[languageCode].pills={
 EID.descriptions[languageCode].sacrificeHeader = "희생 보상"
 
 EID.descriptions[languageCode].sacrifice={
-	{"1", "희생 1회", "[50%] {{Coin}}동전 1개#[100%] 1분 이내로 스테이지 보스 클리어 시 {{Bomb}}폭탄 1개"},
-	{"2", "희생 2회", "[50%] {{Coin}}동전 1개#[100%] 1분 이내로 스테이지 보스 클리어 시 {{Bomb}}폭탄 1개"},
+	{"1", "희생 1회", "[50%] {{Coin}}동전 1개#[100%] 1분 이내로 1스테이지 보스 클리어 시 {{Bomb}}폭탄 1개"},
+	{"2", "희생 2회", "[50%] {{Coin}}동전 1개#[100%] 1분 이내로 1스테이지 보스 클리어 시 {{Bomb}}폭탄 1개"},
 	{"3", "희생 3회", "[67%] {{AngelChance}}천사방 확률 +15%"},
 	{"4", "희생 4회", "[50%] 상자 1개"},
 	{"5", "희생 5회", "[67%] {{AngelChance}}천사방 확률 +50%#[33%] {{Coin}}동전 3개"},
@@ -884,8 +884,10 @@ EID.descriptions[languageCode].transformations={
 EID.descriptions[languageCode].VoidText = "흡수 시 이하 능력치 증가:"
 EID.descriptions[languageCode].VoidNames = {"{{Speed}}이동속도", "{{Tears}}연사", "{{Damage}}공격력", "{{Range}}사거리", "{{Shotspeed}}탄속", "{{Luck}}행운"}
 
+EID.descriptions[languageCode].CollectionPageInfo = "아직 해당 아이템을 획득한 적이 없습니다. 획득하여 아이템 컬렉션에 채워주세요."
+
 EID.descriptions[languageCode].MCM={
 	DemoObjectName = "아이템 설명 모드 표시용",
 	DemoObjectTransformation = "테스트 변신 세트 표시",
-	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#매우 긴 한 줄 설명이 한국어로 작성되었습니다. 현재 너비에 따라 자동으로 줄바꿈이 이루어집니다.#\1 이것 또한 새로운 한글 라인입니다.#이 줄은 당신을 사랑한답니다{{Heart}}",
+	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#Visuals→Font Type에서 폰트를, General→Textbox Width에서 텍스트박스 너비를 설정할 수 있습니다.#\1 이것 또한 새로운 한글 라인입니다.#이 줄은 당신을 사랑한답니다{{Heart}}",
 }
