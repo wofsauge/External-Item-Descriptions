@@ -1198,11 +1198,73 @@ if MCMLoaded then
 	end
 	
 	---------------------------------------------------------------------------
+	----------------------------Savegame Config--------------------------------
+	if EID.SaveGame then
+		-- Show Item needs Collection
+		MCM.AddSetting(
+			"EID",
+			"Save Game",
+			{
+				Type = ModConfigMenu.OptionType.NUMBER,
+				CurrentSetting = function()
+					return EID.Config["SaveGameNumber"]
+				end,
+				Minimum = 0,
+				Maximum = 3,
+				Display = function()
+					if EID.Config["SaveGameNumber"] == 0 then
+						return "Current Save Game: 0 (Deactivated)"
+					end
+					return "Current Save Game: " .. EID.Config["SaveGameNumber"]
+				end,
+				OnChange = function(currentNum)
+					EID.MCM_OptionChanged = true
+					EID.Config["SaveGameNumber"] = currentNum
+				end,
+				Info = {"Save game you are currently on. This info needs to be set to get the correct lookup tables"}
+			}
+		)
+
+		-- Needs collection Color
+		MCM.AddSetting(
+			"EID",
+			"Save Game",
+			{
+				Type = ModConfigMenu.OptionType.NUMBER,
+				CurrentSetting = function()
+					return AnIndexOf(colorNameArray, EID.Config["ItemCollectionColor"])
+				end,
+				Minimum = 0,
+				Maximum = 1000,
+				Display = function()
+					if EID.Config["ItemCollectionColor"] == nil then EID.Config["ItemCollectionColor"] = EID.DefaultConfig["ItemCollectionColor"] end
+					EID.MCMCompat_isDisplayingEIDTab = "Visuals";
+					return "Collection Page Highlight color: " .. string.gsub(EID.Config["ItemCollectionColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemCollectionColor"]).."/"..#colorNameArray..")"
+				end,
+				OnChange = function(currentNum)
+					EID.MCM_OptionChanged = true
+					if currentNum == 0 then currentNum = #colorNameArray end
+					if currentNum > #colorNameArray then currentNum = 1 end
+					EID.Config["ItemCollectionColor"] = colorNameArray[currentNum]
+				end,
+				Info = {"Color in which item names are colored to highlight that this item needs to be collected for the collection page"}
+			}
+		)
+	else
+		MCM.AddSpace("EID", "Save Game")
+		MCM.AddSpace("EID", "Save Game")
+		MCM.AddText("EID", "Save Game", "To enable savegame related features,")
+		MCM.AddText("EID", "Save Game", "please run \"scripts\\savegame_reader.exe\"")
+		MCM.AddText("EID", "Save Game", "found in the EID mod folder")
+	end
+
+
+	---------------------------------------------------------------------------
 	-----------------------------Mouse Controls--------------------------------
-	MCM.AddText("EID", "Mouse", function() return "! THIS FEATURE IS IN EARLY DEVELOPMENT !" end)
+	MCM.AddText("EID", "Mouse", "! THIS FEATURE IS IN EARLY DEVELOPMENT !")
 	MCM.AddSpace("EID", "Mouse")
-	MCM.AddText("EID", "Mouse", function() return "MCM -> General -> Hud Offset" end)
-	MCM.AddText("EID", "Mouse", function() return "to adjust Hud Offset" end)
+	MCM.AddText("EID", "Mouse", "MCM -> General -> Hud Offset")
+	MCM.AddText("EID", "Mouse", "to adjust Hud Offset")
 	MCM.AddSpace("EID", "Mouse")
 	-- Enable mouse controls
 	MCM.AddSetting(

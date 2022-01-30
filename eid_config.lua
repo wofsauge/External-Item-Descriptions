@@ -294,6 +294,20 @@ EID.UserConfig = {
 	-- Default = none (-1)
 	["CraftingResultButton"] = -1,
 
+
+	 ---------- Mouse Controls ------------
+
+	 -- Savegame which should be used for savegame specific features (for example: Item Collection page progress)
+	 -- Possible values: 0,1,2,3
+	 -- Default: 0   (Deactivate all Savegame features)
+	 ["SaveGameNumber"] = 0,
+
+	 -- Color in which the name of an item should be highlighted, which needs to be collected for the collection page
+	-- Color names are defined in "eid_data.lua" (line 365)
+	 -- Default: "ColorFade"
+	 ["ItemCollectionColor"] = "ColorFade",
+
+
 	 ---------- Mouse Controls ------------
 
 	-- Toggles HUD descriptions based on the mouse position
@@ -318,11 +332,11 @@ EID.UserConfig = {
 	-- Default = [Effect not defined]
 	["ErrorMessage"] = "[Effect not defined]",
 	-- Set the color of the default description text
-	-- Color names are defined in "eid_data.lua" (line 300)
+	-- Color names are defined in "eid_data.lua" (line 365)
 	-- Default = "ColorEIDText"
 	["TextColor"] = "ColorEIDText",
 	-- Set the color of the error description text
-	-- Color names are defined in "eid_data.lua" (line 300)
+	-- Color names are defined in "eid_data.lua" (line 365)
 	-- Default = "ColorEIDError"
 	["ErrorColor"] = "ColorEIDError",
 	-- Enables or disables custom descriptions for entities
@@ -416,6 +430,8 @@ EID.DefaultConfig = {
 	["CraftingResultButton"] = -1,
 	["SpindownDiceResults"] = 3,
 	["SpindownDiceSkipLocked"] = false,
+	["SaveGameNumber"] = 0,
+	["ItemCollectionColor"] = "ColorFade",
 	["EnableMouseControls"] = false,
 	["ShowCursor"] = false,
 	["ErrorMessage"] = "[Effect not defined]",

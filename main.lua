@@ -87,6 +87,7 @@ for _,lang in ipairs(EID.Languages) do
 end
 table.sort(EID.Languages)
 
+pcall(require,"scripts.eid_savegames")
 require("mod_config_menu")
 require("eid_data")
 require("eid_xmldata")
