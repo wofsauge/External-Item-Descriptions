@@ -884,8 +884,10 @@ EID.descriptions[languageCode].transformations={
 EID.descriptions[languageCode].VoidText = "흡수 시 이하 능력치 증가:"
 EID.descriptions[languageCode].VoidNames = {"{{Speed}}이동속도", "{{Tears}}연사", "{{Damage}}공격력", "{{Range}}사거리", "{{Shotspeed}}탄속", "{{Luck}}행운"}
 
+EID.descriptions[languageCode].CollectionPageInfo = "아직 해당 아이템을 획득한 적이 없습니다. 획득하여 아이템 컬렉션에 채워주세요."
+
 EID.descriptions[languageCode].MCM={
 	DemoObjectName = "아이템 설명 모드 표시용",
 	DemoObjectTransformation = "테스트 변신 세트 표시",
-	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#매우 긴 한 줄 설명이 한국어로 작성되었습니다. 현재 너비에 따라 자동으로 줄바꿈이 이루어집니다.#\1 이것 또한 새로운 한글 라인입니다.#이 줄은 당신을 사랑한답니다{{Heart}}",
+	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#Visuals→Font Size에서 폰트를, General→Textbox Width에서 텍스트박스 너비를 설정할 수 있습니다.#\1 이것 또한 새로운 한글 라인입니다.#이 줄은 당신을 사랑한답니다{{Heart}}",
 }
