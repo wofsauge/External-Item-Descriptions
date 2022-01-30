@@ -666,6 +666,10 @@ function EID:renderIcon(spriteObj, posX, posY, callback)
 	end
 
 	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
+	
+	if EID.CachingDescription then
+		table.insert(EID.CachedIcons, {spriteObj, posX, posY, callback, spriteObj:GetAnimation(), spriteObj:GetFrame()})
+	end
 end
 
 -- Returns the icon used for the bulletpoint. It will look at the first word in the given string.
@@ -834,6 +838,9 @@ function EID:renderString(str, position, scale, kcolor)
 		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1], position.X, position.Y)
 		EID:renderInlineIcons(spriteTable, position.X + offsetX, position.Y)
 		EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
+		if EID.CachingDescription then
+			table.insert(EID.CachedStrings, {strFiltered, position.X + offsetX, position.Y, textPart[2]})
+		end
 		offsetX = offsetX + EID:getStrWidth(strFiltered) * scale.X
 	end
 	return textPartsTable[#textPartsTable][2]
