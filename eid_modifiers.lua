@@ -396,7 +396,7 @@ if REPENTANCE then
 		descObj.Name = "{{"..EID.Config["ItemCollectionColor"].."}}"..descObj.Name
 		local text = EID:getDescriptionEntry("CollectionPageInfo")
 		
-		EID:appendToDescription(descObj, "#{{Warning}} {{"..EID.Config["ItemCollectionColor"].."}}"..text)
+		EID:appendToDescription(descObj, "#{{Warning}} "..text)
 		return descObj
 	end
 	--------------------------------

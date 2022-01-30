@@ -1200,6 +1200,10 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	----------------------------Savegame Config--------------------------------
 	if EID.SaveGame then
+		MCM.AddText("EID", "Save Game", "Loaded savegame data:")
+		MCM.AddText("EID", "Save Game", function() return EID.SaveGame.Platform .." User: "..EID.SaveGame.UserName.." ("..EID.SaveGame.UserID..")" end)
+		MCM.AddSpace("EID", "Save Game")
+		
 		-- Show Item needs Collection
 		MCM.AddSetting(
 			"EID",
@@ -1224,6 +1228,14 @@ if MCMLoaded then
 				Info = {"Save game you are currently on. This info needs to be set to get the correct lookup tables"}
 			}
 		)
+		MCM.AddText("EID", "Save Game", function() 
+			if EID.Config["SaveGameNumber"] == 0 then return "" end
+			local count = 0
+			for k, v in pairs(EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup) do
+				count = count + 1
+			end
+			return "Collection page items missing: "..count end)
+		MCM.AddSpace("EID", "Save Game")
 
 		-- Needs collection Color
 		MCM.AddSetting(
