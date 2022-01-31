@@ -137,7 +137,6 @@ function EID:AddBooleanSetting(category, optionName, displayText, params)
 			OnChange = params.onChangeFunc or function(currentBool)
 				EID.Config[optionName] = currentBool
 				EID.MCM_OptionChanged = true
-				EID.RefreshBagTextbox = true
 			end,
 			Info = params.infoText or {}
 		}
@@ -1028,7 +1027,6 @@ if MCMLoaded then
 				end,
 				OnChange = function(currentNum)
 					EID.MCM_OptionChanged = true
-					EID.RefreshBagTextbox = true
 					EID.Config["DisplayBagOfCrafting"] = bagDisplays[currentNum]
 				end,
 				Info = {"Always = Always show Results, Hold = Show when holding up bag, Never = Never show results"}
@@ -1051,7 +1049,6 @@ if MCMLoaded then
 				end,
 				OnChange = function(currentNum)
 					EID.MCM_OptionChanged = true
-					EID.RefreshBagTextbox = true
 					EID.Config["BagOfCraftingDisplayMode"] = bagDisplayModes[currentNum]
 				end,
 				Info = {"Toggle showing a list of recipes, an item preview when bag is full, what item pool/quality you might get, or only the floor pickups"}
@@ -1084,7 +1081,6 @@ if MCMLoaded then
 				end,
 				OnChange = function(currentNum)
 					EID.MCM_OptionChanged = true
-					EID.RefreshBagTextbox = true
 					EID.Config["BagOfCraftingResults"] = diceSteps[currentNum + 1]
 				end,
 				Info = {"Page size for the preview of items currently craftable with Bag of Crafting"}
@@ -1105,7 +1101,6 @@ if MCMLoaded then
 						AnIndexOf(combSteps, EID.Config["BagOfCraftingCombinationMax"]) - 1 .. " " .. EID.Config["BagOfCraftingCombinationMax"]
 				end,
 				OnChange = function(currentNum)
-					EID.RefreshBagTextbox = true
 					EID.Config["BagOfCraftingCombinationMax"] = combSteps[currentNum + 1]
 				end,
 				Info = {"Get every recipe for the X best components; setting this high will cause lag spikes (12 = 500 combinations, 14 = 3,000, 16 = 13,000)"}
@@ -1126,7 +1121,6 @@ if MCMLoaded then
 						AnIndexOf(calcSteps, EID.Config["BagOfCraftingRandomResults"]) - 1 .. " " .. EID.Config["BagOfCraftingRandomResults"]
 				end,
 				OnChange = function(currentNum)
-					EID.RefreshBagTextbox = true
 					EID.Config["BagOfCraftingRandomResults"] = calcSteps[currentNum + 1]
 				end,
 				Info = {"An additional X number of randomly chosen recipes will be checked, changing each pickup spawn/despawn or refresh"}
@@ -1150,7 +1144,6 @@ if MCMLoaded then
 				end,
 				OnChange = function(currentBool)
 					EID.MCM_OptionChanged = true
-					EID.RefreshBagTextbox = true
 					EID.Config["BagOfCraftingDisplayNames"] = currentBool
 				end,
 				Info = {"If on, each result takes two lines; lower your displayed results accordingly"}
@@ -1182,8 +1175,7 @@ if MCMLoaded then
 				Type = ModConfigMenu.OptionType.BOOLEAN,
 				CurrentSetting = function() return true end,
 				Display = function() return "<---- Clear Bag Content ---->" end,
-				OnChange = function(currentBool) 
-					EID.RefreshBagTextbox = true
+				OnChange = function(currentBool)
 					EID.BagItems = {} 
 				end,
 				Info = {"Press this to clear all currently detected items on the bag"}
@@ -1198,7 +1190,6 @@ if MCMLoaded then
 				CurrentSetting = function() return true end,
 				Display = function() return "<---- Clear Floor item list ---->" end,
 				OnChange = function(currentBool)
-					EID.RefreshBagTextbox = true
 					EID.bagOfCraftingRoomQueries = {}
 					EID.bagOfCraftingFloorQuery = {}
 					EID.bagOfCraftingCurPickupCount = -1
