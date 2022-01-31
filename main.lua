@@ -459,11 +459,23 @@ function EID:printDescription(desc)
 		local localModeDiff = renderPos - previousRenderPos
 		-- Drawing our currently saved description
 		for _,icon in ipairs(EID.CachedIcons) do
-			icon[1]:SetFrame(icon[5], icon[6])
+			-- set inline icon to specific frame
+			if icon[6] >= 0 then
+				icon[1]:SetFrame(icon[5], icon[6])
+			-- frame of -1 = it's an animation, let it play
+			elseif not icon[1]:IsPlaying(icon[5]) or icon[1]:IsFinished(icon[5]) then
+				icon[1]:Play(icon[5],true)
+			else
+				icon[1]:Update()
+			end
 			EID:renderIcon(icon[1], icon[2] + localModeDiff.X, icon[3] + localModeDiff.Y, icon[4])
 		end
 		for i,str in ipairs(EID.CachedStrings) do
-			--print(str[4])
+			-- check for func (Rainbow, Blink, Fade), reset the color's Alpha to EID.Config["Transparency"] if func
+			if str[5] then
+				str[4].Alpha = str[6]
+				str[4] = str[5](str[4])
+			end
 			EID.font:DrawStringScaledUTF8(str[1], str[2] + localModeDiff.X, str[3] + localModeDiff.Y, EID.Scale, EID.Scale, str[4], 0, false)
 		end
 		return
