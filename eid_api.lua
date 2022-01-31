@@ -1261,7 +1261,7 @@ end
 
 -- Returns true if an item needs to be collected for the collection page
 function EID:requiredForCollectionPage(itemID)
-	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
+	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or itemID >= CollectibleType.NUM_COLLECTIBLES or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
 	return not EID.SaveGame[EID.Config["SaveGameNumber"]].ItemCollection[itemID]
 end
 
