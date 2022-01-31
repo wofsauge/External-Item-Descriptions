@@ -2,7 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2022.01.29
+-- Last Update: 2022.01.31
 
 -- FORMAT: Item ID | Name | Description
 
@@ -897,12 +897,12 @@ EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
 EID.descriptions[languageCode].horsepills={
 	{"0", "剧毒臭屁", "使整个房间敌人中毒"}, -- Bad Gas
-	{"1", "过激幻觉", "对角色造成2心伤害#若致死则变成回满血量胶囊"}, -- Bad Trip
+	{"1", "过激幻觉", "对角色造成2心伤害#若致死则变成体力回满胶囊"}, -- Bad Trip
 	{"2", "钢铁双蛋", "+4魂心"}, -- Balls of Steel
 	{"3", "炸弹变钥匙", "交换炸弹和钥匙的数量#增加炸弹和钥匙的量50%#金炸弹和金钥匙也会交换"}, -- Bombs are Key
 	{"4", "爆炸性腹泻", "在角色位置生成一些激活的会跟踪的超级炸弹"}, -- Explosive Diarrhea
 	{"5", "体力回满", "满血#+3魂心"}, -- Full Health
-	{"6", "体力下降", "↓ -2心之容器#若致死则变为生命提升胶囊"}, -- Health Down
+	{"6", "体力下降", "↓ -2心之容器#若致死则变为体力上升胶囊"}, -- Health Down
 	{"7", "体力上升", "↑ +2空的心之容器"}, -- Health Up
 	{"8", "我找到枚怪药", "无效果"}, -- I Found Pills
 	{"9", "青春期", "无效果"}, -- Puberty
