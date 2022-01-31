@@ -21,6 +21,7 @@ EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 EID.Scale = EID.Config["Scale"]
 EID.isDisplaying = false
 EID.isDisplayingPermanent = false
+EID.achievementsEnabled = false
 EID.permanentDisplayTextObj = nil
 EID.lastDescriptionEntity = nil
 EID.lineHeight = 11
@@ -914,22 +915,12 @@ local function renderAchievementInfo()
 			EID:displayPermanentText(demoDescObj)
 			hasShownAchievementWarning = true
 		-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
-		else
-			local characterID = EID.player:GetPlayerType()
-			--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
-			if characterID < 21 and game.Challenge == 0 and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
-				local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
-				if not hasBookOfRevelationsUnlocked then
-					local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
-					if not hasCubeOfMeatUnlocked then
-						local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-						demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-						demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
-						EID:displayPermanentText(demoDescObj)
-						hasShownAchievementWarning = true
-					end
-				end
-			end
+		elseif not EID.achievementsEnabled then
+			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
+			demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+			EID:displayPermanentText(demoDescObj)
+			hasShownAchievementWarning = true
 		end
 	elseif hasShownAchievementWarning then
 		EID:hidePermanentText()
@@ -1294,8 +1285,11 @@ if EID.MCMLoaded or REPENTANCE then
 					EID:addTextPosModifier("HudOffset", Vector((EID.Config["HUDOffset"] * 2) - 20, EID.Config["HUDOffset"] - 10))
 				end
 			end
-			
 		end
+		
+		-- Check and set if achievements are enabled
+		EID.achievementsEnabled = Game():GetItemPool():RemoveTrinket(Isaac.GetTrinketIdByName("Achievements Locked Check"))
+		
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStart)
 
