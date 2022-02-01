@@ -653,23 +653,23 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 			spriteObj:Update()
 		end
 
-		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale, sprite[3])
+		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale, sprite[3], sprite[1][1], sprite[1][2])
 	end
 end
 
 -- helper function to render Icons in specific EID settins
-function EID:renderIcon(spriteObj, posX, posY, callback)
+function EID:renderIcon(spriteObj, posX, posY, callback, animName, animFrame)
 	spriteObj.Scale = Vector(EID.Scale, EID.Scale)
 	spriteObj.Color = Color(1, 1, 1, EID.Config["Transparency"], 0, 0, 0)
 	if callback then
 		callback(spriteObj)
 	end
-
-	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
 	
 	if EID.CachingDescription then
-		table.insert(EID.CachedIcons, {spriteObj, posX, posY, callback, spriteObj:GetAnimation(), spriteObj:GetFrame()})
+		table.insert(EID.CachedIcons, {spriteObj, posX, posY, callback, animName or spriteObj:GetAnimation(), animFrame or spriteObj:GetFrame()})
 	end
+
+	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
 end
 
 -- Returns the icon used for the bulletpoint. It will look at the first word in the given string.
@@ -683,6 +683,7 @@ end
 
 -- Gets a KColor from a Markup-string (example Input: "{{ColorText}}")
 -- Returns the KColor object and a boolean value indicating if the given string was a color markup or not
+local colorFunc = nil
 function EID:getColor(str, baseKColor)
 	local color = baseKColor
 	local isColorMarkup = false
@@ -690,8 +691,10 @@ function EID:getColor(str, baseKColor)
 		local strTrimmed = string.gsub(str,"{{(.-)}}",function(a) return a end, 1)
 		if #strTrimmed <= #str then
 			if type(EID.InlineColors[strTrimmed]) == "function" then
+				colorFunc = EID.InlineColors[strTrimmed]
 				color = EID.InlineColors[strTrimmed](color)
 			else
+				if EID.InlineColors[strTrimmed] then colorFunc = nil end
 				color = EID.InlineColors[strTrimmed] or color
 			end
 			isColorMarkup = type(EID.InlineColors[strTrimmed]) ~= type(nil)
@@ -699,6 +702,7 @@ function EID:getColor(str, baseKColor)
 	end
 	color = EID:copyKColor(color)
 	color.Alpha = math.min(color.Alpha, EID.Config["Transparency"])
+
 	return color, isColorMarkup
 end
 
@@ -707,6 +711,7 @@ end
 function EID:filterColorMarkup(text, baseKColor)
 	local textPartsTable = {}
 	local lastColor = baseKColor
+	local lastFunc = colorFunc
 	local lastPosition = 0
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
@@ -715,13 +720,14 @@ function EID:filterColorMarkup(text, baseKColor)
 			local preceedingText = string.sub(text, lastPosition, textposition - 1)
 			local preceedingTextWidth = EID:getStrWidth(preceedingText) * EID.Scale
 			lastPosition = textposition
-			table.insert(textPartsTable, {preceedingText, lastColor, preceedingTextWidth})
+			table.insert(textPartsTable, {preceedingText, lastColor, preceedingTextWidth, lastFunc})
 			lastColor = lookup
+			lastFunc = colorFunc
 			text = string.gsub(text, word, "", 1)
 		end
 	end
 
-	table.insert(textPartsTable, {string.sub(text, lastPosition), lastColor, 0})
+	table.insert(textPartsTable, {string.sub(text, lastPosition), lastColor, 0, lastFunc})
 	return textPartsTable
 end
 
@@ -839,7 +845,7 @@ function EID:renderString(str, position, scale, kcolor)
 		EID:renderInlineIcons(spriteTable, position.X + offsetX, position.Y)
 		EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
 		if EID.CachingDescription then
-			table.insert(EID.CachedStrings, {strFiltered, position.X + offsetX, position.Y, textPart[2]})
+			table.insert(EID.CachedStrings, {strFiltered, position.X + offsetX, position.Y, textPart[2], textPart[4], EID.Config["Transparency"]})
 		end
 		offsetX = offsetX + EID:getStrWidth(strFiltered) * scale.X
 	end
