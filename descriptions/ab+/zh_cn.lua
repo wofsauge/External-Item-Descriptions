@@ -2,7 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2022.01.29
+-- Last Update: 2022.01.31
 
 -- FORMAT: Item ID | Name | Description
 
@@ -771,12 +771,12 @@ EID.descriptions[languageCode].unidentifiedPill = "不明胶囊"
 
 EID.descriptions[languageCode].pills={
 	{"0", "剧毒臭屁", "生成毒气云"},
-	{"1", "过激幻觉", "对角色造成1心伤害#若致死则变成回满血量胶囊"},
+	{"1", "过激幻觉", "对角色造成1心伤害#若致死则变成体力回满胶囊"},
 	{"2", "钢铁双蛋", "+2魂心"},
 	{"3", "炸弹变钥匙", "交换炸弹和钥匙的数量"},
 	{"4", "爆炸性腹泻", "在角色位置生成5个激活的炸弹"},
 	{"5", "体力回满", "满血"},
-	{"6", "体力下降", "↓ -1心之容器#若致死则变为生命提升胶囊"},
+	{"6", "体力下降", "↓ -1心之容器#若致死则变为体力上升胶囊"},
 	{"7", "体力上升", "↑ +1空的心之容器"},
 	{"8", "我找到枚怪药", "无效果"},
 	{"9", "青春期", "吃3个会获得成人期套装 (+1心之容器)"},
@@ -876,6 +876,8 @@ EID.descriptions[languageCode].transformations={
 
 EID.descriptions[languageCode].VoidText = "若吸收，获得："
 EID.descriptions[languageCode].VoidNames = {"移速", "射速", "伤害", "射程", "弹速", "运气"}
+
+EID.descriptions[languageCode].CollectionPageInfo = "此道具尚未收集！"
 
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "项目名预览",
