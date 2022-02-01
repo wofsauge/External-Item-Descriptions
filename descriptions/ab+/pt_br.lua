@@ -550,7 +550,7 @@ EID.descriptions[languageCode].collectibles={
 	{"526", "", "Dá a você um familiar Harbinger aleatório que muda a cada 10 segundos#Cada precursor se comporta de maneira diferente, com base em qualquer um dos 5 chefes de cavaleiro originais"},
 	{"527", "", "Abre portas e baús#Traz itens, rouba da Loja ou Sala do Diabo, luta contra inimigos, explode e ativar placas de pressão"},
 	{"528", "", "As lágrimas que atingem o prisma se dividirão em 4 novas lágrimas"},
-	{"529", "", "Ao atravesar o prisma, as lágrimas se dividem em 4"},
+	{"529", "", "Lágrimas se comportarão como bolas de bilhar"},
 	{"530", "", "Concede uma recompensa se você matar inimigos na ordem em que estiverem marcados"},
 	{"531", "", "Lágrimas voam em um arco#Lágrimas explodem em lágrimas menores com o impacto"},
 	{"532", "", "As lágrimas diminuem enquanto viaja pela sala#Ao parar, eles explodem em lágrimas menores#As lágrimas podem ser disparadas em outras lágrimas, aumentando-as"},
