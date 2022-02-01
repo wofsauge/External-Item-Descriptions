@@ -855,6 +855,13 @@ end
 -- Adds Description object modifiers.
 -- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
 function EID:addDescriptionModifier(modifierName, condition, callback)
+	for i,v in ipairs(EID.DescModifiers) do
+		if v["name"] == modifierName then
+			v["condition"] = condition
+			v["callback"] = callback
+			return
+		end
+	end
 	table.insert(EID.DescModifiers, {
 		name = modifierName,
 		condition = condition,
@@ -866,7 +873,7 @@ end
 -- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
 function EID:removeDescriptionModifier(modifierName)
 	for i,v in ipairs(EID.DescModifiers) do
-		if v[name] == modifierName then
+		if v["name"] == modifierName then
 			table.remove(EID.DescModifiers,i)
 			return
 		end
