@@ -1239,7 +1239,7 @@ if EID.MCMLoaded or REPENTANCE then
 			
 			-- collection progress
 			EID.CollectedItems = savedEIDConfig["CollectedItems"] or {}
-			if EID.Config["SaveGameNumber"] > 0 then
+			if EID.SaveGame and EID.Config["SaveGameNumber"] > 0 then
 				for _, id in ipairs(EID.CollectedItems) do
 					EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[id] = nil
 				end
