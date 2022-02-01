@@ -911,8 +911,16 @@ local function attemptPathfind(entity)
 	return success
 end
 
-local hasShownAchievementWarning = false
+local achievementTrinket = Isaac.GetTrinketIdByName("EID Achievements Locked Check")
+-- hide helper trinket in Encyclopedia mod
+if Encyclopedia then
+	Encyclopedia.AddTrinket({
+		ID = achievementTrinket,
+		Hide = true,
+	})
+end
 
+local hasShownAchievementWarning = false
 local function renderAchievementInfo()
 	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 then
 		-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
@@ -1306,8 +1314,7 @@ if EID.MCMLoaded or REPENTANCE then
 		end
 		
 		-- Check and set if achievements are enabled
-		EID.achievementsEnabled = game:GetItemPool():RemoveTrinket(Isaac.GetTrinketIdByName("EID Achievements Locked Check"))
-		
+		EID.achievementsEnabled = game:GetItemPool():RemoveTrinket(achievementTrinket)
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStart)
 
