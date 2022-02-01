@@ -18,7 +18,7 @@ EID.player = nil
 EID.PositionModifiers = {}
 EID.DescModifiers = {}
 EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
-EID.Scale = EID.Config["Scale"]
+EID.Scale = EID.Config["Size"]
 EID.isDisplaying = false
 EID.isDisplayingPermanent = false
 EID.achievementsEnabled = false
@@ -390,13 +390,13 @@ local scaleSpeed = 0.01 -- scale size per frame
 local scaleToBigger = true
 local scaleHoldFrame = 0
 local function handleScaleKey()
-	local ScaleKey = EID.Config["ScaleKey"]
+	local scaleKey = EID.Config["SizeHotkey"]
 
 	-- press and hold ScaleKey
-	if Input.IsButtonPressed(ScaleKey, 0) then
+	if Input.IsButtonPressed(scaleKey, 0) then
 		if scaleHoldFrame > 60 then
 			EID.MCM_OptionChanged = true
-			local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalScale" or "Scale")
+			local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalModeSize" or "Size")
 			if scaleToBigger then
 				local newScale = EID.Scale + scaleSpeed
 
@@ -421,11 +421,11 @@ local function handleScaleKey()
 		end
 	end
 	-- press ScaleKey
-	if Input.IsButtonTriggered(ScaleKey, 0) then
+	if Input.IsButtonTriggered(scaleKey, 0) then
 		EID.MCM_OptionChanged = true
 		scaleHoldFrame = 0
 		local scale
-		local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalScale" or "Scale")
+		local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalModeSize" or "Size")
 
 		scale = EID.Scale
 
@@ -748,10 +748,10 @@ end
 
 function EID:ScaleValue(entity)
 	if entity.Variant == EffectVariant.DICE_FLOOR then
-		EID.Scale = EID.Config["Scale"]
+		EID.Scale = EID.Config["Size"]
 		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 	elseif EID.Config["DisplayMode"] == "local" then
-		EID.Scale = EID.Config["LocalScale"]
+		EID.Scale = EID.Config["LocalModeSize"]
 	end
 end
 
@@ -772,7 +772,7 @@ function EID:PositionLocalMode(entity)
 		end
 	else
 		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
-		EID.Scale = EID.Config["Scale"]
+		EID.Scale = EID.Config["Size"]
 	end
 end
 
@@ -1056,7 +1056,7 @@ local function onRender(t)
 			local sacrificeDesc = EID:getDescriptionObj(-999, -1, curCounter)
 			sacrificeDesc.Name = sacrificeDesc.Name.." ("..curCounter.."/12)"
 			EID:alterTextPos(Vector(EID.Config["XPosition"], EID.Config["YPosition"]))
-			EID.Scale = EID.Config["Scale"]
+			EID.Scale = EID.Config["Size"]
 			EID:printDescription(sacrificeDesc)
 		end
 		return
@@ -1294,7 +1294,7 @@ if EID.MCMLoaded or REPENTANCE then
 				end
 				EID.isHidden = EID.Config["InitiallyHidden"]
 				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
-				EID.Scale = EID.Config["Scale"]
+				EID.Scale = EID.Config["Size"]
 				
 				EID:fixDefinedFont()
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")

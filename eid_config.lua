@@ -29,10 +29,10 @@ EID.UserConfig = {
 	["TextboxWidth"] = 130,
 	-- Change the size of the info boxes. Range: [0,...,1]
 	-- Default = 1
-	["Scale"] = 1,
+	["Size"] = 1,
 	-- Press or hold the key to change scale. Keyboard.KEY_F5 is recommended
 	-- Default = none
-	["ScaleKey"] = -1,
+	["SizeHotkey"] = -1,
 	-- Set the background transparency. Range: [0,...,1]
 	-- Default = 0.75
 	["Transparency"] = 0.75,
@@ -90,7 +90,7 @@ EID.UserConfig = {
 	["DisplayMode"] = "default",
 	-- Change the size of the info boxes for local mode
 	-- Default = 0.5
-	["LocalScale"] = 0.5,
+	["LocalModeSize"] = 0.5,
 	-- Changes the position of the text in local mode, relative to the described object to be centered. Set to false to make it left-aligned
 	-- Default = true
 	["LocalModeCentered"] = true,
@@ -365,15 +365,15 @@ EID.DefaultConfig = {
 	["TranslateItemName"] = 2,
 	["FontType"] = "default",
 	["TextboxWidth"] = 130,
-	["Scale"] = 1,
-	["ScaleKey"] = -1,
+	["Size"] = 1,
+	["SizeHotkey"] = -1,
 	["Transparency"] = 0.75,
 	["HUDOffset"] = 10,
 	["XPosition"] = 60,
 	["YPosition"] = 45,
 	["LineHeight"] = 11,
 	["DisplayMode"] = "default",
-	["LocalScale"] = 0.5,
+	["LocalModeSize"] = 0.5,
 	["LocalModeCentered"] = true,
 	["MaxDistance"] = 5,
 	["Indicator"] = "none",

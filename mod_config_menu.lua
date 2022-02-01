@@ -897,36 +897,36 @@ if MCMLoaded then
 			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				if EID.Config["DisplayMode"] == "local" then
-					return AnIndexOf(textScales, EID.Config["LocalScale"])
+					return AnIndexOf(textScales, EID.Config["LocalModeSize"])
 				else
-					return AnIndexOf(textScales, EID.Config["Scale"])
+					return AnIndexOf(textScales, EID.Config["Size"])
 				end
 			end,
 			Minimum = 1,
 			Maximum = 6,
 			Display = function()
 				if EID.Config["DisplayMode"] == "local" then
-					return "Text Size (Local mode): " .. EID.Config["LocalScale"]
+					return "Text Size (Local mode): " .. EID.Config["LocalModeSize"]
 				else
-					return "Text Size: " .. EID.Config["Scale"]
+					return "Text Size: " .. EID.Config["Size"]
 				end
 			end,
 			OnChange = function(currentNum)
 				EID.MCM_OptionChanged = true
 				if EID.Config["DisplayMode"] == "local" then
-					EID.Config["LocalScale"] = textScales[currentNum]
+					EID.Config["LocalModeSize"] = textScales[currentNum]
 				else
-					EID.Config["Scale"] = textScales[currentNum]
+					EID.Config["Size"] = textScales[currentNum]
 				end
 				EID.Scale = textScales[currentNum]
 			end,
-			Info = {"Change text size. CAN BE HARD TO READ IN SOME SETTINGS!"}
+			Info = {"Change text size","CAN BE HARD TO READ IN SOME SETTINGS!"}
 		}
 	)
 	-- SCALE Hotkey
 	EID:AddHotkeySetting("Visuals",
-	"ScaleKey", "Toggle Scale (Keyboard)",
-	"Press or hold this key to toggle the scale.", false)
+	"SizeHotkey", "Toggle Size (Keyboard)",
+	{"Press this key to change the text size.", "Hold this key to smoothly change the text size"}, false)
 
 	-- Local Mode Centered or not
 	MCM.AddSetting(
