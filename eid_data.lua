@@ -358,17 +358,18 @@ EID.InlineIcons = {
 	["Player40"] = {"Players", 40, 12, 12, -1, 1, EID.PlayerSprite},
 	
 	-- Status effects
-	["Charm"] = {"StatusEffects", 0, 11, 11, 6, 4, EID.StatusEffects},
-	["Burning"] = {"StatusEffects", 1, 11, 11, 6, 4, EID.StatusEffects}, 
-	["Crown"] = {"StatusEffects", 2, 11, 11, 6, 6, EID.StatusEffects},
-	["Fear"] = {"StatusEffects", 3, 11, 11, 6, 4, EID.StatusEffects},
-	["Poison"] = {"StatusEffects", 4, 11, 11, 6, 6, EID.StatusEffects}, 
-	["Magnetize"] = {"StatusEffects", 5, 11, 11, 6, 6, EID.StatusEffects}, 
-	["Slow"] = {"StatusEffects", 6, 11, 11, 6, 6, EID.StatusEffects},
-	["BrimstoneCurse"] = {"StatusEffects", 7, 11, 11, 6, 5, EID.StatusEffects}, 
-	["Bait"] = {"StatusEffects", 8, 11, 11, 6, 6, EID.StatusEffects},
-	["Weakness"] = {"StatusEffects", 9, 11, 11, 6, 6, EID.StatusEffects},
-	["BleedingOut"] = {"StatusEffects", 10, 11, 11, 6, 7, EID.StatusEffects},
+	["Charm"] = {"StatusEffects", 0, 11, 11, 6, 4},
+	["Burning"] = {"StatusEffects", 1, 11, 11, 6, 4},
+	["Crown"] = {"StatusEffects", 2, 11, 11, 6, 6},
+	["Fear"] = {"StatusEffects", 3, 11, 11, 6, 6},
+	["Poison"] = {"StatusEffects", 4, 11, 11, 6, 6},
+	["Slow"] = {"StatusEffects", 5, 12, 12, 6, 6},
+	["Magnetize"] = {"StatusEffects", 6, 11, 11, 6, 6},
+	["BrimstoneCurse"] = {"StatusEffects", 7, 12, 12, 6, 5},
+	["BleedingOut"] = {"StatusEffects", 8, 11, 11, 6, 7},
+	["Weakness"] = {"StatusEffects", 9, 11, 11, 6, 6},
+	["Bait"] = {"StatusEffects", 10, 11, 11, 6, 6},
+	["DeathMark"] = {"StatusEffects", 11, 13, 13, 6, 6},
 	
 }
 
