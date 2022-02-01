@@ -552,13 +552,15 @@ function EID:printDescription(desc)
 		local curName = desc.Name
 		if EID.Config["TranslateItemName"] ~= 2 then
 			local curLanguage = EID.Config["Language"]
-			EID.Config["Language"] = "en_us"
-			local englishName = EID:getObjectName(desc.ObjType, desc.ObjVariant, desc.ObjSubType)
-			EID.Config["Language"] = curLanguage
-			if EID.Config["TranslateItemName"] == 1 then
-				curName = englishName
-			elseif EID.Config["TranslateItemName"] == 3 and curName ~= englishName and not EID.isDisplayingPermanent then
-				curName = curName.." ("..englishName..")"
+			if curLanguage ~= "en_us" then
+				EID.Config["Language"] = "en_us"
+				local englishName = EID:getObjectName(desc.ObjType, desc.ObjVariant, desc.ObjSubType)
+				EID.Config["Language"] = curLanguage
+				if EID.Config["TranslateItemName"] == 1 then
+					curName = englishName
+				elseif EID.Config["TranslateItemName"] == 3 and curName ~= englishName and not EID.isDisplayingPermanent then
+					curName = curName.." ("..englishName..")"
+				end
 			end
 		end
 		-- Display Entity ID
