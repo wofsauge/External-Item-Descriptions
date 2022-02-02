@@ -666,7 +666,7 @@ function EID:renderIcon(spriteObj, posX, posY, callback, animName, animFrame)
 	end
 	
 	if EID.CachingDescription then
-		table.insert(EID.CachedIcons, {spriteObj, posX, posY, callback, animName or spriteObj:GetAnimation(), animFrame or spriteObj:GetFrame()})
+		table.insert(EID.CachedIcons, {spriteObj, posX, posY, callback, animName, animFrame})
 	end
 
 	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
