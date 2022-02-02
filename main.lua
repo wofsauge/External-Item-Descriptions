@@ -527,20 +527,21 @@ function EID:printDescription(desc)
 	if EID.Config["ShowItemType"] and (itemType == 3 or itemType == 4) then
 		local offsetY = 2
 		EID.IconSprite:Play(EID.ItemTypeAnm2Names[itemType])
-		EID:renderIcon(EID.IconSprite, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale)
+		EID:renderIcon(EID.IconSprite, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale, nil, EID.ItemTypeAnm2Names[itemType], 0)
 		if itemType == 3 then
 		 -- Display Charge
 			offsetX = offsetX + 1
 			local curItemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
+			local anim2 = "numbers"
+			local frame2 = curItemConfig.MaxCharges
 			if REPENTANCE and curItemConfig.ChargeType == ItemConfig.CHARGE_TIMED then
-				EID.InlineIconSprite2:SetFrame("pickups", 10) -- Timer Icon
+				anim2 = "pickups"; frame2 = 10 -- Timer Icon
 			elseif REPENTANCE and (curItemConfig.ChargeType == ItemConfig.CHARGE_SPECIAL or desc.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or desc.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or 
 			desc.ObjSubType == CollectibleType.COLLECTIBLE_CLEAR_RUNE or desc.ObjSubType == CollectibleType.COLLECTIBLE_D_INFINITY) then
-				EID.InlineIconSprite2:SetFrame("numbers", 13)
-			else
-				EID.InlineIconSprite2:SetFrame("numbers", curItemConfig.MaxCharges)
+				frame2 = 13 -- Question Mark Icon
 			end
-			EID:renderIcon(EID.InlineIconSprite2, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale)
+			EID.InlineIconSprite2:SetFrame(anim2, frame2)
+			EID:renderIcon(EID.InlineIconSprite2, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale, nil, anim2, frame2)
 		end
 		offsetX = offsetX + 8
 	end
@@ -681,7 +682,7 @@ end
 function EID:renderQuestionMark()
 	EID.IconSprite:Play("CurseOfBlind")
 	local pos = EID:getTextPosition()
-	EID:renderIcon(EID.IconSprite, pos.X + 5 * EID.Scale, pos.Y + 5 * EID.Scale)
+	EID:renderIcon(EID.IconSprite, pos.X + 5 * EID.Scale, pos.Y + 5 * EID.Scale, nil, "CurseOfBlind", 0)
 end
 
 function EID:renderIndicator(entity)
