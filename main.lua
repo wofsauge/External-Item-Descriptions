@@ -1233,6 +1233,7 @@ if EID.MCMLoaded or REPENTANCE then
 		["FlipItemPositions"] = true,
 		["AbsorbedItems"] = true,
 		["CollectedItems"] = true,
+		["AchievementsEnabled"] = true,
 	}
 	--------------------------------
 	--------Handle Savadata---------
@@ -1281,6 +1282,10 @@ if EID.MCMLoaded or REPENTANCE then
 				end
 			end
 			
+			if isSave then
+				EID.achievementsEnabled = savedEIDConfig["AchievementsEnabled"] or true
+			end
+			
 			-- Only copy Saved config entries that exist in the save
 			if savedEIDConfig.Version == EID.Config.Version then
 				local isDefaultConfig = true
@@ -1315,7 +1320,9 @@ if EID.MCMLoaded or REPENTANCE then
 		end
 		
 		-- Check and set if achievements are enabled
-		EID.achievementsEnabled = game:GetItemPool():RemoveTrinket(achievementTrinket)
+		if not isSave then
+			EID.achievementsEnabled = game:GetItemPool():RemoveTrinket(achievementTrinket)
+		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStart)
 
@@ -1339,6 +1346,7 @@ if EID.MCMLoaded or REPENTANCE then
 			EID.Config["FlipItemPositions"] = flipItemTable or {}
 		end
 		EID.Config["CollectedItems"] = EID.CollectedItems
+		EID.Config["AchievementsEnabled"] = EID.achievementsEnabled
 
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()
