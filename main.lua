@@ -1320,7 +1320,9 @@ if EID.MCMLoaded or REPENTANCE then
 		end
 		
 		-- Check and set if achievements are enabled
-		EID.achievementsEnabled = game:GetItemPool():RemoveTrinket(achievementTrinket) or isSave
+		if not isSave then
+			EID.achievementsEnabled = game:GetItemPool():RemoveTrinket(achievementTrinket)
+		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStart)
 
