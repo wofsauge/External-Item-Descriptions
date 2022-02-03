@@ -935,7 +935,7 @@ function EID:PreventHelperTrinkerPickup(player)
         player:AddTrinket(game:GetItemPool():GetTrinket())
     end
 end
-EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.PreventHelperTrinkerPickup)
+EID:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, EID.PreventHelperTrinkerPickup)
 
 local hasShownAchievementWarning = false
 local function renderAchievementInfo()
