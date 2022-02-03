@@ -929,6 +929,7 @@ function EID:PreventHelperTrinketSpawn(entity)
 end
 EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.PreventHelperTrinketSpawn, PickupVariant.PICKUP_TRINKET)
 
+-- check if you start with the helper trinket and replace it, mostly for eden
 function EID:PreventHelperTrinketPickup(player)
 	if player:HasTrinket(achievementTrinket, true) then
 		player:TryRemoveTrinket(achievementTrinket)
