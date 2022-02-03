@@ -921,6 +921,14 @@ if Encyclopedia then
 	})
 end
 
+-- if the helper trinket somehow does spawn, replace it with a random trinket from the pool
+function EID:PreventHelperTrinketSpawn(entity)
+	if entity.SubType == achievementTrinket then
+		entity:Morph(entity.Type, entity.Variant, game:GetItemPool():GetTrinket())
+	end
+end
+EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.PreventHelperTrinketSpawn, PickupVariant.PICKUP_TRINKET)
+
 local hasShownAchievementWarning = false
 local function renderAchievementInfo()
 	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 then
