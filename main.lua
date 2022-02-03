@@ -927,7 +927,7 @@ function EID:PreventHelperTrinkerGet(selectedTrinket)
 		return game:GetItemPool():GetTrinket()
 	end
 end
-EID:AddCallback(ModCallbacks.MC_TRINKET_GET, EID.PreventHelperTrinkerGet)
+EID:AddCallback(ModCallbacks.MC_GET_TRINKET, EID.PreventHelperTrinkerGet)
 
 local hasShownAchievementWarning = false
 local function renderAchievementInfo()
