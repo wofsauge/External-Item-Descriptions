@@ -190,6 +190,18 @@ if REPENTANCE then
 				if i == 1 then firstID = refID end
 				EID:appendToDescription(descObj, "{{Collectible"..refID.."}}")
 				if EID.itemUnlockStates[refID] == false then EID:appendToDescription(descObj, "?") end
+				if EID.Config["SpindownDiceDisplayID"] then
+					EID:appendToDescription(descObj, "/".. refID)
+				end
+				if EID.Config["SpindownDiceDisplayName"] then
+					EID:appendToDescription(descObj, "/".. EID:getObjectName(5, 100, refID))
+					if refID == 668 then break end
+					if i ~= EID.Config["SpindownDiceResults"] then
+						EID:appendToDescription(descObj, "#{{Blank}}")
+					end
+				end
+
+				if refID == 668 then break end -- Dad's Note is not affected by Spindown Dice
 				if i ~= EID.Config["SpindownDiceResults"] then
 					EID:appendToDescription(descObj, " ->")
 				end
@@ -427,7 +439,7 @@ if REPENTANCE then
 			if collectiblesOwned[706] or (EID.absorbedItems[706] and collectiblesOwned[477]) then table.insert(callbacks, AbyssCallback) end
 			
 			if collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
-			if collectiblesOwned[723] or (EID.absorbedItems[723] and collectiblesOwned[477]) then table.insert(callbacks, SpindownDiceCallback) end
+			if (collectiblesOwned[723] or (EID.absorbedItems[723] and collectiblesOwned[477])) and descObj.ObjSubType ~= 668 then table.insert(callbacks, SpindownDiceCallback) end
 			
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then

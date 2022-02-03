@@ -323,6 +323,14 @@ EID.UserConfig = {
 	-- REPENTANCE ONLY!!!
 	-- Default = 3
 	["SpindownDiceResults"] = 3,
+	-- Display IDs for Spindown Dice results
+	-- REPENTANCE ONLY!!!
+	-- Default = false
+	["SpindownDiceDisplayID"] = false,
+	-- Display names for Spindown Dice results
+	-- REPENTANCE ONLY!!!
+	-- Default = false
+	["SpindownDiceDisplayName"] = false,
 	-- Spindown Dice preview can skip over locked items, however the method for determining an item's locked status is not perfect
 	-- REPENTANCE ONLY!!!
 	-- Default = false
@@ -429,6 +437,8 @@ EID.DefaultConfig = {
 	["CraftingResultKey"] = Keyboard.KEY_F4,
 	["CraftingResultButton"] = -1,
 	["SpindownDiceResults"] = 3,
+	["SpindownDiceDisplayID"] = false,
+	["SpindownDiceDisplayName"] = false,
 	["SpindownDiceSkipLocked"] = false,
 	["SaveGameNumber"] = 0,
 	["ItemCollectionColor"] = "ColorFade",
