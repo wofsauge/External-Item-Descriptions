@@ -929,13 +929,13 @@ function EID:PreventHelperTrinketSpawn(entity)
 end
 EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.PreventHelperTrinketSpawn, PickupVariant.PICKUP_TRINKET)
 
-function EID:PreventHelperTrinkerPickup(player)
-    if player:HasTrinket(achievementTrinket) then
-        player:TryRemoveTrinket(achievementTrinket)
-        player:AddTrinket(game:GetItemPool():GetTrinket())
-    end
+function EID:PreventHelperTrinketPickup(player)
+	if player:HasTrinket(achievementTrinket) then
+		player:TryRemoveTrinket(achievementTrinket)
+		player:AddTrinket(game:GetItemPool():GetTrinket())
+	end
 end
-EID:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, EID.PreventHelperTrinkerPickup)
+EID:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, EID.PreventHelperTrinketPickup)
 
 local hasShownAchievementWarning = false
 local function renderAchievementInfo()
