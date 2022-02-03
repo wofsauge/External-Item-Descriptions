@@ -930,7 +930,7 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.PreventHelperTrinketSpawn, PickupVariant.PICKUP_TRINKET)
 
 function EID:PreventHelperTrinketPickup(player)
-	if player:HasTrinket(achievementTrinket) then
+	if player:HasTrinket(achievementTrinket, true) then
 		player:TryRemoveTrinket(achievementTrinket)
 		player:AddTrinket(game:GetItemPool():GetTrinket())
 	end
