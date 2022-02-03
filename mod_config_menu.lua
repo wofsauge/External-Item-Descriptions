@@ -624,6 +624,12 @@ if MCMLoaded then
 			}
 		)
 		-- 
+		-- Display IDs for Spindown Dice results
+		EID:AddBooleanSetting("Display", "SpindownDiceDisplayID", "Display IDs",
+		{repOnly = true, infoText = "Display IDs for Spindown Dice results"})
+		-- Display names for Spindown Dice results
+		EID:AddBooleanSetting("Display", "SpindownDiceDisplayName", "Display names",
+		{repOnly = true, infoText = "Display names for Spindown Dice results"})
 		
 		-- Spindown Dice skip locked items
 		EID:AddBooleanSetting("Display", "SpindownDiceSkipLocked", "Skip Locked Items",
