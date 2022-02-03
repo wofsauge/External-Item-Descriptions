@@ -181,7 +181,7 @@ if REPENTANCE then
 		local firstID = 0
 		for i = 1,EID.Config["SpindownDiceResults"] do
 			local spinnedID = EID:getSpindownResult(refID)
-			if hasCarBattery then
+			if hasCarBattery and spinnedID ~= 668 then
 				refID = spinnedID
 				spinnedID = EID:getSpindownResult(refID)
 			end
