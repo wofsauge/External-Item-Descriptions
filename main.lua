@@ -921,13 +921,21 @@ if Encyclopedia then
 	})
 end
 
--- if the helper trinket somehow does get selected, replace it with a random trinket from the pool
-function EID:PreventHelperTrinkerGet(selectedTrinket)
-	if selectedTrinket == achievementTrinket then
-		return game:GetItemPool():GetTrinket()
+-- if the helper trinket somehow does spawn, replace it with a random trinket from the pool
+function EID:PreventHelperTrinketSpawn(entity)
+	if entity.SubType == achievementTrinket then
+		entity:Morph(entity.Type, entity.Variant, game:GetItemPool():GetTrinket())
 	end
 end
-EID:AddCallback(ModCallbacks.MC_GET_TRINKET, EID.PreventHelperTrinkerGet)
+EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.PreventHelperTrinketSpawn, PickupVariant.PICKUP_TRINKET)
+
+function EID:PreventHelperTrinkerPickup(player)
+    if player:HasTrinket(achievementTrinket) then
+        player:TryRemoveTrinket(achievementTrinket)
+        player:AddTrinket(game:GetItemPool():GetTrinket())
+    end
+end
+EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.PreventHelperTrinkerPickup)
 
 local hasShownAchievementWarning = false
 local function renderAchievementInfo()
