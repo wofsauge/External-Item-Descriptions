@@ -21,7 +21,6 @@ EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 EID.Scale = EID.Config["Size"]
 EID.isDisplaying = false
 EID.isDisplayingPermanent = false
-EID.achievementsEnabled = false
 EID.permanentDisplayTextObj = nil
 EID.lastDescriptionEntity = nil
 EID.lineHeight = 11
@@ -894,16 +893,9 @@ local function attemptPathfind(entity)
 	-- Don't reattempt pathfinding more than 3 times a second, unless this is a new entity
 	if pathsChecked[entity.InitSeed] == false and EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
 	
-	-- Spawn a custom NPC entity to attempt a pathfind to the target pickup, then remove it afterwards
-	pathCheckerEntity = game:Spawn(17, 3169, EID.player.Position, nullVector, EID.player, 0, 4354)
-	pathCheckerEntity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
-	-- Not sure how much of this flagging is needed now that the entity is immediately removed afterwards
-	pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_SPRITE_UPDATE | EntityFlag.FLAG_HIDE_HP_BAR | EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
-	if REPENTANCE then pathCheckerEntity:AddEntityFlags(EntityFlag.FLAG_NO_QUERY) end -- can it even be queried in this brief time?
-	pathCheckerEntity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
-	pathCheckerEntity.Visible = false -- it's invisible anyway?
-	pathCheckerEntity.Position = EID.player.Position -- not needed, it spawned at our position?
-	
+	-- Spawn a Shopkeeper entity to attempt a pathfind to the target pickup, then remove it afterwards
+	pathCheckerEntity = game:Spawn(17, 0, EID.player.Position, nullVector, EID.player, 0, 4354)
+
 	local success = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
 	pathsChecked[entity.InitSeed] = success
 	pathCheckerEntity:Remove()
@@ -911,23 +903,6 @@ local function attemptPathfind(entity)
 	lastPathfindFrame = EID.GameUpdateCount
 	return success
 end
-
-local achievementTrinket = Isaac.GetTrinketIdByName("EID Achievements Locked Check")
--- hide helper trinket in Encyclopedia mod
-if Encyclopedia then
-	Encyclopedia.AddTrinket({
-		ID = achievementTrinket,
-		Hide = true,
-	})
-end
-
--- if the helper trinket somehow does spawn, replace it with a random trinket from the pool
-function EID:PreventHelperTrinketSpawn(entity)
-	if entity.SubType == achievementTrinket then
-		entity:Morph(entity.Type, entity.Variant, game:GetItemPool():GetTrinket())
-	end
-end
-EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.PreventHelperTrinketSpawn, PickupVariant.PICKUP_TRINKET)
 
 local hasShownAchievementWarning = false
 local function renderAchievementInfo()
@@ -948,12 +923,22 @@ local function renderAchievementInfo()
 			EID:displayPermanentText(demoDescObj)
 			hasShownAchievementWarning = true
 		-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
-		elseif not EID.achievementsEnabled then
-			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-			demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
-			EID:displayPermanentText(demoDescObj)
-			hasShownAchievementWarning = true
+		else
+			local characterID = EID.player:GetPlayerType()
+			--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
+			if characterID < 21 and game.Challenge == 0 and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
+				local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
+				if not hasBookOfRevelationsUnlocked then
+					local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
+					if not hasCubeOfMeatUnlocked then
+						local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+						demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
+						demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+						EID:displayPermanentText(demoDescObj)
+						hasShownAchievementWarning = true
+					end
+				end
+			end
 		end
 	elseif hasShownAchievementWarning then
 		EID:hidePermanentText()
@@ -1241,7 +1226,6 @@ if EID.MCMLoaded or REPENTANCE then
 		["FlipItemPositions"] = true,
 		["AbsorbedItems"] = true,
 		["CollectedItems"] = true,
-		["AchievementsEnabled"] = true,
 	}
 	--------------------------------
 	--------Handle Savadata---------
@@ -1290,10 +1274,6 @@ if EID.MCMLoaded or REPENTANCE then
 				end
 			end
 			
-			if isSave then
-				EID.achievementsEnabled = savedEIDConfig["AchievementsEnabled"] or true
-			end
-			
 			-- Only copy Saved config entries that exist in the save
 			if savedEIDConfig.Version == EID.Config.Version then
 				local isDefaultConfig = true
@@ -1326,11 +1306,6 @@ if EID.MCMLoaded or REPENTANCE then
 				end
 			end
 		end
-		
-		-- Check and set if achievements are enabled
-		if not isSave then
-			EID.achievementsEnabled = game:GetItemPool():RemoveTrinket(achievementTrinket)
-		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStart)
 
@@ -1354,7 +1329,6 @@ if EID.MCMLoaded or REPENTANCE then
 			EID.Config["FlipItemPositions"] = flipItemTable or {}
 		end
 		EID.Config["CollectedItems"] = EID.CollectedItems
-		EID.Config["AchievementsEnabled"] = EID.achievementsEnabled
 
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()
