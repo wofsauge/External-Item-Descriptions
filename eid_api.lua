@@ -199,7 +199,8 @@ function EID:addColor(shortcut, kColor, callback)
 end
 
 -- Overrides all potentially displayed texts and permanently displays the given texts. Can be turned of again using the "EID:hidePermanentText()" function
-function EID:displayPermanentText(descriptionObject)
+function EID:displayPermanentText(descriptionObject, permName1, permName2)
+	descriptionObject.PermanentTextEnglish = EID:getDescriptionEntryEnglish(permName1, permName2)
 	EID.permanentDisplayTextObj = descriptionObject
 	EID.isDisplayingPermanent = true
 end
@@ -365,6 +366,13 @@ function EID:getDescriptionEntry(objTable, objID, noFallback)
 		local translatedTable = EID.descriptions[EID.Config["Language"]][objTable]
 		if noFallback then return translatedTable and translatedTable[objID]
 		else return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]) end
+	end
+end
+function EID:getDescriptionEntryEnglish(objTable, objID)
+	if not objID then
+		return EID.descriptions["en_us"][objTable]
+	else
+		return EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]
 	end
 end
 
@@ -915,7 +923,7 @@ function EID:CheckGlitchedItemConfig(id)
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
 	local item = EID.itemConfig:GetCollectible(id)
 	if not item then return "" end
-	local attributes = ""
+	local attributes = "#"
 	for _,v in ipairs(itemConfigItemAttributes) do
 		local val = item[v]
 		if val ~= 0 then
