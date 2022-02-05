@@ -174,6 +174,7 @@ local componentShifts = {
 local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
 [5]="{{SecretRoom}}",[7]="{{PoopRoomIcon}}",[8]="{{GoldenChestRoomIcon}}",[9]="{{RedChestRoomIcon}}",[12]="{{CursedRoom}}",[26]="{{Planetarium}}" }
 
+-- local copies of our XML data in case it's slightly faster
 local CraftingMaxItemID = EID.XMLMaxItemID
 local CraftingFixedRecipes = EID.XMLRecipes
 local CraftingItemPools = EID.XMLItemPools
@@ -208,7 +209,7 @@ local function sortAllItems()
 		end
 	end)
 end
--- delay the initial sort until needed, as it's a tad slow
+-- delay the initial sort until needed, in case of modded items
 local sortNeeded = true
 local recheckPickups = false
 
@@ -350,28 +351,27 @@ function EID:simulateBagOfCrafting(componentsTable)
 end
 
 -- The main function that takes 8 ingredients and tells you what collectible you will get in return
+-- Only pass in a table with 8 valid ingredients!!!
 function EID:calculateBagOfCrafting(componentsTable)
+	-- ingredients must be sorted by ID for the RNG shifting to be accurate, so make a local copy
 	local components = {table.unpack(componentsTable)}
-	if components == nil or #components ~= 8 then
-		return 0
-	end
-
-	customRNGSeed = lastSeedUsed
 	table.sort(components)
 	local componentsAsString = table.concat(components, ",")
 
-	--Check the fixed recipes. Currently, the fixed recipes ignore item unlock status
+	-- Check the fixed recipes. Currently, the fixed recipes ignore item unlock status
 	local cacheResult = CraftingFixedRecipes[componentsAsString]
 	if cacheResult ~= nil then
 		return cacheResult, cacheResult
 	end
-	
+	-- Check the recipes already calculated for this seed
 	cacheResult = calculatedRecipes[componentsAsString]
 	local lockedResult = lockedRecipes[componentsAsString]
-
 	if cacheResult ~= nil then
 		return cacheResult, lockedResult
 	end
+	
+	-- Count up the ingredients, and shift the RNG based on the components in the bag
+	customRNGSeed = lastSeedUsed
 	local compTotalWeight = 0
 	local compCounts = {}
 	for i = 1, #componentShifts do
@@ -384,6 +384,7 @@ function EID:calculateBagOfCrafting(componentsTable)
 		RNGNext()
 	end
 	customRNGShift = componentShifts[7]
+	
 	local poolWeights = {
 		{idx = 0, weight = 1},
 		{idx = 1, weight = 2},
@@ -401,11 +402,8 @@ function EID:calculateBagOfCrafting(componentsTable)
 	end
 
 	local totalWeight = 0
-
 	local itemWeights = {}
-
-	local maxItemID = CraftingMaxItemID
-	for i = 1, maxItemID do
+	for i = 1, CraftingMaxItemID do
 		itemWeights[i] = 0
 	end
 
@@ -414,6 +412,7 @@ function EID:calculateBagOfCrafting(componentsTable)
 			local qualityMin = 0
 			local qualityMax = 1
 			local n = compTotalWeight
+			-- Devil, Angel, and Secret Room Pools have a 5 point penalty
 			if (poolWeight.idx >= 3) and (poolWeight.idx <= 5) then
 				n = n - 5
 			end
@@ -456,8 +455,8 @@ function EID:calculateBagOfCrafting(componentsTable)
 	--That 2nd pick could also be achievement locked but we're ignoring that...
 	local firstOption = nil
 	while true do
-		local t = nextFloat()
-		local target = t * totalWeight
+		local t = nextFloat() -- number between 0 and 1
+		local target = t * totalWeight -- number between 0 and total weight of possible results
 		for k,v in ipairs(itemWeights) do
 			target = target - v
 			if target < 0 then
@@ -530,11 +529,11 @@ local moddedCrafting = false
 -- Check for modded items past the known max item ID on game start (can also support game updates)
 -- Only works if the new items are at Weight 1.0 in their item pools, but better than nothing
 local function GameStartCrafting()
+	local timer = Isaac.GetTime()
 	if not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) and EID.itemConfig:GetCollectible(EID.XMLMaxItemID+1) ~= nil then
-		-- Items past max ID detected; copy our XML tables so we can add to them
-		CraftingMaxItemID = EID.XMLMaxItemID
-		CraftingItemPools = deepcopy(EID.XMLItemPools)
-		CraftingItemQualities = deepcopy(EID.XMLItemQualities)
+		dofile("eid_xmldata")
+		-- Items past max ID detected
+		CraftingMaxItemID = EID.XMLMaxItemID -- XMLMaxItemID is never modified
 		-- Add new item qualities
 		local coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
 		while coll ~= nil do
@@ -559,12 +558,12 @@ local function GameStartCrafting()
 		moddedCrafting = true
 		sortNeeded = true
 	elseif moddedCrafting then
-		CraftingMaxItemID = EID.XMLMaxItemID
-		CraftingItemPools = EID.XMLItemPools
-		CraftingItemQualities = EID.XMLItemQualities
+		-- the modded items were disabled
+		dofile("eid_xmldata")
 		moddedCrafting = false
 		sortNeeded = true
 	end
+	print(Isaac.GetTime() - timer)
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, GameStartCrafting)
 
@@ -768,7 +767,7 @@ end
 local function getFloorItemsString(showPreviews, roomItems)
 	local floorString = ""
 	if #EID.BagItems >0 then
-		if showPreviews and #EID.BagItems >= 8 then
+		if showPreviews and #EID.BagItems == 8 then
 			local recipe = EID:calculateBagOfCrafting(EID.BagItems)
 			floorString = floorString .. "{{Collectible"..recipe.."}} "
 		end
@@ -916,7 +915,7 @@ function EID:handleBagOfCraftingRendering()
 	end
 	
 	-- Determine if we should display anything at all
-	if EID.isHidden or craftingIsHidden or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
+	if ((EID.isHidden or craftingIsHidden) and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting") or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
 		return
 	elseif EID.Config["BagOfCraftingHideInBattle"] then
 		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
@@ -934,7 +933,7 @@ function EID:handleBagOfCraftingRendering()
 	end
 	
 	-- Display the result of the 8 items in our bag if applicable
-	if (showCraftingResult or EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") and #EID.BagItems >= 8 then
+	if (showCraftingResult or EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") and #EID.BagItems == 8 then
 		local craftingResult, backupResult = EID:calculateBagOfCrafting(EID.BagItems)
 		if (backupResult ~= craftingResult) then EID.TabPreviewID = backupResult end
 		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
