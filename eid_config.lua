@@ -75,10 +75,10 @@ EID.UserConfig = {
 	-- Toggle obstruction based hiding, when the player has flight
 	-- Default = true
 	["DisableObstructionOnFlight"] = true,
-	-- If set to true, the mod will no longer display a warning if the save game doesn't have achievements unlocked
-	-- This also disables warnings for using an outdated game version and for having potentially modded Bag of Crafting recipes
+	-- If set to true, the mod will no longer display critical warnings during the start of a new game
+	-- Current warnings are: Achievements are locked, outdated game version, and potentially having inaccurate modded Bag of Crafting recipes
 	-- Default = false
-	["DisableAchievementCheck"] = false,
+	["DisableStartOfRunWarnings"] = false,
 
 	---------- Display Modes -----------
 
@@ -390,7 +390,7 @@ EID.DefaultConfig = {
 	["InitiallyHidden"] = false,
 	["HideInBattle"] = false,
 	["DisableObstructionOnFlight"] = true,
-	["DisableAchievementCheck"] = false,
+	["DisableStartOfRunWarnings"] = false,
 	["DisableOnCurse"] = true,
 	["DisableOnAltPath"] = true,
 	["DisableOnAprilFoolsChallenge"] = true,
