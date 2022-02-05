@@ -35,7 +35,7 @@ local function renderDummyDesc(reload)
 	demoDescObj.Name = EID:getDescriptionEntry("MCM","DemoObjectName")
 	demoDescObj.Transformation = EID:getDescriptionEntry("MCM","DemoObjectTransformation")
 	demoDescObj.Description = EID:getDescriptionEntry("MCM","DemoObjectText")
-	EID:displayPermanentText(demoDescObj)
+	EID:displayPermanentText(demoDescObj, "MCM", "DemoObjectName")
 end
 
 -- get list of all defined fonts per language file
@@ -143,6 +143,32 @@ function EID:AddBooleanSetting(category, optionName, displayText, params)
 	)
 end
 
+function EID:AddNumberSetting(category, optionName, displayText, minimum, maximum, params)
+	if type(params) ~= "table" then params = {} end
+	if params.repOnly and not REPENTANCE then return end
+	MCM.AddSetting(
+		"EID", category,
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = params.currentSettingFunc or function()
+				return (params.indexOf and AnIndexOf(params.indexOf, EID.Config[optionName])) or EID.Config[optionName]
+			end,
+			Minimum = minimum,
+			Maximum = maximum,
+			ModifyBy = params.modifyBy or 1,
+			Display = params.displayFunc or function()
+				if params.displayingTab then EID.MCMCompat_isDisplayingEIDTab = params.displayingTab end
+				return displayText .. ": " .. ((params.displayTable and params.displayTable[EID.Config[optionName]]) or EID.Config[optionName])
+			end,
+			OnChange = params.onChangeFunc or function(currentNum)
+				EID.Config[optionName] = (params.indexOf and params.indexOf[currentNum]) or currentNum
+				EID.MCM_OptionChanged = true
+			end,
+			Info = params.infoText or {}
+		}
+	)
+end
+
 function EID:AddHotkeySetting(category, optionName, displayText, infoText, isController)
 	if (type(infoText) == "string") then infoText = {infoText} end
 	local optionType = ModConfigMenu.OptionType.KEYBIND_KEYBOARD
@@ -211,8 +237,15 @@ if MCMLoaded then
 	MCM.AddSpace("EID", "Info")
 	MCM.AddText("EID", "Info", function() return EID.isHidden and"~~~~~~~~~~~~~~~~~~~~~~~~~~~" or "" end)
 	MCM.AddText("EID", "Info", function() return EID.isHidden and"~~~~~ CURRENTLY HIDDEN! ~~~~~" or "" end)
-	MCM.AddText("EID", "Info", function() return EID.isHidden and"~~~~~~~~ F2 to show ~~~~~~~~~" or "" end)
-
+	MCM.AddText("EID", "Info", function()
+		if EID.Config["HideKey"] ~= -1 or EID.Config["HideButton"] ~= -1 then
+			local hotkeyString = InputHelper.KeyboardToString[EID.Config["HideKey"]] or InputHelper.ControllerToString[EID.Config["HideButton"]]
+			return EID.isHidden and ("~~~~~~~ " .. hotkeyString .." to show ~~~~~~~~") or ""
+		else
+			return EID.isHidden and"~~ bind a key/button in the General tab to show ~~" or ""
+		end
+	end)
+	
 	---------------------------------------------------------------------------
 	---------------------------------General-----------------------------------
 	-- Language
@@ -245,306 +278,41 @@ if MCMLoaded then
 	)
 	-- Item Name Language
 	local translateStates = {"English", "Current Language", "Current + English"}
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return EID.Config["TranslateItemName"]
-			end,
-			Minimum = 1,
-			Maximum = 3,
-			Display = function()
-				return "Name Language: " .. translateStates[EID.Config["TranslateItemName"]]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["TranslateItemName"] = currentNum
-			end,
-			Info = {"If translated names are available,","this changes how item names are displayed."}
-		}
-	)
+	EID:AddNumberSetting("General", "TranslateItemName", "Name Language", 1, 3, {displayTable = translateStates,
+	infoText = {"If translated names are available,","this changes how item names are displayed."}})
 	
-	-- Hide Key
-	EID:AddHotkeySetting("General",
-		"HideKey", "Toggle (Keyboard)",
+	-- Hide Keys
+	EID:AddHotkeySetting("General", "HideKey", "Toggle (Keyboard)",
 		"Press this key to toggle the description display", false)
-	EID:AddHotkeySetting("General",
-		"HideButton", "Toggle (Controller)",
+	EID:AddHotkeySetting("General", "HideButton", "Toggle (Controller)",
 		"Press this button to toggle the description display (Left Stick or Right Stick recommended; most other buttons will not work)", true)
 	
 	MCM.AddSpace("EID", "General")
 	
-	-- Position X
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return EID.Config["XPosition"]
-			end,
-			Minimum = 0,
-			Maximum = 500,
-			ModifyBy = 5,
-			Display = function()
-				return "Position X: " .. EID.Config["XPosition"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["XPosition"] = currentNum
-				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
-			end,
-			Info = {"Default = 60"}
-		}
-	)
-	-- Position Y
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return EID.Config["YPosition"]
-			end,
-			Minimum = 0,
-			Maximum = 500,
-			ModifyBy = 5,
-			Display = function()
-				return "Position Y: " .. EID.Config["YPosition"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["YPosition"] = currentNum
-				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
-			end,
-			Info = {"Default = 45"}
-		}
-	)
-	-- Line Height
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return EID.Config["LineHeight"]
-			end,
-			Minimum = 1,
-			Maximum = 100,
-			Display = function()
-				return "Line Height: " .. EID.Config["LineHeight"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["LineHeight"] = currentNum
-				EID.MCM_OptionChanged = true
-			end,
-			Info = {"Default = 11","Line height will automatically change when changing a font/language"}
-		}
-	)
-	-- Textbox Width
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return EID.Config["TextboxWidth"]
-			end,
-			Minimum = 1,
-			Maximum = 500,
-			ModifyBy = 5,
-			Display = function()
-				return "Textbox Width: " .. EID.Config["TextboxWidth"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["TextboxWidth"] = currentNum
-				EID.MCM_OptionChanged = true
-			end,
-			Info = {"Default = 130, varies per language","Width of the EID textbox, in pixels"}
-		}
-	)
-	
+	EID:AddNumberSetting("General", "XPosition", "Position X", 0, 500, {modifyBy = 5, infoText = "Default = 60"})
+	EID:AddNumberSetting("General", "YPosition", "Position Y", 0, 500, {modifyBy = 5, infoText = "Default = 45"})
+	EID:AddNumberSetting("General", "LineHeight", "Line Height", 1, 30, {infoText = "Default = 11 (varies per language)"})
+	EID:AddNumberSetting("General", "TextboxWidth", "Textbox Width", 1, 500, {modifyBy = 5, infoText = "Default = 130 (varies per language)"})
 	
 	MCM.AddSpace("EID", "General")
 	
-	-- Initial hiding
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["InitiallyHidden"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["InitiallyHidden"] then
-					onOff = "True"
-				end
-				return 'Is initially Hidden: ' .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["InitiallyHidden"] = currentBool
-			end
-		}
-	)
+	EID:AddBooleanSetting("General", "InitiallyHidden", "Is Initially Hidden")
+	EID:AddBooleanSetting("General", "DisableStartOfRunWarnings", "Start of Run Warnings", {offText = "Enabled", onText = "Disabled",
+		repOnly = true, infoText = "Toggle the achievement, outdated game version, and modded crafting recipes warnings"})
 	
-	if REPENTANCE then
-		-- disable the warnings that display at the start of new runs
-		MCM.AddSetting(
-			"EID",
-			"General",
-			{
-				Type = ModConfigMenu.OptionType.BOOLEAN,
-				CurrentSetting = function()
-					return EID.Config["DisableAchievementCheck"]
-				end,
-				Display = function()
-					local onOff = "Enabled"
-					if EID.Config["DisableAchievementCheck"] then
-						onOff = "Disabled"
-					end
-					return "Start of Run Warnings: " .. onOff
-				end,
-				OnChange = function(currentBool)
-					EID.Config["DisableAchievementCheck"] = currentBool
-				end,
-				Info = {"Toggle the achievement, outdated game version, and modded crafting recipes warnings"}
-			}
-		)
-	end
+	EID:AddBooleanSetting("General", "DisableOnCurse", 'Show on "Curse of the Blind"', {offText = "True", onText = "False"})
+	EID:AddBooleanSetting("General", "DisableOnAprilFoolsChallenge", "Show on April Fools Challenge", {offText = "True", onText = "False"})
+	EID:AddBooleanSetting("General", "DisableOnAltPath", "Show Hidden Alt-Path Item", {offText = "True", onText = "False",
+		repOnly = true, infoText = "Show the description for the blind item in Downpour/Mines/etc."})
 	
-	-- Disable on Curse
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisableOnCurse"]
-			end,
-			Display = function()
-				local onOff = "True"
-				if EID.Config["DisableOnCurse"] then
-					onOff = "False"
-				end
-				return 'Show on "Curse of Blind": ' .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisableOnCurse"] = currentBool
-			end
-		}
-	)
-	-- Disable April Fools
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisableOnAprilFoolsChallenge"]
-			end,
-			Display = function()
-				local onOff = "True"
-				if EID.Config["DisableOnAprilFoolsChallenge"] then
-					onOff = "False"
-				end
-				return 'Show on April Fools Challenge: ' .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisableOnAprilFoolsChallenge"] = currentBool
-			end
-		}
-	)
-	
-	if REPENTANCE then
-		-- Disable Alt Item option
-		MCM.AddSetting(
-			"EID",
-			"General",
-			{
-				Type = ModConfigMenu.OptionType.BOOLEAN,
-				CurrentSetting = function()
-					return EID.Config["DisableOnAltPath"]
-				end,
-				Display = function()
-					local onOff = "True"
-					if EID.Config["DisableOnAltPath"] then
-						onOff = "False"
-					end
-					return 'Show hidden alt-Path Item: ' .. onOff
-				end,
-				OnChange = function(currentBool)
-					EID.Config["DisableOnAltPath"] = currentBool
-				end
-			}
-		)
-	end
-	
-	--------ShowUnidentifiedPillDescriptions---------
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["ShowUnidentifiedPillDescriptions"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["ShowUnidentifiedPillDescriptions"] then
-					onOff = "True"
-				end
-				return "Show Unidentified Pill Effects: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["ShowUnidentifiedPillDescriptions"] = currentBool
-			end
-		}
-	)
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["HideInBattle"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["HideInBattle"] then
-					onOff = "True"
-				end
-				return "Hide in Battle: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["HideInBattle"] = currentBool
-			end,
-			Info = {"Hides the descriptions when in a fight"}
-		}
-	)
+	EID:AddBooleanSetting("General", "ShowUnidentifiedPillDescriptions", "Show Unidentified Pill Effects")
+	EID:AddBooleanSetting("General", "HideInBattle", "Hide in Battle", {infoText = "Hides the descriptions when in a fight"})
 
 	MCM.AddSpace("EID", "General")
 	--indicator
 	local indicators = {"arrow", "blink", "border", "highlight", "none"}
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return AnIndexOf(indicators, EID.Config["Indicator"])
-			end,
-			Minimum = 1,
-			Maximum = 5,
-			Display = function()
-				return "Indicator: " .. EID.Config["Indicator"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["Indicator"] = indicators[currentNum]
-			end,
-			Info = {"Highlights the currently described item"}
-		}
-	)
+	EID:AddNumberSetting("General", "Indicator", "Indicator", 1, 5, {indexOf = indicators,
+		infoText = {"Change how the currently described item is marked"}})
 	
 	MCM.AddSpace("EID", "General")
 
@@ -894,45 +662,23 @@ if MCMLoaded then
 		}
 	)
 
-	-- SCALE
-	local textScales = {0.5, 0.75, 1, 1.25, 1.5, 2}
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				if EID.Config["DisplayMode"] == "local" then
-					return AnIndexOf(textScales, EID.Config["LocalModeSize"])
-				else
-					return AnIndexOf(textScales, EID.Config["Size"])
-				end
-			end,
-			Minimum = 1,
-			Maximum = 6,
-			Display = function()
-				if EID.Config["DisplayMode"] == "local" then
-					return "Text Size (Local mode): " .. EID.Config["LocalModeSize"]
-				else
-					return "Text Size: " .. EID.Config["Size"]
-				end
-			end,
-			OnChange = function(currentNum)
-				EID.MCM_OptionChanged = true
-				if EID.Config["DisplayMode"] == "local" then
-					EID.Config["LocalModeSize"] = textScales[currentNum]
-				else
-					EID.Config["Size"] = textScales[currentNum]
-				end
-				EID.Scale = textScales[currentNum]
-			end,
-			Info = {"Change text size","CAN BE HARD TO READ IN SOME SETTINGS!"}
-		}
-	)
+	-- SCALE		
+	EID:AddNumberSetting("Visuals", "Size", "Text Size", 0.5, 2, {modifyBy = 0.25, onChangeFunc = 
+		function(currentNum)
+			EID.MCM_OptionChanged = true
+			currentNum = currentNum - (currentNum % 0.25)
+			EID.Config["Size"] = currentNum
+		end})
+	EID:AddNumberSetting("Visuals", "LocalModeSize", "Text Size (Local Mode)", 0.5, 2, {modifyBy = 0.25, onChangeFunc = 
+		function(currentNum)
+			EID.MCM_OptionChanged = true
+			currentNum = currentNum - (currentNum % 0.25)
+			EID.Config["LocalModeSize"] = currentNum
+		end})
 	-- SCALE Hotkey
 	EID:AddHotkeySetting("Visuals",
 	"SizeHotkey", "Toggle Size (Keyboard)",
-	{"Press this key to change the text size.", "Hold this key to smoothly change the text size"}, false)
+	{"Press this key to change the text size.", "Hold this key to smoothly change the text size."}, false)
 
 	-- Local Mode Centered or not
 	MCM.AddSetting(
