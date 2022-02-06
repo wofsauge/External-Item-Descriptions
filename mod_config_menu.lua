@@ -460,7 +460,7 @@ if MCMLoaded then
 	-- Display Mode
 	local displayModes = {"default", "local"}
 	EID:AddNumberSetting("Visuals", "DisplayMode", "Display Mode", 1, #displayModes, {indexOf = displayModes,
-		infoText = {"Changes display mode of descriptions", "Default: Text is displayed in the top left.", "Local: Text is displayed under the described object."}})
+		infoText = {"Changes display mode of descriptions", "Default: Text is displayed in the top left", "Local: Text is displayed under the described object"}})
 
 	-- Scale/Size
 	EID:AddNumberSetting("Visuals", "Size", "Text Size", 0.5, 2, {modifyBy = 0.25, onChangeFunc = 
