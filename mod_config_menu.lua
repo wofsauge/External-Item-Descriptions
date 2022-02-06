@@ -522,7 +522,7 @@ if MCMLoaded then
 			infoText = "Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients"})
 		-- Modded Recipes toggle
 		EID:AddBooleanSetting("Crafting", "BagOfCraftingModdedRecipes", "Load Modded Item Recipes", {
-			infoText = "Enable or disable modded item support; if you have a lot of modded items, it will slow down game launch"})
+			infoText = {"Enable or disable basic modded item support", "If you have a lot of modded items, it will slow down game launch"}})
 			
 		MCM.AddSpace("EID", "Crafting")
 		MCM.AddText("EID", "Crafting", function() return "Recipe List Options" end)
