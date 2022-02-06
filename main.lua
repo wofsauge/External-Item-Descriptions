@@ -384,7 +384,7 @@ local scaleMin = 0.1
 local scaleMax = 2
 local scaleSpeed = 0.01 -- scale size per frame
 local scaleToBigger = true
-local scaleConfigName = "Size"
+EID.CurrentScaleType = "Size" -- Size or LocalModeSize; checked by EID:getTextPosition() to not apply modifiers in local mode
 local scaleHoldFrame = 0
 local function handleScaleKey()
 	local scaleKey = EID.Config["SizeHotkey"]
@@ -406,7 +406,7 @@ local function handleScaleKey()
 				end
 			end
 			EID.Scale = newScale
-			EID.Config[scaleConfigName] = newScale
+			EID.Config[EID.CurrentScaleType] = newScale
 		else
 			scaleHoldFrame = scaleHoldFrame + 1
 		end
@@ -426,7 +426,7 @@ local function handleScaleKey()
 			scale = 1
 		end
 
-		EID.Config[scaleConfigName] = scale
+		EID.Config[EID.CurrentScaleType] = scale
 		EID.Scale = scale
 	end
 end
@@ -736,7 +736,7 @@ function EID:PositionLocalMode(entity)
 	-- don't use Local Mode for descriptions without an entity (or dice floors)
 	if EID.Config["DisplayMode"] == "local" and entity and entity.Variant ~= EffectVariant.DICE_FLOOR then
 		EID.Scale = EID.Config["LocalModeSize"]
-		scaleConfigName = "LocalModeSize"
+		EID.CurrentScaleType = "LocalModeSize"
 		local textBoxWidth = EID.Config["LocalModeCentered"] and tonumber(EID.Config["TextboxWidth"])/2 * EID.Scale or -30
 		local textPosOffset = Vector(-textBoxWidth, 20)
 		EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
@@ -750,7 +750,7 @@ function EID:PositionLocalMode(entity)
 		end
 	else
 		EID.Scale = EID.Config["Size"]
-		scaleConfigName = "Size"
+		EID.CurrentScaleType = "Size"
 		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 	end
 end
