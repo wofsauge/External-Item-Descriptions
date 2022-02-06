@@ -509,28 +509,11 @@ local function qualitySort(a, b)
 	end
 end
 
--- simple table of tables copy function, for modded recipe support (to make a local copy of the XML data tables so we can then add on to them)
-local function deepcopy(orig)
-    local orig_type = type(orig)
-    local copy
-    if orig_type == 'table' then
-        copy = {}
-        for orig_key, orig_value in next, orig, nil do
-            copy[deepcopy(orig_key)] = deepcopy(orig_value)
-        end
-        setmetatable(copy, deepcopy(getmetatable(orig)))
-    else -- number, string, boolean, etc
-        copy = orig
-    end
-    return copy
-end
-
 local moddedCrafting = false
 -- Check for modded items past the known max item ID on game start (can also support game updates)
 -- Only works if the new items are at Weight 1.0 in their item pools, but better than nothing
 local function GameStartCrafting()
-	local timer = Isaac.GetTime()
-	if not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) and EID.itemConfig:GetCollectible(EID.XMLMaxItemID+1) ~= nil then
+	if EID.Config["BagOfCraftingModdedRecipes"] and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) and EID.itemConfig:GetCollectible(EID.XMLMaxItemID+1) ~= nil then
 		dofile("eid_xmldata")
 		-- Items past max ID detected
 		CraftingMaxItemID = EID.XMLMaxItemID -- XMLMaxItemID is never modified
@@ -558,12 +541,11 @@ local function GameStartCrafting()
 		moddedCrafting = true
 		sortNeeded = true
 	elseif moddedCrafting then
-		-- the modded items were disabled
+		-- we had modded items; they have since been disabled
 		dofile("eid_xmldata")
 		moddedCrafting = false
 		sortNeeded = true
 	end
-	print(Isaac.GetTime() - timer)
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, GameStartCrafting)
 
