@@ -120,6 +120,15 @@ local function BlackRuneCallback(descObj)
 	return VoidCallback(descObj, true)
 end
 
+-- Handle Item Collection description addition
+local function ItemCollectionPageCallback(descObj)
+	descObj.Name = "{{"..EID.Config["ItemCollectionColor"].."}}"..descObj.Name
+	local text = EID:getDescriptionEntry("CollectionPageInfo")
+	
+	EID:appendToDescription(descObj, "#{{Warning}} "..text)
+	return descObj
+end
+
 
 if REPENTANCE then
 	-- Handle Birthright
@@ -403,20 +412,13 @@ if REPENTANCE then
 		return descObj
 	end
 	
-	-- Handle Item Collection description addition
-	local function ItemCollectionPageCallback(descObj)
-		descObj.Name = "{{"..EID.Config["ItemCollectionColor"].."}}"..descObj.Name
-		local text = EID:getDescriptionEntry("CollectionPageInfo")
-		
-		EID:appendToDescription(descObj, "#{{Warning}} "..text)
-		return descObj
-	end
 	--------------------------------
 	-- Although individual conditions/callbacks work well for mods to be able to add through the API,
 	-- As we kept adding callbacks for vanilla items, a lot of code got repeated over and over
 	-- This one-condition setup fixes that and can only help performance
 	-- It also allows us to pick the order that modifiers are appended to descriptions (stats/effects first, then reroll/flip/recharge info)
 	
+	-- REPENTANCE-ONLY MODIFIERS
 	local function EIDConditions(descObj)
 		-- currently, only pickup descriptions have modifiers
 		if descObj.ObjType ~= 5 then return false end
@@ -430,8 +432,6 @@ if REPENTANCE then
 			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
-
-			if EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
 			
 			if collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
 			if collectiblesOwned[59] then table.insert(callbacks, BookOfBelialCallback) end
@@ -439,7 +439,7 @@ if REPENTANCE then
 			if collectiblesOwned[706] or (EID.absorbedItems[706] and collectiblesOwned[477]) then table.insert(callbacks, AbyssCallback) end
 			
 			if collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
-			if (collectiblesOwned[723] or (EID.absorbedItems[723] and collectiblesOwned[477])) and descObj.ObjSubType ~= 668 then table.insert(callbacks, SpindownDiceCallback) end
+			if EID.Config["SpindownDiceResults"] > 0 and (collectiblesOwned[723] or (EID.absorbedItems[723] and collectiblesOwned[477])) and descObj.ObjSubType ~= 668 then table.insert(callbacks, SpindownDiceCallback) end
 			
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
@@ -466,6 +466,7 @@ if REPENTANCE then
 
 end
 
+-- AFTERBIRTH+ OR REPENTANCE MODIFIERS
 local function EIDConditionsAB(descObj)
 	-- currently, only pickup descriptions have modifiers
 	if descObj.ObjType ~= 5 then return false end
@@ -476,6 +477,8 @@ local function EIDConditionsAB(descObj)
 	
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
+		if EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
+		
 		if EID.Config["DisplayVoidStatInfo"] then
 			if collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
 			if blackRuneOwned then table.insert(callbacks, BlackRuneCallback) end
