@@ -885,7 +885,7 @@ local function attemptPathfind(entity)
 end
 
 local hasShownStartWarning = false
-local function renderAchievementInfo()
+local function checkStartOfRunWarnings()
 	if REPENTANCE and not EID.Config["DisableStartOfRunWarnings"] and game:GetFrameCount() < 10*30 then
 		-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
 		-- 1.7.6 (Nov. 16, 2021): The Options object (to read the game's options like HUD Offset)
@@ -896,7 +896,7 @@ local function renderAchievementInfo()
 			EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
 			hasShownStartWarning = true
 		-- Bag of Crafting modded items check
-		elseif EID.player:HasCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and 
+		elseif EID:PlayersHaveCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and 
 		(EID.Config.BagOfCraftingDisplayMode == "Recipe List" or EID.Config.BagOfCraftingDisplayMode == "Preview Only") then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
@@ -945,8 +945,8 @@ local function onRender(t)
 	
 	EID.isDisplaying = false
 	EID:setPlayer()
-	-- Do not check our hotkeys while MCM is open, or they will be triggered while rebinding
-	if not ModConfigMenu or not ModConfigMenu.IsVisible then
+	-- Do not check our hotkeys while a tab that can modify the hotkey is open
+	if EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then
 		-- scale key must be handled before resetting to non-local mode
 		handleScaleKey()
 		if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
@@ -956,11 +956,12 @@ local function onRender(t)
 	EID:PositionLocalMode() -- default to non-local mode to fix MCM / Bag errors
 	EID.TabPreviewID = 0
 	
-	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then --if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu isn't currently in the "Visuals" or "Crafting" tab of EID
+	-- If MCM is open, don't show anything unless we're in a tab labeled as "Visuals" or "Crafting"
+	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
 		return
 	end
 	
-	renderAchievementInfo()
+	checkStartOfRunWarnings()
 	EID:renderMCMDummyDescription()
 
 	if EID.GameVersion == "ab+" then
