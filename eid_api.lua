@@ -1219,6 +1219,16 @@ function EID:fixDefinedFont()
 	EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth or EID.DefaultConfig["TextboxWidth"]
 	return true
 end
+-- Check if a given font name is valid for the currently selected language
+function EID:canUseFontType(fontType)
+	local curLang = EID.Config["Language"]
+	for _, v in ipairs(EID.descriptions[curLang].fonts) do
+		if fontType == v.name then
+			return true
+		end
+	end
+	return false
+end
 
 -- Creates a copy of a KColor object. This prevents overwriting existing
 function EID:copyKColor(colorObj)
