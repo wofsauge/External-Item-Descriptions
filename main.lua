@@ -992,10 +992,13 @@ local function onRender(t)
 	
 	if REPENTANCE and EID.player:HasCollectible(710) then
 		local success = EID:handleBagOfCraftingRendering()
+		-- If the Bag of Crafting did rendering, don't display any other description
 		if success then
 			return
 		end
 	end
+	-- If we're in the Crafting options tab, the only rendering we want to happen is the Bag of Crafting
+	if EID.MCMCompat_isDisplayingEIDTab == "Crafting" then return end
 	
 	EID.lastDescriptionEntity = nil
 	EID.lastDist = 10000
