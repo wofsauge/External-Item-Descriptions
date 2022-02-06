@@ -387,49 +387,47 @@ local scaleToBigger = true
 local scaleConfigName = "Size"
 local scaleHoldFrame = 0
 local function handleScaleKey()
-	if not ModConfigMenu or not ModConfigMenu.IsVisible then
-		local scaleKey = EID.Config["SizeHotkey"]
+	local scaleKey = EID.Config["SizeHotkey"]
 
-		-- press and hold ScaleKey
-		if Input.IsButtonPressed(scaleKey, 0) then
-			if scaleHoldFrame > 60 then
-				EID.MCM_OptionChanged = true
-				local newScale
-				if scaleToBigger then
-					newScale = EID.Scale + scaleSpeed
-					if newScale > scaleMax then
-						scaleToBigger = false
-					end
-				else
-					newScale = EID.Scale - scaleSpeed
-					if newScale < scaleMin then
-						scaleToBigger = true
-					end
-				end
-				EID.Scale = newScale
-				EID.Config[scaleConfigName] = newScale
-			else
-				scaleHoldFrame = scaleHoldFrame + 1
-			end
-		end
-		-- press ScaleKey
-		if Input.IsButtonTriggered(scaleKey, 0) then
+	-- press and hold ScaleKey
+	if Input.IsButtonPressed(scaleKey, 0) then
+		if scaleHoldFrame > 60 then
 			EID.MCM_OptionChanged = true
-			scaleHoldFrame = 0
-			local scale = EID.Scale
-
-			-- switch between 1, 1.5 and 0.5
-			if math.abs(scale - 1) < 0.01 then
-				scale = 1.5
-			elseif math.abs(scale - 1.5) < 0.01 then
-				scale = 0.5
+			local newScale
+			if scaleToBigger then
+				newScale = EID.Scale + scaleSpeed
+				if newScale > scaleMax then
+					scaleToBigger = false
+				end
 			else
-				scale = 1
+				newScale = EID.Scale - scaleSpeed
+				if newScale < scaleMin then
+					scaleToBigger = true
+				end
 			end
-
-			EID.Config[scaleConfigName] = scale
-			EID.Scale = scale
+			EID.Scale = newScale
+			EID.Config[scaleConfigName] = newScale
+		else
+			scaleHoldFrame = scaleHoldFrame + 1
 		end
+	end
+	-- press ScaleKey
+	if Input.IsButtonTriggered(scaleKey, 0) then
+		EID.MCM_OptionChanged = true
+		scaleHoldFrame = 0
+		local scale = EID.Scale
+
+		-- switch between 1, 1.5 and 0.5
+		if math.abs(scale - 1) < 0.01 then
+			scale = 1.5
+		elseif math.abs(scale - 1.5) < 0.01 then
+			scale = 0.5
+		else
+			scale = 1
+		end
+
+		EID.Config[scaleConfigName] = scale
+		EID.Scale = scale
 	end
 end
 
@@ -944,16 +942,19 @@ local function onRender(t)
 	EID.OptionChanged = EID.MCM_OptionChanged
 	EID.MCM_OptionChanged = false
 	EID:resumeCoroutines()
-	handleScaleKey()
+	
+	-- Do not check our hotkeys while MCM is open, or they will be triggered while rebinding
+	if not ModConfigMenu or not ModConfigMenu.IsVisible then
+		handleScaleKey()
+		if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
+			EID.isHidden = not EID.isHidden
+		end
+	end
 
 	EID.isDisplaying = false
 	EID:setPlayer()
 	EID:PositionLocalMode() -- default to non-local mode to fix MCM / Bag errors
 	EID.TabPreviewID = 0
-	
-	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
-		EID.isHidden = not EID.isHidden
-	end
 	
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then --if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu isn't currently in the "Visuals" or "Crafting" tab of EID
 		return
