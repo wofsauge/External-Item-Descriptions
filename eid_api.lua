@@ -199,7 +199,8 @@ function EID:addColor(shortcut, kColor, callback)
 end
 
 -- Overrides all potentially displayed texts and permanently displays the given texts. Can be turned of again using the "EID:hidePermanentText()" function
-function EID:displayPermanentText(descriptionObject)
+function EID:displayPermanentText(descriptionObject, permName1, permName2)
+	descriptionObject.PermanentTextEnglish = EID:getDescriptionEntryEnglish(permName1, permName2)
 	EID.permanentDisplayTextObj = descriptionObject
 	EID.isDisplayingPermanent = true
 end
@@ -264,8 +265,11 @@ end
 -- returns the current text position
 function EID:getTextPosition()
 	local posVector = Vector(EID.UsedPosition.X, EID.UsedPosition.Y)
-	for _, modifier in pairs(EID.PositionModifiers) do
-		posVector = posVector + modifier
+	-- Only apply position modifiers when not in Local Mode
+	if EID.CurrentScaleType == "Size" then
+		for _, modifier in pairs(EID.PositionModifiers) do
+			posVector = posVector + modifier
+		end
 	end
 	return posVector
 end
@@ -365,6 +369,13 @@ function EID:getDescriptionEntry(objTable, objID, noFallback)
 		local translatedTable = EID.descriptions[EID.Config["Language"]][objTable]
 		if noFallback then return translatedTable and translatedTable[objID]
 		else return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]) end
+	end
+end
+function EID:getDescriptionEntryEnglish(objTable, objID)
+	if not objID then
+		return EID.descriptions["en_us"][objTable]
+	else
+		return EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]
 	end
 end
 
@@ -915,7 +926,7 @@ function EID:CheckGlitchedItemConfig(id)
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
 	local item = EID.itemConfig:GetCollectible(id)
 	if not item then return "" end
-	local attributes = ""
+	local attributes = "#"
 	for _,v in ipairs(itemConfigItemAttributes) do
 		local val = item[v]
 		if val ~= 0 then
@@ -1210,6 +1221,16 @@ function EID:fixDefinedFont()
 	EID.Config["LineHeight"] = EID.descriptions[curLang].fonts[1].lineHeight or EID.DefaultConfig["LineHeight"]
 	EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth or EID.DefaultConfig["TextboxWidth"]
 	return true
+end
+-- Check if a given font name is valid for the currently selected language
+function EID:canUseFontType(fontType)
+	local curLang = EID.Config["Language"]
+	for _, v in ipairs(EID.descriptions[curLang].fonts) do
+		if fontType == v.name then
+			return true
+		end
+	end
+	return false
 end
 
 -- Creates a copy of a KColor object. This prevents overwriting existing

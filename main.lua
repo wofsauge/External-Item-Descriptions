@@ -384,6 +384,7 @@ local scaleMin = 0.1
 local scaleMax = 2
 local scaleSpeed = 0.01 -- scale size per frame
 local scaleToBigger = true
+EID.CurrentScaleType = "Size" -- Size or LocalModeSize; checked by EID:getTextPosition() to not apply modifiers in local mode
 local scaleHoldFrame = 0
 local function handleScaleKey()
 	local scaleKey = EID.Config["SizeHotkey"]
@@ -392,26 +393,20 @@ local function handleScaleKey()
 	if Input.IsButtonPressed(scaleKey, 0) then
 		if scaleHoldFrame > 60 then
 			EID.MCM_OptionChanged = true
-			local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalModeSize" or "Size")
+			local newScale
 			if scaleToBigger then
-				local newScale = EID.Scale + scaleSpeed
-
-				EID.Scale = newScale
-				EID.Config[scaleConfigName] = newScale
-
+				newScale = EID.Scale + scaleSpeed
 				if newScale > scaleMax then
 					scaleToBigger = false
 				end
 			else
-				local newScale = EID.Scale - scaleSpeed
-
-				EID.Scale = newScale
-				EID.Config[scaleConfigName] = newScale
-
+				newScale = EID.Scale - scaleSpeed
 				if newScale < scaleMin then
 					scaleToBigger = true
 				end
 			end
+			EID.Scale = newScale
+			EID.Config[EID.CurrentScaleType] = newScale
 		else
 			scaleHoldFrame = scaleHoldFrame + 1
 		end
@@ -420,24 +415,18 @@ local function handleScaleKey()
 	if Input.IsButtonTriggered(scaleKey, 0) then
 		EID.MCM_OptionChanged = true
 		scaleHoldFrame = 0
-		local scale
-		local scaleConfigName = (EID.Config["DisplayMode"] == "local" and "LocalModeSize" or "Size")
-
-		scale = EID.Scale
+		local scale = EID.Scale
 
 		-- switch between 1, 1.5 and 0.5
-
 		if math.abs(scale - 1) < 0.01 then
 			scale = 1.5
 		elseif math.abs(scale - 1.5) < 0.01 then
 			scale = 0.5
-		elseif math.abs(scale - 0.5) < 0.01 then
-			scale = 1
 		else
 			scale = 1
 		end
 
-		EID.Config[scaleConfigName] = scale
+		EID.Config[EID.CurrentScaleType] = scale
 		EID.Scale = scale
 	end
 end
@@ -551,11 +540,11 @@ function EID:printDescription(desc)
 			local curLanguage = EID.Config["Language"]
 			if curLanguage ~= "en_us" then
 				EID.Config["Language"] = "en_us"
-				local englishName = EID:getObjectName(desc.ObjType, desc.ObjVariant, desc.ObjSubType)
+				local englishName = desc.PermanentTextEnglish or EID:getObjectName(desc.ObjType, desc.ObjVariant, desc.ObjSubType)
 				EID.Config["Language"] = curLanguage
 				if EID.Config["TranslateItemName"] == 1 then
 					curName = englishName
-				elseif EID.Config["TranslateItemName"] == 3 and curName ~= englishName and not EID.isDisplayingPermanent then
+				elseif EID.Config["TranslateItemName"] == 3 and curName ~= englishName then
 					curName = curName.." ("..englishName..")"
 				end
 			end
@@ -738,40 +727,31 @@ function EID:renderIndicator(entity)
 		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
 		EID:renderEntity(entity, sprite, entityPos)
 	end
-	if REPENTANCE then
-		if isMirrorRoom then
-			sprite.FlipX = false
-		end
-	end
-end
-
-function EID:ScaleValue(entity)
-	if entity.Variant == EffectVariant.DICE_FLOOR then
-		EID.Scale = EID.Config["Size"]
-		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
-	elseif EID.Config["DisplayMode"] == "local" then
-		EID.Scale = EID.Config["LocalModeSize"]
+	if isMirrorRoom then
+		sprite.FlipX = false
 	end
 end
 
 function EID:PositionLocalMode(entity)
-	if EID.Config["DisplayMode"] == "local" then
+	-- don't use Local Mode for descriptions without an entity (or dice floors)
+	if EID.Config["DisplayMode"] == "local" and entity and entity.Variant ~= EffectVariant.DICE_FLOOR then
+		EID.Scale = EID.Config["LocalModeSize"]
+		EID.CurrentScaleType = "LocalModeSize"
 		local textBoxWidth = EID.Config["LocalModeCentered"] and tonumber(EID.Config["TextboxWidth"])/2 * EID.Scale or -30
 		local textPosOffset = Vector(-textBoxWidth, 20)
 		EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
-		if REPENTANCE then
-			if isMirrorRoom then
-				EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset * Vector(-1,0)))
-				local screenCenter = EID:getScreenSize()/2
-				EID.UsedPosition.X = EID.UsedPosition.X - (EID.UsedPosition-screenCenter).X * 2
-			end
+		if isMirrorRoom then
+			EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset * Vector(-1,0)))
+			local screenCenter = EID:getScreenSize()/2
+			EID.UsedPosition.X = EID.UsedPosition.X - (EID.UsedPosition-screenCenter).X * 2
 		end
 		if entity:ToPickup() and entity:ToPickup():IsShopItem() then
 			EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
 		end
 	else
-		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 		EID.Scale = EID.Config["Size"]
+		EID.CurrentScaleType = "Size"
+		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 	end
 end
 
@@ -803,7 +783,7 @@ local lastMousePos = Vector(0,0)
 local lastMouseMove = 0
 
 function EID:handleHoverHUD()
-	local mousePos = Isaac.WorldToScreen(Input.GetMousePosition(true))
+	local mousePos = Isaac.WorldToScreen(Input.GetMousePosition(true)) * 2
 	if mousePos:Distance(lastMousePos) > 2 then
 		lastMousePos = mousePos
 		lastMouseMove = game:GetFrameCount()
@@ -812,12 +792,13 @@ function EID:handleHoverHUD()
 		return nil
 	end
 	if EID.Config["ShowCursor"] then
-		EID.CursorSprite:Render(Vector(mousePos.X, mousePos.Y), nullVector, nullVector)
+		EID.CursorSprite:Render(Vector(mousePos.X / 2, mousePos.Y / 2), nullVector, nullVector)
 	end
 	for k, v in pairs(EID.HUDElements) do
 		local hudElement = EID:handleHUDElement(v)
 		if hudElement.x <= mousePos.X and (hudElement.x + hudElement.width) >= mousePos.X and hudElement.y <= mousePos.Y and (hudElement.y + hudElement.height) >= mousePos.Y then
-			return hudElement.descriptionObj() or nil
+			local result = hudElement.descriptionObj()
+			if result then return result end
 		end
 	end
 	return nil
@@ -904,28 +885,30 @@ local function attemptPathfind(entity)
 	return success
 end
 
-local hasShownAchievementWarning = false
-local function renderAchievementInfo()
-	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 then
+local hasShownStartWarning = false
+local function checkStartOfRunWarnings()
+	if REPENTANCE and not EID.Config["DisableStartOfRunWarnings"] and game:GetFrameCount() < 10*30 then
 		-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
 		-- 1.7.6 (Nov. 16, 2021): The Options object (to read the game's options like HUD Offset)
 		if Options == nil then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("OldGameVersionWarningText") or ""
-			EID:displayPermanentText(demoDescObj)
-			hasShownAchievementWarning = true
+			EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
+			hasShownStartWarning = true
 		-- Bag of Crafting modded items check
-		elseif EID.player:HasCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and (EID.Config.BagOfCraftingDisplayMode == "Recipe List" or EID.Config.BagOfCraftingDisplayMode == "Preview Only") then
+		elseif EID:PlayersHaveCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and 
+		(EID.Config.BagOfCraftingDisplayMode == "Recipe List" or EID.Config.BagOfCraftingDisplayMode == "Preview Only") then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("ModdedRecipesWarningText") or ""
-			EID:displayPermanentText(demoDescObj)
-			hasShownAchievementWarning = true
+			EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
+			hasShownStartWarning = true
 		-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 		else
 			local characterID = EID.player:GetPlayerType()
-			--ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom! (Fixes Tainted Lost's item pools ruining this check)
+			-- ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom!
+			-- (Fixes Tainted Lost's item pools, and potentially modded character's mechanics, ruining this check)
 			if characterID < 21 and game.Challenge == 0 and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
 				local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
 				if not hasBookOfRevelationsUnlocked then
@@ -934,13 +917,13 @@ local function renderAchievementInfo()
 						local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 						demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 						demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
-						EID:displayPermanentText(demoDescObj)
-						hasShownAchievementWarning = true
+						EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
+						hasShownStartWarning = true
 					end
 				end
 			end
 		end
-	elseif hasShownAchievementWarning then
+	elseif hasShownStartWarning then
 		EID:hidePermanentText()
 	end
 end
@@ -960,22 +943,26 @@ local function onRender(t)
 	EID.OptionChanged = EID.MCM_OptionChanged
 	EID.MCM_OptionChanged = false
 	EID:resumeCoroutines()
-
+	
 	EID.isDisplaying = false
 	EID:setPlayer()
+	-- Do not check our hotkeys while a tab that can modify the hotkey is open
+	if EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then
+		-- scale key must be handled before resetting to non-local mode
+		handleScaleKey()
+		if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
+			EID.isHidden = not EID.isHidden
+		end
+	end
+	EID:PositionLocalMode() -- default to non-local mode to fix MCM / Bag errors
 	EID.TabPreviewID = 0
 	
-	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
-		EID.isHidden = not EID.isHidden
-	end
-
-	handleScaleKey()
-	
-	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then --if the mod config menu exists, is opened and Hide Hud is enabled, and ModConfigMenu isn't currently in the "Visuals" or "Crafting" tab of EID
+	-- If MCM is open, don't show anything unless we're in a tab labeled as "Visuals" or "Crafting"
+	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
 		return
 	end
 	
-	renderAchievementInfo()
+	checkStartOfRunWarnings()
 	EID:renderMCMDummyDescription()
 
 	if EID.GameVersion == "ab+" then
@@ -985,10 +972,17 @@ local function onRender(t)
 			EID:removeTextPosModifier("Schoolbag")
 		end
 	else
-		if EID.player.SubType == 21 or EID.player.SubType == 25 then -- T-Isaac, T-Blue Baby
+		-- Tainted Isaac and Tainted ???
+		if EID.player.SubType == 21 or EID.player.SubType == 25 then
 			EID:addTextPosModifier("Tained HUD", Vector(0,30))
 		else
 			EID:removeTextPosModifier("Tained HUD")
+		end
+		-- Magdalene Birthright
+		if EID.player.SubType == 1 and EID.player:HasCollectible(619) then
+			EID:addTextPosModifier("18 Heart HUD", Vector(0,5))
+		else
+			EID:removeTextPosModifier("18 Heart HUD")
 		end
 	end
 	
@@ -1008,10 +1002,13 @@ local function onRender(t)
 	
 	if REPENTANCE and EID.player:HasCollectible(710) then
 		local success = EID:handleBagOfCraftingRendering()
+		-- If the Bag of Crafting did rendering, don't display any other description
 		if success then
 			return
 		end
 	end
+	-- If we're in the Crafting options tab, the only rendering we want to happen is the Bag of Crafting
+	if EID.MCMCompat_isDisplayingEIDTab == "Crafting" then return end
 	
 	EID.lastDescriptionEntity = nil
 	EID.lastDist = 10000
@@ -1049,15 +1046,14 @@ local function onRender(t)
 
 
 	local closest = EID.lastDescriptionEntity
-
+	
+	-- if no entity in range, display Sacrifice Room information
 	if EID.lastDist / 40 > tonumber(EID.Config["MaxDistance"]) then
 		if game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
 			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 			local curCounter = EID.sacrificeCounter[curRoomIndex] or 1
 			local sacrificeDesc = EID:getDescriptionObj(-999, -1, curCounter)
 			sacrificeDesc.Name = sacrificeDesc.Name.." ("..curCounter.."/12)"
-			EID:alterTextPos(Vector(EID.Config["XPosition"], EID.Config["YPosition"]))
-			EID.Scale = EID.Config["Size"]
 			EID:printDescription(sacrificeDesc)
 		end
 		return
@@ -1072,11 +1068,9 @@ local function onRender(t)
 	--Handle Indicators
 	EID:renderIndicator(closest)
 
-	--Local Mode
+	--Position the description under the entity in Local Mode
 	EID:PositionLocalMode(closest)
 
-	--Scale Value
-	EID:ScaleValue(closest)
 	--Handle GetData Entities (specific)
 	if EID.Config["EnableEntityDescriptions"] and EID:getEntityData(closest, "EID_Description") then
 		local desc = EID:getEntityData(closest, "EID_Description")
@@ -1100,9 +1094,10 @@ local function onRender(t)
 		-- force the default glitchy description if option is off
 		if not EID.Config["DisplayGlitchedItemInfo"] then
 			glitchedObj.Description = glitchedDesc
-		-- grab the Item Config info if eid_tmtrainer.lua hasn't taken care of it
-		elseif not debug then
-			glitchedObj.Description = EID:CheckGlitchedItemConfig(closest.SubType) .. glitchedDesc
+		-- grab the Item Config info if eid_tmtrainer.lua hasn't taken care of it, and it hasn't been done before
+		elseif not debug and glitchedObj.Description == glitchedDesc then
+			EID:addCollectible(closest.SubType, EID:CheckGlitchedItemConfig(closest.SubType) .. glitchedDesc)
+			glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType)
 		end
 		
 		EID:printDescription(glitchedObj)
@@ -1293,6 +1288,11 @@ if EID.MCMLoaded or REPENTANCE then
 						end
 					end
 				end
+				-- DisableAchievementCheck has been renamed, convert the setting to the new one (this can be removed in a few updates)
+				if savedEIDConfig["DisableAchievementCheck"] then
+					EID.Config["DisableStartOfRunWarnings"] = savedEIDConfig["DisableAchievementCheck"]
+				end
+				
 				EID.isHidden = EID.Config["InitiallyHidden"]
 				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 				EID.Scale = EID.Config["Size"]

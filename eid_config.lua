@@ -75,10 +75,10 @@ EID.UserConfig = {
 	-- Toggle obstruction based hiding, when the player has flight
 	-- Default = true
 	["DisableObstructionOnFlight"] = true,
-	-- If set to true, the mod will no longer display a warning if the save game doesn't have achievements unlocked
-	-- This also disables warnings for using an outdated game version and for having potentially modded Bag of Crafting recipes
+	-- If set to true, the mod will no longer display critical warnings during the start of a new game
+	-- Current warnings are: Achievements are locked, outdated game version, and potentially having inaccurate modded Bag of Crafting recipes
 	-- Default = false
-	["DisableAchievementCheck"] = false,
+	["DisableStartOfRunWarnings"] = false,
 
 	---------- Display Modes -----------
 
@@ -275,6 +275,11 @@ EID.UserConfig = {
 	-- Display recipes as 8 icons instead of grouped ingredients
 	-- Default = false
 	["BagOfCraftingDisplayIcons"] = false,
+	-- Enable or disable basic modded item support
+	-- Only modded items with a weight of 1.0 in their item pools are supported, as we can't determine modded item pool weight
+	-- If you have a lot of modded items, it will slow down game launch
+	-- Default = true
+	["BagOfCraftingModdedRecipes"] = true,
 	-- Set the keybinding to toggle the crafting display, so you can see descriptions of items/pickups on the floor
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
 	-- Default = Keyboard.KEY_F3
@@ -390,7 +395,7 @@ EID.DefaultConfig = {
 	["InitiallyHidden"] = false,
 	["HideInBattle"] = false,
 	["DisableObstructionOnFlight"] = true,
-	["DisableAchievementCheck"] = false,
+	["DisableStartOfRunWarnings"] = false,
 	["DisableOnCurse"] = true,
 	["DisableOnAltPath"] = true,
 	["DisableOnAprilFoolsChallenge"] = true,
@@ -432,6 +437,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingDisplayIcons"] = false,
 	["BagOfCraftingHideInBattle"] = true,
 	["BagOfCraftingDisplayMode"] = "Recipe List",
+	["BagOfCraftingModdedRecipes"] = true,
 	["CraftingHideKey"] = Keyboard.KEY_F3,
 	["CraftingHideButton"] = -1,
 	["CraftingResultKey"] = Keyboard.KEY_F4,
