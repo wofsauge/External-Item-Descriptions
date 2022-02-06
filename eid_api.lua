@@ -265,8 +265,11 @@ end
 -- returns the current text position
 function EID:getTextPosition()
 	local posVector = Vector(EID.UsedPosition.X, EID.UsedPosition.Y)
-	for _, modifier in pairs(EID.PositionModifiers) do
-		posVector = posVector + modifier
+	-- Only apply position modifiers when not in Local Mode
+	if EID.CurrentScaleType == "Size" then
+		for _, modifier in pairs(EID.PositionModifiers) do
+			posVector = posVector + modifier
+		end
 	end
 	return posVector
 end
