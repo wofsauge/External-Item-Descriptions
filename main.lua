@@ -783,7 +783,7 @@ local lastMousePos = Vector(0,0)
 local lastMouseMove = 0
 
 function EID:handleHoverHUD()
-	local mousePos = Isaac.WorldToScreen(Input.GetMousePosition(true))
+	local mousePos = Isaac.WorldToScreen(Input.GetMousePosition(true)) * 2
 	if mousePos:Distance(lastMousePos) > 2 then
 		lastMousePos = mousePos
 		lastMouseMove = game:GetFrameCount()
@@ -792,12 +792,13 @@ function EID:handleHoverHUD()
 		return nil
 	end
 	if EID.Config["ShowCursor"] then
-		EID.CursorSprite:Render(Vector(mousePos.X, mousePos.Y), nullVector, nullVector)
+		EID.CursorSprite:Render(Vector(mousePos.X / 2, mousePos.Y / 2), nullVector, nullVector)
 	end
 	for k, v in pairs(EID.HUDElements) do
 		local hudElement = EID:handleHUDElement(v)
 		if hudElement.x <= mousePos.X and (hudElement.x + hudElement.width) >= mousePos.X and hudElement.y <= mousePos.Y and (hudElement.y + hudElement.height) >= mousePos.Y then
-			return hudElement.descriptionObj() or nil
+			local result = hudElement.descriptionObj()
+			if result then return result end
 		end
 	end
 	return nil
