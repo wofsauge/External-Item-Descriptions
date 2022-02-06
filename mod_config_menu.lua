@@ -168,6 +168,30 @@ function EID:AddNumberSetting(category, optionName, displayText, minimum, maximu
 		}
 	)
 end
+	
+function EID:AddScrollSetting(category, optionName, displayText, scrollTable, params)
+	if type(params) ~= "table" then params = {} end
+	if params.repOnly and not REPENTANCE then return end
+	MCM.AddSetting(
+		"EID", category,
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = params.currentSettingFunc or function()
+				return AnIndexOf(scrollTable, EID.Config[optionName]) - 1
+			end,
+			Display = params.displayFunc or function()
+				if params.displayingTab then EID.MCMCompat_isDisplayingEIDTab = params.displayingTab end
+				return displayText .. ": $scroll" .. (AnIndexOf(scrollTable, EID.Config[optionName]) - 1) .. " " ..
+				EID.Config[optionName] .. (params.label or "")
+			end,
+			OnChange = params.onChangeFunc or function(currentNum)
+				EID.Config[optionName] = scrollTable[currentNum + 1]
+				EID.MCM_OptionChanged = true
+			end,
+			Info = params.infoText or {}
+		}
+	)
+end
 
 function EID:AddHotkeySetting(category, optionName, displayText, infoText, isController)
 	if (type(infoText) == "string") then infoText = {infoText} end
@@ -238,6 +262,7 @@ if MCMLoaded then
 	MCM.AddText("EID", "Info", function() return EID.isHidden and"~~~~~~~~~~~~~~~~~~~~~~~~~~~" or "" end)
 	MCM.AddText("EID", "Info", function() return EID.isHidden and"~~~~~ CURRENTLY HIDDEN! ~~~~~" or "" end)
 	MCM.AddText("EID", "Info", function()
+		EID.MCMCompat_isDisplayingEIDTab = ""
 		if EID.Config["HideKey"] ~= -1 or EID.Config["HideButton"] ~= -1 then
 			local hotkeyString = InputHelper.KeyboardToString[EID.Config["HideKey"]] or InputHelper.ControllerToString[EID.Config["HideButton"]]
 			return EID.isHidden and ("~~~~~~~ " .. hotkeyString .." to show ~~~~~~~~") or ""
@@ -289,6 +314,7 @@ if MCMLoaded then
 	
 	MCM.AddSpace("EID", "General")
 	
+	-- Position / Textbox Size
 	EID:AddNumberSetting("General", "XPosition", "Position X", 0, 500, {modifyBy = 5, infoText = "Default = 60"})
 	EID:AddNumberSetting("General", "YPosition", "Position Y", 0, 500, {modifyBy = 5, infoText = "Default = 45"})
 	EID:AddNumberSetting("General", "LineHeight", "Line Height", 1, 30, {infoText = "Default = 11 (varies per language)"})
@@ -318,24 +344,8 @@ if MCMLoaded then
 
 	-- maxDistance
 	local distances = {1, 1.5, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	MCM.AddSetting(
-		"EID",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.SCROLL,
-			CurrentSetting = function()
-				return AnIndexOf(distances, EID.Config["MaxDistance"]) - 1
-			end,
-			Display = function()
-				return "Max Distance: $scroll" ..
-					AnIndexOf(distances, EID.Config["MaxDistance"]) - 1 .. " " .. EID.Config["MaxDistance"] .. " Grids"
-			end,
-			OnChange = function(currentNum)
-				EID.Config["MaxDistance"] = distances[currentNum + 1]
-			end,
-			Info = {"Distance to the object until descriptions are displayed."}
-		}
-	)
+	EID:AddScrollSetting("General", "MaxDistance", "Max Distance", distances, {label = " Grids", 
+		infoText = "Distance to the object until descriptions are displayed."})
 
 	--------Reset to default
 	MCM.AddSpace("EID", "General")
@@ -347,8 +357,15 @@ if MCMLoaded then
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function() return true end,
 			Display = function() return "<---- RESET CONFIG TO DEFAULT ---->" end,
-			OnChange = function(currentBool) EID.Config = EID.DefaultConfig end,
-			Info = {"Press this reset the config back to its default values"}
+			OnChange = function(currentBool)
+				local resetFont = (EID.Config["FontType"] ~= "default")
+				for k,v in pairs(EID.DefaultConfig) do EID.Config[k] = v end
+				EID.MCM_OptionChanged = true
+				EID.RefreshBagTextbox = true
+				if resetFont then EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt") end
+				renderDummyDesc(true)
+			end,
+			Info = {"Press this to reset the config back to its default values"}
 		}
 	)
 	
@@ -367,247 +384,49 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Display", "DisplayCraneInfo", "Crane Game Infos", {repOnly = true})
 	EID:AddBooleanSetting("Display", "DisplayVoidStatInfo", "Void Stat Increase Infos")
 	
-	local diceSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
-	if REPENTANCE then
-		
-		MCM.AddSpace("EID", "Display")
+	local diceSteps = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	-- Spindown Dice Settings
+	if REPENTANCE then MCM.AddSpace("EID", "Display") end
 	
-		-- Spindown Dice results
-		MCM.AddSetting(
-			"EID",
-			"Display",
-			{
-				Type = ModConfigMenu.OptionType.SCROLL,
-				CurrentSetting = function()
-					return AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1
-				end,
-				Display = function()
-					return "Spindown Dice: $scroll" ..
-						AnIndexOf(diceSteps, EID.Config["SpindownDiceResults"]) - 1 .. " " .. EID.Config["SpindownDiceResults"] .. " Items"
-				end,
-				OnChange = function(currentNum)
-					EID.Config["SpindownDiceResults"] = diceSteps[currentNum + 1]
-				end,
-				Info = {"Preview of Items resulting when using the Spindown dice X times"}
-			}
-		)
-		-- 
-		-- Display IDs for Spindown Dice results
-		EID:AddBooleanSetting("Display", "SpindownDiceDisplayID", "Display IDs",
-		{repOnly = true, infoText = "Display IDs for Spindown Dice results"})
-		-- Display names for Spindown Dice results
-		EID:AddBooleanSetting("Display", "SpindownDiceDisplayName", "Display names",
-		{repOnly = true, infoText = "Display names for Spindown Dice results"})
-		
-		-- Spindown Dice skip locked items
-		EID:AddBooleanSetting("Display", "SpindownDiceSkipLocked", "Skip Locked Items",
-		{repOnly = true, infoText = "Skip locked items in the preview just as the dice will; the method to check for unlock status is not perfect, though"})
-	end
+	EID:AddScrollSetting("Display", "SpindownDiceResults", "Spindown Dice", diceSteps, {repOnly = true, label = " Items", 
+		infoText = "Number of item previews when holding Spindown Dice"})
+	
+	-- Display IDs for Spindown Dice results
+	EID:AddBooleanSetting("Display", "SpindownDiceDisplayID", "Display IDs",
+	{repOnly = true, infoText = "Display IDs for Spindown Dice results"})
+	-- Display names for Spindown Dice results
+	EID:AddBooleanSetting("Display", "SpindownDiceDisplayName", "Display names",
+	{repOnly = true, infoText = "Display names for Spindown Dice results"})
+	-- Spindown Dice skip locked items
+	EID:AddBooleanSetting("Display", "SpindownDiceSkipLocked", "Skip Locked Items",
+	{repOnly = true, infoText = "Skip locked items in the preview just as the dice will; the method to check for unlock status is not perfect, though"})
 	
 	--------Obstruction---------
 	MCM.AddSpace("EID", "Display")
-	MCM.AddText("EID", "Display", "Display Infos when obstructed")
+	MCM.AddText("EID", "Display", "Display Infos when Obstructed")
 	
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisableObstructionOnFlight"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisableObstructionOnFlight"] then
-					onOff = "True"
-				end
-				return "Show again when having flight: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisableObstructionOnFlight"] = currentBool
-			end
-		}
-	)
+	EID:AddBooleanSetting("Display", "DisableObstructionOnFlight", "Show again when you have Flight")
+	EID:AddBooleanSetting("Display", "DisplayObstructedCardInfo", "Obstructed Card Infos")
+	EID:AddBooleanSetting("Display", "DisplayObstructedPillInfo", "Obstructed Pill Infos")
+	EID:AddBooleanSetting("Display", "DisplayObstructedSoulstoneInfo", "Obstructed Soulstone Infos", {repOnly = true})
 	
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayObstructedCardInfo"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayObstructedCardInfo"] then
-					onOff = "True"
-				end
-				return "Card Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayObstructedCardInfo"] = currentBool
-			end
-		}
-	)
-	
-	if REPENTANCE then
-		MCM.AddSetting(
-			"EID",
-			"Display",
-			{
-				Type = ModConfigMenu.OptionType.BOOLEAN,
-				CurrentSetting = function()
-					return EID.Config["DisplayObstructedSoulstoneInfo"]
-				end,
-				Display = function()
-					local onOff = "False"
-					if EID.Config["DisplayObstructedSoulstoneInfo"] then
-						onOff = "True"
-					end
-					return "Soulstone Infos: " .. onOff
-				end,
-				OnChange = function(currentBool)
-					EID.Config["DisplayObstructedSoulstoneInfo"] = currentBool
-				end
-			}
-		)
-	end
-	
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayObstructedPillInfo"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayObstructedPillInfo"] then
-					onOff = "True"
-				end
-				return "Pill Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayObstructedPillInfo"] = currentBool
-			end
-		}
-	)
-
+	-------Shop Spoilers-------
 	MCM.AddSpace("EID", "Display")
 	MCM.AddText("EID", "Display", "Display Infos in Shops")
-	------------CARDS--------------
-
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayCardInfoShop"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayCardInfoShop"] then
-					onOff = "True"
-				end
-				return "Card Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayCardInfoShop"] = currentBool
-			end
-		}
-	)
-
-	------------PILLS--------------
-	MCM.AddSetting(
-		"EID",
-		"Display",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["DisplayPillInfoShop"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["DisplayPillInfoShop"] then
-					onOff = "True"
-				end
-				return "Pill Infos: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.Config["DisplayPillInfoShop"] = currentBool
-			end
-		}
-	)
 	
+	EID:AddBooleanSetting("Display", "DisplayCardInfoShop", "Shop Card Infos")
+	EID:AddBooleanSetting("Display", "DisplayPillInfoShop", "Shop Pill Infos")
+	EID:AddBooleanSetting("Display", "DisplaySoulstoneInfoShop", "Shop Soulstone Infos", {repOnly = true})
+
+	----"Options?" Spoilers----
 	if REPENTANCE then
-		MCM.AddSetting(
-			"EID",
-			"Display",
-			{
-				Type = ModConfigMenu.OptionType.BOOLEAN,
-				CurrentSetting = function()
-					return EID.Config["DisplaySoulstoneInfoShop"]
-				end,
-				Display = function()
-					local onOff = "False"
-					if EID.Config["DisplaySoulstoneInfoShop"] then
-						onOff = "True"
-					end
-					return "Soulstone Infos: " .. onOff
-				end,
-				OnChange = function(currentBool)
-					EID.Config["DisplaySoulstoneInfoShop"] = currentBool
-				end
-			}
-		)
-	
 		MCM.AddSpace("EID", "Display")
 		MCM.AddText("EID", "Display", "Interaction with 'Options?'")
-
-		MCM.AddSetting(
-			"EID",
-			"Display",
-			{
-				Type = ModConfigMenu.OptionType.BOOLEAN,
-				CurrentSetting = function()
-					return EID.Config["DisplayCardInfoOptions?"]
-				end,
-				Display = function()
-					local onOff = "False"
-					if EID.Config["DisplayCardInfoOptions?"] then
-						onOff = "True"
-					end
-					return "Card Infos when spawned by 'Options?': " .. onOff
-				end,
-				OnChange = function(currentBool)
-					EID.Config["DisplayCardInfoOptions?"] = currentBool
-				end
-			}
-		)
-		
-		MCM.AddSetting(
-			"EID",
-			"Display",
-			{
-				Type = ModConfigMenu.OptionType.BOOLEAN,
-				CurrentSetting = function()
-					return EID.Config["DisplayPillInfoOptions?"]
-				end,
-				Display = function()
-					local onOff = "False"
-					if EID.Config["DisplayPillInfoOptions?"] then
-						onOff = "True"
-					end
-					return "Pill Infos when spawned by 'Options?': " .. onOff
-				end,
-				OnChange = function(currentBool)
-					EID.Config["DisplayPillInfoOptions?"] = currentBool
-				end
-			}
-		)
 	end
+	
+	EID:AddBooleanSetting("Display", "DisplayCardInfoOptions?", "'Options?' Card Infos", {repOnly = true})
+	EID:AddBooleanSetting("Display", "DisplayPillInfoOptions?", "'Options?' Pill Infos", {repOnly = true})
+	
 	---------------------------------------------------------------------------
 	---------------------------------Visuals-----------------------------------
 	-- Font Type
@@ -626,43 +445,24 @@ if MCMLoaded then
 				return "Font Type: " .. EID.Config["FontType"]
 			end,
 			OnChange = function(currentNum)
-				EID.Config["FontType"] = fontNames[currentNum]
-				EID.lineHeight = fonts[currentNum].lineHeight
-				EID.Config["TextboxWidth"] = fonts[currentNum].textboxWidth
-				EID:fixDefinedFont()
-				local fontFile = EID.Config["FontType"] or "default"
-				EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
+				if EID:canUseFontType(fontNames[currentNum]) then
+					EID.MCM_OptionChanged = true
+					EID.Config["FontType"] = fontNames[currentNum]
+					EID.Config["LineHeight"] = fonts[currentNum].lineHeight or EID.Config["LineHeight"]
+					EID.Config["TextboxWidth"] = fonts[currentNum].textboxWidth or EID.Config["TextboxWidth"]
+					local fontFile = EID.Config["FontType"] or "default"
+					EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
+				end
 			end
 		}
 	)
 
 	-- Display Mode
-	-- Note: MCM's dummy desc doesn't play well with changing this at the moment!
 	local displayModes = {"default", "local"}
-	local displayModeTips = {"default: text will be displayed in the top-left of the screen.", "local: text will be displayed under the described object."}
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return AnIndexOf(displayModes, EID.Config["DisplayMode"])
-			end,
-			Minimum = 1,
-			Maximum = #displayModes,
-			Display = function()
-				return "Display mode: " .. EID.Config["DisplayMode"]
-			end,
-			OnChange = function(currentNum)
-				EID.Config["DisplayMode"] = displayModes[currentNum]
-			end,
-			Info = function() 
-				return {"Changes display mode of descriptions", displayModeTips[AnIndexOf(displayModes, EID.Config["DisplayMode"])]} 
-			end
-		}
-	)
+	EID:AddNumberSetting("Visuals", "DisplayMode", "Display Mode", 1, #displayModes, {indexOf = displayModes,
+		infoText = {"Changes display mode of descriptions", "Default: Text is displayed in the top left.", "Local: Text is displayed under the described object."}})
 
-	-- SCALE		
+	-- Scale/Size
 	EID:AddNumberSetting("Visuals", "Size", "Text Size", 0.5, 2, {modifyBy = 0.25, onChangeFunc = 
 		function(currentNum)
 			EID.MCM_OptionChanged = true
@@ -679,50 +479,12 @@ if MCMLoaded then
 	EID:AddHotkeySetting("Visuals",
 	"SizeHotkey", "Toggle Size (Keyboard)",
 	{"Press this key to change the text size.", "Hold this key to smoothly change the text size."}, false)
-
 	-- Local Mode Centered or not
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return EID.Config["LocalModeCentered"]
-			end,
-			Display = function()
-				local onOff = "False"
-				if EID.Config["LocalModeCentered"] then
-					onOff = "True"
-				end
-				return "Local mode centered: " .. onOff
-			end,
-			OnChange = function(currentBool)
-				EID.MCM_OptionChanged = true
-				EID.Config["LocalModeCentered"] = currentBool
-			end
-		}
-	)
+	EID:AddBooleanSetting("Visuals", "LocalModeCentered", "Local Mode Centered")
 
 	-- Transparency
 	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.SCROLL,
-			CurrentSetting = function()
-				return AnIndexOf(transparencies, EID.Config["Transparency"]) - 1
-			end,
-			Display = function()
-				return "Transparency: $scroll" ..
-					AnIndexOf(transparencies, EID.Config["Transparency"]) - 1 .. " " .. EID.Config["Transparency"]
-			end,
-			OnChange = function(currentNum)
-				EID.MCM_OptionChanged = true
-				EID.Config["Transparency"] = transparencies[currentNum + 1]
-			end
-		}
-	)
+	EID:AddScrollSetting("Visuals", "Transparency", "Transparency", transparencies)
 
 	MCM.AddSpace("EID", "Visuals")
 	
@@ -737,25 +499,7 @@ if MCMLoaded then
 	
 	-------Mod indicator for modded items---------
 	local modIndicatorDisplays = {"Both","Name only","Icon only", "None"}
-	MCM.AddSetting(
-		"EID",
-		"Visuals",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return AnIndexOf(modIndicatorDisplays, EID.Config["ModIndicatorDisplay"])
-			end,
-			Minimum = 1,
-			Maximum = #modIndicatorDisplays,
-			Display = function()
-				return "Mod indicator displayed for: " .. EID.Config["ModIndicatorDisplay"]
-			end,
-			OnChange = function(currentNum)
-				EID.MCM_OptionChanged = true
-				EID.Config["ModIndicatorDisplay"] = modIndicatorDisplays[currentNum]
-			end
-		}
-	)
+	EID:AddNumberSetting("Visuals", "ModIndicatorDisplay", "Display Mod Indicator", 1, #modIndicatorDisplays, {indexOf = modIndicatorDisplays})
 	
 	---------------------------------------------------------------------------
 	-----------------------------BAG OF CRAFTING-------------------------------
@@ -763,144 +507,44 @@ if MCMLoaded then
 	if REPENTANCE then
 		-- Bag of Crafting Display
 		local bagDisplays = {"always","hold","never"}
-		MCM.AddSetting(
-			"EID",
-			"Crafting",
-			{
-				Type = ModConfigMenu.OptionType.NUMBER,
-				CurrentSetting = function()
-					return AnIndexOf(bagDisplays, EID.Config["DisplayBagOfCrafting"])
-				end,
-				Minimum = 1,
-				Maximum = 3,
-				Display = function()
-					EID.MCMCompat_isDisplayingEIDTab = "Crafting"
-					return "Show Display: " .. EID.Config["DisplayBagOfCrafting"]
-				end,
-				OnChange = function(currentNum)
-					EID.MCM_OptionChanged = true
-					EID.Config["DisplayBagOfCrafting"] = bagDisplays[currentNum]
-				end,
-				Info = {"Always = Always show Results, Hold = Show when holding up bag, Never = Never show results"}
-			}
-		)
+		EID:AddNumberSetting("Crafting", "DisplayBagOfCrafting", "Show Display", 1, #bagDisplays, { displayingTab = "Crafting", indexOf = bagDisplays, infoText = {"Always = Always show Results", "Hold = Show when holding up bag", "Never = Disable Bag of Crafting feature"}})
+		
 		-- Bag of Crafting Display Mode
 		local bagDisplayModes = {"Recipe List","Preview Only","No Recipes","Pickups Only"}
-		MCM.AddSetting(
-			"EID",
-			"Crafting",
-			{
-				Type = ModConfigMenu.OptionType.NUMBER,
-				CurrentSetting = function()
-					return AnIndexOf(bagDisplayModes, EID.Config["BagOfCraftingDisplayMode"])
-				end,
-				Minimum = 1,
-				Maximum = 4,
-				Display = function()
-					return "Display Mode: " .. EID.Config["BagOfCraftingDisplayMode"]
-				end,
-				OnChange = function(currentNum)
-					EID.MCM_OptionChanged = true
-					EID.Config["BagOfCraftingDisplayMode"] = bagDisplayModes[currentNum]
-				end,
-				Info = {"Toggle showing a list of recipes, an item preview when bag is full, what item pool/quality you might get, or only the floor pickups"}
-			}
-		)
+		EID:AddNumberSetting("Crafting", "BagOfCraftingDisplayMode", "Display Mode", 1, #bagDisplayModes, { indexOf = bagDisplayModes,
+			infoText = {"Toggle showing a list of recipes, an item preview when bag is full, what item pool/quality you might get, or only the floor pickups"}})
+			
 		-- Bag of Crafting Hide in Battle
-		EID:AddBooleanSetting("Crafting", "BagOfCraftingHideInBattle", "Hide in Battle",
-		{onText = "Yes", offText = "No",
-		infoText = "Hides the recipe list when in a fight"})
+		EID:AddBooleanSetting("Crafting", "BagOfCraftingHideInBattle", "Hide in Battle", {onText = "Yes", offText = "No",
+			infoText = "Hides the recipe list when in a fight"})
 		-- Bag of Crafting 8 icons toggle
-		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayIcons", "Show Recipes/Best Bag as",
-		{onText = "8 Icons", offText = "Groups",
-		infoText = "Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients"})
+		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayIcons", "Show Recipes/Best Bag as", {onText = "8 Icons", offText = "Groups",
+			infoText = "Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients"})
+		-- Modded Recipes toggle
+		EID:AddBooleanSetting("Crafting", "BagOfCraftingModdedRecipes", "Load Modded Item Recipes", {
+			infoText = "Enable or disable modded item support; if you have a lot of modded items, it will slow down game launch"})
 			
 		MCM.AddSpace("EID", "Crafting")
 		MCM.AddText("EID", "Crafting", function() return "Recipe List Options" end)
 		
 		-- Bag of Crafting results per page
-		MCM.AddSetting(
-			"EID",
-			"Crafting",
-			{
-				Type = ModConfigMenu.OptionType.SCROLL,
-				CurrentSetting = function()
-					return AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1
-				end,
-				Display = function()
-					return "Displayed Results: $scroll" ..
-						AnIndexOf(diceSteps, EID.Config["BagOfCraftingResults"]) - 1 .. " " .. EID.Config["BagOfCraftingResults"]
-				end,
-				OnChange = function(currentNum)
-					EID.MCM_OptionChanged = true
-					EID.Config["BagOfCraftingResults"] = diceSteps[currentNum + 1]
-				end,
-				Info = {"Page size for the preview of items currently craftable with Bag of Crafting"}
-			}
-		)
+		local bagSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
+		EID:AddScrollSetting("Crafting", "BagOfCraftingResults", "Displayed Recipes", bagSteps,
+			{ infoText = "Page size for the preview of items currently craftable with Bag of Crafting"})
+
 		-- Bag of Crafting thorough recipe checks
 		local combSteps = {8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18}
-		MCM.AddSetting(
-			"EID",
-			"Crafting",
-			{
-				Type = ModConfigMenu.OptionType.SCROLL,
-				CurrentSetting = function()
-					return AnIndexOf(combSteps, EID.Config["BagOfCraftingCombinationMax"]) - 1
-				end,
-				Display = function()
-					return "Thorough Calculations: $scroll" ..
-						AnIndexOf(combSteps, EID.Config["BagOfCraftingCombinationMax"]) - 1 .. " " .. EID.Config["BagOfCraftingCombinationMax"]
-				end,
-				OnChange = function(currentNum)
-					EID.Config["BagOfCraftingCombinationMax"] = combSteps[currentNum + 1]
-				end,
-				Info = {"Get every recipe for the X best components; setting this high will cause lag spikes (12 = 500 combinations, 14 = 3,000, 16 = 13,000)"}
-			}
-		)
+		EID:AddScrollSetting("Crafting", "BagOfCraftingCombinationMax", "Thorough Calculations", combSteps,
+			{ infoText = {"Get every recipe for the X best components; setting this high slows down recipe checking", "(12 = 500 combinations, 14 = 3,000, 16 = 13,000)"}})
+
 		-- Bag of Crafting random recipe checks
 		local calcSteps = {200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200}
-		MCM.AddSetting(
-			"EID",
-			"Crafting",
-			{
-				Type = ModConfigMenu.OptionType.SCROLL,
-				CurrentSetting = function()
-					return AnIndexOf(calcSteps, EID.Config["BagOfCraftingRandomResults"]) - 1
-				end,
-				Display = function()
-					return "Random Calculations: $scroll" ..
-						AnIndexOf(calcSteps, EID.Config["BagOfCraftingRandomResults"]) - 1 .. " " .. EID.Config["BagOfCraftingRandomResults"]
-				end,
-				OnChange = function(currentNum)
-					EID.Config["BagOfCraftingRandomResults"] = calcSteps[currentNum + 1]
-				end,
-				Info = {"An additional X number of randomly chosen recipes will be checked, changing each pickup spawn/despawn or refresh"}
-			}
-		)
+		EID:AddScrollSetting("Crafting", "BagOfCraftingRandomResults", "Random Calculations", calcSteps,
+			{ infoText = "An additional X number of randomly chosen recipes will be checked, changing each pickup spawn/despawn or refresh"})
+
 		-- Bag of Crafting item names
-		MCM.AddSetting(
-			"EID",
-			"Crafting",
-			{
-				Type = ModConfigMenu.OptionType.BOOLEAN,
-				CurrentSetting = function()
-					return EID.Config["BagOfCraftingDisplayNames"]
-				end,
-				Display = function()
-					local onOff = "False"
-					if EID.Config["BagOfCraftingDisplayNames"] then
-						onOff = "True"
-					end
-					return "Show Item Names: " .. onOff
-				end,
-				OnChange = function(currentBool)
-					EID.MCM_OptionChanged = true
-					EID.Config["BagOfCraftingDisplayNames"] = currentBool
-				end,
-				Info = {"If on, each result takes two lines; lower your displayed results accordingly"}
-			}
-		)
+		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayNames", "Show Item Names",
+			{ infoText = "If on, each recipe result takes two lines, one for the item name, one for the recipe"})
 		
 		MCM.AddSpace("EID", "Crafting")
 		
