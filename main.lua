@@ -884,9 +884,9 @@ local function attemptPathfind(entity)
 	return success
 end
 
-local hasShownAchievementWarning = false
+local hasShownStartWarning = false
 local function renderAchievementInfo()
-	if REPENTANCE and not EID.Config.DisableAchievementCheck and game:GetFrameCount() < 10*30 then
+	if REPENTANCE and not EID.Config["DisableStartOfRunWarnings"] and game:GetFrameCount() < 10*30 then
 		-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
 		-- 1.7.6 (Nov. 16, 2021): The Options object (to read the game's options like HUD Offset)
 		if Options == nil then
@@ -894,7 +894,7 @@ local function renderAchievementInfo()
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("OldGameVersionWarningText") or ""
 			EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
-			hasShownAchievementWarning = true
+			hasShownStartWarning = true
 		-- Bag of Crafting modded items check
 		elseif EID.player:HasCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and 
 		(EID.Config.BagOfCraftingDisplayMode == "Recipe List" or EID.Config.BagOfCraftingDisplayMode == "Preview Only") then
@@ -902,7 +902,7 @@ local function renderAchievementInfo()
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("ModdedRecipesWarningText") or ""
 			EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
-			hasShownAchievementWarning = true
+			hasShownStartWarning = true
 		-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 		else
 			local characterID = EID.player:GetPlayerType()
@@ -917,12 +917,12 @@ local function renderAchievementInfo()
 						demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 						demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
 						EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
-						hasShownAchievementWarning = true
+						hasShownStartWarning = true
 					end
 				end
 			end
 		end
-	elseif hasShownAchievementWarning then
+	elseif hasShownStartWarning then
 		EID:hidePermanentText()
 	end
 end
@@ -943,16 +943,16 @@ local function onRender(t)
 	EID.MCM_OptionChanged = false
 	EID:resumeCoroutines()
 	
+	EID.isDisplaying = false
+	EID:setPlayer()
 	-- Do not check our hotkeys while MCM is open, or they will be triggered while rebinding
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
+		-- scale key must be handled before resetting to non-local mode
 		handleScaleKey()
 		if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
 			EID.isHidden = not EID.isHidden
 		end
 	end
-
-	EID.isDisplaying = false
-	EID:setPlayer()
 	EID:PositionLocalMode() -- default to non-local mode to fix MCM / Bag errors
 	EID.TabPreviewID = 0
 	
