@@ -971,10 +971,17 @@ local function onRender(t)
 			EID:removeTextPosModifier("Schoolbag")
 		end
 	else
-		if EID.player.SubType == 21 or EID.player.SubType == 25 then -- T-Isaac, T-Blue Baby
+		-- Tainted Isaac and Tainted ???
+		if EID.player.SubType == 21 or EID.player.SubType == 25 then
 			EID:addTextPosModifier("Tained HUD", Vector(0,30))
 		else
 			EID:removeTextPosModifier("Tained HUD")
+		end
+		-- Magdalene Birthright
+		if EID.player.SubType == 1 and EID.player:HasCollectible(619) then
+			EID:addTextPosModifier("18 Heart HUD", Vector(0,5))
+		else
+			EID:removeTextPosModifier("18 Heart HUD")
 		end
 	end
 	
