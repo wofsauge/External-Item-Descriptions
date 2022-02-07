@@ -405,7 +405,7 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 		end
 		local pool = game:GetItemPool()
 		if REPENTANCE and EID.player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
-			SubType = pool:GetPillEffect(SubType, EID.player:GetOtherTwin()) + 1
+			SubType = pool:GetPillEffect(SubType, EID.player:GetOtherTwin() or EID.player) + 1
 		else SubType = pool:GetPillEffect(SubType, EID.player) + 1 end
 	end
 	return SubType
