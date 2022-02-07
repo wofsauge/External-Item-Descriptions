@@ -82,6 +82,7 @@ function EID:renderMCMDummyDescription()
 				hudOffset = ScreenHelper.GetOffset()
 			end
 			EID.Config["HUDOffset"] = hudOffset
+			EID:addTextPosModifier("HudOffset", Vector((hudOffset * 2) - 20, hudOffset - 10))
 		end
 		if MCM.IsVisible and EID.MCMCompat_isDisplayingEIDTab ~= "" then
 			if EID.MCMCompat_isDisplayingEIDTab == "Mouse" and EID.Config["EnableMouseControls"] then
