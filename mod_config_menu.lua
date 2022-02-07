@@ -76,15 +76,13 @@ end
 
 function EID:renderMCMDummyDescription()
 	if MCMLoaded then
-		local hudOffset = ModConfigMenu.Config["General"].HudOffset
-		if hudOffset == nil and ScreenHelper then
-			hudOffset = ScreenHelper.GetOffset()
+		if not Options then
+			local hudOffset = ModConfigMenu.Config["General"].HudOffset
+			if hudOffset == nil and ScreenHelper then
+				hudOffset = ScreenHelper.GetOffset()
+			end
+			EID.Config["HUDOffset"] = hudOffset
 		end
-		if REPENTANCE and Options then
-			hudOffset = (Options.HUDOffset * 10)
-		end
-		EID.Config["HUDOffset"] = hudOffset
-		EID:addTextPosModifier("HudOffset", Vector((hudOffset * 2) - 20, hudOffset - 10))
 		if MCM.IsVisible and EID.MCMCompat_isDisplayingEIDTab ~= "" then
 			if EID.MCMCompat_isDisplayingEIDTab == "Mouse" and EID.Config["EnableMouseControls"] then
 				clearRenderDummyDesc()
