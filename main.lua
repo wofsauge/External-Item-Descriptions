@@ -808,7 +808,7 @@ end
 function EID:setPlayer()
 	local p = Isaac.GetPlayer(0)
 	if REPENTANCE and p:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B then
-		EID.player = p:GetOtherTwin()
+		EID.player = p:GetOtherTwin() or p
 	else
 		EID.player = p
 	end
