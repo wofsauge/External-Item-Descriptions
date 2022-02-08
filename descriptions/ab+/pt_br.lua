@@ -479,7 +479,7 @@ EID.descriptions[languageCode].collectibles={
 	{"455", "", "↑ +1.5 Alcance#Solta uma moeda da sorte"},
 	{"456", "", "↑ +1 Saúde"},
 	{"457", "", "+1 Coração de alma#Chance de ignorar danos"},
-	{"459", "", "Lágriams que envenena inimigos até morrer"},
+	{"459", "", "Deixa 1 trinket aleatório quando coletado, te dá um espaço de trinket extra"},
 	{"458", "", "Solta um trinket ou pickup aleatório#+Espaço extra para trinkets"},
 	{"460", "", "Chance de disparar lágrimas concussivas"},
 	{"461", "", "Chance de disparar lágrimas lentas e pegajosas#Cria uma aranha ou mosca azul ao acertar um inimigos"},
