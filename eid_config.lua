@@ -1,7 +1,8 @@
 EID.UserConfig = {
 	-------GENERAL---------
 	-- Change the language of the mod
-	-- Currently Supported: English = "en_us" (Default), "en_us_detailed" (More detailed descriptions)
+	-- Currently Supported: auto = "auto" (Default) Same as Options->Language(Rep), or English(ab+)
+	--                      English = "en_us", "en_us_detailed" (More detailed descriptions)
 	--						French = "fr"  		SPECIAL THANKS TO Nicolas Delvaux
 	--						Polish = "pl"		SPECIAL THANKS TO Rickyy
 	--						Spanish = "spa"		SPECIAL THANKS TO Lidia Arroyo Purroy
@@ -16,7 +17,7 @@ EID.UserConfig = {
 	--
 	-- If you want to make a translation, please contact me :) (wofsauge)
 	--
-	["Language"] = "en_us",
+	["Language"] = "auto",
 	-- Change if item names should be displayed in English, your translated language or both
 	-- States: 1 = English , 2 = translated,  3 = both
 	-- Default = 2
@@ -374,7 +375,7 @@ EID.UserConfig = {
 --------------------------------------------------
 
 EID.DefaultConfig = {
-	["Language"] = "en_us",
+	["Language"] = "auto",
 	["TranslateItemName"] = 2,
 	["FontType"] = "default",
 	["TextboxWidth"] = 130,

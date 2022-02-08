@@ -364,9 +364,9 @@ end
 -- falls back to english if it doesnt exist, unless specified otherwise
 function EID:getDescriptionEntry(objTable, objID, noFallback)
 	if not objID then
-		return EID.descriptions[EID.Config["Language"]][objTable] or EID.descriptions["en_us"][objTable]
+		return EID.descriptions[EID:getLanguage()][objTable] or EID.descriptions["en_us"][objTable]
 	else
-		local translatedTable = EID.descriptions[EID.Config["Language"]][objTable]
+		local translatedTable = EID.descriptions[EID:getLanguage()][objTable]
 		if noFallback then return translatedTable and translatedTable[objID]
 		else return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]) end
 	end
@@ -450,7 +450,7 @@ function EID:getTransformationName(id)
 		-- get translated custom name
 		local customTransform = EID.CustomTransformations[id] 
 		if customTransform ~= nil then
-			return customTransform[EID.Config["Language"]] or customTransform["en_us"] or id
+			return customTransform[EID:getLanguage()] or customTransform["en_us"] or id
 		end
 		return id
 	end
@@ -1210,7 +1210,7 @@ end
 
 -- Function to fix font compatibility. Resets config font to a value compatible with your current language
 function EID:fixDefinedFont()
-	local curLang = EID.Config["Language"]
+	local curLang = EID:getLanguage()
 	local curFont = EID.Config["FontType"]
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
 		if curFont == v.name then
@@ -1224,7 +1224,7 @@ function EID:fixDefinedFont()
 end
 -- Check if a given font name is valid for the currently selected language
 function EID:canUseFontType(fontType)
-	local curLang = EID.Config["Language"]
+	local curLang = EID:getLanguage()
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
 		if fontType == v.name then
 			return true
@@ -1312,4 +1312,12 @@ function EID:checkPlayersForMissingItems()
 			EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[player.QueuedItem.Item.ID] = nil
 		end
 	end
+end
+
+function EID:getLanguage()
+	local lang = EID.Config["Language"]
+	if lang == "auto" then
+		return Options and EID.LanguageMap[Options.Language] or "en_us"
+	end
+	return lang
 end

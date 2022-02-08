@@ -516,3 +516,10 @@ EID.GoldenTrinketData = {
 EID.BreakUtf8CharsLanguage = {
 	['zh_cn'] = true
 }
+
+EID.LanguageMap = {
+	["ru"] = "ru",
+	["de"] = "de",
+	["kr"] = "ko_kr",
+	["zh"] = "zh_cn",
+}
