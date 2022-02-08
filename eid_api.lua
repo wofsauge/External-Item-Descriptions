@@ -364,9 +364,9 @@ end
 -- falls back to english if it doesnt exist, unless specified otherwise
 function EID:getDescriptionEntry(objTable, objID, noFallback)
 	if not objID then
-		return EID.descriptions[EID.Config["Language"]][objTable] or EID.descriptions["en_us"][objTable]
+		return EID.descriptions[EID:getLanguage()][objTable] or EID.descriptions["en_us"][objTable]
 	else
-		local translatedTable = EID.descriptions[EID.Config["Language"]][objTable]
+		local translatedTable = EID.descriptions[EID:getLanguage()][objTable]
 		if noFallback then return translatedTable and translatedTable[objID]
 		else return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]) end
 	end
@@ -404,8 +404,8 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 			return 9999
 		end
 		local pool = game:GetItemPool()
-		if REPENTANCE and EID.player.SubType == PlayerType.PLAYER_THESOUL_B then
-			SubType = pool:GetPillEffect(SubType, EID.player:GetOtherTwin()) + 1
+		if REPENTANCE and EID.player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+			SubType = pool:GetPillEffect(SubType, EID.player:GetOtherTwin() or EID.player) + 1
 		else SubType = pool:GetPillEffect(SubType, EID.player) + 1 end
 	end
 	return SubType
@@ -450,7 +450,7 @@ function EID:getTransformationName(id)
 		-- get translated custom name
 		local customTransform = EID.CustomTransformations[id] 
 		if customTransform ~= nil then
-			return customTransform[EID.Config["Language"]] or customTransform["en_us"] or id
+			return customTransform[EID:getLanguage()] or customTransform["en_us"] or id
 		end
 		return id
 	end
@@ -742,6 +742,19 @@ function EID:filterColorMarkup(text, baseKColor)
 	return textPartsTable
 end
 
+-- A simple function to replace all markup {{ }} with placeholder strings, to use in fitTextToWidth
+function EID:replaceAllMarkupWithSpaces(text)
+	for word in string.gmatch(text, "{{.-}}") do
+		local lookup = EID:getIcon(word)
+		if lookup[1] ~= "ERROR" then
+			text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
+		else
+			text = string.gsub(text, word, "", 1)
+		end
+	end
+	return text
+end
+
 -- Fits a given string to a specific width
 -- returns the string as a table of lines
 function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
@@ -815,14 +828,8 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 
 				-- we can break after str[cursor]
 				local word = sub(str, word_begin_index, cursor)
-				
-				local colorFiltered = EID:filterColorMarkup(word, EID:getTextColor())
-				local filteredWord = {}
-				for _, filtered in ipairs(colorFiltered) do
-					table.insert(filteredWord, filtered[1])
-				end
-				local strFiltered, spriteTable = EID:filterIconMarkup(table.concat(filteredWord), 0, 0)
-				local wordLength = EID:getStrWidth(strFiltered)
+				local wordFiltered = EID:replaceAllMarkupWithSpaces(word)
+				local wordLength = EID:getStrWidth(wordFiltered)
 				
 				if curLength + wordLength <= textboxWidth or curLength < 17 then
 					table.insert(text, word)
@@ -1210,7 +1217,7 @@ end
 
 -- Function to fix font compatibility. Resets config font to a value compatible with your current language
 function EID:fixDefinedFont()
-	local curLang = EID.Config["Language"]
+	local curLang = EID:getLanguage()
 	local curFont = EID.Config["FontType"]
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
 		if curFont == v.name then
@@ -1224,7 +1231,7 @@ function EID:fixDefinedFont()
 end
 -- Check if a given font name is valid for the currently selected language
 function EID:canUseFontType(fontType)
-	local curLang = EID.Config["Language"]
+	local curLang = EID:getLanguage()
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
 		if fontType == v.name then
 			return true
@@ -1312,4 +1319,12 @@ function EID:checkPlayersForMissingItems()
 			EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[player.QueuedItem.Item.ID] = nil
 		end
 	end
+end
+
+function EID:getLanguage()
+	local lang = EID.Config["Language"]
+	if lang == "auto" then
+		return Options and EID.LanguageMap[Options.Language] or "en_us"
+	end
+	return lang
 end
