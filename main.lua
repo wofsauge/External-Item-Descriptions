@@ -929,13 +929,16 @@ local function checkStartOfRunWarnings()
 	end
 end
 
+-- Check our position modifiers based on HUD offset and character choice
 local function checkPosModifiers()
-	-- HUD offset adjustment
+	-- HUD offset adjustment, done every frame so it looks nice while changing the option
 	if Options then
 		EID:addTextPosModifier("HudOffset", Vector(((Options.HUDOffset * 10) * 2) - 20, (Options.HUDOffset * 10) - 10))
 	else
 		EID:addTextPosModifier("HudOffset", Vector((EID.Config["HUDOffset"] * 2) - 20, EID.Config["HUDOffset"] - 10))
 	end
+	-- the other modifiers don't need to be ran as frequently
+	if EID.GameRenderCount % 30 ~= 0 then return end
 	-- Greed Mode small right adjustment
 	if game:IsGreedMode() then
 		EID:addTextPosModifier("Greed Mode Horizontal", Vector(8,0))
