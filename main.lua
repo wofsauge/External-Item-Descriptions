@@ -366,6 +366,7 @@ if REPENTANCE then
 	
 	-- Watch for a Void absorbing active items
 	-- (Note: Doesn't differentiate between different players if both players have Void...)
+	-- (Note: Doesn't care about shop / choice items yet either)
 	function EID:CheckVoidAbsorbs(collectibleType)
 		local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 		for _, pedestal in ipairs(pedestals) do
@@ -509,8 +510,8 @@ function EID:printDescription(desc)
 	end
 	--Display ItemType / Charge
 	local itemType = -1
-	if tonumber(desc.ObjSubType) ~= nil and desc.ObjType == 5 and desc.ObjVariant == 100 then
-		itemType = EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Type or -1
+	if desc.ObjSubType ~= nil and desc.ObjType == 5 and desc.ObjVariant == 100 then
+		itemType = EID.itemConfig:GetCollectible(desc.ObjSubType).Type or -1
 	end
 	if EID.Config["ShowItemType"] and (itemType == 3 or itemType == 4) then
 		local offsetY = 2
@@ -806,8 +807,8 @@ end
 
 function EID:setPlayer()
 	local p = Isaac.GetPlayer(0)
-	if REPENTANCE and p.SubType == PlayerType.PLAYER_THEFORGOTTEN_B then
-		EID.player = p:GetOtherTwin()
+	if REPENTANCE and p:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B then
+		EID.player = p:GetOtherTwin() or p
 	else
 		EID.player = p
 	end
@@ -928,6 +929,51 @@ local function checkStartOfRunWarnings()
 	end
 end
 
+-- Check our position modifiers based on HUD offset and character choice
+local function checkPosModifiers()
+	-- HUD offset adjustment, done every frame so it looks nice while changing the option
+	if Options then
+		EID:addTextPosModifier("HudOffset", Vector(((Options.HUDOffset * 10) * 2) - 20, (Options.HUDOffset * 10) - 10))
+	else
+		EID:addTextPosModifier("HudOffset", Vector((EID.Config["HUDOffset"] * 2) - 20, EID.Config["HUDOffset"] - 10))
+	end
+	-- the other modifiers don't need to be ran as frequently
+	if EID.GameRenderCount % 30 ~= 0 then return end
+	-- Greed Mode small right adjustment
+	if game:IsGreedMode() then
+		EID:addTextPosModifier("Greed Mode Horizontal", Vector(8,0))
+	else
+		EID:removeTextPosModifier("Greed Mode Horizontal")
+	end
+	if not REPENTANCE then
+		-- AB+ Schoolbag adjustment
+		if EID.player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
+			EID:addTextPosModifier("Schoolbag", Vector(0,30))
+		else
+			EID:removeTextPosModifier("Schoolbag")
+		end
+	else
+		-- Tainted Isaac and Tainted ??? unique HUD adjustment
+		if EID.player:GetPlayerType() == 21 or EID.player:GetPlayerType() == 25 then
+			EID:addTextPosModifier("Tainted HUD", Vector(0,30))
+		else
+			EID:removeTextPosModifier("Tainted HUD")
+		end
+		-- Jacob and Esau card/pill adjustment
+		if EID.player:GetPlayerType() == 19 then
+			EID:addTextPosModifier("J&E HUD", Vector(0,15))
+		else
+			EID:removeTextPosModifier("J&E HUD")
+		end
+		-- Magdalene Birthright third row of hearts adjustment
+		if EID.player:GetPlayerType() == 1 and EID.player:HasCollectible(619) then
+			EID:addTextPosModifier("18 Heart HUD", Vector(0,5))
+		else
+			EID:removeTextPosModifier("18 Heart HUD")
+		end
+	end
+end
+
 
 ---------------------------------------------------------------------------
 ---------------------------On Render Function------------------------------
@@ -963,28 +1009,8 @@ local function onRender(t)
 	end
 	
 	checkStartOfRunWarnings()
+	checkPosModifiers()
 	EID:renderMCMDummyDescription()
-
-	if EID.GameVersion == "ab+" then
-		if EID.player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
-			EID:addTextPosModifier("Schoolbag", Vector(0,30))
-		else
-			EID:removeTextPosModifier("Schoolbag")
-		end
-	else
-		-- Tainted Isaac and Tainted ???
-		if EID.player.SubType == 21 or EID.player.SubType == 25 then
-			EID:addTextPosModifier("Tained HUD", Vector(0,30))
-		else
-			EID:removeTextPosModifier("Tained HUD")
-		end
-		-- Magdalene Birthright
-		if EID.player.SubType == 1 and EID.player:HasCollectible(619) then
-			EID:addTextPosModifier("18 Heart HUD", Vector(0,5))
-		else
-			EID:removeTextPosModifier("18 Heart HUD")
-		end
-	end
 	
 	if EID.isHidden then
 		return
@@ -1299,11 +1325,6 @@ if EID.MCMLoaded or REPENTANCE then
 				
 				EID:fixDefinedFont()
 				EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
-				if REPENTANCE then
-					EID:addTextPosModifier("HudOffset", Vector(((Options.HUDOffset * 10) * 2) - 20, (Options.HUDOffset * 10) - 10))
-				else
-					EID:addTextPosModifier("HudOffset", Vector((EID.Config["HUDOffset"] * 2) - 20, EID.Config["HUDOffset"] - 10))
-				end
 			end
 		end
 	end
