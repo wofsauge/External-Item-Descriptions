@@ -280,18 +280,30 @@ if MCMLoaded then
 		{
 			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
-				return AnIndexOf(EID.Languages, EID.Config["Language"])
+				if EID.Config["Language"] == "auto" then
+					return #(EID.Languages) + 1
+				else
+					return AnIndexOf(EID.Languages, EID.Config["Language"])
+				end
 			end,
 			Minimum = 1,
-			Maximum = #(EID.Languages),
+			Maximum = #(EID.Languages) + 1, -- add "auto" language
 			Display = function()
 				EID.MCMCompat_isDisplayingEIDTab = "Visuals"
-				return "Language: " .. displayLanguage[AnIndexOf(EID.Languages, EID.Config["Language"])]
+				if EID.Config["Language"] == "auto" then
+					return "Language: auto(" .. displayLanguage[AnIndexOf(EID.Languages, EID:getLanguage())] .. ")" 
+				else
+					return "Language: " .. displayLanguage[AnIndexOf(EID.Languages, EID.Config["Language"])]
+				end
 			end,
 			OnChange = function(currentNum)
 				EID.MCM_OptionChanged = true
 				EID.RefreshBagTextbox = true -- Crafting isn't open so it won't notice MCM_OptionChanged, but definitely needs to refresh
-				EID.Config["Language"] = EID.Languages[currentNum]
+				if currentNum == #(EID.Languages) + 1 then
+					EID.Config["Language"] = "auto"
+				else
+					EID.Config["Language"] = EID.Languages[currentNum]
+				end
 				local isFixed = EID:fixDefinedFont()
 				if isFixed then
 					EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
