@@ -301,8 +301,8 @@ EID.InlineIcons = {
 	["AngelChance"] = {"Stats", 6, 16, 16, 7, 6},
 	["DevilChance"] = {"Stats", 7, 16, 16, 7, 6},
 	["AngelDevilChance"] = {"Stats", 8, 16, 16, 7, 6},
-	["PlanetariumChance"] = {"Stats", 9, 16, 16, 7, 6},
-	["Crone"] = {"Stats", 10, 16, 16, 7, 6},
+	["PlanetariumChance"] = {"Stats", 9, 16, 16, 7, 6}, --unused
+	["TreasureRoomChance"] = {"Stats", 10, 16, 16, 7, 6}, --unused, assuming that's what it means
 	["Tearsize"] = {"Stats", 11, 16, 16, 7, 6},
 	["DamageAB"] = {"Stats", 12, 16, 16, 7, 6},
 	["SpeedAB"] = {"Stats", 13, 16, 16, 7, 6},
@@ -517,9 +517,12 @@ EID.BreakUtf8CharsLanguage = {
 	['zh_cn'] = true
 }
 
+-- Map the game's built-in language option strings to EID's
 EID.LanguageMap = {
-	["ru"] = "ru",
+	--["jp"] = no japanese localization yet
+	["es"] = "spa",
 	["de"] = "de",
+	["ru"] = "ru",
 	["kr"] = "ko_kr",
 	["zh"] = "zh_cn",
 }
