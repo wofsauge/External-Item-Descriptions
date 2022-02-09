@@ -66,7 +66,7 @@ EID.descriptions[languageCode].collectibles={
 	{"31", "엄마의 립스틱", "↑ {{Range}}사거리 +5.25#↑ 눈물 높이 +0.5"}, -- Mom's Lipstick
 	{"32", "철제 옷걸이", "↑ {{Tears}}연사 +0.7"}, -- Wire Coat Hanger
 	{"33", "성경", "사용 시 그 방에서 비행 능력을 얻습니다.#Mom/Mom's Heart/It Lives 보스에게 사용 시 보스를 즉사시킵니다.#!!! Satan 보스에게 사용 시 캐릭터가 즉사합니다."}, -- The Bible
-	{"34", "벨리알의 책", "사용 시 그 방에서 {{Damage}}공격력 +2 증가하며 {{Collectible7}}Blood of the Martyr 소지 시 {{Damage}}공격력 배율 x1.5 추가 적용#소지중일 때 {{DevilChance}} 악마방 확률 +12.5%"}, -- The Book of Belial
+	{"34", "벨리알의 책", "사용 시 그 방에서 {{Damage}}공격력 +2 증가하며 {{Collectible7}}Blood of the Martyr 소지 시 {{Damage}}공격력 배율 x1.5 추가 적용#소지중일 때 {{DevilChance}}악마방 확률 +12.5%"}, -- The Book of Belial
 	{"35", "네크로노미콘", "사용 시 방 전체 적에게 40의 피해를 줍니다."}, -- The Necronomicon
 	{"36", "똥", "사용 시 똥을 쌉니다."}, -- The Poop
 	{"37", "미스터 붐", "사용 시 공격력 110의 대형 폭탄을 설치합니다."}, -- Mr. Boom
@@ -83,7 +83,7 @@ EID.descriptions[languageCode].collectibles={
 	{"48", "큐피드의 화살", "공격이 적을 관통합니다."}, -- Cupid's Arrow
 	{"49", "모두 다 사라져빔!!", "사용 시 공격하는 방향으로 공격력 4배의 레이저포를 발사합니다."}, -- Shoop da Whoop!
 	{"50", "스티븐", "↑ {{Damage}}공격력 +1"}, -- Steven
-	{"51", "오망성", "↑ {{Damage}}공격력 +1#↑ {{DevilChance}} 악마방 확률 최대 +10%"}, -- Pentagram
+	{"51", "오망성", "↑ {{Damage}}공격력 +1#↑ {{DevilChance}}악마방 확률 최대 +10%"}, -- Pentagram
 	{"52", "태아 박사", "↓ {{Tears}}공격 딜레이 x2.5#공격이 폭탄 발사 공격으로 변경됩니다.#폭탄 공격력: x5 +30"}, -- Dr. Fetus
 	{"53", "자석", "픽업 아이템이 캐릭터에게 끌려옵니다."}, -- Magneto
 	{"54", "보물 지도", "맵에 스테이지 구조를 표시합니다."}, -- Treasure Map
@@ -110,7 +110,7 @@ EID.descriptions[languageCode].collectibles={
 	{"75", "박사학위", "↑ {{Heart}}빨간하트 +2#{{Pill}}알약을 하나 드랍합니다.#사용하지 않은 알약의 효과를 알 수 있습니다.#부정적인 알약 효과가 등장하지 않습니다.#헌혈기 및 {{Collectible135}}IV Bag 사용 시 1~2코인을 추가로 드랍합니다."}, -- PHD
 	{"76", "투시 안경", "{{SecretRoom}}{{SuperSecretRoom}}비밀방이 자동으로 열립니다."}, -- X-Ray Vision
 	{"77", "나의 작은 유니콘", "사용 시 6초간 무적 상태가 되며 접촉한 적에게 40의 피해를 입힙니다."}, -- My Little Unicorn
-	{"78", "요한묵시록", "사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다.#소지중일 때 {{DevilChance}} 악마방 확률 +17.5%"}, -- Book of Revelations
+	{"78", "요한묵시록", "사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다.#소지중일 때 {{DevilChance}}악마방 확률 +17.5%"}, -- Book of Revelations
 	{"79", "낙인", "↑ {{SoulHeart}}소울하트 +1#↑ {{Damage}}공격력 +1#↑ {{Speed}}이동속도 +0.2"}, -- The Mark
 	{"80", "계약", "↑ {{SoulHeart}}소울하트 +2#↑ {{Damage}}공격력 +0.5#↑ {{Tears}}연사 +0.7"}, -- The Pact
 	{"81", "죽은 고양이", "↑ 목숨 +9#{{Heart}}최대 체력이 1칸이 됩니다.#사망 시 전 방에서 최대 체력 1칸으로 부활합니다."}, -- Dead Cat
@@ -292,7 +292,7 @@ EID.descriptions[languageCode].collectibles={
 	{"257", "불타는 마음", "적에게 {{Burning}}화상을 입히는 공격이 나갑니다.#일정 확률로 공격력의 2배의 피해를 주고 불꽃이 남는 폭발을 일으키는 눈물이 나갑니다.#!!! {{Luck}}행운 수치 비례: 행운 13 이상일 때 100% 확률"}, -- Fire Mind
 	{"258", "", "획득 시 및 스테이지를 넘어갈 때마다 소지중인 아이템과 능력치를 모두 바꿉니다."}, -- Missing No.
 	{"259", "암흑 물질", "↑ {{Damage}}공격력 +1#33%의 확률로 적을 {{Fear}}도망가게 하는 공격이 나갑니다.#!!! {{Luck}}행운 수치 비례: 행운 20 이상일 때 100% 확률"}, -- Dark Matter
-	{"260", "검은 양초", "↑ {{BlackHeart}}블랙하트 +1#↑ {{DevilChance}} 악마방 확률 +15%#스테이지에 입장할 때 저주에 걸리지 않습니다.#획득 시 Labyrinth 및 특수 시드를 제외한 모든 저주를 제거합니다."}, -- Black Candle
+	{"260", "검은 양초", "↑ {{BlackHeart}}블랙하트 +1#↑ {{DevilChance}}악마방 확률 +15%#스테이지에 입장할 때 저주에 걸리지 않습니다.#획득 시 Labyrinth 및 특수 시드를 제외한 모든 저주를 제거합니다."}, -- Black Candle
 	{"261", "안구 돌출증", "↑ {{Damage}}공격력 x2#공격이 멀리 나갈수록 공격력이 최대 0.7 감소합니다."}, -- Proptosis
 	{"262", "찢어진 페이지 2", "↑ {{BlackHeart}}블랙하트 +1#피격 시 체력이 1.5칸 이하일 때 방 안의 모든 적에게 40의 피해를 줍니다."}, -- Missing Page 2
 	{"263", "", "<item does not exist>"}, --
