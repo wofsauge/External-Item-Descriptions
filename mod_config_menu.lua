@@ -290,7 +290,7 @@ if MCMLoaded then
 			Display = function()
 				EID.MCMCompat_isDisplayingEIDTab = "Visuals"
 				if EID.Config["Language"] == "auto" then
-					return "Language: auto(" .. displayLanguage[AnIndexOf(EID.Languages, EID:getLanguage())] .. ")" 
+					return "Language: Auto (" .. displayLanguage[AnIndexOf(EID.Languages, EID:getLanguage())] .. ")" 
 				else
 					return "Language: " .. displayLanguage[AnIndexOf(EID.Languages, EID.Config["Language"])]
 				end
