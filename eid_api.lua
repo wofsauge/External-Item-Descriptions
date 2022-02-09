@@ -743,7 +743,14 @@ function EID:filterColorMarkup(text, baseKColor)
 end
 
 -- A simple function to replace all markup {{ }} with placeholder strings, to use in fitTextToWidth
-function EID:replaceAllMarkupWithSpaces(text)
+function EID:replaceAllMarkupWithSpaces(text, checkBulletpoint)
+	if checkBulletpoint then
+		-- Check for the text to just be a bulletpoint icon, which should be considered as zero width
+		-- (fixTextToWidth uses this function one word at a time)
+		if EID:getIcon(text) ~= EID.InlineIcons["ERROR"] and string.find(text, "{{.-}}")~=nil then
+			return ""
+		end
+	end
 	for word in string.gmatch(text, "{{.-}}") do
 		local lookup = EID:getIcon(word)
 		if lookup[1] ~= "ERROR" then
@@ -758,7 +765,7 @@ end
 -- Fits a given string to a specific width
 -- returns the string as a table of lines
 function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
-	local formatedLines = {}
+	local formattedLines = {}
 	local curLength = 0
 	local text = {}
 
@@ -828,14 +835,14 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 
 				-- we can break after str[cursor]
 				local word = sub(str, word_begin_index, cursor)
-				local wordFiltered = EID:replaceAllMarkupWithSpaces(word)
+				local wordFiltered = EID:replaceAllMarkupWithSpaces(word, curLength == 0)
 				local wordLength = EID:getStrWidth(wordFiltered)
 				
 				if curLength + wordLength <= textboxWidth or curLength < 17 then
 					table.insert(text, word)
 					curLength = curLength + wordLength
 				else
-					table.insert(formatedLines, table.concat(text))
+					table.insert(formattedLines, table.concat(text))
 					text = { word }
 					curLength = wordLength
 				end
@@ -846,8 +853,8 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 		cursor = cursor + 1
 	end
 
-	table.insert(formatedLines, table.concat(text))
-	return formatedLines
+	table.insert(formattedLines, table.concat(text))
+	return formattedLines
 end
 
 -- Renders a given string using the EID Custom font. This will also apply any markup and render icons
