@@ -520,7 +520,7 @@ EID.descriptions[languageCode].collectibles={
 	{"498", "Duality", "Spawns {{DevilRoom}}Devil AND {{AngelRoom}}Angel Room doors#When entering one, the other disappears"},
 	{"499", "Eucharist", "100% chance to find an {{AngelRoom}}Angel Room"},
 	{"500", "Sack of Sacks", "Spawns a sack every 5-6 rooms"},
-	{"501", "Greed's Gullet", "Gives you 1 heart container for every 25 coins#The Keeper will gain additional Coin Hearts"},
+	{"501", "Greed's Gullet", "Gain 1 Heart Container for every 25 coins you gain after picking up Greed's Gullet#{{Player14}}Keeper can gain additional Coin Hearts"},
 	{"502", "Large Zit", "While firing, occasionally shoot a white creep tear that deals double damage#Shoot a white creep tear when damaged"},
 	{"503", "Little Horn", "5% chance to shoot tears that instantly kill enemies#Running into enemies will deal 3.5 damage to them"},
 	{"504", "Brown Nugget", "Spawns a fly turret that shoots at enemies#Each shot deals 2 damage"},
