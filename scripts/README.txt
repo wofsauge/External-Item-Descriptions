@@ -12,6 +12,8 @@ The resulting informations can then be used by EID to enable the following featu
 You may need to install "Microsoft .NET 3.1" or greater for this tool to work.
 Download here: https://dotnet.microsoft.com/en-us/download/dotnet/3.1
 
+If you want to start the manual path input mode, you can add the starting argument "-manual" to the program.
+
 
 ~~~ Informations ~~~
 The source code of the application can be found here:
