@@ -191,7 +191,7 @@ if REPENTANCE then
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCallback(descObj)
 		-- get the ID of the player that owns the Spindown Dice
-		local playerID = (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723])
+		local playerID = (EID.collectiblesOwned[723] or (EID.absorbedItems[723] and EID.collectiblesOwned[477]))
 		EID:appendToDescription(descObj, "#{{Collectible723}} :")
 		local refID = descObj.ObjSubType
 		local hasCarBattery = Isaac.GetPlayer(playerID):HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
@@ -444,10 +444,10 @@ if REPENTANCE then
 			if EID.collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
 			if EID.collectiblesOwned[59] then table.insert(callbacks, BookOfBelialCallback) end
 			if EID.collectiblesOwned[584] then table.insert(callbacks, BookOfVirtuesCallback) end
-			if EID.collectiblesOwned[706] or EID.collectiblesAbsorbed[706] then table.insert(callbacks, AbyssCallback) end
+			if EID.collectiblesOwned[706] or (EID.absorbedItems[706] and EID.collectiblesOwned[477]) then table.insert(callbacks, AbyssCallback) end
 			
 			if EID.collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
-			if EID.Config["SpindownDiceResults"] > 0 and (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723]) and descObj.ObjSubType ~= 668 then table.insert(callbacks, SpindownDiceCallback) end
+			if EID.Config["SpindownDiceResults"] > 0 and (EID.collectiblesOwned[723] or (EID.absorbedItems[723] and EID.collectiblesOwned[477])) and descObj.ObjSubType ~= 668 then table.insert(callbacks, SpindownDiceCallback) end
 			
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then

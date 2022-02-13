@@ -28,6 +28,7 @@ EID.sacrificeCounter = {}
 EID.itemConfig = Isaac.GetItemConfig()
 EID.itemUnlockStates = {}
 EID.CraneItemType = {}
+EID.collectiblesOwned = {}
 EID.absorbedItems = {}
 EID.CollectedItems = {}
 local pathsChecked = {}
@@ -1256,6 +1257,7 @@ if EID.MCMLoaded or REPENTANCE then
 		["BagFloorContent"] = true,
 		["CraneItemType"] = true,
 		["FlipItemPositions"] = true,
+		["CollectiblesOwned"] = true,
 		["AbsorbedItems"] = true,
 		["CollectedItems"] = true,
 	}
@@ -1280,12 +1282,14 @@ if EID.MCMLoaded or REPENTANCE then
 				EID.BagItems = {}
 				EID.CraneItemType = {}
 				EID.flipItemPositions = {}
+				EID.collectiblesOwned = {}
 				EID.absorbedItems = {}
 				
 				if isSave then
 					EID.BagItems = savedEIDConfig["BagContent"] or {}
 					EID.bagOfCraftingRoomQueries = savedEIDConfig["BagFloorContent"] or {}
 					EID.CraneItemType = savedEIDConfig["CraneItemType"] or {}
+					EID.collectiblesOwned = savedEIDConfig["AbsorbedItems"] or {}
 					EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
 
 					-- turn list back into dict because json cant save dict indices.
@@ -1347,6 +1351,7 @@ if EID.MCMLoaded or REPENTANCE then
 			EID.Config["BagContent"] = EID.BagItems or {}
 			EID.Config["BagFloorContent"] = EID.bagOfCraftingRoomQueries or {}
 			EID.Config["CraneItemType"] = EID.CraneItemType or {}
+			EID.Config["CollectiblesOwned"] = EID.collectiblesOwned or {}
 			EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
 
 			-- turn dictionary into list because json cant save dict indices.

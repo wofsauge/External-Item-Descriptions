@@ -66,7 +66,7 @@ EID.descriptions[languageCode].collectibles={
 	{"31", "엄마의 립스틱", "↑ {{Range}}사거리 +5.25#↑ 눈물 높이 +0.5"}, -- Mom's Lipstick
 	{"32", "철제 옷걸이", "↑ {{Tears}}연사 +0.7"}, -- Wire Coat Hanger
 	{"33", "성경", "사용 시 그 방에서 비행 능력을 얻습니다.#Mom/Mom's Heart/It Lives 보스에게 사용 시 보스를 즉사시킵니다.#!!! Satan 보스에게 사용 시 캐릭터가 즉사합니다."}, -- The Bible
-	{"34", "벨리알의 책", "사용 시 그 방에서 {{Damage}}공격력 +2 증가하며 {{Collectible7}}Blood of the Martyr 소지 시 {{Damage}}공격력 배율 x1.5 추가 적용#소지중일 때 {{DevilChance}} 악마방 확률 +12.5%"}, -- The Book of Belial
+	{"34", "벨리알의 책", "사용 시 그 방에서 {{Damage}}공격력 +2 증가하며 {{Collectible7}}Blood of the Martyr 소지 시 {{Damage}}공격력 배율 x1.5 추가 적용#소지중일 때 {{DevilChance}}악마방 확률 +12.5%"}, -- The Book of Belial
 	{"35", "네크로노미콘", "사용 시 방 전체 적에게 40의 피해를 줍니다."}, -- The Necronomicon
 	{"36", "똥", "사용 시 똥을 쌉니다."}, -- The Poop
 	{"37", "미스터 붐", "사용 시 공격력 110의 대형 폭탄을 설치합니다."}, -- Mr. Boom
@@ -83,7 +83,7 @@ EID.descriptions[languageCode].collectibles={
 	{"48", "큐피드의 화살", "공격이 적을 관통합니다."}, -- Cupid's Arrow
 	{"49", "모두 다 사라져빔!!", "사용 시 공격하는 방향으로 공격력 4배의 레이저포를 발사합니다."}, -- Shoop da Whoop!
 	{"50", "스티븐", "↑ {{Damage}}공격력 +1"}, -- Steven
-	{"51", "오망성", "↑ {{Damage}}공격력 +1#↑ {{DevilChance}} 악마방 확률 최대 +10%"}, -- Pentagram
+	{"51", "오망성", "↑ {{Damage}}공격력 +1#↑ {{DevilChance}}악마방 확률 최대 +10%"}, -- Pentagram
 	{"52", "태아 박사", "↓ {{Tears}}공격 딜레이 x2.5#공격이 폭탄 발사 공격으로 변경됩니다.#폭탄 공격력: x5 +30"}, -- Dr. Fetus
 	{"53", "자석", "픽업 아이템이 캐릭터에게 끌려옵니다."}, -- Magneto
 	{"54", "보물 지도", "맵에 스테이지 구조를 표시합니다."}, -- Treasure Map
@@ -110,7 +110,7 @@ EID.descriptions[languageCode].collectibles={
 	{"75", "박사학위", "↑ {{Heart}}빨간하트 +2#{{Pill}}알약을 하나 드랍합니다.#사용하지 않은 알약의 효과를 알 수 있습니다.#부정적인 알약 효과가 등장하지 않습니다.#헌혈기 및 {{Collectible135}}IV Bag 사용 시 1~2코인을 추가로 드랍합니다."}, -- PHD
 	{"76", "투시 안경", "{{SecretRoom}}{{SuperSecretRoom}}비밀방이 자동으로 열립니다."}, -- X-Ray Vision
 	{"77", "나의 작은 유니콘", "사용 시 6초간 무적 상태가 되며 접촉한 적에게 40의 피해를 입힙니다."}, -- My Little Unicorn
-	{"78", "요한묵시록", "사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다.#소지중일 때 {{DevilChance}} 악마방 확률 +17.5%"}, -- Book of Revelations
+	{"78", "요한묵시록", "사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다.#소지중일 때 {{DevilChance}}악마방 확률 +17.5%"}, -- Book of Revelations
 	{"79", "낙인", "↑ {{SoulHeart}}소울하트 +1#↑ {{Damage}}공격력 +1#↑ {{Speed}}이동속도 +0.2"}, -- The Mark
 	{"80", "계약", "↑ {{SoulHeart}}소울하트 +2#↑ {{Damage}}공격력 +0.5#↑ {{Tears}}연사 +0.7"}, -- The Pact
 	{"81", "죽은 고양이", "↑ 목숨 +9#{{Heart}}최대 체력이 1칸이 됩니다.#사망 시 전 방에서 최대 체력 1칸으로 부활합니다."}, -- Dead Cat
@@ -292,7 +292,7 @@ EID.descriptions[languageCode].collectibles={
 	{"257", "불타는 마음", "적에게 {{Burning}}화상을 입히는 공격이 나갑니다.#일정 확률로 공격력의 2배의 피해를 주고 불꽃이 남는 폭발을 일으키는 눈물이 나갑니다.#!!! {{Luck}}행운 수치 비례: 행운 13 이상일 때 100% 확률"}, -- Fire Mind
 	{"258", "", "획득 시 및 스테이지를 넘어갈 때마다 소지중인 아이템과 능력치를 모두 바꿉니다."}, -- Missing No.
 	{"259", "암흑 물질", "↑ {{Damage}}공격력 +1#33%의 확률로 적을 {{Fear}}도망가게 하는 공격이 나갑니다.#!!! {{Luck}}행운 수치 비례: 행운 20 이상일 때 100% 확률"}, -- Dark Matter
-	{"260", "검은 양초", "↑ {{BlackHeart}}블랙하트 +1#↑ {{DevilChance}} 악마방 확률 +15%#스테이지에 입장할 때 저주에 걸리지 않습니다.#획득 시 Labyrinth 및 특수 시드를 제외한 모든 저주를 제거합니다."}, -- Black Candle
+	{"260", "검은 양초", "↑ {{BlackHeart}}블랙하트 +1#↑ {{DevilChance}}악마방 확률 +15%#스테이지에 입장할 때 저주에 걸리지 않습니다.#획득 시 Labyrinth 및 특수 시드를 제외한 모든 저주를 제거합니다."}, -- Black Candle
 	{"261", "안구 돌출증", "↑ {{Damage}}공격력 x2#공격이 멀리 나갈수록 공격력이 최대 0.7 감소합니다."}, -- Proptosis
 	{"262", "찢어진 페이지 2", "↑ {{BlackHeart}}블랙하트 +1#피격 시 체력이 1.5칸 이하일 때 방 안의 모든 적에게 40의 피해를 줍니다."}, -- Missing Page 2
 	{"263", "", "<item does not exist>"}, --
@@ -336,14 +336,14 @@ EID.descriptions[languageCode].collectibles={
 	{"301", "게자리", "↑ {{SoulHeart}}소울하트 +3#피격 시 그 방에서 받는 피해가 체력 반칸으로 고정됩니다."}, -- Cancer
 	{"302", "사자자리", "장애물을 부술 수 있습니다."}, -- Leo
 	{"303", "처녀자리", "부정적인 알약 효과가 등장하지 않습니다.#피격 시 일정 확률로 7초간 무적 상태가 됩니다.#!!! {{Luck}}행운 수치 비례: 행운 10 이상일 때 100% 확률"}, -- Virgo
-	{"304", "천칭자리", "↑ {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 +6{{Damage}}공격력, {{Tears}}연사, {{Range}}사거리, {{Speed}}이동속도가 항상 균등하게 조정됩니다."}, -- Libra
+	{"304", "천칭자리", "↑ {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 +6#{{Damage}}공격력, {{Tears}}연사, {{Range}}사거리, {{Speed}}이동속도가 항상 균등하게 조정됩니다."}, -- Libra
 	{"305", "전갈자리", "적을 항상 {{Poison}}중독시키는 공격이 나갑니다."}, -- Scorpio
 	{"306", "사수자리", "↑ {{Speed}}이동속도 +0.2#공격이 적을 관통합니다."}, -- Sagittarius
 	{"307", "염소자리", "↑ {{Heart}}최대 체력 +1#↑ {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 +1#↑ {{Damage}}공격력 +0.5#↑ {{Tears}}연사 +0.2#↑ {{Range}}사거리 +1.5#↑ {{Speed}}이동속도 +0.1"}, -- Capricorn
 	{"308", "물병자리", "캐릭터가 지나간 자리에 파란 장판이 생기며 닿은 적은 초당 6의 피해를 입습니다."}, -- Aquarius
 	{"309", "물고기자리", "↑ {{Tears}}연사 +0.2#공격이 적을 밀쳐냅니다."}, -- Pisces
 	{"310", "이브의 마스카라", "↑ {{Damage}}공격력 배율 x2#↓ {{Tears}}연사 배율 x0.2#↓ {{Shotspeed}}탄속 -0.5"}, -- Eve's Mascara
-	{"311", "유다의 그림자", "↑ 목숨 +1#사망 시 전 방에서 Black Judas 캐릭터#{{Blank}} ({{BlackHeart}}블랙하트 2, {{Damage}}공격력 배율 x2, {{Speed}}이동속도 +0.1)로 부활합니다."}, -- Judas' Shadow
+	{"311", "유다의 그림자", "↑ 목숨 +1#사망 시 전 방에서 {{Player12}}Black Judas 캐릭터#{{Blank}} (2{{BlackHeart}}/{{Damage}}공격력 배율 x2/{{Speed}}이동속도 +0.1)로 부활합니다."}, -- Judas' Shadow
 	{"312", "매기의 리본", "↑ {{Heart}}최대 체력 +1#{{Heart}}빨간하트 획득량이 2배 증가합니다."}, -- Maggy's Bow
 	{"313", "신성한 망토", "피격 시 방당 1회 한정으로 피해를 무시합니다."}, -- Holy Mantle
 	{"314", "살찐 허벅지", "↑ {{Heart}}최대 체력 +1#↓ {{Speed}}이동속도 -0.4#장애물을 부술 수 있습니다."}, -- Thunder Thighs
@@ -364,7 +364,7 @@ EID.descriptions[languageCode].collectibles={
 	{"329", "루도비코 요법", "공격이 공격키로 조종 가능한 원격 원 공격으로 변경됩니다."}, -- The Ludovico Technique
 	{"330", "두유", "↓ {{Damage}}공격력 배율 x0.2#↑ {{Tears}}연사 배율 x4 +2"}, -- Soy Milk
 	{"331", "신", "↑ {{Damage}}공격력 +0.5#↓ {{Tears}}연사 -0.3#↑ {{Range}}사거리 +1.2#↑ 눈물 높이 +0.8#↓ {{Shotspeed}}탄속 -0.3#공격이 적에게 유도됩니다.#눈물에 후광이 생기며 후광에 닿은 적은 초당 공격력의 129%의 피해를 입습니다."}, -- Godhead
-	{"332", "나사로의 붕대", "↑ 목숨 +1#사망 시 즉시 Lazarus2 캐릭터#{{Blank}} (체력 1, {{Damage}}공격력 배율 x1.2, Anemic)로 부활합니다."}, -- Lazarus' Rags
+	{"332", "나사로의 붕대", "↑ 목숨 +1#사망 시 즉시 {{Player11}}Lazarus 캐릭터#{{Blank}} (1{{Heart}}/{{Damage}}공격력 배율 x1.2/{{Collectible214}}Anemic)로 부활합니다."}, -- Lazarus' Rags
 	{"333", "정신", "맵에 스테이지 구조, 특수방 위치, 비밀방 위치가 표시됩니다."}, -- The Mind
 	{"334", "육체", "↑ {{Heart}}최대 체력 +3"}, -- The Body
 	{"335", "영혼", "↑ {{SoulHeart}}소울하트 +2#적의 탄환이 캐릭터를 피해갑니다."}, -- The Soul
@@ -445,7 +445,7 @@ EID.descriptions[languageCode].collectibles={
 	{"410", "악마의 눈", "공격 시 확률적으로 푸른 눈을 발사하며 눈은 날아가면서 캐릭터가 공격하는 방향으로 캐릭터의 눈물 효과와 같은 눈물을 발사합니다."}, -- Evil Eye
 	{"411", "욕망의 피", "적 처치 시 그 방에서 {{Damage}}공격력이 +0.5씩(최대 +5) 증가합니다."}, -- Lusty Blood
 	{"412", "몽마의 자식들", "일정 횟수만큼 피격받을 시 악마류 패밀리어를 영구적으로 소환합니다.#{{Blank}} (최대 4마리)"}, -- Cambion Conception
-	{"413", "원죄없는 잉태", "일정 개수만큼 {{Heart}}}하트 픽업 획득 시 천사류 패밀리어를 영구적으로 소환합니다.#{{Blank}} (최대 5마리)"}, -- Immaculate Conception
+	{"413", "원죄없는 잉태", "일정 개수만큼 {{Heart}}하트 픽업 획득 시 천사류 패밀리어를 영구적으로 소환합니다.#{{Blank}} (최대 5마리)"}, -- Immaculate Conception
 	{"414", "더 많은 선택권", "{{TreasureRoom}}보물방 아이템이 2개가 나오며 하나를 선택하면 나머지는 사라집니다."}, -- More Options
 	{"415", "빛의 왕관", "↑ {{SoulHeart}}소울하트 +2#최대 체력이 모두 차있거나 빨간하트가 없을 때:#↑ {{Damage}}공격력 배율 x2#↑ {{Range}}사거리 +5.25#↑ 눈물 높이 +0.5#↓ {{Shotspeed}}탄속 -0.3#피격 시 그 방에서 비활성화됩니다."}, -- Crown Of Light
 	{"416", "넓은 가방", "카드 또는 알약을 2개 들 수 있습니다."}, -- Deep Pockets
@@ -533,7 +533,7 @@ EID.descriptions[languageCode].collectibles={
 	{"498", "이중성", "{{AngelDevilChance}}악마방 등장 시 천사방이 함께 등장하며 두 방 중 한곳을 선택할 수 있습니다."}, -- Duality
 	{"499", "성찬", "{{AngelChance}}천사방 등장 확률이 100%로 고정됩니다."}, -- Eucharist
 	{"500", "자루 주머니", "방 클리어 시 확률적으로 픽업 자루를 드랍합니다."}, -- Sack of Sacks
-	{"501", "탐욕의 식도", "동전 25개 당 {{EmptyHeart}}빈 최대 체력 +1#동전으로 늘어난 체력은 동전 소비 시 사라집니다."}, -- Greed's Gullet
+	{"501", "탐욕의 식도", "동전 25개 당 {{EmptyHeart}}빈 최대 체력 +1#{{Player14}}/{{Player33}}Keeper: 동전 25개 당 체력 상한 +1#동전으로 늘어난 체력은 동전 소비 시 사라집니다."}, -- Greed's Gullet
 	{"502", "대왕 여드름", "확률적으로 적을 {{Slow}}둔화시키는 공격력 x2의 눈물이 나갑니다."}, -- Large Zit
 	{"503", "작은 뿔", "확률적으로 적을 즉사시키는 눈물이 나갑니다.#적에게 접촉 시 3.5의 피해를 입힙니다."}, -- Little Horn
 	{"504", "갈색 너겟", "사용 시 그 자리에서 주위의 적을 공격하는 파란 파리를 소환합니다."}, -- Brown Nugget
@@ -611,18 +611,18 @@ EID.descriptions[languageCode].trinkets={
 	{"20", "원숭이 손", "피격 시 체력이 반칸 남았을때 {{BlackHeart}}블랙하트를 하나 (총 3번) 드랍합니다."}, -- Monkey Paw
 	{"21", "신비한 종이", "피격 시 확률적으로 {{Collectible327}}The Polaroid, {{Collectible328}}The Negative, {{Trinket48}}A Missing Page, {{Trinket23}}Missing Poster 장신구 효과 중 하나를 발동합니다."}, -- Mysterious Paper
 	{"22", "악마 꼬리", "빨간하트가 드랍될 때 확률적으로 {{BlackHeart}}블랙하트로 대체됩니다."}, -- Daemon's Tail
-	{"23", "실종 포스터", "!!! 일회용#{{SacrificeRoom}}희생방에서 사망 시 전 방에서 The Lost 캐릭터로 부활함과 동시에 The Lost 캐릭터가 해금됩니다.#The Lost 캐릭터 해금 이후에는 희생방이 아닌 다른 방에서의 사망 시에도 부활합니다."}, -- Missing Poster
+	{"23", "실종 포스터", "!!! 일회용#{{SacrificeRoom}}희생방에서 사망 시 전 방에서 {{Player10}}The Lost 캐릭터로 부활함과 동시에 The Lost 캐릭터가 해금됩니다.#The Lost 캐릭터 해금 이후에는 희생방이 아닌 다른 방에서의 사망 시에도 부활합니다."}, -- Missing Poster
 	{"24", "똥전", "동전 획득 시 적을 밀쳐내는 방귀를 뀝니다."}, -- Butt Penny
 	{"25", "이상한 초콜릿", "30초마다 적을 밀쳐내는 방귀를 뀝니다."}, -- Mysterious Candy
 	{"26", "꺾기벌레", "↑ {{Range}}사거리 +10#눈물이 지그재그로 날아갑니다."}, -- Hook Worm
 	{"27", "채찍벌레", "↑ {{Shotspeed}}탄속 +0.5"}, -- Whip Worm
-	{"28", "부서진 앙크", "사망 시 22% 확률로 전 방에서 ??? 캐릭터로 부활합니다."}, -- Broken Ankh
+	{"28", "부서진 앙크", "사망 시 22% 확률로 전 방에서 {{Player4}}??? 캐릭터로 부활합니다."}, -- Broken Ankh
 	{"29", "생선 머리", "피격 시 파란 아군 파리를 소환합니다."}, -- Fish Head
 	{"30", "분홍 눈알", "10%의 확률로 적을 {{Poison}}중독시키는 공격이 나갑니다.#!!! {{Luck}}행운 수치 비례: 행운 18 이상일 때 100% 확률"}, -- Pinky Eye
 	{"31", "고정핀", "10%의 확률로 적과 장애물을 관통하는 공격이 나갑니다.#!!! {{Luck}}행운 수치 비례: 행운 18 이상일 때 100% 확률"}, -- Push Pin
 	{"32", "환각버섯", "방 입장 시 25% 확률로 그 방에서 랜덤한 버섯 아이템 효과를 얻거나 맵에 특수방의 위치가 표시됩니다."}, -- Liberty Cap
 	{"33", "탯줄", "피격 시 {{HalfHeart}}빨간하트가 반칸 남았을 때 그 방에서 {{Collectible100}}Little Steven을 소환합니다."}, -- Umbilical Cord
-	{"34", "아이의 심장", "방 클리어 보상이 10% 확률로 {{Heart}}}하트로 바뀝니다.#상자에서 {{Heart}}빨간하트가 드랍될 확률이 증가합니다."}, -- Child's Heart
+	{"34", "아이의 심장", "방 클리어 보상이 10% 확률로 {{Heart}}하트로 바뀝니다.#상자에서 {{Heart}}빨간하트가 드랍될 확률이 증가합니다."}, -- Child's Heart
 	{"35", "휘어진 뿔", "↑ {{Damage}}공격력 +2"}, -- Curved Horn
 	{"36", "녹슨 열쇠", "방 클리어 보상이 10% 확률로 {{Key}}열쇠로 바뀝니다.#상자에서 {{Key}}열쇠가 드랍될 확률이 증가합니다."}, -- Rusted Key
 	{"37", "염소 발굽", "↑ {{Speed}}이동속도 +0.15"}, -- Goat Hoof
@@ -750,7 +750,7 @@ EID.descriptions[languageCode].cards={
 	{"27", "클로버 A", "방 안의 모든 픽업을 {{Bomb}}폭탄으로 바꿉니다."}, -- Ace of Clubs
 	{"28", "다이아 A", "방 안의 모든 픽업을 {{Coin}}동전으로 바꿉니다."}, -- Ace of Diamonds
 	{"29", "스페이드 A", "방 안의 모든 픽업을 {{Key}}열쇠로 바꿉니다."}, -- Ace of Spades
-	{"30", "하트 A", "방 안의 모든 픽업을 {{Heart}}}하트로 바꿉니다."}, -- Ace of Hearts
+	{"30", "하트 A", "방 안의 모든 픽업을 {{Heart}}하트로 바꿉니다."}, -- Ace of Hearts
 	{"31", "조커", "{{DevilRoom}}악마방 또는 {{AngelRoom}}천사방으로 순간이동합니다."}, -- Joker
 	{"32", "하갈라즈", "방 안의 모든 장애물을 제거합니다."}, -- Hagalaz
 	{"33", "제라", "방 안의 모든 픽업 아이템을 복제합니다."}, -- Jera

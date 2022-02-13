@@ -67,6 +67,7 @@ local charsToDebug = {
 	"roomshapes: |{{Room}}|{{RoomLongHorizontal}}|{{RoomLongThinHorizontal}}|{{RoomSmallHorizontal}}|{{RoomLBottomRight}}|{{RoomSmallVertical}}|{{RoomLBottomLeft}}|{{RoomLTopLeft}}|{{RoomL}}|{{RoomLongVertical}}|{{RoomXL}}|{{RoomLongThinVertical}}|",
 	"transformations: |{{CustomTransformation}}|{{Guppy}}|{{FunGuy}}|{{LordoftheFlies}}|{{Conjoined}}|{{Spun}}|{{Mom}}|{{OhCrap}}|{{Bob}}|{{Leviathan}}|{{Seraphim}}|{{SuperBum}}|{{Bookworm}}|{{SpiderBaby}}|{{Adult}}|{{Stompy}}|",
 	"Stats: |{{Damage}}|{{Speed}}|{{Tears}}|{{Range}}|{{Shotspeed}}|{{Luck}}|{{AngelChance}}|{{DevilChance}}|{{AngelDevilChance}}|{{PlanetariumChance}}|{{TreasureRoomChance}}|",
+	"AB+ Stats: |{{DamageAB}}|{{SpeedAB}}|{{TearsAB}}|{{RangeAB}}|{{ShotspeedAB}}|{{LuckAB}}|{{AngelChanceAB}}|{{DevilChanceAB}}|",
 	"Stats up: |{{Charm}}|{{Burning}}|{{Crown}}|{{Fear}}|{{Poison}}|{{Slow}}|{{Magnetize}}|{{BrimstoneCurse}}|{{BleedingOut}}|{{Weakness}}|{{Bait}}|{{DeathMark}}|",
 	"Main Colors: {{ColorText}}Text {{ColorTransform}}Transform {{ColorError}}Error {{ColorObjName}}ObjName {{ColorBlack}}Black {{ColorWhite}}White {{ColorRed}}Red {{ColorLime}}Lime {{ColorBlue}}Blue",
 	"Colors: {{ColorYellow}}Yellow {{ColorCyan}}Cyan {{ColorPink}}Pink {{ColorSilver}}Silver {{ColorGray}}Gray {{ColorMaroon}}Maroon {{ColorOlive}}Olive {{ColorGreen}}Green {{ColorPurple}}Purple {{ColorTeal}}Teal {{ColorNavy}}Navy {{ColorOrange}}Orange ",
