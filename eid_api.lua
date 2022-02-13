@@ -1358,49 +1358,6 @@ function EID:getLanguage()
 	return lang
 end
 
--- Afterbirth+ modifiers
-local collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, }
-local maxSlot = 1
--- Repentance modifiers
-if REPENTANCE then
-	maxSlot = 3
-	--include the AB+ collectiblesToCheck in this table!
-	collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID,
-		CollectibleType.COLLECTIBLE_BINGE_EATER, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, CollectibleType.COLLECTIBLE_SPINDOWN_DICE, 
-		CollectibleType.COLLECTIBLE_TAROT_CLOTH, CollectibleType.COLLECTIBLE_MOMS_BOX, 59, --Birthright Belial
-		CollectibleType.COLLECTIBLE_BLANK_CARD, CollectibleType.COLLECTIBLE_CLEAR_RUNE, CollectibleType.COLLECTIBLE_PLACEBO, 
-		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP,
-	}
-end
-local blackRuneOwned = false
-local lastCheck = 0
-function EID:CheckPlayersCollectibles()
-	-- recheck the players' owned collectibles periodically, not every frame
-	if EID.GameUpdateCount >= lastCheck + 15 then
-		lastCheck = EID.GameUpdateCount
-		local numPlayers = game:GetNumPlayers()
-		local players = {}; for i = 0, numPlayers - 1 do players[i] = Isaac.GetPlayer(i) end
-		for _,v in ipairs(collectiblesToCheck) do
-			EID.collectiblesOwned[v] = false
-			for i = 0, numPlayers - 1 do
-				if players[i]:HasCollectible(v) then
-					EID.collectiblesOwned[v] = i
-					break
-				end
-			end
-		end
-		blackRuneOwned = false
-		for i = 0, numPlayers - 1 do
-			for j = 0, maxSlot do
-				if players[i]:GetCard(j) == Card.RUNE_BLACK then
-					blackRuneOwned = i
-					break
-				end
-			end
-		end
-	end
-end
-
 function EID:AddToCollectiblesToCheckList(itemID)
-	table.insert(collectiblesToCheck, itemID)
+	table.insert(EID.collectiblesToCheck, itemID)
 end
