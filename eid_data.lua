@@ -18,6 +18,7 @@ EID.ButtonToIconMap = {
 -- List of Effect variants that should be handled for descriptions
 EID.effectList = {
 	["76"] = true,
+	["161"] = true,
 }
 
 -- List of HUD elements, their position and usage

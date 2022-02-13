@@ -364,20 +364,18 @@ if REPENTANCE then
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckFlipGridIndexes, CollectibleType.COLLECTIBLE_FLIP)
-	
-	-- Watch for a Void absorbing active items
-	-- (Note: Doesn't differentiate between different players if both players have Void...)
-	-- (Note: Doesn't care about shop / choice items yet either)
-	function EID:CheckVoidAbsorbs(collectibleType)
-		local pedestals = Isaac.FindByType(5, 100, -1, true, false)
-		for _, pedestal in ipairs(pedestals) do
-			if pedestal.SubType > 0 and EID.itemConfig:GetCollectible(pedestal.SubType).Type == 3 then
-				EID.absorbedItems[pedestal.SubType] = true
-			end
-		end
-	end
-	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckVoidAbsorbs, CollectibleType.COLLECTIBLE_VOID)
 end
+
+-- Watch for a Void absorbing active items
+function EID:CheckVoidAbsorbs(collectibleType, rng, player)
+	local playerID = EID:getPlayerID(player)
+	EID.absorbedItems[tostring(playerID)] = EID.absorbedItems[tostring(playerID)] or {}
+	for _,v in ipairs(EID:VoidRoomCheck()) do
+		EID.absorbedItems[tostring(playerID)][tostring(v)] = true
+	end
+	EID.RecheckVoid = true
+end
+EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckVoidAbsorbs, CollectibleType.COLLECTIBLE_VOID)
 
 ---------------------------------------------------------------------------
 --------------------------Handle Scale Shortcut----------------------------
@@ -691,7 +689,7 @@ function EID:renderIndicator(entity)
 	end
 	-- Move highlights a bit to fit onto the alt Item layout of Flip / Tainted Laz
 	if REPENTANCE then
-		if entity.Variant == 100 and EID.player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) then
+		if entity.Variant == 100 and EID.player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID:getEntityData(entity, "EID_FlipItemID") then
 			entityPos = entityPos + Vector(2.5,2.5)
 		elseif entity.Type == 6 and entity.Variant == 16 then
 			entityPos = entityPos + Vector(0,-5)
@@ -707,27 +705,31 @@ function EID:renderIndicator(entity)
 			sprite.FlipX = true
 		end
 	end
-	if EID.Config["Indicator"] == "blink" then
-		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
-		sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
-		EID:renderEntity(entity, sprite, entityPos)
-		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
-	elseif EID.Config["Indicator"] == "arrow" then
+	
+	-- Don't apply sprite.Color changes to Effects (Dice Floors, Card Reading Portals), use Arrow instead
+	if EID.Config["Indicator"] == "arrow" or entity.Type == 1000 then
 		ArrowSprite:Update()
 		ArrowSprite:Render(arrowPos, nullVector, nullVector)
 	else
-		if EID.Config["Indicator"] == "border" then
+		if EID.Config["Indicator"] == "blink" then
 			local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
 			sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
-		elseif EID.Config["Indicator"] == "highlight" then
-			sprite.Color = Color(1, 1, 1, 1, 255/repDiv, 255/repDiv, 255/repDiv)
+			EID:renderEntity(entity, sprite, entityPos)
+			sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
+		else
+			if EID.Config["Indicator"] == "border" then
+				local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
+				sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
+			elseif EID.Config["Indicator"] == "highlight" then
+				sprite.Color = Color(1, 1, 1, 1, 255/repDiv, 255/repDiv, 255/repDiv)
+			end
+			EID:renderEntity(entity, sprite, entityPos + Vector(0, 1))
+			EID:renderEntity(entity, sprite, entityPos + Vector(0, -1))
+			EID:renderEntity(entity, sprite, entityPos + Vector(1, 0))
+			EID:renderEntity(entity, sprite, entityPos + Vector(-1, 0))
+			sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
+			EID:renderEntity(entity, sprite, entityPos)
 		end
-		EID:renderEntity(entity, sprite, entityPos + Vector(0, 1))
-		EID:renderEntity(entity, sprite, entityPos + Vector(0, -1))
-		EID:renderEntity(entity, sprite, entityPos + Vector(1, 0))
-		EID:renderEntity(entity, sprite, entityPos + Vector(-1, 0))
-		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
-		EID:renderEntity(entity, sprite, entityPos)
 	end
 	if isMirrorRoom then
 		sprite.FlipX = false
@@ -1132,6 +1134,15 @@ local function onRender(t)
 	-- Handle Dice Room Floor
 	elseif closest.Type == 1000 and closest.Variant == 76 then
 		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1, closest))
+		return
+	-- Handle Card Reading Portals
+	elseif closest.Type == 1000 and closest.Variant == 161 and closest.SubType <= 2 then
+		local subtypeToCard = {18, 5, 19}
+		-- Reuse the descriptions of The Emperor/Stars/Moon, so no localization needed
+		local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest)
+		-- Card Reading's name
+		descriptionObj.Name = EID:getObjectName(5, 100, 660)
+		EID:printDescription(descriptionObj)
 		return
 	-- Handle Crane Game
 	elseif closest.Type == 6 and closest.Variant == 16 then
