@@ -690,7 +690,7 @@ function EID:renderIndicator(entity)
 	end
 	-- Move highlights a bit to fit onto the alt Item layout of Flip / Tainted Laz
 	if REPENTANCE then
-		if entity.Variant == 100 and EID.player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) then
+		if entity.Variant == 100 and EID.player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID:getEntityData(entity, "EID_FlipItemID") then
 			entityPos = entityPos + Vector(2.5,2.5)
 		elseif entity.Type == 6 and entity.Variant == 16 then
 			entityPos = entityPos + Vector(0,-5)
