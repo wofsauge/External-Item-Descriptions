@@ -4,51 +4,6 @@ EID.TabPreviewID = 0
 -- Modifiers switching the previewed description can cause infinite loops or undesired text, use this to help prevent it
 local inPreview = false
 
--- Afterbirth+ modifiers
-local collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, }
-local maxSlot = 1
--- Repentance modifiers
-if REPENTANCE then
-	maxSlot = 3
-	--include the AB+ collectiblesToCheck in this table!
-	collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID,
-		CollectibleType.COLLECTIBLE_BINGE_EATER, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, CollectibleType.COLLECTIBLE_SPINDOWN_DICE, 
-		CollectibleType.COLLECTIBLE_TAROT_CLOTH, CollectibleType.COLLECTIBLE_MOMS_BOX, 59, --Birthright Belial
-		CollectibleType.COLLECTIBLE_BLANK_CARD, CollectibleType.COLLECTIBLE_CLEAR_RUNE, CollectibleType.COLLECTIBLE_PLACEBO, 
-		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP,
-	}
-end
-local collectiblesOwned = {}
-local blackRuneOwned = false
-local lastCheck = 0
-
-local function CheckPlayersCollectibles()
-	-- recheck the players' owned collectibles periodically, not every frame
-	if EID.GameUpdateCount >= lastCheck + 15 then
-		lastCheck = EID.GameUpdateCount
-		local numPlayers = game:GetNumPlayers()
-		local players = {}; for i = 0, numPlayers - 1 do players[i] = Isaac.GetPlayer(i) end
-		for _,v in ipairs(collectiblesToCheck) do
-			collectiblesOwned[v] = false
-			for i = 0, numPlayers - 1 do
-				if players[i]:HasCollectible(v) then
-					collectiblesOwned[v] = i
-					break
-				end
-			end
-		end
-		blackRuneOwned = false
-		for i = 0, numPlayers - 1 do
-			for j = 0, maxSlot do
-				if players[i]:GetCard(j) == Card.RUNE_BLACK then
-					blackRuneOwned = i
-					break
-				end
-			end
-		end
-	end
-end
-
 local function TabCallback(descObj)
 	if EID.TabPreviewID == 0 then return descObj end
 	inPreview = true
@@ -70,7 +25,7 @@ local function VoidCallback(descObj, isRune)
 	-- Do both Void and Rune here since they could both be requested in the same frame
 	if EID.GameUpdateCount >= lastVoidCheck + 30 or EID.RecheckVoid then
 		EID:VoidRoomCheck()
-		if collectiblesOwned[477] then EID:VoidRNGCheck(Isaac.GetPlayer(collectiblesOwned[477]), false) end
+		if EID.collectiblesOwned[477] then EID:VoidRNGCheck(Isaac.GetPlayer(EID.collectiblesOwned[477]), false) end
 		if blackRuneOwned then EID:VoidRNGCheck(Isaac.GetPlayer(blackRuneOwned), true) end
 		lastVoidCheck = EID.GameUpdateCount
 		EID.RecheckVoid = false
@@ -183,7 +138,7 @@ if REPENTANCE then
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCallback(descObj)
 		-- get the ID of the player that owns the Spindown Dice
-		local playerID = (collectiblesOwned[723] or (EID.absorbedItems[723] and collectiblesOwned[477]))
+		local playerID = (EID.collectiblesOwned[723] or (EID.absorbedItems[723] and EID.collectiblesOwned[477]))
 		EID:appendToDescription(descObj, "#{{Collectible723}} :")
 		local refID = descObj.ObjSubType
 		local hasCarBattery = Isaac.GetPlayer(playerID):HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
@@ -423,7 +378,7 @@ if REPENTANCE then
 		-- currently, only pickup descriptions have modifiers
 		if descObj.ObjType ~= 5 then return false end
 		
-		CheckPlayersCollectibles()
+		EID:CheckPlayersCollectibles()
 		
 		local callbacks = {}
 		
@@ -433,30 +388,30 @@ if REPENTANCE then
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
 			
-			if collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
-			if collectiblesOwned[59] then table.insert(callbacks, BookOfBelialCallback) end
-			if collectiblesOwned[584] then table.insert(callbacks, BookOfVirtuesCallback) end
-			if collectiblesOwned[706] or (EID.absorbedItems[706] and collectiblesOwned[477]) then table.insert(callbacks, AbyssCallback) end
+			if EID.collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
+			if EID.collectiblesOwned[59] then table.insert(callbacks, BookOfBelialCallback) end
+			if EID.collectiblesOwned[584] then table.insert(callbacks, BookOfVirtuesCallback) end
+			if EID.collectiblesOwned[706] or (EID.absorbedItems[706] and EID.collectiblesOwned[477]) then table.insert(callbacks, AbyssCallback) end
 			
-			if collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
-			if EID.Config["SpindownDiceResults"] > 0 and (collectiblesOwned[723] or (EID.absorbedItems[723] and collectiblesOwned[477])) and descObj.ObjSubType ~= 668 then table.insert(callbacks, SpindownDiceCallback) end
+			if EID.collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
+			if EID.Config["SpindownDiceResults"] > 0 and (EID.collectiblesOwned[723] or (EID.absorbedItems[723] and EID.collectiblesOwned[477])) and descObj.ObjSubType ~= 668 then table.insert(callbacks, SpindownDiceCallback) end
 			
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
-			if collectiblesOwned[451] then table.insert(callbacks, TarotClothCallback) end
+			if EID.collectiblesOwned[451] then table.insert(callbacks, TarotClothCallback) end
 			
-			if collectiblesOwned[286] and not blankCardHidden[descObj.ObjSubType] and descObj.ObjSubType <= 80 then table.insert(callbacks, BlankCardCallback) end
-			if collectiblesOwned[263] and runeIDs[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
+			if EID.collectiblesOwned[286] and not blankCardHidden[descObj.ObjSubType] and descObj.ObjSubType <= 80 then table.insert(callbacks, BlankCardCallback) end
+			if EID.collectiblesOwned[263] and runeIDs[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
 		-- Pill Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
-			if collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
+			if EID.collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
 			
-			if collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
+			if EID.collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
 		-- Trinket Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
 			-- Golden Trinket / Mom's Box
 			isGolden = (descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG)
-			hasBox = collectiblesOwned[439]
+			hasBox = EID.collectiblesOwned[439]
 			if isGolden or hasBox then table.insert(callbacks, GoldenTrinketCallback) end
 		end
 		
@@ -471,7 +426,7 @@ local function EIDConditionsAB(descObj)
 	-- currently, only pickup descriptions have modifiers
 	if descObj.ObjType ~= 5 then return false end
 	
-	CheckPlayersCollectibles()
+	EID:CheckPlayersCollectibles()
 	
 	local callbacks = {}
 	
@@ -480,7 +435,7 @@ local function EIDConditionsAB(descObj)
 		if EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
 		
 		if EID.Config["DisplayVoidStatInfo"] then
-			if collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
+			if EID.collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
 			if blackRuneOwned then table.insert(callbacks, BlackRuneCallback) end
 		end
 	end
