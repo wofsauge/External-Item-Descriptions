@@ -1003,10 +1003,12 @@ local function GetTwoIncreases(rng, tbl)
 	return rng
 end
 -- Count the number of absorbable pedestals in the room
+-- Returns a table of active items that will be absorbed
 function EID:VoidRoomCheck()
 	numVoidable = 0
 	numRunable = 0
 	EID.VoidOptionIndexes = {}
+	local activesAbsorbed = {}
 	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
 		local pickup = entity:ToPickup()
 		-- Count this pedestal if it's not an active (or this is Black Rune), not a shop item, and (in Repentance) the first of its option index
@@ -1015,9 +1017,14 @@ function EID:VoidRoomCheck()
 		(not REPENTANCE or pickup.OptionsPickupIndex == 0 or EID.VoidOptionIndexes[pickup.OptionsPickupIndex] == nil) then
 			numRunable = numRunable + 1
 			if REPENTANCE then EID.VoidOptionIndexes[pickup.OptionsPickupIndex] = entity.SubType end
-			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE) then numVoidable = numVoidable + 1 end
+			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE) then
+				numVoidable = numVoidable + 1
+			else
+				table.insert(activesAbsorbed, entity.SubType)
+			end
 		end
 	end
+	return activesAbsorbed
 end
 -- Determine what stats will be increased after 1 absorption, the whole room's absorption, and whole room + a purchased item above your head
 function EID:VoidRNGCheck(player, isRune)
@@ -1330,6 +1337,18 @@ function EID:checkPlayersForMissingItems()
 			EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[player.QueuedItem.Item.ID] = nil
 		end
 	end
+end
+
+function EID:getPlayerID(entityPlayer)
+	if not entityPlayer then return 0 end
+	for i = 0, game:GetNumPlayers() - 1 do 
+		local player = Isaac.GetPlayer(i)
+		if GetPtrHash(player) == GetPtrHash(entityPlayer) then
+			print(i)
+			return i
+		end
+	end
+	return 0
 end
 
 function EID:getLanguage()
