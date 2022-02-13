@@ -706,27 +706,31 @@ function EID:renderIndicator(entity)
 			sprite.FlipX = true
 		end
 	end
-	if EID.Config["Indicator"] == "blink" then
-		local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
-		sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
-		EID:renderEntity(entity, sprite, entityPos)
-		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
-	elseif EID.Config["Indicator"] == "arrow" then
+	
+	-- Don't apply sprite.Color changes to Effects (Dice Floors, Card Reading Portals), use Arrow instead
+	if EID.Config["Indicator"] == "arrow" or entity.Type == 1000 then
 		ArrowSprite:Update()
 		ArrowSprite:Render(arrowPos, nullVector, nullVector)
 	else
-		if EID.Config["Indicator"] == "border" then
+		if EID.Config["Indicator"] == "blink" then
 			local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
 			sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
-		elseif EID.Config["Indicator"] == "highlight" then
-			sprite.Color = Color(1, 1, 1, 1, 255/repDiv, 255/repDiv, 255/repDiv)
+			EID:renderEntity(entity, sprite, entityPos)
+			sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
+		else
+			if EID.Config["Indicator"] == "border" then
+				local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
+				sprite.Color = Color(1, 1, 1, 1, c/repDiv, c/repDiv, c/repDiv)
+			elseif EID.Config["Indicator"] == "highlight" then
+				sprite.Color = Color(1, 1, 1, 1, 255/repDiv, 255/repDiv, 255/repDiv)
+			end
+			EID:renderEntity(entity, sprite, entityPos + Vector(0, 1))
+			EID:renderEntity(entity, sprite, entityPos + Vector(0, -1))
+			EID:renderEntity(entity, sprite, entityPos + Vector(1, 0))
+			EID:renderEntity(entity, sprite, entityPos + Vector(-1, 0))
+			sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
+			EID:renderEntity(entity, sprite, entityPos)
 		end
-		EID:renderEntity(entity, sprite, entityPos + Vector(0, 1))
-		EID:renderEntity(entity, sprite, entityPos + Vector(0, -1))
-		EID:renderEntity(entity, sprite, entityPos + Vector(1, 0))
-		EID:renderEntity(entity, sprite, entityPos + Vector(-1, 0))
-		sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
-		EID:renderEntity(entity, sprite, entityPos)
 	end
 	if isMirrorRoom then
 		sprite.FlipX = false
@@ -1131,6 +1135,15 @@ local function onRender(t)
 	-- Handle Dice Room Floor
 	elseif closest.Type == 1000 and closest.Variant == 76 then
 		EID:printDescription(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1, closest))
+		return
+	-- Handle Card Reading Portals
+	elseif closest.Type == 1000 and closest.Variant == 161 and closest.SubType <= 2 then
+		local subtypeToCard = {18, 5, 19}
+		-- Reuse the descriptions of The Emperor/Stars/Moon, so no localization needed
+		local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest)
+		-- Card Reading's name
+		descriptionObj.Name = EID:getObjectName(5, 100, 660)
+		EID:printDescription(descriptionObj)
 		return
 	-- Handle Crane Game
 	elseif closest.Type == 6 and closest.Variant == 16 then
