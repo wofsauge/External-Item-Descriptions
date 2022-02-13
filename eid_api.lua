@@ -1359,5 +1359,5 @@ function EID:getLanguage()
 end
 
 function EID:AddToCollectiblesToCheckList(itemID)
-	table.insert(collectiblesToCheck, itemID)
+	table.insert(EID.collectiblesToCheck, itemID)
 end
