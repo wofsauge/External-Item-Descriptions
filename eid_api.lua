@@ -1344,7 +1344,6 @@ function EID:getPlayerID(entityPlayer)
 	for i = 0, game:GetNumPlayers() - 1 do 
 		local player = Isaac.GetPlayer(i)
 		if GetPtrHash(player) == GetPtrHash(entityPlayer) then
-			print(i)
 			return i
 		end
 	end
