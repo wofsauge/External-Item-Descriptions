@@ -363,20 +363,18 @@ if REPENTANCE then
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckFlipGridIndexes, CollectibleType.COLLECTIBLE_FLIP)
-	
-	-- Watch for a Void absorbing active items
-	-- (Note: Doesn't differentiate between different players if both players have Void...)
-	-- (Note: Doesn't care about shop / choice items yet either)
-	function EID:CheckVoidAbsorbs(collectibleType)
-		local pedestals = Isaac.FindByType(5, 100, -1, true, false)
-		for _, pedestal in ipairs(pedestals) do
-			if pedestal.SubType > 0 and EID.itemConfig:GetCollectible(pedestal.SubType).Type == 3 then
-				EID.absorbedItems[pedestal.SubType] = true
-			end
-		end
-	end
-	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckVoidAbsorbs, CollectibleType.COLLECTIBLE_VOID)
 end
+
+-- Watch for a Void absorbing active items
+function EID:CheckVoidAbsorbs(collectibleType, rng, player)
+	local playerID = EID:getPlayerID(player)
+	EID.absorbedItems[tostring(playerID)] = EID.absorbedItems[tostring(playerID)] or {}
+	for _,v in ipairs(EID:VoidRoomCheck()) do
+		EID.absorbedItems[tostring(playerID)][tostring(v)] = true
+	end
+	EID.RecheckVoid = true
+end
+EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckVoidAbsorbs, CollectibleType.COLLECTIBLE_VOID)
 
 ---------------------------------------------------------------------------
 --------------------------Handle Scale Shortcut----------------------------
