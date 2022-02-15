@@ -1,19 +1,21 @@
 EID.UserConfig = {
 	-------GENERAL---------
 	-- Change the language of the mod
-	-- Currently Supported: auto = "auto" (Default) Same as Options->Language(Rep), or English(ab+)
-	--                      English = "en_us", "en_us_detailed" (More detailed descriptions)
-	--						French = "fr"  		SPECIAL THANKS TO Nicolas Delvaux
-	--						Polish = "pl"		SPECIAL THANKS TO Rickyy
-	--						Spanish = "spa"		SPECIAL THANKS TO Lidia Arroyo Purroy
-	--						Portuguese = "pt"	SPECIAL THANKS TO Marcelino Cruz
+	-- Currently Supported: automatic = "auto"				(Default) Chooses the mod language based on your game's language settings(Rep), or defaults to English for ab+ users.
+	--						Bulgarian = "bul"				SPECIAL THANKS TO Gothika_47
+	--						Chinese = "zh_cn"				SPECIAL THANKS TO Xheepey87, frto027
+	--						English = "en_us", "en_us_detailed" (More detailed descriptions)
+	--						French = "fr"					SPECIAL THANKS TO Nicolas Delvaux
+	--						German = "de"					SPECIAL THANKS TO Jake
+	--						Italian = "it"					SPECIAL THANKS TO Denkishi, 2G
+	--						Japanese = "ja_jp"				SPECIAL THANKS TO prefab
+	--						Korean = "ko_kr"				SPECIAL THANKS TO Blackcreamtea, 미카
+	--						Polish = "pl"					SPECIAL THANKS TO Rickyy
+	--						Portuguese = "pt"				SPECIAL THANKS TO Marcelino Cruz
 	--						Brazilian Portuguese = "pt_br"	SPECIAL THANKS TO Marcelino Cruz
-	--						Russian = "ru"		SPECIAL THANKS TO hell2pay, fly_6
-	--						Italian = "it"		SPECIAL THANKS TO Denkishi, 2G
-	--						Bulgarian = "bul"	SPECIAL THANKS TO Gothika_47
-	--						Turkish = "tr_tr"	SPECIAL THANKS TO Mert Dutal
-	--						Korean = "ko_kr"	SPECIAL THANKS TO Blackcreamtea, 미카
-	--						Chinese = "zh_cn"   SPECIAL THANKS TO Xheepey87, frto027
+	--						Russian = "ru"					SPECIAL THANKS TO hell2pay, fly_6
+	--						Spanish = "spa"					SPECIAL THANKS TO Lidia Arroyo Purroy
+	--						Turkish = "tr_tr"				SPECIAL THANKS TO Mert Dutal
 	--
 	-- If you want to make a translation, please contact me :) (wofsauge)
 	--
