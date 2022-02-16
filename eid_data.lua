@@ -520,7 +520,7 @@ EID.BreakUtf8CharsLanguage = {
 
 -- Map the game's built-in language option strings to EID's
 EID.LanguageMap = {
-	--["jp"] = no japanese localization yet
+	["jp"] = "ja_jp",
 	["es"] = "spa",
 	["de"] = "de",
 	["ru"] = "ru",
