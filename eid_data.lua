@@ -99,9 +99,9 @@ end
 --Format: [SHORTCUT]= {Animationname, Frame, Width, Height, LeftOffset [Default: -1], TopOffset [Default: 0], SpriteObject [Default: EID.InlineIconSprite]}
 EID.InlineIcons = {
 	["ERROR"] = {"ERROR", 0, 10, 10},
-	["ArrowUp"] = {"ArrowUp", 0, 8, 9},
-	["ArrowDown"] = {"ArrowDown", 0, 8, 9},
-	["Warning"] = {"Warning", 0, 4, 9},
+	["ArrowUp"] = {"ArrowUp", 0, 10, 9, 1},
+	["ArrowDown"] = {"ArrowDown", 0, 10, 9, 1},
+	["Warning"] = {"Warning", 0, 10, 9, 1},
 	["Blank"] = {"Blank", 0, 0, 0},
 	["IconGreenTint"] = function(_)
 		EID._NextIconModifier = function(sprite)
@@ -371,6 +371,24 @@ EID.InlineIcons = {
 	["Weakness"] = {"StatusEffects", 9, 11, 11, 6, 6},
 	["Bait"] = {"StatusEffects", 10, 11, 11, 6, 6},
 	["DeathMark"] = {"StatusEffects", 11, 13, 13, 6, 6},
+
+	-- Curses
+	["CurseDarkness"] = {"Curses", 0, 13, 11, -2, -2},
+	["CurseLabyrinth"] = {"Curses", 1, 13, 11, -2, -2},
+	["CurseLost"] = {"Curses", 2, 13, 11, -2, -2},
+	["CurseUnknown"] = {"Curses", 3, 13, 11, -2, -2},
+	["CurseCursed"] = {"Curses", 4, 13, 11, -2, -2},
+	["CurseMaze"] = {"Curses", 5, 13, 11, -2, -2},
+	["CurseBlind"] = {"Curses", 6, 13, 11, -2, -2},
+	["CurseGiant"] = {"Curses", 7, 13, 11, -2, -2},
+
+	-- Misc
+	["HardMode"] = {"Misc", 0, 13, 12, -1, -2},
+	["GreedMode"] = {"Misc", 1, 13, 12, -1, -2},
+	["GreedierMode"] = {"Misc", 2, 13, 12, -1, -2},
+	["DonationJam"] = {"Misc", 3, 13, 12, -1, -2},
+	["AchievementLocked"] = {"Misc", 4, 13, 12, -1, -2},
+	["VictoryLap"] = {"Misc", 5, 13, 12, -2, -2},
 	
 }
 
@@ -520,7 +538,7 @@ EID.BreakUtf8CharsLanguage = {
 
 -- Map the game's built-in language option strings to EID's
 EID.LanguageMap = {
-	--["jp"] = no japanese localization yet
+	["jp"] = "ja_jp",
 	["es"] = "spa",
 	["de"] = "de",
 	["ru"] = "ru",
