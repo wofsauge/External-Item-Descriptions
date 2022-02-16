@@ -371,6 +371,24 @@ EID.InlineIcons = {
 	["Weakness"] = {"StatusEffects", 9, 11, 11, 6, 6},
 	["Bait"] = {"StatusEffects", 10, 11, 11, 6, 6},
 	["DeathMark"] = {"StatusEffects", 11, 13, 13, 6, 6},
+
+	-- Curses
+	["CurseDarkness"] = {"Curses", 0, 13, 11, -2, -2},
+	["CurseLabyrinth"] = {"Curses", 1, 13, 11, -2, -2},
+	["CurseLost"] = {"Curses", 2, 13, 11, -2, -2},
+	["CurseUnknown"] = {"Curses", 3, 13, 11, -2, -2},
+	["CurseCursed"] = {"Curses", 4, 13, 11, -2, -2},
+	["CurseMaze"] = {"Curses", 5, 13, 11, -2, -2},
+	["CurseBlind"] = {"Curses", 6, 13, 11, -2, -2},
+	["CurseGiant"] = {"Curses", 7, 13, 11, -2, -2},
+
+	-- Misc
+	["HardMode"] = {"Misc", 0, 13, 12, -1, -2},
+	["GreedMode"] = {"Misc", 1, 13, 12, -1, -2},
+	["GreedierMode"] = {"Misc", 2, 13, 12, -1, -2},
+	["DonationJam"] = {"Misc", 3, 13, 12, -1, -2},
+	["AchievementLocked"] = {"Misc", 4, 13, 12, -1, -2},
+	["VictoryLap"] = {"Misc", 5, 13, 12, -2, -2},
 	
 }
 
