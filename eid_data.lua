@@ -99,9 +99,9 @@ end
 --Format: [SHORTCUT]= {Animationname, Frame, Width, Height, LeftOffset [Default: -1], TopOffset [Default: 0], SpriteObject [Default: EID.InlineIconSprite]}
 EID.InlineIcons = {
 	["ERROR"] = {"ERROR", 0, 10, 10},
-	["ArrowUp"] = {"ArrowUp", 0, 8, 9},
-	["ArrowDown"] = {"ArrowDown", 0, 8, 9},
-	["Warning"] = {"Warning", 0, 4, 9},
+	["ArrowUp"] = {"ArrowUp", 0, 10, 9, 1},
+	["ArrowDown"] = {"ArrowDown", 0, 10, 9, 1},
+	["Warning"] = {"Warning", 0, 10, 9, 1},
 	["Blank"] = {"Blank", 0, 0, 0},
 	["IconGreenTint"] = function(_)
 		EID._NextIconModifier = function(sprite)
