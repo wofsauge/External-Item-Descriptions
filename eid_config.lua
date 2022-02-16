@@ -4,6 +4,7 @@ EID.UserConfig = {
 	-- Currently Supported: automatic = "auto"				(Default) Chooses the mod language based on your game's language settings(Rep), or defaults to English for ab+ users.
 	--						Bulgarian = "bul"				SPECIAL THANKS TO Gothika_47
 	--						Chinese = "zh_cn"				SPECIAL THANKS TO Xheepey87, frto027
+	--						Czech = "cs_cz"					SPECIAL THANKS TO domcizzz
 	--						English = "en_us", "en_us_detailed" (More detailed descriptions)
 	--						French = "fr"					SPECIAL THANKS TO Nicolas Delvaux
 	--						German = "de"					SPECIAL THANKS TO Jake
