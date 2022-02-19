@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="Unknown" CreatedOn="2022-02-16 11:39:01" Version="91" Fps="30"/>
+	<Info CreatedBy="Unknown" CreatedOn="18/02/2022 05:55:07 p. m." Version="93" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="eid_inline_icons.png" Id="0"/>
@@ -277,11 +277,12 @@
 		</Animation>
 		<Animation Name="Behavior" FrameNum="1" Loop="false">
 			<RootAnimation>
-				<Frame XPosition="0" YPosition="0" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				<Frame XPosition="0" YPosition="0" XScale="100" YScale="100" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 			</RootAnimation>
 			<LayerAnimations>
 				<LayerAnimation LayerId="0" Visible="true">
 					<Frame XPosition="0" YPosition="0" XPivot="0" YPivot="0" XCrop="0" YCrop="88" Width="9" Height="9" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="0" YPosition="0" XPivot="0" YPivot="0" XCrop="10" YCrop="86" Width="12" Height="12" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</LayerAnimation>
 				<LayerAnimation LayerId="1" Visible="true"/>
 			</LayerAnimations>
