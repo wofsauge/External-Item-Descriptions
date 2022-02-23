@@ -79,11 +79,30 @@ function EID:addCard(id, description, itemName, language)
 	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description, EID._currentMod}
 end
 
+-- Adds a metadata for a card. Used for Blank Card/Clear Rune. Optional parameters: isRune
+function EID:addCardMetadata(id, mimicCharge, isRune)
+	if isRune then
+		EID.blankCardHidden[id] = true
+		EID.runeIDs[id] = true
+	end
+	EID.cardMetadata[id] = {
+		mimiccharge = type(mimicCharge) == "number" and mimicCharge or -1
+	}
+end
+
 -- Adds a description for a pilleffect id. Optional parameters: itemName, language
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
 	EID.descriptions[language].custom["5.70." .. id+1] = {id+1, itemName, description, EID._currentMod}
+end
+
+-- Adds a metadata for a pilleffect. Used for Placebo/False PHD. Optional parameters: class
+function EID:addPillMetadata(id, mimicCharge, class)
+	EID.pillMetadata[id] = {
+		mimiccharge = type(mimicCharge) == "number" and mimicCharge or -1,
+		class = class or "0",
+	} 
 end
 
 -- Adds a character specific description for the item "Birthright". Optional parameters: playerName, language
