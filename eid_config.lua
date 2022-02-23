@@ -209,8 +209,8 @@ EID.UserConfig = {
 	-- Note: The --luadebug launch option is required for more detailed glitched item descriptions
 	-- This option allows mods to have access to your files and should be turned on at your own risk!
 	-- Without --luadebug, you still can see the effect the item will have on your Hearts, and what stats it might modify
-	-- Default = false
-	["DisplayGlitchedItemInfo"] = false,
+	-- Default = true
+	["DisplayGlitchedItemInfo"] = true,
 
 	---------- Sacrifice Room ----------
 
@@ -252,8 +252,8 @@ EID.UserConfig = {
 	-- No Recipes shows percentages of what item you might get from your bag / best option on the floor, for a more intended experience
 	-- Pickups Only just shows the room/floor pickup count
 	-- (No Recipes is recommended if you have modded items)
-	-- Default = "No Recipes"
-	["BagOfCraftingDisplayMode"] = "No Recipes",
+	-- Default = "Recipe List"
+	["BagOfCraftingDisplayMode"] = "Recipe List",
 	-- Hide the recipe list when in battle
 	-- Default = true
 	["BagOfCraftingHideInBattle"] = true,
@@ -427,7 +427,7 @@ EID.DefaultConfig = {
 	["DisplayPillInfoOptions?"] = true,
 	["DisplayObstructedPillInfo"] = false,
 	["ShowUnidentifiedPillDescriptions"] = false,
-	["DisplayGlitchedItemInfo"] = false,
+	["DisplayGlitchedItemInfo"] = true,
 	["DisplaySacrificeInfo"] = true,
 	["DisplayDiceInfo"] = true,
 	["DisplayBagOfCrafting"] = "always",
@@ -440,7 +440,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingDisplayNames"] = false,
 	["BagOfCraftingDisplayIcons"] = false,
 	["BagOfCraftingHideInBattle"] = true,
-	["BagOfCraftingDisplayMode"] = "No Recipes",
+	["BagOfCraftingDisplayMode"] = "Recipe List",
 	["BagOfCraftingModdedRecipes"] = true,
 	["CraftingHideKey"] = Keyboard.KEY_F3,
 	["CraftingHideButton"] = -1,
