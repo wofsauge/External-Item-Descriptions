@@ -454,7 +454,7 @@ if REPENTANCE then
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
 			if EID.collectiblesOwned[451] then table.insert(callbacks, TarotClothCallback) end
 			
-			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
+			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and not EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
 			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
 		-- Pill Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
