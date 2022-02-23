@@ -21,6 +21,9 @@ end
 EID.collectiblesOwned = {}
 EID.collectiblesAbsorbed = {}
 EID.blackRuneOwned = false
+EID.blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[49]=true,[50]=true,[55]=true,[78]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
+EID.runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[55]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
+
 local lastCheck = 0
 
 function EID:CheckPlayersCollectibles()
@@ -328,11 +331,10 @@ if REPENTANCE then
 	end
 	
 	-- Handle Blank Card description addition
-	local blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[49]=true,[50]=true,[55]=true,[78]=true}
 	local function BlankCardCallback(descObj)
 		local text = EID:getDescriptionEntry("BlankCardCharge")
 		local charge = EID.cardMetadata[descObj.ObjSubType]
-		if text ~= nil and charge ~= nil then
+		if text ~= nil and charge ~= nil and charge.mimiccharge and charge.mimiccharge ~= -1 then
 			local iconStr = "#{{Collectible286}} {{ColorSilver}}"
 			if descObj.ObjSubType == 48 then -- ? card
 				text = EID:getDescriptionEntry("BlankCardQCard")
@@ -345,11 +347,10 @@ if REPENTANCE then
 	end
 
 	-- Handle Clear Rune description addition
-	local runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[55]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
 	local function ClearRuneCallback(descObj)
 		local text = EID:getDescriptionEntry("ClearRuneCharge")
 		local charge = EID.cardMetadata[descObj.ObjSubType]
-		if text ~= nil and charge ~= nil then
+		if text ~= nil and charge ~= nil and charge.mimiccharge and charge.mimiccharge ~= -1 then
 			local iconStr = "#{{Collectible263}} {{ColorSilver}}"
 			EID:appendToDescription(descObj, iconStr..text.." {{"..charge.mimiccharge.."}}{{Battery}}")
 		end
@@ -361,7 +362,7 @@ if REPENTANCE then
 		local text = EID:getDescriptionEntry("PlaceboCharge")
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 		local charge = EID.pillMetadata[adjustedID-1]
-		if text ~= nil and charge ~= nil then
+		if text ~= nil and charge ~= nil and charge.mimiccharge and charge.mimiccharge ~= -1 then
 			local iconStr = "#{{Collectible348}} {{ColorSilver}}"
 			EID:appendToDescription(descObj, iconStr..text.." {{"..charge.mimiccharge.."}}{{Battery}}")
 		end
@@ -453,8 +454,8 @@ if REPENTANCE then
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
 			if EID.collectiblesOwned[451] then table.insert(callbacks, TarotClothCallback) end
 			
-			if EID.collectiblesOwned[286] and not blankCardHidden[descObj.ObjSubType] and descObj.ObjSubType <= 80 then table.insert(callbacks, BlankCardCallback) end
-			if EID.collectiblesOwned[263] and runeIDs[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
+			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
+			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
 		-- Pill Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
 			if EID.collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
