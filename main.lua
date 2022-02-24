@@ -826,6 +826,11 @@ EID.RecheckVoid = false
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
 	EID:checkPlayersForMissingItems()
+	
+	-- Fix some outdated mods erroneously setting the REPENTANCE constant to false
+	if EID.GameVersion == "rep" and REPENTANCE == false then
+		REPENTANCE = true
+	end
 
 	if collSpawned then
 		collSpawned = false
