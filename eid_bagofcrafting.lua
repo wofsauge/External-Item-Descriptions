@@ -513,8 +513,7 @@ local moddedCrafting = false
 -- Check for modded items past the known max item ID on game start (can also support game updates)
 -- Only works if the new items are at Weight 1.0 in their item pools, but better than nothing
 local function GameStartCrafting()
-	if EID.Config["BagOfCraftingModdedRecipes"] and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) and EID.itemConfig:GetCollectible(EID.XMLMaxItemID+1) ~= nil then
-		dofile(EID.modPath .. "eid_xmldata.lua")
+	if EID.Config["BagOfCraftingModdedRecipes"] and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) and EID.itemConfig:GetCollectible(EID.XMLMaxItemID+1) ~= nil and not moddedCrafting then
 		-- Items past max ID detected
 		CraftingMaxItemID = EID.XMLMaxItemID -- XMLMaxItemID is never modified
 		-- Add new item qualities
@@ -539,11 +538,6 @@ local function GameStartCrafting()
 			itemPool:ResetRoomBlacklist()
 		end
 		moddedCrafting = true
-		sortNeeded = true
-	elseif moddedCrafting then
-		-- we had modded items; they have since been disabled
-		dofile(EID.modPath .. "eid_xmldata.lua")
-		moddedCrafting = false
 		sortNeeded = true
 	end
 end
