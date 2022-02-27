@@ -876,7 +876,7 @@ EID.descriptions[languageCode].VoidNames = {"Rychlost", "Slzy", "Poškození", "
 EID.descriptions[languageCode].CollectionPageInfo = "Tento předmět je potřeba sebrat, aby se ukázal ve vaší sbírce!"
 
 EID.descriptions[languageCode].MCM = {
-	DemoObjectName = "Demo Object Name",
-	DemoObjectTransformation = "Demo Transformation",
-	DemoObjectText = "This text is in english#A very cool and long description to simulate linebreaks caused by EID textbox width!#\1 This is also a cool line#This line loves you {{Heart}}",
+	DemoObjectName = "Demo Jméno Objektu",
+	DemoObjectTransformation = "Demo Transformace",
+	DemoObjectText = "Tento text je v češtině#Velmi skvělý a dlouhý popis pro simulaci zalomení řádků způsobených šířkou textového pole EID!#\1 Toto je také skvělý řádek#Tento řádek vás miluje {{Heart}}",
 }
