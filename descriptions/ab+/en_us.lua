@@ -490,7 +490,7 @@ EID.descriptions[languageCode].collectibles={
 	{"468", "Shade", "Follows your movement delayed by 1 seconds#Deals 30 contact damage per second"},
 	{"469", "Depression", "Leaves trail of creep#Creep deals 6 damage per second#Enemies touching the cloud can spawn a holy light beam"},
 	{"470", "Hushy", "Bounces around the room#Deals contact damage#Will stop moving when you are shooting#When stopped, it can block projectiles"},
-	{"471", "Lil Monstro", "Chargable shotgun attack similar to {{Collectible229}}Monstro's Lung#Each tear deals 3.5 damage"},
+	{"471", "Lil Monstro", "Chargeable shotgun attack similar to {{Collectible229}}Monstro's Lung#Each tear deals 3.5 damage"},
 	{"472", "King Baby", "Other familiars follow it#Stops moving when you are shooting#Will teleport back to you when you stop shooting"},
 	{"473", "Big Chubby", "Charges forwards very slow#Deals 40.5 contact damage per second"},
 	{"474", "Tonsil", "Blocks enemy projectiles"},

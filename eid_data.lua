@@ -169,7 +169,7 @@ EID.InlineIcons = {
 	["Slotmachine"] = {"Slotmachine", 0, 7, 7},
 	-- Behaviors
 	["Throwable"] = {"Behavior", 0, 9, 9},
-	["Chargable"] = {"Behavior", 1, 9, 9},
+	["Chargeable"] = {"Behavior", 1, 9, 9},
 	-- Room Icons
 	["Shop"] = {"roomicons", 0, 8, 9, 0, 2},
 	["SecretRoom"] = {"roomicons", 1, 8, 9, 0, 2},
