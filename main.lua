@@ -30,6 +30,7 @@ EID.itemUnlockStates = {}
 EID.CraneItemType = {}
 EID.absorbedItems = {}
 EID.CollectedItems = {}
+EID.IgnoredEntities = {}
 local pathsChecked = {}
 local altPathItemChecked = {}
 

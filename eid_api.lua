@@ -538,8 +538,12 @@ end
 -- check if an entity is part of the describable entities
 function EID:hasDescription(entity)
 	local isAllowed = false
+	local entityString = entity.Type .. "." .. entity.Variant .. "." .. entity.SubType
+
+	if EID.IgnoredEntities[entity.Type .. "." .. entity.Variant] or EID.IgnoredEntities[entityString] then return false end
+
 	if EID.Config["EnableEntityDescriptions"] and EID:getTableName(entity.Type, entity.Variant, entity.SubType) == "custom" then
-		isAllowed = __eidEntityDescriptions[entity.Type .. "." .. entity.Variant .. "." .. entity.SubType] ~= nil
+		isAllowed = __eidEntityDescriptions[entityString] ~= nil
 		isAllowed = isAllowed or EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil
 		isAllowed = isAllowed or type(entity:GetData()["EID_Description"]) ~= type(nil)
 	end
@@ -1373,6 +1377,7 @@ function EID:getPlayerID(entityPlayer)
 	return 0
 end
 
+-- Get the current Language. Defaults to english if none is set.
 function EID:getLanguage()
 	local lang = EID.Config["Language"]
 	if lang == "auto" then
@@ -1383,4 +1388,22 @@ end
 
 function EID:AddToCollectiblesToCheckList(itemID)
 	table.insert(EID.collectiblesToCheck, itemID)
+end
+
+-- Add a specific entity to be ignored by EID. Set entitySubType to -1 in order to ignore all entities with this type+variant combi
+function EID:addIgnoredEntity(entityType, entityVariant, entitySubType)
+	if entitySubType == -1 then
+		EID.IgnoredEntities[entityType.."."..entityVariant] = true
+	else
+		EID.IgnoredEntities[entityType.."."..entityVariant.."."..entitySubType] = true
+	end
+end
+
+-- Remove a specific entity from the ignored List of EID.
+function EID:removeIgnoredEntity(entityType, entityVariant, entitySubType)
+	if entitySubType == -1 then
+		EID.IgnoredEntities[entityType.."."..entityVariant] = nil
+	else
+		EID.IgnoredEntities[entityType.."."..entityVariant.."."..entitySubType] = nil
+	end
 end
