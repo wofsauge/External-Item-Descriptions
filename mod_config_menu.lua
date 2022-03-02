@@ -385,8 +385,8 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	---------------------------------Display-----------------------------------
 	
-	EID:AddBooleanSetting("Display", "CoopDescriptions", "Co-op Player Descriptions", {repOnly = true,
-	infoText = "Allow Players 2, 3, and 4 to display descriptions in Repentance's True Co-op"})
+	EID:AddBooleanSetting("Display", "CoopDescriptions", "Co-op Player Descriptions",
+	{infoText = "Allow Players 2, 3, and 4 to display descriptions in Co-op"})
 	EID:AddBooleanSetting("Display", "PairedPlayerDescriptions", "Paired Player Descriptions", {repOnly = true,
 	infoText = "Allow paired characters like Esau and Tainted Forgotten's bone pile to display descriptions"})
 	
