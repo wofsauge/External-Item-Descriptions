@@ -389,6 +389,7 @@ if MCMLoaded then
 	{infoText = "Allow Players 2, 3, and 4 to display descriptions in Co-op"})
 	EID:AddBooleanSetting("Display", "PairedPlayerDescriptions", "Paired Player Descriptions", {repOnly = true,
 	infoText = "Allow paired characters like Esau and Tainted Forgotten's bone pile to display descriptions"})
+	MCM.AddSpace("EID", "Display")
 	
 	-- Simple toggles of what descriptions the user wants displayed
 	EID:AddBooleanSetting("Display", "DisplayItemInfo", "Collectible Infos", {displayingTab = ""})
