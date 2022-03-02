@@ -815,15 +815,19 @@ function EID:renderIndicator(entity, playerNum)
 		if EID.isMultiplayer then colorMult = playerRGB[playerNum] end
 		if EID.Config["Indicator"] == "blink" then
 			local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
-			sprite.Color = Color(1, 1, 1, 1, c/repDiv * colorMult[1], c/repDiv * colorMult[2], c/repDiv * colorMult[3])
+			local r, g, b = math.floor(c*colorMult[1]), math.floor(c*colorMult[2]), math.floor(c*colorMult[3])
+			sprite.Color = Color(1, 1, 1, 1, r/repDiv, g/repDiv, b/repDiv)
 			EID:renderEntity(entity, sprite, entityPos)
 			sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
 		else
-			if EID.Config["Indicator"] == "border" then
+			if EID.Config["Indicator"] == "highlight" then
 				local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
-				sprite.Color = Color(1, 1, 1, 1, c/repDiv * colorMult[1], c/repDiv * colorMult[2], c/repDiv * colorMult[3])
-			elseif EID.Config["Indicator"] == "highlight" then
-				sprite.Color = Color(1, 1, 1, 1, 255/repDiv* colorMult[1], 255/repDiv* colorMult[2], 255/repDiv* colorMult[3])
+				local r, g, b = math.floor(c*colorMult[1]), math.floor(c*colorMult[2]), math.floor(c*colorMult[3])
+				sprite.Color = Color(1, 1, 1, 1, r/repDiv, g/repDiv, b/repDiv)
+			elseif EID.Config["Indicator"] == "border" then
+				local c = 255
+				local r, g, b = math.floor(c*colorMult[1]), math.floor(c*colorMult[2]), math.floor(c*colorMult[3])
+				sprite.Color = Color(1, 1, 1, 1, r/repDiv, g/repDiv, b/repDiv)
 			end
 			EID:renderEntity(entity, sprite, entityPos + Vector(0, 1))
 			EID:renderEntity(entity, sprite, entityPos + Vector(0, -1))
