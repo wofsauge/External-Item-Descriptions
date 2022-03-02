@@ -86,10 +86,10 @@ EID.UserConfig = {
 	
 	---------- Co-op / Multiple Descriptions -----------
 	
-	-- Allow P2/P3/P4 to display descriptions when in Repentance's Co-op mode
+	-- Allow P2/P3/P4 to display descriptions when in Co-op mode
 	-- Default = true
 	["CoopDescriptions"] = true,
-	-- Allow the paired player of certain characters (Esau, Tainted Forgotten's bone pile) to display descriptions
+	-- Allow the paired player of certain characters in Repentance (Esau, Tainted Forgotten's bone pile) to display descriptions
 	-- Default = false
 	["PairedPlayerDescriptions"] = false,
 	-- Display a description for every object within range of you, instead of just the closest
