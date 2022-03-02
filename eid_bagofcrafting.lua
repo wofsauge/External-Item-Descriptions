@@ -84,7 +84,7 @@ local pickupIDLookup = {
 
 local function IsTaintedCain()
 	-- this check is necessary for tracking Bag usage since Tainted Cain's pocket bag works differently than everyone else's
-	return EID.player:GetPlayerType() == 23
+	return EID.bagPlayer:GetPlayerType() == 23
 end
 
 local componentShifts = {
@@ -597,15 +597,15 @@ end)
 local holdCounter = 0
 local function trackBagHolding()
 	if not IsTaintedCain() then return end
-	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.player.ControllerIndex)
-	local animationName = EID.player:GetSprite():GetAnimation()
+	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.bagPlayer.ControllerIndex)
+	local animationName = EID.bagPlayer:GetSprite():GetAnimation()
 	if isCardHold and string.match(animationName, "PickupWalk") and #EID.BagItems>=8 then
 		holdCounter = holdCounter + 1
 		if holdCounter < 30 then
-			icount = EID.player:GetCollectibleCount()
+			icount = EID.bagPlayer:GetCollectibleCount()
 		end
 	else
-		if isCardHold and holdCounter >= 30 and (string.match(animationName, "Walk") and not string.match(animationName, "Pickup") or (EID.player:GetCollectibleCount() ~= icount)) then
+		if isCardHold and holdCounter >= 30 and (string.match(animationName, "Walk") and not string.match(animationName, "Pickup") or (EID.bagPlayer:GetCollectibleCount() ~= icount)) then
 			EID.BagItems = {}
 		else
 			holdCounter = 0
@@ -629,7 +629,7 @@ local function shiftBagContent()
 end
 -- only Tainted Cain's consumable slot bag can have its ingredients shifted
 local function detectBagContentShift()
-	if Input.IsActionTriggered(ButtonAction.ACTION_DROP, EID.player.ControllerIndex) and IsTaintedCain() then
+	if Input.IsActionTriggered(ButtonAction.ACTION_DROP, EID.bagPlayer.ControllerIndex) and IsTaintedCain() then
 		shiftBagContent()
 	end
 end
@@ -712,7 +712,7 @@ local function getHotkeyString()
 	local hideDesc = EID:getDescriptionEntry("CraftingHideKey")
 	local previewDesc = EID:getDescriptionEntry("CraftingPreviewKey")
 	
-	local controllerEnabled = EID.player.ControllerIndex > 0
+	local controllerEnabled = EID.bagPlayer.ControllerIndex > 0
 	local hideKey = HotkeyToString[EID.Config["CraftingHideKey"]]
 	local hideButton = controllerEnabled and ControllerToString[EID.Config["CraftingHideButton"]]
 	local previewKey = HotkeyToString[EID.Config["CraftingResultKey"]]
@@ -881,11 +881,11 @@ function EID:handleBagOfCraftingRendering()
 	
 	-- Check for Hide/Preview hotkeys; prevent them from triggering while in MCM
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
-		if Input.IsButtonTriggered(EID.Config["CraftingHideKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingHideButton"], EID.player.ControllerIndex) then
+		if Input.IsButtonTriggered(EID.Config["CraftingHideKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingHideButton"], EID.bagPlayer.ControllerIndex) then
 			craftingIsHidden = not craftingIsHidden
 		end
 		
-		if Input.IsButtonTriggered(EID.Config["CraftingResultKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingResultButton"], EID.player.ControllerIndex) then
+		if Input.IsButtonTriggered(EID.Config["CraftingResultKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingResultButton"], EID.bagPlayer.ControllerIndex) then
 			showCraftingResult = not showCraftingResult
 		end
 	end
@@ -901,7 +901,7 @@ function EID:handleBagOfCraftingRendering()
 	if EID.Config["DisplayBagOfCrafting"] == "never" then
 		return false
 	end
-	if EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.player:GetSprite():GetAnimation(), "PickupWalk") then
+	if EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.bagPlayer:GetSprite():GetAnimation(), "PickupWalk") then
 		return false
 	end
 	if game:GetRoom():GetFrameCount() < 2 then
@@ -922,7 +922,7 @@ function EID:handleBagOfCraftingRendering()
 			EID:appendToDescription(descriptionObj,"#" .. backupDesc .. "#{{Collectible" .. backupResult .. "}} " ..
 			backupObjName .. "#{{Blank}} " .. tabText)
 		end
-		EID:printDescription(descriptionObj)
+		EID:addDescriptionToPrint(descriptionObj)
 		return true
 	end
 	-- if we're in Preview Only mode, then we have nothing more to do
@@ -985,12 +985,12 @@ function EID:handleBagOfCraftingRendering()
 	if EID.Config["BagOfCraftingDisplayMode"] == "Pickups Only" then
 		EID:appendToDescription(customDescObj, getHotkeyString())
 		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
-		EID:printDescription(customDescObj)
+		EID:addDescriptionToPrint(customDescObj)
 		return true
 	elseif EID.Config["BagOfCraftingDisplayMode"] == "No Recipes" then
 		if not EID.RefreshBagTextbox and prevDesc ~= "" and not EID.OptionChanged then
 			EID:appendToDescription(customDescObj, prevDesc)
-			EID:printDescription(customDescObj)
+			EID:addDescriptionToPrint(customDescObj)
 			return true
 		end
 		
@@ -1013,7 +1013,7 @@ function EID:handleBagOfCraftingRendering()
 		if (bestQuality > bagQuality) then prevDesc = prevDesc .. bestQualityDesc .. " " .. bestQuality .. "#{{Blank}} " .. tableToCraftingIconsFunc(self,mostValuableBag, true) .. "#" .. bestResult .. "#" end
 		
 		EID:appendToDescription(customDescObj, prevDesc)
-		EID:printDescription(customDescObj)
+		EID:addDescriptionToPrint(customDescObj)
 		return true
 	end
 	
@@ -1064,35 +1064,35 @@ function EID:handleBagOfCraftingRendering()
 	end
 	
 	local prevOffset = bagOfCraftingOffset
-	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.player.ControllerIndex) then
-		EID.player.ControlsCooldown = 2
-		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) then
+	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.bagPlayer.ControllerIndex) then
+		EID.bagPlayer.ControlsCooldown = 2
+		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.bagPlayer.ControllerIndex) then
 			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
 			downHeld = Isaac.GetTime()
-		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) then
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, EID.bagPlayer.ControllerIndex) then
 			bagOfCraftingOffset = math.max(0, bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
 			upHeld = Isaac.GetTime()
 		--lock the current results so you can actually do a recipe that you've scrolled down to without losing it
-		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTLEFT, EID.player.ControllerIndex) then
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTLEFT, EID.bagPlayer.ControllerIndex) then
 			EID.RefreshBagTextbox = true
 			if (lockedResults == nil) then lockedResults = queryString
 			else lockedResults = nil end
 		--refresh the recipes
-		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTRIGHT, EID.player.ControllerIndex) then
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTRIGHT, EID.bagPlayer.ControllerIndex) then
 			if (lockedResults == nil) then
 				refreshNextTick = true
 			end
 		end
 		--scroll pages quickly if the button is held
-		if Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, EID.player.ControllerIndex) and Isaac.GetTime() - downHeld > 750 then
+		if Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, EID.bagPlayer.ControllerIndex) and Isaac.GetTime() - downHeld > 750 then
 			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
 			downHeld = Isaac.GetTime() - 700
-		elseif Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, EID.player.ControllerIndex) and Isaac.GetTime() - upHeld > 750 then
+		elseif Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, EID.bagPlayer.ControllerIndex) and Isaac.GetTime() - upHeld > 750 then
 			bagOfCraftingOffset = math.max(0, bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
 			upHeld = Isaac.GetTime() - 700
 		end
 		--reset bag contents when holding Use Pill/Card
-		if Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.player.ControllerIndex) then
+		if Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.bagPlayer.ControllerIndex) then
 			resetBagCounter = resetBagCounter + 1
 			if resetBagCounter > 120 then
 				EID.BagItems = {}
@@ -1108,7 +1108,7 @@ function EID:handleBagOfCraftingRendering()
 	
 	if not EID.RefreshBagTextbox and prevDesc ~= "" and bagOfCraftingOffset == prevOffset and not EID.OptionChanged then
 		EID:appendToDescription(customDescObj, prevDesc)
-		EID:printDescription(customDescObj)
+		EID:addDescriptionToPrint(customDescObj)
 		return true
 	end
 	
@@ -1173,6 +1173,6 @@ function EID:handleBagOfCraftingRendering()
 	end
 
 	EID:appendToDescription(customDescObj, prevDesc)
-	EID:printDescription(customDescObj)
+	EID:addDescriptionToPrint(customDescObj)
 	return true
 end
