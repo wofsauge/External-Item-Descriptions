@@ -62,7 +62,10 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description, EID._currentMod}
+	modName = EID._currentMod
+	-- Glitched Items exception so they don't have a mod name
+	if id > 4294960000 then modName = nil end
+	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description, modName}
 end
 
 -- Adds a description for a trinket. Optional parameters: itemName, language
@@ -708,7 +711,7 @@ function EID:renderIcon(spriteObj, posX, posY, callback, animName, animFrame)
 	end
 	
 	if EID.CachingDescription then
-		table.insert(EID.CachedIcons, {spriteObj, posX, posY, callback, animName, animFrame})
+		table.insert(EID.CachedIcons[#EID.CachedIcons], {spriteObj, posX, posY, callback, animName, animFrame})
 	end
 
 	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
@@ -901,7 +904,7 @@ function EID:renderString(str, position, scale, kcolor)
 		EID:renderInlineIcons(spriteTable, position.X + offsetX, position.Y)
 		EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
 		if EID.CachingDescription then
-			table.insert(EID.CachedStrings, {strFiltered, position.X + offsetX, position.Y, textPart[2], textPart[4], EID.Config["Transparency"]})
+			table.insert(EID.CachedStrings[#EID.CachedStrings], {strFiltered, position.X + offsetX, position.Y, textPart[2], textPart[4], EID.Config["Transparency"]})
 		end
 		offsetX = offsetX + EID:getStrWidth(strFiltered) * scale.X
 	end
