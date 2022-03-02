@@ -369,8 +369,8 @@ EID.InlineIcons = {
 	["Magnetize"] = {"StatusEffects", 6, 11, 11, 6, 6},
 	["BrimstoneCurse"] = {"StatusEffects", 7, 12, 12, 6, 5},
 	["BleedingOut"] = {"StatusEffects", 8, 11, 11, 6, 7},
-	["Weakness"] = {"StatusEffects", 9, 11, 11, 6, 6},
-	["Bait"] = {"StatusEffects", 10, 11, 11, 6, 6},
+	["Bait"] = {"StatusEffects", 9, 11, 11, 6, 6},
+	["Weakness"] = {"StatusEffects", 10, 11, 11, 6, 6},
 	["DeathMark"] = {"StatusEffects", 11, 13, 13, 6, 6},
 
 	-- Curses
