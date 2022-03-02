@@ -83,6 +83,19 @@ EID.UserConfig = {
 	-- Current warnings are: Achievements are locked, outdated game version, and potentially having inaccurate modded Bag of Crafting recipes
 	-- Default = false
 	["DisableStartOfRunWarnings"] = false,
+	
+	---------- Co-op / Multiple Descriptions -----------
+	
+	-- Allow P2/P3/P4 to display descriptions when in Repentance's Co-op mode
+	-- Default = true
+	["CoopDescriptions"] = true,
+	-- Allow the paired player of certain characters (Esau, Tainted Forgotten's bone pile) to display descriptions
+	-- Default = false
+	["PairedPlayerDescriptions"] = false,
+	-- Display a description for every object within range of you, instead of just the closest
+	-- Default = false
+	["DisplayAllNearby"] = false,
+	-- Any descriptions displayed beyond the first one will use the "Local" display mode
 
 	---------- Display Modes -----------
 
@@ -209,8 +222,8 @@ EID.UserConfig = {
 	-- Note: The --luadebug launch option is required for more detailed glitched item descriptions
 	-- This option allows mods to have access to your files and should be turned on at your own risk!
 	-- Without --luadebug, you still can see the effect the item will have on your Hearts, and what stats it might modify
-	-- Default = true
-	["DisplayGlitchedItemInfo"] = true,
+	-- Default = false
+	["DisplayGlitchedItemInfo"] = false,
 
 	---------- Sacrifice Room ----------
 
@@ -304,7 +317,7 @@ EID.UserConfig = {
 	["CraftingResultButton"] = -1,
 
 
-	 ---------- Mouse Controls ------------
+	 ---------- Save Game Options ------------
 
 	 -- Savegame which should be used for savegame specific features (for example: Item Collection page progress)
 	 -- Possible values: 0,1,2,3
@@ -400,6 +413,9 @@ EID.DefaultConfig = {
 	["HideInBattle"] = false,
 	["DisableObstructionOnFlight"] = true,
 	["DisableStartOfRunWarnings"] = false,
+	["CoopDescriptions"] = true,
+	["PairedPlayerDescriptions"] = false,
+	["DisplayAllNearby"] = false,
 	["DisableOnCurse"] = true,
 	["DisableOnAltPath"] = true,
 	["DisableOnAprilFoolsChallenge"] = true,
@@ -427,7 +443,7 @@ EID.DefaultConfig = {
 	["DisplayPillInfoOptions?"] = true,
 	["DisplayObstructedPillInfo"] = false,
 	["ShowUnidentifiedPillDescriptions"] = false,
-	["DisplayGlitchedItemInfo"] = true,
+	["DisplayGlitchedItemInfo"] = false,
 	["DisplaySacrificeInfo"] = true,
 	["DisplayDiceInfo"] = true,
 	["DisplayBagOfCrafting"] = "always",
