@@ -385,6 +385,9 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	---------------------------------Display-----------------------------------
 	
+	local refreshRateSteps = {1, 2, 3, 4, 6, 10, 12, 15, 20, 30, 60}
+	EID:AddScrollSetting("Display", "RefreshRate", "Description Refresh Rate", refreshRateSteps, 
+	{infoText = "How many times per second that EID updates what description to show"})
 	EID:AddBooleanSetting("Display", "CoopDescriptions", "Co-op Player Descriptions",
 	{infoText = "Allow Players 2, 3, and 4 to display descriptions in Co-op"})
 	EID:AddBooleanSetting("Display", "PairedPlayerDescriptions", "Paired Player Descriptions", {repOnly = true,
