@@ -858,7 +858,8 @@ local function RecipeCrunchCoroutine()
 	EID.RefreshBagTextbox = true
 end
 
-function EID:handleBagOfCraftingRendering()
+-- Called 60 times a second so we can read input properly
+function EID:handleBagOfCraftingUpdating()
 	-- reset our calculated recipes when the game seed changes
 	local curSeed = game:GetSeeds():GetStartSeed()
 	if (curSeed ~= lastSeedUsed) then
@@ -875,10 +876,6 @@ function EID:handleBagOfCraftingRendering()
 	detectBagContentShift()
 	if EID.GameRenderCount % 2 == 0 then checkForPickups() end
 	
-	-- load the function we need for Show Recipes as Groups / 8 Icons
-	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
-	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIconsFunc = EID.tableToCraftingIconsFull end
-	
 	-- Check for Hide/Preview hotkeys; prevent them from triggering while in MCM
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
 		if Input.IsButtonTriggered(EID.Config["CraftingHideKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingHideButton"], EID.bagPlayer.ControllerIndex) then
@@ -889,22 +886,24 @@ function EID:handleBagOfCraftingRendering()
 			showCraftingResult = not showCraftingResult
 		end
 	end
-	
+end
+
+-- Called when needed based on EID.Config["RefreshRate"]
+function EID:handleBagOfCraftingRendering()
 	-- Determine if we should display anything at all
 	if ((EID.isHidden or craftingIsHidden) and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting") or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
-		return
+		return false
+	elseif not EID:RefreshThisFrame() then
+		return false
 	elseif EID.Config["BagOfCraftingHideInBattle"] then
 		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
-			return
+			return false
 		end
-	end
-	if EID.Config["DisplayBagOfCrafting"] == "never" then
+	elseif EID.Config["DisplayBagOfCrafting"] == "never" then
 		return false
-	end
-	if EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.bagPlayer:GetSprite():GetAnimation(), "PickupWalk") then
+	elseif EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.bagPlayer:GetSprite():GetAnimation(), "PickupWalk") then
 		return false
-	end
-	if game:GetRoom():GetFrameCount() < 2 then
+	elseif game:GetRoom():GetFrameCount() < 2 then
 		return false
 	end
 	
@@ -980,6 +979,10 @@ function EID:handleBagOfCraftingRendering()
 	
 	local customDescObj = EID:getDescriptionObj(5, 100, 710)
 	customDescObj.Description = ""
+	
+	-- load the function we need for Show Recipes as Groups / 8 Icons
+	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
+	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIconsFunc = EID.tableToCraftingIconsFull end
 	
 	-- Pickups Only / No Recipes Mode display
 	if EID.Config["BagOfCraftingDisplayMode"] == "Pickups Only" then
