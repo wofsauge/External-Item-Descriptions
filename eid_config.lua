@@ -76,6 +76,11 @@ EID.UserConfig = {
 	-- Hide the descriptions when in battle
 	-- Default = false
 	["HideInBattle"] = false,
+	-- How many times a second that EID checks for what objects are close to the player
+	-- Lowering this number can help if you experience frame drops while descriptions are on-screen
+	-- Please use a factor of 60! (1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60)
+	-- Default: 30
+	["RefreshRate"] = 30,
 	-- Toggle obstruction based hiding, when the player has flight
 	-- Default = true
 	["DisableObstructionOnFlight"] = true,
@@ -411,6 +416,7 @@ EID.DefaultConfig = {
 	["HideButton"] = -1,
 	["InitiallyHidden"] = false,
 	["HideInBattle"] = false,
+	["RefreshRate"] = 30,
 	["DisableObstructionOnFlight"] = true,
 	["DisableStartOfRunWarnings"] = false,
 	["CoopDescriptions"] = true,
