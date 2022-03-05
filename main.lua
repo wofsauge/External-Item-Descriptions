@@ -444,9 +444,11 @@ EID.previousDescs = {}
 EID.CachingDescription = false
 EID.CachedIcons = {}
 EID.CachedStrings = {}
+EID.CachedIndicators = {}
 EID.CachedRenderPoses = {}
 EID.descriptionsToPrint = {}
 EID.entitiesToPrint = {}
+
 
 function EID:addDescriptionToPrint(desc)
 	if desc.Entity and EID.entitiesToPrint[GetPtrHash(desc.Entity)] then return end
@@ -474,8 +476,11 @@ function EID:printDescriptions(useCached)
 	end
 	
 	-- Print our cached descriptions
-	for i,newDesc in ipairs(EID.descriptionsToPrint) do
-		EID:printDescription(newDesc, i)
+	for i,indicator in ipairs(EID.CachedIndicators) do
+		EID:renderIndicator(indicator[1], indicator[2])
+	end
+	for i,oldDesc in ipairs(EID.previousDescs) do
+		EID:printDescription(oldDesc, i)
 	end
 end
 
@@ -982,7 +987,7 @@ function EID:onGameUpdate()
 	end
 	
 	-- Remove Crane Game item data if it's giving the prize out
-	if REPENTANCE and EID.GameUpdateCount % 15 == 0 then
+	if REPENTANCE and EID.GameUpdateCount % 10 == 0 then
 		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
 			if EID.CraneItemType[tostring(crane.InitSeed)] then
 				if crane:GetSprite():IsPlaying("Prize") then
@@ -1129,6 +1134,13 @@ local function onRender(t)
 	EID.MCM_OptionChanged = false
 	EID:resumeCoroutines()
 	ArrowSprite:Update()
+	if REPENTANCE then
+		local hasBag, bagPlayer = EID:PlayersHaveCollectible(710)
+		if hasBag then
+			EID.bagPlayer = bagPlayer
+			EID:handleBagOfCraftingUpdating()
+		end
+	end
 	
 	EID.isDisplaying = false
 	EID:setPlayer()
@@ -1170,6 +1182,14 @@ local function onRender(t)
 		return
 	end
 	
+	-- This is not a frame we should check for new descriptions; just print our cached ones
+	if not EID:RefreshThisFrame() then
+		EID:printDescriptions(true)
+		return
+	end
+	
+	EID.CachedIndicators = {}
+	
 	if EID.Config["EnableMouseControls"] then
 		local hudDescription = EID:handleHoverHUD()
 		if hudDescription then
@@ -1194,7 +1214,6 @@ local function onRender(t)
 		-- Check if this player has the Bag of Crafting
 		local craftingSuccess = false
 		if REPENTANCE and player:HasCollectible(710) then
-			EID.bagPlayer = player
 			craftingSuccess = EID:handleBagOfCraftingRendering()
 			if craftingSuccess then
 				displayedDesc = true
@@ -1202,8 +1221,11 @@ local function onRender(t)
 		end
 		-- If we're in the Crafting options tab, the only rendering we want to happen is the Bag of Crafting preview
 		if EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
-			if craftingSuccess then EID:printDescription(descsToDisplay[#descsToDisplay]) end
-			return
+			if craftingSuccess then
+				EID:printDescription(EID.descriptionsToPrint[#EID.descriptionsToPrint])
+				return
+			end
+			if i == #playerSearch then return end
 		end
 		
 		if not displayedDesc or EID.Config["DisplayAllNearby"] then
@@ -1243,11 +1265,10 @@ local function onRender(t)
 				-- we only want to describe the closest entity
 				inRangeEntities = { EID.lastDescriptionEntity }
 			end
-			--inRangeEntities = { EID.lastDescriptionEntity }
-			table.insert(inRangeEntities, 1, EID.lastDescriptionEntity)
 			-- Only display the indicator for the primary (closest / crafting) description
 			if EID.lastDescriptionEntity and not displayedCrafting then
 				EID:renderIndicator(EID.lastDescriptionEntity, EID.controllerIndexes[player.ControllerIndex])
+				table.insert(EID.CachedIndicators, {EID.lastDescriptionEntity, EID.controllerIndexes[player.ControllerIndex]})
 			end
 			
 			for _,closest in ipairs(inRangeEntities) do
