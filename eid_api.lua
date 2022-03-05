@@ -962,7 +962,7 @@ function EID:PlayersHaveCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(collectibleID) then
-			return true
+			return true, player
 		end
 	end
 	return false
@@ -1409,4 +1409,11 @@ function EID:removeIgnoredEntity(entityType, entityVariant, entitySubType)
 	else
 		EID.IgnoredEntities[entityType.."."..entityVariant.."."..entitySubType] = nil
 	end
+end
+
+function EID:RefreshThisFrame()
+	if EID.GameRenderCount % (60 / EID.Config["RefreshRate"]) == 0 then
+		return true
+	end
+	return false
 end
