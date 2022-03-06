@@ -1280,7 +1280,7 @@ local function onRender(t)
 			end
 			-- Only display the indicator for the primary (closest / crafting) description
 			if EID.lastDescriptionEntity and not displayedCrafting then
-				EID:renderIndicator(EID.lastDescriptionEntity, EID.controllerIndexes[player.ControllerIndex])
+				EID:renderIndicator(EID.lastDescriptionEntity, EID.controllerIndexes[player.ControllerIndex] or 1)
 				table.insert(EID.CachedIndicators, {EID.lastDescriptionEntity, EID.controllerIndexes[player.ControllerIndex]})
 			end
 			
