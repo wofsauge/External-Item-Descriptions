@@ -65,6 +65,8 @@ local function TabCallback(descObj)
 	EID.inModifierPreview = true
 	local descEntry = EID:getDescriptionObj(5, 100, EID.TabPreviewID)
 	EID.inModifierPreview = false
+	descEntry.Entity = descObj.Entity
+	EID.TabPreviewID = 0
 	return descEntry
 end
 
@@ -498,9 +500,10 @@ local function EIDConditionsAB(descObj)
 end
 EID:addDescriptionModifier("EID Afterbirth+", EIDConditionsAB, nil)
 
--- should this be done differently so that mods can add tab previews?
+-- should this be done differently so that mods can add tab previews? (tab conditions is done last, but would be done before callbacks mods add, maybe tab should be checked in EID:getDescriptionObj
 local function TabConditions(descObj)
-	if EID.player and Input.IsActionPressed(ButtonAction.ACTION_MAP, EID.player.ControllerIndex) and not EID.inModifierPreview then return true end
+	if EID:PlayersActionPressed(ButtonAction.ACTION_MAP) and not EID.inModifierPreview then return true end
+	EID.TabPreviewID = 0
 	return false
 end
 
