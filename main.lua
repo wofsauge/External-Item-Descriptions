@@ -920,13 +920,28 @@ function EID:handleHoverHUD()
 end
 
 function EID:setPlayer()
+	local numPlayers = game:GetNumPlayers()
+	-- Old simple setPlayer, to reduce runtime in single player
+	if numPlayers == 1 or not EID.Config["CoopDescriptions"] then
+		local p = Isaac.GetPlayer(0)
+		if REPENTANCE and p:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B then
+			EID.player = p:GetOtherTwin() or p
+		else
+			EID.player = p
+		end
+		EID.players = { EID.player, REPENTANCE and EID.player:GetOtherTwin() }
+		EID.coopMainPlayers = { EID.player }
+		EID.coopAllPlayers = EID.players
+		EID.controllerIndexes[p.ControllerIndex] = 1
+		return
+	end
+	
 	-- Get our primary player, our list of all players, and a list of the primary player for each controller
-	-- make this run less than 60 times a second?
 	EID.coopAllPlayers = {} -- all player characters in order
 	EID.coopMainPlayers = {} -- the primary player character from each controller
 	EID.controllerIndexes = {} -- simple table to map each controller index to P1/P2/P3/P4 (since index 0 could be P2)
 	local currentPlayerNum = 1
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, numPlayers - 1 do
 		local player = Isaac.GetPlayer(i)
 		-- Don't include player entities with a parent (Strawman / Soul of Jacob and Esau)
 		if player.Parent == nil then
@@ -1124,7 +1139,6 @@ local searchPartitions = EntityPartition.FAMILIAR + EntityPartition.ENEMY + Enti
 EID.lastDescriptionEntity = nil
 EID.lastDist = 0
 EID.OptionChanged = false
-local currentPlayer = 1
 EID.bagPlayer = nil
 
 local function onRender(t)
@@ -1134,6 +1148,7 @@ local function onRender(t)
 	EID.MCM_OptionChanged = false
 	EID:resumeCoroutines()
 	ArrowSprite:Update()
+	EID:setPlayer()
 	if REPENTANCE then
 		local hasBag, bagPlayer = EID:PlayersHaveCollectible(710)
 		if hasBag then
@@ -1143,8 +1158,6 @@ local function onRender(t)
 	end
 	
 	EID.isDisplaying = false
-	EID:setPlayer()
-	EID.bagPlayer = EID.player
 	EID.descriptionsToPrint = {}
 	EID.entitiesToPrint = {}
 	alwaysUseLocalMode = false
@@ -1243,7 +1256,7 @@ local function onRender(t)
 			
 			for _, entitySearch in ipairs(searchGroups) do
 				for i, entity in ipairs(entitySearch) do
-					if EID:hasDescription(entity) and entity.FrameCount > 0 then
+					if EID:hasDescription(entity) and entity.FrameCount > 0 and not EID.entitiesToPrint[GetPtrHash(entity)] then
 						table.insert(inRangeEntities, entity)
 						local diff = entity.Position:__sub(sourcePos)
 						-- break ties with the render offset (for Mega Chest double collectibles)
