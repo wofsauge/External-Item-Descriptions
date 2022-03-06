@@ -1411,9 +1411,19 @@ function EID:removeIgnoredEntity(entityType, entityVariant, entitySubType)
 	end
 end
 
+-- Returns if this is a frame we should refresh our descriptions
 function EID:RefreshThisFrame()
 	if EID.GameRenderCount % (60 / EID.Config["RefreshRate"]) == 0 then
 		return true
+	end
+	return false
+end
+
+-- Returns true if any player is pressing the given button (you can also specify any of the input functions)
+function EID:PlayersActionPressed(button, inputFunc)
+	inputFunc = inputFunc or Input.IsActionPressed
+	for k,_ in pairs(EID.controllerIndexes) do
+		if inputFunc(button, k) then return true end
 	end
 	return false
 end
