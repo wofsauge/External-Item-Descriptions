@@ -372,6 +372,8 @@ EID.InlineIcons = {
 	["Bait"] = {"StatusEffects", 9, 11, 11, 6, 6},
 	["Weakness"] = {"StatusEffects", 10, 11, 11, 6, 6},
 	["DeathMark"] = {"StatusEffects", 11, 13, 13, 6, 6},
+	["Freeze"] = {"StatusEffects", 12, 11, 11, 6, 6},
+	["Confusion"] = {"StatusEffects", 13, 13, 13, 6, 6},
 
 	-- Curses
 	["CurseDarkness"] = {"Curses", 0, 13, 11, -2, -2},
