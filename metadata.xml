@@ -56,7 +56,6 @@ This mod displays detailed information about all items, trinkets, cards, runes a
 [th]KOREAN[/th]
 [th]CHINESE[/th]
 [th]JAPANESE[/th]
-[th]CZECH[/th]
 [/tr]
 [tr]
 [td]by Jake[/td]
@@ -66,6 +65,11 @@ This mod displays detailed information about all items, trinkets, cards, runes a
 [td]by Blackcreamtea, 미카[/td]
 [td]by Xheepey87, frto027[/td]
 [td]by prefab[/td]
+[/tr]
+[tr]
+[th]CZECH[/th]
+[/tr]
+[tr]
 [td]by domcizzz[/td]
 [/tr]
 [/table]
@@ -109,7 +113,7 @@ https://moddingofisaac.com/mod/1079/external-item-descriptions
 - prefab for the incredible [b]Japanese[/b] language pack
 - domcizzz for the cool [b]Czech[/b] language pack
 - [url=https://steamcommunity.com/id/whytefang/]adc[/url] for creating an awesome new Languagepack and providing ideas for new functionalities</description>
-    <version>4.21</version>
+    <version>4.22</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

@@ -356,7 +356,9 @@ if MCMLoaded then
 	-- maxDistance
 	local distances = {1, 1.5, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	EID:AddScrollSetting("General", "MaxDistance", "Max Distance", distances, {label = " Grids", 
-		infoText = "Distance to the object until descriptions are displayed."})
+		infoText = "Distance to the object until descriptions are displayed"})
+	EID:AddBooleanSetting("General", "DisplayAllNearby", "Display All Objects In Range", 
+		{ infoText = "Descriptions besides the closest one will be shown using the Local display mode" })
 
 	--------Reset to default
 	MCM.AddSpace("EID", "General")
@@ -383,6 +385,15 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	---------------------------------Display-----------------------------------
 	
+	local refreshRateSteps = {1, 2, 3, 4, 6, 10, 12, 15, 20, 30, 60}
+	EID:AddScrollSetting("Display", "RefreshRate", "Description Refresh Rate", refreshRateSteps, 
+	{infoText = "How many times per second that EID updates what description to show"})
+	EID:AddBooleanSetting("Display", "CoopDescriptions", "Co-op Player Descriptions",
+	{infoText = "Allow Players 2, 3, and 4 to display descriptions in Co-op"})
+	EID:AddBooleanSetting("Display", "PairedPlayerDescriptions", "Paired Player Descriptions", {repOnly = true,
+	infoText = "Allow paired characters like Esau and Tainted Forgotten's bone pile to display descriptions"})
+	MCM.AddSpace("EID", "Display")
+	
 	-- Simple toggles of what descriptions the user wants displayed
 	EID:AddBooleanSetting("Display", "DisplayItemInfo", "Collectible Infos", {displayingTab = ""})
 	EID:AddBooleanSetting("Display", "DisplayTrinketInfo", "Trinket Infos")
@@ -406,7 +417,7 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Display", "SpindownDiceDisplayID", "Display IDs",
 	{repOnly = true, infoText = "Display IDs for Spindown Dice results"})
 	-- Display names for Spindown Dice results
-	EID:AddBooleanSetting("Display", "SpindownDiceDisplayName", "Display names",
+	EID:AddBooleanSetting("Display", "SpindownDiceDisplayName", "Display Names",
 	{repOnly = true, infoText = "Display names for Spindown Dice results"})
 	-- Spindown Dice skip locked items
 	EID:AddBooleanSetting("Display", "SpindownDiceSkipLocked", "Skip Locked Items",
