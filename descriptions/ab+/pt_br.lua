@@ -870,3 +870,16 @@ EID.descriptions[languageCode].transformations={
 	"Adult",			-- 14
 	"Stompy"			-- 15
 }
+
+---------- MISC ----------
+
+EID.descriptions[languageCode].VoidText = "Se absorvido, ganha:"
+EID.descriptions[languageCode].VoidNames = {"Velocidade", "Lágrimas", "Dano", "Alcance", "Velocidade de Disparo", "Sorte"}
+
+EID.descriptions[languageCode].CollectionPageInfo = "Este item precisa ser pego para a página de coleção!"
+
+EID.descriptions[languageCode].MCM = {
+	DemoObjectName = "Nome do Objeto Demo",
+	DemoObjectTransformation = "Transformação Demo",
+	DemoObjectText = "Este texto está em português brasileiro#Uma descrição muito legal e longa para simular quebras de linha causadas pela largura da caixa de texto do EID!#\1 Esta também é uma linha legal#Esta linha ama você {{Heart}}",
+}
