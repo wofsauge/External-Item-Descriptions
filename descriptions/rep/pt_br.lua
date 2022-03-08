@@ -1,7 +1,7 @@
-----------------------------------------------------
------  Basic Portuguese (Brazil) descriptions  -----
------		By: LuanRoger and NotZin0		   -----
-----------------------------------------------------
+------------------------------------------------------
+-----  Basic Portuguese (Brazil) descriptions    -----
+-----  By: LuanRoger, NotZin0 and JorgeLNJunior  -----
+------------------------------------------------------
 
 -- Last Sync with en_us: 11.11.2021
 
@@ -671,6 +671,62 @@ EID.descriptions[languageCode].horsepills={
 	{"47", "", "↓ -0.3 Velocidade de disparo"}, -- Shot Speed Down
 	{"48", "", "↑ +0.3 Velocidade de disparo"}, -- Shot Speed Up
 	{"49", "", "↑ Aumenta 1 status aleatório duas vezes#↓ Diminue 1 status aleatório duas vezes#Não vai diminuir com PHD"}, -- Experimental Pill
+}
+
+---------- Glitched Item Descriptions ----------
+
+EID.descriptions[languageCode].GlitchedItemText = {
+	-- This will be appended to words to pluralize them, make it "" to not pluralize
+	pluralize = "",
+	
+	-- Item Config info
+	AddBlackHearts = "{1} Coração Negro",
+	AddBombs = "{1} Bomba",
+	AddCoins = "{1} Moeda",
+	AddHearts = "Cura {1} Coração Vermelho",
+	AddKeys = "{1} Chave",
+	AddMaxHearts = "{1} Espaço de Coração",
+	AddSoulHearts = "{1} Coração de Alma",
+	
+	-- Cache Flag names
+	cacheFlagStart = "Pode afetar ",
+	[0] = "Dano", "Taxa de Disparo", "Velocidade de Disparo", "Alcance", "Velocidade", "Efeito de Lágrima", "Cor da Lágrima", "Vôo", "Tipo de Ataque", "Familiares", "Sorte", "Tamanho", "Cor", "Conteúdo do Baú", [16] = "Todos os Status",
+	
+	-- Attribute triggers
+	chain = "Então:{{CR}} ",
+	active = "Ao usar:#",
+	pickup_collected = "Quando você coletar um pickup:#",
+	enemy_kill = "Ao matar, chance de:#",
+	damage_taken = "Quando você levar dano:#",
+	entity_spawned = "Quando um {T1} é invocado:#",
+	tear_fire = "Quando você atirar uma lágrima, chance de:#",
+	enemy_hit = "Ao entrar em contato com um inimigo, chance de:#",
+	room_clear = "Ao limpar a sala:#",
+	
+	-- Attribute effects
+	area_damage = "Dá {1} de dano em uma área ao redor de você",
+	add_temporary_effect = "Ganha {1} para a sala",
+	convert_entities = "Converte todos os {1} na sala para {2}",
+	use_active_item = "Usa {1}",
+	spawn_entity = "Gera um {1}",
+	fart = "Peida com o tamanho de {1}",
+
+	-- Generic entity names not obtained from entities2.xml
+	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
+	["4.-1"] = "Bomba acesa",
+	["5.0"] = "pickup",
+	["5.10"] = "Coração",
+	["5.20"] = "Moeda",
+	["5.30"] = "Chave",
+	["5.40"] = "Bomba coletável",
+	["5.69"] = "Saco",
+	["5.70"] = "Pílula",
+	["5.90"] = "Bateria",
+	["5.300"] = "Carta",
+	["9.-1"] = "projétil de inimigo",
+	["999.-1"] = "object de grade",
+	["1000.0"] = "efeito",
+	
 }
 
 EID.descriptions[languageCode].CraftingBagContent = "Mochila:"
