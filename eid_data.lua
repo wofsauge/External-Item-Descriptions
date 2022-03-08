@@ -143,6 +143,7 @@ EID.InlineIcons = {
 	["RottenHeart"] = {"hearts", 16, 9, 9},
 	["BrokenHeart"] = {"hearts", 17, 9, 9},
 	["HolyMantle"] = {"hearts", 18, 14, 16, -1, -2},
+	["HolyMantleSmall"] = {"hearts", 19, 9, 9,},
 	-- Pickups
 	["Key"] = {"pickups", 0, 7, 9},
 	["GoldenKey"] = {"pickups", 1, 7, 9},
@@ -166,7 +167,7 @@ EID.InlineIcons = {
 	["Trinket"] = {"Trinket", 0, 7, 7},
 	----- Use Markup "Trinket"+ ITEMID to render trinket sprites (example: {{Trinket1}} = Swallowed Penny)
 	----- Modded Trinket-icons are automatically generated. No code needed!
-	["Slotmachine"] = {"Slotmachine", 0, 7, 7},
+	["Slotmachine"] = {"Slotmachine", 0, 9, 7, 0},
 	-- Behaviors
 	["Throwable"] = {"Behavior", 0, 9, 9},
 	["Chargeable"] = {"Behavior", 1, 9, 9},
@@ -196,11 +197,18 @@ EID.InlineIcons = {
 	["RedChestRoomIcon"] = {"roomicons", 22, 8, 9, 0, 2},
 	["GoldenChestRoomIcon"] = {"roomicons", 23, 8, 9, 0, 2},
 	["RedTreasureRoom"] = {"roomicons", 24, 8, 9, 0, 2},
-	["MegaChestRoomIcon"] = {"roomicons", 25, 8, 9, 0, 2},
-	["Confessional"] = {"roomicons", 26, 8, 9, 0, 2},
+	["MegaChestRoomIcon"] = {"roomicons", 25, 8, 9, 0, 1},
+	["Confessional"] = {"roomicons", 26, 8, 9, 0, 1},
 	["CraneGame"] = {"roomicons", 27, 8, 9, 0, 2},
 	["MirrorRoom"] = {"roomicons", 28, 8, 9, 0, 2},
-	["LadderRoom"] = {"roomicons", 29, 8, 9, 0, 2},
+	["MinecartRoom"] = {"roomicons", 29, 7, 9, 0, 1},
+	["LadderRoom"] = {"roomicons", 30, 6, 9, 0, 2},
+	["DevilBeggar"] = {"roomicons", 31, 8, 9, 0, 2},
+	["Beggar"] = {"roomicons", 32, 8, 9, 0, 2},
+	["DonationMachine"] = {"roomicons", 33, 8, 9, 0, 2},
+	["RestockMachine"] = {"roomicons", 34, 8, 9, 0, 2},
+	["GrabBag"] = {"roomicons", 35, 6, 9, 0, 3},
+	["BloodDonationMachine"] = {"roomicons", 36, 8, 9, 0, 2},
 	
 	-- Roomshape Icons
 	["Room"] = {"roomshape", 0, 9, 9, 0, 2},
@@ -360,20 +368,20 @@ EID.InlineIcons = {
 	["Player40"] = {"Players", 40, 12, 12, -1, 1, EID.PlayerSprite},
 	
 	-- Status effects
-	["Charm"] = {"StatusEffects", 0, 11, 11, 6, 4},
-	["Burning"] = {"StatusEffects", 1, 11, 11, 6, 4},
-	["Crown"] = {"StatusEffects", 2, 11, 11, 6, 6},
-	["Fear"] = {"StatusEffects", 3, 11, 11, 6, 6},
-	["Poison"] = {"StatusEffects", 4, 11, 11, 6, 6},
-	["Slow"] = {"StatusEffects", 5, 12, 12, 6, 6},
-	["Magnetize"] = {"StatusEffects", 6, 11, 11, 6, 6},
-	["BrimstoneCurse"] = {"StatusEffects", 7, 12, 12, 6, 5},
-	["BleedingOut"] = {"StatusEffects", 8, 11, 11, 6, 7},
-	["Bait"] = {"StatusEffects", 9, 11, 11, 6, 6},
-	["Weakness"] = {"StatusEffects", 10, 11, 11, 6, 6},
-	["DeathMark"] = {"StatusEffects", 11, 13, 13, 6, 6},
-	["Freeze"] = {"StatusEffects", 12, 11, 11, 6, 6},
-	["Confusion"] = {"StatusEffects", 13, 13, 13, 6, 6},
+	["Charm"] = {"StatusEffects", 0, 9, 9, 6, 6},
+	["Burning"] = {"StatusEffects", 1, 9, 9, 6, 6},
+	["Crown"] = {"StatusEffects", 2, 9, 9, 6, 6},
+	["Fear"] = {"StatusEffects", 3, 9, 9, 6, 6},
+	["Poison"] = {"StatusEffects", 4, 9, 9, 6, 6},
+	["Slow"] = {"StatusEffects", 5, 11, 9, 6, 6},
+	["Magnetize"] = {"StatusEffects", 6, 9, 9, 6, 6},
+	["BrimstoneCurse"] = {"StatusEffects", 7, 9, 9, 6, 6},
+	["BleedingOut"] = {"StatusEffects", 8, 9, 9, 6, 6},
+	["Bait"] = {"StatusEffects", 9, 10, 9, 6, 5},
+	["Weakness"] = {"StatusEffects", 10, 10, 9, 6, 6},
+	["DeathMark"] = {"StatusEffects", 11, 11, 9, 6, 6},
+	["Confusion"] = {"StatusEffects", 12, 10, 9, 6, 5},
+	["Freezing"] = {"StatusEffects", 13, 10, 9, 5, 5},
 
 	-- Curses
 	["CurseDarkness"] = {"Curses", 0, 13, 11, -2, -2},
