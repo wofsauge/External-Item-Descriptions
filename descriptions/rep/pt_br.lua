@@ -724,18 +724,50 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.90"] = "Bateria",
 	["5.300"] = "Carta",
 	["9.-1"] = "projétil de inimigo",
-	["999.-1"] = "object de grade",
+	["999.-1"] = "objeto de grade",
 	["1000.0"] = "efeito",
 	
 }
 
+---------- Misc. Text ----------
+
+EID.descriptions[languageCode].VoidShopText = "Se absorvido logo após coletar, ganha:"
+EID.descriptions[languageCode].VoidOptionText = " em vez disso será absorvido"
+
+EID.descriptions[languageCode].spindownError = "O Item desaparece"
+
 EID.descriptions[languageCode].CraftingBagContent = "Mochila:"
 EID.descriptions[languageCode].CraftingRoomContent = "Sala:"
-EID.descriptions[languageCode].CraftingResults = "(Rolar: Segurar {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Travar: {{ButtonX}}, Atualizar: {{ButtonB}})"
-EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}O \"Crafting result calculation\" atualmente não é suportado quando mods são instalados!#{{ColorRed}}Por favor desinstale os mods ou desative a descrição do Bag of Crafting nas configurações"
+EID.descriptions[languageCode].CraftingFloorContent = "Andar:"
+
+EID.descriptions[languageCode].CraftingBagQuality = "Qualidade da Bag:"
+EID.descriptions[languageCode].CraftingBestQuality = "Melhor Qualidade:"
+
+EID.descriptions[languageCode].CraftingHideKey = "Esconder:"
+EID.descriptions[languageCode].CraftingPreviewKey = "Visualizar:"
+EID.descriptions[languageCode].CraftingPreviewBackup = "!!! Se este item estiver bloqueado, ele se transformará em"
+
+EID.descriptions[languageCode].CraftingResults = "(Rolar: Segurar {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Travar: {{ButtonX}}, Atualizar: {{ButtonB}}, Redefinir a Bolsa: Hold {{ButtonRB}})"
+
+EID.descriptions[languageCode].BlankCardCharge = "Carga do Blank Card:"
+EID.descriptions[languageCode].BlankCardQCard = "Teleporta para a Sala I Am Error#Blank Card e ?-Card serão destruídas"
+EID.descriptions[languageCode].ClearRuneCharge = "Limpar carga da Runa:"
+EID.descriptions[languageCode].PlaceboCharge = "Carga do Placebo:"
+EID.descriptions[languageCode].FlipItemToggleInfo = "(Segure {{ButtonSelect}} (Map) para mostrar a descrição)"
+
+
+EID.descriptions[languageCode].FalsePHDHeart = "Gera 1 Coração Negro"
+EID.descriptions[languageCode].FalsePHDDamage = "+0.6 de Dano"
+EID.descriptions[languageCode].FalsePHDHorseDamage = "+1.2 de Dano"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! ALERTA !!!"
-EID.descriptions[languageCode].AchievementWarningText = "Conquista estão desabilitadas!#Para possibilitar a progressão e as conquistas, é preciso primeiro matar a Mãe (Depths II) sem nenhum mods habilitado"
+EID.descriptions[languageCode].AchievementWarningText = "Conquista estão desabilitadas!#Para possibilitar a progressão e as conquistas, é preciso primeiro matar a Mãe (Depths II) sem nenhum mod habilitado.#(Se você já derrotou a Mãe, esta mensagem é um bug e pode ser ignorada)#(Este aviso pode ser desabilitado nas configurações)"
+
+EID.descriptions[languageCode].OldGameVersionWarningText = "Sua versão do Repentance está desatualizada!#Somente a versão mais recente é oficialmente suportada#(Este aviso pode ser desabilitado nas configurações)"
+
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Items de Mods podem fazer o cálculo da receita ser impreciso!#Use o modo de exibição \"Sem Receitas\" ou desligue a exibição da Bag of Crafting se suas receitas estão incorretas#(Este aviso pode ser desabilitado nas configurações)"
+
+EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}O \"Crafting result calculation\" atualmente não é suportado quando mods são instalados!#{{ColorRed}}Por favor desinstale os mods ou desative a descrição da Bag of Crafting nas configurações"
 
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
