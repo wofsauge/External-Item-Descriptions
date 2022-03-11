@@ -372,6 +372,8 @@ local repCollectibles={
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
+---------- Modifiers ----------
+
 EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "Todos os itens passam por duas opções"},
 	{"Magdalene", "", "↑ +1 Saúde#Limite máximo de corações sobe para 18"},
@@ -416,6 +418,9 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Forgotten Soul", "", "Tainted Soul ganha a habilidade do Recall {{Collectible714}}, para recuperar automaticamente o Tainted Forgotten à distância"},
 }
 
+-- Buffs caused by Binge Eater
+-- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
+
 EID.descriptions[languageCode].bingeEaterBuffs = {
 	[22] = "↑ +0.5 Lágrimas#↑ +1.5 Alcance#↓ -0.03 Velocidade", -- Lunch
 	[23] = "↑ +0.5 Lágrimas#↑ +0.2 Velocidade de disparo#↓ -0.03 Velocidade", -- Dinner
@@ -426,7 +431,43 @@ EID.descriptions[languageCode].bingeEaterBuffs = {
 	[346] = "↑ +0.2 Velocidade de disparo#↑ +1 Sorte#↓ -0.03 Velocidade", -- A Snack
 	[707] = "↑ +0.5 Lágrimas#↑ +1 Sorte#↓ -0.03 Velocidade", -- Supper
 }
-EID.descriptions[languageCode].spindownError = "Item desapareceu"
+
+-- Buffs caused by Book of Belial with Judas' Birthright
+-- Note: "#" will be replaced with "#{{Collectible34}} " automatically, in order to add Book of Belial icon infront of each buff-bulletpoint
+
+EID.descriptions[languageCode].bookOfBelialBuffs = {
+	[40] = "Também invoca o efeito do {{Collectible35}}Necronomicon", -- Kamikaze!
+	[126] = "Também invoca o efeito do {{Collectible35}}Necronomicon", -- Razor Blade
+	[127] = "Concede um aumento de dano para todo o próximo andar", -- Forget me Now
+	[133] = "Concede um aumento de dano permanente", -- Guppy's Paw
+	[135] = "Concede um aumento de dano a cada uso", -- IV Bag
+	[147] = "O machado ganha um aumento na durabilidade e recuo, pode ser usado mais rápido, incendeia os inimigos e derruba mais pickups ao destruir cocôs e obstáculos", -- Notched Axe
+	[186] = "Também invoca o efeito do {{Collectible126}}Razor Blade", -- Blood Rights
+	[282] = "Deixa uma trilha de fogo que dá dano de contato e incendeia dos inimigos", -- How to Jump
+	[290] = "Custa um coração de cada vez, concede um aumento de dano e deixa um rastro vermelho no chão", -- The Jar
+	[295] = "Tem a chance de invocar o efeito do {{Collectible555}}Golden Razor", -- Magic Fingers
+	[297] = "Gera um familiar demoníaco juntamente com o drop baseado no andar", -- Pandora's Box
+	[323] = "Lágrimas lançadas tem o dano aumentado", -- Isaac's Tears
+	[352] = "Ativa o Book of Belial quando quebrado - o aumento de dano persiste até o canhão ser consertado", -- Glass Cannon
+	[475] = "Reaparece como Dark Judas se você tiver uma vida extra", -- Plan C
+	[482] = "Substitui o item pego mais recentemente pelo {{Collectible51}}Pentagram", -- Clicker
+	[487] = "Dano aumentado", -- Potato Peeler
+	[536] = "Concede +10.8 de dano temporário para cada familiar sacrificado que desaparece lentamente da mesma forma que {{Collectible621}}Red Stew", -- Sacrificial Altar
+	[555] = "Danifica e aplica o efeito do {{Collectible202}}Midas' Touch em tudo na sala", -- Golden Razor
+	[577] = "Concede um aumento de dano permanente", -- Damocles
+	[582] = "Concede um aumento de dano adicional pelo resto do andar baseado no número atual de usos", -- Wavy Cap
+	[585] = "Altera o pagamento para 2 Corações Negros e 1 Item do Acordo com o Diabo#Torna-se 3 corações e 2 itens se um Acordo com o Diabo for feito", -- Alabaster Box
+	[622] = "Concede um {{Collectible51}}Pentagram de graça", -- Genesis
+	[623] = "Também invoca o efeito do {{Collectible126}}Razor Blade", -- Sharp Key
+	[635] = "Cria uma linha do {{Collectible705}}Dark Arts entre você e o Stitches", -- Stitches
+	[640] = "Lança uma {{Collectible118}}Brimstone em vez disso", -- Urn of Souls
+	[642] = "Concede um aumento de dano permanente", -- Magic Skin
+	[653] = "Ghosts will home in on enemies", -- Vade Retro
+	[685] = "Concede wisps da {{Collectible292}}Satanic Bible que aumentam a chance de Acordo com o Diabo", -- Jar of Wisps
+	[705] = "Permite o ganho de aumentos de dano temporários", -- Dark Arts
+	[710] = "Coletar Corações Vermelhos tem a chance de substituí-los por um Coração Negro", -- Bag of Crafting
+	[729] = "Concede um enorme aumento de dano e lágrimas quando a cabeça está separada", -- Decap Attack
+}
 
 ---------- Trinkets ----------
 
