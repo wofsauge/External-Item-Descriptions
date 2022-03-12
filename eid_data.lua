@@ -318,7 +318,7 @@ EID.InlineIcons = {
 	["Crafting6"] = {"Crafting", 6, 11, 16, 0, 1},
 	["Crafting7"] = {"Crafting", 7, 11, 16, 0, 0},
 	["Crafting8"] = {"Crafting", 8, 10, 16, 0, 1},
-	["Crafting9"] = {"Crafting", 9, 10, 16, 0, 1},
+	["Crafting9"] = {"Crafting", 9, 10	, 16, 0, 1},
 	["Crafting10"] = {"Crafting", 10, 10, 16, 0, 1},
 	["Crafting11"] = {"Crafting", 11, 10, 16, 0},
 	["Crafting12"] = {"Crafting", 12, 10, 16, 0, -1},
@@ -446,6 +446,16 @@ EID.InlineIcons = {
 	["CurseMaze"] = {"Curses", 5, 16, 11, 0, -2},
 	["CurseBlind"] = {"Curses", 6, 12, 11, -1, -1},
 	["CurseGiant"] = {"Curses", 7, 14, 11, 0, -1},
+
+	-- Curses (Small)
+	["CurseDarknessSmall"] = {"Curses", 8, 10, 11, 0, 1},
+	["CurseLabyrinthSmall"] = {"Curses", 9, 11, 11, 0, 1},
+	["CurseLostSmall"] = {"Curses", 10, 10, 11, 0, 1},
+	["CurseUnknownSmall"] = {"Curses", 11, 10, 11, 0, 1},
+	["CurseCursedSmall"] = {"Curses", 12, 10, 11, 0, 1,},
+	["CurseMazeSmall"] = {"Curses", 13, 11, 11, 0, 2},
+	["CurseBlindSmall"] = {"Curses", 14, 10, 11, 0, 1},
+	["CurseGiantSmall"] = {"Curses", 15, 11, 11, 0},
 
 	-- Boss
 	["MomBoss"] = {"Boss", 0, 16, 14, 0, -1},
