@@ -462,7 +462,7 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[635] = "Cria uma linha do {{Collectible705}}Dark Arts entre você e o Stitches", -- Stitches
 	[640] = "Lança uma {{Collectible118}}Brimstone em vez disso", -- Urn of Souls
 	[642] = "Concede um aumento de dano permanente", -- Magic Skin
-	[653] = "Ghosts will home in on enemies", -- Vade Retro
+	[653] = "Os fantasmas perseguirão os inimigos", -- Vade Retro
 	[685] = "Concede wisps da {{Collectible292}}Satanic Bible que aumentam a chance de Acordo com o Diabo", -- Jar of Wisps
 	[705] = "Permite o ganho de aumentos de dano temporários", -- Dark Arts
 	[710] = "Coletar Corações Vermelhos tem a chance de substituí-los por um Coração Negro", -- Bag of Crafting
@@ -589,9 +589,9 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[46] = { "meio coração", "um coração", "um coração e meio" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
 	[53] = {
-		"-{{ColorGold}}30{{CR}}% da saúde do chefe#Cura {{ColorGold}}2{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#{{ColorGold}}Removível!",
-		"-{{ColorGold}}30{{CR}}% da saúde do chefe#Cura {{ColorGold}}2{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#!!! Uma vez pego, não pode ser removido#Removível apenas com {{Trinket41}}Match Stick ou {{Pill}}Gulp!",
-		"-{{ColorGold}}30{{CR}}% da saúde do chefe#Cura {{ColorGold}}3{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#{{ColorGold}}Removível!",
+		"-{{ColorGold}}30{{CR}}% da vida dos chefes#Cura {{ColorGold}}2{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#{{ColorGold}}Removível!",
+		"-{{ColorGold}}30{{CR}}% da vida dos chefes#Cura {{ColorGold}}2{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#!!! Uma vez pego, não pode ser removido#Removível apenas com {{Trinket41}}Match Stick ou {{Pill}}Gulp!",
+		"-{{ColorGold}}30{{CR}}% da vida dos chefes#Cura {{ColorGold}}3{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#{{ColorGold}}Removível!",
 	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
 	[64] = { "O aumento de estatísticas do Worm são dobrados", "O aumento de estatísticas do Worm são triplicados", "O aumento de estatísticas do Worm são quadruplicados", },
@@ -824,7 +824,7 @@ EID.descriptions[languageCode].CraftingBagContent = "Mochila:"
 EID.descriptions[languageCode].CraftingRoomContent = "Sala:"
 EID.descriptions[languageCode].CraftingFloorContent = "Andar:"
 
-EID.descriptions[languageCode].CraftingBagQuality = "Qualidade da Bag:"
+EID.descriptions[languageCode].CraftingBagQuality = "Qualidade da Mochila:"
 EID.descriptions[languageCode].CraftingBestQuality = "Melhor Qualidade:"
 
 EID.descriptions[languageCode].CraftingHideKey = "Esconder:"
