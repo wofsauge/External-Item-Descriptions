@@ -583,38 +583,6 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[159] = { "Substitui todos os baús (exceto Old/Mega)por Baús Dourados#Baús Dourados podem conter cartas extras, pílulas ou trinkets" },
 }
 
--- Card Buffs caused by Tarot Cloth
--- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
-
-EID.descriptions[languageCode].tarotClothBuffs = {
-	[2] = "Também concede o efeito do {{Collectible34}} The Book of Belial", -- I - The Magician
-	[3] = "Um segundo pé pisa logo após o primeiro", -- II - The High Priestess
-	[4] = "Quadruplica o aumento de estatísticas", -- III - The Empress
-	[5] = "Se o chefe ainda não foi derrotado, concede 1 Coração de alma", -- IV - The Emperor
-	[6] = "Gera 3 Corações de alma", -- V - The Hierophant
-	[7] = "Gera 3 Corações vermelhos", -- VI - The Lovers
-	[8] = "Duração dobrada", -- VII - The Chariot
-	[9] = "Geração de pickup dobrada", -- VIII - Justice
-	[10] = "Impede que o Greed apareça na loja#Transforma a loja em uma loja normal se o Greed já foi derrotado", -- IX - The Hermit
-	[11] = "Gera 2 Máquinas caça-níqueis", -- X - Wheel of Fortune
-	[12] = "Aumento de estatísticas duplicado, excluindo o multiplicador de dano", -- XI - Strength
-	[14] = "Causa 80 de dano", -- XIII - Death
-	[15] = "Gera 2 Máquinas de doação de sangue", -- XIV - Temperance
-	[16] = "Dano aumentado é dobrado", -- XV - The Devil
-	[17] = "Gera 12 Bombas trolls", -- XVI - The Tower
-	[18] = "Se a sala do tesouro não foi acessada ainda, ela terá dois itens para escolher", -- XVII - The Stars
-	[21] = "Gera 2 mendigos", -- XX - Judgement
-	[56] = "Solta todos os itens junto com os pickups, incluindo Tarot Cloth", -- 0 - The Fool?
-	[59] = "Garante 3 espaços de corações temporários", -- III - The Empress?
-	[61] = "Gera 6 Corações de osso", -- V - The Hierophant?
-	[62] = "Adiciona 4 corações quebrados e gera 4 itens", -- VI - The Lovers?
-	[64] = "Gera 4-14 Baús Dourados", -- VIII - Justice?
-	[70] = "Come 20 pílulas", -- XIV - Temperance?
-	[72] = "Gera 14 aglomerados de rochas", -- XVI - The Tower?
-	[73] = "Remove 2 itens e gera 4", -- XVII - The Stars?
-	[76] = "Gera 2 máquinas de restock", -- XX - Judgement?
-}
-
 ---------- Cards ----------
 
 local repCards={
@@ -669,6 +637,38 @@ local repCards={
 	[97] = {"97", "", "Gera Esau como um personagem secundário temporário para a sala atual"},
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
+
+-- Card Buffs caused by Tarot Cloth
+-- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+
+EID.descriptions[languageCode].tarotClothBuffs = {
+	[2] = "Também concede o efeito do {{Collectible34}} The Book of Belial", -- I - The Magician
+	[3] = "Um segundo pé pisa logo após o primeiro", -- II - The High Priestess
+	[4] = "Quadruplica o aumento de estatísticas", -- III - The Empress
+	[5] = "Se o chefe ainda não foi derrotado, concede 1 Coração de alma", -- IV - The Emperor
+	[6] = "Gera 3 Corações de alma", -- V - The Hierophant
+	[7] = "Gera 3 Corações vermelhos", -- VI - The Lovers
+	[8] = "Duração dobrada", -- VII - The Chariot
+	[9] = "Geração de pickup dobrada", -- VIII - Justice
+	[10] = "Impede que o Greed apareça na loja#Transforma a loja em uma loja normal se o Greed já foi derrotado", -- IX - The Hermit
+	[11] = "Gera 2 Máquinas caça-níqueis", -- X - Wheel of Fortune
+	[12] = "Aumento de estatísticas duplicado, excluindo o multiplicador de dano", -- XI - Strength
+	[14] = "Causa 80 de dano", -- XIII - Death
+	[15] = "Gera 2 Máquinas de doação de sangue", -- XIV - Temperance
+	[16] = "Dano aumentado é dobrado", -- XV - The Devil
+	[17] = "Gera 12 Bombas trolls", -- XVI - The Tower
+	[18] = "Se a sala do tesouro não foi acessada ainda, ela terá dois itens para escolher", -- XVII - The Stars
+	[21] = "Gera 2 mendigos", -- XX - Judgement
+	[56] = "Solta todos os itens junto com os pickups, incluindo Tarot Cloth", -- 0 - The Fool?
+	[59] = "Garante 3 espaços de corações temporários", -- III - The Empress?
+	[61] = "Gera 6 Corações de osso", -- V - The Hierophant?
+	[62] = "Adiciona 4 corações quebrados e gera 4 itens", -- VI - The Lovers?
+	[64] = "Gera 4-14 Baús Dourados", -- VIII - Justice?
+	[70] = "Come 20 pílulas", -- XIV - Temperance?
+	[72] = "Gera 14 aglomerados de rochas", -- XVI - The Tower?
+	[73] = "Remove 2 itens e gera 4", -- XVII - The Stars?
+	[76] = "Gera 2 máquinas de restock", -- XX - Judgement?
+}
 
 ---------- Pills ----------
 
