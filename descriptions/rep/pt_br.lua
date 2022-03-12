@@ -469,6 +469,26 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[729] = "Concede um enorme aumento de dano e lágrimas quando a cabeça está separada", -- Decap Attack
 }
 
+-- Special Locust effects when Item was eaten by Abyss
+EID.descriptions[languageCode].abyssSynergies = {
+	[2] = "Três gafanhotos normais", -- The Inner Eye
+	[3] = "Gafanhoto roxo teleguiado", -- Spoon Bender
+	[4] = "Gafanhoto vermelho e grande que causa o triplo de dano", -- Cricket's Head
+	[6] = "Gafanhoto amarelo, rápido e de curto alcance que causa dano mais rapidamente", -- Number One
+	[7] = "Gafanhoto vermelho que causa o dobro de dano", -- Blood of the Martyr
+	[10] = "Dois gafanhotos cinzas que causam metade do dano", -- Halo of Flies
+	[13] = "Gafanhoto verde que envenena os inimigos", -- The Virus
+	[103] = "Gafanhoto verde que envenena os inimigos", -- The Common Cold
+	[118] = "Gafanhoto cinza, maior e que é diferente do normal", -- Brimstone
+	[149] = "Gafanhoto verde, grande e lento que causa x1.5 o seu dano e envenena os inimigos", -- Ipecac
+	[153] = "Quatro gafanhotos normais", -- Mutant Spider
+	[257] = "Gafanho laranja e em chamas que incendeia os inimigos", -- Fire Mind
+	[305] = "Gafanhoto verde que envenena os inimigos", -- Scorpio
+	[374] = "Gafanhoto ciano e brilhante que pode fazer surgir raios de luz que causam 3x o seu dano", -- Holy Light
+	[494] = "Gafanhoto azul claro com arcos de eletricidade que causam 0.1 de dano por tick", -- Jacob's Ladder
+	[559] = "Gafanhoto azul claro com arcos de eletricidade que causam 0.1 de dano por tick", -- 120 Volt
+}
+
 ---------- Trinkets ----------
 
 local repTrinkets={
