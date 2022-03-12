@@ -558,6 +558,30 @@ local repTrinkets={
 	[189] = {"189","","Ativa um escudo de 1 segundo ao matar um inimigo"}, --  Sigil of Baphomet
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
+EID.descriptions[languageCode].goldenTrinket = "Efeito dobrado!"
+EID.descriptions[languageCode].tripledTrinket = "Efeito triplicado!"
+EID.descriptions[languageCode].quadrupledTrinket = "Efeito quadruplicado!"
+
+-- Most trinkets that can be doubled or tripled just have the numbers in their description multiplied
+-- A few trinkets have odd edge cases where their effect completely changes, or is different depending on if it's Mom's Box or Golden
+EID.descriptions[languageCode].goldenTrinketEffects = {
+	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
+	[46] = { "meio coração", "um coração", "um coração e meio" },
+	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
+	[53] = {
+		"-{{ColorGold}}30{{CR}}% da saúde do chefe#Cura {{ColorGold}}2{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#{{ColorGold}}Removível!",
+		"-{{ColorGold}}30{{CR}}% da saúde do chefe#Cura {{ColorGold}}2{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#!!! Uma vez pego, não pode ser removido#Removível apenas com {{Trinket41}}Match Stick ou {{Pill}}Gulp!",
+		"-{{ColorGold}}30{{CR}}% da saúde do chefe#Cura {{ColorGold}}3{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#{{ColorGold}}Removível!",
+	},
+	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
+	[64] = { "O aumento de estatísticas do Worm são dobrados", "O aumento de estatísticas do Worm são triplicados", "O aumento de estatísticas do Worm são quadruplicados", },
+	-- Error (append): Same behavior as Rainbow Worm
+	[75] = { "O efeito do Trinket é duplicado se possível", "O efeito do Trinket é triplicado se possível", "O efeito do Trinket é quadruplicado se possível", },
+	-- NO!
+	[88] = { "Impede que itens de Qualidade {{Quality0}} apareçam" },
+	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
+	[159] = { "Substitui todos os baús (exceto Old/Mega)por Baús Dourados#Baús Dourados podem conter cartas extras, pílulas ou trinkets" },
+}
 
 -- Card Buffs caused by Tarot Cloth
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
@@ -590,7 +614,6 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[73] = "Remove 2 itens e gera 4", -- XVII - The Stars?
 	[76] = "Gera 2 máquinas de restock", -- XX - Judgement?
 }
-EID.descriptions[languageCode].goldenTrinket = "DOURADO: Efeito Dobrado!"
 
 ---------- Cards ----------
 
