@@ -1,7 +1,7 @@
-----------------------------------------------------
------  Basic Portuguese (Brazil) descriptions  -----
------		By: LuanRoger and NotZin0		   -----
-----------------------------------------------------
+------------------------------------------------------
+-----  Basic Portuguese (Brazil) descriptions    -----
+-----  By: LuanRoger, NotZin0 and JorgeLNJunior  -----
+------------------------------------------------------
 
 -- Last Sync with en_us: 11.11.2021
 
@@ -152,9 +152,9 @@ local repCollectibles={
 	[389] = {"389", "", "Gera uma runa aleatória a cada 7-8 salas#Também pode soltar Soul Stones"}, -- Rune Bag
 	[393] = {"393", "", "Chance aleatória de atirar lágrimas envenenadas#Envenena os inimigos ao contato#Inimigos mortos por contato tem 20% de chance de soltar um Coração negro"}, -- Serpent`s Kiss
 	[394] = {"394", "", "Atira lágrimas automaticamente em direção ao alvo vermelho no chão que é controlado pelo jogador#↑ +0.7 Lágrimas#↑ +3.0 Alcance#↑ +0.3 Altura da lágrima#Familiares atiram em direção ao alvo"}, -- Marked
-	[395] = {"395", "", "Ganha a habilidade de atirar um anel de lazer que atravessa a sala#Dano baseado no progresso de carga#100% de dano na carga completa"}, -- Tech X
+	[395] = {"395", "", "{{Chargeable}} Carregável#Ganha a habilidade de atirar um anel de lazer que atravessa a sala#Dano baseado no progresso de carga#100% de dano na carga completa"}, -- Tech X
 	[397] = {"397", "", "As lágrimas do personagem agora viajam diretamente para a frente seguindo um feixe de luz, mas também vão se mover para os lados com base no movimento do jogador#↑ +0.5 Lágrimas#↑ +1.5 Alcance#↑ +0.16 Velocidade de disparo#↑ +0.5 Altura da lágrima"}, -- Tractor Beam
-	[399] = {"399", "", "Depois de disparar lágrimas por 3 segundos, cria um anel preto danificando os inimigos dentro dele"}, -- Maw of the Void
+	[399] = {"399", "", "{{Chargeable}} Carregável#Depois de disparar lágrimas por 3 segundos, cria um anel preto danificando os inimigos dentro dele"}, -- Maw of the Void
 	[401] = {"401", "", "Chance de atirar lágrima de bombas pegajosas#Lágrimas pegajosas causam dano periodicamente"}, -- Explosivo
 	[404] = {"404", "", "Bloqueia projéteis#Se for atingido, ele irá peidar, o que poderá encantar, envenenar ou empurrar os inimigos#O peido causa 5-6 Dano"}, -- Farting Baby
 	[405] = {"405", "", "{{Throwable}} {{ColorOrange}}Arremessável{{CR}} (Apertar duas vezes no botão de tiro)#Troca inimigos e pickup ao entrar em contato"}, -- GB Bug
@@ -215,7 +215,7 @@ local repCollectibles={
 	[576] = {"576", "", "Todos os Dips (cocôs pequenos) são amigáveis#Destruir cocô gera 1-4 Dips#O tipo do Dip depende do cocô destrido#Pedras podem ser substituídas por cocôs"}, --  Dirty Mind
 	[577] = {"577", "", "{{Warning}} USO ÚNICO {{Warning}}#Gera uma espada acima de sua cabeça, que duplica todos os itens de pedetais#Não duplica os itens de compra, baú ou Acordos com o Diabo#!!! Mata você em um momento aleatório ao receber dano de um inimigo depois de usar o item"}, --  Damocles
 	[578] = {"578", "", "Cria uma grande poça amarela"}, --  Free Lemonade
-	[579] = {"579", "", "Em vez de lágrimas, o personagem tem uma espada#Causa 3x seu dano#Faz um ataque giratório + tiro de projétil ao carregar#Disparar projéteis com oscilações normais com a saúde cheia"}, --  Spirit Sword
+	[579] = {"579", "", "Em vez de lágrimas, o personagem tem uma espada#Causa 3x seu dano#{{Chargeable}} Faz um ataque giratório + tiro de projétil ao carregar#Disparar projéteis com oscilações normais com a saúde cheia"}, --  Spirit Sword
 	[580] = {"580", "", "Cria uma nova sala adjacente a uma parede viável, indicada pelo contorno de uma porta#Podem ser salas especiais#Uma sala fora do mapa de piso 13x13 irá teletransportá-lo para a sala I AM ERROR"}, --  Red Key
 	[581] = {"581", "", "Familiar mosca orbital#Persegue inimigos e desvia projéteis#Causa dano ao contato"}, --  Psy Fly
 	[582] = {"582", "", "↑ +0.75 Taxa de disparo#↓ -0.03 Velocidade#Distorce a tela#O efeito pode ser empilhado"}, --  Wavy Cap
@@ -233,7 +233,7 @@ local repCollectibles={
 	[594] = {"594", "", "+2 Espaços vazios de Coração vermelho#Cura meio coração#↓ -0.3 Velocidade#Cura meio coração#Aumente a velocidade enquanto estiver parado, até +0,5 de velocidade#Lança uma nuvem de veneno quando se mover novamente"}, --  Jupiter
 	[595] = {"595", "", "Um círculo envolve você#Ao entrar em uma sala, 7 lágrimas irão orbitar nele#Chance de pegar projéteis inimigos"}, --  Saturnus
 	[596] = {"596", "", "Atira lágrimas de gelo, que retardam os inimigos e congela os monstros que ele matam#Tocar em inimigos congelados faz-os desliza e explodir em 6 fragmentos de gelo"}, --  Uranus
-	[597] = {"597", "", "Cria um enorme bônus de lágrimas ao longo de 3 segundos enquanto não dispara#Tirar novamente irá liberar lágrimas armazenadas#O bônus da lágrima cai conforme você atira"}, --  Neptunus
+	[597] = {"597", "", "{{Chargeable}} Carregável (Automático)#Cria um enorme bônus de lágrimas ao longo de 3 segundos enquanto não disparar#Disparar novamente irá liberar lágrimas armazenadas#O bônus da lágrima cai conforme você dispara"}, --  Neptunus
 	[598] = {"598", "", "↑ +0.7 Lágrimas#Diminui significativamente o tamanho do personagem, permitindo que ele passe entre objetos#Projéteis podem passar por cima dele"}, --  Pluto
 	[599] = {"599", "", "Gera uma Sala de Maldição {{CursedRoom}} adicional para cada andar"}, --  Voodoo Head
 	[600] = {"600", "", "!!! Aplicado apenas no olho esquerdo#↑ +28% Velocidade de disparo#Depois de algum tempo, o primeiro tiro será duplo"}, --  Eye Drops
@@ -279,7 +279,7 @@ local repCollectibles={
 	[640] = {"640", "", "Vomita uma torrente de chamas#Ganha uma carga cada vez que um inimigo morre"}, --  Urn of Souls
 	[641] = {"641", "", "Cria uma corrente de lágrimas atrás de você durante uma luta#As lágrimas causam 3.5 de dano"}, --  Akeldama
 	[642] = {"642", "", "Troca 1 espaço de coração ou 2 Corações de alma por um Coração quebrado#Gera um item do tipo de sala atual#{{Warning}} Uso único para The Lost#Quanto mais vezes o item for usado, maior a chance de substituir itens futuros se não estiver segurando"}, --  Magic Skin
-	[643] = {"643", "", "Concede Vôo#+2 Corações de alma#Atirar por 2.5 segundo irá disparar um laser sagrado quando o botão de disparo for solto"}, --  Revelation
+	[643] = {"643", "", "Concede Vôo#+2 Corações de alma#{{Chargeable}} Atirar por 2.5 segundo irá disparar um laser sagrado quando o botão de disparo for solto"}, --  Revelation
 	[644] = {"644", "", "Aumenta seu status mais baixo#Solta 3 moedas, 1 bomba ou 1 chave, dependendo do que você tem menos"}, --  Consolation Prize
 	[645] = {"645", "", "Orbital Teratoma#Bloqueia tiros#Causa dano ao contato#Divide-se em versões menores de si mesmo ao receber 3 acertos#As versões menores se dividem em aranhas azuis#Renasce 5 segundos depois que todos se foram"}, --  Tinytoma
 	[646] = {"646", "", "+5 Bombas#Bombas lançam 4 Brimstone nas direções cardeais"}, --  Brimstone Bombs
@@ -314,9 +314,9 @@ local repCollectibles={
 	[675] = {"675", "", "Ao receber dano, revela uma sala aleatória no andar#Também destranca portas que requerem chaves#Pode abrir a porta do Mega Satan#Pode revelar a Sala Ultra Secreta"}, --  Cracked Orb
 	[676] = {"676", "", "Quando tiver um espaço de coração vazio no início de um novo andar, concede outro#Corações de osso não contam"}, --  Empty Heart
 	[677] = {"677", "", "Ao ser atingido, para o tempo por 3 segundos#O personagem se torna um fantasma e deixa seu corpo#Na forma de fantasma, ganha vôo, lágrimas espectrais e também negam o próximo dado"}, --  Astral Projection
-	[678] = {"678", "", "Concede um ataque que dispara lágrimas espectrais e teleguiada"}, --  C Section
+	[678] = {"678", "", "{{Chargeable}} Carregável#Concede um ataque que dispara lágrimas espectrais e teleguiada"}, --  C Section
 	[679] = {"679", "", "Familiar que dispara um mini Maw of the Void {{Collectible399}}"}, --  Lil Abaddon
-	[680] = {"680", "", "Enquanto dispara, carregue um Brimstone de curto alcance#Atira atrás de você"}, --  Montezuma's Revenge
+	[680] = {"680", "", "{{Chargeable}} Carregável#Enquanto dispara, carregue um Brimstone de curto alcance#Atira atrás de você"}, --  Montezuma's Revenge
 	[681] = {"681", "", "Causa dano de contato e voa para frente#Consome pickups em seu caminho#Cada um aumentará seu tamanho, dano e gerará uma Blue Fly#A cada quatro pickups, ele gera um portal para uma sala inexplorada"}, --  Lil Portal
 	[682] = {"682", "", "Faz com que um tentáculo saia do chão#Pode segurar inimigos e causar dano"}, --  Worm Friend
 	[683] = {"683", "", "Inimigos geram ossos flutuantes na morte#Ossos bloqueiam projéteis e causam dano ao contato"}, --  Bone Spurs
@@ -372,6 +372,8 @@ local repCollectibles={
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
+---------- Modifiers ----------
+
 EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "Todos os itens passam por duas opções"},
 	{"Magdalene", "", "↑ +1 Saúde#Limite máximo de corações sobe para 18"},
@@ -416,6 +418,9 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Forgotten Soul", "", "Tainted Soul ganha a habilidade do Recall {{Collectible714}}, para recuperar automaticamente o Tainted Forgotten à distância"},
 }
 
+-- Buffs caused by Binge Eater
+-- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
+
 EID.descriptions[languageCode].bingeEaterBuffs = {
 	[22] = "↑ +0.5 Lágrimas#↑ +1.5 Alcance#↓ -0.03 Velocidade", -- Lunch
 	[23] = "↑ +0.5 Lágrimas#↑ +0.2 Velocidade de disparo#↓ -0.03 Velocidade", -- Dinner
@@ -426,7 +431,63 @@ EID.descriptions[languageCode].bingeEaterBuffs = {
 	[346] = "↑ +0.2 Velocidade de disparo#↑ +1 Sorte#↓ -0.03 Velocidade", -- A Snack
 	[707] = "↑ +0.5 Lágrimas#↑ +1 Sorte#↓ -0.03 Velocidade", -- Supper
 }
-EID.descriptions[languageCode].spindownError = "Item desapareceu"
+
+-- Buffs caused by Book of Belial with Judas' Birthright
+-- Note: "#" will be replaced with "#{{Collectible34}} " automatically, in order to add Book of Belial icon infront of each buff-bulletpoint
+
+EID.descriptions[languageCode].bookOfBelialBuffs = {
+	[40] = "Também invoca o efeito do {{Collectible35}}Necronomicon", -- Kamikaze!
+	[126] = "Também invoca o efeito do {{Collectible35}}Necronomicon", -- Razor Blade
+	[127] = "Concede um aumento de dano para todo o próximo andar", -- Forget me Now
+	[133] = "Concede um aumento de dano permanente", -- Guppy's Paw
+	[135] = "Concede um aumento de dano a cada uso", -- IV Bag
+	[147] = "O machado ganha um aumento na durabilidade e recuo, pode ser usado mais rápido, incendeia os inimigos e derruba mais pickups ao destruir cocôs e obstáculos", -- Notched Axe
+	[186] = "Também invoca o efeito do {{Collectible126}}Razor Blade", -- Blood Rights
+	[282] = "Deixa uma trilha de fogo que dá dano de contato e incendeia dos inimigos", -- How to Jump
+	[290] = "Custa um coração de cada vez, concede um aumento de dano e deixa um rastro vermelho no chão", -- The Jar
+	[295] = "Tem a chance de invocar o efeito do {{Collectible555}}Golden Razor", -- Magic Fingers
+	[297] = "Gera um familiar demoníaco juntamente com o drop baseado no andar", -- Pandora's Box
+	[323] = "Lágrimas lançadas tem o dano aumentado", -- Isaac's Tears
+	[352] = "Ativa o Book of Belial quando quebrado - o aumento de dano persiste até o canhão ser consertado", -- Glass Cannon
+	[475] = "Reaparece como Dark Judas se você tiver uma vida extra", -- Plan C
+	[482] = "Substitui o item pego mais recentemente pelo {{Collectible51}}Pentagram", -- Clicker
+	[487] = "Dano aumentado", -- Potato Peeler
+	[536] = "Concede +10.8 de dano temporário para cada familiar sacrificado que desaparece lentamente da mesma forma que {{Collectible621}}Red Stew", -- Sacrificial Altar
+	[555] = "Danifica e aplica o efeito do {{Collectible202}}Midas' Touch em tudo na sala", -- Golden Razor
+	[577] = "Concede um aumento de dano permanente", -- Damocles
+	[582] = "Concede um aumento de dano adicional pelo resto do andar baseado no número atual de usos", -- Wavy Cap
+	[585] = "Altera o pagamento para 2 Corações Negros e 1 Item do Acordo com o Diabo#Torna-se 3 corações e 2 itens se um Acordo com o Diabo for feito", -- Alabaster Box
+	[622] = "Concede um {{Collectible51}}Pentagram de graça", -- Genesis
+	[623] = "Também invoca o efeito do {{Collectible126}}Razor Blade", -- Sharp Key
+	[635] = "Cria uma linha do {{Collectible705}}Dark Arts entre você e o Stitches", -- Stitches
+	[640] = "Lança uma {{Collectible118}}Brimstone em vez disso", -- Urn of Souls
+	[642] = "Concede um aumento de dano permanente", -- Magic Skin
+	[653] = "Os fantasmas perseguirão os inimigos", -- Vade Retro
+	[685] = "Concede wisps da {{Collectible292}}Satanic Bible que aumentam a chance de Acordo com o Diabo", -- Jar of Wisps
+	[705] = "Permite o ganho de aumentos de dano temporários", -- Dark Arts
+	[710] = "Coletar Corações Vermelhos tem a chance de substituí-los por um Coração Negro", -- Bag of Crafting
+	[729] = "Concede um enorme aumento de dano e lágrimas quando a cabeça está separada", -- Decap Attack
+}
+
+-- Special Locust effects when Item was eaten by Abyss
+EID.descriptions[languageCode].abyssSynergies = {
+	[2] = "Três gafanhotos normais", -- The Inner Eye
+	[3] = "Gafanhoto roxo teleguiado", -- Spoon Bender
+	[4] = "Gafanhoto vermelho e grande que causa o triplo de dano", -- Cricket's Head
+	[6] = "Gafanhoto amarelo, rápido e de curto alcance que causa dano mais rapidamente", -- Number One
+	[7] = "Gafanhoto vermelho que causa o dobro de dano", -- Blood of the Martyr
+	[10] = "Dois gafanhotos cinzas que causam metade do dano", -- Halo of Flies
+	[13] = "Gafanhoto verde que envenena os inimigos", -- The Virus
+	[103] = "Gafanhoto verde que envenena os inimigos", -- The Common Cold
+	[118] = "Gafanhoto cinza, maior e que é diferente do normal", -- Brimstone
+	[149] = "Gafanhoto verde, grande e lento que causa x1.5 o seu dano e envenena os inimigos", -- Ipecac
+	[153] = "Quatro gafanhotos normais", -- Mutant Spider
+	[257] = "Gafanho laranja e em chamas que incendeia os inimigos", -- Fire Mind
+	[305] = "Gafanhoto verde que envenena os inimigos", -- Scorpio
+	[374] = "Gafanhoto ciano e brilhante que pode fazer surgir raios de luz que causam 3x o seu dano", -- Holy Light
+	[494] = "Gafanhoto azul claro com arcos de eletricidade que causam 0.1 de dano por tick", -- Jacob's Ladder
+	[559] = "Gafanhoto azul claro com arcos de eletricidade que causam 0.1 de dano por tick", -- 120 Volt
+}
 
 ---------- Trinkets ----------
 
@@ -517,39 +578,30 @@ local repTrinkets={
 	[189] = {"189","","Ativa um escudo de 1 segundo ao matar um inimigo"}, --  Sigil of Baphomet
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
+EID.descriptions[languageCode].goldenTrinket = "Efeito dobrado!"
+EID.descriptions[languageCode].tripledTrinket = "Efeito triplicado!"
+EID.descriptions[languageCode].quadrupledTrinket = "Efeito quadruplicado!"
 
--- Card Buffs caused by Tarot Cloth
--- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
-
-EID.descriptions[languageCode].tarotClothBuffs = {
-	[2] = "Também concede o efeito do {{Collectible34}} The Book of Belial", -- I - The Magician
-	[3] = "Um segundo pé pisa logo após o primeiro", -- II - The High Priestess
-	[4] = "Quadruplica o aumento de estatísticas", -- III - The Empress
-	[5] = "Se o chefe ainda não foi derrotado, concede 1 Coração de alma", -- IV - The Emperor
-	[6] = "Gera 3 Corações de alma", -- V - The Hierophant
-	[7] = "Gera 3 Corações vermelhos", -- VI - The Lovers
-	[8] = "Duração dobrada", -- VII - The Chariot
-	[9] = "Geração de pickup dobrada", -- VIII - Justice
-	[10] = "Impede que o Greed apareça na loja#Transforma a loja em uma loja normal se o Greed já foi derrotado", -- IX - The Hermit
-	[11] = "Gera 2 Máquinas caça-níqueis", -- X - Wheel of Fortune
-	[12] = "Aumento de estatísticas duplicado, excluindo o multiplicador de dano", -- XI - Strength
-	[14] = "Causa 80 de dano", -- XIII - Death
-	[15] = "Gera 2 Máquinas de doação de sangue", -- XIV - Temperance
-	[16] = "Dano aumentado é dobrado", -- XV - The Devil
-	[17] = "Gera 12 Bombas trolls", -- XVI - The Tower
-	[18] = "Se a sala do tesouro não foi acessada ainda, ela terá dois itens para escolher", -- XVII - The Stars
-	[21] = "Gera 2 mendigos", -- XX - Judgement
-	[56] = "Solta todos os itens junto com os pickups, incluindo Tarot Cloth", -- 0 - The Fool?
-	[59] = "Garante 3 espaços de corações temporários", -- III - The Empress?
-	[61] = "Gera 6 Corações de osso", -- V - The Hierophant?
-	[62] = "Adiciona 4 corações quebrados e gera 4 itens", -- VI - The Lovers?
-	[64] = "Gera 4-14 Baús Dourados", -- VIII - Justice?
-	[70] = "Come 20 pílulas", -- XIV - Temperance?
-	[72] = "Gera 14 aglomerados de rochas", -- XVI - The Tower?
-	[73] = "Remove 2 itens e gera 4", -- XVII - The Stars?
-	[76] = "Gera 2 máquinas de restock", -- XX - Judgement?
+-- Most trinkets that can be doubled or tripled just have the numbers in their description multiplied
+-- A few trinkets have odd edge cases where their effect completely changes, or is different depending on if it's Mom's Box or Golden
+EID.descriptions[languageCode].goldenTrinketEffects = {
+	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
+	[46] = { "meio coração", "um coração", "um coração e meio" },
+	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
+	[53] = {
+		"-{{ColorGold}}30{{CR}}% da vida dos chefes#Cura {{ColorGold}}2{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#{{ColorGold}}Removível!",
+		"-{{ColorGold}}30{{CR}}% da vida dos chefes#Cura {{ColorGold}}2{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#!!! Uma vez pego, não pode ser removido#Removível apenas com {{Trinket41}}Match Stick ou {{Pill}}Gulp!",
+		"-{{ColorGold}}30{{CR}}% da vida dos chefes#Cura {{ColorGold}}3{{CR}} Corações Vermelhos ao entrar em uma {{BossRoom}}Sala do Chefe#{{ColorGold}}Removível!",
+	},
+	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
+	[64] = { "O aumento de estatísticas do Worm são dobrados", "O aumento de estatísticas do Worm são triplicados", "O aumento de estatísticas do Worm são quadruplicados", },
+	-- Error (append): Same behavior as Rainbow Worm
+	[75] = { "O efeito do Trinket é duplicado se possível", "O efeito do Trinket é triplicado se possível", "O efeito do Trinket é quadruplicado se possível", },
+	-- NO!
+	[88] = { "Impede que itens de Qualidade {{Quality0}} apareçam" },
+	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
+	[159] = { "Substitui todos os baús (exceto Old/Mega)por Baús Dourados#Baús Dourados podem conter cartas extras, pílulas ou trinkets" },
 }
-EID.descriptions[languageCode].goldenTrinket = "DOURADO: Efeito Dobrado!"
 
 ---------- Cards ----------
 
@@ -605,6 +657,38 @@ local repCards={
 	[97] = {"97", "", "Gera Esau como um personagem secundário temporário para a sala atual"},
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
+
+-- Card Buffs caused by Tarot Cloth
+-- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
+
+EID.descriptions[languageCode].tarotClothBuffs = {
+	[2] = "Também concede o efeito do {{Collectible34}} The Book of Belial", -- I - The Magician
+	[3] = "Um segundo pé pisa logo após o primeiro", -- II - The High Priestess
+	[4] = "Quadruplica o aumento de estatísticas", -- III - The Empress
+	[5] = "Se o chefe ainda não foi derrotado, concede 1 Coração de alma", -- IV - The Emperor
+	[6] = "Gera 3 Corações de alma", -- V - The Hierophant
+	[7] = "Gera 3 Corações vermelhos", -- VI - The Lovers
+	[8] = "Duração dobrada", -- VII - The Chariot
+	[9] = "Geração de pickup dobrada", -- VIII - Justice
+	[10] = "Impede que o Greed apareça na loja#Transforma a loja em uma loja normal se o Greed já foi derrotado", -- IX - The Hermit
+	[11] = "Gera 2 Máquinas caça-níqueis", -- X - Wheel of Fortune
+	[12] = "Aumento de estatísticas duplicado, excluindo o multiplicador de dano", -- XI - Strength
+	[14] = "Causa 80 de dano", -- XIII - Death
+	[15] = "Gera 2 Máquinas de doação de sangue", -- XIV - Temperance
+	[16] = "Dano aumentado é dobrado", -- XV - The Devil
+	[17] = "Gera 12 Bombas trolls", -- XVI - The Tower
+	[18] = "Se a sala do tesouro não foi acessada ainda, ela terá dois itens para escolher", -- XVII - The Stars
+	[21] = "Gera 2 mendigos", -- XX - Judgement
+	[56] = "Solta todos os itens junto com os pickups, incluindo Tarot Cloth", -- 0 - The Fool?
+	[59] = "Garante 3 espaços de corações temporários", -- III - The Empress?
+	[61] = "Gera 6 Corações de osso", -- V - The Hierophant?
+	[62] = "Adiciona 4 corações quebrados e gera 4 itens", -- VI - The Lovers?
+	[64] = "Gera 4-14 Baús Dourados", -- VIII - Justice?
+	[70] = "Come 20 pílulas", -- XIV - Temperance?
+	[72] = "Gera 14 aglomerados de rochas", -- XVI - The Tower?
+	[73] = "Remove 2 itens e gera 4", -- XVII - The Stars?
+	[76] = "Gera 2 máquinas de restock", -- XX - Judgement?
+}
 
 ---------- Pills ----------
 
@@ -673,13 +757,101 @@ EID.descriptions[languageCode].horsepills={
 	{"49", "", "↑ Aumenta 1 status aleatório duas vezes#↓ Diminue 1 status aleatório duas vezes#Não vai diminuir com PHD"}, -- Experimental Pill
 }
 
+---------- Glitched Item Descriptions ----------
+
+EID.descriptions[languageCode].GlitchedItemText = {
+	-- This will be appended to words to pluralize them, make it "" to not pluralize
+	pluralize = "",
+	
+	-- Item Config info
+	AddBlackHearts = "{1} Coração Negro",
+	AddBombs = "{1} Bomba",
+	AddCoins = "{1} Moeda",
+	AddHearts = "Cura {1} Coração Vermelho",
+	AddKeys = "{1} Chave",
+	AddMaxHearts = "{1} Espaço de Coração",
+	AddSoulHearts = "{1} Coração de Alma",
+	
+	-- Cache Flag names
+	cacheFlagStart = "Pode afetar ",
+	[0] = "Dano", "Taxa de Disparo", "Velocidade de Disparo", "Alcance", "Velocidade", "Efeito de Lágrima", "Cor da Lágrima", "Vôo", "Tipo de Ataque", "Familiares", "Sorte", "Tamanho", "Cor", "Conteúdo do Baú", [16] = "Todos os Status",
+	
+	-- Attribute triggers
+	chain = "Então:{{CR}} ",
+	active = "Ao usar:#",
+	pickup_collected = "Quando você coletar um pickup:#",
+	enemy_kill = "Ao matar, chance de:#",
+	damage_taken = "Quando você levar dano:#",
+	entity_spawned = "Quando um {T1} é invocado:#",
+	tear_fire = "Quando você atirar uma lágrima, chance de:#",
+	enemy_hit = "Ao entrar em contato com um inimigo, chance de:#",
+	room_clear = "Ao limpar a sala:#",
+	
+	-- Attribute effects
+	area_damage = "Dá {1} de dano em uma área ao redor de você",
+	add_temporary_effect = "Ganha {1} para a sala",
+	convert_entities = "Converte todos os {1} na sala para {2}",
+	use_active_item = "Usa {1}",
+	spawn_entity = "Gera um {1}",
+	fart = "Peida com o tamanho de {1}",
+
+	-- Generic entity names not obtained from entities2.xml
+	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
+	["4.-1"] = "Bomba acesa",
+	["5.0"] = "pickup",
+	["5.10"] = "Coração",
+	["5.20"] = "Moeda",
+	["5.30"] = "Chave",
+	["5.40"] = "Bomba coletável",
+	["5.69"] = "Saco",
+	["5.70"] = "Pílula",
+	["5.90"] = "Bateria",
+	["5.300"] = "Carta",
+	["9.-1"] = "projétil de inimigo",
+	["999.-1"] = "objeto de grade",
+	["1000.0"] = "efeito",
+	
+}
+
+---------- Misc. Text ----------
+
+EID.descriptions[languageCode].VoidShopText = "Se absorvido logo após coletar, ganha:"
+EID.descriptions[languageCode].VoidOptionText = " em vez disso será absorvido"
+
+EID.descriptions[languageCode].spindownError = "O Item desaparece"
+
 EID.descriptions[languageCode].CraftingBagContent = "Mochila:"
 EID.descriptions[languageCode].CraftingRoomContent = "Sala:"
-EID.descriptions[languageCode].CraftingResults = "(Rolar: Segurar {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Travar: {{ButtonX}}, Atualizar: {{ButtonB}})"
-EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}O \"Crafting result calculation\" atualmente não é suportado quando mods são instalados!#{{ColorRed}}Por favor desinstale os mods ou desative a descrição do Bag of Crafting nas configurações"
+EID.descriptions[languageCode].CraftingFloorContent = "Andar:"
+
+EID.descriptions[languageCode].CraftingBagQuality = "Qualidade da Mochila:"
+EID.descriptions[languageCode].CraftingBestQuality = "Melhor Qualidade:"
+
+EID.descriptions[languageCode].CraftingHideKey = "Esconder:"
+EID.descriptions[languageCode].CraftingPreviewKey = "Visualizar:"
+EID.descriptions[languageCode].CraftingPreviewBackup = "!!! Se este item estiver bloqueado, ele se transformará em"
+
+EID.descriptions[languageCode].CraftingResults = "(Rolar: Segurar {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Travar: {{ButtonX}}, Atualizar: {{ButtonB}}, Redefinir a Bolsa: Hold {{ButtonRB}})"
+
+EID.descriptions[languageCode].BlankCardCharge = "Carga do Blank Card:"
+EID.descriptions[languageCode].BlankCardQCard = "Teleporta para a Sala I Am Error#Blank Card e ?-Card serão destruídas"
+EID.descriptions[languageCode].ClearRuneCharge = "Limpar carga da Runa:"
+EID.descriptions[languageCode].PlaceboCharge = "Carga do Placebo:"
+EID.descriptions[languageCode].FlipItemToggleInfo = "(Segure {{ButtonSelect}} (Map) para mostrar a descrição)"
+
+
+EID.descriptions[languageCode].FalsePHDHeart = "Gera 1 Coração Negro"
+EID.descriptions[languageCode].FalsePHDDamage = "+0.6 de Dano"
+EID.descriptions[languageCode].FalsePHDHorseDamage = "+1.2 de Dano"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! ALERTA !!!"
-EID.descriptions[languageCode].AchievementWarningText = "Conquista estão desabilitadas!#Para possibilitar a progressão e as conquistas, é preciso primeiro matar a Mãe (Depths II) sem nenhum mods habilitado"
+EID.descriptions[languageCode].AchievementWarningText = "Conquista estão desabilitadas!#Para possibilitar a progressão e as conquistas, é preciso primeiro matar a Mãe (Depths II) sem nenhum mod habilitado.#(Se você já derrotou a Mãe, esta mensagem é um bug e pode ser ignorada)#(Este aviso pode ser desabilitado nas configurações)"
+
+EID.descriptions[languageCode].OldGameVersionWarningText = "Sua versão do Repentance está desatualizada!#Somente a versão mais recente é oficialmente suportada#(Este aviso pode ser desabilitado nas configurações)"
+
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Items de Mods podem fazer o cálculo da receita ser impreciso!#Use o modo de exibição \"Sem Receitas\" ou desligue a exibição da Bag of Crafting se suas receitas estão incorretas#(Este aviso pode ser desabilitado nas configurações)"
+
+EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}O \"Crafting result calculation\" atualmente não é suportado quando mods são instalados!#{{ColorRed}}Por favor desinstale os mods ou desative a descrição da Bag of Crafting nas configurações"
 
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them

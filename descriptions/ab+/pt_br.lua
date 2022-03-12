@@ -135,11 +135,11 @@ EID.descriptions[languageCode].collectibles={
 	{"111", "", "Peido venenoso"},
 	{"112", "", "Acelera todos os orbitais#7 Dano ao contato#Bloqueia tiros"},
 	{"113", "", "Familiar que atira em inimigos em seu raio (3.0 de dano)"},
-	{"114", "", "Cencede uma faca controlável#A faca causa 2x seu dano enquanto segurar e 6x quando arremessado a distância máxima"},
+	{"114", "", "{{Chargeable}} Carregável#Cencede uma faca controlável#A faca causa 2x seu dano enquanto segurar e 6x quando arremessado a distância máxima"},
 	{"115", "", "Lágrimas espectrais"},
 	{"116", "", "Reduz a carga de qualquer item ativador em 1#Todos os itens com 1 de cobrança têm recargas cronometradas"},
 	{"117", "", "Gera um pássaro quando você é atingido"},
-	{"118", "", "Troca lágrimas por brimstone (*13 seu dano atual)"},
+	{"118", "", "{{Chargeable}} Carregável#Troca lágrimas por brimstone (*13 seu dano atual)"},
 	{"119", "", "↑ +1 Saúde#↑ +0.3 Velocidade#Cura 5 corações"},
 	{"120", "", "↑ +1.7 Lágrimas#↑ +0.3 Velocidade#↓ -10% Dano#↓ -0.4 Dano adicional"},
 	{"121", "", "↑ +1 Espaço de coração vazio#↑ +0.3 Dano#↑ +0.25 Alcance#↓ -0.1 Velocidade#↑ +0.5 Altura da lágrima"},
@@ -416,7 +416,7 @@ EID.descriptions[languageCode].collectibles={
 	{"392", "", "Dará a você um efeito aleatório de item zodíaco que muda após cada andar"},
 	{"393", "", "Chance de envenenar inimigos#Cause dano por veneno ao contato#Inimigos envenenados têm chance de derrubar um Coração Negro ao morrerem"},
 	{"394", "", "↑ +0.7 Lágrimas#↑ +0.3 Altura da lágrima#↑ +3.15 Alcance#Atira lágrimas direcionadas automaticamente a um alvo vermelho no chão controlado pelo jogador"},
-	{"395", "", "Troca lágrimas pela capacidade de carregar e disparar um anel de laser que atravessa a sala"},
+	{"395", "", "{{Chargeable}} Carregável#Troca lágrimas pela capacidade de carregar e disparar um anel de laser que atravessa a sala"},
 	{"396", "", "Cria até dois portais para viajar entre eles"},
 	{"397", "", "↑ +0.5 Lágrimas#↑ +5.25 Alcance#↑ +0.16 Velocidade de disparo#↑ +0.5 Altura da lágrima#Agora, as lágrimas viajam diretamente para a frente seguindo um raio de luz"},
 	{"398", "", "Agora, as lágrimas têm a chance de aplicar um efeito de encolhimento#Inimigos encolhidos podem ser mortos andando sobre eles"},
@@ -869,4 +869,17 @@ EID.descriptions[languageCode].transformations={
 	"Spider Baby",		-- 13
 	"Adult",			-- 14
 	"Stompy"			-- 15
+}
+
+---------- MISC ----------
+
+EID.descriptions[languageCode].VoidText = "Se absorvido, ganha:"
+EID.descriptions[languageCode].VoidNames = {"Velocidade", "Lágrimas", "Dano", "Alcance", "Velocidade de Disparo", "Sorte"}
+
+EID.descriptions[languageCode].CollectionPageInfo = "Este item precisa ser pego para a página de coleção!"
+
+EID.descriptions[languageCode].MCM = {
+	DemoObjectName = "Nome do Objeto Demo",
+	DemoObjectTransformation = "Transformação Demo",
+	DemoObjectText = "Este texto está em português brasileiro#Uma descrição muito legal e longa para simular quebras de linha causadas pela largura da caixa de texto do EID!#\1 Esta também é uma linha legal#Esta linha ama você {{Heart}}",
 }
