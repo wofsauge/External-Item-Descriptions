@@ -1301,6 +1301,12 @@ local function onRender(t)
 				
 				-- Handle Glitched Items
 				elseif closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
+					if EID:getEntityData(closest, "EID_DontHide") ~= true then
+						if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+							EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+						end
+					end
+				
 					local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
 					local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
 					
@@ -1358,7 +1364,7 @@ local function onRender(t)
 					end
 					local descriptionObj = EID:getDescriptionObjByEntity(closest)
 					EID:addDescriptionToPrint(descriptionObj)
-
+					
 				elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
 					--Handle Cards & Runes
 					if (not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"]) and closest.FrameCount < 3 then
