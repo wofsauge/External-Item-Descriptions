@@ -928,7 +928,7 @@ function EID:handleBagOfCraftingRendering()
 	if (EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") then return false end
 	
 	-- Check what pickups are available in this room
-	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().SafeGridIndex
+	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 	local roomItems = {}
 	local pickups = Isaac.FindByType(5, -1, -1, true, false)
 
