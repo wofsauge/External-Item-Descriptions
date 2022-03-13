@@ -1321,7 +1321,7 @@ local function onRender(t)
 				elseif closest.Type == 1000 and closest.Variant == 161 and closest.SubType <= 2 then
 					local subtypeToCard = {18, 5, 19}
 					-- Reuse the descriptions of The Emperor/Stars/Moon, so no localization needed
-					local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest)
+					local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest, false)
 					-- Card Reading's name
 					descriptionObj.Name = EID:getObjectName(5, 100, 660)
 					EID:addDescriptionToPrint(descriptionObj)
