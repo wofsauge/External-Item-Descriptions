@@ -878,5 +878,5 @@ EID.descriptions[languageCode].CollectionPageInfo = "This item needs to be picke
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Demo Object Name",
 	DemoObjectTransformation = "Demo Transformation",
-	DemoObjectText = "This text is in english#A very cool and long description to simulate linebreaks caused by EID textbox width!#\1 This is also a cool line#This line loves you {{Heart}}",
+	DemoObjectText = "This text is in english#A very cool and long description to simulate linebreaks caused by EID textbox width!#\1 This is also a cool line#This line loves you {{Heart}}#Markup size preview: #BIG: {{Damage}} {{Tears}} {{Speed}} {{Shotspeed}} {{Luck}} #small: {{DeliriumSmall}} {{CurseDarknessSmall}} {{CurseBlindSmall}}",
 }

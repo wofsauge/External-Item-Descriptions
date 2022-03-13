@@ -35,6 +35,7 @@ local function renderDummyDesc(reload)
 	demoDescObj.Name = EID:getDescriptionEntry("MCM","DemoObjectName")
 	demoDescObj.Transformation = EID:getDescriptionEntry("MCM","DemoObjectTransformation")
 	demoDescObj.Description = EID:getDescriptionEntry("MCM","DemoObjectText")
+	demoDescObj = EID:replaceMarkupSize(demoDescObj)
 	EID:displayPermanentText(demoDescObj, "MCM", "DemoObjectName")
 end
 
@@ -503,6 +504,14 @@ if MCMLoaded then
 	{"Press this key to change the text size.", "Hold this key to smoothly change the text size."}, false)
 	-- Local Mode Centered or not
 	EID:AddBooleanSetting("Visuals", "LocalModeCentered", "Local Mode Centered")
+
+	-------Markup icon Sizes---------
+	local markupSizes = {"default", "big", "small"}
+	EID:AddNumberSetting("Visuals", "MarkupSize", "Markup icon Size", 1, #markupSizes, {indexOf = markupSizes}, {onChangeFunc = 
+	function(currentNum)
+		EID.MCM_OptionChanged = true
+		renderDummyDesc(true)
+	end})
 
 	-- Transparency
 	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
