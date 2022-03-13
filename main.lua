@@ -1086,6 +1086,7 @@ local function checkStartOfRunWarnings()
 		end
 	elseif hasShownStartWarning then
 		EID:hidePermanentText()
+		hasShownStartWarning = false
 	end
 end
 
