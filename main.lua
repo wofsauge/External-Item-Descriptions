@@ -298,7 +298,10 @@ if REPENTANCE then
 	-- Handle Flip Item spawn
 	function EID:preRoomEntitySpawn(entityType, variant, subtype, gridIndex, seed)
 		flipItemNext = false
-		if entityType == 5 and (variant == 100 or variant == 150) then
+		if entityType == 6 and variant == 14 then
+			-- Inner Child pedestal
+			lastGetItemResult = {688, Isaac.GetFrameCount(), gridIndex, nil}
+		elseif entityType == 5 then
 			lastGetItemResult = {nil, Isaac.GetFrameCount(), gridIndex, nil}
 			-- Pedestals in need of a random item will call GET_COLLECTIBLE; fixed pedestals (Knife Piece 1) will not
 			if subtype == 0 then initialItemNext = true
