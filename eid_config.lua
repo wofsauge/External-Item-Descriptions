@@ -116,6 +116,10 @@ EID.UserConfig = {
 	-- Changes the position of the text in local mode, relative to the described object to be centered. Set to false to make it left-aligned
 	-- Default = true
 	["LocalModeCentered"] = true,
+	-- Change the size of markups if available
+	-- Possible values: "default", "big", "small"
+	-- Default = "default"
+	["MarkupSize"] = "default",
 
 	---------- Curses ----------
 
@@ -410,6 +414,7 @@ EID.DefaultConfig = {
 	["DisplayMode"] = "default",
 	["LocalModeSize"] = 0.5,
 	["LocalModeCentered"] = true,
+	["MarkupSize"] = "default",
 	["MaxDistance"] = 5,
 	["Indicator"] = "none",
 	["HideKey"] = Keyboard.KEY_F2,

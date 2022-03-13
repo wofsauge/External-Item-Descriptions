@@ -367,6 +367,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 			end
 		end
 	end
+	description = EID:replaceMarkupSize(description)
 	return description
 end
 
@@ -1429,4 +1430,17 @@ function EID:PlayersActionPressed(button, inputFunc)
 		if inputFunc(button, k) then return true end
 	end
 	return false
+end
+
+function EID:replaceMarkupSize(description)
+	if EID.Config["MarkupSize"] == "small" then
+		for normal, small in pairs(EID.MarkupSizeMap) do
+			description.Description = string.gsub(description.Description, normal, small)
+		end
+	elseif EID.Config["MarkupSize"] == "big" then
+		for normal, small in pairs(EID.MarkupSizeMap) do
+			description.Description = string.gsub(description.Description, small, normal)
+		end
+	end
+	return description
 end
