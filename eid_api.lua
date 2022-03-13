@@ -337,7 +337,7 @@ end
 -- returns the description object of the specified entity
 -- falls back to english if the objID isnt available
 -- entity is optional
-function EID:getDescriptionObj(Type, Variant, SubType, entity)
+function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	local description = {}
 	description.ObjType = Type
 	description.ObjVariant = Variant
@@ -353,16 +353,18 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity)
 	
 	description.ModName = tableEntry and tableEntry[4]
 
-	for _,modifier in ipairs(EID.DescModifiers) do
-		local result = modifier.condition(description)
-		if type(result) == "table" then
-			for _,callback in ipairs(result) do
-				-- If the modifier loads a different description obj (which also goes through the modifier checks), we should stop our checks so text doesn't get printed twice
-				if description.ObjSubType ~= SubType then break end
-				description = callback(description)
+	if checkModifiers ~= false then
+		for _,modifier in ipairs(EID.DescModifiers) do
+			local result = modifier.condition(description)
+			if type(result) == "table" then
+				for _,callback in ipairs(result) do
+					-- If the modifier loads a different description obj (which also goes through the modifier checks), we should stop our checks so text doesn't get printed twice
+					if description.ObjSubType ~= SubType then break end
+					description = callback(description)
+				end
+			elseif result then
+				description = modifier.callback(description)
 			end
-		elseif result then
-			description = modifier.callback(description)
 		end
 	end
 	return description
