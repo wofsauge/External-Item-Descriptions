@@ -8,194 +8,194 @@
 -- '#' = starts new line of text
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |   = Down Arrow  |  ! = Warning
 local languageCode = "en_us"
 
 local repCollectibles={
-	[2] = {"2", "The Inner Eye", "Triple shot#↓ -49% Fire Rate down"},
-	[5] = {"5", "My Reflection", "Gives tears a boomerang effect#↑ +1.5 Range up#↑ +60% additional Range up#↑ +0.6 Shot Speed up#"}, -- My Reflection
-	[6] = {"6", "Number One", "↑ +1.5 Tears up#↓ -1.5 Range down#↓ -20% additional Range down"}, -- Number One
-	[12] = {"12", "Magic Mushroom", "↑ +1 Health up#Full health#↑ +0.3 Damage up#↑ +50% Damage Multiplier#↑ +1.5 Range up#↑ +0.3 Speed up#Size up"}, -- Magic Mushroom
-	[13] = {"13", "The Virus", "Poison touch#↑ +0.2 Speed up"}, -- The Virus
-	[14] = {"14", "Roid Rage", "↑ +0.3 Speed up#↑ +1.5 Range up"}, -- Roid Rage
-	[18] = {"18", "A Dollar", "+100 coins"}, -- A Dollar
-	[22] = {"22", "Lunch", "↑ +1 Health up#Heals 1 Red Heart"}, -- Lunch
-	[23] = {"23", "Dinner", "↑ +1 Health up#Heals 1 Red Heart"}, -- Dinner
-	[24] = {"24", "Dessert", "↑ +1 Health up#Heals 1 Red Heart"}, -- Dessert
-	[25] = {"25", "Breakfast", "↑ +1 Health up#Heals 1 Red Heart"}, -- Breakfast
-	[26] = {"26", "Rotten Meat", "↑ +1 Health up#Heals 1 Red Heart"}, -- Rotten Meat
-	[29] = {"29", "Mom's Underwear", "↑ +1.5 Range up#Spawns 3-6 Blue Flies"}, -- Mom's Underwear
-	[30] = {"30", "Mom's Heels", "↑ +1.5 Range up#Touched enemies take 12 damage"}, -- Mom's Heels
-	[31] = {"31", "Mom's Lipstick", "↑ +2.25 Range up#Spawns 1 random heart"}, -- Mom's Lipstick
+	[2] = {"2", "The Inner Eye", "Triple shot#↓ {{Tears}} -49% Fire Rate down"},
+	[5] = {"5", "My Reflection", "Gives tears a boomerang effect#↑ {{Range}} +1.5 Range up#↑ {{Range}} +60% additional Range up#↑ {{Shotspeed}} +0.6 Shot Speed up#"}, -- My Reflection
+	[6] = {"6", "Number One", "↑ {{Tears}} +1.5 Tears up#↓ {{Range}} -1.5 Range down#↓ {{Range}} -20% additional Range down"}, -- Number One
+	[12] = {"12", "Magic Mushroom", "↑ +1 Health up#Full health#↑ {{Damage}} +0.3 Damage up#↑ {{Damage}} +50% Damage Multiplier#↑ {{Range}} +1.5 Range up#↑ {{Speed}} +0.3 Speed up#Size up"}, -- Magic Mushroom
+	[13] = {"13", "The Virus", "{{Poison}} Poison touch#↑ {{Speed}} +0.2 Speed up"}, -- The Virus
+	[14] = {"14", "Roid Rage", "↑ {{Speed}} +0.3 Speed up#↑ {{Range}} +1.5 Range up"}, -- Roid Rage
+	[18] = {"18", "A Dollar", "{{Coin}} +100 coins"}, -- A Dollar
+	[22] = {"22", "Lunch", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart"}, -- Lunch
+	[23] = {"23", "Dinner", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart"}, -- Dinner
+	[24] = {"24", "Dessert", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart"}, -- Dessert
+	[25] = {"25", "Breakfast", "↑ {{Heart}} +1 Health up#H{{Heart}} eals 1 Red Heart"}, -- Breakfast
+	[26] = {"26", "Rotten Meat", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart"}, -- Rotten Meat
+	[29] = {"29", "Mom's Underwear", "↑ {{Range}} +1.5 Range up#Spawns 3-6 Blue Flies"}, -- Mom's Underwear
+	[30] = {"30", "Mom's Heels", "↑ {{Range}} +1.5 Range up#Touched enemies take 12 damage"}, -- Mom's Heels
+	[31] = {"31", "Mom's Lipstick", "↑ {{Range}} +2.25 Range up#{{Heart}} Spawns 1 random heart"}, -- Mom's Lipstick
 	[37] = {"37", "Mr. Boom", "Drops a large bomb below the player which deals 185 damage"}, -- Mr. Boom
 	[40] = {"40", "Kamikaze!", "Causes a big explosion at the player's location#Deals 185 damage"}, -- Kamikaze!
-	[42] = {"42", "Bob's Rotten Head", "Throwable poison bomb#Deals 185 + your damage#Creates poison cloud"}, -- Bob's Rotten Head
+	[42] = {"42", "Bob's Rotten Head", "{{Poison}} Throwable poison bomb#Deals 185 + your damage#Creates poison cloud"}, -- Bob's Rotten Head
 	[44] = {"44", "Teleport", "Teleports Isaac into a random room except I AM ERROR rooms#Influence direction a bit by moving in desired direction"}, -- Teleport
-	[45] = {"45", "Yum Heart", "Heal 1 Red Heart#Also heals other players for half a heart"}, -- Yum Heart
-	[46] = {"46", "Lucky Foot", "↑ +1 Luck up#Better chance to win while gambling#Increases room clearing drop chance#Turns some bad pills into good ones"}, -- Lucky Foot
-	[52] = {"52", "Dr. Fetus", "Bomb tears#Each bomb deals 10x your damage#If that results in over 60 damage, it instead deals 5x your damage + 30#↓ -60% Tears down"}, --Dr. Fetus
+	[45] = {"45", "Yum Heart", "{{Heart}} Heal 1 Red Heart#Also heals other players for half a heart"}, -- Yum Heart
+	[46] = {"46", "Lucky Foot", "↑ {{Luck}} +1 Luck up#Better chance to win while gambling#Increases room clearing drop chance#Turns some bad pills into good ones"}, -- Lucky Foot
+	[52] = {"52", "Dr. Fetus", "{{Bomb}} Bomb tears#Each bomb deals 10x your damage#If that results in over 60 damage, it instead deals 5x your damage + 30#↓ -60% Tears down"}, --Dr. Fetus
 	[53] = {"53", "Magneto", "Magnetic attraction for pickups#Opens chests remotely, ignoring damage of spike chests"}, -- Magneto
-	[55] = {"55", "Mom's Eye", "50% chance to shoot a tear backwards#100% chance at 5 Luck"}, -- Mom's Eye
+	[55] = {"55", "Mom's Eye", "50% chance to shoot a tear backwards#{{Luck}} 100% chance at 5 Luck"}, -- Mom's Eye
 	[59] = {"59", "The Book of Belial", "<Item not obtainable>"}, -- The Book of Belial (Judas's Birthright Version)
-	[62] = {"62", "Charm of the Vampire", "↑ +0.3 Damage up#Heals half a heart for every 13 enemies killed"}, -- Charm of the Vampire
-	[64] = {"64", "Steam Sale", "-50% on shop items#Getting this item multiple times reduces the price further"}, -- Steam Sale
+	[62] = {"62", "Charm of the Vampire", "↑ {{Damage}} +0.3 Damage up#Heals half a heart for every 13 enemies killed"}, -- Charm of the Vampire
+	[64] = {"64", "Steam Sale", "{{Shop}} -50% on shop items#Getting this item multiple times reduces the price further"}, -- Steam Sale
 	[67] = {"67", "Sister Maggy", "Normal tear familiar#Deals 6 damage per tear"}, -- Sister Maggy
-	[70] = {"70", "Growth Hormones", "↑ +1 Damage up#↑ +0.2 Speed up"}, -- Growth Hormones
-	[71] = {"71", "Mini Mush", "↑ +0.3 Speed up#↑ +1.5 Range up#↑ Size down"}, -- Mini Mush
-	[72] = {"72", "Rosary", "+3 Soul Hearts#↑ +0.5 Tears up#{{Collectible33}}The Bible is added to all item pools"}, -- Rosary
+	[70] = {"70", "Growth Hormones", "↑ {{Damage}} +1 Damage up#↑ {{Speed}} +0.2 Speed up"}, -- Growth Hormones
+	[71] = {"71", "Mini Mush", "↑ {{Speed}} +0.3 Speed up#↑ {{Range}} +1.5 Range up#↑ Size down"}, -- Mini Mush
+	[72] = {"72", "Rosary", "{{SoulHeart}} +3 Soul Hearts#↑ {{Tears}} +0.5 Tears up#{{Collectible33}} The Bible is added to all item pools"}, -- Rosary
 	[77] = {"77", "My Little Unicorn", "Invincibility#20 contact damage"}, -- My Little Unicorn
-	[78] = {"78", "Book of Revelations", "+1 Soul Heart#A Horseman replaces the current floor's boss if used#↑ +17.5% {{DevilRoom}}Devil or {{AngelRoom}}Angel Room chance"}, -- Book of Revelations
-	[79] = {"79", "The Mark", "↑ +1 Damage up#↑ +0.2 Speed up#+1 Black Heart"}, -- The Mark
-	[80] = {"80", "The Pact", "↑ +0.5 Damage up#↑ +0.7 Tears up#+2 Black Hearts"}, -- The Pact
-	[83] = {"83", "The Nail", "+ Half Black Heart#↑ +2 Damage up#↓ -0.18 Speed down#Deal contact damage#Destroy rocks when walking over them"}, -- The Nail
-	[87] = {"87", "Loki's Horns", "25% chance to shoot in 4 directions#100% chance at 15 Luck"}, -- Loki's Horns
-	[91] = {"91", "Spelunker Hat", "Reveals the room type of up to 2 adjacent rooms#Can also reveal Secret Rooms, Super Secret Rooms and Mini-Boss Rooms#Blocks projectiles falling from above"}, -- Spelunker Hat
-	[98] = {"98", "The Relic", "Spawns 1 Soul Heart every 7-8 rooms"}, -- The Relic
-	[101] = {"101", "The Halo", "↑ +1 Health up#↑ +0.3 Damage up#↑ +0.2 Tears up#↑ +0.38 Range up#↑ +0.3 Speed up#Heals 1 Red Heart"}, -- The Halo
+	[78] = {"78", "Book of Revelations", "{{SoulHeart}} +1 Soul Heart#A Horseman replaces the current floor's boss if used#↑ {{AngelChance}}/{{DevilChance}} +17.5% Devil or Angel Room chance"}, -- Book of Revelations
+	[79] = {"79", "The Mark", "↑ {{Damage}} +1 Damage up#↑ {{Speed}} +0.2 Speed up# {{BlackHeart}} +1 Black Heart"}, -- The Mark
+	[80] = {"80", "The Pact", "↑ {{Damage}} +0.5 Damage up#↑ {{Tears}} +0.7 Tears up#{{BlackHeart}} +2 Black Hearts"}, -- The Pact
+	[83] = {"83", "The Nail", "{{HalfBlackHeart}} + Half Black Heart#↑ {{Damage}} +2 Damage up#↓ -0.18 Speed down#Deal contact damage#Destroy rocks when walking over them"}, -- The Nail
+	[87] = {"87", "Loki's Horns", "25% chance to shoot in 4 directions#{{Luck}} 100% chance at 15 Luck"}, -- Loki's Horns
+	[91] = {"91", "Spelunker Hat", "Reveals the room type of up to 2 adjacent rooms#Can also reveal: #{{SecretRoom}} Secret Rooms# {{SuperSecretRoom}} Super Secret Rooms#{{MiniBoss}} Mini-Boss Rooms#Blocks projectiles falling from above"}, -- Spelunker Hat
+	[98] = {"98", "The Relic", "{{SoulHeart}} Spawns 1 Soul Heart every 7-8 rooms"}, -- The Relic
+	[101] = {"101", "The Halo", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart#↑ {{Damage}} +0.3 Damage up#↑ {{Tears}} +0.2 Tears up#↑ {{Range}} +0.38 Range up#↑ {{Speed}} +0.3 Speed up#"}, -- The Halo
 	[106] = {"106", "Mr. Mega", "↑ Bomb damage x1.85#+5 Bombs"}, -- Mr. Mega
-	[110] = {"110", "Mom's Contacts", "20% chance to shoot Freezing Tears#↑ +0.38 Range up"}, -- Mom's Contacts
-	[118] = {"118", "Brimstone", "Charge a blood laser that deals constant damage#↓ -67% Fire Rate down"}, -- Brimstone
-	[121] = {"121", "Odd Mushroom (Large)", "↑ +1 Health up#↑ +1 Damage up#↑ +0.38 Range up#↓ -0.2 Speed down"}, -- Odd Mushroom (Large)
+	[110] = {"110", "Mom's Contacts", "20% chance to shoot Freezing Tears#↑ {{Range}} +0.38 Range up"}, -- Mom's Contacts
+	[118] = {"118", "Brimstone", "{{Chargeable}} Chargeable#Shoot a blood laser that deals constant damage#↓ {{Tears}} -67% Fire Rate down"}, -- Brimstone
+	[121] = {"121", "Odd Mushroom (Large)", "↑ {{Heart}} +1 Health up#↑ {{Damage}} +1 Damage up#↑ {{Range}} +0.38 Range up#↓ {{Speed}} -0.2 Speed down"}, -- Odd Mushroom (Large)
 	[123] = {"123", "Monster Manual", "Spawns a random familiar#Lasts for current floor"}, -- Monster Manual
-	[129] = {"129", "Bucket of Lard", "↑ +2 Health up#↓ -0.2 Speed down"}, -- Bucket of Lard
-	[135] = {"135", "IV Bag", "Portable blood bank#Half a heart = 1-2 coins#1 coin on Hard Mode#0-1 coin as Keeper"}, -- IV Bag
-	[138] = {"138", "Stigmata", "↑ +1 Health up#↑ +0.3 Damage up#Heals 1 Red Heart"}, -- Stigmata
-	[139] = {"139", "Mom's Purse", "You can now hold 2 trinkets#Spawns 1 random trinket"}, -- Mom's Purse
-	[140] = {"140", "Bob's Curse", "Poison bombs#+5 bombs#Bombs leave a poison cloud#Makes you immune to poison damage"}, -- Bob's Curse
+	[129] = {"129", "Bucket of Lard", "↑ {{Heart}} +2 Health up#↓ {{Speed}} -0.2 Speed down"}, -- Bucket of Lard
+	[135] = {"135", "IV Bag", "Portable blood bank#Half a heart = 1-2 coins#{{HardMode}} 1 coin on Hard Mode#{{Player14}} 0-1 coin as Keeper"}, -- IV Bag
+	[138] = {"138", "Stigmata", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart#↑ {{Damage}} +0.3 Damage up#"}, -- Stigmata
+	[139] = {"139", "Mom's Purse", "{{Trinket}} You can now hold 2 trinkets#{{Trinket}} Spawns 1 random trinket"}, -- Mom's Purse
+	[140] = {"140", "Bob's Curse", "{{Bomb}} +5 bombs#{{Poison}} Poison bombs#{{Poison}} Bombs leave a poison cloud#{{Poison}} Makes you immune to poison damage"}, -- Bob's Curse
 	[147] = {"147", "Notched Axe", "Break rocks and damage enemies on swing#Hitting with the axe reduces its charge#Charge refills on stage transition"}, -- Notched Axe
 	[148] = {"148", "Infestation", "Spawn 2-6 flies when you get hit"}, -- Infestation
-	[149] = {"149", "Ipecac", "Explosive poison tears#↑ +40 Damage up#↓ -0.2 Shot Speed down#↓ -67% Fire Rate down#↓ Minor Range down"}, -- Ipecac
-	[152] = {"152", "Technology 2", "Replaces the right eye tears with an unlimited range piercing laser which fires continuously#Laser deals 13% of your damage#↓ -33% Fire Rate down"}, -- Technology 2
-	[153] = {"153", "Mutant Spider", "Quad shot!#↓ -58% Fire Rate down"}, -- Mutant Spider
+	[149] = {"149", "Ipecac", "{{Poison}} Explosive poison tears#↑ {{Damage}} +40 Damage up#↓ {{Shotspeed}} -0.2 Shot Speed down#↓ {{Tears}} -67% Fire Rate down#↓ {{Range}} Minor Range down"}, -- Ipecac
+	[152] = {"152", "Technology 2", "Replaces the right eye tears with an unlimited range piercing laser which fires continuously#{{Damage}} Laser deals 13% of your damage#↓ {{Tears}} -33% Fire Rate down"}, -- Technology 2
+	[153] = {"153", "Mutant Spider", "Quad shot!#↓ {{Tears}} -58% Fire Rate down"}, -- Mutant Spider
 	[155] = {"155", "The Peeper", "Floats around the room#Deals 17.1 contact damage per second#↑ Tears shot from Isaac's left eye deal 34% more damage"}, -- The Peeper
-	[158] = {"158", "Crystal Ball", "Reveals the full map#Drops a Soul Heart or a random card or rune#While held:#↑ +15% {{Planetarium}}Planetarium chance#100% if a Treasure Room was skipped"}, -- Crystal Ball
-	[169] =	{"169", "Polyphemus", "↑ +100% Damage up#↑ +4 additional Damage up#↓ -58% Fire Rate down#Tears keep going after killing an enemy"},
-	[171] = {"171", "Spider Butt", "Slows down enemies for 4 seconds#10 damage to all enemies#Enemies killed with it spawn blue spiders"}, -- Spider Butt
+	[158] = {"158", "Crystal Ball", "Reveals the full map#Drops a: #{{SoulHeart}} Soul Heart# {{Card}} Random Card#{{Rune}} Random Rune#While held:#↑ {{PlanetariumChance}} +15% Planetarium chance#↑ {{PlanetariumChance}} 100% if a {{TreasureRoom}} Treasure Room was skipped"}, -- Crystal Ball
+	[169] =	{"169", "Polyphemus", "↑ {{Damage}} +100% Damage up#↑ {{Damage}} +4 additional Damage up#↓ {{Tears}} -58% Fire Rate down#Tears keep going after killing an enemy"},
+	[171] = {"171", "Spider Butt", "{{Slow}} Slows down enemies for 4 seconds#10 damage to all enemies#Enemies killed with it spawn blue spiders"}, -- Spider Butt
 	[172] = {"172", "Sacrificial Dagger", "Orbital knife#Blocks enemy shots#Deals 112.5 damage per second"}, -- Sacrificial Dagger
-	[176] = {"176", "Stem Cells", "↑ +1 Health up#↑ +0.16 Shot Speed up#Heals 1 Red Heart"}, -- Stem Cells
+	[176] = {"176", "Stem Cells", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart↑ {Shotspeed}} +0.16 Shot Speed up"}, -- Stem Cells
 	[178] = {"178", "Holy Water", "{{Throwable}} {{ColorOrange}}Throwable{{CR}}#Launches itself in the direction Isaac shoots#Breaks and deals 7 damage when touching an enemy#Leaves a pool of damaging creep that petrifies enemies"}, -- Holy Water
-	[182] = {"182", "Sacred Heart", "↑ +1 Health up#Full health#↑ 230% + 1 Damage up#↓ -0.4 Tears down#↓ -0.25 Shot Speed down#Homing tears"}, -- Sacred Heart
-	[184] = {"184", "Holy Grail", "Grants flight#↑ +1 Health up#Heals 1 Red Heart"}, -- Holy Grail
-	[188] = {"188", "Abel", "Mirrors your movement#Shoots towards the player#Deals 3.5 damage per shot#Deals 7.5 damage as Cain"}, -- Abel
-	[189] = {"189", "SMB Super Fan", "↑ +1 Health up#Full health#↑ +0.3 Damage up#↑ +0.2 Tears up#↑ +1.5 Range up#↑ +0.2 Speed up"}, -- SMB Super Fan
-	[192] = {"192", "Telepathy for Dummies", "Homing tears and +3 Range for current room"}, -- Telepathy for Dummies
-	[193] = {"193", "MEAT!", "↑ +1 Health up#↑ +0.3 Damage up#Heals 1 Red Heart"}, -- MEAT!
-	[194] = {"194", "Magic 8 Ball", "↑ +0.16 Shot Speed up#+1 card#+15% {{Planetarium}}Planetarium chance"}, -- Magic 8 Ball
-	[197] = {"197", "Jesus Juice", "↑ +0.5 Damage up#↑ +0.38 Range up"}, -- Jesus Juice
+	[182] = {"182", "Sacred Heart", "↑ {{Heart}} +1 Health up#{{Heart}} Full health#↑ {{Damage}} 230% + 1 Damage up#↓ {{Tears}} -0.4 Tears down#↓ {{Shotspeed}} -0.25 Shot Speed down#Homing tears"}, -- Sacred Heart
+	[184] = {"184", "Holy Grail", "Grants flight#↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart"}, -- Holy Grail
+	[188] = {"188", "Abel", "Mirrors your movement#Shoots towards the player#Deals 3.5 damage per shot#{{Player2}} Deals 7.5 damage as Cain"}, -- Abel
+	[189] = {"189", "SMB Super Fan", "↑ {{Heart}} +1 Health up#{{Heart}} Full health#↑ {{Damage}} +0.3 Damage up#↑ {{Tears}} +0.2 Tears up#↑ {{Range}} +1.5 Range up#↑ {{Speed}} +0.2 Speed up"}, -- SMB Super Fan
+	[192] = {"192", "Telepathy for Dummies", "Grants for the current room: #↑ {{Range}} +3 Range up#Homing tears"}, -- Telepathy for Dummies
+	[193] = {"193", "MEAT!", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart#↑ {{Damage}} +0.3 Damage up"}, -- MEAT!
+	[194] = {"194", "Magic 8 Ball", "↑ {{Shotspeed}} +0.16 Shot Speed up#{{Card}} +1 card#↑ {{PlanetariumChange}} +15% Planetarium chance"}, -- Magic 8 Ball
+	[197] = {"197", "Jesus Juice", "↑ {{Damage}} +0.5 Damage up#↑ {{Range}} +0.38 Range up"}, -- Jesus Juice
 	[203] = {"203", "Humbling Bundle", "Chance to spawn the double version of pickups"}, -- Humbling Bundle
 	[205] = {"205", "Sharp Plug", "On use, fully recharges your active item at the cost of half a heart per charge#Prioritizes Red Hearts"}, -- Sharp Plug
 	[206] = {"206", "Guillotine", "↑ +1 Damage up#↑ +0.5 Fire Rate up#Your head is now an orbital which doesn't take damage and deals 105 contact damage#You will still shoot from the head"}, -- Guillotine
 	[211] = {"211", "Spiderbaby", "Spawn 3-5 Blue Spiders upon taking damage"}, -- Spiderbaby
-	[214] = {"214", "Anemic", "↑ +1.5 Range up#Leave a trail of damaging creep upon taking damage"}, -- Anemic
-	[218] = {"218", "Placenta", "↑ +1 Health up#Heals 1 Red Heart#Chance to heal half a heart every minute"}, -- Placenta
-	[222] =	{"222", "Anti-Gravity", "Holding the fire buttons causes tears to hover in midair#When released, they will all shoot in the direction they were fired#↑ +1 Fire Rate up"}, -- Anti-Gravity
+	[214] = {"214", "Anemic", "↑ {{Range}} +1.5 Range up#Leave a trail of damaging creep upon taking damage"}, -- Anemic
+	[218] = {"218", "Placenta", "↑ {{Heart}} +1 Health up#Heals 1 Red Heart#Chance to heal half a heart every minute"}, -- Placenta
+	[222] =	{"222", "Anti-Gravity", "Holding the fire buttons causes tears to hover in midair#When released, they will all shoot in the direction they were fired#↑ {{Tears}} +1 Fire Rate up"}, -- Anti-Gravity
 	[224] = {"224", "Cricket's Body", "Tears split in 4 on hit#Split tears deal half your damage#↑ +0.5 Fire Rate up#↓ -20% Range down"}, -- Cricket's Body
-	[228] = {"228", "Mom's Perfume", "15% chance to shoot Fear tears#↑ +0.5 Fire Rate up"}, -- Mom's Perfume
-	[230] = {"230", "Abaddon", "↑ +1.5 Damage up#↑ +0.2 Speed up#Fear tears#Converts all Red Heart Containers into Black Hearts#+2 Black Hearts"}, -- Abaddon
-	[232] = {"232", "Stop Watch", "Permanent slow effect for enemies#↑ +0.3 Speed up"}, -- Stop Watch
-	[233] = {"233", "Tiny Planet", "Tears orbit around you#↑ +6.5 Range up#Spectral tears"}, -- Tiny Planet
+	[228] = {"228", "Mom's Perfume", "{{Fear}} 15% chance to shoot Fear tears#↑ {{Tears}} +0.5 Fire Rate up"}, -- Mom's Perfume
+	[230] = {"230", "Abaddon", "↑ {{Damage}} +1.5 Damage up#↑ {{Speed}} +0.2 Speed up#{{Fear}} Fear tears#Converts all {{Heart}} Red Heart Containers into {{BlackHeart}} Black Hearts#{{BlackHeart}} +2 Black Hearts"}, -- Abaddon
+	[232] = {"232", "Stop Watch", "{{Slow}} Permanent slow effect for enemies#↑ {{Speed}} +0.3 Speed up"}, -- Stop Watch
+	[233] = {"233", "Tiny Planet", "Tears orbit around you#↑ {{RangE}} +6.5 Range up#Spectral tears"}, -- Tiny Planet
 	[240] = {"240", "Experimental Treatment", "↑ Randomly increases 4 stats#↓ Randomly decreases 2 stats"}, -- Experimental Treatment
-	[245] = {"245", "20/20", "Doubles all your shots#↓ -25% Damage"}, -- 20/20
+	[245] = {"245", "20/20", "Doubles all your shots#↓ {{Damage}} -25% Damage"}, -- 20/20
 	[248] = {"248", "Hive Mind", "Blue Spiders/flies deal double damage#Spider/fly based familiars become stronger"}, -- Hive Mind
-	[253] = {"253", "Magic Scab", "↑ +1 Health up#↑ +1 Luck up#Heals 1 Red Heart"}, -- Magic Scab
-	[254] = {"254", "Blood Clot", "!!! Applies only for the left eye#↑ +1 Damage up#↑ +1.5 Range up"}, -- Blood Clot
-	[256] = {"256", "Hot Bombs", "Burning bombs#+5 Bombs#You can no longer take fire damage#Bombs deal contact damage"}, -- Hot Bombs
-	[261] = {"261", "Proptosis", "↑ +0.5 Damage up#↓ Dealt damage decreases the longer the tear stays airborne#300% Damage at point blank range"}, -- Proptosis
-	[262] = {"262", "Missing Page 2", "+1 Black Heart#When down to 1 Heart, damages all enemies in the room#Black Hearts and Necronomicon effects deal double damage"}, -- Missing Page 2
-	[263] = {"263", "Clear Rune", "Copies the effects of held rune or soul stone#Drops 1 random rune on pickup"}, -- Clear Rune   (REPENTANCE ITEM)
+	[253] = {"253", "Magic Scab", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart#↑ {{Luck}} +1 Luck up"}, -- Magic Scab
+	[254] = {"254", "Blood Clot", "!!! Applies only for the left eye#↑ +1 Damage up#↑ {{Range}} +1.5 Range up"}, -- Blood Clot
+	[256] = {"256", "Hot Bombs", "{{Bomb}} +5 Bombs#{{Burning}} Burning bombs#{{Burning}} You can no longer take fire damage#Bombs deal contact damage"}, -- Hot Bombs
+	[261] = {"261", "Proptosis", "↑ {{Damage}} +0.5 Damage up#↓ {{Damage}} Dealt damage decreases the longer the tear stays airborne#{{Damage}} 300% Damage at point blank range"}, -- Proptosis
+	[262] = {"262", "Missing Page 2", "{{BlackHeart}} +1 Black Heart#When down to 1 Heart, damages all enemies in the room#Black Hearts and Necronomicon effects deal double damage"}, -- Missing Page 2
+	[263] = {"263", "Clear Rune", "{{Rune}} Copies the effects of held rune or soul stone#{{Rune}} Drops 1 random rune on pickup"}, -- Clear Rune   (REPENTANCE ITEM)
 	[273] = {"273", "Bob's Brain", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} bomb#The explosion deals 100 damage#The damage ignores armor"}, -- Bob's Brain
 	[274] = {"274", "Best Bud", "When getting hit, gain one midrange orbital#Orbital deals 150 damage per second"}, -- Best Bud
-	[275] = {"275", "Lil Brimstone", "Shoots a brimstone laser#Shot deals 2 damage per tick, for a total of 20 damage"}, -- Lil Brimston
+	[275] = {"275", "Lil Brimstone", "{{Collectible118}} Shoots a brimstone laser#Shot deals 2 damage per tick, for a total of 20 damage"}, -- Lil Brimston
 	[276] = {"276", "Isaac's Heart", "Gain an invulnerable body#!!! When the heart familiar gets hit you take damage#Familiar charges up when firing, releasing a burst of tears when releasing"}, -- Isaac's Heart
-	[278] = {"278", "Dark Bum", "Converts 1.5 Red Hearts into a Soul/Black Heart, spider, pill, card, or rune"}, -- Dark Bum
+	[278] = {"278", "Dark Bum", "{{Heart}} Converts 1.5 Red Hearts into a: #{{SoulHeart}} / {{BlackHeart}} Soul/Black Heart#{{Pill}} Pill#{{Card}} Card#{{Rune}} Rune#One Spider"}, -- Dark Bum
 	[280] = {"280", "Sissy Longlegs", "Randomly spawns blue spiders when in a hostile room#Charms enemies it comes in contact with"}, -- Sissy Longlegs
 	[283] = {"283", "D100", "Reroll all pedestals, stats, pickups and all your held passive items#Duplicates 1 random pickup in room#Restarts current room and respawns and rerolls its enemies#Rerolls rocks in room"}, -- D100
 	[285] = {"285", "D10", "Reroll all enemies in the room#Tries to reroll them into enemies with similar max HP"}, -- D10
-	[287] = {"287", "Book of Secrets", "Grants {{Collectible54}}Treasure Map, {{Collectible21}}Compass or {{Collectible246}}Blue Map for the current floor when used#Only grants mapping effects you don't have already#If all effects are active, grants {{Collectible76}}X-Ray Vision"}, -- Book of Secrets
+	[287] = {"287", "Book of Secrets", "Upon use, can give one of this effects during the current floor: #{{Collectible54}} Treasure Map#{{Collectible21}} Compass #{{Collectible246}} Blue Map#Only grants mapping effects you don't have already#{{Collectible76}} If all effects are active, grants X-Ray Vision"}, -- Book of Secrets
 	[288] = {"288", "Box of Spiders", "Spawn 4-8 blue spiders"}, -- Box of Spiders
 	[289] = {"289", "Red Candle", "Throw a red flame#The flame stays until it has dealt damage or blocked shots 5 times or after 10 seconds"}, -- Red Candle
 	[291] = {"291", "Flush!", "Turns all non-boss enemies into poop#Instantly kills poop enemies and bosses#Extinguishes fire places and fills the room with water#Turns lava-filled pits into walkable ground"}, -- Flush!
-	[292] = {"292", "Satanic Bible", "+1 Black Heart#When used before a boss fight, the Boss Room item will be a Devil deal#!!! Taking that item locks you into Devil deals for the rest of the run"}, -- Satanic Bible
+	[292] = {"292", "Satanic Bible", "+1 Black Heart#When used before a boss fight, the Boss Room item will be a Devil deal#!!! {{AngelRoom}} Taking that item locks you into Devil deals for the rest of the run"}, -- Satanic Bible
 	[294] = {"294", "Butter Bean", "Knocks back nearby enemies and projectiles#Enemies pushed into obstacles take 10 damage"}, -- Butter Bean
 	[295] = {"295", "Magic Fingers", "Damages the whole room with 2x the player damage + 10 #Price: 1 coin"}, -- Magic Fingers
 	[296] = {"296", "Converter", "Converts 1 Soul or Black Heart into 1 Red Heart Container"}, -- Converter
 	--the SINGLE USE line isn't the standard format in order to save a line break
-	[297] = {"297", "Pandora's Box", "{{Warning}} SINGLE USE, spawns items based on floor:#B1: 2 Soul Hearts#B2: 2 bombs and 2 keys#C1: 1 Boss item#C2: B1+C1#D1: 4 Soul Hearts#D2: 20 coins#W1: 2 Boss items#W2: {{Collectible33}}The Bible#???/Void: Nothing#Sheol: 1 Devil item + 1 Black Heart#Dark Room: Unlocks {{Collectible523}}Moving Box#Cat: 1 Angel item + 1 Eternal Heart#Chest: 1 coin#Home: {{Collectible580}}Red Key"}, -- Pandora's Box
-	[300] = {"300", "Aries", "↑ +0.25 Speed up#Touching enemies hurts them#Running fast enough will prevent contact damage"}, -- Aries
-	[307] = {"307", "Capricorn", "↑ +1 Health up#↑ +0.5 Damage up#↑ +0.1 Speed up#↑ +0.75 Range up#↑ +0.5 Fire Rate up#Gives one bomb, coin and key"}, -- Capricorn
-	[308] = {"308", "Aquarius", "Leave a trail of creep#Creep deals 66% your damage per second#Creep synergizes with tear effects"}, -- Aquarius
-	[309] =	{"309", "Pisces", "↑ +0.5 Fire Rate up#Increases tear knockback"},
-	[310] =	{"310", "Eve's Mascara", "↑ +100% Damage up#↓ -33% Tears down#↓ -0.5 Shot Speed down"},
-	[314] = {"314", "Thunder Thighs", "↑ +1 Health up#↓ -0.4 Speed down#Heals 1 Red Heart#Destroy rocks when walking over them"}, -- Thunder Thighs
+	[297] = {"297", "Pandora's Box", "{{Warning}} SINGLE USE, spawns items based on floor:#B1: {{SoulHeart}} 2 Soul Hearts / B2: {{Bomb}} 2 bombs and {{Key}} 2 keys#C1: {{BossRoom}} 1 Boss item / C2: B1+C1#D1: {{SoulHeart}} 4 Soul Hearts / D2: {{Coin}} 20 coins#W1: {{BossRoom}} 2 Boss items / W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: {{DevilRoom}} 1 Devil item + {{BlackHeart}} 1 Black Heart / Cath: {{AngelRoom}} 1 Angel item + {{EternalHeart}} 1 Eternal Heart#Dark Room: {{Collectible523}} Unlocks Moving Box / Chest: {{Coin}} 1 coin#Home: {{Collectible580}} Red Key"}, -- Pandora's Box
+	[300] = {"300", "Aries", "↑ {{Speed}} +0.25 Speed up#Touching enemies hurts them#Running fast enough will prevent contact damage"}, -- Aries
+	[307] = {"307", "Capricorn", "↑ {{Heart}} +1 Health up#↑ {{Damage}} +0.5 Damage up#↑ {{Speed}} +0.1 Speed up#↑ {{Range}} +0.75 Range up#↑ {{Tears}} +0.5 Fire Rate up#Gives one bomb, coin and key"}, -- Capricorn
+	[308] = {"308", "Aquarius", "Leave a trail of creep#{{Damage}} Creep deals 66% your damage per second#Creep synergizes with tear effects"}, -- Aquarius
+	[309] =	{"309", "Pisces", "↑ {{Tears}} +0.5 Fire Rate up#Increases tear knockback"},
+	[310] =	{"310", "Eve's Mascara", "↑ {{Damage}} +100% Damage up#↓ {{Tears}} -33% Tears down#↓ {{Shotspeed}} -0.5 Shot Speed down"},
+	[314] = {"314", "Thunder Thighs", "↑ {{Heart}} +1 Health up#Heals 1 Red Heart#↓ {{Speed}} -0.4 Speed down#Destroy rocks when walking over them"}, -- Thunder Thighs
 	[315] = {"315", "Strange Attractor", "Magnetic tears#Affects enemies, pickups and trinkets#Items will be attracted to where the tear lands"}, -- Strange Attractor
 	[320] = {"320", "???'s Only Friend", "Controllable Fly#Deals 3.5 contact damage per tick"}, -- ???'s Only Friend
 	[326] = {"326", "Breath of Life", "Hold down space until chargebar is empty for invincibility#Beams of light will strike enemies that touch you when invincible#!!! Don't hold it for too long!"}, -- Breath of Life
-	[328] = {"328", "The Negative", "↑ +1 Damage up#Damages all enemies in the room when getting hit and at half a Red Heart or none"}, -- The Negative
-	[330] = {"330", "Soy Milk", "↑ 5.5x Fire Rate up#↓ -80% Damage down#Drastically reduces knockback"}, -- Soy Milk
-	[331] = {"331", "Godhead", "↑ +0.5 Damage up#↓ -0.3 Tears down#↓ -0.3 Shot Speed down#Tears gain a damaging aura which deals 2 damage per tick#Homing tears"}, -- Godhead
-	[336] = {"336", "Dead Onion", "Piercing and spectral tears#↓ -1.5 Range down#↓ -0.4 Shot Speed down#↑ +50% Tear size"}, -- Dead Onion
-	[339] = {"339", "Safety Pin", "↑ +1.5 Range up#↑ +0.16 Shot Speed up#+1 Black Heart"}, -- Safety Pin
-	[342] = {"342", "Blue Cap", "↑ +1 Health up#↑ +0.7 Tears up#↓ -16% Shot Speed down#Heals 1 Red Heart"}, -- Blue Cap
-	[344] = {"344", "Match Book", "+1 Black Heart#Spawns 2-3 Bombs and {{Trinket41}}Match Stick"}, -- Match Book
-	[345] = {"345", "Synthoil", "↑ +1 Damage up#↑ +1.5 Range up"}, -- Synthoil
-	[346] = {"346", "A Snack", "↑ +1 Health up#Heals 1 Red Heart"}, -- A Snack
-	[350] = {"350", "Toxic Shock", "At the start of every room every enemy gets a poison effect#Killed enemies leave puddle of creep#Grants immunity for toxic clouds"}, -- Toxic Shock
-	[352] = {"352", "Glass Cannon", "Fires one large piercing spectral tear ((DMG x 10) + 10)#!!! When you take damage:#↓ You will lose an extra 2 hearts of health#↑ +1.5 Range up and leave blood creep for the room#The extra damage can't kill you#Self-damage does not count"}, -- Glass Cannon
-	[354] = {"354", "Crack Jacks", "↑ +1 Health up#Spawns random trinket on the floor#Heals 1 Red Heart"}, -- Crack Jacks
-	[355] = {"355", "Mom's Pearls", "↑ +0.38 Range up#↑ +1 Luck up#+1 Soul Heart"}, -- Mom's Pearls
-	[360] = {"360", "Incubus", "Gain a demonic familiar that shoots the same tears as Isaac#Deals 75% of your damage unless playing as Lilith"}, -- Incubus
-	[366] = {"366", "Scatter Bombs", "+5 bombs#Causes your bombs to explode into 4-5 tiny bombs"}, -- Scatter Bombs
-	[368] =	{"368", "Epiphora", "Shooting in one direction gradually increases your fire rate by up to 200%"}, -- Epiphora
-	[369] = {"369", "Continuum", "↑ +3 Range up#Spectral tears#Tears travel through walls and appear out of the opposite wall"}, -- Continuum
-	[370] = {"370", "Mr. Dolly", "↑ +0.7 Tears up#↑ +1.5 Range up#Spawns 3 random hearts when picked up"}, -- Mr. Dolly
+	[328] = {"328", "The Negative", "↑ {{Damage}} +1 Damage up#Damages all enemies in the room when getting hit and at half a Red Heart or none"}, -- The Negative
+	[330] = {"330", "Soy Milk", "↑ {{Tears}} 5.5x Fire Rate up#↓ {{Damage}} -80% Damage down#Drastically reduces knockback"}, -- Soy Milk
+	[331] = {"331", "Godhead", "↑ {{Speed}} +0.5 Damage up#↓ {{Tears}} -0.3 Tears down#↓ {{Shotspeed}} -0.3 Shot Speed down#Tears gain a damaging aura which deals 2 damage per tick#Homing tears"}, -- Godhead
+	[336] = {"336", "Dead Onion", "Piercing and spectral tears#↓ {{Range}} -1.5 Range down#↓ {{Shotspeed}} -0.4 Shot Speed down#↑ {{Tearsize}} +50% Tear size"}, -- Dead Onion
+	[339] = {"339", "Safety Pin", "↑ {{Range}} +1.5 Range up#↑ {{Shotspeed}} +0.16 Shot Speed up#{{BlackHeart}} +1 Black Heart"}, -- Safety Pin
+	[342] = {"342", "Blue Cap", "↑ {{Heart}} +1 Health up#Heals 1 Red Heart#↑ {{Tears}} +0.7 Tears up#↓ {{Shotspeed}} -16% Shot Speed down"}, -- Blue Cap
+	[344] = {"344", "Match Book", "{{BlackHeart}} +1 Black Heart#Spawns: #{{Bomb}} 2-3 Bombs#{{Trinket41}} Match Stick"}, -- Match Book
+	[345] = {"345", "Synthoil", "↑ +1 {{Damage}} Damage up#↑ {{Range}} +1.5 Range up"}, -- Synthoil
+	[346] = {"346", "A Snack", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart"}, -- A Snack
+	[350] = {"350", "Toxic Shock", "{{Poison}} At the start of every room every enemy gets a poison effect#{{Poison}} Grants immunity for toxic clouds#Killed enemies leave puddle of creep"}, -- Toxic Shock
+	[352] = {"352", "Glass Cannon", "Fires one large piercing spectral tear ((DMG x 10) + 10)#!!! When you take damage:#↓ You will lose an extra 2 hearts of health#↑ {{Range}} +1.5 Range up and leave blood creep for the room#The extra damage can't kill you#Self-damage does not count"}, -- Glass Cannon
+	[354] = {"354", "Crack Jacks", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart#{{Trinket}} Spawns random trinket on the floor"}, -- Crack Jacks
+	[355] = {"355", "Mom's Pearls", "↑ {{Range}} +0.38 Range up#↑ {{Luck}} +1 Luck up#{{SoulHeart}} +1 Soul Heart"}, -- Mom's Pearls
+	[360] = {"360", "Incubus", "Gain a demonic familiar that shoots the same tears as Isaac#{{Damage}} Deals 75% of your damage#{{Player14}} 100% while playing as Lilith"}, -- Incubus
+	[366] = {"366", "Scatter Bombs", "{{Bomb}} +5 bombs#{{Bomb}} Causes your bombs to explode into 4-5 tiny bombs"}, -- Scatter Bombs
+	[368] =	{"368", "Epiphora", "↑ {{Tears}} Shooting in one direction gradually increases your fire rate by up to 200%"}, -- Epiphora
+	[369] = {"369", "Continuum", "↑ {{Range}} +3 Range up#Spectral tears#Tears travel through walls and appear out of the opposite wall"}, -- Continuum
+	[370] = {"370", "Mr. Dolly", "↑ {{Tears}} +0.7 Tears up#↑ {{Range}} +1.5 Range up#{{Heart}} Spawns 3 random hearts when picked up"}, -- Mr. Dolly
 	[372] = {"372", "Charged Baby", "Random chance to drop a battery or freeze all enemies in the room#Chance to add one charge to your active item"}, -- Charged Baby
-	[374] = {"374", "Holy Light", "10% chance to shoot Holy tears, which will spawn a beam of light on hit#The beam deals 3x your damage#50% chance at 9 Luck"}, -- Holy Light
+	[374] = {"374", "Holy Light", "10% chance to shoot Holy tears, which will spawn a beam of light on hit#{{Damage}} The beam deals 3x your damage#{{Luck}} 50% chance at 9 Luck"}, -- Holy Light
 	[375] = {"375", "Host Hat", "Grants explosion immunity#20% chance to block tears#Blocks projectiles falling from above"}, -- Host hat
 	[376] = {"376", "Restock", "Shops instantly restock their items when you buy them#Restocked items slowly increase in price again"}, -- Restock
 	[382] = {"382", "Friendly Ball", "Can be thrown at enemies to capture them#Next usage will respawn the same enemy as a friendly companion#Walking over the ball after capture will instantly recharge the item"}, -- Friendly Ball
 	[384] = {"384", "Lil Gurdy", "Will launch and slide around the room#Deals 5-20 contact damage per hit depending on charge duration"}, -- Lil Gurdy
-	[389] = {"389", "Rune Bag", "Drops a random rune every 7-8 rooms#Can also drop Soul Stones"}, -- Rune Bag
-	[393] = {"393", "Serpent's Kiss", "15% chance to shoot poison tears#Poison enemies on contact#Enemies killed with contact poison have a 20% chance to drop a Black Heart"}, -- Serpent's Kiss
-	[394] = {"394", "Marked", "Fire tears automatically directed at a red target on the ground which is controlled by the player#↑ +0.7 Tears up#↑ +3 Range up#Familiars shoot towards the target"}, -- Marked
-	[395] = {"395", "Tech X", "Charge and fire a laser ring that travels across the room#Higher damage with longer charge#100% damage on full charge"}, -- Tech X
-	[397] = {"397", "Tractor Beam", "Isaac's tears now travel directly forward following a beam of light, but will also move sideways based on your player movement#↑ +1 Fire Rate up#↑ +1.5 Range up#↑ +0.16 Shot Speed up"},
-	[399] = {"399", "Maw of the Void", "After firing tears for 3 seconds, a red cross appears on Isaac's head. Upon releasing the fire button, creates a black brimstone ring"}, -- Maw of the Void
+	[389] = {"389", "Rune Bag", "{{Rune}} Drops a random rune or Soul Stone every 7-8 rooms"}, -- Rune Bag
+	[393] = {"393", "Serpent's Kiss", "{{Poison}} 15% chance to shoot poison tears#{{Poison}} Poison enemies on contact#{{BlackHeart}} Enemies killed with contact poison have a 20% chance to drop a Black Heart"}, -- Serpent's Kiss
+	[394] = {"394", "Marked", "Fire tears automatically directed at a red target on the ground which is controlled by the player#↑ {{Tears}} +0.7 Tears up#↑ {{Range}} +3 Range up#Familiars shoot towards the target"}, -- Marked
+	[395] = {"395", "Tech X", "{{Chargeable}} Chargeable#Change your tears to a laser ring that travels across the room#Higher damage with longer charge#100% damage on full charge"}, -- Tech X
+	[397] = {"397", "Tractor Beam", "Isaac's tears now travel directly forward following a beam of light, but will also move sideways based on your player movement#↑ {{Tears}} +1 Fire Rate up#↑ {{Range}} +1.5 Range up#↑ {{Shotspeed}} +0.16 Shot Speed up"},
+	[399] = {"399", "Maw of the Void", "{{Chargeable}} Chargeable#After firing tears for 3 seconds, a red cross appears on Isaac's head. Upon releasing the fire button, creates a black brimstone ring"}, -- Maw of the Void
 	[401] = {"401", "Explosivo", "25% chance to fire sticky bomb tears#They explode after a few seconds and deal your damage + 60"}, -- Explosivo
 	[404] = {"404", "Farting Baby", "Blocks projectiles#If hit, it will fart, which will charms, poison or knockback enemies#The farts deal 5-6 damage"}, -- Farting Baby
 	[405] = {"405", "GB Bug", "{{Throwable}} {{ColorOrange}}Throwable{{CR}} (double-tap shoot)#Rerolls enemies and pickups it comes in contact with"}, -- GB Bug
-	[407] = {"407", "Purity", "↑ Boosts one of your stats depending on the color of the aura around you#When you take damage and after you enter a new room, you will get a new aura:#{{ColorRed}}Red{{CR}} = +4 Damage up#{{ColorBlue}}Blue{{CR}} = +2 Fire Rate up#{{ColorYellow}}Yellow{{CR}} = +0.5 Speed up#{{ColorOrange}}Orange{{CR}} = +3 Range up"},
+	[407] = {"407", "Purity", "↑ Boosts one of your stats depending on the color of the aura around you#When you take damage and after you enter a new room, you will get a new aura:#{{ColorRed}}Red{{CR}} = {{Damage}} +4 Damage up#{{ColorBlue}}Blue{{CR}} = {{Tears}} +2 Fire Rate up#{{ColorYellow}}Yellow{{CR}} = {{Speed}} +0.5 Speed up#{{ColorOrange}}Orange{{CR}} = {{Range}} +3 Range up"},
 	[408] = {"408", "Athame", "When you take damage, a black brimstone ring will appear around Isaac"}, -- Athame
-	[415] = {"415", "Crown Of Light", "+2 Soul Hearts#If you don't have any damaged Red Heart containers:#↑ +100% Damage up#↑ +1.5 Range up#↓ -0.3 Shot Speed down#Deactivates for the current room when damaged at all"}, -- Crown Of Light
-	[416] = {"416", "Deep Pockets", "Spawns 1-3 coins if a room didn't yield a reward#Increases coin cap to 999"}, -- Deep Pockets
-	[417] = {"417", "Succubus", "Bounces around the room with a damaging aura, dealing 7.5-10 damage every second#↑ +50% damage while standing in the aura"}, -- Succubus
+	[415] = {"415", "Crown Of Light", "{{SoulHeart}} +2 Soul Hearts#If you don't have any damaged Red Heart containers:#↑ {{Damage}} +100% Damage up#↑ {{Range}} +1.5 Range up#↓ {{Shotspeed}} -0.3 Shot Speed down#Deactivates for the current room when damaged at all"}, -- Crown Of Light
+	[416] = {"416", "Deep Pockets", "Spawns 1-3 coins if a room didn't yield a reward#{{Coin}} Increases coin cap to 999"}, -- Deep Pockets
+	[417] = {"417", "Succubus", "Bounces around the room with a damaging aura, dealing 7.5-10 damage every second#↑ {{Damage}} +50% damage while standing in the aura"}, -- Succubus
 	[419] = {"419", "Teleport 2.0", "Teleports you to another random room that has not been explored yet#Hierarchy: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}> Error-Room"}, -- Teleport 2.0
-	[421] = {"421", "Kidney Bean", "Applies charm effect to any enemies in close range"}, -- Kidney Bean
+	[421] = {"421", "Kidney Bean", "{{Charm}} Applies charm effect to any enemies in close range"}, -- Kidney Bean
 	[426] = {"426", "Obsessed Fan", "Follows your exact movement on a 0.66 second delay#Deals 30 contact damage per second"}, -- Obsessed Fan
 	[430] = {"430", "Papa Fly", "Follows your movement pattern on a 0.66 second delay#Fires tears at nearby enemies that deal damage equal to your damage"}, -- Papa Fly
 	[431] = {"431", "Multidimensional Baby", "Follows your movement pattern on a 0.66 second delay#Tears that pass through it will split up and gain a speed boost"},
 	[437] = {"437", "D7", "Respawn all enemies of the room#Allows you to farm room clear rewards"}, -- D7
 	[440] = {"440", "Kidney Stone", "Chance to charge up an attack while firing#Release the fire button to fire a kidney stone followed by a rapid spray of tears"}, -- Kidney Stone
-	[442] = {"442", "Dark Prince's Crown", "!!! While at 1 full Red Heart:#↑ +2 Fire Rate up#↑ +1.5 Range up#↑ +0.2 Shot Speed up#Doesn't work with characters without Red Hearts"}, -- Dark Prince's Crown
+	[442] = {"442", "Dark Prince's Crown", "!!! While at 1 full Red Heart:#↑ {{Tears}} +2 Fire Rate up#↑ {{Range}} +1.5 Range up#↑ {{Shotspeed}} +0.2 Shot Speed up#Doesn't work with characters without Red Hearts"}, -- Dark Prince's Crown
 	[444] = {"444", "Lead Pencil", "Every 15 tears fired, you fire a cluster of tears"}, -- Lead Pencil
 	[448] = {"448", "Shard of Glass", "Upon taking Red Heart damage, spew tears around you#Control direction with shooting buttons#Deals half a heart of damage every 20 seconds#Stop bleeding by healing Red Hearts#Chance to drop a Red Heart upon taking damage"}, -- Shard of Glass
-	[451] = {"451", "Tarot Cloth", "Drops a random card or rune on pickup#Some cards gain an extra or doubled effect"}, -- Tarot Cloth
-	[453] = {"453", "Compound Fracture", "↑ +0.38 Range up#Bone tears#Tears shatter into 1-3 smaller bone shards upon hitting anything"}, -- Compound Fracture
-	[455] = {"455", "Dad's Lost Coin", "↑ +0.38 Range up#Spawns a lucky penny"}, -- Dad's Lost Coin
-	[456] = {"456", "Midnight Snack", "↑ +1 Health up#Heals 1 Red Heart"}, -- Midnight Snack
-	[459] = {"459", "Sinus Infection", "20% chance to shoot sticky poison tears#Deals your damage each second#Sticks for 10 seconds"}, -- Sinus Infection
-	[462] = {"462", "Eye of Belial", "↑ +1.5 Range up#Grants piercing tears#After hitting the first enemy, the tear deals double damage and gains a homing effect"}, -- Eye of Belial
-	[464] = {"464", "Glyph of Balance", "+2 Soul Hearts#Champion enemies and room drops appear more frequently#Priority of spawned pickups depends on what the player is missing most of"}, -- Glyph of Balance
+	[451] = {"451", "Tarot Cloth", "{{Card}} Drops a random card on pickup#{{Card}} Some cards gain an extra or doubled effect"}, -- Tarot Cloth
+	[453] = {"453", "Compound Fracture", "↑ {{Range}} +0.38 Range up#Bone tears#Tears shatter into 1-3 smaller bone shards upon hitting anything"}, -- Compound Fracture
+	[455] = {"455", "Dad's Lost Coin", "↑ {{Range}} +0.38 Range up#Spawns a lucky penny"}, -- Dad's Lost Coin
+	[456] = {"456", "Midnight Snack", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart"}, -- Midnight Snack
+	[459] = {"459", "Sinus Infection", "{{Poison}} 20% chance to shoot sticky poison tears#Deals your damage each second#Sticks for 10 seconds"}, -- Sinus Infection
+	[462] = {"462", "Eye of Belial", "↑ {{Range}} +1.5 Range up#Grants piercing tears#After hitting the first enemy, the tear deals double damage and gains a homing effect"}, -- Eye of Belial
+	[464] = {"464", "Glyph of Balance", "{{SoulHeart}} +2 Soul Hearts#Champion enemies and room drops appear more frequently#Priority of spawned pickups depends on what the player is missing most of"}, -- Glyph of Balance
 	[472] = {"472", "King Baby", "Other familiars follow it and shoot automatically at enemies#Stops moving when you are shooting#Will teleport back to you when you stop shooting"}, -- King Baby
 	[474] = {"474", "Broken Glass Cannon", "Turns into Glass Cannon when used"}, -- Broken Glass Cannon
 	[476] =	{"476", "D1", "Duplicates 1 random pickup in the current room#Duplicated pickups may not be identical to the original"}, -- D1
 	[477] = {"477", "Void", "!!! When used, consumes all pedestal items in the room#Active item: Its effect will activate every future use of Void#↑ Passive item: Small stat upgrade to two random stats"},
-	[489] = {"489", "D Infinity", "Acts as any die item except for {{Collectible723}}Spindown Dice#Change the current die with the drop key#Charge time varies based on the current die and updates when used"}, -- D Infinity
-	[491] = {"491", "Acid Baby", "Drops a random pill every 7 rooms#Using a pill poisons all enemies in the room"}, -- Acid Baby
-	[493] = {"493", "Adrenaline", "↑ Damage up for every empty Red Heart container#Follows a formula, some examples are:#+0.3 at 1#+0.92 at 2#+1.76 at 3#+2.79 at 4#+3.98 at 5"}, -- Adrenaline
+	[489] = {"489", "D Infinity", "Acts as any die item except for {{Collectible723}} Spindown Dice#Change the current die with {{ButtonRT}}#Charge time varies based on the current die and updates when used"}, -- D Infinity
+	[491] = {"491", "Acid Baby", "{{Pill}} Drops a random pill every 7 rooms#Using a pill poisons all enemies in the room"}, -- Acid Baby
+	[493] = {"493", "Adrenaline", "↑ {{Damage}} Damage up for every empty Red Heart container#Follows a formula, some examples are:#+0.3 at 1#+0.92 at 2#+1.76 at 3#+2.79 at 4#+3.98 at 5"}, -- Adrenaline
 	[494] = {"494", "Jacob's Ladder", "Tears spawn a spark of electricity on impact#Sparks deal half your damage#Sparks can jump between enemies"}, -- Jacobs Ladder
-	[495] = {"495", "Ghost Pepper", "8% chance to shoot a blue fire that blocks enemy shots and deals contact damage#50% chance at 10 Luck#The flame disappears after 2 seconds"}, -- Ghost Pepper
-	[496] = {"496", "Euthanasia", "3.33% chance to shoot needles#50% chance at 15 Luck#Needles kill normal enemies instantly, bursting them into 10 tears#Needles deal 3x damage against bosses"}, -- Euthanasia
-	[501] = {"501", "Greed's Gullet", "Gain 1 Heart Container for every 25 coins you have#{{Player14}}/{{Player33}}Keeper can gain additional Coin Hearts#{{Collectible416}} Gain 1 Heart Container for every 100 coins you have past 99"}, -- Greed's Gullet
+	[495] = {"495", "Ghost Pepper", "8% chance to shoot a blue fire that blocks enemy shots and deals contact damage#{{Luck}} 50% chance at 10 Luck#The flame disappears after 2 seconds"}, -- Ghost Pepper
+	[496] = {"496", "Euthanasia", "3.33% chance to shoot needles#{{Luck}} 50% chance at 15 Luck#Needles kill normal enemies instantly, bursting them into 10 tears#Needles deal 3x damage against bosses"}, -- Euthanasia
+	[501] = {"501", "Greed's Gullet", "Gain 1 Heart Container for every 25 coins you have#{{Player14}} / {{Player33}}Keeper can gain additional Coin Hearts#{{Collectible416}} Gain 1 Heart Container for every 100 coins you have past 99"}, -- Greed's Gullet
 	[503] = {"503", "Little Horn", "5% chance to shoot tears that summon a Big Horn hand#The hand kills enemies instantly and deals damage to bosses#Running into enemies deals 3.5 damage to them"}, -- Little Horn
 	[504] = {"504", "Brown Nugget", "Spawns a fly turret that shoots at enemies#Each shot deals 3.5 damage"}, -- Brown Nugget
 	[509] = {"509", "Bloodshot Eye", "Orbital that shoots a tear every 1/3rd second when enemy is nearby#Deals 3.5 damage per tear#Deals 30 contact damage per second"}, -- Bloodshot Eye
@@ -203,60 +203,60 @@ local repCollectibles={
 	[523] = {"523", "Moving Box", "When used, stores up to 10 pickups from the current room#Using it again will put them back on the floor again#This allows you to move things between rooms"}, -- Moving Box
 	[524] = {"524", "Technology Zero", "Tears will be connected with beams of electricity#Electricity deals 33% of your damage"}, -- Technology Zero
 	[531] = {"531", "Haemolacria", "Tears fly in an arc and burst into smaller tears on impact#↑ +1 Damage up#↑ +50% Damage Multiplier#↓ Tears down#↓ -20% Range down"}, -- Haemolacria
-	[541] = {"541", "Marrow", "+1 Bone Heart#Spawns 3 Red Hearts"}, -- Marrow
+	[541] = {"541", "Marrow", "{{EmptyBoneHeart}} +1 Bone Heart#{{Heart}} Spawns 3 Red Hearts"}, -- Marrow
 	[543] = {"543", "Hallowed Ground", "Spawn white poop when you get hit#While inside the poop's aura:#↑ +25% Damage up#↑ +250% Fire Rate up#Homing tears#Chance to block damage"}, -- Hallowed Ground
 	[549] =	{"549", "Brittle Bones", "Replaces all your Red Heart containers with 6 Bone Hearts#When a Bone Heart is lost:#Fires 8 bone tears in all directions#↑ +0.4 Fire Rate up permanently"}, -- Brittle Bones
 	[553] = {"553", "Mucormycosis", "25% chance to shoot sticky spore tears#Spores blow up after 2.5 seconds, dealing damage, poisoning nearby enemies and releasing more spores"}, -- Mucormycosis
-	[554] = {"554", "2Spooky", "Fears enemies in a small radius around you"}, -- 2Spooky
-	[555] = {"555", "Golden Razor", "Converts 5 coins into +1.2 Damage up for the current room#Gain 5 coins on pickup"}, -- Golden Razor
-	[556] = {"556", "Sulfur", "Grants {{Collectible118}}Brimstone for the current room"}, -- Sulfur
-	[557] = {"557", "Fortune Cookie", "Gives Isaac a fortune, Soul Heart, tarot card, or trinket"}, -- Fortune Cookie
+	[554] = {"554", "2Spooky", "{{Fear}} Fears enemies in a small radius around you"}, -- 2Spooky
+	[555] = {"555", "Golden Razor", "{{Coin}} Converts 5 coins into {{Damage}} +1.2 Damage up for the current room#Gain 5 coins on pickup"}, -- Golden Razor
+	[556] = {"556", "Sulfur", "{{Collectible118}} Grants Brimstone for the current room"}, -- Sulfur
+	[557] = {"557", "Fortune Cookie", "Gives Isaac one thing of the following list: #A fortune#{{SoulHeart}} Soul Heart#{{Card}} Tarot card#{{Rune}} Rune or Soul Stone#{{Trinket}} Trinket"}, -- Fortune Cookie
 	[558] = {"558", "Eye Sore", "Chance to shoot 1-3 extra tears in random directions"}, -- Eye Sore
-	[559] = {"559", "120 Volt", "Repeatedly zaps close enemies#Electricity deals 75% of your damage"}, -- 120 Volt
-	[560] = {"560", "It Hurts", "Release a ring of 10 tears which deal 10 damage and get tears up for the room when hit#↑ +1.2 Fire Rate up for first hit#↑ +0.4 for each additional hit"}, -- It Hurts
-	[561] = {"561", "Almond Milk", "↑ 4x Fire Rate up#↓ -70% Damage down#Tears gain random worm trinket effects and some item effects"}, -- Almond Milk
+	[559] = {"559", "120 Volt", "Repeatedly zaps close enemies#{{Damage}} Electricity deals 75% of your damage"}, -- 120 Volt
+	[560] = {"560", "It Hurts", "Release a ring of 10 tears which deal 10 damage and get tears up for the room when hit#↑ {{Tears}} +1.2 Fire Rate up for first hit#↑ {{Tears}} +0.4 for each additional hit"}, -- It Hurts
+	[561] = {"561", "Almond Milk", "↑ {{Tears}} 4x Fire Rate up#↓ {{Damage}} -70% Damage down#Tears gain random worm trinket effects and some item effects"}, -- Almond Milk
 	[562] = {"562", "Rock Bottom", "Prevents stats from being lowered for the rest of the run"}, -- Rock Bottom
-	[563] = {"563", "Nancy Bombs", "+5 bombs#Bombs explode with a random bomb effect"}, -- Nancy Bombs
-	[564] = {"564", "A Bar of Soap", "↑ +0.5 Tears up#↑ +0.2 Shot Speed up"}, -- A Bar of Soap
+	[563] = {"563", "Nancy Bombs", "{{Bomb}} +5 bombs#{{Bomb}} Bombs explode with a random bomb effect"}, -- Nancy Bombs
+	[564] = {"564", "A Bar of Soap", "↑ {{Tears}} +0.5 Tears up#↑ {{Shotspeed}} +0.2 Shot Speed up"}, -- A Bar of Soap
 	[565] = {"565", "Blood Puppy", "Familiar that chases enemies#After killing 15 enemies, it deals more damage, drops half a heart every 10 kills, but will also try to hurt you#After killing 40 enemies, it deals even more damage, drops full hearts, and can destroy rocks#Attacking it returns it to normal"}, -- Blood Puppy
-	[566] = {"566", "Dream Catcher", "+1 half Soul Heart when entering a new floor#Displays upcoming Treasure Room item and boss in the stage transition nightmare"}, -- Dream Catcher
-	[567] = {"567", "Paschal Candle", "↑ +0.4 Fire Rate up for every room cleared without taking damage#Up to +2 Fire Rate possible"}, -- Paschal Candle
+	[566] = {"566", "Dream Catcher", "{{HalfSoulHeart}} +1 half Soul Heart when entering a new floor#In the stage transition nightmare, displays: #{{TreasureRoom}} Upcoming Treasure Room Item#{{BossRoom}} Upcoming Boss"}, -- Dream Catcher 
+	[567] = {"567", "Paschal Candle", "↑ {{Tears}} +0.4 Fire Rate up for every room cleared without taking damage#{{Tears}} Up to +2 Fire Rate possible"}, -- Paschal Candle
 	[568] = {"568", "Divine Intervention", "Double tapping a fire key creates a shield#Shield lasts 1 second, pushes enemies away and reflects enemy projectiles and lasers"}, -- Divine Intervention
-	[569] = {"569", "Blood Oath", "Stabs you at the beginning of each floor, draining all but half a Red Heart#Increases stats for the floor:#↑ Damage + 0.15 * HeartsLost^2#↑ Speed + 0.05*HeartsLost"}, -- Blood Oath
+	[569] = {"569", "Blood Oath", "Stabs you at the beginning of each floor, draining all but half a Red Heart#Increases stats for the floor:#↑ {{Damage}} Damage + 0.15 * HeartsLost^2#↑ {{Speed}} Speed + 0.05*HeartsLost"}, -- Blood Oath
 	[570] = {"570", "Playdough Cookie", "Grants multicolored tears with different status effects"}, -- Playdough Cookie
-	[571] = {"571", "Orphan Socks", "Prevents damage from creep and floor spikes#↑ +0.3 Speed up#↑ +2 Soul Hearts"}, -- Orphan Socks
+	[571] = {"571", "Orphan Socks", "Prevents damage from creep and floor spikes#↑ {{Speed}} +0.3 Speed up#↑ {{SoulHeart}} +2 Soul Hearts"}, -- Orphan Socks
 	[572] = {"572", "Eye of the Occult", "Controllable tears#↑ +1 Damage up#↑ +2 Range up#↓ -0.16 Shot Speed down"}, -- Eye of the Occult
-	[573] = {"573", "Immaculate Heart", "↑ +1 Health up#Full health#↑ +20% Damage up#20% chance to shoot additional orbiting spectral tears"}, -- Immaculate Heart
+	[573] = {"573", "Immaculate Heart", "↑ {{Heart}} +1 Health up#{{Heart}} Full health#↑ {{Damage}} +20% Damage up#20% chance to shoot additional orbiting spectral tears"}, -- Immaculate Heart
 	[574] = {"574", "Monstrance", "Gain two circular auras that damage enemies#The inner aura deals more damage"}, -- Monstrance
 	[575] = {"575", "The Intruder", "A familiar buried inside your head, firing 4 slowing tears#Upon taking damage, can exit the head"}, -- The Intruder
 	[576] = {"576", "Dirty Mind", "All Dip (small poop) enemies are friendly#Destroying poop spawns 1-4 Dips#Dip type depends on the poop type#Rocks may be replaced with poops"}, -- Dirty Mind
 	[577] = {"577", "Damocles", "{{Warning}} SINGLE USE {{Warning}}#Spawns a sword above your head, which doubles all item pedestals#Does not double Shop, Chest, or Devil deal items#!!! Kills you at a random time after taking damage from an enemy"}, -- Damocles
 	[578] = {"578", "Free Lemonade", "Creates a large pool of yellow creep"}, -- Free Lemonade
-	[579] = {"579", "Spirit Sword", "Instead of tears, Isaac swings a sword#Deals 3x your damage#Does a spin attack + projectile shot on charge up#Fire projectiles with normal swings on full health"}, -- Spirit Sword
+	[579] = {"579", "Spirit Sword", "Instead of tears, Isaac swings a sword#Deals 3x your damage#{{Chargeable}} Does a spin attack + projectile shot on charge up#Fire projectiles with normal swings on full health"}, -- Spirit Sword
 	[580] = {"580", "Red Key", "Creates a new room adjacent to a viable wall, indicated by an outline of a door#Rooms can be special rooms#A room outside the 13x13 floor map will teleport you to the I AM ERROR room"}, -- Red Key
 	[581] = {"581", "Psy Fly", "Fly orbital familiar#Chases and deflects projectiles#Deals contact damage"}, -- Psy Fly
-	[582] = {"582", "Wavy Cap", "↑ +0.75 Fire Rate up#↓ -0.03 Speed down#Distorts the screen#Effect can be stacked"}, -- Wavy Cap
-	[583] = {"583", "Rocket in a Jar", "+5 bombs#If shooting, placed bombs turn into rockets that fire in the shooting direction"}, -- Rocket in a Jar
-	[584] = {"584", "Book of Virtues", "Spawns an orbital wisp familiar that fires spectral tears but can be destroyed#Can be combined with a second active item to create themed wisps#Turns the first {{DevilRoom}}Devil Room into an {{AngelRoom}}Angel Room and increases the {{AngelRoom}}Angel Room chance#Allows both Devil and Angel deals to be taken"}, -- Book of Virtues
-	[585] = {"585", "Alabaster Box", "Spawns three Soul Hearts and two Angel Room items#Must be charged by picking up Soul Hearts#Only spawns 2 Soul Hearts and 1 Angel item if a Devil deal was taken previously"}, -- Alabaster Box
-	[586] = {"586", "The Stairway", "Spawns a ladder at the start of every floor, leading to a unique Angel Room item shop"}, -- The Stairway
+	[582] = {"582", "Wavy Cap", "↑ {{Tears}} +0.75 Fire Rate up#↓ {{Speed}} -0.03 Speed down#Distorts the screen#Effect can be stacked"}, -- Wavy Cap
+	[583] = {"583", "Rocket in a Jar", "{{Bomb}} +5 bombs#If shooting, placed bombs turn into rockets that fire in the shooting direction"}, -- Rocket in a Jar
+	[584] = {"584", "Book of Virtues", "Spawns an orbital wisp familiar that fires spectral tears but can be destroyed#Can be combined with a second active item to create themed wisps#{{DevilRoom}} Turns the first Devil Room into an {{AngelRoom}} Angel Room#{{AngelChance}} Increases the Angel Room chance#{{AngelDevilChance}} Allows both Devil and Angel deals to be taken"}, -- Book of Virtues
+	[585] = {"585", "Alabaster Box", "Upon use, Spawns: #{{SoulHeart}} Three Soul Hearts#{{AngelRoom}} Two Angel Room items#{{SoulHeart}} Must be charged by picking up Soul Hearts#{{DevilRoom}} Only spawns 2 Soul Hearts and 1 Angel item if a Devil deal was taken previously"}, -- Alabaster Box
+	[586] = {"586", "The Stairway", "Spawns a ladder at the start of every floor#{{AngelRoom}} It leads to a unique Angel Room item shop"}, -- The Stairway
 	[587] = {"587", "Menorah (Unused but scripted)", "<Item does not exist>"}, -- Menorah (Unused but scripted)
-	[588] = {"588", "Sol", "Reveals the location of the {{BossRoom}}Boss Room#Upon defeating a boss:#Activates {{Card20}}The Sun#Fully recharges your active item#Removes any Curses#↑ +3 Damage and +1 Luck for the rest of the floor"}, -- Sol
-	[589] = {"589", "Luna", "Adds an extra {{SecretRoom}}Secret Room and {{SuperSecretRoom}}Super Secret Room to each floor#Secret Rooms contain a beam of light that give tears up for the current floor and give half a Soul Heart#Reveals one {{SecretRoom}}Secret Room each floor"}, -- Luna
-	[590] = {"590", "Mercurius", "↑ +0.4 Speed up#Doors stay open after entering a room"}, -- Mercurius
-	[591] = {"591", "Venus", "↑ +1 Health up#Heals 1 Red Heart#Close enemies become charmed"}, -- Venus
-	[592] = {"592", "Terra", "↑ +1 Damage up#Replaces tears with rocks#They deal variable damage#Can destroy obstacles#Increased knockback"}, -- Terra
+	[588] = {"588", "Sol", "{{BossRoom}} Reveals the location of the Boss Room#Upon defeating a boss, for the rest of the floor: #{{Card20}} Activates The Sun#{{Battery}} Fully recharges your active item#{{CurseCursed}} Removes any Curses#↑ {{Damage}} +3 Damage#{{Luck}}+1 Luck"}, -- Sol
+	[589] = {"589", "Luna", "Adds an extra {{SecretRoom}} Secret Room and {{SuperSecretRoom}} Super Secret Room to each floor#{{SecretRoom}} Secret Rooms contain a beam of light that give: #{{Tears}} Tears up for the current floor#{{HalfSoulHeart}} Half soul heart#{{SecretRoom}} Reveals one Secret Room each floor"}, -- Luna
+	[590] = {"590", "Mercurius", "↑ {{Speed}} +0.4 Speed up#Doors stay open after entering a room"}, -- Mercurius
+	[591] = {"591", "Venus", "↑ +1 {{Heart}} Health up#{{Heart}} Heals 1 Red Heart#{{Charm}} Close enemies become charmed"}, -- Venus
+	[592] = {"592", "Terra", "↑ {{Damage}} +1 Damage up#Replaces tears with rocks#They deal variable damage#Can destroy obstacles#Increased knockback"}, -- Terra
 	[593] = {"593", "Mars", "Dash by double-tapping a movement key, becoming invincible and dealing 4x your damage#3 seconds cooldown"}, -- Mars
-	[594] = {"594", "Jupiter", "↑ +2 Health up#Heals half a Red Heart#↓ -0.3 Speed down#Makes you immune to poison damage#Build up to +0.5 Speed while standing still#Moving releases poison fart clouds behind you"}, -- Jupiter
+	[594] = {"594", "Jupiter", "↑ {{Heart}} +2 Health up#{{HalfHeart}} Heals half a Red Heart#↓ {{Speed}} -0.3 Speed down#↑ {{Speed}} Build up to +0.5 Speed while standing still#{{Poison}} Makes you immune to poison damage#{{Poison}} Moving releases poison fart clouds behind you"}, -- Jupiter
 	[595] = {"595", "Saturnus", "A circle surrounds you#Upon entering a room, 7 tears will orbit in it#Chance to catch enemy projectiles in orbit"}, -- Saturnus
-	[596] = {"596", "Uranus", "Shoot ice tears, which slow enemies and freeze monsters they kill#Touching frozen enemies slide away and explode into 6 ice shards"}, -- Uranus
-	[597] = {"597", "Neptunus", "Builds a massive tears bonus over 3 seconds while not firing#Shooting again will release stored tears#The tear bonus falls off as you fire"}, -- Neptunus
-	[598] = {"598", "Pluto", "↑ +0.7 Tears up#Significantly shrinks Isaac, allowing him to squeeze between objects#Projectiles can pass over him"}, -- Pluto
-	[599] = {"599", "Voodoo Head", "Spawns an additional {{CursedRoom}}Curse Room each floor"}, -- Voodoo Head
-	[600] = {"600", "Eye Drops", "↑ +30% Fire Rate up for the left eye only#First shot in a while is always a double shot#+20% Fire Rate up for non-tear attacks"}, -- Eye Drops
-	[601] = {"601", "Act of Contrition", "↑ +0.7 Tears up#+1 Eternal Heart#Allows both Devil and Angel deals to be taken#Taking Red Heart damage doesn't reduce Devil/Angel Room chance as much"}, -- Act of Contrition
-	[602] = {"602", "Member Card", "Adds a trapdoor to every shop that leads to a second shop with a unique stock"}, -- Member Card
-	[603] = {"603", "Battery Pack", "Spawns 2-4 batteries#Fully recharges your active item"}, -- Battery Pack
+	[596] = {"596", "Uranus", "{{Freeze}} Shoot ice tears, which slow enemies and freeze monsters they kill#Touching frozen enemies slide away and explode into 6 ice shards"}, -- Uranus
+	[597] = {"597", "Neptunus", "{{Chargeable}} Chargeable (automatic)#Builds a massive tears bonus over 3 seconds while not firing#Shooting again will release stored tears#The tear bonus falls off as you fire"}, -- Neptunus
+	[598] = {"598", "Pluto", "↑ {{Tears}} +0.7 Tears up#Significantly shrinks Isaac, allowing him to squeeze between objects#Projectiles can pass over him"}, -- Pluto
+	[599] = {"599", "Voodoo Head", "{{CursedRoom}} Spawns an additional Curse Room each floor"}, -- Voodoo Head
+	[600] = {"600", "Eye Drops", "↑ {{Tears}} +30% Fire Rate up for the left eye only#↑ {{Tears}} +20% Fire Rate up for non-tear attacks#First shot in a while is always a double shot#"}, -- Eye Drops
+	[601] = {"601", "Act of Contrition", "↑ +0.7 Tears up#{{EternalHeart}} +1 Eternal Heart#{{DevilChance}} / {{AngelChance}} Allows both Devil and Angel deals to be taken#Taking Red Heart damage doesn't reduce Devil/Angel Room chance as much"}, -- Act of Contrition
+	[602] = {"602", "Member Card", "{{Shop}} Adds a trapdoor to every shop that leads to a second shop with a unique stock"}, -- Member Card
+	[603] = {"603", "Battery Pack", "{{Battery}} Spawns 2-4 batteries#Fully recharges your active item"}, -- Battery Pack
 	[604] = {"604", "Mom's Bracelet", "Allows picking up and throwing rocks, TNT, poops, friendly Dips, Hosts and other obstacles#Allows carrying them between rooms"}, -- Mom's Bracelet
 	[605] = {"605", "The Scooper", "Summons a Peeper familiar for the current room, which leaves a trail of red creep#↑ Tears shot from the right eye will deal 34% more damage"}, -- The Scooper
 	[606] = {"606", "Ocular Rift", "5% chance to shoot tears that create rifts where they land#Rifts pull in nearby enemies, pickups, and projectiles"}, -- Ocular Rift
@@ -266,40 +266,40 @@ local repCollectibles={
 	[610] = {"610", "Bird Cage", "Familiar that leaps on an enemy on the first hit in the room#Deals 45 damage and releasing a rock wave#Chases enemies afterwards"}, -- Bird Cage
 	[611] = {"611", "Larynx", "Makes you shout, damaging and pushing nearby enemies#Shout gets stronger the more charges the item has"}, -- Larynx
 	[612] = {"612", "Lost Soul", "Soul familiar that dies in one hit, respawning at the start of the next floor#If it survives an entire floor, it spawns 3 Soul Hearts, 2 Eternal Hearts, or an item"}, -- Lost Soul
-	[613] = {"613", "", "<Item does not exist>"},
-	[614] = {"614", "Blood Bombs", "↑ +1 Health up#Heals 5 hearts#Bombs leave red creep#If the player has no bombs, one can be placed at the cost of half a heart"}, -- Blood Bombs
+	[613] = {"613", "", "<Item does not exist>"}, -- Salt Shaker 
+	[614] = {"614", "Blood Bombs", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 5 hearts#{{HalfHeart}} If the player has no bombs, one can be placed at the cost of half a heart#{{Bomb}} Bombs leave red creep#"}, -- Blood Bombs
 	[615] = {"615", "Lil Dumpy", "Dumpy familiar#When it takes damage, pushes, stuns or poisons nearby enemies"}, -- Lil Dumpy
-	[616] = {"616", "Bird's Eye", "8% chance to shoot red fires that block enemy shots and deal contact damage#50% chance at 10 Luck#Fires can block up to 4 shots and/or deal damage 4 times before being destroyed, and last up to 10 seconds"}, -- Bird's Eye
-	[617] = {"617", "Lodestone", "17% chance to shoot tears that magnetize enemies#100% chance at 5 Luck#Magnetized enemies attract nearby pickups, projectiles and enemies"}, -- Lodestone
-	[618] = {"618", "Rotten Tomato", "17% chance to shoot tears that mark enemies#100% chance at 5 Luck#Marked enemies are attacked by other enemies"}, -- Rotten Tomato
+	[616] = {"616", "Bird's Eye", "8% chance to shoot red fires that block enemy shots and deal contact damage#{{Luck}} 50% chance at 10 Luck#Fires can block up to 4 shots and/or deal damage 4 times before being destroyed, and last up to 10 seconds"}, -- Bird's Eye
+	[617] = {"617", "Lodestone", "{{Magnetize}} 17% chance to shoot tears that magnetize enemies#{{Luck}}100% chance at 5 Luck#Magnetized enemies attract nearby pickups, projectiles and enemies"}, -- Lodestone
+	[618] = {"618", "Rotten Tomato", "{{Bait}} 17% chance to shoot tears that mark enemies#{{Luck}} 100% chance at 5 Luck#Marked enemies are attacked by other enemies"}, -- Rotten Tomato
 	[619] = {"619", "Birthright", "Has a different effect for each character"}, -- Birthright
 	[620] = {"620", "", "<Item does not exist>"},
-	[621] = {"621", "Red Stew", "↑ +21.6 Damage up#Damage up wears off over the next 3 minutes#Killing enemies while effect is active extends the time#Full health"}, -- Red Stew
+	[621] = {"621", "Red Stew", "↑ {{Damage}} +21.6 Damage up#Damage up wears off over the next 3 minutes#Killing enemies while effect is active extends the time#Full health"}, -- Red Stew
 	[622] = {"622", "Genesis", "{{Warning}} SINGLE USE {{Warning}}#Removes all of Isaac's items and pickups#Teleports you to a unique bedroom with pickups, chests and a trapdoor#For every item lost, it shows a set of 3 items to choose from"}, -- Genesis
-	[623] = {"623", "Sharp Key", "+5 keys#Throw your key to deal damage, destroy obstacles, or open doors#Enemies killed with it have a chance to spawn the content of a chest, including items"}, -- Sharp Key
+	[623] = {"623", "Sharp Key", "{{Key}} +5 keys#Throw your key to deal damage, destroy obstacles, or open doors#Enemies killed with it have a chance to spawn the content of a chest, including items"}, -- Sharp Key
 	[624] = {"624", "Booster Pack", "Spawns 5 random cards"}, -- Booster Pack
 	[625] = {"625", "Mega Mush", "Gigantifies you for 30 seconds#Increases damage and range#Grants invincibility and ability to crush enemies and obstacles#Effect persists between rooms"}, -- Mega Mush
 	[626] = {"626", "Knife Piece 1", "First part of the knife familiar"}, -- Knife Piece 1
-	[627] = {"627", "Knife Piece 2", "Makes a knife familiar with {{Collectible626}}Knife Piece 1#Damages enemies#Can open a certain flesh door"}, -- Knife Piece 2
+	[627] = {"627", "Knife Piece 2", "Makes a knife familiar with {{Collectible626}} Knife Piece 1#Damages enemies#Can open a certain flesh door"}, -- Knife Piece 2
 	[628] = {"628", "Death Certificate", "{{Warning}} SINGLE USE {{Warning}}#Takes you to a floor containing every item in the game#After taking an item, return to the room you came from"}, -- Death Certificate
 	[629] = {"629", "Bot Fly", "Orbital that fires shielded tears"}, -- Bot Fly
 	[630] = {"630", "", "<Item does not exist>"},
 	[631] = {"631", "Meat Cleaver", "Splits enemies in the room into 2 smaller versions of themselves with much less health"}, -- Meat Cleaver
-	[632] = {"632", "Evil Charm", "↑ +2 Luck up#Makes you immune to burn, confusion, fear, poison, and toxic gas"}, -- Evil Charm
+	[632] = {"632", "Evil Charm", "↑ {{Luck}} +2 Luck up#Makes you immune to burn, confusion, fear, poison, and toxic gas"}, -- Evil Charm
 	[633] = {"633", "Dogma", "Grants flight and one-time {{Collectible313}}Holy Mantle effect#↑ +2 Damage up#↑ +0.1 Speed up#If player has fewer than 6 hearts, heals him with combination of Red and Soul Hearts"}, -- Dogma
 	[634] = {"634", "Purgatory", "While in a room with enemies, spawns cracks on the ground#Walking over these cracks summons exploding ghosts"}, -- Purgatory
 	[635] = {"635", "Stitches", "Passively spawns a familiar that moves in the direction Isaac shoots#On use, Isaac swaps places with the familiar and gains short invincibility#Teleporting onto things can damage or destroy them"}, -- Stitches
 	[636] = {"636", "R Key", "{{Warning}} SINGLE USE {{Warning}}#Brings you back to the first floor of a new run#Items, stat boosts and pickups stay intact"}, -- R Key
-	[637] = {"637", "Knockout Drops", "10% chance to shoot a fist with extreme knockback and confusion effect#100% chance at 9 Luck"}, -- Knockout Drops
+	[637] = {"637", "Knockout Drops", "10% chance to shoot a fist with extreme knockback and confusion effect#{{Luck}} 100% chance at 9 Luck"}, -- Knockout Drops
 	[638] = {"638", "Eraser", "Throws an eraser that instantly kills an enemy#Prevents the enemy from spawning for the rest of the run#Deals 15 damage to bosses#Can only be used once per floor"}, -- Eraser
-	[639] = {"639", "Yuck Heart", "Grants a Rotten Heart upon use"}, -- Yuck Heart
+	[639] = {"639", "Yuck Heart", "{{RottenHeart}} Grants a Rotten Heart upon use"}, -- Yuck Heart
 	[640] = {"640", "Urn of Souls", "Spews a stream of flames#Gains charges each time an enemy dies"}, -- Urn of Souls
 	[641] = {"641", "Akeldama", "Creates a chain of tears behind you while in combat#The tears deal 3.5 damage"}, -- Akeldama
-	[642] = {"642", "Magic Skin", "Turns 1 Heart Container or 2 Soul Hearts into a Broken Heart#Spawns an item from the current room's item pool#The more times it's used, the higher the chance it replaces future items if Isaac isn't holding it#33% after 1 use, 50% after 2, 100% after 3#Lower chance if Magic Skin is on a pedestal on the current floor#{{Warning}} Single use item for The Lost"}, -- Magic Skin
-	[643] = {"643", "Revelation", "Grants flight and 2 Soul Hearts#Shooting for 2.5 seconds will fire a holy laser when fire button is released"}, -- Revelation
+	[642] = {"642", "Magic Skin", "{Turns {{EmptyHeart}} 1 Heart Container or {{SoulHeart}} 2 Soul Hearts into a {{BrokenHeart}} Broken Heart#Spawns an item from the current room's item pool#The more times it's used, the higher the chance it replaces future items if Isaac isn't holding it#33% after 1 use, 50% after 2, 100% after 3#Lower chance if Magic Skin is on a pedestal on the current floor#{{Warning}} Single use item for The Lost"}, -- Magic Skin
+	[643] = {"643", "Revelation", "{{Chargeable}} Chargeable Holy Laser#Grants flight and {{SoulHeart}} 2 Soul Hearts"}, -- Revelation
 	[644] = {"644", "Consolation Prize", "Increases your lowest stat#Drops either 3 coins, 1 bomb or 1 key depending on what you have the least of"}, -- Consolation Prize
 	[645] = {"645", "Tinytoma", "Teratoma orbital#Blocks shots#Deals contact damage#Splits into smaller versions of itself upon taking 3 hits#The smaller versions break into blue spiders#Respawns 5 seconds after it's fully gone"}, -- Tinytoma
-	[646] = {"646", "Brimstone Bombs", "+5 bombs#Bombs release 4 Brimstone lasers in the cardinal directions"}, -- Brimstone Bombs
+	[646] = {"646", "Brimstone Bombs", "{{Bomb}} +5 bombs#{{Collectible118}} Bombs release 4 Brimstone lasers in the cardinal directions"}, -- Brimstone Bombs
 	[647] = {"647", "4.5 Volt", "Active items don't charge when clearing rooms#They charge by dealing damage to enemies#Formula: 40 + 20 * stage"}, -- 4.5 Volt
 	[648] = {"648", "", "<Item does not exist>"},
 	[649] = {"649", "Fruity Plum", "Mini Baby Plum familiar#Propels itself diagonally around the room, firing tears behind itself"}, -- Fruity Plum
@@ -307,22 +307,22 @@ local repCollectibles={
 	[651] = {"651", "Star of Bethlehem", "Familiar that slowly travels towards the Boss Room#Emits aura that grants +20% + 1 damage up, tears up and homing"}, -- Star of Bethlehem
 	[652] = {"652", "Cube Baby", "Familiar that slides around when walked into#It slows and deals contact damage, freezing monsters it kills"}, -- Cube Baby
 	[653] = {"653", "Vade Retro", "While held, non-ghost enemies spawn small red ghosts on death#On use, causes the ghosts to explode"}, -- Vade Retro
-	[654] = {"654", "False PHD", "Identifies all pills#+1 Black Heart#Converts good pills into bad pills#↑ Stat down pills also grant damage up#Other pills drop Black Hearts on use"}, -- False PHD
-	[655] = {"655", "Spin to Win", "Adds spinning top orbital that blocks enemy shots#Deals 10.5 contact damage per second#When used,↑ +0.5 speed and greatly increases the rotation speed of orbitals"}, -- Spin to Win
+	[654] = {"654", "False PHD", "{{Heart}} +1 Black Heart#{{Pill}} Identifies all pills#{{Pill}} Converts good pills into bad pills#↑ {{Damage}} Stat down pills also grant damage up#{{BlackHeart}} Other pills drop Black Hearts on use"}, -- False PHD
+	[655] = {"655", "Spin to Win", "Adds spinning top orbital that blocks enemy shots#Deals 10.5 contact damage per second#When used, {{Speed}} ↑ +0.5 speed and greatly increases the rotation speed of orbitals"}, -- Spin to Win
 	[656] = {"656", "Damocles", "<Item not obtainable>"}, -- Damocles
 	[657] = {"657", "Vasculitis", "Enemies explode into tears upon death, which inherit the effects of Isaac's tears"}, -- Vasculitis
 	[658] = {"658", "Giant Cell", "Spawn micro-Isaacs when taking damage#They chase and shoot at nearby enemies"}, -- Giant Cell
-	[659] = {"659", "Tropicamide", "↑ +1.5 Range up#Increases tear size"}, -- Tropicamide
-	[660] = {"660", "Card Reading", "Spawns two portals at the start of each floor#Portals disappear when leaving the room#{{ColorRed}}Red: {{CR}}{{BossRoom}}Boss Room#{{ColorYellow}}Yellow: {{CR}}{{TreasureRoom}}Item Room#{{ColorBlue}}Blue: {{CR}}{{SecretRoom}}Secret Room"}, -- Card Reading
+	[659] = {"659", "Tropicamide", "↑ {{Range}} +1.5 Range up#{{Tearsize}} Increases tear size"}, -- Tropicamide
+	[660] = {"660", "Card Reading", "Spawns two portals at the start of each floor#Portals disappear when leaving the room#{{ColorRed}}Red: {{CR}}{{BossRoom}} Boss Room#{{ColorYellow}}Yellow: {{CR}}{{TreasureRoom}} Item Room#{{ColorBlue}}Blue: {{CR}}{{SecretRoom}} Secret Room"}, -- Card Reading
 	[661] = {"661", "Quints", "Spawns a stationary shooting familiar at the location where an enemy died#Up to 5 familiars"}, -- Quints
 	[662] = {"662", "Pacifist (Cut item)", "<Item does not exist>"}, -- Pacifist (Cut item)
 	[663] = {"663", "Tooth and Nail", "Turn invincible every 6 seconds for 1 second#Flashes right before transition"}, -- Tooth and Nail
-	[664] = {"664", "Binge Eater", "↑ +1 Health up#Full health#Item pedestals periodically switch between food items and the item they would hold otherwise#Picking up a food item grants temporary +3.6 damage boost, 2 small permanent stat ups and a permanent -0.03 speed down#Food items heal 3 Red Hearts"}, -- Binge Eater
+	[664] = {"664", "Binge Eater", "↑ {{Heart}} +1 Health up#{{Heart}} Full health#Food items heal 3 Red Hearts#Item pedestals periodically switch between food items and the item they would hold otherwise#Picking up a food item grants: #↑ {{Damage}} temporary +3.6 damage boost#↑ 2 small permanent stat ups#↓ {{Speed}} -0.03 speed down"}, -- Binge Eater
 	[665] = {"665", "Guppy's Eye", "Shows the contents of Chests, Sacks, Shopkeepers, and Fire Places before they're opened"}, -- Guppy's Eye
 	[666] = {"666", "", "<Item does not exist>"},
 	[667] = {"667", "Strawman", "+1 Bomb#Spawns Keeper as a second character#If he dies, he spawns blue spiders#Item gets removed afterwards#Devil deals cost coins while he's alive#!!! He can pick up items, including Story items, removing them permanently on death"}, -- Strawman
-	[668] = {"668", "Dad's Note", "Begins the sequence to access the Home floor#Trinkets left in previous {{TreasureRoom}}Treasure or {{BossRoom}}Boss Rooms turn into {{Card78}}Cracked Key"}, -- Dad's Note
-	[669] = {"669", "Sausage", "↑ +1 Health up#Full health#↑ +0.5 Damage up#↑ +0.2 Speed up#↑ +1.2 Shot Speed up#↑ +0.16 Range up#↑ +1 Luck up#↑ +6.9% {{DevilRoom}}Devil or {{AngelRoom}}Angel Room chance#↑ +6.9% {{Planetarium}}Planetarium chance"}, -- Sausage
+	[668] = {"668", "Dad's Note", "Begins the sequence to access the Home floor#Trinkets left in previous {{TreasureRoom}} Treasure or {{BossRoom}} Boss Rooms turn into {{Card78}} Cracked Key"}, -- Dad's Note
+	[669] = {"669", "Sausage", "↑ {{Heart}} +1 Health up#{{Heart}} Full health#↑ {{Damage}} +0.5 Damage up#↑ {{Speed}} +0.2 Speed up#↑ {{Shotspeed}} +0.16 Shot Speed up#↑ {{Range}} +1.5 Range up#↑ {{Luck}} +1 Luck up#↑ {{DevilChance}} / {{AngelChance}} +6.9% Devil or Angel Room chance#↑ {{PlanetariumChance}} +6.9% Planetarium chance"}, -- Sausage
 	[670] = {"670", "Options?", "If a room grants a clear reward, there will be two different rewards to choose from#Taking one causes the other to disappear"}, -- Options?
 	[671] = {"671", "Candy Heart", "Gives random permanent stat boost when healing with Red Heart pickups"}, -- Candy Heart
 	[672] = {"672", "A Pound of Flesh", "Devil deals now cost coins#Shop items now cost health#Consumables in shops are free but surrounded by spikes"}, -- A Pound of Flesh
@@ -332,22 +332,22 @@ local repCollectibles={
 	[676] = {"676", "Empty Heart", "When down to 1 Red Heart or less at the start of a new floor, grants an empty Heart Container#No effect for characters that can't have Red Hearts"}, -- Empty Heart
 	[677] = {"677", "Astral Projection", "When getting hit, stops time for 3 seconds#Isaac becomes a ghost and leaves his body#In ghost form gain flight, spectral tears and also negate next hit taken"}, -- Astral Projection
 	[678] = {"678", "C Section", "Gain a short delay charge attack that fires homing, spectral fetus tears"}, -- C Section
-	[679] = {"679", "Lil Abaddon", "Familiar which shoots a mini {{Collectible399}}Maw of the Void attack"}, -- Lil Abaddon
-	[680] = {"680", "Montezuma's Revenge", "While firing, charge up a short-ranged Brimstone#Shoots behind you"}, -- Montezuma's Revenge
+	[679] = {"679", "Lil Abaddon", "{{Collectible399}} Familiar which shoots a mini Maw of the Void attack"}, -- Lil Abaddon
+	[680] = {"680", "Montezuma's Revenge", "{{Chargeable}} While firing, charge up a short-ranged Brimstone#Shoots behind you"}, -- Montezuma's Revenge
 	[681] = {"681", "Lil Portal", "Deals contact damage and flies forward#Consumes pickups in its path#Each one will increase its size, damage, and spawn a Blue Fly#Every four pickups, it spawns a portal to an unexplored room"}, -- Lil Portal
 	[682] = {"682", "Worm Friend", "Causes a tentacle to burst out of the ground and grab an enemy#Grabbed enemies take damage, are slowed and cannot move"}, -- Worm Friend
 	[683] = {"683", "Bone Spurs", "Enemies spawn floating bones on death#Bones block projectiles and deal contact damage"}, -- Bone Spurs
 	[684] = {"684", "Hungry Soul", "Chance to spawn ghosts when killing an enemy#Ghosts chase enemies and deal contact damage#After 5 seconds, the ghost explodes, dealing 7 damage to nearby enemies#You don't take damage from the explosion"}, -- Hungry Soul
 	[685] = {"685", "Jar of Wisps", "Spawns random wisps that shoot various tears, block shots, and deal contact damage#Number of wisps spawned increases the more it's used"}, -- Jar of Wisps
-	[686] = {"686", "Soul Locket", "Grants a permanent stat boost whenever you pick up a Soul Heart#Spawns a Soul Heart on pickup"}, -- Soul Locket
+	[686] = {"686", "Soul Locket", "{{SoulHeart}} Grants a permanent stat boost whenever you pick up a Soul Heart#{{SoulHeart}} Spawns a Soul Heart on pickup"}, -- Soul Locket
 	[687] = {"687", "Friend Finder", "Spawns a random friendly monster that mimics Isaac's movements and attacks"}, -- Friend Finder
 	[688] = {"688", "Inner Child", "+1 extra life#Respawn in current room with half a heart, massive size down, and +0.2 speed"}, -- Inner Child
 	[689] = {"689", "Glitched Crown", "Item pedestals quickly cycle between 5 random items"}, -- Glitched Crown
 	[690] = {"690", "Belly Jelly", "Causes enemies to bounce off of Isaac#Bouncing them against obstacles deals damage#50% chance that Isaac ignores contact damage#50% chance to deflect enemy projectiles"}, -- Belly Jelly
-	[691] = {"691", "Sacred Orb", "Prevents Quality {{Quality0}}/{{Quality1}} items from spawning#33% chance to reroll items with Quality {{Quality2}}"}, -- Sacred Orb
-	[692] = {"692", "Sanguine Bond", "Spawns a set of spikes in the {{DevilRoom}}Devil Room#Taking damage from the spikes can grant a reward:#35%: Nothing#33%: +0.5 Damage up#15%: 6 pennies#10%: 2 Black Hearts#5%: Random Devil item#2%: Leviathan transformation"}, -- Sanguine Bond //PERCENTAGES NOT CONFIRMED, updated in patch, taken from Wiki
-	[693] = {"693", "The Swarm", "Grants 9 orbital flies which turn into Blue Flies after they block a shot#Spawns a new fly every room cleared"}, -- The Swarm
-	[694] = {"694", "Heartbreak", "Grants 3 broken hearts#↑ +0.25 Damage for every broken heart#Every fatal hit will add 2 more broken hearts#You die at 12 broken hearts"}, -- Heartbreak
+	[691] = {"691", "Sacred Orb", "Prevents Quality {{Quality0}}/{{Quality1}} items from spawning#33% chance to reroll items with Quality {{Quality2}} to Quality {{Quality3}} or {{Quality4}}"}, -- Sacred Orb
+	[692] = {"692", "Sanguine Bond", "Spawns a set of spikes in the {{DevilRoom}}Devil Room#Taking damage from the spikes can grant a reward:#35%: Nothing#33%: ↑ {{Damage}} +0.5 Damage up#15%: {{Coin}} 6 pennies#10%: {{BlackHeart}} 2 Black Hearts#5%: {{DevilRoom}} Random Devil item#2%: Leviathan transformation"}, -- Sanguine Bond //PERCENTAGES NOT CONFIRMED, updated in patch, taken from Wiki
+	[693] = {"693", "The Swarm", "Grants 8 orbital flies which turn into Blue Flies after they block a shot#Spawns a new fly every room cleared"}, -- The Swarm
+	[694] = {"694", "Heartbreak", "{{BrokenHeart}}Grants 3 broken hearts#↑ {{Damage}} +0.25 Damage for every broken heart#Every fatal hit will add 2 more broken hearts#You die at 12 broken hearts"}, -- Heartbreak
 	[695] = {"695", "Bloody Gust", "When taking damage, gain speed and tears up for the current floor#Up to +1.02 Speed and +3 Fire Rate possible"}, -- Bloody Gust
 	[696] = {"696", "Salvation", "Grants halo that spawns beams of light on enemies inside it#The halo grows larger the more damage you've taken this floor"}, -- Salvation
 	[697] = {"697", "Vanishing Twin", "Familiar that becomes a clone of the boss when entering the boss room#Defeating it drops an extra item#Clone is slower and has 75% of the original boss health"}, -- Vanishing Twin
@@ -361,7 +361,7 @@ local repCollectibles={
 	[705] = {"705", "Dark Arts", "Gain +1 Speed and walk through enemies and bullets for 1 second#On touch, deal 2x your damage + 3.5 damage per touched enemy#Explosion on effect end that deals damage equal to how much you dealt"}, -- Dark Arts
 	[706] = {"706", "Abyss", "Destroys all items in the room and spawns an attack fly familiar for each#Effects of fly depends on the items"}, -- Abyss
 	[707] = {"707", "Supper", "↑ +1 Health up#Heals 1 Red Heart"}, -- Supper
-	[708] = {"708", "Stapler", "↑ +1 Damage up#Prevents Isaac from firing tears from one eye"}, -- Stapler
+	[708] = {"708", "Stapler", "↑ {{Damage}} +1 Damage up#Prevents Isaac from firing tears from one eye"}, -- Stapler
 	[709] = {"709", "Suplex!", "Allows you to dash into and pick up enemies or bosses, then slam them into the ground#Slam location can be controlled#Slam deals 50 damage and spawns rock waves#Scales in damage and area of effect with the player's size"}, -- Suplex!
 	[710] = {"710", "Bag of Crafting", "Collects and holds up to 8 pickups which cannot be dropped#Once 8 pickups are in the bag, using it will craft an item#Quality of the item is dependent on the quality of the pickups"}, -- Bag of Crafting
 	[711] = {"711", "Flip", "When entering a room with an item pedestal, a second ghostly item will be shown#Upon use, flips the real and ghostly item#Both can be taken if Flip is used after taking the first item#!!! The ghostly item disappears if you take the first item and leave the room"}, -- Flip
@@ -369,7 +369,7 @@ local repCollectibles={
 	[713] = {"713", "Sumptorium", "Removes half a heart and creates a Clot familiar#Each type of heart generates a Clot with different HP, damage and tear effect"}, -- Sumptorium
 	[714] = {"714", "Recall", "Retrieves the Forgotten's body from any distance"}, -- Recall
 	[715] = {"715", "Hold", "Preserves one poop bomb inside that can be used later"}, -- Hold
-	[716] = {"716", "Keeper's Sack", "Gives range, speed, or damage up when buying things from shops#Spawns 3 coins and 1 key on pickup"}, -- Keeper's Sack
+	[716] = {"716", "Keeper's Sack", "{{Shop}} Gives {{Range}} range, {{Speed}} speed, or {{Damage}} damage up when buying things from shops#Spawns 3 coins and 1 key on pickup"}, -- Keeper's Sack
 	[717] = {"717", "Keeper's Kin", "Rocks and props spawn 2 blue spiders when destroyed#Rocks can occasionally spawn blue spiders when in a hostile room"}, -- Keeper's Kin
 	[718] = {"718", "Keeper's Robe (Cut item)", "<Item does not exist>"}, -- Keepers Robe (Cut item)
 	[719] = {"719", "Keeper's Box", "Spawns a random shop item/pickup for purchase"}, -- Keeper's Box
@@ -380,12 +380,12 @@ local repCollectibles={
 	[724] = {"724", "Hypercoagulation", "Upon taking enemy damage, drop a half or full Red Heart#Spawned hearts launch out and despawn after 1.5 seconds"}, -- Hypercoagulation
 	[725] = {"725", "IBS", "After dealing enough damage, stop attacking to trigger a random {{Player25}}Tainted ??? effect:#Throw a random poop#Create buffing creep#Poison fart cloud#Drop 5 live bombs"}, -- IBS
 	[726] = {"726", "Hemoptysis", "Double-tap a fire button to sneeze blood#Deals 150% your damage to enemies in front of you#1 second cooldown#{{BrimstoneCurse}} Affected enemies take extra damage from Brimstone beams"}, -- Hemoptysis
-	[727] = {"727", "Ghost Bombs", "+5 bombs#Bombs spawn ghosts that deal contact damage and explode after 10 seconds"}, -- Ghost Bombs
+	[727] = {"727", "Ghost Bombs", "{{Bomb}} +5 bombs#Bombs spawn ghosts that deal contact damage and explode after 10 seconds"}, -- Ghost Bombs
 	[728] = {"728", "Gello", "Spawns a demon familiar that's attached to Isaac#Mimics Isaac's tears, stats and effects"}, -- Gello
 	[729] = {"729", "Decap Attack", "Throws Isaac's head, dealing contact damage and shooting tears from where it lands#Reactivating the item or stepping on the head reattaches it"}, -- Decap Attack
-	[730] = {"730", "Glass Eye", "↑ +0.75 Damage up#↑ +1 Luck up"}, -- Glass Eye
-	[731] = {"731", "Stye", "!!! Applies only for the right eye#↑ +28% Damage up#↑ +7 Range up#↓ -0.3 Shot Speed down"}, -- Stye
-	[732] = {"732", "Mom's Ring", "↑ +1 Damage up#Spawns a random rune or soul stone on pickup"}, -- Mom's Ring
+	[730] = {"730", "Glass Eye", "↑{{Damage}} +0.75 Damage up#↑ {{Luck}} +1 Luck up"}, -- Glass Eye
+	[731] = {"731", "Stye", "!!! Applies only for the right eye#↑ {{Damage}} +28% Damage up#↑ {{Range}} +7 Range up#↓ {{Shotspeed}} -0.3 Shot Speed down"}, -- Stye
+	[732] = {"732", "Mom's Ring", "↑ {{Damage}} +1 Damage up#{{Rune}} Spawns a random rune or soul stone on pickup"}, -- Mom's Ring
 
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
@@ -394,60 +394,60 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 
 EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "All items cycle between two options"},
-	{"Magdalene", "", "↑ +1 Health up#Maximum heart limit is raised to 18"},
-	{"Cain", "", "↑ +1 Luck up#All floors will contain an upgraded Arcade Room except for Dark Room and Chest#Greatly increases {{Collectible46}}Lucky Foot's chances of winning effect"},
-	{"Judas", "", "{{Collectible34}}The Book of Belial becomes a passive item similar to {{Collectible584}}Book of Virtues#Receive {{Collectible34}}The Book of Belial if you're not currently holding it#The damage boost received from it scales with the amount of charges the active item above it has#Grants special effects for certain active items"},
+	{"Magdalene", "", "↑ {{Heart}} +1 Health up#{{Heart}} Maximum heart limit is raised to 18"},
+	{"Cain", "", "↑ {{Luck}} +1 Luck up#{{Arcade}} All floors will contain an upgraded Arcade Room except for Dark Room and Chest#{{Collectible46}} Greatly increases Lucky Foot's chances of winning effect"},
+	{"Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#{{Collectible34}} Receive The Book of Belial if you're not currently holding it#↑ {{Damage}} The damage boost received from it scales with the amount of charges the active item above it has#Grants special effects for certain active items"},
 	{"???", "", "Soul Hearts gained from health upgrades are doubled"},
 	{"Eve", "", "Whore of Babylon is active regardless of health#Dead Bird is active without taking damage"},
 	{"Samson", "", "Bloody Lust can gain 4 more damage boosts at the same +0.2 intervals, for a new maximum total of +14"},
 	{"Azazel", "", "Azazel's Brimstone beam becomes much wider, like Mega Blast#No effect on damage"},
-	{"Lazarus", "", "No direct effect unless you die and become Lazarus Risen#Once revived, Lazarus Risen gains a slowly fading +21.6 damage bonus"},
+	{"Lazarus", "", "No direct effect unless you die and become Lazarus Risen#↑ {{Damage}} Once revived, Lazarus Risen gains a slowly fading +21.6 damage bonus"},
 	{"Eden", "", "Spawns 3 random items from random item pools#Only one can be taken"},
 	{"The Lost", "", "Prevents items not beneficial to The Lost from spawning#Examples: items that only give health, flight, and/or spectral tears or activate upon taking damage"},
-	{"Lazarus Risen", "", "Grants a slowly fading +21.6 damage bonus"},
-	{"Black Judas", "", "{{Collectible34}}The Book of Belial becomes a passive item similar to {{Collectible584}}Book of Virtues#Receive {{Collectible34}}The Book of Belial if you're not currently holding it#The damage boost received from it scales with the amount of charges the active item above it has"},
+	{"Lazarus Risen", "", "↑ {{Damage}} Grants a slowly fading +21.6 damage bonus"},
+	{"Black Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#{{Collectible34}} Receive The Book of Belial if you're not currently holding it#↑ {{Damage}} The damage boost received from it scales with the amount of charges the active item above it has#Grants special effects for certain active items"},
 	{"Lilith", "", "Familiars are positioned in front of Lilith's face"},
 	{"Keeper", "", "↑ +1 Health up#Raises HP cap by 1"},
-	{"Apollyon", "", "Using {{Collectible477}}Void has a chance to spawn an item that was previously voided#Stat bonuses are kept#The more items voided, the higher the chance for an item to spawn upon use"},
+	{"Apollyon", "", "{{Collectible477}} Using Void has a chance to spawn an item that was previously voided#Stat bonuses are kept#The more items voided, the higher the chance for an item to spawn upon use"},
 	{"The Forgotten", "", "The Soul is unchained and free to move"},
 	{"The Forgotten Soul", "", "The Soul is unchained and free to move"},
 	{"Bethany", "", "Activating an item using soul charges is sometimes free"},
 	{"Jacob", "", "The character who picks up the item gains copies of three of the other character's passive items"},
 	{"Esau", "", "The character who picks up the item gains copies of three of the other character's passive items"},
 	{"Tainted Isaac", "", "Adds 4 more slots for passive items#Does not consume a slot itself"},
-	{"Tainted Magdalene", "", "Adds 1 more Red Heart that doesn't drain"},
+	{"Tainted Magdalene", "", "{{Heart}} Adds 1 more Red Heart that doesn't drain"},
 	{"Tainted Cain", "", "The amount of pickups spawned from collecting an item is doubled"},
-	{"Tainted Judas", "", "Increases the range in which {{Collectible705}}Dark Arts hits enemies and tears"},
-	{"Tainted ???", "", "Increases the maximum number of carried poops to 29"},
+	{"Tainted Judas", "", "{{Collectible705}} Increases the range in which Dark Arts hits enemies and tears"},
+	{"Tainted ???", "", "{{PoopPickup}} Increases the maximum number of carried poops to 29"},
 	{"Tainted Eve", "", "Red Heart clots spawn hearts on death that disappear after 2 seconds"},
 	{"Tainted Samson", "", "The Berserk timer gains 3 seconds instead of 1 when Tainted Samson kills an enemy"},
-	{"Tainted Azazel", "", "Doubles the size of Tainted Azazel's {{Collectible726}}Hemoptysis sneeze attack"},
+	{"Tainted Azazel", "", "{{Collectible726}} Doubles the size of Tainted Azazel's Hemoptysis sneeze attack"},
 	{"Tainted Lazarus", "", "The other version of T. Lazarus will be available as a ghost#He is immune to damage, but can fire tears#Both characters receive the Birthright effect"},
 	{"Tainted Eden", "", "Passive and active items gained before Birthright will not be rerolled upon taking damage#Active items stop being protected if dropped"},
 	{"Tainted Lost", "", "Grants an extra life that revives Tainted Lost in the same room and deals 200 damage to nearby enemies#Can hit the same enemy multiple times"},
-	{"Tainted Lilith", "", "Familiars that normally follow Tainted Lilith will instead act like her {{Collectible728}}Gello#The melee attack does 3 more damage per familiar"},
+	{"Tainted Lilith", "", "{{Collectible728}} Familiars that normally follow Tainted Lilith will instead act like her Gello#The melee attack does 3 more damage per familiar"},
 	{"Tainted Keeper", "", "Strongly attracts the coins dropped by defeating enemies from a short distance#No effect on other coins"},
 	{"Tainted Apollyon", "", "If the fire button is held, locusts will continuously damage enemies instead of returning"},
-	{"Tainted Forgotten", "", "Tainted Soul gains the {{Collectible714}}Recall ability, to retrieve the Tainted Forgotten from a distance"},
+	{"Tainted Forgotten", "", "{{Collectible714}} Tainted Soul gains the  Recall ability, to retrieve the Tainted Forgotten from a distance"},
 	{"Tainted Bethany", "", "Spawns four random item wisps of Quality {{Quality3}} and {{Quality4}} with significantly higher HP than normal"},
-	{"Tainted Jacob", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus will always charge at the same time"},
+	{"Tainted Jacob", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus will always charge at the same time#{{Collectible722}} Using Anima Sola chains them both"},
 	{"Dead Tainted Lazarus", "", "The other version of T. Lazarus will be available as a ghost#He is immune to damage, but can fire tears#Both characters receive the Birthright effect"},
-	{"Tainted Jacob 2", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus will always charge at the same time#Using {{Collectible722}} Anima Sola chains them both"},
-	{"Tainted Forgotten Soul", "", "Tainted Soul gains the {{Collectible714}}Recall ability, to retrieve the Tainted Forgotten from a distance"},
+	{"Tainted Jacob 2", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus will always charge at the same time#{{Collectible722}} Using Anima Sola chains them both"},
+	{"Tainted Forgotten Soul", "", "{{Collectible714}} Tainted Soul gains the Recall ability, to retrieve the Tainted Forgotten from a distance"},
 }
 
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
 
 EID.descriptions[languageCode].bingeEaterBuffs = {
-	[22] = "↑ +0.5 Tears up#↑ +1.5 Range up#↓ -0.03 Speed down", -- Lunch
-	[23] = "↑ +0.5 Tears up#↑ +0.2 Shot Speed up#↓ -0.03 Speed down", -- Dinner
-	[24] = "↑ +1 Damage up#↑ +0.2 Shot Speed up#↓ -0.03 Speed down", -- Dessert
-	[25] = "↑ +0.2 Shot Speed up#↑ +1.5 Range up#↓ -0.03 Speed down", -- Breakfast
-	[26] = "↑ +1 Damage up#↑ +1.5 Range up#↓ -0.03 Speed down", -- Rotten Meat
-	[456] = "↑ +1 Damage up#↑ +1 Luck up#↓ -0.03 Speed down", -- Midnight Snack
-	[346] = "↑ +0.2 Shot Speed up#↑ +1 Luck up#↓ -0.03 Speed down", -- A Snack
-	[707] = "↑ +0.5 Tears up#↑+1 Luck up#↓ -0.03 Speed down", -- Supper
+	[22] = "↑ {{Tears}} +0.5 Tears up#↑ {{Range}} +1.5 Range up#↓ {{Speed}}  -0.03 Speed down", -- Lunch
+	[23] = "↑ {{Tears}} +0.5 Tears up#↑ {{Shotspeed}} +0.2 Shot Speed up#↓ {{Speed}}  -0.03 Speed down", -- Dinner
+	[24] = "↑ +{{Damage}} 1 Damage up#↑ {{Shotspeed}} +0.2 Shot Speed up#↓ {{Speed}}  -0.03 Speed down", -- Dessert
+	[25] = "↑ {{Shotspeed}} +0.2 Shot Speed up#↑ {{Range}} +1.5 Range up#↓ {{Speed}}  -0.03 Speed down", -- Breakfast
+	[26] = "↑ +{{Damage}} 1 Damage up#↑ {{Range}} +1.5 Range up#↓ {{Speed}}  -0.03 Speed down", -- Rotten Meat
+	[456] = "↑ +{{Damage}} 1 Damage up#↑ {{Luck}} +1 Luck up#↓ {{Speed}}  -0.03 Speed down", -- Midnight Snack
+	[346] = "↑ {{Shotspeed}} +0.2 Shot Speed up#↑ {{Luck}} +1 Luck up#↓ {{Speed}}  -0.03 Speed down", -- A Snack
+	[707] = "↑ {{Tears}} +0.5 Tears up#↑ {{Luck}} +1 Luck up#↓ -0.03 Speed down", -- Supper
 }
 
 -- Buffs caused by Book of Belial with Judas' Birthright
@@ -472,7 +472,6 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[487] = "Increased damage up", -- Potato Peeler
 	[536] = "Grants +10.8 temporary damage up for every sacrificed familiar that slowly fades away similarly to {{Collectible621}}Red Stew", -- Sacrificial Altar
 	[555] = "Damages everything in the room and applies the {{Collectible202}}Midas' Touch effect on them", -- Golden Razor
-	[563] = "Ghosts will home in on enemies", -- Vade Retro
 	[577] = "Grants a permanent damage up", -- Damocles
 	[582] = "Grants an additional damage up for the rest of the floor based on the current amount of uses", -- Wavy Cap
 	[585] = "Changes the payout to 2 Black Hearts and 1 Devil Deal item#Becomes 3 hearts and 2 items if a Devil Deal has been taken", -- Alabaster Box
@@ -481,6 +480,7 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[635] = "Creates a {{Collectible705}}Dark Arts line between you and Stitches", -- Stitches
 	[640] = "Launches a {{Collectible118}}Brimstone beam instead", -- Urn of Souls
 	[642] = "Grants a permanent damage up", -- Magic Skin
+	[653] = "Ghosts will home in on enemies", -- Vade Retro
 	[685] = "Grants {{Collectible292}}Satanic Bible wisps that boost Devil Deal chance", -- Jar of Wisps
 	[705] = "Allows gain of temporary damage ups", -- Dark Arts
 	[710] = "Picking up Red Hearts has a chance to replace them with a Black Heart", -- Bag of Crafting
@@ -682,49 +682,49 @@ EID.descriptions[languageCode].abyssSynergies = {
 ---------- Trinkets ----------
 
 local repTrinkets={
-	[1] = {"1", "Swallowed Penny", "Spawns 1 coin when you get hit#0-1 as Keeper"}, -- Swallowed Penny
-	[10] = {"10", "Wiggle Worm", "Tears move in waves#↑ +0.4 Tears up#Grants spectral tears"}, -- Wiggle Worm
-	[11] = {"11", "Ring Worm", "Tears move in spirals with high speed#↑ +0.4 Tears up#Grants spectral tears"}, -- Ring Worm
-	[15] = {"15", "Lucky Rock", "33% chance to drop a coin when destroying rocks"},-- Lucky Rock
-	[24] = {"24", "Butt Penny", "20% higher chance for coins to spawn from poop#Fart when picking up coins#The fart poisons and knocks back enemies and projectiles"}, -- Butt Penny
-	[26] = {"26", "Hook Worm", "Tears move in angular patterns#↑ +0.4 Tears up#↑ +1.5 Range up#Grants spectral tears"}, -- Hook Worm
+	[1] = {"1", "Swallowed Penny", "{{Coin}} Spawns 1 coin when you get hit#{{Player14}} 0-1 as Keeper"}, -- Swallowed Penny
+	[10] = {"10", "Wiggle Worm", "Tears move in waves#↑ {{Tears}}  +0.4 Tears up#Grants spectral tears"}, -- Wiggle Worm
+	[11] = {"11", "Ring Worm", "Tears move in spirals with high speed#↑ {{Tears}} +0.4 Tears up#Grants spectral tears"}, -- Ring Worm
+	[15] = {"15", "Lucky Rock", "{{Coin}} 33% chance to drop a coin when destroying rocks"},-- Lucky Rock
+	[24] = {"24", "Butt Penny", "{{Coin}} 20% higher chance for coins to spawn from poop#Fart when picking up coins#{{Poison}} The fart poisons and knocks back enemies and projectiles"}, -- Butt Penny
+	[26] = {"26", "Hook Worm", "Tears move in angular patterns#↑ +0.4 Tears up#↑ {{Range}} +1.5 Range up#Grants spectral tears"}, -- Hook Worm
 	[32] = {"32", "Liberty Cap", "25% chance for a random mushroom effect per room"}, -- Liberty Cap
-	[33] = {"33", "Umbilical Cord", "At half a Red Heart or less, you gain#{{Blank}} {{Collectible100}}Little Steven#High chance to spawn Gemini familiars for the room when taking damage"}, -- Umbilical Cord
-	[39] = {"39", "Cancer", "↑ +1 Fire Rate up"},
+	[33] = {"33", "Umbilical Cord", "At half a Red Heart or less, you gain#{{Collectible100}} Little Steven#{{Collectible318}} High chance to spawn Gemini familiars for the room when taking damage"}, -- Umbilical Cord
+	[39] = {"39", "Cancer", "↑ {{Tears}} +1 Fire Rate up"},
 	[48] = {"48", "A Missing Page", "When hit, 5% chance to deal 80 damage to all enemies in the room#Black Hearts and {{Collectible35}}Necronomicon-like effects deal 2x damage"}, -- A Missing Page
-	[49] = {"49", "Bloody Penny", "25% chance to drop half a heart when picking up coins"}, -- Bloody Penny
-	[50] = {"50", "Burnt Penny", "25% chance to drop a bomb when picking up coins"}, -- Burnt Penny
-	[51] = {"51", "Flat Penny", "25% chance to drop a key when picking up coins"}, -- Flat Penny
-	[65] = {"65", "Tape Worm", "↑ +3 Range up"}, -- Tape Worm
-	[66] = {"66", "Lazy Worm", "↓ -0.5 Shot Speed down"}, -- Lazy Worm
+	[49] = {"49", "Bloody Penny", "{{HalfHeart}} 25% chance to drop half a heart when picking up coins"}, -- Bloody Penny
+	[50] = {"50", "Burnt Penny", "{{Bomb}} 25% chance to drop a bomb when picking up coins"}, -- Burnt Penny
+	[51] = {"51", "Flat Penny", "{{Key}} 25% chance to drop a key when picking up coins"}, -- Flat Penny
+	[65] = {"65", "Tape Worm", "↑ {{Range}}  +3 Range up"}, -- Tape Worm
+	[66] = {"66", "Lazy Worm", "↓ {{Shotspeed}} -0.5 Shot Speed down"}, -- Lazy Worm
 	[69] = {"69", "Faded Polaroid", "Camouflages the player randomly#Confuses enemies#Can be used to open the door to the \"Home\" floor"}, -- Faded Polaroid
-	[80] = {"80", "Black Feather", "↑ +0.5 Damage up for each evil item held"}, -- Black Feather
+	[80] = {"80", "Black Feather", "↑ {{Damage}} +0.5 Damage up for each {{DevilRoom}} devil item held"}, -- Black Feather
 	[92] = {"92", "Cracked Crown", "↑ Stat increases of your items are 20% more effective"}, -- Cracked Crown
-	[96] = {"96", "Ouroboros Worm", "Tears move quickly in a spiral pattern#↑ +0.4 Tears up#↑ +1.5 Range up#Grants spectral tears#Chance for homing tears"}, -- Ouroboros Worm
-	[98] = {"98", "Nose Goblin", "10% chance to shoot homing sticky poison tears#Deals your damage each second#Sticks for 10 seconds"},
-	[101] = {"101", "Dim Bulb", "!!! While holding a completely uncharged active item:#↑ +1.5 Damage#↑ +0.5 Speed#↑ +1.5 Range#↑ +0.5 Tears#↑ +0.3 Shot Speed#↑ +2 Luck"},
-	[110] = {"110", "Silver Dollar", "{{Shop}}Shops will now appear in the Womb and Corpse"},
-	[111] = {"111", "Bloody Crown", "{{TreasureRoom}}Treasure Rooms now appear in the Womb and Corpse"}, -- Bloody Crown
+	[96] = {"96", "Ouroboros Worm", "Tears move quickly in a spiral pattern#↑ +0.4 Tears up#↑ {{Range}} +1.5 Range up#Grants spectral tears#Chance for homing tears"}, -- Ouroboros Worm
+	[98] = {"98", "Nose Goblin", "{{Poison}} 10% chance to shoot homing sticky poison tears#Deals your damage each second#Sticks for 10 seconds"},
+	[101] = {"101", "Dim Bulb", "!!! While holding a completely uncharged active item:#↑ {{Damage}} +1.5 Damage#↑ {{Speed}} +0.5 Speed#↑ {{Range}} +1.5 Range#↑ {{Tears}} +0.5 Tears#↑ {{Shotspeed}} +0.3 Shot Speed#↑ {{Lucl}} +2 Luck"},
+	[110] = {"110", "Silver Dollar", "{{Shop}} Shops will now appear in the Womb and Corpse"},
+	[111] = {"111", "Bloody Crown", "{{TreasureRoom}} Treasure Rooms now appear in the Womb and Corpse"}, -- Bloody Crown
 	[119] = {"119", "Stem Cell", "Heals half of your empty Red/Bone Hearts upon traveling to the next floor#Minimum half a heart healed"}, -- Stem Cell
-	[128] = {"128", "Finger Bone", "4% chance to gain a Bone Heart when taking damage"}, -- Finger Bone
+	[128] = {"128", "Finger Bone", "{{EmptyBoneHeart}} 4% chance to gain a Bone Heart when taking damage"}, -- Finger Bone
 	[129] = {"129", "Jawbreaker", "10% chance to shoot teeth#Teeth deal 3.2x your damage#100% chance at 9 Luck"}, -- Jawbreaker
-	[130] = {"130", "Chewed Pen", "10% chance to shoot slowing tears#100% chance at 18 Luck"}, -- Chewed Pen
-	[131] = {"131", "Blessed Penny", "17% chance to drop Half Soul Hearts when picking up coins"}, -- Blessed Penny
+	[130] = {"130", "Chewed Pen", "{{Slow}} 10% chance to shoot slowing tears#{{Luck}} 100% chance at 18 Luck"}, -- Chewed Pen
+	[131] = {"131", "Blessed Penny", "{{SoulHeart}} 17% chance to drop Half Soul Hearts when picking up coins"}, -- Blessed Penny
 	[132] = {"132", "Broken Syringe", "25% chance for a random syringe effect per room"}, -- Broken Syringe
 	[133] = {"133", "Short Fuse", "Bombs placed by Isaac explode more quickly"}, -- Short Fuse
 	[134] = {"134", "Gigante Bean", "Increases fart size"}, -- Gigante Bean
-	[135] = {"135", "A Lighter", "20% chance to apply burn effect to enemies upon entering a room"}, -- A Lighter
+	[135] = {"135", "A Lighter", "{{Burning}} 20% chance to apply burn effect to enemies upon entering a room"}, -- A Lighter
 	[136] = {"136", "Broken Padlock", "Doors, key blocks and golden chests can be opened with explosions#Can also open the Home door"}, -- Broken Padlock
 	[137] = {"137", "Myosotis", "When entering a new floor, up to 4 uncollected pickups from the previous floor spawn in the starting room"}, -- Myosotis
 	[138] = {"138", "'M", "Using an active item rerolls it"}, -- 'M
-	[139] = {"139", "Teardrop Charm", "+3 Luck towards Luck-based tear effects"}, -- Teardrop Charm
+	[139] = {"139", "Teardrop Charm", "{{Luck}} +3 Luck towards Luck-based tear effects"}, -- Teardrop Charm
 	[140] = {"140", "Apple of Sodom", "Picking up Red Hearts can convert them into blue spiders#Works even while at full health#Effect may consume hearts needed for healing"}, -- Apple of Sodom
 	[141] = {"141", "Forgotten Lullaby", "Increases fire rate of familiars"}, -- Forgotten Lullaby
-	[142] = {"142", "Beth's Faith", "When entering a new floor, spawns 4 {{Collectible584}}Book of Virtues wisps"}, -- Beth's Faith
-	[143] = {"143", "Old Capacitor", "Prevents active item from charging#20% chance to spawn a battery after clearing a room#33% chance at 5 Luck"}, -- Old Capacitor
+	[142] = {"142", "Beth's Faith", "{{Collectible584}} When entering a new floor, spawns 4 Book of Virtues wisps"}, -- Beth's Faith
+	[143] = {"143", "Old Capacitor", "Prevents active item from charging#{{Battery}} 20% chance to spawn a battery after clearing a room#{{Luck}} 33% chance at 5 Luck"}, -- Old Capacitor
 	[144] = {"144", "Brain Worm", "Tears turn 90 degrees to target enemies that they may have missed"}, -- Brain Worm
-	[145] = {"145", "Perfection", "↑ +10 Luck up#Destroys itself when you take damage"}, -- Perfection
-	[146] = {"146", "Devil's Crown", "{{TreasureRoom}}Treasure Rooms now contain Devil deals"}, -- Devil's Crown
+	[145] = {"145", "Perfection", "↑ {{Luck}} +10 Luck up#Destroys itself when you take damage"}, -- Perfection
+	[146] = {"146", "Devil's Crown", "{{TreasureRoom}} Treasure Rooms now contain Devil deals"}, -- Devil's Crown
 	[147] = {"147", "Charged Penny", "17% chance to add one charge to your active item when picking up coins"}, -- Charged Penny
 	[148] = {"148", "Friendship Necklace", "Causes familiars to circle around Isaac"}, -- Friendship Necklace
 	[149] = {"149", "Panic Button", "Activates your active item upon taking damage"}, -- Panic Button
@@ -733,26 +733,26 @@ local repTrinkets={
 	[152] = {"152", "Telescope Lens", "+24% {{Planetarium}}Planetarium chance if none have spawned#+9% if a Planetarium has already spawned#Planetariums can now spawn in the Womb and Corpse"}, -- Telescope Lens	
 	[153] = {"153", "Mom's Lock", "25% chance for a random Mom item effect per room"}, -- Mom's Lock
 	[154] = {"154", "Dice Bag", "50% chance per new room to grant a single use Dice consumable item#The Dice disappears when leaving#Does not take up a pill/card slot"}, -- Dice Bag
-	[155] = {"155", "Holy Crown", "Spawns a {{TreasureRoom}}Treasure Room and {{Shop}}Shop in Cathedral"}, -- Holy Crown
+	[155] = {"155", "Holy Crown", "Spawns a {{TreasureRoom}} Treasure Room and {{Shop}} Shop in Cathedral"}, -- Holy Crown
 	[156] = {"156", "Mother's Kiss", "Grants 1 heart container while held#Works for Keeper, too"}, -- Mother's Kiss
-	[157] = {"157", "Torn Card", "Every 15 shots, shoot an {{Collectible149}}Ipecac + {{Collectible5}}My Reflection tear with a very high range value"}, -- Torn Card
+	[157] = {"157", "Torn Card", "Every 15 shots, shoot an {{Collectible149}} Ipecac + {{Collectible5}} My Reflection tear with a very high range value"}, -- Torn Card
 	[158] = {"158", "Torn Pocket", "Upon hit, Isaac drops 2 of his coins, keys or bombs#The pickups can be replaced with other variants, such as golden keys, nickels, dimes, etc."}, -- Torn Pocket
-	[159] = {"159", "Gilded Key", "+1 key when first picked up#Replaces all chests (except Old/Mega) with Golden Chests#Golden Chests can contain extra cards, pills or trinkets"}, -- Gilded Key
+	[159] = {"159", "Gilded Key", "{{Key}} +1 key when first picked up#Replaces all chests (except Old/Mega) with Golden Chests#Golden Chests can contain extra cards, pills or trinkets"}, -- Gilded Key
 	[160] = {"160", "Lucky Sack", "When entering a new floor, spawns 1 Grab Bag"}, -- Lucky Sack
-	[161] = {"161", "Wicked Crown", "Spawns a {{TreasureRoom}}Treasure Room and {{Shop}}Shop in Sheol"}, -- Wicked Crown
-	[162] = {"162", "Azazel's Stump", "50% chance to turn into Azazel after clearing a room#Effect lasts until clearing and leaving another room"}, -- Azazel's Stump
+	[161] = {"161", "Wicked Crown", "Spawns a {{TreasureRoom}} Treasure Room and {{Shop}} Shop in Sheol"}, -- Wicked Crown
+	[162] = {"162", "Azazel's Stump", "{{Player7}} 50% chance to turn into Azazel after clearing a room#Effect lasts until clearing and leaving another room"}, -- Azazel's Stump
 	[163] = {"163", "Dingle Berry", "All Dip (small poop) enemies are friendly#Spawns 1 random Dip upon clearing a room"}, -- Dingle Berry
-	[164] = {"164", "Ring Cap", "Spawns 1 extra bomb for each bomb placed"}, -- Ring Cap
-	[165] = {"165", "Nuh Uh!", "On Womb and beyond, replaces all coin and key spawns with a bomb, heart, pill, card, trinket, battery, or enemy fly"}, -- Nuh Uh!
+	[164] = {"164", "Ring Cap", "{{Bomb}} Spawns 1 extra bomb for each bomb placed"}, -- Ring Cap
+	[165] = {"165", "Nuh Uh!", "{{Coin}} On Womb and beyond, replaces all coin and key spawns with a bomb, heart, pill, card, trinket, battery, or enemy fly"}, -- Nuh Uh!
 	[166] = {"166", "Modeling Clay", "50% chance to grant the effect of a random Passive Item each room"}, -- Modeling Clay
 	[167] = {"167", "Polished Bone", "25% chance to spawn a friendly Bony when clearing a room"}, -- Polished Bone
-	[168] = {"168", "Hollow Heart", "+1 Bone Heart upon entering a new floor"}, -- Hollow Heart
+	[168] = {"168", "Hollow Heart", "{{EmptyBoneHeart}} +1 Bone Heart upon entering a new floor"}, -- Hollow Heart
 	[169] = {"169", "Kid's Drawing", "While held, counts as 1 item towards the Guppy transformation"}, -- Kid's Drawing
-	[170] = {"170", "Crystal Key", "33% chance to create {{Collectible580}}Red Key rooms each time you clear a room#Lower chance to occur when in a red room"}, -- Crystal Key
+	[170] = {"170", "Crystal Key", "{{Collectible580}} 33% chance to create Red Key rooms each time you clear a room#Lower chance to occur when in a red room"}, -- Crystal Key
 	[171] = {"171", "Keeper's Bargain", "50% chance for Devil deals to cost coins instead of hearts"}, -- Keeper's Bargain
 	[172] = {"172", "Cursed Penny", "Teleport to a random room upon picking up a penny#Can teleport to secret rooms"}, -- Cursed Penny
 	[173] = {"173", "Your Soul", "One Devil deal item for free"}, -- Your Soul
-	[174] = {"174", "Number Magnet", "+10% Devil Room chance#Prevents Krampus from appearing in Devil Rooms#Devil Rooms will be special variants with more deals, Black Hearts and enemies"}, -- Number Magnet
+	[174] = {"174", "Number Magnet", "{{DevilChance}} +10% Devil Room chance#Prevents Krampus from appearing in Devil Rooms#Devil Rooms will be special variants with more deals, Black Hearts and enemies"}, -- Number Magnet
 	[175] = {"175", "Strange Key", "Unlocks the passageway to the Hush fight, regardless of the run duration#Using {{Collectible297}}Pandora's Box spawns 6 items from random pools"}, -- Strange Key
 	[176] = {"176", "Lil Clot", "Spawns 1 blood clot familiar who mimics Isaac's movement, shoot direction and tear effects#Familiar respawns each room if it dies"}, -- Lil Clot
 	[177] = {"177", "Temporary Tattoo", "Spawns a chest after clearing a {{ChallengeRoom}}Challenge Room, or a collectible after clearing a {{BossRushRoom}}Boss Challenge Room"}, -- Temporary Tattoo
@@ -764,8 +764,8 @@ local repTrinkets={
 	[183] = {"183", "The Twins", "50% chance to duplicate a familiar each room#If you have no familiar, grants {{Collectible8}}Brother Bobby or {{Collectible67}}Sister Maggy instead"}, -- The Twins
 	[184] = {"184", "Adoption Papers", "{{Shop}}Shops now sell familiars for 10 coins"}, -- Adoption Papers
 	[185] = {"185", "Cricket Leg", "17% chance to spawn a random locust when killing an enemy"}, -- Cricket Leg
-	[186] = {"186", "Apollyon's Best Friend", "Grants 1 {{Collectible706}}Abyss locust"}, -- Apollyon's Best Friend
-	[187] = {"187", "Broken Glasses", "50% chance of adding an extra blind item in {{TreasureRoom}}Treasure Rooms#50% chance to reveal the blind item in alt paths"}, -- Broken Glasses
+	[186] = {"186", "Apollyon's Best Friend", "{{Collectible706}} Grants 1 Abyss locust"}, -- Apollyon's Best Friend
+	[187] = {"187", "Broken Glasses", "{{TreasureRoom}} 50% chance of adding an extra blind item in Treasure Rooms#50% chance to reveal the blind item in alt paths"}, -- Broken Glasses
 	[188] = {"188", "Ice Cube", "20% chance to petrify enemies when entering a room#Killing a petrified enemy freezes it"}, -- Ice Cube
 	[189] = {"189", "Sigil of Baphomet", "Activates a 1 second shield upon killing an enemy#Killing enemies while shielded adds 1 more second"}, -- Sigil of Baphomet
 }
@@ -799,57 +799,57 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 
 local repCards={
 	[2] = {"2", "I - The Magician", "Homing tears and +3 Range for current room"}, -- I - The Magician
-	[12] = {"12", "XI - Strength", "↑ +1 Health up#↑ +0.3 Damage up#↑ +50% Damage#↑ +5.25 Range up#↑ +0.3 Speed up#For current room"}, -- XI - Strength
-	[27] = {"27", "Ace of Clubs", "Turns all pickups, chests and non-boss enemies into bombs"}, -- Ace of Clubs
-	[28] = {"28", "Ace of Diamonds", "Turns all pickups, chests and non-boss enemies into coins"}, -- Ace of Diamonds
-	[29] = {"29", "Ace of Spades", "Turns all pickups, chests and non-boss enemies into keys"}, -- Ace of Spades
-	[30] = {"30", "Ace of Hearts", "Turns all pickups, chests and non-boss enemies into hearts"}, -- Ace of Hearts
+	[12] = {"12", "XI - Strength", "For current room grants: #↑ {{Healt}} +1 Health up#↑ {{Damage}} +0.3 Damage up#↑ {{Damage}} +50% Damage#↑ {{Range}} +5.25 Range up#↑ {{Speed}} +0.3 Speed up"}, -- XI - Strength
+	[27] = {"27", "Ace of Clubs", "{{Bomb}} Turns all pickups, chests and non-boss enemies into bombs"}, -- Ace of Clubs
+	[28] = {"28", "Ace of Diamonds", "{{Coin}} Turns all pickups, chests and non-boss enemies into coins"}, -- Ace of Diamonds
+	[29] = {"29", "Ace of Spades", "{{Key}} Turns all pickups, chests and non-boss enemies into keys"}, -- Ace of Spades
+	[30] = {"30", "Ace of Hearts", "{{Heart}} Turns all pickups, chests and non-boss enemies into hearts"}, -- Ace of Hearts
 	[39] = {"39", "Algiz", "Invincibility for 20 seconds"}, -- Algiz
-	[51] = {"51", "Holy Card", "Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken"}, -- Holy Card
-	[52] = {"52", "Huge Growth", "↑ +7 Damage up#↑ +3 Range up#Destroy rocks when walking over them#Size up#Effect lasts for current room"}, -- Huge Growth
-	[55] = {"55", "Rune Shard", "Activates a random rune effect#The rune effect is weaker"}, -- Rune Shard
+	[51] = {"51", "Holy Card", "{{HolyMantle}} Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken"}, -- Holy Card
+	[52] = {"52", "Huge Growth", "↑ {{Damage}} +7 Damage up#↑ {{Range}} +3 Range up#Destroy rocks when walking over them#Size up#Effect lasts for current room"}, -- Huge Growth
+	[55] = {"55", "Rune Shard", "{{Rune}} Activates a random rune effect#The rune effect is weaker"}, -- Rune Shard
 	[56] = {"56", "0 - The Fool?", "Drops all your hearts and pickups on the floor, leaving you with half a heart#Coins and bombs may be dropped as {{Collectible74}}The Quarter or {{Collectible19}}Boom! if possible"}, -- 0 - The Fool?
 	[57] = {"57", "I - The Magician?", "Grants an aura that repels enemies and projectiles for 1 minute"}, -- I - The Magician?
 	[58] = {"58", "II - The High Priestess?", "Mom's Foot stomps down repeatedly for 1 minute"}, -- II - The High Priestess?
-	[59] = {"59", "III - The Empress?", "Grants for 1 minute:#↑ +2 Health up#↑ +1.35 Tears up"}, -- III - The Empress?
+	[59] = {"59", "III - The Empress?", "Grants for 1 minute: #↑ {{Heart}} +2 Health up#↑ {{Tears}} +1.35 Tears up"}, -- III - The Empress?
 	[60] = {"60", "IV - The Emperor?", "Teleports you to an extra Boss room with extra loot#The boss is chosen from two floors deeper than the current one"}, -- IV - The Emperor?
-	[61] = {"61", "V - The Hierophant?", "Spawns 2 Bone Hearts"}, -- V - The Hierophant?
-	[62] = {"62", "VI - The Lovers?", "Spawns 1 item from current room's item pool#Turns 1 Red Heart Container or 2 Soul Hearts into a broken heart"}, -- VI - The Lovers?
-	[63] = {"63", "VII - The Chariot?", "Turn into invincible immobile statue for 10 seconds#Extreme fire rate for duration"}, -- VII - The Chariot?
+	[61] = {"61", "V - The Hierophant?", "{{EmptyBoneHeart}} Spawns 2 Bone Hearts"}, -- V - The Hierophant?
+	[62] = {"62", "VI - The Lovers?", "Spawns 1 item from current room's item pool#{{BrokenHeart}} Turns 1 Red Heart Container or 2 Soul Hearts into a broken heart"}, -- VI - The Lovers?
+	[63] = {"63", "VII - The Chariot?", "Turn into invincible immobile statue for 10 seconds#↑ {{Tears}} Extreme fire rate for duration"}, -- VII - The Chariot?
 	[64] = {"64", "VIII - Justice?", "Spawns 2-4 Golden Chests"}, -- VIII - Justice?
-	[65] = {"65", "IX - The Hermit?", "Turns pickups and items in the room into coins#Coin values are equal to their shop value"}, -- IX - The Hermit?
+	[65] = {"65", "IX - The Hermit?", "Turns pickups and items in the room into coins#{{Shop}} Coin values are equal to their shop value"}, -- IX - The Hermit?
 	[66] = {"66", "X - Wheel of Fortune?", "Random dice room effect"}, -- X - Wheel of Fortune?
-	[67] = {"67", "XI - Strength?", "Enemies in current room are weakened, slowed and take double damage#Lasts 1 minute"}, -- XI - Strength?
-	[68] = {"68", "XII - The Hanged Man?", "Turns player into the Keeper for 30 seconds#Grants triple shot and speed down#Killed enemies drop random coins"}, -- XII - The Hanged Man?
-	[69] = {"69", "XIII - Death?", "Invokes {{Collectible545}}Book of the Dead effect#Spawns Bone entities for each enemy killed in room"}, -- XIII - Death?
+	[67] = {"67", "XI - Strength?", "{{Weakness}} Enemies in current room are weakened, slowed and take double damage#Lasts 1 minute"}, -- XI - Strength?
+	[68] = {"68", "XII - The Hanged Man?", "{{Player14}} Turns player into the Keeper for 30 seconds#Grants triple shot and speed down#Killed enemies drop random coins"}, -- XII - The Hanged Man?
+	[69] = {"69", "XIII - Death?", "{{Collectible545}} Invokes Book of the Dead effect#Spawns Bone entities for each enemy killed in room"}, -- XIII - Death?
 	[70] = {"70", "XIV - Temperance?", "Eat 5 random pills"}, -- XIV - Temperance?
-	[71] = {"71", "XV - The Devil?", "Invokes {{Collectible33}}The Bible effect#Grants {{Collectible390}}Seraphim and flight for 30 seconds"}, -- XV - The Devil?
+	[71] = {"71", "XV - The Devil?", "{{Collectible33}} Invokes The Bible effect#{{Collectible390}} Grants Seraphim and flight for 30 seconds"}, -- XV - The Devil?
 	[72] = {"72", "XVI - The Tower?", "Spawns 6 clusters of random rocks and obstacles#Clusters will often contain Tinted Rocks"}, -- XVI - The Tower?
 	[73] = {"73", "XVII - The Stars?", "Removes oldest passive item (ignoring starting items)#Spawns 2 random items from current room's item pool"}, -- XVII - The Stars?
-	[74] = {"74", "XVIII - The Moon?", "Teleports you to the {{UltraSecretRoom}}Ultra Secret Room#Pathway back will be made of red rooms"}, -- XVIII - The Moon?
-	[75] = {"75", "XIX - The Sun?", "For the current floor:#↑ Gain {{Collectible159}}Spirit of the Night#↑ +1.5 Damage up#Turns your Red Hearts into Bone Hearts#Applies Curse of Darkness"}, -- XIX - The Sun?
-	[76] = {"76", "XX - Judgement?", "Spawns a Restock Machine"}, -- XX - Judgement?
+	[74] = {"74", "XVIII - The Moon?", "{{UltraSecretRoom}} Teleports you to the Ultra Secret Room#Pathway back will be made of red rooms"}, -- XVIII - The Moon?
+	[75] = {"75", "XIX - The Sun?", "For the current floor:#↑ {{Collectible159}} Gain Spirit of the Night#↑ {{Damage}} +1.5 Damage up#{{BoneHearts}} Turns your Red Hearts into Bone Hearts#Applies Curse of Darkness"}, -- XIX - The Sun?
+	[76] = {"76", "XX - Judgement?", "{{RestockMachine}} Spawns a Restock Machine"}, -- XX - Judgement?
 	[77] = {"77", "XXI - The World?", "Spawns a trap door to a crawlspace"}, -- XXI - The World?
-	[78] = {"78", "Cracked Key", "One time use {{Collectible580}}Red Key"}, -- Cracked Key
-	[79] = {"79", "Queen of Hearts", "Spawns 1-20 Red Hearts"}, -- Queen of Hearts
+	[78] = {"78", "Cracked Key", "{{Collectible580}} One time use Red Key"}, -- Cracked Key
+	[79] = {"79", "Queen of Hearts", "{{Heart}} Spawns 1-20 Red Hearts"}, -- Queen of Hearts
 	[80] = {"80", "Wild Card", "Copies the effect of the most recently used pill, card, rune, soul stone or activated item"}, -- Wild Card
 	[81] = {"81", "Soul of Isaac", "Rerolls the items in the room#Cycle back to their original form after one second#Effect repeats"}, -- Soul of Isaac
-	[82] = {"82", "Soul of Magdalene", "Surrounds Isaac with a bubbling red aura for the current room#Enemies killed drop red half hearts that disappear in 2 seconds"}, -- Soul of Magdalene
-	[83] = {"83", "Soul of Cain", "Opens all doors in the room#Creates red rooms with {{Collectible580}}Red Key for every possible exit"}, -- Soul of Cain
+	[82] = {"82", "Soul of Magdalene", "Surrounds Isaac with a bubbling red aura for the current room#{{HalfHeart}} Enemies killed drop red half hearts that disappear in 2 seconds"}, -- Soul of Magdalene
+	[83] = {"83", "Soul of Cain", "Opens all doors in the room#{{Collectible580}} Creates red rooms with Red Key for every possible exit"}, -- Soul of Cain
 	[84] = {"84", "Soul of Judas", "Turns Isaac into a phantom that can pass through enemies to paralyze them#After a few seconds, will attack them all, gaining damage bonus per target"}, -- Soul of Judas
-	[85] = {"85", "Soul of ???", "Causes 8 poison farts with brown creep#Then plants trail of 7 Butt Bombs#Standing in the creep gives ↑ +1.35 Tears and ↑ +1 Damage"}, -- Soul of ???
+	[85] = {"85", "Soul of ???", "{{Poison}} Causes 8 poison farts with brown creep#Then plants trail of 7 Butt Bombs#Standing in the creep gives: # {{Tears}} +1.35 Tears#↑ {{Damage}} +1 Damage"}, -- Soul of ???
 	[86] = {"86", "Soul of Eve", "14 Dead Bird familiars fly in and attack enemies# Lasts for current room"}, -- Soul of Eve
 	[87] = {"87", "Soul of Samson", "Turn into a berserk Samson with melee attack for 10 seconds#↑ +0.4 Speed up#↑ Tears up#↑ +3 Damage up"}, -- Soul of Samson
-	[88] = {"88", "Soul of Azazel", "Activates {{Collectible441}}Mega Blast for 7.5 seconds"}, -- Soul of Azazel
+	[88] = {"88", "Soul of Azazel", "{{Collectible441}} Activates Mega Blast for 7.5 seconds"}, -- Soul of Azazel
 	[89] = {"89", "Soul of Lazarus", "Die and immediately revive at half a heart with some invincibility time#Item is automatically used upon taking fatal damage (like an extra life)"}, -- Soul of Lazarus
 	[90] = {"90", "Soul of Eden", "Rerolls pedestals and pickups in current room#The rerolled items use random pools"}, -- Soul of Eden
-	[91] = {"91", "Soul of the Lost", "Die and turn into The Lost for current room#You can take one {{DevilRoom}}Devil Room item for free, the rest will disappear#You can enter the Mausoleum or Gehenna door for free"}, -- Soul of the Lost
+	[91] = {"91", "Soul of the Lost", "{{Player10}} Die and turn into The Lost for current room#You can take one {{DevilRoom}}Devil Room item for free, the rest will disappear#You can enter the Mausoleum or Gehenna door for free"}, -- Soul of the Lost
 	[92] = {"92", "Soul of Lilith", "Adds 1 random familiar"}, -- Soul of Lilith
-	[93] = {"93", "Soul of the Keeper", "Spawns 1-25 random coins"}, -- Soul of the Keeper
+	[93] = {"93", "Soul of the Keeper", "{{Coin}} Spawns 1-25 random coins"}, -- Soul of the Keeper
 	[94] = {"94", "Soul of Apollyon", "Spawn 15 random locust flies"}, -- Soul of Apollyon
-	[95] = {"95", "Soul of the Forgotten", "Spawns The Forgotten as a temporary secondary character for current room"}, -- Soul of the Forgotten
-	[96] = {"96", "Soul of Bethany", "Spawns 6 {{Collectible584}}Book of Virtues wisps with random properties"}, -- Soul of Bethany
-	[97] = {"97", "Soul of Jacob and Esau", "Spawns Esau as a temporary secondary character for current room#He spawns with random passive items equal to how many you have"}, -- Soul of Jacob and Esau
+	[95] = {"95", "Soul of the Forgotten", "{{Player16}} Spawns The Forgotten as a temporary secondary character for current room"}, -- Soul of the Forgotten
+	[96] = {"96", "Soul of Bethany", "{{Collectible584}} Spawns 6 Book of Virtues wisps with random properties"}, -- Soul of Bethany
+	[97] = {"97", "Soul of Jacob and Esau", "{{Player20}} Spawns Esau as a temporary secondary character for current room#He spawns with random passive items equal to how many you have"}, -- Soul of Jacob and Esau
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
@@ -857,12 +857,12 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
 
 EID.descriptions[languageCode].tarotClothBuffs = {
-	[2] = "Also grants {{Collectible34}}The Book of Belial effect", -- I - The Magician
+	[2] = "{{Collectible34}} Also grants The Book of Belial effect", -- I - The Magician
 	[3] = "A second foot strikes down shortly after the first", -- II - The High Priestess
 	[4] = "Doubles the stat increases", -- III - The Empress
 	[5] = "If the boss wasn't defeated yet, grants 1 Soul Heart as well", -- IV - The Emperor
-	[6] = "Spawns 3 Soul Hearts", -- V - The Hierophant
-	[7] = "Spawns 3 Red Hearts", -- VI - The Lovers
+	[6] = "{{SoulHeart}} Spawns 3 Soul Hearts", -- V - The Hierophant
+	[7] = "{{Heart}} Spawns 3 Red Hearts", -- VI - The Lovers
 	[8] = "Doubled duration", -- VII - The Chariot
 	[9] = "Doubled pickup spawns", -- VIII - Justice
 	[10] ="Prevents Greed from spawning in the shop#Turns shop into a normal shop if Greed was already fought in it", -- IX - The Hermit
@@ -875,58 +875,58 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[18] = "If the Treasure Room wasn't entered before, it will have two items to choose from", -- XVII - The Stars
 	[21] = "Spawns 2 Beggars", -- XX - Judgement
 	[56] = "Drops all items alongside pickups, including Tarot Cloth", -- 0 - The Fool?
-	[59] = "↑ +3 Health up", -- III - The Empress?
-	[61] = "Spawns 3 Bone Hearts", -- V - The Hierophant?
-	[62] = "Adds 2 Broken Hearts and spawns 2 items", -- VI - The Lovers?
+	[59] = "↑ {{Heart}} +3 Health up", -- III - The Empress?
+	[61] = "{{EmptyBoneHeart}} Spawns 3 Bone Hearts", -- V - The Hierophant?
+	[62] = "{{BrokenHeart}} Adds 2 Broken Hearts and spawns 2 items", -- VI - The Lovers?
 	[64] = "Spawns 4-14 Golden Chests", -- VIII - Justice?
-	[70] = "Eat 10 random pills", -- XIV - Temperance?
+	[70] = "{{Pill}} Eat 10 random pills", -- XIV - Temperance?
 	[72] = "Spawns 14 rock clusters", -- XVI - The Tower?
 	[73] = "Removes 2 items and spawns 4", -- XVII - The Stars?
-	[76] = "Spawns 2 Restock Machines", -- XX - Judgement?
+	[76] = "{{RestockMachine}} Spawns 2 Restock Machines", -- XX - Judgement?
 }
 
 ---------- Pills ----------
 
 local repPills={
 	[4] = {"3", "Bombs are Key", "Switches number of bombs with keys#Golden bombs and keys are also swapped"}, -- Bombs are Key
-	[12] = {"11", "Range Down", "↓ -0.6 Range down"}, -- Range Down
-	[13] = {"12", "Range Up", "↑ +0.75 Range up"}, -- Range Up
-	[42] = {"41", "I'm Drowsy...", "Slow all enemies and Isaac in the room"}, -- I'm Drowsy...
+	[12] = {"11", "Range Down", "↓ {{Range}} -0.6 Range down"}, -- Range Down
+	[13] = {"12", "Range Up", "↑ {{Range}} +0.75 Range up"}, -- Range Up
+	[42] = {"41", "I'm Drowsy...", "{{Slow}} Slow all enemies and Isaac in the room"}, -- I'm Drowsy...
 	[43] = {"42", "I'm Excited!!!", "Speeds up all enemies and Isaac in the room#Triggers again after 30 and 60 seconds"}, -- I'm Excited!!!
 	
-	[48] = {"47", "Shot Speed Down", "↓ -0.15 Shot Speed down"}, -- Shot Speed Down
-	[49] = {"48", "Shot Speed Up", "↑ +0.15 Shot Speed up"}, -- Shot Speed Up
+	[48] = {"47", "Shot Speed Down", "↓ {{Shotspeed}} -0.15 Shot Speed down"}, -- Shot Speed Down
+	[49] = {"48", "Shot Speed Up", "↑ {{Shotspeed}} +0.15 Shot Speed up"}, -- Shot Speed Up
 	[50] = {"49", "Experimental Pill", "↑ Increases 1 random stat#↓ Decreases 1 random other stat#Will not decrease with {{Collectible75}}PHD, {{Collectible46}}Lucky Foot or {{Collectible303}}Virgo#Will not increase with {{Collectible654}}False PHD"}, -- Experimental Pill
 	[9999] = {"", "Golden Pill", "Random pill effect#Destroys itself after a few uses"}, -- golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
 EID.descriptions[languageCode].horsepills={
-	{"0", "Bad Gas", "Poisons entire room"}, -- Bad Gas
+	{"0", "Bad Gas", "{{Poison}} Poisons entire room"}, -- Bad Gas
 	{"1", "Bad Trip", "Deals 2 hearts of damage to you"}, -- Bad Trip
-	{"2", "Balls of Steel", "+4 Soul Hearts"}, -- Balls of Steel
+	{"2", "Balls of Steel", "{{SoulHeart}} +4 Soul Hearts"}, -- Balls of Steel
 	{"3", "Bombs are Key", "Switches number of bombs with keys#Increases key and bomb count by 50%#Golden bombs and keys are also swapped"}, -- Bombs are Key
 	{"4", "Explosive Diarrhea", "Spawns some mega homing troll bombs at your position"}, -- Explosive Diarrhea
-	{"5", "Full Health", "Full Health#+3 Soul Hearts"}, -- Full Health
+	{"5", "Full Health", "Full Health#{{SoulHeart}}+3 Soul Hearts"}, -- Full Health
 	{"6", "Health Down", "↓ -2 Health down"}, -- Health Down
-	{"7", "Health Up", "↑ +2 empty heart containers"}, -- Health Up
+	{"7", "Health Up", "↑ {{EmptyHeart}}+2 empty heart containers"}, -- Health Up
 	{"8", "I Found Pills", "No effect"}, -- I Found Pills
 	{"9", "Puberty", "No effect"}, -- Puberty
-	{"10", "Pretty Fly", "Adds 1 {{Collectible279}}Big Fan fly orbital#There is no upper limit"}, -- Pretty Fly
-	{"11", "Range Down", "↓ -1.2 Range down"}, -- Range Down
-	{"12", "Range Up", "↑ +0.9 Range up"}, -- Range Up
-	{"13", "Speed Down", "↓ -0.24 Speed down"}, -- Speed Down
-	{"14", "Speed Up", "↑ +0.3 Speed up"}, -- Speed Up
-	{"15", "Tears Down", "↓ -0.56 Tears down"}, -- Tears Down
-	{"16", "Tears Up", "↑ +0.70 Tears up"}, -- Tears Up
-	{"17", "Luck Down", "↓ -2 Luck down"}, -- Luck Down
-	{"18", "Luck Up", "↑ +2 Luck up"}, -- Luck Up
+	{"10", "Pretty Fly", "{{Collectible279}} Adds 1 Big Fan fly orbital#There is no upper limit"}, -- Pretty Fly
+	{"11", "Range Down", "↓ {{Range}} -1.2 Range down"}, -- Range Down
+	{"12", "Range Up", "↑ {{Range}} +0.9 Range up"}, -- Range Up
+	{"13", "Speed Down", "↓ {{Speed}} -0.24 Speed down"}, -- Speed Down
+	{"14", "Speed Up", "↑ {{Speed}} +0.3 Speed up"}, -- Speed Up
+	{"15", "Tears Down", "↓ {{Tears}} -0.56 Tears down"}, -- Tears Down
+	{"16", "Tears Up", "↑ {{Tears}} +0.70 Tears up"}, -- Tears Up
+	{"17", "Luck Down", "↓ {{Luck}}-2 Luck down"}, -- Luck Down
+	{"18", "Luck Up", "↑ {{Luck}} +2 Luck up"}, -- Luck Up
 	{"19", "Telepills", "Teleport to random room"}, -- Telepills
-	{"20", "48 Hour Energy!", "Fully recharges your active item#Drops 3-4 batteries"}, -- 48 Hour Energy!
-	{"21", "Hematemesis", "Drains all but one heart container#Spawns 1-4 Red Hearts"}, -- Hematemesis
+	{"20", "48 Hour Energy!", "Fully recharges your active item#{{Battery}} Drops 3-4 batteries"}, -- 48 Hour Energy!
+	{"21", "Hematemesis", "Drains all but one heart container#{PHeart}} Spawns 1-4 Red Hearts"}, -- Hematemesis
 	{"22", "Paralysis", "You can't move for 4 seconds"}, -- Paralysis
-	{"23", "I can see forever!", "Opens secret room entrances on current floor#Grants full mapping"}, -- I can see forever!
-	{"24", "Pheromones", "Turns every enemy in the room permanently friendly"}, -- Pheromones
+	{"23", "I can see forever!", "{{SecretRoom}} Opens secret room entrances on current floor#Grants full mapping"}, -- I can see forever!
+	{"24", "Pheromones", "{{Charm}} Turns every enemy in the room permanently friendly"}, -- Pheromones
 	{"25", "Amnesia", "Hides the floor map"}, -- Amnesia
 	{"26", "Lemon Party", "Spawns room filling puddle on the ground which damages enemies"}, -- Lemon Party
 	{"27", "R U a Wizard?", "Shoot diagonally for 60 seconds"}, -- R U a Wizard?
@@ -938,7 +938,7 @@ EID.descriptions[languageCode].horsepills={
 	{"33", "One makes you small", "You get a lot smaller#Your hitbox gets smaller"}, -- One makes you small
 	{"34", "Infested!", "Spawn 2 blue spiders per poop in room"}, -- Infested!
 	{"35", "Infested?", "Spawn 2 blue spiders per enemy in room#Spawns 2-6 blue spiders when no enemy is in the room"}, -- Infested?
-	{"36", "Power Pill!", "Short invincibility effect#↑ #7 Damage up#↑ +3 Range up#Persists for current room"}, -- Power Pill!
+	{"36", "Power Pill!", "Short invincibility effect#↑ {{Damage}} 7 Damage up#↑ {{Range}} +3 Range up#Persists for current room"}, -- Power Pill!
 	{"37", "Retro Vision", "Pixelates the screen for 90 seconds"}, -- Retro Vision
 	{"38", "Friends Till The End!", "Spawns 6 blue flies"}, -- Friends Till The End!
 	{"39", "X-Lax", "Spawn pool of long lasting slippery creep"}, -- X-Lax
@@ -946,11 +946,11 @@ EID.descriptions[languageCode].horsepills={
 	{"41", "I'm Drowsy...", "Slow all enemies in room"}, -- I'm Drowsy...
 	{"42", "I'm Excited!!!", "Speed up for all enemies in room"}, --I'm Excited!!!
 	{"43", "Gulp!", "Consume current trinket and gain its effect permanently"}, -- Gulp!
-	{"44", "Horf!", "Shoots a cluster of ipecac tears"}, -- Horf!
+	{"44", "Horf!", "{{Collectible149}} Shoots a cluster of ipecac tears"}, -- Horf!
 	{"45", "Feels like I'm walking on sunshine!", "Short invincibility#Fears all enemies#Deal 40 contact damage#Two eaten enemies replenish half a heart"}, -- Feels like I'm walking on sunshine!
 	{"46", "Vurp!", "Spawns last used pill as a horse pill"}, -- Vurp!
-	{"47", "Shot Speed Down", "↓ -0.3 Shot Speed down"}, -- Shot Speed Down
-	{"48", "Shot Speed Up", "↑ +0.3 Shot Speed up"}, -- Shot Speed Up
+	{"47", "Shot Speed Down", "↓ {{Shotspeed}} -0.3 Shot Speed down"}, -- Shot Speed Down
+	{"48", "Shot Speed Up", "↑ {{Shotspeed}} +0.3 Shot Speed up"}, -- Shot Speed Up
 	{"49", "Experimental Pill", "↑ Increases 1 random stat two times#↓ Decreases 1 random other stat two times#Will not decrease with {{Collectible75}}PHD, {{Collectible46}}Lucky Foot or {{Collectible303}}Virgo#Will not increase with {{Collectible654}}False PHD"}, -- Experimental Pill
 	[9999] = {"", "Golden Pill", "Random horse pill effect#Destroys itself after a few uses"}, -- Golden Pill
 }
@@ -962,17 +962,17 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	pluralize = "s",
 	
 	-- Item Config info
-	AddBlackHearts = "{1} Black Heart",
-	AddBombs = "{1} Bomb",
-	AddCoins = "{1} Coin",
-	AddHearts = "Heals {1} Red Heart",
-	AddKeys = "{1} Key",
-	AddMaxHearts = "{1} Heart Container",
-	AddSoulHearts = "{1} Soul Heart",
+	AddBlackHearts = "{{BlackHeart}} {1} Black Heart",
+	AddBombs = "{{Bomb}} {1} Bomb",
+	AddCoins = "{{Coin}} {1} Coin",
+	AddHearts = "Heals {{Heart}} {1} Red Heart",
+	AddKeys = "{{Key}} {1} Key",
+	AddMaxHearts = "{{EmptyHeart}} {1} Heart Container",
+	AddSoulHearts = "{{SoulHeart}} {1} Soul Heart",
 	
 	-- Cache Flag names
 	cacheFlagStart = "May affect ",
-	[0] = "Damage", "Fire Rate", "Shot Speed", "Range", "Speed", "Tear Effects", "Tear Color", "Flight", "Attack Type", "Familiars", "Luck", "Size", "Color", "Chest Contents", [16] = "All Stats",
+	[0] = "{{Damage}} Damage", "{{Tears}} Fire Rate", "{{Shotspeed}} Shot Speed", "{{Range}} Range", "{{Speed}} Speed", "Tear Effects", "Tear Color", "Flight", "Attack Type", "Familiars", "{{Luck}} Luck", "Size", "Color", "Chest Contents", [16] = "All Stats",
 	
 	-- Attribute triggers
 	chain = "Then:{{CR}} ",
@@ -1015,6 +1015,8 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 EID.descriptions[languageCode].VoidShopText = "If absorbed right after pickup, gain:"
 EID.descriptions[languageCode].VoidOptionText = " will be absorbed instead"
+EID.descriptions[languageCode].VoidNames = {"Speed Up {{Speed}}", "Fire rate up {{Tears}}", "Damage up {{Damage}}", "Range up {{Range}}", "Shotspeed up {{Shotspeed}}", "Luck up {{Luck}}"}
+
 
 EID.descriptions[languageCode].spindownError = "Item disappears"
 
@@ -1038,9 +1040,9 @@ EID.descriptions[languageCode].PlaceboCharge = "Placebo charge:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{ButtonSelect}} (Map) to show description)"
 
 
-EID.descriptions[languageCode].FalsePHDHeart = "Spawns 1 Black Heart"
-EID.descriptions[languageCode].FalsePHDDamage = "+0.6 Damage up"
-EID.descriptions[languageCode].FalsePHDHorseDamage = "+1.2 Damage up"
+EID.descriptions[languageCode].FalsePHDHeart = "{{BlackHeart}} Spawns 1 Black Heart"
+EID.descriptions[languageCode].FalsePHDDamage = "{{Damage}} +0.6 Damage up"
+EID.descriptions[languageCode].FalsePHDHorseDamage = "{{Damage}} +1.2 Damage up"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! WARNING !!!"
 EID.descriptions[languageCode].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)#(This warning can be disabled in the config)"
