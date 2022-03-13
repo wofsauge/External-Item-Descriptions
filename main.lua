@@ -1240,6 +1240,10 @@ local function onRender(t)
 			if craftingSuccess then
 				EID:printDescription(EID.descriptionsToPrint[#EID.descriptionsToPrint])
 				return
+			else
+				-- fix blinking bug after using "clear bag" option button
+				EID.previousDescs = {}
+				EID.CachedIndicators = {}
 			end
 			if i == #playerSearch then return end
 		end
