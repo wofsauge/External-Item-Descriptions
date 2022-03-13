@@ -506,9 +506,10 @@ function EID:getObjectName(Type, Variant, SubType)
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
-		local vanillaName = nil
-		-- fix Gold Pill bug
-		if EID.itemConfig:GetPillEffect(adjustedSubtype - 1) then
+		local vanillaName = ""
+		if adjustedSubtype == 9999 then
+			vanillaName = "Golden Pill" -- only used for languages that haven't defined a Golden Pill name
+		else
 			vanillaName = EID.itemConfig:GetPillEffect(adjustedSubtype - 1).Name
 		end
 		name = name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][adjustedSubtype][2] or vanillaName
