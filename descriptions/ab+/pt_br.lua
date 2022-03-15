@@ -375,7 +375,7 @@ EID.descriptions[languageCode].collectibles={
 	{"351", "", "Congele todos os inimigos na sala atual#Causa dano de envenenamento a qualquer inimigo próximo#Envia uma onda de espinhos pela sala#Pode ser usado para abrir salas secretas"},
 	{"352", "", "!!! Reduz a sua saúde para meio coração#Dispara uma grande lágrima espectral penetrante ((seu dano + 1) x 10)"},
 	{"353", "", "+5 Bombas#Bombas agora explodem em forma de cruz"},
-	{"354", "", "↑ +1 Saúde#Gera um trinket aleatória"},
+	{"354", "", "↑ +1 Saúde#Gera um trinket aleatório"},
 	{"355", "", "↑ +1.25 Alcance#↑ +1 Sorte#↑ +0.5 Altura da lágrima"},
 	{"356", "", "Faz com que o seu item de ativação seja ativado duas vezes quando usado"},
 	{"357", "", "Duplique seus familiares para a sala atual"},
@@ -881,5 +881,5 @@ EID.descriptions[languageCode].CollectionPageInfo = "Este item precisa ser pego 
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Nome do Objeto Demo",
 	DemoObjectTransformation = "Transformação Demo",
-	DemoObjectText = "Este texto está em português brasileiro#Uma descrição muito legal e longa para simular quebras de linha causadas pela largura da caixa de texto do EID!#\1 Esta também é uma linha legal#Esta linha ama você {{Heart}}",
+	DemoObjectText = "Este texto está em português brasileiro#Uma descrição muito legal e longa para simular quebras de linha causadas pela largura da caixa de texto do EID!#\1 Esta também é uma linha legal#Esta linha ama você {{Heart}}#Pré-visualização do tamanho da marcação: #GRANDE: {{Damage}} {{Tears}} {{Speed}} {{Shotspeed}} {{Luck}} #pequeno: {{DeliriumSmall}} {{CurseDarknessSmall}} {{CurseBlindSmall}}",
 }
