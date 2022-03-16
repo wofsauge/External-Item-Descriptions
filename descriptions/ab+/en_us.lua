@@ -596,7 +596,7 @@ EID.descriptions[languageCode].trinkets={
 	{"18", "Bible Tract", "{{EternalHeart}} +3% chance for Eternal Hearts"}, -- base chance is 1.667%
 	{"19", "Paper Clip", "Unlock chests without using keys"},
 	{"20", "Monkey Paw", "{{BlackHeart}} When on half a heart, spawns 1 Black Heart#!!! 3 time usage"},
-	{"21", "Mysterious Paper", "Randomly imitates: #{{Collectible327}} The Polaroid#{{{Collectible328}} The Negative#{{Trinket48}} A Missing Page#{{Trinket23}} Missing Poster"},
+	{"21", "Mysterious Paper", "Randomly imitates: #{{Collectible327}} The Polaroid#{{Collectible328}} The Negative#{{Trinket48}} A Missing Page#{{Trinket23}} Missing Poster"},
 	{"22", "Daemon's Tail", "{{Heart}} Decreases spawn rate of hearts to 20%#{{BlackHeart}} Heart pickups turn into Black Hearts#{{Key}} Key drop chance increased"},
 	{"23", "Missing Poster", "{{Player10}} Respawn as \"The Lost\" when dying in a {{SacrificeRoom}} Sacrifice Room#{{Player10}} If he is unlocked, you revive as him even outside Sacrifice Rooms"},
 	{"24", "Butt Penny", "20% higher chance for coins to spawn from poop#Fart when picking up coins#The fart only knocks back enemies"},
