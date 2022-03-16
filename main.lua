@@ -596,7 +596,7 @@ function EID:printDescription(desc, cachedID)
 			local anim2 = "numbers"
 			local frame2 = curItemConfig.MaxCharges
 			if REPENTANCE and curItemConfig.ChargeType == ItemConfig.CHARGE_TIMED then
-				anim2 = "pickups"; frame2 = 10 -- Timer Icon
+				anim2 = "Misc"; frame2 = 6 -- Timer Icon
 			elseif REPENTANCE and (curItemConfig.ChargeType == ItemConfig.CHARGE_SPECIAL or desc.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or desc.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or 
 			desc.ObjSubType == CollectibleType.COLLECTIBLE_CLEAR_RUNE or desc.ObjSubType == CollectibleType.COLLECTIBLE_D_INFINITY) then
 				frame2 = 13 -- Question Mark Icon
