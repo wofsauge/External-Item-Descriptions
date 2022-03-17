@@ -1153,19 +1153,19 @@ local function onRender(t)
 	EID:resumeCoroutines()
 	ArrowSprite:Update()
 	EID:setPlayer()
-	if REPENTANCE then
-		local hasBag, bagPlayer = EID:PlayersHaveCollectible(710)
-		if hasBag then
-			EID.bagPlayer = bagPlayer
-			EID:handleBagOfCraftingUpdating()
-		end
-	end
 	
 	EID.isDisplaying = false
 	EID.descriptionsToPrint = {}
 	EID.entitiesToPrint = {}
 	alwaysUseLocalMode = false
-	-- Do not check our hotkeys while a tab that can modify the hotkey is open
+	if EID:RefreshThisFrame() then
+		EID.CachedIcons = {}
+		EID.CachedStrings = {}
+		EID.CachedRenderPoses = {}
+		EID.CachedIndicators = {}
+		EID.previousDescs = {}
+	end
+	-- Do not check our hide or scale hotkeys while a tab that can modify them is open
 	if EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then
 		-- scale key must be handled before resetting to non-local mode
 		handleScaleKey()
@@ -1178,6 +1178,22 @@ local function onRender(t)
 	-- If MCM is open, don't show anything unless we're in a tab labeled as "Visuals" or "Crafting"
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
 		return
+	end
+	
+	if REPENTANCE then
+		local hasBag, bagPlayer = EID:PlayersHaveCollectible(710)
+		if hasBag then
+			EID.bagPlayer = bagPlayer
+			EID:handleBagOfCraftingUpdating()
+			-- If we're in the Crafting options tab, the only rendering we want to happen is the Bag of Crafting preview
+			if ModConfigMenu and ModConfigMenu.IsVisible and EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
+				local craftingSuccess = EID:handleBagOfCraftingRendering()
+				if craftingSuccess then
+					EID:printDescription(EID.descriptionsToPrint[#EID.descriptionsToPrint])
+				end
+				return
+			end
+		end
 	end
 	
 	-- Handle descriptions that display regardless of player position
@@ -1200,12 +1216,10 @@ local function onRender(t)
 	end
 	
 	-- This is not a frame we should check for new descriptions; just print our cached ones
-	if not EID:RefreshThisFrame() then
+	if not EID:RefreshThisFrame() and not EID.MCM_OptionChanged then
 		EID:printDescriptions(true)
 		return
 	end
-	
-	EID.CachedIndicators = {}
 	
 	if EID.Config["EnableMouseControls"] then
 		local hudDescription = EID:handleHoverHUD()
@@ -1235,18 +1249,6 @@ local function onRender(t)
 			if craftingSuccess then
 				displayedDesc = true
 			end
-		end
-		-- If we're in the Crafting options tab, the only rendering we want to happen is the Bag of Crafting preview
-		if EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
-			if craftingSuccess then
-				EID:printDescription(EID.descriptionsToPrint[#EID.descriptionsToPrint])
-				return
-			else
-				-- fix blinking bug after using "clear bag" option button
-				EID.previousDescs = {}
-				EID.CachedIndicators = {}
-			end
-			if i == #playerSearch then return end
 		end
 		
 		if not displayedDesc or EID.Config["DisplayAllNearby"] then
