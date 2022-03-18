@@ -341,19 +341,21 @@ EID.InlineIcons = {
 	["Crafting29"] = {"Crafting", 29, 13, 16, 0, -1},
 	["Crafting30"] = {"Crafting", 30, 11, 16, 0},
 	
-	-- Stats
-	["Damage"] = {"Stats", 0, 13, 16, 0, -1},
-	["Speed"] = {"Stats", 1, 16, 16, 0, -1},
-	["Tears"] = {"Stats", 2, 17, 16, 0, 0},
-	["Range"] = {"Stats", 3, 15, 16, 0, -1},
-	["Shotspeed"] = {"Stats", 4, 13, 16, 0, -1},
-	["Luck"] = {"Stats", 5, 15, 16, 0, -2},
-	["AngelChance"] = {"Stats", 6, 15, 16, -1, -1},
-	["DevilChance"] = {"Stats", 7, 15, 16, 0, -2},
+	-- Use the Stat Icon name without REP or AB to display the stat icon for the dlc the user is using right now. Example: {{Damage}}
+	-- Stats (Repentance)
+	["DamageREP"] = {"Stats", 0, 13, 16, 0, -1},
+	["SpeedREP"] = {"Stats", 1, 16, 16, 0, -1},
+	["TearsREP"] = {"Stats", 2, 17, 16, 0, 0},
+	["RangeREP"] = {"Stats", 3, 15, 16, 0, -1},
+	["ShotspeedREP"] = {"Stats", 4, 13, 16, 0, -1},
+	["LuckREP"] = {"Stats", 5, 15, 16, 0, -2},
+	["AngelChanceREP"] = {"Stats", 6, 15, 16, -1, -1},
+	["DevilChanceREP"] = {"Stats", 7, 15, 16, 0, -2},
+	["TearsizeREP"] = {"Stats", 11, 11, 16, 0, 1},
+	
 	["AngelDevilChance"] = {"Stats", 8, 17, 16, 0, -3},
 	["PlanetariumChance"] = {"Stats", 9, 11, 16, 0, -1}, --unused
 	["TreasureRoomChance"] = {"Stats", 10, 14, 16, 0, 0}, --unused, assuming that's what it means
-	["Tearsize"] = {"Stats", 11, 11, 16, 0, 1},
 	-- Stats (Afterbirth+)
 	["DamageAB"] = {"Stats", 12, 12, 16, 0, 0},
 	["SpeedAB"] = {"Stats", 13, 13, 16, 0, 0},
@@ -498,6 +500,19 @@ EID.InlineIcons = {
 	["DailyRun"] = {"Misc", 14, 15, 12, 0, -1},
 	["DailyRunSmall"] = {"Misc", 15, 12, 12, 0, 1},
 }
+-- General Stats (Adjust automatically according to the current DLC)
+
+EID.InlineIcons["Damage"] = REPENTANCE and EID.InlineIcons["DamageREP"] or EID.InlineIcons["DamageAB"]
+EID.InlineIcons["Speed"] = REPENTANCE and EID.InlineIcons["SpeedREP"] or EID.InlineIcons["SpeedAB"]
+EID.InlineIcons["Tears"] = REPENTANCE and EID.InlineIcons["TearsREP"] or EID.InlineIcons["TearsAB"]
+EID.InlineIcons["Range"] = REPENTANCE and EID.InlineIcons["RangeREP"] or EID.InlineIcons["RangeAB"]
+EID.InlineIcons["Shotspeed"] = REPENTANCE and EID.InlineIcons["ShotspeedREP"] or EID.InlineIcons["ShotspeedAB"]
+EID.InlineIcons["Luck"] = REPENTANCE and EID.InlineIcons["LuckREP"] or EID.InlineIcons["LuckAB"]
+EID.InlineIcons["AngelChance"] = REPENTANCE and EID.InlineIcons["AngelChanceREP"] or EID.InlineIcons["AngelChanceAB"]
+EID.InlineIcons["DevilChance"] = REPENTANCE and EID.InlineIcons["DevilChanceREP"] or EID.InlineIcons["DevilChanceAB"]
+EID.InlineIcons["Tearsize"] = REPENTANCE and EID.InlineIcons["TearsizeREP"] or EID.InlineIcons["TearsizeAB"]
+
+
 
 -- Table that holds Colors used for markup objects. Example: "{{ColorRed}}"
 -- Format: ["Shortcut"] = KColor
