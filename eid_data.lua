@@ -21,6 +21,36 @@ EID.effectList = {
 	["161"] = true,
 }
 
+--maps the Player transformation from the enum PlayerForm to the internal transformation table
+-- Possible usages:		EID.TRANSFORMATION[ PlayerForm.PLAYERFORM_MUSHROOM ]
+-- 						EID.TRANSFORMATION.MUSHROOM
+EID.TRANSFORMATION = {
+	["GUPPY"] = 1,
+	["LORD_OF_THE_FLIES"] = 3,
+	["MUSHROOM"] = 2,
+	["ANGEL"] = 10,
+	["BOB"] = 8,
+	["SPUN"] = 5,
+	["MOM"] = 6,
+	["CONJOINED"] = 4,
+	["LEVIATHAN"] = 9,
+	["POOP"] = 7,
+	["BOOKWORM"] = 12,
+	["ADULT"] = 14,
+	["SPIDERBABY"] = 13,
+	["SUPERBUM"] = 11,
+	["STOMPY"] = 15
+}
+
+-- List of item Types
+EID.ItemTypeAnm2Names = {
+	"null", -- 1
+	"passive", -- 2
+	"active", -- 3
+	"familiar", -- 4
+	"trinket" -- 5
+}
+
 -- List of HUD elements, their position and usage
 EID.HUDElements = {
 	["Active1"] = {x = 20,y = 5, width = 65, height = 65, anchors={"TOP","LEFT"}, descriptionObj = function() 
@@ -709,4 +739,23 @@ EID.MarkupSizeMap = {
 	["{{GreedierMode}}"] = "{{GreedierModeSmall}}",
 	["{{AchievementLocked}}"] = "{{AchievementLockedSmall}}",
 	["{{DailyRun}}"] = "{{DailyRunSmall}}",
+}
+
+EID.TransformationData = {
+	-- Structure: [Internal Name of Transformation] = {NumNeeded = 3 (Default), VanillaForm = nil (default)}
+	[tostring(EID.TRANSFORMATION.GUPPY)] = {VanillaForm = PlayerForm.PLAYERFORM_GUPPY},
+	[tostring(EID.TRANSFORMATION.LORD_OF_THE_FLIES)] = {VanillaForm = PlayerForm.PLAYERFORM_LORD_OF_THE_FLIES},
+	[tostring(EID.TRANSFORMATION.MUSHROOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MUSHROOM},
+	[tostring(EID.TRANSFORMATION.ANGEL)] = {VanillaForm = PlayerForm.PLAYERFORM_ANGEL},
+	[tostring(EID.TRANSFORMATION.BOB)] = {VanillaForm = PlayerForm.PLAYERFORM_BOB},
+	[tostring(EID.TRANSFORMATION.SPUN)] = {VanillaForm = PlayerForm.PLAYERFORM_DRUGS},
+	[tostring(EID.TRANSFORMATION.MOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MOM},
+	[tostring(EID.TRANSFORMATION.CONJOINED)] = {VanillaForm = PlayerForm.PLAYERFORM_BABY},
+	[tostring(EID.TRANSFORMATION.LEVIATHAN)] = {VanillaForm = PlayerForm.PLAYERFORM_EVIL_ANGEL},
+	[tostring(EID.TRANSFORMATION.POOP)] = {VanillaForm = PlayerForm.PLAYERFORM_POOP},
+	[tostring(EID.TRANSFORMATION.BOOKWORM)] = {VanillaForm = PlayerForm.PLAYERFORM_BOOK_WORM},
+	[tostring(EID.TRANSFORMATION.ADULT)] = {VanillaForm = PlayerForm.PLAYERFORM_ADULTHOOD},
+	[tostring(EID.TRANSFORMATION.SPIDERBABY)] = {VanillaForm = PlayerForm.PLAYERFORM_SPIDERBABY},
+	[tostring(EID.TRANSFORMATION.SUPERBUM)] = {},
+	[tostring(EID.TRANSFORMATION.STOMPY)] = {VanillaForm = REPENTANCE and PlayerForm.PLAYERFORM_STOMPY}
 }

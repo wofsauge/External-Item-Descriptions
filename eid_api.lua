@@ -19,38 +19,6 @@ if not __eidEntityDescriptions then
 end
 
 ---------------------------------------------------------------------------
--------------------------Handle Custom Enum -----------------------------
-
---maps the Player transformation from the enum PlayerForm to the internal transformation table
--- Possible usages:		EID.TRANSFORMATION[ PlayerForm.PLAYERFORM_MUSHROOM ]
--- 						EID.TRANSFORMATION.MUSHROOM
-EID.TRANSFORMATION = {
-	["GUPPY"] = 1,
-	["LORD_OF_THE_FLIES"] = 3,
-	["MUSHROOM"] = 2,
-	["ANGEL"] = 10,
-	["BOB"] = 8,
-	["SPUN"] = 5,
-	["MOM"] = 6,
-	["CONJOINED"] = 4,
-	["LEVIATHAN"] = 9,
-	["POOP"] = 7,
-	["BOOKWORM"] = 12,
-	["ADULT"] = 14,
-	["SPIDERBABY"] = 13,
-	["SUPERBUM"] = 11
-}
-
--- List of item Types
-EID.ItemTypeAnm2Names = {
-	"null", -- 1
-	"passive", -- 2
-	"active", -- 3
-	"familiar", -- 4
-	"trinket" -- 5
-}
-
----------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
 local nullVector = Vector(0,0)
 local game = Game()
@@ -1443,4 +1411,74 @@ function EID:replaceMarkupSize(description)
 		end
 	end
 	return description
+end
+
+-- Creates a table that contains all objects a transformation is associated with.
+EID.TransformationLookup = {}
+function EID:buildTransformationTables()
+	EID.TransformationLookup = {}
+	for entityString, transformationData in pairs(EID.EntityTransformations) do
+		for transformation in string.gmatch(transformationData, '([^,]+)') do
+			if EID.TransformationLookup[transformation] == nil then
+				EID.TransformationLookup[transformation] = {}
+			end
+			EID.TransformationLookup[transformation][entityString] = true
+		end
+	end
+end
+
+-- Given a transformation identifier, itterate over every player and count the number of items they have which count towards that transformation 
+EID.TransformationProgress = {}
+function EID:evaluateTransformationProgress(transformation)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		EID.TransformationProgress[i] = {}
+		EID.TransformationProgress[i][transformation] = 0
+		local transformData = EID.TransformationData[transformation]
+		if transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
+			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
+		else
+			for entityString, _ in pairs(EID.TransformationLookup[transformation]) do
+				eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
+				if tonumber(eType) == EntityType.ENTITY_PICKUP then
+					if tonumber(eVariant) == PickupVariant.PICKUP_COLLECTIBLE then
+						if EID.TouchedActiveItems[i][tonumber(eSubType)] then
+							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + EID.TouchedActiveItems[i][tonumber(eSubType)]
+						else
+							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + player:GetCollectibleNum(eSubType, true)
+						end
+					elseif tonumber(eVariant) == PickupVariant.PICKUP_TRINKET and player:HasTrinket(eSubType) then
+						EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + 1
+					end
+				end
+			end
+		end
+	end
+end
+
+-- Given a transformation identifier, itterate over every player and count the number of items they have which count towards that transformation 
+EID.TouchedActiveItems = {}
+function EID:evaluateQueuedItems()
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player.QueuedItem then
+			if not EID.TouchedActiveItems[i] then
+				EID.TouchedActiveItems[i] = {LastTouch = 0}
+			end
+			if EID.TouchedActiveItems[i].LastTouch + 60 >= game:GetFrameCount() and player.QueuedItem.Item then
+				return
+			else
+				EID.TouchedActiveItems[i].LastTouch = 0
+			end
+
+			if not player.QueuedItem.Touched and player.QueuedItem.Item and player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
+				local itemID = player.QueuedItem.Item.ID
+				if not EID.TouchedActiveItems[i][itemID] then
+					EID.TouchedActiveItems[i][itemID] = 0
+				end
+				EID.TouchedActiveItems[i][itemID] = EID.TouchedActiveItems[i][itemID] + 1
+				EID.TouchedActiveItems[i].LastTouch = game:GetFrameCount()
+			end
+		end 
+	end
 end

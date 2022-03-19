@@ -662,6 +662,13 @@ function EID:printDescription(desc, cachedID)
 			end
 			if EID.Config["TransformationText"] then
 				local transformationName = EID:getTransformationName(transform)
+				if true then
+					-- TODO: call evaluate only when ItemQueue of player changes to save performance
+					EID:evaluateTransformationProgress(transform)
+					local numCollected = EID.TransformationProgress[EID:getPlayerID(EID.player)][transform]
+					local numMax = EID.TransformationData[transform] and EID.TransformationData[transform].NumNeeded or 3
+					transformationName = transformationName.." ("..numCollected.."/"..numMax..")"
+				end
 				local iconWidth = transformSprite[3] or -1
 				local iconHeight = transformSprite[4] or -1
 				local textOffsetY = math.min(0, (iconHeight - 9)) / 4
@@ -979,6 +986,7 @@ EID.RecheckVoid = false
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
 	EID:checkPlayersForMissingItems()
+	EID:evaluateQueuedItems()
 	
 	-- Fix some outdated mods erroneously setting the REPENTANCE constant to false
 	if EID.GameVersion == "rep" and REPENTANCE == false then
@@ -1448,6 +1456,13 @@ local function onRender(t)
 end
 
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
+
+
+local function OnGameStartGeneral(_,isSave)
+	EID:buildTransformationTables()
+	EID.TouchedActiveItems = {}
+end
+EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
 -- only save and load configs when using MCM. Otherwise Config file changes arent valid
 if EID.MCMLoaded or REPENTANCE then
