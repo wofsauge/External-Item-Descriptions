@@ -607,8 +607,9 @@ function EID:printDescription(desc, cachedID)
 		offsetX = offsetX + 8
 	end
 	--Display Itemname
+	local curName = ""
 	if EID.Config["ShowItemName"] then
-		local curName = desc.Name
+		curName = desc.Name
 		if EID.Config["TranslateItemName"] ~= 2 then
 			local curLanguage = EID.Config["Language"]
 			if EID:getLanguage() ~= "en_us" then
@@ -622,32 +623,32 @@ function EID:printDescription(desc, cachedID)
 				end
 			end
 		end
-		-- Display Entity ID
-		if EID.Config["ShowObjectID"] and desc.ObjType > 0 then
-			curName = curName.." {{ColorGray}}"..desc.ObjType.."."..desc.ObjVariant.."."..desc.ObjSubType
-		end
-		-- Display Quality
-		if REPENTANCE and EID.Config["ShowQuality"] and desc.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
-			local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Quality)
-			curName = curName.." - {{Quality"..quality.."}}"
-		end
-		-- Display the mod this item is from
-		if desc.ModName then
-			if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
-				curName = curName .. " {{"..EID.Config["ModIndicatorTextColor"].."}}" .. EID.ModIndicator[desc.ModName].Name
-			end
-			if (EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Icon only") and EID.ModIndicator[desc.ModName].Icon then
-				curName = curName .. "{{".. EID.ModIndicator[desc.ModName].Icon .."}}"
-			end
-		end
-
-		EID:renderString(
-			curName,
-			renderPos + (Vector(offsetX, -3) * EID.Scale),
-			textScale,
-			EID:getNameColor()
-		)
 	end
+	-- Display Entity ID
+	if EID.Config["ShowObjectID"] and desc.ObjType > 0 then
+		curName = curName.." {{ColorGray}}"..desc.ObjType.."."..desc.ObjVariant.."."..desc.ObjSubType
+	end
+	-- Display Quality
+	if REPENTANCE and EID.Config["ShowQuality"] and desc.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
+		local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Quality)
+		curName = curName.." - {{Quality"..quality.."}}"
+	end
+	-- Display the mod this item is from
+	if desc.ModName then
+		if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
+			curName = curName .. " {{"..EID.Config["ModIndicatorTextColor"].."}}" .. EID.ModIndicator[desc.ModName].Name
+		end
+		if (EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Icon only") and EID.ModIndicator[desc.ModName].Icon then
+			curName = curName .. "{{".. EID.ModIndicator[desc.ModName].Icon .."}}"
+		end
+	end
+
+	EID:renderString(
+		curName,
+		renderPos + (Vector(offsetX, -3) * EID.Scale),
+		textScale,
+		EID:getNameColor()
+	)
 	
 	renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 	
@@ -660,9 +661,11 @@ function EID:printDescription(desc, cachedID)
 				transformLineHeight = math.max(EID.lineHeight, transformSprite[4])
 				EID:renderInlineIcons({{transformSprite,0}}, renderPos.X, renderPos.Y)
 			end
-			if EID.Config["TransformationText"] then
-				local transformationName = EID:getTransformationName(transform)
-				if true then
+			if EID.Config["TransformationText"] or EID.Config["TransformationProgress"] then
+				local transformationName = ""
+				if EID.Config["TransformationText"] then
+					transformationName = EID:getTransformationName(transform).." "
+				end
 				if EID.Config["TransformationProgress"] then
 					-- TODO: call evaluate only when ItemQueue of player changes to save performance
 					EID:evaluateTransformationProgress(transform)
