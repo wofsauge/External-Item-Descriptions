@@ -373,15 +373,15 @@ EID.InlineIcons = {
 	
 	-- Use the Stat Icon name without REP or AB to display the stat icon for the dlc the user is using right now. Example: {{Damage}}
 	-- Stats (Repentance)
-	["DamageREP"] = {"Stats", 0, 13, 16, 0, -1},
-	["SpeedREP"] = {"Stats", 1, 16, 16, 0, -1},
-	["TearsREP"] = {"Stats", 2, 17, 16, 0, 0},
-	["RangeREP"] = {"Stats", 3, 15, 16, 0, -1},
-	["ShotspeedREP"] = {"Stats", 4, 13, 16, 0, -1},
-	["LuckREP"] = {"Stats", 5, 15, 16, 0, -2},
-	["AngelChanceREP"] = {"Stats", 6, 15, 16, -1, -1},
-	["DevilChanceREP"] = {"Stats", 7, 15, 16, 0, -2},
-	["TearsizeREP"] = {"Stats", 11, 11, 16, 0, 1},
+	["Damage"] = {"Stats", 0, 13, 16, 0, -1},
+	["Speed"] = {"Stats", 1, 16, 16, 0, -1},
+	["Tears"] = {"Stats", 2, 17, 16, 0, 0},
+	["Range"] = {"Stats", 3, 15, 16, 0, -1},
+	["Shotspeed"] = {"Stats", 4, 13, 16, 0, -1},
+	["Luck"] = {"Stats", 5, 15, 16, 0, -2},
+	["AngelChance"] = {"Stats", 6, 15, 16, -1, -1},
+	["DevilChance"] = {"Stats", 7, 15, 16, 0, -2},
+	["Tearsize"] = {"Stats", 11, 11, 16, 0, 1},
 	
 	["AngelDevilChance"] = {"Stats", 8, 17, 16, 0, -3},
 	["PlanetariumChance"] = {"Stats", 9, 11, 16, 0, -1}, --unused
@@ -396,7 +396,7 @@ EID.InlineIcons = {
 	["AngelChanceAB"] = {"Stats", 18, 7, 16, 0, 1},
 	["DevilChanceAB"] = {"Stats", 19, 7, 16, 0, 1},
 	["TearsizeAB"] = {"Stats", 20, 9, 16, 0, 1},
-	-- Stats (Small)
+	-- Stats (Repentance Small)
 	["DamageSmall"] = {"Stats", 21, 10, 16, 0, 1},
 	["SpeedSmall"] = {"Stats", 22, 12, 16, 0, 1},
 	["TearsSmall"] = {"Stats", 23, 13, 16, 0, 1},
@@ -409,6 +409,18 @@ EID.InlineIcons = {
 	["PlanetariumChanceSmall"] = {"Stats", 30, 8, 16, 0, 1}, 
 	["TreasureRoomChanceSmall"] = {"Stats", 31, 10, 16, 0, 2},
 	["TearsizeSmall"] = {"Stats", 32, 8, 16, 0, 2},
+	-- Stats (Afterbirth+ Small)
+	["DamageABSmall"] = {"Stats", 33, 8, 16, 0, 2},
+	["SpeedABSmall"] = {"Stats", 34, 8, 16, 0, 2},
+	["TearsABSmall"] = {"Stats", 35, 8, 16, 0, 2},
+	["RangeABSmall"] = {"Stats", 36, 8, 16, 0, 2},
+	["ShotspeedABSmall"] = {"Stats", 37, 8, 16, 0, 2},
+	["LuckABSmall"] = {"Stats", 38, 8, 16, 0, 2},
+	["AngelChanceABSmall"] = {"Stats", 39, 8, 16, 0, 2},
+	["DevilChanceABSmall"] = {"Stats", 40, 8, 16, 0, 2},
+	["TearsizeABSmall"] = {"Stats", 41, 8, 16, 0, 2},
+	
+
 
 	-- Player Icons for Birthright
 	["Player0"] = {"Players", 0, 12, 12, -1, 1, EID.PlayerSprite}, -- Isaac
