@@ -1435,6 +1435,9 @@ function EID:evaluateTransformationProgress(transformation)
 		EID.TransformationProgress[i] = {}
 		EID.TransformationProgress[i][transformation] = 0
 		local transformData = EID.TransformationData[transformation]
+		
+		if not EID.TransformationLookup[transformation] then return end
+
 		if transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
 			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
 		else
