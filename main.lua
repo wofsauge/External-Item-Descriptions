@@ -607,8 +607,9 @@ function EID:printDescription(desc, cachedID)
 		offsetX = offsetX + 8
 	end
 	--Display Itemname
+	local curName = ""
 	if EID.Config["ShowItemName"] then
-		local curName = desc.Name
+		curName = desc.Name
 		if EID.Config["TranslateItemName"] ~= 2 then
 			local curLanguage = EID.Config["Language"]
 			if EID:getLanguage() ~= "en_us" then
@@ -622,32 +623,32 @@ function EID:printDescription(desc, cachedID)
 				end
 			end
 		end
-		-- Display Entity ID
-		if EID.Config["ShowObjectID"] and desc.ObjType > 0 then
-			curName = curName.." {{ColorGray}}"..desc.ObjType.."."..desc.ObjVariant.."."..desc.ObjSubType
-		end
-		-- Display Quality
-		if REPENTANCE and EID.Config["ShowQuality"] and desc.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
-			local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Quality)
-			curName = curName.." - {{Quality"..quality.."}}"
-		end
-		-- Display the mod this item is from
-		if desc.ModName then
-			if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
-				curName = curName .. " {{"..EID.Config["ModIndicatorTextColor"].."}}" .. EID.ModIndicator[desc.ModName].Name
-			end
-			if (EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Icon only") and EID.ModIndicator[desc.ModName].Icon then
-				curName = curName .. "{{".. EID.ModIndicator[desc.ModName].Icon .."}}"
-			end
-		end
-
-		EID:renderString(
-			curName,
-			renderPos + (Vector(offsetX, -3) * EID.Scale),
-			textScale,
-			EID:getNameColor()
-		)
 	end
+	-- Display Entity ID
+	if EID.Config["ShowObjectID"] and desc.ObjType > 0 then
+		curName = curName.." {{ColorGray}}"..desc.ObjType.."."..desc.ObjVariant.."."..desc.ObjSubType
+	end
+	-- Display Quality
+	if REPENTANCE and EID.Config["ShowQuality"] and desc.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
+		local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Quality)
+		curName = curName.." - {{Quality"..quality.."}}"
+	end
+	-- Display the mod this item is from
+	if desc.ModName then
+		if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
+			curName = curName .. " {{"..EID.Config["ModIndicatorTextColor"].."}}" .. EID.ModIndicator[desc.ModName].Name
+		end
+		if (EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Icon only") and EID.ModIndicator[desc.ModName].Icon then
+			curName = curName .. "{{".. EID.ModIndicator[desc.ModName].Icon .."}}"
+		end
+	end
+
+	EID:renderString(
+		curName,
+		renderPos + (Vector(offsetX, -3) * EID.Scale),
+		textScale,
+		EID:getNameColor()
+	)
 	
 	renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 	
@@ -660,8 +661,18 @@ function EID:printDescription(desc, cachedID)
 				transformLineHeight = math.max(EID.lineHeight, transformSprite[4])
 				EID:renderInlineIcons({{transformSprite,0}}, renderPos.X, renderPos.Y)
 			end
-			if EID.Config["TransformationText"] then
-				local transformationName = EID:getTransformationName(transform)
+			if EID.Config["TransformationText"] or EID.Config["TransformationProgress"] then
+				local transformationName = ""
+				if EID.Config["TransformationText"] then
+					transformationName = EID:getTransformationName(transform).." "
+				end
+				if EID.Config["TransformationProgress"] then
+					-- TODO: call evaluate only when ItemQueue of player changes to save performance
+					EID:evaluateTransformationProgress(transform)
+					local numCollected = EID.TransformationProgress[EID:getPlayerID(EID.player)][transform]
+					local numMax = EID.TransformationData[transform] and EID.TransformationData[transform].NumNeeded or 3
+					transformationName = transformationName.."("..numCollected.."/"..numMax..")"
+				end
 				local iconWidth = transformSprite[3] or -1
 				local iconHeight = transformSprite[4] or -1
 				local textOffsetY = math.min(0, (iconHeight - 9)) / 4
@@ -979,6 +990,7 @@ EID.RecheckVoid = false
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
 	EID:checkPlayersForMissingItems()
+	EID:evaluateQueuedItems()
 	
 	-- Fix some outdated mods erroneously setting the REPENTANCE constant to false
 	if EID.GameVersion == "rep" and REPENTANCE == false then
@@ -1153,19 +1165,19 @@ local function onRender(t)
 	EID:resumeCoroutines()
 	ArrowSprite:Update()
 	EID:setPlayer()
-	if REPENTANCE then
-		local hasBag, bagPlayer = EID:PlayersHaveCollectible(710)
-		if hasBag then
-			EID.bagPlayer = bagPlayer
-			EID:handleBagOfCraftingUpdating()
-		end
-	end
 	
 	EID.isDisplaying = false
 	EID.descriptionsToPrint = {}
 	EID.entitiesToPrint = {}
 	alwaysUseLocalMode = false
-	-- Do not check our hotkeys while a tab that can modify the hotkey is open
+	if EID:RefreshThisFrame() then
+		EID.CachedIcons = {}
+		EID.CachedStrings = {}
+		EID.CachedRenderPoses = {}
+		EID.CachedIndicators = {}
+		EID.previousDescs = {}
+	end
+	-- Do not check our hide or scale hotkeys while a tab that can modify them is open
 	if EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then
 		-- scale key must be handled before resetting to non-local mode
 		handleScaleKey()
@@ -1178,6 +1190,22 @@ local function onRender(t)
 	-- If MCM is open, don't show anything unless we're in a tab labeled as "Visuals" or "Crafting"
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
 		return
+	end
+	
+	if REPENTANCE then
+		local hasBag, bagPlayer = EID:PlayersHaveCollectible(710)
+		if hasBag then
+			EID.bagPlayer = bagPlayer
+			EID:handleBagOfCraftingUpdating()
+			-- If we're in the Crafting options tab, the only rendering we want to happen is the Bag of Crafting preview
+			if ModConfigMenu and ModConfigMenu.IsVisible and EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
+				local craftingSuccess = EID:handleBagOfCraftingRendering()
+				if craftingSuccess then
+					EID:printDescription(EID.descriptionsToPrint[#EID.descriptionsToPrint])
+				end
+				return
+			end
+		end
 	end
 	
 	-- Handle descriptions that display regardless of player position
@@ -1200,12 +1228,10 @@ local function onRender(t)
 	end
 	
 	-- This is not a frame we should check for new descriptions; just print our cached ones
-	if not EID:RefreshThisFrame() then
+	if not EID:RefreshThisFrame() and not EID.MCM_OptionChanged then
 		EID:printDescriptions(true)
 		return
 	end
-	
-	EID.CachedIndicators = {}
 	
 	if EID.Config["EnableMouseControls"] then
 		local hudDescription = EID:handleHoverHUD()
@@ -1235,18 +1261,6 @@ local function onRender(t)
 			if craftingSuccess then
 				displayedDesc = true
 			end
-		end
-		-- If we're in the Crafting options tab, the only rendering we want to happen is the Bag of Crafting preview
-		if EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
-			if craftingSuccess then
-				EID:printDescription(EID.descriptionsToPrint[#EID.descriptionsToPrint])
-				return
-			else
-				-- fix blinking bug after using "clear bag" option button
-				EID.previousDescs = {}
-				EID.CachedIndicators = {}
-			end
-			if i == #playerSearch then return end
 		end
 		
 		if not displayedDesc or EID.Config["DisplayAllNearby"] then
@@ -1446,6 +1460,13 @@ local function onRender(t)
 end
 
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
+
+
+local function OnGameStartGeneral(_,isSave)
+	EID:buildTransformationTables()
+	EID.TouchedActiveItems = {}
+end
+EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
 -- only save and load configs when using MCM. Otherwise Config file changes arent valid
 if EID.MCMLoaded or REPENTANCE then

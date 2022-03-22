@@ -525,6 +525,7 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Visuals", "ShowItemIcon", "Display Item Icon")
 	EID:AddBooleanSetting("Visuals", "TransformationText", "Display Transformation Name")
 	EID:AddBooleanSetting("Visuals", "TransformationIcons", "Display Transformation Icon")
+	EID:AddBooleanSetting("Visuals", "TransformationProgress", "Display Transformation Progress")
 	EID:AddBooleanSetting("Visuals", "ShowQuality", "Display Quality Info", {repOnly = true})
 	EID:AddBooleanSetting("Visuals", "ShowObjectID", "Display Object ID")
 	

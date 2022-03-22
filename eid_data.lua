@@ -21,6 +21,36 @@ EID.effectList = {
 	["161"] = true,
 }
 
+--maps the Player transformation from the enum PlayerForm to the internal transformation table
+-- Possible usages:		EID.TRANSFORMATION[ PlayerForm.PLAYERFORM_MUSHROOM ]
+-- 						EID.TRANSFORMATION.MUSHROOM
+EID.TRANSFORMATION = {
+	["GUPPY"] = 1,
+	["LORD_OF_THE_FLIES"] = 3,
+	["MUSHROOM"] = 2,
+	["ANGEL"] = 10,
+	["BOB"] = 8,
+	["SPUN"] = 5,
+	["MOM"] = 6,
+	["CONJOINED"] = 4,
+	["LEVIATHAN"] = 9,
+	["POOP"] = 7,
+	["BOOKWORM"] = 12,
+	["ADULT"] = 14,
+	["SPIDERBABY"] = 13,
+	["SUPERBUM"] = 11,
+	["STOMPY"] = 15
+}
+
+-- List of item Types
+EID.ItemTypeAnm2Names = {
+	"null", -- 1
+	"passive", -- 2
+	"active", -- 3
+	"familiar", -- 4
+	"trinket" -- 5
+}
+
 -- List of HUD elements, their position and usage
 EID.HUDElements = {
 	["Active1"] = {x = 20,y = 5, width = 65, height = 65, anchors={"TOP","LEFT"}, descriptionObj = function() 
@@ -341,19 +371,21 @@ EID.InlineIcons = {
 	["Crafting29"] = {"Crafting", 29, 13, 16, 0, -1},
 	["Crafting30"] = {"Crafting", 30, 11, 16, 0},
 	
-	-- Stats
-	["Damage"] = {"Stats", 0, 13, 16, 0, -1},
-	["Speed"] = {"Stats", 1, 16, 16, 0, -1},
-	["Tears"] = {"Stats", 2, 17, 16, 0, 0},
-	["Range"] = {"Stats", 3, 15, 16, 0, -1},
-	["Shotspeed"] = {"Stats", 4, 13, 16, 0, -1},
-	["Luck"] = {"Stats", 5, 15, 16, 0, -2},
-	["AngelChance"] = {"Stats", 6, 15, 16, -1, -1},
-	["DevilChance"] = {"Stats", 7, 15, 16, 0, -2},
+	-- Use the Stat Icon name without REP or AB to display the stat icon for the dlc the user is using right now. Example: {{Damage}}
+	-- Stats (Repentance)
+	["DamageREP"] = {"Stats", 0, 13, 16, 0, -1},
+	["SpeedREP"] = {"Stats", 1, 16, 16, 0, -1},
+	["TearsREP"] = {"Stats", 2, 17, 16, 0, 0},
+	["RangeREP"] = {"Stats", 3, 15, 16, 0, -1},
+	["ShotspeedREP"] = {"Stats", 4, 13, 16, 0, -1},
+	["LuckREP"] = {"Stats", 5, 15, 16, 0, -2},
+	["AngelChanceREP"] = {"Stats", 6, 15, 16, -1, -1},
+	["DevilChanceREP"] = {"Stats", 7, 15, 16, 0, -2},
+	["TearsizeREP"] = {"Stats", 11, 11, 16, 0, 1},
+	
 	["AngelDevilChance"] = {"Stats", 8, 17, 16, 0, -3},
 	["PlanetariumChance"] = {"Stats", 9, 11, 16, 0, -1}, --unused
 	["TreasureRoomChance"] = {"Stats", 10, 14, 16, 0, 0}, --unused, assuming that's what it means
-	["Tearsize"] = {"Stats", 11, 11, 16, 0, 1},
 	-- Stats (Afterbirth+)
 	["DamageAB"] = {"Stats", 12, 12, 16, 0, 0},
 	["SpeedAB"] = {"Stats", 13, 13, 16, 0, 0},
@@ -364,7 +396,7 @@ EID.InlineIcons = {
 	["AngelChanceAB"] = {"Stats", 18, 7, 16, 0, 1},
 	["DevilChanceAB"] = {"Stats", 19, 7, 16, 0, 1},
 	["TearsizeAB"] = {"Stats", 20, 9, 16, 0, 1},
-	-- Stats (Small)
+	-- Stats (Repentance Small)
 	["DamageSmall"] = {"Stats", 21, 10, 16, 0, 1},
 	["SpeedSmall"] = {"Stats", 22, 12, 16, 0, 1},
 	["TearsSmall"] = {"Stats", 23, 13, 16, 0, 1},
@@ -377,6 +409,18 @@ EID.InlineIcons = {
 	["PlanetariumChanceSmall"] = {"Stats", 30, 8, 16, 0, 1}, 
 	["TreasureRoomChanceSmall"] = {"Stats", 31, 10, 16, 0, 2},
 	["TearsizeSmall"] = {"Stats", 32, 8, 16, 0, 2},
+	-- Stats (Afterbirth+ Small)
+	["DamageABSmall"] = {"Stats", 33, 8, 16, 0, 2},
+	["SpeedABSmall"] = {"Stats", 34, 8, 16, 0, 2},
+	["TearsABSmall"] = {"Stats", 35, 8, 16, 0, 2},
+	["RangeABSmall"] = {"Stats", 36, 8, 16, 0, 2},
+	["ShotspeedABSmall"] = {"Stats", 37, 8, 16, 0, 2},
+	["LuckABSmall"] = {"Stats", 38, 8, 16, 0, 2},
+	["AngelChanceABSmall"] = {"Stats", 39, 8, 16, 0, 2},
+	["DevilChanceABSmall"] = {"Stats", 40, 8, 16, 0, 2},
+	["TearsizeABSmall"] = {"Stats", 41, 8, 16, 0, 2},
+	
+
 
 	-- Player Icons for Birthright
 	["Player0"] = {"Players", 0, 12, 12, -1, 1, EID.PlayerSprite}, -- Isaac
@@ -498,6 +542,19 @@ EID.InlineIcons = {
 	["DailyRun"] = {"Misc", 14, 15, 12, 0, -1},
 	["DailyRunSmall"] = {"Misc", 15, 12, 12, 0, 1},
 }
+-- General Stats (Adjust automatically according to the current DLC)
+
+EID.InlineIcons["Damage"] = REPENTANCE and EID.InlineIcons["DamageREP"] or EID.InlineIcons["DamageAB"]
+EID.InlineIcons["Speed"] = REPENTANCE and EID.InlineIcons["SpeedREP"] or EID.InlineIcons["SpeedAB"]
+EID.InlineIcons["Tears"] = REPENTANCE and EID.InlineIcons["TearsREP"] or EID.InlineIcons["TearsAB"]
+EID.InlineIcons["Range"] = REPENTANCE and EID.InlineIcons["RangeREP"] or EID.InlineIcons["RangeAB"]
+EID.InlineIcons["Shotspeed"] = REPENTANCE and EID.InlineIcons["ShotspeedREP"] or EID.InlineIcons["ShotspeedAB"]
+EID.InlineIcons["Luck"] = REPENTANCE and EID.InlineIcons["LuckREP"] or EID.InlineIcons["LuckAB"]
+EID.InlineIcons["AngelChance"] = REPENTANCE and EID.InlineIcons["AngelChanceREP"] or EID.InlineIcons["AngelChanceAB"]
+EID.InlineIcons["DevilChance"] = REPENTANCE and EID.InlineIcons["DevilChanceREP"] or EID.InlineIcons["DevilChanceAB"]
+EID.InlineIcons["Tearsize"] = REPENTANCE and EID.InlineIcons["TearsizeREP"] or EID.InlineIcons["TearsizeAB"]
+
+
 
 -- Table that holds Colors used for markup objects. Example: "{{ColorRed}}"
 -- Format: ["Shortcut"] = KColor
@@ -694,4 +751,23 @@ EID.MarkupSizeMap = {
 	["{{GreedierMode}}"] = "{{GreedierModeSmall}}",
 	["{{AchievementLocked}}"] = "{{AchievementLockedSmall}}",
 	["{{DailyRun}}"] = "{{DailyRunSmall}}",
+}
+
+EID.TransformationData = {
+	-- Structure: [Internal Name of Transformation] = {NumNeeded = 3 (Default), VanillaForm = nil (default)}
+	[tostring(EID.TRANSFORMATION.GUPPY)] = {VanillaForm = PlayerForm.PLAYERFORM_GUPPY},
+	[tostring(EID.TRANSFORMATION.LORD_OF_THE_FLIES)] = {VanillaForm = PlayerForm.PLAYERFORM_LORD_OF_THE_FLIES},
+	[tostring(EID.TRANSFORMATION.MUSHROOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MUSHROOM},
+	[tostring(EID.TRANSFORMATION.ANGEL)] = {VanillaForm = PlayerForm.PLAYERFORM_ANGEL},
+	[tostring(EID.TRANSFORMATION.BOB)] = {VanillaForm = PlayerForm.PLAYERFORM_BOB},
+	[tostring(EID.TRANSFORMATION.SPUN)] = {VanillaForm = PlayerForm.PLAYERFORM_DRUGS},
+	[tostring(EID.TRANSFORMATION.MOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MOM},
+	[tostring(EID.TRANSFORMATION.CONJOINED)] = {VanillaForm = PlayerForm.PLAYERFORM_BABY},
+	[tostring(EID.TRANSFORMATION.LEVIATHAN)] = {VanillaForm = PlayerForm.PLAYERFORM_EVIL_ANGEL},
+	[tostring(EID.TRANSFORMATION.POOP)] = {VanillaForm = PlayerForm.PLAYERFORM_POOP},
+	[tostring(EID.TRANSFORMATION.BOOKWORM)] = {VanillaForm = PlayerForm.PLAYERFORM_BOOK_WORM},
+	[tostring(EID.TRANSFORMATION.ADULT)] = {VanillaForm = PlayerForm.PLAYERFORM_ADULTHOOD},
+	[tostring(EID.TRANSFORMATION.SPIDERBABY)] = {VanillaForm = PlayerForm.PLAYERFORM_SPIDERBABY},
+	[tostring(EID.TRANSFORMATION.SUPERBUM)] = {},
+	[tostring(EID.TRANSFORMATION.STOMPY)] = {VanillaForm = REPENTANCE and PlayerForm.PLAYERFORM_STOMPY}
 }
