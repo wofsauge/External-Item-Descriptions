@@ -417,9 +417,8 @@ function EID:getTransformation(id, variant, subType)
 	local default = EID.EntityTransformations[entityString]
 	if default~= nil then listToTest = default end
 
-	local customLegacy = nil
 	if id == 5 and variant == 100 then
-		customLegacy = __eidItemTransformations[adjustedSubtype]
+		local customLegacy = __eidItemTransformations[adjustedSubtype]
 		if customLegacy~= nil then listToTest = listToTest..","..customLegacy end
 	end
 
@@ -1418,12 +1417,28 @@ EID.TransformationLookup = {}
 function EID:buildTransformationTables()
 	EID.TransformationLookup = {}
 	for entityString, transformationData in pairs(EID.EntityTransformations) do
-		for transformation in string.gmatch(transformationData, '([^,]+)') do
-			if EID.TransformationLookup[transformation] == nil then
-				EID.TransformationLookup[transformation] = {}
-			end
-			EID.TransformationLookup[transformation][entityString] = true
+		EID:alterTransformationLookup(entityString, transformationData, true)
+	end
+	-- legacy
+	for subType, transformationData in pairs(__eidItemTransformations) do
+		EID:alterTransformationLookup("5.100."..subType, transformationData, true)
+	end
+	-- add custom
+	for entityString, transformationData in pairs(EID.CustomTransformAssignments) do
+		EID:alterTransformationLookup(entityString, transformationData, true)
+	end
+	-- custom remove
+	for entityString, transformationData in pairs(EID.CustomTransformRemovals) do
+		EID:alterTransformationLookup(entityString, transformationData, nil)
+	end
+end
+
+function EID:alterTransformationLookup(entityString, transformString, addToList)
+	for transformation in string.gmatch(transformString, '([^,]+)') do
+		if EID.TransformationLookup[transformation] == nil then
+			EID.TransformationLookup[transformation] = {}
 		end
+		EID.TransformationLookup[transformation][entityString] = addToList
 	end
 end
 
@@ -1442,7 +1457,7 @@ function EID:evaluateTransformationProgress(transformation)
 			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
 		else
 			for entityString, _ in pairs(EID.TransformationLookup[transformation]) do
-				eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
+				local eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
 				if tonumber(eType) == EntityType.ENTITY_PICKUP then
 					if tonumber(eVariant) == PickupVariant.PICKUP_COLLECTIBLE then
 						if EID.TouchedActiveItems[i][tonumber(eSubType)] then

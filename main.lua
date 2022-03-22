@@ -664,14 +664,22 @@ function EID:printDescription(desc, cachedID)
 			if EID.Config["TransformationText"] or EID.Config["TransformationProgress"] then
 				local transformationName = ""
 				if EID.Config["TransformationText"] then
-					transformationName = EID:getTransformationName(transform).." "
+					transformationName = EID:getTransformationName(transform)
 				end
 				if EID.Config["TransformationProgress"] then
-					-- TODO: call evaluate only when ItemQueue of player changes to save performance
 					EID:evaluateTransformationProgress(transform)
-					local numCollected = EID.TransformationProgress[EID:getPlayerID(EID.player)][transform]
-					local numMax = EID.TransformationData[transform] and EID.TransformationData[transform].NumNeeded or 3
-					transformationName = transformationName.."("..numCollected.."/"..numMax..")"
+					transformationName = transformationName .. " "
+					for _, player in ipairs(EID.players) do
+						if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then
+							if #EID.players > 1 then
+								local playerIcon = EID:getIcon("Player"..player.SubType) ~= EID.InlineIcons["ERROR"] and "{{Player"..player.SubType.."}}" or "{{CustomTransformation}}"
+								transformationName = transformationName .. playerIcon
+							end
+							local numCollected = EID.TransformationProgress[EID:getPlayerID(player)][transform]
+							local numMax = EID.TransformationData[transform] and EID.TransformationData[transform].NumNeeded or 3
+							transformationName = transformationName.."("..numCollected.."/"..numMax..") "
+						end
+					end
 				end
 				local iconWidth = transformSprite[3] or -1
 				local iconHeight = transformSprite[4] or -1
