@@ -285,7 +285,7 @@ local repCollectibles={
 	[618] = {"618", "Rotten Tomato", "{{Bait}} 17% chance to shoot tears that mark enemies#{{Luck}} 100% chance at 5 Luck#Marked enemies are attacked by other enemies"}, -- Rotten Tomato
 	[619] = {"619", "Birthright", "Has a different effect for each character"}, -- Birthright
 	[620] = {"620", "", "<Item does not exist>"},
-	[621] = {"621", "Red Stew", "↑ {{Damage}} +21.6 Damage up#Damage up wears off over the next 3 minutes#Killing enemies while effect is active extends the time#Full health"}, -- Red Stew
+	[621] = {"621", "Red Stew", "↑ {{Damage}} +21.6 Damage up#{{Heart}} Full health#Damage up wears off over the next 3 minutes#Killing enemies while effect is active extends the time"}, -- 
 	[622] = {"622", "Genesis", "{{Warning}} SINGLE USE {{Warning}}#Removes all of Isaac's items and pickups#Teleports you to a unique bedroom with pickups, chests and a trapdoor#For every item lost, it shows a set of 3 items to choose from"}, -- Genesis
 	[623] = {"623", "Sharp Key", "{{Key}} +5 keys#Throw your key to deal damage, destroy obstacles, or open doors#Enemies killed with it have a chance to spawn the content of a chest, including items"}, -- Sharp Key
 	[624] = {"624", "Booster Pack", "Spawns 5 random cards"}, -- Booster Pack
@@ -413,10 +413,10 @@ EID.descriptions[languageCode].birthright ={
 	{"Eve", "", "Whore of Babylon is active regardless of health#Dead Bird is active without taking damage"},
 	{"Samson", "", "Bloody Lust can gain 4 more damage boosts at the same +0.2 intervals, for a new maximum total of +14"},
 	{"Azazel", "", "Azazel's Brimstone beam becomes much wider, like Mega Blast#No effect on damage"},
-	{"Lazarus", "", "No direct effect unless you die and become Lazarus Risen#↑ {{Damage}} Once revived, Lazarus Risen gains a slowly fading +21.6 damage bonus"},
+	{"Lazarus", "", "Each time Lazarus revives as Lazarus Risen:#↑ {{Damage}} +7.2 Damage up#Damage up wears off over the next minute#Killing enemies while effect is active extends the time"},
 	{"Eden", "", "Spawns 3 random items from random item pools#Only one can be taken"},
 	{"The Lost", "", "Prevents items not beneficial to The Lost from spawning#Examples: items that only give health, flight, and/or spectral tears or activate upon taking damage"},
-	{"Lazarus Risen", "", "↑ {{Damage}} Grants a slowly fading +21.6 damage bonus"},
+	{"Lazarus Risen", "", "↑ {{Damage}} +7.2 Damage up#Damage up wears off over the next minute#Killing enemies while effect is active extends the time#This effect triggers each time Lazarus revives as Lazarus Risen"},
 	{"Black Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#{{Collectible34}} Receive The Book of Belial if you're not currently holding it#↑ {{Damage}} The damage boost received from it scales with the amount of charges the active item above it has#Grants special effects for certain active items"},
 	{"Lilith", "", "Familiars are positioned in front of Lilith's face"},
 	{"Keeper", "", "↑ +1 Health up#Raises HP cap by 1"},
