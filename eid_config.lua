@@ -177,6 +177,9 @@ EID.UserConfig = {
 	-- Toggle display of transformation icons
 	-- Default = true
 	["TransformationIcons"] = true,
+	-- Toggle display of transformation progress
+	-- Default = true
+	["TransformationProgress"] = true,
 	-- Set the color of the Transformation description text
 	-- Color names are defined in "eid_data.lua" (line 300)
 	-- Default = "ColorEIDTransform"
@@ -442,6 +445,7 @@ EID.DefaultConfig = {
 	["ShowObjectID"] = false,
 	["TransformationText"] = true,
 	["TransformationIcons"] = true,
+	["TransformationProgress"] = true,
 	["TransformationColor"] = "ColorEIDTransform",
 	["DisplayCardInfo"] = true,
 	["DisplayCardInfoShop"] = false,
