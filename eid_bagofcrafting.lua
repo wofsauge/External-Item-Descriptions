@@ -465,7 +465,7 @@ function EID:calculateBagOfCrafting(componentsTable)
 		for k,v in ipairs(itemWeights) do
 			target = target - v
 			if target < 0 then
-				if firstOption then
+				if firstOption and k ~= firstOption then
 					calculatedRecipes[componentsAsString] = firstOption
 					lockedRecipes[componentsAsString] = k
 					return firstOption, k
