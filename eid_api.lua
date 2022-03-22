@@ -1483,7 +1483,7 @@ function EID:evaluateQueuedItems()
 			if not EID.TouchedActiveItems[i] then
 				EID.TouchedActiveItems[i] = {LastTouch = 0}
 			end
-			if EID.TouchedActiveItems[i].LastTouch + 60 >= game:GetFrameCount() and player.QueuedItem.Item then
+			if EID.TouchedActiveItems[i].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
 				return
 			else
 				EID.TouchedActiveItems[i].LastTouch = 0

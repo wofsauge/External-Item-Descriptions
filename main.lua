@@ -1472,7 +1472,9 @@ EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
 local function OnGameStartGeneral(_,isSave)
 	EID:buildTransformationTables()
-	EID.TouchedActiveItems = {}
+	if not isSave then
+		EID.TouchedActiveItems = {}
+	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
@@ -1486,6 +1488,7 @@ if EID.MCMLoaded or REPENTANCE then
 		["FlipItemPositions"] = true,
 		["AbsorbedItems"] = true,
 		["CollectedItems"] = true,
+		["TouchedActiveItems"] = true,
 	}
 	--------------------------------
 	--------Handle Savadata---------
@@ -1501,6 +1504,17 @@ if EID.MCMLoaded or REPENTANCE then
 			if EID.SaveGame and EID.Config["SaveGameNumber"] > 0 then
 				for _, id in ipairs(EID.CollectedItems) do
 					EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[id] = nil
+				end
+			end
+			EID.TouchedActiveItems = {}
+			if isSave then
+				-- JSON saves integer table keys as strings. we need to transform them back... 
+				for playerID, data in pairs(savedEIDConfig["TouchedActiveItems"]) do
+					local convertedData = {}
+					for key, value in pairs(data) do
+						convertedData[tonumber(key) or key] = value
+					end
+					EID.TouchedActiveItems[tonumber(playerID)] = convertedData
 				end
 			end
 
@@ -1589,6 +1603,7 @@ if EID.MCMLoaded or REPENTANCE then
 			EID.Config["FlipItemPositions"] = flipItemTable or {}
 		end
 		EID.Config["CollectedItems"] = EID.CollectedItems
+		EID.Config["TouchedActiveItems"] = EID.TouchedActiveItems or {}
 
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()
