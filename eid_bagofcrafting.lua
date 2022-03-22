@@ -358,10 +358,15 @@ function EID:calculateBagOfCrafting(componentsTable)
 	table.sort(components)
 	local componentsAsString = table.concat(components, ",")
 
-	-- Check the fixed recipes. Currently, the fixed recipes ignore item unlock status
+	-- Check the fixed recipes
+	local fixedRecipeResult = nil
 	local cacheResult = CraftingFixedRecipes[componentsAsString]
 	if cacheResult ~= nil then
-		return cacheResult, cacheResult
+		if EID:isCollectibleUnlockedAnyPool(cacheResult) then
+			return cacheResult, cacheResult
+		else
+			fixedRecipeResult = cacheResult
+		end
 	end
 	-- Check the recipes already calculated for this seed
 	cacheResult = calculatedRecipes[componentsAsString]
@@ -453,14 +458,14 @@ function EID:calculateBagOfCrafting(componentsTable)
 	end
 	--When the first crafting result is an achievement locked item, this process gets repeated a second time to choose a new result
 	--That 2nd pick could also be achievement locked but we're ignoring that...
-	local firstOption = nil
+	local firstOption = fixedRecipeResult
 	while true do
-		local t = nextFloat() -- number between 0 and 1
+		local t = nextFloat() -- random number between 0 and 1
 		local target = t * totalWeight -- number between 0 and total weight of possible results
 		for k,v in ipairs(itemWeights) do
 			target = target - v
 			if target < 0 then
-				if firstOption then
+				if firstOption and k ~= firstOption then
 					calculatedRecipes[componentsAsString] = firstOption
 					lockedRecipes[componentsAsString] = k
 					return firstOption, k
