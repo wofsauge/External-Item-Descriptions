@@ -153,6 +153,7 @@ local repCollectibles={
 	[328] = {"328", "반전사진", "↑ {{DamageSmall}}공격력 +1#피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 방 안의 모든 적에게 40의 피해를 줍니다.#Dark Room 스테이지 입장에 필요한 아이템입니다."}, -- The Negative
 	[330] = {"330", "두유", "↓ {{DamageSmall}}공격력 배율 x0.2#↑ {{TearsSmall}}연사 배율 x5.5#충전이 필요한 공격이 충전 없이 자동으로 발사됩니다."}, -- Soy Milk
 	[331] = {"331", "신", "↑ {{DamageSmall}}공격력 +1#↓ {{TearsSmall}}연사 -0.6#↑ {{RangeSmall}}사거리 +0.5#↓ {{ShotspeedSmall}}탄속 -0.3#공격이 적에게 유도됩니다.#눈물에 후광이 생기며 후광에 닿은 적은 프레임당 2의 피해를 입습니다."}, -- Godhead
+	[332] = {"332", "나사로의 붕대", "↑ 목숨 +1#{{Player11}} 사망 시 즉시 Lazarus Risen 캐릭터#{{Blank}} (1{{Heart}}/{{DamageSmall}}공격력 배율 x1.2/{{Collectible214}}Anemic)로 부활하며 최대 체력이 1 감소합니다.#부활 이후 스테이지 진입 시마다 사망 이전의 Lazarus 캐릭터로 변경되며 해당 아이템의 효과를 다시 발동할 수 있습니다."}, -- Lazarus' Rags
 	[333] = {"333", "정신", "맵에 특급 비밀방을 제외한 모든 방의 위치가 표시됩니다."}, -- The Mind
 	[336] = {"336", "죽은 양파", "↓ {{RangeSmall}}사거리 -1.5#↓ {{ShotspeedSmall}}탄속 -0.4#공격이 적과 장애물을 관통합니다."}, -- Dead Onion
 	[339] = {"339", "안전핀", "↑ {{BlackHeart}}블랙하트 +1#↑ {{RangeSmall}}사거리 +1.5#↑ {{ShotspeedSmall}}탄속 +0.16"}, -- Safety Pin
