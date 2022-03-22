@@ -1478,6 +1478,21 @@ local function OnGameStartGeneral(_,isSave)
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
+-- Add currently held active items after D4 was used. Used for Transformation Progress
+local function OnUseD4(_, _, _, player)
+	local playerID = EID:getPlayerID(player)
+	for i = 0, 3 do
+		local itemID = player:GetActiveItem(i)
+		if itemID ~= 0 then
+			if not EID.TouchedActiveItems[playerID][itemID] then
+				EID.TouchedActiveItems[playerID][itemID] = 0
+			end
+			EID.TouchedActiveItems[playerID][itemID] = EID.TouchedActiveItems[playerID][itemID] + 1
+		end
+	end
+end
+EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
+
 -- only save and load configs when using MCM. Otherwise Config file changes arent valid
 if EID.MCMLoaded or REPENTANCE then
 	local json = require("json")
