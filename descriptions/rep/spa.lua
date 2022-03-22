@@ -34,7 +34,6 @@ local repCollectibles={
 	[42] = {"42", "Cabeza podrida de Bob", "{{Throwable}} {{Poison}} Bomba venenosa lanzable#Inflige 185 + tu daño#Crea una nube de veneno"}, -- Cabeza podrida de Bob
 	[44] = {"44", "¡Teletransporte!", "Teletransporta a Isaac a una habitación aleatoria (excepto a la habitación I AM ERROR)#Puedes influir un poco en la dirección al avanzar hacia allí"}, -- ¡Teletransporte!
 	[45] = {"45", "Delicioso Corazón", "{{Heart}} Cura 1 corazón rojo#También cura medio corazón a otros jugadores"}, -- Corazón Ñam
-	[51] = {"51", "Pentáculo", "↑ {{Damage}} Daño +1#↑ {{DevilChance}} +10% probabilidad de Pacto con el Diablo"},
 	[53] = {"53", "Imán", "Acerca los recolectables al jugador#Abre cofres a distancia, ignorando el daño de los cofres de pinchos"},
 	[55] = {"55", "Ojo de Mamá", "Posibilidad de disparar una lágrima hacia atrás"}, -- Ojo de Mamá
 	[62] = {"62", "Encanto del vampiro", "↑ {{Damage}} Daño +0.3#{{HalfHeart}}Cura medio corazón cada 13 enemigos asesinados"}, -- Encanto del vampiro
@@ -42,7 +41,7 @@ local repCollectibles={
 	[67] = {"67", "Hermana Maggy", "Familiar de lágrimas normales#Inflige 5 de daño"}, -- Hermana Maggy
 	[70] = {"70", "Hormonas de crecimiento", "↑ {{Speed}} Velocidad +0.2#↑ {{Damage}} Daño +1.0"}, -- Hormonas de crecimiento
 	[71] = {"71", "Mini Champi", "↑ {{Speed}} Velocidad +0.3#↑ {{Range}} Alcance +1.5# ↑ Te haces más pequeño"},
-	[72] = {"72", "Rosario", "↑ {{Tears}} Lágrimas +0.5#{{SoulHeart}} +3 corazones de alma#La Biblia es más común"}, -- Rosario
+	[72] = {"72", "Rosario", "↑ {{Tears}} Lágrimas +0.5#{{SoulHeart}} +3 corazones de alma#{{Collectible33}} La Biblia es más común"}, -- Rosario
 	[77] = {"77", "Mi pequeño unicornio", "Invencibilidad + 20 de daño por contacto"},
 	[79] = {"79", "La marca", "↑ {{Speed}} Velocidad +0.2#↑ {{Damage}} Daño +1.0#{{BlackHeart}} +1 corazón negro"}, -- La marca
 	[80] = {"80", "El pacto", "↑ {{Tears}} Lágrimas +0.7#↑ {{Damage}} Daño +0.5#{{BlackHeart}} +2 corazones negros"}, -- El pacto
@@ -139,6 +138,7 @@ local repCollectibles={
 	[355] = {"355", "Perlas de Mamá", "↑ {{Range}} Alcance +1.25#↑ {{Luck}} Suerte +1#{{SoulHeart}} +1 corazón de alma#↑ {{Tearsize}} Tamaño de lágrimas +0.5"}, -- Perlas de Mamá
 	[360] = {"360", "Íncubo", "Familiar que dispara lágrimas con las mismas estadísticas y efectos que las tuyas#{{Player13}} Inflige 100 % de daño al jugar con Lilith#Si no, inflige el 75 % de daño"},
 	[366] = {"366", "Bombas de dispersión", "{{Bomb}} +5 bombas#Hace que las bombas exploten en 4-5 bombas pequeñas"},
+	[365] = {"365", "Mosca perdida", "Mosca que se mueve por las paredes de la habitación#Inflige 60 de daño por contacto cada segundo#Los enemigos cercanos irán hacia ella"},
 	[368] = {"368", "Epífora", "↑ {{Tears}} Disparar en una única dirección aumenta la cadencia de disparo hasta un 200%"},
 	[369] = {"369", "Continuum", "↑ {{Range}} Alcance +3.0#↑ {{Tearsize}} Tamaño de lágrimas +1.5#Las lágrimas atraviesan las paredes y aparecen por la pared contraria"}, -- Continuum
 	[370] = {"370", "Sr. muñequita", "↑ {{Tears}} Lágrimas +0.7#↑ {{Range}} Alcance +1.5#↑ {{Tearsize}} Tamaño de lágrimas +0.5#{{Heart}} Genera 3 corazones aleatorios al tomarlo"}, -- Mr. Dolly
@@ -183,9 +183,12 @@ local repCollectibles={
 	[491] = {"491", "Bebé ácido", "Genera una píldora aleatoria cada 7 habitaciones#Usar una píldora envenena a los enemigos"}, -- Bebé ácido
 	[493] = {"493", "Adrenalina", "Por cada medio contenedor de corazón vacío:#↑ {{Damage}} Más daño basado en ((2 * Medios corazones vacíos) ^ 1,6) * 0,1"},
 	[494] = {"494", "Escalera de Jacob", "Lágrimas eléctricas que al impactar generan 1 o 2 rayos#Los rayos infligen la mitad de tu daño#Los rayos saltan entre enemigos"}, -- Escalera de Jacob
+	[497] = {"497", "Interior Camuflado", "Al entrar a una habitación te camuflas hasta que disparas#↑ {{Speed}} Velocidad +0.5 al estar camuflado#Al descamuflarse: #Todos los enemigos serán dañados#↑ {{Damage}} Más daño por la sala#↑ {{Tears}} Más lágrimas por la sala"},
 	[498] = {"498", "Dualidad", "{{AngelDevilChance}} Genera la sala del Diablo y del Ángel#Cuando entras en una la otra desaparece"},
 	[503] = {"503", "Pequeño cuerno", "Posibilidad de disparar una lágrima que invoca a una mano de Big Horn#La mano mata al instante a enemigos normales y daña a los jefes#Inflige 3,5 de daño por contacto"}, -- Pequeño cuerno
 	[504] = {"504", "Pepita marrón", "Genera una mosca torreta que dispara a los enemigos#Cada disparo inflige 3,5 de daño"}, -- Pepita marrón
+	[506] = {"506", "Apuñala espaldas", "{{BleedingOut}} Las lágrimas causan sangrado#El daño del sangrado se basará en la velocidad de los enemigos (Más velocidad = más daño)"},
+	[508] = {"508", "Afeitadora de Mamá", "{{BleedingOut}} Orbital que causa sangrado#El daño del sangrado se basará en la velocidad de los enemigos (Más velocidad = más daño)#Los enemigos que sangren dejarán un creep rojo al moverse#Puede bloquear proyectiles y dañar a jefes",},
 	[509] = {"509", "Ojos rojos", "Orbital que dispara una lágrima cada 1-3 segundos si hay enemigos cerca#Inflige 3,5 de daño#Inflige 30 de daño por contacto cada segundo"},
 	[513] = {"513", "Bozo", "↑ {{Damage}} Daño +0.1#↑ {{SoulHeart}} +1 corazón de alma#{{Charm}} /{{Fear}} Posibilidad de encantar/asustar a un enemigo#Posibilidad de generar una caca arcoíris al ser golpeado"},
 	[523] = {"523", "Caja de mudanza", "Guarda hasta seis recolectables de la habitación#Al volver  a usarlo suelta los recolectables#Te permite mover cosas entre habitaciones"}, -- Caja de mudanza
@@ -241,7 +244,7 @@ local repCollectibles={
 	[596] = {"596", "Urano", "Dispara lágrimas de hielo, tienen la posibilidad de: #{{Slow}} Ralentizar a los enemigos#{{Freeze}} Congelar a los enemigos#Tocar enemigos congelados los empuja y explotan en 6 trozos de hielo"}, --  Urano
 	[597] = {"597", "Neptuno", "{{Chargeable}} Cargable (Automático)#Al no disparar, se empezará a cargar un ataque#Disparar hará que sueltes una ráfaga de lágrimas hasta que dispares a tu cadencia regular#Dejar de disparar recargará el ataque"}, --  Neptuno
 	[598] = {"598", "Pluto", "↑ {{Tears}} Lágrimas +0.7#Encoge mucho a Isaac, permitiendo que pase entre objetos#Los proyectiles puede pasarte por encima"}, --  Pluto
-	[599] = {"599", "Cabeza de vudú", "{{CursedRoom}} Genera una habitación maldita adicional en cada planta"}, --  Cabeza de vudú
+	[599] = {"599", "Cabeza de vudú", "{{CursedRoom}} Genera una habitación maldita adicional en cada planta#{{CursedRoom}} Se generan mejores salas malditas"}, --  Cabeza de vudú
 	[600] = {"600", "Gotas para ojos", "↑ {{Tears}} Lágrimas +28% al ojo izquierdo#Disparo un poco errático"}, --  Gotas para ojos
 	[601] = {"601", "Acto de contrición", "↑ {{Tears}} Lágrimas +0.7#{{EternalHeart}} +1 corazón eterno#{{AngelDevilChance}} Permite que aparezcan salas del ángel aunque hayas hecho pactos con el diablo antes"}, --  Acto de contrición
 	[602] = {"602", "Tarjeta de socio", "{{Shop}} Añade una trampilla en cada tienda que permite acceder a una segunda tienda con artículos únicos"}, --  Tarjeta de socio
@@ -257,7 +260,7 @@ local repCollectibles={
 	[612] = {"612", "Alma perdida", "Familiar de alma que muere de un golpe y reaparece al inicio de la siguiente planta#Si sobrevive toda la planta, genera 3 corazones de alma, 2 corazones eternos u objetos"}, --  Alma perdida
 	[613] = {"613", "", "<Item does not exist>"},
 	[614] = {"614", "Bombas de sangre", "{{Heart}} +1 corazón rojo#{{Heart}} Cura 5 corazones#Las bombas dejan creep rojo#Si no tienes bombas, puedes poner una a cambio de medio corazón"}, --  Bombas de sangre
-	[615] = {"615", "Dumpy pequeño", "Familiar Dumpy#Al ser golpeado, empuja, aturde o envenena a los enemigos cercanos"}, --  Dumpy pequeño
+	[615] = {"615", "Dumpy pequeño", "Familiar Dumpy que sigue al jugador#Produce un pedo del Frijol Mantequilla cuando Isaac está a punto de ser golpeado por un proyectil"}, --  Dumpy pequeño
 	[616] = {"616", "Ojo de pájaro", "Posibilidad de disparar fuegos que bloquean proyectiles enemigos e infligen daño por contacto#El daño máximo es 4 veces tu daño"}, --  Ojo de pájaro
 	[617] = {"617", "Piedra de imán", "{{Magnetize}} Posibilidad de disparar lágrimas que magnetizan a los enemigos#Atrae recolectables cercanos, proyectiles y enemigos"}, --  Piedra de imán
 	[618] = {"618", "Tomate podrido", "{{Bait}} Posibilidad de disparar lágrimas que marcan a los enemigos#A los enemigos marcados los atacan otros enemigos"}, --  Tomate podrido
@@ -387,7 +390,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Eve", "Eva", "{{Collectible122}} La Ramera de Babilonia se activa sin depender de la vida#{{Collectible117}} El pájaro muerto se activa sin recibir daño"},
 	{"Samson", "Sansón", "Bloody Lust puede ganar 4 mejoras de daño hasta un máximo de +14,0"},
 	{"Azazel", "", "El ataque de Azazel es más ancho#No varía el daño"},
-	{"Lazarus", "Lázaro", "Al morir, revive como Lázaro resucitado#↑ {{Damage}} Lázaro resucitado gana una mejora de daño de +21,6 que se pierde poco a poco"},
+	{"Lazarus", "Lázaro", "Al morir, revive como Lázaro resucitado#↑ {{Damage}} Lázaro resucitado gana una mejora de daño de +21.6 que se pierde tras un minuto#El efecto se activará cada vez que Lázaro resucite"},
 	{"Eden", "Edén", "Genera 3 objetos aleatorios de pools de objetos aleatorias#Solo se puede tomar uno"},
 	{"The Lost", "El Perdido", "Evita la aparición de objetos inútiles para El Perdido#Ejemplos: Aumentos de vida, vuelo, lágrimas espectrales o los que requieren daño para activarse"},
 	{"Lazarus Risen", "Lázaro Resucitado", "↑ {{Damage}} Otorga una mejora de daño de +21,6 que se pierde poco a poco"},
@@ -674,7 +677,6 @@ local repTrinkets={
 	[11] = {"11", "Gusano anillo", "Las lágrimas se mueven en espirales a gran velocidad#↑ {{Tears}} Lágrimas +0.4#Otorga lágrimas espectrales"}, -- Gusano anillo
 	[26] = {"26", "Gusano de gancho", "Las lágrimas se mueven en ángulos#↑ {{Tears}} Lágrimas +0.4#↑ {{Range}} Alcance +1.5#Otorga lágrimas espectrales"}, -- Gusano de gancho
 	[33] = {"33", "Cordón umbilical", "{{Collectible100}} Al tener medio corazón, aparece un pequeño Steven#{{Collectible318}} Gran posibilidad de que aparezca un familiar Géminis al recibir daño"}, -- Cordón umbilical
-	[39] = {"39", "Cáncer", "↑ {{Tears}} Más lágrimas"},
 	[49] = {"49", "Moneda sangrienta", "{{Heart}} 25% de posibilidad de dejar caer medio corazón al tomar monedas"}, -- Moneda sangrienta
 	[50] = {"50", "Moneda quemada", "{{Bomb}} 25% de posibilidad de dejar una bomba al tomar monedas"}, -- Moneda quemada
 	[51] = {"51", "Moneda plana", "{{Key}} 25% de posibilidad de dejar una llave al tomar monedas"}, -- Moneda plana
