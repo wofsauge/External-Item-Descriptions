@@ -123,7 +123,8 @@ local repCollectibles={
 	[294] = {"294", "Butter Bean", "Knocks back nearby enemies and projectiles#Enemies pushed into obstacles take 10 damage"}, -- Butter Bean
 	[295] = {"295", "Magic Fingers", "Damages the whole room with 2x the player damage + 10 #Price: 1 coin"}, -- Magic Fingers
 	[296] = {"296", "Converter", "Converts 1 Soul or Black Heart into 1 Red Heart Container"}, -- Converter
-	--the SINGLE USE line isn't the standard format in order to save a line break
+	--NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
+	--For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
 	[297] = {"297", "Pandora's Box", "{{Warning}} SINGLE USE, spawns items based on floor:#B1: 2 {{SoulHeart}}; B2: 2 {{Bomb}} & 2 {{Key}}#C1: 1 {{BossRoom}} item; C2: B1+C1#D1: 4 {{SoulHeart}}; D2: 20 {{Coin}}#W1: 2 {{BossRoom}} items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: 1 {{DevilRoom}} item + 1 {{BlackHeart}}#Cathe: 1 {{AngelRoom}} item + 1 {{EternalHeart}}#Dark Room: {{Collectible523}} Unlocks Moving Box; Chest: 1 {{Coin}}#Home: {{Collectible580}} Red Key"}, -- Pandora's Box
 	[300] = {"300", "Aries", "↑ {{Speed}} +0.25 Speed up#Touching enemies hurts them#Running fast enough will prevent contact damage"}, -- Aries
 	[307] = {"307", "Capricorn", "↑ {{Heart}} +1 Health up#↑ {{Damage}} +0.5 Damage up#↑ {{Speed}} +0.1 Speed up#↑ {{Range}} +0.75 Range up#↑ {{Tears}} +0.5 Fire Rate up#Gives one bomb, coin and key"}, -- Capricorn
