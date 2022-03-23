@@ -124,7 +124,7 @@ local repCollectibles={
 	[295] = {"295", "Magic Fingers", "Damages the whole room with 2x the player damage + 10 #Price: 1 coin"}, -- Magic Fingers
 	[296] = {"296", "Converter", "Converts 1 Soul or Black Heart into 1 Red Heart Container"}, -- Converter
 	--the SINGLE USE line isn't the standard format in order to save a line break
-	[297] = {"297", "Pandora's Box", "{{Warning}} SINGLE USE, spawns items based on floor:#B1:  2 {{SoulHeart}} / B2:  2 {{Bomb}} and  2 {{Key}}#C1: 1 {{BossRoom}} item / C2: B1+C1#D1:  4 {{SoulHeart}} / D2:  20 {{Coin}}#W1:  2 {{BossRoom}} items / W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol:  1 {{DevilRoom}} item +  1 {{BlackHeart}} / Cath:  1 {{AngelRoom}} item +  1 {{EternalHeart}}#Dark Room: {{Collectible523}} Unlocks Moving Box / Chest:  1 {{Coin}}#Home: {{Collectible580}} Red Key"}, -- Pandora's Box
+	[297] = {"297", "Pandora's Box", "{{Warning}} SINGLE USE, spawns items based on floor:#B1: 2 {{SoulHeart}}; B2: 2 {{Bomb}} and 2 {{Key}}#C1: 1 {{BossRoom}} item; C2: B1+C1#D1: 4 {{SoulHeart}}; D2: 20 {{Coin}}#W1: 2 {{BossRoom}} items; W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: 1 {{DevilRoom}} item + 1 {{BlackHeart}}; Cath: 1 {{AngelRoom}} item + 1 {{EternalHeart}}#Dark Room: {{Collectible523}} Unlocks Moving Box; Chest: 1 {{Coin}}#Home: {{Collectible580}} Red Key"}, -- Pandora's Box
 	[300] = {"300", "Aries", "↑ {{Speed}} +0.25 Speed up#Touching enemies hurts them#Running fast enough will prevent contact damage"}, -- Aries
 	[307] = {"307", "Capricorn", "↑ {{Heart}} +1 Health up#↑ {{Damage}} +0.5 Damage up#↑ {{Speed}} +0.1 Speed up#↑ {{Range}} +0.75 Range up#↑ {{Tears}} +0.5 Fire Rate up#Gives one bomb, coin and key"}, -- Capricorn
 	[308] = {"308", "Aquarius", "Leave a trail of creep#{{Damage}} Creep deals 66% your damage per second#Creep synergizes with tear effects"}, -- Aquarius
@@ -814,7 +814,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 local repCards={
 	[2] = {"2", "I - The Magician", "For current room grants: #Homing tears#↑ {{Range}} +3 Range"}, -- I - The Magician
 	[4] = {"4", "III - The Empress", "For current room grants: #↑ {{Damage}} +2.35 Damage up#↑ {{Speed}}  +0.3 Speed up"},
-	[12] = {"12", "XI - Strength", "For current room grants: #↑ {{Healt}} +1 Health up#↑ {{Damage}} +0.3 Damage up#↑ {{Damage}} +50% Damage#↑ {{Range}} +5.25 Range up#↑ {{Speed}} +0.3 Speed up"}, -- XI - Strength
+	[12] = {"12", "XI - Strength", "For current room grants: #↑ {{Heart}} +1 Health up#↑ {{Damage}} +0.3 Damage up#↑ {{Damage}} +50% Damage#↑ {{Range}} +5.25 Range up#↑ {{Speed}} +0.3 Speed up"}, -- XI - Strength
 	[16] = {"16", "XV - The Devil", "↑ {{Damage}} +2 Damage up for current room"},
 	[27] = {"27", "Ace of Clubs", "{{Bomb}} Turns all pickups, chests and non-boss enemies into bombs"}, -- Ace of Clubs
 	[28] = {"28", "Ace of Diamonds", "{{Coin}} Turns all pickups, chests and non-boss enemies into coins"}, -- Ace of Diamonds
