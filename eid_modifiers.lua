@@ -153,12 +153,31 @@ local function PandorasBoxCallback(descObj)
 	-- Greed Mode has different Pandora's Box rules and stage numbers
 	local stageCheck = game:IsGreedMode() and greedStages or pandorasStages
 	local altCheck = game:IsGreedMode() and {} or altStages
+	
 	-- floor result information must be separated by line breaks or semicolons in localizations
+	local totalCount = 0
+	for w in string.gmatch(descObj.Description, "([^#;]+)") do
+		if totalCount > 0 or string.find(w,"2") then
+			totalCount = totalCount + 1
+		end
+	end
+	local skip9and12 = false
+	-- many localizations do not have the ???/Void entry and the Dark Room entry
+	-- this seemed better than forcing them to have it
+	print(totalCount)
+	if totalCount == (REPENTANCE and 12 or 11) then
+		print("hello")
+		skip9and12 = true
+	end
+	
 	for w in string.gmatch(descObj.Description, "([^#;]+)") do
 		doMarkup = false
 		-- the first captured group to care about is the one that contains a 2 (2 soul hearts)
 		if pandoraCount > 0 or string.find(w,"2") then
 			pandoraCount = pandoraCount + 1
+			if skip9and12 and (pandoraCount == 9 or pandoraCount == 12) then
+				pandoraCount = pandoraCount + 1
+			end
 			if (altCheck[pandoraCount] == nil or altStage == altCheck[pandoraCount]) then
 				if stageCheck[pandoraCount] == stageNum then doMarkup = true
 				--special exception for ???/The Void
