@@ -1524,8 +1524,8 @@ if EID.MCMLoaded or REPENTANCE then
 			end
 			EID.TouchedActiveItems = {}
 			if isSave then
-				-- JSON saves integer table keys as strings. we need to transform them back... 
-				for playerID, data in pairs(savedEIDConfig["TouchedActiveItems"]) do
+				-- JSON saves integer table keys as strings. we need to transform them back...
+				for playerID, data in pairs(savedEIDConfig["TouchedActiveItems"] or {}) do
 					local convertedData = {}
 					for key, value in pairs(data) do
 						convertedData[tonumber(key) or key] = value
