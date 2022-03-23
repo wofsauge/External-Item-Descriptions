@@ -316,7 +316,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "Frijol Mantequilla", "Repele a los enemigos y proyectiles cercanos#10 % de probabilidad de convertirse en \"Wait What?\" (Espera, ¿qué?) al intercambiarlo por otro objeto activable y volverlo a coger"},
 	{"295", "Dedos mágicos", "Daña toda la habitación con el doble de tu daño#Precio: 1 moneda"},
 	{"296", "Conversor", "!!! Convierte:#2 corazones de alma/negros en un corazón rojo"},
-	{"297", "Caja de Pandora", "!!! ÚNICO USO !#!!! Genera cosas en función del piso en el que se active:#B1: 2 corazones de alma #B2: 2 llaves y bombas#C1: 1 objeto de jefe#C2: B1+C1#D1: 4 corazones de alma#D2: 20 monedas#W1: 2 objetos de jefe#W2: Biblia#Sheol: 1 objeto del diablo+corazón negro#Catedral: 1 objeto de ángel + corazón de alma#Chest(cofre): 1 moneda"},
+	{"297", "Caja de Pandora", "!!! ÚNICO USO !#!!! Genera cosas en función del piso en el que se active:#B1: 2 corazones de alma; B2: 2 llaves y bombas#C1: 1 objeto de jefe; C2: B1+C1#D1: {{SoulHeart}} 4 corazones de alma; D2: 20 monedas#W1: 2 objetos {{BossRoom}}; W2: {{Collectible33}} Biblia#Sheol: 1 objeto {{DevilRoom}} + 1 {{BlackHeart}}; Catedral: 1 objeto {{AngelRoom}} + 1 {{SoulHeart}}#Cofre: {{Coin}} 1 moneda"},
 	{"298", "Paso de Unicornio", "Invencibilidad y +0,28 velocidad que dura hasta 6 segundos"},
 	{"299", "Tauro", "¡Te hace más rápido en las habitaciones hostiles!#Invencibilidad al alcanzar la velocidad suficiente"},
 	{"300", "Aries", "↑ {{Speed}} Velocidad +0.25#Tocar a los enemigos les daña"},
