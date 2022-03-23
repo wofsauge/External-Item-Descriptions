@@ -318,7 +318,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "", "Derruba os inimigos próximos"},
 	{"295", "", "Danificar a sala inteira#Preço: 1 moeda"},
 	{"296", "", "!!! converte:#2 Corações de alma/negro em 1 coração vermelho"},
-	{"297", "", "!!! USO ÚNICO !#!!! Larga as coisas com base no chão e é ativado:#B1: 2 Corações de alma#B2: 2 chaves e bombas#C1: 1 Item de chefe#C2: B1+C1#D1: 4 Corações de alma#D2: 30 moedas#W1: 2 Items de chefe#W2: Bíblia#???/The Void: Nada#Sheol: 1 item Diabo + Coração negro#Cat: 1 Item de Anjo + Coração de alma#Dark Room: Desbloqueie {{Collectible523}}Moving Box#Chest: 1 moeda"},
+	{"297", "", "!!! USO ÚNICO !#!!! Larga as coisas com base no chão e é ativado:#B1: 2 Corações de alma#B2: 2 chaves e bombas#C1: 1 Item de chefe#C2: B1+C1#D1: 4 Corações de alma#D2: 30 moedas#W1: 2 Items de chefe#W2: Bíblia#Sheol: 1 item Diabo + Coração negro#Cat: 1 Item de Anjo + Coração de alma#Chest: 1 moeda"},
 	{"298", "", "Invencibilidade temporária e Velocidade up"},
 	{"299", "", "ganha velocidade enquanto está em uma sala com inimigos até obter o efeito My Little Unicorn por alguns segundos"},
 	{"300", "", "↑ +0.25 Velocidade up#Tocar nos inimigos os machuca"},

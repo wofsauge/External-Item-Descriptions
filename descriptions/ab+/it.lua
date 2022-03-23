@@ -316,7 +316,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "Fagiolo di Lima", "Respinge tutti i nemici vicini"},
 	{"295", "Dita Magiche", "Danneggia tutti i nemici nella stanza#Prezzo: 1 Moneta"},
 	{"296", "Convertitore", "Converte:#2 Cuori d'anima o Cuori Neri in 1 Cuore rosso"},
-	{"297", "Scrigno di pandora", "Uso singolo! Cambia effetto in base al piano, effetto:#P1: 2 Cuori d'anima#P2:2 Chiavi e 2 Bombe#P3: 1 oggetto del Boss#P4: P1+P3#P5:4 Cuori d'anima#P6: 30 Monete#P7:2 oggetti del Boss#P8: La Bibbia#???/The Void: Niente#Sheol: 1 oggetto del patto del diavolo+ 1 Cuore Nero#Cattedrale: 1 oggetto del patto con gli angeli+ 1 Cuore Spirito#Dark Room: sblocca {{Collectible523}}Moving Box#Cassa: 1 Moneta"},
+	{"297", "Scrigno di pandora", "Uso singolo! Cambia effetto in base al piano, effetto:#P1: 2 Cuori d'anima#P2:2 Chiavi e 2 Bombe#P3: 1 oggetto del Boss#P4: P1+P3#P5:4 Cuori d'anima#P6: 30 Monete#P7:2 oggetti del Boss#P8: La Bibbia#Sheol: 1 oggetto del patto del diavolo+ 1 Cuore Nero#Cattedrale: 1 oggetto del patto con gli angeli+ 1 Cuore Spirito#Cassa: 1 Moneta"},
 	{"298", "Zoccolo di Unicorno", "Invincibilita' temporanea e Velocita' Aumentata"},
 	{"299", "Toro", "Ti rende lentamente piu'veloce nelle stanze ostili!#Invincibilita'quando raggiungi il massimo della velocita'"},
 	{"300", "Ariete", "+0.25 di Velocita'#Se tocchi i nemici potresti fargli male"},

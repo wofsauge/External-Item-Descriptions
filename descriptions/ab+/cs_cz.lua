@@ -316,7 +316,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "Máslová Fazole", "Odrazí blízké nepřátele a jejich střely#10% šance na proměnění se v silnější {{Collectible484}}Počkat Co? při výměně za jiný aktivní předmět a opětovném sebrání"},
 	{"295", "Kouzelné Prstíky", "Udělí 2x poškození hráče celé místnosti#Cena: 1 penízek"},
 	{"296", "Konvertor", "!!! Přemění:#2 Duševní/Černé Srdce na 1 plné Místo pro Červené Srdce"},
-	{"297", "Pandořina Skříňka", "!!! JEDNORÁZOVÉ POUŽITÍ, vytváří předměty podle patra:#B1: 2 Duševní Srdce#B2: 2 Bomby a 2 Klíče#C1: 1 Boss předmět#C2: B1+C1#D1: 4 Duševní Srdce#D2: 20 mincí#W1: 2 Boss předměty#W2: {{Collectible33}} Bible#???/Void: Nic#Sheol: 1 Ďábelský předmět + 1 Černé Srdce#Cat: 1 Andělský předmět + 1 Srdce Věčnosti#Dark Room: Odemyká {{Collectible523}} Krabici na Stěhování#Chest: 1 penízek"},
+	{"297", "Pandořina Skříňka", "!!! JEDNORÁZOVÉ POUŽITÍ, vytváří předměty podle patra:#B1: 2 Duševní Srdce#B2: 2 Bomby a 2 Klíče#C1: 1 Boss předmět#C2: B1+C1#D1: 4 Duševní Srdce#D2: 20 mincí#W1: 2 Boss předměty#W2: {{Collectible33}} Bible#???/Void: Nic#Sheol: 1 Ďábelský předmět + 1 Černé Srdce#Dark Room: Odemyká {{Collectible523}} Krabici na Stěhování#Cat: 1 Andělský předmět + 1 Srdce Věčnosti#Chest: 1 penízek"},
 	{"298", "Jednorožčí Kopyto", "Nesmrtelnost a +0.28 Zvýšení Rychlosti na 6 sekund"},
 	{"299", "Býk", "Budete zrychlovat v nepřátelských místnostech!#Nesmrtelnost pokud jste dostatečně rychlí#↓ -0.3 Snížení Rychlosti"},
 	{"300", "Beran", "↑ +0.25 Zvýšení Rychlosti#Váš dotyk uděluje nepřátelům poškození"},
