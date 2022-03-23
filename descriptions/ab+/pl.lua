@@ -316,7 +316,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "Maślana Fasola", "Odrzuca pobliskich przeciwników i strzały#Przy zmianie na inny przedmiot aktywny, po czym podniesieniu tego ponownie, ma 10% szans na zmianę w silniejszy przedmiot Chwila, Co?{{Collectible484}}"},
 	{"295", "Cudowne Pudełeczko", "Rani wszystkich wrogów w pokoju twoimi obrażeniami x2#Koszt: 1 moneta{{Coin}}"},
 	{"296", "Przetwornik", "!!! Konwertuje:#2 Serca Duszy/Czarne w 1 Czerwone Serce"},
-	{"297", "Puszka Pandory", "!!! JEDNORAZOWE !#!!! Upuszcza przedmioty zależnie od piętra:#B1: 2 Serca Duszy#B2: 2 klucze i bomby#C1: 1 Przedmiot z bossa#C2: 2 Serca Duszy + 1 Przedmiot z bossa#D1: 4 Serca Duszy#D2: 20 Monet#W1: 2 Przedmioty z bossów#W2: Biblia#Szeol: 1 Przedmiot Diabła{{DevilRoom}} + Czarne Serce#Katedra: 1 Przedmiot Anioła{{AngelRoom}} + Serce Duszy#Skrzynia: 1 Moneta"},
+	{"297", "Puszka Pandory", "!!! JEDNORAZOWE !#!!! Upuszcza przedmioty zależnie od piętra:#B1: 2 Serca Duszy#B2: 2 klucze i bomby#C1: 1 Przedmiot z bossa#C2: 2 Serca Duszy + 1 Przedmiot z bossa#D1: 4 Serca Duszy#D2: 20 Monet#W1: 2 Przedmioty z bossów#W2: Biblia#???/The Void: Nic#Szeol: 1 Przedmiot Diabła{{DevilRoom}} + Czarne Serce#Katedra: 1 Przedmiot Anioła{{AngelRoom}} + Serce Duszy#Dark Room: Odblokuj {{Collectible523}}Moving Box#Skrzynia: 1 Moneta"},
 	{"298", "Odłamek Jednorożca", "+0.28 Prędkości oraz Nietykalność na 6 sekund #Nie możesz strzelać w trakcie trwania efektu"},
 	{"299", "Byk", "Jesteś szybszy w pokoju z przeciwnikami!#Daje nietykalność gdy jesteś wystarczająco szybki"},
 	{"300", "Baran", "↑ +0.25 Prędkości#Dotykanie przeciwników ich rani"},
