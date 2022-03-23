@@ -655,7 +655,8 @@ function EID:printDescription(desc, cachedID)
 	--Display Transformation
 	if not (desc.Transformation == "0" or desc.Transformation == "" or desc.Transformation == nil) then
 		for transform in string.gmatch(desc.Transformation, "([^,]+)") do
-			local transformSprite = EID:getTransformationIcon(transform)
+			--have a blank sprite info table if we aren't displaying it
+			local transformSprite = EID.Config["TransformationIcons"] and EID:getTransformationIcon(transform) or {}
 			local transformLineHeight = EID.lineHeight
 			if EID.Config["TransformationIcons"] then
 				transformLineHeight = math.max(EID.lineHeight, transformSprite[4])
@@ -691,7 +692,7 @@ function EID:printDescription(desc, cachedID)
 					EID:getTransformationColor()
 				)
 			end
-			if (EID.Config["TransformationIcons"] or EID.Config["TransformationText"]) then
+			if (EID.Config["TransformationIcons"] or EID.Config["TransformationText"] or EID.Config["TransformationProgress"]) then
 				renderPos.Y = renderPos.Y + transformLineHeight * EID.Scale
 			end
 		end
