@@ -440,7 +440,7 @@ EID.descriptions[languageCode].collectibles={
 	{"416", "Deep Pockets", "Allows you to carry two cards/pills/runes"},
 	{"417", "Succubus", "Bounces around the room with a damaging aura, dealing 129% of your damage every second#↑ {{Damage}} +50% damage while standing in the aura,"},
 	{"418", "Fruit Cake", "Gives you a different tear effect with every tear that you fire"},
-	{"419", "Teleport 2.0", "Teleports you to another random room that has not been explored yet#Hierarchy: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}> Error-Room"},
+	{"419", "Teleport 2.0", "Teleports you to another random room that has not been cleared yet#Hierarchy: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}> Error-Room"},
 	{"420", "Black Powder", "Walking in a circle will spawn a pentagram symbol on the floor, which deals 10 damage per tick"},
 	{"421", "Kidney Bean", "{{Charm}} Applies charm effect to any enemies in close range and deals 5 damage to them"},
 	{"422", "Glowing Hour Glass", "Rewind time and put you back in the previous room, in the same state you were in at that moment"},
