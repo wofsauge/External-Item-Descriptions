@@ -318,7 +318,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "", "Repousse les ennemis proches"},
 	{"295", "", "Inflige des dégâts à toute la salle (en fonction de votre stat de dégâts)#Prix: 1 Pièce"},
 	{"296", "", "!!! Convertit:#2 Coeur bleus/noir en un coeur rouge"},
-	{"297", "", "!!! UTILISATION UNIQUE !#!!! Laisse tomber des objets en fonction de l'étage:#B1: 2 Coeurs bleus#B2: 2 Clefs et bombes#C1: 1 Objet de boss#C2: B1+C1#D1: 4 Coeurs bleus#D2: 30 Pièces#W1: 2 Objets de boss#W2: Bible#Sheol: 1 Objet démoniaque + Coeur noir#Cat: 1 Objet angélique + Coeur bleu#Chest: 1 Pièce"},
+	{"297", "", "!!! UTILISATION UNIQUE !#!!! Laisse tomber des objets en fonction de l'étage:#B1: 2 Coeurs bleus#B2: 2 Clefs et bombes#C1: 1 Objet de boss#C2: B1+C1#D1: 4 Coeurs bleus#D2: 30 Pièces#W1: 2 Objets de boss#W2: Bible#???/The Void: Rien#Sheol: 1 Objet démoniaque + Coeur noir#Cat: 1 Objet angélique + Coeur bleu#Dark Room: déverrouiller {{Collectible523}}Moving Box#Chest: 1 Pièce"},
 	{"298", "", "Invincibilité et accélération temporaire"},
 	{"299", "", "Vous êtes plus rapides dans les salles hostiles!#Une fois que vous êtes assez rapide, invincibilité"},
 	{"300", "", "↑ +0.25 Vitesse#Toucher un ennemi lui inflige des dégâts"},
