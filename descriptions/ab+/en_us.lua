@@ -731,7 +731,7 @@ EID.descriptions[languageCode].cards={
 	{"21", "XX - Judgement", "Spawns a Beggar or Devil Beggar"},
 	{"22", "XXI - The World", "Reveals the entire map and shows all room types"},
 	{"23", "2 of Clubs", "{{Bomb}} Duplicate your bombs"},
-	{"24", "2 of Diamonds", "{{Money}} Duplicate your money"},
+	{"24", "2 of Diamonds", "{{Coin}} Duplicate your money"},
 	{"25", "2 of Spades", "{{Key}} Duplicate your keys"},
 	{"26", "2 of Hearts", "{{Heart}} Duplicate your Red Hearts#Only has a healing effect"},
 	{"27", "Ace of Clubs", "{{Bomb}} Turns all pickups into bombs"},
