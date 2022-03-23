@@ -506,7 +506,7 @@ EID.descriptions[languageCode].collectibles={
 	{"484", "Ney Ney?", "Kullanışdığında, düşmanları uzağa ittirir ve taş dalgası çıkartır#Odaları açıp taşları kırabilir"},
 	{"485", "Yamuk Para", "50% şansla odadaki tüm itemleri, harcanabilirleri ve kasaları değiştirir#50% şans ile siler ve 1 altın verir"},
 	{"486", "Kör Jilet", "Canını azaltmadan sana hasar verir#İtem efektleri için"},
-	{"487", "Patates Soyucusu", "Bir kırmızı kalp konteynırını alır ve ↑ +0.2 Hasar ve  \"Cube of Meat\" verir"},
+	{"487", "Patates Soyucusu", "Bir kırmızı kalp konteynırını alır ve ↑ +0.2 Hasar ve \"Cube of Meat\" verir"},
 	{"488", "Metronom", "Her odada rastgele item efekti verir"},
 	{"489", "D infinity", "Random Dice-effect each usage"},
 	{"490", "Eden'in Ruhu", "!!! TEK KULLANIM !#Bulunan odanın havuzundan 2 rastgele item çıkartır"},
