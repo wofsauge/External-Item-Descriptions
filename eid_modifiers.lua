@@ -164,9 +164,7 @@ local function PandorasBoxCallback(descObj)
 	local skip9and12 = false
 	-- many localizations do not have the ???/Void entry and the Dark Room entry
 	-- this seemed better than forcing them to have it
-	print(totalCount)
 	if totalCount == (REPENTANCE and 12 or 11) then
-		print("hello")
 		skip9and12 = true
 	end
 	
