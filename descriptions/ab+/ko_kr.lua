@@ -329,7 +329,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "흰강낭콩", "사용 시 방귀를 뀌며 주변의 적을 밀쳐냅니다.#다른 액티브 아이템과 교체 시 확률적으로 {{Collectible484}}Wait What? 아이템으로 바뀝니다."}, -- Butter Bean
 	{"295", "침대 안마기", "사용 시 동전 하나를 소모해 방 안의 모든 적에게 눈물 공격력 x2의 피해를 줍니다."}, -- Magic Fingers
 	{"296", "변환기", "사용 시 소울하트 2칸을 {{Heart}}최대 체력 1칸으로 바꿉니다."}, -- Converter
-	{"297", "판도라의 상자", "!!! 일회용#사용 시 스테이지마다 다른 보상을 드랍합니다.#1: {{SoulHeart}}소울하트 2개#2: {{Bomb}}폭탄 2개, {{Key}}열쇠 2개#3: {{BossRoom}}보스방 아이템 1개#4: {{SoulHeart}}소울하트 2개, {{BossRoom}}보스방 아이템 1개#5: {{SoulHeart}}소울하트 4개#6: {{Coin}}동전 30개#7: {{BossRoom}}보스방 아이템 2개#8: 성경#Sheol: {{BlackHeart}}블랙하트 2개, {{DevilRoom}}악마방 아이템#Cath: {{EthernalHeart}}이터널하트 1개, {{AngelRoom}}천사방 아이템#Chest/Dark: {{Coin}}동전 1개"}, -- Pandora's Box
+	{"297", "판도라의 상자", "!!! 일회용#사용 시 스테이지마다 다른 보상을 드랍합니다.#1: {{SoulHeart}}소울하트 2개#2: {{Bomb}}폭탄 2개, {{Key}}열쇠 2개#3: {{BossRoom}}보스방 아이템 1개#4: {{SoulHeart}}소울하트 2개, {{BossRoom}}보스방 아이템 1개#5: {{SoulHeart}}소울하트 4개#6: {{Coin}}동전 30개#7: {{BossRoom}}보스방 아이템 2개#8: 성경#???/The Void: 아무것도#Sheol: {{BlackHeart}}블랙하트 2개, {{DevilRoom}}악마방 아이템#Cath: {{EthernalHeart}}이터널하트 1개, {{AngelRoom}}천사방 아이템#Dark: 움직이는 {{Collectible523}}#Chest: {{Coin}}동전 1개"}, -- Pandora's Box
 	{"298", "유니콘의 잘린 뿔", "사용 시 6초간 공격불능 무적 상태가 됩니다."}, -- Unicorn Stump
 	{"299", "황소자리", "↓ {{SpeedSmall}}이동속도 -0.3#방 안에 적이 있을 때 이동속도가 점점 증가하며 최대 속도가 되면 5초간 무적 상태가 됩니다."}, -- Taurus
 	{"300", "양자리", "↑ {{SpeedSmall}}이동속도 +0.25#높은 속도로 적과 접촉시 적에게 18의 피해를 줍니다."}, -- Aries
