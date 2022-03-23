@@ -316,6 +316,8 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger {{Collectible484}}Wait What? when swapping it with a different active item and picking it up again"},
 	{"295", "Magic Fingers", "Damages the whole room with 2x the player damage#Price: 1 coin"},
 	{"296", "Converter", "!!! Convert:#2 {{SoulHeart}} / {{BlackHeart}} Soul/Black Hearts into 1 Red Heart Container"},
+	--NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
+	--For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
 	{"297", "Pandora's Box", "{{Warning}} SINGLE USE, spawns items based on floor:#B1: 2 {{SoulHeart}}; B2: 2 {{Bomb}} & 2 {{Key}}#C1: 1 {{BossRoom}} item; C2: B1+C1#D1: 4 {{SoulHeart}}; D2: 20 {{Coin}}#W1: 2 {{BossRoom}} items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: 1 {{DevilRoom}} item + 1 {{BlackHeart}}#Cathe: 1 {{AngelRoom}} item + 1 {{EternalHeart}}#Dark Room: {{Collectible523}} Unlocks Moving Box; Chest: 1 {{Coin}}"},
 	{"298", "Unicorn Stump", "Invincibility and +0.28 speed up for 6 seconds"},
 	{"299", "Taurus", "↓ {{Speed}} -0.3 Speed down#↑ {{Speed}} Get faster in hostile rooms!#Invincibility when fast enough"},
@@ -822,10 +824,10 @@ EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
 
 EID.descriptions[languageCode].sacrifice={
 	{"1", "", "{{Coin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
-	{"2", "", "{{COin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
+	{"2", "", "{{Coin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"3", "", "{{AngelRoom}} 67% chance for increased Angel Room chance"},
 	{"4", "", "{{Chest}} 50% chance for 1 random chest"},
-	{"5", "", "{{Coin}} 33% chance for 3 coins#{AngelRoom}} 67% chance for increased {Angel Room chance"},
+	{"5", "", "{{Coin}} 33% chance for 3 coins#{{AngelRoom}} 67% chance for increased Angel Room chance"},
 	{"6", "", "{{AngelRoom}} 33% chance for a teleport to the Angel Room#{{DevilRoom}} Teleports to the Devil Room instead if its door was spawned on the current floor#{{Chest}} 67% chance for random chest"},
 	{"7", "", "{{AngelRoom}} 33% chance for 1 random Angel Room item#{{SoulHeart}} 67% chance for 1 Soul Heart"},
 	{"8", "", "100% chance for 7 troll bombs"},
