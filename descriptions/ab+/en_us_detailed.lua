@@ -316,7 +316,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "", "Knocks back nearby enemies and enemy shots. #Has a small chance to turn into Wait What? when traded for another active item and then picked back up."},
 	{"295", "", "Damages the whole room for the cost of 1 coin. #Damage scales based on the player's damage."},
 	{"296", "", "Converts two soul or black hearts into one red heart container."},
-	{"297", "", "Based on current floor, drops:#B1: 2 Soul Hearts#B2:2 keys and bombs#C1: 1 Boss item#C2: B1+C1 rewards #D1:4 Soul hearts#D2: 30 Coins#W1:2 Boss items#W2: Bible#Sheol: 1 Devil item+Black heart#Cathedral: 1 Angel item+Soul heart#Chest: 1 Coin"},
+	{"297", "", "Based on current floor, drops:#B1: 2 Soul Hearts#B2:2 keys and bombs#C1: 1 Boss item#C2: B1+C1 rewards #D1:4 Soul hearts#D2: 30 Coins#W1:2 Boss items#W2: Bible#???/The Void: Nothing#Sheol: 1 Devil item+Black heart#Cathedral: 1 Angel item+Soul heart#Dark Room: Unlocks the Moving Box item#Chest: 1 Coin"},
 	{"298", "", "Temporary invincibility and speed up, but removes the ability to shoot tears. #The player does not deal contact damage while active."},
 	{"299", "", "-0.3 Speed down. #While in hostile rooms, the player gains 0.065 speed per tick. #When the player reaches 2.0 speed they gain the My Little Unicorn effect for 5 seconds, becoming invulnerable and dealing contact damage."},
 	{"300", "", "+0.25 Speed up.#Causes enemies to take 18 points of damage on contact. #Does not prevent the player from taking contact damage."},

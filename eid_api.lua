@@ -939,6 +939,17 @@ function EID:PlayersHaveCollectible(collectibleID)
 	return false
 end
 
+-- Checks if any player has a given trinket ID, for modifiers
+function EID:PlayersHaveTrinket(trinketID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player:HasTrinket(trinketID) then
+			return true, player
+		end
+	end
+	return false
+end
+
 -- Obtains information about glitched items from the ItemConfig (hearts added on pickup, cacheflags affected), returns string of info
 local itemConfigItemAttributes = { "AddMaxHearts", "AddHearts", "AddSoulHearts", "AddBlackHearts", "AddBombs", "AddCoins", "AddKeys", "CacheFlags" }
 function EID:CheckGlitchedItemConfig(id)

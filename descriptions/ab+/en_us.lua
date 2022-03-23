@@ -316,7 +316,9 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger {{Collectible484}}Wait What? when swapping it with a different active item and picking it up again"},
 	{"295", "Magic Fingers", "Damages the whole room with 2x the player damage#Price: 1 coin"},
 	{"296", "Converter", "!!! Convert:#2 {{SoulHeart}} / {{BlackHeart}} Soul/Black Hearts into 1 Red Heart Container"},
-	{"297", "Pandora's Box", "!!! SINGLE USE, spawns items based on floor:#B1: 2 {{SoulHeart}} / B2: 2 {{Bomb}} and 2 {{Key}}#C1: 1 {{BossRoom}} item#C2: B1+C1#D1: 4 {{SoulHeart}}#D2: 20 {{Coin}}#W1: 2 {{BossRoom}} items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: 1 {{DevilRoom}} item + 1 {{BlackHeart}} / Cath: 1 {{AngelRoom}} item + 1 {{EternalHeart}}#Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1 coin"},
+	--NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
+	--For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
+	{"297", "Pandora's Box", "{{Warning}} SINGLE USE, spawns items based on floor:#B1: 2 {{SoulHeart}}; B2: 2 {{Bomb}} & 2 {{Key}}#C1: 1 {{BossRoom}} item; C2: B1+C1#D1: 4 {{SoulHeart}}; D2: 20 {{Coin}}#W1: 2 {{BossRoom}} items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: 1 {{DevilRoom}} item + 1 {{BlackHeart}}#Cathe: 1 {{AngelRoom}} item + 1 {{EternalHeart}}#Dark Room: {{Collectible523}} Unlocks Moving Box; Chest: 1 {{Coin}}"},
 	{"298", "Unicorn Stump", "Invincibility and +0.28 speed up for 6 seconds"},
 	{"299", "Taurus", "↓ {{Speed}} -0.3 Speed down#↑ {{Speed}} Get faster in hostile rooms!#Invincibility when fast enough"},
 	{"300", "Aries", "↑ {{Speed}} +0.25 Speed up#Touching enemies hurts them"},
@@ -619,7 +621,7 @@ EID.descriptions[languageCode].trinkets={
 	{"41", "Match Stick", "{{Bomb}} 10% chance for the room clear reward to be a bomb#{{Bomb}} Chance for a bonus bomb from chests, tinted rocks and destroyed machines#!!! Removes {{Trinket53}}Tick"},
 	{"42", "Lucky Toe", "↑ {{Luck}} +1 Luck up#+8% room clear reward chance#Extra pickups from chests, tinted rocks, and destroyed machines"},
 	{"43", "Cursed Skull", "When damaged down to half a heart or less, teleport to a random room"},
-	{"44", "Safety Cap", "{{Pill}} 10% chance for the room clear reward to be a pill#{{Pill}}  Chance for a bonus pill from chests, tinted rocks and destroyed machines"},
+	{"44", "Safety Cap", "{{Pill}} 10% chance for the room clear reward to be a pill#{{Pill}} Chance for a bonus pill from chests, tinted rocks and destroyed machines"},
 	{"45", "Ace of Spades", "{{Card}} 10% chance for the room clear reward to be a card#{{Card}} Chance for a bonus card from chests, tinted rocks and destroyed machines"},
 	{"46", "Isaac's Fork", "{{HalfHeart}} 10% chance for healing half a heart after clearing a room"},
 	{"47", "", "<Item does not exist>"},
@@ -784,7 +786,7 @@ EID.descriptions[languageCode].pills={
 	{"13", "Speed Down", "↓ {{Speed}} -0.12 Speed down"},
 	{"14", "Speed Up", "↑ {{Speed}} +0.15 Speed up"},
 	{"15", "Tears Down", "↓ {{Tears}} -0.28 Tears down"},
-	{"16", "Tears Up", "↑ {{Tears}}  +0.35 Tears up"},
+	{"16", "Tears Up", "↑ {{Tears}} +0.35 Tears up"},
 	{"17", "Luck Down", "↓ {{Luck}} -1 Luck down"},
 	{"18", "Luck Up", "↑ {{Luck}} +1 Luck up"},
 	{"19", "Telepills", "Teleports you to a random room#Small chance to teleport you to the I AM ERROR room"},
@@ -822,10 +824,10 @@ EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
 
 EID.descriptions[languageCode].sacrifice={
 	{"1", "", "{{Coin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
-	{"2", "", "{{COin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
+	{"2", "", "{{Coin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"3", "", "{{AngelRoom}} 67% chance for increased Angel Room chance"},
 	{"4", "", "{{Chest}} 50% chance for 1 random chest"},
-	{"5", "", "{{Coin}} 33% chance for 3 coins#{AngelRoom}} 67% chance for increased {Angel Room chance"},
+	{"5", "", "{{Coin}} 33% chance for 3 coins#{{AngelRoom}} 67% chance for increased Angel Room chance"},
 	{"6", "", "{{AngelRoom}} 33% chance for a teleport to the Angel Room#{{DevilRoom}} Teleports to the Devil Room instead if its door was spawned on the current floor#{{Chest}} 67% chance for random chest"},
 	{"7", "", "{{AngelRoom}} 33% chance for 1 random Angel Room item#{{SoulHeart}} 67% chance for 1 Soul Heart"},
 	{"8", "", "100% chance for 7 troll bombs"},

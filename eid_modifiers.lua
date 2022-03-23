@@ -70,7 +70,7 @@ local function TabCallback(descObj)
 	return descEntry
 end
 
--- Handle Void (the only modifier that is applied to AB+ at the moment)
+-- Handle Void
 local voidStatUps = { 0.2, 0.5, 1, 0.5, 0.2, 1 }
 if REPENTANCE then voidStatUps[4] = 1.5 end
 local lastVoidCheck = -30
@@ -131,6 +131,69 @@ end
 
 local function BlackRuneCallback(descObj)
 	return VoidCallback(descObj, true)
+end
+
+-- Map each text block of Pandora's Box to the AbsoluteStage number it's watching for
+-- Exception: 9 (???) should also watch for 12 (The Void)
+-- Localizations must have their text blocks in this order:
+-- B1, B2, C1, C2, D1, D2, W1, W2, ???/The Void, Sheol, Cathedral, Dark Room, The Chest, Home
+local pandorasStages = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11, 11, 13 }
+-- Stage numbers where whether it's alt or not matters for Pandora's Box
+local altStages = { [10] = false, [11] = true, [12] = false, [13] = true }
+-- Greed Mode Absolute Stage / Pandora's Box Behavior: 1: B2, 3: C2, 5: D2, 7: W1, 10: Sheol, 0: Chest
+local greedStages = { -1, 1, -1, 3, -1, 5, 7, -1, -1, 10, -1, -1, 0, -1 }
+
+local function PandorasBoxCallback(descObj)
+	local strangeKeyOwned = REPENTANCE and EID:PlayersHaveTrinket(175)
+	local pandoraCount = 0
+	local level = game:GetLevel()
+	local stageNum = level:GetAbsoluteStage()
+	local altStage = level:IsAltStage()
+	local doMarkup = false
+	-- Greed Mode has different Pandora's Box rules and stage numbers
+	local stageCheck = game:IsGreedMode() and greedStages or pandorasStages
+	local altCheck = game:IsGreedMode() and {} or altStages
+	
+	-- floor result information must be separated by line breaks or semicolons in localizations
+	local totalCount = 0
+	for w in string.gmatch(descObj.Description, "([^#;]+)") do
+		if totalCount > 0 or string.find(w,"2") then
+			totalCount = totalCount + 1
+		end
+	end
+	local skip9and12 = false
+	-- many localizations do not have the ???/Void entry and the Dark Room entry
+	-- this seemed better than forcing them to have it
+	if totalCount == (REPENTANCE and 12 or 11) then
+		skip9and12 = true
+	end
+	
+	for w in string.gmatch(descObj.Description, "([^#;]+)") do
+		doMarkup = false
+		-- the first captured group to care about is the one that contains a 2 (2 soul hearts)
+		if pandoraCount > 0 or string.find(w,"2") then
+			pandoraCount = pandoraCount + 1
+			if skip9and12 and (pandoraCount == 9 or pandoraCount == 12) then
+				pandoraCount = pandoraCount + 1
+			end
+			if (altCheck[pandoraCount] == nil or altStage == altCheck[pandoraCount]) then
+				if stageCheck[pandoraCount] == stageNum then doMarkup = true
+				--special exception for ???/The Void
+				elseif pandoraCount == 9 and stageNum == 12 then doMarkup = true
+				end
+			end
+			if doMarkup then
+				-- gsub behaves very poorly with punctuation so you need a punctuation-escaping gsub helper...
+				descObj.Description = string.gsub(descObj.Description, w:gsub("([^%w])", "%%%1"), "{{ColorBagComplete}}" .. w .. "{{CR}}")
+			end
+			-- don't check any lines of the description after Home
+			if pandoraCount	== (REPENTANCE and 14 or 13) then break end
+		end
+	end
+	if strangeKeyOwned then
+		descObj.Description = descObj.Description .. "#{{Trinket175}} " .. EID:getDescriptionEntry("PandorasBoxStrangeKeyEffect")
+	end
+	return descObj
 end
 
 -- Handle Item Collection description addition
@@ -489,6 +552,8 @@ local function EIDConditionsAB(descObj)
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 		if EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
+		
+		if descObj.ObjSubType == 297 then table.insert(callbacks, PandorasBoxCallback) end
 		
 		if EID.Config["DisplayVoidStatInfo"] then
 			if EID.collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
