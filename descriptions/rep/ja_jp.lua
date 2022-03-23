@@ -124,8 +124,7 @@ local repCollectibles={
     [294] = {"294", "Butter Bean", "おならで近くの敵と弾を ノックバックさせる#この効果で壁や障害物に 衝突した敵はダメージを 受ける　"}, -- Butter Bean
     [295] = {"295", "Magic Fingers", "1コイン消費し、部屋の 全ての敵に攻撃力ｘ2+10の ダメージを与える"}, -- Magic Fingers
     [296] = {"296", "Converter", "青／黒ハートを1個消費し、 最大体力を1個増やす"}, -- Converter
-    --the SINGLE USE line isn't the standard format in order to save a line break
-    [297] = {"297", "Pandora's Box", "{{Warning}} 使い切りアイテム#使用フロアで効果が変化：#B1:青ハート 2個#B2:爆弾と鍵 各2個#C1:ボスアイテム 1個#C2:B1+C1#D1:青ハート 4個#D2:コイン 20枚#W1:ボスアイテム 2個#W2:{{Collectible33}} 聖書#???/Void:なし#Sheol:悪魔部屋アイテム1個 　　　黒ハート 1個#DarkRoom:{{Collectible523}}お引越し用の箱 　　　　　 をアンロック#Cat:天使部屋アイテム 1個 　　白ハート 1個#Chest:コイン 1枚#Home:{{Collectible580}}レッドキー"}, -- Pandora's Box
+    [297] = {"297", "Pandora's Box", "{{Warning}} 使い切りアイテム#使用フロアで効果が変化：#B1:青ハート 2個#B2:爆弾と鍵 各2個#C1:ボスアイテム 1個#C2:B1+C1#D1:青ハート 4個#D2:コイン 20枚#W1:ボスアイテム 2個#W2:{{Collectible33}} 聖書#???/Void:なし#Sheol:悪魔部屋アイテム1個 　　　黒ハート 1個#Cat:天使部屋アイテム 1個 　　白ハート 1個#DarkRoom:{{Collectible523}}お引越し用の箱 　　　　　 をアンロック#Chest:コイン 1枚#Home:{{Collectible580}}レッドキー"}, -- Pandora's Box
     [300] = {"300", "Aries", "↑ 移動速度 +0.25#素早く敵に衝突すると、 敵に25のダメージを与える#この時、アイザックは ダメージを受けない"}, -- Aries
     [307] = {"307", "Capricorn", "↑ 最大体力 +1#↑ 攻撃力　 +0.5#↑ 移動速度 +0.1#↑ 射程　　 +0.75#↑ 連射速度 +0.5#コイン・爆弾・鍵 +1"}, -- Capricorn
     [308] = {"308", "Aquarius", "アイザックの体から青い  液体が流れ続け、触れた  敵にダメージを与える#液体は攻撃力ｘ0.66の ダメージを与え、涙の 特殊効果を引き継ぐ"}, -- Aquarius
