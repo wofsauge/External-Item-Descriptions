@@ -1067,6 +1067,8 @@ EID.descriptions[languageCode].FalsePHDHeart = "{{BlackHeart}} Gera 1 Coração 
 EID.descriptions[languageCode].FalsePHDDamage = "{{Damage}} +0.6 de Dano"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "{{Damage}} +1.2 de Dano"
 
+EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Em vez disso, consome a chave e gera 6 itens de pools aleatórias"
+
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! ALERTA !!!"
 EID.descriptions[languageCode].AchievementWarningText = "Conquista estão desabilitadas!#Para possibilitar a progressão e as conquistas, é preciso primeiro matar a Mãe (Depths II) sem nenhum mod habilitado.#(Se você já derrotou a Mãe, esta mensagem é um bug e pode ser ignorada)#(Este aviso pode ser desabilitado nas configurações)"
 
