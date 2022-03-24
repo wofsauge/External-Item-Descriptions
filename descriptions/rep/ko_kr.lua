@@ -138,7 +138,7 @@ local repCollectibles={
 	[295] = {"295", "침대 안마기", "사용 시 동전을 1개 소모해 방 안의 모든 적에게 눈물 공격력 x2 +10의 피해를 줍니다."}, -- Magic Fingers
 	[296] = {"296", "변환기", "사용 시 소울하트 1칸을 {{Heart}}최대 체력 1칸으로 바꿉니다."}, -- Converter
 	--[297] = {"297", "판도라의 상자", "!!! 일회용#사용 시 스테이지마다 다른 보상을 드랍합니다.#B1(1): 2{{SoulHeart}} #B2(2): 2{{Bomb}} + 2{{Key}}#C1(3): {{BossRoom}} 아이템 1개 #C2(4): 1{{BossRoom}}아이템 + 2{{SoulHeart}}#D1(5): 4{{SoulHeart}} #D2(6): 20{{Coin}}#W1(7): 2{{BossRoom}}아이템 #W2(8): {{Collectible33}}성경#Sheol: {{DevilRoom}} 아이템 1개 + 1{{BlackHeart}}#Cath: {{AngelRoom}} 아이템 1개 + 1{{EthernalHeart}} #Chest/Dark: 1{{Coin}}#Dark(최초 사용): {{Collectible523}}Moving Box 해금#Home: {{Collectible580}}빨간 열쇠"}, -- Pandora's Box
-	[297] = {"297", "판도라의 상자", "!!! 일회용#사용 시 스테이지마다 다른 보상을 드랍합니다.#B1(1): {{SoulHeart}}소울하트 2개 #B2(2): {{Bomb}}폭탄 2개 + {{Key}}열쇠 2개#C1(3): {{BossRoom}}보스방 아이템 1개 #C2(4): {{BossRoom}}보스방 아이템 1개 + {{SoulHeart}}소울하트 2개#D1(5): {{SoulHeart}}소울하트 4개 #D2(6): {{Coin}}동전 20개#W1(7): {{BossRoom}}보스방 아이템 2개 #W2(8): {{Collectible33}}성경#???/Void: 아무것도#Sheol: {{DevilRoom}}악마방 아이템 1개 + {{BlackHeart}}블랙하트 1개#Cath: {{AngelRoom}}천사방 아이템 1개 + {{EthernalHeart}}이터널하트 1개 #Dark: {{Collectible523}}Moving Box 해금#Chest: {{Coin}}동전 1개#Home: {{Collectible580}}빨간 열쇠"}, -- Pandora's Box
+	[297] = {"297", "판도라의 상자", "!!! 일회용#사용 시 스테이지마다 다른 보상을 드랍합니다.#B1(1): {{SoulHeart}}소울하트 2개 #B2(2): {{Bomb}}폭탄 2개 + {{Key}}열쇠 2개#C1(3): {{BossRoom}}보스방 아이템 1개 #C2(4): {{BossRoom}}보스방 아이템 1개 + {{SoulHeart}}소울하트 2개#D1(5): {{SoulHeart}}소울하트 4개 #D2(6): {{Coin}}동전 20개#W1(7): {{BossRoom}}보스방 아이템 2개 #W2(8): {{Collectible33}}성경#???/Void: 없음#Sheol: {{DevilRoom}}악마방 아이템 1개 + {{BlackHeart}}블랙하트 1개#Cath: {{AngelRoom}}천사방 아이템 1개 + {{EthernalHeart}}이터널하트 1개 #Dark: {{Collectible523}}Moving Box 해금#Chest: {{Coin}}동전 1개#Home: {{Collectible580}}빨간 열쇠"}, -- Pandora's Box
 	[300] = {"300", "양자리", "↑ {{SpeedSmall}}이동속도 +0.25#이동속도가 0.85 이상인 상태에서 높은 속도로 적과 접촉시 피해를 받지 않고 적에게 18의 피해를 줍니다."}, -- Aries
 	[307] = {"307", "염소자리", "↑ {{Heart}}최대 체력 +1#↑ {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 +1#↑ {{DamageSmall}}공격력 +1#↑ {{TearsSmall}}연사(+상한) +0.5#↑ {{RangeSmall}}사거리 +0.75#↑ {{SpeedSmall}}이동속도 +0.1"}, -- Capricorn
 	[308] = {"308", "물병자리", "캐릭터가 지나간 자리에 파란 장판이 생기며 닿은 적은 공격력 x0.66의 피해를 입습니다.#장판의 효과는 현재 눈물 효과에 따라 달라집니다."}, -- Aquarius
@@ -826,7 +826,7 @@ local repTrinkets={
 	[172] = {"172", "저주받은 동전", "동전 획득 시 랜덤한 방으로 순간이동합니다."}, -- Cursed Penny
 	[173] = {"173", "네 영혼", "!!! 일회용#체력 거래 시 체력을 소모하지 않습니다."}, -- Your Soul
 	[174] = {"174", "숫자 자석", "↑ {{DevilChanceSmall}}악마방 확률 +10%#{{DevilRoom}}악마방에서 Krampus 보스가 등장하지 않습니다.#악마방 구조가 특수하게 변경되며 악마방에서 적들과 {{BlackHeart}}블랙하트의 등장 확률 및 빈도가 높아집니다."}, -- Number Magnet
-	[175] = {"175", "이상한 열쇠", "30분이 지나도 Blue Womb 스테이지로 갈 수 있습니다.#{{Collectible297}}Pandora's Box 사용 시 장신구가 사라지며 랜덤한 아이템 6개를 생성합니다."}, -- Strange Key
+	[175] = {"175", "이상한 열쇠", "30분이 지나도 ???(Blue Womb) 스테이지로 갈 수 있습니다.#{{Collectible297}}Pandora's Box 사용 시 장신구가 사라지며 랜덤 배열의 아이템 6개를 생성합니다."}, -- Strange Key
 	[176] = {"176", "꼬마 클롯", "캐릭터와 같이 이동하며 공격하는 방향으로 캐릭터의 공격과 같은 공격을 발사합니다."}, -- Lil Clot
 	[177] = {"177", "스티커 문신", "도전방 클리어 시 상자를 드랍합니다.#보스 도전방 클리어 시 아이템을 생성합니다."}, -- Temporary Tattoo
 	[178] = {"178", "삼킨 M80", "피격 시 50% 확률로 캐릭터의 위치에 공격력 185의 폭발을 일으킵니다."}, -- Swallowed M80
@@ -1135,6 +1135,8 @@ EID.descriptions[languageCode].FlipItemToggleInfo = "( {{ButtonSelect}} (맵 펼
 EID.descriptions[languageCode].FalsePHDHeart = "{{BlackHeart}}블랙하트 1개 드랍"
 EID.descriptions[languageCode].FalsePHDDamage = "{{DamageSmall}}공격력 +0.6"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "{{DamageSmall}}공격력 +1.2"
+
+EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "위의 효과 대신 열쇠를 같이 소모하여 랜덤 배열의 아이템 6개를 소환합니다."
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! 경고 !!!"
 EID.descriptions[languageCode].AchievementWarningText = "지금 모드를 적용하면 도전과제가 언락되지 않습니다!#모든 모드를 비활성화 한 상태에서 6 스테이지 (Depths II) 보스를 클리어하셔야#{{Blank}}모드 적용 중에도 도전과제를 언락할 수 있습니다.#{{Blank}}(일반 게임에서 화면 왼쪽에 트로피 금지 아이콘이 없을 경우 이 메세지를 비활성화 하셔도 됩니다.)#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
