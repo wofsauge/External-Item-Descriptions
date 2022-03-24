@@ -205,6 +205,20 @@ local function ItemCollectionPageCallback(descObj)
 	return descObj
 end
 
+-- Handle Sacrifice room payout 
+local function SacrificeRoomCallback(descObj)
+	local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+	local curCounter = EID.sacrificeCounter[curRoomIndex] or 1
+	descObj.Name = descObj.Name.." ("..curCounter.."/12)"
+	if curCounter <= 2 then
+		if game:GetLevel():GetAbsoluteStage() > 1 then
+			local splitPoint = string.find(descObj.Description, '#', 1)
+			descObj.Description = descObj.Description:sub(1,splitPoint-1)
+		end
+	end
+	return descObj
+end
+
 
 if REPENTANCE then
 	-- Handle Birthright
@@ -542,6 +556,8 @@ end
 
 -- AFTERBIRTH+ OR REPENTANCE MODIFIERS
 local function EIDConditionsAB(descObj)
+	-- handle Sacrifice room
+	if descObj.ObjType == -999 and descObj.ObjVariant == -1 then return {SacrificeRoomCallback} end
 	-- currently, only pickup descriptions have modifiers
 	if descObj.ObjType ~= 5 then return false end
 	

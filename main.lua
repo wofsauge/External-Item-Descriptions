@@ -1460,7 +1460,6 @@ local function onRender(t)
 			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 			local curCounter = EID.sacrificeCounter[curRoomIndex] or 1
 			local sacrificeDesc = EID:getDescriptionObj(-999, -1, curCounter)
-			sacrificeDesc.Name = sacrificeDesc.Name.." ("..curCounter.."/12)"
 			EID:addDescriptionToPrint(sacrificeDesc)
 		end
 	end
