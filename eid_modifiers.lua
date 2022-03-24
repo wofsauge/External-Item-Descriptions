@@ -207,8 +207,7 @@ end
 
 -- Handle Sacrifice room payout 
 local function SacrificeRoomCallback(descObj)
-	local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-	local curCounter = EID.sacrificeCounter[curRoomIndex] or 1
+	local curCounter = descObj.ObjSubType or 1
 	descObj.Name = descObj.Name.." ("..curCounter.."/12)"
 	if curCounter <= 2 then
 		if game:GetLevel():GetAbsoluteStage() > 1 then
