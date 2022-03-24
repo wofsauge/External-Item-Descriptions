@@ -662,7 +662,7 @@ EID.descriptions[languageCode].trinkets={
 	{"82", "Golden Horse Shoe", "{{TreasureRoom}} +15% chance for Treasure Rooms to have two items on future floors#You can only choose one"},
 	{"83", "Store Key", "{{Shop}} Open Shops for free"},
 	{"84", "Rib of Greed", "Greed and Super Greed no longer appear in {{Shop}}Shops or {{SecretRoom}}Secret Rooms#5% more coins and less hearts from room clear rewards"},
-	{"85", "Karma", "Using a Donation Machine can:# {{Heart}} Heal 1 heart#{{Coin}} Give 1 coin#{{Luck}} Grant +1 Luck up#{{Beggar}} spawn a Beggar"},
+	{"85", "Karma", "Using a Donation Machine can:#{{Heart}} Heal 1 heart#{{Coin}} Give 1 coin#{{Luck}} Grant +1 Luck up#{{Beggar}} Spawn a Beggar"},
 	{"86", "Lil Larva", "Destroying poop spawns 1 blue fly"},
 	{"87", "Mom's Locket", "Heal half a heart when using keys#Turns half hearts into full hearts"},
 	{"88", "NO!", "Prevents active items from spawning"},
