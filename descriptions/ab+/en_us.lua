@@ -827,7 +827,7 @@ EID.descriptions[languageCode].sacrifice={
 	{"2", "", "{{Coin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
 	{"3", "", "{{AngelChance}} 67% chance for increased Angel Room chance"},
 	{"4", "", "{{Chest}} 50% chance for 1 random chest"},
-	{"5", "", "{{Coin}} 33% chance for 3 coins#{{AngelRoom}} 67% chance for increased Angel Room chance"},
+	{"5", "", "{{Coin}} 33% chance for 3 coins#{{AngelChance}} 67% chance for increased Angel Room chance"},
 	{"6", "", "{{AngelRoom}} 33% chance for a teleport to the Angel Room#{{DevilRoom}} Teleports to the Devil Room instead if its door was spawned on the current floor#{{Chest}} 67% chance for random chest"},
 	{"7", "", "{{AngelRoom}} 33% chance for 1 random Angel Room item#{{SoulHeart}} 67% chance for 1 Soul Heart"},
 	{"8", "", "100% chance for 7 troll bombs"},
