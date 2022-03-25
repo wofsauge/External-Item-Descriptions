@@ -1217,7 +1217,7 @@ local function onRender(t)
 			EID:handleBagOfCraftingUpdating()
 			-- If we're in the Crafting options tab, the only rendering we want to happen is the Bag of Crafting preview
 			if ModConfigMenu and ModConfigMenu.IsVisible and EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
-				local craftingSuccess = EID:handleBagOfCraftingRendering()
+				local craftingSuccess = EID:handleBagOfCraftingRendering(true)
 				if craftingSuccess then
 					EID:printDescription(EID.descriptionsToPrint[#EID.descriptionsToPrint])
 				end
