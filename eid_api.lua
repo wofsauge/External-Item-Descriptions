@@ -752,7 +752,7 @@ function EID:replaceAllMarkupWithSpaces(text, checkBulletpoint)
 	if checkBulletpoint then
 		-- Check for the text to just be a bulletpoint icon, which should be considered as zero width
 		-- (fixTextToWidth uses this function one word at a time)
-		if EID:getIcon(text) ~= EID.InlineIcons["ERROR"] and string.find(text, "{{.-}}")~=nil then
+		if EID:getIcon(text:gsub(" ", "")) ~= EID.InlineIcons["ERROR"] and string.find(text, "{{.-}}")~=nil then
 			return ""
 		end
 	end
