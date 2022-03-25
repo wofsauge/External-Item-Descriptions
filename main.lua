@@ -1473,7 +1473,7 @@ EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 local function OnGameStartGeneral(_,isSave)
 	EID:buildTransformationTables()
 	if not isSave then
-		EID.TouchedActiveItems = {}
+		EID.PlayerItemInteractions = {}
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
@@ -1482,16 +1482,27 @@ EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 local function OnUseD4(_, _, _, player)
 	local playerID = EID:getPlayerID(player)
 	for i = 0, 3 do
-		local itemID = player:GetActiveItem(i)
-		if itemID ~= 0 then
-			if not EID.TouchedActiveItems[playerID][itemID] then
-				EID.TouchedActiveItems[playerID][itemID] = 0
+		local itemID = tostring(player:GetActiveItem(i))
+		if itemID ~= "0" then
+			if not EID.PlayerItemInteractions[playerID].actives[itemID] then
+				EID.PlayerItemInteractions[playerID].actives[itemID] = 0
 			end
-			EID.TouchedActiveItems[playerID][itemID] = EID.TouchedActiveItems[playerID][itemID] + 1
+			EID.PlayerItemInteractions[playerID].actives[itemID] = EID.PlayerItemInteractions[playerID].actives[itemID] + 1
 		end
 	end
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
+
+function EID:OnUsePill(pillEffectID, player)
+	local playerID = EID:getPlayerID(player)
+	local effectID = tostring(pillEffectID+1)
+	if not EID.PlayerItemInteractions[playerID].pills[effectID] then
+		EID.PlayerItemInteractions[playerID].pills[effectID] = 0
+	end
+	EID.PlayerItemInteractions[playerID].pills[effectID] = EID.PlayerItemInteractions[playerID].pills[effectID] + 1
+end
+EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
+
 
 -- only save and load configs when using MCM. Otherwise Config file changes arent valid
 if EID.MCMLoaded or REPENTANCE then
@@ -1503,7 +1514,7 @@ if EID.MCMLoaded or REPENTANCE then
 		["FlipItemPositions"] = true,
 		["AbsorbedItems"] = true,
 		["CollectedItems"] = true,
-		["TouchedActiveItems"] = true,
+		["PlayerItemInteractions"] = true,
 	}
 	--------------------------------
 	--------Handle Savadata---------
@@ -1521,15 +1532,15 @@ if EID.MCMLoaded or REPENTANCE then
 					EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[id] = nil
 				end
 			end
-			EID.TouchedActiveItems = {}
+			EID.PlayerItemInteractions = {}
 			if isSave then
 				-- JSON saves integer table keys as strings. we need to transform them back...
-				for playerID, data in pairs(savedEIDConfig["TouchedActiveItems"] or {}) do
+				for playerID, data in pairs(savedEIDConfig["PlayerItemInteractions"] or {}) do
 					local convertedData = {}
 					for key, value in pairs(data) do
 						convertedData[tonumber(key) or key] = value
 					end
-					EID.TouchedActiveItems[tonumber(playerID)] = convertedData
+					EID.PlayerItemInteractions[tonumber(playerID)] = convertedData
 				end
 			end
 
@@ -1618,7 +1629,7 @@ if EID.MCMLoaded or REPENTANCE then
 			EID.Config["FlipItemPositions"] = flipItemTable or {}
 		end
 		EID.Config["CollectedItems"] = EID.CollectedItems
-		EID.Config["TouchedActiveItems"] = EID.TouchedActiveItems or {}
+		EID.Config["PlayerItemInteractions"] = EID.PlayerItemInteractions or {}
 
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()

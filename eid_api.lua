@@ -1474,13 +1474,17 @@ function EID:evaluateTransformationProgress(transformation)
 				local eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
 				if tonumber(eType) == EntityType.ENTITY_PICKUP then
 					if tonumber(eVariant) == PickupVariant.PICKUP_COLLECTIBLE then
-						if EID.TouchedActiveItems[i][tonumber(eSubType)] then
-							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + EID.TouchedActiveItems[i][tonumber(eSubType)]
+						if EID.PlayerItemInteractions[i].actives[tostring(eSubType)] then
+							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + EID.PlayerItemInteractions[i].actives[tostring(eSubType)]
 						else
 							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + player:GetCollectibleNum(eSubType, true)
 						end
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_TRINKET and player:HasTrinket(eSubType) then
 						EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + 1
+					elseif tonumber(eVariant) == PickupVariant.PICKUP_PILL then
+						if EID.PlayerItemInteractions[i].pills[tostring(eSubType)] then
+							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + EID.PlayerItemInteractions[i].pills[tostring(eSubType)]
+						end
 					end
 				end
 			end
@@ -1489,27 +1493,27 @@ function EID:evaluateTransformationProgress(transformation)
 end
 
 -- Given a transformation identifier, itterate over every player and count the number of items they have which count towards that transformation 
-EID.TouchedActiveItems = {}
+EID.PlayerItemInteractions = {}
 function EID:evaluateQueuedItems()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player.QueuedItem then
-			if not EID.TouchedActiveItems[i] then
-				EID.TouchedActiveItems[i] = {LastTouch = 0}
+			if not EID.PlayerItemInteractions[i] then
+				EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}}
 			end
-			if EID.TouchedActiveItems[i].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
+			if EID.PlayerItemInteractions[i].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
 				return
 			else
-				EID.TouchedActiveItems[i].LastTouch = 0
+				EID.PlayerItemInteractions[i].LastTouch = 0
 			end
 
 			if not player.QueuedItem.Touched and player.QueuedItem.Item and player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
-				local itemID = player.QueuedItem.Item.ID
-				if not EID.TouchedActiveItems[i][itemID] then
-					EID.TouchedActiveItems[i][itemID] = 0
+				local itemID = tostring(player.QueuedItem.Item.ID)
+				if not EID.PlayerItemInteractions[i].actives[itemID] then
+					EID.PlayerItemInteractions[i].actives[itemID] = 0
 				end
-				EID.TouchedActiveItems[i][itemID] = EID.TouchedActiveItems[i][itemID] + 1
-				EID.TouchedActiveItems[i].LastTouch = game:GetFrameCount()
+				EID.PlayerItemInteractions[i].actives[itemID] = EID.PlayerItemInteractions[i].actives[itemID] + 1
+				EID.PlayerItemInteractions[i].LastTouch = game:GetFrameCount()
 			end
 		end 
 	end
