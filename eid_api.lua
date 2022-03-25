@@ -1413,6 +1413,7 @@ function EID:PlayersActionPressed(button, inputFunc)
 	return false
 end
 
+-- Replaces, or removes Markups depends on config
 function EID:replaceMarkupSize(description)
 	if EID.Config["MarkupSize"] == "small" then
 		for normal, small in pairs(EID.MarkupSizeMap) do
@@ -1422,6 +1423,19 @@ function EID:replaceMarkupSize(description)
 		for normal, small in pairs(EID.MarkupSizeMap) do
 			description.Description = string.gsub(description.Description, small, normal)
 		end
+	elseif EID.Config["MarkupSize"] == "only remove stat modifiers" then
+		description.Description = string.gsub(description.Description, "↑ ({{[.-}}]+)", "↑ ")
+		description.Description = string.gsub(description.Description, "↓ ({{[.-}}]+)", "↓ ")
+		-- Remove double spaces after markup removal
+		description.Description = string.gsub(description.Description, "  ", " ")
+		description.Description = string.gsub(description.Description, "# ", "#")
+	elseif EID.Config["MarkupSize"] == "remove stat icons" then
+		for _, val in pairs(EID.MarkupRemovals) do
+			description.Description = string.gsub(description.Description, val, "")
+		end
+		-- Remove double spaces after markup removal
+		description.Description = string.gsub(description.Description, "  ", " ")
+		description.Description = string.gsub(description.Description, "# ", "#")
 	end
 	return description
 end

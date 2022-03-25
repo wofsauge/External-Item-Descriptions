@@ -753,6 +753,15 @@ EID.MarkupSizeMap = {
 	["{{DailyRun}}"] = "{{DailyRunSmall}}",
 }
 
+EID.MarkupRemovals = {
+	"{{Damage}}", "{{Speed}}", "{{Tears}}", "{{Range}}", 
+	"{{Shotspeed}}", "{{Luck}}", "{{AngelChance}}", "{{DevilChance}}", 
+	"{{AngelDevilChance}}", "{{PlanetariumChance}}", "{{TreasureRoomChance}}", "{{Tearsize}}",
+	"{{DamageSmall}}", "{{SpeedSmall}}", "{{TearsSmall}}", "{{RangeSmall}}", 
+	"{{ShotspeedSmall}}", "{{LuckSmall}}", "{{AngelChanceSmall}}", "{{DevilChanceSmall}}", 
+	"{{AngelDevilChanceSmall}}", "{{PlanetariumChanceSmall}}", "{{TreasureRoomChanceSmall}}", "{{TearsizeSmall}}",
+}
+
 EID.TransformationData = {
 	-- Structure: [Internal Name of Transformation] = {NumNeeded = 3 (Default), VanillaForm = nil (default)}
 	[tostring(EID.TRANSFORMATION.GUPPY)] = {VanillaForm = PlayerForm.PLAYERFORM_GUPPY},

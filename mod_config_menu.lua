@@ -506,7 +506,7 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Visuals", "LocalModeCentered", "Local Mode Centered")
 
 	-------Markup icon Sizes---------
-	local markupSizes = {"default", "big", "small"}
+	local markupSizes = {"default", "big", "small", "only remove stat modifiers", "remove stat icons"}
 	EID:AddNumberSetting("Visuals", "MarkupSize", "Markup icon Size", 1, #markupSizes, {indexOf = markupSizes}, {onChangeFunc = 
 	function(currentNum)
 		EID.MCM_OptionChanged = true
