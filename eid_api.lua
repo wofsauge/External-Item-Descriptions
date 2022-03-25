@@ -1423,7 +1423,7 @@ function EID:replaceMarkupSize(description)
 		for normal, small in pairs(EID.MarkupSizeMap) do
 			description.Description = string.gsub(description.Description, small, normal)
 		end
-	elseif EID.Config["MarkupSize"] == "only remove stat modifiers" then
+	elseif EID.Config["MarkupSize"] == "remove stat changes" then
 		description.Description = string.gsub(description.Description, "↑ ({{[.-}}]+)", "↑ ")
 		description.Description = string.gsub(description.Description, "↓ ({{[.-}}]+)", "↓ ")
 		description.Description = string.gsub(description.Description, "{{ArrowUp}} ({{[.-}}]+)", "{{ArrowUp}} ")
