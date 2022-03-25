@@ -16,7 +16,7 @@ local spawnedItems = 0
 local lastEffectTrigger = "chain"
 local descOne = ""
 
-local logLocation = os.getenv("SYSTEMDRIVE") .. "/Users/" .. os.getenv("USERNAME") .. "/Documents/My Games/Binding of Isaac Repentance/log.txt"
+local logLocation = os.getenv("USERPROFILE") .. "/Documents/My Games/Binding of Isaac Repentance/log.txt"
 local logFound = false
 local logCursor = 0
 
