@@ -506,12 +506,17 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Visuals", "LocalModeCentered", "Local Mode Centered")
 
 	-------Markup icon Sizes---------
-	local markupSizes = {"default", "big", "small", "remove stat changes"--[[ , "remove stat icons" ]]}
-	EID:AddNumberSetting("Visuals", "MarkupSize", "Markup icon Size", 1, #markupSizes, {indexOf = markupSizes}, {onChangeFunc = 
-	function(currentNum)
-		EID.MCM_OptionChanged = true
-		renderDummyDesc(true)
-	end})
+	local markupSizes = {"default", "big", "small", "remove stat changes", "remove stat icons"}
+	EID:AddNumberSetting("Visuals", "MarkupSize", "Markup icon Size", 1, #markupSizes, {
+		infoText = {"Change or remove some Markups", "Caution: Removing markups can make some descriptions unreadable!"},
+		indexOf = markupSizes
+	},{ 
+		onChangeFunc = function(currentNum)
+			EID.MCM_OptionChanged = true
+			EID.Config["MarkupSize"] = currentNum
+			renderDummyDesc(true)
+		end,
+	})
 
 	-- Transparency
 	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
