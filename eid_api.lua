@@ -773,6 +773,8 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formattedLines = {}
 	local curLength = 0
 	local text = {}
+	-- the first word we run into might actually be a bulletpoint icon, which should be zero width
+	local isBulletpoint = true
 
 	local cursor = 1
 	local word_begin_index = 1
@@ -840,7 +842,8 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 
 				-- we can break after str[cursor]
 				local word = sub(str, word_begin_index, cursor)
-				local wordFiltered = EID:replaceAllMarkupWithSpaces(word, curLength == 0)
+				local wordFiltered = EID:replaceAllMarkupWithSpaces(word, isBulletpoint)
+				isBulletpoint = false
 				local wordLength = EID:getStrWidth(wordFiltered)
 				
 				if curLength + wordLength <= textboxWidth or curLength < 17 then
