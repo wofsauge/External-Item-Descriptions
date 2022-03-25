@@ -863,6 +863,7 @@ local function RecipeCrunchCoroutine()
 	EID.RefreshBagTextbox = true
 end
 
+local prevOffset = 0
 -- Called 60 times a second so we can read input properly
 function EID:handleBagOfCraftingUpdating()
 	-- reset our calculated recipes when the game seed changes
@@ -891,6 +892,49 @@ function EID:handleBagOfCraftingUpdating()
 			showCraftingResult = not showCraftingResult
 		end
 	end
+	
+	-- Check for Hold Tab key inputs
+	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.bagPlayer.ControllerIndex) then
+		EID.bagPlayer.ControlsCooldown = 2
+		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.bagPlayer.ControllerIndex) then
+			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
+			downHeld = Isaac.GetTime()
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, EID.bagPlayer.ControllerIndex) then
+			bagOfCraftingOffset = math.max(0, bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
+			upHeld = Isaac.GetTime()
+		--lock the current results so you can actually do a recipe that you've scrolled down to without losing it
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTLEFT, EID.bagPlayer.ControllerIndex) then
+			EID.RefreshBagTextbox = true
+			if (lockedResults == nil) then lockedResults = queryString
+			else lockedResults = nil end
+		--refresh the recipes
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTRIGHT, EID.bagPlayer.ControllerIndex) then
+			if (lockedResults == nil) then
+				refreshNextTick = true
+			end
+		end
+		--scroll pages quickly if the button is held
+		if Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, EID.bagPlayer.ControllerIndex) and Isaac.GetTime() - downHeld > 750 then
+			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
+			downHeld = Isaac.GetTime() - 700
+		elseif Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, EID.bagPlayer.ControllerIndex) and Isaac.GetTime() - upHeld > 750 then
+			bagOfCraftingOffset = math.max(0, bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
+			upHeld = Isaac.GetTime() - 700
+		end
+		--reset bag contents when holding Use Pill/Card
+		if Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.bagPlayer.ControllerIndex) then
+			resetBagCounter = resetBagCounter + 1
+			if resetBagCounter > 120 then
+				EID.BagItems = {}
+				recheckPickups = true
+				resetBagCounter = 0
+			end
+		else
+			resetBagCounter = 0
+		end
+	end
+	--fix bug with being allowed to go to an empty page if recipe count = multiple of page size (or if we refresh on last page)
+	if (bagOfCraftingOffset >= numResults) then bagOfCraftingOffset = bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
 end
 
 -- Called when needed based on EID.Config["RefreshRate"]
@@ -1071,55 +1115,13 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		return false
 	end
 	
-	local prevOffset = bagOfCraftingOffset
-	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.bagPlayer.ControllerIndex) then
-		EID.bagPlayer.ControlsCooldown = 2
-		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.bagPlayer.ControllerIndex) then
-			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
-			downHeld = Isaac.GetTime()
-		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, EID.bagPlayer.ControllerIndex) then
-			bagOfCraftingOffset = math.max(0, bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
-			upHeld = Isaac.GetTime()
-		--lock the current results so you can actually do a recipe that you've scrolled down to without losing it
-		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTLEFT, EID.bagPlayer.ControllerIndex) then
-			EID.RefreshBagTextbox = true
-			if (lockedResults == nil) then lockedResults = queryString
-			else lockedResults = nil end
-		--refresh the recipes
-		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTRIGHT, EID.bagPlayer.ControllerIndex) then
-			if (lockedResults == nil) then
-				refreshNextTick = true
-			end
-		end
-		--scroll pages quickly if the button is held
-		if Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, EID.bagPlayer.ControllerIndex) and Isaac.GetTime() - downHeld > 750 then
-			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
-			downHeld = Isaac.GetTime() - 700
-		elseif Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, EID.bagPlayer.ControllerIndex) and Isaac.GetTime() - upHeld > 750 then
-			bagOfCraftingOffset = math.max(0, bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
-			upHeld = Isaac.GetTime() - 700
-		end
-		--reset bag contents when holding Use Pill/Card
-		if Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.bagPlayer.ControllerIndex) then
-			resetBagCounter = resetBagCounter + 1
-			if resetBagCounter > 120 then
-				EID.BagItems = {}
-				recheckPickups = true
-				resetBagCounter = 0
-			end
-		else
-			resetBagCounter = 0
-		end
-	end
-	--fix bug with being allowed to go to an empty page if recipe count = multiple of page size (or if we refresh on last page)
-	if (bagOfCraftingOffset >= numResults) then bagOfCraftingOffset = bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
-	
 	if not EID.RefreshBagTextbox and prevDesc ~= "" and bagOfCraftingOffset == prevOffset and not EID.OptionChanged then
 		EID:appendToDescription(customDescObj, prevDesc)
 		EID:addDescriptionToPrint(customDescObj)
 		return true
 	end
 	
+	prevOffset = bagOfCraftingOffset
 	prevDesc = ""
 	EID.RefreshBagTextbox = false
 	
