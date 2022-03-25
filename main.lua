@@ -452,6 +452,14 @@ EID.CachedRenderPoses = {}
 EID.descriptionsToPrint = {}
 EID.entitiesToPrint = {}
 
+local function resetDescCache()
+	EID.CachedIcons = {}
+	EID.CachedStrings = {}
+	EID.CachedRenderPoses = {}
+	-- EID.CachedIndicators = {}
+	EID.previousDescs = {}
+end
+
 
 function EID:addDescriptionToPrint(desc)
 	if desc.Entity and EID.entitiesToPrint[GetPtrHash(desc.Entity)] then return end
@@ -459,7 +467,11 @@ function EID:addDescriptionToPrint(desc)
 	if desc.Entity then EID.entitiesToPrint[GetPtrHash(desc.Entity)] = true end
 end
 
+local prevPrintFrame = 0
+
 function EID:printDescriptions(useCached)
+	prevPrintFrame = EID.GameRenderCount
+	
 	EID.CachingDescription = false
 	if not useCached then
 		-- Test if we should print our cached descriptions or not
@@ -489,10 +501,7 @@ end
 
 function EID:printNewDescriptions()
 	EID.CachingDescription = true
-	EID.CachedIcons = {}
-	EID.CachedStrings = {}
-	EID.CachedRenderPoses = {}
-	EID.previousDescs = {}
+	resetDescCache()
 	
 	for i,newDesc in ipairs(EID.descriptionsToPrint) do
 		if newDesc.Description == "UnidentifiedPill" then
@@ -1179,13 +1188,13 @@ local function onRender(t)
 	EID.descriptionsToPrint = {}
 	EID.entitiesToPrint = {}
 	alwaysUseLocalMode = false
-	if EID:RefreshThisFrame() then
-		EID.CachedIcons = {}
-		EID.CachedStrings = {}
-		EID.CachedRenderPoses = {}
+	
+	-- if frames were skipped (due to EID being hidden / in battle / in options), wipe the desc cache
+	if EID.GameRenderCount > prevPrintFrame + 1 then
+		resetDescCache()
 		EID.CachedIndicators = {}
-		EID.previousDescs = {}
 	end
+	
 	-- Do not check our hide or scale hotkeys while a tab that can modify them is open
 	if EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then
 		-- scale key must be handled before resetting to non-local mode
@@ -1241,6 +1250,9 @@ local function onRender(t)
 		EID:printDescriptions(true)
 		return
 	end
+	
+	-- We'll redraw the indicators in the process of determining what's in range, so wipe their cache
+	EID.CachedIndicators = {}
 	
 	if EID.Config["EnableMouseControls"] then
 		local hudDescription = EID:handleHoverHUD()
