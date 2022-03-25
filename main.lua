@@ -222,28 +222,22 @@ function EID:IsAltChoice(pickup)
 	end
 	
 	questionMarkSprite:SetFrame(name,entitySprite:GetFrame())
-	-- check some point in entitySprite
-	for i = -50,20,3 do
-		local qcolor = questionMarkSprite:GetTexel(Vector(0,i),nullVector,1,1)
-		local ecolor = entitySprite:GetTexel(Vector(0,i),nullVector,1,1)
-		if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
-			-- it is not same with question mark sprite
-			altPathItemChecked[pickup.InitSeed] = false
-			return false
-		end
-	end
+	-- Quickly check some points in entitySprite to not need to check the whole sprite
+	-- We check the range from Y -40 to 10 in 3 pixel steps and also X -1 to 1.  GetTexel() gets the color value of a sprite at a given location. the center of the sprite is here in the Pivot point of the sprite in the anm2 file. 
+	-- therefore we go negative 40 pixels up to read the sprite as it is on a pedestal. We also look 10 pixel down to make comparing shop items more accurate
 	
-	--this may be a question mark, however, we will check it again to ensure it
-	for j = -1,1,1 do
-		for i = -71,0,3 do
-			local qcolor = questionMarkSprite:GetTexel(Vector(j,i),nullVector,1,1)
-			local ecolor = entitySprite:GetTexel(Vector(j,i),nullVector,1,1)
+	for i = -1,1,1 do
+		for j = -40,10,3 do
+			local qcolor = questionMarkSprite:GetTexel(Vector(i,j),nullVector,1,1)
+			local ecolor = entitySprite:GetTexel(Vector(i,j),nullVector,1,1)
 			if qcolor.Red ~= ecolor.Red or qcolor.Green ~= ecolor.Green or qcolor.Blue ~= ecolor.Blue then
+				-- it is not same with question mark sprite
 				altPathItemChecked[pickup.InitSeed] = false
 				return false
 			end
 		end
 	end
+
 	altPathItemChecked[pickup.InitSeed] = true
 	return true
 end
