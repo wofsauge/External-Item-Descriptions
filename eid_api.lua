@@ -1426,6 +1426,8 @@ function EID:replaceMarkupSize(description)
 	elseif EID.Config["MarkupSize"] == "only remove stat modifiers" then
 		description.Description = string.gsub(description.Description, "↑ ({{[.-}}]+)", "↑ ")
 		description.Description = string.gsub(description.Description, "↓ ({{[.-}}]+)", "↓ ")
+		description.Description = string.gsub(description.Description, "{{ArrowUp}} ({{[.-}}]+)", "{{ArrowUp}} ")
+		description.Description = string.gsub(description.Description, "{{ArrowDown}} ({{[.-}}]+)", "{{ArrowDown}} ")
 		-- Remove double spaces after markup removal
 		description.Description = string.gsub(description.Description, "  ", " ")
 		description.Description = string.gsub(description.Description, "# ", "#")
