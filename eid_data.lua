@@ -119,6 +119,7 @@ EID.TextReplacementPairs = {
 	{"{{CR}}", "{{ColorReset}}"}, -- Shortcut for Color Resetting
 	{"{{EthernalHeart}}", "{{EternalHeart}}"}, -- fix spelling error
 	{"{{CONFIG_BoC_Toggle}}", function(_) return EID.ButtonToIconMap[EID.Config["BagOfCraftingToggleKey"]] or "{{ButtonSelect}}" end}, -- fix spelling error
+	{"{{Shotspeed}}", "{{ShotSpeed}}"}, -- capitalization option
 }
 local controllerSprites = Sprite()
 controllerSprites:Load("gfx/ui/buttons.anm2", true)
