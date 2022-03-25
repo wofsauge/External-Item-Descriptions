@@ -894,11 +894,11 @@ function EID:handleBagOfCraftingUpdating()
 end
 
 -- Called when needed based on EID.Config["RefreshRate"]
-function EID:handleBagOfCraftingRendering()
+function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	-- Determine if we should display anything at all
 	if ((EID.isHidden or craftingIsHidden) and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting") or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
 		return false
-	elseif not EID:RefreshThisFrame() then
+	elseif not EID:RefreshThisFrame() and not ignoreRefreshRate then
 		return false
 	elseif EID.Config["BagOfCraftingHideInBattle"] then
 		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
