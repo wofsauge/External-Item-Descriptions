@@ -450,7 +450,7 @@ EID.descriptions[languageCode].collectibles={
 	{"426", "Obsessed Fan", "Follows your exact movement on a 3 second delay#Deals 30 contact damage per second"},
 	{"427", "Mine Crafter", "Spawns a pushable TNT barrel#If used a second time in the same room while the last TNT barrel is still there, it will remotely explode"},
 	{"428", "PJs", "{{SoulHeart}} +4 Soul Hearts#Fully restores your red health"},
-	{"429", "Head of the Keeper", "{{Coin{{ Enemies have a 5% chance to drop a Penny when hit with your tears"},
+	{"429", "Head of the Keeper", "{{Coin}} Enemies have a 5% chance to drop a Penny when hit with your tears"},
 	{"430", "Papa Fly", "Follows your movement pattern on a 1 second delay#Fires tears at nearby enemies that deal damage equal to your damage"},
 	{"431", "Multidimensional Baby", "Follows your movement pattern on a 2 second delay#Tears that pass through it will split up and gain a speed boost"},
 	{"432", "Glitter Bombs", "{{Bomb}} +5 bombs#{{Bomb}} Bombs have a chance to drop random pickups or charm enemies when they explode#"},
