@@ -335,7 +335,6 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 			end
 		end
 	end
-	description = EID:replaceMarkupSize(description)
 	return description
 end
 
@@ -689,9 +688,13 @@ function EID:renderIcon(spriteObj, posX, posY, callback, animName, animFrame)
 end
 
 -- Returns the icon used for the bulletpoint. It will look at the first word in the given string.
+-- Also returns the first word if it was rejected (so it can be removed from the line)
 function EID:handleBulletpointIcon(text)
 	local firstWord = string.match(text, "([^%s]+)")
 	if EID:getIcon(firstWord) ~= EID.InlineIcons["ERROR"] and string.find(firstWord, "{{.-}}")~=nil then
+		if not EID.Config["StatAndPickupBulletpoints"] and EID.StatPickupBulletpointBlacklist[firstWord] then
+			return "\007", firstWord
+		end
 		return firstWord
 	end
 	return "\007"
@@ -775,7 +778,6 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local text = {}
 	-- the first word we run into might actually be a bulletpoint icon, which should be zero width
 	local isBulletpoint = true
-
 	local cursor = 1
 	local word_begin_index = 1
 
@@ -1414,15 +1416,23 @@ function EID:PlayersActionPressed(button, inputFunc)
 end
 
 function EID:replaceMarkupSize(description)
+	if EID.Config["StatChangeIcons"] == false then
+		description = string.gsub(description, "{{ArrowUp}} ({{[.-}}]+)", "{{ArrowUp}} ")
+		description = string.gsub(description, "{{ArrowDown}} ({{[.-}}]+)", "{{ArrowDown}} ")
+		-- Remove double spaces after markup removal
+		description = string.gsub(description, "  ", " ")
+		description = string.gsub(description, "# ", "#")
+	end
 	if EID.Config["MarkupSize"] == "small" then
 		for normal, small in pairs(EID.MarkupSizeMap) do
-			description.Description = string.gsub(description.Description, normal, small)
+			description = string.gsub(description, normal, small)
 		end
 	elseif EID.Config["MarkupSize"] == "big" then
 		for normal, small in pairs(EID.MarkupSizeMap) do
-			description.Description = string.gsub(description.Description, small, normal)
+			description = string.gsub(description, small, normal)
 		end
 	end
+	
 	return description
 end
 
