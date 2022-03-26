@@ -96,7 +96,7 @@ EID.descriptions[languageCode].collectibles={
 	{"74", "A Quarter", "{{Coin}} +25 coins"},
 	{"75", "PHD", "{{Pill}} Better pills#Spawns 1 pill on pickup#{{Heart}} Heals 2 Red Hearts#{{BloodDonationMachine}} More money from Blood Donation Machines and {{Collectible135}} IV Bag"},
 	{"76", "X-Ray Vision", "{{SecretRoom}} Reveals secret rooms entrances"},
-	{"77", "My Little Unicorn", "Grants invincibility and {{Speed}} +0.28 Speed up for 6 seconds#Deal 40 contact damage per second while invincible"},
+	{"77", "My Little Unicorn", "Invincibility and +0.28 Speed up for 6 seconds#Deal 40 contact damage per second while invincible"},
 	{"78", "Book of Revelations", "{{SoulHeart}} +1 Soul Heart#Higher Horseman boss chance if used#{{AngelDevilChance}} +17.5% Devil/Angel Room chance while held"},
 	{"79", "The Mark", "↑ {{Damage}} +1 Damage up#↑ {{Speed}} +0.2 Speed up#{{SoulHeart}} +1 Soul Heart"},
 	{"80", "The Pact", "↑ {{Damage}} +0.5 Damage up#↑ {{Tears}} +0.7 Tears up#{{SoulHeart}} +2 Soul Hearts"},
@@ -319,13 +319,13 @@ EID.descriptions[languageCode].collectibles={
 	--NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
 	--For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
 	{"297", "Pandora's Box", "{{Warning}} SINGLE USE, spawns items based on floor:#B1: 2 {{SoulHeart}}; B2: 2 {{Bomb}} & 2 {{Key}}#C1: 1 {{BossRoom}} item; C2: B1+C1#D1: 4 {{SoulHeart}}; D2: 20 {{Coin}}#W1: 2 {{BossRoom}} items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: 1 {{DevilRoom}} item + 1 {{BlackHeart}}#Cathe: 1 {{AngelRoom}} item + 1 {{EternalHeart}}#Dark Room: {{Collectible523}} Unlocks Moving Box; Chest: 1 {{Coin}}"},
-	{"298", "Unicorn Stump", "Invincibility and {{Speed}} +0.28 speed up for 6 seconds#No contact damage"},
+	{"298", "Unicorn Stump", "Invincibility and +0.28 speed up for 6 seconds#No contact damage"},
 	{"299", "Taurus", "↓ {{Speed}} -0.3 Speed down#↑ {{Speed}} Slowly gain speed while in hostile rooms#{{Collectible77}} At 2 speed, gain invincibility and deal contact damage#Afterwards, lose the Taurus speed boost for the room"},
 	{"300", "Aries", "↑ {{Speed}} +0.25 Speed up#Touching enemies hurts them"},
 	{"301", "Cancer", "{{SoulHeart}} +3 Soul Hearts#Halves taken damage in room when you already got hit"},
 	{"302", "Leo", "Destroy rocks when walking over them#Size up"},
 	{"303", "Virgo", "Chance to get invincibility when hit#{{Pill}} Converts negative pills into positive ones"},
-	{"304", "Libra", "+6 {{Coin}} Coins, {{Key}} Keys, and {{Bomb}} Bombs#Balances your stats!#!!! Every stats up afterwards will affect other stats too"},
+	{"304", "Libra", "+6 Coins, Keys, and Bombs#Balances your stats!#!!! Every stats up afterwards will affect other stats too"},
 	{"305", "Scorpio", "{{Poison}} Poison tears"},
 	{"306", "Sagittarius", "↑ {{Speed}} +0.2 Speed up#Piercing tears"},
 	{"307", "Capricorn", "↑ {{Heart}} +1 Health up#↑ {{Damage}} +0.5 Damage up#↑ {{Speed}} +0.1 Speed up#↑ {{Range}} +1.5 Range up#↑ {{Tears}} Tears up#+1 Bomb, Coin, and Key"},
@@ -880,5 +880,5 @@ EID.descriptions[languageCode].CollectionPageInfo = "This item needs to be picke
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Demo Object Name",
 	DemoObjectTransformation = "Demo Transformation",
-	DemoObjectText = "This text is in english#A very cool and long description to simulate linebreaks caused by EID textbox width!#\1 This is also a cool line#This line loves you {{Heart}}#Markup size preview: #BIG: {{Damage}} {{Tears}} {{Speed}} {{Shotspeed}} {{Luck}} #small: {{DeliriumSmall}} {{CurseDarknessSmall}} {{CurseBlindSmall}}",
+	DemoObjectText = "This text is in english#A very cool and long description to simulate linebreaks caused by EID textbox width!#{{Collectible4}} This is also a cool line#{{Heart}} This line loves you#{{AngelDevilChance}} This line can be your angel or your devil#\1 {{Damage}} +1 Stat Change up",
 }
