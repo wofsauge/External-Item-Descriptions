@@ -116,10 +116,23 @@ EID.UserConfig = {
 	-- Changes the position of the text in local mode, relative to the described object to be centered. Set to false to make it left-aligned
 	-- Default = true
 	["LocalModeCentered"] = true,
-	-- Change the size of markups if available
+	
+	---------- Icons -----------
+	
+	-- Change the size of icons if available
 	-- Possible values: "default", "big", "small"
 	-- Default = "default"
 	["MarkupSize"] = "default",
+	
+	-- If true, print the icon of the stat being affected in a stat change after the up/down arrow
+	-- For example, "↑ {{Speed}} +0.3 Speed up"
+	-- Default = false
+	["StatChangeIcons"] = false,
+	
+	-- If true, stat and basic pickup bulletpoint icons will be drawn when relevant
+	-- For example, "{{Battery}} +1 charge when you get hit"
+	-- Default = true
+	["StatAndPickupBulletpoints"] = true,
 
 	---------- Curses ----------
 
@@ -418,6 +431,8 @@ EID.DefaultConfig = {
 	["LocalModeSize"] = 0.5,
 	["LocalModeCentered"] = true,
 	["MarkupSize"] = "default",
+	["StatChangeIcons"] = false,
+	["StatAndPickupBulletpoints"] = true,
 	["MaxDistance"] = 5,
 	["Indicator"] = "none",
 	["HideKey"] = Keyboard.KEY_F2,
