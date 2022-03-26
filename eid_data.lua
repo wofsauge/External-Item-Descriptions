@@ -753,6 +753,22 @@ EID.MarkupSizeMap = {
 	["{{DailyRun}}"] = "{{DailyRunSmall}}",
 }
 
+-- Bulletpoint icons that shouldn't be printed if stat/pickup bulletpoints are disabled
+EID.StatPickupBulletpointBlacklist = {
+	["{{Damage}}"] = true, ["{{Speed}}"] = true, ["{{Tears}}"] = true, ["{{Range}}"] = true, 
+	["{{Shotspeed}}"] = true, ["{{Luck}}"] = true, ["{{AngelChance}}"] = true, ["{{DevilChance}}"] = true, 
+	["{{AngelDevilChance}}"] = true, ["{{PlanetariumChance}}"] = true, ["{{TreasureRoomChance}}"] = true,
+	["{{Tearsize}}"] = true, ["{{DamageSmall}}"] = true, ["{{SpeedSmall}}"] = true,
+	["{{TearsSmall}}"] = true, ["{{RangeSmall}}"] = true, ["{{ShotspeedSmall}}"] = true,
+	["{{LuckSmall}}"] = true, ["{{AngelChanceSmall}}"] = true, ["{{DevilChanceSmall}}"] = true, 
+	["{{AngelDevilChanceSmall}}"] = true, ["{{PlanetariumChanceSmall}}"] = true,
+	["{{TreasureRoomChanceSmall}}"] = true, ["{{TearsizeSmall}}"] = true,
+	["{{Chest}}"] = true, ["{{Coin}}"] = true, ["{{Bomb}}"] = true, ["{{Key}}"] = true, ["{{Battery}}"] = true,
+	["{{Pill}}"] = true, ["{{Card}}"] = true, ["{{Rune}}"] = true,
+	["{{Heart}}"] = true, ["{{HalfHeart}}"] = true, ["{{EternalHeart}}"] = true, ["{{SoulHeart}}"] = true,
+	["{{BlackHeart}}"] = true, 
+}
+
 EID.TransformationData = {
 	-- Structure: [Internal Name of Transformation] = {NumNeeded = 3 (Default), VanillaForm = nil (default)}
 	[tostring(EID.TRANSFORMATION.GUPPY)] = {VanillaForm = PlayerForm.PLAYERFORM_GUPPY},
