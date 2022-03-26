@@ -707,17 +707,19 @@ function EID:printBulletPoints(description, renderPos)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
 	local textScale = Vector(EID.Scale, EID.Scale)
 	description = EID:replaceShortMarkupStrings(description)
+	description = EID:replaceMarkupSize(description)
 	for line in string.gmatch(description, "([^#]+)") do
 		local formatedLines = EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID:getLanguage()])
 		local textColor = EID:getTextColor()
 		for i, lineToPrint in ipairs(formatedLines) do
 			-- render bulletpoint
 			if i == 1 then
-				local bpIcon = EID:handleBulletpointIcon(lineToPrint)
+				local bpIcon, rejectedIcon = EID:handleBulletpointIcon(lineToPrint)
 				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
 					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
 					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor)
 				else
+					if rejectedIcon then lineToPrint = string.gsub(lineToPrint, rejectedIcon .. " ", "", 1) end
 					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
 				end
 				EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
