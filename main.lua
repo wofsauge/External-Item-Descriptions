@@ -477,7 +477,8 @@ function EID:printDescriptions(useCached)
 		-- Do the description entities match, and the description texts match?
 		for i,newDesc in ipairs(EID.descriptionsToPrint) do
 			local oldDesc = EID.previousDescs[i]
-			if newDesc.Description ~= oldDesc.Description or (newDesc.Entity and oldDesc.Entity and GetPtrHash(newDesc.Entity) ~= GetPtrHash(oldDesc.Entity)) then
+			if newDesc.Description ~= oldDesc.Description or newDesc.Name ~= oldDesc.Name or
+			(newDesc.Entity and oldDesc.Entity and GetPtrHash(newDesc.Entity) ~= GetPtrHash(oldDesc.Entity)) then
 				EID:printNewDescriptions()
 				return
 			end
