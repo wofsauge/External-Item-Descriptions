@@ -50,8 +50,9 @@ end
 -- (If it's less than 2, it also applies to doubling)
 -- Example: My modded trinket gives +0.5 range, and when tripled, adds homing instead of tripling the range boost
 -- EID:addGoldenTrinketMetadata(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 0.5, 2)
-function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMultiplier)
+function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMultiplier, language)
 	maxMultiplier = maxMultiplier or 3
+	language = language or "en_us"
 	
 	if appendText == "" then appendText = nil
 	elseif type(appendText) == "string" then appendText = {appendText} end
@@ -61,7 +62,7 @@ function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMult
 	
 	EID.GoldenTrinketData[id] = {t = numbersToMultiply, mult = maxMultiplier, append = appendText and true}
 	if appendText then
-		EID.descriptions["en_us"].goldenTrinketEffects[id] = { appendText[1], appendText[1], appendText[2] or appendText[1] }
+		EID.descriptions[language].goldenTrinketEffects[id] = { appendText[1], appendText[1], appendText[2] or appendText[1] }
 	end
 end
 
