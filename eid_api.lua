@@ -43,6 +43,35 @@ function EID:addTrinket(id, description, itemName, language)
 	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description, EID._currentMod}
 end
 
+-- Adds information about appending text and multiplying numbers in a modded trinket's Golden/Mom's Box description. All three variables are optional, set to ""/0 or nil to not include them
+-- appendText can be 1 string, or a table of 2 strings; one for doubling and one for tripling
+-- numbersToMultiply can be 1 number, or a table of numbers
+-- maxMultiplier is what tripling (Golden+Mom's Box) should multiply the numbers by (normally 3)
+-- (If it's less than 2, it also applies to doubling)
+-- Example: My modded trinket gives +0.5 range, and when tripled, adds homing instead of tripling the range boost
+-- EID:addGoldenTrinketMetadata(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 0.5, 2)
+function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMultiplier)
+	maxMultiplier = maxMultiplier or 3
+	
+	if appendText == "" then appendText = nil
+	elseif type(appendText) == "string" then appendText = {appendText} end
+	
+	if numbersToMultiply == 0 then numbersToMultiply = nil
+	elseif type(numbersToMultiply) == "number" then numbersToMultiply = {numbersToMultiply} end
+	
+	EID.GoldenTrinketData[id] = {t = numbersToMultiply, mult = maxMultiplier, append = appendText and true}
+	if appendText then
+		EID.descriptions["en_us"].goldenTrinketEffects[id] = { appendText[1], appendText[1], appendText[2] or appendText[1] }
+	end
+end
+
+-- Add a fully custom data table to the table of Golden Trinket effects
+-- Check the comments above EID.GoldenTrinketData in eid_data.lua for some info about what is possible
+-- You may also want to add text entries into EID.descriptions[languageCode].goldenTrinketEffects
+function EID:addGoldenTrinketTable(id, dataTable)
+	EID.GoldenTrinketData[id] = dataTable
+end
+
 -- Adds a description for a card/rune. Optional parameters: itemName, language
 function EID:addCard(id, description, itemName, language)
 	itemName = itemName or nil
@@ -690,7 +719,7 @@ end
 -- Returns the icon used for the bulletpoint. It will look at the first word in the given string.
 -- Also returns the first word if it was rejected (so it can be removed from the line)
 function EID:handleBulletpointIcon(text)
-	local firstWord = string.match(text, "([^%s]+)")
+	local firstWord = EID:removeColorMarkup(string.match(text, "([^%s]+)"))
 	if EID:getIcon(firstWord) ~= EID.InlineIcons["ERROR"] and string.find(firstWord, "{{.-}}")~=nil then
 		if not EID.Config["StatAndPickupBulletpoints"] and EID.StatPickupBulletpointBlacklist[firstWord] then
 			return "\007", firstWord
@@ -748,6 +777,14 @@ function EID:filterColorMarkup(text, baseKColor)
 
 	table.insert(textPartsTable, {string.sub(text, lastPosition), lastColor, 0, lastFunc})
 	return textPartsTable
+end
+
+-- A simple function to remove color markup, to preserve bulletpoint icons after start-of-line color markup
+function EID:removeColorMarkup(text)
+	for word in string.gmatch(text, "{{Color.-}}") do
+		text = string.gsub(text, word, "", 1)
+	end
+	return text
 end
 
 -- A simple function to replace all markup {{ }} with placeholder strings, to use in fitTextToWidth
