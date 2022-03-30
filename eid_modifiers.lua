@@ -373,23 +373,28 @@ if REPENTANCE then
 						end
 					end)
 				end
+			end
 			--replacing a phrase, such as "half a heart"
-			elseif data.findReplace then
+			if data.findReplace then
 				local textTable = EID:getDescriptionEntry("goldenTrinketEffects", trinketID)
 				if textTable then
 					descObj.Description, count = string.gsub(descObj.Description, textTable[1], "{{ColorGold}}" .. textTable[multiplier] .. "{{ColorText}}", 1)
 				end
+			end
 			--append some new text to the description
-			elseif data.append then
+			if data.append then
 				local textTable = EID:getDescriptionEntry("goldenTrinketEffects", trinketID)
 				if textTable then
 					textChoice = math.min(textChoice, #textTable) -- some items have only 1 append description
-					descObj.Description = descObj.Description .. "#{{ColorGold}}" .. textTable[textChoice]
-					count = 1
+					if textTable[textChoice] ~= "" then
+						descObj.Description = descObj.Description .. "#{{ColorGold}}" .. textTable[textChoice]
+						count = 1
+					end
 				end
+			end
 			--the nuclear option: replacing the entire description; 1 = Gold, 2 = Mom's Box, 3 = Both
 			--only replace if the chosen language has defined it
-			elseif data.fullReplace then
+			if data.fullReplace then
 				local textTable = EID:getDescriptionEntry("goldenTrinketEffects", trinketID, true)
 				if (textTable) then
 					textChoice = math.min(textChoice, #textTable)
