@@ -789,6 +789,7 @@ local newResults = {}
 local skipRandom = false
 local isRefresh = false
 local queryString = ""
+local displayingRecipeList = false
 
 local function RecipeCrunchCoroutine()
 	coTimer = Isaac.GetTime()
@@ -894,7 +895,7 @@ function EID:handleBagOfCraftingUpdating()
 	end
 	
 	-- Check for Hold Tab key inputs
-	if Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.bagPlayer.ControllerIndex) then
+	if displayingRecipeList and Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.bagPlayer.ControllerIndex) then
 		EID.bagPlayer.ControlsCooldown = 2
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.bagPlayer.ControllerIndex) then
 			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
@@ -940,9 +941,11 @@ end
 -- Called when needed based on EID.Config["RefreshRate"]
 function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	-- Determine if we should display anything at all
-	if ((EID.isHidden or craftingIsHidden) and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting") or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
+	if not EID:RefreshThisFrame() and not ignoreRefreshRate then
 		return false
-	elseif not EID:RefreshThisFrame() and not ignoreRefreshRate then
+	end
+	displayingRecipeList = false
+	if ((EID.isHidden or craftingIsHidden) and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting") or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
 		return false
 	elseif EID.Config["BagOfCraftingHideInBattle"] then
 		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
@@ -1070,6 +1073,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	end
 	
 	-- Recipe List display
+	displayingRecipeList = true
 	if sortNeeded then
 		sortAllItems()
 		sortNeeded = false
