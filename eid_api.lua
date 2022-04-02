@@ -350,6 +350,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.Transformation = EID:getTransformation(Type, Variant, SubType)
 	
 	description.ModName = tableEntry and tableEntry[4]
+	description.Quality = EID:getObjectQuality(description)
 
 	if checkModifiers ~= false then
 		for _,modifier in ipairs(EID.DescModifiers) do
@@ -1564,5 +1565,11 @@ function EID:evaluateQueuedItems()
 				EID.PlayerItemInteractions[i].LastTouch = game:GetFrameCount()
 			end
 		end 
+	end
+end
+
+function EID:getObjectQuality(descObj)
+	if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
+		return tonumber(EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)).Quality)
 	end
 end

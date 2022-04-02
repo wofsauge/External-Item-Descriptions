@@ -633,9 +633,8 @@ function EID:printDescription(desc, cachedID)
 		curName = curName.." {{ColorGray}}"..desc.ObjType.."."..desc.ObjVariant.."."..desc.ObjSubType
 	end
 	-- Display Quality
-	if REPENTANCE and EID.Config["ShowQuality"] and desc.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
-		local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(desc.ObjSubType)).Quality)
-		curName = curName.." - {{Quality"..quality.."}}"
+	if EID.Config["ShowQuality"] and desc.Quality then
+		curName = curName.." - {{Quality"..desc.Quality.."}}"
 	end
 	-- Display the mod this item is from
 	if desc.ModName then
