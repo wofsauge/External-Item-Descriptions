@@ -557,32 +557,9 @@ function EID:printDescription(desc, cachedID)
 	local textScale = Vector(EID.Scale, EID.Scale)
 	local offsetX = 0
 	EID.lineHeight = EID.Config["LineHeight"]
-	if EID.Config["ShowItemIcon"] then
-		local iconType = nil
-		local subType = desc.ObjSubType
-		if desc.ObjType == 5 then
-			if desc.ObjVariant == 100 then
-				iconType = "Collectible"
-			elseif desc.ObjVariant == 350 then
-				iconType = "Trinket"
-			elseif desc.ObjVariant == 300 then
-				iconType = "Card"
-			elseif desc.ObjVariant == 70 then
-				iconType = "Pill"
-				if subType >= 2049 then
-					subType = subType - 2048
-				end
-			end
-		end
-		if iconType ~= nil then
-			offsetX = offsetX + 14
-			EID:renderString(
-				"{{" .. iconType .. subType .. "}}",
-				renderPos + (Vector(-3, -4) * EID.Scale),
-				textScale,
-				EID:getNameColor()
-			)
-		end
+	if EID.Config["ShowItemIcon"] and desc.Icon then
+		offsetX = offsetX + 14
+		EID:renderInlineIcons({{desc.Icon,0}}, renderPos.X - 3 * EID.Scale, renderPos.Y - 4 * EID.Scale)
 	end
 	--Display ItemType / Charge
 	local itemType = -1

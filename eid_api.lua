@@ -351,6 +351,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	
 	description.ModName = tableEntry and tableEntry[4]
 	description.Quality = EID:getObjectQuality(description)
+	description.Icon = EID:getObjectIcon(description)
 
 	if checkModifiers ~= false then
 		for _,modifier in ipairs(EID.DescModifiers) do
@@ -622,12 +623,12 @@ function EID:createItemIconObject(str)
 	local cardID,numReplace3 = string.gsub(str, "Card", "")
 	if numReplace3 > 0 and cardID ~= "" and tonumber(cardID) ~= nil then
 		if tonumber(cardID) > maxCardID then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
-		return {"Cards",tonumber(cardID)-1,8,8,0,1,EID.CardPillSprite}
+		return {"Cards", tonumber(cardID)-1, 8, 8, 0, 1, EID.CardPillSprite}
 	end
 	local pillID,numReplace4 = string.gsub(str, "Pill", "")
 	if numReplace4 > 0 and pillID ~= "" and tonumber(pillID) ~= nil then
 		if tonumber(pillID) > maxPillID then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
-		return {"Pills",tonumber(pillID)-1,9,8,0,1,EID.CardPillSprite}
+		return {"Pills", tonumber(pillID)-1, 9, 8, 0, 1, EID.CardPillSprite}
 	end
 	if item == nil then
 		return nil
@@ -639,7 +640,7 @@ function EID:createItemIconObject(str)
 		spriteDummy:Load("gfx/eid_inline_icons.anm2", true)
 		spriteDummy:ReplaceSpritesheet(1, item.GfxFileName)
 		spriteDummy:LoadGraphics()
-		local newDynamicSprite = {"ItemIcon",0,11,8,-2,-2,spriteDummy}
+		local newDynamicSprite = {"ItemIcon", 0, 11, 8, -2, -2, spriteDummy}
 		dynamicSpriteCache[str] = newDynamicSprite
 		return newDynamicSprite
 	end
@@ -1568,8 +1569,28 @@ function EID:evaluateQueuedItems()
 	end
 end
 
+
+-- Returns the quality of the described entity
 function EID:getObjectQuality(descObj)
-	if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
+	if descObj.ObjType == 5 and descObj.ObjVariant == 100 then
 		return tonumber(EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)).Quality)
+	end
+end
+
+-- Returns the Inline Icon definition object for a given object. 
+function EID:getObjectIcon(descObj)
+	if descObj.ObjType == 5 then
+		if descObj.ObjVariant == 100 then
+			return EID:createItemIconObject("Collectible" .. descObj.ObjSubType)
+		elseif descObj.ObjVariant == 350 then
+			return EID:createItemIconObject("Trinket" .. descObj.ObjSubType)
+		elseif descObj.ObjVariant == 300 then
+			return EID:createItemIconObject("Card" .. descObj.ObjSubType)
+		elseif descObj.ObjVariant == 70 then
+			if descObj.ObjSubType >= 2049 then
+				return EID:createItemIconObject("Pill" .. (descObj.ObjSubType - 2048))
+			end
+			return EID:createItemIconObject("Pill" .. descObj.ObjSubType)
+		end
 	end
 end
