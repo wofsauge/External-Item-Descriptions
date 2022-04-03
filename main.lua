@@ -1039,8 +1039,9 @@ local function attemptPathfind(entity)
 	if pathsChecked[entity.InitSeed] == false and EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
 	
 	-- Spawn a Shopkeeper entity to attempt a pathfind to the target pickup, then remove it afterwards
-	pathCheckerEntity = game:Spawn(17, 0, EID.player.Position, nullVector, EID.player, 0, 4354)
-
+	pathCheckerEntity = game:Spawn(17, 0, EID.player.Position, nullVector, EID.player, 6969, 4354)
+	pathCheckerEntity:GetData()["EID_Pathfinder"] = true
+	pathCheckerEntity.Visible = false
 	local success = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
 	pathsChecked[entity.InitSeed] = success
 	pathCheckerEntity:Remove()
