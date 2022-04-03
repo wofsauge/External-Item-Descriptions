@@ -523,7 +523,6 @@ function EID:printDescription(desc, cachedID)
 	end
 	local renderPos = EID:getTextPosition()
 	
-	--print(cachedID)
 	if cachedID then
 		local localModeDiff = renderPos - EID.CachedRenderPoses[cachedID]
 		-- Drawing our currently saved description
@@ -561,6 +560,7 @@ function EID:printDescription(desc, cachedID)
 		offsetX = offsetX + 14
 		EID:renderInlineIcons({{desc.Icon,0}}, renderPos.X - 3 * EID.Scale, renderPos.Y - 4 * EID.Scale)
 	end
+
 	--Display ItemType / Charge
 	local itemType = -1
 	if desc.ObjSubType ~= nil and desc.ObjType == 5 and desc.ObjVariant == 100 then
