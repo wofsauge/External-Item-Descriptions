@@ -125,6 +125,7 @@ local dummySprite2 = Sprite()
 dummySprite2:Load("gfx/eid_inline_icons.anm2", true)
 -- add animated icon using api function (Make sure to create new Sprite Obj when using animated icons. Reuse objects when only using static icons)
 EID:addIcon("TestIcon", "hearts", -1, 9, 9, -1, 0, dummySprite2)
+EID:AddIconToObject(5, 100, 1, "TestIcon")
 
 
 -- add icon directly

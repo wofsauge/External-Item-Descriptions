@@ -1578,7 +1578,13 @@ function EID:getObjectQuality(descObj)
 end
 
 -- Returns the Inline Icon definition object for a given object. 
+EID.ObjectIcon = {}
 function EID:getObjectIcon(descObj)
+	-- custom object icon
+	if EID.ObjectIcon[descObj.ObjType.."."..descObj.ObjVariant.."."..descObj.ObjSubType] then
+		return EID.ObjectIcon[descObj.ObjType.."."..descObj.ObjVariant.."."..descObj.ObjSubType]
+	end
+
 	if descObj.ObjType == 5 then
 		if descObj.ObjVariant == 100 then
 			return EID:createItemIconObject("Collectible" .. descObj.ObjSubType)
@@ -1593,4 +1599,9 @@ function EID:getObjectIcon(descObj)
 			return EID:createItemIconObject("Pill" .. descObj.ObjSubType)
 		end
 	end
+end
+
+-- Adds an EID Icon to an Object
+function EID:AddIconToObject(eType, eVariant, eSubType, iconName)
+	EID.ObjectIcon[eType.."."..eVariant.."."..eSubType] = EID.InlineIcons[iconName]
 end
