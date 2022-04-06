@@ -1528,6 +1528,10 @@ function EID:evaluateTransformationProgress(transformation)
 							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + EID.PlayerItemInteractions[i].actives[tostring(eSubType)]
 						else
 							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + player:GetCollectibleNum(eSubType, true)
+							-- Undo the Book of Virtues active item getting counted here
+							if tonumber(eSubType) == 584 and player:GetActiveItem() == 584 then
+								EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] - 1
+							end
 						end
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_TRINKET and player:HasTrinket(eSubType) then
 						EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + 1
