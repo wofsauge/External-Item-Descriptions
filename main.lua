@@ -261,6 +261,7 @@ if REPENTANCE then
 				if not crane:GetSprite():IsPlaying("Broken") then
 					if not EID.CraneItemType[tostring(crane.InitSeed)] then
 						EID.CraneItemType[tostring(crane.InitSeed)] = selectedCollectible
+						break
 					end
 				end
 			end
