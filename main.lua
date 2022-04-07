@@ -1039,8 +1039,8 @@ local function attemptPathfind(entity)
 	-- Don't reattempt pathfinding more than 3 times a second, unless this is a new entity
 	if pathsChecked[entity.InitSeed] == false and EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
 	
-	-- Spawn a Shopkeeper entity to attempt a pathfind to the target pickup, then remove it afterwards
-	pathCheckerEntity = game:Spawn(17, 0, EID.player.Position, nullVector, EID.player, 6969, 4354)
+	-- Spawn a Fireplace entity to attempt a pathfind to the target pickup, then remove it afterwards
+	pathCheckerEntity = game:Spawn(33, 0, EID.player.Position, nullVector, EID.player, 6969, 4354)
 	pathCheckerEntity:GetData()["EID_Pathfinder"] = true
 	pathCheckerEntity.Visible = false
 	local success = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
