@@ -238,7 +238,7 @@ function EID:getBagOfCraftingID(Variant, SubType)
 	elseif Variant == 300 then
 		if SubType == 0 then -- player:GetCard() returned 0
 			return nil
-		elseif SubType > 80 or (SubType >= 32 and SubType <= 41) or SubType == 55 then -- runes
+		elseif EID.runeIDs[SubType] then -- runes
 			return {23}
 		else -- cards
 			return {21}
