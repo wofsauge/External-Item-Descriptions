@@ -41,7 +41,7 @@ local repCollectibles={
 	[52] = {"52", "", "{{Bomb}} Lágrimas de bomba#{{Damage}} Cada bomba causa 10x o seu dano#Se isso resultar em mais de 60 de dano, então causa 5x o seu dano + 30#↓ {{Tears}} Taxa de disparo x 0.4"}, --Dr. Fetus
 	[53] = {"53", "", "Atração magnética para pickups#Abre baús remotamente, ignora o dano dos espinhos dos baús"}, -- Magneto
 	[55] = {"55", "", "50% de chance de atirar uma lágrima para trás#{{Luck}} 100% de chance com 5 de sorte"}, -- Mom's Eye
-	[59] = {"59", "", "<Item not obtainable>"}, -- The Book of Belial (Judas's Birthright Version)
+	[59] = {"59", "", "<Item impossível de obter>"}, -- The Book of Belial (Judas's Birthright Version)
 	[62] = {"62", "", "↑ {{Damage}} +0.3 Dano#{{HalfHeart}} Cura meio Coração a cada 13 inimigos mortos"}, -- Charm of the Vampire
 	[64] = {"64", "", "{{Shop}} -50% em itens da loja#Obter este item várias vezes reduz ainda mais o preço"}, -- Steam Sale
 	[67] = {"67", "", "Familiar que atira lágrimas#6 de dano por lágrima"}, -- Sister Maggy
@@ -301,7 +301,7 @@ local repCollectibles={
 	[630] = {"630", "", "<Item não existe>"},
 	[631] = {"631", "", "Divide cada inimigo na sala em 2 versões menores deles mesmos com muito menos saúde"}, --  Meat Cleaver
 	[632] = {"632", "", "↑ {{Luck}} +2 Sorte#Torna você imune a queimadura, confusão, medo, veneno e gases tóxicos"}, --  Evil Charm
-	[633] = {"633", "", "{{Collectible313}} Concede vôo e o efeito de um Holy Mantle por uma vez#↑ {{Damage}} +2.0 Dano#↑ {{Speed}} +0.1 Velocidade#{{Heart}} Se o jogador tiver menos de 6 Corações, cura-o com uma combinação de Corações Vermelhos e Alma"}, --  Dogma
+	[633] = {"633", "", "{{Collectible313}} Concede voo e o efeito de um Holy Mantle por uma vez#↑ {{Damage}} +2.0 Dano#↑ {{Speed}} +0.1 Velocidade#{{Heart}} Se o jogador tiver menos de 6 Corações, cura-o com uma combinação de Corações Vermelhos e Alma"}, --  Dogma
 	[634] = {"634", "", "Enquanto em uma sala com inimigos, gera rachaduras no chão#Andar sobre essas fendas convoca fantasmas explosivos"}, --  Purgatory
 	[635] = {"635", "", "Passivamente gera um familiar que se move na direção do tiro do personagem#Em uso, o personagem troca de lugar com o familiar e ganha invencibilidade curta#Teleportar-se para objetos pode danificá-las ou destruí-las"}, --  Stitches
 	[636] = {"636", "", "{{Warning}} USO ÚNICO {{Warning}}#Teleporta você de volta para o primeiro andar de uma nova corrida#Itens, aumentos de status e pickups permanecem intactos"}, --  R Key
@@ -311,7 +311,7 @@ local repCollectibles={
 	[640] = {"640", "", "Vomita uma torrente de chamas#Ganha uma carga cada vez que um inimigo morre"}, --  Urn of Souls
 	[641] = {"641", "", "Cria uma corrente de lágrimas atrás de você durante uma luta#As lágrimas causam 3.5 de dano"}, --  Akeldama
 	[642] = {"642", "", "Troca {{EmptyHeart}} 1 Espaço de Coração ou {{SoulHeart}} 2 Corações de Alma por um {{BrokenHeart}} Coração Quebrado#Gera um item do tipo de sala atual#Quanto mais vezes o item for usado, maior a chance de substituir itens futuros se não estiver segurando isso#33% depois de 1 uso, 50% depois de 2, 100% depois de 3#Baixa chance se o Magic Skin está em um pedestal no andar atual#{{Warning}} Item de uso único para o {{Player10}} The Lost"}, --  Magic Skin
-	[643] = {"643", "", "{{Chargeable}} Atirar por 2.5 segundo irá disparar um laser sagrado quando o botão de disparo for solto#Concede Vôo#{{SoulHeart}} +2 Corações de Alma"}, --  Revelation
+	[643] = {"643", "", "{{Chargeable}} Atirar por 2.5 segundo irá disparar um laser sagrado quando o botão de disparo for solto#Concede Voo#{{SoulHeart}} +2 Corações de Alma"}, --  Revelation
 	[644] = {"644", "", "Aumenta seu status mais baixo#Solta 3 moedas, 1 bomba ou 1 chave, dependendo do que você tem menos"}, --  Consolation Prize
 	[645] = {"645", "", "Orbital Teratoma#Bloqueia tiros#Causa dano ao contato#Divide-se em versões menores de si mesmo ao receber 3 acertos#As versões menores se dividem em aranhas azuis#Renasce 5 segundos depois que todos se foram"}, --  Tinytoma
 	[646] = {"646", "", "{{Bomb}} +5 Bombas#{{Collectible118}} Bombas lançam 4 Brimstone nas direções cardeais"}, --  Brimstone Bombs
@@ -345,7 +345,7 @@ local repCollectibles={
 	[674] = {"674", "", "Ao morrer, o fantasma do personagem é acorrentado ao seu cadáver e ele pode continuar lutando com metade de um coração#Retorne a saúde depois de 10 segundos#Deve ser recarregado pegando um Coração de Alma"}, --  Spirit Shackles
 	[675] = {"675", "", "Ao receber dano:#Destranca portas fechadas na sala atual#Revela uma sala aleatória no andar#Também destranca portas que requerem chaves#Pode abrir a porta do Mega Satan#{{UltraSecretRoom}} Pode revelar a Sala Ultra Secreta"}, --  Cracked Orb
 	[676] = {"676", "", "{{EmptyHeart}} Quando estiver com um Coração Vermelho ou menos no início de um novo andar, concede um Espaço de Coração#Nenhum efeito para personagens que não tem Corações Vermelhos"}, --  Empty Heart
-	[677] = {"677", "", "Ao ser atingido, para o tempo por 3 segundos#O personagem se torna um fantasma e deixa seu corpo#Na forma de fantasma, ganha vôo, lágrimas espectrais e também negam o próximo dado"}, --  Astral Projection
+	[677] = {"677", "", "Ao ser atingido, para o tempo por 3 segundos#O personagem se torna um fantasma e deixa seu corpo#Na forma de fantasma, ganha voo, lágrimas espectrais e também negam o próximo dado"}, --  Astral Projection
 	[678] = {"678", "", "{{Chargeable}} Carregável#Concede um ataque que dispara lágrimas espectrais e teleguiada"}, --  C Section
 	[679] = {"679", "", "{{Collectible399}} Familiar que dispara um mini Maw of the Void"}, --  Lil Abaddon
 	[680] = {"680", "", "{{Chargeable}} Carregável#Enquanto dispara, carregue um Brimstone de curto alcance#Atira atrás de você"}, --  Montezuma's Revenge
@@ -371,7 +371,7 @@ local repCollectibles={
 	[700] = {"700", "", "Quando o personagem usa uma carta, pílula ou runa, ele também usa uma cópia das últimas 3 cartas/pílulas/runas que usou após pegar a Echo Chamber"}, --  Echo Chamber
 	[701] = {"701", "", "Gera um Old Chest no início de cada andar que requer uma chave para destrancar#Pode conter Corações de Alma, trinkets ou itens#{{AngelRoom}} Os Itens são da Sala do Anjo ou temáticos da Mãe e Pai"}, --  Isaac's Tomb
 	[702] = {"702", "", "Depois de receber dano, gera um feixe orbital que dura por todo o andar#O máximo é 6#Eles disparam lágrimas, mas não bloqueiam os tiros"}, --  Vengeful Spirit
-	[703] = {"703", "", "Troca entre o personagem atual e Esau Jr, que tem 3 Corações Negros, +2 de dano e vôo#Personagens têm itens e saúde independentes#{{Warning}} Morre quando um dos personagens termina a corrida"}, --  Esau Jr.
+	[703] = {"703", "", "Troca entre o personagem atual e Esau Jr, que tem 3 Corações Negros, +2 de dano e voo#Personagens têm itens e saúde independentes#{{Warning}} Morre quando um dos personagens termina a corrida"}, --  Esau Jr.
 	[704] = {"704", "", "Modo furioso por 5 segundos:#↑ {{Speed}} +0.4 Velocidade#↑ {{Tears}} Lágrimas#↑ {{Damage}} +3.0 Dano#Restringe os ataques a uma arma branca"}, --  Berserk!
 	[705] = {"705", "", "Ganha +1 velocidade, anda através dos inimigos e disparos por 1 segundo#Ao tocá-los, causa 2x o seu dano + 3.5 de dano por inimigo tocado#Explosão no final do efeito que causa dano igual ao quanto você causou"}, --  Dark Arts
 	[706] = {"706", "", "Destrói todos os itens na sala e gera uma familiar mosca para cada item destruído#Os efeitos da mosca dependem dos itens destruídos"}, --  Abyss
@@ -417,7 +417,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Azazel", "", "O Brimstone do Azazel se torna muito mais amplo, como o Mega Blast#Sem efeito no dano"},
 	{"Lazarus", "", "Cada vez que o Lazarus reviver como Lazarus Ressuscitado#↑ {{Damage}} +21.6 Dano#O dano desaparece ao longo de um minuto#Matar um inimigo enquanto o efeito está ativo estende o tempo#O efeito é ativado toda vez que o Lazarus reviver"},
 	{"Eden", "", "Gera 3 itens aleatórios de locais diferentes#Apenas um pode ser pego"},
-	{"The Lost", "", "Impede a geração de itens não benéficos para The Lost#Exemplos: aqueles que só dão saúde, vôo e/ou lágrimas espectrais ou itens que ativam ao receber dano"},
+	{"The Lost", "", "Impede a geração de itens não benéficos para The Lost#Exemplos: aqueles que só dão saúde, voo e/ou lágrimas espectrais ou itens que ativam ao receber dano"},
 	{"Lazarus Risen", "", "↑ {{Damage}} +21.6 Dano#O dano desaparece ao longo de um minuto#Matar um inimigo enquanto o efeito está ativo estende o tempo#O efeito é ativado toda vez que o Lazarus reviver"},
 	{"Black Judas", "", "{{Collectible34}} The Book of Belial se torna um livro passivo semelhante ao {{Collectible584}} Book of Virtues#Concede {{Collectible34}} The Book of Belial se não estiver segurando#↑ {{Damage}} O aumento do dano recebido dele aumenta com a quantidade de cargas do item acima dele"},
 	{"Lilith", "", "Os familiares são posicionados em frente a Lilith"},
@@ -841,7 +841,7 @@ local repCards={
 	[68] = {"68", "", "{{Player14}} Transforma o personagem em Keeper por 30 segundos#Garante tiro triplo e menos velocidade#Matar inimigos solta uma moeda aleatória"}, -- XII - The Hanged Man?
 	[69] = {"69", "", "{{Collectible545}} Ativa o efeito do Book of the Dead#Gera uma entidades de ossos para cada inimigo morto na sala"}, -- XIII - Death?
 	[70] = {"70", "", "{{Pill}} Aplica 5 efeitos de pílulas  aleatórias"}, -- XIV - Temperance?
-	[71] = {"71", "", "{{Collectible33}} Ativa o efeito do Bible#{{Collectible390}} Garante o familiar Seraphim e vôo por 30 segundos"}, -- XV - The Devil?
+	[71] = {"71", "", "{{Collectible33}} Ativa o efeito do Bible#{{Collectible390}} Garante o familiar Seraphim e voo por 30 segundos"}, -- XV - The Devil?
 	[72] = {"72", "", "Gera 6 aglomerado de rochas e obstáculos aleatórios#Aglomerados frequentemente conterão pedras marcadas"}, -- XVI - The Tower?
 	[73] = {"73", "", "Remove itens passivos velhos (ignora itens iniciais)#Gera 2 itens aleatórios da sala atual"}, -- XVII - The Stars?
 	[74] = {"74", "", "{{UltraSecretRoom}} Teleporta você para sala Ultra Secreta#O caminho de volta serão salas vermelhas"}, -- XVIII - The Moon?
@@ -887,7 +887,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[11] = "Gera 2 Máquinas caça-níqueis", -- X - Wheel of Fortune
 	[12] = "Aumento de estatísticas duplicado, excluindo o multiplicador de dano", -- XI - Strength
 	[14] = "Causa 80 de dano", -- XIII - Death
-	[15] = "Gera 2 Máquinas de doação de sangue", -- XIV - Temperance
+	[15] = "Gera 2 Máquinas de Doação de Sangue", -- XIV - Temperance
 	[16] = "Aumento de dano dobrado", -- XV - The Devil
 	[17] = "Gera 12 Bombas trolls", -- XVI - The Tower
 	[18] = "Se a Sala do Tesouro não foi acessada ainda, ela terá dois itens para escolher", -- XVII - The Stars
@@ -900,7 +900,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[70] = "{{Pill}} Come 10 pílulas", -- XIV - Temperance?
 	[72] = "Gera 14 aglomerados de rochas", -- XVI - The Tower?
 	[73] = "Remove 2 itens e gera 4", -- XVII - The Stars?
-	[76] = "{{RestockMachine}} Gera 2 máquinas de restock", -- XX - Judgement?
+	[76] = "{{RestockMachine}} Gera 2 Máquinas de Reestoque", -- XX - Judgement?
 }
 
 ---------- Pills ----------
@@ -935,7 +935,7 @@ EID.descriptions[languageCode].horsepills={
 	{"7", "", "↑ {{EmptyHeart}} +2 Espaços de Corações Vazios"}, -- Health Up
 	{"8", "", "Sem efeito"}, -- I Found Pills
 	{"9", "", "Sem efeito"}, -- Puberty
-	{"10", "", "Adiciona 1 Big Fan orbital {{Collectible279}}#Não há limite superior"}, -- Pretty Fly
+	{"10", "", "{{Collectible279}} Adiciona 1 orbital mosca Big Fan#Não há limite superior"}, -- Pretty Fly
 	{"11", "", "↓ {{Range}} -1.2 Alcance"}, -- Range Down
 	{"12", "", "↑ {{Range}} +0.9 Alcance"}, -- Range Up
 	{"13", "", "↓ {{Speed}} -0.24 Velocidade"}, -- Speed Down
@@ -951,16 +951,16 @@ EID.descriptions[languageCode].horsepills={
 	{"23", "", "{{SecretRoom}} Abra as entradas das salas secretas no andar atual#Ganha visão do mapa"}, -- I can see forever!
 	{"24", "", "{{Charm}} Transforma cada inimigo da sala em amigo permanente"}, -- Pheromones
 	{"25", "", "Esconde o mapa do andar atual"}, -- Amnesia
-	{"26", "", "Enche a poça no chão, o que causa danos aos inimigos"}, -- Lemon Party
+	{"26", "", "Enche o chão com uma poça que causa dano aos inimigos"}, -- Lemon Party
 	{"27", "", "Atire na diagonal por 60 segundo"}, -- R U a Wizard?
-	{"28", "", "Receba apenas metade do dano para a sala atual"},  -- Percs!
+	{"28", "", "Receba apenas metade do dano na sala atual"},  -- Percs!
 	{"29", "", "Recebe um dano de Coração Cheio na sala atual"}, -- Addicted!
-	{"30", "", "Gera um cocô enquanto anda por 4 segundos"}, -- Re-Lax
+	{"30", "", "Gera um cocô enquanto andar durante 4 segundos"}, -- Re-Lax
 	{"31", "", "Efeito do Curse of the maze no andar atual"}, -- ???
 	{"32", "", "Aumenta seu tamanho#Não afeta sua hitbox"}, -- One makes you larger
 	{"33", "", "diminui seu tamanho#Sua hitbox também diminui"}, -- One makes you small
-	{"34", "", "Gera 2 aranhas azuis por cocô na sala"}, -- Infested!
-	{"35", "", "Gera 2 aranhas azuis por inimigo na sala#Gera 2-6 aranhas azuis quando não há inimigos na sala"}, -- Infested?
+	{"34", "", "Gera 2 Aranhas Azuis por cocô na sala"}, -- Infested!
+	{"35", "", "Gera 2 Aranhas Azuis por inimigo na sala#Gera 2-6 Aranhas Azuis quando não há inimigos na sala"}, -- Infested?
 	{"36", "", "Curto efeito de invencibilidade#↑ {{Damage}} 7 Dano#↑ {{Range}} +3 Alcance#Durante a sala atual"}, -- Power Pill!
 	{"37", "", "Pixeliza a tela por 90 segundos"}, -- Retro Vision
 	{"38", "", "Gera 6 moscas azuis"}, -- Friends Till The End!
@@ -968,7 +968,7 @@ EID.descriptions[languageCode].horsepills={
 	{"40", "", "Gera uma poça de lentidão"}, -- Something's wrong...
 	{"41", "", "Efeito de lentidão em todos os inimigos da sala"}, -- I'm Drowsy...
 	{"42", "", "Aumenta a velocidade de todos os inimigos da sala"}, --I'm Excited!!!
-	{"43", "", "Consome o trinket que segura e ganha o efeito dele permanentemente"}, -- Gulp!
+	{"43", "", "Consome o trinket que estiver segurando e ganha o efeito dele permanentemente"}, -- Gulp!
 	{"44", "", "Dispara um cacho de lágrimas de ipecac"}, -- Horf!
 	{"45", "", "Curto efeito de invencibilidade#Amedronta todos os inimigos#Causa 40 de dano ao contato#Dois inimigos comidos reabastecem Meio Coração"}, -- Feels like I'm walking on sunshine!
 	{"46", "", "Gera a última pílula usada como horse"}, -- Vurp!
@@ -995,7 +995,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	
 	-- Cache Flag names
 	cacheFlagStart = "Pode afetar ",
-	[0] = "{{Damage}} Dano", "{{Tears}} Taxa de Disparo", "{{Shotspeed}} Velocidade de Disparo", "{{Range}} Alcance", "{{Speed}} Velocidade", "Efeito de Lágrima", "Cor da Lágrima", "Vôo", "Tipo de Ataque", "Familiares", "{{Luck}} Sorte", "Tamanho", "Cor", "Conteúdo do Baú", 
+	[0] = "{{Damage}} Dano", "{{Tears}} Taxa de Disparo", "{{Shotspeed}} Velocidade de Disparo", "{{Range}} Alcance", "{{Speed}} Velocidade", "Efeito de Lágrima", "Cor da Lágrima", "Voo", "Tipo de Ataque", "Familiares", "{{Luck}} Sorte", "Tamanho", "Cor", "Conteúdo do Baú", 
 	[16] = "Todos os Status",
 	
 	-- Attribute triggers
