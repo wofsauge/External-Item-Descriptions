@@ -1587,7 +1587,7 @@ end
 
 -- Returns the quality of the described entity
 function EID:getObjectQuality(descObj)
-	if REPENTANCE and descObj.ObjType == 5 and descObj.ObjVariant == 100 then
+	if REPENTANCE and descObj.ObjType == 5 and descObj.ObjVariant == 100 and EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)) then
 		return tonumber(EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)).Quality)
 	end
 end
