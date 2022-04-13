@@ -1566,6 +1566,7 @@ end
 
 -- Given a transformation identifier, iterate over every player and count the number of items they have which count towards that transformation
 EID.PlayerItemInteractions = {}
+local hadQueuedItem = {}
 function EID:evaluateQueuedItems()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1573,6 +1574,11 @@ function EID:evaluateQueuedItems()
 			if not EID.PlayerItemInteractions[i] then
 				EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}}
 			end
+			-- Refresh our descriptions upon a queued passive item being added to a player
+			if not player.QueuedItem.Item and hadQueuedItem[i] then
+				EID.ForceRefreshCache = true
+			end
+			hadQueuedItem[i] = player.QueuedItem.Item ~= nil
 			if EID.PlayerItemInteractions[i].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
 				return
 			else
