@@ -652,13 +652,13 @@ function EID:printDescription(desc, cachedID)
 				if EID.Config["TransformationProgress"] then
 					EID:evaluateTransformationProgress(transform)
 					transformationName = transformationName .. " "
-					for _, player in ipairs(EID.players) do
+					for _, player in ipairs(EID.coopAllPlayers) do
 						if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then
-							if #EID.players > 1 then
+							if #EID.coopAllPlayers > 1 then
 								local playerIcon = EID:getIcon("Player"..player.SubType) ~= EID.InlineIcons["ERROR"] and "{{Player"..player.SubType.."}}" or "{{CustomTransformation}}"
 								transformationName = transformationName .. playerIcon
 							end
-							local numCollected = EID.TransformationProgress[EID:getPlayerID(player)][transform]
+							local numCollected = EID.TransformationProgress[EID:getPlayerID(player)][transform] or 0
 							local numMax = EID.TransformationData[transform] and EID.TransformationData[transform].NumNeeded or 3
 							transformationName = transformationName.."("..numCollected.."/"..numMax..") "
 						end
@@ -1465,7 +1465,12 @@ local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true
 	local playerID = EID:getPlayerID(player)
 	if not EID.PlayerItemInteractions[playerID] then
-		EID.PlayerItemInteractions[playerID] = {LastTouch = 0, actives = {}, pills = {}}
+		EID.PlayerItemInteractions[playerID] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}}
+	end
+	-- Dead Tainted Lazarus exceptions
+	local activesTable = EID.PlayerItemInteractions[playerID].actives
+	if player:GetPlayerType() == 38 then
+		activesTable = EID.PlayerItemInteractions[playerID].altActives or activesTable
 	end
 	-- don't check pocket items after D4, they don't reroll and would get counted twice
 	local maxSlot = 3
@@ -1473,10 +1478,10 @@ local function AddActiveItemProgress(player, isD4)
 	for i = 0, maxSlot do
 		local itemID = tostring(player:GetActiveItem(i))
 		if itemID ~= "0" then
-			if not EID.PlayerItemInteractions[playerID].actives[itemID] then
-				EID.PlayerItemInteractions[playerID].actives[itemID] = 0
+			if not activesTable[itemID] then
+				activesTable[itemID] = 0
 			end
-			EID.PlayerItemInteractions[playerID].actives[itemID] = EID.PlayerItemInteractions[playerID].actives[itemID] + 1
+			activesTable[itemID] = activesTable[itemID] + 1
 		end
 	end
 end
@@ -1497,11 +1502,16 @@ EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D
 
 function EID:OnUsePill(pillEffectID, player)
 	local playerID = EID:getPlayerID(player)
-	local effectID = tostring(pillEffectID+1)
-	if not EID.PlayerItemInteractions[playerID].pills[effectID] then
-		EID.PlayerItemInteractions[playerID].pills[effectID] = 0
+	-- Dead Tainted Lazarus exceptions
+	local pillsTable = EID.PlayerItemInteractions[playerID].pills
+	if player:GetPlayerType() == 38 then
+		pillsTable = EID.PlayerItemInteractions[playerID].altPills or pillsTable
 	end
-	EID.PlayerItemInteractions[playerID].pills[effectID] = EID.PlayerItemInteractions[playerID].pills[effectID] + 1
+	local effectID = tostring(pillEffectID+1)
+	if not pillsTable[effectID] then
+		pillsTable[effectID] = 0
+	end
+	pillsTable[effectID] = pillsTable[effectID] + 1
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
 
