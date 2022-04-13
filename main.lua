@@ -350,6 +350,8 @@ if REPENTANCE then
 	
 	-- Before using Flip, swap all flippable pedestal's current item with the flip one (also, fix grid index if needed)
 	function EID:CheckFlipGridIndexes(collectibleType)
+		-- also, reload our descriptions due to transformation progress changing upon Flip
+		EID.ForceRefreshCache = true
 		lastFrameGridChecked = Isaac.GetFrameCount()
 		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		if EID.flipItemPositions[curRoomIndex] then
