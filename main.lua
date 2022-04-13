@@ -39,6 +39,7 @@ EID.IgnoredEntities = {}
 local pathsChecked = {}
 local altPathItemChecked = {}
 local alwaysUseLocalMode = false -- set to true after drawing a non-local mode description this frame
+EID.ForceRefreshCache = false -- set to true to force-refresh descriptions, currently used for potential transformation text changes
 
 EID.GameUpdateCount = 0
 EID.GameRenderCount = 0
@@ -1220,11 +1221,15 @@ local function onRender(t)
 		return
 	end
 	
+	if EID.ForceRefreshCache then
+		resetDescCache()
+	end
 	-- This is not a frame we should check for new descriptions; just print our cached ones
-	if not EID:RefreshThisFrame() and not EID.MCM_OptionChanged then
+	if not EID:RefreshThisFrame() and not EID.MCM_OptionChanged and not EID.ForceRefreshCache then
 		EID:printDescriptions(true)
 		return
 	end
+	EID.ForceRefreshCache = false
 	
 	-- We'll redraw the indicators in the process of determining what's in range, so wipe their cache
 	EID.CachedIndicators = {}
@@ -1456,6 +1461,25 @@ end
 
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
+local function AddActiveItemProgress(player, isD4)
+	EID.ForceRefreshCache = true
+	local playerID = EID:getPlayerID(player)
+	if not EID.PlayerItemInteractions[playerID] then
+		EID.PlayerItemInteractions[playerID] = {LastTouch = 0, actives = {}, pills = {}}
+	end
+	-- don't check pocket items after D4, they don't reroll and would get counted twice
+	local maxSlot = 3
+	if isD4 then maxSlot = 1 end
+	for i = 0, maxSlot do
+		local itemID = tostring(player:GetActiveItem(i))
+		if itemID ~= "0" then
+			if not EID.PlayerItemInteractions[playerID].actives[itemID] then
+				EID.PlayerItemInteractions[playerID].actives[itemID] = 0
+			end
+			EID.PlayerItemInteractions[playerID].actives[itemID] = EID.PlayerItemInteractions[playerID].actives[itemID] + 1
+		end
+	end
+end
 
 local function OnGameStartGeneral(_,isSave)
 	EID:buildTransformationTables()
@@ -1467,16 +1491,7 @@ EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
 -- Add currently held active items after D4 was used. Used for Transformation Progress
 local function OnUseD4(_, _, _, player)
-	local playerID = EID:getPlayerID(player)
-	for i = 0, 3 do
-		local itemID = tostring(player:GetActiveItem(i))
-		if itemID ~= "0" then
-			if not EID.PlayerItemInteractions[playerID].actives[itemID] then
-				EID.PlayerItemInteractions[playerID].actives[itemID] = 0
-			end
-			EID.PlayerItemInteractions[playerID].actives[itemID] = EID.PlayerItemInteractions[playerID].actives[itemID] + 1
-		end
-	end
+	AddActiveItemProgress(player, true)
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 
@@ -1528,6 +1543,11 @@ if EID.MCMLoaded or REPENTANCE then
 						convertedData[tonumber(key) or key] = value
 					end
 					EID.PlayerItemInteractions[tonumber(playerID)] = convertedData
+				end
+			else
+				-- check for the players' starting active items (thorough, for Eden and modded J&E chars' sake)
+				for i = 0, game:GetNumPlayers() - 1 do
+					AddActiveItemProgress(Isaac.GetPlayer(i))
 				end
 			end
 
