@@ -1545,7 +1545,7 @@ function EID:evaluateTransformationProgress(transformation)
 							end
 						end
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_TRINKET and player:HasTrinket(eSubType) then
-						EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + 1
+						EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + player:GetTrinketMultiplier(eSubType)
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_PILL then
 						if EID.PlayerItemInteractions[i].pills[tostring(eSubType)] then
 							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + EID.PlayerItemInteractions[i].pills[tostring(eSubType)]
@@ -1557,7 +1557,7 @@ function EID:evaluateTransformationProgress(transformation)
 	end
 end
 
--- Given a transformation identifier, itterate over every player and count the number of items they have which count towards that transformation 
+-- Given a transformation identifier, iterate over every player and count the number of items they have which count towards that transformation
 EID.PlayerItemInteractions = {}
 function EID:evaluateQueuedItems()
 	for i = 0, game:GetNumPlayers() - 1 do
@@ -1573,6 +1573,7 @@ function EID:evaluateQueuedItems()
 			end
 
 			if not player.QueuedItem.Touched and player.QueuedItem.Item and player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
+				EID.ForceRefreshCache = true
 				local itemID = tostring(player.QueuedItem.Item.ID)
 				if not EID.PlayerItemInteractions[i].actives[itemID] then
 					EID.PlayerItemInteractions[i].actives[itemID] = 0
