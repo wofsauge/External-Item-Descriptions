@@ -1531,12 +1531,19 @@ function EID:evaluateTransformationProgress(transformation)
 		if transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
 			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
 		else
+			-- Dead Tainted Lazarus exceptions
+			local activesTable = EID.PlayerItemInteractions[i].actives
+			local pillsTable = EID.PlayerItemInteractions[i].pills
+			if player:GetPlayerType() == 38 then
+				activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
+				pillsTable = EID.PlayerItemInteractions[i].altPills or pillsTable
+			end
 			for entityString, _ in pairs(EID.TransformationLookup[transformation]) do
 				local eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
 				if tonumber(eType) == EntityType.ENTITY_PICKUP then
 					if tonumber(eVariant) == PickupVariant.PICKUP_COLLECTIBLE then
-						if EID.PlayerItemInteractions[i].actives[tostring(eSubType)] then
-							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + EID.PlayerItemInteractions[i].actives[tostring(eSubType)]
+						if activesTable[tostring(eSubType)] then
+							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + activesTable[tostring(eSubType)]
 						else
 							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + player:GetCollectibleNum(eSubType, true)
 							-- Undo the Book of Virtues active item getting counted here
@@ -1545,10 +1552,10 @@ function EID:evaluateTransformationProgress(transformation)
 							end
 						end
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_TRINKET and player:HasTrinket(eSubType) then
-						EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + 1
+						EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + player:GetTrinketMultiplier(eSubType)
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_PILL then
-						if EID.PlayerItemInteractions[i].pills[tostring(eSubType)] then
-							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + EID.PlayerItemInteractions[i].pills[tostring(eSubType)]
+						if pillsTable[tostring(eSubType)] then
+							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + pillsTable[tostring(eSubType)]
 						end
 					end
 				end
@@ -1557,15 +1564,21 @@ function EID:evaluateTransformationProgress(transformation)
 	end
 end
 
--- Given a transformation identifier, itterate over every player and count the number of items they have which count towards that transformation 
+-- Given a transformation identifier, iterate over every player and count the number of items they have which count towards that transformation
 EID.PlayerItemInteractions = {}
+local hadQueuedItem = {}
 function EID:evaluateQueuedItems()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player.QueuedItem then
 			if not EID.PlayerItemInteractions[i] then
-				EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}}
+				EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}}
 			end
+			-- Refresh our descriptions upon a queued passive item being added to a player
+			if not player.QueuedItem.Item and hadQueuedItem[i] then
+				EID.ForceRefreshCache = true
+			end
+			hadQueuedItem[i] = player.QueuedItem.Item ~= nil
 			if EID.PlayerItemInteractions[i].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
 				return
 			else
@@ -1573,11 +1586,17 @@ function EID:evaluateQueuedItems()
 			end
 
 			if not player.QueuedItem.Touched and player.QueuedItem.Item and player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
-				local itemID = tostring(player.QueuedItem.Item.ID)
-				if not EID.PlayerItemInteractions[i].actives[itemID] then
-					EID.PlayerItemInteractions[i].actives[itemID] = 0
+				-- Dead Tainted Lazarus exceptions
+				local activesTable = EID.PlayerItemInteractions[i].actives
+				if player:GetPlayerType() == 38 then
+					activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
 				end
-				EID.PlayerItemInteractions[i].actives[itemID] = EID.PlayerItemInteractions[i].actives[itemID] + 1
+				EID.ForceRefreshCache = true
+				local itemID = tostring(player.QueuedItem.Item.ID)
+				if not activesTable[itemID] then
+					activesTable[itemID] = 0
+				end
+				activesTable[itemID] = activesTable[itemID] + 1
 				EID.PlayerItemInteractions[i].LastTouch = game:GetFrameCount()
 			end
 		end 
