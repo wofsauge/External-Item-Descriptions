@@ -33,6 +33,7 @@ EID.sacrificeCounter = {}
 EID.itemConfig = Isaac.GetItemConfig()
 EID.itemUnlockStates = {}
 EID.CraneItemType = {}
+EID.LastCraneType = {}
 EID.absorbedItems = {}
 EID.CollectedItems = {}
 EID.IgnoredEntities = {}
@@ -254,6 +255,19 @@ if REPENTANCE then
 	
 	local lastGetItemResult = {nil, nil, nil, nil} -- itemID, Frame, gridIndex, InitSeed
 	local lastFrameGridChecked = 0
+	
+	local function RevertCraneGameItems()
+		for seed, collectibleType in pairs(EID.LastCraneType) do
+			if EID.CraneItemType[seed] then
+				EID.CraneItemType[seed] = EID.LastCraneType[seed]
+			end
+		end 
+	end
+	
+	local function OnUseGlowingHourGlass(_, _, _, player)
+		RevertCraneGameItems()
+	end
+	EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseGlowingHourGlass, CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS)
 	
 	function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, seed)
 		-- Handle Crane Game
@@ -740,6 +754,17 @@ if REPENTANCE then
 		initialItemNext = false
 		flipItemNext = false
 		EID:AssignFlipItems()
+
+		-- Handle Crane Game
+		if REPENTANCE then
+			EID.LastCraneType = {}
+			for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+				if EID.CraneItemType[tostring(crane.InitSeed)] then
+					EID.LastCraneType[tostring(crane.InitSeed)] = EID.CraneItemType[tostring(crane.InitSeed)]
+				end
+			end
+		end
+
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 end
@@ -1566,6 +1591,7 @@ if EID.MCMLoaded or REPENTANCE then
 			if REPENTANCE then
 				EID.BagItems = {}
 				EID.CraneItemType = {}
+				EID.LastCraneType = {}
 				EID.flipItemPositions = {}
 				EID.absorbedItems = {}
 				
