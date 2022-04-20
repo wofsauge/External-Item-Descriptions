@@ -1017,6 +1017,10 @@ function EID:onGameUpdate()
 			if EID.CraneItemType[tostring(crane.InitSeed)] then
 				if crane:GetSprite():IsPlaying("Prize") then
 					EID.CraneItemType[tostring(crane.InitSeed)] = nil
+				-- Pair the Crane Game's new drop seed with the latest collectible ID it's gotten
+				-- (fixes Glowing Hour Glass rewinds)
+				elseif EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] == nil then
+					EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] = EID.CraneItemType[tostring(crane.InitSeed)]
 				end
 			end
 		end
@@ -1364,7 +1368,7 @@ local function onRender(t)
 								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
 							end
 						end
-						local collectibleID = EID.CraneItemType[tostring(closest.InitSeed)]
+						local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
 						local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID, closest)
 						
 						EID:addDescriptionToPrint(descriptionObj)
