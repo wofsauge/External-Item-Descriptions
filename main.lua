@@ -258,7 +258,7 @@ if REPENTANCE then
 	
 	local function RevertCraneGameItems()
 		for seed, collectibleType in pairs(EID.LastCraneType) do
-			-- Do not check if EID.CraneItemType[seed] is valid, because destroyed machines are also be restored anyway
+			-- Do not check EID.CraneItemType[seed] is valid, because destroyed machines are also be restored
 			EID.CraneItemType[seed] = EID.LastCraneType[seed]
 		end 
 	end
