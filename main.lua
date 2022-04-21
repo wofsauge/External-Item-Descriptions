@@ -489,6 +489,10 @@ function EID:printDescriptions(useCached)
 		end
 	end
 	
+	if #EID.previousDescs > 0 then
+		EID.isDisplaying = true
+	end
+	
 	-- Print our cached descriptions
 	for i,indicator in ipairs(EID.CachedIndicators) do
 		EID:renderIndicator(indicator[1], indicator[2])
@@ -516,6 +520,10 @@ function EID:printNewDescriptions()
 		end
 	end
 	EID.CachingDescription = false
+	
+	if #EID.previousDescs > 0 then
+		EID.isDisplaying = true
+	end
 end
 
 function EID:printDescription(desc, cachedID)
@@ -525,6 +533,7 @@ function EID:printDescription(desc, cachedID)
 		if alwaysUseLocalMode then return false
 		else alwaysUseLocalMode = true end
 	end
+	EID.isDisplaying = true
 	local renderPos = EID:getTextPosition()
 	
 	if cachedID then
