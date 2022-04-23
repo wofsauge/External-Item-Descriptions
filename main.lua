@@ -1371,7 +1371,7 @@ local function onRender(t)
 					EID:addDescriptionToPrint(descriptionObj)
 				-- Handle Crane Game
 				elseif closest.Type == 6 and closest.Variant == 16 then
-					if EID.CraneItemType[tostring(closest.InitSeed)] then
+					if EID.CraneItemType[tostring(closest.InitSeed)] or EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] then
 						if EID:getEntityData(closest, "EID_DontHide") ~= true then
 							if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
