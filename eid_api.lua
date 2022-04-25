@@ -22,8 +22,8 @@ end
 -------------------------Handle API Functions -----------------------------
 local nullVector = Vector(0,0)
 local game = Game()
-local maxCardID = REPENTANCE and 97 or 54
-local maxPillID = REPENTANCE and 14 or 13
+local maxCardID = Card.NUM_CARDS - 1
+local maxPillID = PillColor.NUM_PILLS - 1
 local dynamicSpriteCache = {} -- used to store sprite objects of collectible icons etc.
 
 -- Adds a description for a collectible. Optional parameters: itemName, language
