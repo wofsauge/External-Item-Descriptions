@@ -1210,6 +1210,25 @@ function EID:isCollectibleUnlockedAnyPool(collectibleID)
 	end
 end
 
+-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
+function EID:AreAchievementsAllowed() 
+	-- Tainted characters have definitely beaten Mom!
+	-- (Fixes Tainted Lost's item pools, and potentially modded character's mechanics, ruining this check)
+	if EID.player:GetPlayerType() < 21 then
+		-- Challenge runs and TMTrainer might break the pool, so ignore them.
+		if not game:GetSeeds():IsCustomRun() and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
+			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
+			if not hasBookOfRevelationsUnlocked then
+				local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
+				if not hasCubeOfMeatUnlocked then
+					return false
+				end
+			end
+		end
+	end
+	return true
+end
+
 -- Converts a given table into a string containing the crafting icons of the table
 -- Example input: {1,2,3,4,5,6,7,8}
 -- Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"

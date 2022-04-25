@@ -1086,23 +1086,13 @@ local function checkStartOfRunWarnings()
 			demoDescObj.Description = EID:getDescriptionEntry("ModdedRecipesWarningText") or ""
 			EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
 			hasShownStartWarning = true
-		-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 		else
-			local characterID = EID.player:GetPlayerType()
-			-- ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom!
-			-- (Fixes Tainted Lost's item pools, and potentially modded character's mechanics, ruining this check)
-			if characterID < 21 and game.Challenge == 0 and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
-				local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
-				if not hasBookOfRevelationsUnlocked then
-					local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
-					if not hasCubeOfMeatUnlocked then
-						local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-						demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-						demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
-						EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
-						hasShownStartWarning = true
-					end
-				end
+			if not EID:AreAchievementsAllowed() then
+				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+				demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
+				demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+				EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
+				hasShownStartWarning = true
 			end
 		end
 	elseif hasShownStartWarning then
