@@ -517,14 +517,13 @@ end
 
 local moddedCrafting = false
 local function GameStartCrafting()
-	if not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
-		for i=1, EID.XMLMaxItemID do
-			local item = EID.itemConfig:GetCollectible(i)
-			if item ~= nil then
-				CraftingItemQualities[item.ID] = item.Quality
-			end
+	for i=1, EID.XMLMaxItemID do
+		local item = EID.itemConfig:GetCollectible(i)
+		if item ~= nil then
+			CraftingItemQualities[item.ID] = item.Quality
 		end
-		
+	end
+	if not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
 		-- Check for modded items past the known max item ID on game start (can also support game updates)
 		-- Only works if the new items are at Weight 1.0 in their item pools, but better than nothing
 		if EID.Config["BagOfCraftingModdedRecipes"] and EID.itemConfig:GetCollectible(EID.XMLMaxItemID+1) ~= nil and not moddedCrafting then
