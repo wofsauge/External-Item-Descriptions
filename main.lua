@@ -740,10 +740,7 @@ if REPENTANCE then
 	end
 	function EID:onNewRoom()
 		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
-		
-		local level = game:GetLevel()
-		local id = level:GetCurrentRoomIndex()
-		isDeathCertRoom = (id >=0 and GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 2)))
+		isDeathCertRoom = EID:IsDeathCertificateRoom()
 		
 		-- Handle Flip Item
 		initialItemNext = false

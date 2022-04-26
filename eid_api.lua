@@ -1229,6 +1229,19 @@ function EID:AreAchievementsAllowed()
 	return true
 end
 
+function EID:IsDeathCertificateRoom()
+	local level = game:GetLevel()
+	local roomData = level:GetRoomByIdx(level:GetCurrentRoomIndex()).Data
+	if roomData then
+		if roomData.StageID == 35 then -- Home
+			if roomData.SubType == 33 or roomData.SubType == 34 then -- Death Certificate room subtypes
+				return true
+			end
+		end
+	end
+	return false
+end
+
 -- Converts a given table into a string containing the crafting icons of the table
 -- Example input: {1,2,3,4,5,6,7,8}
 -- Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
