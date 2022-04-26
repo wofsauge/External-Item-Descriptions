@@ -1231,7 +1231,7 @@ end
 
 function EID:IsDeathCertificateRoom()
 	local level = game:GetLevel()
-	local roomData = level:GetRoomByIdx(level:GetCurrentRoomIndex()).Data
+	local roomData = level:GetCurrentRoomDesc().Data
 	if roomData then
 		if roomData.StageID == 35 then -- Home ID
 			if roomData.SubType == 33 or roomData.SubType == 34 then -- Death Certificate room subtypes
