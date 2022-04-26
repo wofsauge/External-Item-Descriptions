@@ -1505,6 +1505,12 @@ local function OnUseD4(_, _, _, player)
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 
+-- Re-init transformation progress and item interactions after using Genesis
+local function OnUseGenesis(_, _, _, player)
+	OnGameStartGeneral()
+end
+EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseGenesis, CollectibleType.COLLECTIBLE_GENESIS)
+
 function EID:OnUsePill(pillEffectID, player)
 	local playerID = EID:getPlayerID(player)
 	-- Dead Tainted Lazarus exceptions
