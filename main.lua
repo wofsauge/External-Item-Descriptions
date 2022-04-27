@@ -740,10 +740,7 @@ if REPENTANCE then
 	end
 	function EID:onNewRoom()
 		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
-		
-		local level = game:GetLevel()
-		local id = level:GetCurrentRoomIndex()
-		isDeathCertRoom = (id >=0 and GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 2)))
+		isDeathCertRoom = EID:IsDeathCertificateRoom()
 		
 		-- Handle Flip Item
 		initialItemNext = false
@@ -1504,6 +1501,12 @@ local function OnUseD4(_, _, _, player)
 	AddActiveItemProgress(player, true)
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
+
+-- Re-init transformation progress and item interactions after using Genesis
+local function OnUseGenesis(_, _, _, player)
+	OnGameStartGeneral()
+end
+EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseGenesis, CollectibleType.COLLECTIBLE_GENESIS)
 
 function EID:OnUsePill(pillEffectID, player)
 	local playerID = EID:getPlayerID(player)
