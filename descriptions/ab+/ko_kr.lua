@@ -166,7 +166,7 @@ EID.descriptions[languageCode].collectibles={
 	{"131", "폭탄 주머니", "방 2~3개 클리어 시 {{Bomb}}폭탄을 하나 드랍합니다."}, -- Bomb Bag
 	{"132", "석탄 한 덩이", "공격이 멀리 나갈수록 공격력이 최대 6 증가합니다."}, -- A Lump of Coal
 	{"133", "구피의 발", "사용 시 최대 체력 1칸을 {{SoulHeart}}소울하트 3칸으로 바꿉니다."}, -- Guppy's Paw
-	{"134", "구피의 꼬리", "{{Chest}} 방 클리어 보상이 66%의 확률로 상자로 바뀝니다.#방 클리어 보상이 22%의 확률로 등장하지 않습니다.#{{GreedModeSmall}} (그리드 모드에서는 무효과)"}, -- Guppy's Tail
+	{"134", "구피의 꼬리", "{{Chest}} 방 클리어 보상이 33%의 확률로 상자 혹은 황금상자로 바뀝니다.#방 클리어 보상이 22%의 확률로 등장하지 않습니다."}, -- Guppy's Tail
 	{"135", "수혈 팩", "사용 시 체력 반 칸을 깎고 {{Coin}}동전을 1~3개 드랍합니다."}, -- IV Bag
 	{"136", "최고의 친구", "사용 시 적을 유인하고 5초 뒤 공격력 110의 폭발을 일으키는 인형을 소환합니다."}, -- Best Friend
 	{"137", "원격 폭파기", "↑ {{Bomb}}폭탄 +5#폭탄이 아이템 사용 전까지 터지지 않습니다."}, -- Remote Detonator
@@ -660,7 +660,7 @@ EID.descriptions[languageCode].trinkets={
 	{"69", "흐려진 즉석사진", "때때로 방 안의 모든 적들이 혼란에 걸립니다."}, -- Faded Polaroid
 	{"70", "머릿니", "때때로 파란 아군 거미를 소환합니다."}, -- Louse
 	{"71", "밥의 방광", "폭탄이 설치될 때 독 장판이 생성됩니다."}, -- Bob's Bladder
-	{"72", "손목시계용 전지", "배터리 픽업 드랍률이 6.67% 증가합니다.#방 클리어 시 5% 확률로 충전량을 한칸 더 채워줍니다."}, -- Watch Battery
+	{"72", "손목시계용 전지", "방 클리어 보상이 배터리 픽업으로 교체될 확률이 5%에서 6.67%로 증가합니다.#방 클리어 시 5% 확률로 충전량을 한칸 더 채워줍니다."}, -- Watch Battery
 	{"73", "폭파용 뇌관", "폭탄이 터질 때 10% 확률로 {{Bomb}}폭탄 픽업이 드랍됩니다."}, -- Blasting Cap
 	{"74", "벽체 탐지기", "장애물 파괴 시 {{LadderRoom}}사다리방이 등장할 확률이 증가합니다."}, -- Stud Finder
 	{"75", "오류", "방마다 다른 랜덤한 장신구의 효과가 발동됩니다."}, -- Error
@@ -889,5 +889,5 @@ EID.descriptions[languageCode].CollectionPageInfo = "아직 해당 아이템을 
 EID.descriptions[languageCode].MCM={
 	DemoObjectName = "아이템 설명 모드 표시용",
 	DemoObjectTransformation = "테스트 변신 세트 표시",
-	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#!!! 간단 설정 방법:#{{Collectible182}} 폰트: Visuals→Font Type#{{{{Freezing}}}} 텍스트박스 너비: General→Textbox Width#\1 {{Damage}}테스트 공격력 +1#{{AngelDevilChance}} 악마와 천사, 당신의 선택은?#{{DeliriumSmall}} 모두가 싫어하는 델리리움",
+	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#!!! 간단 설정 방법:#{{Collectible182}} 폰트: Visuals→Font Type#{{Freezing}} 텍스트박스 너비: General→Textbox Width#\1 {{Damage}}테스트 공격력 +1#{{AngelDevilChance}} 악마와 천사, 당신의 선택은?#{{DeliriumSmall}} 모두가 싫어하는 델리리움",
 }
