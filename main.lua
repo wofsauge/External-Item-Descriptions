@@ -1463,6 +1463,13 @@ end
 
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
+-- Check the active items of every player for transformation progress (used at game start and after Genesis)
+local function CheckAllActiveItemProgress()
+	for i = 0, game:GetNumPlayers() - 1 do
+		AddActiveItemProgress(Isaac.GetPlayer(i))
+	end
+end
+
 local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true
 	local playerID = EID:getPlayerID(player)
@@ -1503,10 +1510,13 @@ end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 
 -- Re-init transformation progress and item interactions after using Genesis
-local function OnUseGenesis(_, _, _, player)
-	OnGameStartGeneral()
+if REPENTANCE then
+	local function OnUseGenesis(_, _, _, player)
+		OnGameStartGeneral()
+		CheckAllActiveItemProgress()
+	end
+	EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseGenesis, CollectibleType.COLLECTIBLE_GENESIS)
 end
-EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseGenesis, CollectibleType.COLLECTIBLE_GENESIS)
 
 function EID:OnUsePill(pillEffectID, player)
 	local playerID = EID:getPlayerID(player)
@@ -1563,10 +1573,8 @@ if EID.MCMLoaded or REPENTANCE then
 					EID.PlayerItemInteractions[tonumber(playerID)] = convertedData
 				end
 			else
-				-- check for the players' starting active items (thorough, for Eden and modded J&E chars' sake)
-				for i = 0, game:GetNumPlayers() - 1 do
-					AddActiveItemProgress(Isaac.GetPlayer(i))
-				end
+				-- check for the players' starting active items
+				CheckAllActiveItemProgress()
 			end
 
 			if REPENTANCE then
