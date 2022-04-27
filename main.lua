@@ -739,8 +739,9 @@ if REPENTANCE then
 		end
 	end
 	function EID:onNewRoom()
-		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
-		isDeathCertRoom = EID:IsDeathCertificateRoom()
+		local level = game:GetLevel()
+		isMirrorRoom = level:GetCurrentRoom():IsMirrorWorld()
+		isDeathCertRoom = EID:GetDimension(level) == 2
 		
 		-- Handle Flip Item
 		initialItemNext = false
@@ -1463,13 +1464,6 @@ end
 
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
--- Check the active items of every player for transformation progress (used at game start and after Genesis)
-local function CheckAllActiveItemProgress()
-	for i = 0, game:GetNumPlayers() - 1 do
-		AddActiveItemProgress(Isaac.GetPlayer(i))
-	end
-end
-
 local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true
 	local playerID = EID:getPlayerID(player)
@@ -1492,6 +1486,13 @@ local function AddActiveItemProgress(player, isD4)
 			end
 			activesTable[itemID] = activesTable[itemID] + 1
 		end
+	end
+end
+
+-- Check the active items of every player for transformation progress (used at game start and after Genesis)
+local function CheckAllActiveItemProgress()
+	for i = 0, game:GetNumPlayers() - 1 do
+		AddActiveItemProgress(Isaac.GetPlayer(i))
 	end
 end
 
