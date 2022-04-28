@@ -1229,17 +1229,20 @@ function EID:AreAchievementsAllowed()
 	return true
 end
 
-function EID:IsDeathCertificateRoom()
-	local level = game:GetLevel()
-	local roomData = level:GetCurrentRoomDesc().Data
-	if roomData then
-		if roomData.StageID == 35 then -- Home ID
-			if roomData.SubType == 33 or roomData.SubType == 34 then -- Death Certificate room subtypes
-				return true
-			end
-		end
-	end
-	return false
+-- Returns the dimension ID the player is currently in.
+-- 0: Normal Dimension
+-- 1: Secondary dimension, used by Downpour mirror dimension and Mines escape sequence
+-- 2: Death Certificate dimension
+function EID:GetDimension(level)
+	local roomIndex = level:GetCurrentRoomIndex()
+
+    for i = 0, 2 do
+        if GetPtrHash(level:GetRoomByIdx(roomIndex, i)) == GetPtrHash(level:GetRoomByIdx(roomIndex, -1)) then
+            return i
+        end
+    end
+    
+    return nil
 end
 
 -- Converts a given table into a string containing the crafting icons of the table
