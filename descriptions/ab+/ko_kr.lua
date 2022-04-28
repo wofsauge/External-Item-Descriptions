@@ -166,7 +166,7 @@ EID.descriptions[languageCode].collectibles={
 	{"131", "폭탄 주머니", "방 2~3개 클리어 시 {{Bomb}}폭탄을 하나 드랍합니다."}, -- Bomb Bag
 	{"132", "석탄 한 덩이", "공격이 멀리 나갈수록 공격력이 최대 6 증가합니다."}, -- A Lump of Coal
 	{"133", "구피의 발", "사용 시 최대 체력 1칸을 {{SoulHeart}}소울하트 3칸으로 바꿉니다."}, -- Guppy's Paw
-	{"134", "구피의 꼬리", "{{Chest}} 방 클리어 보상이 33%의 확률로 상자로 바뀝니다.#방 클리어 보상이 22%의 확률로 등장하지 않습니다.#{{GreedModeSmall}} (그리드 모드에서는 무효과)"}, -- Guppy's Tail
+	{"134", "구피의 꼬리", "{{Chest}} 방 클리어 보상이 33%의 확률로 상자 혹은 황금상자로 바뀝니다.#방 클리어 보상이 22%의 확률로 등장하지 않습니다."}, -- Guppy's Tail
 	{"135", "수혈 팩", "사용 시 체력 반 칸을 깎고 {{Coin}}동전을 1~3개 드랍합니다."}, -- IV Bag
 	{"136", "최고의 친구", "사용 시 적을 유인하고 5초 뒤 공격력 110의 폭발을 일으키는 인형을 소환합니다."}, -- Best Friend
 	{"137", "원격 폭파기", "↑ {{Bomb}}폭탄 +5#폭탄이 아이템 사용 전까지 터지지 않습니다."}, -- Remote Detonator
@@ -273,7 +273,7 @@ EID.descriptions[languageCode].collectibles={
 	{"238", "열쇠 조각 1", "{{MegaSatanSmall}} Key Piece 2와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 1
 	{"239", "열쇠 조각 2", "{{MegaSatanSmall}} Key Piece 1와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 2
 	{"240", "임상시험", "모든 능력치가 랜덤으로 증가하거나 감소합니다."}, -- Experimental Treatment
-	{"241", "지하로부터의 계약", "방 클리어 보상이 하나 더 나오는 대신 보상이 드랍될 확률이 33% 감소합니다.#{{Blank}} (보상 개수 및 드랍 확률 감소는 중첩됨)"}, -- Contract from Below
+	{"241", "지하로부터의 계약", "방 클리어 보상이 하나 더 나옵니다.#방 클리어 보상이 33%의 확률로 등장하지 않습니다.#{{Blank}} (중첩 시 보상 개수 증가, 보상 미등장 확률 감소)"}, -- Contract from Below
 	{"242", "악명", "적 탄환에 맞았을 때 50% 확률로 피해를 무시합니다."}, -- Infamy
 	{"243", "삼위일체 방패", "캐릭터의 정면에서 오는 적의 탄환을 모두 방어합니다."}, -- Trinity Shield
 	{"244", "기계 0.5", "공격 시 캐릭터의 이마 쪽에서 보조 레이저가 발사됩니다."}, -- Tech.5
@@ -456,7 +456,7 @@ EID.descriptions[languageCode].collectibles={
 	{"421", "강낭콩", "{{Charm}} 사용 시 매혹 방귀를 뀝니다."}, -- Kidney Bean
 	{"422", "빛나는 모래시계", "사용 시 이전 방의 시점으로 시간을 되돌립니다."}, -- Glowing Hour Glass
 	{"423", "보호의 고리", "캐릭터 주위에 하얀 고리가 둘러지며 고리에 접촉하는 적에게 현재 공격력만큼의 피해를 줍니다.#탄환이 고리에 접촉할 시 확률적으로 유도 반사판을 발사합니다."}, -- Circle of Protection
-	{"424", "자루 머리", "특정 픽업 아이템을 일정 확률로 픽업 자루로 바꿉니다.#!!! 픽업 대체 확률({{ColorRed}}고정 드랍 포함{{CR}}):#{{Coin}} 동전: 10%#{{Key}} 열쇠: 20%#{{Bomb}} 폭탄: 20%(방 클리어 트롤 폭탄 포함)#{{Battery}} 배터리: 20%"}, -- Sack Head
+	{"424", "자루 머리", "{{GrabBag}} 자루를 하나 드랍합니다.#{{GrabBag}} 특정 픽업 아이템을 일정 확률로 픽업 자루로 바꿉니다.#!!! 픽업 대체 확률({{ColorRed}}고정 드랍 포함{{CR}}):#{{Coin}} 동전: 10%#{{Key}} 열쇠: 20%#{{Bomb}} 폭탄: 20%(방 클리어 트롤 폭탄 포함)#{{Card}} 카드/룬: 20%#{{Battery}} 배터리: 20%"}, -- Sack Head
 	{"425", "손전등", "{{Slow}} 캐릭터의 몸통이 바라보는 방향으로 손전등을 비추며 빛 안에 들어온 적이나 탄환을 둔화시킵니다."}, -- Night Light
 	{"426", "집착하는 추종자", "캐릭터가 지나간 길을 3초 후 따라가며 접촉한 적에게 초당 30의 피해를 입힙니다."}, -- Obsessed Fan
 	{"427", "마인크래프터", "사용 시 이동식 TNT를 생성합니다."}, -- Mine Crafter
@@ -660,7 +660,7 @@ EID.descriptions[languageCode].trinkets={
 	{"69", "흐려진 즉석사진", "때때로 방 안의 모든 적들이 혼란에 걸립니다."}, -- Faded Polaroid
 	{"70", "머릿니", "때때로 파란 아군 거미를 소환합니다."}, -- Louse
 	{"71", "밥의 방광", "폭탄이 설치될 때 독 장판이 생성됩니다."}, -- Bob's Bladder
-	{"72", "손목시계용 전지", "배터리 픽업 드랍률이 6.67% 증가합니다.#방 클리어 시 5% 확률로 충전량을 한칸 더 채워줍니다."}, -- Watch Battery
+	{"72", "손목시계용 전지", "방 클리어 보상이 배터리 픽업으로 교체될 확률이 5%에서 6.67%로 증가합니다.#방 클리어 시 5% 확률로 충전량을 한칸 더 채워줍니다."}, -- Watch Battery
 	{"73", "폭파용 뇌관", "폭탄이 터질 때 10% 확률로 {{Bomb}}폭탄 픽업이 드랍됩니다."}, -- Blasting Cap
 	{"74", "벽체 탐지기", "장애물 파괴 시 {{LadderRoom}}사다리방이 등장할 확률이 증가합니다."}, -- Stud Finder
 	{"75", "오류", "방마다 다른 랜덤한 장신구의 효과가 발동됩니다."}, -- Error
@@ -700,7 +700,7 @@ EID.descriptions[languageCode].trinkets={
 	{"109", "청테이프", "캐릭터의 위치를 기준으로 패밀리어의 위치를 고정시킵니다."}, -- Duct Tape
 	{"110", "은화", "7, 8 스테이지에서 {{Shop}}상점이 생성됩니다."}, -- Silver Dollar
 	{"111", "피투성이 왕관", "7, 8 스테이지에서 {{TreasureRoom}}보물방이 생성됩니다."}, -- Bloody Crown
-	{"112", "과금전사", "{{TreasureRoom}}보물방에 재입고 기계가 생성됩니다."}, -- Pay To Win
+	{"112", "과금전사", "스테이지 진입 시 {{TreasureRoom}}보물방에 재입고 기계가 생성됩니다."}, -- Pay To Win
 	{"113", "전쟁의 메뚜기", "방에 입장 시 적과 접촉 시 폭발하는 빨간 아군 파리를 소환합니다."}, -- Locust of War
 	{"114", "역병의 메뚜기", "방 입장 시 적을 {{Poison}}중독시키는 초록 아군 파리를 소환합니다."}, -- Locust of Pestilence
 	{"115", "기근의 메뚜기", "방 입장 시 적을 {{Slow}}느려지게 하는 노란 아군 파리를 소환합니다."}, -- Locust of Famine
@@ -889,5 +889,5 @@ EID.descriptions[languageCode].CollectionPageInfo = "아직 해당 아이템을 
 EID.descriptions[languageCode].MCM={
 	DemoObjectName = "아이템 설명 모드 표시용",
 	DemoObjectTransformation = "테스트 변신 세트 표시",
-	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#Visuals→Font Type에서 폰트를, General→Textbox Width에서 텍스트박스 너비를 설정할 수 있습니다.#\1 이것 또한 새로운 한글 라인입니다.#이 줄은 당신을 사랑한답니다{{Heart}}#마크업 사이즈 미리보기: #BIG: {{Damage}} {{Tears}} {{Speed}} {{Shotspeed}} {{Luck}} #small: {{DeliriumSmall}} {{CurseDarknessSmall}} {{CurseBlindSmall}}",
+	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#!!! 간단 설정 방법:#{{Collectible182}} 폰트: Visuals→Font Type#{{Freezing}} 텍스트박스 너비: General→Textbox Width#\1 {{Damage}}테스트 공격력 +1#{{AngelDevilChance}} 악마와 천사, 당신의 선택은?#{{DeliriumSmall}} 모두가 싫어하는 델리리움",
 }
