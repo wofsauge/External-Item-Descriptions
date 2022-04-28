@@ -868,7 +868,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	-- NO!
 	[88] = { "{{Quality0}}등급인 아이템이 등장하지 않습니다." },
 	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
-	[159] = { "{{GoldenChest}} 낡은 상자, 메가 상자를 제외한 모든 상자가 황금 상자로 교체됩니다.#!!! 황금 상자에서 픽업이 더 많이 드랍되나 상자, 카드, 장신구가 드랍되지 않습니다." },
+	[159] = { "{{GoldenChest}} 낡은상자, 메가상자를 제외한 모든 상자가 황금상자로 교체됩니다.#{{GoldenChest}} 황금상자가 드랍하는 픽업의 양이 종류와 상관없이 최소 2개가 보장됩니다.#{{GoldenChest}} 황금상자에서 {{Rune}}룬의 등장 확률이 증가하며 {{Pill}}알약과 {{Battery}}배터리가 등장할 수 있습니다." },
 }
 
 ---------- Cards ----------
