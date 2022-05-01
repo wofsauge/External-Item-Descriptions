@@ -957,10 +957,8 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	displayingRecipeList = false
 	if ((EID.isHidden or craftingIsHidden) and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting") or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
 		return false
-	elseif EID.Config["BagOfCraftingHideInBattle"] then
-		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
-			return false
-		end
+	elseif EID.Config["BagOfCraftingHideInBattle"] and (Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0) then
+		return false
 	elseif EID.Config["DisplayBagOfCrafting"] == "never" then
 		return false
 	elseif EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.bagPlayer:GetSprite():GetAnimation(), "PickupWalk") then
@@ -971,6 +969,10 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	
 	-- Display the result of the 8 items in our bag if applicable
 	if (showCraftingResult or EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") and #EID.BagItems == 8 then
+		if EID.Config["BagOfCraftingDisplayMode"] ~= "Recipe List" and EID:hasCurseBlind() and EID.Config["DisableOnCurse"] then
+			showCraftingResult = false
+			return false
+		end
 		local craftingResult, backupResult = EID:calculateBagOfCrafting(EID.BagItems)
 		if (backupResult ~= craftingResult) then EID.TabPreviewID = backupResult end
 		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
