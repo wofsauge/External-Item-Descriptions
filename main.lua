@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = "4.27"
+EID.ModVersion = "4.28"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -489,6 +489,10 @@ function EID:printDescriptions(useCached)
 		end
 	end
 	
+	if #EID.previousDescs > 0 then
+		EID.isDisplaying = true
+	end
+	
 	-- Print our cached descriptions
 	for i,indicator in ipairs(EID.CachedIndicators) do
 		EID:renderIndicator(indicator[1], indicator[2])
@@ -516,6 +520,10 @@ function EID:printNewDescriptions()
 		end
 	end
 	EID.CachingDescription = false
+	
+	if #EID.previousDescs > 0 then
+		EID.isDisplaying = true
+	end
 end
 
 function EID:printDescription(desc, cachedID)
@@ -525,6 +533,7 @@ function EID:printDescription(desc, cachedID)
 		if alwaysUseLocalMode then return false
 		else alwaysUseLocalMode = true end
 	end
+	EID.isDisplaying = true
 	local renderPos = EID:getTextPosition()
 	
 	if cachedID then
@@ -730,11 +739,9 @@ if REPENTANCE then
 		end
 	end
 	function EID:onNewRoom()
-		isMirrorRoom = game:GetLevel():GetCurrentRoom():IsMirrorWorld()
-		
 		local level = game:GetLevel()
-		local id = level:GetCurrentRoomIndex()
-		isDeathCertRoom = (id >=0 and GetPtrHash(level:GetRoomByIdx(id)) == GetPtrHash(level:GetRoomByIdx(id, 2)))
+		isMirrorRoom = level:GetCurrentRoom():IsMirrorWorld()
+		isDeathCertRoom = EID:GetDimension(level) == 2
 		
 		-- Handle Flip Item
 		initialItemNext = false
@@ -1017,6 +1024,10 @@ function EID:onGameUpdate()
 			if EID.CraneItemType[tostring(crane.InitSeed)] then
 				if crane:GetSprite():IsPlaying("Prize") then
 					EID.CraneItemType[tostring(crane.InitSeed)] = nil
+				-- Pair the Crane Game's new drop seed with the latest collectible ID it's gotten
+				-- (fixes Glowing Hour Glass rewinds)
+				elseif EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] == nil then
+					EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] = EID.CraneItemType[tostring(crane.InitSeed)]
 				end
 			end
 		end
@@ -1073,23 +1084,13 @@ local function checkStartOfRunWarnings()
 			demoDescObj.Description = EID:getDescriptionEntry("ModdedRecipesWarningText") or ""
 			EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
 			hasShownStartWarning = true
-		-- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 		else
-			local characterID = EID.player:GetPlayerType()
-			-- ID 21 = Tainted Isaac. Tainted characters have definitely beaten Mom!
-			-- (Fixes Tainted Lost's item pools, and potentially modded character's mechanics, ruining this check)
-			if characterID < 21 and game.Challenge == 0 and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
-				local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
-				if not hasBookOfRevelationsUnlocked then
-					local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
-					if not hasCubeOfMeatUnlocked then
-						local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-						demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-						demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
-						EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
-						hasShownStartWarning = true
-					end
-				end
+			if not EID:AreAchievementsAllowed() then
+				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+				demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
+				demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+				EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
+				hasShownStartWarning = true
 			end
 		end
 	elseif hasShownStartWarning then
@@ -1358,13 +1359,13 @@ local function onRender(t)
 					EID:addDescriptionToPrint(descriptionObj)
 				-- Handle Crane Game
 				elseif closest.Type == 6 and closest.Variant == 16 then
-					if EID.CraneItemType[tostring(closest.InitSeed)] then
+					if EID.CraneItemType[tostring(closest.InitSeed)] or EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] then
 						if EID:getEntityData(closest, "EID_DontHide") ~= true then
 							if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
 							end
 						end
-						local collectibleID = EID.CraneItemType[tostring(closest.InitSeed)]
+						local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
 						local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID, closest)
 						
 						EID:addDescriptionToPrint(descriptionObj)
@@ -1488,6 +1489,13 @@ local function AddActiveItemProgress(player, isD4)
 	end
 end
 
+-- Check the active items of every player for transformation progress (used at game start and after Genesis)
+local function CheckAllActiveItemProgress()
+	for i = 0, game:GetNumPlayers() - 1 do
+		AddActiveItemProgress(Isaac.GetPlayer(i))
+	end
+end
+
 local function OnGameStartGeneral(_,isSave)
 	EID:buildTransformationTables()
 	if not isSave then
@@ -1501,6 +1509,15 @@ local function OnUseD4(_, _, _, player)
 	AddActiveItemProgress(player, true)
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
+
+-- Re-init transformation progress and item interactions after using Genesis
+if REPENTANCE then
+	local function OnUseGenesis(_, _, _, player)
+		OnGameStartGeneral()
+		CheckAllActiveItemProgress()
+	end
+	EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseGenesis, CollectibleType.COLLECTIBLE_GENESIS)
+end
 
 function EID:OnUsePill(pillEffectID, player)
 	local playerID = EID:getPlayerID(player)
@@ -1557,10 +1574,8 @@ if EID.MCMLoaded or REPENTANCE then
 					EID.PlayerItemInteractions[tonumber(playerID)] = convertedData
 				end
 			else
-				-- check for the players' starting active items (thorough, for Eden and modded J&E chars' sake)
-				for i = 0, game:GetNumPlayers() - 1 do
-					AddActiveItemProgress(Isaac.GetPlayer(i))
-				end
+				-- check for the players' starting active items
+				CheckAllActiveItemProgress()
 			end
 
 			if REPENTANCE then
