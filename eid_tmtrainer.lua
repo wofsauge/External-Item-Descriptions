@@ -3,7 +3,7 @@
 This file is only loaded when the game is launched with the "--luadebug" launch option.
 This allows mods to have access to your computer's files, which is necessary to read glitched item info that's printed to the game's log file.
 
-Having --luadebug on would allow malicious mods to delete your files, execute command prompt commands, and probably much more.
+Having --luadebug on would allow malicious mods to delete your files, execute command prompt commands, and probably much more. It also makes certain Lua functions behave differently, which breaks some other mods.
 USE AT YOUR OWN RISK.
 
 ]]
