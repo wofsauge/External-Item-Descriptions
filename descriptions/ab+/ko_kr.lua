@@ -724,7 +724,7 @@ EID.descriptions[languageCode].cards={
 	{"1", "0 - 바보", "스테이지의 첫 방으로 순간이동합니다."}, -- 0 - The Fool
 	{"2", "I - 마법사", "그 방에서 공격이 적에게 유도됩니다."}, -- I - The Magician
 	{"3", "II - 여교황", "엄마발이 랜덤한 적에게 떨어져 300의 피해를 입힙니다."}, -- II - The High Priestess
-	{"4", "III - 여제", "그 방에서 {{DamageSmall}}공격력 +2.35, {{SpeedSmall}}이동속도 +0.3"}, -- III - The Empress
+	{"4", "III - 여제", "그 방에서 {{DamageSmall}}공격력 +1.5, {{SpeedSmall}}이동속도 +0.3"}, -- III - The Empress
 	{"5", "IV - 황제", "{{BossRoom}}보스방으로 순간이동합니다."}, -- IV - The Emperor
 	{"6", "V - 교황", "{{SoulHeart}}소울하트를 2개 드랍합니다."}, -- V - The Hierophant
 	{"7", "VI - 연인", "{{Heart}}빨간하트를 2개 드랍합니다."}, -- VI - The Lovers
