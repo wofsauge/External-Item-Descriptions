@@ -104,8 +104,8 @@ EID.UserConfig = {
 	
 	-- Set the max number of descriptions to display per frame
 	-- Set to 1 if you don't want any Local Mode descriptions printed in co-op
-	-- Default = 9999
-	["MaxDescriptionsToDisplay"] = 9999,
+	-- Default = 99
+	["MaxDescriptionsToDisplay"] = 99,
 
 	---------- Display Modes -----------
 
@@ -450,7 +450,7 @@ EID.DefaultConfig = {
 	["CoopDescriptions"] = true,
 	["PairedPlayerDescriptions"] = false,
 	["DisplayAllNearby"] = false,
-	["MaxDescriptionsToDisplay"] = 9999,
+	["MaxDescriptionsToDisplay"] = 99,
 	["DisableOnCurse"] = true,
 	["DisableOnAltPath"] = true,
 	["DisableOnAprilFoolsChallenge"] = true,
