@@ -359,6 +359,10 @@ if MCMLoaded then
 		infoText = "Distance to the object until descriptions are displayed"})
 	EID:AddBooleanSetting("General", "DisplayAllNearby", "Display All Objects In Range", 
 		{ infoText = "Descriptions besides the closest one will be shown using the Local display mode" })
+	local descsToDisplaySteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9999}
+	EID:AddScrollSetting("General", "MaxDescriptionsToDisplay", "Max Descriptions to Display", descsToDisplaySteps, 
+	{infoText = "Max number of descriptions to display per frame"})
+	
 
 	--------Reset to default
 	MCM.AddSpace("EID", "General")
