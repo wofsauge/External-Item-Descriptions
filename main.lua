@@ -461,6 +461,7 @@ end
 
 function EID:addDescriptionToPrint(desc)
 	if desc.Entity and EID.entitiesToPrint[GetPtrHash(desc.Entity)] then return end
+	if #EID.descriptionsToPrint == EID.Config["MaxDescriptionsToDisplay"] then return end
 	table.insert(EID.descriptionsToPrint, desc)
 	if desc.Entity then EID.entitiesToPrint[GetPtrHash(desc.Entity)] = true end
 end
@@ -1267,7 +1268,8 @@ local function onRender(t)
 			end
 		end
 		
-		if not displayedDesc or EID.Config["DisplayAllNearby"] then
+		if (not displayedDesc or EID.Config["DisplayAllNearby"]) and
+			#EID.descriptionsToPrint < EID.Config["MaxDescriptionsToDisplay"] then
 			-- Searching for the closest describable entity to this player	
 			EID.lastDescriptionEntity = nil
 			EID.lastDist = 10000
