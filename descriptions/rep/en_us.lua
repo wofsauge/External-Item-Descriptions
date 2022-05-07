@@ -822,6 +822,7 @@ local repCards={
 	[4] = {"4", "III - The Empress", "For current room grants: #↑ {{Damage}} +2.35 Damage up#↑ {{Speed}} +0.3 Speed up"},
 	[12] = {"12", "XI - Strength", "For current room grants: #↑ {{Heart}} +1 Health up#↑ {{Damage}} +0.3 Damage up#↑ {{Damage}} +50% Damage#↑ {{Range}} +5.25 Range up#↑ {{Speed}} +0.3 Speed up"}, -- XI - Strength
 	[16] = {"16", "XV - The Devil", "↑ {{Damage}} +2 Damage up for current room"},
+	[18] = {"18", "XVII - The Stars", "{{TreasureRoom}} Teleports you to the Treasure Room#{{Planetarium}} If there is a Planetarium, it teleports there instead"},
 	[27] = {"27", "Ace of Clubs", "{{Bomb}} Turns all pickups, chests and non-boss enemies into bombs"}, -- Ace of Clubs
 	[28] = {"28", "Ace of Diamonds", "{{Coin}} Turns all pickups, chests and non-boss enemies into coins"}, -- Ace of Diamonds
 	[29] = {"29", "Ace of Spades", "{{Key}} Turns all pickups, chests and non-boss enemies into keys"}, -- Ace of Spades
