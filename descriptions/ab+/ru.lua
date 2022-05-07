@@ -866,3 +866,16 @@ EID.descriptions[languageCode].transformations={
 	"Взрослый",				-- 14
 	"Топтун",				-- 15
 }
+
+---------- MISC ----------
+
+EID.descriptions[languageCode].VoidText = "Если поглощён, даёт:"
+EID.descriptions[languageCode].VoidNames = {"Скорость", "Скорострельность", "Урон", "Дальность", "Скорость снаряда", "Удача"}
+
+EID.descriptions[languageCode].CollectionPageInfo = "Этот предмет нужно подобрать для коллекции!"
+
+EID.descriptions[languageCode].MCM = {
+	DemoObjectName = "Демо имя объекта",
+	DemoObjectTransformation = "Демо траснформация",
+	DemoObjectText = "Это текст на русском#Очень крутое и длинное описание для симуляции конца линий, образованных шириной текстового окна EID!#{{Collectible4}} Это тоже крутая линия#{{Heart}} Эта линия тебя любит ;)#{{AngelDevilChance}} Эта линия может быть твоим ангелом или дьяволом#\1 {{Damage}} +1 к характеристике",
+}
