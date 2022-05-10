@@ -451,7 +451,7 @@ local repCollectibles={
 	[728] = {"728", "겔로", "사용 시 공격하는 방향으로 태아를 발사해 접촉한 적에게 공격력 x3의 피해를 입힙니다.#태아는 그 방에서 캐릭터와 연결되어 공격하는 방향으로 움직이며 적을 향해 공격력 x0.75의 캐릭터와 같은 공격을 발사합니다."}, -- Gello
 	[729] = {"729", "참수 공격", "사용 시 공격하는 방향으로 캐릭터의 머리를 분리시켜 던집니다.#분리될 경우 머리로만 공격이 가능합니다.#몸이 머리와 닿거나 아이템 재사용 시 원래 상태로 돌아옵니다."}, -- Decap Attack
 	[730] = {"730", "의안", "↑ {{DamageSmall}}공격력 +0.75#↑ {{LuckSmall}}행운 +1"}, -- Glass Eye
-	[731] = {"731", "다래끼", "오른쪽 눈에서 {{DamageSmall}}공격력 x1.28, {{RangeSmall}}사거리 +7, {{ShotspeedSmall}}탄속 -0.15의 공격을 발사합니다."}, -- Stye
+	[731] = {"731", "다래끼", "!!! 오른쪽 눈에만 적용:#↑ {{DamageSmall}}공격력 배율 x1.28#↑ {{RangeSmall}}사거리 +7#↑ {{ShotspeedSmall}}탄속 -0.15"}, -- Stye
 	[732] = {"732", "엄마의 반지", "↑ {{DamageSmall}}공격력 +1#{{Rune}} 획득 시 랜덤한 룬을 하나 드랍합니다."}, -- Mom's Ring
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
