@@ -995,55 +995,55 @@ EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
 
 EID.descriptions[languageCode].horsepills={
-	{"0", "질나쁜 방귀", "방 안의 모든 적을 3초간 {{Poison}}중독시킵니다."}, -- Bad Gas
-	{"1", "질나쁜 환각", "체력 2칸의 피해를 입습니다."}, -- Bad Trip
-	{"2", "강철같은 알약", "{{SoulHeart}}소울하트 +4"}, -- Balls of Steel
-	{"3", "폭탄은 곧 열쇠", "소지중인 {{Bomb}}폭탄과 {{Key}}열쇠의 개수가 50% 증가하며 개수를 서로 바꿉니다.#{{GoldenBomb}}황금폭탄과 {{GoldenKey}}황금열쇠를 서로 바꿉니다."}, -- Bombs are Key
-	{"4", "폭탄 설사", "캐릭터의 위치에 점화된 유도성 대형 폭탄 5개를 생성합니다."}, -- Explosive Diarrhea
-	{"5", "체력 회복", "{{SoulHeart}}소울하트 +3#{{Heart}} 체력을 모두 회복합니다."}, -- Full Health
-	{"6", "체력 감소", "↓ 최대 체력 -2"}, -- Health Down
-	{"7", "체력 증가", "↑ {{EmptyHeart}}빈 최대 체력 +2"}, -- Health Up
+	{"0", "질나쁜 방귀", "{{ColorCyan}}방 안의 모든 적{{CR}}을 3초간 {{Poison}}중독시킵니다."}, -- Bad Gas
+	{"1", "질나쁜 환각", "체력 {{ColorYellow}}2{{CR}}칸의 피해를 입습니다."}, -- Bad Trip
+	{"2", "강철같은 알약", "{{SoulHeart}}소울하트 +{{ColorCyan}}4{{CR}}"}, -- Balls of Steel
+	{"3", "폭탄은 곧 열쇠", "소지중인 {{Bomb}}폭탄과 {{Key}}열쇠의 개수가 {{ColorCyan}}50% 증가하며{{CR}} 개수를 서로 바꿉니다.#{{GoldenBomb}}황금폭탄과 {{GoldenKey}}황금열쇠를 서로 바꿉니다."}, -- Bombs are Key
+	{"4", "폭탄 설사", "캐릭터의 위치에 점화된 {{ColorCyan}}유도성 대형 폭탄 7개{{CR}}를 생성합니다."}, -- Explosive Diarrhea
+	{"5", "체력 회복", "{{SoulHeart}}{{ColorCyan}}소울하트 +3{{CR}}#{{Heart}} 체력을 모두 회복합니다."}, -- Full Health
+	{"6", "체력 감소", "↓ 최대 체력 -{{ColorYellow}}2{{CR}}"}, -- Health Down
+	{"7", "체력 증가", "↑ {{EmptyHeart}}빈 최대 체력 +{{ColorCyan}}2{{CR}}"}, -- Health Up
 	{"8", "알약을 찾았어", "무효과"}, -- I Found Pills
 	{"9", "사춘기", "무효과#{{Blank}} (3번 사용 시 1회 한정 {{Heart}}최대 체력 +1)"}, -- Puberty
-	{"10", "멋진 파리", "적의 탄환을 막아주는 {{Collectible279}}대형 파리 한마리를 얻습니다."}, -- Pretty Fly
-	{"11", "사거리 감소", "↓ {{RangeSmall}}사거리 -1.2"}, -- Range Down
-	{"12", "사거리 증가", "↑ {{RangeSmall}}사거리 +1.5"}, -- Range Up
-	{"13", "이동속도 감소", "↓ {{SpeedSmall}}이동속도 -0.24"}, -- Speed Down
-	{"14", "이동속도 증가", "↑ {{SpeedSmall}}이동속도 +0.3"}, -- Speed Up
-	{"15", "연사 감소", "↓ {{TearsSmall}}연사 -0.56"}, -- Tears Down
-	{"16", "연사 증가", "↑ {{TearsSmall}}연사 +0.7"}, -- Tears Up
-	{"17", "행운 감소", "↓ {{LuckSmall}}행운 -2"}, -- Luck Down
-	{"18", "행운 증가", "↑ {{LuckSmall}}행운 +2"}, -- Luck Up
+	{"10", "멋진 파리", "적의 탄환을 막아주는 {{Collectible279}}{{ColorCyan}}대형 파리{{CR}} 한마리를 얻습니다."}, -- Pretty Fly
+	{"11", "사거리 감소", "↓ {{RangeSmall}}사거리 -{{ColorYellow}}1.2{{CR}}"}, -- Range Down
+	{"12", "사거리 증가", "↑ {{RangeSmall}}사거리 +{{ColorCyan}}1.5{{CR}}"}, -- Range Up
+	{"13", "이동속도 감소", "↓ {{SpeedSmall}}이동속도 -{{ColorYellow}}0.24{{CR}}"}, -- Speed Down
+	{"14", "이동속도 증가", "↑ {{SpeedSmall}}이동속도 +{{ColorCyan}}0.3{{CR}}"}, -- Speed Up
+	{"15", "연사 감소", "↓ {{TearsSmall}}연사 -{{ColorYellow}}0.56{{CR}}"}, -- Tears Down
+	{"16", "연사 증가", "↑ {{TearsSmall}}연사 +{{ColorCyan}}0.7{{CR}}"}, -- Tears Up
+	{"17", "행운 감소", "↓ {{LuckSmall}}행운 -{{ColorYellow}}2{{CR}}"}, -- Luck Down
+	{"18", "행운 증가", "↑ {{LuckSmall}}행운 +{{ColorCyan}}2{{CR}}"}, -- Luck Up
 	{"19", "순간이동약", "스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Telepills
-	{"20", "48시간 풀충전!", "액티브 아이템 충전량을 모두 충전하고 배터리 픽업을 3~4개 드랍합니다."}, -- 48 Hour Energy!
-	{"21", "토혈", "빨간하트가 한칸이 되며 {{HalfHeart}}빨간하트 픽업을 4~8개 드랍합니다."}, -- Hematemesis
-	{"22", "마비", "4초간 캐릭터가 마비 상태가 됩니다."}, -- Paralysis
-	{"23", "모두 볼 수 있어!", "그 스테이지에서 맵에 특급 비밀방을 제외한 모든 위치가 표시되며 {{SecretRoom}}{{SuperSecretRoom}}비밀방이 자동으로 열립니다."}, -- I can see forever!
-	{"24", "페로몬", "방 안의 모든 일반 적을 아군으로 만듭니다."}, -- Pheromones
+	{"20", "48시간 풀충전!", "액티브 아이템 충전량을 모두 충전하고 배터리 픽업을 {{ColorCyan}}3~4{{CR}}개 드랍합니다."}, -- 48 Hour Energy!
+	{"21", "토혈", "빨간하트가 한칸이 되며 {{HalfHeart}}빨간하트 픽업을 {{ColorCyan}}4~8{{CR}}개 드랍합니다."}, -- Hematemesis
+	{"22", "마비", "{{ColorYellow}}4초{{CR}}간 캐릭터가 마비 상태가 됩니다."}, -- Paralysis
+	{"23", "모두 볼 수 있어!", "{{ColorCyan}}그 스테이지에서 맵에 특급 비밀방을 제외한 모든 위치가 표시되며{{CR}} {{SecretRoom}}{{SuperSecretRoom}}비밀방이 자동으로 열립니다."}, -- I can see forever!
+	{"24", "페로몬", "방 안의 모든 일반 적을 {{ColorCyan}}아군으로 만듭니다.{{CR}}"}, -- Pheromones
 	{"25", "건망증", "Lost 저주에 걸리며 맵을 볼 수 없습니다."}, -- Amnesia
-	{"26", "레몬 파티", "사용 시 캐릭터의 주위에 노란 장판이 생성되며 장판에 닿은 적은 초당 24의 피해를 입습니다."}, -- Lemon Party
-	{"27", "님 마술43?", "눈물이 1분간 대각선으로 나갑니다."}, -- R U A Wizard?
+	{"26", "레몬 파티", "사용 시 캐릭터의 주위에 {{ColorCyan}}범위가 매우 큰{{CR}} 노란 장판이 생성되며 장판에 닿은 적은 초당 24의 피해를 입습니다."}, -- Lemon Party
+	{"27", "님 마술43?", "눈물이 {{ColorYellow}}60초{{CR}}간 대각선으로 나갑니다."}, -- R U A Wizard?
 	{"28", "진통제!", "그 방에서 캐릭터가 받는 모든 피해가 체력 반칸으로 고정됩니다."}, -- Percs!
 	{"29", "과다복용!", "그 방에서 캐릭터가 받는 모든 피해가 체력 1칸으로 고정됩니다."}, -- Addicted!
-	{"30", "휴-식", "그 방에서 캐릭터의 위치에 똥을 생성합니다."}, -- Re-Lax
+	{"30", "휴-식", "그 방에서 캐릭터의 위치에 똥을 {{ColorCyan}}더 많이{{CR}} 생성합니다."}, -- Re-Lax
 	{"31", "", "Maze 저주에 걸립니다."}, -- ???
-	{"32", "커지는 알약", "캐릭터의 크기가 대폭 커집니다."}, -- One makes you larger
-	{"33", "작아지는 알약", "캐릭터의 크기가 대폭 작아집니다."}, -- One makes you small
-	{"34", "감염!", "방 안의 똥의 개수만큼 파란 아군 거미 * 2를 소환합니다."}, -- Infested!
-	{"35", "감염?", "방 안의 적의 수만큼 파란 아군 거미 * 2를 소환합니다."}, -- Infested?
-	{"36", "최강 알약!", "그 방에서 {{DamageSmall}}공격력 +7, {{RangeSmall}}사거리 +3#6초간 무적 상태가 되며 접촉한 적에게 20의 피해를 입힙니다."}, -- Power Pill!
-	{"37", "전자오락 시야경", "90초 동안 화면의 화질이 감소합니다."}, -- Retro Vision
-	{"38", "마지막까지 친구야!", "파란 아군 파리를 12마리 소환합니다."}, -- Friends Till The End!
-	{"39", "조절실패", "캐릭터가 미끄러지는 갈색 장판이 생성됩니다."}, -- X-Lax
-	{"40", "뭔가 잘못됐어...", "적을 {{Slow}}둔화시키는 검은 장판을 생성합니다."}, -- Something's wrong...
+	{"32", "커지는 알약", "캐릭터의 크기가 {{ColorCyan}}대폭{{CR}} 커집니다."}, -- One makes you larger
+	{"33", "작아지는 알약", "캐릭터의 크기가 {{ColorCyan}}대폭{{CR}} 작아집니다."}, -- One makes you small
+	{"34", "감염!", "방 안의 똥의 개수 {{ColorCyan}}x2{{CR}}만큼 파란 아군 거미를 소환합니다."}, -- Infested!
+	{"35", "감염?", "방 안의 적의 수 {{ColorCyan}}x2{{CR}}만큼 파란 아군 거미2를 소환합니다."}, -- Infested?
+	{"36", "최강 알약!", "{{ColorCyan}}그 방에서 {{DamageSmall}}공격력 +7, {{RangeSmall}}사거리 +3{{CR}}#6초간 무적 상태가 되며 접촉한 적에게 20의 피해를 입힙니다."}, -- Power Pill!
+	{"37", "전자오락 시야경", "{{ColorYellow}}90{{CR}}초 동안 화면의 화질이 감소합니다."}, -- Retro Vision
+	{"38", "마지막까지 친구야!", "파란 아군 파리를 {{ColorCyan}}12{{CR}}마리 소환합니다."}, -- Friends Till The End!
+	{"39", "조절실패", "{{ColorYellow}}범위가 매우 큰{{CR}} 캐릭터가 미끄러지는 갈색 장판이 생성됩니다."}, -- X-Lax
+	{"40", "뭔가 잘못됐어...", "{{ColorCyan}}범위가 매우 큰{{CR}} 적을 {{Slow}}둔화시키는 검은 장판을 생성합니다."}, -- Something's wrong...
 	{"41", "완전 지루해...", "그 방에서 적과 캐릭터의 속도가 {{Slow}}느려집니다."}, -- I'm Drowsy...
 	{"42", "완전 재밌어!!!", "그 방, 30초, 60초마다 총 2번 적과 캐릭터의 속도가 빨라집니다."}, -- I'm Excited!!!
-	{"43", "꿀꺽!", "소지중인 장신구를 흡수해 효과를 영구적으로 얻습니다.#{{Heart}} 흡수한 장신구의 개수만큼 빨간하트 한칸을 회복합니다."}, -- Gulp!
-	{"44", "퉤엣!", "바라보는 방향으로 폭발하는 독성 눈물을 여러 발 발사합니다."}, -- Horf!
-	{"45", "햇살 위를 걷는 기분이야!", "6초간 무적 상태가 되며 접촉한 적에게 20의 피해를 입힙니다."}, -- Feels like I'm walking on sunshine!
-	{"46", "끄어억!", "마지막으로 사용한 알약을 대형 알약으로 드랍합니다."}, -- Vurp!
-	{"47", "탄속 감소", "↓ {{ShotspeedSmall}}탄속 -0.3"}, -- Shot Speed Down
-	{"48", "탄속 증가", "↑ {{ShotspeedSmall}}탄속 +0.3"}, -- Shot Speed Up
+	{"43", "꿀꺽!", "소지중인 장신구를 흡수해 효과를 영구적으로 얻습니다.#{{Heart}} {{ColorCyan}}장신구 흡수와 동시에 빨간하트 한칸을 회복합니다.{{CR}}"}, -- Gulp!
+	{"44", "퉤엣!", "바라보는 방향으로 폭발하는 독성 눈물을 {{ColorYellow}}여러 발{{CR}} 발사합니다."}, -- Horf!
+	{"45", "햇살 위를 걷는 기분이야!", "6초간 무적 상태가 되며 {{ColorCyan}}접촉한 적에게 20의 피해를 입힙니다.{{CR}}"}, -- Feels like I'm walking on sunshine!
+	{"46", "끄어억!", "마지막으로 사용한 알약을 {{ColorCyan}}대형{{CR}} 알약으로 드랍합니다."}, -- Vurp!
+	{"47", "탄속 감소", "↓ {{ShotspeedSmall}}탄속 -{{ColorYellow}}0.3{{CR}}"}, -- Shot Speed Down
+	{"48", "탄속 증가", "↑ {{ShotspeedSmall}}탄속 +{{ColorCyan}}0.3{{CR}}"}, -- Shot Speed Up
 	{"49", "실험용 알약", "랜덤한 능력치 두가지가 증가하거나 감소합니다.#{{Collectible75}}PHD, {{Collectible46}}Lucky Foot 혹은 {{Collectible303}}Virgo 보유 시 능력치가 감소하지 않습니다.#{{Collectible654}}False PHD 보유 시 능력치가 증가하지 않습니다."}, -- Experimental Pill
 	[9999] = {"", "황금 알약", "일반 알약에서 나오지 않는 알약 효과가 랜덤하게 발동됩니다.#사라지기 전까지 무제한으로 사용할 수 있습니다."}, -- Golden Pill
 }
