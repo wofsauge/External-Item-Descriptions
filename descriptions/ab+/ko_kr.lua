@@ -283,8 +283,8 @@ EID.descriptions[languageCode].collectibles={
 	{"248", "군체의식", "파란 아군 파리 및 거미의 공격력이 2배로 증가합니다."}, -- Hive Mind
 	{"249", "추가 선택권", "{{BossRoom}}보스방 보상 아이템이 2개가 나오며 하나를 선택하면 나머지는 사라집니다."}, -- There's Options
 	{"250", "1+1 폭탄", "{{Bomb}}폭탄 픽업이 1+1로 나옵니다."}, -- BOGO Bombs
-	{"251", "스타터 덱", "{{Card}}카드를 하나 드랍합니다.#카드를 2개 들 수 있습니다.#모든 알약이 카드로 교체됩니다."}, -- Starter Deck
-	{"252", "작은 주머니", "{{Pill}}알약을 하나 드랍합니다.#알약을 2개 들 수 있습니다.#모든 카드가 알약으로 교체됩니다."}, -- Little Baggy
+	{"251", "스타터 덱", "{{Card}} 카드를 하나 드랍합니다.#{{Card}} 카드를 2개 들 수 있습니다.#카드는 {{ButtonRT}}버튼으로 교체할 수 있습니다.#!!! 모든 알약이 카드로 교체됩니다."}, -- Starter Deck
+	{"252", "작은 주머니", "{{Pill}} 알약을 하나 드랍합니다.#{{Pill}} 알약을 2개 들 수 있습니다.#알약은 {{ButtonRT}}버튼으로 교체할 수 있습니다.#!!! 모든 카드가 알약으로 교체됩니다."}, -- Little Baggy
 	{"253", "마법의 딱쟁이", "↑ {{Heart}}최대 체력 +1#↑ {{LuckSmall}}행운 +1"}, -- Magic Scab
 	{"254", "응고혈", "한쪽 눈에서 {{DamageSmall}}공격력 +1, {{RangeSmall}}사거리 +5의 공격을 발사합니다."}, -- Blood Clot
 	{"255", "나사못", "↑ {{TearsSmall}}연사 +0.5#↑ {{ShotspeedSmall}}탄속 +0.2"}, -- Screw
@@ -448,7 +448,7 @@ EID.descriptions[languageCode].collectibles={
 	{"413", "원죄없는 잉태", "일정 개수만큼 {{Heart}}하트 픽업 획득 시 천사류 패밀리어를 영구적으로 소환합니다.#{{Blank}} (최대 5마리)"}, -- Immaculate Conception
 	{"414", "더 많은 선택권", "{{TreasureRoom}}보물방 아이템이 2개가 나오며 하나를 선택하면 나머지는 사라집니다."}, -- More Options
 	{"415", "빛의 왕관", "↑ {{SoulHeart}}소울하트 +2#최대 체력이 모두 차있거나 빨간하트가 없을 때:#↑ {{DamageSmall}}공격력 배율 x2#↑ {{RangeSmall}}사거리 +5.25#↑ 눈물 높이 +0.5#↓ {{ShotspeedSmall}}탄속 -0.3#피격 시 그 방에서 비활성화됩니다."}, -- Crown Of Light
-	{"416", "넓은 가방", "카드 또는 알약을 2개 들 수 있습니다."}, -- Deep Pockets
+	{"416", "넓은 가방", "카드 또는 알약을 2개 들 수 있습니다.#카드/알약은 {{ButtonRT}}버튼으로 교체할 수 있습니다."}, -- Deep Pockets
 	{"417", "서큐버스", "오라를 가지고 대각선으로 이동하며 오라 안에 들어온 적에게 초당 공격력의 129%의 피해를 입히고, 캐릭터가 들어오면 {{DamageSmall}}공격력을 x1.5 증가시켜줍니다."}, -- Succubus
 	{"418", "과일 케이크", "눈물을 발사할 때마다 눈물의 효과가 바뀝니다."}, -- Fruit Cake
 	{"419", "순간이동 2.0", "사용 시 가보지 않은 방들 중 하나로 정해진 우선순위에 따라서 순간이동합니다.#!!! 순서: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}> 오류방"}, -- Teleport 2.0
@@ -486,7 +486,7 @@ EID.descriptions[languageCode].collectibles={
 	{"451", "타로 천", "{{Card}}카드 또는 {{Rune}}룬을 하나 드랍합니다.#카드 또는 룬 사용 시 효과가 두번 발동합니다."}, -- Tarot Cloth
 	{"452", "정맥류", "피격 시 캐릭터 기준 10방향으로 공격력 +25의 눈물을 발사합니다."}, -- Varicose Veins
 	{"453", "복합 골절", "↑ {{RangeSmall}}사거리 +1.5#↑ 눈물 높이 +1#눈물이 무언가에 부딪힐 때 1~3갈래로 갈라집니다."}, -- Compound Fracture
-	{"454", "다지증", "{{Card}}카드 또는 {{Pill}}알약을 하나 드랍합니다.#카드 또는 알약을 2개 들 수 있습니다."}, -- Polydactyly
+	{"454", "다지증", "{{Card}}카드 또는 {{Pill}}알약을 하나 드랍합니다.#카드 또는 알약을 2개 들 수 있습니다.#카드/알약은 {{ButtonRT}}버튼으로 교체할 수 있습니다."}, -- Polydactyly
 	{"455", "아빠의 잃어버린 동전", "↑ {{RangeSmall}}사거리 +1.5#↑ 눈물 높이 +1#{{Coin}}행운 동전을 하나 드랍합니다."}, -- Dad's Lost Coin
 	{"456", "곰팡이 핀 빵", "↑ {{Heart}}최대 체력 +1"}, -- Moldy Bread
 	{"457", "콘헤드", "↑ {{SoulHeart}}소울하트 +1#피격 시 20% 확률로 피해를 무시합니다."}, -- Cone Head
@@ -497,7 +497,7 @@ EID.descriptions[languageCode].collectibles={
 	{"462", "벨리알의 눈", "↑ {{RangeSmall}}사거리 +1.5#↑ 눈물 높이 +1#눈물이 적을 관통하며 관통한 눈물은 적에게 유도되고 공격력이 2배 증가합니다."}, -- Eye of Belial
 	{"463", "황산", "↑ {{DamageSmall}}공격력 +0.3#확률적으로 오브젝트를 부수는 눈물이 나갑니다."}, -- Sulfuric Acid
 	{"464", "균형의 문장", "↑ {{SoulHeart}}소울하트 +2#소지중인 픽업 아이템의 개수에 따라 챔피언 적이 드랍하는 보상이 달라집니다."}, -- Glyph of Balance
-	{"465", "아날로그 스틱", "↑ {{TearsSmall}}연사 +0.3#공격을 360도로 발사할 수 있습니다."}, -- Analog Stick
+	{"465", "아날로그 스틱", "↑ {{TearsSmall}}연사 +0.3#공격을 360도로 발사할 수 있습니다.#{{Blank}} (키보드: 8방향으로 발사 가능)"}, -- Analog Stick
 	{"466", "전염병", "방에서 처음 죽은 적은 {{Poison}}독가스를 뀌며 독가스에 맞은 적은 감염됩니다.#감염된 적은 죽을 때 다시 독가스를 뀝니다."}, -- Contagion
 	{"467", "손가락!", "공격하는 방향으로 움직이며 가리킨 방향에 있는 적에게 공격력의 10%의 지속 피해를 입힙니다."}, -- Finger!
 	{"468", "셰이드", "캐릭터가 지나간 길을 1초 후 따라오며 접촉한 적에게 초당 30의 피해를 입힙니다."}, -- Shade
