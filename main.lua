@@ -97,7 +97,7 @@ end
 table.sort(EID.Languages)
 
 pcall(require,"scripts.eid_savegames")
-require("mod_config_menu")
+require("eid_mcm")
 require("eid_data")
 require("eid_xmldata")
 require("eid_api")
