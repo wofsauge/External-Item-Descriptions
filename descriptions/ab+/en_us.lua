@@ -75,7 +75,7 @@ EID.descriptions[languageCode].collectibles={
 	{"53", "Magneto", "Magnetic attraction for pickups"},
 	{"54", "Treasure Map", "Reveals the floor layout#Does not show room icons"},
 	{"55", "Mom's Eye", "50% chance to shoot a tear backwards#100% chance at 2 Luck"},
-	{"56", "Lemon Mishap", "Drop a pool of lemonade#Deals 66 contact damage per second"},
+	{"56", "Lemon Mishap", "Drop a pool of lemonade#Deals 24 contact damage per second"},
 	{"57", "Distant Admiration", "Mid-range fly orbital#Deals 75 contact damage per second"},
 	{"58", "Book of Shadows", "Invincibility for 10 seconds"},
 	{"59", "", "<item does not exist>"},
