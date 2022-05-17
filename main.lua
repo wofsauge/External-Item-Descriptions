@@ -691,7 +691,10 @@ function EID:printDescription(desc, cachedID)
 			end
 		end
 	end
-	EID:printBulletPoints(desc.Description, renderPos)
+	
+	if EID.Config["ShowItemDescription"] then
+		EID:printBulletPoints(desc.Description, renderPos)
+	end
 end
 
 function EID:printBulletPoints(description, renderPos)
