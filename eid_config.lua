@@ -163,6 +163,9 @@ EID.UserConfig = {
 	-- Toggle display of collectible or trinket icons next to the item name
 	-- Default = true
 	["ShowItemIcon"] = true,
+	-- Toggle display of collectible or Card and Pill descriptions
+	-- Default = true
+	["ShowItemDescription"] = true,
 	-- Toggle display of collectible descriptions
 	-- Default = true
 	["DisplayItemInfo"] = true,
@@ -457,6 +460,7 @@ EID.DefaultConfig = {
 	["ShowItemName"] = true,
 	["ShowItemType"] = true,
 	["ShowItemIcon"] = true,
+	["ShowItemDescription"] = true,
 	["DisplayItemInfo"] = true,
 	["DisplayTrinketInfo"] = true,
 	["ItemNameColor"] = "ColorEIDObjName",

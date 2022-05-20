@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = "4.29"
+EID.ModVersion = "4.30"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -97,7 +97,7 @@ end
 table.sort(EID.Languages)
 
 pcall(require,"scripts.eid_savegames")
-require("mod_config_menu")
+require("eid_mcm")
 require("eid_data")
 require("eid_xmldata")
 require("eid_api")
@@ -691,7 +691,10 @@ function EID:printDescription(desc, cachedID)
 			end
 		end
 	end
-	EID:printBulletPoints(desc.Description, renderPos)
+	
+	if EID.Config["ShowItemDescription"] then
+		EID:printBulletPoints(desc.Description, renderPos)
+	end
 end
 
 function EID:printBulletPoints(description, renderPos)
