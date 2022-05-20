@@ -1599,16 +1599,20 @@ function EID:evaluateTransformationProgress(transformation)
 	end
 end
 
--- Given a transformation identifier, iterate over every player and count the number of items they have which count towards that transformation
+-- Watch for a player's queued item (holding an item over their head) to track active item touches
 EID.PlayerItemInteractions = {}
 local hadQueuedItem = {}
 function EID:evaluateQueuedItems()
+	--initialize the interactions table for all players if it isn't already
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if not EID.PlayerItemInteractions[i] then
+			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}}
+		end
+	end
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player.QueuedItem then
-			if not EID.PlayerItemInteractions[i] then
-				EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}}
-			end
 			-- Refresh our descriptions upon a queued passive item being added to a player
 			if not player.QueuedItem.Item and hadQueuedItem[i] then
 				EID.ForceRefreshCache = true
@@ -1621,16 +1625,21 @@ function EID:evaluateQueuedItems()
 			end
 
 			if not player.QueuedItem.Touched and player.QueuedItem.Item and player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
+				local itemID = tostring(player.QueuedItem.Item.ID)
+				-- A new active item was touched; initiate its touch count to 0 for all players
+				-- (Fixes co-op bugs, compared to only initiating it for the toucher)
+				for j = 0, game:GetNumPlayers() - 1 do
+					local player = Isaac.GetPlayer(j)
+					EID.PlayerItemInteractions[j].actives[itemID] = EID.PlayerItemInteractions[j].actives[itemID] or 0
+					EID.PlayerItemInteractions[j].altActives[itemID] = EID.PlayerItemInteractions[j].altActives[itemID] or 0
+				end
+				
 				-- Dead Tainted Lazarus exceptions
 				local activesTable = EID.PlayerItemInteractions[i].actives
 				if player:GetPlayerType() == 38 then
 					activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
 				end
 				EID.ForceRefreshCache = true
-				local itemID = tostring(player.QueuedItem.Item.ID)
-				if not activesTable[itemID] then
-					activesTable[itemID] = 0
-				end
 				activesTable[itemID] = activesTable[itemID] + 1
 				EID.PlayerItemInteractions[i].LastTouch = game:GetFrameCount()
 			end
