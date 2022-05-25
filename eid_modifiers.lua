@@ -472,6 +472,29 @@ if REPENTANCE then
 		end
 		return descObj
 	end
+	
+	-- Handle co-op players seeing different pill effects
+	local function CoopPillCallback(descObj)
+		local printedDescs = { [descObj.Name] = true }
+		
+		for i = 1,#EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[i]
+			EID.pillPlayer = player
+			local playerID = player:GetPlayerType()
+			-- Regrab the pill description object with this player
+			local pillObj = EID:getDescriptionObjByEntity(descObj.Entity)
+			
+			-- only print a given pill description once, even if it affects multiple players
+			-- if it's 4P co-op and P1 has PHD, and P2/P3/P4 all get same effect, no one wants to see that 3 times
+			if not printedDescs[pillObj.Name] then
+				-- new pill effect to print
+				printedDescs[pillObj.Name] = true
+				EID:appendToDescription(descObj, "#" .. (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}").." {{ColorObjName}}"..pillObj.Name .."{{CR}}#"..pillObj.Description)
+			end
+		end
+		EID.pillPlayer = nil
+		return descObj
+	end
 
 	-- Handle Abyss description addition
 	local function AbyssCallback(descObj)
@@ -542,8 +565,11 @@ if REPENTANCE then
 		-- Pill Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
 			if EID.collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
-			
 			if EID.collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
+			
+			if EID.pillPlayer == nil and #EID.coopAllPlayers > 1 then
+				table.insert(callbacks, CoopPillCallback)
+			end
 		-- Trinket Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
 			-- Golden Trinket / Mom's Box
