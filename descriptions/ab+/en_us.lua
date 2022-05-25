@@ -771,13 +771,13 @@ EID.descriptions[languageCode].unidentifiedPill = "Unidentified Pill"
 
 EID.descriptions[languageCode].pills={
 	{"0", "Bad Gas", "Spawns a gas cloud"},
-	{"1", "Bad Trip", "Deals 1 heart of damage to you"},
+	{"1", "Bad Trip", "Deals 1 heart of damage to you#Becomes a Full Health pill if you have 1 heart or less"},
 	{"2", "Balls of Steel", "{{SoulHeart}} +2 Soul Hearts"},
 	{"3", "Bombs are Key", "Switches number of bombs with keys"},
 	{"4", "Explosive Diarrhea", "Spawns 5 bombs over a period of five seconds at your position"},
 	{"5", "Full Health", "Full health"},
-	{"6", "Health Down", "↓ {{Heart}} Health down"},
-	{"7", "Health Up", "↑ {{Heart}} Health up"},
+	{"6", "Health Down", "↓ {{Heart}} Health down#Becomes a Health Up pill if you have 0 or 1 Heart Containers"},
+	{"7", "Health Up", "↑ {{EmptyHeart}} +1 Empty heart container"},
 	{"8", "I Found Pills", "No effect"},
 	{"9", "Puberty", "No effect#Eating 3 will give you the Adult transformation (+1 Red Heart)"},
 	{"10", "Pretty Fly", "Adds 1 fly orbital"},
