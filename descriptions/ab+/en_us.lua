@@ -473,7 +473,7 @@ EID.descriptions[languageCode].collectibles={
 	{"449", "Metal Plate", "{{SoulHeart}} +1 Soul Heart#{{Confusion}} Enemy bullets have a 25% chance to be reflected as concussive tears"},
 	{"450", "Eye of Greed", "Every 20 tears, shoot a coin tear that deals double damage#Hit enemies temporarily turn to gold#Gold enemies drop 1-4 coins if killed#!!! The coin tear costs 1 coin"},
 	{"451", "Tarot Cloth", "{{Card}} Drops a random card#{{Card}} Doubles the effect of any card used"},
-	{"452", "Varicose Veins", "When taking damage, fire 10 tears in a circle around you#The tears deal 125% your damage"},
+	{"452", "Varicose Veins", "When taking damage, fire 10 tears in a circle around you#The tears deal your damage + 25"},
 	{"453", "Compound Fracture", "Bone tears#Tears shatter into 1-3 smaller bone shards upon hitting anything#↑ +1.5 Range up#↑ +1 Tear Height"},
 	{"454", "Polydactyly", "You can carry two cards, runes or pills#Spawns a card, pill or rune on pickup"},
 	{"455", "Dad's Lost Coin", "↑ {{Range}} +1.5 Range up#↑ +1 Tear Height#Spawns a lucky penny"},
