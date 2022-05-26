@@ -101,7 +101,7 @@ EID.descriptions[languageCode].collectibles={
 	{"66", "모래시계", "{{Slow}} 사용 시 방 안의 모든 적들을 8초간 둔화시킵니다."}, -- The Hourglass
 	{"67", "매기", "공격하는 방향으로 공격력 3.5의 눈물을 발사합니다."}, -- Sister Maggy
 	{"68", "기계장치", "공격이 레이저 공격으로 변경됩니다.#레이저는 사거리 제한이 없으며 적을 관통합니다."}, -- Technology
-	{"69", "초콜릿 우유", "↓ {{TearsSmall}}공격 딜레이 x2.5#{{Chargeable}} 눈물을 충전하며 발사합니다. #충전 상태에 따라 공격력 배율이 x0.3 ~ x4로 증감합니다."}, -- Chocolate Milk
+	{"69", "초콜릿 우유", "↓ {{TearsSmall}}공격 딜레이 x2.5#{{Chargeable}} 눈물을 충전하며 발사합니다. #충전 상태에 따라 공격력 배율이 x0.1 ~ x4로 증감합니다."}, -- Chocolate Milk
 	{"70", "성장 호르몬", "↑ {{DamageSmall}}공격력 +1#↑ {{SpeedSmall}}이동속도 +0.4"}, -- Growth Hormones
 	{"71", "미니 버섯", "↓ {{RangeSmall}}사거리 -4.25#↑ {{SpeedSmall}}이동속도 +0.3#↑ 눈물 높이 +1.5 (실 사거리 증가)#캐릭터의 크기가 작아집니다."}, -- Mini Mush
 	{"72", "묵주", "↑ {{SoulHeart}}소울하트 +3#{{Collectible33}}The Bible이 모든 방에서 등장합니다."}, -- Rosary
