@@ -428,13 +428,16 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 			return SubType - 32768
 		end
 	elseif tableName == "pills" or tableName == "horsepills" then
+		-- The effect of a pill varies depending on what player is looking at it in co-op
+		-- EID.pillPlayer is a way to recheck a pill for what different players will turn it into
+		local player = EID.pillPlayer or EID.player
 		if REPENTANCE and SubType % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then
 			return 9999
 		end
 		local pool = game:GetItemPool()
-		if REPENTANCE and EID.player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
-			SubType = pool:GetPillEffect(SubType, EID.player:GetOtherTwin() or EID.player) + 1
-		else SubType = pool:GetPillEffect(SubType, EID.player) + 1 end
+		if REPENTANCE and player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+			SubType = pool:GetPillEffect(SubType, player:GetOtherTwin() or player) + 1
+		else SubType = pool:GetPillEffect(SubType, player) + 1 end
 	end
 	return SubType
 end

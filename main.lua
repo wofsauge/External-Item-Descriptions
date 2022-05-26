@@ -670,7 +670,7 @@ function EID:printDescription(desc, cachedID)
 								local playerIcon = EID:getIcon("Player"..player.SubType) ~= EID.InlineIcons["ERROR"] and "{{Player"..player.SubType.."}}" or "{{CustomTransformation}}"
 								transformationName = transformationName .. playerIcon
 							end
-							local numCollected = EID.TransformationProgress[EID:getPlayerID(player)][transform] or 0
+							local numCollected = EID.TransformationProgress[EID:getPlayerID(player)] and EID.TransformationProgress[EID:getPlayerID(player)][transform] or 0
 							local numMax = EID.TransformationData[transform] and EID.TransformationData[transform].NumNeeded or 3
 							transformationName = transformationName.."("..numCollected.."/"..numMax..") "
 						end

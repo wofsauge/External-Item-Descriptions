@@ -238,7 +238,7 @@ local repCollectibles={
 	[566] = {"566", "Dream Catcher", "{{HalfSoulHeart}} +1 half Soul Heart when entering a new floor#In the stage transition nightmare, displays: #{{TreasureRoom}} Upcoming Treasure Room Item#{{BossRoom}} Upcoming Boss"}, -- Dream Catcher
 	[567] = {"567", "Paschal Candle", "↑ {{Tears}} +0.4 Fire Rate up for every room cleared without taking damage#{{Tears}} Up to +2 Fire Rate possible"}, -- Paschal Candle
 	[568] = {"568", "Divine Intervention", "Double tapping a fire key creates a shield#Shield lasts 1 second, pushes enemies away and reflects enemy projectiles and lasers"}, -- Divine Intervention
-	[569] = {"569", "Blood Oath", "Stabs you at the beginning of each floor, draining all but half a Red Heart#Increases stats for the floor:#↑ {{Damage}} Damage + 0.15 * HeartsLost^2#↑ {{Speed}} Speed + 0.05*HeartsLost"}, -- Blood Oath
+	[569] = {"569", "Blood Oath", "!!! Drains all your Red Hearts at the start of each floor to give Damage and Speed up for the floor:#↑ {{Damage}} Damage + 0.15 x Hearts Lost x Hearts Lost#↑ {{Speed}} Speed + 0.05 x HeartsLost#Each half heart lost can trigger damage-triggered items"}, -- Blood Oath
 	[570] = {"570", "Playdough Cookie", "Grants multicolored tears with different status effects"}, -- Playdough Cookie
 	[571] = {"571", "Orphan Socks", "Prevents damage from creep and floor spikes#↑ {{Speed}} +0.3 Speed up#↑ {{SoulHeart}} +2 Soul Hearts"}, -- Orphan Socks
 	[572] = {"572", "Eye of the Occult", "Controllable tears#↑ {{Damage}} +1 Damage up#↑ {{Range}} +2 Range up#↓ {{Shotspeed}} -0.16 Shot Speed down"}, -- Eye of the Occult
@@ -915,7 +915,6 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 ---------- Pills ----------
 
 local repPills={
-	[2] = {"1", "Bad Trip", "Deals 1 heart of damage to you#Doesn't affect the chance of a deal"}, --Bad Trip
 	[4] = {"3", "Bombs are Key", "Switches number of bombs with keys#Golden bombs and keys are also swapped"}, -- Bombs are Key
 	[12] = {"11", "Range Down", "↓ {{Range}} -0.6 Range down"}, -- Range Down
 	[13] = {"12", "Range Up", "↑ {{Range}} +0.75 Range up"}, -- Range Up
@@ -937,13 +936,13 @@ EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
 EID.descriptions[languageCode].horsepills={
 	{"0", "Bad Gas", "{{Poison}} Poisons entire room"}, -- Bad Gas
-	{"1", "Bad Trip", "Deals 2 hearts of damage to you"}, -- Bad Trip
+	{"1", "Bad Trip", "Deals 2 hearts of damage to you#Becomes a Full Health horse pill (+3 Soul Hearts) if you have 1 heart or less"}, -- Bad Trip
 	{"2", "Balls of Steel", "{{SoulHeart}} +4 Soul Hearts"}, -- Balls of Steel
 	{"3", "Bombs are Key", "Switches number of bombs with keys#Increases key and bomb count by 50%#Golden bombs and keys are also swapped"}, -- Bombs are Key
 	{"4", "Explosive Diarrhea", "Spawns some mega homing troll bombs at your position"}, -- Explosive Diarrhea
-	{"5", "Full Health", "Full Health#{{SoulHeart}}+3 Soul Hearts"}, -- Full Health
-	{"6", "Health Down", "↓ -2 Health down"}, -- Health Down
-	{"7", "Health Up", "↑ {{EmptyHeart}}+2 empty heart containers"}, -- Health Up
+	{"5", "Full Health", "Full Health#{{SoulHeart}} +3 Soul Hearts"}, -- Full Health
+	{"6", "Health Down", "↓ -2 Health down#Becomes a Health Up horse pill if you have 0 or 1 Heart Containers"}, -- Health Down
+	{"7", "Health Up", "↑ {{EmptyHeart}} +2 Empty heart containers"}, -- Health Up
 	{"8", "I Found Pills", "No effect"}, -- I Found Pills
 	{"9", "Puberty", "No effect"}, -- Puberty
 	{"10", "Pretty Fly", "{{Collectible279}} Adds 1 Big Fan fly orbital#There is no upper limit"}, -- Pretty Fly
