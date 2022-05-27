@@ -221,7 +221,7 @@ EID.descriptions[languageCode].collectibles={
 	{"199", "Mom's Key", "{{Key}} +2 Keys#More drops from chests"},
 	{"200", "Mom's Eyeshadow", "{{Charm}} 10% chance to shoot charming tears"},
 	{"201", "Iron Bar", "↑ {{Damage}} +0.3 Damage up#{{Confusion}} 10% chance to shoot concussive tears"},
-	{"202", "Midas' Touch", "Turn enemies into gold on touch#Deals contact damage based on your coin count#{{Coin}} Golden enemies drop coins"},
+	{"202", "Midas' Touch", "Turn enemies into gold on touch#Deals contact damage based on your coin count#{{Coin}} Golden enemies drop coins#High chance for effects that spawn Poop to spawn Golden Poop"},
 	{"203", "Humbleing Bundle", "Doubles all pickups"},
 	{"204", "Fanny Pack", "50% chance to drop a random pickup when you get hit"},
 	{"205", "Sharp Plug", "{{Battery}} On use, fully recharges your active item at the cost of 2 Hearts#!!! Only works when item has no charges!"},
