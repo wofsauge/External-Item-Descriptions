@@ -703,6 +703,7 @@ local repTrinkets={
 	[10] = {"10", "Wiggle Worm", "Tears move in waves#↑ {{Tears}} +0.4 Tears up#Grants spectral tears"}, -- Wiggle Worm
 	[11] = {"11", "Ring Worm", "Tears move in spirals with high speed#↑ {{Tears}} +0.4 Tears up#Grants spectral tears"}, -- Ring Worm
 	[15] = {"15", "Lucky Rock", "{{Coin}} 33% chance to drop a coin when destroying rocks"},-- Lucky Rock
+	[23] = {"23", "Missing Poster", "{{Player10}} Respawn as The Lost on death#If he isn't unlocked, die in a {{SacrificeRoom}} Sacrifice Room while holding this trinket to unlock him#{{Player31}} Tainted Lost will revive himself"}, -- Missing Poster
 	[24] = {"24", "Butt Penny", "{{Coin}} 20% higher chance for coins to spawn from poop#Fart when picking up coins#{{Poison}} The fart poisons and knocks back enemies and projectiles"}, -- Butt Penny
 	[26] = {"26", "Hook Worm", "Tears move in angular patterns#↑ {{Tears}} +0.4 Tears up#↑ {{Range}} +1.5 Range up#Grants spectral tears"}, -- Hook Worm
 	[32] = {"32", "Liberty Cap", "25% chance for a random mushroom effect per room"}, -- Liberty Cap
