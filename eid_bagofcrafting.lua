@@ -859,7 +859,8 @@ local function RecipeCrunchCoroutine()
 	
 	numResults = 0
 	for _,v in ipairs(sortedIDs) do
-		if (isRefresh and bagOfCraftingOffset > 0 and v == refreshPosition) then
+		-- keep our cursor position if we're not at the top of the list, and bag's contents don't matter for list size
+		if (isRefresh and bagOfCraftingOffset > 0 and v == refreshPosition and (IsTaintedCain() or #EID.BagItems == 0)) then
 			--jump to the item we were looking at before, so you can more easily refresh for variants of recipes
 			bagOfCraftingOffset = numResults
 		end
@@ -1154,17 +1155,40 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		prefix = "#{{Trinket159}} "
 	end
 	
-	--currentRecipesList is now a table of tables for each item, so we have to iterate over the table using sortedIDs
+	
+	local filteredRecipesList = {}
+	local filteredNumResults = 0
+	-- If we aren't Tainted Cain, we should filter out recipes that don't use everything in our bag
+	if not IsTaintedCain() then
+		for _,id in ipairs(sortedIDs) do
+			filteredRecipesList[id] = {}
+			for _, v in ipairs(currentRecipesList[id]) do
+				if (EID:bagContainsCount(v[1]) == #EID.BagItems) then
+					table.insert(filteredRecipesList[id], v)
+					filteredNumResults = filteredNumResults + 1
+				end
+			end
+		end
+	else
+		filteredRecipesList = currentRecipesList
+		filteredNumResults = numResults
+	end
+	
+	-- Keeping the offset doesn't work at all with non-Tainted-Cain bag-filtered results;
+	-- just reset us to 0 if we end up past the end of the list for now...
+	if (bagOfCraftingOffset >= filteredNumResults) then bagOfCraftingOffset = 0 end
+	
+	--filteredRecipesList is a table of tables for each item, so we have to iterate over the table using sortedIDs
 	if (bagOfCraftingOffset > 0) then
 		prevDesc = prevDesc .. prefix .. "...+"..bagOfCraftingOffset.." more"
 	end
 	local curOffset = 0
 	refreshPosition = -1
 	for _,id in ipairs(sortedIDs) do
-		if (curOffset + #currentRecipesList[id] <= bagOfCraftingOffset) then curOffset = curOffset + #currentRecipesList[id]
+		if (curOffset + #filteredRecipesList[id] <= bagOfCraftingOffset) then curOffset = curOffset + #filteredRecipesList[id]
 		else
 			if (refreshPosition == -1) then refreshPosition = id end
-			for _, v in ipairs(currentRecipesList[id]) do
+			for _, v in ipairs(filteredRecipesList[id]) do
 				curOffset = curOffset + 1
 				if (curOffset > bagOfCraftingOffset+EID.Config["BagOfCraftingResults"]) then break end
 				if not v then break end
@@ -1194,8 +1218,8 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 			end
 		end
 	end
-	if (bagOfCraftingOffset + EID.Config["BagOfCraftingResults"] < numResults) then
-		prevDesc = prevDesc .. prefix .. "...+"..(numResults-EID.Config["BagOfCraftingResults"]-bagOfCraftingOffset).." more"
+	if (bagOfCraftingOffset + EID.Config["BagOfCraftingResults"] < filteredNumResults) then
+		prevDesc = prevDesc .. prefix .. "...+"..(filteredNumResults-EID.Config["BagOfCraftingResults"]-bagOfCraftingOffset).." more"
 	end
 
 	EID:appendToDescription(customDescObj, prevDesc)
