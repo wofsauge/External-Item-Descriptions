@@ -260,7 +260,7 @@ EID.descriptions[languageCode].collectibles={
 	{"238", "Key Piece 1", "!!! Key piece for Mega Satan door!#{{AngelChance}} 25% higher Angel Room chance"},
 	{"239", "Key Piece 2", "!!! Key piece for Mega Satan door!#{{AngelChance}} 25% higher Angel Room chance"},
 	{"240", "Experimental Treatment", "All Stats ↑/↓ a random number"},
-	{"241", "Contract from Below", "Doubles all room clear rewards#33% chance for no room clear reward#Doesn't affect Greed Mode"},
+	{"241", "Contract from Below", "Doubles all room clear rewards#33% chance for no room clear reward#{{GreedMode}} Doesn't affect Greed Mode"},
 	{"242", "Infamy", "50% chance to block tears"},
 	{"243", "Trinity Shield", "Tear blocking shield"},
 	{"244", "Tech.5", "Occasionally fire lasers in addition to your tears"},
