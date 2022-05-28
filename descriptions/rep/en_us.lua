@@ -100,6 +100,7 @@ local repCollectibles={
 	[232] = {"232", "Stop Watch", "{{Slow}} Permanent slow effect for enemies#↑ {{Speed}} +0.3 Speed up"}, -- Stop Watch
 	[233] = {"233", "Tiny Planet", "Tears orbit around you#↑ {{Range}} +6.5 Range up#Spectral tears"}, -- Tiny Planet
 	[240] = {"240", "Experimental Treatment", "↑ Randomly increases 4 stats#↓ Randomly decreases 2 stats"}, -- Experimental Treatment
+	[241] = {"241", "Contract from Below", "Doubles all room clear rewards#33% chance for no room clear reward"}, -- Contract from Below
 	[245] = {"245", "20/20", "Doubles all your shots#↓ {{Damage}} -25% Damage down"}, -- 20/20
 	[248] = {"248", "Hive Mind", "Blue Spiders and Flies deal double damage#Spider and Fly based familiars become stronger"}, -- Hive Mind
 	[253] = {"253", "Magic Scab", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart#↑ {{Luck}} +1 Luck up"}, -- Magic Scab
