@@ -681,7 +681,7 @@ function EID:filterIconMarkup(text, textPosX, textPosY)
 		
 		local lookup = EID:getIcon(word)
 		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Scale
-
+		
 		table.insert(spriteTable, {lookup, preceedingTextWidth, callback})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
 	end
@@ -905,7 +905,10 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 		end
 		cursor = cursor + 1
 	end
-
+	
+	-- fix this function applying crafting icon green tint to the start of the printed line
+	EID._NextIconModifier = nil
+	
 	table.insert(formattedLines, table.concat(text))
 	return formattedLines
 end
@@ -1253,6 +1256,7 @@ end
 -- Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
 local emptyPickupTable = {}
 for i=1, 29 do emptyPickupTable[i] = 0 end
+
 function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
 	table.sort(sortedList, function(a, b) return a < b end)
@@ -1294,6 +1298,23 @@ function EID:bagContainsItem(itemID, itemCount, checkExactAmount)
 		end
 	end
 	return checkExactAmount and foundCount == itemCount or itemCount <= foundCount 
+end
+
+-- Get the number of pickups in the given recipe table that are inside our bag
+-- (For checking if a recipe is possible to create if you need to use every item in your bag)
+function EID:bagContainsCount(craftTable)
+	local count = 0
+	local ingredCount = {table.unpack(emptyPickupTable)}
+	for _, id in ipairs(craftTable) do
+		ingredCount[id] = ingredCount[id] + 1
+	end
+	for _, bagItem in ipairs(EID.BagItems) do
+		if ingredCount[bagItem] > 0 then
+			count = count + 1
+			ingredCount[bagItem] = ingredCount[bagItem] - 1
+		end
+	end
+	return count
 end
 
 function EID:handleHUDElement(hudElement)

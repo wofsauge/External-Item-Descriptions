@@ -1361,6 +1361,8 @@ local function onRender(t)
 					local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest, false)
 					-- Card Reading's name
 					descriptionObj.Name = EID:getObjectName(5, 100, 660)
+					-- Only keep the first line of the description
+					descriptionObj.Description = string.sub(descriptionObj.Description, 1, string.find(descriptionObj.Description, "#"))
 					EID:addDescriptionToPrint(descriptionObj)
 				-- Handle Crane Game
 				elseif closest.Type == 6 and closest.Variant == 16 then
