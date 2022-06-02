@@ -40,6 +40,7 @@ local pathsChecked = {}
 local altPathItemChecked = {}
 local alwaysUseLocalMode = false -- set to true after drawing a non-local mode description this frame
 EID.ForceRefreshCache = false -- set to true to force-refresh descriptions, currently used for potential transformation text changes
+local preHourglassStatus = {}
 
 EID.GameUpdateCount = 0
 EID.GameRenderCount = 0
@@ -742,7 +743,7 @@ if REPENTANCE then
 			end
 		end
 	end
-	function EID:onNewRoom()
+	function EID:onNewRoomRep()
 		local level = game:GetLevel()
 		isMirrorRoom = level:GetCurrentRoom():IsMirrorWorld()
 		isDeathCertRoom = EID:GetDimension(level) == 2
@@ -752,8 +753,23 @@ if REPENTANCE then
 		flipItemNext = false
 		EID:AssignFlipItems()
 	end
-	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
+	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoomRep)
 end
+
+-- On new room, save the status of any variables that need to be rewound upon Glowing Hourglass usage
+function EID:onNewRoom()
+	local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+	preHourglassStatus = {}
+	
+	preHourglassStatus.SacrificeCounter = EID.sacrificeCounter[curRoomIndex]
+end
+EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
+
+function EID:WatchForGlowingHourglass()
+	local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+	EID.sacrificeCounter[curRoomIndex] = preHourglassStatus.SacrificeCounter
+end
+EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.WatchForGlowingHourglass, CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS)
 ---------------------------------------------------------------------------
 ---------------------------Handle Rendering--------------------------------
 
