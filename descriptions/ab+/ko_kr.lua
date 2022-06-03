@@ -722,22 +722,22 @@ EID.descriptions[languageCode].trinkets={
 ---------- Cards ----------
 EID.descriptions[languageCode].cards={
 	{"1", "0 - 바보", "스테이지의 첫 방으로 순간이동합니다."}, -- 0 - The Fool
-	{"2", "I - 마법사", "그 방에서 공격이 적에게 유도됩니다."}, -- I - The Magician
+	{"2", "I - 마법사", "{{Collectible192}} 그 방에서 공격이 적에게 유도됩니다."}, -- I - The Magician
 	{"3", "II - 여교황", "엄마발이 랜덤한 적에게 떨어져 300의 피해를 입힙니다."}, -- II - The High Priestess
-	{"4", "III - 여제", "그 방에서 {{DamageSmall}}공격력 +1.5, {{SpeedSmall}}이동속도 +0.3"}, -- III - The Empress
+	{"4", "III - 여제", "{{Collectible122}} 그 방에서 {{DamageSmall}}공격력 +1.5, {{SpeedSmall}}이동속도 +0.3"}, -- III - The Empress
 	{"5", "IV - 황제", "{{BossRoom}}보스방으로 순간이동합니다."}, -- IV - The Emperor
 	{"6", "V - 교황", "{{SoulHeart}}소울하트를 2개 드랍합니다."}, -- V - The Hierophant
 	{"7", "VI - 연인", "{{Heart}}빨간하트를 2개 드랍합니다."}, -- VI - The Lovers
-	{"8", "VII - 전차", "6초간 무적 상태가 되며 접촉한 적에게 40의 피해를 입힙니다."}, -- VII - The Chariot
-	{"9", "VIII - 정의", "하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠를 하나씩 드랍합니다."}, -- VIII - Justice
+	{"8", "VII - 전차", "{{Collectible77}} 6초간 무적 상태가 되며 접촉한 적에게 40의 피해를 입힙니다."}, -- VII - The Chariot
+	{"9", "VIII - 정의", "{{Heart}}하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠를 하나씩 드랍합니다."}, -- VIII - Justice
 	{"10", "IX - 은둔자", "{{Shop}}상점으로 순간이동합니다."}, -- IX - The Hermit
 	{"11", "X - 운명의 수레바퀴", "도박기계, 혹은 운세기계를 생성합니다."}, -- X - Wheel of Fortune
 	{"12", "XI - 힘", "그 방에서 {{Heart}}최대 체력 +1, {{DamageSmall}}공격력 +0.3, {{DamageSmall}}공격력 배율 +50%, {{RangeSmall}}사거리 +5.25, 눈물 높이 +0.5, {{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
-	{"13", "XII - 매달린 남자", "그 방에서 비행 능력을 얻습니다."}, -- XII - The Hanged Man
-	{"14", "XIII - 죽음", "방 안의 모든 적에게 40의 피해를 줍니다."}, -- XIII - Death
+	{"13", "XII - 매달린 남자", "{{Collectible20}} 그 방에서 비행 능력을 얻습니다."}, -- XII - The Hanged Man
+	{"14", "XIII - 죽음", "{{Collectible35}} 방 안의 모든 적에게 40의 피해를 줍니다."}, -- XIII - Death
 	{"15", "XIV - 절제", "헌혈기계를 생성합니다.#Greed 모드에서는 악마거지를 소환합니다."}, -- XIV - Temperance
-	{"16", "XV - 악마", "그 방에서 {{DamageSmall}}공격력 +2"}, -- XV - The Devil
-	{"17", "XVI - 탑", "방 안에 트롤폭탄을 6개 생성합니다."}, -- XVI - The Tower
+	{"16", "XV - 악마", "{{Collectible34}} 그 방에서 {{DamageSmall}}공격력 +2"}, -- XV - The Devil
+	{"17", "XVI - 탑", "{{Collectible65}} 방 안에 트롤폭탄을 6개 생성합니다."}, -- XVI - The Tower
 	{"18", "XVII - 별", "{{TreasureRoom}}보물방으로 순간이동합니다."}, -- XVII - The Stars
 	{"19", "XVIII - 달", "{{SecretRoom}}비밀방으로 순간이동합니다."}, -- XVIII - The Moon
 	{"20", "XIX - 해", "맵에 스테이지 구조와 특수방 위치를 표시하며 방 안의 모든 적에게 100의 피해를 주고 {{Heart}}체력을 모두 회복합니다."}, -- XIX - The Sun
@@ -754,12 +754,12 @@ EID.descriptions[languageCode].cards={
 	{"31", "조커", "{{DevilRoom}}악마방 또는 {{AngelRoom}}천사방으로 순간이동합니다."}, -- Joker
 	{"32", "하갈라즈", "방 안의 모든 장애물을 제거합니다."}, -- Hagalaz
 	{"33", "제라", "방 안의 모든 픽업 아이템을 복제합니다."}, -- Jera
-	{"34", "에와즈", "다음 스테이지로 가는 다락문을 생성합니다."}, -- Ehwaz
+	{"34", "에와즈", "{{Collectible84}} 다음 스테이지로 가는 다락문을 생성합니다."}, -- Ehwaz
 	{"35", "다가즈", "{{SoulHeart}}소울하트 +1#Labyrinth 및 특수 시드를 제외한 현재 스테이지의 저주를 제거합니다."}, -- Dagaz
-	{"36", "엔수즈", "그 스테이지에서 맵에 특수방 위치, 비밀방 위치, 스테이지 구조가 표시됩니다."}, -- Ansuz
-	{"37", "페트로", "방 안의 모든 아이템을 다른 아이템으로 바꿉니다."}, -- Perthro
+	{"36", "엔수즈", "{{Collectible333}} 그 스테이지에서 맵에 특수방 위치, 비밀방 위치, 스테이지 구조가 표시됩니다."}, -- Ansuz
+	{"37", "페트로", "{{Collectible105}} 방 안의 모든 아이템을 다른 아이템으로 바꿉니다."}, -- Perthro
 	{"38", "벨카노", "파란 아군 파리/거미를 3마리씩 소환합니다."}, -- Berkano
-	{"39", "알기즈", "30초동안 무적 상태가 됩니다."}, -- Algiz
+	{"39", "알기즈", "{{Collectible58}} 30초동안 무적 상태가 됩니다."}, -- Algiz
 	{"40", "비어있는 룬", "랜덤한 {{Rune}}룬 효과를 발동합니다.#25% 확률로 Blank Rune을 드랍합니다."}, -- Blank Rune
 	{"41", "검은 룬", "방 안의 아이템을 흡수하고 흡수한 만큼 랜덤한 능력치가 2개씩 증가합니다.#방 안의 픽업 아이템을 흡수하고 흡수한 개수만큼 파란 아군 파리 및 거미를 소환합니다.#방 안의 모든 적에게 40의 피해를 줍니다."}, -- Black Rune
 	{"42", "혼돈 카드", "바라보는 방향으로 카드를 던지며 카드에 맞은 적은 즉사합니다."}, -- Chaos Card
@@ -771,7 +771,7 @@ EID.descriptions[languageCode].cards={
 	{"48", "? 카드", "소지중인 액티브 아이템의 효과를 발동합니다."}, -- ? Card
 	{"49", "주사위 파편", "방 안의 모든 아이템과 픽업 아이템을 다른 아이템으로 바꿉니다."}, -- Dice Shard
 	{"50", "비상 연락처", "엄마손 2개가 랜덤한 적에게 떨어져 적을 붙잡습니다."}, -- Emergency Contact
-	{"51", "신성한 카드", "사용한 방에서 피격 시 피해를 1회 무시하는 {{HolyMantle}}방어막을 제공합니다.#25% 확률로 Holy Card를 드랍합니다."}, -- Holy Card
+	{"51", "신성한 카드", "{{HolyMantle}} 사용한 방에서 피격 시 피해를 1회 무시하는 방어막을 제공합니다.#25% 확률로 Holy Card를 드랍합니다."}, -- Holy Card
 	{"52", "거대한 성장", "그 방에서 {{DamageSmall}}공격력 +7, {{RangeSmall}}사거리 +30"}, -- Huge Growth
 	{"53", "고대의 부름", "카드를 3개 드랍합니다."}, -- Ancient Recall
 	{"54", "시간 여행", "그 방에서 {{SpeedSmall}}이동속도 +0.5, {{ShotspeedSmall}}탄속 -1#{{Slow}} 방 안의 모든 적들이 영구적으로 느려집니다."}, -- Era Walk
