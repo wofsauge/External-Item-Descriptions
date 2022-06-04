@@ -315,7 +315,7 @@ EID.UserConfig = {
 	-- Higher numbers will cause lag spikes on new pickup sets!
 	-- Default = 400
 	["BagOfCraftingRandomResults"] = 400,
-	-- Set the keybinding to toggle the scroll feature of the Bag of Crafting descriptions
+	-- Set the keybinding that's held to show the Item Reminder description, Flip/Spindown Dice preview descriptions, and interacting with the Bag of Crafting recipe list
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_MAP
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
