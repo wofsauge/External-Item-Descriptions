@@ -1519,8 +1519,8 @@ end
 -- Returns true if any player is pressing the given button (you can also specify any of the input functions)
 function EID:PlayersActionPressed(button, inputFunc)
 	inputFunc = inputFunc or Input.IsActionPressed
-	for k,_ in pairs(EID.controllerIndexes) do
-		if inputFunc(button, k) then return true, k end
+	for k,v in pairs(EID.controllerIndexes) do
+		if inputFunc(button, k) then return true, v end
 	end
 	return false
 end
