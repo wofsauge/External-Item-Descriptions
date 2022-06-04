@@ -699,7 +699,7 @@ EID.descriptions[languageCode].trinkets={
 	{"119", "", "{{HalfHeart}} Cura Meio Coração Vermelho ao viajar para o próximo andar"},
 	{"120", "", "Recarrega totalmente seu item ativo no início de uma batalha contra um chefe"},
 	{"121", "", "{{Collectible313}} Protege você do primeiro dano que recebe em cada andar"},
-	{"122", "", "Ao usar o item ativo deixará cair em um pedestal#Ao receber dano, 2% de chance de soltar um dos seus itens passivos"},
+	{"122", "", "Ao usar seu item ativo ele cairá de volta em um pedestal no chão#Ao receber dano há 2% de chance de soltar um dos seus itens passivos"},
 	{"123", "", "Faz com que os chefes Anjos deixem itens normais em vez de peças da chave"},
 	{"124", "", "A última porta que você usou permanece aberta"},
 	{"125", "", "Conecta seus familiares com raios de eletricidade#Causa 6 de dano por raio"},
