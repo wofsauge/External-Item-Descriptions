@@ -907,6 +907,7 @@ function EID:handleBagOfCraftingUpdating()
 	
 	-- Check for Hold Tab key inputs
 	if displayingRecipeList and Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.bagPlayer.ControllerIndex) then
+		EID.TabDescThisFrame = true
 		EID.bagPlayer.ControlsCooldown = 2
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.bagPlayer.ControllerIndex) then
 			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])
