@@ -1520,7 +1520,7 @@ end
 function EID:PlayersActionPressed(button, inputFunc)
 	inputFunc = inputFunc or Input.IsActionPressed
 	for k,_ in pairs(EID.controllerIndexes) do
-		if inputFunc(button, k) then return true end
+		if inputFunc(button, k) then return true, k end
 	end
 	return false
 end
