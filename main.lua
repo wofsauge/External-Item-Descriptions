@@ -41,6 +41,8 @@ local altPathItemChecked = {}
 local alwaysUseLocalMode = false -- set to true after drawing a non-local mode description this frame
 EID.ForceRefreshCache = false -- set to true to force-refresh descriptions, currently used for potential transformation text changes
 local preHourglassStatus = {}
+EID.holdTabPlayer = 0
+EID.holdTabCounter = 0
 
 EID.GameUpdateCount = 0
 EID.GameRenderCount = 0
@@ -460,10 +462,11 @@ local function resetDescCache()
 end
 
 
-function EID:addDescriptionToPrint(desc)
+function EID:addDescriptionToPrint(desc, insertLoc)
 	if desc.Entity and EID.entitiesToPrint[GetPtrHash(desc.Entity)] then return end
 	if #EID.descriptionsToPrint == EID.Config["MaxDescriptionsToDisplay"] then return end
-	table.insert(EID.descriptionsToPrint, desc)
+	if insertLoc then table.insert(EID.descriptionsToPrint, insertLoc, desc)
+	else table.insert(EID.descriptionsToPrint, desc) end
 	if desc.Entity then EID.entitiesToPrint[GetPtrHash(desc.Entity)] = true end
 end
 
@@ -1203,6 +1206,7 @@ local function onRender(t)
 		end
 	end
 	EID.TabPreviewID = 0
+	EID.TabDescThisFrame = false
 	
 	-- If MCM is open, don't show anything unless we're in a tab labeled as "Visuals" or "Crafting"
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
@@ -1242,6 +1246,15 @@ local function onRender(t)
 		EID:printDescription(EID.permanentDisplayTextObj)
 		EID.isDisplaying = true
 		return
+	end
+	
+	local tabHeld, playerHoldingTab = EID:PlayersActionPressed(EID.Config["BagOfCraftingToggleKey"])
+	if tabHeld then
+		EID.holdTabPlayer = EID.coopMainPlayers[playerHoldingTab]
+		EID.holdTabCounter = EID.holdTabCounter + 1
+	else
+		EID.holdTabPlayer = nil
+		EID.holdTabCounter = 0
 	end
 	
 	if EID.ForceRefreshCache then
@@ -1479,6 +1492,19 @@ local function onRender(t)
 			local curCounter = EID.sacrificeCounter[curRoomIndex] or 1
 			local sacrificeDesc = EID:getDescriptionObj(-999, -1, curCounter)
 			EID:addDescriptionToPrint(sacrificeDesc)
+		end
+	end
+	
+	-- handle showing the Hold Map Helper description
+	if EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
+		-- at the moment, just show the description of the player's active item
+		--local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+		--demoDescObj.Name = ""
+		--demoDescObj.Description = EID:getHoldMapDescription()
+		local heldActive = EID.holdTabPlayer:GetActiveItem()
+		if heldActive then
+			local demoDescObj = EID:getDescriptionObj(5, 100, heldActive)
+			EID:addDescriptionToPrint(demoDescObj, 1)
 		end
 	end
 	
