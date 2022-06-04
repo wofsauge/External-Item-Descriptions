@@ -3,7 +3,7 @@
 -----  By: LuanRoger, NotZin0 and JorgeLNJunior  -----
 ------------------------------------------------------
 
--- Last Sync with en_us: 07.05.2022
+-- Last Sync with en_us: 06.04.2022 - mm.dd.yy
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -17,7 +17,7 @@ local languageCode = "pt_br"
 
 local repCollectibles={
 	[2] = {"2", "", "Disparo triplo#↓ {{Tears}} -49% Taxa de Disparo"},
-	[5] = {"5", "", "Dá às lágrimas efeito de boomerang#↑ {{Range}} +1.5 Alcance#↑ {{Range}} +60% Alcance adicional#↑ {{Shotspeed}} +0.6 Velocidade de Disparo"}, -- My Reflection
+	[5] = {"5", "", "Dá às lágrimas efeito de boomerang#↑ {{Range}} +1.5 Alcance#↑ {{Range}} +60% Alcance adicional#↑ {{Shotspeed}} +60% Velocidade de Disparo"}, -- My Reflection
 	[6] = {"6", "", "↑ {{Tears}} +1.5 Lágrimas#↓ {{Range}} -1.5 Alcance#↓ {{Range}} -20% Alcance adicional"}, -- Number One
 	[12] = {"12", "", "↑ {{Heart}} +1 Saúde#{{Heart}} Saúde cheia#↑ {{Damage}} +0.3 Dano#↑ {{Damage}} +50% Multiplicador de Dano#↑ {{Range}} +1.5 Alcance#↑ {{Speed}} +0.3 Velocidade#Aumenta seu tamanho"}, -- Magic Mushroom
 	[13] = {"13", "", "{{Poison}} Toque venenoso#↑ {{Speed}} +0.2 Velocidade"}, -- The Virus
@@ -104,6 +104,7 @@ local repCollectibles={
 	[232] = {"232", "", "{{Slow}} Efeito permanente de lentidão em inimigos#↑ {{Speed}} +0.3 Velocidade"}, -- Stop Watch
 	[233] = {"233", "", "Lágrimas orbitam ao redor de você#↑ {{Range}} +6.5 Alcance#Lágrimas espectrais"}, -- Tiny Planet
 	[240] = {"240", "", "↑ Aumenta 4 estatísticas aleatoriamente#↓ Diminui 2 estatísticas aleatoriamente"}, -- Experimental Treatment
+	[241] = {"241", "", "Duplica todas as recompensas por limpar as salas#33% de chance para outros tipos de recompensas"}, -- Contract from Below
 	[245] = {"245", "", "Dobra todos os seu tiros#↓ {{Damage}} -25% Dano"}, -- 20/20
 	[248] = {"248", "", "Aranhas/Moscas azuis dão o dobro de dano#Familiares baseados em aranhas/moscas ficam mais fortes"}, -- Hive Mind
 	[253] = {"253", "", "↑ {{Luck}} +1 Sorte#↑ {{Heart}} +1 Saúde#{{Heart}} Cura 1 Coração Vermelho"}, -- Magic Scab
@@ -194,20 +195,19 @@ local repCollectibles={
 	[456] = {"456", "", "↑ {{Heart}} +1 Saúde#{{Heart}} Cura 1 Coração Vermelho"}, -- Midnight Snack
 	[459] = {"459", "", "{{Poison}} 20% de chance de disparar lágrimas de veneno pegajosas#{{Luck}} Não é afetado pela sorte#Cusa o seu dano a cada segundo#Gruda por 10 segundos"}, -- Sinus Infection
 	[462] = {"462", "", "↑ {{Range}} +1.5 Alcance#Concede lágrimas que atravessam inimigos#Depois de atingir o primeiro inimigo, as lágrimas causam dano duplo e ganham um efeito de teleguiado"}, -- Eye of Belial
-	[464] = {"464", "", "{{SoulHeart}} +2 Corações de Alma#Inimigos Campeões e salas de drops aparecem com mais frequência#A prioridade de gerar pickups depende do que o jogador está perdendo mais"}, -- Glyph of Balance
-	[472] = {"472", "", "Outros familiares o seguem e atiram nos inimigos automaticamente#Para de se mover quando você está disparando#Teleportará de volta para você quando você parar de atirar"}, -- King Baby
+	[464] = {"464", "", "{{SoulHeart}} +2 Corações de Alma#Inimigos Campeões e recompenas de salas concedem qualquer pickup que você mais precisar"}, -- Glyph of Balance
+	[472] = {"472", "", "Outros familiares o seguem e atiram nos inimigos automaticamente#Para de se mover quando você está disparando#Voltará para você quando você parar de disparar"}, -- King Baby
 	[474] = {"474", "", "Transforma-se em Glass Canon quando usado"}, -- Broken Glass Canon
 	[476] =	{"476", "", "Duplica 1 pickup aleatório na sala atual#Pickups duplicados podem não ser idênticos aos originais"}, -- D1
 	[477] = {"477", "", "!!! Quando usado, consume todos os items de pedestal na sala#Item ativável: Seu efeito será ativado em todo uso futuro do Void#↑ Item passivo: Pequena melhoria de estatística para duas estatísticas aleatórias"}, -- Void
 	[489] = {"489", "", "Atua como qualquer item de dado, exceto para {{Collectible723}} Spindown Dice#Altere o dado atual pressionando {{ButtonRT}}#O tempo de recarga varia de acordo com o dado atual e atualiza quando usado"}, -- D Infinity
 	[491] = {"491", "", "{{Pill}}Solta uma pílula aleatória a cada 7 salas#{{Poison}} Usar uma pílula envenena todos os inimigos na sala"}, -- Acid Baby
 	[493] = {"493", "", "↑ {{Damage}} Dano para cada espaço de Coração Vermelho vazio#Segue uma fórmula,alguns exemplos são:#+0.3 com 1#+0.92 com 2#+1.76 com 3#+2.79 com 4#+3.98 com 5"}, -- Adrenaline
-	[494] = {"494", "", "Lágrimas geram faíscas de eletricidade com o impacto#Faíscas causam metade do seu dano#Faíscas podem pular entre inimigos"}, -- Jacobs Ladder
+	[494] = {"494", "", "Lágrimas geram faíscas de eletricidade com o impacto#Faíscas causam metade do seu dano#Faíscas podem pular entre inimigos"}, -- Jacob's Ladder
 	[495] = {"495", "", "8% de chance de disparar um fogo azul que bloqueia projéteis dos inimigos e causa dano ao contato#{{Luck}} 50% de chance com 10 de Sorte#A chama desaparece após 2 segundos"}, -- Ghost Pepper
-	[496] = {"496", "", "3.33% de chance de disparar agulhas#{{Luck}} 50% de chance com 15 de Sorte#Agulhas matam inimigos normais instantaneamente, explodindo-os em 10 lágrimas#Agulhas causam 3x de dano contra chefes"}, -- Euthanasia
+	[496] = {"496", "", "3.33% de chance de disparar agulhas#{{Luck}} 25% de chance com 15 de Sorte#Agulhas matam inimigos normais instantaneamente, explodindo-os em 10 lágrimas#Agulhas causam 3x de dano contra chefes"}, -- Euthanasia
 	[497] = {"497", "", "Ao entrar em uma sala, se camufla e confunde todos os inimigos até que você comece a disparar#↑ {{Speed}} +0.5 Velocidade enquanto camuflado#Ao disparar, causa dano ao seu redor e ganha um aumento de Taxa de Disparo e Dano muito breves"}, -- Camo Undies
-	[498] = {"498", "", "{{AngelDevilChance}} Gera uma porta da Sala do Diabo E Sala do Anjo#Ao entrar em uma a outra desaparecerá"}, -- Duality
-	[501] = {"501", "", "Dá a você um Espaço de Coração para cada 25 moedas que você tem#{{Player14}} / {{Player33}}O Keeper ganhará Corações de Moeda adicionais#{{Collectible416}} Recebe 1 Espaço de Coração para cada 100 moedas que você tem (caso ultrapasse 99)"}, -- Greed's Gullet
+	[501] = {"501", "", "Dá a você um Espaço de Coração para cada 25 moedas que você tem#{{Player14}} O Keeper ganhará Corações de Moeda adicionais#{{Collectible416}} Recebe 1 Espaço de Coração para cada 100 moedas que você tem (caso ultrapasse 99)"}, -- Greed's Gullet
 	[503] = {"503", "", "5% de chance de atirar lágrimas que invoca a mão do Big Horn#{{Luck}} 20% de chance com 15 de Sorte#A mão mata inimigos instantaneamente e causa dano aos chefes#Correr em inimigos causará 3,5 de dano a eles"}, -- Little Horn
 	[504] = {"504", "", "Gera uma torreta voadora que atira nos inimigos#Cada tiro causa 3.5 de dano"}, -- Brown Nugget
 	[506] = {"506", "", "Se as lágrimas atingirem as costas do inimigo, elas causam o dobro de dano e cusam sangramento, o que faz os inimigos deixarem um rastro e receberem dano quando eles se movem"}, -- Backstabber
@@ -219,8 +219,8 @@ local repCollectibles={
 	[524] = {"524", "", "Lágrimas serão conectadas por raios de eletricidade#Eletricidade causa dano igual a 1/3 do seu dano"}, -- Technology Zero
 	[531] = {"531", "", "Lágrimas voam em arco e explodem em lágrimas menores ao impacto#↑ {{Damage}} +1 Dano#↑ {{Damage}} +50% Multiplicador de Dano#↓ {{Tears}} -67% Taxa de Disparo#↓ {{Range}} -20% Alcance"}, -- Haemolacria
 	[535] = {"535", "", "{{SoulHeart}} +1 Coração de Alma#{{Heart}} Cura 1 Coração Vermelho#{{HolyMantle}} Concede um escudo ao entrar em uma Sala do Chefe"}, -- Blanket
-	[543] = {"543", "", "Gera cocôs brancos ao receber dano#Enquanto dentro da área do cocô: #↑ {{Damage}} +25% de Dano#↑ {{Tears}} +150% Taxa de Disparo#Lágrimas teleguiadas#Chance de bloquear danos"}, -- Hallowed Ground
-	[549] =	{"549", "", "{{EmptyBoneHeart}} Troca todos os seus espaços de Corações Vermelhos por 6 Corações de Osso#Quando perder um Coração de Osso:#Atire 8 lágrimas de osso em todas as direções#↑ {{Tears}} +0.4 Taxa de Disparo permanente"}, -- Brittle Bones
+	[543] = {"543", "", "Gera cocôs brancos ao receber dano#Enquanto dentro da aura do cocô: #↑ {{Damage}} +20% de Dano#↑ {{Tears}} +150% Taxa de Disparo#Lágrimas teleguiadas#Chance de bloquear danos"}, -- Hallowed Ground
+	[549] =	{"549", "", "{{EmptyBoneHeart}} Troca todos os seus espaços de Corações Vermelhos por 6 Corações de Osso Vazios#Quando perder um Coração de Osso:#Atire 8 lágrimas de osso em todas as direções#↑ {{Tears}} +0.4 Taxa de Disparo permanente"}, -- Brittle Bones
 	[552] = {"552", "", "Gera um alçapão para o próximo andar#Gera um {{LadderRoom}}alçapão com escada se usado em um piso decorativo (grama, pedras pequenas, papéis, pedras preciosas, etc.)"}, -- Mom's Shovel
 	[553] = {"553", "", "25% de chance de atirar esporos pegajosos#{{Luck}} Não é afetado pela sorte#Esporos explodem depois de 2.5 segundos, causando dano e envenenamento a inimigos próximos e soltando mais esporos"}, --  Mucormycosis
 	[554] = {"554", "", "{{Fear}} Amedronta inimigos em um pequeno raio ao seu redor"}, --  2Spooky
@@ -238,7 +238,7 @@ local repCollectibles={
 	[566] = {"566", "", "{{HalfSoulHeart}} +1 Meio Coração de Alma quando entrar em um novo andar#Na transição de fase, exibe: #{{TreasureRoom}} O próximo item da Sala do Tesouro#{{BossRoom}} O próximo chefe"}, --  Dream Catcher
 	[567] = {"567", "", "↑ {{Tears}} +0.4 Taxa de Disparo para cada sala limpa sem levar dano#{{Tears}} Acumula até +2 Taxa de Disparo"}, --  Paschal Candle
 	[568] = {"568", "", "Pressionar duas vezes em uma tecla de atirar cria um escudo#O escudo dura 1 segundo, empurra os inimigos para longe e reflete projéteis e lasers inimigos"}, --  Divine Intervention
-	[569] = {"569", "", "Apunhala você no início de cada andar, drenando tudo, menos a metade de um Coração Vermelho#Aumenta os status para o andar atual:#↑ {{Damage}} Seu dano + 0.15 * Corações perdidos^2#↑ {{Speed}} Velocidade + 0.05 * Corações perdidos"}, --  Blood Oath
+	[569] = {"569", "", "!!! Drena todos os seus Corações Vermelhos no início de cada andar e concede Dano e Velocidade para o andar:#↑ {{Damage}} Dano + 0.15 x Corações Perdidos x Corações Perdidos#↑ {{Speed}} Velocidade + 0.05 x Corações Perdidos#Cada meio coração perdido pode ativar item ativados por perda de vida"}, --  Blood Oath
 	[570] = {"570", "", "Concede lágrimas multicoloridas com diferentes efeitos de status"}, --  Playdough Cookie
 	[571] = {"571", "", "Impede danos a poças e espinhos no chão#↑ {{Speed}} +0.3 Velocidade#↑ {{SoulHeart}} +2 Corações de Alma"}, --  Orphan Socks
 	[572] = {"572", "", "Lágriams controláveis#↑ {{Damage}} +1 Dano#↑ {{Range}} +2 Alcance#↓ {{Shotspeed}} -0.16 Velocidade de Disparo"}, --  Eye of the Occult
@@ -250,7 +250,7 @@ local repCollectibles={
 	[578] = {"578", "", "Cria uma grande poça amarela"}, --  Free Lemonade
 	[579] = {"579", "", "Em vez de lágrimas, o personagem tem uma espada#Causa 3x seu dano#{{Chargeable}} Faz um ataque giratório + tiro de projétil ao carregar#Disparar projéteis com oscilações normais com a saúde cheia"}, --  Spirit Sword
 	[580] = {"580", "", "Cria uma nova sala adjacente a uma parede viável, indicada pelo contorno de uma porta#Podem ser salas especiais#Uma sala fora do mapa de piso 13x13 irá teletransportá-lo para a sala I AM ERROR"}, --  Red Key
-	[581] = {"581", "", "Familiar mosca orbital#Persegue inimigos e desvia projéteis#Causa dano ao contato"}, --  Psy Fly
+	[581] = {"581", "", "Familiar mosca orbital#Persegue inimigos e desvia projéteis#Causa 15 de dano ao contato por segundo"}, --  Psy Fly
 	[582] = {"582", "", "↑ {{Tears}} +0.75 Taxa de Disparo#↓ {{Speed}} -0.03 Velocidade#Distorce a tela#O efeito pode ser empilhado"}, --  Wavy Cap
 	[583] = {"583", "", "{{Bomb}} +5 Bombas#Colocar uma bomba enquanto estiver atirando faz com que ela se transforme em um foguete que será atirado na direção do disparo"}, --  Rocket in a Jar
 	[584] = {"584", "", "Gera um familiar orbital que atira lágrimas espectrais mas pode ser destruído#Pode ser combinado com um segundo item ativador para criar um orbital temático#{{DevilRoom}} Transforma a primeira Sala do Diabo em uma {{AngelRoom}} Sala do Anjo#{{AngelChance}} Chance de Sala do Anjo 12.5% maior#{{AngelChance}} Permite que Salas do Anjo sejam geradas se você tiver feito um Acordo com o Diabo"}, --  Book of Virtues
@@ -311,12 +311,12 @@ local repCollectibles={
 	[639] = {"639", "", "Ao usar concede um Coração Podre"}, --  Yuck Heart
 	[640] = {"640", "", "Vomita uma torrente de chamas#Ganha uma carga cada vez que um inimigo morre"}, --  Urn of Souls
 	[641] = {"641", "", "Cria uma corrente de lágrimas atrás de você durante uma luta#As lágrimas causam 3.5 de dano"}, --  Akeldama
-	[642] = {"642", "", "Troca {{EmptyHeart}} 1 Espaço de Coração ou {{SoulHeart}} 2 Corações de Alma por um {{BrokenHeart}} Coração Quebrado#Gera um item do tipo de sala atual#Quanto mais vezes o item for usado, maior a chance de substituir itens futuros se não estiver segurando isso#33% depois de 1 uso, 50% depois de 2, 100% depois de 3#Baixa chance se o Magic Skin está em um pedestal no andar atual#{{Warning}} Item de uso único para o {{Player10}} The Lost"}, --  Magic Skin
+	[642] = {"642", "", "Gera um item baseado no tipo da sala atual#{{BrokenHeart}} Troca 1 Contêiner de Coração ou 2 Corações de Alma por um Coração Quebrado#!!! Substitui itens futuros se não estiver segurando isso#33% depois de 1 uso, 50% depois de 2, 100% depois de 3#Baixa chance se o Magic Skin está em um pedestal no andar atual#{{Player10}} Uso único para The Lost"}, --  Magic Skin
 	[643] = {"643", "", "{{Chargeable}} Atirar por 2.5 segundo irá disparar um laser sagrado quando o botão de disparo for solto#Concede Voo#{{SoulHeart}} +2 Corações de Alma"}, --  Revelation
 	[644] = {"644", "", "↑ Aumenta seu status mais baixo#{{Coin}} Solta 3 moedas, {{Bomb}} 1 bomba ou {{Key}} 1 chave, dependendo do que você tem menos"}, --  Consolation Prize
 	[645] = {"645", "", "Orbital Teratoma#Bloqueia tiros#Causa dano ao contato#Divide-se em versões menores de si mesmo ao receber 3 acertos#As versões menores se dividem em aranhas azuis#Renasce 5 segundos depois que todos se foram"}, --  Tinytoma
-	[646] = {"646", "", "{{Bomb}} +5 Bombas#{{Collectible118}} Bombas lançam 4 Brimstone nas direções cardeais"}, --  Brimstone Bombs
-	[647] = {"647", "", "Os itens ativadores não carregam ao limpar as salas#Eles carregam causando dano aos inimigos#Formula: 40 + 20 * andar"}, --  4.5 Volt
+	[646] = {"646", "", "{{Bomb}} +5 Bombas#{{Collectible118}} Bombas lançam 4 Brimstone nas direções cardeais#As Brimstones não te machucam"}, --  Brimstone Bombs
+	[647] = {"647", "", "Os itens ativos não carregam ao limpar as salas#Eles carregam causando dano aos inimigos#O dano necessário por cargas aumenta a cada andar#Formula: 40 + 20 * andar"}, --  4.5 Volt
 	[648] = {"648", "", "<Item does not exist>"},
 	[649] = {"649", "", "Impulsiona-se diagonalmente pela sala, soltando lágrimas por onde passa"}, --  Fruity Plum
 	[650] = {"650", "", "Invoca um Baby Plum amigável na sala atual por 10 segundos"}, --  Plum Flute
@@ -458,7 +458,7 @@ EID.descriptions[languageCode].bingeEaterBuffs = {
 	[22] = "↑ {{Tears}} +0.5 Lágrimas#↑ {{Range}} +1.5 Alcance#↓ {{Speed}} -0.03 Velocidade", -- Lunch
 	[23] = "↑ {{Tears}} +0.5 Lágrimas#↑ {{Shotspeed}} +0.2 Velocidade de Disparo#↓ {{Speed}} -0.03 Velocidade", -- Dinner
 	[24] = "↑ {{Damage}} +1 Dano#↑ {{Shotspeed}} +0.2 Velocidade de Disparo#↓ {{Speed}} -0.03 Velocidade", -- Dessert
-	[25] = "↑ +0.2 {{Shotspeed}} Velocidade de Disparo#↑ {{Range}} +1.5 Alcance#↓ {{Speed}} -0.03 Velocidade", -- Breakfast
+	[25] = "↑ {{Shotspeed}} +0.2 Velocidade de Disparo#↑ {{Range}} +1.5 Alcance#↓ {{Speed}} -0.03 Velocidade", -- Breakfast
 	[26] = "↑ {{Damage}} +1 Dano#↑ {{Range}} +1.5 Alcance#↓ {{Speed}} -0.03 Velocidade", -- Rotten Meat
 	[456] = "↑ {{Damage}} +1 Dano#↑ {{Luck}} +1 Sorte#↓ {{Speed}} -0.03 Velocidade", -- Midnight Snack
 	[346] = "↑ {{Shotspeed}} +0.2 Velocidade de Disparo#↑ {{Luck}} +1 Sorte#↓ {{Speed}} -0.03 Velocidade", -- A Snack
@@ -699,6 +699,7 @@ local repTrinkets={
 	[10] = {"10", "", "Lágrimas movem-se em ondas#↑ {{Tears}} +0.4 Lágrimas#Lágrimas espectrais"}, -- Wiggle Worm
 	[11] = {"11", "", "Lágrimas movem-se em espiral em alta velocidade#↑ {{Tears}} +0.4 Lágrimas#Lágrimas espectrais"}, -- Ring Worm
 	[15] = {"15", "", "{{Coin}} 33% de chance de gerar uma moeda quando destruir rochas"},-- Lucky Rock
+	[23] = {"23", "", "{{Player10}} Renasce como The Lost quando morrer#Se ele não estiver desbloqueado, morra em uma {{SacrificeRoom}} Sala do Sacrifício enquanto segurar este trinket para desbloqueá-lo#{{Player31}} Tainted Lost reviverá ele mesmo"}, -- Missing Poster
 	[24] = {"24", "", "{{Coin}} Chance 20% maior de gerar moedas em cocôs#Peida ao pegar moedas#{{Poison}} Peido causa recuo e envenenamento em inimigos e projéteis"}, -- Butt Penny
 	[26] = {"26", "", "Lágrimas movem-se em padrões angulares#↑ {{Tears}} +0.4 Lágrimas##↑ {{Range}} +1.5 Alcance#Lágrimas espectrais"}, -- Hook Worm
 	[32] = {"32", "", "25% de chance de receber um efeito de cogumelo aleatório por sala"}, -- Liberty Cap
@@ -708,18 +709,19 @@ local repTrinkets={
 	[49] = {"49", "", "{{HalfHeart}} 25% de chance de soltar Meio Coração quando pegar uma moeda"}, -- Bloody Penny
 	[50] = {"50", "", "{{Bomb}} 25% de chance de soltar uma bomba quando pegar uma moeda"}, -- Burnt Penny
 	[51] = {"51", "", "{{Key}} 25% de chance de soltar uma chave quando pegar uma moeda"}, -- Flat Penny
-	[58] = {"58", "", "{{Damage}} 1/15 de chance de +0.5 Dano quando matar um inimigo#{{Luck}} 100% de chance com 10 de sorte#Efeito somente para a sala atual"}, -- Samson's Lock
 	[65] = {"65", "", "↑ {{Range}} +3 Alcance"}, -- Tape Worm
 	[66] = {"66", "", "↓ {{Shotspeed}} -0.5 Velocidade de Disparo"}, -- Lazy Worm
 	[69] = {"69", "", "Camufla o jogador aleatoriamente#Confunde inimigos#Pode ser ussado para abrir a porta para o andar \"Home\""}, -- Faded Polaroid
-	[80] = {"80", "", "↑ {{Damage}} +0.5 Dano para cada item {{DevilRoom}} maligno que estiver segurando"}, -- Black Feather
+	[80] = {"80", "", "↑ {{Damage}} +0.5 Dano para cada item maligno que estiver segurando"}, -- Black Feather
 	[92] = {"92", "", "↑ Aumeta as estatísticas de seus itens em 20%"}, -- Cracked Crown
 	[96] = {"96", "", "As lágrimas se movem rapidamente em um padrão espiral#↑ {{Tears}} +0.4 Lágrimas#↑ {{Range}} +1.5 Alcance#Lágrimas spectrais#Chance de lágrimas teleguiadas"}, -- Ouroboros Worm
-	[98] = {"98", "", "{{Poison}} 10% de chance de disparar lágrimas teleguiadas, pegajosas e venenosas#Causa o seu dano a cada segundo#Gruda por 10 segundos"},
+	[98] = {"98", "", "{{Poison}} 5% de chance de disparar lágrimas teleguiadas, pegajosas e venenosas#Causa o seu dano a cada segundo#Gruda por 10 segundos"},
 	[101] = {"101", "", "!!! Enquanto segurar um item ativável completamente descarregado:#↑ {{Damage}} +1.5 Dano#↑ {{Speed}} +0.5 Velocidade#↑ {{Range}} +1.5 Alcance#↑ {{Tears}} +0.5 Lágrima#↑ {{Shotspeed}} +0.3 Velocidade de Disparo#↑ {{Luck}} +2 Sorte"}, -- Dim Bulb
+	[107] = {"107", "", "O dano recebido ignorará Corações de Alma/Negros, fazendo com que seus contêineres de Coração Vermelho sejam esgotados primeiro#!!! O dano de Coração Vermelho pode diminuir sua chance de Sala do Diabo/Anjo"}, -- Crow Heart
 	[110] = {"110", "", "{{Shop}} Lojas vão aparecer no Womb e Corpse"}, -- Silver Dollar
 	[111] = {"111", "", "{{TreasureRoom}} Salas do item agora aparecem em the Womb e Corpse"}, -- Bloody Crown
 	[119] = {"119", "", "Cura metade dos seus Corações Vermelhos/Osso vazios ao viajar para o próximo andar#Mínimo de Meio Coração curado"}, -- Stem Cell
+	[125] = {"125", "", "Conecta seus familiares com raios de eleticidade#Causa 6 de dano por raio#Também funciona entre jogadores co-op (incluindo Jacob & Esau)"}, -- Extension Cord
 	[128] = {"128", "", "{{EmptyBoneHeart}} 5% de chance de ganhar um Coração de Osso ao receber dano"}, -- Finger Bone
 	[129] = {"129","","10% de chance de atirar dentes#Dentes causam 3.2x o seu dano#{{Luck}} 100% de chance com 9 de Sorte"}, --  Jawbreaker
 	[130] = {"130","","{{Slow}} 10% de chance de atirar lágrimas de lentidão#{{Luck}} 100% de chance com 18 de sorte"}, --  Chewed Pen
@@ -757,7 +759,7 @@ local repTrinkets={
 	[162] = {"162","","{{Player7}} 50% de chance de transformar-se em Azazel quando entra em uma nova sala#O efeito dura até limpar e sair de outra sala"}, --  Azazel's Stump
 	[163] = {"163","","Todos os Dips (pequenos cocôs) são amigáveis#Gera 1 Dips aleatório quando limpa uma sala"}, --  Dingle Berry
 	[164] = {"164","","{{Bomb}} Gera uma bomba extra para cada bomba colocada"}, --  Ring Cap
-	[165] = {"165","","{{Coin}} No Womb e diante, substitua todos as moedas e chaves por outro pickup ou mosca#Resultados possíveis: Bombas, Corações, Pílulas, Cartas, Trinkets, Baterias"}, --  Nuh Uh!
+	[165] = {"165","","No Womb e diante, substitua todos as moedas e chaves por outro pickup ou mosca#Resultados possíveis: Bombas, Corações, Pílulas, Cartas, Trinkets, Baterias"}, --  Nuh Uh!
 	[166] = {"166","","50% de chance de garatir o efeito de um item passivo para cada sala"}, --  Modeling Clay
 	[167] = {"167","","25% de chance de gerar um Bony amigável quando limpa uma sala"}, --  Polished Bone
 	[168] = {"168","","{{EmptyBoneHeart}} +1 espaço de Coração de Osso ao entrar em um novo andar"}, --  Hollow Heart
@@ -765,7 +767,7 @@ local repTrinkets={
 	[170] = {"170","","{{Collectible580}} 33% de chance de gerar automaticamente uma sala da Red Key toda vez que limpar uma sala"}, --  Crystal Key
 	[171] = {"171","","{DevilRoom}} 50% de chance de Acordos com o Diabo custarem moedas em vez de Corações"}, --  Keeper's Bargain
 	[172] = {"172","","{{Coin}} Teleporta você para uma sala aleatória quando pega um penny#Pode teleportar para Salas Secretas"}, --  Cursed Penny
-	[173] = {"173","","{{DevilRoom}} Permite que você pegue um item da Sala do Diabo de graça#Comprar um item da Sala do Diabo destrói este trinket"}, --  Your Soul
+	[173] = {"173","","{{DevilRoom}} Permite que você pegue um item da Sala do Diabo de graça#Comprar um item da Sala do Diabo destrói este trinket#!!! Pegar o item grátis ainda afeta a chance de Sala do Anjo"}, --  Your Soul
 	[174] = {"174","","{{DevilChance}} +10% de chance de acordo com Diabo#Impede que o Krampus apareça nos acordos com o Diabo#Acordos com o Diabo serão transformados em sala de acordo especiais com mais acordos, inimigos e Corações Negros"}, --  Number Magnet
 	[175] = {"175","","Libera a passagem para a luta contra o Hush, independentemente da duração da corrida#Usar a Pandora's Box {{Collectible297}} gera 6 itens de lugares aleatórios"}, --  Strange Key
 	[176] = {"176","","Gera um familiar que imita o movimento do personagem, direção do tiro e Efeito de Lágrima#O familiar renasce a cada sala se morrer"}, --  Lil Clot
@@ -833,7 +835,7 @@ local repCards={
 	[59] = {"59", "", "Concede por 1 minuto:#↑ {{Heart}} +2 Corações#↑ {{Tears}} +1.35 Lágrimas"}, -- III - The Empress?
 	[60] = {"60", "", "Teleporta você para um Chefe extra com saque extra#O chefe é escolhido de dois andares abaixo do atual"}, -- IV - The Emperor?
 	[61] = {"61", "", "{{EmptyBoneHeart}} Gera 2 Corações de Osso"}, -- V - The Hierophant?
-	[62] = {"62", "", "Gera 1 item da sala atual#{{BrokenHeart}} Troca 1 espaço de Coração Vermelho ou 2 Corações de Alma em um Coração Quebrado"}, -- VI - The Lovers?
+	[62] = {"62", "", "Gera 1 item baseado no tipo da sala atual#{{BrokenHeart}} Troca 1 Contêiner de Coração Vermelho ou 2 Corações de Alma em um Coração Quebrado"}, -- VI - The Lovers?
 	[63] = {"63", "", "Transforme-se em uma estátua imóvel e invencível por 10 segundos#↑ {{Tears}} Taxa de tiro extrema enquanto durar"}, -- VII - The Chariot?
 	[64] = {"64", "", "Gera 2-4 baús dourados"}, -- VIII - Justice?
 	[65] = {"65", "", "Toca pickups e itens na sala em moedas#{{Shop}} Os valores das moedas são iguais ao valor da loja"}, -- IX - The Hermit?
@@ -893,7 +895,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[17] = "Gera 12 Bombas trolls", -- XVI - The Tower
 	[18] = "Se a Sala do Tesouro não foi acessada ainda, ela terá dois itens para escolher", -- XVII - The Stars
 	[21] = "Gera 2 mendigos", -- XX - Judgement
-	[56] = "Solta todos os itens junto com os pickups, incluindo Tarot Cloth", -- 0 - The Fool?
+	[56] = "Solta os seus 6 itens mais recentes juntamente com os pickups", -- 0 - The Fool?
 	[59] = "↑ {{Heart}} +3 Saúde", -- III - The Empress?
 	[61] = "{{EmptyBoneHeart}} Gera 6 Corações de Osso", -- V - The Hierophant?
 	[62] = "{{BrokenHeart}} Adiciona 4 Corações Quebrados e gera 2 itens", -- VI - The Lovers?
@@ -927,12 +929,12 @@ EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
 EID.descriptions[languageCode].horsepills={
 	{"0", "", "{{Poison}} Envenamento toda a sala"}, -- Bad Gas
-	{"1", "", "Causa 2 Corações de dano a você"}, -- Bad Trip
+	{"1", "", "Causa 2 Corações de dano a você#Se torna um pílula de cavalo Saúde Cheia (+3 Corações de Alma) se você tem 1 coração ou menos"}, -- Bad Trip
 	{"2", "", "{{SoulHeart}} +4 Corações de alma"}, -- Balls of Steel
 	{"3", "", "Troca o número de bombas pelo número de chaves#Aumenta o número de bombas e chaves em 50%#Bombas douradas e chaves também são trocadas"}, -- Bombs are Key
 	{"4", "", "Gera algumas mega bombas trolls na sua posição"}, -- Explosive Diarrhea
 	{"5", "", "Saúde cheia#{{SoulHeart}} +3 Corações de alma"}, -- Full Health
-	{"6", "", "↓ -2 Saúde"}, -- Health Down
+	{"6", "", "↓ -2 Saúde#Se torna uma pílula de cavalo Health Up de você tem 0 ou 1 Contêiner de Coração"}, -- Health Down
 	{"7", "", "↑ {{EmptyHeart}} +2 Espaços de Corações Vazios"}, -- Health Up
 	{"8", "", "Sem efeito"}, -- I Found Pills
 	{"9", "", "Sem efeito"}, -- Puberty
