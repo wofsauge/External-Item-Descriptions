@@ -3,6 +3,8 @@ local game = Game()
 EID.TabPreviewID = 0
 -- Modifiers switching the previewed description can cause infinite loops or undesired text, use this to help prevent it
 EID.inModifierPreview = false
+-- The "Hold Map Helper" needs to know if it shouldn't display because we're in a Hold Tab desc
+EID.TabDescThisFrame = false
 
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
 EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, }
@@ -60,8 +62,15 @@ function EID:CheckPlayersCollectibles()
 	end
 end
 
+function EID:getHoldMapDescription()
+	return "Yo"
+end
+
+-- Handle description changes that occur while holding Map, and the Hold Map Helper (name pending)
 local function TabCallback(descObj)
 	if EID.TabPreviewID == 0 then return descObj end
+	EID.TabDescThisFrame = true
+	
 	EID.inModifierPreview = true
 	local descEntry = EID:getDescriptionObj(5, 100, EID.TabPreviewID)
 	EID.inModifierPreview = false
@@ -614,7 +623,7 @@ EID:addDescriptionModifier("EID Afterbirth+", EIDConditionsAB, nil)
 
 -- should this be done differently so that mods can add tab previews? (tab conditions is done last, but would be done before callbacks mods add, maybe tab should be checked in EID:getDescriptionObj
 local function TabConditions(descObj)
-	if EID:PlayersActionPressed(ButtonAction.ACTION_MAP) and not EID.inModifierPreview then return true end
+	if EID:PlayersActionPressed(EID.Config["BagOfCraftingToggleKey"]) and not EID.inModifierPreview then return true end
 	EID.TabPreviewID = 0
 	return false
 end
