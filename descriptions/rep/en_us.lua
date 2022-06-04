@@ -1050,7 +1050,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 EID.descriptions[languageCode].VoidShopText = "If absorbed right after pickup, gain:"
 EID.descriptions[languageCode].VoidOptionText = " will be absorbed instead"
-EID.descriptions[languageCode].VoidNames = {"Speed Up {{Speed}}", "Fire rate up {{Tears}}", "Damage up {{Damage}}", "Range up {{Range}}", "Shotspeed up {{Shotspeed}}", "Luck up {{Luck}}"}
+EID.descriptions[languageCode].VoidNames = {"Speed up", "Fire Rate up", "Damage up", "Range up", "Shot Speed up", "Luck up"}
 
 
 EID.descriptions[languageCode].spindownError = "Item disappears"
@@ -1069,7 +1069,7 @@ EID.descriptions[languageCode].CraftingPreviewBackup = "!!! If this item's locke
 EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:"
-EID.descriptions[languageCode].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed"
+EID.descriptions[languageCode].BlankCardQCard = "Teleport to I AM ERROR Room#Blank Card and ?-Card will be destroyed"
 EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune charge:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo charge:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{ButtonSelect}} (Map) to show description)"
