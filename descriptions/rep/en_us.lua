@@ -30,7 +30,6 @@ local repCollectibles={
 	[37] = {"37", "Mr. Boom", "Drops a large bomb below the player which deals 185 damage"}, -- Mr. Boom
 	[40] = {"40", "Kamikaze!", "Causes a big explosion at the player's location#Deals 185 damage"}, -- Kamikaze!
 	[42] = {"42", "Bob's Rotten Head", "{{Poison}} Throwable poison bomb#Deals 185 + your damage#Creates poison cloud"}, -- Bob's Rotten Head
-	[44] = {"44", "Teleport", "Teleports Isaac into a random room except I AM ERROR rooms#Influence direction a bit by moving in desired direction"}, -- Teleport
 	[45] = {"45", "Yum Heart", "{{Heart}} Heal 1 Red Heart#Also heals other players for half a heart"}, -- Yum Heart
 	[46] = {"46", "Lucky Foot", "↑ {{Luck}} +1 Luck up#Better chance to win while gambling#Increases room clearing drop chance#Turns some bad pills into good ones"}, -- Lucky Foot
 	[52] = {"52", "Dr. Fetus", "{{Bomb}} Bomb tears#{{Damage}} Each bomb deals 10x your damage#If that results in over 60 damage, it instead deals 5x your damage + 30#↓ {{Tears}} -60% Fire Rate down"}, --Dr. Fetus
