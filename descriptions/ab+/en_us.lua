@@ -873,7 +873,7 @@ EID.descriptions[languageCode].transformations={
 ---------- MISC ----------
 
 EID.descriptions[languageCode].VoidText = "If absorbed, gain:"
-EID.descriptions[languageCode].VoidNames = {"Speed", "Tears", "Damage", "Range", "Shot Speed", "Luck"}
+EID.descriptions[languageCode].VoidNames = {"Speed up", "Tears up", "Damage up", "Range up", "Shot Speed up", "Luck up"}
 
 EID.descriptions[languageCode].CollectionPageInfo = "This item needs to be picked up for the collection page!"
 

@@ -30,7 +30,6 @@ local repCollectibles={
 	[37] = {"37", "Mr. Boom", "Drops a large bomb below the player which deals 185 damage"}, -- Mr. Boom
 	[40] = {"40", "Kamikaze!", "Causes a big explosion at the player's location#Deals 185 damage"}, -- Kamikaze!
 	[42] = {"42", "Bob's Rotten Head", "{{Poison}} Throwable poison bomb#Deals 185 + your damage#Creates poison cloud"}, -- Bob's Rotten Head
-	[44] = {"44", "Teleport", "Teleports Isaac into a random room except I AM ERROR rooms#Influence direction a bit by moving in desired direction"}, -- Teleport
 	[45] = {"45", "Yum Heart", "{{Heart}} Heal 1 Red Heart#Also heals other players for half a heart"}, -- Yum Heart
 	[46] = {"46", "Lucky Foot", "↑ {{Luck}} +1 Luck up#Better chance to win while gambling#Increases room clearing drop chance#Turns some bad pills into good ones"}, -- Lucky Foot
 	[52] = {"52", "Dr. Fetus", "{{Bomb}} Bomb tears#{{Damage}} Each bomb deals 10x your damage#If that results in over 60 damage, it instead deals 5x your damage + 30#↓ {{Tears}} -60% Fire Rate down"}, --Dr. Fetus
@@ -1051,7 +1050,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 EID.descriptions[languageCode].VoidShopText = "If absorbed right after pickup, gain:"
 EID.descriptions[languageCode].VoidOptionText = " will be absorbed instead"
-EID.descriptions[languageCode].VoidNames = {"Speed Up {{Speed}}", "Fire rate up {{Tears}}", "Damage up {{Damage}}", "Range up {{Range}}", "Shotspeed up {{Shotspeed}}", "Luck up {{Luck}}"}
+EID.descriptions[languageCode].VoidNames = {"Speed up", "Fire Rate up", "Damage up", "Range up", "Shot Speed up", "Luck up"}
 
 
 EID.descriptions[languageCode].spindownError = "Item disappears"
@@ -1070,7 +1069,7 @@ EID.descriptions[languageCode].CraftingPreviewBackup = "!!! If this item's locke
 EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:"
-EID.descriptions[languageCode].BlankCardQCard = "Teleport to I Am Error Room#Blank Card and ?-Card will be destroyed"
+EID.descriptions[languageCode].BlankCardQCard = "Teleport to I AM ERROR Room#Blank Card and ?-Card will be destroyed"
 EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune charge:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo charge:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{ButtonSelect}} (Map) to show description)"

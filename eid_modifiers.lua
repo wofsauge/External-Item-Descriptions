@@ -72,6 +72,7 @@ end
 
 -- Handle Void
 local voidStatUps = { 0.2, 0.5, 1, 0.5, 0.2, 1 }
+local voidStatIcons = {"{{Speed}}", "{{Tears}}", "{{Damage}}", "{{Range}}", "{{Shotspeed}}", "{{Luck}}"}
 if REPENTANCE then voidStatUps[4] = 1.5 end
 local lastVoidCheck = -30
 EID.VoidStatIncreases = {{},{},{}}
@@ -119,7 +120,7 @@ local function VoidCallback(descObj, isRune)
 		EID:appendToDescription(descObj, "#" .. prefix .. voidIntro .. "#")
 		for i,v in ipairs(increases) do
 			if v > 0 then
-				EID:appendToDescription(descObj, prefix .. "+" .. string.format("%.4g",v*voidStatUps[i]) .. " " .. voidNames[i] .. "#")
+				EID:appendToDescription(descObj, "↑ " .. voidStatIcons[i] .. " +" .. string.format("%.4g",v*voidStatUps[i]) .. " " .. voidNames[i] .. "#")
 			end
 		end
 	-- Print unique synergies with Void and Active Items
