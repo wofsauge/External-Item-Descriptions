@@ -1497,15 +1497,10 @@ local function onRender(t)
 	
 	-- handle showing the Hold Map Helper description
 	if EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
-		-- at the moment, just show the description of the player's active item
-		--local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-		--demoDescObj.Name = ""
-		--demoDescObj.Description = EID:getHoldMapDescription()
-		local heldActive = EID.holdTabPlayer:GetActiveItem()
-		if heldActive then
-			local demoDescObj = EID:getDescriptionObj(5, 100, heldActive)
-			EID:addDescriptionToPrint(demoDescObj, 1)
-		end
+		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+		demoDescObj.Name = ""
+		demoDescObj.Description = EID:getHoldMapDescription(EID.holdTabPlayer)
+		EID:addDescriptionToPrint(demoDescObj, 1)
 	end
 	
 	EID:printDescriptions()
