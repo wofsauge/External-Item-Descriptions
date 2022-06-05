@@ -882,7 +882,7 @@ EID.descriptions[languageCode].transformations={
 
 ---------- Misc ----------
 EID.descriptions[languageCode].VoidText = "흡수 시 이하 능력치 증가:"
-EID.descriptions[languageCode].VoidNames = {"{{SpeedSmall}}이동속도", "{{TearsSmall}}연사", "{{DamageSmall}}공격력", "{{RangeSmall}}사거리", "{{ShotspeedSmall}}탄속", "{{LuckSmall}}행운"}
+EID.descriptions[languageCode].VoidNames = {"이동속도", "연사", "공격력", "사거리", "탄속", "행운"}
 
 EID.descriptions[languageCode].CollectionPageInfo = "아직 해당 아이템을 획득한 적이 없습니다. 획득하여 아이템 컬렉션에 채워주세요."
 
