@@ -1048,6 +1048,20 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 ---------- Misc. Text ----------
 
+EID.descriptions[languageCode].poopSpells = {
+	{"Poop", "Normal poop that can drop pickups"},
+	{"Corny Poop", "Spawns blue flies while intact"},
+	{"Burning Poop", "Deals contact damage while intact#Leaves a fire behind when destroyed"},
+	{"Stone Poop", "Can deal damage 3 times when thrown#Takes a lot of hits to destroy"},
+	{"Stinky Poop", "Emits a toxic cloud#!!! The cloud will explode if it touches fire!"},
+	{"Black Poop", "Creates slowing creep#Deals 10 damage and confuses all enemies when destroyed"},
+	{"Holy Poop", "{{Collectible543}} Create a white poop#While inside the poop's aura:#↑ {{Damage}} +20% Damage up#↑ {{Tears}} +150% Fire Rate up#Homing tears#Chance to block damage"},
+	{"Brown Creep", "Leave a trail of creep#Standing on the creep increases your fire rate and damage#If the creep is touching other poops, it gains their attribute"},
+	{"Fart", "Push nearby enemies and bullets back, and spawn a toxic cloud#!!! The cloud will explode if it touches fire!"},
+	{"Bomb", "Normal throwable bomb"},
+	{"Explosive Diarrhea", "Spawn 5 lit bombs at your position over the next few seconds"},
+}
+
 EID.descriptions[languageCode].VoidShopText = "If absorbed right after pickup, gain:"
 EID.descriptions[languageCode].VoidOptionText = " will be absorbed instead"
 EID.descriptions[languageCode].VoidNames = {"Speed up", "Fire Rate up", "Damage up", "Range up", "Shot Speed up", "Luck up"}
