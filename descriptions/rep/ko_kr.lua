@@ -1121,6 +1121,20 @@ local repDiceEffects = {
 }
 EID:updateDescriptionsViaTable(repDiceEffects, EID.descriptions[languageCode].dice)
 
+EID.descriptions[languageCode].poopSpells = {
+	{"일반 똥", "{{Throwable}} 일반 똥을 던집니다."},
+	{"옥수수 똥", "{{Throwable}} 똥이 있는 동안 자폭 파리를 최대 3마리까지 소환합니다."},
+	{"불타는 똥", "{{Throwable}} 똥에 닿은 적의 접촉 피해를 입습니다.#파괴 시 불을 남깁니다."},
+	{"딱딱한 똥", "{{Throwable}} 투척 시 적에게 3배의 피해를 줍니다.#다른 똥에 비해 내구성이 높습니다."},
+	{"녹색 똥", "독방귀를 뀝니다.#!!! 독방귀에 불이 닿을 시 즉시 폭발합니다."},
+	{"검은 똥", "{{Throwable}} 던지는 방향에 적을 느려지게 하는 장판을 깝니다.#{{Confusion}} 파괴 시 방 안의 모든 적에게 10의 피해를 주고 4초간 혼란시킵니다."},
+	{"성스러운 똥", "{{Throwable}} {{Collectible543}}오라 안에 있을 시 이하 효과 적용:#↑ {{Damage}}공격력 배율 x1.2#↑ {{Tears}}연사 배율 x1.5#유도 눈물을 발사합니다.#일정 확률로 피해를 막아줍니다."},
+	{"갈색 방울", "잠시동안 바닥에 설사 장판을 깝니다.#설사 장판에 서 있을 시 {{Damage}}공격력 및 {{Tears}}연사 증가#다른 똥이 설사 장판에 있으면 추가 효과를 부여합니다."},
+	{"방귀", "사용 시 방귀를 뀌어 주변의 적을 밀쳐내며 독방귀를 뀝니다.#!!! 독방귀에 불이 닿을 시 즉시 폭발합니다."},
+	{"폭탄", "{{Throwable}} 폭탄을 던질 수 있습니다."},
+	{"폭탄 설사", "캐릭터의 위치에 점화된 폭탄 5개를 생성합니다."},
+}
+
 EID.descriptions[languageCode].VoidShopText = "아이템을 드는 도중 흡수 시 이하 능력치 증가:"
 EID.descriptions[languageCode].VoidOptionText = " 아이템이 대신 흡수됨"
 
@@ -1143,7 +1157,7 @@ EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
 EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."
 EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune 충전량:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo 충전량:"
-EID.descriptions[languageCode].FlipItemToggleInfo = "( {{ButtonSelect}} (맵 펼치기) 버튼을 꾹 눌러 설명 보기)"
+EID.descriptions[languageCode].FlipItemToggleInfo = "( {{CONFIG_BoC_Toggle}} (맵 펼치기) 버튼을 꾹 눌러 설명 보기)"
 
 EID.descriptions[languageCode].FalsePHDHeart = "{{BlackHeart}}블랙하트 1개 드랍"
 EID.descriptions[languageCode].FalsePHDDamage = "{{DamageSmall}}공격력 +0.6"
