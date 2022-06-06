@@ -177,7 +177,7 @@ local repCollectibles={
 	[415] = {"415", "Crown Of Light", "{{SoulHeart}} +2 Soul Hearts#If you don't have any damaged Red Heart containers:#↑ {{Damage}} +100% Damage up#↑ {{Range}} +1.5 Range up#↓ {{Shotspeed}} -0.3 Shot Speed down#Deactivates for the current room when damaged at all"}, -- Crown Of Light
 	[416] = {"416", "Deep Pockets", "Spawns 1-3 coins if a room didn't yield a reward#{{Coin}} Increases coin cap to 999"}, -- Deep Pockets
 	[417] = {"417", "Succubus", "Bounces around the room with a damaging aura, dealing 7.5-10 damage every second#↑ {{Damage}} +50% Damage while standing in the aura"}, -- Succubus
-	[419] = {"419", "Teleport 2.0", "Teleports you to another random room that has not been cleared yet#Hierarchy: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}> Error-Room"}, -- Teleport 2.0
+	[419] = {"419", "Teleport 2.0", "Teleports you to another random room that has not been cleared yet#Hierarchy: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"}, -- Teleport 2.0
 	[421] = {"421", "Kidney Bean", "{{Charm}} Applies charm effect to any enemies in close range"}, -- Kidney Bean
 	[426] = {"426", "Obsessed Fan", "Follows your exact movement on a 0.66 second delay#Deals 30 contact damage per second"}, -- Obsessed Fan
 	[430] = {"430", "Papa Fly", "Follows your movement pattern on a 0.66 second delay#Fires tears at nearby enemies that deal damage equal to your damage"}, -- Papa Fly
@@ -199,6 +199,7 @@ local repCollectibles={
 	[474] = {"474", "Broken Glass Cannon", "Turns into Glass Cannon when used"}, -- Broken Glass Cannon
 	[476] =	{"476", "D1", "Duplicates 1 random pickup in the current room#Duplicated pickups may not be identical to the original"}, -- D1
 	[477] = {"477", "Void", "!!! When used, consumes all pedestal items in the room#Active item: Its effect will activate every future use of Void#↑ Passive item: Small stat upgrade to two random stats"},
+	[487] = {"487", "Potato Peeler", "Removes one Red Heart Container and gives you: #↑ {{Damage}} +0.2 Damage up#{{Collectible73}} A Cube of Meat#↑ {{Range}} +1.5 Range and leave a trail of blood creep for the current room"},
 	[489] = {"489", "D Infinity", "Acts as any die item except for {{Collectible723}} Spindown Dice#Change the current die with {{ButtonRT}}#Charge time varies based on the current die and updates when used"}, -- D Infinity
 	[491] = {"491", "Acid Baby", "{{Pill}} Drops a random pill every 7 rooms#Using a pill poisons all enemies in the room"}, -- Acid Baby
 	[493] = {"493", "Adrenaline", "↑ {{Damage}} Damage up for every empty Red Heart container#Follows a formula, some examples are:#+0.3 at 1#+0.92 at 2#+1.76 at 3#+2.79 at 4#+3.98 at 5"}, -- Adrenaline
@@ -249,12 +250,12 @@ local repCollectibles={
 	[577] = {"577", "Damocles", "{{Warning}} SINGLE USE {{Warning}}#Spawns a sword above your head, which doubles all item pedestals#Does not double Shop, Chest, or Devil deal items#!!! Kills you at a random time after taking damage from an enemy"}, -- Damocles
 	[578] = {"578", "Free Lemonade", "Creates a large pool of yellow creep"}, -- Free Lemonade
 	[579] = {"579", "Spirit Sword", "Instead of tears, Isaac swings a sword#Deals 3x your damage#{{Chargeable}} Does a spin attack + projectile shot on charge up#Fire projectiles with normal swings on full health"}, -- Spirit Sword
-	[580] = {"580", "Red Key", "Creates a new room adjacent to a viable wall, indicated by an outline of a door#Rooms can be special rooms#A room outside the 13x13 floor map will teleport you to the I AM ERROR room"}, -- Red Key
+	[580] = {"580", "Red Key", "Creates a new room adjacent to a viable wall, indicated by an outline of a door#Rooms can be special rooms#{{ErrorRoom}} A room outside the 13x13 floor map will teleport you to the I AM ERROR room"}, -- Red Key
 	[581] = {"581", "Psy Fly", "Fly orbital familiar#Chases and deflects projectiles#Deals 15 contact damage per second"}, -- Psy Fly
 	[582] = {"582", "Wavy Cap", "↑ {{Tears}} +0.75 Fire Rate up#↓ {{Speed}} -0.03 Speed down#Distorts the screen#Effect can be stacked"}, -- Wavy Cap
 	[583] = {"583", "Rocket in a Jar", "{{Bomb}} +5 bombs#If shooting, placed bombs turn into rockets that fire in the shooting direction"}, -- Rocket in a Jar
 	[584] = {"584", "Book of Virtues", "Spawns an orbital wisp familiar that fires spectral tears but can be destroyed#Can be combined with a second active item to create themed wisps#{{DevilRoom}} Turns the first Devil Room into an {{AngelRoom}} Angel Room#{{AngelChance}} 12.5% higher Angel Room chance#{{AngelChance}} Allows Angel Rooms to spawn even if you've taken a Devil deal"}, -- Book of Virtues
-	[585] = {"585", "Alabaster Box", "Upon use, Spawns: #{{SoulHeart}} Three Soul Hearts#{{AngelRoom}} Two Angel Room items#{{SoulHeart}} Must be charged by picking up Soul Hearts#{{DevilRoom}} Only spawns 2 Soul Hearts and 1 Angel item if a Devil deal was taken previously"}, -- Alabaster Box
+	[585] = {"585", "Alabaster Box", "Upon use, spawns: #{{SoulHeart}} Three Soul Hearts#{{AngelRoom}} Two Angel Room items#Must be charged by picking up Soul Hearts#{{DevilRoom}} Only spawns 2 Soul Hearts and 1 Angel item if a Devil deal was taken previously"}, -- Alabaster Box
 	[586] = {"586", "The Stairway", "Spawns a ladder at the start of every floor#It leads to a unique {{AngelRoom}} Angel Room shop with items and consumables"}, -- The Stairway
 	[587] = {"587", "Menorah (Unused but scripted)", "<Item does not exist>"}, -- Menorah (Unused but scripted)
 	[588] = {"588", "Sol", "{{BossRoom}} Reveals the location of the Boss Room#Upon defeating a boss, for the rest of the floor: #{{Card20}} Activates The Sun#{{Battery}} Fully recharges your active item#{{CurseBlind}} Removes any Curses#↑ {{Damage}} +3 Damage#↑ {{Luck}} +1 Luck"}, -- Sol
@@ -361,7 +362,7 @@ local repCollectibles={
 	[689] = {"689", "Glitched Crown", "Item pedestals quickly cycle between 5 random items"}, -- Glitched Crown
 	[690] = {"690", "Belly Jelly", "Causes enemies to bounce off of Isaac#Bouncing them against obstacles deals damage#50% chance that Isaac ignores contact damage#50% chance to deflect enemy projectiles"}, -- Belly Jelly
 	[691] = {"691", "Sacred Orb", "Prevents Quality {{Quality0}}/{{Quality1}} items from spawning#33% chance to reroll items with Quality {{Quality2}} to Quality {{Quality3}} or {{Quality4}}"}, -- Sacred Orb
-	[692] = {"692", "Sanguine Bond", "Spawns a set of spikes in the {{DevilRoom}}Devil Room#Taking damage from the spikes can grant a reward:#35%: Nothing#33%: ↑ {{Damage}} +0.5 Damage up#15%: {{Coin}} 6 pennies#10%: {{BlackHeart}} 2 Black Hearts#5%: {{DevilRoom}} Random Devil item#2%: Leviathan transformation"}, -- Sanguine Bond //PERCENTAGES NOT CONFIRMED, updated in patch, taken from Wiki
+	[692] = {"692", "Sanguine Bond", "Spawns a set of spikes in the {{DevilRoom}}Devil Room#Take damage on the spikes to get a reward:#35%: Nothing#33%: ↑ {{Damage}} +0.5 Damage up#15%: {{Coin}} 6 pennies#10%: {{BlackHeart}} 2 Black Hearts#5%: {{DevilRoom}} Random Devil item#2%: Leviathan transformation"}, -- Sanguine Bond
 	[693] = {"693", "The Swarm", "Grants 8 orbital flies which turn into Blue Flies after they block a shot#Spawns a new fly every room cleared"}, -- The Swarm
 	[694] = {"694", "Heartbreak", "{{BrokenHeart}} Grants 3 broken hearts#↑ {{Damage}} +0.25 Damage for every broken heart#Every fatal hit will add 2 more broken hearts#You die at 12 broken hearts"}, -- Heartbreak
 	[695] = {"695", "Bloody Gust", "When taking damage, gain {{Speed}} speed and {{Tears}} tears up for the current floor#Up to +1.02 Speed and +3 Fire Rate possible"}, -- Bloody Gust
@@ -373,7 +374,7 @@ local repCollectibles={
 	[701] = {"701", "Isaac's Tomb", "Spawns an {{DirtyChest}} Old Chest at the start of every floor which requires a key to unlock#Can contain {{SoulHeart}} Soul Hearts, trinkets or items#Items are from the {{AngelRoom}} Angel Room pool and Mom and Dad themed"}, -- Isaac's Tomb
 	[702] = {"702", "Vengeful Spirit", "After taking damage, spawns an orbital wisp that lasts for the entire floor#Maximum of 6#They fire tears but do not block shots"}, -- Vengeful Spirit
 	[703] = {"703", "Esau Jr.", "Swaps between the current character and Esau Jr., who has {{BlackHeart}} 3 Black Hearts, {{Damage}} +2 Damage and flight#Characters have independent items and health#On first use, he gains random passive items equal to how many you have#{{Warning}} Dying as either character ends the run"}, -- Esau Jr.
-	[704] = {"704", "Berserk!", "On use, enter Berserk mode for 5 seconds:#↑ {{Speed}} +0.4 Speed up#↑ {{Tears}} Tears up#↑ {{Damage}} +3 Damage up#Restricts attacks to a melee weapon"}, -- Berserk!
+	[704] = {"704", "Berserk!", "Item charges by dealing damage#On use, go berserk for 5 seconds:#↑ {{Speed}} +0.4 Speed up#↑ {{Damage}} +3 Damage up#Restricts attacks to a melee weapon#Kills while berserk increase its duration by 1 second"}, -- Berserk!
 	[705] = {"705", "Dark Arts", "On use, gain {{Speed}} +1 Speed and walk through enemies and bullets for 1 second#On touch, deal 2x your damage + 3.5 damage per touched enemy#Explosion on effect end that deals damage equal to how much you dealt"}, -- Dark Arts
 	[706] = {"706", "Abyss", "Destroys all items in the room and spawns an attack fly familiar for each#Effects of fly depends on the items"}, -- Abyss
 	[707] = {"707", "Supper", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart"}, -- Supper
@@ -865,7 +866,7 @@ local repCards={
 	[84] = {"84", "Soul of Judas", "Turns Isaac into a phantom that can pass through enemies to paralyze them#After a few seconds, will attack them all, gaining damage bonus per target"}, -- Soul of Judas
 	[85] = {"85", "Soul of ???", "{{Poison}} Causes 8 poison farts with brown creep#Then plants trail of 7 Butt Bombs#Standing in the creep gives: # {{Tears}} +1.35 Tears#↑ {{Damage}} +1 Damage"}, -- Soul of ???
 	[86] = {"86", "Soul of Eve", "14 Dead Bird familiars fly in and attack enemies# Lasts for current room"}, -- Soul of Eve
-	[87] = {"87", "Soul of Samson", "Turn into a berserk Samson with melee attack for 10 seconds#↑ +0.4 Speed up#↑ Tears up#↑ +3 Damage up"}, -- Soul of Samson
+	[87] = {"87", "Soul of Samson", "Go berserk for 10 seconds:#↑ {{Speed}} +0.4 Speed up#↑ {{Damage}} +3 Damage up#Restricts attacks to a melee weapon#Kills while berserk increase its duration by 1 second"}, -- Soul of Samson
 	[88] = {"88", "Soul of Azazel", "{{Collectible441}} Activates Mega Blast for 7.5 seconds"}, -- Soul of Azazel
 	[89] = {"89", "Soul of Lazarus", "Die and immediately revive at half a heart with some invincibility time#Item is automatically used upon taking fatal damage (like an extra life)"}, -- Soul of Lazarus
 	[90] = {"90", "Soul of Eden", "Rerolls pedestals and pickups in current room#The rerolled items use random pools"}, -- Soul of Eden
@@ -962,7 +963,7 @@ EID.descriptions[languageCode].horsepills={
 	{"22", "Paralysis", "You can't move for 4 seconds"}, -- Paralysis
 	{"23", "I can see forever!", "{{SecretRoom}} Opens secret room entrances on current floor#Grants full mapping"}, -- I can see forever!
 	{"24", "Pheromones", "{{Charm}} Turns every enemy in the room permanently friendly"}, -- Pheromones
-	{"25", "Amnesia", "Hides the floor map"}, -- Amnesia
+	{"25", "Amnesia", "{{CurseLost}} Hides the floor map"}, -- Amnesia
 	{"26", "Lemon Party", "Spawns room filling puddle on the ground which damages enemies"}, -- Lemon Party
 	{"27", "R U a Wizard?", "Shoot diagonally for 60 seconds"}, -- R U a Wizard?
 	{"28", "Percs!", "Take only half the damage for current room"}, -- Percs!
@@ -1065,7 +1066,6 @@ EID.descriptions[languageCode].poopSpells = {
 EID.descriptions[languageCode].VoidShopText = "If absorbed right after pickup, gain:"
 EID.descriptions[languageCode].VoidOptionText = " will be absorbed instead"
 EID.descriptions[languageCode].VoidNames = {"Speed up", "Fire Rate up", "Damage up", "Range up", "Shot Speed up", "Luck up"}
-
 
 EID.descriptions[languageCode].spindownError = "Item disappears"
 
