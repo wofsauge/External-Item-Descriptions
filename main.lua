@@ -105,6 +105,7 @@ require("eid_data")
 require("eid_xmldata")
 require("eid_api")
 require("eid_modifiers")
+require("eid_holdmapdesc")
 
 -- load Repentence descriptions
 if REPENTANCE then
@@ -729,8 +730,8 @@ function EID:printBulletPoints(description, renderPos)
 end
 ---------------------------------------------------------------------------
 ----------------------------Handle New Room--------------------------------
-local isMirrorRoom = false
-local isDeathCertRoom = false
+EID.isMirrorRoom = false
+EID.isDeathCertRoom = false
 if REPENTANCE then
 	function EID:AssignFlipItems()
 		EID.flipMaxIndex = -1
@@ -748,8 +749,8 @@ if REPENTANCE then
 	end
 	function EID:onNewRoomRep()
 		local level = game:GetLevel()
-		isMirrorRoom = level:GetCurrentRoom():IsMirrorWorld()
-		isDeathCertRoom = EID:GetDimension(level) == 2
+		EID.isMirrorRoom = level:GetCurrentRoom():IsMirrorWorld()
+		EID.isDeathCertRoom = EID:GetDimension(level) == 2
 		
 		-- Handle Flip Item
 		initialItemNext = false
@@ -843,7 +844,7 @@ function EID:renderIndicator(entity, playerNum)
 	local sprite = entity:GetSprite()
 	if REPENTANCE then
 		repDiv = 255
-		if isMirrorRoom then
+		if EID.isMirrorRoom then
 			local screenCenter = EID:getScreenSize()/2
 			entityPos.X = entityPos.X - (entityPos-screenCenter).X * 2
 			arrowPos.X = arrowPos.X - (arrowPos-screenCenter).X * 2
@@ -881,7 +882,7 @@ function EID:renderIndicator(entity, playerNum)
 			EID:renderEntity(entity, sprite, entityPos)
 		end
 	end
-	if isMirrorRoom then
+	if EID.isMirrorRoom then
 		sprite.FlipX = false
 	end
 end
@@ -894,7 +895,7 @@ function EID:PositionLocalMode(entity)
 		local textBoxWidth = EID.Config["LocalModeCentered"] and tonumber(EID.Config["TextboxWidth"])/2 * EID.Scale or -30
 		local textPosOffset = Vector(-textBoxWidth, 20)
 		EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
-		if isMirrorRoom then
+		if EID.isMirrorRoom then
 			EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset * Vector(-1,0)))
 			local screenCenter = EID:getScreenSize()/2
 			EID.UsedPosition.X = EID.UsedPosition.X - (EID.UsedPosition-screenCenter).X * 2
@@ -1362,7 +1363,7 @@ local function onRender(t)
 				-- Handle Glitched Items
 				elseif closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
 					if EID:getEntityData(closest, "EID_DontHide") ~= true then
-						if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+						if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 							EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
 						end
 					end
@@ -1420,7 +1421,7 @@ local function onRender(t)
 				elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 					--Handle Collectibles
 					if EID:getEntityData(closest, "EID_DontHide") ~= true then
-						if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+						if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 							EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
 						end
 					end
@@ -1502,7 +1503,7 @@ local function onRender(t)
 		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 		demoDescObj.Name = ""
 		demoDescObj.Description = EID:getHoldMapDescription(EID.holdTabPlayer)
-		EID:addDescriptionToPrint(demoDescObj, 1)
+		if (demoDescObj.Description ~= "") then EID:addDescriptionToPrint(demoDescObj, 1) end
 	end
 	
 	EID:printDescriptions()
