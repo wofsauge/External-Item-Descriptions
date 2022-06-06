@@ -256,7 +256,7 @@ EID.descriptions[languageCode].collectibles={
 	{"234", "Infestation 2", "Spawn spiders when you kill an enemy"},
 	{"235", "", "<item does not exist>"},
 	{"236", "E. Coli", "On touch, turn enemies into poop"},
-	{"237", "Death's Touch", "Scythe tears!#↑ +1.5 Damage up#↓ -0.3 Tears down#Piercing tears"},
+	{"237", "Death's Touch", "Scythe tears!#↑ +1.5 Damage up#↑ Tear size up#↓ -0.3 Tears down#Piercing tears"},
 	{"238", "Key Piece 1", "!!! Key piece for Mega Satan door!#{{AngelChance}} 25% higher Angel Room chance"},
 	{"239", "Key Piece 2", "!!! Key piece for Mega Satan door!#{{AngelChance}} 25% higher Angel Room chance"},
 	{"240", "Experimental Treatment", "All Stats ↑/↓ a random number"},
@@ -345,7 +345,7 @@ EID.descriptions[languageCode].collectibles={
 	{"321", "Samson's Chains", "Draggable ball that can destroy rocks#Deals 10.7 contact damage per second"},
 	{"322", "Mongo Baby", "Copies the effect of one of your familiars#Deals double its damage"},
 	{"323", "Isaac's Tears", "Shoot 8 tears in all directions when used#Recharges by shooting"},
-	{"324", "Undefined", "Teleports you to the {{TreasureRoom}} Treasure, {{SecretRoom}} Secret, {{SuperSecretRoom}} Super Secret or I AM ERROR Room"},
+	{"324", "Undefined", "Teleports you to the {{TreasureRoom}} Treasure, {{SecretRoom}} Secret, {{SuperSecretRoom}} Super Secret or {{ErrorRoom}} I AM ERROR Room"},
 	{"325", "Scissors", "Cut off your head#Head turns into stationary familiar#Control your body separately"},
 	{"326", "Breath of Life", "Hold down space until chargebar is empty for invincibility#!!! Don't hold it for too long or you will start taking damage!"},
 	{"327", "The Polaroid", "Invincibility when getting hit and at half a Red Heart or none"},
@@ -440,7 +440,7 @@ EID.descriptions[languageCode].collectibles={
 	{"416", "Deep Pockets", "Allows you to carry two cards/pills/runes"},
 	{"417", "Succubus", "Bounces around the room with a damaging aura, dealing 129% of your damage every second#↑ {{Damage}} +50% Damage while standing in the aura"},
 	{"418", "Fruit Cake", "Gives you a different tear effect with every tear that you fire"},
-	{"419", "Teleport 2.0", "Teleports you to another random room that has not been cleared yet#Hierarchy: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}> Error-Room"},
+	{"419", "Teleport 2.0", "Teleports you to another random room that has not been cleared yet#Hierarchy: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"},
 	{"420", "Black Powder", "Walking in a circle will spawn a pentagram symbol on the floor, which deals 10 damage per tick"},
 	{"421", "Kidney Bean", "{{Charm}} Applies charm effect to any enemies in close range and deals 5 damage to them"},
 	{"422", "Glowing Hour Glass", "Rewind time and put you back in the previous room, in the same state you were in at that moment"},
@@ -508,7 +508,7 @@ EID.descriptions[languageCode].collectibles={
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawn a wave of rocks#Can open rooms and break rocks"},
 	{"485", "Crooked Penny", "50% chance to double all items, consumables and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"},
 	{"486", "Dull Razor", "Hurts you without damaging you#Can trigger item effects"},
-	{"487", "Potato Peeler", "Removes one Red Heart Container and gives you: #↑ {{Damage}} +0.2 Damage#{{Collectible73}} A Cube of Meat"},
+	{"487", "Potato Peeler", "Removes one Red Heart Container and gives you: #↑ {{Damage}} +0.2 Damage up#{{Collectible73}} A Cube of Meat#↑ {{Range}} +5 Range and leave a trail of blood creep for the current room"},
 	{"488", "Metronome", "Grants a random item's effect for the current room"},
 	{"489", "D Infinity", "Random dice effect each use"},
 	{"490", "Eden's Soul", "!!! SINGLE USE !!!#Spawns 2 random items depending on the current room's item pool#Starts with no charges"},
@@ -789,7 +789,7 @@ EID.descriptions[languageCode].pills={
 	{"16", "Tears Up", "↑ {{Tears}} +0.35 Tears up"},
 	{"17", "Luck Down", "↓ {{Luck}} -1 Luck down"},
 	{"18", "Luck Up", "↑ {{Luck}} +1 Luck up"},
-	{"19", "Telepills", "Teleports you to a random room#Small chance to teleport you to the I AM ERROR room"},
+	{"19", "Telepills", "Teleports you to a random room#{{ErrorRoom}} Small chance to teleport you to the I AM ERROR room"},
 	{"20", "48 Hour Energy!", "Fully recharges your active item#Drops 1-2 batteries"},
 	{"21", "Hematemesis", "Drains all but one heart container#Spawns 1-4 Red Hearts"},
 	{"22", "Paralysis", "You can't move for 2 seconds"},
@@ -882,3 +882,9 @@ EID.descriptions[languageCode].MCM = {
 	DemoObjectTransformation = "Demo Transformation",
 	DemoObjectText = "This text is in english#A very cool and long description to simulate linebreaks caused by EID textbox width!#{{Collectible4}} This is also a cool line#{{Heart}} This line loves you#{{AngelDevilChance}} This line can be your angel or your devil#\1 {{Damage}} +1 Stat Change up",
 }
+
+-- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].HoldMapHeader = " Result"
+-- includes Planetarium even though it's unused in AB+ for convenience
+EID.descriptions[languageCode].Teleport2RoomNames = { "Normal Room","Boss Room","Super Secret Room","Shop","Treasure Room","Sacrifice Room","Dice Room","Library","Curse Room","Miniboss Room","Challenge/Boss Challenge Room","Isaac's Room","Barren Room","Arcade Room","Chest Room","Planetarium","Secret Room","Special Red Room","Angel/Devil Room","I AM ERROR Room" }
+EID.descriptions[languageCode].Teleport2GreedRoomNames = { "Main Room", "Boss Room", "Shop", "Silver/Gold Treasure Room", "Curse Room", "Exit Room", "Super Secret Room", "Angel/Devil Room", "I AM ERROR Room" }
