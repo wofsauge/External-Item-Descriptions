@@ -278,6 +278,7 @@ EID.InlineIcons = {
 	["HolyChestRoomIcon"] = {"roomicons", 32, 6, 9, 0, 4},
 	["WoodenChestRoomIcon"] = {"roomicons", 33, 6, 9, 0, 4},
 	["Teleporter"] = {"roomicons", 34, 9, 9, 0, 2},
+	["ErrorRoom"] = {"roomicons", 35, 9, 9, 0, 2},
 	
 	-- Roomshape Icons
 	["Room"] = {"roomshape", 0, 10, 9, 0, 2},
@@ -292,6 +293,7 @@ EID.InlineIcons = {
 	["RoomLTopLeft"] = {"roomshape", 9, 11, 10, 0, 1},
 	["RoomLBottomLeft"] = {"roomshape", 10, 11, 10, 0, 1},
 	["RoomLBottomRight"] = {"roomshape", 11, 11, 10, 0, 1},
+	["RedRoom"] = {"roomshape", 12, 10, 9, 0, 2},
 	
 	-- Transformation Icons
 	["CustomTransformation"] = {"TransformationCustom", 0, 16, 16, -5, -1, EID.IconSprite},
@@ -370,6 +372,19 @@ EID.InlineIcons = {
 	["Crafting28"] = {"Crafting", 28, 14, 16, 0, -1},
 	["Crafting29"] = {"Crafting", 29, 14, 16, 0, -1},
 	["Crafting30"] = {"Crafting", 30, 14, 16, 0},
+	
+	--Poop Spells
+	["PoopSpell1"] = {"PoopSpells", 1, 16, 16, -2, -2}, --Normal
+	["PoopSpell2"] = {"PoopSpells", 2, 16, 16, -2, -2}, --Corn
+	["PoopSpell3"] = {"PoopSpells", 3, 16, 16, -2, -2}, --Burning
+	["PoopSpell4"] = {"PoopSpells", 4, 16, 16, -2, -2}, --Stone
+	["PoopSpell5"] = {"PoopSpells", 5, 16, 16, -2, -2}, --Stinky
+	["PoopSpell6"] = {"PoopSpells", 6, 16, 16, -2, -2}, --Black
+	["PoopSpell7"] = {"PoopSpells", 7, 16, 16, -2, -2}, --Holy
+	["PoopSpell8"] = {"PoopSpells", 8, 16, 16, -2, -2}, --Creep
+	["PoopSpell9"] = {"PoopSpells", 9, 16, 16, -2, -2}, --Fart
+	["PoopSpell10"] = {"PoopSpells", 10, 16, 16, -2, -2}, --Bomb
+	["PoopSpell11"] = {"PoopSpells", 11, 16, 16, -2, -2}, --Explosive Diarrhea
 	
 	-- Use the Stat Icon name without REP or AB to display the stat icon for the dlc the user is using right now. Example: {{Damage}}
 	-- Stats (Repentance)
