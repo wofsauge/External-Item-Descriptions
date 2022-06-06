@@ -134,7 +134,7 @@ local repCollectibles={
 	[283] = {"283", "100면 주사위", "!!! 사용 시 이하의 주사위 아이템을 모두 발동:#{{Blank}} {{Collectible476}}{{Collectible284}}{{Collectible105}}{{Collectible437}}{{Collectible406}}{{Collectible285}}{{Collectible386}}{{Collectible166}}#방 안의 아이템, 픽업 아이템, 장애물, 소지중인 아이템, 능력치를 모두 바꿉니다.#그 방을 다시 시작하며, 방 클리어 시 이전과 다른 보상이 드랍됩니다.#방 안의 픽업 아이템 중 하나를 복사합니다."}, -- D100
 	[285] = {"285", "10면 주사위", "사용 시 방 안의 모든 적을 바꿉니다.#높은 확률로 최대 체력이 비슷한 적으로 바뀝니다."}, -- D10
 	[286] = {"286", "빈 카드", "{{Card}} 사용 시 현재 소지중인 카드의 효과를 발동합니다.#카드에 따라서 충전량이 달라집니다."}, -- Blank Card
-	[287] = {"287", "비밀의 책", "사용 시 맵에 {{Collectible21}}특수방 위치, {{Collectible246}}비밀방 위치, {{Collectible54}}스테이지 구조 중 하나를 표시합니다.#맵에 이미 특수방, 비밀방, 스테이지 구조가 전부 표시되어 있는 경우 사용 시 그 스테이지에서 {{SecretRoom}}{{SuperSecretRoom}}비밀방이 자동으로 열립니다."}, -- Book of Secrets
+	[287] = {"287", "비밀의 책", "사용 시 현재 방의 색돌이나 {{LadderRoom}}사다리방이 있는 돌이 빛나며 맵에 {{Collectible21}}특수방 위치, {{Collectible246}}비밀방 위치, {{Collectible54}}스테이지 구조 중 하나를 표시합니다.#맵에 이미 특수방, 비밀방, 스테이지 구조가 전부 표시되어 있는 경우 사용 시 그 스테이지에서 {{SecretRoom}}{{SuperSecretRoom}}비밀방이 자동으로 열립니다."}, -- Book of Secrets
 	[288] = {"288", "거미 상자", "사용 시 파란 아군 거미를 4~8마리 소환합니다."}, -- Box of Spiders
 	[289] = {"289", "빨간 양초", "사용 시 공격하는 방향으로 최대 공격력 125의 불꽃을 날립니다.#불꽃은 5번 막을 때까지, 혹은 10초동안 지속됩니다."}, -- Red Candle
 	[291] = {"291", "쏴아!", "사용 시 방 안의 모든 일반 적을 똥으로 바꿉니다.#똥 타입의 몬스터 및 보스를 즉사시킵니다.#용암이 가득 찬 방을 식혀 용암이었던 구간을 지나갈 수 있게 됩니다."}, -- Flush!
@@ -171,7 +171,7 @@ local repCollectibles={
 	-- Afterbirth
 	[347] = {"347", "복시", "!!! 일회용#사용 시 방 안의 모든 아이템과 픽업 아이템을 2배로 복사합니다.#선택형 상태가 유지되며 판매 아이템의 경우 판매 가격이 제거됩니다."}, -- Diplopia
 	[348] = {"348", "위약", "{{Pill}} 사용 시 현재 소지중인 알약의 효과를 발동합니다.#알약에 따라서 충전량이 달라집니다."}, -- Placebo
-	[350] = {"350", "독성 쇼크", "{{Poison}} 방 입장 시 방 안의 모든 적에게 공격력 x2의 피해를 줍니다.#적 처치시 초록 장판이 생기며 장판에 닿은 적은 초당 30의 피해를 입습니다.#캐릭터가 독구름에 면역이 됩니다."}, -- Toxic Shock
+	[350] = {"350", "독성 쇼크", "{{Poison}} 방 입장 시 방 안의 모든 적에게 공격력 x4의 피해를 줍니다.#{{Blank}} (보스는 x2)#적 처치시 초록 장판이 생기며 장판에 닿은 적은 초당 30의 피해를 입습니다.#캐릭터가 독구름에 면역이 됩니다."}, -- Toxic Shock
 	[352] = {"352", "유리 대포", "사용 시 공격력 x10 +10의 눈물을 발사합니다.#!!! 피격 시 체력 2칸의 피해를 추가로 입으며 대포가 부서집니다.#부서진 대포의 충전량을 채우면 대포를 복구할 수 있습니다."}, -- Glass Cannon
 	[354] = {"354", "식품 완구", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +1#장신구를 하나 드랍합니다."}, -- Crack Jacks
 	[355] = {"355", "엄마의 진주목걸이", "↑ {{SoulHeart}}소울하트 +1#↑ {{RangeSmall}}사거리 +0.38#↑ {{LuckSmall}}행운 +1"}, -- Mom's Pearls
@@ -247,7 +247,7 @@ local repCollectibles={
 	[494] = {"494", "야곱의 사다리", "공격이 적에게 부딪힐 때마다 1~2개의 짧은 유도 레이저가 발사됩니다."}, -- Jacob's Ladder
 	[495] = {"495", "고스트 페퍼", "공격 시 8%의 확률로 공격력 x3 ~ x6의 불꽃을 날립니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 10 이상일 때 50% 확률"}, -- Ghost Pepper
 	[496] = {"496", "안락사", "3.33%의 확률로 공격력 3배의 적을 즉사시키며 눈물이 10방향으로 퍼지는 공격이 나갑니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 15 이상일 때 25% 확률"}, -- Euthanasia
-	[497] = {"497", "위장 속옷", "방 입장 시 방 안의 모든 적들이 혼란에 걸리며 캐릭터의 {{SpeedSmall}}이동속도 +0.5 증가합니다.#공격키를 누르면 효과가 풀리며 주변의 적에게 15의 피해를 줍니다.#동시에 1초동안 빠르게 감소하는 {{DamageSmall}}공격력 +10.5, {{TearsSmall}}연사(상한) +7.5"}, -- Camo Undies
+	[497] = {"497", "위장 속옷", "방 입장 시 방 안의 모든 적들이 혼란에 걸리며 캐릭터의 {{SpeedSmall}}이동속도 +0.5 증가합니다.#!!! 공격키를 누르면 효과가 풀리면서 이하 효과 발동:#주변의 적에게 15의 피해를 줍니다.#1초동안 매우 빠르게 감소하는 {{DamageSmall}}공격력 +10.5, {{TearsSmall}}연사(상한) +7.5"}, -- Camo Undies
 	[498] = {"498", "이중성", "{{AngelDevilChanceSmall}} 악마방과 천사방이 함께 등장하며 두 방 중 한곳을 선택할 수 있습니다."}, -- Duality
 	[501] = {"501", "탐욕의 식도", "동전 25개 당 {{EmptyHeart}}빈 최대 체력 +1#99개 이후에는 동전 100개 당 {{EmptyHeart}}빈 최대 체력 +1#{{Player14}}/{{Player33}}Keeper: 동전 25개 당 체력 상한 +1#동전으로 늘어난 체력은 동전 소비 시 사라집니다."}, -- Greed's Gullet
 	[502] = {"502", "대왕 여드름", "{{Slow}} 확률적으로 공격력 x2의 적을 둔화시키는 눈물이 나갑니다."}, -- Large Zit
@@ -837,7 +837,7 @@ local repTrinkets={
 	[170] = {"170", "수정 열쇠", "방 클리어 시 33%의 확률로 가까운 벽에 빨간방으로 가는 문이 생성됩니다.#빨간방은 일반방 또는 특수방의 구조로 생성될 수 있습니다.#빨간방 안에서는 또다른 빨간방 생성 확률이 감소합니다."}, -- Crystal Key
 	[171] = {"171", "키퍼의 흥정", "50%의 확률로 체력 거래 아이템을 동전 거래로 바꿉니다."}, -- Keeper's Bargain
 	[172] = {"172", "저주받은 동전", "동전 획득 시 랜덤한 방으로 순간이동합니다.#{{Blank}} ({{Collectible260}} 보유 시 순간이동 효과 면역)"}, -- Cursed Penny
-	[173] = {"173", "네 영혼", "!!! 일회용#체력 거래 시 체력을 소모하지 않습니다."}, -- Your Soul
+	[173] = {"173", "네 영혼", "!!! 일회용#체력 거래 시 체력 대신 장신구를 소모합니다.#!!! {{DevilRoom}}악마방/{{Collectible292}}Satanic Bible 거래 시 여전히 악마 거래로 취급됩니다."}, -- Your Soul
 	[174] = {"174", "숫자 자석", "↑ {{DevilChanceSmall}}악마방 확률 +10%#{{DevilRoom}} 악마방에서 Krampus 보스가 등장하지 않습니다.#악마방 구조가 특수하게 변경되며 악마방에서 적들과 {{BlackHeart}}블랙하트의 등장 확률 및 빈도가 높아집니다."}, -- Number Magnet
 	[175] = {"175", "이상한 열쇠", "30분이 지나도 ???(Blue Womb) 스테이지로 갈 수 있습니다.#{{Collectible297}}Pandora's Box 사용 시 장신구가 사라지며 랜덤 배열의 아이템 6개를 생성합니다."}, -- Strange Key
 	[176] = {"176", "꼬마 클롯", "캐릭터와 같이 이동하며 공격하는 방향으로 캐릭터의 공격과 같은 공격을 발사합니다."}, -- Lil Clot
@@ -853,7 +853,7 @@ local repTrinkets={
 	[186] = {"186", "아폴리온의 절친", "특수한 아군 파리를 소환합니다.#아군 파리는 공격하는 방향으로 돌진하며 접촉한 적에게 초당 공격력 x3의 피해를 줍니다."}, -- Apollyon's Best Friends
 	[187] = {"187", "깨진 안경", "33% 확률로 {{TreasureRoom}}보물방에 가려진 아이템을 추가합니다.#50% 확률로 리펜턴스 추가 스테이지 보물방의 가려진 아이템을 볼 수 있습니다."}, -- Broken Glasses
 	[188] = {"188", "얼음 큐브", "방 입장 시 20%의 확률로 랜덤한 적을 4초간 석화시킵니다.#{{Freezing}} 석화 상태의 적을 처치 시 적이 얼어붙으며 얼어붙은 적은 접촉 시 직선으로 날아가 6방향으로 고드름 눈물을 발사합니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 40 이상일 때 100% 확률"}, -- Ice Cube
-	[189] = {"189", "바포메트의 인장", "적 처치시 1초간 무적 상태가 됩니다."}, -- Sigil of Baphomet
+	[189] = {"189", "바포메트의 인장", "적 처치시 1초간 무적 상태가 됩니다.#{{Blank}} (최대 5초)"}, -- Sigil of Baphomet
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
 
@@ -882,15 +882,15 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 
 ---------- Cards ----------
 local repCards={
-	[2] = {"2", "I - 마법사", "그 방에서 {{RangeSmall}}사거리가 +3 증가하며 공격이 적에게 유도됩니다."}, -- Telepathy For Dummies
-	[12] = {"12", "XI - 힘", "그 방에서 {{Heart}}최대 체력 +1, {{DamageSmall}}공격력 +0.3, {{DamageSmall}}공격력 배율 +50%, {{RangeSmall}}사거리 +1.5, {{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
+	[2] = {"2", "I - 마법사", "{{Collectible192}} 그 방에서 {{RangeSmall}}사거리가 +3 증가하며 공격이 적에게 유도됩니다."}, -- Telepathy For Dummies
+	[12] = {"12", "XI - 힘", "{{Collectible12}} 그 방에서 이하 효과 발동:#↑ {{Heart}}최대 체력 +1#↑ {{DamageSmall}}공격력 +0.3#↑ {{DamageSmall}}공격력 배율 +50%#↑ {{RangeSmall}}사거리 +1.5#↑ {{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
 	[18] = {"18", "XVII - 별", "{{TreasureRoom}}보물방으로 순간이동합니다.#!!! 스테이지에 천체관이 있으면 {{Planetarium}}천체관으로 순간이동합니다."}, -- XVII - The Stars
 	[27] = {"27", "클로버 A", "방 안의 모든 적과 픽업을 {{Bomb}}폭탄으로 바꿉니다."}, -- Ace of Clubs
 	[28] = {"28", "다이아 A", "방 안의 모든 적과 픽업을 {{Coin}}동전으로 바꿉니다."}, -- Ace of Diamonds
 	[29] = {"29", "스페이드 A", "방 안의 모든 적과 픽업을 {{Key}}열쇠로 바꿉니다."}, -- Ace of Spades
 	[30] = {"30", "하트 A", "방 안의 모든 적과 픽업을 {{Heart}}하트로 바꿉니다."}, -- Ace of Hearts
-	[34] = {"34", "에와즈", "다음 스테이지로 가는 다락문을 생성합니다.#{{LadderRoom}} 치장성 타일(풀, 돌 조각 등) 위에 사용 시 사다리방으로 가는 다락문을 생성합니다.(스테이지 당 1회)"}, -- Ehwaz
-	[39] = {"39", "알기즈", "20초동안 무적 상태가 됩니다."}, -- Algiz
+	[34] = {"34", "에와즈", "{{Collectible84}} 다음 스테이지로 가는 다락문을 생성합니다.#{{LadderRoom}} 치장성 타일(풀, 돌 조각 등) 위에 사용 시 사다리방으로 가는 다락문을 생성합니다.(스테이지 당 1회)"}, -- Ehwaz
+	[39] = {"39", "알기즈", "{{Collectible58}} 20초동안 무적 상태가 됩니다."}, -- Algiz
 	[40] = {"40", "비어있는 룬", "{{Rune}} 랜덤한 룬 효과를 발동합니다."}, -- Blank Rune
 	[44] = {"44", "규칙 카드", "게임에 관한 문장을 화면에 출력합니다."}, -- Rules Card
 	[51] = {"51", "신성한 카드", "{{HolyMantle}} 피격 시 피해를 1회 무시하는 방어막을 제공합니다.#이 방어막은 중첩되지 않으며 피격 시까지 유지됩니다."}, -- Holy Card
@@ -899,46 +899,46 @@ local repCards={
 	[55] = {"55", "룬 조각", "랜덤한 룬 효과를 발동합니다.#발동되는 룬의 효과는 기존의 열화판의 형태로 발동됩니다."}, -- Rune Shard
 	[56] = {"56", "0 - 바보?", "소지중인 하트와 픽업 아이템을 모두 드랍합니다."}, -- 0 - The Fool?
 	[57] = {"57", "I - 마법사?", "1분간 적과 탄환이 캐릭터에게 가까이 가지 못합니다."}, -- I - The Magician?
-	[58] = {"58", "II - 여교황?", "1분간 {{Collectible550}}Broken Shovel 소지 효과 발동:#일정 간격으로 캐릭터의 위치에 엄마발이 두개씩 떨어집니다."}, -- II - The High Priestess?
+	[58] = {"58", "II - 여교황?", "{{Collectible550}} 1분간 일정 간격으로 캐릭터의 위치에 엄마발이 두개씩 떨어집니다."}, -- II - The High Priestess?
 	[59] = {"59", "III - 여제?", "1분간 {{Heart}}최대 체력 +2, {{TearsSmall}}연사 +1.35"}, -- III - The Empress?
 	[60] = {"60", "IV - 황제?", "(현재층 +2)의 스테이지의 보스가 있는 {{BossRoom}}보스방으로 순간이동합니다."}, -- IV - The Emperor?
 	[61] = {"61", "V - 교황?", "{{EmptyBoneHeart}}뼈하트를 2개 드랍합니다."}, -- V - The Hierophant?
-	[62] = {"62", "VI - 연인?", "{{Collectible642}}Magic Skin 효과 발동:#사용 시 최대 체력 1칸 또는 소울하트 2칸을 소모하고 {{BrokenHeart}}소지 불가능 체력을 1칸 추가하며 그 방의 아이템을 하나 생성합니다.#{{Blank}} (이 카드 사용 시에도 아이템이 Magic Skin으로 대체되지 않음)"}, -- VI - The Lovers?
+	[62] = {"62", "VI - 연인?", "{{Collectible642}} 사용 시 최대 체력 1칸 또는 소울하트 2칸을 소모하고 {{BrokenHeart}}소지 불가능 체력을 1칸 추가하며 그 방의 아이템을 하나 생성합니다.#{{Blank}} (이 카드 사용 시에도 아이템이 Magic Skin으로 대체되지 않음)"}, -- VI - The Lovers?
 	[63] = {"63", "VII - 전차?", "10초간 {{TearsSmall}}연사가 4배 증가하고 무적 상태가 되며 움직일 수 없습니다."}, -- VII - The Chariot?
 	[64] = {"64", "VIII - 정의?", "{{GoldenChest}} 황금상자를 2~4개 생성합니다."}, -- VIII - Justice?
 	[65] = {"65", "IX - 은둔자?", "방 안의 아이템과 픽업 아이템을 없애고 없앤 아이템의 가격만큼 {{Coin}}동전을 드랍합니다."}, -- IX - The Hermit?
 	[66] = {"66", "X - 운명의 수레바퀴?", "랜덤한 주사위방 효과를 발동합니다."}, -- X - Wheel of Fortune?
 	[67] = {"67", "XI - 힘?", "{{Weakness}} 1분간 그 방에서 적의 속도가 느려지며 적에게 주는 피해량이 2배 증가합니다."}, -- XI - Strength?
 	[68] = {"68", "XII - 매달린 남자?", "30초간 공격이 3발로 나가며 적 처치시 {{Coin}}동전을 드랍합니다."}, -- XII - The Hanged Man?
-	[69] = {"69", "XIII - 죽음?", "{{Collectible545}}Book of the Dead 효과 발동:#방에서 죽인 적의 수만큼 일회용 뼛조각 배리어를 생성하며 확률적으로 아군 해골 적을 소환합니다."}, -- XIII - Death?
+	[69] = {"69", "XIII - 죽음?", "{{Collectible545}} 방에서 죽인 적의 수만큼 일회용 뼛조각 배리어를 생성하며 확률적으로 아군 해골 적을 소환합니다."}, -- XIII - Death?
 	[70] = {"70", "XIV - 절제?", "5개의 랜덤한 {{Pill}}알약을 사용합니다."}, -- XIV - Temperance?
 	[71] = {"71", "XV - 악마?", "{{Collectible33}}The Bible을 사용하며 30초간 비행 상태가 되고 {{Collectible390}}Seraphim 패밀리어를 소환합니다."}, -- XV - The Devil?
 	[72] = {"72", "XVI - 탑?", "장애물로 구성된 랜덤한 구조를 6번 생성합니다.#각 구조 당 확률적으로 색돌이 생성됩니다."}, -- XVI - The Tower?
 	[73] = {"73", "XVII - 별?", "가장 먼저 획득한 패시브 아이템을 제거하고 그 방의 아이템을 2개 생성합니다."}, -- XVII - The Stars?
 	[74] = {"74", "XVIII - 달?", "{{UltraSecretRoom}}붉은 특급 비밀방으로 순간이동합니다."}, -- XVIII - The Moon?
-	[75] = {"75", "XIX - 해?", "그 스테이지에서 {{DamageSmall}}공격력이 +1.5 증가하며 비행 상태가 되고 공격이 장애물을 관통합니다.#그 스테이지에서 최대 체력이 {{BoneHeart}}뼈하트로 바뀌며 Darkness 저주에 걸립니다.#뼈하트로 바뀐 최대 체력은 다음 스테이지 이동 시 복원됩니다."}, -- XIX - The Sun?
+	[75] = {"75", "XIX - 해?", "그 스테이지에서 {{DamageSmall}}공격력이 +1.5 증가하며 비행 상태가 되고 공격이 장애물을 관통합니다.#그 스테이지에서 최대 체력이 {{BoneHeart}}뼈하트로 바뀌며 캐릭터 주변이 어두워집니다.#뼈하트로 바뀐 최대 체력은 다음 스테이지 이동 시 복원됩니다."}, -- XIX - The Sun?
 	[76] = {"76", "XX - 심판?", "재입고 기계를 생성합니다."}, -- XX - Judgement?
 	[77] = {"77", "XXI - 세계?", "{{LadderRoom}}사다리방으로 가는 다락문을 생성합니다."}, -- XXI - The World?
-	[78] = {"78", "깨진 열쇠", "{{Collectible580}}Red Key 효과 발동:#빨간문 테두리 근처에서 사용 시 빨간방으로 가는 문이 생성됩니다.#빨간방은 일반방 또는 특수방의 구조로 생성될 수 있습니다."}, -- Cracked Key
-	[79] = {"79", "하트 Q", "{{Heart}}빨간하트를 1~20개 드랍합니다."}, -- Queen of Hearts
+	[78] = {"78", "깨진 열쇠", "{{Collectible580}} 빨간문 테두리 근처에서 사용 시 빨간방으로 가는 문이 생성됩니다.#빨간방은 일반방 또는 특수방의 구조로 생성될 수 있습니다."}, -- Cracked Key
+	[79] = {"79", "하트 Q", "{{Heart}} 빨간하트를 1~20개 드랍합니다."}, -- Queen of Hearts
 	[80] = {"80", "와일드 카드", "마지막으로 사용한 카드, 알약, 룬 또는 액티브 아이템의 효과를 발동합니다."}, -- Wild Card
 	[81] = {"81", "아이작의 영혼", "방 안의 모든 아이템이 랜덤한 아이템과 1초마다 전환되며 두 아이템 중 하나를 선택할 수 있습니다."}, -- Soul of Isaac
 	[82] = {"82", "막달레나의 영혼", "그 방에서 적 처치시 1.5초 후 사라지는 {{Heart}}빨간하트를 드랍합니다."}, -- Soul of Magdalene
 	[83] = {"83", "카인의 영혼", "{{Collectible175}}Dad's Key + {{Collectible580}}Red Key 효과 발동:#방 안의 닫혀있는 문을 열며 가능한 경우 방의 각 면의 빨간방으로 가는 문을 모두 엽니다."}, -- Soul of Cain
-	[84] = {"84", "유다의 영혼", "{{Collectible705}}Dark Arts 효과 발동:#1초간 {{SpeedSmall}}이동속도가 +1.0 증가하고 무적 상태가 되며 적과 탄환을 통과할 수 있습니다.#효과가 끝나면 통과한 적들에게 공격력 x3의 피해를 주며 통과한 수만큼 일시적으로 {{DamageSmall}}공격력이 +1 증가합니다."}, -- Soul of Judas
+	[84] = {"84", "유다의 영혼", "{{Collectible705}} 1초간 {{SpeedSmall}}이동속도가 +1.0 증가하고 무적 상태가 되며 적과 탄환을 통과할 수 있습니다.#효과가 끝나면 통과한 적들에게 공격력 x3의 피해를 주며 통과한 수만큼 일시적으로 {{DamageSmall}}공격력이 +1 증가합니다."}, -- Soul of Judas
 	[85] = {"85", "???의 영혼", "독방귀를 8번 뀌고 7개의 똥폭탄을 생성합니다."}, -- Soul of ???
 	[86] = {"86", "이브의 영혼", "그 방에서 {{Collectible117}}Dead Bird 패밀리어를 14마리 소환합니다.#Dead Bird는 적을 따라다니며 접촉한 적에게 초당 4의 피해를 입힙니다."}, -- Soul of Eve
-	[87] = {"87", "삼손의 영혼", "10초간 {{DamageSmall}}공격력이 +3, {{SpeedSmall}}이동속도가 +0.4 증가하며 공격이 공격력 x3의 휘두르는 뼈 공격으로 변경됩니다."}, -- Soul of Samson
-	[88] = {"88", "아자젤의 영혼", "7.5초 동안 초당 공격력 x15의 {{Collectible441}}대형 혈사포를 발사합니다."}, -- Soul of Azazel
-	[89] = {"89", "나사로의 영혼", "사용 시 사망하며 그 자리에서 체력 0.5칸으로 부활합니다#사망 시 자동으로 사용됩니다."}, -- Soul of Lazarus
+	[87] = {"87", "삼손의 영혼", "{{Collectible704}} 10초간 {{DamageSmall}}공격력이 +3, {{SpeedSmall}}이동속도가 +0.4 증가하며 공격이 공격력 x3의 휘두르는 뼈 공격으로 변경됩니다."}, -- Soul of Samson
+	[88] = {"88", "아자젤의 영혼", "{{Collectible441}} 7.5초 동안 초당 공격력 x15의 대형 혈사포를 발사합니다."}, -- Soul of Azazel
+	[89] = {"89", "나사로의 영혼", "사용 시 사망하며 그 자리에서 체력 반칸으로 부활합니다#소지한 상태에서 사망 시 자동으로 사용됩니다."}, -- Soul of Lazarus
 	[90] = {"90", "에덴의 영혼", "방 안의 모든 아이템과 픽업 아이템을 다른 아이템으로 바꿉니다.#바뀐 아이템의 배열은 랜덤으로 결정됩니다."}, -- Soul of Eden
 	[91] = {"91", "로스트의 영혼", "그 방에서 캐릭터가 The Lost 캐릭터로 바뀝니다.#체력 거래를 무료로 할 수 있으나 나머지 거래 아이템이 사라집니다.#Mausoleum/Gehenna 스테이지를 체력 소모 없이 진입할 수 있습니다."}, -- Soul of the Lost
 	[92] = {"92", "릴리스의 영혼", "랜덤한 패밀리어를 하나 획득합니다.#고유 패밀리어는 중복으로 획득할 수 없습니다."}, -- Soul of Lilith
 	[93] = {"93", "키퍼의 영혼", "{{Coin}}동전을 1~25개 드랍합니다."}, -- Soul of the Keeper
 	[94] = {"94", "아폴리온의 영혼", "랜덤한 효과의 아군 파리를 15마리 소환합니다."}, -- Soul of Apollyon
-	[95] = {"95", "포가튼의 영혼", "그 방에서 뼈하트 2개를 가진 The Forgotten 캐릭터가 2p 플레이어로 소환됩니다."}, -- Soul of the Forgotten
-	[96] = {"96", "베서니의 영혼", "불꽃 패밀리어를 6마리 소환합니다."}, -- Soul of Bethany
-	[97] = {"97", "야곱과 에서의 영혼", "그 방에서 최대 체력 1칸, 소울하트 1칸을 가진 Esau 캐릭터가 2p 플레이어로 소환됩니다.#소환된 Esau 캐릭터는 캐릭터가 소지한 패시브 개수만큼의 새로운 패시브 아이템을 획득합니다."}, -- Soul of Jacob and Esau
+	[95] = {"95", "포가튼의 영혼", "그 방에서 뼈하트 3개를 가진 The Forgotten 캐릭터가 2p 플레이어로 소환됩니다."}, -- Soul of the Forgotten
+	[96] = {"96", "베서니의 영혼", "Book of Virtues의 랜덤 불꽃 패밀리어를 6마리 소환합니다."}, -- Soul of Bethany
+	[97] = {"97", "야곱과 에서의 영혼", "그 방에서 최대 체력 1칸, 소울하트 1칸을 가진 Esau 캐릭터가 2p 플레이어로 소환됩니다.#소환된 Esau 캐릭터는 사용한 캐릭터가 소지한 패시브 개수만큼의 새로운 패시브 아이템을 획득합니다."}, -- Soul of Jacob and Esau
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
@@ -963,7 +963,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[16] = "효과 2배", -- The Devil
 	[17] = "효과 2배", -- The Tower
 	[18] = "보물방에 입장하지 않았을 때 사용시 보물방에 아이템이 한개 더 추가되며 하나를 선택하면 나머지는 사라집니다.", -- The Stars
-	[20] = " {{DamageSmall}}공격력 2배", -- The Sun
+	[20] = "적에게 주는 피해량 2배", -- The Sun
 	[21] = "효과 2배", -- The Judgement
 	[56] = "소지중인 아이템 중 랜덤한 6개의 아이템을 추가로 내려놓습니다.", -- The Fool Reverse
 	[59] = "증가되는 최대 체력 +1", -- The Empress Reverse
@@ -974,7 +974,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[66] = "효과 2배", -- The Wheel of Fortune Reverse
 	[68] = "지속시간 2배", -- The Hanged Man Reverse
 	[70] = "사용하는 알약의 개수 x2", -- The Temperance Reverse
-	[72] = "생성되는 장애물의 구조 14번으로 증가", -- The Tower Reverse
+	[72] = "생성되는 장애물의 구조 개수 14회로 증가", -- The Tower Reverse
 	[73] = "효과 2배", -- The Stars Reverse
 	[76] = "효과 2배", -- The Judgement Reverse
 }
@@ -1121,6 +1121,20 @@ local repDiceEffects = {
 }
 EID:updateDescriptionsViaTable(repDiceEffects, EID.descriptions[languageCode].dice)
 
+EID.descriptions[languageCode].poopSpells = {
+	{"일반 똥", "{{Throwable}} 일반 똥을 던집니다."},
+	{"옥수수 똥", "{{Throwable}} 똥이 있는 동안 자폭 파리를 최대 3마리까지 소환합니다."},
+	{"불타는 똥", "{{Throwable}} 똥에 닿은 적의 접촉 피해를 입습니다.#파괴 시 불을 남깁니다."},
+	{"딱딱한 똥", "{{Throwable}} 투척 시 적에게 3배의 피해를 줍니다.#다른 똥에 비해 내구성이 높습니다."},
+	{"녹색 똥", "독방귀를 뀝니다.#!!! 독방귀에 불이 닿을 시 즉시 폭발합니다."},
+	{"검은 똥", "{{Throwable}} 던지는 방향에 적을 느려지게 하는 장판을 깝니다.#{{Confusion}} 파괴 시 방 안의 모든 적에게 10의 피해를 주고 4초간 혼란시킵니다."},
+	{"성스러운 똥", "{{Throwable}} {{Collectible543}}오라 안에 있을 시 이하 효과 적용:#↑ {{Damage}}공격력 배율 x1.2#↑ {{Tears}}연사 배율 x1.5#유도 눈물을 발사합니다.#일정 확률로 피해를 막아줍니다."},
+	{"갈색 방울", "잠시동안 바닥에 설사 장판을 깝니다.#설사 장판에 서 있을 시 {{Damage}}공격력 및 {{Tears}}연사 증가#다른 똥이 설사 장판에 있으면 추가 효과를 부여합니다."},
+	{"방귀", "사용 시 방귀를 뀌어 주변의 적을 밀쳐내며 독방귀를 뀝니다.#!!! 독방귀에 불이 닿을 시 즉시 폭발합니다."},
+	{"폭탄", "{{Throwable}} 폭탄을 던질 수 있습니다."},
+	{"폭탄 설사", "캐릭터의 위치에 점화된 폭탄 5개를 생성합니다."},
+}
+
 EID.descriptions[languageCode].VoidShopText = "아이템을 드는 도중 흡수 시 이하 능력치 증가:"
 EID.descriptions[languageCode].VoidOptionText = " 아이템이 대신 흡수됨"
 
@@ -1143,7 +1157,7 @@ EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
 EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."
 EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune 충전량:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo 충전량:"
-EID.descriptions[languageCode].FlipItemToggleInfo = "( {{ButtonSelect}} (맵 펼치기) 버튼을 꾹 눌러 설명 보기)"
+EID.descriptions[languageCode].FlipItemToggleInfo = "( {{CONFIG_BoC_Toggle}} (맵 펼치기) 버튼을 꾹 눌러 설명 보기)"
 
 EID.descriptions[languageCode].FalsePHDHeart = "{{BlackHeart}}블랙하트 1개 드랍"
 EID.descriptions[languageCode].FalsePHDDamage = "{{DamageSmall}}공격력 +0.6"
