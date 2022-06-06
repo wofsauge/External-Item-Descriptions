@@ -62,32 +62,7 @@ function EID:CheckPlayersCollectibles()
 	end
 end
 
-local holdMapDesc = ""
-local function appendToMapDesc(icon, title, newDesc)
-	holdMapDesc = holdMapDesc .. "#" .. (icon or "{{Blank}}") .. " {{ColorEIDObjName}}" .. title .. "#" .. newDesc
-end
-
-function EID:getHoldMapDescription(player)
-	holdMapDesc = ""
-	
-	-- Tainted ??? Poop Preview
-	local nextPoop = player:GetPoopSpell(0)
-	if player:GetPoopMana() > 0 then
-		local poopInfo = EID:getDescriptionEntry("poopSpells")
-		appendToMapDesc(nil, poopInfo[nextPoop][1], poopInfo[nextPoop][2])
-	end
-	
-	-- Active Item Description	
-	local heldActive = player:GetActiveItem()
-	if heldActive > 0 then
-		local demoDescObj = EID:getDescriptionObj(5, 100, heldActive)
-		appendToMapDesc("{{Collectible"..heldActive.."}}", demoDescObj.Name, demoDescObj.Description)
-	end
-	
-	return holdMapDesc
-end
-
--- Handle description changes that occur while holding Map, and the Hold Map Helper (name pending)
+-- Handle description changes that occur while holding Map
 local function TabCallback(descObj)
 	if EID.TabPreviewID == 0 then return descObj end
 	EID.TabDescThisFrame = true
