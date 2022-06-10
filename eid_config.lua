@@ -281,7 +281,38 @@ EID.UserConfig = {
 	-- Toggle display of what stats will increase on Void absorption
 	-- Default = false
 	["DisplayVoidStatInfo"] = false,
-
+	
+	---------- Item Reminder Description ------------
+	--Hold Map (or the button action chosen below) to show a description of your active item's effect, recently picked up items, and things like Teleport 2.0's destination and Void's absorbed items
+	["ItemReminderEnabled"] = true,
+	-- Set the keybinding that's held to show the Item Reminder description, Flip/Spindown Dice preview descriptions, and interacting with the Bag of Crafting recipe list
+	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
+	-- Default = ButtonAction.ACTION_MAP
+	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
+	-- Show recently acquired item descriptions in the Item Reminder (good for Curse of the Blind!)
+	-- Default = 1
+	["ItemReminderShowRecentItem"] = 1,
+	-- Show your active item description(s) in the Item Reminder
+	-- Default = 1, max = 2
+	["ItemReminderShowActiveDesc"] = 1,
+	-- Show your pocket item (card, pill, active) description in the Item Reminder
+	-- Default = 1, max = 4 (2 in AB+)
+	["ItemReminderShowPocketDesc"] = 1,
+	-- Show your trinket description(s) in the Item Reminder
+	-- Default = 2, max = 2
+	["ItemReminderShowTrinketDesc"] = 2,
+	-- Show your next Poop Spell's description in the Item Reminder
+	-- REPENTANCE ONLY!!!
+	-- Default = 1, max = 6
+	["ItemReminderShowPoopDesc"] = 1,
+	-- Items that grant you items without saying what they are (like Zodiac, Liberty Cap) can have their current granted item revealed in the Item Reminder
+	-- Default = false
+	["ItemReminderShowHiddenInfo"] = false,
+	-- Some items (like Crooked Penny) can have their next result predicted and shown in the Item Reminder
+	-- Default = false
+	["ItemReminderShowRNGCheats"] = false,
+	
+	
 	---------- Bag of Crafting ------------
 
 	-- REPENTANCE ONLY!!!
@@ -315,10 +346,6 @@ EID.UserConfig = {
 	-- Higher numbers will cause lag spikes on new pickup sets!
 	-- Default = 400
 	["BagOfCraftingRandomResults"] = 400,
-	-- Set the keybinding that's held to show the Item Reminder description, Flip/Spindown Dice preview descriptions, and interacting with the Bag of Crafting recipe list
-	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
-	-- Default = ButtonAction.ACTION_MAP
-	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	-- Display craftable item names, moving the recipe to a new line
 	-- Default = false
 	["BagOfCraftingDisplayNames"] = false,
@@ -492,7 +519,6 @@ EID.DefaultConfig = {
 	["BagOfCraftingResults"] = 7,
 	["BagOfCraftingCombinationMax"] = 12,
 	["BagOfCraftingRandomResults"] = 400,
-	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["BagOfCraftingDisplayNames"] = false,
 	["BagOfCraftingDisplayIcons"] = false,
 	["BagOfCraftingHideInBattle"] = true,
@@ -502,6 +528,17 @@ EID.DefaultConfig = {
 	["CraftingHideButton"] = -1,
 	["CraftingResultKey"] = Keyboard.KEY_F4,
 	["CraftingResultButton"] = -1,
+	
+	["ItemReminderEnabled"] = true,
+	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
+	["ItemReminderShowRecentItem"] = 1,
+	["ItemReminderShowActiveDesc"] = 1,
+	["ItemReminderShowPocketDesc"] = 1,
+	["ItemReminderShowTrinketDesc"] = 2,
+	["ItemReminderShowPoopDesc"] = 1,
+	["ItemReminderShowHiddenInfo"] = false,
+	["ItemReminderShowRNGCheats"] = false,
+	
 	["SpindownDiceResults"] = 3,
 	["SpindownDiceDisplayID"] = false,
 	["SpindownDiceDisplayName"] = false,
