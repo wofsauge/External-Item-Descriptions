@@ -1497,9 +1497,8 @@ local function onRender(t)
 	end
 	
 	-- handle showing the Hold Map Helper description
-	if EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
-		--hey wait, Esau's getting screwed by how we're handling holdTabPlayer right now
-		--also, have we done anything that makes AB+ get angry?
+	if EID.Config["ItemReminderEnabled"] and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
+		--have we done anything that makes AB+ get angry? still need to test AB+!
 		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 		demoDescObj.Name = ""
 		demoDescObj.Description = EID:getHoldMapDescription(EID.holdTabPlayer)
