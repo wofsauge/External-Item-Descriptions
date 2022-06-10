@@ -62,8 +62,13 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	
 	-- TODO: "you just picked up" desc (great for curse of blind)
 	-- D1, crooked penny cheats. 404/liberty cap/etc. "what item is it"
-	-- pandora's box? it shows the whole desc which is kinda useful 
+	-- pandora's box? it shows the whole desc which is kinda useful
+	-- Void's absorbed items list
+	-- Luna beam effect?
+	-- D Infinity current dice; track our Drop presses and resync it each time D Infinity is used by watching for the next dice effect triggered (Predict its next dice in AB+?)
 	
+	
+	-- test how this works in co-op when co-op baby holds map! they should be ignored!
 	
 	if REPENTANCE then
 		-- Sanguine Bond reward reminder
@@ -71,7 +76,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			local spikes = currentRoom:GetGridEntity(67)
 			local cheatResult = nil
 			-- we haven't made the setting for this stuff yet
-			if spikes and EID.TheSettingThatAllowsCheating then
+			if spikes and EID.Config["ItemReminderShowRNGCheats"] then
 				local spikeSeed = currentRoom:GetGridEntity(67):GetRNG():GetSeed()
 				spikeSeed = RNGNext(spikeSeed, 5, 9, 7)
 				spikeSeed = RNGNext(spikeSeed, 1, 5, 0x13)
@@ -98,11 +103,14 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			holdMapDesc = holdMapDesc .. append("{{Collectible692}}", descObj.Name, resultsDesc)
 		end
 		
-		-- Tainted ??? Poop Preview
-		local nextPoop = player:GetPoopSpell(0)
-		if player:GetPoopMana() > 0 then
-			local poopInfo = EID:getDescriptionEntry("poopSpells")
-			holdMapDesc = holdMapDesc .. append("{{PoopSpell" .. nextPoop .. "}}", poopInfo[nextPoop][1], poopInfo[nextPoop][2])
+		-- Tainted ??? Poop Descriptions
+		if EID.Config["ItemReminderShowPoopDesc"] > 0 and player:GetPlayerType() == 25 then
+			activeBlacklist[715] = true --blacklist Hold
+			for i = 0, EID.Config["ItemReminderShowPoopDesc"]-1 do
+				local poopInfo = EID:getDescriptionEntry("poopSpells")
+				local nextPoop = player:GetPoopSpell(i)
+				holdMapDesc = holdMapDesc .. append("{{PoopSpell" .. nextPoop .. "}}", poopInfo[nextPoop][1], poopInfo[nextPoop][2])
+			end
 		end
 	end
 	
@@ -112,11 +120,58 @@ function EID:getHoldMapDescription(player, checkingTwin)
 		activeBlacklist[CollectibleType.COLLECTIBLE_TELEPORT_2] = true
 	end
 	
-	-- Active Item Description	
-	local heldActive = player:GetActiveItem()
-	if heldActive > 0 and not activeBlacklist[heldActive] then
-		local demoDescObj = EID:getDescriptionObj(5, 100, heldActive)
-		holdMapDesc = holdMapDesc .. append("{{Collectible"..heldActive.."}}", demoDescObj.Name, demoDescObj.Description)
+	--TODO: RECENT ITEMS TRACKING (reset per room clear? or just use timestamps?)
+	
+	-- Active Item Descriptions
+	if EID.Config["ItemReminderShowActiveDesc"] > 0 then
+		for i = 0, EID.Config["ItemReminderShowActiveDesc"]-1 do
+			local heldActive = player:GetActiveItem(i)
+			if heldActive > 0 and not activeBlacklist[heldActive] then
+				local demoDescObj = EID:getDescriptionObj(5, 100, heldActive)
+				holdMapDesc = holdMapDesc .. append("{{Collectible"..heldActive.."}}", demoDescObj.Name, demoDescObj.Description)
+			end
+		end
+	end
+	
+	-- Pocket Item Descriptions
+	-- Annoying because there's no easy way to just get the info of a slot
+	if EID.Config["ItemReminderShowPocketDesc"] > 0 then
+		local numPrinted = 0
+		-- I don't think we can actually know what slot the player is on, so, save these to display (if they exist) for when Card and Pill in a slot are both 0, to attempt to always show them in slot order
+		local dicePrinted = false
+		local diceBag = REPENTANCE and player:GetActiveItem(3) or 0
+		local pocketPrinted = false
+		local pocketActive = REPENTANCE and player:GetActiveItem(2) or 0
+		for i = 0, EID.Config["ItemReminderShowPocketDesc"]-1 do
+			local heldCard = player:GetCard(i)
+			local heldPill = player:GetPill(i)
+			if heldCard > 0 then
+				-- Get the card desc
+			elseif heldPill > 0 then
+				-- Get the pill effect
+			elseif diceBag > 0 and not activeBlacklist[diceBag] and not dicePrinted then
+				dicePrinted = true
+				local demoDescObj = EID:getDescriptionObj(5, 100, diceBag)
+				holdMapDesc = holdMapDesc .. append("{{Trinket154}}", demoDescObj.Name, demoDescObj.Description)
+			elseif pocketActive > 0 and not activeBlacklist[heldActive] and not pocketPrinted then
+				pocketPrinted = true
+				local demoDescObj = EID:getDescriptionObj(5, 100, pocketActive)
+				holdMapDesc = holdMapDesc .. append("{{Collectible"..pocketActive.."}}", demoDescObj.Name, demoDescObj.Description)
+				-- we'll have to add tainted char specific text for their actives with unique effects for that character!
+			end
+		end
+	end
+	
+	-- Trinket Descriptions
+	if EID.Config["ItemReminderShowTrinketDesc"] > 0 then
+		for i = 0, EID.Config["ItemReminderShowTrinketDesc"]-1 do
+			local heldActive = player:GetTrinket(i)
+			if heldActive > 0 and not activeBlacklist[heldActive] then
+				-- test this with golden trinkets / mom's box!!!
+				local demoDescObj = EID:getDescriptionObj(5, 350, heldActive)
+				holdMapDesc = holdMapDesc .. append("{{Trinket"..heldActive.."}}", demoDescObj.Name, demoDescObj.Description)
+			end
+		end
 	end
 	
 	--
