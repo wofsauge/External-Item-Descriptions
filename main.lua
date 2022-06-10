@@ -762,6 +762,8 @@ end
 
 -- On new room, save the status of any variables that need to be rewound upon Glowing Hourglass usage
 function EID:onNewRoom()
+	EID.RecentlyTouchedItems = {}
+
 	local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 	preHourglassStatus = {}
 	
