@@ -1342,7 +1342,7 @@ local function onRender(t)
 				inRangeEntities = { EID.lastDescriptionEntity }
 			end
 			-- Only display the indicator for the primary (closest / crafting) description
-			if EID.lastDescriptionEntity and not displayedCrafting then
+			if EID.lastDescriptionEntity then
 				EID:renderIndicator(EID.lastDescriptionEntity, EID.controllerIndexes[player.ControllerIndex] or 1)
 				table.insert(EID.CachedIndicators, {EID.lastDescriptionEntity, EID.controllerIndexes[player.ControllerIndex]})
 			end
@@ -1353,7 +1353,7 @@ local function onRender(t)
 				if EID.Config["EnableEntityDescriptions"] and EID:getEntityData(closest, "EID_Description") then
 					local desc = EID:getEntityData(closest, "EID_Description")
 					local origDesc = EID:getDescriptionObjByEntity(closest)
-					if type(desc) == "table" then
+					if desc ~= nil and type(desc) == "table" then
 						origDesc.Description = desc.Description or origDesc.Description
 						origDesc.Name = desc.Name or origDesc.Name
 						origDesc.Transformation = desc.Transformation or origDesc.Transformation
