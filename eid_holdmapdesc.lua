@@ -32,7 +32,8 @@ local function teleport2Prediction(holdMapDesc)
 		local room = rooms:Get(i)
 		
 		if not room.Clear then
-			if room.Data.Type ~= 1 and room.Flags & 1024 == 1024 then unclearedTypes[666] = true
+			-- Check for Special Red Rooms, which get ordered differently than their non-red version
+			if REPENTANCE and room.Data.Type ~= 1 and room.Flags & 1024 == 1024 then unclearedTypes[666] = true
 			else unclearedTypes[room.Data.Type] = true end
 		end
 	end
@@ -125,6 +126,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	-- Show Hidden Info
 	if EID.Config["ItemReminderShowHiddenInfo"] then
 		-- Rainbow Worm
+		-- should move this down to the normal trinket displaying code?
 		if player:HasTrinket(64) then
 			trinketBlacklist[64] = true
 			local rainbowWormEffect = rainbowWormEffects[math.floor(game.TimeCounter / 30 / 3) % (REPENTANCE and 10 or 8)]
@@ -135,7 +137,8 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			end
 		end
 		-- 404 Error (And any other temporary trinket givers, such as Glitched Items)
-		if player:HasTrinket(75) then
+		-- Unfortunately, HasTrinket can't differentiate between real and fake trinkets in AB+
+		if REPENTANCE and player:HasTrinket(75) then
 			trinketBlacklist[75] = true
 			-- Don't display Mysterious Paper's 1-frame temporary trinket granting
 			local hasPaper = player:HasTrinket(21)
