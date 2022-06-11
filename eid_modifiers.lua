@@ -481,6 +481,8 @@ if REPENTANCE then
 	
 	-- Handle co-op players seeing different pill effects
 	local function CoopPillCallback(descObj)
+		-- Don't do this check when holding Tab for pill effects
+		if not descObj.Entity then return descObj end
 		local printedDescs = { [descObj.Name] = true }
 		
 		for i = 1,#EID.coopAllPlayers do
