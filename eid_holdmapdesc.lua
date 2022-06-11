@@ -54,21 +54,29 @@ end
 --(pennies, damage, hearts, item, leviathan, nothing)
 local sanguineResults = { { 0.15, 3 }, { 0.48, 2 }, { 0.58, 4 }, { 0.63, 5 }, { 0.65, 6 }, { 1, 1 } }
 
+-- Rainbow Worm's trinket IDs it grants, in order
+local rainbowWormEffects = { [0] = 9, 11, 65, 27, 10, 12, 26, 66, 96, 144 }
+-- Mysterious Paper does not play well with displaying Error 404's effect
+local mysteriousPaperBlacklist = { [23] = true, [48] = true }
+
 function EID:getHoldMapDescription(player, checkingTwin)
 	local holdMapDesc = ""
 	local activeBlacklist = {}
+	local trinketBlacklist = {}
 	level = game:GetLevel()
 	currentRoom = level:GetCurrentRoom()
 	
-	-- TODO: "you just picked up" desc (great for curse of blind)
+	-- TODO:
 	-- D1, crooked penny cheats. 404/liberty cap/etc. "what item is it"
-	-- pandora's box? it shows the whole desc which is kinda useful
+	-- (Zodiac and Modeling Clay have functions for it?)
+	-- pandora's box? it shows the whole desc which is kinda useful but too big
 	-- Void's absorbed items list
 	-- Luna beam effect?
 	-- D Infinity current dice; track our Drop presses and resync it each time D Infinity is used by watching for the next dice effect triggered (Predict its next dice in AB+?)
 	
 	
-	-- test how this works in co-op when co-op baby holds map! they should be ignored!
+	-- test how this works in co-op when co-op baby holds map! they should be ignored?
+	
 	
 	if REPENTANCE then
 		-- Sanguine Bond reward reminder
@@ -114,19 +122,63 @@ function EID:getHoldMapDescription(player, checkingTwin)
 		end
 	end
 	
+	-- Show Hidden Info
+	if EID.Config["ItemReminderShowHiddenInfo"] then
+		-- Rainbow Worm
+		if player:HasTrinket(64) then
+			trinketBlacklist[64] = true
+			local rainbowWormEffect = rainbowWormEffects[math.floor(game.TimeCounter / 30 / 3) % (REPENTANCE and 10 or 8)]
+			if not trinketBlacklist[rainbowWormEffect] then
+				trinketBlacklist[rainbowWormEffect] = true
+				local demoDescObj = EID:getDescriptionObj(5, 350, rainbowWormEffect)
+				holdMapDesc = holdMapDesc .. append("{{Trinket64}}", "{{Trinket"..rainbowWormEffect.."}} " .. demoDescObj.Name, demoDescObj.Description)
+			end
+		end
+		-- 404 Error (And any other temporary trinket givers, such as Glitched Items)
+		if player:HasTrinket(75) then
+			trinketBlacklist[75] = true
+			-- Don't display Mysterious Paper's 1-frame temporary trinket granting
+			local hasPaper = player:HasTrinket(21)
+			-- is this var in AB+?
+			for i = 1, TrinketType.NUM_TRINKETS - 1 do
+				local tempTrinketFound = EID.player:HasTrinket(i, true) ~= EID.player:HasTrinket(i, false)
+				if tempTrinketFound and not trinketBlacklist[i] and (not mysteriousPaperBlacklist[i] or not hasPaper) then
+					trinketBlacklist[i] = true
+					local demoDescObj = EID:getDescriptionObj(5, 350, i)
+					holdMapDesc = holdMapDesc .. append("{{Trinket"..i.."}}", demoDescObj.Name, demoDescObj.Description)
+				end
+			end
+		end
+	end
+	
 	-- Teleport 2.0 location
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_TELEPORT_2) and not EID.isMirrorRoom then
 		holdMapDesc = holdMapDesc .. teleport2Prediction(holdMapDesc)
 		activeBlacklist[CollectibleType.COLLECTIBLE_TELEPORT_2] = true
 	end
 	
-	--TODO: RECENT ITEMS TRACKING (reset per room clear? or just use timestamps?)
+	-- Recently Acquired Item Descriptions
+	if EID.Config["ItemReminderShowRecentItem"] > 0 then
+		local printedItems = 0
+		local playerNum = EID:getPlayerID(player)
+		if EID.RecentlyTouchedItems[playerNum] then
+			for i = #EID.RecentlyTouchedItems[playerNum], 1, -1 do
+				if printedItems >= EID.Config["ItemReminderShowRecentItem"] then break end
+				printedItems = printedItems + 1
+				local recentID = EID.RecentlyTouchedItems[playerNum][i] % 4294967296
+				activeBlacklist[recentID] = true
+				local demoDescObj = EID:getDescriptionObj(5, 100, recentID)
+				holdMapDesc = holdMapDesc .. append("{{Collectible"..recentID.."}}", demoDescObj.Name, demoDescObj.Description)
+			end
+		end
+	end
 	
 	-- Active Item Descriptions
 	if EID.Config["ItemReminderShowActiveDesc"] > 0 then
 		for i = 0, EID.Config["ItemReminderShowActiveDesc"]-1 do
-			local heldActive = player:GetActiveItem(i)
+			local heldActive = player:GetActiveItem(i) % 4294967296
 			if heldActive > 0 and not activeBlacklist[heldActive] then
+				activeBlacklist[heldActive] = true
 				local demoDescObj = EID:getDescriptionObj(5, 100, heldActive)
 				holdMapDesc = holdMapDesc .. append("{{Collectible"..heldActive.."}}", demoDescObj.Name, demoDescObj.Description)
 			end
@@ -146,15 +198,26 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			local heldCard = player:GetCard(i)
 			local heldPill = player:GetPill(i)
 			if heldCard > 0 then
-				-- Get the card desc
+				local demoDescObj = EID:getDescriptionObj(5, 300, heldCard)
+				holdMapDesc = holdMapDesc .. append("{{Card"..heldCard.."}}", demoDescObj.Name, demoDescObj.Description)
 			elseif heldPill > 0 then
-				-- Get the pill effect
+				-- Check if our held pill is identified
+				EID.pillPlayer = player
+				local identified = game:GetItemPool():IsPillIdentified(heldPill)
+				if REPENTANCE and heldPill % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
+				if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) then
+					local demoDescObj = EID:getDescriptionObj(5, 70, heldPill)
+					holdMapDesc = holdMapDesc .. append("{{Pill"..heldPill.."}}", demoDescObj.Name, demoDescObj.Description)
+				end
+				EID.pillPlayer = nil
 			elseif diceBag > 0 and not activeBlacklist[diceBag] and not dicePrinted then
 				dicePrinted = true
+				activeBlacklist[diceBag] = true
 				local demoDescObj = EID:getDescriptionObj(5, 100, diceBag)
 				holdMapDesc = holdMapDesc .. append("{{Trinket154}}", demoDescObj.Name, demoDescObj.Description)
-			elseif pocketActive > 0 and not activeBlacklist[heldActive] and not pocketPrinted then
+			elseif pocketActive > 0 and not activeBlacklist[pocketActive] and not pocketPrinted then
 				pocketPrinted = true
+				activeBlacklist[pocketActive] = true
 				local demoDescObj = EID:getDescriptionObj(5, 100, pocketActive)
 				holdMapDesc = holdMapDesc .. append("{{Collectible"..pocketActive.."}}", demoDescObj.Name, demoDescObj.Description)
 				-- we'll have to add tainted char specific text for their actives with unique effects for that character!
@@ -166,8 +229,9 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	if EID.Config["ItemReminderShowTrinketDesc"] > 0 then
 		for i = 0, EID.Config["ItemReminderShowTrinketDesc"]-1 do
 			local heldActive = player:GetTrinket(i)
-			if heldActive > 0 and not activeBlacklist[heldActive] then
+			if heldActive > 0 and not trinketBlacklist[heldActive] then
 				-- test this with golden trinkets / mom's box!!!
+				trinketBlacklist[heldActive] = true
 				local demoDescObj = EID:getDescriptionObj(5, 350, heldActive)
 				holdMapDesc = holdMapDesc .. append("{{Trinket"..heldActive.."}}", demoDescObj.Name, demoDescObj.Description)
 			end
