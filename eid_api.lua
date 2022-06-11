@@ -30,7 +30,7 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	modName = EID._currentMod
+	local modName = EID._currentMod
 	-- Glitched Items exception so they don't have a mod name
 	if id > 4294960000 then modName = nil end
 	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description, modName}
