@@ -610,6 +610,7 @@ end)
 
 --Tainted Cain "hold to craft" check
 local holdCounter = 0
+local icount = 0
 local function trackBagHolding()
 	if not IsTaintedCain() then return end
 	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.bagPlayer.ControllerIndex)
