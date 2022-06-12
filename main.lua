@@ -670,9 +670,10 @@ function EID:printDescription(desc, cachedID)
 					EID:evaluateTransformationProgress(transform)
 					transformationName = transformationName .. " "
 					for _, player in ipairs(EID.coopAllPlayers) do
-						if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then
+						local playerType = player:GetPlayerType()
+						if playerType ~= PlayerType.PLAYER_THESOUL_B then
 							if #EID.coopAllPlayers > 1 then
-								local playerIcon = EID:getIcon("Player"..player.SubType) ~= EID.InlineIcons["ERROR"] and "{{Player"..player.SubType.."}}" or "{{CustomTransformation}}"
+								local playerIcon = EID:getIcon("Player"..playerType) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerType.."}}" or "{{CustomTransformation}}"
 								transformationName = transformationName .. playerIcon
 							end
 							local numCollected = EID.TransformationProgress[EID:getPlayerID(player)] and EID.TransformationProgress[EID:getPlayerID(player)][transform] or 0
