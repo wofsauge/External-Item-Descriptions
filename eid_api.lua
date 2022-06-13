@@ -1723,5 +1723,3 @@ function EID:SeedToFloat(seed)
 	local multi = 2.3283061589829401E-10;
 	return seed * multi;
 end
-
-end
