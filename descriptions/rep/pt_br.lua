@@ -3,7 +3,7 @@
 -----  By: LuanRoger, NotZin0 and JorgeLNJunior  -----
 ------------------------------------------------------
 
--- Last Sync with en_us: 06.04.2022 - mm.dd.yy
+-- Last Sync with en_us: 13.06.2022
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -34,7 +34,6 @@ local repCollectibles={
 	[37] = {"37", "", "Solta uma grande bomba abaixo do jogador que causa 185 de dano"}, -- Mr. Boom
 	[40] = {"40", "", "Causa uma grande explosão no local do jogador#Causando 185 de dano"}, -- Kamikaze!
 	[42] = {"42", "", "{{Poison}} Bomba de veneno arremessável#Causa 185 de dano + seu dano#Cria uma nuvem de veneno"}, -- Bob's Rotten Head
-	[44] = {"44", "", "Teleporta o personagem para uma sala aleatória exceto salas I AM ERROR#Influencie um pouco a direção movendo-se na direção desejada"}, -- Teleport
 	[45] = {"45", "", "Cura 1 Coração Vermelho#Também cura outros jogadores em Meio Coração"}, -- Yum Heart
 	[46] = {"46", "", "↑ {{Luck}} +1 Sorte#Maior chance de ganhar em jogos#Aumenta a chance de item ao limpar uma sala#Transforma algumas pílulas ruims em boas"}, -- Lucky Foot
 	[50] = {"50", "", "↑ {{Damage}} +1 Dano"}, -- Steven
@@ -181,7 +180,7 @@ local repCollectibles={
 	[415] = {"415", "", "{{SoulHeart}} +2 Corações de Alma#Se você não tem nenhum Contêiner de Coração Vermelho danificado:#↑ {{Damage}} +100% Dano#↑ {{Range}} +1.5 Alcance#↓ {{Shotspeed}} -0.3 Velocidade de Disparo#Desativa para a sala atual quando receber dano"}, -- Crown Of Light
 	[416] = {"416", "", "Gera 1-3 moedas se a sala não rendeu recompensas#{{Coin}} Aumenta o limite da moeda para 999"}, -- Deep Pockets
 	[417] = {"417", "", "Voa ao redor da sala com uma aura que causa dano (7.5-10 ao contato) aos inimigos#↑ {{Damage}} +50% de dano enquanto estiver na aura"}, -- Succubus
-	[419] = {"419", "", "Teleporta você para outra sala aleatória que ainda não foi explorada#Hierarquia: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>I AM ERROR"}, -- Teleport 2.0
+	[419] = {"419", "", "Teleporta você para outra sala aleatória que ainda não foi explorada#Hierarquia: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}>{{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}>{{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>>{{ErrorRoom}}"}, -- Teleport 2.0
 	[421] = {"421", "", "{{Charm}} Causa efeito de charme a um inimigo por perto"}, -- Kidney Bean
 	[426] = {"426", "", "Segue seu movimento com 0.66 segundos de atraso#Causa 30 de dano ao contato por segundo"}, -- Obsessed Fan
 	[430] = {"430", "", "Segue seu padrão de movimento com 0.66 segundos de atraso#Atira lágrimas em inimigos próximos#O dano causado é igual ao seu"}, -- Papa Fly
@@ -203,6 +202,7 @@ local repCollectibles={
 	[474] = {"474", "", "Transforma-se em Glass Canon quando usado"}, -- Broken Glass Canon
 	[476] =	{"476", "", "Duplica 1 pickup aleatório na sala atual#Pickups duplicados podem não ser idênticos aos originais"}, -- D1
 	[477] = {"477", "", "!!! Quando usado, consume todos os items de pedestal na sala#Item ativo: Seu efeito será ativado em todo uso futuro do Void#↑ Item passivo: Pequena melhoria de estatística para duas estatísticas aleatórias"}, -- Void
+	[487] = {"487", "", "Remove um Contêiner de Coração Vermelho e concede a você: #↑ {{Damage}} +0.2 Dano#{{Collectible73}} Um Cube of Meat#↑ {{Range}} +1.5 Alcance e deixa uma trilha de rastro de sangue na sala atual"}, -- Potato Peeler
 	[489] = {"489", "", "Atua como qualquer item de dado, exceto para {{Collectible723}} Spindown Dice#Altere o dado atual pressionando {{ButtonRT}}#O tempo de recarga varia de acordo com o dado atual e atualiza quando usado"}, -- D Infinity
 	[491] = {"491", "", "{{Pill}}Solta uma pílula aleatória a cada 7 salas#{{Poison}} Usar uma pílula envenena todos os inimigos na sala"}, -- Acid Baby
 	[493] = {"493", "", "↑ {{Damage}} Dano para cada Contêiner de Coração Vermelho vazio#Segue uma fórmula,alguns exemplos são:#+0.3 com 1#+0.92 com 2#+1.76 com 3#+2.79 com 4#+3.98 com 5"}, -- Adrenaline
@@ -253,16 +253,16 @@ local repCollectibles={
 	[577] = {"577", "", "{{Warning}} USO ÚNICO {{Warning}}#Gera uma espada acima de sua cabeça, que duplica todos os itens de pedetais#Não duplica os itens de compra, baú ou Acordos com o Diabo#!!! Mata você em um momento aleatório ao receber dano de um inimigo depois de usar o item"}, --  Damocles
 	[578] = {"578", "", "Cria uma grande poça amarela"}, --  Free Lemonade
 	[579] = {"579", "", "Em vez de lágrimas, o personagem tem uma espada#Causa 3x seu dano#{{Chargeable}} Faz um ataque giratório + tiro de projétil ao carregar#Disparar projéteis com oscilações normais com a saúde cheia"}, --  Spirit Sword
-	[580] = {"580", "", "Cria uma nova sala adjacente a uma parede viável, indicada pelo contorno de uma porta#Podem ser salas especiais#Uma sala fora do mapa de piso 13x13 irá teletransportá-lo para a sala I AM ERROR"}, --  Red Key
+	[580] = {"580", "", "Cria uma nova sala adjacente a uma parede viável, indicada pelo contorno de uma porta#Podem ser salas especiais#{{ErrorRoom}} Uma sala fora do mapa 13x13 do andar irá teletransportá-lo para a sala I AM ERROR"}, --  Red Key
 	[581] = {"581", "", "Familiar mosca orbital#Persegue inimigos e desvia projéteis#Causa 15 de dano ao contato por segundo"}, --  Psy Fly
 	[582] = {"582", "", "↑ {{Tears}} +0.75 Taxa de Disparo#↓ {{Speed}} -0.03 Velocidade#Distorce a tela#O efeito pode ser empilhado"}, --  Wavy Cap
 	[583] = {"583", "", "{{Bomb}} +5 Bombas#Colocar uma bomba enquanto estiver disparando faz com que ela se transforme em um foguete que será disparado na direção do disparo"}, --  Rocket in a Jar
 	[584] = {"584", "", "Gera um familiar orbital que dispara lágrimas espectrais mas pode ser destruído#Pode ser combinado com um segundo item ativo para criar um orbital temático#{{DevilRoom}} Transforma a primeira Sala do Diabo em uma {{AngelRoom}} Sala do Anjo#{{AngelChance}} Chance de Sala do Anjo 12.5% maior#{{AngelChance}} Permite que Salas do Anjo sejam geradas se você tiver feito um Acordo com o Diabo"}, --  Book of Virtues
-	[585] = {"585", "", "Ao usar gera: #{{SoulHeart}} 3 Corações de Alma#{{AngelRoom}} 2 itens da Sala do Anjo#{{SoulHeart}} Deve ser carregado pegando Corações de Alma#{{DevilRoom}} Gera somente 2 Corações de Alma e 1 item do Anjo se um Acordo com o Diabo foi feito anteriormente"}, --  Alabaster Box
+	[585] = {"585", "", "Ao usar gera: #{{SoulHeart}} 3 Corações de Alma#{{AngelRoom}} 2 itens da Sala do Anjo#Deve ser carregado pegando Corações de Alma#{{DevilRoom}} Gera somente 2 Corações de Alma e 1 item do Anjo se um Acordo com o Diabo foi feito anteriormente"}, --  Alabaster Box
 	[586] = {"586", "", "Gera uma escada no início de cada andar#{{AngelRoom}} Ela leva a uma loja de itens da Sala do Anjo"}, --  The Stairway
 	[587] = {"587", "", "<Item não existe>"}, -- Menorah (Unused but skripted)
 	[588] = {"588", "", "{{BossRoom}} Revela a localização da Sala do Chefe#Ao derrotar o chefe, concede para o resto do andar: #{{Card20}} Ativa The Sun#{{Battery}} Recarrega totalmente seu item ativo#{{CurseBlind}} Remove quaisquer Maldições#↑ {{Damage}} +3 Dano#↑ {{Luck}} +1 Sorte"}, --  Sol
-	[589] = {"589", "", "Adiciona um extra a Sala secreta{{SecretRoom}} e Super Secreta{{SuperSecretRoom}} em cada andar#{{SecretRoom}} A Sala Secreta contém um feixe de luz que dá: #{{Tears}} + Lágrimas para o andar atual#{{HalfSoulHeart}} Meio Coração de Alma#{{SecretRoom}} Revela uma Sala Secreta em cada andar"}, --  Luna
+	[589] = {"589", "", "Adiciona uma {{SecretRoom}} Sala Secreta e {{SuperSecretRoom}} Super Secreta extra em cada andar#Revela uma Sala Secreta em cada andar#A Sala Secreta contém um feixe de luz que concede:#{{HalfSoulHeart}} Meio Coração de Alma#↑ {{Tears}} +0.5 Taxa de Disparo para o andar atual#↑ {{Tears}} +0.5 Taxa de Disparo adicional do primeiro feixe por andar"}, --  Luna
 	[590] = {"590", "", "↑ {{Speed}} +0.4 Velocidade#Portas permanecem abertas depois de entrar em uma sala"}, --  Mercurius
 	[591] = {"591", "", "↑ {{Heart}} +1 Contêiner de Coração Vermelho#{{Heart}} Cura 1 Coração Vermelho#{{Charm}} Inimigos próximos ficam encantados"}, --  Venus
 	[592] = {"592", "", "↑ {{Damage}} +1 Dano#Troca lágrimas por pedras#Causa dano variável#Pode destruir obstáculos#Aumenta o recuo"}, --  Terra
@@ -327,7 +327,7 @@ local repCollectibles={
 	[651] = {"651", "", "Familiar que emite uma aura e viaja lentamente em direção à {{BossRoom}} Sala do Chefe#Enquanto permanecer na aura, concede:#↑ {{Damage}} +1 Dano#↑ +20% Multiplicador de Dano#↑ {{Tears}} +150% Multiplicador de Lágrimas#Lágrimas teleguiadas"}, --  Star of Bethlehem
 	[652] = {"652", "", "Familiar que desliza pela sala#{{Freezing}} Ele desacelera e causa dano ao contato, congelando monstros que mata"}, --  Cube Baby
 	[653] = {"653", "", "Enquanto segurar, inimigos não fantasmas geram pequenos fantasmas vermelhos na morte#Em uso, faz com que os fantasmas explodam"}, --  Vade Retro
-	[654] = {"654", "", "{{Pill}} Identifica todas as pílulas#{{BlackHeart}} +1 Coração Negro#Converte pílulas boas em ruins#↑ {{Damage}} Pílulas antiestáticas concedem +Dano#{{BlackHeart}} Outras pílulas deixam cair Corações Negros ao serem usadas"}, --  False PHD
+	[654] = {"654", "", "{{BlackHeart}} +1 Coração Negro#{{Pill}} Identifica todas as pílulas#Converte pílulas boas em ruins#↑ {{Damage}} Pílulas antiestáticas concedem Dano#{{BlackHeart}} Outras pílulas ruins deixam cair Corações Negros ao serem usadas"}, --  False PHD
 	[655] = {"655", "", "Concede um orbital giratório que bloqueia tiros inimigos e causa dano ao contato#Quando usado: #↑ {{Speed}} +0.5 Velocidade e aumenta muito a velocidade de rotação dos orbitais"}, --  Spin to Win
 	[656] = {"656", "", "<Item não coletável>"}, -- Damocles
 	[657] = {"657", "", "Os inimigos explodem em lágrimas depois de morrer, que herdam os efeitos das lágrimas do personagem"}, --  Vasculitis
@@ -365,7 +365,7 @@ local repCollectibles={
 	[689] = {"689", "", "Os itens de pedestais alternam rapidamente entre 5 itens aleatórios"}, --  Glitched Crown
 	[690] = {"690", "", "Faz com que os inimigos ricocheteem no personagem#Saltar contra obstáculos causa dano#50% de chance de desviar projéteis inimigos"}, --  Belly Jelly
 	[691] = {"691", "", "Impede que de itens de qualidade {{Quality0}}/{{Quality1}} apareçam#33% de chance de trocar itens com qualidade {{Quality2}}"}, --  Sacred Orb
-	[692] = {"692", "", "{{DevilRoom}} Gera um conjunto especial de espinhos na Sala do Demônio#Receber dano dos espinhos pode conceder uma recompensa:#35%: Nada#15%: ↑ {{Damage}} +0.5 Dano#15%: {{Coin}} 6 pennies#10% {{BlackHeart}} 2 Corações negros#5%: {{DevilRoom}} Item aleatório da Sala do Diabo#2%: Transformar-se em Leviathan"}, --  Sanguine Bond
+	[692] = {"692", "", "{{DevilRoom}} Gera um conjunto especial de espinhos na Sala do Demônio#Receba dano dos espinhos para receber uma recompensa:#35%: Nada#15%: ↑ {{Damage}} +0.5 Dano#15%: {{Coin}} 6 pennies#10% {{BlackHeart}} 2 Corações negros#5%: {{DevilRoom}} Item aleatório da Sala do Diabo#2%: Transformar-se em Leviathan"}, --  Sanguine Bond
 	[693] = {"693", "", "Concede 8 moscas orbitais que se transformam em moscas azuis após bloquearem um tiro#Gera uma nova mosca a cada sala limpa"}, --  The Swarm
 	[694] = {"694", "", "{{BrokenHeart}} Concede 3 corações quebrados#↑ {{Damage}} +0.25 Dano para cada Coração Quebrado#Cada golpe fatal irá adicionar mais 2 Corações Quebrados#Você morre com 12 Corações Quebrados"}, --  Heartbreak
 	[695] = {"695", "", "Ao receber dano, ganha {{Speed}} velocidade e {{Tears}} lágrimas para o andar atual#Limite de +1.02 Velocidade e +3 Taxa de Disparo"}, --  Bloody Gust
@@ -377,7 +377,7 @@ local repCollectibles={
 	[701] = {"701", "", "Gera um {{DirtyChest}} Old Chest no início de cada andar que requer uma chave para destrancar#Pode conter {{SoulHeart}} Corações de Alma, {{Trinket}} trinkets ou itens#{{AngelRoom}} Os Itens são da Sala do Anjo ou temáticos da Mãe e Pai"}, --  Isaac's Tomb
 	[702] = {"702", "", "Depois de receber dano, gera um feixe orbital que dura por todo o andar#O máximo é 6#Eles disparam lágrimas, mas não bloqueiam os tiros"}, --  Vengeful Spirit
 	[703] = {"703", "", "Troca entre o personagem atual e Esau Jr, que tem {{BlackHeart}} 3 Corações Negros, {{Damage}} +2 de dano e voo#Personagens têm itens e saúde independentes#Ao usar pela primeira vez ele recebe a mesma quantidade de itens passivos aleatórios que você tem#{{Warning}} Morrer com qualquer um dos personagens encerra a corrida"}, --  Esau Jr.
-	[704] = {"704", "", "Ao usar entra no modo furioso por 5 segundos:#↑ {{Speed}} +0.4 Velocidade#↑ {{Tears}} Lágrimas#↑ {{Damage}} +3.0 Dano#Restringe os ataques a uma arma branca"}, --  Berserk!
+	[704] = {"704", "", "Itens carregam ao causar dano#Ao usar fica furioso por 5 segundos:#↑ {{Speed}} +0.4 Velocidade#↑ {{Damage}} +3 Dano#Restringe seus ataques a uma arma corpo-a-corpo#Matar enquanto furioso aumenta a sua duração em 1 segundo"}, --  Berserk!
 	[705] = {"705", "", "Ao usar recebe {{Speed}} +1 Velocidade e anda através dos inimigos e disparos por 1 segundo#Ao tocá-los, causa 2x o seu dano + 3.5 de dano por inimigo tocado#Explosão no final do efeito que causa dano igual ao quanto você causou"}, --  Dark Arts
 	[706] = {"706", "", "Destrói todos os itens na sala e gera uma familiar mosca para cada item destruído#Os efeitos da mosca dependem dos itens destruídos"}, --  Abyss
 	[707] = {"707", "", "↑ {{EmptyHeart}} +1 Contêiner de Coração Vermelho#{{Heart}} Cura um Coração"}, --  Supper
@@ -388,7 +388,7 @@ local repCollectibles={
 	[712] = {"712", "", "Uma uma wisp orbital que concede um efeio de item mas que pode ser destruída#O item tem 25% de chance de ser do tipo de sala atual, ou da Sala Do Tesouro, Chefe ou Loja"}, --  Lemegeton
 	[713] = {"713", "", "Remove Meio Coração e cria um familiar Coágulo#Cada tipo de Coração gera um Coágulo com HP, dano e Efeito de Lágrima diferentes"}, --  Sumptorium
 	[714] = {"714", "", "Recupera o corpo do Forgotten de qualquer distância"}, --  Recall
-	[715] = {"715", "", "Guarda uma bomba de cocô que pode ser usada mais tarde"}, --  Hold
+	[715] = {"715", "", "Guarda um Feitiço de cocô que pode ser usado mais tarde"}, --  Hold
 	[716] = {"716", "", "Gera {{Coin}} 3 moedas aleatórias e {{Key}} 1 chave#{{Shop}} A cada 3 moedas gastas ao comprar itens, concede um dos seguintes status:# ↑ {{Damage}} +0.5 Dano#↑ {{Range}} +0.25 Alcance#↑ {{Speed}} +0.03 Velocidade"}, --  Keeper's Sack
 	[717] = {"717", "", "Pedras e adereços geram 2 aranhas azuis quando destruídas#Pedras podem ocasionalmente gerar aranhas azuis quando estiver em uma sala hostil"}, --  Keeper's Kin
 	[718] = {"718", "", "<O item não existe>"}, -- Keepers Rope (Cut item)
@@ -763,7 +763,7 @@ local repTrinkets={
 	[162] = {"162","","{{Player7}} 50% de chance de transformar-se em Azazel quando entra em uma nova sala#O efeito dura até limpar e sair de outra sala"}, --  Azazel's Stump
 	[163] = {"163","","Todos os Dips (pequenos cocôs) são amigáveis#Gera 1 Dips aleatório quando limpa uma sala"}, --  Dingle Berry
 	[164] = {"164","","{{Bomb}} Gera uma bomba extra para cada bomba colocada"}, --  Ring Cap
-	[165] = {"165","","No Womb e diante, substitua todos as moedas e chaves por outro pickup ou mosca#Resultados possíveis: Bombas, Corações, Pílulas, Cartas, Trinkets, Baterias"}, --  Nuh Uh!
+	[165] = {"165","","No Womb e diante, substitui todos as moedas e chaves por uma bomba, coração, pílula, carta, trinket, bateria ou mosca inimiga"}, --  Nuh Uh!
 	[166] = {"166","","50% de chance de garatir o efeito de um item passivo para cada sala"}, --  Modeling Clay
 	[167] = {"167","","25% de chance de gerar um Bony amigável quando limpa uma sala"}, --  Polished Bone
 	[168] = {"168","","{{EmptyBoneHeart}} +1 Contêiner de Coração de Osso ao entrar em um novo andar"}, --  Hollow Heart
@@ -830,11 +830,12 @@ local repCards={
 	[30] = {"30", "", "{{Heart}} Troca todos os pickups, baús e inimigos não chefes em Corações"}, -- Ace of Hearts
 	[34] = {"34", "", "Gera um alçapão para o próximo andar#Gera um {{LadderRoom}}alçapão com escada se usado em um piso decorativo (grama, pedras pequenas, papéis, pedras preciosas, etc.)"}, -- Ehwaz
 	[39] = {"39", "", "Invencibilidades por 20 segundos"}, -- Algiz
+	[42] = {"42", "", "Ao usar, arremessa a carta na direção em que você está se movendo#Mata imediatamente QUALQUER inimigo que ela tocar (exceto Delirium ou The Beast)"}, -- Chaos Card
 	[51] = {"51", "", "{{HolyMantle}} Concede o efeito do Holy Mantle#(Ignora o próximo dano recebido)#O efeito dura até que o dano seja recebido"}, -- Holy card
 	[52] = {"52", "", "↑ {{Damage}} +7 Dano#↑ {{Range}} +3 Alcance#Destrói pedras ao andar sobre elas#Aumenta seu tamanho#Efeito somente para a sala atual"}, -- Huge Growth
 	[54] = {"54", "", "{{Slow}} Desacelera os inimigos#↑ {{Speed}} +0.5 Velocidade#↓ {{Shotspeed}} -1 Velocidade de Disparo#Efeito somente para a sala atual"}, -- Era Walk
 	[55] = {"55", "", "{{Rune}} Ativa o efeito de uma runa aleatória#O efeito da runa é mais fraco"}, -- Rune Shard
-	[56] = {"56", "", "Solta todos os seus Corações e pickups no andar, deixando apenas Meio Coração#Moedas e bombas podem ser soltas como {{Collectible74}}The Quarter ou {{Collectible19}}Boom! se possível"}, -- 0 - The Fool?
+	[56] = {"56", "", "Solta todos os seus Corações e pickups no andar, deixando apenas Meio Coração#Moedas e bombas são soltas como {{Collectible74}}The Quarter ou {{Collectible19}}Boom! se possível"}, -- 0 - The Fool?
 	[57] = {"57", "", "Concede uma aura que repele projéteis e inimigos por 1 minuto"}, -- I - The Magician?
 	[58] = {"58", "", "O Pé da Mãe pisa repetidamente por 1 minuto"}, -- II - The High Priestess?
 	[59] = {"59", "", "Concede por 1 minuto:#↑ {{Heart}} +2 Corações#↑ {{Tears}} +1.35 Lágrimas"}, -- III - The Empress?
@@ -865,7 +866,7 @@ local repCards={
 	[84] = {"84", "", "Transforma o personagem em um fantasma que pode atravessar inimigos para paralisa-los#Depois de alguns segundos, vai atacar todos eles, ganhando bônus de dano por alvo"}, -- Soul of Judas
 	[85] = {"85", "", "{{Poison}} Causa 8 peidos venenosos com trilha#Depois gera uma trilha de 7 Butt Bombs#Ficar na trilha garante: #↑ {{Tears}} +1.35 Lágrimas#↑ {{Damage}} +1 Dano"}, -- Soul of ???
 	[86] = {"86", "", "14 familiares Dead Bird voam e atacam os inimigos#Dura para a sala atual"}, -- Soul of Eve
-	[87] = {"87", "", "Transforme-se em Samson com ataques corpo-a-corpo por 10 segundos#↑ {{Speed}} +0.4 Velocidade#↑ {{Tears}} Lágrimas#↑ {{Damage}} +3 Dano"}, -- Soul of Samson
+	[87] = {"87", "", "Fique furioso por 10 segundos por 10 segundos:#↑ {{Speed}} +0.4 Velocidade#↑ {{Damage}} +3 Dano#Restringe seus ataques a uma arma corpo-a-corpo#Matar enquanto furioso aumenta a sua duração em 1 segundo"}, -- Soul of Samson
 	[88] = {"88", "", "{{Collectible441}} Ativa Mega Blast por 7.5 segundos"}, -- Soul of Azazel
 	[89] = {"89", "", "Ao morrer, reviva instantaneamente com Meio Coração e algum tempo de invencibilidade#Usado automaticamente quando recebe um dano fatal#Como uma vida extra"}, -- Soul of Lazarus
 	[90] = {"90", "", "Ativa o efeito do D6 {{Collectible105}} e D20 {{Collectible166}} #Os itens trocados vem de salas aleatórias"}, -- Soul of Eden
@@ -962,7 +963,7 @@ EID.descriptions[languageCode].horsepills={
 	{"22", "", "Você não pode se mover por 4 segundos"}, -- Paralysis
 	{"23", "", "{{SecretRoom}} Abra as entradas das Salas Secretas no andar atual#Ganha visão do mapa"}, -- I can see forever!
 	{"24", "", "{{Charm}} Transforma cada inimigo da sala em amigo permanente"}, -- Pheromones
-	{"25", "", "Esconde o mapa do andar atual"}, -- Amnesia
+	{"25", "", "{{CurseLost}} Esconde o mapa do andar atual"}, -- Amnesia
 	{"26", "", "Enche o chão com uma poça que causa dano aos inimigos"}, -- Lemon Party
 	{"27", "", "Atire na diagonal por 60 segundo"}, -- R U a Wizard?
 	{"28", "", "Receba apenas metade do dano na sala atual"},  -- Percs!
@@ -973,7 +974,7 @@ EID.descriptions[languageCode].horsepills={
 	{"33", "", "diminui seu tamanho#Sua hitbox também diminui"}, -- One makes you small
 	{"34", "", "Gera 2 Aranhas Azuis por cocô na sala"}, -- Infested!
 	{"35", "", "Gera 2 Aranhas Azuis por inimigo na sala#Gera 2-6 Aranhas Azuis quando não há inimigos na sala"}, -- Infested?
-	{"36", "", "Curto efeito de invencibilidade#↑ {{Damage}} 7 Dano#↑ {{Range}} +3 Alcance#Durante a sala atual"}, -- Power Pill!
+	{"36", "", "Curto efeito de invencibilidade#↑ {{Damage}} +7 Dano#↑ {{Range}} +3 Alcance#Durante a sala atual"}, -- Power Pill!
 	{"37", "", "Pixeliza a tela por 90 segundos"}, -- Retro Vision
 	{"38", "", "Gera 6 moscas azuis"}, -- Friends Till The End!
 	{"39", "", "Gera uma poça escorregadia"}, -- X-Lax
@@ -1049,9 +1050,23 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 ---------- Misc. Text ----------
 
+EID.descriptions[languageCode].poopSpells = {
+	{"Poop", "Cocô normal que pode soltar pickups"},
+	{"Corny Poop", "Gera moscas azuis enquanto intacto"},
+	{"Burning Poop", "Causa dano ao contato equanto intacto#Dexia um fogo para trás quando destruído"},
+	{"Stone Poop", "Pode causar dano 3 vezes quando arremessado#Recebe vários golpes até ser destruído"},
+	{"Stinky Poop", "Emite uma nuvem tóxica#!!! A nuvem irá explodir se ela tocar algum fogo!"},
+	{"Black Poop", "Cria uma rastro de lentidão#Causa 10 de dano e confunde todos os inimigos quando destruído"},
+	{"Holy Poop", "{{Collectible543}} Cria um cocô branco#Enquanto estiver dentro da aura do cocô:#↑ {{Damage}} +20% Dano#↑ {{Tears}} +150% Taxa de Disparo#Lágrimas Teleguiadas#Chance de bloquear dano"},
+	{"Brown Creep", "Deixa uma trilha de rastro#Ficar dentro do rastro aumenta sua taxa de disparo e dano#Se o rastro for tocado por outros cocôs ele ganha seu atributo"},
+	{"Fart", "Empurra inimigos e disparos próximos para trás, e gera uma nuvem tóxica#!!! A nuvem irá explodir se ela tocar algum fogo!"},
+	{"Bomb", "Bomba normal arremessável"},
+	{"Explosive Diarrhea", "Gera 5 bombas acesas no local em que você está durante os próximos segundos"},
+}
+
 EID.descriptions[languageCode].VoidShopText = "Se absorvido logo após coletar, ganha:"
 EID.descriptions[languageCode].VoidOptionText = " em vez disso será absorvido"
-EID.descriptions[languageCode].VoidNames = {"Velocidade {{Speed}}", "Taxa de Disparo {{Tears}}", "Dano {{Damage}}", "Alcance {{Range}}", "Velocidade de Disparo {{Shotspeed}}", "Sorte {{Luck}}"}
+EID.descriptions[languageCode].VoidNames = {"Velocidade", "Taxa de Disparo", "Dano", "Alcance", "Velocidade de Disparo", "Sorte"}
 
 EID.descriptions[languageCode].spindownError = "O Item desaparece"
 
@@ -1069,10 +1084,10 @@ EID.descriptions[languageCode].CraftingPreviewBackup = "!!! Se este item estiver
 EID.descriptions[languageCode].CraftingResults = "(Rolar: Segurar {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Travar: {{ButtonX}}, Atualizar: {{ButtonB}}, Redefinir a Bolsa: Hold {{ButtonRB}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Carga do Blank Card:"
-EID.descriptions[languageCode].BlankCardQCard = "Teleporta para a Sala I Am Error#Blank Card e ?-Card serão destruídas"
+EID.descriptions[languageCode].BlankCardQCard = "Teleporta para a Sala I AM Error#Blank Card e ?-Carta serão destruídas"
 EID.descriptions[languageCode].ClearRuneCharge = "Limpar carga da Runa:"
 EID.descriptions[languageCode].PlaceboCharge = "Carga do Placebo:"
-EID.descriptions[languageCode].FlipItemToggleInfo = "(Segure {{ButtonSelect}} (Map) para mostrar a descrição)"
+EID.descriptions[languageCode].FlipItemToggleInfo = "(Segure {{CONFIG_BoC_Toggle}} para mostrar a descrição)"
 
 
 EID.descriptions[languageCode].FalsePHDHeart = "{{BlackHeart}} Gera 1 Coração Negro"
