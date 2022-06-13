@@ -671,7 +671,7 @@ function EID:printDescription(desc, cachedID)
 					transformationName = transformationName .. " "
 					for _, player in ipairs(EID.coopAllPlayers) do
 						local playerType = player:GetPlayerType()
-						if playerType ~= PlayerType.PLAYER_THESOUL_B then
+						if playerType ~= PlayerType.PLAYER_THESOUL_B and player:GetBabySkin() == -1 then
 							if #EID.coopAllPlayers > 1 then
 								local playerIcon = EID:getIcon("Player"..playerType) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerType.."}}" or "{{CustomTransformation}}"
 								transformationName = transformationName .. playerIcon
@@ -976,6 +976,7 @@ function EID:setPlayer()
 		EID.coopMainPlayers = { EID.player }
 		EID.coopAllPlayers = EID.players
 		EID.controllerIndexes[p.ControllerIndex] = 1
+		EID.isMultiplayer = false
 		return
 	end
 	
