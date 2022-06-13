@@ -610,6 +610,7 @@ end)
 
 --Tainted Cain "hold to craft" check
 local holdCounter = 0
+local icount = 0
 local function trackBagHolding()
 	if not IsTaintedCain() then return end
 	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.bagPlayer.ControllerIndex)
@@ -907,6 +908,7 @@ function EID:handleBagOfCraftingUpdating()
 	
 	-- Check for Hold Tab key inputs
 	if displayingRecipeList and Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.bagPlayer.ControllerIndex) then
+		EID.TabDescThisFrame = true
 		EID.bagPlayer.ControlsCooldown = 2
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.bagPlayer.ControllerIndex) then
 			bagOfCraftingOffset = math.min(numResults-(numResults%EID.Config["BagOfCraftingResults"]), bagOfCraftingOffset + EID.Config["BagOfCraftingResults"])

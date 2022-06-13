@@ -30,7 +30,7 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	modName = EID._currentMod
+	local modName = EID._currentMod
 	-- Glitched Items exception so they don't have a mod name
 	if id > 4294960000 then modName = nil end
 	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description, modName}
@@ -1519,8 +1519,8 @@ end
 -- Returns true if any player is pressing the given button (you can also specify any of the input functions)
 function EID:PlayersActionPressed(button, inputFunc)
 	inputFunc = inputFunc or Input.IsActionPressed
-	for k,_ in pairs(EID.controllerIndexes) do
-		if inputFunc(button, k) then return true end
+	for k,v in pairs(EID.controllerIndexes) do
+		if inputFunc(button, k) then return true, v end
 	end
 	return false
 end
@@ -1624,7 +1624,9 @@ function EID:evaluateTransformationProgress(transformation)
 end
 
 -- Watch for a player's queued item (holding an item over their head) to track active item touches
+-- Used for Transformation Progress and for tracking Recently Touched Items
 EID.PlayerItemInteractions = {}
+EID.RecentlyTouchedItems = {}
 local hadQueuedItem = {}
 function EID:evaluateQueuedItems()
 	--initialize the interactions table for all players if it isn't already
@@ -1633,6 +1635,7 @@ function EID:evaluateQueuedItems()
 		if not EID.PlayerItemInteractions[i] then
 			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}}
 		end
+		EID.RecentlyTouchedItems[i] = EID.RecentlyTouchedItems[i] or {}
 	end
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1647,25 +1650,31 @@ function EID:evaluateQueuedItems()
 			else
 				EID.PlayerItemInteractions[i].LastTouch = 0
 			end
-
-			if not player.QueuedItem.Touched and player.QueuedItem.Item and player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
-				local itemID = tostring(player.QueuedItem.Item.ID)
-				-- A new active item was touched; initiate its touch count to 0 for all players
-				-- (Fixes co-op bugs, compared to only initiating it for the toucher)
-				for j = 0, game:GetNumPlayers() - 1 do
-					local player = Isaac.GetPlayer(j)
-					EID.PlayerItemInteractions[j].actives[itemID] = EID.PlayerItemInteractions[j].actives[itemID] or 0
-					EID.PlayerItemInteractions[j].altActives[itemID] = EID.PlayerItemInteractions[j].altActives[itemID] or 0
-				end
-				
-				-- Dead Tainted Lazarus exceptions
-				local activesTable = EID.PlayerItemInteractions[i].actives
-				if player:GetPlayerType() == 38 then
-					activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
-				end
-				EID.ForceRefreshCache = true
-				activesTable[itemID] = activesTable[itemID] + 1
+			
+			if not player.QueuedItem.Touched and player.QueuedItem.Item then
 				EID.PlayerItemInteractions[i].LastTouch = game:GetFrameCount()
+				
+				if player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
+					local itemID = tostring(player.QueuedItem.Item.ID)
+					-- A new active item was touched; initiate its touch count to 0 for all players
+					-- (Fixes co-op bugs, compared to only initiating it for the toucher)
+					for j = 0, game:GetNumPlayers() - 1 do
+						local player = Isaac.GetPlayer(j)
+						EID.PlayerItemInteractions[j].actives[itemID] = EID.PlayerItemInteractions[j].actives[itemID] or 0
+						EID.PlayerItemInteractions[j].altActives[itemID] = EID.PlayerItemInteractions[j].altActives[itemID] or 0
+					end
+					
+					-- Dead Tainted Lazarus exceptions
+					local activesTable = EID.PlayerItemInteractions[i].actives
+					if player:GetPlayerType() == 38 then
+						activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
+					end
+					EID.ForceRefreshCache = true
+					activesTable[itemID] = activesTable[itemID] + 1
+				elseif player.QueuedItem.Item.Type ~= ItemType.ITEM_TRINKET then
+					-- Put non-active item pickups into the recent item list, for printing in the Item Reminder
+					table.insert(EID.RecentlyTouchedItems[i], player.QueuedItem.Item.ID)
+				end
 			end
 		end 
 	end

@@ -41,6 +41,8 @@ local altPathItemChecked = {}
 local alwaysUseLocalMode = false -- set to true after drawing a non-local mode description this frame
 EID.ForceRefreshCache = false -- set to true to force-refresh descriptions, currently used for potential transformation text changes
 local preHourglassStatus = {}
+EID.holdTabPlayer = 0
+EID.holdTabCounter = 0
 
 EID.GameUpdateCount = 0
 EID.GameRenderCount = 0
@@ -103,6 +105,7 @@ require("eid_data")
 require("eid_xmldata")
 require("eid_api")
 require("eid_modifiers")
+require("eid_holdmapdesc")
 
 -- load Repentence descriptions
 if REPENTANCE then
@@ -460,10 +463,11 @@ local function resetDescCache()
 end
 
 
-function EID:addDescriptionToPrint(desc)
+function EID:addDescriptionToPrint(desc, insertLoc)
 	if desc.Entity and EID.entitiesToPrint[GetPtrHash(desc.Entity)] then return end
 	if #EID.descriptionsToPrint == EID.Config["MaxDescriptionsToDisplay"] then return end
-	table.insert(EID.descriptionsToPrint, desc)
+	if insertLoc then table.insert(EID.descriptionsToPrint, insertLoc, desc)
+	else table.insert(EID.descriptionsToPrint, desc) end
 	if desc.Entity then EID.entitiesToPrint[GetPtrHash(desc.Entity)] = true end
 end
 
@@ -666,9 +670,10 @@ function EID:printDescription(desc, cachedID)
 					EID:evaluateTransformationProgress(transform)
 					transformationName = transformationName .. " "
 					for _, player in ipairs(EID.coopAllPlayers) do
-						if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then
+						local playerType = player:GetPlayerType()
+						if playerType ~= PlayerType.PLAYER_THESOUL_B and player:GetBabySkin() == -1 then
 							if #EID.coopAllPlayers > 1 then
-								local playerIcon = EID:getIcon("Player"..player.SubType) ~= EID.InlineIcons["ERROR"] and "{{Player"..player.SubType.."}}" or "{{CustomTransformation}}"
+								local playerIcon = EID:getIcon("Player"..playerType) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerType.."}}" or "{{CustomTransformation}}"
 								transformationName = transformationName .. playerIcon
 							end
 							local numCollected = EID.TransformationProgress[EID:getPlayerID(player)] and EID.TransformationProgress[EID:getPlayerID(player)][transform] or 0
@@ -726,8 +731,8 @@ function EID:printBulletPoints(description, renderPos)
 end
 ---------------------------------------------------------------------------
 ----------------------------Handle New Room--------------------------------
-local isMirrorRoom = false
-local isDeathCertRoom = false
+EID.isMirrorRoom = false
+EID.isDeathCertRoom = false
 if REPENTANCE then
 	function EID:AssignFlipItems()
 		EID.flipMaxIndex = -1
@@ -745,8 +750,8 @@ if REPENTANCE then
 	end
 	function EID:onNewRoomRep()
 		local level = game:GetLevel()
-		isMirrorRoom = level:GetCurrentRoom():IsMirrorWorld()
-		isDeathCertRoom = EID:GetDimension(level) == 2
+		EID.isMirrorRoom = level:GetCurrentRoom():IsMirrorWorld()
+		EID.isDeathCertRoom = EID:GetDimension(level) == 2
 		
 		-- Handle Flip Item
 		initialItemNext = false
@@ -758,6 +763,8 @@ end
 
 -- On new room, save the status of any variables that need to be rewound upon Glowing Hourglass usage
 function EID:onNewRoom()
+	EID.RecentlyTouchedItems = {}
+
 	local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 	preHourglassStatus = {}
 	
@@ -840,7 +847,7 @@ function EID:renderIndicator(entity, playerNum)
 	local sprite = entity:GetSprite()
 	if REPENTANCE then
 		repDiv = 255
-		if isMirrorRoom then
+		if EID.isMirrorRoom then
 			local screenCenter = EID:getScreenSize()/2
 			entityPos.X = entityPos.X - (entityPos-screenCenter).X * 2
 			arrowPos.X = arrowPos.X - (arrowPos-screenCenter).X * 2
@@ -878,7 +885,7 @@ function EID:renderIndicator(entity, playerNum)
 			EID:renderEntity(entity, sprite, entityPos)
 		end
 	end
-	if isMirrorRoom then
+	if EID.isMirrorRoom then
 		sprite.FlipX = false
 	end
 end
@@ -891,7 +898,7 @@ function EID:PositionLocalMode(entity)
 		local textBoxWidth = EID.Config["LocalModeCentered"] and tonumber(EID.Config["TextboxWidth"])/2 * EID.Scale or -30
 		local textPosOffset = Vector(-textBoxWidth, 20)
 		EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
-		if isMirrorRoom then
+		if EID.isMirrorRoom then
 			EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset * Vector(-1,0)))
 			local screenCenter = EID:getScreenSize()/2
 			EID.UsedPosition.X = EID.UsedPosition.X - (EID.UsedPosition-screenCenter).X * 2
@@ -969,6 +976,7 @@ function EID:setPlayer()
 		EID.coopMainPlayers = { EID.player }
 		EID.coopAllPlayers = EID.players
 		EID.controllerIndexes[p.ControllerIndex] = 1
+		EID.isMultiplayer = false
 		return
 	end
 	
@@ -1203,6 +1211,7 @@ local function onRender(t)
 		end
 	end
 	EID.TabPreviewID = 0
+	EID.TabDescThisFrame = false
 	
 	-- If MCM is open, don't show anything unless we're in a tab labeled as "Visuals" or "Crafting"
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
@@ -1242,6 +1251,15 @@ local function onRender(t)
 		EID:printDescription(EID.permanentDisplayTextObj)
 		EID.isDisplaying = true
 		return
+	end
+	
+	local tabHeld, playerHoldingTab = EID:PlayersActionPressed(EID.Config["BagOfCraftingToggleKey"])
+	if tabHeld then
+		EID.holdTabPlayer = EID.coopMainPlayers[playerHoldingTab]
+		EID.holdTabCounter = EID.holdTabCounter + 1
+	else
+		EID.holdTabPlayer = nil
+		EID.holdTabCounter = 0
 	end
 	
 	if EID.ForceRefreshCache then
@@ -1326,7 +1344,7 @@ local function onRender(t)
 				inRangeEntities = { EID.lastDescriptionEntity }
 			end
 			-- Only display the indicator for the primary (closest / crafting) description
-			if EID.lastDescriptionEntity and not displayedCrafting then
+			if EID.lastDescriptionEntity then
 				EID:renderIndicator(EID.lastDescriptionEntity, EID.controllerIndexes[player.ControllerIndex] or 1)
 				table.insert(EID.CachedIndicators, {EID.lastDescriptionEntity, EID.controllerIndexes[player.ControllerIndex]})
 			end
@@ -1337,7 +1355,7 @@ local function onRender(t)
 				if EID.Config["EnableEntityDescriptions"] and EID:getEntityData(closest, "EID_Description") then
 					local desc = EID:getEntityData(closest, "EID_Description")
 					local origDesc = EID:getDescriptionObjByEntity(closest)
-					if type(desc) == "table" then
+					if desc ~= nil and type(desc) == "table" then
 						origDesc.Description = desc.Description or origDesc.Description
 						origDesc.Name = desc.Name or origDesc.Name
 						origDesc.Transformation = desc.Transformation or origDesc.Transformation
@@ -1349,7 +1367,7 @@ local function onRender(t)
 				-- Handle Glitched Items
 				elseif closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
 					if EID:getEntityData(closest, "EID_DontHide") ~= true then
-						if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+						if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 							EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
 						end
 					end
@@ -1407,7 +1425,7 @@ local function onRender(t)
 				elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 					--Handle Collectibles
 					if EID:getEntityData(closest, "EID_DontHide") ~= true then
-						if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+						if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 							EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
 						end
 					end
@@ -1480,6 +1498,15 @@ local function onRender(t)
 			local sacrificeDesc = EID:getDescriptionObj(-999, -1, curCounter)
 			EID:addDescriptionToPrint(sacrificeDesc)
 		end
+	end
+	
+	-- handle showing the Hold Map Helper description
+	if EID.Config["ItemReminderEnabled"] and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
+		--have we done anything that makes AB+ get angry? still need to test AB+!
+		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+		demoDescObj.Name = ""
+		demoDescObj.Description = EID:getHoldMapDescription(EID.holdTabPlayer)
+		if (demoDescObj.Description ~= "") then EID:addDescriptionToPrint(demoDescObj, 1) end
 	end
 	
 	EID:printDescriptions()

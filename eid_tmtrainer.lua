@@ -113,6 +113,7 @@ local function CheckLogForItems(_)
 	local eidDesc = ""
 	
 	local theLog = io.open(logLocation, "r")
+	if theLog == nil then return end
 	theLog:seek("set", logCursor)
 	
 	local line = theLog:read()
