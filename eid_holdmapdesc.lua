@@ -85,7 +85,7 @@ local function sanguinePrediction()
 	local spikes = currentRoom:GetGridEntity(67)
 	if not spikes then return end -- don't display anything if we can't find the spikes!
 	local cheatResult = nil
-	if spikes and EID.Config["ItemReminderShowRNGCheats"] then
+	if spikes and EID.Config["PredictionSanguineBond"] then
 		local spikeSeed = currentRoom:GetGridEntity(67):GetRNG():GetSeed()
 		spikeSeed = RNGNext(spikeSeed, 5, 9, 7)
 		spikeSeed = RNGNext(spikeSeed, 1, 5, 0x13)
@@ -208,18 +208,18 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	
 	-- Trinket Descriptions
 	if EID.Config["ItemReminderShowTrinketDesc"] > 0 then
-		for i = 0, EID.Config["ItemReminderShowTrinketDesc"]-1 do
-			local heldActive = player:GetTrinket(i)
-			if heldActive > 0 and not blacklist["5.350." .. heldActive] then
+		for t = 0, EID.Config["ItemReminderShowTrinketDesc"]-1 do
+			local heldTrinket = player:GetTrinket(t)
+			if heldTrinket > 0 and not blacklist["5.350." .. heldTrinket] then
 				-- Rainbow Worm
-				if EID.Config["ItemReminderShowHiddenInfo"] and heldActive == 64 then
+				if EID.Config["ItemReminderShowHiddenInfo"] and heldTrinket == 64 then
 					blacklist["5.350.64"] = true
 					local rainbowWormEffect = rainbowWormEffects[math.floor(game.TimeCounter / 30 / 3) % (REPENTANCE and 10 or 8)]
 					addObjectDesc(5, 350, rainbowWormEffect, "{{Trinket64}}")
 				-- 404 Error
 				-- Unfortunately, includes other temporary trinket givers, such as Glitched Items. We'd need to predict 404's result using RNG to actually know which it specifically is granting
 				-- And unfortunately, HasTrinket can't differentiate between real and fake trinkets in AB+
-				elseif EID.Config["ItemReminderShowHiddenInfo"] and REPENTANCE and heldActive == 75 then
+				elseif EID.Config["ItemReminderShowHiddenInfo"] and REPENTANCE and heldTrinket == 75 then
 					blacklist["5.350.75"] = true
 					-- Don't display Mysterious Paper's 1-frame temporary trinket granting
 					local hasPaper = player:HasTrinket(21)
@@ -230,7 +230,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 						end
 					end
 				else
-					addObjectDesc(5, 350, heldActive)
+					addObjectDesc(5, 350, heldTrinket)
 				end
 				
 			end

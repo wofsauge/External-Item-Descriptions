@@ -389,35 +389,6 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	---------------------------------Display-----------------------------------
 	
-	
-	-- Item Reminder Settings --
-	
-	EID:AddBooleanSetting("Display", "ItemReminderEnabled", "Item Reminder Description", {offText = "Disabled", onText = "Enabled", infoText = "Hold Map to show your active item's effect, recently picked up items, and much more"})
-	
-	local actionToName = { [0] = "Move Left", "Move Right", "Move Up", "Move Down", "Shoot Left", "Shoot Right", "Shoot Up", "Shoot Down", "Bomb", "Item", "Pill/Card", "Drop", "Pause", "Map" }
-	
-	EID:AddNumberSetting("Display", "BagOfCraftingToggleKey", "Hold to Show", 8, 13, {displayTable = actionToName,
-	infoText = {"Hold this key to display the Item Reminder description, show Flip/Spindown previews and control the Bag of Crafting recipe list"}})
-	
-	local itemSlotReminders = { [0] = "No", "Yes (max 1)", "Yes (max 2)", "Yes (max 3)", "Yes (max 4)", "Yes (max 5)",
-	"Yes (max 6)", "Yes (max 7)", "Yes (max 8)" }
-	
-	
-	-- should these be organized in the order they're shown in the map desc code?
-	EID:AddNumberSetting("Display", "ItemReminderShowRecentItem", "Recent Item Descriptions", 0, 4, { displayTable = itemSlotReminders, infoText = {"Show recently acquired item descriptions in the Item Reminder (good for Curse of the Blind!)"}})
-	EID:AddNumberSetting("Display", "ItemReminderShowActiveDesc", "Active Item Descriptions", 0, 2, { displayTable = itemSlotReminders, infoText = "Show your active item descriptions in the Item Reminder"})
-	EID:AddNumberSetting("Display", "ItemReminderShowPocketDesc", "Pocket Item Descriptions", 0, 4, { displayTable = itemSlotReminders, infoText = "Show your pocket item (card, pill, active) descriptions in the Item Reminder"})
-	EID:AddNumberSetting("Display", "ItemReminderShowTrinketDesc", "Trinket Descriptions", 0, 2, { displayTable = itemSlotReminders, infoText = "Show your trinket descriptions in the Item Reminder"})
-	
-	EID:AddNumberSetting("Display", "ItemReminderShowPoopDesc", "Poop Descriptions", 0, 6, { repOnly = true, displayTable = itemSlotReminders, infoText = "Show Tainted ???'s next Poop Spell descriptions in the Item Reminder"})
-	
-	EID:AddBooleanSetting("Display", "ItemReminderShowHiddenInfo", "Show Hidden Information", { infoText = "Items like 404 Error can have their current granted item revealed in the Item Reminder"})
-	EID:AddBooleanSetting("Display", "ItemReminderShowRNGCheats", "Show RNG Predictions", { infoText = "Some items can have their next result predicted and shown in the Item Reminder"})
-	MCM.AddSpace("EID", "Display")
-	
-	--
-	
-	
 	local refreshRateSteps = {1, 2, 3, 4, 6, 10, 12, 15, 20, 30, 60}
 	EID:AddScrollSetting("Display", "RefreshRate", "Description Refresh Rate", refreshRateSteps, 
 	{displayingTab = "", infoText = "How many times per second that EID updates what description to show"})
@@ -481,6 +452,7 @@ if MCMLoaded then
 	
 	EID:AddBooleanSetting("Display", "DisplayCardInfoOptions?", "'Options?' Card Infos", {repOnly = true})
 	EID:AddBooleanSetting("Display", "DisplayPillInfoOptions?", "'Options?' Pill Infos", {repOnly = true})
+	
 	
 	---------------------------------------------------------------------------
 	---------------------------------Visuals-----------------------------------
@@ -568,6 +540,36 @@ if MCMLoaded then
 	local modIndicatorDisplays = {"Both","Name only","Icon only", "None"}
 	EID:AddNumberSetting("Visuals", "ModIndicatorDisplay", "Display Mod Indicator", 1, #modIndicatorDisplays, {indexOf = modIndicatorDisplays})
 	
+
+
+	---------------------------------------------------------------------------
+	------------------------------Item Reminder--------------------------------
+	
+	EID:AddBooleanSetting("Reminder", "ItemReminderEnabled", "Item Reminder Description", {offText = "Disabled", onText = "Enabled", infoText = "Hold Map to show your active item's effect, recently picked up items, and much more"})
+	
+	local actionToName = { [0] = "Move Left", "Move Right", "Move Up", "Move Down", "Shoot Left", "Shoot Right", "Shoot Up", "Shoot Down", "Bomb", "Item", "Pill/Card", "Drop", "Pause", "Map" }
+	
+	EID:AddNumberSetting("Reminder", "BagOfCraftingToggleKey", "Hold to Show", 8, 13, {displayTable = actionToName,
+	infoText = {"Hold this key to display the Item Reminder description, show Flip/Spindown previews and control the Bag of Crafting recipe list"}})
+	
+	local itemSlotReminders = { [0] = "No", "Yes    (max 1)", "Yes    (max 2)", "Yes    (max 3)", "Yes    (max 4)", "Yes    (max 5)",
+	"Yes    (max 6)", "Yes    (max 7)", "Yes    (max 8)" }
+	
+	MCM.AddSpace("EID", "Reminder")
+	MCM.AddText("EID", "Reminder", "Item Descriptions")
+	-- should these be organized in the order they're shown in the map desc code?
+	EID:AddNumberSetting("Reminder", "ItemReminderShowRecentItem", "Recent Items", 0, 4, { displayTable = itemSlotReminders, infoText = {"Show recently acquired item descriptions in the Item Reminder (good for Curse of the Blind!)"}})
+	EID:AddNumberSetting("Reminder", "ItemReminderShowActiveDesc", "Active Items", 0, 2, { displayTable = itemSlotReminders, infoText = "Show your active item descriptions in the Item Reminder"})
+	EID:AddNumberSetting("Reminder", "ItemReminderShowPocketDesc", "Pocket Items", 0, 4, { displayTable = itemSlotReminders, infoText = "Show your pocket item (card, pill, active) descriptions in the Item Reminder"})
+	EID:AddNumberSetting("Reminder", "ItemReminderShowTrinketDesc", "Trinkets", 0, 2, { displayTable = itemSlotReminders, infoText = "Show your trinket descriptions in the Item Reminder"})
+	
+	EID:AddNumberSetting("Reminder", "ItemReminderShowPoopDesc", "Poop Spells", 0, 6, { repOnly = true, displayTable = itemSlotReminders, infoText = "Show Tainted ???'s next Poop Spell descriptions in the Item Reminder"})
+	
+	EID:AddBooleanSetting("Reminder", "ItemReminderShowHiddenInfo", "Show Hidden Information", { infoText = "Items like Error (404) or Rainbow Worm can have their current granted item revealed in the Item Reminder"})
+	EID:AddBooleanSetting("Reminder", "PredictionSanguineBond", "Highlight Sangine Bond Prediction", { infoText = "Highlights the next payout of Sangine Bond"})
+	
+
+
 	---------------------------------------------------------------------------
 	-----------------------------BAG OF CRAFTING-------------------------------
 	

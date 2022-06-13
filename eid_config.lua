@@ -283,7 +283,8 @@ EID.UserConfig = {
 	["DisplayVoidStatInfo"] = false,
 	
 	---------- Item Reminder Description ------------
-	--Hold Map (or the button action chosen below) to show a description of your active item's effect, recently picked up items, and things like Teleport 2.0's destination and Void's absorbed items
+	-- Enable/Disable item reminder feature. 
+	-- Hold Map (or the button action chosen below) to show a description of your active item's effect, recently picked up items, and things like Teleport 2.0's destination and Void's absorbed items
 	["ItemReminderEnabled"] = true,
 	-- Set the keybinding that's held to show the Item Reminder description, Flip/Spindown Dice preview descriptions, and interacting with the Bag of Crafting recipe list
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
@@ -308,9 +309,9 @@ EID.UserConfig = {
 	-- Items that grant you items without saying what they are (like Zodiac, Liberty Cap) can have their current granted item revealed in the Item Reminder
 	-- Default = false
 	["ItemReminderShowHiddenInfo"] = false,
-	-- Some items (like Crooked Penny) can have their next result predicted and shown in the Item Reminder
+	-- Some items (like Sanguine Bond) can have their next result predicted and shown in the Item Reminder
 	-- Default = false
-	["ItemReminderShowRNGCheats"] = false,
+	["PredictionSanguineBond"] = false,
 	
 	
 	---------- Bag of Crafting ------------
@@ -537,7 +538,7 @@ EID.DefaultConfig = {
 	["ItemReminderShowTrinketDesc"] = 2,
 	["ItemReminderShowPoopDesc"] = 1,
 	["ItemReminderShowHiddenInfo"] = false,
-	["ItemReminderShowRNGCheats"] = false,
+	["PredictionSanguineBond"] = false,
 	
 	["SpindownDiceResults"] = 3,
 	["SpindownDiceDisplayID"] = false,
