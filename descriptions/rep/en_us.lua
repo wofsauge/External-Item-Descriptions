@@ -259,7 +259,7 @@ local repCollectibles={
 	[586] = {"586", "The Stairway", "Spawns a ladder at the start of every floor#It leads to a unique {{AngelRoom}} Angel Room shop with items and consumables"}, -- The Stairway
 	[587] = {"587", "Menorah (Unused but scripted)", "<Item does not exist>"}, -- Menorah (Unused but scripted)
 	[588] = {"588", "Sol", "{{BossRoom}} Reveals the location of the Boss Room#Upon defeating a boss, for the rest of the floor: #{{Card20}} Activates The Sun#{{Battery}} Fully recharges your active item#{{CurseBlind}} Removes any Curses#↑ {{Damage}} +3 Damage#↑ {{Luck}} +1 Luck"}, -- Sol
-	[589] = {"589", "Luna", "Adds an extra {{SecretRoom}} Secret Room and {{SuperSecretRoom}} Super Secret Room to each floor#{{SecretRoom}} Secret Rooms contain a beam of light that give: #{{Tears}} Tears up for the current floor#{{HalfSoulHeart}} Half soul heart#{{SecretRoom}} Reveals one Secret Room each floor"}, -- Luna
+	[589] = {"589", "Luna", "Adds an extra {{SecretRoom}} Secret Room and {{SuperSecretRoom}} Super Secret Room to each floor#Reveals one Secret Room each floor#Secret Rooms contain a beam of light that give:#{{HalfSoulHeart}} A Half Soul Heart#↑ {{Tears}} +0.5 Fire Rate up for the current floor#↑ {{Tears}} Additional +0.5 Fire Rate up from the first beam per floor"}, -- Luna
 	[590] = {"590", "Mercurius", "↑ {{Speed}} +0.4 Speed up#Doors stay open after entering a room"}, -- Mercurius
 	[591] = {"591", "Venus", "↑ {{Heart}} +1 Health up#{{Heart}} Heals 1 Red Heart#{{Charm}} Close enemies become charmed"}, -- Venus
 	[592] = {"592", "Terra", "↑ {{Damage}} +1 Damage up#Replaces tears with rocks#They deal variable damage#Can destroy obstacles#Increased knockback"}, -- Terra
@@ -975,7 +975,7 @@ EID.descriptions[languageCode].horsepills={
 	{"33", "One makes you small", "You get a lot smaller#Your hitbox gets smaller"}, -- One makes you small
 	{"34", "Infested!", "Spawn 2 blue spiders per poop in room"}, -- Infested!
 	{"35", "Infested?", "Spawn 2 blue spiders per enemy in room#Spawns 2-6 blue spiders when no enemy is in the room"}, -- Infested?
-	{"36", "Power Pill!", "Short invincibility effect#↑ {{Damage}} 7 Damage up#↑ {{Range}} +3 Range up#Persists for current room"}, -- Power Pill!
+	{"36", "Power Pill!", "Short invincibility effect#↑ {{Damage}} +7 Damage up#↑ {{Range}} +3 Range up#Persists for current room"}, -- Power Pill!
 	{"37", "Retro Vision", "Pixelates the screen for 90 seconds"}, -- Retro Vision
 	{"38", "Friends Till The End!", "Spawns 6 blue flies"}, -- Friends Till The End!
 	{"39", "X-Lax", "Spawn pool of long lasting slippery creep"}, -- X-Lax
