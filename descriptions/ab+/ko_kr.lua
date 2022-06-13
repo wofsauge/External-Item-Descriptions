@@ -292,7 +292,7 @@ EID.descriptions[languageCode].collectibles={
 	{"257", "불타는 마음", "{{Burning}} 적에게 화상을 입히는 공격이 나갑니다.#일정 확률로 공격력의 2배의 피해를 주고 불꽃이 남는 폭발을 일으키는 눈물이 나갑니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 13 이상일 때 100% 확률"}, -- Fire Mind
 	{"258", "", "획득 시 및 스테이지를 넘어갈 때마다 소지중인 아이템과 능력치를 모두 바꿉니다."}, -- Missing No.
 	{"259", "암흑 물질", "↑ {{DamageSmall}}공격력 +1#{{Fear}} 33%의 확률로 적을 도망가게 하는 공격이 나갑니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 20 이상일 때 100% 확률"}, -- Dark Matter
-	{"260", "검은 양초", "↑ {{BlackHeart}}블랙하트 +1#↑ {{DevilChanceSmall}}악마방 확률 +15%#스테이지에 입장할 때 저주에 걸리지 않습니다.#획득 시 Labyrinth 및 특수 시드를 제외한 모든 저주를 제거합니다."}, -- Black Candle
+	{"260", "검은 양초", "↑ {{BlackHeart}}블랙하트 +1#↑ {{DevilChanceSmall}}악마방 확률 +15%#{{CurseCursedSmall}} 스테이지에 입장할 때 저주에 걸리지 않습니다.#{{CurseCursedSmall}} 획득 시 Labyrinth 및 특수 시드를 제외한 모든 저주를 제거합니다."}, -- Black Candle
 	{"261", "안구 돌출증", "↑ {{DamageSmall}}공격력 배율 x2#공격이 멀리 나갈수록 공격력 배율이 최소 x1.3까지 감소합니다."}, -- Proptosis
 	{"262", "찢어진 페이지 2", "↑ {{BlackHeart}}블랙하트 +1#피격 시 체력이 1.5칸 이하일 때 방 안의 모든 적에게 40의 피해를 줍니다."}, -- Missing Page 2
 	{"263", "", "<item does not exist>"}, --
@@ -356,7 +356,7 @@ EID.descriptions[languageCode].collectibles={
 	{"321", "삼손의 쇠사슬", "캐릭터와 연결되어 이동하며 접촉하는 적에게 초당 10.7의 피해를 입힙니다."}, -- Samson's Chains
 	{"322", "누더기 아기", "공격하는 방향으로 소지중인 패밀리어과 같은 효과의 눈물을 발사합니다."}, -- Mongo Baby
 	{"323", "아이작의 눈물", "사용 시 캐릭터 기준 8방향으로 눈물을 발사합니다.#눈물을 발사할 때마다 충전량이 증가합니다."}, -- Isaac's Tears
-	{"324", "", "사용 시 {{SecretRoom}}비밀방, {{SuperSecretRoom}}일급 비밀방, {{TreasureRoom}}보물방, 오류방 중 하나로 순간이동합니다."}, -- Undefined
+	{"324", "", "사용 시 {{SecretRoom}}비밀방, {{SuperSecretRoom}}일급 비밀방, {{TreasureRoom}}보물방, {{ErrorRoom}}오류방 중 하나로 순간이동합니다."}, -- Undefined
 	{"325", "가위", "사용 시 머리가 분리됩니다.#분리된 머리는 제자리에서 공격하는 방향으로 공격력 3.5의 눈물을 발사합니다."}, -- Scissors
 	{"326", "생명의 숨결", "사용 키를 누르고 있으면 충전량이 줄어들며 충전량이 모두 줄어들면 2초간 무적 상태가 됩니다.#무적 상태가 끝나도 키를 누르면 체력 반 칸의 피해를 입습니다."}, -- Breath of Life
 	{"327", "즉석사진", "피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 5초간 무적 상태가 됩니다.#Chest 스테이지 입장에 필요한 아이템입니다."}, -- The Polaroid
@@ -451,7 +451,7 @@ EID.descriptions[languageCode].collectibles={
 	{"416", "넓은 가방", "카드 또는 알약을 2개 들 수 있습니다.#카드/알약은 {{ButtonRT}}버튼으로 교체할 수 있습니다."}, -- Deep Pockets
 	{"417", "서큐버스", "오라를 가지고 대각선으로 이동하며 오라 안에 들어온 적에게 초당 공격력의 129%의 피해를 입히고, 캐릭터가 들어오면 {{DamageSmall}}공격력을 x1.5 증가시켜줍니다."}, -- Succubus
 	{"418", "과일 케이크", "눈물을 발사할 때마다 눈물의 효과가 바뀝니다."}, -- Fruit Cake
-	{"419", "순간이동 2.0", "사용 시 가보지 않은 방들 중 하나로 정해진 우선순위에 따라서 순간이동합니다.#!!! 순서: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}> 오류방"}, -- Teleport 2.0
+	{"419", "순간이동 2.0", "사용 시 가보지 않은 방들 중 하나로 정해진 우선순위에 따라서 순간이동합니다.#!!! 순서: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}> {{ErrorRoom}}오류방"}, -- Teleport 2.0
 	{"420", "검은 가루", "캐릭터가 지나간 곳에 검은 가루가 남으며, 가루로 원을 그리면 마법진이 생성되어 마법진 위의 적에게 틱당 10의 피해를 줍니다."}, -- Black Powder
 	{"421", "강낭콩", "{{Charm}} 사용 시 매혹 방귀를 뀝니다."}, -- Kidney Bean
 	{"422", "빛나는 모래시계", "사용 시 이전 방의 시점으로 시간을 되돌립니다."}, -- Glowing Hour Glass
@@ -519,7 +519,7 @@ EID.descriptions[languageCode].collectibles={
 	{"484", "잠깐 뭐야?", "사용 시 방귀를 뀌며 주변의 적을 밀쳐내고 캐릭터 주위에 충격파를 일으킵니다."}, -- Wait What?
 	{"485", "구부러진 동전", "사용 시 50% 확률로 방 안의 모든 아이템을 2배로 복사하며 복사 실패 시 아이템을 모두 없애고 동전을 1개 드랍합니다."}, -- Crooked Penny
 	{"486", "무딘 면도칼", "사용 시 피해를 입지 않고 피격 시 발동 효과를 발동합니다."}, -- Dull Razor
-	{"487", "감자칼", "사용 시 체력 한칸을 제거하고 {{Collectible73}}Cube of Meat를 하나 얻으며 {{DamageSmall}}공격력이 0.2 증가합니다."}, -- Potato Peeler
+	{"487", "감자칼", "!!! 사용 시 이하 효과 발동:#최대 체력 1칸을 제거하고 영구적으로 {{Collectible73}}Cube of Meat를 하나 얻으며 {{DamageSmall}}공격력이 0.2 증가합니다.#그 방에서 {{RangeSmall}}사거리 +5 증가하며 캐릭터가 지나간 자리에 빨간 장판이 생기며 닿은 적은 초당 6의 피해를 입습니다.#!!! 피격 시 발동 효과를 발동합니다."}, -- Potato Peeler
 	{"488", "메트로놈", "사용 시 그 방에서 랜덤한 아이템 효과를 발동합니다."}, -- Metronome
 	{"489", "무한 주사위", "사용 할 때마다 랜덤한 종류의 주사위로 바뀝니다."}, -- D infinity
 	{"490", "에덴의 영혼", "!!! 일회용#사용 시 그 방의 아이템을 2개 생성합니다."}, -- Eden's Soul
@@ -755,14 +755,14 @@ EID.descriptions[languageCode].cards={
 	{"32", "하갈라즈", "방 안의 모든 장애물을 제거합니다."}, -- Hagalaz
 	{"33", "제라", "방 안의 모든 픽업 아이템을 복제합니다."}, -- Jera
 	{"34", "에와즈", "{{Collectible84}} 다음 스테이지로 가는 다락문을 생성합니다."}, -- Ehwaz
-	{"35", "다가즈", "{{SoulHeart}}소울하트 +1#Labyrinth 및 특수 시드를 제외한 현재 스테이지의 저주를 제거합니다."}, -- Dagaz
+	{"35", "다가즈", "{{SoulHeart}}소울하트 +1#{{CurseCursedSmall}} Labyrinth 및 특수 시드를 제외한 현재 스테이지의 저주를 제거합니다."}, -- Dagaz
 	{"36", "엔수즈", "{{Collectible333}} 그 스테이지에서 맵에 특수방 위치, 비밀방 위치, 스테이지 구조가 표시됩니다."}, -- Ansuz
 	{"37", "페트로", "{{Collectible105}} 방 안의 모든 아이템을 다른 아이템으로 바꿉니다."}, -- Perthro
 	{"38", "벨카노", "파란 아군 파리/거미를 3마리씩 소환합니다."}, -- Berkano
 	{"39", "알기즈", "{{Collectible58}} 30초동안 무적 상태가 됩니다."}, -- Algiz
 	{"40", "비어있는 룬", "랜덤한 {{Rune}}룬 효과를 발동합니다.#25% 확률로 Blank Rune을 드랍합니다."}, -- Blank Rune
 	{"41", "검은 룬", "방 안의 아이템을 흡수하고 흡수한 만큼 랜덤한 능력치가 2개씩 증가합니다.#방 안의 픽업 아이템을 흡수하고 흡수한 개수만큼 파란 아군 파리 및 거미를 소환합니다.#방 안의 모든 적에게 40의 피해를 줍니다."}, -- Black Rune
-	{"42", "혼돈 카드", "바라보는 방향으로 카드를 던지며 카드에 맞은 적은 즉사합니다."}, -- Chaos Card
+	{"42", "혼돈 카드", "바라보는 방향으로 카드를 던지며 카드에 맞은 적은 즉사합니다.#!!! Delirium은 면역"}, -- Chaos Card
 	{"43", "신용카드", "{{Shop}}상점 또는 {{DevilRoom}}악마방에서 사용 시 모든 상품을 무료로 획득할 수 있습니다."}, -- Credit Card
 	{"44", "규칙 카드", "게임 힌트를 화면에 출력합니다."}, -- Rules Card
 	{"45", "비인간적인 카드", "방 전체에 똥을 생성합니다."}, -- A Card Against Humanity
@@ -800,19 +800,19 @@ EID.descriptions[languageCode].pills={
 	{"16", "연사 증가", "↑ {{TearsSmall}}연사 +0.35"}, -- Tears Up
 	{"17", "행운 감소", "↓ {{LuckSmall}}행운 -1"}, -- Luck Down
 	{"18", "행운 증가", "↑ {{LuckSmall}}행운 +1"}, -- Luck Up
-	{"19", "순간이동약", "스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Telepills
+	{"19", "순간이동약", "스테이지 안의 랜덤한 방으로 순간이동합니다.#{{ErrorRoom}} 낮은 확률로 오류방으로 이동합니다."}, -- Telepills
 	{"20", "48시간 풀충전!", "액티브 아이템 충전량을 모두 충전하고 배터리 픽업을 1~2개 드랍합니다."}, -- 48 Hour Energy!
 	{"21", "토혈", "빨간하트가 한칸이 되며 {{Heart}}빨간하트 픽업을 1~4개 드랍합니다."}, -- Hematemesis
 	{"22", "마비", "3초간 캐릭터가 마비 상태가 됩니다."}, -- Paralysis
 	{"23", "모두 볼 수 있어!", "사용 시 그 스테이지에서 {{SecretRoom}}{{SuperSecretRoom}}비밀방이 자동으로 열립니다."}, -- I can see forever!
 	{"24", "페로몬", "방 안의 모든 적을 3초간 {{Charm}}매혹시킵니다."}, -- Pheromones
-	{"25", "건망증", "Lost 저주에 걸리며 맵을 볼 수 없습니다."}, -- Amnesia
+	{"25", "건망증", "{{CurseLostSmall}} Lost 저주에 걸리며 맵을 볼 수 없습니다."}, -- Amnesia
 	{"26", "레몬 파티", "사용 시 캐릭터의 주위에 노란 장판이 생성되며 장판에 닿은 적은 초당 24의 피해를 입습니다."}, -- Lemon Party
 	{"27", "님 마술43?", "눈물이 30초간 대각선으로 나갑니다."}, -- R U A Wizard?
 	{"28", "진통제!", "그 방에서 캐릭터가 받는 모든 피해가 체력 반칸으로 고정됩니다."}, -- Percs!
 	{"29", "과다복용!", "그 방에서 캐릭터가 받는 모든 피해가 체력 한칸 이상으로 고정됩니다."}, -- Addicted!
 	{"30", "휴-식", "2초간 캐릭터의 위치에 똥을 생성합니다."}, -- Re-Lax
-	{"31", "", "Maze 저주에 걸립니다."}, -- ???
+	{"31", "", "{{CurseMazeSmall}} Maze 저주에 걸리며 방 이동 시 스테이지 안의 다른 방으로 순간이동하거나 두개의 랜덤 방의 위치가 서로 바뀝니다."}, -- ???
 	{"32", "커지는 알약", "캐릭터의 크기가 커집니다."}, -- One makes you larger
 	{"33", "작아지는 알약", "캐릭터의 크기가 작아집니다."}, -- One makes you small
 	{"34", "감염!", "방 안의 똥의 개수만큼 파란 아군 거미를 소환합니다."}, -- Infested!
@@ -891,3 +891,9 @@ EID.descriptions[languageCode].MCM={
 	DemoObjectTransformation = "테스트 변신 세트 표시",
 	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#!!! 간단 설정 방법:#{{Collectible182}} 폰트: Visuals→Font Type#{{Freezing}} 텍스트박스 너비: General→Textbox Width#\1 {{Damage}}테스트 공격력 +1#{{AngelDevilChance}} 악마와 천사, 당신의 선택은?#{{DeliriumSmall}} 모두가 싫어하는 델리리움",
 }
+
+-- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].HoldMapHeader = " 예상 결과"
+-- includes Planetarium even though it's unused in AB+ for convenience
+EID.descriptions[languageCode].Teleport2RoomNames = { "일반방","보스방","일급비밀방","상점","보물방","희생방","주사위방","책방","저주방","미니보스방","도전방/보스도전방","깨끗한 침대방","더러운 침대방","오락실","금고방","천체관","비밀방","특수 빨간방","악마방/천사방","I AM ERROR (오류방)" }
+EID.descriptions[languageCode].Teleport2GreedRoomNames = { "아레나", "보스방", "상점", "금/은보물방", "저주방", "출구방", "일급비밀방", "악마방/천사방", "I AM ERROR (오류방)" }
