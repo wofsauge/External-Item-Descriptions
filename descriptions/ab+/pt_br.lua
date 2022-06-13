@@ -236,7 +236,7 @@ EID.descriptions[languageCode].collectibles={
 	{"212", "", "50% de chance de reviver com Meio Coração após morrer"},
 	{"213", "", "Lágrimas que protejem#Lágrimas bloqueiam projéteis inimigos#↓ {{Shotspeed}} -0.15 Velocidade de Disparo"},
 	{"214", "", "↑ {{Range}} +5 Alcance#Deixa em rastro que causa dano após receber dano"},
-	{"215", "", "↑ {{AngelDevilChance}} 100% de chance de gerar a Salas do Diabo/Anjo"},
+	{"215", "", "↑ {{AngelDevilChance}} 100% de chance de gerar Salas do Diabo/Anjo"},
 	{"216", "", "↑ {{Damage}} +1 Dano#{{BlackHeart}} +3 Corações Negros"},
 	{"217", "", "Chance aleatória de gerar uma aranha azul ao disparar lágrimas#{{Heart}} Cura 1 Coração"},
 	{"218", "", "↑ {{Heart}} +1 Saúde#{{HalfHeart}} chance de curar Meio Coração a cada minuto"},
