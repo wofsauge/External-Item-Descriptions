@@ -496,12 +496,12 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Lilith", "", "패밀리어가 Gello와 같이 움직입니다.#↑ 패밀리어 하나 당 탯줄 공격력 +3"},
 	{"Tainted Keeper", "", "적 처치시 드랍되는 동전이 캐릭터에게 끌려옵니다."},
 	{"Tainted Apollyon", "", "공격키를 누르고 있으면 파리가 자동으로 적을 따라다니며 공격합니다."},
-	{"Tainted Forgotten", "", "사용 시 해골을 영혼의 위치로 불러오는 {{Collectible714}}능력 아이템을 얻습니다."},
+	{"Tainted Forgotten", "", "{{Collectible714}} 사용 시 멀리 떨어져 있는 해골을 영혼의 위치로 불러옵니다.#해골을 집기 전까지 영혼은 피해를 받지 않습니다."},
 	{"Tainted Bethany", "", "방어력이 높은 {{Quality3}}/{{Quality4}}등급 아이템의 불꽃을 4마리 소환합니다."},
 	{"Tainted Jacob", "", "Dark Esau와 같이 행동하는 또 다른 Dark Esau를 소환합니다.#두 명의 Dark Esau 모두 같은 타이밍에 돌진합니다.#{{Collectible722}} Anima Sola 사용 시 두 명의 Dark Esau를 모두 묶으며 재사용 시 한명씩 차례로 사슬이 끊어집니다."},
 	{"Dead Tainted Lazarus", "", "반대 폼의 캐릭터가 공격력 x0.5의 2p 플레이어로 소환됩니다.#소환된 캐릭터는 적에게 피해를 입지 않으며 아이템을 획득할 수 없습니다."},
 	{"Tainted Jacob 2", "", "Dark Esau와 같이 행동하는 또 다른 Dark Esau를 소환합니다.#두 명의 Dark Esau 모두 같은 타이밍에 돌진합니다.#{{Collectible722}} Anima Sola 사용 시 두 명의 Dark Esau를 모두 묶으며 재사용 시 한명씩 차례로 사슬이 끊어집니다."},
-	{"Tainted Forgotten Soul", "", "사용 시 해골을 영혼의 위치로 불러오는 {{Collectible714}}능력 아이템을 얻습니다."},
+	{"Tainted Forgotten Soul", "", "{{Collectible714}} 사용 시 멀리 떨어져 있는 해골을 영혼의 위치로 불러옵니다.#해골을 집기 전까지 영혼은 피해를 받지 않습니다."},
 }
 
 -- Buffs caused by Binge Eater
