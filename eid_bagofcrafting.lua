@@ -217,18 +217,9 @@ local recheckPickups = false
 local customRNGSeed = 0x77777770
 local customRNGShift = {0,0,0}
 
-local function RNGNext()
-	local num = customRNGSeed
-	num = num ~ ((num >> customRNGShift[1]) & 4294967295)
-	num = num ~ ((num << customRNGShift[2]) & 4294967295)
-	num = num ~ ((num >> customRNGShift[3]) & 4294967295)
-	customRNGSeed = num >> 0;
-	return customRNGSeed;
-end
-
 local function nextFloat()
 	local multi = 2.3283061589829401E-10;
-	return RNGNext() * multi;
+	return EID:RNGNext(customRNGSeed, customRNGShift[1], customRNGShift[2], customRNGShift[3]) * multi;
 end
 
 -- Convert a pickup's ID into what ingredient it counts as
@@ -387,7 +378,7 @@ function EID:calculateBagOfCrafting(componentsTable)
 		compCounts[compId + 1] = compCounts[compId + 1] + 1
 		compTotalWeight = compTotalWeight + pickupValues[compId + 1]
 		customRNGShift = componentShifts[compId + 1]
-		RNGNext()
+		EID:RNGNext(customRNGSeed, customRNGShift[1], customRNGShift[2], customRNGShift[3])
 	end
 	customRNGShift = componentShifts[7]
 	
