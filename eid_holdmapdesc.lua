@@ -126,38 +126,6 @@ end
 --order of checking: 15% Pennies, 48% Damage, 58% Hearts, 63% Item, 65% Leviathan, 100% Nothing
 local sanguineResults = { { 0.15, 3 }, { 0.48, 2 }, { 0.58, 4 }, { 0.63, 5 }, { 0.65, 6 }, { 1, 1 } }
 
-local function sanguinePrediction()
-	local spikes = currentRoom:GetGridEntity(67)
-	if not spikes then return end -- don't display anything if we can't find the spikes!
-	local cheatResult = nil
-	if spikes and EID.Config["PredictionSanguineBond"] then
-		local spikeSeed = currentRoom:GetGridEntity(67):GetRNG():GetSeed()
-		spikeSeed = RNGNext(spikeSeed, 5, 9, 7)
-		spikeSeed = RNGNext(spikeSeed, 0x01, 0x05, 0x13) -- magic disassembled numbers!
-		local nextFloat = SeedToFloat(spikeSeed)
-		
-		for _,v in ipairs(sanguineResults) do
-			if nextFloat < v[1] then cheatResult = v[2] break end
-		end
-	end
-
-	local descObj = EID:getDescriptionObj(5, 100, 692)
-	local resultsDesc = ""
-
-	local lineCount = 0
-	-- separate sanguine's description by # or semicolons
-	for w in string.gmatch(descObj.Description, "([^#;]+)") do
-		-- we only care about groups that contain a percent sign
-		if string.find(w,"%%") then
-			lineCount = lineCount + 1
-			if cheatResult == lineCount then resultsDesc = resultsDesc .. "{{ColorBagComplete}}" end
-			resultsDesc = resultsDesc .. w .. "#"
-		end
-	end
-
-	append("{{Collectible692}}", descObj.Name, resultsDesc)
-end
-
 function EID:trimSanguineDesc(descObj)
 	local currentRoom = game:GetLevel():GetCurrentRoom()
 	local spikes = currentRoom:GetGridEntity(67)
@@ -212,11 +180,6 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			local nextPoop = player:GetPoopSpell(i)
 			append("{{PoopSpell" .. nextPoop .. "}}", poopInfo[nextPoop][1], poopInfo[nextPoop][2])
 		end
-	end
-
-	-- Sanguine Bond Possible Results
-	if REPENTANCE and player:HasCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) and game:GetRoom():GetType() == RoomType.ROOM_DEVIL then
-		sanguinePrediction()
 	end
 
 	-- Teleport! location
