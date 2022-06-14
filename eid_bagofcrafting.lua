@@ -217,6 +217,7 @@ local recheckPickups = false
 local customRNGSeed = 0x77777770
 local customRNGShift = {0,0,0}
 
+-- Use local RNG functions to possibly reduce processing time a little bit
 local function RNGNext()
 	local num = customRNGSeed
 	num = num ~ ((num >> customRNGShift[1]) & 4294967295)
