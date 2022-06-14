@@ -1507,7 +1507,7 @@ local function onRender(t)
 			local curCounter = EID.sacrificeCounter[curRoomIndex] or 1
 			local sacrificeDesc = EID:getDescriptionObj(-999, -1, curCounter)
 			EID:addDescriptionToPrint(sacrificeDesc, playerNearSacrificeSpikes and 1 or nil)
-		elseif REPENTANCE and game:GetRoom():GetType() == RoomType.ROOM_DEVIL and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) and (EID.Config["DisplaySanguineInfo"] or true) then
+		elseif REPENTANCE and EID.Config["DisplaySanguineInfo"] and game:GetRoom():GetType() == RoomType.ROOM_DEVIL and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) then
 			local sanguineDesc = EID:getDescriptionObj(5, 100, 692, nil, false)
 			sanguineDesc.Description = EID:trimSanguineDesc(sanguineDesc)
 			if sanguineDesc.Description ~= "" then EID:addDescriptionToPrint(sanguineDesc, playerNearSacrificeSpikes and 1 or nil) end
