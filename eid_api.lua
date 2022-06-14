@@ -1711,10 +1711,11 @@ function EID:AddIconToObject(eType, eVariant, eSubType, iconName)
 end
 
 -- reimplementation of RNG Seed shift feature used by the game. Mostly used for RNG Prediction features
+-- Default RNG shift values for many things are 5, 9, 7
 function EID:RNGNext(rngNum, shift1, shift2, shift3)
-	rngNum = rngNum ~ ((rngNum >> shift1) & 4294967295)
-	rngNum = rngNum ~ ((rngNum << shift2) & 4294967295)
-	rngNum = rngNum ~ ((rngNum >> shift3) & 4294967295)
+	rngNum = rngNum ~ ((rngNum >> (shift1 or 5)) & 4294967295)
+	rngNum = rngNum ~ ((rngNum << (shift2 or 9)) & 4294967295)
+	rngNum = rngNum ~ ((rngNum >> (shift3 or 7)) & 4294967295)
 	return rngNum >> 0;
 end
 
