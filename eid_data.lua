@@ -133,6 +133,12 @@ EID.InlineIcons = {
 	["ArrowDown"] = {"ArrowDown", 0, 10, 9, 1},
 	["Warning"] = {"Warning", 0, 10, 9, 3},
 	["Blank"] = {"Blank", 0, 0, 0},
+
+	["ArrowGrayUp"] = {"ArrowGray", 0, 10, 9, 1},
+	["ArrowGrayRight"] = {"ArrowGray", 1, 10, 9, 1},
+	["ArrowGrayDown"] = {"ArrowGray", 2, 10, 9, 1},
+	["ArrowGrayLeft"] = {"ArrowGray", 3, 10, 9, 1},
+
 	["IconGreenTint"] = function(_)
 		EID._NextIconModifier = function(sprite)
 			sprite.Color = Color(1, 1, 1, EID.Config["Transparency"] * 0.5, 0, 0.5, 0)
@@ -803,3 +809,7 @@ EID.TransformationData = {
 	[tostring(EID.TRANSFORMATION.SUPERBUM)] = {},
 	[tostring(EID.TRANSFORMATION.STOMPY)] = {VanillaForm = REPENTANCE and PlayerForm.PLAYERFORM_STOMPY}
 }
+
+
+EID.RoomShapeToMarkup = { "{{Room}}", "{{RoomSmallHorizontal}}", "{{RoomSmallVertical}}", "{{RoomLongVertical}}", "{{RoomLongThinVertical}}","{{RoomLongHorizontal}}", "{{RoomLongThinHorizontal}}", "{{RoomXL}}", "{{RoomLTopLeft}}", "{{RoomL}}", "{{RoomLBottomLeft}}", "{{RoomLBottomRight}}" }
+EID.RoomTypeToMarkup = { "{{Room}}", "{{Shop}}", "{{ErrorRoom}}", "{{TreasureRoom}}", "{{BossRoom}}", "{{MiniBoss}}", "{{SecretRoom}}", "{{SuperSecretRoom}}", "{{ArcadeRoom}}", "{{CursedRoom}}", "{{ChallengeRoom}}", "{{Library}}", "{{SacrificeRoom}}", "{{DevilRoom}}", "{{AngelRoom}}", "{{LadderRoom}}", "{{Room}}" --[[boss rush]], "{{IsaacsRoom}}", "{{BarrenRoom}}", "{{ChestRoom}}", "{{DiceRoom}}", "{{Shop}}", "{{Room}}", --[[Black Market / Greed Exit]] "{{Planetarium}}", "{{Teleporter}}","{{Teleporter}}", "{{Room}}", "{{Room}}" --[[Blue Key rooms]], "{{UltraSecretRoom}}" }
