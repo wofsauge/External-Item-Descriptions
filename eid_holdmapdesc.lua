@@ -158,6 +158,37 @@ local function sanguinePrediction()
 	append("{{Collectible692}}", descObj.Name, resultsDesc)
 end
 
+function EID:trimSanguineDesc(descObj)
+	local currentRoom = game:GetLevel():GetCurrentRoom()
+	local spikes = currentRoom:GetGridEntity(67)
+	if not spikes then return "" end -- don't display anything if we can't find the spikes!
+	local cheatResult = nil
+	if spikes and EID.Config["PredictionSanguineBond"] then
+		local spikeSeed = currentRoom:GetGridEntity(67):GetRNG():GetSeed()
+		spikeSeed = RNGNext(spikeSeed, 5, 9, 7)
+		spikeSeed = RNGNext(spikeSeed, 0x01, 0x05, 0x13) -- magic disassembled numbers!
+		local nextFloat = SeedToFloat(spikeSeed)
+		
+		for _,v in ipairs(sanguineResults) do
+			if nextFloat < v[1] then cheatResult = v[2] break end
+		end
+	end
+
+	local resultsDesc = ""
+
+	local lineCount = 0
+	-- separate sanguine's description by # or semicolons
+	for w in string.gmatch(descObj.Description, "([^#;]+)") do
+		-- we only care about groups that contain a percent sign
+		if string.find(w,"%%") then
+			lineCount = lineCount + 1
+			if cheatResult == lineCount then resultsDesc = resultsDesc .. "{{ColorBagComplete}}" end
+			resultsDesc = resultsDesc .. w .. "#"
+		end
+	end
+	return resultsDesc
+end
+
 function EID:getHoldMapDescription(player, checkingTwin)
 	-- Starting Blacklist: Recall, Hold
 	blacklist = { ["5.100.714"] = true, ["5.100.715"] = true, }
