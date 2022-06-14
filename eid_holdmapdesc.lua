@@ -174,7 +174,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	end
 
 	-- Teleport! location
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_TELEPORT) and EID.Config["ItemReminderShowRNGCheats"] or true then
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_TELEPORT) and EID.Config["ItemReminderShowRNGCheats"] then
 		blacklist["5.100.44"] = true
 		teleport1Prediction()
 	end
