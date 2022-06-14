@@ -30,18 +30,6 @@ local function addObjectDesc(type, variant, subtype, extraIcon)
 	end
 end
 
--- General RNG functions for RNG predicting
-local function RNGNext(num, shift1, shift2, shift3)
-	num = num ~ ((num >> shift1) & 4294967295)
-	num = num ~ ((num << shift2) & 4294967295)
-	num = num ~ ((num >> shift3) & 4294967295)
-	return num >> 0;
-end
-local function SeedToFloat(seed)
-	local multi = 2.3283061589829401E-10;
-	return seed * multi;
-end
-
 -- Teleport! Destination Prediction --
 local function teleport1Prediction()
 	if currentPlayer:GetSprite():GetAnimation() == "TeleportUp" then return end
@@ -50,13 +38,15 @@ local function teleport1Prediction()
 	local possibleRooms = {}
 	for i = 0, 168 do
 		local room = level:GetRoomByIdx(i)
+		-- Currently, any non-red room on the grid that we aren't in is a valid choice
+		-- Is there more criteria to look out for?
 		if room.GridIndex >= 0 and room.SafeGridIndex ~= currentRoomIndex and room.Data.Type ~= 29 and (not REPENTANCE or room.Flags & 1024 ~= 1024) then
 			table.insert(possibleRooms, i)
 		end
 	end
 	local teleSeed = currentPlayer:GetCollectibleRNG(CollectibleType.COLLECTIBLE_TELEPORT):GetSeed()
-	teleSeed = RNGNext(teleSeed, 5, 9, 7)
-	teleSeed = RNGNext(teleSeed, 0x02, 0x0F, 0x19) -- magic disassembled numbers!
+	teleSeed = EID:RNGNext(teleSeed, 5, 9, 7)
+	teleSeed = EID:RNGNext(teleSeed, 0x02, 0x0F, 0x19) -- magic disassembled numbers!
 	
 	local resultRoomIndex = possibleRooms[(teleSeed % #possibleRooms) + 1]
 	local resultRoom = level:GetRoomByIdx(resultRoomIndex)
@@ -126,6 +116,7 @@ end
 --order of checking: 15% Pennies, 48% Damage, 58% Hearts, 63% Item, 65% Leviathan, 100% Nothing
 local sanguineResults = { { 0.15, 3 }, { 0.48, 2 }, { 0.58, 4 }, { 0.63, 5 }, { 0.65, 6 }, { 1, 1 } }
 
+-- this isn't even used in this file anymore, it's in main, but there isn't really a better place to put it yet
 function EID:trimSanguineDesc(descObj)
 	local currentRoom = game:GetLevel():GetCurrentRoom()
 	local spikes = currentRoom:GetGridEntity(67)
@@ -133,9 +124,9 @@ function EID:trimSanguineDesc(descObj)
 	local cheatResult = nil
 	if spikes and EID.Config["PredictionSanguineBond"] then
 		local spikeSeed = currentRoom:GetGridEntity(67):GetRNG():GetSeed()
-		spikeSeed = RNGNext(spikeSeed, 5, 9, 7)
-		spikeSeed = RNGNext(spikeSeed, 0x01, 0x05, 0x13) -- magic disassembled numbers!
-		local nextFloat = SeedToFloat(spikeSeed)
+		spikeSeed = EID:RNGNext(spikeSeed, 5, 9, 7)
+		spikeSeed = EID:RNGNext(spikeSeed, 0x01, 0x05, 0x13) -- magic disassembled numbers!
+		local nextFloat = EID:SeedToFloat(spikeSeed)
 		
 		for _,v in ipairs(sanguineResults) do
 			if nextFloat < v[1] then cheatResult = v[2] break end
