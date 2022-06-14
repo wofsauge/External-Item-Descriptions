@@ -5,6 +5,8 @@ EID.TabPreviewID = 0
 EID.inModifierPreview = false
 -- The "Hold Map Helper" needs to know if it shouldn't display because we're in a Hold Tab desc
 EID.TabDescThisFrame = false
+-- ...and likewise we need to know when we're in the Item Reminder (this is getting out of hand)
+EID.ReminderThisFrame = false
 
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
 EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, }
@@ -318,7 +320,7 @@ if REPENTANCE then
 		if hasCarBattery then
 			EID:appendToDescription(descObj, " (Results with {{Collectible356}})")
 		end
-		if firstID ~= 0 and EID.TabPreviewID == 0 then
+		if not EID.ReminderThisFrame and firstID ~= 0 and EID.TabPreviewID == 0 then
 			EID.TabPreviewID = firstID
 			EID:appendToDescription(descObj, "#{{Blank}} ".. EID:getDescriptionEntry("FlipItemToggleInfo"))
 		end
