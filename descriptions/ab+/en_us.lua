@@ -885,6 +885,9 @@ EID.descriptions[languageCode].MCM = {
 
 -- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].HoldMapHeader = " Result"
--- includes Planetarium even though it's unused in AB+ for convenience
-EID.descriptions[languageCode].Teleport2RoomNames = { "Normal Room","Boss Room","Super Secret Room","Shop","Treasure Room","Sacrifice Room","Dice Room","Library","Curse Room","Miniboss Room","Challenge/Boss Challenge Room","Isaac's Room","Barren Room","Arcade Room","Chest Room","Planetarium","Secret Room","Special Red Room","Angel/Devil Room","I AM ERROR Room" }
-EID.descriptions[languageCode].Teleport2GreedRoomNames = { "Main Room", "Boss Room", "Shop", "Silver/Gold Treasure Room", "Curse Room", "Exit Room", "Super Secret Room", "Angel/Devil Room", "I AM ERROR Room" }
+
+-- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
+-- Includes Repentance room types for localization convenience
+EID.descriptions[languageCode].RoomTypeNames = { "Normal Room", "Shop", "I AM ERROR Room", "Treasure Room", "Boss Room", "Miniboss Room", "Secret Room", "Super Secret Room", "Arcade Room", "Curse Room", "Challenge Room", "Library", "Sacrifice Room", "Devil Room", "Angel Room", "Crawlspace Room", "Boss Rush Room", "Isaac's Room", "Barren Room", "Chest Room", "Dice Room", "Black Market", "Exit Room", "Planetarium", "Teleporter Entrance", "Teleporter Exit", "Alt Path Trapdoor", "Blue Key Room", "Ultra Secret Room",
+-- Not technically room types but still potentially useful to have localized
+[666] = "Angel/Devil Room", [1024] = "Red Room", [1025] = "Special Red Room" }
