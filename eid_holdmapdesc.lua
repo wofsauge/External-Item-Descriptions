@@ -44,6 +44,7 @@ end
 
 -- Teleport! Destination Prediction --
 local function teleport1Prediction()
+	if currentPlayer:GetSprite():GetAnimation() == "TeleportUp" then return end
 	local level = game:GetLevel()
 	local currentRoomIndex = level:GetCurrentRoomDesc().SafeGridIndex
 	local possibleRooms = {}
@@ -63,27 +64,31 @@ local function teleport1Prediction()
 	
 	local roomIcon = EID.RoomTypeToMarkup[resultRoom.Data.Type]
 	if resultRoom.Data.Type == 1 then roomIcon = EID.RoomShapeToMarkup[resultRoom.Data.Shape] end
-	-- Find our X/Y difference from the target location
-	local myPos = Vector(currentRoomIndex % 13, math.floor(currentRoomIndex / 13))
-	local newPos = Vector(resultSafeIndex % 13, math.floor(resultSafeIndex / 13))
-	local diffX = math.floor(newPos.X - myPos.X)
-	local diffY = math.floor(newPos.Y - myPos.Y)
-
+	local roomNames = EID:getDescriptionEntry("RoomTypeNames")
+	local roomName = roomNames[resultRoom.Data.Type]
+	-- Find our X/Y difference from the target location, if we're on the map
 	local d = ""
-	if diffY > 0 then d = d .. "{{ArrowGrayDown}} " .. diffY
-	elseif diffY < 0 then d = d .. "{{ArrowGrayUp}} " .. math.abs(diffY) end
-	if d ~= "" and diffX ~= 0 then d = d .. "," end
-	if diffX > 0 then d = d .. "{{ArrowGrayRight}} " .. diffX
-	elseif diffX < 0 then d = d .. "{{ArrowGrayLeft}} " .. math.abs(diffX) end
+	if currentRoomIndex >= 0 then
+		local myPos = Vector(currentRoomIndex % 13, math.floor(currentRoomIndex / 13))
+		local newPos = Vector(resultSafeIndex % 13, math.floor(resultSafeIndex / 13))
+		local diffX = math.floor(newPos.X - myPos.X)
+		local diffY = math.floor(newPos.Y - myPos.Y)
 
-	append("{{Collectible44}}", EID:getObjectName(5, 100, 44) .. EID:getDescriptionEntry("HoldMapHeader"), roomIcon .. " " .. d)
+		if diffY > 0 then d = d .. "{{ArrowGrayDown}} " .. diffY
+		elseif diffY < 0 then d = d .. "{{ArrowGrayUp}} " .. math.abs(diffY) end
+		if d ~= "" and diffX ~= 0 then d = d .. "," end
+		if diffX > 0 then d = d .. "{{ArrowGrayRight}} " .. diffX
+		elseif diffX < 0 then d = d .. "{{ArrowGrayLeft}} " .. math.abs(diffX) end
+	end
+	if d ~= "" then d = "#{{Blank}} " .. d end
+
+	append("{{Collectible44}}", EID:getObjectName(5, 100, 44) .. EID:getDescriptionEntry("HoldMapHeader"), roomIcon .. " " .. roomName .. d)
 end
 
 -- Teleport 2 Destination Prediction --
-local teleport2Order = { 1,5,8,2,4,13,21,12,10,6,11,18,19,9,20,24,7,666,14,3 }
-local teleport2GreedOrder = { 1,5,2,4,10,23,8,14,3 }
-local teleport2Icons = { "{{Room}}","{{BossRoom}}","{{SuperSecretRoom}}","{{Shop}}","{{TreasureRoom}}","{{SacrificeRoom}}","{{DiceRoom}}","{{Library}}","{{CursedRoom}}","{{MiniBoss}}","{{ChallengeRoom}}","{{IsaacsRoom}}","{{BarrenRoom}}","{{ArcadeRoom}}","{{ChestRoom}}","{{Planetarium}}","{{SecretRoom}}","{{RedRoom}}","{{AngelDevilChance}}","{{ErrorRoom}}" }
-local teleport2GreedIcons = { "{{RoomLongVertical}}","{{BossRoom}}","{{Shop}}","{{TreasureRoom}}","{{CursedRoom}}","{{Room}}","{{SuperSecretRoom}}","{{AngelDevilChance}}","{{ErrorRoom}}" }
+local teleport2Order = { 1,5,8,2,4,13,21,12,10,6,11,18,19,9,20,24,7,1025,666,3 }
+local teleport2GreedOrder = { 1,5,2,4,10,23,8,666,3 }
+local teleport2Icons = { [1025] = "{{RedRoom}}", [666] = "{{AngelDevilChance}}" }
 
 local function teleport2Prediction()
 	local level = game:GetLevel()
@@ -95,21 +100,23 @@ local function teleport2Prediction()
 		
 		if not room.Clear then
 			-- Check for Special Red Rooms, which get ordered differently than their non-red version
-			if REPENTANCE and room.Data.Type ~= 1 and room.Flags & 1024 == 1024 then unclearedTypes[666] = true
+			if REPENTANCE and room.Data.Type ~= 1 and room.Flags & 1024 == 1024 then unclearedTypes[1025] = true
 			else unclearedTypes[room.Data.Type] = true end
 		end
 	end
 	--Angel/Devil Room check (it lives off the map)
-	if not level:GetRoomByIdx(-1).Clear then unclearedTypes[14] = true end
+	if not level:GetRoomByIdx(-1).Clear then unclearedTypes[666] = true end
 	
 	local greed = game:IsGreedMode()
 	local roomOrder = (greed and teleport2GreedOrder) or teleport2Order
-	local roomIcons = (greed and teleport2GreedIcons) or teleport2Icons
-	local roomNames = (greed and EID:getDescriptionEntry("Teleport2GreedRoomNames")) or EID:getDescriptionEntry("Teleport2RoomNames")
+	local roomNames = EID:getDescriptionEntry("RoomTypeNames")
 	
 	for i,v in ipairs(roomOrder) do
 		if unclearedTypes[v] then
-			append("{{Collectible419}}", EID:getObjectName(5, 100, 419) .. EID:getDescriptionEntry("HoldMapHeader"), roomIcons[i] .. " " .. roomNames[i])
+			local descString = (teleport2Icons[v] or EID.RoomTypeToMarkup[v]) .. " " .. roomNames[v]
+			-- Tall Vertical Main Greed Room exception, because why not, attention to detail
+			if v == 1 and greed then descString = "{{RoomLongVertical}} " .. roomNames[v] end
+			append("{{Collectible419}}", EID:getObjectName(5, 100, 419) .. EID:getDescriptionEntry("HoldMapHeader"), descString)
 			return
 		end
 	end
