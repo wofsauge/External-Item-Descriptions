@@ -3,6 +3,7 @@ local level
 local currentRoom
 local blacklist
 local holdMapDesc
+local currentPlayer
 
 -- Rainbow Worm's trinket IDs it grants, in order
 local rainbowWormEffects = { [0] = 9, 11, 65, 27, 10, 12, 26, 66, 96, 144 }
@@ -39,6 +40,43 @@ end
 local function SeedToFloat(seed)
 	local multi = 2.3283061589829401E-10;
 	return seed * multi;
+end
+
+-- Teleport! Destination Prediction --
+local function teleport1Prediction()
+	local level = game:GetLevel()
+	local currentRoomIndex = level:GetCurrentRoomDesc().SafeGridIndex
+	local possibleRooms = {}
+	for i = 0, 168 do
+		local room = level:GetRoomByIdx(i)
+		if room.GridIndex >= 0 and room.SafeGridIndex ~= currentRoomIndex and room.Data.Type ~= 29 and (not REPENTANCE or room.Flags & 1024 ~= 1024) then
+			table.insert(possibleRooms, i)
+		end
+	end
+	local teleSeed = currentPlayer:GetCollectibleRNG(CollectibleType.COLLECTIBLE_TELEPORT):GetSeed()
+	teleSeed = RNGNext(teleSeed, 5, 9, 7)
+	teleSeed = RNGNext(teleSeed, 0x02, 0x0F, 0x19) -- magic disassembled numbers!
+	
+	local resultRoomIndex = possibleRooms[(teleSeed % #possibleRooms) + 1]
+	local resultRoom = level:GetRoomByIdx(resultRoomIndex)
+	local resultSafeIndex = resultRoom.SafeGridIndex
+	
+	local roomIcon = EID.RoomTypeToMarkup[resultRoom.Data.Type]
+	if resultRoom.Data.Type == 1 then roomIcon = EID.RoomShapeToMarkup[resultRoom.Data.Shape] end
+	-- Find our X/Y difference from the target location
+	local myPos = Vector(currentRoomIndex % 13, math.floor(currentRoomIndex / 13))
+	local newPos = Vector(resultSafeIndex % 13, math.floor(resultSafeIndex / 13))
+	local diffX = math.floor(newPos.X - myPos.X)
+	local diffY = math.floor(newPos.Y - myPos.Y)
+
+	local d = ""
+	if diffY > 0 then d = d .. "{{ArrowGrayDown}} " .. diffY
+	elseif diffY < 0 then d = d .. "{{ArrowGrayUp}} " .. math.abs(diffY) end
+	if d ~= "" and diffX ~= 0 then d = d .. "," end
+	if diffX > 0 then d = d .. "{{ArrowGrayRight}} " .. diffX
+	elseif diffX < 0 then d = d .. "{{ArrowGrayLeft}} " .. math.abs(diffX) end
+
+	append("{{Collectible44}}", EID:getObjectName(5, 100, 44) .. EID:getDescriptionEntry("HoldMapHeader"), roomIcon .. " " .. d)
 end
 
 -- Teleport 2 Destination Prediction --
@@ -88,7 +126,7 @@ local function sanguinePrediction()
 	if spikes and EID.Config["PredictionSanguineBond"] then
 		local spikeSeed = currentRoom:GetGridEntity(67):GetRNG():GetSeed()
 		spikeSeed = RNGNext(spikeSeed, 5, 9, 7)
-		spikeSeed = RNGNext(spikeSeed, 1, 5, 0x13)
+		spikeSeed = RNGNext(spikeSeed, 0x01, 0x05, 0x13) -- magic disassembled numbers!
 		local nextFloat = SeedToFloat(spikeSeed)
 		
 		for _,v in ipairs(sanguineResults) do
@@ -120,6 +158,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 
 	level = game:GetLevel()
 	currentRoom = level:GetCurrentRoom()
+	currentPlayer = player
 	
 	-- TODO:
 	-- D1, crooked penny cheats. 404/liberty cap/etc. "what item is it"
@@ -140,6 +179,12 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	-- Sanguine Bond Possible Results
 	if REPENTANCE and player:HasCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) and game:GetRoom():GetType() == RoomType.ROOM_DEVIL then
 		sanguinePrediction()
+	end
+
+	-- Teleport! location
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_TELEPORT) and EID.Config["ItemReminderShowRNGCheats"] or true then
+		blacklist["5.100.44"] = true
+		teleport1Prediction()
 	end
 	
 	-- Teleport 2.0 location
