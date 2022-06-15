@@ -30,9 +30,50 @@ local function addObjectDesc(type, variant, subtype, extraIcon)
 	end
 end
 
+-- Banned items: Metronome, Plan C, Glowing Hour Glass, Breath of Life, Clicker, R Key
+-- Reduced chance: Death Certificate (15%), Genesis (25%)
+-- I saw something in the code about rerolling Forget Me Now but not sure what the criteria was
+local metronomeBlacklist = {[488] = 1, [475] = 1, [422] = 1} --AB+ can choose Clicker lol rip
+if REPENTANCE then metronomeBlacklist = {[488] = 1, [475] = 1, [422] = 1, [326] = 1, [482] = 1, [636] = 1, [628] = 0.85, [622] = 0.75 } end
+
+-- Should we account for Car Battery? (Both if we have it, and if it grants it which immediately uses it again)
+function EID:MetronomePrediction()
+	local itemConfig = Isaac.GetItemConfig()
+	local numCollectibles = EID:GetMaxCollectibleID()
+	local metronomeRNG = currentPlayer:GetCollectibleRNG(CollectibleType.COLLECTIBLE_METRONOME):GetSeed()
+	local rerollChance = 0
+	if REPENTANCE then
+		metronomeRNG = EID:RNGNext(metronomeRNG)
+		rerollChance = metronomeRNG
+	end
+	local attempts = 15
+	while attempts > 0 do
+		attempts = attempts - 1
+		metronomeRNG = EID:RNGNext(metronomeRNG)
+		local sel = metronomeRNG % numCollectibles + 1
+		if itemConfig:GetCollectible(sel) ~= nil then
+			if metronomeBlacklist[sel] then
+				-- A few items have a reroll chance in Repentance
+				if metronomeBlacklist[sel] < 1 then
+					rerollChance = EID:RNGNext(rerollChance, 0x02, 0x0F, 0x11)
+					local rerollFloat = EID:SeedToFloat(rerollChance)
+					if rerollFloat < 1 - metronomeBlacklist[sel] then
+						-- We succeeded the reroll chance
+						return "{{Collectible" .. sel .. "}} {{ColorGray}}" .. EID:getObjectName(5,100,sel) .. "#" .. EID:getDescriptionObj(5,100,sel).Description
+					end
+				end
+			else
+				return "{{Collectible" .. sel .. "}} {{ColorGray}}" .. EID:getObjectName(5,100,sel) .. "#" .. EID:getDescriptionObj(5,100,sel).Description
+			end
+		end
+	end
+	-- as the code puts it, [warn] No Collectible found for Metronome!
+	return "None"
+end
+
 -- Teleport! Destination Prediction --
 local function teleport1Prediction()
-	if currentPlayer:GetSprite():GetAnimation() == "TeleportUp" then return end
+	if REPENTANCE and currentPlayer:GetSprite():GetAnimation() == "TeleportUp" then return end
 	local level = game:GetLevel()
 	local currentRoomIndex = level:GetCurrentRoomDesc().SafeGridIndex
 	local possibleRooms = {}
@@ -171,6 +212,12 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			local nextPoop = player:GetPoopSpell(i)
 			append("{{PoopSpell" .. nextPoop .. "}}", poopInfo[nextPoop][1], poopInfo[nextPoop][2])
 		end
+	end
+
+	-- Metronome result
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_METRONOME) and EID.Config["ItemReminderShowRNGCheats"] then
+		blacklist["5.100.488"] = true
+		append("{{Collectible488}}", EID:getObjectName(5,100,488) .. EID:getDescriptionEntry("HoldMapHeader"), EID:MetronomePrediction())
 	end
 
 	-- Teleport! location
