@@ -4,6 +4,7 @@ local currentRoom
 local blacklist
 local holdMapDesc
 local currentPlayer
+EID.InsideItemReminder = false
 
 -- Rainbow Worm's trinket IDs it grants, in order
 local rainbowWormEffects = { [0] = 9, 11, 65, 27, 10, 12, 26, 66, 96, 144 }
@@ -27,6 +28,21 @@ local function addObjectDesc(type, variant, subtype, extraIcon)
 		local iconString = "{{" .. variantToName[variant] .. subtype .. "}}"
 		if extraIcon then iconString = extraIcon .. " " .. iconString end
 		append(iconString, demoDescObj.Name, demoDescObj.Description)
+	end
+end
+
+-- AB+'s D Infinity RNG modulo order
+local dinfinityList = { [0] = 105, 166, 284, 283, 285, 406, 386 }
+-- Repentance's D Infinity order: D1, D4, D6, Eternal D6, D7, D8, D10, D12, D20, D100
+if REPENTANCE then dinfinityList = { 476, 284, 105, 609, 437, 406, 285, 386, 166, 283 } end
+function EID:CurrentDInfinity()
+	if not REPENTANCE then
+		local rng = currentPlayer:GetCollectibleRNG(489):GetSeed()
+		rng = EID:RNGNext(rng, 0x1, 0x9, 0x1D)
+		local nextDice = dinfinityList[rng % 7]
+		addObjectDesc(5, 100, nextDice, "{{Collectible489}}")
+	else
+		-- track our current selected dinfinity dice! test if it is preserved between pickups of it
 	end
 end
 
@@ -59,16 +75,16 @@ function EID:MetronomePrediction()
 					local rerollFloat = EID:SeedToFloat(rerollChance)
 					if rerollFloat < 1 - metronomeBlacklist[sel] then
 						-- We succeeded the reroll chance
-						return "{{Collectible" .. sel .. "}} {{ColorGray}}" .. EID:getObjectName(5,100,sel) .. "#" .. EID:getDescriptionObj(5,100,sel).Description
+						return sel
 					end
 				end
 			else
-				return "{{Collectible" .. sel .. "}} {{ColorGray}}" .. EID:getObjectName(5,100,sel) .. "#" .. EID:getDescriptionObj(5,100,sel).Description
+				return sel
 			end
 		end
 	end
 	-- as the code puts it, [warn] No Collectible found for Metronome!
-	return "None"
+	return 488
 end
 
 -- Teleport! Destination Prediction --
@@ -190,6 +206,7 @@ function EID:trimSanguineDesc(descObj)
 end
 
 function EID:getHoldMapDescription(player, checkingTwin)
+	EID.InsideItemReminder = true
 	-- Starting Blacklist: Recall, Hold
 	blacklist = { ["5.100.714"] = true, ["5.100.715"] = true, }
 	holdMapDesc = ""
@@ -214,24 +231,6 @@ function EID:getHoldMapDescription(player, checkingTwin)
 		end
 	end
 
-	-- Metronome result
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_METRONOME) and EID.Config["ItemReminderShowRNGCheats"] then
-		blacklist["5.100.488"] = true
-		append("{{Collectible488}}", EID:getObjectName(5,100,488) .. EID:getDescriptionEntry("HoldMapHeader"), EID:MetronomePrediction())
-	end
-
-	-- Teleport! location
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_TELEPORT) and EID.Config["ItemReminderShowRNGCheats"] then
-		blacklist["5.100.44"] = true
-		teleport1Prediction()
-	end
-	
-	-- Teleport 2.0 location
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_TELEPORT_2) and not EID.isMirrorRoom then
-		blacklist["5.100.419"] = true
-		teleport2Prediction()
-	end
-	
 	-- Recently Acquired Item Descriptions
 	if EID.Config["ItemReminderShowRecentItem"] > 0 then
 		local printedItems = 0
@@ -249,9 +248,31 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	-- Active Item Descriptions
 	if EID.Config["ItemReminderShowActiveDesc"] > 0 then
 		for i = 0, EID.Config["ItemReminderShowActiveDesc"]-1 do
+			-- the modulo is to convert negative IDs (glitched items) to positive IDs
 			local heldActive = player:GetActiveItem(i) % 4294967296
-			if heldActive > 0 then
-				addObjectDesc(5, 100, heldActive)
+			if heldActive > 0 and not blacklist["5.100." .. heldActive] then
+				-- Metronome result
+				if heldActive == 488 and EID.Config["ItemReminderShowRNGCheats"] then
+					blacklist["5.100.488"] = true
+					addObjectDesc(5, 100, EID:MetronomePrediction(), "{{Collectible488}}")
+					--append("{{Collectible488}}", EID:getObjectName(5,100,488) .. EID:getDescriptionEntry("HoldMapHeader"), EID:MetronomePrediction())
+
+				-- Teleport! location
+				elseif heldActive == 44 and EID.Config["ItemReminderShowRNGCheats"] then
+					blacklist["5.100.44"] = true
+					teleport1Prediction()
+				
+				-- Teleport 2.0 location
+				elseif heldActive == 419 and not EID.isMirrorRoom then
+					blacklist["5.100.419"] = true
+					teleport2Prediction()
+				
+				elseif heldActive == 489 then
+					blacklist["5.100.489"] = true
+					EID:CurrentDInfinity()
+				else
+					addObjectDesc(5, 100, heldActive)
+				end
 			end
 		end
 	end
@@ -344,5 +365,6 @@ function EID:getHoldMapDescription(player, checkingTwin)
 		end
 	end
 	
+	EID.InsideItemReminder = false
 	return holdMapDesc
 end
