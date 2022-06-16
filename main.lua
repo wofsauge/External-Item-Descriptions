@@ -1570,7 +1570,8 @@ EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
 -- Add currently held active items after D4 was used. Used for Transformation Progress
 local function OnUseD4(_, _, _, player)
-	AddActiveItemProgress(player, true)
+	-- in AB+, USE_ITEM doesn't provide a player
+	AddActiveItemProgress(player or EID.player, true)
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 
