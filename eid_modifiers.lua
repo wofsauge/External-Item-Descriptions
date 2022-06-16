@@ -125,7 +125,11 @@ local function VoidCallback(descObj, isRune)
 		EID:appendToDescription(descObj, "#" .. prefix .. voidIntro .. "#")
 		for i,v in ipairs(increases) do
 			if v > 0 then
-				EID:appendToDescription(descObj, "↑ " .. voidStatIcons[i] .. " +" .. string.format("%.4g",v*voidStatUps[i]) .. " " .. voidNames[i] .. "#")
+				local statIncreaseStr = "↑ " .. voidStatIcons[i] .. " " .. voidNames[i] .. "#"
+				local replaceCount = 0
+				statIncreaseStr, replaceCount = string.gsub(statIncreaseStr, "{1}", "+" .. string.format("%.4g",v*voidStatUps[i]))
+				if replaceCount == 0 then statIncreaseStr = "↑ " .. voidStatIcons[i] .. " +" .. string.format("%.4g",v*voidStatUps[i]) .. " " .. voidNames[i] .. "#" end
+				EID:appendToDescription(descObj, statIncreaseStr)
 			end
 		end
 	-- Print unique synergies with Void and Active Items
