@@ -5,8 +5,6 @@ EID.TabPreviewID = 0
 EID.inModifierPreview = false
 -- The "Hold Map Helper" needs to know if it shouldn't display because we're in a Hold Tab desc
 EID.TabDescThisFrame = false
--- ...and likewise we need to know when we're in the Item Reminder (this is getting out of hand)
-EID.ReminderThisFrame = false
 
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
 EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, }
@@ -87,6 +85,7 @@ EID.BlackRuneStatIncreases = {{},{},{}}
 EID.VoidOptionIndexes = {}
 
 local function VoidCallback(descObj, isRune)
+	if EID.InsideItemReminder then return descObj end
 	-- Recheck RNG periodically (picking up passive collectibles will change the Void results without any easy trigger to track)
 	-- Do both Void and Rune here since they could both be requested in the same frame
 	if EID.GameUpdateCount >= lastVoidCheck + 30 or EID.RecheckVoid then
@@ -281,6 +280,7 @@ if REPENTANCE then
 	
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCallback(descObj)
+		if EID.InsideItemReminder then return descObj end
 		-- get the ID of the player that owns the Spindown Dice
 		local playerID = (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723])
 		EID:appendToDescription(descObj, "#{{Collectible723}} :")
@@ -322,7 +322,7 @@ if REPENTANCE then
 		if hasCarBattery then
 			EID:appendToDescription(descObj, " (Results with {{Collectible356}})")
 		end
-		if not EID.ReminderThisFrame and firstID ~= 0 and EID.TabPreviewID == 0 then
+		if firstID ~= 0 and EID.TabPreviewID == 0 then
 			EID.TabPreviewID = firstID
 			EID:appendToDescription(descObj, "#{{Blank}} ".. EID:getDescriptionEntry("FlipItemToggleInfo"))
 		end
