@@ -107,6 +107,7 @@ require("eid_xmldata")
 require("eid_api")
 require("eid_modifiers")
 require("eid_holdmapdesc")
+require("eid_itemprediction")
 
 -- load Repentence descriptions
 if REPENTANCE then
