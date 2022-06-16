@@ -264,6 +264,17 @@ EID.UserConfig = {
 	-- Default = true
 	["DisplaySacrificeInfo"] = true,
 
+	---------- Sanguine Bond ----------
+
+	-- Toggle display of Sanguine Bond's list of possible payouts in Devil Rooms
+	-- REPENTANCE ONLY!
+	-- Default = true
+	["DisplaySanguineInfo"] = true,
+	-- Highlight what Sanguine Bond's next payout will be
+	-- REPENTANCE ONLY!
+	-- Default = false
+	["PredictionSanguineBond"] = false,
+
 	---------- Dice Room ----------
 
 	-- Toggle display of Dice Room descriptions
@@ -309,9 +320,9 @@ EID.UserConfig = {
 	-- Items that grant you items without saying what they are (like Zodiac, Liberty Cap) can have their current granted item revealed in the Item Reminder
 	-- Default = false
 	["ItemReminderShowHiddenInfo"] = false,
-	-- Some items (like Sanguine Bond) can have their next result predicted and shown in the Item Reminder
+	-- Some items (like Teleport!) can have their next result predicted and shown in the Item Reminder
 	-- Default = false
-	["PredictionSanguineBond"] = false,
+	["ItemReminderShowRNGCheats"] = false,
 	
 	
 	---------- Bag of Crafting ------------
@@ -513,6 +524,8 @@ EID.DefaultConfig = {
 	["ShowUnidentifiedPillDescriptions"] = false,
 	["DisplayGlitchedItemInfo"] = debug and true or false,
 	["DisplaySacrificeInfo"] = true,
+	["DisplaySanguineInfo"] = true,
+	["PredictionSanguineBond"] = false,
 	["DisplayDiceInfo"] = true,
 	["DisplayBagOfCrafting"] = "always",
 	["DisplayCraneInfo"] = true,
@@ -538,7 +551,7 @@ EID.DefaultConfig = {
 	["ItemReminderShowTrinketDesc"] = 2,
 	["ItemReminderShowPoopDesc"] = 1,
 	["ItemReminderShowHiddenInfo"] = false,
-	["PredictionSanguineBond"] = false,
+	["ItemReminderShowRNGCheats"] = false,
 	
 	["SpindownDiceResults"] = 3,
 	["SpindownDiceDisplayID"] = false,

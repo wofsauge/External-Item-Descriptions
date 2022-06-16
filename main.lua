@@ -30,6 +30,7 @@ EID.permanentDisplayTextObj = nil
 EID.lastDescriptionEntity = nil
 EID.lineHeight = 11
 EID.sacrificeCounter = {}
+local spikePos = Vector(320, 280)
 EID.itemConfig = Isaac.GetItemConfig()
 EID.itemUnlockStates = {}
 EID.CraneItemType = {}
@@ -1212,6 +1213,7 @@ local function onRender(t)
 	end
 	EID.TabPreviewID = 0
 	EID.TabDescThisFrame = false
+	EID.ReminderThisFrame = false
 	
 	-- If MCM is open, don't show anything unless we're in a tab labeled as "Visuals" or "Crafting"
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
@@ -1292,6 +1294,8 @@ local function onRender(t)
 		playerSearch = EID.players
 	end
 	
+	local playerNearSacrificeSpikes = false
+
 	-- Check for descriptions to print per player
 	for i,player in ipairs(playerSearch) do
 		local displayedDesc = false
@@ -1334,6 +1338,12 @@ local function onRender(t)
 						end
 					end
 				end
+			end
+			-- Test if the player is closer to the center of the room (Sacrifice/Sanguine Spikes) than any other entity
+			-- If there's more Grid Positions we want to check in the future, this could for example be generalized to a gridPosToCheck table which sets closeToGridPos flags
+			local spikeDiff = spikePos:__sub(sourcePos)
+			if EID.lastDist ~= 10000 and spikeDiff:Length() < EID.lastDist then
+				playerNearSacrificeSpikes = true
 			end
 			
 			if EID.Config["DisplayAllNearby"] then
@@ -1489,20 +1499,24 @@ local function onRender(t)
 		end
 	end
 	
-	-- if no entities to display, display Sacrifice Room information
-	-- it will be last priority for the main spot if DisplayAllNearby is on
-	if #EID.descriptionsToPrint == 0 or EID.Config["DisplayAllNearby"] then
+	-- if no entities to display, or we're close to the spikes, display Sacrifice Room information
+	-- it will be last priority for the main spot if DisplayAllNearby is on and we aren't near them
+	if (#EID.descriptionsToPrint == 0 or playerNearSacrificeSpikes) or EID.Config["DisplayAllNearby"] then
 		if game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
 			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 			local curCounter = EID.sacrificeCounter[curRoomIndex] or 1
 			local sacrificeDesc = EID:getDescriptionObj(-999, -1, curCounter)
-			EID:addDescriptionToPrint(sacrificeDesc)
+			EID:addDescriptionToPrint(sacrificeDesc, playerNearSacrificeSpikes and 1 or nil)
+		elseif REPENTANCE and EID.Config["DisplaySanguineInfo"] and game:GetRoom():GetType() == RoomType.ROOM_DEVIL and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) then
+			local sanguineDesc = EID:getDescriptionObj(5, 100, 692, nil, false)
+			sanguineDesc.Description = EID:trimSanguineDesc(sanguineDesc)
+			if sanguineDesc.Description ~= "" then EID:addDescriptionToPrint(sanguineDesc, playerNearSacrificeSpikes and 1 or nil) end
 		end
 	end
 	
 	-- handle showing the Hold Map Helper description
 	if EID.Config["ItemReminderEnabled"] and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
-		--have we done anything that makes AB+ get angry? still need to test AB+!
+		EID.ReminderThisFrame = true
 		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 		demoDescObj.Name = ""
 		demoDescObj.Description = EID:getHoldMapDescription(EID.holdTabPlayer)

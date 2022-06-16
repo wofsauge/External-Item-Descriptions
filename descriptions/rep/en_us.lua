@@ -35,7 +35,7 @@ local repCollectibles={
 	[52] = {"52", "Dr. Fetus", "{{Bomb}} Bomb tears#{{Damage}} Each bomb deals 10x your damage#If that results in over 60 damage, it instead deals 5x your damage + 30#↓ {{Tears}} -60% Fire Rate down"}, --Dr. Fetus
 	[53] = {"53", "Magneto", "Magnetic attraction for pickups#Opens chests remotely, ignoring damage of spike chests"}, -- Magneto
 	[55] = {"55", "Mom's Eye", "50% chance to shoot a tear backwards#{{Luck}} 100% chance at 5 Luck"}, -- Mom's Eye
-	[59] = {"59", "The Book of Belial", "<Item not obtainable>"}, -- The Book of Belial (Judas's Birthright Version)
+	[59] = {"59", "The Book of Belial", "↑ {{Damage}} +2 Damage up#{{Collectible7}} +50% Damage if you have Blood of the Martyr#{{AngelDevilChance}} +12.5% Devil/Angel Room chance while held"}, -- The Book of Belial (Judas's Birthright Version)
 	[62] = {"62", "Charm of the Vampire", "↑ {{Damage}} +0.3 Damage up#{{HalfHeart}} Heals half a heart for every 13 enemies killed"}, -- Charm of the Vampire
 	[64] = {"64", "Steam Sale", "{{Shop}} -50% discount on Shop items#Getting this item multiple times reduces the price further"}, -- Steam Sale
 	[67] = {"67", "Sister Maggy", "Normal tear familiar#Deals 6 damage per tear"}, -- Sister Maggy
@@ -326,7 +326,7 @@ local repCollectibles={
 	[653] = {"653", "Vade Retro", "While held, non-ghost enemies spawn small red ghosts on death#On use, causes the ghosts to explode"}, -- Vade Retro
 	[654] = {"654", "False PHD", "{{BlackHeart}} +1 Black Heart#{{Pill}} Identifies all pills#Converts good pills into bad pills#↑ {{Damage}} Stat down pills also grant Damage up#{{BlackHeart}} Other bad pills drop Black Hearts on use"}, -- False PHD
 	[655] = {"655", "Spin to Win", "Adds spinning top orbital that blocks enemy shots#Deals 10.5 contact damage per second#When used, {{Speed}} ↑ +0.5 speed and greatly increases the rotation speed of orbitals"}, -- Spin to Win
-	[656] = {"656", "Damocles", "<Item not obtainable>"}, -- Damocles
+	[656] = {"656", "Damocles", "Spawns a sword above your head, which doubles all item pedestals#Does not double Shop, Chest, or Devil deal items#!!! Kills you at a random time after taking damage from an enemy"}, -- Damocles
 	[657] = {"657", "Vasculitis", "Enemies explode into tears upon death, which inherit the effects of Isaac's tears"}, -- Vasculitis
 	[658] = {"658", "Giant Cell", "Spawn Minisaacs when taking damage#They chase and shoot at nearby enemies"}, -- Giant Cell
 	[659] = {"659", "Tropicamide", "↑ {{Range}} +1.5 Range up#↑ {{Tearsize}} Tear Size up"}, -- Tropicamide
@@ -1066,7 +1066,7 @@ EID.descriptions[languageCode].poopSpells = {
 
 EID.descriptions[languageCode].VoidShopText = "If absorbed right after pickup, gain:"
 EID.descriptions[languageCode].VoidOptionText = " will be absorbed instead"
-EID.descriptions[languageCode].VoidNames = {"Speed up", "Fire Rate up", "Damage up", "Range up", "Shot Speed up", "Luck up"}
+EID.descriptions[languageCode].VoidNames[2] = "{1} Fire Rate up"
 
 EID.descriptions[languageCode].spindownError = "Item disappears"
 

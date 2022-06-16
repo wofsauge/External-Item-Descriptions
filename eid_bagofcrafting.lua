@@ -217,6 +217,7 @@ local recheckPickups = false
 local customRNGSeed = 0x77777770
 local customRNGShift = {0,0,0}
 
+-- Use local RNG functions to possibly reduce processing time a little bit
 local function RNGNext()
 	local num = customRNGSeed
 	num = num ~ ((num >> customRNGShift[1]) & 4294967295)
@@ -542,7 +543,9 @@ local function GameStartCrafting()
 				for i=1,EID.XMLMaxItemID do itemPool:AddRoomBlacklist(i) end
 				
 				local collID = itemPool:GetCollectible(poolNum, false, 1, 25)
-				while collID ~= 25 and collID > 0 do
+				local attempts = CraftingMaxItemID
+				while collID ~= 25 and collID ~= 642 and collID > 0 and attempts > 0 do
+					attempts = attempts - 1
 					table.insert(CraftingItemPools[poolNum+1], {collID, 1.0})
 					itemPool:AddRoomBlacklist(collID)
 					collID = itemPool:GetCollectible(poolNum, false, 1, 25)

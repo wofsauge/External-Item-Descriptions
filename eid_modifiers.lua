@@ -5,6 +5,8 @@ EID.TabPreviewID = 0
 EID.inModifierPreview = false
 -- The "Hold Map Helper" needs to know if it shouldn't display because we're in a Hold Tab desc
 EID.TabDescThisFrame = false
+-- ...and likewise we need to know when we're in the Item Reminder (this is getting out of hand)
+EID.ReminderThisFrame = false
 
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
 EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, }
@@ -116,8 +118,6 @@ local function VoidCallback(descObj, isRune)
 		
 		local voidIntro = ((shopItem or isAltOption) and EID:getDescriptionEntry("VoidShopText")) or EID:getDescriptionEntry("VoidText")
 		local voidNames = EID:getDescriptionEntry("VoidNames")
-		-- Replace "Tears" with "Fire Rate"
-		if REPENTANCE then voidNames[2] = EID:getDescriptionEntry("GlitchedItemText", 1) end
 		
 		local eidTable = (isRune and EID.BlackRuneStatIncreases) or EID.VoidStatIncreases
 		local increases = ((isAltOption or not descObj.Entity) and eidTable[3]) or (shopItem and eidTable[2]) or eidTable[1]
@@ -125,7 +125,11 @@ local function VoidCallback(descObj, isRune)
 		EID:appendToDescription(descObj, "#" .. prefix .. voidIntro .. "#")
 		for i,v in ipairs(increases) do
 			if v > 0 then
-				EID:appendToDescription(descObj, "↑ " .. voidStatIcons[i] .. " +" .. string.format("%.4g",v*voidStatUps[i]) .. " " .. voidNames[i] .. "#")
+				local statIncreaseStr = "↑ " .. voidStatIcons[i] .. " " .. voidNames[i] .. "#"
+				local replaceCount = 0
+				statIncreaseStr, replaceCount = string.gsub(statIncreaseStr, "{1}", "+" .. string.format("%.4g",v*voidStatUps[i]))
+				if replaceCount == 0 then statIncreaseStr = "↑ " .. voidStatIcons[i] .. " +" .. string.format("%.4g",v*voidStatUps[i]) .. " " .. voidNames[i] .. "#" end
+				EID:appendToDescription(descObj, statIncreaseStr)
 			end
 		end
 	-- Print unique synergies with Void and Active Items
@@ -318,7 +322,7 @@ if REPENTANCE then
 		if hasCarBattery then
 			EID:appendToDescription(descObj, " (Results with {{Collectible356}})")
 		end
-		if firstID ~= 0 and EID.TabPreviewID == 0 then
+		if not EID.ReminderThisFrame and firstID ~= 0 and EID.TabPreviewID == 0 then
 			EID.TabPreviewID = firstID
 			EID:appendToDescription(descObj, "#{{Blank}} ".. EID:getDescriptionEntry("FlipItemToggleInfo"))
 		end
