@@ -1066,7 +1066,7 @@ EID.descriptions[languageCode].poopSpells = {
 
 EID.descriptions[languageCode].VoidShopText = "If absorbed right after pickup, gain:"
 EID.descriptions[languageCode].VoidOptionText = " will be absorbed instead"
-EID.descriptions[languageCode].VoidNames = {"Speed up", "Fire Rate up", "Damage up", "Range up", "Shot Speed up", "Luck up"}
+EID.descriptions[languageCode].VoidNames[2] = "Fire Rate up"
 
 EID.descriptions[languageCode].spindownError = "Item disappears"
 
