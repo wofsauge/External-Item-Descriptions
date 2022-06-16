@@ -118,8 +118,6 @@ local function VoidCallback(descObj, isRune)
 		
 		local voidIntro = ((shopItem or isAltOption) and EID:getDescriptionEntry("VoidShopText")) or EID:getDescriptionEntry("VoidText")
 		local voidNames = EID:getDescriptionEntry("VoidNames")
-		-- Replace "Tears" with "Fire Rate"
-		if REPENTANCE then voidNames[2] = EID:getDescriptionEntry("GlitchedItemText", 1) end
 		
 		local eidTable = (isRune and EID.BlackRuneStatIncreases) or EID.VoidStatIncreases
 		local increases = ((isAltOption or not descObj.Entity) and eidTable[3]) or (shopItem and eidTable[2]) or eidTable[1]
