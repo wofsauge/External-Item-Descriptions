@@ -1213,7 +1213,6 @@ local function onRender(t)
 	end
 	EID.TabPreviewID = 0
 	EID.TabDescThisFrame = false
-	EID.ReminderThisFrame = false
 	
 	-- If MCM is open, don't show anything unless we're in a tab labeled as "Visuals" or "Crafting"
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
@@ -1516,9 +1515,9 @@ local function onRender(t)
 	
 	-- handle showing the Hold Map Helper description
 	if EID.Config["ItemReminderEnabled"] and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
-		EID.ReminderThisFrame = true
 		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-		demoDescObj.Name = ""
+		demoDescObj.Name = EID:getDescriptionEntry("HoldMapTitle")
+		-- check for scrolling being enabled here and append scroll controls to the title?
 		demoDescObj.Description = EID:getHoldMapDescription(EID.holdTabPlayer)
 		if (demoDescObj.Description ~= "") then EID:addDescriptionToPrint(demoDescObj, 1) end
 	end
