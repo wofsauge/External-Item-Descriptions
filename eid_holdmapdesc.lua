@@ -6,14 +6,17 @@ local holdMapDesc
 local currentPlayer
 EID.InsideItemReminder = false
 
--- Rainbow Worm's trinket IDs it grants, in order
-local rainbowWormEffects = { [0] = 9, 11, 65, 27, 10, 12, 26, 66, 96, 144 }
--- Mysterious Paper does not play well with displaying Error 404's effect
-local mysteriousPaperBlacklist = { [23] = true, [48] = true }
-
 -- Simple function to help with adding properly formatted sections to the desc
 local function append(icon, title, newDesc)
 	holdMapDesc = holdMapDesc .. (icon or "{{Blank}}") .. " {{ColorEIDObjName}}" .. title .. "#" .. newDesc .. "#"
+end
+
+-- Simple function to quickly get an item's RNG seed. We have no use for the RNG object itself because every other function it can do will advance the item's RNG, altering the game state
+local function getSeed(id, variant)
+	if variant == nil or variant == 100 then return currentPlayer:GetCollectibleRNG(id):GetSeed()
+	elseif variant == 350 then return currentPlayer:GetTrinketRNG(id):GetSeed()
+	elseif variant == 300 then return currentPlayer:GetCardRNG(id):GetSeed()
+	elseif variant == 70 then return currentPlayer:GetPillRNG(id):GetSeed() end
 end
 
 -- Helper function to easily add an item's stock description to the desc
@@ -31,179 +34,11 @@ local function addObjectDesc(type, variant, subtype, extraIcon)
 	end
 end
 
--- AB+'s D Infinity RNG modulo order
-local dinfinityList = { [0] = 105, 166, 284, 283, 285, 406, 386 }
--- Repentance's D Infinity order: D1, D4, D6, Eternal D6, D7, D8, D10, D12, D20, D100
-if REPENTANCE then dinfinityList = { 476, 284, 105, 609, 437, 406, 285, 386, 166, 283 } end
-function EID:CurrentDInfinity()
-	if not REPENTANCE then
-		local rng = currentPlayer:GetCollectibleRNG(489):GetSeed()
-		rng = EID:RNGNext(rng, 0x1, 0x9, 0x1D)
-		local nextDice = dinfinityList[rng % 7]
-		addObjectDesc(5, 100, nextDice, "{{Collectible489}}")
-	else
-		-- track our current selected dinfinity dice! test if it is preserved between pickups of it
-	end
-end
-
--- Banned items: Metronome, Plan C, Glowing Hour Glass, Breath of Life, Clicker, R Key
--- Reduced chance: Death Certificate (15%), Genesis (25%)
--- I saw something in the code about rerolling Forget Me Now but not sure what the criteria was
-local metronomeBlacklist = {[488] = 1, [475] = 1, [422] = 1} --AB+ can choose Clicker lol rip
-if REPENTANCE then metronomeBlacklist = {[488] = 1, [475] = 1, [422] = 1, [326] = 1, [482] = 1, [636] = 1, [628] = 0.85, [622] = 0.75 } end
-
--- Should we account for Car Battery? (Both if we have it, and if it grants it which immediately uses it again)
-function EID:MetronomePrediction()
-	local itemConfig = Isaac.GetItemConfig()
-	local numCollectibles = EID:GetMaxCollectibleID()
-	local metronomeRNG = currentPlayer:GetCollectibleRNG(CollectibleType.COLLECTIBLE_METRONOME):GetSeed()
-	local rerollChance = 0
-	if REPENTANCE then
-		metronomeRNG = EID:RNGNext(metronomeRNG)
-		rerollChance = metronomeRNG
-	end
-	local attempts = 15
-	while attempts > 0 do
-		attempts = attempts - 1
-		metronomeRNG = EID:RNGNext(metronomeRNG)
-		local sel = metronomeRNG % numCollectibles + 1
-		if itemConfig:GetCollectible(sel) ~= nil then
-			if metronomeBlacklist[sel] then
-				-- A few items have a reroll chance in Repentance
-				if metronomeBlacklist[sel] < 1 then
-					rerollChance = EID:RNGNext(rerollChance, 0x02, 0x0F, 0x11)
-					local rerollFloat = EID:SeedToFloat(rerollChance)
-					if rerollFloat < 1 - metronomeBlacklist[sel] then
-						-- We succeeded the reroll chance
-						return sel
-					end
-				end
-			else
-				return sel
-			end
-		end
-	end
-	-- as the code puts it, [warn] No Collectible found for Metronome!
-	return 488
-end
-
--- Teleport! Destination Prediction --
-local function teleport1Prediction()
-	if REPENTANCE and currentPlayer:GetSprite():GetAnimation() == "TeleportUp" then return end
-	local level = game:GetLevel()
-	local currentRoomIndex = level:GetCurrentRoomDesc().SafeGridIndex
-	local possibleRooms = {}
-	for i = 0, 168 do
-		local room = level:GetRoomByIdx(i)
-		-- Currently, any non-red room on the grid that we aren't in is a valid choice
-		-- Is there more criteria to look out for?
-		if room.GridIndex >= 0 and room.SafeGridIndex ~= currentRoomIndex and room.Data.Type ~= 29 and (not REPENTANCE or room.Flags & 1024 ~= 1024) then
-			table.insert(possibleRooms, i)
-		end
-	end
-	local teleSeed = currentPlayer:GetCollectibleRNG(CollectibleType.COLLECTIBLE_TELEPORT):GetSeed()
-	teleSeed = EID:RNGNext(teleSeed, 5, 9, 7)
-	teleSeed = EID:RNGNext(teleSeed, 0x02, 0x0F, 0x19) -- magic disassembled numbers!
-	
-	local resultRoomIndex = possibleRooms[(teleSeed % #possibleRooms) + 1]
-	local resultRoom = level:GetRoomByIdx(resultRoomIndex)
-	local resultSafeIndex = resultRoom.SafeGridIndex
-	
-	local roomIcon = EID.RoomTypeToMarkup[resultRoom.Data.Type]
-	if resultRoom.Data.Type == 1 then roomIcon = EID.RoomShapeToMarkup[resultRoom.Data.Shape] end
-	local roomNames = EID:getDescriptionEntry("RoomTypeNames")
-	local roomName = roomNames[resultRoom.Data.Type]
-	-- Find our X/Y difference from the target location, if we're on the map
-	local d = ""
-	if currentRoomIndex >= 0 then
-		local myPos = Vector(currentRoomIndex % 13, math.floor(currentRoomIndex / 13))
-		local newPos = Vector(resultSafeIndex % 13, math.floor(resultSafeIndex / 13))
-		local diffX = math.floor(newPos.X - myPos.X)
-		local diffY = math.floor(newPos.Y - myPos.Y)
-
-		if diffY > 0 then d = d .. "{{ArrowGrayDown}} " .. diffY
-		elseif diffY < 0 then d = d .. "{{ArrowGrayUp}} " .. math.abs(diffY) end
-		if d ~= "" and diffX ~= 0 then d = d .. "," end
-		if diffX > 0 then d = d .. "{{ArrowGrayRight}} " .. diffX
-		elseif diffX < 0 then d = d .. "{{ArrowGrayLeft}} " .. math.abs(diffX) end
-	end
-	if d ~= "" then d = "#{{Blank}} " .. d end
-
-	append("{{Collectible44}}", EID:getObjectName(5, 100, 44) .. EID:getDescriptionEntry("HoldMapHeader"), roomIcon .. " " .. roomName .. d)
-end
-
--- Teleport 2 Destination Prediction --
-local teleport2Order = { 1,5,8,2,4,13,21,12,10,6,11,18,19,9,20,24,7,1025,666,3 }
-local teleport2GreedOrder = { 1,5,2,4,10,23,8,666,3 }
-local teleport2Icons = { [1025] = "{{RedRoom}}", [666] = "{{AngelDevilChance}}" }
-
-local function teleport2Prediction()
-	local level = game:GetLevel()
-	local rooms = level:GetRooms()
-	--I AM ERROR Room always considered uncleared
-	local unclearedTypes = {[3] = true}
-	for i = 0, rooms.Size - 1 do
-		local room = rooms:Get(i)
-		
-		if not room.Clear then
-			-- Check for Special Red Rooms, which get ordered differently than their non-red version
-			if REPENTANCE and room.Data.Type ~= 1 and room.Flags & 1024 == 1024 then unclearedTypes[1025] = true
-			else unclearedTypes[room.Data.Type] = true end
-		end
-	end
-	--Angel/Devil Room check (it lives off the map)
-	if not level:GetRoomByIdx(-1).Clear then unclearedTypes[666] = true end
-	
-	local greed = game:IsGreedMode()
-	local roomOrder = (greed and teleport2GreedOrder) or teleport2Order
-	local roomNames = EID:getDescriptionEntry("RoomTypeNames")
-	
-	for i,v in ipairs(roomOrder) do
-		if unclearedTypes[v] then
-			local descString = (teleport2Icons[v] or EID.RoomTypeToMarkup[v]) .. " " .. roomNames[v]
-			-- Tall Vertical Main Greed Room exception, because why not, attention to detail
-			if v == 1 and greed then descString = "{{RoomLongVertical}} " .. roomNames[v] end
-			append("{{Collectible419}}", EID:getObjectName(5, 100, 419) .. EID:getDescriptionEntry("HoldMapHeader"), descString)
-			return
-		end
-	end
-end
-
--- Sanguine Bond Chance Display / Prediction --
---order of checking: 15% Pennies, 48% Damage, 58% Hearts, 63% Item, 65% Leviathan, 100% Nothing
-local sanguineResults = { { 0.15, 3 }, { 0.48, 2 }, { 0.58, 4 }, { 0.63, 5 }, { 0.65, 6 }, { 1, 1 } }
-
--- this isn't even used in this file anymore, it's in main, but there isn't really a better place to put it yet
-function EID:trimSanguineDesc(descObj)
-	local currentRoom = game:GetLevel():GetCurrentRoom()
-	local spikes = currentRoom:GetGridEntity(67)
-	if not spikes then return "" end -- don't display anything if we can't find the spikes!
-	local cheatResult = nil
-	if spikes and EID.Config["PredictionSanguineBond"] then
-		local spikeSeed = currentRoom:GetGridEntity(67):GetRNG():GetSeed()
-		spikeSeed = EID:RNGNext(spikeSeed, 5, 9, 7)
-		spikeSeed = EID:RNGNext(spikeSeed, 0x01, 0x05, 0x13) -- magic disassembled numbers!
-		local nextFloat = EID:SeedToFloat(spikeSeed)
-		
-		for _,v in ipairs(sanguineResults) do
-			if nextFloat < v[1] then cheatResult = v[2] break end
-		end
-	end
-
-	local resultsDesc = ""
-
-	local lineCount = 0
-	-- separate sanguine's description by # or semicolons
-	for w in string.gmatch(descObj.Description, "([^#;]+)") do
-		-- we only care about groups that contain a percent sign
-		if string.find(w,"%%") then
-			lineCount = lineCount + 1
-			if cheatResult == lineCount then resultsDesc = resultsDesc .. "{{ColorBagComplete}}" end
-			resultsDesc = resultsDesc .. w .. "#"
-		end
-	end
-	return resultsDesc
-end
+-- Data Tables --
+-- Rainbow Worm's trinket IDs it grants, in order
+local rainbowWormEffects = { [0] = 9, 11, 65, 27, 10, 12, 26, 66, 96, 144 }
+-- Mysterious Paper does not play well with displaying Error 404's effect
+local mysteriousPaperBlacklist = { [23] = true, [48] = true }
 
 function EID:getHoldMapDescription(player, checkingTwin)
 	EID.InsideItemReminder = true
@@ -254,22 +89,21 @@ function EID:getHoldMapDescription(player, checkingTwin)
 				-- Metronome result
 				if heldActive == 488 and EID.Config["ItemReminderShowRNGCheats"] then
 					blacklist["5.100.488"] = true
-					addObjectDesc(5, 100, EID:MetronomePrediction(), "{{Collectible488}}")
-					--append("{{Collectible488}}", EID:getObjectName(5,100,488) .. EID:getDescriptionEntry("HoldMapHeader"), EID:MetronomePrediction())
-
+					addObjectDesc(5, 100, EID:MetronomePrediction(getSeed(488)), "{{Collectible488}}")
 				-- Teleport! location
 				elseif heldActive == 44 and EID.Config["ItemReminderShowRNGCheats"] then
 					blacklist["5.100.44"] = true
-					teleport1Prediction()
-				
+					-- The result preview changes as soon as we activate Teleport, which looks awkward, so try to not display the result while mid-teleport. Doesn't work perfectly and only in Rep
+					if not REPENTANCE or currentPlayer:GetSprite():GetAnimation() ~= "TeleportUp" then
+						append("{{Collectible44}}", EID:getObjectName(5,100,44) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport1Prediction(getSeed(44)))
+					end
 				-- Teleport 2.0 location
 				elseif heldActive == 419 and not EID.isMirrorRoom then
 					blacklist["5.100.419"] = true
-					teleport2Prediction()
-				
+					append("{{Collectible419}}", EID:getObjectName(5,100,419) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport2Prediction())
 				elseif heldActive == 489 then
 					blacklist["5.100.489"] = true
-					EID:CurrentDInfinity()
+					addObjectDesc(5, 100, EID:CurrentDInfinity(getSeed(489)), "{{Collectible489}}")
 				else
 					addObjectDesc(5, 100, heldActive)
 				end
