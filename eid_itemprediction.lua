@@ -1,6 +1,22 @@
 -- This file is for various functions that are able to calculate the result effect that an item will have
 local game = Game()
 
+-- reimplementation of RNG:Next()
+-- Default RNG shift values for many things are 5, 9, 7
+function EID:RNGNext(rngNum, shift1, shift2, shift3)
+	rngNum = rngNum ~ ((rngNum >> (shift1 or 5)) & 4294967295)
+	rngNum = rngNum ~ ((rngNum << (shift2 or 9)) & 4294967295)
+	rngNum = rngNum ~ ((rngNum >> (shift3 or 7)) & 4294967295)
+	return rngNum >> 0;
+end
+
+-- Convert a seed int into a float between 0 and 1
+function EID:SeedToFloat(seed)
+	local multi = 2.3283061589829401E-10;
+	return seed * multi;
+end
+
+
 -- D Infinity --
 local dinfinityList = { [0] = 105, 166, 284, 283, 285, 406, 386 }
 -- Repentance's D Infinity order: D1, D4, D6, Eternal D6, D7, D8, D10, D12, D20, D100
@@ -27,7 +43,6 @@ if REPENTANCE then metronomeBlacklist = {[488] = 1, [475] = 1, [422] = 1, [326] 
 -- TODO: Account for Car Battery
 -- (If we have it, display multiple results? Also, if the result is Car Battery, it's immediately triggered again)
 function EID:MetronomePrediction(rng)
-	local itemConfig = Isaac.GetItemConfig()
 	local numCollectibles = EID:GetMaxCollectibleID()
 	local rerollChance = 0
 	if REPENTANCE then --Rep advances the RNG an extra time to use for its Death Cert/Genesis reroll
@@ -39,7 +54,7 @@ function EID:MetronomePrediction(rng)
 		attempts = attempts - 1
 		rng = EID:RNGNext(rng)
 		local sel = rng % numCollectibles + 1
-		if itemConfig:GetCollectible(sel) ~= nil then
+		if EID.itemConfig:GetCollectible(sel) ~= nil then
 			if metronomeBlacklist[sel] then
 				-- A few items have a reroll chance in Repentance
 				if metronomeBlacklist[sel] < 1 then
@@ -173,4 +188,68 @@ function EID:Teleport2Prediction()
 			return descString
 		end
 	end
+end
+
+-- Void Stat Increases --
+local numVoidable = 0
+local numRunable = 0
+local function GetTwoIncreases(rng, tbl)
+	local statTable = {1,2,3,4,5,6}
+	-- perform 5 random swaps of our stat table
+	for i = 6, 2, -1 do
+		rng = EID:RNGNext(rng, 5, 9, 7)
+		local result = (rng % i) + 1
+		local temp = statTable[i]
+		statTable[i] = statTable[result]
+		statTable[result] = temp
+	end
+	-- the first two entries in the stat table get increased
+	tbl[statTable[1]] = tbl[statTable[1]] + 1
+	tbl[statTable[2]] = tbl[statTable[2]] + 1
+	return rng
+end
+-- Count the number of absorbable pedestals in the room
+-- Returns a table of active items that will be absorbed
+function EID:VoidRoomCheck()
+	numVoidable = 0
+	numRunable = 0
+	EID.VoidOptionIndexes = {}
+	local activesAbsorbed = {}
+	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+		local pickup = entity:ToPickup()
+		-- Count this pedestal if it's not an active (or this is Black Rune), not a shop item, and (in Repentance) the first of its option index
+		-- TEST IF VOID ALWAYS ABSORBS THE FIRST OF ITS OPTION INDEX
+		if entity.SubType > 0 and not pickup:IsShopItem() and
+		(not REPENTANCE or pickup.OptionsPickupIndex == 0 or EID.VoidOptionIndexes[pickup.OptionsPickupIndex] == nil) then
+			numRunable = numRunable + 1
+			if REPENTANCE then EID.VoidOptionIndexes[pickup.OptionsPickupIndex] = entity.SubType end
+			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE) then
+				numVoidable = numVoidable + 1
+			else
+				table.insert(activesAbsorbed, entity.SubType)
+			end
+		end
+	end
+	return activesAbsorbed
+end
+-- Determine what stats will be increased after 1 absorption, the whole room's absorption, and whole room + a purchased item above your head
+function EID:VoidRNGCheck(player, isRune)
+	local increases = {0, 0, 0, 0, 0, 0}
+	
+	local startRNG = (isRune and player:GetCardRNG(Card.RUNE_BLACK):GetSeed()) or player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_VOID):GetSeed()
+	local count = (isRune and numRunable) or numVoidable
+	local eidTable = (isRune and EID.BlackRuneStatIncreases) or EID.VoidStatIncreases
+	
+	-- in Repentance, an additional RNG call is done before the 5 for stat ups when using Void
+	if REPENTANCE and not isRune then startRNG = EID:RNGNext(startRNG, 5, 9, 7) end
+	for i = 1, count do
+		startRNG = GetTwoIncreases(startRNG, increases)
+		if i == 1 then eidTable[3] = {table.unpack(increases)} end
+	end
+	eidTable[1] = {table.unpack(increases)}
+	-- do an extra check for what you'd get if you Void with a shop item above your head
+	GetTwoIncreases(startRNG, increases)
+	eidTable[2] = {table.unpack(increases)}
+	-- if there were no absorbable pedestals, the "single increase" stats are the same as the "one extra" stats
+	if count == 0 then eidTable[3] = {table.unpack(increases)} end
 end
