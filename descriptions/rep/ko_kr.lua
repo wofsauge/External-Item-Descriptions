@@ -1139,6 +1139,7 @@ EID.descriptions[languageCode].poopSpells = {
 
 EID.descriptions[languageCode].VoidShopText = "아이템을 드는 도중 흡수 시 이하 능력치 증가:"
 EID.descriptions[languageCode].VoidOptionText = " 아이템이 대신 흡수됨"
+EID.descriptions[languageCode].VoidNames[2] = "연사(상한) {1}"
 
 EID.descriptions[languageCode].spindownError = "아이템 사라짐"
 

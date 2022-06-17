@@ -882,7 +882,7 @@ EID.descriptions[languageCode].transformations={
 
 ---------- Misc ----------
 EID.descriptions[languageCode].VoidText = "흡수 시 이하 능력치 증가:"
-EID.descriptions[languageCode].VoidNames = {"이동속도", "연사", "공격력", "사거리", "탄속", "행운"}
+EID.descriptions[languageCode].VoidNames = {"이동속도 {1}", "연사 {1}", "공격력 {1}", "사거리 {1}", "탄속 {1}", "행운 {1}"}
 
 EID.descriptions[languageCode].CollectionPageInfo = "아직 해당 아이템을 획득한 적이 없습니다. 획득하여 아이템 컬렉션에 채워주세요."
 
@@ -895,5 +895,7 @@ EID.descriptions[languageCode].MCM={
 -- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].HoldMapHeader = " 예상 결과"
 -- includes Planetarium even though it's unused in AB+ for convenience
-EID.descriptions[languageCode].Teleport2RoomNames = { "일반방","보스방","일급비밀방","상점","보물방","희생방","주사위방","책방","저주방","미니보스방","도전방/보스도전방","깨끗한 침대방","더러운 침대방","오락실","금고방","천체관","비밀방","특수 빨간방","악마방/천사방","I AM ERROR (오류방)" }
-EID.descriptions[languageCode].Teleport2GreedRoomNames = { "아레나", "보스방", "상점", "금/은보물방", "저주방", "출구방", "일급비밀방", "악마방/천사방", "I AM ERROR (오류방)" }
+-- Includes Repentance room types for localization convenience
+EID.descriptions[languageCode].RoomTypeNames = { "일반방", "상점", "I AM ERROR (오류방)", "보물방", "보스방", "미니보스방", "비밀방", "일급비밀방", "오락실", "저주방", "도전방/보스도전방", "책방", "희생방", "악마방", "천사방", "사다리방", "보스러시", "깨끗한 침대방", "더러운 침대방", "금고방", "주사위방", "블랙마켓", "출구방", "천체관", "텔레포터 입구", "텔레포터 출구", "대체 루트 입구", "파란 방", "특급비밀방",
+-- Not technically room types but still potentially useful to have localized
+[666] = "악마방/천사방", [1024] = "빨간방(일반)", [1025] = "빨간방(특수)" }
