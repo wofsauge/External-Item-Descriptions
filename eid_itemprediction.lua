@@ -16,22 +16,37 @@ function EID:SeedToFloat(seed)
 	return seed * multi;
 end
 
-
 -- D Infinity --
 local dinfinityList = { [0] = 105, 166, 284, 283, 285, 406, 386 }
 -- Repentance's D Infinity order: D1, D4, D6, Eternal D6, D7, D8, D10, D12, D20, D100
-if REPENTANCE then dinfinityList = { 476, 284, 105, 609, 437, 406, 285, 386, 166, 283 } end
+if REPENTANCE then dinfinityList = { [0] = 476, 284, 105, 609, 437, 406, 285, 386, 166, 283 } end
 -- Returns the item ID of D Infinity's current die
 -- For Repentance, the Drop button is tracked, which is probably not 100% successful, and handled elsewhere
-function EID:CurrentDInfinity(rng)
+function EID:CurrentDInfinity(rng, player)
 	if not REPENTANCE then
 		rng = EID:RNGNext(rng, 0x1, 0x9, 0x1D) -- magic disassembled numbers!
         return dinfinityList[rng % 7]
 	else
-		-- track our current selected dinfinity dice! test if it is preserved between pickups of it
-        -- TBA
-        return 489
+        local playerID = EID:getPlayerID(player)
+        return dinfinityList[EID.DInfinityState[playerID]] or 476
 	end
+end
+local justDidD = false
+if REPENTANCE then
+    -- To help with Rep tracking, watch for D Infinity to get used and resync its current dice
+	function EID:WatchForDInfinity()
+		justDidD = true
+	end
+	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.WatchForDInfinity, CollectibleType.COLLECTIBLE_D_INFINITY)
+    function EID:WatchForDice(collectibleType, rng, player)
+        if not justDidD or collectibleType == 489 then return end
+        justDidD = false
+        local playerID = EID:getPlayerID(player)
+        for i,v in ipairs(dinfinityList) do
+            if v == collectibleType then EID.DInfinityState[playerID] = i end
+        end
+    end
+    EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.WatchForDice)
 end
 
 -- Metronome --
