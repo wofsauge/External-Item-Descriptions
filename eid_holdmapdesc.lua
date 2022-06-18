@@ -103,7 +103,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 					append("{{Collectible419}}", EID:getObjectName(5,100,419) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport2Prediction())
 				elseif heldActive == 489 then
 					blacklist["5.100.489"] = true
-					addObjectDesc(5, 100, EID:CurrentDInfinity(getSeed(489)), "{{Collectible489}}")
+					addObjectDesc(5, 100, EID:CurrentDInfinity(getSeed(489), currentPlayer), "{{Collectible489}}")
 				else
 					addObjectDesc(5, 100, heldActive)
 				end
