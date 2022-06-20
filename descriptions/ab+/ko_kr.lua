@@ -273,7 +273,7 @@ EID.descriptions[languageCode].collectibles={
 	{"238", "열쇠 조각 1", "{{MegaSatanSmall}} Key Piece 2와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 1
 	{"239", "열쇠 조각 2", "{{MegaSatanSmall}} Key Piece 1와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 2
 	{"240", "임상시험", "모든 능력치가 랜덤으로 증가하거나 감소합니다."}, -- Experimental Treatment
-	{"241", "지하로부터의 계약", "방 클리어 보상이 하나 더 나옵니다.#방 클리어 보상이 33%의 확률로 등장하지 않습니다.#{{Blank}} (중첩 시 보상 개수 증가, 보상 미등장 확률 감소)"}, -- Contract from Below
+	{"241", "지하로부터의 계약", "방 클리어 보상이 하나 더 나옵니다.#방 클리어 보상이 33%의 확률로 등장하지 않습니다.#{{Blank}} (중첩 시 보상 개수 증가, 보상 미등장 확률 감소)#{{GreedModeSmall}} 그리드 모드의 동전 보상은 영향 없음"}, -- Contract from Below
 	{"242", "악명", "적 탄환에 맞았을 때 50% 확률로 피해를 무시합니다."}, -- Infamy
 	{"243", "삼위일체 방패", "캐릭터의 정면에서 오는 적의 탄환을 모두 방어합니다."}, -- Trinity Shield
 	{"244", "기계 0.5", "공격 시 캐릭터의 이마 쪽에서 보조 레이저가 발사됩니다."}, -- Tech.5
@@ -445,7 +445,7 @@ EID.descriptions[languageCode].collectibles={
 	{"410", "악마의 눈", "공격 시 3.33%의 확률로 푸른 눈을 발사하며 눈은 날아가면서 캐릭터가 공격하는 방향으로 캐릭터의 눈물 효과와 같은 눈물을 발사합니다."}, -- Evil Eye
 	{"411", "욕망의 피", "적 처치 시 그 방에서 {{DamageSmall}}공격력이 +0.5씩(최대 +5) 증가합니다."}, -- Lusty Blood
 	{"412", "몽마의 자식들", "일정 횟수만큼 피격받을 시 악마류 패밀리어를 영구적으로 소환합니다.#{{Blank}} (최대 4마리)"}, -- Cambion Conception
-	{"413", "원죄없는 잉태", "일정 개수만큼 {{Heart}}하트 픽업 획득 시 천사류 패밀리어를 영구적으로 소환합니다.#{{Blank}} (최대 5마리)"}, -- Immaculate Conception
+	{"413", "원죄없는 잉태", "{{Heart}}하트류 픽업 15회 획득 시마다 천사류 패밀리어를 영구적으로 소환하며 {{SoulHeart}}소울하트 하나를 추가로 드랍합니다.#!!! 패밀리어는 최대 5마리까지 소환됩니다."}, -- Immaculate Conception
 	{"414", "더 많은 선택권", "{{TreasureRoom}}보물방 아이템이 2개가 나오며 하나를 선택하면 나머지는 사라집니다."}, -- More Options
 	{"415", "빛의 왕관", "↑ {{SoulHeart}}소울하트 +2#최대 체력이 모두 차있거나 빨간하트가 없을 때:#↑ {{DamageSmall}}공격력 배율 x2#↑ {{RangeSmall}}사거리 +5.25#↑ 눈물 높이 +0.5#↓ {{ShotspeedSmall}}탄속 -0.3#피격 시 그 방에서 비활성화됩니다."}, -- Crown Of Light
 	{"416", "넓은 가방", "카드 또는 알약을 2개 들 수 있습니다.#카드/알약은 {{ButtonRT}}버튼으로 교체할 수 있습니다."}, -- Deep Pockets
@@ -695,7 +695,7 @@ EID.descriptions[languageCode].trinkets={
 	{"104", "창사골", "!!! 일회용#피격 시 2% 확률로 그 방의 아이템을 하나 생성합니다."}, -- Wish Bone
 	{"105", "점심 도시락", "!!! 일회용#피격 시 2% 확률로 {{Collectible22}}Lunch ({{Heart}}최대 체력 +1) 아이템을 생성합니다."}, -- Bag Lunch
 	{"106", "잃어버린 코르크", "캐릭터와 패밀리어가 생성하는 장판의 범위가 넓어집니다."}, -- Lost Cork
-	{"107", "까마귀 심장", "피격 시 빨간하트가 가장 우선적으로 소모됩니다."}, -- Crow Heart
+	{"107", "까마귀 심장", "피격 시 빨간하트가 가장 우선적으로 소모됩니다.#!!! 악마방/천사방 확률에 영향을 끼칩니다."}, -- Crow Heart
 	{"108", "호두", "!!! 일회용#캐릭터 주변에 폭발이 일어날 경우 확률적으로 랜덤한 픽업 아이템을 드랍합니다."}, -- Walnut
 	{"109", "청테이프", "캐릭터의 위치를 기준으로 캐릭터를 따라오는 패밀리어의 위치를 고정시킵니다.#공전형 패밀리어가 회전하지 않습니다."}, -- Duct Tape
 	{"110", "은화", "7, 8 스테이지에서 {{Shop}}상점이 생성됩니다."}, -- Silver Dollar
@@ -711,7 +711,7 @@ EID.descriptions[languageCode].trinkets={
 	{"120", "머리핀", "{{BossRoom}}보스방 최초 입장 시 액티브 아이템의 충전량을 모두 충전합니다."}, -- Hairpin
 	{"121", "나무 십자가", "스테이지 당 {{HolyMantle}}1번 피해를 무시하는 보호막을 생성합니다."}, -- Wooden Cross
 	{"122", "버터!", "액티브 아이템 사용 시 사용한 액티브 아이템을 내려놓습니다.#피격 시 2% 확률로 소지중인 패시브 아이템 중 하나를 내려놓습니다."}, -- Butter!
-	{"123", "세공 깃털", "천사 보스가 Key Piece 대신 {{AngelRoom}}천사방 아이템을 드랍합니다."}, -- Filigree Feather
+	{"123", "세공 깃털", "천사 보스가 Key Piece 대신 {{AngelRoom}}천사방 아이템을 드랍합니다.#!!! 한 종류의 Key Piece만 소지 시 Key Piece를 드랍합니다."}, -- Filigree Feather
 	{"124", "문 받침대", "방에 입장 시 들어왔던 문이 닫히지 않습니다."}, -- Door Stop
 	{"125", "연장 코드", "캐릭터와 패밀리어 사이에 전류 레이저가 흐르며 레이저에 접촉한 적은 초당 6의 피해를 입습니다."}, -- Extension Cord
 	{"126", "썩은 동전", "동전 획득 시 파란 아군 파리를 소환합니다."}, -- Rotten Penny
@@ -882,7 +882,7 @@ EID.descriptions[languageCode].transformations={
 
 ---------- Misc ----------
 EID.descriptions[languageCode].VoidText = "흡수 시 이하 능력치 증가:"
-EID.descriptions[languageCode].VoidNames = {"이동속도", "연사", "공격력", "사거리", "탄속", "행운"}
+EID.descriptions[languageCode].VoidNames = {"이동속도 {1}", "연사 {1}", "공격력 {1}", "사거리 {1}", "탄속 {1}", "행운 {1}"}
 
 EID.descriptions[languageCode].CollectionPageInfo = "아직 해당 아이템을 획득한 적이 없습니다. 획득하여 아이템 컬렉션에 채워주세요."
 
@@ -895,5 +895,7 @@ EID.descriptions[languageCode].MCM={
 -- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].HoldMapHeader = " 예상 결과"
 -- includes Planetarium even though it's unused in AB+ for convenience
-EID.descriptions[languageCode].Teleport2RoomNames = { "일반방","보스방","일급비밀방","상점","보물방","희생방","주사위방","책방","저주방","미니보스방","도전방/보스도전방","깨끗한 침대방","더러운 침대방","오락실","금고방","천체관","비밀방","특수 빨간방","악마방/천사방","I AM ERROR (오류방)" }
-EID.descriptions[languageCode].Teleport2GreedRoomNames = { "아레나", "보스방", "상점", "금/은보물방", "저주방", "출구방", "일급비밀방", "악마방/천사방", "I AM ERROR (오류방)" }
+-- Includes Repentance room types for localization convenience
+EID.descriptions[languageCode].RoomTypeNames = { "일반방", "상점", "I AM ERROR (오류방)", "보물방", "보스방", "미니보스방", "비밀방", "일급비밀방", "오락실", "저주방", "도전방/보스도전방", "책방", "희생방", "악마방", "천사방", "사다리방", "보스러시", "깨끗한 침대방", "더러운 침대방", "금고방", "주사위방", "블랙마켓", "출구방", "천체관", "텔레포터 입구", "텔레포터 출구", "대체 루트 입구", "파란 방", "특급비밀방",
+-- Not technically room types but still potentially useful to have localized
+[666] = "악마방/천사방", [1024] = "빨간방(일반)", [1025] = "빨간방(특수)" }

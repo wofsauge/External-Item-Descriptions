@@ -189,7 +189,7 @@ EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
 function EID:onSacrificeDamage(_, _, flags, source)
 	if EID.Config["DisplaySacrificeInfo"] and game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 		if EID.sacrificeCounter[curRoomIndex] == nil then
 			EID.sacrificeCounter[curRoomIndex] = 1
 		end
@@ -283,7 +283,7 @@ if REPENTANCE then
 		-- (it also watches for item rerolls to fill the new entity's GetData)
 		-- POST_NEW_ROOM then handles putting the result in the entity's GetData
 		local curFrame = Isaac.GetFrameCount()
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 		if curFrame == lastGetItemResult[2] then
 			if initialItemNext then lastGetItemResult[1] = selectedCollectible
 			elseif flipItemNext and lastGetItemResult[1] then
@@ -319,7 +319,7 @@ if REPENTANCE then
 		flipItemNext = true
 		lastGetItemResult[4] = entity.InitSeed
 		
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 		local gridPos = game:GetRoom():GetGridIndex(entity.Position)
 		
 		-- Update a Flip item's init seed after D6 rerolls or using Flip (aka Grid Index didn't change, Init Seed did)
@@ -346,7 +346,7 @@ if REPENTANCE then
 		-- Only pedestals with indexes that were present at room load can be flip pedestals
 		-- Fixes shop restock machines and Diplopia... mostly. At least while you're in the room.
 		if entity:GetData()["EID_FlipItemID"] and entity.Index > EID.flipMaxIndex then
-			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+			local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 			local gridPos = game:GetRoom():GetGridIndex(entity.Position)
 			local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed]
 			-- only wipe the data if the grid index matches (so Diplopia pedestals don't)
@@ -361,7 +361,7 @@ if REPENTANCE then
 		-- also, reload our descriptions due to transformation progress changing upon Flip
 		EID.ForceRefreshCache = true
 		lastFrameGridChecked = Isaac.GetFrameCount()
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 		if EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 			for _, pedestal in ipairs(pedestals) do
@@ -740,7 +740,7 @@ EID.isDeathCertRoom = false
 if REPENTANCE then
 	function EID:AssignFlipItems()
 		EID.flipMaxIndex = -1
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 		if EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 			for _, pedestal in ipairs(pedestals) do
@@ -769,7 +769,7 @@ end
 function EID:onNewRoom()
 	EID.RecentlyTouchedItems = {}
 
-	local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 	preHourglassStatus = {}
 	
 	preHourglassStatus.SacrificeCounter = EID.sacrificeCounter[curRoomIndex]
@@ -777,7 +777,7 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 
 function EID:WatchForGlowingHourglass()
-	local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 	EID.sacrificeCounter[curRoomIndex] = preHourglassStatus.SacrificeCounter
 end
 EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.WatchForGlowingHourglass, CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS)
@@ -1531,7 +1531,7 @@ local function onRender(t)
 	-- it will be last priority for the main spot if DisplayAllNearby is on and we aren't near them
 	if (#EID.descriptionsToPrint == 0 or playerNearSacrificeSpikes) or EID.Config["DisplayAllNearby"] then
 		if game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
-			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+			local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 			local curCounter = EID.sacrificeCounter[curRoomIndex] or 1
 			local sacrificeDesc = EID:getDescriptionObj(-999, -1, curCounter)
 			EID:addDescriptionToPrint(sacrificeDesc, playerNearSacrificeSpikes and 1 or nil)
