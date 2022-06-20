@@ -44,6 +44,8 @@ EID.ForceRefreshCache = false -- set to true to force-refresh descriptions, curr
 local preHourglassStatus = {}
 EID.holdTabPlayer = 0
 EID.holdTabCounter = 0
+EID.DInfinityState = {}
+local forgottenDropTimer = 0
 
 EID.GameUpdateCount = 0
 EID.GameRenderCount = 0
@@ -107,6 +109,7 @@ require("eid_xmldata")
 require("eid_api")
 require("eid_modifiers")
 require("eid_holdmapdesc")
+require("eid_itemprediction")
 
 -- load Repentence descriptions
 if REPENTANCE then
@@ -1213,7 +1216,6 @@ local function onRender(t)
 	end
 	EID.TabPreviewID = 0
 	EID.TabDescThisFrame = false
-	EID.ReminderThisFrame = false
 	
 	-- If MCM is open, don't show anything unless we're in a tab labeled as "Visuals" or "Crafting"
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
@@ -1255,13 +1257,39 @@ local function onRender(t)
 		return
 	end
 	
-	local tabHeld, playerHoldingTab = EID:PlayersActionPressed(EID.Config["BagOfCraftingToggleKey"])
+	-- Check for Tab (or user setting) being held, for the Item Reminder
+	local tabHeld, playerNumHoldingTab = EID:PlayersActionPressed(EID.Config["BagOfCraftingToggleKey"])
 	if tabHeld then
-		EID.holdTabPlayer = EID.coopMainPlayers[playerHoldingTab]
+		EID.holdTabPlayer = EID.coopMainPlayers[playerNumHoldingTab]
 		EID.holdTabCounter = EID.holdTabCounter + 1
 	else
 		EID.holdTabPlayer = nil
 		EID.holdTabCounter = 0
+	end
+	-- Check for Drop being pressed, for Repentance D Infinity tracking
+	if REPENTANCE then
+		local dropTriggered, playerNumPressingDrop = EID:PlayersActionPressed(ButtonAction.ACTION_DROP, Input.IsActionTriggered)
+		if dropTriggered then
+			local playerPressingDrop = EID.coopMainPlayers[playerNumPressingDrop]
+			local playerID = EID:getPlayerID(playerPressingDrop)
+			local playerType = playerPressingDrop:GetPlayerType()
+			-- Forgotten's drop requires a double tap to actually count for this
+			if (playerType == 16 or playerType == 17) then
+				-- technically we should track a forgotten drop timer for each player but forget it
+				if EID.GameUpdateCount > forgottenDropTimer then
+					-- the actual interval here seems to be 6.5. 7 has false positives, 6 has false negatives
+					forgottenDropTimer = EID.GameUpdateCount + 7
+					dropTriggered = false
+				else
+					forgottenDropTimer = 0
+				end
+			end 
+			
+			if dropTriggered and playerPressingDrop:GetActiveItem(0) == 489 then
+				EID.DInfinityState[playerID] = EID.DInfinityState[playerID] or 0
+				EID.DInfinityState[playerID] = (EID.DInfinityState[playerID] + 1) % 10
+			end
+		end
 	end
 	
 	if EID.ForceRefreshCache then
@@ -1516,9 +1544,9 @@ local function onRender(t)
 	
 	-- handle showing the Hold Map Helper description
 	if EID.Config["ItemReminderEnabled"] and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
-		EID.ReminderThisFrame = true
 		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-		demoDescObj.Name = ""
+		demoDescObj.Name = EID:getDescriptionEntry("HoldMapTitle")
+		-- check for scrolling being enabled here and append scroll controls to the title?
 		demoDescObj.Description = EID:getHoldMapDescription(EID.holdTabPlayer)
 		if (demoDescObj.Description ~= "") then EID:addDescriptionToPrint(demoDescObj, 1) end
 	end
@@ -1564,6 +1592,7 @@ local function OnGameStartGeneral(_,isSave)
 	EID:buildTransformationTables()
 	if not isSave then
 		EID.PlayerItemInteractions = {}
+		EID.DInfinityState = {}
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)

@@ -1051,71 +1051,6 @@ function EID:CheckGlitchedItemConfig(id)
 	return attributes
 end
 
--- Void stat prediction helper functions (called from eid_modifiers when needed)
--- Didn't seem right to put them in main or eid_modifiers
-local numVoidable = 0
-local numRunable = 0
-local function GetTwoIncreases(rng, tbl)
-	local statTable = {1,2,3,4,5,6}
-	-- perform 5 random swaps of our stat table
-	for i = 6, 2, -1 do
-		rng = EID:RNGNext(rng, 5, 9, 7)
-		local result = (rng % i) + 1
-		local temp = statTable[i]
-		statTable[i] = statTable[result]
-		statTable[result] = temp
-	end
-	-- the first two entries in the stat table get increased
-	tbl[statTable[1]] = tbl[statTable[1]] + 1
-	tbl[statTable[2]] = tbl[statTable[2]] + 1
-	return rng
-end
--- Count the number of absorbable pedestals in the room
--- Returns a table of active items that will be absorbed
-function EID:VoidRoomCheck()
-	numVoidable = 0
-	numRunable = 0
-	EID.VoidOptionIndexes = {}
-	local activesAbsorbed = {}
-	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
-		local pickup = entity:ToPickup()
-		-- Count this pedestal if it's not an active (or this is Black Rune), not a shop item, and (in Repentance) the first of its option index
-		-- TEST IF VOID ALWAYS ABSORBS THE FIRST OF ITS OPTION INDEX
-		if entity.SubType > 0 and not pickup:IsShopItem() and
-		(not REPENTANCE or pickup.OptionsPickupIndex == 0 or EID.VoidOptionIndexes[pickup.OptionsPickupIndex] == nil) then
-			numRunable = numRunable + 1
-			if REPENTANCE then EID.VoidOptionIndexes[pickup.OptionsPickupIndex] = entity.SubType end
-			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE) then
-				numVoidable = numVoidable + 1
-			else
-				table.insert(activesAbsorbed, entity.SubType)
-			end
-		end
-	end
-	return activesAbsorbed
-end
--- Determine what stats will be increased after 1 absorption, the whole room's absorption, and whole room + a purchased item above your head
-function EID:VoidRNGCheck(player, isRune)
-	local increases = {0, 0, 0, 0, 0, 0}
-	
-	local startRNG = (isRune and player:GetCardRNG(Card.RUNE_BLACK):GetSeed()) or player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_VOID):GetSeed()
-	local count = (isRune and numRunable) or numVoidable
-	local eidTable = (isRune and EID.BlackRuneStatIncreases) or EID.VoidStatIncreases
-	
-	-- in Repentance, an additional RNG call is done before the 5 for stat ups when using Void
-	if REPENTANCE and not isRune then startRNG = EID:RNGNext(startRNG, 5, 9, 7) end
-	for i = 1, count do
-		startRNG = GetTwoIncreases(startRNG, increases)
-		if i == 1 then eidTable[3] = {table.unpack(increases)} end
-	end
-	eidTable[1] = {table.unpack(increases)}
-	-- do an extra check for what you'd get if you Void with a shop item above your head
-	GetTwoIncreases(startRNG, increases)
-	eidTable[2] = {table.unpack(increases)}
-	-- if there were no absorbable pedestals, the "single increase" stats are the same as the "one extra" stats
-	if count == 0 then eidTable[3] = {table.unpack(increases)} end
-end
-
 -- Converts a given CollectibleID into the respective Spindown dice result
 function EID:getSpindownResult(collectibleID)
 	if collectibleID <= 0 or collectibleID > 4294960000 then return 0 end
@@ -1708,19 +1643,4 @@ end
 -- Adds an EID Icon to an Object
 function EID:AddIconToObject(eType, eVariant, eSubType, iconName)
 	EID.ObjectIcon[eType.."."..eVariant.."."..eSubType] = EID.InlineIcons[iconName]
-end
-
--- reimplementation of RNG Seed shift feature used by the game. Mostly used for RNG Prediction features
--- Default RNG shift values for many things are 5, 9, 7
-function EID:RNGNext(rngNum, shift1, shift2, shift3)
-	rngNum = rngNum ~ ((rngNum >> (shift1 or 5)) & 4294967295)
-	rngNum = rngNum ~ ((rngNum << (shift2 or 9)) & 4294967295)
-	rngNum = rngNum ~ ((rngNum >> (shift3 or 7)) & 4294967295)
-	return rngNum >> 0;
-end
-
--- General RNG functions for RNG predicting
-function EID:SeedToFloat(seed)
-	local multi = 2.3283061589829401E-10;
-	return seed * multi;
 end
