@@ -773,7 +773,7 @@ local repTrinkets={
 	[26] = {"26", "꺾기벌레", "↑ {{TearsSmall}}연사 +0.4#↑ {{RangeSmall}}사거리 +1.5#눈물이 지그재그로 날아갑니다.#공격이 장애물을 관통합니다."}, -- Hook Worm
 	-- Original
 	[32] = {"32", "환각버섯", "!!! 방 입장 시 그 방에서 아래 중 랜덤한 버섯 아이템 효과를 얻습니다:#{{Collectible12}}{{Collectible70}}{{Collectible121}}{{Collectible120}}{{Collectible342}}{{Collectible398}}"}, -- Liberty Cap
-	[33] = {"33", "탯줄", "{{EmptyHeart}} 방 입장 시 빨간하트가 1칸 이하일 때 {{Collectible100}}Little Steven을 소환합니다.#피격 시 확률적으로 그 방에서 {{Collectible318}}Gemini 패밀리어를 소환합니다."}, -- Umbilical Cord
+	[33] = {"33", "탯줄", "{{HalfHeart}} 방 입장 시 빨간하트가 반칸 이하일 때 {{Collectible100}}Little Steven을 소환합니다.#피격 시 확률적으로 그 방에서 {{Collectible318}}Gemini 패밀리어를 소환합니다."}, -- Umbilical Cord
 	[34] = {"34", "아이의 심장", "방 클리어 보상이 10% 확률로 하트로 바뀝니다.#{{Heart}} 상자에서 빨간하트가 드랍될 확률이 증가합니다."}, -- Child's Heart
 	[39] = {"39", "암", "↑ {{TearsSmall}}연사(+상한) +1"}, -- Cancer
 	[48] = {"48", "찢어진 페이지", "피격 시 5%의 확률로 방 안의 모든 적에게 80의 피해를 줍니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 65 이상일 때 50% 확률#↑ {{BlackHeart}}/{{Collectible35}}/{{Card14}} 블랙하트/The Necronomicon/The Devil의 공격력 +40"}, -- A Missing Page
