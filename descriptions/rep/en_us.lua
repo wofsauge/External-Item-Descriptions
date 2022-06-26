@@ -182,6 +182,7 @@ local repCollectibles={
 	[426] = {"426", "Obsessed Fan", "Follows your exact movement on a 0.66 second delay#Deals 30 contact damage per second"}, -- Obsessed Fan
 	[430] = {"430", "Papa Fly", "Follows your movement pattern on a 0.66 second delay#Fires tears at nearby enemies that deal damage equal to your damage"}, -- Papa Fly
 	[431] = {"431", "Multidimensional Baby", "Follows your movement pattern on a 0.66 second delay#Tears that pass through it will split up and gain a speed boost"},
+	[432] = {"432", "Glitter Bombs", "{{Bomb}} +5 bombs#Bombs have a 63% chance to drop a random pickup and a 15% chance to charm enemies when they explode#The pickup spawn chance goes down by 1% for each spawn this floor"}, -- Glitter Bombs
 	[437] = {"437", "D7", "Respawn all enemies of the room#Allows you to farm room clear rewards"}, -- D7
 	[440] = {"440", "Kidney Stone", "Occasionally, you stop firing and have to charge an attack that releases a burst of tears and a kidney stone"}, -- Kidney Stone
 	[442] = {"442", "Dark Prince's Crown", "!!! While at 1 full Red Heart:#↑ {{Tears}} +2 Fire Rate up#↑ {{Range}} +1.5 Range up#↑ {{Shotspeed}} +0.2 Shot Speed up#Doesn't work with characters without Red Hearts"}, -- Dark Prince's Crown
