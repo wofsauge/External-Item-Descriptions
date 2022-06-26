@@ -453,7 +453,7 @@ EID.descriptions[languageCode].collectibles={
 	{"429", "Head of the Keeper", "{{Coin}} Enemies have a 5% chance to drop a Penny when hit with your tears"},
 	{"430", "Papa Fly", "Follows your movement pattern on a 1 second delay#Fires tears at nearby enemies that deal damage equal to your damage"},
 	{"431", "Multidimensional Baby", "Follows your movement pattern on a 2 second delay#Tears that pass through it will split up and gain a speed boost"},
-	{"432", "Glitter Bombs", "{{Bomb}} +5 bombs#Bombs have a chance to drop random pickups or charm enemies when they explode#"},
+	{"432", "Glitter Bombs", "{{Bomb}} +5 bombs#Bombs have a 25% chance to drop a random pickup and a 15% chance to charm enemies when they explode"},
 	{"433", "My Shadow", "Each time you take damage, it will apply a fear effect to all enemies and spawn a friendly black charger#The charger deals 5 damage per second"},
 	{"434", "Jar of Flies", "Every time you kill an enemy a blue fly will be added to the Jar#Up to 20 flies#Using the item will release all the flies"},
 	{"435", "Lil Loki", "Shoots 4 tears in a cross pattern#Deals 3.5 damage per shot"},
