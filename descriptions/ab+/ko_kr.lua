@@ -892,6 +892,7 @@ EID.descriptions[languageCode].MCM={
 	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#!!! 간단 설정 방법:#{{Collectible182}} 폰트: Visuals→Font Type#{{Freezing}} 텍스트박스 너비: General→Textbox Width#\1 {{Damage}}테스트 공격력 +1#{{AngelDevilChance}} 악마와 천사, 당신의 선택은?#{{DeliriumSmall}} 모두가 싫어하는 델리리움",
 }
 
+EID.descriptions[languageCode].HoldMapTitle = "알리미"
 -- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].HoldMapHeader = " 예상 결과"
 -- includes Planetarium even though it's unused in AB+ for convenience
