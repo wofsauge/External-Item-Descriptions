@@ -772,7 +772,7 @@ local repTrinkets={
 	[25] = {"25", "이상한 초콜릿", "!!! 30초마다 일정 확률로:#똥을 싸거나;#적과 탄환을 밀쳐내며 6의 피해를 주는 방귀를 뀝니다."}, -- Mysterious Candy
 	[26] = {"26", "꺾기벌레", "↑ {{TearsSmall}}연사 +0.4#↑ {{RangeSmall}}사거리 +1.5#눈물이 지그재그로 날아갑니다.#공격이 장애물을 관통합니다."}, -- Hook Worm
 	-- Original
-	[32] = {"32", "환각버섯", "!!! 방 입장 시 그 방에서 아래 중 랜덤한 버섯 아이템 효과를 얻습니다:#{{Collectible12}}{{Collectible70}}{{Collectible121}}{{Collectible120}}{{Collectible342}}{{Collectible398}}"}, -- Liberty Cap
+	[32] = {"32", "환각버섯", "!!! 방 입장 시 그 방에서 아래 중 랜덤한 버섯 아이템 효과를 얻습니다:#{{Collectible12}}{{Collectible71}}{{Collectible121}}{{Collectible120}}{{Collectible342}}{{Collectible398}}"}, -- Liberty Cap
 	[33] = {"33", "탯줄", "{{HalfHeart}} 방 입장 시 빨간하트가 반칸 이하일 때 {{Collectible100}}Little Steven을 소환합니다.#피격 시 확률적으로 그 방에서 {{Collectible318}}Gemini 패밀리어를 소환합니다."}, -- Umbilical Cord
 	[34] = {"34", "아이의 심장", "방 클리어 보상이 10% 확률로 하트로 바뀝니다.#{{Heart}} 상자에서 빨간하트가 드랍될 확률이 증가합니다."}, -- Child's Heart
 	[39] = {"39", "암", "↑ {{TearsSmall}}연사(+상한) +1"}, -- Cancer
