@@ -268,3 +268,24 @@ function EID:VoidRNGCheck(player, isRune)
 	-- if there were no absorbable pedestals, the "single increase" stats are the same as the "one extra" stats
 	if count == 0 then eidTable[3] = {table.unpack(increases)} end
 end
+
+-- Afterbirth blacklist includes things like Rune of Jera? Mimic Chest?
+local D1blacklist = { [41] = true, [100] = true, [150] = true, [340] = true, [370] = true, [380] = true, [390] = true }
+local D1chests = { [50] = true, [51] = true, [52] = true, [53] = true, [54] = true, [55] = true, [56] = true, [57] = true, [58] = true, [60] = true, [360] = true }
+function EID:D1Prediction(rng)
+	local poss = {}
+	for i,v in ipairs(Isaac.FindByType(5)) do
+		if not D1blacklist[v.Variant] then
+			table.insert(poss, v)
+		end
+	end
+	if #poss == 0 then return end
+	rng = EID:RNGNext(rng)
+	local sel = (rng % #poss) + 1
+	local fullID = "5." .. poss[sel].Variant .. "." .. poss[sel].SubType
+	-- in rep, we don't care about subtype...
+	fullID = "5." .. poss[sel].Variant
+	if D1chests[poss[sel].Variant] then fullID = "5.50" end
+	local pickupNames = EID:getDescriptionEntry("GlitchedItemText")
+	print(pickupNames[fullID] or EID.XMLEntityNames[fullID])
+end
