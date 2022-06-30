@@ -118,7 +118,13 @@ EID.TextReplacementPairs = {
 	{"{{Hashtag}}", "ǂ"}, -- Hashtag
 	{"{{CR}}", "{{ColorReset}}"}, -- Shortcut for Color Resetting
 	{"{{EthernalHeart}}", "{{EternalHeart}}"}, -- fix spelling error
-	{"{{CONFIG_BoC_Toggle}}", function(_) return EID.ButtonToIconMap[EID.Config["BagOfCraftingToggleKey"]] or "{{ButtonSelect}}" end}, -- fix spelling error
+	{"{{CONFIG_BoC_Toggle}}", function(_) return EID.ButtonToIconMap[EID.Config["BagOfCraftingToggleKey"]] or "{{ButtonSelect}}" end},
+	-- more common/official names
+	{"{{MimicChest}}", "{{TrapChest}}"}, {"{{EternalChest}}", "{{HolyChest}}"}, {"{{BombChest}}", "{{StoneChest}}"},
+	{"{{OldChest}}", "{{DirtyChest}}"}, {"{{CurseRoom}}", "{{CursedRoom}}"}, {"{{Crawlspace}}", "{{LadderRoom}}"},
+	{"{{GoldHeart}}", "{{GoldenHeart}}"},
+	
+	
 }
 local controllerSprites = Sprite()
 controllerSprites:Load("gfx/ui/buttons.anm2", true)
