@@ -1,6 +1,7 @@
 -- This file is for various functions that are able to calculate the result effect that an item will have
 local game = Game()
 
+local variantToName = { [70] = "Pill", [100] = "Collectible", [300] = "Card", [350] = "Trinket" }
 -- reimplementation of RNG:Next()
 -- Default RNG shift values for many things are 5, 9, 7
 function EID:RNGNext(rngNum, shift1, shift2, shift3)
@@ -269,23 +270,54 @@ function EID:VoidRNGCheck(player, isRune)
 	if count == 0 then eidTable[3] = {table.unpack(increases)} end
 end
 
--- Afterbirth blacklist includes things like Rune of Jera? Mimic Chest?
-local D1blacklist = { [41] = true, [100] = true, [150] = true, [340] = true, [370] = true, [380] = true, [390] = true }
+-- D1 --
+
+local D1blacklist = { [41] = true, [100] = true, [110] = true, [150] = true, [340] = true, [370] = true, [380] = true, [390] = true }
+if not REPENTANCE then D1blacklist[54] = true end -- Mimic Chest blacklist in AB+
+-- These Variants all duplicate into a Chest in Repentance (and should have their SubType ignored in AB+)
 local D1chests = { [50] = true, [51] = true, [52] = true, [53] = true, [54] = true, [55] = true, [56] = true, [57] = true, [58] = true, [60] = true, [360] = true }
+
+-- These Card variants duplicate as themselves in Repentance
+local specialCards = {[49] = true, [50] = true, [78] = true}
+
 function EID:D1Prediction(rng)
 	local poss = {}
-	for i,v in ipairs(Isaac.FindByType(5)) do
-		if not D1blacklist[v.Variant] then
+	for i,v in ipairs(Isaac.FindByType(5,-1,-1)) do
+		-- Check the blacklist, as well as Rune of Jera in AB+, and empty chests in Rep
+		if not D1blacklist[v.Variant] and (REPENTANCE or v.Variant ~= 300 or v.SubType ~= 33) and (not REPENTANCE or v:ToPickup():CanReroll()) then
 			table.insert(poss, v)
 		end
 	end
-	if #poss == 0 then return end
+	if #poss == 0 then return EID:getDescriptionEntry("PickupNames")["5.0"] end
 	rng = EID:RNGNext(rng)
 	local sel = (rng % #poss) + 1
 	local fullID = "5." .. poss[sel].Variant .. "." .. poss[sel].SubType
-	-- in rep, we don't care about subtype...
-	fullID = "5." .. poss[sel].Variant
-	if D1chests[poss[sel].Variant] then fullID = "5.50" end
-	local pickupNames = EID:getDescriptionEntry("GlitchedItemText")
-	print(pickupNames[fullID] or EID.XMLEntityNames[fullID])
+	if REPENTANCE then
+		-- in rep, we don't care about subtype...
+		fullID = "5." .. poss[sel].Variant
+		if poss[sel].Variant == 300 then
+			if specialCards[poss[sel].SubType] then
+				local objName = EID:getObjectName(5, poss[sel].Variant, poss[sel].SubType, poss[sel])
+				return "{{" .. variantToName[poss[sel].Variant] .. poss[sel].SubType .. "}} " .. objName
+			elseif EID.runeIDs[poss[sel].SubType] then
+				fullID = "5.301"
+			end
+		end
+		-- all Chest variants turn into a random Chest
+		if D1chests[poss[sel].Variant] then fullID = "5.50" end
+	else
+		if D1chests[poss[sel].Variant] then fullID = "5." .. poss[sel].Variant
+		-- display the item name for pills, cards, and trinkets in AB+
+		elseif poss[sel].Variant == 70 or poss[sel].Variant == 300 or poss[sel].Variant == 350 then
+			local objName = EID:getObjectName(5, poss[sel].Variant, poss[sel].SubType, poss[sel])
+			-- don't display the name of unidentified pills!
+			if poss[sel].Variant == 70 and not EID.Config["ShowUnidentifiedPillDescriptions"] and not game:GetItemPool():IsPillIdentified(poss[sel].SubType) then
+				objName = EID:getDescriptionEntry("unidentifiedPill")
+			end
+			return "{{" .. variantToName[poss[sel].Variant] .. poss[sel].SubType .. "}} " .. objName
+		end
+	end
+	
+	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
+	return pickupNames[fullID] or EID.XMLEntityNames[fullID] or fullID
 end
