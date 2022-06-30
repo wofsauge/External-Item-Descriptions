@@ -104,6 +104,9 @@ function EID:getHoldMapDescription(player, checkingTwin)
 				elseif heldActive == 489 then
 					blacklist["5.100.489"] = true
 					addObjectDesc(5, 100, EID:CurrentDInfinity(getSeed(489), currentPlayer), "{{Collectible489}}")
+				elseif heldActive == 476 and EID.Config["ItemReminderShowRNGCheats"] then
+					blacklist["5.100.476"] = true
+					append("{{Collectible476}}", EID:getObjectName(5,100,476) .. EID:getDescriptionEntry("HoldMapHeader"), EID:D1Prediction(getSeed(476)))
 				else
 					addObjectDesc(5, 100, heldActive)
 				end
