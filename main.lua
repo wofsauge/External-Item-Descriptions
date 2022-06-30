@@ -1614,6 +1614,7 @@ if REPENTANCE then
 end
 
 function EID:OnUsePill(pillEffectID, player)
+	player = player or EID.player --AB+ doesn't receive player in callback arguments!
 	local playerID = EID:getPlayerID(player)
 	-- Dead Tainted Lazarus exceptions
 	local pillsTable = EID.PlayerItemInteractions[playerID].pills
