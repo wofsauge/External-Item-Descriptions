@@ -933,9 +933,9 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 ---------- Pills ----------
 
 local repPills={
-	[4] = {"3", "Las bombas son la «clave»", "Intercambia el número de bombas por el de llaves#Las llaves y bombas de oro también se intercambian"},
-	[12] = {"11", "- Alcance", "↓ {{Range}} Alcance -0.6"},
-	[13] = {"12", "+ Alcance", "↑{{Range}} Alcance +0.75"},
+	[4] = {"3", "Bombas son llaves", "Intercambia el número de bombas por el de llaves#Las llaves y bombas de oro también se intercambian"},
+	[12] = {"11", "Menos Alcance", "↓ {{Range}} Alcance -0.6"},
+	[13] = {"12", "Más Alcance", "↑{{Range}} Alcance +0.75"},
 	[14] = {"13", "Menos velocidad", "↓ {{Speed}} Velocidad -0.12"},
 	[15] = {"14", "Más velocidad", "↑ {{Speed}} Velocidad +0.15"},
 	[16] = {"15", "Menos lágrimas", "↓ {{Tears}} Lágrimas -0.28"},
@@ -953,56 +953,56 @@ local repPills={
 EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
 EID.descriptions[languageCode].horsepills={
-	{"0", "", "Envenena toda la habitación"},
-	{"1", "", "Te inflige 2 corazones de daño"},
-	{"2", "", "{{SoulHeart}} +4 corazones de alma"},
-	{"3", "", "Intercambia el número de bombas y de llaves#Aumenta el número de llaves y de bombas en un 50 %#Las bombas y llaves doradas también se intercambian"},
-	{"4", "", "Genera enormes bombas troll teledirigidas en tu posición"},
-	{"5", "", "Vida al completo#{{SoulHeart}} +3 corazones de alma"},
-	{"6", "", "↓ {{Heart}} -2 corazones"},
-	{"7", "", "↑ {{EmptyHeart}} +2 contenedores de vida vacíos"},
+	{"0", "Vaya pedo", "{{Poison}} Envenena toda la habitación"},
+	{"1", "Mal viaje", "Te inflige 2 corazones de daño"},
+	{"2", "Bolas de acero", "{{SoulHeart}} +4 corazones de alma"},
+	{"3", "Bombas son llaves", "Intercambia el número de bombas y de llaves#Aumenta el número de llaves y de bombas en un 50 %#Las bombas y llaves doradas también se intercambian"},
+	{"4", "Diarrea explosiva", "Genera enormes bombas troll teledirigidas en tu posición"},
+	{"5", "Salud completa", "Vida al completo#{{SoulHeart}} +3 corazones de alma"},
+	{"6", "Menos vida", "↓ {{Heart}} -2 corazones"},
+	{"7", "Más vida", "↑ {{EmptyHeart}} +2 contenedores de vida vacíos"},
 	{"8", "", "Sin efecto"},
-	{"9", "", "Sin efecto"}, -- Puberty
-	{"10", "", "Añade 1 mosca orbital Big Fan {{Collectible279}} (Gran fan)#No hay límite máximo"},
-	{"11", "", "↓ {{Range}} Alcance -1.2"},
-	{"12", "", "↑ {{Range}} Alcance +0.9"},
-	{"13", "", "↓ {{Speed}} Velocidad -0.24"},
-	{"14", "", "↑ {{Speed}} Velocidad +0.3"},
-	{"15", "", "↓ {{Tears}} Lágrimas -0.56"},
-	{"16", "", "↑ {{Tears}} Lágrimas +0.70"},
-	{"17", "", "↓ {{Luck}} Suerte -2"},
-	{"18", "", "↑ {{Luck}} Suerte +2"},
-	{"19", "", "Te teletransporta a una habitación aleatoria"}, -- TODO
-	{"20", "", "Recarga el objeto activo#Deja caer baterías"}, -- TODO
-	{"21", "", "Drena todos los contenedores de corazón menos uno#Genera corazones rojos"}, -- TODO
-	{"22", "", "No te puedes mover durante 4 segundos"},
-	{"23", "", "Abre las entradas de las habitaciones secretas de la planta actual#Muestra el mapa completo"},
-	{"24", "", "Convierte a cada enemigo de la habitación actual en amigo"},
-	{"25", "", "Oculta el mapa de esta planta"}, --TODO
-	{"26", "", "Genera un charco que cubre el suelo y daña a los enemigos"},
-	{"27", "", "Disparas en diagonal durante 60 segundos"},
-	{"28", "", "Te hacen la mitad de daño en la habitación actual"},  --TODO
-	{"29", "", "Te hace un corazón de daño en la habitación actual"}, --TODO
-	{"30", "", "Genera una caca mientras caminas durante 4 segundos"}, --TODO
-	{"31", "", "Efecto de Curse of the maze (Maldición del laberinto) en la planta actual"}, --TODO
-	{"32", "", "Te haces mucho más grande#No afecta a la hitbox"},
-	{"33", "", "Te haces mucho más pequeño#Tu hitbox se hace más pequeña"},
-	{"34", "", "Genera 2 arañas azules por cada caca de la habitación"},
-	{"35", "", "Genera 2 arañas azules por cada enemigo de la habitación#Genera de 2 a 6 arañas azules si no hay enemigos en la habitación"},
-	{"36", "", "Efecto de invencibilidad breve#↑ {{Damage}} Daño +7#↑ {{Range}} Alcance +3#Dura en la habitación actual"},
-	{"37", "", "Pixela la pantalla durante 30 segundos"},
-	{"38", "", "Invoca 6 moscas azules"},
+	{"9", "Pubertad", "Sin efecto"}, -- Puberty
+	{"10", "Mosca bonita", "{{Collectible279}} Añade 1 Gran fan orbital#No hay límite máximo"},
+	{"11", "Menos Alcance", "↓ {{Range}} Alcance -1.2"},
+	{"12", "Más Alcance", "↑ {{Range}} Alcance +0.9"},
+	{"13", "Menos velocidad", "↓ {{Speed}} Velocidad -0.24"},
+	{"14", "Menos velocidad", "↑ {{Speed}} Velocidad +0.3"},
+	{"15", "Menos lágrimas", "↓ {{Tears}} Lágrimas -0.56"},
+	{"16", "Más lágrimas", "↑ {{Tears}} Lágrimas +0.70"},
+	{"17", "Menos suerte", "↓ {{Luck}} Suerte -2"},
+	{"18", "Más suerte", "↑ {{Luck}} Suerte +2"},
+	{"19", "¡Teletransporta!", "Te teletransporta a una habitación aleatoria"}, -- TODO
+	{"20", "¡48 horas de energía!", "Recarga el objeto activo#Deja caer baterías"}, -- TODO
+	{"21", "Hematémesis", "Drena todos los contenedores de corazón menos uno#Genera corazones rojos"}, -- TODO
+	{"22", "Parálisis", "No te puedes mover durante 4 segundos"},
+	{"23", "¡Puedo ver para siempre!", "{{SecretRoom}} Abre las entradas de las habitaciones secretas de la planta actual#{{Card22}} Muestra el mapa completo"},
+	{"24", "Feromonas", "{{Charm}} Convierte a cada enemigo de la habitación actual en amigo"},
+	{"25", "Amnesia", "{{CurseLost}} Oculta el mapa de esta planta"}, --TODO
+	{"26", "Fiesta de limonada", "Genera un charco que cubre el suelo y daña a los enemigos"},
+	{"27", "¿Eres un mago?", "Disparas en diagonal durante 60 segundos"},
+	{"28", "¡Percs!", "Recibes la mitad de daño en la habitación actual"},  --TODO
+	{"29", "¡Adicto!", "Recibes un corazón completo de daño en la habitación actual"}, --TODO
+	{"30", "Relaxante", "Genera una caca mientras caminas durante 4 segundos"}, --TODO
+	{"31", "", "{{CurseMaze}} Maldición del Laberinto durante todo el piso"}, --TODO
+	{"32", "Una te hace grande", "Te haces mucho más grande#No afecta a la hitbox"},
+	{"33", "Una te hace pequeño", "Te haces mucho más pequeño#Tu hitbox se hace más pequeña"},
+	{"34", "¡Infestado!", "Genera 2 arañas azules por cada caca de la habitación"},
+	{"35", "¿Infestado?", "Genera 2 arañas azules por cada enemigo de la habitación#Genera de 2 a 6 arañas azules si no hay enemigos en la habitación"},
+	{"36", "Píldora de visión", "Efecto de invencibilidad breve#↑ {{Damage}} Daño +7#↑ {{Range}} Alcance +3#Dura en la habitación actual"},
+	{"37", "¡Visión retro!", "Pixela la pantalla durante 30 segundos"},
+	{"38", "¡Amigos hasta el fin!", "Invoca 6 moscas azules"},
 	{"39", "", "Genera una piscina de creep resbaladizo persistente"},
 	{"40", "", "Genera una piscina de creep ralentizante persistente"},
-	{"41", "", "Ralentiza a todos los enemigos de la habitación"}, --TODO
-	{"42", "", "Acelera a todos los enemigos de la habitación"}, --TODO
-	{"43", "", "Consume el trinket actual y ganas su efecto de manera permanente"}, --TODO
-	{"44", "", "Dispara un grupo de lágrimas de {{Collectible149Ipecac"},
-	{"45", "", "Invencibilidad corta#Asusta a todos los enemigos#Comerse dos enemigos repone medio corazón"},
-	{"46", "", "Genera la última píldora usada como una píldora para caballos"},
-	{"47", "", "↓ {{Shotspeed}} Vel. de Lágrimas -0.3"},
-	{"48", "", "↑ {{Shotspeed}} Vel. de Lágrimas +0.3"},
-	{"49", "", "↑ Aumenta una estadística aleatoria dos veces#↓ Disminuye otra estadística aleatoria dos veces#Si tienes PHD no disminuye nada"},
+	{"41", "Tengo mucho sueño...", "Ralentiza a todos los enemigos de la habitación"}, --TODO
+	{"42", "¡¡TENGO MUCHA ENERGÍA!!", "Acelera a todos los enemigos de la habitación"}, --TODO
+	{"43", "¡Glup!", "{{Trinket}} Consume el trinket actual y ganas su efecto de manera permanente"}, --TODO
+	{"44", "¡Horf!", "Dispara un grupo de lágrimas de {{Collectible149Ipecac"},
+	{"45", "¡Es como si caminara sobre el sol!", "Invencibilidad corta#Asusta a todos los enemigos#Comerse dos enemigos repone medio corazón"},
+	{"46", "¡Vurp!", "Genera la última píldora usada como una píldora para caballos"},
+	{"47", "Menos Velocidad de lágrimas", "↓ {{Shotspeed}} Vel. de Lágrimas -0.3"},
+	{"48", "Más Velocidad de lágrimas", "↑ {{Shotspeed}} Vel. de Lágrimas +0.3"},
+	{"49", "Píldora experimental", "↑ Aumenta una estadística aleatoria dos veces#↓ Disminuye otra estadística aleatoria dos veces#Si tienes PHD no disminuye nada"},
 	[9999] = {"", "Píldora dorada", "Efecto de píldora de caballo aleatorio#Se destruye tras unos cuantos usos"}, -- Píldora dorada
 }
 
@@ -1063,22 +1063,22 @@ EID.descriptions[languageCode].GlitchedItemText = {
 ---------- Misc. Text ----------
 -- Poop spells
 EID.descriptions[languageCode].poopSpells = {
-	{"Popó regular", "Popó normal que puede generar recolectables"},
-	{"Popó con mazorcas", "Genera moscas azules al estar intacta"},
-	{"Popó en llamas", "Deals contact damage while intact#Leaves a fire behind when destroyed"},
-	{"Popó petrificada", "Can deal damage 3 times when thrown#Takes a lot of hits to destroy"},
-	{"Popó apestosa", "Emits a toxic cloud#!!! The cloud will explode if it touches fire!"},
-	{"Popó negra", "Creates slowing creep#Deals 10 damage and confuses all enemies when destroyed"},
-	{"¡Santa cagada!", "{{Collectible543}} Create a white poop#While inside the poop's aura:#↑ {{Damage}} +20% Damage up#↑ {{Tears}} +150% Fire Rate up#Homing tears#Chance to block damage"},
-	{"Creep café", "Leave a trail of creep#Standing on the creep increases your fire rate and damage#If the creep is touching other poops, it gains their attribute"},
-	{"Pedo", "Push nearby enemies and bullets back, and spawn a toxic cloud#!!! The cloud will explode if it touches fire!"},
+	{"Popó", "Popó normal, puede generar recolectables"},
+	{"Mazorqueada", "Genera moscas azules al estar intacta"},
+	{"¡ESTO ARDE!", "Inflige daño por contacto al estar intacta#{{Burning}} Genera fuego al ser destruida"},
+	{"Hice caca seca", "Can deal damage 3 times when thrown#Takes a lot of hits to destroy"},
+	{"Esto está podrido...", "{{Poison}} Genera nubes tóxicas#!!! ¡La nube explotará si entra en contacto con fuego!"},
+	{"", "{{Slow}} Genera creep ralentizante#{{Confusion}} Inflige 10 de daño y confunde a los enemigos"},
+	{"¡Santa cagada!", "{{Collectible543}} Lanzas una popó blanca con un aura#Al estar dentro del aura, recibes:#↑ {{Damage}} Daño +20%#↑ {{Tears}} Lágrimas +150% #Lágrimas teledirigidas#Posibilidad de bloquear daño"},
+	{"Diarrea", "Dejas un camino de creep#Pararte sobre el creep otorga: #↑ {{Tears}} Más lágrimas#↑ {{Damage}} Más daño#Si el creep toca una popó con efecto especial, adquirirá sus propiedades"},
+	{"Un pedo", "Empuja enemigos y disparos#{{Poison}} Genera una bomba tóxico#!!! ¡La nube explotará si entra en contacto con fuego!"},
 	{"Bomba", "Normal throwable bomb"},
-	{"Diarrea explosiva", "Spawn 5 lit bombs at your position over the next few seconds"},
+	{"Diarrea explosiva", "Genera 5 bombas encendidas a tu paso"},
 }
 -- Poop spells end
 
 -- Void stuff
-EID.descriptions[languageCode].VoidNames = {"de Velocidad {{Speed}}", "de Lágrimas {{Tears}}", "de Daño {{Damage}}", "de Alcance {{Range}}", "de Vel. de lágrimas {{Shotspeed}}", "de Suerte {{Luck}}"}
+EID.descriptions[languageCode].VoidNames = {"de Velocidad", "de Lágrimas ", "de Daño", "de Alcance", "de Vel. de lágrimas ", "de Suerte"}
 EID.descriptions[languageCode].VoidShopText = "Si se absorbe justo después de tomarlo, ganarás:"
 EID.descriptions[languageCode].VoidOptionText = " Será absorbido en su lugar"
 -- Void stuff end
