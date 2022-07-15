@@ -270,8 +270,8 @@ EID.descriptions[languageCode].collectibles={
 	{"235", "", "<item does not exist>"}, --
 	{"236", "대장균", "적에게 접촉 시 접촉한 적을 똥으로 만듭니다."}, -- E. Coli
 	{"237", "죽음의 손길", "↑ {{DamageSmall}}공격력 +1.5#↓ {{TearsSmall}}연사 -0.3#공격이 적을 관통합니다."}, -- Death's Touch
-	{"238", "열쇠 조각 1", "{{MegaSatanSmall}} Key Piece 2와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 1
-	{"239", "열쇠 조각 2", "{{MegaSatanSmall}} Key Piece 1와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 2
+	{"238", "열쇠 조각 1", "{{MegaSatanSmall}} Key Piece 2와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#빨간하트가 드랍될 때 2.5%의 확률로 {{EternalHeart}}이터널하트로 대체됩니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 1
+	{"239", "열쇠 조각 2", "{{MegaSatanSmall}} Key Piece 1와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#빨간하트가 드랍될 때 2.5%의 확률로 {{EternalHeart}}이터널하트로 대체됩니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 2
 	{"240", "임상시험", "모든 능력치가 랜덤으로 증가하거나 감소합니다."}, -- Experimental Treatment
 	{"241", "지하로부터의 계약", "방 클리어 보상이 하나 더 나옵니다.#방 클리어 보상이 33%의 확률로 등장하지 않습니다.#{{Blank}} (중첩 시 보상 개수 증가, 보상 미등장 확률 감소)#{{GreedModeSmall}} 그리드 모드의 동전 보상은 영향 없음"}, -- Contract from Below
 	{"242", "악명", "적 탄환에 맞았을 때 50% 확률로 피해를 무시합니다."}, -- Infamy
