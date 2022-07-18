@@ -66,6 +66,7 @@ Same as Windows, but the path is: `/home/%YourUsernameHere%/.steam/steam/steamap
 
 ## Special Thanks to
 - [The Binding of Isaac Wiki](https://bindingofisaacrebirth.fandom.com/wiki/Binding_of_Isaac:_Rebirth_Wiki) and [platinumgod.co.uk](https://platinumgod.co.uk/) for providing useful item descriptions
+- [eyeguy](https://twitter.com/eyeguyart) for creating the astonishing transformation icons
 - Nicolas Delvaux for creating an awesome **French** language pack
 - Klyser8, Denkishi and 2G for creating the fantastic **Italian** language pack
 - Lidia Arroyo Purroy for creating the amazing **Spanish** language Pack
