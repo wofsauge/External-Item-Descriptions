@@ -686,7 +686,7 @@ EID.descriptions[languageCode].trinkets={
 	{"95", "검은 이빨", "3%의 확률로 공격력 2배의 적을 {{Poison}}중독시키는 공격이 나갑니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 32 이상일 때 100% 확률"}, -- Black Tooth
 	{"96", "우주뱀 벌레", "↑ {{RangeSmall}}사거리 +4#↑ 눈물 높이 +2#눈물이 거대한 나선을 그리며 날아갑니다.#공격이 장애물을 관통합니다."}, -- Ouroboros Worm
 	{"97", "편도선", "12~20회 피격 시 {{Collectible474}}Tonsil을 획득합니다.#Tonsil은 캐릭터를 따라다니며 적의 탄환을 막아줍니다."}, -- Tonsil
-	{"98", "콧물딱지", "5%의 확률로 적에게 유도되는 접착 눈물이 나가며 접착 눈물이 적에게 붙을 시 60초동안 지속 피해를 입힙니다."}, -- Nose Goblin
+	{"98", "콧물딱지", "10%의 확률로 접착 눈물이 나가며 접착 눈물이 적에게 붙을 시 60초동안 지속 피해를 입힙니다.#접착 눈물을 발사할 때 50%의 확률로 유도 효과가 생깁니다."}, -- Nose Goblin
 	{"99", "탱탱볼", "공격이 무언가에 부딪힐 때 반대 각도로 튕겨져 나갑니다."}, -- Super Ball
 	{"100", "밝은 전구", "액티브 아이템의 충전량이 최대치일때 {{DamageSmall}}공격력 +0.5, {{TearsSmall}}연사 +0.2, {{RangeSmall}}사거리 +0.75, {{SpeedSmall}}이동속도 +0.5, {{ShotspeedSmall}}탄속 +0.1, {{LuckSmall}}행운 +1"}, -- Vibrant Bulb
 	{"101", "꺼진 전구", "액티브 아이템의 충전량이 남아있지 않을때 {{DamageSmall}}공격력 +1.5, {{TearsSmall}}연사 +0.4, {{RangeSmall}}사거리 +1.5, {{SpeedSmall}}이동속도 +0.5, {{ShotspeedSmall}}탄속 +0.3"}, -- Dim Bulb
