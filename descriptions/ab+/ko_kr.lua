@@ -78,7 +78,7 @@ EID.descriptions[languageCode].collectibles={
 	{"43", "Pills here!", "<item does not exist>"}, -- Pills here!
 	{"44", "순간이동!", "사용 시 스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Teleport!
 	{"45", "맛난 하트", "{{Heart}}사용 시 체력 1칸을 회복합니다."}, -- Yum Heart
-	{"46", "행운의 발", "↑ {{LuckSmall}}행운 +1#↑ 방 클리어 보상 등장 확률 +8%#야바위와 도박기계의 성공 확률이 증가합니다."}, -- Lucky Foot
+	{"46", "행운의 발", "↑ {{LuckSmall}}행운 +1#↑ 방 클리어 보상이 등장할 확률이 대폭 증가합니다.#야바위와 도박기계의 성공 확률이 증가합니다."}, -- Lucky Foot
 	{"47", "박사의 원격 조종기", "사용 시 조준점을 이동시킨 곳으로 미사일을 발사합니다."}, -- Doctor's Remote
 	{"48", "큐피드의 화살", "공격이 적을 관통합니다."}, -- Cupid's Arrow
 	{"49", "모두 다 사라져빔!!", "사용 시 공격하는 방향으로 공격력 4배의 레이저포를 발사합니다."}, -- Shoop da Whoop!
@@ -140,7 +140,7 @@ EID.descriptions[languageCode].collectibles={
 	{"105", "주사위", "사용 시 방 안의 모든 아이템을 다른 아이템으로 바꿉니다."}, -- The D6
 	{"106", "미스터 메가", "↑ {{Bomb}}폭탄 +5#폭탄 공격력 배율 x2.25#폭탄의 범위가 넓어집니다."}, -- Mr. Mega
 	{"107", "핑킹 가위", "사용 시 그 방에서 비행 능력을 얻으며 몸이 분리됩니다.#분리된 몸은 적을 따라다니며 접촉한 적에게 초당 82.5의 피해를 입힙니다."}, -- The Pinking Shears
-	{"108", "제병", "캐릭터가 받는 모든 피해가 체력 반칸으로 고정됩니다."}, -- The Wafer
+	{"108", "제병", "캐릭터가 받는 피해를 절반으로 줄여줍니다.#!!! 일부 피해는 해당 효과를 무시합니다."}, -- The Wafer
 	{"109", "돈 = 힘", "동전 1개당 {{DamageSmall}}공격력 +0.04#{{Blank}} (최대 +3.96)"}, -- Money = Power
 	{"110", "엄마의 콘텍트렌즈", "↑ {{RangeSmall}}사거리 +0.25#↑ 눈물 높이 +0.5#20%의 확률로 적을 멈추게 만드는 공격이 나갑니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 20 이상일 때 50% 확률"}, -- Mom's Contacts
 	{"111", "콩", "사용 시 독방귀를 뀝니다."}, -- The Bean
@@ -270,8 +270,8 @@ EID.descriptions[languageCode].collectibles={
 	{"235", "", "<item does not exist>"}, --
 	{"236", "대장균", "적에게 접촉 시 접촉한 적을 똥으로 만듭니다."}, -- E. Coli
 	{"237", "죽음의 손길", "↑ {{DamageSmall}}공격력 +1.5#↓ {{TearsSmall}}연사 -0.3#공격이 적을 관통합니다."}, -- Death's Touch
-	{"238", "열쇠 조각 1", "{{MegaSatanSmall}} Key Piece 2와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 1
-	{"239", "열쇠 조각 2", "{{MegaSatanSmall}} Key Piece 1와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 2
+	{"238", "열쇠 조각 1", "{{MegaSatanSmall}} Key Piece 2와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#빨간하트가 드랍될 때 2.5%의 확률로 {{EternalHeart}}이터널하트로 대체됩니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 1
+	{"239", "열쇠 조각 2", "{{MegaSatanSmall}} Key Piece 1와 조합 시 Chest/Dark Room 스테이지에서 Mega Satan 문을 열 수 있습니다.#빨간하트가 드랍될 때 2.5%의 확률로 {{EternalHeart}}이터널하트로 대체됩니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 2
 	{"240", "임상시험", "모든 능력치가 랜덤으로 증가하거나 감소합니다."}, -- Experimental Treatment
 	{"241", "지하로부터의 계약", "방 클리어 보상이 하나 더 나옵니다.#방 클리어 보상이 33%의 확률로 등장하지 않습니다.#{{Blank}} (중첩 시 보상 개수 증가, 보상 미등장 확률 감소)#{{GreedModeSmall}} 그리드 모드의 동전 보상은 영향 없음"}, -- Contract from Below
 	{"242", "악명", "적 탄환에 맞았을 때 50% 확률로 피해를 무시합니다."}, -- Infamy
@@ -464,7 +464,7 @@ EID.descriptions[languageCode].collectibles={
 	{"429", "키퍼의 머리", "눈물이 적에게 명중 시 5% 확률로 {{Coin}}동전을 드랍합니다."}, -- Head of the Keeper
 	{"430", "파리 아저씨", "캐릭터가 지나간 길을 2.5초 후 따라가며 근처의 적에게 눈물 공격력과 같은 눈물을 발사합니다."}, -- Papa Fly
 	{"431", "다차원 아기", "캐릭터가 지나간 길을 3초 후 따라가며 눈물이 통과하면 2개로 복제되어 나갑니다."}, -- Multidimensional Baby
-	{"432", "반짝이 폭탄", "↑ {{Bomb}}폭탄 +5#폭탄이 터질 때 일정 확률로 랜덤한 픽업 아이템 또는 장신구가 드랍되거나 랜덤한 적을 {{Charm}}매혹시킵니다."}, -- Glitter Bombs
+	{"432", "반짝이 폭탄", "↑ {{Bomb}}폭탄 +5#폭탄이 터질 때 25%의 확률로 랜덤한 픽업 아이템 또는 장신구가 드랍되거나 15%의 확률로 랜덤한 적을 {{Charm}}매혹시킵니다."}, -- Glitter Bombs
 	{"433", "내 그림자", "피격 시 방 안의 모든 적을 {{Fear}}도망가게 하며 검은색 아군 애벌레를 소환합니다."}, -- My Shadow
 	{"434", "파리 담은 병", "적 처치 시 병에 파리가 저장됩니다.#사용 시 저장된 파리 수 만큼 파란 아군 파리를 소환합니다."}, -- Jar of Flies
 	{"435", "꼬마 로키", "공격력 3.5의 눈물을 4갈래로 발사합니다."}, -- Lil Loki
@@ -630,7 +630,7 @@ EID.descriptions[languageCode].trinkets={
 	{"39", "암", "↑ {{TearsSmall}}연사 +0.4"}, -- Cancer
 	{"40", "빨간 누더기", "피격 시 20%의 확률로 그 방에서 {{DamageSmall}}공격력이 1.8 증가합니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 8 이상일 때 100% 확률"}, -- Red Patch
 	{"41", "성냥개비", "방 클리어 보상이 10% 확률로 {{Bomb}}폭탄으로 바뀝니다.#상자에서 {{Bomb}}폭탄이 드랍될 확률이 증가합니다."}, -- Match Stick
-	{"42", "행운의 발가락", "↑ {{LuckSmall}}행운 +1#픽업 아이템 드랍률이 증가합니다."}, -- Lucky Toe
+	{"42", "행운의 발가락", "↑ {{LuckSmall}}행운 +1#방 클리어 보상이 등장할 확률이 대폭 증가합니다."}, -- Lucky Toe
 	{"43", "저주받은 해골", "피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Cursed Skull
 	{"44", "안전 마개", "방 클리어 보상이 10% 확률로 {{Pill}}알약으로 바뀝니다.#{{Chest}} 상자에서 {{Pill}}알약이 드랍될 확률이 증가합니다.#{{GoldenChest}} 황금상자에서 {{Pill}}알약이 등장합니다."}, -- Safety Cap
 	{"45", "스페이드 A", "방 클리어 보상이 10% 확률로 {{Card}}카드로 바뀝니다.#{{Chest}} 상자에서 {{Card}}카드가 등장합니다.#{{GoldenChest}} 황금상자에서 {{Card}}카드가 드랍될 확률이 증가합니다."}, -- Ace of Spades
@@ -686,7 +686,7 @@ EID.descriptions[languageCode].trinkets={
 	{"95", "검은 이빨", "3%의 확률로 공격력 2배의 적을 {{Poison}}중독시키는 공격이 나갑니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 32 이상일 때 100% 확률"}, -- Black Tooth
 	{"96", "우주뱀 벌레", "↑ {{RangeSmall}}사거리 +4#↑ 눈물 높이 +2#눈물이 거대한 나선을 그리며 날아갑니다.#공격이 장애물을 관통합니다."}, -- Ouroboros Worm
 	{"97", "편도선", "12~20회 피격 시 {{Collectible474}}Tonsil을 획득합니다.#Tonsil은 캐릭터를 따라다니며 적의 탄환을 막아줍니다."}, -- Tonsil
-	{"98", "콧물딱지", "5%의 확률로 적에게 유도되는 접착 눈물이 나가며 접착 눈물이 적에게 붙을 시 60초동안 지속 피해를 입힙니다."}, -- Nose Goblin
+	{"98", "콧물딱지", "10%의 확률로 접착 눈물이 나가며 접착 눈물이 적에게 붙을 시 60초동안 지속 피해를 입힙니다.#접착 눈물을 발사할 때 50%의 확률로 유도 효과가 생깁니다."}, -- Nose Goblin
 	{"99", "탱탱볼", "공격이 무언가에 부딪힐 때 반대 각도로 튕겨져 나갑니다."}, -- Super Ball
 	{"100", "밝은 전구", "액티브 아이템의 충전량이 최대치일때 {{DamageSmall}}공격력 +0.5, {{TearsSmall}}연사 +0.2, {{RangeSmall}}사거리 +0.75, {{SpeedSmall}}이동속도 +0.5, {{ShotspeedSmall}}탄속 +0.1, {{LuckSmall}}행운 +1"}, -- Vibrant Bulb
 	{"101", "꺼진 전구", "액티브 아이템의 충전량이 남아있지 않을때 {{DamageSmall}}공격력 +1.5, {{TearsSmall}}연사 +0.4, {{RangeSmall}}사거리 +1.5, {{SpeedSmall}}이동속도 +0.5, {{ShotspeedSmall}}탄속 +0.3"}, -- Dim Bulb
@@ -892,6 +892,7 @@ EID.descriptions[languageCode].MCM={
 	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#!!! 간단 설정 방법:#{{Collectible182}} 폰트: Visuals→Font Type#{{Freezing}} 텍스트박스 너비: General→Textbox Width#\1 {{Damage}}테스트 공격력 +1#{{AngelDevilChance}} 악마와 천사, 당신의 선택은?#{{DeliriumSmall}} 모두가 싫어하는 델리리움",
 }
 
+EID.descriptions[languageCode].HoldMapTitle = "알리미"
 -- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].HoldMapHeader = " 예상 결과"
 -- includes Planetarium even though it's unused in AB+ for convenience
@@ -899,3 +900,34 @@ EID.descriptions[languageCode].HoldMapHeader = " 예상 결과"
 EID.descriptions[languageCode].RoomTypeNames = { "일반방", "상점", "I AM ERROR (오류방)", "보물방", "보스방", "미니보스방", "비밀방", "일급비밀방", "오락실", "저주방", "도전방/보스도전방", "책방", "희생방", "악마방", "천사방", "사다리방", "보스러시", "깨끗한 침대방", "더러운 침대방", "금고방", "주사위방", "블랙마켓", "출구방", "천체관", "텔레포터 입구", "텔레포터 출구", "대체 루트 입구", "파란 방", "특급비밀방",
 -- Not technically room types but still potentially useful to have localized
 [666] = "악마방/천사방", [1024] = "빨간방(일반)", [1025] = "빨간방(특수)" }
+
+-- currently used for D1
+EID.descriptions[languageCode].PickupNames = {
+	["5.0"] = "None",
+	
+	["5.10"] = "{{Heart}}하트",
+	["5.10.1"] = "{{Heart}}빨간하트", ["5.10.2"] = "{{HalfHeart}}빨간하트 반칸", ["5.10.3"] = "{{SoulHeart}}소울하트", ["5.10.4"] = "{{EternalHeart}}이터널하트", ["5.10.5"] = "{{Heart}}1+1 빨간하트", ["5.10.6"] = "{{BlackHeart}}블랙하트", ["5.10.7"] = "{{GoldHeart}}황금하트", ["5.10.8"] = "{{HalfSoulHeart}}소울하트 반칸", ["5.10.9"] = "{{Heart}}도망가는 빨간하트", ["5.10.10"] = "{{BlendedHeart}}블렌드하트", ["5.10.11"] = "{{EmptyBoneHeart}}뼈하트", ["5.10.12"] = "{{RottenHeart}}썩은하트",
+	
+	["5.20"] = "{{Coin}}동전",
+	["5.20.1"] = "{{Crafting8}}페니", ["5.20.2"] = "{{Crafting9}}니켈", ["5.20.3"] = "{{Crafting10}}다임", ["5.20.4"] = "{{Crafting8}}1+1 페니", ["5.20.5"] = "{{Crafting11}}행운 동전", ["5.20.6"] = "{{Crafting9}}끈적이는 니켈", ["5.20.7"] = "{{Crafting26}}황금페니",
+	
+	["5.30"] = "{{Key}}열쇠",
+	["5.30.1"] = "{{Crafting12}}열쇠", ["5.30.2"] = "{{Crafting13}}황금열쇠", ["5.30.3"] = "{{Crafting12}}1+1 열쇠", ["5.30.4"] = "{{Crafting14}}충전된 열쇠",
+	
+	["5.40"] = "{{Bomb}}폭탄",
+	["5.40.1"] = "{{Crafting15}}폭탄", ["5.40.2"] = "{{Crafting15}}1+1 폭탄", ["5.40.3"] = "{{Crafting15}}트롤폭탄", ["5.40.4"] = "{{Crafting16}}황금폭탄", ["5.40.5"] = "{{Crafting15}}슈퍼 트롤폭탄", ["5.40.7"] = "{{Crafting17}}기가폭탄",
+	
+	["5.90"] = "{{Battery}}배터리",
+	["5.90.0"] = "{{Crafting19}}리틀 배터리", --AB+ didn't have subtypes for batteries
+	["5.90.1"] = "{{Crafting19}}리틀 배터리", ["5.90.2"] = "{{Crafting18}}마이크로 배터리", ["5.90.3"] = "{{Crafting20}}메가 배터리", ["5.90.4"] = "{{Crafting28}}황금 배터리",
+	
+	["5.50"] = "{{Chest}}상자", ["5.51"] = "{{BombChest}}돌상자", ["5.52"] = "{{SpikedChest}}가시상자", ["5.53"] = "{{EternalChest}}하얀상자", ["5.54"] = "{{MimicChest}}함정상자", ["5.55"] = "{{OldChest}}오래된상자", ["5.56"] = "{{WoodenChest}}나무상자", ["5.57"] = "{{MegaChest}}메가상자", ["5.58"] = "{{HauntedChest}}유령상자", ["5.60"] = "{{GoldenChest}}황금상자", ["5.360"] = "{{RedChest}}빨간상자",  
+	
+	["5.69"] = "{{GrabBag}}자루", ["5.69.1"] = "{{GrabBag}}자루", ["5.69.2"] = "{{BlackSack}}검은자루",
+	
+	["5.70"] = "{{Pill}}알약",
+	["5.300"] = "{{Card}}카드",
+	["5.301"] = "{{Rune}}룬", -- not a real id
+	["5.350"] = "{{Trinket}}장신구",
+
+}
