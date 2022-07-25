@@ -866,7 +866,7 @@ local repCards={
 	[82] = {"82", "Soul of Magdalene", "Surrounds Isaac with a bubbling red aura for the current room#{{HalfHeart}} Enemies killed drop red half hearts that disappear in 2 seconds"}, -- Soul of Magdalene
 	[83] = {"83", "Soul of Cain", "Opens all doors in the room#{{Collectible580}} Creates red rooms with Red Key for every possible exit"}, -- Soul of Cain
 	[84] = {"84", "Soul of Judas", "Turns Isaac into a phantom that can pass through enemies to paralyze them#After a few seconds, will attack them all, gaining damage bonus per target"}, -- Soul of Judas
-	[85] = {"85", "Soul of ???", "{{Poison}} Causes 8 poison farts with brown creep#Then plants trail of 7 Butt Bombs#Standing in the creep gives: # {{Tears}} +1.35 Tears#↑ {{Damage}} +1 Damage"}, -- Soul of ???
+	[85] = {"85", "Soul of ???", "{{Poison}} Causes 8 poison farts with brown creep#Then plants trail of 7 Butt Bombs#Standing in the creep gives: #↑ {{Tears}} +1.35 Tears#↑ {{Damage}} +1 Damage"}, -- Soul of ???
 	[86] = {"86", "Soul of Eve", "14 Dead Bird familiars fly in and attack enemies#Lasts for current room"}, -- Soul of Eve
 	[87] = {"87", "Soul of Samson", "Go berserk for 10 seconds:#↑ {{Speed}} +0.4 Speed up#↑ {{Damage}} +3 Damage up#Restricts attacks to a melee weapon#Kills while berserk increase its duration by 1 second"}, -- Soul of Samson
 	[88] = {"88", "Soul of Azazel", "{{Collectible441}} Activates Mega Blast for 7.5 seconds"}, -- Soul of Azazel
@@ -961,7 +961,7 @@ EID.descriptions[languageCode].horsepills={
 	{"18", "Luck Up", "↑ {{Luck}} +2 Luck up"}, -- Luck Up
 	{"19", "Telepills", "Teleport to random room"}, -- Telepills
 	{"20", "48 Hour Energy!", "Fully recharges your active item#{{Battery}} Drops 3-4 batteries"}, -- 48 Hour Energy!
-	{"21", "Hematemesis", "Drains all but one heart container#{PHeart}} Spawns 1-4 Red Hearts"}, -- Hematemesis
+	{"21", "Hematemesis", "Drains all but one heart container#{{Heart}} Spawns 1-4 Red Hearts"}, -- Hematemesis
 	{"22", "Paralysis", "You can't move for 4 seconds"}, -- Paralysis
 	{"23", "I can see forever!", "{{SecretRoom}} Opens secret room entrances on current floor#Grants full mapping"}, -- I can see forever!
 	{"24", "Pheromones", "{{Charm}} Turns every enemy in the room permanently friendly"}, -- Pheromones
