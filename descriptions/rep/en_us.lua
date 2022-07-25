@@ -961,7 +961,7 @@ EID.descriptions[languageCode].horsepills={
 	{"18", "Luck Up", "↑ {{Luck}} +2 Luck up"}, -- Luck Up
 	{"19", "Telepills", "Teleport to random room"}, -- Telepills
 	{"20", "48 Hour Energy!", "Fully recharges your active item#{{Battery}} Drops 3-4 batteries"}, -- 48 Hour Energy!
-	{"21", "Hematemesis", "Drains all but one heart container#{PHeart}} Spawns 1-4 Red Hearts"}, -- Hematemesis
+	{"21", "Hematemesis", "Drains all but one heart container#{{Heart}} Spawns 1-4 Red Hearts"}, -- Hematemesis
 	{"22", "Paralysis", "You can't move for 4 seconds"}, -- Paralysis
 	{"23", "I can see forever!", "{{SecretRoom}} Opens secret room entrances on current floor#Grants full mapping"}, -- I can see forever!
 	{"24", "Pheromones", "{{Charm}} Turns every enemy in the room permanently friendly"}, -- Pheromones

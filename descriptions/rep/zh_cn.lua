@@ -808,13 +808,13 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 local repCards={
 	[2] = {"2", "I-魔术师", "当前房间获得：#跟踪眼泪#↑ {{Range}} +3.0射程"}, -- I - The Magician
 	[12] = {"12", "XI-力量", "↑ +1心之容器#↑ {{Damage}} +0.3伤害#↑ {{Damage}} +50%伤害倍率#↑ {{Range}} +5.25射程#↑ {{Speed}} +0.3移速#仅所在房间"}, -- XI - Strength
-	[20] = {"20", "XIX-太阳", "对所有敌人造成100伤害#满血#揭示整个地图#移除黑暗诅咒"}, -- XIX - The Sun
-	[27] = {"27", "梅花A", "将所有掉落物，箱子，非Boss敌人变成炸弹"}, -- Ace of Clubs
-	[28] = {"28", "方片A", "将所有掉落物，箱子，非Boss敌人变成硬币"}, -- Ace of Diamonds
-	[29] = {"29", "黑桃A", "将所有掉落物，箱子，非Boss敌人变成钥匙"}, -- Ace of Spades
-	[30] = {"30", "红桃A", "将所有掉落物，箱子，非Boss敌人变成红心"}, -- Ace of Hearts
+	[18] = {"18", "XVII-星星", "{{TreasureRoom}} 传送至道具房#{{Planetarium}} 如果当前层有星象房，则改为传送至星象房"}, -- XIX - The Sun
+	[27] = {"27", "梅花A", "{{Bomb}} 将所有掉落物，箱子，非Boss敌人变成炸弹"}, -- Ace of Clubs
+	[28] = {"28", "方片A", "{{Coin}} 将所有掉落物，箱子，非Boss敌人变成硬币"}, -- Ace of Diamonds
+	[29] = {"29", "黑桃A", "{{Key}} 将所有掉落物，箱子，非Boss敌人变成钥匙"}, -- Ace of Spades
+	[30] = {"30", "红桃A", "{{Heart}} 将所有掉落物，箱子，非Boss敌人变成红心"}, -- Ace of Hearts
 	[39] = {"39", "保护符文", "无敌20秒"}, -- Algiz
-	[51] = {"51", "神圣卡", "获得神圣斗篷效果#(即免疫一次伤害)#受到伤害前始终有效"}, -- Holy Card
+	[51] = {"51", "神圣卡", "{{HolyMantle}} 获得神圣斗篷效果#(即免疫一次伤害)#受到伤害前始终有效"}, -- Holy Card
 	[52] = {"52", "变巨术", "↑ {{Damage}} +7.0伤害#↑ {{Range}} +3.0射程#粉碎经过的岩石#体型变大#效果在所在房间持续"}, -- Huge Growth
 	[55] = {"55", "符文碎片", "随机符文效果#触发的符文效果较弱"}, -- Rune Shard
 	[56] = {"56", "0-愚者？", "将所有心和掉落物掉在地上#只保留半心#如果数量充足，可作为{{Collectible74}}25美分和{{Collectible19}}轰！生成"}, -- 0 - The Fool?
@@ -822,43 +822,43 @@ local repCards={
 	[58] = {"58", "II-女祭司？", "妈腿持续践踏1分钟"}, -- II - The High Priestess?
 	[59] = {"59", "III-皇后？", "获得1分钟效果：#↑ +2红心#↑ {{Tears}} +1.35射速"}, -- III - The Empress?
 	[60] = {"60", "IV-皇帝？", "传送至额外Boss房，有额外战利品#Boss来自下一章节"}, -- IV - The Emperor?
-	[61] = {"61", "V-教皇？", "生成2骨心"}, -- V - The Hierophant?
-	[62] = {"62", "IV-恋人？", "从所在房间的道具池中生成1个道具#将1心之容器或2魂心转化为1碎心"}, -- VI - The Lovers?
+	[61] = {"61", "V-教皇？", "{{EmptyBoneHeart}} 生成2骨心"}, -- V - The Hierophant?
+	[62] = {"62", "IV-恋人？", "从所在房间的道具池中生成1个道具#{{BrokenHeart}} 将1心之容器或2魂心转化为1碎心"}, -- VI - The Lovers?
 	[63] = {"63", "VII-战车？", "变成无敌的固定雕像10秒#↑ {{Tears}} 期间获得x400%射速修正"}, -- VII - The Chariot?
 	[64] = {"64", "VIII-正义？", "生成2-4个金箱子"}, -- VIII - Justice?
 	[65] = {"65", "IX-隐者？", "将房间内掉落物和道具转化成硬币#硬币值等同于其在商店的价格"}, -- IX - The Hermit?
 	[66] = {"66", "X-命运之轮？", "随机骰子房效果"}, -- X - Wheel of Fortune?
-	[67] = {"67", "XI-力量？", "使当前房间内的敌人虚弱，减速并受到双倍伤害#持续1分钟"}, -- XI - Strength?
-	[68] = {"68", "XII-倒吊人？", "将角色变为店主30秒#获得三重射击并降低移速#杀死敌人掉落随机硬币"}, -- XII - The Hanged Man?
+	[67] = {"67", "XI-力量？", "{{Weakness}} 使当前房间内的敌人虚弱，减速并受到双倍伤害#持续1分钟"}, -- XI - Strength?
+	[68] = {"68", "XII-倒吊人？", "{{Player14}} 将角色变为店主30秒#获得三重射击并降低移速#杀死敌人掉落随机硬币"}, -- XII - The Hanged Man?
 	[69] = {"69", "XIII-死亡？", "产生{{Collectible545}}亡者之书的效果#(所在房间内每杀死1个敌人生成1个骨头实体)"}, -- XIII - Death?
-	[70] = {"70", "XIV-节制？", "施加5个随机胶囊效果"}, -- XIV - Temperance?
+	[70] = {"70", "XIV-节制？", "{{Pill}} 吃下5个随机胶囊"}, -- XIV - Temperance?
 	[71] = {"71", "XV-恶魔？", "产生{{Collectible33}}圣经的效果#获得{{Collectible390}}撒拉弗#持续30秒"}, -- XV - The Devil?
 	[72] = {"72", "XVI-塔？", "生成6堆随机岩石和障碍物#其中经常会有标记石头"}, -- XVI - The Tower?
 	[73] = {"73", "XVII-星星？", "移除最旧的被动道具(初始道具除外)#从所在房间的道具池中生成2个随机道具"}, -- XVII - The Stars?
-	[74] = {"74", "XVIII-月亮？", "传送至终极隐藏房#返回的路由红房间构成"}, -- XVIII - The Moon?
+	[74] = {"74", "XVIII-月亮？", "传送至{{UltraSecretRoom}}终极隐藏房#返回的路由红房间构成"}, -- XVIII - The Moon?
 	[75] = {"75", "XIX-太阳？", "获得{{Collectible159}}夜之精灵#↑ {{Damage}} +1.5伤害#在所在层持续#将红心转化为骨心，但效果结束后恢复#施加黑暗诅咒"}, -- XIX - The Sun?
-	[76] = {"76", "XX-审判？", "生成1台补货机"}, -- XX - Judgement?
-	[77] = {"77", "XXI-世界？", "生成1个暗门"}, -- XXI - The World?
-	[78] = {"78", "红钥匙碎片", "一次性的{{Collectible580}}红钥匙"}, -- Cracked Key
-	[79] = {"79", "红桃Q", "生成1-12红心"}, -- Queen of Hearts
+	[76] = {"76", "XX-审判？", "生成1台{{RestockMachine}}补货机"}, -- XX - Judgement?
+	[77] = {"77", "XXI-世界？", "生成1个{{LadderRoom}}暗门"}, -- XXI - The World?
+	[78] = {"78", "红钥匙碎片", "{{Collectible580}} 一次性的红钥匙"}, -- Cracked Key
+	[79] = {"79", "红桃Q", "{{Heart}} 生成1-12红心"}, -- Queen of Hearts
 	[80] = {"80", "万用牌", "复制上一次使用过的胶囊，卡牌，符文，魂石或主动道具的效果"}, -- Wild Card
 	[81] = {"81", "以撒的魂石", "重置房间内的道具#1秒周期地与原道具循环切换#多次使用则所有重置都循环切换"}, -- Soul of Isaac
 	[82] = {"82", "抹大拉的魂石", "所在房间内角色被冒泡的红色光环围绕#被杀死的敌人掉落半红心，但2秒后消失"}, -- Soul of Magdalene
-	[83] = {"83", "该隐的魂石", "打开房间中所有门#与{{Collectible580}}红钥匙类似，创造所有可能的红房间"}, -- Soul of Cain
+	[83] = {"83", "该隐的魂石", "打开房间中所有门#{{Collectible580}} 与红钥匙类似，创造所有可能的红房间"}, -- Soul of Cain
 	[84] = {"84", "犹大的魂石", "将角色变成幻影，经过角色路径的敌人会被麻痹#几秒后，攻击所有麻痹的敌人，每个目标会对伤害有加成"}, -- Soul of Judas
-	[85] = {"85", "???的魂石", "产生8团毒气并留下棕色水迹#然后放置7个大便炸弹#站在水迹中获得：#↑ {{Tears}} +1.35射速#↑ {{Damage}} +1.0伤害"}, -- Soul of ???
-	[86] = {"86", "夏娃的魂石", "14只死鸟跟班飞入并攻击敌人#所在房间有效"}, -- Soul of Eve
+	[85] = {"85", "???的魂石", "{{Poison}} 产生8团毒气并留下棕色水迹#然后放置7个大便炸弹#站在水迹中获得：#↑ {{Tears}} +1.35射速#↑ {{Damage}} +1.0伤害"}, -- Soul of ???
+	[86] = {"86", "夏娃的魂石", "14只{{Collectible117}}死鸟跟班飞入并攻击敌人#所在房间有效"}, -- Soul of Eve
 	[87] = {"87", "参孙的魂石", "变成狂暴参孙，使用近战攻击10秒#↑ {{Speed}} +0.4移速#↑ {{Tears}} x50%+2.0射速修正#↑ {{Damage}} +3.0伤害"}, -- Soul of Samson
 	[88] = {"88", "阿撒泻勒的魂石", "产生{{Collectible441}}超级喷射的效果7.5秒"}, -- Soul of Azazel
 	[89] = {"89", "拉撒路的魂石", "死亡并立即以半心复活，并在一段时间内无敌#受致命伤时自动使用"}, -- Soul of Lazarus
 	[90] = {"90", "伊甸的魂石", "重置所在房间的底座道具和掉落物#道具使用随机道具池进行重置"}, -- Soul of Eden
-	[91] = {"91", "游魂的魂石", "所在房间角色死亡并变成游魂#免费拿{{DevilRoom}}恶魔房1个道具，剩下的会消失"}, -- Soul of the Lost
+	[91] = {"91", "游魂的魂石", "{{Player10}} 所在房间角色死亡并变成游魂#免费拿{{DevilRoom}}恶魔房1个道具，剩下的会消失#可以直接进入陵墓或炼狱"}, -- Soul of the Lost
 	[92] = {"92", "莉莉丝的魂石", "添加1个随机跟班"}, -- Soul of Lilith
-	[93] = {"93", "店主的魂石", "生成3-25随机硬币"}, -- Soul of the Keeper
+	[93] = {"93", "店主的魂石", "{{Coin}} 生成3-25随机硬币"}, -- Soul of the Keeper
 	[94] = {"94", "亚玻伦的魂石", "生成15只随机蝗虫"}, -- Soul of Apollyon
-	[95] = {"95", "遗骸的魂石", "所在房间生成遗骸作为临时第二角色"}, -- Soul of the Forgotten
+	[95] = {"95", "遗骸的魂石", "{{Player16}} 所在房间生成遗骸作为临时第二角色"}, -- Soul of the Forgotten
 	[96] = {"96", "伯大尼的魂石", "生成6个随机属性的{{Collectible584}}美德之书的魂火"}, -- Soul of Bethany
-	[97] = {"97", "雅各与以扫的魂石", "所在房间生成以扫作为临时第二角色#以扫含有与角色等量的随机被动道具"}, -- Soul of Jacob and Esau
+	[97] = {"97", "雅各与以扫的魂石", "{{Player20}} 所在房间生成以扫作为临时第二角色#以扫含有与角色等量的随机被动道具"}, -- Soul of Jacob and Esau
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
@@ -870,8 +870,8 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[3] = "第一只脚落下后马上落下第二只", -- II - The High Priestess
 	[4] = "属性提升量为4倍", -- III - The Empress
 	[5] = "如果Boss尚未击败，传送时获得1魂心", -- IV - The Emperor
-	[6] = "生成3魂心", -- V - The Hierophant
-	[7] = "生成3红心", -- VI - The Lovers
+	[6] = "{{SoulHeart}} 生成3魂心", -- V - The Hierophant
+	[7] = "{{Heart}} 生成3红心", -- VI - The Lovers
 	[8] = "双倍持续时间", -- VII - The Chariot
 	[9] = "双倍掉落物生成", -- VIII - Justice
 	[10] = "阻止贪婪在商店生成#如果已与贪婪战斗过，将商店变成普通的商店", -- IX - The Hermit
@@ -884,14 +884,14 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[18] = "如果道具房尚未进入过，产生2道具以供选择", -- XVII - The Stars
 	[21] = "生成2个乞丐", -- XX - Judgement
 	[56] = "掉落所有道具和掉落物，包括塔罗牌外衣", -- 0 - The Fool?
-	[59] = "获得3临时的心之容器", -- III - The Empress?
-	[61] = "生成6骨心", -- V - The Hierophant?
-	[62] = "添加4碎心并生成4道具", -- VI - The Lovers?
+	[59] = "↑ 获得3临时的心之容器", -- III - The Empress?
+	[61] = "{{EmptyBoneHeart}} 生成6骨心", -- V - The Hierophant?
+	[62] = "{{BrokenHeart}} 添加4碎心并生成4道具", -- VI - The Lovers?
 	[64] = "生成4-14个金箱子", -- VIII - Justice?
-	[70] = "吃下20胶囊", -- XIV - Temperance?
+	[70] = "{{Pill}} 吃下10个随机胶囊", -- XIV - Temperance?
 	[72] = "生成14岩石堆", -- XVI - The Tower?
 	[73] = "移除2道具并生成4道具", -- XVII - The Stars?
-	[76] = "生成2台补货机", -- XX - Judgement?
+	[76] = "生成2台{{RestockMachine}}补货机", -- XX - Judgement?
 }
 
 ---------- Pills ----------
@@ -901,7 +901,7 @@ local repPills={
 	[12] = {"11", "射程下降", "↓ {{Range}} -0.6射程"}, -- Range Down
 	[13] = {"12", "射程上升", "↑ {{Range}} +0.75射程"}, -- Range Up
 	[42] = {"41", "好困…", "使房间内所有敌人和角色减速"}, -- I'm Drowsy...
-	[43] = {"42", "好兴奋！！！", "使房间内所有敌人和角色加速#在30-60秒后再次触发一次"}, -- I'm Excited!!!
+	[43] = {"42", "好兴奋！！！", "使房间内所有敌人和角色加速#在30秒以及60秒后再次触发一次"}, -- I'm Excited!!!
 	[48] = {"47", "弹速下降", "↓ {{Shotspeed}} -0.15弹速"}, -- Shot Speed Down
 	[49] = {"48", "弹速上升", "↑ {{Shotspeed}} +0.15弹速"}, -- Shot Speed Up
 	[50] = {"49", "实验性胶囊", "↑ 提升1项随机属性#↓ 降低另外1项随机属性#有{{Collectible75}}药学博士证，{{Collectible46}}幸运脚或{{Collectible303}}处女座时不降属性#有{{Collectible654}}伪造药学博士证时不升属性"}, -- Experimental Pill
@@ -910,12 +910,12 @@ local repPills={
 EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
 EID.descriptions[languageCode].horsepills={
-	{"0", "剧毒臭屁", "使整个房间敌人中毒"}, -- Bad Gas
+	{"0", "剧毒臭屁", "{{Poison}} 使整个房间敌人中毒"}, -- Bad Gas
 	{"1", "过激幻觉", "对角色造成2心伤害#若致死则变成体力回满胶囊"}, -- Bad Trip
-	{"2", "钢铁双蛋", "+4魂心"}, -- Balls of Steel
+	{"2", "钢铁双蛋", "{{SoulHeart}} +4魂心"}, -- Balls of Steel
 	{"3", "炸弹变钥匙", "交换炸弹和钥匙的数量#增加炸弹和钥匙的量50%#金炸弹和金钥匙也会交换"}, -- Bombs are Key
 	{"4", "爆炸性腹泻", "在角色位置生成一些激活的会跟踪的超级炸弹"}, -- Explosive Diarrhea
-	{"5", "体力回满", "满血#+3魂心"}, -- Full Health
+	{"5", "体力回满", "满血#{{SoulHeart}} +3魂心"}, -- Full Health
 	{"6", "体力下降", "↓ -2心之容器#若致死则变为体力上升胶囊"}, -- Health Down
 	{"7", "体力上升", "↑ +2空的心之容器"}, -- Health Up
 	{"8", "我找到枚怪药", "无效果"}, -- I Found Pills
@@ -930,12 +930,12 @@ EID.descriptions[languageCode].horsepills={
 	{"17", "运气下降", "↓ {{Luck}} -2运气"}, -- Luck Down
 	{"18", "运气上升", "↑ {{Luck}} +2运气"}, -- Luck Up
 	{"19", "传送胶囊", "传送到随机房间"}, -- Telepills
-	{"20", "48小时能量！", "对主动道具完全充能#掉落3-4个电池"}, -- 48 Hour Energy!
-	{"21", "呕血", "清空红心但保留1红心#生成1-4红心"}, -- Hematemesis
+	{"20", "48小时能量！", "对主动道具完全充能#{{Battery}} 掉落3-4个电池"}, -- 48 Hour Energy!
+	{"21", "呕血", "清空红心但保留1红心#{{Heart}} 生成1-4红心"}, -- Hematemesis
 	{"22", "麻痹", "不能移动4秒"}, -- Paralysis
-	{"23", "我能永远看清！", "打开当前层所有隐藏房间的入口#揭示全图"}, -- I can see forever!
-	{"24", "信息素", "将房间内所有敌人永久变成友好的"}, -- Pheromones
-	{"25", "失忆症", "隐藏当前层地图"}, -- Amnesia
+	{"23", "我能永远看清！", "打开当前层所有{{SecretRoom}隐藏房间的入口#揭示全图"}, -- I can see forever!
+	{"24", "信息素", "{{Charm}} 将房间内所有敌人永久变成友好的"}, -- Pheromones
+	{"25", "失忆症", "{{CurseLost}} 隐藏当前层地图"}, -- Amnesia
 	{"26", "柠檬派对", "生成满房间的水迹并对敌人造成接触伤害"}, -- Lemon Party
 	{"27", "你是巫师吗？", "进行斜角射击60秒"}, -- R U a Wizard?
 	{"28", "止痛药！", "所在房间受到的伤害减半"},  -- Percs!
@@ -954,7 +954,7 @@ EID.descriptions[languageCode].horsepills={
 	{"41", "好困…", "使房间内所有敌人减速"}, -- I'm Drowsy...
 	{"42", "好兴奋！！！", "使房间内所有敌人加速"}, --I'm Excited!!!
 	{"43", "咕噜！", "消耗当前饰品并永久获得其效果"}, -- Gulp!
-	{"44", "呕！", "发射1串吐根眼泪"}, -- Horf!
+	{"44", "呕！", "{{Collectible149}} 发射1串吐根眼泪"}, -- Horf!
 	{"45", "感觉像漫步在阳光下！", "短时间无敌#造成接触伤害#每杀死2个敌人治疗半红心"}, -- Feels like I'm walking on sunshine!
 	{"46", "嗝！", "生成上次使用的大胶囊"}, -- Vurp!
 	{"47", "弹速下降", "↓ {{Shotspeed}} -0.3弹速"}, -- Shot Speed Down
