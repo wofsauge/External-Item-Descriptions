@@ -44,11 +44,11 @@ function EID:addTrinket(id, description, itemName, language)
 end
 
 -- Adds information about appending text and multiplying numbers in a modded trinket's Golden/Mom's Box description. All three variables are optional, set to ""/0 or nil to not include them
--- appendText can be 1 string, or a table of 2 strings; one for doubling and one for tripling
--- numbersToMultiply can be 1 number, or a table of numbers
--- maxMultiplier is what tripling (Golden+Mom's Box) should multiply the numbers by (normally 3)
+-- appendText: Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
+-- numbersToMultiply: The number inside the text that should be multiplied. can be one number, or a table of numbers
+-- maxMultiplier: is what tripling (Golden+Mom's Box) should multiply the numbers by (normally 3)
 -- (If it's less than 2, it also applies to doubling)
--- Example: My modded trinket gives +0.5 range, and when tripled, adds homing instead of tripling the range boost
+-- Example: My modded trinket gives +0.5 range and when tripled, adds homing instead of tripling the range boost
 -- EID:addGoldenTrinketMetadata(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 0.5, 2)
 function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMultiplier, language)
 	maxMultiplier = maxMultiplier or 3
