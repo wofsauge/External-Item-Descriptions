@@ -102,7 +102,7 @@ EID.descriptions[languageCode].collectibles={
 	{"80", "Пактът", "↑ {{Damage}} 0.5 Щети#↑ {{Tears}} 0.7 Скорост на сълзите#+2 Духовни сърца"},
 	{"81", "Мъртва котка", "Дава 9 живота#Отнема всички червени сърца, освен едно#Прераждаш се с 1 сърце"},
 	{"82", "Властелинът на ямата", "Летене#↑ {{Speed}} 0.3 Скорост"},  -- translation check: literal translation preserved. as a Magic: The Gathering card this might be the best translation.
-	{"83", "Пиронът", "При използване:#+1 Духовно сърце#↑ {{Damage}} 0.7 Щети#↓ {{Speed}} -0.18 скорост#Разрушава камъни"},    -- TODO: mention contact damage
+	{"83", "Пиронът", "При използване:#+1 Духовно сърце#↑ {{Damage}} 0.7 Щети#↓ {{Speed}} -0.18 скорост#Можете да чупите скали, като ги тъпчете"},    -- TODO: mention contact damage
 	{"84", "Трябва да идем по-дълбоко!", "При използване прави люк на земята за следващият етаж#10% шанс да създаде люк със стълба"},
 	{"85", "Тесте карти", "Дава произволна таро карта, когато се използва"},
 	{"86", "Зъбът на Монстро", "Когато се използва Монстро пада върху произволно чудовище"},
@@ -333,7 +333,7 @@ EID.descriptions[languageCode].collectibles={
 	{"311", "Сянката на Юда", "След смъртта ще се появиш като Черен Юда#↑ {{Damage}} (той има щети x 2) "},
 	{"312", "Панделката на Маги", "↑ 1 Червено сърце#Удвоява ефекта от лечението на сърцата"},
 	{"313", "Свещена мантия", "Блокира първите нанесени щети във всяка стая"},
-	{"314", "Гръмотевични бедра", "↑ 1 Червено сърце#↓ {{Speed}} -0.4 скорост#Можете да чупите камъни, като ги тъпчете"},
+	{"314", "Гръмотевични бедра", "↑ 1 Червено сърце#↓ {{Speed}} -0.4 скорост#Можете да чупите скали, като ги тъпчете"},
 	{"315", "Странно привличане", "Магнитни сълзи#Привлича предмети и врагове"},
 	{"316", "Прокълнато око", "Зареждаща се вълна от сълзи#Ако нанесете щети по време на зареждане, има шанс да се телепортирате в произволна стая"},
 	{"317", "Мистериозна течност", "Сълзите оставят отровен басейн"},
@@ -708,7 +708,7 @@ EID.descriptions[languageCode].trinkets={
 
 ---------- Cards ----------
 EID.descriptions[languageCode].cards={
-	-- Not yet Translated!
+	-- translations remaining: certain tokens (pickups, stats); on demand rune names and bosses
 	{"1", "0 - Глупакът", "Телепортира те обратно до стартовата стая на етажа"},
 	{"2", "I - Магьосникът", "Самонасочващи се сълзи за сегашната стая"},
 	{"3", "II - Върховната жрица", "Кракът на мама се стоварва върху някой враг!#!!! Ако няма врагове, се стоварва върху теб"},    -- ~~extra vs en_us.lua: "!!!If no enemies, it stomps on you"
@@ -735,34 +735,36 @@ EID.descriptions[languageCode].cards={
 	{"24", "Двойка кари", "{{Coin}} Удвоява твоите пари"},
 	{"25", "Двойка пики", "{{Key}} Удвоява твоите ключове"},
 	{"26", "Двойка купи", "{{Heart}} Удвоява твоите червени сърца#Само възстановява здраве"},
-	{"27", "Асо спатии", "{{Bomb}} Turns all pickups into bombs"},
-	{"28", "Ace of Diamonds", "{{Coin}} Turns all pickups into coins"},
-	{"29", "Ace of Spades", "{{Key}} Turns all pickups into keys"},
-	{"30", "Ace of Hearts", "{{Heart}} Turns all pickups into hearts"},
-	{"31", "Joker", "{{AngelDevilChance}} Teleports you to the Devil or Angel Room"},
-	{"32", "Hagalaz", "Destroy all rocks in the room"},
-	{"33", "Jera", "Duplicate all pickups in room"},
-	{"34", "Ehwaz", "Spawns a trapdoor to the next floor#8% chance for {{LadderRoom}}crawlspace trapdoor"},
-	{"35", "Dagaz", "{{SoulHeart}} +1 Soul Heart#{{CurseCursed}} Removes curse effects"},
-	{"36", "Ansuz", "Full mapping for this floor"},
-	{"37", "Perthro", "Reroll all pedestal items"},
-	{"38", "Berkano", "Summons 3 blue spiders and 3 blue flies"},
-	{"39", "Algiz", "Invincibility for 30 seconds"},
-	{"40", "Blank Rune", "Random rune effect#25% chance to drop itself again"},
-	{"41", "Black Rune", "Deals 40 damage to all enemies#Converts all pedestal items in the room into random stat ups#Converts all pickups in the room into blue flies"},
-	{"42", "Chaos Card", "Upon use, throw the card in the direction you're moving#Instantly kills ANY enemy it touches (except Delirium)"},
-	{"43", "Credit Card", "Removes the price from all items in the current {{Shop}} shop or {{DevilRoom}} Devil deal, making everything free"},
-	{"44", "Rules Card", "Displays \"helpful\" tips on use"},
-	{"45", "A Card Against Humanity", "Fills the whole room with poop"},
-	{"46", "Suicide King", "Instantly kills you and spawns 10 pickup / Collectibles on the floor"},
-	{"47", "Get Out Of Jail Free Card", "Open all doors in the current room"},
-	{"48", "? Card", "Activates your active item for free"},
-	{"49", "Dice Shard", "Rerolls pedestals and pickups in current room"},
-	{"50", "Emergency Contact", "Two of Mom's Hands come down and grab an enemy"},
-	{"51", "Holy Card", "{{Collectible313}} Grants the Holy Mantle effect for one room#(Prevents damage once)#25% chance to spawn another Holy Card"},
-	{"52", "Huge Growth", "↑ {{Damage}} +7 Damage up#↑ {{Range}} +30 Range up#Destroy rocks when walking over them#Size up#Effect lasts for current room"},
-	{"53", "Ancient Recall", "{{Card}} Spawns 3 random cards when used"},
-	{"54", "Era Walk", "{{Slow}} Slow down enemies#↑ {{Speed}} +0.5 Speed up#↓ {{Shotspeed}} -1 Shot Speed down#Effect lasts for current room"},
+	{"27", "Асо спатии", "{{Bomb}} Превръща всички пикъпи в стаята в бомби"}, -- pickups??
+	{"28", "Асо кари", "{{Coin}} Превръща всички пикъпи в стаята в монети"},
+	{"29", "Асо пики", "{{Key}} Превръща всички пикъпи в стаята в ключове"},
+	{"30", "Асо купи", "{{Heart}} Превръща всички пикъпи в стаята в сърца"},
+	{"31", "Жокер", "{{AngelDevilChance}} Телепортира те в дяволската или ангелската стая"},
+    -- BEGIN RUNES SECTION: Purposefully not translating runes to anything. If needed, transliterate.
+	{"32", "Hagalaz", "Разрушава всички скали в стаята"},
+	{"33", "Jera", "Дублира всички пикъпи в стаята"},  -- ~~en-us.lua inconsistency: "room" instead of "the room"
+	{"34", "Ehwaz", "Създава капак към следващия етаж#8% шанс за {{LadderRoom}}капак със стълба"}, -- translate "trapdoor" to "люк" instead because of the Womb "trapdoor"?
+	{"35", "Dagaz", "{{SoulHeart}} +1 духовно сърце#{{CurseCursed}} Премахва проклятията за етажа"},
+	{"36", "Ansuz", "Пълна карта (с тайни стаи и икони) за етажа"},
+	{"37", "Perthro", "Променя всички предмети на пиедестали в стаята"},    -- reroll?
+	{"38", "Berkano", "Призовава 3 съюзнически паяка и 3 съюзнически мухи"},
+	{"39", "Algiz", "Неуязвимост за 30 секунди#Не се запазва при излизане от стаята"}, -- explicit mention that the shield is removed on room transition
+    -- END RUNES SECTION
+	{"40", "Празна руна", "Случаен ефект на руна#25% шанс да се създаде нова празна руна"},
+	{"41", "Черна руна", "Нанася 40 щета на всички врагове#Превръща всички предмети на пиедестали в стаята в случайни подобрения на *stats#Превръща всички *пикъпи в стаята в съюзнически мухи"}, -- untranslated token: "stats"
+	{"42", "Хаос карта", "При използване изстрелва картата в твоята посока на движение#Изстреляната карта напълно убива всеки враг или бос в играта, който бъде докоснат (освен Delirium)"},   -- translate Delirium? all bosses?
+	{"43", "Кредитна карта", "Премахва цената от всички предмети в сегашния {{Shop}} магазин (или {{DevilRoom}} дяволска стая), правейки предметите безплатни"},
+	{"44", "Карта с правила", "Показва \"полезни\" съвети"},
+	{"45", "Карта срещу човечеството", "Изпълва цялата стая с акита"},
+	{"46", "Крал-самоубиец", "!!!Убива те на място#Създава 10 пикъпи/предмети на пода"},  -- translation based on the wiki trivia about king of hearts in a standard deck
+	{"47", "Карта \"Излез от затвора\"", "Отваря всички врати в стаята#!!!Може да отвори вратата към {{MegaSatan}} Mega Satan"},   -- someone with a Bulgarian Monopoly board game please verify the translated name of the card!
+	{"48", "? карта", "Моментално използване на активният предмет"},
+	{"49", "Парче от зарче", "Променя предметите (пиедестали и пикъпи) в сегашната стая"},
+	{"50", "Спешен контакт", "Две ръце на мама се спускат и сграбчват врагове"},
+	{"51", "Свещена карта", "{{Collectible313}} Дава щит като \"Свещена мантия\" за една стая#(Спира щета веднъж)#25% шанс да се създаде нова Свещена карта"},
+	{"52", "Огромен растеж", "↑ {{Damage}} +7 Щети#↑ {{Range}} +30 Обхват#Можете да чупите скали, като ги тъпчете#Уголемяване на героя#Ефектите са за сегашната стая"},
+	{"53", "Древен спомен", "{{Card}} Създава 3 случайни карти"},  -- translation checked against the "recall" meant in Magic: The Gathering
+	{"54", "Вековен поход", "{{Slow}} Забавя всички врагове#↑ {{Speed}} +0.5 Скорост#↓ {{Shotspeed}} -1 Скорост на сълзите#Ефектите са за сегашната стая"},
 }
 
 ---------- Pills ----------
