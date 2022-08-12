@@ -1546,6 +1546,7 @@ local function onRender(t)
 	if EID.Config["ItemReminderEnabled"] and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
 		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 		demoDescObj.Name = EID:getDescriptionEntry("HoldMapTitle")
+		demoDescObj.PermanentTextEnglish = EID:getDescriptionEntryEnglish("HoldMapTitle")
 		-- check for scrolling being enabled here and append scroll controls to the title?
 		demoDescObj.Description = EID:getHoldMapDescription(EID.holdTabPlayer)
 		if (demoDescObj.Description ~= "") then EID:addDescriptionToPrint(demoDescObj, 1) end
