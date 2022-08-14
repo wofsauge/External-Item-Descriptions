@@ -179,8 +179,8 @@ function EID:onNewFloor()
 	pathsChecked = {}
 	EID.sacrificeCounter = {}
 	if REPENTANCE then
-		EID.bagOfCraftingRoomQueries = {}
-		EID.bagOfCraftingFloorQuery = {}
+		EID.BoC.RoomQueries = {}
+		EID.BoC.FloorQuery = {}
 		EID.CraneItemType = {}
 		EID.flipItemPositions = {}
 		altPathItemChecked = {}
@@ -1222,20 +1222,11 @@ local function onRender(t)
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
 		return
 	end
-	
 	if REPENTANCE then
 		local hasBag, bagPlayer = EID:PlayersHaveCollectible(710)
 		if hasBag then
 			EID.bagPlayer = bagPlayer
 			EID:handleBagOfCraftingUpdating()
-			-- If we're in the Crafting options tab, the only rendering we want to happen is the Bag of Crafting preview
-			if ModConfigMenu and ModConfigMenu.IsVisible and EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
-				local craftingSuccess = EID:handleBagOfCraftingRendering(true)
-				if craftingSuccess then
-					EID:printDescription(EID.descriptionsToPrint[#EID.descriptionsToPrint])
-				end
-				return
-			end
 		end
 	end
 	
@@ -1674,14 +1665,14 @@ if EID.MCMLoaded or REPENTANCE then
 			end
 
 			if REPENTANCE then
-				EID.BagItems = {}
+				EID.BoC.BagItems = {}
 				EID.CraneItemType = {}
 				EID.flipItemPositions = {}
 				EID.absorbedItems = {}
 				
 				if isSave then
-					EID.BagItems = savedEIDConfig["BagContent"] or {}
-					EID.bagOfCraftingRoomQueries = savedEIDConfig["BagFloorContent"] or {}
+					EID.BoC.BagItems = savedEIDConfig["BagContent"] or {}
+					EID.BoC.RoomQueries = savedEIDConfig["BagFloorContent"] or {}
 					EID.CraneItemType = savedEIDConfig["CraneItemType"] or {}
 					EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
 
@@ -1741,8 +1732,8 @@ if EID.MCMLoaded or REPENTANCE then
 	--Saving Moddata--
 	function SaveGame()
 		if REPENTANCE then
-			EID.Config["BagContent"] = EID.BagItems or {}
-			EID.Config["BagFloorContent"] = EID.bagOfCraftingRoomQueries or {}
+			EID.Config["BagContent"] = EID.BoC.BagItems or {}
+			EID.Config["BagFloorContent"] = EID.BoC.RoomQueries or {}
 			EID.Config["CraneItemType"] = EID.CraneItemType or {}
 			EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
 

@@ -38,10 +38,22 @@ local function renderDummyDesc(reload)
 	EID:displayPermanentText(demoDescObj, "MCM", "DemoObjectName")
 end
 
+local function renderDummyBagOfCraftingDesc()
+	EID.bagPlayer = Isaac.GetPlayer(0)
+	EID.BoC.BagItemsOverride = {15,15,15,1,10}
+	EID.BoC.RoomOverride = {8,8,8,9}
+	EID.BoC.FloorOverride = {1,1,1,1,4,8,8,8,9}
+	EID.BoC.InventoryOverride = {3,5}
+	local craftingSuccess = EID:handleBagOfCraftingRendering(true)
+	if craftingSuccess then
+		EID:printDescription(EID.descriptionsToPrint[#EID.descriptionsToPrint])
+	end
+end
+
 -- get list of all defined fonts per language file
 local fonts = {}
 local fontNames = {}
-for k, pack in pairs(EID.descriptions) do
+for _, pack in pairs(EID.descriptions) do
 	if pack.fonts then
 		for _,fontToAdd in ipairs(pack.fonts) do
 			local exists = false
@@ -60,7 +72,7 @@ for k, pack in pairs(EID.descriptions) do
 end
 -- get list of all defined Language names
 local displayLanguage = {}
-for k, lang in ipairs(EID.Languages) do
+for _, lang in ipairs(EID.Languages) do
 	table.insert(displayLanguage, EID.descriptions[lang].languageName)
 end
 
@@ -72,6 +84,10 @@ local function clearRenderDummyDesc()
 	end
 	MCMCompat_oldPermanentObj = nil
 	MCMCompat_isDisplayingDummyMCMObj = false
+	EID.BoC.BagItemsOverride = nil
+	EID.BoC.RoomOverride = nil
+	EID.BoC.FloorOverride = nil
+	EID.BoC.InventoryOverride = nil
 end
 
 function EID:renderMCMDummyDescription()
@@ -88,12 +104,15 @@ function EID:renderMCMDummyDescription()
 			if EID.MCMCompat_isDisplayingEIDTab == "Mouse" and EID.Config["EnableMouseControls"] then
 				clearRenderDummyDesc()
 				EID:renderHUDLocationIndicators()
+				MCMCompat_isDisplayingDummyMCMObj = true
 			elseif EID.MCMCompat_isDisplayingEIDTab == "Visuals" and EID.permanentDisplayTextObj == nil then
 				renderDummyDesc()
+				MCMCompat_isDisplayingDummyMCMObj = true
 			elseif EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
 				clearRenderDummyDesc()
+				renderDummyBagOfCraftingDesc()
+				MCMCompat_isDisplayingDummyMCMObj = true
 			end
-			MCMCompat_isDisplayingDummyMCMObj = true
 			EID:buildColorArray()
 		elseif not MCM.IsVisible and MCMCompat_isDisplayingDummyMCMObj then
 			clearRenderDummyDesc()
@@ -641,8 +660,8 @@ if MCMLoaded then
 				Type = ModConfigMenu.OptionType.BOOLEAN,
 				CurrentSetting = function() return true end,
 				Display = function() return "<---- Clear Bag Content ---->" end,
-				OnChange = function(currentBool)
-					EID.BagItems = {} 
+				OnChange = function()
+					EID.BoC.BagItems = {}
 				end,
 				Info = {"Press this to clear all currently detected items on the bag"}
 			}
@@ -655,10 +674,10 @@ if MCMLoaded then
 				Type = ModConfigMenu.OptionType.BOOLEAN,
 				CurrentSetting = function() return true end,
 				Display = function() return "<---- Clear Floor item list ---->" end,
-				OnChange = function(currentBool)
-					EID.bagOfCraftingRoomQueries = {}
-					EID.bagOfCraftingFloorQuery = {}
-					EID.bagOfCraftingCurPickupCount = -1
+				OnChange = function()
+					EID.BoC.RoomQueries = {}
+					EID.BoC.FloorQuery = {}
+					EID.BoC.CurrentPickupCount = -1
 				end,
 				Info = {"Press this to clear all currently detected items on the floor"}
 			}
@@ -668,7 +687,7 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	----------------------------Savegame Config--------------------------------
 	if EID.SaveGame then
-		MCM.AddText("EID", "Save Game", "Loaded savegame data:")
+		MCM.AddText("EID", "Save Game", function() EID.MCMCompat_isDisplayingEIDTab = ""; return "Loaded savegame data:" end)
 		MCM.AddText("EID", "Save Game", function() return EID.SaveGame.Platform .." User: "..EID.SaveGame.UserName.." ("..EID.SaveGame.UserID..")" end)
 		MCM.AddSpace("EID", "Save Game")
 		
@@ -733,7 +752,7 @@ if MCMLoaded then
 	else
 		MCM.AddSpace("EID", "Save Game")
 		MCM.AddSpace("EID", "Save Game")
-		MCM.AddText("EID", "Save Game", "To enable savegame related features,")
+		MCM.AddText("EID", "Save Game", function() EID.MCMCompat_isDisplayingEIDTab = ""; return "To enable savegame related features," end)
 		MCM.AddText("EID", "Save Game", "please run \"scripts\\savegame_reader.exe\"")
 		MCM.AddText("EID", "Save Game", "found in the EID mod folder")
 	end
