@@ -3,7 +3,7 @@ EID = RegisterMod("External Item Descriptions", 1)
 EID.GameVersion = "ab+"
 EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz"}
 EID.descriptions = {} -- Table that holds all translation strings
-EID.enableDebug = false
+EID.enableDebug = true
 local game = Game()
 
 require("eid_config")
@@ -517,7 +517,7 @@ function EID:printNewDescriptions()
 	EID.CachingDescription = true
 	resetDescCache()
 	
-	for i,newDesc in ipairs(EID.descriptionsToPrint) do
+	for _,newDesc in ipairs(EID.descriptionsToPrint) do
 		if newDesc.Description == "UnidentifiedPill" then
 			if EID:renderUnidentifiedPill(newDesc.Entity) ~= false then
 				table.insert(EID.previousDescs, newDesc)
@@ -1493,10 +1493,6 @@ local function onRender(t)
 
 				elseif closest.Variant == PickupVariant.PICKUP_PILL then
 					--Handle Pills
-					if not EID.Config["DisplayObstructedPillInfo"] and closest.FrameCount < 3 then
-						-- small delay when having obstruction enabled & entering the room to prevent spoilers
-						--return
-					end
 					if EID:getEntityData(closest, "EID_DontHide") ~= true then
 						local hideinShop = closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]
 						local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
