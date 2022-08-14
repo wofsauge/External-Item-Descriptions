@@ -1644,3 +1644,8 @@ end
 function EID:AddIconToObject(eType, eVariant, eSubType, iconName)
 	EID.ObjectIcon[eType.."."..eVariant.."."..eSubType] = EID.InlineIcons[iconName]
 end
+
+-- Set a pilleffect to be permanently unidentifyable by EID
+function EID:SetPillEffectUnidentifyable(pillEffectID, isUnidentifyable)
+	EID.UnidentifyablePillEffects[pillEffectID] = isUnidentifyable or nil
+end

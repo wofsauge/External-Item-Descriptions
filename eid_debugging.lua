@@ -140,10 +140,10 @@ __eidItemDescriptions[3] = "{{Bomb}} Emote {{Key}} Test {{Test}}{{TestIcon}} {{C
 __eidItemDescriptions[6] = "This item as Inline Icon {{Collectible6}}#And here are others {{Collectible69}} {{Collectible16}} {{Collectible323}} {{Collectible345}} {{Collectible223}}#And some trinket sprites {{Trinket12}} {{Trinket22}} {{Trinket1}} {{Trinket55}} {{Trinket100}} {{Trinket123}}" -- 5.100.2 = Inner Eye
 
 
-EID:addIgnoredEntity(5,100,10)
-EID:addIgnoredEntity(5,100,11)
+EID:addIgnoredEntity(5,100,10) -- Ignore "Halo of flies" collectible entity
+EID:addIgnoredEntity(5,100,11) -- Ignore "1Up" collectible entry
 
-EID:removeIgnoredEntity(5,100,10)
+EID:removeIgnoredEntity(5,100,10) -- un-Ignore "Halo of flies" collectible entity
 
 ------ Test: adding custom icons ------
 EID:addColor("ColorTwitterBlue", KColor(0, 0.671875, 0.9296875, 1), nil)
@@ -159,7 +159,8 @@ EID:addColor("ColorBlackBlink", nil, function(color)
 		return color
 	end
 )
-
+-- Test: Pill effect unidentifyable
+EID:SetPillEffectUnidentifyable(24, true) -- set "I can see forever" to always be unidentifyable
 
 local function onDebugRender(t)
 	EID:renderHUDLocationIndicators()
@@ -175,13 +176,13 @@ local function onDebugRender(t)
 				["Name"] = "Some Item with seed ".. v.InitSeed ,
 				["Description"] = "Test specific description#Init seed: ".. v.InitSeed,
 				["Transformation"] = "1,2"
-			} 
+			}
 			v:GetData()["EID_Description"] = descTable
 		end
 	end
 
 	for i, v in ipairs(charsToDebug) do
-		local pos = EID.getTextPosition() + Vector(-5, - 15 + ((i - 1) * 14))
+		local pos = EID:getTextPosition() + Vector(-5, - 15 + ((i - 1) * 14))
 		EID:renderString(v, pos, Vector(EID.Scale, EID.Scale), KColor(1, 1, 1, 1, 0, 0, 0))
 		
 		if not showDebugChars then

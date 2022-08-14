@@ -3,3 +3,4 @@ save2.dat
 save3.dat
 /scripts/eid_savegames.lua
 /.vscode
+.luarc.json

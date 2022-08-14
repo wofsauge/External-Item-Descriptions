@@ -37,6 +37,7 @@ EID.CraneItemType = {}
 EID.absorbedItems = {}
 EID.CollectedItems = {}
 EID.IgnoredEntities = {}
+EID.UnidentifyablePillEffects = {} -- List of pilleffects that are always unidentifyable
 local pathsChecked = {}
 local altPathItemChecked = {}
 local alwaysUseLocalMode = false -- set to true after drawing a non-local mode description this frame
@@ -1510,7 +1511,9 @@ local function onRender(t)
 					local pool = game:GetItemPool()
 					local identified = pool:IsPillIdentified(pillColor)
 					if REPENTANCE and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
-					if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) then
+					local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
+
+					if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
 						local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor, closest)
 						EID:addDescriptionToPrint(descEntry)
 					else
