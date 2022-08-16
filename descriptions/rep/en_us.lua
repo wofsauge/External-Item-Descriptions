@@ -415,7 +415,7 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "All items cycle between two options"},
 	{"Magdalene", "", "↑ {{Heart}} +1 Health up#{{Heart}} Maximum heart limit is raised to 18"},
-	{"Cain", "", "↑ {{Luck}} +1 Luck up#{{Arcade}} All floors will contain an upgraded Arcade Room except for Dark Room and Chest#{{Collectible46}} Greatly increases Lucky Foot's chances of winning effect"},
+	{"Cain", "", "↑ {{Luck}} +1 Luck up#{{ArcadeRoom}} All floors will contain an upgraded Arcade Room except for Dark Room and Chest#{{Collectible46}} Greatly increases Lucky Foot's chances of winning effect"},
 	{"Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#{{Collectible34}} Receive The Book of Belial if you're not currently holding it#↑ {{Damage}} The damage boost received from it scales with the amount of charges the active item above it has#Grants special effects for certain active items"},
 	{"???", "", "Soul Hearts gained from health upgrades are doubled"},
 	{"Eve", "", "Whore of Babylon is active regardless of health#Dead Bird is active without taking damage"},
