@@ -52,7 +52,7 @@ local repCollectibles={
 	[79] = {"79", "La marca", "↑ {{Speed}} Velocidad +0.2#↑ {{Damage}} Daño +1.0#{{BlackHeart}} +1 corazón negro"}, -- La marca
 	[80] = {"80", "El pacto", "↑ {{Tears}} Lágrimas +0.7#↑ {{Damage}} Daño +0.5#{{BlackHeart}} +2 corazones negros"}, -- El pacto
 	[83] = {"83", "El clavo", "{{HalfBlackHeart}} + Medio corazón negro#↓ {{Speed}} Velocidad -0.18#↑ {{Damage}} Daño +0.7#Inflige daño por contacto#Rompe rocas"}, -- El clavo
-	[84] = {"84", "¡Necesitamos Ir Más Profundo!", "Genera una trampilla para saltar el nivel#{{Ladder}} Genera una trampilla a un mini-sótano al usarla sobre un elemento decorativo del suelo"},
+	[84] = {"84", "¡Necesitamos Ir Más Profundo!", "Genera una trampilla para saltar el nivel#{{LadderRoom}} Genera una trampilla a un mini-sótano al usarla sobre un elemento decorativo del suelo"},
 	[87] = {"87", "Cuernos de Loki", "25% de posibilidad de disparar en 4 direcciones#{{Luck}} 100% con 15 de suerte"},
 	[91] = {"91", "Sombrero de espeleólogo", "Muestra el tipo de sala a partir de dos salas adyacentes a la actual#{{SecretRoom}} {{SuperSecretRoom}} Revela Salas secretas y salas súper secretas#Evita el daño de disparos que caigan desde arriba"},
 	[98] = {"98", "La reliquia", "{{SoulHeart}} Suelta 1 corazón de alma cada 7-8 habitaciones"},
@@ -200,7 +200,7 @@ local repCollectibles={
 	[444] = {"444", "Lápiz", "Cada 15 lágrimas disparas un grupo de lágrimas"},
 	[445] = {"445", "Diente de Perro", "↑ {{Speed}} Velocidad +0.1#↑ {{Damage}} Daño +0.3#Un lobo aúlla si entras en una habitación al lado de la sala secreta#Un ladrido si hay una trampilla"},
 	[448] = {"448", "Trozo de vidrio", "Cuando te golpean, posibilidad de: #↑ {{Range}} Alcance +5#Soltar lágrimas rojas#Dejar un rastro de creep sangriento#Generar un corazón rojo"}, -- Trozo de vidrio
-	[450] = {"450", "Ojo de Codicia", "Cada 20 lágrimas, disparas una lágrima moneda que inflinge {{Damage}} 1.5 veces tu daño + 10#Cuesta una moneda#{{}} Los enemigos golpeados recibirán el efecto del Toque de Midas#!!! Ese disparo cuesta una moneda"},
+	[450] = {"450", "Ojo de Codicia", "Cada 20 lágrimas, disparas una lágrima moneda que inflinge {{Damage}} 1.5 veces tu daño + 10#Cuesta una moneda#Los enemigos golpeados recibirán el efecto del Toque de Midas#!!! Ese disparo cuesta una moneda"},
 	[451] = {"451", "Tapete de Tarot", "{{Card}} Genera una carta aleatoria#Duplica el uso de cualquier carta#Algunas cartas ganan un efecto adicional"}, -- Tapete de Tarot
 	[453] = {"453", "Fractura compuesta", "Lágrimas de hueso#Al golpear, las lágrimas se separan en 1-3 trozos de hueso pequeños#↑ {{Range}} Alcance +0.38#↑ {{Tearsize}} +1.0 de tamaño de lágrima"},
 	[455] = {"455", "Moneda perdida de Papá", "↑ {{Range}} Alcance +0.38#Deja caer un penique de la suerte"},
@@ -221,7 +221,7 @@ local repCollectibles={
 	[496] = {"496", "Eutanasia", "3.33% de posibilidad de disparar jeringuillas#{{Luck}} 25% de posibilidad con suerte de 15#Las jeringuillas matan a los enemigos normales de un golpe, disparando otras 10 jeringuillas#A los jefes les inflige el triple de tu daño"},
 	[497] = {"497", "Interior Camuflado", "Al entrar a una habitación te camuflas hasta que disparas#↑ {{Speed}} Velocidad +0.5 al estar camuflado#Al descamuflarse: #Todos los enemigos serán dañados#↑ {{Damage}} Más daño por la sala#↑ {{Tears}} Más lágrimas por la sala"},
 	[498] = {"498", "Dualidad", "{{AngelDevilChance}} Genera la sala del Diablo y del Ángel#Cuando entras en una la otra desaparece"},
-	[501] = {"501", "Esófago de Codicia", "Cada 25 monedas te da 1 contenedor de corazón#{{Player 14}} Keeper ganará más monedas-corazones#{{Collectible416}} Ganarás un nuevo contenedor por 100 monedas ya pasadas las 99"},
+	[501] = {"501", "Esófago de Codicia", "Cada 25 monedas te da 1 contenedor de corazón#{{Player14}} Keeper ganará más monedas-corazones#{{Collectible416}} Ganarás un nuevo contenedor por 100 monedas ya pasadas las 99"},
 	[503] = {"503", "Pequeño cuerno", "Posibilidad de disparar una lágrima que invoca a una mano de Big Horn#La mano mata al instante a enemigos normales y daña a los jefes#Inflige 3,5 de daño por contacto"}, -- Pequeño cuerno
 	[504] = {"504", "Pepita marrón", "Genera una mosca torreta que dispara a los enemigos#Cada disparo inflige 3,5 de daño"}, -- Pepita marrón
 	[506] = {"506", "Apuñala espaldas", "{{BleedingOut}} Las lágrimas causan sangrado#El daño del sangrado se basará en la velocidad de los enemigos (Más velocidad = más daño)"},
@@ -234,7 +234,7 @@ local repCollectibles={
 	[523] = {"523", "Caja de mudanza", "Guarda hasta seis recolectables de la habitación#Al volver  a usarlo suelta los recolectables#Te permite mover cosas entre habitaciones"}, -- Caja de mudanza
 	[524] = {"524", "Tecnología cero", "Las lágrimas están conectadas con rayos de electricidad#Los rayos infligen 1/3 de tu daño"}, -- Tecnología cero
 	[531] = {"531", "Hemolacria", "Las lágrimas salen en forma de arco#Al impactar, explotan en lágrimas más pequeñas#↓ {{Tears}} Menos lágrimas#↑ {{Damage}} Daño +50%#↑ {{Damage}} Daño adicional +1.0"},
-	[535] = {"535", "Manto", "{{SoulHeart}} +1 corazón de alma#{{Heart}} Cura un corazón rojo#{{}} Otorga un escudo al entrar a la sala del jefe"},
+	[535] = {"535", "Manto", "{{SoulHeart}} +1 corazón de alma#{{Heart}} Cura un corazón rojo#Otorga un escudo al entrar a la sala del jefe"},
 	[541] = {"541", "Médula", "{{EmptyBoneHeart}} +1 corazón de hueso#{{Heart}} Genera 3 corazones rojos"},
 	[543] = {"543", "Suelo Santificado", "Genera una caca blanca con un aura cuando te golpean#El aura otorga lo siguiente: #↑ {{Damage}} Daño +25%#↑ {{Tears}} Lágrimas +100%#Lágrimas teledirigidas#Las lágrimas pueden bloquear disparos"}, -- Tierra sagrada
 	[547] = {"547", "Papeles del divorcio", "↑ {{EmptyBoneHeart}} +1 un corazón de hueso#↑ {{Tears}} Lágrimas +0.7#{{Trinket21}} Genera un Papel misterioso"},
@@ -859,7 +859,7 @@ local repCards={
 	[61] = {"61", "V - ¿El Sumo Sacerdote?", "{{EmptyBoneHeart}} Genera 2 corazones de hueso"},
 	[62] = {"62", "VI - ¿Los Enamorados?", "Genera un objeto de la pool de la sala actual#{{BrokenHeart}} Convierte 1 corazón rojo o 2 corazones de alma en un corazón roto"},
 	[63] = {"63", "VII - ¿El Carruaje?", "Te convierte en una estatua invencible durante 10 segundos#Gran velocidad de disparo mientras dure"},
-	[64] = {"64", "VIII - ¿Justicia?", "{[GoldenChest}} Genera de 2 a 4 cofres dorados"},
+	[64] = {"64", "VIII - ¿Justicia?", "{{GoldenChest}} Genera de 2 a 4 cofres dorados"},
 	[65] = {"65", "IX - ¿El Ermitaño?", "Convierte los recolectables y objetos de la habitación en monedas#El valor de las monedas es el mismo que su precio en la tienda"},
 	[66] = {"66", "X - ¿La Rueda de la Fortuna?", "Efecto aleatorio de la sala de dados"},
 	[67] = {"67", "XI - ¿Fuerza?", "Los enemigos de la habitación se vuelven más débiles, lentos y reciben el doble de daño"},
@@ -869,7 +869,7 @@ local repCards={
 	[71] = {"71", "XV - ¿El Diablo?", "{{Collectible33}} Activa el efecto de La Biblia#Genera un familiar Serafín {{Collectible390}}# Dura 30 segundos"},
 	[72] = {"72", "XVI - ¿La Torre?", "Genera 6 grupos de rocas y obstáculos aleatorios"},
 	[73] = {"73", "XVII - ¿Las Estrellas?", "Elimina el objeto pasivo más antiguo#Genera 2 objetos aleatorios de la pool de la sala actual"},
-	[74] = {"74", "XVIII - ¿La Luna?", "{[UltraSecretRoom}} Te teletransporta a la sala ultrasecreta#{{Collectible580}} El camino de vuelta será de habitaciones rojas"},
+	[74] = {"74", "XVIII - ¿La Luna?", "{{UltraSecretRoom}} Te teletransporta a la sala ultrasecreta#{{Collectible580}} El camino de vuelta será de habitaciones rojas"},
 	[75] = {"75", "XIX - ¿El Sol?", "Ganas el objeto Spirit of the Night {{Collectible159}} (Espíritu de la noche)#↑ +1,5 de daño# Dura en la planta actual#Convierte los corazones rojos en corazones de hueso, pero los devuelve al acabar el efecto#Aplica Curse of Darkness (Maldición de oscuridad)"},
 	[76] = {"76", "XX - ¿El Juicio?", "Genera una máquina de restock"},
 	[77] = {"77", "XXI - ¿El Mundo?", "Genera una trampilla"},
@@ -886,7 +886,7 @@ local repCards={
 	[88] = {"88", "Alma de Azazel", "{{Collectible441}} Activa Mega Blast durante 7,5 segundos"},
 	[89] = {"89", "Alma de Lázaro", "Mueres y revives inmediatamente con medio corazón y un rato de invencibilidad#El objeto se usa automáticamente al recibir un daño fatal (como una vida adicional)"},
 	[90] = {"90", "Alma de Edén", "Activa el efecto de D6 {{Collectible105}} y el de D20 {{Collectible166}}#El objeto cambiado usa pools de objetos aleatorias"},
-	[91] = {"91", "Alma del perdido", "{{Player 10}} Te convierte en El Perdido en la habitación actual"},
+	[91] = {"91", "Alma del perdido", "{{Player10}} Te convierte en El Perdido en la habitación actual"},
 	[92] = {"92", "Alma de Lilith", "Añade un familiar aleatorio"},
 	[93] = {"93", "Alma de Keeper", "{{Coin}} Genera de 3 a 25 monedas aleatorias"},
 	[94] = {"94", "Alma de Apolión", "Genera 15 langostas aleatorias"},
@@ -997,7 +997,7 @@ EID.descriptions[languageCode].horsepills={
 	{"41", "Tengo mucho sueño...", "Ralentiza a todos los enemigos de la habitación"}, --TODO
 	{"42", "¡¡TENGO MUCHA ENERGÍA!!", "Acelera a todos los enemigos de la habitación"}, --TODO
 	{"43", "¡Glup!", "{{Trinket}} Consume el trinket actual y ganas su efecto de manera permanente"}, --TODO
-	{"44", "¡Horf!", "Dispara un grupo de lágrimas de {{Collectible149Ipecac"},
+	{"44", "¡Horf!", "Dispara un grupo de lágrimas de {{Collectible149}}Ipecac"},
 	{"45", "¡Es como si caminara sobre el sol!", "Invencibilidad corta#Asusta a todos los enemigos#Comerse dos enemigos repone medio corazón"},
 	{"46", "¡Vurp!", "Genera la última píldora usada como una píldora para caballos"},
 	{"47", "Menos Velocidad de lágrimas", "↓ {{Shotspeed}} Vel. de Lágrimas -0.3"},
