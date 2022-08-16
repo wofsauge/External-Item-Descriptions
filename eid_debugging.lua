@@ -3,7 +3,7 @@ local showDebugChars = false
 
 -- check integrity of language files
 
-local languageFilesToCheck = {"spa"} -- EID.Languages -- single file check {"ko_kr"}
+local languageFilesToCheck = {"cs_cz"} -- EID.Languages -- single file check {"ko_kr"}
 
 -- count en_us entries for stats
 local count = 0
@@ -20,20 +20,44 @@ local enUSEntries = count
 print("en_us entries: "..enUSEntries)
 
 for i,lang in ipairs(languageFilesToCheck) do
-	print("Now checking integrity of languagefile: "..lang)
+	print("Now checking integrity of languagefile: " .. lang)
 	-- Generic function to compare two tables
 	function EID:compareTables(table1, table2, prevKey, progress)
 		for k, v in pairs(table1) do
 			progress[1] = progress[1] + 1
 			if not table2[k] then
-				print(" Table '"..prevKey.."' does not contain key: "..k)
+				print(" Table '" .. prevKey .. "' does not contain key: " .. k)
 				progress[2] = progress[2] + 1
 			elseif type(table2[k]) == "table" then
 				EID:compareTables(table1[k], table2[k], k, progress)
+			else
+				-- check for broken markup stuff
+				local filteredText = EID:replaceShortMarkupStrings(table2[k])
+				local textPartsTable = EID:filterColorMarkup(filteredText, EID:getNameColor())
+				for _, textPart in ipairs(textPartsTable) do
+					local filteredSpriteText, spriteTable = EID:filterIconMarkup(textPart[1], 0, 0)
+
+					if string.find(filteredSpriteText, "{{") or string.find(filteredSpriteText, "}}") then
+						print(" Table '" .. prevKey .. "' entry '" .. k .. "' does contain a broken markup object: '" .. table2[k])
+						progress[1] = progress[1] - 2
+						progress[2] = progress[2] + 1
+						break
+					else
+						for _, sprite in ipairs(spriteTable) do
+							if sprite[1][1] == "ERROR" then
+								print(" Table '" .. prevKey .. "' entry '" .. k .. "' does contain a bad icon markup in string: '" .. table2[k])
+								progress[1] = progress[1] - 2
+								progress[2] = progress[2] + 1
+								break
+							end
+						end
+					end
+				end
 			end
 		end
 	end
-	local progress = {0, 0}
+
+	local progress = { 0, 0 }
 	EID:compareTables(EID.descriptions["en_us"], EID.descriptions[lang], lang, progress)
 
 	local errors = (enUSEntries - progress[1])-progress[2]
