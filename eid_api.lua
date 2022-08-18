@@ -1649,5 +1649,5 @@ end
 
 -- Set a pilleffect to be permanently unidentifyable by EID
 function EID:SetPillEffectUnidentifyable(pillEffectID, isUnidentifyable)
-	EID.UnidentifyablePillEffects[pillEffectID] = isUnidentifyable or nil
+	EID.UnidentifyablePillEffects[pillEffectID + 1] = isUnidentifyable or nil
 end
