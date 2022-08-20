@@ -395,7 +395,7 @@ local repCollectibles={
 	[722] = {"722", "Anima Sola", "Chains down the nearest enemy for 5 seconds#Chained enemies cannot move or attack"}, -- Anima Sola
 	[723] = {"723", "Spindown Dice", "Rerolls all items in the room by decreasing their internal ID by one"}, -- Spindown Dice
 	[724] = {"724", "Hypercoagulation", "{{Heart}} Taking enemy damage drops a half or full Red Heart#The hearts launch out and despawn after 1.5 seconds"}, -- Hypercoagulation
-	[725] = {"725", "IBS", "Dealing enough damage causes Isaac to flash red#{{Blank}}#{{Blank}} Releasing the fire button while Isaac is flashing either:#Throws a random poop#Creates buffing creep#Farts a poison cloud#Drops 5 live bombs"}, -- IBS
+	[725] = {"725", "IBS", "Dealing enough damage causes Isaac to flash red#{{Blank}} Releasing the fire button while Isaac is flashing either:#Throws a random poop#Creates buffing creep#Farts a poison cloud#Drops 5 live bombs"}, -- IBS
 	[726] = {"726", "Hemoptysis", "Double-tapping a fire button makes Isaac sneeze blood#The sneeze deals 150% damage#1 second cooldown#{{BrimstoneCurse}} Affected enemies take extra damage from Brimstone beams"}, -- Hemoptysis
 	[727] = {"727", "Ghost Bombs", "{{Bomb}} +5 bombs#Isaac's bombs spawn ghosts that deal contact damage and explode after 10 seconds"}, -- Ghost Bombs
 	[728] = {"728", "Gello", "A demon familiar bursts out of Isaac#The demon mimics Isaac's tears, stats and effects"}, -- Gello
@@ -412,7 +412,7 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 
 EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "All items cycle between two options"},
-	{"Magdalene", "", "↑ {{Heart}} +1 Health up#{{Heart}} The heart container limit is raised to 18"},
+	{"Magdalene", "", "↑ {{Heart}} +1 Health up#The max amount of Heart Containers is raised to 18"},
 	{"Cain", "", "↑ {{Luck}} +1 Luck up#{{Arcade}} All future floors will contain an upgraded Arcade Room (except for Dark Room and Chest)#{{Collectible46}} Greatly increases Lucky Foot's chances of winning effect"},
 	{"Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#{{Collectible34}} Grants The Book of Belial if Judas is not currently holding it#↑ {{Damage}} The damage boost it grants scales with the amount of charges the active item above it has#Grants special effects for certain active items"},
 	{"???", "", "Soul Hearts gained from health upgrades are doubled"},
@@ -422,10 +422,10 @@ EID.descriptions[languageCode].birthright ={
 	{"Lazarus", "", "Resurrecting as Lazarus Risen grants ↑ {{Damage}} +7.2 Damage up#Damage up wears off over one minute#Killing enemies while the effect is active extends it"},
 	{"Eden", "", "Spawns 3 random items from random item pools#Only one can be taken"},
 	{"The Lost", "", "Prevents items useless to The Lost from spawning#Examples: items that only give health, flight, and/or spectral tears or activate upon taking damage"},
-	{"Lazarus Risen", "", "↑↑ {{Damage}} +7.2 Damage up#Damage up wears off over one minute#Killing enemies while the effect is active extends it#The effect triggers each time Lazarus revives as Lazarus Risen"},
+	{"Lazarus Risen", "", "↑ {{Damage}} +7.2 Damage up#Damage up wears off over one minute#Killing enemies while the effect is active extends it#The effect triggers each time Lazarus revives as Lazarus Risen"},
 	{"Black Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#{{Collectible34}} Grants The Book of Belial if Judas is not currently holding it#↑ {{Damage}} The damage boost it grants scales with the amount of charges the active item above it has#Grants special effects for certain active items"},
 	{"Lilith", "", "Familiars are positioned in front of Lilith's face"},
-	{"Keeper", "", "↑ +1 Health up#The HP limit is raised to 4"},
+	{"Keeper", "", "↑ +1 Health up#The max amount of Heart Containers is raised by 1"},
 	{"Apollyon", "", "{{Collectible477}} Using Void has a chance to spawn an item that was previously voided#Does not remove the stat bonuses#The more items voided, the higher the chance for an item to spawn upon use"},
 	{"The Forgotten", "", "Removes the chain binding the Soul to the Body"},
 	{"The Forgotten Soul", "", "Removes the chain binding the Soul to the Body"},
@@ -441,7 +441,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Samson", "", "Killing an enemy adds 3 seconds to the Berserk timer instead of 1"},
 	{"Tainted Azazel", "", "{{Collectible726}} Doubles the size of Tainted Azazel's Hemoptysis sneeze attack"},
 	{"Tainted Lazarus", "", "The non-active form of T. Lazarus appears as a ghostly second character#He is invulnerable and deals 25% damage#Both forms receive the Birthright item"},
-	{"Tainted Eden", "", "Any items obtained before Birthright can no longer be rerolled#Active items can be rerolled again if they are dropped and picked up"},
+	{"Tainted Eden", "", "Any items obtained before Birthright can no longer be rerolled#Active items can be rerolled again if they are dropped and picked back up"},
 	{"Tainted Lost", "", "Grants an extra life that revives Tainted Lost in the same room and deals 200 damage to nearby enemies"},
 	{"Tainted Lilith", "", "{{Collectible728}} Familiars that normally follow Tainted Lilith follow her Gello instead#The melee attack gains +3 damage per familiar"},
 	{"Tainted Keeper", "", "Strongly attracts the coins dropped by defeating enemies#No effect on other coins"},
