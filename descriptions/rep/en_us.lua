@@ -425,7 +425,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Lazarus Risen", "", "↑ {{Damage}} +7.2 Damage up#Damage up wears off over one minute#Killing enemies while the effect is active extends it#The effect triggers each time Lazarus revives as Lazarus Risen"},
 	{"Black Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#{{Collectible34}} Grants The Book of Belial if Judas is not currently holding it#↑ {{Damage}} The damage boost it grants scales with the amount of charges the active item above it has#Grants special effects for certain active items"},
 	{"Lilith", "", "Familiars are positioned in front of Lilith's face"},
-	{"Keeper", "", "↑ +1 Health up#The max amount of Heart Containers is raised by 1"},
+	{"Keeper", "", "↑ +1 Health up#The max amount of Heart Containers is raised to 4"},
 	{"Apollyon", "", "{{Collectible477}} Using Void has a chance to spawn an item that was previously voided#Does not remove the stat bonuses#The more items voided, the higher the chance for an item to spawn upon use"},
 	{"The Forgotten", "", "Removes the chain binding the Soul to the Body"},
 	{"The Forgotten Soul", "", "Removes the chain binding the Soul to the Body"},
