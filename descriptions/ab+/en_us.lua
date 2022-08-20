@@ -294,7 +294,7 @@ EID.descriptions[languageCode].collectibles={
 	{"272", "BBF", "Friendly exploding fly#The explosion deals 60 damage#{{Warning}} The explosion can hurt Isaac"},
 	{"273", "Bob's Brain", "Dashes in the direction Isaac is shooting#Explodes when it hits an enemy#The explosion deals 60 damage and can hurt Isaac"},
 	{"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#The orbital deals 75 damage per second"},
-	{"275", "Lil Brimstone", "Familiar that charges and shoots a brimstone laser#Deals 31.5 damage per second"},
+	{"275", "Lil Brimstone", "{{Collectible118}} Familiar that charges and shoots a Brimstone laser#Deals 31.5 damage per second"},
 	{"276", "Isaac's Heart", "Isaac becomes invincible#Spawns a heart familiar that follows Isaac#{{Warning}} If the heart familiar gets hit, Isaac takes damage"},
 	{"277", "Lil Haunt", "Chases and fears enemies#Deals 4 damage per second"},
 	{"278", "Dark Bum", "{{Heart}} Picks up Red Hearts from the floor#Spawns a Soul/Black Heart or spider for every 1.5 Red Hearts picked up"},
