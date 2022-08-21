@@ -297,7 +297,7 @@ function EID:D1Prediction(rng)
 		fullID = "5." .. poss[sel].Variant
 		if poss[sel].Variant == 300 then
 			if specialCards[poss[sel].SubType] then
-				local objName = EID:getObjectName(5, poss[sel].Variant, poss[sel].SubType, poss[sel])
+				local objName = EID:getObjectName(5, poss[sel].Variant, poss[sel].SubType)
 				return "{{" .. variantToName[poss[sel].Variant] .. poss[sel].SubType .. "}} " .. objName
 			elseif EID.runeIDs[poss[sel].SubType] then
 				fullID = "5.301"
@@ -309,7 +309,7 @@ function EID:D1Prediction(rng)
 		if D1chests[poss[sel].Variant] then fullID = "5." .. poss[sel].Variant
 		-- display the item name for pills, cards, and trinkets in AB+
 		elseif poss[sel].Variant == 70 or poss[sel].Variant == 300 or poss[sel].Variant == 350 then
-			local objName = EID:getObjectName(5, poss[sel].Variant, poss[sel].SubType, poss[sel])
+			local objName = EID:getObjectName(5, poss[sel].Variant, poss[sel].SubType)
 			-- don't display the name of unidentified pills!
 			if poss[sel].Variant == 70 and not EID.Config["ShowUnidentifiedPillDescriptions"] and not game:GetItemPool():IsPillIdentified(poss[sel].SubType) then
 				objName = EID:getDescriptionEntry("unidentifiedPill")

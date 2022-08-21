@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = "4.34"
+EID.ModVersion = "4.36"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -37,6 +37,7 @@ EID.CraneItemType = {}
 EID.absorbedItems = {}
 EID.CollectedItems = {}
 EID.IgnoredEntities = {}
+EID.UnidentifyablePillEffects = {} -- List of pilleffects that are always unidentifyable
 local pathsChecked = {}
 local altPathItemChecked = {}
 local alwaysUseLocalMode = false -- set to true after drawing a non-local mode description this frame
@@ -178,8 +179,8 @@ function EID:onNewFloor()
 	pathsChecked = {}
 	EID.sacrificeCounter = {}
 	if REPENTANCE then
-		EID.bagOfCraftingRoomQueries = {}
-		EID.bagOfCraftingFloorQuery = {}
+		EID.BoC.RoomQueries = {}
+		EID.BoC.FloorQuery = {}
 		EID.CraneItemType = {}
 		EID.flipItemPositions = {}
 		altPathItemChecked = {}
@@ -516,7 +517,7 @@ function EID:printNewDescriptions()
 	EID.CachingDescription = true
 	resetDescCache()
 	
-	for i,newDesc in ipairs(EID.descriptionsToPrint) do
+	for _,newDesc in ipairs(EID.descriptionsToPrint) do
 		if newDesc.Description == "UnidentifiedPill" then
 			if EID:renderUnidentifiedPill(newDesc.Entity) ~= false then
 				table.insert(EID.previousDescs, newDesc)
@@ -1221,20 +1222,11 @@ local function onRender(t)
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
 		return
 	end
-	
 	if REPENTANCE then
 		local hasBag, bagPlayer = EID:PlayersHaveCollectible(710)
 		if hasBag then
 			EID.bagPlayer = bagPlayer
 			EID:handleBagOfCraftingUpdating()
-			-- If we're in the Crafting options tab, the only rendering we want to happen is the Bag of Crafting preview
-			if ModConfigMenu and ModConfigMenu.IsVisible and EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
-				local craftingSuccess = EID:handleBagOfCraftingRendering(true)
-				if craftingSuccess then
-					EID:printDescription(EID.descriptionsToPrint[#EID.descriptionsToPrint])
-				end
-				return
-			end
 		end
 	end
 	
@@ -1492,10 +1484,6 @@ local function onRender(t)
 
 				elseif closest.Variant == PickupVariant.PICKUP_PILL then
 					--Handle Pills
-					if not EID.Config["DisplayObstructedPillInfo"] and closest.FrameCount < 3 then
-						-- small delay when having obstruction enabled & entering the room to prevent spoilers
-						--return
-					end
 					if EID:getEntityData(closest, "EID_DontHide") ~= true then
 						local hideinShop = closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]
 						local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
@@ -1510,7 +1498,9 @@ local function onRender(t)
 					local pool = game:GetItemPool()
 					local identified = pool:IsPillIdentified(pillColor)
 					if REPENTANCE and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
-					if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) then
+					local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
+
+					if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
 						local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor, closest)
 						EID:addDescriptionToPrint(descEntry)
 					else
@@ -1546,6 +1536,7 @@ local function onRender(t)
 	if EID.Config["ItemReminderEnabled"] and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
 		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 		demoDescObj.Name = EID:getDescriptionEntry("HoldMapTitle")
+		demoDescObj.PermanentTextEnglish = EID:getDescriptionEntryEnglish("HoldMapTitle")
 		-- check for scrolling being enabled here and append scroll controls to the title?
 		demoDescObj.Description = EID:getHoldMapDescription(EID.holdTabPlayer)
 		if (demoDescObj.Description ~= "") then EID:addDescriptionToPrint(demoDescObj, 1) end
@@ -1674,14 +1665,14 @@ if EID.MCMLoaded or REPENTANCE then
 			end
 
 			if REPENTANCE then
-				EID.BagItems = {}
+				EID.BoC.BagItems = {}
 				EID.CraneItemType = {}
 				EID.flipItemPositions = {}
 				EID.absorbedItems = {}
 				
 				if isSave then
-					EID.BagItems = savedEIDConfig["BagContent"] or {}
-					EID.bagOfCraftingRoomQueries = savedEIDConfig["BagFloorContent"] or {}
+					EID.BoC.BagItems = savedEIDConfig["BagContent"] or {}
+					EID.BoC.RoomQueries = savedEIDConfig["BagFloorContent"] or {}
 					EID.CraneItemType = savedEIDConfig["CraneItemType"] or {}
 					EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
 
@@ -1741,8 +1732,8 @@ if EID.MCMLoaded or REPENTANCE then
 	--Saving Moddata--
 	function SaveGame()
 		if REPENTANCE then
-			EID.Config["BagContent"] = EID.BagItems or {}
-			EID.Config["BagFloorContent"] = EID.bagOfCraftingRoomQueries or {}
+			EID.Config["BagContent"] = EID.BoC.BagItems or {}
+			EID.Config["BagFloorContent"] = EID.BoC.RoomQueries or {}
 			EID.Config["CraneItemType"] = EID.CraneItemType or {}
 			EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
 

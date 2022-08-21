@@ -346,7 +346,7 @@ local repCollectibles={
 	[670] = {"670", "", "Se uma sala conceder uma recompensa, haverá duas recompensas diferentes para escolher#Pegar um faz com que a outra desapareça"}, --  Options?
 	[671] = {"671", "", "Dá aumento aleatório permanente de estatísticas ao ser curado por um pickup de Coração Vermelho#{{Heart}} Gera 1 Coração Vermelho"}, --  Candy Heart
 	[672] = {"672", "", "{{DevilRoom}} Itens da Sala do Diabo agora custam moedas#{{Shop}} Itens da loja custam Corações#{{Shop}} Os consumíveis nas lojas são gratuitos, mas estão cercados por espinhos"}, --  A Pound of Flesh
-	[673] = {"673", "", "{{DevilRoom}} Depois de entrar em uma Sala do Diabo e não pegar nenhum item/pickup concede: #{{Soulheart}} 1 Coração de Alma#↑ {{Damage}} +1 Dano"}, --  Redemption
+	[673] = {"673", "", "{{DevilRoom}} Depois de entrar em uma Sala do Diabo e não pegar nenhum item/pickup concede: #{{SoulHeart}} 1 Coração de Alma#↑ {{Damage}} +1 Dano"}, --  Redemption
 	[674] = {"674", "", "Ao morrer, o fantasma do personagem é acorrentado ao seu cadáver e ele pode continuar lutando com metade de um coração#Retorne a saúde depois de 10 segundos#Deve ser recarregado pegando um Coração de Alma"}, --  Spirit Shackles
 	[675] = {"675", "", "Ao receber dano:#Destranca portas fechadas na sala atual#Revela uma sala aleatória no andar#Também destranca portas que requerem chaves#Pode abrir a porta do Mega Satan#{{UltraSecretRoom}} Pode revelar a Sala Ultra Secreta"}, --  Cracked Orb
 	[676] = {"676", "", "{{EmptyHeart}} Quando estiver com um Coração Vermelho ou menos no início de um novo andar, concede um Contêiner de Coração Vazio#Nenhum efeito para personagens que não tem Corações Vermelhos"}, --  Empty Heart
@@ -769,7 +769,7 @@ local repTrinkets={
 	[168] = {"168","","{{EmptyBoneHeart}} +1 Contêiner de Coração de Osso ao entrar em um novo andar"}, --  Hollow Heart
 	[169] = {"169","","{{Guppy}} Enquanto segurar, conta como item para a transformação Guppy"}, --  Kid's Drawing
 	[170] = {"170","","{{Collectible580}} 33% de chance de gerar automaticamente uma sala da Red Key toda vez que limpar uma sala"}, --  Crystal Key
-	[171] = {"171","","{DevilRoom}} 50% de chance de Acordos com o Diabo custarem moedas em vez de Corações"}, --  Keeper's Bargain
+	[171] = {"171","","{{DevilRoom}} 50% de chance de Acordos com o Diabo custarem moedas em vez de Corações"}, --  Keeper's Bargain
 	[172] = {"172","","{{Coin}} Teleporta você para uma sala aleatória quando pega um penny#Pode teleportar para Salas Secretas"}, --  Cursed Penny
 	[173] = {"173","","{{DevilRoom}} Permite que você pegue um item da Sala do Diabo de graça#Comprar um item da Sala do Diabo destrói este trinket#!!! Pegar o item grátis ainda afeta a chance de Sala do Anjo"}, --  Your Soul
 	[174] = {"174","","{{DevilChance}} +10% de chance de acordo com Diabo#Impede que o Krampus apareça nos acordos com o Diabo#Acordos com o Diabo serão transformados em sala de acordo especiais com mais acordos, inimigos e Corações Negros"}, --  Number Magnet
@@ -854,7 +854,7 @@ local repCards={
 	[72] = {"72", "", "Gera 6 aglomerado de rochas e obstáculos aleatórios#Aglomerados frequentemente conterão pedras marcadas"}, -- XVI - The Tower?
 	[73] = {"73", "", "Remove itens passivos velhos (ignora itens iniciais)#Gera 2 itens aleatórios da sala atual"}, -- XVII - The Stars?
 	[74] = {"74", "", "{{UltraSecretRoom}} Teleporta você para sala Ultra Secreta#O caminho de volta serão salas vermelhas"}, -- XVIII - The Moon?
-	[75] = {"75", "", "Para a sala atual: #↑ {{Collectible159}} Ganhe um Spirit of the Night#↑ {{Damage}} +1.5 Dano#Para o andar atual#{{BoneHearts}} Troca Corações Vermelhos em Corações de Osso#{{CurseDarkness}} Aplica Curse of Darkness"}, -- XIX - The Sun?
+	[75] = {"75", "", "Para a sala atual: #↑ {{Collectible159}} Ganhe um Spirit of the Night#↑ {{Damage}} +1.5 Dano#Para o andar atual#{{BoneHeart}} Troca Corações Vermelhos em Corações de Osso#{{CurseDarkness}} Aplica Curse of Darkness"}, -- XIX - The Sun?
 	[76] = {"76", "", "{{RestockMachine}} Gera uma Restock Machine"}, -- XX - Judgement?
 	[77] = {"77", "", "{{LadderRoom}} Gera um alçapão para o crawl space"}, -- XXI - The World?
 	[78] = {"78", "", "{{Collectible580}} Uma vez, use a chave vermelha"}, -- Cracked Key
@@ -959,7 +959,7 @@ EID.descriptions[languageCode].horsepills={
 	{"18", "", "↑ {{Luck}} +2 Sorte"}, -- Luck Up
 	{"19", "", "Teletransporta para uma sala aleatória"}, -- Telepills
 	{"20", "", "Recarrega completamente seu item ativo#{{Battery}} Gera 3-4 baterias"}, -- 48 Hour Energy!
-	{"21", "", "Drena todos os seus Contêineres de Corações exceto um#{{PHeart}} Gera 1-4 Corações Vermelhos"}, -- Hematemesis
+	{"21", "", "Drena todos os seus Contêineres de Corações exceto um#{{Heart}} Gera 1-4 Corações Vermelhos"}, -- Hematemesis
 	{"22", "", "Você não pode se mover por 4 segundos"}, -- Paralysis
 	{"23", "", "{{SecretRoom}} Abra as entradas das Salas Secretas no andar atual#Ganha visão do mapa"}, -- I can see forever!
 	{"24", "", "{{Charm}} Transforma cada inimigo da sala em amigo permanente"}, -- Pheromones

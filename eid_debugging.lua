@@ -3,7 +3,7 @@ local showDebugChars = false
 
 -- check integrity of language files
 
-local languageFilesToCheck = {"spa"} -- EID.Languages -- single file check {"ko_kr"}
+local languageFilesToCheck = {"cs_cz"} -- EID.Languages -- single file check {"ko_kr"}
 
 -- count en_us entries for stats
 local count = 0
@@ -20,20 +20,44 @@ local enUSEntries = count
 print("en_us entries: "..enUSEntries)
 
 for i,lang in ipairs(languageFilesToCheck) do
-	print("Now checking integrity of languagefile: "..lang)
+	print("Now checking integrity of languagefile: " .. lang)
 	-- Generic function to compare two tables
 	function EID:compareTables(table1, table2, prevKey, progress)
 		for k, v in pairs(table1) do
 			progress[1] = progress[1] + 1
 			if not table2[k] then
-				print(" Table '"..prevKey.."' does not contain key: "..k)
+				print(" Table '" .. prevKey .. "' does not contain key: " .. k)
 				progress[2] = progress[2] + 1
 			elseif type(table2[k]) == "table" then
 				EID:compareTables(table1[k], table2[k], k, progress)
+			else
+				-- check for broken markup stuff
+				local filteredText = EID:replaceShortMarkupStrings(table2[k])
+				local textPartsTable = EID:filterColorMarkup(filteredText, EID:getNameColor())
+				for _, textPart in ipairs(textPartsTable) do
+					local filteredSpriteText, spriteTable = EID:filterIconMarkup(textPart[1], 0, 0)
+
+					if string.find(filteredSpriteText, "{{") or string.find(filteredSpriteText, "}}") then
+						print(" Table '" .. prevKey .. "' entry '" .. k .. "' does contain a broken markup object: '" .. table2[k])
+						progress[1] = progress[1] - 2
+						progress[2] = progress[2] + 1
+						break
+					else
+						for _, sprite in ipairs(spriteTable) do
+							if sprite[1][1] == "ERROR" then
+								print(" Table '" .. prevKey .. "' entry '" .. k .. "' does contain a bad icon markup in string: '" .. table2[k])
+								progress[1] = progress[1] - 2
+								progress[2] = progress[2] + 1
+								break
+							end
+						end
+					end
+				end
 			end
 		end
 	end
-	local progress = {0, 0}
+
+	local progress = { 0, 0 }
 	EID:compareTables(EID.descriptions["en_us"], EID.descriptions[lang], lang, progress)
 
 	local errors = (enUSEntries - progress[1])-progress[2]
@@ -140,10 +164,10 @@ __eidItemDescriptions[3] = "{{Bomb}} Emote {{Key}} Test {{Test}}{{TestIcon}} {{C
 __eidItemDescriptions[6] = "This item as Inline Icon {{Collectible6}}#And here are others {{Collectible69}} {{Collectible16}} {{Collectible323}} {{Collectible345}} {{Collectible223}}#And some trinket sprites {{Trinket12}} {{Trinket22}} {{Trinket1}} {{Trinket55}} {{Trinket100}} {{Trinket123}}" -- 5.100.2 = Inner Eye
 
 
-EID:addIgnoredEntity(5,100,10)
-EID:addIgnoredEntity(5,100,11)
+EID:addIgnoredEntity(5,100,10) -- Ignore "Halo of flies" collectible entity
+EID:addIgnoredEntity(5,100,11) -- Ignore "1Up" collectible entry
 
-EID:removeIgnoredEntity(5,100,10)
+EID:removeIgnoredEntity(5,100,10) -- un-Ignore "Halo of flies" collectible entity
 
 ------ Test: adding custom icons ------
 EID:addColor("ColorTwitterBlue", KColor(0, 0.671875, 0.9296875, 1), nil)
@@ -159,7 +183,8 @@ EID:addColor("ColorBlackBlink", nil, function(color)
 		return color
 	end
 )
-
+-- Test: Pill effect unidentifyable
+EID:SetPillEffectUnidentifyable(24, true) -- set "I can see forever" to always be unidentifyable
 
 local function onDebugRender(t)
 	EID:renderHUDLocationIndicators()
@@ -175,13 +200,13 @@ local function onDebugRender(t)
 				["Name"] = "Some Item with seed ".. v.InitSeed ,
 				["Description"] = "Test specific description#Init seed: ".. v.InitSeed,
 				["Transformation"] = "1,2"
-			} 
+			}
 			v:GetData()["EID_Description"] = descTable
 		end
 	end
 
 	for i, v in ipairs(charsToDebug) do
-		local pos = EID.getTextPosition() + Vector(-5, - 15 + ((i - 1) * 14))
+		local pos = EID:getTextPosition() + Vector(-5, - 15 + ((i - 1) * 14))
 		EID:renderString(v, pos, Vector(EID.Scale, EID.Scale), KColor(1, 1, 1, 1, 0, 0, 0))
 		
 		if not showDebugChars then

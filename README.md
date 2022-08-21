@@ -9,8 +9,9 @@ For the Afterbirth/Rebirth version [click here](https://moddingofisaac.com/mod/1
 
 
 ## Features
-- Displays information for all collectibles, trinkets, cards, runes, pills and some rooms
-- Displays **additional information** like item type, charges, transformations, Spindown Dice results and Bag of Crafting recipes
+- **Compatible with Afterbirth+ and Repentance**
+- Displays information for all collectibles, trinkets, cards, runes, pills, horsepills and some rooms
+- Displays **additional information** like item type, charges, transformations, Spindown Dice results, Bag of Crafting recipes, TMTRAINER item effects (Detailed informations require --luadebug flag!), and much much more!
 - Displays one of 4 different indicators around the inspected item
 - Mod support for nearly all mods!
 - Easy to use API ([Documentation here](https://github.com/wofsauge/External-Item-Descriptions/wiki))
@@ -33,18 +34,15 @@ For the Afterbirth/Rebirth version [click here](https://moddingofisaac.com/mod/1
 - **Turkish** (by Cagdas Salur, Mert Dutal)
 - **Polish** (by Rickyy, Kennyluz, MERITT, DimonoKingoKongo)
 - **Korean** (by Blackcreamtea, 미카)
+- **Czech** (by David Kapitančik. Picus, domcizzz)
 - **Chinese** (by Xheepey87, frto027) Alternative versions: [EID Chinese Edition](https://steamcommunity.com/sharedfiles/filedetails/?id=1290363695) | [中文道具图鉴 Eid Chinese](https://steamcommunity.com/sharedfiles/filedetails/?id=848295251)
-
-### Possible Future Features
-- Display if items need to be collected for achievement purposes
-- More languages!
 
 
 ## Configuration
 
 ### In-game Configuration
 
-Simply install &quot;[Mod Config Menu - Continued](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818)&quot;. You can use it to configure the mod while playing.
+Simply install &quot;[Mod Config Menu - Pure](https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787)&quot;. You can use it to configure the mod while playing.
 
 Or:
 ### Windows
@@ -74,8 +72,10 @@ Same as Windows, but the path is: `/home/%YourUsernameHere%/.steam/steam/steamap
 - Marcelino Cruz for creating the **Portuguese** language pack
 - LuanRoger and NotZin02 for creating the **Brazilian - Portuguese** language pack
 - hell2pay, fly_6, Dezzelshipc and Sekaz for creating the **Russian** language pack
-- TST_Gogo_, Gothika_47 for creating the **Bulgarian** language pack
+- Gothika_47 and TST_Gogo_ for creating the **Bulgarian** language pack
 - Cagdas Salur and Mert Dutal for creating the **Turkish** language pack
 - Jake for the sweet **German** language pack
 - Blackcreamtea and 미카 for the awesome **Korean** language pack
+- prefab for the incredible **Japanese** language pack
+- David Kapitančik. Picus and domcizzz for the cool **Czech** language pack
 - [adc](https://steamcommunity.com/id/whytefang/) for creating an awesome new language pack and providing ideas for new functionalities

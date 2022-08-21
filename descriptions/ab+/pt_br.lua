@@ -112,7 +112,7 @@ EID.descriptions[languageCode].collectibles={
 	{"88", "", "Familiar que avança para frente#Causa 52.5 de dano ao contato por segundo"},
 	{"89", "", "{{Slow}} 25% de chance de disparar lagrimas de lentidão#100% de chance com 15 de Sorte"},
 	{"90", "", "↑ {{Damage}} +1 Dano#↑ {{Tears}} +0.2 Lágrimas#↓ {{Speed}} -0.2 Velocidade"},
-	{"91", "", "Revela o tipo de salas adjacentes#{{SecretRoom} Pode revelar Salas Secretas e Salas Super Secretas"},
+	{"91", "", "Revela o tipo de salas adjacentes#{{SecretRoom}} Pode revelar Salas Secretas e Salas Super Secretas"},
 	{"92", "", "↑ {{Heart}} +1 Saúde#{{SoulHeart}} +2 Corações de Alma"},
 	{"93", "", "Curta invencibilidade#{{Fear}} Amedrontra todos os inimigos#Causa 40 de Dano ao contato por segundo#{{HalfHeart}} Dois inimigos comidos reabastecem Meio Coração"},
 	{"94", "", "{{Coin}} Solta moedas aleatórias a cada 2 salas"},

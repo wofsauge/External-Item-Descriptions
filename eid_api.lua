@@ -1220,7 +1220,8 @@ end
 
 function EID:bagContainsItem(itemID, itemCount, checkExactAmount)
 	local foundCount = 0
-	for _, bagItem in ipairs(EID.BagItems) do
+	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
+	for _, bagItem in ipairs(bagItems) do
 		if bagItem == itemID then
 			foundCount = foundCount + 1
 		end
@@ -1236,7 +1237,8 @@ function EID:bagContainsCount(craftTable)
 	for _, id in ipairs(craftTable) do
 		ingredCount[id] = ingredCount[id] + 1
 	end
-	for _, bagItem in ipairs(EID.BagItems) do
+	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
+	for _, bagItem in ipairs(bagItems) do
 		if ingredCount[bagItem] > 0 then
 			count = count + 1
 			ingredCount[bagItem] = ingredCount[bagItem] - 1
@@ -1643,4 +1645,9 @@ end
 -- Adds an EID Icon to an Object
 function EID:AddIconToObject(eType, eVariant, eSubType, iconName)
 	EID.ObjectIcon[eType.."."..eVariant.."."..eSubType] = EID.InlineIcons[iconName]
+end
+
+-- Set a pilleffect to be permanently unidentifyable by EID
+function EID:SetPillEffectUnidentifyable(pillEffectID, isUnidentifyable)
+	EID.UnidentifyablePillEffects[pillEffectID + 1] = isUnidentifyable or nil
 end

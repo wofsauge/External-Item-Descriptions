@@ -120,8 +120,12 @@ EID.TextReplacementPairs = {
 	{"{{EthernalHeart}}", "{{EternalHeart}}"}, -- fix spelling error
 	{"{{CONFIG_BoC_Toggle}}", function(_) return EID.ButtonToIconMap[EID.Config["BagOfCraftingToggleKey"]] or "{{ButtonSelect}}" end},
 	-- more common/official names
-	{"{{MimicChest}}", "{{TrapChest}}"}, {"{{EternalChest}}", "{{HolyChest}}"}, {"{{BombChest}}", "{{StoneChest}}"},
-	{"{{OldChest}}", "{{DirtyChest}}"}, {"{{CurseRoom}}", "{{CursedRoom}}"}, {"{{Crawlspace}}", "{{LadderRoom}}"},
+	{"{{MimicChest}}", "{{TrapChest}}"},
+	{"{{EternalChest}}", "{{HolyChest}}"},
+	{"{{BombChest}}", "{{StoneChest}}"},
+	{"{{OldChest}}", "{{DirtyChest}}"},
+	{"{{CurseRoom}}", "{{CursedRoom}}"},
+	{"{{Crawlspace}}", "{{LadderRoom}}"},
 	{"{{GoldHeart}}", "{{GoldenHeart}}"},
 	
 	

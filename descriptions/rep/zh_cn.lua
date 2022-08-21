@@ -19,7 +19,7 @@ local repCollectibles={
 	[12] = {"12", "魔法蘑菇", "↑ +1心之容器#满心#↑ {{Damage}} +0.3伤害#↑ {{Damage}} +50%伤害倍数#↑ {{Range}} +1.5射程#↑ {{Speed}} +0.3移速#体型变大"}, -- Magic Mushroom
 	[13] = {"13", "病毒", "{{Poison}} 接触敌人使其中毒#↑ {{Speed}} +0.2移速"}, -- The Virus
 	[14] = {"14", "过量类固醇", "↑ {{Speed}} +0.3移速#↑ {{Range}} +1.5射程"}, -- Roid Rage
-	[18] = {"18", "一美元", "{{coin}} +100硬币"}, -- A Dollar
+	[18] = {"18", "一美元", "{{Coin}} +100硬币"}, -- A Dollar
 	[22] = {"22", "午餐", "↑ +1心之容器#{{Heart}} 治疗1红心"}, -- Lunch
 	[23] = {"23", "正餐", "↑ +1心之容器#{{Heart}} 治疗1红心"}, -- Dinner
 	[24] = {"24", "甜点", "↑ +1心之容器#{{Heart}} 治疗1红心"}, -- Dessert
@@ -934,7 +934,7 @@ EID.descriptions[languageCode].horsepills={
 	{"20", "48小时能量！", "对主动道具完全充能#{{Battery}} 生成3-4个电池"}, -- 48 Hour Energy!
 	{"21", "呕血", "清空红心但保留1红心#{{Heart}} 生成1-4红心"}, -- Hematemesis
 	{"22", "麻痹", "不能移动4秒"}, -- Paralysis
-	{"23", "我能永远看清！", "打开当前层所有{{SecretRoom}隐藏房间的入口#揭示全图"}, -- I can see forever!
+	{"23", "我能永远看清！", "打开当前层所有{{SecretRoom}}隐藏房间的入口#揭示全图"}, -- I can see forever!
 	{"24", "信息素", "{{Charm}} 将房间内所有敌人永久变成友好的"}, -- Pheromones
 	{"25", "失忆症", "{{CurseLost}} 隐藏当前层地图"}, -- Amnesia
 	{"26", "柠檬派对", "生成满房间的水迹并对敌人造成接触伤害"}, -- Lemon Party
