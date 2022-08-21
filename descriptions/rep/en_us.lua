@@ -225,7 +225,7 @@ local repCollectibles={
 	[552] = {"552", "Mom's Shovel", "Spawns a trapdoor to the next floor#Spawns a {{LadderRoom}}crawlspace if used on a decorative floor tile (grass, small rocks, papers, gems, etc.)"}, --Mom's Shovel
 	[553] = {"553", "Mucormycosis", "25% chance to shoot a sticky spore tear#{{Luck}} Not affected by Luck#Spores blow up after 2.5 seconds, dealing damage, poisoning nearby enemies and releasing more spores"}, -- Mucormycosis
 	[554] = {"554", "2Spooky", "{{Fear}} Fears enemies in a small radius around Isaac"}, -- 2Spooky
-	[555] = {"555", "Golden Razor", "{{Damage}} Grants +1.2 Damage up for the current room#{{Warning}} Costs 5 coins to use#{{Coin}} +5 coins on initial pickup"}, -- Golden Razor
+	[555] = {"555", "Golden Razor", "{{Damage}} Grants +1.2 Damage up for the current room#{{Warning}} Costs 5 coins to use#{{Coin}} +5 coins on pickup"}, -- Golden Razor
 	[556] = {"556", "Sulfur", "{{Collectible118}} Grants Brimstone for the current room"}, -- Sulfur
 	[557] = {"557", "Fortune Cookie", "Grants one of the following rewards: #A fortune#{{SoulHeart}} A Soul Heart#{{Card}} A Tarot card#{{Rune}} A Rune or Soul Stone#{{Trinket}} A Trinket"}, -- Fortune Cookie
 	[558] = {"558", "Eye Sore", "Chance to shoot 1-3 extra tears in random directions#{{Luck}} Not affected by Luck"}, -- Eye Sore
@@ -489,9 +489,9 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[482] = "Replaces the most recently acquired item with {{Collectible51}}Pentagram", -- Clicker
 	[487] = "Increases the damage up", -- Potato Peeler
 	[536] = "For each familiar sacrificed, grants a +10.8 damage up that slowly fades away", -- Sacrificial Altar
-	[555] = "Damages all enemies in the room and applies the {{Collectible202}}Midas' Touch effect to them", -- Golden Razor
+	[555] = "Damages all enemies in the room#Enemies killed by this may drop 1-2 pennies", -- Golden Razor
 	[577] = "Grants a permanent damage up", -- Damocles
-	[582] = "Grants a permanent damage up beased on the highest number of times the effects of the item have been stacked", -- Wavy Cap
+	[582] = "Grants a permanent damage up based on the highest number of times the effects of the item have been stacked", -- Wavy Cap
 	[585] = "Changes the payout to 2 Black Hearts and 1 Devil Deal item#Becomes 3 hearts and 2 items if a Devil Deal has been taken", -- Alabaster Box
 	[622] = "Grants a free {{Collectible51}}Pentagram", -- Genesis
 	[623] = "Also invokes the effect of {{Collectible126}}Razor Blade", -- Sharp Key
@@ -710,7 +710,7 @@ local repTrinkets={
 	[32] = {"32", "Liberty Cap", "25% chance for a random mushroom effect per room"}, -- Liberty Cap
 	[33] = {"33", "Umbilical Cord", "Having half a red heart or less grants {{Collectible100}} Little Steven#{{Collectible318}} Taking damage has a high chance to spawn a Gemini familiar for the room"}, -- Umbilical Cord
 	[39] = {"39", "Cancer", "↑ {{Tears}} +1 Fire Rate up"},
-	[48] = {"48", "A Missing Page", "Taking damage has a 5% chance to deal 80 damage to all enemies in the room#{{Collectible35}} Black Hearts and Necronomicon-like effects deal double damage"}, -- A Missing Page
+	[48] = {"48", "A Missing Page", "Taking damage has a 5% chance to deal 80 damage to all enemies in the room#{{Collectible35}} Black Hearts and Necronomicon-like effects deal 2x damage"}, -- A Missing Page
 	[49] = {"49", "Bloody Penny", "{{HalfHeart}} Picking up a coin has a 25% chance to drop half a heart"}, -- Bloody Penny
 	[50] = {"50", "Burnt Penny", "{{Bomb}} Picking up a coin has a 25% chance to drop a bomb"}, -- Burnt Penny
 	[51] = {"51", "Flat Penny", "{{Key}} Picking up a coin has a 25% chance to drop a key"}, -- Flat Penny
@@ -720,9 +720,9 @@ local repTrinkets={
 	[80] = {"80", "Black Feather", "↑ {{Damage}} +0.5 Damage up for each \"Evil up\" item held"}, -- Black Feather
 	[92] = {"92", "Cracked Crown", "↑ Stat increases are 20% more effective"}, -- Cracked Crown
 	[96] = {"96", "Ouroboros Worm", "Isaac's tears move quickly in a spiral pattern#↑ +0.4 Tears up#↑ {{Range}} +1.5 Range up#Grants spectral tears#Chance for homing tears"}, -- Ouroboros Worm
-	[98] = {"98", "Nose Goblin", "{{Poison}} 5% chance to shoot homing sticky tears#Boogers deal Isaac's damage once per second#Boogers stick for 60 seconds"},
+	[98] = {"98", "Nose Goblin", "{{Poison}} 5% chance to shoot homing sticky tears#Boogers deal Isaac's damage once per second#Boogers stick for 10 seconds"},
 	[101] = {"101", "Dim Bulb", "Holding a completely uncharged active item grants:#↑ {{Damage}} +1.5 Damage#↑ {{Speed}} +0.5 Speed#↑ {{Range}} +1.5 Range#↑ {{Tears}} +0.5 Tears#↑ {{Shotspeed}} +0.3 Shot Speed#↑ {{Luck}} +2 Luck"},
-	[107] = {"107", "Crow Heart", "Taking damage depletes red hearts before soul/black hearts"}, -- Crow Heart
+	[107] = {"107", "Crow Heart", "Taking damage depletes Red Hearts before Soul/Black Hearts#!!! The Red Heart damage can lower your Devil/Angel Room chance"}, -- Crow Heart
 	[110] = {"110", "Silver Dollar", "{{Shop}} Shops appear in the Womb and Corpse"},
 	[111] = {"111", "Bloody Crown", "{{TreasureRoom}} Treasure Rooms appear in the Womb and Corpse"}, -- Bloody Crown
 	[119] = {"119", "Stem Cell", "Traveling to the next floor heals half of Isaac's empty Red/Bone Hearts#Heals half a heart minimum"}, -- Stem Cell
@@ -735,7 +735,7 @@ local repTrinkets={
 	[133] = {"133", "Short Fuse", "Isaac's bombs explode faster"}, -- Short Fuse
 	[134] = {"134", "Gigante Bean", "Increases fart size"}, -- Gigante Bean
 	[135] = {"135", "A Lighter", "{{Burning}} Entering a room has a 20% chance to burn random enemies"}, -- A Lighter
-	[136] = {"136", "Broken Padlock", "Doors, key blocks and golden chests can be opened with explosions#Explosions can also open the Home door"}, -- Broken Padlock
+	[136] = {"136", "Broken Padlock", "Doors, key blocks and golden chests can be opened with explosions#Explosions can also open the door to \"Home\""}, -- Broken Padlock
 	[137] = {"137", "Myosotis", "Entering a new floor spawns up to 4 uncollected pickups from the previous floor in the starting room"}, -- Myosotis
 	[138] = {"138", "'M", "Using an active item rerolls it"}, -- 'M
 	[139] = {"139", "Teardrop Charm", "{{Luck}} +3 Luck towards Luck-based tear effects"}, -- Teardrop Charm
@@ -758,7 +758,7 @@ local repTrinkets={
 	[156] = {"156", "Mother's Kiss", "{{Heart}} +1 heart container while held#{{Player14}} +1 Coin container for Keeper"}, -- Mother's Kiss
 	[157] = {"157", "Torn Card", "Every 15 shots, Isaac shoots an {{Collectible149}} Ipecac + {{Collectible5}} My Reflection tear with a very high range value"}, -- Torn Card
 	[158] = {"158", "Torn Pocket", "Taking damage makes Isaac drops 2 of his coins, keys or bombs#The pickups can be replaced with other variants, such as golden keys, nickels, dimes, etc."}, -- Torn Pocket
-	[159] = {"159", "Gilded Key", "{{Key}} +1 key#{{GoldenChest}} Replaces all chests (except Old/Mega) with Golden Chests#{{GoldenChest}} Golden Chests can contain extra cards, pills or trinkets"}, -- Gilded Key
+	[159] = {"159", "Gilded Key", "{{Key}} +1 key on pickup#{{GoldenChest}} Replaces all chests (except Old/Mega) with Golden Chests#{{GoldenChest}} Golden Chests can contain extra cards, pills or trinkets"}, -- Gilded Key
 	[160] = {"160", "Lucky Sack", "{{GrabBag}} Entering a new floor spawns 1 Sack"}, -- Lucky Sack
 	[161] = {"161", "Wicked Crown", "Spawns a {{TreasureRoom}} Treasure Room and {{Shop}} Shop in Sheol"}, -- Wicked Crown
 	[162] = {"162", "Azazel's Stump", "{{Player7}} Clearing a room has a 50% chance to turn the player into Azazel#Effect lasts until clearing and leaving another room"}, -- Azazel's Stump
@@ -772,11 +772,11 @@ local repTrinkets={
 	[170] = {"170", "Crystal Key", "{{Collectible580}} Clearing a room has a 33% chance to create a Red Key room#Lower chance to occur when in a red room"}, -- Crystal Key
 	[171] = {"171", "Keeper's Bargain", "{{DevilRoom}} 50% chance for Devil deals to cost coins instead of hearts"}, -- Keeper's Bargain
 	[172] = {"172", "Cursed Penny", "{{Coin}} Picking up a coin teleports Isaac to a random room#Can teleport to secret rooms"}, -- Cursed Penny
-	[173] = {"173", "Your Soul", "{{DevilRoom}} Allows Isaac to take 1 Devil Room item for free#Using this trinket to get an item destroys it#{{Warning}} The free Devil deal still affects Angel Room chance"}, -- Your Soul
+	[173] = {"173", "Your Soul", "{{DevilRoom}} Allows Isaac to take 1 Devil Room item for free#{{Warning}} The free Devil deal still affects Angel Room chance"}, -- Your Soul
 	[174] = {"174", "Number Magnet", "{{DevilChance}} +10% Devil Room chance#Prevents Krampus from appearing in Devil Rooms#Devil Rooms are special variants with more deals, Black Hearts and enemies"}, -- Number Magnet
 	[175] = {"175", "Strange Key", "Opens the door to the Hush floor regardless of the timer#Using {{Collectible297}} Pandora's Box consumes the key and spawns 6 items from random pools"}, -- Strange Key
 	[176] = {"176", "Lil Clot", "Spawns a blood clot that mimics Isaac's movement, shoot direction and tear effects#Familiar respawns every room if it dies"}, -- Lil Clot
-	[177] = {"177", "Temporary Tattoo", "Clearing a {{ChallengeRoom}} Challenge Room spawns a {{Chest}} chest#Clearing a {{BossRushRoom}} Boss Challenge Room spawns an item"}, -- Temporary Tattoo
+	[177] = {"177", "Temporary Tattoo", "Clearing a {{ChallengeRoom}} Challenge Room spawns a chest#Clearing a {{BossRushRoom}} Boss Challenge Room spawns an item"}, -- Temporary Tattoo
 	[178] = {"178", "Swallowed M80", "Taking damage has a 50% chance for Isaac to explode"}, -- Swallowed M80
 	[179] = {"179", "RC Remote", "Familiars mimic Isaac's movement inputs#Hold Drop to keep the familiars in place"}, -- RC Remote
 	[180] = {"180", "Found Soul", "Follows Isaac's exact movements and shoots spectral tears#Copies Isaac's stats and tears effects, deals half damage#Dies in one hit#Respawns each floor"}, -- Found Soul
@@ -786,7 +786,7 @@ local repTrinkets={
 	[184] = {"184", "Adoption Papers", "{{Shop}} Shops sell familiars for 10 coins"}, -- Adoption Papers
 	[185] = {"185", "Cricket Leg", "Killing an enemy has a 17% chance to spawn a random locust"}, -- Cricket Leg
 	[186] = {"186", "Apollyon's Best Friend", "{{Collectible706}} Grants 1 Abyss locust"}, -- Apollyon's Best Friend
-	[187] = {"187", "Broken Glasses", "{{TreasureRoom}} 50% chance of adding an extra blind item in Treasure Rooms#50% chance to reveal the blind item in alt path treasure rooms"}, -- Broken Glasses
+	[187] = {"187", "Broken Glasses", "{{TreasureRoom}} 50% chance of adding an extra blind item in Treasure Rooms#50% chance to reveal the blind item in alt path Treasure Rooms"}, -- Broken Glasses
 	[188] = {"188", "Ice Cube", "Entering a room has a 20% chance to petrify random enemies#{{Freezing}} Killing a petrified enemy freezes it"}, -- Ice Cube
 	[189] = {"189", "Sigil of Baphomet", "Killing an enemy makes Isaac invincible for 1 second#Invincibility stacks with successive enemy kills"}, -- Sigil of Baphomet
 }
@@ -820,16 +820,16 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 ---------- Cards ----------
 
 local repCards={
-	[2] = {"2", "I - The Magician", "#Homing tears#↑ {{Range}} +3 Range#{{Blank}}#{{Timer}} Lasts for one room"}, -- I - The Magician
-	[12] = {"12", "XI - Strength", "↑ {{Heart}} +1 Health up#↑ {{Damage}} +0.3 Damage up#↑ {{Damage}} +50% Damage#↑ {{Range}} +5.25 Range up#↑ {{Speed}} +0.3 Speed up#{{Blank}}#{{Timer}} Lasts for one room"}, -- XI - Strength
-	[16] = {"16", "XV - The Devil", "↑ {{Damage}} +2 Damage up#{{Blank}}#{{Timer}} Lasts for one room"},
+	[2] = {"2", "I - The Magician", "Homing tears#↑ {{Range}} +3 Range#{{Timer}} Lasts for one room"}, -- I - The Magician
+	[12] = {"12", "XI - Strength", "↑ {{Heart}} +1 Health up#↑ {{Damage}} +0.3 Damage up#↑ {{Damage}} +50% Damage#↑ {{Range}} +5.25 Range up#↑ {{Speed}} +0.3 Speed up#{{Timer}} Lasts for one room"}, -- XI - Strength
+	[16] = {"16", "XV - The Devil", "↑ {{Damage}} +2 Damage up#{{Timer}} Lasts for one room"},
 	[18] = {"18", "XVII - The Stars", "{{TreasureRoom}} Teleports Isaac to the Treasure Room#{{Planetarium}} If there is a Planetarium, it teleports there instead"},
 	[27] = {"27", "Ace of Clubs", "{{Bomb}} Turns all pickups, chests and non-boss enemies into bombs"}, -- Ace of Clubs
 	[28] = {"28", "Ace of Diamonds", "{{Coin}} Turns all pickups, chests and non-boss enemies into coins"}, -- Ace of Diamonds
 	[29] = {"29", "Ace of Spades", "{{Key}} Turns all pickups, chests and non-boss enemies into keys"}, -- Ace of Spades
 	[30] = {"30", "Ace of Hearts", "{{Heart}} Turns all pickups, chests and non-boss enemies into hearts"}, -- Ace of Hearts
 	[34] = {"34", "Ehwaz", "Spawns a trapdoor to the next floor#Spawns a {{LadderRoom}} crawlspace if used on a decorative floor tile (grass, small rocks, papers, gems, etc.)"},
-	[39] = {"39", "Algiz", "Makes isaac invincible for 20 seconds"}, -- Algiz
+	[39] = {"39", "Algiz", "Makes Isaac invincible for 20 seconds"}, -- Algiz
 	[42] = {"42", "Chaos Card", "Using the card throws it in the direction Isaac is moving#Instantly kills ANY enemy it touches (except Delirium or the Beast)"}, -- Chaos Card
 	[51] = {"51", "Holy Card", "{{HolyMantle}} Grants a one-use Holy Mantle shield"}, -- Holy Card
 	[52] = {"52", "Huge Growth", "↑ {{Damage}} +7 Damage up#↑ {{Range}} +30 Range up#Allows Isaac to destroy rocks by walking into them#Size up#{{Timer}} Lasts for one room"}, -- Huge Growth
@@ -837,39 +837,39 @@ local repCards={
 	[56] = {"56", "0 - The Fool?", "Drops all of Isaac's hearts but one and all of his pickups on the floor#Coins and bombs are dropped as {{Collectible74}}The Quarter or {{Collectible19}}Boom! if possible"}, -- 0 - The Fool?
 	[57] = {"57", "I - The Magician?", "Grants an aura that repels enemies and projectiles for 1 minute"}, -- I - The Magician?
 	[58] = {"58", "II - The High Priestess?", "Mom's Foot tries to stomp Isaac for 1 minute"}, -- II - The High Priestess?
-	[59] = {"59", "III - The Empress?", "#↑ {{Heart}} +2 Health up#↑ {{Tears}} +1.35 Tears up#{{Blank}}#{{Timer}} Effect lasts for 60 seconds"}, -- III - The Empress?
+	[59] = {"59", "III - The Empress?", "#↑ {{Heart}} +2 Health up#↑ {{Tears}} +1.35 Tears up#{{Timer}} Effect lasts for 60 seconds"}, -- III - The Empress?
 	[60] = {"60", "IV - The Emperor?", "Teleports Isaac to an extra Boss room that can be defeated for an item#The boss is chosen from two floors deeper than the current one"}, -- IV - The Emperor?
 	[61] = {"61", "V - The Hierophant?", "{{EmptyBoneHeart}} Spawns 2 Bone Hearts"}, -- V - The Hierophant?
 	[62] = {"62", "VI - The Lovers?", "Spawns an item from the current room's item pool#{{BrokenHeart}} Turns 1 Heart Container or 2 Soul Hearts into a Broken Heart"}, -- VI - The Lovers?
-	[63] = {"63", "VII - The Chariot?", "Turns Isaac into an invincible immobile statue#↑ {{Tears}} Extreme fire rate#{{Blank}}#{{Timer}} Effects last for 10 seconds"}, -- VII - The Chariot?
+	[63] = {"63", "VII - The Chariot?", "Turns Isaac into an invincible immobile statue#↑ {{Tears}} Extreme fire rate#{{Timer}} Effects last for 10 seconds"}, -- VII - The Chariot?
 	[64] = {"64", "VIII - Justice?", "Spawns 2-4 Golden Chests"}, -- VIII - Justice?
 	[65] = {"65", "IX - The Hermit?", "Turns all pickups and items in the room into a number of coins equal to their shop value"}, -- IX - The Hermit?
 	[66] = {"66", "X - Wheel of Fortune?", "Triggers a random dice room effect"}, -- X - Wheel of Fortune?
-	[67] = {"67", "XI - Strength?", "{{Weakness}} Enemies in current room are weakened, slowed and take double damage#{{Blank}}#{{Timer}} Effect lasts 1 minute"}, -- XI - Strength?
-	[68] = {"68", "XII - The Hanged Man?", "{{Player14}} Turns the player into the Keeper#Grants triple shot and speed down#Killed enemies drop random coins#{{Blank}}#{{Timer}} Effect lasts for 60 seconds"}, -- XII - The Hanged Man?
+	[67] = {"67", "XI - Strength?", "{{Weakness}} Enemies in current room are weakened, slowed and take double damage#{{Timer}} Effect lasts 1 minute"}, -- XI - Strength?
+	[68] = {"68", "XII - The Hanged Man?", "{{Player14}} Turns the player into the Keeper#Grants triple shot and speed down#Killed enemies drop random coins#{{Timer}} Effect lasts for 60 seconds"}, -- XII - The Hanged Man?
 	[69] = {"69", "XIII - Death?", "{{Collectible545}} Activates Book of the Dead#Spawns Bone entities for each enemy killed in room"}, -- XIII - Death?
 	[70] = {"70", "XIV - Temperance?", "Forces Isaac to eat 5 random pills"}, -- XIV - Temperance?
-	[71] = {"71", "XV - The Devil?", "{{Collectible33}} Activates The Bible#{{Collectible390}} Grants Seraphim#Grants flight#{{Blank}}#{{Timer}} Effect lasts for 30 seconds"}, -- XV - The Devil?
+	[71] = {"71", "XV - The Devil?", "{{Collectible33}} Activates The Bible#{{Collectible390}} Grants Seraphim#Grants flight#{{Timer}} Effect lasts for 30 seconds"}, -- XV - The Devil?
 	[72] = {"72", "XVI - The Tower?", "Spawns 6 clusters of random rocks and obstacles#Clusters often contain Tinted Rocks"}, -- XVI - The Tower?
 	[73] = {"73", "XVII - The Stars?", "Removes Isaac's oldest passive item (ignoring starting items)#Spawns 2 random items from the current room's item pool"}, -- XVII - The Stars?
 	[74] = {"74", "XVIII - The Moon?", "{{UltraSecretRoom}} Teleports Isaac to the Ultra Secret Room#Pathway back will be made of red rooms"}, -- XVIII - The Moon?
-	[75] = {"75", "XIX - The Sun?", "↑ Gain flight and spectral tears#↑ {{Damage}} +1.5 Damage up#{{BoneHeart}} Turns all Red Hearts into Bone Hearts#Applies Curse of Darkness#{{Blank}}#{{Timer}} Lasts for one floor"}, -- XIX - The Sun?
+	[75] = {"75", "XIX - The Sun?", "↑ Gain flight and spectral tears#↑ {{Damage}} +1.5 Damage up#{{BoneHeart}} Turns your Red Heart Containers into Bone Hearts#Applies Curse of Darkness#{{Timer}} Lasts for one floor"}, -- XIX - The Sun?
 	[76] = {"76", "XX - Judgement?", "{{RestockMachine}} Spawns a Restock Machine"}, -- XX - Judgement?
 	[77] = {"77", "XXI - The World?", "Spawns a trapdoor to a {{LadderRoom}}crawlspace"}, -- XXI - The World?
 	[78] = {"78", "Cracked Key", "{{Collectible580}} Single-use Red Key"}, -- Cracked Key
 	[79] = {"79", "Queen of Hearts", "{{Heart}} Spawns 1-20 Red Hearts"}, -- Queen of Hearts
 	[80] = {"80", "Wild Card", "Copies the effect of the most recently used pill, card, rune, soul stone or activated item"}, -- Wild Card
 	[81] = {"81", "Soul of Isaac", "Makes all pedestals in the room cycle between two different items"}, -- Soul of Isaac
-	[82] = {"82", "Soul of Magdalene", "{{HalfHeart}} Enemies killed drop red half hearts that disappear after 2 seconds#{{Blank}}#{{Timer}} Effect lasts one room"}, -- Soul of Magdalene
-	[83] = {"83", "Soul of Cain", "Opens all doors in the room, including {{Collectible580}} red doors"}, -- Soul of Cain
+	[82] = {"82", "Soul of Magdalene", "{{HalfHeart}} Enemies killed drop red half hearts that disappear after 2 seconds#{{Timer}} Effect lasts one room"}, -- Soul of Magdalene
+	[83] = {"83", "Soul of Cain", "Opens all doors in the room#{{Collectible580}} Creates red rooms on every wall possible"}, -- Soul of Cain
 	[84] = {"84", "Soul of Judas", "Turns Isaac into a shadow that can pass through enemies to paralyze them#After a few seconds, damages all paralysed enemies and grants a damage bonus for each one"}, -- Soul of Judas
 	[85] = {"85", "Soul of ???", "{{Poison}} Causes 8 poison farts with brown creep, then quickly spawns 7 Butt Bombs#Standing in the creep grants: #↑ {{Tears}} +1.35 Tears#↑ {{Damage}} +1 Damage"}, -- Soul of ???
-	[86] = {"86", "Soul of Eve", "14 Dead Bird familiars fly in and attack enemies#{{Blank}}#{{Timer}} Effect lasts for one room or until all enemies are dead"}, -- Soul of Eve
-	[87] = {"87", "Soul of Samson", "↑ {{Speed}} +0.4 Speed up#↑ {{Damage}} +3 Damage up#Restricts attacks to a melee weapon#{{Blank}}#{{Timer}} Effect lasts for 10 seconds#{{Blank}} Each kill increases the duration by 1 second"}, -- Soul of Samson
+	[86] = {"86", "Soul of Eve", "14 Dead Bird familiars fly in and attack enemies#{{Timer}} Effect lasts for one room or until all enemies are dead"}, -- Soul of Eve
+	[87] = {"87", "Soul of Samson", "↑ {{Speed}} +0.4 Speed up#↑ {{Damage}} +3 Damage up#Restricts attacks to a melee weapon#{{Timer}} Effect lasts for 10 seconds#{{Blank}} Each kill increases the duration by 1 second"}, -- Soul of Samson
 	[88] = {"88", "Soul of Azazel", "{{Collectible441}} Isaac vomits a Mega Blast laser for 7.5 seconds"}, -- Soul of Azazel
-	[89] = {"89", "Soul of Lazarus", "Isaac dies and immediately revives at half a heart with some invincibility time#Is automatically used upon taking fatal damage (acts as an extra life)"}, -- Soul of Lazarus
+	[89] = {"89", "Soul of Lazarus", "Isaac dies and immediately revives at half a heart#This item is automatically used upon taking fatal damage (acts as an extra life)"}, -- Soul of Lazarus
 	[90] = {"90", "Soul of Eden", "Rerolls pedestals and pickups in the current room#The rerolled items come from random item pools"}, -- Soul of Eden
-	[91] = {"91", "Soul of the Lost", "{{Player10}} Turns the player into The Lost#Allows taking one {{DevilRoom}}Devil Room item for free#Allows entering the Mausoleum or Gehenna door for free#{{Blank}}#{{Timer}} Effect lasts for one room"}, -- Soul of the Lost
+	[91] = {"91", "Soul of the Lost", "{{Player10}} Turns the player into The Lost#Allows taking one {{DevilRoom}}Devil Room item for free#Allows entering the Mausoleum or Gehenna door for free#{{Timer}} Effect lasts for one room"}, -- Soul of the Lost
 	[92] = {"92", "Soul of Lilith", "Permanently grants a random familiar"}, -- Soul of Lilith
 	[93] = {"93", "Soul of the Keeper", "{{Coin}} Spawns 1-25 random coins"}, -- Soul of the Keeper
 	[94] = {"94", "Soul of Apollyon", "Spawns 15 random locusts"}, -- Soul of Apollyon
@@ -890,10 +890,10 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[6] = "{{SoulHeart}} Spawns 3 Soul Hearts", -- V - The Hierophant
 	[7] = "{{Heart}} Spawns 3 Red Hearts", -- VI - The Lovers
 	[8] = "Lasts twice as long", -- VII - The Chariot
-	[9] = "Spawns two of each pickups", -- VIII - Justice
+	[9] = "Spawns two of each pickup", -- VIII - Justice
 	[10] ="Prevents Greed from spawning in the shop#Turns a shop into a normal shop if Greed was already fought in it", -- IX - The Hermit
 	[11] = "Spawns 2 Slot Machines", -- X - Wheel of Fortune
-	[12] = "Doubles the stat increases, except the multiplier", -- XI - Strength
+	[12] = "Doubles the stat increases, except the damage multiplier", -- XI - Strength
 	[14] = "Deals 80 damage", -- XIII - Death
 	[15] = "Spawns 2 Blood Donation Machines", -- XIV - Temperance
 	[16] = "Doubles the damage increase", -- XV - The Devil
@@ -922,7 +922,7 @@ local repPills={
 	[13] = {"12", "Range Up", "↑ {{Range}} +0.75 Range up"}, -- Range Up
 	[38] = {"37", "Retro Vision", "Pixelates the screen for 30 seconds"},
 	[42] = {"41", "I'm Drowsy...", "{{Slow}} Slows Isaac and all enemies in the room"}, -- I'm Drowsy...
-	[43] = {"42", "I'm Excited{{Warning}}", "Speeds up Isaac and all enemies in the room#Triggers again after 30 and 60 seconds"}, -- I'm Excited{{Warning}}
+	[43] = {"42", "I'm Excited!!", "Speeds up Isaac and all enemies in the room#Triggers again after 30 and 60 seconds"}, -- I'm Excited!!!
 	[48] = {"47", "Shot Speed Down", "↓ {{Shotspeed}} -0.15 Shot Speed down"}, -- Shot Speed Down
 	[49] = {"48", "Shot Speed Up", "↑ {{Shotspeed}} +0.15 Shot Speed up"}, -- Shot Speed Up
 	[50] = {"49", "Experimental Pill", "↑ Increases 1 random stat#↓ Decreases 1 random other stat#No stat decrease with {{Collectible75}}PHD, {{Collectible46}}Lucky Foot or {{Collectible303}}Virgo#No stat increase with {{Collectible654}}False PHD"}, -- Experimental Pill
@@ -962,7 +962,7 @@ EID.descriptions[languageCode].horsepills={
 	{"28", "Percs!", "Reduces all damage taken to half a heart for the duration of the room"}, -- Percs!
 	{"29", "Addicted!", "Increases all damage taken to a full heart for the duration of the room"}, -- Addicted!
 	{"30", "Re-Lax", "Isaac spawns poop behind him for 10 seconds"}, -- Re-Lax
-	{"31", "???", "{{CurseMaze}} Curse of the maze effect for current floor"}, -- ???
+	{"31", "???", "{{CurseMaze}} Curse of the Maze effect for the current floor"}, -- ???
 	{"32", "One makes you larger", "Greatly increases Isaac's size#Doesn't affect his hitbox"}, -- One makes you larger
 	{"33", "One makes you small", "Greatly decreases Isaac's size#Also decreases his hitbox's size"}, -- One makes you small
 	{"34", "Infested!", "Spawns 2 blue spiders for each poop in the room"}, -- Infested!
@@ -973,10 +973,10 @@ EID.descriptions[languageCode].horsepills={
 	{"39", "X-Lax", "Spawns a pool of long lasting slippery creep"}, -- X-Lax
 	{"40", "Something's wrong...", "Spawns a pool of long lasting slowing creep"}, -- Something's wrong...
 	{"41", "I'm Drowsy...", "Slows Isaac and all enemies in the room"}, -- I'm Drowsy...
-	{"42", "I'm Excited{{Warning}}", "Speeds up Isaac and all enemies in the room"}, --I'm Excited{{Warning}}
+	{"42", "I'm Excited!!", "Speeds up Isaac and all enemies in the room"}, --I'm Excited!!!
 	{"43", "Gulp!", "Consumes Isaac's current trinket and grants its effects permanently"}, -- Gulp!
 	{"44", "Horf!", "{{Collectible149}} Shoots a cluster of ipecac tears"}, -- Horf!
-	{"45", "Makes Isaac briefly invincible#{{Fear}} Fears all enemies in the room#Feared enemies take 40 contact damage per second#{{HalfHeart}} Eating 2 enemies replenishes half a heart"}, -- Feels like I'm walking on sunshine!
+	{"45", "Feels like I'm walking on sunshine!", "Makes Isaac briefly invincible#{{Fear}} Fears all enemies in the room#Feared enemies take 40 contact damage per second#{{HalfHeart}} Eating 2 enemies replenishes half a heart"}, -- Feels like I'm walking on sunshine!
 	{"46", "Vurp!", "Spawns the last pill Isaac used as a horse pill"}, -- Vurp!
 	{"47", "Shot Speed Down", "↓ {{Shotspeed}} -0.3 Shot Speed down"}, -- Shot Speed Down
 	{"48", "Shot Speed Up", "↑ {{Shotspeed}} +0.3 Shot Speed up"}, -- Shot Speed Up
@@ -1004,23 +1004,23 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	[0] = "{{Damage}} Damage", "{{Tears}} Fire Rate", "{{Shotspeed}} Shot Speed", "{{Range}} Range", "{{Speed}} Speed", "Tear Effects", "Tear Color", "Flight", "Attack Type", "Familiars", "{{Luck}} Luck", "Size", "Color", "Chest Contents", [16] = "All Stats",
 
 	-- Attribute triggers
-	chain = "Then:{{CR}} ",
 	active = "On use:#",
-	pickup_collected = "Collecting a pickup:#",
+	pickup_collected = "On collecting a pickup:#",
 	enemy_kill = "Killing an enemy might:#",
-	damage_taken = "Taking damage:#",
+	damage_taken = "On taking damage:#",
 	entity_spawned = "When a {T1} is spawned:#",
 	tear_fire = "Firing a tear might:#",
 	enemy_hit = "Hitting an enemy might:#",
-	room_clear = "Clearing a room:#",
+	room_clear = "On clearing a room:#",
+	chain = "Then:{{CR}} ",
 
 	-- Attribute effects
-	area_damage = "Deals {1} damage in an area around Isaac",
-	add_temporary_effect = "Grants {1} for the room",
-	convert_entities = "Converts all {1} in the room to {2}",
-	use_active_item = "Uses {1}",
-	spawn_entity = "Spawns a {1}",
-	fart = "Farts with size {1}",
+	area_damage = "Deal {1} damage in an area around Isaac",
+	add_temporary_effect = "Grant {1} for the room",
+	convert_entities = "Convert all {1} in the room to {2}",
+	use_active_item = "Use {1}",
+	spawn_entity = "Spawn a {1}",
+	fart = "Fart with size {1}",
 
 	-- Generic entity names not obtained from entities2.xml
 	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
