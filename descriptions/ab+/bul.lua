@@ -764,23 +764,78 @@ EID.descriptions[languageCode].cards={
 	{"51", "Свещена карта", "{{Collectible313}} Дава щит като \"Свещена мантия\" за една стая#(Спира щета веднъж)#25% шанс да се създаде нова Свещена карта"},
 	{"52", "Огромен растеж", "↑ {{Damage}} +7 Щети#↑ {{Range}} +30 Обхват#Можете да чупите скали, като ги тъпчете#Уголемяване на героя#Ефектите са за сегашната стая"},
 	{"53", "Древен спомен", "{{Card}} Създава 3 случайни карти"},  -- translation checked against the "recall" meant in Magic: The Gathering
-	{"54", "Вековен поход", "{{Slow}} Забавя всички врагове#↑ {{Speed}} +0.5 Скорост#↓ {{Shotspeed}} -1 Скорост на сълзите#Ефектите са за сегашната стая"},
+	{"54", "Вековен поход", "{{Slow}} Забавя всички врагове#↑ {{Speed}} +0.5 Скорост#↓ {{Shotspeed}} -1 скорост на сълзите#Ефектите са за сегашната стая"},
 }
 
 ---------- Pills ----------
-EID.descriptions[languageCode].unidentifiedPill = nil -- Not yet Translated!
+EID.descriptions[languageCode].unidentifiedPill = "Неидентифицирано хапче"
 
 EID.descriptions[languageCode].pills={
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	{"0", "Неприятен газ", "Създава отровен облак от газ около теб"},
+	{"1", "Лошо преживяване", "Нанася 1 сърце щета#Превръща се в хапче \"Пълно здраве\", ако имаш 1 сърце или по-малко"},
+	{"2", "Стоманени топки", "{{SoulHeart}} +2 духовни сърца"},
+	{"3", "Бомбите са Ключ", "Разменя бройките на притежаваните бомби и ключове"},
+	{"4", "Екплозивна диария", "Създава 5 бомби през период от 5 секунди на моментната ти позиция"},
+	{"5", "Пълно здраве", "Запълва всички червени сърца"},
+	{"6", "По-малко здраве", "↓ {{Heart}} -1 контейнер за червено сърце#Превръща се в хапче \"Повече здраве\", ако имаш 1 контейнер или по-малко"},
+	{"7", "Повече здраве", "↑ {{EmptyHeart}} +1 празен контейнер за червено сърце"},   -- ~~en_us.lua is inconsistent here with the health down vs up descriptions
+	{"8", "Намерих хапче", "Никакъв ефект"},
+	{"9", "Пубертет", "Само визуален ефект на пубертет#!!!3 такива дават трансформацията \"Възрастен\" (+1 червено сърце)"},
+	{"10", "Хубава муха", "Добавя 1 орбитална муха"},
+	{"11", "По-малко обхват", "↓ {{Range}} -2 обхват"},
+	{"12", "Повече обхват", "↑ {{Range}} +2.5 обхват"},
+	{"13", "По-малко скорост", "↓ {{Speed}} -0.12 скорост"},
+	{"14", "Повече скорост", "↑ {{Speed}} +0.15 скорост"},
+	{"15", "По-малко скорост на стреляне", "↓ {{Tears}} -0.28 скорост на стреляне"},
+	{"16", "Повече скорост на стреляне", "↑ {{Tears}} +0.35 скорост на стреляне"},
+	{"17", "По-малко късмет", "↓ {{Luck}} -1 късмет"},
+	{"18", "Повече късмет", "↑ {{Luck}} +1 късмет"},
+	{"19", "Телехапче", "Телепортира те в произволна стая#{{ErrorRoom}} Малък шанс за телепорт до стаята I AM ERROR"},
+	{"20", "48 Hour Energy!", "Fully recharges your active item#Drops 1-2 batteries"},
+	{"21", "Hematemesis", "Drains all but one heart container#Spawns 1-4 Red Hearts"},
+	{"22", "Paralysis", "You can't move for 2 seconds"},
+	{"23", "I can see forever!", "{{SecretRoom}} Opens secret room entrances on current floor"},
+	{"24", "Pheromones", "{{Charm}} Charms all enemies in the room"},
+	{"25", "Amnesia", "{{CurseLost}} Hides the floor map"},
+	{"26", "Lemon Party", "Spawns a large puddle on the ground which damages enemies"},
+	{"27", "R U A Wizard?", "Shoot diagonally for 30 seconds"},
+	{"28", "Percs!", "Take only half the damage for current room"},
+	{"29", "Addicted!", "Take full heart damage for current room"},
+	{"30", "Re-Lax", "Spawn poop while walking for 2 seconds"},
+	{"31", "???", "{{CurseMaze}} Curse of the Maze effect for current floor"},
+	{"32", "One makes you larger", "You grow bigger#Doesn't affect your hitbox"},
+	{"33", "One makes you small", "You get smaller#Your hitbox gets smaller"},
+	{"34", "Infested!", "Spawn 1 blue spider per poop in room"},
+	{"35", "Infested?", "Spawn 1 blue spider per enemy in room#Spawns 1-3 blue spiders when no enemy is in the room"},
+	{"36", "Power Pill!", "Short invincibility effect"},
+	{"37", "Retro Vision", "Pixelates the screen for 30 seconds"},
+	{"38", "Friends Till The End!", "Spawns 3 blue flies"},
+	{"39", "X-Lax", "Spawn pool of slippery creep"},
+	{"40", "Something's wrong...", "{{Slow}} Spawn pool of slowing creep"},
+	{"41", "I'm Drowsy...", "{{Slow}} Slow all enemies in room"},
+	{"42", "I'm Excited!!!", "Speed up for all enemies in room"},
+	{"43", "Gulp!", "{{Trinket}} Consume current trinket and gain its effect permanently"},
+	{"44", "Horf!", "{{Collectible149}} Shoots one Ipecac tear"},
+	{"45", "Feels like I'm walking on sunshine!", "Short invincibility effect"},
+	{"46", "Vurp!", "Spawns last used pill"},
 } 
 
 ---------- Sacrifice Room ----------
-EID.descriptions[languageCode].sacrificeHeader = nil -- Not yet Translated!
+EID.descriptions[languageCode].sacrificeHeader = "[Следваща отплата от жертвена стая]"
 
 EID.descriptions[languageCode].sacrifice={
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	{"1", "", "{{Coin}} 50% шанс за 1 монета#{{Bomb}} 100% шанс за 1 бомба, ако си на първият етаж и босът е убит за по-малко от 1 минута"},
+	{"2", "", "{{Coin}} 50% шанс за 1 монета#{{Bomb}} 100% шанс за 1 бомба, ако си на първият етаж и босът е убит за по-малко от 1 минута"},
+	{"3", "", "{{AngelChance}} 67% шанс за получаване на по-голям шанс да се отвори ангелска стая"},
+	{"4", "", "{{Chest}} 50% шанс за произволен сандък"},
+	{"5", "", "{{Coin}} 33% шанс за 3 монети#{{AngelChance}} 67% шанс за получаване на по-голям шанс да се отвори ангелска стая"},
+	{"6", "", "{{AngelRoom}} 33% шанс за телепорт до ангелската стая#{{DevilRoom}} Телепортът е до дяволската стая, ако такава вече се е появила на етажа#{{Chest}} 67% шанс за произволен сандък"},
+	{"7", "", "{{AngelRoom}} 33% шанс за произволен предмет от ангелската стая#{{SoulHeart}} 67% шанс за 1 духовно сърце"},
+	{"8", "", "100% шанс за 7 трол-бомби"},
+	{"9", "", "100% шанс за появяване на ангелът-бос \"Уриил\""},
+	{"10", "", "{{SoulHeart}} 50% шанс за 7 духовни сърца#{{Coin}} 50% шанс за 30 монети"},
+	{"11", "", "100% шанс за появяване на ангелът-бос \"Гавриил\""},
+	{"12", "", "50% шанс за телепорт до \"Тъмна стая\""},
 }
 
 ---------- Dice Room ----------
