@@ -757,7 +757,7 @@ EID.descriptions[languageCode].cards={
 	{"44", "Карта с правила", "Показва \"полезни\" съвети"},
 	{"45", "Карта срещу човечеството", "Изпълва цялата стая с акита"},
 	{"46", "Крал-самоубиец", "!!!Убива те на място#Създава 10 пикъпи/предмети на пода"},  -- translation based on the wiki trivia about king of hearts in a standard deck
-	{"47", "Карта \"Излез от затвора\"", "Отваря всички врати в стаята#!!!Може да отвори вратата към {{MegaSatan}} Mega Satan"},   -- someone with a Bulgarian Monopoly board game please verify the translated name of the card!
+	{"47", "Карта \"Излез от затвора\"", "Отваря всички врати в стаята#!!!Може да отвори вратата към {{MegaSatan}} Mega Satan"},   -- verified, they really translated it literally so this is the best available
 	{"48", "? карта", "Моментално използване на активният предмет"},
 	{"49", "Парче от зарче", "Променя предметите (пиедестали и пикъпи) в сегашната стая"},
 	{"50", "Спешен контакт", "Две ръце на мама се спускат и сграбчват врагове"},
