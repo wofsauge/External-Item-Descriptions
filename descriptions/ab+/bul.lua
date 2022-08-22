@@ -791,33 +791,34 @@ EID.descriptions[languageCode].pills={
 	{"17", "По-малко късмет", "↓ {{Luck}} -1 късмет"},
 	{"18", "Повече късмет", "↑ {{Luck}} +1 късмет"},
 	{"19", "Телехапче", "Телепортира те в произволна стая#{{ErrorRoom}} Малък шанс за телепорт до стаята I AM ERROR"},
-	{"20", "48 Hour Energy!", "Fully recharges your active item#Drops 1-2 batteries"},
-	{"21", "Hematemesis", "Drains all but one heart container#Spawns 1-4 Red Hearts"},
-	{"22", "Paralysis", "You can't move for 2 seconds"},
-	{"23", "I can see forever!", "{{SecretRoom}} Opens secret room entrances on current floor"},
-	{"24", "Pheromones", "{{Charm}} Charms all enemies in the room"},
-	{"25", "Amnesia", "{{CurseLost}} Hides the floor map"},
-	{"26", "Lemon Party", "Spawns a large puddle on the ground which damages enemies"},
-	{"27", "R U A Wizard?", "Shoot diagonally for 30 seconds"},
-	{"28", "Percs!", "Take only half the damage for current room"},
-	{"29", "Addicted!", "Take full heart damage for current room"},
-	{"30", "Re-Lax", "Spawn poop while walking for 2 seconds"},
-	{"31", "???", "{{CurseMaze}} Curse of the Maze effect for current floor"},
-	{"32", "One makes you larger", "You grow bigger#Doesn't affect your hitbox"},
-	{"33", "One makes you small", "You get smaller#Your hitbox gets smaller"},
-	{"34", "Infested!", "Spawn 1 blue spider per poop in room"},
-	{"35", "Infested?", "Spawn 1 blue spider per enemy in room#Spawns 1-3 blue spiders when no enemy is in the room"},
-	{"36", "Power Pill!", "Short invincibility effect"},
-	{"37", "Retro Vision", "Pixelates the screen for 30 seconds"},
-	{"38", "Friends Till The End!", "Spawns 3 blue flies"},
-	{"39", "X-Lax", "Spawn pool of slippery creep"},
-	{"40", "Something's wrong...", "{{Slow}} Spawn pool of slowing creep"},
-	{"41", "I'm Drowsy...", "{{Slow}} Slow all enemies in room"},
-	{"42", "I'm Excited!!!", "Speed up for all enemies in room"},
-	{"43", "Gulp!", "{{Trinket}} Consume current trinket and gain its effect permanently"},
-	{"44", "Horf!", "{{Collectible149}} Shoots one Ipecac tear"},
-	{"45", "Feels like I'm walking on sunshine!", "Short invincibility effect"},
-	{"46", "Vurp!", "Spawns last used pill"},
+	{"20", "48-часова енергия!", "Напълно презарежда активната вещ#Създава 1-2 батерии"},
+	{"21", "Хематемеза", "{{EmptyHeart}} Изпразва всички налични контейнери за червени сърца освен едно#{{Heart}} Създава 1-4 червени сърца"}, -- extra markup icons vs en_us.lua
+	{"22", "Парализа", "Не можеш да се движиш за 2 секунди"},
+	{"23", "Мога да видя всичко!", "{{SecretRoom}} Отваря входовете към тайните стаи на този етаж"},   -- "forever" -> "everything" (meme can't be preserved anyway)
+	{"24", "Феромони", "{{Charm}} Очарова всички врагове в стаята"},
+	{"25", "Амнезия", "{{CurseLost}} Скрива цялата карта на етажа"},
+	{"26", "Лимоново парти", "Създава голяма локва на пода, която нанася щети на враговете"},
+	{"27", "Ти магьосник ли си?", "Сълзите ти се стрелят диагонално за 30 секунди"},
+	{"28", "Обезболяващи", "{{Collectible108}} Всички източници на щети причиняват само по половин сърце наведнъж за тази стая"},  -- translation based on ru.lua + reference; extra markup icon of The Wafer
+	{"29", "Пристрастен!", "Всички източници на щети причиняват по цяло сърце наведнъж за тази стая"},
+	{"30", "Ре-Лакс", "Създава ако при движение за следващите 2 секунди"},
+	{"31", "???", "{{CurseMaze}} Проклятието на Лабиринта (с подменяне на стаи) се прилага за сегашният етаж"},    -- extra info in parentheses about the curse type because Maze and Labyrinth translate to the same word; if found too verbose, remove the parentheses part
+	{"32", "От едно ставаш по-голям", "Визуално порастваш#Зоната, в която могат да те ударят, не нараства"},
+	{"33", "От едно ставаш по-малък", "Визуално се смаляваш#Зоната, в която могат да те ударят, също се смалява"},
+	{"34", "Заразен!", "Създава 1 съюзнически паяк от всяко ако в стаята (с минимум от 1)"},    -- pill name courtesy of google translate
+	{"35", "Заразен?", "Създава 1 съюзнически паяк за всеки враг в стаята#Създава 1-3 паяци, ако няма врагове"},
+	{"36", "Силово хапче!", "{{Collectible93}} Кратък ефект на неуязвимост"}, -- extra markup icon vs en_us.lua
+	{"37", "Ретро визия", "Екранът става много по-пикселиран за 30 секунди"},
+	{"38", "Приятели до края!", "Създава 3 съюзнически мухи"},
+	{"39", "Екс-лакс", "Създава локва от хлъзгава течност"},
+	{"40", "Нещо не е наред...", "{{Slow}} Създава локва от забавяща течност"},
+	{"41", "Сънлив съм...", "{{Slow}} Забавя всички врагове в стаята"},
+	{"42", "Възбуден съм!!!", "Забързва всички врагове в стаята"},
+	{"43", "Глът!", "{{Trinket}} Консумира държаната дрънкулка в момента и прибавя нейният ефект перманентно"},    -- note here that "ѝ" quite possibly does not exist in the font
+	{"44", "Horf!", "{{Collectible149}} Изстрелва една сълза като \"Буркан с отрова\""},
+	{"45", "Сякаш ходя по дъгата!", "{{Collectible298}} Кратък ефект на неуязвимост"}, -- "sunshine" -> "rainbow"
+	{"46", "Vurp!", "Създава последното използвано хапче преди това#Ако друго хапче не е било използвано, създава копие на себе си"},
+    -- Horf and Vurp not translated because, like, how should they be.
 } 
 
 ---------- Sacrifice Room ----------
