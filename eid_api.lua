@@ -510,14 +510,7 @@ function EID:getObjectName(Type, Variant, SubType)
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
-		local vanillaName = ""
-		if adjustedSubtype == 9999 then
-			vanillaName = "Golden Pill" -- only used for languages that haven't defined a Golden Pill name
-		else
-			vanillaName = EID.itemConfig:GetPillEffect(adjustedSubtype - 1).Name
-		end
-		name = name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][adjustedSubtype][2] or vanillaName
-		return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
+		return EID:getPillName(adjustedSubtype, tableName == "horsepills")
 	elseif tableName == "sacrifice" then
 		return EID:getDescriptionEntry("sacrificeHeader")
 	elseif tableName == "dice" then
@@ -526,6 +519,25 @@ function EID:getObjectName(Type, Variant, SubType)
 		return name or Type.."."..Variant.."."..SubType
 	end
 	return Type.."."..Variant.."."..SubType
+end
+
+-- returns the name of a pill based on the pilleffect id
+function EID:getPillName(pillID, isHorsepill)
+	local moddedDesc = EID:getDescriptionEntry("custom", "5.70."..pillID)
+	local legacyModdedDescription = EID:getLegacyModDescription(5, 70, pillID)
+	local tableName = isHorsepill and "horsepills" or "pills"
+	local defaultDesc = EID:getDescriptionEntry(tableName, pillID)
+	
+	local name = moddedDesc or legacyModdedDescription or defaultDesc
+	
+	local vanillaName = ""
+	if pillID == 9999 then
+		vanillaName = "Golden Pill" -- only used for languages that haven't defined a Golden Pill name
+	else
+		vanillaName = EID.itemConfig:GetPillEffect(pillID - 1).Name
+	end
+	name = name and name[2] or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][pillID][2] or vanillaName
+	return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
 end
 
 -- tries to get the ingame description of an object, based on their description in the XML files
@@ -1563,7 +1575,7 @@ function EID:evaluateQueuedItems()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if not EID.PlayerItemInteractions[i] then
-			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}}
+			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, history = {pills = {},altPills = {}}}
 		end
 		EID.RecentlyTouchedItems[i] = EID.RecentlyTouchedItems[i] or {}
 	end

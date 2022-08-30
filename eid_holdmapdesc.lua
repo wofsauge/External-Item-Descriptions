@@ -40,6 +40,7 @@ local rainbowWormEffects = { [0] = 9, 11, 65, 27, 10, 12, 26, 66, 96, 144 }
 -- Mysterious Paper does not play well with displaying Error 404's effect
 local mysteriousPaperBlacklist = { [23] = true, [48] = true }
 
+
 function EID:getHoldMapDescription(player, checkingTwin)
 	EID.InsideItemReminder = true
 	-- Starting Blacklist: Recall, Hold
@@ -63,6 +64,27 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			local poopInfo = EID:getDescriptionEntry("poopSpells")
 			local nextPoop = player:GetPoopSpell(i)
 			append("{{PoopSpell" .. nextPoop .. "}}", poopInfo[nextPoop][1], poopInfo[nextPoop][2])
+		end
+	end
+	
+	-- Echo Chamber Description
+	if REPENTANCE and player:HasCollectible(700) then
+		local playerID = player:GetPlayerType()
+		if EID.PlayerItemInteractions[playerID].history then
+			local pillHistoryTable = EID.PlayerItemInteractions[playerID].history.pills
+			-- Dead Tainted Lazarus 
+			if playerID == 38 then
+				pillHistoryTable = EID.PlayerItemInteractions[playerID].history.altPills or pillHistoryTable
+			end
+			local pillNames = ""
+			for i = 1, math.min(3,#pillHistoryTable) do
+				if pillHistoryTable[i][2] then -- Echo chamber is owned
+					local lastUsedPill = tonumber(pillHistoryTable[i][1])
+					local name = EID:getPillName(lastUsedPill, false)
+					pillNames = pillNames..name.."#"
+				end
+			end
+			append("{{Collectible700}}", EID:getObjectName(5,100,700), pillNames)
 		end
 	end
 
