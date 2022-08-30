@@ -1285,7 +1285,7 @@ function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	local iconString = ""
 	for _, nr in ipairs(sortedList) do
 		visitedItemCount[nr] = visitedItemCount[nr] + 1
-		local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, visitedItemCount[nr], false) and "{{IconGreenTint}}" or "" 
+		local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, visitedItemCount[nr]) and "{{IconGreenTint}}" or "" 
 		iconString = iconString..completedColoring.."{{Crafting"..nr.."}}"
 	end
 	return iconString
@@ -1303,14 +1303,26 @@ function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	local iconString = ""
 	for nr, count in ipairs(filteredList) do
 		if (count > 0) then
-			local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, count, true) and "{{ColorBagComplete}}" or "" 
-			iconString = iconString..completedColoring..count.."{{Crafting"..nr.."}}{{CR}}"
+			local coloring = ""
+			local bagContainsItem = EID:bagContainsItem(nr, count)
+			if bagContainsItem == 1 then
+				coloring = "{{ColorBagComplete}}"
+			elseif bagContainsItem == 2 then
+				coloring = "{{ColorBagOverfill}}"
+			end
+			
+			iconString = iconString..coloring..count.."{{Crafting"..nr.."}}{{CR}}"
 		end
 	end
 	return iconString
 end
 
-function EID:bagContainsItem(itemID, itemCount, checkExactAmount)
+-- Checks how many of an item there are in the bag
+-- Returns false if the item is not in the bag
+-- Returns 0 if there are fewer than the target amount
+-- Returns 1 if there are exactly the target amount
+-- Returns 2 if there are more than the target amount
+function EID:bagContainsItem(itemID, itemCount)
 	local foundCount = 0
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 	for _, bagItem in ipairs(bagItems) do
@@ -1318,7 +1330,16 @@ function EID:bagContainsItem(itemID, itemCount, checkExactAmount)
 			foundCount = foundCount + 1
 		end
 	end
-	return checkExactAmount and foundCount == itemCount or itemCount <= foundCount 
+	
+	if foundCount == 0 then
+		return false
+	elseif foundCount < itemCount then
+		return 0
+	elseif foundCount == itemCount then
+		return 1
+	else
+		return 2
+	end
 end
 
 -- Get the number of pickups in the given recipe table that are inside our bag
