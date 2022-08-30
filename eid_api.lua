@@ -1304,11 +1304,13 @@ function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	for nr, count in ipairs(filteredList) do
 		if (count > 0) then
 			local coloring = ""
-			local bagContainsItem = EID:bagContainsItem(nr, count)
-			if bagContainsItem == 1 then
-				coloring = "{{ColorBagComplete}}"
-			elseif bagContainsItem == 2 then
-				coloring = "{{ColorBagOverfill}}"
+			if indicateCompleteContent then
+				local bagContainsItem = EID:bagContainsItem(nr, count)
+				if bagContainsItem == 1 then
+					coloring = "{{ColorBagComplete}}"
+				elseif bagContainsItem == 2 then
+					coloring = "{{ColorBagOverfill}}"
+				end
 			end
 			
 			iconString = iconString..coloring..count.."{{Crafting"..nr.."}}{{CR}}"
@@ -1330,7 +1332,7 @@ function EID:bagContainsItem(itemID, itemCount)
 			foundCount = foundCount + 1
 		end
 	end
-	
+
 	if foundCount == 0 then
 		return false
 	elseif foundCount < itemCount then
