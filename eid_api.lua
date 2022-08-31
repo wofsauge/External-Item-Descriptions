@@ -146,6 +146,37 @@ function EID:assignTransformation(targetType, targetIdentifier, transformationSt
 	EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
 end
 
+-- Try to automatically assign vanilla transformations to the entity 
+function EID:tryAutodetectTransformationsCollectible(collectibleID)
+	if not REPENTANCE then return end
+
+	local config = EID.itemConfig:GetCollectible(collectibleID)
+	local transformations = {}
+	transformations[EID.TRANSFORMATION.ANGEL] = config:HasTags(ItemConfig.TAG_ANGEL) or nil
+	transformations[EID.TRANSFORMATION.BOB] = config:HasTags(ItemConfig.TAG_BOB) or nil
+	transformations[EID.TRANSFORMATION.BOOKWORM] = config:HasTags(ItemConfig.TAG_BOOK) or nil
+	transformations[EID.TRANSFORMATION.CONJOINED] = config:HasTags(ItemConfig.TAG_BABY) or nil
+	transformations[EID.TRANSFORMATION.GUPPY] = config:HasTags(ItemConfig.TAG_GUPPY) or nil
+	transformations[EID.TRANSFORMATION.LEVIATHAN] = config:HasTags(ItemConfig.TAG_DEVIL) or nil
+	transformations[EID.TRANSFORMATION.LORD_OF_THE_FLIES] = config:HasTags(ItemConfig.TAG_FLY) or nil
+	transformations[EID.TRANSFORMATION.MOM] = config:HasTags(ItemConfig.TAG_MOM) or nil
+	transformations[EID.TRANSFORMATION.MUSHROOM] = config:HasTags(ItemConfig.TAG_MUSHROOM) or nil
+	transformations[EID.TRANSFORMATION.POOP] = config:HasTags(ItemConfig.TAG_POOP) or nil
+	transformations[EID.TRANSFORMATION.SPIDERBABY] = config:HasTags(ItemConfig.TAG_SPIDER) or nil
+	transformations[EID.TRANSFORMATION.SPUN] = config:HasTags(ItemConfig.TAG_SYRINGE) or nil
+	-- these dont have a tag : ADULT, STOMPY, SUPERBUM
+	local transformString = ""
+	for k, _ in pairs(transformations) do
+		transformString = transformString .. k .. ","
+	end
+	if string.sub(transformString, -1, -1) == "," then
+		transformString = string.sub(transformString, 1, -2)
+	end
+	if transformString ~= "" then
+		EID:assignTransformation("collectible", collectibleID, transformString)
+	end
+end
+
 -- Removes a transformation of an entity
 -- valid target types: [collectible, trinket, card, pill, entity]
 -- when type = entity, targetIdentifier must be in the format "ID.Variant.subtype". for any other type, it can just be the id
@@ -1675,4 +1706,13 @@ function EID:AddPickupToHistory(pickupType, effectID, player, useFlags)
 
 	-- pickupType = ["pill","card"], playerTypeID, effectID, hadEchoChamberWhenUsed
 	table.insert(historyTable, 1, {pickupType, player:GetPlayerType(), effectID, REPENTANCE and player:HasCollectible(700)})
+end
+
+
+function EID:GetTransformationsOfModdedItems()
+	if not REPENTANCE then return end
+	local numCollectibles = EID:GetMaxCollectibleID()
+	for i = 733, numCollectibles, 1 do
+		EID:tryAutodetectTransformationsCollectible(i)
+	end
 end

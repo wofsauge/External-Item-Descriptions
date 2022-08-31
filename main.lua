@@ -1580,6 +1580,7 @@ local function CheckAllActiveItemProgress()
 end
 
 local function OnGameStartGeneral(_,isSave)
+	EID:GetTransformationsOfModdedItems()
 	EID:buildTransformationTables()
 	if not isSave then
 		EID.PlayerItemInteractions = {}
