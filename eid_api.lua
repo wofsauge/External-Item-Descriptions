@@ -547,7 +547,8 @@ function EID:getObjectName(Type, Variant, SubType)
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
 	elseif tableName == "custom" then
-		return name or Type.."."..Variant.."."..SubType
+		local xmlName = EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
+		return name or xmlName or Type.."."..Variant.."."..SubType
 	end
 	return Type.."."..Variant.."."..SubType
 end
@@ -641,15 +642,15 @@ function EID:replaceNameMarkupStrings(text)
 			end
 			name = EID:getObjectName(entityID[1], entityID[2], entityID[3])
 		elseif indicator == "C" then -- Collectible
-			name = EID:getObjectName(5, 100, id)
+			name = "{{Collectible"..id.."}}"..EID:getObjectName(5, 100, id)
 		elseif indicator == "T" then -- Trinket
-			name = EID:getObjectName(5, 350, id)
+			name = "{{Trinket"..id.."}}"..EID:getObjectName(5, 350, id)
 		elseif indicator == "P" then -- Pills
-			name = EID:getObjectName(5, 70, id)
+			name = "{{Pill"..id.."}}"..EID:getPillName(id, false)
 		elseif indicator == "K" then -- Card
-			name = EID:getObjectName(5, 300, id)
+			name = "{{Card"..id.."}}"..EID:getObjectName(5, 300, id)
 		end
-		text = string.gsub(text, word, name, 1)
+		text = string.gsub(text, word, "{{ColorYellow}}"..name.."{{CR}}", 1)
 	end
 	return text
 end
