@@ -466,29 +466,26 @@ if REPENTANCE then
 	local function VurpCallback(descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 		if adjustedID - 1 ~= PillEffect.PILLEFFECT_VURP then return descObj end
-		
+
 		local playerID = EID.player:GetPlayerType()
-		if EID.PlayerItemInteractions[playerID].history then
-			local pillHistoryTable = EID.PlayerItemInteractions[playerID].history.pills
-			-- Dead Tainted Lazarus 
-			if playerID == 38 then
-				pillHistoryTable = EID.PlayerItemInteractions[playerID].history.altPills or pillHistoryTable
-			end
-			
+		local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
+		if pickupHistory then
+
 			local lastUsedPill = nil
 			local i = 1
-			while(i <= #pillHistoryTable) do
-				if tonumber(pillHistoryTable[i][1]) ~= PillEffect.PILLEFFECT_VURP + 1 then
-					lastUsedPill = tonumber(pillHistoryTable[i][1])
+			while (i <= #pickupHistory) do
+				local entry = pickupHistory[i]
+				if entry[1] == "pill" and entry[2] == playerID and entry[3] ~= PillEffect.PILLEFFECT_VURP + 1 then
+					lastUsedPill = entry[3]
 					break
 				end
-				i = i +1
+				i = i + 1
 			end
-			
+
 			if lastUsedPill then
 				local tableName = EID:getTableName(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 				local name = EID:getPillName(lastUsedPill, tableName == "horsepills")
-				EID:appendToDescription(descObj, "#{{Pill}} {{ColorSilver}}"..name)
+				EID:appendToDescription(descObj, "#{{Pill}} {{ColorSilver}}" .. name)
 			end
 		end
 		return descObj

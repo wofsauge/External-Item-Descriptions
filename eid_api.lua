@@ -1575,7 +1575,7 @@ function EID:evaluateQueuedItems()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if not EID.PlayerItemInteractions[i] then
-			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, history = {pills = {},altPills = {}}}
+			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, pickupHistory = {}}
 		end
 		EID.RecentlyTouchedItems[i] = EID.RecentlyTouchedItems[i] or {}
 	end
@@ -1662,4 +1662,17 @@ end
 -- Set a pilleffect to be permanently unidentifyable by EID
 function EID:SetPillEffectUnidentifyable(pillEffectID, isUnidentifyable)
 	EID.UnidentifyablePillEffects[pillEffectID + 1] = isUnidentifyable or nil
+end
+
+-- Add pickup usage to history of pickups used by the player
+function EID:AddPickupToHistory(pickupType, effectID, player, useFlags)
+	if REPENTANCE and useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC then return end -- dont add mimic pills to history
+	local playerID = EID:getPlayerID(player)
+	if not EID.PlayerItemInteractions[playerID].pickupHistory then
+		EID.PlayerItemInteractions[playerID].pickupHistory = {}
+	end
+	local historyTable = EID.PlayerItemInteractions[playerID].pickupHistory
+
+	-- pickupType = ["pill","card"], playerTypeID, effectID, hadEchoChamberWhenUsed
+	table.insert(historyTable, 1, {pickupType, player:GetPlayerType(), effectID, REPENTANCE and player:HasCollectible(700)})
 end

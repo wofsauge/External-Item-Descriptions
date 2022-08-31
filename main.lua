@@ -1551,7 +1551,7 @@ local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true
 	local playerID = EID:getPlayerID(player)
 	if not EID.PlayerItemInteractions[playerID] then
-		EID.PlayerItemInteractions[playerID] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, history = {pills = {},altPills = {}}}
+		EID.PlayerItemInteractions[playerID] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, pickupHistory = {}}
 	end
 	-- Dead Tainted Lazarus exceptions
 	local activesTable = EID.PlayerItemInteractions[playerID].actives
@@ -1609,29 +1609,25 @@ function EID:OnUsePill(pillEffectID, player, useFlags)
 	local playerID = EID:getPlayerID(player)
 	-- Dead Tainted Lazarus exceptions
 	local pillsTable = EID.PlayerItemInteractions[playerID].pills
-	
-	if not EID.PlayerItemInteractions[playerID].history then
-		EID.PlayerItemInteractions[playerID].history = {pills = {},altPills = {}}
-	end
-	local pillHistoryTable = EID.PlayerItemInteractions[playerID].history.pills
+
 	if player:GetPlayerType() == 38 then
 		pillsTable = EID.PlayerItemInteractions[playerID].altPills or pillsTable
-		pillHistoryTable = EID.PlayerItemInteractions[playerID].history.altPills or pillHistoryTable
 	end
 	local effectID = tostring(pillEffectID+1)
 	if not pillsTable[effectID] then
 		pillsTable[effectID] = 0
 	end
 	pillsTable[effectID] = pillsTable[effectID] + 1
-	
-	if REPENTANCE and useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC then return end -- dont add mimic pills to history
-	table.insert(pillHistoryTable, 1, {effectID, REPENTANCE and player:HasCollectible(700)})
-	for k,v in ipairs(pillHistoryTable) do
-		print(k,v[1])
-	end
+
+	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags)
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
 
+function EID:OnUseCard(cardID, player, useFlags)
+	player = player or EID.player --AB+ doesn't receive player in callback arguments!
+	EID:AddPickupToHistory("card", cardID, player, useFlags)
+end
+EID:AddCallback(ModCallbacks.MC_USE_CARD, EID.OnUseCard)
 
 -- only save and load configs when using MCM. Otherwise Config file changes arent valid
 if EID.MCMLoaded or REPENTANCE then

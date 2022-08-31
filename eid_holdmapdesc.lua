@@ -70,24 +70,26 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	-- Echo Chamber Description
 	if REPENTANCE and player:HasCollectible(700) then
 		local playerID = player:GetPlayerType()
-		if EID.PlayerItemInteractions[playerID].history then
-			local pillHistoryTable = EID.PlayerItemInteractions[playerID].history.pills
-			-- Dead Tainted Lazarus 
-			if playerID == 38 then
-				pillHistoryTable = EID.PlayerItemInteractions[playerID].history.altPills or pillHistoryTable
-			end
-			local pillNames = ""
-			for i = 1, math.min(3,#pillHistoryTable) do
-				if pillHistoryTable[i][2] then -- Echo chamber is owned
-					local lastUsedPill = tonumber(pillHistoryTable[i][1])
-					local name = EID:getPillName(lastUsedPill, false)
-					pillNames = pillNames..name.."#"
+		local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
+		if pickupHistory then
+			local pickupNames = ""
+			for i = 1, math.min(3, #pickupHistory) do
+				if pickupHistory[i][2] == playerID and pickupHistory[i][4] then -- Echo chamber is owned
+					if pickupHistory[i][1] == "pill" then
+						local name = EID:getPillName(pickupHistory[i][3], false)
+						pickupNames = pickupNames .. "{{Pill}} " .. name .. "#"
+					else
+						local name = EID:getObjectName(5, 300, pickupHistory[i][3])
+						pickupNames = pickupNames .. "{{Card" .. pickupHistory[i][3] .. "}} " .. name .. "#"
+					end
 				end
 			end
-			append("{{Collectible700}}", EID:getObjectName(5,100,700), pillNames)
+			if pickupNames ~= "" then
+				append("{{Collectible700}}", EID:getObjectName(5, 100, 700), pickupNames)
+			end
 		end
 	end
-
+	
 	-- Recently Acquired Item Descriptions
 	if EID.Config["ItemReminderShowRecentItem"] > 0 then
 		local printedItems = 0
