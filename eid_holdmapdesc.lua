@@ -89,7 +89,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			end
 		end
 	end
-	
+
 	-- Recently Acquired Item Descriptions
 	if EID.Config["ItemReminderShowRecentItem"] > 0 then
 		local printedItems = 0
@@ -125,12 +125,33 @@ function EID:getHoldMapDescription(player, checkingTwin)
 				elseif heldActive == 419 and not EID.isMirrorRoom then
 					blacklist["5.100.419"] = true
 					append("{{Collectible419}}", EID:getObjectName(5,100,419) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport2Prediction())
+				-- D Infinity
 				elseif heldActive == 489 then
 					blacklist["5.100.489"] = true
 					addObjectDesc(5, 100, EID:CurrentDInfinity(getSeed(489), currentPlayer), "{{Collectible489}}")
+				-- D1
 				elseif heldActive == 476 and EID.Config["ItemReminderShowRNGCheats"] then
 					blacklist["5.100.476"] = true
 					append("{{Collectible476}}", EID:getObjectName(5,100,476) .. EID:getDescriptionEntry("HoldMapHeader"), EID:D1Prediction(getSeed(476)))
+				-- Void
+				elseif heldActive == 477 then
+					blacklist["5.100.477"] = true
+					local absorbedActives = ""
+					local absorbedItems = EID.absorbedItems[tostring(EID:getPlayerID(player))]
+					local countItems = 0
+					for _, _ in pairs(absorbedItems) do
+						countItems = countItems + 1
+					end
+					if countItems > 5 then
+						absorbedActives = "{{Blank}} "
+					end
+					for k, _ in pairs(absorbedItems) do
+						absorbedActives = absorbedActives .. "{{Collectible" .. k .. "}} "
+						if countItems <= 5 then
+							absorbedActives = absorbedActives .. " " .. EID:getObjectName(5, 100, tonumber(k)) .. "#"
+						end
+					end
+					append("{{Collectible477}}", EID:getObjectName(5, 100, 477), absorbedActives)
 				else
 					addObjectDesc(5, 100, heldActive)
 				end
