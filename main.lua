@@ -711,6 +711,7 @@ end
 function EID:printBulletPoints(description, renderPos)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
 	local textScale = Vector(EID.Scale, EID.Scale)
+	description = EID:replaceNameMarkupStrings(description)
 	description = EID:replaceShortMarkupStrings(description)
 	description = EID:replaceMarkupSize(description)
 	for line in string.gmatch(description, "([^#]+)") do

@@ -161,7 +161,7 @@ EID.InlineIcons["Test"] = {"pickups", -1, 9, 9, -1, 0, dummySprite3}
 
 
 __eidItemDescriptions[3] = "{{Bomb}} Emote {{Key}} Test {{Test}}{{TestIcon}} {{ColorBlackBlink}}description {{SomeInvalidInnerStuff}} cool" -- 5.100.2 = Inner Eye
-__eidItemDescriptions[6] = "This item as Inline Icon {{Collectible6}}#And here are others {{Collectible69}} {{Collectible16}} {{Collectible323}} {{Collectible345}} {{Collectible223}}#And some trinket sprites {{Trinket12}} {{Trinket22}} {{Trinket1}} {{Trinket55}} {{Trinket100}} {{Trinket123}}" -- 5.100.2 = Inner Eye
+__eidItemDescriptions[6] = "This item as Inline Icon {{Collectible6}}#And here are others {{Collectible69}} {{Collectible16}} {{Collectible323}} {{Collectible345}} {{Collectible223}}#And some trinket sprites {{Trinket12}} {{Trinket22}} {{Trinket1}} {{Trinket55}} {{Trinket100}} {{Trinket123}}#And some names {{NameC3}} {{NameT23}} {{Name5.100.231}}" -- 5.100.2 = Inner Eye
 
 
 EID:addIgnoredEntity(5,100,10) -- Ignore "Halo of flies" collectible entity

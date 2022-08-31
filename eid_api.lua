@@ -627,6 +627,33 @@ function EID:replaceShortMarkupStrings(text)
 	return text
 end
 
+-- Replaces name markup objects with the actual name
+function EID:replaceNameMarkupStrings(text)
+	for word in string.gmatch(text, "{{Name.-}}") do
+		local strTrimmed = string.gsub(word, "{{Name(.-)}}", function(a) return a end)
+		local indicator = string.sub(strTrimmed, 1, 1)
+		local id = tonumber(string.sub(strTrimmed, 2, -1))
+		local name = ""
+		if tonumber(indicator) then
+			local entityID = {}
+			for e in string.gmatch(strTrimmed, "([^.]*)") do
+				table.insert(entityID, tonumber(e))
+			end
+			name = EID:getObjectName(entityID[1], entityID[2], entityID[3])
+		elseif indicator == "C" then -- Collectible
+			name = EID:getObjectName(5, 100, id)
+		elseif indicator == "T" then -- Trinket
+			name = EID:getObjectName(5, 350, id)
+		elseif indicator == "P" then -- Pills
+			name = EID:getObjectName(5, 70, id)
+		elseif indicator == "K" then -- Card
+			name = EID:getObjectName(5, 300, id)
+		end
+		text = string.gsub(text, word, name, 1)
+	end
+	return text
+end
+
 -- Generates a string with the defined pixel-length using a custom 1px wide character
 -- This will only work for this specific custom font
 function EID:generatePlaceholderString(length)
