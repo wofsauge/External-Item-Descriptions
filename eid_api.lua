@@ -458,6 +458,8 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 		if SubType > 32768 then 
 			return SubType - 32768
 		end
+	elseif tableName == "sacrifice" then
+		return math.min(#EID.descriptions["en_us"].sacrifice, SubType)
 	elseif tableName == "pills" or tableName == "horsepills" then
 		-- The effect of a pill varies depending on what player is looking at it in co-op
 		-- EID.pillPlayer is a way to recheck a pill for what different players will turn it into
@@ -543,7 +545,7 @@ function EID:getObjectName(Type, Variant, SubType)
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
 		return EID:getPillName(adjustedSubtype, tableName == "horsepills")
 	elseif tableName == "sacrifice" then
-		return EID:getDescriptionEntry("sacrificeHeader")
+		return EID:getDescriptionEntry("sacrificeHeader").." ("..SubType.."/"..#EID.descriptions["en_us"].sacrifice..")"
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
 	elseif tableName == "custom" then
@@ -589,6 +591,16 @@ end
 
 -- check if an entity is part of the describable entities
 function EID:hasDescription(entity)
+	if entity and EID:IsGridEntity(entity) then
+		if entity and EID.GridEntityWhitelist[entity:GetType()] then
+			for _, func in ipairs(EID.GridEntityWhitelist[entity:GetType()]) do
+				if func(entity) then
+					return true
+				end
+			end
+		end
+		return false
+	end
 	local isAllowed = false
 	local entityString = entity.Type .. "." .. entity.Variant .. "." .. entity.SubType
 
@@ -1355,7 +1367,7 @@ function EID:getScreenSize()
 end
 
 function EID:getEntityData(entity, str)
-	if entity ~= nil and entity:GetData() ~= nil then
+	if entity ~= nil and not EID:IsGridEntity(entity) and entity:GetData() ~= nil then
 		return entity:GetData()[str]
 	end
 	return nil
@@ -1632,7 +1644,6 @@ local hadQueuedItem = {}
 function EID:evaluateQueuedItems()
 	--initialize the interactions table for all players if it isn't already
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
 		if not EID.PlayerItemInteractions[i] then
 			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, pickupHistory = {}}
 		end
@@ -1736,11 +1747,27 @@ function EID:AddPickupToHistory(pickupType, effectID, player, useFlags)
 	table.insert(historyTable, 1, {pickupType, player:GetPlayerType(), effectID, REPENTANCE and player:HasCollectible(700)})
 end
 
+-- Render a sprite of an entity
+function EID:RenderEntity(entity, sprite, position)
+	if entity.Type == 5 and entity.Variant == 100 then
+		sprite:RenderLayer(1, position, nullVector, nullVector)
+	elseif entity.Type == 6 and entity.Variant == 16 then -- Crane Game
+		sprite:RenderLayer(2, position, nullVector, nullVector)
+	else
+		sprite:Render(position, nullVector, nullVector)
+	end
+end
 
+-- Tries to get the Vanilla transformations of modded items based on Tags
 function EID:GetTransformationsOfModdedItems()
 	if not REPENTANCE then return end
 	local numCollectibles = EID:GetMaxCollectibleID()
 	for i = 733, numCollectibles, 1 do
 		EID:tryAutodetectTransformationsCollectible(i)
 	end
+end
+
+-- Returns true if a given entity is a grid entity
+function EID:IsGridEntity(entity)
+	return entity.Type == nil
 end

@@ -217,8 +217,8 @@ end
 -- Handle Sacrifice room payout 
 local function SacrificeRoomCallback(descObj)
 	local curCounter = descObj.ObjSubType or 1
-	descObj.Name = descObj.Name.." ("..curCounter.."/12)"
 	if curCounter <= 2 then
+		--Remove B1 Bomb drop info when not on B1
 		if game:GetLevel():GetAbsoluteStage() > 1 then
 			local splitPoint = string.find(descObj.Description, '#', 1)
 			descObj.Description = descObj.Description:sub(1,splitPoint-1)

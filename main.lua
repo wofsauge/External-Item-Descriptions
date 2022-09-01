@@ -29,20 +29,18 @@ EID.isDisplayingPermanent = false
 EID.permanentDisplayTextObj = nil
 EID.lastDescriptionEntity = nil
 EID.lineHeight = 11
-EID.sacrificeCounter = {}
-local spikePos = Vector(320, 280)
 EID.itemConfig = Isaac.GetItemConfig()
 EID.itemUnlockStates = {}
 EID.CraneItemType = {}
 EID.absorbedItems = {}
 EID.CollectedItems = {}
 EID.IgnoredEntities = {}
+EID.CurrentRoomGridEntities = {}
 EID.UnidentifyablePillEffects = {} -- List of pilleffects that are always unidentifyable
 local pathsChecked = {}
 local altPathItemChecked = {}
 local alwaysUseLocalMode = false -- set to true after drawing a non-local mode description this frame
 EID.ForceRefreshCache = false -- set to true to force-refresh descriptions, currently used for potential transformation text changes
-local preHourglassStatus = {}
 EID.holdTabPlayer = 0
 EID.holdTabCounter = 0
 EID.DInfinityState = {}
@@ -174,10 +172,9 @@ if not success then
 end
 
 ---------------------------------------------------------------------------
--------------Handle Sacrifice Room & Resetting Floor Trackers--------------
+-------------Handle Resetting Floor Trackers--------------
 function EID:onNewFloor()
 	pathsChecked = {}
-	EID.sacrificeCounter = {}
 	if REPENTANCE then
 		EID.BoC.RoomQueries = {}
 		EID.BoC.FloorQuery = {}
@@ -187,19 +184,6 @@ function EID:onNewFloor()
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
-
-function EID:onSacrificeDamage(_, _, flags, source)
-	if EID.Config["DisplaySacrificeInfo"] and game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and source.Type == 0 and flags & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES then
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
-		if EID.sacrificeCounter[curRoomIndex] == nil then
-			EID.sacrificeCounter[curRoomIndex] = 1
-		end
-		if EID.sacrificeCounter[curRoomIndex] < 12 then
-			EID.sacrificeCounter[curRoomIndex] = EID.sacrificeCounter[curRoomIndex] + 1
-		end
-	end
-end
-EID:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EID.onSacrificeDamage, EntityType.ENTITY_PLAYER)
 
 ---------------------------------------------------------------------------
 ------------------------Handle ALT FLOOR CHOICE----------------------------
@@ -771,18 +755,16 @@ end
 function EID:onNewRoom()
 	EID.RecentlyTouchedItems = {}
 
-	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
-	preHourglassStatus = {}
-	
-	preHourglassStatus.SacrificeCounter = EID.sacrificeCounter[curRoomIndex]
+	EID.CurrentRoomGridEntities = {}
+	local room = game:GetRoom()
+	for i = 1, room:GetGridSize(), 1 do
+		local gridEntity = room:GetGridEntity(i)
+		if gridEntity and EID:hasDescription(gridEntity) then
+			EID.CurrentRoomGridEntities[i] = gridEntity
+		end
+	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
-
-function EID:WatchForGlowingHourglass()
-	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
-	EID.sacrificeCounter[curRoomIndex] = preHourglassStatus.SacrificeCounter
-end
-EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.WatchForGlowingHourglass, CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS)
 ---------------------------------------------------------------------------
 ---------------------------Handle Rendering--------------------------------
 
@@ -839,11 +821,11 @@ function EID:renderIndicator(entity, playerNum)
 		ArrowOffset = Vector(0, -62)
 	end
 	local arrowPos = Isaac.WorldToScreen(entity.Position + ArrowOffset)
-	if entity:GetData() and entity:GetData()["EID_RenderOffset"] then
+	if not EID:IsGridEntity(entity) and entity:GetData() and entity:GetData()["EID_RenderOffset"] then
 		entityPos = entityPos + entity:GetData()["EID_RenderOffset"]
 	end
 	-- Move highlights a bit to fit onto the alt Item layout of Flip / Tainted Laz
-	if REPENTANCE then
+	if REPENTANCE and not EID:IsGridEntity(entity) then
 		if entity.Variant == 100 and EID.player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID:getEntityData(entity, "EID_FlipItemID") then
 			entityPos = entityPos + Vector(2.5,2.5)
 		elseif entity.Type == 6 and entity.Variant == 16 then
@@ -866,16 +848,17 @@ function EID:renderIndicator(entity, playerNum)
 		ArrowSprite:RenderLayer(playerNum-1, arrowPos, nullVector, nullVector)
 	else
 		local colorMult = {1,1,1}
+		local framecount = entity.FrameCount or game:GetFrameCount()
 		if EID.isMultiplayer then colorMult = playerRGB[playerNum] end
 		if EID.Config["Indicator"] == "blink" then
-			local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
+			local c = 255 - math.floor(255 * ((framecount % 40) / 40))
 			local r, g, b = math.floor(c*colorMult[1]), math.floor(c*colorMult[2]), math.floor(c*colorMult[3])
 			sprite.Color = Color(1, 1, 1, 1, r/repDiv, g/repDiv, b/repDiv)
-			EID:renderEntity(entity, sprite, entityPos)
+			EID:RenderEntity(entity, sprite, entityPos)
 			sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
 		else
 			if EID.Config["Indicator"] == "highlight" then
-				local c = 255 - math.floor(255 * ((entity.FrameCount % 40) / 40))
+				local c = 255 - math.floor(255 * ((framecount % 40) / 40))
 				local r, g, b = math.floor(c*colorMult[1]), math.floor(c*colorMult[2]), math.floor(c*colorMult[3])
 				sprite.Color = Color(1, 1, 1, 1, r/repDiv, g/repDiv, b/repDiv)
 			elseif EID.Config["Indicator"] == "border" then
@@ -883,12 +866,12 @@ function EID:renderIndicator(entity, playerNum)
 				local r, g, b = math.floor(c*colorMult[1]), math.floor(c*colorMult[2]), math.floor(c*colorMult[3])
 				sprite.Color = Color(1, 1, 1, 1, r/repDiv, g/repDiv, b/repDiv)
 			end
-			EID:renderEntity(entity, sprite, entityPos + Vector(0, 1))
-			EID:renderEntity(entity, sprite, entityPos + Vector(0, -1))
-			EID:renderEntity(entity, sprite, entityPos + Vector(1, 0))
-			EID:renderEntity(entity, sprite, entityPos + Vector(-1, 0))
+			EID:RenderEntity(entity, sprite, entityPos + Vector(0, 1))
+			EID:RenderEntity(entity, sprite, entityPos + Vector(0, -1))
+			EID:RenderEntity(entity, sprite, entityPos + Vector(1, 0))
+			EID:RenderEntity(entity, sprite, entityPos + Vector(-1, 0))
 			sprite.Color = Color(1, 1, 1, 1, 0, 0, 0)
-			EID:renderEntity(entity, sprite, entityPos)
+			EID:RenderEntity(entity, sprite, entityPos)
 		end
 	end
 	if EID.isMirrorRoom then
@@ -909,25 +892,11 @@ function EID:PositionLocalMode(entity)
 			local screenCenter = EID:getScreenSize()/2
 			EID.UsedPosition.X = EID.UsedPosition.X - (EID.UsedPosition-screenCenter).X * 2
 		end
-		if entity:ToPickup() and entity:ToPickup():IsShopItem() then
-			EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
-		end
 	else
 		EID.Scale = EID.Config["Size"]
 		EID.CurrentScaleType = "Size"
 		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 	end
-end
-
-function EID:renderEntity(entity, sprite, position)
-	if entity.Type == 5 and entity.Variant == 100 then
-		sprite:RenderLayer(1, position, nullVector, nullVector)
-	elseif entity.Type == 6 and entity.Variant == 16 then -- Crane Game
-		sprite:RenderLayer(2, position, nullVector, nullVector)
-	else
-		sprite:Render(position, nullVector, nullVector)
-	end
-
 end
 
 function EID:renderHUDLocationIndicators()
@@ -1314,11 +1283,9 @@ local function onRender(t)
 	elseif EID.Config["PairedPlayerDescriptions"] then
 		playerSearch = EID.players
 	end
-	
-	local playerNearSacrificeSpikes = false
 
 	-- Check for descriptions to print per player
-	for i,player in ipairs(playerSearch) do
+	for _,player in ipairs(playerSearch) do
 		local displayedDesc = false
 		
 		-- Check if this player has the Bag of Crafting
@@ -1345,7 +1312,7 @@ local function onRender(t)
 			end
 			
 			for _, entitySearch in ipairs(searchGroups) do
-				for i, entity in ipairs(entitySearch) do
+				for _, entity in ipairs(entitySearch) do
 					if EID:hasDescription(entity) and entity.FrameCount > 0 and not EID.entitiesToPrint[GetPtrHash(entity)] then
 						table.insert(inRangeEntities, entity)
 						local diff = entity.Position:__sub(sourcePos)
@@ -1360,11 +1327,16 @@ local function onRender(t)
 					end
 				end
 			end
-			-- Test if the player is closer to the center of the room (Sacrifice/Sanguine Spikes) than any other entity
-			-- If there's more Grid Positions we want to check in the future, this could for example be generalized to a gridPosToCheck table which sets closeToGridPos flags
-			local spikeDiff = spikePos:__sub(sourcePos)
-			if EID.lastDist ~= 10000 and spikeDiff:Length() < EID.lastDist then
-				playerNearSacrificeSpikes = true
+
+			for _, gridEntity in pairs(EID.CurrentRoomGridEntities) do
+				if EID:hasDescription(gridEntity) then
+					table.insert(inRangeEntities, gridEntity)
+					local diff = gridEntity.Position:__sub(sourcePos)
+					if diff:Length() < EID.lastDist then
+						EID.lastDescriptionEntity = gridEntity
+						EID.lastDist = diff:Length()
+					end
+				end
 			end
 			
 			if EID.Config["DisplayAllNearby"] then
@@ -1381,155 +1353,152 @@ local function onRender(t)
 			end
 			
 			for _,closest in ipairs(inRangeEntities) do
-
-				--Handle GetData Entities (specific)
-				if EID.Config["EnableEntityDescriptions"] and EID:getEntityData(closest, "EID_Description") then
-					local desc = EID:getEntityData(closest, "EID_Description")
-					local origDesc = EID:getDescriptionObjByEntity(closest)
-					if desc ~= nil and type(desc) == "table" then
-						origDesc.Description = desc.Description or origDesc.Description
-						origDesc.Name = desc.Name or origDesc.Name
-						origDesc.Transformation = desc.Transformation or origDesc.Transformation
-					else
-						origDesc.Description = desc
-					end
-					EID:addDescriptionToPrint(origDesc)
-				
-				-- Handle Glitched Items
-				elseif closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
-					if EID:getEntityData(closest, "EID_DontHide") ~= true then
-						if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-							EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+				if not EID:IsGridEntity(closest) then
+					--Handle GetData Entities (specific)
+					if EID.Config["EnableEntityDescriptions"] and EID:getEntityData(closest, "EID_Description") then
+						local desc = EID:getEntityData(closest, "EID_Description")
+						local origDesc = EID:getDescriptionObjByEntity(closest)
+						if desc ~= nil and type(desc) == "table" then
+							origDesc.Description = desc.Description or origDesc.Description
+							origDesc.Name = desc.Name or origDesc.Name
+							origDesc.Transformation = desc.Transformation or origDesc.Transformation
+						else
+							origDesc.Description = desc
 						end
-					end
-				
-					local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
-					local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
+						EID:addDescriptionToPrint(origDesc)
 					
-					-- force the default glitchy description if option is off
-					if not EID.Config["DisplayGlitchedItemInfo"] then
-						glitchedObj.Description = glitchedDesc
-					-- grab the Item Config info if eid_tmtrainer.lua hasn't taken care of it, and it hasn't been done before
-					elseif not debug and glitchedObj.Description == glitchedDesc then
-						EID:addCollectible(closest.SubType, EID:CheckGlitchedItemConfig(closest.SubType) .. glitchedDesc)
-						glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
-					end
-					
-					EID:addDescriptionToPrint(glitchedObj)
-				-- Handle Dice Room Floor
-				elseif closest.Type == 1000 and closest.Variant == 76 then
-					EID:addDescriptionToPrint(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1, closest))
-				-- Handle Card Reading Portals
-				elseif closest.Type == 1000 and closest.Variant == 161 and closest.SubType <= 2 then
-					local subtypeToCard = {18, 5, 19}
-					-- Reuse the descriptions of The Emperor/Stars/Moon, so no localization needed
-					local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest, false)
-					-- Card Reading's name
-					descriptionObj.Name = EID:getObjectName(5, 100, 660)
-					-- Only keep the first line of the description
-					descriptionObj.Description = string.sub(descriptionObj.Description, 1, string.find(descriptionObj.Description, "#"))
-					EID:addDescriptionToPrint(descriptionObj)
-				-- Handle Crane Game
-				elseif closest.Type == 6 and closest.Variant == 16 then
-					if EID.CraneItemType[tostring(closest.InitSeed)] or EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] then
+					-- Handle Glitched Items
+					elseif closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
 						if EID:getEntityData(closest, "EID_DontHide") ~= true then
-							if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+							if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
 							end
 						end
-						local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
-						local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID, closest)
+					
+						local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
+						local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
 						
+						-- force the default glitchy description if option is off
+						if not EID.Config["DisplayGlitchedItemInfo"] then
+							glitchedObj.Description = glitchedDesc
+						-- grab the Item Config info if eid_tmtrainer.lua hasn't taken care of it, and it hasn't been done before
+						elseif not debug and glitchedObj.Description == glitchedDesc then
+							EID:addCollectible(closest.SubType, EID:CheckGlitchedItemConfig(closest.SubType) .. glitchedDesc)
+							glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
+						end
+						
+						EID:addDescriptionToPrint(glitchedObj)
+					-- Handle Dice Room Floor
+					elseif closest.Type == 1000 and closest.Variant == 76 then
+						EID:addDescriptionToPrint(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1, closest))
+					-- Handle Card Reading Portals
+					elseif closest.Type == 1000 and closest.Variant == 161 and closest.SubType <= 2 then
+						local subtypeToCard = {18, 5, 19}
+						-- Reuse the descriptions of The Emperor/Stars/Moon, so no localization needed
+						local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest, false)
+						-- Card Reading's name
+						descriptionObj.Name = EID:getObjectName(5, 100, 660)
+						-- Only keep the first line of the description
+						descriptionObj.Description = string.sub(descriptionObj.Description, 1, string.find(descriptionObj.Description, "#"))
 						EID:addDescriptionToPrint(descriptionObj)
-					end
-					
-				elseif closest.Variant == 110 then
-					--Handle Broken Shovel
-					local descriptionObj = EID:getDescriptionObj(5, 100, 550, closest)
-					EID:addDescriptionToPrint(descriptionObj)
-					
-				elseif closest.Variant == PickupVariant.PICKUP_TRINKET then
-					--Handle Trinkets
-					local descriptionObj = EID:getDescriptionObjByEntity(closest)
-					EID:addDescriptionToPrint(descriptionObj)
+					-- Handle Crane Game
+					elseif closest.Type == 6 and closest.Variant == 16 then
+						if EID.CraneItemType[tostring(closest.InitSeed)] or EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] then
+							if EID:getEntityData(closest, "EID_DontHide") ~= true then
+								if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+									EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+								end
+							end
+							local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
+							local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID, closest)
+							
+							EID:addDescriptionToPrint(descriptionObj)
+						end
+						
+					elseif closest.Variant == 110 then
+						--Handle Broken Shovel
+						local descriptionObj = EID:getDescriptionObj(5, 100, 550, closest)
+						EID:addDescriptionToPrint(descriptionObj)
+						
+					elseif closest.Variant == PickupVariant.PICKUP_TRINKET then
+						--Handle Trinkets
+						local descriptionObj = EID:getDescriptionObjByEntity(closest)
+						EID:addDescriptionToPrint(descriptionObj)
 
-				elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
-					--Handle Collectibles
-					if EID:getEntityData(closest, "EID_DontHide") ~= true then
-						if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-							EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+					elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
+						--Handle Collectibles
+						if EID:getEntityData(closest, "EID_DontHide") ~= true then
+							if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+							end
+						end
+						local descriptionObj = EID:getDescriptionObjByEntity(closest)
+						EID:addDescriptionToPrint(descriptionObj)
+						
+					elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
+						--Handle Cards & Runes
+						if EID:getEntityData(closest, "EID_DontHide") ~= true then
+							local isSoulstone = closest.SubType >= 81 and closest.SubType <= 97
+							local hideinShop = closest:ToPickup():IsShopItem() and ((not isSoulstone and not EID.Config["DisplayCardInfoShop"]) or (isSoulstone and not EID.Config["DisplaySoulstoneInfoShop"]))
+							local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayCardInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
+							local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or
+							(not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and
+							(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
+							if isOptionsSpawn or hideinShop or obstructed or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
+								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+							end
+						end
+						local descriptionObj = EID:getDescriptionObjByEntity(closest)
+						EID:addDescriptionToPrint(descriptionObj)
+
+					elseif closest.Variant == PickupVariant.PICKUP_PILL then
+						--Handle Pills
+						if EID:getEntityData(closest, "EID_DontHide") ~= true then
+							local hideinShop = closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]
+							local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
+							local obstructed = not EID.Config["DisplayObstructedPillInfo"] and
+							(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
+							if isOptionsSpawn or hideinShop or obstructed then
+								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+							end
+						end
+
+						local pillColor = closest.SubType
+						local pool = game:GetItemPool()
+						local identified = pool:IsPillIdentified(pillColor)
+						if REPENTANCE and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
+						local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
+
+						if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
+							local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor, closest)
+							EID:addDescriptionToPrint(descEntry)
+						else
+							EID:addDescriptionToPrint({ Description = "UnidentifiedPill", Entity = closest})
+						end
+					elseif EID.Config["EnableEntityDescriptions"] then
+						--Handle Entities (omni)
+						local descriptionEntry = EID:getDescriptionObjByEntity(closest)
+						if descriptionEntry ~= nil then
+							EID:addDescriptionToPrint(descriptionEntry)
 						end
 					end
-					local descriptionObj = EID:getDescriptionObjByEntity(closest)
-					EID:addDescriptionToPrint(descriptionObj)
-					
-				elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
-					--Handle Cards & Runes
-					if (not EID.Config["DisplayObstructedCardInfo"] or not EID.Config["DisplayObstructedSoulstoneInfo"]) and closest.FrameCount < 3 then
-						-- small delay when having obstruction enabled & entering the room to prevent spoilers
-						--return
-					end
-					if EID:getEntityData(closest, "EID_DontHide") ~= true then
-						local isSoulstone = closest.SubType >= 81 and closest.SubType <= 97
-						local hideinShop = closest:ToPickup():IsShopItem() and ((not isSoulstone and not EID.Config["DisplayCardInfoShop"]) or (isSoulstone and not EID.Config["DisplaySoulstoneInfoShop"]))
-						local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayCardInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
-						local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or
-						(not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and
-						(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
-						if isOptionsSpawn or hideinShop or obstructed or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
-							EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+				else -- Grid entities
+					local room = game:GetRoom()
+					if closest:GetType() == GridEntityType.GRID_SPIKES then
+						if room:GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
+							local desc = EID:getDescriptionObj(-999, -1, closest.VarData + 1, closest)
+							EID:addDescriptionToPrint(desc)
+						elseif REPENTANCE and EID.Config["DisplaySanguineInfo"] and room:GetType() == RoomType.ROOM_DEVIL and
+							EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) then
+							local desc = EID:getDescriptionObj(5, 100, 692, closest, false)
+							desc.Description = EID:trimSanguineDesc(desc)
+							if desc.Description ~= "" then
+								EID:addDescriptionToPrint(desc)
+							end
 						end
 					end
-					local descriptionObj = EID:getDescriptionObjByEntity(closest)
-					EID:addDescriptionToPrint(descriptionObj)
-
-				elseif closest.Variant == PickupVariant.PICKUP_PILL then
-					--Handle Pills
-					if EID:getEntityData(closest, "EID_DontHide") ~= true then
-						local hideinShop = closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]
-						local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
-						local obstructed = not EID.Config["DisplayObstructedPillInfo"] and
-						(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
-						if isOptionsSpawn or hideinShop or obstructed then
-							EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
-						end
-					end
-
-					local pillColor = closest.SubType
-					local pool = game:GetItemPool()
-					local identified = pool:IsPillIdentified(pillColor)
-					if REPENTANCE and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
-					local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
-
-					if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
-						local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor, closest)
-						EID:addDescriptionToPrint(descEntry)
-					else
-						EID:addDescriptionToPrint({ Description = "UnidentifiedPill", Entity = closest})
-					end
-				elseif EID.Config["EnableEntityDescriptions"] then
-					--Handle Entities (omni)
-					local descriptionEntry = EID:getDescriptionObjByEntity(closest)
-					if descriptionEntry~=nil then
-					   EID:addDescriptionToPrint(descriptionEntry)
-				   end
 				end
 			end
-		end
-	end
-	
-	-- if no entities to display, or we're close to the spikes, display Sacrifice Room information
-	-- it will be last priority for the main spot if DisplayAllNearby is on and we aren't near them
-	if (#EID.descriptionsToPrint == 0 or playerNearSacrificeSpikes) or EID.Config["DisplayAllNearby"] then
-		if game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
-			local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
-			local curCounter = EID.sacrificeCounter[curRoomIndex] or 1
-			local sacrificeDesc = EID:getDescriptionObj(-999, -1, curCounter)
-			EID:addDescriptionToPrint(sacrificeDesc, playerNearSacrificeSpikes and 1 or nil)
-		elseif REPENTANCE and EID.Config["DisplaySanguineInfo"] and game:GetRoom():GetType() == RoomType.ROOM_DEVIL and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) then
-			local sanguineDesc = EID:getDescriptionObj(5, 100, 692, nil, false)
-			sanguineDesc.Description = EID:trimSanguineDesc(sanguineDesc)
-			if sanguineDesc.Description ~= "" then EID:addDescriptionToPrint(sanguineDesc, playerNearSacrificeSpikes and 1 or nil) end
 		end
 	end
 	
