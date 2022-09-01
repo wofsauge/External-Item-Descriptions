@@ -341,8 +341,8 @@ EID.UserConfig = {
 	-- No Recipes shows percentages of what item you might get from your bag / best option on the floor, for a more intended experience
 	-- Pickups Only just shows the room/floor pickup count
 	-- (No Recipes is recommended if you have modded items)
-	-- Default = "No Recipes"
-	["BagOfCraftingDisplayMode"] = "No Recipes",
+	-- Default = "Recipe List"
+	["BagOfCraftingDisplayMode"] = "Recipe List",
 	-- Hide the recipe list when in battle
 	-- Default = true
 	["BagOfCraftingHideInBattle"] = true,
@@ -536,7 +536,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingDisplayNames"] = false,
 	["BagOfCraftingDisplayIcons"] = false,
 	["BagOfCraftingHideInBattle"] = true,
-	["BagOfCraftingDisplayMode"] = "No Recipes",
+	["BagOfCraftingDisplayMode"] = "Recipe List",
 	["BagOfCraftingModdedRecipes"] = true,
 	["CraftingHideKey"] = Keyboard.KEY_F3,
 	["CraftingHideButton"] = -1,

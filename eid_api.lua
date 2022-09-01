@@ -146,6 +146,37 @@ function EID:assignTransformation(targetType, targetIdentifier, transformationSt
 	EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
 end
 
+-- Try to automatically assign vanilla transformations to the entity 
+function EID:tryAutodetectTransformationsCollectible(collectibleID)
+	if not REPENTANCE then return end
+
+	local config = EID.itemConfig:GetCollectible(collectibleID)
+	local transformations = {}
+	transformations[EID.TRANSFORMATION.ANGEL] = config:HasTags(ItemConfig.TAG_ANGEL) or nil
+	transformations[EID.TRANSFORMATION.BOB] = config:HasTags(ItemConfig.TAG_BOB) or nil
+	transformations[EID.TRANSFORMATION.BOOKWORM] = config:HasTags(ItemConfig.TAG_BOOK) or nil
+	transformations[EID.TRANSFORMATION.CONJOINED] = config:HasTags(ItemConfig.TAG_BABY) or nil
+	transformations[EID.TRANSFORMATION.GUPPY] = config:HasTags(ItemConfig.TAG_GUPPY) or nil
+	transformations[EID.TRANSFORMATION.LEVIATHAN] = config:HasTags(ItemConfig.TAG_DEVIL) or nil
+	transformations[EID.TRANSFORMATION.LORD_OF_THE_FLIES] = config:HasTags(ItemConfig.TAG_FLY) or nil
+	transformations[EID.TRANSFORMATION.MOM] = config:HasTags(ItemConfig.TAG_MOM) or nil
+	transformations[EID.TRANSFORMATION.MUSHROOM] = config:HasTags(ItemConfig.TAG_MUSHROOM) or nil
+	transformations[EID.TRANSFORMATION.POOP] = config:HasTags(ItemConfig.TAG_POOP) or nil
+	transformations[EID.TRANSFORMATION.SPIDERBABY] = config:HasTags(ItemConfig.TAG_SPIDER) or nil
+	transformations[EID.TRANSFORMATION.SPUN] = config:HasTags(ItemConfig.TAG_SYRINGE) or nil
+	-- these dont have a tag : ADULT, STOMPY, SUPERBUM
+	local transformString = ""
+	for k, _ in pairs(transformations) do
+		transformString = transformString .. k .. ","
+	end
+	if string.sub(transformString, -1, -1) == "," then
+		transformString = string.sub(transformString, 1, -2)
+	end
+	if transformString ~= "" then
+		EID:assignTransformation("collectible", collectibleID, transformString)
+	end
+end
+
 -- Removes a transformation of an entity
 -- valid target types: [collectible, trinket, card, pill, entity]
 -- when type = entity, targetIdentifier must be in the format "ID.Variant.subtype". for any other type, it can just be the id
@@ -510,22 +541,35 @@ function EID:getObjectName(Type, Variant, SubType)
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
-		local vanillaName = ""
-		if adjustedSubtype == 9999 then
-			vanillaName = "Golden Pill" -- only used for languages that haven't defined a Golden Pill name
-		else
-			vanillaName = EID.itemConfig:GetPillEffect(adjustedSubtype - 1).Name
-		end
-		name = name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][adjustedSubtype][2] or vanillaName
-		return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
+		return EID:getPillName(adjustedSubtype, tableName == "horsepills")
 	elseif tableName == "sacrifice" then
 		return EID:getDescriptionEntry("sacrificeHeader")
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
 	elseif tableName == "custom" then
-		return name or Type.."."..Variant.."."..SubType
+		local xmlName = EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
+		return name or xmlName or Type.."."..Variant.."."..SubType
 	end
 	return Type.."."..Variant.."."..SubType
+end
+
+-- returns the name of a pill based on the pilleffect id
+function EID:getPillName(pillID, isHorsepill)
+	local moddedDesc = EID:getDescriptionEntry("custom", "5.70."..pillID)
+	local legacyModdedDescription = EID:getLegacyModDescription(5, 70, pillID)
+	local tableName = isHorsepill and "horsepills" or "pills"
+	local defaultDesc = EID:getDescriptionEntry(tableName, pillID)
+	
+	local name = moddedDesc or legacyModdedDescription or defaultDesc
+	
+	local vanillaName = ""
+	if pillID == 9999 then
+		vanillaName = "Golden Pill" -- only used for languages that haven't defined a Golden Pill name
+	else
+		vanillaName = EID.itemConfig:GetPillEffect(pillID - 1).Name
+	end
+	name = name and name[2] or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][pillID][2] or vanillaName
+	return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
 end
 
 -- tries to get the ingame description of an object, based on their description in the XML files
@@ -580,6 +624,33 @@ end
 function EID:replaceShortMarkupStrings(text)
 	for _, pair in ipairs(EID.TextReplacementPairs) do
 		text = string.gsub(text, pair[1], pair[2])
+	end
+	return text
+end
+
+-- Replaces name markup objects with the actual name
+function EID:replaceNameMarkupStrings(text)
+	for word in string.gmatch(text, "{{Name.-}}") do
+		local strTrimmed = string.gsub(word, "{{Name(.-)}}", function(a) return a end)
+		local indicator = string.sub(strTrimmed, 1, 1)
+		local id = tonumber(string.sub(strTrimmed, 2, -1))
+		local name = ""
+		if tonumber(indicator) then
+			local entityID = {}
+			for e in string.gmatch(strTrimmed, "([^.]*)") do
+				table.insert(entityID, tonumber(e))
+			end
+			name = EID:getObjectName(entityID[1], entityID[2], entityID[3])
+		elseif indicator == "C" then -- Collectible
+			name = "{{Collectible"..id.."}}"..EID:getObjectName(5, 100, id)
+		elseif indicator == "T" then -- Trinket
+			name = "{{Trinket"..id.."}}"..EID:getObjectName(5, 350, id)
+		elseif indicator == "P" then -- Pills
+			name = "{{Pill"..id.."}}"..EID:getPillName(id, false)
+		elseif indicator == "K" then -- Card
+			name = "{{Card"..id.."}}"..EID:getObjectName(5, 300, id)
+		end
+		text = string.gsub(text, word, "{{ColorYellow}}"..name.."{{CR}}", 1)
 	end
 	return text
 end
@@ -1563,7 +1634,7 @@ function EID:evaluateQueuedItems()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if not EID.PlayerItemInteractions[i] then
-			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}}
+			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, pickupHistory = {}}
 		end
 		EID.RecentlyTouchedItems[i] = EID.RecentlyTouchedItems[i] or {}
 	end
@@ -1649,5 +1720,27 @@ end
 
 -- Set a pilleffect to be permanently unidentifyable by EID
 function EID:SetPillEffectUnidentifyable(pillEffectID, isUnidentifyable)
-	EID.UnidentifyablePillEffects[pillEffectID] = isUnidentifyable or nil
+	EID.UnidentifyablePillEffects[pillEffectID + 1] = isUnidentifyable or nil
+end
+
+-- Add pickup usage to history of pickups used by the player
+function EID:AddPickupToHistory(pickupType, effectID, player, useFlags)
+	if REPENTANCE and useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC then return end -- dont add mimic pills to history
+	local playerID = EID:getPlayerID(player)
+	if not EID.PlayerItemInteractions[playerID].pickupHistory then
+		EID.PlayerItemInteractions[playerID].pickupHistory = {}
+	end
+	local historyTable = EID.PlayerItemInteractions[playerID].pickupHistory
+
+	-- pickupType = ["pill","card"], playerTypeID, effectID, hadEchoChamberWhenUsed
+	table.insert(historyTable, 1, {pickupType, player:GetPlayerType(), effectID, REPENTANCE and player:HasCollectible(700)})
+end
+
+
+function EID:GetTransformationsOfModdedItems()
+	if not REPENTANCE then return end
+	local numCollectibles = EID:GetMaxCollectibleID()
+	for i = 733, numCollectibles, 1 do
+		EID:tryAutodetectTransformationsCollectible(i)
+	end
 end

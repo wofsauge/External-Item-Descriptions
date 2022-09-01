@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = "4.35"
+EID.ModVersion = "4.37"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -711,6 +711,7 @@ end
 function EID:printBulletPoints(description, renderPos)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
 	local textScale = Vector(EID.Scale, EID.Scale)
+	description = EID:replaceNameMarkupStrings(description)
 	description = EID:replaceShortMarkupStrings(description)
 	description = EID:replaceMarkupSize(description)
 	for line in string.gmatch(description, "([^#]+)") do
@@ -1551,7 +1552,7 @@ local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true
 	local playerID = EID:getPlayerID(player)
 	if not EID.PlayerItemInteractions[playerID] then
-		EID.PlayerItemInteractions[playerID] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}}
+		EID.PlayerItemInteractions[playerID] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, pickupHistory = {}}
 	end
 	-- Dead Tainted Lazarus exceptions
 	local activesTable = EID.PlayerItemInteractions[playerID].actives
@@ -1580,6 +1581,7 @@ local function CheckAllActiveItemProgress()
 end
 
 local function OnGameStartGeneral(_,isSave)
+	EID:GetTransformationsOfModdedItems()
 	EID:buildTransformationTables()
 	if not isSave then
 		EID.PlayerItemInteractions = {}
@@ -1604,11 +1606,12 @@ if REPENTANCE then
 	EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseGenesis, CollectibleType.COLLECTIBLE_GENESIS)
 end
 
-function EID:OnUsePill(pillEffectID, player)
+function EID:OnUsePill(pillEffectID, player, useFlags)
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
 	local playerID = EID:getPlayerID(player)
 	-- Dead Tainted Lazarus exceptions
 	local pillsTable = EID.PlayerItemInteractions[playerID].pills
+
 	if player:GetPlayerType() == 38 then
 		pillsTable = EID.PlayerItemInteractions[playerID].altPills or pillsTable
 	end
@@ -1617,9 +1620,16 @@ function EID:OnUsePill(pillEffectID, player)
 		pillsTable[effectID] = 0
 	end
 	pillsTable[effectID] = pillsTable[effectID] + 1
+
+	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags)
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
 
+function EID:OnUseCard(cardID, player, useFlags)
+	player = player or EID.player --AB+ doesn't receive player in callback arguments!
+	EID:AddPickupToHistory("card", cardID, player, useFlags)
+end
+EID:AddCallback(ModCallbacks.MC_USE_CARD, EID.OnUseCard)
 
 -- only save and load configs when using MCM. Otherwise Config file changes arent valid
 if EID.MCMLoaded or REPENTANCE then

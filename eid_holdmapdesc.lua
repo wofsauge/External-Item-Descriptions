@@ -40,6 +40,7 @@ local rainbowWormEffects = { [0] = 9, 11, 65, 27, 10, 12, 26, 66, 96, 144 }
 -- Mysterious Paper does not play well with displaying Error 404's effect
 local mysteriousPaperBlacklist = { [23] = true, [48] = true }
 
+
 function EID:getHoldMapDescription(player, checkingTwin)
 	EID.InsideItemReminder = true
 	-- Starting Blacklist: Recall, Hold
@@ -63,6 +64,29 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			local poopInfo = EID:getDescriptionEntry("poopSpells")
 			local nextPoop = player:GetPoopSpell(i)
 			append("{{PoopSpell" .. nextPoop .. "}}", poopInfo[nextPoop][1], poopInfo[nextPoop][2])
+		end
+	end
+	
+	-- Echo Chamber Description
+	if REPENTANCE and player:HasCollectible(700) then
+		local playerID = player:GetPlayerType()
+		local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
+		if pickupHistory then
+			local pickupNames = ""
+			for i = 1, math.min(3, #pickupHistory) do
+				if pickupHistory[i][2] == playerID and pickupHistory[i][4] then -- Echo chamber is owned
+					if pickupHistory[i][1] == "pill" then
+						local name = EID:getPillName(pickupHistory[i][3], false)
+						pickupNames = pickupNames .. "{{Pill}} " .. name .. "#"
+					else
+						local name = EID:getObjectName(5, 300, pickupHistory[i][3])
+						pickupNames = pickupNames .. "{{Card" .. pickupHistory[i][3] .. "}} " .. name .. "#"
+					end
+				end
+			end
+			if pickupNames ~= "" then
+				append("{{Collectible700}}", EID:getObjectName(5, 100, 700), pickupNames)
+			end
 		end
 	end
 
@@ -101,12 +125,33 @@ function EID:getHoldMapDescription(player, checkingTwin)
 				elseif heldActive == 419 and not EID.isMirrorRoom then
 					blacklist["5.100.419"] = true
 					append("{{Collectible419}}", EID:getObjectName(5,100,419) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport2Prediction())
+				-- D Infinity
 				elseif heldActive == 489 then
 					blacklist["5.100.489"] = true
 					addObjectDesc(5, 100, EID:CurrentDInfinity(getSeed(489), currentPlayer), "{{Collectible489}}")
+				-- D1
 				elseif heldActive == 476 and EID.Config["ItemReminderShowRNGCheats"] then
 					blacklist["5.100.476"] = true
 					append("{{Collectible476}}", EID:getObjectName(5,100,476) .. EID:getDescriptionEntry("HoldMapHeader"), EID:D1Prediction(getSeed(476)))
+				-- Void
+				elseif heldActive == 477 then
+					blacklist["5.100.477"] = true
+					local absorbedActives = ""
+					local absorbedItems = EID.absorbedItems[tostring(EID:getPlayerID(player))]
+					local countItems = 0
+					for _, _ in pairs(absorbedItems) do
+						countItems = countItems + 1
+					end
+					if countItems > 5 then
+						absorbedActives = "{{Blank}} "
+					end
+					for k, _ in pairs(absorbedItems) do
+						absorbedActives = absorbedActives .. "{{Collectible" .. k .. "}} "
+						if countItems <= 5 then
+							absorbedActives = absorbedActives .. " " .. EID:getObjectName(5, 100, tonumber(k)) .. "#"
+						end
+					end
+					append("{{Collectible477}}", EID:getObjectName(5, 100, 477), absorbedActives)
 				else
 					addObjectDesc(5, 100, heldActive)
 				end
