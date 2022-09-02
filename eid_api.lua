@@ -2,22 +2,39 @@
 if not __eidItemDescriptions then
 	__eidItemDescriptions = {}
 end
+setmetatable(__eidItemDescriptions,
+	{ __newindex = function(_, k, v) EID:addCollectible(k, v) end })
 if not __eidTrinketDescriptions then
 	__eidTrinketDescriptions = {}
 end
+setmetatable(__eidTrinketDescriptions,
+	{ __newindex = function(_, k, v) EID:addTrinket(k, v) end })
 if not __eidCardDescriptions then
 	__eidCardDescriptions = {}
 end
+setmetatable(__eidCardDescriptions,
+	{ __newindex = function(_, k, v) EID:addCard(k, v) end })
 if not __eidPillDescriptions then
 	__eidPillDescriptions = {}
 end
+setmetatable(__eidPillDescriptions,
+	{ __newindex = function(_, k, v) EID:addPill(k, v) end })
 if not __eidItemTransformations then
 	__eidItemTransformations = {}
 end
+setmetatable(__eidItemTransformations,
+	{ __newindex = function(_, k, v) EID:assignTransformation("collectible", k, v) end })
 if not __eidEntityDescriptions then
 	__eidEntityDescriptions = {}
 end
-
+setmetatable(__eidEntityDescriptions,
+	{ __newindex = function(_, k, v)
+		local entityID = {}
+		for id in string.gmatch(k, "([^.]+)") do
+			table.insert(entityID, id)
+		end
+		EID:addEntity(entityID[1], entityID[2], entityID[3], v[1], v[2])
+	end })
 ---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
 local nullVector = Vector(0,0)
@@ -149,7 +166,6 @@ end
 -- Try to automatically assign vanilla transformations to the entity 
 function EID:tryAutodetectTransformationsCollectible(collectibleID)
 	if not REPENTANCE then return end
-
 	local config = EID.itemConfig:GetCollectible(collectibleID)
 	local transformations = {}
 	transformations[EID.TRANSFORMATION.ANGEL] = config:HasTags(ItemConfig.TAG_ANGEL) or nil
@@ -165,15 +181,8 @@ function EID:tryAutodetectTransformationsCollectible(collectibleID)
 	transformations[EID.TRANSFORMATION.SPIDERBABY] = config:HasTags(ItemConfig.TAG_SPIDER) or nil
 	transformations[EID.TRANSFORMATION.SPUN] = config:HasTags(ItemConfig.TAG_SYRINGE) or nil
 	-- these dont have a tag : ADULT, STOMPY, SUPERBUM
-	local transformString = ""
 	for k, _ in pairs(transformations) do
-		transformString = transformString .. k .. ","
-	end
-	if string.sub(transformString, -1, -1) == "," then
-		transformString = string.sub(transformString, 1, -2)
-	end
-	if transformString ~= "" then
-		EID:assignTransformation("collectible", collectibleID, transformString)
+		EID:assignTransformation("collectible", collectibleID, k)
 	end
 end
 
