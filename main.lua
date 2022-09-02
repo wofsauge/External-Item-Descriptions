@@ -1465,11 +1465,12 @@ local function onRender(t)
 
 						local pillColor = closest.SubType
 						local pool = game:GetItemPool()
-						local identified = pool:IsPillIdentified(pillColor)
+						local identified = pool:IsPillIdentified(pillColor) and not EID.Config["OnlyShowPillWhenUsedAtLeastOnce"]
 						if REPENTANCE and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
 						local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
+						local wasUsed = EID:WasPillUsed(pillEffectID)
 
-						if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
+						if (identified or wasUsed or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
 							local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor, closest)
 							EID:addDescriptionToPrint(descEntry)
 						else

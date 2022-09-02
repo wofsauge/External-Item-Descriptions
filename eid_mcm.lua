@@ -361,6 +361,7 @@ if MCMLoaded then
 	EID:AddBooleanSetting("General", "DisableOnAltPath", "Show Hidden Alt-Path Item", {offText = "True", onText = "False",
 		repOnly = true, infoText = "Show the description for the blind item in Downpour/Mines/etc."})
 	
+	EID:AddBooleanSetting("General", "OnlyShowPillWhenUsedAtLeastOnce", "Show pill effect after one use", {infoText = "Keeps pilleffect descriptions unidentified, until the player has used the pill at least once in the run. This ignores effects caused by PHD and False PHD"})
 	EID:AddBooleanSetting("General", "ShowUnidentifiedPillDescriptions", "Show Unidentified Pill Effects")
 	EID:AddBooleanSetting("General", "HideInBattle", "Hide in Battle", {infoText = "Hides the descriptions when in a fight"})
 

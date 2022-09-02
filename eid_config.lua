@@ -245,6 +245,10 @@ EID.UserConfig = {
 	-- REPENTANCE ONLY!!!
 	-- Default = true
 	["DisplayPillInfoOptions?"] = true,
+	-- Keeps pilleffect descriptions unidentified, until the player has used the pill at least once in the run.
+	-- This ignores effects caused by PHD and False PHD
+	-- Default = false
+	["OnlyShowPillWhenUsedAtLeastOnce"] = false,
 	-- Toggle display of description for Pills that haven't been identified yet
 	-- Default = false
 	["ShowUnidentifiedPillDescriptions"] = false,
@@ -521,6 +525,7 @@ EID.DefaultConfig = {
 	["DisplayPillInfoShop"] = true,
 	["DisplayPillInfoOptions?"] = true,
 	["DisplayObstructedPillInfo"] = false,
+	["OnlyShowPillWhenUsedAtLeastOnce"] = false,
 	["ShowUnidentifiedPillDescriptions"] = false,
 	["DisplayGlitchedItemInfo"] = debug and true or false,
 	["DisplaySacrificeInfo"] = true,

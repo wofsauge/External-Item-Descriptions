@@ -1780,3 +1780,13 @@ end
 function EID:IsGridEntity(entity)
 	return entity.Type == nil
 end
+
+-- returns true if the given pilleffect id was used at least once by the current player
+function EID:WasPillUsed(pillEffectID)
+	local playerID = EID:getPlayerID(EID.player)
+	local pillsTable = EID.PlayerItemInteractions[playerID].pills
+	if EID.player:GetPlayerType() == 38 then
+		pillsTable = EID.PlayerItemInteractions[playerID].altPills or pillsTable
+	end
+	return pillsTable[tostring(pillEffectID)] ~= nil
+end
