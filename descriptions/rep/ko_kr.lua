@@ -114,7 +114,7 @@ local repCollectibles={
 	[230] = {"230", "아바돈", "최대 체력을 모두 {{BlackHeart}}블랙하트로 바꿉니다.#↑ {{BlackHeart}}블랙하트 +2#↑ {{DamageSmall}}공격력 +1.5#↑ {{SpeedSmall}}이동속도 +0.2#{{Fear}} 15%의 확률로 적을 도망가게 하는 공격이 나갑니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 85 이상일 때 100% 확률"}, -- Abaddon
 	[232] = {"232", "스톱워치", "↑ {{SpeedSmall}}이동속도 +0.3#모든 적들을 영구적으로 둔화시킵니다.#이 아이템으로 인한 둔화는 상태이상으로 취급되지 않아 다른 둔화 아이템과 중첩됩니다."}, -- Stop Watch
 	[233] = {"233", "소행성", "↑ {{RangeSmall}}사거리 +6.5#공격이 장애물을 관통합니다.#공격이 캐릭터 주위를 돌면서 발사됩니다."}, -- Tiny Planet
-	[240] = {"240", "임상시험", "4개의 랜덤한 능력치가 증가하며 나머지 2개의 능력치가 감소합니다."}, -- Experimental Treatment
+	[240] = {"240", "임상시험", "!!! 아래의 능력치 중;#↑ 능력치 4종류 증가#↓ 능력치 2종류 감소#!!! {{EmptyHeart}}빈 최대 체력 ±1#{{Blank}} {{SpeedSmall}}이동속도 ±0.2#{{Blank}} {{TearsSmall}}연사{{ColorOrange}}(상한){{CR}} ±0.5#{{Blank}} {{DamageSmall}}최종 공격력 ±1#{{Blank}} {{RangeSmall}}사거리 ±1.5#{{Blank}} {{ShotspeedSmall}}탄속 ±0.2#{{Blank}} {{LuckSmall}}행운 ±1"}, -- Experimental Treatment
 	[241] = {"241", "지하로부터의 계약", "방 클리어 보상이 하나 더 나옵니다.#방 클리어 보상이 33%의 확률로 등장하지 않습니다.#{{Blank}} (중첩 시 보상 개수 증가, 보상 미등장 확률 감소)"}, -- Contract from Below
 	[245] = {"245", "시력 2.0", "↓ {{DamageSmall}}공격력 배율 x0.75#공격이 2발로 나갑니다."}, -- 20/20
 	[248] = {"248", "군체의식", "파란 아군 파리/거미와 파리/거미 타입의 패밀리어의 공격력이 2배 증가합니다."}, -- Hive Mind
@@ -1152,7 +1152,7 @@ EID.descriptions[languageCode].CraftingHideKey = "숨기기:"
 EID.descriptions[languageCode].CraftingPreviewKey = "미리보기:"
 EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 언락되어 있지 않을 경우 결과가 달라질 수 있습니다."
 
-EID.descriptions[languageCode].CraftingResults = "(스크롤: {{CONFIG_BoC_Toggle}} 꾹 누름 + {{ButtonY}} {{ButtonA}},#고정: {{ButtonX}}, 새로고침: {{ButtonB}},#초기화: {{ButtonRB}} 꾹 누르기)"
+EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}} 꾹 누른 상태에서#{{Blank}} {{ButtonY}} 혹은 {{ButtonA}}#목록 고정: {{ButtonX}}#목록 새로고침: {{ButtonB}}#초기화: {{ButtonRB}} 꾹 누르기)"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
 EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."
