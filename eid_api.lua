@@ -1654,7 +1654,7 @@ function EID:evaluateQueuedItems()
 	--initialize the interactions table for all players if it isn't already
 	for i = 0, game:GetNumPlayers() - 1 do
 		if not EID.PlayerItemInteractions[i] then
-			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, pickupHistory = {}}
+			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, pickupHistory = {}, altPickupHistory = {}}
 		end
 		EID.RecentlyTouchedItems[i] = EID.RecentlyTouchedItems[i] or {}
 	end
@@ -1749,8 +1749,13 @@ function EID:AddPickupToHistory(pickupType, effectID, player, useFlags)
 	local playerID = EID:getPlayerID(player)
 	if not EID.PlayerItemInteractions[playerID].pickupHistory then
 		EID.PlayerItemInteractions[playerID].pickupHistory = {}
+		EID.PlayerItemInteractions[playerID].altPickupHistory = {}
 	end
 	local historyTable = EID.PlayerItemInteractions[playerID].pickupHistory
+	-- Dead Tainted Lazarus exception
+	if player:GetPlayerType() == 38 then
+		historyTable = EID.PlayerItemInteractions[playerID].altPickupHistory or historyTable
+	end
 
 	-- pickupType = ["pill","card"], playerTypeID, effectID, hadEchoChamberWhenUsed
 	table.insert(historyTable, 1, {pickupType, player:GetPlayerType(), effectID, REPENTANCE and player:HasCollectible(700)})
@@ -1782,10 +1787,11 @@ function EID:IsGridEntity(entity)
 end
 
 -- returns true if the given pilleffect id was used at least once by the current player
-function EID:WasPillUsed(pillEffectID)
-	local playerID = EID:getPlayerID(EID.player)
+function EID:WasPillUsed(pillEffectID, player)
+	local playerID = EID:getPlayerID(player)
 	local pillsTable = EID.PlayerItemInteractions[playerID].pills
-	if EID.player:GetPlayerType() == 38 then
+	-- Dead Tainted Lazarus exception
+	if player:GetPlayerType() == 38 then
 		pillsTable = EID.PlayerItemInteractions[playerID].altPills or pillsTable
 	end
 	return pillsTable[tostring(pillEffectID)] ~= nil
