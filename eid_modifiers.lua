@@ -467,15 +467,19 @@ if REPENTANCE then
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 		if adjustedID - 1 ~= PillEffect.PILLEFFECT_VURP then return descObj end
 
-		local playerID = EID.player:GetPlayerType()
+		local playerID = EID:getPlayerID(EID.player)
 		local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
+		-- Dead Tainted Lazarus exception
+		if EID.player:GetPlayerType() == 38 then
+			pickupHistory = EID.PlayerItemInteractions[playerID].altPickupHistory or pickupHistory
+		end
 		if pickupHistory then
 
 			local lastUsedPill = nil
 			local i = 1
 			while (i <= #pickupHistory) do
 				local entry = pickupHistory[i]
-				if entry[1] == "pill" and entry[2] == playerID and entry[3] ~= PillEffect.PILLEFFECT_VURP + 1 then
+				if entry[1] == "pill" then
 					lastUsedPill = entry[3]
 					break
 				end
