@@ -1468,7 +1468,7 @@ local function onRender(t)
 						local identified = pool:IsPillIdentified(pillColor) and not EID.Config["OnlyShowPillWhenUsedAtLeastOnce"]
 						if REPENTANCE and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
 						local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
-						local wasUsed = EID:WasPillUsed(pillEffectID)
+						local wasUsed = EID:WasPillUsed(pillEffectID, player)
 
 						if (identified or wasUsed or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
 							local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor, closest)
@@ -1522,7 +1522,7 @@ local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true
 	local playerID = EID:getPlayerID(player)
 	if not EID.PlayerItemInteractions[playerID] then
-		EID.PlayerItemInteractions[playerID] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, pickupHistory = {}}
+		EID.PlayerItemInteractions[playerID] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, pickupHistory = {}, altPickupHistory = {}}
 	end
 	-- Dead Tainted Lazarus exceptions
 	local activesTable = EID.PlayerItemInteractions[playerID].actives
@@ -1577,6 +1577,7 @@ if REPENTANCE then
 end
 
 function EID:OnUsePill(pillEffectID, player, useFlags)
+	if (REPENTANCE and player:GetPill(0) % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD) then return end
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
 	local playerID = EID:getPlayerID(player)
 	-- Dead Tainted Lazarus exceptions
@@ -1590,7 +1591,7 @@ function EID:OnUsePill(pillEffectID, player, useFlags)
 		pillsTable[effectID] = 0
 	end
 	pillsTable[effectID] = pillsTable[effectID] + 1
-
+	
 	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags)
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
