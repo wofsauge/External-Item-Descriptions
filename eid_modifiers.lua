@@ -466,26 +466,32 @@ if REPENTANCE then
 	local function VurpCallback(descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 		if adjustedID - 1 ~= PillEffect.PILLEFFECT_VURP then return descObj end
-
-		local playerID = EID.player:GetPlayerType()
-		local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
-		if pickupHistory then
-
-			local lastUsedPill = nil
-			local i = 1
-			while (i <= #pickupHistory) do
-				local entry = pickupHistory[i]
-				if entry[1] == "pill" and entry[2] == playerID and entry[3] ~= PillEffect.PILLEFFECT_VURP + 1 then
-					lastUsedPill = entry[3]
-					break
-				end
-				i = i + 1
+		
+		for i = 1,#EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[i]
+			local playerID = EID:getPlayerID(player)
+			local playerType = player:GetPlayerType()
+			local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
+			-- Dead Tainted Lazarus exception
+			if playerType == 38 then
+				pickupHistory = EID.PlayerItemInteractions[playerID].altPickupHistory or pickupHistory
 			end
-
-			if lastUsedPill then
+			if pickupHistory then
+				local lastUsedPill = PillEffect.PILLEFFECT_VURP + 1
+				local i = 1
+				while (i <= #pickupHistory) do
+					local entry = pickupHistory[i]
+					if entry[1] == "pill" then
+						lastUsedPill = entry[3]
+						break
+					end
+					i = i + 1
+				end
 				local tableName = EID:getTableName(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 				local name = EID:getPillName(lastUsedPill, tableName == "horsepills")
-				EID:appendToDescription(descObj, "#{{Pill}} {{ColorSilver}}" .. name)
+				if #EID.coopAllPlayers == 1 then EID:appendToDescription(descObj, "#{{Pill}}")
+				else EID:appendToDescription(descObj, "#" .. (EID:getIcon("Player"..playerType) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerType.."}}" or ("P" .. i .. ":"))) end
+				EID:appendToDescription(descObj, " {{ColorSilver}}" .. name)
 			end
 		end
 		return descObj
@@ -530,7 +536,7 @@ if REPENTANCE then
 			if not printedDescs[pillObj.Name] then
 				-- new pill effect to print
 				printedDescs[pillObj.Name] = true
-				EID:appendToDescription(descObj, "#" .. (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}").." {{ColorObjName}}"..pillObj.Name .."{{CR}}#"..pillObj.Description)
+				EID:appendToDescription(descObj, "#" .. (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or ("P" .. i .. ":")).." {{ColorObjName}}"..pillObj.Name .."{{CR}}#"..pillObj.Description)
 			end
 		end
 		EID.pillPlayer = nil

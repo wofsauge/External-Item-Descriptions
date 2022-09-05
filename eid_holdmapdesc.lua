@@ -69,12 +69,16 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	
 	-- Echo Chamber Description
 	if REPENTANCE and player:HasCollectible(700) then
-		local playerID = player:GetPlayerType()
+		local playerID = EID:getPlayerID(player)
 		local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
+		-- Dead Tainted Lazarus exception
+		if player:GetPlayerType() == 38 then
+			pickupHistory = EID.PlayerItemInteractions[playerID].altPickupHistory or pickupHistory
+		end
 		if pickupHistory then
 			local pickupNames = ""
 			for i = 1, math.min(3, #pickupHistory) do
-				if pickupHistory[i][2] == playerID and pickupHistory[i][4] then -- Echo chamber is owned
+				if pickupHistory[i][4] then -- Echo chamber was owned before this card/pill was used
 					if pickupHistory[i][1] == "pill" then
 						local name = EID:getPillName(pickupHistory[i][3], false)
 						pickupNames = pickupNames .. "{{Pill}} " .. name .. "#"
@@ -118,7 +122,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 				elseif heldActive == 44 and EID.Config["ItemReminderShowRNGCheats"] then
 					blacklist["5.100.44"] = true
 					-- The result preview changes as soon as we activate Teleport, which looks awkward, so try to not display the result while mid-teleport. Doesn't work perfectly and only in Rep
-					if not REPENTANCE or currentPlayer:GetSprite():GetAnimation() ~= "TeleportUp" then
+					if not REPENTANCE or player:GetSprite():GetAnimation() ~= "TeleportUp" then
 						append("{{Collectible44}}", EID:getObjectName(5,100,44) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport1Prediction(getSeed(44)))
 					end
 				-- Teleport 2.0 location
@@ -128,30 +132,37 @@ function EID:getHoldMapDescription(player, checkingTwin)
 				-- D Infinity
 				elseif heldActive == 489 then
 					blacklist["5.100.489"] = true
-					addObjectDesc(5, 100, EID:CurrentDInfinity(getSeed(489), currentPlayer), "{{Collectible489}}")
+					addObjectDesc(5, 100, EID:CurrentDInfinity(getSeed(489), player), "{{Collectible489}}")
 				-- D1
 				elseif heldActive == 476 and EID.Config["ItemReminderShowRNGCheats"] then
 					blacklist["5.100.476"] = true
 					append("{{Collectible476}}", EID:getObjectName(5,100,476) .. EID:getDescriptionEntry("HoldMapHeader"), EID:D1Prediction(getSeed(476)))
 				-- Void
 				elseif heldActive == 477 then
-					blacklist["5.100.477"] = true
 					local absorbedActives = ""
+					local printNormalDesc = true
 					local absorbedItems = EID.absorbedItems[tostring(EID:getPlayerID(player))]
-					local countItems = 0
-					for _, _ in pairs(absorbedItems) do
-						countItems = countItems + 1
-					end
-					if countItems > 5 then
-						absorbedActives = "{{Blank}} "
-					end
-					for k, _ in pairs(absorbedItems) do
-						absorbedActives = absorbedActives .. "{{Collectible" .. k .. "}} "
-						if countItems <= 5 then
-							absorbedActives = absorbedActives .. " " .. EID:getObjectName(5, 100, tonumber(k)) .. "#"
+					if absorbedItems then
+						local countItems = 0
+						for _, _ in pairs(absorbedItems) do
+							countItems = countItems + 1
+						end
+						if countItems > 0 then
+							if countItems > 5 then
+								absorbedActives = "{{Blank}} "
+							end
+							for k, _ in pairs(absorbedItems) do
+								absorbedActives = absorbedActives .. "{{Collectible" .. k .. "}} "
+								if countItems <= 5 then
+									absorbedActives = absorbedActives .. EID:getObjectName(5, 100, tonumber(k)) .. "#"
+								end
+							end
+							blacklist["5.100.477"] = true
+							append("{{Collectible477}}", EID:getObjectName(5, 100, 477) .. EID:getDescriptionEntry("HoldMapHeader"), absorbedActives)
+							printNormalDesc = false
 						end
 					end
-					append("{{Collectible477}}", EID:getObjectName(5, 100, 477), absorbedActives)
+					if printNormalDesc then addObjectDesc(5, 100, heldActive) end
 				else
 					addObjectDesc(5, 100, heldActive)
 				end
@@ -211,7 +222,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 					-- Don't display Mysterious Paper's 1-frame temporary trinket granting
 					local hasPaper = player:HasTrinket(21)
 					for i = 1, TrinketType.NUM_TRINKETS - 1 do
-						local tempTrinketFound = EID.player:HasTrinket(i, true) ~= EID.player:HasTrinket(i, false)
+						local tempTrinketFound = player:HasTrinket(i, true) ~= player:HasTrinket(i, false)
 						if tempTrinketFound and (not mysteriousPaperBlacklist[i] or not hasPaper) then
 							addObjectDesc(5, 350, i, "{{Trinket75}}")
 						end
