@@ -1,6 +1,8 @@
 save1.dat
 save2.dat
 save3.dat
+disable.it
+disable.it.x
 /scripts/eid_savegames.lua
 /.vscode
 .luarc.json
