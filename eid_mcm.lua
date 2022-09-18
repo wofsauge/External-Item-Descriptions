@@ -40,10 +40,11 @@ end
 
 local function renderDummyBagOfCraftingDesc()
 	EID.bagPlayer = Isaac.GetPlayer(0)
-	EID.BoC.BagItemsOverride = {15,15,15,1,10}
+	EID.BoC.BagItemsOverride = {15,15,5,1,10}
 	EID.BoC.RoomOverride = {8,8,8,9}
-	EID.BoC.FloorOverride = {1,1,1,1,4,8,8,8,9}
-	EID.BoC.InventoryOverride = {3,5}
+	EID.BoC.FloorOverride = {1,1,1,3,4,8,8,8,9}
+	EID.BoC.InventoryOverride = {21,22}
+	EID.RefreshBagTextbox = true
 	local craftingSuccess = EID:handleBagOfCraftingRendering(true)
 	if craftingSuccess then
 		EID:printDescription(EID.descriptionsToPrint[#EID.descriptionsToPrint])
@@ -88,6 +89,7 @@ local function clearRenderDummyDesc()
 	EID.BoC.RoomOverride = nil
 	EID.BoC.FloorOverride = nil
 	EID.BoC.InventoryOverride = nil
+	EID.RefreshBagTextbox = true
 end
 
 function EID:renderMCMDummyDescription()
@@ -606,12 +608,16 @@ if MCMLoaded then
 			
 		-- Bag of Crafting Hide in Battle
 		EID:AddBooleanSetting("Crafting", "BagOfCraftingHideInBattle", "Hide in Battle", {onText = "Yes", offText = "No",
-			infoText = "Hides the recipe list when in a fight"})
+			infoText = "Hides the Bag of Crafting info when in a fight"})
+		-- Bag of Crafting Show Controls
+		EID:AddBooleanSetting("Crafting", "BagOfCraftingShowControls", "Show Controls", {onText = "Yes", offText = "No",
+			infoText = "Show the text for the Hide/Preview and Recipe List hotkeys"})
+			
 		-- Bag of Crafting 8 icons toggle
 		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayIcons", "Show Recipes/Best Bag as", {onText = "8 Icons", offText = "Groups",
 			infoText = "Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients"})
 		-- Modded Recipes toggle
-		EID:AddBooleanSetting("Crafting", "BagOfCraftingModdedRecipes", "Load Modded Item Recipes", {
+		EID:AddBooleanSetting("Crafting", "BagOfCraftingModdedRecipes", "Load Modded Item Recipes (WIP)", {
 			infoText = {"Enable or disable basic modded item support", "If you have a lot of modded items, it will slow down game launch"}})
 			
 		MCM.AddSpace("EID", "Crafting")
