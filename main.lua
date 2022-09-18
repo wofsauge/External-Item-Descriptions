@@ -832,19 +832,20 @@ function EID:renderIndicator(entity, playerNum)
 			entityPos = entityPos + Vector(0,-5)
 		end
 	end
-	local sprite = entity:GetSprite()
+	local sprite = nil
+	if not EID:IsGridEntity(entity) then sprite = entity:GetSprite() end
 	if REPENTANCE then
 		repDiv = 255
 		if EID.isMirrorRoom then
 			local screenCenter = EID:getScreenSize()/2
 			entityPos.X = entityPos.X - (entityPos-screenCenter).X * 2
 			arrowPos.X = arrowPos.X - (arrowPos-screenCenter).X * 2
-			sprite.FlipX = true
+			if sprite then sprite.FlipX = true end
 		end
 	end
 	
 	-- Don't apply sprite.Color changes to Effects (Dice Floors, Card Reading Portals), use Arrow instead
-	if EID.Config["Indicator"] == "arrow" or entity.Type == 1000 then
+	if EID.Config["Indicator"] == "arrow" or entity.Type == 1000 or EID:IsGridEntity(entity) then
 		ArrowSprite:RenderLayer(playerNum-1, arrowPos, nullVector, nullVector)
 	else
 		local colorMult = {1,1,1}
@@ -875,7 +876,7 @@ function EID:renderIndicator(entity, playerNum)
 		end
 	end
 	if EID.isMirrorRoom then
-		sprite.FlipX = false
+		if sprite then sprite.FlipX = false end
 	end
 end
 
