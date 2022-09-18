@@ -350,6 +350,9 @@ EID.UserConfig = {
 	-- Hide the recipe list when in battle
 	-- Default = true
 	["BagOfCraftingHideInBattle"] = true,
+	-- Show the text for the Hide/Preview and Recipe List hotkeys
+	-- Default = true
+	["BagOfCraftingShowControls"] = true,
 	-- Changes the amount of results shown in the Bag of Crafting description
 	-- Higher numbers can cause more lag!
 	-- Default = 7
@@ -541,6 +544,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingDisplayNames"] = false,
 	["BagOfCraftingDisplayIcons"] = false,
 	["BagOfCraftingHideInBattle"] = true,
+	["BagOfCraftingShowControls"] = true,
 	["BagOfCraftingDisplayMode"] = "Recipe List",
 	["BagOfCraftingModdedRecipes"] = true,
 	["CraftingHideKey"] = Keyboard.KEY_F3,
