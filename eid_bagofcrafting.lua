@@ -733,6 +733,7 @@ local ControllerToString = { [0] = "{{ButtonDLeft}}", "{{ButtonDRight}}", "{{But
 "{{ButtonRB}}", "{{ButtonRT}}", "{{ButtonRStick}}", "{{ButtonSelect}}", "{{ButtonMenu}}" }
 
 local function getHotkeyString()
+	if (not EID.Config["BagOfCraftingShowControls"]) then return "" end
 	local hotkeyString = ""
 	local hideDesc = EID:getDescriptionEntry("CraftingHideKey")
 	local previewDesc = EID:getDescriptionEntry("CraftingPreviewKey")
@@ -1162,8 +1163,10 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	
 	prevDesc = prevDesc .. getHotkeyString()
 	prevDesc = prevDesc .. getFloorItemsString(true, roomItems)
-	local resultDesc = EID:getDescriptionEntry("CraftingResults")
-	prevDesc = prevDesc .. resultDesc
+	if (EID.Config["BagOfCraftingShowControls"]) then
+		local resultDesc = EID:getDescriptionEntry("CraftingResults")
+		prevDesc = prevDesc .. resultDesc
+	end
 	
 	local prevItem = 0
 	
