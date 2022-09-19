@@ -101,7 +101,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	end
 
 	-- Zodiac
-	if REPENTANCE and player:HasCollectible(CollectibleType.COLLECTIBLE_ZODIAC) then
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_ZODIAC) then
 		local zodiacItem = player:GetZodiacEffect()
 		if zodiacItem > 0 then
 			local descObj = EID:getDescriptionObj(5,100,CollectibleType.COLLECTIBLE_ZODIAC)
