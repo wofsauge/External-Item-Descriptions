@@ -110,6 +110,18 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			blacklist["5.100.392"] = true
 		end
 	end
+	
+	-- Bag of Crafting
+	if REPENTANCE and player:HasCollectible(710) then
+		local floorQuery = EID.BoC.FloorOverride or EID.BoC.FloorQuery
+		local inventoryQuery= EID.BoC.InventoryOverride or EID.BoC.InventoryQuery
+		local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
+		local total = #floorQuery + #inventoryQuery+#bagItems
+		local text = total.." of 8 items available"
+		if total < 8 then text = text .. "#{{Warning}} Needs at least 8 to show crafting recipes!" end
+		blacklist["5.100.710"] = true
+		append("{{Collectible710}}", EID:getObjectName(5,100,710), text)
+	end
 
 	-- Recently Acquired Item Descriptions
 	if EID.Config["ItemReminderShowRecentItem"] > 0 then
