@@ -100,6 +100,17 @@ function EID:getHoldMapDescription(player, checkingTwin)
 		end
 	end
 
+	-- Zodiac
+	if REPENTANCE and player:HasCollectible(CollectibleType.COLLECTIBLE_ZODIAC) then
+		local zodiacItem = player:GetZodiacEffect()
+		if zodiacItem > 0 then
+			local descObj = EID:getDescriptionObj(5,100,CollectibleType.COLLECTIBLE_ZODIAC)
+			append("{{Collectible392}}", EID:getObjectName(5, 100, 392),
+			descObj.Description.."#{{Collectible" .. zodiacItem .. "}} {{ColorYellow}}" .. EID:getObjectName(5, 100, zodiacItem))
+			blacklist["5.100.392"] = true
+		end
+	end
+
 	-- Recently Acquired Item Descriptions
 	if EID.Config["ItemReminderShowRecentItem"] > 0 then
 		local printedItems = 0
