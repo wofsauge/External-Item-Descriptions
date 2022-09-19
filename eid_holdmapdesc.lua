@@ -1,6 +1,4 @@
 local game = Game()
-local level
-local currentRoom
 local blacklist
 local holdMapDesc
 local currentPlayer
@@ -47,8 +45,6 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	blacklist = { ["5.100.714"] = true, ["5.100.715"] = true, }
 	holdMapDesc = ""
 
-	level = game:GetLevel()
-	currentRoom = level:GetCurrentRoom()
 	currentPlayer = player
 	
 	-- TODO:
@@ -91,6 +87,16 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			if pickupNames ~= "" then
 				append("{{Collectible700}}", EID:getObjectName(5, 100, 700), pickupNames)
 			end
+		end
+	end
+
+	-- Modeling Clay
+	if REPENTANCE and (player:HasTrinket(166) or player:GetEffects():HasTrinketEffect(166)) then
+		local modelingClayItem = player:GetModelingClayEffect()
+		if modelingClayItem > 0 then
+			append("{{Trinket166}}", EID:getObjectName(5, 350, 166),
+				"{{Collectible" .. modelingClayItem .. "}} " .. EID:getObjectName(5, 100, modelingClayItem))
+			blacklist["5.350.166"] = true
 		end
 	end
 
