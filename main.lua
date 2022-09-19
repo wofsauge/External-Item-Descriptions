@@ -1522,9 +1522,7 @@ EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true
 	local playerID = EID:getPlayerID(player)
-	if not EID.PlayerItemInteractions[playerID] then
-		EID.PlayerItemInteractions[playerID] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, pickupHistory = {}, altPickupHistory = {}}
-	end
+	EID:InitItemInteractionIfAbsent(playerID)
 	-- Dead Tainted Lazarus exceptions
 	local activesTable = EID.PlayerItemInteractions[playerID].actives
 	if player:GetPlayerType() == 38 then

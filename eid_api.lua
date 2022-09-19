@@ -1674,14 +1674,8 @@ EID.PlayerItemInteractions = {}
 EID.RecentlyTouchedItems = {}
 local hadQueuedItem = {}
 function EID:evaluateQueuedItems()
-	--initialize the interactions table for all players if it isn't already
 	for i = 0, game:GetNumPlayers() - 1 do
-		if not EID.PlayerItemInteractions[i] then
-			EID.PlayerItemInteractions[i] = {LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {}, pickupHistory = {}, altPickupHistory = {}}
-		end
-		EID.RecentlyTouchedItems[i] = EID.RecentlyTouchedItems[i] or {}
-	end
-	for i = 0, game:GetNumPlayers() - 1 do
+		EID:InitItemInteractionIfAbsent(i)
 		local player = Isaac.GetPlayer(i)
 		if player.QueuedItem then
 			-- Refresh our descriptions upon a queued passive item being added to a player
@@ -1703,7 +1697,6 @@ function EID:evaluateQueuedItems()
 					-- A new active item was touched; initiate its touch count to 0 for all players
 					-- (Fixes co-op bugs, compared to only initiating it for the toucher)
 					for j = 0, game:GetNumPlayers() - 1 do
-						local player = Isaac.GetPlayer(j)
 						EID.PlayerItemInteractions[j].actives[itemID] = EID.PlayerItemInteractions[j].actives[itemID] or 0
 						EID.PlayerItemInteractions[j].altActives[itemID] = EID.PlayerItemInteractions[j].altActives[itemID] or 0
 					end
@@ -1722,6 +1715,15 @@ function EID:evaluateQueuedItems()
 			end
 		end 
 	end
+end
+
+-- if the player ItemInteraction table doesnt exist, create it with its init values
+function EID:InitItemInteractionIfAbsent(playerID)
+	if not EID.PlayerItemInteractions[playerID] then
+		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {},
+			pickupHistory = {}, altPickupHistory = {} }
+	end
+	EID.RecentlyTouchedItems[playerID] = EID.RecentlyTouchedItems[playerID] or {}
 end
 
 
@@ -1770,10 +1772,8 @@ end
 function EID:AddPickupToHistory(pickupType, effectID, player, useFlags)
 	if REPENTANCE and useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC then return end -- dont add mimic pills to history
 	local playerID = EID:getPlayerID(player)
-	if not EID.PlayerItemInteractions[playerID].pickupHistory then
-		EID.PlayerItemInteractions[playerID].pickupHistory = {}
-		EID.PlayerItemInteractions[playerID].altPickupHistory = {}
-	end
+	EID:InitItemInteractionIfAbsent(playerID)
+
 	local historyTable = EID.PlayerItemInteractions[playerID].pickupHistory
 	-- Dead Tainted Lazarus exception
 	if player:GetPlayerType() == 38 then
