@@ -62,6 +62,20 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			append("{{PoopSpell" .. nextPoop .. "}}", poopInfo[nextPoop][1], poopInfo[nextPoop][2])
 		end
 	end
+
+	-- Recently Acquired Item Descriptions
+	if EID.Config["ItemReminderShowRecentItem"] > 0 then
+		local printedItems = 0
+		local playerNum = EID:getPlayerID(player)
+		if EID.RecentlyTouchedItems[playerNum] then
+			for i = #EID.RecentlyTouchedItems[playerNum], 1, -1 do
+				if printedItems >= EID.Config["ItemReminderShowRecentItem"] then break end
+				printedItems = printedItems + 1
+				local recentID = EID.RecentlyTouchedItems[playerNum][i] % 4294967296
+				addObjectDesc(5, 100, recentID)
+			end
+		end
+	end
 	
 	-- Echo Chamber Description
 	if REPENTANCE and player:HasCollectible(700) then
@@ -89,27 +103,6 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			end
 		end
 	end
-
-	-- Modeling Clay
-	if REPENTANCE and (player:HasTrinket(166) or player:GetEffects():HasTrinketEffect(166)) then
-		local modelingClayItem = player:GetModelingClayEffect()
-		if modelingClayItem > 0 then
-			append("{{Trinket166}}", EID:getObjectName(5, 350, 166),
-				"{{Collectible" .. modelingClayItem .. "}} " .. EID:getObjectName(5, 100, modelingClayItem))
-			blacklist["5.350.166"] = true
-		end
-	end
-
-	-- Zodiac
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_ZODIAC) then
-		local zodiacItem = player:GetZodiacEffect()
-		if zodiacItem > 0 then
-			local descObj = EID:getDescriptionObj(5,100,CollectibleType.COLLECTIBLE_ZODIAC)
-			append("{{Collectible392}}", EID:getObjectName(5, 100, 392),
-			descObj.Description.."#{{Collectible" .. zodiacItem .. "}} {{ColorYellow}}" .. EID:getObjectName(5, 100, zodiacItem))
-			blacklist["5.100.392"] = true
-		end
-	end
 	
 	-- Bag of Crafting
 	if REPENTANCE and player:HasCollectible(710) then
@@ -121,20 +114,6 @@ function EID:getHoldMapDescription(player, checkingTwin)
 		if total < 8 then text = text .. "#{{Warning}} Needs at least 8 to show crafting recipes!" end
 		blacklist["5.100.710"] = true
 		append("{{Collectible710}}", EID:getObjectName(5,100,710), text)
-	end
-
-	-- Recently Acquired Item Descriptions
-	if EID.Config["ItemReminderShowRecentItem"] > 0 then
-		local printedItems = 0
-		local playerNum = EID:getPlayerID(player)
-		if EID.RecentlyTouchedItems[playerNum] then
-			for i = #EID.RecentlyTouchedItems[playerNum], 1, -1 do
-				if printedItems >= EID.Config["ItemReminderShowRecentItem"] then break end
-				printedItems = printedItems + 1
-				local recentID = EID.RecentlyTouchedItems[playerNum][i] % 4294967296
-				addObjectDesc(5, 100, recentID)
-			end
-		end
 	end
 	
 	-- Active Item Descriptions
@@ -256,15 +235,40 @@ function EID:getHoldMapDescription(player, checkingTwin)
 							addObjectDesc(5, 350, i, "{{Trinket75}}")
 						end
 					end
+				-- Modeling Clay
+				elseif heldTrinket == 166 then
+					local modelingClayItem = player:GetModelingClayEffect()
+					if modelingClayItem > 0 then
+						addObjectDesc(5, 100, modelingClayItem, "{{Trinket166}}")
+						blacklist["5.350.166"] = true
+					else
+						addObjectDesc(5, 350, heldTrinket)
+					end
 				else
 					addObjectDesc(5, 350, heldTrinket)
 				end
 				
 			end
 		end
+		-- Gulped/unslotted Modeling Clay
+		-- (Hidden information, because Modeling Clay does not visually show its item when gulped)
+		if REPENTANCE and EID.Config["ItemReminderShowHiddenInfo"] and not blacklist["5.350.166"] and player:GetModelingClayEffect() > 0 then
+			local modelingClayItem = player:GetModelingClayEffect()
+			if modelingClayItem > 0 then
+				addObjectDesc(5, 100, modelingClayItem, "{{Trinket166}}")
+				blacklist["5.350.166"] = true
+			end
+		end
 	end
 	
-	--
+	-- Zodiac's effect for the current floor
+	if EID.Config["ItemReminderShowHiddenInfo"] and player:HasCollectible(CollectibleType.COLLECTIBLE_ZODIAC) then
+		local zodiacItem = player:GetZodiacEffect()
+		if zodiacItem > 0 then
+			addObjectDesc(5, 100, zodiacItem, "{{Collectible392}}")
+			blacklist["5.100.392"] = true
+		end
+	end
 	
 	-- Finally, check the twin player of this controller
 	-- If both twins have a desc, show their player icon / name to separate the two descs
