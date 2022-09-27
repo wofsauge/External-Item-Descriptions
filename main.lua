@@ -1140,10 +1140,10 @@ local function checkPosModifiers()
 			EID:removeTextPosModifier("J&E HUD")
 		end
 		-- Magdalene Birthright, Keeper & Tainted Keeper third/fourth row of hearts adjustment
-		if EID.player:GetEffectiveMaxHearts() + EID.player:GetSoulHearts() >= 37 then
+		if EID.player:GetEffectiveMaxHearts() + EID.player:GetSoulHearts() + (EID.player:GetBrokenHearts() * 2) >= 37 then
 			EID:removeTextPosModifier("18 Heart HUD")
 			EID:addTextPosModifier("24 Heart HUD", Vector(0,22))
-		elseif EID.player:GetEffectiveMaxHearts() + EID.player:GetSoulHearts() >= 25 then
+		elseif EID.player:GetEffectiveMaxHearts() + EID.player:GetSoulHearts() + (EID.player:GetBrokenHearts() * 2) >= 25 then
 			EID:removeTextPosModifier("24 Heart HUD")
 			EID:addTextPosModifier("18 Heart HUD", Vector(0,10))
 		else
