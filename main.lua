@@ -18,6 +18,7 @@ EID.coopMainPlayers = {} -- The primary Player Entity for each controller being 
 EID.coopAllPlayers = {} -- Every Player Entity (includes Esau, T.Forgotten)
 EID.controllerIndexes = {} -- A table to map each controller index to their player number for coloring indicators
 EID.isMultiplayer = false -- Used to color P1's highlight/outline indicators (single player just uses white)
+EID.BoC = {}
 
 -- general variables
 EID.PositionModifiers = {}
@@ -1602,149 +1603,142 @@ function EID:OnUseCard(cardID, player, useFlags)
 end
 EID:AddCallback(ModCallbacks.MC_USE_CARD, EID.OnUseCard)
 
--- only save and load configs when using MCM. Otherwise Config file changes arent valid
-if EID.MCMLoaded or REPENTANCE then
-	local json = require("json")
-	local configIgnoreList = {
-		["BagContent"] = true,
-		["BagFloorContent"] = true,
-		["CraneItemType"] = true,
-		["FlipItemPositions"] = true,
-		["AbsorbedItems"] = true,
-		["CollectedItems"] = true,
-		["PlayerItemInteractions"] = true,
-		["UsedPillColors"] = true,
-	}
-	--------------------------------
-	--------Handle Savadata---------
-	--------------------------------
-	function OnGameStart(_,isSave)
-		--Loading Moddata--
+local json = require("json")
+local configIgnoreList = {
+	["BagContent"] = true,
+	["BagFloorContent"] = true,
+	["CraneItemType"] = true,
+	["FlipItemPositions"] = true,
+	["AbsorbedItems"] = true,
+	["CollectedItems"] = true,
+	["PlayerItemInteractions"] = true,
+	["UsedPillColors"] = true,
+}
+--------------------------------
+--------Handle Savadata---------
+--------------------------------
+function OnGameStart(_,isSave)
+	--Loading Moddata--
 
-		if EID:HasData() then
-			local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
-			
-			-- collection progress
-			EID.CollectedItems = savedEIDConfig["CollectedItems"] or {}
-			if EID.SaveGame and EID.Config["SaveGameNumber"] > 0 then
-				for _, id in ipairs(EID.CollectedItems) do
-					EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[id] = nil
-				end
-			end
-			EID.PlayerItemInteractions = {}
-			if isSave then
-				-- JSON saves integer table keys as strings. we need to transform them back...
-				for playerID, data in pairs(savedEIDConfig["PlayerItemInteractions"] or {}) do
-					local convertedData = {}
-					for key, value in pairs(data) do
-						convertedData[tonumber(key) or key] = value
-					end
-					EID.PlayerItemInteractions[tonumber(playerID)] = convertedData
-				end
-			else
-				-- check for the players' starting active items
-				CheckAllActiveItemProgress()
-			end
-			EID.UsedPillColors = {}
-			if isSave then
-				EID.UsedPillColors = savedEIDConfig["UsedPillColors"] or {}
-			end
-
-			if REPENTANCE then
-				EID.BoC.BagItems = {}
-				EID.CraneItemType = {}
-				EID.flipItemPositions = {}
-				EID.absorbedItems = {}
-				
-				if isSave then
-					EID.BoC.BagItems = savedEIDConfig["BagContent"] or {}
-					EID.BoC.RoomQueries = savedEIDConfig["BagFloorContent"] or {}
-					EID.CraneItemType = savedEIDConfig["CraneItemType"] or {}
-					EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
-
-					-- turn list back into dict because json cant save dict indices.
-					local flipItemTable = {}
-					for _, v in ipairs(savedEIDConfig["FlipItemPositions"]) do
-						local roomContent = {}
-						for _, v1 in ipairs(v[2]) do
-							roomContent[v1[1]] = v1[2]
-						end
-						flipItemTable[v[1]] = roomContent
-					end
-
-					EID.flipItemPositions = flipItemTable
-					for k, _ in pairs(configIgnoreList) do
-						savedEIDConfig[k] = nil
-					end
-					EID:AssignFlipItems()
-				end
-			end
-			
-			-- Only copy Saved config entries that exist in the save
-			if savedEIDConfig.Version == EID.Config.Version then
-				local isDefaultConfig = true
-				for key, value in pairs(EID.Config) do
-					if type(value) ~= type(EID.DefaultConfig[key]) and not configIgnoreList[key] then
-						print("EID Warning! : Config value '"..key.."' has wrong data-type. Resetting it to default...")
-						EID.Config[key] = EID.DefaultConfig[key]
-					end
-					if EID.DefaultConfig[key] ~= value then
-						isDefaultConfig = false
-					end
-				end
-				if isDefaultConfig or EID.MCMLoaded then
-					for key, value in pairs(EID.Config) do
-						if savedEIDConfig[key] ~= nil and type(value) == type(savedEIDConfig[key]) then
-							EID.Config[key] = savedEIDConfig[key]
-						end
-					end
-				end
-				-- DisableAchievementCheck has been renamed, convert the setting to the new one (this can be removed in a few updates)
-				if savedEIDConfig["DisableAchievementCheck"] then
-					EID.Config["DisableStartOfRunWarnings"] = savedEIDConfig["DisableAchievementCheck"]
-				end
-				
-				EID.isHidden = EID.Config["InitiallyHidden"]
-				EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
-				EID.Scale = EID.Config["Size"]
-				
-				EID:fixDefinedFont()
-				EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
+	if EID:HasData() then
+		local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
+		
+		-- collection progress
+		EID.CollectedItems = savedEIDConfig["CollectedItems"] or {}
+		if EID.SaveGame and EID.Config["SaveGameNumber"] > 0 then
+			for _, id in ipairs(EID.CollectedItems) do
+				EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[id] = nil
 			end
 		end
-	end
-	EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStart)
+		EID.PlayerItemInteractions = {}
+		if isSave then
+			-- JSON saves integer table keys as strings. we need to transform them back...
+			for playerID, data in pairs(savedEIDConfig["PlayerItemInteractions"] or {}) do
+				local convertedData = {}
+				for key, value in pairs(data) do
+					convertedData[tonumber(key) or key] = value
+				end
+				EID.PlayerItemInteractions[tonumber(playerID)] = convertedData
+			end
+		else
+			-- check for the players' starting active items
+			CheckAllActiveItemProgress()
+		end
+		EID.UsedPillColors = {}
+		if isSave then
+			EID.UsedPillColors = savedEIDConfig["UsedPillColors"] or {}
+		end
 
-	--Saving Moddata--
-	function SaveGame()
 		if REPENTANCE then
-			EID.Config["BagContent"] = EID.BoC.BagItems or {}
-			EID.Config["BagFloorContent"] = EID.BoC.RoomQueries or {}
-			EID.Config["CraneItemType"] = EID.CraneItemType or {}
-			EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
+			EID.BoC.BagItems = {}
+			EID.CraneItemType = {}
+			EID.flipItemPositions = {}
+			EID.absorbedItems = {}
+			
+			if isSave then
+				EID.BoC.BagItems = savedEIDConfig["BagContent"] or {}
+				EID.BoC.RoomQueries = savedEIDConfig["BagFloorContent"] or {}
+				EID.CraneItemType = savedEIDConfig["CraneItemType"] or {}
+				EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
 
-			-- turn dictionary into list because json cant save dict indices.
-			local flipItemTable = {}
-			for k, v in pairs(EID.flipItemPositions) do
-				local roomContent = {}
-				for k1, v1 in pairs(v) do
-					table.insert(roomContent, {k1,v1})
+				-- turn list back into dict because json cant save dict indices.
+				local flipItemTable = {}
+				for _, v in ipairs(savedEIDConfig["FlipItemPositions"]) do
+					local roomContent = {}
+					for _, v1 in ipairs(v[2]) do
+						roomContent[v1[1]] = v1[2]
+					end
+					flipItemTable[v[1]] = roomContent
 				end
-				table.insert(flipItemTable, {k,roomContent})
-			end
-			EID.Config["FlipItemPositions"] = flipItemTable or {}
-		end
-		EID.Config["CollectedItems"] = EID.CollectedItems
-		EID.Config["PlayerItemInteractions"] = EID.PlayerItemInteractions or {}
-		EID.Config["UsedPillColors"] = EID.UsedPillColors
 
-		EID.SaveData(EID, json.encode(EID.Config))
-		EID:hidePermanentText()
-		EID.itemUnlockStates[CollectibleType.COLLECTIBLE_CUBE_OF_MEAT] = nil
-		EID.itemUnlockStates[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS] = nil
+				EID.flipItemPositions = flipItemTable
+				for k, _ in pairs(configIgnoreList) do
+					savedEIDConfig[k] = nil
+				end
+				EID:AssignFlipItems()
+			end
+		end
+		
+		-- Check if eid_config.lua is in its default state (like if an EID update occurred)
+		-- If it is, or MCM is loaded, load the config from savedata instead of eid_config.lua
+		if savedEIDConfig.Version == EID.Config.Version then
+			local isDefaultConfig = true
+			for key, value in pairs(EID.Config) do
+				if type(value) ~= type(EID.DefaultConfig[key]) and not configIgnoreList[key] then
+					print("EID Warning! : Config value '"..key.."' has wrong data-type. Resetting it to default...")
+					EID.Config[key] = EID.DefaultConfig[key]
+				end
+				if EID.DefaultConfig[key] ~= value then
+					isDefaultConfig = false
+				end
+			end
+			if isDefaultConfig or EID.MCMLoaded then
+				for key, value in pairs(EID.Config) do
+					if savedEIDConfig[key] ~= nil and type(value) == type(savedEIDConfig[key]) then
+						EID.Config[key] = savedEIDConfig[key]
+					end
+				end
+			end
+		end
+		EID.isHidden = EID.Config["InitiallyHidden"]
+		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
+		EID.Scale = EID.Config["Size"]
+		
+		EID:fixDefinedFont()
+		EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 	end
-	EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
 end
+EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStart)
+
+--Saving Moddata--
+function SaveGame()
+	if REPENTANCE then
+		EID.Config["BagContent"] = EID.BoC.BagItems or {}
+		EID.Config["BagFloorContent"] = EID.BoC.RoomQueries or {}
+		EID.Config["CraneItemType"] = EID.CraneItemType or {}
+		EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
+
+		-- turn dictionary into list because json cant save dict indices.
+		local flipItemTable = {}
+		for k, v in pairs(EID.flipItemPositions) do
+			local roomContent = {}
+			for k1, v1 in pairs(v) do
+				table.insert(roomContent, {k1,v1})
+			end
+			table.insert(flipItemTable, {k,roomContent})
+		end
+		EID.Config["FlipItemPositions"] = flipItemTable or {}
+	end
+	EID.Config["CollectedItems"] = EID.CollectedItems
+	EID.Config["PlayerItemInteractions"] = EID.PlayerItemInteractions or {}
+	EID.Config["UsedPillColors"] = EID.UsedPillColors
+
+	EID.SaveData(EID, json.encode(EID.Config))
+	EID:hidePermanentText()
+	EID.itemUnlockStates[CollectibleType.COLLECTIBLE_CUBE_OF_MEAT] = nil
+	EID.itemUnlockStates[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS] = nil
+end
+EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
 
 if EID.enableDebug then
 	require("eid_debugging")
