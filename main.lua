@@ -37,7 +37,6 @@ EID.CollectedItems = {}
 EID.IgnoredEntities = {}
 EID.CurrentRoomGridEntities = {}
 EID.UnidentifyablePillEffects = {} -- List of pilleffects that are always unidentifyable
-EID.UsedPillColors = {} -- Colors of pills that have been eaten during this game
 local pathsChecked = {}
 local altPathItemChecked = {}
 local alwaysUseLocalMode = false -- set to true after drawing a non-local mode description this frame
@@ -1475,7 +1474,7 @@ local function onRender(t)
 						local identified = pool:IsPillIdentified(pillColor) and not EID.Config["OnlyShowPillWhenUsedAtLeastOnce"]
 						if REPENTANCE and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
 						local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
-						local wasUsed = EID:WasPillUsed(pillColor)
+						local wasUsed = EID:WasPillUsed(pillEffectID, player)
 
 						if (identified or wasUsed or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
 							local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor, closest)
@@ -1582,17 +1581,22 @@ if REPENTANCE then
 end
 
 function EID:OnUsePill(pillEffectID, player, useFlags)
+	if (REPENTANCE and player:GetPill(0) % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD) then return end
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
-	-- get the pill color by checking the player's pocket (not accurate for Temperance? and such, but useFlags will help us ignore those)
-	local pillColor = player:GetPill(0)
-	if pillColor == 0 then return end -- ignore if no pill found in pocket
-	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags, pillColor) -- Echo Chamber tracking
+	local playerID = EID:getPlayerID(player)
+	-- Dead Tainted Lazarus exceptions
+	local pillsTable = EID.PlayerItemInteractions[playerID].pills
+
+	if player:GetPlayerType() == 38 then
+		pillsTable = EID.PlayerItemInteractions[playerID].altPills or pillsTable
+	end
+	local effectID = tostring(pillEffectID+1)
+	if not pillsTable[effectID] then
+		pillsTable[effectID] = 0
+	end
+	pillsTable[effectID] = pillsTable[effectID] + 1
 	
-	-- for tracking used pills, ignore gold pills and noannouncer flag pills 
-	-- (not using a bitmask, because Placebo is mimic+noannouncer, and we want to count those)
-	if REPENTANCE and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags == UseFlag.USE_NOANNOUNCER) then return end
-	EID.UsedPillColors[tostring(pillColor)] = true
-	
+	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags)
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
 
@@ -1613,7 +1617,6 @@ if EID.MCMLoaded or REPENTANCE then
 		["AbsorbedItems"] = true,
 		["CollectedItems"] = true,
 		["PlayerItemInteractions"] = true,
-		["UsedPillColors"] = true,
 	}
 	--------------------------------
 	--------Handle Savadata---------
@@ -1644,10 +1647,6 @@ if EID.MCMLoaded or REPENTANCE then
 			else
 				-- check for the players' starting active items
 				CheckAllActiveItemProgress()
-			end
-			EID.UsedPillColors = {}
-			if isSave then
-				EID.UsedPillColors = savedEIDConfig["UsedPillColors"] or {}
 			end
 
 			if REPENTANCE then
@@ -1736,7 +1735,6 @@ if EID.MCMLoaded or REPENTANCE then
 		end
 		EID.Config["CollectedItems"] = EID.CollectedItems
 		EID.Config["PlayerItemInteractions"] = EID.PlayerItemInteractions or {}
-		EID.Config["UsedPillColors"] = EID.UsedPillColors
 
 		EID.SaveData(EID, json.encode(EID.Config))
 		EID:hidePermanentText()
