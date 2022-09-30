@@ -717,12 +717,12 @@ function EID:createItemIconObject(str)
 	end
 	local cardID,numReplace3 = string.gsub(str, "Card", "")
 	if numReplace3 > 0 and cardID ~= "" and tonumber(cardID) ~= nil then
-		if tonumber(cardID) > maxCardID then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
+		if tonumber(cardID) > maxCardID then return EID.InlineIcons[str] or EID.InlineIcons["Card"] end
 		return {"Cards", tonumber(cardID)-1, 8, 8, 0, 1, EID.CardPillSprite}
 	end
 	local pillID,numReplace4 = string.gsub(str, "Pill", "")
 	if numReplace4 > 0 and pillID ~= "" and tonumber(pillID) ~= nil then
-		if tonumber(pillID) > maxPillID then return EID.InlineIcons[str] or EID.InlineIcons["Blank"] end
+		if tonumber(pillID) > maxPillID then return EID.InlineIcons[str] or EID.InlineIcons["Pill"] end
 		return {"Pills", tonumber(pillID)-1, 9, 8, 0, 1, EID.CardPillSprite}
 	end
 	if item == nil then
@@ -1769,8 +1769,9 @@ function EID:SetPillEffectUnidentifyable(pillEffectID, isUnidentifyable)
 end
 
 -- Add pickup usage to history of pickups used by the player
-function EID:AddPickupToHistory(pickupType, effectID, player, useFlags)
-	if REPENTANCE and useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC then return end -- dont add mimic pills to history
+function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColorID)
+	 -- don't add mimiced or noannouncer cards/pills to history
+	if REPENTANCE and (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC or useFlags & UseFlag.USE_NOANNOUNCER == UseFlag.USE_NOANNOUNCER) then return end
 	local playerID = EID:getPlayerID(player)
 	EID:InitItemInteractionIfAbsent(playerID)
 
@@ -1780,8 +1781,8 @@ function EID:AddPickupToHistory(pickupType, effectID, player, useFlags)
 		historyTable = EID.PlayerItemInteractions[playerID].altPickupHistory or historyTable
 	end
 
-	-- pickupType = ["pill","card"], playerTypeID, effectID, hadEchoChamberWhenUsed
-	table.insert(historyTable, 1, {pickupType, player:GetPlayerType(), effectID, REPENTANCE and player:HasCollectible(700)})
+	-- pickupType = ["pill","card"], pillColorID, effectID, hadEchoChamberWhenUsed
+	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, REPENTANCE and player:HasCollectible(700)})
 end
 
 -- Render a sprite of an entity
@@ -1809,13 +1810,7 @@ function EID:IsGridEntity(entity)
 	return entity.Type == nil
 end
 
--- returns true if the given pilleffect id was used at least once by the current player
-function EID:WasPillUsed(pillEffectID, player)
-	local playerID = EID:getPlayerID(player)
-	local pillsTable = EID.PlayerItemInteractions[playerID].pills
-	-- Dead Tainted Lazarus exception
-	if player:GetPlayerType() == 38 then
-		pillsTable = EID.PlayerItemInteractions[playerID].altPills or pillsTable
-	end
-	return pillsTable[tostring(pillEffectID)] ~= nil
+-- returns true if the given pill color was used at least once in this game
+function EID:WasPillUsed(pillColor)
+	return EID.UsedPillColors[tostring(pillColor)] ~= nil
 end
