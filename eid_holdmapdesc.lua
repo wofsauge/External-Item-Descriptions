@@ -91,7 +91,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 				if pickupHistory[i][4] then -- Echo chamber was owned before this card/pill was used
 					if pickupHistory[i][1] == "pill" then
 						local name = EID:getPillName(pickupHistory[i][3], false)
-						pickupNames = pickupNames .. "{{Pill}} " .. name .. "#"
+						pickupNames = pickupNames .. "{{Pill" .. pickupHistory[i][2] .. "}} " .. name .. "#"
 					else
 						local name = EID:getObjectName(5, 300, pickupHistory[i][3])
 						pickupNames = pickupNames .. "{{Card" .. pickupHistory[i][3] .. "}} " .. name .. "#"

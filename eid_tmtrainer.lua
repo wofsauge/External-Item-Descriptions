@@ -173,3 +173,10 @@ local function GameEndTMTRAINER()
 	Isaac.DebugString("[EID] Game ended; ignore previous glitched items in the log!")
 end
 EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, GameEndTMTRAINER)
+
+
+-- shh. it's a non-obtrusive april fools joke for the 1% of people with luadebug
+-- https://www.youtube.com/watch?v=msDuNZyYAIQ
+if (os.date("%m/%d") == "04/01") then
+	EID.descriptions["en_us"].sacrifice[1][3] = "{{Coin}} 50% chance of winning 1 coin at Sacrifice#75% chance if you're a genetic freak#!!! If you add Kurt Angle to the mix, your chances of winning drastically go down"
+end
