@@ -941,4 +941,8 @@ if MCMLoaded then
 			Info = {"Changes the color of mod indicator texts (as long as they are enabled)."}
 		}
 	)
+
+	if MCM.i18n == "Chinese" then
+		require("eid_mcm_cn")
+	end
 end
