@@ -1285,7 +1285,8 @@ function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	local iconString = ""
 	for _, nr in ipairs(sortedList) do
 		visitedItemCount[nr] = visitedItemCount[nr] + 1
-		local completedColoring = indicateCompleteContent and EID:bagContainsItem(nr, visitedItemCount[nr]) and "{{IconGreenTint}}" or "" 
+		local containsItemResult = EID:bagContainsItem(nr, visitedItemCount[nr])
+		local completedColoring = indicateCompleteContent and containsItemResult and containsItemResult >= 1 and "{{IconGreenTint}}" or "" 
 		iconString = iconString..completedColoring.."{{Crafting"..nr.."}}"
 	end
 	return iconString
