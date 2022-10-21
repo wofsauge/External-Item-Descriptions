@@ -553,7 +553,7 @@ EID.descriptions["fr"].collectibles={
 	{"529", "Pop !", "Les larmes d'Isaac sont remplacées par des globes oculaires#Les globes oculaires rebondissent entre eux et contre les murs et les obstacles"},
 	{"530", "La Liste de la Mort", "Récompense Isaac s'il tue les ennemis dans l'ordre indiqué par la marque {{DeathMark}} au-dessus de leur tête"},
 	{"531", "Haemolacria", "Isaac tire de grosses larmes en cloche#Les larmes éclatent en larmes plus petites en touchant le sol ou un ennemi"},
-	{"532", "Lacryphagie", "Les larmes d'Isaac ralentissent avec la distance#Une fois à l'arrêt, elles éclatent en 5-8 larmes#Plusieurs larmes peuvent fusionner en une larme plus grosse"},
+	{"532", "Lachryphagie", "Les larmes d'Isaac ralentissent avec la distance#Une fois à l'arrêt, elles éclatent en 5-8 larmes#Plusieurs larmes peuvent fusionner en une larme plus grosse"},
 	{"533", "Trisagion", "Remplace les larmes d'Isaac par des rayons de lumière blanche#Les rayons de lumière infligent {{ColorError}}dégâts -66%{{ColorWhite}} mais peuvent toucher le même ennemi plusieurs fois#Larmes transperçantes"},
 	{"534", "Sac à Dos", "Permet à Isaac de porter deux objets activables#Les objets peuvent être échangés avec le bouton {{ColorSilver}}[Lâcher]"},
 	{"535", "Couverture", "{{SoulHeart}} +1 cœur d'âme#Soigne un cœur rouge#Entrer dans une salle de boss entoure Isaac d'un bouclier sacré {{HolyMantleSmall}} qui nullifie le premier dégât subi"},
@@ -706,7 +706,7 @@ EID.descriptions["fr"].trinkets={
 	{"125", "Rallonge Électrique", "Relie les familiers d'Isaac par des arcs électriques"},
 	{"126", "Pièce Moisie", "Ramasser une pièce invoque une mouche bleue"},
 	{"127", "P'tite Cuillère", "Les larmes des familiers d'Isaac sont autoguidées"},
-	{"128", "Os de Doigt", "Subir un dégât a 2% de chance d'ajouter un cœur d'os aux PV d'Isaac"},
+	{"128", "Os de Doigt", "{{BoneHeart}} Subir un dégât a 2% de chance d'ajouter un cœur d'os aux PV d'Isaac"},
 }
 
 ---------- Cards ----------
