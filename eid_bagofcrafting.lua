@@ -184,7 +184,7 @@ local componentShifts = {
 	{0x00000011, 0x0000000F, 0x0000001A}
 }
 
--- The icon each item pool will use in the No Recipes display
+-- The icon each item pool will use in the "Itempool Percentages" display
 local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
 [5]="{{SecretRoom}}",[7]="{{PoopRoomIcon}}",[8]="{{GoldenChestRoomIcon}}",[9]="{{RedChestRoomIcon}}",[12]="{{CursedRoom}}",[26]="{{Planetarium}}" }
 
@@ -269,7 +269,7 @@ function EID:getBagOfCraftingID(Variant, SubType)
 	return nil
 end
 
--- NO RECIPES MODE: Get percentages of what quality / item pool a given set of 8 ingredients can yield
+-- "Itempool Percentages" MODE: Get percentages of what quality / item pool a given set of 8 ingredients can yield
 function EID:simulateBagOfCrafting(componentsTable)
 	local components = componentsTable
 	local compTotalWeight = 0
@@ -751,7 +751,7 @@ local function getHotkeyString()
 		hotkeyString = hotkeyString .. (hideKey or hideButton)
 	end
 	
-	if #EID.BoC.BagItems >= 8 and EID.Config["BagOfCraftingDisplayMode"] ~= "Preview Only" then
+	if #EID.BoC.BagItems >= 8 and EID.Config["BagOfCraftingDisplayRecipesMode"] ~= "Preview Only" then
 		if previewKey or previewButton then hotkeyString = hotkeyString .. ", " .. previewDesc .. " " end
 		if previewKey and previewButton then
 			hotkeyString = hotkeyString .. previewKey .. "/" .. previewButton
@@ -986,8 +986,8 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 	-- Display the result of the 8 items in our bag if applicable
-	if (showCraftingResult or EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") and #bagItems == 8 then
-		if EID.Config["BagOfCraftingDisplayMode"] ~= "Recipe List" and EID:hasCurseBlind() and EID.Config["DisableOnCurse"] then
+	if (showCraftingResult or EID.Config["BagOfCraftingDisplayRecipesMode"] == "Preview Only") and #bagItems == 8 then
+		if EID.Config["BagOfCraftingDisplayRecipesMode"] ~= "Recipe List" and EID:hasCurseBlind() and EID.Config["DisableOnCurse"] then
 			showCraftingResult = false
 			return false
 		end
@@ -1007,7 +1007,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		return true
 	end
 	-- if we're in Preview Only mode, then we have nothing more to do
-	if (EID.Config["BagOfCraftingDisplayMode"] == "Preview Only") then return false end
+	if (EID.Config["BagOfCraftingDisplayRecipesMode"] == "Preview Only") then return false end
 	
 	-- Check what pickups are available in this room
 	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
@@ -1068,13 +1068,13 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
 	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIconsFunc = EID.tableToCraftingIconsFull end
 	
-	-- Pickups Only / No Recipes Mode display
-	if EID.Config["BagOfCraftingDisplayMode"] == "Pickups Only" then
+	-- Pickups Only / Itempool Percentages Mode display
+	if EID.Config["BagOfCraftingDisplayRecipesMode"] == "Pickups Only" then
 		EID:appendToDescription(customDescObj, getHotkeyString())
 		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
 		EID:addDescriptionToPrint(customDescObj)
 		return true
-	elseif EID.Config["BagOfCraftingDisplayMode"] == "No Recipes" then
+	elseif EID.Config["BagOfCraftingDisplayRecipesMode"] == "Itempool Percentages" then
 		if not EID.RefreshBagTextbox and prevDesc ~= "" and not EID.OptionChanged then
 			EID:appendToDescription(customDescObj, prevDesc)
 			EID:addDescriptionToPrint(customDescObj)

@@ -1107,7 +1107,7 @@ EID.descriptions[languageCode].AchievementWarningText = "Achievementy jsou zaká
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "Tvoje verze Repentance není aktuální!#Oficiálně je podporována pouze ta nejnovější verze#(Toto varování lze vypnout v konfiguraci)"
 
-EID.descriptions[languageCode].ModdedRecipesWarningText = "Modované předměty by mohly způsobit nepřesnost výpočtu receptu na výrobu!#Použij režim zobrazení Žádné recepty (No Recipes) nebo vypni zobrazení u Craftovacího Pytlíku, pokud jsou tvé recepty nesprávné#(Toto varování lze deaktivovat v konfiguraci)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Modované předměty by mohly způsobit nepřesnost výpočtu receptu na výrobu!#Použij režim zobrazení Žádné recepty (Itempool Percentages) nebo vypni zobrazení u Craftovacího Pytlíku, pokud jsou tvé recepty nesprávné#(Toto varování lze deaktivovat v konfiguraci)"
 
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them

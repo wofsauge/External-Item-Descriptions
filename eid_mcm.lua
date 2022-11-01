@@ -602,8 +602,8 @@ if MCMLoaded then
 		EID:AddNumberSetting("Crafting", "DisplayBagOfCrafting", "Show Display", 1, #bagDisplays, { displayingTab = "Crafting", indexOf = bagDisplays, infoText = {"Always = Always show Results", "Hold = Show when holding up bag", "Never = Disable Bag of Crafting feature"}})
 		
 		-- Bag of Crafting Display Mode
-		local bagDisplayModes = {"Recipe List","Preview Only","No Recipes","Pickups Only"}
-		EID:AddNumberSetting("Crafting", "BagOfCraftingDisplayMode", "Display Mode", 1, #bagDisplayModes, { indexOf = bagDisplayModes,
+		local bagDisplayModes = {"Recipe List","Preview Only","Itempool Percentages","Pickups Only"}
+		EID:AddNumberSetting("Crafting", "BagOfCraftingDisplayRecipesMode", "Display Mode", 1, #bagDisplayModes, { indexOf = bagDisplayModes,
 			infoText = {"Toggle showing a list of recipes, an item preview when bag is full, what item pool/quality you might get, or only the floor pickups"}})
 			
 		-- Bag of Crafting Hide in Battle
@@ -615,7 +615,7 @@ if MCMLoaded then
 			
 		-- Bag of Crafting 8 icons toggle
 		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayIcons", "Show Recipes/Best Bag as", {onText = "8 Icons", offText = "Groups",
-			infoText = "Choose if you want recipes (and the Best Quality bag in No Recipes Mode) shown as 8 icons, or as grouped ingredients"})
+			infoText = "Choose if you want recipes (and the Best Quality bag in Itempool Percentages Mode) shown as 8 icons, or as grouped ingredients"})
 		-- Modded Recipes toggle
 		EID:AddBooleanSetting("Crafting", "BagOfCraftingModdedRecipes", "Load Modded Item Recipes (WIP)", {
 			infoText = {"Enable or disable basic modded item support", "If you have a lot of modded items, it will slow down game launch"}})

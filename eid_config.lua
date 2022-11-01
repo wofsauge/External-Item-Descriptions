@@ -339,14 +339,14 @@ EID.UserConfig = {
 	-- Default = "always"
 	["DisplayBagOfCrafting"] = "always",
 	-- Display modes for the Bag of Crafting display
-	-- Options: "Recipe List", "Preview Only", "No Recipes", "Pickups Only"
-	-- The recipe list is a detailed calculated list of recipes based on what you have available on the floor
-	-- Preview Only shows the description of the item you can currently craft in your bag
-	-- No Recipes shows percentages of what item you might get from your bag / best option on the floor, for a more intended experience
-	-- Pickups Only just shows the room/floor pickup count
-	-- (No Recipes is recommended if you have modded items)
+	-- Options: "Recipe List", "Preview Only", "Itempool Percentages", "Pickups Only"
+	-- The "Recipe List" is a detailed calculated list of recipes based on what you have available on the floor
+	-- "Preview Only" shows the description of the item you can currently craft in your bag
+	-- "Itempool Percentages" shows percentages of what item you might get from your bag / best option on the floor, for a more intended experience
+	-- "Pickups Only" just shows the room/floor pickup count
+	-- ("Itempool Percentages" is recommended if you have modded items)
 	-- Default = "Recipe List"
-	["BagOfCraftingDisplayMode"] = "Recipe List",
+	["BagOfCraftingDisplayRecipesMode"] = "Recipe List",
 	-- Hide the recipe list when in battle
 	-- Default = true
 	["BagOfCraftingHideInBattle"] = true,
@@ -545,7 +545,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingDisplayIcons"] = false,
 	["BagOfCraftingHideInBattle"] = true,
 	["BagOfCraftingShowControls"] = true,
-	["BagOfCraftingDisplayMode"] = "Recipe List",
+	["BagOfCraftingDisplayRecipesMode"] = "Recipe List",
 	["BagOfCraftingModdedRecipes"] = true,
 	["CraftingHideKey"] = Keyboard.KEY_F3,
 	["CraftingHideButton"] = -1,
