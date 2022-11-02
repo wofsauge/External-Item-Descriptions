@@ -1169,7 +1169,7 @@ EID.descriptions[languageCode].AchievementWarningText = "지금 모드를 적용
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "리펜턴스가 최신 버전이 아닙니다!#최신 버전이 아닐 경우 모드 오류가 발생할 수 있습니다.#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
 
-EID.descriptions[languageCode].ModdedRecipesWarningText = "아이템 추가 모드나 아이템 배열 변경 모드가 적용되어 있을 경우 조합법이 일치하지 않을 수 있습니다.#조합법 설명을 숨기거나 DisplayBagOfCrafting를 No Recipe로 설정해 주세요.#(config 설정을 수정하여 해당 메세지를 비활성화 할 수 있습니다.)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "아이템 추가 모드나 아이템 배열 변경 모드가 적용되어 있을 경우 조합법이 일치하지 않을 수 있습니다.#조합법 설명을 숨기거나 BagOfCraftingDisplayRecipesMode를 Itempool percentage로 설정해 주세요.#(config 설정을 수정하여 해당 메세지를 비활성화 할 수 있습니다.)"
 
 
 
@@ -1177,7 +1177,7 @@ EID.descriptions[languageCode].ModdedRecipesWarningText = "아이템 추가 모�
 local RepDemoObject = {
 	DemoObjectName = "아이템 설명 모드 표시용",
 	DemoObjectTransformation = "테스트 변신 세트 표시",
-	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#!!! 간단 설정 방법:#{{Collectible182}} 폰트: Visuals→Font Type#{{Collectible721}} 텍스트박스 너비: General→Textbox Width#{{Collectible710}} 레시피 목록: Crafting→Display Mode: Recipe List#\1 {{Damage}}테스트 공격력 +1#{{AngelDevilChance}} 악마와 천사, 당신의 선택은?#{{DeliriumSmall}} 모두가 싫어하는 델리리움",
+	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#!!! 간단 설정 방법:#{{Collectible182}} 폰트: Visuals→Font Type#{{Collectible721}} 텍스트박스 너비: General→Textbox Width#{{Collectible710}} 레시피 숨기기: Crafting→Display Mode: Itempool percentage#\1 {{Damage}}테스트 공격력 +1#{{AngelDevilChance}} 악마와 천사, 당신의 선택은?#{{DeliriumSmall}} 모두가 싫어하는 델리리움",
 }
 EID:updateDescriptionsViaTable(RepDemoObject, EID.descriptions[languageCode].MCM)
 
