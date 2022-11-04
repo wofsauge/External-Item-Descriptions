@@ -535,7 +535,7 @@ local function GameStartCrafting()
 	for i=1, EID.XMLMaxItemID do
 		local item = EID.itemConfig:GetCollectible(i)
 		if item ~= nil then
-			CraftingItemQualities[item.ID] = item.Quality
+			CraftingItemQualities[item.ID] = item.CraftingQuality
 		end
 	end
 	if not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
@@ -548,7 +548,7 @@ local function GameStartCrafting()
 			local coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
 			while coll ~= nil do
 				CraftingMaxItemID = CraftingMaxItemID + 1
-				CraftingItemQualities[coll.ID] = coll.Quality
+				CraftingItemQualities[coll.ID] = coll.CraftingQuality
 				coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
 			end
 			local itemPool = game:GetItemPool()
