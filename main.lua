@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = "4.41"
+EID.ModVersion = "4.42"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -1084,7 +1084,7 @@ local function checkStartOfRunWarnings()
 			hasShownStartWarning = true
 		-- Bag of Crafting modded items check
 		elseif EID:PlayersHaveCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and 
-		(EID.Config.BagOfCraftingDisplayMode == "Recipe List" or EID.Config.BagOfCraftingDisplayMode == "Preview Only") then
+		(EID.Config.BagOfCraftingDisplayRecipesMode == "Recipe List" or EID.Config.BagOfCraftingDisplayRecipesMode == "Preview Only") then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("ModdedRecipesWarningText") or ""
