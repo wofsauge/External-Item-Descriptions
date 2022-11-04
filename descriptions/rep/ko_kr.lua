@@ -5,7 +5,7 @@ local languageCode = "ko_kr"
 local repCollectibles={
 	-- Original
 	[2] = {"2", "내면의 눈", "↓ {{TearsSmall}}연사 배율 x0.51#공격이 3발로 나갑니다."}, -- The Inner Eye
-	[5] = {"5", "나의 모습", "↑ {{RangeSmall}}사거리 +1.5#↑ {{RangeSmall}}사거리 배율 x1.6#↑ {{ShotspeedSmall}}탄속 배율 x1.6#↑ {{DamageSmall}}공격력 +1.5#↓ {{TearsSmall}}행운 -1#공격이 캐릭터가 있는 방향으로 되돌아옵니다."}, -- My Reflection
+	[5] = {"5", "나의 모습", "↑ {{RangeSmall}}사거리 +1.5#↑ {{RangeSmall}}사거리 배율 x1.6#↑ {{ShotspeedSmall}}탄속 배율 x1.6#↑ {{DamageSmall}}공격력 +1.5#↓ {{LuckSmall}}행운 -1#공격이 캐릭터가 있는 방향으로 되돌아옵니다."}, -- My Reflection
 	[6] = {"6", "오줌싸개", "↑ {{TearsSmall}}연사 +1.5#↓ {{RangeSmall}}사거리 -1.5#↓ {{RangeSmall}}사거리 배율 x0.8"}, -- Number One
 	[8] = {"8", "보비", "공격하는 방향으로 공격력 3.5의 빠른 눈물을 발사합니다."}, -- Brother Bobby
 	[10] = {"10", "파리떼", "캐릭터 주변을 돌며 적의 탄환을 막아주는 파리 배리어를 2마리 얻습니다."}, -- Halo of Flies
@@ -59,7 +59,7 @@ local repCollectibles={
 	[109] = {"109", "돈 = 힘", "동전 1개당 {{DamageSmall}}공격력 +0.04"}, -- Money = Power
 	[110] = {"110", "엄마의 콘텍트렌즈", "↑ {{RangeSmall}}사거리 +0.38#20%의 확률로 적을 멈추게 만드는 공격이 나갑니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 20일 때 최대 50% 확률"}, -- Mom's Contacts
 	[114] = {"114", "엄마의 식칼", "{{Chargeable}} 공격이 발사 후 돌아오는 근접 식칼로 변경됩니다.#공격키를 누르고 있으면 충전되며 충전량에 따라 공격력과 사거리가 증가합니다.#칼 공격력: 기본 x2 ~ 최대 x6"}, -- Mom's Knife
-	[114] = {"115", "분신사바", "↑ {{TearsSmall}}연사 +0.4#공격이 장애물을 관통합니다."}, -- Ouija Board
+	[115] = {"115", "분신사바", "↑ {{TearsSmall}}연사 +0.4#공격이 장애물을 관통합니다."}, -- Ouija Board
 	[118] = {"118", "유황", "↓ {{TearsSmall}}연사 배율 x0.33#{{Chargeable}} 공격이 충전형 혈사포 공격으로 변경됩니다.#혈사포는 다단히트로 적에게 최대 9번의 피해를 입히며 적 및 폭탄을 밀쳐냅니다."}, -- Brimstone
 	[121] = {"121", "이상한 버섯", "↑ {{Heart}}최대 체력 +1#↑ {{DamageSmall}}공격력 +1#↑ {{RangeSmall}}사거리 +0.38#↓ {{SpeedSmall}}이동속도 -0.2#캐릭터의 머리가 커집니다."}, -- Odd Mushroom
 	[123] = {"123", "몬스터 도감", "사용 시 그 스테이지에서 랜덤한 패밀리어를 하나 소환합니다."}, -- Monster Manual
