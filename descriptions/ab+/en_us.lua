@@ -443,7 +443,7 @@ EID.descriptions[languageCode].collectibles={
 	{"419", "Teleport 2.0", "Teleports Isaac to a room that has not been cleared yet#Hierarchy: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"},
 	{"420", "Black Powder", "Walking in a circle draws a pentagram on the floor, which deals 10 damage per tick"},
 	{"421", "Kidney Bean", "{{Charm}} Charms and deals 5 damage to all enemies in close range"},
-	{"422", "Glowing Hour Glass", "Brings Isaac back to the previous room and reverses all actions done in the room the item was used in "},
+	{"422", "Glowing Hour Glass", "Brings Isaac back to the previous room and reverses all actions done in the room the item was used in"},
 	{"423", "Circle of Protection", "Surrounds Isaac with a large halo that deals his damage on contact every second#Chance to reflect enemy projectiles"},
 	{"424", "Sack Head", "Pickups have a 33% chance to be replaced with a sack#Spawns a sack"},
 	{"425", "Night Light", "Spawns a slowing cone of light in front of Isaac"},
