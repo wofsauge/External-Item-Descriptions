@@ -800,6 +800,8 @@ end
 
 -- RGB colors for each player's highlights (Red, Blue, Green, Yellow)
 local playerRGB = { {1,0.6,0.6}, {0.5,0.75,1}, {0.5,1,0.75}, {0.9, 0.9, 0.5} }
+
+---@param entity Entity
 function EID:renderIndicator(entity, playerNum)
 	if EID.Config["Indicator"] == "none" then
 		return
@@ -870,6 +872,7 @@ function EID:renderIndicator(entity, playerNum)
 	end
 end
 
+---@param entity Entity
 function EID:PositionLocalMode(entity)
 	-- don't use Local Mode for descriptions without an entity (or dice floors)
 	if (EID.Config["DisplayMode"] == "local" or alwaysUseLocalMode) and entity and entity.Variant ~= EffectVariant.DICE_FLOOR then
@@ -1304,7 +1307,7 @@ local function onRender(t)
 			
 			table.insert(searchGroups, Isaac.FindInRadius(sourcePos, tonumber(EID.Config["MaxDistance"])*40, searchPartitions))
 			for k,_ in pairs(EID.effectList) do
-				table.insert(searchGroups, Isaac.FindByType(EntityType.ENTITY_EFFECT, k, -1, true, false))
+				table.insert(searchGroups, Isaac.FindByType(EntityType.ENTITY_EFFECT, tonumber(k), -1, true, false))
 			end
 			
 			for _, entitySearch in ipairs(searchGroups) do
