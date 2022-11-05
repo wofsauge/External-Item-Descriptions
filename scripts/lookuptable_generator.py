@@ -57,15 +57,6 @@ for recipe in recipesXML.findall('recipe'):
     convertedInput = str(convertedInput).replace(" ","").replace("[","").replace("]","")
     recipes.append({"input": convertedInput, "output": recipe.get('output')})
 
-# Read items_metadata.xml
-items_metadataXML = ET.parse(filePath+'items_metadata.xml').getroot()
-for item in items_metadataXML.findall('item'):
-    id = int(item.get('id'))
-    if maxItemID < id:
-        maxItemID = id
-    itemIDToPool[id] = []
-    itemQuality.append({"id": id, "quality": item.get('quality')})
-
 # Read itempools.xml
 itempoolsXML = ET.parse(filePath+'itempools.xml').getroot()
 currentpool = 0
