@@ -39,7 +39,7 @@ if REPENTANCE then
 		justDidD = true
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.WatchForDInfinity, CollectibleType.COLLECTIBLE_D_INFINITY)
-    function EID:WatchForDice(collectibleType, rng, player)
+    function EID:WatchForDice(collectibleType, _, player)
         if not justDidD or collectibleType == 489 then return end
         justDidD = false
         local playerID = EID:getPlayerID(player)
@@ -201,7 +201,7 @@ function EID:Teleport2Prediction()
 	local roomNames = EID:getDescriptionEntry("RoomTypeNames")
 	
     -- Return a string for the first uncleared room type that we find
-	for i,v in ipairs(roomOrder) do
+	for _,v in ipairs(roomOrder) do
 		if unclearedTypes[v] then
 			local descString = (teleport2Icons[v] or EID.RoomTypeToMarkup[v]) .. " " .. roomNames[v]
 			-- Tall Vertical Main Greed Room exception, because why not, attention to detail
@@ -287,7 +287,7 @@ local specialCards = {[49] = true, [50] = true, [78] = true}
 
 function EID:D1Prediction(rng)
 	local poss = {}
-	for i,v in ipairs(Isaac.FindByType(5,-1,-1)) do
+	for _,v in ipairs(Isaac.FindByType(5,-1,-1)) do
 		-- Check the blacklist, as well as Rune of Jera in AB+, and empty chests in Rep
 		if not D1blacklist[v.Variant] and (REPENTANCE or v.Variant ~= 300 or v.SubType ~= 33) and (not REPENTANCE or v:ToPickup():CanReroll()) then
 			table.insert(poss, v)

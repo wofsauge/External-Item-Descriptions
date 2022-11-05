@@ -250,7 +250,7 @@ if REPENTANCE then
 	local lastGetItemResult = {nil, nil, nil, nil} -- itemID, Frame, gridIndex, InitSeed
 	local lastFrameGridChecked = 0
 	
-	function EID:postGetCollectible(selectedCollectible, itemPoolType, decrease, seed)
+	function EID:postGetCollectible(selectedCollectible, itemPoolType)
 		-- Handle Crane Game
 		if itemPoolType == ItemPoolType.POOL_CRANE_GAME then
 			for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
@@ -287,7 +287,7 @@ if REPENTANCE then
 	EID:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, EID.postGetCollectible)
 
 	-- Handle Flip Item spawn
-	function EID:preRoomEntitySpawn(entityType, variant, subtype, gridIndex, seed)
+	function EID:preRoomEntitySpawn(entityType, variant, subtype, gridIndex)
 		flipItemNext = false
 		if entityType == 6 and variant == 14 then
 			-- Inner Child pedestal
@@ -369,7 +369,7 @@ if REPENTANCE then
 end
 
 -- Watch for a Void absorbing active items
-function EID:CheckVoidAbsorbs(collectibleType, rng, player)
+function EID:CheckVoidAbsorbs(_, _, player)
 	local playerID = EID:getPlayerID(player)
 	EID.absorbedItems[tostring(playerID)] = EID.absorbedItems[tostring(playerID)] or {}
 	for _,v in ipairs(EID:VoidRoomCheck()) do
@@ -491,7 +491,7 @@ function EID:printDescriptions(useCached)
 	end
 	
 	-- Print our cached descriptions
-	for i,indicator in ipairs(EID.CachedIndicators) do
+	for _,indicator in ipairs(EID.CachedIndicators) do
 		EID:renderIndicator(indicator[1], indicator[2])
 	end
 	for i,oldDesc in ipairs(EID.previousDescs) do
@@ -922,7 +922,7 @@ function EID:handleHoverHUD()
 	if EID.Config["ShowCursor"] then
 		EID.CursorSprite:Render(Vector(mousePos.X / 2, mousePos.Y / 2), nullVector, nullVector)
 	end
-	for k, v in pairs(EID.HUDElements) do
+	for _, v in pairs(EID.HUDElements) do
 		local hudElement = EID:handleHUDElement(v)
 		if hudElement.x <= mousePos.X and (hudElement.x + hudElement.width) >= mousePos.X and hudElement.y <= mousePos.Y and (hudElement.y + hudElement.height) >= mousePos.Y then
 			local result = hudElement.descriptionObj()
@@ -1034,7 +1034,7 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_UPDATE, EID.onGameUpdate)
 
 -- Wait until all collectibles spawning this frame have spawned before checking what we need to check about them
-function EID:CollectibleSpawnedThisFrame(entity)
+function EID:CollectibleSpawnedThisFrame(_)
 	collSpawned = true
 end
 EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.CollectibleSpawnedThisFrame, PickupVariant.PICKUP_COLLECTIBLE)
@@ -1055,12 +1055,12 @@ local function attemptPathfind(entity)
 	pathCheckerEntity = game:Spawn(33, 0, EID.player.Position, nullVector, EID.player, 6969, 4354)
 	pathCheckerEntity:GetData()["EID_Pathfinder"] = true
 	pathCheckerEntity.Visible = false
-	local success = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
-	pathsChecked[entity.InitSeed] = success
+	local successful = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
+	pathsChecked[entity.InitSeed] = successful
 	pathCheckerEntity:Remove()
 	pathCheckerEntity = nil
 	lastPathfindFrame = EID.GameUpdateCount
-	return success
+	return successful
 end
 
 local hasShownStartWarning = false
@@ -1158,7 +1158,7 @@ EID.lastDist = 0
 EID.OptionChanged = false
 EID.bagPlayer = nil
 
-local function onRender(t)
+local function onRender()
 	-- Increases by 60 per second, ignores pauses
 	EID.GameRenderCount = EID.GameRenderCount + 1
 	EID.OptionChanged = EID.MCM_OptionChanged
@@ -1567,7 +1567,7 @@ EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D
 
 -- Re-init transformation progress and item interactions after using Genesis
 if REPENTANCE then
-	local function OnUseGenesis(_, _, _, player)
+	local function OnUseGenesis(_, _, _, _)
 		OnGameStartGeneral()
 		CheckAllActiveItemProgress()
 	end

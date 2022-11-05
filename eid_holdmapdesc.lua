@@ -181,7 +181,6 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	-- Pocket Item Descriptions
 	-- Annoying because there's no easy way to just get the info of a slot
 	if EID.Config["ItemReminderShowPocketDesc"] > 0 then
-		local numPrinted = 0
 		-- I don't think we can actually know what slot the player is on, so, save these to display (if they exist) for when Card and Pill in a slot are both 0, to attempt to always show them in slot order
 		local dicePrinted = false
 		local diceBag = REPENTANCE and player:GetActiveItem(3) or 0

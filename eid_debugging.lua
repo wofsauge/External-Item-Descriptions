@@ -8,7 +8,7 @@ local languageFilesToCheck = {"cs_cz"} -- EID.Languages -- single file check {"k
 -- count en_us entries for stats
 local count = 0
 function EID:countEntries(t)
-	for k, v in pairs(t) do
+	for k, _ in pairs(t) do
 		count = count + 1
 		if type(t[k]) == "table" then
 			EID:countEntries(t[k])
@@ -19,11 +19,11 @@ EID:countEntries(EID.descriptions["en_us"])
 local enUSEntries = count
 print("en_us entries: "..enUSEntries)
 
-for i,lang in ipairs(languageFilesToCheck) do
+for _,lang in ipairs(languageFilesToCheck) do
 	print("Now checking integrity of languagefile: " .. lang)
 	-- Generic function to compare two tables
 	function EID:compareTables(table1, table2, prevKey, progress)
-		for k, v in pairs(table1) do
+		for k, _ in pairs(table1) do
 			progress[1] = progress[1] + 1
 			if not table2[k] then
 				print(" Table '" .. prevKey .. "' does not contain key: " .. k)
@@ -35,7 +35,7 @@ for i,lang in ipairs(languageFilesToCheck) do
 				local filteredText = EID:replaceShortMarkupStrings(table2[k])
 				local textPartsTable = EID:filterColorMarkup(filteredText, EID:getNameColor())
 				for _, textPart in ipairs(textPartsTable) do
-					local filteredSpriteText, spriteTable = EID:filterIconMarkup(textPart[1], 0, 0)
+					local filteredSpriteText, spriteTable = EID:filterIconMarkup(textPart[1])
 
 					if string.find(filteredSpriteText, "{{") or string.find(filteredSpriteText, "}}") then
 						print(" Table '" .. prevKey .. "' entry '" .. k .. "' does contain a broken markup object: '" .. table2[k])
@@ -186,15 +186,15 @@ EID:addColor("ColorBlackBlink", nil, function(color)
 -- Test: Pill effect unidentifyable
 EID:SetPillEffectUnidentifyable(24, true) -- set "I can see forever" to always be unidentifyable
 
-local function onDebugRender(t)
+local function onDebugRender()
 	EID:renderHUDLocationIndicators()
 	
-	for i,v in ipairs(Isaac.FindByType(5,10,3,true,false)) do
+	for _,v in ipairs(Isaac.FindByType(5,10,3,true,false)) do
 		if v:GetData()["EID_Description"] == nil then
 			v:GetData()["EID_Description"] = "Test specific description#Init seed: ".. v.InitSeed
 		end
 	end
-	for i,v in ipairs(Isaac.FindByType(5,10,4,true,false)) do
+	for _,v in ipairs(Isaac.FindByType(5,10,4,true,false)) do
 		if v:GetData()["EID_Description"] == nil then
 			local descTable = {
 				["Name"] = "Some Item with seed ".. v.InitSeed ,

@@ -1057,7 +1057,7 @@ function EID:renderString(str, position, scale, kcolor)
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
 	local offsetX = 0
 	for _, textPart in ipairs(textPartsTable) do
-		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1], position.X, position.Y)
+		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1])
 		EID:renderInlineIcons(spriteTable, position.X + offsetX, position.Y)
 		if strFiltered then -- prevent possible crash when strFiltered is nil
 			EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
@@ -1073,7 +1073,7 @@ end
 -- Adds Description object modifiers.
 -- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
 function EID:addDescriptionModifier(modifierName, condition, callback)
-	for i,v in ipairs(EID.DescModifiers) do
+	for _,v in ipairs(EID.DescModifiers) do
 		if v["name"] == modifierName then
 			v["condition"] = condition
 			v["callback"] = callback
@@ -1238,7 +1238,7 @@ function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 		end
 	end
 	local isUnlocked = false
-	for i = 0, 1 do -- some samples to make sure
+	for _ = 0, 1 do -- some samples to make sure
 		local collID = itemPool:GetCollectible(itemPoolOfItem, false, 1)
 		if collID == collectibleID then
 			isUnlocked = true
