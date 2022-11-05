@@ -575,6 +575,7 @@ function EID:printDescription(desc, cachedID)
 	if EID.Config["ShowItemType"] and (desc.ItemType == ItemType.ITEM_ACTIVE or desc.ItemType == ItemType.ITEM_FAMILIAR) then
 		local offsetY = 2
 		local itemTypeAnm2 = EID.ItemTypeAnm2Names[desc.ItemType]
+		EID.IconSprite:Play(itemTypeAnm2)
 		EID:renderIcon(EID.IconSprite, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale, nil, itemTypeAnm2 , 0)
 		if desc.ItemType == ItemType.ITEM_ACTIVE then
 		 -- Display Charge
@@ -1606,7 +1607,7 @@ local configIgnoreList = {
 --------------------------------
 --------Handle Savadata---------
 --------------------------------
-function OnGameStart(_,isSave)
+function EID:OnGameStart(isSave)
 	--Loading Moddata--
 
 	if EID:HasData() then
@@ -1697,10 +1698,10 @@ function OnGameStart(_,isSave)
 		EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 	end
 end
-EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStart)
+EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, EID.OnGameStart)
 
 --Saving Moddata--
-function SaveGame()
+function EID:SaveGame()
 	if REPENTANCE then
 		EID.Config["BagContent"] = EID.BoC.BagItems or {}
 		EID.Config["BagFloorContent"] = EID.BoC.RoomQueries or {}
@@ -1727,7 +1728,7 @@ function SaveGame()
 	EID.itemUnlockStates[CollectibleType.COLLECTIBLE_CUBE_OF_MEAT] = nil
 	EID.itemUnlockStates[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS] = nil
 end
-EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveGame)
+EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, EID.SaveGame)
 
 if EID.enableDebug then
 	require("eid_debugging")
