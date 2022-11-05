@@ -10,7 +10,6 @@ filePath = "D:\\Programme\\Steam\\steamapps\\common\\The Binding of Isaac Rebirt
 def sortByID(elem):
     return elem["id"]
 recipes = []
-itemQuality = []
 itempools = {}
 itemIDToPool = {}
 maxItemID = 0
@@ -56,6 +55,14 @@ for recipe in recipesXML.findall('recipe'):
     convertedInput.sort()
     convertedInput = str(convertedInput).replace(" ","").replace("[","").replace("]","")
     recipes.append({"input": convertedInput, "output": recipe.get('output')})
+
+# Read items_metadata.xml
+items_metadataXML = ET.parse(filePath+'items_metadata.xml').getroot()
+for item in items_metadataXML.findall('item'):
+    id = int(item.get('id'))
+    if maxItemID < id:
+        maxItemID = id
+    itemIDToPool[id] = []
 
 # Read itempools.xml
 itempoolsXML = ET.parse(filePath+'itempools.xml').getroot()
