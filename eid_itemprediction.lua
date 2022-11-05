@@ -177,12 +177,15 @@ local teleport2Icons = { [1025] = "{{RedRoom}}", [666] = "{{AngelDevilChance}}" 
 function EID:Teleport2Prediction()
 	local level = game:GetLevel()
 	local rooms = level:GetRooms()
+	local curDimension = EID:GetDimension(level)
 	--I AM ERROR Room always considered uncleared
 	local unclearedTypes = {[3] = true}
 	for i = 0, rooms.Size - 1 do
 		local room = rooms:Get(i)
-		
-		if not room.Clear then
+
+		local gridIndex = room.SafeGridIndex
+		local roomDesc = level:GetRoomByIdx(gridIndex, curDimension)
+		if roomDesc.ListIndex == i and not room.Clear then
 			-- Check for Special Red Rooms, which get ordered differently than their non-red version
 			if REPENTANCE and room.Data.Type ~= 1 and room.Flags & 1024 == 1024 then unclearedTypes[1025] = true
 			else unclearedTypes[room.Data.Type] = true end

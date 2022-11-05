@@ -134,7 +134,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 						append("{{Collectible44}}", EID:getObjectName(5,100,44) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport1Prediction(getSeed(44)))
 					end
 				-- Teleport 2.0 location
-				elseif heldActive == 419 and not EID.isMirrorRoom then
+				elseif heldActive == 419 then
 					blacklist["5.100.419"] = true
 					append("{{Collectible419}}", EID:getObjectName(5,100,419) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport2Prediction())
 				-- D Infinity
