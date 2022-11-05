@@ -63,7 +63,6 @@ EID.UserConfig = {
 	["Indicator"] = "none",
 	-- Set the keybind to toggle the description display
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
-	-- Controller Button inputs work as well: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = Keyboard.KEY_F2
 	["HideKey"] = Keyboard.KEY_F2,
 	-- Set the controller binding to toggle the description display
