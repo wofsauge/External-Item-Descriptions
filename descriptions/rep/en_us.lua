@@ -1092,7 +1092,7 @@ EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Instead, consumes 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} WARNING {{Warning}}"
 EID.descriptions[languageCode].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)#(This warning can be disabled in the config)"
 
-EID.descriptions[languageCode].OldGameVersionWarningText = "Your version of Repentance is not up-to-date!#Only the newest version is officially supported#(This warning can be disabled in the config)"
+EID.descriptions[languageCode].OldGameVersionWarningText = "Your version of Repentance is not up-to-date!#Only the newest version (1.7.9) is officially supported#(This warning can be disabled in the config)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Use the Itempool Percentages display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
 

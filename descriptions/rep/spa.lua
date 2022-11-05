@@ -1110,7 +1110,7 @@ EID.descriptions[languageCode].PlaceboCharge = "Cargas de Placebo:"
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! ADVERTENCIA !!!"
 EID.descriptions[languageCode].AchievementWarningText = "¡Los logros están deshabilitados!#Para poder progresar en el juego, primero debes vencer a Mamá (Depths II) sin mods habilitados.#(Si ya derrotaste a Mamá, este mensaje es un bug, ignóralo)#(Este aviso puede ser desactivado en la configuración)"
 EID.descriptions[languageCode].OutdatedModWarningText = "¡Un mod sin actualizar está reduciendo la cantidad de objetos! Esto puede causar crasheos, especialmente al entrar al area de la Pieza del cuchillo 2#Por favor, desinstala los mods con el archivo resources/items.xml desactualizado"
-EID.descriptions[languageCode].OldGameVersionWarningText = "Tu versión de Repentance no es la más reciente#La versión más reciente es la única con soporte oficial#(Este aviso puede ser desactivado en la configuración)"
+EID.descriptions[languageCode].OldGameVersionWarningText = "Tu versión de Repentance no es la más reciente#La versión más reciente es la única con soporte oficial (1.7.9)#(Este aviso puede ser desactivado en la configuración)"
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Los objetos modeados pueden provocar cálculos incorrectos#Usa el modo Itempool Percentages o desactiva el cálculo de la Bolsa de trabajo si es que los cálculos son incorrectos#(Este aviso puede ser desactivado en la configuración)"
 -- Warnings end
 

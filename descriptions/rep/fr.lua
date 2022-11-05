@@ -1187,7 +1187,7 @@ EID.descriptions["fr"].PandorasBoxStrangeKeyEffect = "Détruit l'{{ColorYellow}}
 EID.descriptions["fr"].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} ATTENTION !"
 EID.descriptions["fr"].AchievementWarningText = "Les succès sont désactivés !#Pour pouvoir débloquer des succès, tu dois d'abord tuer {{ColorCyan}}Maman{{ColorSilver}} (Profondeurs II){{ColorWhite}}.#{{Blank}}#{{Blank}} Si tu as déjà battu {{ColorCyan}}Maman{{ColorWhite}}, ce message est un bug et peut être ignoré#{{Blank}} {{ColorSilver}}(Cette alerte peut être désactivée dans la config)"
 
-EID.descriptions["fr"].OldGameVersionWarningText = "Ta version de Repentance n'est pas à jour !#Seule la dernière version du jeu est officiellement supportée.#{{Blank}} {{ColorSilver}}(Cette alerte peut être désactivée dans la config)"
+EID.descriptions["fr"].OldGameVersionWarningText = "Ta version de Repentance n'est pas à jour !#Seule la dernière version (1.7.9) du jeu est officiellement supportée.#{{Blank}} {{ColorSilver}}(Cette alerte peut être désactivée dans la config)"
 
 EID.descriptions["fr"].ModdedRecipesWarningText = "Les objets de mod peuvent dérégler les recettes de fabrication !#Désactive l'affichage des recettes ou du Sac de Fabrication si tes recettes sont incorrectes#{{Blank}} {{ColorSilver}}(Cette alerte peut être désactivée dans la config)"
 
