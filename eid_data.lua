@@ -60,11 +60,11 @@ EID.TRANSFORMATION = {
 
 -- List of item Types
 EID.ItemTypeAnm2Names = {
-	"null", -- 1
-	"passive", -- 2
-	"active", -- 3
-	"familiar", -- 4
-	"trinket" -- 5
+	[ItemType.ITEM_NULL + 1] = "null",
+	[ItemType.ITEM_PASSIVE + 1] = "passive",
+	[ItemType.ITEM_TRINKET + 1] = "active",
+	[ItemType.ITEM_ACTIVE + 1] = "familiar",
+	[ItemType.ITEM_FAMILIAR + 1] = "trinket"
 }
 
 -- List of HUD elements, their position and usage

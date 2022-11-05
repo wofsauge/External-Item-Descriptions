@@ -572,28 +572,21 @@ function EID:printDescription(desc, cachedID)
 	end
 
 	--Display ItemType / Charge
-	local itemType = -1
-	if desc.ObjSubType ~= nil and desc.ObjType == 5 and desc.ObjVariant == 100 then
-		itemType = EID.itemConfig:GetCollectible(desc.ObjSubType).Type or -1
-	end
-	if EID.Config["ShowItemType"] and (itemType == 3 or itemType == 4) then
+	if EID.Config["ShowItemType"] and (desc.ItemType == ItemType.ITEM_ACTIVE or desc.ItemType == ItemType.ITEM_FAMILIAR) then
 		local offsetY = 2
-		EID.IconSprite:Play(EID.ItemTypeAnm2Names[itemType])
-		EID:renderIcon(EID.IconSprite, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale, nil, EID.ItemTypeAnm2Names[itemType], 0)
-		if itemType == 3 then
+		local itemTypeAnm2 = EID.ItemTypeAnm2Names[desc.ItemType]
+		EID:renderIcon(EID.IconSprite, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale, nil, itemTypeAnm2 , 0)
+		if desc.ItemType == ItemType.ITEM_ACTIVE then
 		 -- Display Charge
 			offsetX = offsetX + 1
-			local curItemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
-			local anim2 = "numbers"
-			local frame2 = curItemConfig.MaxCharges
-			if REPENTANCE and curItemConfig.ChargeType == ItemConfig.CHARGE_TIMED then
-				anim2 = "Misc"; frame2 = 6 -- Timer Icon
-			elseif REPENTANCE and (curItemConfig.ChargeType == ItemConfig.CHARGE_SPECIAL or desc.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or desc.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or 
-			desc.ObjSubType == CollectibleType.COLLECTIBLE_CLEAR_RUNE or desc.ObjSubType == CollectibleType.COLLECTIBLE_D_INFINITY) then
-				frame2 = 13 -- Question Mark Icon
+			local anim = "numbers"
+			local frameNum = desc.Charges or 0
+			if desc.ChargeType == (REPENTANCE and ItemConfig.CHARGE_TIMED or 1) then
+				anim = "Misc"; frameNum = 6 -- Timer Icon
+			elseif desc.ChargeType == (REPENTANCE and ItemConfig.CHARGE_SPECIAL or 2) then
+				frameNum = 13 -- Question Mark Icon
 			end
-			EID.InlineIconSprite2:SetFrame(anim2, frame2)
-			EID:renderIcon(EID.InlineIconSprite2, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale, nil, anim2, frame2)
+			EID:renderIcon(EID.InlineIconSprite2, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale, nil, anim, frameNum)
 		end
 		offsetX = offsetX + 8
 	end

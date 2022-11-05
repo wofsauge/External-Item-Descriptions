@@ -392,6 +392,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.ModName = tableEntry and tableEntry[4]
 	description.Quality = EID:getObjectQuality(description)
 	description.Icon = EID:getObjectIcon(description)
+	EID:getObjectItemTypeAndCharge(description)
 
 	if checkModifiers ~= false then
 		for _,modifier in ipairs(EID.DescModifiers) do
@@ -451,6 +452,25 @@ function EID:mergeDescriptionObjects(oldDescObj, newDescObj)
 	end
 	return newDescObj
 end
+
+function EID:getObjectItemTypeAndCharge(descObj)
+	if not (descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType ~= nil) then
+		return
+	end
+	local itemConfig = EID.itemConfig:GetCollectible(descObj.ObjSubType)
+	descObj.ItemType = itemConfig.Type or -1
+
+	if descObj.ItemType == ItemType.ITEM_ACTIVE then
+		descObj.ChargeType = itemConfig.ChargeType or 0
+		descObj.Charges = itemConfig.MaxCharges or 0
+		-- Special handling for dynamic charge items
+		if REPENTANCE and (descObj.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or descObj.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or 
+		descObj.ObjSubType == CollectibleType.COLLECTIBLE_CLEAR_RUNE or descObj.ObjSubType == CollectibleType.COLLECTIBLE_D_INFINITY) then
+			descObj.ChargeType = ItemConfig.CHARGE_SPECIAL
+		end
+	end
+end
+
 -- returns the specified object table in the current language.
 -- falls back to english if it doesnt exist, unless specified otherwise
 function EID:getDescriptionEntry(objTable, objID, noFallback)

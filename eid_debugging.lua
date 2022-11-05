@@ -203,6 +203,9 @@ local function onDebugRender(t)
 				["ModName"] = "My Mod name",
 				["Quality"] = 4,
 				["Icon"] = EID.ObjectIcon["5.100.1"],
+				["ItemType"] = ItemType.ITEM_ACTIVE,
+				["ChargeType"] = ItemConfig.CHARGE_NORMAL,
+				["Charges"] = 3,
 			}
 			v:GetData()["EID_Description"] = descTable
 		end
