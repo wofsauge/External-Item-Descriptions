@@ -625,12 +625,7 @@ function EID:printDescription(desc, cachedID)
 	end
 	-- Display the mod this item is from
 	if desc.ModName then
-		if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
-			curName = curName .. " {{"..EID.Config["ModIndicatorTextColor"].."}}" .. EID.ModIndicator[desc.ModName].Name
-		end
-		if (EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Icon only") and EID.ModIndicator[desc.ModName].Icon then
-			curName = curName .. "{{".. EID.ModIndicator[desc.ModName].Icon .."}}"
-		end
+		curName = curName .. EID:getModNameString(desc)
 	end
 
 	EID:renderString(
@@ -1367,9 +1362,7 @@ local function onRender(t)
 						local desc = EID:getEntityData(closest, "EID_Description")
 						local origDesc = EID:getDescriptionObjByEntity(closest)
 						if desc ~= nil and type(desc) == "table" then
-							origDesc.Description = desc.Description or origDesc.Description
-							origDesc.Name = desc.Name or origDesc.Name
-							origDesc.Transformation = desc.Transformation or origDesc.Transformation
+							origDesc = EID:mergeDescriptionObjects(origDesc, desc)
 						else
 							origDesc.Description = desc
 						end

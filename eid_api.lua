@@ -428,6 +428,29 @@ function EID:getLegacyModDescription(Type, Variant, SubType)
 	return nil
 end
 
+-- Returns the icon and mod name of a given EID description object as a preformatted description string
+function EID:getModNameString(descObj)
+	local modString = ""
+	if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
+		local modName = EID.ModIndicator[descObj.ModName] and EID.ModIndicator[descObj.ModName].Name or descObj.ModName
+		modString = modString .. " {{"..EID.Config["ModIndicatorTextColor"].."}}" .. modName
+	end
+	local modIcon = EID.ModIndicator[descObj.ModName] and EID.ModIndicator[descObj.ModName].Icon
+	if (EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Icon only") and modIcon then
+		modString = modString .. "{{".. modIcon .."}}"
+	end
+	return modString
+end
+
+-- Attempts to merge two given Description objects into one
+function EID:mergeDescriptionObjects(oldDescObj, newDescObj)
+	for k,v in pairs(oldDescObj) do
+		if not newDescObj[k] then
+			newDescObj[k] = v
+		end
+	end
+	return newDescObj
+end
 -- returns the specified object table in the current language.
 -- falls back to english if it doesnt exist, unless specified otherwise
 function EID:getDescriptionEntry(objTable, objID, noFallback)

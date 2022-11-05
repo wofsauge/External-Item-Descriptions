@@ -199,7 +199,10 @@ local function onDebugRender(t)
 			local descTable = {
 				["Name"] = "Some Item with seed ".. v.InitSeed ,
 				["Description"] = "Test specific description#Init seed: ".. v.InitSeed,
-				["Transformation"] = "1,2"
+				["Transformation"] = "1,2",
+				["ModName"] = "My Mod name",
+				["Quality"] = 4,
+				["Icon"] = EID.ObjectIcon["5.100.1"],
 			}
 			v:GetData()["EID_Description"] = descTable
 		end
