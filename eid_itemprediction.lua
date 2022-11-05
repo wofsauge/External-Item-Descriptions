@@ -193,6 +193,8 @@ function EID:Teleport2Prediction()
 	end
 	--Angel/Devil Room check (it lives off the map)
 	if not level:GetRoomByIdx(-1).Clear then unclearedTypes[666] = true end
+	-- If in Pre-Ascent version (Dad's note) of Mausuleum/Gehenna, we dont teleport to I AM ERROR but Angel/Devil
+	if REPENTANCE and level:IsPreAscent() then unclearedTypes[666] = true; unclearedTypes[3] = false end
 	
 	local greed = game:IsGreedMode()
 	local roomOrder = (greed and teleport2GreedOrder) or teleport2Order
