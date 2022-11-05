@@ -1560,6 +1560,7 @@ EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 local function OnUseD4(_, _, _, player)
 	-- in AB+, USE_ITEM doesn't provide a player
 	AddActiveItemProgress(player or EID.player, true)
+	EID:CollectRerolledItemsOfPlayer(player or EID.player)
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 

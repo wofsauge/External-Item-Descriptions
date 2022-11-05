@@ -1695,7 +1695,9 @@ function EID:evaluateTransformationProgress(transformation)
 						if activesTable[tostring(eSubType)] then
 							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + activesTable[tostring(eSubType)]
 						else
-							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + player:GetCollectibleNum(eSubType, true)
+							local collCount = player:GetCollectibleNum(eSubType, true) - (EID.PlayerItemInteractions[i].rerollItems[tostring(eSubType)] or 0)
+							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + collCount
+							
 							-- Undo the Book of Virtues active item getting counted here
 							if tonumber(eSubType) == 584 and player:GetActiveItem() == 584 then
 								EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] - 1
@@ -1767,7 +1769,7 @@ end
 function EID:InitItemInteractionIfAbsent(playerID)
 	if not EID.PlayerItemInteractions[playerID] then
 		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {},
-			pickupHistory = {}, altPickupHistory = {} }
+			pickupHistory = {}, altPickupHistory = {}, rerollItems = {} }
 	end
 	EID.RecentlyTouchedItems[playerID] = EID.RecentlyTouchedItems[playerID] or {}
 end
@@ -1850,6 +1852,20 @@ function EID:GetTransformationsOfModdedItems()
 		EID:tryAutodetectTransformationsCollectible(i)
 	end
 end
+
+-- Collects items that the player got after using D4 item
+function EID:CollectRerolledItemsOfPlayer(player)
+	if maxCollectibleID == nil then maxCollectibleID = EID:GetMaxCollectibleID() end
+	local playerID = EID:getPlayerID(player)
+	EID.PlayerItemInteractions[playerID].rerollItems = {}
+	for i = 1, maxCollectibleID do
+		local count = player:GetCollectibleNum(i, true)
+		if count > 0 then
+			EID.PlayerItemInteractions[playerID].rerollItems[tostring(i)] = count
+		end
+	end
+end
+
 
 -- Returns true if a given entity is a grid entity
 function EID:IsGridEntity(entity)
