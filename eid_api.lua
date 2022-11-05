@@ -661,7 +661,7 @@ function EID:hasDescription(entity)
 	if EID.Config["EnableEntityDescriptions"] and EID:getTableName(entity.Type, entity.Variant, entity.SubType) == "custom" then
 		isAllowed = __eidEntityDescriptions[entityString] ~= nil
 		isAllowed = isAllowed or EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil
-		isAllowed = isAllowed or type(entity:GetData()["EID_Description"]) ~= type(nil)
+		isAllowed = isAllowed or entity:GetData() and type(entity:GetData()["EID_Description"]) ~= type(nil)
 	end
 	if entity.Type == EntityType.ENTITY_PICKUP then
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EID.Config["DisplayItemInfo"])
