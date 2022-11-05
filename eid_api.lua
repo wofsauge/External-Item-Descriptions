@@ -806,7 +806,7 @@ end
 
 -- Searches thru the given string and replaces Iconplaceholders with icons.
 -- Returns 2 values. the string without the placeholders but with an accurate space between lines. and a table of all Inline Sprites
-function EID:filterIconMarkup(text, textPosX, textPosY)
+function EID:filterIconMarkup(text)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
@@ -1059,11 +1059,13 @@ function EID:renderString(str, position, scale, kcolor)
 	for _, textPart in ipairs(textPartsTable) do
 		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1], position.X, position.Y)
 		EID:renderInlineIcons(spriteTable, position.X + offsetX, position.Y)
-		EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
-		if EID.CachingDescription then
-			table.insert(EID.CachedStrings[#EID.CachedStrings], {strFiltered, position.X + offsetX, position.Y, textPart[2], textPart[4], EID.Config["Transparency"]})
+		if strFiltered then -- prevent possible crash when strFiltered is nil
+			EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
+			if EID.CachingDescription then
+				table.insert(EID.CachedStrings[#EID.CachedStrings], {strFiltered, position.X + offsetX, position.Y, textPart[2], textPart[4], EID.Config["Transparency"]})
+			end
+			offsetX = offsetX + EID:getStrWidth(strFiltered) * scale.X
 		end
-		offsetX = offsetX + EID:getStrWidth(strFiltered) * scale.X
 	end
 	return textPartsTable[#textPartsTable][2]
 end
