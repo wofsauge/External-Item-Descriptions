@@ -875,6 +875,8 @@ EID.descriptions[languageCode].tripledTrinket = "효과 3배"
 EID.descriptions[languageCode].quadrupledTrinket = "효과 4배"
 
 EID.descriptions[languageCode].goldenTrinketEffects = {
+	-- Broken Magnet (append)
+	[6] = {"픽업 아이템이 캐릭터에게 끌려옵니다."},
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
 	[46] = { "반칸", "한칸", "한칸 반" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled

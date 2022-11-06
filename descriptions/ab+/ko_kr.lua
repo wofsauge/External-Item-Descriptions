@@ -591,7 +591,7 @@ EID.descriptions[languageCode].collectibles={
 EID.descriptions[languageCode].trinkets={
 	{"1", "삼킨 동전", "피격 시 {{Coin}}동전을 1~2개 드랍합니다."}, -- Swallowed Penny
 	{"2", "굳은 똥", "똥 파괴 시 픽업 아이템이 드랍될 확률이 50% 증가합니다."}, -- Petrified Poop
-	{"3", "AAA 건전지", "방 클리어 시 액티브 아이템의 충전량이 한칸 남았을 경우 액티브를 자동으로 충전합니다."}, -- AAA Battery
+	{"3", "AAA 건전지", "방 클리어 시 액티브 아이템의 충전량이 1칸 남았을 경우 액티브를 자동으로 충전합니다."}, -- AAA Battery
 	{"4", "고장난 조종기", "액티브 아이템 사용 시 스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Broken Remote
 	{"5", "퍼플 하트 훈장", "!!! 적이 챔피언의 형태로 나올 확률이 2배로 증가합니다.#가능한 경우, 보스가 챔피언의 형태로 나올 확률이 증가합니다."}, -- Purple Heart
 	{"6", "깨진 자석", "{{Coin}}동전이 캐릭터에게 끌려옵니다."}, -- Broken Magnet
