@@ -78,7 +78,7 @@ end
 -- Handle Void
 local voidStatUps = { 0.2, 0.5, 1, 0.5, 0.2, 1 }
 local voidStatIcons = {"{{Speed}}", "{{Tears}}", "{{Damage}}", "{{Range}}", "{{Shotspeed}}", "{{Luck}}"}
-if REPENTANCE then voidStatUps[4] = 1.5 end
+if REPENTANCE then voidStatUps[4] = 2.5 end
 local lastVoidCheck = -30
 EID.VoidStatIncreases = {{},{},{}}
 EID.BlackRuneStatIncreases = {{},{},{}}
