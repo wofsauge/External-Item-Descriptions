@@ -818,6 +818,10 @@ EID.descriptions[languageCode].quadrupledTrinket = "Effect quadrupled!"
 EID.descriptions[languageCode].goldenTrinketEffects = {
 	-- Broken Magnet (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 for doubled
 	[6] = { "coins", "pickups" },
+	-- Golden Store Credit: full replace
+	[13] = { "{{Shop}} {{ColorGold}}Allows Isaac to take Shop items for free{{CR}}#Chance to turn into a regular {{Trinket13}}Store Credit after each purchase" },
+	-- Golden Mysterious Candy makes Golden Poop
+	[25] = { "poop", "golden poop" },
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
 	[46] = { "half a heart", "a heart", "one and a half hearts" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
@@ -832,7 +836,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[75] = { "Trinket effect is doubled if possible", "Trinket effect is tripled if possible", "Trinket effect is quadrupled if possible", },
 	-- NO!
 	[88] = { "Prevents Quality {{Quality0}} items from spawning" },
-	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
+	-- Gilded Key (Golden version only): it doesn't give a key. bug that might get fixed (maybe it'll give a Golden Key?)
 	[159] = { "Replaces all chests (except Old/Mega) with Golden Chests#Golden Chests can contain extra cards, pills or trinkets" },
 }
 
