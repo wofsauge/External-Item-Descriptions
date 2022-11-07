@@ -591,7 +591,7 @@ EID.descriptions[languageCode].trinkets={
 	{"11", "Ring Worm", "Isaac's tears move in spirals with high speed"},
 	{"12", "Flat Worm", "50% wider tears#Increases knockback"},
 	{"13", "Store Credit", "{{Shop}} Allows Isaac to take 1 shop item for free"},
-	{"14", "Callus", "Grants immunity to creep and spikes"},
+	{"14", "Callus", "Grants immunity to creep and floor spikes"},
 	{"15", "Lucky Rock", "{{Coin}} Destroying rocks spawns coins"},
 	{"16", "Mom's Toenail", "Mom's Foot stomps a random spot in the room every 60 seconds"},
 	{"17", "Black Lipstick", "{{BlackHeart}} +1% chance for Black Hearts"}, -- base chance is 0.5%
