@@ -742,6 +742,10 @@ EID.GoldenTrinketData = {
 	[166] = {t={50},mult=2}, [167] = {t={25}, mults={1.32, 2}}, [168] = 1, [169] = {t={1}, goldenOnly = true, mult = 2}, [170] = {t={33}, mults={1.5,3}},
 	-- Lil Clot, Swallowed M80, The Twins (default text), Cricket Leg (17%, 1 in 6), Apollyon's Best Friend, Broken Glasses
 	[176] = 1, [178] = {t={50},mult=2}, [183] = 0, [185] = 17, [186] = 1, [187] = {t={50,50}, mult=2},
+	
+	-- NEW REP PATCH UPDATE
+	-- AAA Battery, Flat Worm
+	[3] = 1, [12] = 50,
 }
 
 EID.BreakUtf8CharsLanguage = {
@@ -753,6 +757,7 @@ EID.LanguageMap = {
 	["jp"] = "ja_jp",
 	["es"] = "spa",
 	["de"] = "de",
+	["fr"] = "fr",
 	["ru"] = "ru",
 	["kr"] = "ko_kr",
 	["zh"] = "zh_cn",
