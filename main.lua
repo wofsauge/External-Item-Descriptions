@@ -1703,7 +1703,7 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, EID.OnGameStart)
 
 --Saving Moddata--
-function EID:SaveGame()
+function EID:SaveTheGame()
 	if REPENTANCE then
 		EID.Config["BagContent"] = EID.BoC.BagItems or {}
 		EID.Config["BagFloorContent"] = EID.BoC.RoomQueries or {}
@@ -1730,7 +1730,7 @@ function EID:SaveGame()
 	EID.itemUnlockStates[CollectibleType.COLLECTIBLE_CUBE_OF_MEAT] = nil
 	EID.itemUnlockStates[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS] = nil
 end
-EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, EID.SaveGame)
+EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, EID.SaveTheGame)
 
 if EID.enableDebug then
 	require("eid_debugging")
