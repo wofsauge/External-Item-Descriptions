@@ -1681,12 +1681,27 @@ function EID:evaluateTransformationProgress(transformation)
 		if transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
 			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
 		else
-			-- Dead Tainted Lazarus exceptions
+			local pickupHistory = EID.PlayerItemInteractions[i].pickupHistory
+			local pillsTable = {}
+			-- Dead Tainted Lazarus exception
+			if player:GetPlayerType() == 38 then
+				pickupHistory = EID.PlayerItemInteractions[i].altPickupHistory or pickupHistory
+			end
+			if pickupHistory then
+				for j = 1, #pickupHistory do
+					if pickupHistory[j][1] == "pill" then
+						local pillSubType = tostring(pickupHistory[j][3])
+						if not pillsTable[pillSubType] then
+							pillsTable[pillSubType] = 0
+						end
+						pillsTable[pillSubType] = pillsTable[pillSubType] + 1 -- collect pill SubType
+					end
+				end
+			end
+
 			local activesTable = EID.PlayerItemInteractions[i].actives
-			local pillsTable = EID.PlayerItemInteractions[i].pills
 			if player:GetPlayerType() == 38 then
 				activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
-				pillsTable = EID.PlayerItemInteractions[i].altPills or pillsTable
 			end
 			for entityString, _ in pairs(EID.TransformationLookup[transformation]) do
 				local eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
@@ -1713,6 +1728,16 @@ function EID:evaluateTransformationProgress(transformation)
 				end
 			end
 		end
+	end
+end
+
+-- Workaround function to get the currently held pill of the players. Used to map Pill ID to pill color and vise versa
+EID.PlayerHeldPill = {}
+function EID:evaluateHeldPill()
+	EID.PlayerHeldPill = {}
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		EID.PlayerHeldPill[i] = player:GetPill(0)
 	end
 end
 
@@ -1768,7 +1793,7 @@ end
 -- if the player ItemInteraction table doesnt exist, create it with its init values
 function EID:InitItemInteractionIfAbsent(playerID)
 	if not EID.PlayerItemInteractions[playerID] then
-		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {},
+		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, altActives = {},
 			pickupHistory = {}, altPickupHistory = {}, rerollItems = {} }
 	end
 	EID.RecentlyTouchedItems[playerID] = EID.RecentlyTouchedItems[playerID] or {}

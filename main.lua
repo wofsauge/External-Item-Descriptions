@@ -991,6 +991,7 @@ function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
 	EID:checkPlayersForMissingItems()
 	EID:evaluateQueuedItems()
+	EID:evaluateHeldPill()
 	
 	-- Fix some outdated mods erroneously setting the REPENTANCE constant to false
 	if EID.GameVersion == "rep" and REPENTANCE == false then
@@ -1577,10 +1578,9 @@ end
 function EID:OnUsePill(pillEffectID, player, useFlags)
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
 	-- get the pill color by checking the player's pocket (not accurate for Temperance? and such, but useFlags will help us ignore those)
-	local pillColor = player:GetPill(0)
+	local pillColor = EID.PlayerHeldPill[EID:getPlayerID(player)]
 	if pillColor == 0 then return end -- ignore if no pill found in pocket
 	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags, pillColor) -- Echo Chamber tracking
-	
 	-- for tracking used pills, ignore gold pills and noannouncer flag pills 
 	-- (not using a bitmask, because Placebo is mimic+noannouncer, and we want to count those)
 	if REPENTANCE and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags == UseFlag.USE_NOANNOUNCER) then return end
