@@ -1710,7 +1710,10 @@ function EID:evaluateTransformationProgress(transformation)
 						if activesTable[tostring(eSubType)] then
 							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + activesTable[tostring(eSubType)]
 						else
-							local collCount = player:GetCollectibleNum(eSubType, true) - (EID.PlayerItemInteractions[i].rerollItems[tostring(eSubType)] or 0)
+							local collCount = player:GetCollectibleNum(eSubType, true)
+							if EID.PlayerItemInteractions[i].rerollItems then
+								collCount = collCount - (EID.PlayerItemInteractions[i].rerollItems[tostring(eSubType)] or 0)
+							end
 							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + collCount
 							
 							-- Undo the Book of Virtues active item getting counted here
