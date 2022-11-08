@@ -818,8 +818,12 @@ EID.descriptions[languageCode].quadrupledTrinket = "Effect quadrupled!"
 EID.descriptions[languageCode].goldenTrinketEffects = {
 	-- Broken Magnet (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 for doubled
 	[6] = { "coins", "pickups" },
+	-- Rosary Bead append
+	[7] = { "{{Collectible72}} Rosary is added to all item pools" },
 	-- Golden Store Credit: full replace
 	[13] = { "{{Shop}} {{ColorGold}}Allows Isaac to take Shop items for free{{CR}}#Chance to turn into a regular {{Trinket13}}Store Credit after each purchase" },
+	-- Lucky Rock append (Gold / Mom's Box / Both)
+	[15] = { "Rocks may drop 2 coins", "Rocks may drop 2 coins", "Rocks may drop 3 coins" },
 	-- Golden Mysterious Candy makes Golden Poop
 	[25] = { "poop", "golden poop" },
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
@@ -838,6 +842,8 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[88] = { "Prevents Quality {{Quality0}} items from spawning" },
 	-- Gilded Key (Golden version only): it doesn't give a key. bug that might get fixed (maybe it'll give a Golden Key?)
 	[159] = { "Replaces all chests (except Old/Mega) with Golden Chests#Golden Chests can contain extra cards, pills or trinkets" },
+	-- The Twins
+	[183] = { "May copy/grant 2 familiars", "May copy/grant 2 familiars", "May copy/grant 3 familiars" },
 }
 
 ---------- Cards ----------
