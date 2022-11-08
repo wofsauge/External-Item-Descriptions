@@ -740,14 +740,14 @@ EID.GoldenTrinketData = {
 	[159] = {goldenOnly = true, fullReplace = true, mult=1}, [160] = 1, [162] = {t={50}, mults={1.32, 2}}, [163] = {t={1},mult=2}, [164] = 1, 
 	-- Modeling Clay, Polished Bone (25, 33, 50), Hollow Heart, Kid's Drawing, Crystal Key
 	[166] = {t={50},mult=2}, [167] = {t={25}, mults={1.32, 2}}, [168] = 1, [169] = {t={1}, goldenOnly = true, mult = 2}, [170] = {t={33}, mults={1.5,3}},
-	-- Lil Clot, Swallowed M80, The Twins (effect chance rolls multiple times; default text), Cricket Leg (17%, 1 in 6), Apollyon's Best Friend, Broken Glasses
-	[176] = 1, [178] = {t={50},mult=2}, [183] = 0, [185] = 17, [186] = 1, [187] = {t={50,50}, mult=2},
+	-- Lil Clot, Swallowed M80, The Twins (effect chance rolls multiple times), Cricket Leg (17%, 1 in 6), Apollyon's Best Friend, Broken Glasses
+	[176] = 1, [178] = {t={50},mult=2}, [183] = {append = true}, [185] = 17, [186] = 1, [187] = {t={50,50}, mult=2},
 	
 	-- NEW REP PATCH UPDATE
 	-- AAA Battery, Broken Magnet (coins -> pickups), Pulse Worm (default text), Flat Worm, Golden Store Credit,
-	[3] = 1, [6] = {findReplace = true, mult = 2}, [9] = 0, [12] = 50, [13] = {goldenOnly = true, fullReplace = true, mult=1},
-	-- Lucky Rock (effect chance rolls multiple times; default text), Mom's Toenail (20 -> 10 -> 6.66), Mysterious Candy (golden = golden poop)
-	[15] = 0, [16] = {t={20}, mults={0.5, 0.333}}, [25] = {goldenOnly = true, findReplace = true, mult = 2},
+	[3] = 1, [6] = {findReplace = true, mult = 2}, [7] = {append = true}, [9] = 0, [12] = 50, [13] = {goldenOnly = true, fullReplace = true, mult=1},
+	-- Lucky Rock (effect chance rolls multiple times), Mom's Toenail (20 -> 10 -> 6.66), Mysterious Candy (golden = golden poop)
+	[15] = {append = true}, [16] = {t={20}, mults={0.5, 0.333}}, [25] = {goldenOnly = true, findReplace = true, mult = 2},
 }
 
 EID.BreakUtf8CharsLanguage = {
