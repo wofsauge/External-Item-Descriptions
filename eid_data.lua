@@ -744,10 +744,10 @@ EID.GoldenTrinketData = {
 	[176] = 1, [178] = {t={50},mult=2}, [183] = {append = true}, [185] = 17, [186] = 1, [187] = {t={50,50}, mult=2},
 	
 	-- NEW REP PATCH UPDATE
-	-- AAA Battery, Broken Magnet (coins -> pickups), Pulse Worm (default text), Flat Worm, Golden Store Credit,
-	[3] = 1, [6] = {findReplace = true, mult = 2}, [7] = {append = true}, [9] = 0, [12] = 50, [13] = {goldenOnly = true, fullReplace = true, mult=1},
-	-- Lucky Rock (effect chance rolls multiple times), Mom's Toenail (20 -> 10 -> 6.66), Mysterious Candy (golden = golden poop)
-	[15] = {append = true}, [16] = {t={20}, mults={0.5, 0.333}}, [25] = {goldenOnly = true, findReplace = true, mult = 2},
+	-- AAA Battery, Broken Remote (Teleport 2.0), Broken Magnet (coins -> pickups), Cartridge, Pulse Worm (default text), Flat Worm, 
+	[3] = 1, [4] = {fullReplace = true, mult=1}, [6] = {findReplace = true, mult = 2}, [7] = {append = true}, [8] = 5, [9] = 0, [12] = 50,
+	-- Golden Store Credit, Lucky Rock (effect chance rolls multiple times), Mom's Toenail (20 -> 10 -> 6.66), Mysterious Candy (golden = golden poop)
+	[13] = {goldenOnly = true, fullReplace = true, mult=1}, [15] = {append = true}, [16] = {t={20}, mults={0.5, 0.333}}, [25] = {goldenOnly = true, findReplace = true, mult = 2},
 }
 
 EID.BreakUtf8CharsLanguage = {
