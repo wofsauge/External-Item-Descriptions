@@ -48,11 +48,8 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	currentPlayer = player
 	
 	-- TODO:
-	-- D1, crooked penny cheats. 404/liberty cap/etc. "what item is it"
-	-- (Zodiac and Modeling Clay have functions for it?)
+	-- crooked penny cheats. 404/liberty cap/broken syringe/etc. "what item is it"
 	-- pandora's box? it shows the whole desc which is kinda useful but too big
-	-- Void's absorbed items list
-	-- D Infinity current dice; track our Drop presses and resync it each time D Infinity is used by watching for the next dice effect triggered (Predict its next dice in AB+?)
 	
 	-- Tainted ??? Poop Descriptions
 	if REPENTANCE and EID.Config["ItemReminderShowPoopDesc"] > 0 and player:GetPlayerType() == 25 then
@@ -214,10 +211,25 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	-- Trinket Descriptions
 	if EID.Config["ItemReminderShowTrinketDesc"] > 0 then
 		for t = 0, EID.Config["ItemReminderShowTrinketDesc"]-1 do
-			local heldTrinket = player:GetTrinket(t)
+			-- account for Golden Trinket IDs
+			local heldTrinketTrue = player:GetTrinket(t)
+			local heldTrinket = heldTrinketTrue % 32768
 			if heldTrinket > 0 and not blacklist["5.350." .. heldTrinket] then
+				if heldTrinket == 4 then
+					-- Broken Remote has two possible effects depending on if its doubled
+					if player:GetTrinketMultiplier(heldTrinket) > 1 then
+						-- Teleport 2.0
+						blacklist["5.350.4"] = true
+						append("{{Trinket4}}", EID:getObjectName(5,350,4) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport2Prediction())
+					elseif EID.Config["ItemReminderShowRNGCheats"] then
+						-- Teleport (requires cheating option on)
+						blacklist["5.350.4"] = true
+						if not REPENTANCE or player:GetSprite():GetAnimation() ~= "TeleportUp" then
+							append("{{Trinket4}}", EID:getObjectName(5,350,4) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport1Prediction(getSeed(44)))
+						end
+					end
 				-- Rainbow Worm
-				if EID.Config["ItemReminderShowHiddenInfo"] and heldTrinket == 64 then
+				elseif EID.Config["ItemReminderShowHiddenInfo"] and heldTrinket == 64 then
 					blacklist["5.350.64"] = true
 					local rainbowWormEffect = rainbowWormEffects[math.floor(game.TimeCounter / 30 / 3) % (REPENTANCE and 10 or 8)]
 					addObjectDesc(5, 350, rainbowWormEffect, "{{Trinket64}}")
