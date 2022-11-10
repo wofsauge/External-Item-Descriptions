@@ -581,7 +581,7 @@ EID.descriptions[languageCode].trinkets={
 	{"1", "Swallowed Penny", "{{Coin}} Taking damage spawns 1 coin"},
 	{"2", "Petrified Poop", "50% chance to get drops from poop"},
 	{"3", "AAA Battery", "-1 charge needed for active items"},
-	{"4", "Broken Remote", "Using an active item teleports Isaac to a random room"},
+	{"4", "Broken Remote", "{{Collectible44}} Using an active item teleports Isaac to a random room"},
 	{"5", "Purple Heart", "2x chance for champion enemies"},
 	{"6", "Broken Magnet", "Attracts coins to Isaac"},
 	{"7", "Rosary Bead", "{{AngelChance}} 50% higher Angel Room chance#{{Collectible33}} Higher chance to find The Bible in {{Shop}} Shops and {{Library}} Libraries"},
