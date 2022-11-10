@@ -816,6 +816,8 @@ EID.descriptions[languageCode].quadrupledTrinket = "Effect quadrupled!"
 -- Most trinkets that can be doubled or tripled just have the numbers in their description multiplied
 -- A few trinkets have odd edge cases where their effect completely changes, or is different depending on if it's Mom's Box or Golden
 EID.descriptions[languageCode].goldenTrinketEffects = {
+	-- Broken Remote (replace with Teleport 2.0 info)
+	[4] = { "{{Collectible419}} Using an active item teleports Isaac to {{ColorGold}}a room that has not been cleared yet{{CR}}#Hierarchy: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"}, -- Teleport 2.0
 	-- Broken Magnet (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 for doubled
 	[6] = { "coins", "pickups" },
 	-- Rosary Bead append
