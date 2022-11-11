@@ -742,10 +742,7 @@ if REPENTANCE then
 	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoomRep)
 end
 
--- On new room, save the status of any variables that need to be rewound upon Glowing Hourglass usage
-function EID:onNewRoom()
-	EID.RecentlyTouchedItems = {}
-
+function EID:CheckCurrentRoomGridEntities()
 	EID.CurrentRoomGridEntities = {}
 	local room = game:GetRoom()
 	for i = 1, room:GetGridSize(), 1 do
@@ -754,6 +751,13 @@ function EID:onNewRoom()
 			EID.CurrentRoomGridEntities[i] = gridEntity
 		end
 	end
+end
+
+-- On new room, save the status of any variables that need to be rewound upon Glowing Hourglass usage
+function EID:onNewRoom()
+	EID.RecentlyTouchedItems = {}
+
+	EID:CheckCurrentRoomGridEntities()
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 ---------------------------------------------------------------------------
