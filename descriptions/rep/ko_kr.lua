@@ -1195,7 +1195,7 @@ EID.descriptions[languageCode].FalsePHDHorseDamage = "{{DamageSmall}}공격력 +
 EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "위의 효과 대신 열쇠를 같이 소모하여 랜덤 배열의 아이템 6개를 소환합니다."
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! 경고 !!!"
-EID.descriptions[languageCode].AchievementWarningText = "지금 모드를 적용하면 도전과제가 언락되지 않습니다!#모든 모드를 비활성화 한 상태에서 6 스테이지 (Depths II) 보스를 클리어하셔야#{{Blank}}모드 적용 중에도 도전과제를 언락할 수 있습니다.#{{Blank}}(일반 게임에서 화면 왼쪽에 트로피 금지 아이콘이 없을 경우 이 메세지를 비활성화 하셔도 됩니다.)#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
+EID.descriptions[languageCode].AchievementWarningText = "{{ColorRed}}지금 모드를 적용하면 게임 진행이 막히며 도전과제가 언락되지 않습니다!{{CR}}#모든 모드를 비활성화 한 상태에서 6 스테이지 (Depths II) 보스를 클리어하셔야#{{Blank}}모드 적용 중에도 도전과제를 언락할 수 있습니다."
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "리펜턴스가 최신 버전이 아닙니다!#최신 버전이 아닐 경우 모드 오류가 발생할 수 있습니다(1.7.9).#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
 
