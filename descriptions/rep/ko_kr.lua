@@ -5,7 +5,7 @@ local languageCode = "ko_kr"
 local repCollectibles={
 	-- Original
 	[2] = {"2", "내면의 눈", "↓ {{TearsSmall}}연사 배율 x0.51#공격이 3발로 나갑니다."}, -- The Inner Eye
-	[5] = {"5", "나의 모습", "↑ {{RangeSmall}}사거리 +1.5#↑ {{RangeSmall}}사거리 배율 x1.6#↑ {{ShotspeedSmall}}탄속 배율 x1.6#↑ {{DamageSmall}}공격력 +1.5#↓ {{LuckSmall}}행운 -1#공격이 캐릭터가 있는 방향으로 되돌아옵니다."}, -- My Reflection
+	[5] = {"5", "나의 모습", "↑ {{RangeSmall}}사거리 배율 x2#↑ {{RangeSmall}}추가 사거리 +1.5#↑ {{ShotspeedSmall}}탄속 배율 x1.6#↑ {{DamageSmall}}공격력 +1.5#↓ {{LuckSmall}}행운 -1#공격이 캐릭터가 있는 방향으로 되돌아옵니다."}, -- My Reflection
 	[6] = {"6", "오줌싸개", "↑ {{TearsSmall}}연사 +1.5#↓ {{RangeSmall}}사거리 -1.5#↓ {{RangeSmall}}사거리 배율 x0.8"}, -- Number One
 	[8] = {"8", "보비", "공격하는 방향으로 공격력 3.5의 빠른 눈물을 발사합니다."}, -- Brother Bobby
 	[10] = {"10", "파리떼", "캐릭터 주변을 돌며 적의 탄환을 막아주는 파리 배리어를 2마리 얻습니다."}, -- Halo of Flies
@@ -126,7 +126,7 @@ local repCollectibles={
 	[248] = {"248", "군체의식", "파란 아군 파리/거미와 파리/거미 타입의 패밀리어의 공격력이 2배 증가합니다."}, -- Hive Mind
 	[249] = {"249", "추가 선택권", "{{BossRoom}}보스방 보상 아이템이 한개 더 추가되며 하나를 선택하면 나머지는 사라집니다."}, -- There's Options
 	[253] = {"253", "마법의 딱쟁이", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +1#↑ {{LuckSmall}}행운 +1"}, -- Magic Scab
-	[254] = {"254", "응고혈", "왼쪽 눈에서 {{DamageSmall}}공격력 +1, {{RangeSmall}}사거리 +1.5의 공격을 발사합니다."}, -- Blood Clot
+	[254] = {"254", "응고혈", "!!! 왼쪽 눈에만 적용:#↑ {{DamageSmall}}공격력 +1#↑ {{RangeSmall}}사거리 +2.5"}, -- Blood Clot
 	[256] = {"256", "불폭탄", "↑ {{Bomb}}폭탄 +5#폭탄이 터진 자리에 불꽃이 남으며 폭탄과 불꽃에 닿은 적은 16의 피해를 입습니다.#불에 피해를 입지 않습니다."}, -- Hot Bombs
 	[261] = {"261", "안구 돌출증", "↑ {{DamageSmall}}공격력 +0.5#공격이 캐릭터와 가까울수록 공격력이 3배 증가하며 멀어질수록 0배로 감소합니다."}, -- Proptosis
 	[262] = {"262", "찢어진 페이지 2", "↑ {{BlackHeart}}블랙하트 +1#피격 시 전체 체력이 1칸 이하일 때 방 안의 모든 적에게 80의 피해를 줍니다.#↑ {{BlackHeart}}/{{Collectible35}}/{{Card14}} 블랙하트/The Necronomicon/The Devil의 공격력 +40"}, -- Missing Page 2
@@ -359,7 +359,7 @@ local repCollectibles={
 	[622] = {"622", "창세기", "!!! 일회용#사용 시 {{ColorCyan}}모든 플레이어 캐릭터를 초기화, 소지 중인 아이템을 모두 제거{{CR}}하고 기원의 방으로 이동합니다.#사용한 캐릭터의 제거한 아이템의 개수만큼 랜덤한 아이템 3개 중 하나를 선택할 수 있는 횟수가 주어집니다.#기원의 방에서 나가면 다음 스테이지로 이동합니다."}, -- Genesis
 	[623] = {"623", "날카로운 열쇠", "↑ {{Key}}열쇠 +5#사용 시 열쇠를 1개 소모해 공격하는 방향으로 공격력 x5 +30의 열쇠를 날립니다.#열쇠는 적에게 피해를 주거나 잠긴 문이나 {{SecretRoom}}비밀방을 열거나 장애물을 부술 수 있습니다.#열쇠로 적 처치 시 일정 확률로 상자의 내용물을 드랍합니다."}, -- Sharp Key
 	[624] = {"624", "부스터 팩", "{{Card}}카드를 5개 드랍합니다."}, -- Booster Pack
-	[625] = {"625", "거대버섯", "사용 시 30초 동안 캐릭터의 크기가 대폭 커지며;#↑ {{DamageSmall}}눈물 공격력 배율 x4#↑ {{RangeSmall}}사거리 +7#↓ {{TearsSmall}}연사 배율 x0.4#무적 상태가 되며 장애물을 부술 수 있습니다."}, -- Mega Mush
+	[625] = {"625", "거대버섯", "사용 시 30초 동안 캐릭터의 크기가 대폭 커지며;#↑ {{DamageSmall}}눈물 공격력 배율 x4#↑ {{RangeSmall}}사거리 +2#↓ {{TearsSmall}}연사 배율 x0.4#무적 상태가 되며 장애물을 부술 수 있습니다."}, -- Mega Mush
 	[626] = {"626", "칼 조각 1", "Knife Piece 2와 조합#{{MotherSmall}} 완성 시 공격하는 방향으로 칼을 날릴 수 있으며 특정 스테이지로 가는 빨간 문을 열 수 있습니다."}, -- Knife Piece 1
 	[627] = {"627", "칼 조각 2", "Knife Piece 1와 조합#{{MotherSmall}} 완성 시 공격하는 방향으로 칼을 날릴 수 있으며 특정 스테이지로 가는 빨간 문을 열 수 있습니다."}, -- Knife Piece 2
 	[628] = {"628", "사망 증명서", "!!! 일회용#사용 시 아이작의 모든 아이템이 있는 방으로 이동합니다.#아이템 한개 획득 시 원래 있던 장소로 돌아갑니다.#!!! 해금하지 않은 아이템과 {{Player31}}Tainted Lost, {{Collectible691}}Sacred Orb의 효과로 리롤되는 아이템은 등장하지 않습니다."}, -- Death Certificate
@@ -998,8 +998,8 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 ---------- Pills ----------
 local repPills={
 	[4] = {"3", "폭탄은 곧 열쇠", "{{Bomb}}폭탄과 {{Key}}열쇠의 개수를 서로 바꿉니다.#{{GoldenBomb}}황금폭탄과 {{GoldenKey}}황금열쇠를 서로 바꿉니다."}, -- Bombs are Key
-	[12] = {"11", "사거리 감소", "↓ {{RangeSmall}}사거리 -0.6"}, -- Range Down
-	[13] = {"12", "사거리 증가", "↑ {{RangeSmall}}사거리 +0.75"}, -- Range Up
+	[12] = {"11", "사거리 감소", "↓ {{RangeSmall}}사거리 -1"}, -- Range Down
+	[13] = {"12", "사거리 증가", "↑ {{RangeSmall}}사거리 +1.25"}, -- Range Up
 	[38] = {"37", "전자오락 시야경", "30초 동안 화면의 화질이 감소합니다."}, -- Retro Vision
 	[42] = {"41", "완전 지루해...", "그 방에서 적과 캐릭터의 속도가 {{Slow}}느려집니다."}, -- I'm Drowsy...
 	[43] = {"42", "완전 신나!!!", "그 방, 30초, 60초마다 총 3번 적과 캐릭터의 속도가 빨라집니다."}, -- I'm Excited!!!
@@ -1024,8 +1024,8 @@ EID.descriptions[languageCode].horsepills={
 	{"8", "알약을 찾았어", "무효과"}, -- I Found Pills
 	{"9", "사춘기", "무효과#{{Blank}} (3번 사용 시 1회 한정 {{Heart}}최대 체력 +1)"}, -- Puberty
 	{"10", "멋진 파리", "적의 탄환을 막아주는 {{Collectible279}}{{ColorCyan}}대형 파리{{CR}} 한마리를 얻습니다."}, -- Pretty Fly
-	{"11", "사거리 감소", "↓ {{RangeSmall}}사거리 -{{ColorYellow}}1.2{{CR}}"}, -- Range Down
-	{"12", "사거리 증가", "↑ {{RangeSmall}}사거리 +{{ColorCyan}}1.5{{CR}}"}, -- Range Up
+	{"11", "사거리 감소", "↓ {{RangeSmall}}사거리 -{{ColorYellow}}2{{CR}}"}, -- Range Down
+	{"12", "사거리 증가", "↑ {{RangeSmall}}사거리 +{{ColorCyan}}2.5{{CR}}"}, -- Range Up
 	{"13", "이동속도 감소", "↓ {{SpeedSmall}}이동속도 -{{ColorYellow}}0.24{{CR}}"}, -- Speed Down
 	{"14", "이동속도 증가", "↑ {{SpeedSmall}}이동속도 +{{ColorCyan}}0.3{{CR}}"}, -- Speed Up
 	{"15", "연사 감소", "↓ {{TearsSmall}}연사 -{{ColorYellow}}0.56{{CR}}"}, -- Tears Down
