@@ -875,8 +875,18 @@ EID.descriptions[languageCode].tripledTrinket = "효과 3배"
 EID.descriptions[languageCode].quadrupledTrinket = "효과 4배"
 
 EID.descriptions[languageCode].goldenTrinketEffects = {
-	-- Broken Magnet (append)
-	[6] = {"픽업 아이템이 캐릭터에게 끌려옵니다."},
+	-- Broken Remote (replace with Teleport 2.0 info)
+	[4] = { "{{Collectible419}} 액티브 아이템 사용 시 {{ColorGold}}클리어하지 않은 방들 중 하나로 정해진 우선순위에 따라서{{CR}} 순간이동합니다.#!!! 순서: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{Planetarium}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}> {{ErrorRoom}}오류방"}, -- Teleport 2.0
+	-- Broken Magnet (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 for doubled
+	[6] = { "{{Coin}}동전", "픽업" },
+	-- Rosary Bead append
+	[7] = { "!!! {{Collectible72}}Rosary가 모든 배열에서 등장합니다." },
+	-- Golden Store Credit: full replace
+	[13] = { "{{Shop}} {{ColorGold}}상점에서 동전으로 판매하는 품목을 무료로 구매할 수 있습니다.{{CR}}#상점 품목 구매 시마다 확률적으로 일회용 형태의 {{Trinket13}}Store Credit으로 바뀝니다." },
+	-- Lucky Rock append (Gold / Mom's Box / Both)
+	[15] = { "확률적으로 동전 드랍량 2배", "확률적으로 동전 드랍량 2배", "확률적으로 동전 드랍량 3배" },
+	-- Golden Mysterious Candy makes Golden Poop
+	[25] = { "똥", "황금 똥" },
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
 	[46] = { "반칸", "한칸", "한칸 반" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
@@ -893,6 +903,8 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[88] = { "{{Quality0}}등급인 아이템이 등장하지 않습니다." },
 	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
 	[159] = { "{{GoldenChest}} 낡은상자, 메가상자를 제외한 모든 상자가 황금상자로 교체됩니다.#{{GoldenChest}} 황금상자가 드랍하는 픽업의 양이 종류와 상관없이 최소 2개가 보장됩니다.#{{GoldenChest}} 황금상자에서 {{Rune}}룬의 등장 확률이 증가하며 {{Pill}}알약과 {{Battery}}배터리가 등장할 수 있습니다." },
+	-- The Twins
+	[183] = { "확률적으로 2개 복제", "확률적으로 2개 복제", "확률적으로 3개 복제" },
 }
 
 ---------- Cards ----------
