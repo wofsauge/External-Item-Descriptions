@@ -1754,9 +1754,10 @@ function EID:evaluateQueuedItems()
 		EID:InitItemInteractionIfAbsent(i)
 		local player = Isaac.GetPlayer(i)
 		if player.QueuedItem then
-			-- Refresh our descriptions upon a queued passive item being added to a player
+			-- Refresh our descriptions and grid entity list upon a queued passive item being added to a player
 			if not player.QueuedItem.Item and hadQueuedItem[i] then
 				EID.ForceRefreshCache = true
+				EID:CheckCurrentRoomGridEntities()
 			end
 			hadQueuedItem[i] = player.QueuedItem.Item ~= nil
 			if EID.PlayerItemInteractions[i].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
