@@ -507,8 +507,8 @@ end
 function EID:getAdjustedSubtype(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	if tableName == "trinkets" then
-		if SubType > 32768 then 
-			return SubType - 32768
+		if REPENTANCE then
+			return (SubType & TrinketType.TRINKET_ID_MASK)
 		end
 	elseif tableName == "sacrifice" then
 		return math.min(#EID.descriptions["en_us"].sacrifice, SubType)
