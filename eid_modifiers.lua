@@ -622,7 +622,7 @@ if REPENTANCE then
 		-- Trinket Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
 			-- Golden Trinket / Mom's Box
-			isGolden = (descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG)
+			isGolden = ((descObj.ObjSubType & TrinketType.TRINKET_GOLDEN_FLAG) == TrinketType.TRINKET_GOLDEN_FLAG)
 			hasBox = EID.collectiblesOwned[439]
 			if isGolden or hasBox then table.insert(callbacks, GoldenTrinketCallback) end
 		end
