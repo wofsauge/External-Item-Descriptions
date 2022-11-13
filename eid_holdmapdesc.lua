@@ -213,7 +213,8 @@ function EID:getHoldMapDescription(player, checkingTwin)
 		for t = 0, EID.Config["ItemReminderShowTrinketDesc"]-1 do
 			-- account for Golden Trinket IDs
 			local heldTrinketTrue = player:GetTrinket(t)
-			local heldTrinket = heldTrinketTrue % 32768
+			local heldTrinket = heldTrinketTrue
+			if REPENTANCE then heldTrinket = heldTrinketTrue & TrinketType.TRINKET_ID_MASK end
 			if heldTrinket > 0 and not blacklist["5.350." .. heldTrinket] then
 				if heldTrinket == 4 then
 					-- Broken Remote has two possible effects depending on if its doubled
