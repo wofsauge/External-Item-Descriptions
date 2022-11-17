@@ -392,6 +392,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.ModName = tableEntry and tableEntry[4]
 	description.Quality = EID:getObjectQuality(description)
 	description.Icon = EID:getObjectIcon(description)
+	EID:getObjectItemTypeAndCharge(description)
 
 	if checkModifiers ~= false then
 		for _,modifier in ipairs(EID.DescModifiers) do
@@ -426,6 +427,48 @@ function EID:getLegacyModDescription(Type, Variant, SubType)
 		return {"", customDesc[1], customDesc[2]}
 	end
 	return nil
+end
+
+-- Returns the icon and mod name of a given EID description object as a preformatted description string
+function EID:getModNameString(descObj)
+	local modString = ""
+	if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
+		local modName = EID.ModIndicator[descObj.ModName] and EID.ModIndicator[descObj.ModName].Name or descObj.ModName
+		modString = modString .. " {{"..EID.Config["ModIndicatorTextColor"].."}}" .. modName
+	end
+	local modIcon = EID.ModIndicator[descObj.ModName] and EID.ModIndicator[descObj.ModName].Icon
+	if (EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Icon only") and modIcon then
+		modString = modString .. "{{".. modIcon .."}}"
+	end
+	return modString
+end
+
+-- Attempts to merge two given Description objects into one
+function EID:mergeDescriptionObjects(oldDescObj, newDescObj)
+	for k,v in pairs(oldDescObj) do
+		if not newDescObj[k] then
+			newDescObj[k] = v
+		end
+	end
+	return newDescObj
+end
+
+function EID:getObjectItemTypeAndCharge(descObj)
+	if not (descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType ~= nil) then
+		return
+	end
+	local itemConfig = EID.itemConfig:GetCollectible(descObj.ObjSubType)
+	descObj.ItemType = itemConfig.Type or -1
+
+	if descObj.ItemType == ItemType.ITEM_ACTIVE then
+		descObj.ChargeType = itemConfig.ChargeType or 0
+		descObj.Charges = itemConfig.MaxCharges or 0
+		-- Special handling for dynamic charge items
+		if REPENTANCE and (descObj.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or descObj.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or 
+		descObj.ObjSubType == CollectibleType.COLLECTIBLE_CLEAR_RUNE or descObj.ObjSubType == CollectibleType.COLLECTIBLE_D_INFINITY) then
+			descObj.ChargeType = ItemConfig.CHARGE_SPECIAL
+		end
+	end
 end
 
 -- returns the specified object table in the current language.
@@ -464,8 +507,8 @@ end
 function EID:getAdjustedSubtype(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	if tableName == "trinkets" then
-		if SubType > 32768 then 
-			return SubType - 32768
+		if REPENTANCE then
+			return (SubType & TrinketType.TRINKET_ID_MASK)
 		end
 	elseif tableName == "sacrifice" then
 		return math.min(#EID.descriptions["en_us"].sacrifice, SubType)
@@ -618,7 +661,7 @@ function EID:hasDescription(entity)
 	if EID.Config["EnableEntityDescriptions"] and EID:getTableName(entity.Type, entity.Variant, entity.SubType) == "custom" then
 		isAllowed = __eidEntityDescriptions[entityString] ~= nil
 		isAllowed = isAllowed or EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil
-		isAllowed = isAllowed or type(entity:GetData()["EID_Description"]) ~= type(nil)
+		isAllowed = isAllowed or entity:GetData() and type(entity:GetData()["EID_Description"]) ~= type(nil)
 	end
 	if entity.Type == EntityType.ENTITY_PICKUP then
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EID.Config["DisplayItemInfo"])
@@ -763,7 +806,7 @@ end
 
 -- Searches thru the given string and replaces Iconplaceholders with icons.
 -- Returns 2 values. the string without the placeholders but with an accurate space between lines. and a table of all Inline Sprites
-function EID:filterIconMarkup(text, textPosX, textPosY)
+function EID:filterIconMarkup(text)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
@@ -1014,13 +1057,15 @@ function EID:renderString(str, position, scale, kcolor)
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
 	local offsetX = 0
 	for _, textPart in ipairs(textPartsTable) do
-		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1], position.X, position.Y)
+		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1])
 		EID:renderInlineIcons(spriteTable, position.X + offsetX, position.Y)
-		EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
-		if EID.CachingDescription then
-			table.insert(EID.CachedStrings[#EID.CachedStrings], {strFiltered, position.X + offsetX, position.Y, textPart[2], textPart[4], EID.Config["Transparency"]})
+		if strFiltered then -- prevent possible crash when strFiltered is nil
+			EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
+			if EID.CachingDescription then
+				table.insert(EID.CachedStrings[#EID.CachedStrings], {strFiltered, position.X + offsetX, position.Y, textPart[2], textPart[4], EID.Config["Transparency"]})
+			end
+			offsetX = offsetX + EID:getStrWidth(strFiltered) * scale.X
 		end
-		offsetX = offsetX + EID:getStrWidth(strFiltered) * scale.X
 	end
 	return textPartsTable[#textPartsTable][2]
 end
@@ -1028,7 +1073,7 @@ end
 -- Adds Description object modifiers.
 -- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
 function EID:addDescriptionModifier(modifierName, condition, callback)
-	for i,v in ipairs(EID.DescModifiers) do
+	for _,v in ipairs(EID.DescModifiers) do
 		if v["name"] == modifierName then
 			v["condition"] = condition
 			v["callback"] = callback
@@ -1193,7 +1238,7 @@ function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
 		end
 	end
 	local isUnlocked = false
-	for i = 0, 1 do -- some samples to make sure
+	for _ = 0, 1 do -- some samples to make sure
 		local collID = itemPool:GetCollectible(itemPoolOfItem, false, 1)
 		if collID == collectibleID then
 			isUnlocked = true
@@ -1636,12 +1681,27 @@ function EID:evaluateTransformationProgress(transformation)
 		if transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
 			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
 		else
-			-- Dead Tainted Lazarus exceptions
+			local pickupHistory = EID.PlayerItemInteractions[i].pickupHistory
+			local pillsTable = {}
+			-- Dead Tainted Lazarus exception
+			if player:GetPlayerType() == 38 then
+				pickupHistory = EID.PlayerItemInteractions[i].altPickupHistory or pickupHistory
+			end
+			if pickupHistory then
+				for j = 1, #pickupHistory do
+					if pickupHistory[j][1] == "pill" then
+						local pillSubType = tostring(pickupHistory[j][3])
+						if not pillsTable[pillSubType] then
+							pillsTable[pillSubType] = 0
+						end
+						pillsTable[pillSubType] = pillsTable[pillSubType] + 1 -- collect pill SubType
+					end
+				end
+			end
+
 			local activesTable = EID.PlayerItemInteractions[i].actives
-			local pillsTable = EID.PlayerItemInteractions[i].pills
 			if player:GetPlayerType() == 38 then
 				activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
-				pillsTable = EID.PlayerItemInteractions[i].altPills or pillsTable
 			end
 			for entityString, _ in pairs(EID.TransformationLookup[transformation]) do
 				local eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
@@ -1650,7 +1710,12 @@ function EID:evaluateTransformationProgress(transformation)
 						if activesTable[tostring(eSubType)] then
 							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + activesTable[tostring(eSubType)]
 						else
-							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + player:GetCollectibleNum(eSubType, true)
+							local collCount = player:GetCollectibleNum(eSubType, true)
+							if EID.PlayerItemInteractions[i].rerollItems then
+								collCount = collCount - (EID.PlayerItemInteractions[i].rerollItems[tostring(eSubType)] or 0)
+							end
+							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + collCount
+							
 							-- Undo the Book of Virtues active item getting counted here
 							if tonumber(eSubType) == 584 and player:GetActiveItem() == 584 then
 								EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] - 1
@@ -1669,6 +1734,16 @@ function EID:evaluateTransformationProgress(transformation)
 	end
 end
 
+-- Workaround function to get the currently held pill of the players. Used to map Pill ID to pill color and vise versa
+EID.PlayerHeldPill = {}
+function EID:evaluateHeldPill()
+	EID.PlayerHeldPill = {}
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		EID.PlayerHeldPill[i] = player:GetPill(0)
+	end
+end
+
 -- Watch for a player's queued item (holding an item over their head) to track active item touches
 -- Used for Transformation Progress and for tracking Recently Touched Items
 EID.PlayerItemInteractions = {}
@@ -1679,9 +1754,10 @@ function EID:evaluateQueuedItems()
 		EID:InitItemInteractionIfAbsent(i)
 		local player = Isaac.GetPlayer(i)
 		if player.QueuedItem then
-			-- Refresh our descriptions upon a queued passive item being added to a player
+			-- Refresh our descriptions and grid entity list upon a queued passive item being added to a player
 			if not player.QueuedItem.Item and hadQueuedItem[i] then
 				EID.ForceRefreshCache = true
+				EID:CheckCurrentRoomGridEntities()
 			end
 			hadQueuedItem[i] = player.QueuedItem.Item ~= nil
 			if EID.PlayerItemInteractions[i].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
@@ -1721,8 +1797,8 @@ end
 -- if the player ItemInteraction table doesnt exist, create it with its init values
 function EID:InitItemInteractionIfAbsent(playerID)
 	if not EID.PlayerItemInteractions[playerID] then
-		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, pills = {}, altActives = {}, altPills = {},
-			pickupHistory = {}, altPickupHistory = {} }
+		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, altActives = {},
+			pickupHistory = {}, altPickupHistory = {}, rerollItems = {} }
 	end
 	EID.RecentlyTouchedItems[playerID] = EID.RecentlyTouchedItems[playerID] or {}
 end
@@ -1805,6 +1881,20 @@ function EID:GetTransformationsOfModdedItems()
 		EID:tryAutodetectTransformationsCollectible(i)
 	end
 end
+
+-- Collects items that the player got after using D4 item
+function EID:CollectRerolledItemsOfPlayer(player)
+	if maxCollectibleID == nil then maxCollectibleID = EID:GetMaxCollectibleID() end
+	local playerID = EID:getPlayerID(player)
+	EID.PlayerItemInteractions[playerID].rerollItems = {}
+	for i = 1, maxCollectibleID do
+		local count = player:GetCollectibleNum(i, true)
+		if count > 0 then
+			EID.PlayerItemInteractions[playerID].rerollItems[tostring(i)] = count
+		end
+	end
+end
+
 
 -- Returns true if a given entity is a grid entity
 function EID:IsGridEntity(entity)

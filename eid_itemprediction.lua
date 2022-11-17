@@ -39,7 +39,7 @@ if REPENTANCE then
 		justDidD = true
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.WatchForDInfinity, CollectibleType.COLLECTIBLE_D_INFINITY)
-    function EID:WatchForDice(collectibleType, rng, player)
+    function EID:WatchForDice(collectibleType, _, player)
         if not justDidD or collectibleType == 489 then return end
         justDidD = false
         local playerID = EID:getPlayerID(player)
@@ -177,12 +177,15 @@ local teleport2Icons = { [1025] = "{{RedRoom}}", [666] = "{{AngelDevilChance}}" 
 function EID:Teleport2Prediction()
 	local level = game:GetLevel()
 	local rooms = level:GetRooms()
+	local curDimension = EID:GetDimension(level)
 	--I AM ERROR Room always considered uncleared
 	local unclearedTypes = {[3] = true}
 	for i = 0, rooms.Size - 1 do
 		local room = rooms:Get(i)
-		
-		if not room.Clear then
+
+		local gridIndex = room.SafeGridIndex
+		local roomDesc = level:GetRoomByIdx(gridIndex, curDimension)
+		if roomDesc.ListIndex == i and not room.Clear then
 			-- Check for Special Red Rooms, which get ordered differently than their non-red version
 			if REPENTANCE and room.Data.Type ~= 1 and room.Flags & 1024 == 1024 then unclearedTypes[1025] = true
 			else unclearedTypes[room.Data.Type] = true end
@@ -190,13 +193,15 @@ function EID:Teleport2Prediction()
 	end
 	--Angel/Devil Room check (it lives off the map)
 	if not level:GetRoomByIdx(-1).Clear then unclearedTypes[666] = true end
+	-- If in Pre-Ascent version (Dad's note) of Mausuleum/Gehenna, we dont teleport to I AM ERROR but Angel/Devil
+	if REPENTANCE and level:IsPreAscent() then unclearedTypes[666] = true; unclearedTypes[3] = false end
 	
 	local greed = game:IsGreedMode()
 	local roomOrder = (greed and teleport2GreedOrder) or teleport2Order
 	local roomNames = EID:getDescriptionEntry("RoomTypeNames")
 	
     -- Return a string for the first uncleared room type that we find
-	for i,v in ipairs(roomOrder) do
+	for _,v in ipairs(roomOrder) do
 		if unclearedTypes[v] then
 			local descString = (teleport2Icons[v] or EID.RoomTypeToMarkup[v]) .. " " .. roomNames[v]
 			-- Tall Vertical Main Greed Room exception, because why not, attention to detail
@@ -282,7 +287,7 @@ local specialCards = {[49] = true, [50] = true, [78] = true}
 
 function EID:D1Prediction(rng)
 	local poss = {}
-	for i,v in ipairs(Isaac.FindByType(5,-1,-1)) do
+	for _,v in ipairs(Isaac.FindByType(5,-1,-1)) do
 		-- Check the blacklist, as well as Rune of Jera in AB+, and empty chests in Rep
 		if not D1blacklist[v.Variant] and (REPENTANCE or v.Variant ~= 300 or v.SubType ~= 33) and (not REPENTANCE or v:ToPickup():CanReroll()) then
 			table.insert(poss, v)

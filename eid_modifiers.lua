@@ -78,7 +78,7 @@ end
 -- Handle Void
 local voidStatUps = { 0.2, 0.5, 1, 0.5, 0.2, 1 }
 local voidStatIcons = {"{{Speed}}", "{{Tears}}", "{{Damage}}", "{{Range}}", "{{Shotspeed}}", "{{Luck}}"}
-if REPENTANCE then voidStatUps[4] = 1.5 end
+if REPENTANCE then voidStatUps[4] = 2.5 end
 local lastVoidCheck = -30
 EID.VoidStatIncreases = {{},{},{}}
 EID.BlackRuneStatIncreases = {{},{},{}}
@@ -478,14 +478,14 @@ if REPENTANCE then
 			end
 			if pickupHistory then
 				local lastUsedPill = PillEffect.PILLEFFECT_VURP + 1
-				local i = 1
-				while (i <= #pickupHistory) do
-					local entry = pickupHistory[i]
+				local j = 1
+				while (j <= #pickupHistory) do
+					local entry = pickupHistory[j]
 					if entry[1] == "pill" then
 						lastUsedPill = entry[3]
 						break
 					end
-					i = i + 1
+					j = j + 1
 				end
 				local tableName = EID:getTableName(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 				local name = EID:getPillName(lastUsedPill, tableName == "horsepills")
@@ -504,6 +504,7 @@ if REPENTANCE then
 		local data = EID.pillMetadata[adjustedID-1]
 		if data ~= nil then
 			local damageUp = string.find(data.class,"3") and (string.find(data.class,"-") or adjustedID-1 == PillEffect.PILLEFFECT_EXPERIMENTAL)
+			if adjustedID-1 == PillEffect.PILLEFFECT_SHOT_SPEED_DOWN then damageUp = true end
 			-- why doesn't I'm Excited have a - in the xml data yet spawn a black heart...
 			local blackHeart = (string.find(data.class,"2") or string.find(data.class,"1")) and (string.find(data.class,"-") or adjustedID-1 == PillEffect.PILLEFFECT_IM_EXCITED)
 			local text = ""
@@ -621,7 +622,7 @@ if REPENTANCE then
 		-- Trinket Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
 			-- Golden Trinket / Mom's Box
-			isGolden = (descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG)
+			isGolden = ((descObj.ObjSubType & TrinketType.TRINKET_GOLDEN_FLAG) == TrinketType.TRINKET_GOLDEN_FLAG)
 			hasBox = EID.collectiblesOwned[439]
 			if isGolden or hasBox then table.insert(callbacks, GoldenTrinketCallback) end
 		end
@@ -660,7 +661,7 @@ end
 EID:addDescriptionModifier("EID Afterbirth+", EIDConditionsAB, nil)
 
 -- should this be done differently so that mods can add tab previews? (tab conditions is done last, but would be done before callbacks mods add, maybe tab should be checked in EID:getDescriptionObj
-local function TabConditions(descObj)
+local function TabConditions(_)
 	if EID:PlayersActionPressed(EID.Config["BagOfCraftingToggleKey"]) and not EID.inModifierPreview then return true end
 	EID.TabPreviewID = 0
 	return false

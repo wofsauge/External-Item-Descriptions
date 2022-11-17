@@ -60,11 +60,11 @@ EID.TRANSFORMATION = {
 
 -- List of item Types
 EID.ItemTypeAnm2Names = {
-	"null", -- 1
-	"passive", -- 2
-	"active", -- 3
-	"familiar", -- 4
-	"trinket" -- 5
+	[ItemType.ITEM_NULL + 1] = "null",
+	[ItemType.ITEM_PASSIVE + 1] = "passive",
+	[ItemType.ITEM_TRINKET + 1] = "active",
+	[ItemType.ITEM_ACTIVE + 1] = "familiar",
+	[ItemType.ITEM_FAMILIAR + 1] = "trinket"
 }
 
 -- List of HUD elements, their position and usage
@@ -722,10 +722,10 @@ EID.InlineColors = {
 -- mults: custom multipliers. A Missing Page's damage goes from 80 to 120 to 160; so its multipliers are 1.5 and 2, instead of 2 and 3
 -- append / findReplace / fullReplace: add text (Rainbow Worm, NO!) or entirely replace the trinket's description (Tick) from goldenTrinketEffects
 EID.GoldenTrinketData = {
-	-- Swallowed Penny, Petrified Poop (50% -> 60%), Purple Heart (max 2x), a couple Worms, Black Lipstick (max 2x), Bible Tract (max 2x), Monkey's Paw
-	[1] = 1, [2] = {t={50}, mult=1.2}, [5] = {t={2}, mult=2}, [10] = 0.4, [11] = 0.4, [17] = {t={1}, mult=2}, [18] = {t={3}, mult=2}, [20] = 1,
+	-- Swallowed Penny, Petrified Poop (50% -> 60%), Purple Heart (max 2x), a couple Worms, Black Lipstick, Bible Tract, Monkey's Paw
+	[1] = 1, [2] = {t={50}, mult=1.2}, [5] = {t={2}, mult=2}, [10] = {t={0.4,0}}, [11] = {t={0.4,0}}, [17] = 10, [18] = 3, [20] = 1,
 	-- Butt Penny, Hook Worm (two stats), Whip Worm, Fish Head, Liberty Cap (max 4x), Curved Horn, Goat Hoof, Mom's Pearl (2x becomes 3x)
-	[24] = {t={20}, mult=1.5}, [26] = {t={0.4, 1.5}}, [27] = 0.5, [29] = 1, [32] = {t={25}, mult=4}, [35] = 2, [37] = 0.15, [38] = {t={10}, mult=2},
+	[24] = {t={20}, mult=1.5}, [26] = {t={0.4, 1.5, 0}}, [27] = 0.5, [29] = 1, [32] = {t={25}, mult=4}, [35] = 2, [37] = 0.15, [38] = {t={10}, mult=2},
 	-- Cancer, Lucky Toe (just the Luck Up), Isaac's Fork (heart heal amount), A Missing Page (damage + necronomicon multiplier), Tick (the biggest pain)
 	[39] = 1, [42] = 1, [46] = {findReplace = true}, [48] = {t={2, 80},mults={1.5,2}}, [53] = {fullReplace = true},
 	-- Maggy's Faith, Rainbow Worm, Tape Worm, Lazy Worm, Louse, Watch Battery (just the charge amount), Exploding Cap, Stud Finder
@@ -740,8 +740,14 @@ EID.GoldenTrinketData = {
 	[159] = {goldenOnly = true, fullReplace = true, mult=1}, [160] = 1, [162] = {t={50}, mults={1.32, 2}}, [163] = {t={1},mult=2}, [164] = 1, 
 	-- Modeling Clay, Polished Bone (25, 33, 50), Hollow Heart, Kid's Drawing, Crystal Key
 	[166] = {t={50},mult=2}, [167] = {t={25}, mults={1.32, 2}}, [168] = 1, [169] = {t={1}, goldenOnly = true, mult = 2}, [170] = {t={33}, mults={1.5,3}},
-	-- Lil Clot, Swallowed M80, The Twins (default text), Cricket Leg (17%, 1 in 6), Apollyon's Best Friend, Broken Glasses
-	[176] = 1, [178] = {t={50},mult=2}, [183] = 0, [185] = 17, [186] = 1, [187] = {t={50,50}, mult=2},
+	-- Lil Clot, Swallowed M80, The Twins (effect chance rolls multiple times), Cricket Leg (17%, 1 in 6), Apollyon's Best Friend, Broken Glasses
+	[176] = 1, [178] = {t={50},mult=2}, [183] = {append = true}, [185] = 17, [186] = 1, [187] = {t={50,50}, mult=2},
+	
+	-- NEW REP PATCH UPDATE
+	-- AAA Battery, Broken Remote (Teleport 2.0), Broken Magnet (coins -> pickups), Cartridge, Pulse Worm (default text), Flat Worm, 
+	[3] = 1, [4] = {fullReplace = true, mult=1}, [6] = {findReplace = true, mult = 2}, [7] = {append = true}, [8] = 5, [9] = 0, [12] = 50,
+	-- Golden Store Credit, Lucky Rock (effect chance rolls multiple times), Mom's Toenail (20 -> 10 -> 6.66), Mysterious Candy (golden = golden poop)
+	[13] = {goldenOnly = true, fullReplace = true, mult=1}, [15] = {append = true}, [16] = {t={20}, mults={0.5, 0.333}}, [25] = {goldenOnly = true, findReplace = true, mult = 2},
 }
 
 EID.BreakUtf8CharsLanguage = {
@@ -753,6 +759,7 @@ EID.LanguageMap = {
 	["jp"] = "ja_jp",
 	["es"] = "spa",
 	["de"] = "de",
+	["fr"] = "fr",
 	["ru"] = "ru",
 	["kr"] = "ko_kr",
 	["zh"] = "zh_cn",

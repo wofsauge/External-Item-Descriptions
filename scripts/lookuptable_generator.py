@@ -10,7 +10,6 @@ filePath = "D:\\Programme\\Steam\\steamapps\\common\\The Binding of Isaac Rebirt
 def sortByID(elem):
     return elem["id"]
 recipes = []
-itemQuality = []
 itempools = {}
 itemIDToPool = {}
 maxItemID = 0
@@ -64,7 +63,6 @@ for item in items_metadataXML.findall('item'):
     if maxItemID < id:
         maxItemID = id
     itemIDToPool[id] = []
-    itemQuality.append({"id": id, "quality": item.get('quality')})
 
 # Read itempools.xml
 itempoolsXML = ET.parse(filePath+'itempools.xml').getroot()
@@ -154,7 +152,18 @@ newfile.write("}\n\n")
 
 newfile.write("--The name of each entity, for use in glitched item descriptions\n")
 newfile.write("EID.XMLEntityNames = {")
+tempString = ""
+counter = 0
 for entity in entityNames:
-    newfile.write("[\""+entity['id']+"\"] = \""+entity['name']+"\", ")
+    counter = counter+1
+    tempString += "[\""+entity['id']+"\"] = \""+entity['name']+"\", "
+    if counter > 100:
+        newfile.write(tempString+"\n")
+        tempString =""
+        counter = 0
+
 newfile.write("}\n\n")
+
+newfile.close()
+print("SUCCESS")
 
