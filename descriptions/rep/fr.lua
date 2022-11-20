@@ -1200,7 +1200,9 @@ EID.descriptions["fr"].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} ATT
 EID.descriptions["fr"].AchievementWarningText = "Les succès sont désactivés !#Pour pouvoir débloquer des succès, tu dois d'abord tuer {{ColorCyan}}Maman{{ColorSilver}} (Profondeurs II){{ColorWhite}}.#{{Blank}}#{{Blank}} Si tu as déjà battu {{ColorCyan}}Maman{{ColorWhite}}, ce message est un bug et peut être ignoré#{{Blank}} {{ColorSilver}}(Cette alerte peut être désactivée dans la config)"
 EID.descriptions["fr"].OldGameVersionWarningText = "Ta version de Repentance n'est pas à jour !#Seule la dernière version du jeu (1.7.9a) est officiellement supportée.#{{Blank}} {{ColorSilver}}(Cette alerte peut être désactivée dans la config)"
 
-EID.descriptions["fr"].ModdedRecipesWarningText = "Les objets de mod peuvent dérégler les recettes de fabrication !#Désactive l'affichage des recettes ou du Sac de Fabrication si tes recettes sont incorrectes#{{Blank}} {{ColorSilver}}(Cette alerte peut être désactivée dans la config)"
+EID.descriptions["fr"].ModdedRecipesWarningText = "Les objets de mod peuvent dérégler les recettes de fabrication !#Utilise l'option Item Probability ou désactive l'affichage du Sac de Fabrication dans la config du mod si tes recettes sont incorrectes#{{Blank}} {{ColorSilver}}(Cette alerte peut être désactivée dans la config)"
+
+EID.descriptions["fr"].ResultsWithX = "(Avec {1})"
 
 if EID.enableDebug then
     EID.descriptions["fr"].repCollectibles = repCollectibles
