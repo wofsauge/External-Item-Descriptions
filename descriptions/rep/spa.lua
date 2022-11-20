@@ -244,7 +244,7 @@ local repCollectibles={
 	[554] = {"554", "Tengo miedo", "{{Fear}} Asusta a los enemigos en un radio pequeño a tu alrededor"}, --   Muy fantasmagórico
 	[555] = {"555", "Cuchilla dorada", "{{Coin}} Convierte 5 monedas en#{{ArrowUp}} {{Damage}} Daño +1.2 en la habitación actual"}, --  Navaja de oro
 	[556] = {"556", "Sulfuro", "{{Collectible118}} Activa el efecto de Azufre en la habitación actual"}, --  Sulfuro
-	[557] = {"557", "Galleta de la suerte", "Puede generar: #Una fortuna #{{SoulHeart}} Unq Corazón de alma#{{Card}} Una Carta#{{Trinket}} Un Trinket#{{Rune}} Una Runa o Piedra de alma"}, --  Galleta de la fortuna
+	[557] = {"557", "Galleta de la suerte", "Puede generar: #Una fortuna #{{SoulHeart}} Un Corazón de Alma#{{Card}} Una Carta#{{Trinket}} Un Trinket#{{Rune}} Una Runa o Piedra de alma"}, --  Galleta de la fortuna
 	[558] = {"558", "Dolor de ojo", "Posibilidad de disparar de 1 a 2 lágrimas adicionales en direcciones aleatorias"}, --  Dolor de ojo
 	[559] = {"559", "120 voltios", "Da descargas de energía a los enemigos cercanos#La electricidad inflige el 75 % de tu daño"}, --  120 voltios
 	[560] = {"560", "Duele...", "Suelta un círculo de 10 lágrimas cuando te golpean#↑ {{Tears}} Lágrimas +1.2 con el primer golpe#↑ {{Tears}} Lágrimas +0.4 por cada golpe adicional"}, --  ¡Eso duele!
@@ -1111,7 +1111,7 @@ EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! ADV
 EID.descriptions[languageCode].AchievementWarningText = "¡Los logros están deshabilitados!#Para poder progresar en el juego, primero debes vencer a Mamá (Depths II) sin mods habilitados.#(Si ya derrotaste a Mamá, este mensaje es un bug, ignóralo)#(Este aviso puede ser desactivado en la configuración)"
 EID.descriptions[languageCode].OutdatedModWarningText = "¡Un mod sin actualizar está reduciendo la cantidad de objetos! Esto puede causar crasheos, especialmente al entrar al area de la Pieza del cuchillo 2#Por favor, desinstala los mods con el archivo resources/items.xml desactualizado"
 EID.descriptions[languageCode].OldGameVersionWarningText = "Tu versión de Repentance no es la más reciente#La versión más reciente es la única con soporte oficial (1.7.9)#(Este aviso puede ser desactivado en la configuración)"
-EID.descriptions[languageCode].ModdedRecipesWarningText = "Los objetos modeados pueden provocar cálculos incorrectos#Usa el modo Itempool Percentages o desactiva el cálculo de la Bolsa de trabajo si es que los cálculos son incorrectos#(Este aviso puede ser desactivado en la configuración)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Los objetos modeados pueden provocar cálculos incorrectos#Usa el modo Item Probability o desactiva el cálculo de la Bolsa de trabajo si es que los cálculos son incorrectos#(Este aviso puede ser desactivado en la configuración)"
 -- Warnings end
 
 -- False PHD modifier

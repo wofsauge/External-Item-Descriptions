@@ -1129,7 +1129,7 @@ EID.descriptions[languageCode].AchievementWarningText = "実績無効！#実績�
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "ゲームがアップデート されていません#最新バージョンのみが サポートされています#この警告は設定で無効に できます"
 
-EID.descriptions[languageCode].ModdedRecipesWarningText = "MODのアイテムが原因で クラフトレシピの表示が 不正確になる可能性が あります#その場合、Itempool Percentages モードか、非表示にして ください#この警告は設定で無効に できます"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "MODのアイテムが原因で クラフトレシピの表示が 不正確になる可能性が あります#その場合、Item Probability モードか、非表示にして ください#この警告は設定で無効に できます"
 
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them

@@ -19,7 +19,7 @@ EID.descriptions[languageCode].custom = {} -- table for custom entity descriptio
 EID.descriptions[languageCode].languageName = "French"
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+EID.descriptions[languageCode].fonts = {{name="default", textboxWidth = 135}, {name="inverted", textboxWidth = 135}, {name="borderless", textboxWidth = 135}}
 
 EID.descriptions["fr"].collectibles={
 	{"1", "Oignon Triste", "↑ Débit {{ColorLime}}+0.7"},

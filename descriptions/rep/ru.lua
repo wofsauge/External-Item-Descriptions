@@ -1084,7 +1084,7 @@ EID.descriptions[languageCode].AchievementWarningText = "Достижения о
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "Ваша версия Repentance не обновлена!#Только самая последняя версия официально поддерживается (1.7.9)#(Это предупреждение можно выключить в конфиге)"
 
-EID.descriptions[languageCode].ModdedRecipesWarningText = "Предметы из модов могут сделать расчёт крафтов неточным!#Используйте режим отображения \"Itempool Percentages\" или отключите отображение Крафт-Мешка, если ваши рецепты неверны#(Это предупреждение можно выключить в конфиге)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Предметы из модов могут сделать расчёт крафтов неточным!#Используйте режим отображения \"Item Probability\" или отключите отображение Крафт-Мешка, если ваши рецепты неверны#(Это предупреждение можно выключить в конфиге)"
 
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them

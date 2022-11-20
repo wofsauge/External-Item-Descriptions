@@ -184,7 +184,7 @@ local componentShifts = {
 	{0x00000011, 0x0000000F, 0x0000001A}
 }
 
--- The icon each item pool will use in the "Itempool Percentages" display
+-- The icon each item pool will use in the "Item Probability" display
 local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
 [5]="{{SecretRoom}}",[7]="{{PoopRoomIcon}}",[8]="{{GoldenChestRoomIcon}}",[9]="{{RedChestRoomIcon}}",[12]="{{CursedRoom}}",[26]="{{Planetarium}}" }
 
@@ -269,7 +269,7 @@ function EID:getBagOfCraftingID(Variant, SubType)
 	return nil
 end
 
--- "Itempool Percentages" MODE: Get percentages of what quality / item pool a given set of 8 ingredients can yield
+-- "Item Probability" MODE: Get percentages of what quality / item pool a given set of 8 ingredients can yield
 function EID:simulateBagOfCrafting(componentsTable)
 	local components = componentsTable
 	local compTotalWeight = 0
@@ -1068,13 +1068,13 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
 	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIconsFunc = EID.tableToCraftingIconsFull end
 	
-	-- Pickups Only / Itempool Percentages Mode display
+	-- Pickups Only / Item Probability Mode display
 	if EID.Config["BagOfCraftingDisplayRecipesMode"] == "Pickups Only" then
 		EID:appendToDescription(customDescObj, getHotkeyString())
 		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
 		EID:addDescriptionToPrint(customDescObj)
 		return true
-	elseif EID.Config["BagOfCraftingDisplayRecipesMode"] == "Itempool Percentages" then
+	elseif EID.Config["BagOfCraftingDisplayRecipesMode"] == "Item Probability" then
 		if not EID.RefreshBagTextbox and prevDesc ~= "" and not EID.OptionChanged then
 			EID:appendToDescription(customDescObj, prevDesc)
 			EID:addDescriptionToPrint(customDescObj)

@@ -1452,15 +1452,23 @@ function EID:getEntityData(entity, str)
 end
 
 -- Function to fix font compatibility. Resets config font to a value compatible with your current language
-function EID:fixDefinedFont()
+function EID:fixDefinedFont(forceRefresh)
 	local curLang = EID:getLanguage()
 	local curFont = EID.Config["FontType"]
+	
+	-- If our currently loaded font is still valid, we don't need to reset values
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
 		if curFont == v.name then
+			-- Load the new language's line height / textbox width
+			if (forceRefresh) then
+				EID.Config["LineHeight"] = EID.descriptions[curLang].fonts[1].lineHeight or EID.DefaultConfig["LineHeight"]
+				EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth or EID.DefaultConfig["TextboxWidth"]
+			end
 			return false
 		end
 	end
 	EID.Config["FontType"] = EID.descriptions[curLang].fonts[1].name
+	-- On new font load, reset line height / textbox width to the default values if there's no defined height/width
 	EID.Config["LineHeight"] = EID.descriptions[curLang].fonts[1].lineHeight or EID.DefaultConfig["LineHeight"]
 	EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth or EID.DefaultConfig["TextboxWidth"]
 	return true
