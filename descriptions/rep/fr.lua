@@ -1188,7 +1188,7 @@ EID.descriptions["fr"].BlankCardCharge = "Temps de charge avec {{ColorYellow}}Ca
 EID.descriptions["fr"].BlankCardQCard = "Téléporte Isaac dans la salle d'erreur#La {{ColorYellow}}Carte Blanche{{ColorWhite}} et la {{ColorYellow}}Carte ?{{ColorWhite}} seront détruites" 
 EID.descriptions["fr"].ClearRuneCharge = "Temps de charge avec {{ColorYellow}}Rune de Cristal{{ColorWhite}} :" 
 EID.descriptions["fr"].PlaceboCharge = "Temps de charge avec {{ColorYellow}}Placebo{{ColorWhite}} :" 
-EID.descriptions["fr"].FlipItemToggleInfo = "({{ButtonSelect}} : voir la description)"
+EID.descriptions["fr"].FlipItemToggleInfo = "( {{ButtonSelect}} : voir la description)"
 
 EID.descriptions["fr"].FalsePHDHeart = "Fait apparaître un cœur noir {{BlackHeart}}"
 EID.descriptions["fr"].FalsePHDDamage = "Dégâts {{ColorLime}}+0.6"
