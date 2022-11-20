@@ -320,7 +320,7 @@ if REPENTANCE then
 			end
 		end
 		if hasCarBattery then
-			EID:appendToDescription(descObj, " (Results with {{Collectible356}})")
+			EID:appendToDescription(descObj, " " .. EID:getDescriptionEntry("ResultsWithX"):gsub("{1}", "{{Collectible356}}"))
 		end
 		if firstID ~= 0 and EID.TabPreviewID == 0 then
 			EID.TabPreviewID = firstID

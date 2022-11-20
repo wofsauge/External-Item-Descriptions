@@ -18,6 +18,7 @@ EID.descriptions[languageCode].languageName = "English"
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}
 
+
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ {{Tears}} +0.7 Tears up"},

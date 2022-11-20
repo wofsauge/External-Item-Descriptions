@@ -1123,10 +1123,11 @@ EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Instead, consumes 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} WARNING {{Warning}}"
 EID.descriptions[languageCode].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)#(This warning can be disabled in the config)"
 
-EID.descriptions[languageCode].OldGameVersionWarningText = "Your version of Repentance is not up-to-date!#Only the newest version (1.7.9) is officially supported#(This warning can be disabled in the config)"
+EID.descriptions[languageCode].OldGameVersionWarningText = "EID is updated for the newest Steam version#Your game version is not officially supported, so some descriptions and features will be inaccurate#(This warning can be disabled in the config)"
 
-EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Use the Itempool Percentages display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Use the Item Probability display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
 
+EID.descriptions[languageCode].ResultsWithX = "(Results with {1})"
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
