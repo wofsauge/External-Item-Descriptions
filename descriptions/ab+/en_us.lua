@@ -483,7 +483,7 @@ EID.descriptions[languageCode].collectibles={
 	{"458", "Belly Button", "{{Trinket}} Allows Isaac to carry 2 trinkets#{{Trinket}} Spawns a random trinket on pickup"},
 	{"459", "Sinus Infection", "20% chance to shoot a sticky booger#Boogers deal Isaac's damage once a second and stick for 60 seconds"},
 	{"460", "Glaucoma", "{{Confusion}} 5% chance to shoot concussive tears#Makes the screen slightly darker"},
-	{"461", "Parasitoid", "15% chance to shoot egg sacks#Egg sacks spawn slowing creep and a blue spider or fly on hit"},
+	{"461", "Parasitoid", "15% chance to shoot egg sacks#{{Luck}} 50% chance at 5 Luck#Egg sacks spawn slowing creep and a blue spider or fly on hit"},
 	{"462", "Eye of Belial", "↑ {{Range}} +1.5 Range up#↑ +1 Tear Height#Piercing tears#Hitting an enemy makes the tear homing and doubles its damage"},
 	{"463", "Sulfuric Acid", "↑ {{Damage}} +0.3 Damage up#Isaac's tears can destroy rocks and open doors"},
 	{"464", "Glyph of Balance", "{{SoulHeart}} +2 Soul Hearts#Champion enemies drop whatever pickup Isaac needs the most"},
