@@ -1072,9 +1072,8 @@ local hasShownStartWarning = false
 local function checkStartOfRunWarnings()
 	if REPENTANCE and not EID.Config["DisableStartOfRunWarnings"] and game:GetFrameCount() < 10*30 then
 		-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
-		-- 1.7.6 (Nov. 16, 2021): The Options object (to read the game's options like HUD Offset)
-		-- 1.7.9 (Nov. 04, 2022): The CraftingQuality attribute was added
-		if Options == nil or Isaac.GetItemConfig():GetCollectible(1).CraftingQuality == nil then
+		-- 1.7.9b (Dec. 08, 2022): The IsAvailable function was added
+		if Isaac.GetItemConfig():GetCollectible(1).IsAvailable == nil then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("OldGameVersionWarningText") or ""
