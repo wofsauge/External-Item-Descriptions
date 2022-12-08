@@ -1229,57 +1229,29 @@ function EID:DetectModdedItems()
 	return false
 end
 
-function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
-	local itemPool = game:GetItemPool()
-	if maxCollectibleID == nil then maxCollectibleID = EID:GetMaxCollectibleID() end
-	for i= 1, maxCollectibleID do
-		if ItemConfig.Config.IsValidCollectible(i) and i ~= collectibleID then
-			itemPool:AddRoomBlacklist(i)
-		end
-	end
-	local isUnlocked = false
-	for _ = 0, 1 do -- some samples to make sure
-		local collID = itemPool:GetCollectible(itemPoolOfItem, false, 1)
-		if collID == collectibleID then
-			isUnlocked = true
-			break
-		end
-	end
-	itemPool:ResetRoomBlacklist()
-	return isUnlocked
-end
-
-function EID:isCollectibleUnlockedAnyPool(collectibleID)
-	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data
+function EID:isCollectibleUnlocked(collectibleID)
+	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using ItemConfig.IsAvailable
 	--Currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
-	if not REPENTANCE or EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then return true end
-	local item = EID.itemConfig:GetCollectible(collectibleID)
-	if item == nil then return false end
-	if EID.itemUnlockStates[collectibleID] == nil then
-		--whitelist all quest items and items with no associated achievement
-		if item.AchievementID == -1 or (item.Tags and item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then
+	--Check the itemUnlockStates table first to maybe help speed up BoC slightly
+	if EID.itemUnlockStates[collectibleID] ~= nil then
+		return EID.itemUnlockStates[collectibleID]
+	elseif not REPENTANCE then
+		EID.itemUnlockStates[collectibleID] = true
+		return true
+	else
+		local item = EID.itemConfig:GetCollectible(collectibleID)
+		if item == nil then return false
+		-- Use the Repentance update function to determine unlock status if it exists
+		elseif item.IsAvailable then
+			EID.itemUnlockStates[collectibleID] = item:IsAvailable()
+			return EID.itemUnlockStates[collectibleID]
+		else
 			EID.itemUnlockStates[collectibleID] = true
 			return true
 		end
-		--blacklist all hidden items
-		if item.Hidden then
-			EID.itemUnlockStates[collectibleID] = false
-			return false
-		end
-		--iterate through the pools this item can be in
-		for _,itemPoolID in ipairs(EID.XMLItemIsInPools[collectibleID]) do
-			if (itemPoolID < ItemPoolType.NUM_ITEMPOOLS and EID:isCollectibleUnlocked(collectibleID, itemPoolID)) then
-				EID.itemUnlockStates[collectibleID] = true
-				return true
-			end
-		end
-		--note: some items will still be missed by this, if they've been taken out of their pools (especially when in Greed Mode)
-		EID.itemUnlockStates[collectibleID] = false
-		return false
-	else
-		return EID.itemUnlockStates[collectibleID]
 	end
 end
+EID.isCollectibleUnlockedAnyPool = EID.isCollectibleUnlocked -- old name before ItemConfig:IsAvailable was added
 
 -- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 function EID:AreAchievementsAllowed() 
