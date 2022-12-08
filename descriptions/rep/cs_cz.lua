@@ -1105,7 +1105,7 @@ EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Namísto toho spot
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! VAROVÁNÍ !!!"
 EID.descriptions[languageCode].AchievementWarningText = "Achievementy jsou zakázány!#Abys  povolil postup a achievementy, musíš nejprve zabít mámu (Hloubka II) bez aktivovaných modů.#(If you've defeated Mom, this message is a bug and can be ignored)#(Pokud jsi porazil mámu, tato zpráva je chyba a lze ji ignorovat)#(Toto varování lze vypnout v konfiguraci)"
 
-EID.descriptions[languageCode].OldGameVersionWarningText = "Tvoje verze Repentance není aktuální!#Oficiálně je podporována pouze ta nejnovější verze (1.7.9)#(Toto varování lze vypnout v konfiguraci)"
+EID.descriptions[languageCode].OldGameVersionWarningText = "Tvoje verze Repentance není aktuální!#Oficiálně je podporována pouze ta nejnovější verze (1.7.9b)#(Toto varování lze vypnout v konfiguraci)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modované předměty by mohly způsobit nepřesnost výpočtu receptu na výrobu!#Použij režim zobrazení Žádné recepty (Item Probability) nebo vypni zobrazení u Craftovacího Pytlíku, pokud jsou tvé recepty nesprávné#(Toto varování lze deaktivovat v konfiguraci)"
 

@@ -1197,7 +1197,7 @@ EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "위의 효과 대�
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! 경고 !!!"
 EID.descriptions[languageCode].AchievementWarningText = "{{ColorRed}}지금 모드를 적용하면 게임 진행이 막히며 도전과제가 언락되지 않습니다!{{CR}}#모든 모드를 비활성화 한 상태에서 6 스테이지 (Depths II) 보스를 클리어하셔야#{{Blank}}모드 적용 중에도 도전과제를 언락할 수 있습니다."
 
-EID.descriptions[languageCode].OldGameVersionWarningText = "리펜턴스가 최신 버전이 아닙니다!#최신 버전이 아닐 경우 모드 오류가 발생할 수 있습니다(1.7.9).#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
+EID.descriptions[languageCode].OldGameVersionWarningText = "리펜턴스가 최신 버전이 아닙니다!#최신 버전이 아닐 경우 모드 오류가 발생할 수 있습니다(1.7.9b).#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "아이템 추가 모드나 아이템 배열 변경 모드가 적용되어 있을 경우 조합법이 일치하지 않을 수 있습니다.#조합법 설명을 숨기거나 BagOfCraftingDisplayRecipesMode를 Itempool percentage로 설정해 주세요.#(config 설정을 수정하여 해당 메세지를 비활성화 할 수 있습니다.)"
 

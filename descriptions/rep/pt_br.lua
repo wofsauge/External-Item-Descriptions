@@ -1099,7 +1099,7 @@ EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Em vez disso, cons
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! ALERTA !!!"
 EID.descriptions[languageCode].AchievementWarningText = "Conquista estão desabilitadas!#Para possibilitar a progressão e as conquistas, é preciso primeiro matar a Mãe (Depths II) sem nenhum mod habilitado.#(Se você já derrotou a Mãe, esta mensagem é um bug e pode ser ignorada)#(Este aviso pode ser desabilitado nas configurações)"
 
-EID.descriptions[languageCode].OldGameVersionWarningText = "Sua versão do Repentance está desatualizada!#Somente a versão mais recente é oficialmente suportada (1.7.9)#(Este aviso pode ser desabilitado nas configurações)"
+EID.descriptions[languageCode].OldGameVersionWarningText = "Sua versão do Repentance está desatualizada!#Somente a versão mais recente é oficialmente suportada (1.7.9b)#(Este aviso pode ser desabilitado nas configurações)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Items de Mods podem fazer o cálculo da receita ser impreciso!#Use o modo de exibição \"Sem Receitas\" ou desligue a exibição da Bag of Crafting se suas receitas estão incorretas#(Este aviso pode ser desabilitado nas configurações)"
 
