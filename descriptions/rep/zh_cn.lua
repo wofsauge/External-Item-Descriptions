@@ -912,7 +912,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 ---------- Pills ----------
 
 local repPills={
-	[4] = {"3", "", "交换炸弹和钥匙的数量#金炸弹和金钥匙也会交换"}, -- Bombs are Key
+	[4] = {"3", "炸弹变钥匙", "交换炸弹和钥匙的数量#金炸弹和金钥匙也会交换"}, -- Bombs are Key
 	[12] = {"11", "射程下降", "↓ {{Range}} -1.0射程"}, -- Range Down
 	[13] = {"12", "射程上升", "↑ {{Range}} +1.25射程"}, -- Range Up
 	[42] = {"41", "好困…", "使房间内所有敌人和角色减速"}, -- I'm Drowsy...
