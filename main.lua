@@ -32,6 +32,7 @@ EID.lastDescriptionEntity = nil
 EID.lineHeight = 11
 EID.itemConfig = Isaac.GetItemConfig()
 EID.itemUnlockStates = {}
+EID.itemAvailableStates = {}
 EID.CraneItemType = {}
 EID.absorbedItems = {}
 EID.CollectedItems = {}
@@ -1072,8 +1073,8 @@ local hasShownStartWarning = false
 local function checkStartOfRunWarnings()
 	if REPENTANCE and not EID.Config["DisableStartOfRunWarnings"] and game:GetFrameCount() < 10*30 then
 		-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
-		-- 1.7.9b (Dec. 08, 2022): The IsAvailable function was added
-		if Isaac.GetItemConfig():GetCollectible(1).IsAvailable == nil then
+		-- 1.7.9b (Dec. 08, 2022): The IsAvailable function was added (checking for Isaac.RunCallback existing instead)
+		if Isaac.RunCallback == nil then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
 			demoDescObj.Description = EID:getDescriptionEntry("OldGameVersionWarningText") or ""
@@ -1730,8 +1731,8 @@ function EID:OnGameExit()
 
 	EID.SaveData(EID, json.encode(EID.Config))
 	EID:hidePermanentText()
-	EID.itemUnlockStates[CollectibleType.COLLECTIBLE_CUBE_OF_MEAT] = nil
-	EID.itemUnlockStates[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS] = nil
+	EID.itemUnlockStates = {}
+	EID.itemAvailableStates = {}
 end
 EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, EID.OnGameExit)
 
