@@ -1197,7 +1197,7 @@ function EID:getSpindownResult(collectibleID)
 		newID = newID - 1
 		attempts = attempts + 1
 	--note: the order of the SkipLocked check statement is important so that the item is checked for being in a pool either way (to display a ? if it isn't)
-	until (EID.itemConfig:GetCollectible(newID) and (EID:isCollectibleUnlockedAnyPool(newID) or not EID.Config["SpindownDiceSkipLocked"]) and not EID.itemConfig:GetCollectible(newID).Hidden) or newID == CollectibleType.COLLECTIBLE_NULL or attempts > 10
+	until (EID.itemConfig:GetCollectible(newID) and (EID:isCollectibleUnlocked(newID) or not EID.Config["SpindownDiceSkipLocked"]) and not EID.itemConfig:GetCollectible(newID).Hidden and EID:isCollectibleAllowed(newID)) or newID == CollectibleType.COLLECTIBLE_NULL or attempts > 10
 	return newID
 end
 
@@ -1229,29 +1229,55 @@ function EID:DetectModdedItems()
 	return false
 end
 
+-- REPENTANCE ONLY! Return whether the collectible is considered available
+-- Bag of Crafting rerolls unavailable items; this function is kept brief to help BoC speed
+function EID:isCollectibleAvailable(collectibleID)
+	if EID.itemAvailableStates[collectibleID] == nil then
+		EID.itemAvailableStates[collectibleID] = EID.itemConfig:GetCollectible(collectibleID):IsAvailable()
+	end
+	return EID.itemAvailableStates[collectibleID]
+end
+
+-- REPENTANCE ONLY! Return our best guess on whether an achievement-locked collectible is unlocked
+-- (Things like Tainted Lost and Sacred Orb give false negatives)
+-- Spindown Dice skips over locked items, but not unavailable items
 function EID:isCollectibleUnlocked(collectibleID)
-	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using ItemConfig.IsAvailable
-	--Currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
-	--Check the itemUnlockStates table first to maybe help speed up BoC slightly
-	if EID.itemUnlockStates[collectibleID] ~= nil then
-		return EID.itemUnlockStates[collectibleID]
-	elseif not REPENTANCE then
-		EID.itemUnlockStates[collectibleID] = true
-		return true
-	else
-		local item = EID.itemConfig:GetCollectible(collectibleID)
-		if item == nil then return false
-		-- Use the Repentance update function to determine unlock status if it exists
-		elseif item.IsAvailable then
-			EID.itemUnlockStates[collectibleID] = item:IsAvailable()
-			return EID.itemUnlockStates[collectibleID]
-		else
+	local item = EID.itemConfig:GetCollectible(collectibleID)
+	if item == nil then return false end
+	if EID.itemUnlockStates[collectibleID] == nil then
+		--whitelist all quest items and items with no associated achievement
+		if item.AchievementID == -1 or (item.Tags and item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then
 			EID.itemUnlockStates[collectibleID] = true
 			return true
 		end
+		--blacklist all hidden items
+		if item.Hidden then
+			EID.itemUnlockStates[collectibleID] = false
+			return false
+		end
+		--check the item's IsAvailable status if the function exists
+		if item.IsAvailable then EID.itemUnlockStates[collectibleID] = item:IsAvailable()
+		else EID.itemUnlockStates[collectibleID] = true end
+		return EID.itemUnlockStates[collectibleID]
+	else
+		return EID.itemUnlockStates[collectibleID]
 	end
 end
 EID.isCollectibleUnlockedAnyPool = EID.isCollectibleUnlocked -- old name before ItemConfig:IsAvailable was added
+
+-- REPENTANCE ONLY! Return whether the collectible is completely disallowed by the current game mode
+-- Bag of Crafting and Spindown Dice skip over disallowed items entirely
+function EID:isCollectibleAllowed(collectibleID)
+	local item = EID.itemConfig:GetCollectible(collectibleID)
+	if item == nil then return false
+	elseif item.Tags == nil then return true
+	else
+		if game:IsGreedMode() and item:HasTags(ItemConfig.TAG_NO_GREED) then return false
+		elseif game.Challenge > 0 and item:HasTags(ItemConfig.TAG_NO_CHALLENGE) then return false
+		else return true end
+		-- no need to check TAG_NO_DAILY because mods are disabled for Dailies
+	end
+end
 
 -- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
 function EID:AreAchievementsAllowed() 
@@ -1260,9 +1286,9 @@ function EID:AreAchievementsAllowed()
 	if EID.player:GetPlayerType() < 21 then
 		-- Challenge runs and TMTrainer might break the pool, so ignore them.
 		if not game:GetSeeds():IsCustomRun() and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
-			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
+			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlocked(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
 			if not hasBookOfRevelationsUnlocked then
-				local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
+				local hasCubeOfMeatUnlocked = EID:isCollectibleUnlocked(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
 				if not hasCubeOfMeatUnlocked then
 					return false
 				end
