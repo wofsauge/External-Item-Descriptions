@@ -201,10 +201,10 @@ local calculatedRecipes = {}
 --If the seed changes, the above two tables will be wiped
 local lastSeedUsed = 0
 -- Test a few specific items' availability for if we should wipe our cached recipes due to availability change
--- Currently accounts for TLost/LostBR with Guppy's Paw, and Sacred Orb with Lemon Mishap
+-- Currently accounts for TLost/LostBR with Guppy's Paw, Sacred Orb with Lemon Mishap, and NoKeeper with A Pound of Flesh
 -- Use non-achievement-locked items that fulfill specific tag/quality criteria
--- Currently checks Guppy's Paw, Lemon Mishap
-local lastItemStatus = { [133] = true, [56] = true }
+-- Currently checks Guppy's Paw, Lemon Mishap, A Pound of Flesh
+local lastItemStatus = { [133] = true, [56] = true, [672] = true }
 
 --A list of item IDs, sorted by quality, then by name, to help with sorting our recipe list faster
 local sortedIDs = {}
