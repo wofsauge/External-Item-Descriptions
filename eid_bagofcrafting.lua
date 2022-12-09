@@ -194,13 +194,17 @@ local CraftingFixedRecipes = EID.XMLRecipes
 local CraftingItemPools = EID.XMLItemPools
 
 local CraftingItemQualities = {}
+local CraftingItemAllowed = {}
 
 --These are recipes that have already been calculated, plus the contents of recipes.xml
 local calculatedRecipes = {}
---Backup recipes in case of potential achievement lock
-local lockedRecipes = {}
 --If the seed changes, the above two tables will be wiped
 local lastSeedUsed = 0
+-- Test a few specific items' availability for if we should wipe our cached recipes due to availability change
+-- Currently accounts for TLost/LostBR with Guppy's Paw, and Sacred Orb with Lemon Mishap
+-- Use non-achievement-locked items that fulfill specific tag/quality criteria
+-- Currently checks Guppy's Paw, Lemon Mishap
+local lastItemStatus = { [133] = true, [56] = true }
 
 --A list of item IDs, sorted by quality, then by name, to help with sorting our recipe list faster
 local sortedIDs = {}
@@ -375,20 +379,16 @@ function EID:calculateBagOfCrafting(componentsTable)
 	local componentsAsString = table.concat(components, ",")
 
 	-- Check the fixed recipes
-	local fixedRecipeResult = nil
 	local cacheResult = CraftingFixedRecipes[componentsAsString]
 	if cacheResult ~= nil then
-		if EID:isCollectibleUnlockedAnyPool(cacheResult) then
-			return cacheResult, cacheResult
-		else
-			fixedRecipeResult = cacheResult
+		if EID:isCollectibleAvailable(cacheResult) then
+			return cacheResult
 		end
 	end
 	-- Check the recipes already calculated for this seed
 	cacheResult = calculatedRecipes[componentsAsString]
-	local lockedResult = lockedRecipes[componentsAsString]
 	if cacheResult ~= nil then
-		return cacheResult, lockedResult
+		return cacheResult
 	end
 	
 	-- Count up the ingredients, and shift the RNG based on the components in the bag
@@ -460,7 +460,7 @@ function EID:calculateBagOfCrafting(componentsTable)
 			
 			for _, item in ipairs(pool) do
 				local quality = CraftingItemQualities[item[1]]
-				if quality >= qualityMin and quality <= qualityMax  then
+				if CraftingItemAllowed[item[1]] and quality >= qualityMin and quality <= qualityMax then
 					local w = item[2] * poolWeight.weight
 					itemWeights[item[1]] = itemWeights[item[1]] + w
 					totalWeight = totalWeight + w
@@ -468,37 +468,24 @@ function EID:calculateBagOfCrafting(componentsTable)
 			end
 		end
 	end
-	--unsure if this emergency Breakfast would ever occur, without massively modified item pools at least, but it's in the game's code
-	if totalWeight <= 0 then
-		return 25, 25
-	end
-	--When the first crafting result is an achievement locked item, this process gets repeated a second time to choose a new result
-	--That 2nd pick could also be achievement locked but we're ignoring that...
-	local firstOption = fixedRecipeResult
-	while true do
+	
+	for i=1,20 do
 		local t = nextFloat() -- random number between 0 and 1
 		local target = t * totalWeight -- number between 0 and total weight of possible results
 		for k,v in ipairs(itemWeights) do
 			target = target - v
 			if target < 0 then
-				if firstOption and k ~= firstOption then
-					calculatedRecipes[componentsAsString] = firstOption
-					lockedRecipes[componentsAsString] = k
-					return firstOption, k
+				-- check item:IsAvailable, otherwise reroll
+				if EID:isCollectibleAvailable(k) then
+					calculatedRecipes[componentsAsString] = k
+					return k
 				else
-					--Don't do the 2nd pass if this item is definitely unlocked
-					if EID:isCollectibleUnlockedAnyPool(k) then
-						calculatedRecipes[componentsAsString] = k
-						lockedRecipes[componentsAsString] = k
-						return k, k
-					else
-						firstOption = k
-						break
-					end
+					break
 				end
 			end
 		end
 	end
+	return 25
 end
 
 local function calcHeldItems()
@@ -536,6 +523,7 @@ local function GameStartCrafting()
 		local item = EID.itemConfig:GetCollectible(i)
 		if item ~= nil then
 			CraftingItemQualities[item.ID] = item.CraftingQuality or item.Quality
+			CraftingItemAllowed[item.ID] = EID:isCollectibleAllowed(item.ID)
 		end
 	end
 	if not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
@@ -549,6 +537,7 @@ local function GameStartCrafting()
 			while coll ~= nil do
 				CraftingMaxItemID = CraftingMaxItemID + 1
 				CraftingItemQualities[coll.ID] = coll.CraftingQuality or coll.Quality
+				CraftingItemAllowed[coll.ID] = true
 				coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
 			end
 			local itemPool = game:GetItemPool()
@@ -861,12 +850,8 @@ local function RecipeCrunchCoroutine()
 			coroutine.yield()
 			coTimer = Isaac.GetTime()
 		end
-		local resultID, lockedAchievementID = EID:calculateBagOfCrafting(v)
-		if resultID ~= lockedAchievementID then
-			table.insert(sortedResults[resultID], {v, resultID, lockedAchievementID})
-		else
-			table.insert(sortedResults[resultID], {v, resultID})
-		end
+		local resultID = EID:calculateBagOfCrafting(v)
+		table.insert(sortedResults[resultID], {v, resultID})
 	end
 	calcResultCache[queryString] = sortedResults
 	randResultCache[queryString] = randResults
@@ -893,13 +878,22 @@ end
 local prevOffset = 0
 -- Called 60 times a second so we can read input properly
 function EID:handleBagOfCraftingUpdating()
-	-- reset our calculated recipes when the game seed changes
+	-- don't do any updating if on a Repentance version before v1.7.9b
+	if (Isaac.RunCallback == nil) then return end
+	-- reset our calculated recipes when the game seed changes, or certain item's availability changes
 	local curSeed = game:GetSeeds():GetStartSeed()
-	if (curSeed ~= lastSeedUsed) then
+	local updatedItemAvailability = false
+	-- check the availability of our tracked items, for Sacred Orb / TLost/LostBR
+	for k,v in pairs(lastItemStatus) do
+		local curStatus = EID.itemConfig:GetCollectible(k):IsAvailable()
+		if v ~= curStatus then updatedItemAvailability = true end
+		lastItemStatus[k] = curStatus
+	end
+	if (curSeed ~= lastSeedUsed or updatedItemAvailability) then
 		calculatedRecipes = {}
-		lockedRecipes = {}
 		calcResultCache = {}
 		randResultCache = {}
+		EID.itemAvailableStates = {}
 		lockedResults = nil
 	end
 	lastSeedUsed = curSeed
@@ -1216,8 +1210,6 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 				if (curOffset > bagOfCraftingOffset) then
 					if not EID.Config["BagOfCraftingDisplayNames"] then
 						prevDesc = prevDesc .."#{{Collectible"..v[2].."}} "
-						--tack on the secondary recipe image to achievement-locked recipes
-						if v[3] then prevDesc = prevDesc .."({{Collectible" .. v[3] .. "}})" end
 						--color the equals sign with the item quality, so the order of the list can make sense
 						prevDesc = prevDesc .. qualities[CraftingItemQualities[v[2]]] .. "={{CR}}"
 					--only display the item name if it's the first occurrence
@@ -1229,8 +1221,6 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 						else
 							prevDesc = prevDesc .."#"
 						end
-						--replace recipe bulletpoint with the secondary recipe on achievement-locked recipes
-						if v[3] then prevDesc = prevDesc .."{{Collectible" .. v[3] .. "}} " end
 					end
 					
 					prevDesc = prevDesc .. tableToCraftingIconsFunc(self, v[1], true)
