@@ -1418,9 +1418,8 @@ local function onRender()
 							
 							EID:addDescriptionToPrint(descriptionObj)
 						end
-						
-					elseif closest.Variant == 110 then
-						--Handle Broken Shovel
+					--Handle Broken Shovel
+					elseif closest.Type == 5 and closest.Variant == 110 then
 						local descriptionObj = EID:getDescriptionObj(5, 100, 550, closest)
 						EID:addDescriptionToPrint(descriptionObj)
 						
@@ -1448,12 +1447,18 @@ local function onRender()
 							local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or
 							(not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and
 							(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
-							if isOptionsSpawn or hideinShop or obstructed or (REPENTANCE and game.Challenge == Challenge.CHALLENGE_CANTRIPPED) then
+							if isOptionsSpawn or hideinShop or obstructed then
 								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
 							end
 						end
-						local descriptionObj = EID:getDescriptionObjByEntity(closest)
-						EID:addDescriptionToPrint(descriptionObj)
+						local isCantrippedCard = game.Challenge == 43 and closest.SubType > 32768
+						if isCantrippedCard then
+							local descriptionObj = EID:getDescriptionObj(5, 100, closest.SubType - 32768, closest)
+							EID:addDescriptionToPrint(descriptionObj)
+						else
+							local descriptionObj = EID:getDescriptionObjByEntity(closest)
+							EID:addDescriptionToPrint(descriptionObj)
+						end
 
 					elseif closest.Variant == PickupVariant.PICKUP_PILL then
 						--Handle Pills
