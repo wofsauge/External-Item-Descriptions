@@ -458,6 +458,7 @@ function EID:getObjectItemTypeAndCharge(descObj)
 		return
 	end
 	local itemConfig = EID.itemConfig:GetCollectible(descObj.ObjSubType)
+	if not itemConfig then return end
 	descObj.ItemType = itemConfig.Type or -1
 
 	if descObj.ItemType == ItemType.ITEM_ACTIVE then
