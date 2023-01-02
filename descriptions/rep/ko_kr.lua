@@ -450,10 +450,10 @@ local repCollectibles={
 	[713] = {"713", "섬토리움", "사용 시 체력 반칸을 깎고 클롯 패밀리어를 소환합니다.#클롯은 캐릭터와 같이 이동하며 공격하는 방향으로 캐릭터의 공격력 x0.35의 공격을 발사합니다.#클롯의 체력은 시간이 지날수록 서서히 감소합니다."}, -- Sumptorium
 	[714] = {"714", "복귀", "!!! Tainted Soul 전용 :#사용 시 멀리 떨어져 있는 Tainted Forgotten을 캐릭터의 위치로 불러옵니다.#Tainted Forgotten을 집기 전까지 피해를 받지 않습니다."}, -- Recall
 	[715] = {"715", "저장", "!!! Tainted ??? 전용 :#사용 시 현재 선택된 똥을 보관합니다.#보관한 상태에서 사용 시 보관한 똥을 사용합니다."}, -- Hold
-	[716] = {"716", "키퍼의 자루", "{{Coin}}동전 3개와 {{Key}}열쇠 1개를 드랍합니다.#{{Coin}} 동전으로 판매하는 아이템 또는 픽업 구매 시 {{DamageSmall}}공격력, {{RangeSmall}}사거리, {{SpeedSmall}}이동속도가 증가합니다."}, -- Keeper's Sack
+	[716] = {"716", "키퍼의 자루", "{{Coin}}동전 3개와 {{Key}}열쇠 1개를 드랍합니다.#아이템 및 픽업 구매로 3{{Coin}} 소모 시마다 아래 중 하나 증가:#↑ {{DamageSmall}}공격력 +0.5#↑ {{RangeSmall}}사거리 +0.25#↑ {{SpeedSmall}}이동속도 +0.03"}, -- Keeper's Sack
 	[717] = {"717", "키퍼의 친척", "방 안에 적이 있을 때 때때로 장애물에서 파란 아군 거미가 소환됩니다.#장애물 파괴 시 파란 아군 거미를 0~2마리 소환합니다."}, -- Keeper's Kin
 	[718] = {"718", "키퍼의 망토", "<item does not exist>"}, -- Keepers Robe
-	[719] = {"719", "키퍼의 상자", "사용 시 구매로 획득하는 상점 아이템 또는 픽업을 생성합니다."}, -- Keeper's Box
+	[719] = {"719", "키퍼의 상자", "{{Shop}} 사용 시 상점 아이템 또는 픽업을 소환합니다.#!!! 소환된 상점 항목은 구매해야 획득할 수 있습니다."}, -- Keeper's Box
 	[720] = {"720", "모든 게 담긴 병", "충전량에 상관없이 사용할 수 있으며 사용 시 충전량에 따라 다른 보상을 드랍합니다.#12칸에서 사용 시 아이작의 모든 랜덤한 효과 중 하나를 발동합니다.#!!! 충전량에 따른 보상:#{{Blank}} 1:{{PoopPickup}} 2:{{Coin}} 3:{{Bomb}} 4:{{Key}}#{{Blank}} 5:{{Heart}} 6:{{Pill}} 7:{{Card}} 8:{{SoulHeart}}#{{Blank}} 9:{{GoldenHeart}} 10:{{GoldenKey}} 11:{{GoldenBomb}}"}, -- Everything Jar
 	[721] = {"721", "", "등장하는 아이템이 2~6개의 효과와 발동 조건이 혼합된 오류 아이템으로 바뀝니다.#{{Burning}} 획득 시 그 방의 모든 적에게 일정 시간동안 석화+화상을 입힙니다."}, -- TMTRAINER
 	[722] = {"722", "아니마 솔라", "사용 시 가장 가까운 적을 5초간 움직이지 못하게 만듭니다.#다시 사용하여 사슬을 강제로 끊을 수 있습니다."}, -- Anima Sola
@@ -479,7 +479,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Judas", "", "{{Collectible34}}Book of Belial이 다른 액티브와 결합되며 결합된 액티브 사용 시 그 방에서 액티브 충전량 1칸 당 {{DamageSmall}}공격력이 0.7 증가합니다.#일부 액티브 아이템에 특수한 효과를 추가합니다."},
 	{"???", "", "최대 체력 증가 시 증가되는 {{SoulHeart}}소울하트의 양이 2배로 증가합니다."},
 	{"Eve", "", "{{Collectible122}}Whore of Babylon과 {{Collectible117}}Dead Bird의 효과가 상시 발동됩니다."},
-	{"Samson", "", "↑ {{Collectible157}}Bloody Lust의 {{DamageSmall}}공격력 보너스 최대 스택 +4회(최대 +14)"},
+	{"Samson", "", "{{Collectible157}}Bloody Lust의 {{DamageSmall}}공격력 보너스 최대 스택 +4회(최대 +14)"},
 	{"Azazel", "", "혈사포의 굵기가 대폭 증가합니다."},
 	{"Lazarus", "", "부활 시마다 {{DamageSmall}}공격력 +7.2#증가한 공격력은 시간이 지날수록 천천히 감소됩니다.#부활 이전으로 돌아가도 잔여 공격력 증가는 유지됩니다."},
 	{"Eden", "", "랜덤 아이템이 3개 생성되며 하나를 선택하면 나머지는 사라집니다.#에덴의 시작 아이템으로 나올 수 있는 패시브 아이템이 등장합니다."},
@@ -494,26 +494,26 @@ EID.descriptions[languageCode].birthright ={
 	{"Bethany", "", "확률적으로 액티브 아이템 사용 시 소울하트가 감소하지 않습니다."},
 	{"Jacob", "", "아이템을 획득한 캐릭터는 반대쪽 캐릭터가 최근에 획득한 아이템 3개를 획득합니다."},
 	{"Esau", "", "아이템을 획득한 캐릭터는 반대쪽 캐릭터가 최근에 획득한 아이템 3개를 획득합니다."},
-	{"Tainted Isaac", "", "↑ 소지 가능한 아이템 공간 +4#{{Collectible619}} Birtright 아이템 자체는 공간을 차지하지 않습니다."},
+	{"Tainted Isaac", "", "↑ 소지 가능한 아이템 개수 +4#{{Collectible619}} Birtright 아이템 자체는 공간을 차지하지 않습니다."},
 	{"Tainted Magdalene", "", "↑ 고정 체력 +1#!!! 추가된 고정 체력은 악마방/천사방 확률에 영향을 끼칩니다."},
 	{"Tainted Cain", "", "↑ 아이템 분해 시 생성되는 픽업의 개수가 2배로 증가합니다."},
 	{"Tainted Judas", "", "↑ {{Collectible705}}Dark Arts의 인식 범위 대폭 증가"},
 	{"Tainted ???", "", "↑ {{PoopPickup}}소지 가능한 똥 개수 +20"},
 	{"Tainted Eve", "", "빨간 클롯이 죽으면 2초 후 사라지는 {{Heart}}빨간하트를 드랍합니다."},
 	{"Tainted Samson", "", "적 처치시 늘어나는 광폭화 지속시간이 2초 증가합니다."},
-	{"Tainted Azazel", "", "{{Collectible726}} 재채기의 범위가 2배 증가합니다."},
+	{"Tainted Azazel", "", "{{Collectible726}} 재채기의 범위가 2배로 증가합니다."},
 	{"Tainted Lazarus", "", "반대 폼의 캐릭터가 공격력 x0.5의 2p 플레이어로 소환됩니다.#반대 폼의 캐릭터는 적에게 피해를 입지 않으나 아이템을 획득할 수 없습니다."},
 	{"Tainted Eden", "", "생득권 획득 이전에 먹었던 아이템들이 패널티 피격 후/{{Collectible284}}D4/{{Collectible283}}D100/{{Collectible258}}Missing No. 사용 시에도 바뀌지 않습니다."},
 	{"Tainted Lost", "", "↑ 목숨 +1#사망 시 그 방에서 부활합니다.#부활 시 주변의 적에게 200의 피해를 줍니다."},
 	{"Tainted Lilith", "", "패밀리어가 Gello와 같이 움직입니다.#↑ 패밀리어 하나 당 탯줄 공격력 +3"},
 	{"Tainted Keeper", "", "적 처치시 드랍되는 동전이 캐릭터에게 끌려옵니다."},
 	{"Tainted Apollyon", "", "공격키를 누르고 있으면 파리가 자동으로 적을 따라다니며 공격합니다."},
-	{"Tainted Forgotten", "", "{{Collectible714}} 사용 시 멀리 떨어져 있는 해골을 영혼의 위치로 불러옵니다.#해골을 집기 전까지 영혼은 피해를 받지 않습니다."},
+	{"Tainted Forgotten", "", "{{Collectible714}} Recall이 카드/알약 슬롯에 배정되며 사용 시 멀리 떨어져 있는 해골을 영혼의 위치로 불러옵니다.#해골을 집기 전까지 영혼은 피해를 받지 않습니다.#{{Timer}} 쿨타임 5초"},
 	{"Tainted Bethany", "", "방어력이 높은 {{Quality3}}/{{Quality4}}등급 아이템의 불꽃을 4마리 소환합니다."},
 	{"Tainted Jacob", "", "Dark Esau와 같이 행동하는 또 다른 Dark Esau를 소환합니다.#두 명의 Dark Esau 모두 같은 타이밍에 돌진합니다.#{{Collectible722}} Anima Sola 사용 시 두 명의 Dark Esau를 모두 묶으며 재사용 시 한명씩 차례로 사슬이 끊어집니다."},
 	{"Dead Tainted Lazarus", "", "반대 폼의 캐릭터가 공격력 x0.5의 2p 플레이어로 소환됩니다.#소환된 캐릭터는 적에게 피해를 입지 않으며 아이템을 획득할 수 없습니다."},
 	{"Tainted Jacob 2", "", "Dark Esau와 같이 행동하는 또 다른 Dark Esau를 소환합니다.#두 명의 Dark Esau 모두 같은 타이밍에 돌진합니다.#{{Collectible722}} Anima Sola 사용 시 두 명의 Dark Esau를 모두 묶으며 재사용 시 한명씩 차례로 사슬이 끊어집니다."},
-	{"Tainted Forgotten Soul", "", "{{Collectible714}} 사용 시 멀리 떨어져 있는 해골을 영혼의 위치로 불러옵니다.#해골을 집기 전까지 영혼은 피해를 받지 않습니다."},
+	{"Tainted Forgotten Soul", "", "{{Collectible714}} Recall이 카드/알약 슬롯에 배정되며 사용 시 멀리 떨어져 있는 해골을 영혼의 위치로 불러옵니다.#해골을 집기 전까지 영혼은 피해를 받지 않습니다.#{{Timer}} 쿨타임 5초"},
 }
 
 -- Buffs caused by Binge Eater
