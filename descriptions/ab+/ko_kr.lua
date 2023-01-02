@@ -186,7 +186,7 @@ EID.descriptions[languageCode].collectibles={
 	{"151", "물리건", "적 명중 시 1/6 확률로 파란 아군 파리를 소환합니다."}, -- The Mulligan
 	{"152", "기계장치 2", "↓ {{TearsSmall}}공격 딜레이 x2.0#↓ {{DamageSmall}}공격력 배율 x0.65#한쪽 눈에서 공격력 20%의 지속 레이저를 발사합니다."}, -- Technology 2
 	{"153", "돌연변이 거미", "↓ {{TearsSmall}}공격 딜레이 x2.1 +3#공격이 4발로 나갑니다."}, -- Mutant Spider
-	{"154", "화학 박피제", "!!!왼쪽 눈에만 적용:#↑ {{DamageSmall}}공격력 +2"}, -- Chemical Peel
+	{"154", "화학 박피제", "!!! 왼쪽 눈에만 적용:#↑ {{DamageSmall}}공격력 +2"}, -- Chemical Peel
 	{"155", "엿보기 눈깔", "대각선으로 돌아다니며 접촉한 적에게 초당 17.1의 피해를 입힙니다."}, -- The Peeper
 	{"156", "수녀복", "피격 시 액티브 아이템 충전량을 한칸 충전합니다."}, -- Habit
 	{"157", "피의 욕망", "피격 시 그 스테이지에서 일정 배율의 {{DamageSmall}}공격력이 증가합니다.#{{Blank}} (최대 6회)"}, -- Bloody Lust
