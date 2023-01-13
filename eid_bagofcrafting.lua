@@ -985,18 +985,10 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 			showCraftingResult = false
 			return false
 		end
-		local craftingResult, backupResult = EID:calculateBagOfCrafting(bagItems)
-		if (backupResult ~= craftingResult) then EID.TabPreviewID = backupResult end
+		local craftingResult = EID:calculateBagOfCrafting(bagItems)
 		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
 		-- prepend the Hide/Preview hotkeys to the description
 		descriptionObj.Description = getHotkeyString() .. descriptionObj.Description
-		if (backupResult ~= craftingResult and descriptionObj.ObjSubType == craftingResult) then
-			local backupDesc = EID:getDescriptionEntry("CraftingPreviewBackup")
-			local backupObjName = EID:getObjectName(5, 100, backupResult)
-			local tabText = EID:getDescriptionEntry("FlipItemToggleInfo")
-			EID:appendToDescription(descriptionObj,"#" .. backupDesc .. "#{{Collectible" .. backupResult .. "}} " ..
-			backupObjName .. "#{{Blank}} " .. tabText)
-		end
 		EID:addDescriptionToPrint(descriptionObj)
 		return true
 	end
