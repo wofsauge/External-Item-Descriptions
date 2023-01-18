@@ -38,7 +38,7 @@ local repCollectibles={
 	[55] = {"55", "Mámino Oko", "50% šance na vystřelení slzy dozadu#{{Luck}} 100% šance při 5 Štěstí"}, -- Mom's Eye
 	[59] = {"59", "Kniha Belialova", "↑ {{Damage}} +2 Větší Poškození#{{Collectible7}} +50% poškození, pokud máš Krev mučedníka#{{AngelDevilChance}} +12.5% šance na Ďábelskou/Andělskou místnost při držení knihy"}, -- The Book of Belial (Judas's Birthright Version)
 	[62] = {"62", "Okouzlení Upíra", "↑ {{Damage}} +0.3 Větší Poškození#{{HalfHeart}} Vyléčí půl srdce každých 13 zabitých nepřátel"}, -- Charm of the Vampire
-	[64] = {"64", "Výprodej na Steamu", "{{Shop}} -50% na předměty v obchodě#Při získání této položky vícekrát, více sniží cenu"}, -- Steam Sale
+	[64] = {"64", "Výprodej na Steamu", "{{Shop}} -50% na předměty v obchodě#Při získání této položky vícekrát, více sníží cenu"}, -- Steam Sale
 	[67] = {"67", "Ségra Maggy", "Spojenec s normalními slzami#Uděluje 6 poškození za slzu"}, -- Sister Maggy
 	[69] = {"69", "Čokoládové Mléko", "{{Chargeable}} Nabíjetelné slzy#↑ {{Damage}} Až 400% poškození"}, -- Chocolate Milk
 	[70] = {"70", "Růstové Hormony", "↑ {{Damage}} +1 Větší Poškození#↑ {{Speed}} +0.2 Zvýšení Rychlosti"}, -- Growth Hormones
@@ -48,7 +48,7 @@ local repCollectibles={
 	[78] = {"78", "Kniha Zjevení", "{{SoulHeart}} +1 Duševní Srdce#Při použití nahradí bosse jeden Jezdec Apokalypsy#↑ {{AngelDevilChance}} +17.5% šance na Ďábelskou nebo Andělskou místnost"}, -- Book of Revelations
 	[79] = {"79", "Značka", "↑ {{Damage}} +1 Větší Poškození#↑ {{Speed}} +0.2 Zvýšení Rychlosti#{{BlackHeart}} +1 Černé srdce"}, -- The Mark
 	[80] = {"80", "Pakt", "↑ {{Damage}} +0.5 Větší Poškození#↑ {{Tears}} +0.7 Více Slz#{{BlackHeart}} +2 Černá srdce"}, -- The Pact 
-	[83] = {"83", "Hřebík", "{{HalfBlackHeart}} + Půlka černého srdce#↑ {{Damage}} +2 Větší Poškození#↓ {{Speed}} -0.18 Snížení Rychlosti#Uděluje kontaktní poškození#Niči kameny při přejití po nich"}, -- The Nail
+	[83] = {"83", "Hřebík", "{{HalfBlackHeart}} + Půlka černého srdce#↑ {{Damage}} +2 Větší Poškození#↓ {{Speed}} -0.18 Snížení Rychlosti#Uděluje kontaktní poškození#Ničí kameny po jejich přejití"}, -- The Nail
 	[84] = {"84", "Musíme jít hlouběji!", "Vytvoří padací dveře do dalšího patra#{{LadderRoom}} Vytvoří průlezný prostor při použití na dekoraci (tráva, kamínky, papíry, drahokamy, apod.)"}, -- We Need To Go Deeper!
 	[87] = {"87", "Lokiho Rohy", "25% šance na vystřelení ve 4 směrech#{{Luck}} 100% šance při 15 Štěstí"}, -- Loki's Horns
 	[91] = {"91", "Horníkova Helma", "Odhalí typ místnosti sousedních místností#{{SecretRoom}} Může také odhalit Tajné Místnosti, Super Tajné Místnosti a Mini-Boss Místnosti#Blokuje střely padající shora"}, -- Spelunker Hat
@@ -99,7 +99,7 @@ local repCollectibles={
 	[229] = {"229", "Monstrova plíce", "{{Chargeable}} Slzy jsou nabíjeny a vypouštěny ve stylu brokovnice#↓ {{Tears}} -77% Méně Slz"}, -- Monstro's Lung
 	[230] = {"230", "Abaddón", "↑ {{Damage}} +1.5 Větší Poškození#↑ {{Speed}} +0.2 Zvýšení Rychlosti#{{Fear}} Zastrašující slzy#{{Heart}} Přemění všechna červená srdce na {{BlackHeart}} černá srdce#{{BlackHeart}} +2 Černé srdce"}, -- Abaddon
 	[232] = {"232", "Stopky", "{{Slow}} Permanentní efekt zpomalení pro nepřátele#↑ {{Speed}} +0.3 Zvýšení Rychlosti"}, -- Stop Watch
-	[233] = {"233", "Maličká Planetka", "Slzy kolem tebe obíhají#↑ {{Range}} +6.5 Větší Dostřel#Spektrální slzy"}, -- Tiny Planet
+	[233] = {"233", "Maličká Planetka", "Slzy obíhají kolem tebe#↑ {{Range}} +6.5 Větší Dostřel#Spektrální slzy"}, -- Tiny Planet
 	[240] = {"240", "Experimentální Léčba", "↑ Náhodně zvýší 4 staty#↓ Náhodně sníží 2 staty"}, -- Experimental Treatment
 	[241] = {"241", "Smlouva z Podzemí", "Zdvojnásobuje všechny odměny za pročištěnou místnost#30% šance na žádnou odměnu za pročištěnou místnost#Neovlivňuje režim Greed Mode"}, -- Contract from Below
 	[245] = {"245", "20/20", "Zdvojnásobí všechny tvoje střely#↓ {{Damage}} -25% Poškození"}, -- 20/20
@@ -176,7 +176,7 @@ local repCollectibles={
 	[404] = {"404", "Prdící Děcko", "Blokuje projektily#Pokud je zasaženo, prdne si, což nepřátele okouzlí, otráví nebo odrazí zpět#Prdy způsobí 5-6 poškození"}, -- Farting Baby
 	[405] = {"405", "Hru Rozbíjející Chyba", "{{Throwable}} {{ColorOrange}}Vrhatelné{{CR}} (vystřelení dvojitým kliknutím)#Zamíchá nepřátele a pickupy, se kterými přijde do kontaktu"}, -- GB Bug
 	[407] = {"407", "Čistota", "↑ Zvyší jednu z tvých statistik v závislosti na barvě aury kolem tebe#Když utrpíš poškození a následně vstoupíš do nové místnosti, získáš novou auru ale náhodné barvy:#{{ColorRed}}Red{{CR}} = {{Damage}} +4 Větší Poškození#{{ColorBlue}}Blue{{CR}} = {{Tears}} +2 Více Slz#{{ColorYellow}}Yellow{{CR}} = {{Speed}} +0.5 Zvýšení Rychlosti#{{ColorOrange}}Orange{{CR}} = {{Range}} +3 Větší Dostřel"},
-	[408] = {"408", "Athame", "Při poškození, objeví se kolem Izáka prstenec černého brimstonu"}, -- Athame
+	[408] = {"408", "Athame", "Při poškození, se objeví kolem Izáka prstenec černého brimstonu"}, -- Athame
 	[415] = {"415", "Koruna Světla", "{{SoulHeart}} +2 Duševní srdce#Pokud nemáš žádné poškozené místo pro červené srdce:#↑ {{Damage}} +100% Větší Poškození#↑ {{Range}} +1.5 Větší Dostřel#↓ {{Shotspeed}} -0.3 Menší Rychlost Střel#Deaktivuje se pro aktuální místnost, pokud je poškozena"}, -- Crown Of Light
 	[416] = {"416", "Hluboké Kapsy", "Vytvoří 1-3 mince pokud ti místnost nedala žádnou odměnu#{{Coin}} Zvýší maximální počet mincí na 999"}, -- Deep Pockets
 	[417] = {"417", "Sukubus", "Poskakuje po místnosti s poškozující aurou, která každou sekundu udělí 7,5-10#↑ {{Damage}} +50% poškození při stání v auře"}, -- Succubus
@@ -422,7 +422,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Jidáš", "", "{{Collectible34}} Kniha Belialova se stane pasivním předmětem podobně jako {{Collectible584}} Kniha Ctností#{{Collectible34}} Získáš Knihu Belialovu pokud ji momentálně nemáš#↑ {{Damage}} Posílení poškození, které od ní obdržíš, se mění podle množství nabití, které aktivní předmět nad ním má#Uděluje speciální efekty pro určité aktivní předměty"},
 	{"???", "", "Duševní Srdce získané vylepšením zdraví se zdvojnásobí"},
 	{"Eva", "", "Děvka Babylonská je aktivní bez ohledu na zdraví#Mrtvý Pták je stále aktivní bez nutného poškození"},
-	{"Samson", "", "Krvavý Chtíč může získat 4 další zvýšení poškození ve stejných +0.2 intervalech, na nový maximální součet +14"},
+	{"Samson", "", "Krvavá Chtíč může získat 4 další zvýšení poškození ve stejných +0.2 intervalech, na nový maximální součet +14"},
 	{"Azazel", "", "Azazelův Brimstone je mnohem širší, jako Mega Výstřel#Žádný vliv na poškození"},
 	{"Lazar", "", "Pokaždé, když se Lazar oživí jako Povstalý Lazarus:#↑ {{Damage}} +7.2 Větší Poškození#Poškození mizí během další minuty#Zabíjení nepřátel, když je efekt aktivní, prodlužuje čas"},
 	{"Eden", "", "Vytvoří 3 náhodné předměty z náhodných skupin předmětů# Můžeš vzít pouze jeden"},
