@@ -457,9 +457,11 @@ end
 
 function EID:addDescriptionToPrint(desc, insertLoc)
 	if desc.Entity and EID.entitiesToPrint[GetPtrHash(desc.Entity)] then return end
-	if #EID.descriptionsToPrint == EID.Config["MaxDescriptionsToDisplay"] then return end
+	if #EID.descriptionsToPrint == EID.Config["MaxDescriptionsToDisplay"] and not insertLoc then return end
 	if insertLoc then table.insert(EID.descriptionsToPrint, insertLoc, desc)
 	else table.insert(EID.descriptionsToPrint, desc) end
+	-- if we've inserted a desc at the front of a full desc list, pop the last desc out of the table
+	if #EID.descriptionsToPrint > EID.Config["MaxDescriptionsToDisplay"] then table.remove(EID.descriptionsToPrint) end
 	if desc.Entity then EID.entitiesToPrint[GetPtrHash(desc.Entity)] = true end
 end
 
