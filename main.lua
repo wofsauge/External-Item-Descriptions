@@ -1291,21 +1291,24 @@ local function onRender()
 	elseif EID.Config["PairedPlayerDescriptions"] then
 		playerSearch = EID.players
 	end
-
-	-- Check for descriptions to print per player
-	for _,player in ipairs(playerSearch) do
-		local displayedDesc = false
-		
-		-- Check if this player has the Bag of Crafting
-		local craftingSuccess = false
-		if REPENTANCE and player:HasCollectible(710) then
-			craftingSuccess = EID:handleBagOfCraftingRendering()
-			if craftingSuccess then
-				displayedDesc = true
+	
+	local displayedDesc = {}
+	-- Check for Bag of Crafting per player
+	-- (Do this first because it can't be Local Mode, and should take precedence over other descriptions, even as Player 2+)
+	if REPENTANCE then
+		for playerNum,player in ipairs(playerSearch) do
+			if player:HasCollectible(710) then
+				local craftingSuccess = EID:handleBagOfCraftingRendering()
+				if craftingSuccess then
+					displayedDesc[playerNum] = true
+				end
 			end
 		end
-		
-		if (not displayedDesc or EID.Config["DisplayAllNearby"]) and
+	end
+
+	-- Check for descriptions to print per player
+	for playerNum,player in ipairs(playerSearch) do
+		if (not displayedDesc[playerNum] or EID.Config["DisplayAllNearby"]) and
 			#EID.descriptionsToPrint < EID.Config["MaxDescriptionsToDisplay"] then
 			-- Searching for the closest describable entity to this player	
 			EID.lastDescriptionEntity = nil
