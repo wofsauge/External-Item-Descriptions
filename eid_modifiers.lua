@@ -278,6 +278,88 @@ if REPENTANCE then
 		return descObj
 	end
 	
+	--simple decimal rounding
+	function SimpleRound(num, dp)
+		dp = dp or 2
+		local mult = 10^dp
+		return math.floor(num * mult + 0.5)/mult
+	end
+	
+	-- 3 coins, 1 bomb, 1 key, 1 soul heart, 2 red hearts
+	local consolationPickups = { "5.20", "5.40", "5.30", "5.10.3", "5.10" }
+	local consolationQuantity = { "3", "1", "1", "1", "2" }
+	
+	-- Handle Consolation Prize stat prediction
+	local function ConsolationPrizeCallback(descObj)
+		for p = 1,#EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[p]
+			local playerID = player:GetPlayerType()
+			local playerName = player:GetName()
+			
+			local playerStats = {}
+			playerStats[1] = SimpleRound((player.MoveSpeed * 4.5) - 2)
+			playerStats[2] = SimpleRound((((30/(player.MaxFireDelay + 1))^0.75) * 2.12) - 2)
+			playerStats[3] = SimpleRound(((player.Damage^0.56)*2.23) - 2)
+			playerStats[4] = SimpleRound(((player.TearRange - 230) / 60) + 2)
+			for k,v in ipairs(playerStats) do print(v) end
+			
+			local playerPickups = {}
+			playerPickups[1] = player:GetNumCoins()
+			playerPickups[2] = player:GetNumBombs() * 3
+			playerPickups[3] = player:GetNumKeys() * 3
+			playerPickups[4] = playerID == 18 and (player:GetSoulCharge() * 2) - 1 or 9999
+			playerPickups[5] = playerID == 36 and (player:GetBloodCharge() * 2) - 1 or 9999
+			for k,v in ipairs(playerPickups) do print(v) end
+			
+			local statsToDisplay = { 1 }
+			local lowestStat = playerStats[1]
+			for i = 2,4 do
+				if playerStats[i] == lowestStat then table.insert(statsToDisplay, i)
+				elseif playerStats[i] < lowestStat then
+					statsToDisplay = { i }
+					lowestStat = playerStats[i]
+				end
+			end
+			
+			local pickupsToDisplay = { 1 }
+			lowestStat = playerPickups[1]
+			for i = 2,5 do
+				if playerPickups[i] == lowestStat then table.insert(pickupsToDisplay, i)
+				elseif playerPickups[i] < lowestStat then
+					pickupsToDisplay = { i }
+					lowestStat = playerPickups[i]
+				end
+			end
+			
+			local newStr = "#" .. (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}} " or "") .. " {{ColorGray}}"..playerName.."{{CR}}#"
+			
+			local voidNames = EID:getDescriptionEntry("VoidNames")
+			for i,v in ipairs(statsToDisplay) do
+				local statIncreaseStr = "↑ " .. voidStatIcons[v] .. " " .. voidNames[v]
+				local replaceCount = 0
+				statIncreaseStr, replaceCount = string.gsub(statIncreaseStr, "{1}", "+" .. string.format("%.4g",voidStatUps[v]))
+				if replaceCount == 0 then statIncreaseStr = "↑ " .. voidStatIcons[v] .. " +" .. string.format("%.4g",voidStatUps[v]) .. " " .. voidNames[v] end
+				newStr = newStr .. statIncreaseStr
+				if #statsToDisplay > 1 then newStr = newStr .. "?" end
+				newStr = newStr .. "#"
+			end
+			local pickupNames = EID:getDescriptionEntry("PickupNames")
+			for i,v in ipairs(pickupsToDisplay) do
+				local statIncreaseStr = pickupNames[consolationPickups[v]]
+				-- Insert the quantity that will spawn after the icon, if there is an icon
+				local replaceCount = 0
+				statIncreaseStr, replaceCount = string.gsub(statIncreaseStr, "}} ", "}} " .. consolationQuantity[v] .. " ")
+				if replaceCount == 0 then statIncreaseStr = consolationQuantity[v] .. " " .. pickupNames[consolationPickups[v]] end
+				newStr = newStr .. statIncreaseStr
+				if #pickupsToDisplay > 1 then newStr = newStr .. "?" end
+				newStr = newStr .. "#"
+			end
+			EID:appendToDescription(descObj, newStr)
+			
+		end
+		return descObj
+	end
+	
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCallback(descObj)
 		if EID.InsideItemReminder then return descObj end
@@ -595,6 +677,7 @@ if REPENTANCE then
 			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
+			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
 			
 			if EID.collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
 			if EID.collectiblesOwned[59] then table.insert(callbacks, BookOfBelialCallback) end
