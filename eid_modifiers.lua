@@ -301,7 +301,6 @@ if REPENTANCE then
 			playerStats[2] = SimpleRound((((30/(player.MaxFireDelay + 1))^0.75) * 2.12) - 2)
 			playerStats[3] = SimpleRound(((player.Damage^0.56)*2.23) - 2)
 			playerStats[4] = SimpleRound(((player.TearRange - 230) / 60) + 2)
-			for k,v in ipairs(playerStats) do print(v) end
 			
 			local playerPickups = {}
 			playerPickups[1] = player:GetNumCoins()
@@ -309,7 +308,6 @@ if REPENTANCE then
 			playerPickups[3] = player:GetNumKeys() * 3
 			playerPickups[4] = playerID == 18 and (player:GetSoulCharge() * 2) - 1 or 9999
 			playerPickups[5] = playerID == 36 and (player:GetBloodCharge() * 2) - 1 or 9999
-			for k,v in ipairs(playerPickups) do print(v) end
 			
 			local statsToDisplay = { 1 }
 			local lowestStat = playerStats[1]
