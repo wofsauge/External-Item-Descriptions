@@ -134,7 +134,7 @@ EID.descriptions[languageCode].collectibles={
 	{"112", "Anděl Strážný", "Orbitální andílek#Zrychluje všechny orbitální spojence#Blokuje střely#Uděluje 105 kontaktního poškození za sekundu"},
 	{"113", "Démoní Děcko", "Automaticky střílí#Uděluje 3 poškození za slzu"},
 	{"114", "Mámin Nůž", "Kontrolovatelný nůž#Nůž způsobí 2x poškození Izáka při držení a 6x poškození v co největší vzdálenosti"},
-	{"115", "Ouija Deska", "Spektrální slzy"},
+	{"115", "Ouija Deska", "↑ {{Tears}} +0.4 Více slz#Spektrální slzy"},
 	{"116", "9-Voltovka", "-1 nabití pro aktivní předměty#{{Battery}} Plně nabije tvůj aktivní předmět"},
 	{"117", "Mrtvý Pták", "Vytvoří mrtvého ptáka, když dostaneš zasáh#Pták uděluje 4 kontaktního poškození za sekundu"},
 	{"118", "Leviatanův Kříž", "{{Chargeable}} Nabijte krvavý laser, který způsobuje konstantní poškození"},
@@ -199,7 +199,7 @@ EID.descriptions[languageCode].collectibles={
 	{"177", "Přenosný Automat", "Přenosný Hrací Automat"},
 	{"178", "Svěcená Voda", "Při utrpení zásahu po sobě zanechá poškozující kaluž#Uděluje 24 poškození za sekundu"},
 	{"179", "Osud", "Létání#{{EternalHeart}} +1 Srdce Věčnosti"},
-	{"180", "Černá Fazole", "Při doteku prdíš"},
+	{"180", "Černá Fazole", "Při doteku prdíš a zanecháváš za sebou jedovaté prdy"},
 	{"181", "Bílý Poník", "Uděluje létání při držení předmětu#{{Speed}} Nastaví tvoji rychlost na 1.5 pokud máš méně než 1.5#Svaté vzlétnutí ve směru použití"},
 	{"182", "Nejsvětější Srdce", "↑ +1 Zvýšení Zdraví#{{Heart}} Plné zdraví#↑ 230% + 1 Větší Poškození#↓ -0.4 Méně Slz#↓ -0.25 Menší Rychlost Střel#↑ +0.38 Větší Dostřel#↑ +0.75 Výška Slz#Naváděné slzy"},
 	{"183", "Párátka", "↑ {{Tears}} +0.7 Více Slz#↑ {{Shotspeed}} +0.16 Větší Rychlost Střel"},
@@ -487,7 +487,7 @@ EID.descriptions[languageCode].collectibles={
 	{"465", "Analogová Páčka", "↑ {{Tears}} +0.3 Více Slz#Umožňuje ti střílet slzy diagonálně střelbou ve dvou směrech"},
 	{"466", "Nákaza", "{{Poison}} První zabitý nepřítel v místnosti exploduje a otráví všechny okolní nepřátele"},
 	{"467", "Prst!", "{{Damage}} Uděluje konstantních 10 % tvého poškození nepřátelům ve směru, na který prst ukazuje"},
-	{"468", "Stínovač", "Sleduje tvůj přesný pohyb s 1 sekundovým zpožděním#Uděluje 30 kontaktního poškození za sekundu"},
+	{"468", "Stínovač", "Sleduje tvůj přesný pohyb s 1 sekundovým zpožděním#Uděluje 30 kontaktního poškození za sekundu#Poté, co způsobí 666 poškození, je pohlcen Izákem, čímž se zvýší jeho kontaktní poškození."},
 	{"469", "Deprese", "Zanechává po sobě stopu kaluže#Kaluž uděluje 6 poškození za sekundu#Nepřátelé, kteří se dotknou mraku, mohou vytvořit Posvátný Světelný paprsek"},
 	{"470", "Hushy", "Poskakuje po místnosti#Způsobuje kontaktní poškození#Při střelbě se přestane pohybovat#Když se zastaví, může blokovat projektily"},
 	{"471", "Maličký Monstro", "{{Chargeable}} Nabíjí své slzy a střílí ve stylu brokovnice {{Collectible229}}Monstrových Plic#Uděluje 3.5 poškození za slzu"},
@@ -870,7 +870,7 @@ EID.descriptions[languageCode].transformations = {
 
 ---------- MISC ----------
 
-EID.descriptions[languageCode].VoidText = "Pokud absorbujete, získáš:"
+EID.descriptions[languageCode].VoidText = "Pokud absorbuješ, získáš:"
 EID.descriptions[languageCode].VoidNames = {"Rychlost", "Slzy", "Poškození", "Dostřel", "Rychlost Střel", "Štěstí"}
 
 EID.descriptions[languageCode].CollectionPageInfo = "Tento předmět je potřeba sebrat, aby se ukázal ve tvojí sbírce!"
