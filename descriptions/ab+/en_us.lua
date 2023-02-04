@@ -313,7 +313,7 @@ EID.descriptions[languageCode].collectibles={
 	{"290", "The Jar", "{{Heart}} Picking up Red Hearts while at full health stores up to 4 of them in the Jar#Using the item drops all stored hearts on the floor"},
 	{"291", "Flush!", "Turns all non-boss enemies into poop#Instantly kills poop enemies and bosses"},
 	{"292", "Satanic Bible", "{{BlackHeart}} +1 Black Heart"},
-	{"293", "Head of Krampus", "Shoot brimstone lasers in all 4 directions#The lasers sometimes rotate"},
+	{"293", "Head of Krampus", "Shoot brimstone lasers in all 4 directions"},
 	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger {{Collectible484}}Wait What? when swapping it with a different active item and picking it up again"},
 	{"295", "Magic Fingers", "Deals 2x Isaac's damage to all enemies#{{Warning}} Costs 1 coin to use"},
 	{"296", "Converter", "Converts 2 Soul/Black Hearts into 1 Red Heart Container"},
