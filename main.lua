@@ -949,7 +949,8 @@ function EID:setPlayer()
 		else
 			EID.player = p
 		end
-		EID.players = { EID.player, REPENTANCE and EID.player:GetOtherTwin() }
+		EID.players = { EID.player }
+		if REPENTANCE then EID.players = { EID.player, REPENTANCE and EID.player:GetOtherTwin() } end
 		EID.coopMainPlayers = { EID.player }
 		EID.coopAllPlayers = EID.players
 		EID.controllerIndexes[p.ControllerIndex] = 1
@@ -1000,9 +1001,13 @@ function EID:onGameUpdate()
 	EID:evaluateQueuedItems()
 	EID:evaluateHeldPill()
 	
-	-- Fix some outdated mods erroneously setting the REPENTANCE constant to false
-	if EID.GameVersion == "rep" and REPENTANCE == false then
-		REPENTANCE = true
+	-- Fix some poorly coded mods erroneously setting the REPENTANCE constant to false (the only valid values for it are nil or true)
+	if REPENTANCE == false then
+		if EID.GameVersion == "rep" then
+			REPENTANCE = true
+		else
+			REPENTANCE = nil
+		end
 	end
 
 	if collSpawned then
