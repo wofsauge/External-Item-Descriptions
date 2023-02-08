@@ -648,7 +648,7 @@ EID.descriptions[languageCode].trinkets={
 	{"67", "Cracked Dice", "Taking damage has a 50% chance to trigger one of these effects:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible386}} D12 #{{Collectible166}} D20"},
 	{"68", "Super Magnet", "Isaac attracts pickups and enemies"},
 	{"69", "Faded Polaroid", "Randomly camouflages Isaac#Confuses enemies"},
-	{"70", "Louse", "Occasionnally spawns a blue spider in hostile rooms"},
+	{"70", "Louse", "Occasionally spawns a blue spider in hostile rooms"},
 	{"71", "Bob's Bladder", "Isaac's bombs leave damaging creep"},
 	{"72", "Watch Battery", "6.66% chance for the room clear reward to be a battery#+10% chance for random pickups to be a battery#5% chance to add 1 charge to held active item when clearing a room"},
 	{"73", "Blasting Cap", "10% chance for exploding bombs to drop a bomb pickup"},
