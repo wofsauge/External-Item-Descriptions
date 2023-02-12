@@ -1741,6 +1741,18 @@ function EID:evaluateTransformationProgress(transformation)
 	end
 end
 
+-- Create a list of all grid entities in the room that have an EID description
+function EID:CheckCurrentRoomGridEntities()
+	EID.CurrentRoomGridEntities = {}
+	local room = game:GetRoom()
+	for i = 1, room:GetGridSize(), 1 do
+		local gridEntity = room:GetGridEntity(i)
+		if gridEntity and EID:hasDescription(gridEntity) then
+			EID.CurrentRoomGridEntities[i] = gridEntity
+		end
+	end
+end
+
 -- Workaround function to get the currently held pill of the players. Used to map Pill ID to pill color and vise versa
 EID.PlayerHeldPill = {}
 function EID:evaluateHeldPill()
