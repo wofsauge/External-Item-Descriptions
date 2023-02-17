@@ -1742,3 +1742,5 @@ EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, EID.OnGameExit)
 if EID.enableDebug then
 	require("eid_debugging")
 end
+
+print("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")
