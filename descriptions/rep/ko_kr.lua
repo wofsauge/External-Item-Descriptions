@@ -205,7 +205,7 @@ local repCollectibles={
 	[393] = {"393", "독뱀의 키스", "{{Poison}} 확률적으로 적을 중독시키는 공격이 나갑니다.#{{Poison}} 적에게 접촉시 12의 피해를 주고 적을 중독시킵니다.#{{ColorOrange}}접촉으로 중독된 적{{CR}}이 죽을때 20% 확률로 {{BlackHeart}}블랙하트가 드랍됩니다."}, -- Serpent's Kiss
 	[394] = {"394", "조준", "↑ {{TearsSmall}}연사 +0.7#↑ {{RangeSmall}}사거리 +3.15#조준점을 조종하여 조준점이 있는 방향을 향해 눈물을 자동으로 발사합니다.#패밀리어들이 조준점을 향해 공격합니다.#{{ButtonRT}}버튼을 눌러 자동 공격을 멈출 수 있습니다."}, -- Marked
 	[395] = {"395", "기계 X", "{{Chargeable}} 공격이 충전형 레이저 고리 공격으로 변경됩니다.#레이저 공격력은 충전량에 따라 x0.25 ~ x1로 증감합니다.#레이저는 사거리 제한이 없으며 적과 장애물을 관통합니다."}, -- Tech X
-	[397] = {"397", "조종 광선", "↑ {{TearsSmall}}연사(+상한) +0.5#↑ {{RangeSmall}}사거리 +2.5#↑ {{ShotspeedSmall}}탄속 +0.16#눈물이 캐릭터가 바라보는 방향의 일직선으로만 나갑니다."}, -- Tractor Beam
+	[397] = {"397", "조종 광선", "↑ {{TearsSmall}}연사(+상한) +1#↑ {{RangeSmall}}사거리 +2.5#↑ {{ShotspeedSmall}}탄속 +0.16#눈물이 캐릭터가 바라보는 방향의 일직선으로만 나갑니다."}, -- Tractor Beam
 	[399] = {"399", "공허의 구렁텅이", "{{Chargeable}} 공격키를 2.5초 이상 누르면 충전되며 공격키를 떼면 캐릭터 주위에 검은 고리가 둘러집니다.#고리는 다단히트로 접촉한 적에게 최대 30번의 피해를 줍니다."}, -- Maw Of The Void
 	[401] = {"401", "폭발물", "확률적으로 접착 눈물이 나갑니다.#접착 눈물이 적에게 붙을 시 몇초 후 폭발하여 공격력 +60의 피해를 입힙니다."}, -- Explosivo
 	[404] = {"404", "방귀쟁이 아기", "캐릭터를 따라다니며 적의 탄환을 막아줍니다.#탄환을 막을 시 10% 확률로 랜덤한 효과의 방귀를 뀝니다.#방귀는 적에게 5~6의 피해를 줍니다."}, -- Farting Baby
@@ -245,7 +245,7 @@ local repCollectibles={
 	[459] = {"459", "축농증", "20%의 확률로 접착 눈물이 나가며 접착 눈물이 적에게 붙을 시 10초동안 지속적으로 현재 공격력만큼의 피해를 입힙니다."}, -- Sinus Infection
 	[462] = {"462", "벨리알의 눈", "↑ {{RangeSmall}}사거리 +1.5#눈물이 적을 관통하며 관통한 눈물은 적에게 유도되고 공격력이 2배 증가합니다."}, -- Eye of Belial
 	[463] = {"463", "황산", "↑ {{DamageSmall}}공격력 +0.3#확률적으로 장애물을 부수는 눈물이 나갑니다."}, -- Sulfuric Acid
-	[464] = {"464", "균형의 문장", "↑ {{SoulHeart}}소울하트 +2#소지중인 픽업의 개수에 따라 챔피언 적이 드랍하는 보상과 방 클리어 보상이 아래 순서대로 정해집니다.#{{SoulHeart}}:최대체력 없음, {{SoulHeart}}2칸 미만#{{Blank}} {{Heart}}{{Key}}{{Bomb}}:각각 반칸/0/0개 보유#{{Blank}} {{Heart}}:비어있는 체력 존재#{{Blank}} {{Heart}}{{Key}}{{Bomb}}:각각 15/5/5개 미만 보유#{{Blank}} {{Trinket}}장신구: 장신구 미소지#{{Blank}} {{SoulHeart}}: 전체 체력 6칸 미만#모든 조건 충족 시 드랍 변동 없음"}, -- Glyph of Balance
+	[464] = {"464", "균형의 문장", "↑ {{SoulHeart}}소울하트 +2#소지중인 픽업의 개수에 따라 챔피언 적이 드랍하는 보상과 방 클리어 보상이 아래 순서대로 정해집니다.#{{SoulHeart}}:최대체력 없음, {{SoulHeart}}2칸 미만#{{Blank}} {{Heart}}{{Key}}{{Bomb}}:각각 반칸/0/0개 보유#{{Blank}} {{Heart}}:비어있는 체력 존재#{{Blank}} {{Coin}}{{Key}}{{Bomb}}:각각 15/5/5개 미만 보유#{{Blank}} {{Trinket}}장신구: 장신구 미소지#{{Blank}} {{SoulHeart}}: 전체 체력 6칸 미만#모든 조건 충족 시 드랍 변동 없음"}, -- Glyph of Balance
 	[467] = {"467", "손가락!", "공격하는 방향으로 움직이며 가리킨 방향에 있는 적에게 공격력 x0.1의 지속 피해를 입힙니다."}, -- Finger!
 	[468] = {"468", "셰이드", "캐릭터가 지나간 길을 0.66초 후 따라오며 접촉한 적에게 초당 75의 피해를 입힙니다."}, -- Shade
 	[469] = {"469", "우울증", "캐릭터를 따라다니며 지나간 자리에 파란 장판이 생기며 닿은 적은 초당 20의 피해를 입습니다.#적이 구름에 닿으면 확률적으로 빛줄기가 나와 적에게 공격력 +20의 피해를 입힙니다."}, -- Depression
@@ -518,14 +518,14 @@ EID.descriptions[languageCode].birthright ={
 
 -- Buffs caused by Binge Eater
 EID.descriptions[languageCode].bingeEaterBuffs = {
-	[22] = "↑ {{TearsSmall}}연사 +0.5#↑ {{RangeSmall}}사거리 +2.5#↓ {{SpeedSmall}}이동속도 -0.03", -- Lunch
-	[23] = "↑ {{TearsSmall}}연사 +0.5#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Dinner
-	[24] = "↑ {{DamageSmall}}최종 공격력 +1#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Dessert
-	[25] = "↑ {{RangeSmall}}사거리 +2.5#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Breakfast
-	[26] = "↑ {{DamageSmall}}최종 공격력 +1#↑ {{RangeSmall}}사거리 +2.5#↓ {{SpeedSmall}}이동속도 -0.03", -- Rotten Meat
-	[346] = "↑ {{ShotspeedSmall}}탄속 +0.2#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- A Snack
-	[456] = "↑ {{DamageSmall}}최종 공격력 +1#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- Midnight Snack
-	[707] = "↑ {{TearsSmall}}연사 +0.5#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- Supper
+	[22] = "↑ {{Heart}}추가 빨간하트 +1#↑ {{TearsSmall}}연사 +0.5#↑ {{RangeSmall}}사거리 +2.5#↓ {{SpeedSmall}}이동속도 -0.03", -- Lunch
+	[23] = "↑ {{Heart}}추가 빨간하트 +1#↑ {{TearsSmall}}연사 +0.5#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Dinner
+	[24] = "↑ {{Heart}}추가 빨간하트 +1#↑ {{DamageSmall}}최종 공격력 +1#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Dessert
+	[25] = "↑ {{Heart}}추가 빨간하트 +1#↑ {{RangeSmall}}사거리 +2.5#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Breakfast
+	[26] = "↑ {{Heart}}추가 빨간하트 +1#↑ {{DamageSmall}}최종 공격력 +1#↑ {{RangeSmall}}사거리 +2.5#↓ {{SpeedSmall}}이동속도 -0.03", -- Rotten Meat
+	[346] = "↑ {{Heart}}추가 빨간하트 +1#↑ {{ShotspeedSmall}}탄속 +0.2#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- A Snack
+	[456] = "↑ {{Heart}}추가 빨간하트 +1#↑ {{DamageSmall}}최종 공격력 +1#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- Midnight Snack
+	[707] = "↑ {{Heart}}추가 빨간하트 +1#↑ {{TearsSmall}}연사 +0.5#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- Supper
 }
 
 -- Buffs caused by Book of Belial with Judas' Birthright
