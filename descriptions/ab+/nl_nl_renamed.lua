@@ -8,7 +8,7 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "nl_NL"
+local languageCode = "nl_nl"
 
 -- init nl_NL table
 EID.descriptions[languageCode] = {}
