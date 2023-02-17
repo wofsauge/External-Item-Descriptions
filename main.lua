@@ -9,7 +9,7 @@ local game = Game()
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = "4.52"
+EID.ModVersion = 4.52
 EID.ModVersionCommit = "4a8cdc8"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
