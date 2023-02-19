@@ -205,7 +205,7 @@ local repCollectibles={
 	[395] = {"395", "Tech X", "Remplace les larmes d'Isaac par des anneaux laser#La taille et les dégâts des anneaux augmentent avec la durée de la charge#100% de dégâts avec une charge complète"}, -- Tech X
 	[397] = {"397", "Rayon Tracteur", "↑ Débit {{ColorLime}}+1.0#↑ Portée {{ColorLime}}+1.5#↑ Vitesse des tirs {{ColorLime}}+0.16#Les larmes d'Isaac sont tractées par un rayon de lumière"},
 	[399] = {"399", "Gouffre du Néant", "Tirer pendant 3 secondes fait apparaître une croix rouge sur la tête d'Isaac#Relâcher les boutons de tir crée un anneau noir autour de lui qui inflige des dégâts de contact"}, -- Maw of the Void
-	[401] = {"401", "Explosivo", "25% de chances de tirer une larme collante#Ces larmes s'attachent aux ennemis et explosent après quelques secondes"}, -- Explosivo
+	[401] = {"401", "Explosivo", "25% de chances de tirer une larme collante qui explose après quelques secondes"}, -- Explosivo
 	[404] = {"404", "Bébé Péteur", "Bloque les projectiles ennemis#S'il est touché par un projectile ennemi, le familier pète et envoûte, empoisonne ou repousse les ennemis"}, -- Farting Baby
 	[405] = {"405", "Bug", "Peut être projeté avec un double appui sur un bouton de tir#Rejoue les ressources et ennemis avec lesquels il entre en contact"}, -- GB Bug
 	[407] = {"407", "Pureté", "↑ Augmente une stat en fonction de la couleur de l'aura qui entoure Isaac#L'effet disparaît en recevant des dégâts et revient à la salle suivante#{{ColorRed}}Rouge{{ColorWhite}} = Dégâts {{ColorLime}}+4.0#{{ColorCyan}}Bleu{{ColorWhite}} = Débit {{ColorLime}}+4.0#{{ColorYellow}}Jaune{{ColorWhite}} = Vitesse {{ColorLime}}+0.5#{{ColorOrange}}Orange{{ColorWhite}} = Portée {{ColorLime}}+3.0"},
@@ -1000,7 +1000,7 @@ local repCards={
 	[81] = {"81", "Âme d'Isaac", "Tous les objets sur piédestal de la salle alternent avec un objet différent à intervalles d'une seconde#Seul un deux objets de la rotation peut être ramassé"},
 	[82] = {"82", "Âme de Marie", "Pour la durée d'une salle, les ennemis tués lâchent des demi-cœurs rouges qui disparaissent après 2 secondes"},
 	[83] = {"83", "Âme de Caïn", "Ouvre toutes les portes de la salle, y compris les portes des salles rouges {{Collectible580}}) si possible#Brise le miroir de {{ColorTransform}}Canalisations 2"},
-	[84] = {"84", "Âme de Judas", "Paralyse les ennemis pendant 3 secondes#Transforme Isaac en une ombre qui peut traverser les ennemis#Après quelques secondes; inflige des dégâts à tous les ennemis traversés#Augmente temporairement la stat de dégâts pour chaque ennemi traversé"},
+	[84] = {"84", "Âme de Judas", "Paralyse les ennemis pendant 3 secondes#Transforme Isaac en une ombre qui peut traverser les ennemis pendant 1 seconde#Inflige des dégâts à tous les ennemis traversés#Augmente temporairement la stat de dégâts pour chaque ennemi traversé"},
 	[85] = {"85", "Âme de ???", "Provoque 8 pets empoisonnés, répand une flaque brunâtre et fait apparaître 7 Bombes Bronze#Marcher dans la flaque donne {{ColorLime}}débit +1.35{{ColorWhite}} et {{ColorLime}}dégâts +1"},
 	[86] = {"86", "Âme d'Ève", "Invoque 14 oiseaux morts#Les oiseaux pourchassent et infligent des dégâts aux ennemis#Les oiseaux disparaissent quand toutes les cibles sont mortes ou quand Isaac quitte la salle"},
 	[87] = {"87", "Âme de Samson", "Déclenche l'effet de {{ColorYellow}}Frénésie{{ColorWhite}} {{Collectible704}}#↑ Vitesse {{ColorLime}}+0.4#↑ Dégâts {{ColorLime}}+3.0#↑ Débit augmenté#{{Blank}}#{{Timer}} Persiste pendant 10 secondes"},
