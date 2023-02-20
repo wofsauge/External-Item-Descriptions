@@ -5,7 +5,7 @@ EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "pt_br", "ru", "spa", "i
 EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
-EID.isRepentance = getmetatable(Sprite) ~= nil and getmetatable(Sprite).__class ~= nil and getmetatable(Sprite).__class.GetAnimation ~= nil or REPENTANCE -- REPENTANCE variable can be altered by any mod, so we try alternative method and save the result
+EID.isRepentance = getmetatable(Sprite) ~= nil and getmetatable(Sprite).__class ~= nil and getmetatable(Sprite).__class.GetAnimation ~= nil -- REPENTANCE variable can be altered by any mod, so we try alternative method and save the result
 
 require("eid_config")
 EID.Config = EID.UserConfig
