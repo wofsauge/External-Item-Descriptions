@@ -30,7 +30,7 @@ EID.GridEntityWhitelist = {
 				EID.Config["DisplaySacrificeInfo"]
 		end,
 		function(gridEntity)
-			return REPENTANCE and EID.Config["DisplaySanguineInfo"] and
+			return EID.isRepentance and EID.Config["DisplaySanguineInfo"] and
 				Game():GetRoom():GetType() == RoomType.ROOM_DEVIL and
 				EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND)
 		end,
@@ -591,15 +591,15 @@ EID.InlineIcons = {
 }
 -- General Stats (Adjust automatically according to the current DLC)
 
-EID.InlineIcons["Damage"] = REPENTANCE and EID.InlineIcons["DamageREP"] or EID.InlineIcons["DamageAB"]
-EID.InlineIcons["Speed"] = REPENTANCE and EID.InlineIcons["SpeedREP"] or EID.InlineIcons["SpeedAB"]
-EID.InlineIcons["Tears"] = REPENTANCE and EID.InlineIcons["TearsREP"] or EID.InlineIcons["TearsAB"]
-EID.InlineIcons["Range"] = REPENTANCE and EID.InlineIcons["RangeREP"] or EID.InlineIcons["RangeAB"]
-EID.InlineIcons["Shotspeed"] = REPENTANCE and EID.InlineIcons["ShotspeedREP"] or EID.InlineIcons["ShotspeedAB"]
-EID.InlineIcons["Luck"] = REPENTANCE and EID.InlineIcons["LuckREP"] or EID.InlineIcons["LuckAB"]
-EID.InlineIcons["AngelChance"] = REPENTANCE and EID.InlineIcons["AngelChanceREP"] or EID.InlineIcons["AngelChanceAB"]
-EID.InlineIcons["DevilChance"] = REPENTANCE and EID.InlineIcons["DevilChanceREP"] or EID.InlineIcons["DevilChanceAB"]
-EID.InlineIcons["Tearsize"] = REPENTANCE and EID.InlineIcons["TearsizeREP"] or EID.InlineIcons["TearsizeAB"]
+EID.InlineIcons["Damage"] = EID.isRepentance and EID.InlineIcons["DamageREP"] or EID.InlineIcons["DamageAB"]
+EID.InlineIcons["Speed"] = EID.isRepentance and EID.InlineIcons["SpeedREP"] or EID.InlineIcons["SpeedAB"]
+EID.InlineIcons["Tears"] = EID.isRepentance and EID.InlineIcons["TearsREP"] or EID.InlineIcons["TearsAB"]
+EID.InlineIcons["Range"] = EID.isRepentance and EID.InlineIcons["RangeREP"] or EID.InlineIcons["RangeAB"]
+EID.InlineIcons["Shotspeed"] = EID.isRepentance and EID.InlineIcons["ShotspeedREP"] or EID.InlineIcons["ShotspeedAB"]
+EID.InlineIcons["Luck"] = EID.isRepentance and EID.InlineIcons["LuckREP"] or EID.InlineIcons["LuckAB"]
+EID.InlineIcons["AngelChance"] = EID.isRepentance and EID.InlineIcons["AngelChanceREP"] or EID.InlineIcons["AngelChanceAB"]
+EID.InlineIcons["DevilChance"] = EID.isRepentance and EID.InlineIcons["DevilChanceREP"] or EID.InlineIcons["DevilChanceAB"]
+EID.InlineIcons["Tearsize"] = EID.isRepentance and EID.InlineIcons["TearsizeREP"] or EID.InlineIcons["TearsizeAB"]
 
 
 
@@ -841,7 +841,7 @@ EID.TransformationData = {
 	[tostring(EID.TRANSFORMATION.ADULT)] = {VanillaForm = PlayerForm.PLAYERFORM_ADULTHOOD},
 	[tostring(EID.TRANSFORMATION.SPIDERBABY)] = {VanillaForm = PlayerForm.PLAYERFORM_SPIDERBABY},
 	[tostring(EID.TRANSFORMATION.SUPERBUM)] = {},
-	[tostring(EID.TRANSFORMATION.STOMPY)] = {VanillaForm = REPENTANCE and PlayerForm.PLAYERFORM_STOMPY}
+	[tostring(EID.TRANSFORMATION.STOMPY)] = {VanillaForm = EID.isRepentance and PlayerForm.PLAYERFORM_STOMPY}
 }
 
 

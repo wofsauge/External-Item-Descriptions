@@ -10,7 +10,7 @@ EID.TabDescThisFrame = false
 EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, }
 local maxSlot = 1
 -- Repentance modifiers
-if REPENTANCE then
+if EID.isRepentance then
 	maxSlot = 3
 	--include the AB+ collectiblesToCheck in this table! (wish there was an easy way to merge two tables)
 	EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID,
@@ -78,7 +78,7 @@ end
 -- Handle Void
 local voidStatUps = { 0.2, 0.5, 1, 0.5, 0.2, 1 }
 local voidStatIcons = {"{{Speed}}", "{{Tears}}", "{{Damage}}", "{{Range}}", "{{Shotspeed}}", "{{Luck}}"}
-if REPENTANCE then voidStatUps[4] = 2.5 end
+if EID.isRepentance then voidStatUps[4] = 2.5 end
 local lastVoidCheck = -30
 EID.VoidStatIncreases = {{},{},{}}
 EID.BlackRuneStatIncreases = {{},{},{}}
@@ -100,10 +100,10 @@ local function VoidCallback(descObj, isRune)
 	local pickup = descObj.Entity and descObj.Entity:ToPickup()
 	local isAltOption = false
 	-- Test if this is an Option pedestal, Repentance only absorbs the lowest index one
-	if REPENTANCE then
+	if EID.isRepentance then
 		local optionIndex = pickup and pickup.OptionsPickupIndex
 		local firstOption = EID.VoidOptionIndexes[optionIndex]
-		if (REPENTANCE and optionIndex and optionIndex ~= 0 and descObj.ObjSubType ~= firstOption) then
+		if (EID.isRepentance and optionIndex and optionIndex ~= 0 and descObj.ObjSubType ~= firstOption) then
 			EID:appendToDescription(descObj, "#" .. prefix .. "{{Collectible"..firstOption..
 			"}}" .. EID:getObjectName(5, 100, firstOption) .. EID:getDescriptionEntry("VoidOptionText"))
 			isAltOption = true
@@ -113,7 +113,7 @@ local function VoidCallback(descObj, isRune)
 	if isRune or EID.itemConfig:GetCollectible(descObj.ObjSubType).Type ~= 3 then
 		local shopItem = pickup and pickup:IsShopItem()
 		-- Afterbirth+ really can't do anything with Void and a shop item, so just return
-		if (not REPENTANCE and shopItem) then return descObj end
+		if (not EID.isRepentance and shopItem) then return descObj end
 		
 		local voidIntro = ((shopItem or isAltOption) and EID:getDescriptionEntry("VoidShopText")) or EID:getDescriptionEntry("VoidText")
 		local voidNames = EID:getDescriptionEntry("VoidNames")
@@ -153,7 +153,7 @@ local altStages = { [10] = false, [11] = true, [12] = false, [13] = true }
 local greedStages = { -1, 1, -1, 3, -1, 5, 7, -1, -1, 10, -1, -1, 0, -1 }
 
 local function PandorasBoxCallback(descObj)
-	local strangeKeyOwned = REPENTANCE and EID:PlayersHaveTrinket(175)
+	local strangeKeyOwned = EID.isRepentance and EID:PlayersHaveTrinket(175)
 	local pandoraCount = 0
 	local level = game:GetLevel()
 	local stageNum = level:GetAbsoluteStage()
@@ -173,7 +173,7 @@ local function PandorasBoxCallback(descObj)
 	local skip9and12 = false
 	-- many localizations do not have the ???/Void entry and the Dark Room entry
 	-- this seemed better than forcing them to have it
-	if totalCount == (REPENTANCE and 12 or 11) then
+	if totalCount == (EID.isRepentance and 12 or 11) then
 		skip9and12 = true
 	end
 	
@@ -196,7 +196,7 @@ local function PandorasBoxCallback(descObj)
 				descObj.Description = string.gsub(descObj.Description, w:gsub("([^%w])", "%%%1"), "{{ColorBagComplete}}" .. w .. "{{CR}}")
 			end
 			-- don't check any lines of the description after Home
-			if pandoraCount	== (REPENTANCE and 14 or 13) then break end
+			if pandoraCount	== (EID.isRepentance and 14 or 13) then break end
 		end
 	end
 	if strangeKeyOwned then
@@ -228,7 +228,7 @@ local function SacrificeRoomCallback(descObj)
 end
 
 
-if REPENTANCE then
+if EID.isRepentance then
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
 		descObj.Description = ""

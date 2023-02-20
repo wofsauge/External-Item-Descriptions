@@ -52,7 +52,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	-- pandora's box? it shows the whole desc which is kinda useful but too big
 	
 	-- Tainted ??? Poop Descriptions
-	if REPENTANCE and EID.Config["ItemReminderShowPoopDesc"] > 0 and player:GetPlayerType() == 25 then
+	if EID.isRepentance and EID.Config["ItemReminderShowPoopDesc"] > 0 and player:GetPlayerType() == 25 then
 		for i = 0, EID.Config["ItemReminderShowPoopDesc"]-1 do
 			local poopInfo = EID:getDescriptionEntry("poopSpells")
 			local nextPoop = player:GetPoopSpell(i)
@@ -75,7 +75,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	end
 	
 	-- Echo Chamber Description
-	if REPENTANCE and player:HasCollectible(700) then
+	if EID.isRepentance and player:HasCollectible(700) then
 		local playerID = EID:getPlayerID(player)
 		local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
 		-- Dead Tainted Lazarus exception
@@ -102,7 +102,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	end
 	
 	-- Bag of Crafting
-	if REPENTANCE and player:HasCollectible(710) then
+	if EID.isRepentance and player:HasCollectible(710) then
 		local floorQuery = EID.BoC.FloorOverride or EID.BoC.FloorQuery
 		local inventoryQuery= EID.BoC.InventoryOverride or EID.BoC.InventoryQuery
 		local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
@@ -127,7 +127,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 				elseif heldActive == 44 and EID.Config["ItemReminderShowRNGCheats"] then
 					blacklist["5.100.44"] = true
 					-- The result preview changes as soon as we activate Teleport, which looks awkward, so try to not display the result while mid-teleport. Doesn't work perfectly and only in Rep
-					if not REPENTANCE or player:GetSprite():GetAnimation() ~= "TeleportUp" then
+					if not EID.isRepentance or player:GetSprite():GetAnimation() ~= "TeleportUp" then
 						append("{{Collectible44}}", EID:getObjectName(5,100,44) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport1Prediction(getSeed(44)))
 					end
 				-- Teleport 2.0 location
@@ -180,9 +180,9 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	if EID.Config["ItemReminderShowPocketDesc"] > 0 then
 		-- I don't think we can actually know what slot the player is on, so, save these to display (if they exist) for when Card and Pill in a slot are both 0, to attempt to always show them in slot order
 		local dicePrinted = false
-		local diceBag = REPENTANCE and player:GetActiveItem(3) or 0
+		local diceBag = EID.isRepentance and player:GetActiveItem(3) or 0
 		local pocketPrinted = false
-		local pocketActive = REPENTANCE and player:GetActiveItem(2) or 0
+		local pocketActive = EID.isRepentance and player:GetActiveItem(2) or 0
 		for i = 0, EID.Config["ItemReminderShowPocketDesc"]-1 do
 			local heldCard = player:GetCard(i)
 			local heldPill = player:GetPill(i)
@@ -192,7 +192,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 				-- Check if our held pill is identified
 				EID.pillPlayer = player
 				local identified = game:GetItemPool():IsPillIdentified(heldPill)
-				if REPENTANCE and heldPill % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
+				if EID.isRepentance and heldPill % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
 				if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) then
 					addObjectDesc(5, 70, heldPill)
 				end
@@ -214,7 +214,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			-- account for Golden Trinket IDs
 			local heldTrinketTrue = player:GetTrinket(t)
 			local heldTrinket = heldTrinketTrue
-			if REPENTANCE then heldTrinket = heldTrinketTrue & TrinketType.TRINKET_ID_MASK end
+			if EID.isRepentance then heldTrinket = heldTrinketTrue & TrinketType.TRINKET_ID_MASK end
 			if heldTrinket > 0 and not blacklist["5.350." .. heldTrinket] then
 				if heldTrinket == 4 then
 					-- Broken Remote has two possible effects depending on if its doubled
@@ -225,19 +225,19 @@ function EID:getHoldMapDescription(player, checkingTwin)
 					elseif EID.Config["ItemReminderShowRNGCheats"] then
 						-- Teleport (requires cheating option on)
 						blacklist["5.350.4"] = true
-						if not REPENTANCE or player:GetSprite():GetAnimation() ~= "TeleportUp" then
+						if not EID.isRepentance or player:GetSprite():GetAnimation() ~= "TeleportUp" then
 							append("{{Trinket4}}", EID:getObjectName(5,350,4) .. EID:getDescriptionEntry("HoldMapHeader"), EID:Teleport1Prediction(getSeed(44)))
 						end
 					end
 				-- Rainbow Worm
 				elseif EID.Config["ItemReminderShowHiddenInfo"] and heldTrinket == 64 then
 					blacklist["5.350.64"] = true
-					local rainbowWormEffect = rainbowWormEffects[math.floor(game.TimeCounter / 30 / 3) % (REPENTANCE and 10 or 8)]
+					local rainbowWormEffect = rainbowWormEffects[math.floor(game.TimeCounter / 30 / 3) % (EID.isRepentance and 10 or 8)]
 					addObjectDesc(5, 350, rainbowWormEffect, "{{Trinket64}}")
 				-- 404 Error
 				-- Unfortunately, includes other temporary trinket givers, such as Glitched Items. We'd need to predict 404's result using RNG to actually know which it specifically is granting
 				-- And unfortunately, HasTrinket can't differentiate between real and fake trinkets in AB+
-				elseif EID.Config["ItemReminderShowHiddenInfo"] and REPENTANCE and heldTrinket == 75 then
+				elseif EID.Config["ItemReminderShowHiddenInfo"] and EID.isRepentance and heldTrinket == 75 then
 					blacklist["5.350.75"] = true
 					-- Don't display Mysterious Paper's 1-frame temporary trinket granting
 					local hasPaper = player:HasTrinket(21)
@@ -264,7 +264,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 		end
 		-- Gulped/unslotted Modeling Clay
 		-- (Hidden information, because Modeling Clay does not visually show its item when gulped)
-		if REPENTANCE and EID.Config["ItemReminderShowHiddenInfo"] and not blacklist["5.350.166"] and player:GetModelingClayEffect() > 0 then
+		if EID.isRepentance and EID.Config["ItemReminderShowHiddenInfo"] and not blacklist["5.350.166"] and player:GetModelingClayEffect() > 0 then
 			local modelingClayItem = player:GetModelingClayEffect()
 			if modelingClayItem > 0 then
 				addObjectDesc(5, 100, modelingClayItem, "{{Trinket166}}")
@@ -284,7 +284,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	
 	-- Finally, check the twin player of this controller
 	-- If both twins have a desc, show their player icon / name to separate the two descs
-	if REPENTANCE and not checkingTwin then
+	if EID.isRepentance and not checkingTwin then
 		local twin = player:GetOtherTwin()
 		local mainTwinDesc = holdMapDesc
 		local otherTwinDesc = ""

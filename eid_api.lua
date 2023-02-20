@@ -165,7 +165,7 @@ end
 
 -- Try to automatically assign vanilla transformations to the entity 
 function EID:tryAutodetectTransformationsCollectible(collectibleID)
-	if not REPENTANCE then return end
+	if not EID.isRepentance then return end
 	local config = EID.itemConfig:GetCollectible(collectibleID)
 	local transformations = {}
 	transformations[EID.TRANSFORMATION.ANGEL] = config:HasTags(ItemConfig.TAG_ANGEL) or nil
@@ -465,7 +465,7 @@ function EID:getObjectItemTypeAndCharge(descObj)
 		descObj.ChargeType = itemConfig.ChargeType or 0
 		descObj.Charges = itemConfig.MaxCharges or 0
 		-- Special handling for dynamic charge items
-		if REPENTANCE and (descObj.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or descObj.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or 
+		if EID.isRepentance and (descObj.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or descObj.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or 
 		descObj.ObjSubType == CollectibleType.COLLECTIBLE_CLEAR_RUNE or descObj.ObjSubType == CollectibleType.COLLECTIBLE_D_INFINITY) then
 			descObj.ChargeType = ItemConfig.CHARGE_SPECIAL
 		end
@@ -508,7 +508,7 @@ end
 function EID:getAdjustedSubtype(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	if tableName == "trinkets" then
-		if REPENTANCE then
+		if EID.isRepentance then
 			return (SubType & TrinketType.TRINKET_ID_MASK)
 		end
 	elseif tableName == "sacrifice" then
@@ -517,11 +517,11 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 		-- The effect of a pill varies depending on what player is looking at it in co-op
 		-- EID.pillPlayer is a way to recheck a pill for what different players will turn it into
 		local player = EID.pillPlayer or EID.player
-		if REPENTANCE and SubType % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then
+		if EID.isRepentance and SubType % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then
 			return 9999
 		end
 		local pool = game:GetItemPool()
-		if REPENTANCE and player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+		if EID.isRepentance and player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 			SubType = pool:GetPillEffect(SubType, player:GetOtherTwin() or player) + 1
 		else SubType = pool:GetPillEffect(SubType, player) + 1 end
 	end
@@ -672,9 +672,9 @@ function EID:hasDescription(entity)
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
 		return isAllowed and (entity.SubType > 0 or
 			-- For Flip descriptions, allow 5.100.0 pedestals to have descriptions under VERY specific criteria!
-			(REPENTANCE and EID:getEntityData(entity, "EID_FlipItemID") and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP)))
+			(EID.isRepentance and EID:getEntityData(entity, "EID_FlipItemID") and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP)))
 	end
-	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and REPENTANCE then
+	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and EID.isRepentance then
 		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize") and not entity:GetSprite():IsPlaying("OutOfPrizes") and (EID.CraneItemType[entity.InitSeed.."Drop"..entity.DropSeed] or EID.CraneItemType[tostring(entity.InitSeed)])
 	end
 	if entity.Type == 1000 then
@@ -1414,7 +1414,7 @@ function EID:handleHUDElement(hudElement)
 	end
 	local screenSize = EID:getScreenSize()
 	local hudOffset = EID.Config["HUDOffset"]
-	if REPENTANCE then
+	if EID.isRepentance then
 		hudOffset = (Options.HUDOffset * 10)
 	end
 	for _,v in ipairs(hudElement.anchors) do
@@ -1826,7 +1826,7 @@ end
 
 -- Returns the quality of the described entity
 function EID:getObjectQuality(descObj)
-	if REPENTANCE and descObj.ObjType == 5 and descObj.ObjVariant == 100 and EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)) then
+	if EID.isRepentance and descObj.ObjType == 5 and descObj.ObjVariant == 100 and EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)) then
 		return tonumber(EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)).Quality)
 	end
 end
@@ -1868,7 +1868,7 @@ end
 -- Add pickup usage to history of pickups used by the player
 function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColorID)
 	 -- don't add mimiced or noannouncer cards/pills to history
-	if REPENTANCE and (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC or useFlags & UseFlag.USE_NOANNOUNCER == UseFlag.USE_NOANNOUNCER) then return end
+	if EID.isRepentance and (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC or useFlags & UseFlag.USE_NOANNOUNCER == UseFlag.USE_NOANNOUNCER) then return end
 	local playerID = EID:getPlayerID(player)
 	EID:InitItemInteractionIfAbsent(playerID)
 
@@ -1879,7 +1879,7 @@ function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColo
 	end
 
 	-- pickupType = ["pill","card"], pillColorID, effectID, hadEchoChamberWhenUsed
-	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, REPENTANCE and player:HasCollectible(700)})
+	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, EID.isRepentance and player:HasCollectible(700)})
 end
 
 -- Render a sprite of an entity
@@ -1895,7 +1895,7 @@ end
 
 -- Tries to get the Vanilla transformations of modded items based on Tags
 function EID:GetTransformationsOfModdedItems()
-	if not REPENTANCE then return end
+	if not EID.isRepentance then return end
 	local numCollectibles = EID:GetMaxCollectibleID()
 	for i = 733, numCollectibles, 1 do
 		EID:tryAutodetectTransformationsCollectible(i)
