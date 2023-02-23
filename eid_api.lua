@@ -165,7 +165,7 @@ end
 
 -- Try to automatically assign vanilla transformations to the entity 
 function EID:tryAutodetectTransformationsCollectible(collectibleID)
-	if not REPENTANCE then return end
+	if not EID.isRepentance then return end
 	local config = EID.itemConfig:GetCollectible(collectibleID)
 	local transformations = {}
 	transformations[EID.TRANSFORMATION.ANGEL] = config:HasTags(ItemConfig.TAG_ANGEL) or nil
@@ -458,13 +458,14 @@ function EID:getObjectItemTypeAndCharge(descObj)
 		return
 	end
 	local itemConfig = EID.itemConfig:GetCollectible(descObj.ObjSubType)
+	if not itemConfig then return end
 	descObj.ItemType = itemConfig.Type or -1
 
 	if descObj.ItemType == ItemType.ITEM_ACTIVE then
 		descObj.ChargeType = itemConfig.ChargeType or 0
 		descObj.Charges = itemConfig.MaxCharges or 0
 		-- Special handling for dynamic charge items
-		if REPENTANCE and (descObj.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or descObj.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or 
+		if EID.isRepentance and (descObj.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or descObj.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or 
 		descObj.ObjSubType == CollectibleType.COLLECTIBLE_CLEAR_RUNE or descObj.ObjSubType == CollectibleType.COLLECTIBLE_D_INFINITY) then
 			descObj.ChargeType = ItemConfig.CHARGE_SPECIAL
 		end
@@ -507,7 +508,7 @@ end
 function EID:getAdjustedSubtype(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	if tableName == "trinkets" then
-		if REPENTANCE then
+		if EID.isRepentance then
 			return (SubType & TrinketType.TRINKET_ID_MASK)
 		end
 	elseif tableName == "sacrifice" then
@@ -516,11 +517,11 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 		-- The effect of a pill varies depending on what player is looking at it in co-op
 		-- EID.pillPlayer is a way to recheck a pill for what different players will turn it into
 		local player = EID.pillPlayer or EID.player
-		if REPENTANCE and SubType % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then
+		if EID.isRepentance and SubType % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then
 			return 9999
 		end
 		local pool = game:GetItemPool()
-		if REPENTANCE and player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+		if EID.isRepentance and player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 			SubType = pool:GetPillEffect(SubType, player:GetOtherTwin() or player) + 1
 		else SubType = pool:GetPillEffect(SubType, player) + 1 end
 	end
@@ -671,9 +672,9 @@ function EID:hasDescription(entity)
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
 		return isAllowed and (entity.SubType > 0 or
 			-- For Flip descriptions, allow 5.100.0 pedestals to have descriptions under VERY specific criteria!
-			(REPENTANCE and EID:getEntityData(entity, "EID_FlipItemID") and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP)))
+			(EID.isRepentance and EID:getEntityData(entity, "EID_FlipItemID") and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP)))
 	end
-	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and REPENTANCE then
+	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and EID.isRepentance then
 		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize") and not entity:GetSprite():IsPlaying("OutOfPrizes") and (EID.CraneItemType[entity.InitSeed.."Drop"..entity.DropSeed] or EID.CraneItemType[tostring(entity.InitSeed)])
 	end
 	if entity.Type == 1000 then
@@ -1197,7 +1198,7 @@ function EID:getSpindownResult(collectibleID)
 		newID = newID - 1
 		attempts = attempts + 1
 	--note: the order of the SkipLocked check statement is important so that the item is checked for being in a pool either way (to display a ? if it isn't)
-	until (EID.itemConfig:GetCollectible(newID) and (EID:isCollectibleUnlockedAnyPool(newID) or not EID.Config["SpindownDiceSkipLocked"]) and not EID.itemConfig:GetCollectible(newID).Hidden) or newID == CollectibleType.COLLECTIBLE_NULL or attempts > 10
+	until (EID.itemConfig:GetCollectible(newID) and (EID:isCollectibleUnlocked(newID) or not EID.Config["SpindownDiceSkipLocked"]) and not EID.itemConfig:GetCollectible(newID).Hidden and EID:isCollectibleAllowed(newID)) or newID == CollectibleType.COLLECTIBLE_NULL or attempts > 10
 	return newID
 end
 
@@ -1229,30 +1230,19 @@ function EID:DetectModdedItems()
 	return false
 end
 
-function EID:isCollectibleUnlocked(collectibleID, itemPoolOfItem)
-	local itemPool = game:GetItemPool()
-	if maxCollectibleID == nil then maxCollectibleID = EID:GetMaxCollectibleID() end
-	for i= 1, maxCollectibleID do
-		if ItemConfig.Config.IsValidCollectible(i) and i ~= collectibleID then
-			itemPool:AddRoomBlacklist(i)
-		end
+-- REPENTANCE ONLY! Return whether the collectible is considered available
+-- Bag of Crafting rerolls unavailable items; this function is kept brief to help BoC speed
+function EID:isCollectibleAvailable(collectibleID)
+	if EID.itemAvailableStates[collectibleID] == nil then
+		EID.itemAvailableStates[collectibleID] = EID.itemConfig:GetCollectible(collectibleID):IsAvailable()
 	end
-	local isUnlocked = false
-	for _ = 0, 1 do -- some samples to make sure
-		local collID = itemPool:GetCollectible(itemPoolOfItem, false, 1)
-		if collID == collectibleID then
-			isUnlocked = true
-			break
-		end
-	end
-	itemPool:ResetRoomBlacklist()
-	return isUnlocked
+	return EID.itemAvailableStates[collectibleID]
 end
 
-function EID:isCollectibleUnlockedAnyPool(collectibleID)
-	--THIS FUNCTION IS FOR REPENTANCE ONLY due to using Repentance XML data
-	--Currently used by the Achievement Check, Spindown Dice, and Bag of Crafting
-	if not REPENTANCE or EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then return true end
+-- REPENTANCE ONLY! Return our best guess on whether an achievement-locked collectible is unlocked
+-- (Things like Tainted Lost and Sacred Orb give false negatives)
+-- Spindown Dice skips over locked items, but not unavailable items
+function EID:isCollectibleUnlocked(collectibleID)
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if item == nil then return false end
 	if EID.itemUnlockStates[collectibleID] == nil then
@@ -1266,18 +1256,27 @@ function EID:isCollectibleUnlockedAnyPool(collectibleID)
 			EID.itemUnlockStates[collectibleID] = false
 			return false
 		end
-		--iterate through the pools this item can be in
-		for _,itemPoolID in ipairs(EID.XMLItemIsInPools[collectibleID]) do
-			if (itemPoolID < ItemPoolType.NUM_ITEMPOOLS and EID:isCollectibleUnlocked(collectibleID, itemPoolID)) then
-				EID.itemUnlockStates[collectibleID] = true
-				return true
-			end
-		end
-		--note: some items will still be missed by this, if they've been taken out of their pools (especially when in Greed Mode)
-		EID.itemUnlockStates[collectibleID] = false
-		return false
+		--check the item's IsAvailable status if the function exists
+		if item.IsAvailable then EID.itemUnlockStates[collectibleID] = item:IsAvailable()
+		else EID.itemUnlockStates[collectibleID] = true end
+		return EID.itemUnlockStates[collectibleID]
 	else
 		return EID.itemUnlockStates[collectibleID]
+	end
+end
+EID.isCollectibleUnlockedAnyPool = EID.isCollectibleUnlocked -- old name before ItemConfig:IsAvailable was added
+
+-- REPENTANCE ONLY! Return whether the collectible is completely disallowed by the current game mode
+-- Bag of Crafting and Spindown Dice skip over disallowed items entirely
+function EID:isCollectibleAllowed(collectibleID)
+	local item = EID.itemConfig:GetCollectible(collectibleID)
+	if item == nil then return false
+	elseif item.Tags == nil then return true
+	else
+		if game:IsGreedMode() and item:HasTags(ItemConfig.TAG_NO_GREED) then return false
+		elseif game.Challenge > 0 and item:HasTags(ItemConfig.TAG_NO_CHALLENGE) then return false
+		else return true end
+		-- no need to check TAG_NO_DAILY because mods are disabled for Dailies
 	end
 end
 
@@ -1288,9 +1287,9 @@ function EID:AreAchievementsAllowed()
 	if EID.player:GetPlayerType() < 21 then
 		-- Challenge runs and TMTrainer might break the pool, so ignore them.
 		if not game:GetSeeds():IsCustomRun() and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
-			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
+			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlocked(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
 			if not hasBookOfRevelationsUnlocked then
-				local hasCubeOfMeatUnlocked = EID:isCollectibleUnlockedAnyPool(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
+				local hasCubeOfMeatUnlocked = EID:isCollectibleUnlocked(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
 				if not hasCubeOfMeatUnlocked then
 					return false
 				end
@@ -1415,7 +1414,7 @@ function EID:handleHUDElement(hudElement)
 	end
 	local screenSize = EID:getScreenSize()
 	local hudOffset = EID.Config["HUDOffset"]
-	if REPENTANCE then
+	if EID.isRepentance then
 		hudOffset = (Options.HUDOffset * 10)
 	end
 	for _,v in ipairs(hudElement.anchors) do
@@ -1742,6 +1741,18 @@ function EID:evaluateTransformationProgress(transformation)
 	end
 end
 
+-- Create a list of all grid entities in the room that have an EID description
+function EID:CheckCurrentRoomGridEntities()
+	EID.CurrentRoomGridEntities = {}
+	local room = game:GetRoom()
+	for i = 1, room:GetGridSize(), 1 do
+		local gridEntity = room:GetGridEntity(i)
+		if gridEntity and EID:hasDescription(gridEntity) then
+			EID.CurrentRoomGridEntities[i] = gridEntity
+		end
+	end
+end
+
 -- Workaround function to get the currently held pill of the players. Used to map Pill ID to pill color and vise versa
 EID.PlayerHeldPill = {}
 function EID:evaluateHeldPill()
@@ -1796,6 +1807,7 @@ function EID:evaluateQueuedItems()
 				elseif player.QueuedItem.Item.Type ~= ItemType.ITEM_TRINKET then
 					-- Put non-active item pickups into the recent item list, for printing in the Item Reminder
 					table.insert(EID.RecentlyTouchedItems[i], player.QueuedItem.Item.ID)
+					if (#EID.RecentlyTouchedItems[i] > 8) then table.remove(EID.RecentlyTouchedItems[i], 1) end
 				end
 			end
 		end 
@@ -1814,7 +1826,7 @@ end
 
 -- Returns the quality of the described entity
 function EID:getObjectQuality(descObj)
-	if REPENTANCE and descObj.ObjType == 5 and descObj.ObjVariant == 100 and EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)) then
+	if EID.isRepentance and descObj.ObjType == 5 and descObj.ObjVariant == 100 and EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)) then
 		return tonumber(EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)).Quality)
 	end
 end
@@ -1856,7 +1868,7 @@ end
 -- Add pickup usage to history of pickups used by the player
 function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColorID)
 	 -- don't add mimiced or noannouncer cards/pills to history
-	if REPENTANCE and (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC or useFlags & UseFlag.USE_NOANNOUNCER == UseFlag.USE_NOANNOUNCER) then return end
+	if EID.isRepentance and (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC or useFlags & UseFlag.USE_NOANNOUNCER == UseFlag.USE_NOANNOUNCER) then return end
 	local playerID = EID:getPlayerID(player)
 	EID:InitItemInteractionIfAbsent(playerID)
 
@@ -1867,7 +1879,7 @@ function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColo
 	end
 
 	-- pickupType = ["pill","card"], pillColorID, effectID, hadEchoChamberWhenUsed
-	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, REPENTANCE and player:HasCollectible(700)})
+	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, EID.isRepentance and player:HasCollectible(700)})
 end
 
 -- Render a sprite of an entity
@@ -1883,7 +1895,7 @@ end
 
 -- Tries to get the Vanilla transformations of modded items based on Tags
 function EID:GetTransformationsOfModdedItems()
-	if not REPENTANCE then return end
+	if not EID.isRepentance then return end
 	local numCollectibles = EID:GetMaxCollectibleID()
 	for i = 733, numCollectibles, 1 do
 		EID:tryAutodetectTransformationsCollectible(i)

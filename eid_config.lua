@@ -5,9 +5,11 @@ EID.UserConfig = {
 	--						Bulgarian = "bul"				SPECIAL THANKS TO Gothika_47
 	--						Chinese = "zh_cn"				SPECIAL THANKS TO Xheepey87, frto027
 	--						Czech = "cs_cz"					SPECIAL THANKS TO domcizzz
+	--						Dutch = "nl_nl"					SPECIAL THANKS TO SomethingMax
 	--						English = "en_us", "en_us_detailed" (More detailed descriptions)
 	--						French = "fr"					SPECIAL THANKS TO Nicolas Delvaux
 	--						German = "de"					SPECIAL THANKS TO Jake
+	--						Greek = "el_gr"					SPECIAL THANKS TO vanillarat
 	--						Italian = "it"					SPECIAL THANKS TO Denkishi, 2G
 	--						Japanese = "ja_jp"				SPECIAL THANKS TO prefab
 	--						Korean = "ko_kr"				SPECIAL THANKS TO Blackcreamtea, 미카
@@ -17,6 +19,7 @@ EID.UserConfig = {
 	--						Russian = "ru"					SPECIAL THANKS TO hell2pay, fly_6
 	--						Spanish = "spa"					SPECIAL THANKS TO Lidia Arroyo Purroy
 	--						Turkish = "tr_tr"				SPECIAL THANKS TO Mert Dutal
+	--						Ukrainian = "uk_ua"				SPECIAL THANKS TO x3xto
 	--
 	-- If you want to make a translation, please contact me :) (wofsauge)
 	--
