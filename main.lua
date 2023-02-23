@@ -1549,6 +1549,7 @@ end
 local function OnGameStartGeneral(_,isSave)
 	EID:GetTransformationsOfModdedItems()
 	EID:buildTransformationTables()
+	EID.RecentlyTouchedItems = {}
 	if not isSave then
 		EID.PlayerItemInteractions = {}
 		EID.DInfinityState = {}
