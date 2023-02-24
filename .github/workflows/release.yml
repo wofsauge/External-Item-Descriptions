@@ -21,13 +21,6 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
       - run: python .github/scripts/release.py
-  push_to_steam:
-    name: Upload mod to steam workshop
-    runs-on: ubuntu-latest
-    needs: [release]
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
         
       - name: Upload the mod to Steam Workshop
         uses: IsaacScript/isaac-steam-workshop-upload@v2

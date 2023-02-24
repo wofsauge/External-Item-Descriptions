@@ -1,16 +1,17 @@
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
-EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_NL", "uk_ua"}
+EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_nl", "uk_ua", "el_gr"}
 EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
+EID.isRepentance = getmetatable(Sprite) ~= nil and getmetatable(Sprite).__class ~= nil and getmetatable(Sprite).__class.GetAnimation ~= nil -- REPENTANCE variable can be altered by any mod, so we try alternative method and save the result
 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = "4.52"
-EID.ModVersionCommit = "4a8cdc8"
+EID.ModVersion = 4.53
+EID.ModVersionCommit = "c42d6a8"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -115,7 +116,7 @@ require("eid_holdmapdesc")
 require("eid_itemprediction")
 
 -- load Repentence descriptions
-if REPENTANCE then
+if EID.isRepentance then
 	EID.GameVersion = "rep"
 	for _,lang in ipairs(EID.Languages) do
 		local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
@@ -136,7 +137,7 @@ local modfolder ='external item descriptions_836319872' --release mod folder nam
 
 local function GetCurrentModPath()
 	if debug then
-		if REPENTANCE then require("eid_tmtrainer") end
+		if EID.isRepentance then require("eid_tmtrainer") end
 		return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
 	end
 	--use some very hacky trickery to get the path to this mod
@@ -158,7 +159,7 @@ EID:fixDefinedFont()
 local fontFile = EID.Config["FontType"] or "default"
 local success = EID:loadFont(EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
 if not success then
-	if REPENTANCE then
+	if EID.isRepentance then
 		success = EID:loadFont("../mods/"..modfolder.."/resources/font/eid_"..fontFile..".fnt")
 		if not success then 
 			Isaac.ConsoleOutput("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
@@ -179,7 +180,7 @@ end
 -------------Handle Resetting Floor Trackers--------------
 function EID:onNewFloor()
 	pathsChecked = {}
-	if REPENTANCE then
+	if EID.isRepentance then
 		EID.BoC.RoomQueries = {}
 		EID.BoC.FloorQuery = {}
 		EID.CraneItemType = {}
@@ -199,7 +200,7 @@ questionMarkSprite:LoadGraphics()
 
 function EID:IsAltChoice(pickup)
 	-- do not run this while Curse of the Blind is active, since this function is really just a "is collectible pedestal a red question mark" check
-	if not REPENTANCE or EID:hasCurseBlind() then
+	if not EID.isRepentance or EID:hasCurseBlind() then
 		return false
 	end
 	if altPathItemChecked[pickup.InitSeed] ~= nil then
@@ -245,7 +246,7 @@ end
 
 local initialItemNext = false
 local flipItemNext = false
-if REPENTANCE then
+if EID.isRepentance then
 	EID.flipItemPositions = {}
 	EID.flipMaxIndex = -1
 	
@@ -586,9 +587,9 @@ function EID:printDescription(desc, cachedID)
 			offsetX = offsetX + 1
 			local anim = "numbers"
 			local frameNum = desc.Charges or 0
-			if desc.ChargeType == (REPENTANCE and ItemConfig.CHARGE_TIMED or 1) then
+			if desc.ChargeType == (EID.isRepentance and ItemConfig.CHARGE_TIMED or 1) then
 				anim = "Misc"; frameNum = 6 -- Timer Icon
-			elseif desc.ChargeType == (REPENTANCE and ItemConfig.CHARGE_SPECIAL or 2) then
+			elseif desc.ChargeType == (EID.isRepentance and ItemConfig.CHARGE_SPECIAL or 2) then
 				frameNum = 13 -- Question Mark Icon
 			end
 			EID:renderIcon(EID.InlineIconSprite2, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale, nil, anim, frameNum)
@@ -718,7 +719,7 @@ end
 ----------------------------Handle New Room--------------------------------
 EID.isMirrorRoom = false
 EID.isDeathCertRoom = false
-if REPENTANCE then
+if EID.isRepentance then
 	function EID:AssignFlipItems()
 		EID.flipMaxIndex = -1
 		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
@@ -746,21 +747,7 @@ if REPENTANCE then
 	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoomRep)
 end
 
-function EID:CheckCurrentRoomGridEntities()
-	EID.CurrentRoomGridEntities = {}
-	local room = game:GetRoom()
-	for i = 1, room:GetGridSize(), 1 do
-		local gridEntity = room:GetGridEntity(i)
-		if gridEntity and EID:hasDescription(gridEntity) then
-			EID.CurrentRoomGridEntities[i] = gridEntity
-		end
-	end
-end
-
--- On new room, save the status of any variables that need to be rewound upon Glowing Hourglass usage
 function EID:onNewRoom()
-	EID.RecentlyTouchedItems = {}
-
 	EID:CheckCurrentRoomGridEntities()
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
@@ -826,7 +813,7 @@ function EID:renderIndicator(entity, playerNum)
 		entityPos = entityPos + entity:GetData()["EID_RenderOffset"]
 	end
 	-- Move highlights a bit to fit onto the alt Item layout of Flip / Tainted Laz
-	if REPENTANCE and not EID:IsGridEntity(entity) then
+	if EID.isRepentance and not EID:IsGridEntity(entity) then
 		if entity.Variant == 100 and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID:getEntityData(entity, "EID_FlipItemID") then
 			entityPos = entityPos + Vector(2.5,2.5)
 		elseif entity.Type == 6 and entity.Variant == 16 then
@@ -835,7 +822,7 @@ function EID:renderIndicator(entity, playerNum)
 	end
 	local sprite = nil
 	if not EID:IsGridEntity(entity) then sprite = entity:GetSprite() end
-	if REPENTANCE then
+	if EID.isRepentance then
 		repDiv = 255
 		if EID.isMirrorRoom then
 			local screenCenter = EID:getScreenSize()/2
@@ -945,13 +932,13 @@ function EID:setPlayer()
 	-- Old simple setPlayer, to reduce runtime in single player
 	if numPlayers == 1 or not EID.Config["CoopDescriptions"] then
 		local p = Isaac.GetPlayer(0)
-		if REPENTANCE and p:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B then
+		if EID.isRepentance and p:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B then
 			EID.player = p:GetOtherTwin() or p
 		else
 			EID.player = p
 		end
 		EID.players = { EID.player }
-		if REPENTANCE then EID.players = { EID.player, REPENTANCE and EID.player:GetOtherTwin() } end
+		if EID.isRepentance then EID.players = { EID.player, EID.isRepentance and EID.player:GetOtherTwin() } end
 		EID.coopMainPlayers = { EID.player }
 		EID.coopAllPlayers = EID.players
 		EID.controllerIndexes[p.ControllerIndex] = 1
@@ -970,7 +957,7 @@ function EID:setPlayer()
 		if player.Parent == nil then
 			local newIndex = not EID.controllerIndexes[player.ControllerIndex]
 			-- Tainted Soul is treated as the primary player for Tainted Forgotten, so swap them
-			if REPENTANCE and (player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B
+			if EID.isRepentance and (player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B
 				or player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B) then
 				player = player:GetOtherTwin() or player
 			end
@@ -985,7 +972,7 @@ function EID:setPlayer()
 	end
 	EID.player = EID.coopAllPlayers[1]
 	-- second entry will be nil if no twin or AB+ (REPENTANCE = nil)
-	EID.players = { EID.player, REPENTANCE and EID.player:GetOtherTwin() }
+	EID.players = { EID.player, EID.isRepentance and EID.player:GetOtherTwin() }
 	EID.isMultiplayer = #EID.coopMainPlayers > 1
 end
 
@@ -1001,15 +988,6 @@ function EID:onGameUpdate()
 	EID:checkPlayersForMissingItems()
 	EID:evaluateQueuedItems()
 	EID:evaluateHeldPill()
-	
-	-- Fix some poorly coded mods erroneously setting the REPENTANCE constant to false (the only valid values for it are nil or true)
-	if REPENTANCE == false then
-		if EID.GameVersion == "rep" then
-			REPENTANCE = true
-		else
-			REPENTANCE = nil
-		end
-	end
 
 	if collSpawned then
 		collSpawned = false
@@ -1031,7 +1009,7 @@ function EID:onGameUpdate()
 	end
 	
 	-- Remove Crane Game item data if it's giving the prize out
-	if REPENTANCE and EID.GameUpdateCount % 10 == 0 then
+	if EID.isRepentance and EID.GameUpdateCount % 10 == 0 then
 		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
 			if EID.CraneItemType[tostring(crane.InitSeed)] then
 				if crane:GetSprite():IsPlaying("Prize") then
@@ -1079,7 +1057,7 @@ end
 
 local hasShownStartWarning = false
 local function checkStartOfRunWarnings()
-	if REPENTANCE and not EID.Config["DisableStartOfRunWarnings"] and game:GetFrameCount() < 10*30 then
+	if EID.isRepentance and not EID.Config["DisableStartOfRunWarnings"] and game:GetFrameCount() < 10*30 then
 		-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
 		-- 1.7.9b (Dec. 08, 2022): The IsAvailable function was added (checking for Isaac.RunCallback existing instead)
 		if Isaac.RunCallback == nil then
@@ -1127,7 +1105,7 @@ local function checkPosModifiers()
 	else
 		EID:removeTextPosModifier("Greed Mode Horizontal")
 	end
-	if not REPENTANCE then
+	if not EID.isRepentance then
 		-- AB+ Schoolbag adjustment
 		if EID.player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
 			EID:addTextPosModifier("Schoolbag", Vector(0,30))
@@ -1206,7 +1184,7 @@ local function onRender()
 	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
 		return
 	end
-	if REPENTANCE then
+	if EID.isRepentance then
 		local hasBag, bagPlayer = EID:PlayersHaveCollectible(710)
 		if hasBag then
 			EID.bagPlayer = bagPlayer
@@ -1243,7 +1221,7 @@ local function onRender()
 		EID.holdTabCounter = 0
 	end
 	-- Check for Drop being pressed, for Repentance D Infinity tracking
-	if REPENTANCE then
+	if EID.isRepentance then
 		local dropTriggered, playerNumPressingDrop = EID:PlayersActionPressed(ButtonAction.ACTION_DROP, Input.IsActionTriggered)
 		if dropTriggered then
 			local playerPressingDrop = EID.coopMainPlayers[playerNumPressingDrop]
@@ -1301,7 +1279,7 @@ local function onRender()
 	local displayedDesc = {}
 	-- Check for Bag of Crafting per player
 	-- (Do this first because it can't be Local Mode, and should take precedence over other descriptions, even as Player 2+)
-	if REPENTANCE then
+	if EID.isRepentance then
 		for playerNum,player in ipairs(playerSearch) do
 			if player:HasCollectible(710) then
 				local craftingSuccess = EID:handleBagOfCraftingRendering()
@@ -1454,7 +1432,7 @@ local function onRender()
 						if EID:getEntityData(closest, "EID_DontHide") ~= true then
 							local isSoulstone = closest.SubType >= 81 and closest.SubType <= 97
 							local hideinShop = closest:ToPickup():IsShopItem() and ((not isSoulstone and not EID.Config["DisplayCardInfoShop"]) or (isSoulstone and not EID.Config["DisplaySoulstoneInfoShop"]))
-							local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayCardInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
+							local isOptionsSpawn = EID.isRepentance and not EID.Config["DisplayCardInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
 							local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or
 							(not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and
 							(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
@@ -1475,7 +1453,7 @@ local function onRender()
 						--Handle Pills
 						if EID:getEntityData(closest, "EID_DontHide") ~= true then
 							local hideinShop = closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]
-							local isOptionsSpawn = REPENTANCE and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
+							local isOptionsSpawn = EID.isRepentance and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
 							local obstructed = not EID.Config["DisplayObstructedPillInfo"] and
 							(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
 							if isOptionsSpawn or hideinShop or obstructed then
@@ -1486,7 +1464,7 @@ local function onRender()
 						local pillColor = closest.SubType
 						local pool = game:GetItemPool()
 						local identified = pool:IsPillIdentified(pillColor) and not EID.Config["OnlyShowPillWhenUsedAtLeastOnce"]
-						if REPENTANCE and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
+						if EID.isRepentance and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
 						local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
 						local wasUsed = EID:WasPillUsed(pillColor)
 
@@ -1509,7 +1487,7 @@ local function onRender()
 						if room:GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
 							local desc = EID:getDescriptionObj(-999, -1, closest.VarData + 1, closest)
 							EID:addDescriptionToPrint(desc)
-						elseif REPENTANCE and EID.Config["DisplaySanguineInfo"] and room:GetType() == RoomType.ROOM_DEVIL and
+						elseif EID.isRepentance and EID.Config["DisplaySanguineInfo"] and room:GetType() == RoomType.ROOM_DEVIL and
 							EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) then
 							local desc = EID:getDescriptionObj(5, 100, 692, closest, false)
 							desc.Description = EID:trimSanguineDesc(desc)
@@ -1571,6 +1549,7 @@ end
 local function OnGameStartGeneral(_,isSave)
 	EID:GetTransformationsOfModdedItems()
 	EID:buildTransformationTables()
+	EID.RecentlyTouchedItems = {}
 	if not isSave then
 		EID.PlayerItemInteractions = {}
 		EID.DInfinityState = {}
@@ -1588,7 +1567,7 @@ end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 
 -- Re-init transformation progress and item interactions after using Genesis
-if REPENTANCE then
+if EID.isRepentance then
 	local function OnUseGenesis(_, _, _, _)
 		OnGameStartGeneral()
 		CheckAllActiveItemProgress()
@@ -1604,7 +1583,7 @@ function EID:OnUsePill(pillEffectID, player, useFlags)
 	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags, pillColor) -- Echo Chamber tracking
 	-- for tracking used pills, ignore gold pills and noannouncer flag pills 
 	-- (not using a bitmask, because Placebo is mimic+noannouncer, and we want to count those)
-	if REPENTANCE and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags == UseFlag.USE_NOANNOUNCER) then return end
+	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags == UseFlag.USE_NOANNOUNCER) then return end
 	EID.UsedPillColors[tostring(pillColor)] = true
 	
 end
@@ -1662,7 +1641,7 @@ function EID:OnGameStart(isSave)
 			EID.UsedPillColors = savedEIDConfig["UsedPillColors"] or {}
 		end
 
-		if REPENTANCE then
+		if EID.isRepentance then
 			EID.BoC.BagItems = {}
 			EID.CraneItemType = {}
 			EID.flipItemPositions = {}
@@ -1725,7 +1704,7 @@ EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, EID.OnGameStart)
 
 --Saving Moddata--
 function EID:OnGameExit()
-	if REPENTANCE then
+	if EID.isRepentance then
 		EID.Config["BagContent"] = EID.BoC.BagItems or {}
 		EID.Config["BagFloorContent"] = EID.BoC.RoomQueries or {}
 		EID.Config["CraneItemType"] = EID.CraneItemType or {}
@@ -1756,3 +1735,5 @@ EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, EID.OnGameExit)
 if EID.enableDebug then
 	require("eid_debugging")
 end
+
+print("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")

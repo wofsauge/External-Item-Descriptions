@@ -138,7 +138,7 @@ end
 
 function EID:AddBooleanSetting(category, optionName, displayText, params)
 	if type(params) ~= "table" then params = {} end
-	if params.repOnly and not REPENTANCE then return end
+	if params.repOnly and not EID.isRepentance then return end
 	MCM.AddSetting(
 		"EID", category,
 		{
@@ -165,7 +165,7 @@ end
 
 function EID:AddNumberSetting(category, optionName, displayText, minimum, maximum, params)
 	if type(params) ~= "table" then params = {} end
-	if params.repOnly and not REPENTANCE then return end
+	if params.repOnly and not EID.isRepentance then return end
 	MCM.AddSetting(
 		"EID", category,
 		{
@@ -191,7 +191,7 @@ end
 	
 function EID:AddScrollSetting(category, optionName, displayText, scrollTable, params)
 	if type(params) ~= "table" then params = {} end
-	if params.repOnly and not REPENTANCE then return end
+	if params.repOnly and not EID.isRepentance then return end
 	MCM.AddSetting(
 		"EID", category,
 		{
@@ -436,7 +436,7 @@ if MCMLoaded then
 	
 	local diceSteps = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	-- Spindown Dice Settings
-	if REPENTANCE then MCM.AddSpace("EID", "Display") end
+	if EID.isRepentance then MCM.AddSpace("EID", "Display") end
 	
 	EID:AddScrollSetting("Display", "SpindownDiceResults", "Spindown Dice", diceSteps, {repOnly = true, label = " Items", 
 		infoText = "Number of item previews when holding Spindown Dice"})
@@ -469,7 +469,7 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Display", "DisplaySoulstoneInfoShop", "Shop Soulstone Infos", {repOnly = true})
 
 	----"Options?" Spoilers----
-	if REPENTANCE then
+	if EID.isRepentance then
 		MCM.AddSpace("EID", "Display")
 		MCM.AddText("EID", "Display", "Interaction with 'Options?'")
 	end
@@ -596,7 +596,7 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	-----------------------------BAG OF CRAFTING-------------------------------
 	
-	if REPENTANCE then
+	if EID.isRepentance then
 		-- Bag of Crafting Display
 		local bagDisplays = {"always","hold","never"}
 		EID:AddNumberSetting("Crafting", "DisplayBagOfCrafting", "Show Display", 1, #bagDisplays, { displayingTab = "Crafting", indexOf = bagDisplays, infoText = {"Always = Always show Results", "Hold = Show when holding up bag", "Never = Disable Bag of Crafting feature"}})
