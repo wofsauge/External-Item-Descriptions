@@ -679,7 +679,7 @@ EID.descriptions[languageCode].trinkets={
 	{"98", "Ніс гобліна", "10% chance to shoot homing sticky tears#Boogers deal Isaac's damage once per second#Boogers stick for 60 seconds"},
 	{"99", "Пострибунчик", "10% chance to shoot bouncing tears"},
 	{"100", "Яскрава лампочка", "Holding a fully charged active item grants:#↑ {{Damage}} +0.5 Damage#↑ {{Speed}} +0.25 Speed#↑ {{Range}} +0.75 Range#↑ {{Tears}} +0.2 Tears#↑ {{Shotspeed}} +0.1 Shot speed#↑ {{Luck}} +1 Luck"},
-	{"101", "Тьмяна лампочка", "Holding a completely uncharged active item grants:#↑ {{Damage}} +1.5 Damage#↑ {{Speed}} +0.5 Speed#↑ {{Range}} +1.5 Range#↑ {{Tears}} +0.4 Tears#↑ {{Shotspeed}} +0.3 Shot Speed#↑ {{Luck}} +2 Luck"},
+	{"101", "Згасла лампочка", "Holding a completely uncharged active item grants:#↑ {{Damage}} +1.5 Damage#↑ {{Speed}} +0.5 Speed#↑ {{Range}} +1.5 Range#↑ {{Tears}} +0.4 Tears#↑ {{Shotspeed}} +0.3 Shot Speed#↑ {{Luck}} +2 Luck"},
 	{"102", "Фрагментована карточка", "{{SecretRoom}} +1 extra Secret Room per floor while held"},
 	{"103", "Рівність!", "{{Warning}} Turns single consumables into double consumables when Isaac's coin, key and bomb counts are equal"},
 	{"104", "Кістка бажання", "2% chance to spawn a pedestal item when hit#Gets destroyed afterwards"},
