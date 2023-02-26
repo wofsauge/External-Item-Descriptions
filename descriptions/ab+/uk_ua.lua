@@ -465,7 +465,7 @@ EID.descriptions[languageCode].collectibles={
 	{"440", "Нирковий камінь", "Isaac occasionally stops firing and charges an attack that releases a burst of tears and a kidney stone#↓ -0.2 Speed down#↓ -17 Range down#↑ +2 Tear Height"},
 	{"441", "Мегазаряд", "Fires a huge Mega Satan laser for 15 seconds#The laser persists between rooms and floors"},
 	{"442", "Корона Темного Принца", "{{Blank}} While at 1 full Red Heart:#↑ {{Range}} +1.5 Range up#↑ {{Tears}} +0.75 Tears up#↑ {{Shotspeed}} +0.2 Shot Speed up#↑ +1 Tear Height#Does not work on characters without Red Hearts"}, -- Dark Princes Crown (apostrophe added to the name in Repentance)
-	{"443", "Яблуко!", "Isaac sometimes fires razor blades which deal 400% damage#↑ {{Tears}} +0.3 Tears up"},
+	{"443", "Яблуко!", "Isaac sometimes fires razor blades which deal 400% damage#{{Luck}} 100% chance at 14 Luck#↑ {{Tears}} +0.3 Tears up"},
 	{"444", "Графітовий олівець", "Isaac fires a cluster of tears every 15 tears#Tears in the cluster deal double damage"},
 	{"445", "Собачий зуб", "↑ {{Damage}} +0.3 Damage up#↑ {{Speed}} +0.1 Speed up#{{SecretRoom}} A wolf howls in rooms adjacent to a Secret/Super Secret Room#{{LadderRoom}} A dog barks in rooms with a crawlspace under a rock"},
 	{"446", "Мертвий зуб", "While firing, Isaac is surrounded by a green aura that poisons enemies"},
