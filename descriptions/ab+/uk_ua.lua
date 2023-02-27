@@ -821,21 +821,21 @@ EID.descriptions[languageCode].pills={
 }
 
 ---------- Sacrifice Room ----------
-EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
+EID.descriptions[languageCode].sacrificeHeader = "[Наступна винагорода Кімнати Жертвопринесень]"
 
 EID.descriptions[languageCode].sacrifice={
-	{"1", "", "{{Coin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
-	{"2", "", "{{Coin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
-	{"3", "", "{{AngelChance}} 67% chance for increased Angel Room chance"},
-	{"4", "", "{{Chest}} 50% chance for 1 random chest"},
-	{"5", "", "{{Coin}} 33% chance for 3 coins#{{AngelChance}} 67% chance for increased Angel Room chance"},
-	{"6", "", "{{AngelRoom}} 33% chance for a teleport to the Angel Room#{{DevilRoom}} Teleports to the Devil Room instead if its door was spawned on the current floor#{{Chest}} 67% chance for random chest"},
-	{"7", "", "{{AngelRoom}} 33% chance for 1 random Angel Room item#{{SoulHeart}} 67% chance for 1 Soul Heart"},
-	{"8", "", "100% chance for 7 troll bombs"},
-	{"9", "", "100% chance to spawn \"Uriel\""},
-	{"10", "", "{{SoulHeart}} 50% chance for 7 Soul Hearts#{{Coin}} 50% chance for 30 coins"},
-	{"11", "", "100% chance to spawn \"Gabriel\""},
-	{"12", "", "50% chance to teleport to the \"Dark Room\""},
+	{"1", "", "{{Coin}} 50% шанс на 1 монетку#{{Bomb}} 100% шанс на 1 бомбу, якщо ви на П1 і вбили боса менш ніж за 1 хвилину"}, -- П1 == B1
+	{"2", "", "{{Coin}} 50% шанс на 1 монетку#{{Bomb}} 100% шанс на 1 бомбу, якщо ви на П1 і вбили боса менш ніж за 1 хвилину"}, -- п1 == b1
+	{"3", "", "{{AngelChance}} 67% шанс збільшити ймовірність появи Кімнати Ангела"},
+	{"4", "", "{{Chest}} 50% шанс на 1 випадкову скриню"},
+	{"5", "", "{{Coin}} 33% шанс на 3 монетки#{{AngelChance}} 67% шанс збільшити ймовірність появи Кімнати Ангела"},
+	{"6", "", "{{AngelRoom}} 33% шанс телепортуватися в Кімнату Ангела#{{DevilRoom}} Телепортує в Кімнату Диявола, якщо двері туди вже з'явилися на поточному поверсі#{{Chest}} 67% шанс на випадкову скриню"},
+	{"7", "", "{{AngelRoom}} 33% шанс на 1 випадковий предмет з пулу Кімнати Ангела#{{SoulHeart}} 67% шанс на 1 серце Душі"},
+	{"8", "", "100% шанс на 7 троль-бомб"},
+	{"9", "", "100% шанс появи ангела \"Уріеля\""},
+	{"10", "", "{{SoulHeart}} 50% шанс на 7 сердець Душі#{{Coin}} 50% шанс на 30 монет"},
+	{"11", "", "100% шанс появи ангела \"Габріеля\""},
+	{"12", "", "50% шанс телепортуватися на поверх \"Темна Кімната\""},
 }
 
 ---------- Dice Room ----------
