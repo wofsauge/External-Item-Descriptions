@@ -839,15 +839,15 @@ EID.descriptions[languageCode].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions[languageCode].diceHeader = "[Dice Room effects]"
+EID.descriptions[languageCode].diceHeader = "[Ефекти Кімнати Кубиків]"
 
 EID.descriptions[languageCode].dice={
-	{"1", "", "Rerolls all of Isaac's items into random items from the room pool they were acquired in"},
-	{"2", "", "Rerolls all pickups in the room"},
-	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
-	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}}Devil or {{AngelRoom}}Angel Room"},
-	{"5", "", "Rerolls and restarts the current floor"},
-	{"6", "", "Rerolls all of Isaac's items#Rerolls all pickups, trinkets and pedestal items on the floor"},
+	{"1", "", "Реролить усі предмети персонажа на випадкові предмети з пулу кімнат, у яких вони були отримані"},
+	{"2", "", "Реролить усі розхідники в кімнаті"},
+	{"3", "", "Реролить усі розхідники та брелки на поверсі#Не впливає на кімнати {{DevilRoom}}Диявола чи {{AngelRoom}}Ангела"},
+	{"4", "", "Реролить усі п'єдестальні артефакти на поверсі#Не впливає на кімнати {{DevilRoom}}Диявола чи {{AngelRoom}}Ангела"},
+	{"5", "", "Реролить та перезапускає поточний поверх"},
+	{"6", "", "Реролить усі предмети персонажа#Реролить усі розіхдники, брелки та п'єдестальні предмети на поверсі"},
 }
 
 ---------- Transformations ----------
