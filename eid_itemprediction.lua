@@ -20,11 +20,11 @@ end
 -- D Infinity --
 local dinfinityList = { [0] = 105, 166, 284, 283, 285, 406, 386 }
 -- Repentance's D Infinity order: D1, D4, D6, Eternal D6, D7, D8, D10, D12, D20, D100
-if REPENTANCE then dinfinityList = { [0] = 476, 284, 105, 609, 437, 406, 285, 386, 166, 283 } end
+if EID.isRepentance then dinfinityList = { [0] = 476, 284, 105, 609, 437, 406, 285, 386, 166, 283 } end
 -- Returns the item ID of D Infinity's current die
 -- For Repentance, the Drop button is tracked, which is probably not 100% successful, and handled elsewhere
 function EID:CurrentDInfinity(rng, player)
-	if not REPENTANCE then
+	if not EID.isRepentance then
 		rng = EID:RNGNext(rng, 0x1, 0x9, 0x1D) -- magic disassembled numbers!
         return dinfinityList[rng % 7]
 	else
@@ -33,7 +33,7 @@ function EID:CurrentDInfinity(rng, player)
 	end
 end
 local justDidD = false
-if REPENTANCE then
+if EID.isRepentance then
     -- To help with Rep tracking, watch for D Infinity to get used and resync its current dice
 	function EID:WatchForDInfinity()
 		justDidD = true
@@ -55,13 +55,13 @@ end
 -- Reduced chance: Death Certificate (15%), Genesis (25%)
 -- I saw something in the code about rerolling Forget Me Now but not sure what the criteria was
 local metronomeBlacklist = {[488] = 1, [475] = 1, [422] = 1} --AB+ can choose Clicker lol rip
-if REPENTANCE then metronomeBlacklist = {[488] = 1, [475] = 1, [422] = 1, [326] = 1, [482] = 1, [636] = 1, [628] = 0.85, [622] = 0.75 } end
+if EID.isRepentance then metronomeBlacklist = {[488] = 1, [475] = 1, [422] = 1, [326] = 1, [482] = 1, [636] = 1, [628] = 0.85, [622] = 0.75 } end
 -- TODO: Account for Car Battery
 -- (If we have it, display multiple results? Also, if the result is Car Battery, it's immediately triggered again)
 function EID:MetronomePrediction(rng)
 	local numCollectibles = EID:GetMaxCollectibleID()
 	local rerollChance = 0
-	if REPENTANCE then --Rep advances the RNG an extra time to use for its Death Cert/Genesis reroll
+	if EID.isRepentance then --Rep advances the RNG an extra time to use for its Death Cert/Genesis reroll
 		rng = EID:RNGNext(rng)
 		rerollChance = rng
 	end
@@ -135,7 +135,7 @@ function EID:Teleport1Prediction(rng)
     -- Currently, that's any room on the grid besides the one we're in, and Red Rooms or Ultra Secret Rooms
 	for i = 0, 168 do
 		local room = level:GetRoomByIdx(i)
-		if room.GridIndex >= 0 and room.SafeGridIndex ~= currentRoomIndex and room.Data.Type ~= 29 and (not REPENTANCE or room.Flags & 1024 ~= 1024) then
+		if room.GridIndex >= 0 and room.SafeGridIndex ~= currentRoomIndex and room.Data.Type ~= 29 and (not EID.isRepentance or room.Flags & 1024 ~= 1024) then
 			table.insert(possibleRooms, i)
 		end
 	end
@@ -187,14 +187,14 @@ function EID:Teleport2Prediction()
 		local roomDesc = level:GetRoomByIdx(gridIndex, curDimension)
 		if roomDesc.ListIndex == i and not room.Clear then
 			-- Check for Special Red Rooms, which get ordered differently than their non-red version
-			if REPENTANCE and room.Data.Type ~= 1 and room.Flags & 1024 == 1024 then unclearedTypes[1025] = true
+			if EID.isRepentance and room.Data.Type ~= 1 and room.Flags & 1024 == 1024 then unclearedTypes[1025] = true
 			else unclearedTypes[room.Data.Type] = true end
 		end
 	end
 	--Angel/Devil Room check (it lives off the map)
 	if not level:GetRoomByIdx(-1).Clear then unclearedTypes[666] = true end
 	-- If in Pre-Ascent version (Dad's note) of Mausuleum/Gehenna, we dont teleport to I AM ERROR but Angel/Devil
-	if REPENTANCE and level:IsPreAscent() then unclearedTypes[666] = true; unclearedTypes[3] = false end
+	if EID.isRepentance and level:IsPreAscent() then unclearedTypes[666] = true; unclearedTypes[3] = false end
 	
 	local greed = game:IsGreedMode()
 	local roomOrder = (greed and teleport2GreedOrder) or teleport2Order
@@ -241,9 +241,9 @@ function EID:VoidRoomCheck()
 		-- Count this pedestal if it's not an active (or this is Black Rune), not a shop item, and (in Repentance) the first of its option index
 		-- TEST IF VOID ALWAYS ABSORBS THE FIRST OF ITS OPTION INDEX
 		if entity.SubType > 0 and not pickup:IsShopItem() and
-		(not REPENTANCE or pickup.OptionsPickupIndex == 0 or EID.VoidOptionIndexes[pickup.OptionsPickupIndex] == nil) then
+		(not EID.isRepentance or pickup.OptionsPickupIndex == 0 or EID.VoidOptionIndexes[pickup.OptionsPickupIndex] == nil) then
 			numRunable = numRunable + 1
-			if REPENTANCE then EID.VoidOptionIndexes[pickup.OptionsPickupIndex] = entity.SubType end
+			if EID.isRepentance then EID.VoidOptionIndexes[pickup.OptionsPickupIndex] = entity.SubType end
 			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE) then
 				numVoidable = numVoidable + 1
 			else
@@ -262,7 +262,7 @@ function EID:VoidRNGCheck(player, isRune)
 	local eidTable = (isRune and EID.BlackRuneStatIncreases) or EID.VoidStatIncreases
 	
 	-- in Repentance, an additional RNG call is done before the 5 for stat ups when using Void
-	if REPENTANCE and not isRune then startRNG = EID:RNGNext(startRNG, 5, 9, 7) end
+	if EID.isRepentance and not isRune then startRNG = EID:RNGNext(startRNG, 5, 9, 7) end
 	for i = 1, count do
 		startRNG = GetTwoIncreases(startRNG, increases)
 		if i == 1 then eidTable[3] = {table.unpack(increases)} end
@@ -278,7 +278,7 @@ end
 -- D1 --
 
 local D1blacklist = { [41] = true, [100] = true, [110] = true, [150] = true, [340] = true, [370] = true, [380] = true, [390] = true }
-if not REPENTANCE then D1blacklist[54] = true end -- Mimic Chest blacklist in AB+
+if not EID.isRepentance then D1blacklist[54] = true end -- Mimic Chest blacklist in AB+
 -- These Variants all duplicate into a Chest in Repentance (and should have their SubType ignored in AB+)
 local D1chests = { [50] = true, [51] = true, [52] = true, [53] = true, [54] = true, [55] = true, [56] = true, [57] = true, [58] = true, [60] = true, [360] = true }
 
@@ -289,7 +289,7 @@ function EID:D1Prediction(rng)
 	local poss = {}
 	for _,v in ipairs(Isaac.FindByType(5,-1,-1)) do
 		-- Check the blacklist, as well as Rune of Jera in AB+, and empty chests in Rep
-		if not D1blacklist[v.Variant] and (REPENTANCE or v.Variant ~= 300 or v.SubType ~= 33) and (not REPENTANCE or v:ToPickup():CanReroll()) then
+		if not D1blacklist[v.Variant] and (EID.isRepentance or v.Variant ~= 300 or v.SubType ~= 33) and (not EID.isRepentance or v:ToPickup():CanReroll()) then
 			table.insert(poss, v)
 		end
 	end
@@ -297,7 +297,7 @@ function EID:D1Prediction(rng)
 	rng = EID:RNGNext(rng)
 	local sel = (rng % #poss) + 1
 	local fullID = "5." .. poss[sel].Variant .. "." .. poss[sel].SubType
-	if REPENTANCE then
+	if EID.isRepentance then
 		-- in rep, we don't care about subtype...
 		fullID = "5." .. poss[sel].Variant
 		if poss[sel].Variant == 300 then

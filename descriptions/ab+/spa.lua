@@ -871,8 +871,48 @@ EID.descriptions[languageCode].transformations={
 EID.descriptions[languageCode].VoidText = "Si lo absorbes, ganarás:"
 EID.descriptions[languageCode].VoidNames = {"de Velocidad {{Speed}}", "de Lágrimas {{Tears}}", "de Daño {{Damage}}", "de Alcance {{Range}}", "de Vel. de tiro {{Shotspeed}}", "de Suerte {{Luck}}"}
 
+EID.descriptions[languageCode].MCM = {
+	DemoObjectName = "Nombre de objeto demostrativo",
+	DemoObjectTransformation = "Transformación demostrativa",
+	DemoObjectText = "Este texto está en español#¡Una larga y genial descripción para demostrar los saltos de línea causados por la anchura de texto de EID!#\1 Esta linea también es genial#Esta linea te ama {{Heart}}#{{AngelDevilChance}} Esta línea puede ser tu ángel o tu demonio#\1 {{Damage}} Aumento de stat +1",
+} 
+
 EID.descriptions[languageCode].CollectionPageInfo = "¡Debes tomar este objeto para completar la pagina de colección!"
 
+EID.descriptions[languageCode].HoldMapTitle = "Recordatorio"
+-- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].HoldMapHeader = " Resultado"
+
+-- currently used for D1
+EID.descriptions[languageCode].PickupNames = {
+	["5.0"] = "None",
+	
+	["5.10"] = "{{Heart}} Corazón",
+	["5.10.1"] = "{{Heart}} Corazón", ["5.10.2"] = "{{HalfHeart}} Medio corazón", ["5.10.3"] = "{{SoulHeart}} Corazón de alma", ["5.10.4"] = "{{EternalHeart}} Corazón eterno", ["5.10.5"] = "{{Heart}} Corazón doble", ["5.10.6"] = "{{BlackHeart}} Corazón negro", ["5.10.7"] = "{{GoldHeart}} Corazón dorado", ["5.10.8"] = "{{HalfSoulHeart}} Medio corazón de alma", ["5.10.9"] = "{{Heart}} Corazón aterrado", ["5.10.10"] = "{{BlendedHeart}} Corazón dividido", ["5.10.11"] = "{{EmptyBoneHeart}} Corazón de hueso", ["5.10.12"] = "{{RottenHeart}} Corazón podrido",
+	
+	["5.20"] = "{{Coin}} Coin",
+	["5.20.1"] = "{{Crafting8}} Centavo", ["5.20.2"] = "{{Crafting9}} Níquel", ["5.20.3"] = "{{Crafting10}} 10 centavos", ["5.20.4"] = "{{Crafting8}} Doble centavo", ["5.20.5"] = "{{Crafting11}} Centavo de la suerte", ["5.20.6"] = "{{Crafting9}} Níquel pegajoso", ["5.20.7"] = "{{Crafting26}} Centavo dorado",
+	
+	["5.30"] = "{{Key}} Key",
+	["5.30.1"] = "{{Crafting12}} Llave", ["5.30.2"] = "{{Crafting13}} Llave dorada", ["5.30.3"] = "{{Crafting12}} Llavero", ["5.30.4"] = "{{Crafting14}} Llave cargada",
+	
+	["5.40"] = "{{Bomb}} Bomb",
+	["5.40.1"] = "{{Crafting15}} Bomba", ["5.40.2"] = "{{Crafting15}} Bomba doble", ["5.40.3"] = "{{Crafting15}} Bomba troll", ["5.40.4"] = "{{Crafting16}} Bomba dorada", ["5.40.5"] = "{{Crafting15}} Bomba megatroll", ["5.40.7"] = "{{Crafting17}} Giga bomba",
+	
+	["5.90"] = "{{Battery}} Battery",
+	["5.90.0"] = "{{Crafting19}} Batería", --AB+ didn't have subtypes for batteries
+	["5.90.1"] = "{{Crafting19}} Batería", ["5.90.2"] = "{{Crafting18}} Micro batería", ["5.90.3"] = "{{Crafting20}} Mega batería", ["5.90.4"] = "{{Crafting28}} Batería dorada",
+	
+	["5.50"] = "{{Chest}} Cofre", ["5.51"] = "{{BombChest}} Cofre de piedra", ["5.52"] = "{{SpikedChest}} Cofre con pinchos", ["5.53"] = "{{EternalChest}} Cofre eterno", ["5.54"] = "{{MimicChest}} Cofre mímico", ["5.55"] = "{{OldChest}} Cofre viejo", ["5.56"] = "{{WoodenChest}} Cofre de madera", ["5.57"] = "{{MegaChest}} Mega cofre", ["5.58"] = "{{HauntedChest}} Cofre embrujado", ["5.60"] = "{{GoldenChest}} Cofre dorado", ["5.360"] = "{{RedChest}} Cofre rojo",  
+	
+	["5.69"] = "{{GrabBag}} Saco", ["5.69.1"] = "{{GrabBag}} Saco", ["5.69.2"] = "{{BlackSack}} Saco negro",
+	
+	["5.70"] = "{{Pill}} Píldora",
+	["5.300"] = "{{Card}} Carta",
+	["5.301"] = "{{Rune}} Runa", -- not a real id
+	["5.350"] = "{{Trinket}} Trinket",
+
+}
 
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Nombre de objeto demostrativo",

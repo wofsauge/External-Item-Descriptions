@@ -10,7 +10,7 @@ EID.TabDescThisFrame = false
 EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, }
 local maxSlot = 1
 -- Repentance modifiers
-if REPENTANCE then
+if EID.isRepentance then
 	maxSlot = 3
 	--include the AB+ collectiblesToCheck in this table! (wish there was an easy way to merge two tables)
 	EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID,
@@ -78,7 +78,7 @@ end
 -- Handle Void
 local voidStatUps = { 0.2, 0.5, 1, 0.5, 0.2, 1 }
 local voidStatIcons = {"{{Speed}}", "{{Tears}}", "{{Damage}}", "{{Range}}", "{{Shotspeed}}", "{{Luck}}"}
-if REPENTANCE then voidStatUps[4] = 2.5 end
+if EID.isRepentance then voidStatUps[4] = 2.5 end
 local lastVoidCheck = -30
 EID.VoidStatIncreases = {{},{},{}}
 EID.BlackRuneStatIncreases = {{},{},{}}
@@ -100,10 +100,10 @@ local function VoidCallback(descObj, isRune)
 	local pickup = descObj.Entity and descObj.Entity:ToPickup()
 	local isAltOption = false
 	-- Test if this is an Option pedestal, Repentance only absorbs the lowest index one
-	if REPENTANCE then
+	if EID.isRepentance then
 		local optionIndex = pickup and pickup.OptionsPickupIndex
 		local firstOption = EID.VoidOptionIndexes[optionIndex]
-		if (REPENTANCE and optionIndex and optionIndex ~= 0 and descObj.ObjSubType ~= firstOption) then
+		if (EID.isRepentance and optionIndex and optionIndex ~= 0 and descObj.ObjSubType ~= firstOption) then
 			EID:appendToDescription(descObj, "#" .. prefix .. "{{Collectible"..firstOption..
 			"}}" .. EID:getObjectName(5, 100, firstOption) .. EID:getDescriptionEntry("VoidOptionText"))
 			isAltOption = true
@@ -113,7 +113,7 @@ local function VoidCallback(descObj, isRune)
 	if isRune or EID.itemConfig:GetCollectible(descObj.ObjSubType).Type ~= 3 then
 		local shopItem = pickup and pickup:IsShopItem()
 		-- Afterbirth+ really can't do anything with Void and a shop item, so just return
-		if (not REPENTANCE and shopItem) then return descObj end
+		if (not EID.isRepentance and shopItem) then return descObj end
 		
 		local voidIntro = ((shopItem or isAltOption) and EID:getDescriptionEntry("VoidShopText")) or EID:getDescriptionEntry("VoidText")
 		local voidNames = EID:getDescriptionEntry("VoidNames")
@@ -153,7 +153,7 @@ local altStages = { [10] = false, [11] = true, [12] = false, [13] = true }
 local greedStages = { -1, 1, -1, 3, -1, 5, 7, -1, -1, 10, -1, -1, 0, -1 }
 
 local function PandorasBoxCallback(descObj)
-	local strangeKeyOwned = REPENTANCE and EID:PlayersHaveTrinket(175)
+	local strangeKeyOwned = EID.isRepentance and EID:PlayersHaveTrinket(175)
 	local pandoraCount = 0
 	local level = game:GetLevel()
 	local stageNum = level:GetAbsoluteStage()
@@ -173,7 +173,7 @@ local function PandorasBoxCallback(descObj)
 	local skip9and12 = false
 	-- many localizations do not have the ???/Void entry and the Dark Room entry
 	-- this seemed better than forcing them to have it
-	if totalCount == (REPENTANCE and 12 or 11) then
+	if totalCount == (EID.isRepentance and 12 or 11) then
 		skip9and12 = true
 	end
 	
@@ -196,7 +196,7 @@ local function PandorasBoxCallback(descObj)
 				descObj.Description = string.gsub(descObj.Description, w:gsub("([^%w])", "%%%1"), "{{ColorBagComplete}}" .. w .. "{{CR}}")
 			end
 			-- don't check any lines of the description after Home
-			if pandoraCount	== (REPENTANCE and 14 or 13) then break end
+			if pandoraCount	== (EID.isRepentance and 14 or 13) then break end
 		end
 	end
 	if strangeKeyOwned then
@@ -228,7 +228,7 @@ local function SacrificeRoomCallback(descObj)
 end
 
 
-if REPENTANCE then
+if EID.isRepentance then
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
 		descObj.Description = ""
@@ -274,6 +274,86 @@ if REPENTANCE then
 		if wispType ~= nil then
 			local iconStr = "#{{Collectible584}} "
 			EID:appendToDescription(descObj, iconStr..wispType:gsub("#",iconStr))
+		end
+		return descObj
+	end
+	
+	--simple decimal rounding
+	function SimpleRound(num, dp)
+		dp = dp or 2
+		local mult = 10^dp
+		return math.floor(num * mult + 0.5)/mult
+	end
+	
+	-- 3 coins, 1 bomb, 1 key, 1 soul heart, 2 red hearts
+	local consolationPickups = { "5.20", "5.40", "5.30", "5.10.3", "5.10" }
+	local consolationQuantity = { "3", "1", "1", "1", "2" }
+	
+	-- Handle Consolation Prize stat prediction
+	local function ConsolationPrizeCallback(descObj)
+		for p = 1,#EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[p]
+			local playerID = player:GetPlayerType()
+			local playerName = player:GetName()
+			
+			local playerStats = {}
+			playerStats[1] = SimpleRound((player.MoveSpeed * 4.5) - 2)
+			playerStats[2] = SimpleRound((((30/(player.MaxFireDelay + 1))^0.75) * 2.12) - 2)
+			playerStats[3] = SimpleRound(((player.Damage^0.56)*2.23) - 2)
+			playerStats[4] = SimpleRound(((player.TearRange - 230) / 60) + 2)
+			
+			local playerPickups = {}
+			playerPickups[1] = player:GetNumCoins()
+			playerPickups[2] = player:GetNumBombs() * 3
+			playerPickups[3] = player:GetNumKeys() * 3
+			playerPickups[4] = playerID == 18 and (player:GetSoulCharge() * 2) - 1 or 9999
+			playerPickups[5] = playerID == 36 and (player:GetBloodCharge() * 2) - 1 or 9999
+			
+			local statsToDisplay = { 1 }
+			local lowestStat = playerStats[1]
+			for i = 2,4 do
+				if playerStats[i] == lowestStat then table.insert(statsToDisplay, i)
+				elseif playerStats[i] < lowestStat then
+					statsToDisplay = { i }
+					lowestStat = playerStats[i]
+				end
+			end
+			
+			local pickupsToDisplay = { 1 }
+			lowestStat = playerPickups[1]
+			for i = 2,5 do
+				if playerPickups[i] == lowestStat then table.insert(pickupsToDisplay, i)
+				elseif playerPickups[i] < lowestStat then
+					pickupsToDisplay = { i }
+					lowestStat = playerPickups[i]
+				end
+			end
+			
+			local newStr = "#" .. (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}} " or "") .. " {{ColorGray}}"..playerName.."{{CR}}#"
+			
+			local voidNames = EID:getDescriptionEntry("VoidNames")
+			for i,v in ipairs(statsToDisplay) do
+				local statIncreaseStr = "↑ " .. voidStatIcons[v] .. " " .. voidNames[v]
+				local replaceCount = 0
+				statIncreaseStr, replaceCount = string.gsub(statIncreaseStr, "{1}", "+" .. string.format("%.4g",voidStatUps[v]))
+				if replaceCount == 0 then statIncreaseStr = "↑ " .. voidStatIcons[v] .. " +" .. string.format("%.4g",voidStatUps[v]) .. " " .. voidNames[v] end
+				newStr = newStr .. statIncreaseStr
+				if #statsToDisplay > 1 then newStr = newStr .. "?" end
+				newStr = newStr .. "#"
+			end
+			local pickupNames = EID:getDescriptionEntry("PickupNames")
+			for i,v in ipairs(pickupsToDisplay) do
+				local statIncreaseStr = pickupNames[consolationPickups[v]]
+				-- Insert the quantity that will spawn after the icon, if there is an icon
+				local replaceCount = 0
+				statIncreaseStr, replaceCount = string.gsub(statIncreaseStr, "}} ", "}} " .. consolationQuantity[v] .. " ")
+				if replaceCount == 0 then statIncreaseStr = consolationQuantity[v] .. " " .. pickupNames[consolationPickups[v]] end
+				newStr = newStr .. statIncreaseStr
+				if #pickupsToDisplay > 1 then newStr = newStr .. "?" end
+				newStr = newStr .. "#"
+			end
+			EID:appendToDescription(descObj, newStr)
+			
 		end
 		return descObj
 	end
@@ -595,6 +675,7 @@ if REPENTANCE then
 			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
+			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
 			
 			if EID.collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
 			if EID.collectiblesOwned[59] then table.insert(callbacks, BookOfBelialCallback) end

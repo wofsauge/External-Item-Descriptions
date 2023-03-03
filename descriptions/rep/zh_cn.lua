@@ -1070,7 +1070,7 @@ EID.descriptions[languageCode].FalsePHDHorseDamage = "{{Damage}} +1.2伤害"
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! 警告 !!!"
 EID.descriptions[languageCode].AchievementWarningText = "成就已禁用！#为了启用进度和成就，你需要击败妈妈的脚(深牢II)而不开启任何模组#(如果你打过了, 那么这条警告的出现是bug, 无视就好)#(这条警告可在设置中禁用)"
 
-EID.descriptions[languageCode].OldGameVersionWarningText = "你的忏悔版本不是最新的！#只有官方最新版才支持这一功能(1.7.9)#(这条警告可以在设置中禁用)"
+EID.descriptions[languageCode].OldGameVersionWarningText = "你的忏悔版本不是最新的！#只有官方最新版才支持这一功能(1.7.9b)#(这条警告可以在设置中禁用)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "含有模组的道具可能会使合成配方计算不准确！#如果你的配方不正确，请使用无配方模式或者关闭合成袋的显示#(这条警告可以在设置中禁用)"
 
