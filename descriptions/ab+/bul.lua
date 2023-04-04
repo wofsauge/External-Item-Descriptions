@@ -876,3 +876,52 @@ EID.descriptions[languageCode].transformations = {
 EID.descriptions[languageCode].VoidText = "При абсорбиране:"    -- no "получаваш"->"you gain" because it becomes a two-liner
 -- {1} will become the number text (like "{1} Tears up" -> "+0.5 Tears up")
 EID.descriptions[languageCode].VoidNames = {"{1} скорост", "{1} честота на стреляне", "{1} щета", "{1} обхват", "{1} скорост на изстрелите", "{1} късмет"}
+
+EID.descriptions[languageCode].CollectionPageInfo = "Тази вещ трябва да се вземе за списъка с вещи в менюто!"
+
+EID.descriptions[languageCode].MCM = {
+	DemoObjectName = "Примерно име на вещ",
+	DemoObjectTransformation = "Примерна трансформация",
+	DemoObjectText = "Това е текст на български#Много яко и дълго описание, автоматично се разпределя на няколко реда заради максималната ширина на кутията!#{{Collectible4}} И това е готин ред#{{Heart}} Този ред те обича#{{AngelDevilChance}} Този ред може да ти е ангел или дявол#\1 {{Damage}} +1 промяна на характеристика",
+}
+
+EID.descriptions[languageCode].HoldMapTitle = "Item Reminder"
+-- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].HoldMapHeader = " Result"
+
+-- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
+-- Includes Repentance room types for localization convenience
+EID.descriptions[languageCode].RoomTypeNames = { "Normal Room", "Shop", "I AM ERROR Room", "Treasure Room", "Boss Room", "Miniboss Room", "Secret Room", "Super Secret Room", "Arcade Room", "Curse Room", "Challenge Room", "Library", "Sacrifice Room", "Devil Room", "Angel Room", "Crawlspace Room", "Boss Rush Room", "Isaac's Room", "Barren Room", "Chest Room", "Dice Room", "Black Market", "Exit Room", "Planetarium", "Teleporter Entrance", "Teleporter Exit", "Alt Path Trapdoor", "Blue Key Room", "Ultra Secret Room",
+-- Not technically room types but still potentially useful to have localized
+[666] = "Angel/Devil Room", [1024] = "Red Room", [1025] = "Special Red Room" }
+
+-- currently used for D1
+EID.descriptions[languageCode].PickupNames = {
+	["5.0"] = "None",
+	
+	["5.10"] = "{{Heart}} Heart",
+	["5.10.1"] = "{{Heart}} Heart", ["5.10.2"] = "{{HalfHeart}} Half Heart", ["5.10.3"] = "{{SoulHeart}} Soul Heart", ["5.10.4"] = "{{EternalHeart}} Eternal Heart", ["5.10.5"] = "{{Heart}} Double Heart", ["5.10.6"] = "{{BlackHeart}} Black Heart", ["5.10.7"] = "{{GoldHeart}} Gold Heart", ["5.10.8"] = "{{HalfSoulHeart}} Half Soul Heart", ["5.10.9"] = "{{Heart}} Scared Heart", ["5.10.10"] = "{{BlendedHeart}} Blended Heart", ["5.10.11"] = "{{EmptyBoneHeart}} Bone Heart", ["5.10.12"] = "{{RottenHeart}} Rotten Heart",
+	
+	["5.20"] = "{{Coin}} Coin",
+	["5.20.1"] = "{{Crafting8}} Penny", ["5.20.2"] = "{{Crafting9}} Nickel", ["5.20.3"] = "{{Crafting10}} Dime", ["5.20.4"] = "{{Crafting8}} Double Penny", ["5.20.5"] = "{{Crafting11}} Lucky Penny", ["5.20.6"] = "{{Crafting9}} Sticky Nickel", ["5.20.7"] = "{{Crafting26}} Golden Penny",
+	
+	["5.30"] = "{{Key}} Key",
+	["5.30.1"] = "{{Crafting12}} Key", ["5.30.2"] = "{{Crafting13}} Golden Key", ["5.30.3"] = "{{Crafting12}} Key Ring", ["5.30.4"] = "{{Crafting14}} Charged Key",
+	
+	["5.40"] = "{{Bomb}} Bomb",
+	["5.40.1"] = "{{Crafting15}} Bomb", ["5.40.2"] = "{{Crafting15}} Double Bomb", ["5.40.3"] = "{{Crafting15}} Troll Bomb", ["5.40.4"] = "{{Crafting16}} Golden Bomb", ["5.40.5"] = "{{Crafting15}} Megatroll Bomb", ["5.40.7"] = "{{Crafting17}} Giga Bomb",
+	
+	["5.90"] = "{{Battery}} Battery",
+	["5.90.0"] = "{{Crafting19}} Lil' Battery", --AB+ didn't have subtypes for batteries
+	["5.90.1"] = "{{Crafting19}} Lil' Battery", ["5.90.2"] = "{{Crafting18}} Micro Battery", ["5.90.3"] = "{{Crafting20}} Mega Battery", ["5.90.4"] = "{{Crafting28}} Golden Battery",
+	
+	["5.50"] = "{{Chest}} Chest", ["5.51"] = "{{BombChest}} Bomb Chest", ["5.52"] = "{{SpikedChest}} Spiked Chest", ["5.53"] = "{{EternalChest}} Eternal Chest", ["5.54"] = "{{MimicChest}} Mimic Chest", ["5.55"] = "{{OldChest}} Old Chest", ["5.56"] = "{{WoodenChest}} Wooden Chest", ["5.57"] = "{{MegaChest}} Mega Chest", ["5.58"] = "{{HauntedChest}} Haunted Chest", ["5.60"] = "{{GoldenChest}} Golden Chest", ["5.360"] = "{{RedChest}} Red Chest",  
+	
+	["5.69"] = "{{GrabBag}} Grab Bag", ["5.69.1"] = "{{GrabBag}} Grab Bag", ["5.69.2"] = "{{BlackSack}} Black Sack",
+	
+	["5.70"] = "{{Pill}} Pill",
+	["5.300"] = "{{Card}} Card",
+	["5.301"] = "{{Rune}} Rune", -- not a real id
+	["5.350"] = "{{Trinket}} Trinket",
+
+}
