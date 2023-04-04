@@ -853,6 +853,20 @@ EID.descriptions[languageCode].dice={
 
 ---------- Transformations ----------
 EID.descriptions[languageCode].transformations = {
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	"",					-- 0 = none
+	"Гъпи",			    -- 1
+	"Гъбчо",			-- 2
+	"Велзевул",		    -- 3  -- unconfirmed by official (literary) sources. can resort to "Повелител на мухите" -> "Lord of the Flies" if it is a concern.
+	"Съединени",		-- 4
+	"Дрогиран",			-- 5  -- loose translation based on personal perception that "Spun" tries to represent this via colloquial meaning (could not find sources). a bit of a "bad word" moment.
+	"Да, майко?",		-- 6
+	"Ох, говно",		-- 7  -- literal translation because of the transformation content
+	"Боб",				-- 8
+	"Левиатан",    		-- 9
+	"Серафим",			-- 10
+	"Супер просяк",		-- 11
+	"Книжен червей",	-- 12  -- "книжен плъх"? I suppose the usage is similar/interchangeable
+	"Бебе паяк",		-- 13
+	"Възрастен",		-- 14
+	"Мачкащ"			-- 15
 }
