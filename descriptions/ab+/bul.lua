@@ -840,11 +840,15 @@ EID.descriptions[languageCode].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions[languageCode].diceHeader = nil -- Not yet Translated!
+EID.descriptions[languageCode].diceHeader = "[Ефекти на стая-зар]"
 
 EID.descriptions[languageCode].dice={
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	{"1", "", "Превръща всички твои предмети в случайни предмети според стаите, откъдето са взети"},
+	{"2", "", "Променя всички предмети по пода на тази стая"}, -- "pickups" desperately needs an unambiguous translation that cannot mean "items" here
+	{"3", "", "Променя всички предмети по пода и дрънкулки на целия етаж#Не засяга {{DevilRoom}}дяволската или {{AngelRoom}}ангелската стая"},
+	{"4", "", "Променя всички вещи на пиедестали на целия етаж#Не засяга {{DevilRoom}}дяволската или {{AngelRoom}}ангелската стая"},
+	{"5", "", "Рестартира и наново генерира сегашния етаж"},
+	{"6", "", "Променя всички твои предмети#Променя всички предмети по пода, дрънкулки и вещи на пиедестали на целия етаж"},
 }
 
 ---------- Transformations ----------
