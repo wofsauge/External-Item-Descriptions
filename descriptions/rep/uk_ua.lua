@@ -2,13 +2,13 @@
 ----- Ukrainian descriptions -----
 ---------------------------------------
 
--- Last збільшеноdate: 11.11.2021
+-- Last Update: 4.4.2023
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
 
 -- Special character markup:
--- ↑ = збільшено Arrow  |  ↓ = Down Arrow  |  ! = Warning
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 local languageCode = "uk_ua"
 
 local repCollectibles={
