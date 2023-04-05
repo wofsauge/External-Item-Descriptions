@@ -885,15 +885,16 @@ EID.descriptions[languageCode].MCM = {
 	DemoObjectText = "Това е текст на български#Много яко и дълго описание, автоматично се разпределя на няколко реда заради максималната ширина на кутията!#{{Collectible4}} И това е готин ред#{{Heart}} Този ред те обича#{{AngelDevilChance}} Този ред може да ти е ангел или дявол#\1 {{Damage}} +1 промяна на характеристика",
 }
 
-EID.descriptions[languageCode].HoldMapTitle = "Item Reminder"
+EID.descriptions[languageCode].HoldMapTitle = "Напомняне за вещ"
 -- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
-EID.descriptions[languageCode].HoldMapHeader = " Result"
+EID.descriptions[languageCode].HoldMapHeader = " (резултат)"  -- this string applies after the item name for example on Teleport 2.0
 
 -- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
 -- Includes Repentance room types for localization convenience
-EID.descriptions[languageCode].RoomTypeNames = { "Normal Room", "Shop", "I AM ERROR Room", "Treasure Room", "Boss Room", "Miniboss Room", "Secret Room", "Super Secret Room", "Arcade Room", "Curse Room", "Challenge Room", "Library", "Sacrifice Room", "Devil Room", "Angel Room", "Crawlspace Room", "Boss Rush Room", "Isaac's Room", "Barren Room", "Chest Room", "Dice Room", "Black Market", "Exit Room", "Planetarium", "Teleporter Entrance", "Teleporter Exit", "Alt Path Trapdoor", "Blue Key Room", "Ultra Secret Room",
+EID.descriptions[languageCode].RoomTypeNames = { "Обикновена стая", "Магазин", "Стая I AM ERROR", "Златна стая", "Стая на боса", "Стая на минибос", "Тайна стая", "Супер тайна стая", "Аркадна стая", "Прокълната стая", "Стая с предизвикателство", "Библиотека", "Жертвена стая", "Дяволска стая", "Ангелска стая", "Тайник", "Поредица от босове", "Спалнята на Исаак", "Запустяла спалня", "Стая сандък", "Стая зар", "Черен пазар", "{{GreedMode}} Изходна стая", "Планетариум", "Вход на телепорт", "Изход на телепорт", "Люк към страничния път", "{{Trinket150}} Синя стая", "Ултра тайна стая",
 -- Not technically room types but still potentially useful to have localized
-[666] = "Angel/Devil Room", [1024] = "Red Room", [1025] = "Special Red Room" }
+[666] = "Ангелска/дяволска стая", [1024] = "Червена стая", [1025] = "Специална червена стая" }
+-- if an icon gets added for Blue Key Room, remove the {{Trinket150}} markdown and possibly re-translate; respectively for (Greed Mode) Exit Room; good to suggest for en_us.lua?
 
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {
