@@ -713,7 +713,7 @@ EID.descriptions[languageCode].cards={
 	{"2", "I - Магьосникът", "Самонасочващи се сълзи за сегашната стая"},
 	{"3", "II - Върховната жрица", "Кракът на мама се стоварва върху някой враг!#!!! Ако няма врагове, се стоварва върху теб"},    -- ~~extra vs en_us.lua: "!!!If no enemies, it stomps on you"
 	{"4", "III - Императрицата", "За една стая: #↑ {{Damage}} +2.35 Щети#↑ {{Speed}} +0.3 Скорост"},
-	{"5", "IV - Императорът", "{{BossRoom}} Телепортира те до стаята с боса"},
+	{"5", "IV - Императорът", "{{BossRoom}} Телепортира те до стаята на боса"},
 	{"6", "V - Йерофантът", "{{SoulHeart}} Пуска 2 духовни сърца"},
 	{"7", "VI - Влюбените", "{{Heart}} Пуска 2 червени сърца"},
 	{"8", "VII - Колесницата", "Неуязвимост + щета при контакт за 6 секунди"},
@@ -743,7 +743,7 @@ EID.descriptions[languageCode].cards={
     -- BEGIN RUNES SECTION: Purposefully not translating runes to anything. If needed, transcribe.
 	{"32", "Hagalaz", "Разрушава всички скали в стаята"},
 	{"33", "Jera", "Дублира всички пикъпи в стаята"},  -- ~~en-us.lua inconsistency: "room" instead of "the room"
-	{"34", "Ehwaz", "Създава капак към следващия етаж#8% шанс за {{LadderRoom}}капак със стълба"}, -- translate "trapdoor" to "люк" instead because of the Womb "trapdoor"?
+	{"34", "Ehwaz", "Създава люк към следващия етаж#8% шанс за {{LadderRoom}}люк със стълба"},
 	{"35", "Dagaz", "{{SoulHeart}} +1 духовно сърце#{{CurseCursed}} Премахва проклятията за етажа"},
 	{"36", "Ansuz", "Пълна карта (с тайни стаи и икони) за етажа"},
 	{"37", "Perthro", "Променя всички предмети на пиедестали в стаята"},    -- reroll?
@@ -840,7 +840,7 @@ EID.descriptions[languageCode].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions[languageCode].diceHeader = "[Ефекти на стая-зар]"
+EID.descriptions[languageCode].diceHeader = "[Ефекти на стая зар]"
 
 EID.descriptions[languageCode].dice={
 	{"1", "", "Превръща всички твои предмети в случайни предмети според стаите, откъдето са взети"},
