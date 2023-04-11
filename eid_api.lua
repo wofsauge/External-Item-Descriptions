@@ -307,7 +307,7 @@ end
 
 -- Loads a given font from a given file path and use it to render text
 function EID:loadFont(fontFileName)
-	EID.font:Load(fontFileName)
+	EID.font:Load(fontFileName, "") -- GoG Version of game somehow wants a string as the second argument
 	EID.font:SetMissingCharacter(2)
 	if not EID.font:IsLoaded() then
 		Isaac.DebugString("EID - ERROR: Could not load font from '" .. EID.modPath .. "resources/font/default.fnt" .. "'")
