@@ -622,6 +622,10 @@ function EID:printDescription(desc, cachedID)
 	if EID.Config["ShowQuality"] and desc.Quality then
 		curName = curName.." - {{Quality"..desc.Quality.."}}"
 	end
+	-- Display Last Pool for Collectible, Should be changed if 'fixed'
+	if desc.ObjType == 100 then
+		curName = curName..""..(EID.ItemPoolTypeToMarkup[game:GetItemPool():GetLastPool()] or "{{ItemPoolTreasure}}")
+	end
 	-- Display the mod this item is from
 	if desc.ModName then
 		curName = curName .. EID:getModNameString(desc)

@@ -571,6 +571,39 @@ EID.InlineIcons = {
 	["SatanSmall"] = {"Boss", 18, 12, 9, 0, 1},
 	["HushSmall"] = {"Boss", 19, 11, 9, 0, 1},
 
+	-- ItemPoolTypes
+	["ItemPoolTreasure"] = {"ItemPools", 0, 11, 11, 0, 0},
+	["ItemPoolShop"] = {"ItemPools", 1, 11, 11, 0, 0},
+	["ItemPoolBoss"] = {"ItemPools", 2, 11, 11, 0, 0},
+	["ItemPoolDevil"] = {"ItemPools", 3, 11, 11, 0, 0},
+	["ItemPoolAngel"] = {"ItemPools", 4, 11, 11, 0, 0},
+	["ItemPoolSecret"] = {"ItemPools", 5, 11, 11, 0, 0},
+	["ItemPoolLibrary"] = {"ItemPools", 6, 11, 11, 0, 0},
+	["ItemPoolShellGame"] = {"ItemPools", 7, 11, 11, 0, 0},
+	["ItemPoolGoldenChest"] = {"ItemPools", 8, 11, 11, 0, 0},
+	["ItemPoolRedChest"] = {"ItemPools", 9, 11, 11, 0, 0},
+	["ItemPoolBeggar"] = {"ItemPools", 10, 11, 11, 0, 0},
+	["ItemPoolDemonBeggar"] = {"ItemPools", 11, 11, 11, 0, 0},
+	["ItemPoolCurse"] = {"ItemPools", 12, 11, 11, 0, 0},
+	["ItemPoolKeyMaster"] = {"ItemPools", 13, 11, 11, 0, 0},
+	["ItemPoolBombBum"] = {"ItemPools", 14, 11, 11, 0, 0},
+	["ItemPoolMomsChest"] = {"ItemPools", 15, 11, 11, 0, 0},
+	["ItemPoolGreedTreasure"] = {"ItemPools", 16, 11, 11, 0, 0},
+	["ItemPoolGreedShop"] = {"ItemPools", 17, 11, 11, 0, 0},
+	["ItemPoolGreedBoss"] = {"ItemPools", 18, 11, 11, 0, 0},
+	["ItemPoolGreedDevil"] = {"ItemPools", 19, 11, 11, 0, 0},
+	["ItemPoolGreedAngel"] = {"ItemPools", 20, 11, 11, 0, 0},
+	["ItemPoolGreedCurse"] = {"ItemPools", 21, 11, 11, 0, 0},
+	["ItemPoolGreedSecret"] = {"ItemPools", 22, 11, 11, 0, 0},
+	["ItemPoolCraneGame"] = {"ItemPools", 23, 11, 11, 0, 0},
+	["ItemPoolUltraSecret"] = {"ItemPools", 24, 11, 11, 0, 0},
+	["ItemPoolBatteryBum"] = {"ItemPools", 25, 11, 11, 0, 0},
+	["ItemPoolPlanetarium"] = {"ItemPools", 26, 11, 11, 0, 0},
+	["ItemPoolOldChest"] = {"ItemPools", 27, 11, 11, 0, 0},
+	["ItemPoolBabyShop"] = {"ItemPools", 28, 11, 11, 0, 0},
+	["ItemPoolWoodenChest"] = {"ItemPools", 29, 11, 11, 0, 0},
+	["ItemPoolRottenBeggar"] = {"ItemPools", 30, 11, 11, 0, 0},
+
 	-- Misc
 	["HardMode"] = {"Misc", 0, 16, 12, 0, -2},
 	["GreedMode"] = {"Misc", 1, 16, 12, 0, -2},
@@ -847,3 +880,4 @@ EID.TransformationData = {
 
 EID.RoomShapeToMarkup = { "{{Room}}", "{{RoomSmallHorizontal}}", "{{RoomSmallVertical}}", "{{RoomLongVertical}}", "{{RoomLongThinVertical}}","{{RoomLongHorizontal}}", "{{RoomLongThinHorizontal}}", "{{RoomXL}}", "{{RoomLTopLeft}}", "{{RoomL}}", "{{RoomLBottomLeft}}", "{{RoomLBottomRight}}" }
 EID.RoomTypeToMarkup = { "{{Room}}", "{{Shop}}", "{{ErrorRoom}}", "{{TreasureRoom}}", "{{BossRoom}}", "{{MiniBoss}}", "{{SecretRoom}}", "{{SuperSecretRoom}}", "{{ArcadeRoom}}", "{{CursedRoom}}", "{{ChallengeRoom}}", "{{Library}}", "{{SacrificeRoom}}", "{{DevilRoom}}", "{{AngelRoom}}", "{{LadderRoom}}", "{{Room}}" --[[boss rush]], "{{IsaacsRoom}}", "{{BarrenRoom}}", "{{ChestRoom}}", "{{DiceRoom}}", "{{Shop}}", "{{Room}}", --[[Black Market / Greed Exit]] "{{Planetarium}}", "{{Teleporter}}","{{Teleporter}}", "{{Room}}", "{{Room}}" --[[Blue Key rooms]], "{{UltraSecretRoom}}" }
+EID.ItemPoolTypeToMarkup = { [0] = "{{ItemPoolTreasure}}", "{{ItemPoolShop}}", "{{ItemPoolBoss}}", "{{ItemPoolDevil}}", "{{ItemPoolAngel}}", "{{ItemPoolSecret}}", "{{ItemPoolLibrary}}", "{{ItemPoolShellGame}}", "{{ItemPoolGoldenChest}}", "{{ItemPoolRedChest}}", "{{ItemPoolBeggar}}", "{{ItemPoolDemonBeggar}}", "{{ItemPoolCurse}}", "{{ItemPoolKeyMaster}}", "{{ItemPoolBombBum}}", "{{ItemPoolMomsChest}}", "{{ItemPoolGreedTreasure}}", "{{ItemPoolGreedShop}}", "{{ItemPoolGreedBoss}}", "{{ItemPoolGreedDevil}}", "{{ItemPoolGreedAngel}}", "{{ItemPoolGreedCurse}}", "{{ItemPoolGreedSecret}}", "{{ItemPoolCraneGame}}", "{{ItemPoolUltraSecret}}", "{{ItemPoolBatteryBum}}", "{{ItemPoolPlanetarium}}", "{{ItemPoolOldChest}}", "{{ItemPoolBabyShop}}", "{{ItemPoolWoodenChest}}", "{{ItemPoolRottenBeggar}}"}
