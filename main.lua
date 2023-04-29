@@ -1021,9 +1021,9 @@ function EID:onGameUpdate()
 						table.insert(EID.RecentlyTouchedItems[playerID], wisp.SubType)
 						if (#EID.RecentlyTouchedItems[playerID] > 8) then table.remove(EID.RecentlyTouchedItems[playerID], 1) end
 					end
-					EID.ShouldCheckWisp = false
 				end
 			end
+			EID.ShouldCheckWisp = false
 		end
 		-- Remove Crane Game item data if it's giving the prize out
 		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
