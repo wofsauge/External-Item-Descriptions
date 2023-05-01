@@ -982,6 +982,7 @@ end
 
 local collSpawned = false
 EID.RecheckVoid = false
+EID.ShouldCheckWisp = false
 
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
@@ -1008,8 +1009,23 @@ function EID:onGameUpdate()
 		EID.RecheckVoid = true
 	end
 	
-	-- Remove Crane Game item data if it's giving the prize out
 	if EID.isRepentance and EID.GameUpdateCount % 10 == 0 then
+		-- Check wisp for adding reminder when using lemegeton
+		if EID.ShouldCheckWisp then
+			for _, wisp in ipairs(Isaac.FindByType(3, 237, -1, true, false)) do
+				if wisp.FrameCount < 10 then
+					local player = wisp:ToFamiliar() and wisp:ToFamiliar().Player
+					if player then
+						local playerID = EID:getPlayerID(player)
+						EID:InitItemInteractionIfAbsent(playerID)
+						table.insert(EID.RecentlyTouchedItems[playerID], wisp.SubType)
+						if (#EID.RecentlyTouchedItems[playerID] > 8) then table.remove(EID.RecentlyTouchedItems[playerID], 1) end
+					end
+				end
+			end
+			EID.ShouldCheckWisp = false
+		end
+		-- Remove Crane Game item data if it's giving the prize out
 		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
 			if EID.CraneItemType[tostring(crane.InitSeed)] then
 				if crane:GetSprite():IsPlaying("Prize") then
@@ -1573,6 +1589,12 @@ if EID.isRepentance then
 		CheckAllActiveItemProgress()
 	end
 	EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseGenesis, CollectibleType.COLLECTIBLE_GENESIS)
+
+	local function OnUseLemegeton(_, _, player, _, _, _)
+		EID.ShouldCheckWisp = true
+	end
+	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseLemegeton, CollectibleType.COLLECTIBLE_LEMEGETON)
+
 end
 
 function EID:OnUsePill(pillEffectID, player, useFlags)
