@@ -1880,8 +1880,11 @@ end
 
 -- Add pickup usage to history of pickups used by the player
 function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColorID)
-	 -- don't add mimiced or noannouncer cards/pills to history
-	if EID.isRepentance and (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC or useFlags & UseFlag.USE_NOANNOUNCER == UseFlag.USE_NOANNOUNCER) then return end
+	-- don't add mimiced or noannouncer cards/pills to Echo Chamber history
+	local allowEchoChamber = true
+	if EID.isRepentance and (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC or useFlags & UseFlag.USE_NOANNOUNCER == UseFlag.USE_NOANNOUNCER) then
+		allowEchoChamber = false
+	end
 	local playerID = EID:getPlayerID(player)
 	EID:InitItemInteractionIfAbsent(playerID)
 
@@ -1892,7 +1895,7 @@ function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColo
 	end
 
 	-- pickupType = ["pill","card"], pillColorID, effectID, hadEchoChamberWhenUsed
-	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, EID.isRepentance and player:HasCollectible(700)})
+	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, EID.isRepentance and player:HasCollectible(700) and allowEchoChamber})
 end
 
 -- Render a sprite of an entity
