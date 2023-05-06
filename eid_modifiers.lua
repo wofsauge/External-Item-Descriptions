@@ -561,7 +561,7 @@ if EID.isRepentance then
 				local j = 1
 				while (j <= #pickupHistory) do
 					local entry = pickupHistory[j]
-					if entry[1] == "pill" then
+					if entry[1] == "pill" and entry[3] ~= 9999 then
 						lastUsedPill = entry[3]
 						break
 					end
