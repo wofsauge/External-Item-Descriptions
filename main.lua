@@ -1599,15 +1599,16 @@ end
 
 function EID:OnUsePill(pillEffectID, player, useFlags)
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
-	-- get the pill color by checking the player's pocket (not accurate for Temperance? and such, but useFlags will help us ignore those)
+	-- get the pill color by checking the player's pocket
 	local pillColor = EID.PlayerHeldPill[EID:getPlayerID(player)]
-	if pillColor == 0 then return end -- ignore if no pill found in pocket
-	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags, pillColor) -- Echo Chamber tracking
+	-- add the pill used to our history for Echo Chamber / Vurp! / transformation progress
+	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags, pillColor)
+	EID.ForceRefreshCache = true -- for transformation progress update
+	
 	-- for tracking used pills, ignore gold pills and noannouncer flag pills 
 	-- (not using a bitmask, because Placebo is mimic+noannouncer, and we want to count those)
 	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags == UseFlag.USE_NOANNOUNCER) then return end
 	EID.UsedPillColors[tostring(pillColor)] = true
-	
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
 
