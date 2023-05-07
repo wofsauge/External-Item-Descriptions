@@ -625,7 +625,7 @@ function EID:printDescription(desc, cachedID)
 	-- Display Last Pool for Collectible for full reroll effects
 	if EID.isRepentance and EID.Config["ShowItemPoolIcon"] and (desc.ObjType == 5 and desc.ObjVariant == 100) then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
-		if not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
+		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
 			if not EID.Config["ShowQuality"] then
 				curName = curName.." - "
 			end

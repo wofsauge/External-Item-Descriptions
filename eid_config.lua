@@ -190,6 +190,13 @@ EID.UserConfig = {
 	-- REPENTANCE ONLY!!!
 	-- Default = false
 	["ShowItemPoolIcon"] = false,
+	-- Enables or disables collectible's item pool name when collected below item name
+	-- REPENTANCE ONLY!!!
+	-- Default = false
+	["ShowItemPoolText"] = false,
+	-- Set the item pool for collectible text color
+	-- Default = "ColorSilver"
+	["ItemPoolTextColor"] = "ColorSilver",
 	-- Set the mod indicator display
 	-- Default = "Both"
 	["ModIndicatorDisplay"] = "None",
@@ -519,6 +526,8 @@ EID.DefaultConfig = {
 	["ItemNameColor"] = "ColorEIDObjName",
 	["ShowQuality"] = true,
 	["ShowItemPoolIcon"] = false,
+	["ShowItemPoolText"] = false,
+	["ItemPoolTextColor"] = "ColorSilver",
 	["ModIndicatorDisplay"] = "None",
 	["ModIndicatorTextColor"] = "ColorLightOrange",
 	["ShowObjectID"] = false,
