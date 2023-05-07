@@ -624,10 +624,13 @@ function EID:printDescription(desc, cachedID)
 	end
 	-- Display Last Pool for Collectible for full reroll effects
 	if EID.isRepentance and EID.Config["ShowItemPoolIcon"] and (desc.ObjType == 5 and desc.ObjVariant == 100) then
-		if not EID.Config["ShowQuality"] then
-			curName = curName.." - "
+		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
+		if not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
+			if not EID.Config["ShowQuality"] then
+				curName = curName.." - "
+			end
+			curName = curName..""..(EID.ItemPoolTypeToMarkup[game:GetItemPool():GetLastPool()] or "{{ItemPoolTreasure}}")
 		end
-		curName = curName..""..(EID.ItemPoolTypeToMarkup[game:GetItemPool():GetLastPool()] or "{{ItemPoolTreasure}}")
 	end
 	-- Display the mod this item is from
 	if desc.ModName then
