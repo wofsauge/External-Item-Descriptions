@@ -622,8 +622,11 @@ function EID:printDescription(desc, cachedID)
 	if EID.Config["ShowQuality"] and desc.Quality then
 		curName = curName.." - {{Quality"..desc.Quality.."}}"
 	end
-	-- Display Last Pool for Collectible, Should be changed if 'fixed'
-	if desc.ObjType == 100 then
+	-- Display Last Pool for Collectible for full reroll effects
+	if EID.isRepentance and EID.Config["ShowItemPoolIcon"] and (desc.ObjType == 5 and desc.ObjVariant == 100) then
+		if not EID.Config["ShowQuality"] then
+			curName = curName.." - "
+		end
 		curName = curName..""..(EID.ItemPoolTypeToMarkup[game:GetItemPool():GetLastPool()] or "{{ItemPoolTreasure}}")
 	end
 	-- Display the mod this item is from

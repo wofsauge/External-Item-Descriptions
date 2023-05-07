@@ -186,6 +186,10 @@ EID.UserConfig = {
 	-- REPENTANCE ONLY!!!
 	-- Default = true
 	["ShowQuality"] = true,
+	-- Enables or disables collectible's item pool when collected after item name
+	-- REPENTANCE ONLY!!!
+	-- Default = false
+	["ShowItemPoolIcon"] = false,
 	-- Set the mod indicator display
 	-- Default = "Both"
 	["ModIndicatorDisplay"] = "None",
@@ -514,6 +518,7 @@ EID.DefaultConfig = {
 	["DisplayTrinketInfo"] = true,
 	["ItemNameColor"] = "ColorEIDObjName",
 	["ShowQuality"] = true,
+	["ShowItemPoolIcon"] = false,
 	["ModIndicatorDisplay"] = "None",
 	["ModIndicatorTextColor"] = "ColorLightOrange",
 	["ShowObjectID"] = false,

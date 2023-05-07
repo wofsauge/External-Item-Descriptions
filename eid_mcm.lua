@@ -558,6 +558,7 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Visuals", "TransformationIcons", "Display Transformation Icon")
 	EID:AddBooleanSetting("Visuals", "TransformationProgress", "Display Transformation Progress")
 	EID:AddBooleanSetting("Visuals", "ShowQuality", "Display Quality Info", {repOnly = true})
+	EID:AddBooleanSetting("Visuals", "ShowItemPoolIcon", "Display Item Pool Icon", {repOnly = true, infoText = "Displays collectible's item pool icon that is expected for full reroll effects."})
 	EID:AddBooleanSetting("Visuals", "ShowObjectID", "Display Object ID")
 	
 	-------Mod indicator for modded items---------
