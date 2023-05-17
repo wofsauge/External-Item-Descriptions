@@ -311,8 +311,8 @@ if EID.isRepentance then
 			
 			local playerStats = {}
 			playerStats[1] = SimpleRound((player.MoveSpeed * 4.5) - 2)
-			playerStats[2] = SimpleRound((((30/(player.MaxFireDelay + 1))^0.75) * 2.12) - 2)
-			playerStats[3] = SimpleRound(((player.Damage^0.56)*2.23) - 2)
+			playerStats[2] = SimpleRound((((30/(player.MaxFireDelay + 1))^0.75) * 2.120391) - 2)
+			playerStats[3] = SimpleRound(((player.Damage^0.56)*2.231179) - 2)
 			playerStats[4] = SimpleRound(((player.TearRange - 230) / 60) + 2)
 			
 			local playerPickups = {}
