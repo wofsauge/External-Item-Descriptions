@@ -10,8 +10,8 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.55
-EID.ModVersionCommit = "7a74260"
+EID.ModVersion = 4.56
+EID.ModVersionCommit = "da9338e"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -622,6 +622,16 @@ function EID:printDescription(desc, cachedID)
 	if EID.Config["ShowQuality"] and desc.Quality then
 		curName = curName.." - {{Quality"..desc.Quality.."}}"
 	end
+	-- Display Last Pool for Collectible for full reroll effects
+	if EID.isRepentance and EID.Config["ShowItemPoolIcon"] and (desc.ObjType == 5 and desc.ObjVariant == 100) then
+		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
+		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
+			if not EID.Config["ShowQuality"] then
+				curName = curName.." - "
+			end
+			curName = curName..""..(EID.ItemPoolTypeToMarkup[game:GetItemPool():GetLastPool()] or "{{ItemPoolTreasure}}")
+		end
+	end
 	-- Display the mod this item is from
 	if desc.ModName then
 		curName = curName .. EID:getModNameString(desc)
@@ -982,6 +992,7 @@ end
 
 local collSpawned = false
 EID.RecheckVoid = false
+EID.ShouldCheckWisp = false
 
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
@@ -1008,8 +1019,23 @@ function EID:onGameUpdate()
 		EID.RecheckVoid = true
 	end
 	
-	-- Remove Crane Game item data if it's giving the prize out
 	if EID.isRepentance and EID.GameUpdateCount % 10 == 0 then
+		-- Check wisp for adding reminder when using lemegeton
+		if EID.ShouldCheckWisp then
+			for _, wisp in ipairs(Isaac.FindByType(3, 237, -1, true, false)) do
+				if wisp.FrameCount < 10 then
+					local player = wisp:ToFamiliar() and wisp:ToFamiliar().Player
+					if player then
+						local playerID = EID:getPlayerID(player)
+						EID:InitItemInteractionIfAbsent(playerID)
+						table.insert(EID.RecentlyTouchedItems[playerID], wisp.SubType)
+						if (#EID.RecentlyTouchedItems[playerID] > 8) then table.remove(EID.RecentlyTouchedItems[playerID], 1) end
+					end
+				end
+			end
+			EID.ShouldCheckWisp = false
+		end
+		-- Remove Crane Game item data if it's giving the prize out
 		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
 			if EID.CraneItemType[tostring(crane.InitSeed)] then
 				if crane:GetSprite():IsPlaying("Prize") then
@@ -1573,19 +1599,26 @@ if EID.isRepentance then
 		CheckAllActiveItemProgress()
 	end
 	EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseGenesis, CollectibleType.COLLECTIBLE_GENESIS)
+
+	local function OnUseLemegeton(_, _, player, _, _, _)
+		EID.ShouldCheckWisp = true
+	end
+	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseLemegeton, CollectibleType.COLLECTIBLE_LEMEGETON)
+
 end
 
 function EID:OnUsePill(pillEffectID, player, useFlags)
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
-	-- get the pill color by checking the player's pocket (not accurate for Temperance? and such, but useFlags will help us ignore those)
+	-- get the pill color by checking the player's pocket
 	local pillColor = EID.PlayerHeldPill[EID:getPlayerID(player)]
-	if pillColor == 0 then return end -- ignore if no pill found in pocket
-	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags, pillColor) -- Echo Chamber tracking
+	-- add the pill used to our history for Echo Chamber / Vurp! / transformation progress
+	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags, pillColor)
+	EID.ForceRefreshCache = true -- for transformation progress update
+	
 	-- for tracking used pills, ignore gold pills and noannouncer flag pills 
 	-- (not using a bitmask, because Placebo is mimic+noannouncer, and we want to count those)
 	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags == UseFlag.USE_NOANNOUNCER) then return end
 	EID.UsedPillColors[tostring(pillColor)] = true
-	
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
 

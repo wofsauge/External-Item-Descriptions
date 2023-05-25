@@ -1163,6 +1163,11 @@ EID.descriptions[languageCode].poopSpells = {
 	{"폭탄 설사", "캐릭터의 위치에 점화된 폭탄 5개를 생성합니다."},
 }
 
+EID.descriptions[languageCode].itemPoolFor = "획득 시 배열:"
+EID.descriptions[languageCode].itemPoolNames = {
+	[0] = "보물방", "상점", "보스방", "악마방", "천사방", "비밀방", "책방", "야바위꾼", "황금상자", "빨간상자", "거지", "악마거지", "저주방", "열쇠거지", "배터리거지", "엄마상자", "그리드-보물방", "그리드-보스방", "그리드-상점", "그리드-악마방", "그리드-천사방", "그리드-저주방", "그리드-비밀방", "크레인 게임", "특급비밀방", "폭탄거지", "천체관", "낡은상자", "패밀리어 상점", "나무상자", "썩은거지",
+}
+
 EID.descriptions[languageCode].VoidShopText = "아이템을 드는 도중 흡수 시 이하 능력치 증가:"
 EID.descriptions[languageCode].VoidOptionText = " 아이템이 대신 흡수됨"
 EID.descriptions[languageCode].VoidNames[2] = "연사(상한) {1}"

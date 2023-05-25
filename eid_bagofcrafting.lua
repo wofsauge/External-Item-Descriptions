@@ -530,6 +530,9 @@ local function GameStartCrafting()
 		-- Check for modded items past the known max item ID on game start (can also support game updates)
 		-- Only works if the new items are at Weight 1.0 in their item pools, but better than nothing
 		if EID.Config["BagOfCraftingModdedRecipes"] and EID.itemConfig:GetCollectible(EID.XMLMaxItemID+1) ~= nil and not moddedCrafting then
+			-- Save last pool
+			local itemPool = game:GetItemPool()
+			local lastPool = itemPool:GetLastPool()
 			-- Items past max ID detected
 			CraftingMaxItemID = EID.XMLMaxItemID -- XMLMaxItemID is never modified
 			-- Add new item qualities
@@ -540,7 +543,6 @@ local function GameStartCrafting()
 				CraftingItemAllowed[coll.ID] = true
 				coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
 			end
-			local itemPool = game:GetItemPool()
 			-- Add new items to the crafting item pools, assuming Weight 1.0
 			for poolNum,_ in pairs(poolToIcon) do
 				for i=1,EID.XMLMaxItemID do itemPool:AddRoomBlacklist(i) end
@@ -553,6 +555,9 @@ local function GameStartCrafting()
 					itemPool:AddRoomBlacklist(collID)
 					collID = itemPool:GetCollectible(poolNum, false, 1, 25)
 				end
+
+				-- Do getCollectible again to revert last pool
+				itemPool:GetCollectible(lastPool, false, 1, 25)
 				
 				itemPool:ResetRoomBlacklist()
 			end

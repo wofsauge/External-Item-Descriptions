@@ -229,6 +229,19 @@ end
 
 
 if EID.isRepentance then
+	-- Handle Last Pool
+	local function LastPoolCallback(descObj)
+		local itemConfig = EID.itemConfig:GetCollectible(descObj.ObjSubType)
+		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
+			local lastPool = game:GetItemPool():GetLastPool()
+			local poolName = ""
+			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")
+			local poolDescTable = EID:getDescriptionEntry("itemPoolNames")
+			poolName = "{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolTreasure}}")..poolDescTable[lastPool] .. "{{CR}}#"
+			descObj.Description = poolName .. descObj.Description
+		end
+		return descObj
+	end
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
 		descObj.Description = ""
@@ -298,8 +311,8 @@ if EID.isRepentance then
 			
 			local playerStats = {}
 			playerStats[1] = SimpleRound((player.MoveSpeed * 4.5) - 2)
-			playerStats[2] = SimpleRound((((30/(player.MaxFireDelay + 1))^0.75) * 2.12) - 2)
-			playerStats[3] = SimpleRound(((player.Damage^0.56)*2.23) - 2)
+			playerStats[2] = SimpleRound((((30/(player.MaxFireDelay + 1))^0.75) * 2.120391) - 2)
+			playerStats[3] = SimpleRound(((player.Damage^0.56)*2.231179) - 2)
 			playerStats[4] = SimpleRound(((player.TearRange - 230) / 60) + 2)
 			
 			local playerPickups = {}
@@ -561,7 +574,8 @@ if EID.isRepentance then
 				local j = 1
 				while (j <= #pickupHistory) do
 					local entry = pickupHistory[j]
-					if entry[1] == "pill" then
+					-- ignore the pill if the pill color is Golden
+					if entry[1] == "pill" and entry[2] ~= 14 then
 						lastUsedPill = entry[3]
 						break
 					end
@@ -675,6 +689,7 @@ if EID.isRepentance then
 			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
+			if not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] then table.insert(callbacks, LastPoolCallback) end
 			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
 			
 			if EID.collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
