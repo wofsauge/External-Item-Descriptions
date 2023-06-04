@@ -93,7 +93,7 @@ EID.descriptions[languageCode].collectibles={
 	{"71", "Малка гъба", "↑ {{Speed}} 0.3 скорост#↓ {{Range}} -4.25 Обхват на сълзите#↑ 1.5 големина на сълзите"},
 	{"72", "Молитвена броеница", "+3 Духовни сърца#Имаш по-висок шанс да намериш Библията"},
 	{"73", "Куб от месо", "Ниво1: Орбитъл#Ниво2: Стреляю спътник#Ниво3: Месно момче ниво1#Ниво4: Месно момче ниво2"},
-	{"74", "Четвъртина", "+25 Монети"},    -- translation check: translation of "quarter" as the concept of "1/4" preserved. We do not have a coin of the same value, nor shorthand names for coins. Possible (very loose) translations: "Стотинка" - currency equivalent of "penny", 1/100; "Монета" - "coin".
+	{"74", "Четвъртина", "+25 Монети"},    -- translation check: translation of "quarter" as the concept of "1/4" preserved. We do not have a coin of the same value, nor shorthand names for coins. Possible (very loose) translations: "Стотинка" - currency equivalent of "penny", 1/100; "25 стотинки" - see previous one, likely if that is used as the translation of "coin"; "Монета" - "coin".
 	{"75", "Лиценз за лекар", "Всички хапчета имат или положителни, или неутрални ефекти# +1 хапче"},
 	{"76", "Рентгеново зрение", "Открива тайните стаи"},
 	{"77", "Моят малък еднорог", "Неуязвимост + играчът прави 40 щети като докосне чудовище"},
@@ -898,31 +898,34 @@ EID.descriptions[languageCode].RoomTypeNames = { "Обикновена стая"
 
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {
-	["5.0"] = "None",
+	["5.0"] = "Никакъв",   -- gender bias, de facto dependent on the translation of "pickup"
 	
-	["5.10"] = "{{Heart}} Heart",
-	["5.10.1"] = "{{Heart}} Heart", ["5.10.2"] = "{{HalfHeart}} Half Heart", ["5.10.3"] = "{{SoulHeart}} Soul Heart", ["5.10.4"] = "{{EternalHeart}} Eternal Heart", ["5.10.5"] = "{{Heart}} Double Heart", ["5.10.6"] = "{{BlackHeart}} Black Heart", ["5.10.7"] = "{{GoldHeart}} Gold Heart", ["5.10.8"] = "{{HalfSoulHeart}} Half Soul Heart", ["5.10.9"] = "{{Heart}} Scared Heart", ["5.10.10"] = "{{BlendedHeart}} Blended Heart", ["5.10.11"] = "{{EmptyBoneHeart}} Bone Heart", ["5.10.12"] = "{{RottenHeart}} Rotten Heart",
+	["5.10"] = "{{Heart}} Сърце",  -- TODO: check where this displays and whether to translate as "Red Heart" specifically
+	["5.10.1"] = "{{Heart}} Червено сърце", ["5.10.2"] = "{{HalfHeart}} Половин червено сърце", ["5.10.3"] = "{{SoulHeart}} Soul Heart", ["5.10.4"] = "{{EternalHeart}} Вечно сърце", ["5.10.5"] = "{{Heart}} Двойно червено сърце", ["5.10.6"] = "{{BlackHeart}} Черно сърце", ["5.10.7"] = "{{GoldHeart}} Златно сърце", ["5.10.8"] = "{{HalfSoulHeart}} Half Soul Heart", ["5.10.9"] = "{{Heart}} Бягащо сърце", ["5.10.10"] = "{{BlendedHeart}} Смесено сърце", ["5.10.11"] = "{{EmptyBoneHeart}} Костно сърце", ["5.10.12"] = "{{RottenHeart}} Гнило сърце",
 	
-	["5.20"] = "{{Coin}} Coin",
-	["5.20.1"] = "{{Crafting8}} Penny", ["5.20.2"] = "{{Crafting9}} Nickel", ["5.20.3"] = "{{Crafting10}} Dime", ["5.20.4"] = "{{Crafting8}} Double Penny", ["5.20.5"] = "{{Crafting11}} Lucky Penny", ["5.20.6"] = "{{Crafting9}} Sticky Nickel", ["5.20.7"] = "{{Crafting26}} Golden Penny",
+	["5.20"] = "{{Coin}} Монета",  -- "Стотинка"??
+    -- "Dime" translation = ?
+	["5.20.1"] = "{{Crafting8}} Монета", ["5.20.2"] = "{{Crafting9}} Петак", ["5.20.3"] = "{{Crafting10}} Десетак", ["5.20.4"] = "{{Crafting8}} Двойна монета", ["5.20.5"] = "{{Crafting11}} Късметлийска монета", ["5.20.6"] = "{{Crafting9}} Лепкав петак", ["5.20.7"] = "{{Crafting26}} Златна монета",
 	
-	["5.30"] = "{{Key}} Key",
-	["5.30.1"] = "{{Crafting12}} Key", ["5.30.2"] = "{{Crafting13}} Golden Key", ["5.30.3"] = "{{Crafting12}} Key Ring", ["5.30.4"] = "{{Crafting14}} Charged Key",
+	["5.30"] = "{{Key}} Ключ",
+	["5.30.1"] = "{{Crafting12}} Ключ", ["5.30.2"] = "{{Crafting13}} Златен ключ", ["5.30.3"] = "{{Crafting12}} Двоен ключ", ["5.30.4"] = "{{Crafting14}} Зареден ключ",
 	
-	["5.40"] = "{{Bomb}} Bomb",
-	["5.40.1"] = "{{Crafting15}} Bomb", ["5.40.2"] = "{{Crafting15}} Double Bomb", ["5.40.3"] = "{{Crafting15}} Troll Bomb", ["5.40.4"] = "{{Crafting16}} Golden Bomb", ["5.40.5"] = "{{Crafting15}} Megatroll Bomb", ["5.40.7"] = "{{Crafting17}} Giga Bomb",
+	["5.40"] = "{{Bomb}} Бомба",
+	["5.40.1"] = "{{Crafting15}} Бомба", ["5.40.2"] = "{{Crafting15}} Двойна бомба", ["5.40.3"] = "{{Crafting15}} Трол бомба", ["5.40.4"] = "{{Crafting16}} Златна бомба", ["5.40.5"] = "{{Crafting15}} Мега трол бомба", ["5.40.7"] = "{{Crafting17}} Гигантска бомба",
 	
-	["5.90"] = "{{Battery}} Battery",
-	["5.90.0"] = "{{Crafting19}} Lil' Battery", --AB+ didn't have subtypes for batteries
-	["5.90.1"] = "{{Crafting19}} Lil' Battery", ["5.90.2"] = "{{Crafting18}} Micro Battery", ["5.90.3"] = "{{Crafting20}} Mega Battery", ["5.90.4"] = "{{Crafting28}} Golden Battery",
+	["5.90"] = "{{Battery}} Батерия",
+	["5.90.0"] = "{{Crafting19}} Батерия", --AB+ didn't have subtypes for batteries
+    -- also screw the "Lil'" in the default Battery name
+	["5.90.1"] = "{{Crafting19}} Батерия", ["5.90.2"] = "{{Crafting18}} Микро батерия", ["5.90.3"] = "{{Crafting20}} Мега батерия", ["5.90.4"] = "{{Crafting28}} Златна батерия",
 	
-	["5.50"] = "{{Chest}} Chest", ["5.51"] = "{{BombChest}} Bomb Chest", ["5.52"] = "{{SpikedChest}} Spiked Chest", ["5.53"] = "{{EternalChest}} Eternal Chest", ["5.54"] = "{{MimicChest}} Mimic Chest", ["5.55"] = "{{OldChest}} Old Chest", ["5.56"] = "{{WoodenChest}} Wooden Chest", ["5.57"] = "{{MegaChest}} Mega Chest", ["5.58"] = "{{HauntedChest}} Haunted Chest", ["5.60"] = "{{GoldenChest}} Golden Chest", ["5.360"] = "{{RedChest}} Red Chest",  
+    -- following are multiple examples where a literal translation hurts understandability
+	["5.50"] = "{{Chest}} Сандък", ["5.51"] = "{{BombChest}} Каменен сандък", ["5.52"] = "{{SpikedChest}} Сандък с шипове", ["5.53"] = "{{EternalChest}} Ангелски сандък", ["5.54"] = "{{MimicChest}} Измамен сандък", ["5.55"] = "{{OldChest}} Стар сандък", ["5.56"] = "{{WoodenChest}} Дървен сандък", ["5.57"] = "{{MegaChest}} Мега сандък", ["5.58"] = "{{HauntedChest}} Обитаван сандък", ["5.60"] = "{{GoldenChest}} Златен сандък", ["5.360"] = "{{RedChest}} Червен сандък",  
 	
-	["5.69"] = "{{GrabBag}} Grab Bag", ["5.69.1"] = "{{GrabBag}} Grab Bag", ["5.69.2"] = "{{BlackSack}} Black Sack",
+	["5.69"] = "{{GrabBag}} Торбичка", ["5.69.1"] = "{{GrabBag}} Торбичка", ["5.69.2"] = "{{BlackSack}} Черна торбичка",
 	
-	["5.70"] = "{{Pill}} Pill",
-	["5.300"] = "{{Card}} Card",
-	["5.301"] = "{{Rune}} Rune", -- not a real id
-	["5.350"] = "{{Trinket}} Trinket",
+	["5.70"] = "{{Pill}} Хапче",
+	["5.300"] = "{{Card}} Карта",
+	["5.301"] = "{{Rune}} Руна", -- not a real id
+	["5.350"] = "{{Trinket}} Дрънкулка",
 
 }
