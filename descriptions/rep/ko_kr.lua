@@ -1181,7 +1181,7 @@ EID.descriptions[languageCode].CraftingFloorContent = "스테이지:"
 EID.descriptions[languageCode].CraftingBagQuality = "현재등급:"
 EID.descriptions[languageCode].CraftingBestQuality = "최고등급:"
 
-EID.descriptions[languageCode].CraftingHideKey = "조합법 숨기기:"
+EID.descriptions[languageCode].CraftingHideKey = "숨기기:"
 EID.descriptions[languageCode].CraftingPreviewKey = "미리보기:"
 EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 해금되어 있지 않을 경우 결과가 달라질 수 있습니다."
 
