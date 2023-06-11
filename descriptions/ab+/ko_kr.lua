@@ -257,7 +257,7 @@ EID.descriptions[languageCode].collectibles={
 	{"222", "반중력", "↑ {{TearsSmall}}공격 딜레이 -2#공격키를 누르고 있을 시 눈물이 생성된 장소에서 멈추며 공격키를 떼거나 일정 시간이 지나면 발사됩니다."}, -- Anti-Gravity
 	{"223", "방화광", "↑ {{Bomb}}폭탄 +5#폭발 및 지진파 공격에 피해를 입지 않으며 폭발을 맞으면 {{Heart}}체력을 1칸 회복합니다."}, -- Pyromaniac
 	{"224", "크리켓의 몸", "↑ {{TearsSmall}}연사 +0.2#↓ {{RangeSmall}}사거리 -10#눈물이 무언가에 부딪힐 때 네갈래로 갈라집니다."}, -- Cricket's Body
-	{"225", "김피", "적 처치 시 일정 확률로 {{HalfHeart}}빨간하트가 반칸 드랍됩니다.#피격 시 8% 확률로 {{SoulHeart}}소울하트 또는 {{BlackHeart}}블랙하트를 드랍합니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 40 이상일 때 100% 확률"}, -- Gimpy
+	{"225", "김피", "적 처치 시 일정 확률로 {{HalfHeart}}빨간하트가 반칸 드랍됩니다.#피격 시 8% 확률로 {{SoulHeart}}소울하트 또는 {{BlackHeart}}블랙하트를 드랍합니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 46 이상일 때 100% 확률"}, -- Gimpy
 	{"226", "검은 연꽃", "↑ {{Heart}}최대 체력 +1#↑ {{SoulHeart}}소울하트 +1#↑ {{BlackHeart}}블랙하트 +1"}, -- Black Lotus
 	{"227", "돼지 저금통", "↑ {{Coin}}동전 +3#피격 시 동전을 1~2개 드랍합니다.#!!! {{Player14}}/{{Player33}}Keeper: 0~1개"}, -- Piggy Bank
 	{"228", "엄마의 향수", "↑ {{TearsSmall}}연사 +0.2#15%의 확률로 적을 {{Fear}}도망가게 하는 공격이 나갑니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 85 이상일 때 100% 확률"}, -- Mom's Perfume
