@@ -43,7 +43,7 @@ local repCollectibles={
 	[73] = {"73", "고기조각", "획득할 때마다 성장합니다.#1단계: 캐릭터 주위를 돌며 적의 탄환을 막아줍니다.#2단계: 1단계 + 공격하는 방향으로 공격력 3.5의 눈물을 발사합니다.#3/4단계: 적을 따라다니며 접촉한 적에게 초당 10/20의 피해를 입힙니다."}, -- Cube of Meat
 	[75] = {"75", "박사학위", "↑ {{Heart}}빨간하트 +2#{{Pill}}알약을 하나 드랍합니다.#사용하지 않은 알약의 효과를 알 수 있습니다.#부정적인 알약 효과가 등장하지 않습니다.#헌혈기 및 {{Collectible135}}IV Bag 사용 시 동전 1~2개를 추가로 드랍합니다.#{{Blank}} ({{Player14}}/{{Player33}} Keeper는 추가 동전 없음)"}, -- PHD
 	[77] = {"77", "나의 작은 유니콘", "사용 시 6초간 캐릭터의 {{SpeedSmall}}이동속도 +0.28, 무적 상태가 되며 접촉한 적에게 0.5초당 20의 피해를 입힙니다."}, -- My Little Unicorn
-	[78] = {"78", "요한묵시록", "사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다.#{{Blank}} (대체 루트에서는 해당 없음)#소지 중일 때 {{DevilChanceSmall}}악마방 확률 +17.5%"}, -- Book of Revelations
+	[78] = {"78", "요한묵시록", "사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다.#{{Blank}} (리펜턴스 루트에서는 해당 없음)#소지 중일 때 {{DevilChanceSmall}}악마방 확률 +17.5%"}, -- Book of Revelations
 	[79] = {"79", "낙인", "↑ {{BlackHeart}}블랙하트 +1#↑ {{DamageSmall}}공격력 +1#↑ {{SpeedSmall}}이동속도 +0.2"}, -- The Mark
 	[80] = {"80", "계약", "↑ {{BlackHeart}}블랙하트 +2#↑ {{DamageSmall}}공격력 +0.5#↑ {{TearsSmall}}연사 +0.7"}, -- The Pact
 	[83] = {"83", "대못", "!!! 사용 시: #{{HalfBlackHeart}}블랙하트 +0.5#그 방에서 {{DamageSmall}}공격력 +2, {{SpeedSmall}}이동속도 -0.2#접촉한 적에게 피해를 입히며 장애물을 부술 수 있습니다."}, -- The Nail
@@ -1183,9 +1183,9 @@ EID.descriptions[languageCode].CraftingBestQuality = "최고등급:"
 
 EID.descriptions[languageCode].CraftingHideKey = "숨기기:"
 EID.descriptions[languageCode].CraftingPreviewKey = "미리보기:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 언락되어 있지 않을 경우 결과가 달라질 수 있습니다."
+EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 해금되어 있지 않을 경우 결과가 달라질 수 있습니다."
 
-EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}} 꾹 누른 상태에서#{{Blank}} {{ButtonY}} 혹은 {{ButtonA}}#목록 고정: {{ButtonX}}#목록 새로고침: {{ButtonB}}#초기화: {{ButtonRB}} 꾹 누르기)"
+EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}}+{{ButtonY}}or{{ButtonA}}#목록 고정:{{ButtonX}}#목록 새로고침:{{ButtonB}}#초기화:{{ButtonRB}}꾹 누르기)"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
 EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."
