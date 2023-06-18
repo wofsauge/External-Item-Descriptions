@@ -140,7 +140,7 @@ EID.descriptions[languageCode].collectibles={
 	{"117", "Dead Bird", "Getting hit spawns a bird#The bird deals 4 contact damage per second"},
 	{"118", "Brimstone", "{{Chargeable}} Isaac's tears are replaced by a chargeable blood laser"},
 	{"119", "Blood Bag", "↑ {{Heart}} +1 Health up#↑ {{Speed}} +0.3 Speed up#{{Heart}} Heals 4 Hearts"},
-	{"120", "Odd Mushroom (Thin)", "↑ {{Tears}} +1.7 Tears up#↑ {{Speed}} +0.3 Speed up#↓ {{Damage}} -38% Damage Multiplier#Penalty shrinks with Damage Ups from other items"},
+	{"120", "Odd Mushroom (Thin)", "↑ {{Tears}} +1.7 Tears up#↑ {{Speed}} +0.3 Speed up#↓ {{Damage}} -10% Damage Multiplier#↓ {{Damage}} -0.4 Damage down"},
 	{"121", "Odd Mushroom (Large)", "↑ {{EmptyHeart}} +1 Empty heart container#↑ {{Damage}} +0.3 Damage up#↑ {{Range}} +0.25 Range up#↓ {{Speed}} -0.1 Speed down#↑ +0.5 Tear Height"},
 	{"122", "Whore of Babylon", "When on half a Red Heart or less:#↑ {{Damage}} +1.5 Damage up#↑ {{Speed}} +0.3 Speed up"},
 	{"123", "Monster Manual", "Spawns a random familiar for the current room"},
