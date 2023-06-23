@@ -622,7 +622,7 @@ function EID:printDescription(desc, cachedID)
 	if EID.Config["ShowQuality"] and desc.Quality then
 		curName = curName.." - {{Quality"..desc.Quality.."}}"
 	end
-	-- Display Last Pool for Collectible for full reroll effects
+	-- Display Last Pool for Collectible for full reroll effects (icon)
 	if EID.isRepentance and EID.Config["ShowItemPoolIcon"] and (desc.ObjType == 5 and desc.ObjVariant == 100) then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
@@ -692,6 +692,21 @@ function EID:printDescription(desc, cachedID)
 			end
 		end
 	end
+	-- Display Last Pool for Collectible for full reroll effects (name)
+	if EID.isRepentance and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] and (desc.ObjType == 5 and desc.ObjVariant == 100) then
+		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
+		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
+			local lastPool = game:GetItemPool():GetLastPool()
+			local itemPoolLineHeight = EID.lineHeight
+
+			local poolName = ""
+			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")
+			local poolDescTable = EID:getDescriptionEntry("itemPoolNames")
+			poolName = "{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolTreasure}}")..poolDescTable[lastPool] .. "{{CR}}#"
+
+			renderPos = EID:printBulletPoints(poolName, renderPos)
+		end
+	end
 	
 	if EID.Config["ShowItemDescription"] then
 		EID:printBulletPoints(desc.Description, renderPos)
@@ -724,6 +739,7 @@ function EID:printBulletPoints(description, renderPos)
 				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 		end
 	end
+	return renderPos
 end
 ---------------------------------------------------------------------------
 ----------------------------Handle New Room--------------------------------
