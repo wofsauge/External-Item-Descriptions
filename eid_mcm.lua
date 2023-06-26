@@ -957,7 +957,7 @@ if MCMLoaded then
 				Maximum = 1000,
 				Display = function()
 					if EID.Config["ItemPoolTextColor"] == nil then EID.Config["ItemPoolTextColor"] = EID.DefaultConfig["ItemPoolTextColor"] end
-					return "Mod Indicator: " .. string.gsub(EID.Config["ItemPoolTextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemPoolTextColor"]).."/"..#colorNameArray..")"
+					return "Item Pool Name Color: " .. string.gsub(EID.Config["ItemPoolTextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemPoolTextColor"]).."/"..#colorNameArray..")"
 				end,
 				OnChange = function(currentNum)
 					EID.MCM_OptionChanged = true
