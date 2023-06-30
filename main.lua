@@ -764,6 +764,7 @@ if EID.isRepentance then
 		local level = game:GetLevel()
 		EID.isMirrorRoom = level:GetCurrentRoom():IsMirrorWorld()
 		EID.isDeathCertRoom = EID:GetDimension(level) == 2
+		EID:BOCHandleCurseOfMaze()
 		
 		-- Handle Flip Item
 		initialItemNext = false
