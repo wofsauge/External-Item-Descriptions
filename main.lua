@@ -10,8 +10,8 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.57
-EID.ModVersionCommit = "646dd79"
+EID.ModVersion = 4.58
+EID.ModVersionCommit = "27862c5"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -764,6 +764,7 @@ if EID.isRepentance then
 		local level = game:GetLevel()
 		EID.isMirrorRoom = level:GetCurrentRoom():IsMirrorWorld()
 		EID.isDeathCertRoom = EID:GetDimension(level) == 2
+		EID:BOCHandleCurseOfMaze()
 		
 		-- Handle Flip Item
 		initialItemNext = false
