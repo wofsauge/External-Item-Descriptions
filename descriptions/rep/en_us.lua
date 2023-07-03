@@ -1088,6 +1088,11 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Explosive Diarrhea", "Isaac quickly spawns 5 lit bombs"},
 }
 
+EID.descriptions[languageCode].itemPoolFor = "Pool for Item:"
+EID.descriptions[languageCode].itemPoolNames = {
+	[0] = "Treasure", "Shop", "Boss", "Devil", "Angel", "Secret", "Library", "Shell Game", "Golden Chest", "Red Chest", "Beggar", "Demon Beggar", "Curse", "Key Master", "Battery Bum", "Mom's Chest", "Greed Treasure", "Greed Boss", "Greed Shop", "Greed Devil", "Greed Angel", "Greed Curse", "Greed Secret", "Crane Game", "Ultra Secret", "Bomb Bum", "Planetarium", "Old Chest", "Baby Shop", "Wooden Chest", "Rotten Beggar",
+}
+
 EID.descriptions[languageCode].VoidShopText = "If absorbed right after pickup, gain:"
 EID.descriptions[languageCode].VoidOptionText = " will be absorbed instead"
 EID.descriptions[languageCode].VoidNames[2] = "{1} Fire Rate up"

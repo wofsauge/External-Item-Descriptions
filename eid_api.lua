@@ -1714,6 +1714,7 @@ function EID:evaluateTransformationProgress(transformation)
 				local eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
 				if tonumber(eType) == EntityType.ENTITY_PICKUP then
 					if tonumber(eVariant) == PickupVariant.PICKUP_COLLECTIBLE then
+						local currentCount = EID.TransformationProgress[i][transformation]
 						if activesTable[tostring(eSubType)] then
 							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + activesTable[tostring(eSubType)]
 						else
@@ -1727,6 +1728,10 @@ function EID:evaluateTransformationProgress(transformation)
 							if tonumber(eSubType) == 584 and player:GetActiveItem() == 584 then
 								EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] - 1
 							end
+						end
+						-- In AB+, only one copy of a given collectible is counted for trans
+						if not EID.isRepentance and EID.TransformationProgress[i][transformation] > currentCount + 1 then
+							EID.TransformationProgress[i][transformation] = currentCount + 1
 						end
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_TRINKET and player:HasTrinket(eSubType) then
 						EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + player:GetTrinketMultiplier(eSubType)
@@ -1787,14 +1792,14 @@ function EID:evaluateQueuedItems()
 			
 			if not player.QueuedItem.Touched and player.QueuedItem.Item then
 				EID.PlayerItemInteractions[i].LastTouch = game:GetFrameCount()
-				
+				local itemIDStr = tostring(player.QueuedItem.Item.ID)
+				-- Add touched active items to our transformation progress table
 				if player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
-					local itemID = tostring(player.QueuedItem.Item.ID)
 					-- A new active item was touched; initiate its touch count to 0 for all players
 					-- (Fixes co-op bugs, compared to only initiating it for the toucher)
 					for j = 0, game:GetNumPlayers() - 1 do
-						EID.PlayerItemInteractions[j].actives[itemID] = EID.PlayerItemInteractions[j].actives[itemID] or 0
-						EID.PlayerItemInteractions[j].altActives[itemID] = EID.PlayerItemInteractions[j].altActives[itemID] or 0
+						EID.PlayerItemInteractions[j].actives[itemIDStr] = EID.PlayerItemInteractions[j].actives[itemIDStr] or 0
+						EID.PlayerItemInteractions[j].altActives[itemIDStr] = EID.PlayerItemInteractions[j].altActives[itemIDStr] or 0
 					end
 					
 					-- Dead Tainted Lazarus exceptions
@@ -1803,8 +1808,12 @@ function EID:evaluateQueuedItems()
 						activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
 					end
 					EID.ForceRefreshCache = true
-					activesTable[itemID] = activesTable[itemID] + 1
+					activesTable[itemIDStr] = activesTable[itemIDStr] + 1
 				elseif player.QueuedItem.Item.Type ~= ItemType.ITEM_TRINKET then
+					-- In AB+, Halo of Flies is counted as an active item due to inaccuracy with GetCollectibleNum
+					if (not EID.isRepentance and itemIDStr == "10") then
+						EID.PlayerItemInteractions[i].actives[itemIDStr] = EID.PlayerItemInteractions[i].actives[itemIDStr] + 1
+					end
 					-- Put non-active item pickups into the recent item list, for printing in the Item Reminder
 					table.insert(EID.RecentlyTouchedItems[i], player.QueuedItem.Item.ID)
 					if (#EID.RecentlyTouchedItems[i] > 8) then table.remove(EID.RecentlyTouchedItems[i], 1) end
@@ -1819,6 +1828,10 @@ function EID:InitItemInteractionIfAbsent(playerID)
 	if not EID.PlayerItemInteractions[playerID] then
 		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, altActives = {},
 			pickupHistory = {}, altPickupHistory = {}, rerollItems = {} }
+		-- in AB+, initiate Halo of Flies as an active item (collectible ID 10 is used for ALL Pretty Flies)
+		if not EID.isRepentance then
+			EID.PlayerItemInteractions[playerID].actives["10"] = 0
+		end
 	end
 	EID.RecentlyTouchedItems[playerID] = EID.RecentlyTouchedItems[playerID] or {}
 end
@@ -1867,8 +1880,11 @@ end
 
 -- Add pickup usage to history of pickups used by the player
 function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColorID)
-	 -- don't add mimiced or noannouncer cards/pills to history
-	if EID.isRepentance and (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC or useFlags & UseFlag.USE_NOANNOUNCER == UseFlag.USE_NOANNOUNCER) then return end
+	-- don't add mimiced or noannouncer cards/pills to Echo Chamber history
+	local allowEchoChamber = true
+	if EID.isRepentance and (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC or useFlags & UseFlag.USE_NOANNOUNCER == UseFlag.USE_NOANNOUNCER) then
+		allowEchoChamber = false
+	end
 	local playerID = EID:getPlayerID(player)
 	EID:InitItemInteractionIfAbsent(playerID)
 
@@ -1879,7 +1895,7 @@ function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColo
 	end
 
 	-- pickupType = ["pill","card"], pillColorID, effectID, hadEchoChamberWhenUsed
-	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, EID.isRepentance and player:HasCollectible(700)})
+	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, EID.isRepentance and player:HasCollectible(700) and allowEchoChamber})
 end
 
 -- Render a sprite of an entity
