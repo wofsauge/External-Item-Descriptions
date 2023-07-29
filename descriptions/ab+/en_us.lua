@@ -714,7 +714,7 @@ EID.descriptions[languageCode].cards={
 	{"1", "0 - The Fool", "Teleports Isaac to the first room of the floor"},
 	{"2", "I - The Magician", "Grants homing tears for the current room"},
 	{"3", "II - The High Priestess", "Mom's Foot stomps on an enemy#Mom's Foot stomps Isaac if there are no enemies"},
-	{"4", "III - The Empress", "For the current room, grants: #↑ {{Damage}} +2.35 Damage up#↑ {{Speed}} +0.3 Speed up"},
+	{"4", "III - The Empress", "For the current room, grants: #↑ {{Damage}} +1.5 Damage up#↑ {{Speed}} +0.3 Speed up"},
 	{"5", "IV - The Emperor", "{{BossRoom}} Teleports Isaac to the Boss Room"},
 	{"6", "V - The Hierophant", "{{SoulHeart}} Drops 2 Soul Hearts"},
 	{"7", "VI - The Lovers", "{{Heart}} Drops 2 Red Hearts"},
