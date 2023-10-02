@@ -602,7 +602,7 @@ function EID:getObjectName(Type, Variant, SubType)
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
 	elseif tableName == "custom" then
-		local xmlName = EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
+		local xmlName = EID:GetEntityXMLName(Type, Variant, SubType)
 		return name or xmlName or Type.."."..Variant.."."..SubType
 	end
 	return Type.."."..Variant.."."..SubType
@@ -1940,4 +1940,9 @@ end
 -- returns true if the given pill color was used at least once in this game
 function EID:WasPillUsed(pillColor)
 	return EID.UsedPillColors[tostring(pillColor)] ~= nil
+end
+
+-- returns the name of the given entity
+function EID:GetEntityXMLName(Type, Variant, SubType)
+	return EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
 end

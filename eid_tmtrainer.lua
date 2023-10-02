@@ -37,7 +37,7 @@ local function entityToName(e, plural)
 	-- -1 is often used as an "any of this type", even if there's only one of that type, so converting it to 0 can help find names
 	local eWithZero = string.gsub(e, "-1", "0")
 	plural = plural or false
-	local name = localizedNames[e] or EID.XMLEntityNames[e] or localizedNames[eWithZero] or EID.XMLEntityNames[eWithZero] or e
+	local name = localizedNames[e] or EID:GetEntityXMLName(Type, Variant, SubType) or localizedNames[eWithZero] or e
 	
 	--print out entities with no name yet
 	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)")

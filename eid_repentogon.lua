@@ -16,3 +16,10 @@ function EID:checkPlayersForMissingItems() end
 
 -- R+: Function is no longer used since repentogon always has progress enabled
 function EID:AreAchievementsAllowed() return true end
+
+-- R+: Entity names can now be directly read from XML
+-- returns the name of the given entity
+function EID:GetEntityXMLName(Type, Variant, SubType)
+    local xmlEntry = XMLData.GetEntityByTypeVarSub(Type, Variant, SubType)
+	return xmlEntry and xmlEntry.name or EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
+end
