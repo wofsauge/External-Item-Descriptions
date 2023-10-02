@@ -43,7 +43,7 @@ local repCollectibles={
 	[73] = {"73", "고기조각", "획득할 때마다 성장합니다.#1단계: 캐릭터 주위를 돌며 적의 탄환을 막아줍니다.#2단계: 1단계 + 공격하는 방향으로 공격력 3.5의 눈물을 발사합니다.#3/4단계: 적을 따라다니며 접촉한 적에게 초당 10/20의 피해를 입힙니다."}, -- Cube of Meat
 	[75] = {"75", "박사학위", "↑ {{Heart}}빨간하트 +2#{{Pill}}알약을 하나 드랍합니다.#사용하지 않은 알약의 효과를 알 수 있습니다.#부정적인 알약 효과가 등장하지 않습니다.#헌혈기 및 {{Collectible135}}IV Bag 사용 시 동전 1~2개를 추가로 드랍합니다.#{{Blank}} ({{Player14}}/{{Player33}} Keeper는 추가 동전 없음)"}, -- PHD
 	[77] = {"77", "나의 작은 유니콘", "사용 시 6초간 캐릭터의 {{SpeedSmall}}이동속도 +0.28, 무적 상태가 되며 접촉한 적에게 0.5초당 20의 피해를 입힙니다."}, -- My Little Unicorn
-	[78] = {"78", "요한묵시록", "사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다.#{{Blank}} (대체 루트에서는 해당 없음)#소지 중일 때 {{DevilChanceSmall}}악마방 확률 +17.5%"}, -- Book of Revelations
+	[78] = {"78", "요한묵시록", "사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다.#{{Blank}} (리펜턴스 루트에서는 해당 없음)#소지 중일 때 {{DevilChanceSmall}}악마방 확률 +17.5%"}, -- Book of Revelations
 	[79] = {"79", "낙인", "↑ {{BlackHeart}}블랙하트 +1#↑ {{DamageSmall}}공격력 +1#↑ {{SpeedSmall}}이동속도 +0.2"}, -- The Mark
 	[80] = {"80", "계약", "↑ {{BlackHeart}}블랙하트 +2#↑ {{DamageSmall}}공격력 +0.5#↑ {{TearsSmall}}연사 +0.7"}, -- The Pact
 	[83] = {"83", "대못", "!!! 사용 시: #{{HalfBlackHeart}}블랙하트 +0.5#그 방에서 {{DamageSmall}}공격력 +2, {{SpeedSmall}}이동속도 -0.2#접촉한 적에게 피해를 입히며 장애물을 부술 수 있습니다."}, -- The Nail
@@ -340,7 +340,7 @@ local repCollectibles={
 	[603] = {"603", "배터리 팩", "획득 시 액티브 아이템 충전량을 모두 충전합니다.#랜덤한 배터리 픽업을 2~4개 드랍합니다."}, -- Battery Pack
 	[604] = {"604", "엄마의 팔찌", "장애물 근처에서 사용 시 장애물을 들며 공격하는 방향으로 던질 수 있습니다.#장애물을 든 상태에서 다른 방으로 이동할 수 있습니다.#던진 장애물에 맞은 적은 40의 피해를 입습니다."}, -- Mom's Bracelet
 	[605] = {"605", "둥근 숟갈", "사용 시 그 방에서 대각선으로 돌아다니며 접촉한 적에게 초당 36의 피해를 입히는 눈알을 소환합니다.#그 방에서 오른쪽 눈의 공격력이 34% 증가합니다."}, -- The Scooper
-	[606] = {"606", "오큘러 리프트", "공격 시 5%의 확률로 2초간 적과 탄환을 끌어들이는 블랙홀이 생성됩니다.#블랙홀은 접촉한 적에게 공격력 x0.5의 피해를 줍니다."}, -- Oculus Rift
+	[606] = {"606", "오큘러 리프트", "공격 시 5%의 확률로 2초간 적과 탄환을 끌어들이는 블랙홀이 생성됩니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 15 이상일 때 20% 확률#블랙홀은 접촉한 적에게 공격력 x0.5의 피해를 줍니다."}, -- Oculus Rift
 	[607] = {"607", "종양 아기", "주변에 적이 있을 때 랜덤한 방향으로 공격력 3.5 또는 5.3의 눈물을 발사합니다."}, -- Boiled Baby
 	[608] = {"608", "얼려버리는 아기", "공격하는 방향으로 공격력 3.5의 확률적으로 적을 얼리는 공격이 나갑니다.#얼어붙은 적은 접촉 시 직선으로 날아가며 6방향으로 고드름 눈물을 발사합니다."}, -- Freezer Baby
 	[609] = {"609", "이터널 주사위", "사용 시 방 안의 모든 아이템을 다른 아이템으로 바꾸며 30% 확률로 아이템이 사라집니다."}, -- Eternal D6
@@ -783,7 +783,7 @@ local repTrinkets={
 	[32] = {"32", "환각버섯", "!!! 방 입장 시 그 방에서 아래 중 랜덤한 버섯 아이템 효과를 얻습니다:#{{Collectible12}}{{Collectible71}}{{Collectible121}}{{Collectible120}}{{Collectible342}}{{Collectible398}}"}, -- Liberty Cap
 	[33] = {"33", "탯줄", "{{HalfHeart}} 방 입장 시 빨간하트가 반칸 이하일 때 {{Collectible100}}Little Steven을 소환합니다.#피격 시 확률적으로 그 방에서 {{Collectible318}}Gemini 패밀리어를 소환합니다."}, -- Umbilical Cord
 	[39] = {"39", "암", "↑ {{TearsSmall}}연사(+상한) +1"}, -- Cancer
-	[48] = {"48", "찢어진 페이지", "피격 시 5%의 확률로 방 안의 모든 적에게 80의 피해를 줍니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 65 이상일 때 50% 확률#↑ {{BlackHeart}}/{{Collectible35}}/{{Card14}} 블랙하트/The Necronomicon/The Devil의 공격력 +40"}, -- A Missing Page
+	[48] = {"48", "찢어진 페이지", "피격 시 5%의 확률로 방 안의 모든 적에게 80의 피해를 줍니다.#!!! {{LuckSmall}}행운 수치 비례: 행운 60 이상일 때 50% 확률#↑ {{BlackHeart}}/{{Collectible35}}/{{Card14}} 블랙하트/The Necronomicon/The Devil의 공격력 +40"}, -- A Missing Page
 	[49] = {"49", "피 묻은 동전", "동전 획득 시 25% 확률로 {{HalfHeart}}빨간하트를 반칸 드랍합니다."}, -- Bloody Penny
 	[50] = {"50", "타버린 동전", "동전 획득 시 25% 확률로 {{Bomb}}폭탄을 하나 드랍합니다."}, -- Burnt Penny
 	[51] = {"51", "납작한 동전", "동전 획득 시 25% 확률로 {{Key}}열쇠를 하나 드랍합니다."}, -- Flat Penny
@@ -1163,6 +1163,11 @@ EID.descriptions[languageCode].poopSpells = {
 	{"폭탄 설사", "캐릭터의 위치에 점화된 폭탄 5개를 생성합니다."},
 }
 
+EID.descriptions[languageCode].itemPoolFor = "획득 시 배열:"
+EID.descriptions[languageCode].itemPoolNames = {
+	[0] = "보물방", "상점", "보스방", "악마방", "천사방", "비밀방", "책방", "야바위꾼", "황금상자", "빨간상자", "거지", "악마거지", "저주방", "열쇠거지", "배터리거지", "엄마상자", "그리드-보물방", "그리드-보스방", "그리드-상점", "그리드-악마방", "그리드-천사방", "그리드-저주방", "그리드-비밀방", "크레인 게임", "특급비밀방", "폭탄거지", "천체관", "낡은상자", "패밀리어 상점", "나무상자", "썩은거지",
+}
+
 EID.descriptions[languageCode].VoidShopText = "아이템을 드는 도중 흡수 시 이하 능력치 증가:"
 EID.descriptions[languageCode].VoidOptionText = " 아이템이 대신 흡수됨"
 EID.descriptions[languageCode].VoidNames[2] = "연사(상한) {1}"
@@ -1178,9 +1183,9 @@ EID.descriptions[languageCode].CraftingBestQuality = "최고등급:"
 
 EID.descriptions[languageCode].CraftingHideKey = "숨기기:"
 EID.descriptions[languageCode].CraftingPreviewKey = "미리보기:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 언락되어 있지 않을 경우 결과가 달라질 수 있습니다."
+EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 해금되어 있지 않을 경우 결과가 달라질 수 있습니다."
 
-EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}} 꾹 누른 상태에서#{{Blank}} {{ButtonY}} 혹은 {{ButtonA}}#목록 고정: {{ButtonX}}#목록 새로고침: {{ButtonB}}#초기화: {{ButtonRB}} 꾹 누르기)"
+EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}}+{{ButtonY}}or{{ButtonA}}#목록 고정:{{ButtonX}}#목록 새로고침:{{ButtonB}}#초기화:{{ButtonRB}}꾹 누르기)"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
 EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."

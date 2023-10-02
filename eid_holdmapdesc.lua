@@ -84,15 +84,20 @@ function EID:getHoldMapDescription(player, checkingTwin)
 		end
 		if pickupHistory then
 			local pickupNames = ""
-			for i = 1, math.min(3, #pickupHistory) do
-				if pickupHistory[i][4] then -- Echo chamber was owned before this card/pill was used
+			local pickupsToPrint = 3
+			for i = 1, #pickupHistory do
+				if pickupHistory[i][4] then -- Echo chamber was owned before this card/pill was used and it's not a mimic usage
 					if pickupHistory[i][1] == "pill" then
 						local name = EID:getPillName(pickupHistory[i][3], false)
+						if (pickupHistory[i][2] == 14) then name = EID:getPillName(9999, false) end
 						pickupNames = pickupNames .. "{{Pill" .. pickupHistory[i][2] .. "}} " .. name .. "#"
+						pickupsToPrint = pickupsToPrint - 1
 					else
 						local name = EID:getObjectName(5, 300, pickupHistory[i][3])
 						pickupNames = pickupNames .. "{{Card" .. pickupHistory[i][3] .. "}} " .. name .. "#"
+						pickupsToPrint = pickupsToPrint - 1
 					end
+					if (pickupsToPrint == 0) then break end
 				end
 			end
 			if pickupNames ~= "" then

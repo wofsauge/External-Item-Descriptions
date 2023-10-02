@@ -558,6 +558,8 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Visuals", "TransformationIcons", "Display Transformation Icon")
 	EID:AddBooleanSetting("Visuals", "TransformationProgress", "Display Transformation Progress")
 	EID:AddBooleanSetting("Visuals", "ShowQuality", "Display Quality Info", {repOnly = true})
+	EID:AddBooleanSetting("Visuals", "ShowItemPoolIcon", "Display Item Pool Icon", {repOnly = true, infoText = "Displays collectible's item pool icon that is expected for full reroll effects."})
+	EID:AddBooleanSetting("Visuals", "ShowItemPoolText", "Display Item Pool Name", {repOnly = true, infoText = "Displays collectible's item pool name that is expected for full reroll effects."})
 	EID:AddBooleanSetting("Visuals", "ShowObjectID", "Display Object ID")
 	
 	-------Mod indicator for modded items---------
@@ -929,7 +931,7 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
-				if EID.Config["ModIndicatorTextColor"] == nil then EID.Config["TextColor"] = EID.DefaultConfig["ModIndicatorTextColor"] end
+				if EID.Config["ModIndicatorTextColor"] == nil then EID.Config["ModIndicatorTextColor"] = EID.DefaultConfig["ModIndicatorTextColor"] end
 				return "Mod Indicator: " .. string.gsub(EID.Config["ModIndicatorTextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ModIndicatorTextColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
@@ -941,6 +943,32 @@ if MCMLoaded then
 			Info = {"Changes the color of mod indicator texts (as long as they are enabled)."}
 		}
 	)
+	-- Last Pool indicator Color (REPENTANCE ONLY)
+	if EID.isRepentance then
+		MCM.AddSetting(
+			"EID",
+			"Colors",
+			{
+				Type = ModConfigMenu.OptionType.NUMBER,
+				CurrentSetting = function()
+					return AnIndexOf(colorNameArray, EID.Config["ItemPoolTextColor"])
+				end,
+				Minimum = 0,
+				Maximum = 1000,
+				Display = function()
+					if EID.Config["ItemPoolTextColor"] == nil then EID.Config["ItemPoolTextColor"] = EID.DefaultConfig["ItemPoolTextColor"] end
+					return "Item Pool Name Color: " .. string.gsub(EID.Config["ItemPoolTextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemPoolTextColor"]).."/"..#colorNameArray..")"
+				end,
+				OnChange = function(currentNum)
+					EID.MCM_OptionChanged = true
+					if currentNum == 0 then currentNum = #colorNameArray end
+					if currentNum > #colorNameArray then currentNum = 1 end
+					EID.Config["ItemPoolTextColor"] = colorNameArray[currentNum]
+				end,
+				Info = {"Changes the color of last item pool indicator texts (as long as they are enabled)."}
+			}
+		)
+	end
 
 	if MCM.i18n == "Chinese" then
 		require("eid_mcm_cn")

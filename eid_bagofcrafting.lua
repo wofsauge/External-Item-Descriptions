@@ -503,8 +503,8 @@ local function calcHeldItems()
 end
 local function calcFloorItems()
 	EID.BoC.FloorQuery = {}
-	for _,v in pairs(EID.BoC.RoomQueries) do
-		for _,v1 in ipairs(v) do
+	for _,roomQuery in pairs(EID.BoC.RoomQueries) do
+		for _,v1 in ipairs(roomQuery[1]) do
 			table.insert(EID.BoC.FloorQuery, v1)
 		end
 	end
@@ -530,6 +530,9 @@ local function GameStartCrafting()
 		-- Check for modded items past the known max item ID on game start (can also support game updates)
 		-- Only works if the new items are at Weight 1.0 in their item pools, but better than nothing
 		if EID.Config["BagOfCraftingModdedRecipes"] and EID.itemConfig:GetCollectible(EID.XMLMaxItemID+1) ~= nil and not moddedCrafting then
+			-- Save last pool
+			local itemPool = game:GetItemPool()
+			local lastPool = itemPool:GetLastPool()
 			-- Items past max ID detected
 			CraftingMaxItemID = EID.XMLMaxItemID -- XMLMaxItemID is never modified
 			-- Add new item qualities
@@ -540,7 +543,6 @@ local function GameStartCrafting()
 				CraftingItemAllowed[coll.ID] = true
 				coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
 			end
-			local itemPool = game:GetItemPool()
 			-- Add new items to the crafting item pools, assuming Weight 1.0
 			for poolNum,_ in pairs(poolToIcon) do
 				for i=1,EID.XMLMaxItemID do itemPool:AddRoomBlacklist(i) end
@@ -553,6 +555,9 @@ local function GameStartCrafting()
 					itemPool:AddRoomBlacklist(collID)
 					collID = itemPool:GetCollectible(poolNum, false, 1, 25)
 				end
+
+				-- Do getCollectible again to revert last pool
+				itemPool:GetCollectible(lastPool, false, 1, 25)
 				
 				itemPool:ResetRoomBlacklist()
 			end
@@ -691,9 +696,9 @@ local function combinations(arr, length, startPos, tempResult, randResults, newR
 		coroutine.yield()
 		coTimer = Isaac.GetTime()
 	end
-	local length = length or 8
-	local startPos = startPos or 1
-	local tempResult = tempResult or {}
+	length = length or 8
+	startPos = startPos or 1
+	tempResult = tempResult or {}
 	if (length == 0) then
 		local resultString = table.concat(tempResult,",")
 		if (randResults[resultString] == nil) then
@@ -875,6 +880,32 @@ local function RecipeCrunchCoroutine()
 	EID.RefreshBagTextbox = true
 end
 
+function EID:BOCHandleCurseOfMaze()
+	-- switches tracked room contents when rooms are switched by curse of maze
+	if game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_MAZE ~= LevelCurse.CURSE_OF_MAZE then
+		return
+	end
+	local rooms = game:GetLevel():GetRooms()
+	local changedRooms = {}
+	for i = 0, rooms.Size - 1 do
+		local roomDesc = rooms:Get(i)
+		if roomDesc and roomDesc.Data then
+			local savedRoomContent = EID.BoC.RoomQueries[roomDesc.ListIndex .. ""]
+			if not savedRoomContent then
+				EID.BoC.RoomQueries[roomDesc.ListIndex .. ""] = { {}, roomDesc.Data.Variant }
+			end
+			if savedRoomContent and savedRoomContent[2] ~= roomDesc.Data.Variant then
+				table.insert(changedRooms, roomDesc.ListIndex)
+			end
+		end
+	end
+	if #changedRooms >= 2 then
+		local temp = EID.BoC.RoomQueries[changedRooms[2] .. ""]
+		EID.BoC.RoomQueries[changedRooms[2] .. ""] = EID.BoC.RoomQueries[changedRooms[1] .. ""]
+		EID.BoC.RoomQueries[changedRooms[1] .. ""] = temp
+	end
+end
+
 local prevOffset = 0
 -- Called 60 times a second so we can read input properly
 function EID:handleBagOfCraftingUpdating()
@@ -1010,13 +1041,13 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 				end
 			end
 		end
-		EID.BoC.RoomQueries[curRoomIndex..""] = roomItems
+		EID.BoC.RoomQueries[curRoomIndex .. ""] = { roomItems, game:GetLevel():GetCurrentRoomDesc().Data.Variant }
 		EID.BoC.CurrentPickupCount = #pickups
 		calcHeldItems()
 		calcFloorItems()
 		EID.RefreshBagTextbox = true
 	else
-		roomItems = EID.BoC.RoomQueries[curRoomIndex..""] or {}
+		roomItems = EID.BoC.RoomQueries[curRoomIndex .. ""] and EID.BoC.RoomQueries[curRoomIndex .. ""][1] or {}
 	end
 	
 	itemQuery = {}

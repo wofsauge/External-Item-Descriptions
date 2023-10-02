@@ -571,6 +571,39 @@ EID.InlineIcons = {
 	["SatanSmall"] = {"Boss", 18, 12, 9, 0, 1},
 	["HushSmall"] = {"Boss", 19, 11, 9, 0, 1},
 
+	-- ItemPoolTypes
+	["ItemPoolTreasure"] = {"ItemPools", 0, 11, 11, 0, 0},
+	["ItemPoolShop"] = {"ItemPools", 1, 11, 11, 0, 0},
+	["ItemPoolBoss"] = {"ItemPools", 2, 11, 11, 0, 0},
+	["ItemPoolDevil"] = {"ItemPools", 3, 11, 11, 0, 0},
+	["ItemPoolAngel"] = {"ItemPools", 4, 11, 11, 0, 0},
+	["ItemPoolSecret"] = {"ItemPools", 5, 11, 11, 0, 0},
+	["ItemPoolLibrary"] = {"ItemPools", 6, 11, 11, 0, 0},
+	["ItemPoolShellGame"] = {"ItemPools", 7, 11, 11, 0, 0},
+	["ItemPoolGoldenChest"] = {"ItemPools", 8, 11, 11, 0, 0},
+	["ItemPoolRedChest"] = {"ItemPools", 9, 11, 11, 0, 0},
+	["ItemPoolBeggar"] = {"ItemPools", 10, 11, 11, 0, 0},
+	["ItemPoolDemonBeggar"] = {"ItemPools", 11, 11, 11, 0, 0},
+	["ItemPoolCurse"] = {"ItemPools", 12, 11, 11, 0, 0},
+	["ItemPoolKeyMaster"] = {"ItemPools", 13, 11, 11, 0, 0},
+	["ItemPoolBombBum"] = {"ItemPools", 14, 11, 11, 0, 0},
+	["ItemPoolMomsChest"] = {"ItemPools", 15, 11, 11, 0, 0},
+	["ItemPoolGreedTreasure"] = {"ItemPools", 16, 11, 11, 0, 0},
+	["ItemPoolGreedShop"] = {"ItemPools", 17, 11, 11, 0, 0},
+	["ItemPoolGreedBoss"] = {"ItemPools", 18, 11, 11, 0, 0},
+	["ItemPoolGreedDevil"] = {"ItemPools", 19, 11, 11, 0, 0},
+	["ItemPoolGreedAngel"] = {"ItemPools", 20, 11, 11, 0, 0},
+	["ItemPoolGreedCurse"] = {"ItemPools", 21, 11, 11, 0, 0},
+	["ItemPoolGreedSecret"] = {"ItemPools", 22, 11, 11, 0, 0},
+	["ItemPoolCraneGame"] = {"ItemPools", 23, 11, 11, 0, 0},
+	["ItemPoolUltraSecret"] = {"ItemPools", 24, 11, 11, 0, 0},
+	["ItemPoolBatteryBum"] = {"ItemPools", 25, 11, 11, 0, 0},
+	["ItemPoolPlanetarium"] = {"ItemPools", 26, 11, 11, 0, 0},
+	["ItemPoolOldChest"] = {"ItemPools", 27, 11, 11, 0, 0},
+	["ItemPoolBabyShop"] = {"ItemPools", 28, 11, 11, 0, 0},
+	["ItemPoolWoodenChest"] = {"ItemPools", 29, 11, 11, 0, 0},
+	["ItemPoolRottenBeggar"] = {"ItemPools", 30, 11, 11, 0, 0},
+
 	-- Misc
 	["HardMode"] = {"Misc", 0, 16, 12, 0, -2},
 	["GreedMode"] = {"Misc", 1, 16, 12, 0, -2},
@@ -733,7 +766,7 @@ EID.GoldenTrinketData = {
 	-- Error (same as Rainbow Worm), Second Hand (max 2x -> 3x), Black Feather, Blind Rage, Golden Horse Shoe, Karma, Lil Larva
 	[75] = {append = true}, [78] = {t={2}, mult=1.5}, [80] = 0.5, [81] = 2, [82] = {t={15}, mult=2}, [85] = {t={1,1,1}}, [86] = {t={1}, mult=2},
 	-- NO!, Brown Cap, Cracked Crown, Ouroboros Worm, Broken Syringe, Teardrop Charm, Beth's Faith (possibly tripleable, but max 8 wisps in its ring)
-	[88] = {append = true}, [90] = {t={100}, mult=2}, [92] = 20, [96] = {t={0.4, 1.5}}, [132] = {t={25}, mult=4}, [139] = 3, [142] = {t={4}, mult=2},
+	[88] = {append = true}, [90] = {t={100}, mult=2}, [92] = 20, [96] = {t={0.4, 1.5}}, [132] = {t={25}, mult=4}, [139] = {t={4},mults={1.5,2}}, [142] = {t={4}, mult=2},
 	-- Old Capacitor (hard cap of 33% chance), Perfection, Mom's Lock, Dice Bag, Mother's Kiss
 	[143] = {t={20}, mult=1.65}, [145] = 10, [153] = {t={25}, mult=4}, [154] = {t={50}, mult=2}, [156] = 1, 
 	-- Gilded Key (Golden = no +1 key; probably a bug), Lucky Sack, Azazel's Stump (50/67/100), Dingle Berry, Ring Cap
@@ -847,3 +880,4 @@ EID.TransformationData = {
 
 EID.RoomShapeToMarkup = { "{{Room}}", "{{RoomSmallHorizontal}}", "{{RoomSmallVertical}}", "{{RoomLongVertical}}", "{{RoomLongThinVertical}}","{{RoomLongHorizontal}}", "{{RoomLongThinHorizontal}}", "{{RoomXL}}", "{{RoomLTopLeft}}", "{{RoomL}}", "{{RoomLBottomLeft}}", "{{RoomLBottomRight}}" }
 EID.RoomTypeToMarkup = { "{{Room}}", "{{Shop}}", "{{ErrorRoom}}", "{{TreasureRoom}}", "{{BossRoom}}", "{{MiniBoss}}", "{{SecretRoom}}", "{{SuperSecretRoom}}", "{{ArcadeRoom}}", "{{CursedRoom}}", "{{ChallengeRoom}}", "{{Library}}", "{{SacrificeRoom}}", "{{DevilRoom}}", "{{AngelRoom}}", "{{LadderRoom}}", "{{Room}}" --[[boss rush]], "{{IsaacsRoom}}", "{{BarrenRoom}}", "{{ChestRoom}}", "{{DiceRoom}}", "{{Shop}}", "{{Room}}", --[[Black Market / Greed Exit]] "{{Planetarium}}", "{{Teleporter}}","{{Teleporter}}", "{{Room}}", "{{Room}}" --[[Blue Key rooms]], "{{UltraSecretRoom}}" }
+EID.ItemPoolTypeToMarkup = { [0] = "{{ItemPoolTreasure}}", "{{ItemPoolShop}}", "{{ItemPoolBoss}}", "{{ItemPoolDevil}}", "{{ItemPoolAngel}}", "{{ItemPoolSecret}}", "{{ItemPoolLibrary}}", "{{ItemPoolShellGame}}", "{{ItemPoolGoldenChest}}", "{{ItemPoolRedChest}}", "{{ItemPoolBeggar}}", "{{ItemPoolDemonBeggar}}", "{{ItemPoolCurse}}", "{{ItemPoolKeyMaster}}", "{{ItemPoolBombBum}}", "{{ItemPoolMomsChest}}", "{{ItemPoolGreedTreasure}}", "{{ItemPoolGreedShop}}", "{{ItemPoolGreedBoss}}", "{{ItemPoolGreedDevil}}", "{{ItemPoolGreedAngel}}", "{{ItemPoolGreedCurse}}", "{{ItemPoolGreedSecret}}", "{{ItemPoolCraneGame}}", "{{ItemPoolUltraSecret}}", "{{ItemPoolBatteryBum}}", "{{ItemPoolPlanetarium}}", "{{ItemPoolOldChest}}", "{{ItemPoolBabyShop}}", "{{ItemPoolWoodenChest}}", "{{ItemPoolRottenBeggar}}"}
