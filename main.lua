@@ -114,6 +114,7 @@ require("eid_api")
 require("eid_modifiers")
 require("eid_holdmapdesc")
 require("eid_itemprediction")
+require("eid_repentogon")
 
 -- load Repentence descriptions
 if EID.isRepentance then
