@@ -663,7 +663,7 @@ EID.descriptions[languageCode].trinkets={
 	{"82", "Golden Horse Shoe", "{{TreasureRoom}} Future Treasure Rooms have +15% chance to let Isaac choose between two items"},
 	{"83", "Store Key", "{{Shop}} Lets Isaac open Shops for free"},
 	{"84", "Rib of Greed", "5% more coins and fewer hearts from room clear rewards#Greed and Super Greed no longer appear in {{Shop}}Shops or {{SecretRoom}}Secret Rooms"},
-	{"85", "Karma", "{{DonationMachine}} Using a Donation Machine can:#{{Heart}} Heal 1 heart#{{Coin}} Give 1 coin#{{Luck}} Grant +1 Luck up#{{Beggar}} Spawn a Beggar"},
+	{"85", "Karma", "{{DonationMachine}} Using a Donation Machine has a 33% chance to:#{{Heart}} Heal 1 heart (40%)#{{Coin}} Give 1 coin (40%)#{{Luck}} Grant +1 Luck up (15%)#{{Beggar}} Spawn a Beggar (5%)"},
 	{"86", "Lil Larva", "Destroying poop spawns 1 blue fly"},
 	{"87", "Mom's Locket", "Using a key heals half a heart#Turns half hearts into full hearts"},
 	{"88", "NO!", "Prevents active items from spawning"},
