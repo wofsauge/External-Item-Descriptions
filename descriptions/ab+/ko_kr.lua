@@ -673,7 +673,7 @@ EID.descriptions[languageCode].trinkets={
 	{"82", "황금 말발굽", "스테이지 입장 시 15% 확률로 {{TreasureRoom}}보물방 아이템이 2개가 나오며 하나를 선택하면 나머지는 사라집니다."}, -- Golden Horse Shoe
 	{"83", "상점 열쇠", "{{Shop}}상점을 열쇠 소모 없이 열 수 있습니다."}, -- Store Key
 	{"84", "그리드의 갈비뼈", "{{Shop}}상점과 {{SecretRoom}}비밀방에서 Greed/Super Greed가 등장하지 않습니다.#이미 Greed를 처치하였을 경우 재입장 시 상점이 복원됩니다.#방 클리어 시 하트가 등장할 경우 33%의 확률로 {{Coin}}동전으로 바뀝니다."}, -- Rib of Greed
-	{"85", "업보", "!!! 기부기계에 기부 시 확률적으로 아래 효과 중 하나 발동:#{{Coin}}동전 +1#{{Blank}} {{Heart}}빨간하트 한칸 회복#{{Blank}} {{LuckSmall}}행운 +1#{{Blank}} 거지 소환#{{Blank}}"}, -- Karma
+	{"85", "업보", "!!! 기부기계에 기부 시 33%의 확률로 아래 효과 중 하나 발동:#{{Coin}}동전 +1(40%)#{{Blank}} {{Heart}}빨간하트 한칸 회복(40%)#{{Blank}} {{LuckSmall}}행운 +1(15%)#{{Blank}} 거지 소환(5%)"}, -- Karma
 	{"86", "꼬마 라바", "똥을 파괴할 때마다 파란 아군 파리를 소환합니다."}, -- Lil Larva
 	{"87", "엄마의 로켓", "열쇠를 소모할 때마다 {{HalfHeart}}체력 반칸을 회복합니다.#{{Heart}}빨간하트 반칸 픽업을 한칸으로 바꿉니다."}, -- Mom's Locket
 	{"88", "필요없어!", "{{TreasureRoom}}보물방, {{Shop}}상점, {{DevilRoom}}악마방, {{AngelRoom}}천사방에서 99% 확률로 액티브 아이템이 나오지 않습니다."}, -- NO!

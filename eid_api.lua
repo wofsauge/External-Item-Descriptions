@@ -395,18 +395,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	EID:getObjectItemTypeAndCharge(description)
 
 	if checkModifiers ~= false then
-		for _,modifier in ipairs(EID.DescModifiers) do
-			local result = modifier.condition(description)
-			if type(result) == "table" then
-				for _,callback in ipairs(result) do
-					-- If the modifier loads a different description obj (which also goes through the modifier checks), we should stop our checks so text doesn't get printed twice
-					if description.ObjSubType ~= SubType then break end
-					description = callback(description)
-				end
-			elseif result then
-				description = modifier.callback(description)
-			end
-		end
+		description = EID:applyDescriptionModifier(description, SubType)
 	end
 	return description
 end
@@ -427,6 +416,23 @@ function EID:getLegacyModDescription(Type, Variant, SubType)
 		return {"", customDesc[1], customDesc[2]}
 	end
 	return nil
+end
+
+-- apply Description Modifier to a given description object
+function EID:applyDescriptionModifier(description, SubType)
+	for _,modifier in ipairs(EID.DescModifiers) do
+		local result = modifier.condition(description)
+		if type(result) == "table" then
+			for _,callback in ipairs(result) do
+				-- If the modifier loads a different description obj (which also goes through the modifier checks), we should stop our checks so text doesn't get printed twice
+				if description.ObjSubType ~= SubType then break end
+				description = callback(description)
+			end
+		elseif result then
+			description = modifier.callback(description)
+		end
+	end
+	return description
 end
 
 -- Returns the icon and mod name of a given EID description object as a preformatted description string
@@ -665,6 +671,10 @@ function EID:hasDescription(entity)
 		isAllowed = isAllowed or entity:GetData() and type(entity:GetData()["EID_Description"]) ~= type(nil)
 	end
 	if entity.Type == EntityType.ENTITY_PICKUP then
+		if entity.SubType == 0 and EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil then
+			-- allow pickups with subtype 0 to have a description, if its explictly defined
+			return true
+		end
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EID.Config["DisplayItemInfo"])
 		isAllowed = isAllowed or (entity.Variant == 110 and entity:GetSprite():IsPlaying("Idle") and EID.Config["DisplayItemInfo"]) -- Broken Shovel
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
