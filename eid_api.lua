@@ -665,6 +665,10 @@ function EID:hasDescription(entity)
 		isAllowed = isAllowed or entity:GetData() and type(entity:GetData()["EID_Description"]) ~= type(nil)
 	end
 	if entity.Type == EntityType.ENTITY_PICKUP then
+		if entity.SubType == 0 and EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil then
+			-- allow pickups with subtype 0 to have a description, if its explictly defined
+			return true
+		end
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_COLLECTIBLE and EID.Config["DisplayItemInfo"])
 		isAllowed = isAllowed or (entity.Variant == 110 and entity:GetSprite():IsPlaying("Idle") and EID.Config["DisplayItemInfo"]) -- Broken Shovel
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
