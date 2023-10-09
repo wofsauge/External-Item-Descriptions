@@ -1123,7 +1123,11 @@ end
 
 function EID:updateDescriptionsViaTable(changeTable, tableToUpdate)
 	for k,v in pairs(changeTable) do
-		tableToUpdate[k] = v
+		if v == "" then
+			tableToUpdate[k] = nil
+		else
+			tableToUpdate[k] = v
+		end
 	end
 end
 
