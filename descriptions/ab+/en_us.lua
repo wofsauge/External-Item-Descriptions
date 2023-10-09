@@ -577,6 +577,35 @@ EID.descriptions[languageCode].collectibles={
 	{"552", "Mom's Shovel", "Spawns a trapdoor to the next floor#10% chance for {{LadderRoom}}crawlspace trapdoor#{{Warning}} Use the shovel on the hill of dirt in the \"Dark Room\""},
 }
 
+
+---------- Modifiers ----------
+
+-- Effect of Car battery on Active Items
+EID.descriptions[languageCode].carBattery = {
+	[58] = "Invincibility last 20s", -- Book of Shadows
+	[66] = "Effect lasts 16s", -- The Hourglass
+	[77] = "Invincibility last 12s", -- My Little Unicorn
+	[93] = "Invincibility last 13s", -- The Gamekid
+	[111] = "Deal twice the damages", -- The Bean
+	[124] = "Triggers two effects", -- Dead Sea Scrolls
+	[145] = "Spawns 4-7 blue flies", -- Guppy's Head
+	[171] = "Deal 10 additional damage", -- Spider Butt
+	[293] = "Double lasers damage", -- Head of Krampus
+	[298] = "Invincibility last 12s", -- Unicorn Stump
+	[351] = "Deal twice the damages", -- Mega Bean
+	[383] = "Split splitted tears -> 6x more tears", -- Tear Detonator
+	[421] = "Deal twice the damages", -- Kidney Bean
+	[427] = "Spawns two TNT barrels", -- Mine Crafter
+	[477] = "Activates every absorbed items twice", -- Void
+	[482] = "Change the character twice and remove two items (Not recommended)", -- Clicker
+	[485] = "Has 25% chance to quadruple items and consumables, but 75% to remove them!", -- Crooked Penny
+	[486] = "Triggers on-hit item effects twice", -- Dull Razor
+	[488] = "Grants two items effect", -- Metronome
+	[489] = "Triggers two dice effects. The second die can't be predicted", -- D Infinity
+	[523] = "Swap box contents with room pickpus", -- Moving Box
+	[550] = "Stops stomps for two waves in Boss Rush and Challenges {{ChallengeRoom}} {{BossRushRoom}}", -- Broken Shovel
+}
+
 ---------- Trinkets ----------
 EID.descriptions[languageCode].trinkets={
 	{"1", "Swallowed Penny", "{{Coin}} Taking damage spawns 1 coin"},

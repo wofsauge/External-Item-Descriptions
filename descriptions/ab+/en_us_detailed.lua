@@ -574,6 +574,39 @@ EID.descriptions[languageCode].collectibles={
 	{"552", "", "Spawns a trapdoor that leads to the next floor.#10% chance to lead to a Crawl Space or a Black Market instead. #Crawl Spaces and Black Markets are identified by the ladder in the hole, instead of just a black void. #Use Mom's Shovel on the hill of dirt in the Dark Room to unlock a secret character."},
 }
 
+
+---------- Modifiers ----------
+
+-- Effect of Car battery on Active Items
+EID.descriptions[languageCode].carBattery = {
+	[58] = "Invincibility last 20s", -- Book of Shadows
+	[66] = "Effect lasts 16s", -- The Hourglass
+	[77] = "Invincibility last 12s", -- My Little Unicorn
+	[93] = "Invincibility last 13s", -- The Gamekid
+	[106] = "No extra effects. Speed up item pools exhaust", -- The D6
+	[111] = "Deal twice the damages. Doesn't increase poison duration", -- The Bean
+	[124] = "Triggers two effects", -- Dead Sea Scrolls
+	[145] = "Spawns 4-7 blue flies instead", -- Guppy's Head
+	[171] = "Deal 10 additional damage. Doesn't increase slow duration", -- Spider Butt
+	[283] = "No extra effects. Speed up item pools exhaust. Speed up transformation achievement", -- D100
+	[284] = "No extra effects. Speed up item pools exhaust. Speed up transformation achievement", -- D4
+	[293] = "Double lasers damage. Doesn't affect lasers duration", -- Head of Krampus
+	[298] = "Invincibility last twice as long", -- Unicorn Stump
+	[351] = "Deal twice the damages. Doesn't increase petrify duration", -- Mega Bean
+	[383] = "Split splitted tears resulting in 6x more tears than normal", -- Tear Detonator
+	[421] = "Deal twice the damages. Doesn't increase charm duration", -- Kidney Bean
+	[427] = "Spawns two TNT barrel", -- Mine Crafter
+	[437] = "Double summoned enemies, but doesn't double reward (Not recommended)", -- D7
+	[477] = "Activates every absorbed items twice", -- Void
+	[482] = "Change the character twice and remove two items (Not recommended)", -- Clicker
+	[485] = "Has 25% chance to quadruple items and consumables, but 75% to remove them!", -- Crooked Penny
+	[486] = "Triggers on-hit item effects twice if applicable", -- Dull Razor
+	[488] = "Grants two items effect", -- Metronome
+	[489] = "Triggers two dice effects. The second die can't be predicted", -- D Infinity
+	[523] = "Swap box contents with room pickpus", -- Moving Box
+	[550] = "Stops stomps for two waves in Boss Rush and Challenges {{ChallengeRoom}} {{BossRushRoom}}", -- Broken Shovel
+}
+
 ---------- Trinkets ----------
 EID.descriptions[languageCode].trinkets={
 	{"1", "", "Drops 1 penny, nickel or dime upon taking damage. #This effect is not reduced by playing as the Keeper like other similar items are."},
