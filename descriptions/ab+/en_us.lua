@@ -586,15 +586,15 @@ EID.descriptions[languageCode].carBattery = {
 	[66] = "Effect lasts 16s", -- The Hourglass
 	[77] = "Invincibility last 12s", -- My Little Unicorn
 	[93] = "Invincibility last 13s", -- The Gamekid
-	[111] = "Deal twice the damages", -- The Bean
+	[111] = "Deals twice the damage", -- The Bean
 	[124] = "Triggers two effects", -- Dead Sea Scrolls
 	[145] = "Spawns 4-7 blue flies", -- Guppy's Head
-	[171] = "Deal 10 additional damage", -- Spider Butt
+	[171] = "Deals 10 additional damage", -- Spider Butt
 	[293] = "Double lasers damage", -- Head of Krampus
 	[298] = "Invincibility last 12s", -- Unicorn Stump
-	[351] = "Deal twice the damages", -- Mega Bean
+	[351] = "Deals twice the damage", -- Mega Bean
 	[383] = "Split splitted tears -> 6x more tears", -- Tear Detonator
-	[421] = "Deal twice the damages", -- Kidney Bean
+	[421] = "Deals twice the damage", -- Kidney Bean
 	[427] = "Spawns two TNT barrels", -- Mine Crafter
 	[477] = "Activates every absorbed items twice", -- Void
 	[482] = "Change the character twice and remove two items (Not recommended)", -- Clicker
@@ -603,7 +603,7 @@ EID.descriptions[languageCode].carBattery = {
 	[488] = "Grants two items effect", -- Metronome
 	[489] = "Triggers two dice effects. The second die can't be predicted", -- D Infinity
 	[523] = "Swap box contents with room pickpus", -- Moving Box
-	[550] = "Stops stomps for two waves in Boss Rush and Challenges {{ChallengeRoom}} {{BossRushRoom}}", -- Broken Shovel
+	[550] = "Stops stomps for two rooms or waves in Boss Rush and Challenges {{ChallengeRoom}} {{BossRushRoom}}", -- Broken Shovel
 }
 
 ---------- Trinkets ----------

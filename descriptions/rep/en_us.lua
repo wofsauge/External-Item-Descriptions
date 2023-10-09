@@ -716,17 +716,16 @@ EID.descriptions[languageCode].abyssSynergies = {
 -- Effect of Car battery on Active Items
 local repCarBattery = {
 	[323] = "Tears deal double damage", -- Isaac's Tears
-	--[386] = "Tinyly increase chances for crawlspaces (still very rare)", -- D12
 	[489] = "Triggers two dice effects. The second die effect never change", -- D Infinity
 	[523] = "", -- Moving Box
-	[556] = "Will gives two brimstone, giving extra damage", -- Sulfur
+	[556] = "Will grant two brimstones, giving extra damage", -- Sulfur
 	[584] = "Double wisps", -- Book of Virtues
 	[605] = "Spawn two Peepers. Doesn't gives extra damage", -- The Scooper
 	[609] = "Chances to delete items are doubled", -- Eternal D6
 	[625] = "Effect last 60s", -- Mega Mush
 	[705] = "Shadow effect last 2s", -- Dark Arts
 	[720] = "Spawns a poop alongside the pickup", -- Everything Jar
-	[723] = "Decreasing internal ID by two", -- Spindown Dice
+	[723] = "Decreases internal ID by two", -- Spindown Dice
 }
 --EID.descriptions[languageCode].carBattery[284] = nil -- D4
 EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)

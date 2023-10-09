@@ -584,17 +584,17 @@ EID.descriptions[languageCode].carBattery = {
 	[77] = "Invincibility last 12s", -- My Little Unicorn
 	[93] = "Invincibility last 13s", -- The Gamekid
 	[106] = "No extra effects. Speed up item pools exhaust", -- The D6
-	[111] = "Deal twice the damages. Doesn't increase poison duration", -- The Bean
+	[111] = "Deals twice the damage. Doesn't increase poison duration", -- The Bean
 	[124] = "Triggers two effects", -- Dead Sea Scrolls
 	[145] = "Spawns 4-7 blue flies instead", -- Guppy's Head
-	[171] = "Deal 10 additional damage. Doesn't increase slow duration", -- Spider Butt
+	[171] = "Deals 10 additional damage. Doesn't increase slow duration", -- Spider Butt
 	[283] = "No extra effects. Speed up item pools exhaust. Speed up transformation achievement", -- D100
 	[284] = "No extra effects. Speed up item pools exhaust. Speed up transformation achievement", -- D4
 	[293] = "Double lasers damage. Doesn't affect lasers duration", -- Head of Krampus
 	[298] = "Invincibility last twice as long", -- Unicorn Stump
-	[351] = "Deal twice the damages. Doesn't increase petrify duration", -- Mega Bean
+	[351] = "Deals twice the damage. Doesn't increase petrify duration", -- Mega Bean
 	[383] = "Split splitted tears resulting in 6x more tears than normal", -- Tear Detonator
-	[421] = "Deal twice the damages. Doesn't increase charm duration", -- Kidney Bean
+	[421] = "Deals twice the damage. Doesn't increase charm duration", -- Kidney Bean
 	[427] = "Spawns two TNT barrel", -- Mine Crafter
 	[437] = "Double summoned enemies, but doesn't double reward (Not recommended)", -- D7
 	[477] = "Activates every absorbed items twice", -- Void
@@ -604,7 +604,7 @@ EID.descriptions[languageCode].carBattery = {
 	[488] = "Grants two items effect", -- Metronome
 	[489] = "Triggers two dice effects. The second die can't be predicted", -- D Infinity
 	[523] = "Swap box contents with room pickpus", -- Moving Box
-	[550] = "Stops stomps for two waves in Boss Rush and Challenges {{ChallengeRoom}} {{BossRushRoom}}", -- Broken Shovel
+	[550] = "Stops stomps for two rooms or waves in Boss Rush and Challenges {{ChallengeRoom}} {{BossRushRoom}}", -- Broken Shovel
 }
 
 ---------- Trinkets ----------
