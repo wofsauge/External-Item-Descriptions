@@ -587,6 +587,39 @@ EID.descriptions[languageCode].collectibles={
 	{"552", "엄마의 삽", "사용 시 다음 스테이지로 가는 다락문을 생성합니다.#{{Player16}} Dark Room 스테이지의 특정 타일 위에 사용 시 The Forgotten 캐릭터를 해금할 수 있습니다."}, -- Mom's Shovel
 }
 
+
+---------- Modifiers ----------
+
+-- Effect of Car battery on Active Items
+EID.descriptions[languageCode].carBattery = {
+	[58] = "지속시간 2배(20초)", -- Book of Shadows
+	[66] = "지속시간 2배(16초)", -- The Hourglass
+	[77] = "지속시간 2배(12초)", -- My Little Unicorn
+	[93] = "지속시간 2배(13초)", -- The Gamekid
+	[105] = "!!! 일부 아이템이 배열에서 지워질 수 있음", -- The D6
+	[111] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- The Bean
+	[124] = "2개의 랜덤 액티브 효과 발동", -- Dead Sea Scrolls
+	[145] = "파리가 4~8개로 증가", -- Guppy's Head
+	[171] = "피해량 x2(20), 효과 지속시간은 연장되지 않음", -- Spider Butt
+	[283] = "!!! 일부 아이템이 배열에서 지워질 수 있음", -- D100
+	[284] = "!!! 일부 아이템이 배열에서 지워질 수 있음", -- D4
+	[293] = "혈사의 피해량 x2", -- Head of Krampus
+	[298] = "지속시간 2배(12초)", -- Unicorn Stump
+	[351] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- Mega Bean
+	[383] = "눈물이 36개로 분열됩니다.", -- Tear Detonator
+	[421] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- Kidney Bean
+	[427] = "!!! 캐릭터의 위치에 폭발을 일으킵니다.", -- Mine Crafter
+	[437] = "!!! 적을 2배로 소환합니다. (방 클리어 보상이 늘어나지 않음)", -- D7
+	[477] = "흡수한 아이템을 2번 발동합니다.", -- Void
+	[482] = "!!! 패시브 아이템 2개 제거 및 캐릭터 2회 변경", -- Clicker
+	[485] = "아이템이 4배로 복사하나, 실패 확률이 75%로 증가", -- Crooked Penny
+	[486] = "피격 시 효과 2번 발동", -- Dull Razor
+	[488] = "!!! 2개의 랜덤 아이템의 효과가 발동됩니다.", -- Metronome
+	[489] = "!!! 랜덤 주사위 아이템을 하나 더 발동합니다.", -- D Infinity
+	[523] = "상자의 내용물과 그 방의 아이템/픽업 내용물을 뒤바꿉니다.", -- Moving Box
+	[550] = "사용 이후 2개의 방/{{ChallengeRoom}}{{BossRushRoom}}웨이브에서 엄마발이 떨어지지 않습니다.", -- Broken Shovel
+}
+
 ---------- Trinkets ----------
 EID.descriptions[languageCode].trinkets={
 	{"1", "삼킨 동전", "피격 시 {{Coin}}동전을 1~2개 드랍합니다."}, -- Swallowed Penny
