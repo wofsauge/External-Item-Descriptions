@@ -763,6 +763,26 @@ EID.descriptions[languageCode].abyssSynergies = {
 	[559] = "파리가 적과 접촉 시 공격력 0.1의 전류를 방출합니다.",
 }
 
+-- Effect of Car battery on Active Items
+local repCarBattery = {
+	[323] = "각 방향마다 2개의 눈물이 중첩되어 나갑니다.", -- Isaac's Tears
+	[427] = "이동식 TNT를 2개 생성합니다.", -- Mine Crafter
+	[488] = "!!! 표시된 아이템 효과가 아닌 다른 아이템의 효과가 발동됩니다.", -- Metronome
+	[489] = "!!! 선택된 주사위 효과를 2번 발동합니다.", -- D Infinity
+	[523] = "", -- Moving Box
+	[556] = "혈사포의 굵기 증가, 그 방에서 {{DamageSmall}}공격력 x1.2", -- Sulfur
+	[584] = "불꽃 소환 2배", -- Book of Virtues
+	[605] = "눈알을 하나 더 소환합니다. (공격력 추가 증가 없음)", -- The Scooper
+	[609] = "!!! 아이템이 제거될 확률 45%로 증가, 일부 아이템이 배열에서 지워질 수 있음", -- Eternal D6
+	[625] = "지속시간 2배(60초)", -- Mega Mush
+	[635] = "!!! 더 이상 인형의 위치와 맞바꿀 수 없으나 두 위치 모두 주변의 적에게 피해를 줍니다.", -- Stitches
+	[705] = "지속시간 2배(2초)", -- Dark Arts
+	[720] = "똥을 추가로 쌉니다.", -- Everything Jar
+	[723] = "코드 2개의 앞번호의 아이템으로 바꿉니다.", -- Spindown Dice
+}
+--EID.descriptions[languageCode].carBattery[284] = nil -- D4
+EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
+
 ---------- Trinkets ----------
 local repTrinkets={
 	-- Rebirth
