@@ -10,8 +10,8 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.59
-EID.ModVersionCommit = "27862c5"
+EID.ModVersion = 4.60
+EID.ModVersionCommit = "d305406"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -813,12 +813,21 @@ function EID:renderUnidentifiedPill(entity)
 		table.insert(EID.CachedIcons, {})
 		table.insert(EID.CachedRenderPoses, Vector(pos.X, pos.Y))
 	end
-	EID:renderString(
-		"{{Pill"..pillColor.."}} "..EID:getDescriptionEntry("unidentifiedPill"),
-		pos,
-		Vector(EID.Scale, EID.Scale),
-		EID:getErrorColor()
-	)
+
+	local descriptionObj = EID:getDescriptionObj(entity.Type, entity.Variant, entity.SubType, entity, false)
+	descriptionObj.Name = EID:getDescriptionEntry("unidentifiedPill")
+	descriptionObj.Description = ""
+	descriptionObj.ShowWhenUnidentified = false
+	descriptionObj = EID:applyDescriptionModifier(descriptionObj, -999)
+
+	if EID.Config["ShowItemIcon"] then
+		descriptionObj.Name = "{{Pill"..pillColor.."}} "..descriptionObj.Name 
+	end
+	EID:renderString(descriptionObj.Name, pos + Vector(0,-1), Vector(EID.Scale, EID.Scale), EID:getErrorColor())
+	if EID.Config["ShowItemDescription"] and descriptionObj.ShowWhenUnidentified then
+		pos.Y = pos.Y + EID.lineHeight * EID.Scale
+		EID:printBulletPoints(descriptionObj.Description, pos)
+	end
 end
 
 -- RGB colors for each player's highlights (Red, Blue, Green, Yellow)
