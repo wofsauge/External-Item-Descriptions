@@ -778,7 +778,7 @@ local repCarBattery = {
 	[635] = "!!! 더 이상 인형의 위치와 맞바꿀 수 없으나 두 위치 모두 주변의 적에게 피해를 줍니다.", -- Stitches
 	[705] = "지속시간 2배(2초)", -- Dark Arts
 	[720] = "똥을 추가로 쌉니다.", -- Everything Jar
-	[723] = "코드 2개의 앞번호의 아이템으로 바꿉니다.", -- Spindown Dice
+	[723] = "!!! 코드 2개의 앞번호의 아이템으로 바꿉니다.", -- Spindown Dice
 }
 --EID.descriptions[languageCode].carBattery[284] = nil -- D4
 EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
