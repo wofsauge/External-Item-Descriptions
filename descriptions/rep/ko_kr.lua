@@ -765,8 +765,11 @@ EID.descriptions[languageCode].abyssSynergies = {
 
 -- Effect of Car battery on Active Items
 local repCarBattery = {
+	[283] = "", -- D100
+	[284] = "", -- D4
 	[323] = "각 방향마다 2개의 눈물이 중첩되어 나갑니다.", -- Isaac's Tears
 	[427] = "이동식 TNT를 2개 생성합니다.", -- Mine Crafter
+	[437] = "", -- D7
 	[488] = "!!! 표시된 아이템 효과가 아닌 다른 아이템의 효과가 발동됩니다.", -- Metronome
 	[489] = "!!! 선택된 주사위 효과를 2번 발동합니다.", -- D Infinity
 	[523] = "", -- Moving Box
