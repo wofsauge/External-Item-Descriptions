@@ -680,8 +680,8 @@ local downHeld = 0
 local upHeld = 0
 local resetBagCounter = 0
 
-local craftingIsHidden = false
-local showCraftingResult = false
+EID.CraftingIsHidden = false
+EID.ShowCraftingResult = false
 
 local prevDesc = ""
 
@@ -937,11 +937,11 @@ function EID:handleBagOfCraftingUpdating()
 	-- Check for Hide/Preview hotkeys; prevent them from triggering while in MCM
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
 		if Input.IsButtonTriggered(EID.Config["CraftingHideKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingHideButton"], EID.bagPlayer.ControllerIndex) then
-			craftingIsHidden = not craftingIsHidden
+			EID.CraftingIsHidden = not EID.CraftingIsHidden
 		end
 		
 		if Input.IsButtonTriggered(EID.Config["CraftingResultKey"], 0) or Input.IsButtonTriggered(EID.Config["CraftingResultButton"], EID.bagPlayer.ControllerIndex) then
-			showCraftingResult = not showCraftingResult
+			EID.ShowCraftingResult = not EID.ShowCraftingResult
 		end
 	end
 	
@@ -997,7 +997,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		return false
 	end
 	displayingRecipeList = false
-	if ((EID.isHidden or craftingIsHidden) and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting") or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
+	if ((EID.isHidden or EID.CraftingIsHidden) and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting") or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
 		return false
 	elseif EID.Config["BagOfCraftingHideInBattle"] and (Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0) then
 		return false
@@ -1011,9 +1011,9 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 	-- Display the result of the 8 items in our bag if applicable
-	if (showCraftingResult or EID.Config["BagOfCraftingDisplayRecipesMode"] == "Preview Only") and #bagItems == 8 then
+	if (EID.ShowCraftingResult or EID.Config["BagOfCraftingDisplayRecipesMode"] == "Preview Only") and #bagItems == 8 then
 		if EID.Config["BagOfCraftingDisplayRecipesMode"] ~= "Recipe List" and EID:hasCurseBlind() and EID.Config["DisableOnCurse"] then
-			showCraftingResult = false
+			EID.ShowCraftingResult = false
 			return false
 		end
 		local craftingResult = EID:calculateBagOfCrafting(bagItems)
