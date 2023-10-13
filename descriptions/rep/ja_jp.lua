@@ -57,7 +57,7 @@ local repCollectibles={
     [106] = {"106", "Mr. Mega", "↑ 爆弾ダメージｘ1.85#↑ 爆発範囲#爆弾 +5"}, -- Mr. Mega
     [110] = {"110", "Mom's Contacts", "20%の確率で涙に 石化効果を付与する#↑ 射程 +1.5"}, -- Mom's Contacts
     [114] = {"114", "Mom's Knife", "涙がナイフに置き換わる#保持中のナイフは2倍の ダメージを与える#チャージ攻撃でナイフを 発射でき、チャージ量に 応じて射程とダメージが 変化する#約1/3のチャージで最大 6倍のダメージ"}, -- Mom's Knife
-    [115] = {"115", "Ouija Board", "涙に透過効果を付与#↑ 連射速度 +0.4"}, -- Ouija Board
+    [115] = {"115", "Ouija Board", "涙に透過効果を付与#↑ 連射速度 +0.5"}, -- Ouija Board
     [118] = {"118", "Brimstone", "涙がチャージ式のレーザー ビームに置き換わる#↓ 連射速度 -67%"}, -- Brimstone
     [121] = {"121", "Odd Mushroom (Large)", "↑ 最大体力 +1#↑ 攻撃力　 +1#↑ 射程　　 +1.5#↓ 移動速度 -0.2"}, -- Odd Mushroom (Large)
     [123] = {"123", "Monster Manual", "次のフロアまで持続する ランダムな使い魔を1体 付与する"}, -- Monster Manual
@@ -245,7 +245,7 @@ local repCollectibles={
     [553] = {"553", "Mucormycosis", "攻撃中、25%の確率で 胞子が飛び、敵に付着する#胞子は2.5秒後に爆発し、 近くの敵に5ダメージと 毒を与え、さらに4個の 胞子を拡散する"}, -- Mucormycosis
     [554] = {"554", "2Spooky", "近くの敵を恐怖状態にする"}, -- 2Spooky
     [555] = {"555", "Golden Razor", "コインを5枚消費し、 攻撃力を1.2増やす#その部屋でのみ有効#取得時、コイン +5"}, -- Golden Razor
-    [556] = {"556", "Sulfur", "{{Collectible118}} その部屋にいる間、涙が ブリムストーンに変化#同じ部屋で複数回使用 すると、そのたびに 攻撃力がアップする"}, -- Sulfur
+    [556] = {"556", "Sulfur", "{{Collectible118}} その部屋にいる間、涙が ブリムストーンに変化#同じ部屋で複数回使用 すると、そのたびに 攻撃力とサイズがアップ"}, -- Sulfur
     [557] = {"557", "Fortune Cookie", "おみくじ・青ハート・ カード・トリンケットの いずれかをスポーンする"}, -- Fortune Cookie
     [558] = {"558", "Eye Sore", "一定確率で、1～3発の 追加の涙がランダムな 方向に発射される"}, -- Eye Sore
     [559] = {"559", "120 Volt", "接近した敵に放電し、 攻撃力ｘ0.75の ダメージを与える"}, -- 120 Volt
@@ -298,7 +298,7 @@ local repCollectibles={
     [606] = {"606", "Ocular Rift", "5%の確率で涙の着地点に 裂け目が生成され、敵と 弾、ピックアップが吸い 込まれる#裂け目に吸引された敵に 攻撃力x3のダメージを 毎秒与える"}, -- Ocular Rift
     [607] = {"607", "Boiled Baby", "涙をまき散らして攻撃する 使い魔#涙は3.5か5.3のダメージを 与える"}, -- Boiled Baby
     [608] = {"608", "Freezer Baby", "石化と凍結効果を持つ 氷柱で攻撃する使い魔"}, -- Freezer Baby
-    [609] = {"609", "Eternal D6", "部屋の全てのアイテムを リロールする#リロール時、30%の確率で アイテムが消滅する"}, -- Eternal D6
+    [609] = {"609", "Eternal D6", "部屋の全てのアイテムを リロールする#リロール時、25%の確率で アイテムが消滅する"}, -- Eternal D6
     [610] = {"610", "Bird Cage", "ダメージを受けると 頭から鳥が飛び立ち、 敵に体当たりをする#体当たりは敵に45の ダメージを与え、 地割れを発生させる#体当たり後、敵を追い かけて攻撃し始める"}, -- Bird Cage
     [611] = {"611", "Larynx", "叫びの衝撃波で攻撃する#フルチャージではない 状態でも使用でき、 チャージ量に応じた 攻撃範囲とダメージを 与える#ダメージを受けた時、 チャージが1回復する"}, -- Larynx
     [612] = {"612", "Lost Soul", "アイザックの背後に一撃で 死ぬ幽霊の使い魔が憑く#次のフロアまで幽霊が 生き残った時、以下の いずれかをスポーンする#青ハート3個#白ハート2個#トレジャールームか 天使部屋のアイテム1個#死んだ幽霊は次の フロアでリスポーン"}, -- Lost Soul
@@ -716,6 +716,24 @@ EID.descriptions[languageCode].abyssSynergies = {
     [559] = "近くの敵に放電して ダメージを与えるイナゴ", -- 120 Volt
 }
 
+-- Effect of Car battery on Active Items
+local repCarBattery = {
+	[323] = "ダメージ2倍", -- Isaac's Tears
+	--[386] = "クロールスペースの 出現確率が少しアップ", -- D12
+	[485] = "25%の確率で4倍複製 75%の確率で消滅", -- Crooked Penny
+	[489] = "二種類の効果を同時発動 ※二番目の効果は 　シード値で固定", -- D Infinity
+	[523] = "", -- Moving Box
+	[556] = "レーザーの攻撃力と サイズがアップ", -- Sulfur
+	[584] = "ウィスプの量2倍", -- Book of Virtues
+	[605] = "目玉を2体召喚", -- The Scooper
+	[609] = "2回リロールされ、 消滅確率が50%にアップ", -- Eternal D6
+	[625] = "効果時間が60秒に", -- Mega Mush
+	[705] = "無敵効果の時間が2秒に", -- Dark Arts
+	[720] = "同時にうんちをスポーン", -- Everything Jar
+	[723] = "内部ID番号を2引く", -- Spindown Dice
+}
+--EID.descriptions[languageCode].carBattery[284] = nil -- D4
+EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
 
 ---------- Trinkets ----------
 
@@ -760,7 +778,7 @@ local repTrinkets={
     [136] = {"136", "Broken Padlock", "ドア・キーブロック・ 宝箱を爆発で開ける"}, -- Broken Padlock
     [137] = {"137", "Myosotis", "保持して次のフロアに 移動すると、フロアの 開始時、前のフロアに 残されたピックアップ・ トリンケットを最大4つ ランダムにスポーンする"}, -- Myosotis
     [138] = {"138", "'M", "アクティブアイテムを 使用すると、別の アクティブアイテムに リロールされる"}, -- 'M
-    [139] = {"139", "Teardrop Charm", "運で発生確率が変動する タイプの涙は、運+3相当 に発生確率がアップする"}, -- Teardrop Charm
+    [139] = {"139", "Teardrop Charm", "運で発生確率が変動する タイプの涙は、運+4相当 に発生確率がアップする"}, -- Teardrop Charm
     [140] = {"140", "Apple of Sodom", "赤ハートを拾った時、 50%の確率で青クモが スポーンする#スポーンした場合、 体力は回復しない#体力全快の状態でも 赤ハートを取得でき、 その場合は、100%の 確率でスポーンする"}, -- Apple of Sodom
     [141] = {"141", "Forgotten Lullaby", "使い魔の連射速度が 2倍になる"}, -- Forgotten Lullaby
     [142] = {"142", "Beth's Faith", "フロア開始時、4つの ウィスプをスポーンする#ウィスプは{{Collectible584}} 美徳の書 からスポーンするものと 同一　　　　"}, -- Beth's Faith
@@ -873,7 +891,7 @@ local repCards={
     [56] = {"56", "0 - The Fool?", "所持するピックアップと ハートを全て床に落とし、 残り体力を半ハートにする#一定数以上のコインと 爆弾は、{{Collectible74}}クォーターか {{Collectible19}}ドカーン！に変化して 落とされる"}, -- 0 - The Fool?
     [57] = {"57", "I - The Magician?", "敵と弾を跳ね返すオーラを 1分間付与する"}, -- I - The Magician?
     [58] = {"58", "II - The High Priestess?", "ママの踏み潰し攻撃が 1分間持続する"}, -- II - The High Priestess?
-    [59] = {"59", "III - The Empress?", "以下の効果が1分間持続：#↑ 最大体力 +2#↑ 連射速度 +1.35"}, -- III - The Empress?
+    [59] = {"59", "III - The Empress?", "以下の効果が1分間持続：#↑ 最大体力 +2#↑ 連射速度 +1.35#↓ 移動速度 -0.1"}, -- III - The Empress?
     [60] = {"60", "IV - The Emperor?", "追加のボス部屋に テレポートする#ボスは2階層下の フロアから選ばれる#倒すとボス部屋の アイテムがスポーン"}, -- IV - The Emperor?
     [61] = {"61", "V - The Hierophant?", "骨ハートを2個スポーン"}, -- V - The Hierophant?
     [62] = {"62", "VI - The Lovers?", "現在の部屋のアイテム プールからランダムな アイテムを1個スポーン#最大体力1か、青ハート 2個を、壊れたハートに 置き換える"}, -- VI - The Lovers?
@@ -1092,6 +1110,11 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Explosive Diarrhea", "アイザックの尻から 点火済みの爆弾が 5連続スポーンする"},
 }
 
+EID.descriptions[languageCode].itemPoolFor = "アイテムプール:"
+EID.descriptions[languageCode].itemPoolNames = {
+	[0] = "トレジャールーム", "お店", "ボス部屋", "悪魔部屋", "天使部屋", "隠し部屋", "図書館", "シェルゲーム", "金宝箱", "赤宝箱", "乞食", "悪魔乞食", "呪い部屋", "鍵乞食", "電池乞食", "ママの宝箱", "トレジャールーム（グリード）", "ボス部屋（グリード）", "お店（グリード）", "悪魔部屋（グリード）", "天使部屋（グリード）", "呪い部屋（グリード）", "隠し部屋（グリード）", "クレーンゲーム", "離れ隠し部屋", "爆弾乞食", "プラネタリウム", "古い宝箱", "お店（使い魔）", "木の宝箱", "腐った乞食",
+}
+
 EID.descriptions[languageCode].VoidShopText = "吸収した場合："
 EID.descriptions[languageCode].VoidOptionText = "代わりに吸収される"
 EID.descriptions[languageCode].VoidNames[2] = "{1} 連射速度アップ"
@@ -1131,6 +1154,7 @@ EID.descriptions[languageCode].OldGameVersionWarningText = "ゲームがアッ�
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "MODのアイテムが原因で クラフトレシピの表示が 不正確になる可能性が あります#その場合、Item Probability モードか、非表示にして ください#この警告は設定で無効に できます"
 
+EID.descriptions[languageCode].ResultsWithX = "(Results with {1})"
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
