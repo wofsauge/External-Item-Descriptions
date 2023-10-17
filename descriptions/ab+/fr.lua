@@ -132,7 +132,7 @@ EID.descriptions["fr"].collectibles={
 	{"108", "Hostie", "Réduit tous les dégâts subis à un demi-cœur"},
 	{"109", "Avidité", "↑ Dégâts {{ColorLime}}+0.04{{ColorWhite}} pour chaque pièce au compteur"},
 	{"110", "Lentille de Maman", "20% de chances de tirer une larme paralysante#↑ Portée {{ColorLime}}+0.25#↑ Hauteur des larmes {{ColorLime}}+0.5#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 20 Chance)"},
-	{"111", "Haricot", "Isaac pète et empoisonne les ennemis à proximité"},
+	{"111", "Haricot", "Isaac pète, empoisonne, et inflige des dégâts aux ennemis à proximité"},
 	{"112", "Ange Gardien", "Orbite autour d'Isaac#Bloque les projectiles ennemis#Augmente la vitesse de rotation des autres familiers"},
 	{"113", "Bébé Démoniaque", "Tire automatiquement sur les ennemis à proximité"},
 	{"114", "Couteau de Maman", "Remplace les larmes d'Isaac par un couteau#Le couteau inflige {{ColorLime}}dégâts x2{{ColorWhite}} dans les mains d'Isaac et {{ColorLime}}dégâts x6{{ColorWhite}} au plus loin de lui"},
@@ -448,7 +448,7 @@ EID.descriptions["fr"].collectibles={
 	{"424", "Sac en Papier", "Les pièces ont 10% de chances d'être converties en sachet {{GrabBag}}.#Les autres ressources ont 20% de chances d'être converties en sachet {{GrabBag}}#Fait apparaître un sachet "},
 	{"425", "Veilleuse", "Éclaire dans la direction des mouvements d'Isaac#Ralentit les ennemis et projectiles pris dans le rayon de lumière"},
 	{"426", "Admiratrice Obsessionnelle", "Imite les mouvements d'Isaac avec 3 secondes de délai#Inflige des dégâts de contact"},
-	{"427", "Bloc de TNT", "Place un tonneau de TNT qui peut être déplacé#Utiliser l'objet une seconde fois fait exploser le tonneau à distance"},
+	{"427", "Bloc de TNT", "Place un baril de TNT qui peut être déplacé#Utiliser l'objet une seconde fois fait exploser le baril à distance"},
 	{"428", "Pyjama", "{{SoulHeart}} +4 cœurs d'âme#Soin complet"},
 	{"429", "Tête du Gardien", "Toucher un ennemi avec une larme a 5% de chances de faire apparaître une pièce"},
 	{"430", "Papa Mouche", "Imite les mouvements d'Isaac avec 3 secondes de délai#Tire des larmes sur les ennemis à proximité"},
@@ -575,6 +575,35 @@ EID.descriptions["fr"].collectibles={
 	{"551", "Pelle Brisée", "Le deuxième morceau d'une pelle maudite#{{UltraSecretRoom}} Permet de déterrer quelque chose d'enfoui dans la {{ColorTransform}}Dark Room"},
 	{"552", "Pelle de Maman", "Ouvre une trappe vers l'étage suivant#{{UltraSecretRoom}} Permet de déterrer quelque chose d'enfoui dans la {{ColorTransform}}Dark Room"},
 		
+}
+
+
+---------- Modifiers ----------
+
+-- Effect of Car battery on Active Items
+EID.descriptions[languageCode].carBattery = {
+	[58] = "Double la durée de l'effet", -- Book of Shadows
+	[66] = "Double la durée de l'effet ", -- The Hourglass
+	[77] = "Double la durée de l'effet", -- My Little Unicorn
+	[93] = "Double la durée de l'effet", -- The Gamekid
+	[111] = "Double les dégâts du pet", -- The Bean
+	[124] = "Déclenche deux effets", -- Dead Sea Scrolls
+	[145] = "Invoque 4 à 7 mouches bleues", -- Guppy's Head
+	[171] = "Inflige 10 dégâts supplémentaires", -- Spider Butt
+	[293] = "Double les dégâts du laser", -- Head of Krampus
+	[298] = "Double la durée de l'effet", -- Unicorn Stump
+	[351] = "Double les dégâts du pet", -- Mega Bean
+	[383] = "Divise davantage les larmes", -- Tear Detonator
+	[421] = "Double les dégâts du pet", -- Kidney Bean
+	[427] = "Place 2 barils de TNT", -- Mine Crafter
+	[477] = "Déclenche deux fois les effets des objets absorbés", -- Void
+	[482] = "Change de personnage 2 fois et retire les 2 objets les plus récents", -- Clicker
+	[485] = "25% de chances de quadrupler les objets mais 75% de chances de les faire disparaître", -- Crooked Penny
+	[486] = "Déclenche deux fois les effets des objets", -- Dull Razor
+	[488] = "Active l'effet de 2 objets", -- Metronome
+	[489] = "Déclenche l'effet d'un second dé", -- D Infinity
+	[523] = "Échange le contenu de la boîte et les ressources au sol", -- Moving Box
+	[550] = "Calme le pied pour deux vagues dans les salles concernées", -- Broken Shovel
 }
 
 ---------- Trinkets ----------

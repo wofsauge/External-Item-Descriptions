@@ -230,7 +230,7 @@ end
 local function CarBatteryCallback(descObj)
 	local text = EID:getDescriptionEntry("carBattery", descObj.ObjSubType)
 	if text ~= nil then
-		local iconStr = "#{{Collectible356}} {{ColorYellow}}"
+		local iconStr = "#{{Collectible356}} "
 		EID:appendToDescription(descObj, iconStr..text)
 	end
 	return descObj
