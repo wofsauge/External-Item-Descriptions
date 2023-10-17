@@ -716,6 +716,7 @@ EID.descriptions[languageCode].abyssSynergies = {
 -- Effect of Car battery on Active Items
 local repCarBattery = {
 	[323] = "Tears deal double damage", -- Isaac's Tears
+	[421] = "", -- Kidney Bean, double fart damage removed in Rep
 	[489] = "Triggers two dice effects. The second die effect never change", -- D Infinity
 	[523] = "", -- Moving Box
 	[556] = "Will grant two brimstones, giving extra damage", -- Sulfur
