@@ -69,7 +69,7 @@ EID.descriptions[languageCode].collectibles={
 	{"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#+8% room clear reward chance#Better chance to win while gambling"},
 	{"47", "Doctor's Remote", "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#Deals 20x damage"},
 	{"48", "Cupid's Arrow", "Piercing tears"},
-	{"49", "Shoop da Whoop!", "Using the item and shooting in a direction fires a high damage Brimstone beam"},
+	{"49", "Shoop da Whoop!", "{{Collectible118}} Using the item and shooting in a direction fires a high damage Brimstone beam"},
 	{"50", "Steven", "↑ {{Damage}} +1 Damage"},
 	{"51", "Pentagram", "↑ {{Damage}} +1 Damage#{{AngelDevilChance}} +10% Devil/Angel Room chance"},
 	{"52", "Dr. Fetus", "↓ {{Tears}} x2.5 Tear delay multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's tear damage + 30"},
@@ -295,7 +295,7 @@ EID.descriptions[languageCode].collectibles={
 	{"272", "BBF", "Friendly exploding fly#The explosion deals 60 damage#!!! The explosion can hurt Isaac"},
 	{"273", "Bob's Brain", "Dashes in the direction Isaac is shooting#Explodes when it hits an enemy#{{Poison}} The explosion deals 60 damage and poisons enemies#!!! The explosion can hurt Isaac"},
 	{"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#The orbital deals 75 damage per second"},
-	{"275", "Lil Brimstone", "{{Collectible118}} Familiar that charges and shoots a Brimstone beam#Deals 3.5 damage per tick, for a total of 31.5 damage"},
+	{"275", "Lil Brimstone", "{{Chargeable}} Familiar that charges and shoots a {{Collectible118}} blood beam#Deals 3.5 damage per tick, for a total of 31.5 damage"},
 	{"276", "Isaac's Heart", "Isaac becomes invincible#Spawns a heart familiar that follows Isaac#!!! If the heart familiar gets hit, Isaac takes damage"},
 	{"277", "Lil Haunt", "{{Fear}} Chases and fears enemies#Deals 4 damage per second"},
 	{"278", "Dark Bum", "{{Heart}} Picks up Red Hearts from the floor#{{SoulHeart}} Spawns a Soul Heart or spider for every 1.5 Red Hearts picked up"},
@@ -313,7 +313,7 @@ EID.descriptions[languageCode].collectibles={
 	{"290", "The Jar", "{{Heart}} Picking up Red Hearts while at full health stores up to 4 of them in the Jar#Using the item drops all stored hearts on the floor"},
 	{"291", "Flush!", "Turns all non-boss enemies into poop#Instantly kills poop enemies and bosses"},
 	{"292", "Satanic Bible", "{{BlackHeart}} +1 Black Heart"},
-	{"293", "Head of Krampus", "Shoot 4 Brimstone beams in the cardinal directions"},
+	{"293", "Head of Krampus", "{{Collectible118}} Shoot a 4-way blood beam"},
 	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger {{Collectible484}} Wait What? when swapping it with a different active item and picking it up again"},
 	{"295", "Magic Fingers", "Deals 2x Isaac's damage to all enemies#{{Coin}} Costs 1 coin"},
 	{"296", "Converter", "{{Heart}} Converts 2 Soul/Black Hearts into 1 heart container"},
@@ -463,7 +463,7 @@ EID.descriptions[languageCode].collectibles={
 	{"438", "Binky", "↑ {{Tears}} +0.75 Tears#↑ Size down#{{SoulHeart}} +1 Soul Heart"},
 	{"439", "Mom's Box", "{{Trinket}} Spawns a random trinket#While held:#↑ {{Luck}} +1 Luck#{{Trinket}} Doubles trinket effects"},
 	{"440", "Kidney Stone", "↑ +2 Tear height#↓ {{Speed}} -0.2 Speed#↓ {{Range}} -17 Range#Isaac occasionally stops firing and charges an attack that releases a burst of tears and a kidney stone"},
-	{"441", "Mega Blast", "{{Timer}} Fires a huge Mega Satan blood laser for 15 seconds#The laser persists between rooms and floors"},
+	{"441", "Mega Blast", "{{Timer}} Fires a huge Mega Satan blood beam for 15 seconds#The beam persists between rooms and floors"},
 	{"442", "Dark Prince's Crown", "{{Blank}} While at 1 full Red Heart:#↑ {{Tears}} +0.75 Tears#↑ {{Range}} +1.5 Range#↑ +1 Tear height#↑ {{Shotspeed}} +0.2 Shot speed#Does not work on characters without Red Hearts"}, -- Dark Princes Crown (apostrophe added to the name in Repentance)
 	{"443", "Apple!", "↑ {{Tears}} +0.3 Tears#Isaac sometimes shoots razor blades which deal 400% damage#{{Luck}} 100% chance at 14 luck"},
 	{"444", "Lead Pencil", "Isaac shoots a cluster of tears every 15 tears#Tears in the cluster deal double damage"},
@@ -591,7 +591,7 @@ EID.descriptions[languageCode].carBattery = {
 	[124] = "Triggers two effects", -- Dead Sea Scrolls
 	[145] = "Spawns 4-7 blue flies", -- Guppy's Head
 	[171] = "Deals 10 additional damage", -- Spider Butt
-	[293] = "Double lasers damage", -- Head of Krampus
+	[293] = "Double the beams damage", -- Head of Krampus
 	[298] = "Lasts 12 seconds", -- Unicorn Stump
 	[351] = "Deals twice the damage", -- Mega Bean
 	[383] = "Split splitted tears -> 6x more tears", -- Tear Detonator
