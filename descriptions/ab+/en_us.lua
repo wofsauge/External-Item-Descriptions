@@ -700,7 +700,7 @@ EID.descriptions[languageCode].trinkets={
 	{"89", "Child Leash", "Familiars stay closer to Isaac"},
 	{"90", "Brown Cap", "Poop explodes for 100 damage when destroyed"},
 	{"91", "Meconium", "33% chance for Black Poops to spawn#{{BlackHeart}} Destroying Black Poop has a 5% chance to spawn a Black Heart"},
-	{"92", "Cracked Crown", "↑ Stat increases are 33% more effective#↑ {{Tears}} +0.2 Tears#↑ {{Tears}} -1 Tear delay"}, -- work on this later
+	{"92", "Cracked Crown", "↑ {{Tears}} x0.8 Tear delay#↑ x1.33 Stat multiplier for the stats that are above 1 {{Speed}} speed, 3.5 {{Damage}} damage, 23.75 {{Range}} range, 1 {{Shotspeed}} shot speed"}, -- work on this later
 	{"93", "Used Diaper", "15% chance per room for all fly enemies to become friendly"},
 	{"94", "Fish Tail", "Doubles all blue fly / spider spawns"},
 	{"95", "Black Tooth", "{{Poison}} 3% chance to shoot poison tooth tears"},
