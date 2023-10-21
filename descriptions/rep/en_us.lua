@@ -73,7 +73,7 @@ local repCollectibles={
 	[152] = {"152", "Technology 2", "↓ {{Tears}} x0.67 Fire rate multiplier#Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 13% of Isaac's damage per tick"}, -- Technology 2
 	[153] = {"153", "Mutant Spider", "↓ {{Tears}} x0.42 Fire rate multiplier#Isaac shoots 4 tears at once"}, -- Mutant Spider
 	[155] = {"155", "The Peeper", "↑ {{Damage}} x1.35 Damage multiplier for the left eye#Floats around the room#Deals 17.1 contact damage per second"}, -- The Peeper
-	[158] = {"158", "Crystal Ball", "Spawns a {{SoulHeart}} Soul Heart, {{Rune}} rune or {{Card}} card#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)#{{Blank}} While held:#{{PlanetariumChance}} +15% Planetarium chance#{{PlanetariumChance}} +100% if a {{TreasureRoom}} Treasure Room was skipped"}, -- Crystal Ball
+	[158] = {"158", "Crystal Ball", "Spawns a {{SoulHeart}} Soul Heart, {{Rune}} rune or {{Card}} card#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)#While held:#{{PlanetariumChance}} +15% Planetarium chance#{{PlanetariumChance}} +100% if a {{TreasureRoom}} Treasure Room was skipped"}, -- Crystal Ball
 	[161] = {"161", "Ankh", "{{Player4}} Respawn as ??? (Blue Baby) on death#{{Player25}} Tainted ??? simply revives"},
 	[169] =	{"169", "Polyphemus", "↑ {{Damage}} +4 Damage#↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.42 Fire rate multiplier#Tears pierce killed enemies if there is leftover damage"}, --Polyphemus
 	[171] = {"171", "Spider Butt", "{{Slow}} Slows down enemies for 4 seconds#Deals 10 damage to all enemies#Enemies killed by the item spawn blue spiders"}, -- Spider Butt
@@ -102,7 +102,7 @@ local repCollectibles={
 	[226] = {"226", "Black Lotus", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#{{SoulHeart}} +1 Soul Heart#{{BlackHeart}} +1 Black Heart"}, -- Black Lotus
 	[228] = {"228", "Mom's Perfume", "↑ {{Tears}} +0.5 Fire rate#{{Fear}} 15% chance to shoot Fear tears#{{Luck}} 100% chance at 85 luck"}, -- Mom's Perfume
 	[229] =	{"229", "Monstro's Lung", "↓ {{Tears}} x0.23 Fire rate multiplier#{{Chargeable}} Tears are charged and released in a shotgun style attack"}, --Monstro's Lung
-	[230] = {"230", "Abaddon", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1.5 Damage#Converts all {{EmptyHeart}} heart containers into {{BlackHeart}} Black Hearts#{{BlackHeart}} +2 Black Hearts#{{Fear}} 15% chance to shoot fear tears#{{Luck}} 100% chance at 85 luck"}, -- Abaddon
+	[230] = {"230", "Abaddon", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1.5 Damage#{{BlackHeart}} Converts all heart containers into Black Hearts#{{BlackHeart}} +2 Black Hearts#{{Fear}} 15% chance to shoot fear tears#{{Luck}} 100% chance at 85 luck"}, -- Abaddon
 	[232] = {"232", "Stop Watch", "↑ {{Speed}} +0.3 Speed#{{Slow}} Enemies are permanently slowed down to 80% of their attack and movement speed"}, -- Stop Watch
 	[233] = {"233", "Tiny Planet", "↑ {{Range}} +6.5 Range#Spectral tears#Isaac's tears orbit around him"}, -- Tiny Planet
 	[245] = {"245", "20/20", "↓ {{Damage}} x0.8 Damage multiplier#Isaac shoots 2 tears at once#Removes the tear rate penalty of {{Collectible153}} Mutant Spider, {{Collectible2}} The Inner Eye and {{Collectible169}} Polyphemus"}, -- 20/20
@@ -184,7 +184,7 @@ local repCollectibles={
 	[405] = {"405", "GB Bug", "{{Throwable}} Throwable (double-tap shoot)#Rerolls enemies and pickups it comes in contact with"}, -- GB Bug
 	[407] = {"407", "Purity", "↑ Boosts one of Isaac's stats depending on the color of the aura#Taking damage removes the effect, and grants a new effect in the next room#{{ColorYellow}}Yellow{{CR}} = ↑ {{Speed}} +0.5 Speed#{{ColorBlue}}Blue{{CR}} = ↑ {{Tears}} +2 Fire rate#{{ColorRed}}Red{{CR}} = ↑ {{Damage}} +4 Damage#{{ColorOrange}}Orange{{CR}} = ↑ {{Range}} +3 Range"},
 	[408] = {"408", "Athame", "Chance for a black brimstone ring to spawn around killed enemies"}, -- Athame
-	[415] = {"415", "Crown Of Light", "{{SoulHeart}} +2 Soul Hearts#{{Blank}} If Isaac has no damaged Red Heart containers:#↑ {{Damage}} x2 Damage multiplier#↓ {{Shotspeed}} -0.3 Shot speed#Taking any damage removes the effect for the room"}, -- Crown Of Light
+	[415] = {"415", "Crown Of Light", "{{SoulHeart}} +2 Soul Hearts#If Isaac has no damaged heart containers:#↑ {{Damage}} x2 Damage multiplier#↓ {{Shotspeed}} -0.3 Shot speed#Taking any damage removes the effect for the room"}, -- Crown Of Light
 	[416] = {"416", "Deep Pockets", "{{Coin}} If clearing a room would yield no reward, spawns 1-3 coins#{{Coin}} Increases the coin cap to 999"}, -- Deep Pockets
 	[417] = {"417", "Succubus", "Bounces around the room surrounded by a damaging aura that deals 7.5-10 damage per second#↑ {{Damage}} x1.5 Damage multiplier while standing in the aura"}, -- Succubus
 	[419] = {"419", "Teleport 2.0", "Teleports Isaac to a room that has not been cleared yet#Hierarchy: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"}, -- Teleport 2.0
@@ -197,7 +197,7 @@ local repCollectibles={
 	[433] = {"433", "My Shadow", "A small shadow follows Isaac#{{Timer}} When an enemy touches the shadow a friendly black charger spawns for the room#The charger deals 8.7 damage per hit"}, -- My Shadow
 	[437] = {"437", "D7", "Restarts a room and respawns all enemies#Can be used to get multiple room clear rewards from a single room"}, -- D7
 	[440] = {"440", "Kidney Stone", "Isaac occasionally stops firing and charges an attack that releases a burst of tears and a kidney stone"}, -- Kidney Stone
-	[442] = {"442", "Dark Prince's Crown", "{{Blank}} While at 1 full Red Heart:#↑ {{Tears}} +2 Fire rate#↑ {{Range}} +1.5 Range#↑ {{Shotspeed}} +0.2 Shot speed#Does not work on characters without Red Hearts"}, -- Dark Prince's Crown
+	[442] = {"442", "Dark Prince's Crown", "While at 1 full Red Heart:#↑ {{Tears}} +2 Fire rate#↑ {{Range}} +1.5 Range#↑ {{Shotspeed}} +0.2 Shot speed#Does not work on characters without Red Hearts"}, -- Dark Prince's Crown
 	[444] = {"444", "Lead Pencil", "Isaac shoots a cluster of tears every 15 tears"}, -- Lead Pencil
 	[448] = {"448", "Shard of Glass", "Upon taking damage:#{{Heart}} 25% chance to spawn a Red Heart#{{BleedingOut}} Isaac bleeds, spewing tears in the direction he is shooting#The bleeding does half a Red Heart of damage every 20 seconds#The bleeding stops if a Red Heart is healed, all Red Hearts are empty, or the next damage would kill Isaac"}, -- Shard of Glass
 	[450] = {"450", "Eye of Greed", "{{Damage}} Every 20 tears, Isaac shoots a coin tear that deals x1.5 +10 damage#Enemies hit with the coin turn into gold#{{Coin}} Killing a gold enemy drops 1-3 coins#!!! Firing a coin tear costs 1 coin"}, -- Eye of Greed
@@ -213,15 +213,15 @@ local repCollectibles={
 	[474] = {"474", "Broken Glass Cannon", "Using the item turns it back into Glass Cannon"}, -- Broken Glass Cannon
 	[476] =	{"476", "D1", "Duplicates a random pickup in the room#Duplicated pickups may not be identical to the original"}, -- D1
 	[477] = {"477", "Void", "Consumes all pedestal items in the room#Active items: Their effects activate with every future use of Void#↑ Passive items grant two random stat ups"},
-	[487] = {"487", "Potato Peeler", "Removes 1 heart container for: #↑ {{Damage}} +0.2 Damage#{{Collectible73}} A Cube of Meat#{{Timer}} Receive for the room:#↑ {{Range}} +1.5 Range#{{Collectible214}} Leave a trail of blood creep"},
+	[487] = {"487", "Potato Peeler", "{{EmptyHeart}} Removes 1 heart container for: #↑ {{Damage}} +0.2 Damage#{{Collectible73}} A Cube of Meat#{{Timer}} Receive for the room:#↑ {{Range}} +1.5 Range#{{Collectible214}} Leave a trail of blood creep"},
 	[489] = {"489", "D Infinity", "Can be made to act as any die item (except {{Collectible723}} Spindown Dice) with {{ButtonRT}}#Charge time varies based on the last die used and updates with every use"}, -- D Infinity
 	[491] = {"491", "Acid Baby", "{{Pill}} Spawns a random pill every 7 rooms#{{Poison}} Using a pill poisons all enemies in the room"}, -- Acid Baby
-	[493] = {"493", "Adrenaline", "↑ {{Damage}} Damage up for every empty Red Heart container#The more empty heart containers, the bigger the bonus for each new one"}, -- Adrenaline
+	[493] = {"493", "Adrenaline", "↑ {{Damage}} Damage up for every empty heart container#The more empty heart containers, the bigger the bonus for each new one"}, -- Adrenaline
 	[494] = {"494", "Jacob's Ladder", "Tears spawn a spark of electricity on impact#Sparks deal half of Isaac's damage#Sparks can spread to other enemies"}, -- Jacob's Ladder
 	[495] = {"495", "Ghost Pepper", "8.33% chance to shoot a blue flame that blocks enemy shots and deals contact damage#The flame shrinks and disappears after 2 seconds#{{Luck}} 50% chance at 10 luck#"}, -- Ghost Pepper
 	[496] = {"496", "Euthanasia", "3.33% chance to shoot a needle#{{Luck}} 25% chance at 13 luck#Needles kill normal enemies instantly, bursting them into 10 tears#{{Damage}} Needles deal 3x damage against bosses"}, -- Euthanasia
 	[497] = {"497", "Camo Undies", "{{Confusion}} Entering a room camouflages Isaac and confuses all enemies until a tear is shot#↑ {{Speed}} +0.5 Speed while cloaked#Uncloaking deals damage around Isaac and grants a very brief fire rate and damage up"},
-	[501] = {"501", "Greed's Gullet", "+1 Heart container for every 25 coins Isaac has#{{Collectible416}} +1 Heart container for every 100 coins past 99#{{Player14}} Keeper can gain additional coin containers"}, -- Greed's Gullet
+	[501] = {"501", "Greed's Gullet", "{{Heart}} +1 Heart container for every 25 coins Isaac has#{{Collectible416}} +1 Heart container for every 100 coins past 99#{{Player14}} Keeper can gain additional coin containers"}, -- Greed's Gullet
 	[503] = {"503", "Little Horn", "5% chance to shoot a tear that summons a Big Horn hand#{{Luck}} 20% chance at 15 luck#The hand instantly kills enemies and deals 36 damage to bosses#Isaac deals 7 contact damage per second"}, -- Little Horn
 	[504] = {"504", "Brown Nugget", "Spawns a fly that shoots at enemies#Each shot deals 3.5 damage"}, -- Brown Nugget
 	[506] = {"506", "Backstabber", "{{BleedingOut}} Hitting an enemy in the back deals double damage and causes bleeding, which makes enemies leave creep and take damage when they move"},
@@ -359,7 +359,7 @@ local repCollectibles={
 	[673] = {"673", "Redemption", "{{DevilRoom}} Entering a new floor after visiting a Devil Room and not taking any item/pickup grants:#↑ {{Damage}} +1 Damage#{{SoulHeart}} +1 Soul Heart"}, -- Redemption
 	[674] = {"674", "Spirit Shackles", "Taking fatal damage transforms Isaac into a ghost chained to his dead body and allows him to continue to fight with half a heart#If the ghost survives, Isaac revives after 10 seconds#Must be recharged by picking up a Soul Heart"}, -- Spirit Shackles
 	[675] = {"675", "Cracked Orb", "Taking damage:#Unlocks all locked doors in the room#Reveals a random room on the map#Destroys all tinted and crawlspace rocks"}, -- Cracked Orb
-	[676] = {"676", "Empty Heart", "{{EmptyHeart}} +1 Heart container when at 1 Red Heart or less at the start of a new floor#No effect for characters that can't have Red Hearts"}, -- Empty Heart
+	[676] = {"676", "Empty Heart", "{{EmptyHeart}} +1 Empty heart container when at 1 Red Heart or less at the start of a new floor#No effect for characters that can't have Red Hearts"}, -- Empty Heart
 	[677] = {"677", "Astral Projection", "{{Timer}} Taking damage in an uncleared room grants for the fight:#Spectral tears#Flight#Negates the next damage taken#Stops time for 2 seconds#Greatly increases speed and fire rate for 2 seconds"}, -- Astral Projection
 	[678] = {"678", "C Section", "{{Chargeable}} Replaces Isaac's tears with a charge attack that shoots homing, spectral fetus tears#{{Damage}} Fetus tears deal about 2.8x Isaac's damage per second"}, -- C Section
 	[679] = {"679", "Lil Abaddon", "{{Collectible399}} Familiar that charges and unleashes a Maw of the Void circle"}, -- Lil Abaddon
@@ -408,7 +408,7 @@ local repCollectibles={
 	[722] = {"722", "Anima Sola", "Chains down the nearest enemy for 5 seconds#Chained enemies cannot move or attack"}, -- Anima Sola
 	[723] = {"723", "Spindown Dice", "Rerolls all items in the room by decreasing their internal ID by one"}, -- Spindown Dice
 	[724] = {"724", "Hypercoagulation", "{{Heart}} Taking damage drops a half or full Red Heart depending on how much Isaac lost#The hearts launch out and despawn after 1.5 seconds"}, -- Hypercoagulation
-	[725] = {"725", "IBS", "Dealing enough damage causes Isaac to flash red#{{Blank}} Releasing the fire button while Isaac is flashing either:#Throws a random poop#Creates buffing creep#{{Poison}} Farts a poison cloud#Spawns 5 live bombs"}, -- IBS
+	[725] = {"725", "IBS", "Dealing enough damage causes Isaac to flash red#Releasing the fire button while Isaac is flashing either:#Throws a random poop#Creates buffing creep#{{Poison}} Farts a poison cloud#Spawns 5 live bombs"}, -- IBS
 	[726] = {"726", "Hemoptysis", "Double-tapping a fire button makes Isaac sneeze blood#The sneeze deals 1.5x Isaac's damage#1 second cooldown#{{BrimstoneCurse}} Affected enemies take extra damage from Brimstone beams"}, -- Hemoptysis
 	[727] = {"727", "Ghost Bombs", "{{Bomb}} +5 Bombs#Isaac's bombs spawn ghosts that chase enemies#Ghosts deal 2x Isaac's damage per second and explode after 10 seconds"}, -- Ghost Bombs
 	[728] = {"728", "Gello", "A demon familiar bursts out of Isaac for the room#The demon mimics Isaac's tears, stats and effects"}, -- Gello
@@ -425,7 +425,7 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 
 EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "All item pedestals cycle between two options"},
-	{"Magdalene", "", "↑ {{Heart}} +1 Health#The max amount of Heart Containers is raised to 18"},
+	{"Magdalene", "", "↑ {{Heart}} +1 Health#The max amount of heart containers is raised to 18"},
 	{"Cain", "", "↑ {{Luck}} +1 Luck#{{Arcade}} All future floors will contain an upgraded Arcade Room (except for Dark Room and Chest)#{{Collectible46}} Greatly increases Lucky Foot's chances of winning effect"},
 	{"Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#{{Collectible34}} Grants The Book of Belial if Judas is not currently holding it#↑ {{Damage}} The damage boost it grants scales with the amount of charges the active item combined with it has#Grants special effects for certain active items"},
 	{"???", "", "{{SoulHeart}} Soul Hearts gained from health upgrades are doubled"},
@@ -446,7 +446,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Jacob", "", "The character who picks up the item gains copies of three of the other character's passive items"},
 	{"Esau", "", "The character who picks up the item gains copies of three of the other character's passive items"},
 	{"Tainted Isaac", "", "Adds 4 passive item slots#Does not consume a slot itself"},
-	{"Tainted Magdalene", "", "{{Heart}} Adds 1 Red Heart container that doesn't drain"},
+	{"Tainted Magdalene", "", "{{Heart}} Adds 1 heart container that doesn't drain"},
 	{"Tainted Cain", "", "Doubles the amount of pickups dropped from collecting an item"},
 	{"Tainted Judas", "", "{{Collectible705}} Increases the range in which Dark Arts hits enemies and tears"},
 	{"Tainted ???", "", "{{PoopPickup}} Increases the maximum number of poops that can be carried to 29"},
