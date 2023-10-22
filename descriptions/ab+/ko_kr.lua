@@ -20,16 +20,30 @@ EID.descriptions[languageCode].languageName = "Korean"
 -- Fonts to be used with this languagepack
 --[[
 	Description for Korean fonts :
-	korean_hcrdotum(함초롬돋움) - Default Korean font that was used from former EID Korean. Recommended LineHeight : 10
+	korean_yoonwebdotum9(윤디자인웹돋움) - Small size of default Korean font that was used from former EID Korean. Recommended LineHeight : 11
+	korean_yoonwebdotum10(윤디자인웹돋움) - Default Korean font that was used from former EID Korean. Recommended LineHeight : 13
 	korean_lanapixel(Lanapixel) - Used for official translation for TBoI : Repentance. Recommended LineHeight : 11
 	korean_soyakkoma(소야꼬마9) - A fancy font that improves readability. Borderless/Inverted version available. Recommended LineHeight : 13
 	korean_soyanon(소야논8) - A fancy font that that was used from former EID Korean. Recommended LineHeight : 11
 	korean_galmoori9(갈무리9) - A font that inspired from Nintendo DS Korean font. Recommended LineHeight : 11
 	korean_galmoori11(갈무리11) - A font that inspired from Nintendo DS Korean font. Used for unofficial Korean mod by Blackcreamtea. Recommended LineHeight : 13
 
-	korean_galmoori9, korean_galmoori11 is added for community request.
+	korean_yoonwebdotum10, korean_galmoori9, korean_galmoori11 is added for community request.
+	eid_korean_hcrdotum_0.png is untouched due to game crashes for changing file names.
  ]]
-EID.descriptions[languageCode].fonts = {{name="korean_hcrdotum", lineHeight=11, textboxWidth = 150}, {name="korean_lanapixel", lineHeight=12, textboxWidth = 150}, {name="korean_soyakkoma", lineHeight=13, textboxWidth = 150}, {name="korean_soyakkoma_borderless", lineHeight=13, textboxWidth = 150}, {name="korean_soyakkoma_inverted", lineHeight=13, textboxWidth = 150}, {name="korean_soyanon", lineHeight=12, textboxWidth = 150}, {name="korean_galmoori9", lineHeight=12, textboxWidth = 150}, {name="korean_galmoori11", lineHeight=14, textboxWidth = 160}}
+EID.descriptions[languageCode].fonts = {
+	{name="korean_yoonwebdotum9", lineHeight=11, textboxWidth = 150},
+	{name="korean_yoonwebdotum10", lineHeight=13, textboxWidth = 175},
+	{name="korean_yoonwebdotum10_borderless", lineHeight=13, textboxWidth = 175},
+	{name="korean_yoonwebdotum10_inverted", lineHeight=13, textboxWidth = 175},
+	{name="korean_lanapixel", lineHeight=12, textboxWidth = 150},
+	{name="korean_soyakkoma", lineHeight=13, textboxWidth = 150},
+	{name="korean_soyakkoma_borderless", lineHeight=13, textboxWidth = 150},
+	{name="korean_soyakkoma_inverted", lineHeight=13, textboxWidth = 150},
+	{name="korean_soyanon", lineHeight=12, textboxWidth = 150},
+	{name="korean_galmoori9", lineHeight=12, textboxWidth = 150},
+	{name="korean_galmoori11", lineHeight=14, textboxWidth = 160}
+}
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
