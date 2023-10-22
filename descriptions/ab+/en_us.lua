@@ -682,7 +682,7 @@ EID.descriptions[languageCode].trinkets={
 	{"71", "Bob's Bladder", "Isaac's bombs leave damaging creep"},
 	{"72", "Watch Battery", "{{Battery}} 6.66% chance for the room clear reward to be a battery#{{Battery}} +10% chance for random pickups to be a battery#{{Battery}} 5% chance to add 1 charge to held active item when clearing a room"},
 	{"73", "Blasting Cap", "{{Bomb}} 10% chance for exploding bombs to drop a bomb pickup"},
-	{"74", "Stud Finder", "{{LadderRoom}} 0.5% chance to reveal a crawlspace when breaking a rock"},
+	{"74", "Stud Finder", "{{LadderRoom}} +0.5% chance to reveal a crawlspace when breaking a rock"},
 	{"75", "Error", "Grants a random trinket effect every room"},
 	{"76", "Poker Chip", "↑ 50% chance for chests to spawn extra pickups#↓ 50% chance for chests to contain a single fly"},
 	{"77", "Blister", "Increases knockback"},
