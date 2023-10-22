@@ -7,7 +7,7 @@ EID.inModifierPreview = false
 EID.TabDescThisFrame = false
 
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
-EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, }
+EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, CollectibleType.COLLECTIBLE_CAR_BATTERY }
 local maxSlot = 1
 -- Repentance modifiers
 if EID.isRepentance then
@@ -17,7 +17,7 @@ if EID.isRepentance then
 		CollectibleType.COLLECTIBLE_BINGE_EATER, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, CollectibleType.COLLECTIBLE_SPINDOWN_DICE, 
 		CollectibleType.COLLECTIBLE_TAROT_CLOTH, CollectibleType.COLLECTIBLE_MOMS_BOX, 59, --Birthright Belial
 		CollectibleType.COLLECTIBLE_BLANK_CARD, CollectibleType.COLLECTIBLE_CLEAR_RUNE, CollectibleType.COLLECTIBLE_PLACEBO, 
-		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP,
+		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP, CollectibleType.COLLECTIBLE_CAR_BATTERY
 	}
 end
 EID.collectiblesOwned = {}
@@ -223,6 +223,15 @@ local function SacrificeRoomCallback(descObj)
 			local splitPoint = string.find(descObj.Description, '#', 1)
 			descObj.Description = descObj.Description:sub(1,splitPoint-1)
 		end
+	end
+	return descObj
+end
+
+local function CarBatteryCallback(descObj)
+	local text = EID:getDescriptionEntry("carBattery", descObj.ObjSubType)
+	if text ~= nil then
+		local iconStr = "#{{Collectible356}} "
+		EID:appendToDescription(descObj, iconStr..text)
 	end
 	return descObj
 end
@@ -736,6 +745,7 @@ local function EIDConditionsAB(descObj)
 			if EID.collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
 			if EID.blackRuneOwned then table.insert(callbacks, BlackRuneCallback) end
 		end
+		if EID.collectiblesOwned[356] then table.insert(callbacks, CarBatteryCallback) end
 	end
 	
 	return callbacks

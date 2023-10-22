@@ -20,16 +20,30 @@ EID.descriptions[languageCode].languageName = "Korean"
 -- Fonts to be used with this languagepack
 --[[
 	Description for Korean fonts :
-	korean_hcrdotum(함초롬돋움) - Default Korean font that was used from former EID Korean. Recommended LineHeight : 10
+	korean_yoonwebdotum9(윤디자인웹돋움) - Small size of default Korean font that was used from former EID Korean. Recommended LineHeight : 11
+	korean_yoonwebdotum10(윤디자인웹돋움) - Default Korean font that was used from former EID Korean. Recommended LineHeight : 13
 	korean_lanapixel(Lanapixel) - Used for official translation for TBoI : Repentance. Recommended LineHeight : 11
 	korean_soyakkoma(소야꼬마9) - A fancy font that improves readability. Borderless/Inverted version available. Recommended LineHeight : 13
 	korean_soyanon(소야논8) - A fancy font that that was used from former EID Korean. Recommended LineHeight : 11
 	korean_galmoori9(갈무리9) - A font that inspired from Nintendo DS Korean font. Recommended LineHeight : 11
 	korean_galmoori11(갈무리11) - A font that inspired from Nintendo DS Korean font. Used for unofficial Korean mod by Blackcreamtea. Recommended LineHeight : 13
 
-	korean_galmoori9, korean_galmoori11 is added for community request.
+	korean_yoonwebdotum10, korean_galmoori9, korean_galmoori11 is added for community request.
+	eid_korean_hcrdotum_0.png is untouched due to game crashes for changing file names.
  ]]
-EID.descriptions[languageCode].fonts = {{name="korean_hcrdotum", lineHeight=11, textboxWidth = 150}, {name="korean_lanapixel", lineHeight=12, textboxWidth = 150}, {name="korean_soyakkoma", lineHeight=13, textboxWidth = 150}, {name="korean_soyakkoma_borderless", lineHeight=13, textboxWidth = 150}, {name="korean_soyakkoma_inverted", lineHeight=13, textboxWidth = 150}, {name="korean_soyanon", lineHeight=12, textboxWidth = 150}, {name="korean_galmoori9", lineHeight=12, textboxWidth = 150}, {name="korean_galmoori11", lineHeight=14, textboxWidth = 160}}
+EID.descriptions[languageCode].fonts = {
+	{name="korean_yoonwebdotum9", lineHeight=11, textboxWidth = 150},
+	{name="korean_yoonwebdotum10", lineHeight=13, textboxWidth = 175},
+	{name="korean_yoonwebdotum10_borderless", lineHeight=13, textboxWidth = 175},
+	{name="korean_yoonwebdotum10_inverted", lineHeight=13, textboxWidth = 175},
+	{name="korean_lanapixel", lineHeight=12, textboxWidth = 150},
+	{name="korean_soyakkoma", lineHeight=13, textboxWidth = 150},
+	{name="korean_soyakkoma_borderless", lineHeight=13, textboxWidth = 150},
+	{name="korean_soyakkoma_inverted", lineHeight=13, textboxWidth = 150},
+	{name="korean_soyanon", lineHeight=12, textboxWidth = 150},
+	{name="korean_galmoori9", lineHeight=12, textboxWidth = 150},
+	{name="korean_galmoori11", lineHeight=14, textboxWidth = 160}
+}
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
@@ -587,6 +601,39 @@ EID.descriptions[languageCode].collectibles={
 	{"552", "엄마의 삽", "사용 시 다음 스테이지로 가는 다락문을 생성합니다.#{{Player16}} Dark Room 스테이지의 특정 타일 위에 사용 시 The Forgotten 캐릭터를 해금할 수 있습니다."}, -- Mom's Shovel
 }
 
+
+---------- Modifiers ----------
+
+-- Effect of Car battery on Active Items
+EID.descriptions[languageCode].carBattery = {
+	[58] = "지속시간 2배(20초)", -- Book of Shadows
+	[66] = "지속시간 2배(16초)", -- The Hourglass
+	[77] = "지속시간 2배(12초)", -- My Little Unicorn
+	[93] = "지속시간 2배(13초)", -- The Gamekid
+	[105] = "!!! 일부 아이템이 배열에서 지워질 수 있음", -- The D6
+	[111] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- The Bean
+	[124] = "2개의 랜덤 액티브 효과 발동", -- Dead Sea Scrolls
+	[145] = "파리가 4~8개로 증가", -- Guppy's Head
+	[171] = "피해량 x2(20), 효과 지속시간은 연장되지 않음", -- Spider Butt
+	[283] = "!!! 일부 아이템이 배열에서 지워질 수 있음", -- D100
+	[284] = "!!! 일부 아이템이 배열에서 지워질 수 있음", -- D4
+	[293] = "혈사의 피해량 x2", -- Head of Krampus
+	[298] = "지속시간 2배(12초)", -- Unicorn Stump
+	[351] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- Mega Bean
+	[383] = "눈물이 36개로 분열됩니다.", -- Tear Detonator
+	[421] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- Kidney Bean
+	[427] = "!!! 캐릭터의 위치에 폭발을 일으킵니다.", -- Mine Crafter
+	[437] = "!!! 적을 2배로 소환합니다. (방 클리어 보상이 늘어나지 않음)", -- D7
+	[477] = "흡수한 아이템을 2번 발동합니다.", -- Void
+	[482] = "!!! 패시브 아이템 2개 제거 및 캐릭터 2회 변경", -- Clicker
+	[485] = "아이템이 4배로 복사하나, 실패 확률이 75%로 증가", -- Crooked Penny
+	[486] = "피격 시 효과 2번 발동", -- Dull Razor
+	[488] = "!!! 2개의 랜덤 아이템의 효과가 발동됩니다.", -- Metronome
+	[489] = "!!! 랜덤 주사위 아이템을 하나 더 발동합니다.", -- D Infinity
+	[523] = "상자의 내용물과 그 방의 아이템/픽업 내용물을 뒤바꿉니다.", -- Moving Box
+	[550] = "사용 이후 2개의 방/{{ChallengeRoom}}{{BossRushRoom}}웨이브에서 엄마발이 떨어지지 않습니다.", -- Broken Shovel
+}
+
 ---------- Trinkets ----------
 EID.descriptions[languageCode].trinkets={
 	{"1", "삼킨 동전", "피격 시 {{Coin}}동전을 1~2개 드랍합니다."}, -- Swallowed Penny
@@ -673,7 +720,7 @@ EID.descriptions[languageCode].trinkets={
 	{"82", "황금 말발굽", "스테이지 입장 시 15% 확률로 {{TreasureRoom}}보물방 아이템이 2개가 나오며 하나를 선택하면 나머지는 사라집니다."}, -- Golden Horse Shoe
 	{"83", "상점 열쇠", "{{Shop}}상점을 열쇠 소모 없이 열 수 있습니다."}, -- Store Key
 	{"84", "그리드의 갈비뼈", "{{Shop}}상점과 {{SecretRoom}}비밀방에서 Greed/Super Greed가 등장하지 않습니다.#이미 Greed를 처치하였을 경우 재입장 시 상점이 복원됩니다.#방 클리어 시 하트가 등장할 경우 33%의 확률로 {{Coin}}동전으로 바뀝니다."}, -- Rib of Greed
-	{"85", "업보", "!!! 기부기계에 기부 시 확률적으로 아래 효과 중 하나 발동:#{{Coin}}동전 +1#{{Blank}} {{Heart}}빨간하트 한칸 회복#{{Blank}} {{LuckSmall}}행운 +1#{{Blank}} 거지 소환#{{Blank}}"}, -- Karma
+	{"85", "업보", "!!! 기부기계에 기부 시 33%의 확률로 아래 효과 중 하나 발동:#{{Coin}}동전 +1(40%)#{{Blank}} {{Heart}}빨간하트 한칸 회복(40%)#{{Blank}} {{LuckSmall}}행운 +1(15%)#{{Blank}} 거지 소환(5%)"}, -- Karma
 	{"86", "꼬마 라바", "똥을 파괴할 때마다 파란 아군 파리를 소환합니다."}, -- Lil Larva
 	{"87", "엄마의 로켓", "열쇠를 소모할 때마다 {{HalfHeart}}체력 반칸을 회복합니다.#{{Heart}}빨간하트 반칸 픽업을 한칸으로 바꿉니다."}, -- Mom's Locket
 	{"88", "필요없어!", "{{TreasureRoom}}보물방, {{Shop}}상점, {{DevilRoom}}악마방, {{AngelRoom}}천사방에서 99% 확률로 액티브 아이템이 나오지 않습니다."}, -- NO!
