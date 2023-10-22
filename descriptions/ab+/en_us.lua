@@ -200,7 +200,7 @@ EID.descriptions[languageCode].collectibles={
 	{"177", "Portable Slot", "Portable slot machine#{{Coin}} Spend 1 coin for a chance to spawn a pickup"},
 	{"178", "Holy Water", "Taking damage spills a pool of creep#The creep deals 24 damage per second"},
 	{"179", "Fate", "{{EternalHeart}} +1 Eternal Heart#Flight"},
-	{"180", "The Black Bean", "Isaac farts when touched#{{Poison}} The fart poisons enemies"},
+	{"180", "The Black Bean", "Isaac farts when damaged#{{Poison}} The fart poisons enemies"},
 	{"181", "White Pony", "{{Speed}} Sets your Speed to at least 1.5#Flight while held#Using the item dashes in the direction of Isaac's movement, leaving behind beams of light"},
 	{"182", "Sacred Heart", "↑ {{Heart}} +1 Health#↑ {{Damage}} x2.3 Damage multiplier#↑ {{Damage}} +1 Damage#↑ {{Range}} +0.38 Range#↑ +0.75 Tear height#↓ {{Tears}} -0.4 Tears#↓ {{Shotspeed}} -0.25 Shot speed#{{Heart}} Full health#Homing tears"},
 	{"183", "Tooth Picks", "↑ {{Tears}} +0.7 Tears#↑ {{Shotspeed}} +0.16 Shot speed"},
