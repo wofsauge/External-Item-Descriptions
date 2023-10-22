@@ -749,7 +749,7 @@ EID.descriptions[languageCode].cards={
 	{"6", "V - The Hierophant", "{{SoulHeart}} Spawns 2 Soul Hearts"},
 	{"7", "VI - The Lovers", "{{Heart}} Spawns 2 Red Hearts"},
 	{"8", "VII - The Chariot", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot but deals 40 contact damage per second"},
-	{"9", "VIII - Justice", "Spawns a random {{UnknownHeart}} heart, {{Coin}} coin, {{Bomb}} bomb and {Key}} key"},
+	{"9", "VIII - Justice", "Spawns a random {{UnknownHeart}} heart, {{Coin}} coin, {{Bomb}} bomb and {{Key}} key"},
 	{"10", "IX - The Hermit", "{{Shop}} Teleports Isaac to the Shop"},
 	{"11", "X - Wheel of Fortune", "Spawns a {{Slotmachine}} Slot Machine or {{FortuneTeller}} Fortune Machine"},
 	{"12", "XI - Strength", "{{Timer}} Receive for the room:#↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +0.3 Damage#↑ {{Damage}} x1.5 Damage multiplier#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"},
