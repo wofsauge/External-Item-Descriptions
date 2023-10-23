@@ -432,7 +432,7 @@ EID.descriptions[languageCode].collectibles={
 	{"407", "Purity", "↑ Boosts one of Isaac's stats depending on the color of the aura#Taking damage removes the effect, and gives Isaac a new effect in the next room#{{ColorYellow}}Yellow{{CR}} = ↑ {{Speed}} +0.5 Speed#{{ColorBlue}}Blue{{CR}} = ↑ {{Tears}} -4 Tear delay#{{ColorRed}}Red{{CR}} = ↑ {{Damage}} +4 Damage#{{ColorOrange}}Orange{{CR}} = ↑ {{Range}} +7.5 Range, ↑ +1 Tear height"},
 	{"408", "Athame", "Taking damage creates a black brimstone ring around Isaac#{{BlackHeart}} Enemies killed by the ring have a chance to drop a Black Heart"},
 	{"409", "Empty Vessel", "{{BlackHeart}} +2 Black Hearts#{{EmptyHeart}} When Isaac has no Red Hearts:#Flight#Every 40 seconds while in a hostile room, gain a shield for 10 seconds"},
-	{"410", "Evil Eye", "3.33% chance to shoot an eye#The eye moves in a straight line and shoots tears in the same direction as Isaac"},
+	{"410", "Evil Eye", "3.33% chance to shoot an eye#{{Luck}} 10% chance at 20 luck#The eye moves in a straight line and shoots tears in the same direction as Isaac"},
 	{"411", "Lusty Blood", "↑ {{Damage}} +0.5 Damage for each enemy killed in the room#Caps at +5 Damage after 10 kills"},
 	{"412", "Cambion Conception", "Taking damage 15 times spawns a permanent demon familiar#After two familiars, it takes 30 instead of 15#Caps at 4 familiars"},
 	{"413", "Immaculate Conception", "Picking up 15 hearts spawns a permanent angelic familiar#Caps at 5 familiars#{{SoulHeart}} If all familiars have been granted, spawns a Soul Heart instead"},
