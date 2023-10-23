@@ -731,7 +731,7 @@ EID.descriptions[languageCode].trinkets={
 	{"120", "Hairpin", "{{Battery}} Entering an uncleared boss room fully recharges active items"},
 	{"121", "Wooden Cross", "{{Collectible313}} Negates the first damage taken on the floor"},
 	{"122", "Butter!", "Using an active item drops it on a pedestal on the ground#Taking damage has a 2% chance to drop one of Isaac's passive items"},
-	{"123", "Filigree Feather", "Angel bosses drop Angel items instead of Key Pieces"},
+	{"123", "Filigree Feather", "Angel bosses drop angel items instead of Key Pieces"},
 	{"124", "Door Stop", "The last door used stays open"},
 	{"125", "Extension Cord", "Connects all familiars with beams of electricity#The beams deal 6 damage"},
 	{"126", "Rotten Penny", "Picking up a coin spawns a blue fly"},
