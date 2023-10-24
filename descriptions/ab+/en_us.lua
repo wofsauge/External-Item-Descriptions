@@ -465,7 +465,7 @@ EID.descriptions[languageCode].collectibles={
 	{"440", "Kidney Stone", "↑ +2 Tear height#↓ {{Speed}} -0.2 Speed#↓ {{Range}} -17 Range#Isaac occasionally stops firing and charges an attack that releases a burst of tears and a kidney stone"},
 	{"441", "Mega Blast", "{{Timer}} Fires a huge Mega Satan blood beam for 15 seconds#The beam persists between rooms and floors"},
 	{"442", "Dark Prince's Crown", "While at 1 full Red Heart:#↑ {{Tears}} +0.75 Tears#↑ {{Range}} +1.5 Range#↑ +1 Tear height#↑ {{Shotspeed}} +0.2 Shot speed#Does not work on characters without Red Hearts"}, -- Dark Princes Crown (apostrophe added to the name in Repentance)
-	{"443", "Apple!", "↑ {{Tears}} +0.3 Tears#{{Damage}} 6.66% chance to shoot razor blades which deal 4x Isaac's damage#{{Luck}} 100% chance at 14 luck"},
+	{"443", "Apple!", "↑ {{Tears}} +0.3 Tears#{{Damage}} 6.66% chance to shoot razor blades that deal 4x Isaac's damage#{{Luck}} 100% chance at 14 luck"},
 	{"444", "Lead Pencil", "Isaac shoots a cluster of tears every 15 tears#Tears in the cluster deal double damage"},
 	{"445", "Dog Tooth", "↑ {{Speed}} +0.1 Speed#↑ {{Damage}} +0.3 Damage#{{SecretRoom}}{{SuperSecretRoom}} A wolf howls in rooms adjacent to a Secret/Super Secret Room#{{LadderRoom}} A dog barks in rooms with a crawlspace under a rock"},
 	{"446", "Dead Tooth", "{{Poison}} While firing, Isaac is surrounded by a green aura that poisons enemies"},
