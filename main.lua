@@ -135,10 +135,10 @@ local nullVector = Vector(0,0)
 ------------------------------- Load Font ---------------------------------
 local modfolder ='external item descriptions_836319872' --release mod folder name
 
-local function GetCurrentModPath()
+function EID:GetCurrentModPath()
 	if debug then
 		if EID.isRepentance then require("eid_tmtrainer") end
-		return string.sub(debug.getinfo(GetCurrentModPath).source,2) .. "/../"
+		return string.sub(debug.getinfo(EID:GetCurrentModPath()).source,2) .. "/../"
 	end
 	--use some very hacky trickery to get the path to this mod
 	local _, err = pcall(require, "")
@@ -152,7 +152,7 @@ local function GetCurrentModPath()
 
 	return modPath
 end
-EID.modPath = GetCurrentModPath()
+EID.modPath = EID:GetCurrentModPath()
 
 EID.font = Font() -- init font object
 EID:fixDefinedFont()
@@ -448,7 +448,7 @@ EID.CachedRenderPoses = {}
 EID.descriptionsToPrint = {}
 EID.entitiesToPrint = {}
 
-local function resetDescCache()
+function EID:ResetDescCache()
 	EID.CachedIcons = {}
 	EID.CachedStrings = {}
 	EID.CachedRenderPoses = {}
@@ -506,7 +506,7 @@ end
 
 function EID:printNewDescriptions()
 	EID.CachingDescription = true
-	resetDescCache()
+	EID:ResetDescCache()
 	
 	for _,newDesc in ipairs(EID.descriptionsToPrint) do
 		if newDesc.Description == "UnidentifiedPill" then
@@ -1108,7 +1108,7 @@ local function attemptPathfind(entity)
 end
 
 local hasShownStartWarning = false
-local function checkStartOfRunWarnings()
+function EID:CheckStartOfRunWarnings()
 	if EID.isRepentance and not EID.Config["DisableStartOfRunWarnings"] and game:GetFrameCount() < 10*30 then
 		-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
 		-- 1.7.9b (Dec. 08, 2022): The IsAvailable function was added (checking for Isaac.RunCallback existing instead)
@@ -1142,7 +1142,7 @@ local function checkStartOfRunWarnings()
 end
 
 -- Check our position modifiers based on HUD offset and character choice
-local function checkPosModifiers()
+function EID:CheckPosModifiers()
 	-- HUD offset adjustment, done every frame so it looks nice while changing the option
 	if Options then
 		EID:addTextPosModifier("HudOffset", Vector(((Options.HUDOffset * 10) * 2) - 20, (Options.HUDOffset * 10) - 10))
@@ -1201,7 +1201,7 @@ EID.lastDist = 0
 EID.OptionChanged = false
 EID.bagPlayer = nil
 
-local function onRender()
+function EID:OnRender()
 	-- Increases by 60 per second, ignores pauses
 	EID.GameRenderCount = EID.GameRenderCount + 1
 	EID.OptionChanged = EID.MCM_OptionChanged
@@ -1217,7 +1217,7 @@ local function onRender()
 	
 	-- if frames were skipped (due to EID being hidden / in battle / in options), wipe the desc cache
 	if EID.GameRenderCount > prevPrintFrame + 1 then
-		resetDescCache()
+		EID:ResetDescCache()
 		EID.CachedIndicators = {}
 	end
 	
@@ -1245,8 +1245,8 @@ local function onRender()
 	end
 	
 	-- Handle descriptions that display regardless of player position
-	checkStartOfRunWarnings()
-	checkPosModifiers()
+	EID:CheckStartOfRunWarnings()
+	EID:CheckPosModifiers()
 	EID:renderMCMDummyDescription()
 	
 	if EID.isHidden then
@@ -1299,7 +1299,7 @@ local function onRender()
 	end
 	
 	if EID.ForceRefreshCache then
-		resetDescCache()
+		EID:ResetDescCache()
 	end
 	-- This is not a frame we should check for new descriptions; just print our cached ones
 	if not EID:RefreshThisFrame() and not EID.MCM_OptionChanged and not EID.ForceRefreshCache then
@@ -1566,7 +1566,7 @@ local function onRender()
 	EID:printDescriptions()
 end
 
-EID:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
+EID:AddCallback(ModCallbacks.MC_POST_RENDER, EID.OnRender)
 
 local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true
