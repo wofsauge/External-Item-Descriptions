@@ -1676,9 +1676,9 @@ function EID:OnGameStart(isSave)
 		
 		-- collection progress
 		EID.CollectedItems = savedEIDConfig["CollectedItems"] or {}
-		if EID.SaveGame and EID.Config["SaveGameNumber"] > 0 then
+		if EID.SaveGame and savedEIDConfig["SaveGameNumber"] > 0 then
 			for _, id in ipairs(EID.CollectedItems) do
-				EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[id] = nil
+				EID.SaveGame[savedEIDConfig["SaveGameNumber"]].ItemNeedsPickup[id] = nil
 			end
 		end
 		EID.PlayerItemInteractions = {}
