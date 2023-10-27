@@ -138,7 +138,7 @@ local modfolder ='external item descriptions_836319872' --release mod folder nam
 function EID:GetCurrentModPath()
 	if debug then
 		if EID.isRepentance then require("eid_tmtrainer") end
-		return string.sub(debug.getinfo(EID:GetCurrentModPath()).source,2) .. "/../"
+		return string.sub(debug.getinfo(EID.GetCurrentModPath).source,2) .. "/../"
 	end
 	--use some very hacky trickery to get the path to this mod
 	local _, err = pcall(require, "")
