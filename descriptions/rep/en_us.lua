@@ -122,6 +122,7 @@ local repCollectibles={
 	[280] = {"280", "Sissy Longlegs", "Randomly spawns blue spiders in hostile rooms#{{Charm}} Charms enemies it comes in contact with"}, -- Sissy Longlegs
 	[283] = {"283", "D100", "Duplicates 1 pickup in the room#Rerolls Isaac's speed, tears, damage, range and passive items#Rerolls all pedestal items, pickups and rocks in the room#Restarts the room, respawns all enemies and rerolls them"}, -- D100
 	[285] = {"285", "D10", "Devolves all enemies in the room#For instance, all Red Flies become Black Flies"}, -- D10
+	[286] = {"286", "Blank Card", "Triggers the effect of the card Isaac holds without using it"}, -- Blank Card
 	[287] = {"287", "Book of Secrets", "Highlights tinted and crawlspace rocks in the room#{{Timer}} Receive one of these effects for the floor:#{{Collectible54}} Treasure Map#{{Collectible21}} Compass #{{Collectible246}} Blue Map#Only grants effects not already active#{{Collectible76}} If all effects are active, grants X-Ray Vision"}, -- Book of Secrets
 	[288] = {"288", "Box of Spiders", "Spawn 4-8 blue spiders"}, -- Box of Spiders
 	[289] = {"289", "Red Candle", "Throws a red flame#The flame disappears when it has dealt damage or blocked shots 5 times, or after 10 seconds"}, -- Red Candle
@@ -863,6 +864,18 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	-- The Twins
 	[183] = { "May copy/grant 2 familiars", "May copy/grant 2 familiars", "May copy/grant 3 familiars" },
 }
+
+--[[
+Localizations may choose to overwrite specific data from EID.GoldenTrinketData in this table. For advanced users only.
+Example: If French uses "Double" instead of "2x" for Purple Heart, they can do:
+EID.descriptions[languageCode].goldenTrinketData = {
+	[5] = {findReplace = true, mult = 2},
+}
+and then place
+	[5] = { "Double", "Quadruple" },
+in their goldenTrinketEffects
+]]
+EID.descriptions[languageCode].goldenTrinketData = { }
 
 ---------- Cards ----------
 
