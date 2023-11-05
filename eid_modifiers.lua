@@ -435,7 +435,7 @@ if EID.isRepentance then
 	-- Handle Golden Trinket / Mom's Box description addition	
 	local function GoldenTrinketCallback(descObj)
 		local trinketID = descObj.ObjSubType % TrinketType.TRINKET_GOLDEN_FLAG
-		local data = EID.GoldenTrinketData[trinketID]
+		local data = EID:getDescriptionEntry("goldenTrinketData", trinketID) or EID.GoldenTrinketData[trinketID]
 		local multiplier = 2
 		local textChoice = 1
 		if isGolden and hasBox then
