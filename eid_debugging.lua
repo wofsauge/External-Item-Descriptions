@@ -126,7 +126,7 @@ EID:addCollectible(2, "New override Method", "new Name", "ru") -- maximal method
 EID:addTrinket(2, "New override Method") -- minimal method
 EID:addCard(2, "New override Method", "new Name") -- card
 EID:addPill(2, "New override Method", "new Name") -- pilleffect 2 "Balls of steel"
-EID:addEntity(5, 10, 2, "Custom Name", "New Custom description") -- Entity 
+EID:addEntity(5, 10, 2, "Custom Name", "New Custom description") -- Entity
 
 ------ Test: adding custom transformation icon ------
 local dummySprite = Sprite()
@@ -188,7 +188,7 @@ EID:SetPillEffectUnidentifyable(24, true) -- set "I can see forever" to always b
 
 local function onDebugRender()
 	EID:renderHUDLocationIndicators()
-	
+
 	for _,v in ipairs(Isaac.FindByType(5,10,3,true,false)) do
 		if v:GetData()["EID_Description"] == nil then
 			v:GetData()["EID_Description"] = "Test specific description#Init seed: ".. v.InitSeed
@@ -214,11 +214,11 @@ local function onDebugRender()
 	for i, v in ipairs(charsToDebug) do
 		local pos = EID:getTextPosition() + Vector(-5, - 15 + ((i - 1) * 14))
 		EID:renderString(v, pos, Vector(EID.Scale, EID.Scale), KColor(1, 1, 1, 1))
-		
+
 		if not showDebugChars then
 			break
 		end
 	end
 end
-EID:AddCallback(ModCallbacks.MC_POST_RENDER, onDebugRender)
+EID:AddCallback(ModCallbacks.MC_HUD_RENDER, onDebugRender)
 
