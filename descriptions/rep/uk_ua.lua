@@ -839,13 +839,13 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[4] = { "{{Collectible419}} Використання активного предмета телепортує персонажа до {{ColorGold}}кімнати, яку ще не було зачищено{{CR}}#Ієрархія: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}>{{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"}, -- Teleport 2.0
 	-- Broken Magnet (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 for doubled
 	[6] = { "монетки", "розхідники" },
-	-- Rosary Bead append
+	-- Rosary Bead (append)
 	[7] = { "{{Collectible72}} Вервицю додано до всіх пулів" },
 	-- Golden Store Credit: full replace
 	[13] = { "{{Shop}} {{ColorGold}} Дозволяє персонажу безкоштовно брати предмети в Магазині{{CR}}#Шанс, що золотий Кредит перетвориться на {{Trinket13}}звичайний після кожної покупки" },
-	-- Lucky Rock append (Gold / Mom's Box / Both)
+	-- Lucky Rock (append) (Gold / Mom's Box / Both)
 	[15] = { "З каменя може випасти 2 монетки", "З каменя може випасти 2 монетки", "З каменя може випасти 3 монетки" },
-	-- Golden Mysterious Candy makes Golden Poop
+	-- Golden Mysterious Candy makes Golden Poop (find+replace)
 	[25] = { "купку лайна", "золоту купку лайна" },
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
 	[46] = { "половинку серця", "серце", "півтора серця" },
@@ -859,11 +859,11 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[64] = { "Подвоює бонуси Черв'яка до характеристик", "Потроює бонуси Черв'яка до характеристик", "Збільшує в 4 рази бонуси Черв'яка до характеристик", },
 	-- Error (append): Same behavior as Rainbow Worm
 	[75] = { "Подвоює ефекти брелка, якщо можливо", "Потроює ефекти брелка, якщо можливо", "Збільшує у 4 рази ефекти брелка, якщо можливо", },
-	-- NO!
+	-- NO! (append)
 	[88] = { "Предмети з Якістю {{Quality0}} більше не з'являються" },
-	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
+	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?) (replace)
 	[159] = { "Замінює всі скрині (окрім Старих/Мега) на Золоті Скрині#Золоті скрині можуть містити додаткові картки, пігулки та брелки" },
-	-- The Twins
+	-- The Twins (append)
 	[183] = { "Може скопіювати/створити 2 компаньйонів", "Може скопіювати/створити 2 компаньйонів", "Може скопіювати/створити 3 компаньйонів" },
 }
 
