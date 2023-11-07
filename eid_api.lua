@@ -1699,8 +1699,10 @@ function EID:evaluateTransformationProgress(transformation)
 
 		if not EID.TransformationLookup[transformation] then return end
 
-		if transformData and transformData.VanillaForm and player:GetPlayerFormCounter(transformData.VanillaForm) then
+		if REPENTOGON and transformData and transformData.VanillaForm then
 			EID.TransformationProgress[i][transformation] = player:GetPlayerFormCounter(transformData.VanillaForm)
+		elseif transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
+			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
 		else
 			local pickupHistory = EID.PlayerItemInteractions[i].pickupHistory
 			local pillsTable = {}

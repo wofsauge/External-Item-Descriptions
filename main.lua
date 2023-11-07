@@ -1566,8 +1566,12 @@ function EID:OnRender()
 
 	EID:printDescriptions()
 end
+if REPENTOGON then
+	EID:AddCallback(ModCallbacks.MC_HUD_RENDER, EID.OnRender)
+else
+	EID:AddCallback(ModCallbacks.MC_POST_RENDER, EID.OnRender)
+end
 
-EID:AddCallback(ModCallbacks.MC_HUD_RENDER, EID.OnRender)
 
 local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true

@@ -220,5 +220,9 @@ local function onDebugRender()
 		end
 	end
 end
-EID:AddCallback(ModCallbacks.MC_HUD_RENDER, onDebugRender)
+if REPENTOGON then
+	EID:AddCallback(ModCallbacks.MC_HUD_RENDER, onDebugRender)
+else
+	EID:AddCallback(ModCallbacks.MC_POST_RENDER, onDebugRender)
+end
 
