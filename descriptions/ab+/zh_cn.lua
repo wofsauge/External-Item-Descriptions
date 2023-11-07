@@ -24,7 +24,7 @@ EID.descriptions[languageCode].fonts = {{name = "default_cn", lineHeight = 14, t
 EID.descriptions[languageCode].collectibles={
 	{"1", "悲伤洋葱", "↑ {{Tears}} +0.7射速"},
 	{"2", "内眼", "三重眼泪#↓ {{Tears}} 射速降低"},
-	{"3", "弯勺魔术", "跟踪眼泪"}, 
+	{"3", "弯勺魔术", "跟踪眼泪"},
 	{"4", "柯吉猫的头", "↑ {{Damage}} +0.5伤害#↑ {{Damage}} +50%伤害倍率"},
 	{"5", "我的镜像", "眼泪有回旋效果#↑ {{Range}} +1.5射程#↑ {{Shotspeed}} +0.6弹速#↑ +1眼泪高度"},
 	{"6", "小号", "↑ {{Tears}} +1.5射速#↓ {{Range}} -17.62射程#↑ +0.76眼泪高度"},
@@ -884,4 +884,4 @@ EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "项目名预览",
 	DemoObjectTransformation = "套装预览",
 	DemoObjectText = "这份文本是中文的#这是一条非常酷的长文本，用来模拟EID文本框自动分行功能！#\1 这也是一条非常酷的文本#祝使用愉快{{Heart}}",
-} 
+}

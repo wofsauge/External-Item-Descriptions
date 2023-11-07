@@ -104,7 +104,7 @@ function EID:trimSanguineDesc(descObj)
 		spikeSeed = EID:RNGNext(spikeSeed, 5, 9, 7)
 		spikeSeed = EID:RNGNext(spikeSeed, 0x01, 0x05, 0x13) -- magic disassembled numbers!
 		local nextFloat = EID:SeedToFloat(spikeSeed)
-		
+
 		for _,v in ipairs(sanguineResults) do
 			if nextFloat < v[1] then cheatResult = v[2] break end
 		end
@@ -141,11 +141,11 @@ function EID:Teleport1Prediction(rng)
 	end
 	rng = EID:RNGNext(rng, 5, 9, 7)
 	rng = EID:RNGNext(rng, 0x02, 0x0F, 0x19) -- magic disassembled numbers!
-	
+
 	local resultRoomIndex = possibleRooms[(rng % #possibleRooms) + 1]
 	local resultRoom = level:GetRoomByIdx(resultRoomIndex)
 	local resultSafeIndex = resultRoom.SafeGridIndex
-	
+
 	local roomIcon = EID.RoomTypeToMarkup[resultRoom.Data.Type]
 	if resultRoom.Data.Type == 1 then roomIcon = EID.RoomShapeToMarkup[resultRoom.Data.Shape] end
 	local roomNames = EID:getDescriptionEntry("RoomTypeNames")
@@ -195,11 +195,11 @@ function EID:Teleport2Prediction()
 	if not level:GetRoomByIdx(-1).Clear then unclearedTypes[666] = true end
 	-- If in Pre-Ascent version (Dad's note) of Mausuleum/Gehenna, we dont teleport to I AM ERROR but Angel/Devil
 	if EID.isRepentance and level:IsPreAscent() then unclearedTypes[666] = true; unclearedTypes[3] = false end
-	
+
 	local greed = game:IsGreedMode()
 	local roomOrder = (greed and teleport2GreedOrder) or teleport2Order
 	local roomNames = EID:getDescriptionEntry("RoomTypeNames")
-	
+
     -- Return a string for the first uncleared room type that we find
 	for _,v in ipairs(roomOrder) do
 		if unclearedTypes[v] then
@@ -256,11 +256,11 @@ end
 -- Determine what stats will be increased after 1 absorption, the whole room's absorption, and whole room + a purchased item above your head
 function EID:VoidRNGCheck(player, isRune)
 	local increases = {0, 0, 0, 0, 0, 0}
-	
+
 	local startRNG = (isRune and player:GetCardRNG(Card.RUNE_BLACK):GetSeed()) or player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_VOID):GetSeed()
 	local count = (isRune and numRunable) or numVoidable
 	local eidTable = (isRune and EID.BlackRuneStatIncreases) or EID.VoidStatIncreases
-	
+
 	-- in Repentance, an additional RNG call is done before the 5 for stat ups when using Void
 	if EID.isRepentance and not isRune then startRNG = EID:RNGNext(startRNG, 5, 9, 7) end
 	for i = 1, count do
@@ -322,7 +322,7 @@ function EID:D1Prediction(rng)
 			return "{{" .. variantToName[poss[sel].Variant] .. poss[sel].SubType .. "}} " .. objName
 		end
 	end
-	
+
 	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
 	return pickupNames[fullID] or EID.XMLEntityNames[fullID] or fullID
 end

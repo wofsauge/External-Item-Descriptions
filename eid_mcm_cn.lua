@@ -154,7 +154,7 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         {"inverted","反转"},
         {"borderless","无边框"},
         {"Keyboard","键盘"},
-        
+
     })
     MCM.SetSubcategoryNameTranslate("EID","Reminder","提示")
     MCM.TranslateOptionsDisplayTextWithTable("EID","Reminder",{
@@ -407,7 +407,7 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         ["Enable or disable basic modded item support"] = "开关基础的模组道具支持",
         ["If you have a lot of modded items, it will slow down game launch"] = "如果模组道具太多，游戏会变卡",
         ["(12 = 500 combinations, 14 = 3,000, 16 = 13,000)"] = "(12=500组合,14=3000,16=13000)",
-        
+
         ["Page size for the preview of items currently craftable with Bag of Crafting"] = "一页显示的当前可合成道具的数量",
         ["Get every recipe for the X best components; setting this high slows down recipe checking"]
             = "探索此值数量的最优组合的各个配方 增加此值会导致卡顿",
