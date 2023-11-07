@@ -46,11 +46,11 @@ function EID:getHoldMapDescription(player, checkingTwin)
 	holdMapDesc = ""
 
 	currentPlayer = player
-	
+
 	-- TODO:
 	-- crooked penny cheats. 404/liberty cap/broken syringe/etc. "what item is it"
 	-- pandora's box? it shows the whole desc which is kinda useful but too big
-	
+
 	-- Tainted ??? Poop Descriptions
 	if EID.isRepentance and EID.Config["ItemReminderShowPoopDesc"] > 0 and player:GetPlayerType() == 25 then
 		for i = 0, EID.Config["ItemReminderShowPoopDesc"]-1 do
@@ -73,7 +73,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			end
 		end
 	end
-	
+
 	-- Echo Chamber Description
 	if EID.isRepentance and player:HasCollectible(700) then
 		local playerID = EID:getPlayerID(player)
@@ -105,7 +105,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			end
 		end
 	end
-	
+
 	-- Bag of Crafting
 	if EID.isRepentance and player:HasCollectible(710) then
 		local floorQuery = EID.BoC.FloorOverride or EID.BoC.FloorQuery
@@ -117,7 +117,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 		blacklist["5.100.710"] = true
 		append("{{Collectible710}}", EID:getObjectName(5,100,710), text)
 	end
-	
+
 	-- Active Item Descriptions
 	if EID.Config["ItemReminderShowActiveDesc"] > 0 then
 		for i = 0, EID.Config["ItemReminderShowActiveDesc"]-1 do
@@ -179,7 +179,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			end
 		end
 	end
-	
+
 	-- Pocket Item Descriptions
 	-- Annoying because there's no easy way to just get the info of a slot
 	if EID.Config["ItemReminderShowPocketDesc"] > 0 then
@@ -212,7 +212,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			end
 		end
 	end
-	
+
 	-- Trinket Descriptions
 	if EID.Config["ItemReminderShowTrinketDesc"] > 0 then
 		for t = 0, EID.Config["ItemReminderShowTrinketDesc"]-1 do
@@ -264,7 +264,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 				else
 					addObjectDesc(5, 350, heldTrinket)
 				end
-				
+
 			end
 		end
 		-- Gulped/unslotted Modeling Clay
@@ -277,7 +277,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			end
 		end
 	end
-	
+
 	-- Zodiac's effect for the current floor
 	if EID.Config["ItemReminderShowHiddenInfo"] and player:HasCollectible(CollectibleType.COLLECTIBLE_ZODIAC) then
 		local zodiacItem = player:GetZodiacEffect()
@@ -286,7 +286,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			blacklist["5.100.392"] = true
 		end
 	end
-	
+
 	-- Finally, check the twin player of this controller
 	-- If both twins have a desc, show their player icon / name to separate the two descs
 	if EID.isRepentance and not checkingTwin then
@@ -307,7 +307,7 @@ function EID:getHoldMapDescription(player, checkingTwin)
 			holdMapDesc = mainTwinDesc
 		end
 	end
-	
+
 	EID.InsideItemReminder = false
 	return holdMapDesc
 end

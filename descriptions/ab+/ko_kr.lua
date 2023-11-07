@@ -953,27 +953,27 @@ EID.descriptions[languageCode].RoomTypeNames = { "일반방", "상점", "I AM ER
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {
 	["5.0"] = "None",
-	
+
 	["5.10"] = "{{Heart}}하트",
 	["5.10.1"] = "{{Heart}}빨간하트", ["5.10.2"] = "{{HalfHeart}}빨간하트 반칸", ["5.10.3"] = "{{SoulHeart}}소울하트", ["5.10.4"] = "{{EternalHeart}}이터널하트", ["5.10.5"] = "{{Heart}}1+1 빨간하트", ["5.10.6"] = "{{BlackHeart}}블랙하트", ["5.10.7"] = "{{GoldHeart}}황금하트", ["5.10.8"] = "{{HalfSoulHeart}}소울하트 반칸", ["5.10.9"] = "{{Heart}}도망가는 빨간하트", ["5.10.10"] = "{{BlendedHeart}}블렌드하트", ["5.10.11"] = "{{EmptyBoneHeart}}뼈하트", ["5.10.12"] = "{{RottenHeart}}썩은하트",
-	
+
 	["5.20"] = "{{Coin}}동전",
 	["5.20.1"] = "{{Crafting8}}페니", ["5.20.2"] = "{{Crafting9}}니켈", ["5.20.3"] = "{{Crafting10}}다임", ["5.20.4"] = "{{Crafting8}}1+1 페니", ["5.20.5"] = "{{Crafting11}}행운 동전", ["5.20.6"] = "{{Crafting9}}끈적이는 니켈", ["5.20.7"] = "{{Crafting26}}황금페니",
-	
+
 	["5.30"] = "{{Key}}열쇠",
 	["5.30.1"] = "{{Crafting12}}열쇠", ["5.30.2"] = "{{Crafting13}}황금열쇠", ["5.30.3"] = "{{Crafting12}}1+1 열쇠", ["5.30.4"] = "{{Crafting14}}충전된 열쇠",
-	
+
 	["5.40"] = "{{Bomb}}폭탄",
 	["5.40.1"] = "{{Crafting15}}폭탄", ["5.40.2"] = "{{Crafting15}}1+1 폭탄", ["5.40.3"] = "{{Crafting15}}트롤폭탄", ["5.40.4"] = "{{Crafting16}}황금폭탄", ["5.40.5"] = "{{Crafting15}}슈퍼 트롤폭탄", ["5.40.7"] = "{{Crafting17}}기가폭탄",
-	
+
 	["5.90"] = "{{Battery}}배터리",
 	["5.90.0"] = "{{Crafting19}}리틀 배터리", --AB+ didn't have subtypes for batteries
 	["5.90.1"] = "{{Crafting19}}리틀 배터리", ["5.90.2"] = "{{Crafting18}}마이크로 배터리", ["5.90.3"] = "{{Crafting20}}메가 배터리", ["5.90.4"] = "{{Crafting28}}황금 배터리",
-	
-	["5.50"] = "{{Chest}}상자", ["5.51"] = "{{BombChest}}돌상자", ["5.52"] = "{{SpikedChest}}가시상자", ["5.53"] = "{{EternalChest}}하얀상자", ["5.54"] = "{{MimicChest}}함정상자", ["5.55"] = "{{OldChest}}오래된상자", ["5.56"] = "{{WoodenChest}}나무상자", ["5.57"] = "{{MegaChest}}메가상자", ["5.58"] = "{{HauntedChest}}유령상자", ["5.60"] = "{{GoldenChest}}황금상자", ["5.360"] = "{{RedChest}}빨간상자",  
-	
+
+	["5.50"] = "{{Chest}}상자", ["5.51"] = "{{BombChest}}돌상자", ["5.52"] = "{{SpikedChest}}가시상자", ["5.53"] = "{{EternalChest}}하얀상자", ["5.54"] = "{{MimicChest}}함정상자", ["5.55"] = "{{OldChest}}오래된상자", ["5.56"] = "{{WoodenChest}}나무상자", ["5.57"] = "{{MegaChest}}메가상자", ["5.58"] = "{{HauntedChest}}유령상자", ["5.60"] = "{{GoldenChest}}황금상자", ["5.360"] = "{{RedChest}}빨간상자",
+
 	["5.69"] = "{{GrabBag}}자루", ["5.69.1"] = "{{GrabBag}}자루", ["5.69.2"] = "{{BlackSack}}검은자루",
-	
+
 	["5.70"] = "{{Pill}}알약",
 	["5.300"] = "{{Card}}카드",
 	["5.301"] = "{{Rune}}룬", -- not a real id
