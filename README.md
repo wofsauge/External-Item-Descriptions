@@ -39,4 +39,4 @@ Alternatively, edit the `eid_config.lua` file like described [here.](https://git
 
 
 ## Special Thanks to
-[Check out the credits here](https://github.com/wofsauge/External-Item-Descriptions/blob/master/CREDITS.md) 
+[Check out the credits here](https://github.com/wofsauge/External-Item-Descriptions/blob/master/CREDITS.md)
