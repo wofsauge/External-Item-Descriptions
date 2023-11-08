@@ -780,7 +780,7 @@ EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].car
 ---------- Trinkets ----------
 
 local repTrinkets={
-	[1] = {"1", "Pièce Avalée", "Subir un dégât fait apparaître 1 pièce"}, -- Swallowed Penny
+	[1] = {"1", "Pièce Avalée", "Subir un dégât fait apparaître une pièce"}, -- Swallowed Penny
 	[7] = {"7", "Perle de Rosaire", "{{AngelChanceSmall}} Augmente les chances d'Offrandes des Anges {{AngelRoom}}#Augmente les chances de trouver {{ColorYellow}}La Bible{{ColorWhite}} dans une Bibliothèque {{Library}} ou une Boutique {{Shop}}"},
 	[8] = {"8", "Cartouche", "Subir un dégât déclenche parfois l'effet du {{ColorYellow}}Jeu-Garçon{{Collectible93}}#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 38 Chance)"},
 	[10] = {"10", "Ver Remuant", "↑ Débit {{ColorLime}}+0.4#La trajectoire des larmes d'Isaac forme des vagues#Larmes spectrales"}, -- Wiggle Worm
@@ -812,8 +812,8 @@ local repTrinkets={
 	[66] = {"66", "Ver Fainéant", "↓ Vitesse des tirs {{ColorError}}-0.5"}, -- Lazy Worm
 	[67] = {"67", "Dé Fêlé", "Subir un dégât déclenche l'effet du {{ColorYellow}}D6{{ColorWhite}}{{Collectible105}}, {{ColorYellow}}D8{{ColorWhite}}{{Collectible406}},{{ColorYellow}}D10{{ColorWhite}}{{Collectible285}}, {{ColorYellow}}D12{{ColorWhite}}{{Collectible386}} ou {{ColorYellow}}D20{{ColorWhite}}{{Collectible166}}"},
 	[69] = {"69", "Positif Décoloré", "Camoufle parfois Isaac#Étourdit parfois les ennemis#Peut être utilisé pour ouvrir la porte vers l'Ascension"}, -- Faded Polaroid
-	[74] = {"74", "Détecteur de Métaux", "Augmente les chances de trouver l'entrée d'un Souterrain {{LadderRoom}}"},
-	[75] = {"75", "404", "Active l'effet d'une babiole aléatoire dans chaque salle"},
+	[74] = {"74", "Détecteur de Métaux", "Augmente de 0.5% les chances de trouver l'entrée d'un Souterrain {{LadderRoom}}"},
+	[75] = {"75", "404", "Active l'effet d'une babiole aléatoire à chaque salle"},
 	[80] = {"80", "Plume Noire", "↑ Dégâts {{ColorLime}}+0.5{{ColorWhite}} pour chaque objet démoniaque possédé"}, -- Black Feather
 	[82] = {"82", "Fer à Cheval Doré", "Les Salles du Trésor {{TreasureRoom}} ont {{ColorLime}}+15%{{ColorWhite}} de chances de proposer un choix entre deux objets"},
 	[83] = {"83", "Clé du Magasin", "Permet d'ouvrir gratuitement les portes des Boutiques {{Shop}}"},
@@ -844,7 +844,7 @@ local repTrinkets={
 	[136] = {"136", "Cadenas Cassé", "Permet d'ouvrir les serrures avec une explosion"}, --  Broken Padlock
 	[137] = {"137", "Myosotis", "Fait apparaître jusqu'à 4 ressources laissées à l'étage précédent dans la première salle d'un nouvel étage"}, --  Myosotis
 	[138] = {"138", "'M", "Utiliser un objet activable le rejoue"}, --  'M
-	[139] = {"139", "Larmulette", "Chance {{ColorLime}}+3{{ColorWhite}} envers les effets de larmes"}, --  Teardrop Charm
+	[139] = {"139", "Larmulette", "Chance {{ColorLime}}+4{{ColorWhite}} envers les effets de larmes"}, --  Teardrop Charm
 	[140] = {"140", "Pomme de Sodome", "Ramasser un cœur rouge a 50% de chances de le convertir en araignées bleues#Fonctionne même si les PV d'Isaac sont pleins#Cet effet peut empêcher Isaac de se soigner"}, --  Apple of Sodom
 	[141] = {"141", "Berceuse Oubliée", "Double le débit des familiers d'Isaac"}, --  Forgotten Lullaby
 	[142] = {"142", "Foi de Béthanie", "Entrer dans un nouvel étage invoque 4 feux follets du {{ColorYellow}}Livre des Vertus{{ColorWhite}} {{Collectible584}}"}, --  Beth's Faith
@@ -865,11 +865,11 @@ local repTrinkets={
 	[157] = {"157", "Carte Déchirée", "Tous les 15 tirs, Isaac tire une larme avec les effets d'{{ColorYellow}}Ipéca{{ColorWhite}} {{Collectible149}} et de {{ColorYellow}}Mon Reflet{{ColorWhite}} {{Collectible5}}"}, --  Torn Card
 	[158] = {"158", "Poche Trouée", "Subir un dégât retire deux pièces, clés ou bombes à Isaac et les fait tomber au sol"}, --  Torn Pocket
 	[159] = {"159", "Clé Dorée", "{{Key}} +1 Clé#Remplace tous les coffres par des coffres dorés {{GoldenChest}}#Ne peut pas remplacer les coffres Antiques {{DirtyChest}} et Géants {{MegaChest}}"}, --  Gilded Key
-	[160] = {"160", "Bourse Trèfle", "Fait apparaître 1 sachet dans la première salle d'un nouvel étage"}, --  Lucky Sack
+	[160] = {"160", "Bourse Trèfle", "Fait apparaître un sachet dans la première salle d'un nouvel étage"}, --  Lucky Sack
 	[161] = {"161", "Couronne Impure", "Une Salle du Trésor apparaît à {{ColorTransform}}Shéol"}, --  Wicked Crown
 	[162] = {"162", "Corne d'Azazel", "Terminer une salle a 50% de chances de transformer Isaac en {{ColorLightOrange}}Azazel{{ColorWhite}} pour la durée de la salle suivante"}, --  Azazel's Stump
-	[163] = {"163", "Colombin", "Toutes les Crottes deviennent amicales#Invoque 1 Crotte amicale pour chaque salle terminée"}, --  Dingle Berry
-	[164] = {"164", "Amorces", "Ajoute gratuitement 1 bombe à chaque bombe posée"}, --  Ring Cap
+	[163] = {"163", "Colombin", "Toutes les Crottes deviennent amicales#Terminer une salle invoque une Crotte amicale"}, --  Dingle Berry
+	[164] = {"164", "Amorces", "Ajoute gratuitement une bombe à chaque bombe posée"}, --  Ring Cap
 	[165] = {"165", "Ah Non !", "À partir de l'{{ColorTransform}}Utérus{{ColorWhite}}, remplace les pièces et les clés par des bombes, des cœurs, des pilules, des cartes, des runes, des piles, des babioles ou des mouches"}, --  Nuh Uh!
 	[166] = {"166", "Pâte à Modeler", "50% de chances de gagner l'effet d'un objet passif aléatoire pour la durée d'une salle"}, --  Modeling Clay
 	[167] = {"167", "Os Poli", "Terminer une salle a 25% de chances d'invoquer un Osselet allié"}, --  Polished Bone
@@ -881,7 +881,7 @@ local repTrinkets={
 	[173] = {"173", "Ton Âme", "{{Warning}} USAGE UNIQUE{{Warning}}#Peut être échangée pour signer un pacte avec le diable sans perdre de réceptacles de cœur"}, --  Your Soul
 	[174] = {"174", "Chiffre Magnétique", "{{DevilChance}} {{ColorLime}}+10%{{ColorWhite}} de chances de Pacte avec le Diable#Krampus n'apparaît plus dans l'Antre du Diable#L'Antre du Diable contient plus d'objets, de cœurs noirs et d'ennemis"}, --  Number Magnet
 	[175] = {"175", "Étrange Clé", "Ouvre le passage vers {{ColorCyan}}Murmure{{ColorWhite}} même si la limite de temps est passée#Utiliser la {{ColorYellow}}Boîte de Pandore{{ColorWhite}} {{Collectible297}} fait apparaître 6 objets aléatoires"}, --  Strange Key
-	[176] = {"176", "P'tit Pâté", "Invoque 1 pâté amical qui imite les mouvements et les larmes d'Isaac"}, --  Lil Clot
+	[176] = {"176", "P'tit Pâté", "Invoque un pâté qui imite les mouvements et les larmes d'Isaac"}, --  Lil Clot
 	[177] = {"177", "Tatouage Temporaire", "Triompher d'une Salle de Défi {{ChallengeRoom}} fait apparaître un coffre #Triompher d'une Salle de Défi Royale {{BossRushRoom}} fait apparaître un objet"}, --  Temporary Tattoo
 	[178] = {"178", "Explosifs Avalés", "Subir un dégât a 50% de chances de faire exploser Isaac"}, --  Swallowed M80
 	[179] = {"179", "Télécommande Radio", "Contrôler Isaac contrôle aussi ses familiers#Maintenir le bouton {{ColorSilver}}[Lâcher]{{ColorWhite}} bloque les familiers sur place"}, --  RC Remote
@@ -892,7 +892,7 @@ local repTrinkets={
 	[184] = {"184", "Actes d'Adoption", "Les boutiques vendent des familiers pour 10 pièces"}, --  Adoption Papers
 	[185] = {"185", "Patte de Grillon", "Tuer un ennemi a 17% de chances d'invoquer un locuste"}, --  Cricket Leg
 	[186] = {"186", "Le Meilleur Ami d'Apollyon", "Invoque un locuste abyssal"}, --  Apollyon's Best Friend
-	[187] = {"187", "Lunettes Cassées", "Les Salles du Trésor {{TreasureRoom}} ont 33% de chances de contenir un objet inconnu supplémentaire#50% de chances de révéler les objets inconnus du chemin alternatif"}, --  Broken Glasses
+	[187] = {"187", "Lunettes Cassées", "Les Salles du Trésor {{TreasureRoom}} ont 50% de chances de contenir un objet inconnu supplémentaire#50% de chances de révéler les objets inconnus du chemin alternatif"}, --  Broken Glasses
 	[188] = {"188", "Glaçon", "Entrer dans une salle pétrifie parfois certains ennemis#Tuer un ennemi pétrifié le gèle#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 40 Chance)"}, --  Ice Cube
 	[189] = {"189", "Sigil de Baphomet", "Tuer un ennemi rend Isaac invulnérable pendant 1 seconde"}, --  Sigil of Baphomet
 }
@@ -904,17 +904,30 @@ EID.descriptions[languageCode].quadrupledTrinket = "Effet quadruplé !"
 -- Most trinkets that can be doubled or tripled just have the numbers in their description multiplied
 -- A few trinkets have odd edge cases where their effect completely changes, or is different depending on if it's Mom's Box or Golden
 EID.descriptions[languageCode].goldenTrinketEffects = {
+	--Swallowed Penny
+	[1] = {"une pièce", "deux {{ColorWhite}}pièces", "trois {{ColorWhite}}pièces"},
+	--AAA Battery
+	[3] = {"une charge","deux {{ColorWhite}}charges", "trois {{ColorWhite}}charges"},
+	--Broken Remote
 	[4] = { "{{Collectible419}} Utiliser un objet activable téléporte Isaac dans {{ColorGold}}une salle inexplorée#Ordre de téléportation#{{Blank}} {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}> {{SacrificeRoom}}>{{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}> {{ChallengeRoom}}>{{IsaacsRoom}}>{{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>#{{Blank}} {{DevilRoom}}{{AngelRoom}}>Salle d'erreur"}, -- Teleport 2.0
+	--Purple Heart
+	[5] = {"Double","Triple", "Quadruple"},
 	-- Broken Magnet (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 for doubled
 	[6] = { "pièces", "ressources" },
 	-- Golden Store Credit: full replace
 	[7] = { "Le {{ColorYellow}}Rosaire{{ColorGold}} {{Collectible72}} est ajouté à toutes les banques d'objets" },
+	--Cartridge
+	[8] = {"Chances doublées !", "Chances triplées !", "Chances quadruplées !"},
 	-- Golden Store Credit: full replace
 	[13] = { "{{ColorGold}}Permet à Isaac d'obtenir des objets de la boutique {{Shop}} gratuitement#Peut perdre son effet doré après chaque achat" },
 	-- Lucky Rock append (Gold / Mom's Box / Both)
 	[15] = { "Détruire un obstacle fait parfois apparaître 2 pièces", "Détruire un obstacle fait parfois apparaître 2 pièces", "Détruire un obstacle fait parfois apparaître 3 pièces" },
+	--Lucky Rock
+	[20] = {"un cœur noir", "deux {{ColorWhite}}cœurs noirs", "trois {{ColorWhite}}cœurs noirs"},
 	-- Golden Mysterious Candy makes Golden Poop
 	[25] = { "caca", "caca doré" },
+	--Mysterious Candy
+	[29] = {"une mouche bleue", "deux {{ColorWhite}}mouches bleues", "trois {{ColorWhite}}mouches bleues"},
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
 	[46] = { "un demi-cœur rouge", "un cœur rouge", "un cœur rouge et demi" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
@@ -923,18 +936,72 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 		"Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#Entrer dans une salle de Boss {{BossRoom}} soigne Isaac de {{ColorGold}}2{{ColorWhite}} cœurs rouges#{{Warning}} Ne peut pas être retirée#Ne peut être échangée qu'avec {{ColorYellow}}Allumette {{Trinket41}}",
 		"Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#Entrer dans une salle de Boss {{BossRoom}} soigne Isaac de {{ColorGold}}3{{ColorWhite}} cœurs rouges#{{ColorGold}}Peut être retirée !",
 	},
+	-- Maggy's Faith
+	[55] = {
+		"{{EternalHeart}} +1 cœur éternel au début de chaque étage",
+		"{{Heart}} +1 {{ColorGold}}réceptacle de cœur{{ColorWhite}} au début de chaque étage",
+		"{{Blank}} Au début de chaque étage :#{{Heart}} {{ColorGold}}+1 réceptacle de cœur#{{EternalHeart}} +1 cœur éternel"
+	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
-	[64] = { "Les augmentations de stats du ver sont doublées", "Les augmentations de stats du ver sont triplées", "Les augmentations de stats du ver sont quadruplées", },
+	[64] = { "Double les augmentations de stats du ver", "Triple les augmentations de stats du ver", "Quadruple les augmentations de stats du ver"},
+	-- Lice
+	[70] = {"une araignée bleue", "deux {{ColorWhite}}araignées bleues", "trois {{ColorWhite}}araignées bleues"},
+	--Watch Battery
+	[72] = {"une barre supplémentaire", "deux {{ColorWhite}}barres supplémentaires", "trois {{ColorWhite}}barres supplémentaires"},
 	-- Error (append): Same behavior as Rainbow Worm
-	[75] = { "L'effet de la babiole est doublé si possible", "L'effet de la babiole est triplé si possible", "L'effet de la babiole est quadruplé si possible", },
+	[75] = { "L'effet est doublé si possible", "L'effet est triplé si possible", "L'effet est quadruplé si possible"},
 	-- NO!
+	[78] = {"Double","Triple"},
+	--Blind Rage
+	[81] = {"Double","Quadruple","Sextuple"},
+	--Lil' Larva
+	[86] = {"une mouche bleue", "deux {{ColorWhite}}mouches bleues", "trois {{ColorWhite}}mouches bleues"},
+	--NO!
 	[88] = { "Empêche les objets de qualité {{Quality0}} d'apparaître" },
+	--Mother's Kiss
+	[156] = {"1 réceptacle", "2 {{ColorWhite}}réceptacles", "3 {{ColorWhite}}réceptacles"},
 	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
 	[159] = { "Remplace tous les coffres par des coffres dorés {{GoldenChest}}#Ne peut pas remplacer les coffres Antiques {{DirtyChest}} et Géants {{MegaChest}}" },
+	--Lucky Bag ??
+	[160] = {"un sachet","deux {{ColorWhite}}sachets","trois {{ColorWhite}}sachets"},
+	--Dingleberry
+	[163] = {"une Crotte amicale", "2 {{ColorWhite}}Crottes amicales", "2 {{ColorWhite}}Crottes amicales"},
+	--Ring Cap
+	[164] = {"une bombe", "2 {{ColorWhite}}bombes", "3 {{ColorWhite}}bombes"},
+	-- Empty Heart
+	[168] = {"1 cœur", "2 {{ColorWhite}}cœurs", "3 {{ColorWhite}}cœurs"},
+	-- Child's Drawing
+	[169] = {"1 objet", "2 {{ColorWhite}}objets"},
+	-- Lil' Clot
+	[176] = {"un pâté qui imite", "deux {{ColorWhite}}pâtés qui imitent", "trois {{ColorWhite}}pâtés qui imitent"},
 	-- The Twins
-	[183] = { "Invoque ou copie parfois 2 familiers", "Invoque ou copie parfois 2 familiers", "Invoque ou copie parfois 3 familiers" },
+	[183] = {"Invoque ou copie parfois 2 familiers", "Invoque ou copie parfois 2 familiers", "Invoque ou copie parfois 3 familiers" },
+	-- Apollyon's Best Friend
+	[186] = {"un locuste abyssal", "2 {{ColorWhite}}locustes abyssaux", "3 {{ColorWhite}}locustes abyssaux"},
 }
 
+EID.descriptions[languageCode].goldenTrinketData = {
+	[1] = {findReplace = true}, --Swallowed Penny
+	[3] = {findReplace = true}, --Watch Battery
+	[5] = {findReplace = true, mult = 2}, --Purple Heart
+	[8] = {append = true},
+	[20] = {findReplace = true},
+	[29] = {findReplace = true},
+	[55] = {fullReplace = true},
+	[70] = {findReplace = true},
+	[72] = {findReplace = true},
+	[78] = {findReplace = true, mult = 1.5},
+	[81] = {findReplace = true},
+	[86] = {findReplace = true, mult = 2},
+	[156] = {findReplace = true},
+	[160] = {findReplace = true},
+	[163] = {findReplace = true},
+	[164] = {findReplace = true},
+	[168] = {findReplace = true},
+	[169] = {findReplace = true, mult = 2, goldenOnly = true},
+	[176] = {findReplace = true},
+	[186] = {findReplace = true},
+}
 
 -- Card Buffs caused by Tarot Cloth
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
