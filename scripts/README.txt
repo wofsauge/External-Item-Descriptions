@@ -6,7 +6,7 @@ The resulting informations can then be used by EID to enable the following featu
 
 ~~~ HOW TO USE ~~~
 1. Extract savegame_reader.zip
-2. make sure the "savegame_reader.exe" is located in the "scripts" folder of EID 
+2. make sure the "savegame_reader.exe" is located in the "scripts" folder of EID
 3. Run the "savegame_reader.exe"
 
 You may need to install "Microsoft .NET 3.1" or greater for this tool to work.

@@ -140,7 +140,7 @@ local repCollectibles={
 	[263] = {"263", "Rune de Cristal", "Déclenche l'effet de la rune ou pierre d'âme portée par Isaac sans la consommer#Le temps de recharge de l'objet varie selon la rune#Fait apparaître une rune"}, -- Clear Rune   (REPENTANCE ITEM)
 	[273] = {"273", "Cerveau de Bob", "Peut être projeté avec les boutons de tir#Explose au contact d'un ennemi#{{Warning}} L'explosion peut infliger des dégâts à Isaac"}, -- Bob's Brain
 	[274] = {"274", "Meilleure Pote", "Subir un dégât invoque une mouche qui orbite autour d'Isaac et inflige des dégâts de contact pour la durée d'une salle"}, -- Best Bud
-	[275] = {"275", "P'tit Soufre", "Tire des lasers de sang"}, -- Lil Brimstone	
+	[275] = {"275", "P'tit Soufre", "Tire des lasers de sang"}, -- Lil Brimstone
 	[276] = {"276", "Cœur d'Isaac", "Isaac devient invulnérable#Fait apparaître un familier qui suit Isaac#{{Warning}} Isaac subit un dégât quand le familier entre en contact avec un ennemi ou un projectile#Le cœur charge une vague de larmes quand Isaac tire et la crache quand les boutons de tir sont relâchés"}, -- Isaac's Heart
 	[278] = {"278", "Mendiant des Ombres", "Ramasse les cœurs rouges au sol et convertit 1,5 cœurs rouges en 1 cœur noir, une araignée, une pilule, une carte ou une rune"}, -- Dark Bum
 	[280] = {"280", "Sissy la Faucheuse", "Invoque des araignées bleues dans les salles hostiles#Envoûte les ennemis qui la touchent"}, -- Sissy Longlegs
@@ -734,7 +734,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[723] = "Rejoue tous les feux follets en feux follets identiques", -- Spindown Dice
 	[728] = "Tous les feux follets orbitent autour de Gello", -- Gello
 	[729] = "Invoque un feu follet immobile", -- Decap Attack
-	
+
 }
 
 -- Special Locust effects when Item was eaten by Abyss
@@ -1095,7 +1095,7 @@ EID.descriptions[languageCode].horsepills={
 	{"25", "", "Retire la carte de l'étage"},
 	{"26", "", "Répand une flaque sur le sol qui inflige des dégâts aux ennemis"},
 	{"27", "", "Force Isaac à tirer en diagonale pendant 60 secondes"},
-	{"28", "", "Réduit de moitié les dégâts subis pour la durée d'une salle"}, 
+	{"28", "", "Réduit de moitié les dégâts subis pour la durée d'une salle"},
 	{"29", "", "Double les dégâts subis pour la durée d'une salle"},
 	{"30", "", "Laisse une traînée de cacas derrière Isaac pendant 4 secondes"},
 	{"31", "", "Fléau du Dédale pour l'étage actuel"},
@@ -1217,10 +1217,10 @@ EID.descriptions[languageCode].CraftingPreviewBackup = "{{Warning}} Si cet objet
 
 EID.descriptions[languageCode].CraftingResults = "(Défiler: maintenir {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Verrouiller: {{ButtonX}}, Rafraîchir: {{ButtonB}})"
 
-EID.descriptions[languageCode].BlankCardCharge = "Temps de charge avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :" 
-EID.descriptions[languageCode].BlankCardQCard = "Téléporte Isaac dans la salle d'erreur#La {{ColorYellow}}Carte Blanche{{ColorWhite}} et la {{ColorYellow}}Carte ?{{ColorWhite}} seront détruites" 
-EID.descriptions[languageCode].ClearRuneCharge = "Temps de charge avec {{ColorYellow}}Rune de Cristal{{ColorWhite}} :" 
-EID.descriptions[languageCode].PlaceboCharge = "Temps de charge avec {{ColorYellow}}Placebo{{ColorWhite}} :" 
+EID.descriptions[languageCode].BlankCardCharge = "Temps de charge avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"
+EID.descriptions[languageCode].BlankCardQCard = "Téléporte Isaac dans la salle d'erreur#La {{ColorYellow}}Carte Blanche{{ColorWhite}} et la {{ColorYellow}}Carte ?{{ColorWhite}} seront détruites"
+EID.descriptions[languageCode].ClearRuneCharge = "Temps de charge avec {{ColorYellow}}Rune de Cristal{{ColorWhite}} :"
+EID.descriptions[languageCode].PlaceboCharge = "Temps de charge avec {{ColorYellow}}Placebo{{ColorWhite}} :"
 EID.descriptions[languageCode].FlipItemToggleInfo = "( {{ButtonSelect}} : voir la description)"
 
 EID.descriptions[languageCode].FalsePHDHeart = "Fait apparaître un cœur noir {{BlackHeart}}"

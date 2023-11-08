@@ -14,9 +14,9 @@ if EID.isRepentance then
 	maxSlot = 3
 	--include the AB+ collectiblesToCheck in this table! (wish there was an easy way to merge two tables)
 	EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID,
-		CollectibleType.COLLECTIBLE_BINGE_EATER, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, CollectibleType.COLLECTIBLE_SPINDOWN_DICE, 
+		CollectibleType.COLLECTIBLE_BINGE_EATER, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, CollectibleType.COLLECTIBLE_SPINDOWN_DICE,
 		CollectibleType.COLLECTIBLE_TAROT_CLOTH, CollectibleType.COLLECTIBLE_MOMS_BOX, 59, --Birthright Belial
-		CollectibleType.COLLECTIBLE_BLANK_CARD, CollectibleType.COLLECTIBLE_CLEAR_RUNE, CollectibleType.COLLECTIBLE_PLACEBO, 
+		CollectibleType.COLLECTIBLE_BLANK_CARD, CollectibleType.COLLECTIBLE_CLEAR_RUNE, CollectibleType.COLLECTIBLE_PLACEBO,
 		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP, CollectibleType.COLLECTIBLE_CAR_BATTERY
 	}
 end
@@ -66,7 +66,7 @@ end
 local function TabCallback(descObj)
 	if EID.TabPreviewID == 0 then return descObj end
 	EID.TabDescThisFrame = true
-	
+
 	EID.inModifierPreview = true
 	local descEntry = EID:getDescriptionObj(5, 100, EID.TabPreviewID)
 	EID.inModifierPreview = false
@@ -95,7 +95,7 @@ local function VoidCallback(descObj, isRune)
 		lastVoidCheck = EID.GameUpdateCount
 		EID.RecheckVoid = false
 	end
-	
+
 	local prefix = (isRune and "{{Card41}} ") or "{{Collectible477}} "
 	local pickup = descObj.Entity and descObj.Entity:ToPickup()
 	local isAltOption = false
@@ -114,10 +114,10 @@ local function VoidCallback(descObj, isRune)
 		local shopItem = pickup and pickup:IsShopItem()
 		-- Afterbirth+ really can't do anything with Void and a shop item, so just return
 		if (not EID.isRepentance and shopItem) then return descObj end
-		
+
 		local voidIntro = ((shopItem or isAltOption) and EID:getDescriptionEntry("VoidShopText")) or EID:getDescriptionEntry("VoidText")
 		local voidNames = EID:getDescriptionEntry("VoidNames")
-		
+
 		local eidTable = (isRune and EID.BlackRuneStatIncreases) or EID.VoidStatIncreases
 		local increases = ((isAltOption or not descObj.Entity) and eidTable[3]) or (shopItem and eidTable[2]) or eidTable[1]
 
@@ -133,7 +133,7 @@ local function VoidCallback(descObj, isRune)
 		end
 	-- Print unique synergies with Void and Active Items
 	elseif not isRune then
-		
+
 	end
 	return descObj
 end
@@ -162,7 +162,7 @@ local function PandorasBoxCallback(descObj)
 	-- Greed Mode has different Pandora's Box rules and stage numbers
 	local stageCheck = game:IsGreedMode() and greedStages or pandorasStages
 	local altCheck = game:IsGreedMode() and {} or altStages
-	
+
 	-- floor result information must be separated by line breaks or semicolons in localizations
 	local totalCount = 0
 	for w in string.gmatch(descObj.Description, "([^#;]+)") do
@@ -176,7 +176,7 @@ local function PandorasBoxCallback(descObj)
 	if totalCount == (EID.isRepentance and 12 or 11) then
 		skip9and12 = true
 	end
-	
+
 	for w in string.gmatch(descObj.Description, "([^#;]+)") do
 		doMarkup = false
 		-- the first captured group to care about is the one that contains a 2 (2 soul hearts)
@@ -209,12 +209,12 @@ end
 local function ItemCollectionPageCallback(descObj)
 	descObj.Name = "{{"..EID.Config["ItemCollectionColor"].."}}"..descObj.Name
 	local text = EID:getDescriptionEntry("CollectionPageInfo")
-	
+
 	EID:appendToDescription(descObj, "#{{Warning}} "..text)
 	return descObj
 end
 
--- Handle Sacrifice room payout 
+-- Handle Sacrifice room payout
 local function SacrificeRoomCallback(descObj)
 	local curCounter = descObj.ObjSubType or 1
 	if curCounter <= 2 then
@@ -256,7 +256,7 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-	
+
 	-- Handle Bingeeater description addition
 	local function BingeEaterCallback(descObj)
 		local bingeBuff = EID:getDescriptionEntry("bingeEaterBuffs", descObj.ObjSubType)
@@ -276,7 +276,7 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-	
+
 	-- Handle Book of Virtues description addition
 	local function BookOfVirtuesCallback(descObj)
 		local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", descObj.ObjSubType)
@@ -286,38 +286,38 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-	
+
 	--simple decimal rounding
 	function SimpleRound(num, dp)
 		dp = dp or 2
 		local mult = 10^dp
 		return math.floor(num * mult + 0.5)/mult
 	end
-	
+
 	-- 3 coins, 1 bomb, 1 key, 1 soul heart, 2 red hearts
 	local consolationPickups = { "5.20", "5.40", "5.30", "5.10.3", "5.10" }
 	local consolationQuantity = { "3", "1", "1", "1", "2" }
-	
+
 	-- Handle Consolation Prize stat prediction
 	local function ConsolationPrizeCallback(descObj)
 		for p = 1,#EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[p]
 			local playerID = player:GetPlayerType()
 			local playerName = player:GetName()
-			
+
 			local playerStats = {}
 			playerStats[1] = SimpleRound((player.MoveSpeed * 4.5) - 2)
 			playerStats[2] = SimpleRound((((30/(player.MaxFireDelay + 1))^0.75) * 2.120391) - 2)
 			playerStats[3] = SimpleRound(((player.Damage^0.56)*2.231179) - 2)
 			playerStats[4] = SimpleRound(((player.TearRange - 230) / 60) + 2)
-			
+
 			local playerPickups = {}
 			playerPickups[1] = player:GetNumCoins()
 			playerPickups[2] = player:GetNumBombs() * 3
 			playerPickups[3] = player:GetNumKeys() * 3
 			playerPickups[4] = playerID == 18 and (player:GetSoulCharge() * 2) - 1 or 9999
 			playerPickups[5] = playerID == 36 and (player:GetBloodCharge() * 2) - 1 or 9999
-			
+
 			local statsToDisplay = { 1 }
 			local lowestStat = playerStats[1]
 			for i = 2,4 do
@@ -327,7 +327,7 @@ if EID.isRepentance then
 					lowestStat = playerStats[i]
 				end
 			end
-			
+
 			local pickupsToDisplay = { 1 }
 			lowestStat = playerPickups[1]
 			for i = 2,5 do
@@ -337,9 +337,9 @@ if EID.isRepentance then
 					lowestStat = playerPickups[i]
 				end
 			end
-			
+
 			local newStr = "#" .. (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}} " or "") .. " {{ColorGray}}"..playerName.."{{CR}}#"
-			
+
 			local voidNames = EID:getDescriptionEntry("VoidNames")
 			for i,v in ipairs(statsToDisplay) do
 				local statIncreaseStr = "↑ " .. voidStatIcons[v] .. " " .. voidNames[v]
@@ -362,11 +362,11 @@ if EID.isRepentance then
 				newStr = newStr .. "#"
 			end
 			EID:appendToDescription(descObj, newStr)
-			
+
 		end
 		return descObj
 	end
-	
+
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCallback(descObj)
 		if EID.InsideItemReminder then return descObj end
@@ -417,7 +417,7 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-	
+
 	-- Handle Tarot Cloth description addition
 	local function TarotClothCallback(descObj)
 		local clothBuff = EID:getDescriptionEntry("tarotClothBuffs", descObj.ObjSubType)
@@ -427,15 +427,15 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-	
-	
+
+
 	local hasBox = false
 	local isGolden = false
-	
-	-- Handle Golden Trinket / Mom's Box description addition	
+
+	-- Handle Golden Trinket / Mom's Box description addition
 	local function GoldenTrinketCallback(descObj)
 		local trinketID = descObj.ObjSubType % TrinketType.TRINKET_GOLDEN_FLAG
-		local data = EID.GoldenTrinketData[trinketID]
+		local data = EID:getDescriptionEntry("goldenTrinketData", trinketID) or EID.GoldenTrinketData[trinketID]
 		local multiplier = 2
 		local textChoice = 1
 		if isGolden and hasBox then
@@ -445,17 +445,17 @@ if EID.isRepentance then
 			textChoice = 2
 		end
 		local count = 0
-		
+
 		if data then
 			if type(data) == "number" then data = {t={data}} end
 			if data.goldenOnly and not isGolden then return descObj end
-			
+
 			--custom multipliers (either manually defined, or just changing the max multiplier
 			if data.mults then
 				if isGolden and hasBox then multiplier = data.mults[2]
 				else multiplier = data.mults[1] end
 			elseif data.mult and ((isGolden and hasBox) or data.mult < 2) then multiplier = data.mult end
-			
+
 			--replacing numeric text based on our multiplier
 			if (data.t) then
 				for _,v in ipairs(data.t) do
@@ -511,7 +511,7 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-	
+
 	-- Handle Blank Card description addition
 	local function BlankCardCallback(descObj)
 		local text = EID:getDescriptionEntry("BlankCardCharge")
@@ -550,12 +550,12 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-	
+
 	-- Handle VURP description addition
 	local function VurpCallback(descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 		if adjustedID - 1 ~= PillEffect.PILLEFFECT_VURP then return descObj end
-		
+
 		for i = 1,#EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[i]
 			local playerID = EID:getPlayerID(player)
@@ -586,7 +586,7 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-	
+
 	-- Handle False PHD description addition
 	local function FalsePHDCallback(descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
@@ -608,20 +608,20 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-	
+
 	-- Handle co-op players seeing different pill effects
 	local function CoopPillCallback(descObj)
 		-- Don't do this check when holding Tab for pill effects
 		if not descObj.Entity then return descObj end
 		local printedDescs = { [descObj.Name] = true }
-		
+
 		for i = 1,#EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[i]
 			EID.pillPlayer = player
 			local playerID = player:GetPlayerType()
 			-- Regrab the pill description object with this player
 			local pillObj = EID:getDescriptionObjByEntity(descObj.Entity)
-			
+
 			-- only print a given pill description once, even if it affects multiple players
 			-- if it's 4P co-op and P1 has PHD, and P2/P3/P4 all get same effect, no one wants to see that 3 times
 			if not printedDescs[pillObj.Name] then
@@ -652,7 +652,7 @@ if EID.isRepentance then
 		if descObj.ObjSubType == 0 then
 			return EID:getDescriptionObj(5, 100, flipItemID)
 		end
-		
+
 		local infoText = EID:getDescriptionEntry("FlipItemToggleInfo")
 		local itemName = EID:getObjectName(5, 100, flipItemID)
 		local appendText = "#{{Collectible711}} -> {{Collectible"..flipItemID.."}} "..itemName
@@ -661,44 +661,44 @@ if EID.isRepentance then
 			appendText = appendText .. "#{{Blank}} "..infoText
 		end
 		EID:appendToDescription(descObj, appendText)
-		
+
 		return descObj
 	end
-	
+
 	--------------------------------
 	-- Although individual conditions/callbacks work well for mods to be able to add through the API,
 	-- As we kept adding callbacks for vanilla items, a lot of code got repeated over and over
 	-- This one-condition setup fixes that and can only help performance
 	-- It also allows us to pick the order that modifiers are appended to descriptions (stats/effects first, then reroll/flip/recharge info)
-	
+
 	-- REPENTANCE-ONLY MODIFIERS
 	local function EIDConditions(descObj)
 		-- currently, only pickup descriptions have modifiers
 		if descObj.ObjType ~= 5 then return false end
-		
+
 		EID:CheckPlayersCollectibles()
-		
+
 		local callbacks = {}
-		
+
 		-- Collectible Pedestal Callbacks
 		if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
 			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
-			
+
 			if EID.collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
 			if EID.collectiblesOwned[59] then table.insert(callbacks, BookOfBelialCallback) end
 			if EID.collectiblesOwned[584] then table.insert(callbacks, BookOfVirtuesCallback) end
 			if EID.collectiblesOwned[706] or EID.collectiblesAbsorbed[706] then table.insert(callbacks, AbyssCallback) end
-			
+
 			if EID.collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
 			if EID.Config["SpindownDiceResults"] > 0 and (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723]) and descObj.ObjSubType ~= 668 then table.insert(callbacks, SpindownDiceCallback) end
-			
+
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
 			if EID.collectiblesOwned[451] then table.insert(callbacks, TarotClothCallback) end
-			
+
 			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
 			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
 		-- Pill Callbacks
@@ -706,7 +706,7 @@ if EID.isRepentance then
 			if EID.collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
 			if EID.collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
 			table.insert(callbacks, VurpCallback)
-			
+
 			if EID.pillPlayer == nil and #EID.coopAllPlayers > 1 then
 				table.insert(callbacks, CoopPillCallback)
 			end
@@ -717,7 +717,7 @@ if EID.isRepentance then
 			hasBox = EID.collectiblesOwned[439]
 			if isGolden or hasBox then table.insert(callbacks, GoldenTrinketCallback) end
 		end
-		
+
 		return callbacks
 	end
 	EID:addDescriptionModifier("EID Repentance", EIDConditions, nil)
@@ -730,24 +730,24 @@ local function EIDConditionsAB(descObj)
 	if descObj.ObjType == -999 and descObj.ObjVariant == -1 then return {SacrificeRoomCallback} end
 	-- currently, only pickup descriptions have modifiers
 	if descObj.ObjType ~= 5 then return false end
-	
+
 	EID:CheckPlayersCollectibles()
-	
+
 	local callbacks = {}
-	
+
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 		if EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
-		
+
 		if descObj.ObjSubType == 297 then table.insert(callbacks, PandorasBoxCallback) end
-		
+
 		if EID.Config["DisplayVoidStatInfo"] then
 			if EID.collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
 			if EID.blackRuneOwned then table.insert(callbacks, BlackRuneCallback) end
 		end
 		if EID.collectiblesOwned[356] then table.insert(callbacks, CarBatteryCallback) end
 	end
-	
+
 	return callbacks
 end
 EID:addDescriptionModifier("EID Afterbirth+", EIDConditionsAB, nil)

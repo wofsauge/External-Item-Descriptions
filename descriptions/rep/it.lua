@@ -597,7 +597,7 @@ local repPills={
 	[13] = {"12", "Gittata Aumentata", "↑ +0.75 Gittata"}, -- Range Up
 	[42] = {"41", "Ho sonno...", "Rallenta tutti i nemici, proiettili ed Isaac per la stanza corrente"}, -- I'm Drowsy...
 	[43] = {"42", "Sono Esaltato!!!", "Accelera tutti i nemici, proiettili ed Isaac per la stanza corrente#Si riattiva ogni 30-60 secondi"}, -- I'm Excited!!!
-	
+
 	[48] = {"47", "Velocita' di tiro diminuita", "↓ -0.15 Velocita' di tiro"}, -- Shot Speed Down
 	[49] = {"48", "Velocita' di tiro aumentata", "↑ +0.15 Velocita' di tiro"}, -- Shot Speed Up
 	[50] = {"49", "Pillola Sperimentale", "↑ Aumenta 1 statistica casuale#↓ Diminuisce 1 statistica casuale#Aumenta solo la statistica se si possiede il PHD"}, -- Experimental Pill
