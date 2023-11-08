@@ -815,7 +815,7 @@ EID.descriptions[languageCode].pills={
 	{"44", "Blink!", "{{Collectible149}} Vystřelí jednu Ipekak slzu"},
 	{"45", "Mám Pocit, Jako Bych Kráčel po Slunečním Svitu!", "Krátká nesmrtelnost"},
 	{"46", "Brk!", "Vybrkneš posledně použitou pilulku"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Další Odměna za Obětování]"
@@ -884,27 +884,27 @@ EID.descriptions[languageCode].MCM = {
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {
 	["5.0"] = "Nic",
-	
+
 	["5.10"] = "{{Heart}} Srdce",
 	["5.10.1"] = "{{Heart}} Srdce", ["5.10.2"] = "{{HalfHeart}} Půlka Srdce", ["5.10.3"] = "{{SoulHeart}} Duševní Srdce", ["5.10.4"] = "{{EternalHeart}} Srdce Věčnosti", ["5.10.5"] = "{{Heart}} Dvojité Srdce", ["5.10.6"] = "{{BlackHeart}} Černé Srdce", ["5.10.7"] = "{{GoldHeart}} Zlaté Srdce", ["5.10.8"] = "{{HalfSoulHeart}} Půlka Duševního Srdce", ["5.10.9"] = "{{Heart}} Vystrašené Srdce", ["5.10.10"] = "{{BlendedHeart}} Zamíchané Srdce", ["5.10.11"] = "{{EmptyBoneHeart}} Kostěné Srdce", ["5.10.12"] = "{{RottenHeart}} Shnilé Srdce",
-	
+
 	["5.20"] = "{{Coin}} Mince",
 	["5.20.1"] = "{{Crafting8}} Mince", ["5.20.2"] = "{{Crafting9}} Niklák (pěti-mince)", ["5.20.3"] = "{{Crafting10}} Deseti-mince", ["5.20.4"] = "{{Crafting8}} Dvojitá Mince", ["5.20.5"] = "{{Crafting11}} Mince Štěstí", ["5.20.6"] = "{{Crafting9}} Lepivý Niklák", ["5.20.7"] = "{{Crafting26}} Zlatá Mince",
-	
+
 	["5.30"] = "{{Key}} Klíč",
 	["5.30.1"] = "{{Crafting12}} Klíč", ["5.30.2"] = "{{Crafting13}} Zlatý Klíč", ["5.30.3"] = "{{Crafting12}} Key Ring", ["5.30.4"] = "{{Crafting14}} Charged Key",
-	
+
 	["5.40"] = "{{Bomb}} Bomb",
 	["5.40.1"] = "{{Crafting15}} Bomb", ["5.40.2"] = "{{Crafting15}} Double Bomb", ["5.40.3"] = "{{Crafting15}} Troll Bomb", ["5.40.4"] = "{{Crafting16}} Golden Bomb", ["5.40.5"] = "{{Crafting15}} Megatroll Bomb", ["5.40.7"] = "{{Crafting17}} Giga Bomb",
-	
+
 	["5.90"] = "{{Battery}} Battery",
 	["5.90.0"] = "{{Crafting19}} Lil' Battery", --AB+ didn't have subtypes for batteries
 	["5.90.1"] = "{{Crafting19}} Lil' Battery", ["5.90.2"] = "{{Crafting18}} Micro Battery", ["5.90.3"] = "{{Crafting20}} Mega Battery", ["5.90.4"] = "{{Crafting28}} Golden Battery",
-	
-	["5.50"] = "{{Chest}} Chest", ["5.51"] = "{{BombChest}} Bomb Chest", ["5.52"] = "{{SpikedChest}} Spiked Chest", ["5.53"] = "{{EternalChest}} Eternal Chest", ["5.54"] = "{{MimicChest}} Mimic Chest", ["5.55"] = "{{OldChest}} Old Chest", ["5.56"] = "{{WoodenChest}} Wooden Chest", ["5.57"] = "{{MegaChest}} Mega Chest", ["5.58"] = "{{HauntedChest}} Haunted Chest", ["5.60"] = "{{GoldenChest}} Golden Chest", ["5.360"] = "{{RedChest}} Red Chest",  
-	
+
+	["5.50"] = "{{Chest}} Chest", ["5.51"] = "{{BombChest}} Bomb Chest", ["5.52"] = "{{SpikedChest}} Spiked Chest", ["5.53"] = "{{EternalChest}} Eternal Chest", ["5.54"] = "{{MimicChest}} Mimic Chest", ["5.55"] = "{{OldChest}} Old Chest", ["5.56"] = "{{WoodenChest}} Wooden Chest", ["5.57"] = "{{MegaChest}} Mega Chest", ["5.58"] = "{{HauntedChest}} Haunted Chest", ["5.60"] = "{{GoldenChest}} Golden Chest", ["5.360"] = "{{RedChest}} Red Chest",
+
 	["5.69"] = "{{GrabBag}} Grab Bag", ["5.69.1"] = "{{GrabBag}} Grab Bag", ["5.69.2"] = "{{BlackSack}} Black Sack",
-	
+
 	["5.70"] = "{{Pill}} Pill",
 	["5.300"] = "{{Card}} Card",
 	["5.301"] = "{{Rune}} Rune", -- not a real id

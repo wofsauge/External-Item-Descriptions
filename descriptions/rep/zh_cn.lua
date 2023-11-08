@@ -157,7 +157,7 @@ local repCollectibles={
 	[354] = {"354", "琥珀爆米花", "↑ +1心之容器#在地上生成随机饰品#{{Heart}} 治疗1红心"}, -- Crack Jacks
 	[355] = {"355", "妈妈的珍珠项链", "↑ {{Range}} +1.5射程#↑ {{Luck}} +1运气#{{SoulHeart}} +1魂心"}, -- Mom's Pearls
 	[360] = {"360", "淫魔", "获得与角色眼泪效果一致的恶魔跟班#{{Damage}} 造成75%角色伤害#{{Player13}} 人物为莉莉丝则造成100%角色伤害"}, -- Incubus
-	[365] = {"365", "迷路苍蝇", "沿着房间内的墙/障碍物走#每秒造成56点接触伤害#吸引周围敌人以迷路苍蝇为目标"}, 
+	[365] = {"365", "迷路苍蝇", "沿着房间内的墙/障碍物走#每秒造成56点接触伤害#吸引周围敌人以迷路苍蝇为目标"},
 	[366] = {"366", "分裂炸弹", "{{Bomb}} +5炸弹#炸弹会炸成4-5个小炸弹"}, -- Scatter Bombs
 	[367] = {"367", "粘性炸弹", "{{Bomb}} +5炸弹#炸弹杀死敌人则生成蓝蜘蛛#炸弹会粘在敌人身上#炸弹爆炸后留下白色减速水迹"},
 	[368] =	{"368", "溢泪症", "↑ {{Tears}} 向单方向发射会提高射速修正，最多至200%"}, -- Epiphora
@@ -1009,7 +1009,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	room_clear = "清理房间后：#",
 
 	-- Attribute effects
-	area_damage = "在角色周围造成{1}伤害", 
+	area_damage = "在角色周围造成{1}伤害",
 	add_temporary_effect = "所在房间获得{1}效果",
 	convert_entities = "将房间中所有{1}变成{2}",
 	use_active_item = "使用{1}",
@@ -1026,7 +1026,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.40"] = "炸弹掉落物",
 	["5.69"] = "福袋",
 	["5.70"] = "胶囊",
-	["5.90"] = "电池", 
+	["5.90"] = "电池",
 	["5.300"] = "卡牌",
 	["9.-1"] = "敌人弹幕",
 	["999.-1"] = "方格物体",
@@ -1071,10 +1071,10 @@ EID.descriptions[languageCode].CraftingPreviewBackup =  "!!! 如果该道具锁�
 
 EID.descriptions[languageCode].CraftingResults =  "(滚动：按住 {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}，锁定：{{ButtonX}}，刷新：{{ButtonB}}，重置袋：按住 {{ButtonRB}})"
 
-EID.descriptions[languageCode].BlankCardCharge = "空白卡牌充能：" 
-EID.descriptions[languageCode].BlankCardQCard = "传送至错误房#空白卡牌和？卡牌会被摧毁" 
-EID.descriptions[languageCode].ClearRuneCharge = "透明符文充能：" 
-EID.descriptions[languageCode].PlaceboCharge = "安慰剂充能：" 
+EID.descriptions[languageCode].BlankCardCharge = "空白卡牌充能："
+EID.descriptions[languageCode].BlankCardQCard = "传送至错误房#空白卡牌和？卡牌会被摧毁"
+EID.descriptions[languageCode].ClearRuneCharge = "透明符文充能："
+EID.descriptions[languageCode].PlaceboCharge = "安慰剂充能："
 EID.descriptions[languageCode].FlipItemToggleInfo = "(按住 {{ButtonSelect}}(地图)来显示其描述)"
 
 EID.descriptions[languageCode].FalsePHDHeart = "生成1黑心"
@@ -1095,4 +1095,4 @@ if EID.enableDebug then
 	EID.descriptions[languageCode].repTrinkets = repTrinkets
 	EID.descriptions[languageCode].repCards = repCards
 	EID.descriptions[languageCode].repPills = repPills
-end 
+end

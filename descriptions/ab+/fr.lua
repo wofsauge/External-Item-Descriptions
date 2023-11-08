@@ -574,7 +574,36 @@ EID.descriptions["fr"].collectibles={
 	{"550", "Pelle Brisée", "Le pied de {{ColorCyan}}Mom{{ColorWhite}} tente en permanence d'écraser Isaac#Utiliser cet objet cesse les attaques pour la durée d'une salle ou d'une vague#{{Warning}} Poser cet objet sur un piédestal puis quitter la salle le fait disparaître#{{UltraSecretRoom}} Emporte la pelle avec toi le plus loin possible"},
 	{"551", "Pelle Brisée", "Le deuxième morceau d'une pelle maudite#{{UltraSecretRoom}} Permet de déterrer quelque chose d'enfoui dans la {{ColorTransform}}Dark Room"},
 	{"552", "Pelle de Maman", "Ouvre une trappe vers l'étage suivant#{{UltraSecretRoom}} Permet de déterrer quelque chose d'enfoui dans la {{ColorTransform}}Dark Room"},
-		
+
+}
+
+
+---------- Modifiers ----------
+
+-- Effect of Car battery on Active Items
+EID.descriptions[languageCode].carBattery = {
+	[58] = "Double la durée de l'effet", -- Book of Shadows
+	[66] = "Double la durée de l'effet ", -- The Hourglass
+	[77] = "Double la durée de l'effet", -- My Little Unicorn
+	[93] = "Double la durée de l'effet", -- The Gamekid
+	[111] = "Double les dégâts du pet", -- The Bean
+	[124] = "Déclenche deux effets", -- Dead Sea Scrolls
+	[145] = "Invoque 4 à 7 mouches bleues", -- Guppy's Head
+	[171] = "Inflige 10 dégâts supplémentaires", -- Spider Butt
+	[293] = "Double les dégâts du laser", -- Head of Krampus
+	[298] = "Double la durée de l'effet", -- Unicorn Stump
+	[351] = "Double les dégâts du pet", -- Mega Bean
+	[383] = "Divise davantage les larmes", -- Tear Detonator
+	[421] = "Double les dégâts du pet", -- Kidney Bean
+	[427] = "Place 2 barils de TNT", -- Mine Crafter
+	[477] = "Déclenche deux fois les effets des objets absorbés", -- Void
+	[482] = "Change de personnage 2 fois et retire les 2 objets les plus récents", -- Clicker
+	[485] = "25% de chances de quadrupler les objets mais 75% de chances de les faire disparaître", -- Crooked Penny
+	[486] = "Déclenche deux fois les effets des objets", -- Dull Razor
+	[488] = "Active l'effet de 2 objets", -- Metronome
+	[489] = "Déclenche l'effet d'un second dé", -- D Infinity
+	[523] = "Échange le contenu de la boîte et les ressources au sol", -- Moving Box
+	[550] = "Calme le pied pour deux vagues dans les salles concernées", -- Broken Shovel
 }
 
 
@@ -849,7 +878,7 @@ EID.descriptions["fr"].pills={
 	{"44", "Bleuargh !", "Tire une larme explosive qui inflige 200 dégâts"},
 	{"45", "Morphine", "Rend Isaac temporairement invulnérable"},
 	{"46", "Bleurp !", "Isaac recrache la dernière pilule avalée :"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions["fr"].sacrificeHeader = "Récompense du prochain sacrifice"
@@ -943,7 +972,7 @@ EID.descriptions["fr"].PickupNames = {
 	["5.90.0"] = "{{Crafting19}} Pile", --AB+ didn't have subtypes for batteries
 	["5.90.1"] = "{{Crafting19}} Pile", ["5.90.2"] = "{{Crafting18}} Micro pile", ["5.90.3"] = "{{Crafting20}} Méga pile", ["5.90.4"] = "{{Crafting28}} Pile dorée",
 
-	["5.50"] = "{{Chest}} Coffre", ["5.51"] = "{{BombChest}} Coffre en pierre", ["5.52"] = "{{SpikedChest}} Coffre à pics", ["5.53"] = "{{EternalChest}} Coffre éternel", ["5.54"] = "{{MimicChest}} Coffre piégé", ["5.55"] = "{{OldChest}} Coffre antique", ["5.56"] = "{{WoodenChest}} Coffre en bois", ["5.57"] = "{{MegaChest}} Coffre géant", ["5.58"] = "{{HauntedChest}} Coffre hanté", ["5.60"] = "{{GoldenChest}} Coffre doré", ["5.360"] = "{{RedChest}} Coffre rouge",  
+	["5.50"] = "{{Chest}} Coffre", ["5.51"] = "{{BombChest}} Coffre en pierre", ["5.52"] = "{{SpikedChest}} Coffre à pics", ["5.53"] = "{{EternalChest}} Coffre éternel", ["5.54"] = "{{MimicChest}} Coffre piégé", ["5.55"] = "{{OldChest}} Coffre antique", ["5.56"] = "{{WoodenChest}} Coffre en bois", ["5.57"] = "{{MegaChest}} Coffre géant", ["5.58"] = "{{HauntedChest}} Coffre hanté", ["5.60"] = "{{GoldenChest}} Coffre doré", ["5.360"] = "{{RedChest}} Coffre rouge",
 
 	["5.69"] = "{{GrabBag}} Sachet", ["5.69.1"] = "{{GrabBag}} Sachet", ["5.69.2"] = "{{BlackSack}} Sac Noir",
 
