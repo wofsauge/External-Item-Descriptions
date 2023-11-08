@@ -38,22 +38,22 @@ local function entityToName(e, plural)
 	local eWithZero = string.gsub(e, "-1", "0")
 	plural = plural or false
 	local name = localizedNames[e] or EID.XMLEntityNames[e] or localizedNames[eWithZero] or EID.XMLEntityNames[eWithZero] or e
-	
+
 	--print out entities with no name yet
 	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)")
 	elseif plural then name = name .. localizedNames["pluralize"] end
-	
+
 	return name
 end
 
 local function parseEffectLine(raw)
 	local words = {}
 	for w in string.gmatch(raw,"%S+") do table.insert(words, w) end
-	
+
 	local triggerReplacements = {}
 	local replacements = {}
 	local printEffect = true
-	
+
 	-- words[1] = "[INFO]", words[2] = "-"
 	local effectTrigger = words[3]
 	-- the effects list is rarely interrupted by music loading log entries, just ignore it and have a slightly inaccurate desc
@@ -66,7 +66,7 @@ local function parseEffectLine(raw)
 	local effectType = words[5]
 	local fullEffect = ""
 	for i=5,#words do fullEffect = fullEffect .. words[i] .. " " end
-	
+
 	if effectType == "add_temporary_effect" or effectType == "use_active_item" then
 		-- remainder of line = collectible name that's granted for the room
 		local name = ""
@@ -74,7 +74,7 @@ local function parseEffectLine(raw)
 			name = name .. words[i]
 			if (i ~= #words) then name = name .. " " end
 		end
-		
+
 		replacements[1] = name
 		if (Isaac.GetItemIdByName(name) > 0) then
 			replacements[1] = "{{Collectible" .. Isaac.GetItemIdByName(name) .. "}} " .. name
@@ -91,14 +91,14 @@ local function parseEffectLine(raw)
 		-- display area_damage 0's because they still need to be done to chain to the next thing
 		--if words[6] == "0" then printEffect = false end
 	end
-	
+
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
 	local eidString = ""
 	if effectTrigger ~= lastEffectTrigger then eidString = eidString .. triggerColors[effectTrigger] .. (localizedNames[effectTrigger] or (effectTrigger .. "#")) end
 	if printEffect then eidString = eidString .. (localizedNames[effectType] or fullEffect) .. "#" end
 	for k,v in ipairs(triggerReplacements) do eidString = string.gsub(eidString, "{T" .. k .. "}", v) end
 	for k,v in ipairs(replacements) do eidString = string.gsub(eidString, "{" .. k .. "}", v) end
-	
+
 	if effectTrigger ~= "chain" then lastEffectTrigger = effectTrigger end
 	return eidString
 end
@@ -108,14 +108,14 @@ local function CheckLogForItems(_)
 	-- (Should work well for Corrupted Data)
 	if game:GetFrameCount() % 5 ~= 0 or not EID.Config["DisplayGlitchedItemInfo"] or not logFound or
 		EID.itemConfig:GetCollectible(maxNumber - spawnedItems - 1) == nil then return end
-		
+
 	local numEffects = 0
 	local eidDesc = ""
-	
+
 	local theLog = io.open(logLocation, "r")
 	if theLog == nil then return end
 	theLog:seek("set", logCursor)
-	
+
 	local line = theLog:read()
 	while line ~= nil do
 		if string.find(line, "initialized with") then
@@ -134,7 +134,7 @@ local function CheckLogForItems(_)
 				eidDesc = EID:CheckGlitchedItemConfig(maxNumber - spawnedItems) .. eidDesc
 				-- Glowing Hour Glass type effects cause the game to reload all items, check if our desc is equal to the first one
 				if (descOne == eidDesc) then spawnedItems = 1 end
-				
+
 				EID:addCollectible(maxNumber - spawnedItems, eidDesc)
 				if spawnedItems == 1 then descOne = eidDesc end
 			end
@@ -146,7 +146,7 @@ local function CheckLogForItems(_)
 
 		line = theLog:read()
 	end
-	
+
 	logCursor = theLog:seek()
 	theLog:close()
 end
@@ -162,7 +162,7 @@ local function GameStartTMTRAINER(_,isSave)
 	else
 		logFound = true
 	end
-	
+
 	-- luckily, when the game reloads, it also reloads all glitched items, so resuming works perfectly as long as we start at the beginning
 	spawnedItems = 0
 end

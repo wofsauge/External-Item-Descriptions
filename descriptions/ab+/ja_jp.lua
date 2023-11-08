@@ -927,27 +927,27 @@ EID.descriptions[languageCode].RoomTypeNames = { "通常の部屋", "お店", "I
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {
 	["5.0"] = "None",
-	
+
 	["5.10"] = "{{Heart}} ハート",
 	["5.10.1"] = "{{Heart}} ハート", ["5.10.2"] = "{{HalfHeart}} 半ハート", ["5.10.3"] = "{{SoulHeart}} 青ハート", ["5.10.4"] = "{{EternalHeart}} 白ハート", ["5.10.5"] = "{{Heart}} ハートｘ2", ["5.10.6"] = "{{BlackHeart}} 黒ハート", ["5.10.7"] = "{{GoldHeart}} 金ハート", ["5.10.8"] = "{{HalfSoulHeart}} 半青ハート", ["5.10.9"] = "{{Heart}} 脅えるハート", ["5.10.10"] = "{{BlendedHeart}} 混合ハート", ["5.10.11"] = "{{EmptyBoneHeart}} 骨ハート", ["5.10.12"] = "{{RottenHeart}} 腐ったハート",
-	
+
 	["5.20"] = "{{Coin}} コイン",
 	["5.20.1"] = "{{Crafting8}} ペニー", ["5.20.2"] = "{{Crafting9}} ニッケル", ["5.20.3"] = "{{Crafting10}} ダイム", ["5.20.4"] = "{{Crafting8}} ダブルペニー", ["5.20.5"] = "{{Crafting11}} ラッキーペニー", ["5.20.6"] = "{{Crafting9}} 粘着ニッケル", ["5.20.7"] = "{{Crafting26}} ゴールデンペニー",
-	
+
 	["5.30"] = "{{Key}} 鍵",
 	["5.30.1"] = "{{Crafting12}} 鍵", ["5.30.2"] = "{{Crafting13}} 金の鍵", ["5.30.3"] = "{{Crafting12}} 鍵ｘ2", ["5.30.4"] = "{{Crafting14}} 帯電した鍵",
-	
+
 	["5.40"] = "{{Bomb}} 爆弾",
 	["5.40.1"] = "{{Crafting15}} 爆弾", ["5.40.2"] = "{{Crafting15}} 爆弾ｘ2", ["5.40.3"] = "{{Crafting15}} トロル爆弾", ["5.40.4"] = "{{Crafting16}} 金爆弾", ["5.40.5"] = "{{Crafting15}} メガトロル爆弾", ["5.40.7"] = "{{Crafting17}} 巨大爆弾",
-	
+
 	["5.90"] = "{{Battery}} 電池",
 	["5.90.0"] = "{{Crafting19}} 電池", --AB+ didn't have subtypes for batteries
 	["5.90.1"] = "{{Crafting19}} 電池", ["5.90.2"] = "{{Crafting18}} ミニ電池", ["5.90.3"] = "{{Crafting20}} メガ電池", ["5.90.4"] = "{{Crafting28}} 金電池",
-	
-	["5.50"] = "{{Chest}} 宝箱", ["5.51"] = "{{BombChest}} 石宝箱", ["5.52"] = "{{SpikedChest}} トゲ付き宝箱", ["5.53"] = "{{EternalChest}} 白宝箱", ["5.54"] = "{{MimicChest}} 罠宝箱", ["5.55"] = "{{OldChest}} 古びた宝箱", ["5.56"] = "{{WoodenChest}} 木の宝箱", ["5.57"] = "{{MegaChest}} 巨大宝箱", ["5.58"] = "{{HauntedChest}} 呪いの宝箱", ["5.60"] = "{{GoldenChest}} 金宝箱", ["5.360"] = "{{RedChest}} 赤宝箱",  
-	
+
+	["5.50"] = "{{Chest}} 宝箱", ["5.51"] = "{{BombChest}} 石宝箱", ["5.52"] = "{{SpikedChest}} トゲ付き宝箱", ["5.53"] = "{{EternalChest}} 白宝箱", ["5.54"] = "{{MimicChest}} 罠宝箱", ["5.55"] = "{{OldChest}} 古びた宝箱", ["5.56"] = "{{WoodenChest}} 木の宝箱", ["5.57"] = "{{MegaChest}} 巨大宝箱", ["5.58"] = "{{HauntedChest}} 呪いの宝箱", ["5.60"] = "{{GoldenChest}} 金宝箱", ["5.360"] = "{{RedChest}} 赤宝箱",
+
 	["5.69"] = "{{GrabBag}} サック", ["5.69.1"] = "{{GrabBag}} サック", ["5.69.2"] = "{{BlackSack}} 黒サック",
-	
+
 	["5.70"] = "{{Pill}} ピル",
 	["5.300"] = "{{Card}} カード",
 	["5.301"] = "{{Rune}} ルーン", -- not a real id

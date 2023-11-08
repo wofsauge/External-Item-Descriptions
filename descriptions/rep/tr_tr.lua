@@ -353,7 +353,7 @@ local repCollectibles={
 	[727] = {"727", "Hayalet Bomba", "+5 bomba#bomba dokunma hasarı verip 10 saniye sonra patlayan hayalet çıkartır"}, --  Ghost Bomb
 	[728] = {"728", "Gello", "Isace bağlı olan bir şeytan arkadaş çıkartır#Isaac'in gözyaşlarını, özelliklerini ve efektlerini taklit eder"}, --  Gello
 	[729] = {"729", "Kafa Koparma Atağı", "Isaac'in kafasını atar, düştüğü yere ateş edebilir#İtemi tekrar aktive etmek ya da kafanın üstüne basmak kafayı tekrar takar"}, --  Decap Attack
-	
+
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
@@ -604,7 +604,7 @@ local repPills={
 	[13] = {"12", "Menzil Artar", "↑ +0.75 Menzil"}, -- Range up
 	[42] = {"41", "Başım dönüyor...", "Isaaci ve tüm düşmanları yavaşlatır"}, -- I'm Drowsy...
 	[43] = {"42", "Heyecanlıyım!!!", "Isaaci ve tüm düşmanları hızlandırır#30 ve 60 saniye sonra tekrar aktif olur"}, -- I'm Excited!!!
-	
+
 	[48] = {"47", "Atış Hızı Azalır", "↓ -0.15 Atış hızı eksilir"}, -- Shot speed down
 	[49] = {"48", "Atış Hızı Artar", "↑ +0.15 Gözyaşı hızı"}, -- Shot speed up
 	[50] = {"49", "Deneysel Hap", "↑ Rastgele 1 özelliği arttır#↓ Rastgele 1 diğer özelliği azaltır#PHD ile azalmaz"}, -- Experimental Pill

@@ -22,7 +22,7 @@ EID.effectList = {
 }
 
 -- Grid entity types to be detected by EID
--- Add functions to the list to further filter the entries 
+-- Add functions to the list to further filter the entries
 EID.GridEntityWhitelist = {
 	[GridEntityType.GRID_SPIKES] = {
 		function(gridEntity)
@@ -69,10 +69,10 @@ EID.ItemTypeAnm2Names = {
 
 -- List of HUD elements, their position and usage
 EID.HUDElements = {
-	["Active1"] = {x = 20,y = 5, width = 65, height = 65, anchors={"TOP","LEFT"}, descriptionObj = function() 
+	["Active1"] = {x = 20,y = 5, width = 65, height = 65, anchors={"TOP","LEFT"}, descriptionObj = function()
 		local id = EID.player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)
 		if id == 0 then return nil end
-		return EID:getDescriptionObj(5, 100, id) 
+		return EID:getDescriptionObj(5, 100, id)
 	end},
 	["Active2"] = {x = -5,y = 0, width = 35, height = 35, anchors={"TOP","LEFT"}, descriptionObj = function()
 		local id = EID.player:GetActiveItem(ActiveSlot.SLOT_SECONDARY)
@@ -143,8 +143,8 @@ EID.TextReplacementPairs = {
 	{"{{CurseRoom}}", "{{CursedRoom}}"},
 	{"{{Crawlspace}}", "{{LadderRoom}}"},
 	{"{{GoldHeart}}", "{{GoldenHeart}}"},
-	
-	
+
+
 }
 local controllerSprites = Sprite()
 controllerSprites:Load("gfx/ui/buttons.anm2", true)
@@ -185,7 +185,7 @@ EID.InlineIcons = {
 	["10"] = {"numbers", 10, 6, 7},
 	["11"] = {"numbers", 11, 6, 7},
 	["12"] = {"numbers", 12, 6, 7},
-	
+
 	-- Hearts
 	["Heart"] = {"hearts", 0, 10, 9, 1, 1},
 	["HalfHeart"] = {"hearts", 1, 10, 9, 1, 1},
@@ -209,7 +209,7 @@ EID.InlineIcons = {
 	["HolyMantleSmall"] = {"hearts", 19, 9, 9, 1},
 	["RottenBoneHeart"] = {"hearts", 20, 10, 9, 1, 1},
 	["UnknownHeart"] = {"hearts", 21, 10, 9, 1, 1},
-	
+
 	-- Pickups
 	["Key"] = {"pickups", 0, 8, 9, 0},
 	["GoldenKey"] = {"pickups", 1, 8, 9, 0},
@@ -228,17 +228,17 @@ EID.InlineIcons = {
 	["PoopPickup"] = {"pickups", 10, 11, 9, 0},
 	["GrabBag"] = {"pickups", 11, 8, 8, 0, 2},
 	["BlackSack"] = {"pickups", 12, 8, 8, 0, 2},
-	
+
 	-- Collectible
 	["Collectible"] = {"Collectible", 0, 7, 7},
 	----- Use Markup "Collectible"+ ITEMID to render collectible sprites (example: {{Collectible1}} = Sad Onion)
 	----- Modded Collectible-icons are automatically generated. No code needed!
-	
+
 	-- Trinket
 	["Trinket"] = {"Trinket", 0, 7, 7},
 	----- Use Markup "Trinket"+ ITEMID to render trinket sprites (example: {{Trinket1}} = Swallowed Penny)
 	----- Modded Trinket-icons are automatically generated. No code needed!
-	
+
 	-- Machines
 	["Slotmachine"] = {"machines", 0, 8, 7, 0, 3},
 	["BloodDonationMachine"] = {"machines", 1, 9, 7, 0, 3},
@@ -248,7 +248,7 @@ EID.InlineIcons = {
 	["RestockMachine"] = {"machines", 5, 8, 7, 0, 3},
 	["Mirror"] = {"machines", 6, 8, 7, 0, 2},
 	["CraneGame"] = {"machines", 7, 8, 7, 0, 3},
-	
+
 	-- Beggars
 	["Beggar"] = {"Beggars", 0, 8, 7, 0, 3},
 	["DemonBeggar"] = {"Beggars", 1, 8, 7, 0, 3},
@@ -256,7 +256,7 @@ EID.InlineIcons = {
 	["KeyBeggar"] = {"Beggars", 3, 8, 7, 0, 3},
 	["BombBeggar"] = {"Beggars", 4, 8, 7, 0, 3},
 	["RottenBeggar"] = {"Beggars", 5, 8, 7, 0, 3},
-	
+
 	-- Chests
 	["Chest"] = {"Chests", 0, 10, 7, 0, 3},
 	["GoldenChest"] = {"Chests", 1, 10, 7, 0, 3},
@@ -269,11 +269,11 @@ EID.InlineIcons = {
 	["HauntedChest"] = {"Chests", 8, 10, 7, 0, 3},
 	["DirtyChest"] = {"Chests", 9, 10, 7, 0, 3},
 	["MegaChest"] = {"Chests", 10, 12, 9, 0, 1},
-	
+
 	-- Behaviors
 	["Throwable"] = {"Behavior", 0, 9, 9, 0},
 	["Chargeable"] = {"Behavior", 1, 9, 9, 0},
-	
+
 	-- Room Icons
 	["Shop"] = {"roomicons", 0, 8, 9, 0, 2},
 	["SecretRoom"] = {"roomicons", 1, 8, 9, 0, 2},
@@ -311,7 +311,7 @@ EID.InlineIcons = {
 	["WoodenChestRoomIcon"] = {"roomicons", 33, 6, 9, 0, 4},
 	["Teleporter"] = {"roomicons", 34, 9, 9, 0, 2},
 	["ErrorRoom"] = {"roomicons", 35, 9, 9, 0, 2},
-	
+
 	-- Roomshape Icons
 	["Room"] = {"roomshape", 0, 10, 9, 0, 2},
 	["RoomSmallHorizontal"] = {"roomshape", 1, 10, 9, 0, 3},
@@ -326,7 +326,7 @@ EID.InlineIcons = {
 	["RoomLBottomLeft"] = {"roomshape", 10, 11, 10, 0, 1},
 	["RoomLBottomRight"] = {"roomshape", 11, 11, 10, 0, 1},
 	["RedRoom"] = {"roomshape", 12, 10, 9, 0, 2},
-	
+
 	-- Transformation Icons
 	["CustomTransformation"] = {"TransformationCustom", 0, 16, 16, -5, -1, EID.IconSprite},
 	["Guppy"] = {"Transformation1", 0, 16, 16, 0, -1, EID.IconSprite},
@@ -346,14 +346,14 @@ EID.InlineIcons = {
 	["SpiderBaby"] = {"Transformation13", 0, 16, 16, 0, -1, EID.IconSprite},
 	["Adult"] = {"Transformation14",0,16, 16, 0, -1, EID.IconSprite},
 	["Stompy"] = {"Transformation15",0,16, 16, 0, -1, EID.IconSprite},
-	
+
 	-- Quality
 	["Quality0"] = {"Quality", 0, 10, 10, 0, 0},
 	["Quality1"] = {"Quality", 1, 10, 10, 0, 0},
 	["Quality2"] = {"Quality", 2, 10, 10, 0, 0},
 	["Quality3"] = {"Quality", 3, 10, 10, 0, 0},
 	["Quality4"] = {"Quality", 4, 10, 10, 0, 0},
-	
+
 	-- Controller Button Icons dynamically return either Controller or Keyboard key sprites
 	["ButtonY"] = {"XboxOne", 0, 9, 8, 3, 4, function(_) return getControllerSprite() end},
 	["ButtonA"] = {"XboxOne", 1, 9, 8, 3, 4, function(_) return getControllerSprite() end},
@@ -371,7 +371,7 @@ EID.InlineIcons = {
 	["ButtonRT"] = {"XboxOne", 13, 8, 8, 3, 4, function(_) return getControllerSprite() end},
 	["ButtonSelect"] = {"XboxOne", 14, 8, 8, 3, 4, function(_) return getControllerSprite() end},
 	["ButtonMenu"] = {"XboxOne", 15, 8, 8, 3, 4, function(_) return getControllerSprite() end},
-	
+
 	-- Crafting
 	["Crafting0"] = {"Crafting", 0, 14, 16, 0, 1},
 	["Crafting1"] = {"Crafting", 1, 14, 16, 0, 1},
@@ -404,7 +404,7 @@ EID.InlineIcons = {
 	["Crafting28"] = {"Crafting", 28, 14, 16, 0, -1},
 	["Crafting29"] = {"Crafting", 29, 14, 16, 0, -1},
 	["Crafting30"] = {"Crafting", 30, 14, 16, 0},
-	
+
 	--Poop Spells
 	["PoopSpell1"] = {"PoopSpells", 1, 16, 16, -2, -2}, --Normal
 	["PoopSpell2"] = {"PoopSpells", 2, 16, 16, -2, -2}, --Corn
@@ -417,7 +417,7 @@ EID.InlineIcons = {
 	["PoopSpell9"] = {"PoopSpells", 9, 16, 16, -2, -2}, --Fart
 	["PoopSpell10"] = {"PoopSpells", 10, 16, 16, -2, -2}, --Bomb
 	["PoopSpell11"] = {"PoopSpells", 11, 16, 16, -2, -2}, --Explosive Diarrhea
-	
+
 	-- Use the Stat Icon name without REP or AB to display the stat icon for the dlc the user is using right now. Example: {{Damage}}
 	-- Stats (Repentance)
 	["DamageREP"] = {"Stats", 0, 12, 16, 0, -1},
@@ -429,7 +429,7 @@ EID.InlineIcons = {
 	["AngelChanceREP"] = {"Stats", 6, 12, 16, -1, -1},
 	["DevilChanceREP"] = {"Stats", 7, 12, 16, 0, -2},
 	["TearsizeREP"] = {"Stats", 11, 12, 16, 0, 1},
-	
+
 	["AngelDevilChance"] = {"Stats", 8, 12, 16, -3, -2},
 	["PlanetariumChance"] = {"Stats", 9, 12, 16, 0, -1}, --unused
 	["TreasureRoomChance"] = {"Stats", 10, 12, 16, 0, 0}, --unused, assuming that's what it means
@@ -453,7 +453,7 @@ EID.InlineIcons = {
 	["AngelChanceSmall"] = {"Stats", 27, 10, 16, 0, 1},
 	["DevilChanceSmall"] = {"Stats", 28, 10, 16, 0, 1},
 	["AngelDevilChanceSmall"] = {"Stats", 29, 10, 16, 0, 0},
-	["PlanetariumChanceSmall"] = {"Stats", 30, 10, 16, 0, 1}, 
+	["PlanetariumChanceSmall"] = {"Stats", 30, 10, 16, 0, 1},
 	["TreasureRoomChanceSmall"] = {"Stats", 31, 10, 16, 0, 2},
 	["TearsizeSmall"] = {"Stats", 32, 10, 16, 0, 2},
 	-- Stats (Afterbirth+ Small)
@@ -466,7 +466,7 @@ EID.InlineIcons = {
 	["AngelChanceABSmall"] = {"Stats", 39, 8, 16, 0, 2},
 	["DevilChanceABSmall"] = {"Stats", 40, 8, 16, 0, 2},
 	["TearsizeABSmall"] = {"Stats", 41, 8, 16, 0, 2},
-	
+
 
 
 	-- Player Icons for Birthright
@@ -498,7 +498,7 @@ EID.InlineIcons = {
 	["Player25"] = {"Players", 25, 12, 12, -1, 1, EID.PlayerSprite}, -- T. ???
 	["Player26"] = {"Players", 26, 12, 12, -1, 1, EID.PlayerSprite}, -- T. Eve
 	["Player27"] = {"Players", 27, 12, 12, -1, 1, EID.PlayerSprite}, -- T. Samson
-	["Player28"] = {"Players", 28, 12, 12, -1, 1, EID.PlayerSprite}, -- T. Azazel 
+	["Player28"] = {"Players", 28, 12, 12, -1, 1, EID.PlayerSprite}, -- T. Azazel
 	["Player29"] = {"Players", 29, 12, 12, -1, 1, EID.PlayerSprite}, -- T. Lazarus (Alive)
 	["Player30"] = {"Players", 30, 12, 12, -1, 1, EID.PlayerSprite}, -- T. Eden
 	["Player31"] = {"Players", 31, 12, 12, -1, 1, EID.PlayerSprite}, -- T. The Lost
@@ -511,7 +511,7 @@ EID.InlineIcons = {
 	["Player38"] = {"Players", 38, 12, 12, -1, 1, EID.PlayerSprite}, -- T. Lazarus (Dead)
 	["Player39"] = {"Players", 39, 12, 12, -1, 1, EID.PlayerSprite}, -- T. Jacob (Ghost)
 	["Player40"] = {"Players", 40, 12, 12, -1, 1, EID.PlayerSprite}, -- T. The Soul
-	
+
 	-- Status effects
 	["Charm"] = {"StatusEffects", 0, 10, 9, 0, 1},
 	["Burning"] = {"StatusEffects", 1, 8, 9, 0, 1},
@@ -768,16 +768,16 @@ EID.GoldenTrinketData = {
 	-- NO!, Brown Cap, Cracked Crown, Ouroboros Worm, Broken Syringe, Teardrop Charm, Beth's Faith (possibly tripleable, but max 8 wisps in its ring)
 	[88] = {append = true}, [90] = {t={100}, mult=2}, [92] = 20, [96] = {t={0.4, 1.5}}, [132] = {t={25}, mult=4}, [139] = {t={4},mults={1.5,2}}, [142] = {t={4}, mult=2},
 	-- Old Capacitor (hard cap of 33% chance), Perfection, Mom's Lock, Dice Bag, Mother's Kiss
-	[143] = {t={20}, mult=1.65}, [145] = 10, [153] = {t={25}, mult=4}, [154] = {t={50}, mult=2}, [156] = 1, 
+	[143] = {t={20}, mult=1.65}, [145] = 10, [153] = {t={25}, mult=4}, [154] = {t={50}, mult=2}, [156] = 1,
 	-- Gilded Key (Golden = no +1 key; probably a bug), Lucky Sack, Azazel's Stump (50/67/100), Dingle Berry, Ring Cap
-	[159] = {goldenOnly = true, fullReplace = true, mult=1}, [160] = 1, [162] = {t={50}, mults={1.32, 2}}, [163] = {t={1},mult=2}, [164] = 1, 
+	[159] = {goldenOnly = true, fullReplace = true, mult=1}, [160] = 1, [162] = {t={50}, mults={1.32, 2}}, [163] = {t={1},mult=2}, [164] = 1,
 	-- Modeling Clay, Polished Bone (25, 33, 50), Hollow Heart, Kid's Drawing, Crystal Key
 	[166] = {t={50},mult=2}, [167] = {t={25}, mults={1.32, 2}}, [168] = 1, [169] = {t={1}, goldenOnly = true, mult = 2}, [170] = {t={33}, mults={1.5,3}},
 	-- Lil Clot, Swallowed M80, The Twins (effect chance rolls multiple times), Cricket Leg (17%, 1 in 6), Apollyon's Best Friend, Broken Glasses
 	[176] = 1, [178] = {t={50},mult=2}, [183] = {append = true}, [185] = 17, [186] = 1, [187] = {t={50,50}, mult=2},
-	
+
 	-- NEW REP PATCH UPDATE
-	-- AAA Battery, Broken Remote (Teleport 2.0), Broken Magnet (coins -> pickups), Cartridge, Pulse Worm (default text), Flat Worm, 
+	-- AAA Battery, Broken Remote (Teleport 2.0), Broken Magnet (coins -> pickups), Cartridge, Pulse Worm (default text), Flat Worm,
 	[3] = 1, [4] = {fullReplace = true, mult=1}, [6] = {findReplace = true, mult = 2}, [7] = {append = true}, [8] = 5, [9] = 0, [12] = 50,
 	-- Golden Store Credit, Lucky Rock (effect chance rolls multiple times), Mom's Toenail (20 -> 10 -> 6.66), Mysterious Candy (golden = golden poop)
 	[13] = {goldenOnly = true, fullReplace = true, mult=1}, [15] = {append = true}, [16] = {t={20}, mults={0.5, 0.333}}, [25] = {goldenOnly = true, findReplace = true, mult = 2},
@@ -844,18 +844,18 @@ EID.MarkupSizeMap = {
 
 -- Bulletpoint icons that shouldn't be printed if stat/pickup bulletpoints are disabled
 EID.StatPickupBulletpointBlacklist = {
-	["{{Damage}}"] = true, ["{{Speed}}"] = true, ["{{Tears}}"] = true, ["{{Range}}"] = true, 
-	["{{Shotspeed}}"] = true, ["{{Luck}}"] = true, ["{{AngelChance}}"] = true, ["{{DevilChance}}"] = true, 
+	["{{Damage}}"] = true, ["{{Speed}}"] = true, ["{{Tears}}"] = true, ["{{Range}}"] = true,
+	["{{Shotspeed}}"] = true, ["{{Luck}}"] = true, ["{{AngelChance}}"] = true, ["{{DevilChance}}"] = true,
 	["{{AngelDevilChance}}"] = true, ["{{PlanetariumChance}}"] = true, ["{{TreasureRoomChance}}"] = true,
 	["{{Tearsize}}"] = true, ["{{DamageSmall}}"] = true, ["{{SpeedSmall}}"] = true,
 	["{{TearsSmall}}"] = true, ["{{RangeSmall}}"] = true, ["{{ShotspeedSmall}}"] = true,
-	["{{LuckSmall}}"] = true, ["{{AngelChanceSmall}}"] = true, ["{{DevilChanceSmall}}"] = true, 
+	["{{LuckSmall}}"] = true, ["{{AngelChanceSmall}}"] = true, ["{{DevilChanceSmall}}"] = true,
 	["{{AngelDevilChanceSmall}}"] = true, ["{{PlanetariumChanceSmall}}"] = true,
 	["{{TreasureRoomChanceSmall}}"] = true, ["{{TearsizeSmall}}"] = true,
 	["{{Chest}}"] = true, ["{{Coin}}"] = true, ["{{Bomb}}"] = true, ["{{Key}}"] = true, ["{{Battery}}"] = true,
 	["{{Pill}}"] = true, ["{{Card}}"] = true, ["{{Rune}}"] = true,
 	["{{Heart}}"] = true, ["{{HalfHeart}}"] = true, ["{{EternalHeart}}"] = true, ["{{SoulHeart}}"] = true,
-	["{{BlackHeart}}"] = true, 
+	["{{BlackHeart}}"] = true,
 }
 
 EID.TransformationData = {
