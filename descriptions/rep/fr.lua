@@ -938,7 +938,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	},
 	-- Maggy's Faith
 	[55] = {
-		"{{EternalHeart}} +1 cœur éternel au début de chaque étage",
+		"{{Heart}} +1 {{ColorGold}}réceptacle de cœur{{ColorWhite}} au début de chaque étage",
 		"{{Heart}} +1 {{ColorGold}}réceptacle de cœur{{ColorWhite}} au début de chaque étage",
 		"{{Blank}} Au début de chaque étage :#{{Heart}} {{ColorGold}}+1 réceptacle de cœur#{{EternalHeart}} +1 cœur éternel"
 	},
@@ -954,6 +954,12 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[78] = {"Double","Triple"},
 	--Blind Rage
 	[81] = {"Double","Quadruple","Sextuple"},
+	--Karma
+	[85] = {
+		"Faire un don à une boîte à dons a 33% de chances de:#Soigner {{ColorGold}}3{{ColorWhite}} cœurs rouges {{ColorSilver}}(40%)#Donner {{ColorGold}}2{{ColorWhite}} pièces {{ColorSilver}}(40%)#Donner {{ColorLime}}Chance +{{ColorGold}}2{{ColorWhite}} {{ColorSilver}}(15%)#Invoquer un mendiant {{ColorSilver}}(5%)",
+		"Faire un don à une boîte à dons a 33% de chances de:#Soigner {{ColorGold}}3{{ColorWhite}} cœurs rouges {{ColorSilver}}(40%)#Donner {{ColorGold}}2{{ColorWhite}} pièces {{ColorSilver}}(40%)#Donner {{ColorLime}}Chance +{{ColorGold}}2{{ColorWhite}} {{ColorSilver}}(15%)#Invoquer un mendiant {{ColorSilver}}(5%)",
+		"Faire un don à une boîte à dons a 33% de chances de:#Soigner {{ColorGold}}3{{ColorWhite}} cœurs rouges {{ColorSilver}}(40%)#Donner {{ColorGold}}3{{ColorWhite}} pièces {{ColorSilver}}(40%)#Donner {{ColorLime}}Chance +{{ColorGold}}3{{ColorWhite}} {{ColorSilver}}(15%)#Invoquer un mendiant {{ColorSilver}}(5%)"
+	},
 	--Lil' Larva
 	[86] = {"une mouche bleue", "deux {{ColorWhite}}mouches bleues", "trois {{ColorWhite}}mouches bleues"},
 	--NO!
@@ -992,6 +998,7 @@ EID.descriptions[languageCode].goldenTrinketData = {
 	[72] = {findReplace = true},
 	[78] = {findReplace = true, mult = 1.5},
 	[81] = {findReplace = true},
+	[85] = {fullReplace = true},
 	[86] = {findReplace = true, mult = 2},
 	[156] = {findReplace = true},
 	[160] = {findReplace = true},
