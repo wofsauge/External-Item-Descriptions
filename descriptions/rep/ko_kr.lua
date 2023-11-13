@@ -967,11 +967,11 @@ local repCards={
 	[69] = {"69", "XIII - 죽음?", "{{Collectible545}} 방에서 죽인 적의 수만큼 일회용 뼛조각 배리어를 생성하며 확률적으로 아군 해골 적을 소환합니다."}, -- XIII - Death?
 	[70] = {"70", "XIV - 절제?", "5개의 랜덤한 {{Pill}}알약을 사용합니다.#!!! {{Collectible251}}Starter Deck의 효과를 무시합니다."}, -- XIV - Temperance?
 	[71] = {"71", "XV - 악마?", "{{Collectible33}}The Bible을 사용하며 30초간 비행 상태가 되고 {{Collectible390}}Seraphim 패밀리어를 소환합니다."}, -- XV - The Devil?
-	[72] = {"72", "XVI - 탑?", "장애물로 구성된 랜덤한 구조를 6번 생성합니다.#각 구조 당 확률적으로 색돌이 생성됩니다."}, -- XVI - The Tower?
+	[72] = {"72", "XVI - 탑?", "장애물로 구성된 랜덤한 구조를 7번 생성합니다.#각 구조 당 확률적으로 색돌이 생성됩니다."}, -- XVI - The Tower?
 	[73] = {"73", "XVII - 별?", "가장 먼저 획득한 패시브 아이템을 제거하고 그 방의 아이템을 2개 생성합니다."}, -- XVII - The Stars?
 	[74] = {"74", "XVIII - 달?", "{{UltraSecretRoom}}붉은 특급 비밀방으로 순간이동합니다."}, -- XVIII - The Moon?
 	[75] = {"75", "XIX - 해?", "그 스테이지에서 {{DamageSmall}}공격력이 +1.5 증가하며 비행 상태가 되고 공격이 장애물을 관통합니다.#그 스테이지에서 최대 체력이 {{BoneHeart}}뼈하트로 바뀌며 캐릭터 주변이 어두워집니다.#뼈하트로 바뀐 최대 체력은 다음 스테이지 이동 시 복원됩니다."}, -- XIX - The Sun?
-	[76] = {"76", "XX - 심판?", "재입고 기계를 생성합니다."}, -- XX - Judgement?
+	[76] = {"76", "XX - 심판?", "{{RestockMachine}} 재입고 기계를 생성합니다."}, -- XX - Judgement?
 	[77] = {"77", "XXI - 세계?", "{{LadderRoom}}사다리방으로 가는 다락문을 생성합니다."}, -- XXI - The World?
 	[78] = {"78", "깨진 열쇠", "{{Collectible580}} 빨간문 테두리 근처에서 사용 시 빨간방으로 가는 문이 생성됩니다.#빨간방은 일반방 또는 특수방의 구조로 생성될 수 있습니다."}, -- Cracked Key
 	[79] = {"79", "하트 Q", "{{Heart}} 빨간하트를 1~20개 드랍합니다."}, -- Queen of Hearts
@@ -998,39 +998,40 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
 
 -- Card Buffs caused by Tarot Cloth
--- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
-
+-- Strings will be appended to the original description (with line breaks replaced with a Tarot Cloth icon)
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple)
 EID.descriptions[languageCode].tarotClothBuffs = {
 	[2] = "그 방에서 {{DamageSmall}}공격력 +2", -- The Magician
 	[3] = "발이 한번 더 떨어집니다.",	-- The High Priestess
-	[4] = "효과 2배", -- The Empress
-	[5] = "{{SoulHeart}}소울하트 +1", -- The Emperor
-	[6] = "드랍하는 소울하트의 개수 +1", -- The Hierophant
-	[7] = "드랍하는 하트의 개수 +1", -- The Lovers
-	[8] = "지속시간 2배", -- The Chariot
-	[9] = "효과 2배", -- Justice
+	[4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
+	[5] = "보스방을 클리어하지 않았을 경우 {{SoulHeart}}소울하트 +1", -- The Emperor
+	[6] = {2, 3}, -- V - The Hierophant
+	[7] = {2, 3}, -- VI - The Lovers
+	[8] = {6, 12}, -- VII - The Chariot
+	[9] = {"{{Heart}}하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠를 {{ColorShinyPurple}}2개씩{{CR}} 소환합니다."}, -- VIII - Justice
 	[10] = "상점 방문 여부와 상관없이 Greed가 등장한 상점을 일반 상점으로 바꿉니다.", -- The Hermit
-	[11] = "효과 2배({{Collectible286}}:미적용)", -- Wheel of Fortune
-	[12] = "공격력 배율 제외 효과 2배({{Collectible286}}:미적용)", -- The Strength
-	[14] = "효과 2배({{Collectible286}}:미적용)", -- The Death
-	[15] = "효과 2배({{Collectible286}}:미적용)", -- Temperance
-	[16] = "효과 2배({{Collectible286}}:미적용)", -- The Devil
-	[17] = "효과 2배", -- The Tower
+	[11] = {"도박기계, 혹은 운세기계를 {{ColorShinyPurple}}2개{{CR}} 생성합니다."}, -- Wheel of Fortune
+	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 2.5, 5}, -- XI - Strength
+	[14] = {40, 80}, -- XIII - Death
+	[15] = {"{{DonationMachine}} 헌혈기계를 {{ColorShinyPurple}}2개{{CR}} 생성합니다.#Greed 모드에서는 악마거지를 {{ColorShinyPurple}}2명{{CR}} 소환합니다."}, -- Temperance
+	[16] = {2, 4}, -- XV - The Devil
+	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "보물방에 입장하지 않았을 때 사용시 보물방에 아이템이 한개 더 추가되며 하나를 선택하면 나머지는 사라집니다.", -- The Stars
-	[20] = "적에게 주는 피해량 4배({{Collectible286}}:2배)", -- The Sun
-	[21] = "효과 2배({{Collectible286}}:미적용)", -- The Judgement
-	[56] = "소지중인 아이템 중 가장 최근에 획득한 6개({{Collectible286}}:3개)의 아이템을 추가로 내려놓습니다.", -- The Fool Reverse
-	[59] = "증가되는 최대 체력 +1", -- The Empress Reverse
-	[61] = "드랍하는 뼈하트의 개수 +1", -- The Hierophant Reverse
+	[20] = {100, 400}, -- XIX - The Sun
+	[21] = {"랜덤 거지를 {{ColorShinyPurple}}2명{{CR}} 소환합니다."}, -- The Judgement
+	[56] = "소지중인 아이템 중 가장 최근에 획득한 6개의 아이템을 추가로 내려놓습니다.", -- The Fool Reverse
+	[59] = {2, 3}, -- III - The Empress?
+	[61] = {2, 3}, -- V - The Hierophant?
 	[62] = "효과 2배", -- The Lovers Reverse
-	[64] = "생성하는 상자의 개수 4~14개({{Collectible286}}:2~7개)로 증가", -- Justice Reverse
-	[65] = "드랍하는 동전의 개수 +1({{Collectible286}}:미적용)", -- The Hermit Reverse
-	[66] = "효과 2배({{Collectible286}}:미적용)", -- The Wheel of Fortune Reverse
-	[68] = "지속시간 2배({{Collectible286}}:미적용)", -- The Hanged Man Reverse
-	[70] = "사용하는 알약의 개수 x2", -- The Temperance Reverse
-	[72] = "생성되는 장애물의 구조 개수 14회로 증가({{Collectible286}}:미적용)", -- The Tower Reverse
-	[73] = "효과 2배({{Collectible286}}:미적용)", -- The Stars Reverse
-	[76] = "효과 2배({{Collectible286}}:미적용)", -- The Judgement Reverse
+	[64] = {4, 14, 2, 4}, -- VIII - Justice?
+	[65] = "드랍하는 동전의 개수 +1", -- The Hermit Reverse
+	[66] = {"{{DiceRoom}} 랜덤한 주사위방 효과를 {{ColorShinyPurple}}2번{{CR}} 발동합니다."}, -- The Wheel of Fortune Reverse
+	[68] = {30, 60}, -- XII - The Hanged Man?
+	[70] = {5, 10}, -- XIV - Temperance?
+	[72] = {7, 14}, -- XVI - The Tower?
+	[73] = {"가장 먼저 획득한 패시브 아이템을 {{ColorShinyPurple}}2개{{CR}} 제거하고 그 방의 아이템을 {{ColorShinyPurple}}4개{{CR}} 생성합니다."}, -- The Stars Reverse
+	[76] = {"{{RestockMachine}} 재입고 기계를 {{ColorShinyPurple}}2개{{CR}} 생성합니다."}, -- The Judgement Reverse
 }
 
 ---------- Pills ----------
