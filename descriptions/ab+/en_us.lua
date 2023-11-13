@@ -27,7 +27,7 @@ EID.descriptions[languageCode].collectibles={
 	{"4", "Cricket's Head", "↑ {{Damage}} +0.5 Damage#↑ {{Damage}} x1.5 Damage multiplier"},
 	{"5", "My Reflection", "↑ {{Range}} +1.5 Range#↑ +1 Tear height#↑ {{Shotspeed}} +0.6 Shot speed#Tears get a boomerang effect"},
 	{"6", "Number One", "↑ {{Tears}} +1.5 Tears#↑ +0.76 Tear height#↓ {{Range}} -17.62 Range"},
-	{"7", "Blood of the Martyr", "↑ {{Damage}} +1 Damage#{{Collectible34}} x1.5 Damage multiplier if Isaac has The Book of Belial or The Devil card effect active"},
+	{"7", "Blood of the Martyr", "↑ {{Damage}} +1 Damage#{{Collectible34}} x1.5 Damage multiplier if \"The Book of Belial\" or \"XV - The Devil\" effect is active"},
 	{"8", "Brother Bobby", "Shoots normal tears#Deals 3.5 damage per tear"},
 	{"9", "Skatole", "All fly enemies are friendly"},
 	{"10", "Halo of Flies", "+2 Fly orbitals#Blocks enemy projectiles"},
@@ -54,7 +54,7 @@ EID.descriptions[languageCode].collectibles={
 	{"31", "Mom's Lipstick", "↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"},
 	{"32", "Wire Coat Hanger", "↑ {{Tears}} +0.7 Tears"},
 	{"33", "The Bible", "{{Timer}} Flight for the room#{{MomsHeart}} Kills Mom's Foot and Mom's Heart instantly#{{Warning}} Kills Isaac when used on Satan"},
-	{"34", "The Book of Belial", "{{AngelDevilChance}} +12.5% Devil/Angel Room chance while held#{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage#{{Collectible7}} x1.5 Damage multiplier if Isaac has Blood of the Martyr"},
+	{"34", "The Book of Belial", "{{AngelDevilChance}} +12.5% Devil/Angel Room chance while held#{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage#{{Collectible7}} x1.5 Damage multiplier if Isaac has \"Blood of the Martyr\""},
 	{"35", "The Necronomicon", "Deals 40 damage to all enemies in the room"},
 	{"36", "The Poop", "Spawns one poop and knocks back enemies#Can be placed next to a pit and destroyed with a bomb to make a bridge"},
 	{"37", "Mr. Boom", "Drops a large bomb below Isaac which deals 110 damage"},
@@ -98,7 +98,7 @@ EID.descriptions[languageCode].collectibles={
 	{"75", "PHD", "{{Heart}} Heals 2 hearts#{{Pill}} Spawns 1 pill#{{Pill}} Changes bad pills into good pills#{{BloodDonationMachine}} Blood Donation Machines and {{Collectible135}} IV Bag give more {{Coin}} coins"},
 	{"76", "X-Ray Vision", "{{SecretRoom}} Opens all secret room entrances"},
 	{"77", "My Little Unicorn", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot but deals 40 contact damage per second"},
-	{"78", "Book of Revelations", "{{SoulHeart}} +1 Soul Heart#{{AngelDevilChance}} +17.5% Devil/Angel Room chance while held#Higher Horseman boss chance if used"},
+	{"78", "Book of Revelations", "{{SoulHeart}} +1 Soul Heart#{{AngelDevilChance}} +17.5% Devil/Angel Room chance while held#Higher horseman boss chance if used"},
 	{"79", "The Mark", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1 Damage#{{SoulHeart}} +1 Soul Heart"},
 	{"80", "The Pact", "↑ {{Tears}} +0.7 Tears#↑ {{Damage}} +0.5 Damage#{{SoulHeart}} +2 Soul Hearts"},
 	{"81", "Dead Cat", "↑ +9 Lives#Isaac respawns with 1 heart container on death#{{Warning}} Sets Isaac's heart containers to 1 when picked up#Characters that can't have Red Hearts get set to 1 Soul/Black Heart"},
@@ -625,7 +625,7 @@ EID.descriptions[languageCode].trinkets={
 	{"14", "Callus", "Immune to creep and floor spikes"},
 	{"15", "Lucky Rock", "{{Coin}} Destroying rocks spawns coins"},
 	{"16", "Mom's Toenail", "Mom's Foot stomps a random spot in the room every 60 seconds"},
-	{"17", "Black Lipstick", "{{BlackHeart}} +10% chance for random Soul Hearts to spawn as Black Hearts"}, -- base chance is +5%
+	{"17", "Black Lipstick", "{{BlackHeart}} +5% chance for random Soul Hearts to spawn as Black Hearts"}, -- base chance is 5%
 	{"18", "Bible Tract", "{{EternalHeart}} +3% chance for Eternal Hearts"}, -- base chance is 1.667%
 	{"19", "Paper Clip", "{{GoldenChest}} Gold chests can be opened for free"},
 	{"20", "Monkey Paw", "{{BlackHeart}} Spawns 1 Black Heart when Isaac's health is reduced to half a heart#{{Warning}} Disappears after spawning 3 Black Hearts"},
