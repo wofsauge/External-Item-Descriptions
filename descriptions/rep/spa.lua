@@ -87,7 +87,7 @@ local repCollectibles={
 	[171] = {"171", "Trasero Aracnido", "{{Slow}} Ralentiza a los enemigos durante 4 segundos#Inflige 10 de daño a todos los enemigos#Eliminar enemigos con él genera arañas azules"}, -- Culo de araña
 	[172] = {"172", "Daga de Sacrificio", "Cuchillo orbital#Bloquea los disparos enemigos#Inflige 112.5 de daño cada segundo"},
 	[176] = {"176", "Células madre", "↑ {{Heart}} +1 de vida#Cura un corazón rojo#↑ {{Shotspeed}} Vel. de lágrimas +0.16"},
-	[178] = {"178", "Agua bendita", "{{Throwable}} {{ColorOrange}}Lanzable{{CR}}#Deja una piscina de creep donde se haya roto#Petrifica a los enemigos"}, -- Agua bendita 
+	[178] = {"178", "Agua bendita", "{{Throwable}} {{ColorOrange}}Lanzable{{CR}}#Deja una piscina de creep donde se haya roto#Petrifica a los enemigos"}, -- Agua bendita
 	[180] = {"180", "El frijol negro", "{{Poison}} Al recibir daño, soltarás pedos en secuencia, dejando una nube venenosa"}, -- The Black Bean
 	[182] = {"182", "Corazón sagrado", "Lágrimas teledirigidas#↑ {{Heart}} +1 de vida#{{Heart}} Cura todos los corazones rojos#↓ {{Tears}} Lágrimas -0.4#↑ {{Damage}} Daño +1 x 230%#↑ {{Range}} Alcance +0.5#↓ {{Shotspeed}} Vel. de lágrimas -0.25"},
 	[183] = {"183", "Mondadientes", "↑ {{Tears}} Lágrimas +0.7#↑ {{Shotspeed}} Vel. de lágrimas +0.16"},
@@ -285,7 +285,7 @@ local repCollectibles={
 	[578] = {"578", "Limonada gratis", "Crea una gran piscina de creep amarillo"}, --  Limonada gratis
 	[579] = {"579", "Espada espiritual", "En lugar de lágrimas, tienes una espada#{{Damage}} Inflige el triple de tu daño#{{Chargeable}} Tiene un ataque en giro + disparo de proyectil al cargarla#{{Heart}} Si tienes la vida al completo, dispara proyectiles con los ataques sin cargar"}, --  Espada espiritual
 	[580] = {"580", "Llave roja", "Crea una nueva habitación adyacente a una pared disponible, indicada por el contorno de una puerta#Pueden ser habitaciones especiales#Si intenta crear una habitación fuera del límite máximo del mapa (13 x 13 habitaciones), Isaac irá a I AM ERROR."}, --  Llave roja
-	[581] = {"581", "Mosca psíquica", "Mosca orbital#Persigue y desvía proyectiles#Inflige daño por contacto"}, --  Mosca psíquica 
+	[581] = {"581", "Mosca psíquica", "Mosca orbital#Persigue y desvía proyectiles#Inflige daño por contacto"}, --  Mosca psíquica
 	[582] = {"582", "Seta ondulada", "↑ {{Shotspeed}} Vel. de lágrimas +0.75#↓ {{Speed}} Velocidad -0.03#Distorsiona la pantalla#Efecto acumulable"}, --  Seta ondulada
 	[583] = {"583", "Cohete en un jarro", "{{Bomb}} +5 bombas#Colocar una bomba al disparar lanzará un cohete a la dirección donde dispares"}, --  Cohete en un bote
 	[584] = {"584", "El libro de las virtudes", "Genera un fuego orbital que dispara lágrimas espectrales que puede destruirse#Puede combinarse con un segundo objeto activo para crear fuegos temáticos#Cambia la primera sala del diablo por la del ángel"}, --  El libro de las virtudes
@@ -464,7 +464,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Esau", "Esaú", "El hermano que tome la primogenitura obtiene copias de tres objetos pasivos del otro hermano"},
 	{"Tainted Isaac", "Isaac contaminado", "Añade 4 espacios adicionales para objetos pasivos"},
 	{"Tainted Magdalene", "Magdalena contaminada", "{{Heart}} Añade 1 al límite de corazones"},
-	{"Tainted Cain", "Caín contaminado", "La cantidad de recolectables que se generan al tomar un objeto se duplica"}, 
+	{"Tainted Cain", "Caín contaminado", "La cantidad de recolectables que se generan al tomar un objeto se duplica"},
 	{"Tainted Judas", "Judas contaminado", "Usar {{Collectible705}} Artes Oscuras otorga un aura con área de ataque mayor"},
 	{"Tainted ???", "??? contaminado", "Aumenta el número máximo de cacas que puedes llevar a 29"},
 	{"Tainted Eve", "Eva contaminada", "Los coágulos generados de corazones rojos sueltan medio corazón rojo que desaparece al morir"},
@@ -542,7 +542,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[34] = "Disparos con daño x2", -- The Book of Belial
 	[35] = "3.5% de poribilidad de lanzar lágrimas horrorizadoras#Se activa el efecto del Necronomicón al destruirse", -- The Necronomicon
 	[36] = "2.5% de posibilidad de disparos de {{Collectible236}} E. Coli", -- The Poop
-	[37] = "Generan bombas de dispersión al destruirse", -- Mr. Boom 
+	[37] = "Generan bombas de dispersión al destruirse", -- Mr. Boom
 	[38] = "Disparos rápidos e imprecisos", -- Tammy's Head
 	[39] = "5% de posibilidad de disparos petrificadores", -- Mom's Bra
 	[40] = "Disparos explosivos#Explotan al destruirse", -- Kamikaze!
@@ -704,7 +704,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[723] = "Rerolea todos los fuegos, convirtiéndolos a uno del mismo tipo", -- Spindown Dice
 	[728] = "Todos los fuegos orbitarán a Gello", -- Gello
 	[729] = "Fuego estacionario", -- Decap Attack
-	
+
 }
 
 -- Special Locust effects when Item was eaten by Abyss
@@ -1040,7 +1040,7 @@ EID.descriptions[languageCode].horsepills={
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- This will be appended to words to pluralize them, make it "" to not pluralize
 	pluralize = "",
-		
+
 	-- Item Config info
 	AddBlackHearts = "{{BlackHeart}} {1} Corazón/zones negro/s",
 	AddBombs = "{{Bomb}} {1} Bomba/s",
@@ -1049,11 +1049,11 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	AddKeys = "{{Key}} {1} Llave/s",
 	AddMaxHearts = "{{EmptyHeart}} {1} Contendor/es de Corazón",
 	AddSoulHearts = "{{SoulHeart}} {1} Corazón/zones de alma",
-	
+
 	-- Cache Flag names
 	cacheFlagStart = "Puede afectar ",
 	[0] = "{{Damage}} Daño", "{{Tears}} Lágrimas", "{{Shotspeed}} Vel. de lágrimas", "{{Range}} Alcance", "Velocidad", "Efectos de lágrima", "Color de lágrima", "Vuelo", "Tipo de ataque", "Familiares", "Suerte", "Tamaño", "Color", "Contenido de cofres", [16] = "Todas las estadísticas",
-	
+
 	-- Attribute triggers
 	chain = "Que: ",
 	active = "Al usarse:#",
@@ -1064,15 +1064,15 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	tear_fire = "Al disparar una lágrima, posibilidad de:#",
 	enemy_hit = "Al golpear un enemigo, posibilidad de:#",
 	room_clear = "Al limpiar una sala:#", --chance to?
-	
+
 	-- Attribute effects
-	area_damage = "Hace {1} de daño en el área", 
+	area_damage = "Hace {1} de daño en el área",
 	add_temporary_effect = "Gana {1} Durante la sala",
 	convert_entities = "Convierte todos los {{ColorGray}}{1}{{ColorText}} de la sala en {{ColorGray}}{2}{{ColorText}}",
 	use_active_item = "Usa {1}",
 	spawn_entity = "Genera un {{ColorGray}}{1}{{ColorText}}",
 	fart = "Suelta un pedo de tamaño {1}",
-	
+
 	-- Generic entity names not obtained from entities2.xml
 	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
 	["4.-1"] = "lit Bomb",
@@ -1083,11 +1083,11 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.40"] = "Bomb pickup",
 	["5.69"] = "Grab Bag",
 	["5.70"] = "Pill",
-	["5.90"] = "Battery", 
+	["5.90"] = "Battery",
 	["5.300"] = "Card",
 	["9.-1"] = "enemy projectile",
 	["999.-1"] = "grid object",
-	["1000.0"] = "effect",	
+	["1000.0"] = "effect",
 }
 
 ---------- Misc. Text ----------
@@ -1130,10 +1130,10 @@ EID.descriptions[languageCode].CraftingResults = "(Desplazar: mantén {{CONFIG_B
 -- Bag of Crafting stuff end
 
 -- Mimic items charges
-EID.descriptions[languageCode].BlankCardCharge = "Cargas de Carta en Blanco:" 
-EID.descriptions[languageCode].BlankCardQCard = "Te teletransporta a la habitación de I Am Error#Tanto Carta en blanco como la ¿? carta se destruirán" 
-EID.descriptions[languageCode].ClearRuneCharge = "Cargas de Runa limpia:" 
-EID.descriptions[languageCode].PlaceboCharge = "Cargas de Placebo:" 
+EID.descriptions[languageCode].BlankCardCharge = "Cargas de Carta en Blanco:"
+EID.descriptions[languageCode].BlankCardQCard = "Te teletransporta a la habitación de I Am Error#Tanto Carta en blanco como la ¿? carta se destruirán"
+EID.descriptions[languageCode].ClearRuneCharge = "Cargas de Runa limpia:"
+EID.descriptions[languageCode].PlaceboCharge = "Cargas de Placebo:"
 -- Mimic items charges end
 
 -- Warnings

@@ -29,7 +29,7 @@ This mod displays detailed information about all items, trinkets, cards, runes a
 
 [img]https://i.imgur.com/NqSBJqj.png[/img]
 [img]https://i.imgur.com/mJshXnR.png[/img]
-Supported Languages: 
+Supported Languages:
 Chinese, Czech, Dutch, English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Brazilian-Portuguese, Turkish, Ukrainian
 
 [img]https://i.imgur.com/RVtZEqp.png[/img]
@@ -42,7 +42,7 @@ Simply install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=26818
 Alternatively, edit the `eid_config.lua` file like described [url=https://github.com/wofsauge/External-Item-Descriptions/wiki/Edit-the-configuration-manually]here[/url]
 
 [img]https://i.imgur.com/vUP4whT.png[/img]
-There are multiple Versions of the mod, depending on which DLCs you have installed. 
+There are multiple Versions of the mod, depending on which DLCs you have installed.
 You are currently looking at the version for Afterbirth+ and Repentance.
 
 [url=https://github.com/wofsauge/External-Item-Descriptions#versions]Alternative versions for all other DLCs, or for manual installation purposes can be found here[/url]
@@ -50,7 +50,7 @@ You are currently looking at the version for Afterbirth+ and Repentance.
 [img]https://i.imgur.com/jrdGbna.png[/img]
 [url=https://github.com/wofsauge/External-Item-Descriptions/blob/master/CREDITS.md]Check out the credits here[/url]
 </description>
-    <version>4.61</version>
+    <version>4.62</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

@@ -574,7 +574,36 @@ EID.descriptions["fr"].collectibles={
 	{"550", "Pelle Brisée", "Le pied de {{ColorCyan}}Mom{{ColorWhite}} tente en permanence d'écraser Isaac#Utiliser cet objet cesse les attaques pour la durée d'une salle ou d'une vague#{{Warning}} Poser cet objet sur un piédestal puis quitter la salle le fait disparaître#{{UltraSecretRoom}} Emporte la pelle avec toi le plus loin possible"},
 	{"551", "Pelle Brisée", "Le deuxième morceau d'une pelle maudite#{{UltraSecretRoom}} Permet de déterrer quelque chose d'enfoui dans la {{ColorTransform}}Dark Room"},
 	{"552", "Pelle de Maman", "Ouvre une trappe vers l'étage suivant#{{UltraSecretRoom}} Permet de déterrer quelque chose d'enfoui dans la {{ColorTransform}}Dark Room"},
-		
+
+}
+
+
+---------- Modifiers ----------
+
+-- Effect of Car battery on Active Items
+EID.descriptions[languageCode].carBattery = {
+	[58] = "Double la durée de l'effet", -- Book of Shadows
+	[66] = "Double la durée de l'effet ", -- The Hourglass
+	[77] = "Double la durée de l'effet", -- My Little Unicorn
+	[93] = "Double la durée de l'effet", -- The Gamekid
+	[111] = "Double les dégâts du pet", -- The Bean
+	[124] = "Déclenche deux effets", -- Dead Sea Scrolls
+	[145] = "Invoque 4 à 7 mouches bleues", -- Guppy's Head
+	[171] = "Inflige 10 dégâts supplémentaires", -- Spider Butt
+	[293] = "Double les dégâts du laser", -- Head of Krampus
+	[298] = "Double la durée de l'effet", -- Unicorn Stump
+	[351] = "Double les dégâts du pet", -- Mega Bean
+	[383] = "Divise davantage les larmes", -- Tear Detonator
+	[421] = "Double les dégâts du pet", -- Kidney Bean
+	[427] = "Place 2 barils de TNT", -- Mine Crafter
+	[477] = "Déclenche deux fois les effets des objets absorbés", -- Void
+	[482] = "Change de personnage 2 fois et retire les 2 objets les plus récents", -- Clicker
+	[485] = "25% de chances de quadrupler les objets mais 75% de chances de les faire disparaître", -- Crooked Penny
+	[486] = "Déclenche deux fois les effets des objets", -- Dull Razor
+	[488] = "Active l'effet de 2 objets", -- Metronome
+	[489] = "Déclenche l'effet d'un second dé", -- D Infinity
+	[523] = "Échange le contenu de la boîte et les ressources au sol", -- Moving Box
+	[550] = "Calme le pied pour deux vagues dans les salles concernées", -- Broken Shovel
 }
 
 
@@ -610,7 +639,7 @@ EID.descriptions[languageCode].carBattery = {
 EID.descriptions["fr"].trinkets={
 	{"1", "Pièce Avalée", "Subir un dégât fait apparaître une pièce"},
 	{"2", "Caca Pétrifié", "Détruire un caca a 50% de chances de faire apparaître une ressource"},
-	{"3", "Pile AAA", "Termine de charger l'objet activable s'il lui manque 1 charge"},
+	{"3", "Pile AAA", "Termine de charger l'objet activable s'il lui manque une charge"},
 	{"4", "Télécommande Cassée", "Utiliser un objet activable téléporte Isaac dans une salle aléatoire"},
 	{"5", "Cœur Violet", "Double les chances de rencontrer des ennemis et boss d'élite"},
 	{"6", "Aimant Démagnétisé", "Isaac attire les pièces"},
@@ -624,19 +653,19 @@ EID.descriptions["fr"].trinkets={
 	{"14", "Callosités", "Isaac ne subit plus les dégâts des piques et des flaques au sol"},
 	{"15", "Caillou Porte-Bonheur", "Détruire un obstacle fait apparaître 1 pièce"},
 	{"16", "Ongle de Pied de Maman", "Le pied de {{ColorCyan}}Mom{{ColorWhite}} écrase un endroit au hasard dans la salle toutes les 60 secondes"},
-	{"17", "Noir à Lèvres", "Augmente la fréquence d'apparition des cœurs noirs"},
-	{"18", "Brochure Religieuse", "Augmente la fréquence d'apparition des cœurs éternels"},
+	{"17", "Noir à Lèvres", "Les cœurs d'âme au sol ont 10% de chances d'être convertis en cœurs noirs"},
+	{"18", "Brochure Religieuse", "Augmente de 3% la fréquence d'apparition des cœurs éternels"},
 	{"19", "Trombone", "Ouvrir un coffre doré {{GoldenChest}} ne diminue pas le compteur de clés"},
 	{"20", "Patte de Singe", "Descendre à un demi-cœur de vie totale fait apparaître un cœur noir#Après avoir fait apparaître 3 cœurs noirs, le trinket disparaît"},
 	{"21", "Papier Mystérieux", "Donne parfois l'effet de {{ColorYellow}}The Polaroid {{Collectible327}}{{ColorWhite}}, {{ColorYellow}}The Negative {{Collectible328}}{{ColorWhite}}, {{ColorYellow}}Missing Poster {{Trinket23}}{{ColorWhite}} et {{ColorYellow}}A Missing Page {{Trinket48}}{{ColorWhite}}"},
 	{"22", "Queue de Diablotin", "Remplace 80% des cœurs ramassables par des clés#Remplace les 20% restants par des cœurs noirs"},
 	{"23", "Avis de Recherche", "À sa mort, Isaac ressuscite en {{ColorLightOrange}}The Lost#Mourir dans une Sacrifice Room {{SacrificeRoom}} en portant ce trinket débloque {{ColorLightOrange}}The Lost#Le trinket disparaît à la mort d'Isaac"},
-	{"24", "Pièce de Fesse", "Ramasser une pièce fait péter Isaac#Augmente les chances de trouver des pièces dans les cacas"},
+	{"24", "Pièce de Fesse", "Ramasser une pièce fait péter Isaac#Augmente de 20% les chances de trouver une pièce dans un caca"},
 	{"25", "Chocolat Douteux", "Isaac pète ou fait apparaître un caca à intervalles irréguliers"},
 	{"26", "Ver Droit", "↑ Portée {{ColorLime}}+10#La trajectoire des larmes d'Isaac forme des vagues carrées"},
 	{"27", "Ver Long", "↑ Vitesse des tirs {{ColorLime}}+0.5"},
 	{"28", "Ânkh Brisée", "À sa mort, Isaac a 22% de chances de ressusciter en {{ColorLightOrange}}???"},
-	{"29", "Tête de Poisson", "Subir un dégât invoque 1 mouche bleue"},
+	{"29", "Tête de Poisson", "Subir un dégât invoque une mouche bleue"},
 	{"30", "Conjonctivite", "Isaac tire parfois une larme empoisonnée#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 18 Chance)"},
 	{"31", "Punaise", "Isaac tire parfois une larme spectrale transperçante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 18 Chance)"},
 	{"32", "Psilocybe Lancéolé", "Active parfois l'effet de {{ColorYellow}}Mini Mush{{ColorWhite}} {{Collectible71}}, {{ColorYellow}}Odd Mushroom{{ColorWhite}} {{Collectible121}}, {{ColorYellow}}Odd Mushroom{{ColorWhite}} {{Collectible120}} ou {{ColorYellow}}The Compass{{ColorWhite}} {{Collectible21}} pour la durée d'une salle"},
@@ -677,29 +706,29 @@ EID.descriptions["fr"].trinkets={
 	{"67", "Dé Fêlé", "Subir un dégât active l'effet du {{ColorYellow}}D6{{ColorWhite}} {{Collectible105}}, {{ColorYellow}}D8{{ColorWhite}} {{Collectible406}}, {{ColorYellow}}D12{{ColorWhite}} {{Collectible386}} ou {{ColorYellow}}D20{{ColorWhite}} {{Collectible166}}"},
 	{"68", "Aimant au Néodyme", "Isaac attire les ressources et les ennemis"},
 	{"69", "Positif Décoloré", "Camoufle parfois Isaac et étourdit les ennemis"},
-	{"70", "Lente", "Invoque parfois 1 araignée bleue dans les salles hostiles"},
+	{"70", "Lente", "Invoque parfois une araignée bleue dans les salles hostiles"},
 	{"71", "Vessie de Bob", "Les bombes d'Isaac répandent une flaque corrosive sur le sol"},
-	{"72", "Pile Bouton", "Augmente la fréquence d'apparition des piles#Terminer une salle charge parfois 1 barre supplémentaire de l'objet activable"},
+	{"72", "Pile Bouton", "Augmente la fréquence d'apparition des piles#Terminer une salle charge parfois une barre supplémentaire de l'objet activable"},
 	{"73", "Détonateur", "Les bombes d'Isaac ont 10% de chances de faire apparaître une bombe ramassable en explosant"},
-	{"74", "Détecteur de Métaux", "Augmente les probabilités de trouver l'entrée d'un Crawl Space {{LadderRoom}}"},
+	{"74", "Détecteur de Métaux", "Augmente de 0.5% les chances de trouver l'entrée d'un Crawl Space {{LadderRoom}}"},
 	{"75", "404", "Active l'effet d'un trinket aléatoire à chaque salle"},
 	{"76", "Jeton de Poker", "{{ColorLime}}50%{{ColorWhite}} de chances de doubler le contenu d'un coffre#{{ColorError}}50%{{ColorWhite}} de chances de remplacer le contenu d'un coffre par une mouche"},
 	{"77", "Cloque", "Augmente le recul infligé par les larmes d'Isaac"},
-	{"78", "Grande Aiguille", "Les effets infligés aux ennemis durent 2 fois plus longtemps"},
+	{"78", "Grande Aiguille", "Double la durée des effets infligés aux ennemis"},
 	{"79", "Histoire Sans Fin", "Utiliser une pilule, une carte ou une rune a 25% de chances d'en faire apparaître une copie"},
 	{"80", "Plume Noire", "↑ Dégâts {{ColorLime}}+0.2{{ColorWhite}} pour chaque objet démoniaque dans l'inventaire d'Isaac"},
-	{"81", "Rage Aveugle", "Augmente la durée de l'invulnérabilité accordée à Isaac après qu'il a subi un dégât"},
+	{"81", "Rage Aveugle", "Double la durée de l'invulnérabilité accordée à Isaac après qu'il a subi un dégât"},
 	{"82", "Fer à Cheval Doré", "Les Treasure Rooms {{TreasureRoom}} ont {{ColorLime}}+15%{{ColorWhite}} de chances de proposer un choix entre deux objets"},
 	{"83", "Clé du Magasin", "Permet d'ouvrir gratuitement les portes des Shops {{Shop}}"},
 	{"84", "Côte d'Avarice", "Empêche {{ColorCyan}}Greed{{ColorWhite}} et {{ColorCyan}}Super Greed{{ColorWhite}} d'apparaître dans les Shops {{Shop}}"},
 	{"85", "Karma", "Faire un don à une boîte à dons a 33% de chances de:#Soigner 1 cœur rouge {{ColorSilver}}(40%)#Donner 1 pièce {{ColorSilver}}(40%)#Donner {{ColorLime}}Chance +1 {{ColorSilver}}(15%)#Invoquer un mendiant {{ColorSilver}}(5%)"},
-	{"86", "Petite Larve", "Détruire un caca fait apparaître 1 mouche bleue"},
+	{"86", "Petite Larve", "Détruire un caca invoque une mouche bleue"},
 	{"87", "Médaillon de Maman", "Utiliser une clé soigne Isaac d'un demi-cœur rouge#Remplace les demi-cœurs rouges au sol par des cœurs entiers"},
 	{"88", "NON !", "Empêche la génération d'objets activables"},
 	{"89", "Laisse Pour Enfants", "Réduit la distance entre les familiers d'Isaac"},
 	{"90", "Bouchon Brun", "Les cacas détruits explosent et infligent 100 dégâts"},
 	{"91", "Méconium", "Augmente la fréquence d'apparition des cacas noirs"},
-	{"92", "Couronne Fêlée", "↑ Les bonus de stats donnés par les objets d'Isaac sont augmentés de {{ColorLime}}33%#↑ Débit {{ColorLime}}+0.2"},
+	{"92", "Couronne Fêlée", "↑ Débit {{ColorLime}}+0.2#↑ Augmente de {{ColorLime}}33%{{ColorWhite}} les bonus de stats donnés par les objets d'Isaac"},
 	{"93", "Couche Usagée", "Les mouches ennemies sont parfois inoffensives"},
 	{"94", "Queue de Poisson", "Double les apparitions de mouches et araignées bleues"},
 	{"95", "Dent Noircie", "Isaac tire parfois une dent morte qui inflige {{ColorLime}}dégâts x2{{ColorWhite}} et empoisonne les ennemis#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 32 Chance)"},
@@ -849,7 +878,7 @@ EID.descriptions["fr"].pills={
 	{"44", "Bleuargh !", "Tire une larme explosive qui inflige 200 dégâts"},
 	{"45", "Morphine", "Rend Isaac temporairement invulnérable"},
 	{"46", "Bleurp !", "Isaac recrache la dernière pilule avalée :"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions["fr"].sacrificeHeader = "Récompense du prochain sacrifice"
@@ -943,7 +972,7 @@ EID.descriptions["fr"].PickupNames = {
 	["5.90.0"] = "{{Crafting19}} Pile", --AB+ didn't have subtypes for batteries
 	["5.90.1"] = "{{Crafting19}} Pile", ["5.90.2"] = "{{Crafting18}} Micro pile", ["5.90.3"] = "{{Crafting20}} Méga pile", ["5.90.4"] = "{{Crafting28}} Pile dorée",
 
-	["5.50"] = "{{Chest}} Coffre", ["5.51"] = "{{BombChest}} Coffre en pierre", ["5.52"] = "{{SpikedChest}} Coffre à pics", ["5.53"] = "{{EternalChest}} Coffre éternel", ["5.54"] = "{{MimicChest}} Coffre piégé", ["5.55"] = "{{OldChest}} Coffre antique", ["5.56"] = "{{WoodenChest}} Coffre en bois", ["5.57"] = "{{MegaChest}} Coffre géant", ["5.58"] = "{{HauntedChest}} Coffre hanté", ["5.60"] = "{{GoldenChest}} Coffre doré", ["5.360"] = "{{RedChest}} Coffre rouge",  
+	["5.50"] = "{{Chest}} Coffre", ["5.51"] = "{{BombChest}} Coffre en pierre", ["5.52"] = "{{SpikedChest}} Coffre à pics", ["5.53"] = "{{EternalChest}} Coffre éternel", ["5.54"] = "{{MimicChest}} Coffre piégé", ["5.55"] = "{{OldChest}} Coffre antique", ["5.56"] = "{{WoodenChest}} Coffre en bois", ["5.57"] = "{{MegaChest}} Coffre géant", ["5.58"] = "{{HauntedChest}} Coffre hanté", ["5.60"] = "{{GoldenChest}} Coffre doré", ["5.360"] = "{{RedChest}} Coffre rouge",
 
 	["5.69"] = "{{GrabBag}} Sachet", ["5.69.1"] = "{{GrabBag}} Sachet", ["5.69.2"] = "{{BlackSack}} Sac Noir",
 

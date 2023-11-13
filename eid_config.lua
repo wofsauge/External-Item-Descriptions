@@ -91,9 +91,9 @@ EID.UserConfig = {
 	-- Current warnings are: Achievements are locked, outdated game version, and potentially having inaccurate modded Bag of Crafting recipes
 	-- Default = false
 	["DisableStartOfRunWarnings"] = false,
-	
+
 	---------- Co-op / Multiple Descriptions -----------
-	
+
 	-- Allow P2/P3/P4 to display descriptions when in Co-op mode
 	-- Default = true
 	["CoopDescriptions"] = true,
@@ -104,7 +104,7 @@ EID.UserConfig = {
 	-- Default = false
 	["DisplayAllNearby"] = false,
 	-- Any descriptions displayed beyond the first one will use the "Local" display mode
-	
+
 	-- Set the max number of descriptions to display per frame
 	-- Set to 1 if you don't want any Local Mode descriptions printed in co-op
 	-- Default = 99
@@ -124,19 +124,19 @@ EID.UserConfig = {
 	-- Changes the position of the text in local mode, relative to the described object to be centered. Set to false to make it left-aligned
 	-- Default = true
 	["LocalModeCentered"] = true,
-	
+
 	---------- Icons -----------
-	
+
 	-- Change the size of icons if available
 	-- Possible values: "default", "big", "small"
 	-- Default = "default"
 	["MarkupSize"] = "default",
-	
+
 	-- If true, print the icon of the stat being affected in a stat change after the up/down arrow
 	-- For example, "↑ {{Speed}} +0.3 Speed up"
 	-- Default = false
 	["StatChangeIcons"] = false,
-	
+
 	-- If true, stat and basic pickup bulletpoint icons will be drawn when relevant
 	-- For example, "{{Battery}} +1 charge when you get hit"
 	-- Default = true
@@ -268,7 +268,7 @@ EID.UserConfig = {
 	["ShowUnidentifiedPillDescriptions"] = false,
 
 	---------- Glitched Items ---------
-  
+
 	-- Toggle Display of Glitched Item (TMTRAINER) descriptions
 	-- Note: The --luadebug launch option is required for more detailed glitched item descriptions
 	-- This option allows mods to have access to your files, breaks some mods, and should be turned on at your own risk!
@@ -305,14 +305,14 @@ EID.UserConfig = {
 	-- REPENTANCE ONLY!!!
 	-- Default = true
 	["DisplayCraneInfo"] = true,
-	
+
 	---------- Void Stat Increases ----------
 	-- Toggle display of what stats will increase on Void absorption
 	-- Default = false
 	["DisplayVoidStatInfo"] = false,
-	
+
 	---------- Item Reminder Description ------------
-	-- Enable/Disable item reminder feature. 
+	-- Enable/Disable item reminder feature.
 	-- Hold Map (or the button action chosen below) to show a description of your active item's effect, recently picked up items, and things like Teleport 2.0's destination and Void's absorbed items
 	["ItemReminderEnabled"] = true,
 	-- Set the keybinding that's held to show the Item Reminder description, Flip/Spindown Dice preview descriptions, and interacting with the Bag of Crafting recipe list
@@ -341,8 +341,8 @@ EID.UserConfig = {
 	-- Some items (like Teleport!) can have their next result predicted and shown in the Item Reminder
 	-- Default = false
 	["ItemReminderShowRNGCheats"] = false,
-	
-	
+
+
 	---------- Bag of Crafting ------------
 
 	-- REPENTANCE ONLY!!!
@@ -568,7 +568,7 @@ EID.DefaultConfig = {
 	["CraftingHideButton"] = -1,
 	["CraftingResultKey"] = Keyboard.KEY_F4,
 	["CraftingResultButton"] = -1,
-	
+
 	["ItemReminderEnabled"] = true,
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["ItemReminderShowRecentItem"] = 1,
@@ -578,7 +578,7 @@ EID.DefaultConfig = {
 	["ItemReminderShowPoopDesc"] = 1,
 	["ItemReminderShowHiddenInfo"] = false,
 	["ItemReminderShowRNGCheats"] = false,
-	
+
 	["SpindownDiceResults"] = 3,
 	["SpindownDiceDisplayID"] = false,
 	["SpindownDiceDisplayName"] = false,

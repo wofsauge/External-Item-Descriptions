@@ -693,7 +693,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
     [723] = "全てのウィスプを同じ タイプのウィスプに リロールする", -- Spindown Dice
     [728] = "全てのウィスプがゲローに 連動する", -- Gello
     [729] = "投げた頭の位置に固定 ウィスプがスポーンする#その部屋でのみ有効", -- Decap Attack
-    
+
 }
 
 -- Special Locust effects when Item was eaten by Abyss
@@ -792,7 +792,7 @@ local repTrinkets={
     [149] = {"149", "Panic Button", "ダメージを受ける直前に アクティブアイテムの 効果が自動的に発動する#フルチャージされている 時のみ発動する"}, -- Panic Button
     [150] = {"150", "Blue Key", "鍵を消費せずにドアを 開くことができる#鍵付きのドアを通ると、 二部屋の中間のように 機能する青い部屋に 移動する#青い部屋は出ると消滅し、 ドアは通常の挙動に戻る"}, -- Blue Key
     [151] = {"151", "Flat File", "ドア・床・岩・宝箱・ 敵からトゲを取り除き、 無害化する"}, -- Flat File
-    [152] = {"152", "Telescope Lens", "プラネタリウムがまだ 出現していない場合、 出現率が24%アップ#プラネタリウムが既に 出現済みの場合でも、 出現率が10%に維持 される#プラネタリウムが チャプター4でも 出現可能になる"}, -- Telescope Lens    
+    [152] = {"152", "Telescope Lens", "プラネタリウムがまだ 出現していない場合、 出現率が24%アップ#プラネタリウムが既に 出現済みの場合でも、 出現率が10%に維持 される#プラネタリウムが チャプター4でも 出現可能になる"}, -- Telescope Lens
     [153] = {"153", "Mom's Lock", "部屋に入った時、25%の 確率でランダムなママ 関連アイテムの効果が 付与される"}, -- Mom's Lock
     [154] = {"154", "Dice Bag", "新しい部屋に入った時、 50%の確率でランダムな ダイス系のアイテムが 消耗品スロットに追加 され、カード／ピルの ように使用できる#ダイスが追加されても、 保持中のカード／ピルは そのまま保持される#ダイスは部屋を出ると 消滅する"}, -- Dice Bag
     [155] = {"155", "Holy Crown", "保持して大聖堂に 移動すると、お店と トレジャールームが 生成される"}, -- Holy Crown
@@ -1044,7 +1044,7 @@ EID.descriptions[languageCode].horsepills={
 EID.descriptions[languageCode].GlitchedItemText = {
     -- This will be appended to words to pluralize them, make it "" to not pluralize
     pluralize = "",
-    
+
     -- Item Config info
     AddBlackHearts = "{1} 黒ハート",
     AddBombs = "{1} 爆弾",
@@ -1053,11 +1053,11 @@ EID.descriptions[languageCode].GlitchedItemText = {
     AddKeys = "{1} 鍵",
     AddMaxHearts = "{1} 最大体力",
     AddSoulHearts = "{1} 青ハート",
-    
+
     -- Cache Flag names
     cacheFlagStart = "影響する可能性： ",
     [0] = "攻撃力", "連射速度", "弾速", "射程", "移動速度", "特殊効果", "涙の色", "飛行", "攻撃の種類", "使い魔", "運", "サイズ", "色", "宝箱の中身", [16] = "全ステータス",
-    
+
     -- Attribute triggers
     chain = "その後：{{CR}} ",
     active = "使用時：#",
@@ -1068,7 +1068,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
     tear_fire = "涙を発射した時、一定確率で：#",
     enemy_hit = "敵に接触した時、一定確率で：#",
     room_clear = "部屋をクリアした時：#",
-    
+
     -- Attribute effects
     area_damage = "近くの敵に {1} ダメージを与える",
     add_temporary_effect = "その部屋に居る間、 {1} を付与",
@@ -1076,7 +1076,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
     use_active_item = "{1} 使用時、",
     spawn_entity = "{1} をスポーン",
     fart = "{1} のおなら",
-    
+
     -- Generic entity names not obtained from entities2.xml
     -- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
     ["4.-1"] = "点火済み爆弾",
@@ -1092,7 +1092,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
     ["9.-1"] = "敵の弾",
     ["999.-1"] = "障害物",
     ["1000.0"] = "効果",
-    
+
 }
 
 ---------- Misc. Text ----------

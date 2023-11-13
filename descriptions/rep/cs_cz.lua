@@ -44,11 +44,11 @@ local repCollectibles={
 	[69] = {"69", "Čokoládové Mléko", "{{Chargeable}} Nabíjetelné slzy#↑ {{Damage}} Až 400% poškození"}, -- Chocolate Milk
 	[70] = {"70", "Růstové Hormony", "↑ {{Damage}} +1 Větší Poškození#↑ {{Speed}} +0.2 Zvýšení Rychlosti"}, -- Growth Hormones
 	[71] = {"71", "Mini Houbička", "↑ {{Speed}} +0.3 Zvýšení Rychlosti#↑ {{Range}} +1.5 Větší Dostřel#↑ Zmenšení"}, -- Mini Mush
-	[72] = {"72", "Růženec", "{{SoulHeart}} +3 Duševní Srdce#↑ {{Tears}} +0.5 Více Slz#{{Collectible33}}Bible je přidána do všech položek"}, -- Rosary	
+	[72] = {"72", "Růženec", "{{SoulHeart}} +3 Duševní Srdce#↑ {{Tears}} +0.5 Více Slz#{{Collectible33}}Bible je přidána do všech položek"}, -- Rosary
 	[77] = {"77", "Můj Malý Jednorožec", "Nepřemožitelnost a +0.28 Zvýšení Rychlosti po dobu 6 sekund#Uděluje 40 kontaktního poškození během nějž nemůžeš střílet"}, -- My Little Unicorn
 	[78] = {"78", "Kniha Zjevení", "{{SoulHeart}} +1 Duševní Srdce#Při použití nahradí bosse jeden Jezdec Apokalypsy#↑ {{AngelDevilChance}} +17.5% šance na Ďábelskou nebo Andělskou místnost"}, -- Book of Revelations
 	[79] = {"79", "Značka", "↑ {{Damage}} +1 Větší Poškození#↑ {{Speed}} +0.2 Zvýšení Rychlosti#{{BlackHeart}} +1 Černé srdce"}, -- The Mark
-	[80] = {"80", "Pakt", "↑ {{Damage}} +0.5 Větší Poškození#↑ {{Tears}} +0.7 Více Slz#{{BlackHeart}} +2 Černá srdce"}, -- The Pact 
+	[80] = {"80", "Pakt", "↑ {{Damage}} +0.5 Větší Poškození#↑ {{Tears}} +0.7 Více Slz#{{BlackHeart}} +2 Černá srdce"}, -- The Pact
 	[83] = {"83", "Hřebík", "{{HalfBlackHeart}} + Půlka černého srdce#↑ {{Damage}} +2 Větší Poškození#↓ {{Speed}} -0.18 Snížení Rychlosti#Uděluje kontaktní poškození#Ničí kameny po jejich přejití"}, -- The Nail
 	[84] = {"84", "Musíme jít hlouběji!", "Vytvoří padací dveře do dalšího patra#{{LadderRoom}} Vytvoří průlezný prostor při použití na dekoraci (tráva, kamínky, papíry, drahokamy, apod.)"}, -- We Need To Go Deeper!
 	[87] = {"87", "Lokiho Rohy", "25% šance na vystřelení ve 4 směrech#{{Luck}} 100% šance při 15 Štěstí"}, -- Loki's Horns
@@ -95,7 +95,7 @@ local repCollectibles={
 	[203] = {"203", "Skromný Balíček", "Šance na zdvojnásobení všech pickupů"}, -- Humbling Bundle
 	[205] = {"205", "Ostrá Zástrčka", "{{Battery}} Při použití plně dobije tvůj aktivní předmět za cenu poloviny srdce na jedno nabití#Upřednostňuje červené srdce"}, -- Sharp Plug
 	[206] = {"206", "Gilotina", "↑ {{Damage}} +1 Větší Poškození#↑ {{Tears}} +0.5 Více Slz#Tvoje hlava je nyní orbitál, který neutrpí poškození a způsobuje 105 kontaktního poškození#Budeš střílet z hlavy"}, -- Guillotine
-	[211] = {"211", "Pavoučí Miláček", "Při utrpení poškození vytvoří 3-5 modrých pavouků"}, -- Spiderbaby 
+	[211] = {"211", "Pavoučí Miláček", "Při utrpení poškození vytvoří 3-5 modrých pavouků"}, -- Spiderbaby
 	[214] = {"214", "Anémie (Chudokrevost)", "↑ {{Range}} +1.5 Větší Dostřel#Po utrpení zásahu zanechává na zemi poškozující kaluž"}, -- Anemic
 	[218] = {"218", "Placenta", "↑ {{Heart}} +1 Zvýšení Zdraví#{{Heart}} Vyléčí 1 červené srdce#{{HalfHeart}} Šance na vyléčení půl srdce každou minutu"}, -- Placenta
 	[222] = {"222", "Anti-Gravitace", "Podržením tlačítka pro střelbu se ve vzduchu budou vznášet slzy#Po uvolnění budou všechny slzy vystřeleny tím směrem, kterým byly vystřeleny původně#↑ {{Tears}} +1 Více Slz"}, -- Anti-Gravity
@@ -242,7 +242,7 @@ local repCollectibles={
 	[541] = {"541", "Kostní Dřeň", "+1 Kostěné Srdce#Vytvoří 3 Červené Srdce"}, -- Marrow
 	[543] = {"543", "Posvátné Hovno", "Vytvoří bílé hovno, když utrpíš poškození#Pokud stojíš v auře:#↑ {{Damage}} +25% Větší Poškození#↑ {{Tears}} +150% Více Slz#Naváděné slzy#Šance na blokaci poškození"}, -- Hallowed Ground
 	[549] = {"549", "Křehké Kosti", "{{EmptyBoneHeart}} Nahradí všechna místa s Červenými Srdci za 6 Kostěných Srdcí#Při ztrátě Kostěného Srdce:#Vystřelí 8 kostních slz do všech směrů#↑ {{Tears}} +0.4 Více Slz natrvalo"}, -- Brittle Bones
-	[552] = {"552", "Mámina lopata", "Vytvoří padací dveře do dalšího patra#{{LadderRoom}} Vytvoří průlezný prostor při použití na dekoraci (tráva, kamínky, papíry, drahokamy, apod.)"}, -- Mom's Shovel 
+	[552] = {"552", "Mámina lopata", "Vytvoří padací dveře do dalšího patra#{{LadderRoom}} Vytvoří průlezný prostor při použití na dekoraci (tráva, kamínky, papíry, drahokamy, apod.)"}, -- Mom's Shovel
 	[553] = {"553", "Mukormykóza", "25% šance na vystřelení lepkavé spórové slzy#{{Luck}} Není ovlivněno štěstím#Spóry vybuchnou po 2.5 sekundách, udělí poškození, otráví nepřátele poblíž a uvolní další spóry"}, -- Mucormycosis
 	[554] = {"554", "2Spooky", "{{Fear}} Zastrašuje nepřátele v malém okruhu kolem tebe"}, -- 2Spooky
 	[555] = {"555", "Zlatá Žiletka", "{{Coin}} Přemění 5 mincí na {{Damage}} +1.2 Větší Poškození pro aktuální místnost#{{Coin}} +5 mincí"}, -- Golden Razor
@@ -510,7 +510,7 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[482] = "Nahradí naposledy získaný předmět {{Collectible51}}Pentagramem", -- Clicker
 	[487] = "Zvýšené poškození", -- Potato Peeler
 	[536] = "Poskytne +10.8 dočasného poškození za každého obětovaného spojence, které pomalu mizí podobně jako u {{Collectible621}}Červeného Guláše", -- Sacrificial Altar
-	[555] = "Poškodí vše v místnosti a aplikuje na ně efekt{{Collectible202}} Midasův Dotek", -- Golden Razor	
+	[555] = "Poškodí vše v místnosti a aplikuje na ně efekt{{Collectible202}} Midasův Dotek", -- Golden Razor
 	[577] = "Uděluje trvalé poškození", -- Damocles
 	[582] = "Uděluje další poškození po zbytek patra na základě aktuálního množství použití", -- Wavy Cap
 	[585] = "Změní výplatu na 2 Černá Srdce a 1 předmět z dohody s ďáblem#Stane se 3 srdci a 2 předměty, pokud byla uzavřena dohoda s ďáblem", -- Alabaster Box
@@ -694,7 +694,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[723] = "Zamíchá tvoje bludičky na stejný typ", -- Spindown Dice
 	[728] = "Všechny bludičky budou obíhat kolem Gella", -- Gello
 	[729] = "Stacionární bludička", -- Decap Attack
-	
+
 }
 
 -- Special Locust effects when Item was eaten by Abyss
@@ -1165,27 +1165,27 @@ EID.descriptions[languageCode].RoomTypeNames = { "Normal Room", "Shop", "I AM ER
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {
 	["5.0"] = "None",
-	
+
 	["5.10"] = "{{Heart}} Heart",
 	["5.10.1"] = "{{Heart}} Heart", ["5.10.2"] = "{{HalfHeart}} Half Heart", ["5.10.3"] = "{{SoulHeart}} Soul Heart", ["5.10.4"] = "{{EternalHeart}} Eternal Heart", ["5.10.5"] = "{{Heart}} Double Heart", ["5.10.6"] = "{{BlackHeart}} Black Heart", ["5.10.7"] = "{{GoldHeart}} Gold Heart", ["5.10.8"] = "{{HalfSoulHeart}} Half Soul Heart", ["5.10.9"] = "{{Heart}} Scared Heart", ["5.10.10"] = "{{BlendedHeart}} Blended Heart", ["5.10.11"] = "{{EmptyBoneHeart}} Bone Heart", ["5.10.12"] = "{{RottenHeart}} Rotten Heart",
-	
+
 	["5.20"] = "{{Coin}} Coin",
 	["5.20.1"] = "{{Crafting8}} Penny", ["5.20.2"] = "{{Crafting9}} Nickel", ["5.20.3"] = "{{Crafting10}} Dime", ["5.20.4"] = "{{Crafting8}} Double Penny", ["5.20.5"] = "{{Crafting11}} Lucky Penny", ["5.20.6"] = "{{Crafting9}} Sticky Nickel", ["5.20.7"] = "{{Crafting26}} Golden Penny",
-	
+
 	["5.30"] = "{{Key}} Key",
 	["5.30.1"] = "{{Crafting12}} Key", ["5.30.2"] = "{{Crafting13}} Golden Key", ["5.30.3"] = "{{Crafting12}} Key Ring", ["5.30.4"] = "{{Crafting14}} Charged Key",
-	
+
 	["5.40"] = "{{Bomb}} Bomb",
 	["5.40.1"] = "{{Crafting15}} Bomb", ["5.40.2"] = "{{Crafting15}} Double Bomb", ["5.40.3"] = "{{Crafting15}} Troll Bomb", ["5.40.4"] = "{{Crafting16}} Golden Bomb", ["5.40.5"] = "{{Crafting15}} Megatroll Bomb", ["5.40.7"] = "{{Crafting17}} Giga Bomb",
-	
+
 	["5.90"] = "{{Battery}} Battery",
 	["5.90.0"] = "{{Crafting19}} Lil' Battery", --AB+ didn't have subtypes for batteries
 	["5.90.1"] = "{{Crafting19}} Lil' Battery", ["5.90.2"] = "{{Crafting18}} Micro Battery", ["5.90.3"] = "{{Crafting20}} Mega Battery", ["5.90.4"] = "{{Crafting28}} Golden Battery",
-	
-	["5.50"] = "{{Chest}} Chest", ["5.51"] = "{{BombChest}} Bomb Chest", ["5.52"] = "{{SpikedChest}} Spiked Chest", ["5.53"] = "{{EternalChest}} Eternal Chest", ["5.54"] = "{{MimicChest}} Mimic Chest", ["5.55"] = "{{OldChest}} Old Chest", ["5.56"] = "{{WoodenChest}} Wooden Chest", ["5.57"] = "{{MegaChest}} Mega Chest", ["5.58"] = "{{HauntedChest}} Haunted Chest", ["5.60"] = "{{GoldenChest}} Golden Chest", ["5.360"] = "{{RedChest}} Red Chest",  
-	
+
+	["5.50"] = "{{Chest}} Chest", ["5.51"] = "{{BombChest}} Bomb Chest", ["5.52"] = "{{SpikedChest}} Spiked Chest", ["5.53"] = "{{EternalChest}} Eternal Chest", ["5.54"] = "{{MimicChest}} Mimic Chest", ["5.55"] = "{{OldChest}} Old Chest", ["5.56"] = "{{WoodenChest}} Wooden Chest", ["5.57"] = "{{MegaChest}} Mega Chest", ["5.58"] = "{{HauntedChest}} Haunted Chest", ["5.60"] = "{{GoldenChest}} Golden Chest", ["5.360"] = "{{RedChest}} Red Chest",
+
 	["5.69"] = "{{GrabBag}} Grab Bag", ["5.69.1"] = "{{GrabBag}} Grab Bag", ["5.69.2"] = "{{BlackSack}} Black Sack",
-	
+
 	["5.70"] = "{{Pill}} Pill",
 	["5.300"] = "{{Card}} Card",
 	["5.301"] = "{{Rune}} Rune", -- not a real id
