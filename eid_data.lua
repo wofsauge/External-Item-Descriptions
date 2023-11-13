@@ -635,6 +635,26 @@ EID.InlineIcons["DevilChance"] = EID.isRepentance and EID.InlineIcons["DevilChan
 EID.InlineIcons["Tearsize"] = EID.isRepentance and EID.InlineIcons["TearsizeREP"] or EID.InlineIcons["TearsizeAB"]
 
 
+-- Function for handling colors that fade between multiple different colors (rainbow, gold, tarot cloth purple)
+local function SwagColors(colors, maxAnimTime)
+	maxAnimTime = maxAnimTime or 80
+	local animTime = Game():GetFrameCount() % maxAnimTime
+	local colorFractions = (maxAnimTime - 1) / #colors
+	local subAnm = math.floor(animTime / (colorFractions + 1)) + 1
+	local primaryColorIndex = subAnm % (#colors + 1)
+	if primaryColorIndex == 0 then
+		primaryColorIndex = 1
+	end
+	local secondaryColorIndex = (subAnm + 1) % (#colors + 1)
+	if secondaryColorIndex == 0 then
+		secondaryColorIndex = 1
+	end
+	return EID:interpolateColors(
+		colors[primaryColorIndex],
+		colors[secondaryColorIndex],
+		(animTime % (colorFractions + 1)) / colorFractions
+	)
+end
 
 -- Table that holds Colors used for markup objects. Example: "{{ColorRed}}"
 -- Format: ["Shortcut"] = KColor
@@ -673,51 +693,21 @@ EID.InlineColors = {
 	["ColorLightOrange"] = KColor(1, 0.6353, 0.3686, 1),
 	["ColorBagComplete"] = KColor(0, 1, 0, 0.6),
 	["ColorBagOverfill"] = KColor(1, 0.5, 0.1, 0.6),
-	-- Swag Colors
 
+	-- Swag Colors
 	-- Rainbow color effect
 	["ColorRainbow"] = function(_)
-		local maxAnimTime = 80
-		local animTime = Game():GetFrameCount() % maxAnimTime
 		local c = EID.InlineColors
-		local colors = {c["ColorRed"], c["ColorYellow"], c["ColorLime"], c["ColorCyan"], c["ColorBlue"], c["ColorPink"]}
-		local colorFractions = (maxAnimTime - 1) / #colors
-		local subAnm = math.floor(animTime / (colorFractions + 1)) + 1
-		local primaryColorIndex = subAnm % (#colors + 1)
-		if primaryColorIndex == 0 then
-			primaryColorIndex = 1
-		end
-		local secondaryColorIndex = (subAnm + 1) % (#colors + 1)
-		if secondaryColorIndex == 0 then
-			secondaryColorIndex = 1
-		end
-		return EID:interpolateColors(
-			colors[primaryColorIndex],
-			colors[secondaryColorIndex],
-			(animTime % (colorFractions + 1)) / colorFractions
-		)
+		return SwagColors({c["ColorRed"], c["ColorYellow"], c["ColorLime"], c["ColorCyan"], c["ColorBlue"], c["ColorPink"]})
 	end,
 	-- Gold rainbow color effect
 	["ColorGold"] = function(_)
-		local maxAnimTime = 80
-		local animTime = Game():GetFrameCount() % maxAnimTime
 		local c = EID.InlineColors
-		local colors = {c["ColorYellow"], c["ColorOrange"]}
-		local colorFractions = (maxAnimTime - 1) / #colors
-		local subAnm = math.floor(animTime / (colorFractions + 1)) + 1
-		local primaryColorIndex = subAnm % (#colors + 1)
-		if primaryColorIndex == 0 then
-			primaryColorIndex = 1
-		end
-		local secondaryColorIndex = (subAnm + 1) % (#colors + 1)
-		if secondaryColorIndex == 0 then
-			secondaryColorIndex = 1
-		end
-		return EID:interpolateColors(
-			colors[primaryColorIndex],
-			colors[secondaryColorIndex],
-			(animTime % (colorFractions + 1)) / colorFractions
-		)
+		return SwagColors({c["ColorYellow"], c["ColorOrange"]})
+	end,
+	-- Shiny purple color effect
+	["ColorShinyPurple"] = function(_)
+		return SwagColors({KColor(0.812, 0.627, 1, 1), KColor(0.62, 0.251, 1, 1)}, 40)
 	end,
 	-- Text will blink frequently
 	["ColorBlink"] = function(color)
