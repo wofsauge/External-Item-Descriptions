@@ -863,10 +863,10 @@ local repTrinkets={
 	[157] = {"157", "찢어진 카드", "!!! 눈물을 15번 발사할 때 마다:#{{Blank}} {{Collectible5}}{{Collectible149}}캐릭터에게 되돌아오는 폭발하는 독성 눈물을 발사합니다."}, -- Torn Card
 	[158] = {"158", "찢어진 주머니", "피격 시 소지중인 픽업 중 2가지를 드랍합니다."}, -- Torn Pocket
 	[159] = {"159", "도금 열쇠", "↑ {{Key}}열쇠 +1#{{GoldenChest}} 낡은상자, 메가상자를 제외한 모든 상자가 황금상자로 교체됩니다.#{{GoldenChest}} 황금상자가 드랍하는 픽업의 양이 종류와 상관없이 최소 2개가 보장됩니다.#{{GoldenChest}} 황금상자에서 {{Rune}}룬의 등장 확률이 증가하며 {{Pill}}알약과 {{Battery}}배터리가 등장할 수 있습니다."}, -- Gilded Key
-	[160] = {"160", "복주머니", "{{GrabBag}} 스테이지 첫 방에 자루 픽업을 드랍합니다."}, -- Lucky Sack
+	[160] = {"160", "복주머니", "{{GrabBag}} 스테이지 첫 방에 자루 픽업을 하나 드랍합니다."}, -- Lucky Sack
 	[161] = {"161", "사악한 왕관", "Sheol 스테이지에서 {{TreasureRoom}}보물방과 {{Shop}}상점이 생성됩니다."}, -- Wicked Crown
 	[162] = {"162", "아자젤의 뿔대", "{{Player7}} 방 클리어 시 50%의 확률로 Azazel 캐릭터로 바뀝니다.#다음 방 클리어 후 이동시 원래 캐릭터로 돌아옵니다."}, -- Azazel's Stump
-	[163] = {"163", "딩글 베리", "모든 Dip 몬스터가 아군이 됩니다.#방 클리어 시 똥 패밀리어를 1~2마리 소환합니다.#똥 패밀리어는 적의 탄환을 막으며 적에게 접촉 시 초당 6의 피해를 줍니다."}, -- Dingle Berry
+	[163] = {"163", "딩글 베리", "모든 Dip 몬스터가 아군이 됩니다.#방 클리어 시 똥 패밀리어를 1마리 소환합니다.#똥 패밀리어는 적의 탄환을 막으며 적에게 접촉 시 초당 6의 피해를 줍니다."}, -- Dingle Berry
 	[164] = {"164", "딱총 화약", "폭탄 설치 시 1개의 폭탄을 추가로 설치합니다."}, -- Ring Cap
 	[165] = {"165", "아니거든!", "Womb/Corpse(7 스테이지)부터 열쇠와 동전이 다른 픽업으로 대체됩니다."}, -- Nuh-Uh!
 	[166] = {"166", "조형 찰흙", "방 입장 시 50%의 확률로 그 방에서 랜덤한 패시브 아이템의 효과를 얻습니다."}, -- Modeling Clay
@@ -879,7 +879,7 @@ local repTrinkets={
 	[173] = {"173", "네 영혼", "!!! 일회용#체력 거래 시 체력 대신 장신구를 소모합니다.#!!! {{DevilRoom}}악마방/{{Collectible292}}Satanic Bible 거래 시 여전히 악마 거래로 취급됩니다."}, -- Your Soul
 	[174] = {"174", "숫자 자석", "↑ {{DevilChanceSmall}}악마방 확률 +10%#{{DevilRoom}} 악마방에서 Krampus 보스가 등장하지 않습니다.#악마방 구조가 특수하게 변경되며 악마방에서 적들과 {{BlackHeart}}블랙하트의 등장 확률 및 빈도가 높아집니다."}, -- Number Magnet
 	[175] = {"175", "이상한 열쇠", "30분이 지나도 ???(Blue Womb) 스테이지로 갈 수 있습니다.#{{Collectible297}}Pandora's Box 사용 시 장신구가 사라지며 랜덤 배열의 아이템 6개를 생성합니다."}, -- Strange Key
-	[176] = {"176", "꼬마 클롯", "캐릭터와 같이 이동하며 공격하는 방향으로 캐릭터의 공격과 같은 공격을 발사합니다."}, -- Lil Clot
+	[176] = {"176", "꼬마 클롯", "캐릭터와 같이 이동하며 공격하는 방향으로 캐릭터의 공격과 같은 공격을 발사하는 클롯을 하나 소환합니다."}, -- Lil Clot
 	[177] = {"177", "스티커 문신", "도전방 클리어 시 상자를 드랍합니다.#보스 도전방 클리어 시 아이템을 생성합니다."}, -- Temporary Tattoo
 	[178] = {"178", "삼킨 M80", "피격 시 50% 확률로 캐릭터의 위치에 공격력 185의 폭발을 일으킵니다."}, -- Swallowed M80
 	[179] = {"179", "RC 리모콘", "패밀리어가 캐릭터가 움직이는 방향으로 이동합니다."}, -- RC Remote
@@ -889,8 +889,8 @@ local repTrinkets={
 	[183] = {"183", "쌍둥이", "방 입장 시 50% 확률로 그 방에서 랜덤한 패밀리어 중 하나를 소환합니다.#복사할 수 있는 패밀리어가 없다면 {{Collectible8}}Brother Bobby 혹은 {{Collectible67}}Sister Maggy를 대신 소환합니다."}, -- The Twins
 	[184] = {"184", "입양 서류", "{{Shop}}상점에서 패밀리어를 판매합니다.#패밀리어 가격: 10{{Coin}}"}, -- Adoption Papers
 	[185] = {"185", "귀뚜라미 다리", "적 처치시 17%의 확률로 특수한 아군 파리를 소환합니다."}, -- Cricket Leg
-	[186] = {"186", "아폴리온의 절친", "특수한 아군 파리를 소환합니다.#아군 파리는 공격하는 방향으로 돌진하며 접촉한 적에게 초당 공격력 x3의 피해를 줍니다."}, -- Apollyon's Best Friends
-	[187] = {"187", "깨진 안경", "33% 확률로 {{TreasureRoom}}보물방에 가려진 아이템을 추가합니다.#50% 확률로 리펜턴스 추가 스테이지 보물방의 가려진 아이템을 볼 수 있습니다."}, -- Broken Glasses
+	[186] = {"186", "아폴리온의 절친", "특수한 아군 파리를 하나 소환합니다.#아군 파리는 공격하는 방향으로 돌진하며 접촉한 적에게 초당 공격력 x3의 피해를 줍니다."}, -- Apollyon's Best Friends
+	[187] = {"187", "깨진 안경", "50% 확률로 {{TreasureRoom}}보물방에 가려진 아이템을 추가합니다.#50% 확률로 리펜턴스 추가 스테이지 보물방의 가려진 아이템을 볼 수 있습니다."}, -- Broken Glasses
 	[188] = {"188", "얼음 큐브", "방 입장 시 20%의 확률로 랜덤한 적을 4초간 석화시킵니다.#{{Freezing}} 석화 상태의 적을 처치 시 적이 얼어붙으며 얼어붙은 적은 접촉 시 직선으로 날아가 6방향으로 고드름 눈물을 발사합니다.#{{LuckSmall}} 행운 40 이상일 때 100% 확률"}, -- Ice Cube
 	[189] = {"189", "바포메트의 인장", "적 처치시 1초간 무적 상태가 됩니다.#{{Blank}} (최대 5초)"}, -- Sigil of Baphomet
 }
@@ -907,10 +907,14 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[6] = { "{{Coin}}동전", "픽업" },
 	-- Rosary Bead append
 	[7] = { "!!! {{Collectible72}}Rosary가 모든 배열에서 등장합니다." },
+	--Cartridge
+	[8] = {"확률 2배", "확률 2배", "확률 3배"},
 	-- Golden Store Credit: full replace
 	[13] = { "{{Shop}} {{ColorGold}}상점에서 동전으로 판매하는 품목을 무료로 구매할 수 있습니다.{{CR}}#상점 품목 구매 시마다 확률적으로 일회용 형태의 {{Trinket13}}Store Credit으로 바뀝니다." },
 	-- Lucky Rock append (Gold / Mom's Box / Both)
 	[15] = { "확률적으로 동전 드랍량 2배", "확률적으로 동전 드랍량 2배", "확률적으로 동전 드랍량 3배" },
+	-- Monkey's Paw
+	[20] = {"하나", "2개", "3개"},
 	-- Golden Mysterious Candy makes Golden Poop
 	[25] = { "똥", "황금 똥" },
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
@@ -923,14 +927,47 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
 	[64] = { "일부 벌레 장신구의 능력치 증가 효과 2배", "일부 벌레 장신구의 능력치 증가 효과 3배", "일부 벌레 장신구의 능력치 증가 효과 4배", },
+	-- Louse
+	[70] = {"하나", "2마리", "3마리"},
+	-- Watch Battery
+	[72] = {"한칸", "2칸", "3칸"},
 	-- Error (append): Same behavior as Rainbow Worm
 	[75] = { "일부 장신구의 효과 2배", "일부 장신구의 효과 3배", "일부 장신구의 효과 4배", },
+	--Karma
+	[85] = {
+		"!!! 기부기계에 기부 시 33%의 확률로 아래 효과 중 하나 발동:#{{Coin}}동전 +{{ColorGold}}2{{CR}}(40%)#{{Blank}} {{Heart}}빨간하트 {{ColorGold}}2칸{{CR}} 회복(40%)#{{Blank}} {{LuckSmall}}행운 +{{ColorGold}}1~2{{CR}}(15%)#{{Blank}} 거지 소환(5%)",
+		"!!! 기부기계에 기부 시 33%의 확률로 아래 효과 중 하나 발동:#{{Coin}}동전 +{{ColorGold}}2{{CR}}(40%)#{{Blank}} {{Heart}}빨간하트 {{ColorGold}}2칸{{CR}} 회복(40%)#{{Blank}} {{LuckSmall}}행운 +{{ColorGold}}1~2{{CR}}(15%)#{{Blank}} 거지 소환(5%)",
+		"!!! 기부기계에 기부 시 33%의 확률로 아래 효과 중 하나 발동:#{{Coin}}동전 +{{ColorGold}}3{{CR}}(40%)#{{Blank}} {{Heart}}빨간하트 {{ColorGold}}3칸{{CR}} 회복(40%)#{{Blank}} {{LuckSmall}}행운 +{{ColorGold}}1~3{{CR}}(15%)#{{Blank}} 거지 소환(5%)",
+	},
+	-- Lil' Larva
+	[86] = {"하나", "2마리", "3마리"},
 	-- NO!
 	[88] = { "{{Quality0}}등급인 아이템이 등장하지 않습니다." },
 	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
 	[159] = { "{{GoldenChest}} 낡은상자, 메가상자를 제외한 모든 상자가 황금상자로 교체됩니다.#{{GoldenChest}} 황금상자가 드랍하는 픽업의 양이 종류와 상관없이 최소 2개가 보장됩니다.#{{GoldenChest}} 황금상자에서 {{Rune}}룬의 등장 확률이 증가하며 {{Pill}}알약과 {{Battery}}배터리가 등장할 수 있습니다." },
+	-- Lucky Sack
+	[160] = {"하나", "2개", "3개"},
+	-- Child's Drawing
+	[169] = {"소지중일 때 Guppy 세트 {{ColorGold}}2개{{CR}}에 포함됩니다."},
+	-- Lil' Clot
+	[176] = {"하나", "2마리", "3마리"},
 	-- The Twins
 	[183] = { "확률적으로 2개 복제", "확률적으로 2개 복제", "확률적으로 3개 복제" },
+	-- Apollyon's Best Friend
+	[186] = {"하나", "2마리", "3마리"},
+}
+
+EID.descriptions[languageCode].goldenTrinketData = {
+	[8] = {append = true},
+	[20] = {findReplace = true},
+	[70] = {findReplace = true},
+	[72] = {findReplace = true},
+	[85] = {fullReplace = true},
+	[86] = {findReplace = true, mult = 2},
+	[160] = {findReplace = true},
+	[169] = {fullReplace = true, goldenOnly = true},
+	[176] = {findReplace = true},
+	[186] = {findReplace = true},
 }
 
 ---------- Cards ----------
