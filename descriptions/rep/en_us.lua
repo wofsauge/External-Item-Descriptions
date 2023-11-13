@@ -910,7 +910,7 @@ local repCards={
 	[69] = {"69", "XIII - Death?", "{{Collectible545}} Activates Book of the Dead#Spawns Bone entities for each enemy killed in room"}, -- XIII - Death?
 	[70] = {"70", "XIV - Temperance?", "{{Pill}} Forces Isaac to eat 5 random pills"}, -- XIV - Temperance?
 	[71] = {"71", "XV - The Devil?", "{{Timer}} Receive for 60 seconds:#{{Collectible33}} Activates The Bible (flight)#{{Collectible390}} Seraphim familiar#{{MomsHeart}} Kills Mom's Foot and Mom's Heart instantly#{{Warning}} Kills Isaac when used on Satan"}, -- XV - The Devil?
-	[72] = {"72", "XVI - The Tower?", "Spawns 6 clusters of random rocks and obstacles#Clusters often contain Tinted Rocks"}, -- XVI - The Tower?
+	[72] = {"72", "XVI - The Tower?", "Spawns 7 clusters of random rocks and obstacles#Clusters often contain Tinted Rocks"}, -- XVI - The Tower?
 	[73] = {"73", "XVII - The Stars?", "Removes Isaac's first collected passive item (ignoring starting items)#Spawns 2 random items from the current room's item pool"}, -- XVII - The Stars?
 	[74] = {"74", "XVIII - The Moon?", "{{UltraSecretRoom}} Teleports Isaac to the Ultra Secret Room#Pathway back will be made of red rooms"}, -- XVIII - The Moon?
 	[75] = {"75", "XIX - The Sun?", "{{Timer}} Receive for the floor:#↑ {{Damage}} +1.5 Damage#Flight and spectral tears#{{BoneHeart}} Converts heart containers into Bone Hearts (reverts)#{{CurseDarkness}} Curse of Darkness"}, -- XIX - The Sun?
@@ -940,38 +940,40 @@ local repCards={
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
 -- Card Buffs caused by Tarot Cloth
--- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
-
+-- Strings will be appended to the original description (with line breaks replaced with a Tarot Cloth icon)
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple)
 EID.descriptions[languageCode].tarotClothBuffs = {
 	[2] = "Also grants {{Collectible34}} The Book of Belial effect", -- I - The Magician
 	[3] = "A second foot strikes down shortly after the first", -- II - The High Priestess
-	[4] = "Doubles the stat increases", -- III - The Empress
+	[4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
 	[5] = "{{SoulHeart}} +1 Soul Heart if the boss wasn't defeated yet", -- IV - The Emperor
-	[6] = "Spawns 3 {{SoulHeart}} Soul Hearts", -- V - The Hierophant
-	[7] = "Spawns 3 {{Heart}} Red Hearts", -- VI - The Lovers
-	[8] = "Lasts 12 seconds", -- VII - The Chariot
-	[9] = "Spawns two of each pickup", -- VIII - Justice
+	[6] = {2, 3}, -- V - The Hierophant
+	[7] = {2, 3}, -- VI - The Lovers
+	[8] = {6, 12}, -- VII - The Chariot
+	[9] = {"Spawns {{ColorShinyPurple}}2{{CR}} random {{UnknownHeart}} hearts, {{Coin}} coins, {{Bomb}} bombs and {{Key}} keys"}, -- VIII - Justice
 	[10] = "Prevents Greed from spawning in the shop#Turns a shop into a normal shop if Greed was already fought in it", -- IX - The Hermit
-	[11] = "Spawns 2 {{Slotmachine}} Slot Machines", -- X - Wheel of Fortune
-	[12] = "Doubles the stat increases, except the damage multiplier", -- XI - Strength
-	[14] = "Deals 80 damage", -- XIII - Death
-	[15] = "Spawns 2 {{BloodDonationMachine}} Blood Donation Machines", -- XIV - Temperance
-	[16] = "Doubles the damage increase", -- XV - The Devil
-	[17] = "Spawns 12 Troll Bombs", -- XVI - The Tower
+	[11] = {"Spawns {{ColorShinyPurple}}2{{CR}} {{Slotmachine}} Slot Machines or {{FortuneTeller}} Fortune Machines"}, -- X - Wheel of Fortune
+	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 2.5, 5}, -- XI - Strength
+	[14] = {40, 80}, -- XIII - Death
+	[15] = {"{{DonationMachine}} Spawns {{ColorShinyPurple}}2{{CR}} Blood Donation Machines#{{GreedMode}} Spawns {{ColorShinyPurple}}2{{CR}} Devil Beggars in Greed Mode"}, -- XIV - Temperance
+	[16] = {2, 4}, -- XV - The Devil
+	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "If the Treasure Room hasn't been entered yet, it will have two items to choose from", -- XVII - The Stars
-	[21] = "Spawns 2 Beggars", -- XX - Judgement
+	[20] = {100, 200}, -- XIX - The Sun
+	[21] = {"Spawns {{ColorShinyPurple}}2{{CR}} Beggars or Devil Beggars"}, -- XX - Judgement
 	[56] = "Drops Isaac's most recent 6 items alongside the pickups", -- 0 - The Fool?
-	[59] = "{{Heart}} +3 Health", -- III - The Empress?
-	[61] = "Spawns 3 {{EmptyBoneHeart}} Bone Hearts", -- V - The Hierophant?
+	[59] = {2, 3}, -- III - The Empress?
+	[61] = {2, 3}, -- V - The Hierophant?
 	[62] = "Activates the effect twice", -- VI - The Lovers?
-	[64] = "Spawns 4-14 {{GoldenChest}} golden chests", -- VIII - Justice?
+	[64] = {4, 14, 2, 4}, -- VIII - Justice?
 	[65] = "Spawns 1 additional {{Coin}} penny", -- IX - The Hermit?
-	[66] = "Invokes an additional {{DiceRoom}} Dice Room effect", -- X - Wheel of Fortune?
-	[68] = "Lasts 60 seconds", -- XII - The Hanged Man?
-	[70] = "Forces Isaac to eat 10 random {{Pill}} pills", -- XIV - Temperance?
-	[72] = "Spawns 14 rock clusters", -- XVI - The Tower?
+	[66] = {"{{DiceRoom}} Triggers {{ColorShinyPurple}}2{{CR}} random Dice Room effects"}, -- X - Wheel of Fortune?
+	[68] = {30, 60}, -- XII - The Hanged Man?
+	[70] = {5, 10}, -- XIV - Temperance?
+	[72] = {7, 14}, -- XVI - The Tower?
 	[73] = "Removes 2 items and spawns 4", -- XVII - The Stars?
-	[76] = "Spawns 2 {{RestockMachine}} Restock Machines", -- XX - Judgement?
+	[76] = {"{{RestockMachine}} Spawns {{ColorShinyPurple}}2{{CR}} Restock Machines"}, -- XX - Judgement?
 }
 
 ---------- Pills ----------
