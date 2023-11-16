@@ -761,7 +761,7 @@ EID.descriptions[languageCode].cards={
 	{"18", "XVII - The Stars", "{{TreasureRoom}} Teleports Isaac to the Treasure Room"},
 	{"19", "XVIII - The Moon", "{{SecretRoom}} Teleports Isaac to the Secret Room"},
 	{"20", "XIX - The Sun", "{{Heart}} Full health#Deals 100 damage to all enemies#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"},
-	{"21", "XX - Judgement", "Spawns a Beggar or Devil Beggar"},
+	{"21", "XX - Judgement", "Spawns a Beggar or Devil Beggar#2% chance to spawn a special Beggar"},
 	{"22", "XXI - The World", "{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"},
 	{"23", "2 of Clubs", "{{Bomb}} Doubles Isaac's number of bombs"},
 	{"24", "2 of Diamonds", "{{Coin}} Doubles Isaac's number of coins"},
