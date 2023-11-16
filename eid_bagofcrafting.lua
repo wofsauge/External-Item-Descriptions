@@ -608,6 +608,7 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function(_)
 	-- We're using the pickup indexes for quick checking, which reset on each new room
 	pickupsCollected = {}
+	recheckPickups = true
 end)
 
 -- Using a Card/Pill will change our inventory craftable items, so force a refresh then
