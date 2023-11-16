@@ -2,7 +2,7 @@
 ----- Basic Japanese descriptions -----
 ---------------------------------------
 
--- Last Update: 2023-10-26
+-- Last Update: 2023-11-16
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -905,7 +905,7 @@ local repCards={
     [69] = {"69", "XIII - Death?", "{{Collectible545}}死者の本と同様の効果：#その部屋で倒された敵 1体につき、友好的な 骨タイプの敵、または アイザックを周回する 骨を1つスポーンする"}, -- XIII - Death?
     [70] = {"70", "XIV - Temperance?", "ランダムなピルの効果を 5連続で発動する"}, -- XIV - Temperance?
     [71] = {"71", "XV - The Devil?", "{{Collectible33}}聖書の効果を発動する#30秒間、{{Collectible390}}セラフィムと 飛行能力を付与する"}, -- XV - The Devil?
-    [72] = {"72", "XVI - The Tower?", "岩や障害物の塊を部屋の 6ヶ所に生成する#ｘ岩が複数生成される 可能性がある"}, -- XVI - The Tower?
+    [72] = {"72", "XVI - The Tower?", "岩や障害物の塊を部屋の 7ヶ所に生成する#ｘ岩が複数生成される 可能性がある"}, -- XVI - The Tower?
     [73] = {"73", "XVII - The Stars?", "最も古いパッシブアイテム （初期アイテムを除く）を 削除する#現在の部屋のアイテム プールからランダムな アイテムを2個スポーン"}, -- XVII - The Stars?
     [74] = {"74", "XVIII - The Moon?", "離れ隠し部屋にテレポート#通常の部屋に戻る経路は 赤い部屋で生成される"}, -- XVIII - The Moon?
     [75] = {"75", "XIX - The Sun?", "現フロアに居る間：#飛行能力を付与#涙に透過効果を付与#↑ 攻撃力 +1.5#赤ハートを骨ハートに 置き換える#闇の呪いをかける"}, -- XIX - The Sun?
@@ -935,38 +935,40 @@ local repCards={
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
 -- Card Buffs caused by Tarot Cloth
--- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
-
+-- Strings will be appended to the original description (with line breaks replaced with a Tarot Cloth icon)
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple)
 EID.descriptions[languageCode].tarotClothBuffs = {
     [2] = "{{Collectible34}}ベリアルの本の効果が 同時に発動する", -- I - The Magician
     [3] = "追加の踏み潰し攻撃", -- II - The High Priestess
-    [4] = "ステータスの増加量2倍", -- III - The Empress
+    [4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
     [5] = "ボスを倒していない場合、 青ハートを1個付与", -- IV - The Emperor
-    [6] = "青ハートを3個スポーン", -- V - The Hierophant
-    [7] = "赤ハートを3個スポーン", -- VI - The Lovers
-    [8] = "持続時間2倍", -- VII - The Chariot
-    [9] = "スポーン量2倍", -- VIII - Justice
+    [6] = {2, 3}, -- V - The Hierophant
+    [7] = {2, 3}, -- VI - The Lovers
+    [8] = {6, 12}, -- VII - The Chariot
+    [9] = {"ハート・コイン・爆弾・ 鍵を各{{ColorShinyPurple}}2個{{CR}}スポーン"}, -- VIII - Justice
     [10] = "グリードを出現させない#グリード出現済みの場合、 通常のお店に戻す", -- IX - The Hermit
-    [11] = "スポーン量2倍", -- X - Wheel of Fortune
-    [12] = "ステータスの増加量2倍 (倍率攻撃力を除く)", -- XI - Strength
-    [14] = "全ての敵に80ダメージ", -- XIII - Death
-    [15] = "スポーン量2倍", -- XIV - Temperance
-    [16] = "攻撃力の増加量2倍", -- XV - The Devil
-    [17] = "スポーン量2倍", -- XVI - The Tower
+    [11] = {"スロットマシーンか 占いマシーンを{{ColorShinyPurple}}2つ{{CR}}スポーン"}, -- X - Wheel of Fortune
+    [12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 2.5, 5}, -- XI - Strength
+    [14] = {40, 80}, -- XIII - Death
+    [15] = {"献血機を{{ColorShinyPurple}}2つ{{CR}}スポーン#グリードモードでは 悪魔乞食を{{ColorShinyPurple}}2体{{CR}}スポーン"}, -- XIV - Temperance
+    [16] = {2, 4}, -- XV - The Devil
+    [17] = {6, 12}, -- XVI - The Tower
     [18] = "トレジャールーム未訪問の 状態で使うと、アイテムを 2つの候補から選択できる ようになる", -- XVII - The Stars
-    [21] = "スポーン量2倍", -- XX - Judgement
+	[20] = {100, 200}, -- XIX - The Sun
+    [21] = {"乞食か悪魔乞食を{{ColorShinyPurple}}2体{{CR}}スポーン"}, -- XX - Judgement
     [56] = "ピックアップと一緒に パッシブアイテムを 6個落とす#取得順の新しい方から 6個が落とされる", -- 0 - The Fool?
-    [59] = "最大体力 +3", -- III - The Empress?
-    [61] = "骨ハートを3個スポーン", -- V - The Hierophant?
+    [59] = {2, 3}, -- III - The Empress?
+    [61] = {2, 3}, -- V - The Hierophant?
     [62] = "ブロークンハートを2個 追加し、アイテムを2個 スポーンする", -- VI - The Lovers?
-    [64] = "金宝箱を4～14個スポーン", -- VIII - Justice?
+    [64] = {4, 14, 2, 4}, -- VIII - Justice?
 	[65] = "コインを1枚追加", -- IX - The Hermit?
-	[66] = "追加のダイス部屋効果", -- X - Wheel of Fortune?
-	[68] = "持続時間2倍", -- XII - The Hanged Man?
-    [70] = "ランダムなピルの効果を 10連続で発動する", -- XIV - Temperance?
-    [72] = "岩や障害物の塊を部屋の 14ヶ所に生成する", -- XVI - The Tower?
+	[66] = {"ランダムなダイス部屋の 効果を{{ColorShinyPurple}}2回{{CR}}発動する"}, -- X - Wheel of Fortune?
+	[68] = {30, 60}, -- XII - The Hanged Man?
+    [70] = {5, 10}, -- XIV - Temperance?
+    [72] = {7, 14}, -- XVI - The Tower?
     [73] = "アイテムを2個削除し、 4個スポーンする", -- XVII - The Stars?
-    [76] = "スポーン量2倍", -- XX - Judgement?
+    [76] = {"リロールマシーンを {{ColorShinyPurple}}2つ{{CR}}スポーンする"}, -- XX - Judgement?
 }
 
 ---------- Pills ----------
