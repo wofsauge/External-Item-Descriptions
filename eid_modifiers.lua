@@ -540,7 +540,9 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-
+	
+	local hasTarot = false
+	
 	-- Handle Blank Card description addition
 	local function BlankCardCallback(descObj)
 		local text = EID:getDescriptionEntry("BlankCardCharge")
@@ -553,6 +555,12 @@ if EID.isRepentance then
 			else
 				EID:appendToDescription(descObj, iconStr..text.." {{"..charge.mimiccharge.."}}{{Battery}}")
 			end
+		end
+		-- If the player has Tarot Cloth and Blank Card, display additional text
+		if hasTarot then
+			text = EID:getDescriptionEntry("BlankCardEffect")
+			local buffText = EID:getDescriptionEntry("tarotClothBlankCardBuffs", descObj.ObjSubType)
+			if buffText then EID:appendToDescription(descObj, iconStr .. text .. " " .. buffText) end
 		end
 		return descObj
 	end
@@ -726,7 +734,8 @@ if EID.isRepentance then
 
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
-			if EID.collectiblesOwned[451] then table.insert(callbacks, TarotClothCallback) end
+			hasTarot = EID.collectiblesOwned[451]
+			if hasTarot then table.insert(callbacks, TarotClothCallback) end
 
 			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
 			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
