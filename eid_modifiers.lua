@@ -227,11 +227,41 @@ local function SacrificeRoomCallback(descObj)
 	return descObj
 end
 
+-- Handle Car Battery description addition
 local function CarBatteryCallback(descObj)
-	local text = EID:getDescriptionEntry("carBattery", descObj.ObjSubType)
-	if text ~= nil then
-		local iconStr = "#{{Collectible356}} "
-		EID:appendToDescription(descObj, iconStr..text)
+	local carBatteryBuff = EID:getDescriptionEntry("carBattery", descObj.ObjSubType)
+	if carBatteryBuff ~= nil then
+		-- String = append
+		if type(carBatteryBuff) == "string" then
+			local iconStr = "#{{Collectible356}} "
+			EID:appendToDescription(descObj, iconStr..carBatteryBuff:gsub("#",iconStr))
+		-- Table with 1 entry = replace
+		elseif #carBatteryBuff == 1 then
+			descObj.Description = carBatteryBuff[1]
+		-- Table with 2+ entries = find and replace
+		-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
+		else
+			local pos = 1
+			while pos < #carBatteryBuff do
+				local toFind = carBatteryBuff[pos]
+				local replaceWith = carBatteryBuff[pos+1]
+				
+				--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
+				if (type(toFind) == "number") then
+					local count = 0
+					descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
+						if (s == tostring(toFind) and count == 0) then
+							count = count + 1
+							return "{{BlinkYellowGreen}}" .. replaceWith .. "{{CR}}"
+						end
+					end)
+				-- Basic find+replace for non-numbers
+				else
+					descObj.Description = string.gsub(descObj.Description, tostring(toFind), "{{BlinkYellowGreen}}" .. replaceWith .. "{{CR}}", 1)
+				end
+				pos = pos + 2
+			end
+		end
 	end
 	return descObj
 end

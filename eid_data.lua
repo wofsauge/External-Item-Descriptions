@@ -691,6 +691,7 @@ EID.InlineColors = {
 	["ColorPastelBlue"] = KColor(0.3882, 0.5216, 1, 1),
 	["ColorLavender"] = KColor(0.7451, 0.3686, 1, 1),
 	["ColorLightOrange"] = KColor(1, 0.6353, 0.3686, 1),
+	["ColorLightYellow"] = KColor(1, 1, 0.5, 1),
 	["ColorBagComplete"] = KColor(0, 1, 0, 0.6),
 	["ColorBagOverfill"] = KColor(1, 0.5, 0.1, 0.6),
 
@@ -704,6 +705,15 @@ EID.InlineColors = {
 	["ColorGold"] = function(_)
 		local c = EID.InlineColors
 		return SwagColors({c["ColorYellow"], c["ColorOrange"]})
+	end,
+	-- Yellow to green/red for positive/negative car battery effects
+	["BlinkYellowGreen"] = function(_)
+		local c = EID.InlineColors
+		return SwagColors({c["ColorYellow"], c["ColorLime"]})
+	end,
+	["BlinkYellowRed"] = function(_)
+		local c = EID.InlineColors
+		return SwagColors({c["ColorYellow"], c["ColorRed"]})
 	end,
 	-- Shiny purple color effect
 	["ColorShinyPurple"] = function(_)
