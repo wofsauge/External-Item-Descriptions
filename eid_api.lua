@@ -896,6 +896,9 @@ function EID:getColor(str, baseKColor)
 			else
 				if EID.InlineColors[strTrimmed] then colorFunc = nil end
 				color = EID.InlineColors[strTrimmed] or color
+				if EID.Config["ColorblindMode"] > 0 then
+					color = EID.ColorBlindColors[EID.Config["ColorblindMode"]][strTrimmed] or color
+				end
 			end
 			isColorMarkup = type(EID.InlineColors[strTrimmed]) ~= type(nil)
 		end

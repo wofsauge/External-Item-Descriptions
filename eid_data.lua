@@ -746,7 +746,20 @@ EID.InlineColors = {
 		return color
 	end,
 }
-
+EID.ColorBlindColors = {
+	{ -- Protanopia
+		["ColorBagComplete"] = KColor(0.2, 0.2, 1, 0.6), -- blue-ish
+		["ColorBagOverfill"] = KColor(1, 0, 0, 0.6), -- red
+	},
+	{ -- Deuteranopia
+		["ColorBagComplete"] = KColor(0.2, 0.2, 1, 0.6), -- blue-ish
+		["ColorBagOverfill"] = KColor(1, 0, 0, 0.6), -- red
+	},
+	{ -- Tritanopia
+		--["ColorBagComplete"] = KColor(0, 1, 0, 0.6),  -- no changes needed
+		--["ColorBagOverfill"] = KColor(1, 0.5, 0.1, 0.6),  -- no changes needed
+	}
+}
 -- Data table for a trinket's ability to be doubled/tripled by Mom's Box or being Golden
 -- Due to only a few exceptions needing special rules, most of these are just a single number, which will be found in the description and multiplied
 -- Exceptions will use a table to figure out what to do with them:

@@ -91,6 +91,10 @@ EID.UserConfig = {
 	-- Current warnings are: Achievements are locked, outdated game version, and potentially having inaccurate modded Bag of Crafting recipes
 	-- Default = false
 	["DisableStartOfRunWarnings"] = false,
+	-- ColorblindMode
+	-- Values: 0 = Off, 1 = Protanopia (red weak), 2 = Deuteranopia (green weak), 3 = Tritanopia (blue weak)
+	-- Default = 0
+	["ColorblindMode"] = 0,
 
 	---------- Co-op / Multiple Descriptions -----------
 
@@ -496,6 +500,7 @@ EID.DefaultConfig = {
 	["YPosition"] = 45,
 	["LineHeight"] = 11,
 	["DisplayMode"] = "default",
+	["ColorblindMode"] = 0,
 	["LocalModeSize"] = 0.5,
 	["LocalModeCentered"] = true,
 	["MarkupSize"] = "default",

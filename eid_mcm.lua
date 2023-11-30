@@ -535,6 +535,9 @@ if MCMLoaded then
 	-- Transparency
 	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
 	EID:AddScrollSetting("Visuals", "Transparency", "Transparency", transparencies)
+	-- Color blind
+	local colorBlindModes = {[0] = "Off", "Protanopia (red weak)", "Deuteranopia (green weak)", "Tritanopia (blue weak)"}
+	EID:AddNumberSetting("Visuals", "ColorblindMode", "Colorblind Mode", 0, #colorBlindModes, {displayTable = colorBlindModes, infoText = "Changes some colors to enable colorblind people to use some features of the mod easier."})
 
 	MCM.AddSpace("EID", "Visuals")
 
