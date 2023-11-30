@@ -20,6 +20,7 @@ EID.coopMainPlayers = {} -- The primary Player Entity for each controller being 
 EID.coopAllPlayers = {} -- Every Player Entity (includes Esau, T.Forgotten)
 EID.controllerIndexes = {} -- A table to map each controller index to their player number for coloring indicators
 EID.isMultiplayer = false -- Used to color P1's highlight/outline indicators (single player just uses white)
+EID.isOnlineMultiplayer = false -- Set to true to disable code functions that might cause desyncs
 EID.BoC = {}
 
 -- general variables
@@ -778,6 +779,13 @@ function EID:onNewRoom()
 	EID:CheckCurrentRoomGridEntities()
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
+
+function EID:onCmd(command, _)
+	if command == "netstart" then -- the game somehow propagates that command correctly to the callback...
+		EID.isOnlineMultiplayer = true
+	end
+end 
+EID:AddCallback(ModCallbacks.MC_EXECUTE_CMD, EID.onCmd)
 ---------------------------------------------------------------------------
 ---------------------------Handle Rendering--------------------------------
 
@@ -1088,7 +1096,7 @@ local pathCheckerEntity = nil
 local lastPathfindFrame = -1
 
 local function attemptPathfind(entity)
-	if (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
+	if (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) or EID.isOnlineMultiplayer then
 		pathsChecked[entity.InitSeed] = true
 		return true
 	end
