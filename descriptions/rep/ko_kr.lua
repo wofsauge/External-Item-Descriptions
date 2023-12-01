@@ -47,7 +47,7 @@ local repCollectibles={
 	[78] = {"78", "요한묵시록", "{{DevilChanceSmall}} 소지 중일 때 악마방 확률 +17.5%#사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다.#{{Blank}} (리펜턴스 루트에서는 해당 없음)"}, -- Book of Revelations
 	[79] = {"79", "낙인", "↑ {{BlackHeart}}블랙하트 +1#↑ {{DamageSmall}}공격력 +1#↑ {{SpeedSmall}}이동속도 +0.2"}, -- The Mark
 	[80] = {"80", "계약", "↑ {{BlackHeart}}블랙하트 +2#↑ {{DamageSmall}}공격력 +0.5#↑ {{TearsSmall}}연사 +0.7"}, -- The Pact
-	[83] = {"83", "대못", "!!! 사용 시: #{{HalfBlackHeart}}블랙하트 +0.5#그 방에서 {{DamageSmall}}공격력 +2, {{SpeedSmall}}이동속도 -0.2#접촉한 적에게 피해를 입히며 장애물을 부술 수 있습니다."}, -- The Nail
+	[83] = {"83", "대못", "!!! 사용 시: #{{HalfBlackHeart}}블랙하트 +0.5#그 방에서 {{DamageSmall}}공격력 +2, {{SpeedSmall}}이동속도 -0.18#접촉한 적에게 초당 40의 피해를 입히며 장애물을 부술 수 있습니다."}, -- The Nail
 	[84] = {"84", "더 깊이 내려가야 해!", "사용 시 다음 스테이지로 가는 다락문을 생성합니다.#{{LadderRoom}} 치장성 타일(풀, 돌 조각 등) 위에 사용 시 사다리방으로 가는 다락문을 생성합니다.(스테이지 당 1회)"}, -- We Need To Go Deeper!
 	[87] = {"87", "로키의 뿔", "25%의 확률로 공격이 4방향으로 나갑니다.#{{LuckSmall}} 행운 15 이상일 때 100% 확률"}, -- Loki's Horns
 	[91] = {"91", "탐험가 모자", "캐릭터가 있는 방에서 2칸 이내에 있는 스테이지 구조 및 특수방을 맵에 표시합니다.#위에서 떨어지는 탄환에 피해를 받지 않습니다."}, -- Spelunker Hat
@@ -767,23 +767,38 @@ EID.descriptions[languageCode].abyssSynergies = {
 
 -- Effect of Car battery on Active Items
 local repCarBattery = {
+	[37] = {185, 370}, --Mr. Boom
+	[83] = {"!!! 사용 시: #{{HalfBlackHeart}}블랙하트 +{{BlinkYellowGreen}}1#그 방에서 {{DamageSmall}}공격력 +{{BlinkYellowGreen}}4{{CR}}, {{SpeedSmall}}이동속도 -0.18#접촉한 적에게 초당 40의 피해를 입히며 장애물을 부술 수 있습니다."}, -- The Nail
+	[263] = {"발동합니다", "2번{{CR}} 발동합니다"}, --Clear Rune
 	[283] = "", -- D100
 	[284] = "", -- D4
+	[287] = {"하나", "2종류"}, -- Book of Secrets
+	[288] = {"4~8", "8~16"}, -- Box of Spiders
+	[296] = {"사용 시 소울하트 {{BlinkYellowRed}}2칸{{CR}}을 {{Heart}}최대 체력 {{BlinkYellowRed}}2칸{{CR}}으로 바꿉니다."}, -- Converter
 	[323] = "각 방향마다 2개의 눈물이 중첩되어 나갑니다.", -- Isaac's Tears
-	[427] = "이동식 TNT를 2개 생성합니다.", -- Mine Crafter
+	[421] = "", -- Kidney Bean
+	[427] = {"생성합니다", "2개{{CR}} 생성합니다"}, -- Mine Crafter
 	[437] = "", -- D7
 	[488] = "!!! 표시된 아이템 효과가 아닌 다른 아이템의 효과가 발동됩니다.", -- Metronome
 	[489] = "!!! 선택된 주사위 효과를 2번 발동합니다.", -- D Infinity
 	[523] = "", -- Moving Box
-	[556] = "혈사포의 굵기 증가, 그 방에서 {{DamageSmall}}공격력 x1.2", -- Sulfur
+	[556] = "{{BlinkYellowGreen}}혈사포의 굵기 증가, 그 방에서 {{DamageSmall}}공격력 x1.2", -- Sulfur
+	[582] = {"+0.75", "+1.5", "-0.03", "{{BlinkYellowRed}}-0.06"}, -- Wavy Cap
 	[584] = "불꽃 소환 2배", -- Book of Virtues
-	[605] = "눈알을 하나 더 소환합니다. (공격력 추가 증가 없음)", -- The Scooper
-	[609] = "!!! 아이템이 제거될 확률 45%로 증가, 일부 아이템이 배열에서 지워질 수 있음", -- Eternal D6
-	[625] = "지속시간 2배(60초)", -- Mega Mush
-	[635] = "!!! 더 이상 인형의 위치와 맞바꿀 수 없으나 두 위치 모두 주변의 적에게 피해를 줍니다.", -- Stitches
-	[705] = "지속시간 2배(2초)", -- Dark Arts
+	[605] = {"소환합니다", "2개{{CR}} 소환합니다"}, -- The Scooper
+	[609] = "!!! {{BlinkYellowRed}}아이템이 제거될 확률 45%로 증가, 일부 아이템이 배열에서 지워질 수 있음", -- Eternal D6
+	[625] = {30,60}, -- Mega Mush
+	[635] = "!!! {{BlinkYellowGreen}}더 이상 인형의 위치와 맞바꿀 수 없으나{{CR}} 두 위치 모두 주변의 적에게 피해를 줍니다.", -- Stitches
+	[639] = {"+1", "+2"}, -- Yuck Heart
+	[642] = {"하나", "2개", "소지 불가능 체력 1칸", "{{CR}}소지 불가능 체력 {{BlinkYellowRed}}2칸", "1칸 또는 {{SoulHeart}}2칸", "2칸 또는 {{SoulHeart}}4칸"}, -- Magic Skin
+	[605] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Plum Flute
+	[687] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Friend Finder
+	[705] = {"1초", "2초"}, -- Dark Arts
+	[712] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Lemegeton
+	[712] = {"소환합니다", "2개{{CR}} 소환합니다"}, -- Keeper's Box
 	[720] = "똥을 추가로 쌉니다.", -- Everything Jar
-	[723] = "!!! 코드 2개의 앞번호의 아이템으로 바꿉니다.", -- Spindown Dice
+	[722] = {"가장 가까운 적을", "가장 가까운 적 2마리를"}, --Anima Sola
+	[723] = {"앞번호", "앞 2개 번호"}, -- Spindown Dice
 }
 --EID.descriptions[languageCode].carBattery[284] = nil -- D4
 EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
@@ -1071,6 +1086,27 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[76] = {"{{RestockMachine}} 재입고 기계를 {{ColorShinyPurple}}2개{{CR}} 생성합니다."}, -- The Judgement Reverse
 }
 
+-- There's some odd behavior with Blank Card + Tarot Cloth not doubling some cards
+-- These will be appended after Blank Card recharge time and "Blank Card effect:"
+EID.descriptions[languageCode].tarotClothBlankCardBuffs = {
+	[11] = "슬롯 소환 개수 1개로 감소", -- X - Wheel of Fortune
+	[12] = "강화 효과 미적용", -- XI - Strength
+	[14] = "적에게 주는 피해량 40으로 감소", -- XIII - Death
+	[15] = "헌혈기 소환 개수 1개로 감소", -- XIV - Temperance
+	[16] = "강화 효과 미적용(공격력 +2)", -- XV - The Devil
+	[20] = "적에게 주는 피해량 200으로 감소", -- XIX - The Sun
+	[21] = "거지 소환 개수 1개로 감소", -- XX - Judgement
+	[56] = "내려놓는 아이템 개수 3개로 감소", -- 0 - The Fool?
+	[64] = "상자 소환 개수 2~7개로 감소", -- VIII - Justice?
+	[65] = "추가 동전 드랍 없음", -- IX - The Hermit?
+	[66] = "주사위방 효과 발동 1회로 감소", -- X - Wheel of Fortune?
+	[68] = "지속시간 30초로 감소", -- XII - The Hanged Man?
+	[72] = "구조 생성 횟수 7개로 감소", -- XVI - The Tower?
+	[73] = "강화 효과 미적용(1개 제거/2개 소환)", -- XVII - The Stars?
+	[76] = "소환 개수 1개로 감소", -- XX - Judgement?
+}
+
+
 ---------- Pills ----------
 local repPills={
 	[4] = {"3", "폭탄은 곧 열쇠", "{{Bomb}}폭탄과 {{Key}}열쇠의 개수를 서로 바꿉니다.#{{GoldenBomb}}황금폭탄과 {{GoldenKey}}황금열쇠를 서로 바꿉니다."}, -- Bombs are Key
@@ -1251,6 +1287,7 @@ EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 해금�
 EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}}+{{ButtonY}}or{{ButtonA}}#목록 고정:{{ButtonX}}#목록 새로고침:{{ButtonB}}#초기화:{{ButtonRB}}꾹 누르기)"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
+EID.descriptions[languageCode].BlankCardEffect = "Blank Card로 사용 시:"
 EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."
 EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune 충전량:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo 충전량:"
