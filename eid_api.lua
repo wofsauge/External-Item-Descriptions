@@ -786,7 +786,7 @@ function EID:createItemIconObject(str)
 		return dynamicSpriteCache[str]
 	else
 		local spriteDummy = Sprite()
-		spriteDummy:Load("gfx/eid_inline_icons.anm2", true)
+		spriteDummy:Load("scripts/eidonline/resources/gfx/eid_inline_icons.anm2", true)
 		spriteDummy:ReplaceSpritesheet(1, item.GfxFileName)
 		spriteDummy:LoadGraphics()
 		local newDynamicSprite = {"ItemIcon", 0, 11, 8, -2, -2, spriteDummy}

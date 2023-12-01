@@ -10,8 +10,8 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eidonline.eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.63
-EID.ModVersionCommit = "6e72f7e"
+EID.ModVersion = 4.6369
+EID.ModVersionCommit = "~~ONLINE COOP BETA~~"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -1802,4 +1802,7 @@ if EID.enableDebug then
 	require("eid_debugging")
 end
 
+Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+Isaac.DebugString("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")
+Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 print("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")
