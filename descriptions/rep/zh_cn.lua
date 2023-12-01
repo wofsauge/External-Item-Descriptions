@@ -2,7 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2022.03.02
+-- Last Update: 2023.12.01
 
 -- FORMAT: Item ID | Name | Description
 
@@ -266,7 +266,7 @@ local repCollectibles={
 	[586] = {"586", "天堂阶梯", "{{AngelRoom}} 在每一层的初始房间生成梯子，通向1个特殊的天使房道具商店"}, --  The Stairway
 	[587] = {"587", "", "<道具不存在>"}, -- Menorah (Unused but skripted)
 	[588] = {"588", "太阳", "揭示{{BossRoom}}Boss房位置#击败Boss后在所在层获得：# 激发{{Card20}}“太阳”的效果#{{Battery}} 为主动道具充能#{{CurseBlind}} 移除诅咒#↑ {{Damage}} +3.0伤害#↑ {{Luck}} +1运气"}, --  Sol
-	[589] = {"589", "月亮", "为每一层增加1个{{SecretRoom}}隐藏房间和{{SuperSecretRoom}}超级隐藏房间#每层揭示1个{{SecretRoom}}隐藏房#隐藏房间内有光束，接触时获得：#{{HalfSoulHeart}} 半个魂心#↑ {{Tears}} 当前楼层+0.5射速修正 #↑ {{Tears}} 每层第一次接触月光额外获得+0.5射速修正"}, --  Luna
+	[589] = {"589", "月亮", "为每一层增加1个{{SecretRoom}}隐藏房和{{SuperSecretRoom}}超级隐藏房#每层揭示1个{{SecretRoom}}隐藏房#隐藏房内有光束，接触时获得：#{{HalfSoulHeart}} 半个魂心#↑ {{Tears}} 当前楼层+0.5射速修正 #↑ {{Tears}} 每层第一次接触月光额外获得+0.5射速修正"}, --  Luna
 	[590] = {"590", "水星", "↑ {{Speed}} +0.4移速#进入房间后门不会关闭"}, --  Mercurius
 	[591] = {"591", "金星", "↑ +1心之容器#{{Heart}} 治疗1红心#{{Charm}} 近距离内的敌人受到魅惑"}, --  Venus
 	[592] = {"592", "地球", "↑ {{Damage}} +1.0伤害#眼泪变为石头#每颗伤害不定#可摧毁障碍物#击退增强"}, --  Terra
@@ -352,7 +352,7 @@ local repCollectibles={
 	[672] = {"672", "一磅肉", "{{DevilChance}} 恶魔交易消耗硬币#{{Shop}} 商店里的道具消耗心之容器#{{Shop}} 商店里的其它物品免费，但被尖刺环绕"}, --  A Pound of Flesh
 	[673] = {"673", "赎罪", "{{DevilChance}} 进入恶魔房但拒绝恶魔的诱惑时，于进入下一层后获得：#{{SoulHeart}} +1魂心#↑ {{Damage}} +1.0伤害"}, --  Redemption
 	[674] = {"674", "灵魂枷锁", "死亡时，灵魂被锁链束缚在尸体上，可以继续战斗，血量为半个魂心#10 秒后复活#此效果捡起魂心后才能再次发动"}, --  Spirit Shackles
-	[675] = {"675", "碎裂的宝珠", "受伤时，显示本层1个随机房间#并打开此房间锁住的门#破坏房间中所有的标记石头和有夹层的石头#可以打开超级撒旦房间与红色肉门#可显示{{UltraSecretRoom}}终极隐藏房间"}, --  Cracked Orb
+	[675] = {"675", "碎裂的宝珠", "受伤时，显示本层1个随机房间#并打开此房间锁住的门#破坏房间中所有的标记石头和有夹层的石头#可以打开超级撒旦房间与红色肉门#可显示{{UltraSecretRoom}}究极隐藏房"}, --  Cracked Orb
 	[676] = {"676", "空虚之心", "在开始新一层时，若只有1红心或更少，获得{{EmptyHeart}}1空的心之容器#对无法获得红心的角色无效"}, --  Empty Heart
 	[677] = {"677", "灵魂出窍", "受伤时，暂停时间3秒#此时间内变为幽灵#幽灵具有飞行和幽灵眼泪，且免疫一次伤害"}, --  Astral Projection
 	[678] = {"678", "剖腹产", "{{Chargeable}} 获得短延迟蓄力攻击，发射婴儿样式的跟踪幽灵眼泪#{{Damage}} 胎儿造成每秒6次75%角色伤害"}, --  C Section
@@ -850,7 +850,7 @@ local repCards={
 	[71] = {"71", "XV-恶魔？", "产生{{Collectible33}}圣经的效果#获得{{Collectible390}}撒拉弗#持续30秒"}, -- XV - The Devil?
 	[72] = {"72", "XVI-塔？", "生成6堆随机岩石和障碍物#其中经常会有标记石头"}, -- XVI - The Tower?
 	[73] = {"73", "XVII-星星？", "移除最旧的被动道具(初始道具除外)#从所在房间的道具池中生成2个随机道具"}, -- XVII - The Stars?
-	[74] = {"74", "XVIII-月亮？", "传送至{{UltraSecretRoom}}终极隐藏房#返回的路由红房间构成"}, -- XVIII - The Moon?
+	[74] = {"74", "XVIII-月亮？", "传送至{{UltraSecretRoom}}究极隐藏房#返回的路由红房间构成"}, -- XVIII - The Moon?
 	[75] = {"75", "XIX-太阳？", "获得{{Collectible159}}夜之精灵#↑ {{Damage}} +1.5伤害#在所在层持续#将红心转化为骨心，但效果结束后恢复#施加黑暗诅咒"}, -- XIX - The Sun?
 	[76] = {"76", "XX-审判？", "生成1台{{RestockMachine}}补货机"}, -- XX - Judgement?
 	[77] = {"77", "XXI-世界？", "生成1个{{LadderRoom}}暗门"}, -- XXI - The World?
@@ -949,7 +949,7 @@ EID.descriptions[languageCode].horsepills={
 	{"20", "48小时能量！", "对主动道具完全充能#{{Battery}} 生成3-4个电池"}, -- 48 Hour Energy!
 	{"21", "呕血", "清空红心但保留1红心#{{Heart}} 生成1-4红心"}, -- Hematemesis
 	{"22", "麻痹", "不能移动4秒"}, -- Paralysis
-	{"23", "我能永远看清！", "打开当前层所有{{SecretRoom}}隐藏房间的入口#揭示全图"}, -- I can see forever!
+	{"23", "我能永远看清！", "打开当前层所有{{SecretRoom}}隐藏房的入口#揭示全图"}, -- I can see forever!
 	{"24", "信息素", "{{Charm}} 将房间内所有敌人永久变成友好的"}, -- Pheromones
 	{"25", "失忆症", "{{CurseLost}} 隐藏当前层地图"}, -- Amnesia
 	{"26", "柠檬派对", "生成满房间的水迹并对敌人造成接触伤害"}, -- Lemon Party
@@ -1072,6 +1072,10 @@ EID.descriptions[languageCode].CraftingPreviewBackup =  "!!! 如果该道具锁�
 
 EID.descriptions[languageCode].CraftingResults =  "(滚动：按住 {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}，锁定：{{ButtonX}}，刷新：{{ButtonB}}，重置袋：按住 {{ButtonRB}})"
 
+EID.descriptions[languageCode].itemPoolFor = "所属道具池："
+EID.descriptions[languageCode].itemPoolNames = {
+	[0] = "宝箱房", "商店", "头目房", "恶魔房", "天使房", "隐藏房", "图书馆", "赌博乞丐", "金箱子", "红箱子", "乞丐", "恶魔乞丐", "诅咒房", "钥匙乞丐", "电池乞丐", "妈妈的箱子", "贪婪模式宝箱房", "贪婪模式头目房", "贪婪模式商店", "贪婪模式恶魔房", "贪婪模式天使房", "贪婪模式诅咒房", "贪婪模式隐藏房", "抓娃娃机", "究极隐藏房", "炸弹乞丐", "星象房", "旧箱子", "宝宝商店", "木箱子", "腐烂乞丐",
+}
 EID.descriptions[languageCode].BlankCardCharge = "空白卡牌充能："
 EID.descriptions[languageCode].BlankCardQCard = "传送至错误房#空白卡牌和？卡牌会被摧毁"
 EID.descriptions[languageCode].ClearRuneCharge = "透明符文充能："
