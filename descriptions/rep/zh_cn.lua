@@ -903,6 +903,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[61] = "生成6骨心", -- V - The Hierophant?
 	[62] = "添加4碎心并生成4道具", -- VI - The Lovers?
 	[64] = "生成4-14个金箱子", -- VIII - Justice?
+	[66] = {"{{DiceRoom}}触发{{ColorShinyPurple}}2{{CR}}个随机骰子房效果"}, -- X - Wheel of Fortune?
 	[70] = "吃下10个随机胶囊", -- XIV - Temperance?
 	[72] = "生成14岩石堆", -- XVI - The Tower?
 	[73] = "移除2道具并生成4道具", -- XVII - The Stars?
