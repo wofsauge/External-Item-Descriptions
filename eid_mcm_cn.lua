@@ -101,7 +101,7 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         {"Dice Room Infos","骰子房信息"},
         {"Show again when having flight","有飞行能力会再次显示"},
 		{"Soulstone Infos","魂石信息"},
-        {"Spindown Dice","计数十二面骰"},
+        {"Spindown Dice","计数二十面骰"},
         {"Display IDs","显示ID"},
         {"Display Names","显示名称"},
         {"Skip Locked Items","跳过未解锁道具"},
@@ -124,6 +124,7 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         {"Display Mode","显示模式"},
         {"Text Size","文本大小"},
         {"Transparency","透明度"},
+	{"Colorblind Mode","色盲模式"},
         {"Display mode","显示模式"},
         {"Display Item Name","显示物品名称"},
         {"Display Item Type","显示物品类型"},
@@ -133,7 +134,9 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         {"Display Transformation Name","显示套装名"},
         {"Display Transformation Icon","显示套装图标"},
         {"Display Transformation Progress","显示套装进度"},
-		{"Display Quality Info","显示品质信息"},
+	{"Display Quality Info","显示品质信息"},
+	{"Display Item Pool Icon","显示道具池图标"},
+        {"Display Item Pool Name","显示道具池名称"},
         {"Display Object ID","显示物品ID"},
         {"Markup Icon Size","标注图标大小"},
         {"Stat Change Icons","显示属性变化图标"},
@@ -154,6 +157,13 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         {"inverted","反转"},
         {"borderless","无边框"},
         {"Keyboard","键盘"},
+	{"Off","关"},
+        {"Protanopia","红色色盲"},
+        {"Deuteranopia","绿色色盲"},
+        {"Tritanopia","蓝黄色盲"},
+        {"red weak","红色色弱"},
+        {"green weak","绿色色弱"},
+        {"blue weak","蓝色色弱"},
 
     })
     MCM.SetSubcategoryNameTranslate("EID","Reminder","提示")
@@ -370,8 +380,8 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         ["The next reward from Sanguine Bond can be predicted and highlighted in the description"]
              = "预测血色羁绊的下一次奖励, 并高亮显示",
         ["Number of item previews when holding Spindown Dice"] = "计数二十面骰的预览道具数量",
-        ["Display IDs for Spindown Dice results"] = "在计数十二面骰结果中显示ID",
-        ["Display names for Spindown Dice results"] = "在计数十二面骰结果中显示名称",
+        ["Display IDs for Spindown Dice results"] = "在计数二十面骰结果中显示ID",
+        ["Display names for Spindown Dice results"] = "在计数二十面骰结果中显示名称",
         ["Skip locked items in the preview just as the dice will; the method to check for unlock status is not perfect, though"] = "跳过未解锁的道具来与骰子的行为保持一致 EID检测道具解锁状态的方式尚不完美"
     })
     MCM.TranslateOptionsInfoTextWithTable("EID","Reminder",{
@@ -456,6 +466,12 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         ["Local: Text is displayed under the described object"] = "附近: 文本显示在物品旁边",
         ["Press this key to change the text size."] = "按下此键改变文字大小",
         ["Hold this key to smoothly change the text size."] = "长按此键平滑改变文字大小",
+	["Changes some colors to enable colorblind people to use some features of the mod easier."]
+            = "更改一些颜色让色盲人士更轻松地使用mod的一些功能",
+        ["Displays collectible's item pool icon that is expected for full reroll effects."]
+            = "打乱道具池时显示道具原本所属道具池的图标",
+        ["Displays collectible's item pool name that is expected for full reroll effects."]
+            = "打乱道具池时显示道具原本所属道具池的名称",
     })
 
     -- MCM.TranslateOptionsInfoWithTable("EID","Visuals",{
