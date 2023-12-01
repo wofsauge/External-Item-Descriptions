@@ -101,7 +101,7 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         {"Dice Room Infos","骰子房信息"},
         {"Show again when having flight","有飞行能力会再次显示"},
 		{"Soulstone Infos","魂石信息"},
-        {"Spindown Dice","计数十二面骰"},
+        {"Spindown Dice","计数二十面骰"},
         {"Display IDs","显示ID"},
         {"Display Names","显示名称"},
         {"Skip Locked Items","跳过未解锁道具"},
@@ -370,8 +370,8 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         ["The next reward from Sanguine Bond can be predicted and highlighted in the description"]
              = "预测血色羁绊的下一次奖励, 并高亮显示",
         ["Number of item previews when holding Spindown Dice"] = "计数二十面骰的预览道具数量",
-        ["Display IDs for Spindown Dice results"] = "在计数十二面骰结果中显示ID",
-        ["Display names for Spindown Dice results"] = "在计数十二面骰结果中显示名称",
+        ["Display IDs for Spindown Dice results"] = "在计数二十面骰结果中显示ID",
+        ["Display names for Spindown Dice results"] = "在计数二十面骰结果中显示名称",
         ["Skip locked items in the preview just as the dice will; the method to check for unlock status is not perfect, though"] = "跳过未解锁的道具来与骰子的行为保持一致 EID检测道具解锁状态的方式尚不完美"
     })
     MCM.TranslateOptionsInfoTextWithTable("EID","Reminder",{
