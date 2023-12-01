@@ -838,8 +838,8 @@ function EID:renderUnidentifiedPill(entity)
 	end
 end
 
--- RGB colors for each player's highlights (Red, Blue, Green, Yellow)
-local playerRGB = { {1,0.6,0.6}, {0.5,0.75,1}, {0.5,1,0.75}, {0.9, 0.9, 0.5} }
+-- RGB colors for each player's highlights (Red, Blue, Yellow, Green)
+local playerRGB = { {1,0.6,0.6}, {0.5,0.75,1}, {0.9, 0.9, 0.5}, {0.5,1,0.75} }
 
 ---@param entity Entity
 function EID:renderIndicator(entity, playerNum)
