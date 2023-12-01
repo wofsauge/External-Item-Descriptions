@@ -134,7 +134,7 @@ EID.descriptions[languageCode].collectibles={
 	{"83", "대못", "!!! 사용 시: #{{SoulHeart}}소울하트 +1#그 방에서 {{DamageSmall}}공격력 +0.3, {{SpeedSmall}}이동속도 -0.2#접촉한 적에게 피해를 입히며 장애물을 부술 수 있습니다."}, -- The Nail
 	{"84", "더 깊이 내려가야 해!", "사용 시 다음 스테이지로 가는 다락문을 생성합니다.#10%의 확률로 {{LadderRoom}}사다리방으로 가는 다락문을 생성합니다."}, -- We Need To Go Deeper!
 	{"85", "카드 덱", "사용 시 {{Card}}카드를 하나 획득합니다."}, -- Deck of Cards
-	{"86", "몬스트로의 이빨", "사용 시 몬스트로가 랜덤한 적에게 떨어져 120의 피해를 입힙니다.#!!! 적이 없을 때 사용 시 캐릭터의 위치로 떨어집니다."}, -- Monstro's Tooth
+	{"86", "몬스트로의 이빨", "사용 시 Monstro가 랜덤한 적에게 떨어져 120의 피해를 입힙니다.#!!! 적이 없을 때 사용 시 캐릭터의 위치로 떨어집니다."}, -- Monstro's Tooth
 	{"87", "로키의 뿔", "25%의 확률로 공격이 4방향으로 나갑니다.#{{LuckSmall}} 행운 7 이상일 때 100% 확률"}, -- Loki's Horns
 	{"88", "리틀 처비", "공격하는 방향으로 돌진해 접촉하는 적에게 초당 52.5의 피해를 입힙니다."}, -- Little Chubby
 	{"89", "거미물림", "{{Slow}} 25%의 확률로 적을 둔화시키는 공격이 나갑니다.#{{LuckSmall}} 행운 15 이상일 때 100% 확률"}, -- Spider Bite
@@ -184,7 +184,7 @@ EID.descriptions[languageCode].collectibles={
 	{"133", "구피의 발", "사용 시 최대 체력 1칸을 {{SoulHeart}}소울하트 3칸으로 바꿉니다."}, -- Guppy's Paw
 	{"134", "구피의 꼬리", "{{Chest}} 방 클리어 보상이 33%의 확률로 상자 혹은 황금상자로 바뀝니다.#!!! 방 클리어 보상이 22%의 확률로 등장하지 않습니다."}, -- Guppy's Tail
 	{"135", "수혈 팩", "사용 시 체력 반칸을 깎고 {{Coin}}동전을 1~3개 드랍합니다.#빨간하트를 우선적으로 깎습니다.#!!! {{Player14}}/{{Player33}}Keeper: 0~1개"}, -- IV Bag
-	{"136", "최고의 친구", "사용 시 적을 유인하고 5초 뒤 공격력 110의 폭발을 일으키는 인형을 설치합니다."}, -- Best Friend
+	{"136", "최고의 친구", "사용 시 적을 유인하고 5초 뒤 공격력 110의 폭발을 일으키는 인형을 하나 설치합니다."}, -- Best Friend
 	{"137", "원격 폭파기", "↑ {{Bomb}}폭탄 +5#폭탄이 아이템 사용 전까지 터지지 않습니다."}, -- Remote Detonator
 	{"138", "성흔", "↑ {{Heart}}최대 체력 +1#↑ {{DamageSmall}}공격력 +0.3"}, -- Stigmata
 	{"139", "엄마의 지갑", "장신구를 2개 들 수 있습니다."}, -- Mom's Purse
@@ -395,7 +395,7 @@ EID.descriptions[languageCode].collectibles={
 	{"344", "종이 성냥", "↑ {{BlackHeart}}블랙하트 +1#{{Bomb}}폭탄을 3개 드랍합니다."}, -- Match Book
 	{"345", "합성 스테로이드", "↑ {{DamageSmall}}공격력 +1#↑ {{RangeSmall}}사거리 +5.25#↑ 눈물 높이 +0.5"}, -- Synthoil
 	{"346", "과자", "↑ {{Heart}}최대 체력 +1"}, -- A Snack
-	{"347", "복시", "!!! 일회용#사용 시 방 안의 모든 아이템과 픽업을 두배로 복사합니다."}, -- Diplopia
+	{"347", "복시", "!!! 일회용#사용 시 장신구를 제외한 방 안의 모든 아이템과 픽업을 2배로 복사합니다."}, -- Diplopia
 	{"348", "위약", "사용 시 현재 소지중인 {{Pill}}알약의 효과를 발동합니다."}, -- Placebo
 	{"349", "나무 동전", "사용 시 50% 확률로 {{Coin}}동전을 하나 드랍합니다."}, -- Wooden Nickel
 	{"350", "독성 쇼크", "{{Poison}} 방 입장 시 방 안의 모든 적에게 공격력 x2의 피해를 줍니다.#적 처치 시 초록 장판이 생기며 장판에 닿은 적은 초당 30의 피해를 입습니다."}, -- Toxic Shock
@@ -535,7 +535,7 @@ EID.descriptions[languageCode].collectibles={
 	{"484", "잠깐 뭐야?", "사용 시 방귀를 뀌며 주변의 적을 더 강하게 밀쳐내고 캐릭터 주위에 충격파를 일으킵니다."}, -- Wait What?
 	{"485", "구부러진 동전", "사용 시 50% 확률로 방 안의 모든 아이템을 2배로 복사하며 복사 실패 시 아이템을 모두 없애고 동전을 1개 드랍합니다."}, -- Crooked Penny
 	{"486", "무딘 면도칼", "사용 시 피해를 입지 않고 피격 시 발동 효과를 발동합니다."}, -- Dull Razor
-	{"487", "감자칼", "!!! 사용 시 이하 효과 발동:#최대 체력 1칸을 제거하고 영구적으로 {{Collectible73}}Cube of Meat를 하나 얻으며 {{DamageSmall}}공격력이 0.2 증가합니다.#그 방에서 {{RangeSmall}}사거리 +5 증가하며 캐릭터가 지나간 자리에 빨간 장판이 생기며 닿은 적은 초당 6의 피해를 입습니다.#!!! 피격 시 발동 효과를 발동합니다."}, -- Potato Peeler
+	{"487", "감자칼", "!!! 사용 시 이하 효과 발동:#최대 체력 1칸을 제거하고 영구적으로 {{Collectible73}}Cube of Meat를 하나 얻으며 {{DamageSmall}}공격력이 0.2 증가합니다.#그 방에서 {{RangeSmall}}사거리 +5 증가하며 캐릭터가 지나간 자리에 빨간 장판이 생기며 닿은 적은 초당 6의 피해를 입습니다."}, -- Potato Peeler
 	{"488", "메트로놈", "사용 시 그 방에서 랜덤한 아이템 효과를 발동합니다."}, -- Metronome
 	{"489", "무한 주사위", "사용 할 때마다 랜덤한 종류의 주사위로 바뀝니다."}, -- D infinity
 	{"490", "에덴의 영혼", "!!! 일회용#사용 시 그 방의 아이템을 2개 생성합니다."}, -- Eden's Soul
@@ -608,32 +608,64 @@ EID.descriptions[languageCode].collectibles={
 
 -- Effect of Car battery on Active Items
 EID.descriptions[languageCode].carBattery = {
-	[58] = "지속시간 2배(20초)", -- Book of Shadows
-	[66] = "지속시간 2배(16초)", -- The Hourglass
-	[77] = "지속시간 2배(12초)", -- My Little Unicorn
-	[93] = "지속시간 2배(13초)", -- The Gamekid
-	[105] = "!!! 일부 아이템이 배열에서 지워질 수 있음", -- The D6
+	[34] = {"+2", "+4"}, -- Book of Belial
+	[35] = {40, 80}, -- Necronomicon
+	[37] = {110, 220}, -- Mr. Boom
+	[38] = {10, 20}, --Tammy's Head
+	[45] = {"1칸", "2칸"}, -- Yum Heart
+	[58] = {10, 20}, -- Book of Shadows
+	[65] = {6, 12}, -- Anarchist Cookbook
+	[66] = {8, 16}, -- The Hourglass
+	[77] = {6, 12}, -- My Little Unicorn
+	[78] = {"{{CR}}소울하트 {{BlinkYellowGreen}}+1", "{{CR}}소울하트 {{BlinkYellowGreen}}+2"}, -- Book of Revelations
+	[83] = {"+1", "+2"}, -- The Nail
+	[85] = {"하나", "2장"}, -- Deck of Cards
+	[86] = "{{BlinkYellowGreen}}Monstro가 한 마리 더 떨어집니다.", -- Monstro's Tooth
+	[93] = {6.5, 13}, -- The Gamekid
+	[97] = {"사용 시 랜덤한 픽업을 {{BlinkYellowGreen}}2개{{CR}} 드랍합니다."}, -- The Book of Sin
+	[102] = {"하나", "2개"}, -- Mom's Bottle of Pills
+	[105] = "!!! {{BlinkYellowRed}}일부 아이템이 배열에서 지워질 수 있음{{CR}}", -- The D6
+	[107] = {82.5, 165}, -- The Pinking Shears
 	[111] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- The Bean
-	[124] = "2개의 랜덤 액티브 효과 발동", -- Dead Sea Scrolls
-	[145] = "파리가 4~8개로 증가", -- Guppy's Head
-	[171] = "피해량 x2(20), 효과 지속시간은 연장되지 않음", -- Spider Butt
-	[283] = "!!! 일부 아이템이 배열에서 지워질 수 있음", -- D100
-	[284] = "!!! 일부 아이템이 배열에서 지워질 수 있음", -- D4
+	[123] = {"하나", "2명"}, -- Monster Manual
+	[124] = {"랜덤한 액티브 아이템", "랜덤한 액티브 아이템 2개"}, -- Dead Sea Scrolls
+	[136] = {"하나", "2개"}, -- Best Friend
+	[145] = {"2~4","4~8"}, -- Guppy's Head
+	[146] = {"{{EthernalHeart}}이터널하트 +1", "{{Heart}}최대 체력 +1"}, -- Prayer Card
+	[158] = {"하나", "2개"}, -- Crystal Ball
+	[171] = {10, 20}, -- Spider Butt
+	[283] = "!!! {{BlinkYellowRed}}일부 아이템이 배열에서 지워질 수 있음{{CR}}", -- D100
+	[284] = "!!! {{BlinkYellowRed}}일부 아이템이 배열에서 지워질 수 있음{{CR}}", -- D4
+	[286] = {"발동합니다", "2번{{CR}} 발동합니다"}, -- Blank Card
+	[288] = {"1~4", "2~8"}, -- Box of Spiders
+	[292] = {"+1", "+2"}, -- Satanic Bible
 	[293] = "혈사의 피해량 x2", -- Head of Krampus
-	[298] = "지속시간 2배(12초)", -- Unicorn Stump
+	[298] = {"6", "12"}, -- Unicorn Stump
+	[348] = {"발동합니다", "2번{{CR}} 발동합니다"}, --Placebo
+	[349] = {"사용 시 50% 확률로 {{Coin}}동전을 하나, {{BlinkYellowGreen}}25%의 확률로 2개 드랍합니다."}, -- Wooden Nickel
 	[351] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- Mega Bean
-	[383] = "눈물이 36개로 분열됩니다.", -- Tear Detonator
+	[357] = {"복사합니다", "2번{{CR}} 복사합니다"}, -- Box of Friends
+	[383] = {6, 36}, -- Tear Detonator
 	[421] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- Kidney Bean
-	[427] = "!!! 캐릭터의 위치에 폭발을 일으킵니다.", -- Mine Crafter
-	[437] = "!!! 적을 2배로 소환합니다. (방 클리어 보상이 늘어나지 않음)", -- D7
+	[427] = {"!!! {{BlinkYellowRed}}사용 시 캐릭터의 위치에 폭발을 일으킵니다.{{CR}}"}, -- Mine Crafter
+	[437] = "!!! {{BlinkYellowRed}}적을 2배로 소환합니다.{{CR}} (방 클리어 보상이 늘어나지 않음)", -- D7
+	[439] = {"하나", "2개"}, -- Mom's Box
+	[476] = {"하나", "2개"}, --D1
 	[477] = "흡수한 아이템을 2번 발동합니다.", -- Void
-	[482] = "!!! 패시브 아이템 2개 제거 및 캐릭터 2회 변경", -- Clicker
-	[485] = "아이템이 4배로 복사하나, 실패 확률이 75%로 증가", -- Crooked Penny
-	[486] = "피격 시 효과 2번 발동", -- Dull Razor
-	[488] = "!!! 2개의 랜덤 아이템의 효과가 발동됩니다.", -- Metronome
-	[489] = "!!! 랜덤 주사위 아이템을 하나 더 발동합니다.", -- D Infinity
+	[481] = {"능력치가", "2개의{{CR}} 능력치가"}, -- Dataminer
+	[482] = {"제거하고", "{{BlinkYellowRed}}2개{{CR}} 제거하고", "바꿉니다", "2번{{CR}} 바꿉니다"}, -- Clicker
+	[485] = {"50", "{{BlinkYellowRed}}25", "2배", "4배", "1개", "1~2개"}, -- Crooked Penny
+	[486] = {"발동합니다", "2번{{CR}} 발동합니다"}, -- Dull Razor
+	[487] = {"!!! 사용 시 이하 효과 발동:#최대 체력 {{BlinkYellowGreen}}2칸{{CR}} 제거하고 영구적으로 {{Collectible73}}Cube of Meat를 {{BlinkYellowGreen}}2개{{CR}} 얻으며 {{DamageSmall}}공격력이 {{BlinkYellowGreen}}0.4{{CR}} 증가합니다.#그 방에서 {{RangeSmall}}사거리 +5 증가하며 캐릭터가 지나간 자리에 빨간 장판이 생기며 닿은 적은 초당 6의 피해를 입습니다."}, -- Potato Peeler
+	[488] = {"발동합니다", "2개{{CR}} 발동합니다"}, -- Metronome
+	[489] = "!!! {{BlinkYellowRed}}랜덤 주사위 아이템을 하나 더 발동합니다.", -- D Infinity
+	[504] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Brown Nugget
+	[507] = {"눈물 공격력 + 적 체력의 10%", "눈물 공격력 x2 + 적 체력의 20%"}, -- Sharp Straw
+	[510] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Delirious
+	[516] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Sprinker
+	[521] = {"하나", "2개"}, --Coupon
 	[523] = "상자의 내용물과 그 방의 아이템/픽업 내용물을 뒤바꿉니다.", -- Moving Box
-	[550] = "사용 이후 2개의 방/{{ChallengeRoom}}{{BossRushRoom}}웨이브에서 엄마발이 떨어지지 않습니다.", -- Broken Shovel
+	[550] = {"그 방 및 웨이브", "2개{{CR}}의 방 및 웨이브"}, -- Broken Shovel
 }
 
 ---------- Trinkets ----------
