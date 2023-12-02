@@ -891,15 +891,15 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[8] = {6, 12}, -- VII - The Chariot
 	[9] = {"生成{{ColorShinyPurple}}2{{CR}}个{{UnknownHeart}}随机心, {{ColorShinyPurple}}2{{CR}}个{{Coin}}随机硬币, {{ColorShinyPurple}}2{{CR}}个{{Bomb}}随机炸弹和{{ColorShinyPurple}}2{{CR}}个{{Key}}随机钥匙"}, -- VIII - Justice
 	[10] = "阻止贪婪在商店生成#如果已与贪婪战斗过，将商店变成普通的商店", -- IX - The Hermit
-	[11] = "生成{{ColorShinyPurple}}2{{CR}}个{{Slotmachine}}赌博机或{{FortuneTeller}}预言机", -- X - Wheel of Fortune
+	[11] = {"生成{{ColorShinyPurple}}2{{CR}}个{{Slotmachine}}赌博机或{{FortuneTeller}}预言机"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 2.5, 5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
-	[15] = "生成{{ColorShinyPurple}}2{{CR}}个{{BloodDonationMachine}}献血机# {{GreedMode}} 在贪婪模式改为生成{{ColorShinyPurple}}2{{CR}}个恶魔乞丐", -- XIV - Temperance
+	[15] = {"生成{{ColorShinyPurple}}2{{CR}}个{{BloodDonationMachine}}献血机# {{GreedMode}} 在贪婪模式改为生成{{ColorShinyPurple}}2{{CR}}个恶魔乞丐"}, -- XIV - Temperance
 	[16] = {2.0, 3.0}, -- XV - The Devil
 	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "如果宝箱房尚未进入过，则生成一组二选一道具", -- XVII - The Stars
 	[20] = {100, 400}, -- XIX - The Sun
-	[21] = "随机生成{{ColorShinyPurple}}2{{CR}}个乞丐", -- XX - Judgement
+	[21] = {"随机生成{{ColorShinyPurple}}2{{CR}}个乞丐"}, -- XX - Judgement
 	[56] = "同时掉落最后拾取的6个道具，将其生成为底座道具", -- 0 - The Fool?
 	[59] = {2, 3}, -- III - The Empress?
 	[61] = {2, 3}, -- V - The Hierophant?
@@ -911,8 +911,8 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[68] = {30, 60}, -- XII - The Hanged Man?
 	[70] = {5, 10}, -- XIV - Temperance?
 	[72] = {7, 14}, -- XVI - The Tower?
-	[73] = "移除最早拾取的{{ColorShinyPurple}}2{{CR}}个被动道具(初始道具除外)#从所在房间的道具池中生成{{ColorShinyPurple}}4{{CR}}个随机道具", -- XVII - The Stars?
-	[76] = "生成2个{{RestockMachine}}补货机", -- XX - Judgement?
+	[73] = {"移除最早拾取的{{ColorShinyPurple}}2{{CR}}个被动道具(初始道具除外)#从所在房间的道具池中生成{{ColorShinyPurple}}4{{CR}}个随机道具"}, -- XVII - The Stars?
+	[76] = {"生成2个{{RestockMachine}}补货机"}, -- XX - Judgement?
 }
 
 ---------- Pills ----------
