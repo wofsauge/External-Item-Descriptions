@@ -2,7 +2,7 @@
 ----- Basic Japanese descriptions -----
 ---------------------------------------
 
--- Last Update: 2023-11-16
+-- Last Update: 2023-12-02
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -271,7 +271,7 @@ local repCollectibles={
     [579] = {"579", "Spirit Sword", "涙を剣による近接攻撃に 置き換える#剣は攻撃力x3のダメージを 与え、総体力が十分な時、 ビームを放つ#フルチャージするとスピン アタックとビームを放つ"}, -- Spirit Sword
     [580] = {"580", "Red Key", "赤いドアの輪郭が表示 された壁に対して使用 すると、新しい部屋を 生成できる#10%の確率で特殊部屋が 生成される#13ｘ13の範囲外に生成　　 すると、I AM ERRORに つながる　　"}, -- Red Key
     [581] = {"581", "Psy Fly", "敵の弾を追尾ブロックし、 接触した敵に毎秒15の ダメージを与える使い魔"}, -- Psy Fly
-    [582] = {"582", "Wavy Cap", "↑ 連射速度 +0.75#↓ 移動速度 -0.03#画面が歪む#効果はスタック可能"}, -- Wavy Cap
+    [582] = {"582", "Wavy Cap", "↑ 連射速度 +0.75 #↓ 移動速度 -0.03#画面が歪む#効果はスタック可能"}, -- Wavy Cap
     [583] = {"583", "Rocket in a Jar", "爆弾 +5#攻撃しながら爆弾を設置 すると、ロケット爆弾が 攻撃方向に発射される"}, -- Rocket in a Jar
     [584] = {"584", "Book of Virtues", "ウィスプがスポーンし、 アイザックを周回する#ウィスプは透過効果付きの 涙を放ち、弾をブロックし、 敵に接触ダメージを与える#一定量のブロック・接触で 燃え尽きる#別のアクティブアイテムを 上に積み重ねると、特殊な ウィスプがスポーン#最初に現れる悪魔部屋を 天使部屋に置き換える#悪魔取引済みでも天使 部屋が生成可能になり、 その出現率を12.5%増やす"}, -- Book of Virtues
     [585] = {"585", "Alabaster Box", "{{Warning}} 使い切りアイテム {{Warning}}#天使部屋アイテムを2個、 青ハートを3個スポーン#悪魔取引済みの場合、 スポーン量が各一個減#チャージが空の状態で 始まり、通常の方法で チャージされない#青／黒ハートを取得時、 体力には追加されず、 代わりに、チャージと して追加される"}, -- Alabaster Box
@@ -718,20 +718,42 @@ EID.descriptions[languageCode].abyssSynergies = {
 
 -- Effect of Car battery on Active Items
 local repCarBattery = {
+	[37] = {"185ダメージ", "370ダメージ"}, --Mr. Boom
+	[45] = {1, 2}, -- Yum Heart
+	[83] = {"黒ハートを{{BlinkYellowGreen}}1個{{CR}}付与する#その部屋に居る間：#↑ 攻撃力　 {{BlinkYellowGreen}}+4{{CR}}#↓ 移動速度 -0.18#毎秒40の接触ダメージ 効果を得る#障害物を破壊できる"}, -- The Nail
+	[123] = {"次のフロアまで持続する ランダムな使い魔を{{BlinkYellowGreen}}2体{{CR}} 付与する"}, -- Monster Manual
+	[263] = "2回発動する", -- Clear Rune
+	[283] = "2回発動する", -- D100
+	[287] = "2回発動する", -- Book of Secrets
+	[288] = {"4～8匹", "8～16匹"}, --Box of Spiders
+	[296] = {"1個", "2個", "1個", "2個"}, -- Converter
 	[323] = "ダメージ2倍", -- Isaac's Tears
-	--[386] = "クロールスペースの 出現確率が少しアップ", -- D12
-	[421] = "", -- Kidney Bean, double fart damage removed in Rep
+	[421] = "", -- Kidney Bean
+  --[386] = "Tinyly increase chances for crawlspaces (still very rare)", -- D12
 	[485] = "25%の確率で4倍複製 75%の確率で消滅", -- Crooked Penny
-	[489] = "二種類の効果を同時発動 ※二番目の効果は 　シード値で固定", -- D Infinity
+	[489] = "二種類の効果を同時発動 ※二番目の効果は　　　 シード値で固定", -- D Infinity
+	[522] = {"3秒間", "7秒間", "3秒", "7秒"}, --Telekinesis
 	[523] = "", -- Moving Box
-	[556] = "レーザーの攻撃力と サイズがアップ", -- Sulfur
-	[584] = "ウィスプの量2倍", -- Book of Virtues
-	[605] = "目玉を2体召喚", -- The Scooper
-	[609] = "2回リロールされ、 消滅確率が50%にアップ", -- Eternal D6
-	[625] = "効果時間が60秒に", -- Mega Mush
-	[705] = "無敵効果の時間が2秒に", -- Dark Arts
+	[556] = "レーザーのダメージと サイズがアップ", -- Sulfur
+	[557] = {"おみくじ・青ハート・ カード・トリンケットの いずれかを{{BlinkYellowGreen}}2個{{CR}}スポーンする"}, -- Fortune Cookie
+	[582] = {"+0.75", "+1.5", "-0.03", "{{BlinkYellowRed}}-0.06{{CR}}"}, -- Wavy Cap
+	[584] = "スポーン数2倍", -- Book of Virtues
+	[605] = {"部屋を飛び回る目玉を {{BlinkYellowGreen}}2匹{{CR}}召喚する#目玉は接触ダメージを 与え、弾をブロックし、 ダメージ性の血痕を残す#↑ 右目の攻撃力 +34%"}, -- The Scooper
+	[609] = {"部屋の全てのアイテムを {{BlinkYellowRed}}2回{{CR}}リロールする#リロール時、{{BlinkYellowRed}}51%{{CR}}の確率で アイテムが消滅する"}, -- Eternal D6
+	[625] = {"30秒間","60秒間"}, -- Mega Mush
+	[635] = "2回発動する", --Stitches
+	[639] = {"1個", "2個"}, -- Yuck Heart
+	[642] = {"その部屋のアイテムプール から、アイテムを{{BlinkYellowGreen}}二つ{{CR}}生成#最大体力{{BlinkYellowGreen}}2{{CR}}か骨ハート{{BlinkYellowGreen}}2個{{CR}}、 または青／黒ハート{{BlinkYellowGreen}}4個{{CR}}を、 壊れたハート{{BlinkYellowGreen}}2個{{CR}}に変換#消費優先順位は赤＞骨＞青#使用後にこれを手放すと、 スポーンするアイテムが 一定確率でこれに置き換え られるようになる#確率は1回の使用で33%、 2回で50%、3回以上で100%#現フロアのどこかにこの アイテムが存在する場合、 置き換え確率が低下する#{{Warning}} ロスト使用時は使い切り、 置き換え効果なし"}, -- Magic Skin
+	[650] = {"ベビープラムが{{BlinkYellowGreen}}2体{{CR}}召喚され、 10秒間敵と戦う"}, -- Plum Flute
+	[685] = "スポーン数2倍", -- Jar of Wisps
+	[687] = {"アイザックの移動と攻撃を 模倣する、チャーム状態の ランダムな敵を{{BlinkYellowGreen}}2匹{{CR}}スポーン"}, -- Friend Finder
+	[705] = {"1秒間", "2秒間"}, -- Dark Arts
+	[712] = "スポーン数2倍", -- Lemegeton
+	[713] = "ハート1個を消費し、 2体の血餅をスポーン", -- Sumptorium
+	[719] = {"ランダムなお店の商品を {{BlinkYellowGreen}}二つ{{CR}}スポーンする（有料）"}, -- Keeper's Box
 	[720] = "同時にうんちをスポーン", -- Everything Jar
-	[723] = "内部ID番号を2引く", -- Spindown Dice
+	[722] = {"{{BlinkYellowGreen}}2匹{{CR}}の敵を鎖で拘束し、 5秒間行動不能にする#敵が1匹のみの場合、 {{BlinkYellowGreen}}10秒間{{CR}}行動不能にする"}, --Anima Sola
+	[723] = {"1つ","2つ"}, -- Spindown Dice
 }
 --EID.descriptions[languageCode].carBattery[284] = nil -- D4
 EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
@@ -943,32 +965,54 @@ EID.descriptions[languageCode].tarotClothBuffs = {
     [3] = "追加の踏み潰し攻撃", -- II - The High Priestess
     [4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
     [5] = "ボスを倒していない場合、 青ハートを1個付与", -- IV - The Emperor
-    [6] = {2, 3}, -- V - The Hierophant
-    [7] = {2, 3}, -- VI - The Lovers
-    [8] = {6, 12}, -- VII - The Chariot
+    [6] = {"2個", "3個"}, -- V - The Hierophant
+    [7] = {"2個", "3個"}, -- VI - The Lovers
+    [8] = {"6秒間", "12秒間"}, -- VII - The Chariot
     [9] = {"ハート・コイン・爆弾・ 鍵を各{{ColorShinyPurple}}2個{{CR}}スポーン"}, -- VIII - Justice
     [10] = "グリードを出現させない#グリード出現済みの場合、 通常のお店に戻す", -- IX - The Hermit
     [11] = {"スロットマシーンか 占いマシーンを{{ColorShinyPurple}}2つ{{CR}}スポーン"}, -- X - Wheel of Fortune
     [12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 2.5, 5}, -- XI - Strength
-    [14] = {40, 80}, -- XIII - Death
+    [14] = {"40ダメージ", "80ダメージ"}, -- XIII - Death
     [15] = {"献血機を{{ColorShinyPurple}}2つ{{CR}}スポーン#グリードモードでは 悪魔乞食を{{ColorShinyPurple}}2体{{CR}}スポーン"}, -- XIV - Temperance
     [16] = {2, 4}, -- XV - The Devil
-    [17] = {6, 12}, -- XVI - The Tower
+    [17] = {"6個", "12個"}, -- XVI - The Tower
     [18] = "トレジャールーム未訪問の 状態で使うと、アイテムを 2つの候補から選択できる ようになる", -- XVII - The Stars
-	[20] = {100, 200}, -- XIX - The Sun
+	[20] = {"100ダメージ", "400ダメージ"}, -- XIX - The Sun
     [21] = {"乞食か悪魔乞食を{{ColorShinyPurple}}2体{{CR}}スポーン"}, -- XX - Judgement
     [56] = "ピックアップと一緒に パッシブアイテムを 6個落とす#取得順の新しい方から 6個が落とされる", -- 0 - The Fool?
     [59] = {2, 3}, -- III - The Empress?
-    [61] = {2, 3}, -- V - The Hierophant?
+    [61] = {"2個", "3個"}, -- V - The Hierophant?
     [62] = "ブロークンハートを2個 追加し、アイテムを2個 スポーンする", -- VI - The Lovers?
-    [64] = {4, 14, 2, 4}, -- VIII - Justice?
+    [64] = {"2～4個", "4～14個"}, -- VIII - Justice?
 	[65] = "コインを1枚追加", -- IX - The Hermit?
 	[66] = {"ランダムなダイス部屋の 効果を{{ColorShinyPurple}}2回{{CR}}発動する"}, -- X - Wheel of Fortune?
-	[68] = {30, 60}, -- XII - The Hanged Man?
-    [70] = {5, 10}, -- XIV - Temperance?
-    [72] = {7, 14}, -- XVI - The Tower?
-    [73] = "アイテムを2個削除し、 4個スポーンする", -- XVII - The Stars?
+	[68] = {"30秒間", "60秒間"}, -- XII - The Hanged Man?
+    [70] = {"5連続", "10連続"}, -- XIV - Temperance?
+    [72] = {"7ヶ所", "14ヶ所"}, -- XVI - The Tower?
+    [73] = {"最も古いパッシブアイテム （初期アイテムを除く）を {{ColorShinyPurple}}2個{{CR}}削除する#現在の部屋のアイテム プールからランダムな アイテムを{{ColorShinyPurple}}4個{{CR}}スポーン"}, -- XVII - The Stars?
     [76] = {"リロールマシーンを {{ColorShinyPurple}}2つ{{CR}}スポーンする"}, -- XX - Judgement?
+}
+
+
+-- There's some odd behavior with Blank Card + Tarot Cloth not doubling some cards
+-- These will be appended after Blank Card recharge time and "Blank Card effect:"
+EID.descriptions[languageCode].tarotClothBlankCardBuffs = {
+	[11] = "1つスポーン", -- X - Wheel of Fortune
+	[12] = "{{Collectible451}} の2倍バフ無効", -- XI - Strength
+	[14] = "全ての敵に40ダメージ", -- XIII - Death
+	[15] = "1つスポーン", -- XIV - Temperance
+	[16] = "{{Collectible451}} の2倍バフ無効", -- XV - The Devil
+	[17] = "6個スポーン", -- XVI - The Tower
+	[20] = "全ての敵に200ダメージ", -- XIX - The Sun
+	[21] = "1体スポーン", -- XX - Judgement
+	[56] = "パッシブアイテムを 3個落とす", -- 0 - The Fool?
+	[64] = "金宝箱を2～7個スポーン", -- VIII - Justice?
+	[65] = "追加のコインなし", -- IX - The Hermit?
+	[66] = "1回のみ発動", -- X - Wheel of Fortune?
+	[68] = "効果時間30秒", -- XII - The Hanged Man?
+	[72] = "7ヶ所に生成する", -- XVI - The Tower?
+	[73] = "1個削除し2個スポーン", -- XVII - The Stars?
+	[76] = "1つスポーン", -- XX - Judgement?
 }
 
 ---------- Pills ----------
@@ -1138,10 +1182,11 @@ EID.descriptions[languageCode].CraftingPreviewBackup = "!!! アンロックさ�
 EID.descriptions[languageCode].CraftingResults = "レシピ操作：マップ表示中、#{{Blank}} 　{{ButtonY}} {{ButtonA}} でスクロール#{{Blank}} 　{{ButtonX}} でレシピ固定#{{Blank}} 　{{ButtonB}} でレシピ更新"
 
 EID.descriptions[languageCode].BlankCardCharge = "白紙のカードチャージ："
+EID.descriptions[languageCode].BlankCardEffect = "白紙のカードで使用時："
 EID.descriptions[languageCode].BlankCardQCard = "I AM ERRORにテレポート#白紙のカードと？カード 両方が消失する"
-EID.descriptions[languageCode].ClearRuneCharge = "クリアルーンチャージ"
+EID.descriptions[languageCode].ClearRuneCharge = "クリアルーンチャージ："
 EID.descriptions[languageCode].PlaceboCharge = "プラシーボチャージ："
-EID.descriptions[languageCode].FlipItemToggleInfo = "({{ButtonSelect}} マップボタンを押して切替え)"
+EID.descriptions[languageCode].FlipItemToggleInfo = "（マップボタンで確認）"
 
 
 EID.descriptions[languageCode].FalsePHDHeart = "黒ハートを1個スポーン"
@@ -1157,7 +1202,7 @@ EID.descriptions[languageCode].OldGameVersionWarningText = "ゲームがアッ�
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "MODのアイテムが原因で クラフトレシピの表示が 不正確になる可能性が あります#その場合、Item Probability モードか、非表示にして ください#この警告は設定で無効に できます"
 
-EID.descriptions[languageCode].ResultsWithX = "(Results with {1})"
+EID.descriptions[languageCode].ResultsWithX = "({1}:-2)"
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
