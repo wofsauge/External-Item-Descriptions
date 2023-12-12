@@ -1090,6 +1090,8 @@ EID.descriptions[languageCode].FalsePHDHeart = "生成1黑心"
 EID.descriptions[languageCode].FalsePHDDamage = "{{Damage}} +0.6伤害"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "{{Damage}} +1.2伤害"
 
+EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "原效果失效，改为消耗奇怪的钥匙，生成6个随机道具池的道具"
+
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! 警告 !!!"
 EID.descriptions[languageCode].AchievementWarningText = "成就已禁用！#为了启用进度和成就，你需要击败妈妈的脚(深牢II)而不开启任何模组#(如果你打过了, 那么这条警告的出现是bug, 无视就好)#(这条警告可在设置中禁用)"
 
