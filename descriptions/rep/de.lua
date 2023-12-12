@@ -393,7 +393,7 @@ local repCollectibles={
 	[711] = {"711", "Wenden", "Das Betreten eines Raumes mit Gegenstandspodesten zeigt einen geisterhaften zweiten Gegenstand auf den Podesten an#Die Verwendung des Gegenstands wendet den echten und geisterhaften Gegenstand um#Die Verwendung von Wenden nach dem Aufnehmen des ersten Gegenstands ermöglicht es Isaac, den anderen Gegenstand aufzuheben#{{Warning}} Geisterhafte Gegenstände allein auf Podesten verschwinden nach Verlassen des Raumes"}, -- Flip
 	[712] = {"712", "Lemegeton", "Beschwört ein Orbitale herbei, das den Effekt eines zufälligen Gegenstands gewährt#Die Gegenstände haben eine 25%ige Chance, aus dem aktuellen Raum-Gegenstandspool und eine 75%ige Chance, aus den Schatz-, Boss- oder Laden-Gegenstandspools zu stammen"}, -- Lemegeton
 	[713] = {"713", "Sumptorium", "Entfernt ein halbes Herz und erzeugt einen Klumpen#Klumpen kopieren Isaacs Tränen#Jede Art von Herz erzeugt einen Klumpen mit unterschiedlicher HP, Schaden und Tränenwirkung"}, -- Sumptorium
-	[714] = {"714", "Abruf", "Ruft den Körper des Vergessenen aus jeder Entfernung zurück"}, -- Recall
+	[714] = {"714", "Abruf", "Ruft den Körper von The Forgotten aus jeder Entfernung zurück"}, -- Recall
 	[715] = {"715", "Festhalten", "Die Verwendung des Gegenstands, wenn er leer ist, speichert den nächsten Kot darin#Die Verwendung des Gegenstands mit einem Kot darin verwendet diesen Kot"}, -- Hold
 	[716] = {"716", "Sack des Keepers", "Beschwört 3 {{Coin}} Münzen und 1 {{Key}} Schlüssel herbei#{{Shop}} Ausgeben von 3 Münzen gewährt entweder:#↑ {{Speed}} +0,03 Geschwindigkeit#↑ {{Damage}} +0,5 Schaden#↑ {{Range}} +0,25 Reichweite"}, -- Keeper's Sack
 	[717] = {"717", "Keepers Sippe", "Felsen und andere Hindernisse beschwören beim Zerstören 2 blaue Spinnen herbei#Felsen können gelegentlich in feindlichen Räumen blaue Spinnen beschwören"}, -- Keeper's Kin
@@ -436,8 +436,8 @@ EID.descriptions[languageCode].birthright ={
 	{"Lilith", "", "Familiars sind vor Liliths Gesicht positioniert"},
 	{"Keeper", "", "↑ {{CoinHeart}} +1 Gesundheit#Die maximale Anzahl der Münzherz-Container wird auf 4 erhöht"},
 	{"Apollyon", "", "{{Collectible477}} Die Verwendung von Void hat die Chance, einen zuvor gelöschten Gegenstand zu spawnen#Entfernt nicht die Statistikboni#Je mehr Gegenstände gelöscht wurden, desto höher ist die Chance, dass bei der Verwendung ein Gegenstand erscheint"},
-	{"The Forgotten", "", "Entfernt die Kette, die die Seele an den Vergessenen bindet"},
-	{"The Forgotten Soul", "", "Entfernt die Kette, die die Seele an den Vergessenen bindet"},
+	{"The Forgotten", "", "Entfernt die Kette, die die Seele an den The Forgotten bindet"},
+	{"The Forgotten Soul", "", "Entfernt die Kette, die die Seele an The Forgotten bindet"},
 	{"Bethany", "", "{{Battery}} Das Aktivieren eines Gegenstands mit Seelenladungen ist manchmal kostenlos"},
 	{"Jacob", "", "Die Figur, die den Gegenstand aufnimmt, erhält Kopien von drei passiven Gegenständen der anderen Figur"},
 	{"Esau", "", "Die Figur, die den Gegenstand aufnimmt, erhält Kopien von drei passiven Gegenständen der anderen Figur"},
@@ -917,9 +917,9 @@ local repCards={
 	[90] = {"90", "Seele von Eden", "Rerollt Gegenstandspodeste und Pickups im Raum#Die gerollten Gegenstände stammen aus zufälligen Gegenstandspools"}, -- Soul of Eden
 	[91] = {"91", "Seele von The Lost", "{{Player10}} Verwandelt den Spieler in The Lost für den Raum#Ermöglicht das kostenlose Nehmen eines {{DevilRoom}} Devil Room-Gegenstands#Ermöglicht das kostenlose Betreten der Mausoleum- oder Gehenna-Tür"}, -- Soul of the Lost
 	[92] = {"92", "Seele von Lilith", "Gewährt dauerhaft einen zufälligen Begleiter"}, -- Soul of Lilith
-	[93] = {"93", "Seele des Hüters", "{{Coin}} Spawnt 1-25 zufällige Münzen"}, -- Soul of the Keeper
+	[93] = {"93", "Seele von Keeper", "{{Coin}} Spawnt 1-25 zufällige Münzen"}, -- Soul of the Keeper
 	[94] = {"94", "Seele von Apollyon", "Spawnt 15 zufällige Heuschrecken"}, -- Soul of Apollyon
-	[95] = {"95", "Seele des Vergessenen", "{{Player16}} Spawnt The Forgotten als sekundären Charakter für den Raum"}, -- Soul of the Forgotten
+	[95] = {"95", "Seele von The Forgotten ", "{{Player16}} Spawnt The Forgotten als sekundären Charakter für den Raum"}, -- Soul of the Forgotten
 	[96] = {"96", "Seele von Bethany", "{{Collectible584}} Spawnt 6 zufällige Buch der Tugenden-Schweifchen"}, -- Soul of Bethany
 	[97] = {"97", "Seele von Jacob und Esau", "{{Player20}} Spawnt Esau als sekundären Charakter für den Raum#Er spawnt mit so vielen passiven Gegenständen wie der Spieler"}, -- Soul of Jacob and Esau
 }
