@@ -2,8 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2023.12.01
-
+-- Last Update: 2023.12.12
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
@@ -776,7 +775,7 @@ local repTrinkets={
 	[172] = {"172", "诅咒硬币", "{{Coin}} 捡起硬币时传送至随机房间#可以传送到隐藏房"}, --  Cursed Penny
 	[173] = {"173", "你的灵魂", "{{DevilChance}} 免费进行一次恶魔交易"}, --  Your Soul
 	[174] = {"174", "数字冰箱贴", "{{DevilChance}} +10%恶魔房几率#防止恶魔交易中出现坎卜斯"}, --  Number Magnet
-	[175] = {"175", "奇怪的钥匙", "解锁窒息胎战通道，不再限时#使用{{Collectible297}}潘多拉的盒子时从随机道具池生成6个道具，原效果失效#使用后两者都会被消耗"}, --  Strange Key
+	[175] = {"175", "奇怪的钥匙", "解锁死寂战通道，不再限时#使用{{Collectible297}}潘多拉的盒子时从随机道具池生成6个道具，原效果失效#使用后两者都会被消耗"}, --  Strange Key
 	[176] = {"176", "小血团", "生成1个血块跟班，模仿角色的行动，发射方向和眼泪效果#如果跟班死亡则在下一个房间重生"}, --  Lil Clot
 	[177] = {"177", "纹身贴", "清理{{ChallengeRoom}}挑战房后生成1箱子，清理{{BossRushRoom}}Boss挑战房后生成1道具"}, --  Temporary Tattoo
 	[178] = {"178", "被吞下的M80鞭炮", "受伤时有50%几率爆炸"}, --  Swallowed M80
@@ -884,7 +883,7 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 EID.descriptions[languageCode].tarotClothBuffs = {
 	[2] = "同时获得{{Collectible34}}彼列之书效果", -- I - The Magician
 	[3] = "第一只脚落下后马上落下第二只", -- II - The High Priestess
-	[4] = {0.3, 0.6, 1.5, 2.25}, -- III - The Empress
+	[4] = {0.3, 0.6, 1.5, 6.0}, -- III - The Empress
 	[5] = "如果Boss尚未被击败，传送时获得1魂心", -- IV - The Emperor
 	[6] = {2, 3}, -- V - The Hierophant
 	[7] = {2, 3}, -- VI - The Lovers
