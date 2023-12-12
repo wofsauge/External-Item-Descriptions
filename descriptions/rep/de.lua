@@ -485,7 +485,8 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[126] = "Ruft auch den Effekt von {{Collectible35}} Necronomicon auf", -- Razor Blade
 	[127] = "↑ {{Damage}} +2 Schaden für den nächsten Stock", -- Forget me Now
 	[133] = "↑ {{Damage}} +0,5 Schaden", -- Guppy's Paw
-	[135] = "Vorübergehend ↑ {{Damage}} +0,66 Schaden pro Verwendung", -- IV Bag[147] = "Die Axt hat eine erhöhte Haltbarkeit und Rückstoß, kann schneller verwendet werden, setzt Feinde in {{Burning}} Brand und lässt mehr Pickups fallen, wenn Kot und Hindernisse zerstört werden", -- Notched Axe
+	[135] = "Vorübergehend ↑ {{Damage}} +0,66 Schaden pro Verwendung", -- IV Bag
+	[147] = "Die Axt hat eine erhöhte Haltbarkeit und Rückstoß, kann schneller verwendet werden, setzt Feinde in {{Burning}} Brand und lässt mehr Pickups fallen, wenn Kot und Hindernisse zerstört werden", -- Notched Axe
 	[186] = "Ruft auch den Effekt von {{Collectible126}} Razor Blade auf", -- Blood Rights
 	[282] = "Hinterlässt eine Feuerspur, die Kontakt-Schaden verursacht und Feinde in {{Burning}} Brand setzt", -- How to Jump
 	[290] = "Die Verwendung des Gegenstands verbraucht ein Herz, gewährt einen {{Damage}} Schadensbonus und hinterlässt rotes Glibber auf dem Boden", -- The Jar
@@ -745,7 +746,8 @@ local repTrinkets={
 	[98] = {"98", "Nasengoblin", "5%ige Chance, suchende klebrige Tränen abzufeuern#{{Damage}} Rotz fügt Isaac's Schaden einmal pro Sekunde zu#Rotz kleben für 10 Sekunden"},
 	[101] = {"101", "Dim Bulb", "Das Halten eines komplett ungeladenen aktiven Gegenstands gewährt:#↑ {{Speed}} +0,5 Geschwindigkeit#↑ {{Tears}} +0,5 Tränen#↑ {{Damage}} +1,5 Schaden#↑ {{Range}} +1,5 Reichweite#↑ {{Shotspeed}} +0,3 Schusssgeschwindigkeit#↑ {{Luck}} +2 Glück"},
 	[107] = {"107", "Krähenherz", "Schaden nehmen verbraucht rote Herzen, bevor Seelen-/Schwarze Herzen verbraucht werden#{{Warning}} Der Schaden durch rote Herzen kann deine Chance auf ein Devil-/Angel Room senken"}, -- Crow Heart
-	[110] = {"110", "Silberdollar", "{{Shop}} Shops erscheinen in der Womb und Corpse"},[111] = {"111", "Blutige Krone", "{{TreasureRoom}} Schatzräume erscheinen in der Womb und im Leichnam"}, -- Bloody Crown
+	[110] = {"110", "Silberdollar", "{{Shop}} Shops erscheinen in der Womb und Corpse"},
+	[111] = {"111", "Blutige Krone", "{{TreasureRoom}} Schatzräume erscheinen in der Womb und im Leichnam"}, -- Bloody Crown
 	[119] = {"119", "Stammzelle", "{{Heart}} Beim Betreten einer neuen Etage heilen sich die leeren roten/Knochenherzen von Isaac um die Hälfte#{{HalfHeart}} Heilt mindestens ein halbes Herz"}, -- Stem Cell
 	[125] = {"125", "Verlängerungskabel", "Verbindet alle Begleiter mit elektrischen Strahlen#Die Strahlen verursachen 6 Schaden#Die Strahlen springen auch zwischen Koop-Spielern (einschließlich Jacob & Esau)"}, -- Extension Cord
 	[128] = {"128", "Fingerknochen", "{{EmptyBoneHeart}} Schaden nehmen hat eine 4%ige Chance, ein Knochenherz zu gewähren"}, -- Finger Bone
@@ -868,7 +870,8 @@ EID.descriptions[languageCode].goldenTrinketData = { }
 
 local repCards={
 	[2] = {"2", "I - Der Magier", "{{Timer}} Erhalte für den Raum:#↑ {{Range}} +3 Reichweite#Heimatschüsse"} -- I - The Magician
-	[12] = {"12", "XI - Die Kraft", "{{Timer}} Erhalte für den Raum:#↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0,3 Geschwindigkeit#↑ {{Damage}} +0,3 Schaden#↑ {{Damage}} x1,5 Schadensmultiplikator#↑ {{Range}} +2,5 Reichweite"} -- XI - Strength[16] = {"16", "XV - Der Teufel", "{{Timer}} Erhalte für den Raum:#↑ {{Damage}} +2 Schaden"}, -- XV - The Devil
+	[12] = {"12", "XI - Die Kraft", "{{Timer}} Erhalte für den Raum:#↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0,3 Geschwindigkeit#↑ {{Damage}} +0,3 Schaden#↑ {{Damage}} x1,5 Schadensmultiplikator#↑ {{Range}} +2,5 Reichweite"} -- XI - Strength
+	[16] = {"16", "XV - Der Teufel", "{{Timer}} Erhalte für den Raum:#↑ {{Damage}} +2 Schaden"}, -- XV - The Devil
 	[18] = {"18", "XVII - Die Sterne", "{{TreasureRoom}} Teleportiert Isaac zum Schatzraum#{{Planetarium}} Falls es ein Planetarium gibt, teleportiert es dorthin stattdessen"}, -- XVII - The Stars
 	[27] = {"27", "Karo Ass", "{{Bomb}} Verwandelt alle Pickups, Truhen und nicht-Boss-Gegner in zufällige Bomben"}, -- Ace of Clubs
 	[28] = {"28", "Kreuz Ass", "{{Coin}} Verwandelt alle Pickups, Truhen und nicht-Boss-Gegner in zufällige Münzen"}, -- Ace of Diamonds
@@ -1027,7 +1030,8 @@ EID.descriptions[languageCode].horsepills={
     {"24", "Pheromone", "{{Charm}} Macht jeden Feind im Raum dauerhaft freundlich"}, -- Pheromones
     {"25", "Amnesie", "{{CurseLost}} Versteckt die Bodenkarte"}, -- Amnesia
     {"26", "Zitronenparty", "Erzeugt eine Pfütze von Creep in Größe eines Raums, die Feinden Schaden zufügt"}, -- Lemon Party
-    {"27", "Bist du ein Zauberer?", "{{Timer}} Isaac schießt 60 Sekunden lang diagonal"}, -- R U a Wizard?    {"28", "Percs!", "{{Timer}} Reduziert den erlittenen Schaden im Raum auf ein halbes Herz"}, -- Percs!
+    {"27", "Bist du ein Zauberer?", "{{Timer}} Isaac schießt 60 Sekunden lang diagonal"}, -- R U a Wizard?    
+	{"28", "Percs!", "{{Timer}} Reduziert den erlittenen Schaden im Raum auf ein halbes Herz"}, -- Percs!
     {"29", "Süchtig!", "{{Timer}} Erhöht den erlittenen Schaden im Raum auf ein volles Herz"}, -- Addicted!
     {"30", "Re-Lax", "Isaac lässt für 10 Sekunden Kot hinter sich erscheinen"}, -- Re-Lax
     {"31", "???", "{{CurseMaze}} Fluch des Labyrinths-Effekt für den gesamten Boden"}, -- ???
