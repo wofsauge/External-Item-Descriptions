@@ -2,7 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2023.12.01
+-- Last Update: 2023.12.12
 
 -- FORMAT: Item ID | Name | Description
 
@@ -884,4 +884,45 @@ EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "项目名预览",
 	DemoObjectTransformation = "套装预览",
 	DemoObjectText = "这份文本是中文的#这是一条非常酷的长文本，用来模拟EID文本框自动分行功能！#\1 这也是一条非常酷的文本#祝使用愉快{{Heart}}",
+}
+
+EID.descriptions[languageCode].HoldMapTitle = "道具提示"
+-- 长按地图键会以"道具名称的结果"为描述预测结果
+EID.descriptions[languageCode].HoldMapHeader = "的结果"
+
+-- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
+-- 为本地化方便也添加了忏悔的房间类型
+EID.descriptions[languageCode].RoomTypeNames = { "普通房", "商店", "错误房", "宝箱房", "头目房", "小头目房", "隐藏房", "超级隐藏房", "赌博房", "诅咒房", "挑战房", "图书馆", "献祭房", "恶魔房", "天使房", "夹层", "头目车轮战房", "以撒的卧室", "肮脏的卧室", "宝库", "骰子房", "黑市", "出口房", "星象房", "传送入口房", "传送出口房", "替代章节入口房", "蓝色房间", "究极隐藏房",
+-- 从技术上讲不是房间类型，但仍可能对本地化有用
+[666] = "恶魔/天使房", [1024] = "红色房间", [1025] = "特殊红色房间" }
+
+-- 目前用于一面骰
+EID.descriptions[languageCode].PickupNames = {
+	["5.0"] = "无",
+
+	["5.10"] = "{{Heart}} 心",
+	["5.10.1"] = "{{Heart}} 红心", ["5.10.2"] = "{{HalfHeart}} 半红心", ["5.10.3"] = "{{SoulHeart}} 魂心", ["5.10.4"] = "{{EternalHeart}} 永恒之心", ["5.10.5"] = "{{Heart}} 双红心", ["5.10.6"] = "{{BlackHeart}} 黑心", ["5.10.7"] = "{{GoldHeart}} 金心", ["5.10.8"] = "{{HalfSoulHeart}} 半魂心", ["5.10.9"] = "{{Heart}} 胆小的红心", ["5.10.10"] = "{{BlendedHeart}} 混合心", ["5.10.11"] = "{{EmptyBoneHeart}} 骨心", ["5.10.12"] = "{{RottenHeart}} 腐心",
+
+	["5.20"] = "{{Coin}} 硬币",
+	["5.20.1"] = "{{Crafting8}} 硬币", ["5.20.2"] = "{{Crafting9}} 镍币", ["5.20.3"] = "{{Crafting10}} 铸币", ["5.20.4"] = "{{Crafting8}} 双硬币", ["5.20.5"] = "{{Crafting11}} 幸运硬币", ["5.20.6"] = "{{Crafting9}} 粘性镍币", ["5.20.7"] = "{{Crafting26}} 金硬币",
+
+	["5.30"] = "{{Key}} 钥匙",
+	["5.30.1"] = "{{Crafting12}} 钥匙", ["5.30.2"] = "{{Crafting13}} 金钥匙", ["5.30.3"] = "{{Crafting12}} 双钥匙", ["5.30.4"] = "{{Crafting14}} 充能钥匙",
+
+	["5.40"] = "{{Bomb}} 炸弹",
+	["5.40.1"] = "{{Crafting15}} 炸弹", ["5.40.2"] = "{{Crafting15}} 双炸弹", ["5.40.3"] = "{{Crafting15}} 即爆炸弹", ["5.40.4"] = "{{Crafting16}} 金炸弹", ["5.40.5"] = "{{Crafting15}} 超级即爆炸弹", ["5.40.7"] = "{{Crafting17}} 巨型炸弹",
+
+	["5.90"] = "{{Battery}} 电池",
+	["5.90.0"] = "{{Crafting19}} 小电池", --胎衣+没有其他类型的电池
+	["5.90.1"] = "{{Crafting19}} 小电池", ["5.90.2"] = "{{Crafting18}} 微型电池", ["5.90.3"] = "{{Crafting20}} 超级电池", ["5.90.4"] = "{{Crafting28}} 金电池",
+
+	["5.50"] = "{{Chest}} 箱子", ["5.51"] = "{{BombChest}} 石头箱子", ["5.52"] = "{{SpikedChest}} 刺箱子", ["5.53"] = "{{EternalChest}} 永恒箱子", ["5.54"] = "{{MimicChest}} 拟态箱子", ["5.55"] = "{{OldChest}} 旧箱子", ["5.56"] = "{{WoodenChest}} 木箱子", ["5.57"] = "{{MegaChest}} 大箱子", ["5.58"] = "{{HauntedChest}} 闹鬼箱子", ["5.60"] = "{{GoldenChest}} 金箱子", ["5.360"] = "{{RedChest}} 红箱子",
+
+	["5.69"] = "{{GrabBag}} 福袋", ["5.69.1"] = "{{GrabBag}} 福袋", ["5.69.2"] = "{{BlackSack}} 黑福袋",
+
+	["5.70"] = "{{Pill}} 胶囊",
+	["5.300"] = "{{Card}} 卡牌",
+	["5.301"] = "{{Rune}} 符文", -- 非真实id
+	["5.350"] = "{{Trinket}} 饰品",
+
 }
