@@ -380,8 +380,8 @@ local repCollectibles={
 	[698] = {"698", "Verdrehtes Paar", "Zwei Begleiter, die Tränen mit denselben Statistiken und Effekten wie Isaac schießen#{{Damage}} Sie verursachen 37,5% von Isaacs Schaden"}, -- Twisted Pair
 	[699] = {"699", "Azazels Zorn", "{{Collectible118}} Das Leeren von 4 Räumen feuert beim Betreten des nächsten Raumes einen großen Brimstone-Strahl ab"}, -- Azazel's Rage
 	[700] = {"700", "Echo-Kammer", "Die Verwendung einer {{Rune}} Rune, {{Card}} Karte oder {{Pill}} Pille verwendet auch eine Kopie der letzten 3 verwendeten Runen/Karten/Pillen nach dem Aufnehmen von Echo-Kammer"}, -- Echo Chamber
-	[701] = {"701", "isaacs Grab", "Spawnt zu Beginn jeder Etage eine {{DirtyChest}} Alte Truhe#Alte Truhen müssen mit einem Schlüssel geöffnet werden und können {{SoulHeart}} Seelenherzen, {{Trinket}} Trinkets oder Mamas, Papas und Engelgegenstände enthalten"}, -- Isaac's Tomb
-	[702] = {"702", "Racheful Spirit", "Das Einstecken von Schaden beschwört eine orbitale Wisp herbei#Wisps schießen Tränen, blockieren keine Schüsse und verschwinden auf der nächsten Etage#Maximal 6 Wisps"}, -- Vengeful Spirit
+	[701] = {"701", "Isaacs Grab", "Spawnt zu Beginn jeder Etage eine {{DirtyChest}} Alte Truhe#Alte Truhen müssen mit einem Schlüssel geöffnet werden und können {{SoulHeart}} Seelenherzen, {{Trinket}} Trinkets oder Mamas, Papas und Engelgegenstände enthalten"}, -- Isaac's Tomb
+	[702] = {"702", "Racheerfüllter Geist", "Das Einstecken von Schaden beschwört eine orbitale Wisp herbei#Wisps schießen Tränen, blockieren keine Schüsse und verschwinden auf der nächsten Etage#Maximal 6 Wisps"}, -- Vengeful Spirit
 	[703] = {"703", "Esau Jr.", "Wechselt zwischen dem aktuellen Charakter und Esau Jr.#Esau Jr. hat {{BlackHeart}} 3 Schwarze Herzen, {{Damage}} +2 Schaden, Flug und zufällige Gegenstände in Höhe der Anzahl der Gegenstände, die der Spieler das erste Mal verwendet hat#Charaktere haben unabhängige Gegenstände und Gesundheit#{{Warning}} Das Sterben als einer der Charaktere beendet den Lauf"}, -- Esau Jr.
 	[704] = {"704", "Berserker!", "{{Battery}} Lädt sich mit zugefügtem Schaden auf#{{Timer}} Für 5 Sekunden erhalten:#↑ {{Speed}} +0,4 Geschwindigkeit#↓ {{Tears}} x0,5 Feuerratenmultiplikator#↑ {{Tears}} +2 Feuerrate#↑ {{Damage}} +3 Schaden#Beschränkt Angriffe auf Nahkampf#{{Timer}} Jeder Mord erhöht die Dauer um 1 Sekunde"}, -- Berserk!
 	[705] = {"705", "Dunkle Künste", "{{Timer}} Für 1 Sekunde (oder bis zum Schießen):↑ {{Speed}} +1 Geschwindigkeit#Isaac kann durch Feinde/Projektile hindurchgehen und paralysiert sie#Wenn der Effekt endet, werden paralysierte Feinde beschädigt, paralysierte Projektile entfernt und es entsteht eine Explosion an Isaacs Position#Die Angriffe und Explosionen sind stärker, je mehr Feinde/Projektile getroffen wurden"}, -- Dark Arts
@@ -457,7 +457,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Apollyon", "", "Heuschrecken beschädigen kontinuierlich Feinde, ohne zurückzukehren, solange die Feuertaste gedrückt wird"},
 	{"Tainted Forgotten", "", "{{Collectible714}} Tainted Soul gewinnt die Fähigkeit zur Rückholung, um Tainted Forgotten aus der Ferne zurückzuholen"},
 	{"Tainted Bethany", "", "Spawnt vier zufällige Gegenstandswisps der Qualitäten {{Quality3}} und {{Quality4}} mit deutlich höherer HP als normal"},
-	{"Tainted Jakob", "", "Dark Esau teilt sich in zwei, erschafft einen schattenhaften Klon von sich selbst#Beide Esaus laden immer gleichzeitig auf#{{Collectible722}} Die Verwendung von Anima Sola verbindet beide Esaus"},
+	{"Tainted Jacob", "", "Dark Esau teilt sich in zwei, erschafft einen schattenhaften Klon von sich selbst#Beide Esaus laden immer gleichzeitig auf#{{Collectible722}} Die Verwendung von Anima Sola verbindet beide Esaus"},
 	{"Dead Tainted Lazarus", "", "Die nicht-aktive Form von Tainted Lazarus erscheint als geisterhafte zweite Figur#Er ist unverwundbar und verursacht 25% Schaden#Beide Formen erhalten den Birthright-Gegenstand"},
 	{"Tainted Jacob 2", "", "Dark Esau teilt sich in zwei, erschafft einen schattenhaften Klon von sich selbst#Beide Esaus laden immer gleichzeitig auf#{{Collectible722}} Die Verwendung von Anima Sola verbindet beide Esaus"},
 	{"Tainted Forgotten Soul", "", "{{Collectible714}} Forgotten Soul gewinnt die Fähigkeit zur Rückholung, um den Tainted Forgotten aus der Ferne zurückzuholen"},
@@ -921,7 +921,7 @@ local repCards={
 	[94] = {"94", "Seele von Apollyon", "Spawnt 15 zufällige Heuschrecken"}, -- Soul of Apollyon
 	[95] = {"95", "Seele des Vergessenen", "{{Player16}} Spawnt The Forgotten als sekundären Charakter für den Raum"}, -- Soul of the Forgotten
 	[96] = {"96", "Seele von Bethany", "{{Collectible584}} Spawnt 6 zufällige Buch der Tugenden-Schweifchen"}, -- Soul of Bethany
-	[97] = {"97", "Seele von Jakob und Esau", "{{Player20}} Spawnt Esau als sekundären Charakter für den Raum#Er spawnt mit so vielen passiven Gegenständen wie der Spieler"}, -- Soul of Jacob and Esau
+	[97] = {"97", "Seele von Jacob und Esau", "{{Player20}} Spawnt Esau als sekundären Charakter für den Raum#Er spawnt mit so vielen passiven Gegenständen wie der Spieler"}, -- Soul of Jacob and Esau
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
