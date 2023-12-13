@@ -186,7 +186,7 @@ local repCollectibles={
 	[407] = {"407", "Reinheit", "↑ Erhöht einen von Isaacs Werten abhängig von der Farbe der Aura#Schaden entfernt den Effekt, gewährt aber im nächsten Raum einen neuen Effekt#{{ColorYellow}}Gelb{{CR}} = ↑ {{Speed}} +0,5 Geschwindigkeit#{{ColorBlue}}Blau{{CR}} = ↑ {{Tears}} +2 Schussrate#{{ColorRed}}Rot{{CR}} = ↑ {{Damage}} +4 Schaden#{{ColorOrange}}Orange{{CR}} = ↑ {{Range}} +3 Reichweite"},
 	[408] = {"408", "Athame", "25% Chance, dass ein schwarzer Brimstonering um getötete Feinde erscheint#{{Luck}} +2,5% Chance pro Glück"}, -- Athame
 	[415] = {"415", "Krone des Lichts", "{{SoulHeart}} +2 Seelenherzen#Wenn Isaac keine beschädigten Herzcontainer hat:#↑ {{Damage}} x2 Schadensmultiplikator#↓ {{Shotspeed}} -0,3 Schussgeschwindigkeit#Schaden wird bei jedem Schaden entfernt und gewährt keinen Effekt im Raum"}, -- Crown Of Light
-	[416] = {"416", "Tiefe Taschen", "{{Coin}} Wenn das Räumen eines Raums keine Belohnung bringen würde, erscheinen 1-3 Münzen#{{Coin}} Erhöht das Münzenlimit auf 999"}, -- Deep Pockets
+	[416] = {"416", "Tiefe Taschen", "{{Coin}} Wenn das Leeren eines Raums keine Belohnung bringen würde, erscheinen 1-3 Münzen#{{Coin}} Erhöht das Münzenlimit auf 999"}, -- Deep Pockets
 	[417] = {"417", "Succubus", "Springt im Raum herum, umgeben von einer schädlichen Aura, die 7,5-10 Schaden pro Sekunde verursacht#↑ {{Damage}} x1,5 Schadensmultiplikator, wenn man in der Aura steht"}, -- Succubus
 	[419] = {"419", "Teleport 2.0", "Teleportiert Isaac in einen Raum, der noch nicht geräumt wurde#Hierarchie: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"}, -- Teleport 2.0
 	[421] = {"421", "Nierenbohne", "{{Charm}} Verzaubert alle Feinde in unmittelbarer Nähe"}, -- Kidney Bean
@@ -268,12 +268,12 @@ local repCollectibles={
 	[581] = {"581", "Psy-Fliege", "Verfolgt und lenkt feindliche Geschosse ab#Verursacht 15 Kontaktschaden pro Sekunde"}, -- Psy Fly
 	[582] = {"582", "Wellenmütze", "↑ {{Tears}} +0,75 Schussrate#↓ {{Speed}} -0,03 Geschwindigkeit#Verzerrt den Bildschirm#Dauert länger, um bei jeder Verwendung aufzuladen#Verlassen oder Löschen von Räumen reduziert die Effekte"}, -- Wavy Cap
 	[583] = {"583", "Rakete im Glas", "{{Bomb}} +5 Bomben#Das Platzieren einer Bombe beim Schießen feuert eine Rakete in diese Richtung ab"}, -- Rocket in a Jar
-	[584] = {"584", "Buch der Tugenden", "{{AngelChance}} +12,5% Engelsraumchance bei Benutzung#Beschwört einen orbitalen Wisphelfer, der spektrale Tränen abfeuert, aber zerstört werden kann#Kann mit einem zweiten Aktivposten kombiniert werden, um spezielle Wisps zu erstellen#{{AngelRoom}} Verwandelt den ersten Teufelsraum in einen Engelsraum#{{AngelRoom}} Ermöglicht das Erscheinen von Engelsräumen, nachdem ein Teufelsdeal angenommen wurde"}, -- Book of Virtues
+	[584] = {"584", "Buch der Tugenden", "{{AngelChance}} +12,5% Engelsraumchance bei Benutzung#Beschwört einen orbitalen Wisphelfer, der spektrale Tränen abfeuert, aber zerstört werden kann#Kann mit einem zweiten active Item kombiniert werden, um spezielle Wisps zu erstellen#{{AngelRoom}} Verwandelt den ersten Teufelsraum in einen Engelsraum#{{AngelRoom}} Ermöglicht das Erscheinen von Engelsräumen, nachdem ein Teufelsdeal angenommen wurde"}, -- Book of Virtues
 	[585] = {"585", "Alabaster-Box", "Muss durch das Aufnehmen von Seelenherzen aufgeladen werden, dann beschwört:#{{SoulHeart}} Drei Seelenherzen#{{AngelRoom}} Zwei Engelsraum-Items#{{DevilRoom}} Beschwört nur 2 Seelenherzen und 1 Engelsitem, wenn zuvor ein Teufelsdeal angenommen wurde"}, -- Alabaster Box
 	[586] = {"586", "Die Treppe", "Beschwört eine Leiter im ersten Raum jeder Ebene, die zu einem einzigartigen {{AngelRoom}} Engelsraumshop mit Gegenständen und Verbrauchsmaterialien führt"}, -- The Stairway
 	[587] = {"587", "Menora (Unbenutzt aber skriptiert)", "<Gegenstand existiert nicht>"}, -- Menorah (Unused but scripted)
-	[588] = {"588", "Sol", "{{BossRoom}} Zeigt den Standort des Bossraums an#{{Timer}} Wenn der Bodenboss besiegt ist, erhältst du für den Boden:#↑ {{Damage}} +3 Schaden#↑ {{Luck}} +1 Glück#{{Card20}} Die Sonnenwirkung#{{Battery}} Lädt den Aktivposten vollständig auf#{{CurseBlind}} Entfernt alle Flüche"}, -- Sol
-	[589] = {"589", "Luna", "Fügt jedem Boden einen zusätzlichen {{SecretRoom}} Geheimraum und {{SuperSecretRoom}} Supergeheimraum hinzu#Enthüllt jeden Boden einen Geheimraum#{{Timer}} Geheimräume enthalten einen Lichtstrahl, der für den Boden gewährt:#↑ {{Tears}} +0,5 Schussrate#↑ {{Tears}} Zusätzliche +0,5 Schussrate ab dem ersten Strahl pro Ebene#{{HalfSoulHeart}} Halbes Seelenherz"}, -- Luna
+	[588] = {"588", "Sol", "{{BossRoom}} Zeigt den Standort des Bossraums an#{{Timer}} Wenn der Boss besiegt ist, erhältst du für die Ebene:#↑ {{Damage}} +3 Schaden#↑ {{Luck}} +1 Glück#{{Card20}} Die Sonnenwirkung#{{Battery}} Lädt das acitve Item vollständig auf#{{CurseBlind}} Entfernt alle Flüche"}, -- Sol
+	[589] = {"589", "Luna", "Fügt jeder Ebene einen zusätzlichen {{SecretRoom}} Geheimraum und {{SuperSecretRoom}} Supergeheimraum hinzu#Jede Ebene erhält einen Geheimraum#{{Timer}} Geheimräume enthalten einen Lichtstrahl, der für die Ebene folgendes gewährt:#↑ {{Tears}} +0,5 Schussrate#↑ {{Tears}} Zusätzliche +0,5 Schussrate ab dem ersten Strahl pro Ebene#{{HalfSoulHeart}} Halbes Seelenherz"}, -- Luna
 	[590] = {"590", "Mercurius", "↑ {{Speed}} +0,4 Geschwindigkeit#Die meisten Türen bleiben dauerhaft geöffnet"}, -- Mercurius
 	[591] = {"591", "Venus", "↑ {{Heart}} +1 Gesundheit#{{Heart}} Heilt 1 Herz#{{Charm}} Verzaubert nahegelegene Feinde"}, -- Venus
 	[592] = {"592", "Terra", "↑ {{Damage}} +1 Schaden#Ersetzt Isaacs Tränen durch Steine#Steine verursachen variablen Schaden, können Hindernisse zerstören und haben eine erhöhte Rückstoßkraft"}, -- Terra
@@ -287,7 +287,7 @@ local repCollectibles={
 	[600] = {"600", "Augentropfen", "↑ {{Tears}} x1,4 Schussrate-Multiplikator für das linke Auge"}, -- Eye Drops
 	[601] = {"601", "Akt der Reue", "↑ {{Tears}} +0,7 Tränen#{{EternalHeart}} +1 Ewiges Herz#{{AngelChance}} Ermöglicht das Erscheinen von Engelsräumen, auch nachdem ein Teufelsdeal angenommen wurde#Durch roten Herzschaden wird die Teufels/Engelsraumchance nicht so stark reduziert"}, -- Act of Contrition
 	[602] = {"602", "Mitgliedskarte", "{{Shop}} Öffnet in jedem Laden eine Falltür#Die Falltür führt zu einem unterirdischen Laden, der Schmuckstücke, Runen, Karten, besondere Herzen und Gegenstände aus jedem Pool verkauft"}, -- Member Card
-	[603] = {"603", "Batteriepaket", "{{Battery}} Spawnt 2-4 Batterien#{{Battery}} Lädt den Aktivposten vollständig auf"}, -- Battery Pack
+	[603] = {"603", "Batteriepaket", "{{Battery}} Spawnt 2-4 Batterien#{{Battery}} Lädt das active Item vollständig auf"}, -- Battery Pack
 	[604] = {"604", "Mamas Armband", "Ermöglicht es Isaac, Felsen, TNT, Kacke, freundliche Dips, Gastgeber und andere Hindernisse aufzuheben und zu werfen#Erlaubt das Tragen zwischen Räumen"}, -- Mom's Bracelet
 	[605] = {"605", "Die Schaufel", "↑ {{Damage}} x1,35 Schadensmultiplikator für das rechte Auge#{{Timer}} Ruft einen Peeper-Vertrauten für den Raum herbei, der eine Spur aus rotem Schleim hinterlässt"}, -- The Scooper
 	[606] = {"606", "Okularriss", "5% Chance, Tränen abzuschießen, die Risse an den Aufschlagstellen erzeugen#{{Luck}} 20% Chance bei 15 Glück#Risse verursachen 3x Isaacs Schaden pro Sekunde und ziehen nahegelegene Feinde, Pickups und Geschosse an"}, -- Ocular Rift
@@ -776,14 +776,14 @@ local repTrinkets={
 	[140] = {"140", "Apfel von Sodom", "Das Aufsammeln von roten Herzen kann sie in blaue Spinnen umwandeln#Funktioniert auch bei vollem Leben#Der Effekt kann Herzen verbrauchen, die für die Heilung benötigt werden"}, -- Apple of Sodom
 	[141] = {"141", "Vergessene Wiegenlied", "Erhöht die Feuerrate von Begleitern"}, -- Forgotten Lullaby
 	[142] = {"142", "Beths Glaube", "{{Collectible584}} Beim Betreten einer neuen Etage erscheinen 4 Book of Virtues-Wisps"}, -- Beth's Faith
-	[143] = {"143", "Alte Kapazität", "{{Battery}} Verhindert, dass sich aktive Gegenstände aufladen, indem ein Raum geräumt wird#{{Battery}} Das Räumen eines Raumes hat eine 20%ige Chance, eine Batterie erscheinen zu lassen#{{Luck}} 33%ige Chance bei 5 Glück"}, -- Old Capacitor
+	[143] = {"143", "Alte Kapazität", "{{Battery}} Verhindert, dass sich aktive Gegenstände aufladen, indem ein Raum geräumt wird#{{Battery}} Das Leeren eines Raumes hat eine 20%ige Chance, eine Batterie erscheinen zu lassen#{{Luck}} 33%ige Chance bei 5 Glück"}, -- Old Capacitor
 	[144] = {"144", "Gehirnwurm", "Tränen drehen sich um 90 Grad, um Feinde anzuvisieren, die sie verpasst haben"}, -- Brain Worm
 	[145] = {"145", "Vollkommenheit", "↑ {{Luck}} +10 Glück#Schaden nehmen zerstört das Trinket"}, -- Perfection
 	[146] = {"146", "Teufelskrone", "{{RedTreasureRoom}} Schatzraum-Items werden durch Teufelsdeals ersetzt"}, -- Devil's Crown
 	[147] = {"147", "Geladene Münze", "{{Battery}} Das Aufsammeln einer Münze hat eine 17%ige Chance, 1 Ladung zum aktiven Gegenstand hinzuzufügen"}, -- Charged Penny
 	[148] = {"148", "Freundschaftskette", "Alle Begleiter kreisen um Isaac"}, -- Friendship Necklace
 	[149] = {"149", "Panikknopf", "Schaden nehmen verwendet den aktiven Gegenstand, wenn er aufgeladen ist"}, -- Panic Button
-	[150] = {"150", "Blauer Schlüssel", "Verschlossene Türen können kostenlos geöffnet werden, aber Isaac muss einen Raum auf der Hush-Etage räumen, bevor er Zugang zum Raum dahinter hat"}, -- Blue Key
+	[150] = {"150", "Blauer Schlüssel", "Verschlossene Türen können kostenlos geöffnet werden, aber Isaac muss einen Raum auf der Hush-Etage leeren, bevor er Zugang zum Raum dahinter hat"}, -- Blue Key
 	[151] = {"151", "Flache Feile", "Zieht die meisten Stacheln ein, macht sie harmlos#Betrifft auch {{CursedRoom}} Fluchraumtüren, Mimics und jedes Stachelhindernis"}, -- Flat File
 	[152] = {"152", "Teleskoplinse", "{{PlanetariumChance}} +24% Planetarium-Chance, wenn noch keines erschienen ist#+9%, wenn bereits ein Planetarium erschienen ist#Planetarien können in der Womb und im Leichnam erscheinen"}, -- Telescope Lens
 	[153] = {"153", "Mamas Schloss", "25% Chance für einen zufälligen Mama-Item-Effekt pro Raum
@@ -795,22 +795,22 @@ local repTrinkets={
 	[159] = {"159", "Vergoldeter Schlüssel", "{{Key}} +1 Schlüssel beim Aufsammeln#{{GoldenChest}} Ersetzt alle Truhen (außer Alt/Mega) durch goldene Truhen#{{GoldenChest}} Goldene Truhen können zusätzliche Karten, Pillen oder Trinkets enthalten"}, -- Gilded Key
 	[160] = {"160", "Glückssack", "{{GrabBag}} Das Betreten einer neuen Etage lässt einen Sack erscheinen"}, -- Lucky Sack
 	[161] = {"161", "Böse Krone", "Erzeugt einen {{TreasureRoom}} Schatzraum und {{Shop}} Laden in Sheol"}, -- Wicked Crown
-	[162] = {"162", "Azazels Stumpf", "{{Player7}} Einen Raum räumen hat eine 50%ige Chance, den Spieler in Azazel zu verwandeln#{{Timer}} Der Effekt dauert an, bis ein anderer Raum geräumt und verlassen wird"}, -- Azazel's Stump
-	[163] = {"163", "Dingle Berry", "Alle Dip (kleine Kot-) Feinde sind freundlich#Das Räumen eines Raumes lässt einen zufälligen Dip erscheinen"}, -- Dingle Berry
+	[162] = {"162", "Azazels Stumpf", "{{Player7}} Einen Raum leeren hat eine 50%ige Chance, den Spieler in Azazel zu verwandeln#{{Timer}} Der Effekt dauert an, bis ein anderer Raum geräumt und verlassen wird"}, -- Azazel's Stump
+	[163] = {"163", "Dingle Berry", "Alle Dip (kleine Kot-) Feinde sind freundlich#Das Leeren eines Raumes lässt einen zufälligen Dip erscheinen"}, -- Dingle Berry
 	[164] = {"164", "Ringkappe", "{{Bomb}} Erzeugt 1 zusätzliche Bombe für jede platzierte Bombe"}, -- Ring Cap
 	[165] = {"165", "Nuh Uh!", "Auf Womb und darüber hinaus ersetzt alle Münz- und Schlüsselspawns durch eine Bombe, ein Herz, eine Pille, eine Karte, ein Trinket, eine Batterie oder einen Feindflieger"}, -- Nuh Uh!
 	[166] = {"166", "Modelliermasse", "50%ige Chance, den Effekt eines zufälligen passiven Gegenstands pro Raum zu gewähren"}, -- Modeling Clay
-	[167] = {"167", "Polierter Knochen", "Einen Raum räumen hat eine 25%ige Chance, einen freundlichen Bony erscheinen zu lassen"}, -- Polished Bone
+	[167] = {"167", "Polierter Knochen", "Einen Raum leeren hat eine 25%ige Chance, einen freundlichen Bony erscheinen zu lassen"}, -- Polished Bone
 	[168] = {"168", "Hohles Herz", "{{EmptyBoneHeart}} Das Betreten einer neuen Etage gewährt +1 Knochenherz"}, -- Hollow Heart
 	[169] = {"169", "Kinderzeichnung", "{{Guppy}} Zählt als 1 Item für die Guppy-Transformation solange es gehalten wird"}, -- Kid's Drawing
-	[170] = {"170", "Kristallschlüssel", "{{Collectible580}} Einen Raum räumen hat eine 33%ige Chance, einen Red Key-Raum zu erstellen#Geringere Chance, wenn sich in einem roten Raum befindet"}, -- Crystal Key
+	[170] = {"170", "Kristallschlüssel", "{{Collectible580}} Einen Raum leeren hat eine 33%ige Chance, einen Red Key-Raum zu erstellen#Geringere Chance, wenn sich in einem roten Raum befindet"}, -- Crystal Key
 	[171] = {"171", "Des Keepers Schnäppchen", "{{DevilRoom}} 50%ige Chance, dass Teufelsdeals Münzen statt Herzen kosten"}, -- Keeper's Bargain
 	[172] = {"172", "Verfluchte Münze", "Das Aufsammeln einer Münze teleportiert Isaac in einen zufälligen Raum#Kann zu Geheimräumen teleportieren"}, -- Cursed Penny
 	[173] = {"173", "Deine Seele", "{{DevilRoom}} Erlaubt Isaac, 1 Devil Room-Item kostenlos zu nehmen#{{Warning}} Der kostenlose Teufelsdeal beeinflusst immer noch die Engelraumchance"}, -- Your Soul
 	[174] = {"174", "Zahlenmagnet", "{{DevilChance}} +10% Teufelsraumchance#Verhindert, dass Krampus in Teufelsräumen erscheint#Teufelsräume sind spezielle Varianten mit mehr Angeboten, schwarzen Herzen und Feinden"}, -- Number Magnet
 	[175] = {"175", "Seltsamer Schlüssel", "Öffnet die Tür zur Hush-Etage unabhängig vom Timer#Die Verwendung von {{Collectible297}} Pandoras Box verbraucht den Schlüssel und lässt 6 Items aus zufälligen Pools erscheinen"}, -- Strange Key
 	[176] = {"176", "Lil Gerinnsel", "Erzeugt einen Blutklumpen, der Isaacs Bewegungen nachahmt#Kopiert Isaacs Werte, Träneneffekte und 35% seines Schadens#Respawned jeden Raum"}, -- Lil Clot
-	[177] = {"177", "Temporäres Tattoo", "{{Chest}} Das Räumen eines {{ChallengeRoom}} Challenge-Raums lässt eine Truhe erscheinen#Das Räumen eines {{BossRushRoom}} Boss Challenge-Raums lässt einen Gegenstand erscheinen"}, -- Temporary Tattoo
+	[177] = {"177", "Temporäres Tattoo", "{{Chest}} Das Leeren eines {{ChallengeRoom}} Challenge-Raums lässt eine Truhe erscheinen#Das Leeren eines {{BossRushRoom}} Boss Challenge-Raums lässt einen Gegenstand erscheinen"}, -- Temporary Tattoo
 	[178] = {"178", "Verschluckte M80", "Das Schaden nehmen hat eine 50%ige Chance, dass Isaac explodiert"}, -- Swallowed M80
 	[179] = {"179", "RC-Fernbedienung", "Begleiter ahmen Isaacs Bewegungen nach#Halte die Abwurftaste ({{ButtonRT}}), um die Begleiter an Ort und Stelle zu halten"}, -- RC Remote
 	[180] = {"180", "Gefundene Seele", "Folgt Isaacs Bewegungen und schießt spektrale Tränen#Kopiert Isaacs Werte, Träneneffekte und 50% seines Schadens#Stirbt bei einem Treffer#Respawnt jede Etage"}, -- Found Soul
@@ -1037,7 +1037,7 @@ EID.descriptions[languageCode].horsepills={
     {"20", "48-Stunden-Energie!", "{{Battery}} Lädt aktive Gegenstände vollständig auf#{{Battery}} Lässt 3-4 Batterien fallen"}, -- 48 Hour Energy!
     {"21", "Hämatemese", "{{EmptyHeart}} Entleert alle außer einem Herzcontainer#{{Heart}} Spawnt 1-4 Rote Herzen"}, -- Hematemesis
     {"22", "Lähmung", "Verhindert, dass Isaac sich für 4 Sekunden bewegt und schießt"}, -- Paralysis
-    {"23", "Ich kann für immer sehen!", "{{SecretRoom}} Öffnet Geheimgangzugänge auf dem Boden#Vollständiger Karteneffekt"}, -- I can see forever!
+    {"23", "Ich kann für immer sehen!", "{{SecretRoom}} Öffnet Geheimgangzugänge auf der Ebene#Vollständiger Karteneffekt"}, -- I can see forever!
     {"24", "Pheromone", "{{Charm}} Macht jeden Feind im Raum dauerhaft freundlich"}, -- Pheromones
     {"25", "Amnesie", "{{CurseLost}} Versteckt die Bodenkarte"}, -- Amnesia
     {"26", "Zitronenparty", "Erzeugt eine Pfütze von Creep in Größe eines Raums, die Feinden Schaden zufügt"}, -- Lemon Party
@@ -1177,7 +1177,7 @@ EID.descriptions[languageCode].FalsePHDHorseDamage = "↑ {{Damage}} +1,2 Schade
 
 EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Stattdessen verbraucht der Schlüssel und spawnt 6 Gegenstände aus zufälligen Pools"
 
-EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Achtung}} WARNUNG {{Achtung}}"
+EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} WARNUNG {{Warning}}"
 EID.descriptions[languageCode].AchievementWarningText = "Erfolge sind deaktiviert!#Um Fortschritt und Erfolge zu aktivieren, musst du zuerst Mom (Depths II) besiegen, ohne Mods zu aktivieren.#(Wenn du Mom besiegt hast, kann diese Meldung ignoriert werden)#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID ist für die neueste Steam-Version aktualisiert#Ihre Spielversion wird nicht offiziell unterstützt, daher sind einige Beschreibungen und Funktionen möglicherweise ungenau#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
