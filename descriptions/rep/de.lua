@@ -213,7 +213,7 @@ local repCollectibles={
 	[472] = {"472", "Königsbaby", "Andere Begleiter folgen ihm und schießen automatisch auf Feinde#Hält an, wenn Isaac schießt#Teleportiert zu Isaac zurück, wenn er aufhört zu schießen"}, -- King Baby
 	[474] = {"474", "Zerbrochene Glasskanone", "Die Verwendung des Gegenstands verwandelt ihn zurück in die Glasskanone"}, -- Broken Glass Cannon
 	[476] =	{"476", "D1", "Dupliziert ein zufälliges Pickup im Raum#Duplizierte Pickups müssen nicht identisch mit dem Original sein"}, -- D1
-	[477] = {"477", "Leere", "Verzehrt alle Sockelobjekte im Raum#Aktive Objekte: Ihre Effekte aktivieren sich bei jeder zukünftigen Verwendung von Leere#↑ Passive Objekte gewähren zwei zufällige Stat-Upgrades"},
+	[477] = {"477", "Leere", "Verzehrt alle Sockelobjekte im Raum#Active Items: Ihre Effekte aktivieren sich bei jeder zukünftigen Verwendung von Leere#↑ Passive Objekte gewähren zwei zufällige Stat-Upgrades"},
 	[487] = {"487", "Kartoffelschäler", "{{EmptyHeart}} Entfernt 1 Herzcontainer für: #↑ {{Damage}} +0,2 Schaden#{{Collectible73}} Ein Fleischwürfel#{{Timer}} Für den Raum erhalten:#↑ {{Range}} +1,5 Reichweite#{{Collectible214}} Hinterlässt eine Blutspur"},
 	[489] = {"489", "D Unendlichkeit", "Kann so eingestellt werden, dass es sich wie ein beliebiges Würfelobjekt verhält (außer {{Collectible723}} Spindown Dice) mit der Abwurftaste ({{ButtonRT}})#Die Ladezeit variiert je nach zuletzt verwendeten Würfel und wird bei jedem Gebrauch aktualisiert"}, -- D Infinity
 	[491] = {"491", "Säure-Baby", "{{Pill}} Spawnt alle 7 Räume eine zufällige Pille#{{Poison}} Die Verwendung einer Pille vergiftet alle Feinde im Raum"}, -- Acid Baby
@@ -331,7 +331,7 @@ local repCollectibles={
 	[644] = {"644", "Trostpreis", "↑ Erhöht die niedrigste Statistik von Isaac aus Geschwindigkeit, Schussrate, Schaden und Reichweite#Spawnt entweder 3 {{Coin}} Münzen, 1 {{Bomb}} Bombe oder 1 {{Key}} Schlüssel, abhängig davon, von welchem Isaac am wenigsten hat"}, -- Consolation Prize
 	[645] = {"645", "Winz-Toma", "Großes Orbital, das Schüsse blockiert#Verursacht 3,5 Kontakt-Schaden pro Sekunde#Teilt sich in kleinere Versionen auf, nachdem es 3 Treffer genommen hat#Die kleineren Versionen brechen in blaue Spinnen auf#Respawnt 5 Sekunden nach dem vollständigen Verschwinden"}, -- Tinytoma
 	[646] = {"646", "Schwefelbomben", "{{Bomb}} +5 Bomben#{{Collectible118}} Isaacs Bomben geben einen 4-Wege-Blutstrahl ab#Die Strahlen verletzen Isaac nicht"}, -- Brimstone Bombs
-	[647] = {"647", "4.5 Volt", "Das Abschließen von Räumen lädt aktive Gegenstände nicht mehr auf#Schaden an Feinden füllt langsam die Ladeleiste#Der für jede Ladung benötigte Schaden steigt auf jedem Stockwerk"}, -- 4.5 Volt
+	[647] = {"647", "4.5 Volt", "Das Abschließen von Räumen lädt active Items nicht mehr auf#Schaden an Feinden füllt langsam die Ladeleiste#Der für jede Ladung benötigte Schaden steigt auf jedem Stockwerk"}, -- 4.5 Volt
 	[648] = {"648", "", "<Gegenstand existiert nicht>"}, -- 
 	[649] = {"649", "Fruchtiger Plum", "Katapultiert sich diagonal durch den Raum und schießt Tränen auf ihrem Weg, die 3 Schaden verursachen#Verursacht 6 Kontakt-Schaden pro Sekunde"}, -- Fruity Plum
 	[650] = {"650", "Plum-Flöte", "{{Timer}} Beschwört für 10 Sekunden einen freundlichen Baby Plum im Raum"}, -- Plum Flute
@@ -428,7 +428,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "Alle Gegenstandspodeste wechseln zwischen zwei Optionen"},
 	{"Magdalene", "", "↑ {{Heart}} +1 Gesundheit#Die maximale Anzahl der Herzcontainer wird auf 18 erhöht"},
 	{"Cain", "", "↑ {{Luck}} +1 Glück#{{Arcade}} Alle zukünftigen Ebenen enthalten einen verbesserten Arkadenraum (außer Dunkler Raum und Truhe)#{{Collectible46}} Erhöht die Gewinnchancen des Glückspfennigs erheblich"},
-	{"Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des aktiven Gegenstands, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte aktive Gegenstände"},
+	{"Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des aktiven Gegenstands, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte active Items"},
 	{"???", "", "{{SoulHeart}} Seelenherzen, die durch Gesundheits-Upgrades gewonnen werden, werden verdoppelt"},
 	{"Eva", "", "{{Collectible122}} Die Hure von Babylon ist unabhängig von der Gesundheit aktiv#Der Tote Vogel ist immer aktiv"},
 	{"Samson", "", "{{Collectible157}} Blutige Wut kann auf jeder Ebene 4-mal ausgelöst werden, bis zu +14 Schaden nach 10 Auslösern"},
@@ -437,7 +437,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Eden", "", "Spawnt 3 zufällige Gegenstände aus zufälligen Gegenstands-Pools#Es kann nur eines genommen werden"},
 	{"The Lost", "", "Verhindert, dass für The Lost nutzlose Gegenstände erscheinen#Beispiele: Gegenstände, die nur Gesundheit, Flug und/oder spektrale Tränen verleihen oder bei Schaden aktiviert werden"},
 	{"Lazarus Auferstanden", "", "↑ {{Damage}} +7,2 Schaden#Der Schadensbonus lässt in 60 Sekunden nach#Das Töten von Feinden, während der Effekt aktiv ist, verlängert ihn#Der Effekt wird jedes Mal ausgelöst, wenn Lazarus als Lazarus Risen wiederbelebt wird"},
-	{"Black Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des aktiven Gegenstands, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte aktive Gegenstände"},
+	{"Black Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des aktiven Gegenstands, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte active Items"},
 	{"Lilith", "", "Familiars sind vor Liliths Gesicht positioniert"},
 	{"Keeper", "", "↑ {{CoinHeart}} +1 Gesundheit#Die maximale Anzahl der Münzherz-Container wird auf 4 erhöht"},
 	{"Apollyon", "", "{{Collectible477}} Die Verwendung von Void hat die Chance, einen zuvor gelöschten Gegenstand zu spawnen#Entfernt nicht die Statistikboni#Je mehr Gegenstände gelöscht wurden, desto höher ist die Chance, dass bei der Verwendung ein Gegenstand erscheint"},
@@ -455,7 +455,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Samson", "", "{{Collectible704}} Das Töten eines Feindes fügt dem Berserk!-Timer 3 Sekunden hinzu anstelle von 1"},
 	{"Tainted Azazel", "", "{{Collectible726}} Verdoppelt die Größe des Hemoptysis-Angriffs von Tainted Azazel"},
 	{"Tainted Lazarus", "", "Die nicht-aktive Form von Tainted Lazarus erscheint als geisterhafte zweite Figur#Er ist unverwundbar und verursacht 25% Schaden#Beide Formen erhalten den Birthright-Gegenstand"},
-	{"Tainted Eden", "", "Alle vor Birthright erhaltenen Gegenstände können nicht mehr umgerollt werden#Aktive Gegenstände können erneut umgerollt werden, wenn sie fallen gelassen und wieder aufgenommen werden"},
+	{"Tainted Eden", "", "Alle vor Birthright erhaltenen Gegenstände können nicht mehr umgerollt werden#active Items können erneut umgerollt werden, wenn sie fallen gelassen und wieder aufgenommen werden"},
 	{"Tainted Lost", "", "Gewährt ein Extraleben, das den Tainted Lost im selben Raum wiederbelebt und 200 Schaden an nahegelegenen Feinden verursacht"},
 	{"Tainted Lilith", "", "{{Collectible728}} Vertraute, die normalerweise Tainted Lilith folgen, folgen stattdessen ihrem Gello#Der Nahkampfangriff erhält +3 Schaden pro vertrautem Freund"},
 	{"Tainted Keeper", "", "{{Coin}} Zieht die Münzen, die durch das Besiegen von Feinden fallen gelassen werden, stark an#Keine Auswirkung auf andere Münzen"},
@@ -776,7 +776,7 @@ local repTrinkets={
 	[140] = {"140", "Apfel von Sodom", "Das Aufsammeln von roten Herzen kann sie in blaue Spinnen umwandeln#Funktioniert auch bei vollem Leben#Der Effekt kann Herzen verbrauchen, die für die Heilung benötigt werden"}, -- Apple of Sodom
 	[141] = {"141", "Vergessene Wiegenlied", "Erhöht die Feuerrate von Begleitern"}, -- Forgotten Lullaby
 	[142] = {"142", "Beths Glaube", "{{Collectible584}} Beim Betreten einer neuen Ebene erscheinen 4 Book of Virtues-Wisps"}, -- Beth's Faith
-	[143] = {"143", "Alte Kapazität", "{{Battery}} Verhindert, dass sich aktive Gegenstände aufladen, indem ein Raum geräumt wird#{{Battery}} Das Leeren eines Raumes hat eine 20%ige Chance, eine Batterie erscheinen zu lassen#{{Luck}} 33%ige Chance bei 5 Glück"}, -- Old Capacitor
+	[143] = {"143", "Alte Kapazität", "{{Battery}} Verhindert, dass sich active Items aufladen, indem ein Raum geräumt wird#{{Battery}} Das Leeren eines Raumes hat eine 20%ige Chance, eine Batterie erscheinen zu lassen#{{Luck}} 33%ige Chance bei 5 Glück"}, -- Old Capacitor
 	[144] = {"144", "Gehirnwurm", "Tränen drehen sich um 90 Grad, um Feinde anzuvisieren, die sie verpasst haben"}, -- Brain Worm
 	[145] = {"145", "Vollkommenheit", "↑ {{Luck}} +10 Glück#Schaden nehmen zerstört das Trinket"}, -- Perfection
 	[146] = {"146", "Teufelskrone", "{{RedTreasureRoom}} Schatzraum-Items werden durch Teufelsdeals ersetzt"}, -- Devil's Crown
@@ -1034,7 +1034,7 @@ EID.descriptions[languageCode].horsepills={
     {"17", "Glück Down", "↓ {{Luck}} -2 Glück"}, -- Luck Down
     {"18", "Glück Up", "↑ {{Luck}} +2 Glück"}, -- Luck Up
     {"19", "Telepillen", "Teleportiert Isaac zu einem zufälligen Raum"}, -- Telepills
-    {"20", "48-Stunden-Energie!", "{{Battery}} Lädt aktive Gegenstände vollständig auf#{{Battery}} Lässt 3-4 Batterien fallen"}, -- 48 Hour Energy!
+    {"20", "48-Stunden-Energie!", "{{Battery}} Lädt active Items vollständig auf#{{Battery}} Lässt 3-4 Batterien fallen"}, -- 48 Hour Energy!
     {"21", "Hämatemese", "{{EmptyHeart}} Entleert alle außer einem Herzcontainer#{{Heart}} Spawnt 1-4 Rote Herzen"}, -- Hematemesis
     {"22", "Lähmung", "Verhindert, dass Isaac sich für 4 Sekunden bewegt und schießt"}, -- Paralysis
     {"23", "Ich kann für immer sehen!", "{{SecretRoom}} Öffnet Geheimgangzugänge auf der Ebene#Vollständiger Karteneffekt"}, -- I can see forever!
