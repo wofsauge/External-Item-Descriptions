@@ -428,7 +428,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "Alle Gegenstandspodeste wechseln zwischen zwei Optionen"},
 	{"Magdalene", "", "↑ {{Heart}} +1 Gesundheit#Die maximale Anzahl der Herzcontainer wird auf 18 erhöht"},
 	{"Cain", "", "↑ {{Luck}} +1 Glück#{{Arcade}} Alle zukünftigen Ebenen enthalten einen verbesserten Arkadenraum (außer Dunkler Raum und Truhe)#{{Collectible46}} Erhöht die Gewinnchancen des Glückspfennigs erheblich"},
-	{"Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des aktiven Gegenstands, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte active Items"},
+	{"Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des active Items, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte active Items"},
 	{"???", "", "{{SoulHeart}} Seelenherzen, die durch Gesundheits-Upgrades gewonnen werden, werden verdoppelt"},
 	{"Eva", "", "{{Collectible122}} Die Hure von Babylon ist unabhängig von der Gesundheit aktiv#Der Tote Vogel ist immer aktiv"},
 	{"Samson", "", "{{Collectible157}} Blutige Wut kann auf jeder Ebene 4-mal ausgelöst werden, bis zu +14 Schaden nach 10 Auslösern"},
@@ -437,7 +437,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Eden", "", "Spawnt 3 zufällige Gegenstände aus zufälligen Gegenstands-Pools#Es kann nur eines genommen werden"},
 	{"The Lost", "", "Verhindert, dass für The Lost nutzlose Gegenstände erscheinen#Beispiele: Gegenstände, die nur Gesundheit, Flug und/oder spektrale Tränen verleihen oder bei Schaden aktiviert werden"},
 	{"Lazarus Auferstanden", "", "↑ {{Damage}} +7,2 Schaden#Der Schadensbonus lässt in 60 Sekunden nach#Das Töten von Feinden, während der Effekt aktiv ist, verlängert ihn#Der Effekt wird jedes Mal ausgelöst, wenn Lazarus als Lazarus Risen wiederbelebt wird"},
-	{"Black Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des aktiven Gegenstands, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte active Items"},
+	{"Black Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des active Items, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte active Items"},
 	{"Lilith", "", "Familiars sind vor Liliths Gesicht positioniert"},
 	{"Keeper", "", "↑ {{CoinHeart}} +1 Gesundheit#Die maximale Anzahl der Münzherz-Container wird auf 4 erhöht"},
 	{"Apollyon", "", "{{Collectible477}} Die Verwendung von Void hat die Chance, einen zuvor gelöschten Gegenstand zu spawnen#Entfernt nicht die Statistikboni#Je mehr Gegenstände gelöscht wurden, desto höher ist die Chance, dass bei der Verwendung ein Gegenstand erscheint"},
@@ -755,7 +755,7 @@ local repTrinkets={
 	[92] = {"92", "Rissige Krone", "↑ x1,33 Stat-Multiplikator (außer Schussrate) für die Werte, die über 1 liegen: {{Speed}} Geschwindigkeit, 2,73 {{Tears}} Tränen, 3,5 {{Damage}} Schaden, 6,5 {{Range}} Reichweite, 1 {{Shotspeed}} Schusssgeschwindigkeit"}, -- Cracked Crown
 	[96] = {"96", "Ouroboros-Wurm", "↑ +0,4 Tränen#↑ {{Range}} +1,5 Reichweite#Spektrale Tränen#Chance auf suchende Tränen#{{Luck}} 100%ige Chance bei 9 Glück#Isaacs Tränen bewegen sich schnell in einer Spirale"}, -- Ouroboros Worm
 	[98] = {"98", "Nasengoblin", "5%ige Chance, suchende klebrige Tränen abzufeuern#{{Damage}} Rotz fügt Isaac's Schaden einmal pro Sekunde zu#Rotz kleben für 10 Sekunden"},
-	[101] = {"101", "Dimmbare Glühbirne", "Das Halten eines komplett ungeladenen aktiven Gegenstands gewährt:#↑ {{Speed}} +0,5 Geschwindigkeit#↑ {{Tears}} +0,5 Tränen#↑ {{Damage}} +1,5 Schaden#↑ {{Range}} +1,5 Reichweite#↑ {{Shotspeed}} +0,3 Schusssgeschwindigkeit#↑ {{Luck}} +2 Glück"},
+	[101] = {"101", "Dimmbare Glühbirne", "Das Halten eines komplett ungeladenen active Items gewährt:#↑ {{Speed}} +0,5 Geschwindigkeit#↑ {{Tears}} +0,5 Tränen#↑ {{Damage}} +1,5 Schaden#↑ {{Range}} +1,5 Reichweite#↑ {{Shotspeed}} +0,3 Schusssgeschwindigkeit#↑ {{Luck}} +2 Glück"},
 	[107] = {"107", "Krähenherz", "Schaden nehmen verbraucht rote Herzen, bevor Seelen-/Schwarze Herzen verbraucht werden#{{Warning}} Der Schaden durch rote Herzen kann deine Chance auf ein Devil-/Angel Room senken"}, -- Crow Heart
 	[110] = {"110", "Silberdollar", "{{Shop}} Shops erscheinen in der Womb und Corpse"},
 	[111] = {"111", "Blutige Krone", "{{TreasureRoom}} Schatzräume erscheinen in der Womb und im Leichnam"}, -- Bloody Crown
@@ -771,7 +771,7 @@ local repTrinkets={
 	[135] = {"135", "Ein Feuerzeug", "{{Burning}} Das Betreten eines Raumes hat eine 20%ige Chance, zufällige Feinde zu verbrennen"}, -- A Lighter
 	[136] = {"136", "Kaputtes Vorhängeschloss", "Türen, Schlüsselblöcke und goldene Truhen können mit Explosionen geöffnet werden#Explosionen können auch die Tür zu \"Home\" öffnen"}, -- Broken Padlock
 	[137] = {"137", "Vergissmeinnicht", "Beim Betreten einer neuen Ebene erscheinen bis zu 4 nicht eingesammelte Pickups aus dem vorherigen Stock im Startraum"}, -- Myosotis
-	[138] = {"138", "'M", "Benutzen eines aktiven Gegenstands würfelt ihn um"}, -- 'M
+	[138] = {"138", "'M", "Benutzen eines active Items würfelt ihn um"}, -- 'M
 	[139] = {"139", "Tränentropfen-Charme", "{{Luck}} +4 Glück für auf Glück basierende Träneneffekte"}, -- Teardrop Charm
 	[140] = {"140", "Apfel von Sodom", "Das Aufsammeln von roten Herzen kann sie in blaue Spinnen umwandeln#Funktioniert auch bei vollem Leben#Der Effekt kann Herzen verbrauchen, die für die Heilung benötigt werden"}, -- Apple of Sodom
 	[141] = {"141", "Vergessene Wiegenlied", "Erhöht die Feuerrate von Begleitern"}, -- Forgotten Lullaby
@@ -780,9 +780,9 @@ local repTrinkets={
 	[144] = {"144", "Gehirnwurm", "Tränen drehen sich um 90 Grad, um Feinde anzuvisieren, die sie verpasst haben"}, -- Brain Worm
 	[145] = {"145", "Vollkommenheit", "↑ {{Luck}} +10 Glück#Schaden nehmen zerstört das Trinket"}, -- Perfection
 	[146] = {"146", "Teufelskrone", "{{RedTreasureRoom}} Schatzraum-Items werden durch Teufelsdeals ersetzt"}, -- Devil's Crown
-	[147] = {"147", "Geladene Münze", "{{Battery}} Das Aufsammeln einer Münze hat eine 17%ige Chance, 1 Ladung zum aktiven Gegenstand hinzuzufügen"}, -- Charged Penny
+	[147] = {"147", "Geladene Münze", "{{Battery}} Das Aufsammeln einer Münze hat eine 17%ige Chance, 1 Ladung zum active Item hinzuzufügen"}, -- Charged Penny
 	[148] = {"148", "Freundschaftskette", "Alle Begleiter kreisen um Isaac"}, -- Friendship Necklace
-	[149] = {"149", "Panikknopf", "Schaden nehmen verwendet den aktiven Gegenstand, wenn er aufgeladen ist"}, -- Panic Button
+	[149] = {"149", "Panikknopf", "Schaden nehmen verwendet den active Item, wenn er aufgeladen ist"}, -- Panic Button
 	[150] = {"150", "Blauer Schlüssel", "Verschlossene Türen können kostenlos geöffnet werden, aber Isaac muss einen Raum auf der Hush-Ebene leeren, bevor er Zugang zum Raum dahinter hat"}, -- Blue Key
 	[151] = {"151", "Flache Feile", "Zieht die meisten Stacheln ein, macht sie harmlos#Betrifft auch {{CursedRoom}} Fluchraumtüren, Mimics und jedes Stachelhindernis"}, -- Flat File
 	[152] = {"152", "Teleskoplinse", "{{PlanetariumChance}} +24% Planetarium-Chance, wenn noch keines erschienen ist#+9%, wenn bereits ein Planetarium erschienen ist#Planetarien können in der Womb und im Leichnam erscheinen"}, -- Telescope Lens
@@ -814,7 +814,7 @@ local repTrinkets={
 	[178] = {"178", "Verschluckte M80", "Das Schaden nehmen hat eine 50%ige Chance, dass Isaac explodiert"}, -- Swallowed M80
 	[179] = {"179", "RC-Fernbedienung", "Begleiter ahmen Isaacs Bewegungen nach#Halte die Abwurftaste ({{ButtonRT}}), um die Begleiter an Ort und Stelle zu halten"}, -- RC Remote
 	[180] = {"180", "Gefundene Seele", "Folgt Isaacs Bewegungen und schießt spektrale Tränen#Kopiert Isaacs Werte, Träneneffekte und 50% seines Schadens#Stirbt bei einem Treffer#Respawnt jede Ebene"}, -- Found Soul
-	[181] = {"181", "Erweiterungspack", "Die Verwendung eines aktiven Gegenstands löst den Effekt eines zusätzlichen 1-2 Ladeaktiven Gegenstands aus"}, -- Expansion Pack
+	[181] = {"181", "Erweiterungspack", "Die Verwendung eines active Items löst den Effekt eines zusätzlichen 1-2 Ladeactive Items aus"}, -- Expansion Pack
 	[182] = {"182", "Beths Essenz", "Das Betreten eines {{AngelRoom}} Engelsraums lässt 5 Wisps erscheinen#Das Spenden an Bettler hat eine 25%ige Chance, einen Wisp erscheinen zu lassen"}, -- Beth's Essence
 	[183] = {"183", "Die Zwillinge", "50%ige Chance, jeden Raum einen Begleiter zu duplizieren#Gewährt {{Collectible8}} Brother Bobby oder {{Collectible67}} Sister Maggy, wenn Isaac keine Begleiter hat"}, -- The Twins
 	[184] = {"184", "Adoptionspapiere", "{{Shop}} Läden verkaufen Begleiter für 10 Münzen"}, -- Adoption Papers
