@@ -985,15 +985,15 @@ EID.descriptions[languageCode].tarotClothBlankCardBuffs = {
 	[14] = "Fügt 40 Schaden zu", -- XIII - Death
 	[15] = "Spawnt 1 Maschine", -- XIV - Temperance
 	[16] = "+2 Schaden", -- XV - The Devil
-	[20] = "Fügt 200 Schaden zu", -- XIX - Die Sonne
+	[20] = "Fügt 200 Schaden zu", -- XIX -- The Sun
 	[21] = "Spawnt 1 Bettler", -- XX - Judgement
-	[56] = "Lässt 3 Gegenstände fallen", -- 0 - Der Narr?
+	[56] = "Lässt 3 Gegenstände fallen", -- 0 - The Fool?
 	[64] = "Spawnt 2-7 Truhen", -- VIII - Justice?
-	[65] = "Spawnt keine zusätzliche Münze", -- IX - Der Eremit?
+	[65] = "Spawnt keine zusätzliche Münze", -- IX - The Hermit?
 	[66] = "Aktiviert 1 Effekt", -- X - Wheel of Fortune?
-	[68] = "Dauert 30 Sekunden", -- XII - Der Gehängte?
-	[72] = "Spawnt 7 Gruppen", -- XVI - Der Turm?
-	[73] = "Entfernt 1 Gegenstand und spawnt 2", -- XVII - Die Sterne?
+	[68] = "Dauert 30 Sekunden", -- XII - The Hanged Man?
+	[72] = "Spawnt 7 Gruppen", -- XVI - The Tower?
+	[73] = "Entfernt 1 Gegenstand und spawnt 2", -- XVII - The Stars?
 	[76] = "Spawnt 1 Maschine", -- XX - Judgement?
 }
 
@@ -1001,15 +1001,15 @@ EID.descriptions[languageCode].tarotClothBlankCardBuffs = {
 
 local repPills={
 	[4] = {"3", "Bomben sind Schlüssel", "Tauscht Isaacs Anzahl an {{Bomb}} Bomben und {{Key}} Schlüsseln#Goldene Bomben und Schlüssel werden ebenfalls getauscht"}, -- Bombs are Key
-	[12] = {"11", "Reichweite runter", "↓ {{Range}} -1 Reichweite"}, -- Reichweite runter
-	[13] = {"12", "Reichweite rauf", "↑ {{Range}} +1.25 Reichweite"}, -- Reichweite rauf
+	[12] = {"11", "Reichweite runter", "↓ {{Range}} -1 Reichweite"}, -- Range Down
+	[13] = {"12", "Reichweite rauf", "↑ {{Range}} +1.25 Reichweite"}, -- Range Up
 	[38] = {"37", "Retro Vision", "{{Timer}} Pixelt den Bildschirm für 30 Sekunden"},
-	[42] = {"41", "Ich bin müde...", "{{Slow}} Verlangsamt Isaac und alle Feinde im Raum"}, -- Ich bin müde...
-	[43] = {"42", "Ich bin aufgeregt!!", "{{Timer}} Beschleunigt Isaac und alle Feinde im Raum#Löst sich erneut nach 30 und 60 Sekunden aus"}, -- Ich bin aufgeregt!!
-	[48] = {"47", "Schussspeed runter", "↓ {{Shotspeed}} -0.15 Schussspeed"}, -- Schussspeed runter
-	[49] = {"48", "Schussspeed rauf", "↑ {{Shotspeed}} +0.15 Schussspeed"}, -- Schussspeed rauf
-	[50] = {"49", "Experimentelle Pille", "↑ Erhöht 1 zufällige Statistik#↓ Verringert 1 zufällige Statistik#Keine Statistikverringerung mit {{Collectible75}}PHD, {{Collectible46}}Lucky Foot oder {{Collectible303}}Virgo#Keine Statistiksteigerung mit {{Collectible654}}Falsches PHD"}, -- Experimentelle Pille
-	[9999] = {"", "Goldene Pille", "Zufälliger Pilleneffekt#Hat eine Chance, sich bei jeder Verwendung zu zerstören"}, -- Goldene Pille
+	[42] = {"41", "Ich bin müde...", "{{Slow}} Verlangsamt Isaac und alle Feinde im Raum"}, -- I'm Drowsy...
+	[43] = {"42", "Ich bin aufgeregt!!", "{{Timer}} Beschleunigt Isaac und alle Feinde im Raum#Löst sich erneut nach 30 und 60 Sekunden aus"}, -- I'm Excited!!
+	[48] = {"47", "Schussspeed runter", "↓ {{Shotspeed}} -0.15 Schussspeed"}, -- Shot speed Down
+	[49] = {"48", "Schussspeed rauf", "↑ {{Shotspeed}} +0.15 Schussspeed"}, -- Shot speed Up
+	[50] = {"49", "Experimentelle Pille", "↑ Erhöht 1 zufällige Statistik#↓ Verringert 1 zufällige Statistik#Keine Statistikverringerung mit {{Collectible75}}PHD, {{Collectible46}}Lucky Foot oder {{Collectible303}}Virgo#Keine Statistiksteigerung mit {{Collectible654}}Falsches PHD"}, -- Experimental Pill
+	[9999] = {"", "Goldene Pille", "Zufälliger Pilleneffekt#Hat eine Chance, sich bei jeder Verwendung zu zerstören"}, -- golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
