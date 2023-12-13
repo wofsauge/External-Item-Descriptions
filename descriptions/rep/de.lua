@@ -430,7 +430,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Cain", "", "↑ {{Luck}} +1 Glück#{{Arcade}} Alle zukünftigen Etagen enthalten einen verbesserten Arkadenraum (außer Dunkler Raum und Truhe)#{{Collectible46}} Erhöht die Gewinnchancen des Glückspfennigs erheblich"},
 	{"Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des aktiven Gegenstands, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte aktive Gegenstände"},
 	{"???", "", "{{SoulHeart}} Seelenherzen, die durch Gesundheits-Upgrades gewonnen werden, werden verdoppelt"},
-	{"Eva", "", "{{Collectible122}} Das Babylonische Flittchen ist unabhängig von der Gesundheit aktiv#Der Tote Vogel ist immer aktiv"},
+	{"Eva", "", "{{Collectible122}} Die Hure von Babylon ist unabhängig von der Gesundheit aktiv#Der Tote Vogel ist immer aktiv"},
 	{"Samson", "", "{{Collectible157}} Blutige Wut kann auf jeder Etage 4-mal ausgelöst werden, bis zu +14 Schaden nach 10 Auslösern"},
 	{"Azazel", "", "Azazels Brimstone-Strahl wird deutlich breiter#Erhöht den Schaden nicht"},
 	{"Lazarus", "", "↑ Die Wiederbelebung als Lazarus Auferstanden gewährt {{Damage}} +7,2 Schaden#↑ Der Schadensbonus lässt in 60 Sekunden nach#{{Blank}} Das Töten von Feinden, während der Effekt aktiv ist, verlängert ihn"},
