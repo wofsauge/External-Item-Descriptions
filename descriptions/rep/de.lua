@@ -11,7 +11,7 @@
 local languageCode = "de"
 
 local repCollectibles={
-	[2] = {"2", "Das innere Auge", "↓ {{Tears}} x0.51 Feuerratenmultiplikator#Isaac schießt auf einmal 3 Tränen"},
+	[2] = {"2", "Das Innere Auge", "↓ {{Tears}} x0.51 Feuerratenmultiplikator#Isaac schießt auf einmal 3 Tränen"},
 	[5] = {"5", "Meine Reflexion", "↑ {{Damage}} +1.5 Schaden#↑ {{Range}} +1.5 Reichweite#↑ {{Range}} x2 Reichweitenmultiplikator#↑ {{Shotspeed}} x1.6 Schussgeschwindigkeitsmultiplikator#↓ {{Luck}} -1 Glück#Tränen erhalten einen Bumerangeffekt"}, -- My Reflection
 	[6] = {"6", "Nummer Eins", "↑ {{Tears}} +1.5 Tränen#↓ {{Range}} -1.5 Reichweite#↓ {{Range}} x0.8 Reichweitenmultiplikator"}, -- Number One
 	[12] = {"12", "Magischer Pilz", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.3 Geschwindigkeit#↑ {{Damage}} +0.3 Schaden#↑ {{Damage}} x1.5 Schadensmultiplikator#↑ {{Range}} +2.5 Reichweite#Größe erhöht#{{Heart}} Vollständige Gesundheit"}, -- Magic Mushroom
@@ -324,7 +324,7 @@ local repCollectibles={
 	[637] = {"637", "K.O.-Tropfen", "{{Verwirrung}} 10% Chance, eine Faust zu schießen, die Verwirrung und extremen Rückstoß verursacht#{{Luck}} 100% Chance bei 9 Glück#Feinde erleiden Schaden, wenn sie gegen eine Wand/Hindernis geschleudert werden"}, -- Knockout Drops
 	[638] = {"638", "Radiergummi", "Wirft einen Radiergummi, der einen Feind sofort tötet#Verhindert, dass der gelöschte Feind für den Rest des Laufs erscheint#Fügt Bossen 15 Schaden zu#Kann nur einmal pro Stock verwendet werden"}, -- Eraser
 	[639] = {"639", "Ekelherz", "{{RottenHeart}} +1 Verdorbenes Herz"}, -- Yuck Heart
-	[640] = {"640", "Urne der Seelen", "Speit einen Flammenstrahl aus#Das Töten eines Feindes fügt der Urne eine Ladung hinzu"}, -- Urn of Souls
+	[640] = {"640", "Urne Der Seelen", "Speit einen Flammenstrahl aus#Das Töten eines Feindes fügt der Urne eine Ladung hinzu"}, -- Urn of Souls
 	[641] = {"641", "Blutacker", "Erzeugt eine Kette von Tränen hinter Isaac in feindlichen Räumen#Die Tränen verursachen 3,5 Schaden"}, -- Akeldama
 	[642] = {"642", "Zauberhaut", "Beschwört einen Gegenstand aus dem aktuellen Gegenstands-Pool des Raums#{{BrokenHeart}} Verwandelt 1 Herzcontainer oder 1 Knochenherz oder 2 Seelenherzen in ein Gebrochenes Herz#{{Warning}} Ersetzt zukünftige Gegenstände, wenn Isaac ihn nicht hält {{ColorSilver}}(33% nach 1 Verwendung, 50% nach 2, 100% nach 3)#Geringere Chance, wenn die Magic Skin auf einem Podest im aktuellen Stockwerk liegt#{{Player10}} Einmalige Verwendung für The Lost"}, -- Magic Skin
 	[643] = {"643", "Offenbarung", "{{SoulHeart}} +2 Seelenherzen#Flug#{{Chargeable}} Aufladbare hochschädliche heilige Strahlen#Ersetzt nicht die Tränen von Isaac"}, -- Revelation
@@ -339,7 +339,7 @@ local repCollectibles={
 	[652] = {"652", "Würfelbaby", "Kann durch Anstoßen bewegt werden#{{Freezing}} Verursacht Langsamkeit, fügt Kontaktschaden zu und friert Feinde ein, die es tötet"}, -- Cube Baby
 	[653] = {"653", "Vade Retro", "Das Halten des Gegenstands lässt bei Tod nicht-geisterhafter Feinde kleine rote Geister erscheinen#Das Benutzen des Gegenstands lässt die Geister explodieren#Das Benutzen des Gegenstands tötet auch alle Geisterfeinde (einschließlich Bosse), die weniger als 50% HP haben"}, -- Vade Retro
 	[654] = {"654", "Falsches PHD", "{{BlackHeart}} +1 Schwarzes Herz#{{Pill}} Identifiziert alle Pillen#Konvertiert alle guten Pillen in schlechte Pillen#↑ {{Damage}} Das Essen einer Stat-Down-Pille gewährt +0,6 Schaden#{{BlackHeart}} Das Essen anderer schlechter Pillen beschwört ein Schwarzes Herz herbei"}, -- False PHD
-	[655] = {"655", "Drehe zum Gewinnen", "Gewährt passiv ein Orbit, das feindliche Schüsse blockiert und 10,5 Kontaktschaden pro Sekunde verursacht#Das Benutzen des Gegenstands gewährt:#↑ {{Speed}} +0,5 Geschwindigkeit#Erhöht die Rotationsgeschwindigkeit von Orbitalen erheblich"}, -- Spin to Win
+	[655] = {"655", "Drehe Zum Gewinnen", "Gewährt passiv ein Orbit, das feindliche Schüsse blockiert und 10,5 Kontaktschaden pro Sekunde verursacht#Das Benutzen des Gegenstands gewährt:#↑ {{Speed}} +0,5 Geschwindigkeit#Erhöht die Rotationsgeschwindigkeit von Orbitalen erheblich"}, -- Spin to Win
 	[656] = {"656", "Damokles", "Hängt ein Schwert über Isaacs Kopf, das alle Sockelgegenstände verdoppelt#Verdoppelt keine Gegenstände im Laden, Truhen oder Teufelsraum#{{Warning}} Nach dem Erleiden von Schaden besteht eine extrem geringe Chance, dass das Schwert Isaac in jedem Frame sofort tötet"}, -- Damocles (versteckte Sammelversion)
 	[657] = {"657", "Vaskulitis", "Feinde explodieren bei Tod in Tränen, die die Effekte von Isaacs Tränen erben"}, -- Vasculitis
 	[658] = {"658", "Riesenzelle", "Das Nehmen von Schaden beschwört ein Minisaac herbei#Minisaacs jagen und schießen auf nahe Feinde"}, -- Giant Cell
@@ -400,7 +400,7 @@ local repCollectibles={
 	[713] = {"713", "Sumptorium", "Entfernt ein halbes Herz und erzeugt einen Klumpen#Klumpen kopieren Isaacs Tränen#Jede Art von Herz erzeugt einen Klumpen mit unterschiedlicher HP, Schaden und Tränenwirkung"}, -- Sumptorium
 	[714] = {"714", "Abruf", "Ruft den Körper von The Forgotten aus jeder Entfernung zurück"}, -- Recall
 	[715] = {"715", "Festhalten", "Die Verwendung des Gegenstands, wenn er leer ist, speichert den nächsten Kot darin#Die Verwendung des Gegenstands mit einem Kot darin verwendet diesen Kot"}, -- Hold
-	[716] = {"716", "Sack des Keepers", "Beschwört 3 {{Coin}} Münzen und 1 {{Key}} Schlüssel herbei#{{Shop}} Ausgeben von 3 Münzen gewährt entweder:#↑ {{Speed}} +0,03 Geschwindigkeit#↑ {{Damage}} +0,5 Schaden#↑ {{Range}} +0,25 Reichweite"}, -- Keeper's Sack
+	[716] = {"716", "Sack Des Keepers", "Beschwört 3 {{Coin}} Münzen und 1 {{Key}} Schlüssel herbei#{{Shop}} Ausgeben von 3 Münzen gewährt entweder:#↑ {{Speed}} +0,03 Geschwindigkeit#↑ {{Damage}} +0,5 Schaden#↑ {{Range}} +0,25 Reichweite"}, -- Keeper's Sack
 	[717] = {"717", "Keepers Sippe", "Felsen und andere Hindernisse beschwören beim Zerstören 2 blaue Spinnen herbei#Felsen können gelegentlich in feindlichen Räumen blaue Spinnen beschwören"}, -- Keeper's Kin
 	[718] = {"718", "Keepers Seil (Geschnittener Gegenstand)", "<Gegenstand existiert nicht>"}, -- Keepers Rope (Cut item)
 	[719] = {"719", "Keepers Kiste", "{{Shop}} Beschwört ein zufälliges Shop-Item/Pickup zum Kauf herbei"}, -- Keeper's Box
@@ -433,10 +433,10 @@ EID.descriptions[languageCode].birthright ={
 	{"Eva", "", "{{Collectible122}} Das Babylonische Flittchen ist unabhängig von der Gesundheit aktiv#Der Tote Vogel ist immer aktiv"},
 	{"Samson", "", "{{Collectible157}} Blutige Wut kann auf jeder Etage 4-mal ausgelöst werden, bis zu +14 Schaden nach 10 Auslösern"},
 	{"Azazel", "", "Azazels Brimstone-Strahl wird deutlich breiter#Erhöht den Schaden nicht"},
-	{"Lazarus", "", "↑ Die Wiederbelebung als Lazarus Risen gewährt {{Damage}} +7,2 Schaden#↑ Der Schadensbonus lässt in 60 Sekunden nach#{{Blank}} Das Töten von Feinden, während der Effekt aktiv ist, verlängert ihn"},
+	{"Lazarus", "", "↑ Die Wiederbelebung als Lazarus Auferstanden gewährt {{Damage}} +7,2 Schaden#↑ Der Schadensbonus lässt in 60 Sekunden nach#{{Blank}} Das Töten von Feinden, während der Effekt aktiv ist, verlängert ihn"},
 	{"Eden", "", "Spawnt 3 zufällige Gegenstände aus zufälligen Gegenstands-Pools#Es kann nur eines genommen werden"},
 	{"The Lost", "", "Verhindert, dass für The Lost nutzlose Gegenstände erscheinen#Beispiele: Gegenstände, die nur Gesundheit, Flug und/oder spektrale Tränen verleihen oder bei Schaden aktiviert werden"},
-	{"Lazarus Risen", "", "↑ {{Damage}} +7,2 Schaden#Der Schadensbonus lässt in 60 Sekunden nach#Das Töten von Feinden, während der Effekt aktiv ist, verlängert ihn#Der Effekt wird jedes Mal ausgelöst, wenn Lazarus als Lazarus Risen wiederbelebt wird"},
+	{"Lazarus Auferstanden", "", "↑ {{Damage}} +7,2 Schaden#Der Schadensbonus lässt in 60 Sekunden nach#Das Töten von Feinden, während der Effekt aktiv ist, verlängert ihn#Der Effekt wird jedes Mal ausgelöst, wenn Lazarus als Lazarus Risen wiederbelebt wird"},
 	{"Black Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des aktiven Gegenstands, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte aktive Gegenstände"},
 	{"Lilith", "", "Familiars sind vor Liliths Gesicht positioniert"},
 	{"Keeper", "", "↑ {{CoinHeart}} +1 Gesundheit#Die maximale Anzahl der Münzherz-Container wird auf 4 erhöht"},
