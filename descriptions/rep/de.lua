@@ -126,7 +126,7 @@ local repCollectibles={
 	[287] = {"287", "Buch der Geheimnisse", "Markiert getönte und Kellerfelsen im Raum#{{Timer}} Erhalte einen dieser Effekte für den Raum:#{{Collectible54}} Schatzkarte#{{Collectible21}} Kompass#{{Collectible246}} Blaue Karte#Gewährt nur Effekte, die noch nicht aktiv sind#{{Collectible76}} Wenn alle Effekte aktiv sind, gewährt Röntgensicht"}, -- Book of Secrets
 	[288] = {"288", "Spinnenbox", "Erzeugt 4-8 blaue Spinnen"}, -- Box of Spiders
 	[289] = {"289", "Rote Kerze", "Wirft eine rote Flamme#Die Flamme verschwindet, wenn sie Schaden verursacht hat oder 5 Schüsse blockiert hat oder nach 10 Sekunden"}, -- Red Candle
-	[291] = {"291", "Spülen!", "Verwandelt alle nicht-bossartigen Feinde in Kot#Tötet sofort Kotfeinde und Bosse#Löscht Feuerstellen und füllt den Raum mit Wasser#Verwandelt Lava-Gruben in begehbaren Boden"}, -- Flush!
+	[291] = {"291", "Spülen!", "Verwandelt alle nicht-bossartigen Feinde in Kacke#Tötet sofort Kackfeinde und Bosse#Löscht Feuerstellen und füllt den Raum mit Wasser#Verwandelt Lava-Gruben in begehbaren Boden"}, -- Flush!
 	[292] = {"292", "Satanische Bibel", "{{BlackHeart}} +1 Schwarzes Herz#{{DevilRoom}} Das Benutzen des Gegenstands vor einem Bosskampf führt dazu, dass der Boss eine Teufelsdeal-Belohnung gibt#Der Kauf dieser Teufelsdeals hat die gleichen Konsequenzen wie die in Teufelsräumen#Betrifft keine Gegenstandspodeste im Void-Stockwerk"}, -- Satanic Bible
 	[294] = {"294", "Butterbohne", "Stößt nahegelegene Feinde und Projektile zurück#Feinde, die gegen Hindernisse gestoßen werden, erleiden 10 Schaden"}, -- Butter Bean
 	[295] = {"295", "Magische Finger", "Verursacht 2x Isaacs Schaden + 10 an allen Feinden im Raum#{{Coin}} Kosten 1 Münze"}, -- Magic Fingers
@@ -234,7 +234,7 @@ local repCollectibles={
 	[523] = {"523", "Umzugskarton", "Speichert bis zu 10 Pickups und Gegenstände aus dem aktuellen Raum#Bei erneuter Verwendung lässt der Gegenstand alles auf den Boden fallen#Ermöglicht es Isaac, Dinge zwischen Räumen zu bewegen"}, -- Moving Box
 	[524] = {"524", "Technologie Null", "Isaacs Tränen sind mit elektrischen Strahlen verbunden#Elektrizität verursacht 4,5x Isaacs Schaden pro Sekunde"}, -- Technology Zero
 	[531] = {"531", "Hämolyse", "↑ {{Damage}} +1 Schaden#↑ {{Damage}} x1,5 Schadensmultiplikator#↓ {{Tears}} x0,33 Feuerratenmultiplikator#↓ {{Range}} x0,8 Reichweitenmultiplikator#Isaacs Tränen fliegen in einem Bogen und platzen bei Aufprall in kleinere Tränen"}, -- Haemolacria
-	[543] = {"543", "Heiliger Boden", "Bei Schaden wird ein weißer Kot gespawnt#Während sich Isaac im Bereich des Kots befindet:#↑ {{Tears}} x2,5 Feuerratenmultiplikator#↑ {{Damage}} x1,2 Schadensmultiplikator#Homing-Tränen#Chance, Schaden zu blockieren"}, -- Hallowed Ground
+	[543] = {"543", "Heiliger Boden", "Bei Schaden wird eine weiße Kacke gespawnt#Während sich Isaac im Bereich der Kacke befindet:#↑ {{Tears}} x2,5 Feuerratenmultiplikator#↑ {{Damage}} x1,2 Schadensmultiplikator#Homing-Tränen#Chance, Schaden zu blockieren"}, -- Hallowed Ground
 	[549] = {"549", "Brüchige Knochen", "{{EmptyBoneHeart}} Ersetzt alle roten Herzcontainer von Isaac durch 6 leere Knochenherzen#Beim Verlieren eines Knochenherzens:#↑ {{Tears}} +0,4 Feuerrate#Schießt 8 Knochentränen in alle Richtungen"}, -- Brittle Bones
 	[552] = {"552", "Mamas Schaufel", "Spawnt eine Falltür zum nächsten Stockwerk#{{LadderRoom}} Spawnt einen Kriechraum, wenn er auf einem dekorativen Bodenbelag (Gras, kleine Steine, Papier, Edelsteine usw.) verwendet wird#{{Warning}} Verwende die Schaufel auf dem Erdhügel im \"Dunklen Raum\""}, -- Mom's Shovel
 	[553] = {"553", "Mukormykose", "25% Chance, eine klebrige Sporenträne zu schießen#{{Luck}} Nicht von Glück beeinflusst#{{Poison}} Sporen explodieren nach 2,5 Sekunden und verursachen Schaden, vergiften nahegelegene Feinde und setzen weitere Sporen frei"}, -- Mucormycosis
@@ -399,7 +399,7 @@ local repCollectibles={
 	[712] = {"712", "Lemegeton", "Beschwört ein Orbitale herbei, das den Effekt eines zufälligen Gegenstands gewährt#Die Gegenstände haben eine 25%ige Chance, aus dem aktuellen Raum-Gegenstandspool und eine 75%ige Chance, aus den Schatz-, Boss- oder Laden-Gegenstandspools zu stammen"}, -- Lemegeton
 	[713] = {"713", "Sumptorium", "Entfernt ein halbes Herz und erzeugt einen Klumpen#Klumpen kopieren Isaacs Tränen#Jede Art von Herz erzeugt einen Klumpen mit unterschiedlicher HP, Schaden und Tränenwirkung"}, -- Sumptorium
 	[714] = {"714", "Abruf", "Ruft den Körper von The Forgotten aus jeder Entfernung zurück"}, -- Recall
-	[715] = {"715", "Festhalten", "Die Verwendung des Gegenstands, wenn er leer ist, speichert den nächsten Kot darin#Die Verwendung des Gegenstands mit einem Kot darin verwendet diesen Kot"}, -- Hold
+	[715] = {"715", "Festhalten", "Die Verwendung des Gegenstands, wenn er leer ist, speichert die nächste Kacke darin#Die Verwendung des Gegenstands mit Kacke darin verwendet diese Kacke"}, -- Hold
 	[716] = {"716", "Sack Des Keepers", "Beschwört 3 {{Coin}} Münzen und 1 {{Key}} Schlüssel herbei#{{Shop}} Ausgeben von 3 Münzen gewährt entweder:#↑ {{Speed}} +0,03 Geschwindigkeit#↑ {{Damage}} +0,5 Schaden#↑ {{Range}} +0,25 Reichweite"}, -- Keeper's Sack
 	[717] = {"717", "Keepers Sippe", "Felsen und andere Hindernisse beschwören beim Zerstören 2 blaue Spinnen herbei#Felsen können gelegentlich in feindlichen Räumen blaue Spinnen beschwören"}, -- Keeper's Kin
 	[718] = {"718", "Keepers Seil (Geschnittener Gegenstand)", "<Gegenstand existiert nicht>"}, -- Keepers Rope (Cut item)
@@ -409,7 +409,7 @@ local repCollectibles={
 	[722] = {"722", "Anima Sola", "Fesselt das nächstgelegene Feind für 5 Sekunden#Gefesselte Feinde können sich nicht bewegen oder angreifen"}, -- Anima Sola
 	[723] = {"723", "Spindown-Würfel", "Würfelt alle Gegenstände im Raum neu, indem ihre interne ID um eins verringert wird"}, -- Spindown Dice
 	[724] = {"724", "Hyperkoagulation", "{{Heart}} Das Einstecken von Schaden lässt ein halbes oder ganzes rotes Herz fallen, abhängig davon, wie viel Isaac verloren hat#Die Herzen schießen heraus und verschwinden nach 1,5 Sekunden"}, -- Hypercoagulation
-	[725] = {"725", "IBS", "Ausreichender Schaden verursacht, dass Isaac rot leuchtet#Lösen des Feuerknopfs, während Isaac leuchtet, bewirkt entweder:#Wirft einen zufälligen Kot#Erzeugt buffenden Schleim#{{Poison}} Fart eine Giftwolke aus#Beschwört 5 lebende Bomben"}, -- IBS
+	[725] = {"725", "IBS", "Ausreichender Schaden verursacht, dass Isaac rot leuchtet#Lösen des Feuerknopfs, während Isaac leuchtet, bewirkt entweder:#Wirft eine zufällige Kacke#Erzeugt buffenden Schleim#{{Poison}} Fart eine Giftwolke aus#Beschwört 5 lebende Bomben"}, -- IBS
 	[726] = {"726", "Hämoptysis", "Doppeltes Antippen einer Feuertaste lässt Isaac Blut niesen#Das Niesen verursacht 1,5x Isaacs Schaden#1 Sekunde Abklingzeit#{{BrimstoneCurse}} Betroffene Feinde erleiden zusätzlichen Schaden durch Brimstone-Strahlen"}, -- Hemoptysis
 	[727] = {"727", "Geisterbomben", "{{Bomb}} +5 Bomben#Isaacs Bomben beschwören Geister herbei, die Feinde jagen#Geister verursachen 2x Isaacs Schaden pro Sekunde und explodieren nach 10 Sekunden"}, -- Ghost Bombs
 	[728] = {"728", "Gello", "Ein dämonischer Begleiter platzt aus Isaac für den Raum#Der Dämon ahmt Isaacs Tränen, Statistiken und Effekte nach"}, -- Gello
@@ -450,7 +450,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Magdalena", "", "{{Heart}} Fügt 1 Herzcontainer hinzu, der nicht entleert wird"},
 	{"Tainted Kain", "", "Verdoppelt die Menge an Pickups, die beim Aufsammeln eines Gegenstands fallen gelassen werden"},
 	{"Tainted Judas", "", "{{Collectible705}} Erhöht die Reichweite, in der Dark Arts Feinde und Tränen trifft"},
-	{"Tainted ???", "", "{{PoopPickup}} Erhöht die maximale Anzahl des mitgeführten Kots auf 29"},
+	{"Tainted ???", "", "{{PoopPickup}} Erhöht die maximale Anzahl der mitgeführte Kacke auf 29"},
 	{"Tainted Eva", "", "{{HalfHeart}} Rote Herzklumpen lassen beim Tod halbe Rote Herzen erscheinen, die nach 2 Sekunden verschwinden"},
 	{"Tainted Samson", "", "{{Collectible704}} Das Töten eines Feindes fügt dem Berserk!-Timer 3 Sekunden hinzu anstelle von 1"},
 	{"Tainted Azazel", "", "{{Collectible726}} Verdoppelt die Größe des Hemoptysis-Angriffs von Tainted Azazel"},
@@ -491,7 +491,7 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[127] = "↑ {{Damage}} +2 Schaden für den nächsten Stock", -- Forget me Now
 	[133] = "↑ {{Damage}} +0,5 Schaden", -- Guppy's Paw
 	[135] = "Vorübergehend ↑ {{Damage}} +0,66 Schaden pro Verwendung", -- IV Bag
-	[147] = "Die Axt hat eine erhöhte Haltbarkeit und Rückstoß, kann schneller verwendet werden, setzt Feinde in {{Burning}} Brand und lässt mehr Pickups fallen, wenn Kot und Hindernisse zerstört werden", -- Notched Axe
+	[147] = "Die Axt hat eine erhöhte Haltbarkeit und Rückstoß, kann schneller verwendet werden, setzt Feinde in {{Burning}} Brand und lässt mehr Pickups fallen, wenn Kacke und Hindernisse zerstört werden", -- Notched Axe
 	[186] = "Ruft auch den Effekt von {{Collectible126}} Razor Blade auf", -- Blood Rights
 	[282] = "Hinterlässt eine Feuerspur, die Kontakt-Schaden verursacht und Feinde in {{Burning}} Brand setzt", -- How to Jump
 	[290] = "Die Verwendung des Gegenstands verbraucht ein Herz, gewährt einen {{Damage}} Schadensbonus und hinterlässt rotes Glibber auf dem Boden", -- The Jar
@@ -563,7 +563,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[137] = "Innere Ring-Wisp#+1 Wisp pro detonierte Bombe#Tränen des Wisps können auch ferngezündet werden", -- Remote Detonator
 	[145] = "Äußere Ring-Wisp#Wisps werden anstelle von Fliegen beschworen#Beschwört eine blaue Fliege beim Zerstören", -- Guppy's Head
 	[146] = "Innere Ring-Wisp#Lenkende Tränen", -- Prayer Card
-	[147] = "Chance, Dip-Wisps aus Kot und 1 von 5 Mineral-Wisps aus Felsen zu beschwören:#{{Collectible132}} Kohle, {{Collectible201}} Eisen, {{Collectible202}} Gold, {{Collectible68}} Redstone, {{Collectible415}} Diamant", -- Notched Axe
+	[147] = "Chance, Dip-Wisps aus Kacke und 1 von 5 Mineral-Wisps aus Felsen zu beschwören:#{{Collectible132}} Kohle, {{Collectible201}} Eisen, {{Collectible202}} Gold, {{Collectible68}} Rotstein, {{Collectible415}} Diamant", -- Notched Axe
 	[158] = "Mittlere Ring-Wisp#Wisp mit hoher LP, der auf nahegelegene Feinde schießt", -- Crystal Ball
 	[160] = "Mittlere Ring-Wisp#Ruft bei Berührung einen Lichtstrahl herbei", -- Crack the Sky
 	[164] = "Mittlere Ring-Wisp#Einzelraum-Wisp", -- The Candle
@@ -723,7 +723,7 @@ local repCarBattery = {
 	[609] = "Chancen, Gegenstände zu löschen, sind verdoppelt", -- Eternal D6
 	[625] = "Effekt dauert 60 Sekunden", -- Mega Mush
 	[705] = "Schattenwirkung dauert 2 Sekunden", -- Dark Arts
-	[720] = "Beschwört einen Kot neben dem Pickup", -- Everything Jar
+	[720] = "Beschwört Kacke neben dem Pickup", -- Everything Jar
 	[723] = "Verringert die interne ID um zwei", -- Spindown Dice
 }
 --EID.descriptions[languageCode].carBattery[284] = nil -- D4
@@ -738,7 +738,7 @@ local repTrinkets={
 	[15] = {"15", "Lucky Rock", "{{Coin}} Zerstören von Felsen hat eine 33%ige Chance, eine Münze erscheinen zu lassen"}, -- Lucky Rock
 	[16] = {"16", "Mamas Zehennagel", "Mamas Fuß stampft alle 20 Sekunden an einer zufälligen Stelle im Raum"}, -- Mom's Toenail
 	[23] = {"23", "Vermisstes Plakat", "{{Player10}} Wiederbelebung als The Lost beim Tod#{{Player31}} Der Verderbte Lost wird einfach wiederbelebt#{{Warning}} Sterben in einem {{SacrificeRoom}} Sacrifice Room, während man dieses Trinket hält, schaltet The Lost frei"}, -- Missing Poster
-	[24] = {"24", "Po-Penny", "{{Coin}} 20% höhere Chance, dass Münzen aus Kot erscheinen#{{Poison}} Das Aufsammeln von Münzen lässt Isaac furzen, was Feinde und Projektile vergiftet und zurückstößt"}, -- Butt Penny
+	[24] = {"24", "Po-Penny", "{{Coin}} 20% höhere Chance, dass Münzen aus Kacke erscheinen#{{Poison}} Das Aufsammeln von Münzen lässt Isaac furzen, was Feinde und Projektile vergiftet und zurückstößt"}, -- Butt Penny
 	[26] = {"26", "Hakenschwanz", "↑ {{Tears}} +0.4 Tränen#↑ {{Range}} +1,5 Reichweite#Spektrale Tränen#Isaacs Tränen bewegen sich in winkligen Mustern"}, -- Hook Worm
 	[32] = {"32", "Freiheitskappe", "25% Chance auf einen zufälligen Pilzeffekt pro Raum"}, -- Liberty Cap
 	[33] = {"33", "Nabelschnur", "{{HalfHeart}} Wenn ein halbes rotes Herz oder weniger vorhanden ist, gewährt dies {{Collectible100}} Little Steven#{{Collectible318}} Schaden nehmen hat eine hohe Chance, für den Raum einen Gemini-Begleiter erscheinen zu lassen"}, -- Umbilical Cord
@@ -796,7 +796,7 @@ local repTrinkets={
 	[160] = {"160", "Glückssack", "{{GrabBag}} Das Betreten einer neuen Ebene lässt einen Sack erscheinen"}, -- Lucky Sack
 	[161] = {"161", "Böse Krone", "Erzeugt einen {{TreasureRoom}} Schatzraum und {{Shop}} Laden in Sheol"}, -- Wicked Crown
 	[162] = {"162", "Azazels Stumpf", "{{Player7}} Einen Raum leeren hat eine 50%ige Chance, den Spieler in Azazel zu verwandeln#{{Timer}} Der Effekt dauert an, bis ein anderer Raum geräumt und verlassen wird"}, -- Azazel's Stump
-	[163] = {"163", "Dingle Berry", "Alle Dip (kleine Kot-) Feinde sind freundlich#Das Leeren eines Raumes lässt einen zufälligen Dip erscheinen"}, -- Dingle Berry
+	[163] = {"163", "Dingle Berry", "Alle Dip (kleine Kack-) Feinde sind freundlich#Das Leeren eines Raumes lässt einen zufälligen Dip erscheinen"}, -- Dingle Berry
 	[164] = {"164", "Ringkappe", "{{Bomb}} Erzeugt 1 zusätzliche Bombe für jede platzierte Bombe"}, -- Ring Cap
 	[165] = {"165", "Nuh Uh!", "Auf Womb und darüber hinaus ersetzt alle Münz- und Schlüsselspawns durch eine Bombe, ein Herz, eine Pille, eine Karte, ein Trinket, eine Batterie oder einen Feindflieger"}, -- Nuh Uh!
 	[166] = {"166", "Modelliermasse", "50%ige Chance, den Effekt eines zufälligen passiven Gegenstands pro Raum zu gewähren"}, -- Modeling Clay
@@ -1044,11 +1044,11 @@ EID.descriptions[languageCode].horsepills={
     {"27", "Bist du ein Zauberer?", "{{Timer}} Isaac schießt 60 Sekunden lang diagonal"}, -- R U a Wizard?    
 	{"28", "Percs!", "{{Timer}} Reduziert den erlittenen Schaden im Raum auf ein halbes Herz"}, -- Percs!
     {"29", "Süchtig!", "{{Timer}} Erhöht den erlittenen Schaden im Raum auf ein volles Herz"}, -- Addicted!
-    {"30", "Re-Lax", "Isaac lässt für 10 Sekunden Kot hinter sich erscheinen"}, -- Re-Lax
+    {"30", "Re-Lax", "Isaac lässt für 10 Sekunden Kacke hinter sich erscheinen"}, -- Re-Lax
     {"31", "???", "{{CurseMaze}} Fluch des Labyrinths-Effekt für den gesamten Boden"}, -- ???
     {"32", "Einer macht dich größer", "Vergrößert Isaac erheblich#Beeinträchtigt nicht seine Trefferbox"}, -- One makes you larger
     {"33", "Einer macht dich kleiner", "Verkleinert Isaac erheblich#Verringert auch die Größe seiner Trefferbox"}, -- One makes you small
-    {"34", "Infested!", "Erzeugt 2 blaue Spinnen für jeden Kot im Raum"}, -- Infested!
+    {"34", "Infested!", "Erzeugt 2 blaue Spinnen für jede Kacke im Raum"}, -- Infested!
     {"35", "Infested?", "Erzeugt 2 blaue Spinnen für jeden Feind im Raum#Erzeugt 2-6 blaue Spinnen, wenn keine Feinde im Raum sind"}, -- Infested?
     {"36", "Power Pill!", "{{Timer}} Erhalten für den Raum:#↑ {{Damage}} +7 Schaden#↑ {{Range}} +3 Reichweite#{{Timer}} Erhalten für 6,5 Sekunden:#Unverwundbarkeit#Isaac kann nicht schießen, fügt jedoch 40 Kontaktschaden pro Sekunde zu#{{HalfHeart}} Das Essen von 2 Feinden heilt ein halbes Herz#{{Fear}} Verängstigt alle Feinde im Raum"}, -- Power Pill!
     {"37", "Retro Vision", "Pixelisiert den Bildschirm für 90 Sekunden"}, -- Retro Vision
