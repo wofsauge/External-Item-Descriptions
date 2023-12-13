@@ -8,7 +8,7 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  !!! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "en_us"
+local languageCode = "de"
 
 local repCollectibles={
 	[2] = {"2", "Das innere Auge", "↓ {{Tears}} x0.51 Feuerratenmultiplikator#Isaac schießt auf einmal 3 Tränen"},
