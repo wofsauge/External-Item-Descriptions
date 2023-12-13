@@ -257,6 +257,10 @@ local repCollectibles={
 	[570] = {"570", "Knetkeks", "Jede von Isaacs Tränen hat eine andere Farbe und Statuswirkung"}, -- Playdough Cookie
 	[571] = {"571", "Waisensocken", "↑ {{Speed}} +0,3 Geschwindigkeit#↑ {{SoulHeart}} +2 Soul Hearts#Immun gegen Kriech- und Bodenstacheln"}, -- Orphan Socks
 	[572] = {"572", "Auge des Okkulten", "↑ {{Damage}} +1 Schaden#↑ {{Range}} +2 Reichweite#↓ {{Shotspeed}} -0,16 Schussgeschwindigkeit#Isaacs Tränen können in der Luft gesteuert werden"}, -- Eye of the Occult
+	[573] = {"573", "Unbeflecktes Herz", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} x1.2 Schadensmultiplikator#{{Heart}} Volle Gesundheit#20% Chance, eine zusätzliche kreisende Spektralträne abzuschießen"}, -- Immaculate Heart
+	[574] = {"574", "Monstranz", "Isaac ist von einer schadensverursachenden Aura umgeben#Je näher Feinde an Isaac sind, desto mehr Schaden verursacht die Aura bei ihnen"}, -- Monstrance
+	[575] = {"575", "Der Eindringling", "{{Slow}} Vergräbt sich in Isaacs Kopf und verschießt 4 zusätzliche verlangsamende Tränen#Durch den erlittenen Schaden kann die Spinne den Kopf verlassen und Feinde jagen"}, -- The Intruder
+	[576] = {"576", "Schmutziger Verstand", "Alle Dip-Feinde (kleine Kacke) sind freundlich#Die Zerstörung von Kacke erzeugt 1-4 Dips#Dip-Typ hängt vom Kack-Typ ab#Felsen können durch Kacke ersetzt werden"}, -- Dirty Mind
 	[577] = {"577", "Damokles", "{{Warning}} EINMALIGE VERWENDUNG {{Warning}}#Hängt ein Schwert über Isaacs Kopf, das alle Sockel-Items verdoppelt#Verdoppelt nicht die Shop-, Kisten- oder Teufelsdeal-Items#{{Warning}} Nachdem Schaden genommen wurde, besteht eine extrem geringe Chance, dass das Schwert Isaac in jedem Frame sofort tötet"}, -- Damocles
 	[578] = {"578", "Gratislimonade", "Erzeugt eine große Pfütze gelben Schleims#Der Schleim verursacht 24 Schaden pro Sekunde"}, -- Free Lemonade
 	[579] = {"579", "Geistschwert", "Statt Tränen abzuschießen, schwingt Isaac ein Schwert#{{Damage}} Das Schwert verursacht 3x Isaacs Schaden +3,5 und schwingt so schnell wie der Feuerknopf gedrückt wird#{{Chargeable}} Beim Aufladen erfolgt ein Drehschlag + Projektilschuss#Schießt Projektile mit normalen Schwingungen bei voller Gesundheit#{{Tears}} Tränen beeinflussen die Ladezeit und wie oft ein Projektil bei voller Gesundheit abgefeuert wird"}, -- Spirit Sword
@@ -517,7 +521,8 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 }
 
 -- Book of Virtues wisp types
-EID.descriptions[languageCode].bookOfVirtuesWisps = {[33] = "Innere Ring-Wisp#Lenkende Tränen", -- The Bible
+EID.descriptions[languageCode].bookOfVirtuesWisps = {
+	[33] = "Innere Ring-Wisp#Lenkende Tränen", -- The Bible
 	[34] = "Mittlere Ring-Wisp#Doppelschaden-Tränen", -- The Book of Belial
 	[35] = "Innere Ring-Wisp#3,5% Chance für {{Fear}} Furcht-Tränen#{{Collectible35}} Necronomicon-Effekt beim Zerstören", -- The Necronomicon
 	[36] = "Äußere Ring-Wisp#2,5% Chance für {{Collectible236}} E. Coli-Tränen", -- The Poop
@@ -544,7 +549,8 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {[33] = "Innere Ring-Wisp#Le
 	[93] = "Innere Ring-Wisp#Antigravitations-Tränen#Chance für {{Fear}} Furcht-Tränen", -- The Gamekid
 	[97] = "Beschwört 1 von 8 Wisps:#{{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#{{Warning}} Explosive Effekte sind wahrscheinlich", -- The Book of Sin
 	[102] = "Innere Ring-Wisp#Beschwört 1 von 6 Wisps:#normale Tränen, die beim Zerstören eine feindliche Spinne beschwören oder Chance auf Gift, Versteinern, Verwirrung, Verbrennen, Trollbomben-Tränen#Alle 6 lassen beim Zerstören eine {{Pill}}-Pille fallen", -- Mom's Bottle of Pills
-	[105] = "Mittlere Ring-Wisp#+1 Wisp pro umgerolltem Gegenstand", -- The D6[107] = "Innere Ring-Wisp#Durchdringende Tränen", -- The Pinking Shears
+	[105] = "Mittlere Ring-Wisp#+1 Wisp pro umgerolltem Gegenstand", -- The D6
+	[107] = "Innere Ring-Wisp#Durchdringende Tränen", -- The Pinking Shears
 	[111] = "Äußere Ring-Wisp#{{Poison}} Giftiger Furz beim Zerstören", -- The Bean
 	[123] = "Innere Ring-Wisp#Zufällige Tränen", -- Monster Manual
 	[124] = "Beschwört den Wisp des imitierten Gegenstands", -- Dead Sea Scrolls
@@ -569,7 +575,8 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {[33] = "Innere Ring-Wisp#Le
 	[186] = "Mittlere Ring-Wisp#Wisp mit hoher LP", -- Blood Rights
 	[192] = "Mittlere Ring-Wisp#Lenkende Tränen", -- Telepathy for Dummies
 	[263] = "Mittlere Ring-Wisp#15% Chance, dass Feinde bei Tod eine {{Rune}} Rune fallen lassen#Lässt eine {{Rune}} Rune fallen beim Zerstören", -- Clear Rune
-	[282] = "Beschwört bis zu 6 stationäre Wisps für den Raum", -- How to Jump[283] = "Rerollt alle Wisps und beschwört 1 zufälligen Wisp herbei#Rerollt nicht Book of Virtues", -- D100
+	[282] = "Beschwört bis zu 6 stationäre Wisps für den Raum", -- How to Jump
+	[283] = "Rerollt alle Wisps und beschwört 1 zufälligen Wisp herbei#Rerollt nicht Book of Virtues", -- D100
 	[284] = "Entfernt alle Wisps und beschwört einen zufälligen Wisp für jeweils 2 besessene Gegenstände herbei#Rerollt nicht Book of Virtues", -- D4
 	[285] = "Mittlere Ring-Wisp#10% Chance auf D10-Effekt-Tränen", -- D10
 	[286] = "Mittlere Ring-Wisp#15% Chance, dass Feinde beim Tod eine {{Card}} Karte fallen lassen#Beschwört eine {{Card}} Karte herbei, wenn zerstört", -- Blank Card
@@ -600,7 +607,8 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {[33] = "Innere Ring-Wisp#Le
 	[383] = "Mittlere Ring-Wisp#Tränen des Wisps können detoniert werden und verwandeln sich in 6 von Isaacs Tränen#Besteht zwischen Räumen fort#Explodiert in Isaacs Tränen, wenn zerstört", -- Tear Detonator
 	[386] = "Mittlere Ring-Wisp#5% Chance, dass Tränen Felsen, Urnen, Schädel oder Pilze umrollen", -- D12
 	[396] = "Kann keine Tränen schießen#Jedes Portal hat 1 Wisp", -- Ventricle Razor
-	[406] = "Mittlere Ring-Wisp#Zufälliger Schaden und Feuerrate", -- D8[419] = "Mittlere Ring-Wisp#20% Chance, dass Tränen Feinde teleportieren#Wisps flimmern alle 5 Sekunden", -- Teleport 2.0
+	[406] = "Mittlere Ring-Wisp#Zufälliger Schaden und Feuerrate", -- D8
+	[419] = "Mittlere Ring-Wisp#20% Chance, dass Tränen Feinde teleportieren#Wisps flimmern alle 5 Sekunden", -- Teleport 2.0
 	[421] = "Mittlere Ring-Wisp#{{Charm}} Charm-Furz beim Zerstören", -- Kidney Bean
 	[422] = "Mittlere Ring-Wisp#30% Chance auf versteinernde Tränen#Beschwört alle Wisps neu herbei, die im vorherigen Raum zerstört wurden", -- Glowing Hourglass
 	[427] = "Springt im Raum herum und explodiert, wenn von Isaac getroffen#Kann keine Tränen schießen oder Berührungsschaden verursachen", -- Mine Crafter
@@ -635,7 +643,8 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {[33] = "Innere Ring-Wisp#Le
 	[523] = "Mittlere Ring-Wisp#Wisp wird nur beim Ablegen von Gegenständen beschworen#Beschwört einen zufälligen Pickup beim Zerstören", -- Moving Box
 	[527] = "Mittlere Ring-Wisp#Kann keine Tränen schießen#Beim Raumklar öffnen Wisps Truhen/Türen", -- Mr. ME!
 	[536] = "Mittlere Ring-Wisp#Wandelt alle Wisps in {{HalfHeart}} halbe Rote Herzen um#Beschwört einen Wisp mit hoher LP und hohem Schaden bei Opferung", -- Sacrificial Altar
-	[545] = "Innere Ring-Wisp#Beschwört einen freundlichen Bony herbei, wenn zerstört", -- Book of the Dead[550] = "Mittlere Ring-Wisp#10% Chance, dass Tränen dazu führen, dass Mom auf den Feind stampft", -- Broken Shovel
+	[545] = "Innere Ring-Wisp#Beschwört einen freundlichen Bony herbei, wenn zerstört", -- Book of the Dead
+	[550] = "Mittlere Ring-Wisp#10% Chance, dass Tränen dazu führen, dass Mom auf den Feind stampft", -- Broken Shovel
 	[552] = "Mittlere Ring-Wisp#10% Chance, dass Tränen dazu führen, dass Mom auf den Feind stampft#Beschwört auch einen Wisp mit hoher LP herbei, der keine Tränen schießen kann", -- Mom's Shovel
 	[555] = "Mittlere Ring-Wisp#15% Chance für {{Collectible202}} Midas' Touch-Tränen", -- Golden Razor
 	[556] = "Mittlere Ring-Wisp#Kurzreichweite {{Collectible118}} Brimstone-Tränen", -- Sulfur
@@ -651,6 +660,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {[33] = "Innere Ring-Wisp#Le
 	[609] = "Mittlere Ring-Wisp#Nur 50% Wahrscheinlichkeit, einen unbesiegbaren Wisp herbeizubeschwören#50% Chance, dass alle Eternal D6-Wisps beim Gebrauch zerstört werden", -- Eternal D6
 	[611] = "Mittlere Ring-Wisp#Gesundheits- und Schadenssteigerung basierend auf Ladungen", -- Larynx
 	[622] = "Mittlere Ring-Wisps#Kein besonderer Effekt", -- Sharp Key
+	[623] = "Mittlere Ring-WispsKein besonderer Effekt", -- Sharp Key
 	[631] = "Mittlere Ring-Wisp#Teilt alle Wisps in der Hälfte (halbiert den Schaden)#Wisps werden zerstört, wenn sie zum dritten Mal geteilt werden", -- Meat Cleaver
 	[635] = "Einzelraum-Wisp#Beschwört einen stationären Wisp an Isaacs Position, bevor er teleportiert wird (bis zu 6 Wisps)", -- Stitches
 	[636] = "Kein Wisp", -- R Key
