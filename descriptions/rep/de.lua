@@ -1042,7 +1042,7 @@ EID.descriptions[languageCode].horsepills={
     {"25", "Amnesie", "{{CurseLost}} Versteckt die Bodenkarte"}, -- Amnesia
     {"26", "Zitronenparty", "Erzeugt eine Pfütze von Creep in Größe eines Raums, die Feinden Schaden zufügt"}, -- Lemon Party
     {"27", "Bist du ein Zauberer?", "{{Timer}} Isaac schießt 60 Sekunden lang diagonal"}, -- R U a Wizard?    
-	{"28", "Percs!", "{{Timer}} Reduziert den erlittenen Schaden im Raum auf ein halbes Herz"}, -- Percs!
+    {"28", "Percs!", "{{Timer}} Reduziert den erlittenen Schaden im Raum auf ein halbes Herz"}, -- Percs!
     {"29", "Süchtig!", "{{Timer}} Erhöht den erlittenen Schaden im Raum auf ein volles Herz"}, -- Addicted!
     {"30", "Re-Lax", "Isaac lässt für 10 Sekunden Kacke hinter sich erscheinen"}, -- Re-Lax
     {"31", "???", "{{CurseMaze}} Fluch des Labyrinths-Effekt für den gesamten Boden"}, -- ???
