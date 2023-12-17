@@ -322,3 +322,15 @@ EID.descriptions[languageCode].transformations = {
 	-- Not yet Translated!
 	-- Copy & Paste entries from en_us and continue translating from that
 }
+
+---------- Car Battery ----------
+EID.descriptions[languageCode].carBattery={
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
+}
+
+---------- MISC ----------
+
+EID.descriptions[languageCode].VoidText = "Wenn absorbiert, erhalte:"
+-- {1} will become the number text (like "{1} Tears" -> "+0.5 Tears")
+EID.descriptions[languageCode].VoidNames = {"{1} Geschwindigkeit", "{1} Tränen", "{1} Schaden", "{1} Reichweite", "{1} Schussgeschwindigkeit", "{1} Glück"}
