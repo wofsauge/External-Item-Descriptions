@@ -577,8 +577,8 @@ if EID.isRepentance then
 	local function BlankCardCallback(descObj)
 		local text = EID:getDescriptionEntry("BlankCardCharge")
 		local charge = EID.cardMetadata[descObj.ObjSubType]
+		local iconStr = "#{{Collectible286}} {{ColorSilver}}"
 		if text ~= nil and charge ~= nil and charge.mimiccharge and charge.mimiccharge ~= -1 then
-			local iconStr = "#{{Collectible286}} {{ColorSilver}}"
 			if descObj.ObjSubType == 48 then -- ? card
 				text = EID:getDescriptionEntry("BlankCardQCard")
 				EID:appendToDescription(descObj, iconStr..text:gsub("#",iconStr))
