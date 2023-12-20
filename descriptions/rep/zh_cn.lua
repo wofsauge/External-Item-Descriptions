@@ -2,7 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2023.12.12
+-- Last Update: 2023.12.20
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
