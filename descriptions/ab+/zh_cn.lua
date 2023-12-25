@@ -2,7 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2023.12.20
+-- Last Update: 2023.12.25
 
 -- FORMAT: Item ID | Name | Description
 
@@ -574,6 +574,35 @@ EID.descriptions[languageCode].collectibles={
 	{"550", "铲子碎片", "妈腿会持续攻击角色#使用后在所在房间内妈腿攻击停止#如果是有几轮敌人的房间则对当前轮有效#!!! (试着带着它打败Boss Rush！)"},
 	{"551", "铲子碎片", "破铲子的第二部分#!!! 在\"暗室\"的土丘上使用铲子"},
 	{"552", "妈妈的铲子", "生成通往下一层的活板门#!!! 在\"暗室\"的土丘上使用铲子#!!! 解锁某个很酷的东西"},
+}
+
+---------- Modifiers ----------
+
+-- Effect of Car battery on Active Items
+-- these all need way more consistency with the original effect text and spellchecking
+EID.descriptions[languageCode].carBattery = {
+	[58] = "持续20秒", -- Book of Shadows
+	[66] = "持续16秒", -- The Hourglass
+	[77] = "持续12秒", -- My Little Unicorn
+	[93] = "持续13秒", -- The Gamekid
+	[111] = "造成两倍伤害", -- The Bean
+	[124] = "触发两次效果", -- Dead Sea Scrolls
+	[145] = "生成4~8个蓝苍蝇", -- Guppy's Head
+	[171] = "造成10点额外伤害", -- Spider Butt
+	[293] = "激光柱的伤害加倍", -- Head of Krampus
+	[298] = "持续12秒", -- Unicorn Stump
+	[351] = "造成两倍伤害", -- Mega Bean
+	[383] = "一次分裂成36颗泪弹", -- Tear Detonator
+	[421] = "造成两倍伤害", -- Kidney Bean
+	[427] = "生成两个炸药包", -- Mine Crafter
+	[477] = "每个被吸收的主动道具会触发两次", -- Void
+	[482] = "更换角色两次并移除两个道具", -- Clicker
+	[485] = "25%概率四倍道具和掉落物, 75%概率移除它们", -- Crooked Penny
+	[486] = "触发受伤相关道具效果两次", -- Dull Razor
+	[488] = "获得两个道具效果", -- Metronome
+	[489] = "触发两次骰子效果，第二个骰子效果无法预测", -- D Infinity
+	[523] = "将盒子内容物与房间掉落物交换", -- Moving Box
+	[550] = "在挑战房和头目车轮战中防止两轮妈妈的脚的踩踏 {{ChallengeRoom}} {{BossRushRoom}}", -- Broken Shovel
 }
 
 ---------- Trinkets ----------
