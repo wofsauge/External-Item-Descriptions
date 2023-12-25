@@ -2,8 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2023.12.01
-
+-- Last Update: 2023.12.25
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
@@ -32,7 +31,7 @@ local repCollectibles={
 	[40] = {"40", "神风！", "在角色位置造成1次大爆炸#造成185点伤害"}, -- Kamikaze!
 	[41] = {"41", "妈妈的卫生巾", "{{Fear}} 使所在房间内所有敌人恐惧5秒#使用时生成一只蓝苍蝇"},
 	[42] = {"42", "鲍勃的烂头", "{{Poison}} 可投掷的有毒炸弹#{{Damage}} 造成185+100%角色伤害#产生毒气"}, -- Bob's Rotten Head
-	[44] = {"44", "传送！", "将角色传送到除错误房外的房间#向所需方向移动可稍微影响传送方向"}, -- Teleport
+	[44] = {"44", "传送！", "将角色传送到随机房间#以下房间除外：错误房，夹层，黑市，恶魔房，天使房，究极隐藏房"}, -- Teleport
 	[45] = {"45", "美味的心", "{{Heart}} 治疗1红心#(多人游戏)也治疗其他玩家半红心"}, -- Yum Heart
 	[46] = {"46", "幸运脚", "↑ {{Luck}} +1运气#赌博时赢的几率更高#清理房间后掉落物品的几率更高#将一些坏胶囊变成好胶囊"}, -- Lucky Foot
 	[52] = {"52", "胎儿博士", "{{Bomb}} 炸弹眼泪#{{Damage}} 每个炸弹造成1000%角色伤害#{{Damage}} 如果结果超过60点伤害，则改为造成30+500%角色伤害#↓ {{Tears}} -60%射速修正"}, --Dr. Fetus
@@ -284,9 +283,9 @@ local repCollectibles={
 	[604] = {"604", "妈妈的手镯", "可以捡起岩石，TNT，便便，友好粪滴，寄居骷髅等障碍物进行投掷#捡起的东西可以带入下1个房间"}, --  Mom's Bracelet
 	[605] = {"605", "挖眼勺", "在当前房间召唤眼球跟班，在地上生成血迹#↑ {{Damage}} 右眼眼泪伤害+34%"}, --  The Scooper
 	[606] = {"606", "邪眼裂口", "5%几率发射在落地时生成裂隙的眼泪#{{Luck}} 几率受幸运影响#裂隙吸引周围的敌人，掉落物，弹幕"}, --  Ocular Rift
-	[607] = {"607", "脓液囊宝宝", "向四周随机喷射眼泪的跟班#每颗眼泪造成3.5点或5.3点伤害"}, --  Boiled Baby
+	[607] = {"607", "脓液囊宝宝", "向四周随机喷射眼泪的跟班#每颗眼泪造成3.50点或5.25点伤害"}, --  Boiled Baby
 	[608] = {"608", "冰冻宝宝", "发射石化效果眼泪的跟班#{{Freezing}} 击杀时使敌人冻结"}, --  Freezer Baby
-	[609] = {"609", "永恒六面骰", "重置房间内所有道具#道具有30%几率会消失"}, --  Eternal D6
+	[609] = {"609", "永恒六面骰", "重置房间内所有道具#道具有25%几率会消失"}, --  Eternal D6
 	[610] = {"610", "鸟肥笼", "在被击中时跃向敌人的跟班#造成45点伤害并释放岩石波#之后追逐敌人造成伤害"}, --  Bird Cage
 	[611] = {"611", "声带", "使用时发出怒吼，击退周围的敌人，并造成伤害#充能越多，效果越强"}, --  Larynx
 	[612] = {"612", "迷失游魂", "幽灵跟班，被击中时死亡，下一层才能复活#如果存活了整层，则生成3魂心，或2永恒之心，或道具"}, --  Lost Soul
@@ -400,7 +399,7 @@ local repCollectibles={
 	[720] = {"720", "百宝罐", "使用时生成掉落物，使用时的充能不同，效果不同#满充能时具有强力随机效果#充能：1:便便 2:{{Coin}} 3:{{Bomb}} 4:{{Key}} 5:{{Heart}} 6:{{Pill}} 7:{{Card}} 8:{{SoulHeart}} 9:{{GoldenHeart}} 10:{{GoldenKey}} 11:{{GoldenBomb}}"}, --  Everything Jar
 	[721] = {"721", "错误技", "使未来获得的所有物品混乱#其效果完全随机"}, --  TMTRAINER
 	[722] = {"722", "孤魂铁索", "禁锢离角色最近的敌人5秒"}, --  Anima Sola
-	[723] = {"723", "计数二十面骰", "将房间内所有道具转变为内部ID减1的道具"}, --  Spindown Dice
+	[723] = {"723", "计数二十面骰", "将房间内所有道具重置为内部ID减1的道具"}, --  Spindown Dice
 	[724] = {"724", "高凝血", "{{Heart}} 受伤时生成半红心或整红心#产生的红心在1.5秒后消失"}, --  Hypercoagulation
 	[725] = {"725", "大肠激躁症", "造成足够伤害后，停止攻击并触发随机{{Player25}}堕化???的效果：#投掷随机便便#生成增益水迹#放有毒的屁#放置5个激活的炸弹"}, --  IBS
 	[726] = {"726", "咯血症", "双击发射键咯血#{{Damage}} 对前方的敌人造成150%角色伤害#1秒冷却时间#{{BrimstoneCurse}} 被击中的敌人会受到硫磺火束的额外伤害"}, --  Hemoptysis
@@ -419,10 +418,10 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 EID.descriptions[languageCode].birthright ={
 	{"以撒", "", "所有道具在2个选择间切换"},
 	{"抹大拉", "", "↑ +1心之容器#心上限提高到18"},
-	{"该隐", "", "↑ {{Luck}} +1运气#除暗室和宝箱层外，所有层都含有一个升级的赌博房#极大增强{{Collectible46}}幸运脚的获胜几率提高的效果"},
+	{"该隐", "", "↑ {{Luck}} +1运气#除暗室、玩具箱、???、虚空，家层外，所有层都含有一个升级的赌博房#极大增强{{Collectible46}}幸运脚的获胜几率提高的效果"},
 	{"犹大", "", "{{Collectible34}}彼列之书变成类似于{{Collectible584}}美德之书的被动道具#如果未持有{{Collectible34}}彼列之书则获得彼列之书#获得的伤害加成与在其上的主动道具充能量成比例#对特定的主动道具会获得特殊效果"},
 	{"???", "", "生命提升获得的魂心翻倍"},
-	{"夏娃", "", "无论血量如何，巴比伦娼妇始终激活#不受伤死鸟也会激活"},
+	{"夏娃", "", "巴比伦大淫妇和死鸟始终激活"},
 	{"参孙", "", "嗜血获得额外4次伤害加成，新的上限为+14伤害"},
 	{"阿撒泻勒", "", "阿撒泻勒的硫磺火变得更宽，就像超级喷射一样#对伤害无影响"},
 	{"拉撒路", "", "无特殊效果，除非死亡并以复活的拉撒路重生#{{Damage}} 复活的拉撒路+7.2额外伤害#额外伤害在接下来的一分钟内逐渐衰退#击杀敌人可以延长获得额外伤害的时间"},
@@ -432,20 +431,20 @@ EID.descriptions[languageCode].birthright ={
 	{"黑暗犹大", "", "{{Collectible34}}彼列之书变成类似于{{Collectible584}}美德之书的被动道具#如果未持有{{Collectible34}}彼列之书则获得彼列之书#获得的伤害加成与在其上的主动道具充能量成比例"},
 	{"莉莉丝", "", "跟班在莉莉丝面前位置"},
 	{"店主", "", "↑ +1心之容器"},
-	{"亚玻伦", "", "使用{{Collectible477}}虚空时有几率生成之前被虚空化的道具#属性加成保留#使用的次数越多，生成道具的几率越高"},
+	{"亚玻伦", "", "使用{{Collectible477}}虚空时有几率生成之前被虚空吸收的道具#属性加成保留#使用的次数越多，生成道具的几率越高"},
 	{"遗骸", "", "灵魂不再受锁，可自由移动"},
 	{"遗骸之魂", "", "灵魂不再受锁，可自由移动"},
 	{"伯大尼", "", "使用魂心充能主动道具时几率不消耗魂心"},
 	{"雅各", "", "拿起这个道具的角色获得另1个角色3个被动道具的复制"},
 	{"以扫", "", "拿起这个道具的角色获得另1个角色3个被动道具的复制"},
 	{"堕化以撒", "", "增加4个额外被动道具槽位#本身不占用槽位"},
-	{"堕化抹大拉", "", "增加1不流失的红心"},
-	{"堕化该隐", "", "道具生成的掉落物数量翻倍"},
+	{"堕化抹大拉", "", "↑ 增加1不流失的红心#恢复1红心"},
+	{"堕化该隐", "", "道具分解生成的掉落物数量翻倍"},
 	{"堕化犹大", "", "{{Collectible705}}暗仪刺刀击中敌人和弹幕的范围变大"},
 	{"堕化???", "", "增加便便最大携带量为29"},
 	{"堕化夏娃", "", "死亡的红心血凝块生成红心，2秒后消失"},
 	{"堕化参孙", "", "堕化参孙杀死敌人时狂暴计时器增加3秒而不是1秒"},
-	{"堕化阿撒泻勒", "", "堕化阿撒泻勒的{{Collectible726}}咯血症攻击大小加倍"},
+	{"堕化阿撒泻勒", "", "堕化阿撒泻勒的{{Collectible726}}咯血症攻击范围加倍"},
 	{"堕化拉撒路", "", "生成另一种状态的角色的幻影作为副角色#幻影免疫伤害，可以发射眼泪，造成25%的伤害#主角色对首领的伤害降低20%#两个角色都有长子名分的效果"},
 	{"堕化伊甸", "", "在长子权之前拿到的被动和主动道具不再因为受伤而重置"},
 	{"堕化游魂", "", "获得1额外生命#复活的游魂在相同房间中重生并对附近敌人造成200点伤害"},
@@ -700,6 +699,24 @@ EID.descriptions[languageCode].abyssSynergies = {
 	[559] = "淡蓝色蝗虫，带有造成50%电击伤害的电弧", -- 120 Volt
 }
 
+-- Effect of Car battery on Active Items
+local repCarBattery = {
+	[323] = "泪弹造成两次伤害", -- Isaac's Tears
+	[421] = "", -- Kidney Bean, 双倍放屁伤害于忏悔移除
+	[489] = "触发两次当前所选择骰子的效果", -- D Infinity
+	[523] = "", -- Moving Box
+	[556] = "获得两次硫磺火，给予额外伤害", -- Sulfur
+	[584] = "双倍魂火", -- Book of Virtues
+	[605] = "生成两个窥眼跟班，不给予额外伤害", -- The Scooper
+	[609] = "道具消失的概率提高", -- Eternal D6
+	[625] = "效果持续60秒", -- Mega Mush
+	[705] = "暗影效果持续2秒", -- Dark Arts
+	[720] = "随掉落物一起生成一个大便", -- Everything Jar
+	[723] = "重置为内部ID减2的道具", -- Spindown Dice
+}
+--EID.descriptions[languageCode].carBattery[284] = nil -- D4
+EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
+
 ---------- Trinkets ----------
 
 local repTrinkets={
@@ -776,7 +793,7 @@ local repTrinkets={
 	[172] = {"172", "诅咒硬币", "{{Coin}} 捡起硬币时传送至随机房间#可以传送到隐藏房"}, --  Cursed Penny
 	[173] = {"173", "你的灵魂", "{{DevilChance}} 免费进行一次恶魔交易"}, --  Your Soul
 	[174] = {"174", "数字冰箱贴", "{{DevilChance}} +10%恶魔房几率#防止恶魔交易中出现坎卜斯"}, --  Number Magnet
-	[175] = {"175", "奇怪的钥匙", "解锁窒息胎战通道，不再限时#使用{{Collectible297}}潘多拉的盒子时从随机道具池生成6个道具，原效果失效#使用后两者都会被消耗"}, --  Strange Key
+	[175] = {"175", "奇怪的钥匙", "解锁死寂战通道，不再限时#使用{{Collectible297}}潘多拉的盒子时从随机道具池生成6个道具，原效果失效#使用后两者都会被消耗"}, --  Strange Key
 	[176] = {"176", "小血团", "生成1个血块跟班，模仿角色的行动，发射方向和眼泪效果#如果跟班死亡则在下一个房间重生"}, --  Lil Clot
 	[177] = {"177", "纹身贴", "清理{{ChallengeRoom}}挑战房后生成1箱子，清理{{BossRushRoom}}Boss挑战房后生成1道具"}, --  Temporary Tattoo
 	[178] = {"178", "被吞下的M80鞭炮", "受伤时有50%几率爆炸"}, --  Swallowed M80
@@ -884,7 +901,7 @@ EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 EID.descriptions[languageCode].tarotClothBuffs = {
 	[2] = "同时获得{{Collectible34}}彼列之书效果", -- I - The Magician
 	[3] = "第一只脚落下后马上落下第二只", -- II - The High Priestess
-	[4] = {0.3, 0.6, 1.5, 2.25}, -- III - The Empress
+	[4] = {0.3, 0.6, 1.5, 6.0}, -- III - The Empress
 	[5] = "如果Boss尚未被击败，传送时获得1魂心", -- IV - The Emperor
 	[6] = {2, 3}, -- V - The Hierophant
 	[7] = {2, 3}, -- VI - The Lovers
@@ -932,12 +949,12 @@ EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
 EID.descriptions[languageCode].horsepills={
 	{"0", "剧毒臭屁", "{{Poison}} 使整个房间敌人中毒"}, -- Bad Gas
-	{"1", "过激幻觉", "对角色造成2心伤害#若致死则变成体力回满胶囊"}, -- Bad Trip
+	{"1", "过激幻觉", "对角色造成2心伤害#若血量少于2心，则保留半颗心#若只有半颗心，则变成大体力回满胶囊"}, -- Bad Trip
 	{"2", "钢铁双蛋", "{{SoulHeart}} +4魂心"}, -- Balls of Steel
-	{"3", "炸弹变钥匙", "交换炸弹和钥匙的数量#增加炸弹和钥匙的量50%#金炸弹和金钥匙也会交换"}, -- Bombs are Key
+	{"3", "炸弹变钥匙", "交换炸弹和钥匙的数量#炸弹和钥匙的量各增加50%#金炸弹和金钥匙也会交换"}, -- Bombs are Key
 	{"4", "爆炸性腹泻", "在角色位置生成一些激活的会跟踪的超级炸弹"}, -- Explosive Diarrhea
 	{"5", "体力回满", "满血#{{SoulHeart}} +3魂心"}, -- Full Health
-	{"6", "体力下降", "↓ -2心之容器#若致死则变为体力上升胶囊"}, -- Health Down
+	{"6", "体力下降", "↓ -2心之容器#若只有2心之容器，则移除后获得半魂心#若只有1心之容器，则变为大体力上升胶囊"}, -- Health Down
 	{"7", "体力上升", "↑ +2空的心之容器"}, -- Health Up
 	{"8", "我找到枚怪药", "无效果"}, -- I Found Pills
 	{"9", "青春期", "无效果"}, -- Puberty
@@ -952,7 +969,7 @@ EID.descriptions[languageCode].horsepills={
 	{"18", "运气上升", "↑ {{Luck}} +2运气"}, -- Luck Up
 	{"19", "传送胶囊", "传送到随机房间"}, -- Telepills
 	{"20", "48小时能量！", "对主动道具完全充能#{{Battery}} 生成3-4个电池"}, -- 48 Hour Energy!
-	{"21", "呕血", "清空红心但保留1红心#{{Heart}} 生成1-4红心"}, -- Hematemesis
+	{"21", "呕血", "清空红心但保留1红心#{{Heart}} 生成4-7红心"}, -- Hematemesis
 	{"22", "麻痹", "不能移动4秒"}, -- Paralysis
 	{"23", "我能永远看清！", "打开当前层所有{{SecretRoom}}隐藏房的入口#揭示全图"}, -- I can see forever!
 	{"24", "信息素", "{{Charm}} 将房间内所有敌人永久变成友好的"}, -- Pheromones
@@ -962,22 +979,22 @@ EID.descriptions[languageCode].horsepills={
 	{"28", "止痛药！", "所在房间受到的伤害减半"},  -- Percs!
 	{"29", "上瘾！", "所在房间受到的伤害为整心"}, -- Addicted!
 	{"30", "放-松", "移动生成便便4秒"}, -- Re-Lax
-	{"31", "？？？", "当前层施加迷惑诅咒的效果"}, -- ???
+	{"31", "？？？", "当前层施加混乱诅咒的效果"}, -- ???
 	{"32", "变大胶囊", "体型变很大#不影响被命中的区域"}, -- One makes you larger
 	{"33", "变小胶囊", "体型变很小#被命中的区域也变小"}, -- One makes you small
 	{"34", "大量滋生！", "房间内每个便便生成2只蓝蜘蛛"}, -- Infested!
 	{"35", "大量滋生？", "房间内每有1个敌人就生成2只蓝蜘蛛#房间内没有敌人则生成2-6只蓝蜘蛛"}, -- Infested?
 	{"36", "大力丸！", "触发{{Collectible93}}游戏掌机和{{Card52}}“变巨术”的效果"}, -- Power Pill!
 	{"37", "复古视野", "屏幕像素化90秒"}, -- Retro Vision
-	{"38", "好朋友一辈子！", "生成6只蓝苍蝇"}, -- Friends Till The End!
+	{"38", "好朋友一辈子！", "生成12只蓝苍蝇"}, -- Friends Till The End!
 	{"39", "泻药", "生成一滩长时间保留的打滑水迹"}, -- X-Lax
 	{"40", "哪里不对…", "生成一滩长时间保留的减速水迹"}, -- Something's wrong...
 	{"41", "好困…", "使房间内所有敌人减速"}, -- I'm Drowsy...
 	{"42", "好兴奋！！！", "使房间内所有敌人加速"}, --I'm Excited!!!
-	{"43", "咕噜！", "消耗当前饰品并永久获得其效果"}, -- Gulp!
+	{"43", "咕噜！", "消耗当前饰品并永久获得其效果#回复等同于消耗饰品量的红心"}, -- Gulp!
 	{"44", "呕！", "{{Collectible149}} 发射1串吐根眼泪"}, -- Horf!
 	{"45", "感觉像漫步在阳光下！", "触发{{Collectible93}}的效果，在6秒内：#无敌#{{Fear}} 恐惧所有敌人#无法发射眼泪#造成每秒40点接触伤害#{{HalfHeart}} 吃掉两个敌人回复半个红心"}, -- Feels like I'm walking on sunshine!
-	{"46", "嗝！", "生成上次使用的大胶囊"}, -- Vurp!
+	{"46", "嗝！", "生成上次使用的胶囊的大号版本"}, -- Vurp!
 	{"47", "弹速下降", "↓ {{Shotspeed}} -0.3弹速"}, -- Shot Speed Down
 	{"48", "弹速上升", "↑ {{Shotspeed}} +0.3弹速"}, -- Shot Speed Up
 	{"49", "实验性胶囊", "↑ 提升1项随机属性两次#↓ 降低另外1项随机属性两次#有{{Collectible75}}药学博士证，{{Collectible46}}幸运脚或{{Collectible303}}处女座时不降属性#有{{Collectible654}}伪造药学博士证"}, -- Experimental Pill
@@ -1091,6 +1108,8 @@ EID.descriptions[languageCode].FalsePHDHeart = "生成1黑心"
 EID.descriptions[languageCode].FalsePHDDamage = "{{Damage}} +0.6伤害"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "{{Damage}} +1.2伤害"
 
+EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "原效果失效，改为消耗奇怪的钥匙，生成6个随机道具池的道具"
+
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! 警告 !!!"
 EID.descriptions[languageCode].AchievementWarningText = "成就已禁用！#为了启用进度和成就，你需要击败妈妈的脚(深牢II)而不开启任何模组#(如果你打过了, 那么这条警告的出现是bug, 无视就好)#(这条警告可在设置中禁用)"
 
@@ -1098,6 +1117,7 @@ EID.descriptions[languageCode].OldGameVersionWarningText = "你的忏悔版本�
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "含有模组的道具可能会使合成配方计算不准确！#如果你的配方不正确，请使用无配方模式或者关闭合成袋的显示#(这条警告可以在设置中禁用)"
 
+EID.descriptions[languageCode].ResultsWithX = "(持有{1}时的结果)"
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
