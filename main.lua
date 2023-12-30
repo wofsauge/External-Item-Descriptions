@@ -1803,4 +1803,7 @@ if EID.enableDebug then
 	require("eid_debugging")
 end
 
+Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+Isaac.DebugString("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")
+Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 print("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")
