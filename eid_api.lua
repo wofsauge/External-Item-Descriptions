@@ -608,7 +608,7 @@ function EID:getObjectName(Type, Variant, SubType)
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
 	elseif tableName == "custom" then
-		local xmlName = EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
+		local xmlName = EID:GetEntityXMLName(Type, Variant, SubType)
 		return name or xmlName or Type.."."..Variant.."."..SubType
 	end
 	return Type.."."..Variant.."."..SubType
@@ -1702,7 +1702,10 @@ function EID:evaluateTransformationProgress(transformation)
 
 		if not EID.TransformationLookup[transformation] then return end
 
-		if transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
+		if REPENTOGON and transformData and transformData.VanillaForm then
+			 -- REPENTOGON lets us ignore everything else for vanilla transformation progress
+			EID.TransformationProgress[i][transformation] = player:GetPlayerFormCounter(transformData.VanillaForm)
+		elseif transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
 			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
 		else
 			local pickupHistory = EID.PlayerItemInteractions[i].pickupHistory
@@ -1957,4 +1960,9 @@ end
 -- returns true if the given pill color was used at least once in this game
 function EID:WasPillUsed(pillColor)
 	return EID.UsedPillColors[tostring(pillColor)] ~= nil
+end
+
+-- returns the name of the given entity
+function EID:GetEntityXMLName(Type, Variant, SubType)
+	return EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
 end
