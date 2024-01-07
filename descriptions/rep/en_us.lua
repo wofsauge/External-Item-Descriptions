@@ -1077,7 +1077,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	AddBlackHearts = "{{BlackHeart}} {1} Black Heart",
 	AddBombs = "{{Bomb}} {1} Bomb",
 	AddCoins = "{{Coin}} {1} Coin",
-	AddHearts = "Heals {{Heart}} {1} heart",
+	AddHearts = "{{Heart}} Heals {1} heart",
 	AddKeys = "{{Key}} {1} Key",
 	AddMaxHearts = "{{EmptyHeart}} {1} Heart container",
 	AddSoulHearts = "{{SoulHeart}} {1} Soul Heart",
@@ -1089,21 +1089,21 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	-- Attribute triggers
 	active = "On use:#",
 	pickup_collected = "On collecting a pickup:#",
-	enemy_kill = "Killing an enemy might:#",
+	enemy_kill = "Killing an enemy has a 20% chance to:#",
 	damage_taken = "Upon taking damage:#",
 	entity_spawned = "When a {T1} is spawned:#",
-	tear_fire = "Firing a tear might:#",
-	enemy_hit = "Hitting an enemy might:#",
+	tear_fire = "Firing a tear has a 5% chance to:#",
+	enemy_hit = "Hitting an enemy has a 5% chance to:#",
 	room_clear = "On clearing a room:#",
 	chain = "Then:{{CR}} ",
 
 	-- Attribute effects
-	area_damage = "Deal {1} damage in an area around Isaac",
+	area_damage = "Deal {1} damage in {2} tiles around Isaac",
 	add_temporary_effect = "Grant {1} for the room",
 	convert_entities = "Convert all {1} in the room to {2}",
 	use_active_item = "Use {1}",
 	spawn_entity = "Spawn a {1}",
-	fart = "Fart with size {1}",
+	fart = "Fart on {1} tiles around Isaac",
 
 	-- Generic entity names not obtained from entities2.xml
 	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
@@ -1120,7 +1120,10 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["9.-1"] = "enemy projectile",
 	["999.-1"] = "grid object",
 	["1000.0"] = "effect",
-
+	
+	-- Text for the base item that is granted
+	grants = "Grants ",
+	
 }
 
 ---------- Misc. Text ----------
@@ -1182,7 +1185,7 @@ EID.descriptions[languageCode].AchievementWarningText = "Achievements are disabl
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID is updated for the newest Steam version#Your game version is not officially supported, so some descriptions and features will be inaccurate#(This warning can be disabled in the config)"
 
-EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Use the Item Probability display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Install REPENTOGON for modded recipe support#(This warning can be disabled in the config)"
 
 EID.descriptions[languageCode].ResultsWithX = "(Results with {1})"
 
