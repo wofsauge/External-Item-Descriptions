@@ -127,6 +127,7 @@ if EID.isRepentance then
 	end
 	local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
 	require("eid_bagofcrafting")
+	require("eid_tmtrainer")
 end
 
 EID.LastRenderCallColor = EID:getTextColor()
@@ -138,7 +139,6 @@ local modfolder ='external item descriptions_836319872' --release mod folder nam
 
 function EID:GetCurrentModPath()
 	if debug then
-		if EID.isRepentance then require("eid_tmtrainer") end
 		return string.sub(debug.getinfo(EID.GetCurrentModPath).source,2) .. "/../"
 	end
 	--use some very hacky trickery to get the path to this mod
@@ -1127,7 +1127,7 @@ function EID:CheckStartOfRunWarnings()
 			EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
 			hasShownStartWarning = true
 		-- Bag of Crafting modded items check
-		elseif EID:PlayersHaveCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and
+		elseif not REPENTOGON and EID:PlayersHaveCollectible(710) and EID:DetectModdedItems() and EID.Config.DisplayBagOfCrafting ~= "never" and
 		(EID.Config.BagOfCraftingDisplayRecipesMode == "Recipe List" or EID.Config.BagOfCraftingDisplayRecipesMode == "Preview Only") then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
@@ -1429,14 +1429,15 @@ function EID:OnRender()
 						end
 
 						local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
+						local glitchedName = EID.itemConfig:GetCollectible(closest.SubType).Name
 						local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
 
 						-- force the default glitchy description if option is off
 						if not EID.Config["DisplayGlitchedItemInfo"] then
 							glitchedObj.Description = glitchedDesc
-						-- grab the Item Config info if eid_tmtrainer.lua hasn't taken care of it, and it hasn't been done before
-						elseif not debug and glitchedObj.Description == glitchedDesc then
-							EID:addCollectible(closest.SubType, EID:CheckGlitchedItemConfig(closest.SubType) .. glitchedDesc)
+						-- grab the Item Config info if we haven't created a desc for it before, or its name has changed since we did (different game session)
+						elseif glitchedObj.Description == glitchedDesc or glitchedObj.Name ~= glitchedName then
+							EID:addCollectible(closest.SubType, EID:CheckGlitchedItemConfig(closest.SubType), glitchedName)
 							glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
 						end
 

@@ -274,11 +274,10 @@ EID.UserConfig = {
 	---------- Glitched Items ---------
 
 	-- Toggle Display of Glitched Item (TMTRAINER) descriptions
-	-- Note: The --luadebug launch option is required for more detailed glitched item descriptions
-	-- This option allows mods to have access to your files, breaks some mods, and should be turned on at your own risk!
-	-- Without --luadebug, you still can see the effect the item will have on your Hearts, and what stats it might modify
-	-- Default = false, unless luadebug is on
-	["DisplayGlitchedItemInfo"] = debug and true or false,
+	-- Note: Installing REPENTOGON is required for more detailed glitched item descriptions
+	-- Without REPENTOGON, you still can see the effect the item will have on your Hearts, and what stats it might modify
+	-- Default = false
+	["DisplayGlitchedItemInfo"] = false,
 
 	---------- Sacrifice Room ----------
 
@@ -362,7 +361,6 @@ EID.UserConfig = {
 	-- "Preview Only" shows the description of the item you can currently craft in your bag
 	-- "Item Probability" shows percentages of what item you might get from your bag / best option on the floor, for a more intended experience
 	-- "Pickups Only" just shows the room/floor pickup count
-	-- ("Item Probability" is recommended if you have modded items)
 	-- Default = "Recipe List"
 	["BagOfCraftingDisplayRecipesMode"] = "Recipe List",
 	-- Hide the recipe list when in battle
@@ -389,11 +387,6 @@ EID.UserConfig = {
 	-- Display recipes as 8 icons instead of grouped ingredients
 	-- Default = false
 	["BagOfCraftingDisplayIcons"] = false,
-	-- Enable or disable basic modded item support
-	-- Only modded items with a weight of 1.0 in their item pools are supported, as we can't determine modded item pool weight
-	-- If you have a lot of modded items, it will slow down game launch
-	-- Default = true
-	["BagOfCraftingModdedRecipes"] = true,
 	-- Set the keybinding to toggle the crafting display, so you can see descriptions of items/pickups on the floor
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
 	-- Default = Keyboard.KEY_F3
@@ -552,7 +545,7 @@ EID.DefaultConfig = {
 	["DisplayObstructedPillInfo"] = false,
 	["OnlyShowPillWhenUsedAtLeastOnce"] = false,
 	["ShowUnidentifiedPillDescriptions"] = false,
-	["DisplayGlitchedItemInfo"] = debug and true or false,
+	["DisplayGlitchedItemInfo"] = false,
 	["DisplaySacrificeInfo"] = true,
 	["DisplaySanguineInfo"] = true,
 	["PredictionSanguineBond"] = false,
@@ -568,7 +561,6 @@ EID.DefaultConfig = {
 	["BagOfCraftingHideInBattle"] = true,
 	["BagOfCraftingShowControls"] = true,
 	["BagOfCraftingDisplayRecipesMode"] = "Recipe List",
-	["BagOfCraftingModdedRecipes"] = true,
 	["CraftingHideKey"] = Keyboard.KEY_F3,
 	["CraftingHideButton"] = -1,
 	["CraftingResultKey"] = Keyboard.KEY_F4,

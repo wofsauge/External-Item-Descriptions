@@ -318,7 +318,7 @@ if EID.isRepentance then
 	end
 
 	--simple decimal rounding
-	function SimpleRound(num, dp)
+	local function SimpleRound(num, dp)
 		dp = dp or 2
 		local mult = 10^dp
 		return math.floor(num * mult + 0.5)/mult

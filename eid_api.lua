@@ -1167,45 +1167,6 @@ function EID:PlayersHaveCharacter(playerType)
 	return false
 end
 
--- Obtains information about glitched items from the ItemConfig (hearts added on pickup, cacheflags affected), returns string of info
-local itemConfigItemAttributes = { "AddMaxHearts", "AddHearts", "AddSoulHearts", "AddBlackHearts", "AddBombs", "AddCoins", "AddKeys", "CacheFlags" }
-function EID:CheckGlitchedItemConfig(id)
-	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
-	local item = EID.itemConfig:GetCollectible(id)
-	if not item then return "" end
-	local attributes = "#"
-	for _,v in ipairs(itemConfigItemAttributes) do
-		local val = item[v]
-		if val ~= 0 then
-			if (v == "CacheFlags") then
-				local flagString = localizedNames["cacheFlagStart"]
-				if val == CacheFlag.CACHE_ALL then
-					flagString = flagString .. localizedNames[16]
-				else
-					for i=0, 13 do
-						if 2^i & val ~= 0 then
-							flagString = flagString .. localizedNames[i] .. ", "
-						end
-					end
-					flagString = string.sub(flagString, 0, -3) -- remove final comma
-				end
-				attributes = attributes .. flagString .. "#"
-			else
-				-- the Add Heart attributes count half a heart as 1, so divide the value in half
-				if string.find(v, "Hearts") then val = val / 2 end
-				-- the g flag removes .0 in numbers like 1.0 (caused by the hearts division)
-				local s = string.format("%.4g",val)
-				local prefix = "↑ "
-				if val > 0 then s = "+" .. s else prefix = "↓ " end
-				attributes = attributes .. prefix .. string.gsub(localizedNames[v], "{1}", s)
-				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] end
-				attributes = attributes .. "#"
-			end
-		end
-	end
-	return attributes
-end
-
 -- Converts a given CollectibleID into the respective Spindown dice result
 function EID:getSpindownResult(collectibleID)
 	if collectibleID <= 0 or collectibleID > 4294960000 then return 0 end
