@@ -426,7 +426,7 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Display", "DisplayCardInfo", "Card Infos")
 	EID:AddBooleanSetting("Display", "DisplayPillInfo", "Pill Infos")
 	EID:AddBooleanSetting("Display", "DisplayGlitchedItemInfo", "Glitched Item Infos", {repOnly = true,
-	infoText = "Note: The --luadebug launch option is required for more detailed glitched item descriptions; this can be dangerous!"})
+	infoText = "Note: Installing REPENTOGON is required for more detailed glitched item descriptions!"})
 	EID:AddBooleanSetting("Display", "DisplaySacrificeInfo", "Sacrifice Room Infos")
 	EID:AddBooleanSetting("Display", "DisplayDiceInfo", "Dice Room Infos")
 	EID:AddBooleanSetting("Display", "DisplayCraneInfo", "Crane Game Infos", {repOnly = true})
@@ -621,9 +621,6 @@ if MCMLoaded then
 		-- Bag of Crafting 8 icons toggle
 		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayIcons", "Show Recipes/Best Bag as", {onText = "8 Icons", offText = "Groups",
 			infoText = "Choose if you want recipes (and the Best Quality bag in Item Probability Mode) shown as 8 icons, or as grouped ingredients"})
-		-- Modded Recipes toggle
-		EID:AddBooleanSetting("Crafting", "BagOfCraftingModdedRecipes", "Load Modded Item Recipes (WIP)", {
-			infoText = {"Enable or disable basic modded item support", "If you have a lot of modded items, it will slow down game launch"}})
 
 		MCM.AddSpace("EID", "Crafting")
 		MCM.AddText("EID", "Crafting", function() return "Recipe List Options" end)
