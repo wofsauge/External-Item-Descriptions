@@ -24,7 +24,15 @@ function EID:GetEntityXMLName(Type, Variant, SubType)
 	return xmlEntry and xmlEntry.name or EID.XMLEntityNames[Type .. "." .. Variant] or
 	EID.XMLEntityNames[Type .. "." .. Variant .. "." .. SubType]
 end
+-- takes a string like "5.100.69"
+function EID:GetEntityXMLNameByString(str)
+	local sep = {}
+	for i in string.gmatch(str, "([^.]+)") do
+	   table.insert(sep, i)
+	end
+	return EID:GetEntityXMLName(sep[1], sep[2], sep[3])
+end
 
--- Render EID aboth hud, if REPENTOGON is installed
+-- Render EID above hud, if REPENTOGON is installed
 EID:RemoveCallback(ModCallbacks.MC_POST_RENDER, EID.OnRender)
 EID:AddCallback(ModCallbacks.MC_HUD_RENDER, EID.OnRender)
