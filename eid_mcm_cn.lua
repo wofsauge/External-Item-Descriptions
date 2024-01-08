@@ -421,8 +421,6 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
             = "切换显示配方列表,袋满时的道具预览,道具池/品质信息,或地面上的掉落物",
         ["Hides the Bag of Crafting info when in a fight"] = "在战斗中隐藏合成宝袋信息",
         ["Show the text for the Hide/Preview and Recipe List hotkeys"] = "显示切换隐藏/预览和配方列表的热键",
-        ["Choose if you want recipes (and the Best Quality bag in Item Probability Mode) shown as 8 icons, or as grouped ingredients"]
-            = "切换配方显示模式(或无配方模式下的最佳品质)为8个图标, 或者分组显示",
         ["Enable or disable basic modded item support"] = "开关基础的模组道具支持",
         ["If you have a lot of modded items, it will slow down game launch"] = "如果模组道具太多，游戏会变卡",
         ["(12 = 500 combinations, 14 = 3,000, 16 = 13,000)"] = "(12=500组合,14=3000,16=13000)",
@@ -434,8 +432,6 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
             = "额外检查此值数量的随机组合 在掉落物生成/消失或刷新时变化",
         ["If on, each recipe result takes two lines, one for the item name, one for the recipe"]
             = "如果开启,每个配方会显示两行,第一行是名字,第二行是配方",
-		["Press this to clear all currently detected items on the floor"] = "按此键清除所有当前房间中已检测的物品",
-		["Press this to clear all currently detected items on the bag"] = "按此键清除所有当前袋中已检测的物品",
         ["Choose if you want recipes (and the Best Quality bag in Item Probability Mode) shown as 8 icons, or as grouped ingredients"]
             = "选择使用八个图标还是分组 显示配方(或无配方模式的最佳组合)",
         ["Press this key to toggle the crafting display, allowing you to check descriptions of items/pickups on the floor"]

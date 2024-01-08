@@ -698,7 +698,6 @@ function EID:printDescription(desc, cachedID)
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
 			local lastPool = game:GetItemPool():GetLastPool()
-			local itemPoolLineHeight = EID.lineHeight
 
 			local poolName = ""
 			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")

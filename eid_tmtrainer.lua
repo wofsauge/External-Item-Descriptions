@@ -2,8 +2,6 @@
 -- It requires installing REPENTOGON to give fully accurate descriptions.
 -- https://repentogon.com/install.html
 
-local game = Game()
-
 -- glitched items start at 4294967295
 local maxNumber = 4294967296
 local lastEffectTrigger = "chain"
@@ -61,7 +59,6 @@ function EID:CheckGlitchedItemConfig(id)
 	if not itemConfig then return "" end
 	
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
-	local voidNames = EID:getDescriptionEntry("VoidNames")
 	local attributes = "#"	
 	
 	-- Check the base item config for the Hearts/Bombs/Coins/Keys this item adds,
@@ -131,8 +128,6 @@ function EID:CheckGlitchedItemConfig(id)
 		end
 		
 		-- Use REPENTOGON to print out the glitched effects this item has
-		local item = ProceduralItemManager.GetProceduralItem(maxNumber - 1 - id)
-		
 		local triggerReplacements = {}
 		local replacements = {}
 		
@@ -167,7 +162,6 @@ function EID:CheckGlitchedItemConfig(id)
 				replacements[2] = string.format("%.4g",SimpleRound(effectProp.radius))
 			end
 			
-			local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
 			if effectTrigger ~= lastEffectTrigger then
 				if effectTrigger ~= "chain" then attributes = attributes .. "{{Blank}} " end
 				attributes = attributes .. triggerColors[effectTrigger] .. localizedNames[effectTrigger]
