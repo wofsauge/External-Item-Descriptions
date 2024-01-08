@@ -955,3 +955,7 @@ EID.descriptions[languageCode].PickupNames = {
 	["5.350"] = "{{Trinket}} Trinket",
 
 }
+
+EID.descriptions[languageCode].ConditionalDescs = {
+	["5.300.15"] = "Spawns a Devil Beggar", -- Temperance (Greed Mode effect)
+}
