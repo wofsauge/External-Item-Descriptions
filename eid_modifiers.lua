@@ -75,6 +75,61 @@ local function TabCallback(descObj)
 	return descEntry
 end
 
+
+-- This stuff will end up in a separate file but it's here for now
+
+
+--[[ Descs that need a variant:
+
+]]
+
+function EID:IsGreedMode()
+	return game:IsGreedMode()
+end
+
+function EID:NoRedHealthPlayers()
+	--check our player ID against a list of no red health players? idk
+end
+
+--EID:PlayersHaveCharacter is already in the api to use for things like Swallowed Penny
+
+--rather than check boss progress, just have a spoiler option?
+
+
+
+local conditionsTable = {
+	-- Temperance: spawns beggar in greed mode
+	["5.300.15"] = {func = EID.IsGreedMode, type = "replaceAll"},
+}
+
+-- Handle base description replacements
+local function ConditionalDescCallback(descObj)
+	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..descObj.ObjSubType
+	local cond = conditionsTable[typeVarSub]
+	local text = EID:getDescriptionEntry("ConditionalDescs")[typeVarSub]
+	
+	-- we'll need to handle a table of funcs but for now let's test if it works with one func
+	if not cond.func(EID, cond.vars) then return descObj end
+	
+	if (cond.type == "replaceAll") then
+		descObj.Description = text
+	elseif (cond.type == "findReplace") then
+		descObj.Description, count = string.gsub(descObj.Description, textTable[1], "{{ColorGold}}" .. textTable[multiplier] .. "{{ColorText}}", 1)
+	end
+	
+	return descObj
+end
+
+local function ConditionalDescConditions(descObj)
+	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..descObj.ObjSubType
+	if conditionsTable[typeVarSub] then return true end
+	return false
+end
+
+-- We want this callback to happen first
+EID:addDescriptionModifier("EID Conditional Descs", ConditionalDescConditions, ConditionalDescCallback)
+
+
 -- Handle Void
 local voidStatUps = { 0.2, 0.5, 1, 0.5, 0.2, 1 }
 local voidStatIcons = {"{{Speed}}", "{{Tears}}", "{{Damage}}", "{{Range}}", "{{Shotspeed}}", "{{Luck}}"}
