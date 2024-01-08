@@ -755,7 +755,7 @@ EID.descriptions[languageCode].cards={
 	{"12", "XI - Strength", "{{Timer}} Receive for the room:#↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +0.3 Damage#↑ {{Damage}} x1.5 Damage multiplier#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"},
 	{"13", "XII - The Hanged Man", "{{Timer}} Flight for the room"},
 	{"14", "XIII - Death", "Deals 40 damage to all enemies in the room"},
-	{"15", "XIV - Temperance", "{{DonationMachine}} Spawns a Blood Donation Machine#{{GreedMode}} Spawns a Devil Beggar in Greed Mode"},
+	{"15", "XIV - Temperance", "{{DonationMachine}} Spawns a Blood Donation Machine"},
 	{"16", "XV - The Devil", "{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage"},
 	{"17", "XVI - The Tower", "Spawns 6 Troll Bombs"},
 	{"18", "XVII - The Stars", "{{TreasureRoom}} Teleports Isaac to the Treasure Room"},
@@ -957,5 +957,5 @@ EID.descriptions[languageCode].PickupNames = {
 }
 
 EID.descriptions[languageCode].ConditionalDescs = {
-	["5.300.15"] = "Spawns a Devil Beggar", -- Temperance (Greed Mode effect)
+	["5.300.15"] = "{{DemonBeggar}} Spawns a Devil Beggar", -- Temperance (Greed Mode effect)
 }
