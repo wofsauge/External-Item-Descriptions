@@ -918,7 +918,17 @@ function EID:PositionLocalMode(entity)
 		EID.Scale = EID.Config["LocalModeSize"]
 		EID.CurrentScaleType = "LocalModeSize"
 		local textBoxWidth = EID.Config["LocalModeCentered"] and tonumber(EID.Config["TextboxWidth"])/2 * EID.Scale or -30
-		local textPosOffset = Vector(-textBoxWidth, 20)
+		local textPosOffset = Vector(-textBoxWidth, 0)
+
+		local additiveOffset = EID.LocalModePositionOffset.Default
+		for _, offsetFunc in pairs(EID.LocalModePositionOffset) do
+			if type(offsetFunc) == "function" then
+				additiveOffset = offsetFunc(entity) or additiveOffset
+				break
+			end
+		end
+		textPosOffset = textPosOffset + additiveOffset
+
 		EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
 		if EID.isMirrorRoom then
 			EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset * Vector(-1,0)))
