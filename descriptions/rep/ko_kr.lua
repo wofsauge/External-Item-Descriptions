@@ -1199,23 +1199,23 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	[0] = "{{DamageSmall}}공격력", "{{TearsSmall}}연사(+상한)", "{{ShotspeedSmall}}탄속", "{{RangeSmall}}사거리", "{{SpeedSmall}}이동속도", "눈물효과", "눈물색깔", "비행", "공격 유형", "패밀리어", "{{LuckSmall}}행운", "캐릭터의 크기", "캐릭터의 색깔", "상자 내용물", [16] = "모든 능력치",
 
 	-- Attribute triggers
-	chain = "그 다음:{{CR}} ",
+	chain = "체인:{{CR}} ",
 	active = "아이템 사용 시:#",
 	pickup_collected = "픽업을 주울 시:#",
-	enemy_kill = "적을 죽일 시 확률적으로 발동:#",
+	enemy_kill = "적을 죽일 시 20%의 확률로:#",
 	damage_taken = "캐릭터가 피격 시:#",
 	entity_spawned = "{T1}이/가 소환될 시:#",
-	tear_fire = "눈물 발사 시 확률적으로 발동:#",
-	enemy_hit = "적들이 피격 시 확률적으로 발동:#",
+	tear_fire = "눈물 발사 시 5%의 확률로:#",
+	enemy_hit = "적 명중 시 5%의 확률로:#",
 	room_clear = "방 클리어 시:#",
 
 	-- Attribute effects
-	area_damage = "캐릭터 주변의 적에게 {1}의 피해를 줍니다.",
-	add_temporary_effect = "현재 방에서 {1} 아이템의 효과를 얻습니다.",
-	convert_entities = "방 안의 {1}을/를 {2}(으)로 바꿉니다.",
+	area_damage = "캐릭터 주변 {2} 범위 적에게 {1}의 피해를 줍니다.",
+	add_temporary_effect = "그 방에서 {1} 아이템의 효과를 얻습니다.",
+	convert_entities = "그 방의 {1}을/를 {2}(으)로 바꿉니다.",
 	use_active_item = "{1}을/를 사용합니다.",
 	spawn_entity = "{1}을/를 소환합니다.",
-	fart = "{1}의 크기만큼 방귀를 뀝니다.",
+	fart = "{1}칸의 크기만큼 방귀를 뀝니다.",
 
 	-- Generic entity names not obtained from entities2.xml
 	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
@@ -1232,6 +1232,8 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["9.-1"] = "적 탄환",
 	["999.-1"] = "장애물",
 	["1000.0"] = "효과",
+
+	grants = "아이템 적용:#",
 
 }
 
@@ -1304,7 +1306,7 @@ EID.descriptions[languageCode].AchievementWarningText = "{{ColorRed}}지금 모�
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "리펜턴스가 최신 버전이 아닙니다!#최신 버전이 아닐 경우 모드 오류가 발생할 수 있습니다(1.7.9b).#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
 
-EID.descriptions[languageCode].ModdedRecipesWarningText = "아이템 추가 모드나 아이템 배열 변경 모드가 적용되어 있을 경우 조합법이 일치하지 않을 수 있습니다.#조합법 설명을 숨기거나 BagOfCraftingDisplayRecipesMode를 Itempool percentage로 설정해 주세요.#(config 설정을 수정하여 해당 메세지를 비활성화 할 수 있습니다.)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "아이템 추가 모드나 아이템 배열 변경 모드가 적용되어 있을 경우 조합법이 일치하지 않을 수 있습니다.#조합법 설명을 숨기거나 REPENTOGON 모드를 설치해 주세요.#(config 설정을 수정하여 해당 메세지를 비활성화 할 수 있습니다.)"
 
 
 
