@@ -819,7 +819,7 @@ EID.descriptions[languageCode].pills={
 	{"45", "Сякаш ходя по дъгата!", "{{Collectible298}} Кратък ефект на неуязвимост"}, -- "sunshine" -> "rainbow"
 	{"46", "Vurp!", "Създава последното използвано хапче преди това#Ако друго хапче не е било използвано, създава копие на себе си"},
     -- Horf and Vurp not translated because, like, how should they be.
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Следваща отплата от жертвена стая]"
@@ -899,30 +899,30 @@ EID.descriptions[languageCode].RoomTypeNames = { "Обикновена стая"
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {
 	["5.0"] = "Никакъв",   -- gender bias, de facto dependent on the translation of "pickup"
-	
+
 	["5.10"] = "{{Heart}} Сърце",  -- TODO: check where this displays and whether to translate as "Red Heart" specifically
 	["5.10.1"] = "{{Heart}} Червено сърце", ["5.10.2"] = "{{HalfHeart}} Половин червено сърце", ["5.10.3"] = "{{SoulHeart}} Soul Heart", ["5.10.4"] = "{{EternalHeart}} Вечно сърце", ["5.10.5"] = "{{Heart}} Двойно червено сърце", ["5.10.6"] = "{{BlackHeart}} Черно сърце", ["5.10.7"] = "{{GoldHeart}} Златно сърце", ["5.10.8"] = "{{HalfSoulHeart}} Half Soul Heart", ["5.10.9"] = "{{Heart}} Бягащо сърце", ["5.10.10"] = "{{BlendedHeart}} Смесено сърце", ["5.10.11"] = "{{EmptyBoneHeart}} Костно сърце", ["5.10.12"] = "{{RottenHeart}} Гнило сърце",
-	
+
 	["5.20"] = "{{Coin}} Монета",  -- "Стотинка"??
     -- "Dime" translation = ?
 	["5.20.1"] = "{{Crafting8}} Монета", ["5.20.2"] = "{{Crafting9}} Петак", ["5.20.3"] = "{{Crafting10}} Десетак", ["5.20.4"] = "{{Crafting8}} Двойна монета", ["5.20.5"] = "{{Crafting11}} Късметлийска монета", ["5.20.6"] = "{{Crafting9}} Лепкав петак", ["5.20.7"] = "{{Crafting26}} Златна монета",
-	
+
 	["5.30"] = "{{Key}} Ключ",
 	["5.30.1"] = "{{Crafting12}} Ключ", ["5.30.2"] = "{{Crafting13}} Златен ключ", ["5.30.3"] = "{{Crafting12}} Двоен ключ", ["5.30.4"] = "{{Crafting14}} Зареден ключ",
-	
+
 	["5.40"] = "{{Bomb}} Бомба",
 	["5.40.1"] = "{{Crafting15}} Бомба", ["5.40.2"] = "{{Crafting15}} Двойна бомба", ["5.40.3"] = "{{Crafting15}} Трол бомба", ["5.40.4"] = "{{Crafting16}} Златна бомба", ["5.40.5"] = "{{Crafting15}} Мега трол бомба", ["5.40.7"] = "{{Crafting17}} Гигантска бомба",
-	
+
 	["5.90"] = "{{Battery}} Батерия",
 	["5.90.0"] = "{{Crafting19}} Батерия", --AB+ didn't have subtypes for batteries
     -- also screw the "Lil'" in the default Battery name
 	["5.90.1"] = "{{Crafting19}} Батерия", ["5.90.2"] = "{{Crafting18}} Микро батерия", ["5.90.3"] = "{{Crafting20}} Мега батерия", ["5.90.4"] = "{{Crafting28}} Златна батерия",
-	
+
     -- following are multiple examples where a literal translation hurts understandability
-	["5.50"] = "{{Chest}} Сандък", ["5.51"] = "{{BombChest}} Каменен сандък", ["5.52"] = "{{SpikedChest}} Сандък с шипове", ["5.53"] = "{{EternalChest}} Ангелски сандък", ["5.54"] = "{{MimicChest}} Измамен сандък", ["5.55"] = "{{OldChest}} Стар сандък", ["5.56"] = "{{WoodenChest}} Дървен сандък", ["5.57"] = "{{MegaChest}} Мега сандък", ["5.58"] = "{{HauntedChest}} Обитаван сандък", ["5.60"] = "{{GoldenChest}} Златен сандък", ["5.360"] = "{{RedChest}} Червен сандък",  
-	
+	["5.50"] = "{{Chest}} Сандък", ["5.51"] = "{{BombChest}} Каменен сандък", ["5.52"] = "{{SpikedChest}} Сандък с шипове", ["5.53"] = "{{EternalChest}} Ангелски сандък", ["5.54"] = "{{MimicChest}} Измамен сандък", ["5.55"] = "{{OldChest}} Стар сандък", ["5.56"] = "{{WoodenChest}} Дървен сандък", ["5.57"] = "{{MegaChest}} Мега сандък", ["5.58"] = "{{HauntedChest}} Обитаван сандък", ["5.60"] = "{{GoldenChest}} Златен сандък", ["5.360"] = "{{RedChest}} Червен сандък",
+
 	["5.69"] = "{{GrabBag}} Торбичка", ["5.69.1"] = "{{GrabBag}} Торбичка", ["5.69.2"] = "{{BlackSack}} Черна торбичка",
-	
+
 	["5.70"] = "{{Pill}} Хапче",
 	["5.300"] = "{{Card}} Карта",
 	["5.301"] = "{{Rune}} Руна", -- not a real id

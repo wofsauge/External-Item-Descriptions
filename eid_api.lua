@@ -70,13 +70,13 @@ end
 function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMultiplier, language)
 	maxMultiplier = maxMultiplier or 3
 	language = language or "en_us"
-	
+
 	if appendText == "" then appendText = nil
 	elseif type(appendText) == "string" then appendText = {appendText} end
-	
+
 	if numbersToMultiply == 0 then numbersToMultiply = nil
 	elseif type(numbersToMultiply) == "number" then numbersToMultiply = {numbersToMultiply} end
-	
+
 	EID.GoldenTrinketData[id] = {t = numbersToMultiply, mult = maxMultiplier, append = appendText and true}
 	if appendText then
 		EID.descriptions[language].goldenTrinketEffects[id] = { appendText[1], appendText[1], appendText[2] or appendText[1] }
@@ -124,7 +124,7 @@ function EID:addPillMetadata(id, mimicCharge, class)
 	EID.pillMetadata[id] = {
 		mimiccharge = type(mimicCharge) == "number" and mimicCharge or -1,
 		class = class or "0",
-	} 
+	}
 end
 
 -- Adds a character specific description for the item "Birthright". Optional parameters: playerName, language
@@ -163,7 +163,7 @@ function EID:assignTransformation(targetType, targetIdentifier, transformationSt
 	EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
 end
 
--- Try to automatically assign vanilla transformations to the entity 
+-- Try to automatically assign vanilla transformations to the entity
 function EID:tryAutodetectTransformationsCollectible(collectibleID)
 	if not EID.isRepentance then return end
 	local config = EID.itemConfig:GetCollectible(collectibleID)
@@ -217,7 +217,7 @@ function EID:removeEntryFromString(sourceTable, entryKey, entryValue)
 				addToList = false
 			end
 		end
-		if addToList then 
+		if addToList then
 			newEntry = newEntry..","..str
 		end
 	end
@@ -293,7 +293,7 @@ function EID:getTableName(Type, Variant, SubType)
 	if idString == "5.100" then return "collectibles"
 	elseif idString == "5.350" then return "trinkets"
 	elseif idString == "5.300" then return "cards"
-	elseif idString == "5.70" then 
+	elseif idString == "5.70" then
 		if SubType <2049 then
 			return "pills"
 		else
@@ -388,7 +388,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, SubType)
 
 	description.Transformation = EID:getTransformation(Type, Variant, SubType)
-	
+
 	description.ModName = tableEntry and tableEntry[4]
 	description.Quality = EID:getObjectQuality(description)
 	description.Icon = EID:getObjectIcon(description)
@@ -471,7 +471,7 @@ function EID:getObjectItemTypeAndCharge(descObj)
 		descObj.ChargeType = itemConfig.ChargeType or 0
 		descObj.Charges = itemConfig.MaxCharges or 0
 		-- Special handling for dynamic charge items
-		if EID.isRepentance and (descObj.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or descObj.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or 
+		if EID.isRepentance and (descObj.ObjSubType == CollectibleType.COLLECTIBLE_BLANK_CARD or descObj.ObjSubType == CollectibleType.COLLECTIBLE_PLACEBO or
 		descObj.ObjSubType == CollectibleType.COLLECTIBLE_CLEAR_RUNE or descObj.ObjSubType == CollectibleType.COLLECTIBLE_D_INFINITY) then
 			descObj.ChargeType = ItemConfig.CHARGE_SPECIAL
 		end
@@ -506,7 +506,7 @@ function EID:getDescriptionData(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, adjustedID)
 	local defaultDesc = EID:getDescriptionEntry(tableName, adjustedID)
-	
+
 	return moddedDesc or legacyModdedDescription or defaultDesc
 end
 
@@ -570,7 +570,7 @@ function EID:getTransformationName(id)
 	local str = "Custom"
 	if tonumber(id) == nil then
 		-- get translated custom name
-		local customTransform = EID.CustomTransformations[id] 
+		local customTransform = EID.CustomTransformations[id]
 		if customTransform ~= nil then
 			return customTransform[EID:getLanguage()] or customTransform["en_us"] or id
 		end
@@ -608,7 +608,7 @@ function EID:getObjectName(Type, Variant, SubType)
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
 	elseif tableName == "custom" then
-		local xmlName = EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
+		local xmlName = EID:GetEntityXMLName(Type, Variant, SubType)
 		return name or xmlName or Type.."."..Variant.."."..SubType
 	end
 	return Type.."."..Variant.."."..SubType
@@ -620,9 +620,9 @@ function EID:getPillName(pillID, isHorsepill)
 	local legacyModdedDescription = EID:getLegacyModDescription(5, 70, pillID)
 	local tableName = isHorsepill and "horsepills" or "pills"
 	local defaultDesc = EID:getDescriptionEntry(tableName, pillID)
-	
+
 	local name = moddedDesc or legacyModdedDescription or defaultDesc
-	
+
 	local vanillaName = ""
 	if pillID == 9999 then
 		vanillaName = "Golden Pill" -- only used for languages that haven't defined a Golden Pill name
@@ -824,10 +824,10 @@ function EID:filterIconMarkup(text)
 
 		local callback = EID._NextIconModifier
 		EID._NextIconModifier = nil
-		
+
 		local lookup = EID:getIcon(word)
 		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Scale
-		
+
 		table.insert(spriteTable, {lookup, preceedingTextWidth, callback})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
 	end
@@ -860,7 +860,7 @@ function EID:renderIcon(spriteObj, posX, posY, callback, animName, animFrame)
 	if callback then
 		callback(spriteObj)
 	end
-	
+
 	if EID.CachingDescription then
 		table.insert(EID.CachedIcons[#EID.CachedIcons], {spriteObj, posX, posY, callback, animName, animFrame})
 	end
@@ -896,6 +896,9 @@ function EID:getColor(str, baseKColor)
 			else
 				if EID.InlineColors[strTrimmed] then colorFunc = nil end
 				color = EID.InlineColors[strTrimmed] or color
+				if EID.Config["ColorblindMode"] > 0 then
+					color = EID.ColorBlindColors[EID.Config["ColorblindMode"]][strTrimmed] or color
+				end
 			end
 			isColorMarkup = type(EID.InlineColors[strTrimmed]) ~= type(nil)
 		end
@@ -984,13 +987,13 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 			-- cond#1: we can break at the end of string
 			cursor == #str or
 			-- cond#2: we can break after space
-		 	cur == byte_space or 
+		 	cur == byte_space or
 			-- handle utf8 characters
 			(breakUtf8Chars and(
 			 -- cond#3: we can break if the next character is 0x11xxxxxx
-			 ((next & 0xC0) == 0xC0) or 
+			 ((next & 0xC0) == 0xC0) or
 			 -- cond#4: we can also break if the current is 0x10xxxxxx while the next is ascii but not space
-			 (((cur & 0xC0) == 0x80) and (next~= byte_space and (next & 0x80) == 0x00))  
+			 (((cur & 0xC0) == 0x80) and (next~= byte_space and (next & 0x80) == 0x00))
 			))
 			then
 				--[[
@@ -1009,14 +1012,14 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 					  ↑
 					  cond#3
 					byte data of a word:
-					[0x11xxxxxx,0x10xxxxxx,0x10xxxxxx, (next is 0x11xxxxxx, cond#3)] 
+					[0x11xxxxxx,0x10xxxxxx,0x10xxxxxx, (next is 0x11xxxxxx, cond#3)]
 					--------------------ascii->utf8------------
 					utf8 word must start with 0x11xxxxxx, so cond#3 split before it.
 					word|世|界
 					    |  ↑
 					    ↑  cond#3
 					    cond#3
-					
+
 					world |means |世|界
 					             ↑
 					             cond#2
@@ -1036,7 +1039,7 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 				local wordFiltered = EID:replaceAllMarkupWithSpaces(word, isBulletpoint)
 				isBulletpoint = false
 				local wordLength = EID:getStrWidth(wordFiltered)
-				
+
 				if curLength + wordLength <= textboxWidth or curLength < 17 then
 					table.insert(text, word)
 					curLength = curLength + wordLength
@@ -1051,10 +1054,10 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 		end
 		cursor = cursor + 1
 	end
-	
+
 	-- fix this function applying crafting icon green tint to the start of the printed line
 	EID._NextIconModifier = nil
-	
+
 	table.insert(formattedLines, table.concat(text))
 	return formattedLines
 end
@@ -1164,45 +1167,6 @@ function EID:PlayersHaveCharacter(playerType)
 	return false
 end
 
--- Obtains information about glitched items from the ItemConfig (hearts added on pickup, cacheflags affected), returns string of info
-local itemConfigItemAttributes = { "AddMaxHearts", "AddHearts", "AddSoulHearts", "AddBlackHearts", "AddBombs", "AddCoins", "AddKeys", "CacheFlags" }
-function EID:CheckGlitchedItemConfig(id)
-	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
-	local item = EID.itemConfig:GetCollectible(id)
-	if not item then return "" end
-	local attributes = "#"
-	for _,v in ipairs(itemConfigItemAttributes) do
-		local val = item[v]
-		if val ~= 0 then
-			if (v == "CacheFlags") then
-				local flagString = localizedNames["cacheFlagStart"]
-				if val == CacheFlag.CACHE_ALL then
-					flagString = flagString .. localizedNames[16]
-				else
-					for i=0, 13 do
-						if 2^i & val ~= 0 then
-							flagString = flagString .. localizedNames[i] .. ", "
-						end
-					end
-					flagString = string.sub(flagString, 0, -3) -- remove final comma
-				end
-				attributes = attributes .. flagString .. "#"
-			else
-				-- the Add Heart attributes count half a heart as 1, so divide the value in half
-				if string.find(v, "Hearts") then val = val / 2 end
-				-- the g flag removes .0 in numbers like 1.0 (caused by the hearts division)
-				local s = string.format("%.4g",val)
-				local prefix = "↑ "
-				if val > 0 then s = "+" .. s else prefix = "↓ " end
-				attributes = attributes .. prefix .. string.gsub(localizedNames[v], "{1}", s)
-				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] end
-				attributes = attributes .. "#"
-			end
-		end
-	end
-	return attributes
-end
-
 -- Converts a given CollectibleID into the respective Spindown dice result
 function EID:getSpindownResult(collectibleID)
 	if collectibleID <= 0 or collectibleID > 4294960000 then return 0 end
@@ -1226,7 +1190,7 @@ function EID:GetMaxCollectibleID()
 			step = step // 2
 		end
 	end
-	
+
 	return id
 end
 
@@ -1295,7 +1259,7 @@ function EID:isCollectibleAllowed(collectibleID)
 end
 
 -- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
-function EID:AreAchievementsAllowed() 
+function EID:AreAchievementsAllowed()
 	-- Tainted characters have definitely beaten Mom!
 	-- (Fixes Tainted Lost's item pools, and potentially modded character's mechanics, ruining this check)
 	if EID.player:GetPlayerType() < 21 then
@@ -1325,7 +1289,7 @@ function EID:GetDimension(level)
             return i
         end
     end
-    
+
     return nil
 end
 
@@ -1344,7 +1308,7 @@ function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	for _, nr in ipairs(sortedList) do
 		visitedItemCount[nr] = visitedItemCount[nr] + 1
 		local containsItemResult = EID:bagContainsItem(nr, visitedItemCount[nr])
-		local completedColoring = indicateCompleteContent and containsItemResult and containsItemResult >= 1 and "{{IconGreenTint}}" or "" 
+		local completedColoring = indicateCompleteContent and containsItemResult and containsItemResult >= 1 and "{{IconGreenTint}}" or ""
 		iconString = iconString..completedColoring.."{{Crafting"..nr.."}}"
 	end
 	return iconString
@@ -1371,7 +1335,7 @@ function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 					coloring = "{{ColorBagOverfill}}"
 				end
 			end
-			
+
 			iconString = iconString..coloring..count.."{{Crafting"..nr.."}}{{CR}}"
 		end
 	end
@@ -1450,7 +1414,7 @@ end
 function EID:getScreenSize()
 	local room = game:GetRoom()
 	local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - game.ScreenShakeOffset
-	
+
 	local rx = pos.X + 60 * 26 / 40
 	local ry = pos.Y + 140 * (26 / 40)
 
@@ -1468,7 +1432,7 @@ end
 function EID:fixDefinedFont(forceRefresh)
 	local curLang = EID:getLanguage()
 	local curFont = EID.Config["FontType"]
-	
+
 	-- If our currently loaded font is still valid, we don't need to reset values
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
 		if curFont == v.name then
@@ -1560,7 +1524,7 @@ end
 -- Returns true if an item needs to be collected for the collection page
 function EID:requiredForCollectionPage(itemID)
 	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or itemID >= CollectibleType.NUM_COLLECTIBLES or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
-	return not EID.SaveGame[EID.Config["SaveGameNumber"]].ItemCollection[itemID]
+	return EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[itemID]
 end
 
 -- Updates the item collection state of the players, based on the QueuedItem value.
@@ -1569,7 +1533,7 @@ function EID:checkPlayersForMissingItems()
 	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return end
 	if EID.GameUpdateCount % 5 ~= 0 then return end
 
-	for i = 0, game:GetNumPlayers() - 1 do 
+	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player.QueuedItem.Item and EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[player.QueuedItem.Item.ID] then
 			table.insert(EID.CollectedItems, player.QueuedItem.Item.ID)
@@ -1580,7 +1544,7 @@ end
 
 function EID:getPlayerID(entityPlayer)
 	if not entityPlayer then return 0 end
-	for i = 0, game:GetNumPlayers() - 1 do 
+	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if GetPtrHash(player) == GetPtrHash(entityPlayer) then
 			return i
@@ -1654,7 +1618,7 @@ function EID:replaceMarkupSize(description)
 			description = string.gsub(description, small, normal)
 		end
 	end
-	
+
 	return description
 end
 
@@ -1688,7 +1652,7 @@ function EID:alterTransformationLookup(entityString, transformString, addToList)
 	end
 end
 
--- Given a transformation identifier, itterate over every player and count the number of items they have which count towards that transformation 
+-- Given a transformation identifier, itterate over every player and count the number of items they have which count towards that transformation
 EID.TransformationProgress = {}
 function EID:evaluateTransformationProgress(transformation)
 	for i = 0, game:GetNumPlayers() - 1 do
@@ -1696,10 +1660,13 @@ function EID:evaluateTransformationProgress(transformation)
 		EID.TransformationProgress[i] = {}
 		EID.TransformationProgress[i][transformation] = 0
 		local transformData = EID.TransformationData[transformation]
-		
+
 		if not EID.TransformationLookup[transformation] then return end
 
-		if transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
+		if REPENTOGON and transformData and transformData.VanillaForm then
+			 -- REPENTOGON lets us ignore everything else for vanilla transformation progress
+			EID.TransformationProgress[i][transformation] = player:GetPlayerFormCounter(transformData.VanillaForm)
+		elseif transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
 			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
 		else
 			local pickupHistory = EID.PlayerItemInteractions[i].pickupHistory
@@ -1737,7 +1704,7 @@ function EID:evaluateTransformationProgress(transformation)
 								collCount = collCount - (EID.PlayerItemInteractions[i].rerollItems[tostring(eSubType)] or 0)
 							end
 							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + collCount
-							
+
 							-- Undo the Book of Virtues active item getting counted here
 							if tonumber(eSubType) == 584 and player:GetActiveItem() == 584 then
 								EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] - 1
@@ -1803,7 +1770,7 @@ function EID:evaluateQueuedItems()
 			else
 				EID.PlayerItemInteractions[i].LastTouch = 0
 			end
-			
+
 			if not player.QueuedItem.Touched and player.QueuedItem.Item then
 				EID.PlayerItemInteractions[i].LastTouch = game:GetFrameCount()
 				local itemIDStr = tostring(player.QueuedItem.Item.ID)
@@ -1815,7 +1782,7 @@ function EID:evaluateQueuedItems()
 						EID.PlayerItemInteractions[j].actives[itemIDStr] = EID.PlayerItemInteractions[j].actives[itemIDStr] or 0
 						EID.PlayerItemInteractions[j].altActives[itemIDStr] = EID.PlayerItemInteractions[j].altActives[itemIDStr] or 0
 					end
-					
+
 					-- Dead Tainted Lazarus exceptions
 					local activesTable = EID.PlayerItemInteractions[i].actives
 					if player:GetPlayerType() == 38 then
@@ -1833,7 +1800,7 @@ function EID:evaluateQueuedItems()
 					if (#EID.RecentlyTouchedItems[i] > 8) then table.remove(EID.RecentlyTouchedItems[i], 1) end
 				end
 			end
-		end 
+		end
 	end
 end
 
@@ -1858,7 +1825,7 @@ function EID:getObjectQuality(descObj)
 	end
 end
 
--- Returns the Inline Icon definition object for a given object. 
+-- Returns the Inline Icon definition object for a given object.
 EID.ObjectIcon = {}
 function EID:getObjectIcon(descObj)
 	-- custom object icon
@@ -1954,4 +1921,9 @@ end
 -- returns true if the given pill color was used at least once in this game
 function EID:WasPillUsed(pillColor)
 	return EID.UsedPillColors[tostring(pillColor)] ~= nil
+end
+
+-- returns the name of the given entity
+function EID:GetEntityXMLName(Type, Variant, SubType)
+	return EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
 end

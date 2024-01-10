@@ -9,7 +9,7 @@ If you enjoy this mod and want to help on it, check it out on GitHub: https://gi
 - **Dutch**: by SomethingMax
 - **English**: by Wofsauge, Buurazu, Ma-rcx, AutisticGoat (Kotry), ...
 - **French**: by biobak, Nicolas Delvaux
-- **German**: by Jake
+- **German**: by Staubgeborener, Jake
 - **Greek**: by vanillarat
 - **Italian**: by Klyser8, Denkishi, 2G
 - **Japanese**: by prefab

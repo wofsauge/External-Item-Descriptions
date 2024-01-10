@@ -1,24 +1,10 @@
---[[
-
-This file is only loaded when the game is launched with the "--luadebug" launch option.
-This allows mods to have access to your computer's files, which is necessary to read glitched item info that's printed to the game's log file.
-
-Having --luadebug on would allow malicious mods to delete your files, execute command prompt commands, and probably much more. It also makes certain Lua functions behave differently, which breaks some other mods.
-USE AT YOUR OWN RISK.
-
-]]
-
-local game = Game()
+-- This file handles creating glitched item descriptions.
+-- It requires installing REPENTOGON to give fully accurate descriptions.
+-- https://repentogon.com/install.html
 
 -- glitched items start at 4294967295
 local maxNumber = 4294967296
-local spawnedItems = 0
 local lastEffectTrigger = "chain"
-local descOne = ""
-
-local logLocation = os.getenv("USERPROFILE") .. "/Documents/My Games/Binding of Isaac Repentance/log.txt"
-local logFound = false
-local logCursor = 0
 
 local triggerColors = {
 	chain = "{{ColorSilver}}",
@@ -32,151 +18,180 @@ local triggerColors = {
 	room_clear = "{{ColorOrange}}",
 }
 
-local function entityToName(e, plural)
-	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
-	-- -1 is often used as an "any of this type", even if there's only one of that type, so converting it to 0 can help find names
-	local eWithZero = string.gsub(e, "-1", "0")
+-- Convert REPENTOGON's action/trigger enums to the text used in EID's localization files
+local actions = { [0] = "use_active_item", "add_temporary_effect", "convert_entities", "area_damage", "spawn_entity", "fart" }
+local triggers = { [0] = "active", "tear_fire", "enemy_hit", "enemy_kill", "damage_taken", "room_clear", "entity_spawned", "pickup_collected", "chain" }
+
+--simple decimal rounding
+local function SimpleRound(num, dp)
+	dp = dp or 2
+	local mult = 10^dp
+	return math.floor(num * mult + 0.5)/mult
+end
+
+local function entityToName(Type, Variant, plural)
 	plural = plural or false
-	local name = localizedNames[e] or EID.XMLEntityNames[e] or localizedNames[eWithZero] or EID.XMLEntityNames[eWithZero] or e
+	-- -1 is often used as an "any of this type", even if there's only one of that type, so converting it to 0 can help find names
+	-- the string.format is in case this receives the type/variant as a Lua float
+	local e = string.format("%d",Type) .. "." .. string.format("%d",Variant)
+	local eWithZero = string.gsub(e, "-1", "0")
 	
+	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
+	local name = localizedNames[e] or localizedNames[eWithZero] or EID:GetEntityXMLName(Type, Variant, 0) or e
+
 	--print out entities with no name yet
 	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)")
 	elseif plural then name = name .. localizedNames["pluralize"] end
-	
+
 	return name
 end
 
-local function parseEffectLine(raw)
-	local words = {}
-	for w in string.gmatch(raw,"%S+") do table.insert(words, w) end
-	
-	local triggerReplacements = {}
-	local replacements = {}
-	local printEffect = true
-	
-	-- words[1] = "[INFO]", words[2] = "-"
-	local effectTrigger = words[3]
-	-- the effects list is rarely interrupted by music loading log entries, just ignore it and have a slightly inaccurate desc
-	if effectTrigger == "Queued" then return "" end
-	if (string.find(effectTrigger, "entity_spawned")) then
-		effectTrigger = "entity_spawned"
-		triggerReplacements[1] = "{{ColorEIDObjName}}" .. entityToName(string.sub(words[3], 16, -2)) .. "{{CR}}"
-	end
-	-- words[4] = "->"
-	local effectType = words[5]
-	local fullEffect = ""
-	for i=5,#words do fullEffect = fullEffect .. words[i] .. " " end
-	
-	if effectType == "add_temporary_effect" or effectType == "use_active_item" then
-		-- remainder of line = collectible name that's granted for the room
-		local name = ""
-		for i=6,#words do
-			name = name .. words[i]
-			if (i ~= #words) then name = name .. " " end
-		end
-		
-		replacements[1] = name
-		if (Isaac.GetItemIdByName(name) > 0) then
-			replacements[1] = "{{Collectible" .. Isaac.GetItemIdByName(name) .. "}} " .. name
-		end
-	elseif effectType == "convert_entities" then
-		replacements[1] = "{{ColorGray}}" .. entityToName(words[6], true) .. "{{CR}}"
-		replacements[2] = "{{ColorGray}}" .. entityToName(words[8])
-	elseif effectType == "spawn_entity" then
-		replacements[1] = "{{ColorGray}}" .. entityToName(words[6])
-	elseif effectType == "fart" then
-		replacements[1] = words[6]
-	elseif effectType == "area_damage" then
-		replacements[1] = words[6]
-		-- display area_damage 0's because they still need to be done to chain to the next thing
-		--if words[6] == "0" then printEffect = false end
-	end
+-- attributes we need to check on the glitched item's ItemConfig
+local itemConfigItemAttributes = { "AddMaxHearts", "AddHearts", "AddSoulHearts", "AddBlackHearts", "AddBombs", "AddCoins", "AddKeys", "CacheFlags" }
+-- REPENTOGON's ProceduralItem functions, in the same order as en_us's VoidNames text we'll be using
+local getFunctions = { "GetSpeed", "GetFireDelay", "GetDamage", "GetRange", "GetShotSpeed", "GetLuck" }
+-- The items have a value between 0 and 1, and multiplied by these before being added to the player's stats
+local statMult = { 0.2, 1, 1, 1.5, 0.2, 1 }
+
+-- Obtains information about glitched items from the ItemConfig (hearts added on pickup, cacheflags affected), returns string of info
+function EID:CheckGlitchedItemConfig(id)
+	local itemConfig = EID.itemConfig:GetCollectible(id)
+	if not itemConfig then return "" end
 	
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
-	local eidString = ""
-	if effectTrigger ~= lastEffectTrigger then eidString = eidString .. triggerColors[effectTrigger] .. (localizedNames[effectTrigger] or (effectTrigger .. "#")) end
-	if printEffect then eidString = eidString .. (localizedNames[effectType] or fullEffect) .. "#" end
-	for k,v in ipairs(triggerReplacements) do eidString = string.gsub(eidString, "{T" .. k .. "}", v) end
-	for k,v in ipairs(replacements) do eidString = string.gsub(eidString, "{" .. k .. "}", v) end
+	local attributes = "#"	
 	
-	if effectTrigger ~= "chain" then lastEffectTrigger = effectTrigger end
-	return eidString
-end
-
-local function CheckLogForItems(_)
-	-- Check log.txt every 5 frames if there's a collectible we haven't read the data for yet
-	-- (Should work well for Corrupted Data)
-	if game:GetFrameCount() % 5 ~= 0 or not EID.Config["DisplayGlitchedItemInfo"] or not logFound or
-		EID.itemConfig:GetCollectible(maxNumber - spawnedItems - 1) == nil then return end
-		
-	local numEffects = 0
-	local eidDesc = ""
-	
-	local theLog = io.open(logLocation, "r")
-	if theLog == nil then return end
-	theLog:seek("set", logCursor)
-	
-	local line = theLog:read()
-	while line ~= nil do
-		if string.find(line, "initialized with") then
-			spawnedItems = spawnedItems + 1
-			lastEffectTrigger = "chain"
-			eidDesc = ""
-			-- find the number of effects to watch for
-			for s in string.gmatch(line, "%d*%.?%d+") do
-				numEffects = tonumber(s)
-				break
+	-- Check the base item config for the Hearts/Bombs/Coins/Keys this item adds,
+	-- as well as what cache flags it affects if we're not using REPENTOGON
+	for _,v in ipairs(itemConfigItemAttributes) do
+		local val = itemConfig[v]
+		if val ~= 0 then
+			if v == "CacheFlags" then
+				if not REPENTOGON then -- we don't need to check these if we have REPENTOGON
+					local flagString = localizedNames["cacheFlagStart"]
+					if val == CacheFlag.CACHE_ALL then
+						flagString = flagString .. localizedNames[16]
+					else
+						for i=0, 13 do
+							if 2^i & val ~= 0 then
+								flagString = flagString .. localizedNames[i] .. ", "
+							end
+						end
+						flagString = string.sub(flagString, 0, -3) -- remove final comma
+					end
+					attributes = attributes .. flagString .. "#"
+				end
+			else
+				-- the Add Heart attributes count half a heart as 1, so divide the value in half
+				if string.find(v, "Hearts") then val = val / 2 end
+				-- the g flag removes .0 in numbers like 1.0 (caused by the hearts division)
+				local s = string.format("%.4g",val)
+				local prefix = "↑ "
+				if val > 0 then s = "+" .. s else prefix = "↓ " end
+				attributes = attributes .. prefix .. string.gsub(localizedNames[v], "{1}", s)
+				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] end
+				attributes = attributes .. "#"
 			end
-		elseif numEffects > 0 then
-			numEffects = numEffects - 1
-			eidDesc = eidDesc .. parseEffectLine(line)
-			if numEffects == 0 then
-				eidDesc = EID:CheckGlitchedItemConfig(maxNumber - spawnedItems) .. eidDesc
-				-- Glowing Hour Glass type effects cause the game to reload all items, check if our desc is equal to the first one
-				if (descOne == eidDesc) then spawnedItems = 1 end
-				
-				EID:addCollectible(maxNumber - spawnedItems, eidDesc)
-				if spawnedItems == 1 then descOne = eidDesc end
-			end
-		elseif string.find(line, "Game ended;") then
-			spawnedItems = 0
-			lastEffectTrigger = "chain"
-			eidDesc = ""
 		end
-
-		line = theLog:read()
 	end
 	
-	logCursor = theLog:seek()
-	theLog:close()
-end
-EID:AddCallback(ModCallbacks.MC_POST_UPDATE, CheckLogForItems)
+	if REPENTOGON then
+		-- Use REPENTOGON to print what base item this glitched item gives, and its stat increases
+		-- If it's an active, these are given to you upon using the item, so let's print an "On use:" first
+		if itemConfig.Type == ItemType.ITEM_ACTIVE then
+			lastEffectTrigger = "active"
+			attributes = attributes .. "{{Blank}} " .. triggerColors["active"] .. localizedNames["active"]
+		end
+		local item = ProceduralItemManager.GetProceduralItem(maxNumber - 1 - id)
+		if item:GetTargetItem() then
+			-- Glitched items grant a random collectible/trinket
+			-- It can be a bit weird though (granting A Quarter doesn't give you 25 coins, cause that's an on pickup thing)
+			local innerItem = item:GetTargetItem()
+			local itemText = "{{Collectible"
+			local itemType = 100
+			if innerItem:IsTrinket() then
+				itemText = "{{Trinket"
+				itemType = 350
+			end
+			attributes = attributes .. localizedNames["grants"] .. itemText .. innerItem.ID .. "}} " .. EID:getObjectName(5, itemType, innerItem.ID) .. "#"
+		end
+		local voidNames = EID:getDescriptionEntry("VoidNames")
+		for i,func in ipairs(getFunctions) do
+			local val = item[func](item) * statMult[i]
+			if val ~= 0 then
+				if (i == 4) then print("range!") end
+				local s = string.format("%.2g",SimpleRound(val))
+				local prefix = "↑ "
+				if val > 0 then s = "+" .. s else prefix = "↓ " end
+				attributes = attributes .. prefix .. string.gsub(voidNames[i], "{1}", s) .. "#"
+			end
+		end
+		
+		-- Use REPENTOGON to print out the glitched effects this item has
+		local triggerReplacements = {}
+		local replacements = {}
+		
+		-- cheeck the effects
+		local count = item:GetEffectCount()
+		for i=0,count-1 do
+			local effect = item:GetEffect(i)
+			
+			local effectTrigger = triggers[effect:GetConditionType()]
+			local effectTriggerProp = effect:GetConditionProperty()
+			if effectTrigger == "entity_spawned" then
+				triggerReplacements[1] = "{{ColorEIDObjName}}" .. entityToName(effectTriggerProp.type, effectTriggerProp.variant) .. "{{CR}}"
+			end
+			
+			local effectType = actions[effect:GetActionType()]
+			local effectProp = effect:GetActionProperty()
+			if effectType == "add_temporary_effect" or effectType == "use_active_item" then
+				replacements[1] = "{{Collectible" .. effectProp.id .. "}} " .. EID:getObjectName(5, 100, effectProp.id)
+			elseif effectType == "convert_entities" then
+				replacements[1] = "{{ColorGray}}" .. entityToName(effectProp.fromType, effectProp.fromVariant, true) .. "{{CR}}"
+				replacements[2] = "{{ColorGray}}" .. entityToName(effectProp.toType, effectProp.toVariant) .. "{{CR}}"
+			elseif effectType == "spawn_entity" then
+				replacements[1] = "{{ColorGray}}" .. entityToName(effectProp.type, effectProp.variant) .. "{{CR}}"
+			elseif effectType == "fart" then
+				--I think the fart scale is strictly visual and therefore useless
+				--replacements[1] = SimpleRound(effectProp.scale)
+				replacements[1] = string.format("%.4g",SimpleRound(effectProp.radius))
+			elseif effectType == "area_damage" then
+				replacements[1] = string.format("%.4g",SimpleRound(effectProp.damage))
+				--Fart scales are all small numbers and seem to be tiles; area damage is huge numbers, but still tiles?
+				--so area damage is almost always the entire room
+				replacements[2] = string.format("%.4g",SimpleRound(effectProp.radius))
+			end
+			
+			if effectTrigger ~= lastEffectTrigger then
+				if effectTrigger ~= "chain" then attributes = attributes .. "{{Blank}} " end
+				attributes = attributes .. triggerColors[effectTrigger] .. localizedNames[effectTrigger]
+			end
+			attributes = attributes .. localizedNames[effectType] .. "#"
+			for k,v in ipairs(triggerReplacements) do attributes = string.gsub(attributes, "{T" .. k .. "}", v) end
+			for k,v in ipairs(replacements) do attributes = string.gsub(attributes, "{" .. k .. "}", v) end
 
-local function GameStartTMTRAINER(_,isSave)
-	local theLog = io.open(logLocation, "r")
-	if (theLog == nil) then
-		print("[EID] Could not find the log file at " .. logLocation .. "; glitched item descriptions won't work!")
-		Isaac.DebugString("[EID] Could not find the log file at " .. logLocation .. "; glitched item descriptions won't work!")
-		logFound = false
-		return
-	else
-		logFound = true
+			if effectTrigger ~= "chain" then lastEffectTrigger = effectTrigger end
+		end
 	end
 	
-	-- luckily, when the game reloads, it also reloads all glitched items, so resuming works perfectly as long as we start at the beginning
-	spawnedItems = 0
+	-- print the glitchy part of the description at the end if it's not "complete"
+	if not REPENTOGON then
+		attributes = attributes .. itemConfig.Description
+	end
+	lastEffectTrigger = "chain"
+	
+	return attributes
+	
 end
-EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, GameStartTMTRAINER)
 
-local function GameEndTMTRAINER()
-	-- Our cursor spot in the log gets wiped if mods are reloaded; can't think of a better way than this
-	Isaac.DebugString("[EID] Game ended; ignore previous glitched items in the log!")
-end
-EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, GameEndTMTRAINER)
+
+
+
 
 
 -- shh. it's a non-obtrusive april fools joke for the 1% of people with luadebug
+-- this made more sense when this file was only executed when --luadebug was present
 -- https://www.youtube.com/watch?v=msDuNZyYAIQ
-if (os.date("%m/%d") == "04/01") then
+if (debug and os.date("%m/%d") == "04/01") then
 	EID.descriptions["en_us"].sacrifice[1][3] = "{{Coin}} 50% chance of winning 1 coin at Sacrifice#75% chance if you're a genetic freak#!!! If you add Kurt Angle to the mix, your chances of winning drastically go down"
 end

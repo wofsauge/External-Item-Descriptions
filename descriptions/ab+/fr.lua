@@ -55,8 +55,8 @@ EID.descriptions["fr"].collectibles={
 	{"31", "Rouge à Lèvres de Maman", "↑ Portée {{ColorLime}}+5.25#↑ Hauteur des larmes {{ColorLime}}+0.5"},
 	{"32", "Cintre", "↑ Débit {{ColorLime}}+0.7"},
 	{"33", "Bible", "Permet à Isaac de voler pour la durée de la salle#Tue instantanément {{ColorCyan}}Mom's Foot{{ColorWhite}}, {{ColorCyan}}Mom's Heart{{ColorWhite}} et {{ColorCyan}}It Lives!{{ColorWhite}}#{{Warning}} Tue Isaac si utilisée pendant le combat contre {{ColorCyan}}Satan"},
-	{"34", "Livre de Bélial", "{{DevilChance}} Chance de Devil Deal {{ColorLime}}+12.5%#↑ Dégâts {{ColorLime}}+2#↑ Dégâts {{ColorLime}}+50% si Isaac possède {{ColorYellow}}Blood of the Martyr{{ColorWhite}}{{Collectible7}}"},
-	{"35", "Necronomicon", "Inflige 40 Dégâts à tous les ennemis de la salle"},
+	{"34", "Livre de Bélial", "{{DevilChance}} Chance de Devil Deal {{ColorLime}}+12.5%#↑ Dégâts{{ColorLime}} +2#↑ Dégâts {{ColorLime}}+50% si Isaac possède {{ColorYellow}}Blood of the Martyr{{ColorWhite}}{{Collectible7}}"},
+	{"35", "Necronomicon", "Inflige 40 dégâts à tous les ennemis de la salle"},
 	{"36", "Tas de Caca", "Pose un caca au sol#Le caca peut être placé devant un précipice et explosé pour créer un pont"},
 	{"37", "M. Boum", "Place une grosse bombe à la position d'Isaac#L'explosion de la bombe inflige 110 dégâts"},
 	{"38", "Tête de Tammy", "Tire 10 larmes en cercle autour d'Isaac"},
@@ -86,7 +86,7 @@ EID.descriptions["fr"].collectibles={
 	{"62", "Morsure de Vampire", "Tuer 13 ennemis soigne Isaac d'un demi-cœur rouge"},
 	{"63", "Pile Électrique", "Permet de surcharger les objets activables#Un objet complètement surchargé peut être utilisé deux fois d'affilée"},
 	{"64", "Soldes", "Réduit le prix des objets du shop de moitié#Posséder deux copies de cet objet rend les produits du shop gratuits"},
-	{"65", "Livre de Recettes Anarchistes", "Invoque 6 troll bombs dans la salle"},
+	{"65", "Guide du Petit Anarchiste", "Invoque 6 troll bombs"},
 	{"66", "Sablier", "Ralentit les ennemis pendant 8 secondes"},
 	{"67", "Sœurette Marie", "Suit Isaac et tire en même temps que lui"},
 	{"68", "Technologie", "Remplace les larmes d'Isaac par des lasers"},
@@ -107,7 +107,7 @@ EID.descriptions["fr"].collectibles={
 	{"83", "Clou Pointu", "{{SoulHeart}} +1 cœur d'âme#↑ Dégâts {{ColorLime}}+0.7#↓ Vitesse {{ColorError}}-0.18#Permet à Isaac de détruire les rochers en marchant dessus"},
 	{"84", "Aller au Fond des Choses", "Ouvre une trappe vers l'étage suivant#La trappe a 10% de chances de contenir une échelle de corde"},
 	{"85", "Jeu de Cartes", "Fait apparaître une carte"},
-	{"86", "Dent de Monstro", "{{ColorCyan}}Monstro{{ColorWhite}} tombe et écrase un ennemi au hasard#Dans une salle vide, {{ColorCyan}}Monstro{{ColorWhite}} écrase Isaac"},
+	{"86", "Dent de Monstro", "{{ColorCyan}}Monstro{{ColorWhite}} tombe et écrase un ennemi au hasard#Dans une salle vide, Monstro écrase Isaac"},
 	{"87", "Cornes de Loki", "Isaac tire parfois dans 4 directions à la fois#{{LuckSmall}} Effet affecté par la statistique de chance#{{ColorGrey}}(100% à 7 Chance}}"},
 	{"88", "P'tit Dodu", "S'élance dans la direction des tirs d'Isaac et inflige des dégâts de contact"},
 	{"89", "Morsure d'Araignée", "Isaac tire parfois une larme ralentissante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 15 Chance)"},
@@ -128,11 +128,11 @@ EID.descriptions["fr"].collectibles={
 	{"104", "Parasite", "Les larmes d'Isaac se divisent en deux au contact d'un obstacle ou d'un ennemi"},
 	{"105", "D6", "Rejoue les objets sur piédestal de la salle"},
 	{"106", "M. Méga", "↑ Dégâts des bombes {{ColorLime}}x2.25#{{Bomb}} +5 Bombes"},
-	{"107", "Ciseaux Cranteurs", "Sépare la tête d'Isaac de son corps#Le joueur contrôle la tête#Le corps pourchasse les ennemis et inflige des dégâts de contact"},
+	{"107", "Ciseaux Cranteurs", "Permet à Isaac de voler#Le corps d'Isaac se sépare de sa tête, pourchasse les ennemis et inflige des dégâts de contact"},
 	{"108", "Hostie", "Réduit tous les dégâts subis à un demi-cœur"},
 	{"109", "Avidité", "↑ Dégâts {{ColorLime}}+0.04{{ColorWhite}} pour chaque pièce au compteur"},
 	{"110", "Lentille de Maman", "20% de chances de tirer une larme paralysante#↑ Portée {{ColorLime}}+0.25#↑ Hauteur des larmes {{ColorLime}}+0.5#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 20 Chance)"},
-	{"111", "Haricot", "Isaac pète et empoisonne les ennemis à proximité"},
+	{"111", "Haricot", "Isaac pète, empoisonne, et inflige des dégâts aux ennemis à proximité"},
 	{"112", "Ange Gardien", "Orbite autour d'Isaac#Bloque les projectiles ennemis#Augmente la vitesse de rotation des autres familiers"},
 	{"113", "Bébé Démoniaque", "Tire automatiquement sur les ennemis à proximité"},
 	{"114", "Couteau de Maman", "Remplace les larmes d'Isaac par un couteau#Le couteau inflige {{ColorLime}}dégâts x2{{ColorWhite}} dans les mains d'Isaac et {{ColorLime}}dégâts x6{{ColorWhite}} au plus loin de lui"},
@@ -157,7 +157,7 @@ EID.descriptions["fr"].collectibles={
 	{"133", "Patte de Guppy", "Convertit 1 réceptacle de cœur en 3 cœurs d'âme"},
 	{"134", "Queue de Guppy", "{{ColorLime}}33%{{ColorWhite}} de chances de remplacer la récompense d'une salle par un coffre#{{ColorError}}33%{{ColorWhite}} de chance d'annuler la récompense d'une salle"},
 	{"135", "Perfusion", "Inflige un demi-cœur de dégâts à Isaac#Fait apparaître 1 à 3 pièces"},
-	{"136", "Mon Meilleur Ami", "Place une peluche en forme d'Isaac qui attire les ennemis et explose après 5 secondes"},
+	{"136", "Mon Meilleur Ami", "Place une peluche qui attire les ennemis et explose après 5 secondes"},
 	{"137", "Détonateur Télécommandé", "Les bombes d'Isaac n'explosent plus automatiquement#Utiliser l'objet fait exploser toutes les bombes placées par Isaac#{{Bomb}} +5 Bombes"},
 	{"138", "Stigmates", "{{Heart}} +1 réceptacle de cœur#↑ Dégâts {{ColorLime}}+0.3"},
 	{"139", "Sac à Main de Maman", "Permet à Isaac de porter deux trinkets"},
@@ -179,7 +179,7 @@ EID.descriptions["fr"].collectibles={
 	{"155", "Œil Baladeur", "Rebondit contre les murs de la salle et inflige des dégâts de contact"},
 	{"156", "Voile de Nonne", "Subir un dégât charge une barre de l'objet activable"},
 	{"157", "Soif de Sang", "Subir un dégât augmente les dégâts d'Isaac#L'augmentation de dégâts persiste pour la durée de l'étage"},
-	{"158", "Cristal", "Révèle l'intégralité de l'étage sur la carte#Fait apparaître une carte ou un cœur d'âme"},
+	{"158", "Boule de Cristal", "Révèle l'étage sur la carte#Fait apparaître une carte ou un cœur d'âme"},
 	{"159", "Esprit de la Nuit", "Permet à Isaac de voler#Larmes spectrales"},
 	{"160", "Fissure Céleste", "5 rayons de lumière frappent le sol à proximité des ennemis"},
 	{"161", "Ânkh", "Réincarne Isaac en {{ColorLightOrange}}???{{ColorWhite}} à sa mort"},
@@ -307,7 +307,7 @@ EID.descriptions["fr"].collectibles={
 	{"283", "D100", "Rejoue tous les objets sur piédestal, les ressources et les objets d'Isaac"},
 	{"284", "D4", "Rejoue tous les objets passifs d'Isaac"},
 	{"285", "D10", "Rejoue tous les ennemis de la salle"},
-	{"286", "Carte Blanche", "Active l'effet de la carte portée par Isaac sans la consommer"},
+	{"286", "Carte Blanche", "Déclenche l'effet de la carte portée par Isaac sans la consommer"},
 	{"287", "Livre des Secrets", "Donne l'effet de {{ColorYellow}}Treasure Map{{ColorWhite}} {{Collectible54}}, {{ColorYellow}}The Compass{{ColorWhite}} {{Collectible21}} ou {{ColorYellow}}Blue Map{{ColorWhite}} {{Collectible246}}#{{Timer}} L'effet dure un étage"},
 	{"288", "Boîte d'Araignées", "Invoque 1 à 4 araignées bleues"},
 	{"289", "Bougie Rouge", "Lance une flamme rouge#La flamme disparaît après avoir infligé des dégâts ou bloqué des tirs 5 fois"},
@@ -369,7 +369,7 @@ EID.descriptions["fr"].collectibles={
 	{"345", "Synthol", "↑ Dégâts {{ColorLime}}+1.0#↑ Portée {{ColorLime}}+5.25#↑ Hauteur des larmes {{ColorLime}}+0.5"},
 	{"346", "Casse-Croûte", "{{Heart}} +1 réceptacle de cœur"},
 	{"347", "Diplopie", "{{Warning}} USAGE UNIQUE {{Warning}}#Duplique tous les objets et ressources de la salle"},
-	{"348", "Placebo", "Active l'effet de la pilule portée par Isaac sans la consommer"},
+	{"348", "Placebo", "Déclenche l'effet de la pilule portée par Isaac sans la consommer"},
 	{"349", "Pièce en Bois", "50% de chances de faire apparaître une pièce"},
 	{"350", "Choc Toxique", "Entrer dans une salle empoisonne tous les ennemis#Les ennemis répandent une flaque toxique à leur mort"},
 	{"351", "Haricot Géant", "Pétrifie tous les ennemis de la salle#Inflige des dégâts et empoisonne tous les ennemis à proximité#Envoie une vague de rochers dans une direction aléatoire"},
@@ -448,7 +448,7 @@ EID.descriptions["fr"].collectibles={
 	{"424", "Sac en Papier", "Les pièces ont 10% de chances d'être converties en sachet {{GrabBag}}.#Les autres ressources ont 20% de chances d'être converties en sachet {{GrabBag}}#Fait apparaître un sachet "},
 	{"425", "Veilleuse", "Éclaire dans la direction des mouvements d'Isaac#Ralentit les ennemis et projectiles pris dans le rayon de lumière"},
 	{"426", "Admiratrice Obsessionnelle", "Imite les mouvements d'Isaac avec 3 secondes de délai#Inflige des dégâts de contact"},
-	{"427", "Bloc de TNT", "Place un tonneau de TNT qui peut être déplacé#Utiliser l'objet une seconde fois fait exploser le tonneau à distance"},
+	{"427", "Bloc de TNT", "Place un baril de TNT qui peut être déplacé#Utiliser l'objet une seconde fois fait exploser le baril à distance"},
 	{"428", "Pyjama", "{{SoulHeart}} +4 cœurs d'âme#Soin complet"},
 	{"429", "Tête du Gardien", "Toucher un ennemi avec une larme a 5% de chances de faire apparaître une pièce"},
 	{"430", "Papa Mouche", "Imite les mouvements d'Isaac avec 3 secondes de délai#Tire des larmes sur les ennemis à proximité"},
@@ -457,7 +457,7 @@ EID.descriptions["fr"].collectibles={
 	{"433", "Mon Ombre", "Subir un dégât terrifie tous les ennemis de la salle et invoque une sangsue amicale#La sangsue inflige 5 dégâts de contact par seconde#La sangsue meurt si elle subit trop de dégâts"},
 	{"434", "Bocal de Mouches", "Tuer un ennemi ajoute une mouche bleue au bocal#Le bocal peut contenir jusqu'à 20 mouches#Utiliser l'objet libère autant de mouches bleues qu'indiqué sur le bocal"},
 	{"435", "P'tit Loki", "Tire dans 4 directions à la fois"},
-	{"436", "Tasse de Lait", "Subir un dégât donne {{ColorLime}}débit +2{{ColorWhite}} pour la durée d'une salle"},
+	{"436", "Tasse de Lait", "Subir un dégât donne {{ColorLime}}débit +2{{ColorWhite}} pour une salle"},
 	{"437", "D7", "Fait rapparaître tous les ennemis de la salle et ferme les portes#Éliminer les ennemis fera apparaître la récompense de la salle à nouveau"},
 	{"438", "Tétine", "↑ Débit {{ColorLime}}+0.7#↑ Taille diminuée#{{SoulHeart}} +1 cœur d'âme"},
 	{"439", "Boîte de Maman", "↑ Chance {{ColorLime}}+1{{ColorWhite}} tant qu'Isaac porte l'objet#Génère un trinket#Double les effets des trinkets"},
@@ -497,16 +497,16 @@ EID.descriptions["fr"].collectibles={
 	{"473", "Gros Dodu", "Se déplace lentement dans la direction des tirs d'Isaac#Bloque les projectiles ennemis et inflige des dégâts de contact"},
 	{"474", "Amygdale", "Bloque les projectiles"},
 	{"475", "Suppo de Satan", "{{Warning}} USAGE UNIQUE {{Warning}}#Tue instantanément tous les ennemis et boss de la salle, puis tue Isaac 3 secondes après"},
-	{"476", "D1", "Duplique une des ressources présentes dans la salle"},
+	{"476", "D1", "Duplique une ressource aléatoire dans la salle"},
 	{"477", "Néant", "Absorbe tous les objets sur piédestal de la salle#Objets actifs :#{{Blank}} Les prochaines utilisations de Void activeront l'effet de tous les objets absorbés#Objets passifs :#{{Blank}} Augmente 2 stats aléatoires"},
 	{"478", "Pause", "Immobilise tous les ennemis de la salle#Les ennemis immobilisés peuvent infliger des dégâts de contact à Isaac#L'effet prend fin si Isaac tire"},
 	{"479", "Fondeuse", "Absorbe le trinket porté par Isaac et active son effet de manière permanente"},
 	{"480", "Composte", "Convertit toutes les ressources présentes dans la salle en mouches ou araignées bleues#Double les mouches et araignées bleues déjà présentes"},
-	{"481", "Pioche Pirate", "↑ Augmente une stat#↓ Diminue une stat#Donne aux larmes d'Isaac un effet aléatoire#Déforme visuellement les éléments de la salle#{{Timer}} L'effet dure une salle"},
+	{"481", "Pioche Pirate", "↑ Augmente une stat#↓ Diminue une stat#Donne aux larmes d'Isaac des effets aléatoires#Déforme visuellement les éléments de la salle#{{Timer}} L'effet dure une salle"},
 	{"482", "Télécommande", "Transforme Isaac en un autre personnage aléatoire#Retire de l'inventaire du personnage le dernier objet passif obtenu"},
 	{"483", "Mama Méga", "{{Warning}} USAGE UNIQUE {{Warning}}#{{Blank}} Provoque une onde de choc qui ravage toutes les salles inexplorées de l'étage d'une énorme explosion#Si Isaac possède une bombe dorée, utiliser Mama Méga la consomme et permet à l'objet d'être utilisé une seconde fois"},
 	{"484", "Attends, Quoi ?", "Isaac pète, repousse les ennemis et provoque une vague de rochers"},
-	{"485", "Pièce Tordue", "{{ColorLime}}50%{{ColorWhite}} de chances de dupliquer tous les objets, ressources et coffres de la salle#{{ColorError}}50%{{ColorWhite}} de chances de remplacer tous les objets, ressources et coffres de la salle par une pièce"},
+	{"485", "Pièce Tordue", "{{ColorLime}}50%{{ColorWhite}} de chances de dupliquer tous les objets et ressources de la salle#{{ColorError}}50%{{ColorWhite}} de chances de remplacer tous les objets et ressources de la salle par une pièce"},
 	{"486", "Lame Émoussée", "Inflige un dégât factice à Isaac qui ne retire pas de points de vie#Déclenche les effets qui s'activent quand Isaac subit des dégâts"},
 	{"487", "Épluche-Légumes", "↑ Dégâts {{ColorLime}}+0.2#Retire un réceptacle de cœur#Donne {{ColorYellow}}Cube of Meat{{ColorWhite}}{{Collectible73}}"},
 	{"488", "Métronome", "Active l'effet d'un objet activable ou passif aléatoire#{{Timer}} L'effet dure une salle"},
@@ -525,10 +525,10 @@ EID.descriptions["fr"].collectibles={
 	{"501", "Gosier d'Avarice", "{{Heart}} +1 réceptacle de cœur toutes les 25 pièces au compteur#{{CoinHeart}} Permet à {{ColorLightOrange}}Keeper{{ColorWhite}} d'avoir des réceptacles de pièce supplémentaires"},
 	{"502", "Grosse Pustule", "Isaac tire parfois une pustule qui inflige {{ColorLime}}dégâts x2{{ColorWhite}} et répand une flaque ralentissante#Subir un dégât tire une pustule"},
 	{"503", "P'tite Corne", "Isaac tire parfois une larme transperçante qui tue instantanément les ennemis qu'elle touche#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(20% à 15 Chance)"},
-	{"504", "Bout de Crotte", "Invoque une mouche qui tire automatiquement sur les ennemis à proximité"},
+	{"504", "Bout de Crotte", "Invoque une mouche immobile qui tire sur les ennemis à proximité"},
 	{"505", "Poké Go", "Entrer dans une salle hostile a 20% de chances d'invoquer un monstre allié"},
 	{"506", "Traîtrise", "Toucher un enenmi dans le dos avec une larme inflige le double de dégâts et le fait saigner#Le saignement retire 10% des PV totaux de l'ennemi toutes les 5 secondes"},
-	{"507", "Paille Aiguisée", "Inflige les dégâts d'Isaac à tous les ennemis de la salle#Retire 10% des PV totaux de tous les ennemis de la salle#Infliger des dégâts avec cet objet a 15% de chances de générer des demi-cœurs"},
+	{"507", "Paille Aiguisée", "Inflige les dégâts d'Isaac et retire 10% des PV totaux de tous les ennemis de la salle#Infliger des dégâts avec cet objet génère parfois un demi-cœur d'âme"},
 	{"508", "Rasoir de Maman", "Orbite autour d'Isaac#Fait saigner les ennemis qui entrent en contact avec lui#Le saignement retire 10% des PV totaux de l'ennemi toutes les 5 secondes"},
 	{"509", "Nœnœil", "Orbite autour d'Isaac#Tire une larme toutes les 2 secondes"},
 	{"510", "Délire", "Invoque un boss allié#{{Timer}} L'effet dure une salle"},
@@ -544,7 +544,7 @@ EID.descriptions["fr"].collectibles={
 	{"520", "Câbles de Démarrage", "Tuer 15 ennemis charge une barre de l'objet activable"},
 	{"521", "Coupon", "Rend gratuit un objet payant dans la salle#Fonctionne pour les coûts en pièces et en PV#Garantit un objet en solde au Shop {{Shop}} tant qu'Isaac porte l'objet"},
 	{"522", "Télékinésie", "Entoure Isaac d'une aura qui immobilise les projectiles ennemis#Après 3 secondes, les projectiles immobilisés sont renvoyés"},
-	{"523", "Carton de Déménagement", "Utiliser l'objet absorbe toutes les ressources et objets de la salle#Utiliser l'objet à nouveau pose les objets absorbés sur le sol"},
+	{"523", "Carton de Déménagement", "Utiliser l'objet absorbe toutes les ressources et objets de la salle#Utiliser l'objet à nouveau pose les éléments absorbés sur le sol"},
 	{"524", "Technologie Zéro", "Relie les larmes d'Isaac par des arcs électriques"},
 	{"525", "Lèpre", "Subir un dégât invoque une boule de chair qui bloque les projectiles ennemis#Plafonne à 3 boules#Les boules de chair peuvent être détruites"},
 	{"526", "Livre des 7 Sceaux", "Invoque un familier Cavalier de l'Apocalypse#Le cavalier et le type de locustes qu'il invoque changent toutes les 10 secondes"},
@@ -566,7 +566,7 @@ EID.descriptions["fr"].collectibles={
 	{"542", "Côte Cassée", "Orbite autour d'Isaac et dévie les projectiles"},
 	{"543", "Terre sacrée", "Subir un dégât fait apparaître un caca sacré entouré d'une aura#Quand Isaac se tient à l'intérieur de l'aura :#↑ Débit augmenté#Chance de nullifier un dégât subi"},
 	{"544", "Côte Pointue", "Pointe dans la direction où tire Isaac et inflige des dégâts de contact"},
-	{"545", "Livre des Morts", "Invoque une entité squelettique pour chaque ennemi tué dans la salle"},
+	{"545", "Livre des Morts", "Invoque jusqu'à 8 entités squelettiques selon le nombre d'ennemis tués dans la salle"},
 	{"546", "Bague de Papa", "Entoure Isaac d'un halo qui pétrifie les ennemis au contact"},
 	{"547", "Acte de Divorce", "{{EmptyBoneHeart}} +1 cœur d'os#↑ Débit {{ColorLime}}+0.7#Fait apparaître {{ColorYellow}}Mysterious Paper{{Trinket21}}"},
 	{"548", "Mandibule", "Part dans la direction des tirs d'Isaac puis revient#Inflige des dégâts de contact et peut ramener des ressources"},
@@ -574,14 +574,78 @@ EID.descriptions["fr"].collectibles={
 	{"550", "Pelle Brisée", "Le pied de {{ColorCyan}}Mom{{ColorWhite}} tente en permanence d'écraser Isaac#Utiliser cet objet cesse les attaques pour la durée d'une salle ou d'une vague#{{Warning}} Poser cet objet sur un piédestal puis quitter la salle le fait disparaître#{{UltraSecretRoom}} Emporte la pelle avec toi le plus loin possible"},
 	{"551", "Pelle Brisée", "Le deuxième morceau d'une pelle maudite#{{UltraSecretRoom}} Permet de déterrer quelque chose d'enfoui dans la {{ColorTransform}}Dark Room"},
 	{"552", "Pelle de Maman", "Ouvre une trappe vers l'étage suivant#{{UltraSecretRoom}} Permet de déterrer quelque chose d'enfoui dans la {{ColorTransform}}Dark Room"},
-		
+
+}
+
+
+---------- Modifiers ----------
+
+-- Effect of Car battery on Active Items
+EID.descriptions[languageCode].carBattery = {
+	[34] = {"+2", "+4"}, -- Book of Belial
+	[35] = {40, 80}, -- Necronomicon
+	[37] = {110, 220}, -- Mr. Boom
+	[38] = {10, 20}, --Tammy's Head
+	[45] = {"un cœur rouge", "2 {{ColorWhite}}cœurs rouges"}, -- Yum Heart
+	[58] = {10, 20}, -- Book of Shadows
+	[65] = {6, 12}, -- Anarchist Cookbook
+	[66] = {8, 16}, -- The Hourglass
+	[77] = {6, 12}, -- My Little Unicorn
+	[78] = {"+1 cœur", "+2 {{ColorWhite}}cœurs"}, -- Book of Revelations
+	[83] = {"{{BlackHeart}} {{BlinkYellowGreen}}+1 cœur noir#↑ Dégâts {{BlinkYellowGreen}}+1.4#↓ Vitesse {{ColorError}}-0.18#Permet à Isaac d'infliger des dégâts de contact et d'écraser les obstacles#{{Timer}} L'effet dure une salle"}, -- The Nail
+	[85] = {"une carte", "2 {{ColorWhite}}cartes"}, -- Deck of Cards
+	[86] = "{{BlinkYellowGreen}}Double{{ColorWhite}} les dégâts infligés par Monstro", -- Monstro's Tooth
+	[93] = {6.5, 13}, -- The Gamekid
+	[97] = {"une ressource aléatoire", "2{{ColorWhite}} ressources aléatoires"},
+	[102] = {"une pilule", "2{{ColorWhite}} pilules"}, --Mom's Bottle of Pills
+	[107] = {"Permet à Isaac de voler#{{BlinkYellowGreen}}2{{ColorWhite}} corps d'Isaac se séparent de sa tête, pourchassent les ennemis et infligent des dégâts de contact"}, -- The Pinking Shears
+	[111] = "Double les dégâts du pet", -- The Bean
+	[123] = {"un familier aléatoire", "2{{ColorWhite}} familiers aléatoires"}, -- Monster Manual
+	[124] = {"d'un objet activable aléatoire","{{ColorWhite}}de {{BlinkYellowGreen}}2{{ColorWhite}} objets activables aléatoires"}, -- Dead Sea Scrolls
+	[136] = {"Place {{BlinkYellowGreen}}2{{ColorWhite}} peluches qui attirent les ennemis et explosent après 5 secondes"}, -- Best Friend
+	[145] = {"2 à 4","4 à 7"}, -- Guppy's Head
+	[146] = {"{{Heart}} +1 {{BlinkYellowGreen}}réceptacle de cœur"}, -- Prayer Card
+	[158] = {"une carte ou un cœur d'âme", "2{{ColorWhite}} cartes ou cœurs d'âme"}, -- Crystal Ball	
+	[171] = {10, 20}, -- Spider Butt
+	[286] = {"Déclenche", "{{ColorWhite}}Déclenche {{BlinkYellowGreen}}2 fois"}, -- Blank Card
+	[288] = {"1 à 4", "2 à 8"}, -- Box of Spiders
+	[292] = {"+1 cœur noir", "+2 {{ColorWhite}}cœurs noirs"}, -- Satanic Bible
+	[293] = "Double les dégâts du laser", -- Head of Krampus
+	[298] = {"6", "12"}, -- Unicorn Stump
+	[348] = {"Déclenche", "{{ColorWhite}}Déclenche{{BlinkYellowGreen}} 2 fois"}, --Placebo
+	[349] = {"25% de chances de faire apparaître une pièce#25% de chances de faire apparaître {{BlinkYellowGreen}}2 pièces"},
+	[351] = "Double les dégâts du pet", -- Mega Bean
+	[357] = {"un double", "2{{ColorWhite}} doubles"}, -- Box of Friends
+	[383] = {6, 36}, -- Tear Detonator
+	[421] = "Double les dégâts du pet", -- Kidney Bean
+	[427] = {"Place {{BlinkYellowGreen}}2{{ColorWhite}} barils de TNT qui peuvent être déplacés#Utiliser l'objet une seconde fois fait exploser les barils à distance"}, -- Mine Crafter
+	[437] = {"tous les ennemis de", "{{BlinkYellowRed}}le double{{ColorWhite}} d'ennemis dans"}, -- D7
+	[439] = {"une babiole", "2 {{ColorWhite}}babioles"}, -- Mom's Box
+	[476] = {"une ressource aléatoire", "2{{ColorWhite}} ressources aléatoires"}, --D1
+	[477] = {"déclenchent l'effet de tous les objets absorbés", "{{ColorWhite}}déclenchent {{BlinkYellowGreen}}2 fois{{ColorWhite}} l'effet des objets absorbés"}, -- Void
+	[480] = {"Double", "Quadruple"}, -- Compost
+	[481] = {"une stat", "2{{ColorWhite}} stats", "une stat", "2{{ColorWhite}} stats"}, -- Dataminer
+	[482] = {"le dernier objet passif obtenu","{{ColorWhite}}les {{BlinkYellowRed}}2{{ColorWhite}} derniers objets passifs obtenus"}, -- Clicker
+	[485] = {"{{BlinkYellowGreen}}25%{{ColorWhite}} de chances de quadrupler tous les objets et ressources de la salle{{ColorLime}}25%{{ColorWhite}} de chances de garder la même quantité d'objets et de ressources#{{BlinkYellowRed}}50%{{ColorWhite}} de chances de remplacer tous les objets, ressources et coffres de la salle par une pièce"}, -- Crooked Penny
+	[486] = {"un dégât factice à Isaac qui ne retire", "2{{ColorWhite}} dégâts factices à Isaac qui ne retirent"}, -- Dull Razor
+	[487] = {"↑ Dégâts {{BlinkYellowGreen}}+0.4#↓ {{BlinkYellowRed}}-2 réceptacles de cœur#Donne {{BlinkYellowGreen}}2 {{ColorYellow}}Cubes de Viande{{ColorWhite}}{{Collectible73}}"}, -- Potato Peeler
+	[488] = {"d'un objet activable ou passif aléatoire", "{{ColorWhite}}de {{BlinkYellowGreen}}2{{ColorWhite}} objets activables ou passifs aléatoires"}, -- Metronome
+	[489] = "Déclenche l'effet d'un second dé", -- D Infinity
+	[504] = {"Invoque {{BlinkYellowGreen}}2{{ColorWhite}} mouches immobiles qui tirent sur les ennemis à proximité"}, -- Brown Nugget
+	[507] = {"Inflige {{BlinkYellowGreen}}2x{{ColorWhite}} les dégâts d'Isaac et retire {{BlinkYellowGreen}}20%{{ColorWhite}} des PV totaux de tous les ennemis de la salle#Infliger des dégâts avec cet objet génère parfois un demi-cœur d'âme"}, -- Sharp Straw
+	[510] = {"un boss allié", "2 {{ColorWhite}}boss alliés"}, -- Delirious
+	[516] = {"Place {{BlinkYellowGreen}}2{{ColorWhite}} arroseurs à la position d'Isaac#Les arroseurs tournent sur eux-même et tirent des larmes identiques à celles d'Isaac"}, -- Sprinker
+	[521] = {"gratuit un objet payant", "{{ColorWhite}}gratuits {{BlinkYellowGreen}}2{{ColorWhite}} objets payants"}, -- Coupon
+	[523] = {"pose les éléments absorbés sur le sol","échange le contenu de la boîte et les ressources au sol"}, -- Moving Box
+	[545] = {8, 16}, -- Book of the Dead
+	[550] = {"d'une salle ou d'une vague", "{{ColorWhite}}de {{BlinkYellowGreen}}2{{ColorWhite}} salles {{ColorWhite}}ou {{BlinkYellowGreen}}2{{ColorWhite}} vagues"}, -- Broken Shovel
 }
 
 ---------- Trinkets ----------
 EID.descriptions["fr"].trinkets={
 	{"1", "Pièce Avalée", "Subir un dégât fait apparaître une pièce"},
 	{"2", "Caca Pétrifié", "Détruire un caca a 50% de chances de faire apparaître une ressource"},
-	{"3", "Pile AAA", "Termine de charger l'objet activable s'il lui manque 1 charge"},
+	{"3", "Pile AAA", "Termine de charger l'objet activable s'il lui manque une charge"},
 	{"4", "Télécommande Cassée", "Utiliser un objet activable téléporte Isaac dans une salle aléatoire"},
 	{"5", "Cœur Violet", "Double les chances de rencontrer des ennemis et boss d'élite"},
 	{"6", "Aimant Démagnétisé", "Isaac attire les pièces"},
@@ -595,19 +659,19 @@ EID.descriptions["fr"].trinkets={
 	{"14", "Callosités", "Isaac ne subit plus les dégâts des piques et des flaques au sol"},
 	{"15", "Caillou Porte-Bonheur", "Détruire un obstacle fait apparaître 1 pièce"},
 	{"16", "Ongle de Pied de Maman", "Le pied de {{ColorCyan}}Mom{{ColorWhite}} écrase un endroit au hasard dans la salle toutes les 60 secondes"},
-	{"17", "Noir à Lèvres", "Augmente la fréquence d'apparition des cœurs noirs"},
-	{"18", "Brochure Religieuse", "Augmente la fréquence d'apparition des cœurs éternels"},
+	{"17", "Noir à Lèvres", "Les cœurs d'âme au sol ont 10% de chances d'être convertis en cœurs noirs"},
+	{"18", "Brochure Religieuse", "Augmente de 3% la fréquence d'apparition des cœurs éternels"},
 	{"19", "Trombone", "Ouvrir un coffre doré {{GoldenChest}} ne diminue pas le compteur de clés"},
 	{"20", "Patte de Singe", "Descendre à un demi-cœur de vie totale fait apparaître un cœur noir#Après avoir fait apparaître 3 cœurs noirs, le trinket disparaît"},
 	{"21", "Papier Mystérieux", "Donne parfois l'effet de {{ColorYellow}}The Polaroid {{Collectible327}}{{ColorWhite}}, {{ColorYellow}}The Negative {{Collectible328}}{{ColorWhite}}, {{ColorYellow}}Missing Poster {{Trinket23}}{{ColorWhite}} et {{ColorYellow}}A Missing Page {{Trinket48}}{{ColorWhite}}"},
 	{"22", "Queue de Diablotin", "Remplace 80% des cœurs ramassables par des clés#Remplace les 20% restants par des cœurs noirs"},
 	{"23", "Avis de Recherche", "À sa mort, Isaac ressuscite en {{ColorLightOrange}}The Lost#Mourir dans une Sacrifice Room {{SacrificeRoom}} en portant ce trinket débloque {{ColorLightOrange}}The Lost#Le trinket disparaît à la mort d'Isaac"},
-	{"24", "Pièce de Fesse", "Ramasser une pièce fait péter Isaac#Augmente les chances de trouver des pièces dans les cacas"},
+	{"24", "Pièce de Fesse", "Ramasser une pièce fait péter Isaac#Augmente de 20% les chances de trouver une pièce dans un caca"},
 	{"25", "Chocolat Douteux", "Isaac pète ou fait apparaître un caca à intervalles irréguliers"},
 	{"26", "Ver Droit", "↑ Portée {{ColorLime}}+10#La trajectoire des larmes d'Isaac forme des vagues carrées"},
 	{"27", "Ver Long", "↑ Vitesse des tirs {{ColorLime}}+0.5"},
 	{"28", "Ânkh Brisée", "À sa mort, Isaac a 22% de chances de ressusciter en {{ColorLightOrange}}???"},
-	{"29", "Tête de Poisson", "Subir un dégât invoque 1 mouche bleue"},
+	{"29", "Tête de Poisson", "Subir un dégât invoque une mouche bleue"},
 	{"30", "Conjonctivite", "Isaac tire parfois une larme empoisonnée#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 18 Chance)"},
 	{"31", "Punaise", "Isaac tire parfois une larme spectrale transperçante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 18 Chance)"},
 	{"32", "Psilocybe Lancéolé", "Active parfois l'effet de {{ColorYellow}}Mini Mush{{ColorWhite}} {{Collectible71}}, {{ColorYellow}}Odd Mushroom{{ColorWhite}} {{Collectible121}}, {{ColorYellow}}Odd Mushroom{{ColorWhite}} {{Collectible120}} ou {{ColorYellow}}The Compass{{ColorWhite}} {{Collectible21}} pour la durée d'une salle"},
@@ -648,29 +712,29 @@ EID.descriptions["fr"].trinkets={
 	{"67", "Dé Fêlé", "Subir un dégât active l'effet du {{ColorYellow}}D6{{ColorWhite}} {{Collectible105}}, {{ColorYellow}}D8{{ColorWhite}} {{Collectible406}}, {{ColorYellow}}D12{{ColorWhite}} {{Collectible386}} ou {{ColorYellow}}D20{{ColorWhite}} {{Collectible166}}"},
 	{"68", "Aimant au Néodyme", "Isaac attire les ressources et les ennemis"},
 	{"69", "Positif Décoloré", "Camoufle parfois Isaac et étourdit les ennemis"},
-	{"70", "Lente", "Invoque parfois 1 araignée bleue dans les salles hostiles"},
+	{"70", "Lente", "Invoque parfois une araignée bleue dans les salles hostiles"},
 	{"71", "Vessie de Bob", "Les bombes d'Isaac répandent une flaque corrosive sur le sol"},
-	{"72", "Pile Bouton", "Augmente la fréquence d'apparition des piles#Terminer une salle charge parfois 1 barre supplémentaire de l'objet activable"},
+	{"72", "Pile Bouton", "Augmente la fréquence d'apparition des piles#Terminer une salle charge parfois une barre supplémentaire de l'objet activable"},
 	{"73", "Détonateur", "Les bombes d'Isaac ont 10% de chances de faire apparaître une bombe ramassable en explosant"},
-	{"74", "Détecteur de Métaux", "Augmente les probabilités de trouver l'entrée d'un Crawl Space {{LadderRoom}}"},
+	{"74", "Détecteur de Métaux", "Augmente de 0.5% les chances de trouver l'entrée d'un Crawl Space {{LadderRoom}}"},
 	{"75", "404", "Active l'effet d'un trinket aléatoire à chaque salle"},
 	{"76", "Jeton de Poker", "{{ColorLime}}50%{{ColorWhite}} de chances de doubler le contenu d'un coffre#{{ColorError}}50%{{ColorWhite}} de chances de remplacer le contenu d'un coffre par une mouche"},
 	{"77", "Cloque", "Augmente le recul infligé par les larmes d'Isaac"},
-	{"78", "Grande Aiguille", "Les effets infligés aux ennemis durent 2 fois plus longtemps"},
+	{"78", "Grande Aiguille", "Double la durée des effets infligés aux ennemis"},
 	{"79", "Histoire Sans Fin", "Utiliser une pilule, une carte ou une rune a 25% de chances d'en faire apparaître une copie"},
 	{"80", "Plume Noire", "↑ Dégâts {{ColorLime}}+0.2{{ColorWhite}} pour chaque objet démoniaque dans l'inventaire d'Isaac"},
-	{"81", "Rage Aveugle", "Augmente la durée de l'invulnérabilité accordée à Isaac après qu'il a subi un dégât"},
+	{"81", "Rage Aveugle", "Double la durée de l'invulnérabilité accordée à Isaac après qu'il a subi un dégât"},
 	{"82", "Fer à Cheval Doré", "Les Treasure Rooms {{TreasureRoom}} ont {{ColorLime}}+15%{{ColorWhite}} de chances de proposer un choix entre deux objets"},
 	{"83", "Clé du Magasin", "Permet d'ouvrir gratuitement les portes des Shops {{Shop}}"},
 	{"84", "Côte d'Avarice", "Empêche {{ColorCyan}}Greed{{ColorWhite}} et {{ColorCyan}}Super Greed{{ColorWhite}} d'apparaître dans les Shops {{Shop}}"},
 	{"85", "Karma", "Faire un don à une boîte à dons a 33% de chances de:#Soigner 1 cœur rouge {{ColorSilver}}(40%)#Donner 1 pièce {{ColorSilver}}(40%)#Donner {{ColorLime}}Chance +1 {{ColorSilver}}(15%)#Invoquer un mendiant {{ColorSilver}}(5%)"},
-	{"86", "Petite Larve", "Détruire un caca fait apparaître 1 mouche bleue"},
+	{"86", "Petite Larve", "Détruire un caca invoque une mouche bleue"},
 	{"87", "Médaillon de Maman", "Utiliser une clé soigne Isaac d'un demi-cœur rouge#Remplace les demi-cœurs rouges au sol par des cœurs entiers"},
 	{"88", "NON !", "Empêche la génération d'objets activables"},
 	{"89", "Laisse Pour Enfants", "Réduit la distance entre les familiers d'Isaac"},
 	{"90", "Bouchon Brun", "Les cacas détruits explosent et infligent 100 dégâts"},
 	{"91", "Méconium", "Augmente la fréquence d'apparition des cacas noirs"},
-	{"92", "Couronne Fêlée", "↑ Les bonus de stats donnés par les objets d'Isaac sont augmentés de {{ColorLime}}33%#↑ Débit {{ColorLime}}+0.2"},
+	{"92", "Couronne Fêlée", "↑ Débit {{ColorLime}}+0.2#↑ Augmente de {{ColorLime}}33%{{ColorWhite}} les bonus de stats donnés par les objets d'Isaac"},
 	{"93", "Couche Usagée", "Les mouches ennemies sont parfois inoffensives"},
 	{"94", "Queue de Poisson", "Double les apparitions de mouches et araignées bleues"},
 	{"95", "Dent Noircie", "Isaac tire parfois une dent morte qui inflige {{ColorLime}}dégâts x2{{ColorWhite}} et empoisonne les ennemis#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 32 Chance)"},
@@ -713,12 +777,12 @@ EID.descriptions["fr"].trinkets={
 EID.descriptions["fr"].cards={
 	{"1", "0 - Le Mat", "Téléporte Isaac dans la première salle de l'étage"},
 	{"2", "I - Le Bateleur", "Larmes autoguidées#{{Timer}} L'effet dure une salle"},
-	{"3", "II - La Papesse", "Le pied de {{ColorCyan}}Mom{{ColorWhite}} écrase l'ennemi de la salle avec le plus de PV#Dans une salle sans ennemis, le pied écrase Isaac"},
-	{"4", "III - L'Impératrice", "↑ Dégâts {{ColorLime}}+2.35#↑ Vitesse {{ColorLime}}+0.3#{{Timer}} L'effet dure une salle"},
+	{"3", "II - La Papesse", "Le pied de {{ColorCyan}}Mom{{ColorWhite}} écrase l'ennemi de la salle avec le plus de PV#Dans une salle vide, le pied écrase Isaac"},
+	{"4", "III - L'Impératrice", "↑ Dégâts {{ColorLime}}+1.5#↑ Vitesse {{ColorLime}}+0.3#{{Timer}} L'effet dure une salle"},
 	{"5", "IV - L'Empereur", "Téléporte Isaac dans la Boss Room {{BossRoom}}"},
 	{"6", "V - Le Pape", "Fait apparaître 2 cœurs d'âme"},
 	{"7", "VI - L'Amoureux", "Fait apparaître 2 cœurs rouges"},
-	{"8", "VII - Le Chariot", "↑ Vitesse {{ColorLime}}+0.28#Isaac devient invulnérable#Isaac inflige 40 dégâts de contact par seconde#{{Timer}} L'effet dure une salle"},
+	{"8", "VII - Le Chariot", "↑ Vitesse {{ColorLime}}+0.28#Isaac devient invulnérable et inflige 40 dégâts de contact par seconde#{{Timer}} L'effet dure 6 secondes"},
 	{"9", "VIII - La Justice", "Fait apparaître une clé, une bombe, une pièce et un cœur"},
 	{"10", "IX - L'Ermite", "Téléporte Isaac dans le Shop {{Shop}}"},
 	{"11", "X - La Roue de Fortune", "Fait apparaître une machine à sous {{Slotmachine}}"},
@@ -731,7 +795,7 @@ EID.descriptions["fr"].cards={
 	{"18", "XVII - L'Étoile", "Téléporte Isaac dans la Treasure Room {{TreasureRoom}}"},
 	{"19", "XVIII - La Lune", "Téléporte Isaac dans la Secret Room {{SecretRoom}}"},
 	{"20", "XIX - Le Soleil", "Inflige 100 dégâts à tous les ennemis de la salle#Révèle l'intégralité de l'étage sur la carte#Soin complet"},
-	{"21", "XX - Le Jugement", "Invoque un mendiant {{Beggar}}"},
+	{"21", "XX - Le Jugement", "Invoque un mendiant"},
 	{"22", "XXI - Le Monde", "Révèle l'intégralité de l'étage sur la carte"},
 	{"23", "2 de Trèfle", "Multiplie le nombre de bombes d'Isaac par 2#{{Bomb}} +2 bombes si Isaac ne possède aucune bombe"},
 	{"24", "2 de Carreau", "Multiplie le nombre de pièces d'Isaac par 2#{{Coin}} +2 pièces si Isaac ne possède aucune pièce"},
@@ -757,7 +821,7 @@ EID.descriptions["fr"].cards={
 	{"44", "Carte des Règles", "Donne un indice sur un des secrets du jeu"},
 	{"45", "Une Carte Limite Limite", "Couvre la totalité du sol de la salle de cacas"},
 	{"46", "Roi Suicidaire", "Tue instantanément Isaac et fait apparaître 10 ressources ou objets dans la salle#Les objets générés proviennent de la banque d'objets de la salle où la carte a été utilisée"},
-	{"47", "Carte Chance", "Ouvre toutes les portes de la salle#Peut également ouvrir la majorité des portes spéciales"},
+	{"47", "Carte Chance", "Ouvre toutes les portes de la salle, y compris la majorité des portes spéciales"},
 	{"48", "Carte ?", "Utilise l'objet activable d'Isaac sans le décharger#Déclenche l'effet des objets activables à usage unique sans les faire disparaître"},
 	{"49", "Fragment de Dé", "Rejoue tous les objets et ressources présentes dans la salle"},
 	{"50", "Appel d'Urgence", "2 mains de {{ColorCyan}}Mom{{ColorWhite}} attrapent un ennemi chacune, leur infligent 40 dégâts et les paralysent"},
@@ -820,7 +884,7 @@ EID.descriptions["fr"].pills={
 	{"44", "Bleuargh !", "Tire une larme explosive qui inflige 200 dégâts"},
 	{"45", "Morphine", "Rend Isaac temporairement invulnérable"},
 	{"46", "Bleurp !", "Isaac recrache la dernière pilule avalée :"},
-} 
+}
 
 ---------- Sacrifice Room ----------
 EID.descriptions["fr"].sacrificeHeader = "Récompense du prochain sacrifice"
@@ -914,7 +978,7 @@ EID.descriptions["fr"].PickupNames = {
 	["5.90.0"] = "{{Crafting19}} Pile", --AB+ didn't have subtypes for batteries
 	["5.90.1"] = "{{Crafting19}} Pile", ["5.90.2"] = "{{Crafting18}} Micro pile", ["5.90.3"] = "{{Crafting20}} Méga pile", ["5.90.4"] = "{{Crafting28}} Pile dorée",
 
-	["5.50"] = "{{Chest}} Coffre", ["5.51"] = "{{BombChest}} Coffre en pierre", ["5.52"] = "{{SpikedChest}} Coffre à pics", ["5.53"] = "{{EternalChest}} Coffre éternel", ["5.54"] = "{{MimicChest}} Coffre piégé", ["5.55"] = "{{OldChest}} Coffre antique", ["5.56"] = "{{WoodenChest}} Coffre en bois", ["5.57"] = "{{MegaChest}} Coffre géant", ["5.58"] = "{{HauntedChest}} Coffre hanté", ["5.60"] = "{{GoldenChest}} Coffre doré", ["5.360"] = "{{RedChest}} Coffre rouge",  
+	["5.50"] = "{{Chest}} Coffre", ["5.51"] = "{{BombChest}} Coffre en pierre", ["5.52"] = "{{SpikedChest}} Coffre à pics", ["5.53"] = "{{EternalChest}} Coffre éternel", ["5.54"] = "{{MimicChest}} Coffre piégé", ["5.55"] = "{{OldChest}} Coffre antique", ["5.56"] = "{{WoodenChest}} Coffre en bois", ["5.57"] = "{{MegaChest}} Coffre géant", ["5.58"] = "{{HauntedChest}} Coffre hanté", ["5.60"] = "{{GoldenChest}} Coffre doré", ["5.360"] = "{{RedChest}} Coffre rouge",
 
 	["5.69"] = "{{GrabBag}} Sachet", ["5.69.1"] = "{{GrabBag}} Sachet", ["5.69.2"] = "{{BlackSack}} Sac Noir",
 
