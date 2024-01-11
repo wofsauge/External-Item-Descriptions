@@ -97,11 +97,6 @@ function EID:CheckGlitchedItemConfig(id)
 	
 	if REPENTOGON then
 		-- Use REPENTOGON to print what base item this glitched item gives, and its stat increases
-		-- If it's an active, these are given to you upon using the item, so let's print an "On use:" first
-		if itemConfig.Type == ItemType.ITEM_ACTIVE then
-			lastEffectTrigger = "active"
-			attributes = attributes .. "{{Blank}} " .. triggerColors["active"] .. localizedNames["active"]
-		end
 		local item = ProceduralItemManager.GetProceduralItem(maxNumber - 1 - id)
 		if item:GetTargetItem() then
 			-- Glitched items grant a random collectible/trinket
@@ -114,6 +109,11 @@ function EID:CheckGlitchedItemConfig(id)
 				itemType = 350
 			end
 			attributes = attributes .. localizedNames["grants"] .. itemText .. innerItem.ID .. "}} " .. EID:getObjectName(5, itemType, innerItem.ID) .. "#"
+		end
+		-- If it's an active, these are given to you upon using the item, so let's print an "On use:" first
+		if itemConfig.Type == ItemType.ITEM_ACTIVE then
+			lastEffectTrigger = "active"
+			attributes = attributes .. "{{Blank}} " .. triggerColors["active"] .. localizedNames["active"]
 		end
 		local voidNames = EID:getDescriptionEntry("VoidNames")
 		for i,func in ipairs(getFunctions) do
