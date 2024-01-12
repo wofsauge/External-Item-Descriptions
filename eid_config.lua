@@ -433,7 +433,7 @@ EID.UserConfig = {
 	-- Default = false
 	["ShowCursor"] = false,
 
-	
+
 	---------- Repentogon ----------
 	-- The following options only affect features that require the API extention "Repentogon" to be installed.
 	-- Website: https://repentogon.com/index.html 
@@ -442,6 +442,9 @@ EID.UserConfig = {
 	-- Default = true
 	["RGON_ShowOnCollectionPage"] = true,
 
+	-- Toggles achievement progress descriptions for donation machines
+	-- Default = true
+	["RGON_DonationMachineDescriptions"] = true,
 
 
 	---------- Misc ----------
@@ -602,6 +605,7 @@ EID.DefaultConfig = {
 	["ShowCursor"] = false,
 
 	["RGON_ShowOnCollectionPage"] = true,
+	["RGON_DonationMachineDescriptions"] = true,
 
 	["ErrorMessage"] = "[Effect not defined]",
 	["TextColor"] = "ColorEIDText",

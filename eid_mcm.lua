@@ -728,7 +728,12 @@ if MCMLoaded then
 				Info = {"Color in which item names are colored to highlight that this item needs to be collected for the collection page"}
 			}
 		)
-		EID:AddBooleanSetting("Repentogon", "RGON_ShowOnCollectionPage", "Show descriptions  on collection page", { infoText = "Displays item effects when navigating the collection page in the main menu."})
+		EID:AddBooleanSetting("Repentogon", "RGON_ShowOnCollectionPage", "Show descriptions on collection page", { infoText = "Displays item effects when navigating the collection page in the main menu."})
+		
+		-- Achievement tracking section
+		MCM.AddSpace("EID", "Repentogon")
+		MCM.AddText("EID", "Repentogon", "Achievement tracking")
+		EID:AddBooleanSetting("Repentogon", "RGON_DonationMachineDescriptions", "Donation machine progress", { infoText = "Displays the number of coins required to gain the next achievement from donation machines"})
 	end
 	---------------------------------------------------------------------------
 	----------------------------Savegame Config--------------------------------

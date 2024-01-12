@@ -98,3 +98,53 @@ function EID:BoCTrackBagHolding() end
 
 function EID:BoCDetectBagContentShift() end
 
+-----------------------Descriptions & Modifiers --------------------------
+local oldHasDescription = EID.hasDescription
+function EID:hasDescription(entity)
+	local oldReturnVal = oldHasDescription(_,entity)
+	-- repentogon related checks
+
+	-- check if donation machines should have a description
+	if entity.Type == 6 and (entity.Variant == 8 or entity.Variant == 11) and entity.SubType == 0 then
+		local isGreed = entity.Variant == 11
+		local eventCounter = isGreed and EventCounter.GREED_DONATION_MACHINE_COUNTER or
+			EventCounter.DONATION_MACHINE_COUNTER
+		local totalDonations = Isaac.GetPersistentGameData():GetEventCounter(eventCounter)
+
+		return EID.Config["RGON_DonationMachineDescriptions"] and totalDonations < 1000
+	end
+	return oldReturnVal
+end
+
+
+local requirementsDonationMachine = { 10, 20, 50, 100, 150, 200, 400, 600, 900, 999 }
+local requirementsGreedDonationMachine = { 2, 14, 33, 68, 111, 234, 439, 500, 666, 879, 999, 1000 }
+local function DonationMachineCallback(descObj)
+	local isGreed = descObj.ObjVariant == 11
+	local eventCounter = isGreed and EventCounter.GREED_DONATION_MACHINE_COUNTER or
+		EventCounter.DONATION_MACHINE_COUNTER
+	local rewardsTable = isGreed and requirementsGreedDonationMachine or requirementsDonationMachine
+	local totalDonations = Isaac.GetPersistentGameData():GetEventCounter(eventCounter)
+
+	local coinsNeeded = 0
+	for _, value in ipairs(rewardsTable) do
+		if totalDonations < value then
+			coinsNeeded = value
+			break
+		end
+	end
+	descObj.Description = string.gsub(descObj.Description, "{1}", coinsNeeded - totalDonations)
+	descObj.Description = string.gsub(descObj.Description, "{2}", coinsNeeded)
+	descObj.Icon = EID.InlineIcons["DonationMachine"]
+	return descObj
+end
+
+local function RepentogonModifierConditions(descObj)
+	-- Donation machine and Greed donation machine description
+	if descObj.ObjType == 6 and (descObj.ObjVariant == 8 or descObj.ObjVariant == 11) then
+		return { DonationMachineCallback }
+	end
+
+	return false
+end
+EID:addDescriptionModifier("EID Repentogon", RepentogonModifierConditions, nil)

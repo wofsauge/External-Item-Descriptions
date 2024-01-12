@@ -1196,3 +1196,8 @@ if EID.enableDebug then
 	EID.descriptions[languageCode].repCards = repCards
 	EID.descriptions[languageCode].repPills = repPills
 end
+
+if REPENTOGON then
+	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "Donation Machine", "{1} of {2} coins remaining until next achievement#{{Luck}} 2% chance for +1 Luck when donating#{{AngelRoom}} Donating 10 coins increases Angel Room chance"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Greed Donation Machine", "{{ColorGold}}{1} of {2}{{CR}} coins remaining until next achievement"}
+end
