@@ -414,6 +414,10 @@ EID.UserConfig = {
 	 -- Default: 0   (Deactivate all Savegame features)
 	 ["SaveGameNumber"] = 0,
 
+	 -- Highlight items, if they need to be collected for the collection page
+	 -- Default: true
+	 ["ItemCollectionIndicator"] = true,
+
 	 -- Color in which the name of an item should be highlighted, which needs to be collected for the collection page
 	-- Color names are defined in "eid_data.lua" (line 365)
 	 -- Default: "ColorFade"
@@ -428,6 +432,17 @@ EID.UserConfig = {
 	-- Toggles the custom mouse cursor
 	-- Default = false
 	["ShowCursor"] = false,
+
+	
+	---------- Repentogon ----------
+	-- The following options only affect features that require the API extention "Repentogon" to be installed.
+	-- Website: https://repentogon.com/index.html 
+
+	-- Toggles descriptions to be visible, when using the item collection page in the main menu.
+	-- Default = true
+	["RGON_ShowOnCollectionPage"] = true,
+
+
 
 	---------- Misc ----------
 
@@ -581,9 +596,13 @@ EID.DefaultConfig = {
 	["SpindownDiceDisplayName"] = false,
 	["SpindownDiceSkipLocked"] = false,
 	["SaveGameNumber"] = 0,
+	["ItemCollectionIndicator"] = true,
 	["ItemCollectionColor"] = "ColorFade",
 	["EnableMouseControls"] = false,
 	["ShowCursor"] = false,
+
+	["RGON_ShowOnCollectionPage"] = true,
+
 	["ErrorMessage"] = "[Effect not defined]",
 	["TextColor"] = "ColorEIDText",
 	["ErrorColor"] = "ColorEIDError",

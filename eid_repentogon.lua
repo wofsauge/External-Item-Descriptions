@@ -53,7 +53,7 @@ end
 
 local skipItemIDs = {}
 function EID:OnMenuRender()
-	if MenuManager:GetActiveMenu() == MainMenuType.COLLECTION then
+	if EID.Config["RGON_ShowOnCollectionPage"] and MenuManager:GetActiveMenu() == MainMenuType.COLLECTION then
 		if #skipItemIDs == 0 then -- build list of items not listed in the collectionpage
 			local itemConfig = Isaac.GetItemConfig()
 			for i = 1, EID:GetMaxCollectibleID(), 1 do
