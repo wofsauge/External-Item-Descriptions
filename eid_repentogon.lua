@@ -133,8 +133,8 @@ local function DonationMachineCallback(descObj)
 			break
 		end
 	end
-	descObj.Description = string.gsub(descObj.Description, "{1}", coinsNeeded - totalDonations)
-	descObj.Description = string.gsub(descObj.Description, "{2}", coinsNeeded)
+	descObj.Description = string.gsub(descObj.Description, "{1}", coinsNeeded)
+	descObj.Description = string.gsub(descObj.Description, "{2}", coinsNeeded - totalDonations)
 	descObj.Icon = EID.InlineIcons["DonationMachine"]
 	return descObj
 end
