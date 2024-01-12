@@ -81,3 +81,20 @@ function EID:OnMenuRender()
 end
 
 EID:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, EID.OnMenuRender)
+
+
+---------------------------BAG OF CRAFTING-------------------------------
+-- Directly read bag of crafting content
+function EID:BoCCheckForPickups()
+	EID.BoC.BagItems = {}
+	for key, value in pairs(EID.bagPlayer:GetBagOfCraftingContent()) do
+		if value <= 0 then return end -- no more items in the bag
+		EID.BoC.BagItems[key] = value
+	end
+end
+
+-- Deactivate manual tracking code
+function EID:BoCTrackBagHolding() end
+
+function EID:BoCDetectBagContentShift() end
+
