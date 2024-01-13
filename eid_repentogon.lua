@@ -43,7 +43,7 @@ EID:AddCallback(ModCallbacks.MC_HUD_RENDER, EID.OnRender)
 
 local oldPosInitFunc = EID.PositionLocalMode
 function EID:PositionLocalMode(entity)
-	oldPosInitFunc(entity)
+	oldPosInitFunc(_, entity)
 	-- custom description position when describing collectionpage entries
 	if not Isaac.IsInGame() and MenuManager:GetActiveMenu() == MainMenuType.COLLECTION then
 		EID.CurrentScaleType = "MainMenu"

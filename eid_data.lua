@@ -899,5 +899,5 @@ EID.ItemPoolTypeToMarkup = { [0] = "{{ItemPoolTreasure}}", "{{ItemPoolShop}}", "
 -- If a function returns a value, it will be used as the offset
 EID.LocalModePositionOffset = {
 	Default = Vector(0, 20),
-	Shop = function(entity) if entity:ToPickup() and entity:ToPickup():IsShopItem() then return Vector(0, 35) end end,
+	Shop = function(entity) if entity and not EID:IsGridEntity(entity) and entity:ToPickup() and entity:ToPickup():IsShopItem() then return Vector(0, 35) end end,
 } 
