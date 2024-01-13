@@ -318,7 +318,7 @@ if EID.isRepentance then
 	end
 
 	--simple decimal rounding
-	function SimpleRound(num, dp)
+	local function SimpleRound(num, dp)
 		dp = dp or 2
 		local mult = 10^dp
 		return math.floor(num * mult + 0.5)/mult
@@ -570,19 +570,27 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-
+	
+	local hasTarot = false
+	
 	-- Handle Blank Card description addition
 	local function BlankCardCallback(descObj)
 		local text = EID:getDescriptionEntry("BlankCardCharge")
 		local charge = EID.cardMetadata[descObj.ObjSubType]
+		local iconStr = "#{{Collectible286}} {{ColorSilver}}"
 		if text ~= nil and charge ~= nil and charge.mimiccharge and charge.mimiccharge ~= -1 then
-			local iconStr = "#{{Collectible286}} {{ColorSilver}}"
 			if descObj.ObjSubType == 48 then -- ? card
 				text = EID:getDescriptionEntry("BlankCardQCard")
 				EID:appendToDescription(descObj, iconStr..text:gsub("#",iconStr))
 			else
 				EID:appendToDescription(descObj, iconStr..text.." {{"..charge.mimiccharge.."}}{{Battery}}")
 			end
+		end
+		-- If the player has Tarot Cloth and Blank Card, display additional text
+		if hasTarot then
+			text = EID:getDescriptionEntry("BlankCardEffect")
+			local buffText = EID:getDescriptionEntry("tarotClothBlankCardBuffs", descObj.ObjSubType)
+			if buffText then EID:appendToDescription(descObj, iconStr .. text .. " " .. buffText) end
 		end
 		return descObj
 	end
@@ -756,7 +764,8 @@ if EID.isRepentance then
 
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
-			if EID.collectiblesOwned[451] then table.insert(callbacks, TarotClothCallback) end
+			hasTarot = EID.collectiblesOwned[451]
+			if hasTarot then table.insert(callbacks, TarotClothCallback) end
 
 			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
 			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
@@ -796,7 +805,7 @@ local function EIDConditionsAB(descObj)
 
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
-		if EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
+		if EID.Config["ItemCollectionIndicator"] and EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
 
 		if descObj.ObjSubType == 297 then table.insert(callbacks, PandorasBoxCallback) end
 

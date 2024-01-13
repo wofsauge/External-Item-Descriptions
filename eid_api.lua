@@ -608,7 +608,7 @@ function EID:getObjectName(Type, Variant, SubType)
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
 	elseif tableName == "custom" then
-		local xmlName = EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
+		local xmlName = EID:GetEntityXMLName(Type, Variant, SubType)
 		return name or xmlName or Type.."."..Variant.."."..SubType
 	end
 	return Type.."."..Variant.."."..SubType
@@ -896,6 +896,9 @@ function EID:getColor(str, baseKColor)
 			else
 				if EID.InlineColors[strTrimmed] then colorFunc = nil end
 				color = EID.InlineColors[strTrimmed] or color
+				if EID.Config["ColorblindMode"] > 0 then
+					color = EID.ColorBlindColors[EID.Config["ColorblindMode"]][strTrimmed] or color
+				end
 			end
 			isColorMarkup = type(EID.InlineColors[strTrimmed]) ~= type(nil)
 		end
@@ -1162,45 +1165,6 @@ function EID:PlayersHaveCharacter(playerType)
 		end
 	end
 	return false
-end
-
--- Obtains information about glitched items from the ItemConfig (hearts added on pickup, cacheflags affected), returns string of info
-local itemConfigItemAttributes = { "AddMaxHearts", "AddHearts", "AddSoulHearts", "AddBlackHearts", "AddBombs", "AddCoins", "AddKeys", "CacheFlags" }
-function EID:CheckGlitchedItemConfig(id)
-	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
-	local item = EID.itemConfig:GetCollectible(id)
-	if not item then return "" end
-	local attributes = "#"
-	for _,v in ipairs(itemConfigItemAttributes) do
-		local val = item[v]
-		if val ~= 0 then
-			if (v == "CacheFlags") then
-				local flagString = localizedNames["cacheFlagStart"]
-				if val == CacheFlag.CACHE_ALL then
-					flagString = flagString .. localizedNames[16]
-				else
-					for i=0, 13 do
-						if 2^i & val ~= 0 then
-							flagString = flagString .. localizedNames[i] .. ", "
-						end
-					end
-					flagString = string.sub(flagString, 0, -3) -- remove final comma
-				end
-				attributes = attributes .. flagString .. "#"
-			else
-				-- the Add Heart attributes count half a heart as 1, so divide the value in half
-				if string.find(v, "Hearts") then val = val / 2 end
-				-- the g flag removes .0 in numbers like 1.0 (caused by the hearts division)
-				local s = string.format("%.4g",val)
-				local prefix = "↑ "
-				if val > 0 then s = "+" .. s else prefix = "↓ " end
-				attributes = attributes .. prefix .. string.gsub(localizedNames[v], "{1}", s)
-				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] end
-				attributes = attributes .. "#"
-			end
-		end
-	end
-	return attributes
 end
 
 -- Converts a given CollectibleID into the respective Spindown dice result
@@ -1699,7 +1663,10 @@ function EID:evaluateTransformationProgress(transformation)
 
 		if not EID.TransformationLookup[transformation] then return end
 
-		if transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
+		if REPENTOGON and transformData and transformData.VanillaForm then
+			 -- REPENTOGON lets us ignore everything else for vanilla transformation progress
+			EID.TransformationProgress[i][transformation] = player:GetPlayerFormCounter(transformData.VanillaForm)
+		elseif transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
 			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
 		else
 			local pickupHistory = EID.PlayerItemInteractions[i].pickupHistory
@@ -1954,4 +1921,9 @@ end
 -- returns true if the given pill color was used at least once in this game
 function EID:WasPillUsed(pillColor)
 	return EID.UsedPillColors[tostring(pillColor)] ~= nil
+end
+
+-- returns the name of the given entity
+function EID:GetEntityXMLName(Type, Variant, SubType)
+	return EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
 end

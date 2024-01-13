@@ -426,7 +426,7 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Display", "DisplayCardInfo", "Card Infos")
 	EID:AddBooleanSetting("Display", "DisplayPillInfo", "Pill Infos")
 	EID:AddBooleanSetting("Display", "DisplayGlitchedItemInfo", "Glitched Item Infos", {repOnly = true,
-	infoText = "Note: The --luadebug launch option is required for more detailed glitched item descriptions; this can be dangerous!"})
+	infoText = "Note: Installing REPENTOGON is required for more detailed glitched item descriptions!"})
 	EID:AddBooleanSetting("Display", "DisplaySacrificeInfo", "Sacrifice Room Infos")
 	EID:AddBooleanSetting("Display", "DisplayDiceInfo", "Dice Room Infos")
 	EID:AddBooleanSetting("Display", "DisplayCraneInfo", "Crane Game Infos", {repOnly = true})
@@ -535,6 +535,9 @@ if MCMLoaded then
 	-- Transparency
 	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
 	EID:AddScrollSetting("Visuals", "Transparency", "Transparency", transparencies)
+	-- Color blind
+	local colorBlindModes = {[0] = "Off", "Protanopia (red weak)", "Deuteranopia (green weak)", "Tritanopia (blue weak)"}
+	EID:AddNumberSetting("Visuals", "ColorblindMode", "Colorblind Mode", 0, #colorBlindModes, {displayTable = colorBlindModes, infoText = "Changes some colors to enable colorblind people to use some features of the mod easier."})
 
 	MCM.AddSpace("EID", "Visuals")
 
@@ -618,9 +621,6 @@ if MCMLoaded then
 		-- Bag of Crafting 8 icons toggle
 		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayIcons", "Show Recipes/Best Bag as", {onText = "8 Icons", offText = "Groups",
 			infoText = "Choose if you want recipes (and the Best Quality bag in Item Probability Mode) shown as 8 icons, or as grouped ingredients"})
-		-- Modded Recipes toggle
-		EID:AddBooleanSetting("Crafting", "BagOfCraftingModdedRecipes", "Load Modded Item Recipes (WIP)", {
-			infoText = {"Enable or disable basic modded item support", "If you have a lot of modded items, it will slow down game launch"}})
 
 		MCM.AddSpace("EID", "Crafting")
 		MCM.AddText("EID", "Crafting", function() return "Recipe List Options" end)
@@ -694,49 +694,19 @@ if MCMLoaded then
 	end
 
 	---------------------------------------------------------------------------
-	----------------------------Savegame Config--------------------------------
-	if EID.SaveGame then
-		MCM.AddText("EID", "Save Game", function() EID.MCMCompat_isDisplayingEIDTab = ""; return "Loaded savegame data:" end)
-		MCM.AddText("EID", "Save Game", function() return EID.SaveGame.Platform .." User: "..EID.SaveGame.UserName.." ("..EID.SaveGame.UserID..")" end)
-		MCM.AddSpace("EID", "Save Game")
-
-		-- Show Item needs Collection
-		MCM.AddSetting(
-			"EID",
-			"Save Game",
-			{
-				Type = ModConfigMenu.OptionType.NUMBER,
-				CurrentSetting = function()
-					return EID.Config["SaveGameNumber"]
-				end,
-				Minimum = 0,
-				Maximum = 3,
-				Display = function()
-					if EID.Config["SaveGameNumber"] == 0 then
-						return "Current Save Game: 0 (Deactivated)"
-					end
-					return "Current Save Game: " .. EID.Config["SaveGameNumber"]
-				end,
-				OnChange = function(currentNum)
-					EID.MCM_OptionChanged = true
-					EID.Config["SaveGameNumber"] = currentNum
-				end,
-				Info = {"Save game you are currently on. This info needs to be set to get the correct lookup tables"}
-			}
-		)
-		MCM.AddText("EID", "Save Game", function()
-			if EID.Config["SaveGameNumber"] == 0 then return "" end
-			local count = 0
-			for k, v in pairs(EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup) do
-				count = count + 1
-			end
-			return "Collection page items missing: "..count end)
-		MCM.AddSpace("EID", "Save Game")
-
+	-------------------------------REPENTOGON----------------------------------
+	if  EID.isRepentance then
+		if not REPENTOGON then
+			-- show disclaimer, but also show available features
+			MCM.AddText("EID", "Repentogon", "You need to install REPENTOGON to use the following features:")
+			MCM.AddSpace("EID", "Repentogon")
+		end
+		
+		EID:AddBooleanSetting("Repentogon", "ItemCollectionIndicator", "Highlight uncollected items",{ infoText = "Highlight items, if they need to be collected for the collection page"})
 		-- Needs collection Color
 		MCM.AddSetting(
 			"EID",
-			"Save Game",
+			"Repentogon",
 			{
 				Type = ModConfigMenu.OptionType.NUMBER,
 				CurrentSetting = function()
@@ -758,13 +728,88 @@ if MCMLoaded then
 				Info = {"Color in which item names are colored to highlight that this item needs to be collected for the collection page"}
 			}
 		)
-	else
-		MCM.AddSpace("EID", "Save Game")
-		MCM.AddSpace("EID", "Save Game")
-		MCM.AddText("EID", "Save Game", function() EID.MCMCompat_isDisplayingEIDTab = ""; return "To enable savegame related features," end)
-		MCM.AddText("EID", "Save Game", "please run \"scripts\\savegame_reader.exe\"")
-		MCM.AddText("EID", "Save Game", "found in the EID mod folder")
+		EID:AddBooleanSetting("Repentogon", "RGON_ShowOnCollectionPage", "Show descriptions on collection page", { infoText = "Displays item effects when navigating the collection page in the main menu."})
+		
+		-- Achievement tracking section
+		MCM.AddSpace("EID", "Repentogon")
+		MCM.AddText("EID", "Repentogon", "Achievement tracking")
+		EID:AddBooleanSetting("Repentogon", "RGON_DonationMachineDescriptions", "Donation machine progress", { infoText = "Displays the number of coins required to gain the next achievement from donation machines"})
 	end
+	---------------------------------------------------------------------------
+	----------------------------Savegame Config--------------------------------
+	if not REPENTOGON then 
+		if EID.SaveGame then
+			MCM.AddText("EID", "Save Game", function() EID.MCMCompat_isDisplayingEIDTab = ""; return "Loaded savegame data:" end)
+			MCM.AddText("EID", "Save Game", function() return EID.SaveGame.Platform .." User: "..EID.SaveGame.UserName.." ("..EID.SaveGame.UserID..")" end)
+			MCM.AddSpace("EID", "Save Game")
+
+			-- Show Item needs Collection
+			MCM.AddSetting(
+				"EID",
+				"Save Game",
+				{
+					Type = ModConfigMenu.OptionType.NUMBER,
+					CurrentSetting = function()
+						return EID.Config["SaveGameNumber"]
+					end,
+					Minimum = 0,
+					Maximum = 3,
+					Display = function()
+						if EID.Config["SaveGameNumber"] == 0 then
+							return "Current Save Game: 0 (Deactivated)"
+						end
+						return "Current Save Game: " .. EID.Config["SaveGameNumber"]
+					end,
+					OnChange = function(currentNum)
+						EID.MCM_OptionChanged = true
+						EID.Config["SaveGameNumber"] = currentNum
+					end,
+					Info = {"Save game you are currently on. This info needs to be set to get the correct lookup tables"}
+				}
+			)
+			MCM.AddText("EID", "Save Game", function()
+				if EID.Config["SaveGameNumber"] == 0 then return "" end
+				local count = 0
+				for k, v in pairs(EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup) do
+					count = count + 1
+				end
+				return "Collection page items missing: "..count end)
+			MCM.AddSpace("EID", "Save Game")
+
+			EID:AddBooleanSetting("Repentogon", "ItemCollectionIndicator", "Highlight uncollected items")
+			-- Needs collection Color
+			MCM.AddSetting(
+				"EID",
+				"Save Game",
+				{
+					Type = ModConfigMenu.OptionType.NUMBER,
+					CurrentSetting = function()
+						return AnIndexOf(colorNameArray, EID.Config["ItemCollectionColor"])
+					end,
+					Minimum = 0,
+					Maximum = 1000,
+					Display = function()
+						if EID.Config["ItemCollectionColor"] == nil then EID.Config["ItemCollectionColor"] = EID.DefaultConfig["ItemCollectionColor"] end
+						EID.MCMCompat_isDisplayingEIDTab = "Visuals";
+						return "Collection Page Highlight color: " .. string.gsub(EID.Config["ItemCollectionColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemCollectionColor"]).."/"..#colorNameArray..")"
+					end,
+					OnChange = function(currentNum)
+						EID.MCM_OptionChanged = true
+						if currentNum == 0 then currentNum = #colorNameArray end
+						if currentNum > #colorNameArray then currentNum = 1 end
+						EID.Config["ItemCollectionColor"] = colorNameArray[currentNum]
+					end,
+					Info = {"Color in which item names are colored to highlight that this item needs to be collected for the collection page"}
+				}
+			)
+		else
+			MCM.AddSpace("EID", "Save Game")
+			MCM.AddSpace("EID", "Save Game")
+			MCM.AddText("EID", "Save Game", function() EID.MCMCompat_isDisplayingEIDTab = ""; return "To enable savegame related features," end)
+			MCM.AddText("EID", "Save Game", "please run \"scripts\\savegame_reader.exe\"")
+			MCM.AddText("EID", "Save Game", "found in the EID mod folder")
+		end
+	end  -- if not repentogon
 
 
 	---------------------------------------------------------------------------
