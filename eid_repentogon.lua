@@ -66,12 +66,12 @@ function EID:OnMenuRender()
 		local selectedPage = CollectionMenu.GetSelectedPage()
 		local CollectibleId = selectedPage * (20 * 6) + CollectionMenu.GetSelectedElement() + 1
 		for _, id in ipairs(skipItemIDs) do -- some items dont exist, so we need to "skip" those when counting
-			if id < CollectibleId then
+			if id <= CollectibleId then
 				CollectibleId = CollectibleId + 1
 			end
 		end
-		local demoDescObj = EID:getDescriptionObj(5, 100, CollectibleId)
-		if not Isaac.GetPersistentGameData():IsItemInCollection(CollectibleId) then
+		local demoDescObj = EID:getDescriptionObj(5, 100, CollectibleId, nil, false)
+		if CollectibleId < CollectibleType.NUM_COLLECTIBLES and not Isaac.GetPersistentGameData():IsItemInCollection(CollectibleId) then
 			EID:renderQuestionMark(nil)
 			return
 		end
