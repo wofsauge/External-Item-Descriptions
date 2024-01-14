@@ -805,7 +805,7 @@ local function EIDConditionsAB(descObj)
 
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
-		if EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
+		if EID.Config["ItemCollectionIndicator"] and EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
 
 		if descObj.ObjSubType == 297 then table.insert(callbacks, PandorasBoxCallback) end
 
