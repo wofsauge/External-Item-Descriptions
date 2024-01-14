@@ -7,7 +7,7 @@ local game = Game()
 -- REPENTOGON: Use PersistentGameData to determine item collection status
 -- Returns true if an item needs to be collected for the collection page
 function EID:requiredForCollectionPage(itemID)
-	if itemID > CollectibleType.NUM_COLLECTIBLES or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
+	if itemID >= CollectibleType.NUM_COLLECTIBLES or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
 	return not Isaac.GetPersistentGameData():IsItemInCollection(itemID)
 end
 
