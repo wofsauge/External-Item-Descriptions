@@ -243,6 +243,65 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
 		{"%<---- Clear Floor item list ----%>","<---- 清空房间中列表 ---->"},
 		{"%<---- Clear Bag Content ----%>","<---- 清空袋中列表 ---->"}
 	})
+
+	MCM.SetSubcategoryNameTranslate("EID","Repentogon","Repentogon")
+        MCM.TranslateOptionsDisplayWithTable("EID","Repentogon",{
+        {"Highlight uncollected items","未收集的道具高亮显示"},
+        {"Collection Page Highlight color","道具页面高亮色"},
+        {"Show descriptions on collection page","道具页面显示描述"},
+        {"Donation machine progress","捐款机进度"},
+        {"False","否"},
+        {"True","是"},
+        {"BlinkYellowGreen","黄绿闪烁"},
+        {"BlinkYellowRed","黄红闪烁"},
+        {"BagComplete","袋满"},
+        {"BagOverfill","袋溢出"},
+        {"Black","黑色"},
+        {"Blink","闪烁"},
+        {"Blue","蓝色"},
+        {"Cyan","青色"},
+        {"EIDError","EID错误"},
+        {"EIDObjName","EID对象名"},
+        {"EIDText","EID文本"},
+        {"EIDTransform","EID套装"},
+        {"Fade","渐隐"},
+        {"Gold","金色"},
+        {"Gray","灰色"},
+        {"Green","绿色"},
+        {"Lavender","淡紫色"},
+        {"LightOrange","淡橙色"},
+        {"LightYellow","淡黄色"},
+        {"Lime","绿黄色"},
+        {"Maroon","红褐色"},
+        {"Navy","深蓝色"},
+        {"Olive","黄褐色"},
+        {"Orange","橙色"},
+        {"Pastel","淡"},
+        {"Pink","粉色"},
+        {"Purple","紫色"},
+        {"Rainbow","彩虹色"},
+        {"Red","红色"},
+        {"Shiny","闪光的"},
+        {"Silver","银色"},
+        {"Teal","蓝绿色"},
+        {"White","白色"},
+        {"Yellow","黄色"},
+        })
+        MCM.TranslateOptionsDisplayTextWithTable("EID","Repentogon",{
+        ["You need to install REPENTOGON to use the following features:"] = "你需要安装REPENTOGON以使用以下功能:",
+        ["Achievement tracking"] = "成就追踪",
+        })
+        MCM.TranslateOptionsInfoTextWithTable("EID","Repentogon",{
+        ["Highlight items, if they need to be collected for the collection page"]
+            = "如果道具页面中此道具未拾取过时则高亮显示",
+        ["Color in which item names are colored to highlight that this item needs to be collected for the collection page"]
+            = "道具页面中此道具未拾取过时高亮的颜色",
+        ["Displays item effects when navigating the collection page in the main menu."]
+            = "在主菜单的道具页面显示道具效果",
+        ["Displays the number of coins required to gain the next achievement from donation machines"]
+            = "显示下一个捐款机成就所需的硬币",
+        })
+
 	MCM.SetSubcategoryNameTranslate("EID","Save Game","游戏存档")
     MCM.TranslateOptionsDisplayWithTable("EID","Save Game",{
         {"To enable savegame related features,","如需启用游戏存档相关的特性"},
@@ -384,8 +443,8 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         ["Allow Players 2, 3, and 4 to display descriptions in Co-op"] = "在多人游戏中使玩家2、3、4显示描述信息",
         ["Allow paired characters like Esau and Tainted Forgotten's bone pile to display descriptions"]
             = "让同伴角色(比如以扫和堕化遗骸的骨头)显示描述",
-        ["Note: The --luadebug launch option is required for more detailed glitched item descriptions; this can be dangerous!"]
-            = "注意: 需要添加--luadebug启动选项来获得详细信息; 此操作存在风险!",
+        ["Note: Installing REPENTOGON is required for more detailed glitched item descriptions!"]
+            = "注意: 需要安装REPENTOGON来获得详细的错误道具描述!",
         ["The next reward from Sanguine Bond can be predicted and highlighted in the description"]
              = "预测血色羁绊的下一次奖励, 并高亮显示",
         ["Number of item previews when holding Spindown Dice"] = "计数二十面骰的预览道具数量",
