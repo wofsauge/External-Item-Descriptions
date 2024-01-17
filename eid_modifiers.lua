@@ -660,7 +660,7 @@ if EID.isRepentance then
 		local horse = descObj.ObjSubType > 2048
 		local data = EID.pillMetadata[adjustedID-1]
 		if data ~= nil then
-			local damageUp = string.find(data.class,"3") and (string.find(data.class,"-") or adjustedID-1 == PillEffect.PILLEFFECT_EXPERIMENTAL)
+			local damageUp = string.find(data.class,"3") and string.find(data.class,"-")
 			if adjustedID-1 == PillEffect.PILLEFFECT_SHOT_SPEED_DOWN then damageUp = true end
 			-- why doesn't I'm Excited have a - in the xml data yet spawn a black heart...
 			local blackHeart = (string.find(data.class,"2") or string.find(data.class,"1")) and (string.find(data.class,"-") or adjustedID-1 == PillEffect.PILLEFFECT_IM_EXCITED)
