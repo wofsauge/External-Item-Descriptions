@@ -1173,8 +1173,7 @@ EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune charge:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo charge:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{CONFIG_BoC_Toggle}} to show description)"
 
-EID.descriptions[languageCode].GlowingHourglassUsed = "Uses left on this floor:"
-EID.descriptions[languageCode].GlowingHourglassTransformed = "Was used three times on this floor#{{Collectible66}} Now acts as The Hourglass for the reminder of this floor"
+EID.descriptions[languageCode].GlowingHourglassTransformed = "Will change back to Glowing Hourglass next floor"
 
 
 EID.descriptions[languageCode].FalsePHDHeart = "Spawns 1 {{BlackHeart}} Black Heart"
