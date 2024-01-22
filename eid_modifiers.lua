@@ -290,15 +290,14 @@ if EID.isRepentance then
   -- Handle Glowing Hourglass description
   local function GlowingHourglassCallback(descObj)
     if REPENTOGON then
-      local usedText = EID:getDescriptionEntry("GlowingHourglassUsed")
       local transformedText = EID:getDescriptionEntry("GlowingHourglassTransformed")
-      local numUsesLeft = 3 - Isaac.GetPlayer():GetActiveItemDesc().VarData
-      if usedText ~= nil and numUsesLeft >= 1 then
-        local usesStr = "#{{Warning}} "..usedText.." "..numUsesLeft
-        EID:appendToDescription(descObj, usesStr)
-      elseif transformedText ~= nil then
-        -- Replace description with info text and a the description of The Hourglass
-        descObj.Description = transformedText.."#"..EID:getDescriptionObj(5, 100, 66).Description
+      local numUses = Isaac.GetPlayer():GetActiveItemDesc().VarData
+      if numUses == 3 then
+        -- Replace with the description of The Hourglass
+        descObj.Description = EID:getDescriptionObj(5, 100, 66).Description
+        if transformedText ~= nil then
+          EID:appendToDescription(descObj, "#{{Warning}} "..transformedText)
+        end
       end
     end
     return descObj
