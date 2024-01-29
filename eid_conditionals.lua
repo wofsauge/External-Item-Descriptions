@@ -116,7 +116,7 @@ local conditionsTable = {
 	-- Greed Mode
 	["5.100.241"] = {func = EID.IsGreedMode}, -- Contract From Below
 	["5.300.15"] = {func = EID.IsGreedMode, type = "replaceAll"}, -- Temperance: spawns beggar in greed mode
-	["5.300.15+Tarot"] = {func = EID.IsGreedMode, type = "replaceAll"}, -- Temperance + Tarot Cloth + Greed Mode
+	["5.300.15 (Tarot)"] = {func = EID.IsGreedMode, type = "replaceAll"}, -- Temperance + Tarot Cloth + Greed Mode
 	
 }
 
