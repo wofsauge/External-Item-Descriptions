@@ -75,61 +75,6 @@ local function TabCallback(descObj)
 	return descEntry
 end
 
-
--- This stuff will end up in a separate file but it's here for now
-
-
---[[ Descs that need a variant:
-
-]]
-
-function EID:IsGreedMode()
-	return game:IsGreedMode()
-end
-
-function EID:NoRedHealthPlayers()
-	--check our player ID against a list of no red health players? idk
-end
-
---EID:PlayersHaveCharacter is already in the api to use for things like Swallowed Penny
-
---rather than check boss progress, just have a spoiler option?
-
-
-
-local conditionsTable = {
-	-- Temperance: spawns beggar in greed mode
-	["5.300.15"] = {func = EID.IsGreedMode, type = "replaceAll"},
-}
-
--- Handle base description replacements
-local function ConditionalDescCallback(descObj)
-	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..descObj.ObjSubType
-	local cond = conditionsTable[typeVarSub]
-	local text = EID:getDescriptionEntry("ConditionalDescs")[typeVarSub]
-	
-	-- we'll need to handle a table of funcs but for now let's test if it works with one func
-	if not cond.func(EID, cond.vars) then return descObj end
-	
-	if (cond.type == "replaceAll") then
-		descObj.Description = text
-	elseif (cond.type == "findReplace") then
-		descObj.Description, count = string.gsub(descObj.Description, textTable[1], "{{ColorGold}}" .. textTable[multiplier] .. "{{ColorText}}", 1)
-	end
-	
-	return descObj
-end
-
-local function ConditionalDescConditions(descObj)
-	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..descObj.ObjSubType
-	if conditionsTable[typeVarSub] then return true end
-	return false
-end
-
--- We want this callback to happen first
-EID:addDescriptionModifier("EID Conditional Descs", ConditionalDescConditions, ConditionalDescCallback)
-
-
 -- Handle Void
 local voidStatUps = { 0.2, 0.5, 1, 0.5, 0.2, 1 }
 local voidStatIcons = {"{{Speed}}", "{{Tears}}", "{{Damage}}", "{{Range}}", "{{Shotspeed}}", "{{Luck}}"}
@@ -539,7 +484,7 @@ if EID.isRepentance then
 				end
 			end
 		end
-		return descObj
+		return EID:applyConditionals(descObj,"Tarot")
 	end
 
 
@@ -708,6 +653,49 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
+	
+	-- Handle Experimental Pill description addition
+	local function ExperimentalPillCallback(descObj)
+		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
+		if adjustedID - 1 ~= PillEffect.PILLEFFECT_EXPERIMENTAL then return descObj end
+		local horse = descObj.ObjSubType > 2048
+
+		for i = 1,#EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[i]
+			local playerID = EID:getPlayerID(player)
+			local playerType = player:GetPlayerType()
+			local pillModifierID = 0
+			local goodAndBad = false
+			
+			-- Check for PHD, Lucky Foot, Virgo, and False PHD
+			if player:HasCollectible(75) then pillModifierID = 75
+			elseif player:HasCollectible(46) then pillModifierID = 46
+			elseif player:HasCollectible(303) then pillModifierID = 303
+			end
+			-- Check for False PHD, and if we have good AND bad pills, just print the damage up text
+			if player:HasCollectible(654) then
+				if pillModifierID ~= 0 then goodAndBad = true end
+				pillModifierID = 654
+			end
+			if pillModifierID ~= 0 then
+				local expPillString = ""
+				if pillModifierID == 654 then
+					local damageUpString = ""
+					if horse then damageUpString = EID:getDescriptionEntry("FalsePHDHorseDamage")
+					else damageUpString = EID:getDescriptionEntry("FalsePHDDamage") end
+					if goodAndBad then
+						expPillString = damageUpString
+					else
+						expPillString = EID:getDescriptionEntry("ExperimentalPillFalsePHD") .. "#{{Collectible654}} " .. damageUpString
+					end
+				else expPillString = EID:getDescriptionEntry("ExperimentalPillPHD") end
+				EID:appendToDescription(descObj, "#")
+				if #EID.coopAllPlayers > 1 then EID:appendToDescription(descObj, (EID:getIcon("Player"..playerType) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerType.."}} " or ("P" .. i .. ": "))) end
+				EID:appendToDescription(descObj, "{{Collectible" .. pillModifierID .. "}} " .. expPillString)
+			end
+		end
+		return descObj
+	end
 
 	-- Handle False PHD description addition
 	local function FalsePHDCallback(descObj)
@@ -715,7 +703,7 @@ if EID.isRepentance then
 		local horse = descObj.ObjSubType > 2048
 		local data = EID.pillMetadata[adjustedID-1]
 		if data ~= nil then
-			local damageUp = string.find(data.class,"3") and (string.find(data.class,"-") or adjustedID-1 == PillEffect.PILLEFFECT_EXPERIMENTAL)
+			local damageUp = string.find(data.class,"3") and string.find(data.class,"-")
 			if adjustedID-1 == PillEffect.PILLEFFECT_SHOT_SPEED_DOWN then damageUp = true end
 			-- why doesn't I'm Excited have a - in the xml data yet spawn a black heart...
 			local blackHeart = (string.find(data.class,"2") or string.find(data.class,"1")) and (string.find(data.class,"-") or adjustedID-1 == PillEffect.PILLEFFECT_IM_EXCITED)
@@ -829,6 +817,7 @@ if EID.isRepentance then
 			if EID.collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
 			if EID.collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
 			table.insert(callbacks, VurpCallback)
+			table.insert(callbacks, ExperimentalPillCallback)
 
 			if EID.pillPlayer == nil and #EID.coopAllPlayers > 1 then
 				table.insert(callbacks, CoopPillCallback)
