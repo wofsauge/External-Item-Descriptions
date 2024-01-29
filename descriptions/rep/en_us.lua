@@ -61,7 +61,6 @@ local repCollectibles={
 	[123] = {"123", "Monster Manual", "{{Timer}} Spawns a random familiar for the floor"}, -- Monster Manual
 	[126] = {"126", "Razor Blade", "↑ {{Damage}} +1.2 Damage for the room#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first"}, -- Razor Blade
 	[129] = {"129", "Bucket of Lard", "↑ {{Heart}} +2 Health#↓ {{Speed}} -0.2 Speed"}, -- Bucket of Lard
-	[135] = {"135", "IV Bag", "{{Coin}} Hurts Isaac for half a heart and spawns 1-2 coins#{{HardMode}} Spawns 1 coin on Hard Mode#{{Player14}} Spawns 0-1 coin as Keeper"}, -- IV Bag
 	[138] = {"138", "Stigmata", "↑ {{Heart}} +1 Health#↑ {{Damage}} +0.3 Damage#{{Heart}} Heals 1 heart"}, -- Stigmata
 	[139] = {"139", "Mom's Purse", "{{Trinket}} Spawns 1 random trinket#{{Trinket}} Isaac can hold 2 trinkets"}, -- Mom's Purse
 	[140] = {"140", "Bob's Curse", "{{Bomb}} +5 bombs#{{Poison}} Isaac's bombs create a cloud of poison#{{Poison}} Poison immunity"}, -- Bob's Curse
@@ -73,7 +72,6 @@ local repCollectibles={
 	[153] = {"153", "Mutant Spider", "↓ {{Tears}} x0.42 Fire rate multiplier#Isaac shoots 4 tears at once"}, -- Mutant Spider
 	[155] = {"155", "The Peeper", "↑ {{Damage}} x1.35 Damage multiplier for the left eye#Floats around the room#Deals 17.1 contact damage per second"}, -- The Peeper
 	[158] = {"158", "Crystal Ball", "Spawns a {{SoulHeart}} Soul Heart, {{Rune}} rune or {{Card}} card#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)#While held:#{{PlanetariumChance}} +15% Planetarium chance#{{PlanetariumChance}} +100% if a {{TreasureRoom}} Treasure Room was skipped"}, -- Crystal Ball
-	[161] = {"161", "Ankh", "{{Player4}} Respawn as ??? (Blue Baby) on death#{{Player25}} Tainted ??? simply revives"},
 	[169] =	{"169", "Polyphemus", "↑ {{Damage}} +4 Damage#↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.42 Fire rate multiplier#Tears pierce killed enemies if there is leftover damage"}, --Polyphemus
 	[171] = {"171", "Spider Butt", "{{Slow}} Slows down enemies for 4 seconds#Deals 10 damage to all enemies#Enemies killed by the item spawn blue spiders"}, -- Spider Butt
 	[172] = {"172", "Sacrificial Dagger", "Orbital#Blocks enemy shots#Deals 112.5 damage per second"}, -- Sacrificial Dagger
@@ -139,7 +137,6 @@ local repCollectibles={
 	[308] = {"308", "Aquarius", "Isaac leaves a trail of creep#{{Damage}} The creep deals 66% of Isaac's damage per second and inherits his tear effects"}, -- Aquarius
 	[309] =	{"309", "Pisces", "↑ {{Tears}} +0.5 Fire rate#↑ {{Tearsize}} +0.12 Tear size#Increases tear knockback"}, --Pisces
 	[310] =	{"310", "Eve's Mascara", "↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.66 Tear multiplier#↓ {{Shotspeed}} -0.5 Shot speed"},
-	[311] = {"311", "Judas' Shadow", "{{Player12}} When dead, respawn as Dark Judas with a 2x damage multiplier#{{Player24}} Tainted Judas simply revives"}, --Judas' Shadow
 	[314] = {"314", "Thunder Thighs", "↑ {{Heart}} +1 Health#↓ {{Speed}} -0.4 Speed#{{Heart}} Heals 1 heart#Isaac can destroy rocks by walking into them"}, -- Thunder Thighs
 	[315] = {"315", "Strange Attractor", "Isaac's tears attract enemies, pickups and trinkets#The attraction effect is much stronger at the end of the tears' path"}, -- Strange Attractor
 	[316] = {"316", "Cursed Eye", "Charged wave of 5 tears#{{Warning}} Taking damage while partially charged teleports Isaac to a random room#{{Collectible260}} Black Candle removes the teleportation effect"}, -- Cursed Eye
@@ -150,7 +147,6 @@ local repCollectibles={
 	[328] = {"328", "The Negative", "↑ {{Damage}} +1 Damage#Taking damage at half a Red Heart or none damages all enemies in the room"}, -- The Negative
 	[330] = {"330", "Soy Milk", "↑ {{Tears}} x5.5 Fire rate multiplier#↓ {{Damage}} x0.2 Damage multiplier#↓ {{Tearsize}} -0.3 Tear size#Drastically reduces knockback"}, -- Soy Milk
 	[331] = {"331", "Godhead", "↑ {{Damage}} +0.5 Damage#↓ {{Tears}} -0.3 Tears#↓ {{Shotspeed}} -0.3 Shot speed#Homing tears#Tears gain an aura that deals 60 damage per second"}, -- Godhead
-	[332] = {"332", "Lazarus' Rags", "{{Player11}} When dead, revive as Lazarus (Risen)#{{Player29}} Tainted Lazarus simply revives"},
 	[336] = {"336", "Dead Onion", "↑ {{Tearsize}} +0.22 Tear size#↓ {{Range}} -1.5 Range#↓ {{Shotspeed}} -0.4 Shot speed#Piercing + spectral tears"}, -- Dead Onion
 	[339] = {"339", "Safety Pin", "↑ {{Range}} +2.5 Range#↑ {{Shotspeed}} +0.16 Shot speed#{{BlackHeart}} +1 Black Heart"}, -- Safety Pin
 	[342] = {"342", "Blue Cap", "↑ {{Heart}} +1 Health#↑ {{Tears}} +0.7 Tears#↓ {{Shotspeed}} -0.16 Shot speed#{{Heart}} Heals 1 heart"}, -- Blue Cap
@@ -355,12 +351,12 @@ local repCollectibles={
 	[668] = {"668", "Dad's Note", "Begins the Ascent#Trinkets left in previous {{TreasureRoom}} Treasure or {{BossRoom}} Boss Rooms turn into {{Card78}} Cracked Keys"}, -- Dad's Note
 	[669] = {"669", "Sausage", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.2 Speed#↑ {{Tears}} +0.5 Tears#↑ {{Damage}} +0.5 Damage#↑ {{Range}} +2.5 Range#↑ {{Shotspeed}} +0.16 Shot speed#↑ {{Luck}} +1 Luck#{{Heart}} Full health#↑ {{AngelDevilChance}} +6.9% Devil/Angel Room chance#↑ {{PlanetariumChance}} +6.9% Planetarium chance"}, -- Sausage
 	[670] = {"670", "Options?", "Allows Isaac to choose from two different room clear rewards"}, -- Options?
-	[671] = {"671", "Candy Heart", "↑ Picking up {{Heart}} Red Hearts grants random permanent stat ups#{{Heart}} Spawns a Red Heart"}, -- Candy Heart
+	[671] = {"671", "Candy Heart", "↑ Healing with {{Heart}} Red Hearts grants random permanent stat ups#{{Heart}} Spawns a Red Heart"}, -- Candy Heart
 	[672] = {"672", "A Pound of Flesh", "{{DevilRoom}} Devil Room items cost coins#{{Shop}} Shop items cost hearts#Consumables in shops are surrounded by spikes"}, -- A Pound of Flesh
 	[673] = {"673", "Redemption", "{{DevilRoom}} Entering a new floor after visiting a Devil Room and not taking any item/pickup grants:#↑ {{Damage}} +1 Damage#{{SoulHeart}} +1 Soul Heart"}, -- Redemption
 	[674] = {"674", "Spirit Shackles", "Taking fatal damage transforms Isaac into a ghost chained to his dead body and allows him to continue to fight with half a heart#If the ghost survives, Isaac revives after 10 seconds#Must be recharged by picking up a Soul Heart"}, -- Spirit Shackles
 	[675] = {"675", "Cracked Orb", "Taking damage:#Unlocks all locked doors in the room#Reveals a random room on the map#Destroys all tinted and crawlspace rocks"}, -- Cracked Orb
-	[676] = {"676", "Empty Heart", "{{EmptyHeart}} +1 Empty heart container when at 1 Red Heart or less at the start of a new floor#No effect for characters that can't have Red Hearts"}, -- Empty Heart
+	[676] = {"676", "Empty Heart", "{{EmptyHeart}} +1 Empty heart container when at 1 Red Heart or less at the start of a new floor"}, -- Empty Heart
 	[677] = {"677", "Astral Projection", "{{Timer}} Taking damage in an uncleared room grants for the fight:#Spectral tears#Flight#Negates the next damage taken#Stops time for 2 seconds#Greatly increases speed and fire rate for 2 seconds"}, -- Astral Projection
 	[678] = {"678", "C Section", "{{Chargeable}} Replaces Isaac's tears with a charge attack that shoots homing, spectral fetus tears#{{Damage}} Fetus tears deal about 2.8x Isaac's damage per second"}, -- C Section
 	[679] = {"679", "Lil Abaddon", "{{Collectible399}} Familiar that charges and unleashes a Maw of the Void circle"}, -- Lil Abaddon
@@ -732,12 +728,10 @@ EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].car
 ---------- Trinkets ----------
 
 local repTrinkets={
-	[1] = {"1", "Swallowed Penny", "{{Coin}} Taking damage spawns 1 coin#{{Player14}} 0-1 as Keeper"}, -- Swallowed Penny
 	[10] = {"10", "Wiggle Worm", "↑ {{Tears}} +0.4 Tears#Spectral tears#Isaac's tears move in waves"}, -- Wiggle Worm
 	[11] = {"11", "Ring Worm", "↑ {{Tears}} +0.47 Tears#Spectral tears#Isaac's tears move in spirals with high speed"}, -- Ring Worm
 	[15] = {"15", "Lucky Rock", "{{Coin}} Destroying rocks has a 33% chance to spawn a coin"},-- Lucky Rock
 	[16] = {"16", "Mom's Toenail", "Mom's Foot stomps a random spot in the room every 20 seconds"}, -- Mom's Toenail
-	[23] = {"23", "Missing Poster", "{{Player10}} Respawn as The Lost on death#{{Player31}} Tainted Lost simply revives#{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost"}, -- Missing Poster
 	[24] = {"24", "Butt Penny", "{{Coin}} 20% higher chance for coins to spawn from poop#{{Poison}} Picking up coins makes Isaac fart, which poisons and knocks back enemies and projectiles"}, -- Butt Penny
 	[26] = {"26", "Hook Worm", "↑ {{Tears}} +0.4 Tears#↑ {{Range}} +1.5 Range#Spectral tears#Isaac's tears move in angular patterns"}, -- Hook Worm
 	[32] = {"32", "Liberty Cap", "25% chance for a random mushroom effect per room"}, -- Liberty Cap
@@ -782,7 +776,7 @@ local repTrinkets={
 	[146] = {"146", "Devil's Crown", "{{RedTreasureRoom}} Treasure Room items are replaced with devil deals"}, -- Devil's Crown
 	[147] = {"147", "Charged Penny", "{{Battery}} Picking up a coin has a 17% chance to add 1 charge to the active item"}, -- Charged Penny
 	[148] = {"148", "Friendship Necklace", "All familiars orbit around Isaac"}, -- Friendship Necklace
-	[149] = {"149", "Panic Button", "Taking damage uses the active item if it is charged"}, -- Panic Button
+	[149] = {"149", "Panic Button", "Right before taking damage, uses the active item if it is charged"}, -- Panic Button
 	[150] = {"150", "Blue Key", "Locked doors can be opened for free, but Isaac has to clear a room from the Hush floor before accessing the room behind them"}, -- Blue Key
 	[151] = {"151", "Flat File", "Retracts most spikes, rendering them harmless#Also affects {{CursedRoom}} Curse Room doors, mimics and any spike obstacle"}, -- Flat File
 	[152] = {"152", "Telescope Lens", "{{PlanetariumChance}} +24% Planetarium chance if none have spawned#+9% if a Planetarium has already spawned#Planetariums can spawn in the Womb and Corpse"}, -- Telescope Lens
@@ -956,7 +950,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[11] = {"Spawns {{ColorShinyPurple}}2{{CR}} {{Slotmachine}} Slot Machines or {{FortuneTeller}} Fortune Machines"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 2.5, 5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
-	[15] = {" a ", " 2 "}, -- XIV - Temperance
+	[15] = {"{{DonationMachine}} Spawns {{ColorShinyPurple}}2{{CR}} Blood Donation Machines"}, -- XIV - Temperance
 	[16] = {2, 4}, -- XV - The Devil
 	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "If the Treasure Room hasn't been entered yet, it will have two items to choose from", -- XVII - The Stars
@@ -1008,7 +1002,7 @@ local repPills={
 	[43] = {"42", "I'm Excited!!", "{{Timer}} Speeds up Isaac and all enemies in the room#Triggers again after 30 and 60 seconds"}, -- I'm Excited!!
 	[48] = {"47", "Shot speed Down", "↓ {{Shotspeed}} -0.15 Shot speed"}, -- Shot speed Down
 	[49] = {"48", "Shot speed Up", "↑ {{Shotspeed}} +0.15 Shot speed"}, -- Shot speed Up
-	[50] = {"49", "Experimental Pill", "↑ Increases 1 random stat#↓ Decreases 1 random stat#No stat decrease with {{Collectible75}}PHD, {{Collectible46}}Lucky Foot or {{Collectible303}}Virgo#No stat increase with {{Collectible654}}False PHD"}, -- Experimental Pill
+	[50] = {"49", "Experimental Pill", "↑ Increases 1 random stat#↓ Decreases 1 random stat"}, -- Experimental Pill
 	[9999] = {"", "Golden Pill", "Random pill effect#Has a chance to destroy itself with each use"}, -- golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
@@ -1063,7 +1057,7 @@ EID.descriptions[languageCode].horsepills={
 	{"46", "Vurp!", "Spawns the last pill Isaac used as a horse pill"}, -- Vurp!
 	{"47", "Shot speed Down", "↓ {{Shotspeed}} -0.3 Shot speed"}, -- Shot speed Down
 	{"48", "Shot speed Up", "↑ {{Shotspeed}} +0.3 Shot speed"}, -- Shot speed Up
-	{"49", "Experimental Pill", "↑ Increases 1 random stat twice#↓ Decreases 1 random stat twice#No stat decrease with {{Collectible75}} PHD, {{Collectible46}} Lucky Foot or {{Collectible303}} Virgo#No stat increase with {{Collectible654}} False PHD"}, -- Experimental Pill
+	{"49", "Experimental Pill", "↑ Increases 1 random stat twice#↓ Decreases 1 random stat twice"}, -- Experimental Pill
 	[9999] = {"", "Golden Pill", "Random horse pill effect#Has a chance to destroy itself with each use"}, -- Golden Pill
 }
 
@@ -1178,6 +1172,9 @@ EID.descriptions[languageCode].FalsePHDHeart = "Spawns 1 {{BlackHeart}} Black He
 EID.descriptions[languageCode].FalsePHDDamage = "↑ {{Damage}} +0.6 Damage"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "↑ {{Damage}} +1.2 Damage"
 
+EID.descriptions[languageCode].ExperimentalPillPHD = "No stat decrease"
+EID.descriptions[languageCode].ExperimentalPillFalsePHD = "No random stat increase"
+
 EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Instead, consumes the key and spawns 6 items from random pools"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} WARNING {{Warning}}"
@@ -1188,6 +1185,21 @@ EID.descriptions[languageCode].OldGameVersionWarningText = "EID is updated for t
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Install REPENTOGON for modded recipe support#(This warning can be disabled in the config)"
 
 EID.descriptions[languageCode].ResultsWithX = "(Results with {1})"
+
+
+local repConditions={
+	["5.100.161"] = "{{Player25}} Tainted ??? simply revives", -- Ankh
+	["5.350.28"] = "{{Player25}} Tainted ??? simply revives", -- Broken Ankh
+	["5.100.311"] = "{{Player24}} Tainted Judas simply revives", -- Judas's Shadow
+	["5.100.332"] = "{{Player29}} Tainted Lazarus simply revives", -- Lazarus's Rags
+	["5.350.23 (Tainted Lost)"] = "{{Player31}} Tainted Lost simply revives", -- Missing Poster
+	["5.100.676"] = "No effect for characters that can't have Red Hearts", -- Empty Heart
+	["5.300.15 (Tarot)"] = "{{DemonBeggar}} Spawns {{ColorShinyPurple}}2{{CR}} Devil Beggars", -- Temperance (Greed Mode + Tarot Cloth effect)
+	["5.350.1"] = "{{Player14}} Spawns 0-1 coin as Keeper", -- Swallowed Penny
+	["5.100.135 (Hard Mode)"] = {"1-2 coins", "1 coin", "2-3 coins", "2 coins"}, -- IV Bag Hard Mode (modify the PHD text too)
+}
+EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
+
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
