@@ -287,6 +287,23 @@ if EID.isRepentance then
 		return descObj
 	end
 
+  -- Handle Glowing Hourglass description
+  local function GlowingHourglassCallback(descObj)
+    if REPENTOGON then
+      local transformedText = EID:getDescriptionEntry("GlowingHourglassTransformed")
+      local numUses = Isaac.GetPlayer():GetActiveItemDesc().VarData
+      if numUses == 3 then
+        -- Replace with the description of The Hourglass
+        descObj.Description = EID:getDescriptionObj(5, 100, 66).Description
+        if transformedText ~= nil then
+          EID:appendToDescription(descObj, "#{{Warning}} "..transformedText)
+        end
+      end
+    end
+    return descObj
+  end
+
+
 	-- Handle Bingeeater description addition
 	local function BingeEaterCallback(descObj)
 		local bingeBuff = EID:getDescriptionEntry("bingeEaterBuffs", descObj.ObjSubType)
@@ -752,6 +769,8 @@ if EID.isRepentance then
 			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
+      -- Glowing Hourglass overwrites the description when used three times
+			if REPENTOGON and descObj.ObjSubType == 422 then table.insert(callbacks, GlowingHourglassCallback) end
 			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
 
 			if EID.collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
