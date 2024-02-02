@@ -10,8 +10,8 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.65
-EID.ModVersionCommit = "fbcd637"
+EID.ModVersion = 4.67
+EID.ModVersionCommit = "bd192c3"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -699,7 +699,6 @@ function EID:printDescription(desc, cachedID)
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
 			local lastPool = game:GetItemPool():GetLastPool()
-			local itemPoolLineHeight = EID.lineHeight
 
 			local poolName = ""
 			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")
@@ -920,7 +919,17 @@ function EID:PositionLocalMode(entity)
 		EID.Scale = EID.Config["LocalModeSize"]
 		EID.CurrentScaleType = "LocalModeSize"
 		local textBoxWidth = EID.Config["LocalModeCentered"] and tonumber(EID.Config["TextboxWidth"])/2 * EID.Scale or -30
-		local textPosOffset = Vector(-textBoxWidth, 20)
+		local textPosOffset = Vector(-textBoxWidth, 0)
+
+		local additiveOffset = EID.LocalModePositionOffset.Default
+		for _, offsetFunc in pairs(EID.LocalModePositionOffset) do
+			if type(offsetFunc) == "function" then
+				additiveOffset = offsetFunc(entity) or additiveOffset
+				break
+			end
+		end
+		textPosOffset = textPosOffset + additiveOffset
+
 		EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset))
 		if EID.isMirrorRoom then
 			EID:alterTextPos(Isaac.WorldToScreen(entity.Position + textPosOffset * Vector(-1,0)))

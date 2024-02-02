@@ -157,10 +157,10 @@ EID.descriptions[languageCode].collectibles={
 	{"134", "Guppy's Tail", "{{Chest}} 33% chance to replace the room clear reward with a chest#33% chance to spawn no room clear reward"},
 	{"135", "IV Bag", "{{Coin}} Hurts Isaac for half a heart and spawns 1-2 coins"},
 	{"136", "Best Friend", "Spawns a decoy Isaac that attracts enemies and explodes after 5 seconds"},
-	{"137", "Remote Detonator", "{{Bomb}} +5 bombs#Isaac's bombs no longer explode automatically#Using the item detonates all of Isaac's bombs at once"},
+	{"137", "Remote Detonator", "{{Bomb}} +5 Bombs#Isaac's bombs no longer explode automatically#Using the item detonates all of Isaac's bombs at once"},
 	{"138", "Stigmata", "↑ {{Heart}} +1 Health#↑ {{Damage}} +0.3 Damage"},
 	{"139", "Mom's Purse", "{{Trinket}} Isaac can hold 2 trinkets"},
-	{"140", "Bob's Curse", "{{Bomb}} +5 bombs#{{Poison}} Isaac's bombs poison enemies caught in the blast"},
+	{"140", "Bob's Curse", "{{Bomb}} +5 Bombs#{{Poison}} Isaac's bombs poison enemies caught in the blast"},
 	{"141", "Pageant Boy", "{{Coin}} Spawns 7 random coins"},
 	{"142", "Scapular", "{{SoulHeart}} Isaac gains 1 Soul Heart when damaged down to half a heart#Can only happen once per room#Exiting and re-entering the room allows the effect to trigger again"},
 	{"143", "Speed Ball", "↑ {{Speed}} +0.3 Speed#↑ {{Shotspeed}} +0.2 Shot speed"},
@@ -711,7 +711,7 @@ EID.descriptions[languageCode].trinkets={
 	{"100", "Vibrant Bulb", "Holding a fully charged active item grants:#↑ {{Speed}} +0.25 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.5 Damage#↑ {{Range}} +0.75 Range#↑ {{Shotspeed}} +0.1 Shot speed#↑ {{Luck}} +1 Luck"},
 	{"101", "Dim Bulb", "Holding a completely uncharged active item grants:#↑ {{Speed}} +0.5 Speed#↑ {{Tears}} +0.4 Tears#↑ {{Damage}} +1.5 Damage#↑ {{Range}} +1.5 Range#↑ {{Shotspeed}} +0.3 Shot speed#↑ {{Luck}} +2 Luck"},
 	{"102", "Fragmented Card", "{{SecretRoom}} +1 extra Secret Room per floor while held"},
-	{"103", "Equality!", "Turns single consumables into double consumables when Isaac's {{Coin}} coin, {{Bomb}} bomb and {{Key}} key counts are equal"},
+	{"103", "Equality!", "Turns single pickups into double pickups when Isaac's {{Coin}} coin, {{Bomb}} bomb and {{Key}} key counts are equal"},
 	{"104", "Wish Bone", "2% chance to get destroyed and spawn a pedestal item when hit"},
 	{"105", "Bag Lunch", "{{Collectible22}} 2% chance to get destroyed and spawn Lunch when hit"},
 	{"106", "Lost Cork", "Increases the radius of friendly creep"},
@@ -854,8 +854,8 @@ EID.descriptions[languageCode].pills={
 EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
 
 EID.descriptions[languageCode].sacrifice={
-	{"1", "", "{{Coin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
-	{"2", "", "{{Coin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 Bomb, when on B1 and killed the Boss under 1 minute"},
+	{"1", "", "{{Coin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 bomb, when on B1 and killed the boss under 1 minute"},
+	{"2", "", "{{Coin}} 50% chance for 1 coin#{{Bomb}} 100% chance for 1 bomb, when on B1 and killed the boss under 1 minute"},
 	{"3", "", "{{AngelChance}} 67% chance for increased Angel Room chance"},
 	{"4", "", "{{Chest}} 50% chance for 1 random chest"},
 	{"5", "", "{{Coin}} 33% chance for 3 coins#{{AngelChance}} 67% chance for increased Angel Room chance"},

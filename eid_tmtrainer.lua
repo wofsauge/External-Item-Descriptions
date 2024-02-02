@@ -2,8 +2,6 @@
 -- It requires installing REPENTOGON to give fully accurate descriptions.
 -- https://repentogon.com/install.html
 
-local game = Game()
-
 -- glitched items start at 4294967295
 local maxNumber = 4294967296
 local lastEffectTrigger = "chain"
@@ -61,7 +59,6 @@ function EID:CheckGlitchedItemConfig(id)
 	if not itemConfig then return "" end
 	
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
-	local voidNames = EID:getDescriptionEntry("VoidNames")
 	local attributes = "#"	
 	
 	-- Check the base item config for the Hearts/Bombs/Coins/Keys this item adds,
@@ -100,11 +97,6 @@ function EID:CheckGlitchedItemConfig(id)
 	
 	if REPENTOGON then
 		-- Use REPENTOGON to print what base item this glitched item gives, and its stat increases
-		-- If it's an active, these are given to you upon using the item, so let's print an "On use:" first
-		if itemConfig.Type == ItemType.ITEM_ACTIVE then
-			lastEffectTrigger = "active"
-			attributes = attributes .. "{{Blank}} " .. triggerColors["active"] .. localizedNames["active"]
-		end
 		local item = ProceduralItemManager.GetProceduralItem(maxNumber - 1 - id)
 		if item:GetTargetItem() then
 			-- Glitched items grant a random collectible/trinket
@@ -117,6 +109,11 @@ function EID:CheckGlitchedItemConfig(id)
 				itemType = 350
 			end
 			attributes = attributes .. localizedNames["grants"] .. itemText .. innerItem.ID .. "}} " .. EID:getObjectName(5, itemType, innerItem.ID) .. "#"
+		end
+		-- If it's an active, these are given to you upon using the item, so let's print an "On use:" first
+		if itemConfig.Type == ItemType.ITEM_ACTIVE then
+			lastEffectTrigger = "active"
+			attributes = attributes .. "{{Blank}} " .. triggerColors["active"] .. localizedNames["active"]
 		end
 		local voidNames = EID:getDescriptionEntry("VoidNames")
 		for i,func in ipairs(getFunctions) do
@@ -131,8 +128,6 @@ function EID:CheckGlitchedItemConfig(id)
 		end
 		
 		-- Use REPENTOGON to print out the glitched effects this item has
-		local item = ProceduralItemManager.GetProceduralItem(maxNumber - 1 - id)
-		
 		local triggerReplacements = {}
 		local replacements = {}
 		
@@ -167,7 +162,6 @@ function EID:CheckGlitchedItemConfig(id)
 				replacements[2] = string.format("%.4g",SimpleRound(effectProp.radius))
 			end
 			
-			local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
 			if effectTrigger ~= lastEffectTrigger then
 				if effectTrigger ~= "chain" then attributes = attributes .. "{{Blank}} " end
 				attributes = attributes .. triggerColors[effectTrigger] .. localizedNames[effectTrigger]

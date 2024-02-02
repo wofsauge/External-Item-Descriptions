@@ -63,7 +63,7 @@ local repCollectibles={
 	[129] = {"129", "Bucket of Lard", "↑ {{Heart}} +2 Health#↓ {{Speed}} -0.2 Speed"}, -- Bucket of Lard
 	[138] = {"138", "Stigmata", "↑ {{Heart}} +1 Health#↑ {{Damage}} +0.3 Damage#{{Heart}} Heals 1 heart"}, -- Stigmata
 	[139] = {"139", "Mom's Purse", "{{Trinket}} Spawns 1 random trinket#{{Trinket}} Isaac can hold 2 trinkets"}, -- Mom's Purse
-	[140] = {"140", "Bob's Curse", "{{Bomb}} +5 bombs#{{Poison}} Isaac's bombs create a cloud of poison#{{Poison}} Poison immunity"}, -- Bob's Curse
+	[140] = {"140", "Bob's Curse", "{{Bomb}} +5 Bombs#{{Poison}} Isaac's bombs create a cloud of poison#{{Poison}} Poison immunity"}, -- Bob's Curse
 	[142] = {"142", "Scapular", "{{SoulHeart}} Isaac gains 1 Soul Heart when damaged down to half a heart#Can only happen once per room#Exiting and re-entering the room allows the effect to trigger again#{{Warning}} Doesn't trigger from health donations"}, --Scapular
 	[147] = {"147", "Notched Axe", "Using the item makes Isaac hold the axe#Holding the axe allows Isaac to break rocks, secret room entrances and damage enemies#Landing a hit with the axe reduces its charge#Entering a new floor fully recharges the axe"}, -- Notched Axe
 	[148] = {"148", "Infestation", "Taking damage spawns 2-6 blue flies"}, -- Infestation
@@ -78,7 +78,7 @@ local repCollectibles={
 	[176] = {"176", "Stem Cells", "↑ {{Heart}} +1 Health#↑ {{Shotspeed}} +0.16 Shot speed#{{Heart}} Heals 1 heart"}, -- Stem Cells
 	[178] = {"178", "Holy Water", "{{Throwable}} Launches itself in the direction Isaac shoots#Breaks and deals 7 damage upon hitting an enemy#Leaves a pool of petrifying + damaging creep"}, -- Holy Water
 	[180] = {"180", "The Black Bean", "Isaac farts multiple times when damaged#{{Poison}} The farts leave poison clouds and deflects projectiles"}, -- The Black Bean
-	[182] = {"182", "Sacred Heart", "↑ {{Heart}} +1 Health#↑ {{Damage}} x2.3 Damage multiplier#{{Damage}} +1 Damage#↓ {{Tears}} -0.4 Tears#↓ {{Shotspeed}} -0.25 Shot speed#{{Heart}} Full health#Homing tears"}, -- Sacred Heart
+	[182] = {"182", "Sacred Heart", "↑ {{Heart}} +1 Health#↑ {{Damage}} x2.3 Damage multiplier#↑ {{Damage}} +1 Damage#↓ {{Tears}} -0.4 Tears#↓ {{Shotspeed}} -0.25 Shot speed#{{Heart}} Full health#Homing tears"}, -- Sacred Heart
 	[184] = {"184", "Holy Grail", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#Flight"}, -- Holy Grail
 	[186] = {"186", "Blood Rights", "Deals 40 damage to every enemy#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first"},
 	[188] = {"188", "Abel", "Mirrors Isaac's movement#Shoots towards Isaac#Deals 3.5 damage per tear#{{Player2}} Deals 7.5 damage as Cain"}, -- Abel
@@ -779,7 +779,7 @@ local repTrinkets={
 	[149] = {"149", "Panic Button", "Right before taking damage, uses the active item if it is charged"}, -- Panic Button
 	[150] = {"150", "Blue Key", "Locked doors can be opened for free, but Isaac has to clear a room from the Hush floor before accessing the room behind them"}, -- Blue Key
 	[151] = {"151", "Flat File", "Retracts most spikes, rendering them harmless#Also affects {{CursedRoom}} Curse Room doors, mimics and any spike obstacle"}, -- Flat File
-	[152] = {"152", "Telescope Lens", "{{PlanetariumChance}} +24% Planetarium chance if none have spawned#+9% if a Planetarium has already spawned#Planetariums can spawn in the Womb and Corpse"}, -- Telescope Lens
+	[152] = {"152", "Telescope Lens", "{{PlanetariumChance}} +9% Planetarium chance#Additional +15% chance if a Planetarium hasn't been entered yet#Planetariums can spawn in the Womb and Corpse"}, -- Telescope Lens
 	[153] = {"153", "Mom's Lock", "25% chance for a random Mom item effect each room"}, -- Mom's Lock
 	[154] = {"154", "Dice Bag", "50% chance per new room to grant a single use die consumable item#The die disappears when leaving#The die does not take up a pill/card slot"}, -- Dice Bag
 	[155] = {"155", "Holy Crown", "Spawns a {{TreasureRoom}} Treasure Room and {{Shop}} Shop in Cathedral"}, -- Holy Crown
@@ -801,7 +801,7 @@ local repTrinkets={
 	[171] = {"171", "Keeper's Bargain", "{{DevilRoom}} 50% chance for devil deals to cost coins instead of hearts"}, -- Keeper's Bargain
 	[172] = {"172", "Cursed Penny", "Picking up a coin teleports Isaac to a random room#Can teleport to secret rooms"}, -- Cursed Penny
 	[173] = {"173", "Your Soul", "{{DevilRoom}} Allows Isaac to take 1 Devil Room item for free#{{Warning}} The free Devil deal still affects Angel Room chance"}, -- Your Soul
-	[174] = {"174", "Number Magnet", "{{DevilChance}} +10% Devil Room chance#Prevents Krampus from appearing in Devil Rooms#Devil Rooms are special variants with more deals, Black Hearts and enemies"}, -- Number Magnet
+	[174] = {"174", "Number Magnet", "{{DevilChance}} +10% Devil/Angel Room chance#Prevents Krampus from appearing in Devil Rooms#Devil Rooms are special variants with more deals, Black Hearts and enemies"}, -- Number Magnet
 	[175] = {"175", "Strange Key", "Opens the door to the Hush floor regardless of the timer#Using {{Collectible297}} Pandora's Box consumes the key and spawns 6 items from random pools"}, -- Strange Key
 	[176] = {"176", "Lil Clot", "Spawns a blood clot that mimics Isaac's movement#Copies Isaac's stats, tear effects and 35% of his damage#Respawns each room"}, -- Lil Clot
 	[177] = {"177", "Temporary Tattoo", "{{Chest}} Clearing a {{ChallengeRoom}} Challenge Room spawns a chest#Clearing a {{BossRushRoom}} Boss Challenge Room spawns an item"}, -- Temporary Tattoo
@@ -1114,10 +1114,10 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["9.-1"] = "enemy projectile",
 	["999.-1"] = "grid object",
 	["1000.0"] = "effect",
-	
+
 	-- Text for the base item that is granted
 	grants = "Grants ",
-	
+
 }
 
 ---------- Misc. Text ----------
@@ -1167,6 +1167,7 @@ EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune charge:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo charge:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{CONFIG_BoC_Toggle}} to show description)"
 
+EID.descriptions[languageCode].GlowingHourglassTransformed = "Will change back to Glowing Hourglass next floor"
 
 EID.descriptions[languageCode].FalsePHDHeart = "Spawns 1 {{BlackHeart}} Black Heart"
 EID.descriptions[languageCode].FalsePHDDamage = "↑ {{Damage}} +0.6 Damage"
@@ -1207,4 +1208,9 @@ if EID.enableDebug then
 	EID.descriptions[languageCode].repTrinkets = repTrinkets
 	EID.descriptions[languageCode].repCards = repCards
 	EID.descriptions[languageCode].repPills = repPills
+end
+
+if REPENTOGON then
+	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "Donation Machine", "Next achievement at {1} coins, {2} coins remaining#{{Luck}} 2% chance for +1 Luck when donating#{{AngelRoom}} Donating 10 coins increases Angel Room chance"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Greed Donation Machine", "Next achievement at {1} coins, {2} coins remaining"}
 end

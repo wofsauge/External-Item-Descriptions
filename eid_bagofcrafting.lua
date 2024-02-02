@@ -569,7 +569,7 @@ EID:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collide
 end)
 
 -- Formerly a MC_POST_PICKUP_UPDATE, but moved to this so that it's only called when we own a bag
-local function checkForPickups()
+function EID:BoCCheckForPickups()
 	for _,pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, -1, -1, false, false)) do
 		if pickup:GetSprite():GetAnimation() == "Collect" and not pickupsCollected[pickup.Index] then
 			pickupsCollected[pickup.Index] = true
@@ -606,7 +606,7 @@ end)
 --Tainted Cain "hold to craft" check
 local holdCounter = 0
 local icount = 0
-local function trackBagHolding()
+function EID:BoCTrackBagHolding()
 	if not IsTaintedCain() then return end
 	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.bagPlayer.ControllerIndex)
 	local animationName = EID.bagPlayer:GetSprite():GetAnimation()
@@ -639,7 +639,7 @@ local function shiftBagContent()
 	EID.BoC.BagItems = newContent
 end
 -- only Tainted Cain's consumable slot bag can have its ingredients shifted
-local function detectBagContentShift()
+function EID:BoCDetectBagContentShift()
 	if Input.IsActionTriggered(ButtonAction.ACTION_DROP, EID.bagPlayer.ControllerIndex) and IsTaintedCain() then
 		shiftBagContent()
 	end
@@ -749,7 +749,7 @@ local function getFloorItemsString(showPreviews, roomItems)
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 	if #bagItems >0 then
 		if showPreviews and #bagItems == 8 then
-			local recipe = EID:calculateBagOfCrafting(bagItems)
+			local recipe = REPENTOGON and EID.bagPlayer:GetBagOfCraftingOutput() or EID:calculateBagOfCrafting(bagItems)
 			floorString = floorString .. "{{Collectible"..recipe.."}} "
 		end
 		local bagDesc = EID:getDescriptionEntry("CraftingBagContent")
@@ -914,9 +914,9 @@ function EID:handleBagOfCraftingUpdating()
 	lastSeedUsed = curSeed
 
 	-- watch for holding the Craft button, and pressing the ingredient shift button
-	trackBagHolding()
-	detectBagContentShift()
-	if EID.GameRenderCount % 2 == 0 then checkForPickups() end
+	EID:BoCTrackBagHolding()
+	EID:BoCDetectBagContentShift()
+	if EID.GameRenderCount % 2 == 0 then EID:BoCCheckForPickups() end
 
 	-- Check for Hide/Preview hotkeys; prevent them from triggering while in MCM
 	if not ModConfigMenu or not ModConfigMenu.IsVisible then
@@ -993,6 +993,9 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		return false
 	end
 
+	if REPENTOGON then
+		EID.BoC.BagItems = EID.bagPlayer:GetBagOfCraftingContent()
+	end
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 	-- Display the result of the 8 items in our bag if applicable
 	if (EID.ShowCraftingResult or EID.Config["BagOfCraftingDisplayRecipesMode"] == "Preview Only") and #bagItems == 8 then
@@ -1000,7 +1003,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 			EID.ShowCraftingResult = false
 			return false
 		end
-		local craftingResult = EID:calculateBagOfCrafting(bagItems)
+		local craftingResult = REPENTOGON and EID.bagPlayer:GetBagOfCraftingOutput() or EID:calculateBagOfCrafting(bagItems)
 		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
 		-- prepend the Hide/Preview hotkeys to the description
 		descriptionObj.Description = getHotkeyString() .. descriptionObj.Description

@@ -11,10 +11,11 @@ This mod displays detailed information about all items, trinkets, cards, runes a
 
 [img]https://i.imgur.com/QmqdAmr.png[/img]
 [list]
-[*] [b]Compatible with Afterbirth+ and Repentance[/b]
+[*] [b]Compatible with Afterbirth+, Repentance and Repentogon[/b]
 [*] Displays information for all collectibles, trinkets, cards, runes, pills, horsepills and some rooms
 [*] Displays [b]additional information[/b] like item type, charges, transformations, Spindown Dice results, Bag of Crafting recipes, TMTRAINER item effects (Detailed informations require --luadebug flag!), and much much more!
 [*] Mod support for nearly all mods!
+[*] Extended features available with [url=https://repentogon.com/]Repentogon[/url]
 [*] Easy to use API ([url=https://github.com/wofsauge/External-Item-Descriptions/wiki]Documentation here[/url])
 [*] A huge amount of custom options like:
 [list]
@@ -50,7 +51,7 @@ You are currently looking at the version for Afterbirth+ and Repentance.
 [img]https://i.imgur.com/jrdGbna.png[/img]
 [url=https://github.com/wofsauge/External-Item-Descriptions/blob/master/CREDITS.md]Check out the credits here[/url]
 </description>
-    <version>4.65</version>
+    <version>4.67</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
