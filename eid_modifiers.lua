@@ -227,11 +227,41 @@ local function SacrificeRoomCallback(descObj)
 	return descObj
 end
 
+-- Handle Car Battery description addition
 local function CarBatteryCallback(descObj)
-	local text = EID:getDescriptionEntry("carBattery", descObj.ObjSubType)
-	if text ~= nil then
-		local iconStr = "#{{Collectible356}} "
-		EID:appendToDescription(descObj, iconStr..text)
+	local carBatteryBuff = EID:getDescriptionEntry("carBattery", descObj.ObjSubType)
+	if carBatteryBuff ~= nil then
+		-- String = append
+		if type(carBatteryBuff) == "string" then
+			local iconStr = "#{{Collectible356}} "
+			EID:appendToDescription(descObj, iconStr..carBatteryBuff:gsub("#",iconStr))
+		-- Table with 1 entry = replace
+		elseif #carBatteryBuff == 1 then
+			descObj.Description = carBatteryBuff[1]
+		-- Table with 2+ entries = find and replace
+		-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
+		else
+			local pos = 1
+			while pos < #carBatteryBuff do
+				local toFind = carBatteryBuff[pos]
+				local replaceWith = carBatteryBuff[pos+1]
+				
+				--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
+				if (type(toFind) == "number") then
+					local count = 0
+					descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
+						if (s == tostring(toFind) and count == 0) then
+							count = count + 1
+							return "{{BlinkYellowGreen}}" .. replaceWith .. "{{CR}}"
+						end
+					end)
+				-- Basic find+replace for non-numbers
+				else
+					descObj.Description = string.gsub(descObj.Description, tostring(toFind), "{{BlinkYellowGreen}}" .. replaceWith .. "{{CR}}", 1)
+				end
+				pos = pos + 2
+			end
+		end
 	end
 	return descObj
 end
@@ -256,6 +286,23 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
+
+  -- Handle Glowing Hourglass description
+  local function GlowingHourglassCallback(descObj)
+    if REPENTOGON then
+      local transformedText = EID:getDescriptionEntry("GlowingHourglassTransformed")
+      local numUses = Isaac.GetPlayer():GetActiveItemDesc().VarData
+      if numUses == 3 then
+        -- Replace with the description of The Hourglass
+        descObj.Description = EID:getDescriptionObj(5, 100, 66).Description
+        if transformedText ~= nil then
+          EID:appendToDescription(descObj, "#{{Warning}} "..transformedText)
+        end
+      end
+    end
+    return descObj
+  end
+
 
 	-- Handle Bingeeater description addition
 	local function BingeEaterCallback(descObj)
@@ -288,7 +335,7 @@ if EID.isRepentance then
 	end
 
 	--simple decimal rounding
-	function SimpleRound(num, dp)
+	local function SimpleRound(num, dp)
 		dp = dp or 2
 		local mult = 10^dp
 		return math.floor(num * mult + 0.5)/mult
@@ -540,19 +587,27 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
-
+	
+	local hasTarot = false
+	
 	-- Handle Blank Card description addition
 	local function BlankCardCallback(descObj)
 		local text = EID:getDescriptionEntry("BlankCardCharge")
 		local charge = EID.cardMetadata[descObj.ObjSubType]
+		local iconStr = "#{{Collectible286}} {{ColorSilver}}"
 		if text ~= nil and charge ~= nil and charge.mimiccharge and charge.mimiccharge ~= -1 then
-			local iconStr = "#{{Collectible286}} {{ColorSilver}}"
 			if descObj.ObjSubType == 48 then -- ? card
 				text = EID:getDescriptionEntry("BlankCardQCard")
 				EID:appendToDescription(descObj, iconStr..text:gsub("#",iconStr))
 			else
 				EID:appendToDescription(descObj, iconStr..text.." {{"..charge.mimiccharge.."}}{{Battery}}")
 			end
+		end
+		-- If the player has Tarot Cloth and Blank Card, display additional text
+		if hasTarot then
+			text = EID:getDescriptionEntry("BlankCardEffect")
+			local buffText = EID:getDescriptionEntry("tarotClothBlankCardBuffs", descObj.ObjSubType)
+			if buffText then EID:appendToDescription(descObj, iconStr .. text .. " " .. buffText) end
 		end
 		return descObj
 	end
@@ -714,6 +769,8 @@ if EID.isRepentance then
 			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
+      -- Glowing Hourglass overwrites the description when used three times
+			if REPENTOGON and descObj.ObjSubType == 422 then table.insert(callbacks, GlowingHourglassCallback) end
 			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
 
 			if EID.collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
@@ -726,7 +783,8 @@ if EID.isRepentance then
 
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
-			if EID.collectiblesOwned[451] then table.insert(callbacks, TarotClothCallback) end
+			hasTarot = EID.collectiblesOwned[451]
+			if hasTarot then table.insert(callbacks, TarotClothCallback) end
 
 			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
 			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
@@ -766,7 +824,7 @@ local function EIDConditionsAB(descObj)
 
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
-		if EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
+		if EID.Config["ItemCollectionIndicator"] and EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
 
 		if descObj.ObjSubType == 297 then table.insert(callbacks, PandorasBoxCallback) end
 

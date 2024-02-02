@@ -324,5 +324,5 @@ function EID:D1Prediction(rng)
 	end
 
 	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
-	return pickupNames[fullID] or EID.XMLEntityNames[fullID] or fullID
+	return pickupNames[fullID] or EID:GetEntityXMLNameByString(fullID) or fullID
 end

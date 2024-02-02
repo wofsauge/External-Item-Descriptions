@@ -785,7 +785,7 @@ local repTrinkets={
 	[149] = {"149", "Panic Button", "Taking damage uses the active item if it is charged"}, -- Panic Button
 	[150] = {"150", "Blue Key", "Locked doors can be opened for free, but Isaac has to clear a room from the Hush floor before accessing the room behind them"}, -- Blue Key
 	[151] = {"151", "Flat File", "Retracts most spikes, rendering them harmless#Also affects {{CursedRoom}} Curse Room doors, mimics and any spike obstacle"}, -- Flat File
-	[152] = {"152", "Telescope Lens", "{{PlanetariumChance}} +24% Planetarium chance if none have spawned#+9% if a Planetarium has already spawned#Planetariums can spawn in the Womb and Corpse"}, -- Telescope Lens
+	[152] = {"152", "Telescope Lens", "{{PlanetariumChance}} +9% Planetarium chance#Additional +15% chance if a Planetarium hasn't been entered yet#Planetariums can spawn in the Womb and Corpse"}, -- Telescope Lens
 	[153] = {"153", "Mom's Lock", "25% chance for a random Mom item effect each room"}, -- Mom's Lock
 	[154] = {"154", "Dice Bag", "50% chance per new room to grant a single use die consumable item#The die disappears when leaving#The die does not take up a pill/card slot"}, -- Dice Bag
 	[155] = {"155", "Holy Crown", "Spawns a {{TreasureRoom}} Treasure Room and {{Shop}} Shop in Cathedral"}, -- Holy Crown
@@ -903,7 +903,7 @@ local repCards={
 	[62] = {"62", "VI - The Lovers?", "Spawns an item from the current room's item pool#{{BrokenHeart}} Converts 1 heart container or 2 Soul Hearts into a Broken Heart"}, -- VI - The Lovers?
 	[63] = {"63", "VII - The Chariot?", "{{Timer}} Receive for 10 seconds:#↑ {{Tears}} x4 Fire rate multiplier#Invincible but can't move"}, -- VII - The Chariot?
 	[64] = {"64", "VIII - Justice?", "{{GoldenChest}} Spawns 2-4 golden chests"}, -- VIII - Justice?
-	[65] = {"65", "IX - The Hermit?", "{{Coin}} Turns all pickups and items in the room into a number of coins equal to their shop value#{{Blank}} If there is nothing to turn, spawns a Penny instead"}, -- IX - The Hermit?
+	[65] = {"65", "IX - The Hermit?", "{{Coin}} Turns all pickups and items in the room into a number of coins equal to their shop value#If there is nothing to turn, spawns a Penny instead"}, -- IX - The Hermit?
 	[66] = {"66", "X - Wheel of Fortune?", "{{DiceRoom}} Triggers a random Dice Room effect"}, -- X - Wheel of Fortune?
 	[67] = {"67", "XI - Strength?", "{{Timer}} Enemies in the room are {{Slow}} slowed and take double damage for 60 seconds"}, -- XI - Strength?
 	[68] = {"68", "XII - The Hanged Man?", "{{Timer}} Receive for 30 seconds:#↓ {{Speed}} -0.1 Speed#Triple shot#{{Coin}} Killed enemies drop coins"}, -- XII - The Hanged Man?
@@ -911,7 +911,7 @@ local repCards={
 	[70] = {"70", "XIV - Temperance?", "{{Pill}} Forces Isaac to eat 5 random pills"}, -- XIV - Temperance?
 	[71] = {"71", "XV - The Devil?", "{{Timer}} Receive for 60 seconds:#{{Collectible33}} Activates The Bible (flight)#{{Collectible390}} Seraphim familiar#{{MomsHeart}} Kills Mom's Foot and Mom's Heart instantly#{{Warning}} Kills Isaac when used on Satan"}, -- XV - The Devil?
 	[72] = {"72", "XVI - The Tower?", "Spawns 7 clusters of random rocks and obstacles#Clusters often contain Tinted Rocks"}, -- XVI - The Tower?
-	[73] = {"73", "XVII - The Stars?", "Removes Isaac's first collected passive item (ignoring starting items)#Spawns 2 random items from the current room's item pool"}, -- XVII - The Stars?
+	[73] = {"73", "XVII - The Stars?", "Removes Isaac's oldest collected passive item (ignoring starting items)#Spawns 2 random items from the current room's item pool"}, -- XVII - The Stars?
 	[74] = {"74", "XVIII - The Moon?", "{{UltraSecretRoom}} Teleports Isaac to the Ultra Secret Room#Pathway back will be made of red rooms"}, -- XVIII - The Moon?
 	[75] = {"75", "XIX - The Sun?", "{{Timer}} Receive for the floor:#↑ {{Damage}} +1.5 Damage#Flight and spectral tears#{{BoneHeart}} Converts heart containers into Bone Hearts (reverts)#{{CurseDarkness}} Curse of Darkness"}, -- XIX - The Sun?
 	[76] = {"76", "XX - Judgement?", "{{RestockMachine}} Spawns a Restock Machine"}, -- XX - Judgement?
@@ -960,8 +960,8 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[16] = {2, 4}, -- XV - The Devil
 	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "If the Treasure Room hasn't been entered yet, it will have two items to choose from", -- XVII - The Stars
-	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {"Spawns {{ColorShinyPurple}}2{{CR}} Beggars or Devil Beggars"}, -- XX - Judgement
+	[20] = {100, 400}, -- XIX - The Sun
+	[21] = {"Spawns {{ColorShinyPurple}}2{{CR}} Beggars or Devil Beggars#2% chance to spawn a special Beggar"}, -- XX - Judgement
 	[56] = "Drops Isaac's most recent 6 items alongside the pickups", -- 0 - The Fool?
 	[59] = {2, 3}, -- III - The Empress?
 	[61] = {2, 3}, -- V - The Hierophant?
@@ -972,8 +972,29 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[68] = {30, 60}, -- XII - The Hanged Man?
 	[70] = {5, 10}, -- XIV - Temperance?
 	[72] = {7, 14}, -- XVI - The Tower?
-	[73] = "Removes 2 items and spawns 4", -- XVII - The Stars?
+	[73] = {"Removes Isaac's {{ColorShinyPurple}}2{{CR}} oldest collected passive items (ignoring starting items)#Spawns {{ColorShinyPurple}}4{{CR}} random items from the current room's item pool"}, -- XVII - The Stars?
 	[76] = {"{{RestockMachine}} Spawns {{ColorShinyPurple}}2{{CR}} Restock Machines"}, -- XX - Judgement?
+}
+
+
+-- There's some odd behavior with Blank Card + Tarot Cloth not doubling some cards
+-- These will be appended after Blank Card recharge time and "Blank Card effect:"
+EID.descriptions[languageCode].tarotClothBlankCardBuffs = {
+	[11] = "Spawns 1 machine", -- X - Wheel of Fortune
+	[12] = "Stat boosts aren't doubled", -- XI - Strength
+	[14] = "Deals 40 damage", -- XIII - Death
+	[15] = "Spawns 1 machine", -- XIV - Temperance
+	[16] = "+2 Damage", -- XV - The Devil
+	[20] = "Deals 200 damage", -- XIX - The Sun
+	[21] = "Spawns 1 beggar", -- XX - Judgement
+	[56] = "Drops 3 items", -- 0 - The Fool?
+	[64] = "Spawns 2-7 chests", -- VIII - Justice?
+	[65] = "Doesn't spawn an additional penny", -- IX - The Hermit?
+	[66] = "Triggers 1 effect", -- X - Wheel of Fortune?
+	[68] = "Lasts 30 seconds", -- XII - The Hanged Man?
+	[72] = "Spawns 7 clusters", -- XVI - The Tower?
+	[73] = "Removes 1 item and spawns 2", -- XVII - The Stars?
+	[76] = "Spawns 1 machine", -- XX - Judgement?
 }
 
 ---------- Pills ----------
@@ -1056,7 +1077,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	AddBlackHearts = "{{BlackHeart}} {1} Black Heart",
 	AddBombs = "{{Bomb}} {1} Bomb",
 	AddCoins = "{{Coin}} {1} Coin",
-	AddHearts = "Heals {{Heart}} {1} heart",
+	AddHearts = "{{Heart}} Heals {1} heart",
 	AddKeys = "{{Key}} {1} Key",
 	AddMaxHearts = "{{EmptyHeart}} {1} Heart container",
 	AddSoulHearts = "{{SoulHeart}} {1} Soul Heart",
@@ -1068,21 +1089,21 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	-- Attribute triggers
 	active = "On use:#",
 	pickup_collected = "On collecting a pickup:#",
-	enemy_kill = "Killing an enemy might:#",
+	enemy_kill = "Killing an enemy has a 20% chance to:#",
 	damage_taken = "Upon taking damage:#",
 	entity_spawned = "When a {T1} is spawned:#",
-	tear_fire = "Firing a tear might:#",
-	enemy_hit = "Hitting an enemy might:#",
+	tear_fire = "Firing a tear has a 5% chance to:#",
+	enemy_hit = "Hitting an enemy has a 5% chance to:#",
 	room_clear = "On clearing a room:#",
 	chain = "Then:{{CR}} ",
 
 	-- Attribute effects
-	area_damage = "Deal {1} damage in an area around Isaac",
+	area_damage = "Deal {1} damage in {2} tiles around Isaac",
 	add_temporary_effect = "Grant {1} for the room",
 	convert_entities = "Convert all {1} in the room to {2}",
 	use_active_item = "Use {1}",
 	spawn_entity = "Spawn a {1}",
-	fart = "Fart with size {1}",
+	fart = "Fart on {1} tiles around Isaac",
 
 	-- Generic entity names not obtained from entities2.xml
 	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
@@ -1099,6 +1120,9 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["9.-1"] = "enemy projectile",
 	["999.-1"] = "grid object",
 	["1000.0"] = "effect",
+
+	-- Text for the base item that is granted
+	grants = "Grants ",
 
 }
 
@@ -1143,11 +1167,13 @@ EID.descriptions[languageCode].CraftingPreviewBackup = "{{Warning}} If this item
 EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:"
+EID.descriptions[languageCode].BlankCardEffect = "Blank Card effect:"
 EID.descriptions[languageCode].BlankCardQCard = "Teleport to I AM ERROR Room#Blank Card and ?-Card will be destroyed"
 EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune charge:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo charge:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{CONFIG_BoC_Toggle}} to show description)"
 
+EID.descriptions[languageCode].GlowingHourglassTransformed = "Will change back to Glowing Hourglass next floor"
 
 EID.descriptions[languageCode].FalsePHDHeart = "Spawns 1 {{BlackHeart}} Black Heart"
 EID.descriptions[languageCode].FalsePHDDamage = "↑ {{Damage}} +0.6 Damage"
@@ -1160,7 +1186,7 @@ EID.descriptions[languageCode].AchievementWarningText = "Achievements are disabl
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID is updated for the newest Steam version#Your game version is not officially supported, so some descriptions and features will be inaccurate#(This warning can be disabled in the config)"
 
-EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Use the Item Probability display mode or turn off the Bag of Crafting display if your recipes are incorrect#(This warning can be disabled in the config)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Install REPENTOGON for modded recipe support#(This warning can be disabled in the config)"
 
 EID.descriptions[languageCode].ResultsWithX = "(Results with {1})"
 
@@ -1170,4 +1196,9 @@ if EID.enableDebug then
 	EID.descriptions[languageCode].repTrinkets = repTrinkets
 	EID.descriptions[languageCode].repCards = repCards
 	EID.descriptions[languageCode].repPills = repPills
+end
+
+if REPENTOGON then
+	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "Donation Machine", "Next achievement at {1} coins, {2} coins remaining#{{Luck}} 2% chance for +1 Luck when donating#{{AngelRoom}} Donating 10 coins increases Angel Room chance"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Greed Donation Machine", "Next achievement at {1} coins, {2} coins remaining"}
 end
