@@ -259,10 +259,10 @@ function EID:getHoldMapDescription(player, checkingTwin)
 						addObjectDesc(5, 100, modelingClayItem, "{{Trinket166}}")
 						blacklist["5.350.166"] = true
 					else
-						addObjectDesc(5, 350, heldTrinket)
+						addObjectDesc(5, 350, heldTrinketTrue) -- currently no effect applied
 					end
 				else
-					addObjectDesc(5, 350, heldTrinket)
+					addObjectDesc(5, 350, heldTrinketTrue)
 				end
 
 			end
