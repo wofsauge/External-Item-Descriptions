@@ -30,17 +30,11 @@ function EID:IsHardMode()
 	else return false end
 end
 
--- Character IDs that aren't allowed to have Red Health: ???, The Lost, The Soul
-local noRedPlayerIDs = { [4] = true, [10] = true, [17] = true }
--- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
-if REPENTANCE then
-	noRedPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
-end
 -- Check if we have any characters that can't have Red Health, to print additions to descs like Dead Cat
 function EID:CheckForNoRedHealthPlayer()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		if noRedPlayerIDs[player:GetPlayerType()] then
+		if EID.NoRedHeartsPlayerIDs[player:GetPlayerType()] then
 			return true
 		end
 	end
@@ -91,7 +85,7 @@ modifierText: Text to add to find a specific string in the localization file (fo
 Due to co-op, it's best for replacing text in descriptions to only be used for things like Greed/Hard Mode
 Otherwise, appending is better so that players not affected by the change can still see what it will be for them
 ]]
-local conditionsTable = {
+EID.DescriptionConditions = {
 	-- No Red HP
 	["5.100.81"] = {func = EID.CheckForNoRedHealthPlayer}, -- Dead Cat
 	["5.100.442"] = {func = EID.CheckForNoRedHealthPlayer}, -- Dark Prince's Crown
@@ -111,7 +105,7 @@ local conditionsTable = {
 	["5.100.332"] = {func = EID.PlayersHaveCharacter, vars = {29}}, -- Lazarus's Rags
 	["5.350.23"] = { -- Missing Poster (revive, plus Unlock The Lost text)
 		{func = EID.PlayersHaveCharacter, vars = {31}, modifierText = "Tainted Lost"},
-		{func = EID.HaveNotUnlockedAchievement, vars = {Achievement.THE_LOST} } }, 
+		{func = EID.HaveNotUnlockedAchievement, vars = {Achievement.THE_LOST} } },
 	
 	-- Greed Mode
 	["5.100.241"] = {func = EID.IsGreedMode}, -- Contract From Below
@@ -132,15 +126,15 @@ function EID:applyConditionals(descObj, modifierText)
 	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..descObj.ObjSubType
 	if modifierText then typeVarSub = typeVarSub .. " (" .. modifierText .. ")" end
 	
-	local conds = conditionsTable[typeVarSub]
+	local conds = EID.DescriptionConditions[typeVarSub]
 	if not conds then return descObj end
 	
 	-- Check every condition we need to check for this item (usually 1)
 	if #conds == 0 then conds = { conds } end
-	for i,cond in ipairs(conds) do
+	for _, cond in ipairs(conds) do
 		local tvs = typeVarSub
 		if cond.modifierText then tvs = tvs .. " (" .. cond.modifierText .. ")" end
-		local text = EID:getDescriptionEntry("ConditionalDescs", nil, true)[tvs]
+		local text = EID:getDescriptionEntry("ConditionalDescs", tvs)
 		if (text ~= nil) and (not repOnly or REPENTANCE) and (not abpOnly or not REPENTANCE) then
 			-- is there a way to pass all a table's values into a function aside from this? it's fine for now...
 			cond.vars = cond.vars or {}
