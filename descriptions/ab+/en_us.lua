@@ -101,7 +101,7 @@ EID.descriptions[languageCode].collectibles={
 	{"78", "Book of Revelations", "{{SoulHeart}} +1 Soul Heart#{{AngelDevilChance}} +17.5% Devil/Angel Room chance while held#Higher horseman boss chance if used"},
 	{"79", "The Mark", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1 Damage#{{SoulHeart}} +1 Soul Heart"},
 	{"80", "The Pact", "↑ {{Tears}} +0.7 Tears#↑ {{Damage}} +0.5 Damage#{{SoulHeart}} +2 Soul Hearts"},
-	{"81", "Dead Cat", "↑ +9 Lives#Isaac respawns with 1 heart container on death#{{Warning}} Sets Isaac's heart containers to 1 when picked up#Characters that can't have Red Hearts get set to 1 Soul/Black Heart"},
+	{"81", "Dead Cat", "↑ +9 Lives#Isaac respawns with 1 heart container on death#{{Warning}} Sets Isaac's heart containers to 1 when picked up"},
 	{"82", "Lord of the Pit", "↑ {{Speed}} +0.3 Speed#Flight"},
 	{"83", "The Nail", "{{SoulHeart}} +1 Soul Heart#{{Timer}} Receive for the room:#↑ {{Damage}} +0.7 Damage#↓ {{Speed}} -0.18 Speed#Isaac deals 40 contact damage per second#Allows Isaac to destroy rocks by walking into them"},
 	{"84", "We Need To Go Deeper!", "Opens a trapdoor to the next floor#{{LadderRoom}} 10% chance to open a crawlspace trapdoor"},
@@ -155,7 +155,7 @@ EID.descriptions[languageCode].collectibles={
 	{"132", "A Lump of Coal", "{{Damage}} Tears deal more damage the further they travel"},
 	{"133", "Guppy's Paw", "{{SoulHeart}} Converts 1 heart container into 3 Soul Hearts"},
 	{"134", "Guppy's Tail", "{{Chest}} 33% chance to replace the room clear reward with a chest#33% chance to spawn no room clear reward"},
-	{"135", "IV Bag", "{{Coin}} Hurts Isaac for half a heart and spawns 1-3 coins#{{Player14}} Spawns 0-1 coin as Keeper"},
+	{"135", "IV Bag", "{{Coin}} Hurts Isaac for half a heart and spawns 1-2 coins"},
 	{"136", "Best Friend", "Spawns a decoy Isaac that attracts enemies and explodes after 5 seconds"},
 	{"137", "Remote Detonator", "{{Bomb}} +5 Bombs#Isaac's bombs no longer explode automatically#Using the item detonates all of Isaac's bombs at once"},
 	{"138", "Stigmata", "↑ {{Heart}} +1 Health#↑ {{Damage}} +0.3 Damage"},
@@ -261,7 +261,7 @@ EID.descriptions[languageCode].collectibles={
 	{"238", "Key Piece 1", "{{Warning}} Getting both parts of the key opens a big golden door#{{AngelChance}} +25% Angel Room chance#{{EternalHeart}} +2% chance for Eternal Hearts"},
 	{"239", "Key Piece 2", "{{Warning}} Getting both parts of the key opens a big golden door#{{AngelChance}} +25% Angel Room chance#{{EternalHeart}} +2% chance for Eternal Hearts"},
 	{"240", "Experimental Treatment", "↑ Increases 4 random stats#↓ Decreases 2 random stats"},
-	{"241", "Contract from Below", "Doubles all room clear rewards#33% chance for no room clear reward#{{GreedMode}} Doesn't affect Greed Mode"},
+	{"241", "Contract from Below", "Doubles all room clear rewards#33% chance for no room clear reward"},
 	{"242", "Infamy", "50% chance to block enemy shots"},
 	{"243", "Trinity Shield", "Blocks enemy shots coming from the direction Isaac is shooting"},
 	{"244", "Tech.5", "Occasionally shoot lasers in addition to Isaac's tears"},
@@ -464,7 +464,7 @@ EID.descriptions[languageCode].collectibles={
 	{"439", "Mom's Box", "{{Trinket}} Spawns a random trinket#While held:#↑ {{Luck}} +1 Luck#{{Trinket}} Doubles trinket effects"},
 	{"440", "Kidney Stone", "↑ +2 Tear height#↓ {{Speed}} -0.2 Speed#↓ {{Range}} -17 Range#Isaac occasionally stops firing and charges an attack that releases a burst of tears and a kidney stone"},
 	{"441", "Mega Blast", "{{Timer}} Fires a huge Mega Satan blood beam for 15 seconds#The beam persists between rooms and floors"},
-	{"442", "Dark Prince's Crown", "While at 1 full Red Heart:#↑ {{Tears}} +0.75 Tears#↑ {{Range}} +1.5 Range#↑ +1 Tear height#↑ {{Shotspeed}} +0.2 Shot speed#Does not work on characters without Red Hearts"}, -- Dark Princes Crown (apostrophe added to the name in Repentance)
+	{"442", "Dark Prince's Crown", "While at 1 full Red Heart:#↑ {{Tears}} +0.75 Tears#↑ {{Range}} +1.5 Range#↑ +1 Tear height#↑ {{Shotspeed}} +0.2 Shot speed"}, -- Dark Princes Crown (apostrophe added to the name in Repentance)
 	{"443", "Apple!", "↑ {{Tears}} +0.3 Tears#{{Damage}} 6.66% chance to shoot razor blades that deal 4x Isaac's damage#{{Luck}} 100% chance at 14 luck"},
 	{"444", "Lead Pencil", "Isaac shoots a cluster of tears every 15 tears#Tears in the cluster deal double damage"},
 	{"445", "Dog Tooth", "↑ {{Speed}} +0.1 Speed#↑ {{Damage}} +0.3 Damage#{{SecretRoom}}{{SuperSecretRoom}} A wolf howls in rooms adjacent to a Secret/Super Secret Room#{{LadderRoom}} A dog barks in rooms with a crawlspace under a rock"},
@@ -631,7 +631,7 @@ EID.descriptions[languageCode].trinkets={
 	{"20", "Monkey Paw", "{{BlackHeart}} Spawns 1 Black Heart when Isaac's health is reduced to half a heart#{{Warning}} Disappears after spawning 3 Black Hearts"},
 	{"21", "Mysterious Paper", "Randomly grants the effect of: #{{Collectible327}} The Polaroid#{{Collectible328}} The Negative#{{Trinket48}} A Missing Page#{{Trinket23}} Missing Poster"},
 	{"22", "Daemon's Tail", "{{Heart}} Decreases spawn rate of hearts to 20%#{{BlackHeart}} All Heart pickups turn into Black Hearts#{{Key}} Increases the drop chance of keys"},
-	{"23", "Missing Poster", "{{Player10}} Respawn as The Lost on death#{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost"},
+	{"23", "Missing Poster", "{{Player10}} Respawn as The Lost on death"},
 	{"24", "Butt Penny", "{{Coin}} 20% higher chance for coins to spawn from poop#Picking up coins makes Isaac fart"},
 	{"25", "Mysterious Candy", "Isaac farts or spawns poop every 30 seconds"},
 	{"26", "Hook Worm", "↑ {{Range}} +10 Range#Isaac's tears move in angular patterns"},
@@ -755,7 +755,7 @@ EID.descriptions[languageCode].cards={
 	{"12", "XI - Strength", "{{Timer}} Receive for the room:#↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +0.3 Damage#↑ {{Damage}} x1.5 Damage multiplier#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"},
 	{"13", "XII - The Hanged Man", "{{Timer}} Flight for the room"},
 	{"14", "XIII - Death", "Deals 40 damage to all enemies in the room"},
-	{"15", "XIV - Temperance", "{{DonationMachine}} Spawns a Blood Donation Machine#{{GreedMode}} Spawns a Devil Beggar in Greed Mode"},
+	{"15", "XIV - Temperance", "{{DonationMachine}} Spawns a Blood Donation Machine"},
 	{"16", "XV - The Devil", "{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage"},
 	{"17", "XVI - The Tower", "Spawns 6 Troll Bombs"},
 	{"18", "XVII - The Stars", "{{TreasureRoom}} Teleports Isaac to the Treasure Room"},
@@ -954,4 +954,14 @@ EID.descriptions[languageCode].PickupNames = {
 	["5.301"] = "{{Rune}} Rune", -- not a real id
 	["5.350"] = "{{Trinket}} Trinket",
 
+}
+
+EID.descriptions[languageCode].ConditionalDescs = {
+	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
+	["5.100.241"] = "{{GreedMode}} Doesn't affect Greed Mode", -- Contract From Below
+	["5.100.135 (Keeper)"] = "{{Player14}} Spawns 0-1 coin as Keeper", -- IV Bag Keeper
+	["5.100.135 (PHD)"] = "{{Collectible75}} Spawns 2-3 coins if you have PHD", -- IV Bag PHD
+	["5.100.442"] = "No effect for characters that can't have Red Hearts", -- Dark Prince's Crown
+	["5.300.15"] = "{{DemonBeggar}} Spawns a Devil Beggar", -- Temperance (Greed Mode effect)
+	["5.350.23"] = "{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost", -- Missing Poster (Unlock The Lost)
 }

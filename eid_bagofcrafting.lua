@@ -995,6 +995,9 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 
 	if REPENTOGON then
 		EID.BoC.BagItems = EID.bagPlayer:GetBagOfCraftingContent()
+		for i=1,8 do
+			if EID.BoC.BagItems[i] == 0 then EID.BoC.BagItems[i] = nil end
+		end
 	end
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 	-- Display the result of the 8 items in our bag if applicable
