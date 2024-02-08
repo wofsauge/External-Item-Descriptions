@@ -105,7 +105,7 @@ EID.DescriptionConditions = {
 	["5.100.332"] = {func = EID.PlayersHaveCharacter, vars = {29}}, -- Lazarus's Rags
 	["5.350.23"] = { -- Missing Poster (revive, plus Unlock The Lost text)
 		{func = EID.PlayersHaveCharacter, vars = {31}, modifierText = "Tainted Lost"},
-		{func = EID.HaveNotUnlockedAchievement, vars = {Achievement.THE_LOST} } },
+		{func = EID.HaveNotUnlockedAchievement, vars = {REPENTOGON and Achievement.THE_LOST or 82} } },
 	
 	-- Greed Mode
 	["5.100.241"] = {func = EID.IsGreedMode}, -- Contract From Below
