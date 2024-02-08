@@ -103,9 +103,9 @@ EID.DescriptionConditions = {
 	["5.350.28"] = {func = EID.PlayersHaveCharacter, vars = {25}}, -- Broken Ankh
 	["5.100.311"] = {func = EID.PlayersHaveCharacter, vars = {24}}, -- Judas's Shadow
 	["5.100.332"] = {func = EID.PlayersHaveCharacter, vars = {29}}, -- Lazarus's Rags
-	["5.350.23"] = { -- Missing Poster (revive, plus Unlock The Lost text)
+	["5.350.23"] = { -- Missing Poster (revive, plus Unlock The Lost text if he's not unlocked)
 		{func = EID.PlayersHaveCharacter, vars = {31}, modifierText = "Tainted Lost"},
-		{func = EID.HaveNotUnlockedAchievement, vars = {REPENTOGON and Achievement.THE_LOST or 82} } },
+		{func = EID.HaveNotUnlockedAchievement, vars = {82} } },
 	
 	-- Greed Mode
 	["5.100.241"] = {func = EID.IsGreedMode}, -- Contract From Below
@@ -134,7 +134,8 @@ function EID:applyConditionals(descObj, modifierText)
 	for _, cond in ipairs(conds) do
 		local tvs = typeVarSub
 		if cond.modifierText then tvs = tvs .. " (" .. cond.modifierText .. ")" end
-		local text = EID:getDescriptionEntry("ConditionalDescs", tvs)
+		-- Don't fall back to English if the current language doesn't have the entry
+		local text = EID:getDescriptionEntry("ConditionalDescs", tvs, true)
 		if (text ~= nil) and (not repOnly or REPENTANCE) and (not abpOnly or not REPENTANCE) then
 			-- is there a way to pass all a table's values into a function aside from this? it's fine for now...
 			cond.vars = cond.vars or {}
