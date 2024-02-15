@@ -395,6 +395,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	EID:getObjectItemTypeAndCharge(description)
 
 	if checkModifiers ~= false then
+		description = EID:applyConditionals(description)
 		description = EID:applyDescriptionModifier(description, SubType)
 	end
 	return description
@@ -482,7 +483,8 @@ end
 -- falls back to english if it doesnt exist, unless specified otherwise
 function EID:getDescriptionEntry(objTable, objID, noFallback)
 	if not objID then
-		return EID.descriptions[EID:getLanguage()][objTable] or EID.descriptions["en_us"][objTable]
+		if noFallback then return EID.descriptions[EID:getLanguage()][objTable]
+		else return EID.descriptions[EID:getLanguage()][objTable] or EID.descriptions["en_us"][objTable] end
 	else
 		local translatedTable = EID.descriptions[EID:getLanguage()][objTable]
 		if noFallback then return translatedTable and translatedTable[objID]
@@ -1156,11 +1158,15 @@ function EID:PlayersHaveTrinket(trinketID)
 	return false
 end
 
--- Checks if someone playing as certain character, for modifiers
-function EID:PlayersHaveCharacter(playerType)
+-- Checks if someone is playing as a certain character, for modifiers
+-- includeTainted means we don't care if the player is Tainted or not (for things that, say, apply to Lost/Tainted Lost)
+function EID:PlayersHaveCharacter(playerType, includeTainted)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:GetPlayerType() == playerType then
+			return true, player
+		end
+		if includeTainted and REPENTANCE and Isaac.GetPlayerTypeByName(player:GetName()) == playerType then
 			return true, player
 		end
 	end

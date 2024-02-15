@@ -10,8 +10,8 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.67
-EID.ModVersionCommit = "bd192c3"
+EID.ModVersion = 4.69
+EID.ModVersionCommit = "2d7560c"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -112,6 +112,7 @@ require("eid_mcm")
 require("eid_data")
 require("eid_xmldata")
 require("eid_api")
+require("eid_conditionals")
 require("eid_modifiers")
 require("eid_holdmapdesc")
 require("eid_itemprediction")
