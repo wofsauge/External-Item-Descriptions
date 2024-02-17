@@ -129,7 +129,7 @@ EID.descriptions[languageCode].collectibles={
 	{"78", "요한묵시록", "{{DevilChanceSmall}} 소지중일 때 악마방 확률 +17.5%#사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다."}, -- Book of Revelations
 	{"79", "낙인", "↑ {{SoulHeart}}소울하트 +1#↑ {{DamageSmall}}공격력 +1#↑ {{SpeedSmall}}이동속도 +0.2"}, -- The Mark
 	{"80", "계약", "↑ {{SoulHeart}}소울하트 +2#↑ {{DamageSmall}}공격력 +0.5#↑ {{TearsSmall}}연사 +0.7"}, -- The Pact
-	{"81", "죽은 고양이", "↑ 목숨 +9#!!! {{Heart}}최대 체력이 1칸이 됩니다.#사망 시 전 방에서 최대 체력 1칸으로 부활합니다.#!!! 최대 체력 = 소울하트 보정을 받는 캐릭터는 소울하트가 1칸이 됩니다."}, -- Dead Cat
+	{"81", "죽은 고양이", "↑ 목숨 +9#!!! {{Heart}}최대 체력이 1칸이 됩니다.#사망 시 전 방에서 최대 체력 1칸으로 부활합니다."}, -- Dead Cat
 	{"82", "구덩이의 제왕", "↑ {{SpeedSmall}}이동속도 +0.3#비행 능력을 얻습니다."}, -- Lord of the Pit
 	{"83", "대못", "!!! 사용 시: #{{SoulHeart}}소울하트 +1#그 방에서 {{DamageSmall}}공격력 +0.3, {{SpeedSmall}}이동속도 -0.2#접촉한 적에게 피해를 입히며 장애물을 부술 수 있습니다."}, -- The Nail
 	{"84", "더 깊이 내려가야 해!", "사용 시 다음 스테이지로 가는 다락문을 생성합니다.#10%의 확률로 {{LadderRoom}}사다리방으로 가는 다락문을 생성합니다."}, -- We Need To Go Deeper!
@@ -183,7 +183,7 @@ EID.descriptions[languageCode].collectibles={
 	{"132", "석탄 한 덩이", "공격이 멀리 나갈수록 타일 1칸당 공격력이 +0.6 증가합니다."}, -- A Lump of Coal
 	{"133", "구피의 발", "사용 시 최대 체력 1칸을 {{SoulHeart}}소울하트 3칸으로 바꿉니다."}, -- Guppy's Paw
 	{"134", "구피의 꼬리", "{{Chest}} 방 클리어 보상이 33%의 확률로 상자 혹은 황금상자로 바뀝니다.#!!! 방 클리어 보상이 22%의 확률로 등장하지 않습니다."}, -- Guppy's Tail
-	{"135", "수혈 팩", "사용 시 체력 반칸을 깎고 {{Coin}}동전을 1~3개 드랍합니다.#빨간하트를 우선적으로 깎습니다.#!!! {{Player14}}/{{Player33}}Keeper: 0~1개"}, -- IV Bag
+	{"135", "수혈 팩", "사용 시 체력 반칸을 깎고 {{Coin}}동전을 1~2개 드랍합니다.#빨간하트를 우선적으로 깎습니다"}, -- IV Bag
 	{"136", "최고의 친구", "사용 시 적을 유인하고 5초 뒤 공격력 110의 폭발을 일으키는 인형을 하나 설치합니다."}, -- Best Friend
 	{"137", "원격 폭파기", "↑ {{Bomb}}폭탄 +5#폭탄이 아이템 사용 전까지 터지지 않습니다."}, -- Remote Detonator
 	{"138", "성흔", "↑ {{Heart}}최대 체력 +1#↑ {{DamageSmall}}공격력 +0.3"}, -- Stigmata
@@ -289,7 +289,7 @@ EID.descriptions[languageCode].collectibles={
 	{"238", "열쇠 조각 1", "{{MegaSatanSmall}} Key Piece 2와 조합 시 Chest/Dark Room 스테이지에서 거대한 금색 문을 열 수 있습니다.#빨간하트가 드랍될 때 2.5%의 확률로 {{EternalHeart}}이터널하트로 대체됩니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 1
 	{"239", "열쇠 조각 2", "{{MegaSatanSmall}} Key Piece 1과 조합 시 Chest/Dark Room 스테이지에서 거대한 금색 문을 열 수 있습니다.#빨간하트가 드랍될 때 2.5%의 확률로 {{EternalHeart}}이터널하트로 대체됩니다.#↑ {{AngelChanceSmall}}천사방 확률 +25%"}, -- Key Piece 2
 	{"240", "임상시험", "!!! 아래의 능력치 중;#↑ 능력치 4종류 증가#↓ 능력치 2종류 감소#!!! {{EmptyHeart}}빈 최대 체력 ±1#{{Blank}} {{SpeedSmall}}이동속도 ±0.2#{{Blank}} {{TearsSmall}}눈물 딜레이 ±1#{{Blank}} {{DamageSmall}}최종 공격력 ±1#{{Blank}} {{RangeSmall}}사거리 ±0.5#{{Blank}} {{ShotspeedSmall}}탄속 ±0.2#{{Blank}} {{LuckSmall}}행운 ±1"}, -- Experimental Treatment
-	{"241", "지하로부터의 계약", "방 클리어 보상이 하나 더 나옵니다.#방 클리어 보상이 33%의 확률로 등장하지 않습니다.#{{Blank}} (중첩 시 보상 개수 증가, 보상 미등장 확률 감소)#{{GreedModeSmall}} 그리드 모드의 동전 보상은 영향 없음"}, -- Contract from Below
+	{"241", "지하로부터의 계약", "방 클리어 보상이 하나 더 나옵니다.#방 클리어 보상이 33%의 확률로 등장하지 않습니다.#{{Blank}} (중첩 시 보상 개수 증가, 보상 미등장 확률 감소)"}, -- Contract from Below
 	{"242", "악명", "적 탄환에 맞았을 때 50% 확률로 피해를 무시합니다."}, -- Infamy
 	{"243", "삼위일체 방패", "캐릭터의 공격 방향에서 오는 적의 탄환을 모두 방어합니다."}, -- Trinity Shield
 	{"244", "기계 0.5", "공격 시 캐릭터의 이마 쪽에서 보조 레이저가 발사됩니다."}, -- Tech.5
@@ -454,7 +454,7 @@ EID.descriptions[languageCode].collectibles={
 	{"403", "스파이더모드", "방 안을 돌아다니며 접촉한 적에게 랜덤한 상태이상을 부여합니다.#적의 체력과 적에게 주는 피해량이 수치로 표시됩니다.#방 클리어 시 일정 확률로 배터리 픽업이나 자폭 거미를 드랍합니다."}, -- Spider Mod
 	{"404", "방귀쟁이 아기", "캐릭터를 따라다니며 적의 탄환을 막아줍니다.#탄환을 막을 시 10% 확률로 랜덤한 효과의 방귀를 뀝니다."}, -- Farting Baby
 	{"405", "게임 버그", "대각선으로 돌아다니며 접촉한 적에게 초당 120의 피해를 주며 랜덤한 상태이상을 부여합니다."}, -- GB Bug
-	{"406", "8면 주사위", "사용 시 {{DamageSmall}}공격력, {{TearsSmall}}연사, {{RangeSmall}}사거리, {{SpeedSmall}}이동속도 배율을 랜덤으로 바꿉니다."}, -- D8
+	{"406", "8면 주사위", "사용 시 {{DamageSmall}}공격력, {{TearsSmall}}연사, {{RangeSmall}}사거리, {{SpeedSmall}}이동속도 배율을 랜덤으로 바꿉니다.#!!! 바뀐 배율의 총합은 항상 동일합니다."}, -- D8
 	{"407", "순도", "캐릭터 머리에 오라가 생기며 오라 색에 따라 특정 능력치가 증가합니다.#피격시 비활성화되며 방 이동시 다른 색으로 변합니다.#{{ColorRed}}빨강:{{CR}} {{DamageSmall}}공격력 +4.0#{{Blank}} {{ColorCyan}}파랑:{{CR}} {{TearsSmall}}눈물 딜레이 -4#{{Blank}} {{ColorOrange}}주황:{{CR}} {{RangeSmall}}사거리 +7.5, 눈물 높이 +1#{{Blank}} {{ColorYellow}}노랑:{{CR}} {{SpeedSmall}}이동속도 +0.5"}, -- Purity
 	{"408", "마법 단검", "피격 시 캐릭터 주위에 검은 고리가 둘러져 접촉한 적에게 현재 공격력만큼의 피해를 줍니다.#고리로 적 처치 시 15% 확률로 {{BlackHeart}}블랙하트를 드랍합니다."}, -- Athame
 	{"409", "빈 그릇", "↑ {{BlackHeart}}블랙하트 +2#{{EmptyHeart}}빨간하트가 없을 때 비행 능력을 얻으며 40초마다 10초간 무적 상태가 됩니다."}, -- Empty Vessel
@@ -1011,4 +1011,13 @@ EID.descriptions[languageCode].PickupNames = {
 	["5.301"] = "{{Rune}}룬", -- not a real id
 	["5.350"] = "{{Trinket}}장신구",
 
+}
+EID.descriptions[languageCode].ConditionalDescs = {
+	["5.100.81"] = "!!! 최대 체력 = 소울하트 보정을 받는 캐릭터는 소울하트가 1칸이 됩니다.", -- Dead Cat
+	["5.100.241"] = "{{GreedModeSmall}} Greed 모드의 동전 보상은 영향 없음", -- Contract From Below
+	["5.100.135 (Keeper)"] = "{{Player14}}Keeper: 0~1개", -- IV Bag Keeper
+	["5.100.135 (PHD)"] = "{{Collectible75}} PHD 소지 시 2-3개로 증가", -- IV Bag PHD
+	["5.100.442"] = "빨간하트를 소지할 수 없는 캐릭터는 무효과", -- Dark Prince's Crown
+	["5.300.15"] = "{{DemonBeggar}} 악마거지를 소환합니다.", -- Temperance (Greed Mode effect)
+	-- ["5.350.23"] = "", -- Missing Poster (Unlock The Lost)
 }
