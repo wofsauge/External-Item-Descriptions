@@ -117,8 +117,34 @@ function EID:hasDescription(entity)
 end
 
 
-local requirementsDonationMachine = { 10, 20, 50, 100, 150, 200, 400, 600, 900, 999 }
-local requirementsGreedDonationMachine = { 2, 14, 33, 68, 111, 234, 439, 500, 666, 879, 999, 1000 }
+local requirementsDonationMachine = {
+	{ 10,  Achievement.BLUE_MAP },
+	{ 20,  Achievement.STORE_UPGRADE_LV1 },
+	{ 50,  Achievement.THERES_OPTIONS },
+	{ 100, Achievement.STORE_UPGRADE_LV2 },
+	{ 150, Achievement.BLACK_CANDLE },
+	{ 200, Achievement.STORE_UPGRADE_LV3 },
+	{ 400, Achievement.RED_CANDLE },
+	{ 600, Achievement.STORE_UPGRADE_LV4 },
+	{ 900, Achievement.BLUE_CANDLE },
+	{ 999, Achievement.STOP_WATCH }
+}
+
+local requirementsGreedDonationMachine = {
+	{ 2,    Achievement.LUCKY_PENNIES },
+	{ 14,   Achievement.SPECIAL_HANGING_SHOPKEEPERS },
+	{ 33,   Achievement.WOODEN_NICKEL },
+	{ 68,   Achievement.CAIN_HOLDS_PAPERCLIP },
+	{ 111,  Achievement.EVERYTHING_IS_TERRIBLE_2 },
+	{ 234,  Achievement.SPECIAL_SHOPKEEPERS },
+	{ 439,  Achievement.EVE_HOLDS_RAZOR_BLADE },
+	{ 500,  Achievement.GREEDIER },
+	{ 666,  Achievement.STORE_KEY },
+	{ 879,  Achievement.THE_LOST_HOLDS_HOLY_MANTLE },
+	{ 999,  Achievement.GENEROSITY },
+	{ 1000, Achievement.KEEPER }
+}
+
 local function DonationMachineCallback(descObj)
 	local isGreed = descObj.ObjVariant == 11
 	local eventCounter = isGreed and EventCounter.GREED_DONATION_MACHINE_COUNTER or
@@ -128,11 +154,12 @@ local function DonationMachineCallback(descObj)
 
 	local coinsNeeded = 0
 	for _, value in ipairs(rewardsTable) do
-		if totalDonations < value then
-			coinsNeeded = value
+		if totalDonations < value[1] and not Isaac.GetPersistentGameData():Unlocked(value[2]) then
+			coinsNeeded = value[1]
 			break
 		end
 	end
+	
 	descObj.Description = string.gsub(descObj.Description, "{1}", coinsNeeded)
 	descObj.Description = string.gsub(descObj.Description, "{2}", coinsNeeded - totalDonations)
 	descObj.Icon = EID.InlineIcons["DonationMachine"]
