@@ -3,11 +3,12 @@ if not REPENTOGON then
 end
 ---@diagnostic disable: duplicate-set-field
 local game = Game()
+local maxVanillaItemID = CollectibleType.NUM_COLLECTIBLES -- sanity backup
 
 -- REPENTOGON: Use PersistentGameData to determine item collection status
 -- Returns true if an item needs to be collected for the collection page
 function EID:requiredForCollectionPage(itemID)
-	if itemID >= CollectibleType.NUM_COLLECTIBLES or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
+	if itemID >= maxVanillaItemID or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
 	return not Isaac.GetPersistentGameData():IsItemInCollection(itemID)
 end
 
@@ -71,7 +72,7 @@ function EID:OnMenuRender()
 			end
 		end
 		local demoDescObj = EID:getDescriptionObj(5, 100, CollectibleId, nil, false)
-		if CollectibleId < CollectibleType.NUM_COLLECTIBLES and not Isaac.GetPersistentGameData():IsItemInCollection(CollectibleId) then
+		if CollectibleId < maxVanillaItemID and not Isaac.GetPersistentGameData():IsItemInCollection(CollectibleId) then
 			EID:renderQuestionMark(nil)
 			return
 		end

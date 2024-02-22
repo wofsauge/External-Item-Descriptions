@@ -749,7 +749,7 @@ local function getFloorItemsString(showPreviews, roomItems)
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 	if #bagItems >0 then
 		if showPreviews and #bagItems == 8 then
-			local recipe = EID:calculateBagOfCrafting(bagItems)
+			local recipe = REPENTOGON and EID.bagPlayer:GetBagOfCraftingOutput() or EID:calculateBagOfCrafting(bagItems)
 			floorString = floorString .. "{{Collectible"..recipe.."}} "
 		end
 		local bagDesc = EID:getDescriptionEntry("CraftingBagContent")
@@ -993,6 +993,12 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		return false
 	end
 
+	if REPENTOGON then
+		EID.BoC.BagItems = EID.bagPlayer:GetBagOfCraftingContent()
+		for i=1,8 do
+			if EID.BoC.BagItems[i] == 0 then EID.BoC.BagItems[i] = nil end
+		end
+	end
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 	-- Display the result of the 8 items in our bag if applicable
 	if (EID.ShowCraftingResult or EID.Config["BagOfCraftingDisplayRecipesMode"] == "Preview Only") and #bagItems == 8 then
@@ -1000,7 +1006,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 			EID.ShowCraftingResult = false
 			return false
 		end
-		local craftingResult = EID:calculateBagOfCrafting(bagItems)
+		local craftingResult = REPENTOGON and EID.bagPlayer:GetBagOfCraftingOutput() or EID:calculateBagOfCrafting(bagItems)
 		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
 		-- prepend the Hide/Preview hotkeys to the description
 		descriptionObj.Description = getHotkeyString() .. descriptionObj.Description

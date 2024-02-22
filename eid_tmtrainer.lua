@@ -59,7 +59,8 @@ function EID:CheckGlitchedItemConfig(id)
 	if not itemConfig then return "" end
 	
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
-	local attributes = "#"	
+	local localizedNamesEnglish = EID:getDescriptionEntryEnglish("GlitchedItemText")
+	local attributes = "#"
 	
 	-- Check the base item config for the Hearts/Bombs/Coins/Keys this item adds,
 	-- as well as what cache flags it affects if we're not using REPENTOGON
@@ -68,13 +69,13 @@ function EID:CheckGlitchedItemConfig(id)
 		if val ~= 0 then
 			if v == "CacheFlags" then
 				if not REPENTOGON then -- we don't need to check these if we have REPENTOGON
-					local flagString = localizedNames["cacheFlagStart"]
+					local flagString = localizedNames["cacheFlagStart"] or localizedNamesEnglish["cacheFlagStart"]
 					if val == CacheFlag.CACHE_ALL then
-						flagString = flagString .. localizedNames[16]
+						flagString = flagString .. localizedNames[16] or localizedNamesEnglish[16]
 					else
 						for i=0, 13 do
 							if 2^i & val ~= 0 then
-								flagString = flagString .. localizedNames[i] .. ", "
+								flagString = flagString .. localizedNames[i] or localizedNamesEnglish[i] .. ", "
 							end
 						end
 						flagString = string.sub(flagString, 0, -3) -- remove final comma
@@ -88,8 +89,8 @@ function EID:CheckGlitchedItemConfig(id)
 				local s = string.format("%.4g",val)
 				local prefix = "↑ "
 				if val > 0 then s = "+" .. s else prefix = "↓ " end
-				attributes = attributes .. prefix .. string.gsub(localizedNames[v], "{1}", s)
-				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] end
+				attributes = attributes .. prefix .. string.gsub(localizedNames[v] or localizedNamesEnglish[v], "{1}", s)
+				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] or localizedNamesEnglish["pluralize"] end
 				attributes = attributes .. "#"
 			end
 		end
@@ -108,12 +109,14 @@ function EID:CheckGlitchedItemConfig(id)
 				itemText = "{{Trinket"
 				itemType = 350
 			end
-			attributes = attributes .. localizedNames["grants"] .. itemText .. innerItem.ID .. "}} " .. EID:getObjectName(5, itemType, innerItem.ID) .. "#"
+			local grantsStr = localizedNames["grants"] or localizedNamesEnglish["grants"]
+			attributes = attributes .. grantsStr .. itemText .. innerItem.ID .. "}} " .. EID:getObjectName(5, itemType, innerItem.ID) .. "#"
 		end
 		-- If it's an active, these are given to you upon using the item, so let's print an "On use:" first
 		if itemConfig.Type == ItemType.ITEM_ACTIVE then
 			lastEffectTrigger = "active"
-			attributes = attributes .. "{{Blank}} " .. triggerColors["active"] .. localizedNames["active"]
+			local activeStr = localizedNames["active"] or localizedNamesEnglish["active"]
+			attributes = attributes .. "{{Blank}} " .. triggerColors["active"] .. activeStr
 		end
 		local voidNames = EID:getDescriptionEntry("VoidNames")
 		for i,func in ipairs(getFunctions) do
@@ -164,9 +167,10 @@ function EID:CheckGlitchedItemConfig(id)
 			
 			if effectTrigger ~= lastEffectTrigger then
 				if effectTrigger ~= "chain" then attributes = attributes .. "{{Blank}} " end
-				attributes = attributes .. triggerColors[effectTrigger] .. localizedNames[effectTrigger]
+				local effectTriggerStr = localizedNames[effectTrigger] or localizedNamesEnglish[effectTrigger]
+				attributes = attributes .. triggerColors[effectTrigger] .. effectTriggerStr
 			end
-			attributes = attributes .. localizedNames[effectType] .. "#"
+			attributes = attributes .. localizedNames[effectType] or localizedNamesEnglish[effectType] .. "#"
 			for k,v in ipairs(triggerReplacements) do attributes = string.gsub(attributes, "{T" .. k .. "}", v) end
 			for k,v in ipairs(replacements) do attributes = string.gsub(attributes, "{" .. k .. "}", v) end
 

@@ -901,3 +901,10 @@ EID.LocalModePositionOffset = {
 	Default = Vector(0, 20),
 	Shop = function(entity) if entity and not EID:IsGridEntity(entity) and entity:ToPickup() and entity:ToPickup():IsShopItem() then return Vector(0, 35) end end,
 } 
+
+-- Character IDs that aren't allowed to have Red Health: ???, The Lost, The Soul
+EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
+if REPENTANCE then
+	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
+	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
+end

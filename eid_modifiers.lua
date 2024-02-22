@@ -287,6 +287,23 @@ if EID.isRepentance then
 		return descObj
 	end
 
+  -- Handle Glowing Hourglass description
+  local function GlowingHourglassCallback(descObj)
+    if REPENTOGON then
+      local transformedText = EID:getDescriptionEntry("GlowingHourglassTransformed")
+      local numUses = Isaac.GetPlayer():GetActiveItemDesc().VarData
+      if numUses == 3 then
+        -- Replace with the description of The Hourglass
+        descObj.Description = EID:getDescriptionObj(5, 100, 66).Description
+        if transformedText ~= nil then
+          EID:appendToDescription(descObj, "#{{Warning}} "..transformedText)
+        end
+      end
+    end
+    return descObj
+  end
+
+
 	-- Handle Bingeeater description addition
 	local function BingeEaterCallback(descObj)
 		local bingeBuff = EID:getDescriptionEntry("bingeEaterBuffs", descObj.ObjSubType)
@@ -484,7 +501,7 @@ if EID.isRepentance then
 				end
 			end
 		end
-		return descObj
+		return EID:applyConditionals(descObj,"Tarot")
 	end
 
 
@@ -653,6 +670,49 @@ if EID.isRepentance then
 		end
 		return descObj
 	end
+	
+	-- Handle Experimental Pill description addition
+	local function ExperimentalPillCallback(descObj)
+		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
+		if adjustedID - 1 ~= PillEffect.PILLEFFECT_EXPERIMENTAL then return descObj end
+		local horse = descObj.ObjSubType > 2048
+
+		for i = 1,#EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[i]
+			local playerID = EID:getPlayerID(player)
+			local playerType = player:GetPlayerType()
+			local pillModifierID = 0
+			local goodAndBad = false
+			
+			-- Check for PHD, Lucky Foot, Virgo, and False PHD
+			if player:HasCollectible(75) then pillModifierID = 75
+			elseif player:HasCollectible(46) then pillModifierID = 46
+			elseif player:HasCollectible(303) then pillModifierID = 303
+			end
+			-- Check for False PHD, and if we have good AND bad pills, just print the damage up text
+			if player:HasCollectible(654) then
+				if pillModifierID ~= 0 then goodAndBad = true end
+				pillModifierID = 654
+			end
+			if pillModifierID ~= 0 then
+				local expPillString = ""
+				if pillModifierID == 654 then
+					local damageUpString = ""
+					if horse then damageUpString = EID:getDescriptionEntry("FalsePHDHorseDamage")
+					else damageUpString = EID:getDescriptionEntry("FalsePHDDamage") end
+					if goodAndBad then
+						expPillString = damageUpString
+					else
+						expPillString = EID:getDescriptionEntry("ExperimentalPillFalsePHD") .. "#{{Collectible654}} " .. damageUpString
+					end
+				else expPillString = EID:getDescriptionEntry("ExperimentalPillPHD") end
+				EID:appendToDescription(descObj, "#")
+				if #EID.coopAllPlayers > 1 then EID:appendToDescription(descObj, (EID:getIcon("Player"..playerType) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerType.."}} " or ("P" .. i .. ": "))) end
+				EID:appendToDescription(descObj, "{{Collectible" .. pillModifierID .. "}} " .. expPillString)
+			end
+		end
+		return descObj
+	end
 
 	-- Handle False PHD description addition
 	local function FalsePHDCallback(descObj)
@@ -660,7 +720,7 @@ if EID.isRepentance then
 		local horse = descObj.ObjSubType > 2048
 		local data = EID.pillMetadata[adjustedID-1]
 		if data ~= nil then
-			local damageUp = string.find(data.class,"3") and (string.find(data.class,"-") or adjustedID-1 == PillEffect.PILLEFFECT_EXPERIMENTAL)
+			local damageUp = string.find(data.class,"3") and string.find(data.class,"-")
 			if adjustedID-1 == PillEffect.PILLEFFECT_SHOT_SPEED_DOWN then damageUp = true end
 			-- why doesn't I'm Excited have a - in the xml data yet spawn a black heart...
 			local blackHeart = (string.find(data.class,"2") or string.find(data.class,"1")) and (string.find(data.class,"-") or adjustedID-1 == PillEffect.PILLEFFECT_IM_EXCITED)
@@ -752,6 +812,8 @@ if EID.isRepentance then
 			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
+      -- Glowing Hourglass overwrites the description when used three times
+			if REPENTOGON and descObj.ObjSubType == 422 then table.insert(callbacks, GlowingHourglassCallback) end
 			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
 
 			if EID.collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
@@ -774,6 +836,7 @@ if EID.isRepentance then
 			if EID.collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
 			if EID.collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
 			table.insert(callbacks, VurpCallback)
+			table.insert(callbacks, ExperimentalPillCallback)
 
 			if EID.pillPlayer == nil and #EID.coopAllPlayers > 1 then
 				table.insert(callbacks, CoopPillCallback)
