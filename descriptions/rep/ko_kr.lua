@@ -67,7 +67,6 @@ local repCollectibles={
 	[126] = {"126", "면도날", "사용 시 체력 한칸을 깎고 그 방에서 {{DamageSmall}}공격력 +1.2#그 방에서 연속적으로 사용 시 2번째 사용부터 깎이는 체력이 반칸으로 줄어들며 공격력 증가 효과는 중첩됩니다.#빨간하트를 우선적으로 깎습니다."}, -- Razor Blade
 	[129] = {"129", "돼지기름 한 통", "↑ {{Heart}}최대 체력 +2#↓ {{SpeedSmall}}이동속도 -0.2"}, -- Bucket of Lard
 	[130] = {"130", "조랑말", "!!! 소지 시:#비행 능력을 얻습니다.#{{SpeedSmall}} 이동속도가 1.5 이상으로 고정됩니다.#사용 시 바라보는 방향으로 돌진하여 접촉한 적에게 공격력 x4 +28의 피해를 입힙니다."}, -- A Pony
-	[135] = {"135", "수혈 팩", "사용 시 체력 반칸을 깎고 {{Coin}}동전을 1~2개 드랍합니다.#빨간하트를 우선적으로 깎습니다.#!!! {{HardModeSmall}}하드 모드 : 1개#!!! {{Player14}}/{{Player33}}Keeper: 0~1개"}, -- IV Bag
 	[136] = {"136", "최고의 친구", "사용 시 적을 유인하고 5초 뒤 공격력 185의 폭발을 일으키는 인형을 설치합니다."}, -- Best Friend
 	[138] = {"138", "성흔", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +1#↑ {{DamageSmall}}공격력 +0.3"}, -- Stigmata
 	[139] = {"139", "엄마의 지갑", "획득 시 장신구를 하나 드랍합니다.#장신구를 2개 들 수 있습니다."}, -- Mom's Purse
@@ -82,7 +81,6 @@ local repCollectibles={
 	[155] = {"155", "엿보기 눈깔", "대각선으로 돌아다니며 접촉한 적에게 초당 17.1의 피해를 입힙니다.#캐릭터의 왼쪽 눈에서 공격력 x1.35의 공격이 나갑니다."}, -- The Peeper
 	[157] = {"157", "피의 욕망", "피격 시 그 스테이지에서 {{DamageSmall}}공격력 +0.5 +(피격 횟수-1)x0.2#{{Blank}} (6회 피격 시 최대 +6)"}, -- Bloody Lust
 	[158] = {"158", "수정구슬", "사용 시 맵에 스테이지 구조와 특수방 위치를 표시하며 {{SoulHeart}}소울하트 또는 {{Card}}카드를 하나 드랍합니다.#!!! 소지 시:#{{PlanetariumChanceSmall}} 첫 천체방 등장할 확률 +15%#{{PlanetariumChanceSmall}} 현재 게임에서 보물방 1회 이상 미입장 시 첫 천체방 등장 확률 +100%"}, -- Crystal Ball
-	[161] = {"161", "앙크", "↑ 목숨 +1#{{Player4}} 사망 시 전 방에서 ??? 캐릭터로 부활합니다.#{{Player25}} Tainted ???의 경우 ??? 캐릭터로 변경되지 않습니다."},
 	[163] = {"163", "유령 아기", "공격하는 방향으로 공격력 3.5의 장애물을 관통하는 빠른 눈물을 발사합니다."}, -- Ghost Baby
 	[169] = {"169", "폴리페무스", "↑ {{DamageSmall}}공격력 배율 x2#↑ {{DamageSmall}}공격력 +4#↓ {{TearsSmall}}연사 배율 x0.42#적 처치 시 여분의 공격력을 남긴 채 관통합니다."}, -- Polyphemus
 	[171] = {"171", "거미 엉덩이", "{{Slow}} 사용 시 방 안의 모든 적에게 10의 피해를 주고 4초간 둔화시키며 사용과 동시에 적 처치시 파란 아군 거미를 소환합니다."}, -- Spider Butt
@@ -159,7 +157,6 @@ local repCollectibles={
 	[308] = {"308", "물병자리", "캐릭터가 지나간 자리에 파란 장판이 생기며 닿은 적은 공격력 x0.66의 피해를 입습니다.#장판의 효과는 현재 눈물 효과에 따라 달라집니다."}, -- Aquarius
 	[309] = {"309", "물고기자리", "↑ {{TearsSmall}}연사(+상한) +0.5#↑ {{TearsizeSmall}}눈물크기 +0.12#공격이 적을 밀쳐냅니다."}, -- Pisces
 	[310] = {"310", "이브의 마스카라", "↑ {{DamageSmall}}공격력 배율 x2#↓ {{TearsSmall}}연사 배율 x0.66#↓ {{ShotspeedSmall}}탄속 -0.5"}, -- Eve's Mascara
-	[311] = {"311", "유다의 그림자", "↑ 목숨 +1#{{Player12}} 사망 시 전 방에서 Black Judas 캐릭터#{{Blank}} (2{{BlackHeart}}/{{DamageSmall}} x2/{{SpeedSmall}} +0.1)로 부활합니다.#{{Player24}} Tainted Judas의 경우 Black Judas 캐릭터로 변경되지 않습니다."}, --Judas' Shadow
 	[314] = {"314", "살찐 허벅지", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +1#↓ {{SpeedSmall}}이동속도 -0.4#장애물을 부술 수 있습니다."}, -- Thunder Thighs
 	[315] = {"315", "이상한 끌개", "공격이 무언가에 부딪힐 때 적과 픽업이 공격에 끌려옵니다."}, -- Strange Attractor
 	[316] = {"316", "저주받은 눈알", "{{Chargeable}} 눈물을 충전한 다음 최대 5발의 눈물을 일렬로 발사합니다.#!!! 충전중 피격 시 스테이지 안의 랜덤한 방으로 순간이동합니다.#{{Blank}} ({{Collectible260}} 보유 시 순간이동 효과 면역)"}, -- Cursed Eye
@@ -172,7 +169,7 @@ local repCollectibles={
 	[328] = {"328", "반전사진", "!!! Dark Room/Home 스테이지 입장에 필요#↑ {{DamageSmall}}공격력 +1#피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 방 안의 모든 적에게 40의 방어 무시 피해를 줍니다."}, -- The Negative
 	[330] = {"330", "두유", "↓ {{DamageSmall}}공격력 배율 x0.2#↑ {{TearsSmall}}연사 배율 x5.5#↓ {{TearsizeSmall}}눈물크기 -0.3#충전이 필요한 공격이 충전 없이 자동으로 발사됩니다.#{{Blank}} (부가 공격 제외)"}, -- Soy Milk
 	[331] = {"331", "신", "↑ {{DamageSmall}}공격력 +1#↓ {{TearsSmall}}연사 -0.3#↓ {{ShotspeedSmall}}탄속 -0.3#공격이 적에게 유도됩니다.#눈물에 후광이 생기며 후광에 닿은 적은 초당 60의 피해를 입습니다."}, -- Godhead
-	[332] = {"332", "나사로의 붕대", "↑ 목숨 +1#{{Player11}} 사망 시 즉시 Lazarus Risen 캐릭터#{{Blank}} (1{{Heart}}/{{DamageSmall}} x1.4/{{Collectible214}})로 부활하며 최대 체력이 1 감소, {{DamageSmall}}공격력이 +0.5 증가합니다.#부활 이후 스테이지 진입 시마다 사망 이전의 Lazarus 캐릭터로 변경되며 해당 아이템의 효과를 다시 발동할 수 있습니다.#{{Player29}} Tainted Lazarus의 경우 Lazarus Risen 캐릭터로 변경되지 않습니다."}, -- Lazarus' Rags
+	[332] = {"332", "나사로의 붕대", "↑ 목숨 +1#{{Player11}} 사망 시 즉시 Lazarus Risen 캐릭터#{{Blank}} (1{{Heart}}/{{DamageSmall}} x1.4/{{Collectible214}})로 부활하며 최대 체력이 1 감소, {{DamageSmall}}공격력이 +0.5 증가합니다.#부활 이후 스테이지 진입 시마다 사망 이전의 Lazarus 캐릭터로 변경되며 해당 아이템의 효과를 다시 발동할 수 있습니다."}, -- Lazarus' Rags
 	[333] = {"333", "정신", "맵에 특급 비밀방을 제외한 모든 방의 위치가 표시됩니다."}, -- The Mind
 	[336] = {"336", "죽은 양파", "↓ {{RangeSmall}}사거리 -1.5#↓ {{ShotspeedSmall}}탄속 -0.4#↑ {{TearsizeSmall}}눈물크기 +0.22#공격이 적과 장애물을 관통합니다."}, -- Dead Onion
 	[339] = {"339", "안전핀", "↑ {{BlackHeart}}블랙하트 +1#↑ {{RangeSmall}}사거리 +2.5#↑ {{ShotspeedSmall}}탄속 +0.16"}, -- Safety Pin
@@ -412,7 +409,7 @@ local repCollectibles={
 	[674] = {"674", "영혼의 족쇄", "피격 시 체력이 없을 경우 체력 0.5칸의 원래 캐릭터와 족쇄로 묶인 영혼 캐릭터로 변합니다.#10초동안 피격당하지 않았을 경우 사망한 자리에서 사망하기 이전 상태로 돌아옵니다.#소울하트 획득 시 다시 발동할 수 있습니다."}, -- Spirit Shackles
 	[675] = {"675", "깨진 오브", "피격 시 맵에 랜덤한 방의 위치를 보여주며 캐릭터가 있는 방 안의 잠겨있는 문을 모두 엽니다."}, -- Cracked Orb
 	[676] = {"676", "비어있는 심장", "!!! 스테이지 입장 시 빨간하트가 1칸 이하일 경우:#↑ {{EmptyHeart}}빈 최대 체력 +1"}, -- Empty Heart
-	[677] = {"677", "유체이탈", "방 안에 적이 있을 때 피격 시 3초간 적과 캐릭터가 느려지며 캐릭터가 The Lost(비행, 지형 관통 공격)의 모습으로 바뀝니다.#방을 클리어 하거나 피격 시 원래 캐릭터로 돌아옵니다."}, -- Astral Projection
+	[677] = {"677", "유체이탈", "방 안에 적이 있을 때 피격 시 2초간 게임 속도가 느려지며;#2초간 {{DamageSmall}}공격력/{{TearsSmall}}연사가 크게 증가, 캐릭터가 The Lost(비행, 지형 관통 공격)의 모습으로 바뀝니다.#방을 클리어 하거나 피격 시 원래 캐릭터로 돌아옵니다."}, -- Astral Projection
 	[678] = {"678", "제왕절개", "공격이 태아 발사 공격으로 변경됩니다.#{{Chargeable}} 공격키를 누르고 있으면 태아가 자동으로 충전되며 발사됩니다.#태아는 발사 시 적에게 유도되며 초당 공격력 x2.25의 피해를 줍니다."}, -- C Section
 	[679] = {"679", "꼬마 아바돈", "{{Chargeable}} 공격키를 1초 이상 누르면 충전되며 공격키를 떼면 패밀리어 주위에 검은 고리가 둘러져 접촉한 적에게 3.5의 피해를 줍니다."}, -- Lil Abaddon
 	[680] = {"680", "몬테주마의 복수", "{{Chargeable}} 공격키를 2.35초 이상 누르면 충전되며 공격키를 떼면 캐릭터의 뒤 방향으로 레이저와 옥수수탄을 발사합니다.#레이저는 다단히트로 적에게 최대 초당 공격력 x19의 피해를 줍니다.#옥수수탄은 적에게 6의 피해를 줍니다."}, -- Montezuma's Revenge
@@ -806,7 +803,6 @@ EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].car
 ---------- Trinkets ----------
 local repTrinkets={
 	-- Rebirth
-	[1] = {"1", "삼킨 동전", "피격 시 {{Coin}}동전을 1개 드랍합니다.#!!! {{Player14}}/{{Player33}}Keeper: 0~1개"}, -- Swallowed Penny
 	[10] = {"10", "씰룩벌레", "↑ {{TearsSmall}}연사 +0.4#눈물이 파동 곡선을 그리며 날아갑니다.#공격이 장애물을 관통합니다."}, -- Wiggle Worm
 	[11] = {"11", "둥글벌레", "↑ {{TearsSmall}}연사 +0.4#눈물이 원을 그리며 날아갑니다.#공격이 장애물을 관통합니다."}, -- Ring Worm
 	[14] = {"14", "굳은살", "가시나 장판에 피해를 입지 않습니다.#!!! Mama Gurdy, The Pile 보스의 가시, 혹은 가시 돌에는 여전히 피해를 입습니다."}, -- Callus
@@ -815,7 +811,6 @@ local repTrinkets={
 	[17] = {"17", "검은 립스틱", "소울하트가 드랍될 때 {{BlackHeart}}블랙하트로 바뀔 확률 +10%p"}, -- Black Lipstick
 	[18] = {"18", "성경 책자", "빨간하트가 드랍될 때 {{EthernalHeart}}이터널하트로 바뀔 확률 +3.33%p"}, -- Bible Tract
 	[19] = {"19", "종이 클립", "열쇠가 필요한 모든 상자를 열쇠 소모 없이 열 수 있습니다."}, -- Paper Clip
-	[23] = {"23", "실종 포스터", "!!! 일회용#{{Player10}} {{SacrificeRoom}}희생방에서 사망 시 전 방에서 The Lost 캐릭터로 부활함과 동시에 The Lost 캐릭터가 해금됩니다.#The Lost 캐릭터 해금 이후에는 희생방이 아닌 다른 방에서의 사망 시에도 부활합니다.#{{Player31}} Tainted Lost의 경우 The Lost 캐릭터로 변경되지 않습니다."}, -- Missing Poster
 	[24] = {"24", "똥전", "똥 오브젝트에서 {{Coin}}동전이 나올 확률이 20% 증가합니다.#{{Poison}} 동전 획득 시 적을 밀쳐내는 독성 방귀를 뀝니다."}, -- Butt Penny
 	[25] = {"25", "이상한 초콜릿", "!!! 30초마다 일정 확률로:#똥을 싸거나;#적과 탄환을 밀쳐내며 6의 피해를 주는 방귀를 뀝니다."}, -- Mysterious Candy
 	[26] = {"26", "꺾기벌레", "↑ {{TearsSmall}}연사 +0.4#↑ {{RangeSmall}}사거리 +1.5#눈물이 지그재그로 날아갑니다.#공격이 장애물을 관통합니다."}, -- Hook Worm
@@ -1118,7 +1113,7 @@ local repPills={
 	-- Repentance
 	[48] = {"47", "탄속 감소", "↓ {{ShotspeedSmall}}탄속 -0.15"}, -- Shot Speed Down
 	[49] = {"48", "탄속 증가", "↑ {{ShotspeedSmall}}탄속 +0.15"}, -- Shot Speed Up
-	[50] = {"49", "실험용 알약", "랜덤한 능력치 두가지가 증가하거나 감소합니다.#{{Collectible75}}PHD, {{Collectible46}}Lucky Foot 혹은 {{Collectible303}}Virgo 보유 시 능력치가 감소하지 않습니다.#{{Collectible654}}False PHD 보유 시 능력치가 증가하지 않습니다."}, -- Experimental Pill
+	[50] = {"49", "실험용 알약", "랜덤한 능력치 두가지가 증가하거나 감소합니다"}, -- Experimental Pill
 	[9999] = {"", "황금 알약", "일반 알약에서 나오지 않는 알약 효과가 랜덤하게 발동됩니다.#사라지기 전까지 무제한으로 사용할 수 있습니다."} -- golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
@@ -1174,7 +1169,7 @@ EID.descriptions[languageCode].horsepills={
 	{"46", "끄어억!", "마지막으로 사용한 알약을 {{ColorCyan}}대형{{CR}} 알약으로 드랍합니다."}, -- Vurp!
 	{"47", "탄속 감소", "↓ {{ShotspeedSmall}}탄속 -{{ColorYellow}}0.3{{CR}}"}, -- Shot Speed Down
 	{"48", "탄속 증가", "↑ {{ShotspeedSmall}}탄속 +{{ColorCyan}}0.3{{CR}}"}, -- Shot Speed Up
-	{"49", "실험용 알약", "랜덤한 능력치 두가지가 증가하거나 감소합니다.#{{Collectible75}}PHD, {{Collectible46}}Lucky Foot 혹은 {{Collectible303}}Virgo 보유 시 능력치가 감소하지 않습니다.#{{Collectible654}}False PHD 보유 시 능력치가 증가하지 않습니다."}, -- Experimental Pill
+	{"49", "실험용 알약", "랜덤한 능력치 두가지가 크게 증가하거나 감소합니다."}, -- Experimental Pill
 	[9999] = {"", "황금 알약", "일반 알약에서 나오지 않는 알약 효과가 랜덤하게 발동됩니다.#사라지기 전까지 무제한으로 사용할 수 있습니다."}, -- Golden Pill
 }
 
@@ -1301,6 +1296,9 @@ EID.descriptions[languageCode].FalsePHDHorseDamage = "{{DamageSmall}}공격력 +
 
 EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "위의 효과 대신 열쇠를 같이 소모하여 랜덤 배열의 아이템 6개를 소환합니다."
 
+EID.descriptions[languageCode].ExperimentalPillPHD = "능력치 감소 없음"
+EID.descriptions[languageCode].ExperimentalPillFalsePHD = "능력치 증가 없음"
+
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! 경고 !!!"
 EID.descriptions[languageCode].AchievementWarningText = "{{ColorRed}}지금 모드를 적용하면 게임 진행이 막히며 도전과제가 언락되지 않습니다!{{CR}}#모든 모드를 비활성화 한 상태에서 6 스테이지 (Depths II) 보스를 클리어하셔야#{{Blank}}모드 적용 중에도 도전과제를 언락할 수 있습니다."
 
@@ -1308,8 +1306,18 @@ EID.descriptions[languageCode].OldGameVersionWarningText = "리펜턴스가 최�
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "아이템 추가 모드나 아이템 배열 변경 모드가 적용되어 있을 경우 조합법이 일치하지 않을 수 있습니다.#조합법 설명을 숨기거나 REPENTOGON 모드를 설치해 주세요.#(config 설정을 수정하여 해당 메세지를 비활성화 할 수 있습니다.)"
 
-
-
+local repConditions={
+	["5.100.161"] = "{{Player25}} Tainted ???의 경우 ??? 캐릭터로 변경되지 않습니다.", -- Ankh
+	["5.350.28"] = "{{Player25}} Tainted ???의 경우 ??? 캐릭터로 변경되지 않습니다.", -- Broken Ankh
+	["5.100.311"] = "{{Player24}} Tainted Judas의 경우 Black Judas 캐릭터로 변경되지 않습니다.", -- Judas's Shadow
+	["5.100.332"] = "{{Player29}} TTainted Lazarus의 경우 Lazarus Risen 캐릭터로 변경되지 않습니다.", -- Lazarus's Rags
+	["5.350.23 (Tainted Lost)"] = "{{Player31}} Tainted Lost의 경우 The Lost 캐릭터로 변경되지 않습니다.", -- Missing Poster
+	["5.100.676"] = "빨간하트를 소지할 수 없는 캐릭터는 무효과", -- Empty Heart
+	["5.300.15 (Tarot)"] = "{{DemonBeggar}} 악마거지를 {{ColorShinyPurple}}2{{CR}}명 소환합니다.", -- Temperance (Greed Mode + Tarot Cloth effect)
+	["5.350.1"] = "{{Player14}} Keeper: 0~1개", -- Swallowed Penny
+	["5.100.135 (Hard Mode)"] = {"1~2개", "1개", "2~3개", "2개"}, -- IV Bag Hard Mode (modify the PHD text too)
+}
+EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
 local RepDemoObject = {
 	DemoObjectName = "아이템 설명 모드 표시용",
