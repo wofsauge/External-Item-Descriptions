@@ -588,11 +588,12 @@ function EID:BoCCheckForPickups()
 	end
 end
 
-EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function(_)
+function EID:BoCOnNewRoom(_)
 	-- We're using the pickup indexes for quick checking, which reset on each new room
 	pickupsCollected = {}
 	recheckPickups = true
-end)
+end
+EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.BoCOnNewRoom)
 
 -- Using a Card/Pill will change our inventory craftable items, so force a refresh then
 -- (Note: Items that directly add a card/pill to you, i.e. Bottle of Pills, also need a refresh, but aren't tracked for performance)
@@ -974,6 +975,34 @@ function EID:handleBagOfCraftingUpdating()
 	if (bagOfCraftingOffset >= numResults) then bagOfCraftingOffset = bagOfCraftingOffset - EID.Config["BagOfCraftingResults"] end
 end
 
+-- Check what pickups are available in this room
+function EID:BoCGetRoomPickupList()
+	local currentRoomDesc = game:GetLevel():GetCurrentRoomDesc()
+	local curRoomIndex = currentRoomDesc.ListIndex
+	local pickups = Isaac.FindByType(5, -1, -1, true, false)
+
+	if EID.BoC.CurrentPickupCount ~= #pickups or recheckPickups then
+		local roomItems = {}
+		recheckPickups = false
+		for _, entity in ipairs(pickups) do
+			local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
+			if craftingIDs ~= nil and not entity:ToPickup():IsShopItem() and entity:GetSprite():GetAnimation() ~= "Collect" then
+				for _,v in ipairs(craftingIDs) do
+					table.insert(roomItems, v)
+				end
+			end
+		end
+		EID.BoC.RoomQueries[curRoomIndex .. ""] = { roomItems, currentRoomDesc.Data.Variant }
+		EID.BoC.CurrentPickupCount = #pickups
+		calcHeldItems()
+		calcFloorItems()
+		EID.RefreshBagTextbox = true
+		return roomItems
+	else
+		return EID.BoC.RoomQueries[curRoomIndex .. ""] and EID.BoC.RoomQueries[curRoomIndex .. ""][1] or {}
+	end
+end
+
 -- Called when needed based on EID.Config["RefreshRate"]
 function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	-- Determine if we should display anything at all
@@ -1017,28 +1046,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	if (EID.Config["BagOfCraftingDisplayRecipesMode"] == "Preview Only") then return false end
 
 	-- Check what pickups are available in this room
-	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
-	local roomItems = {}
-	local pickups = Isaac.FindByType(5, -1, -1, true, false)
-
-	if EID.BoC.CurrentPickupCount ~= #pickups or recheckPickups then
-		recheckPickups = false
-		for _, entity in ipairs(pickups) do
-			local craftingIDs = EID:getBagOfCraftingID(entity.Variant, entity.SubType)
-			if craftingIDs ~= nil and not entity:ToPickup():IsShopItem() and entity:GetSprite():GetAnimation() ~= "Collect" then
-				for _,v in ipairs(craftingIDs) do
-					table.insert(roomItems, v)
-				end
-			end
-		end
-		EID.BoC.RoomQueries[curRoomIndex .. ""] = { roomItems, game:GetLevel():GetCurrentRoomDesc().Data.Variant }
-		EID.BoC.CurrentPickupCount = #pickups
-		calcHeldItems()
-		calcFloorItems()
-		EID.RefreshBagTextbox = true
-	else
-		roomItems = EID.BoC.RoomQueries[curRoomIndex .. ""] and EID.BoC.RoomQueries[curRoomIndex .. ""][1] or {}
-	end
+	local roomItems = EID:BoCGetRoomPickupList()
 
 	itemQuery = {}
 	local itemCount = {}
