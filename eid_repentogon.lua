@@ -99,6 +99,29 @@ function EID:BoCTrackBagHolding() end
 
 function EID:BoCDetectBagContentShift() end
 
+-- read room items directly from room data when changing rooms, to ensure floor item counter doesnt desync
+function EID:BoCOnNewRoom_Repentogon(_)
+	EID.BoCOnNewRoom(_)
+	local lastRoomDesc = game:GetLevel():GetLastRoomDesc()
+	local lastRoomEntities = lastRoomDesc:GetEntitiesSaveState()
+
+	local roomItems = {}
+	for id = 0, #lastRoomEntities - 1 do
+		local entitySaveState = lastRoomEntities:Get(id)
+		if entitySaveState:GetType() == 5 and entitySaveState:GetI3() == 0 then -- is pickup and not shop item
+			local craftingIDs = EID:getBagOfCraftingID(entitySaveState:GetVariant(), entitySaveState:GetSubType())
+			if craftingIDs ~= nil then
+				for _,v in ipairs(craftingIDs) do
+					table.insert(roomItems, v)
+				end
+			end
+		end
+	end
+	EID.BoC.RoomQueries[lastRoomDesc.ListIndex .. ""] = { roomItems, lastRoomDesc.Data.Variant }
+end
+EID:RemoveCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.BoCOnNewRoom)
+EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.BoCOnNewRoom_Repentogon)
+
 -----------------------Descriptions & Modifiers --------------------------
 local oldHasDescription = EID.hasDescription
 function EID:hasDescription(entity)
