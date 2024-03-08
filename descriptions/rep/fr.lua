@@ -73,7 +73,7 @@ local repCollectibles={
 	[123] = {"123", "Manuel des Monstres", "Invoque un familier aléatoire#Le familier disparaît à l'étage suivant"}, -- Monster Manual
 	[126] = {"126", "Lame de Rasoir", "↑ Dégâts {{ColorLime}}+1.2#{{Warning}} Inflige 1 cœur de dégâts à Isaac puis un demi-cœur de dégâts par utilisation suivante dans la même salle#Retire les cœurs rouges en priorité"},
 	[129] = {"129", "Seau de Saindoux", "{{Heart}} +2 réceptacles de cœur #↓ Vitesse {{ColorError}}-0.2#Soigne un demi-cœur rouge"}, -- Bucket of Lard
-	[135] = {"135", "Perfusion", "Inflige un demi-cœur de dégâts à Isaac et fait apparaître 1 ou 2 pièces#Ne fait apparaître qu'une pièce en mode Difficile#Retire les cœurs rouges en priorité"},
+	[135] = {"135", "Perfusion", "Inflige un demi-cœur de dégâts à Isaac et fait apparaître 1 ou 2 pièces#Retire les cœurs rouges en priorité"},
     [136] = {"136", "Mon Meilleur Ami", "Place une peluche qui attire les ennemis et explose après 5 secondes"},
 	[138] = {"138", "Stigmates", "{{Heart}} +1 réceptacle de cœur#↑ Dégâts {{ColorLime}}+0.3#Soigne un cœur rouge"}, -- Stigmata
 	[139] = {"139", "Sac à Main de Maman", "Permet à Isaac de porter deux babioles à la fois#Fait apparaître une babiole"}, -- Mom's Purse
@@ -88,7 +88,7 @@ local repCollectibles={
     [155] = {"155", "Œil Baladeur", "Rebondit contre les murs de la salle et inflige des dégâts de contact#↑ Dégâts {{ColorLime}}+34%{{ColorWhite}} pour les larmes tirées de l'œil gauche"},
 	[157] = {"157", "Soif de Sang", "Subir un dégât augmente les dégâts d'Isaac#Plafonne à {{ColorLime}}dégâts +1.5{{ColorWhite}} après 6 dégâts subis#{{Timer}} L'effet dure un étage"},
 	[158] = {"158", "Boule de Cristal", "Révèle l'étage sur la carte#Fait apparaître une carte ou un cœur d'âme#Quand tenue :#↑ Chance de Planétarium {{ColorLime}}+15%#↑ Chance de Planétarium {{ColorLime}}+100%{{ColorWhite}} si une Salle du Trésor {{TreasureRoom}} a été ignorée"}, -- Crystal Ball
-	[161] = {"161", "Ânkh", "À sa mort, Isaac est ressuscité en {{ColorLightOrange}}???{{ColorWhite}}#Ressuscite simplement {{ColorLightOrange}}??? Impur"},
+	[161] = {"161", "Ânkh", "À sa mort, Isaac est ressuscité en {{ColorLightOrange}}???"},
 	[169] = {"169", "Polyphème", "↑ Dégâts {{ColorLime}}x2 +4#↓ Débit {{ColorError}}-58%#Les larmes d'Isaac transpercent les ennemis qu'elles tuent"},
     [171] = {"171", "Filière d'Araignée", "Ralentit les ennemis pendant 4 secondes et leur inflige 10 dégâts#Les ennemis tués par cet objet font apparaître des araignées bleues"}, -- Spider Butt
 	[172] = {"172", "Dague Sacrificielle", "Orbite autour d'Isaac#Bloque les tirs ennemis#Inflige des dégâts de contact"},
@@ -175,7 +175,7 @@ local repCollectibles={
 	[328] = {"328", "Le Négatif", "↑ Dégâts {{ColorLime}}+1.0#Subir un dégât à un demi-cœur rouge ou moins inflige 40 dégâts à tous les ennemis de la salle#Permet d'entrer dans la {{ColorTransform}}Chambre Noire"}, -- The Negative
 	[330] = {"330", "Lait de Soja", "↑ Débit {{ColorLime}}x5.5#↓ Dégâts {{ColorError}}-80%#Réduit grandement le recul infligé par les larmes d'Isaac"}, -- Soy Milk
 	[331] = {"331", "Œil de la Providence", "↑ Dégâts {{ColorLime}}+0.5#↓ Débit {{ColorError}}-0.3#↓ Vitesse des tirs {{ColorError}}-0.3#Larmes autoguidées#Les larmes d'Isaac sont entourées d'une aura qui inflige des dégâts"}, -- Godhead
-	[332] = {"332", "Loques de Lazare", "À sa mort, Isaac est réincarné en {{ColorLightOrange}}Lazare Ressuscité#Ressuscite simplement {{ColorLightOrange}}Lazare Impur"},
+	[332] = {"332", "Loques de Lazare", "À sa mort, Isaac est réincarné en {{ColorLightOrange}}Lazare Ressuscité"},
 	[336] = {"336", "Oignon Pourri", "↓ Portée {{ColorError}}-1.5#↓ Vitesse des tirs {{ColorError}}-0.4#Larmes spectrales et transperçantes"}, -- Dead Onion
 	[339] = {"339", "Épingle à Nourrice", "↑ Portée {{ColorLime}}+1.5#↑ Vitesse des tirs {{ColorLime}}+0.16#{{BlackHeart}} +1 cœur noir"}, -- Safety Pin
 	[342] = {"342", "Lactarius Indigo", "↑ Débit {{ColorLime}}+0.7#↓ Vitesse des tirs {{ColorError}}-16%#{{Heart}} +1 réceptacle de cœur#Soigne 1 cœur rouge"}, -- Blue Cap
@@ -343,7 +343,7 @@ local repCollectibles={
 	[606] = {"606", "Faille Oculaire", "Isaac tire parfois une larme vortex qui crée une faille là où elle atterrit#Les failles attirent les ennemis, ressources et projectiles à proximité#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(20% à 15 Chance)"}, --  Ocular Rift
 	[607] = {"607", "Bébé Furoncle", "Tire des gerbes de larmes dans toutes les directions"}, --  Boiled Baby
 	[608] = {"608", "Bébé Surgelé", "Tire des larmes de glace#Gèle les ennemis qu'il tue"}, --  Freezer Baby
-	[609] = {"609", "D6 Éternel", "{{ColorLime}}65%{{ColorWhite}} de chances de rejouer les objets de la salle#{{ColorError}}25%{{ColorWhite}} de chances de les faire disparaître"}, --  Eternal D6
+	[609] = {"609", "D6 Éternel", "{{ColorLime}}75%{{ColorWhite}} de chances de rejouer les objets de la salle#{{ColorError}}25%{{ColorWhite}} de chances de les faire disparaître"}, --  Eternal D6
 	[610] = {"610", "Gros Piaf", "Plonge sur l'ennemi responsable du premier dégât infligé à Isaac dans la salle et crée une vague de rochers#Pourchasse ensuite les ennemis"}, --  Bird Cage
 	[611] = {"611", "Larynx", "Isaac hurle, inflige des dégâts et repousse les ennemis à proximité#Plus l'objet est chargé, plus le hurlement est puissant"}, --  Larynx
 	[612] = {"612", "Âme Égarée", "Suit Isaac et meurt si elle subit un dégât#Si elle est encore vivante en entrant dans un nouvel étage, elle peut donner :#{{SoulHeart}} 3 cœurs d'âme#{{EternalHeart}} 2 cœurs éternels#{{AngelRoom}} 1 objet angélique#{{TreasureRoom}} 1 objet de Salle du Trésor"}, --  Lost Soul
@@ -814,7 +814,7 @@ local repTrinkets={
 	[16] = {"16", "Ongle de Pied de Maman", "Le pied de {{ColorCyan}}Maman{{ColorWhite}} écrase un endroit au hasard dans la salle toutes les 20 secondes"},
 	[20] = {"20", "Patte de Singe", "Descendre à un demi-cœur de vie totale fait apparaître un cœur noir#La babiole disparaît après trois activations"},
 	[21] = {"21", "Papier Mystérieux", "Donne parfois l'effet du {{ColorYellow}}Positif{{Collectible327}}{{ColorWhite}}, du {{ColorYellow}}Négatif{{Collectible328}}{{ColorWhite}}, de l'{{ColorYellow}}Avis de Recherche{{Trinket23}}{{ColorWhite}} ou de la {{ColorYellow}}Page Déchirée{{Trinket48}}{{ColorWhite}}"},
-	[23] = {"23", "Avis de Recherche", "À sa mort, Isaac ressuscite en {{ColorLightOrange}}l'Égaré#Mourir dans une Salle de Sacrifice {{SacrificeRoom}} en portant cette babiole débloque {{ColorLightOrange}}l'Égaré#La babiole disparaît à la mort d'Isaac"},
+	[23] = {"23", "Avis de Recherche", "À sa mort, Isaac ressuscite en {{ColorLightOrange}}l'Égaré#La babiole disparaît à la mort d'Isaac"},
 	[24] = {"24", "Pièce de Fesse", "Ramasser une pièce fait péter Isaac#Augmente de 20% les chances de trouver des pièces dans les cacas"}, -- Butt Penny
 	[26] = {"26", "Ver Droit", "↑ Portée {{ColorLime}}+1.5#↑ Débit {{ColorLime}}+0.4#La trajectoire des larmes d'Isaac forme des vagues carrées#Larmes spectrales"}, -- Hook Worm
 	[32] = {"32", "Psilocybe Lancéolé", "25% de chances de gagner l'effet d'un objet champignon pour la durée d'une salle"}, -- Liberty Cap
@@ -1320,7 +1320,9 @@ EID.descriptions[languageCode].BlankCardCharge = "Temps de charge avec {{ColorYe
 EID.descriptions[languageCode].BlankCardQCard = "Téléporte Isaac dans la salle d'erreur#La {{ColorYellow}}Carte Blanche{{ColorWhite}} et la {{ColorYellow}}Carte ?{{ColorWhite}} seront détruites"
 EID.descriptions[languageCode].ClearRuneCharge = "Temps de charge avec {{ColorYellow}}Rune de Cristal{{ColorWhite}} :"
 EID.descriptions[languageCode].PlaceboCharge = "Temps de charge avec {{ColorYellow}}Placebo{{ColorWhite}} :"
-EID.descriptions[languageCode].FlipItemToggleInfo = "( {{ButtonSelect}} : voir la description)"
+EID.descriptions[languageCode].FlipItemToggleInfo = "( {{ButtonSelect}} : description)"
+
+EID.descriptions[languageCode].GlowingHourglassTransformed = "Redeviendra le Sablier Luisant au prochain étage"
 
 EID.descriptions[languageCode].FalsePHDHeart = "Fait apparaître un cœur noir {{BlackHeart}}"
 EID.descriptions[languageCode].FalsePHDDamage = "Dégâts {{ColorLime}}+0.6"
@@ -1330,15 +1332,34 @@ EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Détruit l'{{Color
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} ATTENTION !"
 EID.descriptions[languageCode].AchievementWarningText = "Les succès sont désactivés !#Pour pouvoir débloquer des succès, tu dois d'abord tuer {{ColorCyan}}Maman{{ColorSilver}} (Profondeurs II){{ColorWhite}}.#{{Blank}}#{{Blank}} Si tu as déjà battu {{ColorCyan}}Maman{{ColorWhite}}, ce message est un bug et peut être ignoré#{{Blank}} {{ColorSilver}}(Cette alerte peut être désactivée dans la config)"
+
 EID.descriptions[languageCode].OldGameVersionWarningText = "Ta version de Repentance n'est pas à jour !#Seule la dernière version du jeu (1.7.9c) est officiellement supportée.#{{Blank}} {{ColorSilver}}(Cette alerte peut être désactivée dans la config)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Les objets de mod peuvent dérégler les recettes de fabrication !#Utilise l'option Item Probability ou désactive l'affichage du Sac de Fabrication dans la config du mod si tes recettes sont incorrectes#{{Blank}} {{ColorSilver}}(Cette alerte peut être désactivée dans la config)"
 
 EID.descriptions[languageCode].ResultsWithX = "(Avec {1})"
 
+local repConditions={
+	["5.100.161"] = "{{Player25}} Ressuscite {{ColorLightOrange}}??? Impur", -- Ankh
+	["5.350.28"] = "{{Player25}} Ressuscite {{ColorLightOrange}}??? Impur", -- Broken Ankh
+	["5.100.311"] = "{{Player24}} Ressuscite {{ColorLightOrange}}Judas Impur", -- Judas's Shadow
+	["5.100.332"] = "{{Player29}} Ressuscite {{ColorLightOrange}}Lazare Impur", -- Lazarus's Rags
+	["5.350.23 (Tainted Lost)"] = "{{Player31}} Ressuscite {{ColorLightOrange}}L'Égaré Impur", -- Missing Poster
+	["5.100.676"] = "{{Warning}} Aucun effet pour les personnages qui ne peuvent pas avoir de cœurs rouges", -- Empty Heart
+	["5.300.15 (Tarot)"] = "Invoque {{ColorShinyPurple}}2{{CR}} mendiants démoniaques {{DemonBeggar}}", -- Temperance (Greed Mode + Tarot Cloth effect)
+	["5.350.1"] = "{{Player14}} Fait apparaître 0 ou 1 pièce", -- Swallowed Penny
+	["5.100.135 (Hard Mode)"] = {"1 ou 2 pièces", "une pièce", "2 à 3 pièces", "2 pièces"}, -- IV Bag Hard Mode (modify the PHD text too)
+}
+EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
+
 if EID.enableDebug then
     EID.descriptions[languageCode].repCollectibles = repCollectibles
     EID.descriptions[languageCode].repTrinkets = repTrinkets
     EID.descriptions[languageCode].repCards = repCards
     EID.descriptions[languageCode].repPills = repPills
+end
+
+if REPENTOGON then
+	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "Boîte à Dons", "Prochain succès à {1} pièces {{ColorSilver}}(encore {2} pièces)#Faire un don a 2% de chances de donner {{ColorLime}}Chance +1#Donner 10 pièces augmente les chances d'ouvrir le Refuge des Anges"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Boîte à Dons d'Avarice", "Prochain succès à {1} pièces {{ColorSilver}}(encore {2} pièces)"}
 end
