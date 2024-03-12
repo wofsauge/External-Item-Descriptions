@@ -1163,8 +1163,11 @@ end
 -- Pandora Box and Strange Key
 EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "En su lugar, la llave es usada para generar 6 objetos de pools aleatorias"
 -- Pandora Box and Strange Key end
--- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
-EID.descriptions[languageCode].HoldMapHeader = " Resultado"
+
+-- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].ItemReminder = {
+	ResultHeader = " Resultado",
+}
 
 EID.descriptions[languageCode].ResultsWithX = "(Resultado con {1})"
 

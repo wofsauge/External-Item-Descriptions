@@ -879,9 +879,10 @@ EID.descriptions[languageCode].MCM = {
 
 EID.descriptions[languageCode].CollectionPageInfo = "¡Debes tomar este objeto para completar la pagina de colección!"
 
-EID.descriptions[languageCode].HoldMapTitle = "Recordatorio"
--- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
-EID.descriptions[languageCode].HoldMapHeader = " Resultado"
+-- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].ItemReminder = {
+	ResultHeader = " Resultado",
+}
 
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {

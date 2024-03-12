@@ -948,9 +948,10 @@ EID.descriptions[languageCode].MCM = {
     DemoObjectText = "日本語の表示サンプル {{Collectible36}}{{Collectible36}}{{Collectible36}}{{Collectible36}}{{Collectible36}}{{Collectible36}}{{Collectible36}}{{Collectible36}}{{Collectible36}}#↑ おすすめ設定#アイテム名の言語切替： General→NameLanguage 日本語／英語／　　　 日本語＋英語を選べます#戦闘中のみ説明非表示： General→HideInBattle",
 }
 
-EID.descriptions[languageCode].HoldMapTitle = "アイテムリマインダー"
--- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
-EID.descriptions[languageCode].HoldMapHeader = " 結果"
+-- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].ItemReminder = {
+	ResultHeader = " 結果",
+}
 
 -- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
 -- Includes Repentance room types for localization convenience
