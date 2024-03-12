@@ -102,7 +102,7 @@ EID.descriptions[languageCode].collectibles={
 	{"78", "Livre de la Révélation", "{{SoulHeart}} +1 cœur d'âme#Augmente les chances d'affronter un {{ColorCyan}}Harbinger{{ColorWhite}} dans la salle du boss#{{AngelDevilChanceSmall}} +17.5% de chances de Devil Deal"},
 	{"79", "Le Nombre de la Bête", "↑ Dégâts {{ColorLime}}+1.0#↑ Vitesse {{ColorLime}}+0.2#{{SoulHeart}} +1 cœur d'âme"},
 	{"80", "Le Pacte", "↑ Dégâts {{ColorLime}}+0.5#↑ Débit {{ColorLime}}+0.7#{{SoulHeart}} +2 cœurs d'âme"},
-	{"81", "Chat Mort", "↑ +9 Vies#↓ Réduit le nombre de réceptacles de cœurs rouges d'Isaac à 1#Isaac ressuscite avec 1 réceptacle de cœur"},
+	{"81", "Chat Mort", "↑ +9 Vies#↓ Réduit le nombre de réceptacles de cœurs rouges d'Isaac à 1#Mourir ressuscite Isaac avec 1 réceptacle de cœur"},
 	{"82", "Empereur de la Fosse", "↑ Vitesse {{ColorLime}}+0.3#Permet à Isaac de voler"},
 	{"83", "Clou Pointu", "{{SoulHeart}} +1 cœur d'âme#↑ Dégâts {{ColorLime}}+0.7#↓ Vitesse {{ColorError}}-0.18#Permet à Isaac de détruire les rochers en marchant dessus"},
 	{"84", "Aller au Fond des Choses", "Ouvre une trappe vers l'étage suivant#La trappe a 10% de chances de contenir une échelle de corde"},
@@ -156,7 +156,7 @@ EID.descriptions[languageCode].collectibles={
 	{"132", "Morceau de Charbon", "Augmente les dégâts des larmes selon la distance qu'elles parcourent"},
 	{"133", "Patte de Guppy", "Convertit 1 réceptacle de cœur en 3 cœurs d'âme"},
 	{"134", "Queue de Guppy", "{{ColorLime}}33%{{ColorWhite}} de chances de remplacer la récompense d'une salle par un coffre#{{ColorError}}33%{{ColorWhite}} de chance d'annuler la récompense d'une salle"},
-	{"135", "Perfusion", "Inflige un demi-cœur de dégâts à Isaac#Fait apparaître 1 à 3 pièces"},
+	{"135", "Perfusion", "Inflige un demi-cœur de dégâts à Isaac et fait apparaître 2 à 3 pièces"},
 	{"136", "Mon Meilleur Ami", "Place une peluche qui attire les ennemis et explose après 5 secondes"},
 	{"137", "Détonateur Télécommandé", "Les bombes d'Isaac n'explosent plus automatiquement#Utiliser l'objet fait exploser toutes les bombes placées par Isaac#{{Bomb}} +5 Bombes"},
 	{"138", "Stigmates", "{{Heart}} +1 réceptacle de cœur#↑ Dégâts {{ColorLime}}+0.3"},
@@ -665,7 +665,7 @@ EID.descriptions[languageCode].trinkets={
 	{"20", "Patte de Singe", "Descendre à un demi-cœur de vie totale fait apparaître un cœur noir#Après avoir fait apparaître 3 cœurs noirs, le trinket disparaît"},
 	{"21", "Papier Mystérieux", "Donne parfois l'effet de {{ColorYellow}}The Polaroid {{Collectible327}}{{ColorWhite}}, {{ColorYellow}}The Negative {{Collectible328}}{{ColorWhite}}, {{ColorYellow}}Missing Poster {{Trinket23}}{{ColorWhite}} et {{ColorYellow}}A Missing Page {{Trinket48}}{{ColorWhite}}"},
 	{"22", "Queue de Diablotin", "Remplace 80% des cœurs ramassables par des clés#Remplace les 20% restants par des cœurs noirs"},
-	{"23", "Avis de Recherche", "À sa mort, Isaac ressuscite en {{ColorLightOrange}}The Lost#Mourir dans une Sacrifice Room {{SacrificeRoom}} en portant ce trinket débloque {{ColorLightOrange}}The Lost#Le trinket disparaît à la mort d'Isaac"},
+	{"23", "Avis de Recherche", "À sa mort, Isaac ressuscite en {{ColorLightOrange}}The Lost#Le trinket disparaît à la mort d'Isaac"},
 	{"24", "Pièce de Fesse", "Ramasser une pièce fait péter Isaac#Augmente de 20% les chances de trouver une pièce dans un caca"},
 	{"25", "Chocolat Douteux", "Isaac pète ou fait apparaître un caca à intervalles irréguliers"},
 	{"26", "Ver Droit", "↑ Portée {{ColorLime}}+10#La trajectoire des larmes d'Isaac forme des vagues carrées"},
@@ -988,4 +988,14 @@ EID.descriptions[languageCode].PickupNames = {
 	["5.301"] = "{{Rune}} Rune", -- not a real id
 	["5.350"] = "{{Trinket}} Babiole",
 
+}
+
+EID.descriptions[languageCode].ConditionalDescs = {
+	["5.100.81"] = "Retire tous les cœurs sauf 1 aux personnages qui ne peuvent pas avoir de cœurs rouges", -- Dead Cat
+	["5.100.241"] = "{{Warning}} Sans effet en mode Avarice", -- Contract From Below
+	["5.100.135 (Keeper)"] = "{{Player14}} Peut ne pas faire apparaître de pièce", -- IV Bag Keeper
+	["5.100.135 (PHD)"] = "Fait apparaître 2 ou 3 pièces avec {{ColorYellow}}Doctorat {{Collectible75}}", -- IV Bag PHD
+	["5.100.442"] = "{{Warning}} Aucun effet pour les personnages qui ne peuvent pas avoir de cœurs rouges", -- Dark Prince's Crown
+	["5.300.15"] = "Invoque un mendiant diabolique {{DemonBeggar}}", -- Temperance (Greed Mode effect)
+	["5.350.23"] = "{{Warning}} Mourir dans une Salle de Sacrifice {{SacrificeRoom}} en portant cette babiole débloque {{ColorLightOrange}}L'Égaré", -- Missing Poster (Unlock The Lost)
 }
