@@ -1152,9 +1152,10 @@ end
 
 EID.descriptions[languageCode].ResultsWithX = "(Výsledky s {1})"
 
-EID.descriptions[languageCode].HoldMapTitle = "Item Reminder"
--- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
-EID.descriptions[languageCode].HoldMapHeader = " Result"
+-- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].ItemReminder = {
+	ResultHeader = " Result",
+}
 
 -- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
 -- Includes Repentance room types for localization convenience

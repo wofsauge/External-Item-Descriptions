@@ -914,9 +914,10 @@ EID.descriptions[languageCode].MCM = {
 	DemoObjectText = "Це текст українською#Дуже крутий та довгий опис предмета для симуляції переходів на інший рядок, спричинених шириною текстового поля в EID!#{{Collectible4}} Це також крутий рядок#{{Heart}} Цей рядок любить тебе і Україну#{{AngelDevilChance}} Цей рядок може бути ще тим чортиком чи ангелом#\1 {{Damage}} +1 Характеристику збільшено",
 }
 
-EID.descriptions[languageCode].HoldMapTitle = "Нагадування"
--- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
-EID.descriptions[languageCode].HoldMapHeader = " Результат"
+-- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].ItemReminder = {
+	ResultHeader = " Результат",
+}
 
 -- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
 -- Includes Repentance room types for localization convenience

@@ -1316,6 +1316,8 @@ function EID:OnRender()
 		end
 	end
 
+	EID:ItemReminderHandleInputs()
+
 	if EID.ForceRefreshCache then
 		EID:ResetDescCache()
 	end
@@ -1574,11 +1576,12 @@ function EID:OnRender()
 
 	-- handle showing the Hold Map Helper description
 	if EID.Config["ItemReminderEnabled"] and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
+		EID:ItemReminderHandleInputs()
 		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-		demoDescObj.Name = EID:getDescriptionEntry("HoldMapTitle")
-		demoDescObj.PermanentTextEnglish = EID:getDescriptionEntryEnglish("HoldMapTitle")
+		demoDescObj.PermanentTextEnglish = EID:getDescriptionEntryEnglish("ItemReminder", "Title")
 		-- check for scrolling being enabled here and append scroll controls to the title?
-		demoDescObj.Description = EID:getHoldMapDescription(EID.holdTabPlayer)
+		demoDescObj.Description = EID:ItemReminderGetDescription(EID.holdTabPlayer)
+		demoDescObj.Name = EID:ItemReminderGetTitle()
 		if (demoDescObj.Description ~= "") then EID:addDescriptionToPrint(demoDescObj, 1) end
 	end
 
