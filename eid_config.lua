@@ -322,8 +322,8 @@ EID.UserConfig = {
 	-- Default = true
 	["ItemReminderShowOverview"] = true,
 	-- Disable inputs while Item Reminder is visible
-	-- Default = true
-	["ItemReminderDisableInputs"] = true,
+	-- Default = false
+	["ItemReminderDisableInputs"] = false,
 	-- Set the keybinding that's held to show the Item Reminder description, Flip/Spindown Dice preview descriptions, and interacting with the Bag of Crafting recipe list
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_MAP
@@ -336,6 +336,9 @@ EID.UserConfig = {
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_SHOOTLEFT
 	["ItemReminderNavigateRightButton"] = ButtonAction.ACTION_SHOOTRIGHT,
+	-- 
+	-- Default = 3
+	["ItemReminderMaxEntriesCount"] = 3,
 	-- Show recently acquired item descriptions in the Item Reminder (good for Curse of the Blind!)
 	-- Default = 1
 	["ItemReminderShowRecentItem"] = 1,
@@ -600,10 +603,11 @@ EID.DefaultConfig = {
 
 	["ItemReminderEnabled"] = true,
 	["ItemReminderShowOverview"] = true,
-	["ItemReminderDisableInputs"] = true,
+	["ItemReminderDisableInputs"] = false,
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["ItemReminderNavigateLeftButton"] = ButtonAction.ACTION_SHOOTLEFT,
 	["ItemReminderNavigateRightButton"] = ButtonAction.ACTION_SHOOTRIGHT,
+	["ItemReminderMaxEntriesCount"] = 5,
 	["ItemReminderShowRecentItem"] = 1,
 	["ItemReminderShowActiveDesc"] = 1,
 	["ItemReminderShowPocketDesc"] = 1,
