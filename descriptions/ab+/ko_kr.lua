@@ -975,7 +975,15 @@ EID.descriptions[languageCode].MCM={
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].ItemReminder = {
-	ResultHeader = " 예상 결과",
+	ResultHeader = " 예측",
+	CategoryNames = {
+		Overview = "요약",
+		Special = "스페셜",
+		Actives = "액티브",
+		Pockets = "소모성",
+		Trinkets = "장신구",
+		Passives = "패시브"
+	}
 }
 
 -- includes Planetarium even though it's unused in AB+ for convenience
