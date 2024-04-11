@@ -816,7 +816,7 @@ EID.descriptions[languageCode].cards={
 	{"12", "XI - 힘", "그 방에서 {{Heart}}최대 체력 +1, {{DamageSmall}}공격력 +0.3, {{DamageSmall}}공격력 배율 +50%, {{RangeSmall}}사거리 +5.25, 눈물 높이 +0.5, {{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
 	{"13", "XII - 매달린 남자", "{{Collectible20}} 그 방에서 비행 능력을 얻습니다."}, -- XII - The Hanged Man
 	{"14", "XIII - 죽음", "{{Collectible35}} 방 안의 모든 적에게 40의 피해를 줍니다."}, -- XIII - Death
-	{"15", "XIV - 절제", "헌혈기계를 생성합니다.#Greed 모드에서는 악마거지를 소환합니다."}, -- XIV - Temperance
+	{"15", "XIV - 절제", "{{DonationMachine}}헌혈기계를 생성합니다."}, -- XIV - Temperance
 	{"16", "XV - 악마", "{{Collectible34}} 그 방에서 {{DamageSmall}}공격력 +2"}, -- XV - The Devil
 	{"17", "XVI - 탑", "{{Collectible65}} 방 안에 트롤폭탄을 6개 생성합니다."}, -- XVI - The Tower
 	{"18", "XVII - 별", "{{TreasureRoom}}보물방으로 순간이동합니다."}, -- XVII - The Stars
