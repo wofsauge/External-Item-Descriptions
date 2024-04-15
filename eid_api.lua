@@ -652,8 +652,10 @@ end
 
 -- check if an entity is part of the describable entities
 function EID:hasDescription(entity)
-	if entity and EID:IsGridEntity(entity) then
-		if entity and EID.GridEntityWhitelist[entity:GetType()] then
+	if not EID:EntitySanityCheck(entity) then return false end
+	
+	if EID:IsGridEntity(entity) then
+		if EID.GridEntityWhitelist[entity:GetType()] then
 			for _, func in ipairs(EID.GridEntityWhitelist[entity:GetType()]) do
 				if func(entity) then
 					return true
@@ -1431,7 +1433,7 @@ function EID:getScreenSize()
 end
 
 function EID:getEntityData(entity, str)
-	if entity ~= nil and not EID:IsGridEntity(entity) and entity:GetData() ~= nil then
+	if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:GetData() ~= nil then
 		return entity:GetData()[str]
 	end
 	return nil
@@ -1925,6 +1927,11 @@ end
 -- Returns true if a given entity is a grid entity
 function EID:IsGridEntity(entity)
 	return entity.Type == nil
+end
+
+-- Returns true, if the given entity is a valid game object and actually is something useful to process. Sometimes the game sends weird shit so this function is needed to catch bullshit
+function EID:EntitySanityCheck(entity)
+	return entity ~= nil and type(entity) == "userdata"
 end
 
 -- returns true if the given pill color was used at least once in this game
