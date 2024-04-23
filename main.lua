@@ -670,8 +670,7 @@ function EID:printDescription(desc, cachedID)
 						local playerType = player:GetPlayerType()
 						if playerType ~= PlayerType.PLAYER_THESOUL_B and player:GetBabySkin() == -1 then
 							if #EID.coopAllPlayers > 1 then
-								local playerIcon = EID:getIcon("Player"..playerType) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerType.."}}" or "{{CustomTransformation}}"
-								transformationName = transformationName .. playerIcon
+								transformationName = transformationName .. EID:GetPlayerIcon(playerType)
 							end
 							local numCollected = EID.TransformationProgress[EID:getPlayerID(player)] and EID.TransformationProgress[EID:getPlayerID(player)][transform] or 0
 							local numMax = EID.TransformationData[transform] and EID.TransformationData[transform].NumNeeded or 3

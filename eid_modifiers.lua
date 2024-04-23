@@ -280,7 +280,7 @@ if EID.isRepentance then
 				local birthrightDesc = EID:getDescriptionEntry("birthright", playerID+1)
 				if birthrightDesc ~=nil then
 					local playerName = birthrightDesc[1] or player:GetName()
-					EID:appendToDescription(descObj, (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}").." {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
+					EID:appendToDescription(descObj, EID:GetPlayerIcon(playerID) .. " {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
 				end
 			end
 		end
@@ -399,7 +399,7 @@ if EID.isRepentance then
 				end
 			end
 
-			local newStr = "#" .. (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}} " or "") .. " {{ColorGray}}"..playerName.."{{CR}}#"
+			local newStr = "#" .. EID:GetPlayerIcon(playerID) .. " {{ColorGray}}"..playerName.."{{CR}}#"
 
 			local voidNames = EID:getDescriptionEntry("VoidNames")
 			for i,v in ipairs(statsToDisplay) do
@@ -678,7 +678,7 @@ if EID.isRepentance then
 				local tableName = EID:getTableName(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 				local name = EID:getPillName(lastUsedPill, tableName == "horsepills")
 				if #EID.coopAllPlayers == 1 then EID:appendToDescription(descObj, "#{{Pill}}")
-				else EID:appendToDescription(descObj, "#" .. (EID:getIcon("Player"..playerType) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerType.."}}" or ("P" .. i .. ":"))) end
+				else EID:appendToDescription(descObj, "#" .. EID:GetPlayerIcon(playerType, "P" .. i .. ":")) end
 				EID:appendToDescription(descObj, " {{ColorSilver}}" .. name)
 			end
 		end
@@ -721,7 +721,7 @@ if EID.isRepentance then
 					end
 				else expPillString = EID:getDescriptionEntry("ExperimentalPillPHD") end
 				EID:appendToDescription(descObj, "#")
-				if #EID.coopAllPlayers > 1 then EID:appendToDescription(descObj, (EID:getIcon("Player"..playerType) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerType.."}} " or ("P" .. i .. ": "))) end
+				if #EID.coopAllPlayers > 1 then EID:appendToDescription(descObj,  EID:GetPlayerIcon(playerType, "P" .. i .. ":")) end
 				EID:appendToDescription(descObj, "{{Collectible" .. pillModifierID .. "}} " .. expPillString)
 			end
 		end
@@ -768,7 +768,7 @@ if EID.isRepentance then
 			if not printedDescs[pillObj.Name] then
 				-- new pill effect to print
 				printedDescs[pillObj.Name] = true
-				EID:appendToDescription(descObj, "#" .. (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or ("P" .. i .. ":")).." {{ColorObjName}}"..pillObj.Name .."{{CR}}#"..pillObj.Description)
+				EID:appendToDescription(descObj, "#" .. EID:GetPlayerIcon(playerID, "P" .. i .. ":") .." {{ColorObjName}}"..pillObj.Name .."{{CR}}#"..pillObj.Description)
 			end
 		end
 		EID.pillPlayer = nil
