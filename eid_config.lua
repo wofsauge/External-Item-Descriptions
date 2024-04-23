@@ -347,22 +347,6 @@ EID.UserConfig = {
 	["ItemReminderNavigateUpButton"] = ButtonAction.ACTION_SHOOTUP,
 	-- Default = 3
 	["ItemReminderMaxEntriesCount"] = 3,
-	-- Show recently acquired item descriptions in the Item Reminder (good for Curse of the Blind!)
-	-- Default = 1
-	["ItemReminderShowRecentItem"] = 1,
-	-- Show your active item description(s) in the Item Reminder
-	-- Default = 1, max = 2
-	["ItemReminderShowActiveDesc"] = 1,
-	-- Show your pocket item (card, pill, active) description in the Item Reminder
-	-- Default = 1, max = 4 (2 in AB+)
-	["ItemReminderShowPocketDesc"] = 1,
-	-- Show your trinket description(s) in the Item Reminder
-	-- Default = 2, max = 2
-	["ItemReminderShowTrinketDesc"] = 2,
-	-- Show your next Poop Spell's description in the Item Reminder
-	-- REPENTANCE ONLY!!!
-	-- Default = 1, max = 6
-	["ItemReminderShowPoopDesc"] = 1,
 	-- Items that grant you items without saying what they are (like Zodiac, Liberty Cap) can have their current granted item revealed in the Item Reminder
 	-- Default = false
 	["ItemReminderShowHiddenInfo"] = false,
@@ -618,11 +602,6 @@ EID.DefaultConfig = {
 	["ItemReminderNavigateDownButton"] = ButtonAction.ACTION_SHOOTDOWN,
 	["ItemReminderNavigateUpButton"] = ButtonAction.ACTION_SHOOTUP,
 	["ItemReminderMaxEntriesCount"] = 5,
-	["ItemReminderShowRecentItem"] = 1,
-	["ItemReminderShowActiveDesc"] = 1,
-	["ItemReminderShowPocketDesc"] = 1,
-	["ItemReminderShowTrinketDesc"] = 2,
-	["ItemReminderShowPoopDesc"] = 1,
 	["ItemReminderShowHiddenInfo"] = false,
 	["ItemReminderShowRNGCheats"] = false,
 

@@ -606,16 +606,9 @@ if MCMLoaded then
 
 	MCM.AddSpace("EID", "Reminder")
 	MCM.AddText("EID", "Reminder", "Item Descriptions")
-	-- should these be organized in the order they're shown in the map desc code?
-	EID:AddNumberSetting("Reminder", "ItemReminderShowRecentItem", "Recent Items", 0, 8, { displayTable = itemSlotReminders, infoText = {"Show recently acquired item descriptions in the Item Reminder (good for Curse of the Blind!)"}})
-	EID:AddNumberSetting("Reminder", "ItemReminderShowActiveDesc", "Active Items", 0, 2, { displayTable = itemSlotReminders, infoText = "Show your active item descriptions in the Item Reminder"})
-	EID:AddNumberSetting("Reminder", "ItemReminderShowPocketDesc", "Pocket Items", 0, 4, { displayTable = itemSlotReminders, infoText = "Show your pocket item (card, pill, active) descriptions in the Item Reminder"})
-	EID:AddNumberSetting("Reminder", "ItemReminderShowTrinketDesc", "Trinkets", 0, 2, { displayTable = itemSlotReminders, infoText = "Show your trinket descriptions in the Item Reminder"})
 
-	EID:AddNumberSetting("Reminder", "ItemReminderShowPoopDesc", "Poop Spells", 0, 6, { repOnly = true, displayTable = itemSlotReminders, infoText = "Show Tainted ???'s next Poop Spell descriptions in the Item Reminder"})
-
-
-
+	EID:AddNumberSetting("Reminder", "ItemReminderMaxEntriesCount", "Max Entries", 0, 10, { displayTable = itemSlotReminders, infoText = {"Number of Descriptions possible to be displayed in the Item Reminder feature"}})
+	
 
 	---------------------------------------------------------------------------
 	-----------------------------BAG OF CRAFTING-------------------------------
