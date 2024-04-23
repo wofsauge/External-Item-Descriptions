@@ -1715,6 +1715,14 @@ function EID:OnGameStart(isSave)
 				end
 				EID.PlayerItemInteractions[tonumber(playerID)] = convertedData
 			end
+
+			for playerID, data in pairs(savedEIDConfig["RecentlyTouchedItems"] or {}) do
+				local convertedData = {}
+				for key, value in pairs(data) do
+					convertedData[tonumber(key) or key] = value
+				end
+				EID.RecentlyTouchedItems[tonumber(playerID)] = convertedData
+			end
 		else
 			-- check for the players' starting active items
 			CheckAllActiveItemProgress()
@@ -1806,6 +1814,7 @@ function EID:OnGameExit()
 	end
 	EID.Config["CollectedItems"] = EID.CollectedItems
 	EID.Config["PlayerItemInteractions"] = EID.PlayerItemInteractions or {}
+	EID.Config["RecentlyTouchedItems"] = EID.RecentlyTouchedItems or {}
 	EID.Config["UsedPillColors"] = EID.UsedPillColors
 
 	EID.SaveData(EID, json.encode(EID.Config))
