@@ -10,6 +10,7 @@ EID.ItemReminderBlacklist = { ["5.100.714"] = true, ["5.100.715"] = true } -- Do
 EID.ItemReminderTempDescriptions = {} -- Temporary stores descriptions that will be displayed after everythng got evaluated
 EID.ItemReminderSelectedCategory = 0 -- Currently selected category
 EID.ItemReminderSelectedPlayer = 0 -- Currently selected player
+EID.ItemReminderSelectedItem = 0 -- Currently selected Item
 EID.InsideItemReminder = false -- Disable some modifiers, when building the Item Reminder description
 
 -- TODO:
@@ -35,16 +36,16 @@ EID.ItemReminderCategories = {
 		function(player) EID:ItemReminderHandleGulpedModelingClay(player) end } },
 	{ id = "Passives", entryGenerators = {
 		function(player) -- Passive item: Zodiac
-			if EID.isRepentance and player:HasCollectible(392) then
+			if EID.isRepentance and player:HasCollectible(392) and not EID:IsCategorySelected("Passives") then
 				EID:ItemReminderAddDescription(player, 5, 100, 392)
 			end
 		end,
 		function(player) -- Passive item: Echo Chamber
-			if EID.isRepentance and player:HasCollectible(700) then
+			if EID.isRepentance and player:HasCollectible(700) and not EID:IsCategorySelected("Passives") then
 				EID:ItemReminderAddDescription(player, 5, 100, 700)
 			end
 		end,
-		function(player) EID:ItemReminderHandleRecentItems(player) end } },
+		function(player) EID:ItemReminderHandleSelectedPassiveItem(player) end } },
 }
 
 -- Format: ItemID = table
@@ -300,15 +301,12 @@ function EID:ItemReminderAddDescription(player, entityType, variant, subType, ex
 end
 
 -- Recently Acquired Item Descriptions
-function EID:ItemReminderHandleRecentItems(player)
+function EID:ItemReminderHandleSelectedPassiveItem(player)
 	local playerNum = EID:getPlayerID(player)
-	if EID.RecentlyTouchedItems[playerNum] then
-		for i = #EID.RecentlyTouchedItems[playerNum], 1, -1 do
-			if not EID:ItemReminderCanAddMoreToView() then return end
-
-			local recentID = EID.RecentlyTouchedItems[playerNum][i] % GLITCH_ITEM_FLAG
-			EID:ItemReminderAddDescription(player, 5, 100, recentID)
-		end
+	if EID.RecentlyTouchedItems[playerNum] and #EID.RecentlyTouchedItems[playerNum] > 0 then
+		local index = EID:IsCategorySelected("Passives") and EID.ItemReminderSelectedItem % #EID.RecentlyTouchedItems[playerNum] or 0
+		local recentID = EID.RecentlyTouchedItems[playerNum][#EID.RecentlyTouchedItems[playerNum] - index] % GLITCH_ITEM_FLAG
+		EID:ItemReminderAddDescription(player, 5, 100, recentID)
 	end
 end
 
@@ -421,17 +419,29 @@ function EID:ItemReminderHandleInputs()
 			lastInputTime = Isaac.GetTime()
 			lastScrollDirection = 1
 		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateDownButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
-			EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer - 1) % #EID.coopAllPlayers
+			if not EID:IsCategorySelected("Passives") then
+				EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer - 1) % #EID.coopAllPlayers
+			else
+				EID.ItemReminderSelectedItem = EID.ItemReminderSelectedItem - 1 -- clamp later
+			end
 
 			EID.ForceRefreshCache = true
 			lastInputTime = Isaac.GetTime()
 		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateUpButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
-			EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer + 1) % #EID.coopAllPlayers
+			if not EID:IsCategorySelected("Passives") then
+				EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer + 1) % #EID.coopAllPlayers
+			else
+				EID.ItemReminderSelectedItem = EID.ItemReminderSelectedItem + 1 -- clamp later
+			end
 
 			EID.ForceRefreshCache = true
 			lastInputTime = Isaac.GetTime()
 		end
 	end
+end
+
+function EID:IsCategorySelected(categoryID)
+	return EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1].id == categoryID
 end
 
 function EID:ItemReminderGetTitle()
@@ -449,10 +459,14 @@ function EID:ItemReminderGetTitle()
 	if #EID.coopAllPlayers > 1 then
 		local currentPlayer = EID.coopAllPlayers[EID.ItemReminderSelectedPlayer + 1]
 		local playerIcon = EID:GetPlayerIcon(currentPlayer:GetPlayerType())
-		combinedText = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateDownButton"]] .. " " ..
-		playerIcon .. " " .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateUpButton"]] .. "  " .. combinedText
-	end
 
+		local playerSelectWidget = playerIcon .. " "
+		if not EID:IsCategorySelected("Passives") then
+			playerSelectWidget = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateDownButton"]] .. " " ..
+				playerIcon .. " " .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateUpButton"]] .. "  "
+		end
+		combinedText = playerSelectWidget .. combinedText
+	end
 	return combinedText
 end
 
@@ -507,18 +521,44 @@ function EID:ItemReminderGetDescription()
 		end
 		-- auto scroll was stopped. reset scroll value
 		lastAutoScrollPosition = -1
-		
+		EID.InsideItemReminder = false
 		return "{{Blank}}#{{Blank}} " .. EID:getDescriptionEntry("ItemReminder", "InventoryEmpty")
 	end
 	lastAutoScrollPosition = -1
 
-	-- put descriptions into one long description
-	local finalHoldMapDesc = ""
+	local finalHoldMapDesc = "{{Blank}}#"
+
+	local playerNum = EID:getPlayerID(player)
+	local numPassives = EID.RecentlyTouchedItems[playerNum] and #EID.RecentlyTouchedItems[playerNum] or 0
+
+	if EID:IsCategorySelected("Passives") and numPassives > 1 then
+		-- handle Scrollable passives list
+		finalHoldMapDesc = "{{Blank}} " .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateDownButton"]]
+
+		EID.ItemReminderSelectedItem = EID.ItemReminderSelectedItem % numPassives -- clamp selection
+		-- render icons
+		local startIndex = numPassives - EID.ItemReminderSelectedItem       -- start from end of list
+		local stopIndex = startIndex - 3
+
+		for i = startIndex, stopIndex, -1 do
+			local index = ((i - 1) % numPassives) + 1
+			local recentID = EID.RecentlyTouchedItems[playerNum][index] % GLITCH_ITEM_FLAG
+
+			if i < 1 and index == startIndex then
+				-- prevent display of copies of the same icon, when less than 4 passive items were collected
+				break
+			end
+			finalHoldMapDesc = finalHoldMapDesc .. "{{Collectible" .. recentID .. "}} "
+		end
+		finalHoldMapDesc = finalHoldMapDesc .. "(" .. (EID.ItemReminderSelectedItem + 1) .. "/" .. numPassives .. ") "
+
+		finalHoldMapDesc = finalHoldMapDesc .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateUpButton"]] .. "#"
+	end
+
+	-- Default: put all descriptions into one long description
 	for _, entry in ipairs(EID.ItemReminderTempDescriptions) do
 		finalHoldMapDesc = finalHoldMapDesc .. entry[1] .. " {{ColorEIDObjName}}" .. entry[2] .. "#" .. entry[3] .. "#"
 	end
-
-	finalHoldMapDesc = "{{Blank}}#" .. finalHoldMapDesc
 
 	EID.InsideItemReminder = false
 	return finalHoldMapDesc

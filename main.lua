@@ -1072,7 +1072,6 @@ function EID:onGameUpdate()
 						local playerID = EID:getPlayerID(player)
 						EID:InitItemInteractionIfAbsent(playerID)
 						table.insert(EID.RecentlyTouchedItems[playerID], wisp.SubType)
-						if (#EID.RecentlyTouchedItems[playerID] > 8) then table.remove(EID.RecentlyTouchedItems[playerID], 1) end
 					end
 				end
 			end

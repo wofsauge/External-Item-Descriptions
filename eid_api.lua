@@ -1808,7 +1808,6 @@ function EID:evaluateQueuedItems()
 					end
 					-- Put non-active item pickups into the recent item list, for printing in the Item Reminder
 					table.insert(EID.RecentlyTouchedItems[i], player.QueuedItem.Item.ID)
-					if (#EID.RecentlyTouchedItems[i] > 8) then table.remove(EID.RecentlyTouchedItems[i], 1) end
 				end
 			end
 		end
