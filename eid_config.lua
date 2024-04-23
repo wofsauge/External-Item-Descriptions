@@ -336,7 +336,15 @@ EID.UserConfig = {
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_SHOOTLEFT
 	["ItemReminderNavigateRightButton"] = ButtonAction.ACTION_SHOOTRIGHT,
-	-- 
+	-- Set the keybinding that is used to scroll thru the players in the left direction
+	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
+	-- Default = ButtonAction.ACTION_SHOOTDOWN
+	["ItemReminderNavigateDownButton"] = ButtonAction.ACTION_SHOOTDOWN,
+	-- Number of entries to display per category of the item description.
+	-- Set the keybinding that is used to scroll thru the players in the right direction
+	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
+	-- Default = ButtonAction.ACTION_SHOOTUP
+	["ItemReminderNavigateUpButton"] = ButtonAction.ACTION_SHOOTUP,
 	-- Default = 3
 	["ItemReminderMaxEntriesCount"] = 3,
 	-- Show recently acquired item descriptions in the Item Reminder (good for Curse of the Blind!)
@@ -607,6 +615,8 @@ EID.DefaultConfig = {
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["ItemReminderNavigateLeftButton"] = ButtonAction.ACTION_SHOOTLEFT,
 	["ItemReminderNavigateRightButton"] = ButtonAction.ACTION_SHOOTRIGHT,
+	["ItemReminderNavigateDownButton"] = ButtonAction.ACTION_SHOOTDOWN,
+	["ItemReminderNavigateUpButton"] = ButtonAction.ACTION_SHOOTUP,
 	["ItemReminderMaxEntriesCount"] = 5,
 	["ItemReminderShowRecentItem"] = 1,
 	["ItemReminderShowActiveDesc"] = 1,

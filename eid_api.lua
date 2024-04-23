@@ -1972,3 +1972,10 @@ function EID:GetIconStringByDescriptionObject(descObj)
 	end
 	return "{{Blank}}"
 end
+
+-- returns the markup for a given player ID or type. If no icon was found, returns the customTransformation icon markup
+function EID:GetPlayerIcon(playerID, altFallback)
+	local fallback = altFallback or "{{CustomTransformation}}"
+	
+	return EID:getIcon("Player" .. playerID) ~= EID.InlineIcons["ERROR"] and "{{Player" .. playerID .. "}}" or fallback
+end

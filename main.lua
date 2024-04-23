@@ -1285,6 +1285,9 @@ function EID:OnRender()
 	local tabHeld, playerNumHoldingTab = EID:PlayersActionPressed(EID.Config["BagOfCraftingToggleKey"])
 	if tabHeld then
 		EID.holdTabPlayer = EID.coopMainPlayers[playerNumHoldingTab]
+		if EID.holdTabCounter == 0 then -- update item reminder player selection
+			EID.ItemReminderSelectedPlayer = playerNumHoldingTab - 1
+		end
 		EID.holdTabCounter = EID.holdTabCounter + 1
 	else
 		EID.holdTabPlayer = nil
@@ -1580,7 +1583,7 @@ function EID:OnRender()
 		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 		demoDescObj.PermanentTextEnglish = EID:getDescriptionEntryEnglish("ItemReminder", "Title")
 		-- check for scrolling being enabled here and append scroll controls to the title?
-		demoDescObj.Description = EID:ItemReminderGetDescription(EID.holdTabPlayer)
+		demoDescObj.Description = EID:ItemReminderGetDescription()
 		demoDescObj.Name = EID:ItemReminderGetTitle()
 		if (demoDescObj.Description ~= "") then EID:addDescriptionToPrint(demoDescObj, 1) end
 	end

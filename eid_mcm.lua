@@ -598,6 +598,12 @@ if MCMLoaded then
 	EID:AddNumberSetting("Reminder", "ItemReminderNavigateRightButton", "Navigate Right", 0, 13, {displayTable = actionToName,
 	infoText = {"Keybinding that is used to scroll thru the categories in the left direction"}})
 
+	EID:AddNumberSetting("Reminder", "ItemReminderNavigateDownButton", "Navigate Down", 0, 13, {displayTable = actionToName,
+	infoText = {"Keybinding that is used to scroll thru the players in the left direction"}})
+
+	EID:AddNumberSetting("Reminder", "ItemReminderNavigateUpButton", "Navigate Up", 0, 13, {displayTable = actionToName,
+	infoText = {"Keybinding that is used to scroll thru the players in the right direction"}})
+
 	MCM.AddSpace("EID", "Reminder")
 	MCM.AddText("EID", "Reminder", "Item Descriptions")
 	-- should these be organized in the order they're shown in the map desc code?
