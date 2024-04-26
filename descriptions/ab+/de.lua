@@ -1,11 +1,11 @@
---------------------------------------
------  Basic German descriptions  ----
---------------------------------------
+---------------------------------------
+-----  Basic German descriptions  -----
+---------------------------------------
 
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  !!! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
 local languageCode = "de"
@@ -20,39 +20,39 @@ EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
-	{"1", "Die traurige Zwiebel", "↑ +0.7 Mehr Tränen"},
-	{"2", "Das innere Auge", "Dreifachschuss#↓ Weniger Tränen"},
-	{"3", "Löffelbieger", "Gegnerjagende Tränen"},
-	{"4", "Grillenkopf", "↑ +0.5 Schaden#↑ +50% Multiplizierter Schaden"},
-	{"5", "Mein Spiegelbild", "Gibt Tränen einen Bumerang Effekt#↑ +1.5 Reichweite#↑ x1.6 Schussgeschwindigkeit#↑ +1 Schusshöhe"},
-	{"6", "Nummer Eins", "↑ +1.5 Mehr Tränen#↓ -17.62 Reichweite#↑ +0.76 Schusshöhe"},
-	{"7", "Blut des Märtyrers", "↑ +1.0 Schaden#↑ +50% wenn du Book of Belial besitzt"},
-	{"8", "Bruder Bobby", "Normaler Tränenschießender Begleiter#Macht 3.5 Schaden pro Träne"},
-	{"9", "Skatol", "Alle Feindlichen Fliegen werden Freundlich"},
-	{"10", "Fliegen-Heiligenschein", "+2 Spielerumkreisende Fliegen#Blockiert Gegnergeschosse"},
-	{"11", "1-Up!", "↑ +1 Leben#Belebt mit vollen Herzen wieder"},
-	{"12", "Fliegenpilz", "↑ +1 Herzcontainer#↑ +0.3 Schaden#↑ +50% Multiplizierter Schaden#↑ +5.25 Reichweite#↑ +0.3 Geschwindigkeit#↑ +0.5 Schusshöhe#Volle Herzen"},
-	{"13", "Das Virus", "Giftige Berührung#↓ -0.1 Geschwindigkeit#Gegner können Schwarze Herzen beim vergiften fallen lassen"},
-	{"14", "Toben auf Steroiden", "↑ +0.6 Geschwindigkeit#↑ +5.25 Reichweite#↑ +0.5 Schusshöhe"},
-	{"15", "<3", "↑ +1 Herzcontainer#Füllt alle Herzcontainer"},
-	{"16", "Rohe Leber", "↑ +2 Herzcontainer#Füllt alle Herzcontainer"},
-	{"17", "Skelettschlüssel", "+99 Schlüssel"},
-	{"18", "Ein Dollar", "+99 Münzen"},
-	{"19", "Bumm!", "+10 Bomben"},
-	{"20", "Transzendenz", "Du bekommst Körperlos und kannst Fliegen!"},
-	{"21", "Der Kompass", "Enthüllt alle Symbole auf der Karte#Zeigt nicht den Kartenentwurf"},
-	{"22", "Mittagessen", "↑ +1 Herzcontainer"},
-	{"23", "Abendessen", "↑ +1 Herzcontainer"},
-	{"24", "Dessert", "↑ +1 Herzcontainer"},
-	{"25", "Frühstück", "↑ +1 Herzcontainer"},
-	{"26", "Verdorbenes Fleisch", "↑ +1 Herzcontainer"},
-	{"27", "Holzlöffel", "↑ +0.3 Geschwindigkeit"},
-	{"28", "Der Gürtel", "↑ +0.3 Geschwindigkeit"},
-	{"29", "Mamas Unterwäsche", "↑ +5.25 Reichweite#↑ +0.5 Schusshöhe"},
-	{"30", "Mamas Stöckelschuhe", "↑ +5.25 Reichweite#↑ +0.5 Schusshöhe"},
-	{"31", "Mamas Lippenstift", "↑ +5.25 Reichweite#↑ +0.5 Schusshöhe"},
-	{"32", "Drahtkleiderbügel", "↑ +0.7 Mehr Tränen"},
-	{"33", "Die Bibel", "Flug für den jetzigen Raum#Besitzt die fähigkeit Mom's Foot und Mom's Heart zu töten#! Tötet DICH wenn The Bible bei Satan genutzt wird!"},
+	{"1", "Die traurige Zwiebel", "↑ +0.7 Tränen"},
+	{"2", "Das innere Auge", "↓ {{Tears}} Tränen runter#Dreifacher Schuss"},
+	{"3", "Löffelbieger", "Zielsuchschüsse"},
+	{"4", "Grillenkopf", "↑ {{Damage}} +0.5 Schaden#↑ {{Damage}} x1.5 Schadens Multiplikator"},
+	{"5", "Mein Spiegelbild", "↑ {{Range}} +1.5 Reichweite#↑ +1 Tränenhöhe#↑ {{Shotspeed}} +0.6 Schusstempo#Bumerang-Tränen"},
+	{"6", "Nummer Eins", "↑ {{Tears}} +1.5 Tränen#↑ +0.76 Tränenhöhe#↓ {{Range}} -17.62 Reichweite"},
+	{"7", "Blut des Märtyrers", "↑ {{Damage}} +1 Schaden#{{Collectible34}} x1.5 Schadens Multiplikator wenn \"Das Buch Belial\" oder \"XV - Der Teufel\" Effekt aktiv ist"},
+	{"8", "Bruder Bobby", "Schiesst normale Tränen#Verursacht 3.5 Schaden pro Träne"},
+	{"9", "Skatol", "Alle feindlichen Fliegen werden freundlich"},
+	{"10", "Fliegen-Halo", "+2 orbitale Fliegen#Blockiert gegnerische Projektile"},
+	{"11", "1-Up!", "↑ +1 Leben#Isaac wird beim Tod mit voller Gesundheit wiederbelebt"},
+	{"12", "Fliegenpilz", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.3 Tempo#↑ {{Damage}} +0.3 Schaden#↑ {{Damage}} x1.5 Schadens Multiplikator#↑ {{Range}} +5.25 Reichweite#↑ +0.5 Tränenhöhe#Größe hoch#{{Heart}} Volle Gesundheit"},
+	{"13", "Das Virus", "↓ {{Speed}} -0.1 Tempo#{{Poison}} Vergiftet Gegner bei Berührung#{{BlackHeart}} 20% Chance, dass vergiftete Gegner beim Tod Schwarze Herzen fallen lassen"},
+	{"14", "Toben auf Steroiden", "↑ {{Speed}} +0.6 Tempo#↑ {{Range}} +5.25 Reichweite#↑ +0.5 Tränenhöhe"},
+	{"15", "<3", "↑ {{Heart}} +1 Gesundheit#{{Heart}} Volle Gesundheit"},
+	{"16", "Rohe Leber", "↑ {{Heart}} +2 Gesundheit#{{Heart}} Volle Gesundheit"},
+	{"17", "Skelettschlüssel", "{{Key}} +99 Schlüssel"},
+	{"18", "Ein Dollar", "{{Coin}} +99 Münzen"},
+	{"19", "Bumm!", "{{Bomb}} +10 Bomben"},
+	{"20", "Transzendenz", "Fliegen"},
+	{"21", "Der Kompass", "Enthüllt Symbole auf der Karte#Zeigt nicht das Karten-Layout"},
+	{"22", "Mittagessen", "↑ {{Heart}} +1 Gesundheit"},
+	{"23", "Abendessen", "↑ {{Heart}} +1 Gesundheit"},
+	{"24", "Dessert", "↑ {{Heart}} +1 Gesundheit"},
+	{"25", "Frühstück", "↑ {{Heart}} +1 Gesundheit"},
+	{"26", "Verdorbenes Fleisch", "↑ {{Heart}} +1 Gesundheit"},
+	{"27", "Holzlöffel", "↑ {{Speed}} +0.3 Tempo"},
+	{"28", "Der Gürtel", "↑ {{Speed}} +0.3 Tempo"},
+	{"29", "Mamas Unterwäsche", "↑ {{Range}} +5.25 Reichweite#↑ +0.5 Tränenhöhe"},
+	{"30", "Mamas Stöckelschuhe", "↑ {{Range}} +5.25 Reichweite#↑ +0.5 Tränenhöhe"},
+	{"31", "Mamas Lippenstift", "↑ {{Range}} +5.25 Reichweite#↑ +0.5 Tränenhöhe"},
+	{"32", "Drahtkleiderbügel", "↑ {{Tears}} +0.7 Tränen"},
+	{"33", "Die Bibel", "{{Timer}} Fliegen für diesen Raum#{{MomsHeart}} Tötet sofort Mamas Fuss und Mamas Herz#{{Warning}} Tötet Isaac wenn gegen Satan benutzt"},
 	{"34", "Das Buch Belial", "↑ +2 Schaden#↑ +12.5% Teufelsdeal chance#↑ +50% Multiplizierter Schaden wenn du Blood of the Martyr besitzt"},
 	{"35", "Das Necronomicon", "Fügt allem im jetzigen Raum 40 Schaden zu"},
 	{"36", "Der Schiss", "Erzeugt einen Kackhaufen#Kann vor einer Grube platziert und zerstört werden um eine Brücke zu erschaffen"},
