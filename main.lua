@@ -1284,7 +1284,7 @@ function EID:OnRender()
 	if tabHeld then
 		EID.holdTabPlayer = EID.coopMainPlayers[playerNumHoldingTab]
 		if EID.holdTabCounter == 0 then -- update item reminder player selection
-			EID.ItemReminderSelectedPlayer = playerNumHoldingTab - 1
+			EID:ItemReminderHandleInitHoldTab(playerNumHoldingTab)
 		end
 		EID.holdTabCounter = EID.holdTabCounter + 1
 	else
@@ -1622,6 +1622,7 @@ local function CheckAllActiveItemProgress()
 end
 
 local function OnGameStartGeneral(_,isSave)
+	EID:GetAllPassiveItems()
 	EID:GetTransformationsOfModdedItems()
 	EID:buildTransformationTables()
 	EID.RecentlyTouchedItems = {}

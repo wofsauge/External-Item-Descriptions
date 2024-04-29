@@ -1191,7 +1191,12 @@ function EID:getSpindownResult(collectibleID)
 	return newID
 end
 
+-- Returns the maximum collectible id, including modded items
+local maxCollectibleID = nil -- cache after first use. this number will not change mid game
 function EID:GetMaxCollectibleID()
+	if maxCollectibleID then
+		return maxCollectibleID
+	end
 	local id = CollectibleType.NUM_COLLECTIBLES-1
 	local step = 16
 	while step > 0 do
@@ -1201,16 +1206,12 @@ function EID:GetMaxCollectibleID()
 			step = step // 2
 		end
 	end
-
+	maxCollectibleID = id
 	return id
 end
 
-local maxCollectibleID = nil
 function EID:DetectModdedItems()
-	if maxCollectibleID == nil then
-		maxCollectibleID = EID:GetMaxCollectibleID()
-	end
-	if maxCollectibleID > EID.XMLMaxItemID then
+	if EID:GetMaxCollectibleID() > EID.XMLMaxItemID then
 		return true
 	end
 	if EID.itemConfig:GetCollectible(EID.XMLMaxItemID) == nil then
@@ -1808,6 +1809,7 @@ function EID:evaluateQueuedItems()
 					end
 					-- Put non-active item pickups into the recent item list, for printing in the Item Reminder
 					table.insert(EID.RecentlyTouchedItems[i], player.QueuedItem.Item.ID)
+					EID.ItemReminderSelectedItem = 0
 				end
 			end
 		end
@@ -1977,4 +1979,65 @@ function EID:GetPlayerIcon(playerID, altFallback)
 	local fallback = altFallback or "{{CustomTransformation}}"
 	
 	return EID:getIcon("Player" .. playerID) ~= EID.InlineIcons["ERROR"] and "{{Player" .. playerID .. "}}" or fallback
+end
+
+-- returns a list of all passive item ids
+local passiveItems = nil -- cache of all passive item ids
+function EID:GetAllPassiveItems()
+	if passiveItems then
+		return passiveItems
+	end
+	passiveItems = {}
+
+	for i = 1, EID:GetMaxCollectibleID() do
+		local config = EID.itemConfig:GetCollectible(i)
+		if config ~= nil and (config.Type == ItemType.ITEM_PASSIVE or config.Type == ItemType.ITEM_FAMILIAR) then
+			table.insert(passiveItems, i)
+		end
+	end
+end
+
+-- Updates the EID.RecentlyTouchedItems table to include the players currently held passive items
+function EID:UpdateAllPlayerPassiveItems()
+	local passives = EID:GetAllPassiveItems()
+	local listUpdatedForPlayers = {}
+	for i = 1, #EID.coopAllPlayers do
+		local player = EID.coopAllPlayers[i]
+		local playerNum = EID:getPlayerID(player)
+
+		if player == nil then
+			return listUpdatedForPlayers -- dont evaluate when bad data is present
+		end
+
+		-- only update if collectible number changed
+		local currentCollectibleCount = player:GetCollectibleCount()
+		if #EID.RecentlyTouchedItems[playerNum] ~= currentCollectibleCount then
+			
+			-- remove items the player no longer has. reverse itteration to make deletion easier
+			for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
+				if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index]) then
+					table.remove(EID.RecentlyTouchedItems[playerNum], index)
+					listUpdatedForPlayers[i] = true
+				end
+			end
+
+			-- add items the player did get with non-standard methods (console command, item effects, etc...)
+			for _, itemID in ipairs(passives) do
+				if player:HasCollectible(itemID) then
+					local alreadyInList = false
+					for _, heldItemID in ipairs(EID.RecentlyTouchedItems[playerNum]) do
+						if itemID == heldItemID then
+							alreadyInList = true
+							break
+						end
+					end
+					if not alreadyInList then
+						table.insert(EID.RecentlyTouchedItems[playerNum], itemID)
+						listUpdatedForPlayers[i] = true
+					end
+				end
+			end
+		end
+	end
+	return listUpdatedForPlayers
 end

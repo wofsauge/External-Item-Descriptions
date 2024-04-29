@@ -444,6 +444,16 @@ function EID:IsCategorySelected(categoryID)
 	return EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1].id == categoryID
 end
 
+function EID:ItemReminderHandleInitHoldTab(playerNumHoldingTab)
+	local oldDisplayPlayer = EID.ItemReminderSelectedPlayer
+	EID.ItemReminderSelectedPlayer = playerNumHoldingTab - 1
+
+	local updatedPlayers = EID:UpdateAllPlayerPassiveItems()
+	if updatedPlayers[playerNumHoldingTab] or oldDisplayPlayer ~= EID.ItemReminderSelectedPlayer then
+		EID.ItemReminderSelectedItem = 0
+	end
+end
+
 function EID:ItemReminderGetTitle()
 	local category = EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1]
 
@@ -477,7 +487,7 @@ function EID:ItemReminderGetDescription()
 	currentBlacklist = {}
 	for key, _ in pairs(EID.ItemReminderBlacklist) do currentBlacklist[key] = true end
 
-	local player = EID.coopMainPlayers[EID.ItemReminderSelectedPlayer + 1]
+	local player = EID.coopAllPlayers[EID.ItemReminderSelectedPlayer + 1]
 
 	if EID.Config["ItemReminderShowOverview"] and EID.ItemReminderSelectedCategory == 0 then
 		-- execute all functions defined per category
