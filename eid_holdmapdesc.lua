@@ -444,12 +444,19 @@ function EID:IsCategorySelected(categoryID)
 	return EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1].id == categoryID
 end
 
-function EID:ItemReminderHandleInitHoldTab(playerNumHoldingTab)
+function EID:ItemReminderHandleInitHoldTab()
 	local oldDisplayPlayer = EID.ItemReminderSelectedPlayer
-	EID.ItemReminderSelectedPlayer = playerNumHoldingTab - 1
+
+	-- set currently displayed player to the one who is now holding tab
+	for i = 1, #EID.coopAllPlayers do
+		if EID.coopAllPlayers[i] == EID.holdTabPlayer then
+			EID.ItemReminderSelectedPlayer = i - 1
+			break
+		end
+	end
 
 	local updatedPlayers = EID:UpdateAllPlayerPassiveItems()
-	if updatedPlayers[playerNumHoldingTab] or oldDisplayPlayer ~= EID.ItemReminderSelectedPlayer then
+	if updatedPlayers[EID.ItemReminderSelectedPlayer + 1] or oldDisplayPlayer ~= EID.ItemReminderSelectedPlayer then
 		EID.ItemReminderSelectedItem = 0
 	end
 end
@@ -463,19 +470,20 @@ function EID:ItemReminderGetTitle()
 		translatedTitleEnglish and translatedTitleEnglish[category.id] or category.id
 
 	local combinedText = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateLeftButton"]] ..
-	"{{ColorText}} " .. title .. " {{CR}}" .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateRightButton"]]
+	 title .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateRightButton"]]
 
 	-- add player toggle when more than 1 player is present
 	if #EID.coopAllPlayers > 1 then
-		local currentPlayer = EID.coopAllPlayers[EID.ItemReminderSelectedPlayer + 1]
-		local playerIcon = EID:GetPlayerIcon(currentPlayer:GetPlayerType())
+		local curPlayerID = EID.ItemReminderSelectedPlayer + 1
+		local currentPlayer = EID.coopAllPlayers[curPlayerID]
+		local playerIcon = EID:GetPlayerIcon(currentPlayer:GetPlayerType(), "P" .. curPlayerID )
 
 		local playerSelectWidget = playerIcon .. " "
 		if not EID:IsCategorySelected("Passives") then
-			playerSelectWidget = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateDownButton"]] .. " " ..
-				playerIcon .. " " .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateUpButton"]] .. "  "
+			playerSelectWidget = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateDownButton"]] ..
+				playerIcon .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateUpButton"]] .. "|"
 		end
-		combinedText = playerSelectWidget .. combinedText
+		combinedText = "{{ColorText}}" .. playerSelectWidget .. combinedText
 	end
 	return combinedText
 end

@@ -1284,7 +1284,7 @@ function EID:OnRender()
 	if tabHeld then
 		EID.holdTabPlayer = EID.coopMainPlayers[playerNumHoldingTab]
 		if EID.holdTabCounter == 0 then -- update item reminder player selection
-			EID:ItemReminderHandleInitHoldTab(playerNumHoldingTab)
+			EID:ItemReminderHandleInitHoldTab()
 		end
 		EID.holdTabCounter = EID.holdTabCounter + 1
 	else
