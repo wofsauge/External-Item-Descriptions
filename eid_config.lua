@@ -318,9 +318,10 @@ EID.UserConfig = {
 	-- Enable/Disable item reminder feature.
 	-- Hold Map (or the button action chosen below) to show a description of your active item's effect, recently picked up items, and things like Teleport 2.0's destination and Void's absorbed items
 	["ItemReminderEnabled"] = true,
-	-- Display all important descriptions in a single overview category
-	-- Default = true
-	["ItemReminderShowOverview"] = true,
+	-- Changes the display mode of the item reminder feature.
+	-- Options: "All" (Overview + scrollable item categories), "NoOverview" (Only scrollable item categories), "Classic" (only overview page)
+	-- Default = "All"
+	["ItemReminderDisplayMode"] = "All",
 	-- Disable inputs while Item Reminder is visible
 	-- Default = false
 	["ItemReminderDisableInputs"] = false,
@@ -594,7 +595,7 @@ EID.DefaultConfig = {
 	["CraftingResultButton"] = -1,
 
 	["ItemReminderEnabled"] = true,
-	["ItemReminderShowOverview"] = true,
+	["ItemReminderDisplayMode"] = "All",
 	["ItemReminderDisableInputs"] = false,
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["ItemReminderNavigateLeftButton"] = ButtonAction.ACTION_SHOOTLEFT,

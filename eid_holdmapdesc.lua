@@ -399,12 +399,12 @@ end
 
 -- Handle scroll inputs
 function EID:ItemReminderHandleInputs()
-	if EID.Config["ItemReminderEnabled"] and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
+	if EID.Config["ItemReminderEnabled"] and EID.Config["ItemReminderDisplayMode"] ~= "Classic" and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
 		if EID.Config["ItemReminderDisableInputs"] then EID.holdTabPlayer.ControlsCooldown = 2 end
 
 		if Input.IsActionTriggered(EID.Config["ItemReminderNavigateLeftButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
 			EID.ItemReminderSelectedCategory = (EID.ItemReminderSelectedCategory - 1) % #EID.ItemReminderCategories
-			if not EID.Config["ItemReminderShowOverview"] and EID.ItemReminderSelectedCategory == 0 then
+			if EID.Config["ItemReminderDisplayMode"] == "NoOverview" and EID.ItemReminderSelectedCategory == 0 then
 				EID.ItemReminderSelectedCategory = #EID.ItemReminderCategories
 			end
 
@@ -413,7 +413,7 @@ function EID:ItemReminderHandleInputs()
 			lastScrollDirection = -1
 		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateRightButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
 			EID.ItemReminderSelectedCategory = (EID.ItemReminderSelectedCategory + 1) % #EID.ItemReminderCategories
-			if not EID.Config["ItemReminderShowOverview"] and EID.ItemReminderSelectedCategory == 0 then EID.ItemReminderSelectedCategory = 1 end
+			if EID.Config["ItemReminderDisplayMode"] == "NoOverview" and EID.ItemReminderSelectedCategory == 0 then EID.ItemReminderSelectedCategory = 1 end
 
 			EID.ForceRefreshCache = true
 			lastInputTime = Isaac.GetTime()
@@ -469,8 +469,13 @@ function EID:ItemReminderGetTitle()
 	local title = translatedTitle and translatedTitle[category.id] or
 		translatedTitleEnglish and translatedTitleEnglish[category.id] or category.id
 
-	local combinedText = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateLeftButton"]] ..
-	 title .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateRightButton"]]
+	local combinedText = title
+
+	-- add nav buttons
+	if EID.Config["ItemReminderDisplayMode"] ~= "Classic" then
+		combinedText = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateLeftButton"]] ..
+			combinedText .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateRightButton"]]
+	end
 
 	-- add player toggle when more than 1 player is present
 	if #EID.coopAllPlayers > 1 then
@@ -479,7 +484,7 @@ function EID:ItemReminderGetTitle()
 		local playerIcon = EID:GetPlayerIcon(currentPlayer:GetPlayerType(), "P" .. curPlayerID )
 
 		local playerSelectWidget = playerIcon .. " "
-		if not EID:IsCategorySelected("Passives") then
+		if not EID:IsCategorySelected("Passives") and EID.Config["ItemReminderDisplayMode"] ~= "Classic" then
 			playerSelectWidget = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateDownButton"]] ..
 				playerIcon .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateUpButton"]] .. "|"
 		end
@@ -497,7 +502,7 @@ function EID:ItemReminderGetDescription()
 
 	local player = EID.coopAllPlayers[EID.ItemReminderSelectedPlayer + 1]
 
-	if EID.Config["ItemReminderShowOverview"] and EID.ItemReminderSelectedCategory == 0 then
+	if EID.ItemReminderSelectedCategory == 0 or EID.Config["ItemReminderDisplayMode"] == "Classic" then
 		-- execute all functions defined per category
 		for _, category in ipairs(EID.ItemReminderCategories) do
 			numAvailableDescriptionSlots = 1 -- limit to one description per category in overview mode
@@ -517,7 +522,7 @@ function EID:ItemReminderGetDescription()
 	if #EID.ItemReminderTempDescriptions == 0 then
 		if lastAutoScrollPosition == -1 then
 			-- auto scroll was started. store last valid category. skip overview if its disabled
-			if not EID.Config["ItemReminderShowOverview"] and EID.ItemReminderSelectedCategory == 0 then
+			if EID.Config["ItemReminderDisplayMode"] == "NoOverview" and EID.ItemReminderSelectedCategory == 0 then
 				lastAutoScrollPosition = lastScrollDirection % #EID.ItemReminderCategories
 			else
 				lastAutoScrollPosition = EID.ItemReminderSelectedCategory
@@ -526,7 +531,7 @@ function EID:ItemReminderGetDescription()
 
 		EID.ItemReminderSelectedCategory = (EID.ItemReminderSelectedCategory + lastScrollDirection) %
 			#EID.ItemReminderCategories
-		if not EID.Config["ItemReminderShowOverview"] and EID.ItemReminderSelectedCategory == 0 then
+		if EID.Config["ItemReminderDisplayMode"] == "NoOverview" and EID.ItemReminderSelectedCategory == 0 then
 			EID.ItemReminderSelectedCategory = #EID.ItemReminderCategories
 		end
 

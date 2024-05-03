@@ -576,11 +576,17 @@ if MCMLoaded then
 
 	EID:AddBooleanSetting("Reminder", "ItemReminderEnabled", "Item Reminder", {displayingTab = "",offText = "Disabled", onText = "Enabled", infoText = "Hold Map to show your active item's effect, recently picked up items, and much more"})
 	
-	local itemSlotReminders = { [0] = "No", "Yes    (max 1)", "Yes    (max 2)", "Yes    (max 3)", "Yes    (max 4)", "Yes    (max 5)", "Yes    (max 6)", "Yes    (max 7)", "Yes    (max 8)" }
+	local itemReminderModes = {"All", "NoOverview", "Classic"}
 
 	MCM.AddSpace("EID", "Reminder")
 	MCM.AddText("EID", "Reminder", "Options")
-	EID:AddBooleanSetting("Reminder", "ItemReminderShowOverview", "Show Overview Category", { infoText = "Show category with an overview of items in your inventory"})
+	EID:AddNumberSetting("Reminder", "ItemReminderDisplayMode", "Display Mode",  1, #itemReminderModes, {indexOf = itemReminderModes, infoText = "Changes the display mode. All = overview + categories. NoOverview = categories. Classic = Overview only", onChangeFunc =
+	function(currentNum)
+		EID.MCM_OptionChanged = true
+		EID.ItemReminderSelectedItem = 0
+		EID.ItemReminderSelectedCategory = 0
+		EID.Config["ItemReminderDisplayMode"] = itemReminderModes[currentNum]
+	end})
 	EID:AddBooleanSetting("Reminder", "ItemReminderDisableInputs", "Disable Player Inputs", { infoText = "Prevents the player from doing inputs when item reminder is visible"})
 	EID:AddBooleanSetting("Reminder", "ItemReminderShowHiddenInfo", "Show Hidden Information", { infoText = "Items like Error (404) or Rainbow Worm can have their current granted item revealed in the Item Reminder"})
 	EID:AddBooleanSetting("Reminder", "ItemReminderShowRNGCheats", "Show RNG Predictions", { infoText = "Some items can have their next random result predicted and shown in the Item Reminder"})
@@ -607,7 +613,7 @@ if MCMLoaded then
 	MCM.AddSpace("EID", "Reminder")
 	MCM.AddText("EID", "Reminder", "Item Descriptions")
 
-	EID:AddNumberSetting("Reminder", "ItemReminderMaxEntriesCount", "Max Entries", 0, 10, { displayTable = itemSlotReminders, infoText = {"Number of Descriptions possible to be displayed in the Item Reminder feature"}})
+	EID:AddNumberSetting("Reminder", "ItemReminderMaxEntriesCount", "Max Entries", 0, 10, {infoText = {"Number of Descriptions possible to be displayed in the Item Reminder feature"}})
 	
 
 	---------------------------------------------------------------------------
