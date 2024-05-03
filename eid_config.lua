@@ -346,6 +346,9 @@ EID.UserConfig = {
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_SHOOTUP
 	["ItemReminderNavigateUpButton"] = ButtonAction.ACTION_SHOOTUP,
+	-- Limits the number of description bullet points to be displayed on the overview page for each item
+	-- Default = 2
+	["ItemReminderOverviewHideAfterRows"] = 2,
 	-- Default = 3
 	["ItemReminderMaxEntriesCount"] = 3,
 	-- Items that grant you items without saying what they are (like Zodiac, Liberty Cap) can have their current granted item revealed in the Item Reminder
@@ -602,6 +605,7 @@ EID.DefaultConfig = {
 	["ItemReminderNavigateRightButton"] = ButtonAction.ACTION_SHOOTRIGHT,
 	["ItemReminderNavigateDownButton"] = ButtonAction.ACTION_SHOOTDOWN,
 	["ItemReminderNavigateUpButton"] = ButtonAction.ACTION_SHOOTUP,
+	["ItemReminderOverviewHideAfterRows"] = 2,
 	["ItemReminderMaxEntriesCount"] = 5,
 	["ItemReminderShowHiddenInfo"] = false,
 	["ItemReminderShowRNGCheats"] = false,

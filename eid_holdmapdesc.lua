@@ -493,6 +493,21 @@ function EID:ItemReminderGetTitle()
 	return combinedText
 end
 
+-- trim all entries to make them shorter, by removing bullet points
+function EID:ItemReminderTrimBulletPoints(description)
+	local trimmedDescription = ""
+	local bulletPointsToPrint = EID.Config["ItemReminderOverviewHideAfterRows"]
+	for bulletPoint in string.gmatch(description, "[^#]+") do
+		if bulletPointsToPrint <= 0 or bulletPoint == "" then
+			trimmedDescription = trimmedDescription .. "..." .. "#"
+			break
+		end
+		trimmedDescription = trimmedDescription .. bulletPoint .. "#"
+		bulletPointsToPrint = bulletPointsToPrint - 1
+	end
+	return trimmedDescription
+end
+
 function EID:ItemReminderGetDescription()
 	EID.InsideItemReminder = true
 	EID.ItemReminderTempDescriptions = {}
@@ -580,7 +595,13 @@ function EID:ItemReminderGetDescription()
 
 	-- Default: put all descriptions into one long description
 	for _, entry in ipairs(EID.ItemReminderTempDescriptions) do
-		finalHoldMapDesc = finalHoldMapDesc .. entry[1] .. " {{ColorEIDObjName}}" .. entry[2] .. "#" .. entry[3] .. "#"
+		local description = entry[3] .. "#"
+
+		if EID.ItemReminderSelectedCategory == 0 then
+			description = EID:ItemReminderTrimBulletPoints(description)
+		end
+
+		finalHoldMapDesc = finalHoldMapDesc .. entry[1] .. " {{ColorEIDObjName}}" .. entry[2] .. "#" .. description
 	end
 
 	EID.InsideItemReminder = false
