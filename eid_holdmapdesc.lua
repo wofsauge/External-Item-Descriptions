@@ -3,7 +3,7 @@ local GLITCH_ITEM_FLAG = 4294967296
 local currentBlacklist
 local lastInputTime = 0
 local lastScrollDirection = 1 -- used for automatic scroll feature, if no description is visible for a category
-local lastAutoScrollPosition = -1 -- Stores last category before the automatic category skip. This prevents infinite loops, when the player has no items
+local autoScrollTriesLeft = -999 -- Stores how many tries the automatic category skip has left to do. This prevents infinite loops, when the player has no items
 local numAvailableDescriptionSlots = 0
 
 EID.ItemReminderBlacklist = { ["5.100.714"] = true, ["5.100.715"] = true } -- Dont display these in the Item reminder view
@@ -420,7 +420,7 @@ function EID:ItemReminderHandleInputs()
 		if Input.IsActionTriggered(EID.Config["ItemReminderNavigateLeftButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
 			EID.ItemReminderSelectedCategory = (EID.ItemReminderSelectedCategory - 1) % #EID.ItemReminderCategories
 			if EID.Config["ItemReminderDisplayMode"] == "NoOverview" and EID.ItemReminderSelectedCategory == 0 then
-				EID.ItemReminderSelectedCategory = #EID.ItemReminderCategories
+				EID.ItemReminderSelectedCategory = #EID.ItemReminderCategories - 1
 			end
 
 			EID.ForceRefreshCache = true
@@ -596,22 +596,21 @@ function EID:ItemReminderGetDescription()
 
 	-- Skip category if nothing is in it
 	if #EID.ItemReminderTempDescriptions == 0 then
-		if lastAutoScrollPosition == -1 then
-			-- auto scroll was started. store last valid category. skip overview if its disabled
-			if EID.Config["ItemReminderDisplayMode"] == "NoOverview" and EID.ItemReminderSelectedCategory == 0 then
-				lastAutoScrollPosition = lastScrollDirection % #EID.ItemReminderCategories
-			else
-				lastAutoScrollPosition = EID.ItemReminderSelectedCategory
-			end
+		if autoScrollTriesLeft == -999 then
+			-- auto scroll was started
+			autoScrollTriesLeft = #EID.ItemReminderCategories - 1
 		end
 
 		EID.ItemReminderSelectedCategory = (EID.ItemReminderSelectedCategory + lastScrollDirection) %
 			#EID.ItemReminderCategories
 		if EID.Config["ItemReminderDisplayMode"] == "NoOverview" and EID.ItemReminderSelectedCategory == 0 then
-			EID.ItemReminderSelectedCategory = #EID.ItemReminderCategories
+			EID.ItemReminderSelectedCategory = (EID.ItemReminderSelectedCategory + lastScrollDirection) %
+				#EID.ItemReminderCategories
+			autoScrollTriesLeft = autoScrollTriesLeft - 1
 		end
 
-		if lastAutoScrollPosition ~= EID.ItemReminderSelectedCategory then
+		if autoScrollTriesLeft > 0 then
+			autoScrollTriesLeft = autoScrollTriesLeft - 1
 			-- new category found. try to display text
 			local newCategoryText = EID:ItemReminderGetDescription()
 			if newCategoryText ~= "" then
@@ -619,11 +618,11 @@ function EID:ItemReminderGetDescription()
 			end
 		end
 		-- auto scroll was stopped. reset scroll value
-		lastAutoScrollPosition = -1
+		autoScrollTriesLeft = -999
 		EID.InsideItemReminder = false
 		return "{{Blank}}#{{Blank}} " .. EID:getDescriptionEntry("ItemReminder", "InventoryEmpty")
 	end
-	lastAutoScrollPosition = -1
+	autoScrollTriesLeft = -999
 
 	local finalHoldMapDesc = "{{Blank}}#"
 
@@ -634,12 +633,27 @@ function EID:ItemReminderGetDescription()
 			finalHoldMapDesc = scrollbar
 		end
 	end
+	-- roughly estimate space the descriptions would occupy. trim descriptions if nessesary
+	local tryTrim = EID.ItemReminderSelectedCategory == 0
+	if tryTrim then
+		local countText = 0
+		local countLines = 0
+		for _, entry in ipairs(EID.ItemReminderTempDescriptions) do
+			countText = countText + #entry[3]
+			local _, numLinebreaks = entry[3]:gsub("#","")
+			countLines = countLines + numLinebreaks + 2 -- one for the item name, one for initial line
+		end
+		countLines = countLines + math.ceil(countText/EID.Config["TextboxWidth"])
+		if countLines < 12 then
+			tryTrim = false -- dont trim if screen is not filled with a lot of text
+		end
+	end
 
 	-- Default: put all descriptions into one long description
 	for _, entry in ipairs(EID.ItemReminderTempDescriptions) do
 		local description = entry[3] .. "#"
 
-		if EID.ItemReminderSelectedCategory == 0 then
+		if tryTrim then
 			description = EID:ItemReminderTrimBulletPoints(description)
 		end
 

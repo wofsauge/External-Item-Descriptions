@@ -584,7 +584,7 @@ if MCMLoaded then
 	function(currentNum)
 		EID.MCM_OptionChanged = true
 		EID.ItemReminderSelectedItem = 0
-		EID.ItemReminderSelectedCategory = 0
+		EID.ItemReminderSelectedCategory = currentNum ~= 2 and 0 or 1 -- reset category
 		EID.Config["ItemReminderDisplayMode"] = itemReminderModes[currentNum]
 	end})
 	EID:AddBooleanSetting("Reminder", "ItemReminderDisableInputs", "Disable Player Inputs", { infoText = "Prevents the player from doing inputs when item reminder is visible"})

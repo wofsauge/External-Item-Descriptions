@@ -1786,6 +1786,7 @@ function EID:OnGameStart(isSave)
 		EID.isHidden = EID.Config["InitiallyHidden"]
 		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 		EID.Scale = EID.Config["Size"]
+		EID.ItemReminderSelectedCategory = EID.Config["ItemReminderDisplayMode"] == "NoOverview" and 1 or 0
 
 		EID:fixDefinedFont()
 		EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
