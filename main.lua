@@ -1688,6 +1688,7 @@ local configIgnoreList = {
 	["CollectedItems"] = true,
 	["PlayerItemInteractions"] = true,
 	["UsedPillColors"] = true,
+	["RecentlyTouchedItems"] = true,
 }
 --------------------------------
 --------Handle Savadata---------
