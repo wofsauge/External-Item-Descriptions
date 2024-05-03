@@ -433,8 +433,8 @@ function EID:ItemReminderHandleInputs()
 			EID.ForceRefreshCache = true
 			lastInputTime = Isaac.GetTime()
 			lastScrollDirection = 1
-		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateDownButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
-			if not EID:IsCategorySelected("Passives") then
+		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateUpButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
+			if not EID:IsScrollableCategorySelected() then
 				EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer - 1) % #EID.coopAllPlayers
 			else
 				EID.ItemReminderSelectedItem = EID.ItemReminderSelectedItem - 1 -- clamp later
@@ -442,8 +442,8 @@ function EID:ItemReminderHandleInputs()
 
 			EID.ForceRefreshCache = true
 			lastInputTime = Isaac.GetTime()
-		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateUpButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
-			if not EID:IsCategorySelected("Passives") then
+		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateDownButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
+			if not EID:IsScrollableCategorySelected() then
 				EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer + 1) % #EID.coopAllPlayers
 			else
 				EID.ItemReminderSelectedItem = EID.ItemReminderSelectedItem + 1 -- clamp later
@@ -453,6 +453,10 @@ function EID:ItemReminderHandleInputs()
 			lastInputTime = Isaac.GetTime()
 		end
 	end
+end
+
+function EID:IsScrollableCategorySelected()
+	return EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1].isScrollable
 end
 
 function EID:IsCategorySelected(categoryID)
@@ -499,9 +503,9 @@ function EID:ItemReminderGetTitle()
 		local playerIcon = EID:GetPlayerIcon(currentPlayer:GetPlayerType(), "P" .. curPlayerID )
 
 		local playerSelectWidget = playerIcon .. " "
-		if not EID:IsCategorySelected("Passives") and EID.Config["ItemReminderDisplayMode"] ~= "Classic" then
-			playerSelectWidget = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateDownButton"]] ..
-				playerIcon .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateUpButton"]] .. "|"
+		if not EID:IsScrollableCategorySelected() and EID.Config["ItemReminderDisplayMode"] ~= "Classic" then
+			playerSelectWidget = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateUpButton"]] ..
+				playerIcon .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateDownButton"]] .. "|"
 		end
 		combinedText = "{{ColorText}}" .. playerSelectWidget .. combinedText
 	end

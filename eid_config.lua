@@ -337,18 +337,18 @@ EID.UserConfig = {
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_SHOOTLEFT
 	["ItemReminderNavigateRightButton"] = ButtonAction.ACTION_SHOOTRIGHT,
-	-- Set the keybinding that is used to scroll thru the players in the left direction
-	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
-	-- Default = ButtonAction.ACTION_SHOOTDOWN
-	["ItemReminderNavigateDownButton"] = ButtonAction.ACTION_SHOOTDOWN,
-	-- Number of entries to display per category of the item description.
-	-- Set the keybinding that is used to scroll thru the players in the right direction
+	-- Set the keybinding that is used to scroll thru the players or item entries in the left direction
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_SHOOTUP
 	["ItemReminderNavigateUpButton"] = ButtonAction.ACTION_SHOOTUP,
+	-- Set the keybinding that is used to scroll thru the players or item entries in the right direction
+	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
+	-- Default = ButtonAction.ACTION_SHOOTDOWN
+	["ItemReminderNavigateDownButton"] = ButtonAction.ACTION_SHOOTDOWN,
 	-- Limits the number of description bullet points to be displayed on the overview page for each item
 	-- Default = 2
 	["ItemReminderOverviewHideAfterRows"] = 2,
+	-- Number of entries to display per category of the item description.
 	-- Default = 3
 	["ItemReminderMaxEntriesCount"] = 3,
 	-- Items that grant you items without saying what they are (like Zodiac, Liberty Cap) can have their current granted item revealed in the Item Reminder
@@ -603,8 +603,8 @@ EID.DefaultConfig = {
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["ItemReminderNavigateLeftButton"] = ButtonAction.ACTION_SHOOTLEFT,
 	["ItemReminderNavigateRightButton"] = ButtonAction.ACTION_SHOOTRIGHT,
-	["ItemReminderNavigateDownButton"] = ButtonAction.ACTION_SHOOTDOWN,
 	["ItemReminderNavigateUpButton"] = ButtonAction.ACTION_SHOOTUP,
+	["ItemReminderNavigateDownButton"] = ButtonAction.ACTION_SHOOTDOWN,
 	["ItemReminderOverviewHideAfterRows"] = 2,
 	["ItemReminderMaxEntriesCount"] = 5,
 	["ItemReminderShowHiddenInfo"] = false,
