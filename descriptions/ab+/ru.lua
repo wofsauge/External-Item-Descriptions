@@ -822,7 +822,7 @@ EID.descriptions[languageCode].pills={
 ---------- Sacrifice Room ----------
 EID.descriptions[languageCode].sacrificeHeader = "[Комната жертвоприношений - следующая награда]"
 
-EEID.descriptions[languageCode].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "{{Coin}} 50% шанс на 1 Монету#{{Bomb}} 100% шанс на 1 Бомбу, если вы в Подвале 1 и убили Босса за 1 минуту"},
 	{"2", "", "{{Coin}} 50% шанс на 1 Монету#{{Bomb}} 100% шанс на 1 Бомбу, если вы в Подвале 1 и убили Босса за 1 минуту"},
 	{"3", "", "{{AngelChance}} 67% вероятность повысить шанс появления Комнаты Ангела"},
