@@ -435,7 +435,7 @@ function EID:ItemReminderHandleInputs()
 			lastScrollDirection = 1
 		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateUpButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
 			if not EID:IsScrollableCategorySelected() then
-				EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer - 1) % #EID.coopAllPlayers
+				EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer - 1) % #EID:ItemReminderGetAllPlayers()
 			else
 				EID.ItemReminderSelectedItem = EID.ItemReminderSelectedItem - 1 -- clamp later
 			end
@@ -444,7 +444,7 @@ function EID:ItemReminderHandleInputs()
 			lastInputTime = Isaac.GetTime()
 		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateDownButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
 			if not EID:IsScrollableCategorySelected() then
-				EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer + 1) % #EID.coopAllPlayers
+				EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer + 1) % #EID:ItemReminderGetAllPlayers()
 			else
 				EID.ItemReminderSelectedItem = EID.ItemReminderSelectedItem + 1 -- clamp later
 			end
@@ -453,6 +453,17 @@ function EID:ItemReminderHandleInputs()
 			lastInputTime = Isaac.GetTime()
 		end
 	end
+end
+
+-- special list of all players, ignoring tainted forgotten ghost and coop babies
+function EID:ItemReminderGetAllPlayers()
+	local filteredPlayerList = {}
+	for i, player in ipairs(EID.coopAllPlayers) do
+		if not (EID.isRepentance and player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B) and player:GetBabySkin() == -1 then
+			table.insert(filteredPlayerList, player)		
+		end
+	end
+	return filteredPlayerList
 end
 
 function EID:IsScrollableCategorySelected()
@@ -467,8 +478,9 @@ function EID:ItemReminderHandleInitHoldTab()
 	local oldDisplayPlayer = EID.ItemReminderSelectedPlayer
 
 	-- set currently displayed player to the one who is now holding tab
-	for i = 1, #EID.coopAllPlayers do
-		if EID.coopAllPlayers[i] == EID.holdTabPlayer then
+	local playerList = EID:ItemReminderGetAllPlayers()
+	for i = 1, #playerList do
+		if playerList[i] == EID.holdTabPlayer then
 			EID.ItemReminderSelectedPlayer = i - 1
 			break
 		end
@@ -497,9 +509,10 @@ function EID:ItemReminderGetTitle()
 	end
 
 	-- add player toggle when more than 1 player is present
-	if #EID.coopAllPlayers > 1 then
+	local playerList = EID:ItemReminderGetAllPlayers()
+	if #playerList > 1 then
 		local curPlayerID = EID.ItemReminderSelectedPlayer + 1
-		local currentPlayer = EID.coopAllPlayers[curPlayerID]
+		local currentPlayer = playerList[curPlayerID]
 		local playerIcon = EID:GetPlayerIcon(currentPlayer:GetPlayerType(), "P" .. curPlayerID )
 
 		local playerSelectWidget = playerIcon .. " "
@@ -576,7 +589,7 @@ function EID:ItemReminderGetDescription()
 	currentBlacklist = {}
 	for key, _ in pairs(EID.ItemReminderBlacklist) do currentBlacklist[key] = true end
 
-	local player = EID.coopAllPlayers[EID.ItemReminderSelectedPlayer + 1]
+	local player = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player -- use main player as fallback
 
 	if EID.ItemReminderSelectedCategory == 0 or EID.Config["ItemReminderDisplayMode"] == "Classic" then
 		-- execute all functions defined per category
