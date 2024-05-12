@@ -657,7 +657,8 @@ function EID:ItemReminderGetDescription()
 			countLines = countLines + numLinebreaks + 2 -- one for the item name, one for initial line
 		end
 		countLines = countLines + math.ceil(countText/EID.Config["TextboxWidth"])
-		if countLines < 12 then
+		local allowedLines = (EID:getScreenSize().Y - EID.Config["YPosition"]) / 14 -- approximate the available screen space
+		if countLines < allowedLines then
 			tryTrim = false -- dont trim if screen is not filled with a lot of text
 		end
 	end

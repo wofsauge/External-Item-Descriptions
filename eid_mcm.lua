@@ -614,6 +614,7 @@ if MCMLoaded then
 	MCM.AddText("EID", "Reminder", "Item Descriptions")
 
 	EID:AddNumberSetting("Reminder", "ItemReminderMaxEntriesCount", "Max Entries", 0, 10, {infoText = {"Number of Descriptions possible to be displayed in the Item Reminder feature"}})
+	EID:AddNumberSetting("Reminder", "ItemReminderOverviewHideAfterRows", "Overview hide after X rows", 1, 20, {infoText = {"Reduces the length of the description in the overview categorie, if they are to long to display"}})
 	
 
 	---------------------------------------------------------------------------
