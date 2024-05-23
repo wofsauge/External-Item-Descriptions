@@ -900,11 +900,21 @@ EID.ItemPoolTypeToMarkup = { [0] = "{{ItemPoolTreasure}}", "{{ItemPoolShop}}", "
 EID.LocalModePositionOffset = {
 	Default = Vector(0, 20),
 	Shop = function(entity) if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:ToPickup() and entity:ToPickup():IsShopItem() then return Vector(0, 35) end end,
-} 
+}
+
+-- Items that dont have an effect with BFFS! item
+EID.BFFSNoSynergy = {[11] = true, [81] = true, [238] = true, [239] = true, [243] = true,  [265] = true, [268] = true, [269] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [405] = true, [431] = true, [436] = true, [469] = true, [472] = true, [492] = true, [516] = true, [528] = true, [542] = true, [543] = true }
 
 -- Character IDs that aren't allowed to have Red Health: ???, The Lost, The Soul
 EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
 if REPENTANCE then
 	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
 	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
+end
+
+if REPENTANCE then
+	EID.BFFSNoSynergy[504] = true -- Brown Nugget
+	EID.BFFSNoSynergy[567] = true -- Paschal Candle
+	EID.BFFSNoSynergy[651] = true -- Star of Bethlehem
+	EID.BFFSNoSynergy[697] = true -- Vanishing Twin
 end

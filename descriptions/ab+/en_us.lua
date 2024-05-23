@@ -977,3 +977,14 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.15"] = "{{DemonBeggar}} Spawns a Devil Beggar", -- Temperance (Greed Mode effect)
 	["5.350.23"] = "{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost", -- Missing Poster (Unlock The Lost)
 }
+
+EID.descriptions[languageCode].BFFSSynergies = {
+	["NoEffect"] = "No Effect",
+	["DoubleDamage"] = "Damage doubled",
+	["5.100.273"] = "Doubles impact damage and increases explosive damage by 25", -- Bob's Brain
+	["5.100.266"] = "Spawns an extra Blue Spider", -- Juicy Sack
+	["5.100.360"] = "Shoots tears that deal 200% of your damage", -- Incubus
+	["5.100.417"] = "Increases radius, but not damage", -- Succubus
+	["5.100.537"] = "Increases pool size, but not damage", -- Lil Spewer
+	["5.100.539"] = "Spawns a champion variant of the enemy", -- Mystery Egg
+}

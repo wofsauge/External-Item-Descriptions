@@ -7,7 +7,7 @@ EID.inModifierPreview = false
 EID.TabDescThisFrame = false
 
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
-EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, CollectibleType.COLLECTIBLE_CAR_BATTERY }
+EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, CollectibleType.COLLECTIBLE_CAR_BATTERY, CollectibleType.COLLECTIBLE_BFFS }
 local maxSlot = 1
 -- Repentance modifiers
 if EID.isRepentance then
@@ -17,7 +17,8 @@ if EID.isRepentance then
 		CollectibleType.COLLECTIBLE_BINGE_EATER, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, CollectibleType.COLLECTIBLE_SPINDOWN_DICE,
 		CollectibleType.COLLECTIBLE_TAROT_CLOTH, CollectibleType.COLLECTIBLE_MOMS_BOX, 59, --Birthright Belial
 		CollectibleType.COLLECTIBLE_BLANK_CARD, CollectibleType.COLLECTIBLE_CLEAR_RUNE, CollectibleType.COLLECTIBLE_PLACEBO,
-		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP, CollectibleType.COLLECTIBLE_CAR_BATTERY, CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS,
+		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP, CollectibleType.COLLECTIBLE_CAR_BATTERY, 
+		CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS, CollectibleType.COLLECTIBLE_BFFS
 	}
 end
 EID.collectiblesOwned = {}
@@ -287,6 +288,18 @@ local function BlackFeatherCallback(descObj)
 	description, _ = string.gsub(description, "{2}", "{{"..dmgColor.."}}"..damageMultiplied.."{{CR}}")
 
 	EID:appendToDescription(descObj, "# "..description)
+	return descObj
+end
+
+local function BFFSSynergiesCallback(descObj)
+	local description = EID:getDescriptionEntry("BFFSSynergies", descObj.fullItemString, true)
+	if EID.BFFSNoSynergy[descObj.ObjSubType] then
+		description = EID:getDescriptionEntry("BFFSSynergies", "NoEffect")
+	elseif description == nil then
+		description = EID:getDescriptionEntry("BFFSSynergies", "DoubleDamage")
+	end
+
+	EID:appendToDescription(descObj, "#{{Collectible247}} {{ColorOrange}}" .. description .. "{{CR}}")
 	return descObj
 end
 
@@ -914,6 +927,14 @@ local function EIDConditionsAB(descObj)
 			if EID.blackRuneOwned then table.insert(callbacks, BlackRuneCallback) end
 		end
 		if EID.collectiblesOwned[356] then table.insert(callbacks, CarBatteryCallback) end
+
+		-- BFF Synergy check
+		if EID.collectiblesOwned[247] then
+			local config = EID.itemConfig:GetCollectible(descObj.ObjSubType)
+			if config ~= nil and config.Type == ItemType.ITEM_FAMILIAR then
+				table.insert(callbacks, BFFSSynergiesCallback)
+			end
+		end
 	elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
 		if descObj.ObjSubType == 80 then table.insert(callbacks, BlackFeatherCallback) end
 	end
