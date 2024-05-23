@@ -25,6 +25,8 @@ EID.collectiblesAbsorbed = {}
 EID.blackRuneOwned = false
 EID.blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[49]=true,[50]=true,[55]=true,[78]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
 EID.runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[55]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
+EID.blackFeatherItems = {[215]=true,[216]=true,[230]=true,[260]=true,[262]=true,[339]=true,[344]=true,[654]=true,}
+EID.blackFeatherTrinkets = {[17]=true,[22]=true}
 
 local lastCheck = 0
 
@@ -266,6 +268,27 @@ local function CarBatteryCallback(descObj)
 	return descObj
 end
 
+local function BlackFeatherCallback(descObj)
+	local itemCounter = 0
+	for itemID, _ in pairs(EID.blackFeatherItems) do
+		itemCounter = itemCounter + EID.player:GetCollectibleNum(itemID)
+	end
+	for trinketID, _ in pairs(EID.blackFeatherTrinkets) do
+		itemCounter = itemCounter + EID.player:GetTrinketMultiplier(trinketID)
+	end
+	
+	local hasBox = EID.collectiblesOwned[439]
+	local isGolden = EID.isRepentance and ((descObj.ObjSubType & TrinketType.TRINKET_GOLDEN_FLAG) == TrinketType.TRINKET_GOLDEN_FLAG)
+	local damageMultiplied = 0.5 * itemCounter * (hasBox and 2 or 1) * (isGolden and 2 or 1)
+	local dmgColor = (hasBox or isGolden) and "ColorGold" or "ColorLime"
+
+	local description = EID:getDescriptionEntry("BlackFeatherInformation")
+	description, _ = string.gsub(description, "{1}", tostring(itemCounter))
+	description, _ = string.gsub(description, "{2}", "{{"..dmgColor.."}}"..damageMultiplied.."{{CR}}")
+
+	EID:appendToDescription(descObj, "# "..description)
+	return descObj
+end
 
 if EID.isRepentance then
 	-- Handle Birthright
@@ -891,8 +914,9 @@ local function EIDConditionsAB(descObj)
 			if EID.blackRuneOwned then table.insert(callbacks, BlackRuneCallback) end
 		end
 		if EID.collectiblesOwned[356] then table.insert(callbacks, CarBatteryCallback) end
+	elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
+		if descObj.ObjSubType == 80 then table.insert(callbacks, BlackFeatherCallback) end
 	end
-
 	return callbacks
 end
 EID:addDescriptionModifier("EID Afterbirth+", EIDConditionsAB, nil)

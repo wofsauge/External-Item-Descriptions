@@ -909,6 +909,8 @@ EID.descriptions[languageCode].VoidNames = {"{1} Speed", "{1} Tears", "{1} Damag
 
 EID.descriptions[languageCode].CollectionPageInfo = "This item needs to be picked up for the collection page!"
 
+EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorLime}}{1}{{CR}} items currently held (+{2} Damage)"
+
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Demo Object Name",
 	DemoObjectTransformation = "Demo Transformation",
