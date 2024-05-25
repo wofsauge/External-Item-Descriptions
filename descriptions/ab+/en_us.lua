@@ -182,7 +182,7 @@ EID.descriptions[languageCode].collectibles={
 	{"159", "Spirit of the Night", "Spectral tears#Flight"},
 	{"160", "Crack the Sky", "Spawns 5 beams of light near enemies#Deals Isaac's damage + 20"},
 	{"161", "Ankh", "{{Player4}} Respawn as ??? (Blue Baby) on death"},
-	{"162", "Celtic Cross", "Taking damage has a chance to make Isaac temporarily invincible#{{Luck}} 100% chance at 27 luck"},
+	{"162", "Celtic Cross", "Taking damage has a 20% chance to make Isaac temporarily invincible#{{Luck}} 100% chance at 27 luck"},
 	{"163", "Ghost Baby", "Shoots spectral tears#Deals 3.5 damage per tear"},
 	{"164", "The Candle", "Throws a blue flame#The flame deals contact damage, blocks enemy tears, and despawns after 2 seconds"},
 	{"165", "Cat-o-nine-tails", "↑ {{Damage}} +1 Damage#↑ {{Shotspeed}} +0.23 Shot speed"},
@@ -371,7 +371,7 @@ EID.descriptions[languageCode].collectibles={
 	{"346", "A Snack", "↑ {{Heart}} +1 Health"},
 	{"347", "Diplopia", "{{Warning}} SINGLE USE {{Warning}}#Duplicates all item pedestals and pickups in the room"},
 	{"348", "Placebo", "{{Pill}} Triggers the effect of the pill Isaac holds without using it"},
-	{"349", "Wooden Nickel", "{{Coin}} 50% chance to spawn a random coin"},
+	{"349", "Wooden Nickel", "{{Coin}} Roughly 56% chance to spawn a random coin"},
 	{"350", "Toxic Shock", "{{Poison}} Entering a room poisons all enemies#Enemies killed leave a puddle of creep#The creep deals 30 damage per second"},
 	{"351", "Mega Bean", "Petrifies all enemies in the room#{{Poison}} Deals 5 damage and poisons any enemies nearby#Sends a rock wave in the direction Isaac is moving#The rock wave can open secret rooms and break rocks"},
 	{"352", "Glass Cannon", "{{Warning}} Firing the cannon reduces Isaac's health down to half a heart#Shoots a large piercing + spectral tear that does 10x Isaac's damage"},
@@ -507,7 +507,7 @@ EID.descriptions[languageCode].collectibles={
 	{"482", "Clicker", "Changes your character to a random character#Removes the most recent item collected"},
 	{"483", "Mama Mega!", "{{Warning}} SINGLE USE {{Warning}}#Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss Rush, Hush and all secret rooms#Having a golden bomb when using the item consumes it and allows for another use of Mama Mega"},
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawns a rock wave around Isaac#The rock wave can open rooms and break rocks"},
-	{"485", "Crooked Penny", "50% chance to double all items, consumables and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"},
+	{"485", "Crooked Penny", "50% chance to double all items, pickups and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"},
 	{"486", "Dull Razor", "Hurts Isaac without removing health#Triggers any on-hit item effects"},
 	{"487", "Potato Peeler", "{{EmptyHeart}} Removes 1 heart container for:#↑ {{Damage}} +0.2 Damage#{{Collectible73}} A Cube of Meat#{{Timer}} Receive for the room:#↑ {{Range}} +5 Range#{{Collectible214}} Leave a trail of blood creep"},
 	{"488", "Metronome", "Grants a random item effect for the room"},
@@ -599,7 +599,7 @@ EID.descriptions[languageCode].carBattery = {
 	[427] = "Spawns two TNT barrels", -- Mine Crafter
 	[477] = "Activates every absorbed item twice", -- Void
 	[482] = "Change the character twice and remove two items", -- Clicker
-	[485] = "25% chance to quadruple items and consumables, 75% chance to remove them", -- Crooked Penny
+	[485] = "25% chance to quadruple items and pickups, 75% chance to remove them", -- Crooked Penny
 	[486] = "Triggers on-hit item effects twice", -- Dull Razor
 	[488] = "Grants two items effect", -- Metronome
 	[489] = "Triggers two dice effects. The second die can't be predicted", -- D Infinity
