@@ -72,7 +72,7 @@ EID.descriptions[languageCode].collectibles={
 	{"49", "Shoop da Whoop!", "{{Collectible118}} Using the item and shooting in a direction fires a high damage Brimstone beam"},
 	{"50", "Steven", "↑ {{Damage}} +1 Damage"},
 	{"51", "Pentagram", "↑ {{Damage}} +1 Damage#{{AngelDevilChance}} +10% Devil/Angel Room chance"},
-	{"52", "Dr. Fetus", "↓ {{Tears}} x2.5 Tear delay multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's tear damage + 30"},
+	{"52", "Dr. Fetus", "↓ {{Tears}} x2.5 Tear delay multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's damage + 30"},
 	{"53", "Magneto", "Pickups are attracted to Isaac"},
 	{"54", "Treasure Map", "Reveals the floor layout#Does not reveal room icons"},
 	{"55", "Mom's Eye", "50% chance to shoot an extra tear backwards#{{Luck}} 100% chance at 2 luck"},
