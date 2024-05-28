@@ -170,6 +170,7 @@ EID.ItemReminderDescriptionModifier = {
 		end
 	},
 	["5.100.488"] = { -- Metronome
+		isCheat = true,
 		modifierFunction = function(descObj, player)
 			local predictionItem = EID:MetronomePrediction(EID:GetItemSeed(player, 488))
 			local demoDescObj = EID:getDescriptionObj(5, 100, predictionItem)
