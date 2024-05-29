@@ -75,7 +75,7 @@ EID.descriptions[languageCode].collectibles={
 	{"53", "Magneto", "Verbrauchsgut wird von Isaac angezogen"},
 	{"54", "Schatzkarte", "Deckt den Grundriss des Stockwerks auf#Deckt keine Raum-Symbole auf"},
 	{"55", "Mamas Auge", "50% Chance, eine zusätzliche Träne nach hinten zu schießen#{{Luck}} 100% Chance ab 2 Glück"},
-	{"56", "Zitronen-Missgeschick", "Kreiert eine Pfütze#Die Pfütze fügt Feinden bei Kontakt 24 Schade pro Sekunde zu"},
+	{"56", "Zitronen-Missgeschick", "Kreiert eine Pfütze#Die Pfütze verursacht Feinden bei Kontakt 24 Schade pro Sekunde"},
 	{"57", "Ferne Bewunderung", "Orbitale Fliege#Verursacht bei Kontakt 75 Schaden pro Sekunde"},
 	{"58", "Book of Shadows", "{{Timer}} Invincibility for 10 seconds"},
 	{"59", "", "<item does not exist>"},
