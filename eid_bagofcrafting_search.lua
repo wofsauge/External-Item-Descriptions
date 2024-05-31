@@ -1,20 +1,25 @@
+-- Valid values:
+--   0 -> Reset search query after search
+EID.BoCSLockMode = 0
+local locked = false
+
 local indexCharMapping = " ??????'????,-./0123456789?;?????abcdefghijklmnopqrstuvwxyz"
 local searchValue = ""
 local searchInputEnabled = false
 local lastBackspaceTrigger = 0
 local backspaceStep = 0
 
+
 --- Returns the current search query
 -- @param newValue new search query
 function EID:BoCSSetSearchValue(newValue)
 	if newValue == nil then
-		newValue = ""
+		searchValue = ""
 		return
 	end
 
 	searchValue = newValue
 end
-
 
 --- Returns the current search query
 -- @return string
@@ -22,15 +27,44 @@ function EID:BoCSGetSearchValue()
 	return searchValue
 end
 
+function EID:BoCSGetLocked()
+	return locked
+end
+
+--- Locks or unlocks the search query
+-- @param newState boolean
+function EID:BoCSSetLocked(newState, force)
+	if EID.BoCSLockMode ~= 0 and force ~= true then
+		locked = false
+		return
+	end
+
+	locked = newState
+
+	if newState then
+		EID:BoCSSetSearchInputEnabled(false, true)
+	else
+		EID:BoCSSetSearchValue("")
+	end
+end
+
 --- Enables or disables the search input respectively
 -- @param newState boolean
-function EID:BoCSSetSearchInputEnabled(newState)
-	searchInputEnabled = newState
+function EID:BoCSSetSearchInputEnabled(newState, force)
+	if EID.BoCSLockMode == 0 and EID:BoCSGetLocked() and force ~= true then
+		return
+	end
 
+	searchInputEnabled = newState
 	if newState then
 		EID:AddCallback(ModCallbacks.MC_INPUT_ACTION, EID.BoCSBlockInputAction)
 	else
 		EID:RemoveCallback(ModCallbacks.MC_INPUT_ACTION, EID.BoCSBlockInputAction)
+		searchInputEnabled = newState
+
+		if EID.BoCSLockMode == 0 and not EID:BoCSGetLocked() then
+			EID:BoCSSetSearchValue("")
+		end
 	end
 end
 
@@ -55,6 +89,76 @@ function EID:BoCSCheckItemName(itemName)
 	return string.find(string.lower(itemName), string.lower(searchValue))
 end
 
+local function handleSearchInput()
+	if (
+		not searchInputEnabled
+		or (
+			EID.BoCSLockMode == 0
+			and
+			EID:BoCSGetLocked()
+		)
+ 	) then
+		return
+	end
+
+	local newValue = searchValue
+	local index = 0
+	local hasLetterInput = false
+
+	-- Keep in mind that this only works because the respective
+	-- enum values are integers
+	for i=Keyboard.KEY_SPACE,Keyboard.KEY_Z do
+		index = index + 1
+		if Input.IsButtonTriggered(i, EID.bagPlayer.ControllerIndex, true) then
+			local toAppend = string.upper(indexCharMapping:sub(index, index))
+
+			newValue = newValue .. toAppend
+			hasLetterInput = true
+
+			-- We only handle one input at a time
+			break
+		end
+
+		if hasLetterInput then
+			return
+		end
+	end
+
+	if Input.IsButtonTriggered(Keyboard.KEY_BACKSPACE, EID.bagPlayer.ControllerIndex, true) then
+		lastBackspaceTrigger = 0
+		backspaceStep = 0
+		return
+	end
+
+	local currentFrame = Game():GetFrameCount()
+	-- 30 Frames = 1 second
+	-- 15 = 500ms
+	if Input.IsButtonPressed(Keyboard.KEY_BACKSPACE, EID.bagPlayer.ControllerIndex, true) and (
+		backspaceStep == 0
+		or
+		(backspaceStep == 1 and currentFrame - lastBackspaceTrigger > 15) -- we delay the second deletion a little bit more
+		or
+		(backspaceStep >= 2 and currentFrame - lastBackspaceTrigger > 3)
+	) then
+		local isControlPressed = (
+			Input.IsButtonPressed(Keyboard.KEY_LEFT_CONTROL, EID.bagPlayer.ControllerIndex, true)
+			or
+			Input.IsButtonPressed(Keyboard.KEY_RIGHT_CONTROL, EID.bagPlayer.ControllerIndex, true)
+		)
+
+		if isControlPressed then
+			newValue = ""
+		else
+			newValue = searchValue:sub(1, -2)
+		end
+
+		lastBackspaceTrigger = currentFrame
+		backspaceStep = backspaceStep + 1
+	end
+
+	searchValue = newValue
+end
+
 --- Handles any input done related to Bag of Crafting search
 function EID:BoCSHandleInput()
 	if Game():IsPaused() then
@@ -70,64 +174,7 @@ function EID:BoCSHandleInput()
 		return
 	end
 
-	if searchInputEnabled then
-		local newValue = searchValue
-		local index = 0
-		local hasLetterInput = false
-
-		-- Keep in mind that this only works because the respective
-		-- enum values are integers
-		for i=Keyboard.KEY_SPACE,Keyboard.KEY_Z do
-			index = index + 1
-			if Input.IsButtonTriggered(i, EID.bagPlayer.ControllerIndex, true) then
-				local toAppend = string.upper(indexCharMapping:sub(index, index))
-
-				newValue = newValue .. toAppend
-				hasLetterInput = true
-
-				-- We only handle one input at a time
-				break
-			end
-
-			if hasLetterInput then
-				return
-			end
-		end
-
-		if Input.IsButtonTriggered(Keyboard.KEY_BACKSPACE, EID.bagPlayer.ControllerIndex, true) then
-			lastBackspaceTrigger = 0
-			backspaceStep = 0
-			return
-		end
-
-		local currentFrame = Game():GetFrameCount()
-		-- 30 Frames = 1 second
-		-- 15 = 500ms
-		if Input.IsButtonPressed(Keyboard.KEY_BACKSPACE, EID.bagPlayer.ControllerIndex, true) and (
-			backspaceStep == 0
-			or
-			(backspaceStep == 1 and currentFrame - lastBackspaceTrigger > 15) -- we delay the second deletion a little bit more
-			or
-			(backspaceStep >= 2 and currentFrame - lastBackspaceTrigger > 3)
-		) then
-			local isControlPressed = (
-				Input.IsButtonPressed(Keyboard.KEY_LEFT_CONTROL, EID.bagPlayer.ControllerIndex, true)
-				or
-				Input.IsButtonPressed(Keyboard.KEY_RIGHT_CONTROL, EID.bagPlayer.ControllerIndex, true)
-			)
-
-			if isControlPressed then
-				newValue = ""
-			else
-				newValue = searchValue:sub(1, -2)
-			end
-
-			lastBackspaceTrigger = currentFrame
-			backspaceStep = backspaceStep + 1
-		end
-
-		searchValue = newValue
-	end
+	handleSearchInput()
 end
 
 ---  Returns the line that should be displayed inside of the menu
@@ -142,7 +189,13 @@ function EID:BoCSGetSearchLine()
 		result = "{{ColorGreen}}"
 	end
 
-	result = result .. "Search: " .. searchValue .. "#"
+	result = result .. "Search: " .. searchValue
+
+	if EID.BoCSLockMode == 0 and EID:BoCSGetLocked() then
+		result = result .. "{{Trinket159}}"
+	end
+
+	result = result .. "#"
 
 	return result
 end
@@ -294,11 +347,15 @@ end
 --- Resets the search query when entering a new level
 function EID:BoCSOnNewLevel()
 	EID:BoCSSetSearchValue("")
+	EID:BoCSSetLocked(false)
+	EID:BoCSSetSearchInputEnabled(false)
 end
 
 --- Resets the search query when starting and continuing a game
 function EID:BoCSPostGameStarted()
 	EID:BoCSSetSearchValue("")
+	EID:BoCSSetLocked(false)
+	EID:BoCSSetSearchInputEnabled(false)
 end
 
 EID:BoCSHookInput()
