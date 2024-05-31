@@ -371,6 +371,7 @@ EID.InlineIcons = {
 	["ButtonRT"] = {"XboxOne", 13, 12, 8, 6, 5, function(_) return getControllerSprite() end},
 	["ButtonSelect"] = {"XboxOne", 14, 12, 8, 6, 5, function(_) return getControllerSprite() end},
 	["ButtonMenu"] = {"XboxOne", 15, 12, 8, 6, 5, function(_) return getControllerSprite() end},
+	["ButtonEnter"] = {"XboxOne", 16, 12, 8, 6, 5, EID.InlineIconSprite},
 
 	-- Crafting
 	["Crafting0"] = {"Crafting", 0, 14, 16, 0, 1},
@@ -621,6 +622,7 @@ EID.InlineIcons = {
 	["AchievementLockedSmall"] = {"Misc", 13, 10, 12, 0, 1},
 	["DailyRun"] = {"Misc", 14, 15, 12, 0, -1},
 	["DailyRunSmall"] = {"Misc", 15, 12, 12, 0, 1},
+	["MagnifyingLens"] = {"Misc", 16, 13, 13, 0, -1},
 }
 -- General Stats (Adjust automatically according to the current DLC)
 
