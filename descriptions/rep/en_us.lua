@@ -1151,6 +1151,7 @@ EID.descriptions[languageCode].spindownError = "Item disappears"
 EID.descriptions[languageCode].CraftingBagContent = "Bag:"
 EID.descriptions[languageCode].CraftingRoomContent = "Room:"
 EID.descriptions[languageCode].CraftingFloorContent = "Floor:"
+EID.descriptions[languageCode].CraftingSearch = "Search:"
 
 EID.descriptions[languageCode].CraftingBagQuality = "Bag Quality:"
 EID.descriptions[languageCode].CraftingBestQuality = "Best Quality:"
@@ -1159,7 +1160,7 @@ EID.descriptions[languageCode].CraftingHideKey = "Hide:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Preview:"
 EID.descriptions[languageCode].CraftingPreviewBackup = "{{Warning}} If this item's locked, it will turn into"
 
-EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}})"
+EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}}, Search: {{ButtonEnter}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:"
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card effect:"

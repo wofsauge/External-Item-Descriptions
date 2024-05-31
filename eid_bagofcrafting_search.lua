@@ -1,6 +1,7 @@
 -- Valid values:
 --   0 -> Reset search query after search
 EID.BoCSLockMode = 0
+local game = Game()
 local locked = false
 
 local indexCharMapping = " ??????'????,-./0123456789?;?????abcdefghijklmnopqrstuvwxyz"
@@ -54,6 +55,7 @@ function EID:BoCSSetSearchInputEnabled(newState, force)
 	if EID.BoCSLockMode == 0 and EID:BoCSGetLocked() and force ~= true then
 		return
 	end
+	newState = newState and EID.Config["BagOfCraftingDisplayRecipesMode"] == "Recipe List"
 
 	searchInputEnabled = newState
 	if newState then
@@ -130,7 +132,7 @@ local function handleSearchInput()
 		return
 	end
 
-	local currentFrame = Game():GetFrameCount()
+	local currentFrame = game:GetFrameCount()
 	-- 30 Frames = 1 second
 	-- 15 = 500ms
 	if Input.IsButtonPressed(Keyboard.KEY_BACKSPACE, EID.bagPlayer.ControllerIndex, true) and (
@@ -161,7 +163,7 @@ end
 
 --- Handles any input done related to Bag of Crafting search
 function EID:BoCSHandleInput()
-	if Game():IsPaused() then
+	if game:IsPaused() then
 		return
 	end
 
@@ -183,13 +185,13 @@ function EID:BoCSGetSearchLine()
 		return nil
 	end
 
-	local result = ""
+	local result = "{{MagnifyingLens}} "
 
 	if searchInputEnabled then
-		result = "{{ColorGreen}}"
+		result = result .. "{{ColorLime}}"
 	end
-
-	result = result .. "Search: " .. searchValue
+	local searchDescription = EID:getDescriptionEntry("CraftingSearch")
+	result = result .. searchDescription .. " " .. searchValue
 
 	if EID.BoCSLockMode == 0 and EID:BoCSGetLocked() then
 		result = result .. "{{Trinket159}}"
@@ -320,7 +322,7 @@ function EID:BoCSHookInput()
 end
 
 --- Blocks all input actions triggered by the games bindings itself
-function EID:BoCSBlockInputAction(entity, inputHook, buttonAction)
+function EID:BoCSBlockInputAction(_, inputHook, _)
 	local bagPlayer = nil
 	if EID.isRepentance then
 		local hasBag, player = EID:PlayersHaveCollectible(710)

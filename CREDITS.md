@@ -30,3 +30,4 @@ If you enjoy this mod and want to help on it, check it out on GitHub: https://gi
 - biobak for creating a lot of inline icons and other improvements
 - [eyeguy](https://twitter.com/eyeguyart) for creating the astonishing transformation icons
 - [adc](https://steamcommunity.com/id/whytefang/) for creating an awesome new language pack and providing ideas for new functionalities
+- [CreepSore](https://github.com/CreepSore) for creating the bag of crafting search feature
