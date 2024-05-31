@@ -940,7 +940,7 @@ function EID:handleBagOfCraftingUpdating()
 	end
 
 	-- Check for Hold Tab key inputs
-	if displayingRecipeList and Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.bagPlayer.ControllerIndex) then
+	if displayingRecipeList and Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.bagPlayer.ControllerIndex, true) then
 		EID.TabDescThisFrame = true
 		EID.bagPlayer.ControlsCooldown = 2
 		if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, EID.bagPlayer.ControllerIndex) then
@@ -950,10 +950,15 @@ function EID:handleBagOfCraftingUpdating()
 			bagOfCraftingOffset = math.max(0, bagOfCraftingOffset - EID.Config["BagOfCraftingResults"])
 			upHeld = Isaac.GetTime()
 		--lock the current results so you can actually do a recipe that you've scrolled down to without losing it
-		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTLEFT, EID.bagPlayer.ControllerIndex) then
+		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTLEFT, EID.bagPlayer.ControllerIndex, true) then
 			EID.RefreshBagTextbox = true
-			if (lockedResults == nil) then lockedResults = queryString
-			else lockedResults = nil end
+			if (lockedResults == nil) then
+				lockedResults = queryString
+				EID:BoCSSetLocked(true)
+			else
+				lockedResults = nil
+				EID:BoCSSetLocked(false)
+			end
 		--refresh the recipes
 		elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTRIGHT, EID.bagPlayer.ControllerIndex) then
 			if (lockedResults == nil) then
