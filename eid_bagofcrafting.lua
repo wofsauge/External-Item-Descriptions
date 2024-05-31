@@ -237,9 +237,6 @@ local recheckPickups = false
 local customRNGSeed = 0x77777770
 local customRNGShift = {0,0,0}
 
-local lastSearchValue = "";
-local lastSearchInputEnabled = false;
-
 -- Use local RNG functions to possibly reduce processing time a little bit
 local function RNGNext()
 	local num = customRNGSeed
@@ -935,14 +932,12 @@ function EID:handleBagOfCraftingUpdating()
 		end
 	end
 
-	local currentSearchValue = EID:BoCSGetSearchValue()
-	local currentSearchInputEnabled = EID:BoCSGetSearchInputEnabled()
+	local oldSearchValue = EID:BoCSGetSearchValue()
+	local oldSearchInputEnabled = EID:BoCSGetSearchInputEnabled()
 	EID:BoCSHandleInput()
-	if currentSearchValue ~= lastSearchValue or currentSearchInputEnabled ~= lastSearchInputEnabled then
+	if oldSearchValue ~= EID:BoCSGetSearchValue() or oldSearchInputEnabled ~= EID:BoCSGetSearchInputEnabled() then
 		refreshNextTick = true
 	end
-	lastSearchValue = currentSearchValue
-	lastSearchInputEnabled = currentSearchInputEnabled
 
 	-- Check for Hold Tab key inputs
 	if displayingRecipeList and Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.bagPlayer.ControllerIndex) then

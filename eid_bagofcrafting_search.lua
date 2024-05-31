@@ -5,6 +5,18 @@ local lastBackspaceTrigger = 0
 local backspaceStep = 0
 
 --- Returns the current search query
+-- @param newValue new search query
+function EID:BoCSSetSearchValue(newValue)
+	if newValue == nil then
+		newValue = ""
+		return
+	end
+
+	searchValue = newValue
+end
+
+
+--- Returns the current search query
 -- @return string
 function EID:BoCSGetSearchValue()
 	return searchValue
@@ -30,7 +42,7 @@ end
 
 --- Gets if the filtering is currently enabled
 function EID:BoCSGetSearchEnabled()
-	return true
+	return searchValue ~= nil and searchValue ~= ""
 end
 
 --- Returns true if the item name is matched
@@ -135,27 +147,8 @@ function EID:BoCSGetSearchLine()
 	return result
 end
 
----
--- This is a workaround to block every single Input call that could potentially be
--- used from another mod.
--- We override the Input functions with our own stubs to prevent other mods from
--- doing actions while the user is performing a search.
--- This does NOT block the main game from performing actions like toggling fullscreen
--- or toggling the pause!--
--- Since this could be useful for multiple reasons, this should probably be put
--- inside the main.lua instead of leaving this here
--- Hooking multiple times WILL impact the performance!--
--- I've also added a third parameter called "force"
--- This way, we are still able to force the real function to be called instead
--- of our modified code--
--- This code should not impact the performance in a huge way
--- since the first thing we do is check if the searchInput is enabled anyway
--- We can allow losing a bit of performance when searching
-function EID:BoCSHookInput()
+function EID:BoCSHookInputIsButtonTriggered()
 	local oldInputIsButtonTriggered = Input.IsButtonTriggered
-	local oldInputIsButtonPressed = Input.IsButtonPressed
-	local oldInputIsActionTriggered = Input.IsActionTriggered
-	local oldInputIsActionPressed = Input.IsActionPressed
 
 	Input.IsButtonTriggered = function(key, controller, force)
 		if force or not searchInputEnabled then
@@ -176,6 +169,10 @@ function EID:BoCSHookInput()
 
 		return false
 	end
+end
+
+function EID:BoCSHookInputIsButtonPressed()
+	local oldInputIsButtonPressed = Input.IsButtonPressed
 
 	Input.IsButtonPressed = function(key, controller, force)
 		if force or not searchInputEnabled then
@@ -196,26 +193,10 @@ function EID:BoCSHookInput()
 
 		return false
 	end
+end
 
-	Input.IsActionTriggered = function(key, controller, force)
-		if force or not searchInputEnabled then
-			return oldInputIsActionTriggered(key, controller)
-		end
-
-		local bagPlayer = nil
-		if EID.isRepentance then
-			local hasBag, player = EID:PlayersHaveCollectible(710)
-			if hasBag then
-				bagPlayer = player
-			end
-		end
-
-		if bagPlayer == nil or controller ~= bagPlayer.ControllerIndex then
-			return oldInputIsActionTriggered(key, controller)
-		end
-
-		return false
-	end
+function EID:BoCSHookInputIsActionPressed()
+	local oldInputIsActionPressed = Input.IsActionPressed
 
 	Input.IsActionPressed = function(key, controller, force)
 		if force or not searchInputEnabled then
@@ -236,8 +217,53 @@ function EID:BoCSHookInput()
 
 		return false
 	end
+end
 
-	Isaac.DebugString("Hooked Input")
+function EID:BoCSHookInputIsActionTriggered()
+	local oldInputIsActionTriggered = Input.IsActionTriggered
+
+	Input.IsActionTriggered = function(key, controller, force)
+		if force or not searchInputEnabled then
+			return oldInputIsActionTriggered(key, controller)
+		end
+
+		local bagPlayer = nil
+		if EID.isRepentance then
+			local hasBag, player = EID:PlayersHaveCollectible(710)
+			if hasBag then
+				bagPlayer = player
+			end
+		end
+
+		if bagPlayer == nil or controller ~= bagPlayer.ControllerIndex then
+			return oldInputIsActionTriggered(key, controller)
+		end
+
+		return false
+	end
+end
+
+---
+-- This is a workaround to block every single Input call that could potentially be
+-- used from another mod.
+-- We override the Input functions with our own stubs to prevent other mods from
+-- doing actions while the user is performing a search.
+-- This does NOT block the main game from performing actions like toggling fullscreen
+-- or toggling the pause!
+-- Since this could be useful for multiple reasons, this should probably be put
+-- inside the main.lua instead of leaving this here
+-- Hooking multiple times WILL impact the performance!
+-- I've also added a third parameter called "force"
+-- This way, we are still able to force the real function to be called instead
+-- of our modified code
+-- This code should not impact the performance in a huge way
+-- since the first thing we do is check if the searchInput is enabled anyway
+-- We can allow losing a bit of performance when searching
+function EID:BoCSHookInput()
+	EID:BoCSHookInputIsButtonTriggered()
+	EID:BoCSHookInputIsButtonPressed()
+	EID:BoCSHookInputIsActionTriggered()
+	EID:BoCSHookInputIsActionPressed()
 end
 
 --- Blocks all input actions triggered by the games bindings itself
@@ -265,4 +291,10 @@ function EID:BoCSBlockInputAction(entity, inputHook, buttonAction)
 	return nil
 end
 
+--- Resets the search query when entering a new level (and starting a new game)
+function EID:BoCSOnNewLevel()
+	EID:BoCSSetSearchValue("")
+end
+
 EID:BoCSHookInput()
+EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.BoCSOnNewLevel)
