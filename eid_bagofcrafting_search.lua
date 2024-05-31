@@ -291,10 +291,16 @@ function EID:BoCSBlockInputAction(entity, inputHook, buttonAction)
 	return nil
 end
 
---- Resets the search query when entering a new level (and starting a new game)
+--- Resets the search query when entering a new level
 function EID:BoCSOnNewLevel()
+	EID:BoCSSetSearchValue("")
+end
+
+--- Resets the search query when starting and continuing a game
+function EID:BoCSPostGameStarted()
 	EID:BoCSSetSearchValue("")
 end
 
 EID:BoCSHookInput()
 EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.BoCSOnNewLevel)
+EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, EID.BoCSOnNewLevel)
