@@ -1,5 +1,7 @@
 local game = Game()
 
+require("eid_bagofcrafting_search")
+
 --these aren't local so that they can be saved and reloaded, or cleared in the Mod Config Menu
 EID.BoC = {}
 EID.BoC.CurrentPickupCount = -1
@@ -234,6 +236,9 @@ local recheckPickups = false
 
 local customRNGSeed = 0x77777770
 local customRNGShift = {0,0,0}
+
+local lastSearchValue = "";
+local lastSearchInputEnabled = false;
 
 -- Use local RNG functions to possibly reduce processing time a little bit
 local function RNGNext()
@@ -930,6 +935,15 @@ function EID:handleBagOfCraftingUpdating()
 		end
 	end
 
+	local currentSearchValue = EID:BoCSGetSearchValue()
+	local currentSearchInputEnabled = EID:BoCSGetSearchInputEnabled()
+	EID:BoCSHandleInput()
+	if currentSearchValue ~= lastSearchValue or currentSearchInputEnabled ~= lastSearchInputEnabled then
+		refreshNextTick = true
+	end
+	lastSearchValue = currentSearchValue
+	lastSearchInputEnabled = currentSearchInputEnabled
+
 	-- Check for Hold Tab key inputs
 	if displayingRecipeList and Input.IsActionPressed(EID.Config["BagOfCraftingToggleKey"], EID.bagPlayer.ControllerIndex) then
 		EID.TabDescThisFrame = true
@@ -1176,6 +1190,11 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	prevDesc = ""
 	EID.RefreshBagTextbox = false
 
+	local searchLine = EID:BoCSGetSearchLine()
+	if searchLine ~= nil then
+		prevDesc = prevDesc .. searchLine
+	end
+
 	prevDesc = prevDesc .. getHotkeyString()
 	prevDesc = prevDesc .. getFloorItemsString(true, roomItems)
 	if (EID.Config["BagOfCraftingShowControls"]) then
@@ -1191,7 +1210,6 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		prefix = "#{{Trinket159}} "
 	end
 
-
 	local filteredRecipesList = {}
 	local filteredNumResults = 0
 	-- If we aren't Tainted Cain, we should filter out recipes that don't use everything in our bag
@@ -1199,15 +1217,28 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		for _,id in ipairs(sortedIDs) do
 			filteredRecipesList[id] = {}
 			for _, v in ipairs(currentRecipesList[id]) do
-				if (EID:bagContainsCount(v[1]) == #bagItems) then
+				local itemName = EID:getObjectName(5, 100, v[2]);
+				local searchValid = not EID:BoCSGetSearchEnabled() or EID:BoCSCheckItemName(itemName)
+
+				if (searchValid and EID:bagContainsCount(v[1]) == #bagItems) then
 					table.insert(filteredRecipesList[id], v)
 					filteredNumResults = filteredNumResults + 1
 				end
 			end
 		end
 	else
-		filteredRecipesList = currentRecipesList
-		filteredNumResults = numResults
+		for _,id in ipairs(sortedIDs) do
+			filteredRecipesList[id] = {}
+			for _, v in ipairs(currentRecipesList[id]) do
+				local itemName = EID:getObjectName(5, 100, v[2]);
+				local searchValid = not EID:BoCSGetSearchEnabled() or EID:BoCSCheckItemName(itemName)
+
+				if (searchValid) then
+					table.insert(filteredRecipesList[id], v)
+					filteredNumResults = filteredNumResults + 1
+				end
+			end
+		end
 	end
 
 	-- Keeping the offset doesn't work at all with non-Tainted-Cain bag-filtered results;
@@ -1229,6 +1260,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 				if (curOffset > bagOfCraftingOffset+EID.Config["BagOfCraftingResults"]) then break end
 				if not v then break end
 				if (curOffset > bagOfCraftingOffset) then
+					local itemName = EID:getObjectName(5, 100, v[2]);
 					if not EID.Config["BagOfCraftingDisplayNames"] then
 						prevDesc = prevDesc .."#{{Collectible"..v[2].."}} "
 						--color the equals sign with the item quality, so the order of the list can make sense
@@ -1238,7 +1270,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 						if prevItem ~= v[2] then
 							--substring the first 18 characters of the item name so it fits on one line; is there a way to get around desc line length limits?
 							prevDesc = prevDesc .."#{{Collectible"..v[2].."}} ".. qualities[CraftingItemQualities[v[2]]] ..
-							string.sub(EID:getObjectName(5, 100, v[2]),1,18).."#"
+							string.sub(itemName,1,18).."#"
 						else
 							prevDesc = prevDesc .."#"
 						end
