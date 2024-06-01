@@ -181,6 +181,7 @@ local repCollectibles={
 	-- Afterbirth
 	[347] = {"347", "복시", "!!! 일회용#사용 시 방 안의 모든 아이템과 픽업을 2배로 복사합니다.#복사된 아이템은 선택형 상태가 유지되며 판매 가격이 제거됩니다."}, -- Diplopia
 	[348] = {"348", "위약", "{{Pill}} 사용 시 현재 소지중인 알약의 효과를 발동합니다.#알약에 따라서 충전량이 달라집니다."}, -- Placebo
+	[349] = {"349", "나무 동전", "사용 시 59% 확률로 {{Coin}}동전을 하나 드랍합니다."}, -- Wooden Nickel
 	[350] = {"350", "독성 쇼크", "{{Poison}} 방 입장 시 방 안의 모든 적에게 공격력 x4의 피해를 줍니다.#{{Blank}} (보스는 x2)#적 처치시 초록 장판이 생기며 장판에 닿은 적은 초당 30의 피해를 입습니다."}, -- Toxic Shock
 	[352] = {"352", "유리 대포", "사용 시 공격력 x10 +10의 눈물을 발사합니다.#!!! 패널티 피격 시 체력 2칸의 피해를 추가로 입으며 대포가 부서집니다.#부서진 대포의 충전량을 채우면 대포를 복구할 수 있습니다."}, -- Glass Cannon
 	[354] = {"354", "식품 완구", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +1#장신구를 하나 드랍합니다."}, -- Crack Jacks
@@ -457,7 +458,7 @@ local repCollectibles={
 	[722] = {"722", "아니마 솔라", "사용 시 가장 가까운 적을 5초간 움직이지 못하게 만듭니다.#다시 사용하여 사슬을 강제로 끊을 수 있습니다."}, -- Anima Sola
 	[723] = {"723", "스핀다운 주사위", "사용 시 방 안의 모든 아이템을 코드 앞번호의 아이템으로 바꿉니다.#!!! 해금하지 않은 아이템과 현재 게임에서 등장할 수 없는 아이템은 등장하지 않습니다."}, -- Spindown Dice
 	[724] = {"724", "과응고", "{{Heart}} 피격 시 1.5초 후 사라지는 빨간하트를 드랍합니다."}, -- Hypercoagulation
-	[725] = {"725", "과민석 대장 증후군", "적에게 일정량의 피해를 주고 공격키를 떼면 Tainted ???의 똥 중 하나를 사용합니다:#!!! 랜덤한 똥을 들고 던지거나 #{{Blank}} 랜덤한 효과의 방귀를 뀌거나 #{{Blank}} 적에게 공격력 x1.5의 피해를 주는 갈색 장판을 생성하거나 #{{Blank}} 5개의 점화된 폭탄을 생성합니다."}, -- IBS
+	[725] = {"725", "", "{{Player25}} 적에게 일정량의 피해를 주고 공격키를 떼면 Tainted ???의 똥 중 하나를 사용합니다:# {{PoopSpell1}}{{PoopSpell2}}{{PoopSpell3}}{{PoopSpell4}}{{PoopSpell5}}{{PoopSpell6}}{{PoopSpell7}}랜덤 똥을 들고 던지거나 #{{Blank}} {{PoopSpell9}}방귀 or {{PoopSpell8}}갈색 장판 생성 #{{PoopSpell10}}폭탄을 들고 던지거나 {{PoopSpell11}}5개의 점화된 폭탄을 생성합니다."}, -- IBS
 	[726] = {"726", "각혈", "공격키를 두번 누르면 재채기를 해 눈앞의 적에게 공격력 x1.5의 피해를 주고 적을 강하게 밀쳐냅니다.#{{BrimstoneCurse}} 재채기에 맞은 적은 일정 시간 동안 유황 표식이 걸리며 혈사류 공격에 공격력 x2 +3의 피해를 입습니다."}, -- Hemoptysis
 	[727] = {"727", "유령 폭탄", "↑ {{Bomb}}폭탄 +5#폭탄이 터질 때 유령이 나와 적을 따라다니며 접촉하는 적에게 초당 공격력 x2의 피해를 주고 10초 후 폭파되어 주변의 적에게 7의 피해를 줍니다."}, -- Ghost Bombs
 	[728] = {"728", "겔로", "사용 시 공격하는 방향으로 태아를 발사해 접촉한 적에게 공격력 x3의 피해를 입힙니다.#태아는 그 방에서 캐릭터와 연결되어 공격하는 방향으로 움직이며 적을 향해 공격력 x0.75의 캐릭터와 같은 공격을 발사합니다.#{{Player13}} (Lilith류의 경우 공격력 x1.0)"}, -- Gello
@@ -1273,6 +1274,7 @@ EID.descriptions[languageCode].spindownError = "아이템 사라짐"
 EID.descriptions[languageCode].CraftingBagContent = "현재픽업:"
 EID.descriptions[languageCode].CraftingRoomContent = "방:"
 EID.descriptions[languageCode].CraftingFloorContent = "스테이지:"
+EID.descriptions[languageCode].CraftingSearch = "찾기:"
 
 EID.descriptions[languageCode].CraftingBagQuality = "현재등급:"
 EID.descriptions[languageCode].CraftingBestQuality = "최고등급:"
@@ -1281,7 +1283,7 @@ EID.descriptions[languageCode].CraftingHideKey = "숨기기:"
 EID.descriptions[languageCode].CraftingPreviewKey = "미리보기:"
 EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 해금되어 있지 않을 경우 결과가 달라질 수 있습니다."
 
-EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}}+{{ButtonY}}or{{ButtonA}}#목록 고정:{{ButtonX}}#목록 새로고침:{{ButtonB}}#초기화:{{ButtonRB}}꾹 누르기)"
+EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}}+{{ButtonY}}or{{ButtonA}}#목록 고정:{{ButtonX}}#목록 새로고침:{{ButtonB}}#초기화:{{ButtonRB}}꾹 누르기, 찾기:{{ButtonEnter}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card로 사용 시:"
@@ -1322,6 +1324,17 @@ local repConditions={
 	["5.100.135 (Hard Mode)"] = {"1~2개", "1개", "2~3개", "2개"}, -- IV Bag Hard Mode (modify the PHD text too)
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
+
+local repBFFSSynergies = {
+	["5.100.360"] = "캐릭터의 공격력 x1.5의 공격을 발사 ({{Player13}}의 경우 x2)", -- Incubus
+	["5.100.610"] = "새의 피해량 x2, 직선 대신 x자 방향으로 충격파, 충격파 피해량이 증가하지 않음", -- Bird Cage
+	["5.100.569"] = "빨간하트를 깎았을 때 발동 효과 +2칸", -- Blood Oath
+	["5.100.178"] = "장판 피해량 x2, 장판 중앙에 파란 불꽃을 소환", -- Holy Water
+	["5.100.276"] = "눈물을 추가로 흩뿌리며 빨간 장판을 생성합니다.", -- Isaac's Heart
+	["5.100.612"] = "영혼에 Holy Mantle 효과가 발동", -- Lost Soul
+	["5.100.635"] = "사용 후 인형 기준 8방향으로 캐릭터의 눈물과 같은 눈물을 발사합니다.", -- Stitches
+}
+EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
 
 local RepDemoObject = {
 	DemoObjectName = "아이템 설명 모드 표시용",
