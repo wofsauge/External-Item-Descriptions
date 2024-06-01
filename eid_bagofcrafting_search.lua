@@ -4,11 +4,29 @@ EID.BoCSLockMode = 0
 local game = Game()
 local locked = false
 
-local indexCharMapping = " ??????'????,-./0123456789?;?????abcdefghijklmnopqrstuvwxyz"
+local indexCharMapping = [[ ??????'????,-./0123456789?;?=???abcdefghijklmnopqrstuvwxyz[\]??]]
+local shiftCharMapping = [[ ??????"????<_>?)!@#$%^&*(?:?+???ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}??]]
 local searchValue = ""
 local searchInputEnabled = false
 local lastBackspaceTrigger = 0
 local backspaceStep = 0
+
+-- source: https://stackoverflow.com/questions/65714534/how-do-i-remove-certain-special-characters-from-a-string-in-lua
+-- This list is incomplete, add more to it as necessary
+local function sanitizeName(name)
+    local accented = {
+        ['ß'] = 'ss', ['à'] = 'a', ['á'] = 'a', ['â'] = 'a', ['ã'] = 'a', ['å'] = 'a' , ['ä'] = 'ae', ['æ'] = 'ae',
+        ['ç'] = 'c', ['è'] = 'e', ['é'] = 'e', ['ê'] = 'e', ['ë'] = 'e', ['ì'] = 'i', ['í'] = 'i', ['î'] = 'i', ['ï'] = 'i',
+        ['ð'] = 'dh', ['ñ'] = 'n', ['ò'] = 'o', ['ó'] = 'o', ['ô'] = 'o', ['õ'] = 'o', ['ø'] = 'o', ['ö'] = 'oe',
+        ['ù'] = 'u', ['ú'] = 'u', ['û'] = 'u', ['ü'] = 'ue', ['ý'] = 'y', ['ÿ'] = 'y', ['þ'] = 'th'
+    }
+    local sanitized = name:lower()
+    -- Replace some non-ASCII characters:
+    for fancy, plain in pairs(accented) do
+        sanitized = sanitized:gsub(fancy, plain)
+    end
+    return sanitized
+end
 
 
 --- Returns the current search query
@@ -44,8 +62,6 @@ function EID:BoCSSetLocked(newState, force)
 
 	if newState then
 		EID:BoCSSetSearchInputEnabled(false, true)
-	else
-		EID:BoCSSetSearchValue("")
 	end
 end
 
@@ -63,10 +79,6 @@ function EID:BoCSSetSearchInputEnabled(newState, force)
 	else
 		EID:RemoveCallback(ModCallbacks.MC_INPUT_ACTION, EID.BoCSBlockInputAction)
 		searchInputEnabled = newState
-
-		if EID.BoCSLockMode == 0 and not EID:BoCSGetLocked() then
-			EID:BoCSSetSearchValue("")
-		end
 	end
 end
 
@@ -83,23 +95,24 @@ end
 
 --- Returns true if the item name is matched
 -- @returns boolean
-function EID:BoCSCheckItemName(itemName)
+function EID:BoCSCheckItemName(itemName, englishName)
 	if searchValue == "" then
 		return true
 	end
-
-	return string.find(string.lower(itemName), string.lower(searchValue))
+	
+	-- Check the localized name and English name for matching our search string (accents removed)
+	return string.find(sanitizeName(itemName), sanitizeName(searchValue), 1, true)
+		or string.find(sanitizeName(englishName), sanitizeName(searchValue), 1, true)
 end
 
-local function handleSearchInput()
-	if (
-		not searchInputEnabled
-		or (
-			EID.BoCSLockMode == 0
-			and
-			EID:BoCSGetLocked()
-		)
- 	) then
+local function handleSearchInput()	
+	if not searchInputEnabled or (EID.BoCSLockMode == 0 and EID:BoCSGetLocked()) then
+		return
+	end
+	
+	if Input.IsButtonTriggered(Keyboard.KEY_ESCAPE, EID.bagPlayer.ControllerIndex, true) then
+		EID:BoCSSetSearchInputEnabled(false)
+		EID:BoCSSetSearchValue("")
 		return
 	end
 
@@ -109,10 +122,12 @@ local function handleSearchInput()
 
 	-- Keep in mind that this only works because the respective
 	-- enum values are integers
-	for i=Keyboard.KEY_SPACE,Keyboard.KEY_Z do
+	for i=Keyboard.KEY_SPACE,Keyboard.KEY_RIGHT_BRACKET do
 		index = index + 1
 		if Input.IsButtonTriggered(i, EID.bagPlayer.ControllerIndex, true) then
-			local toAppend = string.upper(indexCharMapping:sub(index, index))
+			local toAppend = indexCharMapping:sub(index, index)
+			local isShiftPressed = (Input.IsButtonPressed(Keyboard.KEY_LEFT_SHIFT, EID.bagPlayer.ControllerIndex, true) or Input.IsButtonPressed(Keyboard.KEY_RIGHT_SHIFT, EID.bagPlayer.ControllerIndex, true))
+			if isShiftPressed then toAppend = shiftCharMapping:sub(index, index) end
 
 			newValue = newValue .. toAppend
 			hasLetterInput = true
@@ -138,9 +153,9 @@ local function handleSearchInput()
 	if Input.IsButtonPressed(Keyboard.KEY_BACKSPACE, EID.bagPlayer.ControllerIndex, true) and (
 		backspaceStep == 0
 		or
-		(backspaceStep == 1 and currentFrame - lastBackspaceTrigger > 15) -- we delay the second deletion a little bit more
+		(backspaceStep == 1 and currentFrame - lastBackspaceTrigger >= 15) -- we delay the second deletion a little bit more
 		or
-		(backspaceStep >= 2 and currentFrame - lastBackspaceTrigger > 3)
+		(backspaceStep >= 2 and currentFrame - lastBackspaceTrigger >= 1)
 	) then
 		local isControlPressed = (
 			Input.IsButtonPressed(Keyboard.KEY_LEFT_CONTROL, EID.bagPlayer.ControllerIndex, true)
@@ -170,7 +185,20 @@ function EID:BoCSHandleInput()
 	if EID.bagPlayer == nil then
 		return
 	end
-
+	
+	if ModConfigMenu and ModConfigMenu.IsVisible then
+		return
+	end
+	
+	-- Clear the previous search when Enter is pressed
+	-- TODO: make this a modifiable hotkey
+	if Input.IsButtonTriggered(Keyboard.KEY_ENTER, EID.bagPlayer.ControllerIndex, true) then
+		if not searchInputEnabled then EID:BoCSSetSearchValue("") end
+	end
+	
+	-- Start a new search when Enter is pressed
+	-- TODO: make this a modifiable hotkey
+	-- by default, both are Enter, but for instance clearing could be Backspace and then you could modify a search term with Enter
 	if Input.IsButtonTriggered(Keyboard.KEY_ENTER, EID.bagPlayer.ControllerIndex, true) then
 		EID:BoCSSetSearchInputEnabled(not searchInputEnabled)
 		return
