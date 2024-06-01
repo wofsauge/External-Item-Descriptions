@@ -1212,28 +1212,17 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 
 	local filteredRecipesList = {}
 	local filteredNumResults = 0
-	-- If we aren't Tainted Cain, we should filter out recipes that don't use everything in our bag
-	if not IsTaintedCain() then
-		for _,id in ipairs(sortedIDs) do
-			filteredRecipesList[id] = {}
+	local tcain = IsTaintedCain()
+	for _,id in ipairs(sortedIDs) do
+		filteredRecipesList[id] = {}
+		-- Filter out item names that don't match our search term
+		local itemName = EID:getDescriptionEntry("collectibles", id)[2];
+		local englishName = EID:getDescriptionEntryEnglish("collectibles", id)[2];
+		local searchValid = not EID:BoCSGetSearchEnabled() or EID:BoCSCheckItemName(itemName, englishName)
+		if (searchValid) then
+			-- If we aren't Tainted Cain, we should filter out recipes that don't use everything in our bag
 			for _, v in ipairs(currentRecipesList[id]) do
-				local itemName = EID:getObjectName(5, 100, v[2]);
-				local searchValid = not EID:BoCSGetSearchEnabled() or EID:BoCSCheckItemName(itemName)
-
-				if (searchValid and EID:bagContainsCount(v[1]) == #bagItems) then
-					table.insert(filteredRecipesList[id], v)
-					filteredNumResults = filteredNumResults + 1
-				end
-			end
-		end
-	else
-		for _,id in ipairs(sortedIDs) do
-			filteredRecipesList[id] = {}
-			for _, v in ipairs(currentRecipesList[id]) do
-				local itemName = EID:getObjectName(5, 100, v[2]);
-				local searchValid = not EID:BoCSGetSearchEnabled() or EID:BoCSCheckItemName(itemName)
-
-				if (searchValid) then
+				if (tcain or EID:bagContainsCount(v[1]) == #bagItems) then
 					table.insert(filteredRecipesList[id], v)
 					filteredNumResults = filteredNumResults + 1
 				end
