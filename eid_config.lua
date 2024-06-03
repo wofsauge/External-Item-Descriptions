@@ -371,6 +371,7 @@ EID.UserConfig = {
 	-- Display modes for the Bag of Crafting display
 	-- Options: "Recipe List", "Preview Only", "Item Probability", "Pickups Only"
 	-- The "Recipe List" is a detailed calculated list of recipes based on what you have available on the floor
+	-- "Learned Recipe List" only shows you recipes that you have discovered during that run, plus fixed recipes
 	-- "Preview Only" shows the description of the item you can currently craft in your bag
 	-- "Item Probability" shows percentages of what item you might get from your bag / best option on the floor, for a more intended experience
 	-- "Pickups Only" just shows the room/floor pickup count
@@ -382,6 +383,11 @@ EID.UserConfig = {
 	-- Show the text for the Hide/Preview and Recipe List hotkeys
 	-- Default = true
 	["BagOfCraftingShowControls"] = true,
+	-- Sort bag recipes by quality and then alphabetically (to prioritize the best possible crafts),
+	-- or just alphabetically (to more easily find specific items if you don't know their quality)
+	-- Options: "Quality", "Name"
+	-- Default = "Quality"
+	["BagOfCraftingSortOrder"] = "Quality",
 	-- Changes the amount of results shown in the Bag of Crafting description
 	-- Higher numbers can cause more lag!
 	-- Default = 7
@@ -587,6 +593,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingResults"] = 7,
 	["BagOfCraftingCombinationMax"] = 12,
 	["BagOfCraftingRandomResults"] = 400,
+	["BagOfCraftingSortOrder"] = "Quality",
 	["BagOfCraftingDisplayNames"] = false,
 	["BagOfCraftingDisplayIcons"] = false,
 	["BagOfCraftingHideInBattle"] = true,
