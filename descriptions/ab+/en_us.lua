@@ -98,7 +98,7 @@ EID.descriptions[languageCode].collectibles={
 	{"75", "PHD", "{{Heart}} Heals 2 hearts#{{Pill}} Spawns 1 pill#{{Pill}} Changes bad pills into good pills#{{BloodDonationMachine}} Blood Donation Machines and {{Collectible135}} IV Bag give more {{Coin}} coins"},
 	{"76", "X-Ray Vision", "{{SecretRoom}} Opens all secret room entrances"},
 	{"77", "My Little Unicorn", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot but deals 40 contact damage per second"},
-	{"78", "Book of Revelations", "{{SoulHeart}} +1 Soul Heart#{{AngelDevilChance}} +17.5% Devil/Angel Room chance while held#Higher horseman boss chance if used"},
+	{"78", "Book of Revelations", "{{SoulHeart}} +1 Soul Heart#{{AngelDevilChance}} +17.5% Devil/Angel Room chance while held#Using the item has a high chance to replace the floor's boss with a horseman"},
 	{"79", "The Mark", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1 Damage#{{SoulHeart}} +1 Soul Heart"},
 	{"80", "The Pact", "↑ {{Tears}} +0.7 Tears#↑ {{Damage}} +0.5 Damage#{{SoulHeart}} +2 Soul Hearts"},
 	{"81", "Dead Cat", "↑ +9 Lives#Isaac respawns with 1 heart container on death#{{Warning}} Sets Isaac's heart containers to 1 when picked up"},
