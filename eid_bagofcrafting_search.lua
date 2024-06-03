@@ -71,7 +71,7 @@ function EID:BoCSSetSearchInputEnabled(newState, force)
 	if EID.BoCSLockMode == 0 and EID:BoCSGetLocked() and force ~= true then
 		return
 	end
-	newState = newState and EID.Config["BagOfCraftingDisplayRecipesMode"] == "Recipe List"
+	newState = newState and EID.Config["BagOfCraftingDisplayRecipesMode"]:find("Recipe List")
 
 	searchInputEnabled = newState
 	if newState then
@@ -95,14 +95,13 @@ end
 
 --- Returns true if the item name is matched
 -- @returns boolean
-function EID:BoCSCheckItemName(itemName, englishName)
+function EID:BoCSCheckItemName(itemName)
 	if searchValue == "" then
 		return true
 	end
 	
-	-- Check the localized name and English name for matching our search string (accents removed)
+	-- Check the name for matching our search string (accents removed)
 	return string.find(sanitizeName(itemName), sanitizeName(searchValue), 1, true)
-		or string.find(sanitizeName(englishName), sanitizeName(searchValue), 1, true)
 end
 
 local function handleSearchInput()	
