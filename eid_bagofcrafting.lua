@@ -200,6 +200,9 @@ local CraftingItemAllowed = {}
 
 --These are recipes that have already been calculated, plus the contents of recipes.xml
 local calculatedRecipes = {}
+--These are recipes that we've learned during this run
+local learnedRecipes = {}
+local newRecipeLearned = false
 --If the seed changes, the above two tables will be wiped
 local lastSeedUsed = 0
 -- Test a few specific items' availability for if we should wipe our cached recipes due to availability change
@@ -214,7 +217,7 @@ local sortedIDs = {}
 local function sortAllItems()
 	sortedIDs = {}
 	local objectNames = {}
-
+	
 	for i = 1, CraftingMaxItemID do
 		if CraftingItemQualities[i] ~= nil then
 			table.insert(sortedIDs, i)
@@ -223,15 +226,15 @@ local function sortAllItems()
 	end
 
 	table.sort(sortedIDs, function(a, b)
-		if CraftingItemQualities[a] == CraftingItemQualities[b] then
+		if EID.Config["BagOfCraftingSortOrder"] == "Name" or CraftingItemQualities[a] == CraftingItemQualities[b] then
 			return (objectNames[a] < objectNames[b])
 		else
 			return (CraftingItemQualities[a] > CraftingItemQualities[b])
 		end
 	end)
 end
--- delay the initial sort until needed, in case of modded items
-local sortNeeded = true
+-- delay the initial sort until needed, in case of modded items, or changing sorting order
+EID.BoC.SortNeeded = true
 local recheckPickups = false
 
 local customRNGSeed = 0x77777770
@@ -370,6 +373,18 @@ function EID:simulateBagOfCrafting(componentsTable)
 	poolString = string.sub(poolString,1,-2)
 
 	return compTotalWeight, poolString
+end
+
+-- "Learned Recipes" MODE: Save the result of the 8 items inside our bag
+function EID:learnBagOfCrafting(componentsTable)	
+	-- ingredients must be sorted by ID to store in learnedRecipes
+	local components = {table.unpack(componentsTable)}
+	table.sort(components)
+	local componentsAsString = table.concat(components, ",")
+	
+	local recipe = REPENTOGON and EID.bagPlayer:GetBagOfCraftingOutput() or EID:calculateBagOfCrafting(componentsTable)
+	if (learnedRecipes[componentsAsString] ~= recipe) then newRecipeLearned = true end
+	learnedRecipes[componentsAsString] = recipe;
 end
 
 -- The main function that takes 8 ingredients and tells you what collectible you will get in return
@@ -548,7 +563,7 @@ local function GameStartCrafting()
 				table.insert(CraftingItemPools[poolNum+1], {collTable.itemID, collTable.weight})
 			end
 		end
-		sortNeeded = true
+		EID.BoC.SortNeeded = true
 		moddedCrafting = true
 	end
 end
@@ -753,6 +768,8 @@ local function getFloorItemsString(showPreviews, roomItems)
 	if #bagItems >0 then
 		if showPreviews and #bagItems == 8 then
 			local recipe = REPENTOGON and EID.bagPlayer:GetBagOfCraftingOutput() or EID:calculateBagOfCrafting(bagItems)
+			-- when using REPENTOGON, MCM needs to think its bag is full
+			if EID.BoC.BagItemsOverride then recipe = EID:calculateBagOfCrafting(bagItems) end
 			floorString = floorString .. "{{Collectible"..recipe.."}} "
 		end
 		local bagDesc = EID:getDescriptionEntry("CraftingBagContent")
@@ -867,6 +884,59 @@ local function RecipeCrunchCoroutine()
 	EID.RefreshBagTextbox = true
 end
 
+-- Convert our learned recipes into a list per ID
+local function LearnedRecipeList()
+	if not newRecipeLearned or lockedResults then return end
+	newRecipeLearned = false
+	
+	local sortedResults = {}
+	for _, v in ipairs(sortedIDs) do
+		sortedResults[v] = {}
+	end
+	
+	for ingreds, resultID in pairs(learnedRecipes) do
+		ingredTable = {}
+		-- split the recipe by comma
+		for i in string.gmatch(ingreds, "[^,]+") do table.insert(ingredTable, tonumber(i)) end
+		table.insert(sortedResults[resultID], {ingredTable, resultID})
+	end
+
+	currentRecipesList = sortedResults
+
+	numResults = 0
+	for _,v in ipairs(sortedIDs) do
+		-- keep our cursor position if we're not at the top of the list, and bag's contents don't matter for list size
+		if (isRefresh and bagOfCraftingOffset > 0 and v == refreshPosition and (IsTaintedCain() or #EID.BoC.BagItems == 0)) then
+			--jump to the item we were looking at before, so you can more easily refresh for variants of recipes
+			bagOfCraftingOffset = numResults
+		end
+		numResults = numResults + #currentRecipesList[v]
+	end
+
+	if not isRefresh then
+		bagOfCraftingOffset = 0
+		bagOfCraftingRefreshes = 0
+	end
+	isRefresh = false
+	EID.RefreshBagTextbox = true
+end
+
+local function MCMLearnedRecipeList()
+	local sortedResults = {}
+	for _, v in ipairs(sortedIDs) do
+		sortedResults[v] = {}
+	end
+	
+	local recipe = EID:calculateBagOfCrafting({15,15,5,1,10,8,8,9})
+	table.insert(sortedResults[recipe], {{15,15,5,1,10,8,8,9}, recipe})
+	currentRecipesList = sortedResults
+	bagOfCraftingOffset = 0
+	bagOfCraftingRefreshes = 0
+	isRefresh = false
+	EID.RefreshBagTextbox = true
+	newRecipeLearned = true -- make the list return to normal once MCM is closed
+end
+
 function EID:BOCHandleCurseOfMaze()
 	-- switches tracked room contents when rooms are switched by curse of maze
 	if game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_MAZE ~= LevelCurse.CURSE_OF_MAZE then
@@ -909,12 +979,31 @@ function EID:handleBagOfCraftingUpdating()
 	end
 	if (curSeed ~= lastSeedUsed or updatedItemAvailability) then
 		calculatedRecipes = {}
+		-- Don't reset learned recipes on item availability change
+		-- They'll be recalculated on bag-full if missing from calculatedRecipes
+		if curSeed ~= lastSeedUsed then
+			learnedRecipes = {}
+			-- for k,v in pairs(CraftingFixedRecipes) do learnedRecipes[k] = v end
+			newRecipeLearned = true
+		end
 		calcResultCache = {}
 		randResultCache = {}
 		EID.itemAvailableStates = {}
 		lockedResults = nil
 	end
 	lastSeedUsed = curSeed
+	
+	-- Use REPENTOGON to accurately know what's inside the bag
+	if REPENTOGON then
+		EID.BoC.BagItems = EID.bagPlayer:GetBagOfCraftingContent()
+		for i=1,8 do
+			if EID.BoC.BagItems[i] == 0 then EID.BoC.BagItems[i] = nil end
+		end
+	end
+	-- Save the result of the 8 items in our bag
+	if #EID.BoC.BagItems == 8 then
+		EID:learnBagOfCrafting(EID.BoC.BagItems)
+	end
 
 	-- watch for holding the Craft button, and pressing the ingredient shift button
 	EID:BoCTrackBagHolding()
@@ -936,7 +1025,7 @@ function EID:handleBagOfCraftingUpdating()
 	local oldSearchInputEnabled = EID:BoCSGetSearchInputEnabled()
 	EID:BoCSHandleInput()
 	if oldSearchValue ~= EID:BoCSGetSearchValue() or oldSearchInputEnabled ~= EID:BoCSGetSearchInputEnabled() then
-		refreshNextTick = true
+		EID.RefreshBagTextbox = true
 	end
 
 	-- Check for Hold Tab key inputs
@@ -1036,12 +1125,6 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		return false
 	end
 
-	if REPENTOGON then
-		EID.BoC.BagItems = EID.bagPlayer:GetBagOfCraftingContent()
-		for i=1,8 do
-			if EID.BoC.BagItems[i] == 0 then EID.BoC.BagItems[i] = nil end
-		end
-	end
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 	-- Display the result of the 8 items in our bag if applicable
 	if (EID.ShowCraftingResult or EID.Config["BagOfCraftingDisplayRecipesMode"] == "Preview Only") and #bagItems == 8 then
@@ -1050,6 +1133,8 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 			return false
 		end
 		local craftingResult = REPENTOGON and EID.bagPlayer:GetBagOfCraftingOutput() or EID:calculateBagOfCrafting(bagItems)
+		-- when using REPENTOGON, MCM needs to think its bag is full
+		if EID.BoC.BagItemsOverride then craftingResult = EID:calculateBagOfCrafting(bagItems) end
 		local descriptionObj = EID:getDescriptionObj(5, 100, craftingResult)
 		-- prepend the Hide/Preview hotkeys to the description
 		descriptionObj.Description = getHotkeyString() .. descriptionObj.Description
@@ -1096,14 +1181,15 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	-- load the function we need for Show Recipes as Groups / 8 Icons
 	local tableToCraftingIconsFunc = EID.tableToCraftingIconsMerged
 	if EID.Config["BagOfCraftingDisplayIcons"] then tableToCraftingIconsFunc = EID.tableToCraftingIconsFull end
-
+	
+	local mode = EID.Config["BagOfCraftingDisplayRecipesMode"]
 	-- Pickups Only / Item Probability Mode display
-	if EID.Config["BagOfCraftingDisplayRecipesMode"] == "Pickups Only" then
+	if mode == "Pickups Only" then
 		EID:appendToDescription(customDescObj, getHotkeyString())
 		EID:appendToDescription(customDescObj, getFloorItemsString(false, roomItems))
 		EID:addDescriptionToPrint(customDescObj)
 		return true
-	elseif EID.Config["BagOfCraftingDisplayRecipesMode"] == "Item Probability" then
+	elseif mode == "Item Probability" then
 		if not EID.RefreshBagTextbox and prevDesc ~= "" and not EID.OptionChanged then
 			EID:appendToDescription(customDescObj, prevDesc)
 			EID:addDescriptionToPrint(customDescObj)
@@ -1135,12 +1221,18 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 
 	-- Recipe List display
 	displayingRecipeList = true
-	if sortNeeded then
+	if EID.BoC.SortNeeded then
 		sortAllItems()
-		sortNeeded = false
+		EID.BoC.SortNeeded = false
 	end
 
-	if lockedResults ~= nil then
+	if mode == "Learned Recipe List" then
+		if ModConfigMenu and ModConfigMenu.IsVisible then
+			MCMLearnedRecipeList()
+		else
+			LearnedRecipeList() --todo: do this less often
+		end
+	elseif lockedResults ~= nil then
 		currentRecipesList = calcResultCache[lockedResults]
 	elseif (calcResultCache[queryString] == nil or refreshNextTick) and EID.Coroutines["RecipeCrunch"] == nil then
 		isRefresh = refreshNextTick
@@ -1209,23 +1301,36 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	if (lockedResults) then
 		prefix = "#{{Trinket159}} "
 	end
-
+	local moreDesc = EID:getDescriptionEntry("CraftingMore")
+	
+	-- Build the list of recipes that we will actually be displaying, dependent on bag contents (if not T.Cain) and active search
 	local filteredRecipesList = {}
 	local filteredNumResults = 0
 	local tcain = IsTaintedCain()
-	for _,id in ipairs(sortedIDs) do
-		filteredRecipesList[id] = {}
+	
+	local IDsToCheck = { }
+	if EID:BoCSGetSearchEnabled() then
 		-- Filter out item names that don't match our search term
-		local itemName = EID:getDescriptionData(5, 100, id)[2];
-		local englishName = EID:getDescriptionDataEnglish(5, 100, id)[2];
-		local searchValid = not EID:BoCSGetSearchEnabled() or EID:BoCSCheckItemName(itemName, englishName)
-		if (searchValid) then
-			-- If we aren't Tainted Cain, we should filter out recipes that don't use everything in our bag
-			for _, v in ipairs(currentRecipesList[id]) do
-				if (tcain or EID:bagContainsCount(v[1]) == #bagItems) then
-					table.insert(filteredRecipesList[id], v)
-					filteredNumResults = filteredNumResults + 1
-				end
+		for _,id in ipairs(sortedIDs) do
+			local searchValid = #currentRecipesList[id] > 0 and (not EID:BoCSGetSearchEnabled() or EID:BoCSCheckItemName(EID:getDescriptionData(5, 100, id)[2]))
+			if (searchValid) then table.insert(IDsToCheck, id) end
+		end
+		-- Nothing in our recipe list passed the test; try checking English names as a backup
+		if #IDsToCheck == 0 then
+			for _,id in ipairs(sortedIDs) do
+				local searchValid = not EID:BoCSGetSearchEnabled() or EID:BoCSCheckItemName(EID:getDescriptionDataEnglish(5, 100, id)[2])
+				if (searchValid) then table.insert(IDsToCheck, id) end
+			end
+		end
+	else IDsToCheck = sortedIDs end
+	
+	for _,id in ipairs(IDsToCheck) do
+		filteredRecipesList[id] = {}
+		-- If we aren't Tainted Cain, we should filter out recipes that don't use everything in our bag
+		for _, v in ipairs(currentRecipesList[id]) do
+			if (tcain or EID:bagContainsCount(v[1]) == #bagItems) then
+				table.insert(filteredRecipesList[id], v)
+				filteredNumResults = filteredNumResults + 1
 			end
 		end
 	end
@@ -1233,14 +1338,14 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	-- Keeping the offset doesn't work at all with non-Tainted-Cain bag-filtered results;
 	-- just reset us to 0 if we end up past the end of the list for now...
 	if (bagOfCraftingOffset >= filteredNumResults) then bagOfCraftingOffset = 0 end
-
+	
 	--filteredRecipesList is a table of tables for each item, so we have to iterate over the table using sortedIDs
 	if (bagOfCraftingOffset > 0) then
-		prevDesc = prevDesc .. prefix .. "...+"..bagOfCraftingOffset.." more"
+		prevDesc = prevDesc .. prefix .. moreDesc:gsub("{1}", bagOfCraftingOffset)
 	end
 	local curOffset = 0
 	refreshPosition = -1
-	for _,id in ipairs(sortedIDs) do
+	for _,id in ipairs(IDsToCheck) do
 		if (curOffset + #filteredRecipesList[id] <= bagOfCraftingOffset) then curOffset = curOffset + #filteredRecipesList[id]
 		else
 			if (refreshPosition == -1) then refreshPosition = id end
@@ -1257,9 +1362,8 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 					--only display the item name if it's the first occurrence
 					else
 						if prevItem ~= v[2] then
-							--substring the first 18 characters of the item name so it fits on one line; is there a way to get around desc line length limits?
 							prevDesc = prevDesc .."#{{Collectible"..v[2].."}} ".. qualities[CraftingItemQualities[v[2]]] ..
-							string.sub(itemName,1,18).."#"
+							itemName.."{{NoLineBreak}}#"
 						else
 							prevDesc = prevDesc .."#"
 						end
@@ -1272,7 +1376,9 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		end
 	end
 	if (bagOfCraftingOffset + EID.Config["BagOfCraftingResults"] < filteredNumResults) then
-		prevDesc = prevDesc .. prefix .. "...+"..(filteredNumResults-EID.Config["BagOfCraftingResults"]-bagOfCraftingOffset).." more"
+		prevDesc = prevDesc .. prefix .. moreDesc:gsub("{1}",(filteredNumResults-EID.Config["BagOfCraftingResults"]-bagOfCraftingOffset))
+	elseif lockedResults then
+		prevDesc = prevDesc .. prefix
 	end
 
 	EID:appendToDescription(customDescObj, prevDesc)
