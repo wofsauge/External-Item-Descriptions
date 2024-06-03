@@ -3,7 +3,7 @@ local game = Game()
 require("eid_bagofcrafting_search")
 
 --these aren't local so that they can be saved and reloaded, or cleared in the Mod Config Menu
-EID.BoC = {}
+-- EID.BoC is defined in eid_data.lua
 EID.BoC.CurrentPickupCount = -1
 EID.BoC.BagItems = {}
 EID.BoC.BagItemsOverride = nil
@@ -17,179 +17,10 @@ EID.BoC.LearnedRecipes = {} --These are recipes that we've learned during this r
 
 EID.RefreshBagTextbox = false
 
-local pickupValues = {
-  0x00000000, -- 0 None
-  -- Hearts
-  0x00000001, -- 1 Red Heart
-  0x00000004, -- 2 Soul Heart
-  0x00000005, -- 3 Black Heart
-  0x00000005, -- 4 Eternal Heart
-  0x00000005, -- 5 Gold Heart
-  0x00000005, -- 6 Bone Heart
-  0x00000001, -- 7 Rotten Heart
-  -- Pennies
-  0x00000001, -- 8 Penny
-  0x00000003, -- 9 Nickel
-  0x00000005, -- 10 Dime
-  0x00000008, -- 11 Lucky Penny
-  -- Keys
-  0x00000002, -- 12 Key
-  0x00000007, -- 13 Golden Key
-  0x00000005, -- 14 Charged Key
-  -- Bombs
-  0x00000002, -- 15 Bomb
-  0x00000007, -- 16 Golden Bomb
-  0x0000000a, -- 17 Giga Bomb
-  -- Batteries
-  0x00000002, -- 18 Micro Battery
-  0x00000004, -- 19 Lil' Battery
-  0x00000008, -- 20 Mega Battery
-  -- Usables
-  0x00000002, -- 21 Card
-  0x00000002, -- 22 Pill
-  0x00000004, -- 23 Rune
-  0x00000004, -- 24 Dice Shard
-  0x00000002, -- 25 Cracked Key
-  -- Added in Update
-  0x00000007, -- 26 Golden Penny
-  0x00000007, -- 27 Golden Pill
-  0x00000007, -- 28 Golden Battery
-  0x00000000, -- 29 Tainted ??? Poop
-
-  0x00000001,
-}
-local pickupIDLookup = {
-	["10.1"] = {1}, -- Red heart
-	["10.2"] = {1}, -- half heart
-	["10.3"] = {2}, -- soul heart
-	["10.4"] = {4}, -- eternal heart
-	["10.5"] = {1, 1}, -- double heart
-	["10.6"] = {3}, -- black heart
-	["10.7"] = {5}, -- gold heart
-	["10.8"] = {2}, -- half soul heart
-	["10.9"] = {1}, -- scared red heart
-	["10.10"] = {2, 1}, -- blended heart
-	["10.11"] = {6}, -- Bone heart
-	["10.12"] = {7}, -- Rotten heart
-	["20.1"] = {8}, -- Penny
-	["20.2"] = {9}, -- Nickel
-	["20.3"] = {10}, -- Dime
-	["20.4"] = {8, 8}, -- Double penny
-	["20.5"] = {11}, -- Lucky Penny
-	["20.6"] = {9}, -- Sticky Nickel
-	["20.7"] = {26}, -- Golden Penny
-	["30.1"] = {12}, -- Key
-	["30.2"] = {13}, -- golden Key
-	["30.3"] = {12,12}, -- Key Ring
-	["30.4"] = {14}, -- charged Key
-	["40.1"] = {15}, -- bomb
-	["40.2"] = {15,15}, -- double bomb
-	["40.4"] = {16}, -- golden bomb
-	["40.7"] = {17}, -- giga bomb
-	["42.0"] = {29}, -- poop nugget
-	["42.1"] = {29}, -- big poop nugget
-	["70.14"] = {27}, -- golden pill
-	["70.2062"] = {27}, -- golden horse pill
-	["90.1"] = {19}, -- Lil Battery
-	["90.2"] = {18}, -- Micro Battery
-	["90.3"] = {20}, -- Mega Battery
-	["90.4"] = {28}, -- Golden Battery
-	["300.49"] = {24}, -- Dice shard
-	["300.50"] = {21}, -- Emergency Contact
-	["300.78"] = {25}, -- Cracked key
-}
-
-local function IsTaintedCain()
-	-- this check is necessary for tracking Bag usage since Tainted Cain's pocket bag works differently than everyone else's
-	return EID.bagPlayer:GetPlayerType() == 23
-end
-
-local componentShifts = {
-	{0x00000001, 0x00000005, 0x00000010},
-	{0x00000001, 0x00000005, 0x00000013},
-	{0x00000001, 0x00000009, 0x0000001D},
-	{0x00000001, 0x0000000B, 0x00000006},
-	{0x00000001, 0x0000000B, 0x00000010},
-	{0x00000001, 0x00000013, 0x00000003},
-	{0x00000001, 0x00000015, 0x00000014},
-	{0x00000001, 0x0000001B, 0x0000001B},
-	{0x00000002, 0x00000005, 0x0000000F},
-	{0x00000002, 0x00000005, 0x00000015},
-	{0x00000002, 0x00000007, 0x00000007},
-	{0x00000002, 0x00000007, 0x00000009},
-	{0x00000002, 0x00000007, 0x00000019},
-	{0x00000002, 0x00000009, 0x0000000F},
-	{0x00000002, 0x0000000F, 0x00000011},
-	{0x00000002, 0x0000000F, 0x00000019},
-	{0x00000002, 0x00000015, 0x00000009},
-	{0x00000003, 0x00000001, 0x0000000E},
-	{0x00000003, 0x00000003, 0x0000001A},
-	{0x00000003, 0x00000003, 0x0000001C},
-	{0x00000003, 0x00000003, 0x0000001D},
-	{0x00000003, 0x00000005, 0x00000014},
-	{0x00000003, 0x00000005, 0x00000016},
-	{0x00000003, 0x00000005, 0x00000019},
-	{0x00000003, 0x00000007, 0x0000001D},
-	{0x00000003, 0x0000000D, 0x00000007},
-	{0x00000003, 0x00000017, 0x00000019},
-	{0x00000003, 0x00000019, 0x00000018},
-	{0x00000003, 0x0000001B, 0x0000000B},
-	{0x00000004, 0x00000003, 0x00000011},
-	{0x00000004, 0x00000003, 0x0000001B},
-	{0x00000004, 0x00000005, 0x0000000F},
-	{0x00000005, 0x00000003, 0x00000015},
-	{0x00000005, 0x00000007, 0x00000016},
-	{0x00000005, 0x00000009, 0x00000007},
-	{0x00000005, 0x00000009, 0x0000001C},
-	{0x00000005, 0x00000009, 0x0000001F},
-	{0x00000005, 0x0000000D, 0x00000006},
-	{0x00000005, 0x0000000F, 0x00000011},
-	{0x00000005, 0x00000011, 0x0000000D},
-	{0x00000005, 0x00000015, 0x0000000C},
-	{0x00000005, 0x0000001B, 0x00000008},
-	{0x00000005, 0x0000001B, 0x00000015},
-	{0x00000005, 0x0000001B, 0x00000019},
-	{0x00000005, 0x0000001B, 0x0000001C},
-	{0x00000006, 0x00000001, 0x0000000B},
-	{0x00000006, 0x00000003, 0x00000011},
-	{0x00000006, 0x00000011, 0x00000009},
-	{0x00000006, 0x00000015, 0x00000007},
-	{0x00000006, 0x00000015, 0x0000000D},
-	{0x00000007, 0x00000001, 0x00000009},
-	{0x00000007, 0x00000001, 0x00000012},
-	{0x00000007, 0x00000001, 0x00000019},
-	{0x00000007, 0x0000000D, 0x00000019},
-	{0x00000007, 0x00000011, 0x00000015},
-	{0x00000007, 0x00000019, 0x0000000C},
-	{0x00000007, 0x00000019, 0x00000014},
-	{0x00000008, 0x00000007, 0x00000017},
-	{0x00000008, 0x00000009, 0x00000017},
-	{0x00000009, 0x00000005, 0x0000000E},
-	{0x00000009, 0x00000005, 0x00000019},
-	{0x00000009, 0x0000000B, 0x00000013},
-	{0x00000009, 0x00000015, 0x00000010},
-	{0x0000000A, 0x00000009, 0x00000015},
-	{0x0000000A, 0x00000009, 0x00000019},
-	{0x0000000B, 0x00000007, 0x0000000C},
-	{0x0000000B, 0x00000007, 0x00000010},
-	{0x0000000B, 0x00000011, 0x0000000D},
-	{0x0000000B, 0x00000015, 0x0000000D},
-	{0x0000000C, 0x00000009, 0x00000017},
-	{0x0000000D, 0x00000003, 0x00000011},
-	{0x0000000D, 0x00000003, 0x0000001B},
-	{0x0000000D, 0x00000005, 0x00000013},
-	{0x0000000D, 0x00000011, 0x0000000F},
-	{0x0000000E, 0x00000001, 0x0000000F},
-	{0x0000000E, 0x0000000D, 0x0000000F},
-	{0x0000000F, 0x00000001, 0x0000001D},
-	{0x00000011, 0x0000000F, 0x00000014},
-	{0x00000011, 0x0000000F, 0x00000017},
-	{0x00000011, 0x0000000F, 0x0000001A}
-}
-
--- The icon each item pool will use in the "Item Probability" display
-local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
-[5]="{{SecretRoom}}",[7]="{{PoopRoomIcon}}",[8]="{{GoldenChestRoomIcon}}",[9]="{{RedChestRoomIcon}}",[12]="{{CursedRoom}}",[26]="{{Planetarium}}" }
+-- The id of the itempools the bag of crafting is using
+local bagOfCraftingPoolIDs = { 0, 1, 2, 3, 4, 5, 7, 8, 9, 12, 26 } -- Treasure, Shop, Boss, Devil, Angel, Secret, Shell game, Golden chest, Red Chest, Cursed room, Planetarium
+-- Color used for item qualities
+local qualities = { [0] = "{{ColorSilver}}", "{{ColorLime}}", "{{ColorPastelBlue}}", "{{ColorLavender}}", "{{ColorLightOrange}}" }
 
 -- local copies of our XML data in case it's slightly faster
 local CraftingMaxItemID = EID.XMLMaxItemID
@@ -212,6 +43,11 @@ local lastItemStatus = { [133] = true, [56] = true, [672] = true }
 
 --A list of item IDs, sorted by quality, then by name, to help with sorting our recipe list faster
 local sortedIDs = {}
+
+local function IsTaintedCain()
+	-- this check is necessary for tracking Bag usage since Tainted Cain's pocket bag works differently than everyone else's
+	return EID.bagPlayer:GetPlayerType() == 23
+end
 
 local function sortAllItems()
 	sortedIDs = {}
@@ -256,7 +92,7 @@ end
 
 -- Convert a pickup's ID into what ingredient it counts as
 function EID:getBagOfCraftingID(Variant, SubType)
-	local entry = pickupIDLookup[Variant.."."..SubType]
+	local entry = EID.BoC.PickupIDLookup[Variant.."."..SubType]
 	if entry ~= nil then
 		return entry
 	elseif Variant == 300 then
@@ -282,13 +118,13 @@ function EID:simulateBagOfCrafting(componentsTable)
 	local components = componentsTable
 	local compTotalWeight = 0
 	local compCounts = {}
-	for i = 1, #componentShifts do
+	for i = 1, #EID.BoC.ComponentShifts do
 		compCounts[i] = 0
 	end
 	for _, compId in ipairs(components) do
 		if (_ > 8) then break end
 		compCounts[compId + 1] = compCounts[compId + 1] + 1
-		compTotalWeight = compTotalWeight + pickupValues[compId + 1]
+		compTotalWeight = compTotalWeight + EID.BoC.PickupValues[compId + 1]
 	end
 
 	local poolWeights = {
@@ -358,7 +194,7 @@ function EID:simulateBagOfCrafting(componentsTable)
 		if (v.totalWeight > 0) then
 			--line break after boss pool
 			if (firstAfterBoss) then poolString = poolString .. " " end
-			poolString = poolString .. poolToIcon[v.idx] .. ":" .. math.floor(v.totalWeight/totalWeight*100+0.5) .. "%,"
+			poolString = poolString .. EID.ItemPoolTypeToMarkup[v.idx] .. ":" .. math.floor(v.totalWeight/totalWeight*100+0.5) .. "%,"
 			firstAfterBoss = (k == 3)
 		end
 	end
@@ -411,16 +247,16 @@ function EID:calculateBagOfCrafting(componentsTable)
 	customRNGSeed = lastSeedUsed
 	local compTotalWeight = 0
 	local compCounts = {}
-	for i = 1, #componentShifts do
+	for i = 1, #EID.BoC.ComponentShifts do
 		compCounts[i] = 0
 	end
 	for _, compId in ipairs(components) do
 		compCounts[compId + 1] = compCounts[compId + 1] + 1
-		compTotalWeight = compTotalWeight + pickupValues[compId + 1]
-		customRNGShift = componentShifts[compId + 1]
+		compTotalWeight = compTotalWeight + EID.BoC.PickupValues[compId + 1]
+		customRNGShift = EID.BoC.ComponentShifts[compId + 1]
 		RNGNext()
 	end
-	customRNGShift = componentShifts[7]
+	customRNGShift = EID.BoC.ComponentShifts[7]
 
 	local poolWeights = {
 		{idx = 0, weight = 1},
@@ -517,6 +353,7 @@ local function calcHeldItems()
 		end
 	end
 end
+
 local function calcFloorItems()
 	EID.BoC.FloorQuery = {}
 	for _,roomQuery in pairs(EID.BoC.RoomQueries) do
@@ -525,11 +362,12 @@ local function calcFloorItems()
 		end
 	end
 end
+
 local function qualitySort(a, b)
-	if (pickupValues[a+1] == pickupValues[b+1]) then
+	if (EID.BoC.PickupValues[a+1] == EID.BoC.PickupValues[b+1]) then
 		return a > b
 	else
-		return pickupValues[a+1] > pickupValues[b+1]
+		return EID.BoC.PickupValues[a+1] > EID.BoC.PickupValues[b+1]
 	end
 end
 
@@ -558,7 +396,7 @@ local function GameStartCrafting()
 		end
 		-- Redo the entire item pool table, not just add modded items, in case of mods messing the vanilla ones up
 		local itemPool = game:GetItemPool()
-		for poolNum,_ in pairs(poolToIcon) do
+		for _, poolNum in ipairs(bagOfCraftingPoolIDs) do
 			CraftingItemPools[poolNum+1] = {}
 			local thePool = itemPool:GetCollectiblesFromPool(poolNum)
 			for _,collTable in pairs(thePool) do
@@ -725,10 +563,6 @@ for key,num in pairs(Keyboard) do
 	keyString = string.gsub(keyString, "_", " ")
 	HotkeyToString[num] = keyString
 end
---convert controller enum to buttons
-local ControllerToString = { [0] = "{{ButtonDLeft}}", "{{ButtonDRight}}", "{{ButtonDUp}}", "{{ButtonDDown}}",
-"{{ButtonA}}", "{{ButtonB}}", "{{ButtonX}}", "{{ButtonY}}", "{{ButtonLB}}", "{{ButtonLT}}", "{{ButtonLStick}}",
-"{{ButtonRB}}", "{{ButtonRT}}", "{{ButtonRStick}}", "{{ButtonSelect}}", "{{ButtonMenu}}" }
 
 local function getHotkeyString()
 	if (not EID.Config["BagOfCraftingShowControls"]) then return "" end
@@ -738,9 +572,9 @@ local function getHotkeyString()
 
 	local controllerEnabled = EID.bagPlayer.ControllerIndex > 0
 	local hideKey = HotkeyToString[EID.Config["CraftingHideKey"]]
-	local hideButton = controllerEnabled and ControllerToString[EID.Config["CraftingHideButton"]]
+	local hideButton = controllerEnabled and EID.ButtonToIconMap[EID.Config["CraftingHideButton"]]
 	local previewKey = HotkeyToString[EID.Config["CraftingResultKey"]]
-	local previewButton = controllerEnabled and ControllerToString[EID.Config["CraftingResultButton"]]
+	local previewButton = controllerEnabled and EID.ButtonToIconMap[EID.Config["CraftingResultButton"]]
 
 	if hideKey or hideButton then hotkeyString = hideDesc .. " " end
 	if hideKey and hideButton then
@@ -890,12 +724,12 @@ end
 local function LearnedRecipeList()
 	if not newRecipeLearned or lockedResults then return end
 	newRecipeLearned = false
-	
+
 	local sortedResults = {}
 	for _, v in ipairs(sortedIDs) do
 		sortedResults[v] = {}
 	end
-	
+
 	for ingreds, resultID in pairs(EID.BoC.LearnedRecipes) do
 		local ingredTable = {}
 		-- split the recipe by comma
@@ -1291,7 +1125,6 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 
 	local prevItem = 0
 
-	local qualities = { [0] = "{{ColorSilver}}", "{{ColorLime}}", "{{ColorPastelBlue}}", "{{ColorLavender}}", "{{ColorLightOrange}}" }
 	local prefix = "#{{Blank}} "
 	if (lockedResults) then
 		prefix = "#{{Trinket159}} "
@@ -1303,7 +1136,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	local filteredNumResults = 0
 	local tcain = IsTaintedCain()
 	
-	local IDsToCheck = { }
+	local IDsToCheck = {}
 	if EID:BoCSGetSearchEnabled() then
 		-- Filter out item names that don't match our search term
 		for _,id in ipairs(sortedIDs) do
