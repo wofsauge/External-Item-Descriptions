@@ -983,6 +983,12 @@ end
 -- returns the string as a table of lines
 function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formattedLines = {}
+	-- Lines with a {{NoLineBreak}} tag should be left in one continuous line
+	if str:find("{{NoLineBreak}}") then
+		str = str:gsub("{{NoLineBreak}}","")
+		table.insert(formattedLines,str)
+		return formattedLines
+	end
 	local curLength = 0
 	local text = {}
 	-- the first word we run into might actually be a bulletpoint icon, which should be zero width
