@@ -1172,7 +1172,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	
 	--filteredRecipesList is a table of tables for each item, so we have to iterate over the table using sortedIDs
 	if (bagOfCraftingOffset > 0) then
-		prevDesc = prevDesc .. prefix .. moreDesc:gsub("{1}", bagOfCraftingOffset)
+		prevDesc = prevDesc .. prefix .. EID:ReplaceVariableStr(moreDesc, 1, bagOfCraftingOffset)
 	end
 	local curOffset = 0
 	refreshPosition = -1
@@ -1207,7 +1207,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		end
 	end
 	if (bagOfCraftingOffset + EID.Config["BagOfCraftingResults"] < filteredNumResults) then
-		prevDesc = prevDesc .. prefix .. moreDesc:gsub("{1}",(filteredNumResults-EID.Config["BagOfCraftingResults"]-bagOfCraftingOffset))
+		prevDesc = prevDesc .. prefix .. EID:ReplaceVariableStr(moreDesc, 1, (filteredNumResults-EID.Config["BagOfCraftingResults"]-bagOfCraftingOffset))
 	elseif lockedResults then
 		prevDesc = prevDesc .. prefix
 	end

@@ -2048,3 +2048,9 @@ function EID:UpdateAllPlayerPassiveItems()
 	end
 	return listUpdatedForPlayers
 end
+
+-- Replaces Variable placeholders in string with a given value
+-- Example: "My {1} message" --> "My test message"
+function EID:ReplaceVariableStr(str, varID, newString)
+	return str:gsub("{"..varID.."}", newString)
+end

@@ -129,7 +129,7 @@ local function VoidCallback(descObj, isRune)
 			if v > 0 then
 				local statIncreaseStr = "↑ " .. voidStatIcons[i] .. " " .. voidNames[i] .. "#"
 				local replaceCount = 0
-				statIncreaseStr, replaceCount = string.gsub(statIncreaseStr, "{1}", "+" .. string.format("%.4g",v*voidStatUps[i]))
+				statIncreaseStr, replaceCount = EID:ReplaceVariableStr(statIncreaseStr, 1, "+" .. string.format("%.4g",v*voidStatUps[i]))
 				if replaceCount == 0 then statIncreaseStr = "↑ " .. voidStatIcons[i] .. " +" .. string.format("%.4g",v*voidStatUps[i]) .. " " .. voidNames[i] .. "#" end
 				EID:appendToDescription(descObj, statIncreaseStr)
 			end
@@ -284,8 +284,8 @@ local function BlackFeatherCallback(descObj)
 	local dmgColor = (hasBox or isGolden) and "ColorGold" or "ColorLime"
 
 	local description = EID:getDescriptionEntry("BlackFeatherInformation")
-	description, _ = string.gsub(description, "{1}", tostring(itemCounter))
-	description, _ = string.gsub(description, "{2}", "{{"..dmgColor.."}}"..damageMultiplied.."{{CR}}")
+	description, _ = EID:ReplaceVariableStr(description, 1, tostring(itemCounter))
+	description, _ =  EID:ReplaceVariableStr(description, 2, "{{"..dmgColor.."}}"..damageMultiplied.."{{CR}}")
 
 	EID:appendToDescription(descObj, "# "..description)
 	return descObj
@@ -441,7 +441,7 @@ if EID.isRepentance then
 			for i,v in ipairs(statsToDisplay) do
 				local statIncreaseStr = "↑ " .. voidStatIcons[v] .. " " .. voidNames[v]
 				local replaceCount = 0
-				statIncreaseStr, replaceCount = string.gsub(statIncreaseStr, "{1}", "+" .. string.format("%.4g",voidStatUps[v]))
+				statIncreaseStr, replaceCount = EID:ReplaceVariableStr(statIncreaseStr, 1, "+" .. string.format("%.4g",voidStatUps[v]))
 				if replaceCount == 0 then statIncreaseStr = "↑ " .. voidStatIcons[v] .. " +" .. string.format("%.4g",voidStatUps[v]) .. " " .. voidNames[v] end
 				newStr = newStr .. statIncreaseStr
 				if #statsToDisplay > 1 then newStr = newStr .. "?" end
@@ -506,7 +506,7 @@ if EID.isRepentance then
 			end
 		end
 		if hasCarBattery then
-			EID:appendToDescription(descObj, " " .. EID:getDescriptionEntry("ResultsWithX"):gsub("{1}", "{{Collectible356}}"))
+			EID:appendToDescription(descObj, " " .. EID:ReplaceVariableStr(EID:getDescriptionEntry("ResultsWithX"), 1, "{{Collectible356}}"))
 		end
 		if firstID ~= 0 and EID.TabPreviewID == 0 then
 			EID.TabPreviewID = firstID

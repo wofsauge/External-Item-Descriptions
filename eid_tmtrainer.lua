@@ -89,7 +89,7 @@ function EID:CheckGlitchedItemConfig(id)
 				local s = string.format("%.4g",val)
 				local prefix = "↑ "
 				if val > 0 then s = "+" .. s else prefix = "↓ " end
-				attributes = attributes .. prefix .. string.gsub(localizedNames[v] or localizedNamesEnglish[v], "{1}", s)
+				attributes = attributes .. prefix .. EID:ReplaceVariableStr(localizedNames[v] or localizedNamesEnglish[v], 1, s)
 				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] or localizedNamesEnglish["pluralize"] end
 				attributes = attributes .. "#"
 			end
@@ -126,7 +126,7 @@ function EID:CheckGlitchedItemConfig(id)
 				local s = string.format("%.2g",SimpleRound(val))
 				local prefix = "↑ "
 				if val > 0 then s = "+" .. s else prefix = "↓ " end
-				attributes = attributes .. prefix .. string.gsub(voidNames[i], "{1}", s) .. "#"
+				attributes = attributes .. prefix .. EID:ReplaceVariableStr(voidNames[i], 1, s) .. "#"
 			end
 		end
 		
@@ -173,8 +173,8 @@ function EID:CheckGlitchedItemConfig(id)
 				attributes = attributes .. "#"
 			end
 			attributes = attributes .. localizedNames[effectType] or localizedNamesEnglish[effectType] .. "#"
-			for k,v in ipairs(triggerReplacements) do attributes = string.gsub(attributes, "{T" .. k .. "}", v) end
-			for k,v in ipairs(replacements) do attributes = string.gsub(attributes, "{" .. k .. "}", v) end
+			for k,v in ipairs(triggerReplacements) do attributes = EID:ReplaceVariableStr(attributes, "T" .. k, v) end
+			for k,v in ipairs(replacements) do attributes = EID:ReplaceVariableStr(attributes, k, v) end
 
 			if effectTrigger ~= "chain" then lastEffectTrigger = effectTrigger end
 		end
