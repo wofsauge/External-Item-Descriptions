@@ -1307,15 +1307,18 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	if EID:BoCSGetSearchEnabled() then
 		-- Filter out item names that don't match our search term
 		for _,id in ipairs(sortedIDs) do
-			local searchValid = #currentRecipesList[id] > 0 and (not EID:BoCSGetSearchEnabled() or EID:BoCSCheckItemName(EID:getDescriptionData(5, 100, id)[2]))
+			local searchValid = #currentRecipesList[id] > 0 and EID:BoCSCheckItemName(EID:getObjectName(5, 100, id))
 			if (searchValid) then table.insert(IDsToCheck, id) end
 		end
 		-- Nothing in our recipe list passed the test; try checking English names as a backup
 		if #IDsToCheck == 0 then
+			local curLang = EID:getLanguage()
+			EID.Config["Language"] = "en_us"
 			for _,id in ipairs(sortedIDs) do
-				local searchValid = not EID:BoCSGetSearchEnabled() or EID:BoCSCheckItemName(EID:getDescriptionDataEnglish(5, 100, id)[2])
+				local searchValid = EID:BoCSCheckItemName(EID:getObjectName(5, 100, id))
 				if (searchValid) then table.insert(IDsToCheck, id) end
 			end
+			EID.Config["Language"] = curLang
 		end
 	else IDsToCheck = sortedIDs end
 	

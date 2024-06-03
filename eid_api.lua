@@ -491,6 +491,7 @@ function EID:getDescriptionEntry(objTable, objID, noFallback)
 		else return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]) end
 	end
 end
+
 function EID:getDescriptionEntryEnglish(objTable, objID)
 	if not objID then
 		return EID.descriptions["en_us"][objTable]
@@ -508,16 +509,6 @@ function EID:getDescriptionData(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, adjustedID)
 	local defaultDesc = EID:getDescriptionEntry(tableName, adjustedID)
-
-	return moddedDesc or legacyModdedDescription or defaultDesc
-end
-function EID:getDescriptionDataEnglish(Type, Variant, SubType)
-	local fullString = Type.."."..Variant
-	local adjustedID = EID:getAdjustedSubtype(Type, Variant, SubType)
-	local moddedDesc = EID:getDescriptionEntryEnglish("custom", fullString.."."..adjustedID)
-	local tableName = EID:getTableName(Type, Variant, SubType)
-	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, adjustedID)
-	local defaultDesc = EID:getDescriptionEntryEnglish(tableName, adjustedID)
 
 	return moddedDesc or legacyModdedDescription or defaultDesc
 end
