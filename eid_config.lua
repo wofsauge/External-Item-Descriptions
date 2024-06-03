@@ -417,7 +417,7 @@ EID.UserConfig = {
 	["CraftingHideButton"] = -1,
 	-- Set the keybinding to toggle viewing the description of the item ready to be crafted in the bag
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
-	-- Default = Keyboard.KEY_F3
+	-- Default = Keyboard.KEY_F4
 	["CraftingResultKey"] = Keyboard.KEY_F4,
 	-- Set the controller binding to toggle viewing the description of the item ready to be crafted in the bag
 	-- Use the controller names here: https://github.com/wofsauge/External-Item-Descriptions/blob/master/mod_config_menu.lua#L1 or a number

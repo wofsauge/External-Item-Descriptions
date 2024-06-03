@@ -1682,6 +1682,7 @@ local json = require("json")
 local configIgnoreList = {
 	["BagContent"] = true,
 	["BagFloorContent"] = true,
+	["LearnedRecipes"] = true,
 	["CraneItemType"] = true,
 	["FlipItemPositions"] = true,
 	["AbsorbedItems"] = true,

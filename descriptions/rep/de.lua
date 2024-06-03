@@ -1159,7 +1159,6 @@ EID.descriptions[languageCode].CraftingBestQuality = "Beste Qualität:"
 
 EID.descriptions[languageCode].CraftingHideKey = "Verstecken:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Vorschau:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "{{Warning}} Wenn dieser Gegenstand gesperrt ist, wird er zu"
 
 EID.descriptions[languageCode].CraftingResults = "(Scrollen: Halte {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Sperren: {{ButtonX}}, Aktualisieren: {{ButtonB}}, Tasche zurücksetzen: Halte {{ButtonRB}})"
 

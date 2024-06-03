@@ -15,6 +15,17 @@ EID.ButtonToIconMap = {
 	[ButtonAction.ACTION_PAUSE] = "{{ButtonMenu}}",
 }
 
+EID.KeyboardToString = {}
+--code from InputHelper in MCM
+for key, num in pairs(Keyboard) do
+	local keyString = key
+	local _, keyEnd = string.find(keyString, "KEY_")
+	keyString = string.sub(keyString, keyEnd + 1, string.len(keyString))
+	keyString = string.gsub(keyString, "_", " ")
+	EID.KeyboardToString[num] = keyString
+end
+
+
 -- List of Effect variants that should be handled for descriptions
 EID.effectList = {
 	["76"] = true,

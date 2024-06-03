@@ -1158,9 +1158,13 @@ EID.descriptions[languageCode].CraftingBestQuality = "Best Quality:"
 
 EID.descriptions[languageCode].CraftingHideKey = "Hide:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Preview:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "{{Warning}} If this item's locked, it will turn into"
 -- {1} will be converted to the number of recipes
 EID.descriptions[languageCode].CraftingMore = "...+{1} more"
+-- {1} will be converted into the number of available items
+EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} of 8 items available"
+EID.descriptions[languageCode].CraftingWarningAvailableItems = "Needs at least 8 to show crafting recipes!"
+-- {1} will be converted into the name of the key that toggles the BoC visibility
+EID.descriptions[languageCode].CraftingIsHidden = "Currently Hidden (Unhide with {1})"
 
 EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}}, Search: {{ButtonEnter}})"
 

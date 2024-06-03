@@ -1281,7 +1281,6 @@ EID.descriptions[languageCode].CraftingBestQuality = "최고등급:"
 
 EID.descriptions[languageCode].CraftingHideKey = "숨기기:"
 EID.descriptions[languageCode].CraftingPreviewKey = "미리보기:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 해금되어 있지 않을 경우 결과가 달라질 수 있습니다."
 
 EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}}+{{ButtonY}}or{{ButtonA}}#목록 고정:{{ButtonX}}#목록 새로고침:{{ButtonB}}#초기화:{{ButtonRB}}꾹 누르기, 찾기:{{ButtonEnter}})"
 

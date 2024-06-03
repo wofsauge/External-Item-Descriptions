@@ -554,15 +554,6 @@ local function combinations(arr, length, startPos, tempResult, randResults, newR
 		combinations(arr,length-1, i+1, tempResult, randResults, newResults)
 	end
 end
---code from InputHelper in MCM
-local HotkeyToString = {}
-for key,num in pairs(Keyboard) do
-	local keyString = key
-	local keyStart, keyEnd = string.find(keyString, "KEY_")
-	keyString = string.sub(keyString, keyEnd+1, string.len(keyString))
-	keyString = string.gsub(keyString, "_", " ")
-	HotkeyToString[num] = keyString
-end
 
 local function getHotkeyString()
 	if (not EID.Config["BagOfCraftingShowControls"]) then return "" end
@@ -571,9 +562,9 @@ local function getHotkeyString()
 	local previewDesc = EID:getDescriptionEntry("CraftingPreviewKey")
 
 	local controllerEnabled = EID.bagPlayer.ControllerIndex > 0
-	local hideKey = HotkeyToString[EID.Config["CraftingHideKey"]]
+	local hideKey = EID.KeyboardToString[EID.Config["CraftingHideKey"]]
 	local hideButton = controllerEnabled and EID.ButtonToIconMap[EID.Config["CraftingHideButton"]]
-	local previewKey = HotkeyToString[EID.Config["CraftingResultKey"]]
+	local previewKey = EID.KeyboardToString[EID.Config["CraftingResultKey"]]
 	local previewButton = controllerEnabled and EID.ButtonToIconMap[EID.Config["CraftingResultButton"]]
 
 	if hideKey or hideButton then hotkeyString = hideDesc .. " " end
@@ -592,7 +583,7 @@ local function getHotkeyString()
 		end
 	end
 	if hotkeyString ~= "" then
-		hotkeyString = "!!! " .. hotkeyString .. "#"
+		hotkeyString = "!!! {{NoLineBreak}}" .. hotkeyString .. "#"
 	end
 
 	return hotkeyString
