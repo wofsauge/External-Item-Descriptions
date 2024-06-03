@@ -1735,12 +1735,14 @@ function EID:OnGameStart(isSave)
 
 		if EID.isRepentance then
 			EID.BoC.BagItems = {}
+			EID.BoC.LearnedRecipes = {}
 			EID.CraneItemType = {}
 			EID.flipItemPositions = {}
 			EID.absorbedItems = {}
 
 			if isSave then
 				EID.BoC.BagItems = savedEIDConfig["BagContent"] or {}
+				EID.BoC.LearnedRecipes = savedEIDConfig["BagLearnedRecipes"] or {}
 				EID.BoC.RoomQueries = savedEIDConfig["BagFloorContent"] or {}
 				EID.CraneItemType = savedEIDConfig["CraneItemType"] or {}
 				EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
@@ -1799,6 +1801,7 @@ EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, EID.OnGameStart)
 function EID:OnGameExit()
 	if EID.isRepentance then
 		EID.Config["BagContent"] = EID.BoC.BagItems or {}
+		EID.Config["BagLearnedRecipes"] = EID.BoC.LearnedRecipes or {}
 		EID.Config["BagFloorContent"] = EID.BoC.RoomQueries or {}
 		EID.Config["CraneItemType"] = EID.CraneItemType or {}
 		EID.Config["AbsorbedItems"] = EID.absorbedItems or {}

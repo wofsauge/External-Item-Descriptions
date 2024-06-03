@@ -13,6 +13,7 @@ EID.BoC.InventoryQuery = {}
 EID.BoC.InventoryOverride = nil -- Override items the player has in its inventory (Cards, pills, etc.)
 EID.BoC.FloorQuery = {}
 EID.BoC.FloorOverride = nil -- Override total items displayed to be as floor content
+EID.BoC.LearnedRecipes = {} --These are recipes that we've learned during this run
 
 EID.RefreshBagTextbox = false
 
@@ -200,9 +201,7 @@ local CraftingItemAllowed = {}
 
 --These are recipes that have already been calculated, plus the contents of recipes.xml
 local calculatedRecipes = {}
---These are recipes that we've learned during this run
-local learnedRecipes = {}
-local newRecipeLearned = false
+local newRecipeLearned = true -- set to true to reevaluate learned recipe list
 --If the seed changes, the above two tables will be wiped
 local lastSeedUsed = 0
 -- Test a few specific items' availability for if we should wipe our cached recipes due to availability change
@@ -377,14 +376,14 @@ end
 
 -- "Learned Recipes" MODE: Save the result of the 8 items inside our bag
 function EID:learnBagOfCrafting(componentsTable)	
-	-- ingredients must be sorted by ID to store in learnedRecipes
+	-- ingredients must be sorted by ID to store in EID.BoC.LearnedRecipes
 	local components = {table.unpack(componentsTable)}
 	table.sort(components)
 	local componentsAsString = table.concat(components, ",")
 	
 	local recipe = REPENTOGON and EID.bagPlayer:GetBagOfCraftingOutput() or EID:calculateBagOfCrafting(componentsTable)
-	if (learnedRecipes[componentsAsString] ~= recipe) then newRecipeLearned = true end
-	learnedRecipes[componentsAsString] = recipe;
+	if (EID.BoC.LearnedRecipes[componentsAsString] ~= recipe) then newRecipeLearned = true end
+	EID.BoC.LearnedRecipes[componentsAsString] = recipe;
 end
 
 -- The main function that takes 8 ingredients and tells you what collectible you will get in return
@@ -543,6 +542,9 @@ local function GameStartCrafting()
 			CraftingItemAllowed[item.ID] = EID:isCollectibleAllowed(item.ID)
 		end
 	end
+
+	newRecipeLearned = true
+
 	-- Use REPENTOGON to support modded items / updating the XML item pools
 	if REPENTOGON and not moddedCrafting then
 		-- Add modded items
@@ -894,8 +896,8 @@ local function LearnedRecipeList()
 		sortedResults[v] = {}
 	end
 	
-	for ingreds, resultID in pairs(learnedRecipes) do
-		ingredTable = {}
+	for ingreds, resultID in pairs(EID.BoC.LearnedRecipes) do
+		local ingredTable = {}
 		-- split the recipe by comma
 		for i in string.gmatch(ingreds, "[^,]+") do table.insert(ingredTable, tonumber(i)) end
 		table.insert(sortedResults[resultID], {ingredTable, resultID})
@@ -979,13 +981,6 @@ function EID:handleBagOfCraftingUpdating()
 	end
 	if (curSeed ~= lastSeedUsed or updatedItemAvailability) then
 		calculatedRecipes = {}
-		-- Don't reset learned recipes on item availability change
-		-- They'll be recalculated on bag-full if missing from calculatedRecipes
-		if curSeed ~= lastSeedUsed then
-			learnedRecipes = {}
-			-- for k,v in pairs(CraftingFixedRecipes) do learnedRecipes[k] = v end
-			newRecipeLearned = true
-		end
 		calcResultCache = {}
 		randResultCache = {}
 		EID.itemAvailableStates = {}
