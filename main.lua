@@ -108,14 +108,14 @@ end
 table.sort(EID.Languages)
 
 pcall(require,"scripts.eid_savegames")
-require("eid_mcm")
-require("eid_data")
-require("eid_xmldata")
-require("eid_api")
-require("eid_conditionals")
-require("eid_modifiers")
-require("eid_holdmapdesc")
-require("eid_itemprediction")
+require("features.eid_mcm")
+require("features.eid_data")
+require("features.eid_xmldata")
+require("features.eid_api")
+require("features.eid_conditionals")
+require("features.eid_modifiers")
+require("features.eid_holdmapdesc")
+require("features.eid_itemprediction")
 
 -- load Repentence descriptions
 if EID.isRepentance then
@@ -127,8 +127,8 @@ if EID.isRepentance then
 		end
 	end
 	local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
-	require("eid_bagofcrafting")
-	require("eid_tmtrainer")
+	require("features.eid_bagofcrafting")
+	require("features.eid_tmtrainer")
 end
 
 EID.LastRenderCallColor = EID:getTextColor()
@@ -1831,11 +1831,11 @@ end
 EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, EID.OnGameExit)
 
 if EID.enableDebug then
-	require("eid_debugging")
+	require("features.eid_debugging")
 end
 
 -- load repentogon stuff last to allow overrides of functions
-require("eid_repentogon")
+require("features.eid_repentogon")
 
 Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 Isaac.DebugString("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")

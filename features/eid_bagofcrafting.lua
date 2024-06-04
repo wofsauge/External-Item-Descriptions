@@ -1,6 +1,6 @@
 local game = Game()
 
-require("eid_bagofcrafting_search")
+require("features.eid_bagofcrafting_search")
 
 --these aren't local so that they can be saved and reloaded, or cleared in the Mod Config Menu
 -- EID.BoC is defined in eid_data.lua
@@ -371,7 +371,6 @@ local function qualitySort(a, b)
 	end
 end
 
-local moddedCrafting = false
 local function GameStartCrafting()
 	for i=1, EID.XMLMaxItemID do
 		local item = EID.itemConfig:GetCollectible(i)
@@ -384,7 +383,7 @@ local function GameStartCrafting()
 	newRecipeLearned = true
 
 	-- Use REPENTOGON to support modded items / updating the XML item pools
-	if REPENTOGON and not moddedCrafting then
+	if REPENTOGON then
 		-- Add modded items
 		CraftingMaxItemID = EID.XMLMaxItemID
 		local coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
@@ -404,7 +403,6 @@ local function GameStartCrafting()
 			end
 		end
 		EID.BoC.SortNeeded = true
-		moddedCrafting = true
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, GameStartCrafting)
