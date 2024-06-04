@@ -108,14 +108,14 @@ end
 table.sort(EID.Languages)
 
 pcall(require,"scripts.eid_savegames")
-require("eid_mcm")
-require("eid_data")
-require("eid_xmldata")
-require("eid_api")
-require("eid_conditionals")
-require("eid_modifiers")
-require("eid_holdmapdesc")
-require("eid_itemprediction")
+require("features.eid_mcm")
+require("features.eid_data")
+require("features.eid_xmldata")
+require("features.eid_api")
+require("features.eid_conditionals")
+require("features.eid_modifiers")
+require("features.eid_holdmapdesc")
+require("features.eid_itemprediction")
 
 -- load Repentence descriptions
 if EID.isRepentance then
@@ -127,8 +127,8 @@ if EID.isRepentance then
 		end
 	end
 	local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
-	require("eid_bagofcrafting")
-	require("eid_tmtrainer")
+	require("features.eid_bagofcrafting")
+	require("features.eid_tmtrainer")
 end
 
 EID.LastRenderCallColor = EID:getTextColor()
@@ -1682,6 +1682,7 @@ local json = require("json")
 local configIgnoreList = {
 	["BagContent"] = true,
 	["BagFloorContent"] = true,
+	["LearnedRecipes"] = true,
 	["CraneItemType"] = true,
 	["FlipItemPositions"] = true,
 	["AbsorbedItems"] = true,
@@ -1735,12 +1736,14 @@ function EID:OnGameStart(isSave)
 
 		if EID.isRepentance then
 			EID.BoC.BagItems = {}
+			EID.BoC.LearnedRecipes = {}
 			EID.CraneItemType = {}
 			EID.flipItemPositions = {}
 			EID.absorbedItems = {}
 
 			if isSave then
 				EID.BoC.BagItems = savedEIDConfig["BagContent"] or {}
+				EID.BoC.LearnedRecipes = savedEIDConfig["BagLearnedRecipes"] or {}
 				EID.BoC.RoomQueries = savedEIDConfig["BagFloorContent"] or {}
 				EID.CraneItemType = savedEIDConfig["CraneItemType"] or {}
 				EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
@@ -1799,6 +1802,7 @@ EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, EID.OnGameStart)
 function EID:OnGameExit()
 	if EID.isRepentance then
 		EID.Config["BagContent"] = EID.BoC.BagItems or {}
+		EID.Config["BagLearnedRecipes"] = EID.BoC.LearnedRecipes or {}
 		EID.Config["BagFloorContent"] = EID.BoC.RoomQueries or {}
 		EID.Config["CraneItemType"] = EID.CraneItemType or {}
 		EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
@@ -1827,11 +1831,11 @@ end
 EID:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, EID.OnGameExit)
 
 if EID.enableDebug then
-	require("eid_debugging")
+	require("features.eid_debugging")
 end
 
 -- load repentogon stuff last to allow overrides of functions
-require("eid_repentogon")
+require("features.eid_repentogon")
 
 Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 Isaac.DebugString("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")

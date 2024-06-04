@@ -491,6 +491,7 @@ function EID:getDescriptionEntry(objTable, objID, noFallback)
 		else return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]) end
 	end
 end
+
 function EID:getDescriptionEntryEnglish(objTable, objID)
 	if not objID then
 		return EID.descriptions["en_us"][objTable]
@@ -651,6 +652,7 @@ function EID:getXMLDescription(Type, Variant, SubType)
 end
 
 -- check if an entity is part of the describable entities
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:hasDescription(entity)
 	if not EID:EntitySanityCheck(entity) then return false end
 	
@@ -973,6 +975,12 @@ end
 -- returns the string as a table of lines
 function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formattedLines = {}
+	-- Lines with a {{NoLineBreak}} tag should be left in one continuous line
+	if str:find("{{NoLineBreak}}") then
+		str = str:gsub("{{NoLineBreak}}","")
+		table.insert(formattedLines,str)
+		return formattedLines
+	end
 	local curLength = 0
 	local text = {}
 	-- the first word we run into might actually be a bulletpoint icon, which should be zero width
@@ -1271,6 +1279,7 @@ function EID:isCollectibleAllowed(collectibleID)
 end
 
 -- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:AreAchievementsAllowed()
 	-- Tainted characters have definitely beaten Mom!
 	-- (Fixes Tainted Lost's item pools, and potentially modded character's mechanics, ruining this check)
@@ -1534,6 +1543,7 @@ function EID:resumeCoroutines()
 end
 
 -- Returns true if an item needs to be collected for the collection page
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:requiredForCollectionPage(itemID)
 	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or itemID >= CollectibleType.NUM_COLLECTIBLES or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
 	return EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[itemID]
@@ -1541,6 +1551,7 @@ end
 
 -- Updates the item collection state of the players, based on the QueuedItem value.
 -- TODO: also check for D100 / MissingNo Item collections
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:checkPlayersForMissingItems()
 	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return end
 	if EID.GameUpdateCount % 5 ~= 0 then return end
@@ -1941,6 +1952,7 @@ function EID:WasPillUsed(pillColor)
 end
 
 -- returns the name of the given entity
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:GetEntityXMLName(Type, Variant, SubType)
 	return EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
 end
@@ -2040,4 +2052,10 @@ function EID:UpdateAllPlayerPassiveItems()
 		end
 	end
 	return listUpdatedForPlayers
+end
+
+-- Replaces Variable placeholders in string with a given value
+-- Example: "My {1} message" --> "My test message"
+function EID:ReplaceVariableStr(str, varID, newString)
+	return str:gsub("{"..varID.."}", newString)
 end

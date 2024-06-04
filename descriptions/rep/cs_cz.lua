@@ -1117,7 +1117,6 @@ EID.descriptions[languageCode].CraftingBestQuality = "Nejlepší kvalita:"
 
 EID.descriptions[languageCode].CraftingHideKey = "Skrýt:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Náhled:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "!!! Pokud je tento předmět uzamčen, změní se na"
 
 EID.descriptions[languageCode].CraftingResults = "(Posouvání: Podrž {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Uzamknout: {{ButtonX}}, Obnovit: {{ButtonB}}, Resetovat pytlík: Podržet {{ButtonRB}})"
 
