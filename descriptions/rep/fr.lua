@@ -1312,7 +1312,6 @@ EID.descriptions[languageCode].CraftingBestQuality = "Plus haute qualité:"
 
 EID.descriptions[languageCode].CraftingHideKey = "Masquer:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Prévisualiser:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "{{Warning}} Si cet objet n'a pas été débloqué, il deviendra"
 
 EID.descriptions[languageCode].CraftingResults = "(Défiler: maintenir {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Verrouiller: {{ButtonX}}, Rafraîchir: {{ButtonB}})"
 

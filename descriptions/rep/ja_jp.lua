@@ -1185,7 +1185,6 @@ EID.descriptions[languageCode].CraftingBestQuality = "最高品質："
 
 EID.descriptions[languageCode].CraftingHideKey = "レシピの非表示："
 EID.descriptions[languageCode].CraftingPreviewKey = "アイテムの確認："
-EID.descriptions[languageCode].CraftingPreviewBackup = "!!! アンロックされていない場合"
 
 EID.descriptions[languageCode].CraftingResults = "レシピ操作：マップ表示中、#{{Blank}} 　{{ButtonY}} {{ButtonA}} でスクロール#{{Blank}} 　{{ButtonX}} でレシピ固定#{{Blank}} 　{{ButtonB}} でレシピ更新"
 

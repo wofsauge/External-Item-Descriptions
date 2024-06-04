@@ -1090,7 +1090,6 @@ EID.descriptions[languageCode].CraftingBestQuality = "最好品质："
 
 EID.descriptions[languageCode].CraftingHideKey = "隐藏："
 EID.descriptions[languageCode].CraftingPreviewKey = "预览："
-EID.descriptions[languageCode].CraftingPreviewBackup =  "!!! 如果该道具锁定，则会变为"
 
 EID.descriptions[languageCode].CraftingResults =  "(滚动：按住 {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}，锁定：{{ButtonX}}，刷新：{{ButtonB}}，重置袋：按住 {{ButtonRB}})"
 

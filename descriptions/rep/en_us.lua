@@ -745,7 +745,7 @@ local repTrinkets={
 	[65] = {"65", "Tape Worm", "↑ {{Range}} +3 Range"}, -- Tape Worm
 	[66] = {"66", "Lazy Worm", "↓ {{Shotspeed}} -0.5 Shot speed"}, -- Lazy Worm
 	[67] = {"67", "Cracked Dice", "Taking damage has a 50% chance to trigger one of these effects:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible285}} D10#{{Collectible386}} D12#{{Collectible166}} D20"}, -- Cracked Dice
-	[69] = {"69", "Faded Polaroid", "Randomly camouflages Isaac#{{Confusion}} Confuses enemies#Can be used to open the door to \"Home\""}, -- Faded Polaroid
+	[69] = {"69", "Faded Polaroid", "Randomly camouflages Isaac#{{Confusion}} Confuses enemies#Can be used to open the \"Strange Door\" in Depths 2"}, -- Faded Polaroid
 	[80] = {"80", "Black Feather", "↑ {{Damage}} +0.5 Damage for each \"Evil up\" item held"}, -- Black Feather
 	[92] = {"92", "Cracked Crown", "↑ x1.33 Stat multiplier (except fire rate) for the stats that are above 1 {{Speed}} speed, 2.73 {{Tears}} tears, 3.5 {{Damage}} damage, 6.5 {{Range}} range, 1 {{Shotspeed}} shot speed"}, -- Cracked Crown
 	[96] = {"96", "Ouroboros Worm", "↑ +0.4 Tears#↑ {{Range}} +1.5 Range#Spectral tears#Chance for homing tears#{{Luck}} 100% chance at 9 luck#Isaac's tears move quickly in a spiral pattern"}, -- Ouroboros Worm
@@ -764,7 +764,7 @@ local repTrinkets={
 	[133] = {"133", "Short Fuse", "Isaac's bombs explode faster"}, -- Short Fuse
 	[134] = {"134", "Gigante Bean", "Increases fart size"}, -- Gigante Bean
 	[135] = {"135", "A Lighter", "{{Burning}} Entering a room has a 20% chance to burn random enemies"}, -- A Lighter
-	[136] = {"136", "Broken Padlock", "Doors, key blocks and golden chests can be opened with explosions#Explosions can also open the door to \"Home\""}, -- Broken Padlock
+	[136] = {"136", "Broken Padlock", "Doors, key blocks and golden chests can be opened with explosions#Explosions can also open the \"Strange Door\" in Depths 2"}, -- Broken Padlock
 	[137] = {"137", "Myosotis", "Entering a new floor spawns up to 4 uncollected pickups from the previous floor in the starting room"}, -- Myosotis
 	[138] = {"138", "'M", "Using an active item rerolls it"}, -- 'M
 	[139] = {"139", "Teardrop Charm", "{{Luck}} +4 Luck towards luck-based tear effects"}, -- Teardrop Charm
@@ -1151,15 +1151,22 @@ EID.descriptions[languageCode].spindownError = "Item disappears"
 EID.descriptions[languageCode].CraftingBagContent = "Bag:"
 EID.descriptions[languageCode].CraftingRoomContent = "Room:"
 EID.descriptions[languageCode].CraftingFloorContent = "Floor:"
+EID.descriptions[languageCode].CraftingSearch = "Search:"
 
 EID.descriptions[languageCode].CraftingBagQuality = "Bag Quality:"
 EID.descriptions[languageCode].CraftingBestQuality = "Best Quality:"
 
 EID.descriptions[languageCode].CraftingHideKey = "Hide:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Preview:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "{{Warning}} If this item's locked, it will turn into"
+-- {1} will be converted to the number of recipes
+EID.descriptions[languageCode].CraftingMore = "...+{1} more"
+-- {1} will be converted into the number of available items
+EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} of 8 items available"
+EID.descriptions[languageCode].CraftingWarningAvailableItems = "Needs at least 8 to show crafting recipes!"
+-- {1} will be converted into the name of the key that toggles the BoC visibility
+EID.descriptions[languageCode].CraftingIsHidden = "Currently Hidden (Unhide with {1})"
 
-EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}})"
+EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}}, Search: {{ButtonEnter}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:"
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card effect:"

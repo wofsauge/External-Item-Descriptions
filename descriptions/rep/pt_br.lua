@@ -1079,7 +1079,6 @@ EID.descriptions[languageCode].CraftingBestQuality = "Melhor Qualidade:"
 
 EID.descriptions[languageCode].CraftingHideKey = "Esconder:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Visualizar:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "!!! Se este item estiver bloqueado, ele se transformará em"
 
 EID.descriptions[languageCode].CraftingResults = "(Rolar: Segurar {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Travar: {{ButtonX}}, Atualizar: {{ButtonB}}, Redefinir a Bolsa: Hold {{ButtonRB}})"
 

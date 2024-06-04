@@ -1123,7 +1123,6 @@ EID.descriptions[languageCode].CraftingBestQuality = "Mejor Calidad:"
 
 EID.descriptions[languageCode].CraftingHideKey = "Ocultar:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Prevista:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "!!! Si este objeto está bloqueado, se convertirá en"
 
 EID.descriptions[languageCode].CraftingBagModError = "!!! {{ColorRed}}ERROR:#{{ColorRed}}El \"Cálculo de Recetas\" actualmente no funciona con mods que añaden objetos!#{{ColorRed}}Por favor desinstala los mods de objetos o desactiva las descripciones de Bag of Crafting en la configuración"
 EID.descriptions[languageCode].CraftingResults = "(Desplazar: mantén {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Bloquear: {{ButtonX}}, Refrescar: {{ButtonB}})"
