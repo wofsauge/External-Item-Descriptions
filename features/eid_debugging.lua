@@ -29,7 +29,10 @@ for _,lang in ipairs(languageFilesToCheck) do
 				print(" Table '" .. prevKey .. "' does not contain key: " .. k)
 				progress[2] = progress[2] + 1
 			elseif type(table2[k]) == "table" then
-				EID:compareTables(table1[k], table2[k], k, progress)
+				if type(table1[k]) ~= "table" then
+					print("Type mismatch in table '" .. prevKey .. "', key: " .. k)
+					progress[2] = progress[2] + 1
+				else EID:compareTables(table1[k], table2[k], k, progress) end
 			else
 				-- check for broken markup stuff
 				local filteredText = EID:replaceShortMarkupStrings(table2[k])
@@ -221,4 +224,3 @@ local function onDebugRender()
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, onDebugRender)
-
