@@ -25,12 +25,12 @@ local repCollectibles={
 	[24] = {"24", "Dessert", "↑ {{Heart}} +1 Salute#{{Heart}} Cura 1 cuore"}, -- Dessert
 	[25] = {"25", "Colazione", "↑ {{Heart}} +1 Salute#{{Heart}} Cura 1 cuore"}, -- Breakfast
 	[26] = {"26", "Carne Marcia", "↑ {{Heart}} +1 Salute#{{Heart}} Cura 1 cuore"}, -- Rotten Meat
-	[29] = {"29", "Mutande di Mamma", "↑ {{Range}} +2.5 Gittata#Genera 3-6 Mosche Blu"}, -- Moms Underwear
+	[29] = {"29", "Mutande di Mamma", "↑ {{Range}} +2.5 Gittata#Genera 3-6 mosche blu"}, -- Moms Underwear
 	[30] = {"30", "Tacchi di Mamma", "↑ {{Range}} +2.5 Gittata#Isaac infligge 24 danni da contatto al secondo"}, -- Mom's Heels
 	[31] = {"31", "Rossetto di Mamma", "↑ {{Range}} +3.75 Gittata#{{UnknownHeart}} Genera 1 cuore casuale"}, -- Mom's Lipstick
 	[37] = {"37", "Sig. Bum", "Lascia una grossa bomba ai piedi di Isaac che infligge 185 danni"}, -- Mr. Boom
 	[40] = {"40", "Kamikaze!", "Produce una grossa esplosione nella posizione di Isaac#Infligge 185 danni"}, -- Kamikaze!
-	[41] = {"41", "Assorbente di Mamma", "{{Fear}} Spaventa tutti i nemici nella stanza per 5 secondi#Genera una Mosca Blu"}, -- Mom's Pad
+	[41] = {"41", "Assorbente di Mamma", "{{Fear}} Spaventa tutti i nemici nella stanza per 5 secondi#Genera una mosca blu"}, -- Mom's Pad
 	[42] = {"42", "Testa Marcia di Bob", "Usare l'oggetto e sparare in una direzione fa scagliare la testa#{{Poison}} La testa esplode nel luogo in cui atterra e crea una nube velenosa#Infligge i danni di Isaac + 185"}, -- Bob's Rotten Head
 	[45] = {"45", "Cuore Gustoso", "{{Heart}} Cura 1 cuore#{{HalfHeart}} Cura altri giocatori di mezzo cuore"}, -- Yum Heart
 	[46] = {"46", "Piede Fortunato", "↑ {{Luck}} +1 Fortuna#Maggiori chance di vittoria nel gioco d'azzardo#Aumenta le chance di una ricompensa a completamento stanza#Trasforma le pillole negative in positive"}, -- Lucky Foot
@@ -64,14 +64,19 @@ local repCollectibles={
 	[126] = {"126", "Lametta", "↑ {{Damage}} +1.2 Danni#{{Warning}} Infligge 1 cuore di danni ad Isaac#Dopo il primo uso in una stanza, infligge invece mezzo cuore#{{Heart}} Rimuove per primi i Cuori Rossi"}, -- Razor Blade
 	[129] = {"129", "Secchio di Lardo", "↑ {{Heart}} +2 Salute#↓ {{Speed}} -0.2 Velocità"}, -- Bucket of Lard
 	[138] = {"138", "Stimmate", "↑ +1 Vita#↑ +0.3 Danni#Cura 1 cuore"}, -- Stigmata
-	[139] = {"139", "Borsetta di Mamma", "Puoi possedere due ninnoli#Evoca 1 ninnolo casuale"}, -- Mom's Purse
-	[140] = {"140", "Maledizione di Bob", "Bombe velenose#+5 bombe#Bombe rilasciano una nuvola velenosa"}, -- Bob's Curse
-	[147] = {"147", "Piccone Minatorio", "Rompe rocce e danneggia nemici ad ogni colpo#Colpire col piccone diminuisce la sua carica#Carica viene ripristinata a fine piano"}, -- Notched Axe
-	[148] = {"148", "Infestazione", "Evoca 2-6 Mosche Blu quando ferito"}, -- Infestation
-	[149] = {"149", "Ipecac", "Lacrime velenose esplosive#↑ +40 Danni#↓ -0.2 Velocità di tiro#↓ Lacrime"}, -- Ipecac
-	[152] = {"152", "Tecnologia 2", "Attacco laser costante!#Laser infligge 13% dei tuoi danni#↓ Lacrime diminuite del 33%"}, -- Technology 2
-	[158] = {"158", "Sfera di Cristallo", "Svela tutta la mappa#Evoca una carta o un Cuore Spirito#Se in possesso:#↑ +15% Probabilità di un Planetario#100% se è stata saltata una stanza del tesoro"}, -- Crystal Ball
-	[171] = {"171", "Chiappe Ragnesche", "Rallenta i nemici per 4 secondi#10 danni a tutti i nemici#Nemici uccisi con il Sedere di Ragno evocano Ragni Blu"}, -- Spider Butt
+	[139] = {"139", "Borsetta di Mamma", "{{Trinket}} Genera 1 ninnolo casuale#{{Trinket}} Isaac può tenere 2 ninnoli"}, -- Mom's Purse
+	[140] = {"140", "Maledizione di Bob", "{{Bomb}} +5 Bombe#{{Poison}} Le bombe di Isaac creano una nube velenosa#{{Poison}} Immunità al veleno"}, -- Bob's Curse
+	[142] = {"142", "Scapular", "{{SoulHeart}} Isaac ottiene 1 Cuore Celeste quando i danni lo riducono a mezzo cuore#Può avvenire solo una volta a stanza#Uscire e rientrare nella stanza permette di attivare nuovamente l'effetto#{{Warning}} Non viene attivato dalle donazioni di cuori"}, --Scapular
+	[147] = {"147", "Piccone Minatorio", "Usare l'oggetto fa sì che Isaac tenga il piccone in mano#Tenere il piccone permette ad Isaac di rompere rocce e ingressi per le Stanze Segrete, e anche di danneggiare i nemici#Mettere a segno un colpo con il piccone riduce la sua carica#Entrare in nuovo piano ricarica pienamente il piccone"}, -- Notched Axe
+	[148] = {"148", "Infestazione", "Prendere danni genera 2-6 mosche blu"}, -- Infestation
+	[149] = {"149", "Ipecac", "↑ {{Damage}} +40 Danni#↓ {{Tears}} x0.33 Moltiplicatore del rateo di fuoco#↓ {{Range}} x0.8 Moltiplicatore Gittata#Isaac spara lacrime lungo un arco#{{Poison}} Le lacrime esplodono nel punto in cui atterrano, avvelenando i nemici"}, -- Ipecac
+	[152] = {"152", "Tecnologia 2", "↓ {{Tears}} x0.67 Moltiplicatore del rateo di fuoco#Sotituisce le lacrime dell'occhio destro di Isaac con un laser costante#{{Damage}} Il laser infligge il 20% dei danni di Isaac per tocco"}, -- Technology 2
+	[153] = {"153", "Ragno Mutante", "↓ {{Tears}} x0.42 Moltiplicatore del rateo di fuoco#Isaac spara 4 lacrime alla volta"}, -- Mutant Spider
+	[155] = {"155", "The Peeper", "↑ {{Damage}} x1.35 Damage multiplier for the left eye#Levita intorno alla stanza#Infligge 17.1 danni da contatto al secondo"}, -- The Peeper
+	[158] = {"158", "Sfera di Cristallo", "Genera un {{SoulHeart}} Cuore Celeste, una {{Rune}} runa o una {{Card}} carta#{{Timer}} Effetto di mappatura completa per il piano (eccetto le {{SuperSecretRoom}} Stanze Super Segrete)#Mentre viene tenuto:#{{PlanetariumChance}} +15% di chance di un Planetario#{{PlanetariumChance}} +100% se è stata saltata una {{TreasureRoom}} Stanza dei Tesori"}, -- Crystal Ball
+	[169] =	{"169", "Polifemo", "↑ {{Damage}} +4 Danni#↑ {{Damage}} x2 Moltiplicatore Danni#↓ {{Tears}} x0.42 Moltiplicatore del rateo di fuoco#Le lacrime penetrano i nemici uccisi in caso di danni avanzanti"}, --Polyphemus
+	[171] = {"171", "Chiappe Ragnesche", "{{Slow}} Rallenta i nemici per 4 secondi#Infligge 10 danni a tutti i nemici##I nemici uccisi dall'oggetto generano ragni blu"}, -- Spider Butt
+	[172] = {"172", "Lama Sacrificale", "Orbitale#Blocca i proiettili nemici#Infligge 112.5 danni al secondo"}, -- Sacrificial Dagger
 	[176] = {"176", "Cellule Staminali", "↑ +1 Vita#↑ +0.16 Velocità di tiro#Cura di 1 cuore"}, -- Stem Cells
 	[178] = {"178", "Acqua Santa", "{{Throwable}} {{ColorOrange}}Lanciabile{{CR}}#Rilacia una chiazza d'acqua santa dove atterra#24 danni al secondo e pietrifica nemici terrestri"}, -- Holy Water
 	[182] = {"182", "Sacro Cuore", "Lacrime a ricerca#↑ +1 Vita#↑ 230% + 1 Danni#↓ -0.4 Lacrime#↓ -0.25 Velocità di tiro#↑ +0.5 Gittata"}, -- Sacred Heart
@@ -84,7 +89,7 @@ local repCollectibles={
 	[203] = {"203", "Offerta Imperdibile", "Probabilità di raddoppiare consumabili"}, -- Humbling Bundle
 	[205] = {"205", "Presa Diretta", "- mezzo cuore = Ricarica una tacca del tuo oggetto attivabile"}, -- Sharp Plug
 	[206] = {"206", "Ghigliottina", "↑ +1 Danni#↑ +0.33 Lacrime#La tua testa è un orbitale#Spari lacrime dalla testa#La testa fa 105 danni al secondo"}, -- Guillotine
-	[211] = {"211", "Bimboragno", "Evoca 3-5 Ragni Blu quando ferito"}, -- Spider Baby
+	[211] = {"211", "Bimboragno", "Evoca 3-5 ragni blu quando ferito"}, -- Spider Baby
 	[214] = {"214", "Anemia", "↑ +1.5 Gittata#Quando ferito, lasci una scia di sangue dove cammini#Scia infligge 2 danni al secondo"}, -- Anemic
 	[218] = {"218", "Placenta", "↑ {{Heart}} +1 Salute#{{Heart}} Cura 1 cuore#Rigenera mezzo cuore ogni minuto"}, -- Placenta
 	[224] = {"224", "Corpo di Cricket", "↓ -20% Gittata#Lacrime si dividono in 4 quando colpiscono#Lacrime divise fanno metà dei danni#↑ +1 al limite di lacrime"}, -- Cricket's Body
@@ -93,7 +98,7 @@ local repCollectibles={
 	[232] = {"232", "Cipollotto", "Rallenta tutti i nemici permanentemente del 20%#↑ +0.3 Velocità"}, -- Stop Watch
 	[240] = {"240", "Trattamento Sperimentale", "↑ 4 Statistiche casuali e ↓2 Statistiche casuali"}, -- Experimental Treatment
 	[245] = {"245", "Dieci Decimi", "Raddoppia tutti i tuoi colpi#↓ -25% Danni"}, -- 20/20
-	[248] = {"248", "Mente Alveare", "Ragni/Mosche Blu fanno doppi danni#Famigli basati su ragni/mosche vengono potenziati"}, -- Hive Mind
+	[248] = {"248", "Mente Alveare", "Ragni/mosche blu fanno doppi danni#Famigli basati su ragni/mosche vengono potenziati"}, -- Hive Mind
 	[253] = {"253", "Scabbia Magica", "↑ +1 Fortuna#↑ {{Heart}} +1 Salute#{{Heart}} Cura 1 cuore"}, -- Magic Scab
 	[254] = {"254", "Grumo di Sangue", "↑ +1 Danni#↑ +1.5 Gittata#!!! Oggetto attivo solo per l'occhio sinistro"}, -- Blood Clot
 	[256] = {"256", "Bombe Incendiarie", "Bombe infuocate#+5 Bombe##Immunità al fuoco#Bombe fanno danni al contatto"}, -- Hot Bombs
@@ -105,11 +110,11 @@ local repCollectibles={
 	[275] = {"275", "Mini Zolfo Fuso", "Spara un laser di Brimstone#Il laser fa 2 danni per tick, per un totale di 20 danni"}, -- Lil Brimston
 	[276] = {"276", "Cuore di Isaac", "Corpo diventa invulnerabile#!!! Quando il famiglio cuore viene colpito, prendi danni#Famiglio si carica mentre spari, sparando un esplosione di lacrime"}, -- Isaac's Heart
 	[278] = {"278", "Scroccoscuro", "!!! Converte:#1,5 Cuori Rossi in un Cuore Nero, un ragno (ostile), una pillola carta o runa"}, -- Dark Bum
-	[280] = {"280", "Sorellina Gambalunga", "Evoca casualmente Ragni Blu quando in una stanza ostile#Incanta nemici con cui viene a contatto"}, -- Sissy Longlegs
+	[280] = {"280", "Sorellina Gambalunga", "Evoca casualmente ragni blu quando in una stanza ostile#Incanta nemici con cui viene a contatto"}, -- Sissy Longlegs
 	[283] = {"283", "D100", "Cambia i piedistalli, statistiche, consumabili e tutti i tuoi oggetti passivi#Raddoppia un raccoglibile casuale nella stanza#Ricomincia la stanza corrente e cambia i nemici#Cambia le rocce nella stanza"}, -- D100
 	[285] = {"285", "D10", "Cambia tutti i nemici nella stanza#I nemici trasformati hanno vita simile alla versione precedente"}, -- D10
 	[287] = {"287", "Libro dei Segreti", "Concede l'effetto della {{Collectible54}}Mappa del Tesoro, {{Collectible21}}Bussola o {{Collectible246}}Mappa Blu per il resto del piano#Concede effetti di mappatura che non possiedi#Se tutti gli effetti sono già attivi, concede {{Collectible76}}Visione Raggi X"}, -- Book of Secrets
-	[288] = {"288", "Scatola di Ragni", "Evoca 4-8 Ragni Blu"}, -- Box of Spiders
+	[288] = {"288", "Scatola di Ragni", "Evoca 4-8 ragni blu"}, -- Box of Spiders
 	[289] = {"289", "Candela Rossa", "Lancia una fiamma rossa#La fiamma rimane finchè non ha fatto 23 danni 5 volte"}, -- Red Candle
 	[291] = {"291", "Sciacquone!", "!!! Uccide istantaneamente nemici derivanti alla cacca!#Transforma nemici in cacca#Spegne fuochi#Trasforma lava in ossidiana"}, -- Flush!
 	[292] = {"292", "Bibbia Satanica", "+1 cuore Nero#Quando usato, l'oggetto lasciato dal boss sarà invece un oggetto appartenente ai patti con satana"}, -- Satanic Bible
@@ -282,7 +287,7 @@ local repCollectibles={
 	[642] = {"642", "Pelle Magica", "Consuma un Contenitore Cuore o 2 Cuori Spirito per evocare un oggetto appartenente alla stanza corrente#Inoltre, concede un Cuore Spezzato che non può essere rigenerato#{{Warning}} Se non hai vita, USO SINGOLO"}, --  Magic Skin
 	[643] = {"643", "Rivelazione", "Concede il volo e 2 Cuori Spirito#Sparare per 2.5 secondi di fila spara un laser consacrato"}, --  Revelation
 	[644] = {"644", "Premio di Consolazione", "Aumenta la tua statisticha di 1#Evoca 3 monete/1 bomba/1 chiave a seconda di ciò che hai bisogno"}, --  Consolation Prize
-	[645] = {"645", "Minitoma", "Orbitale Teratoma#Blocca proiettili#3.5 Danni al secondo#Se viene colpito 3 volte, si separa in più pezzi#I pezzi piccoli rilasciano Ragni Blu quando rotti#Rinasce 5 secondi dopo esser distrutto"}, --  Tinytoma
+	[645] = {"645", "Minitoma", "Orbitale Teratoma#Blocca proiettili#3.5 Danni al secondo#Se viene colpito 3 volte, si separa in più pezzi#I pezzi piccoli rilasciano ragni blu quando rotti#Rinasce 5 secondi dopo esser distrutto"}, --  Tinytoma
 	[646] = {"646", "Bombe Zolfo Fuso", "+5 bombe#Bombe rilasciano 4 laser di Brimstone nelle direzioni cardinali"}, --  Brimstone Bombs
 	[647] = {"647", "4.5 Volt", "Oggetti attivabili non si ricaricano a fine stanza#Si caricano colpendo nemici#60 Danni = 1 carica"}, --  4.5 Volt
 	[648] = {"648", "", "<Item does not exist>"},
@@ -318,7 +323,7 @@ local repCollectibles={
 	[678] = {"678", "Taglio Cesareo", "Tira un bimbo attaccato ad Isaac tramite cordone ombelicale#Fa danno da contatto equivalente a 3x i tuoi danni #Bimbo spara e cammina tenendo premuto il tasto giusto#Ritorna ad Isaac quando smette di sparare"}, --  C Section
 	[679] = {"679", "Mini Abbadon", "Famiglio che spara un mini 'Fauci del Vuotò {{Collectible399}}"}, --  Lil Abaddon
 	[680] = {"680", "Vendetta di Montezuma", "Mentre spari, carica un raggio Brimstone a corta gittata#Spara dietro di te"}, --  Montezumàs Revenge
-	[681] = {"681", "Mini Portale", "Vola in avanti e fa danni a contatto#Consuma consumabili che tocca#Ogni raccoglibile aumenta la dimensione del portale, danni, ed evoca una Mosca Blu#Ogni quattro consumabili, crea un portale che connette ad una stanza non-esplorata"}, --  Lil Portal
+	[681] = {"681", "Mini Portale", "Vola in avanti e fa danni a contatto#Consuma consumabili che tocca#Ogni raccoglibile aumenta la dimensione del portale, danni, ed evoca una mosca blu#Ogni quattro consumabili, crea un portale che connette ad una stanza non-esplorata"}, --  Lil Portal
 	[682] = {"682", "Amico Verme", "Un tentacolo salterà dal terreno colpendo nemici#Può tenere fermo nemici e danneggiarli"}, --  Worm Friend
 	[683] = {"683", "Speroni Ossei", "Nemici uccisi evocano ossa fluttuanti#Ossa fanno danni da contatto e bloccano proiettili"}, --  Bone Spurs
 	[684] = {"684", "Anima Affamata", "Possibilità di evocare fantasmi dopo aver ucciso un nemico#Fantasmi seguono nemici e fanno danno da contatto#Dopo 5 secondi, il fantasma esplode, facendo 7 danni ai nemici circostanti#Non prendi danni dall'esplosione"}, --  Hungry Soul
@@ -330,7 +335,7 @@ local repCollectibles={
 	[690] = {"690", "Gelatina di Fagiolo", "Nemici che toccano Isaac rimbalzano#Se i nemici colpiscono un ostacolo, prendono danni#Possibilità di deflettere proiettili nemici"}, --  Belly Jelly
 	[691] = {"691", "Sfera Sacra", "Migliore la qualità degli oggetti trovati#Rendendo oggetti deboli o inutili più rari"}, --  Sacred Orb
 	[692] = {"692", "Legame di Sangue", "Crea un set di spine speciale nella stanza di Satana#Ferirsi sulle spine può risultare in una ricompensa:#35% 6 penny#15% +0.5 Danni#5% 2 Cuori Neri#2% oggetto casuale#1% Trasformazione Leviatano"}, --  Sanguine Bond
-	[693] = {"693", "Lo Sciame", "Concede 9 mosche orbitanti che proteggono da un proiettile. Quando parano un colpo, diventano una Mosca Blu#Crea una mosca nuova ogni stanza completata"}, --  The Swarm
+	[693] = {"693", "Lo Sciame", "Concede 9 mosche orbitanti che proteggono da un proiettile. Quando parano un colpo, diventano una mosca blu#Crea una mosca nuova ogni stanza completata"}, --  The Swarm
 	[694] = {"694", "Cuore Spezzato", "Concede 3 Cuori Spezzati#↑ +0.25 danni per ogni Cuore Spezzato#Ogni colpo fatale aggiunge 2 Cuori Spezzati#Se raggiungi 12 Cuori Spezzati, muori"}, --  Heartbreak
 	[695] = {"695", "Soffio Furente", "Quando vieni ferito, aumenta lacrime e velocità per il resto del piano"}, --  Bloody Gust
 	[696] = {"696", "Salvezza", "Crea un aureola che crea fasci di luce che colpiscono nemici dentro essa#Più danni prendi nel piano corrente, più è grossa l'aureola"}, --  Salvation
@@ -354,7 +359,7 @@ local repCollectibles={
 	[714] = {"714", "Richiamo", "Riporta il corpo del Forgotten da qualsiasi distanza"}, --  Recall
 	[715] = {"715", "Vasetto", "Conserva una cacca da potere usata più tardi"}, --  Hold
 	[716] = {"716", "Sacca del Mercante", "Aumenta gittata, velocità o danni quando compri oggetti con soldi#Evoca una chiave e 3 monete"}, --  Keeper's Sack
-	[717] = {"717", "Strirpe del Mercante", "Rocce e altri ostacoli evocano 2 Mosche Blu quando distrutte"}, --  Keeper's Kin
+	[717] = {"717", "Strirpe del Mercante", "Rocce e altri ostacoli evocano 2 mosche blu quando distrutte"}, --  Keeper's Kin
 	[718] = {"718", "Manto del Mercante (Cut item)", "<Item does not exist>"}, -- Keepers Robe (Cut item)
 	[719] = {"719", "Scatola del Mercante", "Evoca un oggetto/raccoglibile casuale del negozio"}, --  Keeper's Box
 	[720] = {"720", "Giara Universale", "Evoca diversi consumabili a seconda di quanto è carico#Se caricato al massimo, ha un effetto casuale forte#Ricompense: 1:Cacca 2:{{Coin}} 3:{{Bomb}} 4:{{Key}} 5:{{Heart}} 6:{{Pill}} 7:{{Card}} 8:{{SoulHeart}} 9:{{GoldenHeart}} 10:{{GoldenKey}} 11:{{GoldenBomb}}"}, --  Everything Jar
@@ -468,7 +473,7 @@ local repTrinkets={
 	[137] = {"137", "Myosotis", "Quando inizi un piano nuovo, fino a 4 consumabili vengono trasferiti dal piano precedente a quello nuovo"}, --  Myosotis
 	[138] = {"138", "'M", "Quando usi un oggetto attivabile, esso viene cambiato casualmente"}, --  'M
 	[139] = {"139", "Amuleto Lacrima", "Effetti per lacrime che dipendono dalla fortuna vengono applicati più spesso"}, --  Teardrop Charm
-	[140] = {"140", "Pomo di Sodoma", "Raccogliere cuori rossi li converte a Ragni Blu#Funziona anche a vita massima#L'effetto può usare cuori necessari per curarsi"}, --  Apple of Sodom
+	[140] = {"140", "Pomo di Sodoma", "Raccogliere cuori rossi li converte a ragni blu#Funziona anche a vita massima#L'effetto può usare cuori necessari per curarsi"}, --  Apple of Sodom
 	[141] = {"141", "Ninna Nanna Dimenticata", "Aumenta le lacrime dei famigli"}, --  Forgotten Lullaby
 	[142] = {"142", "Fede di Bet", "All'inizio di ogni piano, evoca 4 'Wisp'"}, --  Beth's Faith
 	[143] = {"143", "Vecchio Condensatore", "Impedisce all'oggetto attivabile del caricarsi#Possibilità di trovare una piccola batteria a fine stanza"}, --  Old Capacitor
@@ -660,11 +665,11 @@ EID.descriptions[languageCode].horsepills={
 	{"31", "???", "Maledizione del perduto per il resto del piano"}, -- ???
 	{"32", "Una ti rende più grande", "Diventi molto più grande#La tua hitbox rimane uguale"}, -- One makes you larger
 	{"33", "Una ti rende più piccolo", "Diventi molto più piccolo#La tua hitbox diminuisce di dimensione"}, -- One makes you small
-	{"34", "Infestato!", "Evoca 2 Ragni Blu per ogni cacca presente nella stanza"}, -- Infested!
-	{"35", "Infestato?", "Evoca 2 Ragni Blu per ogni nemico nella stanza#Evoca 2-6 Ragni Blu se non ci son nemici presenti"}, -- Infested?
+	{"34", "Infestato!", "Evoca 2 ragni blu per ogni cacca presente nella stanza"}, -- Infested!
+	{"35", "Infestato?", "Evoca 2 ragni blu per ogni nemico nella stanza#Evoca 2-6 ragni blu se non ci son nemici presenti"}, -- Infested?
 	{"36", "Pillola del Potere!", "Invincibilità breve#↑ #+7 Danni#↑ +3 Gittata#Durata: Stanza corrente"}, -- Power Pill!
 	{"37", "Rétro Visione", "Diminuisce la risoluzione del gioco per 90 secondi"}, -- Retro Vision
-	{"38", "Amici fino alla Fine!", "Evoca 6 Mosche Blu"}, -- Friends Till The End!
+	{"38", "Amici fino alla Fine!", "Evoca 6 mosche blu"}, -- Friends Till The End!
 	{"39", "Liqui-Lax", "Rilasci una chiazza di liquido nero scivoloso"}, -- X-Lax
 	{"40", "Qualcosa non quadra...", "Rilasci una chiazza di liquido rallentante"}, -- Something's wrong...
 	{"41", "Ho Sonno...", "Rallenta tutti i nemici e proiettili nella stanza"}, -- I'm Drowsy...
