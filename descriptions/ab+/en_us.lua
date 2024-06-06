@@ -27,7 +27,7 @@ EID.descriptions[languageCode].collectibles={
 	{"4", "Cricket's Head", "↑ {{Damage}} +0.5 Damage#↑ {{Damage}} x1.5 Damage multiplier"},
 	{"5", "My Reflection", "↑ {{Range}} +1.5 Range#↑ +1 Tear height#↑ {{Shotspeed}} +0.6 Shot speed#Tears get a boomerang effect"},
 	{"6", "Number One", "↑ {{Tears}} +1.5 Tears#↑ +0.76 Tear height#↓ {{Range}} -17.62 Range"},
-	{"7", "Blood of the Martyr", "↑ {{Damage}} +1 Damage#{{Collectible34}} x1.5 Damage multiplier if \"The Book of Belial\" or \"XV - The Devil\" effect is active"},
+	{"7", "Blood of the Martyr", "↑ {{Damage}} +1 Damage"},
 	{"8", "Brother Bobby", "Shoots normal tears#Deals 3.5 damage per tear"},
 	{"9", "Skatole", "All fly enemies are friendly"},
 	{"10", "Halo of Flies", "+2 Fly orbitals#Blocks enemy projectiles"},
@@ -54,7 +54,7 @@ EID.descriptions[languageCode].collectibles={
 	{"31", "Mom's Lipstick", "↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"},
 	{"32", "Wire Coat Hanger", "↑ {{Tears}} +0.7 Tears"},
 	{"33", "The Bible", "{{Timer}} Flight for the room#{{MomsHeart}} Kills Mom's Foot and Mom's Heart instantly#{{Warning}} Kills Isaac when used on Satan"},
-	{"34", "The Book of Belial", "{{AngelDevilChance}} +12.5% Devil/Angel Room chance while held#{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage#{{Collectible7}} x1.5 Damage multiplier if Isaac has \"Blood of the Martyr\""},
+	{"34", "The Book of Belial", "{{AngelDevilChance}} +12.5% Devil/Angel Room chance while held#{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage"},
 	{"35", "The Necronomicon", "Deals 40 damage to all enemies in the room"},
 	{"36", "The Poop", "Spawns one poop and knocks back enemies#Can be placed next to a pit and destroyed with a bomb to make a bridge"},
 	{"37", "Mr. Boom", "Drops a large bomb below Isaac which deals 110 damage"},
@@ -968,14 +968,29 @@ EID.descriptions[languageCode].PickupNames = {
 
 }
 
+-- Conditional descriptions
+-- Strings will be appended to the original description
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs
 EID.descriptions[languageCode].ConditionalDescs = {
-	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
+	["Overridden"] = "Overridden by {1}",
+	["Overrides"] = "Overrides {1}",
+	
+	["No Red"] = "No effect for characters that can't have Red Hearts",
+	["5.100.81 (No Red)"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
+	
+	["5.100.7"] = "{{Collectible34}} x1.5 Damage multiplier while The Book of Belial or XV - The Devil effect is active", -- Blood of the Martyr
+	["5.100.34"] = "{{Collectible7}} x1.5 Damage multiplier", -- Book of Belial
+	["5.300.16"] = "{{Collectible7}} x1.5 Damage multiplier", -- The Devil
+	
 	["5.100.241"] = "{{GreedMode}} Doesn't affect Greed Mode", -- Contract From Below
 	["5.100.135 (Keeper)"] = "{{Player14}} Spawns 0-1 coin as Keeper", -- IV Bag Keeper
 	["5.100.135 (PHD)"] = "{{Collectible75}} Spawns 2-3 coins if you have PHD", -- IV Bag PHD
-	["5.100.442"] = "No effect for characters that can't have Red Hearts", -- Dark Prince's Crown
 	["5.300.15"] = "{{DemonBeggar}} Spawns a Devil Beggar", -- Temperance (Greed Mode effect)
 	["5.350.23"] = "{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost", -- Missing Poster (Unlock The Lost)
+	
+	["5.100.549 (Keeper)"] = "{{Player14}} ↑ {{Tears}} +0.5 Tears#Spawns 24 blue flies", -- Brittle Bones
+	["5.100.549 (Lost)"] = "{{Player10}} ↑ {{Tears}} +0.5 Tears", -- Brittle Bones
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
@@ -987,4 +1002,27 @@ EID.descriptions[languageCode].BFFSSynergies = {
 	["5.100.417"] = "Increases radius, but not damage", -- Succubus
 	["5.100.537"] = "Increases pool size, but not damage", -- Lil Spewer
 	["5.100.539"] = "Spawns a champion variant of the enemy", -- Mystery Egg
+}
+
+--todo: we want their active/passive descriptions to display here, but some of them act a little differently for the specific character, and do we need to define their passives in this table?
+--also i totally haven't used like any icons in this
+EID.descriptions[languageCode].characterInfo = {
+	[0] = {"Isaac", ""},
+	{"Magdalene", ""},
+	{"Cain", ""},
+	{"Judas", ""},
+	{"???", "Can't have Red Hearts"},
+	{"Eve", "Eve's Whore of Babylon triggers at 1 Red Heart or less"}, --this could just be desc modifier?
+	{"Samson", ""},
+	{"Azazel", "Flight#Short range Brimstone instead of tears"},
+	{"Lazarus", "When you die, resurrect as Lazarus Risen with 1 Red Heart container"},
+	{"Eden", "Start with random stats and items each run"},
+	{"The Lost", "Flight#Spectral tears#No health#One devil deal per room can be taken for free"},
+	{"Lazarus Risen", "Increased stats and 1.2x damage multiplier"},
+	{"Dark Judas", "2x Damage multiplier"},
+	{"Lilith", "Cannot shoot tears"},
+	{"Keeper", "Heal by picking up coins#Heart pickups are turned into Blue Flies"},
+	{"Apollyon", ""},
+	{"The Forgotten", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
+	{"The Forgotten Soul", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
 }
