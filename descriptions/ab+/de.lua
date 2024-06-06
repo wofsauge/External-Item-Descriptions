@@ -19,6 +19,7 @@ EID.descriptions[languageCode].languageName = "German (WIP)"
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
 ---------- Collectibles ----------
+
 EID.descriptions[languageCode].collectibles={
 	{"1", "Die traurige Zwiebel", "↑ +0.7 Tränen"},
 	{"2", "Das innere Auge", "↓ {{Tears}} Tränen runter#Dreifacher Schuss"},
@@ -126,8 +127,8 @@ EID.descriptions[languageCode].collectibles={
 	{"104", "Der Parasit", "Tränen teilen sich bei Kontakt in zwei auf#Geteilte Tränen verursachen halben Schaden"},
 	{"105", "Der W6", "Würfelt Podest-Gegenstände im Raum neu"},
 	{"106", "Mr. Mega", "↑ {{Bomb}} x1.83 Bombenschaden#{{Bomb}} +5 Bomben"},
-	{"107", "The Pinking Shears", "{{Timer}} Erhalte für diesen Raum:#Flug#Isaac's body separates from his head and attacks enemies with 82.5 contact damage per second"},
-	{"108", "The Wafer", "Reduces all damage taken to half a heart"},
+	{"107", "Die Zackenschere", "{{Timer}} Erhalte für diesen Raum:#Flug#Isaacs Körper trennt sich vom Kopf, attackiert Feinde und verursacht bei Kontakt 82.5 Schaden pro Sekunde"},
+	{"108", "Die Hostie", "Reduziert den meisten erlittenen Schaden auf ein halbes Herz#{{Player14}} Funktioniert nicht für Hüter"},
 	{"109", "Money = Power", "↑ {{Damage}} +0.04 Schaden for every {{Coin}} coin Isaac has"},
 	{"110", "Mom's Contacts", "↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe#20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 Glück"},
 	{"111", "The Bean", "{{Poison}} Farts a poison cloud#The poison deals Isaac's damage 6 times"},
@@ -136,7 +137,7 @@ EID.descriptions[languageCode].collectibles={
 	{"114", "Mom's Knife", "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and 6x at the furthest possible distance"},
 	{"115", "Ouija Board", "Spectral tears"},
 	{"116", "9 Volt", "{{Battery}} Automatically charges the first bar of active items#{{Battery}} Fully recharges the active item on pickup"},
-	{"117", "Dead Bird", "Getting hit spawns a bird#The bird deals 4 contact damage per second"},
+	{"117", "Dead Bird", "Getting hit spawns a bird#The bird deals 4.3 contact damage per second"},
 	{"118", "Brimstone", "↓ {{Tears}} x3 Tränenverzögerungs-Multiplikator#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam"},
 	{"119", "Blood Bag", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.3 Tempo#{{Heart}} Heals 4 hearts"},
 	{"120", "Odd Mushroom (Thin)", "↑ {{Speed}} +0.3 Tempo#↑ {{Tears}} +1.7 Tränen#↓ {{Damage}} x0.9 Schadens-Multiplikator#↓ {{Damage}} -0.4 Schaden"},
@@ -181,7 +182,7 @@ EID.descriptions[languageCode].collectibles={
 	{"159", "Spirit of the Night", "Spectral tears#Flug"},
 	{"160", "Crack the Sky", "Spawns 5 beams of light near enemies#Deals Isaac's damage + 20"},
 	{"161", "Ankh", "{{Player4}} Respawn as ??? (Blue Baby) on death"},
-	{"162", "Celtic Cross", "Taking damage has a chance to make Isaac temporarily invincible#{{Luck}} 100% chance at 27 Glück"},
+	{"162", "Celtic Cross", "Taking damage has a 20% chance to make Isaac temporarily invincible#{{Luck}} 100% chance at 27 Glück"},
 	{"163", "Ghost Baby", "Shoots spectral tears#Deals 3.5 damage per tear"},
 	{"164", "The Candle", "Throws a blue flame#The flame deals contact damage, blocks enemy tears, and despawns after 2 seconds"},
 	{"165", "Cat-o-nine-tails", "↑ {{Damage}} +1 Schaden#↑ {{Shotspeed}} +0.23 Schusstempo"},
@@ -343,7 +344,7 @@ EID.descriptions[languageCode].collectibles={
 	{"319", "Cain's Other Eye", "Bounces around the room#Shoots towards Isaac#{{Damage}} Deals the same damage as Isaac"},
 	{"320", "???'s Only Friend", "Controllable fly#Deals 37.5 contact damage per second"},
 	{"321", "Samson's Chains", "Draggable ball that can destroy rocks#Deals 10.7 contact damage per second"},
-	{"322", "Mongo Baby", "Mimics one of your familiars tears#Cycles thru which familiar to mimic every shot"},
+	{"322", "Mongo Baby", "Mimics one of your familiars tears#Cycles through which familiar to mimic every shot"},
 	{"323", "Isaac's Tränen", "Shoots 8 tears in all directions#The tears copy Isaac's tear effects#Recharges by shooting tears"},
 	{"324", "Undefined", "Teleports Isaac to the {{TreasureRoom}} Treasure, {{SecretRoom}} Secret, {{SuperSecretRoom}} Super Secret or {{ErrorRoom}} I AM ERROR Room"},
 	{"325", "Scissors", "{{Timer}} Isaac's head turns into a stationary familiar für diesen Raum#The body is controlled separately"},
@@ -368,9 +369,9 @@ EID.descriptions[languageCode].collectibles={
 	{"344", "Match Book", "{{BlackHeart}} +1 Black Heart#{{Bomb}} Spawns 3 Bomben"},
 	{"345", "Synthoil", "↑ {{Damage}} +1 Schaden#↑ {{Range}} +5.25 Reichweite#↑ +0.5 Tränenhöhe"},
 	{"346", "A Snack", "↑ {{Heart}} +1 Gesundheit"},
-	{"347", "Diplopia", "{{Warning}} SINGLE USE {{Warning}}#Duplicates all item pedestals and consumables in the room"},
+	{"347", "Diplopia", "{{Warning}} SINGLE USE {{Warning}}#Duplicates all item pedestals and pickups in the room"},
 	{"348", "Placebo", "{{Pill}} Triggers the effect of the pill Isaac holds without using it"},
-	{"349", "Wooden Nickel", "{{Coin}} 50% chance to spawn a random coin"},
+	{"349", "Wooden Nickel", "{{Coin}} 56% chance to spawn a random coin"},
 	{"350", "Toxic Shock", "{{Poison}} Entering a room poisons all enemies#Enemies killed leave a puddle of creep#The creep deals 30 damage per second"},
 	{"351", "Mega Bean", "Petrifies all enemies in the room#{{Poison}} Deals 5 damage and poisons any enemies nearby#Sends a rock wave in the direction Isaac is moving#The rock wave can open secret rooms and break rocks"},
 	{"352", "Glass Cannon", "{{Warning}} Firing the cannon reduces Isaac's health down to half a heart#Shoots a large piercing + spectral tear that does 10x Isaac's damage"},
@@ -506,7 +507,7 @@ EID.descriptions[languageCode].collectibles={
 	{"482", "Clicker", "Changes your character to a random character#Removes the most recent item collected"},
 	{"483", "Mama Mega!", "{{Warning}} SINGLE USE {{Warning}}#Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss Rush, Hush and all secret rooms#Having a golden bomb when using the item consumes it and allows for another use of Mama Mega"},
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawns a rock wave around Isaac#The rock wave can open rooms and break rocks"},
-	{"485", "Crooked Penny", "50% chance to double all items, consumables and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"},
+	{"485", "Crooked Penny", "50% chance to double all items, pickups and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"},
 	{"486", "Dull Razor", "Hurts Isaac without removing health#Triggers any on-hit item effects"},
 	{"487", "Potato Peeler", "{{EmptyHeart}} Removes 1 heart container for:#↑ {{Damage}} +0.2 Schaden#{{Collectible73}} A Cube of Meat#{{Timer}} Erhalte für diesen Raum:#↑ {{Range}} +5 Reichweite#{{Collectible214}} Leave a trail of blood creep"},
 	{"488", "Metronome", "Grants a random item effect für diesen Raum"},
@@ -576,19 +577,31 @@ EID.descriptions[languageCode].collectibles={
 	{"552", "Mom's Shovel", "Spawns a trapdoor to the next floor#10% chance for {{LadderRoom}} crawlspace trapdoor#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\""},
 }
 
+---------- Modifiers ----------
+
+-- Effect of Car battery on Active Items
+-- these all need way more consistency with the original effect text and spellchecking
+EID.descriptions[languageCode].carBattery = {
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
+}
+
 ---------- Trinkets ----------
+
 EID.descriptions[languageCode].trinkets={
 	-- Not yet Translated!
 	-- Copy & Paste entries from en_us and continue translating from that
 }
 
 ---------- Cards ----------
+
 EID.descriptions[languageCode].cards={
 	-- Not yet Translated!
 	-- Copy & Paste entries from en_us and continue translating from that
 }
 
 ---------- Pills ----------
+
 EID.descriptions[languageCode].unidentifiedPill = "Unidentifizierte Pille"
 
 EID.descriptions[languageCode].pills={
@@ -597,6 +610,7 @@ EID.descriptions[languageCode].pills={
 }
 
 ---------- Sacrifice Room ----------
+
 EID.descriptions[languageCode].sacrificeHeader = "[Nächste Opferungsbelohung]"
 
 EID.descriptions[languageCode].sacrifice={
@@ -605,7 +619,8 @@ EID.descriptions[languageCode].sacrifice={
 }
 
 ---------- Dice Room ----------
-EID.descriptions[languageCode].diceHeader = "[Würfel Effekt]"
+
+EID.descriptions[languageCode].diceHeader = "[Würfel Effekte]"
 
 EID.descriptions[languageCode].dice={
 	-- Not yet Translated!
@@ -613,13 +628,8 @@ EID.descriptions[languageCode].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations = {
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
-}
 
----------- Car Battery ----------
-EID.descriptions[languageCode].carBattery={
+EID.descriptions[languageCode].transformations = {
 	-- Not yet Translated!
 	-- Copy & Paste entries from en_us and continue translating from that
 }
@@ -628,4 +638,6 @@ EID.descriptions[languageCode].carBattery={
 
 EID.descriptions[languageCode].VoidText = "Wenn absorbiert, erhalte:"
 -- {1} will become the number text (like "{1} Tränen" -> "+0.5 Tränen")
-EID.descriptions[languageCode].VoidNames = {"{1} Geschwindigkeit", "{1} Tränen", "{1} Schaden", "{1} Reichweite", "{1} Schussgeschwindigkeit", "{1} Glück"}
+EID.descriptions[languageCode].VoidNames = {"{1} Tempo", "{1} Tränen", "{1} Schaden", "{1} Reichweite", "{1} Schusstempo", "{1} Glück"}
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that

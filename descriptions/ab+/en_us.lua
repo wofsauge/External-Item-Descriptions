@@ -18,8 +18,8 @@ EID.descriptions[languageCode].languageName = "English"
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}
 
-
 ---------- Collectibles ----------
+
 EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ {{Tears}} +0.7 Tears"},
 	{"2", "The Inner Eye", "↓ {{Tears}} Tears down#Isaac shoots 3 tears at once"},
@@ -128,7 +128,7 @@ EID.descriptions[languageCode].collectibles={
 	{"105", "The D6", "Rerolls pedestal items in the room"},
 	{"106", "Mr. Mega", "↑ {{Bomb}} x1.83 Bomb damage#{{Bomb}} +5 Bombs"},
 	{"107", "The Pinking Shears", "{{Timer}} Receive for the room:#Flight#Isaac's body separates from his head and attacks enemies with 82.5 contact damage per second"},
-	{"108", "The Wafer", "Reduces most damage taken to half a heart#Does not work for Keeper or Tainted Keeper"},
+	{"108", "The Wafer", "Reduces most damage taken to half a heart#{{Player14}} Doesn't work for Keeper"},
 	{"109", "Money = Power", "↑ {{Damage}} +0.04 Damage for every {{Coin}} coin Isaac has"},
 	{"110", "Mom's Contacts", "↑ {{Range}} +0.25 Range#↑ +0.5 Tear height#20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 luck"},
 	{"111", "The Bean", "{{Poison}} Farts a poison cloud#The poison deals Isaac's damage 6 times"},
@@ -344,7 +344,7 @@ EID.descriptions[languageCode].collectibles={
 	{"319", "Cain's Other Eye", "Bounces around the room#Shoots towards Isaac#{{Damage}} Deals the same damage as Isaac"},
 	{"320", "???'s Only Friend", "Controllable fly#Deals 37.5 contact damage per second"},
 	{"321", "Samson's Chains", "Draggable ball that can destroy rocks#Deals 10.7 contact damage per second"},
-	{"322", "Mongo Baby", "Mimics one of your familiars tears#Cycles thru which familiar to mimic every shot"},
+	{"322", "Mongo Baby", "Mimics one of your familiars tears#Cycles through which familiar to mimic every shot"},
 	{"323", "Isaac's Tears", "Shoots 8 tears in all directions#The tears copy Isaac's tear effects#Recharges by shooting tears"},
 	{"324", "Undefined", "Teleports Isaac to the {{TreasureRoom}} Treasure, {{SecretRoom}} Secret, {{SuperSecretRoom}} Super Secret or {{ErrorRoom}} I AM ERROR Room"},
 	{"325", "Scissors", "{{Timer}} Isaac's head turns into a stationary familiar for the room#The body is controlled separately"},
@@ -371,7 +371,7 @@ EID.descriptions[languageCode].collectibles={
 	{"346", "A Snack", "↑ {{Heart}} +1 Health"},
 	{"347", "Diplopia", "{{Warning}} SINGLE USE {{Warning}}#Duplicates all item pedestals and pickups in the room"},
 	{"348", "Placebo", "{{Pill}} Triggers the effect of the pill Isaac holds without using it"},
-	{"349", "Wooden Nickel", "{{Coin}} Roughly 56% chance to spawn a random coin"},
+	{"349", "Wooden Nickel", "{{Coin}} 56% chance to spawn a random coin"},
 	{"350", "Toxic Shock", "{{Poison}} Entering a room poisons all enemies#Enemies killed leave a puddle of creep#The creep deals 30 damage per second"},
 	{"351", "Mega Bean", "Petrifies all enemies in the room#{{Poison}} Deals 5 damage and poisons any enemies nearby#Sends a rock wave in the direction Isaac is moving#The rock wave can open secret rooms and break rocks"},
 	{"352", "Glass Cannon", "{{Warning}} Firing the cannon reduces Isaac's health down to half a heart#Shoots a large piercing + spectral tear that does 10x Isaac's damage"},
@@ -577,7 +577,6 @@ EID.descriptions[languageCode].collectibles={
 	{"552", "Mom's Shovel", "Spawns a trapdoor to the next floor#10% chance for {{LadderRoom}} crawlspace trapdoor#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\""},
 }
 
-
 ---------- Modifiers ----------
 
 -- Effect of Car battery on Active Items
@@ -608,6 +607,7 @@ EID.descriptions[languageCode].carBattery = {
 }
 
 ---------- Trinkets ----------
+
 EID.descriptions[languageCode].trinkets={
 	{"1", "Swallowed Penny", "{{Coin}} Taking damage spawns 1 coin"},
 	{"2", "Petrified Poop", "50% chance to get drops from poop"},
@@ -740,6 +740,7 @@ EID.descriptions[languageCode].trinkets={
 }
 
 ---------- Cards ----------
+
 EID.descriptions[languageCode].cards={
 	{"1", "0 - The Fool", "Teleports Isaac to the first room of the floor"},
 	{"2", "I - The Magician", "{{Timer}} Homing tears for the room"},
@@ -798,6 +799,7 @@ EID.descriptions[languageCode].cards={
 }
 
 ---------- Pills ----------
+
 EID.descriptions[languageCode].unidentifiedPill = "Unidentified Pill"
 
 EID.descriptions[languageCode].pills={
@@ -851,6 +853,7 @@ EID.descriptions[languageCode].pills={
 }
 
 ---------- Sacrifice Room ----------
+
 EID.descriptions[languageCode].sacrificeHeader = "[Next Sacrifice Room payout]"
 
 EID.descriptions[languageCode].sacrifice={
@@ -869,6 +872,7 @@ EID.descriptions[languageCode].sacrifice={
 }
 
 ---------- Dice Room ----------
+
 EID.descriptions[languageCode].diceHeader = "[Dice Room effects]"
 
 EID.descriptions[languageCode].dice={
@@ -881,6 +885,7 @@ EID.descriptions[languageCode].dice={
 }
 
 ---------- Transformations ----------
+
 EID.descriptions[languageCode].transformations={
 	"",					-- 0 = none
 	"Guppy",			-- 1
@@ -899,7 +904,6 @@ EID.descriptions[languageCode].transformations={
 	"Adult",			-- 14
 	"Stompy"			-- 15
 }
-
 
 ---------- MISC ----------
 
