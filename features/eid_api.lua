@@ -617,6 +617,12 @@ function EID:getObjectName(Type, Variant, SubType)
 	return Type.."."..Variant.."."..SubType
 end
 
+function EID:getPlayerName(id)
+	local playerInfo = EID:getDescriptionEntry("characterInfo")[id]
+	local birthrightInfo = EID:getDescriptionEntry("birthright")[id]
+	return (playerInfo and playerInfo[1]) or (birthrightInfo and birthrightInfo[1]) or "???"
+end
+
 -- returns the name of a pill based on the pilleffect id
 function EID:getPillName(pillID, isHorsepill)
 	local moddedDesc = EID:getDescriptionEntry("custom", "5.70."..pillID)
@@ -723,15 +729,17 @@ function EID:replaceNameMarkupStrings(text)
 			end
 			name = EID:getObjectName(entityID[1], entityID[2], entityID[3])
 		elseif indicator == "C" then -- Collectible
-			name = "{{Collectible"..id.."}}"..EID:getObjectName(5, 100, id)
+			name = "{{Collectible"..id.."}} "..EID:getObjectName(5, 100, id)
 		elseif indicator == "T" then -- Trinket
-			name = "{{Trinket"..id.."}}"..EID:getObjectName(5, 350, id)
+			name = "{{Trinket"..id.."}} "..EID:getObjectName(5, 350, id)
 		elseif indicator == "P" then -- Pills
-			name = "{{Pill"..id.."}}"..EID:getPillName(id, false)
+			name = "{{Pill"..id.."}} "..EID:getPillName(id, false)
 		elseif indicator == "K" then -- Card
-			name = "{{Card"..id.."}}"..EID:getObjectName(5, 300, id)
+			name = "{{Card"..id.."}} "..EID:getObjectName(5, 300, id)
+		elseif indicator == "I" then -- Player (I for Isaac)
+			name = "{{Player"..id.."}} "..EID:getPlayerName(id)
 		end
-		text = string.gsub(text, word, "{{ColorYellow}}"..name.."{{CR}}", 1)
+		text = string.gsub(text, word, name, 1)
 	end
 	return text
 end
@@ -1586,7 +1594,7 @@ function EID:getLanguage()
 end
 
 function EID:AddToCollectiblesToCheckList(itemID)
-	table.insert(EID.collectiblesToCheck, itemID)
+	EID.collectiblesToCheck[itemID] = true
 end
 
 -- Add a specific entity to be ignored by EID. Set entitySubType to -1 in order to ignore all entities with this type+variant combi
@@ -2057,5 +2065,6 @@ end
 -- Replaces Variable placeholders in string with a given value
 -- Example: "My {1} message" --> "My test message"
 function EID:ReplaceVariableStr(str, varID, newString)
+	if type(str) ~= "string" or newString == nil then return str end
 	return str:gsub("{"..varID.."}", newString)
 end
