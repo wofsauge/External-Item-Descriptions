@@ -7,19 +7,21 @@ EID.inModifierPreview = false
 EID.TabDescThisFrame = false
 
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
-EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID, CollectibleType.COLLECTIBLE_CAR_BATTERY, CollectibleType.COLLECTIBLE_BFFS }
+EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_VOID] = true
+EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_BFFS] = true
 local maxSlot = 1
 -- Repentance modifiers
 if EID.isRepentance then
 	maxSlot = 3
-	--include the AB+ collectiblesToCheck in this table! (wish there was an easy way to merge two tables)
-	EID.collectiblesToCheck = { CollectibleType.COLLECTIBLE_VOID,
-		CollectibleType.COLLECTIBLE_BINGE_EATER, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, CollectibleType.COLLECTIBLE_SPINDOWN_DICE,
-		CollectibleType.COLLECTIBLE_TAROT_CLOTH, CollectibleType.COLLECTIBLE_MOMS_BOX, 59, --Birthright Belial
-		CollectibleType.COLLECTIBLE_BLANK_CARD, CollectibleType.COLLECTIBLE_CLEAR_RUNE, CollectibleType.COLLECTIBLE_PLACEBO,
-		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP, CollectibleType.COLLECTIBLE_CAR_BATTERY, 
-		CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS, CollectibleType.COLLECTIBLE_BFFS
-	}
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_SPINDOWN_DICE] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_MOMS_BOX] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_BLANK_CARD] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_CLEAR_RUNE] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_PLACEBO] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_FALSE_PHD] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_FLIP] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS] = true
 end
 EID.collectiblesOwned = {}
 EID.collectiblesAbsorbed = {}
@@ -29,16 +31,15 @@ EID.runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=
 EID.blackFeatherItems = {[215]=true,[216]=true,[230]=true,[260]=true,[262]=true,[339]=true,[344]=true,[654]=true,}
 EID.blackFeatherTrinkets = {[17]=true,[22]=true}
 
-local lastCheck = 0
-
+EID.LastCollectibleCheck = 0
 function EID:CheckPlayersCollectibles()
 	-- recheck the players' owned collectibles periodically, not every frame
 	-- (has to be checked regularly due to mechanics like D4 / Tainted Eden)
-	if EID.GameUpdateCount >= lastCheck + 15 then
-		lastCheck = EID.GameUpdateCount
+	if EID.GameUpdateCount >= EID.LastCollectibleCheck + 15 then
+		EID.LastCollectibleCheck = EID.GameUpdateCount
 		local numPlayers = game:GetNumPlayers()
 		local players = {}; for i = 0, numPlayers - 1 do players[i] = Isaac.GetPlayer(i) end
-		for _,v in ipairs(EID.collectiblesToCheck) do
+		for v,_ in pairs(EID.collectiblesToCheck) do
 			EID.collectiblesOwned[v] = false
 			EID.collectiblesAbsorbed[v] = false
 			for i = 0, numPlayers - 1 do
@@ -230,45 +231,6 @@ local function SacrificeRoomCallback(descObj)
 	return descObj
 end
 
--- Handle Car Battery description addition
-local function CarBatteryCallback(descObj)
-	local carBatteryBuff = EID:getDescriptionEntry("carBattery", descObj.ObjSubType)
-	if carBatteryBuff ~= nil then
-		-- String = append
-		if type(carBatteryBuff) == "string" then
-			local iconStr = "#{{Collectible356}} "
-			EID:appendToDescription(descObj, iconStr..carBatteryBuff:gsub("#",iconStr))
-		-- Table with 1 entry = replace
-		elseif #carBatteryBuff == 1 then
-			descObj.Description = carBatteryBuff[1]
-		-- Table with 2+ entries = find and replace
-		-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
-		else
-			local pos = 1
-			while pos < #carBatteryBuff do
-				local toFind = carBatteryBuff[pos]
-				local replaceWith = carBatteryBuff[pos+1]
-				
-				--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
-				if (type(toFind) == "number") then
-					local count = 0
-					descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
-						if (s == tostring(toFind) and count == 0) then
-							count = count + 1
-							return "{{BlinkYellowGreen}}" .. replaceWith .. "{{CR}}"
-						end
-					end)
-				-- Basic find+replace for non-numbers
-				else
-					descObj.Description = string.gsub(descObj.Description, tostring(toFind), "{{BlinkYellowGreen}}" .. replaceWith .. "{{CR}}", 1)
-				end
-				pos = pos + 2
-			end
-		end
-	end
-	return descObj
-end
-
 local function BlackFeatherCallback(descObj)
 	local itemCounter = 0
 	for itemID, _ in pairs(EID.blackFeatherItems) do
@@ -338,27 +300,6 @@ if EID.isRepentance then
     end
     return descObj
   end
-
-
-	-- Handle Bingeeater description addition
-	local function BingeEaterCallback(descObj)
-		local bingeBuff = EID:getDescriptionEntry("bingeEaterBuffs", descObj.ObjSubType)
-		if bingeBuff ~= nil then
-			local iconStr = "#{{Collectible664}} "
-			EID:appendToDescription(descObj, iconStr..bingeBuff:gsub("#",iconStr))
-		end
-		return descObj
-	end
-
-	-- Handle Book of Belial description for Judas' Birthright addition
-	local function BookOfBelialCallback(descObj)
-		local belialBuff = EID:getDescriptionEntry("bookOfBelialBuffs", descObj.ObjSubType)
-		if belialBuff ~= nil then
-			local iconStr = "#{{Collectible34}} "
-			EID:appendToDescription(descObj, iconStr..belialBuff:gsub("#",iconStr))
-		end
-		return descObj
-	end
 
 	-- Handle Book of Virtues description addition
 	local function BookOfVirtuesCallback(descObj)
@@ -513,45 +454,6 @@ if EID.isRepentance then
 			EID:appendToDescription(descObj, "#{{Blank}} ".. EID:getDescriptionEntry("FlipItemToggleInfo"))
 		end
 		return descObj
-	end
-
-	-- Handle Tarot Cloth description addition
-	local function TarotClothCallback(descObj)
-		local clothBuff = EID:getDescriptionEntry("tarotClothBuffs", descObj.ObjSubType)
-		if clothBuff ~= nil then
-			-- String = append
-			if type(clothBuff) == "string" then
-				local iconStr = "#{{Collectible451}} "
-				EID:appendToDescription(descObj, iconStr..clothBuff:gsub("#",iconStr))
-			-- Table with 1 entry = replace
-			elseif #clothBuff == 1 then
-				descObj.Description = clothBuff[1]
-			-- Table with 2+ entries = find and replace
-			-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
-			else
-				local pos = 1
-				while pos < #clothBuff do
-					local toFind = clothBuff[pos]
-					local replaceWith = clothBuff[pos+1]
-					
-					--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
-					if (type(toFind) == "number") then
-						local count = 0
-						descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
-							if (s == tostring(toFind) and count == 0) then
-								count = count + 1
-								return "{{ColorShinyPurple}}" .. replaceWith .. "{{CR}}"
-							end
-						end)
-					-- Basic find+replace for non-numbers
-					else
-						descObj.Description = string.gsub(descObj.Description, tostring(toFind), "{{ColorShinyPurple}}" .. replaceWith .. "{{CR}}", 1)
-					end
-					pos = pos + 2
-				end
-			end
-		end
-		return EID:applyConditionals(descObj,"Tarot")
 	end
 
 
@@ -811,16 +713,6 @@ if EID.isRepentance then
 		return descObj
 	end
 
-	-- Handle Abyss description addition
-	local function AbyssCallback(descObj)
-		local text = EID:getDescriptionEntry("abyssSynergies", descObj.ObjSubType)
-		if text ~= nil then
-			local iconStr = "#{{Collectible706}} {{ColorRed}}"
-			EID:appendToDescription(descObj, iconStr..text)
-		end
-		return descObj
-	end
-
 	-- Handle Flip description addition
 	local function FlipCallback(descObj)
 		local flipItemID = EID:getEntityData(descObj.Entity, "EID_FlipItemID")
@@ -866,10 +758,7 @@ if EID.isRepentance then
 			if REPENTOGON and descObj.ObjSubType == 422 then table.insert(callbacks, GlowingHourglassCallback) end
 			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
 
-			if EID.collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
-			if EID.collectiblesOwned[59] then table.insert(callbacks, BookOfBelialCallback) end
 			if EID.collectiblesOwned[584] or descObj.ObjSubType == 584 then table.insert(callbacks, BookOfVirtuesCallback) end
-			if EID.collectiblesOwned[706] or EID.collectiblesAbsorbed[706] then table.insert(callbacks, AbyssCallback) end
 
 			if EID.collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
 			if EID.Config["SpindownDiceResults"] > 0 and (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723]) and descObj.ObjSubType ~= 668 then table.insert(callbacks, SpindownDiceCallback) end
@@ -877,7 +766,6 @@ if EID.isRepentance then
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
 			hasTarot = EID.collectiblesOwned[451]
-			if hasTarot then table.insert(callbacks, TarotClothCallback) end
 
 			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
 			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
@@ -926,7 +814,6 @@ local function EIDConditionsAB(descObj)
 			if EID.collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
 			if EID.blackRuneOwned then table.insert(callbacks, BlackRuneCallback) end
 		end
-		if EID.collectiblesOwned[356] then table.insert(callbacks, CarBatteryCallback) end
 
 		-- BFF Synergy check
 		if EID.collectiblesOwned[247] then
