@@ -619,7 +619,7 @@ end
 
 function EID:getPlayerName(id)
 	local playerInfo = EID:getDescriptionEntry("characterInfo")[id]
-	local birthrightInfo = REPENTANCE and EID:getDescriptionEntry("birthright")[id]
+	local birthrightInfo = REPENTANCE and EID:getDescriptionEntry("birthright")[id+1]
 	return (playerInfo and playerInfo[1]) or (birthrightInfo and birthrightInfo[1]) or "???"
 end
 
