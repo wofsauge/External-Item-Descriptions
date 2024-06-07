@@ -338,7 +338,7 @@ EID.descriptions[languageCode].collectibles={
 	{"313", "Holy Mantle", "Negates the first hit taken once per room"},
 	{"314", "Thunder Thighs", "↑ {{Heart}} +1 Health#↓ {{Speed}} -0.4 Speed#Isaac can destroy rocks by walking into them"},
 	{"315", "Strange Attractor", "Isaac's tears attract enemies, pickups and trinkets"},
-	{"316", "Cursed Eye", "Charged wave of 4 tears#{{Warning}} Taking damage while partially charged teleports Isaac to a random room#{{Collectible260}} Black Candle removes the teleportation effect"},
+	{"316", "Cursed Eye", "Charged wave of 4 tears#{{Warning}} Taking damage while partially charged teleports Isaac to a random room"},
 	{"317", "Mysterious Liquid", "Isaac's tears leave creep#The creep deals 30 damage per second"},
 	{"318", "Gemini", "Close combat familiar#Deals 6 contact damage per second"},
 	{"319", "Cain's Other Eye", "Bounces around the room#Shoots towards Isaac#{{Damage}} Deals the same damage as Isaac"},
@@ -986,11 +986,13 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.241"] = "{{GreedMode}} Doesn't affect Greed Mode", -- Contract From Below
 	["5.100.135 (Keeper)"] = "{{Player14}} Spawns 0-1 coin as Keeper", -- IV Bag Keeper
 	["5.100.135 (PHD)"] = "{{Collectible75}} Spawns 2-3 coins if you have PHD", -- IV Bag PHD
-	["5.300.15"] = "{{DemonBeggar}} Spawns a Devil Beggar", -- Temperance (Greed Mode effect)
+	["5.300.15"] = {"{{DemonBeggar}} Spawns a Devil Beggar"}, -- Temperance (Greed Mode effect)
 	["5.350.23"] = "{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost", -- Missing Poster (Unlock The Lost)
 	
-	["5.100.549 (Keeper)"] = "{{Player14}} ↑ {{Tears}} +0.5 Tears#Spawns 24 blue flies", -- Brittle Bones
-	["5.100.549 (Lost)"] = "{{Player10}} ↑ {{Tears}} +0.5 Tears", -- Brittle Bones
+	["5.100.549"] = "↑ {{Tears}} +0.5 Tears for {1}", -- Brittle Bones (Keeper+Lost)
+	
+	["5.100.316"] = "{1} removes the teleportation effect", -- Cursed Eye
+	["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
