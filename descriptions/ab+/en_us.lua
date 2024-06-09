@@ -1053,7 +1053,7 @@ EID.descriptions[languageCode].BFFSSynergies = {
 -- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
 -- Soon, these descriptions, along with their starting item descriptions, will be in a tab in the Item Reminder
 -- The character names here are also used in getPlayerName to provide localized character names
-EID.descriptions[languageCode].characterInfo = {
+EID.descriptions[languageCode].CharacterInfo = {
 	[0] = {"Isaac", ""},
 	{"Magdalene", ""},
 	{"Cain", ""},

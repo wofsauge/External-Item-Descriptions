@@ -1392,7 +1392,7 @@ local repCharacterInfo = {
 	[39] = {"Tainted Jacob 2", "!!! 유령 상태: {{ColorRed}}한 번이라도 피격 시 즉시 사망합니다.{{CR}}#악마 거래를 체력 상관없이 획득할 수 있으나 하나 획득 시 나머지는 사라집니다.#스테이지 진입 시 일반 상태로 돌아옵니다.#Dark Esau가 캐릭터를 향해 쫒아오며 가까이 있으면 돌진합니다.#{{Collectible722}} Anima Sola 사용 시 5초동안 Dark Esau를 묶으며 재사용, 혹은 시간 소진 시 더 크게 돌진합니다.#Dark Esau의 큰 돌진 공격은 지나가는 자리의 적에게 초당 300의 방어 무시+화상 피해를 줍니다."},
 	[40] = {"Tainted Forgotten Soul", "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#움직일 수 없으며 자유롭게 움직일 수 있는 영혼이 뼈 더미를 집고 던져야 합니다.#피격 판정은 영혼에게만 있습니다.#폭탄 설치 시 뼈 더미의 위치에서 설치됩니다."},
 }
-EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].characterInfo)
+EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
 
 
 local RepDemoObject = {

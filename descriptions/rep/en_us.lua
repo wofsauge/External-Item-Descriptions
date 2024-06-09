@@ -1269,7 +1269,7 @@ local repCharacterInfo = {
 	[39] = {"Tainted Jacob 2", ""},
 	[40] = {"Tainted Forgotten Soul", "The Forgotten is an immobile bone pile that is picked up and thrown by The Soul for 3x damage#Only The Soul can take damage#Bombs are placed at Forgotten's location#Can't have Red Hearts"},
 }
-EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].characterInfo)
+EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then

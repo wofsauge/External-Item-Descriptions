@@ -618,7 +618,7 @@ function EID:getObjectName(Type, Variant, SubType)
 end
 
 function EID:getPlayerName(id)
-	local playerInfo = EID:getDescriptionEntry("characterInfo")[id]
+	local playerInfo = EID:getDescriptionEntry("CharacterInfo")[id]
 	local birthrightInfo = EID.isRepentance and EID:getDescriptionEntry("birthright")[id+1]
 	return (playerInfo and playerInfo[1]) or (birthrightInfo and birthrightInfo[1]) or "???"
 end
