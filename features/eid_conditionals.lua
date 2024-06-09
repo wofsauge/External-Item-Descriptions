@@ -99,7 +99,7 @@ TODO: AB+ tarot cloth buffs table?
 -- todo: Vibrant/Dim Bulb + doesn't work with pocket consumables. could be conditional actually if we have a list of char IDs with pocket actives
 -- todo: idk about the BFFs synergy stuff but I noticed that Brown Nugget is incorrectly dealt with, it gained double damage in rep
 -- hive mind and BFFs synergy has a lot of overlap also
--- brown nugget + sacrificial altar?!
+-- brown nugget + sacrificial altar in AB+?!
 -- ? Card + single use actives in Repentance? Alabaster Box
 
 -- meta todo: Put a 100% save file for AB+ and for Rep on my flash drive
@@ -178,6 +178,7 @@ if EID.isRepentance then
 	EID:AddCollectibleConditional("5.350.172", 260) -- Black Candle + Cursed Penny
 	EID:AddCollectibleConditional(501, 416) -- Greed's Gullet + Deep Pockets
 	EID:AddSynergyConditional(245, {2, 153, 169}, nil, "20/20") -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	EID:AddSynergyConditional(330, 561, "Overridden", "Overrides") -- Soy+Almond Milk
 end
 
 ----- Evaluation Functions -----
