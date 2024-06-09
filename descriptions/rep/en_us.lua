@@ -1089,7 +1089,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	tear_fire = "Firing a tear has a 5% chance to:#",
 	enemy_hit = "Hitting an enemy has a 5% chance to:#",
 	room_clear = "On clearing a room:#",
-	chain = "Then:{{CR}} ",
+	chain = " Then:{{CR}} ",
 
 	-- Attribute effects
 	area_damage = "Deal {1} damage in {2} tiles around Isaac",

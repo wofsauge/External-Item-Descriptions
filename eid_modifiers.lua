@@ -17,7 +17,7 @@ if EID.isRepentance then
 		CollectibleType.COLLECTIBLE_BINGE_EATER, CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES, CollectibleType.COLLECTIBLE_SPINDOWN_DICE,
 		CollectibleType.COLLECTIBLE_TAROT_CLOTH, CollectibleType.COLLECTIBLE_MOMS_BOX, 59, --Birthright Belial
 		CollectibleType.COLLECTIBLE_BLANK_CARD, CollectibleType.COLLECTIBLE_CLEAR_RUNE, CollectibleType.COLLECTIBLE_PLACEBO,
-		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP, CollectibleType.COLLECTIBLE_CAR_BATTERY
+		CollectibleType.COLLECTIBLE_FALSE_PHD, CollectibleType.COLLECTIBLE_ABYSS, CollectibleType.COLLECTIBLE_FLIP, CollectibleType.COLLECTIBLE_CAR_BATTERY, CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS,
 	}
 end
 EID.collectiblesOwned = {}
@@ -289,9 +289,9 @@ if EID.isRepentance then
 
   -- Handle Glowing Hourglass description
   local function GlowingHourglassCallback(descObj)
-    if REPENTOGON then
+    if REPENTOGON and EID.collectiblesOwned[422] then
       local transformedText = EID:getDescriptionEntry("GlowingHourglassTransformed")
-      local numUses = Isaac.GetPlayer():GetActiveItemDesc().VarData
+      local numUses = Isaac.GetPlayer(EID.collectiblesOwned[422]):GetActiveItemDesc().VarData
       if numUses == 3 then
         -- Replace with the description of The Hourglass
         descObj.Description = EID:getDescriptionObj(5, 100, 66).Description
@@ -326,10 +326,24 @@ if EID.isRepentance then
 
 	-- Handle Book of Virtues description addition
 	local function BookOfVirtuesCallback(descObj)
-		local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", descObj.ObjSubType)
-		if wispType ~= nil then
-			local iconStr = "#{{Collectible584}} "
-			EID:appendToDescription(descObj, iconStr..wispType:gsub("#",iconStr))
+		-- Display players' current active item's wisp effect when looking at a Book of Virtues pedestal
+		if descObj.ObjSubType == 584 and not EID.InsideItemReminder then
+			for i = 1,#EID.coopAllPlayers do
+				local player = EID.coopAllPlayers[i]
+				local active = player:GetActiveItem()
+				local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", active)
+				if wispType ~= nil then
+					local iconStr = "#{{Collectible" .. active .. "}} "
+					EID:appendToDescription(descObj, iconStr..wispType:gsub("#",iconStr))
+				end
+			end
+		-- Display wisp effect of a pedestal / your active while holding Book of Virtues
+		else
+			local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", descObj.ObjSubType)
+			if wispType ~= nil then
+				local iconStr = "#{{Collectible584}} "
+				EID:appendToDescription(descObj, iconStr..wispType:gsub("#",iconStr))
+			end
 		end
 		return descObj
 	end
@@ -818,7 +832,7 @@ if EID.isRepentance then
 
 			if EID.collectiblesOwned[664] then table.insert(callbacks, BingeEaterCallback) end
 			if EID.collectiblesOwned[59] then table.insert(callbacks, BookOfBelialCallback) end
-			if EID.collectiblesOwned[584] then table.insert(callbacks, BookOfVirtuesCallback) end
+			if EID.collectiblesOwned[584] or descObj.ObjSubType == 584 then table.insert(callbacks, BookOfVirtuesCallback) end
 			if EID.collectiblesOwned[706] or EID.collectiblesAbsorbed[706] then table.insert(callbacks, AbyssCallback) end
 
 			if EID.collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end

@@ -915,9 +915,10 @@ EID.descriptions[languageCode].MCM = {
 	DemoObjectText = "这份文本是中文的#这是一条非常酷的长文本，用来模拟EID文本框自动分行功能！#\1 这也是一条非常酷的文本#祝使用愉快{{Heart}}",
 }
 
-EID.descriptions[languageCode].HoldMapTitle = "道具提示"
 -- 长按地图键会以"道具名称的结果"为描述预测结果
-EID.descriptions[languageCode].HoldMapHeader = "的结果"
+EID.descriptions[languageCode].ItemReminder = {
+	ResultHeader = " 的结果",
+}
 
 -- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
 -- 为本地化方便也添加了忏悔的房间类型

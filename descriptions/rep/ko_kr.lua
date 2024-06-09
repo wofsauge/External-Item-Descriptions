@@ -808,7 +808,7 @@ local repTrinkets={
 	[14] = {"14", "굳은살", "가시나 장판에 피해를 입지 않습니다.#!!! Mama Gurdy, The Pile 보스의 가시, 혹은 가시 돌에는 여전히 피해를 입습니다."}, -- Callus
 	[16] = {"16", "엄마의 발톱", "20초마다 엄마발이 랜덤한 위치에 떨어집니다."}, -- Mom's Toenail
 	[15] = {"15", "행운의 돌조각", "장애물 파괴 시 33% 확률로 {{Coin}}동전을 드랍합니다."}, -- Lucky Rock
-	[17] = {"17", "검은 립스틱", "소울하트가 드랍될 때 {{BlackHeart}}블랙하트로 바뀔 확률 +10%p"}, -- Black Lipstick
+	[17] = {"17", "검은 립스틱", "소울하트가 드랍될 때 {{BlackHeart}}블랙하트로 바뀔 확률 +5%p"}, -- Black Lipstick
 	[18] = {"18", "성경 책자", "빨간하트가 드랍될 때 {{EthernalHeart}}이터널하트로 바뀔 확률 +3.33%p"}, -- Bible Tract
 	[19] = {"19", "종이 클립", "열쇠가 필요한 모든 상자를 열쇠 소모 없이 열 수 있습니다."}, -- Paper Clip
 	[24] = {"24", "똥전", "똥 오브젝트에서 {{Coin}}동전이 나올 확률이 20% 증가합니다.#{{Poison}} 동전 획득 시 적을 밀쳐내는 독성 방귀를 뀝니다."}, -- Butt Penny
@@ -1194,15 +1194,15 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	[0] = "{{DamageSmall}}공격력", "{{TearsSmall}}연사(+상한)", "{{ShotspeedSmall}}탄속", "{{RangeSmall}}사거리", "{{SpeedSmall}}이동속도", "눈물효과", "눈물색깔", "비행", "공격 유형", "패밀리어", "{{LuckSmall}}행운", "캐릭터의 크기", "캐릭터의 색깔", "상자 내용물", [16] = "모든 능력치",
 
 	-- Attribute triggers
-	chain = "체인:{{CR}} ",
 	active = "아이템 사용 시:#",
-	pickup_collected = "픽업을 주울 시:#",
-	enemy_kill = "적을 죽일 시 20%의 확률로:#",
-	damage_taken = "캐릭터가 피격 시:#",
-	entity_spawned = "{T1}이/가 소환될 시:#",
-	tear_fire = "눈물 발사 시 5%의 확률로:#",
+	pickup_collected = "픽업 획득 시:#",
+	enemy_kill = "적 처치 시 20%의 확률로:#",
+	damage_taken = "캐릭터 피격 시:#",
+	entity_spawned = "{T1} 소환 시:#",
+	tear_fire = "공격 시 5%의 확률로:#",
 	enemy_hit = "적 명중 시 5%의 확률로:#",
 	room_clear = "방 클리어 시:#",
+	chain = "#{{ArrowGrayRight}} ",
 
 	-- Attribute effects
 	area_damage = "캐릭터 주변 {2} 범위 적에게 {1}의 피해를 줍니다.",
@@ -1228,7 +1228,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["999.-1"] = "장애물",
 	["1000.0"] = "효과",
 
-	grants = "아이템 적용:#",
+	grants = "{{Collectible}} 아이템 적용:#",
 
 }
 
@@ -1290,14 +1290,16 @@ EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune 충전량:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo 충전량:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "( {{CONFIG_BoC_Toggle}} (맵 펼치기) 버튼을 꾹 눌러 설명 보기)"
 
+EID.descriptions[languageCode].GlowingHourglassTransformed = "스테이지 진입 시 복원됨"
+
 EID.descriptions[languageCode].FalsePHDHeart = "{{BlackHeart}}블랙하트 1개 드랍"
 EID.descriptions[languageCode].FalsePHDDamage = "{{DamageSmall}}공격력 +0.6"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "{{DamageSmall}}공격력 +1.2"
 
-EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "위의 효과 대신 열쇠를 같이 소모하여 랜덤 배열의 아이템 6개를 소환합니다."
-
 EID.descriptions[languageCode].ExperimentalPillPHD = "능력치 감소 없음"
 EID.descriptions[languageCode].ExperimentalPillFalsePHD = "능력치 증가 없음"
+
+EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "위의 효과 대신 열쇠를 같이 소모하여 랜덤 배열의 아이템 6개를 소환합니다."
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! 경고 !!!"
 EID.descriptions[languageCode].AchievementWarningText = "{{ColorRed}}지금 모드를 적용하면 게임 진행이 막히며 도전과제가 언락되지 않습니다!{{CR}}#모든 모드를 비활성화 한 상태에서 6 스테이지 (Depths II) 보스를 클리어하셔야#{{Blank}}모드 적용 중에도 도전과제를 언락할 수 있습니다."
@@ -1305,6 +1307,8 @@ EID.descriptions[languageCode].AchievementWarningText = "{{ColorRed}}지금 모�
 EID.descriptions[languageCode].OldGameVersionWarningText = "리펜턴스가 최신 버전이 아닙니다!#최신 버전이 아닐 경우 모드 오류가 발생할 수 있습니다(1.7.9b).#(config 설정을 수정하여 메세지를 비활성화 할 수 있습니다.)"
 
 EID.descriptions[languageCode].ModdedRecipesWarningText = "아이템 추가 모드나 아이템 배열 변경 모드가 적용되어 있을 경우 조합법이 일치하지 않을 수 있습니다.#조합법 설명을 숨기거나 REPENTOGON 모드를 설치해 주세요.#(config 설정을 수정하여 해당 메세지를 비활성화 할 수 있습니다.)"
+
+EID.descriptions[languageCode].ResultsWithX = "({1} 사용 시 결과)"
 
 local repConditions={
 	["5.100.161"] = "{{Player25}} Tainted ???의 경우 ??? 캐릭터로 변경되지 않습니다.", -- Ankh
@@ -1332,4 +1336,10 @@ if EID.enableDebug then
 	EID.descriptions[languageCode].repTrinkets = repTrinkets
 	EID.descriptions[languageCode].repCards = repCards
 	EID.descriptions[languageCode].repPills = repPills
+end
+
+
+if REPENTOGON then
+	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "기부 머신", "다음 목표까지 {{Coin}}{1}개, {2}개 남음#{{LuckSmall}} 기부 시 2%의 확률로 행운 +1#{{AngelChanceSmall}} 10{{Coin}} 기부 시 천사방 확률 증가"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "그리드 머신", "다음 목표까지 {{Coin}}{1}개, {2}개 남음"}
 end

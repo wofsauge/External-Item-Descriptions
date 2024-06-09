@@ -816,7 +816,7 @@ EID.descriptions[languageCode].cards={
 	{"12", "XI - 힘", "그 방에서 {{Heart}}최대 체력 +1, {{DamageSmall}}공격력 +0.3, {{DamageSmall}}공격력 배율 +50%, {{RangeSmall}}사거리 +5.25, 눈물 높이 +0.5, {{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
 	{"13", "XII - 매달린 남자", "{{Collectible20}} 그 방에서 비행 능력을 얻습니다."}, -- XII - The Hanged Man
 	{"14", "XIII - 죽음", "{{Collectible35}} 방 안의 모든 적에게 40의 피해를 줍니다."}, -- XIII - Death
-	{"15", "XIV - 절제", "헌혈기계를 생성합니다.#Greed 모드에서는 악마거지를 소환합니다."}, -- XIV - Temperance
+	{"15", "XIV - 절제", "{{DonationMachine}}헌혈기계를 생성합니다."}, -- XIV - Temperance
 	{"16", "XV - 악마", "{{Collectible34}} 그 방에서 {{DamageSmall}}공격력 +2"}, -- XV - The Devil
 	{"17", "XVI - 탑", "{{Collectible65}} 방 안에 트롤폭탄을 6개 생성합니다."}, -- XVI - The Tower
 	{"18", "XVII - 별", "{{TreasureRoom}}보물방으로 순간이동합니다."}, -- XVII - The Stars
@@ -973,9 +973,19 @@ EID.descriptions[languageCode].MCM={
 	DemoObjectText = "이 설명은 한국어로 작성되었습니다.#!!! 간단 설정 방법:#{{Collectible182}} 폰트: Visuals→Font Type#{{Freezing}} 텍스트박스 너비: General→Textbox Width#\1 {{Damage}}테스트 공격력 +1#{{AngelDevilChance}} 악마와 천사, 당신의 선택은?#{{DeliriumSmall}} 모두가 싫어하는 델리리움",
 }
 
-EID.descriptions[languageCode].HoldMapTitle = "리마인더"
--- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
-EID.descriptions[languageCode].HoldMapHeader = " 예상 결과"
+-- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].ItemReminder = {
+	ResultHeader = " 예측",
+	CategoryNames = {
+		Overview = "요약",
+		Special = "스페셜",
+		Actives = "액티브",
+		Pockets = "소모성",
+		Trinkets = "장신구",
+		Passives = "패시브"
+	}
+}
+
 -- includes Planetarium even though it's unused in AB+ for convenience
 -- Includes Repentance room types for localization convenience
 EID.descriptions[languageCode].RoomTypeNames = { "일반방", "상점", "I AM ERROR (오류방)", "보물방", "보스방", "미니보스방", "비밀방", "일급비밀방", "오락실", "저주방", "도전방/보스도전방", "책방", "희생방", "악마방", "천사방", "사다리방", "보스러시", "깨끗한 침대방", "더러운 침대방", "금고방", "주사위방", "블랙마켓", "출구방", "천체관", "텔레포터 입구", "텔레포터 출구", "대체 루트 입구", "파란 방", "특급비밀방",

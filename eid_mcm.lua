@@ -574,14 +574,29 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	------------------------------Item Reminder--------------------------------
 
-	EID:AddBooleanSetting("Reminder", "ItemReminderEnabled", "Item Reminder Description", {displayingTab = "",offText = "Disabled", onText = "Enabled", infoText = "Hold Map to show your active item's effect, recently picked up items, and much more"})
+	EID:AddBooleanSetting("Reminder", "ItemReminderEnabled", "Item Reminder", {displayingTab = "",offText = "Disabled", onText = "Enabled", infoText = "Hold Map to show your active item's effect, recently picked up items, and much more"})
+	
+	local itemSlotReminders = { [0] = "No", "Yes    (max 1)", "Yes    (max 2)", "Yes    (max 3)", "Yes    (max 4)", "Yes    (max 5)", "Yes    (max 6)", "Yes    (max 7)", "Yes    (max 8)" }
 
+	MCM.AddSpace("EID", "Reminder")
+	MCM.AddText("EID", "Reminder", "Options")
+	EID:AddBooleanSetting("Reminder", "ItemReminderShowOverview", "Show Overview Category", { infoText = "Show category with an overview of items in your inventory"})
+	EID:AddBooleanSetting("Reminder", "ItemReminderDisableInputs", "Disable Player Inputs", { infoText = "Prevents the player from doing inputs when item reminder is visible"})
+	EID:AddBooleanSetting("Reminder", "ItemReminderShowHiddenInfo", "Show Hidden Information", { infoText = "Items like Error (404) or Rainbow Worm can have their current granted item revealed in the Item Reminder"})
+	EID:AddBooleanSetting("Reminder", "ItemReminderShowRNGCheats", "Show RNG Predictions", { infoText = "Some items can have their next random result predicted and shown in the Item Reminder"})
+
+	MCM.AddSpace("EID", "Reminder")
+	MCM.AddText("EID", "Reminder", "Controls")
 	local actionToName = { [0] = "Move Left", "Move Right", "Move Up", "Move Down", "Shoot Left", "Shoot Right", "Shoot Up", "Shoot Down", "Bomb", "Item", "Pill/Card", "Drop", "Pause", "Map" }
 
 	EID:AddNumberSetting("Reminder", "BagOfCraftingToggleKey", "Hold to Show", 8, 13, {displayTable = actionToName,
 	infoText = {"Hold this key to display the Item Reminder description, show Flip/Spindown previews and control the Bag of Crafting recipe list"}})
 
-	local itemSlotReminders = { [0] = "No", "Yes    (max 1)", "Yes    (max 2)", "Yes    (max 3)", "Yes    (max 4)", "Yes    (max 5)", "Yes    (max 6)", "Yes    (max 7)", "Yes    (max 8)" }
+	EID:AddNumberSetting("Reminder", "ItemReminderNavigateLeftButton", "Navigate Left", 0, 13, {displayTable = actionToName,
+	infoText = {"Keybinding that is used to scroll thru the categories in the left direction"}})
+
+	EID:AddNumberSetting("Reminder", "ItemReminderNavigateRightButton", "Navigate Right", 0, 13, {displayTable = actionToName,
+	infoText = {"Keybinding that is used to scroll thru the categories in the left direction"}})
 
 	MCM.AddSpace("EID", "Reminder")
 	MCM.AddText("EID", "Reminder", "Item Descriptions")
@@ -593,8 +608,6 @@ if MCMLoaded then
 
 	EID:AddNumberSetting("Reminder", "ItemReminderShowPoopDesc", "Poop Spells", 0, 6, { repOnly = true, displayTable = itemSlotReminders, infoText = "Show Tainted ???'s next Poop Spell descriptions in the Item Reminder"})
 
-	EID:AddBooleanSetting("Reminder", "ItemReminderShowHiddenInfo", "Show Hidden Information", { infoText = "Items like Error (404) or Rainbow Worm can have their current granted item revealed in the Item Reminder"})
-	EID:AddBooleanSetting("Reminder", "ItemReminderShowRNGCheats", "Show RNG Predictions", { infoText = "Some items can have their next random result predicted and shown in the Item Reminder"})
 
 
 

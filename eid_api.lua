@@ -764,12 +764,15 @@ end
 function EID:createItemIconObject(str)
 	local collID,numReplace = string.gsub(str, "Collectible", "")
 	local item = nil
+	local subTypeIdentifier = 0
 	if numReplace > 0 and collID ~= "" and tonumber(collID) ~= nil then
 		item = EID.itemConfig:GetCollectible(tonumber(collID))
+		subTypeIdentifier = tonumber(collID)
 	end
 	local trinketID,numReplace2 = string.gsub(str, "Trinket", "")
 	if numReplace2 > 0 and trinketID ~= "" and tonumber(trinketID) ~= nil then
 		item = EID.itemConfig:GetTrinket(tonumber(trinketID))
+		subTypeIdentifier = tonumber(trinketID)
 	end
 	local cardID,numReplace3 = string.gsub(str, "Card", "")
 	if numReplace3 > 0 and cardID ~= "" and tonumber(cardID) ~= nil then
@@ -791,7 +794,7 @@ function EID:createItemIconObject(str)
 		spriteDummy:Load("gfx/eid_inline_icons.anm2", true)
 		spriteDummy:ReplaceSpritesheet(1, item.GfxFileName)
 		spriteDummy:LoadGraphics()
-		local newDynamicSprite = {"ItemIcon", 0, 11, 8, -2, -2, spriteDummy}
+		local newDynamicSprite = {"ItemIcon", subTypeIdentifier, 11, 8, -2, -2, spriteDummy}
 		dynamicSpriteCache[str] = newDynamicSprite
 		return newDynamicSprite
 	end
@@ -1932,4 +1935,33 @@ end
 -- returns the name of the given entity
 function EID:GetEntityXMLName(Type, Variant, SubType)
 	return EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
+end
+
+-- Get an item's RNG seed. We have no use for the RNG object itself because every other function it can do will advance the item's RNG, altering the game state
+function EID:GetItemSeed(player, id, variant)
+	if player == nil then return game:GetSeeds():GetStartSeed()
+	elseif variant == nil or variant == 100 then return player:GetCollectibleRNG(id):GetSeed()
+	elseif variant == 350 then return player:GetTrinketRNG(id):GetSeed()
+	elseif variant == 300 then return player:GetCardRNG(id):GetSeed()
+	elseif variant == 70 then return player:GetPillRNG(id):GetSeed() end
+end
+
+local variantToName = { [70] = "Pill", [100] = "Collectible", [300] = "Card", [350] = "Trinket" }
+function EID:GetIconNameByVariant(variant)
+	return variantToName[variant]
+end
+
+function EID:GetIconStringByDescriptionObject(descObj)
+	if descObj and descObj.Icon then
+		if type(descObj.Icon) == "table" then 
+			local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
+			if iconName == "Card" or iconName == "Pill" then
+				return "{{" .. iconName .. (descObj.Icon[2] + 1) .. "}}"
+			end
+			return "{{" .. iconName .. descObj.Icon[2] .. "}}"
+		elseif type(descObj.Icon) == "string" then 
+			return descObj.Icon
+		end
+	end
+	return "{{Blank}}"
 end

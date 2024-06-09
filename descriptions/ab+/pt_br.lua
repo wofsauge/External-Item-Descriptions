@@ -884,8 +884,10 @@ EID.descriptions[languageCode].MCM = {
 	DemoObjectText = "Este texto está em Português brasileiro#Uma descrição muito legal e longa para simular quebras de linha causadas pela largura da caixa de texto do EID!#{{Collectible4}} Esta também é uma linha legal#{{Heart}} Esta linha ama você#{{AngelDevilChance}} Esta linha pode ser seu anjo ou demônio#\1 {{Damage}} +1 Mudança de Status",
 }
 
--- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
-EID.descriptions[languageCode].HoldMapHeader = " Resultado"
+-- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].ItemReminder = {
+	ResultHeader = " Resultado",
+}
 -- includes Planetarium even though it's unused in AB+ for convenience
 EID.descriptions[languageCode].Teleport2RoomNames = { "Sala Normal","Sala do Chefe","Sala Super Secreta","Loja","Sala do Tesouro","Sala de Sacrifício","Sala do Dado","Biblioteca","Sala da Maldição","Sala do Mini-Chefe","Sala do Desafio/Desafio do Chefe","Sala do Isaac","Sala Estéril","Sala do Jogos","Sala do Baú","Planetário","Sala Secreta","Sala Vermelha Especial","Sala do Anjo/Diabo","Sala I AM ERROR" }
 EID.descriptions[languageCode].Teleport2GreedRoomNames = { "Sala Principal", "Sala do Chefe", "Loja", "Sala do Tesouro Prateada/Dourada", "Sala da Maldição", "Sala da Saída", "Sala Super Secreta", "Sala do Anjo/Diabo", "Sala I AM ERROR" }

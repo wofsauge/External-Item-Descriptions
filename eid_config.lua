@@ -318,10 +318,27 @@ EID.UserConfig = {
 	-- Enable/Disable item reminder feature.
 	-- Hold Map (or the button action chosen below) to show a description of your active item's effect, recently picked up items, and things like Teleport 2.0's destination and Void's absorbed items
 	["ItemReminderEnabled"] = true,
+	-- Display all important descriptions in a single overview category
+	-- Default = true
+	["ItemReminderShowOverview"] = true,
+	-- Disable inputs while Item Reminder is visible
+	-- Default = false
+	["ItemReminderDisableInputs"] = false,
 	-- Set the keybinding that's held to show the Item Reminder description, Flip/Spindown Dice preview descriptions, and interacting with the Bag of Crafting recipe list
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_MAP
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
+	-- Set the keybinding that is used to scroll thru the categories in the left direction
+	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
+	-- Default = ButtonAction.ACTION_SHOOTLEFT
+	["ItemReminderNavigateLeftButton"] = ButtonAction.ACTION_SHOOTLEFT,
+	-- Set the keybinding that is used to scroll thru the categories in the right direction
+	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
+	-- Default = ButtonAction.ACTION_SHOOTLEFT
+	["ItemReminderNavigateRightButton"] = ButtonAction.ACTION_SHOOTRIGHT,
+	-- 
+	-- Default = 3
+	["ItemReminderMaxEntriesCount"] = 3,
 	-- Show recently acquired item descriptions in the Item Reminder (good for Curse of the Blind!)
 	-- Default = 1
 	["ItemReminderShowRecentItem"] = 1,
@@ -585,7 +602,12 @@ EID.DefaultConfig = {
 	["CraftingResultButton"] = -1,
 
 	["ItemReminderEnabled"] = true,
+	["ItemReminderShowOverview"] = true,
+	["ItemReminderDisableInputs"] = false,
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
+	["ItemReminderNavigateLeftButton"] = ButtonAction.ACTION_SHOOTLEFT,
+	["ItemReminderNavigateRightButton"] = ButtonAction.ACTION_SHOOTRIGHT,
+	["ItemReminderMaxEntriesCount"] = 5,
 	["ItemReminderShowRecentItem"] = 1,
 	["ItemReminderShowActiveDesc"] = 1,
 	["ItemReminderShowPocketDesc"] = 1,

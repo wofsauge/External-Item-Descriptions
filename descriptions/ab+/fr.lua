@@ -21,7 +21,7 @@ EID.descriptions[languageCode].languageName = "French"
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default", textboxWidth = 135}, {name="inverted", textboxWidth = 135}, {name="borderless", textboxWidth = 135}}
 
-EID.descriptions["fr"].collectibles={
+EID.descriptions[languageCode].collectibles={
 	{"1", "Oignon Triste", "↑ Débit {{ColorLime}}+0.7"},
 	{"2", "Troisième Œil", "Triple tir#↓ Débit diminué"},
 	{"3", "Cuillère Tordue", "Larmes autoguidées"},
@@ -102,7 +102,7 @@ EID.descriptions["fr"].collectibles={
 	{"78", "Livre de la Révélation", "{{SoulHeart}} +1 cœur d'âme#Augmente les chances d'affronter un {{ColorCyan}}Harbinger{{ColorWhite}} dans la salle du boss#{{AngelDevilChanceSmall}} +17.5% de chances de Devil Deal"},
 	{"79", "Le Nombre de la Bête", "↑ Dégâts {{ColorLime}}+1.0#↑ Vitesse {{ColorLime}}+0.2#{{SoulHeart}} +1 cœur d'âme"},
 	{"80", "Le Pacte", "↑ Dégâts {{ColorLime}}+0.5#↑ Débit {{ColorLime}}+0.7#{{SoulHeart}} +2 cœurs d'âme"},
-	{"81", "Chat Mort", "↑ +9 Vies#↓ Réduit le nombre de réceptacles de cœurs rouges d'Isaac à 1#Isaac ressuscite avec 1 réceptacle de cœur"},
+	{"81", "Chat Mort", "↑ +9 Vies#↓ Réduit le nombre de réceptacles de cœurs rouges d'Isaac à 1#Mourir ressuscite Isaac avec 1 réceptacle de cœur"},
 	{"82", "Empereur de la Fosse", "↑ Vitesse {{ColorLime}}+0.3#Permet à Isaac de voler"},
 	{"83", "Clou Pointu", "{{SoulHeart}} +1 cœur d'âme#↑ Dégâts {{ColorLime}}+0.7#↓ Vitesse {{ColorError}}-0.18#Permet à Isaac de détruire les rochers en marchant dessus"},
 	{"84", "Aller au Fond des Choses", "Ouvre une trappe vers l'étage suivant#La trappe a 10% de chances de contenir une échelle de corde"},
@@ -156,7 +156,7 @@ EID.descriptions["fr"].collectibles={
 	{"132", "Morceau de Charbon", "Augmente les dégâts des larmes selon la distance qu'elles parcourent"},
 	{"133", "Patte de Guppy", "Convertit 1 réceptacle de cœur en 3 cœurs d'âme"},
 	{"134", "Queue de Guppy", "{{ColorLime}}33%{{ColorWhite}} de chances de remplacer la récompense d'une salle par un coffre#{{ColorError}}33%{{ColorWhite}} de chance d'annuler la récompense d'une salle"},
-	{"135", "Perfusion", "Inflige un demi-cœur de dégâts à Isaac#Fait apparaître 1 à 3 pièces"},
+	{"135", "Perfusion", "Inflige un demi-cœur de dégâts à Isaac et fait apparaître 2 à 3 pièces"},
 	{"136", "Mon Meilleur Ami", "Place une peluche qui attire les ennemis et explose après 5 secondes"},
 	{"137", "Détonateur Télécommandé", "Les bombes d'Isaac n'explosent plus automatiquement#Utiliser l'objet fait exploser toutes les bombes placées par Isaac#{{Bomb}} +5 Bombes"},
 	{"138", "Stigmates", "{{Heart}} +1 réceptacle de cœur#↑ Dégâts {{ColorLime}}+0.3"},
@@ -642,7 +642,7 @@ EID.descriptions[languageCode].carBattery = {
 }
 
 ---------- Trinkets ----------
-EID.descriptions["fr"].trinkets={
+EID.descriptions[languageCode].trinkets={
 	{"1", "Pièce Avalée", "Subir un dégât fait apparaître une pièce"},
 	{"2", "Caca Pétrifié", "Détruire un caca a 50% de chances de faire apparaître une ressource"},
 	{"3", "Pile AAA", "Termine de charger l'objet activable s'il lui manque une charge"},
@@ -665,7 +665,7 @@ EID.descriptions["fr"].trinkets={
 	{"20", "Patte de Singe", "Descendre à un demi-cœur de vie totale fait apparaître un cœur noir#Après avoir fait apparaître 3 cœurs noirs, le trinket disparaît"},
 	{"21", "Papier Mystérieux", "Donne parfois l'effet de {{ColorYellow}}The Polaroid {{Collectible327}}{{ColorWhite}}, {{ColorYellow}}The Negative {{Collectible328}}{{ColorWhite}}, {{ColorYellow}}Missing Poster {{Trinket23}}{{ColorWhite}} et {{ColorYellow}}A Missing Page {{Trinket48}}{{ColorWhite}}"},
 	{"22", "Queue de Diablotin", "Remplace 80% des cœurs ramassables par des clés#Remplace les 20% restants par des cœurs noirs"},
-	{"23", "Avis de Recherche", "À sa mort, Isaac ressuscite en {{ColorLightOrange}}The Lost#Mourir dans une Sacrifice Room {{SacrificeRoom}} en portant ce trinket débloque {{ColorLightOrange}}The Lost#Le trinket disparaît à la mort d'Isaac"},
+	{"23", "Avis de Recherche", "À sa mort, Isaac ressuscite en {{ColorLightOrange}}The Lost#Le trinket disparaît à la mort d'Isaac"},
 	{"24", "Pièce de Fesse", "Ramasser une pièce fait péter Isaac#Augmente de 20% les chances de trouver une pièce dans un caca"},
 	{"25", "Chocolat Douteux", "Isaac pète ou fait apparaître un caca à intervalles irréguliers"},
 	{"26", "Ver Droit", "↑ Portée {{ColorLime}}+10#La trajectoire des larmes d'Isaac forme des vagues carrées"},
@@ -774,7 +774,7 @@ EID.descriptions["fr"].trinkets={
 }
 
 ---------- Cards ----------
-EID.descriptions["fr"].cards={
+EID.descriptions[languageCode].cards={
 	{"1", "0 - Le Mat", "Téléporte Isaac dans la première salle de l'étage"},
 	{"2", "I - Le Bateleur", "Larmes autoguidées#{{Timer}} L'effet dure une salle"},
 	{"3", "II - La Papesse", "Le pied de {{ColorCyan}}Mom{{ColorWhite}} écrase l'ennemi de la salle avec le plus de PV#Dans une salle vide, le pied écrase Isaac"},
@@ -834,9 +834,9 @@ EID.descriptions["fr"].cards={
 
 ---------- Pills ----------
 
-EID.descriptions["fr"].unidentifiedPill = "Pilule non identifiée"
+EID.descriptions[languageCode].unidentifiedPill = "Pilule non identifiée"
 
-EID.descriptions["fr"].pills={
+EID.descriptions[languageCode].pills={
 	{"0", "Flatulences", "Fait apparaître un nuage de gaz qui inflige 5 dégâts de contact et empoisonne les ennemis"},
 	{"1", "Coup dur", "Inflige 1 cœur de dégâts à Isaac"},
 	{"2", "Digoxine", "{{SoulHeart}} +2 cœurs d'âme"},
@@ -887,9 +887,9 @@ EID.descriptions["fr"].pills={
 }
 
 ---------- Sacrifice Room ----------
-EID.descriptions["fr"].sacrificeHeader = "Récompense du prochain sacrifice"
+EID.descriptions[languageCode].sacrificeHeader = "Récompense du prochain sacrifice"
 
-EID.descriptions["fr"].sacrifice={
+EID.descriptions[languageCode].sacrifice={
 	{"1", "", "1 pièce {{ColorSilver}}(50%)#Rien {{ColorSilver}}(50%)#1 bombe {{ColorSilver}}(100% au premier étage si le boss a été battu en moins d'une minute)"},
 	{"2", "", "1 pièce {{ColorSilver}}(50%)#Rien {{ColorSilver}}(50%)#1 bombe {{ColorSilver}}(100% au premier étage si le boss a été battu en moins d'une minute)"},
 	{"3", "", "Augmente les chances d'ouvrir le Refuge des Anges {{ColorSilver}}(67%)#Rien {{ColorSilver}}(33%)"},
@@ -904,9 +904,9 @@ EID.descriptions["fr"].sacrifice={
 	{"12", "", "Téléportation à la {{ColorTransform}}Chambre Noire {{ColorSilver}}(50%)#Rien {{ColorSilver}}(50%)"},
 }
 ---------- Dice Room ----------
-EID.descriptions["fr"].diceHeader = "[Effet de dé]"
+EID.descriptions[languageCode].diceHeader = "[Effet de dé]"
 
-EID.descriptions["fr"].dice={
+EID.descriptions[languageCode].dice={
 	{"1", "", "Rejoue tous les objets d'Isaac"},
 	{"2", "", "Rejoue toutes les ressources de la salle"},
 	{"3", "", "Rejoue toutes les ressources de l'étage"},
@@ -916,7 +916,7 @@ EID.descriptions["fr"].dice={
 }
 
 ---------- Transformations ----------
-EID.descriptions["fr"].transformations={
+EID.descriptions[languageCode].transformations={
 	"",					-- 0 = none
 	"Guppy",			-- 1
 	"Fan de Spore",			-- 2
@@ -938,28 +938,29 @@ EID.descriptions["fr"].transformations={
 
 ---------- MISC ----------
 
-EID.descriptions["fr"].VoidText = "Si absorbé :"
-EID.descriptions["fr"].VoidNames = {"Vitesse {{ColorLime}}{1}", "Débit {{ColorLime}}{1}", "Dégâts {{ColorLime}}{1}", "Portée {{ColorLime}}{1}", "Vitesse des tirs {{ColorLime}}{1}", "Chance {{ColorLime}}{1}"}
+EID.descriptions[languageCode].VoidText = "Si absorbé :"
+EID.descriptions[languageCode].VoidNames = {"Vitesse {{ColorLime}}{1}", "Débit {{ColorLime}}{1}", "Dégâts {{ColorLime}}{1}", "Portée {{ColorLime}}{1}", "Vitesse des tirs {{ColorLime}}{1}", "Chance {{ColorLime}}{1}"}
 
-EID.descriptions["fr"].CollectionPageInfo = "Cet objet n'a encore jamais été ramassé !"
+EID.descriptions[languageCode].CollectionPageInfo = "Cet objet n'a encore jamais été ramassé !"
 
-EID.descriptions["fr"].MCM = {
+EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Nom de l'objet test",
 	DemoObjectTransformation = "Transformation de test",
 	DemoObjectText = "Ceci est un texte en français#Une description longue trop cool pour tester les retours à la ligne automatiques !!#{{Collectible4}} Super ligne ici aussi#{{Heart}} Cette ligne t'adore#{{AngelDevilChance}} Cette ligne peut être ton petit ange ou ton petit diable#\1 {{Damage}} {{ColorLime}}+1{{ColorWhite}} statistique",
 }
 
-EID.descriptions["fr"].HoldMapTitle = "Objets tenus"
--- the Hold Map description will predict the abilities of items with a header like "Item Name Result"
-EID.descriptions["fr"].HoldMapHeader = " Résultat"
+-- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].ItemReminder = {
+	ResultHeader = " Résultat",
+}
 
 -- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
 -- Includes Repentance room types for localization convenience
-EID.descriptions["fr"].RoomTypeNames = { "Salle normale", "Boutique", "Salle I AM ERROR", "Salle du Trésor", "Salle de Boss", "Salle de Mini-boss", "Salle Secrète", "Salle Super Secrète", "Salle d'Arcade", "Salle Maudite", "Salle de Défi", "Bibliothèque", "Salle de Sacrifice", "Antre du Diable", "Refuge des Anges", "Souterrain", "Ruée des Boss", "Chambre d'Isaac", "Chambre Abandonnée", "Coffre-Fort", "Salle de Dé", "Marché Noir", "Sas de Sortie", "Planétarium", "Téléporteur (Départ)", "Téléporteur (Arrivée)", "Sortie Secrète", "Salle de l'Utérus Bleu", "Salle Ultra Secrète",
+EID.descriptions[languageCode].RoomTypeNames = { "Salle normale", "Boutique", "Salle I AM ERROR", "Salle du Trésor", "Salle de Boss", "Salle de Mini-boss", "Salle Secrète", "Salle Super Secrète", "Salle d'Arcade", "Salle Maudite", "Salle de Défi", "Bibliothèque", "Salle de Sacrifice", "Antre du Diable", "Refuge des Anges", "Souterrain", "Ruée des Boss", "Chambre d'Isaac", "Chambre Abandonnée", "Coffre-Fort", "Salle de Dé", "Marché Noir", "Sas de Sortie", "Planétarium", "Téléporteur (Départ)", "Téléporteur (Arrivée)", "Sortie Secrète", "Salle de l'Utérus Bleu", "Salle Ultra Secrète",
 -- Not technically room types but still potentially useful to have localized
 [666] = "Antre du Diable / Refuge des Anges", [1024] = "Salle Rouge", [1025] = "Salle Rouge Spéciale" }
 -- currently used for D1
-EID.descriptions["fr"].PickupNames = {
+EID.descriptions[languageCode].PickupNames = {
 	["5.0"] = "Aucun",
 
 	["5.10"] = "{{Heart}} Cœur",
@@ -987,4 +988,14 @@ EID.descriptions["fr"].PickupNames = {
 	["5.301"] = "{{Rune}} Rune", -- not a real id
 	["5.350"] = "{{Trinket}} Babiole",
 
+}
+
+EID.descriptions[languageCode].ConditionalDescs = {
+	["5.100.81"] = "Retire tous les cœurs sauf 1 aux personnages qui ne peuvent pas avoir de cœurs rouges", -- Dead Cat
+	["5.100.241"] = "{{Warning}} Sans effet en mode Avarice", -- Contract From Below
+	["5.100.135 (Keeper)"] = "{{Player14}} Peut ne pas faire apparaître de pièce", -- IV Bag Keeper
+	["5.100.135 (PHD)"] = "Fait apparaître 2 ou 3 pièces avec {{ColorYellow}}Doctorat {{Collectible75}}", -- IV Bag PHD
+	["5.100.442"] = "{{Warning}} Aucun effet pour les personnages qui ne peuvent pas avoir de cœurs rouges", -- Dark Prince's Crown
+	["5.300.15"] = "Invoque un mendiant diabolique {{DemonBeggar}}", -- Temperance (Greed Mode effect)
+	["5.350.23"] = "{{Warning}} Mourir dans une Salle de Sacrifice {{SacrificeRoom}} en portant cette babiole débloque {{ColorLightOrange}}L'Égaré", -- Missing Poster (Unlock The Lost)
 }

@@ -116,7 +116,7 @@ function EID:CheckGlitchedItemConfig(id)
 		if itemConfig.Type == ItemType.ITEM_ACTIVE then
 			lastEffectTrigger = "active"
 			local activeStr = localizedNames["active"] or localizedNamesEnglish["active"]
-			attributes = attributes .. "{{Blank}} " .. triggerColors["active"] .. activeStr
+			attributes = attributes .. "#{{Blank}} " .. triggerColors["active"] .. activeStr
 		end
 		local voidNames = EID:getDescriptionEntry("VoidNames")
 		for i,func in ipairs(getFunctions) do
@@ -166,9 +166,11 @@ function EID:CheckGlitchedItemConfig(id)
 			end
 			
 			if effectTrigger ~= lastEffectTrigger then
-				if effectTrigger ~= "chain" then attributes = attributes .. "{{Blank}} " end
+				if effectTrigger ~= "chain" then attributes = attributes .. "#{{Blank}} " end
 				local effectTriggerStr = localizedNames[effectTrigger] or localizedNamesEnglish[effectTrigger]
 				attributes = attributes .. triggerColors[effectTrigger] .. effectTriggerStr
+			elseif effectTrigger ~= "chain" then
+				attributes = attributes .. "#"
 			end
 			attributes = attributes .. localizedNames[effectType] or localizedNamesEnglish[effectType] .. "#"
 			for k,v in ipairs(triggerReplacements) do attributes = string.gsub(attributes, "{T" .. k .. "}", v) end
