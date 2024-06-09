@@ -123,7 +123,8 @@ EID:AddConditional("5.300.15", function() return game:IsGreedMode() and EID:Play
 
 -- Different effect for No Red Health players
 -- TODO: separate this into a Rep-only part, and figure out what they do exactly with Keeper/Forgotten
-EID:AddConditional({81, 442, 676}, function() return EID:CheckForNoRedHealthPlayer() end, "No Red") -- Dead Cat, Dark Prince's Crown, Empty Heart
+EID:AddConditional({442, 676}, function() return EID:CheckForNoRedHealthPlayer() end, "No Red") -- Dead Cat, Dark Prince's Crown, Empty Heart
+EID:AddConditional(81, function() return EID:CheckForNoRedHealthPlayer() end)
 --TODO: Keeper/Forgotten DON'T benefit from Empty Heart but DO benefit from Dark Prince's Crown? Nothing's consistent... does the Soul benefit while Forgotten does
 
 -- Achievement checks (these always return true without REPENTOGON)
