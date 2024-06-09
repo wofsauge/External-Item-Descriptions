@@ -55,7 +55,6 @@ local repCollectibles={
 	[98] = {"98", "The Relic", "{{SoulHeart}} Spawns 1 Soul Heart every 7-8 rooms"}, -- The Relic
 	[101] = {"101", "The Halo", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +1.5 Range#{{Heart}} Heals 1 heart"}, -- The Halo
 	[106] = {"106", "Mr. Mega", "↑ x1.85 Bomb damage#{{Bomb}} +5 Bombs"}, -- Mr. Mega
-	[108] = {"108", "The Wafer", "Reduces most damage taken to half a heart#{{Player14}} Doesn't work for Keeper or Tainted Keeper"}, -- The Wafer
 	[110] = {"110", "Mom's Contacts", "↑ {{Range}} +1.5 Range#20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 luck"}, -- Mom's Contacts
 	[114] = {"114", "Mom's Knife", "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and caps at 6x damage at 1/3 charge#Charging further only increases throwing range#Damage reduces to 2x when returning to Isaac"}, -- Mom's Knife
 	[115] = {"115", "Ouija Board", "↑ {{Tears}} +0.5 Tears#Spectral tears"}, -- Ouija Board
@@ -84,7 +83,7 @@ local repCollectibles={
 	[182] = {"182", "Sacred Heart", "↑ {{Heart}} +1 Health#↑ {{Damage}} x2.3 Damage multiplier#↑ {{Damage}} +1 Damage#↓ {{Tears}} -0.4 Tears#↓ {{Shotspeed}} -0.25 Shot speed#{{Heart}} Full health#Homing tears"}, -- Sacred Heart
 	[184] = {"184", "Holy Grail", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#Flight"}, -- Holy Grail
 	[186] = {"186", "Blood Rights", "Deals 40 damage to every enemy#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first"}, -- Blood Rights
-	[188] = {"188", "Abel", "Mirrors Isaac's movement#Shoots towards Isaac#Deals 3.5 damage per tear#{{Player2}} Deals 7.5 damage as Cain"}, -- Abel
+	[188] = {"188", "Abel", "Mirrors Isaac's movement#Shoots towards Isaac#Deals 3.5 damage per tear"}, -- Abel
 	[189] = {"189", "SMB Super Fan", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.2 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +2.5 Range#{{Heart}} Full health"}, -- SMB Super Fan
 	[192] = {"192", "Telepathy for Dummies", "{{Timer}} Receive for the room:#↑ {{Range}} +3 Range#Homing tears"}, -- Telepathy for Dummies
 	[193] = {"193", "MEAT!", "↑ {{Heart}} +1 Health#↑ {{Damage}} +0.3 Damage#{{Heart}} Heals 1 heart"}, -- MEAT!
@@ -106,7 +105,7 @@ local repCollectibles={
 	[230] = {"230", "Abaddon", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1.5 Damage#{{BlackHeart}} Converts all heart containers into Black Hearts#{{BlackHeart}} +2 Black Hearts#{{Fear}} 15% chance to shoot fear tears"}, -- Abaddon
 	[232] = {"232", "Stop Watch", "↑ {{Speed}} +0.3 Speed#{{Slow}} Enemies are permanently slowed down to 80% of their attack and movement speed"}, -- Stop Watch
 	[233] = {"233", "Tiny Planet", "↑ {{Range}} +6.5 Range#Spectral tears#Isaac's tears orbit around him"}, -- Tiny Planet
-	[245] = {"245", "20/20", "↓ {{Damage}} x0.8 Damage multiplier#Isaac shoots 2 tears at once#Removes the tear rate penalty of {{Collectible153}} Mutant Spider, {{Collectible2}} The Inner Eye and {{Collectible169}} Polyphemus"}, -- 20/20
+	[245] = {"245", "20/20", "↓ {{Damage}} x0.8 Damage multiplier#Isaac shoots 2 tears at once"}, -- 20/20
 	[248] = {"248", "Hive Mind", "Blue spiders and flies deal double damage#Spider and fly familiars become stronger"}, -- Hive Mind
 	[253] = {"253", "Magic Scab", "↑ {{Heart}} +1 Health#↑ {{Luck}} +1 Luck#{{Heart}} Heals 1 heart"}, -- Magic Scab
 	[254] = {"254", "Blood Clot", "↑ {{Damage}} +1 Damage for the left eye#↑ {{Range}} +2.75 Range for the left eye"}, -- Blood Clot
@@ -160,7 +159,7 @@ local repCollectibles={
 	[352] = {"352", "Glass Cannon", "{{Damage}} Shoots a large piercing spectral tear that does 10x Isaac's damage#{{Warning}} While held, taking damage:#↓ Removes an extra 2 hearts of health#↓ Breaks the cannon for a few rooms#↑ {{Range}} +1.5 Range and leaves a blood trail for the room#The extra damage can't kill Isaac#Self-damage does not trigger the effect"}, -- Glass Cannon
 	[354] = {"354", "Crack Jacks", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#{{Trinket}} Spawns a trinket"}, -- Crack Jacks
 	[355] = {"355", "Mom's Pearls", "↑ {{Range}} +2.5 Range#↑ {{Luck}} +1 Luck#{{SoulHeart}} +1 Soul Heart"}, -- Mom's Pearls
-	[360] = {"360", "Incubus", "Shoots tears with the same effects as Isaac#{{Damage}} Deals 75% of Isaac's damage#{{Player13}} Deals 100% damage while playing as Lilith"}, -- Incubus
+	[360] = {"360", "Incubus", "Shoots tears with the same effects as Isaac#{{Damage}} Deals 75% of Isaac's damage"}, -- Incubus
 	[365] = {"365", "Lost Fly", "Moves along walls/obstacles in the room#Deals 30 contact damage per second#Nearby enemies target the fly"}, -- Lost Fly
 	[366] = {"366", "Scatter Bombs", "{{Bomb}} +5 Bombs#Isaac's bombs scatter into 4-5 tiny bombs"}, -- Scatter Bombs
 	[367] = {"367", "Sticky Bombs", "{{Bomb}} +5 Bombs#{{Slow}} Isaac's bombs stick to enemies and leave white slowing creep#Killing an enemy with a bomb spawns blue spiders"}, -- Sticky Bombs
@@ -222,7 +221,7 @@ local repCollectibles={
 	[495] = {"495", "Ghost Pepper", "8.33% chance to shoot a blue fire that blocks enemy shots and deals contact damage#{{Luck}} 50% chance at 10 luck#Fires shrink and disappear after 2 seconds"}, -- Ghost Pepper
 	[496] = {"496", "Euthanasia", "3.33% chance to shoot a needle#{{Luck}} 25% chance at 13 luck#Needles kill normal enemies instantly, bursting them into 10 tears#{{Damage}} Needles deal 3x Isaac's damage against bosses"}, -- Euthanasia
 	[497] = {"497", "Camo Undies", "{{Confusion}} Entering a room camouflages Isaac and confuses all enemies until a tear is shot#↑ {{Speed}} +0.5 Speed while cloaked#Uncloaking deals damage around Isaac and grants a very brief fire rate and damage up"}, -- Camo Undies
-	[501] = {"501", "Greed's Gullet", "{{Heart}} +1 Heart container for every 25 coins Isaac has#{{Collectible416}} +1 Heart container for every 100 coins past 99#{{Player14}} Keeper can gain additional coin containers"}, -- Greed's Gullet
+	[501] = {"501", "Greed's Gullet", "{{Heart}} +1 Heart container for every 25 coins Isaac has"}, -- Greed's Gullet
 	[503] = {"503", "Little Horn", "5% chance to shoot a tear that summons a Big Horn hand#{{Luck}} 20% chance at 15 luck#The hand instantly kills enemies and deals 36 damage to bosses#Isaac deals 7 contact damage per second"}, -- Little Horn
 	[504] = {"504", "Brown Nugget", "Spawns a fly that shoots at enemies#Each shot deals 3.5 damage"}, -- Brown Nugget
 	[506] = {"506", "Backstabber", "{{BleedingOut}} Hitting an enemy in the back deals double damage and causes bleeding, which makes enemies leave creep and take damage when they move"}, -- Backstabber
@@ -429,7 +428,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Cain", "", "↑ {{Luck}} +1 Luck#{{Arcade}} All future floors will contain an upgraded Arcade Room (except for Dark Room and Chest)#{{Collectible46}} Greatly increases Lucky Foot's chances of winning effect"},
 	{"Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#{{Collectible34}} Grants The Book of Belial if Judas is not currently holding it#↑ {{Damage}} The damage boost it grants scales with the amount of charges the active item combined with it has#Grants special effects for certain active items"},
 	{"???", "", "{{SoulHeart}} Soul Hearts gained from health upgrades are doubled"},
-	{"Eve", "", "{{Collectible122}} Whore of Babylon is active regardless of health#Dead Bird is always active"},
+	{"Eve", "", "{{Collectible122}} Whore of Babylon is active regardless of health#{{Collectible117}} Dead Bird is always active"},
 	{"Samson", "", "{{Collectible157}} Bloody Lust can trigger 4 more times per floor, up to +14 damage after 10 triggers"},
 	{"Azazel", "", "Azazel's Brimstone beam becomes much wider#Does not increase damage"},
 	{"Lazarus", "", "↑ Resurrecting as Lazarus Risen grants {{Damage}} +7.2 damage#{{Timer}} Damage up wears off over 60 seconds#{{Blank}} Killing enemies while the effect is active extends it"},
@@ -785,7 +784,7 @@ local repTrinkets={
 	[153] = {"153", "Mom's Lock", "25% chance for a random Mom item effect each room"}, -- Mom's Lock
 	[154] = {"154", "Dice Bag", "50% chance per new room to grant a single use die consumable item#The die disappears when leaving#The die does not take up a pill/card slot"}, -- Dice Bag
 	[155] = {"155", "Holy Crown", "Spawns a {{TreasureRoom}} Treasure Room and {{Shop}} Shop in Cathedral"}, -- Holy Crown
-	[156] = {"156", "Mother's Kiss", "{{Heart}} +1 Heart container while held#{{Player14}} +1 Coin container for Keeper"}, -- Mother's Kiss
+	[156] = {"156", "Mother's Kiss", "{{Heart}} +1 Heart container while held"}, -- Mother's Kiss
 	[157] = {"157", "Torn Card", "Every 15 shots, Isaac shoots an {{Collectible149}} Ipecac + {{Collectible5}} My Reflection tear with a very high range value"}, -- Torn Card
 	[158] = {"158", "Torn Pocket", "Taking damage makes Isaac drop 2 of his coins, keys or bombs#The pickups can be replaced with other variants, such as golden keys, nickels, dimes, etc."}, -- Torn Pocket
 	[159] = {"159", "Gilded Key", "{{Key}} +1 Key on pickup#{{GoldenChest}} Replaces all chests (except Old/Mega) with golden chests#{{GoldenChest}} Golden chests can contain extra cards, pills or trinkets"}, -- Gilded Key
@@ -1169,11 +1168,9 @@ EID.descriptions[languageCode].CraftingIsHidden = "Currently Hidden (Unhide with
 
 EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}}, Search: {{ButtonEnter}})"
 
-EID.descriptions[languageCode].BlankCardCharge = "Blank Card charge:"
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card effect:"
-EID.descriptions[languageCode].BlankCardQCard = "Teleport to I AM ERROR Room#Blank Card and ?-Card will be destroyed"
-EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune charge:"
-EID.descriptions[languageCode].PlaceboCharge = "Placebo charge:"
+EID.descriptions[languageCode].VariableCharge = "{1} charge:"
+
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{CONFIG_BoC_Toggle}} to show description)"
 
 EID.descriptions[languageCode].GlowingHourglassTransformed = "Will change back to Glowing Hourglass next floor"
@@ -1204,18 +1201,27 @@ EID.descriptions[languageCode].ResultsWithX = "(Results with {1})"
 local repConditions={
 	["Tainted Revive"] = "{1} simply revives",
 	
-	["5.300.15 (Tarot)"] = {"{{DemonBeggar}} Spawns {{ColorShinyPurple}}2{{CR}} Devil Beggars"}, -- Temperance (Greed Mode + Tarot Cloth effect)
-	["5.350.1"] = "{{Player14}} Spawns 0-1 coin as Keeper", -- Swallowed Penny
 	["5.100.135 (Hard Mode)"] = {"1-2 coins", "1 coin", "2-3 coins", "2 coins"}, -- IV Bag Hard Mode (modify the PHD text too)
-	["5.100.642"] = "{{Player10}} Single use for The Lost", -- Magic Skin
-	["5.100.240"] = "{{Player21}} Tainted Isaac keeps the stat changes when he drops it", -- Experimental Treatment
-	["5.100.644"] = "{{Player21}} Tainted Isaac keeps the stat increase when he drops it", -- Consolation Prize
+	["5.100.642"] = "Single use for {1}", -- Magic Skin
+	["5.100.240"] = "{1} keeps the stat changes when he drops it", -- Experimental Treatment
+	["5.100.644"] = "{1} keeps the stat increase when he drops it", -- Consolation Prize
 	
 	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Fire rate on pickup", -- Brittle Bones (Keeper+Lost)
-	["5.100.694"] = "{{Player10}} Works for The Lost, letting him survive 4 hits", -- Heartbreak
+	["5.100.694"] = "Works for {1}, letting him survive 4 hits", -- Heartbreak
 	
-	["5.100.201"] = "Refills {{Collectible147}} Notched Axe's charge on pickup", --Iron Bar
+	["5.100.201"] = "Refills {1}'s charge on pickup", --Iron Bar
 	["5.350.172"] = "{1} removes the teleportation effect", -- Cursed Penny
+	["5.100.188"] = "Deals 7.5 damage as {1}", -- Cain + Abel
+	["5.100.360"] = "Deals 100% damage as {1}", -- Lilith + Incubus
+	["5.100.501 (Deep Pockets)"] = "+1 Heart container for every 100 coins past 99", -- Greed's Gullet + Deep Pockets
+	["5.350.156"] = "+1 Coin container for {1}", -- Mother's Kiss
+	["5.100.230 (Keeper)"] = "{1} is left with 1 coin container", -- Abaddon
+	["5.100.230 (Bethany)"] = "{1} is left with half a heart", -- Abaddon
+	["5.100.230 (Tainted Bethany)"] = "{1} doesn't lose her blood charges", -- Abaddon
+	
+	["5.100.245"] = "Removes the fire rate penalty of {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	["5.100.245 (Keeper)"] = "Fire rate up and decreased tear spread for {1}", -- 20/20 + Keeper
+	["20/20"] = "No fire rate penalty with {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
@@ -1230,8 +1236,9 @@ local repBFFSSynergies = {
 }
 EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
 
+-- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
 local repCharacterInfo = {
-	[4] = {"???", "Can't have Red Hearts#Devil deals that would cost 1 or 2 Red Hearts will cost 1 or 2 Soul Hearts instead"},
+	[4] = {"???", "Can't have Red Hearts#Devil deals that would cost 1 or 2 Red Hearts will cost 1 or 2 Soul Hearts instead#Destroying poop spawns 1 blue fly"},
 	[8] = {"Lazarus", "Once per floor, when you die:#Resurrect as Lazarus Risen#Lose 1 Red Heart container#↑ {{Damage}} 0.5 Damage up"},
 	[11] = {"Lazarus Risen", "Increased stats and 1.4x damage multiplier#When entering a new floor, turn back into Lazarus"},
 	[12] = {"Dark Judas", "Can't have Red Hearts#Health ups grant Black Hearts#2x Damage multiplier"},
