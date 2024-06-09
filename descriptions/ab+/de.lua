@@ -641,3 +641,11 @@ EID.descriptions[languageCode].VoidText = "Wenn absorbiert, erhalte:"
 EID.descriptions[languageCode].VoidNames = {"{1} Tempo", "{1} Tränen", "{1} Schaden", "{1} Reichweite", "{1} Schusstempo", "{1} Glück"}
 	-- Not yet Translated!
 	-- Copy & Paste entries from en_us and continue translating from that
+
+-- Conditional descriptions
+-- Strings will be appended to the original description
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs
+EID.descriptions[languageCode].ConditionalDescs = {
+	["5.300.48"] = "Teleport zum I AM ERROR-Raum#Blanko-Karte und ?-Karte werden zerstört", -- Blank Card + Q Card
+}

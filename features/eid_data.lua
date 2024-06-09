@@ -918,6 +918,14 @@ EID.LocalModePositionOffset = {
 -- Items that dont have an effect with BFFS! item
 EID.BFFSNoSynergy = {[11] = true, [81] = true, [238] = true, [239] = true, [243] = true,  [265] = true, [268] = true, [269] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [405] = true, [431] = true, [436] = true, [469] = true, [472] = true, [492] = true, [516] = true, [528] = true, [542] = true, [543] = true }
 
+-- todo: this table is wrong, for instance brown nugget didnt have one and then got one
+if REPENTANCE then
+	EID.BFFSNoSynergy[504] = true -- Brown Nugget
+	EID.BFFSNoSynergy[567] = true -- Paschal Candle
+	EID.BFFSNoSynergy[651] = true -- Star of Bethlehem
+	EID.BFFSNoSynergy[697] = true -- Vanishing Twin
+end
+
 -- Character IDs that aren't allowed to have Red Health: ???, The Lost, The Soul
 EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
 if REPENTANCE then
@@ -925,12 +933,10 @@ if REPENTANCE then
 	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
 end
 
-if REPENTANCE then
-	EID.BFFSNoSynergy[504] = true -- Brown Nugget
-	EID.BFFSNoSynergy[567] = true -- Paschal Candle
-	EID.BFFSNoSynergy[651] = true -- Star of Bethlehem
-	EID.BFFSNoSynergy[697] = true -- Vanishing Twin
-end
+-- Cards that don't work with Blank Card in Repentance (Note: ? Card is blacklisted here, don't use this for determining what is a card)
+EID.blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[48]=true,[49]=true,[50]=true,[55]=true,[78]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
+-- Cards that are treated as runes
+EID.runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[55]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
 
 
 

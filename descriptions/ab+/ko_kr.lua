@@ -1025,11 +1025,13 @@ EID.descriptions[languageCode].PickupNames = {
 
 }
 EID.descriptions[languageCode].ConditionalDescs = {
+	["5.300.48"] = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다.", -- Blank Card + Q Card
+
 	["5.100.81"] = "!!! 최대 체력 = 소울하트 보정을 받는 캐릭터는 소울하트가 1칸이 됩니다.", -- Dead Cat
 	["5.100.241"] = "{{GreedModeSmall}} Greed 모드의 동전 보상은 영향 없음", -- Contract From Below
-	["5.100.135 (Keeper)"] = "{{Player14}}Keeper: 0~1개", -- IV Bag Keeper
+	["Keeper 0-1"] = "{{Player14}}Keeper: 0~1개", -- IV Bag Keeper
 	["5.100.135 (PHD)"] = "{{Collectible75}} PHD 소지 시 2-3개로 증가", -- IV Bag PHD
-	["5.100.442"] = "빨간하트를 소지할 수 없는 캐릭터는 무효과", -- Dark Prince's Crown
+	["No Red"] = "빨간하트를 소지할 수 없는 캐릭터는 무효과", -- Dark Prince's Crown
 	["5.300.15"] = "{{DemonBeggar}} 악마거지를 소환합니다.", -- Temperance (Greed Mode effect)
 	-- ["5.350.23"] = "", -- Missing Poster (Unlock The Lost)
 }

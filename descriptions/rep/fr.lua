@@ -1315,10 +1315,7 @@ EID.descriptions[languageCode].CraftingPreviewKey = "Prévisualiser:"
 
 EID.descriptions[languageCode].CraftingResults = "(Défiler: maintenir {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Verrouiller: {{ButtonX}}, Rafraîchir: {{ButtonB}})"
 
-EID.descriptions[languageCode].BlankCardCharge = "Temps de charge avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"
-EID.descriptions[languageCode].BlankCardQCard = "Téléporte Isaac dans la salle d'erreur#La {{ColorYellow}}Carte Blanche{{ColorWhite}} et la {{ColorYellow}}Carte ?{{ColorWhite}} seront détruites"
-EID.descriptions[languageCode].ClearRuneCharge = "Temps de charge avec {{ColorYellow}}Rune de Cristal{{ColorWhite}} :"
-EID.descriptions[languageCode].PlaceboCharge = "Temps de charge avec {{ColorYellow}}Placebo{{ColorWhite}} :"
+EID.descriptions[languageCode].VariableCharge = "Temps de charge avec {{ColorYellow}}{1}{{ColorWhite}} :"
 EID.descriptions[languageCode].FlipItemToggleInfo = "( {{ButtonSelect}} : description)"
 
 EID.descriptions[languageCode].GlowingHourglassTransformed = "Redeviendra le Sablier Luisant au prochain étage"
