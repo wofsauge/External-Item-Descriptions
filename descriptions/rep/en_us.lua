@@ -207,7 +207,7 @@ local repCollectibles={
 	[456] = {"456", "Midnight Snack", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart"}, -- Midnight Snack
 	[459] = {"459", "Sinus Infection", "20% chance to shoot a sticky booger#{{Damage}} Boogers deal Isaac's damage once a second and stick for 10 seconds#{{Luck}} Not affected by luck"}, -- Sinus Infection
 	[462] = {"462", "Eye of Belial", "↑ {{Range}} +1.5 Range#Piercing tears#Hitting an enemy makes the tear homing and doubles its damage"}, -- Eye of Belial
-	[464] = {"464", "Glyph of Balance", "{{SoulHeart}} +2 Soul Hearts#Champion enemy drops and room clear rewards become whatever pickup Isaac needs the most"}, -- Glyph of Balance
+	[464] = {"464", "Glyph of Balance", "{{SoulHeart}} +2 Soul Hearts#Room clear rewards and champion enemy drops become whatever pickup Isaac needs the most"}, -- Glyph of Balance
 	[468] = {"468", "Shade", "Follows Isaac's movement on a 1 second delay#Deals 75 contact damage per second#After it deals 666 damage, it is absorbed by Isaac, increasing his contact damage"}, -- Shade
 	[472] = {"472", "King Baby", "Other familiars follow it and automatically shoot at enemies#Stops moving when Isaac shoots#Teleports back to Isaac when he stops shooting"}, -- King Baby
 	[474] = {"474", "Broken Glass Cannon", "Using the item turns it back into Glass Cannon"}, -- Broken Glass Cannon
@@ -270,7 +270,7 @@ local repCollectibles={
 	[584] = {"584", "Book of Virtues", "{{AngelChance}} +12.5% Angel Room chance while held#Spawns an orbital wisp familiar that shoots spectral tears but can be destroyed#Can be combined with a second active item to create special wisps#{{AngelRoom}} Turns the first Devil Room into an Angel Room#{{AngelRoom}} Allows Angel Rooms to spawn after taking a Devil deal"}, -- Book of Virtues
 	[585] = {"585", "Alabaster Box", "Must be charged by picking up Soul Hearts, then spawns:#{{SoulHeart}} Three Soul Hearts#{{AngelRoom}} Two Angel Room items#{{DevilRoom}} Only spawns 2 Soul Hearts and 1 Angel item if a Devil deal was taken previously"}, -- Alabaster Box
 	[586] = {"586", "The Stairway", "Spawns a ladder in the first room of every floor that leads to a unique {{AngelRoom}} Angel Room shop with items and pickups"}, -- The Stairway
-	[587] = {"587", "Menorah (Unused but scripted)", "<Item does not exist>"},
+	[587] = {"587", "", "<Item does not exist>"},
 	[588] = {"588", "Sol", "{{BossRoom}} Reveals the location of the Boss Room#{{Timer}} When the floor boss is defeated, receive for the floor:#↑ {{Damage}} +3 Damage#↑ {{Luck}} +1 Luck#{{Card20}} The Sun effect#{{Battery}} Fully recharges the active item#{{CurseBlind}} Removes any curses"}, -- Sol
 	[589] = {"589", "Luna", "Adds an extra {{SecretRoom}} Secret Room and {{SuperSecretRoom}} Super Secret Room to each floor#Reveals one Secret Room each floor#{{Timer}} Secret Rooms contain a beam of light that grant for the floor:#↑ {{Tears}} +0.5 Fire rate#↑ {{Tears}} Additional +0.5 Fire rate from the first beam per floor#{{HalfSoulHeart}} Half a Soul Heart"}, -- Luna
 	[590] = {"590", "Mercurius", "↑ {{Speed}} +0.4 Speed#Most doors stay permanently open"}, -- Mercurius
@@ -1222,6 +1222,7 @@ local repConditions={
 	["5.100.245"] = "Removes the fire rate penalty of {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
 	["5.100.245 (Keeper)"] = "Fire rate up and decreased tear spread for {1}", -- 20/20 + Keeper
 	["20/20"] = "No fire rate penalty with {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	["5.100.705"] = "Temporary +1 damage up for each bullet/enemy", -- Dark Arts + Dark/Tainted Judas
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
@@ -1250,7 +1251,7 @@ local repCharacterInfo = {
 	[21] = {"Tainted Isaac", "Item pedestals cycle between 2 options#You can only carry 8 passive items#Cycle which item will be dropped for a 9th item with {{ButtonRT}}"},
 	[22] = {"Tainted Magdalene", "Health above 2 Red Hearts will slowly drain#On contact, do a melee swing#Chance for enemies to drop Half Red Hearts that disappear in 2 seconds#Drop is guaranteed on melee kill#Heal twice as much from non-pickup sources#Damage taken to draining hearts doesn't affect Devil Deal chance"},
 	[23] = {"Tainted Cain", "Touching an item pedestal turns it into a variety of pickups#Gain collectibles by crafting 8 pickups together in the Bag of Crafting#The Bag's contents can be shifted with {{ButtonRT}} to replace specific pickups when full"},
-	[24] = {"Tainted Judas", "Can't have Red Hearts#Health ups grant Black Hearts#Dark Arts grants a temporary damage up for each bullet/enemy"},
+	[24] = {"Tainted Judas", "Can't have Red Hearts#Health ups grant Black Hearts"},
 	[25] = {"Tainted ???", "Bombs are replaced with Poop Spells#Doing damage spawns poop pickups#The HUD has a preview of your upcoming poop spells#You can store the next spell for later by using Hold#Can't have Red Hearts"},
 	[26] = {"Tainted Eve", "Holding Fire will convert your hearts into Clot familiars#Different Heart types spawn Clots with more health and tear effects#Clots lose health over time#Using Sumptorium will absorb the Clots back into your health, if possible#Clots stay in place while holding {{ButtonRT}}"},
 	[27] = {"Tainted Samson", "Dealing or taking damage builds up Berserk mode#{{Timer}} When you go berserk, receive for 5 seconds:#↑ {{Speed}} +0.4 Speed#↓ {{Tears}} x0.5 Fire rate multiplier#↑ {{Tears}} +2 Fire rate#↑ {{Damage}} +3 Damage#Restricts attacks to a melee that reflects shots#{{Timer}} Each kill increases the duration by 1 second and grants brief invincibility"},
