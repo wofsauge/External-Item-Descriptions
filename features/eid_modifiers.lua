@@ -26,8 +26,6 @@ end
 EID.collectiblesOwned = {}
 EID.collectiblesAbsorbed = {}
 EID.blackRuneOwned = false
-EID.blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[49]=true,[50]=true,[55]=true,[78]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
-EID.runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[55]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
 EID.blackFeatherItems = {[215]=true,[216]=true,[230]=true,[260]=true,[262]=true,[339]=true,[344]=true,[654]=true,}
 EID.blackFeatherTrinkets = {[17]=true,[22]=true}
 
@@ -542,48 +540,37 @@ if EID.isRepentance then
 	
 	local hasTarot = false
 	
+	
+	local function VariableCharge(descObj, metadata, collID)
+		local text = EID:getDescriptionEntry("VariableCharge")
+		if text ~= nil and metadata ~= nil and metadata.mimiccharge and metadata.mimiccharge ~= -1 then
+			text = EID:ReplaceVariableStr(text, 1, "{{NameC" .. collID .. "}}")
+			EID:appendToDescription(descObj, "#{{ColorSilver}}" .. text .. " {{"..metadata.mimiccharge.."}}{{Battery}}")
+		end
+	end
+	
 	-- Handle Blank Card description addition
 	local function BlankCardCallback(descObj)
-		local text = EID:getDescriptionEntry("BlankCardCharge")
-		local charge = EID.cardMetadata[descObj.ObjSubType]
-		local iconStr = "#{{Collectible286}} {{ColorSilver}}"
-		if text ~= nil and charge ~= nil and charge.mimiccharge and charge.mimiccharge ~= -1 then
-			if descObj.ObjSubType == 48 then -- ? card
-				text = EID:getDescriptionEntry("BlankCardQCard")
-				EID:appendToDescription(descObj, iconStr..text:gsub("#",iconStr))
-			else
-				EID:appendToDescription(descObj, iconStr..text.." {{"..charge.mimiccharge.."}}{{Battery}}")
-			end
-		end
+		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 286)
 		-- If the player has Tarot Cloth and Blank Card, display additional text
 		if hasTarot then
 			text = EID:getDescriptionEntry("BlankCardEffect")
 			local buffText = EID:getDescriptionEntry("tarotClothBlankCardBuffs", descObj.ObjSubType)
-			if buffText then EID:appendToDescription(descObj, iconStr .. text .. " " .. buffText) end
+			if buffText then EID:appendToDescription(descObj, "#{{ColorSilver}}{{Collectible286}} " .. text .. " " .. buffText) end
 		end
 		return descObj
 	end
 
 	-- Handle Clear Rune description addition
 	local function ClearRuneCallback(descObj)
-		local text = EID:getDescriptionEntry("ClearRuneCharge")
-		local charge = EID.cardMetadata[descObj.ObjSubType]
-		if text ~= nil and charge ~= nil and charge.mimiccharge and charge.mimiccharge ~= -1 then
-			local iconStr = "#{{Collectible263}} {{ColorSilver}}"
-			EID:appendToDescription(descObj, iconStr..text.." {{"..charge.mimiccharge.."}}{{Battery}}")
-		end
+		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 263)
 		return descObj
 	end
 
 	-- Handle Placebo description addition
 	local function PlaceboCallback(descObj)
-		local text = EID:getDescriptionEntry("PlaceboCharge")
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
-		local charge = EID.pillMetadata[adjustedID-1]
-		if text ~= nil and charge ~= nil and charge.mimiccharge and charge.mimiccharge ~= -1 then
-			local iconStr = "#{{Collectible348}} {{ColorSilver}}"
-			EID:appendToDescription(descObj, iconStr..text.." {{"..charge.mimiccharge.."}}{{Battery}}")
-		end
+		VariableCharge(descObj, EID.pillMetadata[adjustedID-1], 348)
 		return descObj
 	end
 
