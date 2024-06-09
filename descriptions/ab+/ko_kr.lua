@@ -1025,7 +1025,7 @@ EID.descriptions[languageCode].PickupNames = {
 
 }
 EID.descriptions[languageCode].ConditionalDescs = {
-	["5.300.48"] = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다." -- Blank Card + Q Card
+	["5.300.48"] = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다.", -- Blank Card + Q Card
 
 	["5.100.81"] = "!!! 최대 체력 = 소울하트 보정을 받는 캐릭터는 소울하트가 1칸이 됩니다.", -- Dead Cat
 	["5.100.241"] = "{{GreedModeSmall}} Greed 모드의 동전 보상은 영향 없음", -- Contract From Below
