@@ -1163,7 +1163,6 @@ EID.descriptions[languageCode].CraftingResults = "(Scrollen: Halte {{CONFIG_BoC_
 
 EID.descriptions[languageCode].BlankCardCharge = "Blanko-Kartenladung:"
 EID.descriptions[languageCode].BlankCardEffect = "Effekt der Blanko-Karte:"
-EID.descriptions[languageCode].BlankCardQCard = "Teleport zum I AM ERROR-Raum#Blanko-Karte und ?-Karte werden zerstört"
 EID.descriptions[languageCode].ClearRuneCharge = "Ladezeit der leeren Rune:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo-Ladezeit:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Halte {{CONFIG_BoC_Toggle}} gedrückt, um die Beschreibung anzuzeigen)"

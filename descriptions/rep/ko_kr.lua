@@ -1286,7 +1286,6 @@ EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC
 
 EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card로 사용 시:"
-EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."
 EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune 충전량:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo 충전량:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "( {{CONFIG_BoC_Toggle}} (맵 펼치기) 버튼을 꾹 눌러 설명 보기)"

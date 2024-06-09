@@ -1070,7 +1070,6 @@ EID.descriptions[languageCode].CraftingPreviewKey = "Показать:"
 EID.descriptions[languageCode].CraftingResults = "(Листать: зажать {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Заблокировать: {{ButtonX}}, Обновить: {{ButtonB}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Заряд Пустой карты:"
-EID.descriptions[languageCode].BlankCardQCard = "Телепортирует в комнату Я-ОШИБКА#Пустая карта и ?-карта будут уничтожены"
 EID.descriptions[languageCode].ClearRuneCharge = "Заряд Чистой руны:"
 EID.descriptions[languageCode].PlaceboCharge = "Заряд Плацебо:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Зажми {{ButtonSelect}} чтобы показать описание)"

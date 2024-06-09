@@ -1130,7 +1130,6 @@ EID.descriptions[languageCode].CraftingResults = "(Desplazar: mantén {{CONFIG_B
 
 -- Mimic items charges
 EID.descriptions[languageCode].BlankCardCharge = "Cargas de Carta en Blanco:"
-EID.descriptions[languageCode].BlankCardQCard = "Te teletransporta a la habitación de I Am Error#Tanto Carta en blanco como la ¿? carta se destruirán"
 EID.descriptions[languageCode].ClearRuneCharge = "Cargas de Runa limpia:"
 EID.descriptions[languageCode].PlaceboCharge = "Cargas de Placebo:"
 -- Mimic items charges end
