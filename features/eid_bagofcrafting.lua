@@ -321,10 +321,10 @@ function EID:calculateBagOfCrafting(componentsTable)
 		end
 	end
 
-	for i=1,20 do
+	for i = 1, 20 do
 		local t = nextFloat() -- random number between 0 and 1
 		local target = t * totalWeight -- number between 0 and total weight of possible results
-		for k,v in ipairs(itemWeights) do
+		for k, v in ipairs(itemWeights) do
 			target = target - v
 			if target < 0 then
 				-- check item:IsAvailable, otherwise reroll
@@ -424,6 +424,7 @@ EID:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup,collide
 end)
 
 -- Formerly a MC_POST_PICKUP_UPDATE, but moved to this so that it's only called when we own a bag
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:BoCCheckForPickups()
 	for _,pickup in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, -1, -1, false, false)) do
 		if pickup:GetSprite():GetAnimation() == "Collect" and not pickupsCollected[pickup.Index] then
@@ -462,6 +463,7 @@ end)
 --Tainted Cain "hold to craft" check
 local holdCounter = 0
 local icount = 0
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:BoCTrackBagHolding()
 	if not IsTaintedCain() then return end
 	local isCardHold = Input.IsActionPressed(ButtonAction.ACTION_PILLCARD, EID.bagPlayer.ControllerIndex)
@@ -495,6 +497,7 @@ local function shiftBagContent()
 	EID.BoC.BagItems = newContent
 end
 -- only Tainted Cain's consumable slot bag can have its ingredients shifted
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:BoCDetectBagContentShift()
 	if Input.IsActionTriggered(ButtonAction.ACTION_DROP, EID.bagPlayer.ControllerIndex) and IsTaintedCain() then
 		shiftBagContent()

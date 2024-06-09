@@ -126,7 +126,7 @@ if EID.isRepentance then
 			Isaac.ConsoleOutput("Load rep "..lang.." failed: "..tostring(err))
 		end
 	end
-	local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
+	local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
 	require("features.eid_bagofcrafting")
 	require("features.eid_tmtrainer")
 end
@@ -912,6 +912,7 @@ function EID:renderIndicator(entity, playerNum)
 end
 
 ---@param entity Entity
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:PositionLocalMode(entity)
 	-- don't use Local Mode for descriptions without an entity (or dice floors)
 	if (EID.Config["DisplayMode"] == "local" or alwaysUseLocalMode) and entity and entity.Variant ~= EffectVariant.DICE_FLOOR then
@@ -1650,7 +1651,7 @@ if EID.isRepentance then
 	end
 	EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseGenesis, CollectibleType.COLLECTIBLE_GENESIS)
 
-	local function OnUseLemegeton(_, _, player, _, _, _)
+	local function OnUseLemegeton(_, _, _, _, _, _)
 		EID.ShouldCheckWisp = true
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseLemegeton, CollectibleType.COLLECTIBLE_LEMEGETON)

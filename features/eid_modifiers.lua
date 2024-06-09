@@ -554,7 +554,7 @@ if EID.isRepentance then
 		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 286, "BlankCardCharge")
 		-- If the player has Tarot Cloth and Blank Card, display additional text
 		if hasTarot then
-			text = EID:getDescriptionEntry("BlankCardEffect")
+			local text = EID:getDescriptionEntry("BlankCardEffect")
 			local buffText = EID:getDescriptionEntry("tarotClothBlankCardBuffs", descObj.ObjSubType)
 			if buffText then EID:appendToDescription(descObj, "#{{ColorSilver}}{{Collectible286}} " .. text .. " " .. buffText) end
 		end
@@ -618,7 +618,6 @@ if EID.isRepentance then
 
 		for i = 1,#EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[i]
-			local playerID = EID:getPlayerID(player)
 			local playerType = player:GetPlayerType()
 			local pillModifierID = 0
 			local goodAndBad = false

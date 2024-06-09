@@ -242,7 +242,7 @@ function EID:VoidRoomCheck()
 		local pickup = entity:ToPickup()
 		-- Count this pedestal if it's not an active (or this is Black Rune), not a shop item, and (in Repentance) the first of its option index
 		-- TEST IF VOID ALWAYS ABSORBS THE FIRST OF ITS OPTION INDEX
-		if entity.SubType > 0 and not pickup:IsShopItem() and
+		if pickup and entity.SubType > 0 and not pickup:IsShopItem() and
 		(not EID.isRepentance or pickup.OptionsPickupIndex == 0 or EID.VoidOptionIndexes[pickup.OptionsPickupIndex] == nil) then
 			numRunable = numRunable + 1
 			if EID.isRepentance then EID.VoidOptionIndexes[pickup.OptionsPickupIndex] = entity.SubType end

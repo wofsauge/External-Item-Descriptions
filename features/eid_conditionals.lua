@@ -28,11 +28,11 @@ EID.collectiblesToCheck = {}
 	Argument 5 (very optional): The position in the table to insert this new condition, in case mods want to insert modifiers before our base ones
 ]]
 function EID:AddConditional(IDs, funcText, modText, extraTable, insertPoint)
-	if type(IDs) ~= "table" then IDs = {IDs} end
+	if type(IDs) ~= "table" then IDs = { IDs } end
 	if modText == "" then modText = nil end
 	extraTable = extraTable or {}
 	-- make a shallow copy of the passed-in table
-	local newTable = {}; for k,v in pairs(extraTable) do newTable[k] = v end
+	local newTable = {}; for k, v in pairs(extraTable) do newTable[k] = v end
 	newTable.func = funcText;
 	newTable.modifierText = modText;
 	if newTable.noFallback == nil then newTable.noFallback = true end
@@ -42,8 +42,11 @@ function EID:AddConditional(IDs, funcText, modText, extraTable, insertPoint)
 		local _, count = string.gsub(id, "%.", "")
 		if count == 1 then newTable.general = true end
 		EID.DescriptionConditions[id] = EID.DescriptionConditions[id] or {}
-		if insertPoint then table.insert(EID.DescriptionConditions[id], insertPoint, newTable)
-		else table.insert(EID.DescriptionConditions[id], newTable) end
+		if insertPoint then
+			table.insert(EID.DescriptionConditions[id], insertPoint, newTable)
+		else
+			table.insert(EID.DescriptionConditions[id], newTable)
+		end
 	end
 end
 
@@ -52,14 +55,15 @@ end
 
 -- checkInReminder is for if a synergy is no longer relevant once the item isn't obtainable (e.g. Abyss locusts) (true by default)
 function EID:AddCollectibleConditional(IDs, ownedIDs, modText, extraTable, checkInReminder)
-	if type(ownedIDs) ~= "table" then ownedIDs = {ownedIDs} end
+	if type(ownedIDs) ~= "table" then ownedIDs = { ownedIDs } end
 	if checkInReminder == nil then checkInReminder = true end
 	extraTable = extraTable or {}
 	for _, ownedID in ipairs(ownedIDs) do
 		EID.collectiblesToCheck[ownedID] = true
 		if extraTable.variableText == nil then extraTable.variableText = "{{NameOnlyC" .. ownedID .. "}}" end
 		if extraTable.bulletpoint == nil then extraTable.bulletpoint = "Collectible" .. ownedID end
-		EID:AddConditional(IDs, function() return EID:ConditionalCollCheck(ownedID,checkInReminder) end, modText, extraTable)
+		EID:AddConditional(IDs, function() return EID:ConditionalCollCheck(ownedID, checkInReminder) end, modText,
+			extraTable)
 	end
 end
 
@@ -72,13 +76,14 @@ end
 
 -- includeTainted is for if you want to check the normal and tainted version of a character (true by default)
 function EID:AddPlayerConditional(IDs, charIDs, modText, extraTable, includeTainted)
-	if type(charIDs) ~= "table" then charIDs = {charIDs} end
+	if type(charIDs) ~= "table" then charIDs = { charIDs } end
 	if includeTainted == nil then includeTainted = true end
 	extraTable = extraTable or {}
 	for _, charID in ipairs(charIDs) do
 		if extraTable.variableText == nil then extraTable.variableText = "{{NameOnlyI" .. charID .. "}}" end
 		if extraTable.bulletpoint == nil then extraTable.bulletpoint = "Player" .. charID end
-		EID:AddConditional(IDs, function() return EID:ConditionalCharCheck(charID,includeTainted) end, modText, extraTable)
+		EID:AddConditional(IDs, function() return EID:ConditionalCharCheck(charID, includeTainted) end, modText,
+			extraTable)
 	end
 end
 
@@ -124,24 +129,25 @@ EID:AddConditional("5.300.15", function() return game:IsGreedMode() and EID:Play
 
 -- Different effect for No Red Health players
 -- TODO: separate this into a Rep-only part, and figure out what they do exactly with Keeper/Forgotten
-EID:AddConditional({442, 676}, function() return EID:CheckForNoRedHealthPlayer() end, "No Red") -- Dark Prince's Crown, Empty Heart
-EID:AddConditional(81, function() return EID:CheckForNoRedHealthPlayer() end) -- Dead Cat
+EID:AddConditional({ 442, 676 }, function() return EID:CheckForNoRedHealthPlayer() end, "No Red") -- Dark Prince's Crown, Empty Heart
+EID:AddConditional(81, function() return EID:CheckForNoRedHealthPlayer() end)                   -- Dead Cat
 --TODO: Keeper/Forgotten DON'T benefit from Empty Heart but DO benefit from Dark Prince's Crown? Nothing's consistent... does the Soul benefit while Forgotten does
 
 -- Achievement checks (these always return true without REPENTOGON)
 EID:AddConditional("5.350.23", function() return EID:HaveNotUnlockedAchievement(82) end) -- Sacrifice Poster unlocks The Lost
 
 -- Specific character synergies/changes
-EID:AddPlayerConditional(549, {10,14})-- Keeper/Lost + Brittle Bones
-EID:AddPlayerConditional(108, 14, "No Effect") -- Keeper + The Wafer
+EID:AddPlayerConditional(549, { 10, 14 })       -- Keeper/Lost + Brittle Bones
+EID:AddPlayerConditional(108, 14, "No Effect")  -- Keeper + The Wafer
 EID:AddPlayerConditional(227, 14, "Keeper 0-1") -- Keeper + Piggy Bank
-EID:AddPlayerConditional(501, 14) -- Keeper + Greed's Gullet
-EID:AddPlayerConditional(230, 14, "Keeper") -- Keeper + Abaddon
+EID:AddPlayerConditional(501, 14)               -- Keeper + Greed's Gullet
+EID:AddPlayerConditional(230, 14, "Keeper")     -- Keeper + Abaddon
 
 -- Item Synergies
-EID:AddSynergyConditional(7, 34); EID:AddCollectibleConditional("5.300.16", 7) -- Martyr + Book of Belial/The Devil
-EID:AddSynergyConditional(316, 260) -- Black Candle + Cursed Eye
-EID:AddCollectibleConditional("5.300.48", 286, nil, {lineColor = "ColorSilver"}) -- Blank Card + ? Card
+EID:AddSynergyConditional(7, 34)                                                 -- Martyr + Book of Belial/The Devil
+EID:AddCollectibleConditional("5.300.16", 7)                                     -- Martyr + Book of Belial/The Devil
+EID:AddSynergyConditional(316, 260)                                              -- Black Candle + Cursed Eye
+EID:AddCollectibleConditional("5.300.48", 286, nil, { lineColor = "ColorSilver" }) -- Blank Card + ? Card
 
 -- Overridden by Brimstone
 -- Haven't done it yet but I'm sure preparing the system for it
@@ -150,36 +156,36 @@ EID:AddCollectibleConditional("5.300.48", 286, nil, {lineColor = "ColorSilver"})
 
 if EID.isRepentance then
 	-- General conditions
-	EID:AddCollectibleConditional("5.100", 706, nil, {locTable = "abyssSynergies", lineColor = "ColorRed"}, false) -- Abyss (no item reminder)
-	EID:AddCollectibleConditional("5.100", 59, nil, {locTable = "bookOfBelialBuffs"}) -- Belial Birthright
-	EID:AddCollectibleConditional("5.100", 664, nil, {locTable = "bingeEaterBuffs"}) -- Binge Eater
-	
+	EID:AddCollectibleConditional("5.100", 706, nil, { locTable = "abyssSynergies", lineColor = "ColorRed" }, false) -- Abyss (no item reminder)
+	EID:AddCollectibleConditional("5.100", 59, nil, { locTable = "bookOfBelialBuffs" })                         -- Belial Birthright
+	EID:AddCollectibleConditional("5.100", 664, nil, { locTable = "bingeEaterBuffs" })                          -- Binge Eater
+
 	-- Co-op friendly items
 	-- todo (yum heart, extension cord)
-	
+
 	-- Tainted characters reviving as themselves
-	EID:AddPlayerConditional({161, "5.350.28"}, 25, "Tainted Revive") -- Ankh, Broken Ankh
-	EID:AddPlayerConditional(311, 24, "Tainted Revive") -- Judas's Shadow
-	EID:AddPlayerConditional(332, {29, 38}, "Tainted Revive") -- Lazarus's Rags
-	EID:AddPlayerConditional("5.350.23", 31, "Tainted Revive") -- Sacrifice Poster
+	EID:AddPlayerConditional({ 161, "5.350.28" }, 25, "Tainted Revive") -- Ankh, Broken Ankh
+	EID:AddPlayerConditional(311, 24, "Tainted Revive")            -- Judas's Shadow
+	EID:AddPlayerConditional(332, { 29, 38 }, "Tainted Revive")    -- Lazarus's Rags
+	EID:AddPlayerConditional("5.350.23", 31, "Tainted Revive")     -- Sacrifice Poster
 
 	-- Specific character synergies/changes
 	EID:AddPlayerConditional("5.350.1", 14, "Keeper 0-1") -- Keeper + Swallowed Penny
-	EID:AddPlayerConditional(188, 2) -- Cain + Abel
-	EID:AddPlayerConditional(360, 13) -- Incubus + Lilith
-	EID:AddPlayerConditional({240, 644}, 21) -- Tainted Isaac + Experimental Treatment, Consolation Prize
-	EID:AddPlayerConditional({642, 694}, 10) -- Lost + Magic Skin, Heartbreak
-	EID:AddPlayerConditional("5.350.156", 14) -- Keeper + Mother's Kiss
+	EID:AddPlayerConditional(188, 2)                      -- Cain + Abel
+	EID:AddPlayerConditional(360, 13)                     -- Incubus + Lilith
+	EID:AddPlayerConditional({ 240, 644 }, 21)            -- Tainted Isaac + Experimental Treatment, Consolation Prize
+	EID:AddPlayerConditional({ 642, 694 }, 10)            -- Lost + Magic Skin, Heartbreak
+	EID:AddPlayerConditional("5.350.156", 14)             -- Keeper + Mother's Kiss
 	EID:AddPlayerConditional(230, 18, "Bethany", nil, false) -- Bethany + Abaddon
-	EID:AddPlayerConditional(230, 36, "Tainted Bethany") -- Tainted Bethany + Abaddon
-	EID:AddPlayerConditional(245, 14, "Keeper") -- 20/20 + Keeper
-	EID:AddPlayerConditional(705, {12, 24}) -- Dark Arts + Dark/Tainted Judas
-	
+	EID:AddPlayerConditional(230, 36, "Tainted Bethany")  -- Tainted Bethany + Abaddon
+	EID:AddPlayerConditional(245, 14, "Keeper")           -- 20/20 + Keeper
+	EID:AddPlayerConditional(705, { 12, 24 })             -- Dark Arts + Dark/Tainted Judas
+
 	-- Item Synergies
-	EID:AddCollectibleConditional(201, 147) -- Iron Bar refills Notched Axe
-	EID:AddCollectibleConditional("5.350.172", 260) -- Black Candle + Cursed Penny
-	EID:AddCollectibleConditional(501, 416) -- Greed's Gullet + Deep Pockets
-	EID:AddSynergyConditional(245, {2, 153, 169}, nil, "20/20") -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	EID:AddCollectibleConditional(201, 147)                     -- Iron Bar refills Notched Axe
+	EID:AddCollectibleConditional("5.350.172", 260)             -- Black Candle + Cursed Penny
+	EID:AddCollectibleConditional(501, 416)                     -- Greed's Gullet + Deep Pockets
+	EID:AddSynergyConditional(245, { 2, 153, 169 }, nil, "20/20") -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
 	EID:AddSynergyConditional(330, 561, "Overridden", "Overrides") -- Soy+Almond Milk
 end
 
@@ -189,13 +195,18 @@ function EID:ConditionalCharCheck(playerType, includeTainted)
 	-- We don't want to display irrelevant item info inside the Item Reminder
 	if EID.InsideItemReminder then
 		local player = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
-		if player:GetPlayerType() == playerType then return true
-		elseif includeTainted and EID.isRepentance and Isaac.GetPlayerTypeByName(player:GetName()) == playerType then return true
-		else return false end
+		if player:GetPlayerType() == playerType then
+			return true
+		elseif includeTainted and EID.isRepentance and Isaac.GetPlayerTypeByName(player:GetName()) == playerType then
+			return true
+		else
+			return false
+		end
 	else
 		return EID:PlayersHaveCharacter(playerType, includeTainted)
 	end
 end
+
 function EID:ConditionalCollCheck(collectibleID, checkInReminder)
 	-- We don't want to display irrelevant item info inside the Item Reminder
 	if EID.InsideItemReminder then
@@ -218,9 +229,13 @@ end
 function EID:IsGreedMode()
 	return game:IsGreedMode()
 end
+
 function EID:IsHardMode()
-	if game.Difficulty == 1 or game.Difficulty == 3 then return true
-	else return false end
+	if game.Difficulty == 1 or game.Difficulty == 3 then
+		return true
+	else
+		return false
+	end
 end
 
 -- Check if we have any characters that can't have Red Health, to print additions to descs like Dead Cat
@@ -249,6 +264,7 @@ function EID:HaveEncountered(monsterType, monsterVariant)
 	if not REPENTOGON then return true end
 	return Isaac.GetPersistentGameData():GetBestiaryEncounterCount(monsterType, monsterVariant) > 0
 end
+
 function EID:HaveNotEncountered(monsterType, monsterVariant)
 	if not REPENTOGON then return true end
 	return not EID:HaveEncountered(monsterType, monsterVariant)
@@ -264,39 +280,38 @@ function EID:HaveNotUnlockedAchievement(achID)
 	return not EID:HaveUnlockedAchievement(achID)
 end
 
-
 ----- Apply Conditionals -----
 
 -- thing to fix find/replace pairs with hyphens (like "1-2") breaking because hyphen is a special char
 -- https://stackoverflow.com/questions/29072601/lua-string-gsub-with-a-hyphen
 local function replace(str, what, with, count)
-    what = string.gsub(what, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1") -- escape pattern
-    with = string.gsub(with, "[%%]", "%%%%") -- escape replacement
-    return string.gsub(str, what, with, count)
+	what = string.gsub(what, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1") -- escape pattern
+	with = string.gsub(with, "[%%]", "%%%%")                       -- escape replacement
+	return string.gsub(str, what, with, count)
 end
 -- super simple table concatenation: https://www.tutorialspoint.com/concatenation-of-tables-in-lua-programming
-local function TableConcat(t1,t2)
-   for i=1,#t2 do
-      t1[#t1+1] = t2[i]
-   end
-   return t1
+local function TableConcat(t1, t2)
+	for i = 1, #t2 do
+		t1[#t1 + 1] = t2[i]
+	end
+	return t1
 end
 
 function EID:applyConditionals(descObj)
 	EID:CheckPlayersCollectibles()
-	
+
 	local typeVar = descObj.ObjType.."."..descObj.ObjVariant -- for general conditions (Tarot Cloth, Book of Virtues)
 	local typeVarSub = descObj.fullItemString -- for specific conditions
 	-- Combine general+specific conditions into one table
 	local conds = {}
 	if EID.DescriptionConditions[typeVar] then TableConcat(conds, EID.DescriptionConditions[typeVar]) end
-	if EID.DescriptionConditions[typeVarSub] then TableConcat(conds, EID.DescriptionConditions[typeVarSub]) end	
+	if EID.DescriptionConditions[typeVarSub] then TableConcat(conds, EID.DescriptionConditions[typeVarSub]) end
 	-- Check every condition we need to check for this item
 	for _, cond in ipairs(conds) do
 		-- Search for the localization string; "S" (for generals) or "T.V.S" or "T.V.S (Modifier)" or "Modifier"
 		local locTable = cond.locTable or "ConditionalDescs"
 		local text = nil
-		
+
 		if cond.noTable then
 			text = EID:getDescriptionEntry(cond.modifierText, nil, cond.noFallback)
 		elseif cond.general then
@@ -307,12 +322,14 @@ function EID:applyConditionals(descObj)
 		else
 			text = EID:getDescriptionEntry(locTable, typeVarSub, cond.noFallback)
 		end
-		
+
 		-- If we find the localization string for this condition, and it passes the test, modify the description text
 		if text ~= nil and cond.func() then
-			local variableText = type(cond.variableText) == "function" and cond.variableText(descObj) or cond.variableText
-			local variableText2 = type(cond.variableText2) == "function" and cond.variableText2(descObj) or cond.variableText2
-			
+			local variableText = type(cond.variableText) == "function" and cond.variableText(descObj) or
+			cond.variableText
+			local variableText2 = type(cond.variableText2) == "function" and cond.variableText2(descObj) or
+			cond.variableText2
+
 			-- String = append
 			if type(text) == "string" then
 				text = EID:ReplaceVariableStr(text, 1, variableText)
@@ -320,19 +337,20 @@ function EID:applyConditionals(descObj)
 				local iconStr = "#"
 				if cond.bulletpoint then iconStr = iconStr .. "{{" .. cond.bulletpoint .. "}} " end
 				if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end
-				EID:appendToDescription(descObj, iconStr..text:gsub("#",iconStr))
-				
-			-- Table with 1 entry = replace
+				EID:appendToDescription(descObj, iconStr .. text:gsub("#", iconStr))
+
+				-- Table with 1 entry = replace
 			elseif #text == 1 then
-				descObj.Description = EID:ReplaceVariableStr(EID:ReplaceVariableStr(text[1], 1, variableText), 2, variableText2)
-				
-			-- Table with 2+ entries = find and replace pairs
-			-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
+				descObj.Description = EID:ReplaceVariableStr(EID:ReplaceVariableStr(text[1], 1, variableText), 2,
+					variableText2)
+
+				-- Table with 2+ entries = find and replace pairs
+				-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
 			else
 				local pos = 1
 				while pos < #text do
 					local toFind = text[pos]
-					local replaceWith = EID:ReplaceVariableStr(text[pos+1], 1, variableText)
+					local replaceWith = EID:ReplaceVariableStr(text[pos + 1], 1, variableText)
 					replaceWith = EID:ReplaceVariableStr(replaceWith, 2, variableText2)
 					if cond.replaceColor then replaceWith = "{{" .. cond.replaceColor .. "}}" .. replaceWith .. "{{CR}}" end
 					--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
@@ -344,7 +362,7 @@ function EID:applyConditionals(descObj)
 								return replaceWith
 							end
 						end)
-					-- Basic find+replace for non-numbers
+						-- Basic find+replace for non-numbers
 					else
 						descObj.Description = replace(descObj.Description, tostring(toFind), replaceWith, 1)
 					end
@@ -354,6 +372,5 @@ function EID:applyConditionals(descObj)
 		end
 	end
 
-	
 	return descObj
 end

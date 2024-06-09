@@ -152,8 +152,48 @@ local function jamoToCompJamo(code)
   return 0
 end
 
+---@param tt "initial"|"medial"|"final"|"partialOnly"
+---@param char string
+---@return integer UnicodeChar
+local function getCode( tt, char )
+  -- 초성 리스트 (initial list)
+  local initial = { 'r','R','s','e','E','f','a','q','Q','t','T','d','w','W','c','z','x','v','g'};
+  -- 중성 리스트 (medial list)
+  local medial = { 'k', 'o', 'i', 'O', 'j', 'p', 'u', 'P', 'h', 'hk', 'ho', 'hl', 'y', 'n', 'nj', 'np', 'nl', 'b', 'm', 'ml', 'l' };
+  -- 종성 리스트 (final list)
+  local final = { 'r', 'R', 'rt', 's', 'sw', 'sg', 'e', 'f', 'fr', 'fa', 'fq', 'ft', 'fx', 'fv', 'fg', 'a', 'q', 'qt', 't', 'T', 'd', 'w', 'c', 'z', 'x', 'v', 'g' };
+  local returnCode = 0; -- 최종 인덱스 (return index)
+  local isFind = false; -- 발견 여부 (code found check)
+
+  -- 각 리스트에서 인덱스를 검색하기 위한 로컬 함수
+  local find = function(tb, ch)
+    for i = 1, #tb do
+      if tb[i] == ch then
+        returnCode = i-1;
+        isFind = true;
+        break;
+      end
+    end
+  end
+
+  if char ~= nil then
+    if tt == 'initial' then
+      find( initial, char )
+      returnCode = returnCode * 21 * 28
+    elseif tt == 'medial' then
+      find( medial, char )
+      returnCode = returnCode * 28
+    elseif tt == 'final' then
+      find( final, char )
+      returnCode = returnCode + 1
+    end
+  end
+  if isFind == false then returnCode = -1; end
+  return returnCode;
+end
+
 ---Converts 0x1101 like unicode to string
----@param unicode_list UnicodeChar[]
+---@param unicode_list table
 ---@return string convertedUnicodeChar
 local function conv2utf8(unicode_list)
   local result = ''
@@ -161,7 +201,7 @@ local function conv2utf8(unicode_list)
   local function modulo(a, b)
     return a - math.floor(a/b) * b
   end
-  for i,v in ipairs(unicode_list) do
+  for _,v in ipairs(unicode_list) do
     if v ~= 0 and v ~= nil then
       if utf8 then
         -- Tested in REPENTOGON
@@ -194,7 +234,7 @@ end
 
 ---converts single Korean word within string and index
 ---@param text string
----@param idx index
+---@param idx integer
 ---@return string convertedKoreanWord
 ---@return integer newIndex
 local function getFinalString(text, idx)
@@ -239,7 +279,7 @@ local function getFinalString(text, idx)
   local secondP2 = text:sub( idx+1, idx+1 )
   local medialCodeP1 = getCode( 'medial', secondP1 ); -- 2 chars of medial position
   local medialCodeP2 = getCode( 'medial', secondP2 ); -- 1 char of medial position
-  local medialCodeP3 = getCode( 'initial', secondP2 ); -- 1 char of medial position, but check for initial char
+  --local medialCodeP3 = getCode( 'initial', secondP2 ); -- 1 char of medial position, but check for initial char
 
   if medialCodeP1 ~= -1 then
     -- 2 word medials
@@ -312,11 +352,6 @@ local function engToKor(msg)
 
   local text = msg;
 
-  -- ­한글의 초,중,종성의 인덱스
-  local initialCode = 0;
-  local medialCode  = 0;
-  local finalCode   = 0;
-
   -- 루프와 결과 저장을 위한 변수
   local textLength = #text
   local ret = "";
@@ -328,46 +363,6 @@ local function engToKor(msg)
     idx = index
   end
   return ret
-end
-
----@param tt "initial"|"medial"|"final"|"partialOnly"
----@param char char
----@return integer UnicodeChar
-function getCode( tt, char )
-  -- 초성 리스트 (initial list)
-  local initial = { 'r','R','s','e','E','f','a','q','Q','t','T','d','w','W','c','z','x','v','g'};
-  -- 중성 리스트 (medial list)
-  local medial = { 'k', 'o', 'i', 'O', 'j', 'p', 'u', 'P', 'h', 'hk', 'ho', 'hl', 'y', 'n', 'nj', 'np', 'nl', 'b', 'm', 'ml', 'l' };
-  -- 종성 리스트 (final list)
-  local final = { 'r', 'R', 'rt', 's', 'sw', 'sg', 'e', 'f', 'fr', 'fa', 'fq', 'ft', 'fx', 'fv', 'fg', 'a', 'q', 'qt', 't', 'T', 'd', 'w', 'c', 'z', 'x', 'v', 'g' };
-  local returnCode = 0; -- 최종 인덱스 (return index)
-  local isFind = false; -- 발견 여부 (code found check)
-
-  -- 각 리스트에서 인덱스를 검색하기 위한 로컬 함수
-  local find = function(tb, ch)
-    for i = 1, #tb do
-      if tb[i] == ch then
-        returnCode = i-1;
-        isFind = true;
-        break;
-      end
-    end
-  end
-
-  if char ~= nil then
-    if tt == 'initial' then
-      find( initial, char )
-      returnCode = returnCode * 21 * 28
-    elseif tt == 'medial' then
-      find( medial, char )
-      returnCode = returnCode * 28
-    elseif tt == 'final' then
-      find( final, char )
-      returnCode = returnCode + 1
-    end
-  end
-  if isFind == false then returnCode = -1; end
-  return returnCode;
 end
 
 EID.engKeystrokeToKor = engToKor
