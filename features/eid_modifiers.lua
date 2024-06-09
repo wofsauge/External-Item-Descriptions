@@ -541,8 +541,8 @@ if EID.isRepentance then
 	local hasTarot = false
 	
 	
-	local function VariableCharge(descObj, metadata, collID)
-		local text = EID:getDescriptionEntry("VariableCharge")
+	local function VariableCharge(descObj, metadata, collID, chargeText)
+		local text = EID:getDescriptionEntry(chargeText or "VariableCharge")
 		if text ~= nil and metadata ~= nil and metadata.mimiccharge and metadata.mimiccharge ~= -1 then
 			text = EID:ReplaceVariableStr(text, 1, "{{NameOnlyC" .. collID .. "}}")
 			EID:appendToDescription(descObj, "#{{ColorSilver}}{{Collectible" .. collID .. "}} " .. text .. " {{"..metadata.mimiccharge.."}}{{Battery}}")
@@ -551,7 +551,7 @@ if EID.isRepentance then
 	
 	-- Handle Blank Card description addition
 	local function BlankCardCallback(descObj)
-		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 286)
+		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 286, "BlankCardCharge")
 		-- If the player has Tarot Cloth and Blank Card, display additional text
 		if hasTarot then
 			text = EID:getDescriptionEntry("BlankCardEffect")
@@ -563,14 +563,14 @@ if EID.isRepentance then
 
 	-- Handle Clear Rune description addition
 	local function ClearRuneCallback(descObj)
-		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 263)
+		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 263, "ClearRuneCharge")
 		return descObj
 	end
 
 	-- Handle Placebo description addition
 	local function PlaceboCallback(descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
-		VariableCharge(descObj, EID.pillMetadata[adjustedID-1], 348)
+		VariableCharge(descObj, EID.pillMetadata[adjustedID-1], 348, "PlaceboCharge")
 		return descObj
 	end
 
