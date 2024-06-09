@@ -544,8 +544,8 @@ if EID.isRepentance then
 	local function VariableCharge(descObj, metadata, collID)
 		local text = EID:getDescriptionEntry("VariableCharge")
 		if text ~= nil and metadata ~= nil and metadata.mimiccharge and metadata.mimiccharge ~= -1 then
-			text = EID:ReplaceVariableStr(text, 1, "{{NameC" .. collID .. "}}")
-			EID:appendToDescription(descObj, "#{{ColorSilver}}" .. text .. " {{"..metadata.mimiccharge.."}}{{Battery}}")
+			text = EID:ReplaceVariableStr(text, 1, "{{NameOnlyC" .. collID .. "}}")
+			EID:appendToDescription(descObj, "#{{ColorSilver}}{{Collectible" .. collID .. "}} " .. text .. " {{"..metadata.mimiccharge.."}}{{Battery}}")
 		end
 	end
 	
