@@ -69,7 +69,7 @@ EID.descriptions[languageCode].collectibles={
 	{"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#+8% room clear reward chance#Better chance to win while gambling"}, -- Lucky Foot
 	{"47", "Doctor's Remote", "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#Deals 20x Isaac's damage"}, -- Doctor's Remote
 	{"48", "Cupid's Arrow", "Piercing tears"}, -- Cupid's Arrow
-	{"49", "Shoop da Whoop!", "{{Collectible118}} Using the item and shooting in a direction fires a high damage Brimstone beam"}, -- Shoop da Whoop!
+	{"49", "Shoop da Whoop!", "{{Collectible118}} Using the item and shooting in a direction fires a 2x damage laser"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Damage"}, -- Steven
 	{"51", "Pentagram", "↑ {{Damage}} +1 Damage#{{AngelDevilChance}} +10% Devil/Angel Room chance"}, -- Pentagram
 	{"52", "Dr. Fetus", "↓ {{Tears}} x2.5 Tear delay multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's damage + 30"}, -- Dr. Fetus
@@ -95,7 +95,7 @@ EID.descriptions[languageCode].collectibles={
 	{"72", "Rosary", "{{SoulHeart}} +3 Soul Hearts#{{Collectible33}} The Bible is added to all item pools"}, -- Rosary
 	{"73", "Cube of Meat", "Lv1: Orbital#Lv2: Shooting orbital#Lv3: Meat Boy#Lv4: Super Meat Boy"}, -- Cube of Meat
 	{"74", "A Quarter", "{{Coin}} +25 Coins"}, -- A Quarter
-	{"75", "PHD", "{{Heart}} Heals 2 hearts#{{Pill}} Spawns 1 pill#{{Pill}} Changes bad pills into good pills#{{BloodDonationMachine}} Blood Donation Machines and {{Collectible135}} IV Bag give more {{Coin}} coins"}, -- PHD
+	{"75", "PHD", "{{Heart}} Heals 2 hearts#{{Pill}} Spawns 1 pill#{{Pill}} Changes bad pills into good pills#{{BloodDonationMachine}} Blood Donation Machines give more {{Coin}} coins"}, -- PHD
 	{"76", "X-Ray Vision", "{{SecretRoom}} Opens all secret room entrances"}, -- X-Ray Vision
 	{"77", "My Little Unicorn", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot but deals 40 contact damage per second"}, -- My Little Unicorn
 	{"78", "Book of Revelations", "{{SoulHeart}} +1 Soul Heart#{{AngelDevilChance}} +17.5% Devil/Angel Room chance while held#Using the item has a high chance to replace the floor's boss with a horseman"}, -- Book of Revelations
@@ -128,7 +128,7 @@ EID.descriptions[languageCode].collectibles={
 	{"105", "The D6", "Rerolls pedestal items in the room"}, -- The D6
 	{"106", "Mr. Mega", "↑ {{Bomb}} x1.83 Bomb damage#{{Bomb}} +5 Bombs"}, -- Mr. Mega
 	{"107", "The Pinking Shears", "{{Timer}} Receive for the room:#Flight#Isaac's body separates from his head and attacks enemies with 82.5 contact damage per second"}, -- The Pinking Shears
-	{"108", "The Wafer", "Reduces most damage taken to half a heart#{{Player14}} Doesn't work for Keeper"}, -- The Wafer
+	{"108", "The Wafer", "Reduces most damage taken to half a heart"}, -- The Wafer
 	{"109", "Money = Power", "↑ {{Damage}} +0.04 Damage for every {{Coin}} coin Isaac has"}, -- Money = Power
 	{"110", "Mom's Contacts", "↑ {{Range}} +0.25 Range#↑ +0.5 Tear height#20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 luck"}, -- Mom's Contacts
 	{"111", "The Bean", "{{Poison}} Farts a poison cloud#The poison deals Isaac's damage 6 times"}, -- The Bean
@@ -247,7 +247,7 @@ EID.descriptions[languageCode].collectibles={
 	{"224", "Cricket's Body", "↑ {{Tears}} -1 Tear delay#↑ {{Tearsize}} x1.2 Tear size#↓ {{Range}} -10 Range#Tears split up in 4 on hit#Split tears deal half damage"}, -- Cricket's Body
 	{"225", "Gimpy", "{{SoulHeart}} Taking damage has a chance to spawn a Soul Heart#{{HalfHeart}} Enemies have a chance to drop a half Red Heart on death"}, -- Gimpy
 	{"226", "Black Lotus", "↑ {{Heart}} +1 Health#{{SoulHeart}} +1 Soul Heart#{{BlackHeart}} +1 Black Heart"}, -- Black Lotus
-	{"227", "Piggy Bank", "{{Coin}} +3 Coins#{{Coin}} Taking damage spawns 1-2 coins#{{Player14}} 0-1 Coin as Keeper"}, -- Piggy Bank
+	{"227", "Piggy Bank", "{{Coin}} +3 Coins#{{Coin}} Taking damage spawns 1-2 coins"}, -- Piggy Bank
 	{"228", "Mom's Perfume", "↑ {{Tears}} -1 Tear delay#{{Fear}} 15% chance to shoot fear tears"}, -- Mom's Perfume
 	{"229", "Monstro's Lung", "↓ {{Tears}} x4.3 Tear delay multiplier#{{Chargeable}} Tears are charged and released in a shotgun style attack"}, -- Monstro's Lung
 	{"230", "Abaddon", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1.5 Damage#↓ {{EmptyHeart}} Removes all heart containers#{{BlackHeart}} +6 Black Hearts#{{Fear}} 15% chance to shoot fear tears"}, -- Abaddon
@@ -523,7 +523,7 @@ EID.descriptions[languageCode].collectibles={
 	{"498", "Duality", "{{AngelDevilChance}} Spawns both an Angel and Devil Room if either would have spawned#Entering one makes the other disappear"}, -- Duality
 	{"499", "Eucharist", "{{AngelChance}} 100% chance for Angel Rooms to spawn"}, -- Eucharist
 	{"500", "Sack of Sacks", "Spawns a sack every 5-6 rooms"}, -- Sack of Sacks
-	{"501", "Greed's Gullet", "{{Heart}} +1 Heart container for every 25 coins gained after getting Greed's Gullet#{{Player14}} Keeper can gain additional coin containers"}, -- Greed's Gullet
+	{"501", "Greed's Gullet", "{{Heart}} +1 Heart container for every 25 coins gained after getting Greed's Gullet"}, -- Greed's Gullet
 	{"502", "Large Zit", "{{Slow}} Firing occasionally shoots a white creep tear that deals double damage and slows enemies#Taking damage shoots a white creep tear"}, -- Large Zit
 	{"503", "Little Horn", "5% chance to shoot tears that instantly kill enemies#{{Luck}} 20% chance at 15 luck#Isaac deals 3.5 contact damage"}, -- Little Horn
 	{"504", "Brown Nugget", "Spawns a fly turret that shoots at enemies#Each shot deals 2 damage"}, -- Brown Nugget
@@ -972,6 +972,39 @@ EID.descriptions[languageCode].PickupNames = {
 
 }
 
+-- Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
+-- Strings will be appended to the original description (with line breaks replaced with a Tarot Cloth icon)
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple)
+EID.descriptions[languageCode].tarotClothBuffsAB = {
+	[4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
+	[6] = {2, 4}, -- V - The Hierophant
+	[7] = {2, 4}, -- VI - The Lovers
+	[8] = {6, 12}, -- VII - The Chariot
+	[9] = {"Spawns {{ColorShinyPurple}}2{{CR}} random {{UnknownHeart}} hearts, {{Coin}} coins, {{Bomb}} bombs and {{Key}} keys"}, -- VIII - Justice
+	[11] = {"Spawns {{ColorShinyPurple}}2{{CR}} {{Slotmachine}} Slot Machines or {{FortuneTeller}} Fortune Machines"}, -- X - Wheel of Fortune
+	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
+	[14] = {40, 80}, -- XIII - Death
+	[15] = {"{{DonationMachine}} Spawns {{ColorShinyPurple}}2{{CR}} Blood Donation Machines"}, -- XIV - Temperance
+	[17] = {6, 12}, -- XVI - The Tower
+	[20] = {100, 200}, -- XIX - The Sun
+	[21] = {"Spawns {{ColorShinyPurple}}2{{CR}} Beggars or Devil Beggars#2% chance to spawn a special Beggar"}, -- XX - Judgement
+	[23] = {"Doubles", "Quadruples"}, -- 2 of Clubs
+	[24] = {"Doubles", "Quadruples"}, -- 2 of Diamonds
+	[25] = {"Doubles", "Quadruples"}, -- 2 of Spades
+	[26] = {"Doubles", "Quadruples"}, -- 2 of Hearts
+	[33] = {"Doubles", "Quadruples"}, -- Jera
+	[35] = {1, 2}, -- Dagaz
+	[37] = "Rerolls twice", -- Perthro
+	[38] = {3, 6, 3, 6}, -- Berkano
+	[39] = {30, 60}, -- Algiz
+	[40] = "Triggers 2 rune effects and tries to duplicate itself twice", -- Blank Rune
+	[41] = {40, 80}, -- Black Rune
+	[46] = {10, 20}, -- Suicide King
+	[48] = "Uses it twice", -- ? Card
+	[53] = {3, 6}, -- Ancient Recall
+}
+
 -- Conditional descriptions
 -- Strings will be appended to the original description
 -- Tables with one entry will completely replace the original description
@@ -979,17 +1012,20 @@ EID.descriptions[languageCode].PickupNames = {
 EID.descriptions[languageCode].ConditionalDescs = {
 	["Overridden"] = "Overridden by {1}",
 	["Overrides"] = "Overrides {1}",
+	["No Effect"] = "No effect for {1}",
 	
 	["No Red"] = "No effect for characters that can't have Red Hearts",
 	["5.100.81 (No Red)"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
 	
-	["5.100.7"] = "{{Collectible34}} x1.5 Damage multiplier while The Book of Belial or XV - The Devil effect is active", -- Blood of the Martyr
-	["5.100.34"] = "{{Collectible7}} x1.5 Damage multiplier", -- Book of Belial
-	["5.300.16"] = "{{Collectible7}} x1.5 Damage multiplier", -- The Devil
+	["5.300.15 (Tarot)"] = {"{{DemonBeggar}} Spawns {{ColorShinyPurple}}2{{CR}} Devil Beggars"}, -- Temperance (Greed Mode + Tarot Cloth effect)
+	["5.100.7"] = "x1.5 Damage multiplier while The Book of Belial or XV - The Devil effect is active", -- Blood of the Martyr
+	["5.100.34"] = "x1.5 Damage multiplier", -- Book of Belial
+	["5.300.16"] = "x1.5 Damage multiplier", -- The Devil
+	
+	["5.100.135 (PHD)"] = "Spawns 2-3 coins if you have {1}", -- IV Bag PHD
+	["Keeper 0-1"] = "Spawns 0-1 coin as {1}", -- IV Bag/Piggy Bank Keeper
 	
 	["5.100.241"] = "{{GreedMode}} Doesn't affect Greed Mode", -- Contract From Below
-	["5.100.135 (Keeper)"] = "{{Player14}} Spawns 0-1 coin as Keeper", -- IV Bag Keeper
-	["5.100.135 (PHD)"] = "{{Collectible75}} Spawns 2-3 coins if you have PHD", -- IV Bag PHD
 	["5.300.15"] = {"{{DemonBeggar}} Spawns a Devil Beggar"}, -- Temperance (Greed Mode effect)
 	["5.350.23"] = "{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost", -- Missing Poster (Unlock The Lost)
 	
@@ -997,6 +1033,9 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 	["5.100.316"] = "{1} removes the teleportation effect", -- Cursed Eye
 	["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
+	["5.100.501"] = "{1} can gain additional coin containers", -- Greed's Gullet
+	["5.100.230 (Keeper)"] = "{1} just dies", -- Abaddon
+	["5.300.48"] = "Teleport to I AM ERROR Room#Blank Card and ? Card will be destroyed", -- Blank Card + Q Card
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
@@ -1010,9 +1049,9 @@ EID.descriptions[languageCode].BFFSSynergies = {
 	["5.100.539"] = "Spawns a champion variant of the enemy", -- Mystery Egg
 }
 
---todo: we want their active/passive descriptions to display here, but some of them act a little differently for the specific character, and do we need to define their passives in this table?
---also i totally haven't used like any icons in this
--- and it could probably be positioned somewhere else in the file
+-- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
+-- Soon, these descriptions, along with their starting item descriptions, will be in a tab in the Item Reminder
+-- The character names here are also used in getPlayerName to provide localized character names
 EID.descriptions[languageCode].characterInfo = {
 	[0] = {"Isaac", ""},
 	{"Magdalene", ""},
