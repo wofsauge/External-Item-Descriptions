@@ -920,3 +920,11 @@ EID.descriptions[languageCode].MCM = {
 	DemoObjectTransformation = "Transformación demostrativa",
 	DemoObjectText = "Este texto está en español#¡Una larga y genial descripción para demostrar los saltos de línea causados por la anchura de texto de EID!#\1 Esta linea también es genial#Esta linea te ama {{Heart}}",
 }
+
+-- Conditional descriptions
+-- Strings will be appended to the original description
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs
+EID.descriptions[languageCode].ConditionalDescs = {
+	["5.300.48"] = "Te teletransporta a la habitación de I Am Error#Tanto Carta en blanco como la ¿? carta se destruirán", -- Blank Card + Q Card
+}

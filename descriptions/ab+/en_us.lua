@@ -1015,9 +1015,8 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect"] = "No effect for {1}",
 	
 	["No Red"] = "No effect for characters that can't have Red Hearts",
-	["5.100.81 (No Red)"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
+	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
 	
-	["5.300.15 (Tarot)"] = {"{{DemonBeggar}} Spawns {{ColorShinyPurple}}2{{CR}} Devil Beggars"}, -- Temperance (Greed Mode + Tarot Cloth effect)
 	["5.100.7"] = "x1.5 Damage multiplier while The Book of Belial or XV - The Devil effect is active", -- Blood of the Martyr
 	["5.100.34"] = "x1.5 Damage multiplier", -- Book of Belial
 	["5.300.16"] = "x1.5 Damage multiplier", -- The Devil
@@ -1027,6 +1026,8 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 	["5.100.241"] = "{{GreedMode}} Doesn't affect Greed Mode", -- Contract From Below
 	["5.300.15"] = {"{{DemonBeggar}} Spawns a Devil Beggar"}, -- Temperance (Greed Mode effect)
+	["5.300.15 (Tarot)"] = {"{{DemonBeggar}} Spawns {{ColorShinyPurple}}2{{CR}} Devil Beggars"}, -- Temperance (Greed Mode + Tarot Cloth effect)
+	
 	["5.350.23"] = "{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost", -- Missing Poster (Unlock The Lost)
 	
 	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Tears on pickup", -- Brittle Bones (Keeper+Lost)
