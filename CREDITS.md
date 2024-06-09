@@ -13,7 +13,7 @@ If you enjoy this mod and want to help on it, check it out on GitHub: https://gi
 - **Greek**: by vanillarat
 - **Italian**: by Klyser8, Denkishi, 2G
 - **Japanese**: by prefab
-- **Korean**: by Blackcreamtea, 미카
+- **Korean**: by Blackcreamtea, 리셰(kohashiwakaba)
 - **Polish**: by Rickyy, Kennyluz, MERITT, DimonoKingoKongo
 - **Portuguese**: by Marcelino Cruz
 - **Russian**: by hell2Pay, fly_6, Dezzelshipc and Sekaz

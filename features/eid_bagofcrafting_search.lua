@@ -28,6 +28,8 @@ local function sanitizeName(name)
     return sanitized
 end
 
+-- KR name search is complicated, divided into seperate file
+require("features.eid_bagofcrafting_search_kr")
 
 --- Returns the current search query
 -- @param newValue new search query
@@ -43,8 +45,22 @@ end
 --- Returns the current search query
 -- @return string
 function EID:BoCSGetSearchValue()
-	return searchValue
+	local s = searchValue
+	for _, callbackData in pairs(Isaac.GetCallbacks("EIDCallbacks.SEARCH_NAME_CONVERSION")) do
+		if callbackData.Param == EID:getLanguage() then
+			local newString = callbackData.Function(callbackData.Mod, callbackData.Param, s)
+			if newString and type(newString) == "string" then
+				s = newString
+			end
+		end
+	end
+	return s
 end
+
+EID:AddCallback("EIDCallbacks.SEARCH_NAME_CONVERSION", function (_, lang, string)
+	-- TODO : make english search inside ko_kr language setting (priotity low though)
+	return EID.engKeystrokeToKor(string)
+end, "ko_kr")
 
 function EID:BoCSGetLocked()
 	return locked
@@ -96,12 +112,13 @@ end
 --- Returns true if the item name is matched
 -- @returns boolean
 function EID:BoCSCheckItemName(itemName)
-	if searchValue == "" then
+	local s = EID:BoCSGetSearchValue()
+	if s == "" then
 		return true
 	end
 	
 	-- Check the name for matching our search string (accents removed)
-	return string.find(sanitizeName(itemName), sanitizeName(searchValue), 1, true)
+	return string.find(sanitizeName(itemName), sanitizeName(s), 1, true)
 end
 
 local function handleSearchInput()	
@@ -218,7 +235,7 @@ function EID:BoCSGetSearchLine()
 		result = result .. "{{ColorLime}}"
 	end
 	local searchDescription = EID:getDescriptionEntry("CraftingSearch")
-	result = result .. searchDescription .. " " .. searchValue
+	result = result .. searchDescription .. " " .. EID:BoCSGetSearchValue()
 
 	if EID.BoCSLockMode == 0 and EID:BoCSGetLocked() then
 		result = result .. "{{Trinket159}}"
