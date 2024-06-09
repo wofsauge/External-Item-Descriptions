@@ -619,7 +619,7 @@ end
 
 function EID:getPlayerName(id)
 	local playerInfo = EID:getDescriptionEntry("characterInfo")[id]
-	local birthrightInfo = REPENTANCE and EID:getDescriptionEntry("birthright")[id+1]
+	local birthrightInfo = EID.isRepentance and EID:getDescriptionEntry("birthright")[id+1]
 	return (playerInfo and playerInfo[1]) or (birthrightInfo and birthrightInfo[1]) or "???"
 end
 
@@ -719,6 +719,12 @@ end
 function EID:replaceNameMarkupStrings(text)
 	for word in string.gmatch(text, "{{Name.-}}") do
 		local strTrimmed = string.gsub(word, "{{Name(.-)}}", function(a) return a end)
+		local showIcon = true
+		-- If the markup is {{NameOnlyX###}}, do not print an icon before the name
+		if string.find(text, "NameOnly") then
+			strTrimmed = string.gsub(word, "{{NameOnly(.-)}}", function(a) return a end)
+			showIcon = false
+		end
 		local indicator = string.sub(strTrimmed, 1, 1)
 		local id = tonumber(string.sub(strTrimmed, 2, -1))
 		local name = ""
@@ -729,15 +735,15 @@ function EID:replaceNameMarkupStrings(text)
 			end
 			name = EID:getObjectName(entityID[1], entityID[2], entityID[3])
 		elseif indicator == "C" then -- Collectible
-			name = "{{Collectible"..id.."}} "..EID:getObjectName(5, 100, id)
+			name = (showIcon and "{{Collectible"..id.."}} " or "")..EID:getObjectName(5, 100, id)
 		elseif indicator == "T" then -- Trinket
-			name = "{{Trinket"..id.."}} "..EID:getObjectName(5, 350, id)
+			name = (showIcon and "{{Trinket"..id.."}} " or "")..EID:getObjectName(5, 350, id)
 		elseif indicator == "P" then -- Pills
-			name = "{{Pill"..id.."}} "..EID:getPillName(id, false)
+			name = (showIcon and "{{Pill"..id.."}} " or "")..EID:getPillName(id, false)
 		elseif indicator == "K" then -- Card
-			name = "{{Card"..id.."}} "..EID:getObjectName(5, 300, id)
+			name = (showIcon and "{{Card"..id.."}} " or "")..EID:getObjectName(5, 300, id)
 		elseif indicator == "I" then -- Player (I for Isaac)
-			name = "{{Player"..id.."}} "..EID:getPlayerName(id)
+			name = (showIcon and "{{Player"..id.."}} " or "")..EID:getPlayerName(id)
 		end
 		text = string.gsub(text, word, name, 1)
 	end
@@ -1187,7 +1193,7 @@ function EID:PlayersHaveCharacter(playerType, includeTainted)
 		if player:GetPlayerType() == playerType then
 			return true, player
 		end
-		if includeTainted and REPENTANCE and Isaac.GetPlayerTypeByName(player:GetName()) == playerType then
+		if includeTainted and EID.isRepentance and Isaac.GetPlayerTypeByName(player:GetName()) == playerType then
 			return true, player
 		end
 	end
