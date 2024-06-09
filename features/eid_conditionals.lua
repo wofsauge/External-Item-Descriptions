@@ -101,6 +101,7 @@ TODO: AB+ tarot cloth buffs table?
 -- hive mind and BFFs synergy has a lot of overlap also
 -- brown nugget + sacrificial altar in AB+?!
 -- ? Card + single use actives in Repentance? Alabaster Box
+-- unrelated to conditionals: Glyph of Balance prediction in Item Reminder?
 
 -- meta todo: Put a 100% save file for AB+ and for Rep on my flash drive
 
@@ -172,6 +173,7 @@ if EID.isRepentance then
 	EID:AddPlayerConditional(230, 18, "Bethany", nil, false) -- Bethany + Abaddon
 	EID:AddPlayerConditional(230, 36, "Tainted Bethany") -- Tainted Bethany + Abaddon
 	EID:AddPlayerConditional(245, 14, "Keeper") -- 20/20 + Keeper
+	EID:AddPlayerConditional(705, {12, 24}) -- Dark Arts + Dark/Tainted Judas
 	
 	-- Item Synergies
 	EID:AddCollectibleConditional(201, 147) -- Iron Bar refills Notched Axe
