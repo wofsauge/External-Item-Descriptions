@@ -40,9 +40,9 @@ end
 
 local function renderDummyBagOfCraftingDesc()
 	EID.bagPlayer = Isaac.GetPlayer(0)
-	EID.BoC.BagItemsOverride = {15,15,5,1,10}
-	EID.BoC.RoomOverride = {8,8,8,9}
-	EID.BoC.FloorOverride = {1,1,1,3,4,8,8,8,9}
+	EID.BoC.BagItemsOverride = {15,15,5,1,10,8,8,9}
+	EID.BoC.RoomOverride = {8,8,9}
+	EID.BoC.FloorOverride = {1,1,1,3,4,8,8}
 	EID.BoC.InventoryOverride = {21,22}
 	EID.RefreshBagTextbox = true
 	local craftingSuccess = EID:handleBagOfCraftingRendering(true)
@@ -576,11 +576,17 @@ if MCMLoaded then
 
 	EID:AddBooleanSetting("Reminder", "ItemReminderEnabled", "Item Reminder", {displayingTab = "",offText = "Disabled", onText = "Enabled", infoText = "Hold Map to show your active item's effect, recently picked up items, and much more"})
 	
-	local itemSlotReminders = { [0] = "No", "Yes    (max 1)", "Yes    (max 2)", "Yes    (max 3)", "Yes    (max 4)", "Yes    (max 5)", "Yes    (max 6)", "Yes    (max 7)", "Yes    (max 8)" }
+	local itemReminderModes = {"All", "NoOverview", "Classic"}
 
 	MCM.AddSpace("EID", "Reminder")
 	MCM.AddText("EID", "Reminder", "Options")
-	EID:AddBooleanSetting("Reminder", "ItemReminderShowOverview", "Show Overview Category", { infoText = "Show category with an overview of items in your inventory"})
+	EID:AddNumberSetting("Reminder", "ItemReminderDisplayMode", "Display Mode",  1, #itemReminderModes, {indexOf = itemReminderModes, infoText = "Changes the display mode. All = overview + categories. NoOverview = categories. Classic = Overview only", onChangeFunc =
+	function(currentNum)
+		EID.MCM_OptionChanged = true
+		EID.ItemReminderSelectedItem = 0
+		EID.ItemReminderSelectedCategory = currentNum ~= 2 and 0 or 1 -- reset category
+		EID.Config["ItemReminderDisplayMode"] = itemReminderModes[currentNum]
+	end})
 	EID:AddBooleanSetting("Reminder", "ItemReminderDisableInputs", "Disable Player Inputs", { infoText = "Prevents the player from doing inputs when item reminder is visible"})
 	EID:AddBooleanSetting("Reminder", "ItemReminderShowHiddenInfo", "Show Hidden Information", { infoText = "Items like Error (404) or Rainbow Worm can have their current granted item revealed in the Item Reminder"})
 	EID:AddBooleanSetting("Reminder", "ItemReminderShowRNGCheats", "Show RNG Predictions", { infoText = "Some items can have their next random result predicted and shown in the Item Reminder"})
@@ -598,18 +604,18 @@ if MCMLoaded then
 	EID:AddNumberSetting("Reminder", "ItemReminderNavigateRightButton", "Navigate Right", 0, 13, {displayTable = actionToName,
 	infoText = {"Keybinding that is used to scroll thru the categories in the left direction"}})
 
+	EID:AddNumberSetting("Reminder", "ItemReminderNavigateDownButton", "Navigate Down", 0, 13, {displayTable = actionToName,
+	infoText = {"Keybinding that is used to scroll thru the players in the left direction"}})
+
+	EID:AddNumberSetting("Reminder", "ItemReminderNavigateUpButton", "Navigate Up", 0, 13, {displayTable = actionToName,
+	infoText = {"Keybinding that is used to scroll thru the players in the right direction"}})
+
 	MCM.AddSpace("EID", "Reminder")
 	MCM.AddText("EID", "Reminder", "Item Descriptions")
-	-- should these be organized in the order they're shown in the map desc code?
-	EID:AddNumberSetting("Reminder", "ItemReminderShowRecentItem", "Recent Items", 0, 8, { displayTable = itemSlotReminders, infoText = {"Show recently acquired item descriptions in the Item Reminder (good for Curse of the Blind!)"}})
-	EID:AddNumberSetting("Reminder", "ItemReminderShowActiveDesc", "Active Items", 0, 2, { displayTable = itemSlotReminders, infoText = "Show your active item descriptions in the Item Reminder"})
-	EID:AddNumberSetting("Reminder", "ItemReminderShowPocketDesc", "Pocket Items", 0, 4, { displayTable = itemSlotReminders, infoText = "Show your pocket item (card, pill, active) descriptions in the Item Reminder"})
-	EID:AddNumberSetting("Reminder", "ItemReminderShowTrinketDesc", "Trinkets", 0, 2, { displayTable = itemSlotReminders, infoText = "Show your trinket descriptions in the Item Reminder"})
 
-	EID:AddNumberSetting("Reminder", "ItemReminderShowPoopDesc", "Poop Spells", 0, 6, { repOnly = true, displayTable = itemSlotReminders, infoText = "Show Tainted ???'s next Poop Spell descriptions in the Item Reminder"})
-
-
-
+	EID:AddNumberSetting("Reminder", "ItemReminderMaxEntriesCount", "Max Entries", 0, 10, {infoText = {"Number of Descriptions possible to be displayed in the Item Reminder feature"}})
+	EID:AddNumberSetting("Reminder", "ItemReminderOverviewHideAfterRows", "Overview hide after X rows", 1, 20, {infoText = {"Reduces the length of the description in the overview categorie, if they are to long to display"}})
+	
 
 	---------------------------------------------------------------------------
 	-----------------------------BAG OF CRAFTING-------------------------------
@@ -620,9 +626,9 @@ if MCMLoaded then
 		EID:AddNumberSetting("Crafting", "DisplayBagOfCrafting", "Show Display", 1, #bagDisplays, { displayingTab = "Crafting", indexOf = bagDisplays, infoText = {"Always = Always show Results", "Hold = Show when holding up bag", "Never = Disable Bag of Crafting feature"}})
 
 		-- Bag of Crafting Display Mode
-		local bagDisplayModes = {"Recipe List","Item Probability","Preview Only","Pickups Only"}
+		local bagDisplayModes = {"Recipe List", "Learned Recipe List","Item Probability","Preview Only","Pickups Only"}
 		EID:AddNumberSetting("Crafting", "BagOfCraftingDisplayRecipesMode", "Display Mode", 1, #bagDisplayModes, { indexOf = bagDisplayModes,
-			infoText = {"Toggle showing a list of recipes, an item preview when bag is full, what item pool/quality you might get, or only the floor pickups"}})
+			infoText = {"Toggle showing list of recipes, recipes you've learned, what item pool/quality you might get, item preview when bag is full, or only floor pickups"}})
 
 		-- Bag of Crafting Hide in Battle
 		EID:AddBooleanSetting("Crafting", "BagOfCraftingHideInBattle", "Hide in Battle", {onText = "Yes", offText = "No",
@@ -637,7 +643,21 @@ if MCMLoaded then
 
 		MCM.AddSpace("EID", "Crafting")
 		MCM.AddText("EID", "Crafting", function() return "Recipe List Options" end)
-
+		
+		-- Bag of Crafting item names
+		local bagSortTypes = {"Quality", "Name"}
+		EID:AddNumberSetting("Crafting", "BagOfCraftingSortOrder", "Sort Recipes by", 1, #bagSortTypes,
+			{ indexOf = bagSortTypes, infoText = "Sort the recipe list by quality + name, or just name", onChangeFunc =
+		function(currentNum)
+			EID.MCM_OptionChanged = true
+			EID.BoC.SortNeeded = true
+			EID.Config["BagOfCraftingSortOrder"] = bagSortTypes[currentNum]
+		end})
+		
+		-- Bag of Crafting item names
+		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayNames", "Show Item Names",
+			{ infoText = "If on, each recipe result takes two lines, one for the item name, one for the recipe"})
+		
 		-- Bag of Crafting results per page
 		local bagSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
 		EID:AddScrollSetting("Crafting", "BagOfCraftingResults", "Displayed Recipes", bagSteps,
@@ -652,10 +672,6 @@ if MCMLoaded then
 		local calcSteps = {200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200}
 		EID:AddScrollSetting("Crafting", "BagOfCraftingRandomResults", "Random Calculations", calcSteps,
 			{ infoText = "An additional X number of randomly chosen recipes will be checked, changing each pickup spawn/despawn or refresh"})
-
-		-- Bag of Crafting item names
-		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayNames", "Show Item Names",
-			{ infoText = "If on, each recipe result takes two lines, one for the item name, one for the recipe"})
 
 		MCM.AddSpace("EID", "Crafting")
 

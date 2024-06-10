@@ -89,7 +89,7 @@ function EID:CheckGlitchedItemConfig(id)
 				local s = string.format("%.4g",val)
 				local prefix = "↑ "
 				if val > 0 then s = "+" .. s else prefix = "↓ " end
-				attributes = attributes .. prefix .. string.gsub(localizedNames[v] or localizedNamesEnglish[v], "{1}", s)
+				attributes = attributes .. prefix .. EID:ReplaceVariableStr(localizedNames[v] or localizedNamesEnglish[v], 1, s)
 				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] or localizedNamesEnglish["pluralize"] end
 				attributes = attributes .. "#"
 			end
@@ -116,7 +116,7 @@ function EID:CheckGlitchedItemConfig(id)
 		if itemConfig.Type == ItemType.ITEM_ACTIVE then
 			lastEffectTrigger = "active"
 			local activeStr = localizedNames["active"] or localizedNamesEnglish["active"]
-			attributes = attributes .. "{{Blank}} " .. triggerColors["active"] .. activeStr
+			attributes = attributes .. "#{{Blank}} " .. triggerColors["active"] .. activeStr
 		end
 		local voidNames = EID:getDescriptionEntry("VoidNames")
 		for i,func in ipairs(getFunctions) do
@@ -126,7 +126,7 @@ function EID:CheckGlitchedItemConfig(id)
 				local s = string.format("%.2g",SimpleRound(val))
 				local prefix = "↑ "
 				if val > 0 then s = "+" .. s else prefix = "↓ " end
-				attributes = attributes .. prefix .. string.gsub(voidNames[i], "{1}", s) .. "#"
+				attributes = attributes .. prefix .. EID:ReplaceVariableStr(voidNames[i], 1, s) .. "#"
 			end
 		end
 		
@@ -166,13 +166,15 @@ function EID:CheckGlitchedItemConfig(id)
 			end
 			
 			if effectTrigger ~= lastEffectTrigger then
-				if effectTrigger ~= "chain" then attributes = attributes .. "{{Blank}} " end
+				if effectTrigger ~= "chain" then attributes = attributes .. "#{{Blank}} " end
 				local effectTriggerStr = localizedNames[effectTrigger] or localizedNamesEnglish[effectTrigger]
 				attributes = attributes .. triggerColors[effectTrigger] .. effectTriggerStr
+			elseif effectTrigger ~= "chain" then
+				attributes = attributes .. "#"
 			end
 			attributes = attributes .. localizedNames[effectType] or localizedNamesEnglish[effectType] .. "#"
-			for k,v in ipairs(triggerReplacements) do attributes = string.gsub(attributes, "{T" .. k .. "}", v) end
-			for k,v in ipairs(replacements) do attributes = string.gsub(attributes, "{" .. k .. "}", v) end
+			for k,v in ipairs(triggerReplacements) do attributes = EID:ReplaceVariableStr(attributes, "T" .. k, v) end
+			for k,v in ipairs(replacements) do attributes = EID:ReplaceVariableStr(attributes, k, v) end
 
 			if effectTrigger ~= "chain" then lastEffectTrigger = effectTrigger end
 		end

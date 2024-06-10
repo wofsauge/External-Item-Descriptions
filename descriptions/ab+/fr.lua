@@ -1002,11 +1002,13 @@ EID.descriptions[languageCode].PickupNames = {
 }
 
 EID.descriptions[languageCode].ConditionalDescs = {
+	["5.300.48"] = "Téléporte Isaac dans la salle d'erreur#La {{ColorYellow}}Carte Blanche{{ColorWhite}} et la {{ColorYellow}}Carte ?{{ColorWhite}} seront détruites", -- Blank Card + Q Card
+
 	["5.100.81"] = "Retire tous les cœurs sauf 1 aux personnages qui ne peuvent pas avoir de cœurs rouges", -- Dead Cat
 	["5.100.241"] = "{{Warning}} Sans effet en mode Avarice", -- Contract From Below
-	["5.100.135 (Keeper)"] = "{{Player14}} Peut ne pas faire apparaître de pièce", -- IV Bag Keeper
+	["Keeper 0-1"] = "{{Player14}} Peut ne pas faire apparaître de pièce", -- IV Bag Keeper
 	["5.100.135 (PHD)"] = "Fait apparaître 2 ou 3 pièces avec {{ColorYellow}}Doctorat {{Collectible75}}", -- IV Bag PHD
-	["5.100.442"] = "{{Warning}} Aucun effet pour les personnages qui ne peuvent pas avoir de cœurs rouges", -- Dark Prince's Crown
+	["No Red"] = "{{Warning}} Aucun effet pour les personnages qui ne peuvent pas avoir de cœurs rouges", -- Dark Prince's Crown
 	["5.300.15"] = "Invoque un mendiant diabolique {{DemonBeggar}}", -- Temperance (Greed Mode effect)
 	["5.350.23"] = "{{Warning}} Mourir dans une Salle de Sacrifice {{SacrificeRoom}} en portant cette babiole débloque {{ColorLightOrange}}L'Égaré", -- Missing Poster (Unlock The Lost)
 }

@@ -3,10 +3,14 @@ local GLITCH_ITEM_FLAG = 4294967296
 local currentBlacklist
 local lastInputTime = 0
 local lastScrollDirection = 1 -- used for automatic scroll feature, if no description is visible for a category
+local autoScrollTriesLeft = -999 -- Stores how many tries the automatic category skip has left to do. This prevents infinite loops, when the player has no items
+local numAvailableDescriptionSlots = 0
 
 EID.ItemReminderBlacklist = { ["5.100.714"] = true, ["5.100.715"] = true } -- Dont display these in the Item reminder view
 EID.ItemReminderTempDescriptions = {} -- Temporary stores descriptions that will be displayed after everythng got evaluated
 EID.ItemReminderSelectedCategory = 0 -- Currently selected category
+EID.ItemReminderSelectedPlayer = 0 -- Currently selected player
+EID.ItemReminderSelectedItem = 0 -- Currently selected Item
 EID.InsideItemReminder = false -- Disable some modifiers, when building the Item Reminder description
 
 -- TODO:
@@ -16,34 +20,49 @@ EID.InsideItemReminder = false -- Disable some modifiers, when building the Item
 
 -- Data Tables --
 
--- Format : Table of { id = "Category Name", entryGenerators = table of functions to generate descriptions }
+-- Format : Table of { id = "Category Name", entryGenerators = table of functions to generate descriptions, isScrollable = only shows one entry at a time but is scrollable }
 -- Execution order is handles by the order of the table entries.
 -- Category name is interpreted as a lookup for the "EID.descriptions.ItemReminder.CategoryNames" table. If no translation is found, use english or the lookup value
 EID.ItemReminderCategories = {
 	{ id = "Overview", entryGenerators = {} }, -- special handling for Overview category
-	{ id = "Special", entryGenerators = { function(player) EID:ItemReminderHandlePoopSpells(player) end, } },
-	{ id = "Actives", entryGenerators = { function(player) EID:ItemReminderHandleActiveItems(player) end, } },
-	{ id = "Pockets", entryGenerators = {
-		function(player) EID:ItemReminderHandleDiceBag(player) end,
-		function(player) EID:ItemReminderHandlePocketActive(player) end,
-		function(player) EID:ItemReminderHandlePocketItems(player) end } },
-	{ id = "Trinkets", entryGenerators = {
-		function(player) EID:ItemReminderHandleTrinkets(player) end,
-		function(player) EID:ItemReminderHandleGulpedModelingClay(player) end } },
-	{ id = "Passives", entryGenerators = {
-		function(player) -- Passive item: Zodiac
-			if EID.isRepentance and player:HasCollectible(392) then
-				EID:ItemReminderAddDescription(player, 5, 100, 392)
-			end
-		end,
-		function(player) -- Passive item: Echo Chamber
-			if EID.isRepentance and player:HasCollectible(700) then
-				EID:ItemReminderAddDescription(player, 5, 100, 700)
-			end
-		end,
-		function(player) EID:ItemReminderHandleRecentItems(player) end } },
+	{ id = "Special",  entryGenerators = { function(player) EID:ItemReminderHandlePoopSpells(player) end, } },
+	{ id = "Actives",  entryGenerators = { function(player) EID:ItemReminderHandleActiveItems(player) end, } },
+	{
+		id = "Pockets",
+		entryGenerators = {
+			function(player) EID:ItemReminderHandleDiceBag(player) end,
+			function(player) EID:ItemReminderHandlePocketActive(player) end,
+			function(player) EID:ItemReminderHandlePocketItems(player) end }
+	},
+	{
+		id = "Trinkets",
+		entryGenerators = {
+			function(player) EID:ItemReminderHandleTrinkets(player) end,
+			function(player) EID:ItemReminderHandleGulpedModelingClay(player) end }
+	},
+	{
+		id = "Passives",
+		isScrollable = true,
+		entryGenerators = {
+			function(player) -- Passive item: Zodiac
+				if EID.isRepentance and player:HasCollectible(392) and not EID:IsCategorySelected("Passives") then
+					EID:ItemReminderAddDescription(player, 5, 100, 392)
+				end
+			end,
+			function(player) -- Passive item: Echo Chamber
+				if EID.isRepentance and player:HasCollectible(700) and not EID:IsCategorySelected("Passives") then
+					EID:ItemReminderAddDescription(player, 5, 100, 700)
+				end
+			end,
+			function(player) EID:ItemReminderHandleSelectedPassiveItem(player) end },
+		scrollbarGenerator = function(player)
+			local playerNum = EID:getPlayerID(player)
+			local numPassives = EID.RecentlyTouchedItems[playerNum] and #EID.RecentlyTouchedItems[playerNum] or 0
+			if numPassives < 2 then return nil end -- dont display scrollbar if less than 2 items are in the table
+			return EID:ItemReminderHandleItemScrollbarFeature(EID.RecentlyTouchedItems[playerNum], 100, true)
+		end
+	},
 }
-
 -- Format: ItemID = table
 -- 		modifierFunction = function that modifies the original description object of the item
 -- 		isCheat = Only evaluate, if the "ItemReminderShowRNGCheats" config option is enabled
@@ -151,6 +170,7 @@ EID.ItemReminderDescriptionModifier = {
 		end
 	},
 	["5.100.488"] = { -- Metronome
+		isCheat = true,
 		modifierFunction = function(descObj, player)
 			local predictionItem = EID:MetronomePrediction(EID:GetItemSeed(player, 488))
 			local demoDescObj = EID:getDescriptionObj(5, 100, predictionItem)
@@ -175,8 +195,15 @@ EID.ItemReminderDescriptionModifier = {
 			local inventoryQuery = EID.BoC.InventoryOverride or EID.BoC.InventoryQuery
 			local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 			local total = #floorQuery + #inventoryQuery + #bagItems
-			local text = total .. " of 8 items available"
-			if total < 8 then text = text .. "#{{Warning}} Needs at least 8 to show crafting recipes!" end
+			local text = EID:ReplaceVariableStr(EID:getDescriptionEntry("CraftingNumAvailableItems"), 1, total)
+			if total < 8 then text = text .. "#{{Warning}} ".. EID:getDescriptionEntry("CraftingWarningAvailableItems") end
+			
+			if EID.CraftingIsHidden then
+				local controllerEnabled = EID.bagPlayer.ControllerIndex > 0
+				local hideKey = EID.KeyboardToString[EID.Config["CraftingHideKey"]]
+				local hideButton = controllerEnabled and EID.ButtonToIconMap[EID.Config["CraftingHideButton"]]
+				text = text .. "#!!! ".. EID:ReplaceVariableStr(EID:getDescriptionEntry("CraftingIsHidden"), 1, (hideKey or hideButton))
+			end
 			descObj.Description = text
 		end
 	},
@@ -251,8 +278,16 @@ EID.ItemReminderDescriptionModifier = {
 
 
 -- Simple function to help with adding properly formatted sections to the reminder description
+-- returns false, when no further descriptions should be added
 function EID:ItemReminderAddTempDescriptionEntry(icon, title, newDesc)
 	table.insert(EID.ItemReminderTempDescriptions, { icon or "{{Blank}}", title, newDesc })
+	numAvailableDescriptionSlots = numAvailableDescriptionSlots - 1
+	return EID:ItemReminderCanAddMoreToView()
+end
+
+-- returns true, if its possible for the currently evaluated view to have more descriptions added to it
+function EID:ItemReminderCanAddMoreToView()
+	return numAvailableDescriptionSlots > 0
 end
 
 -- Adds a formatted "Result" text to the item name 
@@ -269,7 +304,7 @@ end
 -- Add item description for a given entity to the reminder. Also tries to apply special modifiers if present
 function EID:ItemReminderAddDescription(player, entityType, variant, subType, extraIcon)
 	local objectID = entityType .. "." .. variant .. "." .. subType
-	if currentBlacklist[objectID] then return end
+	if currentBlacklist[objectID] then return true end
 
 	local descObj = EID:getDescriptionObj(entityType, variant, subType)
 
@@ -285,29 +320,24 @@ function EID:ItemReminderAddDescription(player, entityType, variant, subType, ex
 
 	currentBlacklist[objectID] = true
 	local iconString = extraIcon or EID:GetIconStringByDescriptionObject(descObj)
-	EID:ItemReminderAddTempDescriptionEntry(iconString, descObj.Name, descObj.Description)
+	return EID:ItemReminderAddTempDescriptionEntry(iconString, descObj.Name, descObj.Description)
 end
 
 -- Recently Acquired Item Descriptions
-function EID:ItemReminderHandleRecentItems(player)
-	if EID.Config["ItemReminderShowRecentItem"] > 0 then
-		local printedItems = 0
-		local playerNum = EID:getPlayerID(player)
-		if EID.RecentlyTouchedItems[playerNum] then
-			for i = #EID.RecentlyTouchedItems[playerNum], 1, -1 do
-				if printedItems >= EID.Config["ItemReminderShowRecentItem"] then break end
-				printedItems = printedItems + 1
-				local recentID = EID.RecentlyTouchedItems[playerNum][i] % GLITCH_ITEM_FLAG
-				EID:ItemReminderAddDescription(player, 5, 100, recentID)
-			end
-		end
+function EID:ItemReminderHandleSelectedPassiveItem(player)
+	local playerNum = EID:getPlayerID(player)
+	if EID.RecentlyTouchedItems[playerNum] and #EID.RecentlyTouchedItems[playerNum] > 0 then
+		local index = EID:IsCategorySelected("Passives") and EID.ItemReminderSelectedItem % #EID.RecentlyTouchedItems[playerNum] or 0
+		local recentID = EID.RecentlyTouchedItems[playerNum][#EID.RecentlyTouchedItems[playerNum] - index] % GLITCH_ITEM_FLAG
+		EID:ItemReminderAddDescription(player, 5, 100, recentID)
 	end
 end
 
 -- Active Item Descriptions
 function EID:ItemReminderHandleActiveItems(player)
 	-- limit number of active item descriptions to 2, since Slot 3 and 4 are handled seperately
-	for i = 0, math.min(EID.Config["ItemReminderShowActiveDesc"], 2) - 1 do
+	for i = 0, 1 do
+		if not EID:ItemReminderCanAddMoreToView() then return end
 		-- the modulo is to convert negative IDs (glitched items) to positive IDs
 		local heldActive = player:GetActiveItem(i) % GLITCH_ITEM_FLAG
 		if heldActive > 0 then
@@ -318,8 +348,7 @@ end
 
 -- pocket active
 function EID:ItemReminderHandlePocketActive(player)
-	if not EID.isRepentance then return end
-
+	if not EID.isRepentance or not EID:ItemReminderCanAddMoreToView() then return end
 	local pocketActive = player:GetActiveItem(2) or 0
 	if pocketActive > 0 then
 		EID:ItemReminderAddDescription(player, 5, 100, pocketActive)
@@ -328,7 +357,7 @@ end
 
 -- dice bag
 function EID:ItemReminderHandleDiceBag(player)
-	if not EID.isRepentance then return end
+	if not EID.isRepentance or not EID:ItemReminderCanAddMoreToView()  then return end
 
 	local diceBag = player:GetActiveItem(3) or 0
 	if diceBag > 0 then
@@ -338,7 +367,8 @@ end
 
 -- Pocket Item Descriptions
 function EID:ItemReminderHandlePocketItems(player)
-	for i = 0, EID.Config["ItemReminderShowPocketDesc"] - 1 do
+	for i = 0, 2 do
+		if not EID:ItemReminderCanAddMoreToView() then return end
 		local heldCard = player:GetCard(i)
 		local heldPill = player:GetPill(i)
 		if heldCard > 0 then
@@ -358,7 +388,8 @@ end
 
 -- Trinket Descriptions
 function EID:ItemReminderHandleTrinkets(player)
-	for t = 0, EID.Config["ItemReminderShowTrinketDesc"] - 1 do
+	for t = 0, 1 do
+		if not EID:ItemReminderCanAddMoreToView() then return end
 		-- account for Golden Trinket IDs
 		local heldTrinketTrue = player:GetTrinket(t)
 		local heldTrinket = heldTrinketTrue
@@ -372,16 +403,16 @@ end
 -- Gulped/unslotted Modeling Clay
 -- (Hidden information, because Modeling Clay does not visually show its item when gulped)
 function EID:ItemReminderHandleGulpedModelingClay(player)
-	if EID.isRepentance and EID.Config["ItemReminderShowHiddenInfo"] and player:GetModelingClayEffect() > 0 then
+	if EID.isRepentance and EID.Config["ItemReminderShowHiddenInfo"] and player:GetModelingClayEffect() > 0 and EID:ItemReminderCanAddMoreToView() then
 		EID:ItemReminderAddDescription(player, 5, 350, 166)
 	end
 end
 
 -- Tainted ??? Poop Descriptions
 function EID:ItemReminderHandlePoopSpells(player)
-	if EID.isRepentance and EID.Config["ItemReminderShowPoopDesc"] > 0 and player:GetPlayerType() == 25 then
+	if EID.isRepentance and player:GetPlayerType() == 25 and EID:ItemReminderCanAddMoreToView() then
 		local poopInfo = EID:getDescriptionEntry("poopSpells")
-		for i = 0, EID.Config["ItemReminderShowPoopDesc"] - 1 do
+		for i = 0, 3 do
 			local nextPoop = player:GetPoopSpell(i)
 			EID:ItemReminderAddTempDescriptionEntry("{{PoopSpell" .. nextPoop .. "}}", poopInfo[nextPoop][1],
 				poopInfo[nextPoop][2])
@@ -391,13 +422,13 @@ end
 
 -- Handle scroll inputs
 function EID:ItemReminderHandleInputs()
-	if EID.Config["ItemReminderEnabled"] and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
+	if EID.Config["ItemReminderEnabled"] and EID.Config["ItemReminderDisplayMode"] ~= "Classic" and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
 		if EID.Config["ItemReminderDisableInputs"] then EID.holdTabPlayer.ControlsCooldown = 2 end
 
 		if Input.IsActionTriggered(EID.Config["ItemReminderNavigateLeftButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
 			EID.ItemReminderSelectedCategory = (EID.ItemReminderSelectedCategory - 1) % #EID.ItemReminderCategories
-			if not EID.Config["ItemReminderShowOverview"] and EID.ItemReminderSelectedCategory == 0 then
-				EID.ItemReminderSelectedCategory = #EID.ItemReminderCategories
+			if EID.Config["ItemReminderDisplayMode"] == "NoOverview" and EID.ItemReminderSelectedCategory == 0 then
+				EID.ItemReminderSelectedCategory = #EID.ItemReminderCategories - 1
 			end
 
 			EID.ForceRefreshCache = true
@@ -405,12 +436,67 @@ function EID:ItemReminderHandleInputs()
 			lastScrollDirection = -1
 		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateRightButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
 			EID.ItemReminderSelectedCategory = (EID.ItemReminderSelectedCategory + 1) % #EID.ItemReminderCategories
-			if not EID.Config["ItemReminderShowOverview"] and EID.ItemReminderSelectedCategory == 0 then EID.ItemReminderSelectedCategory = 1 end
+			if EID.Config["ItemReminderDisplayMode"] == "NoOverview" and EID.ItemReminderSelectedCategory == 0 then EID.ItemReminderSelectedCategory = 1 end
 
 			EID.ForceRefreshCache = true
 			lastInputTime = Isaac.GetTime()
 			lastScrollDirection = 1
+		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateUpButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
+			if not EID:IsScrollableCategorySelected() then
+				EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer - 1) % #EID:ItemReminderGetAllPlayers()
+			else
+				EID.ItemReminderSelectedItem = EID.ItemReminderSelectedItem - 1 -- clamp later
+			end
+
+			EID.ForceRefreshCache = true
+			lastInputTime = Isaac.GetTime()
+		elseif Input.IsActionTriggered(EID.Config["ItemReminderNavigateDownButton"], EID.holdTabPlayer.ControllerIndex) and Isaac.GetTime() - lastInputTime > 50 then
+			if not EID:IsScrollableCategorySelected() then
+				EID.ItemReminderSelectedPlayer = (EID.ItemReminderSelectedPlayer + 1) % #EID:ItemReminderGetAllPlayers()
+			else
+				EID.ItemReminderSelectedItem = EID.ItemReminderSelectedItem + 1 -- clamp later
+			end
+
+			EID.ForceRefreshCache = true
+			lastInputTime = Isaac.GetTime()
 		end
+	end
+end
+
+-- special list of all players, ignoring tainted forgotten ghost and coop babies
+function EID:ItemReminderGetAllPlayers()
+	local filteredPlayerList = {}
+	for i, player in ipairs(EID.coopAllPlayers) do
+		if not (EID.isRepentance and player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B) and player:GetBabySkin() == -1 then
+			table.insert(filteredPlayerList, player)		
+		end
+	end
+	return filteredPlayerList
+end
+
+function EID:IsScrollableCategorySelected()
+	return EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1].isScrollable
+end
+
+function EID:IsCategorySelected(categoryID)
+	return EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1].id == categoryID
+end
+
+function EID:ItemReminderHandleInitHoldTab()
+	local oldDisplayPlayer = EID.ItemReminderSelectedPlayer
+
+	-- set currently displayed player to the one who is now holding tab
+	local playerList = EID:ItemReminderGetAllPlayers()
+	for i = 1, #playerList do
+		if playerList[i] == EID.holdTabPlayer then
+			EID.ItemReminderSelectedPlayer = i - 1
+			break
+		end
+	end
+
+	local updatedPlayers = EID:UpdateAllPlayerPassiveItems()
+	if updatedPlayers[EID.ItemReminderSelectedPlayer + 1] or oldDisplayPlayer ~= EID.ItemReminderSelectedPlayer then
+		EID.ItemReminderSelectedItem = 0
 	end
 end
 
@@ -421,69 +507,180 @@ function EID:ItemReminderGetTitle()
 	local translatedTitleEnglish = EID:getDescriptionEntryEnglish("ItemReminder", "CategoryNames")
 	local title = translatedTitle and translatedTitle[category.id] or
 		translatedTitleEnglish and translatedTitleEnglish[category.id] or category.id
-	return "{{ButtonDLeft}}{{ColorText}} " .. title .. " {{CR}}{{ButtonDRight}}"
+
+	local combinedText = title
+
+	-- add nav buttons
+	if EID.Config["ItemReminderDisplayMode"] ~= "Classic" then
+		combinedText = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateLeftButton"]] ..
+			combinedText .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateRightButton"]]
+	end
+
+	-- add player toggle when more than 1 player is present
+	local playerList = EID:ItemReminderGetAllPlayers()
+	if #playerList > 1 then
+		local curPlayerID = EID.ItemReminderSelectedPlayer + 1
+		local currentPlayer = playerList[curPlayerID]
+		local playerIcon = EID:GetPlayerIcon(currentPlayer:GetPlayerType(), "P" .. curPlayerID )
+
+		local playerSelectWidget = playerIcon .. " "
+		if not EID:IsScrollableCategorySelected() and EID.Config["ItemReminderDisplayMode"] ~= "Classic" then
+			playerSelectWidget = EID.ButtonToIconMap[EID.Config["ItemReminderNavigateUpButton"]] ..
+				playerIcon .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateDownButton"]] .. "|"
+		end
+		combinedText = "{{ColorText}}" .. playerSelectWidget .. combinedText
+	end
+	return combinedText
 end
 
-function EID:ItemReminderGetDescription(player, checkingTwin)
+-- trim all entries to make them shorter, by removing bullet points
+function EID:ItemReminderTrimBulletPoints(description)
+	local trimmedDescription = ""
+	local bulletPointsToPrint = EID.Config["ItemReminderOverviewHideAfterRows"]
+	for bulletPoint in string.gmatch(description, "[^#]+") do
+		if bulletPointsToPrint <= 0 or bulletPoint == "" then
+			trimmedDescription = trimmedDescription .. "..." .. "#"
+			break
+		end
+		trimmedDescription = trimmedDescription .. bulletPoint .. "#"
+		bulletPointsToPrint = bulletPointsToPrint - 1
+	end
+	return trimmedDescription
+end
+
+-- takes a list of item ids and an item variant to automatically generate a scrollable list of item icons.
+function EID:ItemReminderHandleItemScrollbarFeature(entryTable, itemVariant, descending)
+	-- handle Scrollable passives list
+	local newDescription = "{{Blank}} " .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateUpButton"]]
+
+	EID.ItemReminderSelectedItem = EID.ItemReminderSelectedItem % #entryTable -- clamp selection
+
+	-- render icons
+	if descending then
+		local startIndex = #entryTable - EID.ItemReminderSelectedItem -- start from end of list
+		local stopIndex = startIndex - 3
+
+		for i = startIndex, stopIndex, -1 do
+			local index = ((i - 1) % #entryTable) + 1
+			local recentID = entryTable[index] % GLITCH_ITEM_FLAG
+
+			if i < 1 and index == startIndex then
+				-- prevent display of copies of the same icon, when less than 4 items were collected
+				break
+			end
+			newDescription = newDescription .. "{{" .. EID:GetIconNameByVariant(itemVariant) .. recentID .. "}} "
+		end
+	else
+		local startIndex = EID.ItemReminderSelectedItem -- start from end of list
+		local stopIndex = startIndex + 3
+		for i = startIndex, stopIndex do
+			local index = (i % #entryTable) + 1
+			local recentID = entryTable[index] % GLITCH_ITEM_FLAG
+
+			if i >= #entryTable and index == startIndex + 1 then
+				-- prevent display of copies of the same icon, when less than 4 items were collected
+				break
+			end
+			newDescription = newDescription .. "{{" .. EID:GetIconNameByVariant(itemVariant) .. recentID .. "}} "
+		end
+	end
+	-- add counter
+	newDescription = newDescription .. "(" .. (EID.ItemReminderSelectedItem + 1) .. "/" .. #entryTable .. ") "
+
+	return newDescription .. EID.ButtonToIconMap[EID.Config["ItemReminderNavigateDownButton"]] .. "#"
+end
+
+function EID:ItemReminderGetDescription()
 	EID.InsideItemReminder = true
 	EID.ItemReminderTempDescriptions = {}
 	-- empty blacklist and fill with default values
 	currentBlacklist = {}
 	for key, _ in pairs(EID.ItemReminderBlacklist) do currentBlacklist[key] = true end
-	if EID.Config["ItemReminderShowOverview"] and EID.ItemReminderSelectedCategory == 0 then
+
+	local player = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player -- use main player as fallback
+
+	if EID.ItemReminderSelectedCategory == 0 or EID.Config["ItemReminderDisplayMode"] == "Classic" then
 		-- execute all functions defined per category
 		for _, category in ipairs(EID.ItemReminderCategories) do
+			numAvailableDescriptionSlots = 1 -- limit to one description per category in overview mode
 			for _, func in ipairs(category.entryGenerators) do
 				func(player)
 			end
 		end
 	else
 		local category = EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1]
+		numAvailableDescriptionSlots = EID.Config["ItemReminderMaxEntriesCount"]
 		for _, func in ipairs(category.entryGenerators) do
 			func(player)
 		end
 	end
 
 	-- Skip category if nothing is in it
-	if #EID.ItemReminderTempDescriptions == 0 and EID.ItemReminderSelectedCategory <= #EID.ItemReminderCategories then
+	if #EID.ItemReminderTempDescriptions == 0 then
+		if autoScrollTriesLeft == -999 then
+			-- auto scroll was started
+			autoScrollTriesLeft = #EID.ItemReminderCategories - 1
+		end
+
 		EID.ItemReminderSelectedCategory = (EID.ItemReminderSelectedCategory + lastScrollDirection) %
 			#EID.ItemReminderCategories
-		if not EID.Config["ItemReminderShowOverview"] and EID.ItemReminderSelectedCategory == 0 then
-			EID.ItemReminderSelectedCategory = lastScrollDirection % #EID.ItemReminderCategories
+		if EID.Config["ItemReminderDisplayMode"] == "NoOverview" and EID.ItemReminderSelectedCategory == 0 then
+			EID.ItemReminderSelectedCategory = (EID.ItemReminderSelectedCategory + lastScrollDirection) %
+				#EID.ItemReminderCategories
+			autoScrollTriesLeft = autoScrollTriesLeft - 1
 		end
-		return EID:ItemReminderGetDescription(player, checkingTwin)
+
+		if autoScrollTriesLeft > 0 then
+			autoScrollTriesLeft = autoScrollTriesLeft - 1
+			-- new category found. try to display text
+			local newCategoryText = EID:ItemReminderGetDescription()
+			if newCategoryText ~= "" then
+				return newCategoryText
+			end
+		end
+		-- auto scroll was stopped. reset scroll value
+		autoScrollTriesLeft = -999
+		EID.InsideItemReminder = false
+		return "{{Blank}}#{{Blank}} " .. EID:getDescriptionEntry("ItemReminder", "InventoryEmpty")
 	end
-	-- put descriptions into one long description
-	local finalHoldMapDesc = ""
-	for _, entry in ipairs(EID.ItemReminderTempDescriptions) do
-		finalHoldMapDesc = finalHoldMapDesc .. entry[1] .. " {{ColorEIDObjName}}" .. entry[2] .. "#" .. entry[3] .. "#"
+	autoScrollTriesLeft = -999
+
+	local finalHoldMapDesc = "{{Blank}}#"
+
+	local category = EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1]
+	if EID:IsScrollableCategorySelected() then
+		local scrollbar = category.scrollbarGenerator(player)
+		if scrollbar then
+			finalHoldMapDesc = scrollbar
+		end
+	end
+	-- roughly estimate space the descriptions would occupy. trim descriptions if nessesary
+	local tryTrim = EID.ItemReminderSelectedCategory == 0
+	if tryTrim then
+		local countText = 0
+		local countLines = 0
+		for _, entry in ipairs(EID.ItemReminderTempDescriptions) do
+			countText = countText + #entry[3]
+			local _, numLinebreaks = entry[3]:gsub("#","")
+			countLines = countLines + numLinebreaks + 2 -- one for the item name, one for initial line
+		end
+		countLines = countLines + math.ceil(countText/EID.Config["TextboxWidth"])
+		local allowedLines = (EID:getScreenSize().Y - EID.Config["YPosition"]) / 14 -- approximate the available screen space
+		if countLines < allowedLines then
+			tryTrim = false -- dont trim if screen is not filled with a lot of text
+		end
 	end
 
-	-- Finally, check the twin player of this controller
-	-- If both twins have a desc, show their player icon / name to separate the two descs
-	if EID.isRepentance and not checkingTwin then
-		local twin = player:GetOtherTwin()
-		local mainTwinDesc = finalHoldMapDesc
-		local otherTwinDesc = ""
-		if twin then otherTwinDesc = EID:ItemReminderGetDescription(twin, true) end
-		if otherTwinDesc ~= "" then
-			-- Only the other twin had a desc
-			if mainTwinDesc == "" then
-				finalHoldMapDesc = otherTwinDesc
-			else
-				-- Both twins had a desc; merge them with player icon headers
-				finalHoldMapDesc = (EID:getIcon("Player" .. player:GetPlayerType()) ~= EID.InlineIcons["ERROR"] and "{{Player" .. player:GetPlayerType() .. "}}" or "{{CustomTransformation}}") ..
-					" {{ColorGray}}" .. player:GetName() .. "#" .. mainTwinDesc .. "#"
-				finalHoldMapDesc = finalHoldMapDesc ..
-					(EID:getIcon("Player" .. twin:GetPlayerType()) ~= EID.InlineIcons["ERROR"] and "{{Player" .. twin:GetPlayerType() .. "}}" or "{{CustomTransformation}}") ..
-					" {{ColorGray}}" .. twin:GetName() .. "#" .. otherTwinDesc
-			end
-		else
-			-- Only the main twin had a desc
-			finalHoldMapDesc = mainTwinDesc
+	-- Default: put all descriptions into one long description
+	for _, entry in ipairs(EID.ItemReminderTempDescriptions) do
+		local description = entry[3] .. "#"
+
+		if tryTrim then
+			description = EID:ItemReminderTrimBulletPoints(description)
 		end
+
+		finalHoldMapDesc = finalHoldMapDesc .. entry[1] .. " {{ColorEIDObjName}}" .. entry[2] .. "#" .. description
 	end
-	finalHoldMapDesc = "{{Blank}}#" .. finalHoldMapDesc
 
 	EID.InsideItemReminder = false
 	return finalHoldMapDesc

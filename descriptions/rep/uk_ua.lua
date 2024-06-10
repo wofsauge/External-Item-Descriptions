@@ -1189,12 +1189,10 @@ EID.descriptions[languageCode].CraftingBestQuality = "Найкраща Якіс�
 
 EID.descriptions[languageCode].CraftingHideKey = "Сховати:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Показати:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "!!! Якщо артефакт не був відкритий, він перетвориться в"
 
 EID.descriptions[languageCode].CraftingResults = "(Гортати: Утримуйте {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Закріпити: {{ButtonX}}, Оновити: {{ButtonB}}, Скинути: Утримуйте {{ButtonRB}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Заряд Пустої карти:"
-EID.descriptions[languageCode].BlankCardQCard = "Телепортує до кімнати Я - ПОМИЛКА#Пуста Карта та ?-Карта будуть знищені"
 EID.descriptions[languageCode].ClearRuneCharge = "Заряд Чистої руни:"
 EID.descriptions[languageCode].PlaceboCharge = "Заряд Плацебо:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Утримуйте {{ButtonSelect}} щоб побачити опис)"

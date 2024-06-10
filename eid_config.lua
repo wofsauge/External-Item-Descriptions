@@ -6,13 +6,13 @@ EID.UserConfig = {
 	--						Chinese = "zh_cn"				SPECIAL THANKS TO Xheepey87, frto027
 	--						Czech = "cs_cz"					SPECIAL THANKS TO domcizzz
 	--						Dutch = "nl_nl"					SPECIAL THANKS TO SomethingMax
-	--						English = "en_us", "en_us_detailed" (More detailed descriptions)
+	--						English = "en_us"				SPECIAL THANKS TO everyone!
 	--						French = "fr"					SPECIAL THANKS TO biobak
 	--						German = "de"					SPECIAL THANKS TO Jake
 	--						Greek = "el_gr"					SPECIAL THANKS TO vanillarat
 	--						Italian = "it"					SPECIAL THANKS TO Denkishi, 2G
 	--						Japanese = "ja_jp"				SPECIAL THANKS TO prefab
-	--						Korean = "ko_kr"				SPECIAL THANKS TO Blackcreamtea, 미카
+	--						Korean = "ko_kr"				SPECIAL THANKS TO Blackcreamtea, 리셰(kohashiwakaba)
 	--						Polish = "pl"					SPECIAL THANKS TO Rickyy
 	--						Portuguese = "pt"				SPECIAL THANKS TO Marcelino Cruz
 	--						Brazilian Portuguese = "pt_br"	SPECIAL THANKS TO Marcelino Cruz
@@ -318,12 +318,13 @@ EID.UserConfig = {
 	-- Enable/Disable item reminder feature.
 	-- Hold Map (or the button action chosen below) to show a description of your active item's effect, recently picked up items, and things like Teleport 2.0's destination and Void's absorbed items
 	["ItemReminderEnabled"] = true,
-	-- Display all important descriptions in a single overview category
-	-- Default = true
-	["ItemReminderShowOverview"] = true,
+	-- Changes the display mode of the item reminder feature.
+	-- Options: "All" (Overview + scrollable item categories), "NoOverview" (Only scrollable item categories), "Classic" (only overview page)
+	-- Default = "All"
+	["ItemReminderDisplayMode"] = "All",
 	-- Disable inputs while Item Reminder is visible
-	-- Default = true
-	["ItemReminderDisableInputs"] = true,
+	-- Default = false
+	["ItemReminderDisableInputs"] = false,
 	-- Set the keybinding that's held to show the Item Reminder description, Flip/Spindown Dice preview descriptions, and interacting with the Bag of Crafting recipe list
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_MAP
@@ -336,22 +337,20 @@ EID.UserConfig = {
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
 	-- Default = ButtonAction.ACTION_SHOOTLEFT
 	["ItemReminderNavigateRightButton"] = ButtonAction.ACTION_SHOOTRIGHT,
-	-- Show recently acquired item descriptions in the Item Reminder (good for Curse of the Blind!)
-	-- Default = 1
-	["ItemReminderShowRecentItem"] = 1,
-	-- Show your active item description(s) in the Item Reminder
-	-- Default = 1, max = 2
-	["ItemReminderShowActiveDesc"] = 1,
-	-- Show your pocket item (card, pill, active) description in the Item Reminder
-	-- Default = 1, max = 4 (2 in AB+)
-	["ItemReminderShowPocketDesc"] = 1,
-	-- Show your trinket description(s) in the Item Reminder
-	-- Default = 2, max = 2
-	["ItemReminderShowTrinketDesc"] = 2,
-	-- Show your next Poop Spell's description in the Item Reminder
-	-- REPENTANCE ONLY!!!
-	-- Default = 1, max = 6
-	["ItemReminderShowPoopDesc"] = 1,
+	-- Set the keybinding that is used to scroll thru the players or item entries in the left direction
+	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
+	-- Default = ButtonAction.ACTION_SHOOTUP
+	["ItemReminderNavigateUpButton"] = ButtonAction.ACTION_SHOOTUP,
+	-- Set the keybinding that is used to scroll thru the players or item entries in the right direction
+	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/ButtonAction.html
+	-- Default = ButtonAction.ACTION_SHOOTDOWN
+	["ItemReminderNavigateDownButton"] = ButtonAction.ACTION_SHOOTDOWN,
+	-- Limits the number of description bullet points to be displayed on the overview page for each item
+	-- Default = 2
+	["ItemReminderOverviewHideAfterRows"] = 2,
+	-- Number of entries to display per category of the item description.
+	-- Default = 3
+	["ItemReminderMaxEntriesCount"] = 3,
 	-- Items that grant you items without saying what they are (like Zodiac, Liberty Cap) can have their current granted item revealed in the Item Reminder
 	-- Default = false
 	["ItemReminderShowHiddenInfo"] = false,
@@ -372,6 +371,7 @@ EID.UserConfig = {
 	-- Display modes for the Bag of Crafting display
 	-- Options: "Recipe List", "Preview Only", "Item Probability", "Pickups Only"
 	-- The "Recipe List" is a detailed calculated list of recipes based on what you have available on the floor
+	-- "Learned Recipe List" only shows you recipes that you have discovered during that run, plus fixed recipes
 	-- "Preview Only" shows the description of the item you can currently craft in your bag
 	-- "Item Probability" shows percentages of what item you might get from your bag / best option on the floor, for a more intended experience
 	-- "Pickups Only" just shows the room/floor pickup count
@@ -383,6 +383,11 @@ EID.UserConfig = {
 	-- Show the text for the Hide/Preview and Recipe List hotkeys
 	-- Default = true
 	["BagOfCraftingShowControls"] = true,
+	-- Sort bag recipes by quality and then alphabetically (to prioritize the best possible crafts),
+	-- or just alphabetically (to more easily find specific items if you don't know their quality)
+	-- Options: "Quality", "Name"
+	-- Default = "Quality"
+	["BagOfCraftingSortOrder"] = "Quality",
 	-- Changes the amount of results shown in the Bag of Crafting description
 	-- Higher numbers can cause more lag!
 	-- Default = 7
@@ -412,7 +417,7 @@ EID.UserConfig = {
 	["CraftingHideButton"] = -1,
 	-- Set the keybinding to toggle viewing the description of the item ready to be crafted in the bag
 	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
-	-- Default = Keyboard.KEY_F3
+	-- Default = Keyboard.KEY_F4
 	["CraftingResultKey"] = Keyboard.KEY_F4,
 	-- Set the controller binding to toggle viewing the description of the item ready to be crafted in the bag
 	-- Use the controller names here: https://github.com/wofsauge/External-Item-Descriptions/blob/master/mod_config_menu.lua#L1 or a number
@@ -588,6 +593,7 @@ EID.DefaultConfig = {
 	["BagOfCraftingResults"] = 7,
 	["BagOfCraftingCombinationMax"] = 12,
 	["BagOfCraftingRandomResults"] = 400,
+	["BagOfCraftingSortOrder"] = "Quality",
 	["BagOfCraftingDisplayNames"] = false,
 	["BagOfCraftingDisplayIcons"] = false,
 	["BagOfCraftingHideInBattle"] = true,
@@ -599,16 +605,15 @@ EID.DefaultConfig = {
 	["CraftingResultButton"] = -1,
 
 	["ItemReminderEnabled"] = true,
-	["ItemReminderShowOverview"] = true,
-	["ItemReminderDisableInputs"] = true,
+	["ItemReminderDisplayMode"] = "All",
+	["ItemReminderDisableInputs"] = false,
 	["BagOfCraftingToggleKey"] = ButtonAction.ACTION_MAP,
 	["ItemReminderNavigateLeftButton"] = ButtonAction.ACTION_SHOOTLEFT,
 	["ItemReminderNavigateRightButton"] = ButtonAction.ACTION_SHOOTRIGHT,
-	["ItemReminderShowRecentItem"] = 1,
-	["ItemReminderShowActiveDesc"] = 1,
-	["ItemReminderShowPocketDesc"] = 1,
-	["ItemReminderShowTrinketDesc"] = 2,
-	["ItemReminderShowPoopDesc"] = 1,
+	["ItemReminderNavigateUpButton"] = ButtonAction.ACTION_SHOOTUP,
+	["ItemReminderNavigateDownButton"] = ButtonAction.ACTION_SHOOTDOWN,
+	["ItemReminderOverviewHideAfterRows"] = 2,
+	["ItemReminderMaxEntriesCount"] = 5,
 	["ItemReminderShowHiddenInfo"] = false,
 	["ItemReminderShowRNGCheats"] = false,
 

@@ -1090,7 +1090,6 @@ EID.descriptions[languageCode].CraftingBestQuality = "最好品质："
 
 EID.descriptions[languageCode].CraftingHideKey = "隐藏："
 EID.descriptions[languageCode].CraftingPreviewKey = "预览："
-EID.descriptions[languageCode].CraftingPreviewBackup =  "!!! 如果该道具锁定，则会变为"
 
 EID.descriptions[languageCode].CraftingResults =  "(滚动：按住 {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}，锁定：{{ButtonX}}，刷新：{{ButtonB}}，重置袋：按住 {{ButtonRB}})"
 
@@ -1098,10 +1097,7 @@ EID.descriptions[languageCode].itemPoolFor = "所属道具池："
 EID.descriptions[languageCode].itemPoolNames = {
 	[0] = "宝箱房", "商店", "头目房", "恶魔房", "天使房", "隐藏房", "图书馆", "赌博乞丐", "金箱子", "红箱子", "乞丐", "恶魔乞丐", "诅咒房", "钥匙乞丐", "电池乞丐", "妈妈的箱子", "贪婪模式宝箱房", "贪婪模式头目房", "贪婪模式商店", "贪婪模式恶魔房", "贪婪模式天使房", "贪婪模式诅咒房", "贪婪模式隐藏房", "抓娃娃机", "究极隐藏房", "炸弹乞丐", "星象房", "旧箱子", "宝宝商店", "木箱子", "腐烂乞丐",
 }
-EID.descriptions[languageCode].BlankCardCharge = "空白卡牌充能："
-EID.descriptions[languageCode].BlankCardQCard = "传送至错误房#空白卡牌和？卡牌会被摧毁"
-EID.descriptions[languageCode].ClearRuneCharge = "透明符文充能："
-EID.descriptions[languageCode].PlaceboCharge = "安慰剂充能："
+EID.descriptions[languageCode].VariableCharge = "{1}充能："
 EID.descriptions[languageCode].FlipItemToggleInfo = "(按住 {{ButtonSelect}}(地图)来显示其描述)"
 
 EID.descriptions[languageCode].FalsePHDHeart = "生成1黑心"
