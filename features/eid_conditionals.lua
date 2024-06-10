@@ -60,10 +60,10 @@ function EID:AddCollectibleConditional(IDs, ownedIDs, modText, extraTable, check
 	extraTable = extraTable or {}
 	for _, ownedID in ipairs(ownedIDs) do
 		EID.collectiblesToCheck[ownedID] = true
-		if extraTable.variableText == nil then extraTable.variableText = "{{NameOnlyC" .. ownedID .. "}}" end
-		if extraTable.bulletpoint == nil then extraTable.bulletpoint = "Collectible" .. ownedID end
-		EID:AddConditional(IDs, function() return EID:ConditionalCollCheck(ownedID, checkInReminder) end, modText,
-			extraTable)
+		local newTable = {}; for k, v in pairs(extraTable) do newTable[k] = v end
+		if newTable.variableText == nil then newTable.variableText = "{{NameOnlyC" .. ownedID .. "}}" end
+		if newTable.bulletpoint == nil then newTable.bulletpoint = "Collectible" .. ownedID end
+		EID:AddConditional(IDs, function() return EID:ConditionalCollCheck(ownedID, checkInReminder) end, modText, newTable)
 	end
 end
 
@@ -80,10 +80,10 @@ function EID:AddPlayerConditional(IDs, charIDs, modText, extraTable, includeTain
 	if includeTainted == nil then includeTainted = true end
 	extraTable = extraTable or {}
 	for _, charID in ipairs(charIDs) do
-		if extraTable.variableText == nil then extraTable.variableText = "{{NameOnlyI" .. charID .. "}}" end
-		if extraTable.bulletpoint == nil then extraTable.bulletpoint = "Player" .. charID end
-		EID:AddConditional(IDs, function() return EID:ConditionalCharCheck(charID, includeTainted) end, modText,
-			extraTable)
+		local newTable = {}; for k, v in pairs(extraTable) do newTable[k] = v end
+		if newTable.variableText == nil then newTable.variableText = "{{NameOnlyI" .. charID .. "}}" end
+		if newTable.bulletpoint == nil then newTable.bulletpoint = "Player" .. charID end
+		EID:AddConditional(IDs, function() return EID:ConditionalCharCheck(charID, includeTainted) end, modText, newTable)
 	end
 end
 
@@ -107,8 +107,8 @@ TODO: AB+ tarot cloth buffs table?
 -- brown nugget + sacrificial altar in AB+?!
 -- ? Card + single use actives in Repentance? Alabaster Box
 -- unrelated to conditionals: Glyph of Balance prediction in Item Reminder?
-
--- meta todo: Put a 100% save file for AB+ and for Rep on my flash drive
+-- Jacob's Ladder synergies with other battery items (I didn't even know about this)
+-- 9 Volt + 1 room / timed recharges needs a new function
 
 ]]
 
@@ -128,10 +128,8 @@ EID:AddConditional({241, "5.300.15"}, function() return game:IsGreedMode() end) 
 EID:AddConditional("5.300.15", function() return game:IsGreedMode() and EID:PlayersHaveCollectible(451) end, "Tarot") -- Temperance + Greed + Tarot
 
 -- Different effect for No Red Health players
--- TODO: separate this into a Rep-only part, and figure out what they do exactly with Keeper/Forgotten
-EID:AddConditional({ 442, 676 }, function() return EID:CheckForNoRedHealthPlayer() end, "No Red") -- Dark Prince's Crown, Empty Heart
-EID:AddConditional(81, function() return EID:CheckForNoRedHealthPlayer() end)                   -- Dead Cat
---TODO: Keeper/Forgotten DON'T benefit from Empty Heart but DO benefit from Dark Prince's Crown? Nothing's consistent... does the Soul benefit while Forgotten does
+EID:AddConditional({442, "5.350.107", "5.350.119"}, function() return EID:CheckForNoRedHealthPlayer() end, "No Red") -- Dark Prince's Crown, Crow Heart, Stem Cell
+EID:AddConditional(81, function() return EID:CheckForNoRedHealthPlayer() end) -- Dead Cat
 
 -- Achievement checks (these always return true without REPENTOGON)
 EID:AddConditional("5.350.23", function() return EID:HaveNotUnlockedAchievement(82) end) -- Sacrifice Poster unlocks The Lost
@@ -153,6 +151,11 @@ EID:AddCollectibleConditional("5.300.48", 286, nil, { lineColor = "ColorSilver" 
 -- Haven't done it yet but I'm sure preparing the system for it
 -- Remember most of these will be AB+ only (not EID.isRepentance)
 
+if not EID.isRepentance then
+	EID:AddCollectibleConditional(205, {116, 276}, "No Effect") -- Sharp Plug + 9 Volt, Isaac's Heart
+	EID:AddCollectibleConditional(205, 108, "Wafer") -- Sharp Plug + The Wafer
+	EID:AddSynergyConditional(205, 441, "Can't Charge", "Can't Be Charged") -- Sharp Plug + Mega Blast
+end
 
 if EID.isRepentance then
 	-- General conditions
@@ -162,7 +165,12 @@ if EID.isRepentance then
 
 	-- Co-op friendly items
 	-- todo (yum heart, extension cord)
-
+	
+	-- No red health
+	EID:AddConditional({569, 671, 676}, function() return EID:CheckForNoRedHealthPlayer() end, "No Red") -- Blood Oath, Candy Heart, Empty Heart
+	EID:AddPlayerConditional({671, 676}, 14, "No Effect") -- Candy Heart / Empty Heart + Keeper
+	EID:AddPlayerConditional(676, 16, "No Effect", nil, false) -- Empty Heart + Forgotten (not Tainted)
+	
 	-- Tainted characters reviving as themselves
 	EID:AddPlayerConditional({ 161, "5.350.28" }, 25, "Tainted Revive") -- Ankh, Broken Ankh
 	EID:AddPlayerConditional(311, 24, "Tainted Revive")            -- Judas's Shadow
@@ -180,13 +188,15 @@ if EID.isRepentance then
 	EID:AddPlayerConditional(230, 36, "Tainted Bethany")  -- Tainted Bethany + Abaddon
 	EID:AddPlayerConditional(245, 14, "Keeper")           -- 20/20 + Keeper
 	EID:AddPlayerConditional(705, { 12, 24 })             -- Dark Arts + Dark/Tainted Judas
+	EID:AddPlayerConditional(205, 22, "Tainted Magdalene")-- Tainted Magdalene + Sharp Plug
 
 	-- Item Synergies
 	EID:AddCollectibleConditional(201, 147)                     -- Iron Bar refills Notched Axe
 	EID:AddCollectibleConditional("5.350.172", 260)             -- Black Candle + Cursed Penny
 	EID:AddCollectibleConditional(501, 416)                     -- Greed's Gullet + Deep Pockets
-	EID:AddSynergyConditional(245, { 2, 153, 169 }, nil, "20/20") -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
-	EID:AddSynergyConditional(330, 561, "Overridden", "Overrides") -- Soy+Almond Milk
+	EID:AddSynergyConditional(245, { 2, 153, 169 }, nil, "20/20") -- 20/20 + The Inner Eye, Mutant Spider, Polyphemus
+	EID:AddSynergyConditional(330, 561, "Overridden", "Overrides") -- Soy Milk + Almond Milk
+	EID:AddSynergyConditional({205, 116}, {585, 638}, "Can't Charge", "Can't Be Charged") -- Sharp Plug, 9 Volt + Alabaster Box, Eraser
 end
 
 ----- Evaluation Functions -----
@@ -197,7 +207,7 @@ function EID:ConditionalCharCheck(playerType, includeTainted)
 		local player = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
 		if player:GetPlayerType() == playerType then
 			return true
-		elseif includeTainted and EID.isRepentance and Isaac.GetPlayerTypeByName(player:GetName()) == playerType then
+		elseif includeTainted and EID.isRepentance and EID.TaintedToRegularID[player:GetPlayerType()] == playerType then
 			return true
 		else
 			return false
