@@ -1009,10 +1009,13 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 -- Strings will be appended to the original description
 -- Tables with one entry will completely replace the original description
 -- Tables with two or more entries are find-replace pairs
+-- For collectible/player conditionals, lines will automatically have their bulletpoint, and {1} is replaced with their name
 EID.descriptions[languageCode].ConditionalDescs = {
 	["Overridden"] = "Overridden by {1}",
 	["Overrides"] = "Overrides {1}",
 	["No Effect"] = "No effect for {1}",
+	["Can't Charge"] = "Can't charge {1}",
+	["Can't Be Charged"] = "Can't be charged by {1}",
 	
 	["No Red"] = "No effect for characters that can't have Red Hearts",
 	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
@@ -1037,6 +1040,9 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.501"] = "{1} can gain additional coin containers", -- Greed's Gullet
 	["5.100.230 (Keeper)"] = "{1} just dies", -- Abaddon
 	["5.300.48"] = "Teleport to I AM ERROR Room#Blank Card and ? Card will be destroyed", -- Blank Card + Q Card
+	["5.100.205 (Wafer)"] = "Reduces the cost to half a heart", -- Sharp Plug + Wafer
+	["5.100.116 (1 Room)"] = "1 room recharges become 15 second timed recharges while in an uncleared room", -- 9 Volt
+	["5.100.116 (Timed)"] = "Timed recharges start half full", -- 9 Volt
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
@@ -1053,23 +1059,24 @@ EID.descriptions[languageCode].BFFSSynergies = {
 -- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
 -- Soon, these descriptions, along with their starting item descriptions, will be in a tab in the Item Reminder
 -- The character names here are also used in getPlayerName to provide localized character names
+-- The numbers are provided to make this a quick reference for Player IDs
 EID.descriptions[languageCode].CharacterInfo = {
 	[0] = {"Isaac", ""},
-	{"Magdalene", ""},
-	{"Cain", ""},
-	{"Judas", ""},
-	{"???", "Can't have Red Hearts"},
-	{"Eve", "Eve's Whore of Babylon triggers at 1 Red Heart or less"}, --this could just be desc modifier?
-	{"Samson", ""},
-	{"Azazel", "Flight#Short range Brimstone instead of tears"},
-	{"Lazarus", "When you die, resurrect as Lazarus Risen with 1 Red Heart container"},
-	{"Eden", "Start with random stats and items each run"},
-	{"The Lost", "Flight#Spectral tears#No health#One devil deal per room can be taken for free"},
-	{"Lazarus Risen", "Increased stats and 1.2x damage multiplier"},
-	{"Dark Judas", "2x Damage multiplier"},
-	{"Lilith", "Cannot shoot tears"},
-	{"Keeper", "Heal by picking up coins#Heart pickups are turned into Blue Flies"},
-	{"Apollyon", ""},
-	{"The Forgotten", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
-	{"The Forgotten Soul", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
+	[1] = {"Magdalene", ""},
+	[2] = {"Cain", ""},
+	[3] = {"Judas", ""},
+	[4] = {"???", "Can't have Red Hearts"},
+	[5] = {"Eve", "Eve's Whore of Babylon triggers at 1 Red Heart or less"}, --this could just be desc modifier?
+	[6] = {"Samson", ""},
+	[7] = {"Azazel", "Flight#Short range Brimstone instead of tears"},
+	[8] = {"Lazarus", "When you die, resurrect as Lazarus Risen with 1 Red Heart container"},
+	[9] = {"Eden", "Start with random stats and items each run"},
+	[10] = {"The Lost", "Flight#Spectral tears#No health#One devil deal per room can be taken for free"},
+	[11] = {"Lazarus Risen", "Increased stats and 1.2x damage multiplier"},
+	[12] = {"Dark Judas", "2x Damage multiplier"},
+	[13] = {"Lilith", "Cannot shoot tears"},
+	[14] = {"Keeper", "Heal by picking up coins#Heart pickups are turned into Blue Flies"},
+	[15] = {"Apollyon", ""},
+	[16] = {"The Forgotten", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
+	[17] = {"The Forgotten Soul", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
 }
