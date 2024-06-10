@@ -1223,6 +1223,7 @@ local repConditions={
 	["5.100.245 (Keeper)"] = "Fire rate up and decreased tear spread for {1}", -- 20/20 + Keeper
 	["20/20"] = "No fire rate penalty with {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
 	["5.100.705"] = "Temporary +1 damage up for each bullet/enemy", -- Dark Arts + Dark/Tainted Judas
+	["5.100.205 (Tainted Magdalene)"] = "Allows infinite usage of Yum Heart", -- Sharp Plug + Tainted Magdalene
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
