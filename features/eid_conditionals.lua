@@ -10,20 +10,20 @@ EID.collectiblesToCheck = {}
 	If you're adding a condition that applies to many items, you can pass in a table of IDs
 	If you're adding a condition that applies to an entire type of item, pass in a string in Type.Var format
 	
-	Argument 2: The function that will apply the condition if it returns true
+	Argument 2: The function that will apply the condition if it returns true; descObj will be passed into this function
 	
 	Argument 3 (optional): Additional text for finding the string in the localization file
 	For example, if you put "Overridden" here, modifying Tech X, it will look for ConditionalDescs["5.100.395 (Overridden)"] AND ConditionalDescs["Overridden"]
 	
 	Argument 4 (optional): Table with any additional options, usually not needed:
 	variableText: If there's a {1} in the desc, it will be replaced with this; can be a function for more dynamic text results, it will get descObj passed into it
-	variableText2: If there's a {2} in the desc, it will be replaced with this; can be a function
 	locTable: Specify a different table to look for the localization string in, rather than ConditionalDescs
 	noTable: Set to true to look in the base localizations only (requires modText) (not used yet...)
 	lineColor: Appended lines will be highlighted with this color
 	replaceColor: Find/replace text will be highlighted with this color
 	bulletpoint: Appended lines will begin with this bulletpoint
 	noFallback: Don't fallback to English if this isn't localized; by default, conditionals don't fallback, to avoid printing English text in unupdated languages
+	useResult: The condition function can return a collectible ID; if true, use that ID to generate bulletpoint/variable text. This is to be able to use specific collectible icons/names while using more general modded-item-friendly conditions
 	
 	Argument 5 (very optional): The position in the table to insert this new condition, in case mods want to insert modifiers before our base ones
 ]]
@@ -38,9 +38,9 @@ function EID:AddConditional(IDs, funcText, modText, extraTable, insertPoint)
 	if newTable.noFallback == nil then newTable.noFallback = true end
 	for _, id in ipairs(IDs) do
 		if type(id) ~= "string" then id = "5.100." .. id end
-		-- Check for only one period in the id string to mark it as being a general condition
+		-- Check for only one period in the id string to mark it as being a general condition, which looks for a SubType entry in the localization file
 		local _, count = string.gsub(id, "%.", "")
-		if count == 1 then newTable.general = true end
+		if count == 1 and newTable.general == nil then newTable.general = true end
 		EID.DescriptionConditions[id] = EID.DescriptionConditions[id] or {}
 		if insertPoint then
 			table.insert(EID.DescriptionConditions[id], insertPoint, newTable)
@@ -146,6 +146,13 @@ EID:AddSynergyConditional(7, 34)                                                
 EID:AddCollectibleConditional("5.300.16", 7)                                     -- Martyr + Book of Belial/The Devil
 EID:AddSynergyConditional(316, 260)                                              -- Black Candle + Cursed Eye
 EID:AddCollectibleConditional("5.300.48", 286, nil, { lineColor = "ColorSilver" }) -- Blank Card + ? Card
+
+-- 9 Volt + 1 Room/Timed Charges
+-- This got a bit complicated, since it looks at a trait of every collectible + you having another, but hey, it's compact
+EID:AddConditional(116, function() return EID:CheckPlayersForActiveChargeType(1) end, "1 Room", { useResult = true })
+EID:AddConditional(116, function() return EID:CheckPlayersForActiveChargeType(nil, 1) end, "Timed", { useResult = true })
+EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(116) and EID:CheckActiveChargeType(descObj.ObjSubType, 1) end, "1 Room", { bulletpoint = "Collectible116", general = false })
+EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(116) and EID:CheckActiveChargeType(descObj.ObjSubType, nil, 1) end, "Timed", { bulletpoint = "Collectible116", general = false })
 
 -- Overridden by Brimstone
 -- Haven't done it yet but I'm sure preparing the system for it
@@ -264,7 +271,38 @@ function EID:CheckForNoRedHealthPlayer()
 	return false
 end
 
--- Check for multiple players existing for items like Yum Heart and Extension Cord, includes J&E
+-- Check for a player having an active item with a specific quantity of charges, or charge type
+-- 0 = normal, 1 = timed, 2 = special
+function EID:CheckPlayersForActiveChargeType(maxCharge, chargeType)
+	local players = {}
+	if EID.InsideItemReminder then
+		players[1] = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
+	else
+		for i = 0, game:GetNumPlayers() - 1 do
+			table.insert(players, Isaac.GetPlayer(i))
+		end
+	end
+	
+	for i = 1, #players do
+		local player = players[i]
+		for j = 0, EID.isRepentance and 3 or 0 do
+			local activeID = player:GetActiveItem(j)
+			if EID:CheckActiveChargeType(activeID, maxCharge, chargeType) then return activeID end
+		end
+	end
+	return false
+end
+function EID:CheckActiveChargeType(itemID, maxCharge, chargeType)
+	local active = EID.itemConfig:GetCollectible(itemID)
+	if active then
+		if active.MaxCharges == maxCharge then return true
+		elseif EID.isRepentance and active.ChargeType == chargeType then return true
+		elseif chargeType == 1 and active.MaxCharges >= 30 then return true end
+	end
+	return false
+end
+
+-- Check for multiple players existing for items like Yum Heart and Extension Cord, includes J&E (but does it include Forgotten?)
 function EID:MultiplePlayerCharacters()
 	return #EID.coopAllPlayers > 1
 end
@@ -334,25 +372,28 @@ function EID:applyConditionals(descObj)
 		end
 
 		-- If we find the localization string for this condition, and it passes the test, modify the description text
-		if text ~= nil and cond.func() then
-			local variableText = type(cond.variableText) == "function" and cond.variableText(descObj) or
-			cond.variableText
-			local variableText2 = type(cond.variableText2) == "function" and cond.variableText2(descObj) or
-			cond.variableText2
+		local result = cond.func(descObj)
+		if text ~= nil and result then
+			local variableText, bulletpoint
+			if cond.useResult then
+				variableText = "{{NameOnlyC"..result.."}}"
+				bulletpoint = "Collectible"..result
+			else
+				variableText = type(cond.variableText) == "function" and cond.variableText(descObj) or cond.variableText
+				bulletpoint = cond.bulletpoint
+			end
 
 			-- String = append
 			if type(text) == "string" then
 				text = EID:ReplaceVariableStr(text, 1, variableText)
-				text = EID:ReplaceVariableStr(text, 2, variableText2)
 				local iconStr = "#"
-				if cond.bulletpoint then iconStr = iconStr .. "{{" .. cond.bulletpoint .. "}} " end
+				if bulletpoint then iconStr = iconStr .. "{{" .. bulletpoint .. "}} " end
 				if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end
 				EID:appendToDescription(descObj, iconStr .. text:gsub("#", iconStr))
 
 				-- Table with 1 entry = replace
 			elseif #text == 1 then
-				descObj.Description = EID:ReplaceVariableStr(EID:ReplaceVariableStr(text[1], 1, variableText), 2,
-					variableText2)
+				descObj.Description = EID:ReplaceVariableStr(text[1], 1, variableText)
 
 				-- Table with 2+ entries = find and replace pairs
 				-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
@@ -361,7 +402,6 @@ function EID:applyConditionals(descObj)
 				while pos < #text do
 					local toFind = text[pos]
 					local replaceWith = EID:ReplaceVariableStr(text[pos + 1], 1, variableText)
-					replaceWith = EID:ReplaceVariableStr(replaceWith, 2, variableText2)
 					if cond.replaceColor then replaceWith = "{{" .. cond.replaceColor .. "}}" .. replaceWith .. "{{CR}}" end
 					--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
 					if (type(toFind) == "number") then
