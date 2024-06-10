@@ -1038,11 +1038,14 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.316"] = "{1} removes the teleportation effect", -- Cursed Eye
 	["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
 	["5.100.501"] = "{1} can gain additional coin containers", -- Greed's Gullet
-	["5.100.230 (Keeper)"] = "{1} just dies", -- Abaddon
+	["5.100.230 (Keeper)"] = "!!! {1} just dies", -- Abaddon
 	["5.300.48"] = "Teleport to I AM ERROR Room#Blank Card and ? Card will be destroyed", -- Blank Card + Q Card
 	["5.100.205 (Wafer)"] = "Reduces the cost to half a heart", -- Sharp Plug + Wafer
-	["5.100.116 (1 Room)"] = "1 room recharges become 15 second timed recharges while in an uncleared room", -- 9 Volt
+	
+	["5.100.116 (1 Room)"] = "1 room recharges become 15 second recharges while in an uncleared room", -- 9 Volt
 	["5.100.116 (Timed)"] = "Timed recharges start half full", -- 9 Volt
+	["1 Room"] = "15 second recharge while in an uncleared room", -- Actives + 9 Volt
+	["Timed"] = "Charge starts half full after use", -- Actives + 9 Volt
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
