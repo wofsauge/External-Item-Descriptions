@@ -926,12 +926,19 @@ if REPENTANCE then
 	EID.BFFSNoSynergy[697] = true -- Vanishing Twin
 end
 
--- Character IDs that aren't allowed to have Red Health: ???, The Lost, The Soul
+-- Tainted character's respective normal version ID, for conditionals that apply to both versions of the character
+-- To help with other character pairs, Esau = Jacob, Dead Tainted Lazarus = Tainted Lazarus, Tainted Soul = Tainted Forgotten
+EID.TaintedToRegularID = { [20] = 19, [21] = 0, [22] = 1, [23] = 2, [24] = 3, [25] = 4, [26] = 5, [27] = 6, [28] = 7, [29] = 8, [30] = 9, [31] = 10, [32] = 13, 
+[33] = 14, [34] = 15, [35] = 16, [36] = 18, [37] = 19, [38] = 29, [39] = 37, [40] = 35 }
+
+-- Character IDs that are Soul/Black Hearts only: ???, The Lost, The Soul
 EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
 if REPENTANCE then
 	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
 	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
 end
+-- Character IDs that have a pocket active
+EID.PocketActivePlayerIDs = { [22] = true, [23] = true, [24] = true, [25] = true, [26] = true, [29] = true, [34] = true, [36] = true, [37] = true, [38] = true, [39] = true }
 
 -- Cards that don't work with Blank Card in Repentance (Note: ? Card is blacklisted here, don't use this for determining what is a card)
 EID.blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[48]=true,[49]=true,[50]=true,[55]=true,[78]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
