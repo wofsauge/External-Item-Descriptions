@@ -1193,7 +1193,7 @@ function EID:PlayersHaveCharacter(playerType, includeTainted)
 		if player:GetPlayerType() == playerType then
 			return true, player
 		end
-		if includeTainted and EID.isRepentance and Isaac.GetPlayerTypeByName(player:GetName()) == playerType then
+		if includeTainted and EID.isRepentance and EID.TaintedToRegularID[player:GetPlayerType()] == playerType then
 			return true, player
 		end
 	end
