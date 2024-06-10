@@ -97,18 +97,16 @@ CO-OP BENEFIT ITEMS! tech zero / extension cord in co-op? yum heart and such
 Items that override other items (brimstone, mom's knife, epic fetus stuff)
 BFFs / the fly booster + Tainted Apollyon, Tainted Eve; melody trinket + Tainted Eve; these are insane synergies that deserve attention
 TODO: Make some of these coll/char IDs be from the enum for readability? or just keep it to comments
-TODO: A find/replace pair for some Keeper descriptions that talk about Red hearts but work for him, Red -> Coin or Red/Coin; Could be good for Dead Cat
-TODO: AB+ tarot cloth buffs table?
--- hey what if all these Luck addons that I kinda don't like instead showed an accurate percentage of what they do at your current luck (although this is Modifier territory, with a per character display)
--- todo: TrinketConditional, use it for the crystal key + pandora's box or whichever key it is, and Black Feather items maybe
--- todo: Vibrant/Dim Bulb + doesn't work with pocket consumables. could be conditional actually if we have a list of char IDs with pocket actives
+TODO: A find/replace pair for some Keeper descriptions that talk about Red hearts but work for him, Red -> Coin or Red/Coin; Could be good for Dead Cat. or just leave it be
+-- hey what if all these Luck addons that I kinda don't like instead showed an accurate percentage of what they do at your current luck (although this is Modifier territory, with a per character display) (might be annoying though)
+-- todo: TrinketConditional, use it for the crystal key + pandora's box or whichever key it is, and Black Feather items maybe (leave the damage calc to modifiers, but we can append text to black feather items)
+-- todo: Vibrant/Dim Bulb + doesn't work with pocket consumables
 -- todo: idk about the BFFs synergy stuff but I noticed that Brown Nugget is incorrectly dealt with, it gained double damage in rep
 -- hive mind and BFFs synergy has a lot of overlap also
 -- brown nugget + sacrificial altar in AB+?!
--- ? Card + single use actives in Repentance? Alabaster Box
+-- ? Card + single use actives in Repentance? Alabaster Box. is there a way to detect an active is a single-use active or do we need a hardcode list?
 -- unrelated to conditionals: Glyph of Balance prediction in Item Reminder?
 -- Jacob's Ladder synergies with other battery items (I didn't even know about this)
--- 9 Volt + 1 room / timed recharges needs a new function
 
 ]]
 
@@ -203,6 +201,11 @@ if EID.isRepentance then
 	EID:AddCollectibleConditional(501, 416)                     -- Greed's Gullet + Deep Pockets
 	EID:AddSynergyConditional(245, { 2, 153, 169 }, nil, "20/20") -- 20/20 + The Inner Eye, Mutant Spider, Polyphemus
 	EID:AddSynergyConditional(330, 561, "Overridden", "Overrides") -- Soy Milk + Almond Milk
+	
+	--TODO: SYNERGY CONDITIONAL DOESN'T WORK WITH TRINKETS YET, nothing I have works with trinkets yet really. need to detect trinket strings and handle them properly, and make a ConditionalTrinketCheck or something
+	--EID:AddSynergyConditional(596, {"5.350.118", 704, 62, "5.350.60", 520, 411, 621, "5.350.58", "5.350.189", 657}, "Ice Tears") -- Uranus + On Kill Effects
+	EID:AddSynergyConditional(596, {704, 62, 520, 411, 621, 657}, "Ice Tears") -- Uranus + On Kill Effects
+	EID:AddPlayerConditional(596, 27, "Ice Tears") -- Uranus + Tainted Samson
 	
 	-- 9 Volt, Sharp Plug + Special Charge Actives
 	EID:AddConditional({116, 205}, function() return EID:CheckPlayersForActiveChargeType(nil, 2) end, "Can't Charge", { useResult = true })
