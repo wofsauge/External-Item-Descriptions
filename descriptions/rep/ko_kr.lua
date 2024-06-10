@@ -1345,6 +1345,8 @@ local repConditions={
 	["5.100.245 (Keeper)"] = "{1}: 연사 증가 및 발사 수 감소", -- 20/20 + Keeper
 	["20/20"] = "{1} 소지 시 연사 감소 효과 제거됨", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
 	["5.100.705"] = "흑마술로 통과한 적과 탄환 수만큼 일시적 공격력 +1", -- Dark Arts + Dark/Tainted Judas
+	["5.100.205 (Tainted Magdalene)"] = "Yum Heart 연쇄 충전 가능", -- Sharp Plug + Tainted Magdalene
+	["Ice Tears"] = "적을 얼릴 때 적 처치 효과를 내지 않음", -- Uranus Anti-Synergy
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
