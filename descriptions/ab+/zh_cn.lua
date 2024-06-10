@@ -956,3 +956,11 @@ EID.descriptions[languageCode].PickupNames = {
 	["5.350"] = "{{Trinket}} 饰品",
 
 }
+
+-- Conditional descriptions
+-- Strings will be appended to the original description
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs
+EID.descriptions[languageCode].ConditionalDescs = {
+	["5.300.48"] = "传送至错误房#空白卡牌和？卡牌会被摧毁", -- Blank Card + Q Card
+}

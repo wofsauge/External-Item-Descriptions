@@ -1079,12 +1079,10 @@ EID.descriptions[languageCode].CraftingBestQuality = "Melhor Qualidade:"
 
 EID.descriptions[languageCode].CraftingHideKey = "Esconder:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Visualizar:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "!!! Se este item estiver bloqueado, ele se transformará em"
 
 EID.descriptions[languageCode].CraftingResults = "(Rolar: Segurar {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Travar: {{ButtonX}}, Atualizar: {{ButtonB}}, Redefinir a Bolsa: Hold {{ButtonRB}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Carga do Blank Card:"
-EID.descriptions[languageCode].BlankCardQCard = "Teleporta para a Sala I AM Error#Blank Card e ?-Carta serão destruídas"
 EID.descriptions[languageCode].ClearRuneCharge = "Limpar carga da Runa:"
 EID.descriptions[languageCode].PlaceboCharge = "Carga do Placebo:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Segure {{CONFIG_BoC_Toggle}} para mostrar a descrição)"
