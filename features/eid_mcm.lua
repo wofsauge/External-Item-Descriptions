@@ -1045,6 +1045,6 @@ if MCMLoaded then
 	end
 
 	if MCM.i18n == "Chinese" then
-		require("eid_mcm_cn")
+		require("features.eid_mcm_cn")
 	end
 end
