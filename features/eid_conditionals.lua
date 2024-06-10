@@ -203,7 +203,11 @@ if EID.isRepentance then
 	EID:AddCollectibleConditional(501, 416)                     -- Greed's Gullet + Deep Pockets
 	EID:AddSynergyConditional(245, { 2, 153, 169 }, nil, "20/20") -- 20/20 + The Inner Eye, Mutant Spider, Polyphemus
 	EID:AddSynergyConditional(330, 561, "Overridden", "Overrides") -- Soy Milk + Almond Milk
-	EID:AddSynergyConditional({205, 116}, {585, 638}, "Can't Charge", "Can't Be Charged") -- Sharp Plug, 9 Volt + Alabaster Box, Eraser
+	
+	-- 9 Volt, Sharp Plug + Special Charge Actives
+	EID:AddConditional({116, 205}, function() return EID:CheckPlayersForActiveChargeType(nil, 2) end, "Can't Charge", { useResult = true })
+	EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(116) and EID:CheckActiveChargeType(descObj.ObjSubType, nil, 2) end, "Can't Be Charged", { bulletpoint = "Collectible116", variableText = "{{NameOnlyC116}}", general = false })
+	EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(205) and EID:CheckActiveChargeType(descObj.ObjSubType, nil, 2) end, "Can't Be Charged", { bulletpoint = "Collectible205", variableText = "{{NameOnlyC205}}", general = false })
 end
 
 ----- Evaluation Functions -----
@@ -295,9 +299,9 @@ end
 function EID:CheckActiveChargeType(itemID, maxCharge, chargeType)
 	local active = EID.itemConfig:GetCollectible(itemID)
 	if active then
-		if active.MaxCharges == maxCharge then return true
+		if active.MaxCharges == maxCharge and active.ChargeType ~= 2 then return true
 		elseif EID.isRepentance and active.ChargeType == chargeType then return true
-		elseif chargeType == 1 and active.MaxCharges >= 30 then return true end
+		elseif not EID.isRepentance and chargeType == 1 and active.MaxCharges >= 30 then return true end
 	end
 	return false
 end
