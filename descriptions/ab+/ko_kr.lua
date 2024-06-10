@@ -164,7 +164,7 @@ EID.descriptions[languageCode].collectibles={
 	{"113", "악마 아기", "적이 있는 방향으로 공격력 3의 빠른 눈물을 자동으로 발사합니다."}, -- Demon Baby
 	{"114", "엄마의 식칼", "{{Chargeable}} 공격이 발사 후 돌아오는 근접 식칼로 변경됩니다.#공격키를 누르고 있으면 충전되며 충전량에 따라 사거리가 증가합니다.#칼 공격력: 기본 x2 ~ 최대 거리일때 x6"}, -- Mom's Knife
 	{"115", "분신사바", "공격이 장애물을 관통합니다."}, -- Ouija Board
-	{"116", "9볼트 건전지", "{{Battery}} 획득 시 액티브 아이템 충전량을 모두 충전합니다.#{{Battery}} 액티브 아이템 사용 시 충전량을 한칸 보존합니다.#1칸짜리 액티브 아이템의 경우 {{ColorOrange}}적이 있는 방에서{{CR}} 15초의 충전 쿨타임을 가집니다.#충전형 액티브 아이템의 경우 쿨타임의 절반을 보존합니다."}, -- 9 Volt
+	{"116", "9볼트 건전지", "{{Battery}} 획득 시 액티브 아이템 충전량을 모두 충전합니다.#{{Battery}} 액티브 아이템 사용 시 충전량을 한칸 보존합니다."}, -- 9 Volt
 	{"117", "죽은 새", "피격 시 적을 따라다니며 접촉한 적에게 초당 4의 피해를 입힙니다."}, -- Dead Bird
 	{"118", "유황", "↓ {{TearsSmall}}공격 딜레이 x3.0#{{Chargeable}} 공격이 충전형 혈사포 공격으로 변경됩니다.#혈사포는 다단히트로 최대 13번의 피해를 입힙니다."}, -- Brimstone
 	{"119", "혈액 팩", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +4#↑ {{SpeedSmall}}이동속도 +0.3"}, -- Blood Bag
@@ -1065,6 +1065,8 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Overridden"] = "{1}에 의해 무효화",
 	["Overrides"] = "{1}을(를) 무효화",
 	["No Effect"] = "{1}에는 무효과",
+	["Can't Charge"] = "{1} 충전 불가",
+	["Can't Be Charged"] = "{1}(으)로 충전 불가",
 
 	["No Red"] = "최대 체력이 소울하트인 캐릭터에는 무효과",
 	["5.100.81 (No Red)"] = "최대 체력이 소울하트인 캐릭터는 소울하트가 1칸이 됨", -- Dead Cat
@@ -1089,6 +1091,12 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.501"] = "{1}: 체력 상한을 초과할 수 있습니다.", -- Greed's Gullet
 	["5.100.230 (Keeper)"] = "!!! {1}: {{ColorRed}}획득 시 사망", -- Abaddon
 	["5.300.48"] = "!!! 오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다.", -- Blank Card + Q Card
+	["5.100.205 (Wafer)"] = "소모 체력이 반칸으로 감소", -- Sharp Plug + Wafer
+
+	["5.100.116 (1 Room)"] = "1칸짜리 액티브 아이템의 경우 {{ColorOrange}}적이 있는 방에서{{CR}} 15초의 충전 쿨타임을 가집니다.", -- 9 Volt
+	["5.100.116 (Timed)"] = "시간제 액티브 아이템의 경우 쿨타임의 절반을 보존합니다.", -- 9 Volt
+	["1 Room"] = "{{ColorOrange}}적이 있는 방에서{{CR}} 15초의 충전 쿨타임을 가집니다.", -- Actives + 9 Volt
+	["Timed"] = "사용 후 쿨타임의 절반을 보존합니다.", -- Actives + 9 Volt
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
@@ -1108,21 +1116,21 @@ EID.descriptions[languageCode].BFFSSynergies = {
 -- The character names here are also used in getPlayerName to provide localized character names
 EID.descriptions[languageCode].CharacterInfo = {
 	[0] = {"Isaac", ""},
-	{"Magdalene", ""},
-	{"Cain", ""},
-	{"Judas", ""},
-	{"???", "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다."},
-	{"Eve", "{{Collectible122}} 바빌론의 창녀가 빨간하트가 1칸 이하여도 발동됩니다."}, --this could just be desc modifier?
-	{"Samson", ""},
-	{"Azazel", "{{Collectible118}} 검은 날개로 날 수 있으며 사거리가 매우 짧은 혈사포를 발사합니다."},
-	{"Lazarus", "{{Collectible332}} 사망 시 그 방에서 최대 체력 1칸으로 부활합니다."},
-	{"Eden", "모든 능력치 및 시작 아이템이 랜덤으로 정해집니다."},
-	{"The Lost", "지형 관통 공격 + 날아다닐 수 있으나 체력이 없어 한 번 맞으면 사망합니다.#모든 악마 거래를 체력 상관없이 획득할 수 있습니다."},
-	{"Lazarus Risen", "부활 이후의 나사로로 능력치가 증가되어 있습니다."},
-	{"Dark Judas", "{{DamageSmall}} 공격력 배율 x2"},
-	{"Lilith", "{{Collectible360}} 공격할 수 없으며 모든 공격을 Incubus가 대신해 줍니다."},
-	{"Keeper", "{{CoinHeart}} 체력이 하트가 아닌 코인으로 이루어져 있으며 2칸의 상한을 가집니다.#동전으로 체력 회복 가능#하트 픽업이 자폭 파리로 바뀝니다."},
-	{"Apollyon", ""},
-	{"The Forgotten", "{{Chargeable}} 공격 키로 뼈를 휘두르며 충전 시 충전 거리만큼 뼈다귀를 부메랑처럼 던질 수 있습니다.#{{BoneHeart}} 최대 체력 = 뼈하트의 보정을 받으며 6칸의 상한을 가집니다.#{{ButtonRT}} (Ctrl)키로 영혼과 교체할 수 있으며 영혼은 지형 관통 눈물을 발사합니다.{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받으며 6칸의 상한을 가집니다.#영혼은 날아다닐 수 있으나 본체로부터 멀리 떨어질 수 없습니다."},
-	{"The Forgotten Soul", "{{Chargeable}} 공격 키로 뼈를 휘두르며 충전 시 충전 거리만큼 뼈다귀를 부메랑처럼 던질 수 있습니다.#{{BoneHeart}} 최대 체력 = 뼈하트의 보정을 받으며 6칸의 상한을 가집니다.#{{ButtonRT}} (Ctrl)키로 영혼과 교체할 수 있으며 영혼은 지형 관통 눈물을 발사합니다.{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받으며 6칸의 상한을 가집니다.#영혼은 날아다닐 수 있으나 본체로부터 멀리 떨어질 수 없습니다."},
+	[1] = {"Magdalene", ""},
+	[2] = {"Cain", ""},
+	[3] = {"Judas", ""},
+	[4] = {"???", "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다."},
+	[5] = {"Eve", "{{Collectible122}} 바빌론의 창녀가 빨간하트가 1칸 이하여도 발동됩니다."}, --this could just be desc modifier?
+	[6] = {"Samson", ""},
+	[7] = {"Azazel", "{{Collectible118}} 검은 날개로 날 수 있으며 사거리가 매우 짧은 혈사포를 발사합니다."},
+	[8] = {"Lazarus", "{{Collectible332}} 사망 시 그 방에서 최대 체력 1칸으로 부활합니다."},
+	[9] = {"Eden", "모든 능력치 및 시작 아이템이 랜덤으로 정해집니다."},
+	[10] = {"The Lost", "지형 관통 공격 + 날아다닐 수 있으나 체력이 없어 한 번 맞으면 사망합니다.#모든 악마 거래를 체력 상관없이 획득할 수 있습니다."},
+	[11] = {"Lazarus Risen", "부활 이후의 나사로로 능력치가 증가되어 있습니다."},
+	[12] = {"Dark Judas", "{{DamageSmall}} 공격력 배율 x2"},
+	[13] = {"Lilith", "{{Collectible360}} 공격할 수 없으며 모든 공격을 Incubus가 대신해 줍니다."},
+	[14] = {"Keeper", "{{CoinHeart}} 체력이 하트가 아닌 코인으로 이루어져 있으며 2칸의 상한을 가집니다.#동전으로 체력 회복 가능#하트 픽업이 자폭 파리로 바뀝니다."},
+	[15] = {"Apollyon", ""},
+	[16] = {"The Forgotten", "{{Chargeable}} 공격 키로 뼈를 휘두르며 충전 시 충전 거리만큼 뼈다귀를 부메랑처럼 던질 수 있습니다.#{{BoneHeart}} 최대 체력 = 뼈하트의 보정을 받으며 6칸의 상한을 가집니다.#{{ButtonRT}} (Ctrl)키로 영혼과 교체할 수 있으며 영혼은 지형 관통 눈물을 발사합니다.{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받으며 6칸의 상한을 가집니다.#영혼은 날아다닐 수 있으나 본체로부터 멀리 떨어질 수 없습니다."},
+	[17] = {"The Forgotten Soul", "{{Chargeable}} 공격 키로 뼈를 휘두르며 충전 시 충전 거리만큼 뼈다귀를 부메랑처럼 던질 수 있습니다.#{{BoneHeart}} 최대 체력 = 뼈하트의 보정을 받으며 6칸의 상한을 가집니다.#{{ButtonRT}} (Ctrl)키로 영혼과 교체할 수 있으며 영혼은 지형 관통 눈물을 발사합니다.{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받으며 6칸의 상한을 가집니다.#영혼은 날아다닐 수 있으나 본체로부터 멀리 떨어질 수 없습니다."},
 }
