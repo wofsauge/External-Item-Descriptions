@@ -5,7 +5,7 @@
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  !!! = Warning  |  # = Starts a new line
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
 local languageCode = "en_us"
@@ -69,7 +69,7 @@ EID.descriptions[languageCode].collectibles={
 	{"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#+8% room clear reward chance#Better chance to win while gambling"}, -- Lucky Foot
 	{"47", "Doctor's Remote", "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#Deals 20x Isaac's damage"}, -- Doctor's Remote
 	{"48", "Cupid's Arrow", "Piercing tears"}, -- Cupid's Arrow
-	{"49", "Shoop da Whoop!", "{{Collectible118}} Using the item and shooting in a direction fires a 2x damage laser"}, -- Shoop da Whoop!
+	{"49", "Shoop da Whoop!", "{{Collectible118}} Using the item and shooting in a direction fires a high damage beam"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Damage"}, -- Steven
 	{"51", "Pentagram", "↑ {{Damage}} +1 Damage#{{AngelDevilChance}} +10% Devil/Angel Room chance"}, -- Pentagram
 	{"52", "Dr. Fetus", "↓ {{Tears}} x2.5 Tear delay multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's damage + 30"}, -- Dr. Fetus
@@ -317,8 +317,8 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger {{Collectible484}} Wait What? when swapping it with a different active item and picking it up again"}, -- Butter Bean
 	{"295", "Magic Fingers", "Deals 2x Isaac's damage to all enemies#{{Coin}} Costs 1 coin"}, -- Magic Fingers
 	{"296", "Converter", "{{Heart}} Converts 2 Soul/Black Hearts into 1 heart container"}, -- Converter
-	--NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
-	--For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
+	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
+	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
 	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#Dark Room: Unlocks {{Collectible523}} Moving Box; Chest: 1{{Coin}}"}, -- Pandora's Box
 	{"298", "Unicorn Stump", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot (No contact damage)"}, -- Unicorn Stump
 	{"299", "Taurus", "↓ {{Speed}} -0.3 Speed#↑ {{Speed}} Slowly gain speed while in hostile rooms#At 2 speed, Isaac becomes invincible and deals contact damage#Afterwards, lose the Taurus speed boost for the room"}, -- Taurus
@@ -969,7 +969,6 @@ EID.descriptions[languageCode].PickupNames = {
 	["5.300"] = "{{Card}} Card",
 	["5.301"] = "{{Rune}} Rune", -- not a real id
 	["5.350"] = "{{Trinket}} Trinket",
-
 }
 
 -- Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
@@ -1020,9 +1019,9 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Red"] = "No effect for characters that can't have Red Hearts",
 	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
 	
-	["5.100.7"] = "x1.5 Damage multiplier while The Book of Belial or XV - The Devil effect is active", -- Blood of the Martyr
+	["5.100.7"] = "x1.5 Damage multiplier while \"The Book of Belial\" or \"XV - The Devil\" effect is active", -- Blood of the Martyr
 	["5.100.34"] = "x1.5 Damage multiplier", -- Book of Belial
-	["5.300.16"] = "x1.5 Damage multiplier", -- The Devil
+	["5.300.16"] = "x1.5 Damage multiplier", -- XV - The Devil
 	
 	["5.100.135 (PHD)"] = "Spawns 2-3 coins if you have {1}", -- IV Bag PHD
 	["Keeper 0-1"] = "Spawns 0-1 coin as {1}", -- IV Bag/Piggy Bank Keeper
@@ -1038,7 +1037,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.316"] = "{1} removes the teleportation effect", -- Cursed Eye
 	["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
 	["5.100.501"] = "{1} can gain additional coin containers", -- Greed's Gullet
-	["5.100.230 (Keeper)"] = "!!! {1} just dies", -- Abaddon
+	["5.100.230 (Keeper)"] = "{{Warning}} {1} just dies", -- Abaddon
 	["5.300.48"] = "Teleport to I AM ERROR Room#Blank Card and ? Card will be destroyed", -- Blank Card + Q Card
 	["5.100.205 (Wafer)"] = "Reduces the cost to half a heart", -- Sharp Plug + Wafer
 	
