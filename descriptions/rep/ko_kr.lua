@@ -29,6 +29,7 @@ local repCollectibles={
 	--[[ [44] = {"44", "순간이동!", "사용 시 스테이지 안의 랜덤한 방으로 순간이동합니다.#캐릭터의 이동방향의 영향을 받습니다."}, ]] -- Teleport!
 	[45] = {"45", "맛난 하트", "사용 시 {{Heart}}빨간하트 1칸을 회복합니다.#다른 플레이어의 {{HalfHeart}}빨간하트를 반칸 회복합니다."}, -- Yum Heart
 	[46] = {"46", "행운의 발", "↑ {{LuckSmall}}행운 +1#부정적인 알약 효과가 등장하지 않습니다.#방 클리어 보상이 등장할 확률이 대폭 증가합니다.#야바위와 도박기계의 성공 확률이 증가합니다."}, -- Lucky Foot
+	[49] = {"49", "모두 다 사라져빔!!", "사용 시 공격하는 방향으로 공격력 x4의 레이저포를 발사합니다."}, -- Shoop da Whoop!
 	[52] = {"52", "태아 박사", "↓ {{TearsSmall}}연사 배율 x0.4#공격이 폭탄 발사 공격으로 변경됩니다.#{{DamageSmall}} 폭탄 공격력: x10#{{Blank}}폭탄 공격력 60 이상인 경우: x5 +30"}, -- Dr. Fetus
 	[53] = {"53", "자석", "픽업이 캐릭터에게 끌려옵니다.#{{Chest}} 가까이에 있는 상자를 접촉 없이 열 수 있습니다."}, -- Magneto
 	[55] = {"55", "엄마의 눈알", "50%의 확률로 캐릭터의 뒤에서 추가로 공격이 나갑니다.#{{LuckSmall}} 행운 5 이상일 때 100% 확률"}, -- Mom's Eye
@@ -94,7 +95,6 @@ local repCollectibles={
 	[182] = {"182", "성스러운 심장", "↑ {{Heart}}최대 체력 +1#{{Heart}} 체력을 모두 회복합니다.#↑ {{DamageSmall}}공격력 +1#↑ {{DamageSmall}}공격력 배율 x2.3#↓ {{TearsSmall}}연사 -0.4#↓ {{ShotspeedSmall}}탄속 -0.25#공격에 유도 효과가 생깁니다.#폭탄에 유도 효과가 생깁니다."}, -- Sacred Heart
 	[184] = {"184", "신성한 성배", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +1#비행 능력을 얻습니다."}, -- Holy Grail
 	[186] = {"186", "피의 권리", "사용 시 체력을 1칸 깎고 방 안의 모든 적에게 40의 피해를 줍니다.#그 방에서 연속적으로 사용 시 2번째 사용부터 깎이는 체력이 반칸으로 줄어듭니다.#빨간하트를 우선적으로 깎습니다."}, -- Blood Rights
-	[188] = {"188", "아벨", "캐릭터의 반대로 움직이며 캐릭터가 있는 방향으로 공격력 3.5의 눈물을 발사합니다.#{{Player2}} Cain: 공격력 5의 눈물을 발사합니다."}, -- Abel
 	[189] = {"189", "슈미보 광팬", "↑ {{Heart}}최대 체력 +1#{{Heart}} 체력을 모두 회복합니다.#↑ {{DamageSmall}}공격력 +0.3#↑ {{TearsSmall}}연사 +0.2#↑ {{RangeSmall}}사거리 +2.5#↑ {{SpeedSmall}}이동속도 +0.2"}, -- SMB Super Fan
 	[192] = {"192", "천재반을 위한 텔레파시법", "사용 시 그 방에서 {{RangeSmall}}사거리가 +3 증가하며 공격이 적에게 유도됩니다."}, -- Telepathy For Dummies
 	[193] = {"193", "고기!", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +1#↑ {{DamageSmall}}공격력 +0.3"}, -- MEAT!
@@ -121,7 +121,7 @@ local repCollectibles={
 	[233] = {"233", "소행성", "↑ {{RangeSmall}}사거리 +6.5#공격이 장애물을 관통합니다.#공격이 캐릭터 주위를 돌면서 발사됩니다."}, -- Tiny Planet
 	[240] = {"240", "임상시험", "!!! 아래의 능력치 중;#↑ 능력치 4종류 증가#↓ 능력치 2종류 감소#!!! {{EmptyHeart}}빈 최대 체력 ±1#{{Blank}} {{SpeedSmall}}이동속도 ±0.2#{{Blank}} {{TearsSmall}}연사{{ColorOrange}}(상한){{CR}} ±0.5#{{Blank}} {{DamageSmall}}최종 공격력 ±1#{{Blank}} {{RangeSmall}}사거리 ±2.5#{{Blank}} {{ShotspeedSmall}}탄속 ±0.2#{{Blank}} {{LuckSmall}}행운 ±1"}, -- Experimental Treatment
 	[241] = {"241", "지하로부터의 계약", "방 클리어 보상이 하나 더 나옵니다.#방 클리어 보상이 33%의 확률로 등장하지 않습니다.#{{Blank}} (중첩 시 보상 개수 증가, 보상 미등장 확률 감소)"}, -- Contract from Below
-	[245] = {"245", "시력 2.0", "↓ {{DamageSmall}}공격력 배율 x0.8#공격이 2발로 나갑니다.#{{Collectible153}}Mutant Spider, {{Collectible2}}The Inner Eye, {{Collectible169}}Polyphemus 연사 감소 효과를 제거합니다."}, -- 20/20
+	[245] = {"245", "시력 2.0", "↓ {{DamageSmall}}공격력 배율 x0.8#공격이 2발로 나갑니다."}, -- 20/20
 	[248] = {"248", "군체의식", "파란 아군 파리/거미와 파리/거미 타입의 패밀리어의 공격력이 2배 증가합니다."}, -- Hive Mind
 	[249] = {"249", "추가 선택권", "{{BossRoom}}보스방 보상 아이템이 한개 더 추가되며 하나를 선택하면 나머지는 사라집니다."}, -- There's Options
 	[253] = {"253", "마법의 딱쟁이", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +1#↑ {{LuckSmall}}행운 +1"}, -- Magic Scab
@@ -159,7 +159,7 @@ local repCollectibles={
 	[310] = {"310", "이브의 마스카라", "↑ {{DamageSmall}}공격력 배율 x2#↓ {{TearsSmall}}연사 배율 x0.66#↓ {{ShotspeedSmall}}탄속 -0.5"}, -- Eve's Mascara
 	[314] = {"314", "살찐 허벅지", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +1#↓ {{SpeedSmall}}이동속도 -0.4#장애물을 부술 수 있습니다."}, -- Thunder Thighs
 	[315] = {"315", "이상한 끌개", "공격이 무언가에 부딪힐 때 적과 픽업이 공격에 끌려옵니다."}, -- Strange Attractor
-	[316] = {"316", "저주받은 눈알", "{{Chargeable}} 눈물을 충전한 다음 최대 5발의 눈물을 일렬로 발사합니다.#!!! 충전중 피격 시 스테이지 안의 랜덤한 방으로 순간이동합니다.#{{Blank}} ({{Collectible260}} 보유 시 순간이동 효과 면역)"}, -- Cursed Eye
+	[316] = {"316", "저주받은 눈알", "{{Chargeable}} 눈물을 충전한 다음 최대 5발의 눈물을 일렬로 발사합니다.#!!! 충전중 피격 시 스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Cursed Eye
 	[319] = {"319", "카인의 왼쪽 눈", "랜덤 방향으로 캐릭터의 공격력 x0.75의 공격을 발사합니다."}, -- Cain's Other Eye
 	[320] = {"320", "???의 하나뿐인 친구", "공격하는 방향으로 이동하며 접촉하는 적에게 틱 당 3.5의 피해를 입힙니다."}, -- ???'s Only Friend
 	[323] = {"323", "아이작의 눈물", "사용 시 캐릭터 기준 8방향으로 캐릭터의 공격력 +5의 눈물을 발사합니다.#눈물을 발사할 때마다 충전량이 증가합니다."}, -- Isaac's Tears
@@ -181,11 +181,12 @@ local repCollectibles={
 	-- Afterbirth
 	[347] = {"347", "복시", "!!! 일회용#사용 시 방 안의 모든 아이템과 픽업을 2배로 복사합니다.#복사된 아이템은 선택형 상태가 유지되며 판매 가격이 제거됩니다."}, -- Diplopia
 	[348] = {"348", "위약", "{{Pill}} 사용 시 현재 소지중인 알약의 효과를 발동합니다.#알약에 따라서 충전량이 달라집니다."}, -- Placebo
+	[349] = {"349", "나무 동전", "사용 시 59% 확률로 {{Coin}}동전을 하나 드랍합니다."}, -- Wooden Nickel
 	[350] = {"350", "독성 쇼크", "{{Poison}} 방 입장 시 방 안의 모든 적에게 공격력 x4의 피해를 줍니다.#{{Blank}} (보스는 x2)#적 처치시 초록 장판이 생기며 장판에 닿은 적은 초당 30의 피해를 입습니다."}, -- Toxic Shock
 	[352] = {"352", "유리 대포", "사용 시 공격력 x10 +10의 눈물을 발사합니다.#!!! 패널티 피격 시 체력 2칸의 피해를 추가로 입으며 대포가 부서집니다.#부서진 대포의 충전량을 채우면 대포를 복구할 수 있습니다."}, -- Glass Cannon
 	[354] = {"354", "식품 완구", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +1#장신구를 하나 드랍합니다."}, -- Crack Jacks
 	[355] = {"355", "엄마의 진주목걸이", "↑ {{SoulHeart}}소울하트 +1#↑ {{RangeSmall}}사거리 +2.5#↑ {{LuckSmall}}행운 +1"}, -- Mom's Pearls
-	[360] = {"360", "인큐버스", "공격하는 방향으로 캐릭터의 공격력 x0.75의 공격을 발사합니다.#{{Player13}} (Lilith류의 경우 공격력 x1.0)"}, -- Incubus
+	[360] = {"360", "인큐버스", "공격하는 방향으로 캐릭터의 공격력 x0.75의 공격을 발사합니다."}, -- Incubus
 	[365] = {"365", "길잃은 파리", "벽과 장애물 둘레를 돌며 접촉하는 적에게 초당 56의 피해를 입힙니다.#주변의 적을 유인합니다."}, -- Lost Fly
 	[366] = {"366", "분산형 폭탄", "↑ {{Bomb}}폭탄 +5#폭탄이 터지면 작은 폭탄 4~5개가 나와 한번 더 폭발합니다."}, -- Scatter Bombs
 	[367] = {"367", "끈끈이 폭탄", "↑ {{Bomb}}폭탄 +5#{{Slow}} 폭탄이 터진 자리에 15초간 하얀 장판이 생기며 닿은 적은 느려집니다.#폭탄이 적에게 접촉 시 달라붙으며 해당 폭탄으로 달라붙은 적을 처치 시 파란 아군 거미 2~5마리를 소환합니다."}, -- Sticky Bombs
@@ -264,7 +265,7 @@ local repCollectibles={
 	[496] = {"496", "안락사", "3.33%의 확률로 공격력 x3의 적을 즉사시키며 눈물이 10방향으로 퍼지는 공격이 나갑니다.#{{LuckSmall}} 행운 15 이상일 때 25% 확률"}, -- Euthanasia
 	[497] = {"497", "위장 속옷", "{{Confusion}} {{ColorOrange}}공격키를 누르지 않은 상태에서{{CR}} 방 입장 시 방 안의 모든 적들이 혼란에 걸리며 캐릭터의 {{SpeedSmall}}이동속도 +0.5 증가합니다.#!!! 공격키를 누르면 효과가 풀리면서 이하 효과 발동:#주변의 적에게 15의 피해를 줍니다.#1초동안 매우 빠르게 감소하는 {{DamageSmall}}공격력 +10.5, {{TearsSmall}}연사(상한) +7.5"}, -- Camo Undies
 	[498] = {"498", "이중성", "{{AngelDevilChanceSmall}} 악마방과 천사방이 함께 등장하며 두 방 중 한곳을 선택할 수 있습니다."}, -- Duality
-	[501] = {"501", "탐욕의 식도", "동전 25개 당 {{EmptyHeart}}빈 최대 체력 +1#99개 이후에는 동전 100개 당 {{EmptyHeart}}빈 최대 체력 +1#{{Player14}}/{{Player33}}Keeper: 동전 25개 당 체력 상한 +1#동전으로 늘어난 체력은 동전 소비 시 사라집니다."}, -- Greed's Gullet
+	[501] = {"501", "탐욕의 식도", "동전 25개 당 {{EmptyHeart}}빈 최대 체력 +1#동전으로 늘어난 체력은 동전 소비 시 사라집니다."}, -- Greed's Gullet
 	[502] = {"502", "대왕 여드름", "{{Slow}} 확률적으로 공격력 x2의 적을 둔화시키는 눈물이 나갑니다."}, -- Large Zit
 	[503] = {"503", "작은 뿔", "적에게 접촉 시 3.5의 피해를 입힙니다.#5%의 확률로 적을 즉사시키며 12 x3의 추가 피해를 주는 공격이 나갑니다.#{{LuckSmall}} 행운 15 이상일 때 20% 확률"}, -- Little Horn
 	[504] = {"504", "갈색 너겟", "사용 시 그 자리에서 주위의 적에게 공격력 3.5의 눈물을 발사하는 파란 파리를 소환합니다."}, -- Brown Nugget
@@ -374,7 +375,7 @@ local repCollectibles={
 	[639] = {"639", "역겨운 하트", "사용 시 {{RottenHeart}}썩은하트 +1"}, -- Yuck Heart
 	[640] = {"640", "영혼의 항아리", "적 처치시 항아리에 불꽃이 저장됩니다.#사용 시 저장된 불꽃을 소모해 공격하는 방향으로 공격력 초당 22.5의 불꽃을 발사합니다.#!!! 불꽃의 공격력: 22.5 + (4.5 * 현재 스테이지)"}, -- Urn of Souls
 	[641] = {"641", "아겔다마", "적이 있는 방에 입장 시 캐릭터의 뒤에 눈물끈이 생성됩니다.#눈물끈에 닿은 적은 3.5의 피해를 입습니다."}, -- Akeldama
-	[642] = {"642", "마법의 피부", "사용 시 {{Heart}}/{{BoneHeart}}1칸 또는 {{SoulHeart}}2칸을 {{BrokenHeart}}소지 불가능 체력 1칸으로 바꾸며 그 방의 아이템을 하나 생성합니다.#사용 횟수에 비례하여 {{Collectible642}} 미소지 시 일정 확률로 등장하는 아이템이 {{Collectible642}}으로 교체됩니다.#!!! {{ColorSilver}}1회:33%/2회:50%/3회+:100%{{CR}}#현재 층에 판매 중이지 않은 Magic Skin이 있을 경우 교체 확률 대폭 감소#!!! {{Player10}}/{{Player31}}The Lost: 일회용"}, -- Magic Skin
+	[642] = {"642", "마법의 피부", "사용 시 {{Heart}}/{{BoneHeart}}1칸 또는 {{SoulHeart}}2칸을 {{BrokenHeart}}소지 불가능 체력 1칸으로 바꾸며 그 방의 아이템을 하나 생성합니다.#사용 횟수에 비례하여 {{Collectible642}} 미소지 시 일정 확률로 등장하는 아이템이 {{Collectible642}}으로 교체됩니다.#!!! {{ColorSilver}}1회:33%/2회:50%/3회+:100%{{CR}}#현재 층에 판매 중이지 않은 Magic Skin이 있을 경우 교체 확률 대폭 감소"}, -- Magic Skin
 	[643] = {"643", "계시", "↑ {{SoulHeart}}소울하트 +2#비행 능력을 얻습니다.#{{Chargeable}} 공격키를 2.5초 이상 누르면 충전되며 공격키를 떼면 일직선 방향으로 레이저를 발사합니다.#레이저는 다단히트로 적에게 최대 15번의 피해를 줍니다."}, -- Revelation
 	[644] = {"644", "위로상", "↑ 가장 낮은 능력치가 특정 수치만큼 증가합니다.#{{DamageSmall}}:+1/{{TearsSmall}}:+0.5/{{SpeedSmall}}:+0.2/{{RangeSmall}}:+2.5#가장 적게 소지중인 픽업을 특정 개수만큼 드랍합니다."}, -- Consolation Prize
 	[645] = {"645", "타이니토마", "캐릭터 주위를 돌며 적의 탄환을 막고 접촉한 적에게 3.5의 피해를 줍니다.#적과 3번 접촉 시 2조각으로 분열하며 2번 분열 시 파괴되어 파란 아군 거미를 3마리 소환합니다.#완전히 파괴된 경우 5초 후 재생성됩니다."}, -- Tinytoma
@@ -436,7 +437,7 @@ local repCollectibles={
 	[701] = {"701", "아이작의 무덤", "{{DirtyChest}} 스테이지 첫 방에 오래된 잠긴상자를 1개 소환합니다.#{{DirtyChest}} 오래된 상자에는 {{SoulHeart}}/{{Trinket}}장신구/{{AngelRoom}}천사방/엄마아빠 관련 아이템이 등장할 수 있습니다."}, -- Isaac's Tomb
 	[702] = {"702", "복수심의 영혼", "피격 시 그 스테이지에서 캐릭터 주위를 돌며 공격하는 방향으로 공격력 3의 눈물을 발사하는 불꽃을 소환합니다.#{{Blank}} (최대 6회 적용)"}, -- Vengeful Spirit
 	[703] = {"703", "에사우 주니어", "사용 시 Esau 상태 ({{BlackHeart}}블랙하트 3, {{DamageSmall}}공격력 +2, 비행, 고유능력 취급)로 전환됩니다.#재사용 시 원래 캐릭터로 전환됩니다.#두 캐릭터는 체력과 아이템을 공유하지 않습니다.#처음 사용 시 Esau 캐릭터는 기존 캐릭터가 갖고 있는 아이템의 개수만큼 랜덤한 아이템을 가집니다."}, -- Esau Jr.
-	[704] = {"704", "폭주!", "사용 시 5초 동안 {{DamageSmall}}공격력이 +3, {{SpeedSmall}}이동속도가 +0.4 증가하며 공격이 공격력 x3의 휘두르는 뼈 공격으로 변경됩니다.#방 클리어로 충전되지 않으며 적에게 120 +(40 * 현재 스테이지)의 피해를 주면 충전됩니다.#폭주 상태에서 적 처치 시 지속 시간 1초 증가"}, -- Berserk!
+	[704] = {"704", "폭주!", "사용 시 5초 동안 {{DamageSmall}}공격력 +3, {{SpeedSmall}}이동속도 +0.4 증가하며 공격이 적의 탄환을 반사하는 공격력 x3의 휘두르는 뼈 공격으로 변경됩니다.#방 클리어로 충전되지 않으며 적에게 120 +(40 * 현재 스테이지)의 피해를 주면 충전됩니다.#폭주 상태에서 적 처치 시 지속 시간 1초 연장 + 처치한 순간 무적"}, -- Berserk!
 	[705] = {"705", "흑마술", "사용 시 1초 동안 {{SpeedSmall}}이동속도가 +1.0 증가하고 무적 상태가 되며 적과 탄환을 통과할 수 있습니다.#효과가 끝나면 통과한 적들에게 공격력 x3의 피해를 줍니다.#발동 중 공격키를 누르면 즉시 해제됩니다."}, -- Dark Arts
 	[706] = {"706", "무저갱", "사용 시 방 안의 아이템을 흡수하며 흡수한 아이템의 수만큼 특수한 아군 파리를 소환합니다.#소환된 아군 파리는 공격하는 방향으로 돌진하며 접촉한 적에게 초당 공격력 x3의 피해를 줍니다.#흡수한 아이템에 따라 소환되는 아군 파리의 능력이 달라집니다."}, -- Abyss
 	[707] = {"707", "만찬", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +1"}, -- Supper
@@ -457,7 +458,7 @@ local repCollectibles={
 	[722] = {"722", "아니마 솔라", "사용 시 가장 가까운 적을 5초간 움직이지 못하게 만듭니다.#다시 사용하여 사슬을 강제로 끊을 수 있습니다."}, -- Anima Sola
 	[723] = {"723", "스핀다운 주사위", "사용 시 방 안의 모든 아이템을 코드 앞번호의 아이템으로 바꿉니다.#!!! 해금하지 않은 아이템과 현재 게임에서 등장할 수 없는 아이템은 등장하지 않습니다."}, -- Spindown Dice
 	[724] = {"724", "과응고", "{{Heart}} 피격 시 1.5초 후 사라지는 빨간하트를 드랍합니다."}, -- Hypercoagulation
-	[725] = {"725", "과민석 대장 증후군", "적에게 일정량의 피해를 주고 공격키를 떼면 Tainted ???의 똥 중 하나를 사용합니다:#!!! 랜덤한 똥을 들고 던지거나 #{{Blank}} 랜덤한 효과의 방귀를 뀌거나 #{{Blank}} 적에게 공격력 x1.5의 피해를 주는 갈색 장판을 생성하거나 #{{Blank}} 5개의 점화된 폭탄을 생성합니다."}, -- IBS
+	[725] = {"725", "", "{{Player25}} 적에게 일정량의 피해를 주고 공격키를 떼면 Tainted ???의 똥 중 하나를 사용합니다:# {{PoopSpell1}}{{PoopSpell2}}{{PoopSpell3}}{{PoopSpell4}}{{PoopSpell5}}{{PoopSpell6}}{{PoopSpell7}}랜덤 똥을 들고 던지거나 #{{Blank}} {{PoopSpell9}}방귀 or {{PoopSpell8}}갈색 장판 생성 #{{PoopSpell10}}폭탄을 들고 던지거나 {{PoopSpell11}}5개의 점화된 폭탄을 생성합니다."}, -- IBS
 	[726] = {"726", "각혈", "공격키를 두번 누르면 재채기를 해 눈앞의 적에게 공격력 x1.5의 피해를 주고 적을 강하게 밀쳐냅니다.#{{BrimstoneCurse}} 재채기에 맞은 적은 일정 시간 동안 유황 표식이 걸리며 혈사류 공격에 공격력 x2 +3의 피해를 입습니다."}, -- Hemoptysis
 	[727] = {"727", "유령 폭탄", "↑ {{Bomb}}폭탄 +5#폭탄이 터질 때 유령이 나와 적을 따라다니며 접촉하는 적에게 초당 공격력 x2의 피해를 주고 10초 후 폭파되어 주변의 적에게 7의 피해를 줍니다."}, -- Ghost Bombs
 	[728] = {"728", "겔로", "사용 시 공격하는 방향으로 태아를 발사해 접촉한 적에게 공격력 x3의 피해를 입힙니다.#태아는 그 방에서 캐릭터와 연결되어 공격하는 방향으로 움직이며 적을 향해 공격력 x0.75의 캐릭터와 같은 공격을 발사합니다.#{{Player13}} (Lilith류의 경우 공격력 x1.0)"}, -- Gello
@@ -474,9 +475,9 @@ EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "방 안의 모든 아이템이 랜덤한 아이템과 1초마다 전환되며 두 아이템 중 하나를 선택할 수 있습니다."},
 	{"Magdalene", "", "↑ {{Heart}}최대 체력 +1#↑ 체력 상한 +6"},
 	{"Cain", "", "↑ {{LuckSmall}}행운 +1#오락실 구조가 특수하게 변경됩니다.#1~9스테이지(Cathedral/Sheol)에서 오락실이 생성됩니다."},
-	{"Judas", "", "{{Collectible34}}Book of Belial이 다른 액티브와 결합되며 결합된 액티브 사용 시 그 방에서 액티브 충전량 1칸 당 {{DamageSmall}}공격력이 0.7 증가합니다.#일부 액티브 아이템에 특수한 효과를 추가합니다."},
+	{"Judas", "", "{{Collectible34}} Book of Belial이 다른 액티브와 결합되며 결합된 액티브 사용 시 그 방에서 액티브 충전량 1칸 당 {{DamageSmall}}공격력이 0.7 증가합니다.#일부 액티브 아이템에 특수한 효과를 추가합니다."},
 	{"???", "", "최대 체력 증가 시 증가되는 {{SoulHeart}}소울하트의 양이 2배로 증가합니다."},
-	{"Eve", "", "{{Collectible122}}Whore of Babylon과 {{Collectible117}}Dead Bird의 효과가 상시 발동됩니다."},
+	{"Eve", "", "{{Collectible122}} Whore of Babylon과 {{Collectible117}} Dead Bird의 효과가 조건과 무관하게 항상 발동됩니다."},
 	{"Samson", "", "{{Collectible157}} Bloody Lust의 {{DamageSmall}}공격력 보너스 최대 스택 +4회(최대 +14)"},
 	{"Azazel", "", "혈사포의 굵기가 대폭 증가합니다."},
 	{"Lazarus", "", "부활 시마다 {{DamageSmall}}공격력 +7.2#증가한 공격력은 시간이 지날수록 천천히 감소됩니다.#부활 이전으로 돌아가도 잔여 공격력 증가는 유지됩니다."},
@@ -486,7 +487,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Black Judas", "", "{{Collectible34}}Book of Belial이 다른 액티브와 결합되며 액티브 사용 시 그 방에서 액티브 충전량 1칸 당 {{DamageSmall}}공격력이 0.7 증가합니다."},
 	{"Lilith", "", "패밀리어의 위치가 캐릭터의 전방으로 고정됩니다."},
 	{"Keeper", "", "↑ {{CoinHeart}}최대 체력 +1#↑ 체력 상한 +1"},
-	{"Apollyon", "", "{{Collectible477}}Void 사용 시 확률적으로 이전에 흡수했던 아이템을 생성합니다.#흡수한 아이템이 많을수록 아이템이 생성되는 확률이 증가합니다.#한 번 적용된 스탯 보너스는 감소하지 않습니다."},
+	{"Apollyon", "", "{{Collectible477}} Void 사용 시 확률적으로 이전에 흡수했던 아이템을 생성합니다.#흡수한 아이템이 많을수록 아이템이 생성되는 확률이 증가합니다.#한 번 적용된 스탯 보너스는 감소하지 않습니다."},
 	{"The Forgotten", "", "영혼이 해골에 속박되지 않으며 방을 자유자재로 이동할 수 있습니다."},
 	{"The Forgotten Soul", "", "영혼이 해골에 속박되지 않으며 방을 자유자재로 이동할 수 있습니다."},
 	{"Bethany", "", "확률적으로 액티브 아이템 사용 시 소울하트가 감소하지 않습니다."},
@@ -496,7 +497,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Magdalene", "", "↑ 고정 체력 +1#!!! 추가된 고정 체력은 악마방/천사방 확률에 영향을 끼칩니다."},
 	{"Tainted Cain", "", "↑ 아이템 분해 시 생성되는 픽업의 개수가 2배로 증가합니다."},
 	{"Tainted Judas", "", "{{Collectible705}} Dark Arts의 인식 범위 대폭 증가"},
-	{"Tainted ???", "", "↑ {{PoopPickup}}소지 가능한 똥 개수 +20"},
+	{"Tainted ???", "", "↑ {{PoopPickup}} 소지 가능한 똥 개수 +20"},
 	{"Tainted Eve", "", "빨간 클롯이 죽으면 2초 후 사라지는 {{Heart}}빨간하트를 드랍합니다."},
 	{"Tainted Samson", "", "{{Collectible704}} 적 처치시 늘어나는 광폭화 지속시간이 2초 증가합니다."},
 	{"Tainted Azazel", "", "{{Collectible726}} 재채기의 범위가 2배로 증가합니다."},
@@ -869,7 +870,7 @@ local repTrinkets={
 	[153] = {"153", "엄마의 머리뭉치", "방 입장 시 확률적으로 그 방에서 랜덤한 엄마 아이템 효과를 얻습니다."}, -- Mom's Lock
 	[154] = {"154", "주사위 가방", "방 입장 시 확률적으로 그 방에서 랜덤한 일회용 주사위 아이템 픽업을 얻습니다."}, -- Dice Bag
 	[155] = {"155", "신성한 왕관", "Cathedral 스테이지에서 {{TreasureRoom}}보물방과 {{Shop}}상점이 생성됩니다."}, -- Holy Crown
-	[156] = {"156", "어머니의 키스", "↑ 소지중일 때 {{Heart}}최대 체력 +1#↑ {{Player14}}/{{Player33}} Keeper: 소지중일 때 체력 상한 +1"}, -- Mother's Kiss
+	[156] = {"156", "어머니의 키스", "↑ 소지중일 때 {{Heart}}최대 체력 +1"}, -- Mother's Kiss
 	[157] = {"157", "찢어진 카드", "!!! 눈물을 15번 발사할 때 마다:#{{Blank}} {{Collectible5}}{{Collectible149}}캐릭터에게 되돌아오는 폭발하는 독성 눈물을 발사합니다."}, -- Torn Card
 	[158] = {"158", "찢어진 주머니", "피격 시 소지중인 픽업 중 2가지를 드랍합니다."}, -- Torn Pocket
 	[159] = {"159", "도금 열쇠", "↑ {{Key}}열쇠 +1#{{GoldenChest}} 낡은상자, 메가상자를 제외한 모든 상자가 황금상자로 교체됩니다.#{{GoldenChest}} 황금상자가 드랍하는 픽업의 양이 종류와 상관없이 최소 2개가 보장됩니다.#{{GoldenChest}} 황금상자에서 {{Rune}}룬의 등장 확률이 증가하며 {{Pill}}알약과 {{Battery}}배터리가 등장할 수 있습니다."}, -- Gilded Key
@@ -1273,22 +1274,27 @@ EID.descriptions[languageCode].spindownError = "아이템 사라짐"
 EID.descriptions[languageCode].CraftingBagContent = "현재픽업:"
 EID.descriptions[languageCode].CraftingRoomContent = "방:"
 EID.descriptions[languageCode].CraftingFloorContent = "스테이지:"
+EID.descriptions[languageCode].CraftingSearch = "찾기:"
 
 EID.descriptions[languageCode].CraftingBagQuality = "현재등급:"
 EID.descriptions[languageCode].CraftingBestQuality = "최고등급:"
 
 EID.descriptions[languageCode].CraftingHideKey = "숨기기:"
 EID.descriptions[languageCode].CraftingPreviewKey = "미리보기:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "!!! 아이템이 해금되어 있지 않을 경우 결과가 달라질 수 있습니다."
+-- {1} will be converted to the number of recipes
+EID.descriptions[languageCode].CraftingMore = "...+{1}개 더"
+-- {1} will be converted into the number of available items
+EID.descriptions[languageCode].CraftingNumAvailableItems = "{1}/8개"
+EID.descriptions[languageCode].CraftingWarningAvailableItems = "스테이지에 픽업이 최소 8개 이상이여야 제작 가능"
+-- {1} will be converted into the name of the key that toggles the BoC visibility
+EID.descriptions[languageCode].CraftingIsHidden = "현재 숨겨짐({1} 키로 표시)"
 
-EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}}+{{ButtonY}}or{{ButtonA}}#목록 고정:{{ButtonX}}#목록 새로고침:{{ButtonB}}#초기화:{{ButtonRB}}꾹 누르기)"
+EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}}+{{ButtonY}}or{{ButtonA}}#목록 고정:{{ButtonX}}#목록 새로고침:{{ButtonB}}#초기화:{{ButtonRB}}꾹 누르기, 찾기:{{ButtonEnter}})"
 
-EID.descriptions[languageCode].BlankCardCharge = "Blank Card 충전량:"
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card로 사용 시:"
 EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."
-EID.descriptions[languageCode].ClearRuneCharge = "Clear Rune 충전량:"
-EID.descriptions[languageCode].PlaceboCharge = "Placebo 충전량:"
-EID.descriptions[languageCode].FlipItemToggleInfo = "( {{CONFIG_BoC_Toggle}} (맵 펼치기) 버튼을 꾹 눌러 설명 보기)"
+EID.descriptions[languageCode].VariableCharge = "{1} 충전량:"
+EID.descriptions[languageCode].FlipItemToggleInfo = "( {{CONFIG_BoC_Toggle}} 맵 버튼을 꾹 눌러 설명 보기)"
 
 EID.descriptions[languageCode].GlowingHourglassTransformed = "스테이지 진입 시 복원됨"
 
@@ -1310,18 +1316,86 @@ EID.descriptions[languageCode].ModdedRecipesWarningText = "아이템 추가 모�
 
 EID.descriptions[languageCode].ResultsWithX = "({1} 사용 시 결과)"
 
+-- Conditional descriptions
+-- Strings will be appended to the original description
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs
 local repConditions={
-	["5.100.161"] = "{{Player25}} Tainted ???의 경우 ??? 캐릭터로 변경되지 않습니다.", -- Ankh
-	["5.350.28"] = "{{Player25}} Tainted ???의 경우 ??? 캐릭터로 변경되지 않습니다.", -- Broken Ankh
-	["5.100.311"] = "{{Player24}} Tainted Judas의 경우 Black Judas 캐릭터로 변경되지 않습니다.", -- Judas's Shadow
-	["5.100.332"] = "{{Player29}} TTainted Lazarus의 경우 Lazarus Risen 캐릭터로 변경되지 않습니다.", -- Lazarus's Rags
-	["5.350.23 (Tainted Lost)"] = "{{Player31}} Tainted Lost의 경우 The Lost 캐릭터로 변경되지 않습니다.", -- Missing Poster
-	["5.100.676"] = "빨간하트를 소지할 수 없는 캐릭터는 무효과", -- Empty Heart
-	["5.300.15 (Tarot)"] = "{{DemonBeggar}} 악마거지를 {{ColorShinyPurple}}2{{CR}}명 소환합니다.", -- Temperance (Greed Mode + Tarot Cloth effect)
-	["5.350.1"] = "{{Player14}} Keeper: 0~1개", -- Swallowed Penny
+	["Tainted Revive"] = "{1}: 캐릭터 변경 없이 부활합니다.",
+
 	["5.100.135 (Hard Mode)"] = {"1~2개", "1개", "2~3개", "2개"}, -- IV Bag Hard Mode (modify the PHD text too)
+	["5.100.642"] = "{1}: 일회용", -- Magic Skin
+	["5.100.240"] = "{1}: 아이템을 버려도 변경된 능력치 유지", -- Experimental Treatment
+	["5.100.644"] = "{1}: 아이템을 버려도 변경된 능력치 유지", -- Consolation Prize
+
+	["5.100.549"] = "{1}: ↑ {{TearsSmall}}연사(상한) +0.4", -- Brittle Bones (Keeper+Lost)
+	["5.100.694"] = "{1}: 추가 허용 피격 수 +4", -- Heartbreak
+
+	["5.100.201"] = "{1}을/를 완충합니다.", --Iron Bar
+	["5.350.172"] = "{1} 소지 시 순간이동 면역", -- Cursed Penny
+	["5.100.188"] = "{1}: 피해량 5로 증가", -- Cain + Abel
+	["5.100.360"] = "{1}: 공격력 x1의 공격을 발사", -- Lilith + Incubus
+	["5.100.501 (Deep Pockets)"] = "99개 이후에는 동전 100개 당 {{EmptyHeart}}빈 최대 체력 +1", -- Greed's Gullet + Deep Pockets
+	["5.350.156"] = "{1}: 체력 상한 +1", -- Mother's Kiss
+	["5.100.230 (Keeper)"] = "{1}: 체력 한칸을 유지", -- Abaddon
+	["5.100.230 (Bethany)"] = "{1}: 체력 한칸 및 빨간하트 반칸을 유지", -- Abaddon
+	["5.100.230 (Tainted Bethany)"] = "{1}: 빨간 충전량이 소멸되지 않음", -- Abaddon
+
+	["5.100.245"] = "{1}의 연사 감소 효과를 제거합니다.", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	["5.100.245 (Keeper)"] = "{1}: 연사 증가 및 발사 수 감소", -- 20/20 + Keeper
+	["20/20"] = "{1} 소지 시 연사 감소 효과 제거됨", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	["5.100.705"] = "흑마술로 통과한 적과 탄환 수만큼 일시적 공격력 +1", -- Dark Arts + Dark/Tainted Judas
+	["5.100.205 (Tainted Magdalene)"] = "Yum Heart 연쇄 충전 가능", -- Sharp Plug + Tainted Magdalene
+	["Ice Tears"] = "적을 얼릴 때 적 처치 효과를 내지 않음", -- Uranus Anti-Synergy
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
+
+local repBFFSSynergies = {
+	["5.100.360"] = "캐릭터의 공격력 x1.5의 공격을 발사 ({{Player13}}의 경우 x2)", -- Incubus
+	["5.100.610"] = "새의 피해량 x2, 직선 대신 x자 방향으로 충격파, 충격파 피해량이 증가하지 않음", -- Bird Cage
+	["5.100.569"] = "빨간하트를 깎았을 때 발동 효과 +2칸", -- Blood Oath
+	["5.100.178"] = "장판 피해량 x2, 장판 중앙에 파란 불꽃을 소환", -- Holy Water
+	["5.100.276"] = "눈물을 추가로 흩뿌리며 빨간 장판을 생성합니다.", -- Isaac's Heart
+	["5.100.612"] = "영혼에 Holy Mantle 효과가 발동", -- Lost Soul
+	["5.100.635"] = "사용 후 인형 기준 8방향으로 캐릭터의 눈물과 같은 눈물을 발사합니다.", -- Stitches
+}
+EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
+
+-- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
+local repCharacterInfo = {
+	[4] = {"???", "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#{{DevilChanceSmall}} 악마 거래 가격이 기존 최대 체력 가격으로 할인됩니다.#{{Trinket86}} 똥을 파괴할 때마다 파란 아군 파리를 하나 소환합니다."},
+	[8] = {"Lazarus", "{{Collectible332}} 사망 시 그 방에서 최대 체력 1칸으로 부활합니다.#부활 상태는 스테이지 진입 시 초기화됩니다.#부활 시마다 {{DamageSmall}}공격력 + 0.5"},
+	[10] = {"The Lost", "지형 관통 공격 + 날아다닐 수 있으나 체력이 없어 한 번 맞으면 사망합니다.#악마 거래를 체력 상관없이 획득할 수 있으나 하나 획득 시 나머지는 사라집니다."},
+	[11] = {"Lazarus Risen", "부활 이후의 나사로로 능력치가 증가되어 있습니다.#스테이지 진입 시 부활 여부가 초기화되어 부활 이전 상태로 돌아갑니다."},
+	[12] = {"Dark Judas", "{{DamageSmall}} 공격력 배율 x2#{{BlackHeart}} 최대 체력 = 블랙하트의 보정을 받습니다."},
+	[14] = {"Keeper", "{{CoinHeart}} 체력이 하트가 아닌 코인으로 이루어져 있으며 3칸의 상한을 가집니다.#동전으로 체력 회복 가능#하트 픽업이 자폭 파리로 바뀝니다.#{{DevilChanceSmall} 악마 거래 가격이 기존 최대 체력 가격에 따라 15{{Coid}}/30{{Coin}}으로 바뀝니다."},
+	[18] = {"Bethany", "소울하트를 소지할 수 없으며 모든 소울하트는 액티브 아이템의 게이지로 사용할 수 있습니다."},
+	[19] = {"Jacob", "야곱과 에사우가 같이 움직이며 {{ButtonRT}} (Ctrl)키를 누르는 동안 에사우의 위치가 고정됩니다.#{{Bomb}} 폭탄 설치 시 두 캐릭터가 동시에 설치합니다.#한 쪽 사망 시 반대쪽도 사망합니다.#에사우의 액티브는 기존 카드/알약 사용 버튼으로 발동하며 카드/알약은 양 쪽 모두 {{ButtonRT}}+액티브 버튼으로 발동합니다.#선택형 아이템을 동시에 획득 시 양 쪽 모두 획득 가능"},
+	[20] = {"Esau", ""},
+
+	[21] = {"Tainted Isaac", "모든 받침대 아이템이 2개의 선택지를 지닙니다.#패시브 아이템은 8개까지만 소지할 수 있으며 8개를 전부 소지한 상태에서 아이템 획득 시 선택된 아이템과 교체합니다.#교체할 아이템은 {{ButtonRT}} (Ctrl)키로 바꿀 수 있습니다."},
+	[22] = {"Tainted Magdalene", "#기본 체력 2칸을 제외한 모든 체력은 서서히 반칸씩 사라집니다. 사라지는 체력을 잃어도 악마방/천사방 확률에 영향이 없습니다.#공격력이 약하지만 적과 접촉시 공격력 x6의 근접 공격을 합니다.#체력을 직접적으로 회복시켜주는 아이템의 회복량이 2배가 됩니다.#{{Collectible724}} 근접 공격으로 적을 처치하면 1.5초 후 사라지는 {{Heart}}빨간하트를 드랍합니다."},
+	[23] = {"Tainted Cain", "아이템을 획득할 수 없으며 획득을 시도하면 픽업 아이템으로 분해됩니다.#특정 방에서 분해 시 특정 픽업 아이템이 반드시 하나 이상 등장합니다.#{{Collectible710}} 8개의 픽업 조합 시 아이템을 획득할 수 있으며 {{ButtonRT}}(Ctrl)키를 누르면 꽉 찼을 때 교체할 픽업을 선택할 수 있습니다."},
+	[24] = {"Tainted Judas", "{{BlackHeart}} 최대 체력 = 블랙하트의 보정을 받습니다."},
+	[25] = {"Tainted ???", "{{SoulHeart}} 최대 체력 = 소울하트 보정#{{Collectible725}} 폭탄을 사용할 수 없으며 폭탄 대신 여러 종류의 똥을 사용합니다.#적에게 피해를 줄 때마다 확률적으로 똥을 드랍합니다.#HUD 상에서 다음에 사용될 똥을 미리볼 수 있습니다.#{{Collectible715}} 똥은 반드시 순서대로만 사용할 수 있으며 Hold를 통해 똥을 하나 보관할 수 있습니다."},
+	[26] = {"Tainted Eve", "{{Collectible713}} 공격 키를 2.5초동안 누르고 있으면 체력 반칸을 소모해 클롯 패밀리어를 소환합니다.#소모한 체력 종류에 따라 소환되는 클롯의 종류가 달라집니다.#클롯의 체력은 시간이 지날수록 줄어들며 {{Collectible713}}Sumptorium 사용 시 클롯을 체력으로 되돌립니다.#{{ButtonRT}} (Ctrl)키를 누르는 동안 클롯의 위치가 고정됩니다"},
+	[27] = {"Tainted Samson", "{{Collectible704}} 일정 수만큼 피격 및 적 공격 시 폭주 상태로 돌입합니다.#{{Timer}} 폭주 상태 돌입 시 5초 동안 {{DamageSmall}}공격력 +3, {{SpeedSmall}}이동속도 +0.4 증가하며 공격이 적의 탄환을 반사하는 공격력 x3의 휘두르는 뼈 공격으로 변경됩니다.#폭주 상태에서 적 처치 시 지속 시간 1초 연장 + 처치한 순간 무적"},
+	[28] = {"Tainted Azazel", "{{Collectible118}} 굵기가 매우 얇은 혈사포를 발사합니다.#혈사포는 적에게 공격력 x0.5의 피해를 입힙니다.#{{Collectible704}} 공격 시작 시 공격력 x1.5의 재채기를 하며 재채기 명중 시 혈사포를 절반만큼 충전시킵니다.#{{BrimstoneCurse}} 재채기에 맞은 적은 일정 시간 동안 유황 표식이 걸리며 혈사류 공격에 공격력 x2 +3의 피해 + 처치 시 주변의 적에게 유황 표식을 남깁니다."},
+	[29] = {"Tainted Lazarus", "2가지의 폼이 있으며 삶/죽음 폼의 능력치 및 아이템은 따로 적용됩니다.#{{Collectible711}} 액티브 쿨타임이 채워지는 시점, 혹은 Flip 사용 시 죽음 폼으로 강제 전환됩니다."},
+	[30] = {"Tainted Eden", "패널티 피격 시 능력치, 아이템, 장신구, 카드/알약 등이 바뀝니다.#바뀐 아이템은 획득했던 아이템의 배열로 바뀝니다."},
+	[31] = {"Tainted Lost", "{{Card51}} 카드 등장 시 10%의 확률로 Holy Card로 교체됩니다.#{{Collectible691}} {{Quality2}} 이하의 아이템이 20%의 확률로 리롤되며 'offensive' 태그의 아이템만 등장합니다."},
+	[32] = {"Tainted Lilith", "{{Collectible728}} 공격 키를 누르기 시작하면 태아를 발사 + 누르고 있는 동안 태아가 공격하며, 공격 키를 떼면 발사한 태아가 다시 들어갑니다."},
+	[33] = {"Tainted Keeper", "{{CoinHeart}} 체력이 하트가 아닌 코인으로 이루어져 있으며 2칸의 상한을 가집니다.#적 처치 시 2초 후 사라지는 동전을 뿌립니다.#모든 아이템의 가격이 기존 최대 체력 가격에 따라 15{{Coid}}/30{{Coin}}으로 바뀝니다.#상점이 항상 열려 있으며 입고된 아이템이 늘어납니다."},
+	[34] = {"Tainted Apollyon", ""},
+	[35] = {"Tainted Forgotten", "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#움직일 수 없으며 자유롭게 움직일 수 있는 영혼이 뼈 더미를 집고 던져야 합니다.#피격 판정은 영혼에게만 있습니다.#폭탄 설치 시 뼈 더미의 위치에서 설치됩니다."},
+	[36] = {"Tainted Bethany", "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#모든 빨간하트는 액티브 아이템의 게이지로 사용할 수 있습니다."},
+	[37] = {"Tainted Jacob", "Dark Esau가 캐릭터를 향해 쫒아오며 가까이 있으면 돌진합니다.#{{Collectible722}} Anima Sola 사용 시 5초동안 Dark Esau를 묶으며 재사용, 혹은 시간 소진 시 더 크게 돌진합니다.#Dark Esau의 큰 돌진 공격은 지나가는 자리의 적에게 초당 300의 방어 무시+화상 피해를 줍니다.#Dark Esau에게 피격 시 유령 상태로 바뀌며 이후 1회 피격 시 사망합니다.#유령 상태에서 스테이지 진입 시 일반 상태로 돌아옵니다."},
+	[38] = {"Dead Tainted Lazarus", "2가지의 폼이 있으며 삶/죽음 폼의 능력치 및 아이템은 따로 적용됩니다.#{{Collectible711}} 액티브 쿨타임이 채워지는 시점, 혹은 Flip 사용 시 죽음 폼으로 강제 전환됩니다."},
+	[39] = {"Tainted Jacob 2", "!!! 유령 상태: {{ColorRed}}한 번이라도 피격 시 즉시 사망합니다.{{CR}}#악마 거래를 체력 상관없이 획득할 수 있으나 하나 획득 시 나머지는 사라집니다.#스테이지 진입 시 일반 상태로 돌아옵니다.#Dark Esau가 캐릭터를 향해 쫒아오며 가까이 있으면 돌진합니다.#{{Collectible722}} Anima Sola 사용 시 5초동안 Dark Esau를 묶으며 재사용, 혹은 시간 소진 시 더 크게 돌진합니다.#Dark Esau의 큰 돌진 공격은 지나가는 자리의 적에게 초당 300의 방어 무시+화상 피해를 줍니다."},
+	[40] = {"Tainted Forgotten Soul", "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#움직일 수 없으며 자유롭게 움직일 수 있는 영혼이 뼈 더미를 집고 던져야 합니다.#피격 판정은 영혼에게만 있습니다.#폭탄 설치 시 뼈 더미의 위치에서 설치됩니다."},
+}
+EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
+
 
 local RepDemoObject = {
 	DemoObjectName = "아이템 설명 모드 표시용",

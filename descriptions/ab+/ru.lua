@@ -895,3 +895,11 @@ EID.descriptions[languageCode].ItemReminder = {
 		Passives = "Пассивные предметы"
 	}
 }
+
+-- Conditional descriptions
+-- Strings will be appended to the original description
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs
+EID.descriptions[languageCode].ConditionalDescs = {
+	["5.300.48"] = "Телепортирует в комнату Я-ОШИБКА#Пустая карта и ?-карта будут уничтожены", -- Blank Card + Q Card
+}

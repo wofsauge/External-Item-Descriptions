@@ -991,11 +991,13 @@ EID.descriptions[languageCode].PickupNames = {
 }
 
 EID.descriptions[languageCode].ConditionalDescs = {
+	["5.300.48"] = "I AM ERRORにテレポート#白紙のカードと？カード 両方が消失する", -- Blank Card + Q Card
+
 	["5.100.81"] = "赤ハートを持てない キャラクターの場合、 青／黒ハートを1個に 設定・復活", -- Dead Cat
 	["5.100.241"] = "{{GreedMode}} グリードモードでは 効果なし", -- Contract From Below
-	["5.100.135 (Keeper)"] = "{{Player14}} キーパー使用時は0～1コイン", -- IV Bag Keeper
+	["Keeper 0-1"] = "{{Player14}} キーパー使用時は0～1コイン", -- IV Bag Keeper
 	["5.100.135 (PHD)"] = "{{Collectible75}} PHD所有時は2～3コイン", -- IV Bag PHD
-	["5.100.442"] = "赤ハートを持てない キャラクターの場合、 効果なし", -- Dark Prince's Crown
+	["No Red"] = "赤ハートを持てない キャラクターの場合、 効果なし", -- Dark Prince's Crown
 	["5.300.15"] = "{{DemonBeggar}} 悪魔乞食をスポーン", -- Temperance (Greed Mode effect)
 	["5.350.23"] = "{{Warning}} 保持中に生贄部屋で死ぬと ザ・ロストをアンロック", -- Missing Poster (Unlock The Lost)
 }

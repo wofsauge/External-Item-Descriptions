@@ -1185,15 +1185,11 @@ EID.descriptions[languageCode].CraftingBestQuality = "最高品質："
 
 EID.descriptions[languageCode].CraftingHideKey = "レシピの非表示："
 EID.descriptions[languageCode].CraftingPreviewKey = "アイテムの確認："
-EID.descriptions[languageCode].CraftingPreviewBackup = "!!! アンロックされていない場合"
 
 EID.descriptions[languageCode].CraftingResults = "レシピ操作：マップ表示中、#{{Blank}} 　{{ButtonY}} {{ButtonA}} でスクロール#{{Blank}} 　{{ButtonX}} でレシピ固定#{{Blank}} 　{{ButtonB}} でレシピ更新"
 
-EID.descriptions[languageCode].BlankCardCharge = "白紙のカードチャージ："
+EID.descriptions[languageCode].VariableCharge = "{1}チャージ："
 EID.descriptions[languageCode].BlankCardEffect = "白紙のカードで使用時："
-EID.descriptions[languageCode].BlankCardQCard = "I AM ERRORにテレポート#白紙のカードと？カード 両方が消失する"
-EID.descriptions[languageCode].ClearRuneCharge = "クリアルーンチャージ："
-EID.descriptions[languageCode].PlaceboCharge = "プラシーボチャージ："
 EID.descriptions[languageCode].FlipItemToggleInfo = "（マップボタンで確認）"
 
 

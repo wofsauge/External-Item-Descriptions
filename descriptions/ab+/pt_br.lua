@@ -891,3 +891,11 @@ EID.descriptions[languageCode].ItemReminder = {
 -- includes Planetarium even though it's unused in AB+ for convenience
 EID.descriptions[languageCode].Teleport2RoomNames = { "Sala Normal","Sala do Chefe","Sala Super Secreta","Loja","Sala do Tesouro","Sala de Sacrifício","Sala do Dado","Biblioteca","Sala da Maldição","Sala do Mini-Chefe","Sala do Desafio/Desafio do Chefe","Sala do Isaac","Sala Estéril","Sala do Jogos","Sala do Baú","Planetário","Sala Secreta","Sala Vermelha Especial","Sala do Anjo/Diabo","Sala I AM ERROR" }
 EID.descriptions[languageCode].Teleport2GreedRoomNames = { "Sala Principal", "Sala do Chefe", "Loja", "Sala do Tesouro Prateada/Dourada", "Sala da Maldição", "Sala da Saída", "Sala Super Secreta", "Sala do Anjo/Diabo", "Sala I AM ERROR" }
+
+-- Conditional descriptions
+-- Strings will be appended to the original description
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs
+EID.descriptions[languageCode].ConditionalDescs = {
+	["5.300.48"] = "Teleporta para a Sala I AM Error#Blank Card e ?-Carta serão destruídas", -- Blank Card + Q Card
+}

@@ -184,8 +184,8 @@ local function DonationMachineCallback(descObj)
 		end
 	end
 	
-	descObj.Description = string.gsub(descObj.Description, "{1}", coinsNeeded)
-	descObj.Description = string.gsub(descObj.Description, "{2}", coinsNeeded - totalDonations)
+	descObj.Description = EID:ReplaceVariableStr(descObj.Description, 1, coinsNeeded)
+	descObj.Description = EID:ReplaceVariableStr(descObj.Description, 2, coinsNeeded - totalDonations)
 	descObj.Icon = EID.InlineIcons["DonationMachine"]
 	return descObj
 end

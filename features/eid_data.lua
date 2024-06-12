@@ -15,6 +15,17 @@ EID.ButtonToIconMap = {
 	[ButtonAction.ACTION_PAUSE] = "{{ButtonMenu}}",
 }
 
+EID.KeyboardToString = {}
+--code from InputHelper in MCM
+for key, num in pairs(Keyboard) do
+	local keyString = key
+	local _, keyEnd = string.find(keyString, "KEY_")
+	keyString = string.sub(keyString, keyEnd + 1, string.len(keyString))
+	keyString = string.gsub(keyString, "_", " ")
+	EID.KeyboardToString[num] = keyString
+end
+
+
 -- List of Effect variants that should be handled for descriptions
 EID.effectList = {
 	["76"] = true,
@@ -371,6 +382,7 @@ EID.InlineIcons = {
 	["ButtonRT"] = {"XboxOne", 13, 12, 8, 6, 5, function(_) return getControllerSprite() end},
 	["ButtonSelect"] = {"XboxOne", 14, 12, 8, 6, 5, function(_) return getControllerSprite() end},
 	["ButtonMenu"] = {"XboxOne", 15, 12, 8, 6, 5, function(_) return getControllerSprite() end},
+	["ButtonEnter"] = {"XboxOne", 16, 12, 8, 6, 5, EID.InlineIconSprite},
 
 	-- Crafting
 	["Crafting0"] = {"Crafting", 0, 14, 16, 0, 1},
@@ -621,6 +633,7 @@ EID.InlineIcons = {
 	["AchievementLockedSmall"] = {"Misc", 13, 10, 12, 0, 1},
 	["DailyRun"] = {"Misc", 14, 15, 12, 0, -1},
 	["DailyRunSmall"] = {"Misc", 15, 12, 12, 0, 1},
+	["MagnifyingLens"] = {"Misc", 16, 13, 13, 0, -1},
 }
 -- General Stats (Adjust automatically according to the current DLC)
 
@@ -905,16 +918,203 @@ EID.LocalModePositionOffset = {
 -- Items that dont have an effect with BFFS! item
 EID.BFFSNoSynergy = {[11] = true, [81] = true, [238] = true, [239] = true, [243] = true,  [265] = true, [268] = true, [269] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [405] = true, [431] = true, [436] = true, [469] = true, [472] = true, [492] = true, [516] = true, [528] = true, [542] = true, [543] = true }
 
--- Character IDs that aren't allowed to have Red Health: ???, The Lost, The Soul
-EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
-if REPENTANCE then
-	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
-	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
-end
-
+-- todo: this table is wrong, for instance brown nugget didnt have one and then got one
 if REPENTANCE then
 	EID.BFFSNoSynergy[504] = true -- Brown Nugget
 	EID.BFFSNoSynergy[567] = true -- Paschal Candle
 	EID.BFFSNoSynergy[651] = true -- Star of Bethlehem
 	EID.BFFSNoSynergy[697] = true -- Vanishing Twin
 end
+
+-- Tainted character's respective normal version ID, for conditionals that apply to both versions of the character
+-- To help with other character pairs, Esau = Jacob, Dead Tainted Lazarus = Tainted Lazarus, Tainted Soul = Tainted Forgotten
+EID.TaintedToRegularID = { [20] = 19, [21] = 0, [22] = 1, [23] = 2, [24] = 3, [25] = 4, [26] = 5, [27] = 6, [28] = 7, [29] = 8, [30] = 9, [31] = 10, [32] = 13, 
+[33] = 14, [34] = 15, [35] = 16, [36] = 18, [37] = 19, [38] = 29, [39] = 37, [40] = 35 }
+
+-- Character IDs that are Soul/Black Hearts only: ???, The Lost, The Soul
+EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
+if REPENTANCE then
+	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
+	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
+end
+-- Character IDs that have a pocket active
+EID.PocketActivePlayerIDs = { [22] = true, [23] = true, [24] = true, [25] = true, [26] = true, [29] = true, [34] = true, [36] = true, [37] = true, [38] = true, [39] = true }
+
+-- Cards that don't work with Blank Card in Repentance (Note: ? Card is blacklisted here, don't use this for determining what is a card)
+EID.blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[48]=true,[49]=true,[50]=true,[55]=true,[78]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
+-- Cards that are treated as runes
+EID.runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[55]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
+
+
+
+---------------- BAG OF CRAFTING DATA ------------------
+
+if not REPENTANCE then return end
+
+EID.BoC = {}
+
+EID.BoC.PickupValues = {
+	0x00000000, -- 0 None
+	-- Hearts
+	0x00000001, -- 1 Red Heart
+	0x00000004, -- 2 Soul Heart
+	0x00000005, -- 3 Black Heart
+	0x00000005, -- 4 Eternal Heart
+	0x00000005, -- 5 Gold Heart
+	0x00000005, -- 6 Bone Heart
+	0x00000001, -- 7 Rotten Heart
+	-- Pennies
+	0x00000001, -- 8 Penny
+	0x00000003, -- 9 Nickel
+	0x00000005, -- 10 Dime
+	0x00000008, -- 11 Lucky Penny
+	-- Keys
+	0x00000002, -- 12 Key
+	0x00000007, -- 13 Golden Key
+	0x00000005, -- 14 Charged Key
+	-- Bombs
+	0x00000002, -- 15 Bomb
+	0x00000007, -- 16 Golden Bomb
+	0x0000000a, -- 17 Giga Bomb
+	-- Batteries
+	0x00000002, -- 18 Micro Battery
+	0x00000004, -- 19 Lil' Battery
+	0x00000008, -- 20 Mega Battery
+	-- Usables
+	0x00000002, -- 21 Card
+	0x00000002, -- 22 Pill
+	0x00000004, -- 23 Rune
+	0x00000004, -- 24 Dice Shard
+	0x00000002, -- 25 Cracked Key
+	-- Added in Update
+	0x00000007, -- 26 Golden Penny
+	0x00000007, -- 27 Golden Pill
+	0x00000007, -- 28 Golden Battery
+	0x00000000, -- 29 Tainted ??? Poop
+  
+	0x00000001,
+  }
+
+EID.BoC.PickupIDLookup = {
+	["10.1"] = {1}, -- Red heart
+	["10.2"] = {1}, -- half heart
+	["10.3"] = {2}, -- soul heart
+	["10.4"] = {4}, -- eternal heart
+	["10.5"] = {1, 1}, -- double heart
+	["10.6"] = {3}, -- black heart
+	["10.7"] = {5}, -- gold heart
+	["10.8"] = {2}, -- half soul heart
+	["10.9"] = {1}, -- scared red heart
+	["10.10"] = {2, 1}, -- blended heart
+	["10.11"] = {6}, -- Bone heart
+	["10.12"] = {7}, -- Rotten heart
+	["20.1"] = {8}, -- Penny
+	["20.2"] = {9}, -- Nickel
+	["20.3"] = {10}, -- Dime
+	["20.4"] = {8, 8}, -- Double penny
+	["20.5"] = {11}, -- Lucky Penny
+	["20.6"] = {9}, -- Sticky Nickel
+	["20.7"] = {26}, -- Golden Penny
+	["30.1"] = {12}, -- Key
+	["30.2"] = {13}, -- golden Key
+	["30.3"] = {12,12}, -- Key Ring
+	["30.4"] = {14}, -- charged Key
+	["40.1"] = {15}, -- bomb
+	["40.2"] = {15,15}, -- double bomb
+	["40.4"] = {16}, -- golden bomb
+	["40.7"] = {17}, -- giga bomb
+	["42.0"] = {29}, -- poop nugget
+	["42.1"] = {29}, -- big poop nugget
+	["70.14"] = {27}, -- golden pill
+	["70.2062"] = {27}, -- golden horse pill
+	["90.1"] = {19}, -- Lil Battery
+	["90.2"] = {18}, -- Micro Battery
+	["90.3"] = {20}, -- Mega Battery
+	["90.4"] = {28}, -- Golden Battery
+	["300.49"] = {24}, -- Dice shard
+	["300.50"] = {21}, -- Emergency Contact
+	["300.78"] = {25}, -- Cracked key
+}
+
+EID.BoC.ComponentShifts = {
+	{0x00000001, 0x00000005, 0x00000010},
+	{0x00000001, 0x00000005, 0x00000013},
+	{0x00000001, 0x00000009, 0x0000001D},
+	{0x00000001, 0x0000000B, 0x00000006},
+	{0x00000001, 0x0000000B, 0x00000010},
+	{0x00000001, 0x00000013, 0x00000003},
+	{0x00000001, 0x00000015, 0x00000014},
+	{0x00000001, 0x0000001B, 0x0000001B},
+	{0x00000002, 0x00000005, 0x0000000F},
+	{0x00000002, 0x00000005, 0x00000015},
+	{0x00000002, 0x00000007, 0x00000007},
+	{0x00000002, 0x00000007, 0x00000009},
+	{0x00000002, 0x00000007, 0x00000019},
+	{0x00000002, 0x00000009, 0x0000000F},
+	{0x00000002, 0x0000000F, 0x00000011},
+	{0x00000002, 0x0000000F, 0x00000019},
+	{0x00000002, 0x00000015, 0x00000009},
+	{0x00000003, 0x00000001, 0x0000000E},
+	{0x00000003, 0x00000003, 0x0000001A},
+	{0x00000003, 0x00000003, 0x0000001C},
+	{0x00000003, 0x00000003, 0x0000001D},
+	{0x00000003, 0x00000005, 0x00000014},
+	{0x00000003, 0x00000005, 0x00000016},
+	{0x00000003, 0x00000005, 0x00000019},
+	{0x00000003, 0x00000007, 0x0000001D},
+	{0x00000003, 0x0000000D, 0x00000007},
+	{0x00000003, 0x00000017, 0x00000019},
+	{0x00000003, 0x00000019, 0x00000018},
+	{0x00000003, 0x0000001B, 0x0000000B},
+	{0x00000004, 0x00000003, 0x00000011},
+	{0x00000004, 0x00000003, 0x0000001B},
+	{0x00000004, 0x00000005, 0x0000000F},
+	{0x00000005, 0x00000003, 0x00000015},
+	{0x00000005, 0x00000007, 0x00000016},
+	{0x00000005, 0x00000009, 0x00000007},
+	{0x00000005, 0x00000009, 0x0000001C},
+	{0x00000005, 0x00000009, 0x0000001F},
+	{0x00000005, 0x0000000D, 0x00000006},
+	{0x00000005, 0x0000000F, 0x00000011},
+	{0x00000005, 0x00000011, 0x0000000D},
+	{0x00000005, 0x00000015, 0x0000000C},
+	{0x00000005, 0x0000001B, 0x00000008},
+	{0x00000005, 0x0000001B, 0x00000015},
+	{0x00000005, 0x0000001B, 0x00000019},
+	{0x00000005, 0x0000001B, 0x0000001C},
+	{0x00000006, 0x00000001, 0x0000000B},
+	{0x00000006, 0x00000003, 0x00000011},
+	{0x00000006, 0x00000011, 0x00000009},
+	{0x00000006, 0x00000015, 0x00000007},
+	{0x00000006, 0x00000015, 0x0000000D},
+	{0x00000007, 0x00000001, 0x00000009},
+	{0x00000007, 0x00000001, 0x00000012},
+	{0x00000007, 0x00000001, 0x00000019},
+	{0x00000007, 0x0000000D, 0x00000019},
+	{0x00000007, 0x00000011, 0x00000015},
+	{0x00000007, 0x00000019, 0x0000000C},
+	{0x00000007, 0x00000019, 0x00000014},
+	{0x00000008, 0x00000007, 0x00000017},
+	{0x00000008, 0x00000009, 0x00000017},
+	{0x00000009, 0x00000005, 0x0000000E},
+	{0x00000009, 0x00000005, 0x00000019},
+	{0x00000009, 0x0000000B, 0x00000013},
+	{0x00000009, 0x00000015, 0x00000010},
+	{0x0000000A, 0x00000009, 0x00000015},
+	{0x0000000A, 0x00000009, 0x00000019},
+	{0x0000000B, 0x00000007, 0x0000000C},
+	{0x0000000B, 0x00000007, 0x00000010},
+	{0x0000000B, 0x00000011, 0x0000000D},
+	{0x0000000B, 0x00000015, 0x0000000D},
+	{0x0000000C, 0x00000009, 0x00000017},
+	{0x0000000D, 0x00000003, 0x00000011},
+	{0x0000000D, 0x00000003, 0x0000001B},
+	{0x0000000D, 0x00000005, 0x00000013},
+	{0x0000000D, 0x00000011, 0x0000000F},
+	{0x0000000E, 0x00000001, 0x0000000F},
+	{0x0000000E, 0x0000000D, 0x0000000F},
+	{0x0000000F, 0x00000001, 0x0000001D},
+	{0x00000011, 0x0000000F, 0x00000014},
+	{0x00000011, 0x0000000F, 0x00000017},
+	{0x00000011, 0x0000000F, 0x0000001A}
+}

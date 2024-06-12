@@ -838,7 +838,7 @@ local repTrinkets={
 	[69] = {"69", "Positif Décoloré", "Camoufle parfois Isaac#Étourdit parfois les ennemis#Peut être utilisé pour ouvrir la porte vers l'Ascension"}, -- Faded Polaroid
 	[74] = {"74", "Détecteur de Métaux", "Augmente de 0.5% les chances de trouver l'entrée d'un Souterrain {{LadderRoom}}"},
 	[75] = {"75", "404", "Active l'effet d'une babiole aléatoire à chaque salle"},
-	[80] = {"80", "Plume Noire", "↑ Dégâts {{ColorLime}}+0.5{{ColorWhite}} pour chaque objet démoniaque possédé"}, -- Black Feather
+	[80] = {"80", "Plume Noire", "↑ Dégâts {{ColorLime}}+0.5{{ColorWhite}} pour chaque objet démoniaque obtenu"}, -- Black Feather
 	[82] = {"82", "Fer à Cheval Doré", "Les Salles du Trésor {{TreasureRoom}} ont {{ColorLime}}+15%{{ColorWhite}} de chances de proposer un choix entre deux objets"},
 	[83] = {"83", "Clé du Magasin", "Permet d'ouvrir gratuitement les portes des Boutiques {{Shop}}"},
 	[84] = {"84", "Côte d'Avarice", "Empêche {{ColorCyan}}Avarice{{ColorWhite}} et {{ColorCyan}}Super Avarice{{ColorWhite}} d'apparaître dans les Boutiques {{Shop}}"},
@@ -1038,7 +1038,7 @@ EID.descriptions[languageCode].goldenTrinketData = {
 -- Note: "#" will be replaced with "#{{Collectible451}}" automatically, in order to add Tarot Cloth icon infront of each buff-bulletpoint
 
 EID.descriptions[languageCode].tarotClothBuffs = {
-	[2] = {"↑ Portée {{ColorLime}}+3.0#Larmes autoguidées#{{ColorShinyPurple}}Déclenche l'effet du {{ColorYellow}}Livre de Bélial{{ColorWhite}} {{Collectible34}}#{{Timer}} L'effet dure une salle"}, -- I - The Magician
+	[2] = {"↑ Portée {{ColorLime}}+3.0#Larmes autoguidées#{{Collectible451}} {{ColorShinyPurple}}Déclenche l'effet du {{ColorYellow}}Livre de Bélial{{ColorWhite}} {{Collectible34}}#{{Timer}} L'effet dure une salle"}, -- I - The Magician
 	[3] = {"{{ColorShinyPurple}}2{{ColorWhite}} pieds de {{ColorCyan}}Maman{{ColorWhite}} écrasent l'ennemi de la salle avec le plus de PV#Dans une salle vide, les pieds écrasent Isaac"}, -- II - The High Priestess
 	[4] = {"+0.3", "+0.6", "+1.5", "+3"}, -- III - The Empress
 	[5] = "{{ColorShinyPurple}}+1 cœur d'âme{{ColorWhite}} si le boss n'a pas encore été vaincu", -- IV - The Emperor
@@ -1144,6 +1144,26 @@ local repCards={
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
+-- There's some odd behavior with Blank Card + Tarot Cloth not doubling some cards
+-- These will be appended after Blank Card recharge time and "Blank Card effect:"
+EID.descriptions[languageCode].tarotClothBlankCardBuffs = {
+	[11] = "Fait apparaître 1 machine", -- X - Wheel of Fortune
+	[12] = "Les bonus ne sont pas doublés", -- XI - Strength
+	[14] = "Inflige 40 dégâts", -- XIII - Death
+	[15] = "Fait apparaître 1 machine", -- XIV - Temperance
+	[16] = "Dégâts {{ColorLime}}+2", -- XV - The Devil
+	[20] = "Inflige 200 dégâts", -- XIX - The Sun
+	[21] = "Invoque 1 mendiant", -- XX - Judgement
+	[56] = "Fait apparaître 3 objets", -- 0 - The Fool?
+	[64] = "Fait apparaître 2 à 7 coffres", -- VIII - Justice?
+	[65] = "Ne fait pas apparaître de pièce supplémentaire", -- IX - The Hermit?
+	[66] = "Déclenche 1 effet", -- X - Wheel of Fortune?
+	[68] = "L'effet dure 30 secondes", -- XII - The Hanged Man?
+	[72] = "Crée 7 groupes de rochers", -- XVI - The Tower?
+	[73] = "Retire 1 objet et en fait apparaître 2", -- XVII - The Stars?
+	[76] = "Fait apparaître 1 machine", -- XX - Judgement?
+}
+
 ---------- Pills ----------
 
 local repPills={
@@ -1160,7 +1180,7 @@ local repPills={
 	[44] = {"43", "Gloups !", "Absorbe la babiole portée par Isaac et active son effet de manière permanente"},
 	[48] = {"47", "Vitesse des tirs diminuée", "↓ Vitesse des tirs {{ColorError}}-0.15"},
 	[49] = {"48", "Vitesse des tirs augmentée ", "↑ Vitesse des tirs {{ColorLime}}+0.15"},
-	[50] = {"49", "Pilule expérimentale", "↑ Augmente une stat aléatoire#↓ Diminue une stat aléatoire#Aucune stat n'est baissée si Isaac possède {{ColorYellow}}Doctorat{{Collectible75}}{{ColorWhite}}, {{ColorYellow}}Pied Chanceux{{Collectible46}}{{ColorWhite}} ou {{ColorYellow}}Vierge{{Collectible303}}{{ColorWhite}}#Aucune stat n'est augmentée si Isaac possède {{ColorYellow}}Doctorat Falsifié{{Collectible654}}"},
+	[50] = {"49", "Pilule expérimentale", "↑ Augmente une stat aléatoire#↓ Diminue une stat aléatoire"},
 	[9999] = {"", "Pilule dorée", "Effet de pilule aléatoire#A une chance de disparaître après chaque utilisation"}, -- golden Pill
 }
 EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
@@ -1272,6 +1292,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["999.-1"] = "obstacles",
 	["1000.0"] = "effets",
 
+	grants = "Donne ",
 }
 
 ---------- Misc. Text ----------
@@ -1292,7 +1313,7 @@ EID.descriptions[languageCode].poopSpells = {
 
 ---------- Misc. Text ----------
 
-EID.descriptions[languageCode].itemPoolFor = "Banque d'objet :"
+EID.descriptions[languageCode].itemPoolFor = "Banque d'objet : "
 EID.descriptions[languageCode].itemPoolNames = {
 	[0] = "Salle du Trésor", "Boutique", "Boss", "Diable", "Ange", "Salle Secrète", "Bibliothèque", "Bonneteau", "Coffre Doré", "Coffre Rouge", "Mendiant", "Mendiant Démoniaque", "Salle Maudite", "Mendiant Serrurier", "Mendiant Électrique", "Coffre de Maman", "Salle du Trésor {{ColorSilver}}(mode Avarice)", "Boss {{ColorSilver}}(mode Avarice)", "Boutique {{ColorSilver}}(mode Avarice)", "Diable {{ColorSilver}}(mode Avarice)", "Ange {{ColorSilver}}(mode Avarice)", "Salle Maudite {{ColorSilver}}(mode Avarice)", "Salle Secrète {{ColorSilver}}(mode Avarice)", "Machine à Pince", "Salle Ultra Secrète", "Mendiant Explosif", "Planétarium", "Coffre Antique", "Orphelinat", "Coffre en Bois", "Mendiant Moisi",
 }
@@ -1303,23 +1324,31 @@ EID.descriptions[languageCode].VoidNames[2] = "Débit {{ColorLime}}{1}"
 
 EID.descriptions[languageCode].spindownError = "L'objet disparaît"
 
-EID.descriptions[languageCode].CraftingBagContent = "Sac:"
-EID.descriptions[languageCode].CraftingRoomContent = "Salle:"
-EID.descriptions[languageCode].CraftingFloorContent = "Étage:"
+EID.descriptions[languageCode].CraftingBagContent = "Sac : "
+EID.descriptions[languageCode].CraftingRoomContent = "Salle : "
+EID.descriptions[languageCode].CraftingFloorContent = "Étage : "
 
-EID.descriptions[languageCode].CraftingBagQuality = "Qualité du sac:"
-EID.descriptions[languageCode].CraftingBestQuality = "Plus haute qualité:"
+EID.descriptions[languageCode].CraftingBagQuality = "Qualité du sac : "
+EID.descriptions[languageCode].CraftingBestQuality = "Plus haute qualité : "
 
-EID.descriptions[languageCode].CraftingHideKey = "Masquer:"
-EID.descriptions[languageCode].CraftingPreviewKey = "Prévisualiser:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "{{Warning}} Si cet objet n'a pas été débloqué, il deviendra"
+EID.descriptions[languageCode].CraftingHideKey = "Masquer : "
+EID.descriptions[languageCode].CraftingPreviewKey = "Prévisualiser : "
+EID.descriptions[languageCode].CraftingPreviewBackup = "{{Warning}} Si cet objet n'a pas été débloqué, il sera remplacé par "
+-- {1} will be converted into the number of available items
+EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} ressources dans l'étage"
+EID.descriptions[languageCode].CraftingWarningAvailableItems = "Il doit y avoir au moins 8 ressources dans l'étage pour afficher les recettes !"
+-- {1} will be converted into the name of the key that toggles the BoC visibility
+EID.descriptions[languageCode].CraftingIsHidden = "Les recettes sont cachées (Afficher : {1})"
+EID.descriptions[languageCode].CraftingMore = "...et {1} autres"
 
-EID.descriptions[languageCode].CraftingResults = "(Défiler: maintenir {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}},#Verrouiller: {{ButtonX}}, Rafraîchir: {{ButtonB}})"
+EID.descriptions[languageCode].CraftingResults = "(Défiler : maintenir {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}#Verrouiller : {{ButtonX}}, Rafraîchir : {{ButtonB}}#Réinitialiser : Maintenir {{ButtonRB}}#Rechercher : {{ButtonEnter}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Temps de charge avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"
-EID.descriptions[languageCode].BlankCardQCard = "Téléporte Isaac dans la salle d'erreur#La {{ColorYellow}}Carte Blanche{{ColorWhite}} et la {{ColorYellow}}Carte ?{{ColorWhite}} seront détruites"
+EID.descriptions[languageCode].BlankCardEffect = "Effet avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"
 EID.descriptions[languageCode].ClearRuneCharge = "Temps de charge avec {{ColorYellow}}Rune de Cristal{{ColorWhite}} :"
 EID.descriptions[languageCode].PlaceboCharge = "Temps de charge avec {{ColorYellow}}Placebo{{ColorWhite}} :"
+EID.descriptions[languageCode].VariableCharge = "Temps de charge avec {{ColorYellow}}{1}{{ColorWhite}} :"
+
 EID.descriptions[languageCode].FlipItemToggleInfo = "( {{ButtonSelect}} : description)"
 
 EID.descriptions[languageCode].GlowingHourglassTransformed = "Redeviendra le Sablier Luisant au prochain étage"
@@ -1327,6 +1356,9 @@ EID.descriptions[languageCode].GlowingHourglassTransformed = "Redeviendra le Sab
 EID.descriptions[languageCode].FalsePHDHeart = "Fait apparaître un cœur noir {{BlackHeart}}"
 EID.descriptions[languageCode].FalsePHDDamage = "Dégâts {{ColorLime}}+0.6"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "Dégâts {{ColorLime}}+1.2"
+
+EID.descriptions[languageCode].ExperimentalPillPHD = "Ne diminue aucune stat"
+EID.descriptions[languageCode].ExperimentalPillFalsePHD = "N'augmente aucune stat"
 
 EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Détruit l'{{ColorYellow}}Étrange Clé{{ColorWhite}} et fait apparaître 6 objets provenant de banques d'objets aléatoires#Ne déclenche pas l'effet normal de l'objet"
 
@@ -1351,6 +1383,17 @@ local repConditions={
 	["5.100.135 (Hard Mode)"] = {"1 ou 2 pièces", "une pièce", "2 à 3 pièces", "2 pièces"}, -- IV Bag Hard Mode (modify the PHD text too)
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
+
+local repBFFSSynergies = {
+	["5.100.360"] = "Inflige 1.5x les dégâts d'Isaac", -- Incubus
+	["5.100.610"] = "Crée 4 vagues de rochers et augmente les dégâts de contact", -- Bird Cage
+	["5.100.569"] = "Ajoute les bonus de 2 cœurs entiers quand il poignarde Isaac", -- Blood Oath
+	["5.100.178"] = "Double les dégâts de la flaque et allume une flamme en son centre", -- Holy Water
+	["5.100.276"] = "Augmente la taille de la flaque et tire davantage de projectiles", -- Isaac's Heart
+	["5.100.612"] = "Nullifie un dégât subi par l'Âme", -- Lost Soul
+	["5.100.635"] = "Tire 8 larmes identiques à celles d'Isaac quand il se téléporte", -- Stitches
+}
+EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
 
 if EID.enableDebug then
     EID.descriptions[languageCode].repCollectibles = repCollectibles

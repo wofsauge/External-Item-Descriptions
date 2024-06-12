@@ -491,6 +491,7 @@ function EID:getDescriptionEntry(objTable, objID, noFallback)
 		else return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]) end
 	end
 end
+
 function EID:getDescriptionEntryEnglish(objTable, objID)
 	if not objID then
 		return EID.descriptions["en_us"][objTable]
@@ -616,6 +617,12 @@ function EID:getObjectName(Type, Variant, SubType)
 	return Type.."."..Variant.."."..SubType
 end
 
+function EID:getPlayerName(id)
+	local playerInfo = EID:getDescriptionEntry("CharacterInfo")[id]
+	local birthrightInfo = EID.isRepentance and EID:getDescriptionEntry("birthright")[id+1]
+	return (playerInfo and playerInfo[1]) or (birthrightInfo and birthrightInfo[1]) or "???"
+end
+
 -- returns the name of a pill based on the pilleffect id
 function EID:getPillName(pillID, isHorsepill)
 	local moddedDesc = EID:getDescriptionEntry("custom", "5.70."..pillID)
@@ -651,6 +658,7 @@ function EID:getXMLDescription(Type, Variant, SubType)
 end
 
 -- check if an entity is part of the describable entities
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:hasDescription(entity)
 	if not EID:EntitySanityCheck(entity) then return false end
 	
@@ -711,6 +719,12 @@ end
 function EID:replaceNameMarkupStrings(text)
 	for word in string.gmatch(text, "{{Name.-}}") do
 		local strTrimmed = string.gsub(word, "{{Name(.-)}}", function(a) return a end)
+		local showIcon = true
+		-- If the markup is {{NameOnlyX###}}, do not print an icon before the name
+		if string.find(text, "NameOnly") then
+			strTrimmed = string.gsub(word, "{{NameOnly(.-)}}", function(a) return a end)
+			showIcon = false
+		end
 		local indicator = string.sub(strTrimmed, 1, 1)
 		local id = tonumber(string.sub(strTrimmed, 2, -1))
 		local name = ""
@@ -721,15 +735,17 @@ function EID:replaceNameMarkupStrings(text)
 			end
 			name = EID:getObjectName(entityID[1], entityID[2], entityID[3])
 		elseif indicator == "C" then -- Collectible
-			name = "{{Collectible"..id.."}}"..EID:getObjectName(5, 100, id)
+			name = (showIcon and "{{Collectible"..id.."}} " or "")..EID:getObjectName(5, 100, id)
 		elseif indicator == "T" then -- Trinket
-			name = "{{Trinket"..id.."}}"..EID:getObjectName(5, 350, id)
+			name = (showIcon and "{{Trinket"..id.."}} " or "")..EID:getObjectName(5, 350, id)
 		elseif indicator == "P" then -- Pills
-			name = "{{Pill"..id.."}}"..EID:getPillName(id, false)
+			name = (showIcon and "{{Pill"..id.."}} " or "")..EID:getPillName(id, false)
 		elseif indicator == "K" then -- Card
-			name = "{{Card"..id.."}}"..EID:getObjectName(5, 300, id)
+			name = (showIcon and "{{Card"..id.."}} " or "")..EID:getObjectName(5, 300, id)
+		elseif indicator == "I" then -- Player (I for Isaac)
+			name = (showIcon and "{{Player"..id.."}} " or "")..EID:getPlayerName(id)
 		end
-		text = string.gsub(text, word, "{{ColorYellow}}"..name.."{{CR}}", 1)
+		text = string.gsub(text, word, name, 1)
 	end
 	return text
 end
@@ -973,6 +989,12 @@ end
 -- returns the string as a table of lines
 function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formattedLines = {}
+	-- Lines with a {{NoLineBreak}} tag should be left in one continuous line
+	if str:find("{{NoLineBreak}}") then
+		str = str:gsub("{{NoLineBreak}}","")
+		table.insert(formattedLines,str)
+		return formattedLines
+	end
 	local curLength = 0
 	local text = {}
 	-- the first word we run into might actually be a bulletpoint icon, which should be zero width
@@ -1171,7 +1193,7 @@ function EID:PlayersHaveCharacter(playerType, includeTainted)
 		if player:GetPlayerType() == playerType then
 			return true, player
 		end
-		if includeTainted and REPENTANCE and Isaac.GetPlayerTypeByName(player:GetName()) == playerType then
+		if includeTainted and EID.isRepentance and EID.TaintedToRegularID[player:GetPlayerType()] == playerType then
 			return true, player
 		end
 	end
@@ -1271,6 +1293,7 @@ function EID:isCollectibleAllowed(collectibleID)
 end
 
 -- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:AreAchievementsAllowed()
 	-- Tainted characters have definitely beaten Mom!
 	-- (Fixes Tainted Lost's item pools, and potentially modded character's mechanics, ruining this check)
@@ -1534,6 +1557,7 @@ function EID:resumeCoroutines()
 end
 
 -- Returns true if an item needs to be collected for the collection page
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:requiredForCollectionPage(itemID)
 	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or itemID >= CollectibleType.NUM_COLLECTIBLES or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
 	return EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[itemID]
@@ -1541,6 +1565,7 @@ end
 
 -- Updates the item collection state of the players, based on the QueuedItem value.
 -- TODO: also check for D100 / MissingNo Item collections
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:checkPlayersForMissingItems()
 	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return end
 	if EID.GameUpdateCount % 5 ~= 0 then return end
@@ -1575,7 +1600,7 @@ function EID:getLanguage()
 end
 
 function EID:AddToCollectiblesToCheckList(itemID)
-	table.insert(EID.collectiblesToCheck, itemID)
+	EID.collectiblesToCheck[itemID] = true
 end
 
 -- Add a specific entity to be ignored by EID. Set entitySubType to -1 in order to ignore all entities with this type+variant combi
@@ -1941,6 +1966,7 @@ function EID:WasPillUsed(pillColor)
 end
 
 -- returns the name of the given entity
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:GetEntityXMLName(Type, Variant, SubType)
 	return EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
 end
@@ -2040,4 +2066,11 @@ function EID:UpdateAllPlayerPassiveItems()
 		end
 	end
 	return listUpdatedForPlayers
+end
+
+-- Replaces Variable placeholders in string with a given value
+-- Example: "My {1} message" --> "My test message"
+function EID:ReplaceVariableStr(str, varID, newString)
+	if type(str) ~= "string" or newString == nil then return str end
+	return str:gsub("{"..varID.."}", newString)
 end

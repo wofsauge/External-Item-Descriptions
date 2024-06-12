@@ -749,7 +749,7 @@ local repTrinkets={
 	[65] = {"65", "Klebebandwurm", "↑ {{Range}} +3 Reichweite"}, -- Tape Worm
 	[66] = {"66", "Faule Made", "↓ {{Shotspeed}} -0,5 Schusssgeschwindigkeit"}, -- Lazy Worm
 	[67] = {"67", "Rissiger Würfel", "Schaden nehmen hat eine 50%ige Chance, einen dieser Effekte auszulösen:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible285}} D10#{{Collectible386}} D12#{{Collectible166}} D20"}, -- Cracked Dice
-	[69] = {"69", "Verblasste Polaroid", "Tarnung von Isaac in zufälligen Abständen#{{Confusion}} Verwirrt Feinde#Kann verwendet werden, um die Tür zu \"Home\" zu öffnen"}, -- Faded Polaroid
+	[69] = {"69", "Verblasste Polaroid", "Tarnung von Isaac in zufälligen Abständen#{{Confusion}} Verwirrt Feinde#Kann verwendet werden, um die \"merkwürdige Tür\" in \"Depths 2\" zu öffnen"}, -- Faded Polaroid
 	[80] = {"80", "Schwarze Feder", "↑ {{Damage}} +0,5 Schaden für jedes \"Böse hoch\"-Objekt im Besitz"}, -- Black Feather
 	[92] = {"92", "Rissige Krone", "↑ x1,33 Stat-Multiplikator (außer Schussrate) für die Werte, die über 1 liegen: {{Speed}} Geschwindigkeit, 2,73 {{Tears}} Tränen, 3,5 {{Damage}} Schaden, 6,5 {{Range}} Reichweite, 1 {{Shotspeed}} Schusssgeschwindigkeit"}, -- Cracked Crown
 	[96] = {"96", "Ouroboros-Wurm", "↑ +0,4 Tränen#↑ {{Range}} +1,5 Reichweite#Spektrale Tränen#Chance auf suchende Tränen#{{Luck}} 100%ige Chance bei 9 Glück#Isaacs Tränen bewegen sich schnell in einer Spirale"}, -- Ouroboros Worm
@@ -768,7 +768,7 @@ local repTrinkets={
 	[133] = {"133", "Kurze Lunte", "Isaacs Bomben explodieren schneller"}, -- Short Fuse
 	[134] = {"134", "Riesenbohne", "Erhöht die Furzgröße"}, -- Gigante Bean
 	[135] = {"135", "Ein Feuerzeug", "{{Burning}} Das Betreten eines Raumes hat eine 20%ige Chance, zufällige Feinde zu verbrennen"}, -- A Lighter
-	[136] = {"136", "Kaputtes Vorhängeschloss", "Türen, Schlüsselblöcke und goldene Truhen können mit Explosionen geöffnet werden#Explosionen können auch die Tür zu \"Home\" öffnen"}, -- Broken Padlock
+	[136] = {"136", "Kaputtes Vorhängeschloss", "Türen, Schlüsselblöcke und goldene Truhen können mit Explosionen geöffnet werden#Explosionen können auch die \"merkwürdige Tür\" in \"Depths 2\" öffnen"}, -- Broken Padlock
 	[137] = {"137", "Vergissmeinnicht", "Beim Betreten einer neuen Ebene erscheinen bis zu 4 nicht eingesammelte Pickups aus dem vorherigen Stock im Startraum"}, -- Myosotis
 	[138] = {"138", "'M", "Benutzen eines active Items würfelt ihn um"}, -- 'M
 	[139] = {"139", "Tränentropfen-Charme", "{{Luck}} +4 Glück für auf Glück basierende Träneneffekte"}, -- Teardrop Charm
@@ -1158,13 +1158,11 @@ EID.descriptions[languageCode].CraftingBestQuality = "Beste Qualität:"
 
 EID.descriptions[languageCode].CraftingHideKey = "Verstecken:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Vorschau:"
-EID.descriptions[languageCode].CraftingPreviewBackup = "{{Warning}} Wenn dieser Gegenstand gesperrt ist, wird er zu"
 
 EID.descriptions[languageCode].CraftingResults = "(Scrollen: Halte {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Sperren: {{ButtonX}}, Aktualisieren: {{ButtonB}}, Tasche zurücksetzen: Halte {{ButtonRB}})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Blanko-Kartenladung:"
 EID.descriptions[languageCode].BlankCardEffect = "Effekt der Blanko-Karte:"
-EID.descriptions[languageCode].BlankCardQCard = "Teleport zum I AM ERROR-Raum#Blanko-Karte und ?-Karte werden zerstört"
 EID.descriptions[languageCode].ClearRuneCharge = "Ladezeit der leeren Rune:"
 EID.descriptions[languageCode].PlaceboCharge = "Placebo-Ladezeit:"
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Halte {{CONFIG_BoC_Toggle}} gedrückt, um die Beschreibung anzuzeigen)"

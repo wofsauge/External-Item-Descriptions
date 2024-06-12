@@ -170,6 +170,7 @@ EID.ItemReminderDescriptionModifier = {
 		end
 	},
 	["5.100.488"] = { -- Metronome
+		isCheat = true,
 		modifierFunction = function(descObj, player)
 			local predictionItem = EID:MetronomePrediction(EID:GetItemSeed(player, 488))
 			local demoDescObj = EID:getDescriptionObj(5, 100, predictionItem)
@@ -194,8 +195,15 @@ EID.ItemReminderDescriptionModifier = {
 			local inventoryQuery = EID.BoC.InventoryOverride or EID.BoC.InventoryQuery
 			local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 			local total = #floorQuery + #inventoryQuery + #bagItems
-			local text = total .. " of 8 items available"
-			if total < 8 then text = text .. "#{{Warning}} Needs at least 8 to show crafting recipes!" end
+			local text = EID:ReplaceVariableStr(EID:getDescriptionEntry("CraftingNumAvailableItems"), 1, total)
+			if total < 8 then text = text .. "#{{Warning}} ".. EID:getDescriptionEntry("CraftingWarningAvailableItems") end
+			
+			if EID.CraftingIsHidden then
+				local controllerEnabled = EID.bagPlayer.ControllerIndex > 0
+				local hideKey = EID.KeyboardToString[EID.Config["CraftingHideKey"]]
+				local hideButton = controllerEnabled and EID.ButtonToIconMap[EID.Config["CraftingHideButton"]]
+				text = text .. "#!!! ".. EID:ReplaceVariableStr(EID:getDescriptionEntry("CraftingIsHidden"), 1, (hideKey or hideButton))
+			end
 			descObj.Description = text
 		end
 	},
