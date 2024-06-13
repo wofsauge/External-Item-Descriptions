@@ -102,19 +102,25 @@ TODO: A find/replace pair for some Keeper descriptions that talk about Red heart
 -- todo: TrinketConditional, use it for the crystal key + pandora's box or whichever key it is, and Black Feather items maybe (leave the damage calc to modifiers, but we can append text to black feather items)
 -- todo: Vibrant/Dim Bulb + doesn't work with pocket consumables
 -- todo: idk about the BFFs synergy stuff but I noticed that Brown Nugget is incorrectly dealt with, it gained double damage in rep
--- hive mind and BFFs synergy has a lot of overlap also
+-- hive mind and BFFs synergy has a lot of overlap also, need a data list of hivemind familiars
 -- brown nugget + sacrificial altar in AB+?!
 -- ? Card + single use actives in Repentance? Alabaster Box. is there a way to detect an active is a single-use active or do we need a hardcode list?
 -- unrelated to conditionals: Glyph of Balance prediction in Item Reminder?
 -- Jacob's Ladder synergies with other battery items (I didn't even know about this)
-
+-- Bean actives synegies with ghost pepper/bird's eye
+-- todo: head of krampus damage (needs rep version), shoop da whoop damage / tick count (differs by 1 in repentance lol ok), head of krampus car battery, rep car battery
+-- Greed Mode useless World card, Moon warps to super secret, Glyph of Balance very bad in AB+ (removed from Greed in rep), Blanket bad, Deep Pockets bad
+car battery "no effect" items (also apply this as a synergy where car battery has no effect text, and other bad synergies, based on your active)
+-- overall todo: remove "tick" language from all descriptions; Lil brimstone, black powder, black hole
+Cain + items that close his eyes? mostly AB+ only?
 ]]
 
 -- General conditions
 -- Tarot Cloth (AB+ and Rep) (fallback to English because most are just find+replace)
-EID:AddCollectibleConditional("5.300", 451, nil, {locTable = "tarotClothBuffsAB", replaceColor = "ColorShinyPurple", noFallback = false})
-if EID.isRepentance then EID:AddCollectibleConditional("5.300", 451, nil, {locTable = "tarotClothBuffs", replaceColor = "ColorShinyPurple", noFallback = false}) end
-EID:AddCollectibleConditional("5.100", 356, nil, {locTable = "carBattery", replaceColor = "BlinkYellowGreen"}) -- Car Battery
+if not EID.isRepentance then
+	EID:AddCollectibleConditional("5.300", 451, nil, {locTable = "tarotClothBuffsAB", replaceColor = "ColorShinyPurple", noFallback = false})
+else EID:AddCollectibleConditional("5.300", 451, nil, {locTable = "tarotClothBuffs", replaceColor = "ColorShinyPurple", noFallback = false}) end
+EID:AddCollectibleConditional("5.100", 356, nil, {locTable = "carBattery", replaceColor = "BlinkYellowGreen", noFallback = false}) -- Car Battery
 
 -- IV Bag conditions (need to be applied in a specific order)
 EID:AddCollectibleConditional(135, 75, "PHD") -- PHD improves IV Bag
@@ -156,10 +162,13 @@ EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(
 -- Haven't done it yet but I'm sure preparing the system for it
 -- Remember most of these will be AB+ only (not EID.isRepentance)
 
+-- AB+ only conditionals
 if not EID.isRepentance then
 	EID:AddCollectibleConditional(205, {116, 276}, "No Effect") -- Sharp Plug + 9 Volt, Isaac's Heart
 	EID:AddCollectibleConditional(205, 108, "Wafer") -- Sharp Plug + The Wafer
 	EID:AddSynergyConditional(205, 441, "Can't Charge", "Can't Be Charged") -- Sharp Plug + Mega Blast
+	
+	EID:AddConditional(208, function() return EID:IsHardMode() end, "Hard Mode") -- Champion Belt
 end
 
 if EID.isRepentance then
