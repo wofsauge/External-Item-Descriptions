@@ -168,7 +168,7 @@ if not EID.isRepentance then
 	EID:AddCollectibleConditional(205, 108, "Wafer") -- Sharp Plug + The Wafer
 	EID:AddSynergyConditional(205, 441, "Can't Charge", "Can't Be Charged") -- Sharp Plug + Mega Blast
 	
-	EID:AddConditional(208, function() return EID:IsHardMode() end, "Hard Mode") -- Champion Belt
+	EID:AddConditional(208, function() return EID:IsHardMode() end) -- Champion Belt
 end
 
 if EID.isRepentance then
