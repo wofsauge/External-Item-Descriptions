@@ -950,27 +950,27 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[8] = {6, 12}, -- VII - The Chariot
 	[9] = {"Spawns {{ColorShinyPurple}}2{{CR}} random {{UnknownHeart}} hearts, {{Coin}} coins, {{Bomb}} bombs and {{Key}} keys"}, -- VIII - Justice
 	[10] = "Prevents Greed from spawning in the Shop#Turns a Greed Shop into a normal Shop if Greed was already fought in it", -- IX - The Hermit
-	[11] = {"Spawns {{ColorShinyPurple}}2{{CR}} {{Slotmachine}} Slot Machines or {{FortuneTeller}} Fortune Machines"}, -- X - Wheel of Fortune
+	[11] = {" a ", " two ", "Machine", "{{CR}}Machines", "Machine", "{{CR}}Machines"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 2.5, 5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
-	[15] = {"{{DonationMachine}} Spawns {{ColorShinyPurple}}2{{CR}} Blood Donation Machines"}, -- XIV - Temperance
+	[15] = {" a ", " two ", "Machine", "{{CR}}Machines"}, -- XIV - Temperance
 	[16] = {2, 4}, -- XV - The Devil
 	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "If the Treasure Room hasn't been entered yet, it will have two items to choose from", -- XVII - The Stars
 	[20] = {100, 400}, -- XIX - The Sun
-	[21] = {"Spawns {{ColorShinyPurple}}2{{CR}} Beggars or Devil Beggars#2% chance to spawn a special Beggar"}, -- XX - Judgement
+	[21] = {" a ", " two ", "Beggar", "{{CR}}Beggars", "Beggar", "{{CR}}Beggars"}, -- XX - Judgement
 	[56] = "Drops Isaac's most recent 6 items alongside the pickups", -- 0 - The Fool?
 	[59] = {2, 3}, -- III - The Empress?
 	[61] = {2, 3}, -- V - The Hierophant?
 	[62] = "Activates the effect twice", -- VI - The Lovers?
 	[64] = {4, 14, 2, 4}, -- VIII - Justice?
 	[65] = "Spawns 1 additional {{Coin}} penny", -- IX - The Hermit?
-	[66] = {"{{DiceRoom}} Triggers {{ColorShinyPurple}}2{{CR}} random Dice Room effects"}, -- X - Wheel of Fortune?
+	[66] = {" a ", " two ", "effect", "{{CR}}effects"}, -- X - Wheel of Fortune?
 	[68] = {30, 60}, -- XII - The Hanged Man?
 	[70] = {5, 10}, -- XIV - Temperance?
 	[72] = {7, 14}, -- XVI - The Tower?
 	[73] = {"Removes Isaac's {{ColorShinyPurple}}2{{CR}} oldest collected passive items (ignoring starting items)#Spawns {{ColorShinyPurple}}4{{CR}} random items from the current room's item pool"}, -- XVII - The Stars?
-	[76] = {"{{RestockMachine}} Spawns {{ColorShinyPurple}}2{{CR}} Restock Machines"}, -- XX - Judgement?
+	[76] = {" a ", " two ", "Machine", "{{CR}}Machines"}, -- XX - Judgement?
 }
 
 
