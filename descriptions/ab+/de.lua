@@ -5,7 +5,7 @@
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  !!! = Warning  |  # = Starts a new line
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
 local languageCode = "de"
@@ -27,7 +27,7 @@ EID.descriptions[languageCode].collectibles={
 	{"4", "Grillenkopf", "↑ {{Damage}} +0.5 Schaden#↑ {{Damage}} x1.5 Schadens-Multiplikator"}, -- Cricket's Head
 	{"5", "Mein Spiegelbild", "↑ {{Range}} +1.5 Reichweite#↑ +1 Tränenhöhe#↑ {{Shotspeed}} +0.6 Schusstempo#Bumerang-Tränen"}, -- My Reflection
 	{"6", "Nummer Eins", "↑ {{Tears}} +1.5 Tränen#↑ +0.76 Tränenhöhe#↓ {{Range}} -17.62 Reichweite"}, -- Number One
-	{"7", "Blut des Märtyrers", "↑ {{Damage}} +1 Schaden#{{Collectible34}} x1.5 Schadens-Multiplikator wenn \"Das Buch Belial\" oder \"XV - Der Teufel\" Effekt aktiv ist"}, -- Blood of the Martyr
+	{"7", "Blut des Märtyrers", "↑ {{Damage}} +1 Schaden"}, -- Blood of the Martyr
 	{"8", "Bruder Bobby", "Schießt normale Tränen#Verursacht 3.5 Schaden pro Träne"}, -- Brother Bobby
 	{"9", "Skatol", "Alle feindlichen Fliegen werden freundlich"}, -- Skatole
 	{"10", "Fliegen-Halo", "+2 Orbitale Fliegen#Blockiert feindliche Projektile"}, -- Halo of Flies
@@ -54,7 +54,7 @@ EID.descriptions[languageCode].collectibles={
 	{"31", "Mamas Lippenstift", "↑ {{Range}} +5.25 Reichweite#↑ +0.5 Tränenhöhe"}, -- Mom's Lipstick
 	{"32", "Drahtkleiderbügel", "↑ {{Tears}} +0.7 Tränen"}, -- Wire Coat Hanger
 	{"33", "Die Bibel", "{{Timer}} Flug für diesen Raum#{{MomsHeart}} Tötet sofort Mamas Fuss und Mamas Herz#{{Warning}} Tötet Isaac wenn gegen Satan eingesetzt"}, -- The Bible
-	{"34", "Das Buch Belial", "{{AngelDevilChance}} +12.5% Teufels-/Engelsraum Chance, wenn getragen#{{Timer}} Erhalte für diesen Raum:#↑ {{Damage}} +2 Schaden#{{Collectible7}} x1.5 Schadens-Multiplikator wenn Isaac \"Blut des Märtyrers\" besitzt"}, -- The Book of Belial
+	{"34", "Das Buch Belial", "{{AngelDevilChance}} +12.5% Teufels-/Engelsraum Chance, wenn getragen#{{Timer}} Erhalte für diesen Raum:#↑ {{Damage}} +2 Schaden"}, -- The Book of Belial
 	{"35", "Das Necronomicon", "Fügt allen Feinden im Raum 40 Schaden zu"}, -- The Necronomicon
 	{"36", "Der Schiss", "Lässt einen Kot erscheinen und stößt Feinde zurück#Kann neben einer Grube platziert und mit einer Explosion zerstört werden um eine Brücke zu erschaffen"}, -- The Poop
 	{"37", "Mr. Bumm", "Platziert eine große Bombe die 110 Schaden verursacht"}, -- Mr. Boom
@@ -95,7 +95,7 @@ EID.descriptions[languageCode].collectibles={
 	{"72", "Rosenkranz", "{{SoulHeart}} +3 Seelenherzen#{{Collectible33}} Die Bibel wird allen Gegenstandspools hinzugefügt"}, -- Rosary
 	{"73", "Fleischwürfel", "Lv1: Satellit#Lv2: Schießender Satellit#Lv3: Meat Boy#Lv4: Super Meat Boy"}, -- Cube of Meat
 	{"74", "Ein Vierteldollar", "{{Coin}} +25 Münzen"}, -- A Quarter
-	{"75", "PHD", "{{Heart}} Heilt 2 Herzen#{{Pill}} Lässt 1 Pille erscheinen#{{Pill}} Wandelt schlechte Pillen in gute Pillen um#{{BloodDonationMachine}} Blutspendemaschinen und {{Collectible135}} Infusionsbeutel geben mehr {{Coin}} Münzen"}, -- PHD
+	{"75", "PHD", "{{Heart}} Heilt 2 Herzen#{{Pill}} Lässt 1 Pille erscheinen#{{Pill}} Wandelt schlechte Pillen in gute Pillen um#{{BloodDonationMachine}} Blutspendemaschinen geben mehr {{Coin}} Münzen"}, -- PHD
 	{"76", "Röntgenblick", "{{SecretRoom}} Öffnet alle Geheimraum-Eingänge"}, -- X-Ray Vision
 	{"77", "Mein kleines Einhorn", "{{Timer}} Erhalte für 6 Sekunden:#↑ {{Speed}} +0.28 Tempo#Unverwundbarkeit#Isaac kann nicht schießen, verursacht aber bei Kontakt 40 Schaden pro Sekunde"}, -- My Little Unicorn
 	{"78", "Buch der Offenbarungen", "{{SoulHeart}} +1 Seelenherz#{{AngelDevilChance}} +17.5% Teufels-/Engelsraum Chance, wenn getragen#Benutzung des Gegenstands hat eine hohe Chance, den Boss des Stockwerks durch einen Reiter zu ersetzen"}, -- Book of Revelations
@@ -128,14 +128,14 @@ EID.descriptions[languageCode].collectibles={
 	{"105", "Der W6", "Würfelt Podest-Gegenstände im Raum neu"}, -- The D6
 	{"106", "Mr. Mega", "↑ {{Bomb}} x1.83 Bombenschaden#{{Bomb}} +5 Bomben"}, -- Mr. Mega
 	{"107", "Die Zackenschere", "{{Timer}} Erhalte für diesen Raum:#Flug#Isaacs Körper trennt sich vom Kopf, attackiert Feinde und verursacht bei Kontakt 82.5 Schaden pro Sekunde"}, -- The Pinking Shears
-	{"108", "Die Hostie", "Reduziert den meisten erlittenen Schaden auf ein halbes Herz#{{Player14}} Funktioniert nicht für Hüter"}, -- The Wafer
-	{"109", "Money = Power", "↑ {{Damage}} +0.04 Schaden for every {{Coin}} coin Isaac has"}, -- Money = Power
-	{"110", "Mom's Contacts", "↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe#20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 Glück"}, -- Mom's Contacts
-	{"111", "The Bean", "{{Poison}} Farts a poison cloud#The poison deals Isaac's damage 6 times"}, -- The Bean
-	{"112", "Guardian Angel", "Orbital#Speeds up all other orbitals#Blocks projectiles#Deals 105 contact damage per second"}, -- Guardian Angel
-	{"113", "Demon Baby", "Shoots enemies that get close to him#Deals 3 damage per tear"}, -- Demon Baby
-	{"114", "Mom's Knife", "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and 6x at the furthest possible distance"}, -- Mom's Knife
-	{"115", "Ouija Board", "Spectral tears"}, -- Ouija Board
+	{"108", "Die Hostie", "Reduziert den meisten erlittenen Schaden auf ein halbes Herz"}, -- The Wafer
+	{"109", "Geld = Macht", "↑ {{Damage}} +0.04 Schaden für jede {{Coin}} Münze, die Isaac besitzt"}, -- Money = Power
+	{"110", "Mamas Kontaktlinsen", "↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe#20% Chance, versteinernde Tränen zu schießen#{{Luck}} 50% Chance bei 20 Glück"}, -- Mom's Contacts
+	{"111", "Die Bohne", "{{Poison}} Furzt eine Giftwolke#Der Furz verursacht 5 Schaden an Feinden und vergiftet sie#Das Gift verursacht Isaacs Schaden 6 Mal"}, -- The Bean
+	{"112", "Schutzengel", "Satellit#Beschleunigt alle anderen Satelliten#Blockt Projektile#Verursacht bei Kontakt 105 Schaden pro Sekunde"}, -- Guardian Angel
+	{"113", "Dämonenbaby", "Schießt auf Feinde, die ihm zu nahe kommen#Verursacht 3 Schaden pro Träne"}, -- Demon Baby
+	{"114", "Mamas Messer", "Isaacs Tränen werden durch ein werfbares Messer ersetzt#{{Damage}} Das Messer verursacht 2x Isaacs Schaden, während es gehalten wird, und 6x bei der maximal möglichen Entfernung"}, -- Mom's Knife
+	{"115", "Ouija-Brett", "Spektrale Tränen"}, -- Ouija Board
 	{"116", "9 Volt", "{{Battery}} Automatically charges the first bar of active items#{{Battery}} Fully recharges the active item on pickup"}, -- 9 Volt
 	{"117", "Dead Bird", "Getting hit spawns a bird#The bird deals 4.3 contact damage per second"}, -- Dead Bird
 	{"118", "Brimstone", "↓ {{Tears}} x3 Tränenverzögerungs-Multiplikator#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam"}, -- Brimstone
@@ -247,7 +247,7 @@ EID.descriptions[languageCode].collectibles={
 	{"224", "Cricket's Body", "↑ {{Tears}} -1 Tränenverzögerung#↑ {{Tearsize}} x1.2 Tear size#↓ {{Range}} -10 Reichweite#Tränen split up in 4 on hit#Split tears deal half damage"}, -- Cricket's Body
 	{"225", "Gimpy", "{{SoulHeart}} Taking damage has a chance to spawn a Seelenherz#{{HalfHeart}} Enemies have a chance to drop a half Red Heart on death"}, -- Gimpy
 	{"226", "Black Lotus", "↑ {{Heart}} +1 Gesundheit#{{SoulHeart}} +1 Seelenherz#{{BlackHeart}} +1 Black Heart"}, -- Black Lotus
-	{"227", "Piggy Bank", "{{Coin}} +3 Münzen#{{Coin}} Taking damage spawns 1-2 Münzen#{{Player14}} 0-1 Coin as Keeper"}, -- Piggy Bank
+	{"227", "Piggy Bank", "{{Coin}} +3 Münzen#{{Coin}} Taking damage spawns 1-2 Münzen"}, -- Piggy Bank
 	{"228", "Mom's Perfume", "↑ {{Tears}} -1 Tränenverzögerung#{{Fear}} 15% chance to shoot fear tears"}, -- Mom's Perfume
 	{"229", "Monstro's Lung", "↓ {{Tears}} x4.3 Tränenverzögerungs-Multiplikator#{{Chargeable}} Tränen are charged and released in a shotgun style attack"}, -- Monstro's Lung
 	{"230", "Abaddon", "↑ {{Speed}} +0.2 Tempo#↑ {{Damage}} +1.5 Schaden#↓ {{EmptyHeart}} Removes all heart containers#{{BlackHeart}} +6 Black Hearts#{{Fear}} 15% chance to shoot fear tears"}, -- Abaddon
@@ -317,8 +317,8 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger {{Collectible484}} Wait What? when swapping it with a different active item and picking it up again"}, -- Butter Bean
 	{"295", "Magic Fingers", "Deals 2x Isaac's damage to all enemies#{{Coin}} Costs 1 coin"}, -- Magic Fingers
 	{"296", "Converter", "{{Heart}} Converts 2 Soul/Black Hearts into 1 heart container"}, -- Converter
-	--NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
-	--For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
+	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
+	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
 	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#Dark Room: Unlocks {{Collectible523}} Moving Box; Chest: 1{{Coin}}"}, -- Pandora's Box
 	{"298", "Unicorn Stump", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Tempo#Unverwundbarkeit#Isaac can't shoot (No contact damage)"}, -- Unicorn Stump
 	{"299", "Taurus", "↓ {{Speed}} -0.3 Tempo#↑ {{Speed}} Slowly gain speed while in hostile rooms#At 2 speed, Isaac becomes invincible and deals contact damage#Afterwards, lose the Taurus speed boost für diesen Raum"}, -- Taurus
@@ -338,7 +338,7 @@ EID.descriptions[languageCode].collectibles={
 	{"313", "Holy Mantle", "Negates the first hit taken once per room"}, -- Holy Mantle
 	{"314", "Thunder Thighs", "↑ {{Heart}} +1 Gesundheit#↓ {{Speed}} -0.4 Tempo#Isaac can destroy rocks by walking into them"}, -- Thunder Thighs
 	{"315", "Strange Attractor", "Isaac's tears attract enemies, pickups and trinkets"}, -- Strange Attractor
-	{"316", "Cursed Eye", "Charged wave of 4 tears#{{Warning}} Taking damage while partially charged teleports Isaac to a random room#{{Collectible260}} Black Candle removes the teleportation effect"}, -- Cursed Eye
+	{"316", "Cursed Eye", "Charged wave of 4 tears#{{Warning}} Taking damage while partially charged teleports Isaac to a random room"}, -- Cursed Eye
 	{"317", "Mysterious Liquid", "Isaac's tears leave creep#The creep deals 30 damage per second"}, -- Mysterious Liquid
 	{"318", "Gemini", "Close combat familiar#Deals 6 contact damage per second"}, -- Gemini
 	{"319", "Cain's Other Eye", "Bounces around the room#Shoots towards Isaac#{{Damage}} Deals the same damage as Isaac"}, -- Cain's Other Eye
@@ -523,7 +523,7 @@ EID.descriptions[languageCode].collectibles={
 	{"498", "Duality", "{{AngelDevilChance}} Spawns both an Angel and Devil Room if either would have spawned#Entering one makes the other disappear"}, -- Duality
 	{"499", "Eucharist", "{{AngelChance}} 100% chance for Angel Rooms to spawn"}, -- Eucharist
 	{"500", "Sack of Sacks", "Spawns a sack every 5-6 rooms"}, -- Sack of Sacks
-	{"501", "Greed's Gullet", "{{Heart}} +1 Heart container for every 25 Münzen gained after getting Greed's Gullet#{{Player14}} Keeper can gain additional coin containers"}, -- Greed's Gullet
+	{"501", "Greed's Gullet", "{{Heart}} +1 Heart container for every 25 Münzen gained after getting Greed's Gullet"}, -- Greed's Gullet
 	{"502", "Large Zit", "{{Slow}} Firing occasionally shoots a white creep tear that deals double damage and slows enemies#Taking damage shoots a white creep tear"}, -- Large Zit
 	{"503", "Little Horn", "5% chance to shoot tears that instantly kill enemies#{{Luck}} 20% chance at 15 Glück#Isaac deals 3.5 contact damage"}, -- Little Horn
 	{"504", "Brown Nugget", "Spawns a fly turret that shoots at enemies#Each shot deals 2 damage"}, -- Brown Nugget
@@ -560,7 +560,7 @@ EID.descriptions[languageCode].collectibles={
 	{"535", "Blanket", "{{Heart}} Heals 1 heart#{{SoulHeart}} +1 Seelenherz#{{HolyMantle}} Entering a boss room grants a Holy Mantle shield (prevents damage once)"}, -- Blanket
 	{"536", "Sacrificial Altar", "{{Warning}} SINGLE USE {{Warning}}#Sacrifices up to 2 familiars and spawns a devil item for each sacrifice#{{Coin}} Turns blue spiders/flies into Münzen"}, -- Sacrificial Altar
 	{"537", "Lil Spewer", "{{Pill}} Spawns a random pill on pickup#Fires a line of creep#The type of creep changes with each pill use"}, -- Lil Spewer
-	{"538", "Marbles", "{{Trinket}} Spawns 3 random trinkets#{{Collectible479}} Taking damage can remove Isaac's held trinket and grant its effects permanently"}, -- Marbles
+	{"538", "Marbles", "{{Trinket}} Spawns 3 random trinkets#{{Collectible479}} Taking damage has a 10% chance to consume Isaac's held trinket and grant its effects permanently"}, -- Marbles
 	{"539", "Mystery Egg", "Taking damage spawns a charmed enemy#Spawns stronger friends the more rooms are cleared without taking damage"}, -- Mystery Egg
 	{"540", "Flat Stone", "Isaac's tears bounce off the floor and cause splash damage on every bounce"}, -- Flat Stone
 	{"541", "Marrow", "{{Heart}} Spawns 3 Red Hearts#{{EmptyBoneHeart}} +1 Bone Heart"}, -- Marrow
@@ -620,7 +620,7 @@ EID.descriptions[languageCode].sacrifice={
 
 ---------- Dice Room ----------
 
-EID.descriptions[languageCode].diceHeader = "[Würfel Effekte]"
+EID.descriptions[languageCode].diceHeader = "[Würfel-Raum Effekte]"
 
 EID.descriptions[languageCode].dice={
 	-- Not yet Translated!
@@ -639,13 +639,66 @@ EID.descriptions[languageCode].transformations = {
 EID.descriptions[languageCode].VoidText = "Wenn absorbiert, erhalte:"
 -- {1} will become the number text (like "{1} Tränen" -> "+0.5 Tränen")
 EID.descriptions[languageCode].VoidNames = {"{1} Tempo", "{1} Tränen", "{1} Schaden", "{1} Reichweite", "{1} Schusstempo", "{1} Glück"}
+
+EID.descriptions[languageCode].CollectionPageInfo = "This item needs to be picked up for the collection page!"
+
+EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorLime}}{1}{{CR}} items currently held (+{2} Damage)"
+
+EID.descriptions[languageCode].MCM = {
 	-- Not yet Translated!
 	-- Copy & Paste entries from en_us and continue translating from that
+}
+
+-- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].ItemReminder = {
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
+}
+
+-- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
+-- Includes Repentance room types for localization convenience
+EID.descriptions[languageCode].RoomTypeNames = { "Normal Room", "Shop", "I AM ERROR Room", "Treasure Room", "Boss Room", "Miniboss Room", "Secret Room", "Super Secret Room", "Arcade Room", "Curse Room", "Challenge Room", "Library", "Sacrifice Room", "Devil Room", "Angel Room", "Crawlspace Room", "Boss Rush Room", "Isaac's Room", "Barren Room", "Chest Room", "Dice Room", "Black Market", "Exit Room", "Planetarium", "Teleporter Entrance", "Teleporter Exit", "Alt Path Trapdoor", "Blue Key Room", "Ultra Secret Room",
+-- Not technically room types but still potentially useful to have localized
+[666] = "Angel/Devil Room", [1024] = "Red Room", [1025] = "Special Red Room" }
+
+-- currently used for D1
+EID.descriptions[languageCode].PickupNames = {
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
+}
+
+-- Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
+-- Strings will be appended to the original description (with line breaks replaced with a Tarot Cloth icon)
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple)
+EID.descriptions[languageCode].tarotClothBuffsAB = {
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
+}
 
 -- Conditional descriptions
 -- Strings will be appended to the original description
 -- Tables with one entry will completely replace the original description
 -- Tables with two or more entries are find-replace pairs
+-- For collectible/player conditionals, lines will automatically have their bulletpoint, and {1} is replaced with their name
 EID.descriptions[languageCode].ConditionalDescs = {
-	["5.300.48"] = "Teleport zum I AM ERROR-Raum#Blanko-Karte und ?-Karte werden zerstört", -- Blank Card + Q Card
+	["5.100.7"] = "x1.5 Schadens-Multiplikator wenn \"Das Buch Belial\" oder \"XV - Der Teufel\" Effekt aktiv ist", -- Blood of the Martyr
+	["5.100.34"] = "x1.5 Schadens-Multiplikator", -- Book of Belial
+	["5.300.16"] = "x1.5 Schadens-Multiplikator", -- XV - The Devil
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
+}
+
+EID.descriptions[languageCode].BFFSSynergies = {
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
+}
+
+-- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
+-- Soon, these descriptions, along with their starting item descriptions, will be in a tab in the Item Reminder
+-- The character names here are also used in getPlayerName to provide localized character names
+-- The numbers are provided to make this a quick reference for Player IDs
+EID.descriptions[languageCode].CharacterInfo = {
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
 }
