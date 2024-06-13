@@ -129,13 +129,13 @@ EID.descriptions[languageCode].collectibles={
 	{"106", "Mr. Mega", "↑ {{Bomb}} x1.83 Bombenschaden#{{Bomb}} +5 Bomben"}, -- Mr. Mega
 	{"107", "Die Zackenschere", "{{Timer}} Erhalte für diesen Raum:#Flug#Isaacs Körper trennt sich vom Kopf, attackiert Feinde und verursacht bei Kontakt 82.5 Schaden pro Sekunde"}, -- The Pinking Shears
 	{"108", "Die Hostie", "Reduziert den meisten erlittenen Schaden auf ein halbes Herz"}, -- The Wafer
-	{"109", "Money = Power", "↑ {{Damage}} +0.04 Schaden for every {{Coin}} coin Isaac has"}, -- Money = Power
-	{"110", "Mom's Contacts", "↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe#20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 Glück"}, -- Mom's Contacts
-	{"111", "The Bean", "{{Poison}} Farts a poison cloud#The poison deals Isaac's damage 6 times"}, -- The Bean
-	{"112", "Guardian Angel", "Orbital#Speeds up all other orbitals#Blocks projectiles#Deals 105 contact damage per second"}, -- Guardian Angel
-	{"113", "Demon Baby", "Shoots enemies that get close to him#Deals 3 damage per tear"}, -- Demon Baby
-	{"114", "Mom's Knife", "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and 6x at the furthest possible distance"}, -- Mom's Knife
-	{"115", "Ouija Board", "Spectral tears"}, -- Ouija Board
+	{"109", "Geld = Macht", "↑ {{Damage}} +0.04 Schaden für jede {{Coin}} Münze, die Isaac besitzt"}, -- Money = Power
+	{"110", "Mamas Kontaktlinsen", "↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe#20% Chance, versteinernde Tränen zu schießen#{{Luck}} 50% Chance bei 20 Glück"}, -- Mom's Contacts
+	{"111", "Die Bohne", "{{Poison}} Furzt eine Giftwolke#Der Furz verursacht 5 Schaden an Feinden und vergiftet sie#Das Gift verursacht Isaacs Schaden 6 Mal"}, -- The Bean
+	{"112", "Schutzengel", "Satellit#Beschleunigt alle anderen Satelliten#Blockt Projektile#Verursacht bei Kontakt 105 Schaden pro Sekunde"}, -- Guardian Angel
+	{"113", "Dämonenbaby", "Schießt auf Feinde, die ihm zu nahe kommen#Verursacht 3 Schaden pro Träne"}, -- Demon Baby
+	{"114", "Mamas Messer", "Isaacs Tränen werden durch ein werfbares Messer ersetzt#{{Damage}} Das Messer verursacht 2x Isaacs Schaden, während es gehalten wird, und 6x bei der maximal möglichen Entfernung"}, -- Mom's Knife
+	{"115", "Ouija-Brett", "Spektrale Tränen"}, -- Ouija Board
 	{"116", "9 Volt", "{{Battery}} Automatically charges the first bar of active items#{{Battery}} Fully recharges the active item on pickup"}, -- 9 Volt
 	{"117", "Dead Bird", "Getting hit spawns a bird#The bird deals 4.3 contact damage per second"}, -- Dead Bird
 	{"118", "Brimstone", "↓ {{Tears}} x3 Tränenverzögerungs-Multiplikator#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam"}, -- Brimstone

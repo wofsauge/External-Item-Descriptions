@@ -131,7 +131,7 @@ EID.descriptions[languageCode].collectibles={
 	{"108", "The Wafer", "Reduces most damage taken to half a heart"}, -- The Wafer
 	{"109", "Money = Power", "↑ {{Damage}} +0.04 Damage for every {{Coin}} coin Isaac has"}, -- Money = Power
 	{"110", "Mom's Contacts", "↑ {{Range}} +0.25 Range#↑ +0.5 Tear height#20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 luck"}, -- Mom's Contacts
-	{"111", "The Bean", "{{Poison}} Farts a poison cloud#The poison deals Isaac's damage 6 times"}, -- The Bean
+	{"111", "The Bean", "{{Poison}} Farts a poison cloud#The fart deals 5 damage to enemies and poisons them#The poison deals Isaac's damage 6 times"}, -- The Bean
 	{"112", "Guardian Angel", "Orbital#Speeds up all other orbitals#Blocks projectiles#Deals 105 contact damage per second"}, -- Guardian Angel
 	{"113", "Demon Baby", "Shoots enemies that get close to him#Deals 3 damage per tear"}, -- Demon Baby
 	{"114", "Mom's Knife", "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and 6x at the furthest possible distance"}, -- Mom's Knife
