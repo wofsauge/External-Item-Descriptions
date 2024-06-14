@@ -119,11 +119,15 @@ function EID:ConditionalCollCheck(collectibleID, checkInReminder)
 	return false
 end
 
-function EID.IsGreedMode()
+function EID:IsGreedMode()
 	return game:IsGreedMode()
 end
 
-function EID.IsHardMode()
+function EID:IsGreedModePlusTarot()
+	return game:IsGreedMode() and EID:ConditionalCollCheck(451, true)
+end
+
+function EID:IsHardMode()
 	if game.Difficulty == 1 or game.Difficulty == 3 then
 		return true
 	else
@@ -132,7 +136,7 @@ function EID.IsHardMode()
 end
 
 -- Check if we have any characters that can't have Red Health, to print additions to descs like Dead Cat
-function EID.CheckForNoRedHealthPlayer()
+function EID:CheckForNoRedHealthPlayer()
 	if EID.InsideItemReminder then
 		local player = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
 		return EID.NoRedHeartsPlayerIDs[player:GetPlayerType()]
@@ -147,7 +151,7 @@ function EID.CheckForNoRedHealthPlayer()
 	return false
 end
 
-function EID.CheckForCarBattery(descObj)
+function EID:CheckForCarBattery(descObj)
 	if EID.CarBatteryNoSynergy[descObj.ObjSubType] then return "No Effect"
 	else return descObj.ObjSubType end
 end
@@ -184,7 +188,7 @@ function EID:CheckActiveChargeType(itemID, maxCharge, chargeType)
 end
 
 -- Check for multiple players existing for items like Yum Heart and Extension Cord, includes J&E (but does it include Forgotten?)
-function EID.MultiplePlayerCharacters()
+function EID:MultiplePlayerCharacters()
 	return #EID.coopAllPlayers > 1
 end
 
@@ -207,4 +211,105 @@ end
 function EID:HaveNotUnlockedAchievement(achID)
 	if not REPENTOGON then return true end
 	return not EID:HaveUnlockedAchievement(achID)
+end
+
+
+----- Apply Conditionals -----
+
+-- thing to fix find/replace pairs with hyphens (like "1-2") breaking because hyphen is a special char
+-- https://stackoverflow.com/questions/29072601/lua-string-gsub-with-a-hyphen
+local function replace(str, what, with, count)
+	what = string.gsub(what, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1") -- escape pattern
+	with = string.gsub(with, "[%%]", "%%%%")                       -- escape replacement
+	return string.gsub(str, what, with, count)
+end
+-- super simple table concatenation: https://www.tutorialspoint.com/concatenation-of-tables-in-lua-programming
+local function TableConcat(t1, t2)
+	for i = 1, #t2 do
+		t1[#t1 + 1] = t2[i]
+	end
+	return t1
+end
+
+function EID:applyConditionals(descObj)
+	EID:CheckPlayersCollectibles()
+
+	local typeVar = descObj.ObjType.."."..descObj.ObjVariant -- for general conditions (Tarot Cloth, Book of Virtues)
+	local typeVarSub = descObj.fullItemString -- for specific conditions
+	-- Combine general+specific conditions into one table
+	local conds = {}
+	if EID.DescriptionConditions[typeVarSub] then TableConcat(conds, EID.DescriptionConditions[typeVarSub]) end
+	if EID.DescriptionConditions[typeVar] then TableConcat(conds, EID.DescriptionConditions[typeVar]) end
+	-- Check every condition we need to check for this item
+	for _, cond in ipairs(conds) do
+		-- Search for the localization string; "S" (for generals) or "T.V.S" or "T.V.S (Modifier)" or "Modifier"
+		local locTable = cond.locTable or "ConditionalDescs"
+		local text = nil
+		local modifierText = type(cond.modifierText) == "function" and cond.modifierText(EID, descObj) or cond.modifierText
+		
+		-- Find our string in the base localization table
+		if cond.noTable then
+			text = EID:getDescriptionEntry(modifierText, nil, cond.noFallback)
+		-- Find our string as either "Type.Var.Sub (Mod Text)" or "Mod Text"
+		elseif modifierText then
+			text = EID:getDescriptionEntry(locTable, typeVarSub .. " (" .. modifierText .. ")", cond.noFallback)
+			if text == nil then text = EID:getDescriptionEntry(locTable, modifierText, cond.noFallback) end
+		-- Find our string as either "Type.Var.Sub" or just the Subtype
+		else
+			text = EID:getDescriptionEntry(locTable, typeVarSub, cond.noFallback)
+			if text == nil then text = EID:getDescriptionEntry(locTable, descObj.ObjSubType, cond.noFallback) end
+		end
+
+		-- If we find the localization string for this condition, and it passes the test, modify the description text
+		local result = cond.func(descObj)
+		if text ~= nil and result then
+			local variableText, bulletpoint
+			if cond.useResult then
+				variableText = "{{NameOnlyC"..result.."}}"
+				bulletpoint = "Collectible"..result
+			else
+				variableText = type(cond.variableText) == "function" and cond.variableText(EID, descObj) or cond.variableText
+				bulletpoint = cond.bulletpoint
+			end
+
+			-- String = append
+			if type(text) == "string" then
+				text = EID:ReplaceVariableStr(text, 1, variableText)
+				local iconStr = "#"
+				if bulletpoint then iconStr = iconStr .. "{{" .. bulletpoint .. "}} " end
+				if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end
+				EID:appendToDescription(descObj, iconStr .. text:gsub("#", iconStr))
+
+				-- Table with 1 entry = replace
+			elseif #text == 1 then
+				descObj.Description = EID:ReplaceVariableStr(text[1], 1, variableText)
+
+				-- Table with 2+ entries = find and replace pairs
+				-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
+			else
+				local pos = 1
+				while pos < #text do
+					local toFind = text[pos]
+					local replaceWith = EID:ReplaceVariableStr(text[pos + 1], 1, variableText)
+					if cond.replaceColor then replaceWith = "{{" .. cond.replaceColor .. "}}" .. replaceWith .. "{{CR}}" end
+					--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
+					if (type(toFind) == "number") then
+						local count = 0
+						descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
+							if (s == tostring(toFind) and count == 0) then
+								count = count + 1
+								return replaceWith
+							end
+						end)
+						-- Basic find+replace for non-numbers
+					else
+						descObj.Description = replace(descObj.Description, tostring(toFind), replaceWith, 1)
+					end
+					pos = pos + 2
+				end
+			end
+		end
+	end
+
+	return descObj
 end
