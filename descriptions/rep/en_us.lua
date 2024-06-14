@@ -32,7 +32,6 @@ local repCollectibles={
 	[40] = {"40", "Kamikaze!", "Causes a big explosion at Isaac's location#Deals 185 damage"}, -- Kamikaze!
 	[41] = {"41", "Mom's Pad", "{{Fear}} Fears all enemies in the room for 5 seconds#Spawns a blue fly"}, -- Mom's Pad
 	[42] = {"42", "Bob's Rotten Head", "Using the item and firing in a direction throws the head#{{Poison}} The head explodes where it lands and creates a poison cloud#Deals Isaac's damage + 185"}, -- Bob's Rotten Head
-	[45] = {"45", "Yum Heart", "{{Heart}} Heals 1 heart#{{HalfHeart}} Heals other players for half a heart"}, -- Yum Heart
 	[46] = {"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#Better chance to win while gambling#Increases room clearing drop chance#Turns bad pills into good ones"}, -- Lucky Foot
 	[49] = {"49", "Shoop da Whoop!", "{{Collectible118}} Using the item and shooting in a direction fires a beam#It deals 24x Isaac's damage over 0.83 seconds"}, -- Shoop da Whoop!
 	[52] = {"52", "Dr. Fetus", "↓ {{Tears}} x0.4 Fire rate multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 10x Isaac's tear damage#If that results in over 60 damage, they instead deal 5x damage +30"}, -- Dr. Fetus
@@ -121,7 +120,7 @@ local repCollectibles={
 	[276] = {"276", "Isaac's Heart", "Isaac becomes invincible#Spawns a heart familiar that follows Isaac#The heart charges up when Isaac fires and releases a burst of tears when he stops#{{Warning}} If the heart familiar gets hit, Isaac takes damage"}, -- Isaac's Heart
 	[278] = {"278", "Dark Bum", "{{Heart}} Picks up nearby Red Hearts#Spawns a Black Heart, rune, card, pill, or spider for every 1.5 hearts picked up"}, -- Dark Bum
 	[280] = {"280", "Sissy Longlegs", "Randomly spawns blue spiders in hostile rooms#{{Charm}} Charms enemies it comes in contact with"}, -- Sissy Longlegs
-	[283] = {"283", "D100", "Duplicates 1 pickup in the room#Rerolls Isaac's speed, tears, damage, range and passive items#Rerolls all pedestal items, pickups and rocks in the room#Restarts the room, respawns all enemies and rerolls them"}, -- D100
+	[283] = {"283", "D100", "Duplicates 1 pickup in the room#Rerolls Isaac's speed, tears, damage, range and passive items#Rerolls all pedestal items, pickups and rocks in the room#Restarts the room, respawns all enemies and devolves them"}, -- D100
 	[285] = {"285", "D10", "Devolves all enemies in the room#For instance, all Red Flies become Black Flies"}, -- D10
 	[286] = {"286", "Blank Card", "Triggers the effect of the card Isaac holds without using it"}, -- Blank Card
 	[287] = {"287", "Book of Secrets", "Highlights tinted and crawlspace rocks in the room#{{Timer}} Receive one of these effects for the floor:#{{Collectible54}} Treasure Map#{{Collectible21}} Compass #{{Collectible246}} Blue Map#Only grants effects not already active#{{Collectible76}} If all effects are active, grants X-Ray Vision"}, -- Book of Secrets
@@ -174,6 +173,7 @@ local repCollectibles={
 	[380] = {"380", "Pay To Play", "{{Coin}} +5 Coins#Locked blocks, doors and chests must be opened with coins instead of keys"}, -- Pay To Play
 	[382] = {"382", "Friendly Ball", "Can be thrown at enemies to capture them#Using the item after capturing an enemy spawns the capture as a friendly companion#Walking over the ball after a capture instantly recharges the item"}, -- Friendly Ball
 	[384] = {"384", "Lil Gurdy", "{{Chargeable}} Launches and bounces around the room with speed based on charge amount#Deals 5-25 contact damage per hit depending on speed"}, -- Lil Gurdy
+	[386] = {"386", "D12", "Rerolls any obstacle into another random obstacle (e.g. poop, pots, TNT, red poop, stone blocks etc.)#Small chance to reroll obstacles into buttons, killswitches, crawlspaces or trapdoors"}, -- D12
 	[389] = {"389", "Rune Bag", "{{Rune}} Spawns a random rune or Soul Stone every 7-8 rooms"}, -- Rune Bag
 	[391] = {"391", "Betrayal", "Enemies can hit each other with their projectiles, and start infighting"}, -- Betrayal
 	[393] = {"393", "Serpent's Kiss", "{{Poison}} 15% chance to shoot poison tears#{{Poison}} Poison enemies on contact#{{BlackHeart}} Enemies killed by contact poison have a chance to drop a Black Heart on death"}, -- Serpent's Kiss
@@ -710,22 +710,28 @@ EID.descriptions[languageCode].abyssSynergies = {
 }
 
 -- Effect of Car battery on Active Items
--- these all need way more consistency with the original effect text and spellchecking
 local repCarBattery = {
+	[34] = {2, 4}, -- The Book of Belial -- TODO: Is this +1 damage or another +2 from additional uses?
+	[59] = {2, 4}, -- The Book of Belial (Birthright)
+	[83] = {" Half", "1"}, -- The Nail
+	[283] = {1, 2, "pickup", "{{CR}}pickups"}, -- D100 TODO: TEST THIS is this really the only change
+	[285] = "Devolves enemies twice", -- D10
+	[288] = {"4-8", "8-16"}, -- Box of Spiders
 	[293] = {200, 400}, -- Head of Krampus
+	[296] = {1, 2, "Heart", "{{CR}}Hearts", 1, 2, "container", "{{CR}}containers"}, -- Converter
 	[323] = "The tears deal double damage", -- Isaac's Tears
+	[386] = "Increased chance for rare obstacles", -- D12
 	[421] = nil, -- Kidney Bean, double fart damage removed in Rep
 	[485] = "25% chance to quadruple, 75% chance to remove", -- Crooked Penny
 	[489] = "Uses the selected dice twice", -- D Infinity
 	[523] = nil, -- Moving Box, swap removed in Rep
-	[605] = {" a ", " two ", "familiar", "{{CR}}familiars"}, -- The Scooper
+	[605] = {" a ", " 2 ", "familiar", "{{CR}}familiars"}, -- The Scooper
 	[609] = {25, 44}, -- Eternal D6
 	[625] = {30, 60}, -- Mega Mush
 	[705] = {1, 2}, -- Dark Arts
 	[720] = "Spawns a poop alongside the pickup", -- Everything Jar
 	[723] = {"one", "two"}, -- Spindown Dice
 }
--- EID.descriptions[languageCode].carBattery[284] = nil -- D4
 EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
 
 ---------- Trinkets ----------
@@ -950,27 +956,27 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[8] = {6, 12}, -- VII - The Chariot
 	[9] = {"Spawns {{ColorShinyPurple}}2{{CR}} random {{UnknownHeart}} hearts, {{Coin}} coins, {{Bomb}} bombs and {{Key}} keys"}, -- VIII - Justice
 	[10] = "Prevents Greed from spawning in the Shop#Turns a Greed Shop into a normal Shop if Greed was already fought in it", -- IX - The Hermit
-	[11] = {" a ", " two ", "Machine", "{{CR}}Machines", "Machine", "{{CR}}Machines"}, -- X - Wheel of Fortune
+	[11] = {" a ", " 2 ", "Machine", "{{CR}}Machines", "Machine", "{{CR}}Machines"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 2.5, 5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
-	[15] = {" a ", " two ", "Machine", "{{CR}}Machines"}, -- XIV - Temperance
+	[15] = {" a ", " 2 ", "Machine", "{{CR}}Machines"}, -- XIV - Temperance
 	[16] = {2, 4}, -- XV - The Devil
 	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "If the Treasure Room hasn't been entered yet, it will have two items to choose from", -- XVII - The Stars
 	[20] = {100, 400}, -- XIX - The Sun
-	[21] = {" a ", " two ", "Beggar", "{{CR}}Beggars", "Beggar", "{{CR}}Beggars"}, -- XX - Judgement
+	[21] = {" a ", " 2 ", "Beggar", "{{CR}}Beggars", "Beggar", "{{CR}}Beggars"}, -- XX - Judgement
 	[56] = "Drops Isaac's most recent 6 items alongside the pickups", -- 0 - The Fool?
 	[59] = {2, 3}, -- III - The Empress?
 	[61] = {2, 3}, -- V - The Hierophant?
 	[62] = "Activates the effect twice", -- VI - The Lovers?
 	[64] = {4, 14, 2, 4}, -- VIII - Justice?
 	[65] = "Spawns 1 additional {{Coin}} penny", -- IX - The Hermit?
-	[66] = {" a ", " two ", "effect", "{{CR}}effects"}, -- X - Wheel of Fortune?
+	[66] = {" a ", " 2 ", "effect", "{{CR}}effects"}, -- X - Wheel of Fortune?
 	[68] = {30, 60}, -- XII - The Hanged Man?
 	[70] = {5, 10}, -- XIV - Temperance?
 	[72] = {7, 14}, -- XVI - The Tower?
 	[73] = {"Removes Isaac's {{ColorShinyPurple}}2{{CR}} oldest collected passive items (ignoring starting items)#Spawns {{ColorShinyPurple}}4{{CR}} random items from the current room's item pool"}, -- XVII - The Stars?
-	[76] = {" a ", " two ", "Machine", "{{CR}}Machines"}, -- XX - Judgement?
+	[76] = {" a ", " 2 ", "Machine", "{{CR}}Machines"}, -- XX - Judgement?
 }
 
 
@@ -1227,6 +1233,7 @@ local repConditions={
 	["5.100.705"] = "Temporary +1 damage up for each bullet/enemy", -- Dark Arts + Dark/Tainted Judas
 	["5.100.205 (Tainted Magdalene)"] = "Allows infinite usage of Yum Heart", -- Sharp Plug + Tainted Magdalene
 	["Ice Tears"] = "Freezing an enemy doesn't count as killing", -- Uranus Anti-Synergy
+	["5.100.45"] = "{{HalfHeart}} Heals other players for half a heart", -- Yum Heart (Co-Op)
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
@@ -1274,6 +1281,10 @@ local repCharacterInfo = {
 	[40] = {"Tainted Forgotten Soul", "The Forgotten is an immobile bone pile that is picked up and thrown by The Soul for 3x damage#Only The Soul can take damage#Bombs are placed at Forgotten's location#Can't have Red Hearts"},
 }
 EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
+
+
+
+
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
