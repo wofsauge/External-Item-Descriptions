@@ -232,6 +232,7 @@ local repCollectibles={
 	[509] = {"509", "Bloodshot Eye", "Orbital that shoots a tear every 0.33 seconds to nearby enemies#Deals 3.5 damage per tear#Deals 20 contact damage per second"}, -- Bloodshot Eye
 	[514] = {"514", "Broken Modem", "Causes some enemies and projectiles to briefly pause at random intervals#Paused projectiles disappear#25% chance to double room clear rewards#(Doesn't double chest, card or pill rewards)"}, -- Broken Modem
 	[517] = {"517", "Fast Bombs", "{{Bomb}} +7 Bombs#Removes the delay between bomb placements#Bombs don't deal knockback to each other"}, -- Fast Bombs
+	[522] = {"522", "Telekinesis", "Stops all enemy projectiles that come close to Isaac for 3 seconds and throws them away from him afterwards#Pushes close enemies away during the effect"}, -- Telekinesis
 	[523] = {"523", "Moving Box", "Stores up to 10 pickups and items from the current room#Using the item again drops everything back on the floor#Allows Isaac to move things between rooms"}, -- Moving Box
 	[524] = {"524", "Technology Zero", "Isaac's tears are connected with beams of electricity#Electricity deals 4.5x Isaac's damage per second"}, -- Technology Zero
 	[531] = {"531", "Haemolacria", "↑ {{Damage}} +1 Damage#↑ {{Damage}} x1.5 Damage multiplier#↓ {{Tears}} x0.33 Fire rate multiplier#↓ {{Range}} x0.8 Range multiplier#Isaac's tears fly in an arc and burst into smaller tears on impact"}, -- Haemolacria
@@ -316,7 +317,7 @@ local repCollectibles={
 	[628] = {"628", "Death Certificate", "{{Warning}} SINGLE USE {{Warning}}#Teleports Isaac to a floor that contains every item in the game#Choosing an item from this floor teleports Isaac back to the room he came from"}, -- Death Certificate
 	[629] = {"629", "Bot Fly", "Shoots shielded tears to destroy enemy projectiles"}, -- Bot Fly
 	[630] = {"630", "", "<Item does not exist>"},
-	[631] = {"631", "Meat Cleaver", "Splits all enemies in the room into 2 smaller versions of themselves with less health"}, -- Meat Cleaver
+	[631] = {"631", "Meat Cleaver", "Splits all enemies in the room into 2 smaller versions with 40% health#Enemies that naturally split (like Envy) take enough damage to split instead#Deals 25 damage to enemies that can't be split"}, -- Meat Cleaver
 	[632] = {"632", "Evil Charm", "↑ {{Luck}} +2 Luck#Immune to {{Burning}} burn, {{Confusion}} confusion, {{Fear}} fear, and {{Poison}} poison effects"}, -- Evil Charm
 	[633] = {"633", "Dogma", "↑ {{Speed}} +0.1 Speed#↑ {{Damage}} +2 Damage#Flight and one-time {{HolyMantleSmall}} Holy Mantle shield#{{Heart}} Heals Isaac with Red and Soul Hearts if he has less than 6 hearts"}, -- Dogma
 	[634] = {"634", "Purgatory", "Red cracks spawn on the ground in hostile rooms#Walking over the cracks summons homing exploding ghosts"}, -- Purgatory
@@ -399,7 +400,7 @@ local repCollectibles={
 	[711] = {"711", "Flip", "Entering a room with item pedestals displays a ghostly second item on the pedestals#Using the item flips the real and ghostly item#Using Flip after taking the first item allows Isaac to pick up the other item#{{Warning}} Ghostly items alone on pedestals disappear after leaving the room"}, -- Flip
 	[712] = {"712", "Lemegeton", "Spawns an orbital that grants a random item's effect#The items have a 25% chance to be from the current room's item pool and 75% chance to be from the Treasure, Boss or Shop pools"}, -- Lemegeton
 	[713] = {"713", "Sumptorium", "Removes half a heart and creates a clot#Clots copy Isaac's tears#Each type of heart generates a clot with different HP, damage and tear effect"}, -- Sumptorium
-	[714] = {"714", "Recall", "Retrieves the Forgotten's body from any distance"}, -- Recall
+	[714] = {"714", "Recall", "Retrieves the Forgotten's body from any distance#The Soul is invincible while the Forgotten is returning"}, -- Recall
 	[715] = {"715", "Hold", "Using the item when empty stores the next poop inside#Using the item with a poop inside uses that poop"}, -- Hold
 	[716] = {"716", "Keeper's Sack", "Spawns 3 {{Coin}} coins and 1 {{Key}} key#{{Shop}} Spending 3 coins grants either:#↑ {{Speed}} +0.03 Speed#↑ {{Damage}} +0.5 Damage#↑ {{Range}} +0.25 Range"}, -- Keeper's Sack
 	[717] = {"717", "Keeper's Kin", "Rocks and other obstacles spawn 2 blue spiders when destroyed#Rocks can occasionally spawn blue spiders in hostile rooms"}, -- Keeper's Kin
@@ -460,12 +461,12 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Lilith", "", "{{Collectible728}} Familiars that normally follow Tainted Lilith follow her Gello instead#The melee attack gains +3 damage per familiar"},
 	{"Tainted Keeper", "", "{{Coin}} Strongly attracts the coins dropped by defeating enemies#No effect on other coins"},
 	{"Tainted Apollyon", "", "Locusts continuously damage enemies without returning while the fire button is held"},
-	{"Tainted Forgotten", "", "{{Collectible714}} Tainted Soul gains the Recall ability to retrieve Tainted Forgotten from a distance"},
+	{"Tainted Forgotten", "", "{{Collectible714}} Tainted Soul gains the Recall ability to retrieve Tainted Forgotten from a distance#The Soul is invincible while the Forgotten is returning"},
 	{"Tainted Bethany", "", "Spawns four random item wisps of Quality {{Quality3}} and {{Quality4}} with significantly higher HP than normal"},
 	{"Tainted Jacob", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus always charge at the same time#{{Collectible722}} Using Anima Sola chains both Esaus"},
 	{"Dead Tainted Lazarus", "", "The non-active form of Tainted Lazarus appears as a ghostly second character#He is invincible and deals 25% damage#Both forms receive the Birthright item"},
 	{"Tainted Jacob 2", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus always charge at the same time#{{Collectible722}} Using Anima Sola chains both Esaus"},
-	{"Tainted Forgotten Soul", "", "{{Collectible714}} Tainted Soul gains the Recall ability to retrieve Tainted Forgotten from a distance"},
+	{"Tainted Forgotten Soul", "", "{{Collectible714}} Tainted Soul gains the Recall ability to retrieve Tainted Forgotten from a distance#The Soul is invincible while the Forgotten is returning"},
 }
 
 -- Buffs caused by Binge Eater
@@ -714,6 +715,7 @@ local repCarBattery = {
 	[34] = {2, 4}, -- The Book of Belial -- TODO: Is this +1 damage or another +2 from additional uses?
 	[59] = {2, 4}, -- The Book of Belial (Birthright)
 	[83] = {" Half", "1"}, -- The Nail
+	[263] = "Triggers it twice", -- Clear Rune
 	[283] = {1, 2, "pickup", "{{CR}}pickups"}, -- D100 TODO: TEST THIS is this really the only change
 	[285] = "Devolves enemies twice", -- D10
 	[288] = {"4-8", "8-16"}, -- Box of Spiders
@@ -721,15 +723,30 @@ local repCarBattery = {
 	[296] = {1, 2, "Heart", "{{CR}}Hearts", 1, 2, "container", "{{CR}}containers"}, -- Converter
 	[323] = "The tears deal double damage", -- Isaac's Tears
 	[386] = "Increased chance for rare obstacles", -- D12
-	[421] = nil, -- Kidney Bean, double fart damage removed in Rep
 	[485] = "25% chance to quadruple, 75% chance to remove", -- Crooked Penny
 	[489] = "Uses the selected dice twice", -- D Infinity
-	[523] = nil, -- Moving Box, swap removed in Rep
+	[522] = {3, 6}, -- Telekinesis
+	[557] = {"one", "two"}, -- Fortune Cookie
+	[582] = "Triggers twice", -- Wavy Cap
+	[584] = "Spawns two wisps", -- Book of Virtues
 	[605] = {" a ", " 2 ", "familiar", "{{CR}}familiars"}, -- The Scooper
 	[609] = {25, 44}, -- Eternal D6
+	[611] = "Triggers an additional 1-charge scream", -- Larynx
 	[625] = {30, 60}, -- Mega Mush
+	[631] = {25, 50}, -- Meat Cleaver
+	[635] = "Instantly swaps twice#Great for teleporting into enemies, but can't collect out-of-reach items", -- Stitches
+	[639] = {1, 2, "Heart", "{{CR}}Hearts"}, -- Yuck Heart
+	[642] = "Triggers twice", -- Magic Skin
+	[650] = {" a ", " 2 ", "Plum", "{{CR}}Plums"}, -- Plum Flute
+	[685] = "Spawns double the wisps, but the use count only goes up by 1", -- Jar of Wisps
+	[687] = {" a ", " 2 ", "monster", "{{CR}}monsters"}, -- Friend Finder
+	[704] = "Lasts 10 seconds, but killing an enemy caps time remaining at 5 seconds max", -- Berserk!
 	[705] = {1, 2}, -- Dark Arts
+	[712] = {" an ", " 2 ", "orbital", "{{CR}}orbitals"}, -- Lemegeton
+	[713] = {"half a heart", "a heart", "a clot", "2 {{CR}}clots"}, -- Sumptorium
+	[719] = {" a ", " 2 ", "item/pickup", "{{CR}}items/pickups"}, -- Keeper's Box
 	[720] = "Spawns a poop alongside the pickup", -- Everything Jar
+	[722] = "Chains 2 enemies down#If there's only one enemy, chains it for 10 seconds", -- Anima Sola
 	[723] = {"one", "two"}, -- Spindown Dice
 }
 EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
