@@ -235,7 +235,13 @@ local function BlackFeatherCallback(descObj)
 		itemCounter = itemCounter + EID.player:GetCollectibleNum(itemID)
 	end
 	for trinketID, _ in pairs(EID.blackFeatherTrinkets) do
-		itemCounter = itemCounter + EID.player:GetTrinketMultiplier(trinketID)
+		-- in AB+, GetTrinketMultiplier doesn't take an ID, it's just 1 (or 2 with Mom's Box)
+		if EID.isRepentance then
+			itemCounter = itemCounter + EID.player:GetTrinketMultiplier(trinketID)
+		else
+			if EID.player:GetTrinket(0) == trinketID then itemCounter = itemCounter + EID.player:GetTrinketMultiplier() end
+			if EID.player:GetTrinket(1) == trinketID then itemCounter = itemCounter + EID.player:GetTrinketMultiplier() end
+		end
 	end
 	
 	local hasBox = EID.collectiblesOwned[439]
