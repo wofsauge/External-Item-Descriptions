@@ -915,16 +915,35 @@ EID.LocalModePositionOffset = {
 	Shop = function(entity) if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:ToPickup() and entity:ToPickup():IsShopItem() then return Vector(0, 35) end end,
 }
 
--- Items that dont have an effect with BFFS! item
-EID.BFFSNoSynergy = {[11] = true, [81] = true, [238] = true, [239] = true, [243] = true,  [265] = true, [268] = true, [269] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [405] = true, [431] = true, [436] = true, [469] = true, [472] = true, [492] = true, [516] = true, [528] = true, [542] = true, [543] = true }
+-- Actives that have no additional effect from Car Battery
+EID.CarBatteryNoSynergy = {[33] = true, [34] = true, [36] = true, [39] = true, [40] = true, [41] = true, [42] = true, [44] = true, [47] = true, [49] = true, [56] = true, [84] = true, [105] = true, [126] = true, [127] = true, [130] = true, [133] = true, [135] = true, [137] = true, [147] = true, [164] = true, [166] = true, [175] = true, [177] = true, [181] = true, [186] = true, [192] = true, [282] = true, [285] = true, [289] = true, [290] = true, [291] = true, [295] = true, [296] = true, [297] = true, [323] = true, [324] = true, [325] = true, [326] = true, [338] = true, [347] = true, [352] = true, [382] = true, [386] = true, [396] = true, [406] = true, [419] = true, [422] = true, [434] = true, [437] = true, [441] = true, [475] = true, [478] = true, [479] = true, [483] = true, [484] = true, [487] = true, [490] = true, [512] = true, [515] = true, [522] = true, [527] = true, [536] = true, [552] = true, }
+if EID.isRepentance then
+	EID.CarBatteryNoSynergy[34] = false -- The Book of Belial
+	--TODO: test Kamikaze in Rep
+	EID.CarBatteryNoSynergy[284] = true -- D4 (essentially does nothing)
+	EID.CarBatteryNoSynergy[285] = false -- D10
+	EID.CarBatteryNoSynergy[296] = false -- Converter
+	EID.CarBatteryNoSynergy[323] = false -- Isaac's Tears
+	EID.CarBatteryNoSynergy[386] = false -- D12
+	EID.CarBatteryNoSynergy[421] = true -- Kidney Bean
+	EID.CarBatteryNoSynergy[522] = false -- Telekinesis TODO: REPENTANCE DIFFERENCES IN MAIN DESC TOO
+	EID.CarBatteryNoSynergy[523] = true -- Moving Box
+	
+	
+end
 
+-- Familiars that have no effect from BFFS!
+EID.BFFSNoSynergy = {[11] = true, [81] = true, [238] = true, [239] = true, [243] = true,  [265] = true, [268] = true, [269] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [405] = true, [431] = true, [436] = true, [469] = true, [472] = true, [492] = true, [516] = true, [528] = true, [542] = true, [543] = true }
 -- todo: this table is wrong, for instance brown nugget didnt have one and then got one
-if REPENTANCE then
+if EID.isRepentance then
 	EID.BFFSNoSynergy[504] = true -- Brown Nugget
 	EID.BFFSNoSynergy[567] = true -- Paschal Candle
 	EID.BFFSNoSynergy[651] = true -- Star of Bethlehem
 	EID.BFFSNoSynergy[697] = true -- Vanishing Twin
 end
+
+-- Familiars that have a BFFS! effect from Hive Mind
+EID.HiveMindFamiliars = {}
 
 -- Tainted character's respective normal version ID, for conditionals that apply to both versions of the character
 -- To help with other character pairs, Esau = Jacob, Dead Tainted Lazarus = Tainted Lazarus, Tainted Soul = Tainted Forgotten
@@ -933,7 +952,7 @@ EID.TaintedToRegularID = { [20] = 19, [21] = 0, [22] = 1, [23] = 2, [24] = 3, [2
 
 -- Character IDs that are Soul/Black Hearts only: ???, The Lost, The Soul
 EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
-if REPENTANCE then
+if EID.isRepentance then
 	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
 	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
 end
@@ -949,7 +968,7 @@ EID.runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=
 
 ---------------- BAG OF CRAFTING DATA ------------------
 
-if not REPENTANCE then return end
+if not EID.isRepentance then return end
 
 EID.BoC = {}
 
