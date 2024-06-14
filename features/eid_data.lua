@@ -707,6 +707,9 @@ EID.InlineColors = {
 	["ColorLightYellow"] = KColor(1, 1, 0.5, 1),
 	["ColorBagComplete"] = KColor(0, 1, 0, 0.6),
 	["ColorBagOverfill"] = KColor(1, 0.5, 0.1, 0.6),
+	
+	["ColorIsaac"] = KColor(0.89, 0.776, 0.773, 1),
+	["ColorTaintedIsaac"] = KColor(0.812, 0.612, 0.608, 1),
 
 	-- Swag Colors
 	-- Rainbow color effect
@@ -916,10 +919,9 @@ EID.LocalModePositionOffset = {
 }
 
 -- Actives that have no additional effect from Car Battery
-EID.CarBatteryNoSynergy = {[33] = true, [34] = true, [36] = true, [39] = true, [40] = true, [41] = true, [42] = true, [44] = true, [47] = true, [49] = true, [56] = true, [84] = true, [105] = true, [126] = true, [127] = true, [130] = true, [133] = true, [135] = true, [137] = true, [147] = true, [164] = true, [166] = true, [175] = true, [177] = true, [181] = true, [186] = true, [192] = true, [282] = true, [285] = true, [289] = true, [290] = true, [291] = true, [295] = true, [296] = true, [297] = true, [323] = true, [324] = true, [325] = true, [326] = true, [338] = true, [347] = true, [352] = true, [382] = true, [386] = true, [396] = true, [406] = true, [419] = true, [422] = true, [434] = true, [437] = true, [441] = true, [475] = true, [478] = true, [479] = true, [483] = true, [484] = true, [487] = true, [490] = true, [512] = true, [515] = true, [522] = true, [527] = true, [536] = true, [552] = true, }
+EID.CarBatteryNoSynergy = { [33] = true, [34] = true, [36] = true, [39] = true, [40] = true, [41] = true, [42] = true, [44] = true, [47] = true, [49] = true, [56] = true, [84] = true, [105] = true, [126] = true, [127] = true, [130] = true, [133] = true, [135] = true, [137] = true, [147] = true, [164] = true, [166] = true, [175] = true, [177] = true, [181] = true, [186] = true, [192] = true, [282] = true, [285] = true, [289] = true, [290] = true, [291] = true, [295] = true, [296] = true, [297] = true, [323] = true, [324] = true, [325] = true, [326] = true, [338] = true, [347] = true, [352] = true, [382] = true, [386] = true, [396] = true, [406] = true, [419] = true, [422] = true, [434] = true, [437] = true, [441] = true, [475] = true, [478] = true, [479] = true, [483] = true, [484] = true, [487] = true, [490] = true, [512] = true, [515] = true, [522] = true, [527] = true, [536] = true, [552] = true }
 if EID.isRepentance then
 	EID.CarBatteryNoSynergy[34] = false -- The Book of Belial
-	--TODO: test Kamikaze in Rep
 	EID.CarBatteryNoSynergy[284] = true -- D4 (essentially does nothing)
 	EID.CarBatteryNoSynergy[285] = false -- D10
 	EID.CarBatteryNoSynergy[296] = false -- Converter
@@ -928,12 +930,17 @@ if EID.isRepentance then
 	EID.CarBatteryNoSynergy[421] = true -- Kidney Bean
 	EID.CarBatteryNoSynergy[522] = false -- Telekinesis TODO: REPENTANCE DIFFERENCES IN MAIN DESC TOO
 	EID.CarBatteryNoSynergy[523] = true -- Moving Box
-	
-	
+	-- Repentance actives
+	EID.CarBatteryNoSynergy[555] = true; EID.CarBatteryNoSynergy[577] = true; EID.CarBatteryNoSynergy[578] = true; EID.CarBatteryNoSynergy[580] = true;
+	EID.CarBatteryNoSynergy[585] = true; EID.CarBatteryNoSynergy[604] = true; EID.CarBatteryNoSynergy[622] = true; EID.CarBatteryNoSynergy[623] = true;
+	EID.CarBatteryNoSynergy[628] = true; EID.CarBatteryNoSynergy[636] = true; EID.CarBatteryNoSynergy[638] = true; EID.CarBatteryNoSynergy[640] = true;
+	EID.CarBatteryNoSynergy[653] = true; EID.CarBatteryNoSynergy[655] = true; EID.CarBatteryNoSynergy[703] = true; EID.CarBatteryNoSynergy[706] = true;
+	EID.CarBatteryNoSynergy[709] = true; EID.CarBatteryNoSynergy[710] = true; EID.CarBatteryNoSynergy[711] = true; EID.CarBatteryNoSynergy[714] = true;
+	EID.CarBatteryNoSynergy[715] = true; EID.CarBatteryNoSynergy[728] = true; EID.CarBatteryNoSynergy[729] = true;
 end
 
 -- Familiars that have no effect from BFFS!
-EID.BFFSNoSynergy = {[11] = true, [81] = true, [238] = true, [239] = true, [243] = true,  [265] = true, [268] = true, [269] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [405] = true, [431] = true, [436] = true, [469] = true, [472] = true, [492] = true, [516] = true, [528] = true, [542] = true, [543] = true }
+EID.BFFSNoSynergy = { [11] = true, [81] = true, [238] = true, [239] = true, [243] = true,  [265] = true, [268] = true, [269] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [405] = true, [431] = true, [436] = true, [469] = true, [472] = true, [492] = true, [516] = true, [528] = true, [542] = true, [543] = true }
 -- todo: this table is wrong, for instance brown nugget didnt have one and then got one
 if EID.isRepentance then
 	EID.BFFSNoSynergy[504] = true -- Brown Nugget
