@@ -137,7 +137,7 @@ EID.descriptions[languageCode].collectibles={
 	{"114", "Mom's Knife", "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and 6x at the furthest possible distance"}, -- Mom's Knife
 	{"115", "Ouija Board", "Spectral tears"}, -- Ouija Board
 	{"116", "9 Volt", "{{Battery}} Automatically charges the first bar of active items#{{Battery}} Fully recharges the active item on pickup"}, -- 9 Volt
-	{"117", "Dead Bird", "Getting hit spawns a bird#The bird deals 4.3 contact damage per second"}, -- Dead Bird
+	{"117", "Dead Bird", "Taking damage spawns a bird that attacks enemies#The bird deals 4.3 contact damage per second"}, -- Dead Bird
 	{"118", "Brimstone", "↓ {{Tears}} x3 Tear delay multiplier#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam"}, -- Brimstone
 	{"119", "Blood Bag", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#{{Heart}} Heals 4 hearts"}, -- Blood Bag
 	{"120", "Odd Mushroom (Thin)", "↑ {{Speed}} +0.3 Speed#↑ {{Tears}} +1.7 Tears#↓ {{Damage}} x0.9 Damage multiplier#↓ {{Damage}} -0.4 Damage"}, -- Odd Mushroom (Thin)
@@ -150,7 +150,7 @@ EID.descriptions[languageCode].collectibles={
 	{"127", "Forget Me Now", "{{Warning}} SINGLE USE {{Warning}}#Rerolls and restarts the entire floor"}, -- Forget Me Now
 	{"128", "Forever Alone", "Long range fly orbital#Deals 30 contact damage per second"}, -- Forever Alone
 	{"129", "Bucket of Lard", "↑ {{EmptyHeart}} +2 Empty heart containers#↓ {{Speed}} -0.2 Speed#{{HalfHeart}} Heals half a heart"}, -- Bucket of Lard
-	{"130", "A Pony", "{{Speed}} Sets your Speed to at least 1.5#Flight while held#Using the item dashes in the direction of Isaac's movement"}, -- A Pony
+	{"130", "A Pony", "{{Speed}} Sets your Speed to at least 1.5#Flight while held#Upon use, dashes in the direction of Isaac's movement"}, -- A Pony
 	{"131", "Bomb Bag", "{{Bomb}} Spawns 1 bomb pickup every 2-3 rooms"}, -- Bomb Bag
 	{"132", "A Lump of Coal", "{{Damage}} Tears deal more damage the further they travel"}, -- A Lump of Coal
 	{"133", "Guppy's Paw", "{{SoulHeart}} Converts 1 heart container into 3 Soul Hearts"}, -- Guppy's Paw
@@ -333,7 +333,7 @@ EID.descriptions[languageCode].collectibles={
 	{"308", "Aquarius", "Isaac leaves a trail of creep#The creep deals 6 damage per second"}, -- Aquarius
 	{"309", "Pisces", "↑ {{Tears}} -1 Tear delay#↑ {{Tearsize}} x1.25 Tear size#Increases tear knockback"}, -- Pisces
 	{"310", "Eve's Mascara", "↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.5 Tear multiplier#↓ {{Shotspeed}} -0.5 Shot speed"}, -- Eve's Mascara
-	{"311", "Judas' Shadow", "{{Player12}} When dead, respawn as Dark Judas with a 2x damage multiplier"}, -- Judas' Shadow
+	{"311", "Judas' Shadow", "{{Player12}} When dead, respawn as Dark Judas with a x2 damage multiplier"}, -- Judas' Shadow
 	{"312", "Maggy's Bow", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#All Red Hearts heal double their value"}, -- Maggy's Bow
 	{"313", "Holy Mantle", "Negates the first hit taken once per room"}, -- Holy Mantle
 	{"314", "Thunder Thighs", "↑ {{Heart}} +1 Health#↓ {{Speed}} -0.4 Speed#Isaac can destroy rocks by walking into them"}, -- Thunder Thighs
@@ -428,7 +428,7 @@ EID.descriptions[languageCode].collectibles={
 	{"403", "Spider Mod", "Displays tear damage and health bars of all enemies#Inflicts random status effects to enemies on contact#Randomly spawns batteries"}, -- Spider Mod
 	{"404", "Farting Baby", "Blocks projectiles#When hit, 10% chance to fart and {{Charm}} charm, {{Poison}} poison or knockback enemies"}, -- Farting Baby
 	{"405", "GB Bug", "Bounces around the room#Deals 120 damage per second and applies random status effects to enemies on contact"}, -- GB Bug
-	{"406", "D8", "Multiplies Isaac's damage, tears, range and speed stats by between 0.5x and 2x#The multipliers are rerolled each use"}, -- D8
+	{"406", "D8", "Multiplies Isaac's damage, tears, range and speed stats by between x0.5 and x2#The multipliers are rerolled each use"}, -- D8
 	{"407", "Purity", "↑ Boosts one of Isaac's stats depending on the color of the aura#Taking damage removes the effect, and gives Isaac a new effect in the next room#{{ColorYellow}}Yellow{{CR}} = ↑ {{Speed}} +0.5 Speed#{{ColorBlue}}Blue{{CR}} = ↑ {{Tears}} -4 Tear delay#{{ColorRed}}Red{{CR}} = ↑ {{Damage}} +4 Damage#{{ColorOrange}}Orange{{CR}} = ↑ {{Range}} +7.5 Range, ↑ +1 Tear height"}, -- Purity
 	{"408", "Athame", "Taking damage creates a black brimstone ring around Isaac#{{BlackHeart}} Enemies killed by the ring have a 15% chance to drop a Black Heart"}, -- Athame
 	{"409", "Empty Vessel", "{{BlackHeart}} +2 Black Hearts#{{EmptyHeart}} When Isaac has no Red Hearts:#Flight#Every 40 seconds while in a hostile room, gain a shield for 10 seconds"}, -- Empty Vessel
@@ -611,9 +611,9 @@ EID.descriptions[languageCode].carBattery = {
 EID.descriptions[languageCode].trinkets={
 	{"1", "Swallowed Penny", "{{Coin}} Taking damage spawns 1 coin"}, -- Swallowed Penny
 	{"2", "Petrified Poop", "50% chance to get drops from poop"}, -- Petrified Poop
-	{"3", "AAA Battery", "{{Battery}} -1 charge needed for active items"}, -- AAA Battery
+	{"3", "AAA Battery", "{{Battery}} -1 Charge needed for active items"}, -- AAA Battery
 	{"4", "Broken Remote", "{{Collectible44}} Using an active item teleports Isaac to a random room"}, -- Broken Remote
-	{"5", "Purple Heart", "2x chance for champion enemies"}, -- Purple Heart
+	{"5", "Purple Heart", "2x Chance for champion enemies"}, -- Purple Heart
 	{"6", "Broken Magnet", "{{Coin}} Attracts coins to Isaac"}, -- Broken Magnet
 	{"7", "Rosary Bead", "{{AngelChance}} 50% higher Angel Room chance#{{Collectible33}} Higher chance to find The Bible in {{Shop}} Shops and {{Library}} Libraries"}, -- Rosary Bead
 	{"8", "Cartridge", "{{Timer}} 5% chance upon taking damage to receive for 6.5 seconds:#Invincibility#Isaac can't shoot but deals 40 contact damage per second#{{HalfHeart}} Killing 2 enemies heals half a heart#{{Fear}} Fears all enemies in the room"}, -- Cartridge
@@ -1041,9 +1041,9 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.48"] = "Teleport to I AM ERROR Room#Blank Card and ? Card will be destroyed", -- Blank Card + Q Card
 	["5.100.205 (Wafer)"] = "Reduces the cost to half a heart", -- Sharp Plug + Wafer
 	
-	["5.100.116 (1 Room)"] = "1 room recharges become 15 second recharges while in an uncleared room", -- 9 Volt
+	["5.100.116 (1 Room)"] = "1 Room recharges become 15 second recharges while in an uncleared room", -- 9 Volt
 	["5.100.116 (Timed)"] = "Timed recharges start half full", -- 9 Volt
-	["1 Room"] = "15 second recharge while in an uncleared room", -- Actives + 9 Volt
+	["1 Room"] = "15 Second recharge while in an uncleared room", -- Actives + 9 Volt
 	["Timed"] = "Charge starts half full after use", -- Actives + 9 Volt
 }
 
@@ -1074,8 +1074,8 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[8] = {"Lazarus", "When you die, resurrect as Lazarus Risen with 1 Red Heart container"},
 	[9] = {"Eden", "Start with random stats and items each run"},
 	[10] = {"The Lost", "Flight#Spectral tears#No health#One devil deal per room can be taken for free"},
-	[11] = {"Lazarus Risen", "Increased stats and 1.2x damage multiplier"},
-	[12] = {"Dark Judas", "2x Damage multiplier"},
+	[11] = {"Lazarus Risen", "Increased stats and x1.2 damage multiplier"},
+	[12] = {"Dark Judas", "x2 Damage multiplier"},
 	[13] = {"Lilith", "Cannot shoot tears"},
 	[14] = {"Keeper", "Heal by picking up coins#Heart pickups are turned into Blue Flies"},
 	[15] = {"Apollyon", ""},
