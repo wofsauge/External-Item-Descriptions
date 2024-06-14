@@ -29,8 +29,16 @@ EID:AddPlayerConditional(135, 14, "Keeper 0-1") -- Keeper gets 0-1 coins
 if EID.isRepentance then EID:AddConditional(135, EID.IsHardMode, "Hard Mode") end -- Hard Mode pays out less
 
 -- Greed Mode
-EID:AddConditional({241, "5.300.15"}, function() return game:IsGreedMode() end) -- Contract From Below, Temperance
-EID:AddConditional("5.300.15", function() return game:IsGreedMode() and EID:PlayersHaveCollectible(451) end, "Tarot") -- Temperance + Greed + Tarot
+-- "No effect" append
+EID:AddConditional({134, 241, 464, "5.300.22", "5.350.59", "5.350.83", "5.350.84", "5.350.85", "5.350.102", "5.350.110", "5.350.111", "5.350.124"}, EID.IsGreedMode, "No Effect (Greed)") -- Guppy's Tail, Contract from Below, Glyph of Balance, The World, Cain's Eye, Store Key, Rib of Greed, Karma, Fragmented Card, Silver Dollar, Bloody Crown, Door Stop
+
+EID:AddConditional({483, 535, "5.300.15", "5.300.19", "5.300.20"}, EID.IsGreedMode) -- Mama Mega, Blanket, Temperance, The Moon, The Sun
+-- todo: isaac's fork; and maybe some other "room" effects that also work on wave clear could mention waves
+-- change the "room clear reward" trinkets (like ace of spades) to not mention room clears
+-- broken modem room clear duplication shouldn't be mentioned?
+if EID.isRepentance then
+	EID:AddConditional({344, 416, "5.300.74"}, EID.IsGreedMode) -- Match Book, Deep Pockets, The Moon?
+end
 
 -- Different effect for No Red Health players
 EID:AddConditional({442, "5.350.107", "5.350.119"}, function() return EID:CheckForNoRedHealthPlayer() end, "No Red") -- Dark Prince's Crown, Crow Heart, Stem Cell
@@ -151,104 +159,3 @@ car battery "no effect" items (also apply this as a synergy where car battery ha
 Cain + items that close his eyes? mostly AB+ only?
 Pandora's Box achievement check if moving box is unlocked find replace that with "nothing"
 ]]
-
-
------ Apply Conditionals -----
-
--- thing to fix find/replace pairs with hyphens (like "1-2") breaking because hyphen is a special char
--- https://stackoverflow.com/questions/29072601/lua-string-gsub-with-a-hyphen
-local function replace(str, what, with, count)
-	what = string.gsub(what, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1") -- escape pattern
-	with = string.gsub(with, "[%%]", "%%%%")                       -- escape replacement
-	return string.gsub(str, what, with, count)
-end
--- super simple table concatenation: https://www.tutorialspoint.com/concatenation-of-tables-in-lua-programming
-local function TableConcat(t1, t2)
-	for i = 1, #t2 do
-		t1[#t1 + 1] = t2[i]
-	end
-	return t1
-end
-
-function EID:applyConditionals(descObj)
-	EID:CheckPlayersCollectibles()
-
-	local typeVar = descObj.ObjType.."."..descObj.ObjVariant -- for general conditions (Tarot Cloth, Book of Virtues)
-	local typeVarSub = descObj.fullItemString -- for specific conditions
-	-- Combine general+specific conditions into one table
-	local conds = {}
-	if EID.DescriptionConditions[typeVar] then TableConcat(conds, EID.DescriptionConditions[typeVar]) end
-	if EID.DescriptionConditions[typeVarSub] then TableConcat(conds, EID.DescriptionConditions[typeVarSub]) end
-	-- Check every condition we need to check for this item
-	for _, cond in ipairs(conds) do
-		-- Search for the localization string; "S" (for generals) or "T.V.S" or "T.V.S (Modifier)" or "Modifier"
-		local locTable = cond.locTable or "ConditionalDescs"
-		local text = nil
-		local modifierText = type(cond.modifierText) == "function" and cond.modifierText(descObj) or cond.modifierText
-		
-		-- Find our string in the base localization table
-		if cond.noTable then
-			text = EID:getDescriptionEntry(modifierText, nil, cond.noFallback)
-		-- Find our string as either "Type.Var.Sub (Mod Text)" or "Mod Text"
-		elseif modifierText then
-			text = EID:getDescriptionEntry(locTable, typeVarSub .. " (" .. modifierText .. ")", cond.noFallback)
-			if text == nil then text = EID:getDescriptionEntry(locTable, modifierText, cond.noFallback) end
-		-- Find our string as either "Type.Var.Sub" or just the Subtype
-		else
-			text = EID:getDescriptionEntry(locTable, typeVarSub, cond.noFallback)
-			if text == nil then text = EID:getDescriptionEntry(locTable, descObj.ObjSubType, cond.noFallback) end
-		end
-
-		-- If we find the localization string for this condition, and it passes the test, modify the description text
-		local result = cond.func(descObj)
-		if text ~= nil and result then
-			local variableText, bulletpoint
-			if cond.useResult then
-				variableText = "{{NameOnlyC"..result.."}}"
-				bulletpoint = "Collectible"..result
-			else
-				variableText = type(cond.variableText) == "function" and cond.variableText(descObj) or cond.variableText
-				bulletpoint = cond.bulletpoint
-			end
-
-			-- String = append
-			if type(text) == "string" then
-				text = EID:ReplaceVariableStr(text, 1, variableText)
-				local iconStr = "#"
-				if bulletpoint then iconStr = iconStr .. "{{" .. bulletpoint .. "}} " end
-				if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end
-				EID:appendToDescription(descObj, iconStr .. text:gsub("#", iconStr))
-
-				-- Table with 1 entry = replace
-			elseif #text == 1 then
-				descObj.Description = EID:ReplaceVariableStr(text[1], 1, variableText)
-
-				-- Table with 2+ entries = find and replace pairs
-				-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
-			else
-				local pos = 1
-				while pos < #text do
-					local toFind = text[pos]
-					local replaceWith = EID:ReplaceVariableStr(text[pos + 1], 1, variableText)
-					if cond.replaceColor then replaceWith = "{{" .. cond.replaceColor .. "}}" .. replaceWith .. "{{CR}}" end
-					--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
-					if (type(toFind) == "number") then
-						local count = 0
-						descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
-							if (s == tostring(toFind) and count == 0) then
-								count = count + 1
-								return replaceWith
-							end
-						end)
-						-- Basic find+replace for non-numbers
-					else
-						descObj.Description = replace(descObj.Description, tostring(toFind), replaceWith, 1)
-					end
-					pos = pos + 2
-				end
-			end
-		end
-	end
-
-	return descObj
-end
