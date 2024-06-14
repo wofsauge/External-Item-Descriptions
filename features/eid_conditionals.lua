@@ -113,6 +113,7 @@ TODO: A find/replace pair for some Keeper descriptions that talk about Red heart
 car battery "no effect" items (also apply this as a synergy where car battery has no effect text, and other bad synergies, based on your active)
 -- overall todo: remove "tick" language from all descriptions; Lil brimstone, black powder, black hole
 Cain + items that close his eyes? mostly AB+ only?
+Pandora's Box achievement check if moving box is unlocked find replace that with "nothing"
 ]]
 
 -- General conditions
@@ -178,7 +179,8 @@ if EID.isRepentance then
 	EID:AddCollectibleConditional("5.100", 664, nil, { locTable = "bingeEaterBuffs" })                          -- Binge Eater
 
 	-- Co-op friendly items
-	-- todo (yum heart, extension cord)
+	-- todo: which? (extension cord)
+	EID:AddConditional(45, function() return EID:MultiplePlayerCharacters() end) -- Yum Heart
 	
 	-- No red health
 	EID:AddConditional({569, 671, 676}, function() return EID:CheckForNoRedHealthPlayer() end, "No Red") -- Blood Oath, Candy Heart, Empty Heart
