@@ -976,12 +976,12 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[11] = {" a ", " 2 ", "Machine", "{{CR}}Machines", "Machine", "{{CR}}Machines"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 2.5, 5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
-	[15] = {" a ", " 2 ", "Machine", "{{CR}}Machines"}, -- XIV - Temperance
+	[15] = {" a ", " 2 ", "Machine", "{{CR}}Machines", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XIV - Temperance ( + Greed version)
 	[16] = {2, 4}, -- XV - The Devil
 	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "If the Treasure Room hasn't been entered yet, it will have two items to choose from", -- XVII - The Stars
 	[20] = {100, 400}, -- XIX - The Sun
-	[21] = {" a ", " 2 ", "Beggar", "{{CR}}Beggars", "Beggar", "{{CR}}Beggars"}, -- XX - Judgement
+	[21] = {" a ", " 2 ", "Beggar", "{{CR}}Beggars", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
 	[56] = "Drops Isaac's most recent 6 items alongside the pickups", -- 0 - The Fool?
 	[59] = {2, 3}, -- III - The Empress?
 	[61] = {2, 3}, -- V - The Hierophant?
@@ -1251,6 +1251,10 @@ local repConditions={
 	["5.100.205 (Tainted Magdalene)"] = "Allows infinite usage of Yum Heart", -- Sharp Plug + Tainted Magdalene
 	["Ice Tears"] = "Freezing an enemy doesn't count as killing", -- Uranus Anti-Synergy
 	["5.100.45"] = "{{HalfHeart}} Heals other players for half a heart", -- Yum Heart (Co-Op)
+	
+	["5.100.344"] = {"{{BlackHeart}} +1 Black Heart#{{Bomb}} Spawns 3 bombs"}, -- Match Book (Greed)
+	["5.300.74"] = {"Teleports Isaac to the first room of the floor"}, -- The Moon? (Greed)
+	["5.100.416"] = {"{{Coin}} Increases the coin cap to 999"}, -- Deep Pockets (Greed)
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
