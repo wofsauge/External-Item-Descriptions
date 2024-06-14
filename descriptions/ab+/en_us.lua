@@ -581,6 +581,7 @@ EID.descriptions[languageCode].collectibles={
 
 -- Effect of Car Battery on Active Items
 EID.descriptions[languageCode].carBattery = {
+	["No Effect"] = "No effect",
 	[35] = {40, 80}, -- The Necronomicon
 	[37] = { " a ", " 2 ", "bomb", "{{CR}}bombs" }, -- Mr. Boom
 	[38] = {10, 20}, -- Tammy's Head
