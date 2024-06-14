@@ -1022,10 +1022,10 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[11] = {" a ", " 2 ", "Machine", "{{CR}}Machines", "Machine", "{{CR}}Machines"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
-	[15] = {" a ", " 2 ", "Machine", "{{CR}}Machines"}, -- XIV - Temperance
+	[15] = {" a ", " 2 ", "Machine", "{{CR}}Machines", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XIV - Temperance (+ Greed version)
 	[17] = {6, 12}, -- XVI - The Tower
 	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {" a ", " 2 ", "Beggar", "{{CR}}Beggars", "Beggar", "{{CR}}Beggars"}, -- XX - Judgement
+	[21] = {" a ", " 2 ", "Beggar", "{{CR}}Beggars", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
 	[23] = {"Doubles", "Quadruples"}, -- 2 of Clubs
 	[24] = {"Doubles", "Quadruples"}, -- 2 of Diamonds
 	[25] = {"Doubles", "Quadruples"}, -- 2 of Spades
@@ -1053,6 +1053,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect"] = "No effect for {1}",
 	["Can't Charge"] = "Can't charge {1}",
 	["Can't Be Charged"] = "Can't be charged by {1}",
+	["No Effect (Greed)"] = "{{GreedMode}} No effect in Greed Mode",
 	
 	["No Red"] = "No effect for characters that can't have Red Hearts",
 	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
@@ -1064,9 +1065,11 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.135 (PHD)"] = "Spawns 2-3 coins if you have {1}", -- IV Bag PHD
 	["Keeper 0-1"] = "Spawns 0-1 coin as {1}", -- IV Bag/Piggy Bank Keeper
 	
-	["5.100.241"] = "{{GreedMode}} Doesn't affect Greed Mode", -- Contract From Below
-	["5.300.15"] = {"{{DemonBeggar}} Spawns a Devil Beggar"}, -- Temperance (Greed Mode effect)
-	["5.300.15 (Tarot)"] = {"{{DemonBeggar}} Spawns {{ColorShinyPurple}}2{{CR}} Devil Beggars"}, -- Temperance (Greed Mode + Tarot Cloth effect)
+	["5.300.15"] = {"{{DemonBeggar}} Spawns a Devil Beggar"}, -- Temperance (Greed)
+	["5.300.19"] = {"Teleports Isaac to the first room of the floor"}, -- The Moon (Greed)
+	["5.300.20"] = {"{{Heart}} Full health#Deals 100 damage to all enemies"}, -- XIX - The Sun (Greed)
+	["5.100.483"] = "{{GreedMode}} Doesn't trigger once per wave, just once per room", -- Mama Mega (Greed)
+	["5.100.535"] = "{{GreedMode}} No shield on Boss Waves, only on Ultra Greed", -- Blanket (Greed)
 	
 	["5.350.23"] = "{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost", -- Missing Poster (Unlock The Lost)
 	
