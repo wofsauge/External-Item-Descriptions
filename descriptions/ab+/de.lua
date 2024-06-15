@@ -23,7 +23,7 @@ EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 EID.descriptions[languageCode].collectibles={
 	{"1", "Die traurige Zwiebel", "↑ +0.7 Tränen"}, -- The Sad Onion
 	{"2", "Das innere Auge", "↓ {{Tears}} Tränen runter#Dreifacher Schuss"}, -- The Inner Eye
-	{"3", "Löffelbieger", "Zielsuchschüsse"}, -- Spoon Bender
+	{"3", "Löffelbieger", "Zielsuchende Tränen"}, -- Spoon Bender
 	{"4", "Grillenkopf", "↑ {{Damage}} +0.5 Schaden#↑ {{Damage}} x1.5 Schadens-Multiplikator"}, -- Cricket's Head
 	{"5", "Mein Spiegelbild", "↑ {{Range}} +1.5 Reichweite#↑ +1 Tränenhöhe#↑ {{Shotspeed}} +0.6 Schusstempo#Bumerang-Tränen"}, -- My Reflection
 	{"6", "Nummer Eins", "↑ {{Tears}} +1.5 Tränen#↑ +0.76 Tränenhöhe#↓ {{Range}} -17.62 Reichweite"}, -- Number One
@@ -136,22 +136,22 @@ EID.descriptions[languageCode].collectibles={
 	{"113", "Dämonenbaby", "Schießt auf Feinde, die ihm zu nahe kommen#Verursacht 3 Schaden pro Träne"}, -- Demon Baby
 	{"114", "Mamas Messer", "Isaacs Tränen werden durch ein werfbares Messer ersetzt#{{Damage}} Das Messer verursacht 2x Isaacs Schaden, während es gehalten wird, und 6x bei der maximal möglichen Entfernung"}, -- Mom's Knife
 	{"115", "Ouija-Brett", "Spektrale Tränen"}, -- Ouija Board
-	{"116", "9 Volt", "{{Battery}} Automatically charges the first bar of active items#{{Battery}} Fully recharges the active item on pickup"}, -- 9 Volt
-	{"117", "Dead Bird", "Getting hit spawns a bird#The bird deals 4.3 contact damage per second"}, -- Dead Bird
-	{"118", "Brimstone", "↓ {{Tears}} x3 Tränenverzögerungs-Multiplikator#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam"}, -- Brimstone
-	{"119", "Blood Bag", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.3 Tempo#{{Heart}} Heals 4 hearts"}, -- Blood Bag
-	{"120", "Odd Mushroom (Thin)", "↑ {{Speed}} +0.3 Tempo#↑ {{Tears}} +1.7 Tränen#↓ {{Damage}} x0.9 Schadens-Multiplikator#↓ {{Damage}} -0.4 Schaden"}, -- Odd Mushroom (Thin)
-	{"121", "Odd Mushroom (Large)", "↑ {{EmptyHeart}} +1 Empty heart container#↑ {{Damage}} +0.3 Schaden#↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe#↓ {{Speed}} -0.1 Tempo"}, -- Odd Mushroom (Large)
-	{"122", "Whore of Babylon", "When on half a Red Heart or less:#↑ {{Speed}} +0.3 Tempo#↑ {{Damage}} +1.5 Schaden"}, -- Whore of Babylon
-	{"123", "Monster Manual", "{{Timer}} Spawns a random familiar für diesen Raum"}, -- Monster Manual
-	{"124", "Dead Sea Scrolls", "Triggers a random active item effect"}, -- Dead Sea Scrolls
-	{"125", "Bobby-Bomb", "{{Bomb}} +5 Bomben#Homing Bomben"}, -- Bobby-Bomb
-	{"126", "Razor Blade", "↑ {{Damage}} +1.2 Schaden für diesen Raum#{{Warning}} Deals 1 heart of damage to Isaac#{{Heart}} Removes Red Hearts first"}, -- Razor Blade
-	{"127", "Forget Me Now", "{{Warning}} SINGLE USE {{Warning}}#Rerolls and restarts the entire floor"}, -- Forget Me Now
-	{"128", "Forever Alone", "Long range fly orbital#Deals 30 contact damage per second"}, -- Forever Alone
-	{"129", "Bucket of Lard", "↑ {{EmptyHeart}} +2 Empty heart containers#↓ {{Speed}} -0.2 Tempo#{{HalfHeart}} Heals half a heart"}, -- Bucket of Lard
-	{"130", "A Pony", "{{Speed}} Sets your Tempo to at least 1.5#Flug while held#Using the item dashes in the direction of Isaac's movement"}, -- A Pony
-	{"131", "Bomb Bag", "{{Bomb}} Spawns 1 bomb pickup every 2-3 rooms"}, -- Bomb Bag
+	{"116", "9 Volt", "{{Battery}} Lädt automatisch die erste Leiste aktiver Gegenstände auf#{{Battery}} Lädt beim Aufheben den aktiven Gegenstand vollständig auf"}, -- 9 Volt
+	{"117", "Toter Vogel", "Beim Erleiden von Schaden erscheint ein Vogel, der Feinde angreift#Der Vogel verursacht bei Kontakt 4.3 Schaden pro Sekunde"}, -- Dead Bird
+	{"118", "Schwefel", "↓ {{Tears}} x3 Tränenverzögerungs-Multiplikator#{{Chargeable}} Isaacs Tränen werden durch einen aufladbaren Blutstrahl ersetzt"}, -- Brimstone
+	{"119", "Blutbeutel", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.3 Tempo#{{Heart}} Heilt 4 Herzen"}, -- Blood Bag
+	{"120", "Seltsamer Pilz (Dünn)", "↑ {{Speed}} +0.3 Tempo#↑ {{Tears}} +1.7 Tränen#↓ {{Damage}} x0.9 Schadens-Multiplikator#↓ {{Damage}} -0.4 Schaden"}, -- Odd Mushroom (Thin)
+	{"121", "Seltsamer Pilz (Groß)", "↑ {{EmptyHeart}} +1 Leerer Herzcontainer#↑ {{Damage}} +0.3 Schaden#↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe#↓ {{Speed}} -0.1 Tempo"}, -- Odd Mushroom (Large)
+	{"122", "Hure Babylon", "Bei einem halben Roten Herz oder weniger:#↑ {{Speed}} +0.3 Tempo#↑ {{Damage}} +1.5 Schaden"}, -- Whore of Babylon
+	{"123", "Monster-Handbuch", "{{Timer}} Lässt einen zufälligen Begleiter für diesen Raum erscheinen"}, -- Monster Manual
+	{"124", "Schriftrollen vom Toten Meer", "Löst den Effekt eines zufälligen aktiven Gegenstands aus"}, -- Dead Sea Scrolls
+	{"125", "Bobby-Bombe", "{{Bomb}} +5 Bomben#Zielsuchende Bomben"}, -- Bobby-Bomb
+	{"126", "Rasierklinge", "↑ {{Damage}} +1.2 Schaden für diesen Raum#{{Warning}} Verursacht 1 Herz Schaden bei Isaac#{{Heart}} Entfernt zuerst Rote Herzen"}, -- Razor Blade
+	{"127", "Vergissmeinjetzt", "{{Warning}} EINMALIGE VERWENDUNG {{Warning}}#Würfelt und startet das gesamte Stockwerk neu"}, -- Forget Me Now
+	{"128", "Für immer alleine", "Langstrecken-Orbitale Fliege#Verursacht bei Kontakt 30 Schaden pro Sekunde"}, -- Forever Alone
+	{"129", "Eimer voll Schmalz", "↑ {{EmptyHeart}} +2 Leere Herzcontainer#↓ {{Speed}} -0.2 Tempo#{{HalfHeart}} Heilt ein halbes Herz"}, -- Bucket of Lard
+	{"130", "Ein Pony", "{{Speed}} Setzt dein Tempo auf mindestens 1.5#Flug, solange im Besitz#Bei Benutzung stürmt Isaac in Bewegungsrichtung"}, -- A Pony
+	{"131", "Bombentasche", "{{Bomb}} Lässt alle 2-3 Räume 1 Bomben-Verbrauchsgut erscheinen"}, -- Bomb Bag
 	{"132", "A Lump of Coal", "{{Damage}} Tränen deal more damage the further they travel"}, -- A Lump of Coal
 	{"133", "Guppy's Paw", "{{SoulHeart}} Converts 1 heart container into 3 Seelenherzen"}, -- Guppy's Paw
 	{"134", "Guppy's Tail", "{{Chest}} 33% chance to replace the room clear reward with a chest#33% chance to spawn no room clear reward"}, -- Guppy's Tail
