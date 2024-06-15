@@ -69,7 +69,7 @@ EID.descriptions[languageCode].collectibles={
 	{"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#+8% room clear reward chance#Better chance to win while gambling"}, -- Lucky Foot
 	{"47", "Doctor's Remote", "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#Deals 20x Isaac's damage"}, -- Doctor's Remote
 	{"48", "Cupid's Arrow", "Piercing tears"}, -- Cupid's Arrow
-	{"49", "Shoop da Whoop!", "{{Collectible118}} Using the item and shooting in a direction fires a high damage beam"}, -- Shoop da Whoop!
+	{"49", "Shoop da Whoop!", "{{Collectible118}} Using the item and shooting in a direction fires a beam#It deals 26x Isaac's damage over 0.9 seconds"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Damage"}, -- Steven
 	{"51", "Pentagram", "↑ {{Damage}} +1 Damage#{{AngelDevilChance}} +10% Devil/Angel Room chance"}, -- Pentagram
 	{"52", "Dr. Fetus", "↓ {{Tears}} x2.5 Tear delay multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's damage + 30"}, -- Dr. Fetus
@@ -131,14 +131,14 @@ EID.descriptions[languageCode].collectibles={
 	{"108", "The Wafer", "Reduces most damage taken to half a heart"}, -- The Wafer
 	{"109", "Money = Power", "↑ {{Damage}} +0.04 Damage for every {{Coin}} coin Isaac has"}, -- Money = Power
 	{"110", "Mom's Contacts", "↑ {{Range}} +0.25 Range#↑ +0.5 Tear height#20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 luck"}, -- Mom's Contacts
-	{"111", "The Bean", "{{Poison}} Farts a poison cloud#The fart deals 5 damage to enemies and poisons them#The poison deals Isaac's damage 6 times"}, -- The Bean
+	{"111", "The Bean", "{{Poison}} Deals 5 damage and poisons any enemies nearby#The poison deals Isaac's damage 6 times"}, -- The Bean
 	{"112", "Guardian Angel", "Orbital#Speeds up all other orbitals#Blocks projectiles#Deals 105 contact damage per second"}, -- Guardian Angel
 	{"113", "Demon Baby", "Shoots enemies that get close to him#Deals 3 damage per tear"}, -- Demon Baby
 	{"114", "Mom's Knife", "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and 6x at the furthest possible distance"}, -- Mom's Knife
 	{"115", "Ouija Board", "Spectral tears"}, -- Ouija Board
 	{"116", "9 Volt", "{{Battery}} Automatically charges the first bar of active items#{{Battery}} Fully recharges the active item on pickup"}, -- 9 Volt
 	{"117", "Dead Bird", "Getting hit spawns a bird#The bird deals 4.3 contact damage per second"}, -- Dead Bird
-	{"118", "Brimstone", "↓ {{Tears}} x3 Tear delay multiplier#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam"}, -- Brimstone
+	{"118", "Brimstone", "↓ {{Tears}} x3 Tear delay multiplier#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam#It deals 13x Isaac's damage over 0.9 seconds"}, -- Brimstone
 	{"119", "Blood Bag", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#{{Heart}} Heals 4 hearts"}, -- Blood Bag
 	{"120", "Odd Mushroom (Thin)", "↑ {{Speed}} +0.3 Speed#↑ {{Tears}} +1.7 Tears#↓ {{Damage}} x0.9 Damage multiplier#↓ {{Damage}} -0.4 Damage"}, -- Odd Mushroom (Thin)
 	{"121", "Odd Mushroom (Large)", "↑ {{EmptyHeart}} +1 Empty heart container#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +0.25 Range#↑ +0.5 Tear height#↓ {{Speed}} -0.1 Speed"}, -- Odd Mushroom (Large)
@@ -172,7 +172,7 @@ EID.descriptions[languageCode].collectibles={
 	{"149", "Ipecac", "↑ {{Damage}} +40 Damage#↓ {{Tears}} Tears down#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
 	{"150", "Tough Love", "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 luck"}, -- Tough Love
 	{"151", "The Mulligan", "Hitting an enemy with a tear has a 1/6 chance to spawn a fly"}, -- The Mulligan
-	{"152", "Technology 2", "↓ {{Tears}} x2 Tear delay multiplier#↓ {{Damage}} x0.65 Damage multiplier#Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 20% of Isaac's damage per tick"}, -- Technology 2
+	{"152", "Technology 2", "↓ {{Tears}} x2 Tear delay multiplier#↓ {{Damage}} x0.65 Damage multiplier#Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 3x Isaac's damage per second"}, -- Technology 2
 	{"153", "Mutant Spider", "↓ {{Tears}} Tears down#Isaac shoots 4 tears at once"}, -- Mutant Spider
 	{"154", "Chemical Peel", "↑ {{Damage}} +2 Damage for the left eye"}, -- Chemical Peel
 	{"155", "The Peeper", "Floats around the room#Deals 17.1 contact damage per second"}, -- The Peeper
@@ -228,7 +228,7 @@ EID.descriptions[languageCode].collectibles={
 	{"205", "Sharp Plug", "{{Battery}} Using an uncharged active item fully recharges it at the cost of 2 hearts#Only works when item has no charges"}, -- Sharp Plug
 	{"206", "Guillotine", "↑ {{Tears}} -1 Tear delay#↑ {{Damage}} +1 Damage#Isaac's head becomes an orbital that shoots, doesn't take damage and deals 105 contact damage per second"}, -- Guillotine
 	{"207", "Ball of Bandages", "Lv1: Orbital#{{Charm}} Lv2: Orbital that shoots charmed tears#{{Charm}} Lv3: Bandage Girl#{{Charm}} Lv4: Super Bandage Girl"}, -- Ball of Bandages
-	{"208", "Champion Belt", "↑ {{Damage}} +1 Damage#+15% chance for champion enemies"}, -- Champion Belt
+	{"208", "Champion Belt", "↑ {{Damage}} +1 Damage#Champion enemy chance goes from 5% to 20%#Doesn't increase chance of champion bosses"}, -- Champion Belt
 	{"209", "Butt Bombs", "{{Bomb}} +5 Bombs#{{Confusion}} Explosions concuss and damage every enemy in the room"}, -- Butt Bombs
 	{"210", "Gnawed Leaf", "Standing still for 1 second makes Isaac invincible"}, -- Gnawed Leaf
 	{"211", "Spiderbaby", "Taking damage spawns 1-2 blue spiders"}, -- Spiderbaby
@@ -313,7 +313,7 @@ EID.descriptions[languageCode].collectibles={
 	{"290", "The Jar", "{{Heart}} Picking up Red Hearts while at full health stores up to 4 of them in the Jar#Using the item drops all stored hearts on the floor"}, -- The Jar
 	{"291", "Flush!", "Turns all non-boss enemies into poop#Instantly kills poop enemies and bosses"}, -- Flush!
 	{"292", "Satanic Bible", "{{BlackHeart}} +1 Black Heart"}, -- Satanic Bible
-	{"293", "Head of Krampus", "{{Collectible118}} Shoot a 4-way blood beam"}, -- Head of Krampus
+	{"293", "Head of Krampus", "{{Collectible118}} Shoot a 4-way blood beam#They each deal 440 damage over 1.33 seconds"}, -- Head of Krampus
 	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger {{Collectible484}} Wait What? when swapping it with a different active item and picking it up again"}, -- Butter Bean
 	{"295", "Magic Fingers", "Deals 2x Isaac's damage to all enemies#{{Coin}} Costs 1 coin"}, -- Magic Fingers
 	{"296", "Converter", "{{Heart}} Converts 2 Soul/Black Hearts into 1 heart container"}, -- Converter
@@ -503,7 +503,7 @@ EID.descriptions[languageCode].collectibles={
 	{"478", "Pause", "Pauses all enemies in the room until Isaac shoots#Touching a paused enemy still deals damage to Isaac#Enemies unpause after 30 seconds"}, -- Pause
 	{"479", "Smelter", "{{Trinket}} Consumes Isaac's held trinkets and grants their effects permanently#Increases the spawn rate of trinkets"}, -- Smelter
 	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles all blue flies and spiders#Spawns 1 blue fly or spider if Isaac has none"}, -- Compost
-	{"481", "Dataminer", "↑ Random stat up#↓ Random stat down#{{Timer}} Random tear effect for the room#{{Blank}} Corrupts all sprites and music in the room"}, -- Dataminer
+	{"481", "Dataminer", "↑ Random stat up#↓ Random stat down#{{Timer}} Random tear effects for the room#{{Blank}} Corrupts all sprites and music in the room"}, -- Dataminer
 	{"482", "Clicker", "Changes your character to a random character#Removes the most recent item collected"}, -- Clicker
 	{"483", "Mama Mega!", "{{Warning}} SINGLE USE {{Warning}}#Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss Rush, Hush and all secret rooms#Having a golden bomb when using the item consumes it and allows for another use of Mama Mega"}, -- Mama Mega!
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawns a rock wave around Isaac#The rock wave can open rooms and break rocks"}, -- Wait What?
@@ -567,43 +567,80 @@ EID.descriptions[languageCode].collectibles={
 	{"542", "Slipped Rib", "Orbital#Reflects enemy projectiles"}, -- Slipped Rib
 	{"543", "Hallowed Ground", "Taking damage spawns a white poop#While inside the poop's aura:#↑ {{Tears}} x0.5 Tear delay multiplier#Chance to block damage"}, -- Hallowed Ground
 	{"544", "Pointy Rib", "Levitates in front of Isaac#Deals 6x Isaac's damage per second"}, -- Pointy Rib
-	{"545", "Book of the Dead", "Spawns a bone orbital or charmed bony per enemy killed in the room"}, -- Book of the Dead
+	{"545", "Book of the Dead", "Spawns a bone orbital or charmed bony per enemy killed in the room (up to 8)"}, -- Book of the Dead
 	{"546", "Dad's Ring", "Grants an aura that petrifies enemies"}, -- Dad's Ring
 	{"547", "Divorce Papers", "↑ {{Tears}} +0.7 Tears#{{EmptyBoneHeart}} +1 Bone Heart#{{Trinket21}} Spawns the Mysterious Paper trinket"}, -- Divorce Papers
 	{"548", "Jaw Bone", "Boomerang-like familiar#Deals 7 contact damage#Can grab and bring back pickups"}, -- Jaw Bone
 	{"549", "Brittle Bones", "{{EmptyBoneHeart}} Replaces all of Isaac's Red Heart containers with 6 empty Bone Hearts#Upon losing a Bone Heart:#↑ {{Tears}} +0.5 Tears#Shoots 8 bone tears in all directions"}, -- Brittle Bones
-	{"550", "Broken Shovel", "Mom's Foot constantly tries to stomp Isaac#Using the item stops the stomping for the room#{{Warning}} (Try to beat Boss Rush with it!)"}, -- Broken Shovel
+	{"550", "Broken Shovel", "Mom's Foot constantly tries to stomp Isaac#Using the item stops the stomping for the room (or one Boss Rush wave)#{{Warning}} (Try to beat Boss Rush with it!)"}, -- Broken Shovel
 	{"551", "Broken Shovel", "Completes Mom's Shovel#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\""}, -- Broken Shovel
 	{"552", "Mom's Shovel", "Spawns a trapdoor to the next floor#10% chance for {{LadderRoom}} crawlspace trapdoor#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\""}, -- Mom's Shovel
 }
 
 ---------- Modifiers ----------
 
--- Effect of Car battery on Active Items
--- these all need way more consistency with the original effect text and spellchecking
+-- Effect of Car Battery on Active Items
 EID.descriptions[languageCode].carBattery = {
-	[58] = "Lasts 20 seconds", -- Book of Shadows
-	[66] = "Lasts 16 seconds", -- The Hourglass
-	[77] = "Lasts 12 seconds", -- My Little Unicorn
-	[93] = "Lasts 13 seconds", -- The Gamekid
-	[111] = "Deals twice the damage", -- The Bean
-	[124] = "Triggers two effects", -- Dead Sea Scrolls
-	[145] = "Spawns 4-7 blue flies", -- Guppy's Head
-	[171] = "Deals 10 additional damage", -- Spider Butt
-	[293] = "Doubles the beam's damage", -- Head of Krampus
-	[298] = "Lasts 12 seconds", -- Unicorn Stump
-	[351] = "Deals twice the damage", -- Mega Bean
-	[383] = "Split splitted tears -> 6x more tears", -- Tear Detonator
-	[421] = "Deals twice the damage", -- Kidney Bean
-	[427] = "Spawns two TNT barrels", -- Mine Crafter
-	[477] = "Activates every absorbed item twice", -- Void
-	[482] = "Change the character twice and remove two items", -- Clicker
-	[485] = "25% chance to quadruple items and pickups, 75% chance to remove them", -- Crooked Penny
-	[486] = "Triggers on-hit item effects twice", -- Dull Razor
-	[488] = "Grants two items effect", -- Metronome
-	[489] = "Triggers two dice effects. The second die can't be predicted", -- D Infinity
-	[523] = "Swap box contents with room pickups", -- Moving Box
-	[550] = "Stops stomps for two rooms or waves in Boss Rush and Challenges {{ChallengeRoom}} {{BossRushRoom}}", -- Broken Shovel
+	["No Effect"] = "No effect",
+	[35] = {40, 80}, -- The Necronomicon
+	[37] = { " a ", " 2 ", "bomb", "{{CR}}bombs" }, -- Mr. Boom
+	[38] = {10, 20}, -- Tammy's Head
+	[45] = {1, 2, "heart", "{{CR}}hearts"}, -- Yum Heart
+	[58] = {10, 20}, -- Book of Shadows
+	[65] = {6, 12}, -- Anarchist's Cookbook
+	[66] = {8, 16}, -- The Hourglass
+	[77] = {6, 12}, -- My Little Unicorn
+	[78] = {1, 2}, -- Book of Revelations
+	[83] = {1, 2}, -- The Nail
+	[85] = {1, 2, "card", "{{CR}}cards"}, -- Deck of Cards
+	[86] = {120, 240}, -- Monstro's Tooth
+	[93] = {6.5, 13}, -- The Gamekid
+	[97] = {" a ", " 2 ", "pickup", "{{CR}}pickups"}, -- The Book of Sin
+	[102] = {1, 2, "pill", "{{CR}}pills"}, -- Mom's Bottle of Pills
+	[107] = "Spawns two bodies", -- The Pinking Shears
+	[111] = {5, 10}, -- The Bean
+	[123] = {" a ", " 2 ", "familiar", "{{CR}}familiars"}, -- Monster Manual
+	[124] = {" a ", " 2 ", "effect", "{{CR}}effects"}, -- Dead Sea Scrolls
+	[136] = {" a ", " 2 ", "Isaac", "{{CR}}Isaacs"}, -- Best Friend
+	[145] = {"2-4", "4-8"}, -- Guppy's Head
+	[146] = {1, 2, "Heart", "{{CR}}Hearts"}, -- Prayer Card (should this just say +1 health...)
+	[158] = {" a ", " 2 ", "Heart", "{{CR}}Hearts", "rune", "{{CR}}runes", "card", "{{CR}}cards"}, -- Crystal Ball
+	[160] = {5, 10}, -- Crack the Sky
+	[171] = {10, 20}, -- Spider Butt
+	[283] = "Rerolls twice, helping with transformation progress but draining item pools faster", -- D100
+	[284] = "Rerolls twice, helping with transformation progress but draining item pools faster", -- D4
+	[286] = "Triggers it twice", -- Blank Card
+	[287] = {"one", "two"}, -- Book of Secrets
+	[288] = {"1-4", "2-8"}, -- Box of Spiders
+	[292] = {1, 2}, -- Satanic Bible
+	[293] = {440, 880}, -- Head of Krampus
+	[294] = "Increased knockback", -- Butter Bean
+	[298] = {6, 12}, -- Unicorn Stump
+	[348] = "Triggers it twice", -- Placebo
+	[349] = "Triggers the chance twice", -- Wooden Nickel
+	[351] = {5, 10}, -- Mega Bean
+	[357] = {"Duplicates", "Triplicates"}, -- Box of Friends
+	[383] = {6, 36}, -- Tear Detonator
+	[421] = {5, 10}, -- Kidney Bean
+	[427] = {" a ", " 2 ", "barrel", "{{CR}}barrels", "barrel", "{{CR}}barrels"}, -- Mine Crafter
+	[439] = {" a ", " 2 ", "trinket", "{{CR}}trinkets"}, -- Mom's Box
+	[476] = {" a ", " 2 ", "pickup", "{{CR}}pickups"}, -- D1
+	[477] = "Activates every absorbed active item twice", -- Void
+	[480] = {"Doubles", "Quadruples"}, -- Compost
+	[481] = "Two stat ups and stat downs", -- Dataminer
+	[482] = "Changes your character twice and removes two items", -- Clicker
+	[485] = "25% chance to quadruple, 25% chance to double and remove the originals, 50% chance to remove", -- Crooked Penny
+	[486] = {"effects", "{{CR}}effects {{BlinkYellowGreen}}twice"}, -- Dull Razor
+	[488] = "Activates twice, but only the second effect stays", -- Metronome
+	[489] = {" a ", " 2 ", "effect", "{{CR}}effects"}, -- D Infinity (TODO: d infinity's desc addon is not visible in item reminder)
+	[504] = {" a ", " 2 ", "turret", "{{CR}}turrets"}, -- Brown Nugget
+	[507] = "Triggers twice", -- Sharp Straw
+	[510] = {" a ", " 2 ", "version", "{{CR}}versions"}, -- Delirious
+	[516] = {" a ", " 2 ", "Sprinkler", "{{CR}}Sprinklers"}, -- Sprinkler
+	[521] = {"one", "two"}, -- Coupon
+	[523] = "Swaps box contents with room pickups", -- Moving Box
+	[545] = {8, 16}, -- Book of the Dead
+	[550] = "Stops stomps for two rooms (or Boss Rush waves)", -- Broken Shovel
 }
 
 ---------- Trinkets ----------
@@ -969,6 +1006,7 @@ EID.descriptions[languageCode].PickupNames = {
 	["5.300"] = "{{Card}} Card",
 	["5.301"] = "{{Rune}} Rune", -- not a real id
 	["5.350"] = "{{Trinket}} Trinket",
+
 }
 
 -- Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
@@ -981,13 +1019,13 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[7] = {2, 4}, -- VI - The Lovers
 	[8] = {6, 12}, -- VII - The Chariot
 	[9] = {"Spawns {{ColorShinyPurple}}2{{CR}} random {{UnknownHeart}} hearts, {{Coin}} coins, {{Bomb}} bombs and {{Key}} keys"}, -- VIII - Justice
-	[11] = {"Spawns {{ColorShinyPurple}}2{{CR}} {{Slotmachine}} Slot Machines or {{FortuneTeller}} Fortune Machines"}, -- X - Wheel of Fortune
+	[11] = {" a ", " 2 ", "Machine", "{{CR}}Machines", "Machine", "{{CR}}Machines"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
-	[15] = {"{{DonationMachine}} Spawns {{ColorShinyPurple}}2{{CR}} Blood Donation Machines"}, -- XIV - Temperance
+	[15] = {" a ", " 2 ", "Machine", "{{CR}}Machines", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XIV - Temperance (+ Greed version)
 	[17] = {6, 12}, -- XVI - The Tower
 	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {"Spawns {{ColorShinyPurple}}2{{CR}} Beggars or Devil Beggars#2% chance to spawn a special Beggar"}, -- XX - Judgement
+	[21] = {" a ", " 2 ", "Beggar", "{{CR}}Beggars", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
 	[23] = {"Doubles", "Quadruples"}, -- 2 of Clubs
 	[24] = {"Doubles", "Quadruples"}, -- 2 of Diamonds
 	[25] = {"Doubles", "Quadruples"}, -- 2 of Spades
@@ -1015,6 +1053,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect"] = "No effect for {1}",
 	["Can't Charge"] = "Can't charge {1}",
 	["Can't Be Charged"] = "Can't be charged by {1}",
+	["No Effect (Greed)"] = "{{GreedMode}} No effect in Greed Mode",
 	
 	["No Red"] = "No effect for characters that can't have Red Hearts",
 	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
@@ -1026,9 +1065,11 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.135 (PHD)"] = "Spawns 2-3 coins if you have {1}", -- IV Bag PHD
 	["Keeper 0-1"] = "Spawns 0-1 coin as {1}", -- IV Bag/Piggy Bank Keeper
 	
-	["5.100.241"] = "{{GreedMode}} Doesn't affect Greed Mode", -- Contract From Below
-	["5.300.15"] = {"{{DemonBeggar}} Spawns a Devil Beggar"}, -- Temperance (Greed Mode effect)
-	["5.300.15 (Tarot)"] = {"{{DemonBeggar}} Spawns {{ColorShinyPurple}}2{{CR}} Devil Beggars"}, -- Temperance (Greed Mode + Tarot Cloth effect)
+	["5.300.15"] = {"{{DemonBeggar}} Spawns a Devil Beggar"}, -- Temperance (Greed)
+	["5.300.19"] = {"Teleports Isaac to the first room of the floor"}, -- The Moon (Greed)
+	["5.300.20"] = {"{{Heart}} Full health#Deals 100 damage to all enemies"}, -- XIX - The Sun (Greed)
+	["5.100.483"] = "{{GreedMode}} Doesn't trigger once per wave, just once per room", -- Mama Mega (Greed)
+	["5.100.535"] = "{{GreedMode}} No shield on Boss Waves, only on Ultra Greed", -- Blanket (Greed)
 	
 	["5.350.23"] = "{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost", -- Missing Poster (Unlock The Lost)
 	
@@ -1045,10 +1086,11 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.116 (Timed)"] = "Timed recharges start half full", -- 9 Volt
 	["1 Room"] = "15 second recharge while in an uncleared room", -- Actives + 9 Volt
 	["Timed"] = "Charge starts half full after use", -- Actives + 9 Volt
+	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
-	["NoEffect"] = "No Effect",
+	["NoEffect"] = "No effect",
 	["DoubleDamage"] = "Damage doubled",
 	["5.100.273"] = "Doubles impact damage and increases explosive damage by 25", -- Bob's Brain
 	["5.100.266"] = "Spawns an extra Blue Spider", -- Juicy Sack
