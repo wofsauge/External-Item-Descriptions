@@ -597,6 +597,7 @@ EID.descriptions[languageCode].carBattery = {
 	[93] = {6.5, 13}, -- The Gamekid
 	[97] = {" a ", " 2 ", "pickup", "{{CR}}pickups"}, -- The Book of Sin
 	[102] = {1, 2, "pill", "{{CR}}pills"}, -- Mom's Bottle of Pills
+	[105] = "Rerolls twice, skipped items can no longer be seen depending on room", -- The D6
 	[107] = "Spawns two bodies", -- The Pinking Shears
 	[111] = {5, 10}, -- The Bean
 	[123] = {" a ", " 2 ", "familiar", "{{CR}}familiars"}, -- Monster Manual
