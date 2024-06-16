@@ -14,6 +14,7 @@ EID.BoC.InventoryOverride = nil -- Override items the player has in its inventor
 EID.BoC.FloorQuery = {}
 EID.BoC.FloorOverride = nil -- Override total items displayed to be as floor content
 EID.BoC.LearnedRecipes = {} --These are recipes that we've learned during this run
+EID.BoC.IsDisplayingDescription = false
 
 EID.RefreshBagTextbox = false
 

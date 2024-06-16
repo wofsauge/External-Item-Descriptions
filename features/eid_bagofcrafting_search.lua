@@ -198,7 +198,7 @@ function EID:BoCSHandleInput()
 		return
 	end
 
-	if EID.bagPlayer == nil then
+	if EID.bagPlayer == nil or not EID.BoC.IsDisplayingDescription or not EID.Config["BagOfCraftingDisplayRecipesMode"]:find("Recipe List") then
 		return
 	end
 	

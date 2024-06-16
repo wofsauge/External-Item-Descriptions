@@ -1357,6 +1357,7 @@ function EID:OnRender()
 		for playerNum,player in ipairs(playerSearch) do
 			if player:HasCollectible(710) then
 				local craftingSuccess = EID:handleBagOfCraftingRendering()
+				EID.BoC.IsDisplayingDescription = craftingSuccess
 				if craftingSuccess then
 					displayedDesc[playerNum] = true
 				end
