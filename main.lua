@@ -10,7 +10,7 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.74
+EID.ModVersion = 4.75
 EID.ModVersionCommit = "d33fd23"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
