@@ -1259,11 +1259,11 @@ local repConditions={
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
 local repBFFSSynergies = {
-	["5.100.360"] = "Shoots tears that deal 150% of your damage. 200% for Lilith", -- Incubus
-	["5.100.610"] = "Spawns 4 rock waves in an x pattern. Doubles bird damage. Damage of waves unaffected.", -- Bird Cage
-	["5.100.569"] = "+2 full hearts when health is drained", -- Blood Oath
 	["5.100.178"] = "Double water damage and spawns a blue flame at point of impact", -- Holy Water
 	["5.100.276"] = "Fires additional shots in random directions and leaves a larger puddle of creep", -- Isaac's Heart
+	["5.100.360"] = "Shoots tears that deal 150% of your damage. 200% for Lilith", -- Incubus
+	["5.100.569"] = "+2 full hearts when health is drained", -- Blood Oath
+	["5.100.610"] = "Spawns 4 rock waves in an x pattern. Doubles bird damage. Damage of waves unaffected.", -- Bird Cage
 	["5.100.612"] = "Gives the Lost Soul a Holy Mantle effect", -- Lost Soul
 	["5.100.635"] = "On use, fires 8 tears from the players position that have the same effects as his tears", -- Stitches
 }
