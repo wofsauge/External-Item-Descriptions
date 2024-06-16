@@ -688,6 +688,9 @@ if MCMLoaded then
 		EID:AddHotkeySetting("Crafting",
 			"CraftingResultButton", "Result Toggle (Controller)",
 			"Press this button to toggle the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)", true)
+		EID:AddHotkeySetting("Crafting",
+			"CraftingSearchKey", "Search Toggle (Keyboard only)",
+			"Press this key to toggle the search feature", false)
 
 		MCM.AddSpace("EID", "Crafting")
 		--------Clear bag---------

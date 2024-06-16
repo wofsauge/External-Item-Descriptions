@@ -424,6 +424,10 @@ EID.UserConfig = {
 	-- Of note are Controller.STICK_LEFT and Controller.STICK_RIGHT (pushing the sticks in), which aren't used in-game with default controls
 	-- Default = none (-1)
 	["CraftingResultButton"] = -1,
+	-- Set the keybinding to toggle the search feature on and off
+	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
+	-- Default = Keyboard.KEY_ENTER
+	["CraftingSearchKey"] = Keyboard.KEY_ENTER,
 
 
 	 ---------- Save Game Options ------------
@@ -603,6 +607,7 @@ EID.DefaultConfig = {
 	["CraftingHideButton"] = -1,
 	["CraftingResultKey"] = Keyboard.KEY_F4,
 	["CraftingResultButton"] = -1,
+	["CraftingSearchKey"] = Keyboard.KEY_ENTER,
 
 	["ItemReminderEnabled"] = true,
 	["ItemReminderDisplayMode"] = "All",
