@@ -2041,7 +2041,7 @@ function EID:UpdateAllPlayerPassiveItems()
 			
 			-- remove items the player no longer has. reverse itteration to make deletion easier
 			for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
-				if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index]) then
+				if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index], true) then
 					table.remove(EID.RecentlyTouchedItems[playerNum], index)
 					listUpdatedForPlayers[i] = true
 				end
@@ -2049,7 +2049,7 @@ function EID:UpdateAllPlayerPassiveItems()
 
 			-- add items the player did get with non-standard methods (console command, item effects, etc...)
 			for _, itemID in ipairs(passives) do
-				if player:HasCollectible(itemID) then
+				if player:HasCollectible(itemID, true) then
 					local alreadyInList = false
 					for _, heldItemID in ipairs(EID.RecentlyTouchedItems[playerNum]) do
 						if itemID == heldItemID then
