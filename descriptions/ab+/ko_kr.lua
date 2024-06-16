@@ -256,7 +256,7 @@ EID.descriptions[languageCode].collectibles={
 	{"205", "날카로운 플러그", "액티브 아이템의 {{ColorOrange}}충전량이 없을 때{{CR}} 액티브 아이템 사용 시 체력 두 칸을 깎고 액티브의 충전량을 모두 충전합니다."}, -- Sharp Plug
 	{"206", "단두대", "↑ {{DamageSmall}}공격력 +1#↑ {{TearsSmall}}연사 +0.2#머리가 분리되어 몸의 주변을 돌며 적의 탄환을 막아주고 접촉하는 적에게 초당 105의 피해를 입힙니다."}, -- Guillotine
 	{"207", "밴드 덩어리", "획득할 때마다 성장합니다.#1/2단계: 캐릭터 주위를 돌며 적의 탄환을 막아줍니다.#{{Charm}} 2/3단계: 공격하는 방향으로 공격력 3.5의 매혹 눈물을 발사합니다.#3/4단계: 적을 따라다니며 접촉한 적에게 초당 7/11의 피해를 입힙니다. #4단계: 밴디지 걸이 적 처치 시 일정 확률로 {{Heart}}빨간하트를 드랍합니다."}, -- Ball of Bandages
-	{"208", "챔피언 벨트", "↑ {{DamageSmall}}공격력 +1#!!! 적이 챔피언으로 바뀔 확률 +15%p#챔피언 몬스터는 체력이 평소의 2배, 캐릭터에게 최소 체력 1칸의 피해를 주며 색상별로 특수 효과가 적용됩니다."}, -- Champion Belt
+	{"208", "챔피언 벨트", "↑ {{DamageSmall}}공격력 +1#!!! 일반적인 적이 챔피언으로 바뀔 확률 +5~20%p#챔피언 몬스터는 체력이 평소의 2배, 캐릭터에게 최소 체력 1칸의 피해를 주며 색상별로 특수 효과가 적용됩니다."}, -- Champion Belt
 	{"209", "궁둥이 폭탄", "↑ {{Bomb}}폭탄 +5#{{Confusion}} 폭탄이 터질 때 방 안의 모든 적에게 10의 피해를 주고 4초간 혼란시킵니다.#!!! 똥 타입 보스의 체력을 25% 회복시킵니다."}, -- Butt Bombs
 	{"210", "갉아먹힌 나뭇잎", "2초간 어떠한 키도 입력하지 않을 시 캐릭터가 무적 상태가 됩니다."}, -- Gnawed Leaf
 	{"211", "새끼 거미", "피격 시 파란 아군 거미를 1~2마리 소환합니다."}, -- Spider Baby
@@ -593,7 +593,7 @@ EID.descriptions[languageCode].collectibles={
 	{"542", "미끄러운 갈비뼈", "캐릭터 주위를 돌며 적의 탄환을 반사합니다."}, -- Slipped Rib
 	{"543", "성지", "피격 시 오라를 가진 하얀 똥을 설치합니다.오라 안에 있을 시 {{TearsSmall}}연사가 2배가 되며 피해를 확률적으로 무시합니다."}, -- Hallowed Ground
 	{"544", "날카로운 갈비뼈", "캐릭터가 보는 방향에서 앞뒤로 움직이면서 접촉하는 적에게 초당 캐릭터의 공격력 x6의 피해를 입힙니다."}, -- Pointy Rib
-	{"545", "망자의 책", "사용 시 방에서 죽인 적의 수만큼 일회용 뼛조각 배리어를 생성하며 확률적으로 아군 해골 적을 소환합니다."}, -- Book of the Dead
+	{"545", "망자의 책", "사용 시 방에서 죽인 적의 수만큼 일회용 뼛조각 배리어를 생성하며 확률적으로 아군 해골 적을 소환합니다. (최대 8)"}, -- Book of the Dead
 	{"546", "아빠의 반지", "캐릭터 주위에 작은 고리가 생기며 고리에 닿은 적은 석화 상태가 됩니다."}, -- Dad's Ring
 	{"547", "이혼 서류", "↑ {{EmptyBoneHeart}}뼈하트 +1#↑ {{TearsSmall}}연사 +0.7#Mysterious Paper 장신구를 드랍합니다."}, -- Divorce Papers
 	{"548", "턱뼈", "공격한 방향으로 부메랑처럼 날아가며 맞은 적에게 7의 피해를 줍니다.#픽업에 닿을 시 픽업을 가져옵니다."}, -- Jaw Bone
@@ -608,16 +608,16 @@ EID.descriptions[languageCode].collectibles={
 
 -- Effect of Car battery on Active Items
 EID.descriptions[languageCode].carBattery = {
-	[34] = {"+2", "+4"}, -- Book of Belial
+	["No Effect"] = "무효과",
 	[35] = {40, 80}, -- Necronomicon
-	[37] = {110, 220}, -- Mr. Boom
+	[37] = {"대형 폭탄을 설치합니다.", "대형 폭탄을 2개 설치합니다."}, -- Mr. Boom
 	[38] = {10, 20}, --Tammy's Head
 	[45] = {"1칸", "2칸"}, -- Yum Heart
 	[58] = {10, 20}, -- Book of Shadows
 	[65] = {6, 12}, -- Anarchist Cookbook
 	[66] = {8, 16}, -- The Hourglass
 	[77] = {6, 12}, -- My Little Unicorn
-	[78] = {"{{CR}}소울하트 {{BlinkYellowGreen}}+1", "{{CR}}소울하트 {{BlinkYellowGreen}}+2"}, -- Book of Revelations
+	[78] = {"소울하트 {{BlinkYellowGreen}}+1", "{{CR}}소울하트 {{BlinkYellowGreen}}+2"}, -- Book of Revelations
 	[83] = {"+1", "+2"}, -- The Nail
 	[85] = {"하나", "2장"}, -- Deck of Cards
 	[86] = "{{BlinkYellowGreen}}Monstro가 한 마리 더 떨어집니다.", -- Monstro's Tooth
@@ -625,7 +625,7 @@ EID.descriptions[languageCode].carBattery = {
 	[97] = {"사용 시 랜덤한 픽업을 {{BlinkYellowGreen}}2개{{CR}} 드랍합니다."}, -- The Book of Sin
 	[102] = {"하나", "2개"}, -- Mom's Bottle of Pills
 	[105] = "!!! {{BlinkYellowRed}}일부 아이템이 배열에서 지워질 수 있음{{CR}}", -- The D6
-	[107] = {82.5, 165}, -- The Pinking Shears
+	[107] = "분리된 몸 추가 생성", -- The Pinking Shears
 	[111] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- The Bean
 	[123] = {"하나", "2명"}, -- Monster Manual
 	[124] = {"랜덤한 액티브 아이템", "랜덤한 액티브 아이템 2개"}, -- Dead Sea Scrolls
@@ -640,9 +640,10 @@ EID.descriptions[languageCode].carBattery = {
 	[288] = {"1~4", "2~8"}, -- Box of Spiders
 	[292] = {"+1", "+2"}, -- Satanic Bible
 	[293] = "혈사의 피해량 x2", -- Head of Krampus
+	[294] = "밀쳐내는 강도가 강해짐", -- Butter Bean
 	[298] = {"6", "12"}, -- Unicorn Stump
 	[348] = {"발동합니다", "2번{{CR}} 발동합니다"}, --Placebo
-	[349] = {"사용 시 50% 확률로 {{Coin}}동전을 하나, {{BlinkYellowGreen}}25%의 확률로 2개 드랍합니다."}, -- Wooden Nickel
+	[349] = {"사용 시 59% 확률로 {{Coin}}동전을 하나, {{BlinkYellowGreen}}29%의 확률로 2개 드랍합니다."}, -- Wooden Nickel
 	[351] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- Mega Bean
 	[357] = {"복사합니다", "2번{{CR}} 복사합니다"}, -- Box of Friends
 	[383] = {6, 36}, -- Tear Detonator
@@ -652,6 +653,7 @@ EID.descriptions[languageCode].carBattery = {
 	[439] = {"하나", "2개"}, -- Mom's Box
 	[476] = {"하나", "2개"}, --D1
 	[477] = "흡수한 아이템을 2번 발동합니다.", -- Void
+	[480] = {"2배", "4배"}, -- Compost
 	[481] = {"능력치가", "2개의{{CR}} 능력치가"}, -- Dataminer
 	[482] = {"제거하고", "{{BlinkYellowRed}}2개{{CR}} 제거하고", "바꿉니다", "2번{{CR}} 바꿉니다"}, -- Clicker
 	[485] = {"50", "{{BlinkYellowRed}}25", "2배", "4배", "1개", "1~2개"}, -- Crooked Penny
@@ -660,11 +662,12 @@ EID.descriptions[languageCode].carBattery = {
 	[488] = {"발동합니다", "2개{{CR}} 발동합니다"}, -- Metronome
 	[489] = "!!! {{BlinkYellowRed}}랜덤 주사위 아이템을 하나 더 발동합니다.", -- D Infinity
 	[504] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Brown Nugget
-	[507] = {"눈물 공격력 + 적 체력의 10%", "눈물 공격력 x2 + 적 체력의 20%"}, -- Sharp Straw
+	[507] = {"눈물 공격력 + 적 최대 체력의 10%", "눈물 공격력 x2 + 적 최대 체력의 20%"}, -- Sharp Straw
 	[510] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Delirious
 	[516] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Sprinker
 	[521] = {"하나", "2개"}, --Coupon
 	[523] = "상자의 내용물과 그 방의 아이템/픽업 내용물을 뒤바꿉니다.", -- Moving Box
+	[545] = {8, 16}, -- Book of the Dead
 	[550] = {"그 방 및 웨이브", "2개{{CR}}의 방 및 웨이브"}, -- Broken Shovel
 }
 
@@ -816,7 +819,7 @@ EID.descriptions[languageCode].cards={
 	{"12", "XI - 힘", "그 방에서 {{Heart}}최대 체력 +1, {{DamageSmall}}공격력 +0.3, {{DamageSmall}}공격력 배율 +50%, {{RangeSmall}}사거리 +5.25, 눈물 높이 +0.5, {{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
 	{"13", "XII - 매달린 남자", "{{Collectible20}} 그 방에서 비행 능력을 얻습니다."}, -- XII - The Hanged Man
 	{"14", "XIII - 죽음", "{{Collectible35}} 방 안의 모든 적에게 40의 피해를 줍니다."}, -- XIII - Death
-	{"15", "XIV - 절제", "{{DonationMachine}}헌혈기계를 생성합니다."}, -- XIV - Temperance
+	{"15", "XIV - 절제", "{{DonationMachine}}헌혈기계를 하나 생성합니다."}, -- XIV - Temperance
 	{"16", "XV - 악마", "{{Collectible34}} 그 방에서 {{DamageSmall}}공격력 +2"}, -- XV - The Devil
 	{"17", "XVI - 탑", "{{Collectible65}} 방 안에 트롤폭탄을 6개 생성합니다."}, -- XVI - The Tower
 	{"18", "XVII - 별", "{{TreasureRoom}}보물방으로 순간이동합니다."}, -- XVII - The Stars
@@ -1037,7 +1040,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[11] = {"{{Slotmachine}}도박기계 혹은 {{FortuneTeller}}운세기계를 2개 생성합니다."}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
-	[15] = {"{{DonationMachine}}헌혈기계를 {{ColorShinyPurple}}2{{CR}}개 생성합니다."}, -- XIV - Temperance
+	[15] = {"하나", "2개"}, -- XIV - Temperance
 	[17] = {6, 12}, -- XVI - The Tower
 	[20] = {100, 200}, -- XIX - The Sun
 	[21] = {"랜덤 거지를 {{ColorShinyPurple}}2{{CR}}명 소환합니다."}, -- XX - Judgement
@@ -1067,6 +1070,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect"] = "{1}에는 무효과",
 	["Can't Charge"] = "{1} 충전 불가",
 	["Can't Be Charged"] = "{1}(으)로 충전 불가",
+	["No Effect (Greed)"] = "{{GreedMode}} Greed Mode: 무효과",
 
 	["No Red"] = "최대 체력이 소울하트인 캐릭터에는 무효과",
 	["5.100.81 (No Red)"] = "최대 체력이 소울하트인 캐릭터는 소울하트가 1칸이 됨", -- Dead Cat
@@ -1078,10 +1082,12 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.135 (PHD)"] = "{1} 소지 시 동전 2~3개 소환", -- IV Bag PHD
 	["Keeper 0-1"] = "{1}: 0~1개", -- IV Bag/Piggy Bank Keeper
 
-	["5.100.241"] = "{{GreedModeSmall}} Greed 모드의 동전 보상은 영향 없음", -- Contract From Below
-	["5.300.15"] = {"{{DemonBeggar}} 악마거지를 소환합니다."}, -- Temperance (Greed Mode effect)
-	["5.300.15 (Tarot)"] = {"{{DemonBeggar}} 악마거지를 {{ColorShinyPurple}}2{{CR}}명 소환합니다."}, -- Temperance (Greed Mode + Tarot Cloth effect)
-	
+	["5.300.15"] = {"{{DemonBeggar}} 악마거지를 하나 소환합니다."}, -- Temperance (Greed)
+	["5.300.19"] = {"스테이지의 첫 방으로 순간이동합니다."}, -- The Moon (Greed)
+	["5.300.20"] = {"{{Heart}} 방 안의 모든 적에게 100의 피해를 주고 체력을 모두 회복합니다."}, -- XIX - The Sun (Greed)
+	["5.100.483"] = "{{GreedMode}} 각 방마다 발생, 웨이브마다 발생시키지는 않음", -- Mama Mega (Greed)
+	["5.100.535"] = "{{GreedMode}} Ultra Greed전에서만 효과 발동", -- Blanket (Greed)
+
 	["5.350.23"] = "!!! {{SacrificeRoom}}희생방에서 사망 시 The Lost 캐릭터가 해금됩니다.", -- Missing Poster (Unlock The Lost)
 
 	["5.100.549"] = "{1}: ↑ {{TearsSmall}}연사 +0.4", -- Brittle Bones (Keeper+Lost)
@@ -1097,6 +1103,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.116 (Timed)"] = "시간제 액티브 아이템의 경우 쿨타임의 절반을 보존합니다.", -- 9 Volt
 	["1 Room"] = "{{ColorOrange}}적이 있는 방에서{{CR}} 15초의 충전 쿨타임을 가집니다.", -- Actives + 9 Volt
 	["Timed"] = "사용 후 쿨타임의 절반을 보존합니다.", -- Actives + 9 Volt
+	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
