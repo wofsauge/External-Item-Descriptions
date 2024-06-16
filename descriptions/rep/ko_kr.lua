@@ -1298,7 +1298,8 @@ EID.descriptions[languageCode].CraftingWarningAvailableItems = "스테이지에 
 -- {1} will be converted into the name of the key that toggles the BoC visibility
 EID.descriptions[languageCode].CraftingIsHidden = "현재 숨겨짐({1} 키로 표시)"
 
-EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}}+{{ButtonY}}or{{ButtonA}}#목록 고정:{{ButtonX}}#목록 새로고침:{{ButtonB}}#초기화:{{ButtonRB}}꾹 누르기, 찾기:{{ButtonEnter}})"
+-- {1} will be converted into the name of the key that toggles the BoC Search
+EID.descriptions[languageCode].CraftingResults = "목록 스크롤: {{CONFIG_BoC_Toggle}}+{{ButtonY}}or{{ButtonA}}#목록 고정:{{ButtonX}}#목록 새로고침:{{ButtonB}}#초기화:{{ButtonRB}}꾹 누르기, 찾기:{1})"
 
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card로 사용 시:"
 EID.descriptions[languageCode].BlankCardQCard = "오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다."

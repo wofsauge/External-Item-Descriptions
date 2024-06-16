@@ -1341,7 +1341,8 @@ EID.descriptions[languageCode].CraftingWarningAvailableItems = "Il doit y avoir 
 EID.descriptions[languageCode].CraftingIsHidden = "Les recettes sont cachées (Afficher : {1})"
 EID.descriptions[languageCode].CraftingMore = "...et {1} autres"
 
-EID.descriptions[languageCode].CraftingResults = "(Défiler : maintenir {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}#Verrouiller : {{ButtonX}}, Rafraîchir : {{ButtonB}}#Réinitialiser : Maintenir {{ButtonRB}}#Rechercher : {{ButtonEnter}})"
+-- {1} will be converted into the name of the key that toggles the BoC Search
+EID.descriptions[languageCode].CraftingResults = "(Défiler : maintenir {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}#Verrouiller : {{ButtonX}}, Rafraîchir : {{ButtonB}}#Réinitialiser : Maintenir {{ButtonRB}}#Rechercher : {1})"
 
 EID.descriptions[languageCode].BlankCardCharge = "Temps de charge avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"
 EID.descriptions[languageCode].BlankCardEffect = "Effet avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"

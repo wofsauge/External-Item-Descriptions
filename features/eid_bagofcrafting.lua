@@ -1113,6 +1113,8 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	prevDesc = prevDesc .. getFloorItemsString(true, roomItems)
 	if (EID.Config["BagOfCraftingShowControls"]) then
 		local resultDesc = EID:getDescriptionEntry("CraftingResults")
+		local searchButton = EID.KeyboardToString[EID.Config["CraftingSearchKey"]]
+		resultDesc = EID:ReplaceVariableStr(resultDesc, 1, searchButton)
 		prevDesc = prevDesc .. resultDesc
 	end
 

@@ -1191,7 +1191,8 @@ EID.descriptions[languageCode].CraftingWarningAvailableItems = "Needs at least 8
 -- {1} will be converted into the name of the key that toggles the BoC visibility
 EID.descriptions[languageCode].CraftingIsHidden = "Currently Hidden (Unhide with {1})"
 
-EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}}, Search: {{ButtonEnter}})"
+-- {1} will be converted into the name of the key that toggles the BoC Search
+EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}}, Search: {1})"
 
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card effect:"
 EID.descriptions[languageCode].VariableCharge = "{1} charge:"
