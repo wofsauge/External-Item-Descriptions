@@ -160,7 +160,7 @@ EID.TextReplacementPairs = {
 local controllerSprites = Sprite()
 controllerSprites:Load("gfx/ui/buttons.anm2", true)
 local function getControllerSprite()
-	return (EID.player.ControllerIndex > 0 and controllerSprites) or EID.InlineIconSprite
+	return (EID.player and EID.player.ControllerIndex > 0 and controllerSprites) or EID.InlineIconSprite
 end
 
 --Format: [SHORTCUT]= {Animationname, Frame, Width, Height, LeftOffset [Default: -1], TopOffset [Default: 0], SpriteObject [Default: EID.InlineIconSprite]}
