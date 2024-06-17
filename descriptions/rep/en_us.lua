@@ -33,7 +33,7 @@ local repCollectibles={
 	[41] = {"41", "Mom's Pad", "{{Fear}} Fears all enemies in the room for 5 seconds#Spawns a blue fly"}, -- Mom's Pad
 	[42] = {"42", "Bob's Rotten Head", "Using the item and firing in a direction throws the head#{{Poison}} The head explodes where it lands and creates a poison cloud#Deals Isaac's damage + 185"}, -- Bob's Rotten Head
 	[46] = {"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#Better chance to win while gambling#Increases room clearing drop chance#Turns bad pills into good ones"}, -- Lucky Foot
-	[49] = {"49", "Shoop da Whoop!", "{{Collectible118}} Using the item and shooting in a direction fires a beam#It deals 24x Isaac's damage over 0.83 seconds"}, -- Shoop da Whoop!
+	[49] = {"49", "Shoop da Whoop!", "The next shot is replaced with a beam#It deals 24x Isaac's damage over 0.83 seconds"}, -- Shoop da Whoop!
 	[52] = {"52", "Dr. Fetus", "↓ {{Tears}} x0.4 Fire rate multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 10x Isaac's tear damage#If that results in over 60 damage, they instead deal 5x damage +30"}, -- Dr. Fetus
 	[53] = {"53", "Magneto", "Pickups are attracted to Isaac#Opens chests from 2 tiles away, ignoring damage of Spike Chests"}, -- Magneto
 	[55] = {"55", "Mom's Eye", "50% chance to shoot an extra tear backwards#{{Luck}} 100% chance at 5 luck"}, -- Mom's Eye
@@ -58,7 +58,7 @@ local repCollectibles={
 	[110] = {"110", "Mom's Contacts", "↑ {{Range}} +1.5 Range#20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 luck"}, -- Mom's Contacts
 	[114] = {"114", "Mom's Knife", "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and caps at 6x damage at 1/3 charge#Charging further only increases throwing range#Damage reduces to 2x when returning to Isaac"}, -- Mom's Knife
 	[115] = {"115", "Ouija Board", "↑ {{Tears}} +0.5 Tears#Spectral tears"}, -- Ouija Board
-	[118] = {"118", "Brimstone", "↓ {{Tears}} x0.33 Fire rate multiplier#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam#It deals 9x Isaac's damage over 0.63 seconds"}, -- Brimstone
+	[118] = {"118", "Brimstone", "↓ {{Tears}} x0.33 Fire rate multiplier#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam#{{Damage}} It deals 9x Isaac's damage over 0.63 seconds"}, -- Brimstone
 	[121] = {"121", "Odd Mushroom (Large)", "↑ {{Heart}} +1 Health#↑ {{Damage}} +1 Damage#↑ {{Range}} +1.5 Range#↓ {{Speed}} -0.2 Speed"}, -- Odd Mushroom (Large)
 	[123] = {"123", "Monster Manual", "{{Timer}} Spawns a random familiar for the floor"}, -- Monster Manual
 	[126] = {"126", "Razor Blade", "↑ {{Damage}} +1.2 Damage for the room#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first"}, -- Razor Blade
@@ -422,7 +422,6 @@ local repCollectibles={
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
-
 ---------- Modifiers ----------
 
 EID.descriptions[languageCode].birthright ={
@@ -687,7 +686,6 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[723] = "Middle ring wisp#Spawns a random wisp and rerolls all wisps into the type", -- Spindown Dice
 	[728] = "Middle ring wisp#All wisps orbit Gello while active", -- Gello
 	[729] = "Single room stationary wisp", -- Decap Attack
-
 }
 
 -- Special Locust effects when Item was eaten by Abyss
@@ -996,7 +994,6 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[76] = {" a ", " 2 ", "Machine", "{{CR}}Machines"}, -- XX - Judgement?
 }
 
-
 -- There's some odd behavior with Blank Card + Tarot Cloth not doubling some cards
 -- These will be appended after Blank Card recharge time and "Blank Card effect:"
 EID.descriptions[languageCode].tarotClothBlankCardBuffs = {
@@ -1143,7 +1140,6 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 	-- Text for the base item that is granted
 	grants = "Grants ",
-
 }
 
 ---------- Misc. Text ----------
@@ -1218,7 +1214,6 @@ EID.descriptions[languageCode].OldGameVersionWarningText = "EID is updated for t
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Install REPENTOGON for improved modded recipe support#(This warning can be disabled in the config)"
 
 EID.descriptions[languageCode].ResultsWithX = "(Results with {1})"
-
 
 -- Conditional descriptions
 -- Strings will be appended to the original description

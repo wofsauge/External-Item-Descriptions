@@ -69,7 +69,7 @@ EID.descriptions[languageCode].collectibles={
 	{"46", "Glückspfote", "↑ {{Luck}} +1 Glück#+8% Chance auf Belohnung nach dem Abschließen eines Raumes#Höhere Gewinnchance bei Glücksspielen"}, -- Lucky Foot
 	{"47", "Doktor-Fernbedienung", "{{Collectible168}} Bei Benutzung wird ein Fadenkreuz gesteuert#Eine Rakete schlägt nach 1.5 Sekunden beim Fadenkreuz ein#Verursacht 20x Isaacs Schaden"}, -- Doctor's Remote
 	{"48", "Amors Pfeil", "Durchdringende Tränen"}, -- Cupid's Arrow
-	{"49", "Zack-di-wupp!", "{{Collectible118}} Der nächste Schuss wird mit einem sehr starken Strahl ersetzt"}, -- Shoop da Whoop!
+	{"49", "Zack-di-wupp!", "Der nächste Schuss wird mit einem Strahl ersetzt#Er verursacht 26x Isaacs Schaden über 0.9 Sekunden"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Schaden"}, -- Steven
 	{"51", "Pentagramm", "↑ {{Damage}} +1 Schaden#{{AngelDevilChance}} +10% Teufels-/Engelsraum Chance"}, -- Pentagram
 	{"52", "Dr. Fötus", "↓ {{Tears}} x2.5 Tränenverzögerungs-Multiplikator#{{Bomb}} Isaac schießt Bomben anstatt Tränen#{{Damage}} Diese Bomben verursachen 5x Isaacs Schaden + 30"}, -- Dr. Fetus
@@ -131,14 +131,14 @@ EID.descriptions[languageCode].collectibles={
 	{"108", "Die Hostie", "Reduziert den meisten erlittenen Schaden auf ein halbes Herz"}, -- The Wafer
 	{"109", "Geld = Macht", "↑ {{Damage}} +0.04 Schaden für jede {{Coin}} Münze, die Isaac besitzt"}, -- Money = Power
 	{"110", "Mamas Kontaktlinsen", "↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe#20% Chance, versteinernde Tränen zu schießen#{{Luck}} 50% Chance bei 20 Glück"}, -- Mom's Contacts
-	{"111", "Die Bohne", "{{Poison}} Furzt eine Giftwolke#Der Furz verursacht 5 Schaden an Feinden und vergiftet sie#Das Gift verursacht Isaacs Schaden 6 Mal"}, -- The Bean
+	{"111", "Die Bohne", "{{Poison}} Verursacht 5 Schaden an nahegelegenen Feinden und vergiftet sie#Das Gift verursacht Isaacs Schaden 6 Mal"}, -- The Bean
 	{"112", "Schutzengel", "Satellit#Beschleunigt alle anderen Satelliten#Blockt Projektile#Verursacht bei Kontakt 105 Schaden pro Sekunde"}, -- Guardian Angel
 	{"113", "Dämonenbaby", "Schießt auf Feinde, die ihm zu nahe kommen#Verursacht 3 Schaden pro Träne"}, -- Demon Baby
 	{"114", "Mamas Messer", "Isaacs Tränen werden durch ein werfbares Messer ersetzt#{{Damage}} Das Messer verursacht 2x Isaacs Schaden, während es gehalten wird, und 6x bei der maximal möglichen Entfernung"}, -- Mom's Knife
 	{"115", "Ouija-Brett", "Spektrale Tränen"}, -- Ouija Board
 	{"116", "9 Volt", "{{Battery}} Lädt automatisch die erste Leiste aktiver Gegenstände auf#{{Battery}} Lädt beim Aufheben den aktiven Gegenstand vollständig auf"}, -- 9 Volt
 	{"117", "Toter Vogel", "Beim Erleiden von Schaden erscheint ein Vogel, der Feinde angreift#Der Vogel verursacht bei Kontakt 4.3 Schaden pro Sekunde"}, -- Dead Bird
-	{"118", "Schwefel", "↓ {{Tears}} x3 Tränenverzögerungs-Multiplikator#{{Chargeable}} Isaacs Tränen werden durch einen aufladbaren Blutstrahl ersetzt"}, -- Brimstone
+	{"118", "Schwefel", "↓ {{Tears}} x3 Tränenverzögerungs-Multiplikator#{{Chargeable}} Isaacs Tränen werden durch einen aufladbaren Blutstrahl ersetzt#{{Damage}} Er verursacht 13x Isaacs Schaden über 0.9 Sekunden"}, -- Brimstone
 	{"119", "Blutbeutel", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.3 Tempo#{{Heart}} Heilt 4 Herzen"}, -- Blood Bag
 	{"120", "Seltsamer Pilz (Dünn)", "↑ {{Speed}} +0.3 Tempo#↑ {{Tears}} +1.7 Tränen#↓ {{Damage}} x0.9 Schadens-Multiplikator#↓ {{Damage}} -0.4 Schaden"}, -- Odd Mushroom (Thin)
 	{"121", "Seltsamer Pilz (Groß)", "↑ {{EmptyHeart}} +1 Leerer Herzcontainer#↑ {{Damage}} +0.3 Schaden#↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe#↓ {{Speed}} -0.1 Tempo"}, -- Odd Mushroom (Large)
@@ -172,7 +172,7 @@ EID.descriptions[languageCode].collectibles={
 	{"149", "Ipecac", "↑ {{Damage}} +40 Schaden#↓ {{Tears}} Tränen#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
 	{"150", "Tough Love", "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 Glück"}, -- Tough Love
 	{"151", "The Mulligan", "Hitting an enemy with a tear has a 1/6 chance to spawn a fly"}, -- The Mulligan
-	{"152", "Technology 2", "↓ {{Tears}} x2 Tränenverzögerungs-Multiplikator#↓ {{Damage}} x0.65 Schadens-Multiplikator#Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 20% of Isaac's damage per tick"}, -- Technology 2
+	{"152", "Technology 2", "↓ {{Tears}} x2 Tear delay multiplier#↓ {{Damage}} x0.65 Damage multiplier#Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 3x Isaac's damage per second"}, -- Technology 2
 	{"153", "Mutant Spider", "↓ {{Tears}} Tränen#Isaac shoots 4 tears at once"}, -- Mutant Spider
 	{"154", "Chemical Peel", "↑ {{Damage}} +2 Schaden for the left eye"}, -- Chemical Peel
 	{"155", "The Peeper", "Floats around the room#Deals 17.1 contact damage per second"}, -- The Peeper
@@ -202,7 +202,7 @@ EID.descriptions[languageCode].collectibles={
 	{"179", "Fate", "{{EternalHeart}} +1 Eternal Heart#Flug"}, -- Fate
 	{"180", "The Black Bean", "Isaac farts when damaged#{{Poison}} The fart poisons enemies"}, -- The Black Bean
 	{"181", "White Pony", "{{Speed}} Sets your Tempo to at least 1.5#Flug while held#Using the item dashes in the direction of Isaac's movement, leaving behind beams of light"}, -- White Pony
-	{"182", "Sacred Heart", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} x2.3 Schadens-Multiplikator#↑ {{Damage}} +1 Schaden#↑ {{Range}} +0.38 Reichweite#↑ +0.75 Tränenhöhe#↓ {{Tears}} -0.4 Tränen#↓ {{Shotspeed}} -0.25 Schusstempo#{{Heart}} Volle Gesundheit#Zielsuchschüsse"}, -- Sacred Heart
+	{"182", "Sacred Heart", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} x2.3 Schadens-Multiplikator#↑ {{Damage}} +1 Schaden#↑ {{Range}} +0.38 Reichweite#↑ +0.75 Tränenhöhe#↓ {{Tears}} -0.4 Tränen#↓ {{Shotspeed}} -0.25 Schusstempo#{{Heart}} Volle Gesundheit#Zielsuchende Tränen"}, -- Sacred Heart
 	{"183", "Tooth Picks", "↑ {{Tears}} +0.7 Tränen#↑ {{Shotspeed}} +0.16 Schusstempo"}, -- Tooth Picks
 	{"184", "Holy Grail", "↑ {{Heart}} +1 Gesundheit#Flug"}, -- Holy Grail
 	{"185", "Dead Dove", "Spectral tears#Flug"}, -- Dead Dove
@@ -212,7 +212,7 @@ EID.descriptions[languageCode].collectibles={
 	{"189", "SMB Super Fan", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.2 Tempo#↑ {{Tears}} +0.2 Tränen#↑ {{Damage}} +0.3 Schaden#↑ {{Range}} +0.5 Reichweite#↑ +1 Tränenhöhe#{{Heart}} Volle Gesundheit"}, -- SMB Super Fan
 	{"190", "Pyro", "{{Bomb}} +99 Bomben"}, -- Pyro
 	{"191", "3 Dollar Bill", "Isaac's tears get random effects every 2-3 seconds"}, -- 3 Dollar Bill
-	{"192", "Telepathy For Dummies", "{{Timer}} Zielsuchschüsse für diesen Raum"}, -- Telepathy For Dummies
+	{"192", "Telepathy For Dummies", "{{Timer}} Zielsuchende Tränen für diesen Raum"}, -- Telepathy For Dummies
 	{"193", "MEAT!", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} +0.3 Schaden"}, -- MEAT!
 	{"194", "Magic 8 Ball", "↑ {{Shotspeed}} +0.16 Schusstempo#{{Card}} Spawns a card"}, -- Magic 8 Ball
 	{"195", "Mom's Coin Purse", "{{Pill}} Spawns 4 pills"}, -- Mom's Coin Purse
@@ -228,7 +228,7 @@ EID.descriptions[languageCode].collectibles={
 	{"205", "Sharp Plug", "{{Battery}} Using an uncharged active item fully recharges it at the cost of 2 hearts#Only works when item has no charges"}, -- Sharp Plug
 	{"206", "Guillotine", "↑ {{Tears}} -1 Tränenverzögerung#↑ {{Damage}} +1 Schaden#Isaac's head becomes an orbital that shoots, doesn't take damage and deals 105 contact damage per second"}, -- Guillotine
 	{"207", "Ball of Bandages", "Lv1: Orbital#{{Charm}} Lv2: Orbital that shoots charmed tears#{{Charm}} Lv3: Bandage Girl#{{Charm}} Lv4: Super Bandage Girl"}, -- Ball of Bandages
-	{"208", "Champion Belt", "↑ {{Damage}} +1 Schaden#+15% chance for champion enemies"}, -- Champion Belt
+	{"208", "Champion Belt", "↑ {{Damage}} +1 Damage#Champion enemy chance goes from 5% to 20%#Doesn't increase chance of champion bosses"}, -- Champion Belt
 	{"209", "Butt Bomben", "{{Bomb}} +5 Bomben#{{Confusion}} Explosions concuss and damage every enemy in the room"}, -- Butt Bomben
 	{"210", "Gnawed Leaf", "Standing still for 1 second makes Isaac invincible"}, -- Gnawed Leaf
 	{"211", "Spiderbaby", "Taking damage spawns 1-2 blue spiders"}, -- Spiderbaby
@@ -313,7 +313,7 @@ EID.descriptions[languageCode].collectibles={
 	{"290", "The Jar", "{{Heart}} Picking up Red Hearts while at full health stores up to 4 of them in the Jar#Using the item drops all stored hearts on the floor"}, -- The Jar
 	{"291", "Flush!", "Turns all non-boss enemies into poop#Instantly kills poop enemies and bosses"}, -- Flush!
 	{"292", "Satanic Bible", "{{BlackHeart}} +1 Black Heart"}, -- Satanic Bible
-	{"293", "Head of Krampus", "{{Collectible118}} Shoot a 4-way blood beam"}, -- Head of Krampus
+	{"293", "Head of Krampus", "{{Collectible118}} Shoot a 4-way blood beam#They each deal 440 damage over 1.33 seconds"}, -- Head of Krampus
 	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger {{Collectible484}} Wait What? when swapping it with a different active item and picking it up again"}, -- Butter Bean
 	{"295", "Magic Fingers", "Deals 2x Isaac's damage to all enemies#{{Coin}} Costs 1 coin"}, -- Magic Fingers
 	{"296", "Converter", "{{Heart}} Converts 2 Soul/Black Hearts into 1 heart container"}, -- Converter
@@ -353,7 +353,7 @@ EID.descriptions[languageCode].collectibles={
 	{"328", "The Negative", "Taking damage at half a Red Heart or none damages all enemies in the room"}, -- The Negative
 	{"329", "The Ludovico Technique", "Replaces Isaac's tears with one giant controllable tear"}, -- The Ludovico Technique
 	{"330", "Soy Milk", "↑ {{Tears}} Tränen up: (delay/4)-2#↓ {{Damage}} x0.2 Schadens-Multiplikator#↓ {{Tearsize}} x0.5 Tear size"}, -- Soy Milk
-	{"331", "Godhead", "↑ {{Damage}} +0.5 Schaden#↑ {{Range}} +1.2 Reichweite#↑ +0.8 Tränenhöhe#↓ {{Tears}} -0.3 Tränen#↓ {{Shotspeed}} -0.3 Schusstempo#Zielsuchschüsse#{{Damage}} Tränen gain an aura that deals 4.5x Isaac's damage per second"}, -- Godhead
+	{"331", "Godhead", "↑ {{Damage}} +0.5 Schaden#↑ {{Range}} +1.2 Reichweite#↑ +0.8 Tränenhöhe#↓ {{Tears}} -0.3 Tränen#↓ {{Shotspeed}} -0.3 Schusstempo#Zielsuchende Tränen#{{Damage}} Tränen gain an aura that deals 4.5x Isaac's damage per second"}, -- Godhead
 	{"332", "Lazarus' Rags", "{{Player11}} When dead, revive as Lazarus (Risen)"}, -- Lazarus' Rags
 	{"333", "The Mind", "Full mapping effect"}, -- The Mind
 	{"334", "The Body", "↑ {{Heart}} +3 Gesundheit"}, -- The Body
@@ -503,7 +503,7 @@ EID.descriptions[languageCode].collectibles={
 	{"478", "Pause", "Pauses all enemies in the room until Isaac shoots#Touching a paused enemy still deals damage to Isaac#Enemies unpause after 30 seconds"}, -- Pause
 	{"479", "Smelter", "{{Trinket}} Consumes Isaac's held trinkets and grants their effects permanently#Increases the spawn rate of trinkets"}, -- Smelter
 	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles all blue flies and spiders#Spawns 1 blue fly or spider if Isaac has none"}, -- Compost
-	{"481", "Dataminer", "↑ Random stat up#↓ Random stat down#{{Timer}} Random tear effect für diesen Raum#{{Blank}} Corrupts all sprites and music in the room"}, -- Dataminer
+	{"481", "Dataminer", "↑ Random stat up#↓ Random stat down#{{Timer}} Random tear effects für diesen Raum#{{Blank}} Corrupts all sprites and music in the room"}, -- Dataminer
 	{"482", "Clicker", "Changes your character to a random character#Removes the most recent item collected"}, -- Clicker
 	{"483", "Mama Mega!", "{{Warning}} SINGLE USE {{Warning}}#Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss Rush, Hush and all secret rooms#Having a golden bomb when using the item consumes it and allows for another use of Mama Mega"}, -- Mama Mega!
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawns a rock wave around Isaac#The rock wave can open rooms and break rocks"}, -- Wait What?
@@ -567,12 +567,12 @@ EID.descriptions[languageCode].collectibles={
 	{"542", "Slipped Rib", "Orbital#Reflects enemy projectiles"}, -- Slipped Rib
 	{"543", "Hallowed Ground", "Taking damage spawns a white poop#While inside the poop's aura:#↑ {{Tears}} x0.5 Tränenverzögerungs-Multiplikator#Chance to block damage"}, -- Hallowed Ground
 	{"544", "Pointy Rib", "Levitates in front of Isaac#Deals 6x Isaac's damage per second"}, -- Pointy Rib
-	{"545", "Book of the Dead", "Spawns a bone orbital or charmed bony per enemy killed in the room"}, -- Book of the Dead
+	{"545", "Book of the Dead", "Spawns a bone orbital or charmed bony per enemy killed in the room (up to 8)"}, -- Book of the Dead
 	{"546", "Dad's Ring", "Grants an aura that petrifies enemies"}, -- Dad's Ring
 	{"547", "Divorce Papers", "↑ {{Tears}} +0.7 Tränen#{{EmptyBoneHeart}} +1 Bone Heart#{{Trinket21}} Spawns the Mysterious Paper trinket"}, -- Divorce Papers
 	{"548", "Jaw Bone", "Boomerang-like familiar#Deals 7 contact damage#Can grab and bring back pickups"}, -- Jaw Bone
 	{"549", "Brittle Bones", "{{EmptyBoneHeart}} Replaces all of Isaac's Red Heart containers with 6 empty Bone Hearts#Upon losing a Bone Heart:#↑ {{Tears}} +0.5 Tränen#Shoots 8 bone tears in all directions"}, -- Brittle Bones
-	{"550", "Broken Shovel", "Mom's Foot constantly tries to stomp Isaac#Using the item stops the stomping für diesen Raum#{{Warning}} (Try to beat Boss Rush with it!)"}, -- Broken Shovel
+	{"550", "Broken Shovel", "Mom's Foot constantly tries to stomp Isaac#Using the item stops the stomping für diesen Raum (or one Boss Rush wave)#{{Warning}} (Try to beat Boss Rush with it!)"}, -- Broken Shovel
 	{"551", "Broken Shovel", "Completes Mom's Shovel#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\""}, -- Broken Shovel
 	{"552", "Mom's Shovel", "Spawns a trapdoor to the next floor#10% chance for {{LadderRoom}} crawlspace trapdoor#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\""}, -- Mom's Shovel
 }
@@ -580,7 +580,6 @@ EID.descriptions[languageCode].collectibles={
 ---------- Modifiers ----------
 
 -- Effect of Car battery on Active Items
--- these all need way more consistency with the original effect text and spellchecking
 EID.descriptions[languageCode].carBattery = {
 	-- Not yet Translated!
 	-- Copy & Paste entries from en_us and continue translating from that
