@@ -150,14 +150,14 @@ EID.descriptions[languageCode].collectibles={
 	{"127", "Forget Me Now", "{{Warning}} SINGLE USE {{Warning}}#Rerolls and restarts the entire floor"}, -- Forget Me Now
 	{"128", "Forever Alone", "Long range fly orbital#Deals 30 contact damage per second"}, -- Forever Alone
 	{"129", "Bucket of Lard", "↑ {{EmptyHeart}} +2 Empty heart containers#↓ {{Speed}} -0.2 Speed#{{HalfHeart}} Heals half a heart"}, -- Bucket of Lard
-	{"130", "A Pony", "{{Speed}} Sets your Speed to at least 1.5#Flight while held#Upon use, dashes in the direction of Isaac's movement"}, -- A Pony
+	{"130", "A Pony", "While held:#{{Speed}} Sets your Speed to at least 1.5#Flight#Upon use, dashes in the direction of Isaac's movement"}, -- A Pony
 	{"131", "Bomb Bag", "{{Bomb}} Spawns 1 bomb pickup every 2-3 rooms"}, -- Bomb Bag
 	{"132", "A Lump of Coal", "{{Damage}} Tears deal more damage the further they travel"}, -- A Lump of Coal
 	{"133", "Guppy's Paw", "{{SoulHeart}} Converts 1 heart container into 3 Soul Hearts"}, -- Guppy's Paw
 	{"134", "Guppy's Tail", "{{Chest}} 33% chance to replace the room clear reward with a chest#33% chance to spawn no room clear reward"}, -- Guppy's Tail
-	{"135", "IV Bag", "{{Coin}} Hurts Isaac for half a heart and spawns 1-2 coins"}, -- IV Bag
+	{"135", "IV Bag", "{{Coin}} Hurts Isaac for half a heart and spawns 1-2 coins#{{Heart}} Takes Red Hearts first"}, -- IV Bag
 	{"136", "Best Friend", "Spawns a decoy Isaac that attracts enemies and explodes after 5 seconds"}, -- Best Friend
-	{"137", "Remote Detonator", "{{Bomb}} +5 Bombs#Isaac's bombs no longer explode automatically#Using the item detonates all of Isaac's bombs at once"}, -- Remote Detonator
+	{"137", "Remote Detonator", "{{Bomb}} +5 Bombs#Isaac's bombs no longer explode automatically#Upon use, detonates all of Isaac's bombs at once"}, -- Remote Detonator
 	{"138", "Stigmata", "↑ {{Heart}} +1 Health#↑ {{Damage}} +0.3 Damage"}, -- Stigmata
 	{"139", "Mom's Purse", "{{Trinket}} Isaac can hold 2 trinkets"}, -- Mom's Purse
 	{"140", "Bob's Curse", "{{Bomb}} +5 Bombs#{{Poison}} Isaac's bombs poison enemies caught in the blast"}, -- Bob's Curse
@@ -167,7 +167,7 @@ EID.descriptions[languageCode].collectibles={
 	{"144", "Bum Friend", "{{Coin}} Picks up nearby coins#Spawns random pickups in return"}, -- Bum Friend
 	{"145", "Guppy's Head", "Spawns 2-4 blue flies"}, -- Guppy's Head
 	{"146", "Prayer Card", "{{EternalHeart}} +1 Eternal Heart"}, -- Prayer Card
-	{"147", "Notched Axe", "Allows Isaac to break rocks and Secret Room walls by walking into them"}, -- Notched Axe
+	{"147", "Notched Axe", "{{Timer}} For the rooom Isaac can break rocks and Secret Room walls by walking into them"}, -- Notched Axe
 	{"148", "Infestation", "Taking damage spawns 1-3 blue flies"}, -- Infestation
 	{"149", "Ipecac", "↑ {{Damage}} +40 Damage#↓ {{Tears}} Tears down#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
 	{"150", "Tough Love", "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 luck"}, -- Tough Love

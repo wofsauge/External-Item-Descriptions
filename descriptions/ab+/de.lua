@@ -150,24 +150,24 @@ EID.descriptions[languageCode].collectibles={
 	{"127", "Vergissmeinjetzt", "{{Warning}} EINMALIGE VERWENDUNG {{Warning}}#Würfelt und startet das gesamte Stockwerk neu"}, -- Forget Me Now
 	{"128", "Für immer alleine", "Langstrecken-Orbitale Fliege#Verursacht bei Kontakt 30 Schaden pro Sekunde"}, -- Forever Alone
 	{"129", "Eimer voll Schmalz", "↑ {{EmptyHeart}} +2 Leere Herzcontainer#↓ {{Speed}} -0.2 Tempo#{{HalfHeart}} Heilt ein halbes Herz"}, -- Bucket of Lard
-	{"130", "Ein Pony", "{{Speed}} Setzt dein Tempo auf mindestens 1.5#Flug, solange im Besitz#Bei Benutzung stürmt Isaac in Bewegungsrichtung"}, -- A Pony
+	{"130", "Ein Pony", "Wenn getragen:#{{Speed}} Setzt dein Tempo auf mindestens 1.5#Flug#Bei Benutzung stürmt Isaac in Bewegungsrichtung"}, -- A Pony
 	{"131", "Bombentasche", "{{Bomb}} Lässt alle 2-3 Räume 1 Bomben-Verbrauchsgut erscheinen"}, -- Bomb Bag
-	{"132", "A Lump of Coal", "{{Damage}} Tränen deal more damage the further they travel"}, -- A Lump of Coal
-	{"133", "Guppy's Paw", "{{SoulHeart}} Converts 1 heart container into 3 Seelenherzen"}, -- Guppy's Paw
-	{"134", "Guppy's Tail", "{{Chest}} 33% chance to replace the room clear reward with a chest#33% chance to spawn no room clear reward"}, -- Guppy's Tail
-	{"135", "IV Bag", "{{Coin}} Hurts Isaac for half a heart and spawns 1-2 Münzen"}, -- IV Bag
-	{"136", "Best Friend", "Spawns a decoy Isaac that attracts enemies and explodes after 5 seconds"}, -- Best Friend
-	{"137", "Remote Detonator", "{{Bomb}} +5 Bomben#Isaac's Bomben no longer explode automatically#Using the item detonates all of Isaac's Bomben at once"}, -- Remote Detonator
+	{"132", "Ein Klumpen Kohle", "{{Damage}} Tränen verursachen mehr Schaden, basierend auf der zurückgelegten Distanz"}, -- A Lump of Coal
+	{"133", "Guppys Pfote", "{{SoulHeart}} Wandelt 1 Herzcontainer in 3 Seelenherzen um"}, -- Guppy's Paw
+	{"134", "Guppys Schwanz", "{{Chest}} 33% Chance, die Belohnung nach dem Abschließen eines Raumes durch eine Truhe zu ersetzen#33% Chance, keine Belohnung nach dem Abschließen eines Raumes erscheinen zu lassen"}, -- Guppy's Tail
+	{"135", "Infusionsbeutel", "{{Coin}} Fügt Isaac ein halbes Herz Schaden zu und lässt 1-2 Münzen erscheinen#{{Heart}} Verbraucht Rote Herzen zuerst"}, -- IV Bag
+	{"136", "Bester Freund", "Lässt einen Lockvogel-Isaac erscheinen, der Feinde anlockt und nach 5 Sekunden explodiert"}, -- Best Friend
+	{"137", "Fernzünder", "{{Bomb}} +5 Bomben#Isaacs Bomben explodieren nicht mehr automatisch#Bei Benutzung, entzündet alle Bomben von Isaac gleichzeitig"}, -- Remote Detonator
 	{"138", "Stigmata", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} +0.3 Schaden"}, -- Stigmata
-	{"139", "Mom's Purse", "{{Trinket}} Isaac can hold 2 trinkets"}, -- Mom's Purse
-	{"140", "Bob's Curse", "{{Bomb}} +5 Bomben#{{Poison}} Isaac's Bomben poison enemies caught in the blast"}, -- Bob's Curse
-	{"141", "Pageant Boy", "{{Coin}} Spawns 7 random Münzen"}, -- Pageant Boy
-	{"142", "Scapular", "{{SoulHeart}} Isaac gains 1 Seelenherz when damaged down to half a heart#Can only happen once per room#Exiting and re-entering the room allows the effect to trigger again"}, -- Scapular
-	{"143", "Tempo Ball", "↑ {{Speed}} +0.3 Tempo#↑ {{Shotspeed}} +0.2 Schusstempo"}, -- Tempo Ball
-	{"144", "Bum Friend", "{{Coin}} Picks up nearby Münzen#Spawns random pickups in return"}, -- Bum Friend
-	{"145", "Guppy's Head", "Spawns 2-4 blue flies"}, -- Guppy's Head
-	{"146", "Prayer Card", "{{EternalHeart}} +1 Eternal Heart"}, -- Prayer Card
-	{"147", "Notched Axe", "Allows Isaac to break rocks and Secret Room walls by walking into them"}, -- Notched Axe
+	{"139", "Mamas Geldbörse", "{{Trinket}} Isaac kann 2 Schmuckstücke tragen"}, -- Mom's Purse
+	{"140", "Bobs Fluch", "{{Bomb}} +5 Bomben#{{Poison}} Isaacs Bomben vergiften Feinde, die von der Explosion getroffen werden"}, -- Bob's Curse
+	{"141", "Geschmückter Junge", "{{Coin}} Lässt 7 zufällige Münzen erscheinen"}, -- Pageant Boy
+	{"142", "Skapulier", "{{SoulHeart}} Isaac erhält 1 Seelenherz, wenn er auf ein halbes Herz geschädigt wird#Kann nur einmal pro Raum geschehen#Verlassen und Betreten des Raums ermöglicht, den Effekt erneut auszulösen"}, -- Scapular
+	{"143", "Tempo machen", "↑ {{Speed}} +0.3 Tempo#↑ {{Shotspeed}} +0.2 Schusstempo"}, -- Speed Ball
+	{"144", "Pennerfreund", "{{Coin}} Hebt nahegelegene Münzen auf#Lässt im Gegenzug zufällige Verbrauchsgüter erscheinen"}, -- Bum Friend
+	{"145", "Guppys Kopf", "Lässt 2-4 blaue Fliegen erscheinen"}, -- Guppy's Head
+	{"146", "Gebetskarte", "{{EternalHeart}} +1 Ewiges Herz"}, -- Prayer Card
+	{"147", "Axt von Notch", "{{Timer}} Für diesen Raum kann Isaac Steine und Wände zu Geheimräumen durch Hineinlaufen zerstören"}, -- Notched Axe
 	{"148", "Infestation", "Taking damage spawns 1-3 blue flies"}, -- Infestation
 	{"149", "Ipecac", "↑ {{Damage}} +40 Schaden#↓ {{Tears}} Tränen#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
 	{"150", "Tough Love", "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 Glück"}, -- Tough Love
@@ -199,7 +199,7 @@ EID.descriptions[languageCode].collectibles={
 	{"176", "Stem Cells", "↑ {{Heart}} +1 Gesundheit#↑ {{Shotspeed}} +0.16 Schusstempo"}, -- Stem Cells
 	{"177", "Portable Slot", "Portable slot machine#{{Coin}} Spend 1 coin for a chance to spawn a pickup"}, -- Portable Slot
 	{"178", "Holy Water", "Taking damage spills a pool of creep#The creep deals 24 damage per second"}, -- Holy Water
-	{"179", "Fate", "{{EternalHeart}} +1 Eternal Heart#Flug"}, -- Fate
+	{"179", "Fate", "{{EternalHeart}} +1 Ewiges Herz#Flug"}, -- Fate
 	{"180", "The Black Bean", "Isaac farts when damaged#{{Poison}} The fart poisons enemies"}, -- The Black Bean
 	{"181", "White Pony", "{{Speed}} Sets your Tempo to at least 1.5#Flug while held#Using the item dashes in the direction of Isaac's movement, leaving behind beams of light"}, -- White Pony
 	{"182", "Sacred Heart", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} x2.3 Schadens-Multiplikator#↑ {{Damage}} +1 Schaden#↑ {{Range}} +0.38 Reichweite#↑ +0.75 Tränenhöhe#↓ {{Tears}} -0.4 Tränen#↓ {{Shotspeed}} -0.25 Schusstempo#{{Heart}} Volle Gesundheit#Zielsuchende Tränen"}, -- Sacred Heart
@@ -258,8 +258,8 @@ EID.descriptions[languageCode].collectibles={
 	{"235", "", "<item does not exist>"},
 	{"236", "E. Coli", "Touching an enemy turns it into poop"}, -- E. Coli
 	{"237", "Death's Touch", "↑ {{Damage}} +1.5 Schaden#↑ {{Tearsize}} x2 Tear size#↓ {{Tears}} -0.3 Tränen#Durchdringende Tränen"}, -- Death's Touch
-	{"238", "Key Piece 1", "{{Warning}} Getting both parts of the key opens a big golden door#{{AngelChance}} +25% Angel Room chance#{{EternalHeart}} +2% chance for Eternal Hearts"}, -- Key Piece 1
-	{"239", "Key Piece 2", "{{Warning}} Getting both parts of the key opens a big golden door#{{AngelChance}} +25% Angel Room chance#{{EternalHeart}} +2% chance for Eternal Hearts"}, -- Key Piece 2
+	{"238", "Key Piece 1", "{{Warning}} Getting both parts of the key opens a big golden door#{{AngelChance}} +25% Angel Room chance#{{EternalHeart}} +2% chance for Ewige Herzen"}, -- Key Piece 1
+	{"239", "Key Piece 2", "{{Warning}} Getting both parts of the key opens a big golden door#{{AngelChance}} +25% Angel Room chance#{{EternalHeart}} +2% chance for Ewige Herzen"}, -- Key Piece 2
 	{"240", "Experimental Treatment", "↑ Increases 4 random stats#↓ Decreases 2 random stats"}, -- Experimental Treatment
 	{"241", "Contract from Below", "Doubles all room clear rewards#33% chance for no room clear reward"}, -- Contract from Below
 	{"242", "Infamy", "50% chance to block enemy shots"}, -- Infamy
@@ -385,7 +385,7 @@ EID.descriptions[languageCode].collectibles={
 	{"360", "Incubus", "Shoots tears with the same tear rate, damage and effects as Isaac"}, -- Incubus
 	{"361", "Fate's Reward", "Shoots tears with the same damage and effects as Isaac#Shoots at half the rate of other familiars"}, -- Fate's Reward
 	{"362", "Lil Chest", "Spawns a random pickup every few rooms"}, -- Lil Chest
-	{"363", "Sworn Protector", "Orbital#Deals 105 contact damage per second#Blocks and attracts enemy shots#{{EternalHeart}} Blocking 10 shots in one room spawns an Eternal Heart"}, -- Sworn Protector
+	{"363", "Sworn Protector", "Orbital#Deals 105 contact damage per second#Blocks and attracts enemy shots#{{EternalHeart}} Blocking 10 shots in one room spawns an Ewiges Herz"}, -- Sworn Protector
 	{"364", "Friend Zone", "Midrange fly orbital#Deals 45 contact damage per second"}, -- Friend Zone
 	{"365", "Lost Fly", "Moves along walls/obstacles#Deals 105 contact damage per second"}, -- Lost Fly
 	{"366", "Scatter Bomben", "{{Bomb}} +5 Bomben#Isaac's Bomben scatter into 2-4 tiny Bomben"}, -- Scatter Bomben
