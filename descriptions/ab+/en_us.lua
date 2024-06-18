@@ -69,7 +69,7 @@ EID.descriptions[languageCode].collectibles={
 	{"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#+8% room clear reward chance#Better chance to win while gambling"}, -- Lucky Foot
 	{"47", "Doctor's Remote", "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#Deals 20x Isaac's damage"}, -- Doctor's Remote
 	{"48", "Cupid's Arrow", "Piercing tears"}, -- Cupid's Arrow
-	{"49", "Shoop da Whoop!", "{{Collectible118}} Using the item and shooting in a direction fires a beam#It deals 26x Isaac's damage over 0.9 seconds"}, -- Shoop da Whoop!
+	{"49", "Shoop da Whoop!", "The next shot is replaced with a beam#{{Damage}} It deals 26x Isaac's damage over 0.9 seconds"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Damage"}, -- Steven
 	{"51", "Pentagram", "↑ {{Damage}} +1 Damage#{{AngelDevilChance}} +10% Devil/Angel Room chance"}, -- Pentagram
 	{"52", "Dr. Fetus", "↓ {{Tears}} x2.5 Tear delay multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's damage + 30"}, -- Dr. Fetus
@@ -131,14 +131,14 @@ EID.descriptions[languageCode].collectibles={
 	{"108", "The Wafer", "Reduces most damage taken to half a heart"}, -- The Wafer
 	{"109", "Money = Power", "↑ {{Damage}} +0.04 Damage for every {{Coin}} coin Isaac has"}, -- Money = Power
 	{"110", "Mom's Contacts", "↑ {{Range}} +0.25 Range#↑ +0.5 Tear height#20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 luck"}, -- Mom's Contacts
-	{"111", "The Bean", "{{Poison}} Deals 5 damage and poisons any enemies nearby#The poison deals Isaac's damage 6 times"}, -- The Bean
+	{"111", "The Bean", "{{Poison}} Deals 5 damage to enemies nearby and poisons them#The poison deals Isaac's damage 6 times"}, -- The Bean
 	{"112", "Guardian Angel", "Orbital#Speeds up all other orbitals#Blocks projectiles#Deals 105 contact damage per second"}, -- Guardian Angel
 	{"113", "Demon Baby", "Shoots enemies that get close to him#Deals 3 damage per tear"}, -- Demon Baby
 	{"114", "Mom's Knife", "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and 6x at the furthest possible distance"}, -- Mom's Knife
 	{"115", "Ouija Board", "Spectral tears"}, -- Ouija Board
 	{"116", "9 Volt", "{{Battery}} Automatically charges the first bar of active items#{{Battery}} Fully recharges the active item on pickup"}, -- 9 Volt
 	{"117", "Dead Bird", "Taking damage spawns a bird that attacks enemies#The bird deals 4.3 contact damage per second"}, -- Dead Bird
-	{"118", "Brimstone", "↓ {{Tears}} x3 Tear delay multiplier#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam#It deals 13x Isaac's damage over 0.9 seconds"}, -- Brimstone
+	{"118", "Brimstone", "↓ {{Tears}} x3 Tear delay multiplier#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam#{{Damage}} It deals 13x Isaac's damage over 0.9 seconds"}, -- Brimstone
 	{"119", "Blood Bag", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#{{Heart}} Heals 4 hearts"}, -- Blood Bag
 	{"120", "Odd Mushroom (Thin)", "↑ {{Speed}} +0.3 Speed#↑ {{Tears}} +1.7 Tears#↓ {{Damage}} x0.9 Damage multiplier#↓ {{Damage}} -0.4 Damage"}, -- Odd Mushroom (Thin)
 	{"121", "Odd Mushroom (Large)", "↑ {{EmptyHeart}} +1 Empty heart container#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +0.25 Range#↑ +0.5 Tear height#↓ {{Speed}} -0.1 Speed"}, -- Odd Mushroom (Large)
@@ -150,14 +150,14 @@ EID.descriptions[languageCode].collectibles={
 	{"127", "Forget Me Now", "{{Warning}} SINGLE USE {{Warning}}#Rerolls and restarts the entire floor"}, -- Forget Me Now
 	{"128", "Forever Alone", "Long range fly orbital#Deals 30 contact damage per second"}, -- Forever Alone
 	{"129", "Bucket of Lard", "↑ {{EmptyHeart}} +2 Empty heart containers#↓ {{Speed}} -0.2 Speed#{{HalfHeart}} Heals half a heart"}, -- Bucket of Lard
-	{"130", "A Pony", "{{Speed}} Sets your Speed to at least 1.5#Flight while held#Upon use, dashes in the direction of Isaac's movement"}, -- A Pony
+	{"130", "A Pony", "While held:#{{Speed}} Sets your Speed to at least 1.5#Flight#Upon use, dashes in the direction of Isaac's movement"}, -- A Pony
 	{"131", "Bomb Bag", "{{Bomb}} Spawns 1 bomb pickup every 2-3 rooms"}, -- Bomb Bag
 	{"132", "A Lump of Coal", "{{Damage}} Tears deal more damage the further they travel"}, -- A Lump of Coal
 	{"133", "Guppy's Paw", "{{SoulHeart}} Converts 1 heart container into 3 Soul Hearts"}, -- Guppy's Paw
 	{"134", "Guppy's Tail", "{{Chest}} 33% chance to replace the room clear reward with a chest#33% chance to spawn no room clear reward"}, -- Guppy's Tail
-	{"135", "IV Bag", "{{Coin}} Hurts Isaac for half a heart and spawns 1-2 coins"}, -- IV Bag
+	{"135", "IV Bag", "{{Coin}} Hurts Isaac for half a heart and spawns 1-2 coins#{{Heart}} Takes Red Hearts first"}, -- IV Bag
 	{"136", "Best Friend", "Spawns a decoy Isaac that attracts enemies and explodes after 5 seconds"}, -- Best Friend
-	{"137", "Remote Detonator", "{{Bomb}} +5 Bombs#Isaac's bombs no longer explode automatically#Using the item detonates all of Isaac's bombs at once"}, -- Remote Detonator
+	{"137", "Remote Detonator", "{{Bomb}} +5 Bombs#Isaac's bombs no longer explode automatically#Upon use, detonates all of Isaac's bombs at once"}, -- Remote Detonator
 	{"138", "Stigmata", "↑ {{Heart}} +1 Health#↑ {{Damage}} +0.3 Damage"}, -- Stigmata
 	{"139", "Mom's Purse", "{{Trinket}} Isaac can hold 2 trinkets"}, -- Mom's Purse
 	{"140", "Bob's Curse", "{{Bomb}} +5 Bombs#{{Poison}} Isaac's bombs poison enemies caught in the blast"}, -- Bob's Curse
@@ -167,7 +167,7 @@ EID.descriptions[languageCode].collectibles={
 	{"144", "Bum Friend", "{{Coin}} Picks up nearby coins#Spawns random pickups in return"}, -- Bum Friend
 	{"145", "Guppy's Head", "Spawns 2-4 blue flies"}, -- Guppy's Head
 	{"146", "Prayer Card", "{{EternalHeart}} +1 Eternal Heart"}, -- Prayer Card
-	{"147", "Notched Axe", "Allows Isaac to break rocks and Secret Room walls by walking into them"}, -- Notched Axe
+	{"147", "Notched Axe", "{{Timer}} For the room, Isaac can break rocks and Secret Room walls by walking into them"}, -- Notched Axe
 	{"148", "Infestation", "Taking damage spawns 1-3 blue flies"}, -- Infestation
 	{"149", "Ipecac", "↑ {{Damage}} +40 Damage#↓ {{Tears}} Tears down#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
 	{"150", "Tough Love", "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 luck"}, -- Tough Love
