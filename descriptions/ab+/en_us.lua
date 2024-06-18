@@ -69,7 +69,7 @@ EID.descriptions[languageCode].collectibles={
 	{"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#+8% room clear reward chance#Better chance to win while gambling"}, -- Lucky Foot
 	{"47", "Doctor's Remote", "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#Deals 20x Isaac's damage"}, -- Doctor's Remote
 	{"48", "Cupid's Arrow", "Piercing tears"}, -- Cupid's Arrow
-	{"49", "Shoop da Whoop!", "The next shot is replaced with a beam#It deals 26x Isaac's damage over 0.9 seconds"}, -- Shoop da Whoop!
+	{"49", "Shoop da Whoop!", "The next shot is replaced with a beam#{{Damage}} It deals 26x Isaac's damage over 0.9 seconds"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Damage"}, -- Steven
 	{"51", "Pentagram", "↑ {{Damage}} +1 Damage#{{AngelDevilChance}} +10% Devil/Angel Room chance"}, -- Pentagram
 	{"52", "Dr. Fetus", "↓ {{Tears}} x2.5 Tear delay multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's damage + 30"}, -- Dr. Fetus
@@ -167,7 +167,7 @@ EID.descriptions[languageCode].collectibles={
 	{"144", "Bum Friend", "{{Coin}} Picks up nearby coins#Spawns random pickups in return"}, -- Bum Friend
 	{"145", "Guppy's Head", "Spawns 2-4 blue flies"}, -- Guppy's Head
 	{"146", "Prayer Card", "{{EternalHeart}} +1 Eternal Heart"}, -- Prayer Card
-	{"147", "Notched Axe", "{{Timer}} For the rooom Isaac can break rocks and Secret Room walls by walking into them"}, -- Notched Axe
+	{"147", "Notched Axe", "{{Timer}} For the room, Isaac can break rocks and Secret Room walls by walking into them"}, -- Notched Axe
 	{"148", "Infestation", "Taking damage spawns 1-3 blue flies"}, -- Infestation
 	{"149", "Ipecac", "↑ {{Damage}} +40 Damage#↓ {{Tears}} Tears down#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
 	{"150", "Tough Love", "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 luck"}, -- Tough Love
