@@ -301,6 +301,7 @@ function EID:getTableName(Type, Variant, SubType)
 		end
 	elseif idString == "-999.-1" then return "sacrifice"
 	elseif idString == "1000.76" then return "dice"
+	elseif idString == "1.0" then return "players"
 	else return "custom"
 	end
 end
@@ -610,6 +611,8 @@ function EID:getObjectName(Type, Variant, SubType)
 		return EID:getDescriptionEntry("sacrificeHeader").." ("..SubType.."/"..#EID.descriptions["en_us"].sacrifice..")"
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
+	elseif tableName == "players" then
+		return EID:getPlayerName(SubType)
 	elseif tableName == "custom" then
 		local xmlName = EID:GetEntityXMLName(Type, Variant, SubType)
 		return name or xmlName or Type.."."..Variant.."."..SubType
@@ -733,7 +736,12 @@ function EID:replaceNameMarkupStrings(text)
 			for e in string.gmatch(strTrimmed, "([^.]*)") do
 				table.insert(entityID, tonumber(e))
 			end
-			name = EID:getObjectName(entityID[1], entityID[2], entityID[3])
+			local iconText = ""
+			if showIcon then
+				if entityID[1] == 1 then iconText = "{{Player" .. entityID[3] .. "}} "
+				else iconText = "{{" .. EID:GetIconNameByVariant(entityID[2]) .. entityID[3] .. "}} " end
+			end
+			name = iconText .. EID:getObjectName(entityID[1], entityID[2], entityID[3])
 		elseif indicator == "C" then -- Collectible
 			name = (showIcon and "{{Collectible"..id.."}} " or "")..EID:getObjectName(5, 100, id)
 		elseif indicator == "T" then -- Trinket
@@ -780,9 +788,24 @@ end
 -- Tries to read special markup used to generate icons for all Collectibles/Trinkets and the default Cards/Pills
 -- Returns an inlineIcon Object or nil if no parsing was possible
 function EID:createItemIconObject(str)
-	local collID,numReplace = string.gsub(str, "Collectible", "")
 	local item = nil
 	local subTypeIdentifier = 0
+
+	-- Check for {{Item#.##.###}} markup; easiest way to handle it is to just call this function again
+	local itemID,numReplaceGeneric = string.gsub(str, "Item", "")
+	if numReplaceGeneric > 0 and itemID ~= "" then
+		local Type, Var, Sub = EID:SplitTVS(itemID)
+		if Type == 1 then return EID:getIcon("Player" .. Sub)
+		elseif Type == 5 then
+			if Var == 100 then return EID:createItemIconObject("Collectible" .. Sub)
+			elseif Var == 350 then return EID:createItemIconObject("Trinket" .. Sub)
+			elseif Var == 300 then return EID:createItemIconObject("Card" .. Sub)
+			elseif Var == 70 then return EID:createItemIconObject("Pill" .. Sub)
+			end
+		end
+	end
+	
+	local collID,numReplace = string.gsub(str, "Collectible", "")
 	if numReplace > 0 and collID ~= "" and tonumber(collID) ~= nil then
 		item = EID.itemConfig:GetCollectible(tonumber(collID))
 		subTypeIdentifier = tonumber(collID)
@@ -1163,15 +1186,76 @@ function EID:updateDescriptionsViaTable(changeTable, tableToUpdate)
 	end
 end
 
+-- Converts e.g. "5.100.69" format strings into 5, 100, and 69; returns 0 for any not included
+function EID:SplitTVS(tvsString)
+	local Type, Var, Sub = 0, 0, 0
+	local tvsTable = {}
+	for i in string.gmatch(tvsString, "[^.]+") do table.insert(tvsTable, tonumber(i)) end
+	Type = tvsTable[1] or Type; Var = tvsTable[2] or Var; Sub = tvsTable[3] or Sub;
+	return Type, Var, Sub
+end
+
+-- Checks if any player has a given item ID (or anyone is a given player ID)
+function EID:PlayersHaveItem(Type, Var, Sub)
+	-- convert "5.100.69" format strings into type, var, sub
+	if type(Type) == "string" then
+		Type, Var, Sub = EID:SplitTVS(Type)
+	-- assume collectible if only Type was given
+	elseif Var == nil then Sub = Type; Type = 5; Var = 100 end
+	if Type == 1 then return EID:PlayersHaveCharacter(Sub)
+	elseif Type == 5 then
+		if Var == 100 then return EID:PlayersHaveCollectible(Sub)
+		elseif Var == 350 then return EID:PlayersHaveTrinket(Sub)
+		elseif Var == 300 then return EID:PlayersHaveCard(Sub)
+		elseif Var == 70 then return EID:PlayersHavePill(Sub)
+		end
+	end
+	return false
+end
+
+-- Checks if the given player has the given item ID (or is the given player ID)
+function EID:PlayerHasItem(player, Type, Var, Sub)
+	-- convert "5.100.69" format strings into type, var, sub
+	if type(Type) == "string" then
+		Type, Var, Sub = EID:SplitTVS(Type)
+	-- assume collectible if only Type was given
+	elseif Var == nil then Sub = Type; Type = 5; Var = 100 end
+	if Type == 1 then return player:GetPlayerType() == Sub
+	elseif Type == 5 then
+		if Var == 100 then return player:HasCollectible(Sub)
+		elseif Var == 350 then return player:HasTrinket(Sub)
+		elseif Var == 300 then return EID:PlayerHasCard(player, Sub)
+		elseif Var == 70 then return EID:PlayerHasPill(player, Sub)
+		end
+	end
+	return false
+end
+
 -- Checks if any player has a given collectible ID, for modifiers
 function EID:PlayersHaveCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(collectibleID) then
-			return true, player
+			return true, player, i
 		end
 	end
 	return false
+end
+
+function EID:PlayersVoidedCollectible(collectibleID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player:HasCollectible(477) and EID.absorbedItems[tostring(i)] and EID.absorbedItems[tostring(i)][tostring(collectibleID)] then
+			return true, player, i
+		end
+	end
+	return false
+end
+function EID:PlayerVoidedCollectible(player, collectibleID)
+	local i = EID:getPlayerID(player)
+	if player:HasCollectible(477) and EID.absorbedItems[tostring(i)] and EID.absorbedItems[tostring(i)][tostring(collectibleID)] then
+		return true
+	end
 end
 
 -- Checks if any player has a given trinket ID, for modifiers
@@ -1179,10 +1263,48 @@ function EID:PlayersHaveTrinket(trinketID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:HasTrinket(trinketID) then
-			return true, player
+			return true, player, i
 		end
 	end
 	return false
+end
+
+function EID:PlayersHaveCard(cardID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		for j = 0, (EID.isRepentance and 3 or 1) do
+			if player:GetCard(j) == cardID then
+				return true, player, i
+			end
+		end
+	end
+	return false
+end
+function EID:PlayerHasCard(player, cardID)
+	for j = 0, (EID.isRepentance and 3 or 1) do
+		if player:GetCard(j) == cardID then
+			return true
+		end
+	end
+end
+
+function EID:PlayersHavePill(pillID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		for j = 0, (EID.isRepentance and 3 or 1) do
+			if player:GetPill(j) == pillID then
+				return true, player, i
+			end
+		end
+	end
+	return false
+end
+function EID:PlayerHasPill(player, pillID)
+	for j = 0, (EID.isRepentance and 3 or 1) do
+		if player:GetPill(j) == pillID then
+			return true
+		end
+	end
 end
 
 -- Checks if someone is playing as a certain character, for modifiers
@@ -1191,10 +1313,10 @@ function EID:PlayersHaveCharacter(playerType, includeTainted)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:GetPlayerType() == playerType then
-			return true, player
+			return true, player, i
 		end
 		if includeTainted and EID.isRepentance and EID.TaintedToRegularID[player:GetPlayerType()] == playerType then
-			return true, player
+			return true, player, i
 		end
 	end
 	return false
