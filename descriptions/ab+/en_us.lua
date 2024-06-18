@@ -22,7 +22,7 @@ EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {na
 
 EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ {{Tears}} +0.7 Tears"}, -- The Sad Onion
-	{"2", "The Inner Eye", "↓ {{Tears}} Tears down#Isaac shoots 3 tears at once"}, -- The Inner Eye
+	{"2", "The Inner Eye", "↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Isaac shoots 3 tears at once"}, -- The Inner Eye
 	{"3", "Spoon Bender", "Homing tears"}, -- Spoon Bender
 	{"4", "Cricket's Head", "↑ {{Damage}} +0.5 Damage#↑ {{Damage}} x1.5 Damage multiplier"}, -- Cricket's Head
 	{"5", "My Reflection", "↑ {{Range}} +1.5 Range#↑ +1 Tear height#↑ {{Shotspeed}} +0.6 Shot speed#Tears get a boomerang effect"}, -- My Reflection
@@ -169,18 +169,18 @@ EID.descriptions[languageCode].collectibles={
 	{"146", "Prayer Card", "{{EternalHeart}} +1 Eternal Heart"}, -- Prayer Card
 	{"147", "Notched Axe", "{{Timer}} For the room, Isaac can break rocks and Secret Room walls by walking into them"}, -- Notched Axe
 	{"148", "Infestation", "Taking damage spawns 1-3 blue flies"}, -- Infestation
-	{"149", "Ipecac", "↑ {{Damage}} +40 Damage#↓ {{Tears}} Tears down#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
+	{"149", "Ipecac", "↑ {{Damage}} +40 Damage#↓ {{Tears}} x0.5 Tears multiplier#↓ {{Tears}} +10 Tear delay#Isaac's tears are shot in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
 	{"150", "Tough Love", "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 luck"}, -- Tough Love
-	{"151", "The Mulligan", "Hitting an enemy with a tear has a 1/6 chance to spawn a fly"}, -- The Mulligan
+	{"151", "The Mulligan", "Tears have a 1/6 chance to spawn a blue fly when hitting an enemy"}, -- The Mulligan
 	{"152", "Technology 2", "↓ {{Tears}} x0.5 Tears multiplier#↓ {{Damage}} x0.65 Damage multiplier#Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 3x Isaac's damage per second"}, -- Technology 2
-	{"153", "Mutant Spider", "↓ {{Tears}} Tears down#Isaac shoots 4 tears at once"}, -- Mutant Spider
+	{"153", "Mutant Spider", "↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Isaac shoots 4 tears at once"}, -- Mutant Spider
 	{"154", "Chemical Peel", "↑ {{Damage}} +2 Damage for the left eye"}, -- Chemical Peel
 	{"155", "The Peeper", "Floats around the room#Deals 17.1 contact damage per second"}, -- The Peeper
 	{"156", "Habit", "{{Battery}} Taking damage adds 1 charge to the active item"}, -- Habit
 	{"157", "Bloody Lust", "↑ {{Damage}} Taking damage grants a damage up#Applies up to 6 times per floor#Lasts for the whole floor"}, -- Bloody Lust
 	{"158", "Crystal Ball", "Spawns a {{SoulHeart}} Soul Heart, {{Rune}} rune or {{Card}} card#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"}, -- Crystal Ball
 	{"159", "Spirit of the Night", "Spectral tears#Flight"}, -- Spirit of the Night
-	{"160", "Crack the Sky", "Spawns 5 beams of light near enemies#Deals Isaac's damage + 20"}, -- Crack the Sky
+	{"160", "Crack the Sky", "Spawns 5 beams of light near enemies#Each beam deals 8x Isaac's damage + 160 over 0.8 seconds"}, -- Crack the Sky
 	{"161", "Ankh", "{{Player4}} Respawn as ??? (Blue Baby) on death"}, -- Ankh
 	{"162", "Celtic Cross", "Taking damage has a 20% chance to make Isaac temporarily invincible#{{Luck}} 100% chance at 27 luck"}, -- Celtic Cross
 	{"163", "Ghost Baby", "Shoots spectral tears#Deals 3.5 damage per tear"}, -- Ghost Baby
@@ -188,8 +188,8 @@ EID.descriptions[languageCode].collectibles={
 	{"165", "Cat-o-nine-tails", "↑ {{Damage}} +1 Damage#↑ {{Shotspeed}} +0.23 Shot speed"}, -- Cat-o-nine-tails
 	{"166", "D20", "Rerolls all pickups in the room"}, -- D20
 	{"167", "Harlequin Baby", "Shoots two tears in a V-shaped pattern#Deals 4 damage per tear"}, -- Harlequin Baby
-	{"168", "Epic Fetus", "Instead of tears, aim a crosshair#A rocket lands on the crosshair after 1.5 seconds#Rockets deal 20x Isaac's damage"}, -- Epic Fetus
-	{"169", "Polyphemus", "↑ {{Damage}} +4 Damage#↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.47 Tears multiplier#↓ {{Tears}} +3 Tear delay#Tears pierce killed enemies if there is leftover damage"}, -- Polyphemus
+	{"168", "Epic Fetus", "Instead of shooting tears, aim a crosshair#A rocket lands on the crosshair after 1.5 seconds#{{Damage}} Rockets deal 20x Isaac's damage"}, -- Epic Fetus
+	{"169", "Polyphemus", "↑ {{Damage}} +4 Damage#↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Tears pierce killed enemies if there is leftover damage"}, -- Polyphemus
 	{"170", "Daddy Longlegs", "Randomly stomps on an enemy#Deals 40 damage per second"}, -- Daddy Longlegs
 	{"171", "Spider Butt", "{{Slow}} Slows down enemies for 4 seconds#Deals 10 damage to all enemies"}, -- Spider Butt
 	{"172", "Sacrificial Dagger", "Orbital#Blocks enemy shots#Deals 225 damage per second"}, -- Sacrificial Dagger
