@@ -22,7 +22,7 @@ EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
 EID.descriptions[languageCode].collectibles={
 	{"1", "Die traurige Zwiebel", "↑ +0.7 Tränen"}, -- The Sad Onion
-	{"2", "Das innere Auge", "↓ {{Tears}} Tränen runter#Dreifacher Schuss"}, -- The Inner Eye
+	{"2", "Das innere Auge", "↓ {{Tears}} x0.48 Tränen-Multiplikator#↓ {{Tears}} +3 Tränenverzögerung#Dreifacher Schuss"}, -- The Inner Eye
 	{"3", "Löffelbieger", "Zielsuchende Tränen"}, -- Spoon Bender
 	{"4", "Grillenkopf", "↑ {{Damage}} +0.5 Schaden#↑ {{Damage}} x1.5 Schadens-Multiplikator"}, -- Cricket's Head
 	{"5", "Mein Spiegelbild", "↑ {{Range}} +1.5 Reichweite#↑ +1 Tränenhöhe#↑ {{Shotspeed}} +0.6 Schusstempo#Bumerang-Tränen"}, -- My Reflection
@@ -72,7 +72,7 @@ EID.descriptions[languageCode].collectibles={
 	{"49", "Zack-di-wupp!", "Der nächste Schuss wird mit einem Strahl ersetzt#Er verursacht 26x Isaacs Schaden über 0.9 Sekunden"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Schaden"}, -- Steven
 	{"51", "Pentagramm", "↑ {{Damage}} +1 Schaden#{{AngelDevilChance}} +10% Teufels-/Engelsraum Chance"}, -- Pentagram
-	{"52", "Dr. Fötus", "↓ {{Tears}} x2.5 Tränenverzögerungs-Multiplikator#{{Bomb}} Isaac schießt Bomben anstatt Tränen#{{Damage}} Diese Bomben verursachen 5x Isaacs Schaden + 30"}, -- Dr. Fetus
+	{"52", "Dr. Fötus", "↓ {{Tears}} x0.4 Tränen-Multiplikator#{{Bomb}} Isaac schießt Bomben anstatt Tränen#{{Damage}} Diese Bomben verursachen 5x Isaacs Schaden + 30"}, -- Dr. Fetus
 	{"53", "Magneto", "Verbrauchsgut wird von Isaac angezogen"}, -- Magneto
 	{"54", "Schatzkarte", "Deckt den Grundriss des Stockwerks auf#Deckt keine Raum-Symbole auf"}, -- Treasure Map
 	{"55", "Mamas Auge", "50% Chance, eine zusätzliche Träne nach hinten zu schießen#{{Luck}} 100% Chance ab 2 Glück"}, -- Mom's Eye
@@ -138,7 +138,7 @@ EID.descriptions[languageCode].collectibles={
 	{"115", "Ouija-Brett", "Spektrale Tränen"}, -- Ouija Board
 	{"116", "9 Volt", "{{Battery}} Lädt automatisch die erste Leiste aktiver Gegenstände auf#{{Battery}} Lädt beim Aufheben den aktiven Gegenstand vollständig auf"}, -- 9 Volt
 	{"117", "Toter Vogel", "Beim Erleiden von Schaden erscheint ein Vogel, der Feinde angreift#Der Vogel verursacht bei Kontakt 4.3 Schaden pro Sekunde"}, -- Dead Bird
-	{"118", "Schwefel", "↓ {{Tears}} x3 Tränenverzögerungs-Multiplikator#{{Chargeable}} Isaacs Tränen werden durch einen aufladbaren Blutstrahl ersetzt#{{Damage}} Er verursacht 13x Isaacs Schaden über 0.9 Sekunden"}, -- Brimstone
+	{"118", "Schwefel", "↓ {{Tears}} x0.33 Tränen-Multiplikator#{{Chargeable}} Isaacs Tränen werden durch einen aufladbaren Blutstrahl ersetzt#{{Damage}} Er verursacht 13x Isaacs Schaden über 0.9 Sekunden"}, -- Brimstone
 	{"119", "Blutbeutel", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.3 Tempo#{{Heart}} Heilt 4 Herzen"}, -- Blood Bag
 	{"120", "Seltsamer Pilz (Dünn)", "↑ {{Speed}} +0.3 Tempo#↑ {{Tears}} +1.7 Tränen#↓ {{Damage}} x0.9 Schadens-Multiplikator#↓ {{Damage}} -0.4 Schaden"}, -- Odd Mushroom (Thin)
 	{"121", "Seltsamer Pilz (Groß)", "↑ {{EmptyHeart}} +1 Leerer Herzcontainer#↑ {{Damage}} +0.3 Schaden#↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe#↓ {{Speed}} -0.1 Tempo"}, -- Odd Mushroom (Large)
@@ -168,28 +168,28 @@ EID.descriptions[languageCode].collectibles={
 	{"145", "Guppys Kopf", "Lässt 2-4 blaue Fliegen erscheinen"}, -- Guppy's Head
 	{"146", "Gebetskarte", "{{EternalHeart}} +1 Ewiges Herz"}, -- Prayer Card
 	{"147", "Axt von Notch", "{{Timer}} Für diesen Raum kann Isaac Steine und Wände zu Geheimräumen durch Hineinlaufen zerstören"}, -- Notched Axe
-	{"148", "Infestation", "Taking damage spawns 1-3 blue flies"}, -- Infestation
-	{"149", "Ipecac", "↑ {{Damage}} +40 Schaden#↓ {{Tears}} Tränen#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
-	{"150", "Tough Love", "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 Glück"}, -- Tough Love
-	{"151", "The Mulligan", "Hitting an enemy with a tear has a 1/6 chance to spawn a fly"}, -- The Mulligan
-	{"152", "Technology 2", "↓ {{Tears}} x2 Tear delay multiplier#↓ {{Damage}} x0.65 Damage multiplier#Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 3x Isaac's damage per second"}, -- Technology 2
-	{"153", "Mutant Spider", "↓ {{Tears}} Tränen#Isaac shoots 4 tears at once"}, -- Mutant Spider
-	{"154", "Chemical Peel", "↑ {{Damage}} +2 Schaden for the left eye"}, -- Chemical Peel
-	{"155", "The Peeper", "Floats around the room#Deals 17.1 contact damage per second"}, -- The Peeper
-	{"156", "Habit", "{{Battery}} Taking damage adds 1 charge to the active item"}, -- Habit
-	{"157", "Bloody Lust", "↑ {{Damage}} Taking damage grants a damage up#Applies up to 6 times per floor#Lasts for the whole floor"}, -- Bloody Lust
-	{"158", "Crystal Ball", "Spawns a {{SoulHeart}} Seelenherz, {{Rune}} rune or {{Card}} card#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"}, -- Crystal Ball
-	{"159", "Spirit of the Night", "Spectral tears#Flug"}, -- Spirit of the Night
-	{"160", "Crack the Sky", "Spawns 5 beams of light near enemies#Deals Isaac's damage + 20"}, -- Crack the Sky
-	{"161", "Ankh", "{{Player4}} Respawn as ??? (Blue Baby) on death"}, -- Ankh
-	{"162", "Celtic Cross", "Taking damage has a 20% chance to make Isaac temporarily invincible#{{Luck}} 100% chance at 27 Glück"}, -- Celtic Cross
-	{"163", "Ghost Baby", "Shoots spectral tears#Deals 3.5 damage per tear"}, -- Ghost Baby
-	{"164", "The Candle", "Throws a blue flame#The flame deals contact damage, blocks enemy tears, and despawns after 2 seconds"}, -- The Candle
-	{"165", "Cat-o-nine-tails", "↑ {{Damage}} +1 Schaden#↑ {{Shotspeed}} +0.23 Schusstempo"}, -- Cat-o-nine-tails
-	{"166", "D20", "Rerolls all pickups in the room"}, -- D20
-	{"167", "Harlequin Baby", "Shoots two tears in a V-shaped pattern#Deals 4 damage per tear"}, -- Harlequin Baby
-	{"168", "Epic Fetus", "Instead of tears, aim a crosshair#A rocket lands on the crosshair after 1.5 seconds#Rockets deal 20x Isaac's damage"}, -- Epic Fetus
-	{"169", "Polyphemus", "↑ {{Damage}} +4 Schaden#↑ {{Damage}} x2 Schadens-Multiplikator#↓ {{Tears}} Tränen#Tränen pierce killed enemies if there is leftover damage"}, -- Polyphemus
+	{"148", "Befall", "Beim Erleiden von Schaden erscheinen 1-3 blaue Fliegen"}, -- Infestation
+	{"149", "Brechwurzel", "↑ {{Damage}} +40 Schaden#↓ {{Tears}} x0.5 Tränen-Multiplikator#↓ {{Tears}} +10 Tränenverzögerung#Isaacs Tränen werden in einem Bogen geschossen#{{Poison}} Die Tränen explodieren und vergiften Feinde am Aufprallort"}, -- Ipecac
+	{"150", "Auf die Fresse", "{{Damage}} 10% Chance, Zähne zu schießen, die 3.2x Isaacs Schaden verursachen#{{Luck}} 100% Chance bei 9 Glück"}, -- Tough Love
+	{"151", "Der Mulligan", "Tränen haben beim Treffen eines Feindes eine 1/6 Chance, eine blaue Fliege erscheinen zu lassen"}, -- The Mulligan
+	{"152", "Technologie 2", "↓ {{Tears}} x0.5 Tränen-Multiplikator#↓ {{Damage}} x0.65 Schadens-Multiplikator#Ersetzt Tränen aus Isaacs rechtem Auge durch einen kontinuierlichen Laser#{{Damage}} Der Laser verursacht 3x Isaacs Schaden pro Sekunde"}, -- Technology 2
+	{"153", "Mutierte Spinne", "↓ {{Tears}} x0.48 Tränen-Multiplikator#↓ {{Tears}} +3 Tränenverzögerung#Vierfacher Schuss"}, -- Mutant Spider
+	{"154", "Chemisches Peeling", "↑ {{Damage}} +2 Schaden für das linke Auge"}, -- Chemical Peel
+	{"155", "Der Linser", "Schwebt durch den Raum#Verursacht bei Kontakt 17.1 Schaden pro Sekunde"}, -- The Peeper
+	{"156", "Habit", "{{Battery}} Beim Erleiden von Schaden wird 1 Ladung dem aktiven Gegenstand hinzugefügt"}, -- Habit
+	{"157", "Blutdurst", "↑ {{Damage}} Beim Erleiden von Schaden erhöht sich der Schaden#Bis zu 6 Mal pro Stockwerk möglich#Hält für das gesamte Stockwerk an"}, -- Bloody Lust
+	{"158", "Kristallkugel", "Lässt ein {{SoulHeart}} Seelenherz, eine {{Rune}} Rune oder eine {{Card}} Karte erscheinen#{{Timer}} Volle Kartenaufdeckung für das Stockwerk (außer {{SuperSecretRoom}} Supergeheimraum)"}, -- Crystal Ball
+	{"159", "Geist der Nacht", "Spektrale Tränen#Flug"}, -- Spirit of the Night
+	{"160", "Zerbrich den Himmel", "Lässt 5 Lichtstrahlen in der Nähe von Feinden erscheinen#Jeder Strahl verursacht 8x Isaacs Schaden + 160 über 0.8 Sekunden"}, -- Crack the Sky
+	{"161", "Ankh", "{{Player4}} Werde nach dem Tod als ??? (Blue Baby) wiederbelebt"}, -- Ankh
+	{"162", "Keltisches Kreuz", "Beim Erleiden von Schaden besteht eine 20% Chance, dass Isaac vorübergehend unbesiegbar wird#{{Luck}} 100% Chance bei 27 Glück"}, -- Celtic Cross
+	{"163", "Geisterbaby", "Schießt spektrale Tränen#Verursacht 3.5 Schaden pro Träne"}, -- Ghost Baby
+	{"164", "Die Kerze", "Wirft eine blaue Flamme#Die Flamme verursacht Schaden bei Kontakt, blockt feindliche Tränen und verschwindet nach 2 Sekunden"}, -- The Candle
+	{"165", "9-schwänzige Katze", "↑ {{Damage}} +1 Schaden#↑ {{Shotspeed}} +0.23 Schusstempo"}, -- Cat-o-nine-tails
+	{"166", "W20", "Würfelt alle Verbrauchsgüter im Raum neu"}, -- D20
+	{"167", "Harlekin-Baby", "Schießt zwei Tränen in einem V-förmigen Muster#Verursacht 4 Schaden pro Träne"}, -- Harlequin Baby
+	{"168", "Epischer Fötus", "Anstatt Tränen zu schießen, steuere ein Fadenkreuz#Eine Rakete schlägt nach 1.5 Sekunden beim Fadenkreuz ein#{{Damage}} Raketen verursachen 20x Isaacs Schaden"}, -- Epic Fetus
+	{"169", "Polyphem", "↑ {{Damage}} +4 Schaden#↑ {{Damage}} x2 Schadens-Multiplikator#↓ {{Tears}} x0.48 Tränen-Multiplikator#↓ {{Tears}} +3 Tränenverzögerung#Tränen durchbohren getötete Feinde, wenn Restschaden vorhanden ist"}, -- Polyphemus
 	{"170", "Daddy Longlegs", "Randomly stomps on an enemy#Deals 40 damage per second"}, -- Daddy Longlegs
 	{"171", "Spider Butt", "{{Slow}} Slows down enemies for 4 seconds#Deals 10 damage to all enemies"}, -- Spider Butt
 	{"172", "Sacrificial Dagger", "Orbital#Blocks enemy shots#Deals 225 damage per second"}, -- Sacrificial Dagger
@@ -249,7 +249,7 @@ EID.descriptions[languageCode].collectibles={
 	{"226", "Black Lotus", "↑ {{Heart}} +1 Gesundheit#{{SoulHeart}} +1 Seelenherz#{{BlackHeart}} +1 Black Heart"}, -- Black Lotus
 	{"227", "Piggy Bank", "{{Coin}} +3 Münzen#{{Coin}} Taking damage spawns 1-2 Münzen"}, -- Piggy Bank
 	{"228", "Mom's Perfume", "↑ {{Tears}} -1 Tränenverzögerung#{{Fear}} 15% chance to shoot fear tears"}, -- Mom's Perfume
-	{"229", "Monstro's Lung", "↓ {{Tears}} x4.3 Tränenverzögerungs-Multiplikator#{{Chargeable}} Tränen are charged and released in a shotgun style attack"}, -- Monstro's Lung
+	{"229", "Monstro's Lung", "↓ {{Tears}} x0.23 Tränen-Multiplikator#{{Chargeable}} Tränen are charged and released in a shotgun style attack"}, -- Monstro's Lung
 	{"230", "Abaddon", "↑ {{Speed}} +0.2 Tempo#↑ {{Damage}} +1.5 Schaden#↓ {{EmptyHeart}} Removes all heart containers#{{BlackHeart}} +6 Black Hearts#{{Fear}} 15% chance to shoot fear tears"}, -- Abaddon
 	{"231", "Ball of Tar", "{{Slow}} 10% chance to shoot slowing tears#{{Luck}} 100% chance at 18 Glück#{{Slow}} Isaac leaves a trail of slowing creep"}, -- Ball of Tar
 	{"232", "Stop Watch", "↑ {{Speed}} +0.3 Tempo#{{Slow}} Taking damage slows all enemies in the room permanently"}, -- Stop Watch
@@ -332,8 +332,8 @@ EID.descriptions[languageCode].collectibles={
 	{"307", "Capricorn", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.1 Tempo#↑ {{Tears}} -1 Tränenverzögerung#↑ {{Damage}} +0.5 Schaden#↑ {{Range}} +1.5 Reichweite#+1 {{Coin}} coin, {{Bomb}} bomb and {{Key}} key"}, -- Capricorn
 	{"308", "Aquarius", "Isaac leaves a trail of creep#The creep deals 6 damage per second"}, -- Aquarius
 	{"309", "Pisces", "↑ {{Tears}} -1 Tränenverzögerung#↑ {{Tearsize}} x1.25 Tear size#Increases tear knockback"}, -- Pisces
-	{"310", "Eve's Mascara", "↑ {{Damage}} x2 Schadens-Multiplikator#↓ {{Tears}} x0.5 Tear multiplier#↓ {{Shotspeed}} -0.5 Schusstempo"}, -- Eve's Mascara
-	{"311", "Judas' Shadow", "{{Player12}} When dead, respawn as Dark Judas with a 2x damage multiplier"}, -- Judas' Shadow
+	{"310", "Eve's Mascara", "↑ {{Damage}} x2 Schadens-Multiplikator#↓ {{Tears}} x0.5 Tränen-Multiplikator#↓ {{Shotspeed}} -0.5 Schusstempo"}, -- Eve's Mascara
+	{"311", "Judas' Shadow", "{{Player12}} When dead, respawn as Dark Judas with a 2x Schadens-Multiplikator"}, -- Judas' Shadow
 	{"312", "Maggy's Bow", "↑ {{Heart}} +1 Gesundheit#{{Heart}} Heals 1 heart#All Red Hearts heal double their value"}, -- Maggy's Bow
 	{"313", "Holy Mantle", "Negates the first hit taken once per room"}, -- Holy Mantle
 	{"314", "Thunder Thighs", "↑ {{Heart}} +1 Gesundheit#↓ {{Speed}} -0.4 Tempo#Isaac can destroy rocks by walking into them"}, -- Thunder Thighs
@@ -352,7 +352,7 @@ EID.descriptions[languageCode].collectibles={
 	{"327", "The Polaroid", "Taking damage at half a Red Heart or none makes isaac temporarily invincible"}, -- The Polaroid
 	{"328", "The Negative", "Taking damage at half a Red Heart or none damages all enemies in the room"}, -- The Negative
 	{"329", "The Ludovico Technique", "Replaces Isaac's tears with one giant controllable tear"}, -- The Ludovico Technique
-	{"330", "Soy Milk", "↑ {{Tears}} Tränen up: (delay/4)-2#↓ {{Damage}} x0.2 Schadens-Multiplikator#↓ {{Tearsize}} x0.5 Tear size"}, -- Soy Milk
+	{"330", "Soy Milk", "↑ {{Tears}} x4 Tears multiplier#↑ {{Tears}} -2 Tränenverzögerung#↓ {{Damage}} x0.2 Schadens-Multiplikator#↓ {{Tearsize}} x0.5 Tear size"}, -- Soy Milk
 	{"331", "Godhead", "↑ {{Damage}} +0.5 Schaden#↑ {{Range}} +1.2 Reichweite#↑ +0.8 Tränenhöhe#↓ {{Tears}} -0.3 Tränen#↓ {{Shotspeed}} -0.3 Schusstempo#Zielsuchende Tränen#{{Damage}} Tränen gain an aura that deals 4.5x Isaac's damage per second"}, -- Godhead
 	{"332", "Lazarus' Rags", "{{Player11}} When dead, revive as Lazarus (Risen)"}, -- Lazarus' Rags
 	{"333", "The Mind", "Full mapping effect"}, -- The Mind
@@ -553,7 +553,7 @@ EID.descriptions[languageCode].collectibles={
 	{"528", "Angelic Prism", "Orbital prism#Friendly tears hitting it split into 4"}, -- Angelic Prism
 	{"529", "Pop!", "Isaac's tears bounce off each other and disappear when they stop moving"}, -- Pop!
 	{"530", "Death's List", "Killing enemies in the order dictated by the mark {{DeathMark}} above them grants a random pickup or stat increase"}, -- Death's List
-	{"531", "Haemolacria", "↑ {{Damage}} x1.31 Schadens-Multiplikator#↓ {{Tears}} x2 Tränenverzögerungs-Multiplikator#↓ {{Tears}} +10 Tränenverzögerung#Isaac's tears fly in an arc and burst into smaller tears on impact"}, -- Haemolacria
+	{"531", "Haemolacria", "↑ {{Damage}} x1.31 Schadens-Multiplikator#↓ {{Tears}} x0.5 Tränen-Multiplikator#↓ {{Tears}} +10 Tränenverzögerung#Isaac's tears fly in an arc and burst into smaller tears on impact"}, -- Haemolacria
 	{"532", "Lachryphagy", "Isaac's tears progressively slow down, stop, then explode into 8 smaller tears#Tränen can merge and become bigger"}, -- Lachryphagy
 	{"533", "Trisagion", "Replaces Isaac's tears with piercing beams of light#The beams deal 33% damage but can hit enemies multiple times"}, -- Trisagion
 	{"534", "Schoolbag", "Allows Isaac to hold 2 active items#The items can be swapped using the Drop button ({{ButtonRT}})"}, -- Schoolbag
@@ -565,7 +565,7 @@ EID.descriptions[languageCode].collectibles={
 	{"540", "Flat Stone", "Isaac's tears bounce off the floor and cause splash damage on every bounce"}, -- Flat Stone
 	{"541", "Marrow", "{{Heart}} Spawns 3 Red Hearts#{{EmptyBoneHeart}} +1 Bone Heart"}, -- Marrow
 	{"542", "Slipped Rib", "Orbital#Reflects enemy projectiles"}, -- Slipped Rib
-	{"543", "Hallowed Ground", "Taking damage spawns a white poop#While inside the poop's aura:#↑ {{Tears}} x0.5 Tränenverzögerungs-Multiplikator#Chance to block damage"}, -- Hallowed Ground
+	{"543", "Hallowed Ground", "Taking damage spawns a white poop#While inside the poop's aura:#↑ {{Tears}} x2 Tränen-Multiplikator#Chance to block damage"}, -- Hallowed Ground
 	{"544", "Pointy Rib", "Levitates in front of Isaac#Deals 6x Isaac's damage per second"}, -- Pointy Rib
 	{"545", "Book of the Dead", "Spawns a bone orbital or charmed bony per enemy killed in the room (up to 8)"}, -- Book of the Dead
 	{"546", "Dad's Ring", "Grants an aura that petrifies enemies"}, -- Dad's Ring
