@@ -190,10 +190,10 @@ EID.descriptions[languageCode].collectibles={
 	{"167", "Harlequin Baby", "Shoots two tears in a V-shaped pattern#Deals 4 damage per tear"}, -- Harlequin Baby
 	{"168", "Epic Fetus", "Instead of shooting tears, aim a crosshair#A rocket lands on the crosshair after 1.5 seconds#{{Damage}} Rockets deal 20x Isaac's damage"}, -- Epic Fetus
 	{"169", "Polyphemus", "↑ {{Damage}} +4 Damage#↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Tears pierce killed enemies if there is leftover damage"}, -- Polyphemus
-	{"170", "Daddy Longlegs", "Randomly stomps on an enemy#Deals 40 damage per second"}, -- Daddy Longlegs
+	{"170", "Daddy Longlegs", "Stomps on a nearby enemy every 4 seconds#Deals 40 damage per second"}, -- Daddy Longlegs
 	{"171", "Spider Butt", "{{Slow}} Slows down enemies for 4 seconds#Deals 10 damage to all enemies"}, -- Spider Butt
 	{"172", "Sacrificial Dagger", "Orbital#Blocks enemy shots#Deals 225 damage per second"}, -- Sacrificial Dagger
-	{"173", "Mitre", "{{SoulHeart}} Higher chance to find Soul Hearts"}, -- Mitre
+	{"173", "Mitre", "{{SoulHeart}} 50% chance that Red Hearts spawn as Soul Hearts instead"}, -- Mitre
 	{"174", "Rainbow Baby", "Shoots random tears#Deals 3-5 damage per tear"}, -- Rainbow Baby
 	{"175", "Dad's Key", "Opens all doors in the room, including {{SecretRoom}}{{SuperSecretRoom}}Secret Rooms, {{ChallengeRoom}}{{BossRushRoom}}Challenge Rooms, and the Mega Satan door"}, -- Dad's Key
 	{"176", "Stem Cells", "↑ {{Heart}} +1 Health#↑ {{Shotspeed}} +0.16 Shot speed"}, -- Stem Cells
@@ -520,7 +520,7 @@ EID.descriptions[languageCode].collectibles={
 	{"495", "Ghost Pepper", "Chance to shoot a red flame that blocks enemy shots and deals contact damage#The flame disappears after dealing damage or blocking shots 5 times"}, -- Ghost Pepper
 	{"496", "Euthanasia", "3.33% chance to shoot a needle#{{Luck}} 100% chance at 15 luck#Needles kill normal enemies instantly, bursting them into 10 tears#{{Damage}} Needles deal 3x Isaac's damage against bosses"}, -- Euthanasia
 	{"497", "Camo Undies", "{{Confusion}} Entering a room confuses all enemies until Isaac starts shooting"}, -- Camo Undies
-	{"498", "Duality", "{{AngelDevilChance}} Spawns both an Angel and Devil Room if either would have spawned#Entering one makes the other disappear"}, -- Duality
+	{"498", "Duality", "{{AngelDevilChance}} Spawns both a Devil and Angel Room if either would have spawned#Entering one makes the other disappear"}, -- Duality
 	{"499", "Eucharist", "{{AngelChance}} 100% chance for Angel Rooms to spawn"}, -- Eucharist
 	{"500", "Sack of Sacks", "Spawns a sack every 5-6 rooms"}, -- Sack of Sacks
 	{"501", "Greed's Gullet", "{{Heart}} +1 Heart container for every 25 coins gained after getting Greed's Gullet"}, -- Greed's Gullet
@@ -1119,7 +1119,7 @@ EID.descriptions[languageCode].ItemReminder = {
 -- Includes Repentance room types for localization convenience
 EID.descriptions[languageCode].RoomTypeNames = { "Normal Room", "Shop", "I AM ERROR Room", "Treasure Room", "Boss Room", "Miniboss Room", "Secret Room", "Super Secret Room", "Arcade Room", "Curse Room", "Challenge Room", "Library", "Sacrifice Room", "Devil Room", "Angel Room", "Crawlspace Room", "Boss Rush Room", "Isaac's Room", "Barren Room", "Chest Room", "Dice Room", "Black Market", "Exit Room", "Planetarium", "Teleporter Entrance", "Teleporter Exit", "Alt Path Trapdoor", "Blue Key Room", "Ultra Secret Room",
 -- Not technically room types but still potentially useful to have localized
-[666] = "Angel/Devil Room", [1024] = "Red Room", [1025] = "Special Red Room" }
+[666] = "Devil/Angel Room", [1024] = "Red Room", [1025] = "Special Red Room" }
 
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {
