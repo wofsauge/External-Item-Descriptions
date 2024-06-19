@@ -1107,7 +1107,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
-	["NoEffect"] = "(효과 없음)",
+	["No Effect"] = "(효과 없음)",
 	["DoubleDamage"] = "피해량 x2",
 	["5.100.94"] = "요구되는 방 클리어 수 감소 (1 > 2 > 2 > 2 순환)", -- Sack of Pennies
 	["5.100.96"] = "요구되는 방 클리어 수 감소 (2 > 2 > 3 순환)", -- Little C.H.A.D.
