@@ -77,6 +77,7 @@ local repCollectibles={
 	[169] =	{"169", "Polyphemus", "↑ {{Damage}} +4 Schaden#↑ {{Damage}} x2 Schadensmultiplikator#↓ {{Tears}} x0.42 Feuerratenmultiplikator#Tränen durchdringen getötete Feinde, wenn überschüssiger Schaden vorhanden ist"}, -- Polyphemus
 	[171] = {"171", "Spinnenhintern", "{{Slow}} Verlangsamt Feinde für 4 Sekunden#Verursacht allen Feinden 10 Schaden#Feinde, die vom Gegenstand getötet werden, erzeugen blaue Spinnen"}, -- Spider Butt
 	[172] = {"172", "Opferdolch", "Orbital#Blockt feindliche Schüsse#Verursacht 112,5 Schaden pro Sekunde"}, -- Sacrificial Dagger
+	[173] = {"173", "Mitra", "{{SoulHeart}} 33% Chance, dass Rote Herzen stattdessen als Seelenherzen erscheinen"}, -- Mitre
 	[176] = {"176", "Stammzellen", "↑ {{Heart}} +1 Gesundheit#↑ {{Shotspeed}} +0,16 Schussgeschwindigkeit#{{Heart}} Heilt 1 Herz"}, -- Stem Cells
 	[178] = {"178", "Heiliges Wasser", "{{Throwable}} Schießt sich in die Richtung, in die Isaac schießt#Bricht und verursacht 7 Schaden beim Treffen eines Feindes#Hinterlässt eine Fläche mit versteinerndem + schädlichem Schleim"}, -- Holy Water
 	[180] = {"180", "Die schwarze Bohne", "Isaac furzt mehrmals, wenn er Schaden nimmt#{{Poison}} Die Fürze hinterlassen Giftwolken und lenken Projektile ab"}, -- The Black Bean

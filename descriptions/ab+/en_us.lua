@@ -22,7 +22,7 @@ EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {na
 
 EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ {{Tears}} +0.7 Tears"}, -- The Sad Onion
-	{"2", "The Inner Eye", "↓ {{Tears}} x0.48 Tear multiplier#↓ {{Tears}} +3 Tear delay#Isaac shoots 3 tears at once"}, -- The Inner Eye
+	{"2", "The Inner Eye", "↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Isaac shoots 3 tears at once"}, -- The Inner Eye
 	{"3", "Spoon Bender", "Homing tears"}, -- Spoon Bender
 	{"4", "Cricket's Head", "↑ {{Damage}} +0.5 Damage#↑ {{Damage}} x1.5 Damage multiplier"}, -- Cricket's Head
 	{"5", "My Reflection", "↑ {{Range}} +1.5 Range#↑ +1 Tear height#↑ {{Shotspeed}} +0.6 Shot speed#Tears get a boomerang effect"}, -- My Reflection
@@ -69,10 +69,10 @@ EID.descriptions[languageCode].collectibles={
 	{"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#+8% room clear reward chance#Better chance to win while gambling"}, -- Lucky Foot
 	{"47", "Doctor's Remote", "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#Deals 20x Isaac's damage"}, -- Doctor's Remote
 	{"48", "Cupid's Arrow", "Piercing tears"}, -- Cupid's Arrow
-	{"49", "Shoop da Whoop!", "The next shot is replaced with a beam#{{Damage}} It deals 26x Isaac's damage over 0.9 seconds"}, -- Shoop da Whoop!
+	{"49", "Shoop da Whoop!", "The next shot is replaced with a beam#It deals 26x Isaac's damage over 0.9 seconds"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Damage"}, -- Steven
 	{"51", "Pentagram", "↑ {{Damage}} +1 Damage#{{AngelDevilChance}} +10% Devil/Angel Room chance"}, -- Pentagram
-	{"52", "Dr. Fetus", "↓ {{Tears}} x0.4 Tear multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's damage + 30"}, -- Dr. Fetus
+	{"52", "Dr. Fetus", "↓ {{Tears}} x0.4 Tears multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's damage + 30"}, -- Dr. Fetus
 	{"53", "Magneto", "Pickups are attracted to Isaac"}, -- Magneto
 	{"54", "Treasure Map", "Reveals the floor layout#Does not reveal room icons"}, -- Treasure Map
 	{"55", "Mom's Eye", "50% chance to shoot an extra tear backwards#{{Luck}} 100% chance at 2 luck"}, -- Mom's Eye
@@ -138,7 +138,7 @@ EID.descriptions[languageCode].collectibles={
 	{"115", "Ouija Board", "Spectral tears"}, -- Ouija Board
 	{"116", "9 Volt", "{{Battery}} Automatically charges the first bar of active items#{{Battery}} Fully recharges the active item on pickup"}, -- 9 Volt
 	{"117", "Dead Bird", "Taking damage spawns a bird that attacks enemies#The bird deals 4.3 contact damage per second"}, -- Dead Bird
-	{"118", "Brimstone", "↓ {{Tears}} x0.33 Tear multiplier#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam#{{Damage}} It deals 13x Isaac's damage over 0.9 seconds"}, -- Brimstone
+	{"118", "Brimstone", "↓ {{Tears}} x0.33 Tears multiplier#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam#{{Damage}} It deals 13x Isaac's damage over 0.9 seconds"}, -- Brimstone
 	{"119", "Blood Bag", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#{{Heart}} Heals 4 hearts"}, -- Blood Bag
 	{"120", "Odd Mushroom (Thin)", "↑ {{Speed}} +0.3 Speed#↑ {{Tears}} +1.7 Tears#↓ {{Damage}} x0.9 Damage multiplier#↓ {{Damage}} -0.4 Damage"}, -- Odd Mushroom (Thin)
 	{"121", "Odd Mushroom (Large)", "↑ {{EmptyHeart}} +1 Empty heart container#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +0.25 Range#↑ +0.5 Tear height#↓ {{Speed}} -0.1 Speed"}, -- Odd Mushroom (Large)
@@ -169,11 +169,11 @@ EID.descriptions[languageCode].collectibles={
 	{"146", "Prayer Card", "{{EternalHeart}} +1 Eternal Heart"}, -- Prayer Card
 	{"147", "Notched Axe", "{{Timer}} For the room, Isaac can break rocks and Secret Room walls by walking into them"}, -- Notched Axe
 	{"148", "Infestation", "Taking damage spawns 1-3 blue flies"}, -- Infestation
-	{"149", "Ipecac", "↑ {{Damage}} +40 Damage#↓ {{Tears}} x0.5 Tear multiplier#↓ {{Tears}} +10 Tear delay#Isaac's tears are shot in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
+	{"149", "Ipecac", "↑ {{Damage}} +40 Damage#↓ {{Tears}} x0.5 Tears multiplier#↓ {{Tears}} +10 Tear delay#Isaac's tears are shot in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
 	{"150", "Tough Love", "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 luck"}, -- Tough Love
 	{"151", "The Mulligan", "Tears have a 1/6 chance to spawn a blue fly when hitting an enemy"}, -- The Mulligan
-	{"152", "Technology 2", "↓ {{Tears}} 0.5 Tear multiplier#↓ {{Damage}} x0.65 Damage multiplier#Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 3x Isaac's damage per second"}, -- Technology 2
-	{"153", "Mutant Spider", "↓ {{Tears}} x0.48 Tear multiplier#↓ {{Tears}} +3 Tear delay#Isaac shoots 4 tears at once"}, -- Mutant Spider
+	{"152", "Technology 2", "↓ {{Tears}} x0.5 Tears multiplier#↓ {{Damage}} x0.65 Damage multiplier#Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 3x Isaac's damage per second"}, -- Technology 2
+	{"153", "Mutant Spider", "↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Isaac shoots 4 tears at once"}, -- Mutant Spider
 	{"154", "Chemical Peel", "↑ {{Damage}} +2 Damage for the left eye"}, -- Chemical Peel
 	{"155", "The Peeper", "Floats around the room#Deals 17.1 contact damage per second"}, -- The Peeper
 	{"156", "Habit", "{{Battery}} Taking damage adds 1 charge to the active item"}, -- Habit
@@ -189,11 +189,11 @@ EID.descriptions[languageCode].collectibles={
 	{"166", "D20", "Rerolls all pickups in the room"}, -- D20
 	{"167", "Harlequin Baby", "Shoots two tears in a V-shaped pattern#Deals 4 damage per tear"}, -- Harlequin Baby
 	{"168", "Epic Fetus", "Instead of shooting tears, aim a crosshair#A rocket lands on the crosshair after 1.5 seconds#{{Damage}} Rockets deal 20x Isaac's damage"}, -- Epic Fetus
-	{"169", "Polyphemus", "↑ {{Damage}} +4 Damage#↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.48 Tear multiplier#↓ {{Tears}} +3 Tear delay#Tears pierce killed enemies if there is leftover damage"}, -- Polyphemus
-	{"170", "Daddy Longlegs", "Randomly stomps on an enemy#Deals 40 damage per second"}, -- Daddy Longlegs
+	{"169", "Polyphemus", "↑ {{Damage}} +4 Damage#↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Tears pierce killed enemies if there is leftover damage"}, -- Polyphemus
+	{"170", "Daddy Longlegs", "Stomps on a nearby enemy every 4 seconds#Deals 40 damage per second"}, -- Daddy Longlegs
 	{"171", "Spider Butt", "{{Slow}} Slows down enemies for 4 seconds#Deals 10 damage to all enemies"}, -- Spider Butt
 	{"172", "Sacrificial Dagger", "Orbital#Blocks enemy shots#Deals 225 damage per second"}, -- Sacrificial Dagger
-	{"173", "Mitre", "{{SoulHeart}} Higher chance to find Soul Hearts"}, -- Mitre
+	{"173", "Mitre", "{{SoulHeart}} 50% chance that Red Hearts spawn as Soul Hearts instead"}, -- Mitre
 	{"174", "Rainbow Baby", "Shoots random tears#Deals 3-5 damage per tear"}, -- Rainbow Baby
 	{"175", "Dad's Key", "Opens all doors in the room, including {{SecretRoom}}{{SuperSecretRoom}}Secret Rooms, {{ChallengeRoom}}{{BossRushRoom}}Challenge Rooms, and the Mega Satan door"}, -- Dad's Key
 	{"176", "Stem Cells", "↑ {{Heart}} +1 Health#↑ {{Shotspeed}} +0.16 Shot speed"}, -- Stem Cells
@@ -249,7 +249,7 @@ EID.descriptions[languageCode].collectibles={
 	{"226", "Black Lotus", "↑ {{Heart}} +1 Health#{{SoulHeart}} +1 Soul Heart#{{BlackHeart}} +1 Black Heart"}, -- Black Lotus
 	{"227", "Piggy Bank", "{{Coin}} +3 Coins#{{Coin}} Taking damage spawns 1-2 coins"}, -- Piggy Bank
 	{"228", "Mom's Perfume", "↑ {{Tears}} -1 Tear delay#{{Fear}} 15% chance to shoot fear tears"}, -- Mom's Perfume
-	{"229", "Monstro's Lung", "↓ {{Tears}} x0.23 Tear multiplier#{{Chargeable}} Tears are charged and released in a shotgun style attack"}, -- Monstro's Lung
+	{"229", "Monstro's Lung", "↓ {{Tears}} x0.23 Tears multiplier#{{Chargeable}} Tears are charged and released in a shotgun style attack"}, -- Monstro's Lung
 	{"230", "Abaddon", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1.5 Damage#↓ {{EmptyHeart}} Removes all heart containers#{{BlackHeart}} +6 Black Hearts#{{Fear}} 15% chance to shoot fear tears"}, -- Abaddon
 	{"231", "Ball of Tar", "{{Slow}} 10% chance to shoot slowing tears#{{Luck}} 100% chance at 18 luck#{{Slow}} Isaac leaves a trail of slowing creep"}, -- Ball of Tar
 	{"232", "Stop Watch", "↑ {{Speed}} +0.3 Speed#{{Slow}} Taking damage slows all enemies in the room permanently"}, -- Stop Watch
@@ -295,7 +295,7 @@ EID.descriptions[languageCode].collectibles={
 	{"272", "BBF", "Friendly exploding fly#The explosion deals 60 damage#{{Warning}} The explosion can hurt Isaac"}, -- BBF
 	{"273", "Bob's Brain", "Dashes in the direction Isaac is shooting#Explodes when it hits an enemy#{{Poison}} The explosion deals 60 damage and poisons enemies#{{Warning}} The explosion can hurt Isaac"}, -- Bob's Brain
 	{"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#The orbital deals 75 damage per second"}, -- Best Bud
-	{"275", "Lil Brimstone", "{{Chargeable}} Familiar that charges and shoots a {{Collectible118}} blood beam#Deals 3.5 damage per tick, for a total of 31.5 damage"}, -- Lil Brimstone
+	{"275", "Lil Brimstone", "{{Chargeable}} Familiar that charges and shoots a {{Collectible118}} blood beam#It deals 31.5 damage over 0.63 seconds"}, -- Lil Brimstone
 	{"276", "Isaac's Heart", "Isaac becomes invincible#Spawns a heart familiar that follows Isaac#{{Warning}} If the heart familiar gets hit, Isaac takes damage"}, -- Isaac's Heart
 	{"277", "Lil Haunt", "{{Fear}} Chases and fears enemies#Deals 4 damage per second"}, -- Lil Haunt
 	{"278", "Dark Bum", "{{Heart}} Picks up nearby Red Hearts#{{SoulHeart}} Spawns a Soul Heart or spider for every 1.5 Red Hearts picked up"}, -- Dark Bum
@@ -332,7 +332,7 @@ EID.descriptions[languageCode].collectibles={
 	{"307", "Capricorn", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.1 Speed#↑ {{Tears}} -1 Tear delay#↑ {{Damage}} +0.5 Damage#↑ {{Range}} +1.5 Range#+1 {{Coin}} coin, {{Bomb}} bomb and {{Key}} key"}, -- Capricorn
 	{"308", "Aquarius", "Isaac leaves a trail of creep#The creep deals 6 damage per second"}, -- Aquarius
 	{"309", "Pisces", "↑ {{Tears}} -1 Tear delay#↑ {{Tearsize}} x1.25 Tear size#Increases tear knockback"}, -- Pisces
-	{"310", "Eve's Mascara", "↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.5 Tear multiplier#↓ {{Shotspeed}} -0.5 Shot speed"}, -- Eve's Mascara
+	{"310", "Eve's Mascara", "↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.5 Tears multiplier#↓ {{Shotspeed}} -0.5 Shot speed"}, -- Eve's Mascara
 	{"311", "Judas' Shadow", "{{Player12}} When dead, respawn as Dark Judas with a x2 damage multiplier"}, -- Judas' Shadow
 	{"312", "Maggy's Bow", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#All Red Hearts heal double their value"}, -- Maggy's Bow
 	{"313", "Holy Mantle", "Negates the first hit taken once per room"}, -- Holy Mantle
@@ -352,7 +352,7 @@ EID.descriptions[languageCode].collectibles={
 	{"327", "The Polaroid", "Taking damage at half a Red Heart or none makes isaac temporarily invincible"}, -- The Polaroid
 	{"328", "The Negative", "Taking damage at half a Red Heart or none damages all enemies in the room"}, -- The Negative
 	{"329", "The Ludovico Technique", "Replaces Isaac's tears with one giant controllable tear"}, -- The Ludovico Technique
-	{"330", "Soy Milk", "↑ {{Tears}} x4 Tear multiplier#↑ {{Tears}} -2 Tear delay#↓ {{Damage}} x0.2 Damage multiplier#↓ {{Tearsize}} x0.5 Tear size"}, -- Soy Milk
+	{"330", "Soy Milk", "↑ {{Tears}} x4 Tears multiplier#↑ {{Tears}} -2 Tear delay#↓ {{Damage}} x0.2 Damage multiplier#↓ {{Tearsize}} x0.5 Tear size"}, -- Soy Milk
 	{"331", "Godhead", "↑ {{Damage}} +0.5 Damage#↑ {{Range}} +1.2 Range#↑ +0.8 Tear height#↓ {{Tears}} -0.3 Tears#↓ {{Shotspeed}} -0.3 Shot speed#Homing tears#{{Damage}} Tears gain an aura that deals 4.5x Isaac's damage per second"}, -- Godhead
 	{"332", "Lazarus' Rags", "{{Player11}} When dead, revive as Lazarus (Risen)"}, -- Lazarus' Rags
 	{"333", "The Mind", "Full mapping effect"}, -- The Mind
@@ -390,7 +390,7 @@ EID.descriptions[languageCode].collectibles={
 	{"365", "Lost Fly", "Moves along walls/obstacles#Deals 105 contact damage per second"}, -- Lost Fly
 	{"366", "Scatter Bombs", "{{Bomb}} +5 Bombs#Isaac's bombs scatter into 2-4 tiny bombs"}, -- Scatter Bombs
 	{"367", "Sticky Bombs", "{{Bomb}} +5 Bombs#Isaac's bombs stick to enemies#Killing an enemy with a bomb spawns blue spiders"}, -- Sticky Bombs
-	{"368", "Epiphora", "↑ {{Tears}} Shooting in one direction gradually decreases tear delay up to 200%"}, -- Epiphora
+	{"368", "Epiphora", "↑ {{Tears}} Shooting in one direction gradually decreases tear delay up to 200% and decreases accuracy"}, -- Epiphora
 	{"369", "Continuum", "↑ {{Range}} +2.25 Range#↑ +1.5 Tear height#Spectral tears#Tears can travel through one side of the screen and come out the other side"}, -- Continuum
 	{"370", "Mr. Dolly", "↑ {{Tears}} +0.7 Tears#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height#{{UnknownHeart}} Spawns 3 random hearts"}, -- Mr. Dolly
 	{"371", "Curse of the Tower", "{{Warning}} Taking damage spawns 6 Troll Bombs#The Troll Bombs inherit Isaac's bomb effects"}, -- Curse of the Tower
@@ -421,7 +421,7 @@ EID.descriptions[languageCode].collectibles={
 	{"396", "Ventricle Razor", "Creates up to two portals to travel between#Can be placed in different rooms"}, -- Ventricle Razor
 	{"397", "Tractor Beam", "↑ {{Tears}} +0.5 Tears#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height#↑ {{Shotspeed}} +0.16 Shot speed#Isaac's tears always travel along a beam of light in front of him"}, -- Tractor Beam
 	{"398", "God's Flesh", "Tears can shrink enemies#Shrunken enemies can be crushed and killed by walking over them"}, -- God's Flesh
-	{"399", "Maw of the Void", "↑ {{Damage}} +1 Damage#{{Chargeable}} Shooting tears for 2.35 seconds and releasing the fire button creates a black brimstone ring around Isaac#{{BlackHeart}} Enemies killed by the black ring have a chance to drop Black Hearts"}, -- Maw of the Void
+	{"399", "Maw of the Void", "↑ {{Damage}} +1 Damage#{{Chargeable}} Shooting tears for 2.35 seconds and releasing the fire button creates a black brimstone ring around Isaac#It deals 30x Isaac's damage over 2 seconds#{{BlackHeart}} Enemies killed by the black ring have a 5% chance to drop a Black Heart"}, -- Maw of the Void
 	{"400", "Spear of Destiny", "Isaac holds a spear in front of him#{{Fear}} The spear deals twice his damage and can fear enemies on contact"}, -- Spear of Destiny
 	{"401", "Explosivo", "25% chance to shoot sticky bomb tears#Sticky bomb tears do not deal damage on hit and explode after a few seconds"}, -- Explosivo
 	{"402", "Chaos", "All items are chosen from random item pools#Spawns 1-6 random pickups"}, -- Chaos
@@ -430,7 +430,7 @@ EID.descriptions[languageCode].collectibles={
 	{"405", "GB Bug", "Bounces around the room#Deals 120 damage per second and applies random status effects to enemies on contact"}, -- GB Bug
 	{"406", "D8", "Multiplies Isaac's damage, tears, range and speed stats by between x0.5 and x2#The multipliers are rerolled each use"}, -- D8
 	{"407", "Purity", "↑ Boosts one of Isaac's stats depending on the color of the aura#Taking damage removes the effect, and gives Isaac a new effect in the next room#{{ColorYellow}}Yellow{{CR}} = ↑ {{Speed}} +0.5 Speed#{{ColorBlue}}Blue{{CR}} = ↑ {{Tears}} -4 Tear delay#{{ColorRed}}Red{{CR}} = ↑ {{Damage}} +4 Damage#{{ColorOrange}}Orange{{CR}} = ↑ {{Range}} +7.5 Range, ↑ +1 Tear height"}, -- Purity
-	{"408", "Athame", "Taking damage creates a black brimstone ring around Isaac#{{BlackHeart}} Enemies killed by the ring have a 15% chance to drop a Black Heart"}, -- Athame
+	{"408", "Athame", "Taking damage creates a black brimstone ring around Isaac#It deals 30x Isaac's damage over 2 seconds#{{BlackHeart}} Enemies killed by the ring have a 15% chance to drop a Black Heart"}, -- Athame
 	{"409", "Empty Vessel", "{{BlackHeart}} +2 Black Hearts#{{EmptyHeart}} When Isaac has no Red Hearts:#Flight#Every 40 seconds while in a hostile room, gain a shield for 10 seconds"}, -- Empty Vessel
 	{"410", "Evil Eye", "3.33% chance to shoot an eye#{{Luck}} 10% chance at 20 luck#The eye moves in a straight line and shoots tears in the same direction as Isaac"}, -- Evil Eye
 	{"411", "Lusty Blood", "↑ {{Damage}} +0.5 Damage for each enemy killed in the room#Caps at +5 Damage after 10 kills"}, -- Lusty Blood
@@ -442,7 +442,7 @@ EID.descriptions[languageCode].collectibles={
 	{"417", "Succubus", "Bounces around the room surrounded by a damaging aura that deals 1.29x Isaac's damage per second#↑ {{Damage}} x1.5 Damage multiplier while standing in the aura"}, -- Succubus
 	{"418", "Fruit Cake", "Each one of Isaac's tears gets a different effect"}, -- Fruit Cake
 	{"419", "Teleport 2.0", "Teleports Isaac to a room that has not been cleared yet#Hierarchy: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"}, -- Teleport 2.0
-	{"420", "Black Powder", "Walking in a circle draws a pentagram on the floor, which deals 10 damage per tick"}, -- Black Powder
+	{"420", "Black Powder", "Walking in a circle draws a pentagram on the floor, which deals 130 damage over 4 seconds"}, -- Black Powder
 	{"421", "Kidney Bean", "{{Charm}} Charms and deals 5 damage to all enemies in close range"}, -- Kidney Bean
 	{"422", "Glowing Hour Glass", "Brings Isaac back to the previous room and reverses all actions done in the room the item was used in"}, -- Glowing Hour Glass
 	{"423", "Circle of Protection", "Surrounds Isaac with a large halo that deals his damage on contact per second#Chance to reflect enemy projectiles"}, -- Circle of Protection
@@ -520,7 +520,7 @@ EID.descriptions[languageCode].collectibles={
 	{"495", "Ghost Pepper", "Chance to shoot a red flame that blocks enemy shots and deals contact damage#The flame disappears after dealing damage or blocking shots 5 times"}, -- Ghost Pepper
 	{"496", "Euthanasia", "3.33% chance to shoot a needle#{{Luck}} 100% chance at 15 luck#Needles kill normal enemies instantly, bursting them into 10 tears#{{Damage}} Needles deal 3x Isaac's damage against bosses"}, -- Euthanasia
 	{"497", "Camo Undies", "{{Confusion}} Entering a room confuses all enemies until Isaac starts shooting"}, -- Camo Undies
-	{"498", "Duality", "{{AngelDevilChance}} Spawns both an Angel and Devil Room if either would have spawned#Entering one makes the other disappear"}, -- Duality
+	{"498", "Duality", "{{AngelDevilChance}} Spawns both an Devil and Angel Room if either would have spawned#Entering one makes the other disappear"}, -- Duality
 	{"499", "Eucharist", "{{AngelChance}} 100% chance for Angel Rooms to spawn"}, -- Eucharist
 	{"500", "Sack of Sacks", "Spawns a sack every 5-6 rooms"}, -- Sack of Sacks
 	{"501", "Greed's Gullet", "{{Heart}} +1 Heart container for every 25 coins gained after getting Greed's Gullet"}, -- Greed's Gullet
@@ -534,7 +534,7 @@ EID.descriptions[languageCode].collectibles={
 	{"509", "Bloodshot Eye", "Orbital that shoots a tear in a random direction every 2 seconds#Deals 3.5 damage per tear#Deals 30 contact damage per second#Does not block shots"}, -- Bloodshot Eye
 	{"510", "Delirious", "{{Timer}} Spawns a friendly delirium version of a boss for the room"}, -- Delirious
 	{"511", "Angry Fly", "Orbits a random enemy until that enemy dies#Deals 30 contact damage per second to other enemies"}, -- Angry Fly
-	{"512", "Black Hole", "Throwable black hole, which sucks in everything#Deals 0.4 damage every tick#Destroys nearby rocks#Lasts 6 seconds"}, -- Black Hole
+	{"512", "Black Hole", "Throwable black hole, which sucks in everything#Deals 6 damage per second#Destroys nearby rocks#Lasts 6 seconds"}, -- Black Hole
 	{"513", "Bozo", "↑ {{Damage}} +0.1 Damage#{{SoulHeart}} +1 Soul Heart#{{Charm}} Randomly charms/fears enemies#Taking damage has a random chance to spawn a Rainbow Poop"}, -- Bozo
 	{"514", "Broken Modem", "Causes some enemies and projectiles to briefly pause at random intervals#25% chance to double room clear drops"}, -- Broken Modem
 	{"515", "Mystery Gift", "{{Warning}} SINGLE USE {{Warning}}#Spawns a random item from the current room's item pool#Chance to spawn Lump of Coal or The Poop instead"}, -- Mystery Gift
@@ -553,7 +553,7 @@ EID.descriptions[languageCode].collectibles={
 	{"528", "Angelic Prism", "Orbital prism#Friendly tears hitting it split into 4"}, -- Angelic Prism
 	{"529", "Pop!", "Isaac's tears bounce off each other and disappear when they stop moving"}, -- Pop!
 	{"530", "Death's List", "Killing enemies in the order dictated by the mark {{DeathMark}} above them grants a random pickup or stat increase"}, -- Death's List
-	{"531", "Haemolacria", "↑ {{Damage}} x1.31 Damage multiplier#↓ {{Tears}} x0.5 Tear multiplier#↓ {{Tears}} +10 Tear delay#Isaac's tears fly in an arc and burst into smaller tears on impact"}, -- Haemolacria
+	{"531", "Haemolacria", "↑ {{Damage}} x1.31 Damage multiplier#↓ {{Tears}} x0.5 Tears multiplier#↓ {{Tears}} +10 Tear delay#Isaac's tears fly in an arc and burst into smaller tears on impact"}, -- Haemolacria
 	{"532", "Lachryphagy", "Isaac's tears progressively slow down, stop, then explode into 8 smaller tears#Tears can merge and become bigger"}, -- Lachryphagy
 	{"533", "Trisagion", "Replaces Isaac's tears with piercing beams of light#The beams deal 33% damage but can hit enemies multiple times"}, -- Trisagion
 	{"534", "Schoolbag", "Allows Isaac to hold 2 active items#The items can be swapped using the Drop button ({{ButtonRT}})"}, -- Schoolbag
@@ -565,7 +565,7 @@ EID.descriptions[languageCode].collectibles={
 	{"540", "Flat Stone", "Isaac's tears bounce off the floor and cause splash damage on every bounce"}, -- Flat Stone
 	{"541", "Marrow", "{{Heart}} Spawns 3 Red Hearts#{{EmptyBoneHeart}} +1 Bone Heart"}, -- Marrow
 	{"542", "Slipped Rib", "Orbital#Reflects enemy projectiles"}, -- Slipped Rib
-	{"543", "Hallowed Ground", "Taking damage spawns a white poop#While inside the poop's aura:#↑ {{Tears}} x2 Tear multiplier#Chance to block damage"}, -- Hallowed Ground
+	{"543", "Hallowed Ground", "Taking damage spawns a white poop#While inside the poop's aura:#↑ {{Tears}} x2 Tears multiplier#Chance to block damage"}, -- Hallowed Ground
 	{"544", "Pointy Rib", "Levitates in front of Isaac#Deals 6x Isaac's damage per second"}, -- Pointy Rib
 	{"545", "Book of the Dead", "Spawns a bone orbital or charmed bony per enemy killed in the room (up to 8)"}, -- Book of the Dead
 	{"546", "Dad's Ring", "Grants an aura that petrifies enemies"}, -- Dad's Ring
@@ -825,7 +825,7 @@ EID.descriptions[languageCode].cards={
 	{"43", "Credit Card", "Makes all items and pickups in a {{Shop}} Shop or {{DevilRoom}} Devil Room free"}, -- Credit Card
 	{"44", "Rules Card", "Displays \"helpful\" tips on use"}, -- Rules Card
 	{"45", "A Card Against Humanity", "Fills the whole room with poop"}, -- A Card Against Humanity
-	{"46", "Suicide King", "Instantly kills Isaac and spawns 10 pickups or items on the floor"}, -- Suicide King
+	{"46", "Suicide King", "Instantly kills Isaac and spawns 10 pickups or items on the floor#Spawned items will use the current room's item pool"}, -- Suicide King
 	{"47", "Get Out Of Jail Free Card", "Open all doors in the room"}, -- Get Out Of Jail Free Card
 	{"48", "? Card", "Uses Isaac's active item for free"}, -- ? Card
 	{"49", "Dice Shard", "Rerolls all item pedestals and pickups in the room"}, -- Dice Shard
@@ -977,7 +977,7 @@ EID.descriptions[languageCode].ItemReminder = {
 -- Includes Repentance room types for localization convenience
 EID.descriptions[languageCode].RoomTypeNames = { "Normal Room", "Shop", "I AM ERROR Room", "Treasure Room", "Boss Room", "Miniboss Room", "Secret Room", "Super Secret Room", "Arcade Room", "Curse Room", "Challenge Room", "Library", "Sacrifice Room", "Devil Room", "Angel Room", "Crawlspace Room", "Boss Rush Room", "Isaac's Room", "Barren Room", "Chest Room", "Dice Room", "Black Market", "Exit Room", "Planetarium", "Teleporter Entrance", "Teleporter Exit", "Alt Path Trapdoor", "Blue Key Room", "Ultra Secret Room",
 -- Not technically room types but still potentially useful to have localized
-[666] = "Angel/Devil Room", [1024] = "Red Room", [1025] = "Special Red Room" }
+[666] = "Devil/Angel Room", [1024] = "Red Room", [1025] = "Special Red Room" }
 
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {
