@@ -9,7 +9,6 @@ EID.TabDescThisFrame = false
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
 EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_VOID] = true
 EID.collectiblesToCheck["5.300.41"] = true -- Black Rune
-EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_BFFS] = true
 local maxSlot = 1
 -- Repentance modifiers
 if EID.isRepentance then
@@ -240,19 +239,6 @@ local function BlackFeatherCallback(descObj)
 	description, _ =  EID:ReplaceVariableStr(description, 2, "{{"..dmgColor.."}}"..damageMultiplied.."{{CR}}")
 
 	EID:appendToDescription(descObj, "# "..description)
-	return descObj
-end
-
--- Handle BFFS synergy text
-local function BFFSSynergiesCallback(descObj)
-	local description = EID:getDescriptionEntry("BFFSSynergies", descObj.fullItemString, true)
-	if EID.BFFSNoSynergy[descObj.ObjSubType] then
-		description = EID:getDescriptionEntry("BFFSSynergies", "NoEffect")
-	elseif description == nil then
-		description = EID:getDescriptionEntry("BFFSSynergies", "DoubleDamage")
-	end
-
-	EID:appendToDescription(descObj, "#{{Collectible247}} {{ColorOrange}}" .. description .. "{{CR}}")
 	return descObj
 end
 
@@ -793,14 +779,7 @@ local function EIDConditionsAB(descObj)
 			if EID.collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
 			if EID.collectiblesOwned["5.300.41"] then table.insert(callbacks, BlackRuneCallback) end
 		end
-
-		-- BFF Synergy check
-		if EID.collectiblesOwned[247] then
-			local config = EID.itemConfig:GetCollectible(descObj.ObjSubType)
-			if config ~= nil and config.Type == ItemType.ITEM_FAMILIAR then
-				table.insert(callbacks, BFFSSynergiesCallback)
-			end
-		end
+		
 	elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
 		if descObj.ObjSubType == 80 then table.insert(callbacks, BlackFeatherCallback) end
 	end
