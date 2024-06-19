@@ -22,6 +22,7 @@ if not EID.isRepentance then
 	EID:AddItemConditional("5.300", 451, nil, {locTable = "tarotClothBuffsAB", replaceColor = "ColorShinyPurple", noFallback = false})
 else EID:AddItemConditional("5.300", 451, nil, {locTable = "tarotClothBuffs", replaceColor = "ColorShinyPurple", noFallback = false}) end
 EID:AddItemConditional("5.100", 356, EID.CheckForCarBattery, {locTable = "carBattery", replaceColor = "BlinkYellowGreen", noFallback = false}) -- Car Battery
+EID:AddItemConditional("5.100", 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false}) -- BFFS!
 
 -- IV Bag conditions (need to be applied in a specific order)
 EID:AddItemConditional(135, 75, "PHD") -- PHD improves IV Bag
@@ -69,6 +70,18 @@ EID:AddConditional(116, function() return EID:CheckPlayersForActiveChargeType(1)
 EID:AddConditional(116, function() return EID:CheckPlayersForActiveChargeType(nil, 1) end, "Timed", { useResult = true })
 EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(116) and EID:CheckActiveChargeType(descObj.ObjSubType, 1) end, "1 Room", { bulletpoint = "Collectible116" })
 EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(116) and EID:CheckActiveChargeType(descObj.ObjSubType, nil, 1) end, "Timed", { bulletpoint = "Collectible116" })
+
+-- Items that have no effect from multiple copies (AddSelfConditional adds it when holding Diplopia automatically)
+-- 3 Dollar Bill, 
+EID:AddSelfConditional({191}, "No Effect (Copies)")
+if not EID.isRepentance then
+	-- Anti-Gravity, 
+	EID:AddSelfConditional({222}, "No Effect (Copies)")
+end
+if EID.isRepentance then
+	-- 2Spooky, 
+	EID:AddSelfConditional({554}, "No Effect (Copies)")
+end
 
 -- Overridden / Overrides by Epic Fetus, Brimstone, Mom's Knife
 -- Haven't done it yet but I'm sure preparing the system for it
