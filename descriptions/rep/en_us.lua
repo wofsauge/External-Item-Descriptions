@@ -83,7 +83,6 @@ local repCollectibles={
 	[182] = {"182", "Sacred Heart", "↑ {{Heart}} +1 Health#↑ {{Damage}} x2.3 Damage multiplier#↑ {{Damage}} +1 Damage#↓ {{Tears}} -0.4 Tears#↓ {{Shotspeed}} -0.25 Shot speed#{{Heart}} Full health#Homing tears"}, -- Sacred Heart
 	[184] = {"184", "Holy Grail", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#Flight"}, -- Holy Grail
 	[186] = {"186", "Blood Rights", "Deals 40 damage to every enemy#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first"}, -- Blood Rights
-	[188] = {"188", "Abel", "Mirrors Isaac's movement#Shoots towards Isaac#Deals 3.5 damage per tear"}, -- Abel
 	[189] = {"189", "SMB Super Fan", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.2 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +2.5 Range#{{Heart}} Full health"}, -- SMB Super Fan
 	[192] = {"192", "Telepathy for Dummies", "{{Timer}} Receive for the room:#↑ {{Range}} +3 Range#Homing tears"}, -- Telepathy for Dummies
 	[193] = {"193", "MEAT!", "↑ {{Heart}} +1 Health#↑ {{Damage}} +0.3 Damage#{{Heart}} Heals 1 heart"}, -- MEAT!
@@ -91,7 +90,7 @@ local repCollectibles={
 	[197] = {"197", "Jesus Juice", "↑ {{Damage}} +0.5 Damage#↑ {{Range}} +1.5 Range"}, -- Jesus Juice
 	[203] = {"203", "Humbleing Bundle", "Pickups have a 50% chance to be doubled"}, -- Humbleing Bundle
 	[205] = {"205", "Sharp Plug", "{{Battery}} Using an uncharged active item fully recharges it at the cost of half a heart per missing charge#{{Heart}} Removes Red Hearts first"}, -- Sharp Plug
-	[206] = {"206", "Guillotine", "↑ {{Tears}} +0.5 Fire rate#↑ {{Damage}} +1 Damage#Isaac's head becomes an orbital that shoots, doesn't take damage and deals 65 contact damage per second"}, -- Guillotine
+	[206] = {"206", "Guillotine", "↑ {{Tears}} +0.5 Fire rate#↑ {{Damage}} +1 Damage#Isaac's head becomes an orbital that shoots, doesn't take damage and deals 56 contact damage per second"}, -- Guillotine
 	[211] = {"211", "Spiderbaby", "Taking damage spawns 3-5 blue spiders"}, -- Spiderbaby
 	[214] = {"214", "Anemic", "↑ {{Range}} +1.5 Range#{{Timer}} When taking damage Isaac leaves a trail of blood creep for the room"}, -- Anemic
 	[218] = {"218", "Placenta", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#{{HalfHeart}} 50% chance to heal half a heart every minute"}, -- Placenta
@@ -114,6 +113,7 @@ local repCollectibles={
 	[262] = {"262", "Missing Page 2", "{{BlackHeart}} +1 Black Heart#Taking damage down to 1 heart damages all enemies in the room#{{Collectible35}} Black Hearts and Necronomicon-like effects deal double damage"}, -- Missing Page 2
 	[263] = {"263", "Clear Rune", "{{Rune}} Spawns 1 rune on pickup#{{Rune}} Triggers the effect of the rune Isaac holds without using it"}, -- Clear Rune (Repentance item)
 	[264] = {"264", "Smart Fly", "Orbital#Attacks enemies when Isaac takes damage#Deals 6.5 damage per second"}, -- Smart Fly
+	[272] = {"272", "BBF", "Friendly exploding fly#The explosion deals 100 damage#{{Warning}} The explosion can hurt Isaac"}, -- BBF
 	[273] = {"273", "Bob's Brain", "Dashes in the direction Isaac is shooting#Explodes when it hits an enemy#{{Poison}} The explosion deals 100 damage, ignores boss armor and poisons enemies#{{Warning}} The explosion can hurt Isaac"}, -- Bob's Brain
 	[274] = {"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#The orbital deals 150 damage per second"}, -- Best Bud
 	[275] = {"275", "Lil Brimstone", "{{Chargeable}} Familiar that charges and shoots a {{Collectible118}} blood beam#It deals 24 damage over 0.63 seconds"}, -- Lil Brimstone
@@ -172,7 +172,7 @@ local repCollectibles={
 	[376] = {"376", "Restock", "Buying an item from a Shop restocks it instantly#Restocked items increase in price each time"}, -- Restock
 	[380] = {"380", "Pay To Play", "{{Coin}} +5 Coins#Locked blocks, doors and chests must be opened with coins instead of keys"}, -- Pay To Play
 	[382] = {"382", "Friendly Ball", "Can be thrown at enemies to capture them#Using the item after capturing an enemy spawns the capture as a friendly companion#Walking over the ball after a capture instantly recharges the item"}, -- Friendly Ball
-	[384] = {"384", "Lil Gurdy", "{{Chargeable}} Launches and bounces around the room with speed based on charge amount#Deals 5-25 contact damage per hit depending on speed"}, -- Lil Gurdy
+	[384] = {"384", "Lil Gurdy", "{{Chargeable}} Launches and bounces around the room with speed based on charge amount#Deals 5-20 contact damage per hit depending on speed"}, -- Lil Gurdy
 	[386] = {"386", "D12", "Rerolls any obstacle into another random obstacle (e.g. poop, pots, TNT, red poop, stone blocks etc.)#Small chance to reroll obstacles into buttons, killswitches, crawlspaces or trapdoors"}, -- D12
 	[389] = {"389", "Rune Bag", "{{Rune}} Spawns a random rune or Soul Stone every 7-8 rooms"}, -- Rune Bag
 	[391] = {"391", "Betrayal", "Enemies can hit each other with their projectiles, and start infighting"}, -- Betrayal
@@ -210,7 +210,7 @@ local repCollectibles={
 	[459] = {"459", "Sinus Infection", "20% chance to shoot a sticky booger#{{Damage}} Boogers deal Isaac's damage once a second and stick for 10 seconds#{{Luck}} Not affected by luck"}, -- Sinus Infection
 	[462] = {"462", "Eye of Belial", "↑ {{Range}} +1.5 Range#Piercing tears#Hitting an enemy makes the tear homing and doubles its damage"}, -- Eye of Belial
 	[464] = {"464", "Glyph of Balance", "{{SoulHeart}} +2 Soul Hearts#Room clear rewards and champion enemy drops become whatever pickup Isaac needs the most"}, -- Glyph of Balance
-	[468] = {"468", "Shade", "Follows Isaac's movement on a 1 second delay#Deals 75 contact damage per second#After it deals 666 damage, it is absorbed by Isaac, increasing his contact damage"}, -- Shade
+	[468] = {"468", "Shade", "Follows Isaac's movement on a 0.66 second delay#Deals 75 contact damage per second#After it deals 666 damage, it is absorbed by Isaac, increasing his contact damage"}, -- Shade
 	[472] = {"472", "King Baby", "Other familiars follow it and automatically shoot at enemies#Stops moving when Isaac shoots#Teleports back to Isaac when he stops shooting"}, -- King Baby
 	[474] = {"474", "Broken Glass Cannon", "Using the item turns it back into Glass Cannon"}, -- Broken Glass Cannon
 	[476] =	{"476", "D1", "Duplicates a random pickup in the room#Duplicated pickups may not be identical to the original"}, -- D1
@@ -223,6 +223,7 @@ local repCollectibles={
 	[495] = {"495", "Ghost Pepper", "8.33% chance to shoot a blue fire that blocks enemy shots and deals contact damage#{{Luck}} 50% chance at 10 luck#Fires shrink and disappear after 2 seconds"}, -- Ghost Pepper
 	[496] = {"496", "Euthanasia", "3.33% chance to shoot a needle#{{Luck}} 25% chance at 13 luck#Needles kill normal enemies instantly, bursting them into 10 tears#{{Damage}} Needles deal 3x Isaac's damage against bosses"}, -- Euthanasia
 	[497] = {"497", "Camo Undies", "{{Confusion}} Entering a room camouflages Isaac and confuses all enemies until a tear is shot#↑ {{Speed}} +0.5 Speed while cloaked#Uncloaking deals damage around Isaac and grants a very brief fire rate and damage up"}, -- Camo Undies
+	[500] = {"500", "Sack of Sacks", "Spawns a sack every 7-8 rooms"}, -- Sack of Sacks
 	[501] = {"501", "Greed's Gullet", "{{Heart}} +1 Heart container for every 25 coins Isaac has"}, -- Greed's Gullet
 	[503] = {"503", "Little Horn", "5% chance to shoot a tear that summons a Big Horn hand#{{Luck}} 20% chance at 15 luck#The hand instantly kills enemies and deals 36 damage to bosses#Isaac deals 7 contact damage per second"}, -- Little Horn
 	[504] = {"504", "Brown Nugget", "Spawns a fly that shoots at enemies#Each shot deals 3.5 damage"}, -- Brown Nugget
@@ -291,7 +292,7 @@ local repCollectibles={
 	[602] = {"602", "Member Card", "{{Shop}} Opens a trapdoor in every Shop#The trapdoor leads to an underground shop that sells trinkets, runes, cards, special hearts and items from any pool"}, -- Member Card
 	[603] = {"603", "Battery Pack", "{{Battery}} Spawns 2-4 batteries#{{Battery}} Fully recharges the active item"}, -- Battery Pack
 	[604] = {"604", "Mom's Bracelet", "Allows Isaac to pick up and throw rocks, TNT, poops, friendly Dips, Hosts and other obstacles#Allows carrying them between rooms"}, -- Mom's Bracelet
-	[605] = {"605", "The Scooper", "↑ {{Damage}} x1.35 Damage multiplier for the right eye#{{Timer}} Summons a Peeper familiar for the room, which leaves a trail of red creep"}, -- The Scooper
+	[605] = {"605", "The Scooper", "↑ {{Damage}} x1.35 Damage multiplier for the right eye#{{Timer}} Summons a Peeper familiar for the room, which leaves a trail of red creep and deals 36 contact damage per second"}, -- The Scooper
 	[606] = {"606", "Ocular Rift", "5% chance to shoot tears that create rifts where they land#{{Luck}} 20% chance at 15 luck#Rifts do 3x Isaac's damage per second and pull in nearby enemies, pickups, and projectiles"}, -- Ocular Rift
 	[607] = {"607", "Boiled Baby", "Shoots chaotic bursts of tears in all directions#Deals 3.5 or 5.3 damage per tear"}, -- Boiled Baby
 	[608] = {"608", "Freezer Baby", "Shoots petrifying tears#{{Freezing}} Freezes enemies upon killing them"}, -- Freezer Baby
@@ -705,12 +706,37 @@ local repCarBattery = {
 }
 EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
 
--- Effect of BFFS!/Hivemind on Familiars
+-- Effect of BFFS!/Hive Mind on Familiars
 local repBFFSSynergies = {
-	["5.100.178"] = "Double water damage and spawns a blue flame at point of impact", -- Holy Water
+	["5.100.67"] = {6, 12}, -- Sister Maggy
+	["5.100.98"] = {"7-8", "6"}, -- The Relic
+	["5.100.172"] = {112.5, 225}, -- Sacrificial Dagger
+	["5.100.178"] = {7, 14, "Spawns a blue flame at point of impact"}, -- Holy Water
+	["5.100.206"] = {56, 112}, -- Guillotine
+	["5.100.264"] = {6.5, 13}, -- Smart Fly
+	["5.100.272"] = {100, 125}, -- BBF
+	["5.100.273"] = {100, 125}, -- Bob's Brain
+	["5.100.274"] = {150, 300}, -- Best Bud
+	["5.100.275"] = {24, 48}, -- Lil Brimstone
 	["5.100.276"] = "Fires additional shots in random directions and leaves a larger puddle of creep", -- Isaac's Heart
-	["5.100.360"] = "Shoots tears that deal 150% of your damage. 200% for Lilith", -- Incubus
-	["5.100.569"] = "+2 full hearts when health is drained", -- Blood Oath
+	["5.100.319"] = {75, 150}, -- Cain's Other Eye
+	["5.100.320"] = {15, 30}, -- ???'s Only Friend
+	["5.100.365"] = {30, 60}, -- Lost Fly
+	["5.100.360"] = {75, 150, 100, 200}, -- Incubus (+ Lilith exception)
+	["5.100.384"] = {"5-20", "10-40"}, -- Lil Gurdy
+	["5.100.389"] = {"7-8", "6"}, -- Rune Bag
+	["5.100.467"] = {10, 20}, -- Finger!
+	["5.100.468"] = {75, 150}, -- Shade
+	["5.100.491"] = {"7", "6"}, -- Acid Baby
+	["5.100.500"] = {"7-8", "6"}, -- Sack of Sacks
+	["5.100.504"] = {3.5, 7}, -- Brown Nugget
+	["5.100.508"] = {1.5, 3}, -- Mom's Razor
+	["5.100.509"] = {3.5, 7, 20, 40}, -- Bloodshot Eye
+	
+	--TODO: REPENTANCE FAMILIARS (and hive mind support)
+	
+	["5.100.569"] = "If triggered, grants additional damage and speed", -- Blood Oath
+	["5.100.605"] = {36, 72}, -- The Scooper
 	["5.100.610"] = "Spawns 4 rock waves in an x pattern. Doubles bird damage. Damage of waves unaffected.", -- Bird Cage
 	["5.100.612"] = "Gives the Lost Soul a Holy Mantle effect", -- Lost Soul
 	["5.100.635"] = "On use, fires 8 tears from the players position that have the same effects as his tears", -- Stitches
@@ -1259,7 +1285,7 @@ EID.descriptions[languageCode].OldGameVersionWarningText = "EID is updated for t
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Install REPENTOGON for improved modded recipe support#(This warning can be disabled in the config)"
 
 
--- Conditional descriptions
+-- Conditional descriptions - DO NOT TRANSLATE THE FIRST PART IN ["BRACKETS"]
 -- Strings will be appended to the original description
 -- Tables with one entry will completely replace the original description
 -- Tables with two or more entries are find-replace pairs
