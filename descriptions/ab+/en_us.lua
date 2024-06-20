@@ -151,7 +151,7 @@ EID.descriptions[languageCode].collectibles={
 	{"128", "Forever Alone", "Long range fly orbital#Deals 30 contact damage per second"}, -- Forever Alone
 	{"129", "Bucket of Lard", "↑ {{EmptyHeart}} +2 Empty heart containers#↓ {{Speed}} -0.2 Speed#{{HalfHeart}} Heals half a heart"}, -- Bucket of Lard
 	{"130", "A Pony", "While held:#{{Speed}} Sets your Speed to at least 1.5#Flight#Upon use, dashes in the direction of Isaac's movement"}, -- A Pony
-	{"131", "Bomb Bag", "{{Bomb}} Spawns 1 bomb pickup every 2-3 rooms"}, -- Bomb Bag
+	{"131", "Bomb Bag", "{{Bomb}} Spawns 1 bomb pickup every 3 rooms"}, -- Bomb Bag
 	{"132", "A Lump of Coal", "{{Damage}} Tears deal more damage the further they travel"}, -- A Lump of Coal
 	{"133", "Guppy's Paw", "{{SoulHeart}} Converts 1 heart container into 3 Soul Hearts"}, -- Guppy's Paw
 	{"134", "Guppy's Tail", "{{Chest}} 33% chance to replace the room clear reward with a chest#33% chance to spawn no room clear reward"}, -- Guppy's Tail
@@ -164,7 +164,7 @@ EID.descriptions[languageCode].collectibles={
 	{"141", "Pageant Boy", "{{Coin}} Spawns 7 random coins"}, -- Pageant Boy
 	{"142", "Scapular", "{{SoulHeart}} Isaac gains 1 Soul Heart when damaged down to half a heart#Can only happen once per room#Exiting and re-entering the room allows the effect to trigger again"}, -- Scapular
 	{"143", "Speed Ball", "↑ {{Speed}} +0.3 Speed#↑ {{Shotspeed}} +0.2 Shot speed"}, -- Speed Ball
-	{"144", "Bum Friend", "{{Coin}} Picks up nearby coins#Spawns random pickups in return"}, -- Bum Friend
+	{"144", "Bum Friend", "{{Coin}} Picks up nearby coins#Spawns random pickups every 3-4 coins"}, -- Bum Friend
 	{"145", "Guppy's Head", "Spawns 2-4 blue flies"}, -- Guppy's Head
 	{"146", "Prayer Card", "{{EternalHeart}} +1 Eternal Heart"}, -- Prayer Card
 	{"147", "Notched Axe", "{{Timer}} For the room, Isaac can break rocks and Secret Room walls by walking into them"}, -- Notched Axe
@@ -175,7 +175,7 @@ EID.descriptions[languageCode].collectibles={
 	{"152", "Technology 2", "↓ {{Tears}} x0.5 Tears multiplier#↓ {{Damage}} x0.65 Damage multiplier#Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 3x Isaac's damage per second"}, -- Technology 2
 	{"153", "Mutant Spider", "↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Isaac shoots 4 tears at once"}, -- Mutant Spider
 	{"154", "Chemical Peel", "↑ {{Damage}} +2 Damage for the left eye"}, -- Chemical Peel
-	{"155", "The Peeper", "Floats around the room#Deals 17.1 contact damage per second"}, -- The Peeper
+	{"155", "The Peeper", "Floats around the room#Deals 17 contact damage per second"}, -- The Peeper
 	{"156", "Habit", "{{Battery}} Taking damage adds 1 charge to the active item"}, -- Habit
 	{"157", "Bloody Lust", "↑ {{Damage}} Taking damage grants a damage up#Applies up to 6 times per floor#Lasts for the whole floor"}, -- Bloody Lust
 	{"158", "Crystal Ball", "Spawns a {{SoulHeart}} Soul Heart, {{Rune}} rune or {{Card}} card#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"}, -- Crystal Ball
@@ -291,7 +291,7 @@ EID.descriptions[languageCode].collectibles={
 	{"268", "Rotten Baby", "Spawns blue flies when Isaac shoots"}, -- Rotten Baby
 	{"269", "Headless Baby", "Leaves creep which deals 6 damage per second"}, -- Headless Baby
 	{"270", "Leech", "Chases enemies#{{HalfHeart}} Heals Isaac for half a heart when it kills an enemy#Deals 3.2 damage per second"}, -- Leech
-	{"271", "Mystery Sack", "Spawns a random pickup every few rooms"}, -- Mystery Sack
+	{"271", "Mystery Sack", "Spawns a random pickup every 5-6 rooms"}, -- Mystery Sack
 	{"272", "BBF", "Friendly exploding fly#The explosion deals 60 damage#{{Warning}} The explosion can hurt Isaac"}, -- BBF
 	{"273", "Bob's Brain", "Dashes in the direction Isaac is shooting#Explodes when it hits an enemy#{{Poison}} The explosion deals 60 damage and poisons enemies#{{Warning}} The explosion can hurt Isaac"}, -- Bob's Brain
 	{"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#The orbital deals 75 damage per second"}, -- Best Bud
@@ -341,10 +341,10 @@ EID.descriptions[languageCode].collectibles={
 	{"316", "Cursed Eye", "Charged wave of 4 tears#{{Warning}} Taking damage while partially charged teleports Isaac to a random room"}, -- Cursed Eye
 	{"317", "Mysterious Liquid", "Isaac's tears leave creep#The creep deals 30 damage per second"}, -- Mysterious Liquid
 	{"318", "Gemini", "Close combat familiar#Deals 6 contact damage per second"}, -- Gemini
-	{"319", "Cain's Other Eye", "Bounces around the room#Shoots towards Isaac#{{Damage}} Deals the same damage as Isaac"}, -- Cain's Other Eye
+	{"319", "Cain's Other Eye", "Bounces around the room#Low accuracy tears that deal Isaac's damage"}, -- Cain's Other Eye
 	{"320", "???'s Only Friend", "Controllable fly#Deals 37.5 contact damage per second"}, -- ???'s Only Friend
 	{"321", "Samson's Chains", "Draggable ball that can destroy rocks#Deals 10.7 contact damage per second"}, -- Samson's Chains
-	{"322", "Mongo Baby", "Mimics one of your familiars tears#Cycles through which familiar to mimic every shot"}, -- Mongo Baby
+	{"322", "Mongo Baby", "Mimics your baby familiars' tears#If you have none, shoots normal 3.5 damage tears"}, -- Mongo Baby
 	{"323", "Isaac's Tears", "Shoots 8 tears in all directions#The tears copy Isaac's tear effects#Recharges by shooting tears"}, -- Isaac's Tears
 	{"324", "Undefined", "Teleports Isaac to the {{TreasureRoom}} Treasure, {{SecretRoom}} Secret, {{SuperSecretRoom}} Super Secret or {{ErrorRoom}} I AM ERROR Room"}, -- Undefined
 	{"325", "Scissors", "{{Timer}} Isaac's head turns into a stationary familiar for the room#The body is controlled separately"}, -- Scissors
@@ -384,7 +384,7 @@ EID.descriptions[languageCode].collectibles={
 	{"359", "8 Inch Nails", "↑ {{Damage}} +1.5 Damage#Increases knockback"}, -- 8 Inch Nails
 	{"360", "Incubus", "Shoots tears with the same tear rate, damage and effects as Isaac"}, -- Incubus
 	{"361", "Fate's Reward", "Shoots tears with the same damage and effects as Isaac#Shoots at half the rate of other familiars"}, -- Fate's Reward
-	{"362", "Lil Chest", "Spawns a random pickup every few rooms"}, -- Lil Chest
+	{"362", "Lil Chest", "35% chance to spawn a pickup every room"}, -- Lil Chest
 	{"363", "Sworn Protector", "Orbital#Deals 105 contact damage per second#Blocks and attracts enemy shots#{{EternalHeart}} Blocking 10 shots in one room spawns an Eternal Heart"}, -- Sworn Protector
 	{"364", "Friend Zone", "Midrange fly orbital#Deals 45 contact damage per second"}, -- Friend Zone
 	{"365", "Lost Fly", "Moves along walls/obstacles#Deals 105 contact damage per second"}, -- Lost Fly
@@ -492,7 +492,7 @@ EID.descriptions[languageCode].collectibles={
 	{"467", "Finger!", "{{Damage}} Constantly deals 10% of Isaac's damage in the direction it points"}, -- Finger!
 	{"468", "Shade", "Follows Isaac's movement on a 1 second delay#Deals 30 contact damage per second#After it deals 600 damage, it is absorbed by Isaac, increasing his contact damage"}, -- Shade
 	{"469", "Depression", "Leaves a trail of creep#The creep deals 6 damage per second#Enemies that touch the cloud can be hit by a holy light beam"}, -- Depression
-	{"470", "Hushy", "Bounces around the room#Deals contact damage#Stops moving when Isaac shoots#Blocks projectiles when stopped"}, -- Hushy
+	{"470", "Hushy", "Bounces around the room#Deals 30 contact damage per second#Stops moving when Isaac shoots#Blocks projectiles when stopped"}, -- Hushy
 	{"471", "Lil Monstro", "{{Chargeable}} Charges a shotgun attack similar to {{Collectible229}} Monstro's Lung#Each tear deals 3.5 damage"}, -- Lil Monstro
 	{"472", "King Baby", "Other familiars follow it#Stops moving when Isaac shoots#Teleports back to Isaac when he stops shooting"}, -- King Baby
 	{"473", "Big Chubby", "Very slowly charges forwards#Blocks shots#Deals 40.5 contact damage per second"}, -- Big Chubby
@@ -546,8 +546,8 @@ EID.descriptions[languageCode].collectibles={
 	{"521", "Coupon", "Makes one random item in the {{Shop}} Shop or {{DevilRoom}} Devil Room free#Holding the item guarantees one Shop item is on sale"}, -- Coupon
 	{"522", "Telekinesis", "Stops all enemy projectiles that come close to Isaac for 3 seconds and throws them away from him afterwards"}, -- Telekinesis
 	{"523", "Moving Box", "Stores all pickups and items from the current room#Using the item again drops everything back on the floor#Allows Isaac to move things between rooms"}, -- Moving Box
-	{"524", "Technology Zero", "Isaac's tears are connected with beams of electricity#The beams deal the same damage as Isaac"}, -- Technology Zero
-	{"525", "Leprosy", "Taking damage spawns a projectile blocking orbital#Caps at 3 orbitals#Orbitals are destroyed if they take too much damage"}, -- Leprosy
+	{"524", "Technology Zero", "Isaac's tears are connected with beams of electricity#The beams deal Isaac's damage"}, -- Technology Zero
+	{"525", "Leprosy", "Taking damage spawns a projectile blocking orbital#Caps at 3 orbitals#They deal 35 contact damage per second#Orbitals are destroyed if they take too much damage"}, -- Leprosy
 	{"526", "7 Seals", "Spawns a small horseman familiar that spawns locusts#The horseman and its locust changes every 10 seconds"}, -- 7 Seals
 	{"527", "Mr. ME!", "Displays a movable cursor for a few seconds, then summons a ghost that will, depending on the cursor position:#Open doors or chests#Fetch an item#50% chance to steal from the Shop / Devil#Attack an enemy until it dies#Explode walls, rocks, shopkeepers, angel statues, machines, beggars"}, -- Mr. ME!
 	{"528", "Angelic Prism", "Orbital prism#Friendly tears hitting it split into 4"}, -- Angelic Prism
@@ -642,6 +642,88 @@ EID.descriptions[languageCode].carBattery = {
 	[523] = "Swaps box contents with room pickups", -- Moving Box
 	[545] = {8, 16}, -- Book of the Dead
 	[550] = "Stops stomps for two rooms (or Boss Rush waves)", -- Broken Shovel
+}
+
+-- Effect of BFFS! on Familiars
+EID.descriptions[languageCode].BFFSSynergies = {
+	["No Effect"] = "No effect",
+	["5.100.8"] = {3.5, 7}, -- Brother Bobby
+	["5.100.57"] = {75, 150}, -- Distant Admiration
+	["5.100.67"] = {3.5, 7}, -- Sister Maggy
+	["5.100.73"] = "Damage doubled", -- Cube of Meat
+	["5.100.88"] = {52.5, 105}, -- Little Chubby
+	["5.100.94"] = {"2", "1-2"}, -- Sack of Pennies
+	["5.100.95"] = {3.5, 7}, -- Robo-Baby
+	["5.100.96"] = {"3", "2-3"}, -- Little C.H.A.D.
+	["5.100.98"] = {"5-6", "4-5"}, -- The Relic
+	["5.100.99"] = {3.5, 7}, -- Little Gish
+	["5.100.99"] = {3.5, 7}, -- Little Steven
+	["5.100.112"] = {105, 210}, -- Guardian Angel
+	["5.100.113"] = {3, 6}, -- Demon Baby
+	["5.100.128"] = {30, 60}, -- Forever Alone
+	["5.100.131"] = {"3", "2-3"}, -- Bomb Bag
+	["5.100.144"] = {"3-4", "3"}, -- Bum Friend
+	["5.100.155"] = {17, 34}, -- The Peeper
+	["5.100.163"] = {3.5, 7}, -- Ghost Baby
+	["5.100.167"] = {4, 8}, -- Harlequin Baby
+	["5.100.170"] = {40, 80}, -- Daddy Longlegs
+	["5.100.172"] = {225, 450}, -- Sacrificial Dagger
+	["5.100.174"] = {"3-5", "6-10"}, -- Rainbow Baby
+	["5.100.187"] = "Damage doubled", -- Guppy's Hairball
+	["5.100.188"] = {3.5, 7, 7.5, 15}, -- Abel (includes Cain's Rep synergy)
+	["5.100.206"] = {105, 210}, -- Guillotine
+	["5.100.207"] = "Damage doubled", -- Ball of Bandages
+	["5.100.264"] = {22.5, 45}, -- Smart Fly
+	["5.100.266"] = "Spawns an extra Blue Spider", -- Juicy Sack
+	["5.100.267"] = {3.5, 7}, -- Robo-Baby 2.0
+	["5.100.270"] = {3.2, 6.4}, -- Leech
+	["5.100.271"] = {"5-6", "4-5"}, -- Mystery Sack
+	["5.100.272"] = {60, 85}, -- BBF
+	["5.100.273"] = {60, 85}, -- Bob's Brain
+	["5.100.274"] = {75, 150}, -- Best Bud
+	["5.100.275"] = {31.5, 63}, -- Lil Brimstone
+	["5.100.277"] = {4, 8}, -- Lil Haunt
+	["5.100.279"] = {30, 60}, -- Big Fan
+	["5.100.318"] = {6, 12}, -- Gemini
+	["5.100.319"] = {"Isaac's damage", "double {{CR}}Isaac's damage"}, -- Cain's Other Eye
+	["5.100.320"] = {37.5, 75}, -- ???'s Only Friend
+	["5.100.321"] = {10.7, 21.4}, -- Samson's Chains
+	["5.100.322"] = {3.5, 7}, -- Mongo Baby
+	["5.100.360"] = "Damage doubled", -- Incubus
+	["5.100.361"] = "Damage doubled", -- Fate's Reward
+	["5.100.362"] = {35, 44}, -- Lil Chest
+	["5.100.363"] = {105, 210}, -- Sworn Protector
+	["5.100.364"] = {45, 90}, -- Friend Zone
+	["5.100.365"] = {105, 210}, -- Lost Fly
+	["5.100.372"] = "Higher chance to spawn batteries", -- Charged Baby
+	["5.100.384"] = {"5-90", "10-180"}, -- Lil Gurdy
+	["5.100.385"] = "Damage doubled", -- Bumbo
+	["5.100.388"] = "Spawns chests more often", -- Key Bum
+	["5.100.389"] = {"5-6", "4-5"}, -- Rune Bag
+	["5.100.390"] = {10, 20}, -- Seraphim
+	["5.100.403"] = "Higher chance to spawn batteries", -- Spider Mod
+	["5.100.405"] = {120, 240}, -- GB Bug
+	["5.100.417"] = "The damaging aura gets bigger, but the damage up aura doesn't", -- Succubus
+	["5.100.426"] = {30, 60}, -- Obsessed Fan
+	["5.100.430"] = {"Isaac's damage", "double {{CR}}Isaac's damage"}, -- Papa Fly
+	["5.100.435"] = {3.5, 7}, -- Lil Loki
+	["5.100.468"] = {30, 60}, -- Shade
+	["5.100.470"] = {30, 60}, -- Hushy
+	["5.100.471"] = {3.5, 7}, -- Lil Monstro
+	["5.100.473"] = {40.5, 81}, -- Big Chubby
+	["5.100.491"] = {"3", "2-3"}, -- Acid Baby
+	["5.100.500"] = {"5-6", "4-5"}, -- Sack of Sacks
+	["5.100.508"] = {3, 6}, -- Mom's Razor
+	["5.100.509"] = {3.5, 7, 30, 60}, -- Bloodshot Eye
+	["5.100.511"] = {30, 60}, -- Angry Fly
+	["5.100.518"] = "Damage doubled", -- Buddy in a Box
+	["5.100.519"] = "Damage doubled", -- Lil Delirium
+	["5.100.525"] = {35, 70}, -- Leprosy
+	["5.100.526"] = "Horseman contact damage is doubled", -- 7 Seals
+	["5.100.537"] = "Increases creep size, but not damage", -- Lil Spewer
+	["5.100.539"] = "Spawns a champion variant of the enemy", -- Mystery Egg
+	["5.100.544"] = {6, 12}, -- Pointy Rib
+	["5.100.548"] = {7, 14}, -- Jaw Bone
 }
 
 ---------- Trinkets ----------
@@ -836,6 +918,39 @@ EID.descriptions[languageCode].cards={
 	{"54", "Era Walk", "{{Timer}} Receive for the room:#↑ {{Speed}} +0.5 Speed#↓ {{Shotspeed}} -1 Shot speed#{{Slow}} Slow down enemies"}, -- Era Walk
 }
 
+--[[ Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
+-- Strings will be appended to the original description (with line breaks replaced with a Tarot Cloth icon)
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple) ]]
+EID.descriptions[languageCode].tarotClothBuffsAB = {
+	[4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
+	[6] = {2, 4}, -- V - The Hierophant
+	[7] = {2, 4}, -- VI - The Lovers
+	[8] = {6, 12}, -- VII - The Chariot
+	[9] = {"Spawns {{ColorShinyPurple}}2{{CR}} random {{UnknownHeart}} hearts, {{Coin}} coins, {{Bomb}} bombs and {{Key}} keys"}, -- VIII - Justice
+	[11] = {" a ", " 2 ", "Machine", "{{CR}}Machines", "Machine", "{{CR}}Machines"}, -- X - Wheel of Fortune
+	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
+	[14] = {40, 80}, -- XIII - Death
+	[15] = {" a ", " 2 ", "Machine", "{{CR}}Machines", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XIV - Temperance (+ Greed version)
+	[17] = {6, 12}, -- XVI - The Tower
+	[20] = {100, 200}, -- XIX - The Sun
+	[21] = {" a ", " 2 ", "Beggar", "{{CR}}Beggars", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
+	[23] = {"Doubles", "Quadruples"}, -- 2 of Clubs
+	[24] = {"Doubles", "Quadruples"}, -- 2 of Diamonds
+	[25] = {"Doubles", "Quadruples"}, -- 2 of Spades
+	[26] = {"Doubles", "Quadruples"}, -- 2 of Hearts
+	[33] = {"Doubles", "Quadruples"}, -- Jera
+	[35] = {1, 2}, -- Dagaz
+	[37] = "Rerolls twice", -- Perthro
+	[38] = {3, 6, 3, 6}, -- Berkano
+	[39] = {30, 60}, -- Algiz
+	[40] = "Triggers 2 rune effects and tries to duplicate itself twice", -- Blank Rune
+	[41] = {40, 80}, -- Black Rune
+	[46] = {10, 20}, -- Suicide King
+	[48] = "Uses it twice", -- ? Card
+	[53] = {3, 6}, -- Ancient Recall
+}
+
 ---------- Pills ----------
 
 EID.descriptions[languageCode].unidentifiedPill = "Unidentified Pill"
@@ -888,6 +1003,32 @@ EID.descriptions[languageCode].pills={
 	{"44", "Horf!", "{{Collectible149}} Shoots one Ipecac tear"}, -- Horf!
 	{"45", "Feels like I'm walking on sunshine!", "{{Timer}} Receive for 6 seconds:#Invincibility#Isaac can't shoot (No contact damage)"}, -- Feels like I'm walking on sunshine!
 	{"46", "Vurp!", "Spawns the last pill used before Vurp!"}, -- Vurp!
+}
+
+---------- Character Info ----------
+-- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
+-- Soon, these descriptions, along with their starting item descriptions, will be in a tab in the Item Reminder
+-- The character names here are also used in getPlayerName to provide localized character names
+-- The numbers are provided to make this a quick reference for Player IDs
+EID.descriptions[languageCode].CharacterInfo = {
+	[0] = {"Isaac", ""},
+	[1] = {"Magdalene", ""},
+	[2] = {"Cain", ""},
+	[3] = {"Judas", ""},
+	[4] = {"???", "Can't have Red Hearts"},
+	[5] = {"Eve", "Eve's Whore of Babylon triggers at 1 Red Heart or less"}, --this could just be desc modifier?
+	[6] = {"Samson", ""},
+	[7] = {"Azazel", "Flight#Short range Brimstone instead of tears"},
+	[8] = {"Lazarus", "When you die, resurrect as Lazarus Risen with 1 Red Heart container"},
+	[9] = {"Eden", "Start with random stats and items each run"},
+	[10] = {"The Lost", "Flight#Spectral tears#No health#One devil deal per room can be taken for free"},
+	[11] = {"Lazarus Risen", "Increased stats and x1.2 damage multiplier"},
+	[12] = {"Dark Judas", "x2 Damage multiplier"},
+	[13] = {"Lilith", "Cannot shoot tears"},
+	[14] = {"Keeper", "Heal by picking up coins#Heart pickups are turned into Blue Flies"},
+	[15] = {"Apollyon", ""},
+	[16] = {"The Forgotten", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
+	[17] = {"The Forgotten Soul", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
 }
 
 ---------- Sacrifice Room ----------
@@ -969,7 +1110,8 @@ EID.descriptions[languageCode].ItemReminder = {
 		Actives = "Held active items",
 		Pockets = "Held pocket items",
 		Trinkets = "Held Trinkets",
-		Passives = "Held passive items"
+		Passives = "Held passive items",
+		Character = "Character Info"
 	}
 }
 
@@ -1010,40 +1152,7 @@ EID.descriptions[languageCode].PickupNames = {
 
 }
 
--- Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
--- Strings will be appended to the original description (with line breaks replaced with a Tarot Cloth icon)
--- Tables with one entry will completely replace the original description
--- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple)
-EID.descriptions[languageCode].tarotClothBuffsAB = {
-	[4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
-	[6] = {2, 4}, -- V - The Hierophant
-	[7] = {2, 4}, -- VI - The Lovers
-	[8] = {6, 12}, -- VII - The Chariot
-	[9] = {"Spawns {{ColorShinyPurple}}2{{CR}} random {{UnknownHeart}} hearts, {{Coin}} coins, {{Bomb}} bombs and {{Key}} keys"}, -- VIII - Justice
-	[11] = {" a ", " 2 ", "Machine", "{{CR}}Machines", "Machine", "{{CR}}Machines"}, -- X - Wheel of Fortune
-	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
-	[14] = {40, 80}, -- XIII - Death
-	[15] = {" a ", " 2 ", "Machine", "{{CR}}Machines", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XIV - Temperance (+ Greed version)
-	[17] = {6, 12}, -- XVI - The Tower
-	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {" a ", " 2 ", "Beggar", "{{CR}}Beggars", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
-	[23] = {"Doubles", "Quadruples"}, -- 2 of Clubs
-	[24] = {"Doubles", "Quadruples"}, -- 2 of Diamonds
-	[25] = {"Doubles", "Quadruples"}, -- 2 of Spades
-	[26] = {"Doubles", "Quadruples"}, -- 2 of Hearts
-	[33] = {"Doubles", "Quadruples"}, -- Jera
-	[35] = {1, 2}, -- Dagaz
-	[37] = "Rerolls twice", -- Perthro
-	[38] = {3, 6, 3, 6}, -- Berkano
-	[39] = {30, 60}, -- Algiz
-	[40] = "Triggers 2 rune effects and tries to duplicate itself twice", -- Blank Rune
-	[41] = {40, 80}, -- Black Rune
-	[46] = {10, 20}, -- Suicide King
-	[48] = "Uses it twice", -- ? Card
-	[53] = {3, 6}, -- Ancient Recall
-}
-
--- Conditional descriptions
+-- Conditional descriptions - DO NOT TRANSLATE THE FIRST PART IN ["BRACKETS"]
 -- Strings will be appended to the original description
 -- Tables with one entry will completely replace the original description
 -- Tables with two or more entries are find-replace pairs
@@ -1051,15 +1160,17 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 EID.descriptions[languageCode].ConditionalDescs = {
 	["Overridden"] = "Overridden by {1}",
 	["Overrides"] = "Overrides {1}",
+	["Almost No Effect"] = "Little to no effect for {1}",
 	["No Effect"] = "No effect for {1}",
 	["Can't Charge"] = "Can't charge {1}",
 	["Can't Be Charged"] = "Can't be charged by {1}",
 	["No Effect (Greed)"] = "{{GreedMode}} No effect in Greed Mode",
+	["No Effect (Copies)"] = "No additional effect from multiple copies", -- Having the item already, or having Diplopia while looking at a pedestal
 	
 	["No Red"] = "No effect for characters that can't have Red Hearts",
 	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
 	
-	["5.100.7"] = "x1.5 Damage multiplier while \"The Book of Belial\" or \"XV - The Devil\" effect is active", -- Blood of the Martyr
+	["5.100.7"] = "x1.5 Damage multiplier while {1} effect is active", -- Blood of the Martyr
 	["5.100.34"] = "x1.5 Damage multiplier", -- Book of Belial
 	["5.300.16"] = "x1.5 Damage multiplier", -- XV - The Devil
 	
@@ -1088,42 +1199,10 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["1 Room"] = "15 Second recharge while in an uncleared room", -- Actives + 9 Volt
 	["Timed"] = "Charge starts half full after use", -- Actives + 9 Volt
 	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
+	
+	["Suicide 1"] = "{1} can't prevent the death", -- Plan C, Damocles, Suicide King
+	["Suicide 2"] = "Does not prevent death by {1}", -- Plan C, Damocles, Suicide King
 }
 
-EID.descriptions[languageCode].BFFSSynergies = {
-	["NoEffect"] = "No effect",
-	["DoubleDamage"] = "Damage doubled",
-	["5.100.94"] = "Drops coins in a repeating pattern of 1, 2, 2 then 2 rooms", -- Sack of Pennies
-	["5.100.131"] = "Drops bombs in a repeating pattern of 2, 2 then 3 rooms", -- Bomb Bag
-	["5.100.273"] = "Doubles impact damage and increases explosive damage by 25", -- Bob's Brain
-	["5.100.266"] = "Spawns an extra Blue Spider", -- Juicy Sack
-	["5.100.360"] = "Shoots tears that deal 200% of your damage", -- Incubus
-	["5.100.417"] = "Increases radius, but not damage", -- Succubus
-	["5.100.537"] = "Increases pool size, but not damage", -- Lil Spewer
-	["5.100.539"] = "Spawns a champion variant of the enemy", -- Mystery Egg
-}
 
--- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
--- Soon, these descriptions, along with their starting item descriptions, will be in a tab in the Item Reminder
--- The character names here are also used in getPlayerName to provide localized character names
--- The numbers are provided to make this a quick reference for Player IDs
-EID.descriptions[languageCode].CharacterInfo = {
-	[0] = {"Isaac", ""},
-	[1] = {"Magdalene", ""},
-	[2] = {"Cain", ""},
-	[3] = {"Judas", ""},
-	[4] = {"???", "Can't have Red Hearts"},
-	[5] = {"Eve", "Eve's Whore of Babylon triggers at 1 Red Heart or less"}, --this could just be desc modifier?
-	[6] = {"Samson", ""},
-	[7] = {"Azazel", "Flight#Short range Brimstone instead of tears"},
-	[8] = {"Lazarus", "When you die, resurrect as Lazarus Risen with 1 Red Heart container"},
-	[9] = {"Eden", "Start with random stats and items each run"},
-	[10] = {"The Lost", "Flight#Spectral tears#No health#One devil deal per room can be taken for free"},
-	[11] = {"Lazarus Risen", "Increased stats and x1.2 damage multiplier"},
-	[12] = {"Dark Judas", "x2 Damage multiplier"},
-	[13] = {"Lilith", "Cannot shoot tears"},
-	[14] = {"Keeper", "Heal by picking up coins#Heart pickups are turned into Blue Flies"},
-	[15] = {"Apollyon", ""},
-	[16] = {"The Forgotten", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
-	[17] = {"The Forgotten Soul", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
-}
+

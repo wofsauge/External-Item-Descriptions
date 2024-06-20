@@ -731,6 +731,11 @@ EID.InlineColors = {
 		local c = EID.InlineColors
 		return SwagColors({c["ColorYellow"], c["ColorRed"]})
 	end,
+	-- Pink for BFFs <3, the two shades come from Nancy Bombs and Eraser
+	["BlinkPink"] = function(_)
+		local c = EID.InlineColors
+		return SwagColors({KColor(1, 0.698, 0.886, 1), KColor(1, 0.5, 1, 1)})
+	end,
 	-- Shiny purple color effect
 	["ColorShinyPurple"] = function(_)
 		return SwagColors({KColor(0.812, 0.627, 1, 1), KColor(0.62, 0.251, 1, 1)}, 40)
@@ -940,17 +945,21 @@ if EID.isRepentance then
 end
 
 -- Familiars that have no effect from BFFS!
-EID.BFFSNoSynergy = { [11] = true, [81] = true, [238] = true, [239] = true, [243] = true,  [265] = true, [268] = true, [269] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [405] = true, [431] = true, [436] = true, [469] = true, [472] = true, [492] = true, [516] = true, [528] = true, [542] = true, [543] = true }
--- todo: this table is wrong, for instance brown nugget didnt have one and then got one
+EID.BFFSNoSynergy = { [10] = true, [11] = true, [81] = true, [178] = true, [238] = true, [239] = true, [243] = true, [265] = true, [268] = true, [269] = true, [276] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [431] = true, [433] = true, [436] = true, [467] = true, [469] = true, [472] = true, [492] = true, [504] = true, [516] = true, [528] = true, [542] = true, [543] = true }
 if EID.isRepentance then
-	EID.BFFSNoSynergy[504] = true -- Brown Nugget
+	EID.BFFSNoSynergy[178] = false -- Holy Water
+	EID.BFFSNoSynergy[276] = false -- Isaac's Heart
+	EID.BFFSNoSynergy[405] = true -- GB Bug
+	EID.BFFSNoSynergy[467] = false -- Finger!
+	EID.BFFSNoSynergy[504] = false -- Brown Nugget
 	EID.BFFSNoSynergy[567] = true -- Paschal Candle
+	EID.BFFSNoSynergy[615] = true -- Lil Dumpy (I couldn't notice any change anyway)
 	EID.BFFSNoSynergy[651] = true -- Star of Bethlehem
 	EID.BFFSNoSynergy[697] = true -- Vanishing Twin
 end
 
--- Familiars that have a BFFS! effect from Hive Mind
-EID.HiveMindFamiliars = {}
+-- Familiars that count for Hive Mind in Repentance (although it could give them No Effect if it just increases size)
+EID.HiveMindFamiliars = { [10] = true, [57] = true, [128] = true, [170] = true, [264] = true, [272] = true, [274] = true, [279] = true, [320] = true, [364] = true, [365] = true, [403] = true, [426] = true, [430] = true, [504] = true, [511] = true, [575] = true, [581] = true, [629] = true, }
 
 -- Tainted character's respective normal version ID, for conditionals that apply to both versions of the character
 -- To help with other character pairs, Esau = Jacob, Dead Tainted Lazarus = Tainted Lazarus, Tainted Soul = Tainted Forgotten
@@ -971,6 +980,10 @@ EID.blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=tr
 -- Cards that are treated as runes
 EID.runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[55]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
 
+-- "Evil" item IDs for Black Feather
+EID.blackFeatherItems = {[215]=true,[216]=true,[230]=true,[260]=true,[262]=true,[339]=true,[344]=true}
+if EID.isRepentance then EID.blackFeatherItems[654] = true end
+EID.blackFeatherTrinkets = {[17]=true,[22]=true}
 
 
 ---------------- BAG OF CRAFTING DATA ------------------

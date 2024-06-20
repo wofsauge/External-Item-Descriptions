@@ -3,12 +3,12 @@ local game = Game()
 EID.TabPreviewID = 0
 -- Modifiers switching the previewed description can cause infinite loops or undesired text, use this to help prevent it
 EID.inModifierPreview = false
--- The "Hold Map Helper" needs to know if it shouldn't display because we're in a Hold Tab desc
+-- The "Item Reminder" needs to know if it shouldn't display because we're in a Hold Tab desc
 EID.TabDescThisFrame = false
 
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
 EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_VOID] = true
-EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_BFFS] = true
+EID.collectiblesToCheck["5.300.41"] = true -- Black Rune
 local maxSlot = 1
 -- Repentance modifiers
 if EID.isRepentance then
@@ -25,9 +25,6 @@ if EID.isRepentance then
 end
 EID.collectiblesOwned = {}
 EID.collectiblesAbsorbed = {}
-EID.blackRuneOwned = false
-EID.blackFeatherItems = {[215]=true,[216]=true,[230]=true,[260]=true,[262]=true,[339]=true,[344]=true,[654]=true,}
-EID.blackFeatherTrinkets = {[17]=true,[22]=true}
 
 EID.LastCollectibleCheck = 0
 function EID:CheckPlayersCollectibles()
@@ -35,30 +32,17 @@ function EID:CheckPlayersCollectibles()
 	-- (has to be checked regularly due to mechanics like D4 / Tainted Eden)
 	if EID.GameUpdateCount >= EID.LastCollectibleCheck + 15 then
 		EID.LastCollectibleCheck = EID.GameUpdateCount
-		local numPlayers = game:GetNumPlayers()
-		local players = {}; for i = 0, numPlayers - 1 do players[i] = Isaac.GetPlayer(i) end
 		for v,_ in pairs(EID.collectiblesToCheck) do
 			EID.collectiblesOwned[v] = false
 			EID.collectiblesAbsorbed[v] = false
-			for i = 0, numPlayers - 1 do
-				if players[i]:HasCollectible(v) then
-					EID.collectiblesOwned[v] = i
-					break
-				-- Check for the item being inside this player's Void
-				-- note: currently Absorb checks are only done as a backup, will always be false if it's owned legitimately
-				elseif EID.absorbedItems[tostring(i)] and EID.absorbedItems[tostring(i)][tostring(v)] and players[i]:HasCollectible(477) then
-					EID.collectiblesAbsorbed[v] = i
-				end
-			end
-		end
-		-- other Card in inventory checks could be done in this loop here if ever desired
-		EID.blackRuneOwned = false
-		for i = 0, numPlayers - 1 do
-			for j = 0, maxSlot do
-				if players[i]:GetCard(j) == Card.RUNE_BLACK then
-					EID.blackRuneOwned = i
-					break
-				end
+			-- Check for any player having the item, set collectiblesOwned to that player's ID
+			local result, player, playerNum = EID:PlayersHaveItem(v)
+			if result then EID.collectiblesOwned[v] = playerNum
+			-- Check for the item being inside a player's Void if it's a collectible
+			-- note: currently Absorb checks are only done as a backup, will always be false if it's owned legitimately
+			elseif type(v) == "number" then
+				result, player, playerNum = EID:PlayersVoidedCollectible(v)
+				if result then EID.collectiblesAbsorbed[v] = playerNum end
 			end
 		end
 	end
@@ -93,7 +77,7 @@ local function VoidCallback(descObj, isRune)
 	if EID.GameUpdateCount >= lastVoidCheck + 30 or EID.RecheckVoid then
 		EID:VoidRoomCheck()
 		if EID.collectiblesOwned[477] then EID:VoidRNGCheck(Isaac.GetPlayer(EID.collectiblesOwned[477]), false) end
-		if EID.blackRuneOwned then EID:VoidRNGCheck(Isaac.GetPlayer(EID.blackRuneOwned), true) end
+		if EID.collectiblesOwned["5.300.41"] then EID:VoidRNGCheck(Isaac.GetPlayer(EID.collectiblesOwned["5.300.41"]), true) end
 		lastVoidCheck = EID.GameUpdateCount
 		EID.RecheckVoid = false
 	end
@@ -229,24 +213,25 @@ local function SacrificeRoomCallback(descObj)
 	return descObj
 end
 
+-- Handle Black Feather dynamic damage up text
+-- TODO: Make this co-op friendly, add conditionals to the black feather items
 local function BlackFeatherCallback(descObj)
 	local itemCounter = 0
 	for itemID, _ in pairs(EID.blackFeatherItems) do
 		itemCounter = itemCounter + EID.player:GetCollectibleNum(itemID)
 	end
 	for trinketID, _ in pairs(EID.blackFeatherTrinkets) do
-		-- in AB+, GetTrinketMultiplier doesn't take an ID, it's just 1 (or 2 with Mom's Box)
 		if EID.isRepentance then
 			itemCounter = itemCounter + EID.player:GetTrinketMultiplier(trinketID)
 		else
-			if EID.player:GetTrinket(0) == trinketID then itemCounter = itemCounter + EID.player:GetTrinketMultiplier() end
-			if EID.player:GetTrinket(1) == trinketID then itemCounter = itemCounter + EID.player:GetTrinketMultiplier() end
+			if EID.player:HasTrinket(trinketID) then itemCounter = itemCounter + 1 end
 		end
 	end
 	
-	local hasBox = EID.collectiblesOwned[439]
+	local hasBox = EID.player:HasCollectible(439)
 	local isGolden = EID.isRepentance and ((descObj.ObjSubType & TrinketType.TRINKET_GOLDEN_FLAG) == TrinketType.TRINKET_GOLDEN_FLAG)
-	local damageMultiplied = 0.5 * itemCounter * (hasBox and 2 or 1) * (isGolden and 2 or 1)
+	local base = EID.isRepentance and 0.5 or 0.2
+	local damageMultiplied = base * itemCounter * (hasBox and 2 or 1) * (isGolden and 2 or 1)
 	local dmgColor = (hasBox or isGolden) and "ColorGold" or "ColorLime"
 
 	local description = EID:getDescriptionEntry("BlackFeatherInformation")
@@ -254,18 +239,6 @@ local function BlackFeatherCallback(descObj)
 	description, _ =  EID:ReplaceVariableStr(description, 2, "{{"..dmgColor.."}}"..damageMultiplied.."{{CR}}")
 
 	EID:appendToDescription(descObj, "# "..description)
-	return descObj
-end
-
-local function BFFSSynergiesCallback(descObj)
-	local description = EID:getDescriptionEntry("BFFSSynergies", descObj.fullItemString, true)
-	if EID.BFFSNoSynergy[descObj.ObjSubType] then
-		description = EID:getDescriptionEntry("BFFSSynergies", "NoEffect")
-	elseif description == nil then
-		description = EID:getDescriptionEntry("BFFSSynergies", "DoubleDamage")
-	end
-
-	EID:appendToDescription(descObj, "#{{Collectible247}} {{ColorOrange}}" .. description .. "{{CR}}")
 	return descObj
 end
 
@@ -804,16 +777,9 @@ local function EIDConditionsAB(descObj)
 
 		if EID.Config["DisplayVoidStatInfo"] then
 			if EID.collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
-			if EID.blackRuneOwned then table.insert(callbacks, BlackRuneCallback) end
+			if EID.collectiblesOwned["5.300.41"] then table.insert(callbacks, BlackRuneCallback) end
 		end
-
-		-- BFF Synergy check
-		if EID.collectiblesOwned[247] then
-			local config = EID.itemConfig:GetCollectible(descObj.ObjSubType)
-			if config ~= nil and config.Type == ItemType.ITEM_FAMILIAR then
-				table.insert(callbacks, BFFSSynergiesCallback)
-			end
-		end
+		
 	elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
 		if descObj.ObjSubType == 80 then table.insert(callbacks, BlackFeatherCallback) end
 	end

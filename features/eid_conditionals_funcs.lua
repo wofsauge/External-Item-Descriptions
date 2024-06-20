@@ -44,28 +44,41 @@ function EID:AddConditional(IDs, funcText, modText, extraTable, insertPoint)
 	end
 end
 
--- Easy to use functions for conditionals that rely on having a specific collectible/character
--- By default, they'll have a bulletpoint for the coll/char, and {1} becomes the coll/char's name
+-- Easy to use functions for conditionals that rely on having a specific item/character
+-- By default, they'll have a bulletpoint for the item/char, and {1} becomes the item/char's name
 
 -- checkInReminder is for if a synergy is no longer relevant once the item isn't obtainable (e.g. Abyss locusts) (true by default)
-function EID:AddCollectibleConditional(IDs, ownedIDs, modText, extraTable, checkInReminder)
+function EID:AddItemConditional(IDs, ownedIDs, modText, extraTable, checkInReminder)
 	if type(ownedIDs) ~= "table" then ownedIDs = { ownedIDs } end
 	if checkInReminder == nil then checkInReminder = true end
 	extraTable = extraTable or {}
 	for _, ownedID in ipairs(ownedIDs) do
 		EID.collectiblesToCheck[ownedID] = true
 		local newTable = {}; for k, v in pairs(extraTable) do newTable[k] = v end
-		if newTable.variableText == nil then newTable.variableText = "{{NameOnlyC" .. ownedID .. "}}" end
-		if newTable.bulletpoint == nil then newTable.bulletpoint = "Collectible" .. ownedID end
-		EID:AddConditional(IDs, function() return EID:ConditionalCollCheck(ownedID, checkInReminder) end, modText, newTable)
+		local tvs = ownedID; if type(ownedID) == "number" then tvs = "5.100." .. ownedID end
+		
+		if newTable.variableText == nil then newTable.variableText = "{{NameOnly" .. tvs .. "}}" end
+		if newTable.bulletpoint == nil then newTable.bulletpoint = "Item" .. tvs end
+		EID:AddConditional(IDs, function() return EID:ConditionalItemCheck(ownedID, checkInReminder) end, modText, newTable)
 	end
 end
 
 -- For adding pairs of abilities to collectibles; you can define a different modifier text for each of them
 -- example: EID:AddSynergyConditional({list of IDs overridden by Brimstone}, Brimstone, "Overridden", "Overrides")
 function EID:AddSynergyConditional(IDs, ownedIDs, modText1, modText2, extraTable1, extraTable2, checkInReminder)
-	EID:AddCollectibleConditional(IDs, ownedIDs, modText1, extraTable1, checkInReminder)
-	EID:AddCollectibleConditional(ownedIDs, IDs, modText2 or modText1, extraTable2 or extraTable1, checkInReminder)
+	EID:AddItemConditional(IDs, ownedIDs, modText1, extraTable1, checkInReminder)
+	EID:AddItemConditional(ownedIDs, IDs, modText2 or modText1, extraTable2 or extraTable1, checkInReminder)
+end
+
+-- For adding a conditional that looks at owning itself; item reminder is of course disabled
+-- Holding Diplopia should probably also trigger this type of conditional, so it's included by default
+function EID:AddSelfConditional(ownedIDs, modText, extraTable, includeDiplopia)
+	if type(ownedIDs) ~= "table" then ownedIDs = { ownedIDs } end
+	if includeDiplopia == nil then includeDiplopia = true end
+	for _, ownedID in ipairs(ownedIDs) do
+		if includeDiplopia then EID:AddItemConditional(ownedID, {ownedID, 347}, modText, extraTable, false)
+		else EID:AddItemConditional(ownedID, ownedID, modText, extraTable, false) end
+	end
 end
 
 -- includeTainted is for if you want to check the normal and tainted version of a character (true by default)
@@ -84,39 +97,28 @@ end
 
 ----- Evaluation Functions -----
 
+function EID:ConditionalItemCheck(itemID, checkInReminder)
+	if EID.InsideItemReminder then
+		if not checkInReminder then return false end
+		local player = EID.ItemReminderPlayerEntity
+		if EID:PlayerHasItem(player, itemID) or EID:PlayerVoidedCollectible(player, itemID) then return true end
+	else
+		return EID.collectiblesOwned[itemID] or EID.collectiblesAbsorbed[itemID]
+	end
+end
+
 function EID:ConditionalCharCheck(playerType, includeTainted)
 	-- We don't want to display irrelevant item info inside the Item Reminder
 	if EID.InsideItemReminder then
-		local player = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
+		local player = EID.ItemReminderPlayerEntity
 		if player:GetPlayerType() == playerType then
 			return true
 		elseif includeTainted and EID.isRepentance and EID.TaintedToRegularID[player:GetPlayerType()] == playerType then
 			return true
-		else
-			return false
 		end
 	else
 		return EID:PlayersHaveCharacter(playerType, includeTainted)
 	end
-end
-
-function EID:ConditionalCollCheck(collectibleID, checkInReminder)
-	-- We don't want to display irrelevant item info inside the Item Reminder
-	if EID.InsideItemReminder then
-		if not checkInReminder then return false end
-		local player = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
-		if player:HasCollectible(collectibleID) then return true end
-		-- Check for the item being inside the Item Reminder player's Void (not sure if this is ever relevant...)
-		if player:HasCollectible(477) then
-			local playerID = EID:getPlayerID(player)
-			if EID.absorbedItems[tostring(playerID)] and EID.absorbedItems[tostring(playerID)][tostring(collectibleID)] then
-				return true
-			end
-		end
-	else
-		return EID.collectiblesOwned[collectibleID] or EID.collectiblesAbsorbed[collectibleID]
-	end
-	return false
 end
 
 function EID:IsGreedMode()
@@ -124,7 +126,7 @@ function EID:IsGreedMode()
 end
 
 function EID:IsGreedModePlusTarot()
-	return game:IsGreedMode() and EID:ConditionalCollCheck(451, true)
+	return game:IsGreedMode() and EID:ConditionalItemCheck(451, true)
 end
 
 function EID:IsHardMode()
@@ -154,6 +156,22 @@ end
 function EID:CheckForCarBattery(descObj)
 	if EID.CarBatteryNoSynergy[descObj.ObjSubType] then return "No Effect"
 	else return descObj.ObjSubType end
+end
+
+function EID:CheckForBFFS(descObj)
+	local config = EID.itemConfig:GetCollectible(descObj.ObjSubType)
+	-- Check for no effect, then the table of synergies (will we end up not doing the defualt "double damage" text?)
+	if EID.BFFSNoSynergy[descObj.ObjSubType] then return "No Effect" end
+	
+	if config ~= nil and config.Type == ItemType.ITEM_FAMILIAR then
+		return descObj.fullItemString
+	end
+	return "N/A"
+end
+
+function EID:CheckForHiveMind(descObj)
+	if EID.HiveMindFamiliars[descObj.ObjSubType] then return descObj.fullItemString end
+	return "N/A"
 end
 
 -- Check for a player having an active item with a specific quantity of charges, or charge type
@@ -236,7 +254,7 @@ function EID:applyConditionals(descObj)
 
 	local typeVar = descObj.ObjType.."."..descObj.ObjVariant -- for general conditions (Tarot Cloth, Book of Virtues)
 	local typeVarSub = descObj.fullItemString -- for specific conditions
-	-- Combine general+specific conditions into one table
+	-- Combine specific+generic conditions into one table (in that order)
 	local conds = {}
 	if EID.DescriptionConditions[typeVarSub] then TableConcat(conds, EID.DescriptionConditions[typeVarSub]) end
 	if EID.DescriptionConditions[typeVar] then TableConcat(conds, EID.DescriptionConditions[typeVar]) end
@@ -286,24 +304,33 @@ function EID:applyConditionals(descObj)
 
 				-- Table with 2+ entries = find and replace pairs
 				-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
+				-- If there's an odd number of entries, the last one is appended
 			else
 				local pos = 1
 				while pos < #text do
 					local toFind = text[pos]
-					local replaceWith = EID:ReplaceVariableStr(text[pos + 1], 1, variableText)
-					if cond.replaceColor then replaceWith = "{{" .. cond.replaceColor .. "}}" .. replaceWith .. "{{CR}}" end
-					--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
-					if (type(toFind) == "number") then
-						local count = 0
-						descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
-							if (s == tostring(toFind) and count == 0) then
-								count = count + 1
-								return replaceWith
-							end
-						end)
-						-- Basic find+replace for non-numbers
+					if text[pos + 1] then
+						local replaceWith = EID:ReplaceVariableStr(text[pos + 1], 1, variableText)
+						if cond.replaceColor then replaceWith = "{{" .. cond.replaceColor .. "}}" .. replaceWith .. "{{CR}}" end
+						--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
+						if (type(toFind) == "number") then
+							local count = 0
+							descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
+								if (s == tostring(toFind) and count == 0) then
+									count = count + 1
+									return replaceWith
+								end
+							end)
+							-- Basic find+replace for non-numbers
+						else
+							descObj.Description = replace(descObj.Description, tostring(toFind), replaceWith, 1)
+						end
 					else
-						descObj.Description = replace(descObj.Description, tostring(toFind), replaceWith, 1)
+						toFind = EID:ReplaceVariableStr(toFind, 1, variableText)
+						local iconStr = "#"
+						if bulletpoint then iconStr = iconStr .. "{{" .. bulletpoint .. "}} " end
+						if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end
+						EID:appendToDescription(descObj, iconStr .. toFind:gsub("#", iconStr))
 					end
 					pos = pos + 2
 				end

@@ -1014,7 +1014,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
-	["NoEffect"] = "Aucun effet",
+	["No Effect"] = "Aucun effet",
 	["DoubleDamage"] = "Double les dégâts infligés",
 	["5.100.273"] = "Augmente les dégâts de contact et de l'explosion", -- Bob's Brain
 	["5.100.266"] = "Invoque une araignée bleue supplémentaire", -- Juicy Sack
