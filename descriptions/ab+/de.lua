@@ -76,7 +76,7 @@ EID.descriptions[languageCode].collectibles={
 	{"53", "Magneto", "Verbrauchsgut wird von Isaac angezogen"}, -- Magneto
 	{"54", "Schatzkarte", "Deckt den Grundriss des Stockwerks auf#Deckt keine Raum-Symbole auf"}, -- Treasure Map
 	{"55", "Mamas Auge", "50% Chance, eine zusätzliche Träne nach hinten zu schießen#{{Luck}} 100% Chance ab 2 Glück"}, -- Mom's Eye
-	{"56", "Zitronen-Missgeschick", "Kreiert eine Pfütze#Die Pfütze verursacht Feinden bei Kontakt 24 Schade pro Sekunde"}, -- Lemon Mishap
+	{"56", "Zitronen-Missgeschick", "Hinterlässt eine Pfütze#Die Pfütze verursacht Feinden bei Kontakt 24 Schade pro Sekunde"}, -- Lemon Mishap
 	{"57", "Ferne Bewunderung", "Satelliten Fliege#Verursacht bei Kontakt 75 Schaden pro Sekunde"}, -- Distant Admiration
 	{"58", "Buch der Schatten", "{{Timer}} Unverwundbarkeit für 10 Sekunden"}, -- Book of Shadows
 	{"59", "", "<Gegenstand existiert nicht>"},
@@ -146,16 +146,16 @@ EID.descriptions[languageCode].collectibles={
 	{"123", "Monster-Handbuch", "{{Timer}} Lässt einen zufälligen Begleiter für diesen Raum erscheinen"}, -- Monster Manual
 	{"124", "Schriftrollen vom Toten Meer", "Löst den Effekt eines zufälligen aktiven Gegenstands aus"}, -- Dead Sea Scrolls
 	{"125", "Bobby-Bombe", "{{Bomb}} +5 Bomben#Zielsuchende Bomben"}, -- Bobby-Bomb
-	{"126", "Rasierklinge", "↑ {{Damage}} +1.2 Schaden für diesen Raum#{{Warning}} Verursacht 1 Herz Schaden bei Isaac#{{Heart}} Entfernt zuerst Rote Herzen"}, -- Razor Blade
+	{"126", "Rasierklinge", "↑ {{Damage}} +1.2 Schaden für diesen Raum#{{Warning}} Verursacht 1 Herz Schaden bei Isaac#{{Heart}} Entfernt Rote Herzen zuerst"}, -- Razor Blade
 	{"127", "Vergissmeinjetzt", "{{Warning}} EINMALIGE VERWENDUNG {{Warning}}#Würfelt und startet das gesamte Stockwerk neu"}, -- Forget Me Now
 	{"128", "Für immer alleine", "Langstrecken-Satelliten Fliege#Verursacht bei Kontakt 30 Schaden pro Sekunde"}, -- Forever Alone
 	{"129", "Eimer voll Schmalz", "↑ {{EmptyHeart}} +2 Leere Herzcontainer#↓ {{Speed}} -0.2 Tempo#{{HalfHeart}} Heilt ein halbes Herz"}, -- Bucket of Lard
 	{"130", "Ein Pony", "Wenn getragen:#{{Speed}} Setzt dein Tempo auf mindestens 1.5#Flug#Bei Benutzung stürmt Isaac in Bewegungsrichtung"}, -- A Pony
-	{"131", "Bombentasche", "{{Bomb}} Lässt alle 2-3 Räume 1 Bomben-Verbrauchsgut erscheinen"}, -- Bomb Bag
+	{"131", "Bombentasche", "{{Bomb}} Lässt alle 3 Räume 1 Bomben-Verbrauchsgut erscheinen"}, -- Bomb Bag
 	{"132", "Ein Klumpen Kohle", "{{Damage}} Tränen verursachen mehr Schaden, basierend auf der zurückgelegten Distanz"}, -- A Lump of Coal
 	{"133", "Guppys Pfote", "{{SoulHeart}} Wandelt 1 Herzcontainer in 3 Seelenherzen um"}, -- Guppy's Paw
 	{"134", "Guppys Schwanz", "{{Chest}} 33% Chance, die Belohnung nach dem Abschließen eines Raumes durch eine Truhe zu ersetzen#33% Chance, keine Belohnung nach dem Abschließen eines Raumes erscheinen zu lassen"}, -- Guppy's Tail
-	{"135", "Infusionsbeutel", "{{Coin}} Fügt Isaac ein halbes Herz Schaden zu und lässt 1-2 Münzen erscheinen#{{Heart}} Verbraucht Rote Herzen zuerst"}, -- IV Bag
+	{"135", "Infusionsbeutel", "{{Coin}} Fügt Isaac ein halbes Herz Schaden zu und lässt 1-2 Münzen erscheinen#{{Heart}} Entfernt Rote Herzen zuerst"}, -- IV Bag
 	{"136", "Bester Freund", "Lässt einen Lockvogel-Isaac erscheinen, der Feinde anlockt und nach 5 Sekunden explodiert"}, -- Best Friend
 	{"137", "Fernzünder", "{{Bomb}} +5 Bomben#Isaacs Bomben explodieren nicht mehr automatisch#Bei Benutzung, entzündet alle Bomben von Isaac gleichzeitig"}, -- Remote Detonator
 	{"138", "Stigmata", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} +0.3 Schaden"}, -- Stigmata
@@ -164,7 +164,7 @@ EID.descriptions[languageCode].collectibles={
 	{"141", "Geschmückter Junge", "{{Coin}} Lässt 7 zufällige Münzen erscheinen"}, -- Pageant Boy
 	{"142", "Skapulier", "{{SoulHeart}} Isaac erhält 1 Seelenherz, wenn er auf ein halbes Herz geschädigt wird#Kann nur einmal pro Raum geschehen#Verlassen und Betreten des Raums ermöglicht, den Effekt erneut auszulösen"}, -- Scapular
 	{"143", "Tempo machen", "↑ {{Speed}} +0.3 Tempo#↑ {{Shotspeed}} +0.2 Schusstempo"}, -- Speed Ball
-	{"144", "Pennerfreund", "{{Coin}} Hebt nahegelegene Münzen auf#Lässt im Gegenzug zufällige Verbrauchsgüter erscheinen"}, -- Bum Friend
+	{"144", "Pennerfreund", "{{Coin}} Hebt nahegelegene Münzen auf#Lässt alle 3-4 Münzen zufällige Verbrauchsgüter erscheinen"}, -- Bum Friend
 	{"145", "Guppys Kopf", "Lässt 2-4 blaue Fliegen erscheinen"}, -- Guppy's Head
 	{"146", "Gebetskarte", "{{EternalHeart}} +1 Ewiges Herz"}, -- Prayer Card
 	{"147", "Axt von Notch", "{{Timer}} Für diesen Raum kann Isaac Steine und Wände zu Geheimräumen durch Hineinlaufen zerstören"}, -- Notched Axe
@@ -175,7 +175,7 @@ EID.descriptions[languageCode].collectibles={
 	{"152", "Technologie 2", "↓ {{Tears}} x0.5 Tränen-Multiplikator#↓ {{Damage}} x0.65 Schadens-Multiplikator#Ersetzt Tränen aus Isaacs rechtem Auge durch einen kontinuierlichen Laser#{{Damage}} Der Laser verursacht 3x Isaacs Schaden pro Sekunde"}, -- Technology 2
 	{"153", "Mutierte Spinne", "↓ {{Tears}} x0.48 Tränen-Multiplikator#↓ {{Tears}} +3 Tränenverzögerung#Vierfacher Schuss"}, -- Mutant Spider
 	{"154", "Chemisches Peeling", "↑ {{Damage}} +2 Schaden für das linke Auge"}, -- Chemical Peel
-	{"155", "Der Linser", "Schwebt durch den Raum#Verursacht bei Kontakt 17.1 Schaden pro Sekunde"}, -- The Peeper
+	{"155", "Der Linser", "Schwebt durch den Raum#Verursacht bei Kontakt 17 Schaden pro Sekunde"}, -- The Peeper
 	{"156", "Habit", "{{Battery}} Beim Erleiden von Schaden wird 1 Ladung dem aktiven Gegenstand hinzugefügt"}, -- Habit
 	{"157", "Blutdurst", "↑ {{Damage}} Beim Erleiden von Schaden erhöht sich der Schaden#Bis zu 6 Mal pro Stockwerk möglich#Hält für das gesamte Stockwerk an"}, -- Bloody Lust
 	{"158", "Kristallkugel", "Lässt ein {{SoulHeart}} Seelenherz, eine {{Rune}} Rune oder eine {{Card}} Karte erscheinen#{{Timer}} Volle Kartenaufdeckung für das Stockwerk (außer {{SuperSecretRoom}} Supergeheimraum)"}, -- Crystal Ball
@@ -197,28 +197,28 @@ EID.descriptions[languageCode].collectibles={
 	{"174", "Regenbogenbaby", "Schießt zufällige Tränen#Verursacht 3-5 Schaden pro Träne"}, -- Rainbow Baby
 	{"175", "Papas Schlüssel", "Öffnet alle Türen im Raum, einschließlich {{SecretRoom}}{{SuperSecretRoom}}Geheimräume, {{ChallengeRoom}}{{BossRushRoom}}Herausforderungsräume und die Mega-Satan-Tür"}, -- Dad's Key
 	{"176", "Stammzellen", "↑ {{Heart}} +1 Gesundheit#↑ {{Shotspeed}} +0.16 Schusstempo"}, -- Stem Cells
-	{"177", "Mobiler Spielautomat", "Tragbarer Spielautomat#{{Coin}} Gib 1 Münze aus für die Chance, ein Verbrauchsgut erscheinen zu lassen"}, -- Portable Slot
-	{"178", "Holy Water", "Taking damage spills a pool of creep#The creep deals 24 damage per second"}, -- Holy Water
-	{"179", "Fate", "{{EternalHeart}} +1 Ewiges Herz#Flug"}, -- Fate
-	{"180", "The Black Bean", "Isaac farts when damaged#{{Poison}} The fart poisons enemies"}, -- The Black Bean
-	{"181", "White Pony", "{{Speed}} Sets your Tempo to at least 1.5#Flug while held#Using the item dashes in the direction of Isaac's movement, leaving behind beams of light"}, -- White Pony
-	{"182", "Sacred Heart", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} x2.3 Schadens-Multiplikator#↑ {{Damage}} +1 Schaden#↑ {{Range}} +0.38 Reichweite#↑ +0.75 Tränenhöhe#↓ {{Tears}} -0.4 Tränen#↓ {{Shotspeed}} -0.25 Schusstempo#{{Heart}} Volle Gesundheit#Zielsuchende Tränen"}, -- Sacred Heart
-	{"183", "Tooth Picks", "↑ {{Tears}} +0.7 Tränen#↑ {{Shotspeed}} +0.16 Schusstempo"}, -- Tooth Picks
-	{"184", "Holy Grail", "↑ {{Heart}} +1 Gesundheit#Flug"}, -- Holy Grail
-	{"185", "Dead Dove", "Spectral tears#Flug"}, -- Dead Dove
-	{"186", "Blood Rights", "Deals 40 damage to every enemy#{{Warning}} Deals 1 heart of damage to Isaac#{{Heart}} Removes Red Hearts first"}, -- Blood Rights
-	{"187", "Guppy's Hairball", "Moving swings the hairball around#The ball grows when it kills an enemy#The ball deals more damage the bigger it is"}, -- Guppy's Hairball
-	{"188", "Abel", "Mirrors Isaac's movement#Shoots towards Isaac#Deals 3.5 damage per tear"}, -- Abel
-	{"189", "SMB Super Fan", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.2 Tempo#↑ {{Tears}} +0.2 Tränen#↑ {{Damage}} +0.3 Schaden#↑ {{Range}} +0.5 Reichweite#↑ +1 Tränenhöhe#{{Heart}} Volle Gesundheit"}, -- SMB Super Fan
+	{"177", "Mobiler Spielautomat", "{{Coin}} Gib 1 Münze aus für die Chance, ein Verbrauchsgut erscheinen zu lassen"}, -- Portable Slot
+	{"178", "Weihwasser", "Beim Erleiden von Schaden hinterlässt Isaac eine Pfütze#Die Pfütze verursacht 24 Schaden pro Sekunde"}, -- Holy Water
+	{"179", "Schicksal", "{{EternalHeart}} +1 Ewiges Herz#Flug"}, -- Fate
+	{"180", "Die schwarze Bohne", "Isaac furzt beim Erleiden von Schaden#{{Poison}} Der Furz vergiftet Feinde"}, -- The Black Bean
+	{"181", "Weißes Pony", "{{Speed}} Setzt dein Tempo auf mindestens 1.5#Flug, solange im Besitz#Bei Benutzung stürmt Isaac in die Richtung seiner Bewegung und hinterlässt Lichtstrahlen"}, -- White Pony
+	{"182", "Heiliges Herz", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} x2.3 Schadens-Multiplikator#↑ {{Damage}} +1 Schaden#↑ {{Range}} +0.38 Reichweite#↑ +0.75 Tränenhöhe#↓ {{Tears}} -0.4 Tränen#↓ {{Shotspeed}} -0.25 Schusstempo#{{Heart}} Volle Gesundheit#Zielsuchende Tränen"}, -- Sacred Heart
+	{"183", "Zahnstocher", "↑ {{Tears}} +0.7 Tränen#↑ {{Shotspeed}} +0.16 Schusstempo"}, -- Tooth Picks
+	{"184", "Heiliger Gral", "↑ {{Heart}} +1 Gesundheit#Flug"}, -- Holy Grail
+	{"185", "Tote Taube", "Spektrale Tränen#Flug"}, -- Dead Dove
+	{"186", "Blutrechte", "Verursacht jedem Feind 40 Schaden#{{Warning}} Verursacht 1 Herz Schaden bei Isaac#{{Heart}} Entfernt Rote Herzen zuerst"}, -- Blood Rights
+	{"187", "Guppys Haarball", "Durch Bewegung wird der Haarballen herumgeschwungen#Der Ball wächst, wenn er einen Feind tötet#Der Ball verursacht mehr Schaden, je größer er ist"}, -- Guppy's Hairball
+	{"188", "Abel", "Spiegelt Isaacs Bewegung#Schießt Richtung Isaac#Verursacht 3.5 Schaden pro Träne"}, -- Abel
+	{"189", "SMB-Superfan", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.2 Tempo#↑ {{Tears}} +0.2 Tränen#↑ {{Damage}} +0.3 Schaden#↑ {{Range}} +0.5 Reichweite#↑ +1 Tränenhöhe#{{Heart}} Volle Gesundheit"}, -- SMB Super Fan
 	{"190", "Pyro", "{{Bomb}} +99 Bomben"}, -- Pyro
-	{"191", "3 Dollar Bill", "Isaac's tears get random effects every 2-3 seconds"}, -- 3 Dollar Bill
-	{"192", "Telepathy For Dummies", "{{Timer}} Zielsuchende Tränen für diesen Raum"}, -- Telepathy For Dummies
-	{"193", "MEAT!", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} +0.3 Schaden"}, -- MEAT!
-	{"194", "Magic 8 Ball", "↑ {{Shotspeed}} +0.16 Schusstempo#{{Card}} Spawns a card"}, -- Magic 8 Ball
-	{"195", "Mom's Coin Purse", "{{Pill}} Spawns 4 pills"}, -- Mom's Coin Purse
-	{"196", "Squeezy", "↑ {{Tears}} +0.4 Tränen#{{SoulHeart}} Spawns 2 Seelenherzen"}, -- Squeezy
-	{"197", "Jesus Juice", "↑ {{Damage}} +0.5 Schaden#↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe"}, -- Jesus Juice
-	{"198", "Box", "Spawns 1 pickup of each type"}, -- Box
+	{"191", "3-Dollar-Schein", "Isaacs Tränen erhalten alle 2-3 Sekunden zufällige Effekte"}, -- 3 Dollar Bill
+	{"192", "Telepathie für Dummies", "{{Timer}} Zielsuchende Tränen für diesen Raum"}, -- Telepathy For Dummies
+	{"193", "FLEISCH!", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} +0.3 Schaden"}, -- MEAT!
+	{"194", "Schwarze Zauberkugel", "↑ {{Shotspeed}} +0.16 Schusstempo#{{Card}} Lässt eine Karte erscheinen"}, -- Magic 8 Ball
+	{"195", "Mamas Geldbörse", "{{Pill}} Lässt 4 Pillen erscheinen"}, -- Mom's Coin Purse
+	{"196", "Quetschi", "↑ {{Tears}} +0.4 Tränen#{{SoulHeart}} Lässt 2 Seelenherzen erscheinen"}, -- Squeezy
+	{"197", "Jesus-Getränk", "↑ {{Damage}} +0.5 Schaden#↑ {{Range}} +0.25 Reichweite#↑ +0.5 Tränenhöhe"}, -- Jesus Juice
+	{"198", "Box", "Lässt 1 Verbrauchsgut jeder Art erscheinen"}, -- Box
 	{"199", "Mom's Key", "{{Key}} +2 Schlüssel#Chests contain more pickups"}, -- Mom's Key
 	{"200", "Mom's Eyeshadow", "{{Charm}} 10% chance to shoot charming tears#{{Luck}} 100% chance at 27 Glück"}, -- Mom's Eyeshadow
 	{"201", "Iron Bar", "↑ {{Damage}} +0.3 Schaden#{{Confusion}} 10% chance to shoot concussive tears#{{Luck}} 100% chance at 27 Glück"}, -- Iron Bar
@@ -253,7 +253,7 @@ EID.descriptions[languageCode].collectibles={
 	{"230", "Abaddon", "↑ {{Speed}} +0.2 Tempo#↑ {{Damage}} +1.5 Schaden#↓ {{EmptyHeart}} Removes all heart containers#{{BlackHeart}} +6 Black Hearts#{{Fear}} 15% chance to shoot fear tears"}, -- Abaddon
 	{"231", "Ball of Tar", "{{Slow}} 10% chance to shoot slowing tears#{{Luck}} 100% chance at 18 Glück#{{Slow}} Isaac leaves a trail of slowing creep"}, -- Ball of Tar
 	{"232", "Stop Watch", "↑ {{Speed}} +0.3 Tempo#{{Slow}} Taking damage slows all enemies in the room permanently"}, -- Stop Watch
-	{"233", "Tiny Planet", "↑ +7 Tränenhöhe#Spectral tears#Isaac's tears orbit around him"}, -- Tiny Planet
+	{"233", "Tiny Planet", "↑ +7 Tränenhöhe#Spektrale Tränen#Isaac's tears orbit around him"}, -- Tiny Planet
 	{"234", "Infestation 2", "Killing an enemy spawns a blue spider"}, -- Infestation 2
 	{"235", "", "<item does not exist>"},
 	{"236", "E. Coli", "Touching an enemy turns it into poop"}, -- E. Coli
@@ -291,7 +291,7 @@ EID.descriptions[languageCode].collectibles={
 	{"268", "Rotten Baby", "Spawns blue flies when Isaac shoots"}, -- Rotten Baby
 	{"269", "Headless Baby", "Leaves creep which deals 6 damage per second"}, -- Headless Baby
 	{"270", "Leech", "Chases enemies#{{HalfHeart}} Heals Isaac for half a heart when it kills an enemy#Deals 3.2 damage per second"}, -- Leech
-	{"271", "Mystery Sack", "Spawns a random pickup every few rooms"}, -- Mystery Sack
+	{"271", "Mystery Sack", "Spawns a random pickup every 5-6 rooms"}, -- Mystery Sack
 	{"272", "BBF", "Friendly exploding fly#The explosion deals 60 damage#{{Warning}} The explosion can hurt Isaac"}, -- BBF
 	{"273", "Bob's Brain", "Dashes in the direction Isaac is shooting#Explodes when it hits an enemy#{{Poison}} The explosion deals 60 damage and poisons enemies#{{Warning}} The explosion can hurt Isaac"}, -- Bob's Brain
 	{"274", "Best Bud", "Taking damage spawns one midrange orbital für diesen Raum#The orbital deals 75 damage per second"}, -- Best Bud
@@ -341,10 +341,10 @@ EID.descriptions[languageCode].collectibles={
 	{"316", "Cursed Eye", "Charged wave of 4 tears#{{Warning}} Taking damage while partially charged teleports Isaac to a random room"}, -- Cursed Eye
 	{"317", "Mysterious Liquid", "Isaac's tears leave creep#The creep deals 30 damage per second"}, -- Mysterious Liquid
 	{"318", "Gemini", "Close combat familiar#Deals 6 contact damage per second"}, -- Gemini
-	{"319", "Cain's Other Eye", "Bounces around the room#Shoots towards Isaac#{{Damage}} Deals the same damage as Isaac"}, -- Cain's Other Eye
+	{"319", "Cain's Other Eye", "Bounces around the room#Low accuracy tears that deal Isaac's damage"}, -- Cain's Other Eye
 	{"320", "???'s Only Friend", "Controllable fly#Deals 37.5 contact damage per second"}, -- ???'s Only Friend
 	{"321", "Samson's Chains", "Draggable ball that can destroy rocks#Deals 10.7 contact damage per second"}, -- Samson's Chains
-	{"322", "Mongo Baby", "Mimics one of your familiars tears#Cycles through which familiar to mimic every shot"}, -- Mongo Baby
+	{"322", "Mongo Baby", "Mimics your baby familiars' tears#If you have none, shoots normal 3.5 damage tears"}, -- Mongo Baby
 	{"323", "Isaac's Tränen", "Shoots 8 tears in all directions#The tears copy Isaac's tear effects#Recharges by shooting tears"}, -- Isaac's Tränen
 	{"324", "Undefined", "Teleports Isaac to the {{TreasureRoom}} Treasure, {{SecretRoom}} Secret, {{SuperSecretRoom}} Super Secret or {{ErrorRoom}} I AM ERROR Raum"}, -- Undefined
 	{"325", "Scissors", "{{Timer}} Isaac's head turns into a stationary familiar für diesen Raum#The body is controlled separately"}, -- Scissors
@@ -358,7 +358,7 @@ EID.descriptions[languageCode].collectibles={
 	{"333", "The Mind", "Full mapping effect"}, -- The Mind
 	{"334", "The Body", "↑ {{Heart}} +3 Gesundheit"}, -- The Body
 	{"335", "The Soul", "{{SoulHeart}} +2 Seelenherzen#Grants an aura that repels enemies and projectiles"}, -- The Soul
-	{"336", "Dead Onion", "↑ {{Range}} +0.25 Reichweite#↑ {{Tearsize}} x1.5 Tear size#↓ -0.5 Tränenhöhe#↓ {{Shotspeed}} -0.4 Schusstempo#Piercing + spectral tears"}, -- Dead Onion
+	{"336", "Dead Onion", "↑ {{Range}} +0.25 Reichweite#↑ {{Tearsize}} x1.5 Tear size#↓ -0.5 Tränenhöhe#↓ {{Shotspeed}} -0.4 Schusstempo#Durchdringende + spektrale Tränen"}, -- Dead Onion
 	{"337", "Broken Watch", "{{Slow}} Slows down every 4th room#13% chance to speed up the room instead"}, -- Broken Watch
 	{"338", "The Boomerang", "Throwable boomerang#Petrifies enemies and deals 2x Isaac's damage#Can grab and bring back items"}, -- The Boomerang
 	{"339", "Safety Pin", "↑ {{Range}} +5.25 Reichweite#↑ +0.5 Tränenhöhe#↑ {{Shotspeed}} +0.16 Schusstempo#{{BlackHeart}} +1 Black Heart"}, -- Safety Pin
@@ -374,24 +374,24 @@ EID.descriptions[languageCode].collectibles={
 	{"349", "Wooden Nickel", "{{Coin}} 56% chance to spawn a random coin"}, -- Wooden Nickel
 	{"350", "Toxic Shock", "{{Poison}} Entering a room poisons all enemies#Enemies killed leave a puddle of creep#The creep deals 30 damage per second"}, -- Toxic Shock
 	{"351", "Mega Bean", "Petrifies all enemies in the room#{{Poison}} Deals 5 damage and poisons any enemies nearby#Sends a rock wave in the direction Isaac is moving#The rock wave can open Geheimräume and break rocks"}, -- Mega Bean
-	{"352", "Glass Cannon", "{{Warning}} Firing the cannon reduces Isaac's health down to half a heart#Shoots a large piercing + spectral tear that does 10x Isaac's damage"}, -- Glass Cannon
+	{"352", "Glass Cannon", "{{Warning}} Firing the cannon reduces Isaac's health down to half a heart#Shoots a large durchdringende + spektrale Träne that does 10x Isaac's damage"}, -- Glass Cannon
 	{"353", "Bomber Boy", "{{Bomb}} +5 Bomben#Bomben explode in a cross-shaped pattern"}, -- Bomber Boy
 	{"354", "Crack Jacks", "↑ {{Heart}} +1 Gesundheit#{{Trinket}} Spawns a trinket"}, -- Crack Jacks
 	{"355", "Mom's Pearls", "↑ {{Range}} +1.25 Reichweite#↑ +0.5 Tränenhöhe#↑ {{Luck}} +1 Glück"}, -- Mom's Pearls
 	{"356", "Car Battery", "{{Battery}} Using an active item triggers its effect twice"}, -- Car Battery
 	{"357", "Box of Friends", "{{Timer}} Duplicates all your familiars für diesen Raum#{{Collectible113}} Grants a Demon Baby für diesen Raum if Isaac has no familiars"}, -- Box of Friends
-	{"358", "The Wiz", "Spectral tears#Isaac shoots 2 tears at once diagonally"}, -- The Wiz
+	{"358", "The Wiz", "Spektrale Tränen#Isaac shoots 2 tears at once diagonally"}, -- The Wiz
 	{"359", "8 Inch Nails", "↑ {{Damage}} +1.5 Schaden#Increases knockback"}, -- 8 Inch Nails
 	{"360", "Incubus", "Shoots tears with the same tear rate, damage and effects as Isaac"}, -- Incubus
 	{"361", "Fate's Reward", "Shoots tears with the same damage and effects as Isaac#Shoots at half the rate of other familiars"}, -- Fate's Reward
-	{"362", "Lil Chest", "Spawns a random pickup every few rooms"}, -- Lil Chest
+	{"362", "Lil Chest", "35% chance to spawn a pickup every room"}, -- Lil Chest
 	{"363", "Sworn Protector", "Orbital#Deals 105 contact damage per second#Blocks and attracts enemy shots#{{EternalHeart}} Blocking 10 shots in one room spawns an Ewiges Herz"}, -- Sworn Protector
 	{"364", "Friend Zone", "Midrange fly orbital#Deals 45 contact damage per second"}, -- Friend Zone
 	{"365", "Lost Fly", "Moves along walls/obstacles#Deals 105 contact damage per second"}, -- Lost Fly
 	{"366", "Scatter Bomben", "{{Bomb}} +5 Bomben#Isaac's Bomben scatter into 2-4 tiny Bomben"}, -- Scatter Bomben
 	{"367", "Sticky Bomben", "{{Bomb}} +5 Bomben#Isaac's Bomben stick to enemies#Killing an enemy with a bomb spawns blue spiders"}, -- Sticky Bomben
 	{"368", "Epiphora", "↑ {{Tears}} Shooting in one direction gradually decreases tränenverzögerung up to 200% and decreases accuracy"}, -- Epiphora
-	{"369", "Continuum", "↑ {{Range}} +2.25 Reichweite#↑ +1.5 Tränenhöhe#Spectral tears#Tränen can travel through one side of the screen and come out the other side"}, -- Continuum
+	{"369", "Continuum", "↑ {{Range}} +2.25 Reichweite#↑ +1.5 Tränenhöhe#Spektrale Tränen#Tränen can travel through one side of the screen and come out the other side"}, -- Continuum
 	{"370", "Mr. Dolly", "↑ {{Tears}} +0.7 Tränen#↑ {{Range}} +5.25 Reichweite#↑ +0.5 Tränenhöhe#{{UnknownHeart}} Spawns 3 random hearts"}, -- Mr. Dolly
 	{"371", "Curse of the Tower", "{{Warning}} Taking damage spawns 6 Troll-Bomben#The Troll-Bomben inherit Isaac's bomb effects"}, -- Curse of the Tower
 	{"372", "Charged Baby", "Every 30 seconds while in an uncleared room, the familiar can:#{{Battery}} Spawn a Battery (max 2 per room)#{{Battery}} Add one charge to the active item (max 2 per room)#Petrify all enemies in the room"}, -- Charged Baby
@@ -401,7 +401,7 @@ EID.descriptions[languageCode].collectibles={
 	{"376", "Restock", "Spawns 3 random pickups#Buying an item from a Laden restocks it instantly"}, -- Restock
 	{"377", "Bursting Sack", "Spider enemies no longer target or deal contact damage to Isaac"}, -- Bursting Sack
 	{"378", "No. 2", "Holding a fire button for 2.35 seconds spawns a lit Butt Bomb"}, -- No. 2
-	{"379", "Pupula Duplex", "↑ {{Tearsize}} x2 Tear size#Spectral tears"}, -- Pupula Duplex
+	{"379", "Pupula Duplex", "↑ {{Tearsize}} x2 Tear size#Spektrale Tränen"}, -- Pupula Duplex
 	{"380", "Pay To Play", "{{Coin}} +5 Münzen#{{Coin}} Single-key doors must be opened with Münzen instead of Schlüssel"}, -- Pay To Play
 	{"381", "Eden's Blessing", "↑ {{Tears}} +0.7 Tränen#Grants a random item at the start of the next run"}, -- Eden's Blessing
 	{"382", "Friendly Ball", "Can be thrown at enemies to capture them#Using the item after capturing an enemy spawns it as a friendly companion"}, -- Friendly Ball
@@ -492,7 +492,7 @@ EID.descriptions[languageCode].collectibles={
 	{"467", "Finger!", "{{Damage}} Constantly deals 10% of Isaac's damage in the direction it points"}, -- Finger!
 	{"468", "Shade", "Follows Isaac's movement on a 1 second delay#Deals 30 contact damage per second#After it deals 600 damage, it is absorbed by Isaac, increasing his contact damage"}, -- Shade
 	{"469", "Depression", "Leaves a trail of creep#The creep deals 6 damage per second#Enemies that touch the cloud can be hit by a holy light beam"}, -- Depression
-	{"470", "Hushy", "Bounces around the room#Deals contact damage#Stops moving when Isaac shoots#Blocks projectiles when stopped"}, -- Hushy
+	{"470", "Hushy", "Bounces around the room#Deals 30 contact damage per second#Stops moving when Isaac shoots#Blocks projectiles when stopped"}, -- Hushy
 	{"471", "Lil Monstro", "{{Chargeable}} Charges a shotgun attack similar to {{Collectible229}} Monstro's Lung#Each tear deals 3.5 damage"}, -- Lil Monstro
 	{"472", "King Baby", "Other familiars follow it#Stops moving when Isaac shoots#Teleports back to Isaac when he stops shooting"}, -- King Baby
 	{"473", "Big Chubby", "Very slowly charges forwards#Blocks shots#Deals 40.5 contact damage per second"}, -- Big Chubby
@@ -546,8 +546,8 @@ EID.descriptions[languageCode].collectibles={
 	{"521", "Coupon", "Makes one random item in the {{Shop}} Laden or {{DevilRoom}} Teufelsraum free#Holding the item guarantees one Laden-Gegenstand is on sale"}, -- Coupon
 	{"522", "Telekinesis", "Stops all enemy projectiles that come close to Isaac for 3 seconds and throws them away from him afterwards"}, -- Telekinesis
 	{"523", "Moving Box", "Stores all pickups and items from the current room#Using the item again drops everything back on the floor#Allows Isaac to move things between rooms"}, -- Moving Box
-	{"524", "Technology Zero", "Isaac's tears are connected with beams of electricity#The beams deal the same damage as Isaac"}, -- Technology Zero
-	{"525", "Leprosy", "Taking damage spawns a projectile blocking orbital#Caps at 3 orbitals#Orbitals are destroyed if they take too much damage"}, -- Leprosy
+	{"524", "Technology Zero", "Isaac's tears are connected with beams of electricity#The beams deal Isaac's damage"}, -- Technology Zero
+	{"525", "Leprosy", "Taking damage spawns a projectile blocking orbital#Caps at 3 orbitals#They deal 35 contact damage per second#Orbitals are destroyed if they take too much damage"}, -- Leprosy
 	{"526", "7 Seals", "Spawns a small horseman familiar that spawns locusts#The horseman and its locust changes every 10 seconds"}, -- 7 Seals
 	{"527", "Mr. ME!", "Displays a movable cursor for a few seconds, then summons a ghost that will, depending on the cursor position:#Open doors or chests#Fetch an item#50% chance to steal from the Laden / devil#Attack an enemy until it dies#Explode walls, rocks, shopkeepers, angel statues, machines, beggars"}, -- Mr. ME!
 	{"528", "Angelic Prism", "Orbital prism#Friendly tears hitting it split into 4"}, -- Angelic Prism

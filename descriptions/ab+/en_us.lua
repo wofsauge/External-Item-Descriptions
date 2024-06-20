@@ -155,7 +155,7 @@ EID.descriptions[languageCode].collectibles={
 	{"132", "A Lump of Coal", "{{Damage}} Tears deal more damage the further they travel"}, -- A Lump of Coal
 	{"133", "Guppy's Paw", "{{SoulHeart}} Converts 1 heart container into 3 Soul Hearts"}, -- Guppy's Paw
 	{"134", "Guppy's Tail", "{{Chest}} 33% chance to replace the room clear reward with a chest#33% chance to spawn no room clear reward"}, -- Guppy's Tail
-	{"135", "IV Bag", "{{Coin}} Hurts Isaac for half a heart and spawns 1-2 coins#{{Heart}} Takes Red Hearts first"}, -- IV Bag
+	{"135", "IV Bag", "{{Coin}} Hurts Isaac for half a heart and spawns 1-2 coins#{{Heart}} Removes Red Hearts first"}, -- IV Bag
 	{"136", "Best Friend", "Spawns a decoy Isaac that attracts enemies and explodes after 5 seconds"}, -- Best Friend
 	{"137", "Remote Detonator", "{{Bomb}} +5 Bombs#Isaac's bombs no longer explode automatically#Upon use, detonates all of Isaac's bombs at once"}, -- Remote Detonator
 	{"138", "Stigmata", "↑ {{Heart}} +1 Health#↑ {{Damage}} +0.3 Damage"}, -- Stigmata
@@ -197,7 +197,7 @@ EID.descriptions[languageCode].collectibles={
 	{"174", "Rainbow Baby", "Shoots random tears#Deals 3-5 damage per tear"}, -- Rainbow Baby
 	{"175", "Dad's Key", "Opens all doors in the room, including {{SecretRoom}}{{SuperSecretRoom}}Secret Rooms, {{ChallengeRoom}}{{BossRushRoom}}Challenge Rooms, and the Mega Satan door"}, -- Dad's Key
 	{"176", "Stem Cells", "↑ {{Heart}} +1 Health#↑ {{Shotspeed}} +0.16 Shot speed"}, -- Stem Cells
-	{"177", "Portable Slot", "Portable slot machine#{{Coin}} Spend 1 coin for a chance to spawn a pickup"}, -- Portable Slot
+	{"177", "Portable Slot", "{{Coin}} Spend 1 coin for a chance to spawn a pickup"}, -- Portable Slot
 	{"178", "Holy Water", "Taking damage spills a pool of creep#The creep deals 24 damage per second"}, -- Holy Water
 	{"179", "Fate", "{{EternalHeart}} +1 Eternal Heart#Flight"}, -- Fate
 	{"180", "The Black Bean", "Isaac farts when damaged#{{Poison}} The fart poisons enemies"}, -- The Black Bean
