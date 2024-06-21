@@ -93,6 +93,7 @@ local repCollectibles={
 	[203] = {"203", "Bescheidenes Bündel", "Pickups haben eine 50% ige Chance, verdoppelt zu werden"}, -- Humbleing Bundle
 	[205] = {"205", "Scharfes Plug", "{{Battery}} Benutzen eines ungeladenen Aktivgegenstands lädt ihn vollständig auf, kostet jedoch ein halbes Herz pro fehlender Ladung#{{Heart}} Entfernt zuerst Rote Herzen"}, -- Sharp Plug
 	[206] = {"206", "Guillotine", "↑ {{Tears}} +0.5 Feuerrate#↑ {{Damage}} +1 Schaden#Isaacs Kopf wird zu einem Orbital, der schießt, keinen Schaden nimmt und 65 Kontaktschaden pro Sekunde verursacht"}, -- Guillotine
+	[208] = {"208", "Championgürtel", "↑ {{Damage}} +1 Schaden#Die Chance auf Champion-Feinde steigt von 5% auf 20%#Erhöht nicht die Chance auf Champion-Bosse"}, -- Champion Belt
 	[211] = {"211", "Spinnenbaby", "Bei Schaden werden 3-5 blaue Spinnen erzeugt"}, -- Spiderbaby
 	[214] = {"214", "Anämie", "↑ {{Range}} +1.5 Reichweite#{{Timer}} Wenn Isaac Schaden nimmt, hinterlässt er für den Raum eine Blutspur"}, -- Anemic
 	[218] = {"218", "Plazenta", "↑ {{Heart}} +1 Gesundheit#{{Heart}} Heilt 1 Herz#{{HalfHeart}} 50% Chance, alle Minute ein halbes Herz zu heilen"}, -- Placenta
