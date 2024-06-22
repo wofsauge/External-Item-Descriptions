@@ -7,6 +7,7 @@ local game = Game()
 	If you're adding a condition that applies to an entire type of item, pass in a string in Type.Var format
 	
 	Argument 2: The function that will apply the condition if it returns true; descObj will be passed into this function
+	This function can return a collectible ID, which will be used for bulletpoints/variable text
 	
 	Argument 3 (optional): Additional text for finding the string in the localization file
 	For example, if you put "Overridden" here, modifying Tech X, it will look for ConditionalDescs["5.100.395 (Overridden)"] AND ConditionalDescs["Overridden"]
@@ -20,7 +21,6 @@ local game = Game()
 	replaceColor: Find/replace text will be highlighted with this color
 	bulletpoint: Appended lines will begin with this bulletpoint
 	noFallback: Don't fallback to English if this isn't localized; by default, conditionals don't fallback, to avoid printing English text in unupdated languages
-	useResult: The condition function can return a collectible ID; if true, use that ID to generate bulletpoint/variable text. This is to be able to use specific collectible icons/names while using more general modded-item-friendly conditions
 	
 	Argument 5 (very optional): The position in the table to insert this new condition, in case mods want to insert modifiers before our base ones
 ]]
@@ -102,8 +102,8 @@ function EID:ConditionalItemCheck(itemID, checkInReminder)
 		if not checkInReminder then return false end
 		local player = EID.ItemReminderPlayerEntity
 		if EID:PlayerHasItem(player, itemID) or EID:PlayerVoidedCollectible(player, itemID) then return true end
-	else
-		return EID.collectiblesOwned[itemID] or EID.collectiblesAbsorbed[itemID]
+	elseif EID.collectiblesOwned[itemID] or EID.collectiblesAbsorbed[itemID] then
+		return true
 	end
 end
 
@@ -130,11 +130,7 @@ function EID:IsGreedModePlusTarot()
 end
 
 function EID:IsHardMode()
-	if game.Difficulty == 1 or game.Difficulty == 3 then
-		return true
-	else
-		return false
-	end
+	return game.Difficulty == 1 or game.Difficulty == 3
 end
 
 -- Check if we have any characters that can't have Red Health, to print additions to descs like Dead Cat
@@ -153,25 +149,37 @@ function EID:CheckForNoRedHealthPlayer()
 	return false
 end
 
+-- When we have Car Battery, change active pedestal descriptions
 function EID:CheckForCarBattery(descObj)
-	if EID.CarBatteryNoSynergy[descObj.ObjSubType] then return "No Effect"
-	else return descObj.ObjSubType end
+	if EID.CarBatteryNoSynergy[descObj.ObjSubType] then return "No Effect" end
+	return descObj.ObjSubType
 end
-
-function EID:CheckForBFFS(descObj)
-	local config = EID.itemConfig:GetCollectible(descObj.ObjSubType)
-	-- Check for no effect, then the table of synergies (will we end up not doing the defualt "double damage" text?)
-	if EID.BFFSNoSynergy[descObj.ObjSubType] then return "No Effect" end
-	
-	if config ~= nil and config.Type == ItemType.ITEM_FAMILIAR then
-		return descObj.fullItemString
+-- When we're looking at a Car Battery pedestal, check our actives for having no effect
+function EID:CheckActivesForCarBattery(descObj)
+	if EID.InsideItemReminder then return false end
+	for k,_ in pairs(EID.CarBatteryNoSynergy) do
+		if EID:PlayersHaveCollectible(k) then return k end
 	end
+	return false
+end
+
+-- When we have BFFS/Hive Mind, change familiar pedestal descriptions
+function EID:CheckForBFFS(descObj)
+	if descObj.ObjVariant == 100 and EID.BFFSNoSynergy[descObj.ObjSubType] then return "No Effect" end
+	return descObj.fullItemString
+end
+function EID:CheckForHiveMind(descObj)
+	if EID.HiveMindFamiliars[descObj.ObjSubType] then return EID:CheckForBFFS(descObj) end
 	return "N/A"
 end
 
-function EID:CheckForHiveMind(descObj)
-	if EID.HiveMindFamiliars[descObj.ObjSubType] then return descObj.fullItemString end
-	return "N/A"
+-- When we're looking at a BFFS pedestal, check our familiars for having no effect (only finds the earliest one, but whatever)
+function EID:CheckFamiliarsForBFFS(descObj)
+	if EID.InsideItemReminder then return false end
+	for k,_ in pairs(EID.BFFSNoSynergy) do
+		if EID:PlayersHaveCollectible(k) then return k end
+	end
+	return false
 end
 
 -- Check for a player having an active item with a specific quantity of charges, or charge type
@@ -282,7 +290,9 @@ function EID:applyConditionals(descObj)
 		local result = cond.func(descObj)
 		if text ~= nil and result then
 			local variableText, bulletpoint
-			if cond.useResult then
+			-- If the condition returned a value, use that value
+			if result ~= true then
+				-- For the time being, we assume the result was a collectible number (will support more soon)
 				variableText = "{{NameOnlyC"..result.."}}"
 				bulletpoint = "Collectible"..result
 			else
