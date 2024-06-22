@@ -241,23 +241,14 @@ EID.ItemReminderDescriptionModifier = {
 	},
 	["5.350.75"] = {   -- 404 Error
 		isHiddenInfo = true,
-		isRepentance = true, -- HasTrinket can't differentiate between real and fake trinkets in AB+
 		modifierFunction = function(descObj, player)
-			-- Unfortunately, includes other temporary trinket givers, such as Glitched Items. We'd need to predict 404's result using RNG to actually know which it specifically is granting
-
-			-- Don't display Mysterious Paper's 1-frame temporary trinket granting
-			local hasPaper = player:HasTrinket(21)
-			-- Mysterious Paper does not play well with displaying Error 404's effect
-			local mysteriousPaperBlacklist = { [23] = true, [48] = true }
-			for i = 1, TrinketType.NUM_TRINKETS - 1 do
-				local tempTrinketFound = player:HasTrinket(i, true) ~= player:HasTrinket(i, false)
-				if tempTrinketFound and (not mysteriousPaperBlacklist[i] or not hasPaper) then
-					local demoDescObj = EID:getDescriptionObj(5, 350, i)
-					EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
-					descObj.Icon = demoDescObj.Icon
-					descObj.Description = demoDescObj.Description
-				end
-			end
+			local seed = game:GetLevel():GetCurrentRoom():GetSpawnSeed()
+			local result = EID:RNGNext(seed, 2, 7, 25) % (EID.isRepentance and 189 or 128) + 1
+			
+			local demoDescObj = EID:getDescriptionObj(5, 350, result)
+			EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
+			descObj.Icon = demoDescObj.Icon
+			descObj.Description = demoDescObj.Description
 		end
 	},
 	["5.350.166"] = { -- Modeling Clay
