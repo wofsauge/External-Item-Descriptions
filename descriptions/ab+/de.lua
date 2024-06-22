@@ -228,7 +228,7 @@ EID.descriptions[languageCode].collectibles={
 	{"205", "Scharfkantiger Stecker", "{{Battery}} Das Benutzen eines ungeladenen aktiven Gegenstands lädt ihn vollständig auf, kostet jedoch 2 Herzen#Funktioniert nur, wenn der Gegenstand keine Ladungen hat"}, -- Sharp Plug
 	{"206", "Guillotine", "↑ {{Tears}} -1 Tränenverzögerung#↑ {{Damage}} +1 Schaden#Isaacs Kopf wird zu einem Satelliten, der schießt, keinen Schaden nimmt und bei Kontakt 105 Schaden pro Sekunde verursacht"}, -- Guillotine
 	{"207", "Verbandsknäuel", "Lv1: Satellit#{{Charm}} Lv2: Satellit, der bezaubernde Tränen schießt#{{Charm}} Lv3: Bandage Girl#{{Charm}} Lv4: Super Bandage Girl"}, -- Ball of Bandages
-	{"208", "Championgürtel", "↑ {{Damage}} +1 Damage#+15% Chance auf Champion-Feinde#Erhöht nicht die Chance auf Champion-Bosse"}, -- Champion Belt
+	{"208", "Championgürtel", "↑ {{Damage}} +1 Damage#Die Chance auf Champion-Feinde steigt von 5% auf 20%#Erhöht nicht die Chance auf Champion-Bosse"}, -- Champion Belt
 	{"209", "Arschbomben", "{{Bomb}} +5 Bomben#{{Confusion}} Explosionen erschüttern und schaden allen Feinden im Raum"}, -- Butt Bomben
 	{"210", "Angenagtes Blatt", "Nach 1 Sekunde Inaktivität wird Isaac unverwundbar"}, -- Gnawed Leaf
 	{"211", "Spinnenbaby", "Beim Erleiden von Schaden erscheinen 1-2 blaue Spinnen"}, -- Spiderbaby
