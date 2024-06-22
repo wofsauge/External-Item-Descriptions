@@ -943,6 +943,8 @@ EID.descriptions[languageCode].VoidNames = {"Vitesse {{ColorLime}}{1}", "Débit 
 
 EID.descriptions[languageCode].CollectionPageInfo = "Cet objet n'a encore jamais été ramassé !"
 
+EID.descriptions[languageCode].BlackFeatherInformation = "Objets obtenus : {1} (Dégâts {{ColorLime+{2}}}{{CR}})"
+
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Nom de l'objet test",
 	DemoObjectTransformation = "Transformation de test",
@@ -951,7 +953,16 @@ EID.descriptions[languageCode].MCM = {
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].ItemReminder = {
-	ResultHeader = " Résultat",
+	ResultHeader = " Effet de",
+	InventoryEmpty = "(Aucun objet dans l'inventaire)",
+	CategoryNames = {
+		Overview = "Inventaire global",
+		Special = "Effets spéciaux",
+		Actives = "Objets activables",
+		Pockets = "Ressources",
+		Trinkets = "Babioles",
+		Passives = "Objets passifs"
+	}
 }
 
 -- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
@@ -991,11 +1002,24 @@ EID.descriptions[languageCode].PickupNames = {
 }
 
 EID.descriptions[languageCode].ConditionalDescs = {
+	["5.300.48"] = "Téléporte Isaac dans la salle d'erreur#La {{ColorYellow}}Carte Blanche{{ColorWhite}} et la {{ColorYellow}}Carte ?{{ColorWhite}} seront détruites", -- Blank Card + Q Card
+
 	["5.100.81"] = "Retire tous les cœurs sauf 1 aux personnages qui ne peuvent pas avoir de cœurs rouges", -- Dead Cat
 	["5.100.241"] = "{{Warning}} Sans effet en mode Avarice", -- Contract From Below
-	["5.100.135 (Keeper)"] = "{{Player14}} Peut ne pas faire apparaître de pièce", -- IV Bag Keeper
+	["Keeper 0-1"] = "{{Player14}} Peut ne pas faire apparaître de pièce", -- IV Bag Keeper
 	["5.100.135 (PHD)"] = "Fait apparaître 2 ou 3 pièces avec {{ColorYellow}}Doctorat {{Collectible75}}", -- IV Bag PHD
-	["5.100.442"] = "{{Warning}} Aucun effet pour les personnages qui ne peuvent pas avoir de cœurs rouges", -- Dark Prince's Crown
+	["No Red"] = "{{Warning}} Aucun effet pour les personnages qui ne peuvent pas avoir de cœurs rouges", -- Dark Prince's Crown
 	["5.300.15"] = "Invoque un mendiant diabolique {{DemonBeggar}}", -- Temperance (Greed Mode effect)
 	["5.350.23"] = "{{Warning}} Mourir dans une Salle de Sacrifice {{SacrificeRoom}} en portant cette babiole débloque {{ColorLightOrange}}L'Égaré", -- Missing Poster (Unlock The Lost)
+}
+
+EID.descriptions[languageCode].BFFSSynergies = {
+	["No Effect"] = "Aucun effet",
+	["DoubleDamage"] = "Double les dégâts infligés",
+	["5.100.273"] = "Augmente les dégâts de contact et de l'explosion", -- Bob's Brain
+	["5.100.266"] = "Invoque une araignée bleue supplémentaire", -- Juicy Sack
+	["5.100.360"] = "Inflige 2x les dégâts d'Isaac", -- Incubus
+	["5.100.417"] = "Augmente la taille de l'aura mais pas ses dégâts", -- Succubus
+	["5.100.537"] = "Augmente la taille de la flaque mais pas ses dégâts", -- Lil Spewer
+	["5.100.539"] = "L'ennemi invoqué est un ennemi d'élite", -- Mystery Egg
 }

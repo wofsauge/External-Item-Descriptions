@@ -6,13 +6,13 @@ EID.UserConfig = {
 	--						Chinese = "zh_cn"				SPECIAL THANKS TO Xheepey87, frto027
 	--						Czech = "cs_cz"					SPECIAL THANKS TO domcizzz
 	--						Dutch = "nl_nl"					SPECIAL THANKS TO SomethingMax
-	--						English = "en_us", "en_us_detailed" (More detailed descriptions)
+	--						English = "en_us"				SPECIAL THANKS TO everyone!
 	--						French = "fr"					SPECIAL THANKS TO biobak
 	--						German = "de"					SPECIAL THANKS TO Jake
 	--						Greek = "el_gr"					SPECIAL THANKS TO vanillarat
 	--						Italian = "it"					SPECIAL THANKS TO Denkishi, 2G
 	--						Japanese = "ja_jp"				SPECIAL THANKS TO prefab
-	--						Korean = "ko_kr"				SPECIAL THANKS TO Blackcreamtea, 미카
+	--						Korean = "ko_kr"				SPECIAL THANKS TO Blackcreamtea, 리셰(kohashiwakaba)
 	--						Polish = "pl"					SPECIAL THANKS TO Rickyy
 	--						Portuguese = "pt"				SPECIAL THANKS TO Marcelino Cruz
 	--						Brazilian Portuguese = "pt_br"	SPECIAL THANKS TO Marcelino Cruz
@@ -424,6 +424,10 @@ EID.UserConfig = {
 	-- Of note are Controller.STICK_LEFT and Controller.STICK_RIGHT (pushing the sticks in), which aren't used in-game with default controls
 	-- Default = none (-1)
 	["CraftingResultButton"] = -1,
+	-- Set the keybinding to toggle the search feature on and off
+	-- Look into the AB+ or Repentance documentation for the key names here: https://wofsauge.github.io/IsaacDocs/rep/enums/Keyboard.html
+	-- Default = Keyboard.KEY_RIGHT_SHIFT
+	["CraftingSearchKey"] = Keyboard.KEY_RIGHT_SHIFT,
 
 
 	 ---------- Save Game Options ------------
@@ -603,6 +607,7 @@ EID.DefaultConfig = {
 	["CraftingHideButton"] = -1,
 	["CraftingResultKey"] = Keyboard.KEY_F4,
 	["CraftingResultButton"] = -1,
+	["CraftingSearchKey"] = Keyboard.KEY_RIGHT_SHIFT,
 
 	["ItemReminderEnabled"] = true,
 	["ItemReminderDisplayMode"] = "All",

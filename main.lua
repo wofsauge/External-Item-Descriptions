@@ -1,7 +1,7 @@
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
-EID.Languages = {"en_us", "en_us_detailed", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_nl", "uk_ua", "el_gr"}
+EID.Languages = {"en_us", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_nl", "uk_ua", "el_gr"}
 EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
@@ -10,8 +10,8 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.72
-EID.ModVersionCommit = "5a645e1"
+EID.ModVersion = 4.75
+EID.ModVersionCommit = "d33fd23"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -126,7 +126,7 @@ if EID.isRepentance then
 			Isaac.ConsoleOutput("Load rep "..lang.." failed: "..tostring(err))
 		end
 	end
-	local wasSuccessful, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
+	local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
 	require("features.eid_bagofcrafting")
 	require("features.eid_tmtrainer")
 end
@@ -912,6 +912,7 @@ function EID:renderIndicator(entity, playerNum)
 end
 
 ---@param entity Entity
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:PositionLocalMode(entity)
 	-- don't use Local Mode for descriptions without an entity (or dice floors)
 	if (EID.Config["DisplayMode"] == "local" or alwaysUseLocalMode) and entity and entity.Variant ~= EffectVariant.DICE_FLOOR then
@@ -1356,6 +1357,7 @@ function EID:OnRender()
 		for playerNum,player in ipairs(playerSearch) do
 			if player:HasCollectible(710) then
 				local craftingSuccess = EID:handleBagOfCraftingRendering()
+				EID.BoC.IsDisplayingDescription = craftingSuccess
 				if craftingSuccess then
 					displayedDesc[playerNum] = true
 				end
@@ -1650,7 +1652,7 @@ if EID.isRepentance then
 	end
 	EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseGenesis, CollectibleType.COLLECTIBLE_GENESIS)
 
-	local function OnUseLemegeton(_, _, player, _, _, _)
+	local function OnUseLemegeton(_, _, _, _, _, _)
 		EID.ShouldCheckWisp = true
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseLemegeton, CollectibleType.COLLECTIBLE_LEMEGETON)
@@ -1682,7 +1684,7 @@ local json = require("json")
 local configIgnoreList = {
 	["BagContent"] = true,
 	["BagFloorContent"] = true,
-	["LearnedRecipes"] = true,
+	["BagLearnedRecipes"] = true,
 	["CraneItemType"] = true,
 	["FlipItemPositions"] = true,
 	["AbsorbedItems"] = true,

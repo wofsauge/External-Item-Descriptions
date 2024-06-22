@@ -55,7 +55,7 @@ EID.descriptions[languageCode].collectibles={
 	{"4", "크리켓의 머리", "↑ {{DamageSmall}}공격력 +0.5#↑ {{DamageSmall}}공격력 배율 x1.5"}, -- Cricket's Head
 	{"5", "나의 모습", "↑ {{RangeSmall}}사거리 +1.5#↑ 눈물 높이 +1#↑ {{ShotspeedSmall}}탄속 +0.6#공격이 캐릭터가 있는 방향으로 되돌아옵니다."}, -- My Reflection
 	{"6", "오줌싸개", "↑ {{TearsSmall}}연사 +1.5#↓ {{RangeSmall}}사거리 -17.62#↑ 눈물 높이 +0.76"}, -- Number One
-	{"7", "순교자의 피", "↑ {{DamageSmall}}공격력 +1#{{Collectible34}} Book of the Belial/{{Card16}}The Devil 효과 발동 중 {{DamageSmall}}추가 공격력 배율 x1.5"}, -- Blood of the Martyr
+	{"7", "순교자의 피", "↑ {{DamageSmall}}공격력 +1"}, -- Blood of the Martyr
 	{"8", "보비", "공격하는 방향으로 공격력 3.5의 눈물을 발사합니다."}, -- Brother Bobby
 	{"9", "스카톨", "파리류 적들이 공격하지 않거나 약해집니다."}, -- Skatole
 	{"10", "파리떼", "캐릭터 주변을 돌며 적의 탄환을 막아주는 2마리의 파리 배리어를 얻습니다."}, -- Halo of Flies
@@ -82,7 +82,7 @@ EID.descriptions[languageCode].collectibles={
 	{"31", "엄마의 립스틱", "↑ {{RangeSmall}}사거리 +5.25#↑ 눈물 높이 +0.5"}, -- Mom's Lipstick
 	{"32", "철제 옷걸이", "↑ {{TearsSmall}}연사 +0.7"}, -- Wire Coat Hanger
 	{"33", "성경", "사용 시 그 방에서 비행 능력을 얻습니다.#{{MomBossSmall}}Mom, {{MomsHeartSmall}}Mom's Heart/It Lives 보스에게 사용 시 보스를 즉사시킵니다.#!!! {{SatanSmall}}Satan 보스에게 사용 시 캐릭터가 즉사합니다."}, -- The Bible
-	{"34", "벨리알의 책", "{{DevilChanceSmall}} 소지중일 때 악마방 확률 +12.5%#사용 시 그 방에서 {{DamageSmall}}공격력 +2 증가하며;#{{Collectible7}} Blood of the Martyr 소지 시 {{DamageSmall}}공격력 배율 x1.5 추가 적용"}, -- The Book of Belial
+	{"34", "벨리알의 책", "{{DevilChanceSmall}} 소지중일 때 악마방 확률 +12.5%#사용 시 그 방에서 {{DamageSmall}}공격력 +2"}, -- The Book of Belial
 	{"35", "네크로노미콘", "사용 시 방 전체 적에게 40의 피해를 줍니다."}, -- The Necronomicon
 	{"36", "똥", "사용 시 똥을 싸며 주변의 적을 더 강하게 밀쳐냅니다.#1칸짜리 구덩이 바로 옆에서 똥을 싸고 폭탄으로 터트리면 해당 구덩이를 메울 수 있습니다."}, -- The Poop
 	{"37", "미스터 붐", "사용 시 캐릭터의 위치에 공격력 110의 대형 폭탄을 설치합니다."}, -- Mr. Boom
@@ -97,7 +97,7 @@ EID.descriptions[languageCode].collectibles={
 	{"46", "행운의 발", "↑ {{LuckSmall}}행운 +1#↑ 방 클리어 보상이 등장할 확률이 대폭 증가합니다.#야바위와 도박기계의 성공 확률이 증가합니다."}, -- Lucky Foot
 	{"47", "박사의 원격 조종기", "{{Collectible168}} 사용 시 조준점을 이동시킨 곳으로 캐릭터의 공격력 x20의 미사일을 발사합니다."}, -- Doctor's Remote
 	{"48", "큐피드의 화살", "공격이 적을 관통합니다."}, -- Cupid's Arrow
-	{"49", "모두 다 사라져빔!!", "사용 시 공격하는 방향으로 공격력 x4의 레이저포를 발사합니다."}, -- Shoop da Whoop!
+	{"49", "모두 다 사라져빔!!", "사용 시 공격하는 방향으로 공격력 x2의 레이저포를 발사합니다."}, -- Shoop da Whoop!
 	{"50", "스티븐", "↑ {{DamageSmall}}공격력 +1"}, -- Steven
 	{"51", "오망성", "↑ {{DamageSmall}}공격력 +1#↑ {{DevilChanceSmall}}악마방 확률 최대 +10%"}, -- Pentagram
 	{"52", "태아 박사", "↓ {{TearsSmall}}공격 딜레이 x2.5#공격이 폭탄 발사 공격으로 변경됩니다.#{{Damage}} 폭탄 공격력: x5 +30"}, -- Dr. Fetus
@@ -123,7 +123,7 @@ EID.descriptions[languageCode].collectibles={
 	{"72", "묵주", "↑ {{SoulHeart}}소울하트 +3#!!! {{Collectible33}}The Bible이 모든 배열에서 등장합니다."}, -- Rosary
 	{"73", "고기조각", "획득할 때마다 성장합니다.#1단계: 캐릭터 주위를 돌며 적의 탄환을 막아줍니다.#2단계: 1단계 + 공격하는 방향으로 공격력 3.5의 눈물을 발사합니다.#3/4단계: 적을 따라다니며 접촉한 적에게 초당 7/11의 피해를 입힙니다."}, -- Cube of Meat
 	{"74", "쿼터", "↑ {{Coin}}동전 +25"}, -- A Quarter
-	{"75", "박사학위", "↑ {{Heart}}빨간하트 +2#{{Pill}}알약을 하나 드랍합니다.#확인되지 않은 알약의 효과를 알 수 있습니다.#↑ 부정적인 알약 효과가 등장하지 않습니다.#헌혈기 및 {{Collectible135}}IV Bag 사용 시 동전 1~2개를 추가로 드랍합니다."}, -- PHD
+	{"75", "박사학위", "↑ {{Heart}}빨간하트 +2#{{Pill}}알약을 하나 드랍합니다.#확인되지 않은 알약의 효과를 알 수 있습니다.#↑ 부정적인 알약 효과가 등장하지 않습니다.#헌혈기 사용 시 동전 1~2개를 추가로 드랍합니다."}, -- PHD
 	{"76", "투시 안경", "{{SecretRoom}}비밀방 및 {{SuperSecretRoom}}일급비밀방이 자동으로 열립니다."}, -- X-Ray Vision
 	{"77", "나의 작은 유니콘", "사용 시 6초간 캐릭터의 {{SpeedSmall}}이동속도 +0.28, 무적 상태가 되며 접촉한 적에게 초당 40의 피해를 입힙니다."}, -- My Little Unicorn
 	{"78", "요한묵시록", "{{DevilChanceSmall}} 소지중일 때 악마방 확률 +17.5%#사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다."}, -- Book of Revelations
@@ -144,7 +144,7 @@ EID.descriptions[languageCode].collectibles={
 	{"93", "게임키드", "사용 시 6.5초간 무적 상태가 되며 접촉한 적에게 초당 40의 피해를 입힙니다.#{{Fear}} 적들이 캐릭터에게서 도망가며 적 2기를 죽일 때마다 {{HalfHeart}}체력을 반 칸 회복합니다."}, -- The Gamekid
 	{"94", "동전 주머니", "방 2개 클리어 시 {{Coin}}동전을 하나 드랍합니다."}, -- Sack of Pennies
 	{"95", "로보베이비", "공격하는 방향으로 공격력 3.5의 레이저를 발사합니다."}, -- Robo-Baby
-	{"96", "리틀 차드", "방 3개 클리어 시 {{HalfHeart}}빨간하트 반칸을 드랍합니다."}, -- Little C.H.A.D.
+	{"96", "리틀 차드", "방 2~3개 클리어 시 {{HalfHeart}}빨간하트 반칸을 드랍합니다."}, -- Little C.H.A.D.
 	{"97", "죄악의 책", "사용 시 랜덤한 픽업을 드랍합니다."}, -- The Book of Sin
 	{"98", "성유물", "방 5~6개 클리어 시 {{SoulHeart}}소울하트 하나를 드랍합니다. "}, -- The Relic
 	{"99", "리틀 기쉬", "{{Slow}} 공격하는 방향으로 공격력 3.5의 적을 둔화시키는 눈물을 발사합니다."}, -- Little Gish
@@ -164,7 +164,7 @@ EID.descriptions[languageCode].collectibles={
 	{"113", "악마 아기", "적이 있는 방향으로 공격력 3의 빠른 눈물을 자동으로 발사합니다."}, -- Demon Baby
 	{"114", "엄마의 식칼", "{{Chargeable}} 공격이 발사 후 돌아오는 근접 식칼로 변경됩니다.#공격키를 누르고 있으면 충전되며 충전량에 따라 사거리가 증가합니다.#칼 공격력: 기본 x2 ~ 최대 거리일때 x6"}, -- Mom's Knife
 	{"115", "분신사바", "공격이 장애물을 관통합니다."}, -- Ouija Board
-	{"116", "9볼트 건전지", "{{Battery}} 획득 시 액티브 아이템 충전량을 모두 충전합니다.#{{Battery}} 액티브 아이템 사용 시 충전량을 한칸 보존합니다.#1칸짜리 액티브 아이템의 경우 {{ColorOrange}}적이 있는 방에서{{CR}} 15초의 충전 쿨타임을 가집니다.#충전형 액티브 아이템의 경우 쿨타임의 절반을 보존합니다."}, -- 9 Volt
+	{"116", "9볼트 건전지", "{{Battery}} 획득 시 액티브 아이템 충전량을 모두 충전합니다.#{{Battery}} 액티브 아이템 사용 시 충전량을 한칸 보존합니다."}, -- 9 Volt
 	{"117", "죽은 새", "피격 시 적을 따라다니며 접촉한 적에게 초당 4의 피해를 입힙니다."}, -- Dead Bird
 	{"118", "유황", "↓ {{TearsSmall}}공격 딜레이 x3.0#{{Chargeable}} 공격이 충전형 혈사포 공격으로 변경됩니다.#혈사포는 다단히트로 최대 13번의 피해를 입힙니다."}, -- Brimstone
 	{"119", "혈액 팩", "↑ {{Heart}}최대 체력 +1#↑ {{Heart}}빨간하트 +4#↑ {{SpeedSmall}}이동속도 +0.3"}, -- Blood Bag
@@ -256,7 +256,7 @@ EID.descriptions[languageCode].collectibles={
 	{"205", "날카로운 플러그", "액티브 아이템의 {{ColorOrange}}충전량이 없을 때{{CR}} 액티브 아이템 사용 시 체력 두 칸을 깎고 액티브의 충전량을 모두 충전합니다."}, -- Sharp Plug
 	{"206", "단두대", "↑ {{DamageSmall}}공격력 +1#↑ {{TearsSmall}}연사 +0.2#머리가 분리되어 몸의 주변을 돌며 적의 탄환을 막아주고 접촉하는 적에게 초당 105의 피해를 입힙니다."}, -- Guillotine
 	{"207", "밴드 덩어리", "획득할 때마다 성장합니다.#1/2단계: 캐릭터 주위를 돌며 적의 탄환을 막아줍니다.#{{Charm}} 2/3단계: 공격하는 방향으로 공격력 3.5의 매혹 눈물을 발사합니다.#3/4단계: 적을 따라다니며 접촉한 적에게 초당 7/11의 피해를 입힙니다. #4단계: 밴디지 걸이 적 처치 시 일정 확률로 {{Heart}}빨간하트를 드랍합니다."}, -- Ball of Bandages
-	{"208", "챔피언 벨트", "↑ {{DamageSmall}}공격력 +1#!!! 적이 챔피언으로 바뀔 확률 +15%p#챔피언 몬스터는 체력이 평소의 2배, 캐릭터에게 최소 체력 1칸의 피해를 주며 색상별로 특수 효과가 적용됩니다."}, -- Champion Belt
+	{"208", "챔피언 벨트", "↑ {{DamageSmall}}공격력 +1#!!! 일반적인 적이 챔피언으로 바뀔 확률 +5~20%p#챔피언 몬스터는 체력이 평소의 2배, 캐릭터에게 최소 체력 1칸의 피해를 주며 색상별로 특수 효과가 적용됩니다."}, -- Champion Belt
 	{"209", "궁둥이 폭탄", "↑ {{Bomb}}폭탄 +5#{{Confusion}} 폭탄이 터질 때 방 안의 모든 적에게 10의 피해를 주고 4초간 혼란시킵니다.#!!! 똥 타입 보스의 체력을 25% 회복시킵니다."}, -- Butt Bombs
 	{"210", "갉아먹힌 나뭇잎", "2초간 어떠한 키도 입력하지 않을 시 캐릭터가 무적 상태가 됩니다."}, -- Gnawed Leaf
 	{"211", "새끼 거미", "피격 시 파란 아군 거미를 1~2마리 소환합니다."}, -- Spider Baby
@@ -275,7 +275,7 @@ EID.descriptions[languageCode].collectibles={
 	{"224", "크리켓의 몸", "↑ {{TearsSmall}}연사 +0.2#↓ {{RangeSmall}}사거리 -10#눈물이 무언가에 부딪힐 때 네갈래로 갈라집니다."}, -- Cricket's Body
 	{"225", "김피", "적 처치 시 일정 확률로 {{HalfHeart}}빨간하트가 반칸 드랍됩니다.#피격 시 8% 확률로 {{SoulHeart}}소울하트 또는 {{BlackHeart}}블랙하트를 드랍합니다.#{{LuckSmall}} 행운 46 이상일 때 100% 확률"}, -- Gimpy
 	{"226", "검은 연꽃", "↑ {{Heart}}최대 체력 +1#↑ {{SoulHeart}}소울하트 +1#↑ {{BlackHeart}}블랙하트 +1"}, -- Black Lotus
-	{"227", "돼지 저금통", "↑ {{Coin}}동전 +3#피격 시 동전을 1~2개 드랍합니다.#!!! {{Player14}}/{{Player33}}Keeper: 0~1개"}, -- Piggy Bank
+	{"227", "돼지 저금통", "↑ {{Coin}}동전 +3#피격 시 동전을 1~2개 드랍합니다."}, -- Piggy Bank
 	{"228", "엄마의 향수", "↑ {{TearsSmall}}연사 +0.2#15%의 확률로 적을 {{Fear}}도망가게 하는 공격이 나갑니다.#{{LuckSmall}} 행운 85 이상일 때 100% 확률"}, -- Mom's Perfume
 	{"229", "몬스트로의 폐", "↓ {{TearsSmall}}공격 딜레이 x4.3#{{Chargeable}} 공격을 충전한 다음 여러 개의 눈물을 흩뿌리면서 발사합니다."}, -- Monstro's Lung
 	{"230", "아바돈", "최대 체력이 모두 제거됩니다.#↑ {{BlackHeart}}블랙하트 +6#↑ {{DamageSmall}}공격력 +1.5#↑ {{SpeedSmall}}이동속도 +0.2#15%의 확률로 적을 {{Fear}}도망가게 하는 공격이 나갑니다.#{{LuckSmall}} 행운 85 이상일 때 100% 확률"}, -- Abaddon
@@ -361,10 +361,10 @@ EID.descriptions[languageCode].collectibles={
 	{"310", "이브의 마스카라", "↑ {{DamageSmall}}공격력 배율 x2#↓ {{TearsSmall}}연사 배율 x0.2#↓ {{ShotspeedSmall}}탄속 -0.5"}, -- Eve's Mascara
 	{"311", "유다의 그림자", "↑ 목숨 +1#{{Player12}} 사망 시 전 방에서 Black Judas 캐릭터#{{Blank}} (2{{BlackHeart}}/{{DamageSmall}}공격력 배율 x2/{{SpeedSmall}}이동속도 +0.1)로 부활합니다."}, -- Judas' Shadow
 	{"312", "매기의 리본", "↑ {{Heart}}최대 체력 +1#{{Heart}}빨간하트 획득량이 2배로 증가합니다."}, -- Maggy's Bow
-	{"313", "신성한 망토", "피격 시 방당 1회 한정으로 피해를 무시합니다."}, -- Holy Mantle
+	{"313", "신성한 망토", "피격 시 방당 1회 한정으로 피해를 무시합니다.#!!! 헌혈류 피격은 막아주지 않습니다."}, -- Holy Mantle
 	{"314", "살찐 허벅지", "↑ {{Heart}}최대 체력 +1#↓ {{SpeedSmall}}이동속도 -0.4#장애물을 부술 수 있습니다."}, -- Thunder Thighs
 	{"315", "이상한 끌개", "적과 픽업이 공격에 끌려옵니다."}, -- Strange Attractor
-	{"316", "저주받은 눈알", "{{Chargeable}} 눈물을 충전한 다음 최대 4발의 눈물을 일렬로 발사합니다.#!!! 충전중 피격 시 스테이지 안의 랜덤한 방으로 순간이동합니다.#{{Blank}} ({{Collectible260}} 보유 시 순간이동 효과 면역)"}, -- Cursed Eye
+	{"316", "저주받은 눈알", "{{Chargeable}} 눈물을 충전한 다음 최대 4발의 눈물을 일렬로 발사합니다.#!!! 충전중 피격 시 스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Cursed Eye
 	{"317", "이상한 액체", "공격이 무언가에 부딪힐 때 초록 장판이 생기며 장판에 닿은 적은 초당 30의 피해를 입습니다."}, -- Mysterious Liquid
 	{"318", "쌍둥이자리", "캐릭터와 연결되어 이동하며 적을 따라다니며 접촉한 적에게 초당 6의 피해를 입힙니다."}, -- Gemini
 	{"319", "카인의 왼쪽 눈", "대각선으로 이동하며 공격하는 방향으로 캐릭터의 공격력과 같은 눈물을 발사합니다."}, -- Cain's Other Eye
@@ -549,7 +549,7 @@ EID.descriptions[languageCode].collectibles={
 	{"498", "이중성", "{{AngelDevilChanceSmall}} 악마방 등장 시 천사방이 함께 등장하며 두 방 중 한곳을 선택할 수 있습니다."}, -- Duality
 	{"499", "성찬", "{{AngelChanceSmall}} 악마 거래 여부와 무관하게 천사방 등장 확률이 100%로 고정됩니다."}, -- Eucharist
 	{"500", "자루 주머니", "{{GrabBag}} 방 5~6개 클리어 시 픽업 자루를 드랍합니다."}, -- Sack of Sacks
-	{"501", "탐욕의 식도", "동전 25개 당 {{EmptyHeart}}빈 최대 체력 +1#{{Player14}}/{{Player33}}Keeper: 동전 25개 당 체력 상한 +1#동전으로 늘어난 체력은 동전 소비 시 사라집니다."}, -- Greed's Gullet
+	{"501", "탐욕의 식도", "동전 25개 당 {{EmptyHeart}}빈 최대 체력 +1#동전으로 늘어난 체력은 동전 소비 시 사라집니다."}, -- Greed's Gullet
 	{"502", "대왕 여드름", "확률적으로 적을 {{Slow}}둔화시키는 공격력 x2의 눈물이 나갑니다."}, -- Large Zit
 	{"503", "작은 뿔", "5%의 확률로 적을 즉사시키는 눈물이 나갑니다.#적에게 접촉 시 3.5의 피해를 입힙니다."}, -- Little Horn
 	{"504", "갈색 너겟", "사용 시 그 자리에서 주위의 적을 공격하는 파란 파리를 소환합니다."}, -- Brown Nugget
@@ -593,7 +593,7 @@ EID.descriptions[languageCode].collectibles={
 	{"542", "미끄러운 갈비뼈", "캐릭터 주위를 돌며 적의 탄환을 반사합니다."}, -- Slipped Rib
 	{"543", "성지", "피격 시 오라를 가진 하얀 똥을 설치합니다.오라 안에 있을 시 {{TearsSmall}}연사가 2배가 되며 피해를 확률적으로 무시합니다."}, -- Hallowed Ground
 	{"544", "날카로운 갈비뼈", "캐릭터가 보는 방향에서 앞뒤로 움직이면서 접촉하는 적에게 초당 캐릭터의 공격력 x6의 피해를 입힙니다."}, -- Pointy Rib
-	{"545", "망자의 책", "사용 시 방에서 죽인 적의 수만큼 일회용 뼛조각 배리어를 생성하며 확률적으로 아군 해골 적을 소환합니다."}, -- Book of the Dead
+	{"545", "망자의 책", "사용 시 방에서 죽인 적의 수만큼 일회용 뼛조각 배리어를 생성하며 확률적으로 아군 해골 적을 소환합니다. (최대 8)"}, -- Book of the Dead
 	{"546", "아빠의 반지", "캐릭터 주위에 작은 고리가 생기며 고리에 닿은 적은 석화 상태가 됩니다."}, -- Dad's Ring
 	{"547", "이혼 서류", "↑ {{EmptyBoneHeart}}뼈하트 +1#↑ {{TearsSmall}}연사 +0.7#Mysterious Paper 장신구를 드랍합니다."}, -- Divorce Papers
 	{"548", "턱뼈", "공격한 방향으로 부메랑처럼 날아가며 맞은 적에게 7의 피해를 줍니다.#픽업에 닿을 시 픽업을 가져옵니다."}, -- Jaw Bone
@@ -608,16 +608,16 @@ EID.descriptions[languageCode].collectibles={
 
 -- Effect of Car battery on Active Items
 EID.descriptions[languageCode].carBattery = {
-	[34] = {"+2", "+4"}, -- Book of Belial
+	["No Effect"] = "무효과",
 	[35] = {40, 80}, -- Necronomicon
-	[37] = {110, 220}, -- Mr. Boom
+	[37] = {"대형 폭탄을 설치합니다.", "대형 폭탄을 2개 설치합니다."}, -- Mr. Boom
 	[38] = {10, 20}, --Tammy's Head
 	[45] = {"1칸", "2칸"}, -- Yum Heart
 	[58] = {10, 20}, -- Book of Shadows
 	[65] = {6, 12}, -- Anarchist Cookbook
 	[66] = {8, 16}, -- The Hourglass
 	[77] = {6, 12}, -- My Little Unicorn
-	[78] = {"{{CR}}소울하트 {{BlinkYellowGreen}}+1", "{{CR}}소울하트 {{BlinkYellowGreen}}+2"}, -- Book of Revelations
+	[78] = {"소울하트 {{BlinkYellowGreen}}+1", "{{CR}}소울하트 {{BlinkYellowGreen}}+2"}, -- Book of Revelations
 	[83] = {"+1", "+2"}, -- The Nail
 	[85] = {"하나", "2장"}, -- Deck of Cards
 	[86] = "{{BlinkYellowGreen}}Monstro가 한 마리 더 떨어집니다.", -- Monstro's Tooth
@@ -625,7 +625,7 @@ EID.descriptions[languageCode].carBattery = {
 	[97] = {"사용 시 랜덤한 픽업을 {{BlinkYellowGreen}}2개{{CR}} 드랍합니다."}, -- The Book of Sin
 	[102] = {"하나", "2개"}, -- Mom's Bottle of Pills
 	[105] = "!!! {{BlinkYellowRed}}일부 아이템이 배열에서 지워질 수 있음{{CR}}", -- The D6
-	[107] = {82.5, 165}, -- The Pinking Shears
+	[107] = "분리된 몸 추가 생성", -- The Pinking Shears
 	[111] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- The Bean
 	[123] = {"하나", "2명"}, -- Monster Manual
 	[124] = {"랜덤한 액티브 아이템", "랜덤한 액티브 아이템 2개"}, -- Dead Sea Scrolls
@@ -640,9 +640,10 @@ EID.descriptions[languageCode].carBattery = {
 	[288] = {"1~4", "2~8"}, -- Box of Spiders
 	[292] = {"+1", "+2"}, -- Satanic Bible
 	[293] = "혈사의 피해량 x2", -- Head of Krampus
+	[294] = "밀쳐내는 강도가 강해짐", -- Butter Bean
 	[298] = {"6", "12"}, -- Unicorn Stump
 	[348] = {"발동합니다", "2번{{CR}} 발동합니다"}, --Placebo
-	[349] = {"사용 시 50% 확률로 {{Coin}}동전을 하나, {{BlinkYellowGreen}}25%의 확률로 2개 드랍합니다."}, -- Wooden Nickel
+	[349] = {"사용 시 59% 확률로 {{Coin}}동전을 하나, {{BlinkYellowGreen}}29%의 확률로 2개 드랍합니다."}, -- Wooden Nickel
 	[351] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- Mega Bean
 	[357] = {"복사합니다", "2번{{CR}} 복사합니다"}, -- Box of Friends
 	[383] = {6, 36}, -- Tear Detonator
@@ -652,6 +653,7 @@ EID.descriptions[languageCode].carBattery = {
 	[439] = {"하나", "2개"}, -- Mom's Box
 	[476] = {"하나", "2개"}, --D1
 	[477] = "흡수한 아이템을 2번 발동합니다.", -- Void
+	[480] = {"2배", "4배"}, -- Compost
 	[481] = {"능력치가", "2개의{{CR}} 능력치가"}, -- Dataminer
 	[482] = {"제거하고", "{{BlinkYellowRed}}2개{{CR}} 제거하고", "바꿉니다", "2번{{CR}} 바꿉니다"}, -- Clicker
 	[485] = {"50", "{{BlinkYellowRed}}25", "2배", "4배", "1개", "1~2개"}, -- Crooked Penny
@@ -660,11 +662,12 @@ EID.descriptions[languageCode].carBattery = {
 	[488] = {"발동합니다", "2개{{CR}} 발동합니다"}, -- Metronome
 	[489] = "!!! {{BlinkYellowRed}}랜덤 주사위 아이템을 하나 더 발동합니다.", -- D Infinity
 	[504] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Brown Nugget
-	[507] = {"눈물 공격력 + 적 체력의 10%", "눈물 공격력 x2 + 적 체력의 20%"}, -- Sharp Straw
+	[507] = {"눈물 공격력 + 적 최대 체력의 10%", "눈물 공격력 x2 + 적 최대 체력의 20%"}, -- Sharp Straw
 	[510] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Delirious
 	[516] = {"소환합니다", "2마리{{CR}} 소환합니다"}, -- Sprinker
 	[521] = {"하나", "2개"}, --Coupon
 	[523] = "상자의 내용물과 그 방의 아이템/픽업 내용물을 뒤바꿉니다.", -- Moving Box
+	[545] = {8, 16}, -- Book of the Dead
 	[550] = {"그 방 및 웨이브", "2개{{CR}}의 방 및 웨이브"}, -- Broken Shovel
 }
 
@@ -812,11 +815,11 @@ EID.descriptions[languageCode].cards={
 	{"8", "VII - 전차", "{{Collectible77}} 6초간 무적 상태가 되며 접촉한 적에게 40의 피해를 입힙니다."}, -- VII - The Chariot
 	{"9", "VIII - 정의", "{{Heart}}하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠를 하나씩 드랍합니다."}, -- VIII - Justice
 	{"10", "IX - 은둔자", "{{Shop}}상점으로 순간이동합니다."}, -- IX - The Hermit
-	{"11", "X - 운명의 수레바퀴", "도박기계, 혹은 운세기계를 생성합니다."}, -- X - Wheel of Fortune
+	{"11", "X - 운명의 수레바퀴", "{{Slotmachine}}도박기계 혹은 {{FortuneTeller}}운세기계를 생성합니다."}, -- X - Wheel of Fortune
 	{"12", "XI - 힘", "그 방에서 {{Heart}}최대 체력 +1, {{DamageSmall}}공격력 +0.3, {{DamageSmall}}공격력 배율 +50%, {{RangeSmall}}사거리 +5.25, 눈물 높이 +0.5, {{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
 	{"13", "XII - 매달린 남자", "{{Collectible20}} 그 방에서 비행 능력을 얻습니다."}, -- XII - The Hanged Man
 	{"14", "XIII - 죽음", "{{Collectible35}} 방 안의 모든 적에게 40의 피해를 줍니다."}, -- XIII - Death
-	{"15", "XIV - 절제", "{{DonationMachine}}헌혈기계를 생성합니다."}, -- XIV - Temperance
+	{"15", "XIV - 절제", "{{DonationMachine}}헌혈기계를 하나 생성합니다."}, -- XIV - Temperance
 	{"16", "XV - 악마", "{{Collectible34}} 그 방에서 {{DamageSmall}}공격력 +2"}, -- XV - The Devil
 	{"17", "XVI - 탑", "{{Collectible65}} 방 안에 트롤폭탄을 6개 생성합니다."}, -- XVI - The Tower
 	{"18", "XVII - 별", "{{TreasureRoom}}보물방으로 순간이동합니다."}, -- XVII - The Stars
@@ -1024,23 +1027,123 @@ EID.descriptions[languageCode].PickupNames = {
 	["5.350"] = "{{Trinket}}장신구",
 
 }
+-- Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
+-- Strings will be appended to the original description (with line breaks replaced with a Tarot Cloth icon)
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple)
+EID.descriptions[languageCode].tarotClothBuffsAB = {
+	[4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
+	[6] = {2, 4}, -- V - The Hierophant
+	[7] = {2, 4}, -- VI - The Lovers
+	[8] = {6, 12}, -- VII - The Chariot
+	[9] = {"{{Heart}}하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠를 {{ColorShinyPurple}}2{{CR}}개씩 드랍합니다."}, -- VIII - Justice
+	[11] = {"{{Slotmachine}}도박기계 혹은 {{FortuneTeller}}운세기계를 2개 생성합니다."}, -- X - Wheel of Fortune
+	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
+	[14] = {40, 80}, -- XIII - Death
+	[15] = {"하나", "2개"}, -- XIV - Temperance
+	[17] = {6, 12}, -- XVI - The Tower
+	[20] = {100, 200}, -- XIX - The Sun
+	[21] = {"랜덤 거지를 {{ColorShinyPurple}}2{{CR}}명 소환합니다."}, -- XX - Judgement
+	[23] = {"x2", "x4"}, -- 2 of Clubs
+	[24] = {"x2", "x4"}, -- 2 of Diamonds
+	[25] = {"x2", "x4"}, -- 2 of Spades
+	[26] = {"x2", "x4"}, -- 2 of Hearts
+	[33] = {"x2", "x4"}, -- Jera
+	[35] = {1, 2}, -- Dagaz
+	[37] = "!!! 일부 아이템이 배열에서 지워질 수 있음", -- Perthro
+	[38] = {3, 6}, -- Berkano
+	[39] = {30, 60}, -- Algiz
+	[40] = "랜덤 효과 수 및 Blank Rune 드랍 횟수 x2", -- Blank Rune
+	[41] = {40, 80}, -- Black Rune
+	[46] = {10, 20}, -- Suicide King
+	[48] = "2회 사용", -- ? Card
+	[53] = {3, 6}, -- Ancient Recall
+}
+
+-- Conditional descriptions
+-- Strings will be appended to the original description
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs
 EID.descriptions[languageCode].ConditionalDescs = {
-	["5.100.81"] = "!!! 최대 체력 = 소울하트 보정을 받는 캐릭터는 소울하트가 1칸이 됩니다.", -- Dead Cat
-	["5.100.241"] = "{{GreedModeSmall}} Greed 모드의 동전 보상은 영향 없음", -- Contract From Below
-	["5.100.135 (Keeper)"] = "{{Player14}}Keeper: 0~1개", -- IV Bag Keeper
-	["5.100.135 (PHD)"] = "{{Collectible75}} PHD 소지 시 2-3개로 증가", -- IV Bag PHD
-	["5.100.442"] = "빨간하트를 소지할 수 없는 캐릭터는 무효과", -- Dark Prince's Crown
-	["5.300.15"] = "{{DemonBeggar}} 악마거지를 소환합니다.", -- Temperance (Greed Mode effect)
-	-- ["5.350.23"] = "", -- Missing Poster (Unlock The Lost)
+	["Overridden"] = "{1}에 의해 무효화",
+	["Overrides"] = "{1}을(를) 무효화",
+	["No Effect"] = "{1}에는 무효과",
+	["Can't Charge"] = "{1} 충전 불가",
+	["Can't Be Charged"] = "{1}(으)로 충전 불가",
+	["No Effect (Greed)"] = "{{GreedMode}} Greed Mode: 무효과",
+
+	["No Red"] = "최대 체력이 소울하트인 캐릭터에는 무효과",
+	["5.100.81 (No Red)"] = "최대 체력이 소울하트인 캐릭터는 소울하트가 1칸이 됨", -- Dead Cat
+
+	["5.100.7"] = "The Book of Belial 혹은 XV - The Devil 효과 발동 중 {{DamageSmall}}공격력 배율 x1.5", -- Blood of the Martyr
+	["5.100.34"] = "{{DamageSmall}}발동 중 공격력 배율 x1.5", -- Book of Belial
+	["5.300.16"] = "{{DamageSmall}}발동 중 공격력 배율 x1.5", -- The Devil
+
+	["5.100.135 (PHD)"] = "{1} 소지 시 동전 2~3개 소환", -- IV Bag PHD
+	["Keeper 0-1"] = "{1}: 0~1개", -- IV Bag/Piggy Bank Keeper
+
+	["5.300.15"] = {"{{DemonBeggar}} 악마거지를 하나 소환합니다."}, -- Temperance (Greed)
+	["5.300.19"] = {"스테이지의 첫 방으로 순간이동합니다."}, -- The Moon (Greed)
+	["5.300.20"] = {"{{Heart}} 방 안의 모든 적에게 100의 피해를 주고 체력을 모두 회복합니다."}, -- XIX - The Sun (Greed)
+	["5.100.483"] = "{{GreedMode}} 각 방마다 발생, 웨이브마다 발생시키지는 않음", -- Mama Mega (Greed)
+	["5.100.535"] = "{{GreedMode}} Ultra Greed전에서만 효과 발동", -- Blanket (Greed)
+
+	["5.350.23"] = "!!! {{SacrificeRoom}}희생방에서 사망 시 The Lost 캐릭터가 해금됩니다.", -- Missing Poster (Unlock The Lost)
+
+	["5.100.549"] = "{1}: ↑ {{TearsSmall}}연사 +0.4", -- Brittle Bones (Keeper+Lost)
+
+	["5.100.316"] = "{1} 소지 시 순간이동 면역", -- Cursed Eye
+	["5.100.260"] = "{1}의 순간이동 효과를 제거합니다.", -- Black Candle
+	["5.100.501"] = "{1}: 체력 상한을 초과할 수 있습니다.", -- Greed's Gullet
+	["5.100.230 (Keeper)"] = "!!! {1}: {{ColorRed}}획득 시 사망", -- Abaddon
+	["5.300.48"] = "!!! 오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다.", -- Blank Card + Q Card
+	["5.100.205 (Wafer)"] = "소모 체력이 반칸으로 감소", -- Sharp Plug + Wafer
+
+	["5.100.116 (1 Room)"] = "1칸짜리 액티브 아이템의 경우 {{ColorOrange}}적이 있는 방에서{{CR}} 15초의 충전 쿨타임을 가집니다.", -- 9 Volt
+	["5.100.116 (Timed)"] = "시간제 액티브 아이템의 경우 쿨타임의 절반을 보존합니다.", -- 9 Volt
+	["1 Room"] = "{{ColorOrange}}적이 있는 방에서{{CR}} 15초의 충전 쿨타임을 가집니다.", -- Actives + 9 Volt
+	["Timed"] = "사용 후 쿨타임의 절반을 보존합니다.", -- Actives + 9 Volt
+	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
-	["NoEffect"] = "(효과 없음)",
+	["No Effect"] = "(효과 없음)",
 	["DoubleDamage"] = "피해량 x2",
+	["5.100.94"] = "요구되는 방 클리어 수 감소 (1 > 2 > 2 > 2 순환)", -- Sack of Pennies
+	["5.100.96"] = "요구되는 방 클리어 수 감소 (2 > 2 > 3 순환)", -- Little C.H.A.D.
+	["5.100.131"] = "요구되는 방 클리어 수 감소 (2 > 2 > 3 순환)", -- Bomb Bag
+	["5.100.271"] = "요구되는 방 클리어 수 감소 (4~5)", -- Mystery Sack
 	["5.100.273"] = "접촉 피해량 x2, 폭발 피해량 +25", -- Bob's Brain
 	["5.100.266"] = "방 클리어 시 파란 아군 거미 추가 소환", -- Juicy Sack
 	["5.100.360"] = "캐릭터의 공격력 x2의 공격을 발사", -- Incubus
+	["5.100.389"] = "요구되는 방 클리어 수 감소 (4~5)", -- Rune Bag
 	["5.100.417"] = "오라 크기 증가, 피해량이 증가하지 않음", -- Succubus
+	["5.100.500"] = "요구되는 방 클리어 수 감소 (4~5)", -- Sack of Sacks
 	["5.100.537"] = "장판 크기 증가, 피해량이 증가하지 않음", -- Lil Spewer
 	["5.100.539"] = "소환되는 아군이 챔피언으로 등장", -- Mystery Egg
+}
+
+
+-- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
+-- Soon, these descriptions, along with their starting item descriptions, will be in a tab in the Item Reminder
+-- The character names here are also used in getPlayerName to provide localized character names
+EID.descriptions[languageCode].CharacterInfo = {
+	[0] = {"Isaac", ""},
+	[1] = {"Magdalene", ""},
+	[2] = {"Cain", ""},
+	[3] = {"Judas", ""},
+	[4] = {"???", "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다."},
+	[5] = {"Eve", "{{Collectible122}} 바빌론의 창녀가 빨간하트가 1칸 이하여도 발동됩니다."}, --this could just be desc modifier?
+	[6] = {"Samson", ""},
+	[7] = {"Azazel", "{{Collectible118}} 검은 날개로 날 수 있으며 사거리가 매우 짧은 혈사포를 발사합니다."},
+	[8] = {"Lazarus", "{{Collectible332}} 사망 시 그 방에서 최대 체력 1칸으로 부활합니다."},
+	[9] = {"Eden", "모든 능력치 및 시작 아이템이 랜덤으로 정해집니다."},
+	[10] = {"The Lost", "지형 관통 공격 + 날아다닐 수 있으나 체력이 없어 한 번 맞으면 사망합니다.#모든 악마 거래를 체력 상관없이 획득할 수 있습니다."},
+	[11] = {"Lazarus Risen", "부활 이후의 나사로로 능력치가 증가되어 있습니다."},
+	[12] = {"Dark Judas", "{{DamageSmall}} 공격력 배율 x2"},
+	[13] = {"Lilith", "{{Collectible360}} 공격할 수 없으며 모든 공격을 Incubus가 대신해 줍니다."},
+	[14] = {"Keeper", "{{CoinHeart}} 체력이 하트가 아닌 코인으로 이루어져 있으며 2칸의 상한을 가집니다.#동전으로 체력 회복 가능#하트 픽업이 자폭 파리로 바뀝니다."},
+	[15] = {"Apollyon", ""},
+	[16] = {"The Forgotten", "{{Chargeable}} 공격 키로 뼈를 휘두르며 충전 시 충전 거리만큼 뼈다귀를 부메랑처럼 던질 수 있습니다.#{{BoneHeart}} 최대 체력 = 뼈하트의 보정을 받으며 6칸의 상한을 가집니다.#{{ButtonRT}} (Ctrl)키로 영혼과 교체할 수 있으며 영혼은 지형 관통 눈물을 발사합니다.{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받으며 6칸의 상한을 가집니다.#영혼은 날아다닐 수 있으나 본체로부터 멀리 떨어질 수 없습니다."},
+	[17] = {"The Forgotten Soul", "{{Chargeable}} 공격 키로 뼈를 휘두르며 충전 시 충전 거리만큼 뼈다귀를 부메랑처럼 던질 수 있습니다.#{{BoneHeart}} 최대 체력 = 뼈하트의 보정을 받으며 6칸의 상한을 가집니다.#{{ButtonRT}} (Ctrl)키로 영혼과 교체할 수 있으며 영혼은 지형 관통 눈물을 발사합니다.{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받으며 6칸의 상한을 가집니다.#영혼은 날아다닐 수 있으나 본체로부터 멀리 떨어질 수 없습니다."},
 }

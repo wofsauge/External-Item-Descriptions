@@ -28,6 +28,8 @@ local function sanitizeName(name)
     return sanitized
 end
 
+-- KR name search is complicated, divided into seperate file
+require("features.eid_bagofcrafting_search_kr")
 
 --- Returns the current search query
 -- @param newValue new search query
@@ -43,8 +45,22 @@ end
 --- Returns the current search query
 -- @return string
 function EID:BoCSGetSearchValue()
-	return searchValue
+	local s = searchValue
+	for _, callbackData in pairs(Isaac.GetCallbacks("EIDCallbacks.SEARCH_NAME_CONVERSION")) do
+		if callbackData.Param == EID:getLanguage() then
+			local newString = callbackData.Function(callbackData.Mod, callbackData.Param, s)
+			if newString and type(newString) == "string" then
+				s = newString
+			end
+		end
+	end
+	return s
 end
+
+EID:AddCallback("EIDCallbacks.SEARCH_NAME_CONVERSION", function (_, lang, string)
+	-- TODO : make english search inside ko_kr language setting (priotity low though)
+	return EID.engKeystrokeToKor(string)
+end, "ko_kr")
 
 function EID:BoCSGetLocked()
 	return locked
@@ -96,12 +112,13 @@ end
 --- Returns true if the item name is matched
 -- @returns boolean
 function EID:BoCSCheckItemName(itemName)
-	if searchValue == "" then
+	local s = EID:BoCSGetSearchValue()
+	if s == "" then
 		return true
 	end
 	
 	-- Check the name for matching our search string (accents removed)
-	return string.find(sanitizeName(itemName), sanitizeName(searchValue), 1, true)
+	return string.find(sanitizeName(itemName), sanitizeName(s), 1, true)
 end
 
 local function handleSearchInput()	
@@ -109,7 +126,7 @@ local function handleSearchInput()
 		return
 	end
 	
-	if Input.IsButtonTriggered(Keyboard.KEY_ESCAPE, EID.bagPlayer.ControllerIndex, true) then
+	if Input.IsButtonTriggered(Keyboard.KEY_ESCAPE, 0, true) then
 		EID:BoCSSetSearchInputEnabled(false)
 		EID:BoCSSetSearchValue("")
 		return
@@ -123,9 +140,9 @@ local function handleSearchInput()
 	-- enum values are integers
 	for i=Keyboard.KEY_SPACE,Keyboard.KEY_RIGHT_BRACKET do
 		index = index + 1
-		if Input.IsButtonTriggered(i, EID.bagPlayer.ControllerIndex, true) then
+		if Input.IsButtonTriggered(i, 0, true) then
 			local toAppend = indexCharMapping:sub(index, index)
-			local isShiftPressed = (Input.IsButtonPressed(Keyboard.KEY_LEFT_SHIFT, EID.bagPlayer.ControllerIndex, true) or Input.IsButtonPressed(Keyboard.KEY_RIGHT_SHIFT, EID.bagPlayer.ControllerIndex, true))
+			local isShiftPressed = (Input.IsButtonPressed(Keyboard.KEY_LEFT_SHIFT, 0, true) or Input.IsButtonPressed(Keyboard.KEY_RIGHT_SHIFT, 0, true))
 			if isShiftPressed then toAppend = shiftCharMapping:sub(index, index) end
 
 			newValue = newValue .. toAppend
@@ -140,7 +157,7 @@ local function handleSearchInput()
 		end
 	end
 
-	if Input.IsButtonTriggered(Keyboard.KEY_BACKSPACE, EID.bagPlayer.ControllerIndex, true) then
+	if Input.IsButtonTriggered(Keyboard.KEY_BACKSPACE, 0, true) then
 		lastBackspaceTrigger = 0
 		backspaceStep = 0
 		return
@@ -149,7 +166,7 @@ local function handleSearchInput()
 	local currentFrame = game:GetFrameCount()
 	-- 30 Frames = 1 second
 	-- 15 = 500ms
-	if Input.IsButtonPressed(Keyboard.KEY_BACKSPACE, EID.bagPlayer.ControllerIndex, true) and (
+	if Input.IsButtonPressed(Keyboard.KEY_BACKSPACE, 0, true) and (
 		backspaceStep == 0
 		or
 		(backspaceStep == 1 and currentFrame - lastBackspaceTrigger >= 15) -- we delay the second deletion a little bit more
@@ -157,9 +174,9 @@ local function handleSearchInput()
 		(backspaceStep >= 2 and currentFrame - lastBackspaceTrigger >= 1)
 	) then
 		local isControlPressed = (
-			Input.IsButtonPressed(Keyboard.KEY_LEFT_CONTROL, EID.bagPlayer.ControllerIndex, true)
+			Input.IsButtonPressed(Keyboard.KEY_LEFT_CONTROL, 0, true)
 			or
-			Input.IsButtonPressed(Keyboard.KEY_RIGHT_CONTROL, EID.bagPlayer.ControllerIndex, true)
+			Input.IsButtonPressed(Keyboard.KEY_RIGHT_CONTROL, 0, true)
 		)
 
 		if isControlPressed then
@@ -181,7 +198,7 @@ function EID:BoCSHandleInput()
 		return
 	end
 
-	if EID.bagPlayer == nil then
+	if EID.bagPlayer == nil or not EID.BoC.IsDisplayingDescription or not EID.Config["BagOfCraftingDisplayRecipesMode"]:find("Recipe List") then
 		return
 	end
 	
@@ -190,15 +207,13 @@ function EID:BoCSHandleInput()
 	end
 	
 	-- Clear the previous search when Enter is pressed
-	-- TODO: make this a modifiable hotkey
-	if Input.IsButtonTriggered(Keyboard.KEY_ENTER, EID.bagPlayer.ControllerIndex, true) then
+	if Input.IsButtonTriggered(EID.Config["CraftingSearchKey"], 0, true) then
 		if not searchInputEnabled then EID:BoCSSetSearchValue("") end
 	end
 	
 	-- Start a new search when Enter is pressed
-	-- TODO: make this a modifiable hotkey
 	-- by default, both are Enter, but for instance clearing could be Backspace and then you could modify a search term with Enter
-	if Input.IsButtonTriggered(Keyboard.KEY_ENTER, EID.bagPlayer.ControllerIndex, true) then
+	if Input.IsButtonTriggered(EID.Config["CraftingSearchKey"], 0, true) then
 		EID:BoCSSetSearchInputEnabled(not searchInputEnabled)
 		return
 	end
@@ -218,7 +233,7 @@ function EID:BoCSGetSearchLine()
 		result = result .. "{{ColorLime}}"
 	end
 	local searchDescription = EID:getDescriptionEntry("CraftingSearch")
-	result = result .. searchDescription .. " " .. searchValue
+	result = result .. searchDescription .. " " .. EID:BoCSGetSearchValue()
 
 	if EID.BoCSLockMode == 0 and EID:BoCSGetLocked() then
 		result = result .. "{{Trinket159}}"
@@ -245,7 +260,7 @@ function EID:BoCSHookInputIsButtonTriggered()
 			end
 		end
 
-		if bagPlayer == nil or controller ~= bagPlayer.ControllerIndex then
+		if bagPlayer == nil or controller ~= 0 then -- only execute for keyboard
 			return oldInputIsButtonTriggered(key, controller)
 		end
 
@@ -269,7 +284,7 @@ function EID:BoCSHookInputIsButtonPressed()
 			end
 		end
 
-		if bagPlayer == nil or controller ~= bagPlayer.ControllerIndex then
+		if bagPlayer == nil or controller ~= 0 then -- only execute for keyboard
 			return oldInputIsButtonPressed(key, controller)
 		end
 
@@ -293,7 +308,7 @@ function EID:BoCSHookInputIsActionPressed()
 			end
 		end
 
-		if bagPlayer == nil or controller ~= bagPlayer.ControllerIndex then
+		if bagPlayer == nil or controller ~= 0 then -- only execute for keyboard
 			return oldInputIsActionPressed(key, controller)
 		end
 
@@ -317,8 +332,8 @@ function EID:BoCSHookInputIsActionTriggered()
 			end
 		end
 
-		if bagPlayer == nil or controller ~= bagPlayer.ControllerIndex then
-			return oldInputIsActionTriggered(key, controller)
+		if bagPlayer == nil or controller ~= 0 then
+			return oldInputIsActionTriggered(key, controller) -- only execute for keyboard
 		end
 
 		return false

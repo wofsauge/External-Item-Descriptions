@@ -170,9 +170,9 @@ function EID:Teleport1Prediction(rng)
 end
 
 -- Teleport 2 Destination Prediction --
-local teleport2Order = { 1,5,8,2,4,13,21,12,10,6,11,18,19,9,20,24,7,1025,666,3 }
+local teleport2Order = { 1,1024,5,8,2,4,13,21,12,10,6,11,18,19,9,20,24,7,1025,666,3 }
 local teleport2GreedOrder = { 1,5,2,4,10,23,8,666,3 }
-local teleport2Icons = { [1025] = "{{RedRoom}}", [666] = "{{AngelDevilChance}}" }
+local teleport2Icons = { [1024] = "{{RedRoom}}", [1025] = "{{RedRoom}}", [666] = "{{AngelDevilChance}}" }
 
 function EID:Teleport2Prediction()
 	local level = game:GetLevel()
@@ -186,8 +186,10 @@ function EID:Teleport2Prediction()
 		local gridIndex = room.SafeGridIndex
 		local roomDesc = level:GetRoomByIdx(gridIndex, curDimension)
 		if roomDesc.ListIndex == i and not room.Clear then
-			-- Check for Special Red Rooms, which get ordered differently than their non-red version
-			if EID.isRepentance and room.Data.Type ~= 1 and room.Flags & 1024 == 1024 then unclearedTypes[1025] = true
+			-- Check for Red Rooms and Special Red Rooms, which get ordered differently than their non-red version
+			if EID.isRepentance and room.Flags & 1024 == 1024 then
+				if room.Data.Type ~= 1 then unclearedTypes[1025] = true
+				else unclearedTypes[1024] = true end
 			else unclearedTypes[room.Data.Type] = true end
 		end
 	end
@@ -240,7 +242,7 @@ function EID:VoidRoomCheck()
 		local pickup = entity:ToPickup()
 		-- Count this pedestal if it's not an active (or this is Black Rune), not a shop item, and (in Repentance) the first of its option index
 		-- TEST IF VOID ALWAYS ABSORBS THE FIRST OF ITS OPTION INDEX
-		if entity.SubType > 0 and not pickup:IsShopItem() and
+		if pickup and entity.SubType > 0 and not pickup:IsShopItem() and
 		(not EID.isRepentance or pickup.OptionsPickupIndex == 0 or EID.VoidOptionIndexes[pickup.OptionsPickupIndex] == nil) then
 			numRunable = numRunable + 1
 			if EID.isRepentance then EID.VoidOptionIndexes[pickup.OptionsPickupIndex] = entity.SubType end

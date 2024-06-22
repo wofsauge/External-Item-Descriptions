@@ -1,17 +1,19 @@
 ---------------------------------------
------  Basic German descriptions -----
+-----  Basic German descriptions  -----
 ---------------------------------------
 
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  !!! = Warning  |  # = Starts a new line
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
 local languageCode = "de"
 
+---------- Collectibles ----------
+
 local repCollectibles={
-	[2] = {"2", "Das Innere Auge", "↓ {{Tears}} x0.51 Feuerratenmultiplikator#Isaac schießt auf einmal 3 Tränen"},
+	[2] = {"2", "Das Innere Auge", "↓ {{Tears}} x0.51 Feuerratenmultiplikator#Isaac schießt auf einmal 3 Tränen"}, -- The Inner Eye
 	[5] = {"5", "Meine Reflexion", "↑ {{Damage}} +1.5 Schaden#↑ {{Range}} +1.5 Reichweite#↑ {{Range}} x2 Reichweitenmultiplikator#↑ {{Shotspeed}} x1.6 Schussgeschwindigkeitsmultiplikator#↓ {{Luck}} -1 Glück#Tränen erhalten einen Bumerangeffekt"}, -- My Reflection
 	[6] = {"6", "Nummer Eins", "↑ {{Tears}} +1.5 Tränen#↓ {{Range}} -1.5 Reichweite#↓ {{Range}} x0.8 Reichweitenmultiplikator"}, -- Number One
 	[12] = {"12", "Magischer Pilz", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.3 Geschwindigkeit#↑ {{Damage}} +0.3 Schaden#↑ {{Damage}} x1.5 Schadensmultiplikator#↑ {{Range}} +2.5 Reichweite#Größe erhöht#{{Heart}} Vollständige Gesundheit"}, -- Magic Mushroom
@@ -30,16 +32,16 @@ local repCollectibles={
 	[40] = {"40", "Kamikaze!", "Verursacht eine große Explosion an Isaacs Position#Verursacht 185 Schaden"}, -- Kamikaze!
 	[41] = {"41", "Mamas Binde", "{{Fear}} Ängstigt alle Feinde im Raum für 5 Sekunden#Spawnt eine blaue Fliege"}, -- Mom's Pad
 	[42] = {"42", "Bobs Fauliger Kopf", "Das Benutzen des Gegenstands und das Abschießen in eine Richtung wirft den Kopf#{{Poison}} Der Kopf explodiert, wo er landet, und erzeugt eine Giftwolke#Verursacht Isaacs Schaden + 185"}, -- Bob's Rotten Head
-	[45] = {"45", "Leckeres Herz", "{{Heart}} Heilt 1 Herz#{{HalfHeart}} Heilt andere Spieler um ein halbes Herz"}, -- Yum Heart
 	[46] = {"46", "Glücklicher Fuß", "↑ {{Luck}} +1 Glück#Bessere Gewinnchance beim Glücksspiel#Erhöht die Wahrscheinlichkeit von Gegenständen beim Raumabschluss#Verwandelt schlechte Pillen in gute um"}, -- Lucky Foot
-	[52] = {"52", "Doktor Fetus", "↓ {{Tears}} x0.4 Feuerratenmultiplikator#{{Bomb}} Isaac schießt Bomben anstelle von Tränen#{{Damage}} Diese Bomben verursachen 10x Isaacs Tränenschaden#Wenn das zu mehr als 60 Schaden führt, verursachen sie stattdessen 5x Schaden +30"}, --Dr. Fetus
+	[49] = {"49", "Shoop da Whoop!", "Der nächste Schuss wird mit einem Strahl ersetzt#Er verursacht 24x Isaacs Schaden über 0.83 Sekunden"}, -- Shoop da Whoop!
+	[52] = {"52", "Doktor Fetus", "↓ {{Tears}} x0.4 Feuerratenmultiplikator#{{Bomb}} Isaac schießt Bomben anstelle von Tränen#{{Damage}} Diese Bomben verursachen 10x Isaacs Tränenschaden#Wenn das zu mehr als 60 Schaden führt, verursachen sie stattdessen 5x Schaden +30"}, -- Dr. Fetus
 	[53] = {"53", "Magneto", "Gegenstände werden von Isaac angezogen#Öffnet Truhen aus 2 Kacheln Entfernung, ignoriert den Schaden von Dornenkisten"}, -- Magneto
 	[55] = {"55", "Mamas Auge", "50% Chance, eine zusätzliche Träne nach hinten zu schießen#{{Luck}} Bei 5 Glück 100%ige Chance"}, -- Mom's Eye
-	[59] = {"59", "Das Buch von Belial", "{{AngelDevilChance}} +12.5% Teufels/Engelsraumchance bei Besitz#{{Timer}} Erhalte für den Raum:#↑ {{Damage}} +2 Schaden#{{Collectible7}} x1.5 Schadensmultiplikator, wenn Isaac Blood of the Martyr hat"}, -- The Book of Belial (Judas's Birthright Version)
+	[59] = {"59", "Das Buch von Belial", "{{AngelDevilChance}} +12.5% Teufels/Engelsraumchance bei Besitz#{{Timer}} Erhalte für den Raum:#↑ {{Damage}} +2 Schaden"}, -- The Book of Belial (Judas' Birthright)
 	[62] = {"62", "Der Vampirzauber", "↑ {{Damage}} +0.3 Schaden#{{HalfHeart}} Töten von 13 Feinden heilt ein halbes Herz"}, -- Charm of the Vampire
 	[64] = {"64", "Sonderangebot", "{{Shop}} Waren kosten 50% weniger#Mehrfaches Erhalten dieses Gegenstands verringert den Preis weiter"}, -- Steam Sale
 	[67] = {"67", "Schwester Maggy", "Schießt normale Tränen#Verursacht 6 Schaden pro Träne"}, -- Sister Maggy
-	[69] = {"69", "Schokoladenmilch", "{{Chargeable}} Aufladbare Tränen#{{Damage}} Der Schaden skaliert mit der Ladezeit, bis zu 4x"}, --Chocolate Milk
+	[69] = {"69", "Schokoladenmilch", "{{Chargeable}} Aufladbare Tränen#{{Damage}} Der Schaden skaliert mit der Ladezeit, bis zu 4x"}, -- Chocolate Milk
 	[70] = {"70", "Wachstumshormone", "↑ {{Speed}} +0.2 Geschwindigkeit#↑ {{Damage}} +1 Schaden"}, -- Growth Hormones
 	[71] = {"71", "Mini Mush", "↑ {{Speed}} +0.3 Geschwindigkeit#↑ {{Range}} +2.5 Reichweite#↑ Größe verkleinert"}, -- Mini Mush
 	[72] = {"72", "Rosenkranz", "↑ {{Tears}} +0.5 Tränen#{{SoulHeart}} +3 Seelenherzen#{{Collectible33}} Die Bibel wird allen Gegenstandspools hinzugefügt"}, -- Rosary
@@ -55,13 +57,12 @@ local repCollectibles={
 	[106] = {"106", "Herr Mega", "↑ x1.85 Bombenschaden#{{Bomb}} +5 Bomben"}, -- Mr. Mega
 	[110] = {"110", "Mamas Kontakte", "↑ {{Range}} +1.5 Reichweite#20% Chance, versteinerte Tränen zu schießen#{{Luck}} Bei 20 Glück 50%ige Chance"}, -- Mom's Contacts
 	[114] = {"114", "Mamas Messer", "Isaacs Tränen werden durch ein werfbares Messer ersetzt#{{Damage}} Das Messer verursacht 2x Isaacs Schaden beim Halten und begrenzt sich bei 1/3 Ladung auf 6x Schaden#Weitere Aufladung erhöht nur die Wurfweite#Schaden reduziert sich auf 2x beim Zurückkehren zu Isaac"}, -- Mom's Knife
-	[115] = {"115", "Ouija-Brett", "↑ {{Tears}} +0.5 Tränen#Spektrale Tränen"},
-	[118] = {"118", "Schwefel", "↓ {{Tears}} x0.33 Feuerratenmultiplikator#{{Chargeable}} Isaacs Tränen werden durch einen aufladbaren Blutstrahl ersetzt"}, -- Brimstone
+	[115] = {"115", "Ouija-Brett", "↑ {{Tears}} +0.5 Tränen#Spektrale Tränen"}, -- Ouija Board
+	[118] = {"118", "Schwefel", "↓ {{Tears}} x0.33 Feuerratenmultiplikator#{{Chargeable}} Isaacs Tränen werden durch einen aufladbaren Blutstrahl ersetzt##{{Damage}} Er verursacht 9x Isaacs Schaden über 0.63 Sekunden"}, -- Brimstone
 	[121] = {"121", "Seltsamer Pilz (Groß)", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} +1 Schaden#↑ {{Range}} +1.5 Reichweite#↓ {{Speed}} -0.2 Geschwindigkeit"}, -- Odd Mushroom (Large)
 	[123] = {"123", "Monsterhandbuch", "{{Timer}} Spawnt für den Raum ein zufälliges Begleittier"}, -- Monster Manual
 	[126] = {"126", "Rasierklinge", "↑ {{Damage}} +1.2 Schaden für den Raum#{{Warning}} Verursacht 1 Herz Schaden an Isaac#Nach dem ersten Gebrauch im Raum nur noch ein halbes Herz#{{Heart}} Entfernt zuerst Rote Herzen"}, -- Razor Blade
 	[129] = {"129", "Eimer mit Talg", "↑ {{Heart}} +2 Gesundheit#↓ {{Speed}} -0.2 Geschwindigkeit"}, -- Bucket of Lard
-	[135] = {"135", "IV-Beutel", "{{Coin}} Verletzt Isaac um ein halbes Herz und spawnt 1-2 Münzen#{{HardMode}} Spawnt auf dem Hard Mode 1 Münze#{{Player14}} Spawnt als Keeper 0-1 Münze"}, -- IV Bag
 	[138] = {"138", "Stigmata", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} +0.3 Schaden#{{Heart}} Heilt 1 Herz"}, -- Stigmata
 	[139] = {"139", "Mamas Geldbeutel", "{{Trinket}} Spawnt 1 zufälliges Trinket#{{Trinket}} Isaac kann 2 Trinkets halten"}, -- Mom's Purse
 	[140] = {"140", "Bobs Fluch", "{{Bomb}} +5 Bomben#{{Poison}} Isaacs Bomben erzeugen eine Giftwolke#{{Poison}} Giftimmunität"}, -- Bob's Curse
@@ -69,27 +70,27 @@ local repCollectibles={
 	[147] = {"147", "Eingeritzte Axt", "Benutzen des Gegenstands lässt Isaac die Axt halten#Die Axt zu halten ermöglicht es Isaac, Felsen, Geheimgangzugänge und Feinde zu beschädigen#Ein Treffer mit der Axt reduziert ihre Ladung#Das Betreten eines neuen Stocks lädt die Axt vollständig auf"}, -- Notched Axe
 	[148] = {"148", "Infestation", "Bei Schaden werden 2-6 blaue Fliegen erzeugt"}, -- Infestation
 	[149] = {"149", "Ipecac", "↑ {{Damage}} +40 Schaden#↓ {{Tears}} x0.33 Feuerratenmultiplikator#↓ {{Range}} x0.8 Reichweitenmultiplikator#↓ {{Shotspeed}} -0.2 Schussgeschwindigkeit#Isaacs Tränen fliegen in einem Bogen#{{Poison}} Die Tränen explodieren und vergiften Feinde, wo sie landen"}, -- Ipecac
-	[152] = {"152", "Technologie 2", "↓ {{Tears}} x0.67 Feuerratenmultiplikator#Ersetzt Isaacs rechte Augentränen durch einen kontinuierlichen Laser#{{Damage}} Der Laser verursacht 13% von Isaacs Schaden pro Tick"}, -- Technology 2
+	[152] = {"152", "Technologie 2", "↓ {{Tears}} x0.67 Feuerratenmultiplikator#Ersetzt Isaacs rechte Augentränen durch einen kontinuierlichen Laser#{{Damage}} Der Laser verursacht 2x Isaacs Schaden pro Sekunde"}, -- Technology 2
 	[153] = {"153", "Mutant Spider", "↓ {{Tears}} x0.42 Feuerratenmultiplikator#Isaac schießt auf einmal 4 Tränen"}, -- Mutant Spider
 	[155] = {"155", "Der Peeper", "↑ {{Damage}} x1.35 Schadensmultiplikator für das linke Auge#Schwebt im Raum herum#Verursacht 17.1 Kontaktschaden pro Sekunde"}, -- The Peeper
 	[158] = {"158", "Kristallkugel", "Spawnt ein {{SoulHeart}} Seelenherz, {{Rune}} Rune oder {{Card}} Karte#{{Timer}} Vollständiger Karteneffekt für den Stock (außer {{SuperSecretRoom}} Super Secret Room)#Bei Benutzung:#{{PlanetariumChance}} +15% Planetarium-Chance#{{PlanetariumChance}} +100%, wenn ein {{TreasureRoom}} Schatzraum übersprungen wurde"}, -- Crystal Ball
-	[161] = {"161", "Anch", "{{Player4}} Wiederbelebung als ??? (Blue Baby) bei Tod#{{Player25}} Tainted ??? wird einfach wiederbelebt"}, -- Ankh
 	[169] =	{"169", "Polyphemus", "↑ {{Damage}} +4 Schaden#↑ {{Damage}} x2 Schadensmultiplikator#↓ {{Tears}} x0.42 Feuerratenmultiplikator#Tränen durchdringen getötete Feinde, wenn überschüssiger Schaden vorhanden ist"}, -- Polyphemus
 	[171] = {"171", "Spinnenhintern", "{{Slow}} Verlangsamt Feinde für 4 Sekunden#Verursacht allen Feinden 10 Schaden#Feinde, die vom Gegenstand getötet werden, erzeugen blaue Spinnen"}, -- Spider Butt
 	[172] = {"172", "Opferdolch", "Orbital#Blockt feindliche Schüsse#Verursacht 112,5 Schaden pro Sekunde"}, -- Sacrificial Dagger
+	[173] = {"173", "Mitra", "{{SoulHeart}} 33% Chance, dass Rote Herzen stattdessen als Seelenherzen erscheinen"}, -- Mitre
 	[176] = {"176", "Stammzellen", "↑ {{Heart}} +1 Gesundheit#↑ {{Shotspeed}} +0,16 Schussgeschwindigkeit#{{Heart}} Heilt 1 Herz"}, -- Stem Cells
 	[178] = {"178", "Heiliges Wasser", "{{Throwable}} Schießt sich in die Richtung, in die Isaac schießt#Bricht und verursacht 7 Schaden beim Treffen eines Feindes#Hinterlässt eine Fläche mit versteinerndem + schädlichem Schleim"}, -- Holy Water
 	[180] = {"180", "Die schwarze Bohne", "Isaac furzt mehrmals, wenn er Schaden nimmt#{{Poison}} Die Fürze hinterlassen Giftwolken und lenken Projektile ab"}, -- The Black Bean
 	[182] = {"182", "Heiliges Herz", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} x2,3 Schadensmultiplikator#{{Damage}} +1 Schaden#↓ {{Tears}} -0.4 Tränen#↓ {{Shotspeed}} -0.25 Schussgeschwindigkeit#{{Heart}} Volle Gesundheit#Tränen suchen ihr Ziel"}, -- Sacred Heart
 	[184] = {"184", "Heiliger Gral", "↑ {{Heart}} +1 Gesundheit#{{Heart}} Heilt 1 Herz#Flug"}, -- Holy Grail
 	[186] = {"186", "Blutrechte", "Verursacht 40 Schaden an allen Feinden#{{Warning}} Verursacht 1 Herz Schaden an Isaac#Nach dem ersten Gebrauch im Raum nur noch ein halbes Herz#{{Heart}} Entfernt zuerst Rote Herzen"}, -- Blood Rights
-	[188] = {"188", "Abel", "Spiegelt Isaacs Bewegungen#Schießt auf Isaac zu#Verursacht 3,5 Schaden pro Träne#{{Player2}} Verursacht als Cain 7,5 Schaden"}, -- Abel
+	[188] = {"188", "Abel", "Spiegelt Isaacs Bewegungen#Schießt auf Isaac zu#Verursacht 3,5 Schaden pro Träne"}, -- Abel
 	[189] = {"189", "SMB Super Fan", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.2 Geschwindigkeit#↑ {{Tears}} +0.2 Tränen#↑ {{Damage}} +0.3 Schaden#↑ {{Range}} +2.5 Reichweite#{{Heart}} Volle Gesundheit"}, -- SMB Super Fan
 	[192] = {"192", "Telepathie für Dummies", "{{Timer}} Erhalte für den Raum:#↑ {{Range}} +3 Reichweite#Suchende Tränen"}, -- Telepathy for Dummies
 	[193] = {"193", "FLEISCH!", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} +0.3 Schaden#{{Heart}} Heilt 1 Herz"}, -- MEAT!
 	[194] = {"194", "Magische 8-Kugel", "↑ {{Shotspeed}} +0.16 Schussgeschwindigkeit#{{Card}} Spawnt eine Karte#{{PlanetariumChance}} +15% Planetarium-Chance"}, -- Magic 8 Ball
 	[197] = {"197", "Jesus-Saft", "↑ {{Damage}} +0.5 Schaden#↑ {{Range}} +1.5 Reichweite"}, -- Jesus Juice
-	[203] = {"203", "Bescheidenes Bündel", "Pickups haben eine 50% ige Chance, verdoppelt zu werden"}, -- Humbling Bundle
+	[203] = {"203", "Bescheidenes Bündel", "Pickups haben eine 50% ige Chance, verdoppelt zu werden"}, -- Humbleing Bundle
 	[205] = {"205", "Scharfes Plug", "{{Battery}} Benutzen eines ungeladenen Aktivgegenstands lädt ihn vollständig auf, kostet jedoch ein halbes Herz pro fehlender Ladung#{{Heart}} Entfernt zuerst Rote Herzen"}, -- Sharp Plug
 	[206] = {"206", "Guillotine", "↑ {{Tears}} +0.5 Feuerrate#↑ {{Damage}} +1 Schaden#Isaacs Kopf wird zu einem Orbital, der schießt, keinen Schaden nimmt und 65 Kontaktschaden pro Sekunde verursacht"}, -- Guillotine
 	[211] = {"211", "Spinnenbaby", "Bei Schaden werden 3-5 blaue Spinnen erzeugt"}, -- Spiderbaby
@@ -103,24 +104,24 @@ local repCollectibles={
 	[228] = {"228", "Mamas Parfum", "↑ {{Tears}} +0.5 Feuerrate#{{Fear}} 15% ige Chance, Furchttränen zu schießen"}, -- Mom's Perfume
 	[229] =	{"229", "Monstros Lunge", "↓ {{Tears}} x0.23 Feuerratenmultiplikator#{{Chargeable}} Tränen werden aufgeladen und in einem Schrotflintenangriff freigesetzt"}, -- Monstro's Lung
 	[230] = {"230", "Abaddon", "↑ {{Speed}} +0.2 Geschwindigkeit#↑ {{Damage}} +1.5 Schaden#{{BlackHeart}} Wandelt alle Herzcontainer in Schwarze Herzen um#{{BlackHeart}} +2 Schwarze Herzen#{{Fear}} 15% ige Chance, Furchttränen zu schießen"}, -- Abaddon
-	[232] = {"232", "Stoppuhr", "↑ {{Speed}} +0.3 Geschwindigkeit#{{Slow}} Feinde sind dauerhaft auf 80% ihrer Angriffs- und Bewegungsgeschwindigkeit verlangsamt"}, -- Stopuhr
+	[232] = {"232", "Stoppuhr", "↑ {{Speed}} +0.3 Geschwindigkeit#{{Slow}} Feinde sind dauerhaft auf 80% ihrer Angriffs- und Bewegungsgeschwindigkeit verlangsamt"}, -- Stop Watch
 	[233] = {"233", "Winziger Planet", "↑ {{Range}} +6.5 Reichweite#Spektrale Tränen#Isaacs Tränen kreisen um ihn"}, -- Tiny Planet
-	[245] = {"245", "20/20", "↓ {{Damage}} x0.8 Schadensmultiplikator#Isaac schießt 2 Tränen auf einmal#Entfernt die Tränenratenstrafe von {{Collectible153}} Mutant Spider, {{Collectible2}} The Inner Eye und {{Collectible169}} Polyphemus"}, -- 20/20
+	[245] = {"245", "20/20", "↓ {{Damage}} x0.8 Schadensmultiplikator#Isaac schießt 2 Tränen auf einmal"}, -- 20/20
 	[248] = {"248", "Bienenstock-Verstand", "Blaue Spinnen und Fliegen verursachen doppelten Schaden#Spinne- und Fliegen-Begleiter werden stärker"}, -- Hive Mind
 	[253] = {"253", "Magische Kruste", "↑ {{Heart}} +1 Gesundheit#↑ {{Luck}} +1 Glück#{{Heart}} Heilt 1 Herz"}, -- Magic Scab
 	[254] = {"254", "Blutklumpen", "↑ {{Damage}} +1 Schaden für das linke Auge#↑ {{Range}} +2.75 Reichweite für das linke Auge"}, -- Blood Clot
 	[256] = {"256", "Heiße Bomben", "{{Bomb}} +5 Bomben#{{Burning}} Isaacs Bomben verursachen Kontaktschaden#{{Burning}} Isaacs Bomben hinterlassen eine Flamme, wo sie explodieren#{{Burning}} Feuerimmunität (außer gegen Projektile)"}, -- Hot Bombs
 	[261] = {"261", "Proptose", "↑ {{Damage}} +0.5 Schaden#↓ Tränen verursachen weniger Schaden, je länger sie in der Luft sind#Tränen verursachen bei Nahkampf 3x Schaden und danach keinen Schaden mehr nach 0,8 Sekunden"}, -- Proptosis
 	[262] = {"262", "Fehlende Seite 2", "{{BlackHeart}} +1 Schwarzes Herz#Bei Schaden auf 1 Herz werden alle Feinde im Raum beschädigt#{{Collectible35}} Schwarze Herzen und Nekronomikon-ähnliche Effekte verursachen doppelten Schaden"}, -- Missing Page 2
-	[263] = {"263", "Klare Rune", "{{Rune}} Spawnt 1 Rune beim Aufsammeln#{{Rune}} Löst den Effekt der Rune aus, die Isaac hält, ohne sie zu verwenden"}, -- Clear Rune (REPENTANCE ITEM)
-	[264] = {"264", "Kluge Fliege", "Orbital#Greift Feinde an, wenn Isaac Schaden nimmt#Verursacht 6,5 Schaden pro Sekunde"},
+	[263] = {"263", "Klare Rune", "{{Rune}} Spawnt 1 Rune beim Aufsammeln#{{Rune}} Löst den Effekt der Rune aus, die Isaac hält, ohne sie zu verwenden"}, -- Clear Rune (Repentance item)
+	[264] = {"264", "Kluge Fliege", "Orbital#Greift Feinde an, wenn Isaac Schaden nimmt#Verursacht 6,5 Schaden pro Sekunde"}, -- Smart Fly
 	[273] = {"273", "Bobs Gehirn", "Eilt in die Richtung, in die Isaac schießt#Explodiert, wenn es einen Feind trifft#{{Poison}} Die Explosion verursacht 100 Schaden, ignoriert Boss-Rüstung und vergiftet Feinde#{{Warning}} Die Explosion kann Isaac verletzen"}, -- Bob's Brain
 	[274] = {"274", "Bester Kumpel", "Bei Schaden wird ein mittelgroßes Orbital für den Raum erzeugt#Das Orbital verursacht 150 Schaden pro Sekunde"}, -- Best Bud
 	[275] = {"275", "Lil Brimstone", "{{Chargeable}} Begleiter, der einen {{Collectible118}} Blutstrahl auflädt und schießt#Verursacht 3 Schaden pro Tick, insgesamt 24 Schaden"}, -- Lil Brimstone
 	[276] = {"276", "Isaacs Herz", "Isaac wird unverwundbar#Erzeugt ein Herz-Begleiter, der Isaac folgt#Das Herz lädt sich auf, wenn Isaac schießt, und gibt einen Schauer von Tränen ab, wenn er aufhört#{{Warning}} Wenn das Herz getroffen wird, erleidet Isaac Schaden"}, -- Isaac's Heart
 	[278] = {"278", "Dunkler Bum", "{{Heart}} Sammelt nahegelegene rote Herzen ein#Erzeugt für jedes aufgesammelte Herz ein Schwarzes Herz, Rune, Karte, Pille oder Spinne"}, -- Dark Bum
 	[280] = {"280", "Sissy Langbein", "Erzeugt zufällig blaue Spinnen in feindlichen Räumen#{{Charm}} Verzaubert Feinde, mit denen es in Kontakt kommt"}, -- Sissy Longlegs
-	[283] = {"283", "D100", "Dupliziert 1 Aufsammelobjekt im Raum#Würfelt Isaacs Geschwindigkeit, Tränen, Schaden, Reichweite und passive Objekte neu#Würfelt alle Sockelobjekte, Aufsammelobjekte und Felsen im Raum neu#Startet den Raum neu, lässt alle Feinde respawnen und würfelt sie neu"}, -- D100
+	[283] = {"283", "D100", "Dupliziert 1 Aufsammelobjekt im Raum#Würfelt Isaacs Geschwindigkeit, Tränen, Schaden, Reichweite und passive Objekte neu#Würfelt alle Sockelobjekte, Aufsammelobjekte und Felsen im Raum neu#Startet den Raum neu, belebt alle Feinde wieder und lässt sie zurückentwickeln"}, -- D100
 	[285] = {"285", "D10", "Verwandelt alle Feinde im Raum zurück#Zum Beispiel werden alle roten Fliegen zu schwarzen Fliegen"}, -- D10
 	[286] = {"286", "Blanko-Karte", "Löst den Effekt der Karte aus, die Isaac hält, ohne sie zu verwenden"}, -- Blank Card
 	[287] = {"287", "Buch der Geheimnisse", "Markiert getönte und Kellerfelsen im Raum#{{Timer}} Erhalte einen dieser Effekte für den Raum:#{{Collectible54}} Schatzkarte#{{Collectible21}} Kompass#{{Collectible246}} Blaue Karte#Gewährt nur Effekte, die noch nicht aktiv sind#{{Collectible76}} Wenn alle Effekte aktiv sind, gewährt Röntgensicht"}, -- Book of Secrets
@@ -128,40 +129,40 @@ local repCollectibles={
 	[289] = {"289", "Rote Kerze", "Wirft eine rote Flamme#Die Flamme verschwindet, wenn sie Schaden verursacht hat oder 5 Schüsse blockiert hat oder nach 10 Sekunden"}, -- Red Candle
 	[291] = {"291", "Spülen!", "Verwandelt alle nicht-bossartigen Feinde in Kacke#Tötet sofort Kackfeinde und Bosse#Löscht Feuerstellen und füllt den Raum mit Wasser#Verwandelt Lava-Gruben in begehbaren Boden"}, -- Flush!
 	[292] = {"292", "Satanische Bibel", "{{BlackHeart}} +1 Schwarzes Herz#{{DevilRoom}} Das Benutzen des Gegenstands vor einem Bosskampf führt dazu, dass der Boss eine Teufelsdeal-Belohnung gibt#Der Kauf dieser Teufelsdeals hat die gleichen Konsequenzen wie die in Teufelsräumen#Betrifft keine Gegenstandspodeste im Void-Stockwerk"}, -- Satanic Bible
+	[293] = {"293", "Head of Krampus", "{{Collectible118}} Shoot a 4-way blood beam#They each deal 200 damage over 1.33 seconds"}, -- Head of Krampus
 	[294] = {"294", "Butterbohne", "Stößt nahegelegene Feinde und Projektile zurück#Feinde, die gegen Hindernisse gestoßen werden, erleiden 10 Schaden"}, -- Butter Bean
 	[295] = {"295", "Magische Finger", "Verursacht 2x Isaacs Schaden + 10 an allen Feinden im Raum#{{Coin}} Kosten 1 Münze"}, -- Magic Fingers
 	[296] = {"296", "Konverter", "{{Heart}} Wandelt 1 Seelen- oder Schwarzes Herz in 1 Herzcontainer um"}, -- Converter
-	--NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
-	--For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
+	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
+	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
 	[297] = {"297", "Pandoras Box", "{{Warning}} EINMALIGE VERWENDUNG {{Warning}} Erzeugt Belohnungen basierend auf der Ebene:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss-Gegenstand; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss-Gegenstände#W2: {{Collectible33}} Die Bibel#???/Leere: Nichts#Sheol: Teufelsgegenstand + 1{{BlackHeart}}#Kathedrale: Engelsgenstand + 1{{EternalHeart}}#Dunkler Raum: Schaltet {{Collectible523}} Die Umzugskiste frei; Truhe: 1{{Coin}}#Zuhause: {{Collectible580}} Roter Schlüssel"}, -- Pandora's Box
 	[300] = {"300", "Widder", "↑ {{Speed}} +0.25 Geschwindigkeit#Bewegung über 0,85 Geschwindigkeit macht Isaac immun gegen Berührungsschaden und fügt Feinden 25 Schaden zu"}, -- Aries
 	[307] = {"307", "Steinbock", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0.1 Geschwindigkeit#↑ {{Tears}} +0.5 Feuerrate#↑ {{Damage}} +0.5 Schaden#↑ {{Range}} +0.75 Reichweite#+1 {{Coin}} Münze, {{Bomb}} Bombe und {{Key}} Schlüssel"}, -- Capricorn
 	[308] = {"308", "Wassermann", "Isaac hinterlässt eine Spur aus Klecksen#{{Damage}} Der Klecks fügt 66% des Schadens von Isaac pro Sekunde zu und übernimmt seine Träreffekte"}, -- Aquarius
 	[309] = {"309", "Fische", "↑ {{Tears}} +0.5 Feuerrate#↑ {{Tearsize}} +0.12 Tränengröße#Erhöht den Rückstoß der Tränen"}, -- Pisces
-	[310] = {"310", "Evas Mascara", "↑ {{Damage}} x2 Schadensmultiplikator#↓ {{Tears}} x0.66 Tränenmultiplikator#↓ {{Shotspeed}} -0.5 Schussgeschwindigkeit"},
-	[311] = {"311", "Judas' Schatten", "{{Player12}} Beim Tod wiederbeleben als Dunkler Judas mit einem 2x Schadensmultiplikator#{{Player24}} Befleckter Judas wird einfach wiederbelebt"}, -- Judas' Shadow
+	[310] = {"310", "Evas Mascara", "↑ {{Damage}} x2 Schadensmultiplikator#↓ {{Tears}} x0.66 Tränenmultiplikator#↓ {{Shotspeed}} -0.5 Schussgeschwindigkeit"}, -- Eve's Mascara
 	[314] = {"314", "Donner-Oberschenkel", "↑ {{Heart}} +1 Gesundheit#↓ {{Speed}} -0.4 Geschwindigkeit#{{Heart}} Heilt 1 Herz#Isaac kann Felsen zerstören, indem er darüber läuft"}, -- Thunder Thighs
 	[315] = {"315", "Seltsamer Anzieher", "Isaacs Tränen ziehen Feinde, Aufsammelobjekte und Trinkets an#Der Anziehungseffekt ist am Ende des Tränenweges viel stärker"}, -- Strange Attractor
-	[316] = {"316", "Verfluchte Träne", "Aufgeladene Welle aus 5 Tränen#{{Warning}} Bei teilweise aufgeladenem Schuss bewirkt Schaden einen zufälligen Raumwechsel für Isaac#{{Collectible260}} Die Schwarze Kerze entfernt den Teleportationseffekt"}, -- Cursed Eys
+	[316] = {"316", "Verfluchte Träne", "Aufgeladene Welle aus 5 Tränen#{{Warning}} Bei teilweise aufgeladenem Schuss bewirkt Schaden einen zufälligen Raumwechsel für Isaac"}, -- Cursed Eye
 	[319] = {"319", "Cains Anderes Auge", "Schießt Tränen in zufällige Richtungen mit denselben Effekten wie Isaac#{{Damage}} Fügt 75% des Schadens von Isaac zu"}, -- Cain's Other Eye
-	[320] = {"320", "???s Einziger Freund", "Steuerbare Fliege#Fügt 15 Kontaktschaden pro Sekunde zu"}, -- ???s Only Friend
-	[323] = {"323", "Isaacs Tränen", "Schießt 8 Tränen in alle Richtungen#Die Tränen kopieren Isaacs Träreffekte, plus 5 Schaden#Lädt sich durch das Abschießen von Tränen wieder auf"}, -- Isaacs Tears
+	[320] = {"320", "???s Einziger Freund", "Steuerbare Fliege#Fügt 15 Kontaktschaden pro Sekunde zu"}, -- ???'s Only Friend
+	[323] = {"323", "Isaacs Tränen", "Schießt 8 Tränen in alle Richtungen#Die Tränen kopieren Isaacs Träreffekte, plus 5 Schaden#Lädt sich durch das Abschießen von Tränen wieder auf"}, -- Isaac's Tears
 	[326] = {"326", "Atem Des Lebens", "Das Halten der BENUTZEN-Taste leert die Ladeleiste#Isaac ist vorübergehend unverwundbar, wenn die Ladeleiste leer ist#Isaac ruft Lichtstrahlen hervor, wenn er Feinde berührt, während er unverwundbar ist#Wenn Schaden mit perfektem Timing blockiert wird, schießt ein 4-Wege-Heiligkeitsstrahl und gewinnt einen kurzen Schild#{{Warning}} Das Halten für zu lange fügt Isaac Schaden zu"}, -- Breath of Life
 	[328] = {"328", "Das Negative", "↑ {{Damage}} +1 Schaden#Wenn er bei einem halben roten Herz oder gar keinem Schaden nimmt, erleiden alle Feinde im Raum Schaden"}, -- The Negative
 	[330] = {"330", "Sojamilch", "↑ {{Tears}} x5.5 Feuerratenmultiplikator#↓ {{Damage}} x0.2 Schadensmultiplikator#↓ {{Tearsize}} -0.3 Tränengröße#Reduziert den Rückstoß drastisch"}, -- Soy Milk
 	[331] = {"331", "Götterkopf", "↑ {{Damage}} +0.5 Schaden#↓ {{Tears}} -0.3 Tränen#↓ {{Shotspeed}} -0.3 Schussgeschwindigkeit#Heilige Tränen#Tränen erhalten eine Aura, die pro Sekunde 60 Schaden verursacht"}, -- Godhead
-	[332] = {"332", "Lazarus Lappen", "{{Player11}} Beim Tod wiederbeleben als Lazarus (Auferstanden)#{{Player29}} Befleckter Lazarus wird einfach wiederbelebt"},
 	[336] = {"336", "Tote Zwiebel", "↑ {{Tearsize}} +0.22 Tränengröße#↓ {{Range}} -1.5 Reichweite#↓ {{Shotspeed}} -0.4 Schussgeschwindigkeit#Durchdringende + spektrale Tränen"}, -- Dead Onion
 	[339] = {"339", "Sicherheitsnadel", "↑ {{Range}} +2.5 Reichweite#↑ {{Shotspeed}} +0.16 Schussgeschwindigkeit#{{BlackHeart}} +1 Schwarzes Herz"}, -- Safety Pin
 	[342] = {"342", "Blaue Mütze", "↑ {{Heart}} +1 Gesundheit#↑ {{Tears}} +0.7 Tränen#↓ {{Shotspeed}} -0.16 Schussgeschwindigkeit#{{Heart}} Heilt 1 Herz"}, -- Blue Cap
 	[344] = {"344", "Streichholzschachtel", "{{BlackHeart}} +1 Schwarzes Herz#{{Bomb}} Erzeugt 3 Bomben#{{Trinket41}} Erzeugt den Streichholztrinket"}, -- Match Book
 	[345] = {"345", "Synthöl", "↑ {{Damage}} +1 Schaden#↑ {{Range}} +2.5 Reichweite"}, -- Synthoil
 	[346] = {"346", "Ein Snack", "↑ {{Heart}} +1 Gesundheit#{{Heart}} Heilt 1 Herz"}, -- A Snack
+	[349] = {"349", "Wooden Nickel", "{{Coin}} 59% chance to spawn a random coin"}, -- Wooden Nickel
 	[352] = {"352", "Glas-Kanone", "{{Damage}} Schießt eine große durchdringende spektrale Träne ab, die 10x Isaacs Schaden verursacht#{{Warning}} Beim Halten bewirkt Schaden:#↓ Entfernt zusätzlich 2 Herzen Gesundheit#↓ Zerbricht die Kanone für einige Räume#↑ {{Range}} +1.5 Reichweite und hinterlässt einen Blutpfad für den Raum#Der zusätzliche Schaden kann Isaac nicht töten#Selbstschaden löst den Effekt nicht aus"}, -- Glass Cannon
 	[354] = {"354", "Crack Jacks", "↑ {{Heart}} +1 Gesundheit#{{Heart}} Heilt 1 Herz#{{Trinket}} Erzeugt ein Trinket"}, -- Crack Jacks
 	[355] = {"355", "Mamas Perlen", "↑ {{Range}} +2.5 Reichweite#↑ {{Luck}} +1 Glück#{{SoulHeart}} +1 Seelengefäß"}, -- Mom's Pearls
-	[360] = {"360", "Brutus", "Schießt Tränen mit denselben Effekten wie Isaac ab#{{Damage}} Verursacht 75% des Schadens von Isaac#{{Player13}} Verursacht 100% Schaden, während man als Lilith spielt"}, -- Incubus
-	[365] = {"365", "Verlorene Fliege", "Bewegt sich entlang von Wänden/Hindernissen im Raum#Fügt 30 Kontaktschaden pro Sekunde zu#Nahegelegene Feinde nehmen die Fliege ins Visier"},
+	[360] = {"360", "Brutus", "Schießt Tränen mit denselben Effekten wie Isaac ab#{{Damage}} Verursacht 75% des Schadens von Isaac"}, -- Incubus
+	[365] = {"365", "Verlorene Fliege", "Bewegt sich entlang von Wänden/Hindernissen im Raum#Fügt 30 Kontaktschaden pro Sekunde zu#Nahegelegene Feinde nehmen die Fliege ins Visier"}, -- Lost Fly
 	[366] = {"366", "Streubomben", "{{Bomb}} +5 Bomben#Isaacs Bomben zerplatzen in 4-5 winzige Bomben"}, -- Scatter Bombs
 	[367] = {"367", "Klebrige Bomben", "{{Bomb}} +5 Bomben#{{Slow}} Isaacs Bomben haften an Feinden und hinterlassen weißes, verlangsamendes Klecksen#Das Töten eines Feindes mit einer Bombe beschwört blaue Spinnen herbei"}, -- Sticky Bombs
 	[368] = {"368", "Epiphora", "↑ {{Tears}} Das Schießen in eine Richtung erhöht allmählich die Feuerrate auf bis zu 200%"}, -- Epiphora
@@ -170,35 +171,36 @@ local repCollectibles={
 	[374] = {"374", "Heiliges Licht", "10% Chance, heilige Tränen abzufeuern, die beim Treffen einen Lichtstrahl erzeugen#{{Luck}} 50% Chance bei 9 Glück#{{Damage}} Der Strahl fügt 3x Isaacs Schaden zu"}, -- Holy Light
 	[375] = {"375", "Sternenhut", "Verleiht Immunität gegen Explosionen und fallende Projektile#25% Chance, feindliche Schüsse abzuprallen"}, -- Host Hat
 	[376] = {"376", "Auffüllen", "Der Kauf eines Gegenstands im Laden füllt ihn sofort wieder auf#Aufgefüllte Gegenstände steigen mit jedem Mal im Preis"}, -- Restock
-	[380] = {"380", "Bezahle zum Spielen", "{{Coin}} +5 Münzen#Verschlossene Blöcke, Türen und Truhen müssen mit Münzen anstelle von Schlüsseln geöffnet werden"},
+	[380] = {"380", "Bezahle zum Spielen", "{{Coin}} +5 Münzen#Verschlossene Blöcke, Türen und Truhen müssen mit Münzen anstelle von Schlüsseln geöffnet werden"}, -- Pay To Play
 	[382] = {"382", "Freundesball", "Kann auf Feinde geworfen werden, um sie zu fangen#Die Verwendung des Gegenstands nach dem Fangen eines Feindes beschwört ihn als freundlichen Begleiter#Das Überqueren des Balls nach dem Fangen lädt den Gegenstand sofort wieder auf"}, -- Friendly Ball
 	[384] = {"384", "Lil Gurdy", "{{Chargeable}} Schießt durch den Raum und prallt abhängig von der Ladungsgeschwindigkeit ab#Fügt bei Treffern 5-25 Kontaktschaden pro Treffer zu"}, -- Lil Gurdy
+	[386] = {"386", "D12", "Rerolls any obstacle into another random obstacle (e.g. poop, pots, TNT, red poop, stone blocks etc.)#Small chance to reroll obstacles into buttons, killswitches, crawlspaces or trapdoors"}, -- D12
 	[389] = {"389", "Runenbeutel", "{{Rune}} Erzeugt alle 7-8 Räume eine zufällige Rune oder Seelenstein"}, -- Rune Bag
 	[391] = {"391", "Verrat", "Feinde können sich gegenseitig mit ihren Geschossen treffen und bekämpfen"}, -- Betrayal
-	[393] = {"393", "Schlangenkuss", "{{Poison}} 15% Chance, Gifttränen abzufeuern#{{Poison}} Vergiftet Feinde bei Kontakt#{{BlackHeart}} Feinde, die durch Kontaktgift getötet werden, haben die Chance, ein Schwarzes Herz beim Tod fallen zu lassen"}, -- Schlangenkuss
+	[393] = {"393", "Schlangenkuss", "{{Poison}} 15% Chance, Gifttränen abzufeuern#{{Poison}} Vergiftet Feinde bei Kontakt#{{BlackHeart}} Feinde, die durch Kontaktgift getötet werden, haben die Chance, ein Schwarzes Herz beim Tod fallen zu lassen"}, -- Serpent's Kiss
 	[394] = {"394", "Markiert", "↑ {{Tears}} +0,7 Tränen#↑ {{Range}} +3 Reichweite#Isaac schießt automatisch Tränen auf ein bewegliches rotes Ziel am Boden#Begleiter schießen ebenfalls auf das Ziel#Das Schießen kann gestoppt und der Standort des Ziels zurückgesetzt werden, indem die Abwurftaste ({{ButtonRT}}) gedrückt wird"}, -- Marked
 	[395] = {"395", "Tech X", "Isaacs Tränen werden durch einen aufladbaren Laserreifen ersetzt#Die Größe und der Schaden des Rings nehmen mit der Ladezeit um bis zu 100% zu"}, -- Tech X
-	[397] = {"397", "Traktorstrahl", "↑ {{Tears}} +1 Schussrate#↑ {{Range}} +2,5 Reichweite#↑ {{Shotspeed}} +0,16 Schussgeschwindigkeit#Isaacs Tränen bewegen sich immer entlang eines Lichtstrahls vor ihm"},
+	[397] = {"397", "Traktorstrahl", "↑ {{Tears}} +1 Schussrate#↑ {{Range}} +2,5 Reichweite#↑ {{Shotspeed}} +0,16 Schussgeschwindigkeit#Isaacs Tränen bewegen sich immer entlang eines Lichtstrahls vor ihm"}, -- Tractor Beam
 	[399] = {"399", "Schlund der Leere", "{{Chargeable}} Feuern von Tränen für 2,35 Sekunden und Freigeben der Feuertaste erzeugt einen schwarzen Brimstonering um Isaac"}, -- Maw of the Void
 	[401] = {"401", "Explosivo", "25% Chance, klebrige Tränen zu schießen#Klebrige Tränen wachsen und explodieren nach wenigen Sekunden, verursachen Isaacs Schaden +60"}, -- Explosivo
 	[404] = {"404", "Furz-Baby", "Blockiert Geschosse#Bei Treffer 10% Chance zu furzen und {{Charm}} zu verursachen, {{Poison}} zu vergiften oder Feinde wegzustoßen#Die Fürze verursachen 5-6 Schaden"}, -- Farting Baby
 	[405] = {"405", "GB Bug", "{{Throwable}} Werfbar (doppeltippe zum Schießen)#Verändert Feinde und Pickups, mit denen er in Kontakt kommt, neu"}, -- GB Bug
-	[407] = {"407", "Reinheit", "↑ Erhöht einen von Isaacs Werten abhängig von der Farbe der Aura#Schaden entfernt den Effekt, gewährt aber im nächsten Raum einen neuen Effekt#{{ColorYellow}}Gelb{{CR}} = ↑ {{Speed}} +0,5 Geschwindigkeit#{{ColorBlue}}Blau{{CR}} = ↑ {{Tears}} +2 Schussrate#{{ColorRed}}Rot{{CR}} = ↑ {{Damage}} +4 Schaden#{{ColorOrange}}Orange{{CR}} = ↑ {{Range}} +3 Reichweite"},
+	[407] = {"407", "Reinheit", "↑ Erhöht einen von Isaacs Werten abhängig von der Farbe der Aura#Schaden entfernt den Effekt, gewährt aber im nächsten Raum einen neuen Effekt#{{ColorYellow}}Gelb{{CR}} = ↑ {{Speed}} +0,5 Geschwindigkeit#{{ColorBlue}}Blau{{CR}} = ↑ {{Tears}} +2 Schussrate#{{ColorRed}}Rot{{CR}} = ↑ {{Damage}} +4 Schaden#{{ColorOrange}}Orange{{CR}} = ↑ {{Range}} +3 Reichweite"}, -- Purity
 	[408] = {"408", "Athame", "25% Chance, dass ein schwarzer Brimstonering um getötete Feinde erscheint#{{Luck}} +2,5% Chance pro Glück"}, -- Athame
 	[415] = {"415", "Krone des Lichts", "{{SoulHeart}} +2 Seelenherzen#Wenn Isaac keine beschädigten Herzcontainer hat:#↑ {{Damage}} x2 Schadensmultiplikator#↓ {{Shotspeed}} -0,3 Schussgeschwindigkeit#Schaden wird bei jedem Schaden entfernt und gewährt keinen Effekt im Raum"}, -- Crown Of Light
 	[416] = {"416", "Tiefe Taschen", "{{Coin}} Wenn das Leeren eines Raums keine Belohnung bringen würde, erscheinen 1-3 Münzen#{{Coin}} Erhöht das Münzenlimit auf 999"}, -- Deep Pockets
 	[417] = {"417", "Succubus", "Springt im Raum herum, umgeben von einer schädlichen Aura, die 7,5-10 Schaden pro Sekunde verursacht#↑ {{Damage}} x1,5 Schadensmultiplikator, wenn man in der Aura steht"}, -- Succubus
 	[419] = {"419", "Teleport 2.0", "Teleportiert Isaac in einen Raum, der noch nicht geräumt wurde#Hierarchie: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"}, -- Teleport 2.0
 	[421] = {"421", "Nierenbohne", "{{Charm}} Verzaubert alle Feinde in unmittelbarer Nähe"}, -- Kidney Bean
-	[422] = {"422", "Leuchtende Sanduhr", "Bringt Isaac zurück in den vorherigen Raum und kehrt alle Handlungen um, die im Raum durchgeführt wurden, in dem das Item verwendet wurde#Die Rückspulung kann dreimal pro Ebene verwendet werden#{{Collectible66}} Wirkt wie die Sanduhr, wenn die Rückspulungen aufgebraucht sind und verlangsamt Feinde für 8 Sekunden"}, -- Glowing Hourglass (ehemals Glowing Hour Glass)
+	[422] = {"422", "Leuchtende Sanduhr", "Bringt Isaac zurück in den vorherigen Raum und kehrt alle Handlungen um, die im Raum durchgeführt wurden, in dem das Item verwendet wurde#Die Rückspulung kann dreimal pro Ebene verwendet werden#{{Collectible66}} Wirkt wie die Sanduhr, wenn die Rückspulungen aufgebraucht sind und verlangsamt Feinde für 8 Sekunden"}, -- Glowing Hourglass
 	[426] = {"426", "Besessener Fan", "Imitiert Isaacs Bewegungen mit einer Verzögerung von 0,66 Sekunden#Verursacht 30 Kontaktschaden pro Sekunde"}, -- Obsessed Fan
 	[430] = {"430", "Papa-Fliege", "Imitiert Isaacs Bewegungen mit einer Verzögerung von 0,66 Sekunden#{{Damage}} Schießt Tränen auf nahegelegene Feinde, die Isaacs Schaden verursachen"}, -- Papa Fly
-	[431] = {"431", "Multidimensionales Baby", "Imitiert Isaacs Bewegungen mit einer Verzögerung von 0,66 Sekunden#Tränen, die durch es hindurch gehen, werden verdoppelt und erhalten einen Reichweiten- und Schussgeschwindigkeitsschub"},
+	[431] = {"431", "Multidimensionales Baby", "Imitiert Isaacs Bewegungen mit einer Verzögerung von 0,66 Sekunden#Tränen, die durch es hindurch gehen, werden verdoppelt und erhalten einen Reichweiten- und Schussgeschwindigkeitsschub"}, -- Multidimensional Baby
 	[432] = {"432", "Glitzerbomben", "{{Bomb}} +5 Bomben#{{Charm}} Bomben haben eine 63% ige Chance, eine zufällige Belohnung fallen zu lassen und eine 15% ige Chance, Feinde zu verzaubern, wenn sie explodieren#Die Wahrscheinlichkeit, dass eine Belohnung erscheint, sinkt um 1% für jede Belohnung in dieser Ebene"}, -- Glitter Bombs
 	[433] = {"433", "Mein Schatten", "Ein kleiner Schatten folgt Isaac#{{Timer}} Wenn ein Feind den Schatten berührt, erscheint für den Raum ein freundlicher schwarzer Charger#Der Charger verursacht 8,7 Schaden pro Treffer"}, -- My Shadow
 	[437] = {"437", "D7", "Startet einen Raum neu und lässt alle Feinde wieder auferstehen#Kann verwendet werden, um mehrere Raum-Belohnungen aus einem einzigen Raum zu erhalten"}, -- D7
 	[440] = {"440", "Nierenstein", "Isaac hört gelegentlich auf zu schießen und lädt einen Angriff auf, der eine Salve von Tränen und einen Nierenstein freisetzt"}, -- Kidney Stone
-	[442] = {"442", "Krone des Dunklen Prinzen", "Wenn Isaac 1 volles Rotes Herz hat:#↑ {{Tears}} +2 Schussrate#↑ {{Range}} +1,5 Reichweite#↑ {{Shotspeed}} +0,2 Schussgeschwindigkeit#Funktioniert nicht bei Charakteren ohne Rote Herzen"}, -- Dark Prince's Crown
+	[442] = {"442", "Krone des Dunklen Prinzen", "Wenn Isaac 1 volles Rotes Herz hat:#↑ {{Tears}} +2 Schussrate#↑ {{Range}} +1,5 Reichweite#↑ {{Shotspeed}} +0,2 Schussgeschwindigkeit"}, -- Dark Prince's Crown
 	[444] = {"444", "Bleistift", "Isaac schießt alle 15 Tränen einen Cluster von Tränen"}, -- Lead Pencil
 	[448] = {"448", "Glasscherbe", "Bei Schaden:#{{Heart}} 25% Chance, ein Rotes Herz fallen zu lassen#{{BleedingOut}} Isaac blutet und schießt Tränen in die Richtung, in die er schießt#Das Bluten verursacht alle 20 Sekunden einen halben roten Herzschaden#Das Bluten stoppt, wenn ein Rotes Herz geheilt wird, alle roten Herzen leer sind oder der nächste Schaden Isaac töten würde"}, -- Shard of Glass
 	[450] = {"450", "Auge der Gier", "{{Damage}} Alle 20 Tränen schießt Isaac eine Münzträne ab, die x1,5 +10 Schaden verursacht#Feinde, die mit der Münze getroffen werden, werden zu Gold#{{Coin}} Das Töten eines goldenen Feindes lässt 1-3 Münzen fallen#{{Warning}} Das Abschießen einer Münzträne kostet 1 Münze"}, -- Eye of Greed
@@ -213,8 +215,8 @@ local repCollectibles={
 	[472] = {"472", "Königsbaby", "Andere Begleiter folgen ihm und schießen automatisch auf Feinde#Hält an, wenn Isaac schießt#Teleportiert zu Isaac zurück, wenn er aufhört zu schießen"}, -- King Baby
 	[474] = {"474", "Zerbrochene Glasskanone", "Die Verwendung des Gegenstands verwandelt ihn zurück in die Glasskanone"}, -- Broken Glass Cannon
 	[476] =	{"476", "D1", "Dupliziert ein zufälliges Pickup im Raum#Duplizierte Pickups müssen nicht identisch mit dem Original sein"}, -- D1
-	[477] = {"477", "Leere", "Verzehrt alle Sockelobjekte im Raum#Active Items: Ihre Effekte aktivieren sich bei jeder zukünftigen Verwendung von Leere#↑ Passive Objekte gewähren zwei zufällige Stat-Upgrades"},
-	[487] = {"487", "Kartoffelschäler", "{{EmptyHeart}} Entfernt 1 Herzcontainer für: #↑ {{Damage}} +0,2 Schaden#{{Collectible73}} Ein Fleischwürfel#{{Timer}} Für den Raum erhalten:#↑ {{Range}} +1,5 Reichweite#{{Collectible214}} Hinterlässt eine Blutspur"},
+	[477] = {"477", "Leere", "Verzehrt alle Sockelobjekte im Raum#Active Items: Ihre Effekte aktivieren sich bei jeder zukünftigen Verwendung von Leere#↑ Passive Objekte gewähren zwei zufällige Stat-Upgrades"}, -- Void
+	[487] = {"487", "Kartoffelschäler", "{{EmptyHeart}} Entfernt 1 Herzcontainer für: #↑ {{Damage}} +0,2 Schaden#{{Collectible73}} Ein Fleischwürfel#{{Timer}} Für den Raum erhalten:#↑ {{Range}} +1,5 Reichweite#{{Collectible214}} Hinterlässt eine Blutspur"}, -- Potato Peeler
 	[489] = {"489", "D Unendlichkeit", "Kann so eingestellt werden, dass es sich wie ein beliebiges Würfelobjekt verhält (außer {{Collectible723}} Spindown Dice) mit der Abwurftaste ({{ButtonRT}})#Die Ladezeit variiert je nach zuletzt verwendeten Würfel und wird bei jedem Gebrauch aktualisiert"}, -- D Infinity
 	[491] = {"491", "Säure-Baby", "{{Pill}} Spawnt alle 7 Räume eine zufällige Pille#{{Poison}} Die Verwendung einer Pille vergiftet alle Feinde im Raum"}, -- Acid Baby
 	[493] = {"493", "Adrenalin", "↑ {{Damage}} Schaden für jeden leeren Herzcontainer#Je mehr leere Herzcontainer, desto größer der Bonus für jeden neuen"}, -- Adrenaline
@@ -222,7 +224,7 @@ local repCollectibles={
 	[495] = {"495", "Geisterpfeffer", "8,33% Chance, eine blaue Flamme zu schießen, die feindliche Geschosse blockiert und Kontaktschaden verursacht#{{Luck}} 50% Chance bei 10 Glück#Flammen schrumpfen und verschwinden nach 2 Sekunden"}, -- Ghost Pepper
 	[496] = {"496", "Euthanasie", "3,33% Chance, eine Nadel zu schießen#{{Luck}} 25% Chance bei 13 Glück#Nadeln töten normale Feinde sofort, platzen in 10 Tränen auf und verursachen 3x Isaacs Schaden gegen Bosse"}, -- Euthanasia
 	[497] = {"497", "Camo-Unterhosen", "{{Verwirrung}} Das Betreten eines Raums tarnt Isaac und verwirrt alle Feinde, bis eine Träne abgefeuert wird#↑ {{Speed}} +0,5 Geschwindigkeit im getarnten Zustand#Das Enttarnen verursacht Schaden um Isaac herum und gewährt kurzzeitig Feuerrate- und Schadensbonus"}, -- Camo Undies
-	[501] = {"501", "Gier-Magen", "{{Heart}} +1 Herzcontainer für jeweils 25 Münzen, die Isaac besitzt#{{Collectible416}} +1 Herzcontainer für jede Münzmenge über 99 hinaus#{{Player14}} Der Keeper kann zusätzliche Münzcontainer erhalten"}, -- Greed's Gullet
+	[501] = {"501", "Gier-Magen", "{{Heart}} +1 Herzcontainer für jeweils 25 Münzen, die Isaac besitzt"}, -- Greed's Gullet
 	[503] = {"503", "Kleines Horn", "5% Chance, eine Träne zu schießen, die eine Hand von Big Horn beschwört#{{Luck}} 20% Chance bei 15 Glück#Die Hand tötet Feinde sofort und verursacht 36 Schaden an Bossen#Isaac verursacht 7 Kontaktschaden pro Sekunde"}, -- Little Horn
 	[504] = {"504", "Braune Pepitas", "Spawnt eine Fliege, die auf Feinde schießt#Jeder Schuss verursacht 3,5 Schaden"}, -- Brown Nugget
 	[506] = {"506", "Hinterlistiger Mörder", "{{BleedingOut}} Ein Treffer von hinten verursacht doppelten Schaden und Blutungen, wodurch Feinde Kriechspuren hinterlassen und Schaden erleiden, wenn sie sich bewegen"}, -- Backstabber
@@ -231,6 +233,7 @@ local repCollectibles={
 	[509] = {"509", "Blutiges Auge", "Orbitale, die alle 0,33 Sekunden eine Träne auf nahegelegene Feinde schießen#Verursacht 3,5 Schaden pro Träne#Verursacht 20 Kontaktschaden pro Sekunde"}, -- Bloodshot Eye
 	[514] = {"514", "Kaputtes Modem", "Veranlasst einige Feinde und Geschosse, sich in zufälligen Intervallen kurzzeitig zu pausieren#Pausierte Geschosse verschwinden#25% Chance, Raum-Belohnungen zu verdoppeln#(Verdoppelt keine Kisten-, Karten- oder Pillenbelohnungen)"}, -- Broken Modem
 	[517] = {"517", "Schnellbomben", "{{Bomb}} +7 Bomben#Entfernt die Verzögerung zwischen dem Platzieren von Bomben#Bomben stoßen sich nicht gegenseitig ab"}, -- Fast Bombs
+	[522] = {"522", "Telekinesis", "Stops all enemy projectiles that come close to Isaac for 3 seconds and throws them away from him afterwards#Pushes close enemies away during the effect"}, -- Telekinesis
 	[523] = {"523", "Umzugskarton", "Speichert bis zu 10 Pickups und Gegenstände aus dem aktuellen Raum#Bei erneuter Verwendung lässt der Gegenstand alles auf den Boden fallen#Ermöglicht es Isaac, Dinge zwischen Räumen zu bewegen"}, -- Moving Box
 	[524] = {"524", "Technologie Null", "Isaacs Tränen sind mit elektrischen Strahlen verbunden#Elektrizität verursacht 4,5x Isaacs Schaden pro Sekunde"}, -- Technology Zero
 	[531] = {"531", "Hämolyse", "↑ {{Damage}} +1 Schaden#↑ {{Damage}} x1,5 Schadensmultiplikator#↓ {{Tears}} x0,33 Feuerratenmultiplikator#↓ {{Range}} x0,8 Reichweitenmultiplikator#Isaacs Tränen fliegen in einem Bogen und platzen bei Aufprall in kleinere Tränen"}, -- Haemolacria
@@ -240,7 +243,7 @@ local repCollectibles={
 	[553] = {"553", "Mukormykose", "25% Chance, eine klebrige Sporenträne zu schießen#{{Luck}} Nicht von Glück beeinflusst#{{Poison}} Sporen explodieren nach 2,5 Sekunden und verursachen Schaden, vergiften nahegelegene Feinde und setzen weitere Sporen frei"}, -- Mucormycosis
 	[554] = {"554", "2Spooky", "{{Fear}} Verängstigt Feinde in einem kleinen Radius um Isaac"}, -- 2Spooky
 	[555] = {"555", "Goldenes Rasiermesser", "{{Coin}} +5 Münzen beim Aufsammeln#{{Timer}} Zahle 5 Münzen und erhalte für den Raum:#↑ {{Damage}} +1,2 Schaden"}, -- Golden Razor
-	[556] = {"556", "Schwefel", "{{Timer}} {{Collectible118}} Brimstone für den Raum"}, -- Sulfur
+	[556] = {"556", "Schwefelsäure", "{{Timer}} {{Collectible118}} Brimstone für den Raum#Using it multiple times in one room grants increased damage and a larger beam"}, -- Sulfur
 	[557] = {"557", "Glückskeks", "Gewährt eine der folgenden Belohnungen:#Eine Prophezeiung#{{SoulHeart}} Ein Soul Heart#{{Rune}} Eine Rune oder Seelenstein#{{Card}} Eine Tarot-Karte#{{Trinket}} Ein Trinket"}, -- Fortune Cookie
 	[558] = {"558", "Störendes Auge", "Chance, 1-3 zusätzliche Tränen in zufällige Richtungen zu schießen#{{Luck}} Nicht von Glück beeinflusst"}, -- Eye Sore
 	[559] = {"559", "120 Volt", "Zappt wiederholt nahegelegene Feinde#{{Damage}} Elektrizität verursacht bis zu 3,75x Isaacs Schaden pro Sekunde"}, -- 120 Volt
@@ -271,7 +274,7 @@ local repCollectibles={
 	[584] = {"584", "Buch der Tugenden", "{{AngelChance}} +12,5% Engelsraumchance bei Benutzung#Beschwört einen orbitalen Wisphelfer, der spektrale Tränen abfeuert, aber zerstört werden kann#Kann mit einem zweiten active Item kombiniert werden, um spezielle Wisps zu erstellen#{{AngelRoom}} Verwandelt den ersten Teufelsraum in einen Engelsraum#{{AngelRoom}} Ermöglicht das Erscheinen von Engelsräumen, nachdem ein Teufelsdeal angenommen wurde"}, -- Book of Virtues
 	[585] = {"585", "Alabaster-Box", "Muss durch das Aufnehmen von Seelenherzen aufgeladen werden, dann beschwört:#{{SoulHeart}} Drei Seelenherzen#{{AngelRoom}} Zwei Engelsraum-Items#{{DevilRoom}} Beschwört nur 2 Seelenherzen und 1 Engelsitem, wenn zuvor ein Teufelsdeal angenommen wurde"}, -- Alabaster Box
 	[586] = {"586", "Die Treppe", "Beschwört eine Leiter im ersten Raum jeder Ebene, die zu einem einzigartigen {{AngelRoom}} Engelsraumshop mit Gegenständen und Verbrauchsmaterialien führt"}, -- The Stairway
-	[587] = {"587", "Menora (Unbenutzt aber skriptiert)", "<Gegenstand existiert nicht>"}, -- Menorah (Unused but scripted)
+	[587] = {"587", "", "<Gegenstand existiert nicht>"},
 	[588] = {"588", "Sol", "{{BossRoom}} Zeigt den Standort des Bossraums an#{{Timer}} Wenn der Boss besiegt ist, erhältst du für die Ebene:#↑ {{Damage}} +3 Schaden#↑ {{Luck}} +1 Glück#{{Card20}} Die Sonnenwirkung#{{Battery}} Lädt das acitve Item vollständig auf#{{CurseBlind}} Entfernt alle Flüche"}, -- Sol
 	[589] = {"589", "Mond", "Fügt jeder Ebene einen zusätzlichen {{SecretRoom}} Geheimraum und {{SuperSecretRoom}} Supergeheimraum hinzu#Jede Ebene erhält einen Geheimraum#{{Timer}} Geheimräume enthalten einen Lichtstrahl, der für die Ebene folgendes gewährt:#↑ {{Tears}} +0,5 Schussrate#↑ {{Tears}} Zusätzliche +0,5 Schussrate ab dem ersten Strahl pro Ebene#{{HalfSoulHeart}} Halbes Seelenherz"}, -- Luna
 	[590] = {"590", "Merkur", "↑ {{Speed}} +0,4 Geschwindigkeit#Die meisten Türen bleiben dauerhaft geöffnet"}, -- Mercurius
@@ -297,14 +300,14 @@ local repCollectibles={
 	[610] = {"610", "Vogelkäfig", "Springt auf den Feind, der Isaac im Raum als Erstes Schaden zufügt#Verursacht 45 Schaden und setzt eine Wellenwelle frei#Verfolgt danach Feinde"}, -- Bird Cage
 	[611] = {"611", "Kehlkopf", "Isaac schreit, beschädigt und stößt nahegelegene Feinde zurück#Der Schrei wird stärker, je mehr Ladungen der Gegenstand hat"}, -- Larynx
 	[612] = {"612", "Verlorene Seele", "Stirbt bei einem Treffer und spawnt am Anfang der nächsten Ebene neu#Wenn sie lebendig zur nächsten Ebene gebracht wird, kann sie spawnt:#{{SoulHeart}} 3 Seelenherzen#{{EternalHeart}} 2 Ewige Herzen#{{TreasureRoom}} Ein Schatzraum-Gegenstand#{{AngelRoom}} Ein Engelsraum-Gegenstand"}, -- Lost Soul
-	[613] = {"613", "", "<Gegenstand existiert nicht>"}, -- Salt Shaker
+	[613] = {"613", "", "<Gegenstand existiert nicht>"},
 	[614] = {"614", "Blutbomben", "↑ {{Heart}} +1 Leben#{{Heart}} Heilt 4 Herzen#{{HalfHeart}} Wenn Isaac keine Bomben hat, kann eine gegen einen halben Herzcontainer platziert werden#Isaacs Bomben hinterlassen roten Schleim#"}, -- Blood Bombs
 	[615] = {"615", "Lil Dumpy", "Lenkt einen Feind oder Geschoss ab, kurz bevor Isaac Schaden nehmen würde#Chance, Geschosse in der Nähe abzulenken#Muss nach dem Ablenken berührt werden, um wieder aktiviert zu werden"}, -- Lil Dumpy
 	[616] = {"616", "Vogelperspektive", "8% Chance, ein rotes Feuer zu schießen, das feindliche Schüsse blockiert und Kontaktschaden verursacht#{{Luck}} 50% Chance bei 10 Glück#Feuer verschwinden nach dem Blockieren von 4 Schüssen, verursachen 4-mal Schaden oder nach 10 Sekunden"}, -- Bird's Eye
 	[617] = {"617", "Magneteisen", "{{Magnetisieren}} 17% Chance, magnetisierende Tränen zu schießen#{{Luck}} 100% Chance bei 5 Glück#Magnetisierte Feinde ziehen nahegelegene Gegenstände, Geschosse und Feinde an"}, -- Lodestone
 	[618] = {"618", "Verfaulte Tomate", "{{Bait}} 17% Chance, Tränen zu schießen, die Feinde markieren#{{Luck}} 100% Chance bei 5 Glück#Markierte Feinde werden von anderen Feinden angegriffen"}, -- Rotten Tomato
 	[619] = {"619", "Geburtsrecht", "Hat für jeden Charakter eine andere Wirkung"}, -- Birthright
-	[620] = {"620", "", "<Gegenstand existiert nicht>"}, -- 
+	[620] = {"620", "", "<Gegenstand existiert nicht>"},
 	[621] = {"621", "Roter Eintopf", "↑ {{Damage}} +21.6 Schadensmultiplikator#{{Heart}} Vollgesundheit#Der Schadensbonus lässt in 3 Minuten nach#Töten von Feinden während des aktiven Effekts verlängert diesen"}, -- Red Stew
 	[622] = {"622", "Genesis", "{{Warning}} EINMAL VERWENDEN {{Warning}}#Entfernt alle von Isaac's Gegenständen und Aufsammlungen#Teleportiert Isaac zu einem Schlafzimmer mit Aufsammlungen und Truhen#Für jeden entfernten Gegenstand kann Isaac zwischen 3 Gegenständen aus demselben Pool wählen#Verlassen des Schlafzimmers teleportiert Isaac zum nächsten Stock"}, -- Genesis
 	[623] = {"623", "Scharfer Schlüssel", "{{Key}} +5 Schlüssel#Wirft einen von Isaacs Schlüsseln in die Richtung, in die er schießt#Die geworfenen Schlüssel verursachen Schaden, zerstören Hindernisse und öffnen Türen#Feinde, die mit Schlüsseln getötet werden, können den Inhalt einer Truhe, einschließlich Gegenständen, fallen lassen"}, -- Sharp Key
@@ -314,8 +317,8 @@ local repCollectibles={
 	[627] = {"627", "Messerstück 2", "Verwandelt sich beim Kombinieren mit {{Collectible626}} Messerstück 1 in ein werfbares Messer#Das Messer kann eine Tür aus Fleisch öffnen"}, -- Knife Piece 2
 	[628] = {"628", "Totenschein", "{{Warning}} EINMAL VERWENDEN {{Warning}}#Teleportiert Isaac auf ein Stockwerk, das jeden Gegenstand im Spiel enthält#Das Auswählen eines Gegenstands aus diesem Stockwerk teleportiert Isaac zurück in den Raum, aus dem er kam"}, -- Death Certificate
 	[629] = {"629", "Bot Fliege", "Schießt geschützte Tränen ab, um feindliche Geschosse zu zerstören"}, -- Bot Fly
-	[630] = {"630", "", "<Gegenstand existiert nicht>"}, -- 
-	[631] = {"631", "Fleischermesser", "Teilt alle Feinde im Raum in 2 kleinere Versionen mit weniger Gesundheit"}, -- Meat Cleaver
+	[630] = {"630", "", "<Gegenstand existiert nicht>"},
+	[631] = {"631", "Fleischermesser", "Teilt alle Feinde im Raum in 2 kleinere Versionen with 40% health#Enemies that naturally split (like Envy) take enough damage to split instead#Deals 25 damage to enemies that can't be split"}, -- Meat Cleaver
 	[632] = {"632", "Böser Talisman", "↑ {{Luck}} +2 Glück#Immun gegen {{Brennen}} Verbrennung, {{Verwirrung}} Verwirrung, {{Furcht}} Furcht und {{Vergiftung}} Vergiftungseffekte"}, -- Evil Charm
 	[633] = {"633", "Dogma", "↑ {{Speed}} +0.1 Geschwindigkeit#↑ {{Damage}} +2 Schaden#Flug und einmaliger {{HolyMantleSmall}} Heiliger Mantelschild#{{Heart}} Heilt Isaac mit roten und Seelenherzen, wenn er weniger als 6 Herzen hat"}, -- Dogma
 	[634] = {"634", "Fegefeuer", "Auf feindlichen Böden entstehen rote Risse#Das Betreten der Risse beschwört suchende explodierende Geister"}, -- Purgatory
@@ -326,13 +329,13 @@ local repCollectibles={
 	[639] = {"639", "Ekelherz", "{{RottenHeart}} +1 Verdorbenes Herz"}, -- Yuck Heart
 	[640] = {"640", "Urne Der Seelen", "Speit einen Flammenstrahl aus#Das Töten eines Feindes fügt der Urne eine Ladung hinzu"}, -- Urn of Souls
 	[641] = {"641", "Blutacker", "Erzeugt eine Kette von Tränen hinter Isaac in feindlichen Räumen#Die Tränen verursachen 3,5 Schaden"}, -- Akeldama
-	[642] = {"642", "Zauberhaut", "Beschwört einen Gegenstand aus dem aktuellen Gegenstands-Pool des Raums#{{BrokenHeart}} Verwandelt 1 Herzcontainer oder 1 Knochenherz oder 2 Seelenherzen in ein Gebrochenes Herz#{{Warning}} Ersetzt zukünftige Gegenstände, wenn Isaac ihn nicht hält {{ColorSilver}}(33% nach 1 Verwendung, 50% nach 2, 100% nach 3)#Geringere Chance, wenn die Magic Skin auf einem Podest im aktuellen Stockwerk liegt#{{Player10}} Einmalige Verwendung für The Lost"}, -- Magic Skin
+	[642] = {"642", "Zauberhaut", "Beschwört einen Gegenstand aus dem aktuellen Gegenstands-Pool des Raums#{{BrokenHeart}} Verwandelt 1 Herzcontainer oder 1 Knochenherz oder 2 Seelenherzen in ein Gebrochenes Herz#{{Warning}} Ersetzt zukünftige Gegenstände, wenn Isaac ihn nicht hält {{ColorSilver}}(33% nach 1 Verwendung, 50% nach 2, 100% nach 3)#Geringere Chance, wenn die Magic Skin auf einem Podest im aktuellen Stockwerk liegt"}, -- Magic Skin
 	[643] = {"643", "Offenbarung", "{{SoulHeart}} +2 Seelenherzen#Flug#{{Chargeable}} Aufladbare hochschädliche heilige Strahlen#Ersetzt nicht die Tränen von Isaac"}, -- Revelation
 	[644] = {"644", "Trostpreis", "↑ Erhöht die niedrigste Statistik von Isaac aus Geschwindigkeit, Schussrate, Schaden und Reichweite#Spawnt entweder 3 {{Coin}} Münzen, 1 {{Bomb}} Bombe oder 1 {{Key}} Schlüssel, abhängig davon, von welchem Isaac am wenigsten hat"}, -- Consolation Prize
 	[645] = {"645", "Tinytoma", "Großes Orbital, das Schüsse blockiert#Verursacht 3,5 Kontakt-Schaden pro Sekunde#Teilt sich in kleinere Versionen auf, nachdem es 3 Treffer genommen hat#Die kleineren Versionen brechen in blaue Spinnen auf#Respawnt 5 Sekunden nach dem vollständigen Verschwinden"}, -- Tinytoma
 	[646] = {"646", "Schwefelbomben", "{{Bomb}} +5 Bomben#{{Collectible118}} Isaacs Bomben geben einen 4-Wege-Blutstrahl ab#Die Strahlen verletzen Isaac nicht"}, -- Brimstone Bombs
 	[647] = {"647", "4.5 Volt", "Das Abschließen von Räumen lädt active Items nicht mehr auf#Schaden an Feinden füllt langsam die Ladeleiste#Der für jede Ladung benötigte Schaden steigt auf jedem Stockwerk"}, -- 4.5 Volt
-	[648] = {"648", "", "<Gegenstand existiert nicht>"}, -- 
+	[648] = {"648", "", "<Gegenstand existiert nicht>"},
 	[649] = {"649", "Fruchtiger Plum", "Katapultiert sich diagonal durch den Raum und schießt Tränen auf ihrem Weg, die 3 Schaden verursachen#Verursacht 6 Kontakt-Schaden pro Sekunde"}, -- Fruity Plum
 	[650] = {"650", "Plum-Flöte", "{{Timer}} Beschwört für 10 Sekunden einen freundlichen Baby Plum im Raum"}, -- Plum Flute
 	[651] = {"651", "Stern von Bethlehem", "Bewegt sich langsam vom ersten Raum des Stockwerks zum {{BossRoom}} Bossraum#Bewegt sich schneller, wenn du vor ihm bist, und langsamer, wenn du hinter ihm bist#Im Stehen in seiner Aura gibt es:#↑ {{Tears}} x2,5 Tränenmultiplikator#↑ {{Damage}} x1,8 Schadensmultiplikator#Suchende Tränen#50% Chance, Schaden zu ignorieren"}, -- Star of Bethlehem
@@ -340,17 +343,17 @@ local repCollectibles={
 	[653] = {"653", "Vade Retro", "Das Halten des Gegenstands lässt bei Tod nicht-geisterhafter Feinde kleine rote Geister erscheinen#Das Benutzen des Gegenstands lässt die Geister explodieren#Das Benutzen des Gegenstands tötet auch alle Geisterfeinde (einschließlich Bosse), die weniger als 50% HP haben"}, -- Vade Retro
 	[654] = {"654", "Falsches PHD", "{{BlackHeart}} +1 Schwarzes Herz#{{Pill}} Identifiziert alle Pillen#Konvertiert alle guten Pillen in schlechte Pillen#↑ {{Damage}} Das Essen einer Stat-Down-Pille gewährt +0,6 Schaden#{{BlackHeart}} Das Essen anderer schlechter Pillen beschwört ein Schwarzes Herz herbei"}, -- False PHD
 	[655] = {"655", "Drehe Zum Gewinnen", "Gewährt passiv ein Orbit, das feindliche Schüsse blockiert und 10,5 Kontaktschaden pro Sekunde verursacht#Das Benutzen des Gegenstands gewährt:#↑ {{Speed}} +0,5 Geschwindigkeit#Erhöht die Rotationsgeschwindigkeit von Orbitalen erheblich"}, -- Spin to Win
-	[656] = {"656", "Damokles", "Hängt ein Schwert über Isaacs Kopf, das alle Sockelgegenstände verdoppelt#Verdoppelt keine Gegenstände im Laden, Truhen oder Teufelsraum#{{Warning}} Nach dem Erleiden von Schaden besteht eine extrem geringe Chance, dass das Schwert Isaac in jedem Frame sofort tötet"}, -- Damocles (versteckte Sammelversion)
+	[656] = {"656", "Damokles", "Hängt ein Schwert über Isaacs Kopf, das alle Sockelgegenstände verdoppelt#Verdoppelt keine Gegenstände im Laden, Truhen oder Teufelsraum#{{Warning}} Nach dem Erleiden von Schaden besteht eine extrem geringe Chance, dass das Schwert Isaac in jedem Frame sofort tötet"}, -- Damocles (hidden passive version)
 	[657] = {"657", "Vaskulitis", "Feinde explodieren bei Tod in Tränen, die die Effekte von Isaacs Tränen erben"}, -- Vasculitis
 	[658] = {"658", "Riesenzelle", "Das Nehmen von Schaden beschwört ein Minisaac herbei#Minisaacs jagen und schießen auf nahe Feinde"}, -- Giant Cell
 	[659] = {"659", "Tropicamid", "↑ {{Range}} +2,5 Reichweite#↑ {{Tearsize}} +0,22 Tränengröße"}, -- Tropicamide
 	[660] = {"660", "Kartendeutung", "Beschwört zwei Portale im ersten Raum jeder Ebene herbei#Das Verlassen des Raumes lässt die Portale verschwinden#{{Blank}} {{ColorRed}}Rot: {{CR}}{{BossRoom}} Bossraum#{{Blank}} {{ColorYellow}}Gelb: {{CR}}{{TreasureRoom}} Itemraum#{{Blank}} {{ColorBlue}}Blau: {{CR}}{{SecretRoom}} Geheimraum"}, -- Card Reading
 	[661] = {"661", "Quints", "Das Töten eines Feindes beschwört einen stationären Begleiter an seiner Stelle herbei#Maximal 5 Begleiter"}, -- Quints
-	[662] = {"662", "Pazifist (Entfernter Gegenstand)", "<Gegenstand existiert nicht>"}, -- Pacifist (Entfernter Gegenstand)
+	[662] = {"662", "", "<Gegenstand existiert nicht>"},
 	[663] = {"663", "Zahn und Nagel", "1 Sekunde Unverwundbarkeit alle 6 Sekunden#Isaac blinkt kurz, bevor der Effekt ausgelöst wird"}, -- Tooth and Nail
 	[664] = {"664", "Vielfraß", "↑ {{Heart}} +1 Gesundheit#{{Heart}} Volle Gesundheit#Essensgegenstände heilen 2 Herzen#Gegenstandspodeste wechseln zwischen ihrem Gegenstand und einem Nahrungsgegenstand#Das Aufnehmen eines Nahrungsgegenstands gewährt:#↑ {{Damage}} Vorübergehend +3,6 Schaden#↑ 2 Dauerhafte Statistikverbesserungen (abhängig von der Nahrung)#↓ {{Speed}} -0,03 Geschwindigkeit"}, -- Binge Eater
 	[665] = {"665", "Guppys Auge", "Enthüllt den Inhalt von {{Chest}} Kisten, {{GrabBag}} Säcken, Ladenbesitzern und Kaminen, bevor sie geöffnet oder zerstört werden"}, -- Guppy's Eye
-	[666] = {"666", "", "<Gegenstand existiert nicht>"}, -- 
+	[666] = {"666", "", "<Gegenstand existiert nicht>"},
 	[667] = {"667", "Strohmann", "{{Bomb}} +1 Bombe#{{Player14}} Beschwört Keeper als zweiten Charakter herbei#Wenn er stirbt, beschwört er blaue Spinnen herbei und entfernt dauerhaft Strohmann und jeden Gegenstand, den er aufgenommen hat, aus dem Inventar#{{DevilRoom}} Teufelsraumgegenstände kosten Münzen, solange Strohmann lebt#{{Warning}} Strohmann kann Story-Gegenstände aufnehmen"}, -- Strawman
 	[668] = {"668", "Papas Notiz", "Beginnt den Aufstieg#In vorherigen {{TreasureRoom}} Schatz- oder {{BossRoom}} Bossräumen zurückgelassene Glückspillen werden zu {{Card78}} Rissigen Schlüsseln"}, -- Dad's Note
 	[669] = {"669", "Wurst", "↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0,2 Geschwindigkeit#↑ {{Tears}} +0,5 Tränen#↑ {{Damage}} +0,5 Schaden#↑ {{Range}} +2,5 Reichweite#↑ {{Shotspeed}} +0,16 Schussgeschwindigkeit#↑ {{Luck}} +1 Glück#{{Heart}} Volle Gesundheit#↑ {{AngelDevilChance}} +6,9% Teufels-/Engelsraum-Chance#↑ {{PlanetariumChance}} +6,9% Planetarium-Chance"}, -- Sausage
@@ -398,11 +401,11 @@ local repCollectibles={
 	[711] = {"711", "Wenden", "Das Betreten eines Raumes mit Gegenstandspodesten zeigt einen geisterhaften zweiten Gegenstand auf den Podesten an#Die Verwendung des Gegenstands wendet den echten und geisterhaften Gegenstand um#Die Verwendung von Wenden nach dem Aufnehmen des ersten Gegenstands ermöglicht es Isaac, den anderen Gegenstand aufzuheben#{{Warning}} Geisterhafte Gegenstände allein auf Podesten verschwinden nach Verlassen des Raumes"}, -- Flip
 	[712] = {"712", "Lemegeton", "Beschwört ein Orbitale herbei, das den Effekt eines zufälligen Gegenstands gewährt#Die Gegenstände haben eine 25%ige Chance, aus dem aktuellen Raum-Gegenstandspool und eine 75%ige Chance, aus den Schatz-, Boss- oder Laden-Gegenstandspools zu stammen"}, -- Lemegeton
 	[713] = {"713", "Sumptorium", "Entfernt ein halbes Herz und erzeugt einen Klumpen#Klumpen kopieren Isaacs Tränen#Jede Art von Herz erzeugt einen Klumpen mit unterschiedlicher HP, Schaden und Tränenwirkung"}, -- Sumptorium
-	[714] = {"714", "Abruf", "Ruft den Körper von The Forgotten aus jeder Entfernung zurück"}, -- Recall
+	[714] = {"714", "Abruf", "Ruft den Körper von The Forgotten aus jeder Entfernung zurück#The Soul is invincible while the Forgotten is returning"}, -- Recall
 	[715] = {"715", "Festhalten", "Die Verwendung des Gegenstands, wenn er leer ist, speichert die nächste Kacke darin#Die Verwendung des Gegenstands mit Kacke darin verwendet diese Kacke"}, -- Hold
 	[716] = {"716", "Sack Des Keepers", "Beschwört 3 {{Coin}} Münzen und 1 {{Key}} Schlüssel herbei#{{Shop}} Ausgeben von 3 Münzen gewährt entweder:#↑ {{Speed}} +0,03 Geschwindigkeit#↑ {{Damage}} +0,5 Schaden#↑ {{Range}} +0,25 Reichweite"}, -- Keeper's Sack
 	[717] = {"717", "Keepers Sippe", "Felsen und andere Hindernisse beschwören beim Zerstören 2 blaue Spinnen herbei#Felsen können gelegentlich in feindlichen Räumen blaue Spinnen beschwören"}, -- Keeper's Kin
-	[718] = {"718", "Keepers Seil (Geschnittener Gegenstand)", "<Gegenstand existiert nicht>"}, -- Keepers Rope (Cut item)
+	[718] = {"718", "", "<Gegenstand existiert nicht>"},
 	[719] = {"719", "Keepers Kiste", "{{Shop}} Beschwört ein zufälliges Shop-Item/Pickup zum Kauf herbei"}, -- Keeper's Box
 	[720] = {"720", "Allesglas", "Beschwört Pickups basierend auf der Anzahl der Ladungen herbei#Belohnungen je Ladung:#{{Blank}} 1:{{PoopPickup}} 2:{{Coin}} 3:{{Bomb}} 4:{{Key}}#{{Blank}} 5:{{Heart}} 6:{{Pill}} 7:{{Card}} 8:{{SoulHeart}}#{{Blank}} 9:{{GoldenHeart}} 10:{{GoldenKey}} 11:{{GoldenBomb}}#{{Blank}} Löst bei 12 Ladungen einen mächtigen zufälligen Effekt aus"}, -- Everything Jar
 	[721] = {"721", "TMTRAINER", "Bewirkt, dass alle zukünftigen Gegenstände fehlerhaft sind#Fehlerhafte Gegenstände haben völlig zufällige Effekte"}, -- TMTRAINER
@@ -417,10 +420,8 @@ local repCollectibles={
 	[730] = {"730", "Glasauge", "↑ {{Damage}} +0,75 Schaden#↑ {{Luck}} +1 Glück"}, -- Glass Eye
 	[731] = {"731", "Gerstenkorn", "↑ {{Damage}} x1,28 Schadensmultiplikator für das rechte Auge#↑ {{Range}} +6,5 Reichweite für das rechte Auge#↓ {{Shotspeed}} -0,3 Schussgeschwindigkeit für das rechte Auge"}, -- Stye
 	[732] = {"732", "Mamas Ring", "↑ {{Damage}} +1 Schaden#{{Rune}} Beschwört eine zufällige Rune oder Seelenstein herbei"}, -- Mom's Ring
-
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
-
 
 ---------- Modifiers ----------
 
@@ -430,12 +431,12 @@ EID.descriptions[languageCode].birthright ={
 	{"Cain", "", "↑ {{Luck}} +1 Glück#{{Arcade}} Alle zukünftigen Ebenen enthalten einen verbesserten Arkadenraum (außer Dunkler Raum und Truhe)#{{Collectible46}} Erhöht die Gewinnchancen des Glückspfennigs erheblich"},
 	{"Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des active Items, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte active Items"},
 	{"???", "", "{{SoulHeart}} Seelenherzen, die durch Gesundheits-Upgrades gewonnen werden, werden verdoppelt"},
-	{"Eva", "", "{{Collectible122}} Die Hure von Babylon ist unabhängig von der Gesundheit aktiv#Der Tote Vogel ist immer aktiv"},
+	{"Eva", "", "{{Collectible122}} Die Hure von Babylon ist unabhängig von der Gesundheit aktiv#{{Collectible117}} Der Tote Vogel ist immer aktiv"},
 	{"Samson", "", "{{Collectible157}} Blutige Wut kann auf jeder Ebene 4-mal ausgelöst werden, bis zu +14 Schaden nach 10 Auslösern"},
 	{"Azazel", "", "Azazels Brimstone-Strahl wird deutlich breiter#Erhöht den Schaden nicht"},
 	{"Lazarus", "", "↑ Die Wiederbelebung als Lazarus Auferstanden gewährt {{Damage}} +7,2 Schaden#↑ Der Schadensbonus lässt in 60 Sekunden nach#{{Blank}} Das Töten von Feinden, während der Effekt aktiv ist, verlängert ihn"},
 	{"Eden", "", "Spawnt 3 zufällige Gegenstände aus zufälligen Gegenstands-Pools#Es kann nur eines genommen werden"},
-	{"The Lost", "", "Verhindert, dass für The Lost nutzlose Gegenstände erscheinen#Beispiele: Gegenstände, die nur Gesundheit, Flug und/oder spektrale Tränen verleihen oder bei Schaden aktiviert werden"},
+	{"The Lost", "", "Verhindert, dass für The Lost nutzlose Gegenstände erscheinen#Beispiele: Gegenstände, die nur Gesundheit, Flug, spektrale Tränen verleihen oder bei Schaden aktiviert werden"},
 	{"Lazarus Auferstanden", "", "↑ {{Damage}} +7,2 Schaden#Der Schadensbonus lässt in 60 Sekunden nach#Das Töten von Feinden, während der Effekt aktiv ist, verlängert ihn#Der Effekt wird jedes Mal ausgelöst, wenn Lazarus als Lazarus Risen wiederbelebt wird"},
 	{"Black Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des active Items, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte active Items"},
 	{"Lilith", "", "Familiars sind vor Liliths Gesicht positioniert"},
@@ -460,17 +461,16 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Lilith", "", "{{Collectible728}} Vertraute, die normalerweise Tainted Lilith folgen, folgen stattdessen ihrem Gello#Der Nahkampfangriff erhält +3 Schaden pro vertrautem Freund"},
 	{"Tainted Keeper", "", "{{Coin}} Zieht die Münzen, die durch das Besiegen von Feinden fallen gelassen werden, stark an#Keine Auswirkung auf andere Münzen"},
 	{"Tainted Apollyon", "", "Heuschrecken beschädigen kontinuierlich Feinde, ohne zurückzukehren, solange die Feuertaste gedrückt wird"},
-	{"Tainted Forgotten", "", "{{Collectible714}} Tainted Soul gewinnt die Fähigkeit zur Rückholung, um Tainted Forgotten aus der Ferne zurückzuholen"},
+	{"Tainted Forgotten", "", "{{Collectible714}} Tainted Soul gewinnt die Fähigkeit zur Rückholung, um Tainted Forgotten aus der Ferne zurückzuholen#The Soul is invincible while the Forgotten is returning"},
 	{"Tainted Bethany", "", "Spawnt vier zufällige Gegenstandswisps der Qualitäten {{Quality3}} und {{Quality4}} mit deutlich höherer HP als normal"},
 	{"Tainted Jacob", "", "Dark Esau teilt sich in zwei, erschafft einen schattenhaften Klon von sich selbst#Beide Esaus laden immer gleichzeitig auf#{{Collectible722}} Die Verwendung von Anima Sola verbindet beide Esaus"},
 	{"Dead Tainted Lazarus", "", "Die nicht-aktive Form von Tainted Lazarus erscheint als geisterhafte zweite Figur#Er ist unverwundbar und verursacht 25% Schaden#Beide Formen erhalten den Birthright-Gegenstand"},
 	{"Tainted Jacob 2", "", "Dark Esau teilt sich in zwei, erschafft einen schattenhaften Klon von sich selbst#Beide Esaus laden immer gleichzeitig auf#{{Collectible722}} Die Verwendung von Anima Sola verbindet beide Esaus"},
-	{"Tainted Forgotten Soul", "", "{{Collectible714}} Forgotten Soul gewinnt die Fähigkeit zur Rückholung, um den Tainted Forgotten aus der Ferne zurückzuholen"},
+	{"Tainted Forgotten Soul", "", "{{Collectible714}} Forgotten Soul gewinnt die Fähigkeit zur Rückholung, um den Tainted Forgotten aus der Ferne zurückzuholen#The Soul is invincible while the Forgotten is returning"},
 }
 
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon in front of each buff-bulletpoint
-
 EID.descriptions[languageCode].bingeEaterBuffs = {
 	[22] = {"22", "Mittagessen", "↑ {{Tears}} +0,5 Tränen#↑ {{Range}} +2,5 Reichweite#↓ {{Speed}} -0,03 Geschwindigkeit"}, -- Lunch
 	[23] = {"23", "Abendessen", "↑ {{Tears}} +0,5 Tränen#↑ {{Shotspeed}} +0,2 Schussgeschwindigkeit#↓ {{Speed}} -0,03 Geschwindigkeit"}, -- Dinner
@@ -484,7 +484,6 @@ EID.descriptions[languageCode].bingeEaterBuffs = {
 
 -- Buffs caused by Book of Belial with Judas' Birthright
 -- Note: "#" will be replaced with "#{{Collectible34}} " automatically, in order to add Book of Belial icon in front of each buff-bulletpoint
-
 EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[40] = "Ruft auch den Effekt von {{Collectible35}} Necronomicon hervor", -- Kamikaze!
 	[126] = "Ruft auch den Effekt von {{Collectible35}} Necronomicon auf", -- Razor Blade
@@ -609,7 +608,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[396] = "Kann keine Tränen schießen#Jedes Portal hat 1 Wisp", -- Ventricle Razor
 	[406] = "Mittlere Ring-Wisp#Zufälliger Schaden und Feuerrate", -- D8
 	[419] = "Mittlere Ring-Wisp#20% Chance, dass Tränen Feinde teleportieren#Wisps flimmern alle 5 Sekunden", -- Teleport 2.0
-	[421] = "Mittlere Ring-Wisp#{{Charm}} Charm-Furz beim Zerstören", -- Kidney Bean
+	[421] = "Mittlere Ring-Wisp#{{Charm}} Charm Tränen#{{Charm}} Charm-Furz beim Zerstören", -- Kidney Bean
 	[422] = "Mittlere Ring-Wisp#30% Chance auf versteinernde Tränen#Beschwört alle Wisps neu herbei, die im vorherigen Raum zerstört wurden", -- Glowing Hourglass
 	[427] = "Springt im Raum herum und explodiert, wenn von Isaac getroffen#Kann keine Tränen schießen oder Berührungsschaden verursachen", -- Mine Crafter
 	[434] = "Mittlere Ring-Wisp#Anstelle von Fliegen werden Wisps beschworen#Bis zu 5 Fliegen ergeben 1 Wisp mit erhöhter Gesundheit und Schaden", -- Jar of Flies
@@ -688,11 +687,11 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[723] = "Mittlere Ring-Wisp#Beschwört einen zufälligen Wisp herbei und würfelt alle Wisps in den Typ um", -- Spindown Dice
 	[728] = "Mittlere Ring-Wisp#Alle Wisps umkreisen Gello, solange er aktiv ist", -- Gello
 	[729] = "Stationärer Einzelraum-Wisp", -- Decap Attack
-
 }
 
 -- Special Locust effects when Item was eaten by Abyss
-EID.descriptions[languageCode].abyssSynergies = {[2] = "Drei normale Heuschrecken", -- The Inner Eye
+EID.descriptions[languageCode].abyssSynergies = {
+	[2] = "Drei normale Heuschrecken", -- The Inner Eye
 	[3] = "Lila heimische Heuschrecke", -- Spoon Bender
 	[4] = "Rote große Heuschrecke, die dreifachen Schaden verursacht", -- Cricket's Head
 	[6] = "Gelbe, schnelle Nahbereichsheuschrecke, die schnelleren Schaden verursacht", -- Number One
@@ -708,36 +707,56 @@ EID.descriptions[languageCode].abyssSynergies = {[2] = "Drei normale Heuschrecke
 	[374] = "Cyan leuchtende Heuschrecke, die Lichtstrahlen erzeugen kann, die 3x Isaacs Schaden verursachen", -- Holy Light
 	[494] = "Hellblaue Heuschrecke mit Lichtbögen, die 0,1 Schaden pro Tick verursachen", -- Jacob's Ladder
 	[559] = "Hellblaue Heuschrecke mit Lichtbögen, die 0,1 Schaden pro Tick verursachen", -- 120 Volt
-
 }
 
 -- Effect of Car battery on Active Items
 local repCarBattery = {
+	[34] = {2, 4}, -- The Book of Belial -- TODO: Is this +1 damage or another +2 from additional uses?
+	[59] = {2, 4}, -- The Book of Belial (Birthright)
+	[83] = {" Half", "1"}, -- The Nail
+	[263] = "Triggers it twice", -- Clear Rune
+	[283] = {1, 2, "pickup", "{{CR}}pickups"}, -- D100 TODO: TEST THIS is this really the only change
+	[285] = "Devolves enemies twice", -- D10
+	[288] = {"4-8", "8-16"}, -- Box of Spiders
+	[293] = {200, 400}, -- Head of Krampus
+	[296] = {1, 2, "Heart", "{{CR}}Hearts", 1, 2, "container", "{{CR}}containers"}, -- Converter
 	[323] = "Tränen verursachen doppelten Schaden", -- Isaac's Tears
-	[421] = "", -- Kidney Bean, doppelter Furzschaden entfernt in Rep
+	[386] = "Increased chance for rare obstacles", -- D12
+	[485] = "25% chance to quadruple, 75% chance to remove", -- Crooked Penny
 	[489] = "Löst zwei Würfeleffekte aus. Der zweite Würfeleffekt ändert sich nie", -- D Infinity
-	[523] = "", -- Moving Box
-	[556] = "Gewährt zwei Brimstones und verleiht zusätzlichen Schaden", -- Sulfur
+	[522] = {3, 6}, -- Telekinesis
+	[557] = {"one", "two"}, -- Fortune Cookie
+	[582] = "Triggers twice", -- Wavy Cap
 	[584] = "Doppelte Wisps", -- Book of Virtues
 	[605] = "Beschwört zwei Peepers. Verleiht keinen zusätzlichen Schaden", -- The Scooper
 	[609] = "Chancen, Gegenstände zu löschen, sind verdoppelt", -- Eternal D6
+	[611] = "Triggers an additional 1-charge scream", -- Larynx
 	[625] = "Effekt dauert 60 Sekunden", -- Mega Mush
+	[631] = {25, 50}, -- Meat Cleaver
+	[635] = "Instantly swaps twice#Great for teleporting into enemies, but can't collect out-of-reach items", -- Stitches
+	[639] = {1, 2, "Heart", "{{CR}}Hearts"}, -- Yuck Heart
+	[642] = "Triggers twice", -- Magic Skin
+	[650] = {" a ", " 2 ", "Plum", "{{CR}}Plums"}, -- Plum Flute
+	[685] = "Spawns double the wisps, but the use count only goes up by 1", -- Jar of Wisps
+	[687] = {" a ", " 2 ", "monster", "{{CR}}monsters"}, -- Friend Finder
+	[704] = "Lasts 10 seconds, but killing an enemy caps time remaining at 5 seconds max", -- Berserk!
 	[705] = "Schattenwirkung dauert 2 Sekunden", -- Dark Arts
+	[712] = {" an ", " 2 ", "orbital", "{{CR}}orbitals"}, -- Lemegeton
+	[713] = {"half a heart", "a heart", "a clot", "2 {{CR}}clots"}, -- Sumptorium
+	[719] = {" a ", " 2 ", "item/pickup", "{{CR}}items/pickups"}, -- Keeper's Box
 	[720] = "Beschwört Kacke neben dem Pickup", -- Everything Jar
+	[722] = "Chains 2 enemies down#If there's only one enemy, chains it for 10 seconds", -- Anima Sola
 	[723] = "Verringert die interne ID um zwei", -- Spindown Dice
 }
---EID.descriptions[languageCode].carBattery[284] = nil -- D4
 EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
 
 ---------- Trinkets ----------
 
 local repTrinkets={
-	[1] = {"1", "Verschluckte Münze", "{{Coin}} Das Nehmen von Schaden erzeugt 1 Münze#{{Player14}} 0-1 als Keeper"}, -- Swallowed Penny
 	[10] = {"10", "Wiggle Worm", "↑ {{Tears}} +0.4 Tränen#Spektrale Tränen#Isaacs Tränen bewegen sich in Wellen"}, -- Wiggle Worm
 	[11] = {"11", "Ring Worm", "↑ {{Tears}} +0.47 Tränen#Spektrale Tränen#Isaacs Tränen bewegen sich in Spiralen mit hoher Geschwindigkeit"}, -- Ring Worm
 	[15] = {"15", "Lucky Rock", "{{Coin}} Zerstören von Felsen hat eine 33%ige Chance, eine Münze erscheinen zu lassen"}, -- Lucky Rock
 	[16] = {"16", "Mamas Zehennagel", "Mamas Fuß stampft alle 20 Sekunden an einer zufälligen Stelle im Raum"}, -- Mom's Toenail
-	[23] = {"23", "Vermisstes Plakat", "{{Player10}} Wiederbelebung als The Lost beim Tod#{{Player31}} Der Verderbte Lost wird einfach wiederbelebt#{{Warning}} Sterben in einem {{SacrificeRoom}} Sacrifice Room, während man dieses Trinket hält, schaltet The Lost frei"}, -- Missing Poster
 	[24] = {"24", "Po-Penny", "{{Coin}} 20% höhere Chance, dass Münzen aus Kacke erscheinen#{{Poison}} Das Aufsammeln von Münzen lässt Isaac furzen, was Feinde und Projektile vergiftet und zurückstößt"}, -- Butt Penny
 	[26] = {"26", "Hakenschwanz", "↑ {{Tears}} +0.4 Tränen#↑ {{Range}} +1,5 Reichweite#Spektrale Tränen#Isaacs Tränen bewegen sich in winkligen Mustern"}, -- Hook Worm
 	[32] = {"32", "Freiheitskappe", "25% Chance auf einen zufälligen Pilzeffekt pro Raum"}, -- Liberty Cap
@@ -750,7 +769,7 @@ local repTrinkets={
 	[65] = {"65", "Klebebandwurm", "↑ {{Range}} +3 Reichweite"}, -- Tape Worm
 	[66] = {"66", "Faule Made", "↓ {{Shotspeed}} -0,5 Schusssgeschwindigkeit"}, -- Lazy Worm
 	[67] = {"67", "Rissiger Würfel", "Schaden nehmen hat eine 50%ige Chance, einen dieser Effekte auszulösen:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible285}} D10#{{Collectible386}} D12#{{Collectible166}} D20"}, -- Cracked Dice
-	[69] = {"69", "Verblasste Polaroid", "Tarnung von Isaac in zufälligen Abständen#{{Confusion}} Verwirrt Feinde#Kann verwendet werden, um die \"merkwürdige Tür\" in \"Depths 2\" zu öffnen"}, -- Faded Polaroid
+	[69] = {"69", "Verblasste Polaroid", "Tarnung von Isaac in zufälligen Abständen#{{Confusion}} Verwirrt Feinde#Kann verwendet werden, um die \"Seltsame Tür\" in \"Tiefen II\" zu öffnen"}, -- Faded Polaroid
 	[80] = {"80", "Schwarze Feder", "↑ {{Damage}} +0,5 Schaden für jedes \"Böse hoch\"-Objekt im Besitz"}, -- Black Feather
 	[92] = {"92", "Rissige Krone", "↑ x1,33 Stat-Multiplikator (außer Schussrate) für die Werte, die über 1 liegen: {{Speed}} Geschwindigkeit, 2,73 {{Tears}} Tränen, 3,5 {{Damage}} Schaden, 6,5 {{Range}} Reichweite, 1 {{Shotspeed}} Schusssgeschwindigkeit"}, -- Cracked Crown
 	[96] = {"96", "Ouroboros-Wurm", "↑ +0,4 Tränen#↑ {{Range}} +1,5 Reichweite#Spektrale Tränen#Chance auf suchende Tränen#{{Luck}} 100%ige Chance bei 9 Glück#Isaacs Tränen bewegen sich schnell in einer Spirale"}, -- Ouroboros Worm
@@ -769,7 +788,7 @@ local repTrinkets={
 	[133] = {"133", "Kurze Lunte", "Isaacs Bomben explodieren schneller"}, -- Short Fuse
 	[134] = {"134", "Riesenbohne", "Erhöht die Furzgröße"}, -- Gigante Bean
 	[135] = {"135", "Ein Feuerzeug", "{{Burning}} Das Betreten eines Raumes hat eine 20%ige Chance, zufällige Feinde zu verbrennen"}, -- A Lighter
-	[136] = {"136", "Kaputtes Vorhängeschloss", "Türen, Schlüsselblöcke und goldene Truhen können mit Explosionen geöffnet werden#Explosionen können auch die \"merkwürdige Tür\" in \"Depths 2\" öffnen"}, -- Broken Padlock
+	[136] = {"136", "Kaputtes Vorhängeschloss", "Türen, Schlüsselblöcke und goldene Truhen können mit Explosionen geöffnet werden#Explosionen können auch die \"Seltsame Tür\" in \"Tiefen II\" öffnen"}, -- Broken Padlock
 	[137] = {"137", "Vergissmeinnicht", "Beim Betreten einer neuen Ebene erscheinen bis zu 4 nicht eingesammelte Pickups aus dem vorherigen Stock im Startraum"}, -- Myosotis
 	[138] = {"138", "'M", "Benutzen eines active Items würfelt ihn um"}, -- 'M
 	[139] = {"139", "Tränentropfen-Charme", "{{Luck}} +4 Glück für auf Glück basierende Träneneffekte"}, -- Teardrop Charm
@@ -789,7 +808,7 @@ local repTrinkets={
 	[153] = {"153", "Mamas Schloss", "25% Chance für einen zufälligen Mama-Item-Effekt pro Raum"}, -- Mom's Lock
 	[154] = {"154", "Würfelbeutel", "50%ige Chance pro neuem Raum, einen einmal verwendbaren Würfel-Verbrauchsgegenstand zu gewähren#Der Würfel verschwindet beim Verlassen des Raumes#Der Würfel belegt keinen Pillen-/Kartenplatz"}, -- Dice Bag
 	[155] = {"155", "Heilige Krone", "Erzeugt einen {{TreasureRoom}} Schatzraum und {{Shop}} Laden im Kathedralen-Level"}, -- Holy Crown
-	[156] = {"156", "Mutters Kuss", "{{Heart}} +1 Herzcontainer solange es gehalten wird#{{Player14}} +1 Münzcontainer für Keeper"}, -- Mother's Kiss
+	[156] = {"156", "Mutters Kuss", "{{Heart}} +1 Herzcontainer solange es gehalten wird"}, -- Mother's Kiss
 	[157] = {"157", "Zerrissene Karte", "Alle 15 Schüsse feuert Isaac eine {{Collectible149}} Ipecac + {{Collectible5}} My Reflection-Träne mit sehr hohem Reichweitenwert ab"}, -- Torn Card
 	[158] = {"158", "Zerrissene Tasche", "Schaden nehmen lässt Isaac 2 seiner Münzen, Schlüssel oder Bomben fallen#Die Pickups können durch andere Varianten wie goldene Schlüssel, Nickel, Dimes, etc. ersetzt werden"}, -- Torn Pocket
 	[159] = {"159", "Vergoldeter Schlüssel", "{{Key}} +1 Schlüssel beim Aufsammeln#{{GoldenChest}} Ersetzt alle Truhen (außer Alt/Mega) durch goldene Truhen#{{GoldenChest}} Goldene Truhen können zusätzliche Karten, Pillen oder Trinkets enthalten"}, -- Gilded Key
@@ -918,7 +937,7 @@ local repCards={
 	[77] = {"77", "XXI - Die Welt?", "{{LadderRoom}} Spawnt eine Falltür zu einem Kriechraum"}, -- XXI - The World?
 	[78] = {"78", "Geplatzter Schlüssel", "{{Collectible580}} Einmal verwendbarer Roter Schlüssel"}, -- Cracked Key
 	[79] = {"79", "Herzdame", "{{Heart}} Spawnt 1-20 Rote Herzen"}, -- Queen of Hearts
-	[80] = {"80", "Wilde Karte", "Kopiert den Effekt der zuletzt verwendeten Pille, Karte, Rune, Seelenstein oder aktivierten Gegenstands"}, -- Wild Card
+	[80] = {"80", "Wilde Karte", "Kopiert den Effekt deiner zuletzt verwendeten Pille, Karte, Rune, Seelenstein oder aktivierten Gegenstands"}, -- Wild Card
 	[81] = {"81", "Seele von Isaac", "Lässt alle Gegenstandspodeste im Raum zwischen zwei verschiedenen Gegenständen wechseln"}, -- Soul of Isaac
 	[82] = {"82", "Seele von Magdalena", "{{Timer}} Effekt dauert für den Raum:#{{HalfHeart}} Getötete Feinde lassen halbe Rote Herzen fallen, die nach 2 Sekunden verschwinden"}, -- Soul of Magdalene
 	[83] = {"83", "Seele von Kain", "Öffnet alle Türen im Raum#{{Collectible580}} Erstellt rote Räume an jeder möglichen Wand"}, -- Soul of Cain
@@ -975,7 +994,6 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[73] = {"Entfernt Isaacs {{ColorShinyPurple}}2{{CR}} älteste gesammelte passive Gegenstände (ignoriert Startgegenstände)#Erzeugt {{ColorShinyPurple}}4{{CR}} zufällige Gegenstände aus dem aktuellen Raum-Gegenstandspool"}, -- XVII - The Stars?
 	[76] = {"{{RestockMachine}} Erzeugt {{ColorShinyPurple}}2{{CR}} Auffüllmaschinen"}, -- XX - Judgement?
 }
-
 
 -- There's some odd behavior with Blank Card + Tarot Cloth not doubling some cards
 -- These will be appended after Blank Card recharge time and "Blank Card effect:"
@@ -1121,6 +1139,8 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["999.-1"] = "Gitterobjekt",
 	["1000.0"] = "Effekt",
 
+	-- Text for the base item that is granted
+	grants = "Gewährt ",
 }
 
 ---------- Misc. Text ----------
@@ -1153,37 +1173,136 @@ EID.descriptions[languageCode].spindownError = "Gegenstand verschwindet"
 EID.descriptions[languageCode].CraftingBagContent = "Tasche:"
 EID.descriptions[languageCode].CraftingRoomContent = "Raum:"
 EID.descriptions[languageCode].CraftingFloorContent = "Ebene:"
+EID.descriptions[languageCode].CraftingSearch = "Suche:"
 
 EID.descriptions[languageCode].CraftingBagQuality = "Taschenqualität:"
 EID.descriptions[languageCode].CraftingBestQuality = "Beste Qualität:"
 
 EID.descriptions[languageCode].CraftingHideKey = "Verstecken:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Vorschau:"
+-- {1} will be converted to the number of recipes
+EID.descriptions[languageCode].CraftingMore = "...+{1} more"
+-- {1} will be converted into the number of available items
+EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} of 8 items available"
+EID.descriptions[languageCode].CraftingWarningAvailableItems = "Needs at least 8 to show crafting recipes!"
+-- {1} will be converted into the name of the key that toggles the BoC visibility
+EID.descriptions[languageCode].CraftingIsHidden = "Currently Hidden (Unhide with {1})"
 
-EID.descriptions[languageCode].CraftingResults = "(Scrollen: Halte {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Sperren: {{ButtonX}}, Aktualisieren: {{ButtonB}}, Tasche zurücksetzen: Halte {{ButtonRB}})"
+-- {1} will be converted into the name of the key that toggles the BoC Search
+EID.descriptions[languageCode].CraftingResults = "(Scrollen: Halte {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Sperren: {{ButtonX}}, Aktualisieren: {{ButtonB}}, Tasche zurücksetzen: Halte {{ButtonRB}}, Suche: {1})"
 
-EID.descriptions[languageCode].BlankCardCharge = "Blanko-Kartenladung:"
 EID.descriptions[languageCode].BlankCardEffect = "Effekt der Blanko-Karte:"
-EID.descriptions[languageCode].BlankCardQCard = "Teleport zum I AM ERROR-Raum#Blanko-Karte und ?-Karte werden zerstört"
-EID.descriptions[languageCode].ClearRuneCharge = "Ladezeit der leeren Rune:"
-EID.descriptions[languageCode].PlaceboCharge = "Placebo-Ladezeit:"
+EID.descriptions[languageCode].VariableCharge = "{1} Ladung:"
+
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Halte {{CONFIG_BoC_Toggle}} gedrückt, um die Beschreibung anzuzeigen)"
 
+EID.descriptions[languageCode].GlowingHourglassTransformed = "Will change back to Glowing Hourglass next floor"
 
 EID.descriptions[languageCode].FalsePHDHeart = "Spawnt 1 {{BlackHeart}} Schwarzes Herz"
 EID.descriptions[languageCode].FalsePHDDamage = "↑ {{Damage}} +0,6 Schaden"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "↑ {{Damage}} +1,2 Schaden"
 
+EID.descriptions[languageCode].ExperimentalPillPHD = "No stat decrease"
+EID.descriptions[languageCode].ExperimentalPillFalsePHD = "No random stat increase"
+
 EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Stattdessen verbraucht der Schlüssel und spawnt 6 Gegenstände aus zufälligen Pools"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} WARNUNG {{Warning}}"
-EID.descriptions[languageCode].AchievementWarningText = "Erfolge sind deaktiviert!#Um Fortschritt und Erfolge zu aktivieren, musst du zuerst Mom (Depths II) besiegen, ohne Mods zu aktivieren.#(Wenn du Mom besiegt hast, kann diese Meldung ignoriert werden)#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
+EID.descriptions[languageCode].AchievementWarningText = "Erfolge sind deaktiviert!#Um Fortschritt und Erfolge zu aktivieren, musst du zuerst Mom (Tiefen II) besiegen, ohne Mods zu aktivieren.#(Wenn du Mom besiegt hast, kann diese Meldung ignoriert werden)#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID ist für die neueste Steam-Version aktualisiert#Ihre Spielversion wird nicht offiziell unterstützt, daher sind einige Beschreibungen und Funktionen möglicherweise ungenau#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
 
-EID.descriptions[languageCode].ModdedRecipesWarningText = "Modifizierte Gegenstände können die Berechnung der Crafting-Rezepte ungenau machen!#Verwende den Item-Wahrscheinlichkeits-Anzeigemodus oder deaktiviere die Anzeige des Bags of Crafting, wenn deine Rezepte inkorrekt sind#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Modifizierte Gegenstände können die Berechnung der Crafting-Rezepte ungenau machen!#Installiere REPENTOGON für verbesserte Unterstützung modifizierter Rezepte#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
 
 EID.descriptions[languageCode].ResultsWithX = "(Ergebnisse mit {1})"
+
+-- Conditional descriptions
+-- Strings will be appended to the original description
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs
+local repConditions={
+	["Tainted Revive"] = "{1} simply revives",
+	
+	["5.100.135 (Hard Mode)"] = {"1-2 coins", "1 coin", "2-3 coins", "2 coins"}, -- IV Bag Hard Mode (modify the PHD text too)
+	["5.100.642"] = "Single use for {1}", -- Magic Skin
+	["5.100.240"] = "{1} keeps the stat changes when he drops it", -- Experimental Treatment
+	["5.100.644"] = "{1} keeps the stat increase when he drops it", -- Consolation Prize
+	
+	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Fire rate on pickup", -- Brittle Bones (Keeper+Lost)
+	["5.100.694"] = "Works for {1}, letting him survive 4 hits", -- Heartbreak
+	
+	["5.100.201"] = "Refills {1}'s charge on pickup", --Iron Bar
+	["5.350.172"] = "{1} removes the teleportation effect", -- Cursed Penny
+	["5.100.188"] = "Deals 7.5 damage as {1}", -- Cain + Abel
+	["5.100.360"] = "Deals 100% damage as {1}", -- Lilith + Incubus
+	["5.100.501 (Deep Pockets)"] = "+1 Heart container for every 100 coins past 99", -- Greed's Gullet + Deep Pockets
+	["5.350.156"] = "+1 Coin container for {1}", -- Mother's Kiss
+	["5.100.230 (Keeper)"] = "{1} is left with 1 coin container", -- Abaddon
+	["5.100.230 (Bethany)"] = "{1} is left with half a heart", -- Abaddon
+	["5.100.230 (Tainted Bethany)"] = "{1} doesn't lose her blood charges", -- Abaddon
+	
+	["5.100.245"] = "Removes the fire rate penalty of {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	["5.100.245 (Keeper)"] = "Fire rate up and decreased tear spread for {1}", -- 20/20 + Keeper
+	["20/20"] = "No fire rate penalty with {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	["5.100.705"] = "Temporary +1 damage up for each bullet/enemy", -- Dark Arts + Dark/Tainted Judas
+	["5.100.205 (Tainted Magdalene)"] = "Allows infinite usage of Yum Heart", -- Sharp Plug + Tainted Magdalene
+	["Ice Tears"] = "Freezing an enemy doesn't count as killing", -- Uranus Anti-Synergy
+	["5.100.45"] = "{{HalfHeart}} Heals other players for half a heart", -- Yum Heart (Co-Op)
+
+	["5.100.344"] = {"{{BlackHeart}} +1 Black Heart#{{Bomb}} Spawns 3 bombs"}, -- Match Book (Greed)
+	["5.300.74"] = {"Teleports Isaac to the first room of the floor"}, -- The Moon? (Greed)
+	["5.100.416"] = {"{{Coin}} Increases the coin cap to 999"}, -- Deep Pockets (Greed)
+}
+EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
+
+local repBFFSSynergies = {
+	["5.100.360"] = "Shoots tears that deal 150% of your damage. 200% for Lilith", -- Incubus
+	["5.100.569"] = "+2 full hearts when health is drained", -- Blood Oath
+	["5.100.610"] = "Spawns 4 rock waves in an x pattern. Doubles bird damage. Damage of waves unaffected.", -- Bird Cage
+	["5.100.178"] = "Double water damage and spawns a blue flame at point of impact", -- Holy Water
+	["5.100.276"] = "Fires additional shots in random directions and leaves a larger puddle of creep", -- Isaac's Heart
+	["5.100.612"] = "Gives the Lost Soul a Holy Mantle effect", -- Lost Soul
+	["5.100.635"] = "On use, fires 8 tears from the players position that have the same effects as his tears", -- Stitches
+}
+EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
+
+-- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
+local repCharacterInfo = {
+	[4] = {"???", "Can't have Red Hearts#Devil deals that would cost 1 or 2 Red Hearts will cost 1 or 2 Soul Hearts instead#Destroying poop spawns 1 blue fly"},
+	[8] = {"Lazarus", "Once per floor, when you die:#Resurrect as Lazarus Risen#Lose 1 Red Heart container#↑ {{Damage}} 0.5 Damage up"},
+	[11] = {"Lazarus Risen", "Increased stats and 1.4x damage multiplier#When entering a new floor, turn back into Lazarus"},
+	[12] = {"Dark Judas", "Can't have Red Hearts#Health ups grant Black Hearts#2x Damage multiplier"},
+	[14] = {"Keeper", "Heal by picking up coins#Heart pickups are turned into Blue Flies#Devil deals cost 15 or 30 coins"},
+	[18] = {"Bethany", "Use Soul Hearts to charge your active item#Can't use Soul Hearts as health#The first Devil room is guaranteed to be an Angel room instead"},
+	[19] = {"Jacob", "Control Jacob and Esau at the same time#Both characters drop a bomb when one is used#Esau stays in place while holding {{ButtonRT}}#When there's a choice between items, Jacob and Esau can grab two simultaneously"},
+	[20] = {"Esau", ""},
+	
+	[21] = {"Tainted Isaac", "Item pedestals cycle between 2 options#You can only carry 8 passive items#Cycle which item will be dropped for a 9th item with {{ButtonRT}}"},
+	[22] = {"Tainted Magdalene", "Health above 2 Red Hearts will slowly drain#On contact, do a melee swing#Chance for enemies to drop Half Red Hearts that disappear in 2 seconds#Drop is guaranteed on melee kill#Heal twice as much from non-pickup sources#Damage taken to draining hearts doesn't affect Devil Deal chance"},
+	[23] = {"Tainted Cain", "Touching an item pedestal turns it into a variety of pickups#Gain collectibles by crafting 8 pickups together in the Bag of Crafting#The Bag's contents can be shifted with {{ButtonRT}} to replace specific pickups when full"},
+	[24] = {"Tainted Judas", "Can't have Red Hearts#Health ups grant Black Hearts"},
+	[25] = {"Tainted ???", "Bombs are replaced with Poop Spells#Doing damage spawns poop pickups#The HUD has a preview of your upcoming poop spells#You can store the next spell for later by using Hold#Can't have Red Hearts"},
+	[26] = {"Tainted Eve", "Holding Fire will convert your hearts into Clot familiars#Different Heart types spawn Clots with more health and tear effects#Clots lose health over time#Using Sumptorium will absorb the Clots back into your health, if possible#Clots stay in place while holding {{ButtonRT}}"},
+	[27] = {"Tainted Samson", "Dealing or taking damage builds up Berserk mode#{{Timer}} When you go berserk, receive for 5 seconds:#↑ {{Speed}} +0.4 Speed#↓ {{Tears}} x0.5 Fire rate multiplier#↑ {{Tears}} +2 Fire rate#↑ {{Damage}} +3 Damage#Restricts attacks to a melee that reflects shots#{{Timer}} Each kill increases the duration by 1 second and grants brief invincibility"},
+	[28] = {"Tainted Azazel", "When you start charging, you sneeze blood#Hitting an enemy with the sneeze halves your charge time#The sneeze deals 1.5x Azazel's damage#{{BrimstoneCurse}} Affected enemies take extra damage from Brimstone beams#On death, cursed enemies explode and pass on the curse to nearby enemies"},
+	[29] = {"Tainted Lazarus", "Lazarus has two states, each with their own items and health#Whenever you clear a room/wave or use Flip, you're switched to the other state"},
+	[30] = {"Tainted Eden", "When you take damage, reroll your stats, items, trinket, and consumables#Items reroll into an item from the same item pool#Self-damage doesn't reroll"},
+	[31] = {"Tainted Lost", "Cards that spawn have a 10% chance to be Holy Card#Quality {{Quality2}} or less items have a 20% chance to be rerolled#Only \"offensive\" items can spawn"},
+	[32] = {"Tainted Lilith", "Pressing Fire launches a short-range fetus melee attack that does 3x damage#Holding Fire keeps the fetus out shooting tears"},
+	[33] = {"Tainted Keeper", "Enemies drop coins that disappear in 2 seconds#Most item pedestals cost 15 coins#Devil deals and Angel items cost 15 or 30 coins#Shops don't require a key and have increased stock"},
+	[34] = {"Tainted Apollyon", ""},
+	[35] = {"Tainted Forgotten", "The Forgotten is an immobile bone pile that is picked up and thrown by The Soul for 3x damage#Only The Soul can take damage#Bombs are placed at Forgotten's location#Can't have Red Hearts"},
+	[36] = {"Tainted Bethany", "Use Red Hearts to charge your active item#Can't have Red Hearts"},
+	[37] = {"Tainted Jacob", "Dark Esau chases you, charging towards you when close#Anima Sola will chain Dark Esau down briefly, charging at you after 5(?) seconds or on using Anima Sola again#Dark Esau's charge does a lot of damage to enemies and ignores Boss Armor#If he hits you, you turn into a ghost that dies in one hit for the rest of the floor#While a ghost, one devil deal per room can be taken for free"},
+	[38] = {"Dead Tainted Lazarus", "Lazarus has two states, each with their own items and health#Whenever you clear a room/wave or use Flip, you're switched to the other state"},
+	[39] = {"Tainted Jacob 2", ""},
+	[40] = {"Tainted Forgotten Soul", "The Forgotten is an immobile bone pile that is picked up and thrown by The Soul for 3x damage#Only The Soul can take damage#Bombs are placed at Forgotten's location#Can't have Red Hearts"},
+}
+EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
+
+
+
+
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
@@ -1191,4 +1310,9 @@ if EID.enableDebug then
 	EID.descriptions[languageCode].repTrinkets = repTrinkets
 	EID.descriptions[languageCode].repCards = repCards
 	EID.descriptions[languageCode].repPills = repPills
+end
+
+if REPENTOGON then
+	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "Donation Machine", "Next achievement at {1} coins, {2} coins remaining#{{Luck}} 2% chance for +1 Luck when donating#{{AngelRoom}} Donating 10 coins increases Angel Room chance"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Greed Donation Machine", "Next achievement at {1} coins, {2} coins remaining"}
 end
