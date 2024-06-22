@@ -347,7 +347,7 @@ EID.descriptions[languageCode].collectibles={
 	{"322", "Mongo Baby", "Mimics your baby familiars' tears#If you have none, shoots normal 3.5 damage tears"}, -- Mongo Baby
 	{"323", "Isaac's Tears", "Shoots 8 tears in all directions#The tears copy Isaac's tear effects#Recharges by shooting tears"}, -- Isaac's Tears
 	{"324", "Undefined", "Teleports Isaac to the {{TreasureRoom}} Treasure, {{SecretRoom}} Secret, {{SuperSecretRoom}} Super Secret or {{ErrorRoom}} I AM ERROR Room"}, -- Undefined
-	{"325", "Scissors", "{{Timer}} Isaac's head turns into a stationary familiar for the room#The body is controlled separately"}, -- Scissors
+	{"325", "Scissors", "{{Timer}} Isaac's head turns into a stationary familiar for the room#The head shoots 3.5 damage tears#The body is controlled separately and still shoots Isaac's tears"}, -- Scissors
 	{"326", "Breath of Life", "Holding down the USE button empties the charge bar#Isaac is temporarily invincible when the charge bar is empty#{{Warning}} Holding it for too long deals damage to Isaac"}, -- Breath of Life
 	{"327", "The Polaroid", "Taking damage at half a Red Heart or none makes isaac temporarily invincible"}, -- The Polaroid
 	{"328", "The Negative", "Taking damage at half a Red Heart or none damages all enemies in the room"}, -- The Negative
@@ -597,7 +597,7 @@ EID.descriptions[languageCode].carBattery = {
 	[93] = {6.5, 13}, -- The Gamekid
 	[97] = {" a ", " 2 ", "pickup", "{{CR}}pickups"}, -- The Book of Sin
 	[102] = {1, 2, "pill", "{{CR}}pills"}, -- Mom's Bottle of Pills
-	[105] = "Rerolls twice, skipped items can no longer be seen depending on room", -- The D6
+	[105] = "Rerolls twice, draining item pools faster", -- The D6
 	[107] = "Spawns two bodies", -- The Pinking Shears
 	[111] = {5, 10}, -- The Bean
 	[123] = {" a ", " 2 ", "familiar", "{{CR}}familiars"}, -- Monster Manual
@@ -646,7 +646,7 @@ EID.descriptions[languageCode].carBattery = {
 
 -- Effect of BFFS! on Familiars
 EID.descriptions[languageCode].BFFSSynergies = {
-	["No Effect"] = "No effect",
+	["No Effect"] = "No effect from {1}",
 	["5.100.8"] = {3.5, 7}, -- Brother Bobby
 	["5.100.57"] = {75, 150}, -- Distant Admiration
 	["5.100.67"] = {3.5, 7}, -- Sister Maggy
@@ -658,8 +658,10 @@ EID.descriptions[languageCode].BFFSSynergies = {
 	["5.100.98"] = {"5-6", "4-5"}, -- The Relic
 	["5.100.99"] = {3.5, 7}, -- Little Gish
 	["5.100.99"] = {3.5, 7}, -- Little Steven
+	["5.100.107"] = {82.5, 165}, -- The Pinking Shears
 	["5.100.112"] = {105, 210}, -- Guardian Angel
 	["5.100.113"] = {3, 6}, -- Demon Baby
+	["5.100.117"] = {4.3, 8.6}, -- Dead Bird
 	["5.100.128"] = {30, 60}, -- Forever Alone
 	["5.100.131"] = {"3", "2-3"}, -- Bomb Bag
 	["5.100.144"] = {"3-4", "3"}, -- Bum Friend
@@ -689,6 +691,7 @@ EID.descriptions[languageCode].BFFSSynergies = {
 	["5.100.320"] = {37.5, 75}, -- ???'s Only Friend
 	["5.100.321"] = {10.7, 21.4}, -- Samson's Chains
 	["5.100.322"] = {3.5, 7}, -- Mongo Baby
+	["5.100.325"] = {3.5, 7}, -- Scissors
 	["5.100.360"] = "Damage doubled", -- Incubus
 	["5.100.361"] = "Damage doubled", -- Fate's Reward
 	["5.100.362"] = {35, 44}, -- Lil Chest
@@ -723,7 +726,11 @@ EID.descriptions[languageCode].BFFSSynergies = {
 	["5.100.537"] = "Increases creep size, but not damage", -- Lil Spewer
 	["5.100.539"] = "Spawns a champion variant of the enemy", -- Mystery Egg
 	["5.100.544"] = {6, 12}, -- Pointy Rib
+	["5.100.545"] = "Bone orbital's contact damage is doubled", -- Book of the Dead
 	["5.100.548"] = {7, 14}, -- Jaw Bone
+	
+	["5.350.54"] = {3.5, 7}, --- Isaac's Head
+	["5.350.57"] = {3.5, 7}, --- ???'s Soul
 }
 
 ---------- Trinkets ----------
@@ -1166,6 +1173,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Can't Be Charged"] = "Can't be charged by {1}",
 	["No Effect (Greed)"] = "{{GreedMode}} No effect in Greed Mode",
 	["No Effect (Copies)"] = "No additional effect from multiple copies", -- Having the item already, or having Diplopia while looking at a pedestal
+	["No Effect (Familiars)"] = "No additional effect on familiars", -- probably just for Hive Mind + BFFS!
 	
 	["No Red"] = "No effect for characters that can't have Red Hearts",
 	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
@@ -1177,14 +1185,27 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.135 (PHD)"] = "Spawns 2-3 coins if you have {1}", -- IV Bag PHD
 	["Keeper 0-1"] = "Spawns 0-1 coin as {1}", -- IV Bag/Piggy Bank Keeper
 	
+	["Room to Wave"] = {"room", "wave", "room", "wave"}, -- convert room clear effects to wave clear effects
+	["No Champion Drops"] = "!!! Champions don't drop pickups in Greed Mode!", -- Champion Belt / Purple Heart
 	["5.300.15"] = {"{{DemonBeggar}} Spawns a Devil Beggar"}, -- Temperance (Greed)
 	["5.300.19"] = {"Teleports Isaac to the first room of the floor"}, -- The Moon (Greed)
 	["5.300.20"] = {"{{Heart}} Full health#Deals 100 damage to all enemies"}, -- XIX - The Sun (Greed)
 	["5.100.483"] = "{{GreedMode}} Doesn't trigger once per wave, just once per room", -- Mama Mega (Greed)
 	["5.100.535"] = "{{GreedMode}} No shield on Boss Waves, only on Ultra Greed", -- Blanket (Greed)
+	["5.350.120"] = "{{GreedMode}} No charge on Boss Waves, only on Ultra Greed", -- Hairpin (Greed)
+	["5.100.246"] = {"{{SuperSecretRoom}} Reveals the Super Secret Room location on the map"}, -- Blue Map (Greed)
+	["5.100.333"] = {"{{SuperSecretRoom}} Reveals the Super Secret Room location on the map"}, -- The Mind (Greed)
+	["5.100.514"] = {"Causes some enemies and projectiles to briefly pause at random intervals"}, -- Broken Modem (Greed)
+	
+	["5.350.34"] = {"{{Heart}} Chance for a bonus heart from chests, tinted rocks and destroyed machines"}, -- Child's Heart
+	["5.350.36"] = {"{{Key}} Chance for a bonus key from chests, tinted rocks and destroyed machines"}, -- Rusted Key
+	["5.350.41"] = {"{{Bomb}} Chance for a bonus bomb from chests, tinted rocks and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick"}, -- Match Stick
+	["5.350.44"] = {"{{Pill}} Chance for a bonus pill from chests, tinted rocks and destroyed machines"}, -- Safety Cap
+	["5.350.45"] = {"{{Card}} Chance for a bonus card from chests, tinted rocks and destroyed machines"}, -- Ace of Spades
+	["5.350.72"] = {"{{Battery}} +10% chance for random pickups to be a battery#{{Battery}} 5% chance to add 1 charge to held active item when clearing a wave"}, -- Watch Battery
+	
 	
 	["5.350.23"] = "{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost", -- Missing Poster (Unlock The Lost)
-	
 	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Tears on pickup", -- Brittle Bones (Keeper+Lost)
 	
 	["5.100.316"] = "{1} removes the teleportation effect", -- Cursed Eye
