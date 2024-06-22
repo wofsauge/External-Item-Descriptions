@@ -22,7 +22,10 @@ if not EID.isRepentance then
 	EID:AddItemConditional("5.300", 451, nil, {locTable = "tarotClothBuffsAB", replaceColor = "ColorShinyPurple", noFallback = false})
 else EID:AddItemConditional("5.300", 451, nil, {locTable = "tarotClothBuffs", replaceColor = "ColorShinyPurple", noFallback = false}) end
 EID:AddItemConditional("5.100", 356, EID.CheckForCarBattery, {locTable = "carBattery", replaceColor = "BlinkYellowGreen", noFallback = false}) -- Car Battery
-EID:AddItemConditional("5.100", 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false}) -- BFFS!
+EID:AddConditional(356, EID.CheckActivesForCarBattery, "No Effect") -- "No effect" text for Car Battery pedestal
+EID:AddItemConditional("5.100", 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false}) -- BFFS! collectibles
+EID:AddItemConditional({"5.350.54", "5.350.57"}, 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false}) -- BFFS! trinkets
+EID:AddConditional(247, EID.CheckFamiliarsForBFFS, "No Effect") -- "No effect" text for BFFS pedestal
 
 -- IV Bag conditions (need to be applied in a specific order)
 EID:AddItemConditional(135, 75, "PHD") -- PHD improves IV Bag
@@ -31,14 +34,17 @@ if EID.isRepentance then EID:AddConditional(135, EID.IsHardMode, "Hard Mode") en
 
 -- Greed Mode
 -- "No effect" append
-EID:AddConditional({134, 241, 464, "5.300.22", "5.350.59", "5.350.83", "5.350.84", "5.350.85", "5.350.102", "5.350.110", "5.350.111", "5.350.124"}, EID.IsGreedMode, "No Effect (Greed)") -- Guppy's Tail, Contract from Below, Glyph of Balance, The World, Cain's Eye, Store Key, Rib of Greed, Karma, Fragmented Card, Silver Dollar, Bloody Crown, Door Stop
+EID:AddConditional({134, 241, 464, "5.300.22", "5.350.59", "5.350.83", "5.350.84", "5.350.85", "5.350.102", "5.350.110", "5.350.111", "5.350.124", 21, 54, 249, 376, 437}, EID.IsGreedMode, "No Effect (Greed)") -- Guppy's Tail, Contract from Below, Glyph of Balance, The World, Cain's Eye, Store Key, Rib of Greed, Karma, Fragmented Card, Silver Dollar, Bloody Crown, Door Stop, Treasure Map, Compass, There's Options, Restock, D7
 
-EID:AddConditional({483, 535, "5.300.15", "5.300.19", "5.300.20"}, EID.IsGreedMode) -- Mama Mega, Blanket, Temperance, The Moon, The Sun
--- todo: isaac's fork; and maybe some other "room" effects that also work on wave clear could mention waves
--- change the "room clear reward" trinkets (like ace of spades) to not mention room clears
--- broken modem room clear duplication shouldn't be mentioned?
+-- "room" -> "wave"
+EID:AddConditional({266, "5.350.46", 385}, EID.IsGreedMode, "Room to Wave")
+
+EID:AddConditional({483, 535, "5.300.15", "5.300.19", "5.300.20", 246, 333, "5.350.120", "5.350.34", "5.350.36", "5.350.41", "5.350.44", "5.350.45", "5.350.72", 514 }, EID.IsGreedMode) -- Mama Mega, Blanket, Temperance, The Moon, The Sun, Blue Map, The Mind, Hairpin, some nogreed trinkets, Broken Modem
+EID:AddConditional({"5.350.5", 208}, EID.IsGreedMode, "No Champion Drops")
+
 if EID.isRepentance then
-	EID:AddConditional({344, 416, "5.300.74"}, EID.IsGreedMode) -- Match Book, Deep Pockets, The Moon?
+	EID:AddConditional({567, 693, "5.350.163", "5.350.167", }, EID.IsGreedMode, "Room to Wave")
+	EID:AddConditional({344, 416, "5.300.74", 566, 580, "5.300.83", "5.350.162"}, EID.IsGreedMode) -- Match Book, Deep Pockets, The Moon?, Dream Catcher, Red Key, Soul of Cain, Azazel's Stump
 end
 
 -- Different effect for No Red Health players
@@ -66,14 +72,14 @@ EID:AddSynergyConditional(368, {69, 118, 316, 229, 395, 114, 329}, "Almost No Ef
 
 -- 9 Volt + 1 Room/Timed Charges
 -- This got a bit complicated, since it looks at a trait of every collectible + you having another, but hey, it's compact
-EID:AddConditional(116, function() return EID:CheckPlayersForActiveChargeType(1) end, "1 Room", { useResult = true })
-EID:AddConditional(116, function() return EID:CheckPlayersForActiveChargeType(nil, 1) end, "Timed", { useResult = true })
+EID:AddConditional(116, function() return EID:CheckPlayersForActiveChargeType(1) end, "1 Room")
+EID:AddConditional(116, function() return EID:CheckPlayersForActiveChargeType(nil, 1) end, "Timed")
 EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(116) and EID:CheckActiveChargeType(descObj.ObjSubType, 1) end, "1 Room", { bulletpoint = "Collectible116" })
 EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(116) and EID:CheckActiveChargeType(descObj.ObjSubType, nil, 1) end, "Timed", { bulletpoint = "Collectible116" })
 
 -- Items that have no effect from multiple copies (AddSelfConditional adds it when holding Diplopia automatically)
--- 3 Dollar Bill, 
-EID:AddSelfConditional({191}, "No Effect (Copies)")
+-- 3 Dollar Bill, BFFS!, Hive Mind
+EID:AddSelfConditional({191, 247, 248}, "No Effect (Copies)")
 if not EID.isRepentance then
 	-- Anti-Gravity, 
 	EID:AddSelfConditional({222}, "No Effect (Copies)")
@@ -93,7 +99,7 @@ if not EID.isRepentance then
 	EID:AddItemConditional(205, 108, "Wafer") -- Sharp Plug + The Wafer
 	EID:AddSynergyConditional(205, 441, "Can't Charge", "Can't Be Charged") -- Sharp Plug + Mega Blast
 	
-	EID:AddConditional(208, function() return EID:IsHardMode() end) -- Champion Belt
+	EID:AddConditional(208, EID.IsHardMode, nil, {noFallback = false}) -- Champion Belt (AB+ Hard Mode)
 end
 
 -- Rep only conditionals
@@ -102,10 +108,13 @@ if EID.isRepentance then
 	EID:AddItemConditional("5.100", 706, nil, { locTable = "abyssSynergies", lineColor = "ColorRed" }, false) -- Abyss (no item reminder)
 	EID:AddItemConditional("5.100", 59, nil, { locTable = "bookOfBelialBuffs" })                         -- Belial Birthright
 	EID:AddItemConditional("5.100", 664, nil, { locTable = "bingeEaterBuffs" })                          -- Binge Eater
+	EID:AddItemConditional({"5.300.96", "5.350.142", "5.350.176", "5.350.182", "5.350.186"}, 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false}) -- BFFS! Repentance soulstone/trinkets
+	EID:AddItemConditional("5.100", 248, EID.CheckForHiveMind, {locTable = "BFFSSynergies", replaceColor = "BlinkBlue", noFallback = false}) -- Hive Mind
+	EID:AddSynergyConditional(247, 248, "No Effect (Familiars)") -- Already having Hive Mind / BFFS!
 
 	-- Co-op friendly items
 	-- todo: which? (extension cord)
-	EID:AddConditional(45, function() return EID:MultiplePlayerCharacters() end) -- Yum Heart
+	EID:AddConditional({45, "5.350.125"}, EID.MultiplePlayerCharacters) -- Yum Heart
 	
 	-- No red health
 	EID:AddConditional({569, 671, 676}, function() return EID:CheckForNoRedHealthPlayer() end, "No Red") -- Blood Oath, Candy Heart, Empty Heart
@@ -121,7 +130,7 @@ if EID.isRepentance then
 	-- Specific character synergies/changes
 	EID:AddPlayerConditional("5.350.1", 14, "Keeper 0-1") -- Keeper + Swallowed Penny
 	EID:AddPlayerConditional(188, 2)                      -- Cain + Abel
-	EID:AddPlayerConditional(360, 13)                     -- Incubus + Lilith
+	EID:AddPlayerConditional({360, 728}, 13)                     -- Incubus/Gello + Lilith
 	EID:AddPlayerConditional({ 240, 644 }, 21)            -- Tainted Isaac + Experimental Treatment, Consolation Prize
 	EID:AddPlayerConditional({ 642, 694 }, 10)            -- Lost + Magic Skin, Heartbreak
 	EID:AddPlayerConditional(694, 14, "Keeper", nil, false) -- Keeper + Heartbreak
@@ -147,7 +156,7 @@ if EID.isRepentance then
 	EID:AddPlayerConditional(596, 27, "Ice Tears") -- Uranus + Tainted Samson
 	
 	-- 9 Volt, Sharp Plug + Special Charge Actives
-	EID:AddConditional({116, 205}, function() return EID:CheckPlayersForActiveChargeType(nil, 2) end, "Can't Charge", { useResult = true })
+	EID:AddConditional({116, 205}, function() return EID:CheckPlayersForActiveChargeType(nil, 2) end, "Can't Charge")
 	EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(116) and EID:CheckActiveChargeType(descObj.ObjSubType, nil, 2) end, "Can't Be Charged", { bulletpoint = "Collectible116", variableText = "{{NameOnlyC116}}" })
 	EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(205) and EID:CheckActiveChargeType(descObj.ObjSubType, nil, 2) end, "Can't Be Charged", { bulletpoint = "Collectible205", variableText = "{{NameOnlyC205}}" })
 end
