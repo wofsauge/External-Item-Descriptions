@@ -733,8 +733,11 @@ EID.InlineColors = {
 	end,
 	-- Pink for BFFs <3, the two shades come from Nancy Bombs and Eraser
 	["BlinkPink"] = function(_)
-		local c = EID.InlineColors
 		return SwagColors({KColor(1, 0.698, 0.886, 1), KColor(1, 0.5, 1, 1)})
+	end,
+	-- Blue for Hive Mind, the two shades come from Hive Mind
+	["BlinkBlue"] = function(_)
+		return SwagColors({KColor(0.341, 0.529, 0.906, 1), KColor(0.592, 0.717, 0.937, 1)})
 	end,
 	-- Shiny purple color effect
 	["ColorShinyPurple"] = function(_)
@@ -933,7 +936,7 @@ if EID.isRepentance then
 	EID.CarBatteryNoSynergy[323] = false -- Isaac's Tears
 	EID.CarBatteryNoSynergy[386] = false -- D12
 	EID.CarBatteryNoSynergy[421] = true -- Kidney Bean
-	EID.CarBatteryNoSynergy[522] = false -- Telekinesis TODO: REPENTANCE DIFFERENCES IN MAIN DESC TOO
+	EID.CarBatteryNoSynergy[522] = false -- Telekinesis
 	EID.CarBatteryNoSynergy[523] = true -- Moving Box
 	-- Repentance actives
 	EID.CarBatteryNoSynergy[555] = true; EID.CarBatteryNoSynergy[577] = true; EID.CarBatteryNoSynergy[578] = true; EID.CarBatteryNoSynergy[580] = true;
@@ -949,6 +952,7 @@ EID.BFFSNoSynergy = { [10] = true, [11] = true, [81] = true, [178] = true, [238]
 if EID.isRepentance then
 	EID.BFFSNoSynergy[178] = false -- Holy Water
 	EID.BFFSNoSynergy[276] = false -- Isaac's Heart
+	EID.BFFSNoSynergy[325] = true -- Scissors
 	EID.BFFSNoSynergy[405] = true -- GB Bug
 	EID.BFFSNoSynergy[467] = false -- Finger!
 	EID.BFFSNoSynergy[504] = false -- Brown Nugget
@@ -959,7 +963,7 @@ if EID.isRepentance then
 end
 
 -- Familiars that count for Hive Mind in Repentance (although it could give them No Effect if it just increases size)
-EID.HiveMindFamiliars = { [10] = true, [57] = true, [128] = true, [170] = true, [264] = true, [272] = true, [274] = true, [279] = true, [320] = true, [364] = true, [365] = true, [403] = true, [426] = true, [430] = true, [504] = true, [511] = true, [575] = true, [581] = true, [629] = true, }
+EID.HiveMindFamiliars = { [10] = true, [57] = true, [128] = true, [170] = true, [264] = true, [272] = true, [274] = true, [279] = true, [320] = true, [364] = true, [365] = true, [403] = true, [426] = true, [430] = true, [504] = true, [511] = true, [575] = true, [581] = true, [629] = true, [649] = true, [650] = true, [706] = true, }
 
 -- Tainted character's respective normal version ID, for conditionals that apply to both versions of the character
 -- To help with other character pairs, Esau = Jacob, Dead Tainted Lazarus = Tainted Lazarus, Tainted Soul = Tainted Forgotten
