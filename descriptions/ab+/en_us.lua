@@ -740,7 +740,7 @@ EID.descriptions[languageCode].trinkets={
 	{"2", "Petrified Poop", "50% chance to get drops from poop"}, -- Petrified Poop
 	{"3", "AAA Battery", "{{Battery}} -1 Charge needed for active items"}, -- AAA Battery
 	{"4", "Broken Remote", "{{Collectible44}} Using an active item teleports Isaac to a random room"}, -- Broken Remote
-	{"5", "Purple Heart", "2x Chance for champion enemies"}, -- Purple Heart
+	{"5", "Purple Heart", "2x chance for champion enemies"}, -- Purple Heart
 	{"6", "Broken Magnet", "{{Coin}} Attracts coins to Isaac"}, -- Broken Magnet
 	{"7", "Rosary Bead", "{{AngelChance}} 50% higher Angel Room chance#{{Collectible33}} Higher chance to find The Bible in {{Shop}} Shops and {{Library}} Libraries"}, -- Rosary Bead
 	{"8", "Cartridge", "{{Timer}} 5% chance upon taking damage to receive for 6.5 seconds:#Invincibility#Isaac can't shoot but deals 40 contact damage per second#{{HalfHeart}} Killing 2 enemies heals half a heart#{{Fear}} Fears all enemies in the room"}, -- Cartridge
