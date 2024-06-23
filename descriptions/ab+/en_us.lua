@@ -84,7 +84,7 @@ EID.descriptions[languageCode].collectibles={
 	{"61", "", "<item does not exist>"},
 	{"62", "Charm of the Vampire", "{{HalfHeart}} Killing 13 enemies heals half a heart"}, -- Charm of the Vampire
 	{"63", "The Battery", "{{Battery}} Active items can be overcharged to two full charges"}, -- The Battery
-	{"64", "Steam Sale", "{{Shop}} Shop items cost 50% less#Owning this item a second time makes all Shop items free"}, -- Steam Sale
+	{"64", "Steam Sale", "{{Shop}} Shop items cost 50% less"}, -- Steam Sale
 	{"65", "Anarchist Cookbook", "Spawns 6 Troll Bombs near the center of the room"}, -- Anarchist Cookbook
 	{"66", "The Hourglass", "{{Slow}} Slows enemies down for 8 seconds"}, -- The Hourglass
 	{"67", "Sister Maggy", "Shoots normal tears#Deals 3.5 damage per tear"}, -- Sister Maggy
@@ -1064,8 +1064,8 @@ EID.descriptions[languageCode].diceHeader = "[Dice Room effects]"
 EID.descriptions[languageCode].dice={
 	{"1", "", "Rerolls all of Isaac's items into random items from the room pool they were acquired in"},
 	{"2", "", "Rerolls all pickups in the room"},
-	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}} Devil or {{AngelRoom}} Angel Room"},
-	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}} Devil or {{AngelRoom}} Angel Room"},
+	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{AngelDevilChance}} Devil/Angel Room or {{LadderRoom}} crawlspaces"},
+	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{AngelDevilChance}} Devil/Angel Room or {{LadderRoom}} crawlspaces"},
 	{"5", "", "Rerolls and restarts the current floor"},
 	{"6", "", "Rerolls all of Isaac's items#Rerolls all pickups, trinkets and pedestal items on the floor"},
 }
@@ -1165,6 +1165,7 @@ EID.descriptions[languageCode].PickupNames = {
 -- Tables with two or more entries are find-replace pairs
 -- For collectible/player conditionals, lines will automatically have their bulletpoint, and {1} is replaced with their name
 EID.descriptions[languageCode].ConditionalDescs = {
+	------ GENERAL STRINGS ------
 	["Overridden"] = "Overridden by {1}",
 	["Overrides"] = "Overrides {1}",
 	["Almost No Effect"] = "Little to no effect for {1}",
@@ -1175,17 +1176,10 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedMode}} No effect in Greed Mode",
 	["No Effect (Copies)"] = "No additional effect from multiple copies", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "No additional effect on familiars", -- probably just for Hive Mind + BFFS!
-	
 	["No Red"] = "No effect for characters that can't have Red Hearts",
-	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
 	
-	["5.100.7"] = "x1.5 Damage multiplier while {1} effect is active", -- Blood of the Martyr
-	["5.100.34"] = "x1.5 Damage multiplier", -- Book of Belial
-	["5.300.16"] = "x1.5 Damage multiplier", -- XV - The Devil
 	
-	["5.100.135 (PHD)"] = "Spawns 2-3 coins if you have {1}", -- IV Bag PHD
-	["Keeper 0-1"] = "Spawns 0-1 coin as {1}", -- IV Bag/Piggy Bank Keeper
-	
+	------ GREED MODE ------
 	["Room to Wave"] = {"room", "wave", "room", "wave"}, -- convert room clear effects to wave clear effects
 	["No Champion Drops"] = "!!! Champions don't drop pickups in Greed Mode!", -- Champion Belt / Purple Heart
 	["5.300.15"] = {"{{DemonBeggar}} Spawns a Devil Beggar"}, -- Temperance (Greed)
@@ -1197,7 +1191,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.246"] = {"{{SuperSecretRoom}} Reveals the Super Secret Room location on the map"}, -- Blue Map (Greed)
 	["5.100.333"] = {"{{SuperSecretRoom}} Reveals the Super Secret Room location on the map"}, -- The Mind (Greed)
 	["5.100.514"] = {"Causes some enemies and projectiles to briefly pause at random intervals"}, -- Broken Modem (Greed)
-	
 	["5.350.34"] = {"{{Heart}} Chance for a bonus heart from chests, tinted rocks and destroyed machines"}, -- Child's Heart
 	["5.350.36"] = {"{{Key}} Chance for a bonus key from chests, tinted rocks and destroyed machines"}, -- Rusted Key
 	["5.350.41"] = {"{{Bomb}} Chance for a bonus bomb from chests, tinted rocks and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick"}, -- Match Stick
@@ -1206,26 +1199,56 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.350.72"] = {"{{Battery}} +10% chance for random pickups to be a battery#{{Battery}} 5% chance to add 1 charge to held active item when clearing a wave"}, -- Watch Battery
 	
 	
+	------ ACHIEVEMENT CHECKS ------
 	["5.350.23"] = "{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost", -- Missing Poster (Unlock The Lost)
-	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Tears on pickup", -- Brittle Bones (Keeper+Lost)
+	["5.100.297"] = {"Unlocks {{Collectible523}} Moving Box", "Nothing"}, -- Pandora's Box unlocking Moving Box
 	
-	["5.100.316"] = "{1} removes the teleportation effect", -- Cursed Eye
-	["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
+	
+	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
+	["5.100.135 (PHD)"] = "Spawns 2-3 coins if you have {1}", -- IV Bag PHD
+	["Keeper 0-1"] = "Spawns 0-1 coin as {1}", -- IV Bag/Piggy Bank Keeper
+	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Tears on pickup", -- Brittle Bones (Keeper+Lost)
 	["5.100.501"] = "{1} can gain additional coin containers", -- Greed's Gullet
 	["5.100.230 (Keeper)"] = "{{Warning}} {1} just dies", -- Abaddon
-	["5.300.48"] = "Teleport to I AM ERROR Room#Blank Card and ? Card will be destroyed", -- Blank Card + Q Card
-	["5.100.205 (Wafer)"] = "Reduces the cost to half a heart", -- Sharp Plug + Wafer
+	
+
+	------ DUPLICATE COPIES OF ITEMS ------
+	["5.100.2 (Copies)"] = "Isaac fires 3 more tears#No additional stat decrease", -- The Inner Eye
+	["5.100.153 (Copies)"] = "Isaac fires 4 more tears#No additional stat decrease", -- Mutant Spider
+	["5.100.245 (Copies)"] = "Isaac fires 2 more tears", -- 20/20
+	["5.100.358 (Copies)"] = "Isaac fires 2 more tears closer to the center", -- The Wiz
+	["5.100.64 (Copies)"] = "Owning this item a second time makes all Shop items free", -- Steam Sale
+	["5.100.118 (Copies)"] = "Isaac fires an additional beam", -- Brimstone
+	["5.100.224 (Copies)"] = "Additional copies only give -0.2 speed", -- Kidney Stone
+	
+	
+	----- MISC. ITEM CONDITIONS ------
+	["Sacrificial Nugget"] = "Brown Nugget turrets count as familiars",
+	["Sacrificial Conception"] = "Familiars granted by {1} can be sacrificed, and will respawn",
+	["Sacrificial Angels"] = "{1} spawns 2 Black Hearts if sacrificed",
+	["Sacrificial Void"] = "Can be used multiple times if absorbed by Void",
 	
 	["5.100.116 (1 Room)"] = "1 Room recharges become 15 second recharges while in an uncleared room", -- 9 Volt
 	["5.100.116 (Timed)"] = "Timed recharges start half full", -- 9 Volt
 	["1 Room"] = "15 Second recharge while in an uncleared room", -- Actives + 9 Volt
 	["Timed"] = "Charge starts half full after use", -- Actives + 9 Volt
-	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
+	["5.100.205 (Wafer)"] = "Reduces the cost to half a heart", -- Sharp Plug + Wafer
 	
 	["Suicide 1"] = "{1} can't prevent the death", -- Plan C, Damocles, Suicide King
 	["Suicide 2"] = "Does not prevent death by {1}", -- Plan C, Damocles, Suicide King
 	
-	["? Card Single Use"] = "Single use items will disappear after using ? Card",
+	["5.100.7"] = "x1.5 Damage multiplier while {1} effect is active", -- Blood of the Martyr
+	["5.100.34"] = "x1.5 Damage multiplier", -- Book of Belial
+	["5.300.16"] = "x1.5 Damage multiplier", -- XV - The Devil
+	
+	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
+	["5.100.316"] = "{1} removes the teleportation effect", -- Cursed Eye
+	["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
+	["? Card Single Use"] = "Single use items will disappear after using ? Card", -- Single Use Actives + ? Card
+	["5.300.48"] = "Teleport to I AM ERROR Room#Blank Card and ? Card will be destroyed", -- Blank Card + ? Card
+	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
+	
+	
 }
 
 
