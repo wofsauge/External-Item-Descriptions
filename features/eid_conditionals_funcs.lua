@@ -21,21 +21,30 @@ local game = Game()
 	replaceColor: Find/replace text will be highlighted with this color
 	bulletpoint: Appended lines will begin with this bulletpoint
 	noFallback: Don't fallback to English if this isn't localized; by default, conditionals don't fallback, to avoid printing English text in unupdated languages
+	usePedestalName: If true, display the pedestal item's name in place of {1}
 	
 	Argument 5 (very optional): The position in the table to insert this new condition, in case mods want to insert modifiers before our base ones
 ]]
+local function CopyTable(t1)
+	local newTable = {}; for k, v in pairs(t1) do newTable[k] = v end
+	return newTable
+end
 function EID:AddConditional(IDs, funcText, modText, extraTable, insertPoint)
 	if type(IDs) ~= "table" then IDs = { IDs } end
 	if modText == "" then modText = nil end
 	extraTable = extraTable or {}
-	-- make a shallow copy of the passed-in table
-	local newTable = {}; for k, v in pairs(extraTable) do newTable[k] = v end
-	newTable.func = funcText;
-	newTable.modifierText = modText;
-	if newTable.noFallback == nil then newTable.noFallback = true end
+	if extraTable.noFallback == nil then extraTable.noFallback = true end
 	for _, id in ipairs(IDs) do
 		if type(id) ~= "string" then id = "5.100." .. id end
 		EID.DescriptionConditions[id] = EID.DescriptionConditions[id] or {}
+		
+		local newTable = CopyTable(extraTable)
+		newTable.func = funcText;
+		newTable.modifierText = modText;
+		if newTable.usePedestalName then
+			newTable.variableText = "{{NameOnly" .. id .. "}}"
+		end
+		
 		if insertPoint then
 			table.insert(EID.DescriptionConditions[id], insertPoint, newTable)
 		else
@@ -48,13 +57,14 @@ end
 -- By default, they'll have a bulletpoint for the item/char, and {1} becomes the item/char's name
 
 -- checkInReminder is for if a synergy is no longer relevant once the item isn't obtainable (e.g. Abyss locusts) (true by default)
+
 function EID:AddItemConditional(IDs, ownedIDs, modText, extraTable, checkInReminder)
 	if type(ownedIDs) ~= "table" then ownedIDs = { ownedIDs } end
 	if checkInReminder == nil then checkInReminder = true end
 	extraTable = extraTable or {}
 	for _, ownedID in ipairs(ownedIDs) do
 		EID.collectiblesToCheck[ownedID] = true
-		local newTable = {}; for k, v in pairs(extraTable) do newTable[k] = v end
+		local newTable = CopyTable(extraTable)
 		local tvs = ownedID; if type(ownedID) == "number" then tvs = "5.100." .. ownedID end
 		
 		if newTable.variableText == nil then newTable.variableText = "{{NameOnly" .. tvs .. "}}" end
@@ -68,6 +78,15 @@ end
 function EID:AddSynergyConditional(IDs, ownedIDs, modText1, modText2, extraTable1, extraTable2, checkInReminder)
 	EID:AddItemConditional(IDs, ownedIDs, modText1, extraTable1, checkInReminder)
 	EID:AddItemConditional(ownedIDs, IDs, modText2 or modText1, extraTable2 or extraTable1, checkInReminder)
+end
+-- For adding a synergy pair where the same item name should be used for the descriptions of both sides of it
+-- e.g. Sacrificial Altar synergies are displayed on both the Altar and the familiar, but only the familiar's name matters
+function EID:AddOneSidedSynergyConditional(IDs, ownedIDs, modText, extraTable, checkInReminder)
+	extraTable = extraTable or {}
+	local newTable = CopyTable(extraTable)
+	newTable.usePedestalName = true
+	EID:AddItemConditional(IDs, ownedIDs, modText, newTable, checkInReminder)
+	EID:AddItemConditional(ownedIDs, IDs, modText, extraTable, checkInReminder)
 end
 
 -- For adding a conditional that looks at owning itself; item reminder is of course disabled
@@ -87,7 +106,7 @@ function EID:AddPlayerConditional(IDs, charIDs, modText, extraTable, includeTain
 	if includeTainted == nil then includeTainted = true end
 	extraTable = extraTable or {}
 	for _, charID in ipairs(charIDs) do
-		local newTable = {}; for k, v in pairs(extraTable) do newTable[k] = v end
+		local newTable = CopyTable(extraTable)
 		if newTable.variableText == nil then newTable.variableText = "{{NameOnlyI" .. charID .. "}}" end
 		if newTable.bulletpoint == nil then newTable.bulletpoint = "Player" .. charID end
 		EID:AddConditional(IDs, function() return EID:ConditionalCharCheck(charID, includeTainted) end, modText, newTable)
