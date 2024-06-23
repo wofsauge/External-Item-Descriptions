@@ -62,8 +62,9 @@ end
 
 
 ------ ACHIEVEMENT CHECKS ------
--- These always return true without REPENTOGON. This section is a TODO
+-- Achievement functions always return true without REPENTOGON, so use them how you need to have non-ogon players see what they should.
 EID:AddConditional("5.350.23", function() return EID:HaveNotUnlockedAchievement(82) end) -- Sacrifice Poster unlocks The Lost
+EID:AddConditional(297, function() return not EID:HaveNotUnlockedAchievement(366) end) -- Pandora's Box unlocking Moving Box
 
 
 ------ NO RED HEALTH PLAYERS ------
@@ -109,18 +110,20 @@ end
 
 ------ DUPLICATE COPIES OF ITEMS ------
 -- Items that have no effect from multiple copies (AddSelfConditional adds it when holding Diplopia automatically)
-EID:AddSelfConditional({191, 247, 248}, "No Effect (Copies)")
+-- This list is mostly taken from Diplopia's wiki page, there's a lot more with no effect out there I'm sure
+EID:AddSelfConditional({7, 55, 63, 69, 87, 104, 106, 108, 109, 116, 122, 132, 139, 149, 152, 156, 162, 169, 191, 200, 203, 214, 221, 225, 231, 233, 238, 239, 243, 244, 247, 248, 249, 261, 276, 299, 300, 313, 316, 330, 350, 356, 366, 368, 371, 374, 379, 400, 401, 408, 411, 412, 414, 416, 423, 429, 444, 446, 447, 450, 451, 458, 494, 495, 496, 501, 524, 525, 529, 532, 533, 534, 540, 546, }, "No Effect (Copies)")
 -- Items that have an interesting effect from multiple copies
-EID:AddSelfConditional({2}, "Copied")
--- Items that can't be duplicated (Diplopia)
+EID:AddSelfConditional({2, 64, 118, 153, 245, 358}, "Copies")
+-- Items that can't be duplicated
 EID:AddItemConditional(347, 347, "Can't Be Duplicated", nil, false) -- Diplopia
 if not EID.isRepentance then
-	EID:AddSelfConditional({222}, "No Effect (Copies)")
+	EID:AddSelfConditional({115, 222, 224, 228, 531}, "No Effect (Copies)")
+	EID:AddSelfConditional({440}, "Copies")
 end
 if EID.isRepentance then
-	EID:AddSelfConditional({554}, "No Effect (Copies)")
-	-- Items that can't be duplicated (Trinkets, Jera)
-	EID:AddItemConditional({"5.350", "5.300.33"}, 347, "Can't Be Duplicated", nil, false) -- Diplopia
+	EID:AddSelfConditional({399, 440, 554, 561, 577, 586, 600, 612, 616, 634, 651, 656, 670, 671, 674, 678, 686, 701}, "No Effect (Copies)")
+	EID:AddSelfConditional({531}, "Copies")
+	EID:AddItemConditional({"5.350", "5.300.33"}, 347, "Can't Be Duplicated", nil, false) -- Trinkets, Jera
 end
 
 
@@ -165,11 +168,26 @@ if EID.isRepentance then
 	EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(205) and EID:CheckActiveChargeType(descObj.ObjSubType, nil, 2) end, "Can't Be Charged", { bulletpoint = "Collectible205", variableText = "{{NameOnlyC205}}" })
 end
 
+-- Sacrificial Altar interactions
+EID:AddSynergyConditional(504, 536, "Sacrificial Nugget") -- Sacrificial Altar + Brown Nugget
+EID:AddOneSidedSynergyConditional({112, 363, 390}, 536, "Sacrificial Angels") -- Sacrificial Altar + Angel Familiars
+EID:AddOneSidedSynergyConditional({412, 413}, 536, "Sacrificial Conception") -- Sacrificial Altar + Cambion/Immaculate Conception
+if not EID.isRepentance then
+	EID:AddSynergyConditional(477, 536, "Sacrificial Void") -- Sacrificial Altar + Void (AB+ only)
+end
+if EID.isRepentance then
+	EID:AddSynergyConditional(712, 536, "Sacrificial Item Wisps") -- Sacrificial Altar + Lemegeton
+	EID:AddSynergyConditional(650, 536, "Sacrificial Plum") -- Sacrificial Altar + Plum Flute
+	EID:AddSynergyConditional(661, 536, "Sacrificial Quints") -- Sacrificial Altar + Quints
+	EID:AddSynergyConditional(706, 536, "Sacrificial Abyss") -- Sacrificial Altar + Abyss Locusts
+	EID:AddSynergyConditional(651, 536, "Sacrificial Star") -- Sacrificial Altar + Star of Bethlehem
+	EID:AddSynergyConditional(713, 536, "Sacrificial Clots") -- Sacrificial Altar + Sumptorium
+end
+
 -- Miscellaneous Item Synergies
 EID:AddSynergyConditional(7, {34, "5.300.16"})                                   -- Martyr + Book of Belial/The Devil
 EID:AddSynergyConditional(316, 260)                                              -- Black Candle + Cursed Eye
 EID:AddItemConditional("5.300.48", 286, nil, { lineColor = "ColorSilver" })      -- Blank Card + ? Card
-
 EID:AddSynergyConditional(368, {69, 118, 316, 229, 395, 114, 329}, "Almost No Effect") -- Epiphora + Charge Shots / Ludovico
 
 EID:AddSynergyConditional({127, 297, 347, 490, 483, 515, 475, 536}, "5.300.48", "? Card Single Use") -- ? Card + Single Use Actives
@@ -185,6 +203,7 @@ if EID.isRepentance then
 	-- Co-op friendly items
 	-- todo: what items have a cool co-op synergy?
 	EID:AddConditional({45, "5.350.125"}, EID.MultiplePlayerCharacters) -- Yum Heart, Extension Cord
+	EID:AddConditional({"1000.76.0", "1000.76.5"}, EID.MultiplePlayerCharacters) -- Dice Room 1 and 6
 	
 	-- Item Synergies
 	EID:AddItemConditional(201, 147)                     -- Iron Bar refills Notched Axe
@@ -210,20 +229,19 @@ Crystal Key + Pandora's Box should be moved here? Or leave it in modifiers
 Are Blank Card + Placebo + Clear Rune ready to get moved to here now that I have good ways to return values?
 Vibrant/Dim Bulb + Pocket Actives; any other pocket active interactions? 4.5 volt charges your main one first?
 Black Feather items can mention they're a Black Feather evil up!
-Brown Nugget + sacrificial altar in AB+
 Jacob's Ladder synergies with other battery items (I didn't even know about this)
 Bean synergies with ghost pepper/bird's eye
 Car Battery / BFFS whitelist for showing certain lines on the car/bffs pedestal, not just "No effect"
 AB+ Only: Cain + Items that close his eyes?
-Pandora's Box achievement check if moving box is unlocked find replace that with "nothing"
 Coupon + Restock/Greed: The free item doesn't restock
 Implement a system where similar texts don't get shown multiple times in one apply conditionals function (hive minds/bffs)
 Check the Incubus wiki page for cool synergies plus things its not affected by in AB+
 Mongo Baby conditional for what babies you have that it copies
 hallowed ground / midas touch + the poop / card against humanity / everything jar synergies
-Finish No Effect (Copies) conditional
 Right now I think character conditionals that apply to the tainted char don't say the tainted char's name; is that a bad thing? should/can it be fixed?
 Add Void synergy information for some active items (which?) (warn on things like mom's box you don't get double trinket power?) (MOVING BOX BEING PASSIVE)
+Hemoptysis synergies with things that count as beams (maw of the void)
+Ghost pepper + bird's eye
 
 
 TODOs unrelated to conditionals:
