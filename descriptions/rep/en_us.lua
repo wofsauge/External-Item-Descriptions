@@ -39,7 +39,6 @@ local repCollectibles={
 	[55] = {"55", "Mom's Eye", "50% chance to shoot an extra tear backwards#{{Luck}} 100% chance at 5 luck"}, -- Mom's Eye
 	[59] = {"59", "The Book of Belial", "{{AngelDevilChance}} +12.5% Devil/Angel Room chance while held#{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage"}, -- The Book of Belial (Judas' Birthright)
 	[62] = {"62", "Charm of the Vampire", "↑ {{Damage}} +0.3 Damage#{{HalfHeart}} Killing 13 enemies heals half a heart"}, -- Charm of the Vampire
-	[64] = {"64", "Steam Sale", "{{Shop}} Shop items cost 50% less#Owning this item multiple times reduces the price further"}, -- Steam Sale
 	[67] = {"67", "Sister Maggy", "Shoots normal tears#Deals 6 damage per tear"}, -- Sister Maggy
 	[69] = {"69", "Chocolate Milk", "{{Chargeable}} Chargeable tears#{{Damage}} Damage scales with charge time, up to 4x"}, -- Chocolate Milk
 	[70] = {"70", "Growth Hormones", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1 Damage"}, -- Growth Hormones
@@ -98,7 +97,7 @@ local repCollectibles={
 	[218] = {"218", "Placenta", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#{{HalfHeart}} 50% chance to heal half a heart every minute"}, -- Placenta
 	[222] =	{"222", "Anti-Gravity", "↑ {{Tears}} +1 Fire rate#Holding the fire buttons causes tears to hover in mid-air#Releasing the fire buttons shoots them in the direction they were fired"}, -- Anti-Gravity
 	[223] = {"223", "Pyromaniac", "{{Bomb}} +5 Bombs#{{HalfHeart}} Getting hit by explosions heals half a heart instead of damaging Isaac#{{Burning}} Fire immunity (except projectiles)"}, -- Pyromaniac
-	[224] = {"224", "Cricket's Body", "↑ {{Tears}} +0.5 Fire rate#↑ {{Tearsize}} +0.1 Tear size#↓ {{Range}} x0.8 Range multiplier#Tears split in 4 on hit#Split tears deal half damage"}, -- Cricket's Body
+	[224] = {"224", "Cricket's Body", "↑ {{Tears}} +0.5 Fire rate#↓ {{Range}} x0.8 Range multiplier#Tears split in 4 on hit#Split tears deal half damage"}, -- Cricket's Body
 	[225] = {"225", "Gimpy", "{{SoulHeart}} Taking damage has a 8% chance to spawn a Soul Heart#{{Luck}} +2% chance per luck#{{HalfHeart}} Enemies have a chance to drop a half Red Heart on death"}, -- Gimpy
 	[226] = {"226", "Black Lotus", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#{{SoulHeart}} +1 Soul Heart#{{BlackHeart}} +1 Black Heart"}, -- Black Lotus
 	[228] = {"228", "Mom's Perfume", "↑ {{Tears}} +0.5 Fire rate#{{Fear}} 15% chance to shoot fear tears"}, -- Mom's Perfume
@@ -1322,40 +1321,11 @@ EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could ma
 -- Tables with one entry will completely replace the original description
 -- Tables with two or more entries are find-replace pairs
 local repConditions = {
+	------ GENERAL STRINGS ------
 	["Tainted Revive"] = "{1} simply revives",
-	
-	["5.100.135 (Hard Mode)"] = {"1-2 coins", "1 coin", "2-3 coins", "2 coins"}, -- IV Bag Hard Mode (modify the PHD text too)
-	["5.100.642"] = "Single use for {1}", -- Magic Skin + Lost
-	["5.100.240"] = "{1} keeps the stat changes when he drops it", -- Experimental Treatment + Tainted Isaac
-	["5.100.644"] = "{1} keeps the stat increase when he drops it", -- Consolation Prize + Tainted Isaac
-	
-	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Fire rate on pickup", -- Brittle Bones (Keeper+Lost)
-	["5.100.694"] = "Works for {1}, letting him survive 4 hits", -- Heartbreak + Losts
-	["5.100.694 (Keeper)"] = "{1} gains 1 Broken Heart, fatal hits grant 1 Broken Heart, and he dies at 3 Broken Hearts", -- Heartbreak + Normal Keeper
-	["5.100.694 (Tainted Keeper)"] = "{1} gains 1 Broken Heart and dies at 2 Broken Hearts#{{Warning}} {1} will die in one hit after taking this item", -- Heartbreak + Tainted Keeper
-	
-	["5.100.201"] = "Refills {1}'s charge on pickup", -- Iron Bar + Notched Axe
-	["5.350.172"] = "{1} removes the teleportation effect", -- Cursed Penny + Black Candle
-	["5.100.188"] = "Deals 7.5 damage as {1}", -- Cain + Abel
-	["5.100.360"] = "Deals 100% damage as {1}", -- Lilith + Incubus
-	["5.100.728"] = "Deals 100% damage as {1}", -- Lilith + Gello
-	["5.100.501"] = "{1} can gain additional coin containers#Health up items can grant an extra container per 25 coins", -- Greed's Gullet (Health up bug)
-	["5.100.501 (Deep Pockets)"] = "+1 container for every 100 coins past 99", -- Greed's Gullet + Deep Pockets
-	["5.350.156"] = "+1 Coin container for {1}", -- Mother's Kiss
-	["5.100.230 (Keeper)"] = "{1} is left with 1 coin container", -- Abaddon
-	["5.100.230 (Bethany)"] = "{1} is left with half a heart", -- Abaddon
-	["5.100.230 (Tainted Bethany)"] = "{1} doesn't lose her blood charges", -- Abaddon
-	
-	["5.100.245"] = "Removes the fire rate penalty of {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
-	["5.100.245 (Keeper)"] = "Fire rate up and decreased tear spread for {1}", -- 20/20 + Keeper
-	["20/20"] = "No fire rate penalty with {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
-	["5.100.705"] = "Temporary +1 damage up for each bullet/enemy", -- Dark Arts + Dark/Tainted Judas
-	["5.100.205 (Tainted Magdalene)"] = "Allows infinite usage of Yum Heart", -- Sharp Plug + Tainted Magdalene
 	["Ice Tears"] = "Freezing an enemy doesn't count as killing", -- Uranus Anti-Synergy
 	
-	["5.100.45"] = "{{HalfHeart}} Heals other players for half a heart", -- Yum Heart (Co-Op)
-	["5.350.125"] = "Beams also arc between players", -- Extension Cord (Co-Op)
-	
+	------ GREED MODE ------
 	["5.100.344"] = {"{{BlackHeart}} +1 Black Heart#{{Bomb}} Spawns 3 bombs"}, -- Match Book (Greed)
 	["5.300.74"] = {"Teleports Isaac to the first room of the floor"}, -- The Moon? (Greed)
 	["5.100.416"] = {"{{Coin}} Increases the coin cap to 999"}, -- Deep Pockets (Greed)
@@ -1365,7 +1335,67 @@ local repConditions = {
 	["5.100.514"] = {"Causes some enemies and projectiles to briefly pause at random intervals#Paused projectiles disappear"}, -- Broken Modem (Greed)
 	["5.350.162"] = {"{{Player7}} Clearing a wave has a 50% chance to turn the player into Azazel#{{Timer}} Effect lasts until clearing another wave"}, -- Azazel's Stump (Greed)
 	
-	["? Card Single Use"] = "Single use items can be used multiple times with ? Card",
+	
+	------ ACHIEVEMENT CHECKS ------
+	-- todo...
+	
+	
+	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
+	["5.100.642"] = "Single use for {1}", -- Magic Skin + Lost
+	["5.100.240"] = "{1} keeps the stat changes when he drops it", -- Experimental Treatment + Tainted Isaac
+	["5.100.644"] = "{1} keeps the stat increase when he drops it", -- Consolation Prize + Tainted Isaac
+	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Fire rate on pickup", -- Brittle Bones (Keeper+Lost)
+	["5.100.694"] = "Works for {1}, letting him survive 4 hits", -- Heartbreak + Losts
+	["5.100.694 (Keeper)"] = "{1} gains 1 Broken Heart, fatal hits grant 1 Broken Heart, and he dies at 3 Broken Hearts", -- Heartbreak + Normal Keeper
+	["5.100.501"] = "{1} can gain additional coin containers#Health up items can grant an extra container per 25 coins", -- Greed's Gullet + Keeper
+	["5.100.694 (Tainted Keeper)"] = "{1} gains 1 Broken Heart and dies at 2 Broken Hearts#{{Warning}} {1} will die in one hit after taking this item", -- Heartbreak + Tainted Keeper
+	["5.100.188"] = "Deals 7.5 damage as {1}", -- Cain + Abel
+	["5.100.360"] = "Deals 100% damage as {1}", -- Lilith + Incubus
+	["5.100.728"] = "Deals 100% damage as {1}", -- Lilith + Gello
+	["5.350.156"] = "+1 Coin container for {1}", -- Mother's Kiss
+	["5.100.230 (Keeper)"] = "{1} is left with 1 coin container", -- Abaddon
+	["5.100.230 (Bethany)"] = "{1} is left with half a heart", -- Abaddon
+	["5.100.230 (Tainted Bethany)"] = "{1} doesn't lose her blood charges", -- Abaddon
+	["5.100.245 (Keeper)"] = "Fire rate up and decreased tear spread for {1}", -- 20/20 + Keeper
+	["5.100.705"] = "Temporary +1 damage up for each bullet/enemy", -- Dark Arts + Dark/Tainted Judas
+	["5.100.205 (Tainted Magdalene)"] = "Allows infinite usage of Yum Heart", -- Sharp Plug + Tainted Magdalene
+	
+	
+	------ DUPLICATE COPIES OF ITEMS ------
+	["5.100.2 (Copies)"] = "Isaac fires 1 more tear#No additional stat decrease", -- The Inner Eye
+	["5.100.153 (Copies)"] = "Isaac fires 2 more tears#No additional stat decrease", -- Mutant Spider
+	["5.100.245 (Copies)"] = "Isaac fires 1 more tear#No additional stat decrease", -- 20/20
+	["5.100.358 (Copies)"] = "Isaac fires 1 more tear in the center", -- The Wiz
+	["5.100.64 (Copies)"] = "Owning this item multiple times reduces the price further", -- Steam Sale
+	["5.100.118 (Copies)"] = "Multiple Brimstones grant increased damage and a larger beam", -- Brimstone
+	["5.100.531 (Copies)"] = "Additional copies only give +1 damage", -- Haemolacria
+	["5.100.224 (Copies)"] = "Additional copies only give +0.5 fire rate", -- Cricket's Body
+	
+	
+	----- MISC. ITEM CONDITIONS ------
+	["Sacrificial Nugget"] = "Turns Brown Nugget turrets into coins",
+	["Sacrificial Item Wisps"] = "Familiars created by Lemegeton can be sacrificed#Turns all Lemegeton wisps into {{HalfSoulHeart}} half Soul Hearts",
+	["Sacrificial Plum"] = "The summoned Plum counts as a familiar, and doesn't remove Plum Flute",
+	["Sacrificial Quints"] = "If a Quints familiar is sacrificed, you lose Quints",
+	["Sacrificial Abyss"] = "Abyss Locusts count as familiars",
+	["Sacrificial Star"] = "Star of Bethlehem counts as a familiar",
+	["Sacrificial Clots"] = "Turns Clots into coins",
+	
+	["1000.76.0"] = "{{Warning}} Only rerolls the character that activates the dice", -- Dice Room 1 (Co-op)
+	["1000.76.5"] = "{{Warning}} All characters' items will be rerolled in co-op!", -- Dice Room 6 (Co-op)
+	["5.100.45"] = "{{HalfHeart}} Heals other players for half a heart", -- Yum Heart (Co-Op)
+	["5.350.125"] = "Beams also arc between players", -- Extension Cord (Co-Op)
+	
+	["5.100.245"] = "Removes the fire rate penalty of {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	["20/20"] = "No fire rate penalty with {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	
+	["5.100.135 (Hard Mode)"] = {"1-2 coins", "1 coin", "2-3 coins", "2 coins"}, -- IV Bag Hard Mode (modify the PHD text too)
+	["5.100.201"] = "Refills {1}'s charge on pickup", -- Iron Bar + Notched Axe
+	["5.350.172"] = "{1} removes the teleportation effect", -- Cursed Penny + Black Candle
+	["5.100.501 (Deep Pockets)"] = "+1 container for every 100 coins past 99", -- Greed's Gullet + Deep Pockets
+	["? Card Single Use"] = "Single use items can be used multiple times with ? Card", -- Single Use Actives + ? Card
+	
+	
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
