@@ -216,7 +216,6 @@ if EID.isRepentance then
 
 end
 
-
 --[[
 BUURAZU'S TODO STUFF:
 
@@ -242,6 +241,7 @@ Right now I think character conditionals that apply to the tainted char don't sa
 Add Void synergy information for some active items (which?) (warn on things like mom's box you don't get double trinket power?) (MOVING BOX BEING PASSIVE)
 Hemoptysis synergies with things that count as beams (maw of the void)
 Ghost pepper + bird's eye
+Support pill effect conditionals (right now it'd just put the conditional on the pill entity with that ID)
 
 
 TODOs unrelated to conditionals:
