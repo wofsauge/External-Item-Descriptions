@@ -1171,6 +1171,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect"] = "No effect for {1}",
 	["Can't Charge"] = "Can't charge {1}",
 	["Can't Be Charged"] = "Can't be charged by {1}",
+	["Can't Be Duplicated"] = "Can't be duplicated",
 	["No Effect (Greed)"] = "{{GreedMode}} No effect in Greed Mode",
 	["No Effect (Copies)"] = "No additional effect from multiple copies", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "No additional effect on familiars", -- probably just for Hive Mind + BFFS!
@@ -1223,6 +1224,8 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 	["Suicide 1"] = "{1} can't prevent the death", -- Plan C, Damocles, Suicide King
 	["Suicide 2"] = "Does not prevent death by {1}", -- Plan C, Damocles, Suicide King
+	
+	["? Card Single Use"] = "Single use items will disappear after using ? Card",
 }
 
 
