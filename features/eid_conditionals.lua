@@ -111,7 +111,7 @@ end
 -- Items that have no effect from multiple copies (AddSelfConditional adds it when holding Diplopia automatically)
 EID:AddSelfConditional({191, 247, 248}, "No Effect (Copies)")
 -- Items that have an interesting effect from multiple copies
-EID:AddSelfConditional({}, "Copied"
+EID:AddSelfConditional({2}, "Copied")
 -- Items that can't be duplicated (Diplopia)
 EID:AddItemConditional(347, 347, "Can't Be Duplicated", nil, false) -- Diplopia
 if not EID.isRepentance then
