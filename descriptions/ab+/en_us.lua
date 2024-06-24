@@ -1257,6 +1257,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.70.28"] = "Isaac shoots forward and to the sides instead", -- R U A Wizard + The Wiz
 	["5.100.523"] = "Counts as a passive item to {1}", -- Moving Box + Void
 	["Mongo Babies"] = "Can be copied by {1}", -- Mongo Baby + Baby Familiars
+	["Technology 2 One Eye"] = "With {1}, the laser replaces your tears entirely", -- Technology 2 + one eye
 }
 
 
