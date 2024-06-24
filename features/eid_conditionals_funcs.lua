@@ -7,6 +7,7 @@ local game = Game()
 	If you're adding a condition that applies to an entire type of item, pass in a string in Type.Var format
 	
 	Argument 2: The function that will apply the condition if it returns true; descObj will be passed into this function
+	This function can return a collectible ID, which will be used for bulletpoints/variable text
 	
 	Argument 3 (optional): Additional text for finding the string in the localization file
 	For example, if you put "Overridden" here, modifying Tech X, it will look for ConditionalDescs["5.100.395 (Overridden)"] AND ConditionalDescs["Overridden"]
@@ -20,22 +21,30 @@ local game = Game()
 	replaceColor: Find/replace text will be highlighted with this color
 	bulletpoint: Appended lines will begin with this bulletpoint
 	noFallback: Don't fallback to English if this isn't localized; by default, conditionals don't fallback, to avoid printing English text in unupdated languages
-	useResult: The condition function can return a collectible ID; if true, use that ID to generate bulletpoint/variable text. This is to be able to use specific collectible icons/names while using more general modded-item-friendly conditions
+	usePedestalName: If true, display the pedestal item's name in place of {1}
 	
 	Argument 5 (very optional): The position in the table to insert this new condition, in case mods want to insert modifiers before our base ones
 ]]
+local function CopyTable(t1)
+	local newTable = {}; for k, v in pairs(t1) do newTable[k] = v end
+	return newTable
+end
 function EID:AddConditional(IDs, funcText, modText, extraTable, insertPoint)
 	if type(IDs) ~= "table" then IDs = { IDs } end
 	if modText == "" then modText = nil end
 	extraTable = extraTable or {}
-	-- make a shallow copy of the passed-in table
-	local newTable = {}; for k, v in pairs(extraTable) do newTable[k] = v end
-	newTable.func = funcText;
-	newTable.modifierText = modText;
-	if newTable.noFallback == nil then newTable.noFallback = true end
+	if extraTable.noFallback == nil then extraTable.noFallback = true end
 	for _, id in ipairs(IDs) do
 		if type(id) ~= "string" then id = "5.100." .. id end
 		EID.DescriptionConditions[id] = EID.DescriptionConditions[id] or {}
+		
+		local newTable = CopyTable(extraTable)
+		newTable.func = funcText;
+		newTable.modifierText = modText;
+		if newTable.usePedestalName then
+			newTable.variableText = "{{NameOnly" .. id .. "}}"
+		end
+		
 		if insertPoint then
 			table.insert(EID.DescriptionConditions[id], insertPoint, newTable)
 		else
@@ -48,13 +57,14 @@ end
 -- By default, they'll have a bulletpoint for the item/char, and {1} becomes the item/char's name
 
 -- checkInReminder is for if a synergy is no longer relevant once the item isn't obtainable (e.g. Abyss locusts) (true by default)
+
 function EID:AddItemConditional(IDs, ownedIDs, modText, extraTable, checkInReminder)
 	if type(ownedIDs) ~= "table" then ownedIDs = { ownedIDs } end
 	if checkInReminder == nil then checkInReminder = true end
 	extraTable = extraTable or {}
 	for _, ownedID in ipairs(ownedIDs) do
 		EID.collectiblesToCheck[ownedID] = true
-		local newTable = {}; for k, v in pairs(extraTable) do newTable[k] = v end
+		local newTable = CopyTable(extraTable)
 		local tvs = ownedID; if type(ownedID) == "number" then tvs = "5.100." .. ownedID end
 		
 		if newTable.variableText == nil then newTable.variableText = "{{NameOnly" .. tvs .. "}}" end
@@ -69,14 +79,23 @@ function EID:AddSynergyConditional(IDs, ownedIDs, modText1, modText2, extraTable
 	EID:AddItemConditional(IDs, ownedIDs, modText1, extraTable1, checkInReminder)
 	EID:AddItemConditional(ownedIDs, IDs, modText2 or modText1, extraTable2 or extraTable1, checkInReminder)
 end
+-- For adding a synergy pair where the same item name should be used for the descriptions of both sides of it
+-- e.g. Sacrificial Altar synergies are displayed on both the Altar and the familiar, but only the familiar's name matters
+function EID:AddOneSidedSynergyConditional(IDs, ownedIDs, modText, extraTable, checkInReminder)
+	extraTable = extraTable or {}
+	local newTable = CopyTable(extraTable)
+	newTable.usePedestalName = true
+	EID:AddItemConditional(IDs, ownedIDs, modText, newTable, checkInReminder)
+	EID:AddItemConditional(ownedIDs, IDs, modText, extraTable, checkInReminder)
+end
 
 -- For adding a conditional that looks at owning itself; item reminder is of course disabled
--- Holding Diplopia should probably also trigger this type of conditional, so it's included by default
+-- Holding Diplopia or Crooked Penny should probably also trigger this type of conditional, so it's included by default
 function EID:AddSelfConditional(ownedIDs, modText, extraTable, includeDiplopia)
 	if type(ownedIDs) ~= "table" then ownedIDs = { ownedIDs } end
 	if includeDiplopia == nil then includeDiplopia = true end
 	for _, ownedID in ipairs(ownedIDs) do
-		if includeDiplopia then EID:AddItemConditional(ownedID, {ownedID, 347}, modText, extraTable, false)
+		if includeDiplopia then EID:AddItemConditional(ownedID, {ownedID, 347, 485}, modText, extraTable, false)
 		else EID:AddItemConditional(ownedID, ownedID, modText, extraTable, false) end
 	end
 end
@@ -87,7 +106,7 @@ function EID:AddPlayerConditional(IDs, charIDs, modText, extraTable, includeTain
 	if includeTainted == nil then includeTainted = true end
 	extraTable = extraTable or {}
 	for _, charID in ipairs(charIDs) do
-		local newTable = {}; for k, v in pairs(extraTable) do newTable[k] = v end
+		local newTable = CopyTable(extraTable)
 		if newTable.variableText == nil then newTable.variableText = "{{NameOnlyI" .. charID .. "}}" end
 		if newTable.bulletpoint == nil then newTable.bulletpoint = "Player" .. charID end
 		EID:AddConditional(IDs, function() return EID:ConditionalCharCheck(charID, includeTainted) end, modText, newTable)
@@ -102,8 +121,8 @@ function EID:ConditionalItemCheck(itemID, checkInReminder)
 		if not checkInReminder then return false end
 		local player = EID.ItemReminderPlayerEntity
 		if EID:PlayerHasItem(player, itemID) or EID:PlayerVoidedCollectible(player, itemID) then return true end
-	else
-		return EID.collectiblesOwned[itemID] or EID.collectiblesAbsorbed[itemID]
+	elseif EID.collectiblesOwned[itemID] or EID.collectiblesAbsorbed[itemID] then
+		return true
 	end
 end
 
@@ -129,18 +148,18 @@ function EID:IsGreedModePlusTarot()
 	return game:IsGreedMode() and EID:ConditionalItemCheck(451, true)
 end
 
+function EID:PlayersHaveRestock()
+	return EID:PlayersHaveCollectible(376) or EID:IsGreedMode()
+end
+
 function EID:IsHardMode()
-	if game.Difficulty == 1 or game.Difficulty == 3 then
-		return true
-	else
-		return false
-	end
+	return game.Difficulty == 1 or game.Difficulty == 3
 end
 
 -- Check if we have any characters that can't have Red Health, to print additions to descs like Dead Cat
 function EID:CheckForNoRedHealthPlayer()
 	if EID.InsideItemReminder then
-		local player = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
+		local player = EID.ItemReminderPlayerEntity
 		return EID.NoRedHeartsPlayerIDs[player:GetPlayerType()]
 	else
 		for i = 0, game:GetNumPlayers() - 1 do
@@ -153,30 +172,65 @@ function EID:CheckForNoRedHealthPlayer()
 	return false
 end
 
-function EID:CheckForCarBattery(descObj)
-	if EID.CarBatteryNoSynergy[descObj.ObjSubType] then return "No Effect"
-	else return descObj.ObjSubType end
-end
-
-function EID:CheckForBFFS(descObj)
-	local config = EID.itemConfig:GetCollectible(descObj.ObjSubType)
-	-- Check for no effect, then the table of synergies (will we end up not doing the defualt "double damage" text?)
-	if EID.BFFSNoSynergy[descObj.ObjSubType] then return "No Effect" end
-	
-	if config ~= nil and config.Type == ItemType.ITEM_FAMILIAR then
-		return descObj.fullItemString
+-- Check if we have characters with Schoolbag or a pocket active item
+function EID:CheckForMultipleActives(onlyChargeablePockets)
+	if EID.InsideItemReminder then
+		local player = EID.ItemReminderPlayerEntity
+		if player:HasCollectible(534) then return true end
+		local id = player:GetPlayerType()
+		if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return true end
+	else
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(534) then return true end
+			local id = player:GetPlayerType()
+			if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return true end
+		end
 	end
+	return false
+end
+-- Check if we have characters with Schoolbag or a chargeable pocket active item (for 4.5 Volt)
+function EID:CheckForMultipleChargeableActives()
+	return EID:CheckForMultipleActives(true)
+end
+
+-- When we have Car Battery, change active pedestal descriptions
+function EID:CheckForCarBattery(descObj)
+	if EID.CarBatteryNoSynergy[descObj.ObjSubType] then return "No Effect" end
+	return descObj.ObjSubType
+end
+-- When we're looking at a Car Battery pedestal, check our actives for having no effect
+function EID:CheckActivesForCarBattery(descObj)
+	if EID.InsideItemReminder then return false end
+	for k,_ in pairs(EID.CarBatteryNoSynergy) do
+		if EID:PlayersHaveCollectible(k) then return k end
+	end
+	return false
+end
+
+-- When we have BFFS/Hive Mind, change familiar pedestal descriptions
+function EID:CheckForBFFS(descObj)
+	if descObj.ObjVariant == 100 and EID.BFFSNoSynergy[descObj.ObjSubType] then return "No Effect" end
+	return descObj.fullItemString
+end
+function EID:CheckForHiveMind(descObj)
+	if EID.HiveMindFamiliars[descObj.ObjSubType] then return EID:CheckForBFFS(descObj) end
 	return "N/A"
 end
 
-function EID:CheckForHiveMind(descObj)
-	if EID.HiveMindFamiliars[descObj.ObjSubType] then return descObj.fullItemString end
-	return "N/A"
+-- When we're looking at a BFFS pedestal, check our familiars for having no effect (only finds the earliest one, but whatever)
+function EID:CheckFamiliarsForBFFS(descObj)
+	if EID.InsideItemReminder then return false end
+	for k,_ in pairs(EID.BFFSNoSynergy) do
+		if EID:PlayersHaveCollectible(k) then return k end
+	end
+	return false
 end
 
 -- Check for a player having an active item with a specific quantity of charges, or charge type
 -- 0 = normal, 1 = timed, 2 = special
-function EID:CheckPlayersForActiveChargeType(maxCharge, chargeType)
+function EID:CheckPlayersForActiveChargeType(maxCharge, chargeType, checkPockets)
+	checkPockets = checkPockets or true
 	local players = {}
 	if EID.InsideItemReminder then
 		players[1] = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
@@ -185,22 +239,31 @@ function EID:CheckPlayersForActiveChargeType(maxCharge, chargeType)
 			table.insert(players, Isaac.GetPlayer(i))
 		end
 	end
-	
+	local maxSlot = EID.isRepentance and 1 or 0
+	if EID.isRepentance and checkPockets then maxSlot = 3 end
 	for i = 1, #players do
 		local player = players[i]
-		for j = 0, EID.isRepentance and 3 or 0 do
+		for j = 0, maxSlot do
 			local activeID = player:GetActiveItem(j)
 			if EID:CheckActiveChargeType(activeID, maxCharge, chargeType) then return activeID end
 		end
 	end
 	return false
 end
-function EID:CheckActiveChargeType(itemID, maxCharge, chargeType)
-	local active = EID.itemConfig:GetCollectible(itemID)
-	if active then
-		if active.MaxCharges == maxCharge and active.ChargeType ~= 2 then return true
-		elseif EID.isRepentance and active.ChargeType == chargeType then return true
-		elseif not EID.isRepentance and chargeType == 1 and active.MaxCharges >= 30 then return true end
+-- Check the given item ID for the given max charge and/or charge type (as well as check if the players have the additional collectible ID provided)
+function EID:CheckActiveChargeType(itemID, maxCharge, chargeType, requiredCollectible)
+	if requiredCollectible == nil or EID:ConditionalItemCheck(requiredCollectible) then
+		local active = EID.itemConfig:GetCollectible(itemID)
+		if active and active.Type == ItemType.ITEM_ACTIVE then
+			local result = true
+			if maxCharge and active.MaxCharges ~= maxCharge then result = false end
+			if EID.isRepentance then
+				if chargeType and active.ChargeType ~= chargeType then result = false end
+			else
+				if chargeType == 1 and active.MaxCharges < 30 then result = false end
+			end
+			return result
+		end
 	end
 	return false
 end
@@ -251,9 +314,10 @@ end
 
 function EID:applyConditionals(descObj)
 	EID:CheckPlayersCollectibles()
-
+	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 	local typeVar = descObj.ObjType.."."..descObj.ObjVariant -- for general conditions (Tarot Cloth, Book of Virtues)
-	local typeVarSub = descObj.fullItemString -- for specific conditions
+	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype -- for specific conditions
+	
 	-- Combine specific+generic conditions into one table (in that order)
 	local conds = {}
 	if EID.DescriptionConditions[typeVarSub] then TableConcat(conds, EID.DescriptionConditions[typeVarSub]) end
@@ -279,10 +343,12 @@ function EID:applyConditionals(descObj)
 		end
 
 		-- If we find the localization string for this condition, and it passes the test, modify the description text
-		local result = cond.func(descObj)
+		local result = cond.func(EID, descObj)
 		if text ~= nil and result then
 			local variableText, bulletpoint
-			if cond.useResult then
+			-- If the condition returned a value, use that value
+			if result ~= true then
+				-- For the time being, we assume the result was a collectible number (will support more soon)
 				variableText = "{{NameOnlyC"..result.."}}"
 				bulletpoint = "Collectible"..result
 			else

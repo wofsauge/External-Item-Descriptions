@@ -709,7 +709,8 @@ EID.InlineColors = {
 	["ColorBagOverfill"] = KColor(1, 0.5, 0.1, 0.6),
 	
 	["ColorIsaac"] = KColor(0.89, 0.776, 0.773, 1),
-	["ColorTaintedIsaac"] = KColor(0.812, 0.612, 0.608, 1),
+	["ColorCard"] = KColor(0.815, 0.651, 0.494, 1), -- actually taken from Ouija Board, real card brown would be too dark for descriptions
+	["ColorPill"] = KColor(0.306, 0.651, 0.851, 1),
 
 	-- Swag Colors
 	-- Rainbow color effect
@@ -731,10 +732,18 @@ EID.InlineColors = {
 		local c = EID.InlineColors
 		return SwagColors({c["ColorYellow"], c["ColorRed"]})
 	end,
+	-- Silver to gray, for Black Feather?
+	["BlinkGray"] = function(_)
+		local c = EID.InlineColors
+		return SwagColors({c["ColorGray"], c["ColorSilver"]})
+	end,
 	-- Pink for BFFs <3, the two shades come from Nancy Bombs and Eraser
 	["BlinkPink"] = function(_)
-		local c = EID.InlineColors
 		return SwagColors({KColor(1, 0.698, 0.886, 1), KColor(1, 0.5, 1, 1)})
+	end,
+	-- Blue for Hive Mind, the two shades come from Hive Mind
+	["BlinkBlue"] = function(_)
+		return SwagColors({KColor(0.341, 0.529, 0.906, 1), KColor(0.592, 0.717, 0.937, 1)})
 	end,
 	-- Shiny purple color effect
 	["ColorShinyPurple"] = function(_)
@@ -933,7 +942,7 @@ if EID.isRepentance then
 	EID.CarBatteryNoSynergy[323] = false -- Isaac's Tears
 	EID.CarBatteryNoSynergy[386] = false -- D12
 	EID.CarBatteryNoSynergy[421] = true -- Kidney Bean
-	EID.CarBatteryNoSynergy[522] = false -- Telekinesis TODO: REPENTANCE DIFFERENCES IN MAIN DESC TOO
+	EID.CarBatteryNoSynergy[522] = false -- Telekinesis
 	EID.CarBatteryNoSynergy[523] = true -- Moving Box
 	-- Repentance actives
 	EID.CarBatteryNoSynergy[555] = true; EID.CarBatteryNoSynergy[577] = true; EID.CarBatteryNoSynergy[578] = true; EID.CarBatteryNoSynergy[580] = true;
@@ -949,6 +958,7 @@ EID.BFFSNoSynergy = { [10] = true, [11] = true, [81] = true, [178] = true, [238]
 if EID.isRepentance then
 	EID.BFFSNoSynergy[178] = false -- Holy Water
 	EID.BFFSNoSynergy[276] = false -- Isaac's Heart
+	EID.BFFSNoSynergy[325] = true -- Scissors
 	EID.BFFSNoSynergy[405] = true -- GB Bug
 	EID.BFFSNoSynergy[467] = false -- Finger!
 	EID.BFFSNoSynergy[504] = false -- Brown Nugget
@@ -959,12 +969,14 @@ if EID.isRepentance then
 end
 
 -- Familiars that count for Hive Mind in Repentance (although it could give them No Effect if it just increases size)
-EID.HiveMindFamiliars = { [10] = true, [57] = true, [128] = true, [170] = true, [264] = true, [272] = true, [274] = true, [279] = true, [320] = true, [364] = true, [365] = true, [403] = true, [426] = true, [430] = true, [504] = true, [511] = true, [575] = true, [581] = true, [629] = true, }
+EID.HiveMindFamiliars = { [10] = true, [57] = true, [128] = true, [170] = true, [264] = true, [272] = true, [274] = true, [279] = true, [320] = true, [364] = true, [365] = true, [403] = true, [426] = true, [430] = true, [504] = true, [511] = true, [575] = true, [581] = true, [629] = true, [649] = true, [650] = true, [706] = true, }
 
 -- Tainted character's respective normal version ID, for conditionals that apply to both versions of the character
 -- To help with other character pairs, Esau = Jacob, Dead Tainted Lazarus = Tainted Lazarus, Tainted Soul = Tainted Forgotten
 EID.TaintedToRegularID = { [20] = 19, [21] = 0, [22] = 1, [23] = 2, [24] = 3, [25] = 4, [26] = 5, [27] = 6, [28] = 7, [29] = 8, [30] = 9, [31] = 10, [32] = 13, 
 [33] = 14, [34] = 15, [35] = 16, [36] = 18, [37] = 19, [38] = 29, [39] = 37, [40] = 35 }
+-- Player IDs of Tainted characters, might be useful for something
+EID.TaintedIDs = {}; for i = 21, 40 do EID.TaintedIDs[i] = true end
 
 -- Character IDs that are Soul/Black Hearts only: ???, The Lost, The Soul
 EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
@@ -972,8 +984,8 @@ if EID.isRepentance then
 	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
 	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
 end
--- Character IDs that have a pocket active
-EID.PocketActivePlayerIDs = { [22] = true, [23] = true, [24] = true, [25] = true, [26] = true, [29] = true, [34] = true, [36] = true, [37] = true, [38] = true, [39] = true }
+-- Character IDs that have a pocket active (0 = normal, 1 = timed, 2 = special)
+EID.PocketActivePlayerIDs = { [22] = 0, [23] = 2, [24] = 1, [25] = 2, [26] = 1, [29] = 0, [34] = 0, [36] = 0, [37] = 1, [38] = 0, [39] = 1 }
 
 -- Cards that don't work with Blank Card in Repentance (Note: ? Card is blacklisted here, don't use this for determining what is a card)
 EID.blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[48]=true,[49]=true,[50]=true,[55]=true,[78]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}

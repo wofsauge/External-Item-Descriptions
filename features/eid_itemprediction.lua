@@ -246,7 +246,8 @@ function EID:VoidRoomCheck()
 		(not EID.isRepentance or pickup.OptionsPickupIndex == 0 or EID.VoidOptionIndexes[pickup.OptionsPickupIndex] == nil) then
 			numRunable = numRunable + 1
 			if EID.isRepentance then EID.VoidOptionIndexes[pickup.OptionsPickupIndex] = entity.SubType end
-			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE) then
+			-- Moving Box (523) is counted as a passive item
+			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE or entity.SubType == 523) then
 				numVoidable = numVoidable + 1
 			else
 				table.insert(activesAbsorbed, entity.SubType)

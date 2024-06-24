@@ -232,7 +232,7 @@ local function BlackFeatherCallback(descObj)
 	local isGolden = EID.isRepentance and ((descObj.ObjSubType & TrinketType.TRINKET_GOLDEN_FLAG) == TrinketType.TRINKET_GOLDEN_FLAG)
 	local base = EID.isRepentance and 0.5 or 0.2
 	local damageMultiplied = base * itemCounter * (hasBox and 2 or 1) * (isGolden and 2 or 1)
-	local dmgColor = (hasBox or isGolden) and "ColorGold" or "ColorLime"
+	local dmgColor = itemCounter == 0 and "CR" or (hasBox or isGolden) and "ColorGold" or "BlinkGray"
 
 	local description = EID:getDescriptionEntry("BlackFeatherInformation")
 	description, _ = EID:ReplaceVariableStr(description, 1, tostring(itemCounter))

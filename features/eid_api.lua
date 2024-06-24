@@ -718,6 +718,7 @@ function EID:replaceShortMarkupStrings(text)
 	return text
 end
 
+local VariantToColorText = { [100] = "{{ColorYellow}}", [350] = "{{ColorYellow}}", [300] = "{{ColorCard}}", [70] = "{{ColorPill}}" }
 -- Replaces name markup objects with the actual name
 function EID:replaceNameMarkupStrings(text)
 	for word in string.gmatch(text, "{{Name.-}}") do
@@ -737,21 +738,25 @@ function EID:replaceNameMarkupStrings(text)
 				table.insert(entityID, tonumber(e))
 			end
 			local iconText = ""
-			if showIcon then
-				if entityID[1] == 1 then iconText = "{{Player" .. entityID[3] .. "}} "
-				else iconText = "{{" .. EID:GetIconNameByVariant(entityID[2]) .. entityID[3] .. "}} " end
+			local colorText = ""
+			if entityID[1] == 1 then
+				if showIcon then iconText = "{{Player" .. entityID[3] .. "}} " end
+				colorText = "{{ColorIsaac}}"
+			else
+				if showIcon then iconText = "{{" .. EID:GetIconNameByVariant(entityID[2]) .. entityID[3] .. "}} " end
+				colorText = VariantToColorText[entityID[2]] or ""
 			end
-			name = iconText .. EID:getObjectName(entityID[1], entityID[2], entityID[3])
+			name = iconText .. colorText .. EID:getObjectName(entityID[1], entityID[2], entityID[3]) .. "{{CR}}"
 		elseif indicator == "C" then -- Collectible
-			name = (showIcon and "{{Collectible"..id.."}} " or "")..EID:getObjectName(5, 100, id)
+			name = (showIcon and "{{Collectible"..id.."}} " or "") .. "{{ColorYellow}}" .. EID:getObjectName(5, 100, id) .. "{{CR}}"
 		elseif indicator == "T" then -- Trinket
-			name = (showIcon and "{{Trinket"..id.."}} " or "")..EID:getObjectName(5, 350, id)
+			name = (showIcon and "{{Trinket"..id.."}} " or "") .. "{{ColorYellow}}" .. EID:getObjectName(5, 350, id) .. "{{CR}}"
 		elseif indicator == "P" then -- Pills
-			name = (showIcon and "{{Pill"..id.."}} " or "")..EID:getPillName(id, false)
+			name = (showIcon and "{{Pill"..id.."}} " or "") .. "{{ColorPill}}" .. EID:getPillName(id, false) .. "{{CR}}"
 		elseif indicator == "K" then -- Card
-			name = (showIcon and "{{Card"..id.."}} " or "")..EID:getObjectName(5, 300, id)
+			name = (showIcon and "{{Card"..id.."}} " or "") .. "{{ColorCard}}" .. EID:getObjectName(5, 300, id) .. "{{CR}}"
 		elseif indicator == "I" then -- Player (I for Isaac)
-			name = (showIcon and "{{Player"..id.."}} " or "")..EID:getPlayerName(id)
+			name = (showIcon and "{{Player"..id.."}} " or "") .. "{{ColorIsaac}}" .. EID:getPlayerName(id) .. "{{CR}}"
 		end
 		text = string.gsub(text, word, name, 1)
 	end
@@ -997,15 +1002,19 @@ function EID:replaceAllMarkupWithSpaces(text, checkBulletpoint)
 			return ""
 		end
 	end
+	-- iconsFound is used to make the next space after a markup icon be immune to line breaks, but only if it's just one icon with no other text
+	local iconsFound = 0; if text:gsub(" ", ""):gsub("{{.-}}","") ~= "" then iconsFound = -999 end
+	
 	for word in string.gmatch(text, "{{.-}}") do
 		local lookup = EID:getIcon(word)
 		if lookup[1] ~= "ERROR" then
 			text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
+			iconsFound = iconsFound + 1
 		else
 			text = string.gsub(text, word, "", 1)
 		end
 	end
-	return text
+	return text, iconsFound
 end
 
 -- Fits a given string to a specific width
@@ -1013,8 +1022,8 @@ end
 function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formattedLines = {}
 	-- Lines with a {{NoLineBreak}} tag should be left in one continuous line
-	if str:find("{{NoLineBreak}}") then
-		str = str:gsub("{{NoLineBreak}}","")
+	if str:find("{{NoLineBreak}}") or str:find("{{NoLB}}") then
+		str = str:gsub("{{NoLineBreak}}",""):gsub("{{NoLB}}","")
 		table.insert(formattedLines,str)
 		return formattedLines
 	end
@@ -1022,6 +1031,8 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local text = {}
 	-- the first word we run into might actually be a bulletpoint icon, which should be zero width
 	local isBulletpoint = true
+	-- if we find an icon by itself, we should skip the following space
+	local previousWordWasIcon = false
 	local cursor = 1
 	local word_begin_index = 1
 
@@ -1088,11 +1099,11 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 
 				-- we can break after str[cursor]
 				local word = sub(str, word_begin_index, cursor)
-				local wordFiltered = EID:replaceAllMarkupWithSpaces(word, isBulletpoint)
+				local wordFiltered, iconsFound = EID:replaceAllMarkupWithSpaces(word, isBulletpoint)
 				isBulletpoint = false
 				local wordLength = EID:getStrWidth(wordFiltered)
 
-				if curLength + wordLength <= textboxWidth or curLength < 17 then
+				if curLength + wordLength <= textboxWidth or curLength < 17 or previousWordWasIcon then
 					table.insert(text, word)
 					curLength = curLength + wordLength
 				else
@@ -1100,7 +1111,7 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 					text = { word }
 					curLength = wordLength
 				end
-
+				previousWordWasIcon = (iconsFound == 1)
 				-- next word starts here
 				word_begin_index = cursor + 1
 		end
