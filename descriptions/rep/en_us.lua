@@ -135,7 +135,7 @@ local repCollectibles={
 	[296] = {"296", "Converter", "{{Heart}} Converts 1 Soul or Black Heart into 1 heart container"}, -- Converter
 	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
 	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
-	[297] = {"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#Dark Room: Unlocks {{Collectible523}} Moving Box; Chest: 1{{Coin}}#Home: {{Collectible580}} Red Key"}, -- Pandora's Box
+	[297] = {"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#{{NoLB}}Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1{{Coin}}#Home: {{Collectible580}} Red Key"}, -- Pandora's Box
 	[300] = {"300", "Aries", "↑ {{Speed}} +0.25 Speed#Moving above 0.85 Speed makes Isaac immune to contact damage and deals 25 damage to enemies"}, -- Aries
 	[307] = {"307", "Capricorn", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.1 Speed#↑ {{Tears}} +0.5 Fire rate#↑ {{Damage}} +0.5 Damage#↑ {{Range}} +0.75 Range#+1 {{Coin}} coin, {{Bomb}} bomb and {{Key}} key"}, -- Capricorn
 	[308] = {"308", "Aquarius", "Isaac leaves a trail of creep#{{Damage}} The creep deals 66% of Isaac's damage per second and inherits his tear effects"}, -- Aquarius
@@ -222,7 +222,7 @@ local repCollectibles={
 	[491] = {"491", "Acid Baby", "{{Pill}} Spawns a random pill every 7 rooms#{{Poison}} Using a pill poisons all enemies in the room"}, -- Acid Baby
 	[493] = {"493", "Adrenaline", "↑ {{Damage}} Damage up for every empty heart container#The more empty heart containers, the bigger the bonus for each new one"}, -- Adrenaline
 	[494] = {"494", "Jacob's Ladder", "Tears spawn a spark of electricity on impact#Sparks deal half of Isaac's damage#Sparks can spread to other enemies"}, -- Jacob's Ladder
-	[495] = {"495", "Ghost Pepper", "8.33% chance to shoot a blue fire that blocks enemy shots and deals contact damage#{{Luck}} 50% chance at 10 luck#Fires shrink and disappear after 2 seconds"}, -- Ghost Pepper
+	[495] = {"495", "Ghost Pepper", "8% chance to shoot a blue fire that blocks enemy shots and deals contact damage#{{Luck}} 50% chance at 10 luck#Fires shrink and disappear after 2 seconds"}, -- Ghost Pepper
 	[496] = {"496", "Euthanasia", "3.33% chance to shoot a needle#{{Luck}} 25% chance at 13 luck#Needles kill normal enemies instantly, bursting them into 10 tears#{{Damage}} Needles deal 3x Isaac's damage against bosses"}, -- Euthanasia
 	[497] = {"497", "Camo Undies", "{{Confusion}} Entering a room camouflages Isaac and confuses all enemies until a tear is shot#↑ {{Speed}} +0.5 Speed while cloaked#Uncloaking deals damage around Isaac and grants a very brief fire rate and damage up"}, -- Camo Undies
 	[500] = {"500", "Sack of Sacks", "Spawns a sack every 7-8 rooms"}, -- Sack of Sacks
@@ -1004,7 +1004,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "If the Treasure Room hasn't been entered yet, it will have two items to choose from", -- XVII - The Stars
 	[20] = {100, 400}, -- XIX - The Sun
-	[21] = {" a ", " 2 ", " Beggar", " {{CR}}Beggars", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
+	[21] = {" a ", " 2 ", "Beggar ", "{{CR}}Beggars ", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
 	[56] = "Drops Isaac's most recent 6 items alongside the pickups", -- 0 - The Fool?
 	[59] = {2, 3}, -- III - The Empress?
 	[61] = {2, 3}, -- V - The Hierophant?
@@ -1359,6 +1359,11 @@ local repConditions = {
 	["5.100.245 (Keeper)"] = "Fire rate up and decreased tear spread for {1}", -- 20/20 + Keeper
 	["5.100.705"] = "Temporary +1 damage up for each bullet/enemy", -- Dark Arts + Dark/Tainted Judas
 	["5.100.205 (Tainted Magdalene)"] = "Allows infinite usage of Yum Heart", -- Sharp Plug + Tainted Magdalene
+	-- Vibrant/Dim Bulb
+	["5.350.100 (Bethany)"] = "Works with {1}'s soul charges",
+	["5.350.100 (Tainted Bethany)"] = "Works with {1}'s blood charges",
+	["5.350.101 (Bethany)"] = "Ignores {1}'s soul charges",
+	["5.350.101 (Tainted Bethany)"] = "Ignores {1}'s blood charges",
 	
 	
 	------ DUPLICATE COPIES OF ITEMS ------
@@ -1394,7 +1399,14 @@ local repConditions = {
 	["5.350.172"] = "{1} removes the teleportation effect", -- Cursed Penny + Black Candle
 	["5.100.501 (Deep Pockets)"] = "+1 container for every 100 coins past 99", -- Greed's Gullet + Deep Pockets
 	["? Card Single Use"] = "Single use items can be used multiple times with ? Card", -- Single Use Actives + ? Card
+	["Both Peppers"] = "With {1}, base chance to shoot a flame is 12.5%, up to 100% at 7 luck", -- Ghost Pepper + Bird's Eye
+	["Black Feather"] = "↑ {{Damage}} +0.5 Damage", -- Black Feather items
+	["Hemoptysis"] = "Works with {1}", -- Hemoptysis + Brimstone items
+	["5.100.600"] = "x1.2 Fire rate multiplier for {1}", -- Eye Drops (items and some players)
 	
+	["4.5 Volt Timed"] = "No effect on timed recharges", -- 4.5 Volt + Timed Recharges
+	["4.5 Volt Multiple"] = "Secondary active items only gain charge if the primary active is fully charged", -- 4.5 Volt + Schoolbag/Pocket Actives
+	["Bulb Zero"] = "Actives with 0 max charges don't count", -- Vibrant/Dim Bulb + zero charge actives
 	
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
