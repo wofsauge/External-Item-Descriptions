@@ -84,6 +84,7 @@ EID:AddPlayerConditional(108, 14, "No Effect")  -- Keeper + The Wafer
 EID:AddPlayerConditional(227, 14, "Keeper 0-1") -- Keeper + Piggy Bank
 EID:AddPlayerConditional(501, 14)               -- Keeper + Greed's Gullet
 EID:AddPlayerConditional(230, 14, "Keeper")     -- Keeper + Abaddon
+EID:AddPlayerConditional(152, 2, "Technology 2 One Eye") -- Cain + Technology 2
 if EID.isRepentance then
 	-- Tainted characters reviving as themselves
 	EID:AddPlayerConditional({ 161, "5.350.28" }, 25, "Tainted Revive") -- Ankh, Broken Ankh
@@ -238,6 +239,7 @@ if EID.isRepentance then
 	
 	-- eye drops + passives like brimstone go here but there's a lot of them
 	EID:AddPlayerConditional(600, {2, 7, 13, 16}) -- Eye Drops + Cain, Azazel, Lilith, Forgotten
+	EID:AddSynergyConditional(152, {708, 444}, "Technology 2 One Eye") -- Technology 2 + Stapler, Lead Pencil
 end
 
 --[[
@@ -253,7 +255,6 @@ Are Blank Card + Placebo + Clear Rune ready to get moved to here now that I have
 Jacob's Ladder synergies with other battery items (I didn't even know about this)
 Bean synergies with ghost pepper/bird's eye
 Car Battery / BFFS whitelist for showing certain lines on the car/bffs pedestal, not just "No effect"
-AB+ Only: Cain + Items that close his eyes?
 Implement a system where similar texts don't get shown multiple times in one apply conditionals function (hive minds/bffs)
 hallowed ground / midas touch + the poop / card against humanity / everything jar synergies
 Add Void synergy information for some active items (which?) (warn on things like mom's box you don't get double trinket power?)
