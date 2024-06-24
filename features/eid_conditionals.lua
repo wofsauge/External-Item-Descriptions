@@ -105,6 +105,8 @@ if EID.isRepentance then
 	EID:AddPlayerConditional(245, 14, "Keeper")           -- 20/20 + Keeper
 	EID:AddPlayerConditional(705, { 12, 24 })             -- Dark Arts + Dark/Tainted Judas
 	EID:AddPlayerConditional(205, 22, "Tainted Magdalene")-- Tainted Magdalene + Sharp Plug
+	EID:AddPlayerConditional({"5.350.100", "5.350.101"}, 18, "Bethany", nil, false) -- Bethany + Vibrant/Dim Bulb
+	EID:AddPlayerConditional({"5.350.100", "5.350.101"}, 36, "Tainted Bethany") -- Tainted Bethany + Vibrant/Dim Bulb
 end
 
 
@@ -149,12 +151,16 @@ if EID.isRepentance then
 	EID:AddSynergyConditional({577, 656, 475, "5.300.46"}, {674, 694}, "Suicide 1", "Suicide 2") -- Damocles, Plan C, Suicide King + Spirit Shackles, Heartbreak
 end
 
--- 9 Volt / Sharp Plug interactions
--- 9 Volt + 1 Room/Timed; This got a bit complicated, since it looks at a trait of every collectible + you having another, but hey, it's compact
-EID:AddConditional(116, function() return EID:CheckPlayersForActiveChargeType(1) end, "1 Room")
+-- Actives with certain charge types interactions
+-- 9 Volt + 1 Room/Timed
+EID:AddConditional(116, function() return EID:CheckPlayersForActiveChargeType(1, 0) end, "1 Room")
 EID:AddConditional(116, function() return EID:CheckPlayersForActiveChargeType(nil, 1) end, "Timed")
-EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(116) and EID:CheckActiveChargeType(descObj.ObjSubType, 1) end, "1 Room", { bulletpoint = "Collectible116" })
-EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(116) and EID:CheckActiveChargeType(descObj.ObjSubType, nil, 1) end, "Timed", { bulletpoint = "Collectible116" })
+EID:AddConditional("5.100", function(EID, descObj) return EID:CheckActiveChargeType(descObj.ObjSubType, 1, 0, 116) end, "9 Volt 1 Room", { bulletpoint = "Collectible116" })
+EID:AddConditional("5.100", function(EID, descObj) return EID:CheckActiveChargeType(descObj.ObjSubType, nil, 1, 116) end, "9 Volt Timed", { bulletpoint = "Collectible116" })
+-- Vibrant/Dim Bulb
+EID:AddConditional({"5.350.100", "5.350.101"}, EID.CheckForMultipleActives, "Bulb Multiple") -- Vibrant/Dim Bulb + Having multiple actives
+EID:AddConditional({"5.350.100", "5.350.101"}, function() return EID:CheckPlayersForActiveChargeType(0, nil, false) end, "Bulb Zero") -- Vibrant/Dim Bulb + Having a 0-charge active
+EID:AddConditional("5.350.101", function() return EID:CheckPlayersForActiveChargeType(nil, 1, false) end, "Timed") -- Dim Bulb + Having a timed active
 if not EID.isRepentance then
 	-- AB+ Sharp Plug oddities
 	EID:AddItemConditional(205, {116, 276}, "No Effect") -- Sharp Plug + 9 Volt, Isaac's Heart
@@ -164,8 +170,13 @@ end
 if EID.isRepentance then
 	-- 9 Volt, Sharp Plug + Special Charge Actives
 	EID:AddConditional({116, 205}, function() return EID:CheckPlayersForActiveChargeType(nil, 2) end, "Can't Charge")
-	EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(116) and EID:CheckActiveChargeType(descObj.ObjSubType, nil, 2) end, "Can't Be Charged", { bulletpoint = "Collectible116", variableText = "{{NameOnlyC116}}" })
-	EID:AddConditional("5.100", function(descObj) return EID:PlayersHaveCollectible(205) and EID:CheckActiveChargeType(descObj.ObjSubType, nil, 2) end, "Can't Be Charged", { bulletpoint = "Collectible205", variableText = "{{NameOnlyC205}}" })
+	EID:AddConditional("5.100", function(EID, descObj) return EID:CheckActiveChargeType(descObj.ObjSubType, nil, 2, 116) end, "Can't Be Charged", { bulletpoint = "Collectible116", variableText = "{{NameOnlyC116}}" })
+	EID:AddConditional("5.100", function(EID, descObj) return EID:CheckActiveChargeType(descObj.ObjSubType, nil, 2, 205) end, "Can't Be Charged", { bulletpoint = "Collectible205", variableText = "{{NameOnlyC205}}" })
+	-- 4.5 Volt interactions
+	EID:AddConditional(647, function() return EID:CheckPlayersForActiveChargeType(nil, 1) end, "4.5 Volt Timed") -- 4.5 Volt + Having a timed active
+	EID:AddConditional("5.100", function(EID, descObj) return EID:CheckActiveChargeType(descObj.ObjSubType, nil, 1, 647) end, "4.5 Volt Timed", { bulletpoint = "Collectible647"})
+	EID:AddItemConditional(534, 647, "4.5 Volt Multiple") -- Schoolbag + 4.5 Volt
+	EID:AddConditional(647, EID.CheckForMultipleActives, "4.5 Volt Multiple")-- 4.5 Volt + Schoolbag/Pocket Actives
 end
 
 -- Sacrificial Altar interactions
@@ -193,9 +204,18 @@ EID:AddSynergyConditional(368, {69, 118, 316, 229, 395, 114, 329}, "Almost No Ef
 EID:AddSynergyConditional({127, 297, 347, 490, 483, 515, 475, 536}, "5.300.48", "? Card Single Use") -- ? Card + Single Use Actives
 if EID.isRepentance then EID:AddSynergyConditional({585, 577, 628, 636}, "5.300.48", "? Card Single Use") end -- ? Card + Single Use Actives
 
+EID:AddConditional(521, EID.PlayersHaveRestock) -- Coupon + Restock/Greed
+for k,_ in pairs(EID.blackFeatherItems) do EID:AddItemConditional(k, "5.350.80", "Black Feather", {lineColor="BlinkGray"}) end -- Black Feather
+for k,_ in pairs(EID.blackFeatherTrinkets) do EID:AddItemConditional("5.350." .. k, "5.350.80", "Black Feather", {lineColor="BlinkGray"}) end -- Black Feather
+EID:AddItemConditional("5.70.28", 358) -- Wizard pill + The Wiz
+EID:AddItemConditional(523, 477) -- Moving Box is a passive to Void
+EID:AddItemConditional({8, 113, 163, 167, 99, 100, 174, 95, 268, 67}, 322, "Mongo Babies") -- Mongo Baby + Copiable familiars
+if EID.isRepentance then EID:AddItemConditional(608, 322, "Mongo Babies") end
+
 -- AB+ only misc conditionals
 if not EID.isRepentance then
 	EID:AddConditional(208, EID.IsHardMode, nil, {noFallback = false}) -- Champion Belt (AB+ Hard Mode)
+	
 end
 
 -- Rep only misc conditionals
@@ -213,7 +233,11 @@ if EID.isRepentance then
 	
 	EID:AddSynergyConditional(596, {"5.350.118", 704, 62, "5.350.60", 520, 411, 621, "5.350.58", "5.350.189", 657}, "Ice Tears") -- Uranus + On Kill Effects
 	EID:AddPlayerConditional(596, 27, "Ice Tears") -- Uranus + Tainted Samson
-
+	EID:AddSynergyConditional(495, 616, "Both Peppers") -- Ghost Pepper + Bird's Eye
+	EID:AddSynergyConditional(726, {408, 646, 293, 679, 275, 399, 680, 441, 49, 533}, "Hemoptysis") -- Hemoptysis + Brimstone effects
+	
+	-- eye drops + passives like brimstone go here but there's a lot of them
+	EID:AddPlayerConditional(600, {2, 7, 13, 16}) -- Eye Drops + Cain, Azazel, Lilith, Forgotten
 end
 
 --[[
@@ -226,23 +250,16 @@ BFFs / Hive Mind + Tainted Apollyon, Tainted Eve, Tainted Lilith; melody trinket
 Maybe a find/replace pair for some Keeper descriptions that talk about Red hearts but work for him, Red -> Coin or Red/Coin; Could be good for Dead Cat. or just leave it be
 Crystal Key + Pandora's Box should be moved here? Or leave it in modifiers
 Are Blank Card + Placebo + Clear Rune ready to get moved to here now that I have good ways to return values?
-Vibrant/Dim Bulb + Pocket Actives; any other pocket active interactions? 4.5 volt charges your main one first?
-Black Feather items can mention they're a Black Feather evil up!
 Jacob's Ladder synergies with other battery items (I didn't even know about this)
 Bean synergies with ghost pepper/bird's eye
 Car Battery / BFFS whitelist for showing certain lines on the car/bffs pedestal, not just "No effect"
 AB+ Only: Cain + Items that close his eyes?
-Coupon + Restock/Greed: The free item doesn't restock
 Implement a system where similar texts don't get shown multiple times in one apply conditionals function (hive minds/bffs)
-Check the Incubus wiki page for cool synergies plus things its not affected by in AB+
-Mongo Baby conditional for what babies you have that it copies
 hallowed ground / midas touch + the poop / card against humanity / everything jar synergies
-Right now I think character conditionals that apply to the tainted char don't say the tainted char's name; is that a bad thing? should/can it be fixed?
-Add Void synergy information for some active items (which?) (warn on things like mom's box you don't get double trinket power?) (MOVING BOX BEING PASSIVE)
-Hemoptysis synergies with things that count as beams (maw of the void)
-Ghost pepper + bird's eye
-Support pill effect conditionals (right now it'd just put the conditional on the pill entity with that ID)
+Add Void synergy information for some active items (which?) (warn on things like mom's box you don't get double trinket power?)
 
+TODOS I'VE DECIDED NOT TODO RIGHT NOW:
+Incubus effects; a lot are AB+ only; annoying to test; plus Lilith has to be added for all of them too
 
 TODOs unrelated to conditionals:
 Luck modifier that prints out a percentage for the effect based on your current luck stat
@@ -264,6 +281,6 @@ Reorganize eid_api better, maybe split it in two, shouldn't the api only contain
 Make api functions for conditionals/other new features I've made that might be difficult for modders to approach
 "Add golden trinket / mom's box / is rune / is card / placebo recharge / false phd info for mods to add in EID:addCard/Pill?" - did most of these happen?
 check the actual github wiki, i've never looked at that, maybe I should update that some time
-As eid_modifiers' usefulness dwindles, maybe it should add conditionals like how external mods would add them
+As eid_modifiers' usefulness dwindles, maybe it should add its modifiers like how external mods would add them
 
 ]]
