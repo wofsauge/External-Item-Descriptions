@@ -319,7 +319,7 @@ EID.descriptions[languageCode].collectibles={
 	{"296", "Converter", "{{Heart}} Converts 2 Soul/Black Hearts into 1 heart container"}, -- Converter
 	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
 	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
-	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#Dark Room: Unlocks {{Collectible523}} Moving Box; Chest: 1{{Coin}}"}, -- Pandora's Box
+	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#{{NoLB}}Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1{{Coin}}"}, -- Pandora's Box
 	{"298", "Unicorn Stump", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot (No contact damage)"}, -- Unicorn Stump
 	{"299", "Taurus", "↓ {{Speed}} -0.3 Speed#↑ {{Speed}} Slowly gain speed while in hostile rooms#At 2 speed, Isaac becomes invincible and deals contact damage#Afterwards, lose the Taurus speed boost for the room"}, -- Taurus
 	{"300", "Aries", "↑ {{Speed}} +0.25 Speed#Touching enemies deals contact damage"}, -- Aries
@@ -638,7 +638,7 @@ EID.descriptions[languageCode].carBattery = {
 	[507] = "Triggers twice", -- Sharp Straw
 	[510] = {" a ", " 2 ", "version", "{{CR}}versions"}, -- Delirious
 	[516] = {" a ", " 2 ", "Sprinkler", "{{CR}}Sprinklers"}, -- Sprinkler
-	[521] = {"one", "two"}, -- Coupon
+	[521] = {"one", "two", "item", "{{CR}}items"}, -- Coupon
 	[523] = "Swaps box contents with room pickups", -- Moving Box
 	[545] = {8, 16}, -- Book of the Dead
 	[550] = "Stops stomps for two rooms (or Boss Rush waves)", -- Broken Shovel
@@ -941,7 +941,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[15] = {" a ", " 2 ", " Machine", " {{CR}}Machines", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XIV - Temperance (+ Greed version)
 	[17] = {6, 12}, -- XVI - The Tower
 	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {" a ", " 2 ", " Beggar", " {{CR}}Beggars", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
+	[21] = {" a ", " 2 ", "Beggar ", "{{CR}}Beggars ", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
 	[23] = {"Doubles", "Quadruples"}, -- 2 of Clubs
 	[24] = {"Doubles", "Quadruples"}, -- 2 of Diamonds
 	[25] = {"Doubles", "Quadruples"}, -- 2 of Spades
@@ -1230,8 +1230,8 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 	["5.100.116 (1 Room)"] = "1 Room recharges become 15 second recharges while in an uncleared room", -- 9 Volt
 	["5.100.116 (Timed)"] = "Timed recharges start half full", -- 9 Volt
-	["1 Room"] = "15 Second recharge while in an uncleared room", -- Actives + 9 Volt
-	["Timed"] = "Charge starts half full after use", -- Actives + 9 Volt
+	["9 Volt 1 Room"] = "15 second recharge while in an uncleared room", -- Actives + 9 Volt
+	["9 Volt Timed"] = "Charge starts half full after use", -- Actives + 9 Volt
 	["5.100.205 (Wafer)"] = "Reduces the cost to half a heart", -- Sharp Plug + Wafer
 	
 	["Suicide 1"] = "{1} can't prevent the death", -- Plan C, Damocles, Suicide King
@@ -1247,8 +1247,16 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["? Card Single Use"] = "Single use items will disappear after using ? Card", -- Single Use Actives + ? Card
 	["5.300.48"] = "Teleport to I AM ERROR Room#Blank Card and ? Card will be destroyed", -- Blank Card + ? Card
 	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
+	["5.100.521"] = "{{Collectible376}} Free items won't be restocked", -- Coupon + Restock/Greed
+	["Black Feather"] = "↑ {{Damage}} +0.2 Damage", -- Black Feather items
 	
+	["Bulb Multiple"] = "Only checks the primary active item", -- Vibrant/Dim Bulb + Schoolbag/Pocket Actives
+	["Bulb Zero"] = "Actives with 0 max charges trigger the bulb", -- Vibrant/Dim Bulb + zero charge actives
+	["5.350.101 (Timed)"] = "Basically useless with timed recharges", -- Dim Bulb + Timed Recharges
 	
+	["5.70.28"] = "Isaac shoots forward and to the sides instead", -- R U A Wizard + The Wiz
+	["5.100.523"] = "Counts as a passive item to {1}", -- Moving Box + Void
+	["Mongo Babies"] = "Can be copied by {1}", -- Mongo Baby + Baby Familiars
 }
 
 
