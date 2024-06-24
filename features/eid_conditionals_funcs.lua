@@ -90,12 +90,12 @@ function EID:AddOneSidedSynergyConditional(IDs, ownedIDs, modText, extraTable, c
 end
 
 -- For adding a conditional that looks at owning itself; item reminder is of course disabled
--- Holding Diplopia should probably also trigger this type of conditional, so it's included by default
+-- Holding Diplopia or Crooked Penny should probably also trigger this type of conditional, so it's included by default
 function EID:AddSelfConditional(ownedIDs, modText, extraTable, includeDiplopia)
 	if type(ownedIDs) ~= "table" then ownedIDs = { ownedIDs } end
 	if includeDiplopia == nil then includeDiplopia = true end
 	for _, ownedID in ipairs(ownedIDs) do
-		if includeDiplopia then EID:AddItemConditional(ownedID, {ownedID, 347}, modText, extraTable, false)
+		if includeDiplopia then EID:AddItemConditional(ownedID, {ownedID, 347, 485}, modText, extraTable, false)
 		else EID:AddItemConditional(ownedID, ownedID, modText, extraTable, false) end
 	end
 end
@@ -148,6 +148,10 @@ function EID:IsGreedModePlusTarot()
 	return game:IsGreedMode() and EID:ConditionalItemCheck(451, true)
 end
 
+function EID:PlayersHaveRestock()
+	return EID:PlayersHaveCollectible(376) or EID:IsGreedMode()
+end
+
 function EID:IsHardMode()
 	return game.Difficulty == 1 or game.Difficulty == 3
 end
@@ -155,7 +159,7 @@ end
 -- Check if we have any characters that can't have Red Health, to print additions to descs like Dead Cat
 function EID:CheckForNoRedHealthPlayer()
 	if EID.InsideItemReminder then
-		local player = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
+		local player = EID.ItemReminderPlayerEntity
 		return EID.NoRedHeartsPlayerIDs[player:GetPlayerType()]
 	else
 		for i = 0, game:GetNumPlayers() - 1 do
@@ -166,6 +170,28 @@ function EID:CheckForNoRedHealthPlayer()
 		end
 	end
 	return false
+end
+
+-- Check if we have characters with Schoolbag or a pocket active item
+function EID:CheckForMultipleActives(onlyChargeablePockets)
+	if EID.InsideItemReminder then
+		local player = EID.ItemReminderPlayerEntity
+		if player:HasCollectible(534) then return true end
+		local id = player:GetPlayerType()
+		if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return true end
+	else
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(534) then return true end
+			local id = player:GetPlayerType()
+			if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return true end
+		end
+	end
+	return false
+end
+-- Check if we have characters with Schoolbag or a chargeable pocket active item (for 4.5 Volt)
+function EID:CheckForMultipleChargeableActives()
+	return EID:CheckForMultipleActives(true)
 end
 
 -- When we have Car Battery, change active pedestal descriptions
@@ -203,7 +229,8 @@ end
 
 -- Check for a player having an active item with a specific quantity of charges, or charge type
 -- 0 = normal, 1 = timed, 2 = special
-function EID:CheckPlayersForActiveChargeType(maxCharge, chargeType)
+function EID:CheckPlayersForActiveChargeType(maxCharge, chargeType, checkPockets)
+	checkPockets = checkPockets or true
 	local players = {}
 	if EID.InsideItemReminder then
 		players[1] = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
@@ -212,22 +239,31 @@ function EID:CheckPlayersForActiveChargeType(maxCharge, chargeType)
 			table.insert(players, Isaac.GetPlayer(i))
 		end
 	end
-	
+	local maxSlot = EID.isRepentance and 1 or 0
+	if EID.isRepentance and checkPockets then maxSlot = 3 end
 	for i = 1, #players do
 		local player = players[i]
-		for j = 0, EID.isRepentance and 3 or 0 do
+		for j = 0, maxSlot do
 			local activeID = player:GetActiveItem(j)
 			if EID:CheckActiveChargeType(activeID, maxCharge, chargeType) then return activeID end
 		end
 	end
 	return false
 end
-function EID:CheckActiveChargeType(itemID, maxCharge, chargeType)
-	local active = EID.itemConfig:GetCollectible(itemID)
-	if active then
-		if active.MaxCharges == maxCharge and active.ChargeType ~= 2 then return true
-		elseif EID.isRepentance and active.ChargeType == chargeType then return true
-		elseif not EID.isRepentance and chargeType == 1 and active.MaxCharges >= 30 then return true end
+-- Check the given item ID for the given max charge and/or charge type (as well as check if the players have the additional collectible ID provided)
+function EID:CheckActiveChargeType(itemID, maxCharge, chargeType, requiredCollectible)
+	if requiredCollectible == nil or EID:ConditionalItemCheck(requiredCollectible) then
+		local active = EID.itemConfig:GetCollectible(itemID)
+		if active and active.Type == ItemType.ITEM_ACTIVE then
+			local result = true
+			if maxCharge and active.MaxCharges ~= maxCharge then result = false end
+			if EID.isRepentance then
+				if chargeType and active.ChargeType ~= chargeType then result = false end
+			else
+				if chargeType == 1 and active.MaxCharges < 30 then result = false end
+			end
+			return result
+		end
 	end
 	return false
 end
@@ -278,9 +314,10 @@ end
 
 function EID:applyConditionals(descObj)
 	EID:CheckPlayersCollectibles()
-
+	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 	local typeVar = descObj.ObjType.."."..descObj.ObjVariant -- for general conditions (Tarot Cloth, Book of Virtues)
-	local typeVarSub = descObj.fullItemString -- for specific conditions
+	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype -- for specific conditions
+	
 	-- Combine specific+generic conditions into one table (in that order)
 	local conds = {}
 	if EID.DescriptionConditions[typeVarSub] then TableConcat(conds, EID.DescriptionConditions[typeVarSub]) end
@@ -306,7 +343,7 @@ function EID:applyConditionals(descObj)
 		end
 
 		-- If we find the localization string for this condition, and it passes the test, modify the description text
-		local result = cond.func(descObj)
+		local result = cond.func(EID, descObj)
 		if text ~= nil and result then
 			local variableText, bulletpoint
 			-- If the condition returned a value, use that value
