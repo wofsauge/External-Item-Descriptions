@@ -995,6 +995,7 @@ function EID:setPlayer()
 		if EID.isRepentance then EID.players = { EID.player, EID.isRepentance and EID.player:GetOtherTwin() } end
 		EID.coopMainPlayers = { EID.player }
 		EID.coopAllPlayers = EID.players
+		EID.controllerIndexes = {}
 		EID.controllerIndexes[p.ControllerIndex] = 1
 		EID.isMultiplayer = false
 		return
