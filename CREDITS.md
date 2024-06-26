@@ -9,7 +9,7 @@ If you enjoy this mod and want to help on it, check it out on GitHub: https://gi
 - **Dutch**: by SomethingMax
 - **English**: by Wofsauge, Buurazu, Ma-rcx, AutisticGoat (Kotry), ...
 - **French**: by biobak, Nicolas Delvaux
-- **German**: by Staubgeborener, Jake
+- **German**: by Mirades, Staubgeborener, Jake
 - **Greek**: by vanillarat
 - **Italian**: by Klyser8, Denkishi, 2G
 - **Japanese**: by prefab
@@ -31,3 +31,4 @@ If you enjoy this mod and want to help on it, check it out on GitHub: https://gi
 - [eyeguy](https://twitter.com/eyeguyart) for creating the astonishing transformation icons
 - [adc](https://steamcommunity.com/id/whytefang/) for creating an awesome new language pack and providing ideas for new functionalities
 - [CreepSore](https://github.com/CreepSore) for creating the bag of crafting search feature
+- [Poyo](https://x.com/Poyomama02) for the great thumbnail art
