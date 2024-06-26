@@ -12,6 +12,7 @@ EID.ItemReminderSelectedCategory = 0 -- Currently selected category
 EID.ItemReminderSelectedPlayer = 0 -- Currently selected player
 EID.ItemReminderSelectedItem = 0 -- Currently selected Item
 EID.InsideItemReminder = false -- Disable some modifiers, when building the Item Reminder description
+EID.ItemReminderPlayerEntity = nil -- for description modifiers to reference
 
 -- TODO:
 -- crooked penny cheats. 404/liberty cap/broken syringe/etc. "what item is it"
@@ -72,7 +73,6 @@ EID.ItemReminderDescriptionModifier = {
 	---------------- Passive Items ----------------
 	["5.100.392"] = { -- Zodiac
 		isHiddenInfo = true,
-		isRepentance = true,
 		modifierFunction = function(descObj, player)
 			local zodiacItem = player:GetZodiacEffect()
 			if zodiacItem > 0 then
@@ -121,11 +121,10 @@ EID.ItemReminderDescriptionModifier = {
 
 	["5.100.44"] = { -- Teleport! location
 		isCheat = true,
-		isRepentance = true,
-		-- The result preview changes as soon as we activate Teleport, which looks awkward, so try to not display the result while mid-teleport.
-		-- Doesn't work perfectly and only in Rep
 		modifierFunction = function(descObj, player)
-			if player:GetSprite():GetAnimation() ~= "TeleportUp" then
+			-- The result preview changes as soon as we activate Teleport, which looks awkward, so try to not display the result while mid-teleport.
+			-- Doesn't work perfectly and only in Rep
+			if not EID.isRepentance or player:GetSprite():GetAnimation() ~= "TeleportUp" then
 				EID:ItemReminderAddResultHeaderSuffix(descObj)
 				descObj.Description = EID:Teleport1Prediction(EID:GetItemSeed(player, 44))
 			end
@@ -242,23 +241,14 @@ EID.ItemReminderDescriptionModifier = {
 	},
 	["5.350.75"] = {   -- 404 Error
 		isHiddenInfo = true,
-		isRepentance = true, -- HasTrinket can't differentiate between real and fake trinkets in AB+
 		modifierFunction = function(descObj, player)
-			-- Unfortunately, includes other temporary trinket givers, such as Glitched Items. We'd need to predict 404's result using RNG to actually know which it specifically is granting
-
-			-- Don't display Mysterious Paper's 1-frame temporary trinket granting
-			local hasPaper = player:HasTrinket(21)
-			-- Mysterious Paper does not play well with displaying Error 404's effect
-			local mysteriousPaperBlacklist = { [23] = true, [48] = true }
-			for i = 1, TrinketType.NUM_TRINKETS - 1 do
-				local tempTrinketFound = player:HasTrinket(i, true) ~= player:HasTrinket(i, false)
-				if tempTrinketFound and (not mysteriousPaperBlacklist[i] or not hasPaper) then
-					local demoDescObj = EID:getDescriptionObj(5, 350, i)
-					EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
-					descObj.Icon = demoDescObj.Icon
-					descObj.Description = demoDescObj.Description
-				end
-			end
+			local seed = game:GetLevel():GetCurrentRoom():GetSpawnSeed()
+			local result = EID:RNGNext(seed, 2, 7, 25) % (EID.isRepentance and 189 or 128) + 1
+			
+			local demoDescObj = EID:getDescriptionObj(5, 350, result)
+			EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
+			descObj.Icon = demoDescObj.Icon
+			descObj.Description = demoDescObj.Description
 		end
 	},
 	["5.350.166"] = { -- Modeling Clay
@@ -310,10 +300,12 @@ function EID:ItemReminderAddDescription(player, entityType, variant, subType, ex
 
 	local specialDesc = EID.ItemReminderDescriptionModifier[objectID]
 	if specialDesc and type(specialDesc.modifierFunction) == "function" then
-		-- dont add, if description modifier is a cheat and cheats are disabled
-		local evalShowCheat = not (specialDesc.isCheat and not EID.Config["ItemReminderShowRNGCheats"])
-		local evalShowHidden = not (specialDesc.isHidden and not EID.Config["ItemReminderShowHiddenInfo"])
-		if evalShowCheat or evalShowHidden then
+		-- don't add, if description modifier is a cheat and cheats are disabled
+		local evaluateFunction = true
+		if (specialDesc.isCheat and not EID.Config["ItemReminderShowRNGCheats"]) then evaluateFunction = false end
+		if (specialDesc.isHiddenInfo and not EID.Config["ItemReminderShowHiddenInfo"]) then evaluateFunction = false end
+		if (specialDesc.isRepentance and not EID.isRepentance) then evaluateFunction = false end
+		if evaluateFunction then
 			specialDesc.modifierFunction(descObj, player)
 		end
 	end
@@ -598,6 +590,7 @@ function EID:ItemReminderGetDescription()
 	for key, _ in pairs(EID.ItemReminderBlacklist) do currentBlacklist[key] = true end
 
 	local player = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player -- use main player as fallback
+	EID.ItemReminderPlayerEntity = player -- for description modifiers to reference
 
 	if EID.ItemReminderSelectedCategory == 0 or EID.Config["ItemReminderDisplayMode"] == "Classic" then
 		-- execute all functions defined per category

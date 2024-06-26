@@ -14,6 +14,7 @@ EID.BoC.InventoryOverride = nil -- Override items the player has in its inventor
 EID.BoC.FloorQuery = {}
 EID.BoC.FloorOverride = nil -- Override total items displayed to be as floor content
 EID.BoC.LearnedRecipes = {} --These are recipes that we've learned during this run
+EID.BoC.IsDisplayingDescription = false
 
 EID.RefreshBagTextbox = false
 
@@ -1112,6 +1113,8 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 	prevDesc = prevDesc .. getFloorItemsString(true, roomItems)
 	if (EID.Config["BagOfCraftingShowControls"]) then
 		local resultDesc = EID:getDescriptionEntry("CraftingResults")
+		local searchButton = EID.KeyboardToString[EID.Config["CraftingSearchKey"]]
+		resultDesc = EID:ReplaceVariableStr(resultDesc, 1, searchButton)
 		prevDesc = prevDesc .. resultDesc
 	end
 

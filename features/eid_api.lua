@@ -301,6 +301,7 @@ function EID:getTableName(Type, Variant, SubType)
 		end
 	elseif idString == "-999.-1" then return "sacrifice"
 	elseif idString == "1000.76" then return "dice"
+	elseif idString == "1.0" then return "players"
 	else return "custom"
 	end
 end
@@ -610,6 +611,8 @@ function EID:getObjectName(Type, Variant, SubType)
 		return EID:getDescriptionEntry("sacrificeHeader").." ("..SubType.."/"..#EID.descriptions["en_us"].sacrifice..")"
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
+	elseif tableName == "players" then
+		return EID:getPlayerName(SubType)
 	elseif tableName == "custom" then
 		local xmlName = EID:GetEntityXMLName(Type, Variant, SubType)
 		return name or xmlName or Type.."."..Variant.."."..SubType
@@ -715,6 +718,7 @@ function EID:replaceShortMarkupStrings(text)
 	return text
 end
 
+local VariantToColorText = { [100] = "{{ColorYellow}}", [350] = "{{ColorYellow}}", [300] = "{{ColorCard}}", [70] = "{{ColorPill}}" }
 -- Replaces name markup objects with the actual name
 function EID:replaceNameMarkupStrings(text)
 	for word in string.gmatch(text, "{{Name.-}}") do
@@ -733,17 +737,26 @@ function EID:replaceNameMarkupStrings(text)
 			for e in string.gmatch(strTrimmed, "([^.]*)") do
 				table.insert(entityID, tonumber(e))
 			end
-			name = EID:getObjectName(entityID[1], entityID[2], entityID[3])
+			local iconText = ""
+			local colorText = ""
+			if entityID[1] == 1 then
+				if showIcon then iconText = "{{Player" .. entityID[3] .. "}} " end
+				colorText = "{{ColorIsaac}}"
+			else
+				if showIcon then iconText = "{{" .. EID:GetIconNameByVariant(entityID[2]) .. entityID[3] .. "}} " end
+				colorText = VariantToColorText[entityID[2]] or ""
+			end
+			name = iconText .. colorText .. EID:getObjectName(entityID[1], entityID[2], entityID[3]) .. "{{CR}}"
 		elseif indicator == "C" then -- Collectible
-			name = (showIcon and "{{Collectible"..id.."}} " or "")..EID:getObjectName(5, 100, id)
+			name = (showIcon and "{{Collectible"..id.."}} " or "") .. "{{ColorYellow}}" .. EID:getObjectName(5, 100, id) .. "{{CR}}"
 		elseif indicator == "T" then -- Trinket
-			name = (showIcon and "{{Trinket"..id.."}} " or "")..EID:getObjectName(5, 350, id)
+			name = (showIcon and "{{Trinket"..id.."}} " or "") .. "{{ColorYellow}}" .. EID:getObjectName(5, 350, id) .. "{{CR}}"
 		elseif indicator == "P" then -- Pills
-			name = (showIcon and "{{Pill"..id.."}} " or "")..EID:getPillName(id, false)
+			name = (showIcon and "{{Pill"..id.."}} " or "") .. "{{ColorPill}}" .. EID:getPillName(id, false) .. "{{CR}}"
 		elseif indicator == "K" then -- Card
-			name = (showIcon and "{{Card"..id.."}} " or "")..EID:getObjectName(5, 300, id)
+			name = (showIcon and "{{Card"..id.."}} " or "") .. "{{ColorCard}}" .. EID:getObjectName(5, 300, id) .. "{{CR}}"
 		elseif indicator == "I" then -- Player (I for Isaac)
-			name = (showIcon and "{{Player"..id.."}} " or "")..EID:getPlayerName(id)
+			name = (showIcon and "{{Player"..id.."}} " or "") .. "{{ColorIsaac}}" .. EID:getPlayerName(id) .. "{{CR}}"
 		end
 		text = string.gsub(text, word, name, 1)
 	end
@@ -780,9 +793,24 @@ end
 -- Tries to read special markup used to generate icons for all Collectibles/Trinkets and the default Cards/Pills
 -- Returns an inlineIcon Object or nil if no parsing was possible
 function EID:createItemIconObject(str)
-	local collID,numReplace = string.gsub(str, "Collectible", "")
 	local item = nil
 	local subTypeIdentifier = 0
+
+	-- Check for {{Item#.##.###}} markup; easiest way to handle it is to just call this function again
+	local itemID,numReplaceGeneric = string.gsub(str, "Item", "")
+	if numReplaceGeneric > 0 and itemID ~= "" then
+		local Type, Var, Sub = EID:SplitTVS(itemID)
+		if Type == 1 then return EID:getIcon("Player" .. Sub)
+		elseif Type == 5 then
+			if Var == 100 then return EID:createItemIconObject("Collectible" .. Sub)
+			elseif Var == 350 then return EID:createItemIconObject("Trinket" .. Sub)
+			elseif Var == 300 then return EID:createItemIconObject("Card" .. Sub)
+			elseif Var == 70 then return EID:createItemIconObject("Pill" .. Sub)
+			end
+		end
+	end
+	
+	local collID,numReplace = string.gsub(str, "Collectible", "")
 	if numReplace > 0 and collID ~= "" and tonumber(collID) ~= nil then
 		item = EID.itemConfig:GetCollectible(tonumber(collID))
 		subTypeIdentifier = tonumber(collID)
@@ -974,15 +1002,19 @@ function EID:replaceAllMarkupWithSpaces(text, checkBulletpoint)
 			return ""
 		end
 	end
+	-- iconsFound is used to make the next space after a markup icon be immune to line breaks, but only if it's just one icon with no other text
+	local iconsFound = 0; if text:gsub(" ", ""):gsub("{{.-}}","") ~= "" then iconsFound = -999 end
+	
 	for word in string.gmatch(text, "{{.-}}") do
 		local lookup = EID:getIcon(word)
 		if lookup[1] ~= "ERROR" then
 			text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
+			iconsFound = iconsFound + 1
 		else
 			text = string.gsub(text, word, "", 1)
 		end
 	end
-	return text
+	return text, iconsFound
 end
 
 -- Fits a given string to a specific width
@@ -990,8 +1022,8 @@ end
 function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formattedLines = {}
 	-- Lines with a {{NoLineBreak}} tag should be left in one continuous line
-	if str:find("{{NoLineBreak}}") then
-		str = str:gsub("{{NoLineBreak}}","")
+	if str:find("{{NoLineBreak}}") or str:find("{{NoLB}}") then
+		str = str:gsub("{{NoLineBreak}}",""):gsub("{{NoLB}}","")
 		table.insert(formattedLines,str)
 		return formattedLines
 	end
@@ -999,6 +1031,8 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local text = {}
 	-- the first word we run into might actually be a bulletpoint icon, which should be zero width
 	local isBulletpoint = true
+	-- if we find an icon by itself, we should skip the following space
+	local previousWordWasIcon = false
 	local cursor = 1
 	local word_begin_index = 1
 
@@ -1065,11 +1099,11 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 
 				-- we can break after str[cursor]
 				local word = sub(str, word_begin_index, cursor)
-				local wordFiltered = EID:replaceAllMarkupWithSpaces(word, isBulletpoint)
+				local wordFiltered, iconsFound = EID:replaceAllMarkupWithSpaces(word, isBulletpoint)
 				isBulletpoint = false
 				local wordLength = EID:getStrWidth(wordFiltered)
 
-				if curLength + wordLength <= textboxWidth or curLength < 17 then
+				if curLength + wordLength <= textboxWidth or curLength < 17 or previousWordWasIcon then
 					table.insert(text, word)
 					curLength = curLength + wordLength
 				else
@@ -1077,7 +1111,7 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 					text = { word }
 					curLength = wordLength
 				end
-
+				previousWordWasIcon = (iconsFound == 1)
 				-- next word starts here
 				word_begin_index = cursor + 1
 		end
@@ -1163,15 +1197,76 @@ function EID:updateDescriptionsViaTable(changeTable, tableToUpdate)
 	end
 end
 
+-- Converts e.g. "5.100.69" format strings into 5, 100, and 69; returns 0 for any not included
+function EID:SplitTVS(tvsString)
+	local Type, Var, Sub = 0, 0, 0
+	local tvsTable = {}
+	for i in string.gmatch(tvsString, "[^.]+") do table.insert(tvsTable, tonumber(i)) end
+	Type = tvsTable[1] or Type; Var = tvsTable[2] or Var; Sub = tvsTable[3] or Sub;
+	return Type, Var, Sub
+end
+
+-- Checks if any player has a given item ID (or anyone is a given player ID)
+function EID:PlayersHaveItem(Type, Var, Sub)
+	-- convert "5.100.69" format strings into type, var, sub
+	if type(Type) == "string" then
+		Type, Var, Sub = EID:SplitTVS(Type)
+	-- assume collectible if only Type was given
+	elseif Var == nil then Sub = Type; Type = 5; Var = 100 end
+	if Type == 1 then return EID:PlayersHaveCharacter(Sub)
+	elseif Type == 5 then
+		if Var == 100 then return EID:PlayersHaveCollectible(Sub)
+		elseif Var == 350 then return EID:PlayersHaveTrinket(Sub)
+		elseif Var == 300 then return EID:PlayersHaveCard(Sub)
+		elseif Var == 70 then return EID:PlayersHavePill(Sub)
+		end
+	end
+	return false
+end
+
+-- Checks if the given player has the given item ID (or is the given player ID)
+function EID:PlayerHasItem(player, Type, Var, Sub)
+	-- convert "5.100.69" format strings into type, var, sub
+	if type(Type) == "string" then
+		Type, Var, Sub = EID:SplitTVS(Type)
+	-- assume collectible if only Type was given
+	elseif Var == nil then Sub = Type; Type = 5; Var = 100 end
+	if Type == 1 then return player:GetPlayerType() == Sub
+	elseif Type == 5 then
+		if Var == 100 then return player:HasCollectible(Sub)
+		elseif Var == 350 then return player:HasTrinket(Sub)
+		elseif Var == 300 then return EID:PlayerHasCard(player, Sub)
+		elseif Var == 70 then return EID:PlayerHasPill(player, Sub)
+		end
+	end
+	return false
+end
+
 -- Checks if any player has a given collectible ID, for modifiers
 function EID:PlayersHaveCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(collectibleID) then
-			return true, player
+			return true, player, i
 		end
 	end
 	return false
+end
+
+function EID:PlayersVoidedCollectible(collectibleID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player:HasCollectible(477) and EID.absorbedItems[tostring(i)] and EID.absorbedItems[tostring(i)][tostring(collectibleID)] then
+			return true, player, i
+		end
+	end
+	return false
+end
+function EID:PlayerVoidedCollectible(player, collectibleID)
+	local i = EID:getPlayerID(player)
+	if player:HasCollectible(477) and EID.absorbedItems[tostring(i)] and EID.absorbedItems[tostring(i)][tostring(collectibleID)] then
+		return true
+	end
 end
 
 -- Checks if any player has a given trinket ID, for modifiers
@@ -1179,10 +1274,48 @@ function EID:PlayersHaveTrinket(trinketID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:HasTrinket(trinketID) then
-			return true, player
+			return true, player, i
 		end
 	end
 	return false
+end
+
+function EID:PlayersHaveCard(cardID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		for j = 0, (EID.isRepentance and 3 or 1) do
+			if player:GetCard(j) == cardID then
+				return true, player, i
+			end
+		end
+	end
+	return false
+end
+function EID:PlayerHasCard(player, cardID)
+	for j = 0, (EID.isRepentance and 3 or 1) do
+		if player:GetCard(j) == cardID then
+			return true
+		end
+	end
+end
+
+function EID:PlayersHavePill(pillID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		for j = 0, (EID.isRepentance and 3 or 1) do
+			if player:GetPill(j) == pillID then
+				return true, player, i
+			end
+		end
+	end
+	return false
+end
+function EID:PlayerHasPill(player, pillID)
+	for j = 0, (EID.isRepentance and 3 or 1) do
+		if player:GetPill(j) == pillID then
+			return true
+		end
+	end
 end
 
 -- Checks if someone is playing as a certain character, for modifiers
@@ -1191,10 +1324,10 @@ function EID:PlayersHaveCharacter(playerType, includeTainted)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:GetPlayerType() == playerType then
-			return true, player
+			return true, player, i
 		end
 		if includeTainted and EID.isRepentance and EID.TaintedToRegularID[player:GetPlayerType()] == playerType then
-			return true, player
+			return true, player, i
 		end
 	end
 	return false
@@ -2041,7 +2174,7 @@ function EID:UpdateAllPlayerPassiveItems()
 			
 			-- remove items the player no longer has. reverse itteration to make deletion easier
 			for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
-				if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index]) then
+				if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index], true) then
 					table.remove(EID.RecentlyTouchedItems[playerNum], index)
 					listUpdatedForPlayers[i] = true
 				end
@@ -2049,7 +2182,7 @@ function EID:UpdateAllPlayerPassiveItems()
 
 			-- add items the player did get with non-standard methods (console command, item effects, etc...)
 			for _, itemID in ipairs(passives) do
-				if player:HasCollectible(itemID) then
+				if player:HasCollectible(itemID, true) then
 					local alreadyInList = false
 					for _, heldItemID in ipairs(EID.RecentlyTouchedItems[playerNum]) do
 						if itemID == heldItemID then
