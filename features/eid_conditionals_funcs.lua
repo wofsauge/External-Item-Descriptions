@@ -31,7 +31,7 @@ end
 
 -- Shortcut function for when you have two items that have a synergy with each other
 -- ID1 will have text1 added to its description if you own ID2
--- ID2 will have text2 (or text1, if text2 isn't given) added to its description if you own ID2
+-- ID2 will have text2 (or text1, if text2 isn't given) added to its description if you own ID1
 -- ID1 and ID2 can both be tables of IDs that will get the condition applied to each other
 -- Optional parameters: text2, language, extraTable
 -- Example usage: EID:addSynergyCondition(myHappyLittleItemID, {CollectibleType.COLLECTIBLE_BRIMSTONE, CollectibleType.COLLECTIBLE_SULFUR}, "Turns your laser into a smiley face that charms enemies")
