@@ -1262,6 +1262,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Brimstone Ipecac"] = "Ipecac tears are fired while charging#The +40 damage applies to the laser",
 	["Proptosis Anti-Gravity"] = "Tears don't lose damage until they start moving",
 	["Epic Fetus Soy Milk"] = "Crosshair time is not shortened, but missile damage is drastically reduced",
+	["Eye of Belial Dr. Fetus"] = "Bombs pierce, but don't home or do additional damage",
 	
 }
 
