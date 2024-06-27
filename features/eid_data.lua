@@ -970,6 +970,8 @@ end
 
 -- Familiars that count for Hive Mind in Repentance (although it could give them No Effect if it just increases size)
 EID.HiveMindFamiliars = { [10] = true, [57] = true, [128] = true, [170] = true, [264] = true, [272] = true, [274] = true, [279] = true, [320] = true, [364] = true, [365] = true, [403] = true, [426] = true, [430] = true, [504] = true, [511] = true, [575] = true, [581] = true, [629] = true, [649] = true, [650] = true, [706] = true, }
+-- Familiars that count for Hive Mind but should be ignored by BFFS (not used yet, maybe used by modded item conditionals)
+EID.BFFSIgnore = {}
 
 -- Tainted character's respective normal version ID, for conditionals that apply to both versions of the character
 -- To help with other character pairs, Esau = Jacob, Dead Tainted Lazarus = Tainted Lazarus, Tainted Soul = Tainted Forgotten

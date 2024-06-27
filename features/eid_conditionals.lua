@@ -132,9 +132,24 @@ end
 
 ------ OVERRIDES / OVERRIDDEN BY -----
 -- huge TODO here, a lot of AB+ only ones too
+
+-- TODO: add azazel to epic fetus list... and what about the brimstone list with him?
+-- and of course, Mom's Knife, Tech X, Spirit Sword...
+EID:AddSynergyConditional({52, 69, 104, 222, 224, 233, 316, 329, 369, 379, 397, 401, 410, 440, 444, 453, 459, 461, 462, 494, 524, 532, 533, 540, }, 168, "Overridden", "Overrides") -- Epic Fetus
+EID:AddSynergyConditional({69, 222, 316, 369, 379, 410, 440, 453, 459, 461, 494, 524, 532, 533, }, 52, "Overridden", "Overrides") -- Dr. Fetus
+EID:AddSynergyConditional({316, 379, 410, 440, 453, 461, 462, 524, 533, 540, }, 118, "Overridden", "Overrides") -- Brimstone
 if not EID.isRepentance then
+	EID:AddSynergyConditional({374, 429, }, 168, "Overridden", "Overrides") -- Epic Fetus
+	EID:AddSynergyConditional({374, 401, 429, 444, 461}, 52, "Overridden", "Overrides") -- Dr. Fetus
+	EID:AddSynergyConditional({104, 224, 369, 374, 394, 401, 429, 444, 459, 463, 494, 532, }, 118, "Overridden", "Overrides") -- Brimstone
 end
 if EID.isRepentance then
+	EID:AddSynergyConditional({168}, 579, "Overridden", "Overrides") -- Spirit Sword
+	EID:AddSynergyConditional({553, 572, 678, "5.350.144"}, 168, "Overridden", "Overrides") -- Epic Fetus
+	EID:AddSynergyConditional({68, 118, 572, 597, 637, "5.350.144"}, 52, "Overridden", "Overrides") -- Dr. Fetus
+	EID:AddSynergyConditional({597}, 118, "Overridden", "Overrides") -- Brimstone
+	EID:AddSynergyConditional({69, 229, 316, 329, 397, 410, 533, 572, 597, }, 678, "Overridden", "Overrides") -- C Section
+	
 	EID:AddSynergyConditional(330, 561, "Overridden", "Overrides") -- Soy Milk + Almond Milk
 end
 
@@ -212,6 +227,10 @@ EID:AddItemConditional("5.70.28", 358) -- Wizard pill + The Wiz
 EID:AddItemConditional(523, 477) -- Moving Box is a passive to Void
 EID:AddItemConditional({8, 113, 163, 167, 99, 100, 174, 95, 268, 67}, 322, "Mongo Babies") -- Mongo Baby + Copiable familiars
 if EID.isRepentance then EID:AddItemConditional(608, 322, "Mongo Babies") end
+EID:AddSynergyConditional(118, 149, "Brimstone Ipecac")
+EID:AddSynergyConditional(261, 222, "Proptosis Anti-Gravity")
+EID:AddSynergyConditional(330, 168, "Epic Fetus Soy Milk")
+EID:AddSynergyConditional(462, 52, "Eye of Belial Dr. Fetus")
 
 -- AB+ only misc conditionals
 if not EID.isRepentance then
@@ -231,13 +250,14 @@ if EID.isRepentance then
 	EID:AddItemConditional("5.350.172", 260)             -- Black Candle + Cursed Penny
 	EID:AddItemConditional(501, 416)                     -- Greed's Gullet + Deep Pockets
 	EID:AddSynergyConditional(245, { 2, 153, 169 }, nil, "20/20") -- 20/20 + The Inner Eye, Mutant Spider, Polyphemus
-	
 	EID:AddSynergyConditional(596, {"5.350.118", 704, 62, "5.350.60", 520, 411, 621, "5.350.58", "5.350.189", 657}, "Ice Tears") -- Uranus + On Kill Effects
 	EID:AddPlayerConditional(596, 27, "Ice Tears") -- Uranus + Tainted Samson
 	EID:AddSynergyConditional(495, 616, "Both Peppers") -- Ghost Pepper + Bird's Eye
 	EID:AddSynergyConditional(726, {408, 646, 293, 679, 275, 399, 680, 441, 49, 533}, "Hemoptysis") -- Hemoptysis + Brimstone effects
+	EID:AddOneSidedSynergyConditional({529, 532}, 118, "Brimstone Pop!") -- Brimstone + Pop!/Lachryphagy
+	EID:AddSynergyConditional(561, 168, "Epic Fetus Soy Milk") -- Epic Fetus + Almond Milk
 	
-	-- eye drops + passives like brimstone go here but there's a lot of them
+	-- eye drops + chargeable passives like brimstone could go here but there's a lot of them
 	EID:AddPlayerConditional(600, {2, 7, 13, 16}) -- Eye Drops + Cain, Azazel, Lilith, Forgotten
 	EID:AddSynergyConditional(152, {708, 444}, "Technology 2 One Eye") -- Technology 2 + Stapler, Lead Pencil
 end
@@ -258,6 +278,8 @@ Car Battery / BFFS whitelist for showing certain lines on the car/bffs pedestal,
 Implement a system where similar texts don't get shown multiple times in one apply conditionals function (hive minds/bffs)
 hallowed ground / midas touch + the poop / card against humanity / everything jar synergies
 Add Void synergy information for some active items (which?) (warn on things like mom's box you don't get double trinket power?)
+Damage multipliers that don't stack
+Clicker only changes Tainteds into other Tainteds?
 
 TODOS I'VE DECIDED NOT TODO RIGHT NOW:
 Incubus effects; a lot are AB+ only; annoying to test; plus Lilith has to be added for all of them too
