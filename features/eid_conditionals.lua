@@ -133,19 +133,22 @@ end
 ------ OVERRIDES / OVERRIDDEN BY -----
 -- huge TODO here, a lot of AB+ only ones too
 
---add azazel to epic fetus list
-EID:AddSynergyConditional({316, 379, 410, 440, 453, 461, }, 52, "Overridden", "Overrides") -- Dr. Fetus
-EID:AddSynergyConditional({316, 379, 410, 440, 453, 461, 462, }, 168, "Overridden", "Overrides") -- Epic Fetus
+-- TODO: add azazel to epic fetus list... and what about the brimstone list with him?
+-- and of course, Mom's Knife, Tech X, Spirit Sword...
+EID:AddSynergyConditional({52, 69, 104, 222, 224, 233, 316, 329, 369, 379, 397, 401, 410, 440, 444, 453, 459, 461, 462, 494, 524, 532, 533, 540, }, 168, "Overridden", "Overrides") -- Epic Fetus
+EID:AddSynergyConditional({69, 222, 316, 369, 379, 410, 440, 453, 459, 461, 494, 524, 532, 533, }, 52, "Overridden", "Overrides") -- Dr. Fetus
 EID:AddSynergyConditional({316, 379, 410, 440, 453, 461, 462, 524, 533, 540, }, 118, "Overridden", "Overrides") -- Brimstone
 if not EID.isRepentance then
-	EID:AddSynergyConditional({461}, 52, "Overridden", "Overrides") -- Dr. Fetus
-	EID:AddSynergyConditional({}, 168, "Overridden", "Overrides") -- Epic Fetus
+	EID:AddSynergyConditional({374, 429, }, 168, "Overridden", "Overrides") -- Epic Fetus
+	EID:AddSynergyConditional({374, 401, 429, 444, 461}, 52, "Overridden", "Overrides") -- Dr. Fetus
 	EID:AddSynergyConditional({104, 224, 369, 374, 394, 401, 429, 444, 459, 463, 494, 532, }, 118, "Overridden", "Overrides") -- Brimstone
 end
 if EID.isRepentance then
-	EID:AddSynergyConditional({}, 52, "Overridden", "Overrides") -- Dr. Fetus
-	EID:AddSynergyConditional({69, 678}, 168, "Overridden", "Overrides") -- Epic Fetus
+	EID:AddSynergyConditional({168}, 579, "Overridden", "Overrides") -- Spirit Sword
+	EID:AddSynergyConditional({553, 572, 678, "5.350.144"}, 168, "Overridden", "Overrides") -- Epic Fetus
+	EID:AddSynergyConditional({68, 118, 572, 597, 637, "5.350.144"}, 52, "Overridden", "Overrides") -- Dr. Fetus
 	EID:AddSynergyConditional({597}, 118, "Overridden", "Overrides") -- Brimstone
+	EID:AddSynergyConditional({69, 229, 316, 329, 397, 410, 533, 572, 597, }, 678, "Overridden", "Overrides") -- C Section
 	
 	EID:AddSynergyConditional(330, 561, "Overridden", "Overrides") -- Soy Milk + Almond Milk
 end
@@ -227,6 +230,7 @@ if EID.isRepentance then EID:AddItemConditional(608, 322, "Mongo Babies") end
 EID:AddSynergyConditional(118, 149, "Brimstone Ipecac")
 EID:AddSynergyConditional(261, 222, "Proptosis Anti-Gravity")
 EID:AddSynergyConditional(330, 168, "Epic Fetus Soy Milk")
+EID:AddSynergyConditional(462, 52, "Eye of Belial Dr. Fetus")
 
 -- AB+ only misc conditionals
 if not EID.isRepentance then
