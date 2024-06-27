@@ -1411,6 +1411,7 @@ local repConditions = {
 	["Brimstone Proptosis"] = "Beams deal 6x damage at point blank range, decreasing with distance",
 	["Brimstone Ipecac"] = "The laser gets +2 damage and explodes on enemies and obstacles",
 	["Brimstone Pop!"] = "Shorter beam that shoots {1} tears at the end",
+	["Eye of Belial Dr. Fetus"] = "Bombs pierce, doing 2.5x damage, but don't home or do additional blast damage",
 	
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
