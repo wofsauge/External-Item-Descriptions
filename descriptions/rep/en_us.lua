@@ -1100,7 +1100,7 @@ EID.descriptions[languageCode].horsepills={
 	{"41", "I'm Drowsy...", "{{Slow}} Slows Isaac and all enemies in the room"}, -- I'm Drowsy...
 	{"42", "I'm Excited!!", "Speeds up Isaac and all enemies in the room#Triggers again after 30 and 60 seconds"}, --I'm Excited!!
 	{"43", "Gulp!", "Consumes Isaac's trinket and grants its effects permanently"}, -- Gulp!
-	{"44", "Horf!", "{{Collectible149}} Shoots a cluster of ipecac tears"}, -- Horf!
+	{"44", "Horf!", "{{Collectible149}} Shoots a cluster of Ipecac tears"}, -- Horf!
 	{"45", "Feels like I'm walking on sunshine!", "{{Timer}} Receive for 6.5 seconds:#Invincibility#Isaac can't shoot but deals 40 contact damage per second#{{HalfHeart}} Eating 2 enemies heals half a heart#{{Fear}} Fears all enemies in the room"}, -- Feels like I'm walking on sunshine!
 	{"46", "Vurp!", "Spawns the last pill Isaac used as a horse pill"}, -- Vurp!
 	{"47", "Shot speed Down", "↓ {{Shotspeed}} -0.3 Shot speed"}, -- Shot speed Down
@@ -1407,6 +1407,10 @@ local repConditions = {
 	["4.5 Volt Timed"] = "No effect on timed recharges", -- 4.5 Volt + Timed Recharges
 	["4.5 Volt Multiple"] = "Secondary active items only gain charge if the primary active is fully charged", -- 4.5 Volt + Schoolbag/Pocket Actives
 	["Bulb Zero"] = "Actives with 0 max charges don't count", -- Vibrant/Dim Bulb + zero charge actives
+	
+	["Brimstone Proptosis"] = "Beams deal 6x damage at point blank range, decreasing with distance",
+	["Brimstone Ipecac"] = "The laser gets +2 damage and explodes on enemies and obstacles",
+	["Brimstone Pop!"] = "Shorter beam that shoots {1} tears at the end",
 	
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
