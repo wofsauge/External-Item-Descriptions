@@ -268,7 +268,7 @@ local repCollectibles={
 	[576] = {"576", "Dirty Mind", "All Dip (small poop) enemies are friendly#Destroying poop spawns 1-4 Dips#Dip type depends on the poop type#Rocks may be replaced with poop"}, -- Dirty Mind
 	[577] = {"577", "Damocles", "{{Warning}} SINGLE USE {{Warning}}#Hangs a sword above Isaac's head, which doubles all pedestal items#Does not double items that have a price or come from chests#{{Warning}} After taking any damage, the sword has an extremely low chance to instantly kill Isaac every frame#Invincibility effects can prevent the death"}, -- Damocles
 	[578] = {"578", "Free Lemonade", "Creates a large pool of yellow creep#The creep deals 24 damage per second"}, -- Free Lemonade
-	[579] = {"579", "Spirit Sword", "Instead of shooting tears, Isaac swings a sword#{{Damage}} The sword deals 3x Isaac's damage +3.5 and swings as fast as the fire button is tapped#{{Chargeable}} Charging does a spin attack + projectile shot#Shoots projectiles with normal swings at full health#{{Tears}} Tears effect the charge time and how often a projectile is shot at full health"}, -- Spirit Sword
+	[579] = {"579", "Spirit Sword", "Instead of shooting tears, swing a sword#{{Damage}} The sword deals 3x Isaac's damage +3.5 and swings as fast as the fire button is tapped#{{Chargeable}} Charging does a spin attack + projectile shot#Shoots projectiles with swings at full health"}, -- Spirit Sword
 	[580] = {"580", "Red Key", "Creates a red room adjacent to a regular room, indicated by a door outline#Red Rooms can be special rooms#{{ErrorRoom}} Entering a room outside the 13x13 floor map teleports Isaac to the I AM ERROR room"}, -- Red Key
 	[581] = {"581", "Psy Fly", "Chases and deflects enemy projectiles#Deals 15 contact damage per second"}, -- Psy Fly
 	[582] = {"582", "Wavy Cap", "↑ {{Tears}} +0.75 Fire rate#↓ {{Speed}} -0.03 Speed#Distorts the screen#Takes longer to recharge each use#Leaving or clearing rooms reduces the effects"}, -- Wavy Cap
@@ -1412,6 +1412,12 @@ local repConditions = {
 	["Brimstone Ipecac"] = "The laser gets +2 damage and explodes on enemies and obstacles",
 	["Brimstone Pop!"] = "Shorter beam that shoots {1} tears at the end",
 	["Eye of Belial Dr. Fetus"] = "Bombs pierce, doing 2.5x damage, but don't home or do additional blast damage",
+	["Spirit Sword C Section"] = "{1} has priority#Fetuses hold swords and do spin attacks",
+	["Spirit Sword Mom's Knife"] = "{1} has priority#The spin attack throws the sword forward",
+	["Spirit Sword Technology"] = "The sword becomes a lightsaber that can reflect enemy shots",
+	["Ludovico Ipecac"] = "The tear gets +2 damage but doesn't explode or poison",
+	["Technology Ipecac"] = "The laser gets +2 damage and explodes on targets",
+	["Eye of the Occult Beam"] = "Isaac automatically shoots with a crosshair that alters the beam's path",
 	
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
