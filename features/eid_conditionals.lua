@@ -131,42 +131,43 @@ end
 
 
 ------ OVERRIDES / OVERRIDDEN BY -----
--- huge TODO here, a lot of AB+ only ones too
-
--- TODO: add azazel to epic fetus list... and what about the brimstone list with him?
--- and of course, Mom's Knife, Tech X, Spirit Sword...
+-- TODO: Check Azazel and Forgotten's effects with these items, especially Brimstone overrides
+-- Monstro's Lung might be worthy of this list too?
+-- Is the layer order correct here? Would I be better off making a new function for adding these overrides that has its own pre-defined layer numbers for the problematic items, to clean up this mess some?
 EID:AddSynergyConditional({52, 69, 104, 132, 222, 224, 233, 316, 329, 369, 379, 397, 401, 410, 440, 444, 453, 459, 461, 462, 494, 524, 532, 533, 540, }, 168, "Overridden", "Overrides", {layer = 900, checkLayers = true}) -- Epic Fetus
-EID:AddOneSidedSynergyConditional(168, 118, "Epic Fetus Brimstone", {layer = 900, checkLayers = true}) -- Epic Fetus + Brimstone
-EID:AddOneSidedSynergyConditional(168, 114, "Epic Fetus Mom's Knife", {layer = 900, checkLayers = true}) -- Epic Fetus + Mom's Knife
-EID:AddOneSidedSynergyConditional(330, 168, "Epic Fetus Soy Milk", {layer = 900, checkLayers = true})
+EID:AddOneSidedSynergyConditional(168, 118, "Epic Fetus Brimstone", {layer = 900, checkLayers = true})
+EID:AddOneSidedSynergyConditional(168, 114, "Epic Fetus Mom's Knife", {layer = 900, checkLayers = true})
+EID:AddOneSidedSynergyConditional(168, 330, "Epic Fetus Soy Milk", {layer = 900, checkLayers = true})
 
 EID:AddSynergyConditional({69, 132, 222, 316, 369, 379, 410, 440, 453, 459, 461, 494, 524, 532, 533, }, 52, "Overridden", "Overrides", {layer = 800, checkLayers = true}) -- Dr. Fetus
 EID:AddSynergyConditional(462, 52, "Eye of Belial Dr. Fetus", nil, {layer = 800, checkLayers = true})
 
+EID:AddSynergyConditional({5, 69, 132, 221, 224, 316, 379, 401, 410, 459, 461, 462, 529, 532, 533, }, 114, "Overridden", "Overrides", {layer = 700, checkLayers = true}) -- Mom's Knife
+EID:AddOneSidedSynergyConditional(114, 118, "Brimstone Mom's Knife", {layer = 700, checkLayers = true})
+
 EID:AddSynergyConditional({316, 379, 410, 440, 453, 461, 462, 524, 533, 540, }, 118, "Overridden", "Overrides", {layer = 666, checkLayers = true}) -- Brimstone
 EID:AddSynergyConditional(118, 149, "Brimstone Ipecac", nil, {layer = 666, checkLayers = true})
+
+EID:AddSynergyConditional({5, 69, 104, 233, 316, 329, 379, 397, 410, 453, 461, 524, 529, 532, 533, 540, "5.350.26"}, 395, "Overridden", "Overrides", {layer = 600, checkLayers = true}) -- Tech X
+EID:AddSynergyConditional(149, 395, "Technology Ipecac", nil, {layer = 600, checkLayers = true}) -- Tech X + Ipecac
+
+EID:AddSynergyConditional({410, 462, 524, 533, 540}, 68, "Overridden", "Overrides", {layer = 400, checkLayers = true}) -- Technology
+EID:AddSynergyConditional(149, 68, "Technology Ipecac", nil, {layer = 400, checkLayers = true}) -- Technology + Ipecac
 
 EID:AddSynergyConditional({69, 222, 224, 316, 394, 397, 410, 532}, 329, "Overridden", "Overrides", {layer = 300, checkLayers = true}) -- Ludovico
 EID:AddSynergyConditional(149, 329, "Ludovico Ipecac", nil, {layer = 300, checkLayers = true}) -- Ludovico + Ipecac
 
-EID:AddSynergyConditional({5, 69, 104, 233, 316, 329, 379, 397, 410, 453, 461, 524, 529, 532, 533, 540, "5.350.26"}, 395, "Overridden", "Overrides", {layer = 600, checkLayers = true}) -- Tech X
-EID:AddSynergyConditional(149, 395, "Technology Ipecac", nil, {layer = 600, checkLayers = true}) -- Tech X + Ipecac
-EID:AddSynergyConditional({5, 69, 132, 221, 224, 316, 379, 401, 410, 459, 461, 462, 529, 532, 533, }, 114, "Overridden", "Overrides", {layer = 700, checkLayers = true}) -- Mom's Knife
-EID:AddSynergyConditional({410, 462, 524, 533, 540}, 68, "Overridden", "Overrides", {layer = 400, checkLayers = true}) -- Technology
-EID:AddSynergyConditional(149, 68, "Technology Ipecac", nil, {layer = 400, checkLayers = true}) -- Technology + Ipecac
-
--- need azazel, forgotten checks
-
 if not EID.isRepentance then
 	EID:AddSynergyConditional({374, 429, }, 168, "Overridden", "Overrides", {layer = 900, checkLayers = true}) -- Epic Fetus
 	EID:AddSynergyConditional({374, 401, 429, 444, 461}, 52, "Overridden", "Overrides", {layer = 800, checkLayers = true}) -- Dr. Fetus
+	EID:AddSynergyConditional({104, 150, 374, 394, 443, 453, 463, 494, 496, 503, }, 114, "Overridden", "Overrides", {layer = 700, checkLayers = true}) -- Mom's Knife
 	EID:AddSynergyConditional({104, 224, 369, 374, 394, 401, 429, 444, 459, 463, 494, 532, }, 118, "Overridden", "Overrides", {layer = 666, checkLayers = true}) -- Brimstone
 	EID:AddSynergyConditional({55, 87, 150, 221, 374, 394, 401, 429, 443, 444, 463, 494, 496, 503, "5.350.96"}, 395, "Overridden", "Overrides", {layer = 600, checkLayers = true}) -- Tech X
-	EID:AddSynergyConditional({104, 150, 374, 394, 443, 453, 463, 494, 496, 503, }, 114, "Overridden", "Overrides", {layer = 700, checkLayers = true}) -- Mom's Knife
 	EID:AddSynergyConditional({69, 104, 222, 224, 245, 316, 369, 374, 394, 429, 494, }, 68, "Overridden", "Overrides", {layer = 400, checkLayers = true}) -- Technology
 	
 	EID:AddSynergyConditional({52, 68, 114, 118, 168, 329, 395}, 69, "Chocolate Milk Overrides", nil, {uniqueID = "choccy"}) -- Chocolate Milk providing fire rate (the override/overridden line happens too)
 end
+
 if EID.isRepentance then
 	EID:AddOneSidedSynergyConditional(678, 579, "Spirit Sword C Section", {layer = 1001, checkLayers = true}) -- C Section + Spirit Sword
 	EID:AddSynergyConditional({52, 69, 118, 168, 229, 316, 329, 379, 394, 395, 397, 440, 556, 597, }, 579, "Overridden", "Overrides", {layer = 1000, checkLayers = true}) -- Spirit Sword
@@ -177,11 +178,11 @@ if EID.isRepentance then
 	EID:AddOneSidedSynergyConditional(561, 168, "Epic Fetus Soy Milk", {layer = 900, checkLayers = true}) -- Epic Fetus + Almond Milk
 	EID:AddSynergyConditional({69, 229, 316, 329, 397, 410, 533, 572, 597, }, 678, "Overridden", "Overrides", {layer = 850, checkLayers = true}) -- C Section
 	EID:AddSynergyConditional({68, 118, 572, 597, 637, "5.350.144"}, 52, "Overridden", "Overrides", {layer = 800, checkLayers = true}) -- Dr. Fetus
+	EID:AddSynergyConditional({52, 572, 597}, 114, "Overridden", "Overrides", {layer = 700, checkLayers = true}) -- Mom's Knife
 	EID:AddSynergyConditional({597}, 118, "Overridden", "Overrides", {layer = 666, checkLayers = true}) -- Brimstone
 	EID:AddOneSidedSynergyConditional({529, 532}, 118, "Brimstone Pop!", {layer = 666, checkLayers = true}) -- Brimstone + Pop!/Lachryphagy
 	EID:AddSynergyConditional(572, 118, "Eye of the Occult Beam", nil, {layer = 666}) -- Brimstone + Eye of the Occult
 	EID:AddSynergyConditional({572, 597, "5.350.144"}, 395, "Overridden", "Overrides", {layer = 600, checkLayers = true}) -- Tech X
-	EID:AddSynergyConditional({52, 572, 597}, 114, "Overridden", "Overrides", {layer = 700, checkLayers = true}) -- Mom's Knife
 	EID:AddSynergyConditional({597}, 68, "Overridden", "Overrides", {layer = 400, checkLayers = true}) -- Technology
 	EID:AddSynergyConditional(572, 68, "Eye of the Occult Beam", nil, {layer = 400}) -- Technology + Eye of the Occult
 	
