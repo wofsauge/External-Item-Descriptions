@@ -78,7 +78,7 @@ function EID:addBFFSCondition(ID, text, numberToDouble, newNumber, language)
 	if type(ID) ~= "string" then ID = "5.100." .. ID
 	else
 		-- We don't have to add a new condition for collectibles, because they're checked with a "5.100" condition
-		EID:AddItemConditional(ID, 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false})
+		EID:AddItemConditional(ID, 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false, uniqueID = "BFFS"})
 	end
 	EID.descriptions[language].BFFSSynergies[ID] = text
 end
@@ -97,7 +97,7 @@ function EID:addHiveMindCondition(ID, text, numberToDouble, newNumber, language,
 	if type(ID) ~= "string" then ID = "5.100." .. ID
 	else
 		-- We don't have to add a new condition for collectibles, because they're checked with a "5.100" condition
-		EID:AddItemConditional(ID, 248, EID.CheckForHiveMind, {locTable = "BFFSSynergies", replaceColor = "BlinkBlue", noFallback = false})
+		EID:AddItemConditional(ID, 248, EID.CheckForHiveMind, {locTable = "BFFSSynergies", replaceColor = "BlinkBlue", noFallback = false, uniqueID = "BFFS"})
 	end
 	EID.descriptions[language].BFFSSynergies[ID] = text
 end
@@ -129,18 +129,21 @@ end
 	bulletpoint: Appended lines will begin with this bulletpoint
 	noFallback: Don't fallback to English if this isn't localized; by default, conditionals don't fallback, to avoid printing English text in unupdated languages
 	usePedestalName: If true, display the pedestal item's name in place of {1}
-	
-	Argument 5 (very optional): The position in the table to insert this new condition, in case mods want to insert modifiers before our base ones
+	layer: A number used in determining the order that conditionals should be checked in, default -1
+	checkLayers: If true, don't print this condition if a higher layer condition was applied already
+	uniqueID: Only one conditional with the given unique ID will be printed
 ]]
 local function CopyTable(t1)
 	local newTable = {}; for k, v in pairs(t1) do newTable[k] = v end
 	return newTable
 end
-function EID:AddConditional(IDs, funcText, modText, extraTable, insertPoint)
+-- Every single add conditional function ends up calling this function eventually. This is THE place to define variables every condition MUST have.
+function EID:AddConditional(IDs, funcText, modText, extraTable)
 	if type(IDs) ~= "table" then IDs = { IDs } end
 	if modText == "" then modText = nil end
 	extraTable = extraTable or {}
 	if extraTable.noFallback == nil then extraTable.noFallback = true end
+	extraTable.layer = extraTable.layer or -1
 	for _, id in ipairs(IDs) do
 		if type(id) ~= "string" then id = "5.100." .. id end
 		EID.DescriptionConditions[id] = EID.DescriptionConditions[id] or {}
@@ -151,12 +154,7 @@ function EID:AddConditional(IDs, funcText, modText, extraTable, insertPoint)
 		if newTable.usePedestalName then
 			newTable.variableText = "{{NameOnly" .. id .. "}}"
 		end
-		
-		if insertPoint then
-			table.insert(EID.DescriptionConditions[id], insertPoint, newTable)
-		else
-			table.insert(EID.DescriptionConditions[id], newTable)
-		end
+		table.insert(EID.DescriptionConditions[id], newTable)
 	end
 end
 
@@ -425,88 +423,97 @@ function EID:applyConditionals(descObj)
 	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 	local typeVar = descObj.ObjType.."."..descObj.ObjVariant -- for general conditions (Tarot Cloth, Book of Virtues)
 	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype -- for specific conditions
+	local highestLayer = -999
+	local printedDescs = {}
 	
 	-- Combine specific+generic conditions into one table (in that order)
 	local conds = {}
 	if EID.DescriptionConditions[typeVarSub] then TableConcat(conds, EID.DescriptionConditions[typeVarSub]) end
 	if EID.DescriptionConditions[typeVar] then TableConcat(conds, EID.DescriptionConditions[typeVar]) end
+	table.sort(conds, function(a, b) return a.layer > b.layer end)
 	-- Check every condition we need to check for this item
 	for _, cond in ipairs(conds) do
-		-- Search for the localization string; "S" (for generals) or "T.V.S" or "T.V.S (Modifier)" or "Modifier"
-		local locTable = cond.locTable or "ConditionalDescs"
-		local text = nil
-		local modifierText = type(cond.modifierText) == "function" and cond.modifierText(EID, descObj) or cond.modifierText
-		
-		-- Find our string in the base localization table
-		if cond.noTable then
-			text = EID:getDescriptionEntry(modifierText, nil, cond.noFallback)
-		-- Find our string as either "Type.Var.Sub (Mod Text)" or "Mod Text"
-		elseif modifierText then
-			text = EID:getDescriptionEntry(locTable, typeVarSub .. " (" .. modifierText .. ")", cond.noFallback)
-			if text == nil then text = EID:getDescriptionEntry(locTable, modifierText, cond.noFallback) end
-		-- Find our string as either "Type.Var.Sub" or just the Subtype
-		else
-			text = EID:getDescriptionEntry(locTable, typeVarSub, cond.noFallback)
-			if text == nil then text = EID:getDescriptionEntry(locTable, descObj.ObjSubType, cond.noFallback) end
-		end
+		if not cond.checkLayers or highestLayer <= cond.layer then
+			local result = cond.func(EID, descObj)
+			if result then
+				-- Search for the localization string; "S" (for generals) or "T.V.S" or "T.V.S (Modifier)" or "Modifier"
+				local locTable = cond.locTable or "ConditionalDescs"
+				local text = nil
+				local modifierText = type(cond.modifierText) == "function" and cond.modifierText(EID, descObj) or cond.modifierText
+				
+				-- Find our string in the base localization table
+				if cond.noTable then
+					text = EID:getDescriptionEntry(modifierText, nil, cond.noFallback)
+				-- Find our string as either "Type.Var.Sub (Mod Text)" or "Mod Text"
+				elseif modifierText then
+					text = EID:getDescriptionEntry(locTable, typeVarSub .. " (" .. modifierText .. ")", cond.noFallback)
+					if text == nil then text = EID:getDescriptionEntry(locTable, modifierText, cond.noFallback) end
+				-- Find our string as either "Type.Var.Sub" or just the Subtype
+				else
+					text = EID:getDescriptionEntry(locTable, typeVarSub, cond.noFallback)
+					if text == nil then text = EID:getDescriptionEntry(locTable, descObj.ObjSubType, cond.noFallback) end
+				end
 
-		-- If we find the localization string for this condition, and it passes the test, modify the description text
-		local result = cond.func(EID, descObj)
-		if text ~= nil and result then
-			local variableText, bulletpoint
-			-- If the condition returned a value, use that value
-			if result ~= true then
-				-- For the time being, we assume the result was a collectible number (will support more soon)
-				variableText = "{{NameOnlyC"..result.."}}"
-				bulletpoint = "Collectible"..result
-			else
-				variableText = type(cond.variableText) == "function" and cond.variableText(EID, descObj) or cond.variableText
-				bulletpoint = cond.bulletpoint
-			end
-
-			-- String = append
-			if type(text) == "string" then
-				text = EID:ReplaceVariableStr(text, 1, variableText)
-				local iconStr = "#"
-				if bulletpoint then iconStr = iconStr .. "{{" .. bulletpoint .. "}} " end
-				if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end
-				EID:appendToDescription(descObj, iconStr .. text:gsub("#", iconStr))
-
-				-- Table with 1 entry = replace
-			elseif #text == 1 then
-				descObj.Description = EID:ReplaceVariableStr(text[1], 1, variableText)
-
-				-- Table with 2+ entries = find and replace pairs
-				-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
-				-- If there's an odd number of entries, the last one is appended
-			else
-				local pos = 1
-				while pos <= #text do
-					local toFind = text[pos]
-					if text[pos + 1] then
-						local replaceWith = EID:ReplaceVariableStr(text[pos + 1], 1, variableText)
-						if cond.replaceColor then replaceWith = "{{" .. cond.replaceColor .. "}}" .. replaceWith .. "{{CR}}" end
-						--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
-						if (type(toFind) == "number") then
-							local count = 0
-							descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
-								if (s == tostring(toFind) and count == 0) then
-									count = count + 1
-									return replaceWith
-								end
-							end)
-							-- Basic find+replace for non-numbers
-						else
-							descObj.Description = replace(descObj.Description, tostring(toFind), replaceWith, 1)
-						end
+				-- If we find the localization string for this condition, it passed the condition's test, and the layer is ok, modify the description text
+				if text ~= nil and (not cond.uniqueID or printedDescs[cond.uniqueID] == nil) then
+					if cond.layer > highestLayer then highestLayer = cond.layer end
+					if cond.uniqueID then printedDescs[cond.uniqueID] = true end
+					local variableText, bulletpoint
+					-- If the condition returned a value, use that value
+					if result ~= true then
+						-- For the time being, we assume the result was a collectible number (will support more soon)
+						variableText = "{{NameOnlyC"..result.."}}"
+						bulletpoint = "Collectible"..result
 					else
-						toFind = EID:ReplaceVariableStr(toFind, 1, variableText)
+						variableText = type(cond.variableText) == "function" and cond.variableText(EID, descObj) or cond.variableText
+						bulletpoint = cond.bulletpoint
+					end
+
+					-- String = append
+					if type(text) == "string" then
+						text = EID:ReplaceVariableStr(text, 1, variableText)
 						local iconStr = "#"
 						if bulletpoint then iconStr = iconStr .. "{{" .. bulletpoint .. "}} " end
 						if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end
-						EID:appendToDescription(descObj, iconStr .. toFind:gsub("#", iconStr))
+						EID:appendToDescription(descObj, iconStr .. text:gsub("#", iconStr))
+
+						-- Table with 1 entry = replace
+					elseif #text == 1 then
+						descObj.Description = EID:ReplaceVariableStr(text[1], 1, variableText)
+
+						-- Table with 2+ entries = find and replace pairs
+						-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
+						-- If there's an odd number of entries, the last one is appended
+					else
+						local pos = 1
+						while pos <= #text do
+							local toFind = text[pos]
+							if text[pos + 1] then
+								local replaceWith = EID:ReplaceVariableStr(text[pos + 1], 1, variableText)
+								if cond.replaceColor then replaceWith = "{{" .. cond.replaceColor .. "}}" .. replaceWith .. "{{CR}}" end
+								--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
+								if (type(toFind) == "number") then
+									local count = 0
+									descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
+										if (s == tostring(toFind) and count == 0) then
+											count = count + 1
+											return replaceWith
+										end
+									end)
+									-- Basic find+replace for non-numbers
+								else
+									descObj.Description = replace(descObj.Description, tostring(toFind), replaceWith, 1)
+								end
+							else
+								toFind = EID:ReplaceVariableStr(toFind, 1, variableText)
+								local iconStr = "#"
+								if bulletpoint then iconStr = iconStr .. "{{" .. bulletpoint .. "}} " end
+								if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end
+								EID:appendToDescription(descObj, iconStr .. toFind:gsub("#", iconStr))
+							end
+							pos = pos + 2
+						end
 					end
-					pos = pos + 2
 				end
 			end
 		end
