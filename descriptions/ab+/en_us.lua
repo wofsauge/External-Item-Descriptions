@@ -1265,6 +1265,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Eye of Belial Dr. Fetus"] = "Bombs pierce, but don't home or do additional damage",
 	["Epic Fetus Brimstone"] = "{1} has priority#Rockets shoot out 10 beams",
 	["Epic Fetus Mom's Knife"] = "{1} has priority#Rockets shoot out 10 knives",
+	["Brimstone Mom's Knife"] = "{1} has priority#A barrage of knives shoot out based on charge amount",
 	["Ludovico Ipecac"] = "The tear gets +4 damage but doesn't explode or poison",
 	["Technology Ipecac"] = "The laser gets +4 damage and poisons targets",
 	["Chocolate Milk Overrides"] = "↑ {{Tears}} x1.25 Tears multiplier",
