@@ -298,8 +298,7 @@ end
 --[[
 BUURAZU'S TODO STUFF:
 
-Overridden / Overrides (Brimstone, Mom's Knife, Epic Fetus stuff)
-Co-op benefit items (not sure what they are tbh)
+Overridden / Overrides (Brimstone, Mom's Knife, Epic Fetus stuff) (still need some)
 Spoiler achievement descriptions (plus a config setting possibly, to always show the spoilers) (Chaos Card and Plan C?)
 BFFs / Hive Mind + Tainted Apollyon, Tainted Eve, Tainted Lilith; melody trinket + Tainted Eve/Lilith; these are insane synergies that deserve attention
 Maybe a find/replace pair for some Keeper descriptions that talk about Red hearts but work for him, Red -> Coin or Red/Coin; Could be good for Dead Cat. or just leave it be
@@ -308,11 +307,12 @@ Are Blank Card + Placebo + Clear Rune ready to get moved to here now that I have
 Jacob's Ladder synergies with other battery items (I didn't even know about this)
 Bean synergies with ghost pepper/bird's eye
 Car Battery / BFFS whitelist for showing certain lines on the car/bffs pedestal, not just "No effect"
-Implement a system where similar texts don't get shown multiple times in one apply conditionals function (hive minds/bffs)
 hallowed ground / midas touch + the poop / card against humanity / everything jar synergies
 Add Void synergy information for some active items (which?) (warn on things like mom's box you don't get double trinket power?)
 Damage multipliers that don't stack
 Clicker only changes Tainteds into other Tainteds?
+Change The Stars type cards to append "random room if no treasure room" when on a later game floor
+Change The Emperor to say random boss room when in Void
 
 TODOS I'VE DECIDED NOT TODO RIGHT NOW:
 Incubus effects; a lot are AB+ only; annoying to test; plus Lilith has to be added for all of them too
@@ -326,6 +326,8 @@ Character info tab in item reminder
 Make Glitched Crown type pedestals work better in EID (pause on one item and press tab to switch to the next item)
 Don't show Void stat ups depending on what Void has absorbed (abyss absorbed = no void stat ups etc, reroll item = might become actives)
 Wild Card vurp-like desc modifier
+The Stars? preview using item reminder's passive list (be weary of character's starting items) (co-op friendly modifier)
+Check if Tainted ???'s desc offset is maybe a little too much; test and make sure desc offsets don't trigger in co-op erroneously like mag's birthright, only EID.player matters
 
 MAYBE SOME DAYS:
 Bag of Crafting "sort by recipe nearest completion in bag" option
