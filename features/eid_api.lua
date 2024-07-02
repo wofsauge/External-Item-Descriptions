@@ -1375,6 +1375,24 @@ function EID:GetMaxCollectibleID()
 	return id
 end
 
+local maxTrinketID = nil
+function EID:GetMaxTrinketID()
+	if maxTrinketID then
+		return maxTrinketID
+	end
+	local id = TrinketType.NUM_TRINKETS-1
+	local step = 16
+	while step > 0 do
+		if EID.itemConfig:GetTrinket(id+step) ~= nil then
+			id = id + step
+		else
+			step = step // 2
+		end
+	end
+	maxTrinketID = id
+	return id
+end
+
 function EID:DetectModdedItems()
 	if EID:GetMaxCollectibleID() > EID.XMLMaxItemID then
 		return true
@@ -1982,7 +2000,8 @@ function EID:evaluateQueuedItems()
 					end
 					-- Put non-active item pickups into the recent item list, for printing in the Item Reminder
 					table.insert(EID.RecentlyTouchedItems[i], player.QueuedItem.Item.ID)
-					EID.ItemReminderSelectedItem = 0
+					-- reset the Passives category's selected item
+					EID.ItemReminderSelectedItems[#EID.ItemReminderCategories - 1] = 0
 				end
 			end
 		end
@@ -2214,6 +2233,55 @@ function EID:UpdateAllPlayerPassiveItems()
 		end
 	end
 	return listUpdatedForPlayers
+end
+
+-- This table holds each player's trinkets, starting with held trinkets, then gulped trinkets in order of trinket ID
+EID.TrinketsPerPlayer = {}
+function EID:UpdateAllPlayerTrinkets()
+	for i = 1, #EID.coopAllPlayers do
+		local player = EID.coopAllPlayers[i]
+		local playerNum = EID:getPlayerID(player)
+
+		if player == nil then return end
+		
+		EID.TrinketsPerPlayer[playerNum] = {}
+		local heldTrinkets = {}
+		for t = 0, 1 do
+			local heldTrinket = player:GetTrinket(t) & 32767
+			if heldTrinket > 0 then
+				table.insert(EID.TrinketsPerPlayer[playerNum], heldTrinket)
+				heldTrinkets[heldTrinket] = true
+			end
+		end
+		for i = 1, EID:GetMaxTrinketID() do
+			-- TODO: track Smelter/Gulps manually, because this includes temporarily granted trinkets
+			local hasTrinket = player:HasTrinket(i)
+			if hasTrinket and not heldTrinkets[i] then
+				table.insert(EID.TrinketsPerPlayer[playerNum], i)
+			end
+		end
+	end
+end
+
+EID.WispsPerPlayer = {}
+-- This is automatically called shortly after main.lua sees a Lemegeton get used, and when the Item Reminder is opened
+function EID:UpdateAllPlayerLemegetonWisps()
+	EID.WispsPerPlayer = {}
+	
+	for _, wisp in ipairs(Isaac.FindByType(3, 237, -1, true, false)) do
+		local wispPlayer = wisp:ToFamiliar() and wisp:ToFamiliar().Player
+		if wispPlayer then
+			local playerNum = EID:getPlayerID(wispPlayer)
+			EID.WispsPerPlayer[playerNum] = EID.WispsPerPlayer[playerNum] or {}
+			table.insert(EID.WispsPerPlayer[playerNum], wisp)
+		end
+	end
+	-- Sort wisps by age (newest first), and leave just the IDs
+	for playerNum,wisps in pairs(EID.WispsPerPlayer) do
+		table.sort(wisps, function(a, b) return a.FrameCount < b.FrameCount end)
+		for i,v in ipairs(wisps) do wisps[i] = v.SubType end
+	end
+	
 end
 
 -- Replaces Variable placeholders in string with a given value
