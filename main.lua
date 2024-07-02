@@ -51,6 +51,7 @@ EID.holdTabPlayer = 0
 EID.holdTabCounter = 0
 EID.DInfinityState = {}
 local forgottenDropTimer = 0
+EID.roomCount = 0
 
 EID.GameUpdateCount = 0
 EID.GameRenderCount = 0
@@ -776,6 +777,7 @@ end
 
 function EID:onNewRoom()
 	EID:CheckCurrentRoomGridEntities()
+	EID.roomCount = EID.roomCount + 1
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 
@@ -1625,6 +1627,7 @@ local function OnGameStartGeneral(_,isSave)
 		EID.DInfinityState = {}
 	end
 	EID.ShouldCheckWisp = true
+	EID.roomCount = 0
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
