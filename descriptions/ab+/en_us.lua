@@ -1023,19 +1023,19 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[2] = {"Cain", ""},
 	[3] = {"Judas", ""},
 	[4] = {"???", "Can't have Red Hearts"},
-	[5] = {"Eve", "Eve's Whore of Babylon triggers at 1 Red Heart or less"}, --this could just be desc modifier?
+	[5] = {"Eve", ""},
 	[6] = {"Samson", ""},
-	[7] = {"Azazel", "Flight#Short range Brimstone instead of tears"},
+	[7] = {"Azazel", "Flight#Short range Brimstone instead of tears#Can gain Red Hearts"},
 	[8] = {"Lazarus", "When you die, resurrect as Lazarus Risen with 1 Red Heart container"},
 	[9] = {"Eden", "Start with random stats and items each run"},
 	[10] = {"The Lost", "Flight#Spectral tears#No health#One devil deal per room can be taken for free"},
 	[11] = {"Lazarus Risen", "Increased stats and x1.2 damage multiplier"},
-	[12] = {"Dark Judas", "x2 Damage multiplier"},
-	[13] = {"Lilith", "Cannot shoot tears"},
+	[12] = {"Dark Judas", "x2 Damage multiplier#Can gain Red Hearts#Counts as Judas for completion marks"},
+	[13] = {"Lilith", "Cannot shoot tears#Her Incubus shoots for her"},
 	[14] = {"Keeper", "Heal by picking up coins#Heart pickups are turned into Blue Flies"},
 	[15] = {"Apollyon", ""},
-	[16] = {"The Forgotten", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
-	[17] = {"The Forgotten Soul", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
+	[16] = {"The Forgotten", "You have a melee attack which can be charged and thrown#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
+	[17] = {"The Forgotten Soul", "You have a melee attack which can be charged and thrown#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
 }
 
 ---------- Sacrifice Room ----------
@@ -1113,12 +1113,13 @@ EID.descriptions[languageCode].ItemReminder = {
 	InventoryEmpty = "(Player has no items)",
 	CategoryNames = {
 		Overview = "Inventory Overview",
+		Wisps = "Lemegeton Wisps",
 		Special = "Special",
-		Actives = "Held active items",
-		Pockets = "Held pocket items",
+		Actives = "Held Active Items",
+		Pockets = "Held Pocket Items",
 		Trinkets = "Held Trinkets",
-		Passives = "Held passive items",
-		Character = "Character Info"
+		Passives = "Held Passive Items",
+		Character = "Character Info",
 	}
 }
 
@@ -1162,7 +1163,7 @@ EID.descriptions[languageCode].PickupNames = {
 -- Conditional descriptions - DO NOT TRANSLATE THE FIRST PART IN ["BRACKETS"]
 -- Strings will be appended to the original description
 -- Tables with one entry will completely replace the original description
--- Tables with two or more entries are find-replace pairs
+-- Tables with two or more entries are find-replace pairs (if there's an odd number of entries, the last entry is appended)
 -- For collectible/player conditionals, lines will automatically have their bulletpoint, and {1} is replaced with their name
 EID.descriptions[languageCode].ConditionalDescs = {
 	------ GENERAL STRINGS ------
@@ -1253,6 +1254,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Bulb Multiple"] = "Only checks the primary active item", -- Vibrant/Dim Bulb + Schoolbag/Pocket Actives
 	["Bulb Zero"] = "Actives with 0 max charges trigger the bulb", -- Vibrant/Dim Bulb + zero charge actives
 	["5.350.101 (Timed)"] = "Basically useless with timed recharges", -- Dim Bulb + Timed Recharges
+	["5.100.122"] = "Triggers at 1 Red Heart as {1}", -- Whore of Babylon + Eve
 	
 	["5.70.28"] = "Isaac shoots forward and to the sides instead", -- R U A Wizard + The Wiz
 	["5.100.523"] = "Counts as a passive item to {1}", -- Moving Box + Void
