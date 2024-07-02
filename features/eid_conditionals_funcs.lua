@@ -306,8 +306,8 @@ end
 -- When we're looking at a Car Battery pedestal, check our actives for having no effect
 function EID:CheckActivesForCarBattery(descObj)
 	if EID.InsideItemReminder then return false end
-	for k,_ in pairs(EID.CarBatteryNoSynergy) do
-		if EID:PlayersHaveCollectible(k) then return k end
+	for k,v in pairs(EID.CarBatteryNoSynergy) do
+		if v and EID:PlayersHaveCollectible(k) then return k end
 	end
 	return false
 end
@@ -327,8 +327,8 @@ end
 -- When we're looking at a BFFS pedestal, check our familiars for having no effect (only finds the earliest one, but whatever)
 function EID:CheckFamiliarsForBFFS(descObj)
 	if EID.InsideItemReminder then return false end
-	for k,_ in pairs(EID.BFFSNoSynergy) do
-		if EID:PlayersHaveCollectible(k) then return k end
+	for k,v in pairs(EID.BFFSNoSynergy) do
+		if v and EID:PlayersHaveCollectible(k) then return k end
 	end
 	return false
 end
