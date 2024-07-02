@@ -113,7 +113,17 @@ end
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.70." .. id+1] = {id+1, itemName, description, EID._currentMod}
+	EID.descriptions[language].pills[id+1] = {id, itemName, description, EID._currentMod}
+	-- Default the horsepill to the same description as the base pill, for mods that only define the base pill
+	if EID.isRepentance and EID.descriptions[language].horsepills[id+1] == nil then
+		EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
+	end
+end
+function EID:addHorsePill(id, description, itemName, language)
+	if not EID.isRepentance then return end
+	itemName = itemName or nil
+	language = language or "en_us"
+	EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
 end
 
 -- Adds a metadata for a pilleffect. Used for Placebo/False PHD. Optional parameters: class
