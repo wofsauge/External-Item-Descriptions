@@ -85,6 +85,7 @@ EID:AddPlayerConditional(227, 14, "Keeper 0-1") -- Keeper + Piggy Bank
 EID:AddPlayerConditional(501, 14)               -- Keeper + Greed's Gullet
 EID:AddPlayerConditional(230, 14, "Keeper")     -- Keeper + Abaddon
 EID:AddPlayerConditional(152, 2, "Technology 2 One Eye") -- Cain + Technology 2
+EID:AddPlayerConditional(122, 5, nil, nil, false) -- Eve + Whore of Babylon
 if EID.isRepentance then
 	-- Tainted characters reviving as themselves
 	EID:AddPlayerConditional({ 161, "5.350.28" }, 25, "Tainted Revive") -- Ankh, Broken Ankh
@@ -173,6 +174,7 @@ if EID.isRepentance then
 	EID:AddSynergyConditional({52, 69, 118, 168, 229, 316, 329, 379, 394, 395, 397, 440, 556, 597, }, 579, "Overridden", "Overrides", {layer = 1000, checkLayers = true}) -- Spirit Sword
 	EID:AddOneSidedSynergyConditional(579, 114, "Spirit Sword Mom's Knife", {layer = 1000, checkLayers = true}) -- Spirit Sword + Mom's Knife
 	EID:AddOneSidedSynergyConditional(579, 68, "Spirit Sword Technology", {layer = 1000, checkLayers = true}) -- Spirit Sword + Technology
+	EID:AddOneSidedSynergyConditional(579, 149, "Spirit Sword Ipecac", {layer = 1000, checkLayers = true}) -- Spirit Sword + Ipecac
 	
 	EID:AddSynergyConditional({553, 572, 678, "5.350.144"}, 168, "Overridden", "Overrides", {layer = 900, checkLayers = true}) -- Epic Fetus
 	EID:AddOneSidedSynergyConditional(561, 168, "Epic Fetus Soy Milk", {layer = 900, checkLayers = true}) -- Epic Fetus + Almond Milk
