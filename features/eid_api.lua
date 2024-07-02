@@ -1726,6 +1726,11 @@ end
 -- Get the current Language. Defaults to english if none is set.
 function EID:getLanguage()
 	local lang = EID.Config["Language"]
+	-- Reset invalid languages (like en_us_detailed)
+	if EID.descriptions[lang] == nil then
+		EID.Config["Language"] = "auto"
+		lang = "auto"
+	end
 	if lang == "auto" then
 		return Options and EID.LanguageMap[Options.Language] or "en_us"
 	end
