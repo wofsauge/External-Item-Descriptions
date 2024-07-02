@@ -1067,16 +1067,7 @@ function EID:onGameUpdate()
 	if EID.isRepentance and EID.GameUpdateCount % 10 == 0 then
 		-- Check wisp for adding reminder when using lemegeton
 		if EID.ShouldCheckWisp then
-			for _, wisp in ipairs(Isaac.FindByType(3, 237, -1, true, false)) do
-				if wisp.FrameCount < 10 then
-					local player = wisp:ToFamiliar() and wisp:ToFamiliar().Player
-					if player then
-						local playerID = EID:getPlayerID(player)
-						EID:InitItemInteractionIfAbsent(playerID)
-						table.insert(EID.RecentlyTouchedItems[playerID], wisp.SubType)
-					end
-				end
-			end
+			EID:UpdateAllPlayerLemegetonWisps()
 			EID.ShouldCheckWisp = false
 		end
 		-- Remove Crane Game item data if it's giving the prize out
@@ -1633,6 +1624,7 @@ local function OnGameStartGeneral(_,isSave)
 		EID.PlayerItemInteractions = {}
 		EID.DInfinityState = {}
 	end
+	EID.ShouldCheckWisp = true
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
@@ -1794,7 +1786,7 @@ function EID:OnGameStart(isSave)
 		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 		EID.Scale = EID.Config["Size"]
 		EID.ItemReminderSelectedCategory = EID.Config["ItemReminderDisplayMode"] == "NoOverview" and 1 or 0
-
+		
 		EID:fixDefinedFont()
 		EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 	end
