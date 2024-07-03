@@ -2000,7 +2000,7 @@ function EID:evaluateQueuedItems()
 					end
 					-- Put non-active item pickups into the recent item list, for printing in the Item Reminder
 					table.insert(EID.RecentlyTouchedItems[i], player.QueuedItem.Item.ID)
-					-- reset the Passives category's selected item
+					EID:ResetItemReminderSelectedItems("Passives")
 					EID.ItemReminderSelectedItems[#EID.ItemReminderCategories - 1] = 0
 				end
 			end
