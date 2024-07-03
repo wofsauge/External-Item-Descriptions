@@ -2206,7 +2206,7 @@ function EID:UpdateAllPlayerPassiveItems()
 		local currentCollectibleCount = player:GetCollectibleCount()
 		if #EID.RecentlyTouchedItems[playerNum] ~= currentCollectibleCount then
 			
-			-- remove items the player no longer has. reverse itteration to make deletion easier
+			-- remove items the player no longer has. reverse iteration to make deletion easier
 			for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
 				if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index], true) then
 					table.remove(EID.RecentlyTouchedItems[playerNum], index)
@@ -2235,29 +2235,19 @@ function EID:UpdateAllPlayerPassiveItems()
 	return listUpdatedForPlayers
 end
 
--- This table holds each player's trinkets, starting with held trinkets, then gulped trinkets in order of trinket ID
-EID.TrinketsPerPlayer = {}
+EID.GulpedTrinkets = {}
+-- Check for gulped trinkets that have been removed (e.g. perfection, walnut)
 function EID:UpdateAllPlayerTrinkets()
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
 		local playerNum = EID:getPlayerID(player)
 
-		if player == nil then return end
+		if player == nil or EID.GulpedTrinkets[playerNum] == nil then return end
 		
-		EID.TrinketsPerPlayer[playerNum] = {}
-		local heldTrinkets = {}
-		for t = 0, 1 do
-			local heldTrinket = player:GetTrinket(t) & 32767
-			if heldTrinket > 0 then
-				table.insert(EID.TrinketsPerPlayer[playerNum], heldTrinket)
-				heldTrinkets[heldTrinket] = true
-			end
-		end
-		for i = 1, EID:GetMaxTrinketID() do
-			-- TODO: track Smelter/Gulps manually, because this includes temporarily granted trinkets
-			local hasTrinket = player:HasTrinket(i)
-			if hasTrinket and not heldTrinkets[i] then
-				table.insert(EID.TrinketsPerPlayer[playerNum], i)
+		-- remove items the player no longer has. reverse iteration to make deletion easier
+		for index = #EID.GulpedTrinkets[playerNum], 1, -1  do
+			if not player:HasTrinket(EID.GulpedTrinkets[playerNum][index]) then
+				table.remove(EID.GulpedTrinkets[playerNum], index)
 			end
 		end
 	end
