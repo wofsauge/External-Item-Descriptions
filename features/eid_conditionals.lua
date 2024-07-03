@@ -321,8 +321,10 @@ TODOs unrelated to conditionals:
 Luck modifier that prints out a percentage for the effect based on your current luck stat
 Glyph of Balance prediction in Item Reminder?
 Purity's current stat boost, if possible
+What item is Liberty Cap, Broken Syringe, etc. currently giving?
+RNG cheat for Crooked Penny
+Shorten Pandora's Box description in item reminder to just current floor and future ones?
 Implement the standardized colors for characters, items, map names, etc
-Character info tab in item reminder
 Make Glitched Crown type pedestals work better in EID (pause on one item and press tab to switch to the next item)
 Don't show Void stat ups depending on what Void has absorbed (abyss absorbed = no void stat ups etc, reroll item = might become actives)
 Wild Card vurp-like desc modifier
