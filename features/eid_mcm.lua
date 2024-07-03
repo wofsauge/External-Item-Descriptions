@@ -583,7 +583,7 @@ if MCMLoaded then
 	EID:AddNumberSetting("Reminder", "ItemReminderDisplayMode", "Display Mode",  1, #itemReminderModes, {indexOf = itemReminderModes, infoText = "Changes the display mode. All = overview + categories. NoOverview = categories. Classic = Overview only", onChangeFunc =
 	function(currentNum)
 		EID.MCM_OptionChanged = true
-		for i,_ in ipairs(EID.ItemReminderSelectedItems) do EID.ItemReminderSelectedItems[i] = 0 end
+		EID:ResetItemReminderSelectedItems()
 		EID.ItemReminderSelectedCategory = currentNum ~= 2 and 0 or 1 -- reset category
 		EID.Config["ItemReminderDisplayMode"] = itemReminderModes[currentNum]
 	end})
