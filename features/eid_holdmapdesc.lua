@@ -54,8 +54,7 @@ EID.ItemReminderCategories = {
 			end,
 			function(player) EID:ItemReminderHandleTrinkets(player) end },
 		scrollbarGenerator = function(player)
-			local playerNum = EID:getPlayerID(player)
-			return EID:ItemReminderHandleItemScrollbarFeature(EID.TrinketsPerPlayer[playerNum], 350, false)
+			return EID:ItemReminderHandleItemScrollbarFeature(EID:ItemReminderHeldPlusGulped(player), 350, true)
 		end
 	},
 	{ id = "Passives",
@@ -404,10 +403,20 @@ function EID:ItemReminderHandlePocketItems(player)
 	end
 end
 
+-- Held trinkets are added at the end of the table; use this table in descending order
+function EID:ItemReminderHeldPlusGulped(player)
+	local playerNum = EID:getPlayerID(player)
+	local newTable = {}
+	if EID.GulpedTrinkets[playerNum] then newTable = {table.unpack(EID.GulpedTrinkets[playerNum])} end
+	for i=0, 1 do
+		local trinket = player:GetTrinket(i)
+		if trinket > 0 then table.insert(newTable, trinket) end
+	end
+	return newTable
+end
 -- Trinket Descriptions
 function EID:ItemReminderHandleTrinkets(player)
-	local playerNum = EID:getPlayerID(player)
-	EID:ItemReminderHandleItemPrinting(player, EID.TrinketsPerPlayer[playerNum], 350, false)
+	EID:ItemReminderHandleItemPrinting(player, EID:ItemReminderHeldPlusGulped(player), 350, true)
 end
 
 -- Tainted ??? Poop Descriptions
