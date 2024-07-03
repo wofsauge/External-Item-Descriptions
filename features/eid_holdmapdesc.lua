@@ -15,10 +15,6 @@ EID.ItemReminderDisplayingScrollbar = false -- For if the scrollbar is currently
 EID.InsideItemReminder = false -- Disable some modifiers, when building the Item Reminder description
 EID.ItemReminderPlayerEntity = nil -- for description modifiers to reference
 
--- TODO:
--- crooked penny cheats. 404/liberty cap/broken syringe/etc. "what item is it"
--- pandora's box? it shows the whole desc which is kinda useful but too big
-
 
 -- Data Tables --
 
@@ -77,7 +73,18 @@ EID.ItemReminderCategories = {
 		end
 	},
 }
-for i=0,#EID.ItemReminderCategories-1 do EID.ItemReminderSelectedItems[i] = 0 end
+
+-- simple function to reset the selected items in the scrollbars. can specify a category name like "Passives"
+function EID:ResetItemReminderSelectedItems(categoryName)
+	if not categoryName then
+		for i=0,#EID.ItemReminderCategories-1 do EID.ItemReminderSelectedItems[i] = 0 end
+	else
+		for i,category in ipairs(EID.ItemReminderCategories) do
+			if category.id == categoryName then EID.ItemReminderSelectedItems[i-1] = 0 return end
+		end
+	end
+end
+EID:ResetItemReminderSelectedItems()
 
 -- Format: ItemID = table
 -- 		modifierFunction = function that modifies the original description object of the item
@@ -515,8 +522,7 @@ function EID:ItemReminderHandleInitHoldTab()
 	EID:UpdateAllPlayerTrinkets()
 	local updatedPlayers = EID:UpdateAllPlayerPassiveItems()
 	if updatedPlayers[EID.ItemReminderSelectedPlayer + 1] or oldDisplayPlayer ~= EID.ItemReminderSelectedPlayer then
-		-- reset the Passives category's selected item
-		EID.ItemReminderSelectedItems[#EID.ItemReminderCategories - 1] = 0
+		EID:ResetItemReminderSelectedItems("Passives")
 	end
 end
 
