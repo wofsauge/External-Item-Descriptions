@@ -1622,6 +1622,7 @@ local function OnGameStartGeneral(_,isSave)
 	EID:GetTransformationsOfModdedItems()
 	EID:buildTransformationTables()
 	EID.RecentlyTouchedItems = {}
+	EID.GulpedTrinkets = {}
 	if not isSave then
 		EID.PlayerItemInteractions = {}
 		EID.DInfinityState = {}
@@ -1639,6 +1640,19 @@ local function OnUseD4(_, _, _, player)
 	--EID:CollectRerolledItemsOfPlayer(player or EID.player)
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
+
+-- includes Gulp and Marbles
+local function OnUseSmelter(_, _, _, player)
+	player = player or EID.player
+	local playerNum = EID:getPlayerID(player)
+	
+	EID.GulpedTrinkets[playerNum] = EID.GulpedTrinkets[playerNum] or {}
+	for i=0,1 do
+		local trinket = player:GetTrinket(i)
+		if trinket > 0 then table.insert(EID.GulpedTrinkets[playerNum], trinket) end
+	end
+end
+EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseSmelter, 479)
 
 -- Re-init transformation progress and item interactions after using Genesis
 if EID.isRepentance then
@@ -1688,6 +1702,7 @@ local configIgnoreList = {
 	["PlayerItemInteractions"] = true,
 	["UsedPillColors"] = true,
 	["RecentlyTouchedItems"] = true,
+	["GulpedTrinkets"] = true,
 }
 --------------------------------
 --------Handle Savadata---------
@@ -1722,6 +1737,14 @@ function EID:OnGameStart(isSave)
 					convertedData[tonumber(key) or key] = value
 				end
 				EID.RecentlyTouchedItems[tonumber(playerID)] = convertedData
+			end
+			
+			for playerID, data in pairs(savedEIDConfig["GulpedTrinkets"] or {}) do
+				local convertedData = {}
+				for key, value in pairs(data) do
+					convertedData[tonumber(key) or key] = value
+				end
+				EID.GulpedTrinkets[tonumber(playerID)] = convertedData
 			end
 		else
 			-- check for the players' starting active items
@@ -1819,6 +1842,7 @@ function EID:OnGameExit()
 	EID.Config["CollectedItems"] = EID.CollectedItems
 	EID.Config["PlayerItemInteractions"] = EID.PlayerItemInteractions or {}
 	EID.Config["RecentlyTouchedItems"] = EID.RecentlyTouchedItems or {}
+	EID.Config["GulpedTrinkets"] = EID.GulpedTrinkets or {}
 	EID.Config["UsedPillColors"] = EID.UsedPillColors
 
 	EID.SaveData(EID, json.encode(EID.Config))
