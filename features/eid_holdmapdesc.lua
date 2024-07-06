@@ -66,6 +66,11 @@ EID.ItemReminderCategories = {
 					EID:ItemReminderAddDescription(player, 5, 100, 392)
 				end
 			end,
+			function(player) -- Passive item: Glyph of Balance
+				if player:HasCollectible(464) and not EID:IsCategorySelected("Passives") then
+					EID:ItemReminderAddDescription(player, 5, 100, 464)
+				end
+			end,
 			function(player) EID:ItemReminderHandleSelectedPassiveItem(player) end },
 		scrollbarGenerator = function(player)
 			local playerNum = EID:getPlayerID(player)
@@ -136,6 +141,14 @@ EID.ItemReminderDescriptionModifier = {
 				EID:ItemReminderAddResultHeaderSuffix(descObj)
 				descObj.Description = pickupNames
 			end
+		end
+	},
+	["5.100.464"] = { -- Glyph of Balance
+		modifierFunction = function(descObj, player)
+			local result = EID:GlyphOfBalancePrediction(player)
+			
+			EID:ItemReminderAddResultHeaderSuffix(descObj)
+			descObj.Description = result
 		end
 	},
 
