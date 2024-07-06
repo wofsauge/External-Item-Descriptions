@@ -22,7 +22,7 @@ EID.ItemReminderPlayerEntity = nil -- for description modifiers to reference
 -- Execution order is handles by the order of the table entries.
 -- Category name is interpreted as a lookup for the "EID.descriptions.ItemReminder.CategoryNames" table. If no translation is found, use english or the lookup value
 EID.ItemReminderCategories = {
-	{ id = "Overview", entryGenerators = {} }, -- special handling for Overview category
+	{ id = "Overview", entryGenerators = { } }, -- special handling for Overview category
 	{ id = "Character", entryGenerators = { function(player) EID:ItemReminderHandleCharacterInfo(player) end, } },
 	{ id = "Special", entryGenerators = { function(player) EID:ItemReminderHandlePoopSpells(player) end, } },
 	{ id = "Wisps",
@@ -42,36 +42,14 @@ EID.ItemReminderCategories = {
 	},
 	{ id = "Trinkets",
 		isScrollable = true,
-		entryGenerators = {
-			function(player) -- Trinket: Modeling Clay
-				if EID.isRepentance and player:HasTrinket(166) and not EID:IsCategorySelected("Trinkets") then
-					EID:ItemReminderAddDescription(player, 5, 350, 166)
-				end
-			end,
-			function(player) EID:ItemReminderHandleTrinkets(player) end },
+		entryGenerators = { function(player) EID:ItemReminderHandleTrinkets(player) end },
 		scrollbarGenerator = function(player)
 			return EID:ItemReminderHandleItemScrollbarFeature(EID:ItemReminderHeldPlusGulped(player), 350, true)
 		end
 	},
 	{ id = "Passives",
 		isScrollable = true,
-		entryGenerators = {
-			function(player) -- Passive item: Echo Chamber
-				if EID.isRepentance and player:HasCollectible(700) and not EID:IsCategorySelected("Passives") then
-					EID:ItemReminderAddDescription(player, 5, 100, 700)
-				end
-			end,
-			function(player) -- Passive item: Zodiac
-				if EID.isRepentance and player:HasCollectible(392) and not EID:IsCategorySelected("Passives") then
-					EID:ItemReminderAddDescription(player, 5, 100, 392)
-				end
-			end,
-			function(player) -- Passive item: Glyph of Balance
-				if player:HasCollectible(464) and not EID:IsCategorySelected("Passives") then
-					EID:ItemReminderAddDescription(player, 5, 100, 464)
-				end
-			end,
-			function(player) EID:ItemReminderHandleSelectedPassiveItem(player) end },
+		entryGenerators = { function(player) EID:ItemReminderHandleSelectedPassiveItem(player) end },
 		scrollbarGenerator = function(player)
 			local playerNum = EID:getPlayerID(player)
 			return EID:ItemReminderHandleItemScrollbarFeature(EID.RecentlyTouchedItems[playerNum], 100, true)
@@ -91,11 +69,14 @@ function EID:ResetItemReminderSelectedItems(categoryName)
 end
 EID:ResetItemReminderSelectedItems()
 
+-- This table is for items that should have a special modifier applied to them when viewed in the item reminder
 -- Format: ItemID = table
 -- 		modifierFunction = function that modifies the original description object of the item
 -- 		isCheat = Only evaluate, if the "ItemReminderShowRNGCheats" config option is enabled
 --		isHiddenInfo = Only evaluate, if the "ItemReminderShowHiddenInfo" config option is enabled
 --		isRepentance = Only evaluate, if Repentance is installed
+--      noOverview = If true, this modifier doesn't have special priority in the Overview category (most do)
+-- Make sure to return true if the description was modified, so the overview knows
 EID.ItemReminderDescriptionModifier = {
 	---------------- Passive Items ----------------
 	["5.100.392"] = { -- Zodiac
@@ -107,12 +88,13 @@ EID.ItemReminderDescriptionModifier = {
 				EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
 				descObj.Icon = demoDescObj.Icon
 				descObj.Description = demoDescObj.Description
+				return true
 			end
 		end
 	},
 	["5.100.700"] = { -- Echo Chamber
 		isRepentance = true,
-		modifierFunction = function(descObj, player)
+		modifierFunction = function(descObj, player, inOverview)
 			local playerID = EID:getPlayerID(player)
 			local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
 			-- Dead Tainted Lazarus exception
@@ -138,17 +120,16 @@ EID.ItemReminderDescriptionModifier = {
 				end
 			end
 			if pickupNames ~= "" then
-				EID:ItemReminderAddResultHeaderSuffix(descObj)
-				descObj.Description = pickupNames
+				EID:ItemReminderAddResult(descObj, pickupNames, inOverview)
+				return true
 			end
 		end
 	},
 	["5.100.464"] = { -- Glyph of Balance
-		modifierFunction = function(descObj, player)
+		modifierFunction = function(descObj, player, inOverview)
 			local result = EID:GlyphOfBalancePrediction(player)
-			
-			EID:ItemReminderAddResultHeaderSuffix(descObj)
-			descObj.Description = result
+			EID:ItemReminderAddResult(descObj, result, inOverview)
+			return true
 		end
 	},
 
@@ -156,30 +137,30 @@ EID.ItemReminderDescriptionModifier = {
 
 	["5.100.44"] = { -- Teleport! location
 		isCheat = true,
-		modifierFunction = function(descObj, player)
+		modifierFunction = function(descObj, player, inOverview)
 			-- The result preview changes as soon as we activate Teleport, which looks awkward, so try to not display the result while mid-teleport.
 			-- Doesn't work perfectly and only in Rep
 			if not EID.isRepentance or player:GetSprite():GetAnimation() ~= "TeleportUp" then
-				EID:ItemReminderAddResultHeaderSuffix(descObj)
-				descObj.Description = EID:Teleport1Prediction(EID:GetItemSeed(player, 44))
+				EID:ItemReminderAddResult(descObj, EID:Teleport1Prediction(EID:GetItemSeed(player, 44)), inOverview)
+				return true
 			end
 		end,
 	},
 	["5.100.419"] = { -- Teleport 2.0 location
-		modifierFunction = function(descObj, _)
-			EID:ItemReminderAddResultHeaderSuffix(descObj)
-			descObj.Description = EID:Teleport2Prediction()
+		modifierFunction = function(descObj, _, inOverview)
+			EID:ItemReminderAddResult(descObj, EID:Teleport2Prediction(), inOverview)
+			return true
 		end
 	},
 	["5.100.476"] = { -- D1
 		isCheat = true,
-		modifierFunction = function(descObj, player)
-			EID:ItemReminderAddResultHeaderSuffix(descObj)
-			descObj.Description = EID:D1Prediction(EID:GetItemSeed(player, 476))
+		modifierFunction = function(descObj, player, inOverview)
+			EID:ItemReminderAddResult(descObj, EID:D1Prediction(EID:GetItemSeed(player, 476)), inOverview)
+			return true
 		end
 	},
 	["5.100.477"] = { -- Void
-		modifierFunction = function(descObj, player)
+		modifierFunction = function(descObj, player, inOverview)
 			local absorbedItems = EID.absorbedItems[tostring(EID:getPlayerID(player))]
 			if absorbedItems then
 				local descriptionText = ""
@@ -197,8 +178,8 @@ EID.ItemReminderDescriptionModifier = {
 							descriptionText = descriptionText .. EID:getObjectName(5, 100, tonumber(k)) .. "#"
 						end
 					end
-					EID:ItemReminderAddResultHeaderSuffix(descObj)
-					descObj.Description = descriptionText
+					EID:ItemReminderAddResult(descObj, descriptionText, inOverview)
+					return true
 				end
 			end
 		end
@@ -211,6 +192,7 @@ EID.ItemReminderDescriptionModifier = {
 			EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
 			descObj.Icon = demoDescObj.Icon
 			descObj.Description = demoDescObj.Description
+			return true
 		end
 	},
 	["5.100.489"] = { -- D Infinity
@@ -220,11 +202,12 @@ EID.ItemReminderDescriptionModifier = {
 			EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
 			descObj.Icon = demoDescObj.Icon
 			descObj.Description = demoDescObj.Description
+			return true
 		end
 	},
 	["5.100.710"] = { -- Bag of Crafting
 		isRepentance = true,
-		modifierFunction = function(descObj, _)
+		modifierFunction = function(descObj, _, inOverview)
 			local floorQuery = EID.BoC.FloorOverride or EID.BoC.FloorQuery
 			local inventoryQuery = EID.BoC.InventoryOverride or EID.BoC.InventoryQuery
 			local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
@@ -238,27 +221,34 @@ EID.ItemReminderDescriptionModifier = {
 				local hideButton = controllerEnabled and EID.ButtonToIconMap[EID.Config["CraftingHideButton"]]
 				text = text .. "#!!! ".. EID:ReplaceVariableStr(EID:getDescriptionEntry("CraftingIsHidden"), 1, (hideKey or hideButton))
 			end
-			descObj.Description = text
+			if inOverview then
+				descObj.Description = text
+			else
+				descObj.Description = descObj.Description .. "#" .. text
+			end
+			return true
 		end
 	},
 
 	---------------- TRINKETS ----------------
 
 	["5.350.4"] = { -- Broken Remote has two possible effects depending on if its doubled
-		modifierFunction = function(descObj, player)
+		modifierFunction = function(descObj, player, inOverview)
 			local originalName = descObj.Name
 			if player:GetTrinketMultiplier(4) > 1 then
 				-- Teleport 2.0
 				local demoDescObj = EID:getDescriptionObj(5, 100, 419)
-				EID.ItemReminderDescriptionModifier["5.100.419"].modifierFunction(descObj, player)
+				EID.ItemReminderDescriptionModifier["5.100.419"].modifierFunction(descObj, player, inOverview)
 				descObj.Name = originalName
-				EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
+				if inOverview then EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name) end
+				return true
 			elseif EID.Config["ItemReminderShowRNGCheats"] then
 				-- Teleport
 				local demoDescObj = EID:getDescriptionObj(5, 100, 44)
-				EID.ItemReminderDescriptionModifier["5.100.44"].modifierFunction(descObj, player)
+				EID.ItemReminderDescriptionModifier["5.100.44"].modifierFunction(descObj, player, inOverview)
 				descObj.Name = originalName
-				EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
+				if inOverview then EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name) end
+				return true
 			end
 		end
 	},
@@ -272,6 +262,7 @@ EID.ItemReminderDescriptionModifier = {
 			EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
 			descObj.Icon = demoDescObj.Icon
 			descObj.Description = demoDescObj.Description
+			return true
 		end
 	},
 	["5.350.75"] = {   -- 404 Error
@@ -284,6 +275,7 @@ EID.ItemReminderDescriptionModifier = {
 			EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
 			descObj.Icon = demoDescObj.Icon
 			descObj.Description = demoDescObj.Description
+			return true
 		end
 	},
 	["5.350.166"] = { -- Modeling Clay
@@ -297,6 +289,7 @@ EID.ItemReminderDescriptionModifier = {
 					EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
 					descObj.Icon = "{{Collectible" .. modelingClayItem .. "}}"
 					descObj.Description = demoDescObj.Description
+					return true
 				end
 			end
 		end
@@ -328,9 +321,25 @@ function EID:ItemReminderAddResultHeaderSuffix(descObj, newName)
 		descObj.Name = descObj.Name .. EID:getDescriptionEntry("ItemReminder", "ResultHeader")
 	end
 end
+-- Adds a formatted "Result" text appended to the item description
+function EID:ItemReminderAddResultAppend(descObj, newText)
+	local iconString = EID:GetIconStringByDescriptionObject(descObj)
+	descObj.Description = descObj.Description .. "#" .. iconString .. " {{ColorObjName}}" .. descObj.Name .. EID:getDescriptionEntry("ItemReminder", "ResultHeader") .. "#" .. newText
+end
+-- Helper function for modifiers that want to replace the description in the overview, but append to the description otherwise
+function EID:ItemReminderAddResult(descObj, newText, inOverview)
+	if inOverview then
+		EID:ItemReminderAddResultHeaderSuffix(descObj)
+		descObj.Description = newText
+	else
+		EID:ItemReminderAddResultAppend(descObj, newText)
+	end
+end
 
 -- Add item description for a given entity to the reminder. Also tries to apply special modifiers if present
 function EID:ItemReminderAddDescription(player, entityType, variant, subType, extraIcon)
+	-- If given an item ID string, split it into type/variant/subtype
+	if type(entityType) == "string" then entityType, variant, subType = EID:SplitTVS(entityType) end
 	local objectID = entityType .. "." .. variant .. "." .. subType
 	if currentBlacklist[objectID] then return true end
 
@@ -351,6 +360,27 @@ function EID:ItemReminderAddDescription(player, entityType, variant, subType, ex
 	currentBlacklist[objectID] = true
 	local iconString = extraIcon or EID:GetIconStringByDescriptionObject(descObj)
 	return EID:ItemReminderAddTempDescriptionEntry(iconString, descObj.Name, descObj.Description)
+end
+
+-- In the overview category, check for special descriptions
+function EID:ItemReminderAddSpecialDescriptions(player)
+	for objectID,specialDesc in pairs(EID.ItemReminderDescriptionModifier) do
+		local evaluateFunction = true
+		if (not EID:PlayerHasItem(player, objectID)) then evaluateFunction = false end
+		if (specialDesc.isCheat and not EID.Config["ItemReminderShowRNGCheats"]) then evaluateFunction = false end
+		if (specialDesc.isHiddenInfo and not EID.Config["ItemReminderShowHiddenInfo"]) then evaluateFunction = false end
+		if (specialDesc.isRepentance and not EID.isRepentance) then evaluateFunction = false end
+		if evaluateFunction then
+			local Type, Var, Sub = EID:SplitTVS(objectID)
+			local descObj = EID:getDescriptionObj(Type, Var, Sub)
+			if specialDesc.modifierFunction(descObj, player, true) then
+				currentBlacklist[objectID] = true
+				local iconString = EID:GetIconStringByDescriptionObject(descObj)
+				EID:ItemReminderAddTempDescriptionEntry(iconString, descObj.Name, descObj.Description)
+			end
+		end
+		if not EID:ItemReminderCanAddMoreToView() then return end
+	end
 end
 
 -- Information about the player character's traits
@@ -665,6 +695,9 @@ function EID:ItemReminderGetDescription()
 	EID.ItemReminderPlayerEntity = player -- for description modifiers to reference
 
 	if EID.ItemReminderSelectedCategory == 0 or EID.Config["ItemReminderDisplayMode"] == "Classic" then
+		-- execute special previews / item results while in the overview
+		numAvailableDescriptionSlots = EID.Config["ItemReminderMaxEntriesCount"]
+		EID:ItemReminderAddSpecialDescriptions(player)
 		-- execute all functions defined per category
 		for _, category in ipairs(EID.ItemReminderCategories) do
 			-- don't display character info in the overview after a few rooms
