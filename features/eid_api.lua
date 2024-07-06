@@ -2137,6 +2137,10 @@ end
 function EID:GetEntityXMLName(Type, Variant, SubType)
 	return EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
 end
+function EID:GetEntityXMLNameByString(tvsString)
+	local Type, Var, Sub = EID:SplitTVS(tvsString)
+	return EID:GetEntityXMLName(Type, Var, Sub)
+end
 
 -- Get an item's RNG seed. We have no use for the RNG object itself because every other function it can do will advance the item's RNG, altering the game state
 function EID:GetItemSeed(player, id, variant)
