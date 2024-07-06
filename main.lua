@@ -10,8 +10,8 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.75
-EID.ModVersionCommit = "d33fd23"
+EID.ModVersion = 4.77
+EID.ModVersionCommit = "8ff9f7a"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -995,6 +995,7 @@ function EID:setPlayer()
 		if EID.isRepentance then EID.players = { EID.player, EID.isRepentance and EID.player:GetOtherTwin() } end
 		EID.coopMainPlayers = { EID.player }
 		EID.coopAllPlayers = EID.players
+		EID.controllerIndexes = {}
 		EID.controllerIndexes[p.ControllerIndex] = 1
 		EID.isMultiplayer = false
 		return

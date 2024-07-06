@@ -4,7 +4,7 @@
     <directory>external item descriptions</directory>
     <id>836319872</id>
     <description>[img]https://i.imgur.com/l9nbaxP.png[/img]
-This mod displays detailed information about all items, trinkets, cards, runes and pills DIRECTLY onto your screen. Say goodbye to your browser tab with platinumgod open ;)
+This mod displays detailed information about all items, trinkets, cards, runes and pills DIRECTLY onto your screen. Say goodbye to your browser tab with platinumgod or the wiki open ;)
 
 [img]https://i.imgur.com/bRGqujD.png[/img] [url=https://discord.gg/HhD4vMM4bZ]Need help or want to chat? Join our Discord server![/url]
 [img]https://i.imgur.com/P6a8043.png[/img] [url=https://github.com/wofsauge/External-Item-Descriptions]Check this project out on GitHub![/url]
@@ -51,7 +51,7 @@ You are currently looking at the version for Afterbirth+ and Repentance.
 [img]https://i.imgur.com/jrdGbna.png[/img]
 [url=https://github.com/wofsauge/External-Item-Descriptions/blob/master/CREDITS.md]Check out the credits here[/url]
 </description>
-    <version>4.75</version>
+    <version>4.77</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

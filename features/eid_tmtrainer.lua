@@ -122,7 +122,6 @@ function EID:CheckGlitchedItemConfig(id)
 		for i,func in ipairs(getFunctions) do
 			local val = item[func](item) * statMult[i]
 			if val ~= 0 then
-				if (i == 4) then print("range!") end
 				local s = string.format("%.2g",SimpleRound(val))
 				local prefix = "↑ "
 				if val > 0 then s = "+" .. s else prefix = "↓ " end

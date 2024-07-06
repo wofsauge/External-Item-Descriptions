@@ -84,7 +84,7 @@ EID.descriptions[languageCode].collectibles={
 	{"61", "", "<item does not exist>"},
 	{"62", "Charm of the Vampire", "{{HalfHeart}} Killing 13 enemies heals half a heart"}, -- Charm of the Vampire
 	{"63", "The Battery", "{{Battery}} Active items can be overcharged to two full charges"}, -- The Battery
-	{"64", "Steam Sale", "{{Shop}} Shop items cost 50% less#Owning this item a second time makes all Shop items free"}, -- Steam Sale
+	{"64", "Steam Sale", "{{Shop}} Shop items cost 50% less"}, -- Steam Sale
 	{"65", "Anarchist Cookbook", "Spawns 6 Troll Bombs near the center of the room"}, -- Anarchist Cookbook
 	{"66", "The Hourglass", "{{Slow}} Slows enemies down for 8 seconds"}, -- The Hourglass
 	{"67", "Sister Maggy", "Shoots normal tears#Deals 3.5 damage per tear"}, -- Sister Maggy
@@ -319,7 +319,7 @@ EID.descriptions[languageCode].collectibles={
 	{"296", "Converter", "{{Heart}} Converts 2 Soul/Black Hearts into 1 heart container"}, -- Converter
 	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
 	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
-	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#Dark Room: Unlocks {{Collectible523}} Moving Box; Chest: 1{{Coin}}"}, -- Pandora's Box
+	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#{{NoLB}}Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1{{Coin}}"}, -- Pandora's Box
 	{"298", "Unicorn Stump", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot (No contact damage)"}, -- Unicorn Stump
 	{"299", "Taurus", "↓ {{Speed}} -0.3 Speed#↑ {{Speed}} Slowly gain speed while in hostile rooms#At 2 speed, Isaac becomes invincible and deals contact damage#Afterwards, lose the Taurus speed boost for the room"}, -- Taurus
 	{"300", "Aries", "↑ {{Speed}} +0.25 Speed#Touching enemies deals contact damage"}, -- Aries
@@ -347,7 +347,7 @@ EID.descriptions[languageCode].collectibles={
 	{"322", "Mongo Baby", "Mimics your baby familiars' tears#If you have none, shoots normal 3.5 damage tears"}, -- Mongo Baby
 	{"323", "Isaac's Tears", "Shoots 8 tears in all directions#The tears copy Isaac's tear effects#Recharges by shooting tears"}, -- Isaac's Tears
 	{"324", "Undefined", "Teleports Isaac to the {{TreasureRoom}} Treasure, {{SecretRoom}} Secret, {{SuperSecretRoom}} Super Secret or {{ErrorRoom}} I AM ERROR Room"}, -- Undefined
-	{"325", "Scissors", "{{Timer}} Isaac's head turns into a stationary familiar for the room#The body is controlled separately"}, -- Scissors
+	{"325", "Scissors", "{{Timer}} Isaac's head turns into a stationary familiar for the room#The head shoots 3.5 damage tears#The body is controlled separately and still shoots Isaac's tears"}, -- Scissors
 	{"326", "Breath of Life", "Holding down the USE button empties the charge bar#Isaac is temporarily invincible when the charge bar is empty#{{Warning}} Holding it for too long deals damage to Isaac"}, -- Breath of Life
 	{"327", "The Polaroid", "Taking damage at half a Red Heart or none makes isaac temporarily invincible"}, -- The Polaroid
 	{"328", "The Negative", "Taking damage at half a Red Heart or none damages all enemies in the room"}, -- The Negative
@@ -597,7 +597,7 @@ EID.descriptions[languageCode].carBattery = {
 	[93] = {6.5, 13}, -- The Gamekid
 	[97] = {" a ", " 2 ", "pickup", "{{CR}}pickups"}, -- The Book of Sin
 	[102] = {1, 2, "pill", "{{CR}}pills"}, -- Mom's Bottle of Pills
-	[105] = "Rerolls twice, skipped items can no longer be seen depending on room", -- The D6
+	[105] = "Rerolls twice, draining item pools faster", -- The D6
 	[107] = "Spawns two bodies", -- The Pinking Shears
 	[111] = {5, 10}, -- The Bean
 	[123] = {" a ", " 2 ", "familiar", "{{CR}}familiars"}, -- Monster Manual
@@ -638,7 +638,7 @@ EID.descriptions[languageCode].carBattery = {
 	[507] = "Triggers twice", -- Sharp Straw
 	[510] = {" a ", " 2 ", "version", "{{CR}}versions"}, -- Delirious
 	[516] = {" a ", " 2 ", "Sprinkler", "{{CR}}Sprinklers"}, -- Sprinkler
-	[521] = {"one", "two"}, -- Coupon
+	[521] = {"one", "two", "item", "{{CR}}items"}, -- Coupon
 	[523] = "Swaps box contents with room pickups", -- Moving Box
 	[545] = {8, 16}, -- Book of the Dead
 	[550] = "Stops stomps for two rooms (or Boss Rush waves)", -- Broken Shovel
@@ -646,7 +646,7 @@ EID.descriptions[languageCode].carBattery = {
 
 -- Effect of BFFS! on Familiars
 EID.descriptions[languageCode].BFFSSynergies = {
-	["No Effect"] = "No effect",
+	["No Effect"] = "No effect from {1}",
 	["5.100.8"] = {3.5, 7}, -- Brother Bobby
 	["5.100.57"] = {75, 150}, -- Distant Admiration
 	["5.100.67"] = {3.5, 7}, -- Sister Maggy
@@ -657,9 +657,11 @@ EID.descriptions[languageCode].BFFSSynergies = {
 	["5.100.96"] = {"3", "2-3"}, -- Little C.H.A.D.
 	["5.100.98"] = {"5-6", "4-5"}, -- The Relic
 	["5.100.99"] = {3.5, 7}, -- Little Gish
-	["5.100.99"] = {3.5, 7}, -- Little Steven
+	["5.100.100"] = {3.5, 7}, -- Little Steven
+	["5.100.107"] = {82.5, 165}, -- The Pinking Shears
 	["5.100.112"] = {105, 210}, -- Guardian Angel
 	["5.100.113"] = {3, 6}, -- Demon Baby
+	["5.100.117"] = {4.3, 8.6}, -- Dead Bird
 	["5.100.128"] = {30, 60}, -- Forever Alone
 	["5.100.131"] = {"3", "2-3"}, -- Bomb Bag
 	["5.100.144"] = {"3-4", "3"}, -- Bum Friend
@@ -689,6 +691,7 @@ EID.descriptions[languageCode].BFFSSynergies = {
 	["5.100.320"] = {37.5, 75}, -- ???'s Only Friend
 	["5.100.321"] = {10.7, 21.4}, -- Samson's Chains
 	["5.100.322"] = {3.5, 7}, -- Mongo Baby
+	["5.100.325"] = {3.5, 7}, -- Scissors
 	["5.100.360"] = "Damage doubled", -- Incubus
 	["5.100.361"] = "Damage doubled", -- Fate's Reward
 	["5.100.362"] = {35, 44}, -- Lil Chest
@@ -723,7 +726,11 @@ EID.descriptions[languageCode].BFFSSynergies = {
 	["5.100.537"] = "Increases creep size, but not damage", -- Lil Spewer
 	["5.100.539"] = "Spawns a champion variant of the enemy", -- Mystery Egg
 	["5.100.544"] = {6, 12}, -- Pointy Rib
+	["5.100.545"] = "Bone orbital's contact damage is doubled", -- Book of the Dead
 	["5.100.548"] = {7, 14}, -- Jaw Bone
+	
+	["5.350.54"] = {3.5, 7}, --- Isaac's Head
+	["5.350.57"] = {3.5, 7}, --- ???'s Soul
 }
 
 ---------- Trinkets ----------
@@ -733,7 +740,7 @@ EID.descriptions[languageCode].trinkets={
 	{"2", "Petrified Poop", "50% chance to get drops from poop"}, -- Petrified Poop
 	{"3", "AAA Battery", "{{Battery}} -1 Charge needed for active items"}, -- AAA Battery
 	{"4", "Broken Remote", "{{Collectible44}} Using an active item teleports Isaac to a random room"}, -- Broken Remote
-	{"5", "Purple Heart", "2x Chance for champion enemies"}, -- Purple Heart
+	{"5", "Purple Heart", "2x chance for champion enemies"}, -- Purple Heart
 	{"6", "Broken Magnet", "{{Coin}} Attracts coins to Isaac"}, -- Broken Magnet
 	{"7", "Rosary Bead", "{{AngelChance}} 50% higher Angel Room chance#{{Collectible33}} Higher chance to find The Bible in {{Shop}} Shops and {{Library}} Libraries"}, -- Rosary Bead
 	{"8", "Cartridge", "{{Timer}} 5% chance upon taking damage to receive for 6.5 seconds:#Invincibility#Isaac can't shoot but deals 40 contact damage per second#{{HalfHeart}} Killing 2 enemies heals half a heart#{{Fear}} Fears all enemies in the room"}, -- Cartridge
@@ -934,7 +941,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[15] = {" a ", " 2 ", " Machine", " {{CR}}Machines", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XIV - Temperance (+ Greed version)
 	[17] = {6, 12}, -- XVI - The Tower
 	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {" a ", " 2 ", " Beggar", " {{CR}}Beggars", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
+	[21] = {" a ", " 2 ", "Beggar ", "{{CR}}Beggars ", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
 	[23] = {"Doubles", "Quadruples"}, -- 2 of Clubs
 	[24] = {"Doubles", "Quadruples"}, -- 2 of Diamonds
 	[25] = {"Doubles", "Quadruples"}, -- 2 of Spades
@@ -1016,19 +1023,19 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[2] = {"Cain", ""},
 	[3] = {"Judas", ""},
 	[4] = {"???", "Can't have Red Hearts"},
-	[5] = {"Eve", "Eve's Whore of Babylon triggers at 1 Red Heart or less"}, --this could just be desc modifier?
+	[5] = {"Eve", ""},
 	[6] = {"Samson", ""},
-	[7] = {"Azazel", "Flight#Short range Brimstone instead of tears"},
+	[7] = {"Azazel", "Flight#Short range Brimstone instead of tears#Can gain Red Hearts"},
 	[8] = {"Lazarus", "When you die, resurrect as Lazarus Risen with 1 Red Heart container"},
 	[9] = {"Eden", "Start with random stats and items each run"},
 	[10] = {"The Lost", "Flight#Spectral tears#No health#One devil deal per room can be taken for free"},
 	[11] = {"Lazarus Risen", "Increased stats and x1.2 damage multiplier"},
-	[12] = {"Dark Judas", "x2 Damage multiplier"},
-	[13] = {"Lilith", "Cannot shoot tears"},
+	[12] = {"Dark Judas", "x2 Damage multiplier#Can gain Red Hearts#Counts as Judas for completion marks"},
+	[13] = {"Lilith", "Cannot shoot tears#Her Incubus shoots for her"},
 	[14] = {"Keeper", "Heal by picking up coins#Heart pickups are turned into Blue Flies"},
 	[15] = {"Apollyon", ""},
-	[16] = {"The Forgotten", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
-	[17] = {"The Forgotten Soul", "You have a melee attack#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
+	[16] = {"The Forgotten", "You have a melee attack which can be charged and thrown#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
+	[17] = {"The Forgotten Soul", "You have a melee attack which can be charged and thrown#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
 }
 
 ---------- Sacrifice Room ----------
@@ -1057,8 +1064,8 @@ EID.descriptions[languageCode].diceHeader = "[Dice Room effects]"
 EID.descriptions[languageCode].dice={
 	{"1", "", "Rerolls all of Isaac's items into random items from the room pool they were acquired in"},
 	{"2", "", "Rerolls all pickups in the room"},
-	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{DevilRoom}} Devil or {{AngelRoom}} Angel Room"},
-	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{DevilRoom}} Devil or {{AngelRoom}} Angel Room"},
+	{"3", "", "Rerolls all pickups and trinkets on the entire floor#Does not affect the {{AngelDevilChance}} Devil/Angel Room or {{LadderRoom}} crawlspaces"},
+	{"4", "", "Rerolls all pedestal items on the floor#Does not affect the {{AngelDevilChance}} Devil/Angel Room or {{LadderRoom}} crawlspaces"},
 	{"5", "", "Rerolls and restarts the current floor"},
 	{"6", "", "Rerolls all of Isaac's items#Rerolls all pickups, trinkets and pedestal items on the floor"},
 }
@@ -1106,12 +1113,13 @@ EID.descriptions[languageCode].ItemReminder = {
 	InventoryEmpty = "(Player has no items)",
 	CategoryNames = {
 		Overview = "Inventory Overview",
+		Wisps = "Lemegeton Wisps",
 		Special = "Special",
-		Actives = "Held active items",
-		Pockets = "Held pocket items",
+		Actives = "Held Active Items",
+		Pockets = "Held Pocket Items",
 		Trinkets = "Held Trinkets",
-		Passives = "Held passive items",
-		Character = "Character Info"
+		Passives = "Held Passive Items",
+		Character = "Character Info",
 	}
 }
 
@@ -1155,53 +1163,116 @@ EID.descriptions[languageCode].PickupNames = {
 -- Conditional descriptions - DO NOT TRANSLATE THE FIRST PART IN ["BRACKETS"]
 -- Strings will be appended to the original description
 -- Tables with one entry will completely replace the original description
--- Tables with two or more entries are find-replace pairs
+-- Tables with two or more entries are find-replace pairs (if there's an odd number of entries, the last entry is appended)
 -- For collectible/player conditionals, lines will automatically have their bulletpoint, and {1} is replaced with their name
 EID.descriptions[languageCode].ConditionalDescs = {
+	------ GENERAL STRINGS ------
 	["Overridden"] = "Overridden by {1}",
 	["Overrides"] = "Overrides {1}",
 	["Almost No Effect"] = "Little to no effect for {1}",
 	["No Effect"] = "No effect for {1}",
 	["Can't Charge"] = "Can't charge {1}",
 	["Can't Be Charged"] = "Can't be charged by {1}",
+	["Can't Be Duplicated"] = "Can't be duplicated",
 	["No Effect (Greed)"] = "{{GreedMode}} No effect in Greed Mode",
 	["No Effect (Copies)"] = "No additional effect from multiple copies", -- Having the item already, or having Diplopia while looking at a pedestal
-	
+	["No Effect (Familiars)"] = "No additional effect on familiars", -- probably just for Hive Mind + BFFS!
 	["No Red"] = "No effect for characters that can't have Red Hearts",
-	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
 	
-	["5.100.7"] = "x1.5 Damage multiplier while {1} effect is active", -- Blood of the Martyr
-	["5.100.34"] = "x1.5 Damage multiplier", -- Book of Belial
-	["5.300.16"] = "x1.5 Damage multiplier", -- XV - The Devil
 	
-	["5.100.135 (PHD)"] = "Spawns 2-3 coins if you have {1}", -- IV Bag PHD
-	["Keeper 0-1"] = "Spawns 0-1 coin as {1}", -- IV Bag/Piggy Bank Keeper
-	
+	------ GREED MODE ------
+	["Room to Wave"] = {"room", "wave", "room", "wave"}, -- convert room clear effects to wave clear effects
+	["No Champion Drops"] = "!!! Champions don't drop pickups in Greed Mode!", -- Champion Belt / Purple Heart
 	["5.300.15"] = {"{{DemonBeggar}} Spawns a Devil Beggar"}, -- Temperance (Greed)
 	["5.300.19"] = {"Teleports Isaac to the first room of the floor"}, -- The Moon (Greed)
 	["5.300.20"] = {"{{Heart}} Full health#Deals 100 damage to all enemies"}, -- XIX - The Sun (Greed)
 	["5.100.483"] = "{{GreedMode}} Doesn't trigger once per wave, just once per room", -- Mama Mega (Greed)
 	["5.100.535"] = "{{GreedMode}} No shield on Boss Waves, only on Ultra Greed", -- Blanket (Greed)
+	["5.350.120"] = "{{GreedMode}} No charge on Boss Waves, only on Ultra Greed", -- Hairpin (Greed)
+	["5.100.246"] = {"{{SuperSecretRoom}} Reveals the Super Secret Room location on the map"}, -- Blue Map (Greed)
+	["5.100.333"] = {"{{SuperSecretRoom}} Reveals the Super Secret Room location on the map"}, -- The Mind (Greed)
+	["5.100.514"] = {"Causes some enemies and projectiles to briefly pause at random intervals"}, -- Broken Modem (Greed)
+	["5.350.34"] = {"{{Heart}} Chance for a bonus heart from chests, tinted rocks and destroyed machines"}, -- Child's Heart
+	["5.350.36"] = {"{{Key}} Chance for a bonus key from chests, tinted rocks and destroyed machines"}, -- Rusted Key
+	["5.350.41"] = {"{{Bomb}} Chance for a bonus bomb from chests, tinted rocks and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick"}, -- Match Stick
+	["5.350.44"] = {"{{Pill}} Chance for a bonus pill from chests, tinted rocks and destroyed machines"}, -- Safety Cap
+	["5.350.45"] = {"{{Card}} Chance for a bonus card from chests, tinted rocks and destroyed machines"}, -- Ace of Spades
+	["5.350.72"] = {"{{Battery}} +10% chance for random pickups to be a battery#{{Battery}} 5% chance to add 1 charge to held active item when clearing a wave"}, -- Watch Battery
 	
+	
+	------ ACHIEVEMENT CHECKS ------
 	["5.350.23"] = "{{Warning}} Dying in a {{SacrificeRoom}} Sacrifice Room while holding this trinket unlocks The Lost", -- Missing Poster (Unlock The Lost)
+	["5.100.297"] = {"Unlocks {{Collectible523}} Moving Box", "Nothing"}, -- Pandora's Box unlocking Moving Box
 	
+	
+	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
+	["5.100.135 (PHD)"] = "Spawns 2-3 coins if you have {1}", -- IV Bag PHD
+	["Keeper 0-1"] = "Spawns 0-1 coin as {1}", -- IV Bag/Piggy Bank Keeper
 	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Tears on pickup", -- Brittle Bones (Keeper+Lost)
-	
-	["5.100.316"] = "{1} removes the teleportation effect", -- Cursed Eye
-	["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
 	["5.100.501"] = "{1} can gain additional coin containers", -- Greed's Gullet
 	["5.100.230 (Keeper)"] = "{{Warning}} {1} just dies", -- Abaddon
-	["5.300.48"] = "Teleport to I AM ERROR Room#Blank Card and ? Card will be destroyed", -- Blank Card + Q Card
-	["5.100.205 (Wafer)"] = "Reduces the cost to half a heart", -- Sharp Plug + Wafer
+	
+
+	------ DUPLICATE COPIES OF ITEMS ------
+	["5.100.2 (Copies)"] = "Isaac fires 3 more tears#No additional stat decrease", -- The Inner Eye
+	["5.100.153 (Copies)"] = "Isaac fires 4 more tears#No additional stat decrease", -- Mutant Spider
+	["5.100.245 (Copies)"] = "Isaac fires 2 more tears", -- 20/20
+	["5.100.358 (Copies)"] = "Isaac fires 2 more tears closer to the center", -- The Wiz
+	["5.100.64 (Copies)"] = "Owning this item a second time makes all Shop items free", -- Steam Sale
+	["5.100.118 (Copies)"] = "Isaac fires an additional beam", -- Brimstone
+	["5.100.224 (Copies)"] = "Additional copies only give -0.2 speed", -- Kidney Stone
+	
+	
+	----- MISC. ITEM CONDITIONS ------
+	["Sacrificial Nugget"] = "Brown Nugget turrets count as familiars",
+	["Sacrificial Conception"] = "Familiars granted by {1} can be sacrificed, and will respawn",
+	["Sacrificial Angels"] = "{1} spawns 2 Black Hearts if sacrificed",
+	["Sacrificial Void"] = "Can be used multiple times if absorbed by Void",
 	
 	["5.100.116 (1 Room)"] = "1 Room recharges become 15 second recharges while in an uncleared room", -- 9 Volt
 	["5.100.116 (Timed)"] = "Timed recharges start half full", -- 9 Volt
-	["1 Room"] = "15 Second recharge while in an uncleared room", -- Actives + 9 Volt
-	["Timed"] = "Charge starts half full after use", -- Actives + 9 Volt
-	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
+	["9 Volt 1 Room"] = "15 second recharge while in an uncleared room", -- Actives + 9 Volt
+	["9 Volt Timed"] = "Charge starts half full after use", -- Actives + 9 Volt
+	["5.100.205 (Wafer)"] = "Reduces the cost to half a heart", -- Sharp Plug + Wafer
 	
 	["Suicide 1"] = "{1} can't prevent the death", -- Plan C, Damocles, Suicide King
 	["Suicide 2"] = "Does not prevent death by {1}", -- Plan C, Damocles, Suicide King
+	
+	["5.100.7"] = "x1.5 Damage multiplier while {1} effect is active", -- Blood of the Martyr
+	["5.100.34"] = "x1.5 Damage multiplier", -- Book of Belial
+	["5.300.16"] = "x1.5 Damage multiplier", -- XV - The Devil
+	
+	["5.100.81"] = "Characters that can't have Red Hearts get set to 1 Soul/Black Heart", -- Dead Cat
+	["5.100.316"] = "{1} removes the teleportation effect", -- Cursed Eye
+	["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
+	["? Card Single Use"] = "Single use items will disappear after using ? Card", -- Single Use Actives + ? Card
+	["5.300.48"] = "Teleport to I AM ERROR Room#Blank Card and ? Card will be destroyed", -- Blank Card + ? Card
+	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
+	["5.100.521"] = "{{Collectible376}} Free items won't be restocked", -- Coupon + Restock/Greed
+	["Black Feather"] = "↑ {{Damage}} +0.2 Damage", -- Black Feather items
+	
+	["Bulb Multiple"] = "Only checks the primary active item", -- Vibrant/Dim Bulb + Schoolbag/Pocket Actives
+	["Bulb Zero"] = "Actives with 0 max charges trigger the bulb", -- Vibrant/Dim Bulb + zero charge actives
+	["5.350.101 (Timed)"] = "Basically useless with timed recharges", -- Dim Bulb + Timed Recharges
+	["5.100.122"] = "Triggers at 1 Red Heart as {1}", -- Whore of Babylon + Eve
+	
+	["5.70.28"] = "Isaac shoots forward and to the sides instead", -- R U A Wizard + The Wiz
+	["5.100.523"] = "Counts as a passive item to {1}", -- Moving Box + Void
+	["Mongo Babies"] = "Can be copied by {1}", -- Mongo Baby + Baby Familiars
+	["Technology 2 One Eye"] = "With {1}, the laser replaces your tears entirely",
+	["Brimstone Proptosis"] = "Beams deal additional 2x damage at point blank range, decreasing with distance",
+	["Brimstone Ipecac"] = "Ipecac tears are fired while charging#The +40 damage applies to the laser",
+	["Proptosis Anti-Gravity"] = "Tears don't lose damage until they start moving",
+	["Epic Fetus Soy Milk"] = "Crosshair time is not shortened, but missile damage is drastically reduced",
+	["Eye of Belial Dr. Fetus"] = "Bombs pierce, but don't home or do additional damage",
+	["Epic Fetus Brimstone"] = "{1} has priority#Rockets shoot out 10 beams",
+	["Epic Fetus Mom's Knife"] = "{1} has priority#Rockets shoot out 10 knives",
+	["Brimstone Mom's Knife"] = "{1} has priority#A barrage of knives shoot out based on charge amount",
+	["Ludovico Ipecac"] = "The tear gets +4 damage but doesn't explode or poison",
+	["Technology Ipecac"] = "The laser gets +4 damage and poisons targets",
+	["Chocolate Milk Overrides"] = "↑ {{Tears}} x1.25 Tears multiplier",
+	["Chocolate Milk Marked"] = "Isaac automatically charges based on distance from the crosshair",
+	
 }
 
 
