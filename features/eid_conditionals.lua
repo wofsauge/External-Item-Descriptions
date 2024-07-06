@@ -319,8 +319,6 @@ Incubus effects; a lot are AB+ only; annoying to test; plus Lilith has to be add
 
 TODOs unrelated to conditionals:
 Luck modifier that prints out a percentage for the effect based on your current luck stat
-Glyph of Balance prediction in Item Reminder?
-Purity's current stat boost, if possible
 What item is Liberty Cap, Broken Syringe, etc. currently giving?
 RNG cheat for Crooked Penny
 Shorten Pandora's Box description in item reminder to just current floor and future ones?
@@ -330,6 +328,12 @@ Don't show Void stat ups depending on what Void has absorbed (abyss absorbed = n
 Wild Card vurp-like desc modifier
 The Stars? preview using item reminder's passive list (be weary of character's starting items) (co-op friendly modifier)
 Check if Tainted ???'s desc offset is maybe a little too much; test and make sure desc offsets don't trigger in co-op erroneously like mag's birthright, only EID.player matters
+
+REPENTOGON TODOS:
+Glyph of balance
+Item reminder previews of immaculate/cambion progress
+Purity's current stat boost
+Attack formula simulator?
 
 MAYBE SOME DAYS:
 Bag of Crafting "sort by recipe nearest completion in bag" option
