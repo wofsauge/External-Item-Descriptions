@@ -1129,7 +1129,7 @@ EID.descriptions[languageCode].RoomTypeNames = { "Normal Room", "Shop", "I AM ER
 -- Not technically room types but still potentially useful to have localized
 [666] = "Devil/Angel Room", [1024] = "Red Room", [1025] = "Special Red Room" }
 
--- currently used for D1
+-- currently used for D1 and Glyph of Balance; contains Rep pickups for ease of localization
 EID.descriptions[languageCode].PickupNames = {
 	["5.0"] = "None",
 
@@ -1144,6 +1144,8 @@ EID.descriptions[languageCode].PickupNames = {
 
 	["5.40"] = "{{Bomb}} Bomb",
 	["5.40.1"] = "{{Crafting15}} Bomb", ["5.40.2"] = "{{Crafting15}} Double Bomb", ["5.40.3"] = "{{Crafting15}} Troll Bomb", ["5.40.4"] = "{{Crafting16}} Golden Bomb", ["5.40.5"] = "{{Crafting15}} Mega Troll Bomb", ["5.40.7"] = "{{Crafting17}} Giga Bomb",
+	
+	["5.42"] = "{{Crafting29}} Poop Nugget", ["5.42.1"] = "{{Crafting29}} Big Poop Nugget",
 
 	["5.90"] = "{{Battery}} Battery",
 	["5.90.0"] = "{{Crafting19}} Lil' Battery", --AB+ didn't have subtypes for batteries
