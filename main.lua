@@ -1178,20 +1178,20 @@ function EID:CheckPosModifiers()
 	else
 		-- Tainted Isaac and Tainted ??? unique HUD adjustment
 		if EID.player:GetPlayerType() == 21 or EID.player:GetPlayerType() == 25 then
-			EID:addTextPosModifier("Tainted HUD", Vector(0,30))
+			EID:addTextPosModifier("Tainted HUD", Vector(0,26))
 		else
 			EID:removeTextPosModifier("Tainted HUD")
 		end
 		-- Jacob and Esau card/pill adjustment
 		if EID.player:GetPlayerType() == 19 then
-			EID:addTextPosModifier("J&E HUD", Vector(0,15))
+			EID:addTextPosModifier("J&E HUD", Vector(0,16))
 		else
 			EID:removeTextPosModifier("J&E HUD")
 		end
 		-- Magdalene Birthright, Keeper & Tainted Keeper third/fourth row of hearts adjustment
 		if EID.player:GetEffectiveMaxHearts() + EID.player:GetSoulHearts() + (EID.player:GetBrokenHearts() * 2) >= 37 then
 			EID:removeTextPosModifier("18 Heart HUD")
-			EID:addTextPosModifier("24 Heart HUD", Vector(0,22))
+			EID:addTextPosModifier("24 Heart HUD", Vector(0,20))
 		elseif EID.player:GetEffectiveMaxHearts() + EID.player:GetSoulHearts() + (EID.player:GetBrokenHearts() * 2) >= 25 then
 			EID:removeTextPosModifier("24 Heart HUD")
 			EID:addTextPosModifier("18 Heart HUD", Vector(0,10))
