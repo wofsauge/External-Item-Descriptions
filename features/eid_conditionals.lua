@@ -53,7 +53,8 @@ EID:AddConditional({266, "5.350.46", 385}, EID.IsGreedMode, "Room to Wave")
 
 -- append/overwrite some descriptions
 EID:AddConditional({483, 535, "5.300.15", "5.300.19", "5.300.20", 246, 333, "5.350.120", "5.350.34", "5.350.36", "5.350.41", "5.350.44", "5.350.45", "5.350.72", 514 }, EID.IsGreedMode) -- Mama Mega, Blanket, Temperance, The Moon, The Sun, Blue Map, The Mind, Hairpin, some nogreed trinkets, Broken Modem
-EID:AddConditional({"5.350.5", 208}, EID.IsGreedMode, "No Champion Drops")
+EID:AddConditional({"5.350.5", 208}, EID.IsGreedMode, "No Champion Drops") -- Champion Belt, Purple Heart
+EID:AddConditional(297, EID.IsGreedMode, "Greed") -- Pandora's Box
 
 if EID.isRepentance then
 	EID:AddConditional({567, 693, "5.350.163", "5.350.167", }, EID.IsGreedMode, "Room to Wave")
