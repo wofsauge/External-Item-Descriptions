@@ -337,8 +337,8 @@ Implement the standardized colors for characters, items, map names, etc
 Make Glitched Crown type pedestals work better in EID (pause on one item and press tab to switch to the next item)
 Don't show Void stat ups depending on what Void has absorbed (abyss absorbed = no void stat ups etc, reroll item = might become actives)
 Wild Card vurp-like desc modifier
+Check on Glowing Hour Glass's effect on things like the Wild Card / Vurp modifiers, we could maybe account for it finally...
 The Stars? preview using item reminder's passive list (be weary of character's starting items) (co-op friendly modifier)
-Check if Tainted ???'s desc offset is maybe a little too much; test and make sure desc offsets don't trigger in co-op erroneously like mag's birthright, only EID.player matters
 
 REPENTOGON TODOS:
 Glyph of balance
