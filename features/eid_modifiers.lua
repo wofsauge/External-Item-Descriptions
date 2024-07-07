@@ -137,6 +137,7 @@ local pandorasStages = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11, 11, 13 }
 local altStages = { [10] = false, [11] = true, [12] = false, [13] = true }
 -- Greed Mode Absolute Stage / Pandora's Box Behavior: 1: B2, 3: C2, 5: D2, 7: W1, 10: Sheol, 0: Chest
 local greedStages = { -1, 1, -1, 3, -1, 5, 7, -1, -1, 10, -1, -1, 0, -1 }
+EID.PandorasGreedConditional = false -- helper variable to let item reminder know that we have the 6-entry greed pandora desc
 
 local function PandorasBoxCallback(descObj)
 	local strangeKeyOwned = EID.isRepentance and EID:PlayersHaveTrinket(175)
@@ -157,10 +158,15 @@ local function PandorasBoxCallback(descObj)
 		end
 	end
 	local skip9and12 = false
+	EID.PandorasGreedConditional = false
 	-- many localizations do not have the ???/Void entry and the Dark Room entry
 	-- this seemed better than forcing them to have it
 	if totalCount == (EID.isRepentance and 12 or 11) then
 		skip9and12 = true
+	-- If the localization has a simplified Greed Mode desc, it will only have 6 entries
+	elseif totalCount == 6 then
+		EID.PandorasGreedConditional = true
+		greedStages = { 1, 3, 5, 7, 10, 0 }
 	end
 
 	for w in string.gmatch(descObj.Description, "([^#;]+)") do
