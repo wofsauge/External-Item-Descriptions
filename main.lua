@@ -1458,10 +1458,10 @@ function EID:OnRender()
 					elseif closest.Type == 1000 and closest.Variant == 161 and closest.SubType <= 2 then
 						local subtypeToCard = {18, 5, 19}
 						-- Reuse the descriptions of The Emperor/Stars/Moon, so no localization needed
-						local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest, false)
+						local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest)
 						-- Card Reading's name
 						descriptionObj.Name = EID:getObjectName(5, 100, 660)
-						-- Only keep the first line of the description
+						-- Only keep the first line of the description (to avoid Tarot Cloth effects or Planetarium mention on The Stars)
 						descriptionObj.Description = string.sub(descriptionObj.Description, 1, string.find(descriptionObj.Description, "#"))
 						EID:addDescriptionToPrint(descriptionObj)
 					-- Handle Crane Game
