@@ -140,7 +140,6 @@ local greedStages = { -1, 1, -1, 3, -1, 5, 7, -1, -1, 10, -1, -1, 0, -1 }
 EID.PandorasGreedConditional = false -- helper variable to let item reminder know that we have the 6-entry greed pandora desc
 
 local function PandorasBoxCallback(descObj)
-	local strangeKeyOwned = EID.isRepentance and EID:PlayersHaveTrinket(175)
 	local pandoraCount = 0
 	local level = game:GetLevel()
 	local stageNum = level:GetAbsoluteStage()
@@ -190,9 +189,6 @@ local function PandorasBoxCallback(descObj)
 			-- don't check any lines of the description after Home
 			if pandoraCount	== (EID.isRepentance and 14 or 13) then break end
 		end
-	end
-	if strangeKeyOwned then
-		descObj.Description = descObj.Description .. "#{{Trinket175}} " .. EID:getDescriptionEntry("PandorasBoxStrangeKeyEffect")
 	end
 	return descObj
 end
