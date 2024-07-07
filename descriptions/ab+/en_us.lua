@@ -319,7 +319,7 @@ EID.descriptions[languageCode].collectibles={
 	{"296", "Converter", "{{Heart}} Converts 2 Soul/Black Hearts into 1 heart container"}, -- Converter
 	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
 	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
-	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#{{NoLB}}Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1{{Coin}}"}, -- Pandora's Box
+	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#{{NoLB}}C1: Boss item; C2: C1 + 2{{SoulHeart}}#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#{{NoLB}}Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1{{Coin}}"}, -- Pandora's Box
 	{"298", "Unicorn Stump", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot (No contact damage)"}, -- Unicorn Stump
 	{"299", "Taurus", "↓ {{Speed}} -0.3 Speed#↑ {{Speed}} Slowly gain speed while in hostile rooms#At 2 speed, Isaac becomes invincible and deals contact damage#Afterwards, lose the Taurus speed boost for the room"}, -- Taurus
 	{"300", "Aries", "↑ {{Speed}} +0.25 Speed#Touching enemies deals contact damage"}, -- Aries
@@ -1200,6 +1200,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.350.44"] = {"{{Pill}} Chance for a bonus pill from chests, tinted rocks and destroyed machines"}, -- Safety Cap
 	["5.350.45"] = {"{{Card}} Chance for a bonus card from chests, tinted rocks and destroyed machines"}, -- Ace of Spades
 	["5.350.72"] = {"{{Battery}} +10% chance for random pickups to be a battery#{{Battery}} 5% chance to add 1 charge to held active item when clearing a wave"}, -- Watch Battery
+	["5.100.297 (Greed)"] = {"{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#Basement: 2{{Bomb}} + 2{{Key}}#Caves: Boss item + 2{{SoulHeart}}#Depths: 20{{Coin}}#Womb: 2 Boss items#Sheol: Devil item + 1{{BlackHeart}}#The Shop/Ultra Greed: 1{{Coin}}"}, -- Pandora's Box
 	
 	
 	------ ACHIEVEMENT CHECKS ------
