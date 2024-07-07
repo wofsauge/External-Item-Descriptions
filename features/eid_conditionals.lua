@@ -24,15 +24,26 @@ else EID:AddItemConditional("5.300", 451, nil, {locTable = "tarotClothBuffs", re
 
 -- Car Battery
 EID:AddItemConditional("5.100", 356, EID.CheckForCarBattery, {locTable = "carBattery", replaceColor = "BlinkYellowGreen", noFallback = false})
-EID:AddConditional(356, EID.CheckActivesForCarBattery, "No Effect") -- "No effect" text for Car Battery pedestal
+EID:AddConditional(356, EID.CheckActivesForCarBattery, nil, {locTable = "carBattery", useResult = true, layer = 2}) -- Effect text for Car Battery pedestal
+EID:AddConditional(356, EID.CheckActivesForNoCarBattery, "No Effect", {layer = 1}) -- "No effect" text for Car Battery pedestal
 
--- BFFS! / Hive Mind
+
+-- BFFS! / Hive Mind / Forgotten Lullaby
 EID:AddItemConditional({"5.100","5.350.54","5.350.57"}, 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false, uniqueID = "BFFS"})
-EID:AddConditional(247, EID.CheckFamiliarsForBFFS, "No Effect") -- "No effect" text for BFFS pedestal
+EID:AddConditional(247, EID.CheckFamiliarsForBFFS, nil, {locTable = "BFFSSynergies", useResult = true, layer = 2}) -- Effect text for BFFS pedestal
+EID:AddPlayerConditional(247, 13, "Lilith", {locTable = "BFFSSynergies", layer = 3}, false) -- Lilith's Incubus
+EID:AddConditional(247, EID.CheckFamiliarsForNoBFFS, "No Effect", {layer = 1}) -- No effect text for BFFS pedestal
 if EID.isRepentance then
 	EID:AddItemConditional({"5.300.96", "5.350.142", "5.350.176", "5.350.182", "5.350.186"}, 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false}) -- BFFS! Repentance soulstone/trinkets
+	EID:AddPlayerConditional(247, 32, "Tainted Lilith", {locTable = "BFFSSynergies", layer = 3}) -- Tainted Lilith's Gello
 	EID:AddItemConditional("5.100", 248, EID.CheckForHiveMind, {locTable = "BFFSSynergies", replaceColor = "BlinkBlue", noFallback = false, uniqueID = "BFFS"}) -- Hive Mind
-	EID:AddSynergyConditional(247, 248, "No Effect (Familiars)") -- Already having Hive Mind / BFFS!
+	EID:AddSynergyConditional(247, 248, "No Effect (Familiars)", {layer = 5}) -- Already having Hive Mind / BFFS!
+	EID:AddConditional(248, EID.CheckFamiliarsForHiveMind, nil, {locTable = "BFFSSynergies", useResult = true, layer = 2}) -- Effect text for Hive Mind pedestal
+	
+	EID:AddSynergyConditional({584, 685, 702, 728}, "5.350.141", "No Effect From", "No Effect") -- Forgotten Lullaby no effect familiars (wisps, Gello)
+	EID:AddPlayerConditional("5.350.141", 32, "No Effect", {bulletpoint = "Collectible728", variableText = "{{NameOnlyC728}}"}) -- Forgotten Lullaby no effect on Tainted Lilith's Gello
+	EID:AddPlayerConditional("5.350.141", 13, "Lullaby Lilith", nil, false)
+	EID:AddPlayerConditional("5.350.141", 26, "Lullaby Tainted Eve")
 end
 
 -- Abyss, Birthright Book of Belial, Binge Eater
@@ -195,9 +206,9 @@ end
 
 ----- MISC. ITEM CONDITIONS ------
 -- IV Bag conditions (need to be applied in a specific order)
-EID:AddItemConditional(135, 75, "PHD") -- PHD improves IV Bag
-EID:AddPlayerConditional(135, 14, "Keeper 0-1") -- Keeper gets 0-1 coins
-if EID.isRepentance then EID:AddConditional(135, EID.IsHardMode, "Hard Mode") end -- Hard Mode pays out less
+EID:AddItemConditional(135, 75, "PHD", {layer = 3}) -- PHD improves IV Bag
+EID:AddPlayerConditional(135, 14, "Keeper 0-1", {layer = 2}) -- Keeper gets 0-1 coins
+if EID.isRepentance then EID:AddConditional(135, EID.IsHardMode, "Hard Mode", {layer = 1}) end -- Hard Mode pays out less
 
 -- Suicide item interactions
 EID:AddSynergyConditional({475, "5.300.46"}, {210, 276, 313}, "Suicide 1", "Suicide 2") -- Plan C, Suicide King + Isaac's Heart, Holy Mantle, Gnawed Leaf
@@ -268,6 +279,11 @@ EID:AddItemConditional({8, 113, 163, 167, 99, 100, 174, 95, 268, 67}, 322, "Mong
 if EID.isRepentance then EID:AddItemConditional(608, 322, "Mongo Babies") end
 EID:AddSynergyConditional(261, 222, "Proptosis Anti-Gravity")
 EID:AddSynergyConditional(394, 69, "Chocolate Milk Marked")
+EID:AddConditional("5.300.5", EID.InStageVoid) -- The Emperor random boss room
+EID:AddConditional("5.300.10", EID.InStageNoTreasureRoom) -- The Hermit possibly no shop
+EID:AddConditional("5.300.18", EID.InStageNoTreasureRoom, nil, {layer = 3}) -- The Stars possibly no treasure room
+EID:AddConditional("5.300.18", EID.IsGreedMode, "Greed", {layer = 2}) -- The Stars random treasure room
+EID:AddConditional("5.300.18", EID.InStageTheShop, "Late Greed", {layer = 1}) -- The Stars no treasure room (I probably went too high detail on this)
 
 -- AB+ only misc conditionals
 if not EID.isRepentance then
@@ -294,26 +310,21 @@ if EID.isRepentance then
 	-- eye drops + chargeable passives like brimstone could go here but there's a lot of them
 	EID:AddPlayerConditional(600, {2, 7, 13, 16}) -- Eye Drops + Cain, Azazel, Lilith, Forgotten
 	EID:AddSynergyConditional(152, {708, 444}, "Technology 2 One Eye") -- Technology 2 + Stapler, Lead Pencil
+	EID:AddConditional(482, EID.CheckForTaintedPlayer)
+	EID:AddItemConditional(297, "5.350.175", "PandorasBoxStrangeKeyEffect", {noTable = true})
 end
 
 --[[
 BUURAZU'S TODO STUFF:
 
-Overridden / Overrides (Brimstone, Mom's Knife, Epic Fetus stuff) (still need some)
+Overridden / Overrides (Brimstone, Mom's Knife, Epic Fetus stuff) (still need some probably)
 Spoiler achievement descriptions (plus a config setting possibly, to always show the spoilers) (Chaos Card and Plan C?)
-BFFs / Hive Mind + Tainted Apollyon, Tainted Eve, Tainted Lilith; melody trinket + Tainted Eve/Lilith; these are insane synergies that deserve attention
 Maybe a find/replace pair for some Keeper descriptions that talk about Red hearts but work for him, Red -> Coin or Red/Coin; Could be good for Dead Cat. or just leave it be
-Crystal Key + Pandora's Box should be moved here? Or leave it in modifiers
-Are Blank Card + Placebo + Clear Rune ready to get moved to here now that I have good ways to return values?
 Jacob's Ladder synergies with other battery items (I didn't even know about this)
-Bean synergies with ghost pepper/bird's eye
-Car Battery / BFFS whitelist for showing certain lines on the car/bffs pedestal, not just "No effect"
+Bean synergies with ghost pepper/bird's eye I guess
 hallowed ground / midas touch + the poop / card against humanity / everything jar synergies
 Add Void synergy information for some active items (which?) (warn on things like mom's box you don't get double trinket power?)
 Damage multipliers that don't stack
-Clicker only changes Tainteds into other Tainteds?
-Change The Stars type cards to append "random room if no treasure room" when on a later game floor
-Change The Emperor to say random boss room when in Void
 
 TODOS I'VE DECIDED NOT TODO RIGHT NOW:
 Incubus effects; a lot are AB+ only; annoying to test; plus Lilith has to be added for all of them too
@@ -322,7 +333,6 @@ TODOs unrelated to conditionals:
 Luck modifier that prints out a percentage for the effect based on your current luck stat
 What item is Liberty Cap, Broken Syringe, etc. currently giving?
 RNG cheat for Crooked Penny
-Shorten Pandora's Box description in item reminder to just current floor and future ones?
 Implement the standardized colors for characters, items, map names, etc
 Make Glitched Crown type pedestals work better in EID (pause on one item and press tab to switch to the next item)
 Don't show Void stat ups depending on what Void has absorbed (abyss absorbed = no void stat ups etc, reroll item = might become actives)
