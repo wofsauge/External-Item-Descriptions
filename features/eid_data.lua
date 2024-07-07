@@ -952,6 +952,18 @@ if EID.isRepentance then
 	EID.CarBatteryNoSynergy[709] = true; EID.CarBatteryNoSynergy[710] = true; EID.CarBatteryNoSynergy[711] = true; EID.CarBatteryNoSynergy[714] = true;
 	EID.CarBatteryNoSynergy[715] = true; EID.CarBatteryNoSynergy[728] = true; EID.CarBatteryNoSynergy[729] = true;
 end
+-- Items that should show their Car Battery synergy while looking at a Car Battery pedestal
+-- Void, Crooked Penny, Metronome, Moving Box, Broken Shovel
+EID.CarBatteryPedestalWhitelist = { [477] = true, [485] = true, [488] = true, [523] = true, [550] = true }
+if EID.isRepentance then
+	EID.CarBatteryPedestalWhitelist[523] = nil -- Moving Box
+	EID.CarBatteryPedestalWhitelist[386] = true -- D12
+	EID.CarBatteryPedestalWhitelist[611] = true -- Larynx
+	EID.CarBatteryPedestalWhitelist[635] = true -- Stitches
+	EID.CarBatteryPedestalWhitelist[685] = true -- Jar of Wisps
+	EID.CarBatteryPedestalWhitelist[720] = true -- Everything Jar
+	EID.CarBatteryPedestalWhitelist[722] = true -- Anima Sola
+end
 
 -- Familiars that have no effect from BFFS!
 EID.BFFSNoSynergy = { [10] = true, [11] = true, [81] = true, [178] = true, [238] = true, [239] = true, [243] = true, [265] = true, [268] = true, [269] = true, [276] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [431] = true, [433] = true, [436] = true, [467] = true, [469] = true, [472] = true, [492] = true, [504] = true, [516] = true, [528] = true, [542] = true, [543] = true }
@@ -967,17 +979,33 @@ if EID.isRepentance then
 	EID.BFFSNoSynergy[651] = true -- Star of Bethlehem
 	EID.BFFSNoSynergy[697] = true -- Vanishing Twin
 end
+-- Items that should show their BFFS / Hive Mind synergy while looking at a BFFS / Hive Mind pedestal
+-- Charged Baby, Key Bum, Spider Mod, Succubus, Lil Spewer, Mystery Egg
+EID.BFFSPedestalWhitelist = { [372] = true, [388] = true, [403] = true, [417] = true, [537] = true, [539] = true }
+if EID.isRepentance then
+	EID.BFFSPedestalWhitelist[276] = true -- Isaac's Heart
+	EID.BFFSPedestalWhitelist[569] = true -- Blood Oath
+	EID.BFFSPedestalWhitelist[584] = true -- Book of Virtues
+	EID.BFFSPedestalWhitelist[612] = true -- Lost Soul
+	EID.BFFSPedestalWhitelist[635] = true -- Stitches
+	EID.BFFSPedestalWhitelist[685] = true -- Jar of Wisps
+	EID.BFFSPedestalWhitelist[702] = true -- Vengeful Spirit
+	EID.BFFSPedestalWhitelist[706] = true -- Abyss
+	EID.BFFSPedestalWhitelist[712] = true -- Lemegeton
+	EID.BFFSPedestalWhitelist[713] = true -- Sumptorium
+end
 
 -- Familiars that count for Hive Mind in Repentance (although it could give them No Effect if it just increases size)
 EID.HiveMindFamiliars = { [10] = true, [57] = true, [128] = true, [170] = true, [264] = true, [272] = true, [274] = true, [279] = true, [320] = true, [364] = true, [365] = true, [403] = true, [426] = true, [430] = true, [504] = true, [511] = true, [575] = true, [581] = true, [629] = true, [649] = true, [650] = true, [706] = true, }
 -- Familiars that count for Hive Mind but should be ignored by BFFS (not used yet, maybe used by modded item conditionals)
 EID.BFFSIgnore = {}
 
+
 -- Tainted character's respective normal version ID, for conditionals that apply to both versions of the character
 -- To help with other character pairs, Esau = Jacob, Dead Tainted Lazarus = Tainted Lazarus, Tainted Soul = Tainted Forgotten
 EID.TaintedToRegularID = { [20] = 19, [21] = 0, [22] = 1, [23] = 2, [24] = 3, [25] = 4, [26] = 5, [27] = 6, [28] = 7, [29] = 8, [30] = 9, [31] = 10, [32] = 13, 
 [33] = 14, [34] = 15, [35] = 16, [36] = 18, [37] = 19, [38] = 29, [39] = 37, [40] = 35 }
--- Player IDs of Tainted characters, might be useful for something
+-- Player IDs of Tainted characters
 EID.TaintedIDs = {}; for i = 21, 40 do EID.TaintedIDs[i] = true end
 
 -- Character IDs that are Soul/Black Hearts only: ???, The Lost, The Soul
