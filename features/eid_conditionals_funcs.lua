@@ -123,12 +123,13 @@ end
 	Argument 4 (optional): Table with any additional options, usually not needed:
 	variableText: If there's a {1} in the desc, it will be replaced with this; can be a function for more dynamic text results, it will get descObj passed into it
 	locTable: Specify a different table to look for the localization string in, rather than ConditionalDescs
-	noTable: Set to true to look in the base localizations only (requires modText) (not used yet...)
+	noTable: Set to true to look in the base localizations only (requires modText)
 	lineColor: Appended lines will be highlighted with this color
 	replaceColor: Find/replace text will be highlighted with this color
 	bulletpoint: Appended lines will begin with this bulletpoint
 	noFallback: Don't fallback to English if this isn't localized; by default, conditionals don't fallback, to avoid printing English text in unupdated languages
 	usePedestalName: If true, display the pedestal item's name in place of {1}
+	useResult: If true, use the result from the conditional function to find the localization string
 	layer: A number used in determining the order that conditionals should be checked in, default -1
 	checkLayers: If true, don't print this condition if a higher layer condition was applied already
 	uniqueID: Only one conditional with the given unique ID will be printed
@@ -260,6 +261,19 @@ function EID:IsHardMode()
 	return game.Difficulty == 1 or game.Difficulty == 3
 end
 
+function EID:InStageNum(stageNum)
+	return game:GetLevel():GetAbsoluteStage() == stageNum
+end
+function EID:InStageVoid()
+	return EID:InStageNum(12)
+end
+function EID:InStageNoTreasureRoom()
+	return game:GetLevel():GetAbsoluteStage() > 6
+end
+function EID:InStageTheShop()
+	return EID:IsGreedMode() and EID:InStageNum(0)
+end
+
 -- Check if we have any characters that can't have Red Health, to print additions to descs like Dead Cat
 function EID:CheckForNoRedHealthPlayer()
 	if EID.InsideItemReminder then
@@ -269,6 +283,21 @@ function EID:CheckForNoRedHealthPlayer()
 		for i = 0, game:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
 			if EID.NoRedHeartsPlayerIDs[player:GetPlayerType()] then
+				return true
+			end
+		end
+	end
+	return false
+end
+
+function EID:CheckForTaintedPlayer()
+	if EID.InsideItemReminder then
+		local player = EID.ItemReminderPlayerEntity
+		return EID.TaintedIDs[player:GetPlayerType()]
+	else
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if EID.TaintedIDs[player:GetPlayerType()] then
 				return true
 			end
 		end
@@ -303,8 +332,15 @@ function EID:CheckForCarBattery(descObj)
 	if EID.CarBatteryNoSynergy[descObj.ObjSubType] then return "No Effect" end
 	return descObj.ObjSubType
 end
--- When we're looking at a Car Battery pedestal, check our actives for having no effect
+-- When we're looking at a Car Battery pedestal, check our actives for having an effect or no effect
 function EID:CheckActivesForCarBattery(descObj)
+	if EID.InsideItemReminder then return false end
+	for k,v in pairs(EID.CarBatteryPedestalWhitelist) do
+		if v and EID:PlayersHaveCollectible(k) then return k end
+	end
+	return false
+end
+function EID:CheckActivesForNoCarBattery(descObj)
 	if EID.InsideItemReminder then return false end
 	for k,v in pairs(EID.CarBatteryNoSynergy) do
 		if v and EID:PlayersHaveCollectible(k) then return k end
@@ -324,8 +360,22 @@ function EID:CheckForHiveMind(descObj)
 	return "N/A"
 end
 
--- When we're looking at a BFFS pedestal, check our familiars for having no effect (only finds the earliest one, but whatever)
+-- When we're looking at a BFFS pedestal, check our familiars for having an effect (only finds the earliest one)
 function EID:CheckFamiliarsForBFFS(descObj)
+	if EID.InsideItemReminder then return false end
+	for k,v in pairs(EID.BFFSPedestalWhitelist) do
+		if v and EID:PlayersHaveCollectible(k) then return "5.100." .. k end
+	end
+	return false
+end
+function EID:CheckFamiliarsForHiveMind(descObj)
+	if EID.InsideItemReminder then return false end
+	for k,v in pairs(EID.BFFSPedestalWhitelist) do
+		if EID.HiveMindFamiliars[k] and v and EID:PlayersHaveCollectible(k) then return "5.100." .. k end
+	end
+	return false
+end
+function EID:CheckFamiliarsForNoBFFS(descObj)
 	if EID.InsideItemReminder then return false end
 	for k,v in pairs(EID.BFFSNoSynergy) do
 		if v and EID:PlayersHaveCollectible(k) then return k end
@@ -440,6 +490,7 @@ function EID:applyConditionals(descObj)
 				local locTable = cond.locTable or "ConditionalDescs"
 				local text = nil
 				local modifierText = type(cond.modifierText) == "function" and cond.modifierText(EID, descObj) or cond.modifierText
+				if cond.useResult then modifierText = result end
 				
 				-- Find our string in the base localization table
 				if cond.noTable then
@@ -459,11 +510,11 @@ function EID:applyConditionals(descObj)
 					if cond.layer > highestLayer then highestLayer = cond.layer end
 					if cond.uniqueID then printedDescs[cond.uniqueID] = true end
 					local variableText, bulletpoint
-					-- If the condition returned a value, use that value
+					-- If the condition returned a value, use that value as an item ID for the bulletpoint/{1} replacement
 					if result ~= true then
-						-- For the time being, we assume the result was a collectible number (will support more soon)
-						variableText = "{{NameOnlyC"..result.."}}"
-						bulletpoint = "Collectible"..result
+						if type(result) == "number" then result = "5.100." .. result end
+						variableText = "{{NameOnly"..result.."}}"
+						bulletpoint = "Item"..result
 					else
 						variableText = type(cond.variableText) == "function" and cond.variableText(EID, descObj) or cond.variableText
 						bulletpoint = cond.bulletpoint
