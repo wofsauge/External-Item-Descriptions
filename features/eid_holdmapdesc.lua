@@ -146,6 +146,78 @@ EID.ItemReminderDescriptionModifier = {
 			end
 		end,
 	},
+	["5.100.297"] = { -- Pandora's Box shortened description for overview
+		modifierFunction = function(descObj, player, inOverview)
+			if inOverview then
+				-- Crystal Key interaction takes priority
+				if EID.isRepentance and player:HasTrinket(175) then
+					local result = "{{Trinket175}} " .. EID:getDescriptionEntry("PandorasBoxStrangeKeyEffect")
+					EID:ItemReminderAddResult(descObj, result, inOverview)
+					return true
+				end
+				-- remove spaces after semicolons
+				descObj.Description = string.gsub(descObj.Description, "; ", ";")
+				descObj.Description = string.gsub(descObj.Description, "{{ColorBagComplete}} ", "{{ColorBagComplete}}")
+				-- find the highlighted text
+				local startLoc = string.find(descObj.Description, "{{ColorBagComplete}}")
+				if startLoc then
+					-- display the current result and the next floor's result; this is a bit complicated if you want to be truly accurate
+					local count = 2
+					local skip = 0
+					
+					local level = game:GetLevel()
+					local stageNum = level:GetAbsoluteStage()
+					local inAscent = EID.isRepentance and (level:IsAscent() or level:IsPreAscent())
+					local final = not level:IsNextStageAvailable()
+					
+					if EID:IsGreedMode() and not EID.PandorasGreedConditional then
+						skip = 1
+						if stageNum == 5 then skip = 0 -- Depths 2 -> Womb 1
+						elseif stageNum == 7 or stageNum == 10 then skip = 2
+						elseif stageNum == 0 then count = 1 end -- Womb 1 -> Sheol, Sheol -> Chest
+					else
+						if final or stageNum == 12 then count = 1 -- Dark Room/Chest/The Void/Home/Corpse 2 doesn't display any more
+						elseif EID:IsGreedMode() then count = 2 -- prevent Greed Mode Sheol from behaving weird
+						elseif stageNum == 8 then count = 3; skip = 1 -- Womb 2 displays Sheol and Cathe
+						elseif stageNum == 9 then count = 3 -- ??? displays Sheol and Cathe
+						elseif stageNum == 10 then skip = 1 end -- Sheol/Cathe skip one to display Dark Room/Chest
+					end
+					
+					local newDesc = ""
+					if inAscent then
+						-- Go through the description, copying the current line, until we find the highlighted line, appending the previous line to it
+						-- Exception: Basement 1 wants to append the final line (Home) so just keep iterating
+						local highlightLine = ""
+						local secondLine = ""
+						for w in string.gmatch(descObj.Description, "([^#;]+)") do
+							if string.find(w, "{{ColorBagComplete}}") then
+								highlightLine = w
+								if stageNum ~= 1 then break end
+							else
+								secondLine = w
+							end
+						end
+						newDesc = highlightLine .. "#" .. secondLine
+					else
+						local truncated = string.sub(descObj.Description, startLoc)
+						for w in string.gmatch(truncated, "([^#;]+)") do
+							-- skip lines after adding the highlighted line
+							if newDesc ~= "" and skip > 0 then
+								skip = skip - 1
+							else
+								newDesc = newDesc .. w
+								count = count - 1
+								if count == 0 then break
+								else newDesc = newDesc .. "#" end
+							end
+						end
+					end
+					EID:ItemReminderAddResult(descObj, newDesc, inOverview)
+					return true
+				end
+			end
+		end
+	},
 	["5.100.419"] = { -- Teleport 2.0 location
 		modifierFunction = function(descObj, _, inOverview)
 			EID:ItemReminderAddResult(descObj, EID:Teleport2Prediction(), inOverview)
