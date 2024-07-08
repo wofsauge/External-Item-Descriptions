@@ -244,6 +244,44 @@ local function BlackFeatherCallback(descObj)
 	return descObj
 end
 
+-- Handle VURP description addition
+local function VurpCallback(descObj)
+	local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
+	if adjustedID - 1 ~= PillEffect.PILLEFFECT_VURP then return descObj end
+
+	for i = 1,#EID.coopAllPlayers do
+		local player = EID.coopAllPlayers[i]
+		local playerID = EID:getPlayerID(player)
+		local playerType = player:GetPlayerType()
+		local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
+		-- Dead Tainted Lazarus exception
+		if EID.isRepentance and playerType == 38 then
+			pickupHistory = EID.PlayerItemInteractions[playerID].altPickupHistory or pickupHistory
+		end
+		if pickupHistory then
+			local lastUsedPill = PillEffect.PILLEFFECT_VURP + 1
+			local lastUsedPillColor = 1
+			local j = 1
+			while (j <= #pickupHistory) do
+				local entry = pickupHistory[j]
+				-- ignore the pill if the pill color is Golden
+				if entry[1] == "pill" and entry[2] % 2048 ~= 14 then
+					lastUsedPill = entry[3]
+					lastUsedPillColor = entry[2]
+					break
+				end
+				j = j + 1
+			end
+			local tableName = EID:getTableName(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
+			local name = EID:getPillName(lastUsedPill, tableName == "horsepills")
+			if #EID.coopAllPlayers == 1 then EID:appendToDescription(descObj, "#{{Pill" .. lastUsedPillColor .. "}}")
+			else EID:appendToDescription(descObj, "#" .. EID:GetPlayerIcon(playerType, "P" .. i .. ":")) end
+			EID:appendToDescription(descObj, " {{ColorPill}}" .. name)
+		end
+	end
+	return descObj
+end
+
 if EID.isRepentance then
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
@@ -264,7 +302,7 @@ if EID.isRepentance then
 		return descObj
 	end
 
-  -- Handle Glowing Hourglass description
+  -- Handle Glowing Hourglass changed back into Hourglass description
   local function GlowingHourglassCallback(descObj)
     if REPENTOGON and EID.collectiblesOwned[422] then
       local transformedText = EID:getDescriptionEntry("GlowingHourglassTransformed")
@@ -304,13 +342,6 @@ if EID.isRepentance then
 		return descObj
 	end
 
-	--simple decimal rounding
-	local function SimpleRound(num, dp)
-		dp = dp or 2
-		local mult = 10^dp
-		return math.floor(num * mult + 0.5)/mult
-	end
-
 	-- 3 coins, 1 bomb, 1 key, 1 soul heart, 2 red hearts
 	local consolationPickups = { "5.20", "5.40", "5.30", "5.10.3", "5.10" }
 	local consolationQuantity = { "3", "1", "1", "1", "2" }
@@ -323,10 +354,10 @@ if EID.isRepentance then
 			local playerName = player:GetName()
 
 			local playerStats = {}
-			playerStats[1] = SimpleRound((player.MoveSpeed * 4.5) - 2)
-			playerStats[2] = SimpleRound((((30/(player.MaxFireDelay + 1))^0.75) * 2.120391) - 2)
-			playerStats[3] = SimpleRound(((player.Damage^0.56)*2.231179) - 2)
-			playerStats[4] = SimpleRound(((player.TearRange - 230) / 60) + 2)
+			playerStats[1] = EID:SimpleRound((player.MoveSpeed * 4.5) - 2)
+			playerStats[2] = EID:SimpleRound((((30/(player.MaxFireDelay + 1))^0.75) * 2.120391) - 2)
+			playerStats[3] = EID:SimpleRound(((player.Damage^0.56)*2.231179) - 2)
+			playerStats[4] = EID:SimpleRound(((player.TearRange - 230) / 60) + 2)
 
 			local playerPickups = {}
 			playerPickups[1] = player:GetNumCoins()
@@ -519,8 +550,25 @@ if EID.isRepentance then
 		return descObj
 	end
 	
-	local hasTarot = false
-	
+	-- Handle Wild Card description addition
+	local function WildCardCallback(descObj)
+		for i = 1,#EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[i]
+			local playerID = EID:getPlayerID(player)
+			local playerType = player:GetPlayerType()
+			-- Dead Tainted Lazarus exception
+			if playerType == 38 then playerID = playerID + 666 end
+			if EID.WildCardEffects[playerID] then
+				EID:appendToDescription(descObj, "#")
+				
+				if #EID.coopAllPlayers > 1 then EID:appendToDescription(descObj, EID:GetPlayerIcon(playerType, "P" .. i .. ":") .. " ") end
+				if EID.WildCardPillColor[playerID] then -- show the correct pill color; unnecessary attention to detail but why not
+					EID:appendToDescription(descObj, "{{Pill" .. EID.WildCardPillColor[playerID] .. "}} {{NameOnly" .. EID.WildCardEffects[playerID] .. "}}")
+				else EID:appendToDescription(descObj, "{{Name" .. EID.WildCardEffects[playerID] .. "}}") end
+			end
+		end
+		return descObj
+	end
 	
 	local function VariableCharge(descObj, metadata, collID, chargeText)
 		local text = EID:getDescriptionEntry(chargeText or "VariableCharge")
@@ -530,6 +578,7 @@ if EID.isRepentance then
 		end
 	end
 	
+	local hasTarot = false
 	-- Handle Blank Card description addition
 	local function BlankCardCallback(descObj)
 		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 286, "BlankCardCharge")
@@ -552,42 +601,6 @@ if EID.isRepentance then
 	local function PlaceboCallback(descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 		VariableCharge(descObj, EID.pillMetadata[adjustedID-1], 348, "PlaceboCharge")
-		return descObj
-	end
-
-	-- Handle VURP description addition
-	local function VurpCallback(descObj)
-		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
-		if adjustedID - 1 ~= PillEffect.PILLEFFECT_VURP then return descObj end
-
-		for i = 1,#EID.coopAllPlayers do
-			local player = EID.coopAllPlayers[i]
-			local playerID = EID:getPlayerID(player)
-			local playerType = player:GetPlayerType()
-			local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
-			-- Dead Tainted Lazarus exception
-			if playerType == 38 then
-				pickupHistory = EID.PlayerItemInteractions[playerID].altPickupHistory or pickupHistory
-			end
-			if pickupHistory then
-				local lastUsedPill = PillEffect.PILLEFFECT_VURP + 1
-				local j = 1
-				while (j <= #pickupHistory) do
-					local entry = pickupHistory[j]
-					-- ignore the pill if the pill color is Golden
-					if entry[1] == "pill" and entry[2] ~= 14 then
-						lastUsedPill = entry[3]
-						break
-					end
-					j = j + 1
-				end
-				local tableName = EID:getTableName(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
-				local name = EID:getPillName(lastUsedPill, tableName == "horsepills")
-				if #EID.coopAllPlayers == 1 then EID:appendToDescription(descObj, "#{{Pill}}")
-				else EID:appendToDescription(descObj, "#" .. EID:GetPlayerIcon(playerType, "P" .. i .. ":")) end
-				EID:appendToDescription(descObj, " {{ColorSilver}}" .. name)
-			end
-		end
 		return descObj
 	end
 	
@@ -736,11 +749,11 @@ if EID.isRepentance then
 
 			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
 			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
+			if descObj.ObjSubType == 80 then table.insert(callbacks, WildCardCallback) end
 		-- Pill Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
 			if EID.collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
 			if EID.collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
-			table.insert(callbacks, VurpCallback)
 			table.insert(callbacks, ExperimentalPillCallback)
 
 			if EID.pillPlayer == nil and #EID.coopAllPlayers > 1 then
@@ -784,6 +797,8 @@ local function EIDConditionsAB(descObj)
 		
 	elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
 		if descObj.ObjSubType == 80 then table.insert(callbacks, BlackFeatherCallback) end
+	elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
+		table.insert(callbacks, VurpCallback)
 	end
 	return callbacks
 end
