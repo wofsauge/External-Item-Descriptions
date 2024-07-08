@@ -2227,38 +2227,41 @@ function EID:UpdateAllPlayerPassiveItems()
 		if player == nil then
 			return listUpdatedForPlayers -- dont evaluate when bad data is present
 		end
-
-		-- only update if collectible number changed
-		local currentCollectibleCount = player:GetCollectibleCount()
-		if #EID.RecentlyTouchedItems[playerNum] ~= currentCollectibleCount then
-			
-			-- remove items the player no longer has. reverse iteration to make deletion easier
-			for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
-				if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index], true) then
-					table.remove(EID.RecentlyTouchedItems[playerNum], index)
-					listUpdatedForPlayers[i] = true
-				end
+		
+		-- remove items the player no longer has. reverse iteration to make deletion easier
+		for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
+			if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index], true) then
+				table.remove(EID.RecentlyTouchedItems[playerNum], index)
+				listUpdatedForPlayers[i] = true
+				-- If an item earlier than our oldest item is removed (e.g. Eve sacrificial altaring her Dead Bird), reduce it
+				if index < EID.OldestItemIndex[playerNum] then EID.OldestItemIndex[playerNum] = EID.OldestItemIndex[playerNum] - 1 end
 			end
+		end
 
-			-- add items the player did get with non-standard methods (console command, item effects, etc...)
-			for _, itemID in ipairs(passives) do
-				if player:HasCollectible(itemID, true) then
-					local alreadyInList = false
-					for _, heldItemID in ipairs(EID.RecentlyTouchedItems[playerNum]) do
-						if itemID == heldItemID then
-							alreadyInList = true
-							break
-						end
+		-- add items the player did get with non-standard methods (console command, item effects, etc...)
+		for _, itemID in ipairs(passives) do
+			if player:HasCollectible(itemID, true) then
+				local alreadyInList = false
+				for _, heldItemID in ipairs(EID.RecentlyTouchedItems[playerNum]) do
+					if itemID == heldItemID then
+						alreadyInList = true
+						break
 					end
-					if not alreadyInList then
-						table.insert(EID.RecentlyTouchedItems[playerNum], itemID)
-						listUpdatedForPlayers[i] = true
-					end
+				end
+				if not alreadyInList then
+					table.insert(EID.RecentlyTouchedItems[playerNum], itemID)
+					listUpdatedForPlayers[i] = true
 				end
 			end
 		end
 	end
 	return listUpdatedForPlayers
+end
+EID.OldestItemIndex = {}
+function EID:SetOldestItemIndex()
+	for i = 0, game:GetNumPlayers() - 1 do
+		if EID.OldestItemIndex[i] == nil then EID.OldestItemIndex[i] = #EID.RecentlyTouchedItems[i] + 1 end
+	end
 end
 
 EID.GulpedTrinkets = {}
