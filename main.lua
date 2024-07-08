@@ -52,6 +52,7 @@ EID.holdTabCounter = 0
 EID.DInfinityState = {}
 local forgottenDropTimer = 0
 EID.roomCount = 0
+local preHourglassStatus = {}
 
 EID.GameUpdateCount = 0
 EID.GameRenderCount = 0
@@ -778,6 +779,17 @@ end
 function EID:onNewRoom()
 	EID:CheckCurrentRoomGridEntities()
 	EID.roomCount = EID.roomCount + 1
+	-- Store values here to be rewound after using Glowing Hour Glass
+	preHourglassStatus = {}
+	preHourglassStatus.absorbedItems = EID:CopyTable(EID.absorbedItems)
+	preHourglassStatus.PlayerItemInteractions = EID:CopyTable(EID.PlayerItemInteractions)
+	if EID.isRepentance then
+		preHourglassStatus.WildCardEffects = EID:CopyTable(EID.WildCardEffects)
+		preHourglassStatus.WildCardPillColor = EID:CopyTable(EID.WildCardPillColor)
+		preHourglassStatus.DInfinityState = EID:CopyTable(EID.DInfinityState)
+		preHourglassStatus.BagItems = EID:CopyTable(EID.BoC.BagItems)
+		preHourglassStatus.RoomQueries = EID:CopyTable(EID.BoC.RoomQueries)
+	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 
@@ -1066,21 +1078,24 @@ function EID:onGameUpdate()
 		EID.RecheckVoid = true
 	end
 
-	if EID.isRepentance and EID.GameUpdateCount % 10 == 0 then
-		-- Check wisp for adding reminder when using lemegeton
-		if EID.ShouldCheckWisp then
-			EID:UpdateAllPlayerLemegetonWisps()
-			EID.ShouldCheckWisp = false
-		end
-		-- Remove Crane Game item data if it's giving the prize out
-		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
-			if EID.CraneItemType[tostring(crane.InitSeed)] then
-				if crane:GetSprite():IsPlaying("Prize") then
-					EID.CraneItemType[tostring(crane.InitSeed)] = nil
-				-- Pair the Crane Game's new drop seed with the latest collectible ID it's gotten
-				-- (fixes Glowing Hour Glass rewinds)
-				elseif EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] == nil then
-					EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] = EID.CraneItemType[tostring(crane.InitSeed)]
+	if EID.isRepentance then
+		EID:UpdateWildCardEffects()
+		if EID.GameUpdateCount % 10 == 0 then
+			-- Check wisp for adding reminder when using lemegeton
+			if EID.ShouldCheckWisp then
+				EID:UpdateAllPlayerLemegetonWisps()
+				EID.ShouldCheckWisp = false
+			end
+			-- Remove Crane Game item data if it's giving the prize out
+			for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+				if EID.CraneItemType[tostring(crane.InitSeed)] then
+					if crane:GetSprite():IsPlaying("Prize") then
+						EID.CraneItemType[tostring(crane.InitSeed)] = nil
+					-- Pair the Crane Game's new drop seed with the latest collectible ID it's gotten
+					-- (fixes Glowing Hour Glass rewinds)
+					elseif EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] == nil then
+						EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] = EID.CraneItemType[tostring(crane.InitSeed)]
+					end
 				end
 			end
 		end
@@ -1628,6 +1643,7 @@ local function OnGameStartGeneral(_,isSave)
 		EID.DInfinityState = {}
 	end
 	EID.ShouldCheckWisp = true
+	EID.WildCardEffects = {}
 	EID.roomCount = 0
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
@@ -1641,7 +1657,7 @@ local function OnUseD4(_, _, _, player)
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 
--- includes Gulp and Marbles
+-- Watch for smelting trinkets; includes Gulp and Marbles
 local function OnUseSmelter(_, _, _, player)
 	player = player or EID.player
 	local playerNum = EID:getPlayerID(player)
@@ -1652,7 +1668,21 @@ local function OnUseSmelter(_, _, _, player)
 		if trinket > 0 then table.insert(EID.GulpedTrinkets[playerNum], trinket) end
 	end
 end
-EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseSmelter, 479)
+EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseSmelter, CollectibleType.COLLECTIBLE_SMELTER)
+
+-- Watch for Glowing Hourglass to revert certain variables
+local function OnUseGlowingHourglass(_, _, _, _)
+	EID.absorbedItems = EID:CopyTable(preHourglassStatus.absorbedItems)
+	EID.PlayerItemInteractions = EID:CopyTable(preHourglassStatus.PlayerItemInteractions)
+	if EID.isRepentance then
+		EID.WildCardEffects = EID:CopyTable(preHourglassStatus.WildCardEffects)
+		EID.WildCardPillColor = EID:CopyTable(preHourglassStatus.WildCardPillColor)
+		EID.DInfinityState = EID:CopyTable(preHourglassStatus.DInfinityState)
+		EID.BoC.BagItems = EID:CopyTable(preHourglassStatus.BagItems)
+		EID.BoC.RoomQueries = EID:CopyTable(preHourglassStatus.RoomQueries)
+	end
+end
+EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseGlowingHourglass, CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS)
 
 -- Re-init transformation progress and item interactions after using Genesis
 if EID.isRepentance then
@@ -1667,6 +1697,14 @@ if EID.isRepentance then
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseLemegeton, CollectibleType.COLLECTIBLE_LEMEGETON)
 
+	-- Watch for any active item usage for Wild Card
+	local function OnUseGeneral(_, collectibleType, _, player, useFlags, activeSlot)
+		-- add the active to Wild Card tracking if it was a real active usage
+		if useFlags & UseFlag.USE_OWNED > 0 and activeSlot >= 0 then
+			EID:TrackWildCardEffects("5.100." .. collectibleType, player)
+		end
+	end
+	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseGeneral)
 end
 
 function EID:OnUsePill(pillEffectID, player, useFlags)
@@ -1675,9 +1713,11 @@ function EID:OnUsePill(pillEffectID, player, useFlags)
 	local pillColor = EID.PlayerHeldPill[EID:getPlayerID(player)]
 	-- add the pill used to our history for Echo Chamber / Vurp! / transformation progress
 	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags, pillColor)
+	-- add the pill to Wild Card tracking, unless it's a Temperance? pill
+	if EID.isRepentance and useFlags ~= UseFlag.USE_NOANNOUNCER then EID:TrackWildCardEffects("5.70." .. (pillEffectID+1), player, pillColor) end
 	EID.ForceRefreshCache = true -- for transformation progress update
 
-	-- for tracking used pills, ignore gold pills and noannouncer flag pills
+	-- for tracking used pills, ignore gold pills and noannouncer flag pills (Temperance?)
 	-- (not using a bitmask, because Placebo is mimic+noannouncer, and we want to count those)
 	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags == UseFlag.USE_NOANNOUNCER) then return end
 	EID.UsedPillColors[tostring(pillColor)] = true
@@ -1687,6 +1727,8 @@ EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
 function EID:OnUseCard(cardID, player, useFlags)
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
 	EID:AddPickupToHistory("card", cardID, player, useFlags)
+	-- add the card to Wild Card tracking unless it's Wild Card
+	if EID.isRepentance and cardID ~= 80 then EID:TrackWildCardEffects("5.300." .. cardID, player) end
 end
 EID:AddCallback(ModCallbacks.MC_USE_CARD, EID.OnUseCard)
 
@@ -1703,16 +1745,32 @@ local configIgnoreList = {
 	["UsedPillColors"] = true,
 	["RecentlyTouchedItems"] = true,
 	["GulpedTrinkets"] = true,
+	["WildCardEffects"] = true,
+	["DInfinityState"] = true,
 }
 --------------------------------
---------Handle Savadata---------
+--------Handle Savedata---------
 --------------------------------
 function EID:OnGameStart(isSave)
 	--Loading Moddata--
-
 	if EID:HasData() then
 		local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
-
+		
+		-- JSON saves integer table keys as strings. we need to transform them back... used in OnGameStart
+		local function ConvertSavedTable(tableName)
+			for playerID, data in pairs(savedEIDConfig[tableName] or {}) do
+				local convertedData = {}
+				if type(data) == "table" then
+					for key, value in pairs(data) do
+						convertedData[tonumber(key) or key] = value
+					end
+				else
+					convertedData = data
+				end
+				EID[tableName][tonumber(playerID)] = convertedData
+			end
+		end
+		
 		-- collection progress
 		EID.CollectedItems = savedEIDConfig["CollectedItems"] or {}
 		if EID.SaveGame and savedEIDConfig["SaveGameNumber"] > 0 then
@@ -1723,52 +1781,34 @@ function EID:OnGameStart(isSave)
 		EID.PlayerItemInteractions = {}
 		if isSave then
 			-- JSON saves integer table keys as strings. we need to transform them back...
-			for playerID, data in pairs(savedEIDConfig["PlayerItemInteractions"] or {}) do
-				local convertedData = {}
-				for key, value in pairs(data) do
-					convertedData[tonumber(key) or key] = value
-				end
-				EID.PlayerItemInteractions[tonumber(playerID)] = convertedData
-			end
-
-			for playerID, data in pairs(savedEIDConfig["RecentlyTouchedItems"] or {}) do
-				local convertedData = {}
-				for key, value in pairs(data) do
-					convertedData[tonumber(key) or key] = value
-				end
-				EID.RecentlyTouchedItems[tonumber(playerID)] = convertedData
-			end
-			
-			for playerID, data in pairs(savedEIDConfig["GulpedTrinkets"] or {}) do
-				local convertedData = {}
-				for key, value in pairs(data) do
-					convertedData[tonumber(key) or key] = value
-				end
-				EID.GulpedTrinkets[tonumber(playerID)] = convertedData
-			end
+			ConvertSavedTable("PlayerItemInteractions")
+			ConvertSavedTable("RecentlyTouchedItems")
+			ConvertSavedTable("GulpedTrinkets")
+			ConvertSavedTable("WildCardEffects")
+			ConvertSavedTable("DInfinityState")
 		else
 			-- check for the players' starting active items
 			CheckAllActiveItemProgress()
 		end
 		EID.UsedPillColors = {}
+		EID.absorbedItems = {}
 		if isSave then
 			EID.UsedPillColors = savedEIDConfig["UsedPillColors"] or {}
+			EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
 		end
-
+		
 		if EID.isRepentance then
 			EID.BoC.BagItems = {}
 			EID.BoC.LearnedRecipes = {}
 			EID.CraneItemType = {}
 			EID.flipItemPositions = {}
-			EID.absorbedItems = {}
-
+			
 			if isSave then
 				EID.BoC.BagItems = savedEIDConfig["BagContent"] or {}
 				EID.BoC.LearnedRecipes = savedEIDConfig["BagLearnedRecipes"] or {}
 				EID.BoC.RoomQueries = savedEIDConfig["BagFloorContent"] or {}
 				EID.CraneItemType = savedEIDConfig["CraneItemType"] or {}
-				EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
-
+				
 				-- turn list back into dict because json cant save dict indices.
 				local flipItemTable = {}
 				for _, v in ipairs(savedEIDConfig["FlipItemPositions"]) do
@@ -1826,8 +1866,8 @@ function EID:OnGameExit()
 		EID.Config["BagLearnedRecipes"] = EID.BoC.LearnedRecipes or {}
 		EID.Config["BagFloorContent"] = EID.BoC.RoomQueries or {}
 		EID.Config["CraneItemType"] = EID.CraneItemType or {}
-		EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
-
+		EID.Config["WildCardEffects"] = EID.WildCardEffects or {}
+		EID.Config["DInfinityState"] = EID.DInfinityState or {}
 		-- turn dictionary into list because json cant save dict indices.
 		local flipItemTable = {}
 		for k, v in pairs(EID.flipItemPositions) do
@@ -1844,6 +1884,7 @@ function EID:OnGameExit()
 	EID.Config["RecentlyTouchedItems"] = EID.RecentlyTouchedItems or {}
 	EID.Config["GulpedTrinkets"] = EID.GulpedTrinkets or {}
 	EID.Config["UsedPillColors"] = EID.UsedPillColors
+	EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
 
 	EID.SaveData(EID, json.encode(EID.Config))
 	EID:hidePermanentText()
