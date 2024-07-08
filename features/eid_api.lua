@@ -756,7 +756,8 @@ function EID:replaceNameMarkupStrings(text)
 				if showIcon then iconText = "{{" .. EID:GetIconNameByVariant(entityID[2]) .. entityID[3] .. "}} " end
 				colorText = VariantToColorText[entityID[2]] or ""
 			end
-			name = iconText .. colorText .. EID:getObjectName(entityID[1], entityID[2], entityID[3]) .. "{{CR}}"
+			if entityID[2] == 70 then name = iconText .. colorText .. EID:getPillName(entityID[3], false) .. "{{CR}}"
+			else name = iconText .. colorText .. EID:getObjectName(entityID[1], entityID[2], entityID[3]) .. "{{CR}}" end
 		elseif indicator == "C" then -- Collectible
 			name = (showIcon and "{{Collectible"..id.."}} " or "") .. "{{ColorYellow}}" .. EID:getObjectName(5, 100, id) .. "{{CR}}"
 		elseif indicator == "T" then -- Trinket
@@ -837,8 +838,8 @@ function EID:createItemIconObject(str)
 	end
 	local pillID,numReplace4 = string.gsub(str, "Pill", "")
 	if numReplace4 > 0 and pillID ~= "" and tonumber(pillID) ~= nil then
-		if tonumber(pillID) > maxPillID then return EID.InlineIcons[str] or EID.InlineIcons["Pill"] end
-		return {"Pills", tonumber(pillID)-1, 9, 8, 0, 1, EID.CardPillSprite}
+		if tonumber(pillID % 2048) > maxPillID then return EID.InlineIcons[str] or EID.InlineIcons["Pill"] end
+		return {"Pills", tonumber(pillID % 2048)-1, 9, 8, 0, 1, EID.CardPillSprite}
 	end
 	if item == nil then
 		return nil
@@ -2083,6 +2084,27 @@ function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColo
 	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, EID.isRepentance and player:HasCollectible(700) and allowEchoChamber})
 end
 
+EID.WildCardEffects = {}
+EID.WildCardPillColor = {}
+EID.TemporaryWildCardEffects = {} -- resets every frame
+function EID:TrackWildCardEffects(effectID, player, pillColor)
+	local playerID = EID:getPlayerID(player)
+	-- Dead Tainted Lazarus exception
+	if player:GetPlayerType() == 38 then playerID = playerID + 666 end
+	-- ? Card exception; both it and the active it used are ignored by Wild Card
+	if effectID == "5.300.48" then
+		-- Blank Card using ? Card exception; Blank Card being used is still seen
+		if EID.TemporaryWildCardEffects[playerID] ~= "5.100.286" then EID.TemporaryWildCardEffects[playerID] = nil end
+	else
+		EID.TemporaryWildCardEffects[playerID] = effectID
+		EID.WildCardPillColor[playerID] = pillColor -- doesn't matter that much so just set it here
+	end
+end
+function EID:UpdateWildCardEffects()
+	for k,v in pairs(EID.TemporaryWildCardEffects) do EID.WildCardEffects[k] = v end
+	EID.TemporaryWildCardEffects = {}
+end
+
 -- Render a sprite of an entity
 function EID:RenderEntity(entity, sprite, position)
 	if entity.Type == 5 and entity.Variant == 100 then
@@ -2283,4 +2305,27 @@ end
 function EID:ReplaceVariableStr(str, varID, newString)
 	if type(str) ~= "string" or newString == nil then return str end
 	return str:gsub("{"..varID.."}", newString)
+end
+
+-- deep table copy, copied from http://lua-users.org/wiki/CopyTable
+function EID:CopyTable(orig)
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        copy = {}
+        for orig_key, orig_value in next, orig, nil do
+            copy[EID:CopyTable(orig_key)] = EID:CopyTable(orig_value)
+        end
+        setmetatable(copy, EID:CopyTable(getmetatable(orig)))
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
+end
+
+-- simple decimal rounding, instead of just floor or ceil
+function EID:SimpleRound(num, dp)
+	dp = dp or 2
+	local mult = 10^dp
+	return math.floor(num * mult + 0.5)/mult
 end
