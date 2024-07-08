@@ -1077,7 +1077,14 @@ function EID:onGameUpdate()
 
 		EID.RecheckVoid = true
 	end
-
+	
+	-- Check player items for starting items
+	if EID.ShouldCheckStartingItems then
+		EID:UpdateAllPlayerPassiveItems()
+		EID:SetOldestItemIndex()
+		EID.ShouldCheckStartingItems = false
+	end
+	
 	if EID.isRepentance then
 		EID:UpdateWildCardEffects()
 		if EID.GameUpdateCount % 10 == 0 then
@@ -1638,6 +1645,7 @@ local function OnGameStartGeneral(_,isSave)
 	EID:buildTransformationTables()
 	EID.RecentlyTouchedItems = {}
 	EID.GulpedTrinkets = {}
+	EID.OldestItemIndex = {}
 	if not isSave then
 		EID.PlayerItemInteractions = {}
 		EID.DInfinityState = {}
@@ -1648,12 +1656,19 @@ local function OnGameStartGeneral(_,isSave)
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
+local function OnPostPlayerInit()
+	EID.ShouldCheckStartingItems = true -- for The Stars? tracking
+end
+EID:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, OnPostPlayerInit)
+
 -- Add currently held active items after D4 was used. Used for Transformation Progress
 local function OnUseD4(_, _, _, player)
 	-- in AB+, USE_ITEM doesn't provide a player
 	AddActiveItemProgress(player or EID.player, true)
-	-- repentance fixed needing to blacklist your new items from counting (and AB+ counts everything)
-	--EID:CollectRerolledItemsOfPlayer(player or EID.player)
+	if EID.isRepentance then
+		local playerNum = EID:getPlayerID(player)
+		EID.OldestItemIndex[playerNum] = -1 -- D4 makes it impossible for us to know what the oldest item is for The Stars?
+	end
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 
@@ -1747,6 +1762,7 @@ local configIgnoreList = {
 	["GulpedTrinkets"] = true,
 	["WildCardEffects"] = true,
 	["DInfinityState"] = true,
+	["OldestItemIndex"] = true,
 }
 --------------------------------
 --------Handle Savedata---------
@@ -1786,6 +1802,7 @@ function EID:OnGameStart(isSave)
 			ConvertSavedTable("GulpedTrinkets")
 			ConvertSavedTable("WildCardEffects")
 			ConvertSavedTable("DInfinityState")
+			ConvertSavedTable("OldestItemIndex")
 		else
 			-- check for the players' starting active items
 			CheckAllActiveItemProgress()
@@ -1885,6 +1902,7 @@ function EID:OnGameExit()
 	EID.Config["GulpedTrinkets"] = EID.GulpedTrinkets or {}
 	EID.Config["UsedPillColors"] = EID.UsedPillColors
 	EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
+	EID.Config["OldestItemIndex"] = EID.OldestItemIndex or {}
 
 	EID.SaveData(EID, json.encode(EID.Config))
 	EID:hidePermanentText()
