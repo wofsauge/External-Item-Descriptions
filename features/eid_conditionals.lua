@@ -356,4 +356,7 @@ Make api functions for conditionals/other new features I've made that might be d
 check the actual github wiki, i've never looked at that, maybe I should update that some time
 As eid_modifiers' usefulness dwindles, maybe it should add its modifiers like how external mods would add them
 
+IMPORTANT TODO:
+I need to support Dead Tainted Lazarus better in my new additions; The Stars? will be completely broken for him right now; Gulped trinkets are probably constantly being emptied; RecentlyTouchedItems might want to support him in general; use the +666 approach
+
 ]]
