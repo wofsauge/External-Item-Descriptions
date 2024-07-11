@@ -242,7 +242,7 @@ if EID.isRepentance then
 	EID:AddConditional(647, function() return EID:CheckPlayersForActiveChargeType(nil, 1) end, "4.5 Volt Timed") -- 4.5 Volt + Having a timed active
 	EID:AddConditional("5.100", function(EID, descObj) return EID:CheckActiveChargeType(descObj.ObjSubType, nil, 1, 647) end, "4.5 Volt Timed", { bulletpoint = "Collectible647"})
 	EID:AddItemConditional(534, 647, "4.5 Volt Multiple") -- Schoolbag + 4.5 Volt
-	EID:AddConditional(647, EID.CheckForMultipleActives, "4.5 Volt Multiple")-- 4.5 Volt + Schoolbag/Pocket Actives
+	EID:AddConditional(647, EID.CheckForMultipleChargeableActives, "4.5 Volt Multiple")-- 4.5 Volt + Schoolbag/Pocket Actives
 end
 
 -- Sacrificial Altar interactions
@@ -336,7 +336,6 @@ RNG cheat for Crooked Penny
 Implement the standardized colors for characters, items, map names, etc
 Make Glitched Crown type pedestals work better in EID (pause on one item and press tab to switch to the next item)
 Don't show Void stat ups depending on what Void has absorbed (abyss absorbed = no void stat ups etc, reroll item = might become actives)
-The Stars? preview using item reminder's passive list (be weary of character's starting items) (co-op friendly modifier)
 
 REPENTOGON TODOS:
 Glyph of balance
@@ -355,8 +354,5 @@ Make api functions for conditionals/other new features I've made that might be d
 "Add golden trinket / mom's box / is rune / is card / placebo recharge / false phd info for mods to add in EID:addCard/Pill?" - did most of these happen?
 check the actual github wiki, i've never looked at that, maybe I should update that some time
 As eid_modifiers' usefulness dwindles, maybe it should add its modifiers like how external mods would add them
-
-IMPORTANT TODO:
-I need to support Dead Tainted Lazarus better in my new additions; The Stars? will be completely broken for him right now; Gulped trinkets are probably constantly being emptied; RecentlyTouchedItems might want to support him in general; use the +666 approach
 
 ]]
