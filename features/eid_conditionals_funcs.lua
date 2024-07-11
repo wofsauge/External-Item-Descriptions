@@ -306,25 +306,38 @@ function EID:CheckForTaintedPlayer()
 end
 
 -- Check if we have characters with Schoolbag or a pocket active item
-function EID:CheckForMultipleActives(onlyChargeablePockets)
+function EID:CheckForMultipleActives(descObj, onlyChargeablePockets)
 	if EID.InsideItemReminder then
 		local player = EID.ItemReminderPlayerEntity
-		if player:HasCollectible(534) then return true end
+		if player:HasCollectible(534) then return 534 end
 		local id = player:GetPlayerType()
-		if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return true end
+		if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return player:GetActiveItem(2) end
 	else
 		for i = 0, game:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(534) then return true end
+			if player:HasCollectible(534) then return 534 end
 			local id = player:GetPlayerType()
-			if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return true end
+			if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return player:GetActiveItem(2) end
 		end
 	end
 	return false
 end
 -- Check if we have characters with Schoolbag or a chargeable pocket active item (for 4.5 Volt)
-function EID:CheckForMultipleChargeableActives()
-	return EID:CheckForMultipleActives(true)
+function EID:CheckForMultipleChargeableActives(descObj)
+	return EID:CheckForMultipleActives(descObj, true)
+end
+-- Check if we have a character with a pocket active
+function EID:CheckForPocketActives()
+	if EID.InsideItemReminder then
+		local player = EID.ItemReminderPlayerEntity
+		return EID.PocketActivePlayerIDs[player:GetPlayerType()]
+	else
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if EID.PocketActivePlayerIDs[player:GetPlayerType()] then return true end
+		end
+	end
+	return false
 end
 
 -- When we have Car Battery, change active pedestal descriptions
@@ -386,7 +399,7 @@ end
 -- Check for a player having an active item with a specific quantity of charges, or charge type
 -- 0 = normal, 1 = timed, 2 = special
 function EID:CheckPlayersForActiveChargeType(maxCharge, chargeType, checkPockets)
-	checkPockets = checkPockets or true
+	if checkPockets == nil then checkPockets = true end
 	local players = {}
 	if EID.InsideItemReminder then
 		players[1] = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
