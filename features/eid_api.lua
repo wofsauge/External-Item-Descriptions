@@ -1267,14 +1267,15 @@ end
 function EID:PlayersVoidedCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		if player:HasCollectible(477) and EID.absorbedItems[tostring(i)] and EID.absorbedItems[tostring(i)][tostring(collectibleID)] then
+		local playerNum = EID:getPlayerID(player, true)
+		if player:HasCollectible(477) and EID.absorbedItems[tostring(playerNum)] and EID.absorbedItems[tostring(playerNum)][tostring(collectibleID)] then
 			return true, player, i
 		end
 	end
 	return false
 end
 function EID:PlayerVoidedCollectible(player, collectibleID)
-	local i = EID:getPlayerID(player)
+	local i = EID:getPlayerID(player, true)
 	if player:HasCollectible(477) and EID.absorbedItems[tostring(i)] and EID.absorbedItems[tostring(i)][tostring(collectibleID)] then
 		return true
 	end
@@ -1741,11 +1742,22 @@ function EID:checkPlayersForMissingItems()
 	end
 end
 
-function EID:getPlayerID(entityPlayer)
+function EID:getPlayerID(entityPlayer, lazarusAdjust)
 	if not entityPlayer then return 0 end
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if GetPtrHash(player) == GetPtrHash(entityPlayer) then
+			-- Dead Tainted Lazarus exceptions
+			if lazarusAdjust and EID.isRepentance then
+				-- Check for Birthright to make the ghostly form use the same base ID as the main form
+				if player:GetMainTwin() then
+					if GetPtrHash(player:GetMainTwin()) ~= GetPtrHash(player) then
+						i = EID:getPlayerID(player:GetMainTwin())
+					end
+				end
+				-- Increase the ID by 666 if Dead Tainted Lazarus
+				if player:GetPlayerType() == 38 then i = i + 666 end
+			end
 			return i
 		end
 	end
@@ -1861,24 +1873,21 @@ EID.TransformationProgress = {}
 function EID:evaluateTransformationProgress(transformation)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		EID.TransformationProgress[i] = {}
-		EID.TransformationProgress[i][transformation] = 0
+		local id = EID:getPlayerID(player, true) -- Dead Tainted Lazarus exception
+		EID.TransformationProgress[id] = {}
+		EID.TransformationProgress[id][transformation] = 0
 		local transformData = EID.TransformationData[transformation]
 
 		if not EID.TransformationLookup[transformation] then return end
 
 		if REPENTOGON and transformData and transformData.VanillaForm then
 			 -- REPENTOGON lets us ignore everything else for vanilla transformation progress
-			EID.TransformationProgress[i][transformation] = player:GetPlayerFormCounter(transformData.VanillaForm)
+			EID.TransformationProgress[id][transformation] = player:GetPlayerFormCounter(transformData.VanillaForm)
 		elseif transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
-			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
+			EID.TransformationProgress[id][transformation] = transformData.NumNeeded or 3
 		else
-			local pickupHistory = EID.PlayerItemInteractions[i].pickupHistory
+			local pickupHistory = EID.PlayerItemInteractions[id].pickupHistory
 			local pillsTable = {}
-			-- Dead Tainted Lazarus exception
-			if player:GetPlayerType() == 38 then
-				pickupHistory = EID.PlayerItemInteractions[i].altPickupHistory or pickupHistory
-			end
 			if pickupHistory then
 				for j = 1, #pickupHistory do
 					if pickupHistory[j][1] == "pill" then
@@ -1891,38 +1900,35 @@ function EID:evaluateTransformationProgress(transformation)
 				end
 			end
 
-			local activesTable = EID.PlayerItemInteractions[i].actives
-			if player:GetPlayerType() == 38 then
-				activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
-			end
+			local activesTable = EID.PlayerItemInteractions[id].actives
 			for entityString, _ in pairs(EID.TransformationLookup[transformation]) do
 				local eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
 				if tonumber(eType) == EntityType.ENTITY_PICKUP then
 					if tonumber(eVariant) == PickupVariant.PICKUP_COLLECTIBLE then
-						local currentCount = EID.TransformationProgress[i][transformation]
+						local currentCount = EID.TransformationProgress[id][transformation]
 						if activesTable[tostring(eSubType)] then
-							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + activesTable[tostring(eSubType)]
+							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + activesTable[tostring(eSubType)]
 						else
 							local collCount = player:GetCollectibleNum(eSubType, true)
-							if EID.PlayerItemInteractions[i].rerollItems then
-								collCount = collCount - (EID.PlayerItemInteractions[i].rerollItems[tostring(eSubType)] or 0)
+							if EID.PlayerItemInteractions[id].rerollItems then
+								collCount = collCount - (EID.PlayerItemInteractions[id].rerollItems[tostring(eSubType)] or 0)
 							end
-							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + collCount
+							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + collCount
 
 							-- Undo the Book of Virtues active item getting counted here
 							if tonumber(eSubType) == 584 and player:GetActiveItem() == 584 then
-								EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] - 1
+								EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] - 1
 							end
 						end
 						-- In AB+, only one copy of a given collectible is counted for trans
-						if not EID.isRepentance and EID.TransformationProgress[i][transformation] > currentCount + 1 then
-							EID.TransformationProgress[i][transformation] = currentCount + 1
+						if not EID.isRepentance and EID.TransformationProgress[id][transformation] > currentCount + 1 then
+							EID.TransformationProgress[id][transformation] = currentCount + 1
 						end
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_TRINKET and player:HasTrinket(eSubType) then
-						EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + player:GetTrinketMultiplier(eSubType)
+						EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + player:GetTrinketMultiplier(eSubType)
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_PILL then
 						if pillsTable[tostring(eSubType)] then
-							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + pillsTable[tostring(eSubType)]
+							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + pillsTable[tostring(eSubType)]
 						end
 					end
 				end
@@ -1960,23 +1966,25 @@ EID.RecentlyTouchedItems = {}
 local hadQueuedItem = {}
 function EID:evaluateQueuedItems()
 	for i = 0, game:GetNumPlayers() - 1 do
-		EID:InitItemInteractionIfAbsent(i)
 		local player = Isaac.GetPlayer(i)
+		local id = EID:getPlayerID(player, true)
+		EID:InitItemInteractionIfAbsent(id)
+		
 		if player.QueuedItem then
 			-- Refresh our descriptions and grid entity list upon a queued passive item being added to a player
-			if not player.QueuedItem.Item and hadQueuedItem[i] then
+			if not player.QueuedItem.Item and hadQueuedItem[id] then
 				EID.ForceRefreshCache = true
 				EID:CheckCurrentRoomGridEntities()
 			end
-			hadQueuedItem[i] = player.QueuedItem.Item ~= nil
-			if EID.PlayerItemInteractions[i].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
+			hadQueuedItem[id] = player.QueuedItem.Item ~= nil
+			if EID.PlayerItemInteractions[id].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
 				return
 			else
-				EID.PlayerItemInteractions[i].LastTouch = 0
+				EID.PlayerItemInteractions[id].LastTouch = 0
 			end
 
 			if not player.QueuedItem.Touched and player.QueuedItem.Item then
-				EID.PlayerItemInteractions[i].LastTouch = game:GetFrameCount()
+				EID.PlayerItemInteractions[id].LastTouch = game:GetFrameCount()
 				local itemIDStr = tostring(player.QueuedItem.Item.ID)
 				-- Add touched active items to our transformation progress table
 				if player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
@@ -1984,23 +1992,21 @@ function EID:evaluateQueuedItems()
 					-- (Fixes co-op bugs, compared to only initiating it for the toucher)
 					for j = 0, game:GetNumPlayers() - 1 do
 						EID.PlayerItemInteractions[j].actives[itemIDStr] = EID.PlayerItemInteractions[j].actives[itemIDStr] or 0
-						EID.PlayerItemInteractions[j].altActives[itemIDStr] = EID.PlayerItemInteractions[j].altActives[itemIDStr] or 0
+						EID.PlayerItemInteractions[j+666].actives[itemIDStr] = EID.PlayerItemInteractions[j+666].actives[itemIDStr] or 0
 					end
-
-					-- Dead Tainted Lazarus exceptions
-					local activesTable = EID.PlayerItemInteractions[i].actives
-					if player:GetPlayerType() == 38 then
-						activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
-					end
+					
+					local activesTable = EID.PlayerItemInteractions[id].actives
 					EID.ForceRefreshCache = true
 					activesTable[itemIDStr] = activesTable[itemIDStr] + 1
 				elseif player.QueuedItem.Item.Type ~= ItemType.ITEM_TRINKET then
 					-- In AB+, Halo of Flies is counted as an active item due to inaccuracy with GetCollectibleNum
 					if (not EID.isRepentance and itemIDStr == "10") then
-						EID.PlayerItemInteractions[i].actives[itemIDStr] = EID.PlayerItemInteractions[i].actives[itemIDStr] + 1
+						EID.PlayerItemInteractions[id].actives[itemIDStr] = EID.PlayerItemInteractions[id].actives[itemIDStr] + 1
 					end
 					-- Put non-active item pickups into the recent item list, for printing in the Item Reminder
-					table.insert(EID.RecentlyTouchedItems[i], player.QueuedItem.Item.ID)
+					local playerID = i
+					if EID.isRepentance and player:GetPlayerType() == 38 then playerID = playerID + 666 end
+					table.insert(EID.RecentlyTouchedItems[playerID], player.QueuedItem.Item.ID)
 					EID:ResetItemReminderSelectedItems("Passives")
 					EID.ItemReminderSelectedItems[#EID.ItemReminderCategories - 1] = 0
 				end
@@ -2011,15 +2017,17 @@ end
 
 -- if the player ItemInteraction table doesnt exist, create it with its init values
 function EID:InitItemInteractionIfAbsent(playerID)
+	playerID = playerID % 666 -- dead tainted lazarus exception
 	if not EID.PlayerItemInteractions[playerID] then
-		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, altActives = {},
-			pickupHistory = {}, altPickupHistory = {}, rerollItems = {} }
+		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, pickupHistory = {}, rerollItems = {} }
+		EID.PlayerItemInteractions[playerID+666] = { LastTouch = 0, actives = {}, pickupHistory = {}, rerollItems = {} }
 		-- in AB+, initiate Halo of Flies as an active item (collectible ID 10 is used for ALL Pretty Flies)
 		if not EID.isRepentance then
 			EID.PlayerItemInteractions[playerID].actives["10"] = 0
 		end
 	end
 	EID.RecentlyTouchedItems[playerID] = EID.RecentlyTouchedItems[playerID] or {}
+	EID.RecentlyTouchedItems[playerID+666] = EID.RecentlyTouchedItems[playerID+666] or {}
 end
 
 
@@ -2071,14 +2079,9 @@ function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColo
 	if EID.isRepentance and (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC or useFlags & UseFlag.USE_NOANNOUNCER == UseFlag.USE_NOANNOUNCER) then
 		allowEchoChamber = false
 	end
-	local playerID = EID:getPlayerID(player)
+	local playerID = EID:getPlayerID(player, true)
 	EID:InitItemInteractionIfAbsent(playerID)
-
 	local historyTable = EID.PlayerItemInteractions[playerID].pickupHistory
-	-- Dead Tainted Lazarus exception
-	if player:GetPlayerType() == 38 then
-		historyTable = EID.PlayerItemInteractions[playerID].altPickupHistory or historyTable
-	end
 
 	-- pickupType = ["pill","card"], pillColorID, effectID, hadEchoChamberWhenUsed
 	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, EID.isRepentance and player:HasCollectible(700) and allowEchoChamber})
@@ -2088,9 +2091,7 @@ EID.WildCardEffects = {}
 EID.WildCardPillColor = {}
 EID.TemporaryWildCardEffects = {} -- resets every frame
 function EID:TrackWildCardEffects(effectID, player, pillColor)
-	local playerID = EID:getPlayerID(player)
-	-- Dead Tainted Lazarus exception
-	if player:GetPlayerType() == 38 then playerID = playerID + 666 end
+	local playerID = EID:getPlayerID(player, true)
 	-- ? Card exception; both it and the active it used are ignored by Wild Card
 	if effectID == "5.300.48" then
 		-- Blank Card using ? Card exception; Blank Card being used is still seen
@@ -2128,7 +2129,7 @@ end
 -- Collects items that the player got after using D4 item
 function EID:CollectRerolledItemsOfPlayer(player)
 	if maxCollectibleID == nil then maxCollectibleID = EID:GetMaxCollectibleID() end
-	local playerID = EID:getPlayerID(player)
+	local playerID = EID:getPlayerID(player, true)
 	EID.PlayerItemInteractions[playerID].rerollItems = {}
 	for i = 1, maxCollectibleID do
 		local count = player:GetCollectibleNum(i, true)
@@ -2222,11 +2223,11 @@ function EID:UpdateAllPlayerPassiveItems()
 	local listUpdatedForPlayers = {}
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
-		local playerNum = EID:getPlayerID(player)
-
 		if player == nil then
 			return listUpdatedForPlayers -- dont evaluate when bad data is present
 		end
+		
+		local playerNum = EID:getPlayerID(player, true)
 		
 		-- remove items the player no longer has. reverse iteration to make deletion easier
 		for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
@@ -2260,7 +2261,10 @@ end
 EID.OldestItemIndex = {}
 function EID:SetOldestItemIndex()
 	for i = 0, game:GetNumPlayers() - 1 do
+		EID.RecentlyTouchedItems[i] = EID.RecentlyTouchedItems[i] or {}
 		if EID.OldestItemIndex[i] == nil then EID.OldestItemIndex[i] = #EID.RecentlyTouchedItems[i] + 1 end
+		-- set up Dead Tainted Lazarus to be oldest slot 1
+		if EID.OldestItemIndex[i+666] == nil then EID.OldestItemIndex[i+666] = 1 end
 	end
 end
 
@@ -2269,9 +2273,10 @@ EID.GulpedTrinkets = {}
 function EID:UpdateAllPlayerTrinkets()
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
-		local playerNum = EID:getPlayerID(player)
-
-		if player == nil or EID.GulpedTrinkets[playerNum] == nil then return end
+		if player == nil then return end
+		
+		local playerNum = EID:getPlayerID(player, true)
+		if EID.GulpedTrinkets[playerNum] == nil then return end
 		
 		-- remove items the player no longer has. reverse iteration to make deletion easier
 		for index = #EID.GulpedTrinkets[playerNum], 1, -1  do
@@ -2290,7 +2295,7 @@ function EID:UpdateAllPlayerLemegetonWisps()
 	for _, wisp in ipairs(Isaac.FindByType(3, 237, -1, true, false)) do
 		local wispPlayer = wisp:ToFamiliar() and wisp:ToFamiliar().Player
 		if wispPlayer then
-			local playerNum = EID:getPlayerID(wispPlayer)
+			local playerNum = EID:getPlayerID(wispPlayer, true)
 			EID.WispsPerPlayer[playerNum] = EID.WispsPerPlayer[playerNum] or {}
 			table.insert(EID.WispsPerPlayer[playerNum], wisp)
 		end
