@@ -377,7 +377,8 @@ end
 
 -- Watch for a Void absorbing active items
 function EID:CheckVoidAbsorbs(_, _, player)
-	local playerID = EID:getPlayerID(player)
+	player = player or EID.player
+	local playerID = EID:getPlayerID(player, true)
 	EID.absorbedItems[tostring(playerID)] = EID.absorbedItems[tostring(playerID)] or {}
 	for _,v in ipairs(EID:VoidRoomCheck()) do
 		EID.absorbedItems[tostring(playerID)][tostring(v)] = true
@@ -674,7 +675,7 @@ function EID:printDescription(desc, cachedID)
 							if #EID.coopAllPlayers > 1 then
 								transformationName = transformationName .. EID:GetPlayerIcon(playerType)
 							end
-							local numCollected = EID.TransformationProgress[EID:getPlayerID(player)] and EID.TransformationProgress[EID:getPlayerID(player)][transform] or 0
+							local numCollected = EID.TransformationProgress[EID:getPlayerID(player, true)] and EID.TransformationProgress[EID:getPlayerID(player, true)][transform] or 0
 							local numMax = EID.TransformationData[transform] and EID.TransformationData[transform].NumNeeded or 3
 							transformationName = transformationName.."("..numCollected.."/"..numMax..") "
 						end
@@ -1313,7 +1314,7 @@ function EID:OnRender()
 		local dropTriggered, playerNumPressingDrop = EID:PlayersActionPressed(ButtonAction.ACTION_DROP, Input.IsActionTriggered)
 		if dropTriggered then
 			local playerPressingDrop = EID.coopMainPlayers[playerNumPressingDrop]
-			local playerID = EID:getPlayerID(playerPressingDrop)
+			local playerID = EID:getPlayerID(playerPressingDrop, true)
 			local playerType = playerPressingDrop:GetPlayerType()
 			-- Forgotten's drop requires a double tap to actually count for this
 			if (playerType == 16 or playerType == 17) then
@@ -1611,13 +1612,9 @@ EID:AddCallback(ModCallbacks.MC_POST_RENDER, EID.OnRender)
 
 local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true
-	local playerID = EID:getPlayerID(player)
+	local playerID = EID:getPlayerID(player, true)
 	EID:InitItemInteractionIfAbsent(playerID)
-	-- Dead Tainted Lazarus exceptions
 	local activesTable = EID.PlayerItemInteractions[playerID].actives
-	if player:GetPlayerType() == 38 then
-		activesTable = EID.PlayerItemInteractions[playerID].altActives or activesTable
-	end
 	-- don't check pocket items after D4, they don't reroll and would get counted twice
 	local maxSlot = 3
 	if isD4 then maxSlot = 1 end
@@ -1666,7 +1663,7 @@ local function OnUseD4(_, _, _, player)
 	-- in AB+, USE_ITEM doesn't provide a player
 	AddActiveItemProgress(player or EID.player, true)
 	if EID.isRepentance then
-		local playerNum = EID:getPlayerID(player)
+		local playerNum = EID:getPlayerID(player, true)
 		EID.OldestItemIndex[playerNum] = -1 -- D4 makes it impossible for us to know what the oldest item is for The Stars?
 	end
 end
@@ -1675,7 +1672,7 @@ EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D
 -- Watch for smelting trinkets; includes Gulp and Marbles
 local function OnUseSmelter(_, _, _, player)
 	player = player or EID.player
-	local playerNum = EID:getPlayerID(player)
+	local playerNum = EID:getPlayerID(player, true)
 	
 	EID.GulpedTrinkets[playerNum] = EID.GulpedTrinkets[playerNum] or {}
 	for i=0,1 do
