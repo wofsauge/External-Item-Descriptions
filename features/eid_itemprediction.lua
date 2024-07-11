@@ -28,7 +28,7 @@ function EID:CurrentDInfinity(rng, player)
 		rng = EID:RNGNext(rng, 0x1, 0x9, 0x1D) -- magic disassembled numbers!
         return dinfinityList[rng % 7]
 	else
-        local playerID = EID:getPlayerID(player)
+        local playerID = EID:getPlayerID(player, true)
         return dinfinityList[EID.DInfinityState[playerID]] or 476
 	end
 end
@@ -42,7 +42,7 @@ if EID.isRepentance then
     function EID:WatchForDice(collectibleType, _, player)
         if not justDidD or collectibleType == 489 then return end
         justDidD = false
-        local playerID = EID:getPlayerID(player)
+        local playerID = EID:getPlayerID(player, true)
         for i,v in ipairs(dinfinityList) do
             if v == collectibleType then EID.DInfinityState[playerID] = i end
         end
@@ -395,3 +395,4 @@ function EID:GlyphOfBalancePrediction(player)
 	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
 	return pickupNames[fullID] or EID:GetEntityXMLNameByString(fullID) or fullID
 end
+
