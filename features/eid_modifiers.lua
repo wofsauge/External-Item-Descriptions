@@ -251,13 +251,9 @@ local function VurpCallback(descObj)
 
 	for i = 1,#EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
-		local playerID = EID:getPlayerID(player)
+		local playerID = EID:getPlayerID(player, true)
 		local playerType = player:GetPlayerType()
 		local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
-		-- Dead Tainted Lazarus exception
-		if EID.isRepentance and playerType == 38 then
-			pickupHistory = EID.PlayerItemInteractions[playerID].altPickupHistory or pickupHistory
-		end
 		if pickupHistory then
 			local lastUsedPill = PillEffect.PILLEFFECT_VURP + 1
 			local lastUsedPillColor = 1
@@ -554,10 +550,8 @@ if EID.isRepentance then
 	local function WildCardCallback(descObj)
 		for i = 1,#EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[i]
-			local playerID = EID:getPlayerID(player)
+			local playerID = EID:getPlayerID(player, true)
 			local playerType = player:GetPlayerType()
-			-- Dead Tainted Lazarus exception
-			if playerType == 38 then playerID = playerID + 666 end
 			if EID.WildCardEffects[playerID] then
 				EID:appendToDescription(descObj, "#")
 				
@@ -565,6 +559,25 @@ if EID.isRepentance then
 				if EID.WildCardPillColor[playerID] then -- show the correct pill color; unnecessary attention to detail but why not
 					EID:appendToDescription(descObj, "{{Pill" .. EID.WildCardPillColor[playerID] .. "}} {{NameOnly" .. EID.WildCardEffects[playerID] .. "}}")
 				else EID:appendToDescription(descObj, "{{Name" .. EID.WildCardEffects[playerID] .. "}}") end
+			end
+		end
+		return descObj
+	end
+	
+	-- Handle The Stars? description addition
+	local function TheStarsCallback(descObj)
+		EID:UpdateAllPlayerPassiveItems()
+		for i = 1,#EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[i]
+			local playerID = EID:getPlayerID(player, true)
+			local playerType = player:GetPlayerType()
+			if EID.OldestItemIndex[playerID] and EID.RecentlyTouchedItems[playerID] then
+				local oldestItem = EID.RecentlyTouchedItems[playerID][EID.OldestItemIndex[playerID]]
+				if oldestItem then
+					EID:appendToDescription(descObj, "#")
+					if #EID.coopAllPlayers > 1 then EID:appendToDescription(descObj, EID:GetPlayerIcon(playerType, "P" .. i .. ":") .. " ") end
+					EID:appendToDescription(descObj, "{{NameC" .. oldestItem .. "}}")
+				end
 			end
 		end
 		return descObj
@@ -750,6 +763,7 @@ if EID.isRepentance then
 			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
 			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
 			if descObj.ObjSubType == 80 then table.insert(callbacks, WildCardCallback) end
+			if descObj.ObjSubType == 73 then table.insert(callbacks, TheStarsCallback) end
 		-- Pill Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
 			if EID.collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
