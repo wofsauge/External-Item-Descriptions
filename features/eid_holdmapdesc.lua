@@ -29,7 +29,7 @@ EID.ItemReminderCategories = {
 		isScrollable = true,
 		entryGenerators = { function(player) EID:ItemReminderHandleLemegetonWisps(player) end, },
 		scrollbarGenerator = function(player)
-			local playerNum = EID:getPlayerID(player)
+			local playerNum = EID:getPlayerID(player, true)
 			return EID:ItemReminderHandleItemScrollbarFeature(EID.WispsPerPlayer[playerNum], 100, false)
 		end
 	},
@@ -51,7 +51,7 @@ EID.ItemReminderCategories = {
 		isScrollable = true,
 		entryGenerators = { function(player) EID:ItemReminderHandleSelectedPassiveItem(player) end },
 		scrollbarGenerator = function(player)
-			local playerNum = EID:getPlayerID(player)
+			local playerNum = EID:getPlayerID(player, true)
 			return EID:ItemReminderHandleItemScrollbarFeature(EID.RecentlyTouchedItems[playerNum], 100, true)
 		end
 	},
@@ -95,12 +95,8 @@ EID.ItemReminderDescriptionModifier = {
 	["5.100.700"] = { -- Echo Chamber
 		isRepentance = true,
 		modifierFunction = function(descObj, player, inOverview)
-			local playerID = EID:getPlayerID(player)
+			local playerID = EID:getPlayerID(player, true)
 			local pickupHistory = EID.PlayerItemInteractions[playerID].pickupHistory
-			-- Dead Tainted Lazarus exception
-			if player:GetPlayerType() == 38 then
-				pickupHistory = EID.PlayerItemInteractions[playerID].altPickupHistory or pickupHistory
-			end
 			if not pickupHistory then return end
 			local pickupNames = ""
 			local pickupsToPrint = 3
@@ -232,7 +228,7 @@ EID.ItemReminderDescriptionModifier = {
 	},
 	["5.100.477"] = { -- Void
 		modifierFunction = function(descObj, player, inOverview)
-			local absorbedItems = EID.absorbedItems[tostring(EID:getPlayerID(player))]
+			local absorbedItems = EID.absorbedItems[tostring(EID:getPlayerID(player, true))]
 			if absorbedItems then
 				local descriptionText = ""
 				local countItems = 0
@@ -465,7 +461,7 @@ end
 
 -- Passive Item Descriptions
 function EID:ItemReminderHandleSelectedPassiveItem(player)
-	local playerNum = EID:getPlayerID(player)
+	local playerNum = EID:getPlayerID(player, true)
 	if EID.RecentlyTouchedItems[playerNum] and #EID.RecentlyTouchedItems[playerNum] > 0 then
 		EID:ItemReminderHandleItemPrinting(player, EID.RecentlyTouchedItems[playerNum], 100, true)
 	end
@@ -526,7 +522,7 @@ end
 
 -- Held trinkets are added at the end of the table; use this table in descending order
 function EID:ItemReminderHeldPlusGulped(player)
-	local playerNum = EID:getPlayerID(player)
+	local playerNum = EID:getPlayerID(player, true)
 	local newTable = {}
 	if EID.GulpedTrinkets[playerNum] then newTable = {table.unpack(EID.GulpedTrinkets[playerNum])} end
 	for i=0, 1 do
@@ -554,7 +550,7 @@ end
 
 -- Lemegeton wisp descriptions
 function EID:ItemReminderHandleLemegetonWisps(player)
-	local playerNum = EID:getPlayerID(player)
+	local playerNum = EID:getPlayerID(player, true)
 	EID:ItemReminderHandleItemPrinting(player, EID.WispsPerPlayer[playerNum], 100, false)
 end
 
