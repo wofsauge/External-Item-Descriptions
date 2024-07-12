@@ -125,12 +125,12 @@ end
 
 
 ------ DUPLICATE COPIES OF ITEMS ------
--- Items that have no effect from multiple copies (AddSelfConditional adds it when holding Diplopia automatically)
+-- Items that have no effect from multiple copies (AddSelfConditional adds it when holding Diplopia / Crooked Penny automatically)
 -- This list is mostly taken from Diplopia's wiki page, there's a lot more with no effect out there I'm sure
 EID:AddSelfConditional({7, 55, 63, 69, 87, 104, 106, 108, 109, 116, 122, 132, 139, 149, 152, 156, 162, 169, 191, 200, 203, 214, 221, 225, 231, 233, 238, 239, 243, 244, 247, 248, 249, 261, 276, 299, 300, 313, 316, 330, 350, 356, 366, 368, 371, 374, 379, 400, 401, 408, 411, 412, 414, 416, 423, 429, 444, 446, 447, 450, 451, 458, 494, 495, 496, 501, 524, 525, 529, 532, 533, 534, 540, 546, }, "No Effect (Copies)")
 -- Items that have an interesting effect from multiple copies
 EID:AddSelfConditional({2, 64, 118, 153, 245, 358}, "Copies")
--- Items that can't be duplicated
+-- Items that can't be duplicated by Diplopia
 EID:AddItemConditional(347, 347, "Can't Be Duplicated", nil, false) -- Diplopia
 if not EID.isRepentance then
 	EID:AddSelfConditional({115, 222, 224, 228, 531}, "No Effect (Copies)")
@@ -312,6 +312,19 @@ if EID.isRepentance then
 	EID:AddSynergyConditional(152, {708, 444}, "Technology 2 One Eye") -- Technology 2 + Stapler, Lead Pencil
 	EID:AddConditional(482, EID.CheckForTaintedPlayer)
 	EID:AddItemConditional(297, "5.350.175", "PandorasBoxStrangeKeyEffect", {noTable = true})
+	
+	-- Jacob's Ladder / 120 Volt battery synergies
+	EID:AddSynergyConditional({494, 559}, {205, 356}, "Sparks Damage")
+	EID:AddSynergyConditional({494, 559}, {116, "5.350.72", "5.350.120"}, "Sparks Arc Length")
+	EID:AddSynergyConditional({494, 559}, {63, 520, "5.350.3"}, "Sparks Arc Count")
+	EID:AddSynergyConditional({494, 559}, {"5.350.143"}, "Sparks Arc Back")
+	
+	-- Ghost Pepper / Bird's Eye + farting (The Poop, Kidney Bean, The Bean, The Black Bean, Butter Bean, Wait What?, Mega Bean, No. 2, IBS)
+	EID:AddSynergyConditional(495, {36, 421, 111, 180, 294, 484, 351, 378}, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
+	if EID.isRepentance then
+		EID:AddSynergyConditional(495, 725, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
+		EID:AddSynergyConditional(616, {36, 421, 111, 180, 294, 484, 351, 378, 725}, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
+	end
 end
 
 --[[
@@ -320,8 +333,6 @@ BUURAZU'S TODO STUFF:
 Overridden / Overrides (Brimstone, Mom's Knife, Epic Fetus stuff) (still need some probably)
 Spoiler achievement descriptions (plus a config setting possibly, to always show the spoilers) (Chaos Card and Plan C?)
 Maybe a find/replace pair for some Keeper descriptions that talk about Red hearts but work for him, Red -> Coin or Red/Coin; Could be good for Dead Cat. or just leave it be
-Jacob's Ladder synergies with other battery items (I didn't even know about this)
-Bean synergies with ghost pepper/bird's eye I guess
 hallowed ground / midas touch + the poop / card against humanity / everything jar synergies
 Add Void synergy information for some active items (which?) (warn on things like mom's box you don't get double trinket power?)
 Damage multipliers that don't stack
@@ -338,10 +349,10 @@ Make Glitched Crown type pedestals work better in EID (pause on one item and pre
 Don't show Void stat ups depending on what Void has absorbed (abyss absorbed = no void stat ups etc, reroll item = might become actives)
 
 REPENTOGON TODOS:
-Glyph of balance
-Item reminder previews of immaculate/cambion progress
+Glyph of balance (test with bethany but repentogon's is probably always right)
+Item reminder previews of immaculate/cambion progress (cambion's increases after two familiars; vardata like glowing hourglass?)
 Purity's current stat boost
-Attack formula simulator?
+Attack formula simulator? (yeah right)
 
 MAYBE SOME DAYS:
 Bag of Crafting "sort by recipe nearest completion in bag" option
