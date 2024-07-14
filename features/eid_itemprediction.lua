@@ -28,7 +28,7 @@ function EID:CurrentDInfinity(rng, player)
 		rng = EID:RNGNext(rng, 0x1, 0x9, 0x1D) -- magic disassembled numbers!
         return dinfinityList[rng % 7]
 	else
-        local playerID = EID:getPlayerID(player)
+        local playerID = EID:getPlayerID(player, true)
         return dinfinityList[EID.DInfinityState[playerID]] or 476
 	end
 end
@@ -42,7 +42,7 @@ if EID.isRepentance then
     function EID:WatchForDice(collectibleType, _, player)
         if not justDidD or collectibleType == 489 then return end
         justDidD = false
-        local playerID = EID:getPlayerID(player)
+        local playerID = EID:getPlayerID(player, true)
         for i,v in ipairs(dinfinityList) do
             if v == collectibleType then EID.DInfinityState[playerID] = i end
         end
@@ -329,3 +329,70 @@ function EID:D1Prediction(rng)
 	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
 	return pickupNames[fullID] or EID:GetEntityXMLNameByString(fullID) or fullID
 end
+
+
+-- Glyph of Balance --
+function EID:GlyphOfBalancePrediction(player)
+	local fullID = "5.0"
+	
+	local playerID = player:GetPlayerType()
+	local skipHearts = EID.isRepentance and EID.NoRedHeartsPlayerIDs[playerID] -- Soul Heart characters can't get hearts in Repentance
+	local skipSoulHearts = EID.isRepentance and (playerID == 18 or playerID == 14 or playerID == 33) -- Bethany and Keepers can't get Soul Hearts with 6 or less containers in Repentance
+	local skipBombs = EID.isRepentance and playerID == 25 -- Tainted ??? (the only character that can't have Bombs)
+	
+	-- Soul Hearts: When Isaac has no Red Heart containers and less than 2 Soul Hearts.
+	if not skipHearts and player:GetEffectiveMaxHearts() == 0 and player:GetSoulHearts() < 4 then
+		fullID = "5.10.3"
+	-- Full Red Hearts: While at 0.5 Red Hearts.
+	-- In AB+, you seem to have to have at least one non-Bone container to trigger this condition
+	elseif not skipHearts and player:CanPickRedHearts() and player:GetHearts() <= 1 and (EID.isRepentance or player:GetMaxHearts() > 0) then
+		fullID = "5.10.1"
+	-- Keys: When Isaac has no keys.
+	elseif player:GetNumKeys() == 0 then
+		fullID = "5.30.1"
+	-- Bombs: When Isaac has no bombs.
+	elseif not skipBombs and player:GetNumBombs() == 0 then
+		fullID = "5.40.1"
+	-- Big Poop Nugget: When Tainted ??? has no poops
+	elseif skipBombs and player:GetPoopMana() == 0 then
+		fullID = "5.42.1"
+	-- Soul Hearts: When Bethany has no soul charges
+	elseif EID.isRepentance and playerID == 18 and player:GetSoulCharge() == 0 then
+		fullID = "5.10.3"
+	-- Red Hearts: When Tainted Bethany has no blood charges
+	elseif EID.isRepentance and playerID == 36 and player:GetBloodCharge() == 0 then
+		fullID = "5.10.1"
+	-- Full Red Hearts: When Isaac has at least half a Red Heart container empty.
+	elseif not skipHearts and player:CanPickRedHearts() then
+		fullID = "5.10.1"
+	-- Pennies: While Isaac has less than 15 pennies.
+	elseif player:GetNumCoins() < 15 then
+		fullID = "5.20.1"
+	-- Keys: When Isaac has less than 5 keys.
+	elseif player:GetNumKeys() < 5 then
+		fullID = "5.30.1"
+	-- Bombs: When Isaac has less than 5 bombs.
+	elseif not skipBombs and player:GetNumBombs() < 5 then
+		fullID = "5.40.1"
+	-- Trinkets: If Isaac has no trinkets and there are no trinkets on the ground in the room.
+	elseif player:GetTrinket(0) == 0 and #Isaac.FindByType(5, 350) == 0 then
+		fullID = "5.350"
+	-- Big Poop Nugget: When Tainted ??? has less than 5 poops
+	elseif skipBombs and player:GetPoopMana() < 5 then
+		fullID = "5.42.1"
+	-- Soul Hearts: When Bethany has less than 12 soul charges
+	elseif EID.isRepentance and playerID == 18 and player:GetSoulCharge() < 12 then
+		fullID = "5.10.3"
+	-- Red Hearts: When Tainted Bethany has less than 12 blood charges
+	elseif EID.isRepentance and playerID == 36 and player:GetBloodCharge() < 12 then
+		fullID = "5.10.1"
+	-- Soul Hearts: When Isaac has less than 6 total Heart containers of any kind.
+	elseif not skipHearts and not skipSoulHearts and player:GetHearts() + player:GetSoulHearts() < 12 then
+		fullID = "5.10.3"
+	end
+	
+	--todo: in REPENTOGON, replace this whole function (in the eid_repentogon lua style)
+	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
+	return pickupNames[fullID] or EID:GetEntityXMLNameByString(fullID) or fullID
+end
+
