@@ -2160,6 +2160,8 @@ end
 function EID:GetEntityXMLName(Type, Variant, SubType)
 	return EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
 end
+
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:GetEntityXMLNameByString(tvsString)
 	local Type, Var, Sub = EID:SplitTVS(tvsString)
 	return EID:GetEntityXMLName(Type, Var, Sub)

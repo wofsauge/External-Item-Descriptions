@@ -62,9 +62,39 @@ function EID:addToGeneralCondition(ID, locTable, text, numberToDouble, newNumber
 	language = language or "en_us"
 	if numberToDouble then
 		newNumber = newNumber or numberToDouble * 2
-		text = {numberToDouble, newNumber, text}
+		text = { numberToDouble, newNumber, text }
 	end
 	EID.descriptions[language][locTable][ID] = text
+end
+
+-- Shortcut function for adding Repentance Tarot Cloth conditions
+function EID:addTarotClothBuffsCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "tarotClothBuffs", text, numberToDouble, newNumber, language)
+end
+
+-- Shortcut function for adding Ab+ Tarot Cloth conditions
+function EID:addTarotClothBuffsABCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "tarotClothBuffsAB", text, numberToDouble, newNumber, language)
+end
+
+-- Shortcut function for adding car battery conditions
+function EID:addCarBatteryCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "carBattery", text, numberToDouble, newNumber, language)
+end
+
+-- Shortcut function for adding abyss synergies conditions
+function EID:addAbyssSynergiesCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "abyssSynergies", text, numberToDouble, newNumber, language)
+end
+
+-- Shortcut function for adding book of belial conditions
+function EID:addBookOfBelialBuffsCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "bookOfBelialBuffs", text, numberToDouble, newNumber, language)
+end
+
+-- Shortcut function for adding binge eater conditions
+function EID:addBingeEaterBuffsCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "bingeEaterBuffs", text, numberToDouble, newNumber, language)
 end
 
 -- Shortcut function for adding BFFS conditions; this is slightly more complex since it supports trinkets
@@ -73,7 +103,7 @@ function EID:addBFFSCondition(ID, text, numberToDouble, newNumber, language)
 	language = language or "en_us"
 	if numberToDouble then
 		newNumber = newNumber or numberToDouble * 2
-		text = {numberToDouble, newNumber, text}
+		text = { numberToDouble, newNumber, text }
 	end
 	if type(ID) ~= "string" then ID = "5.100." .. ID
 	else
