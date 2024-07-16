@@ -454,8 +454,8 @@ end
 function EID:ItemReminderHandleCharacterInfo(player)
 	local playerType = player:GetPlayerType()
 	local playerDesc = EID:getDescriptionEntry("CharacterInfo")[playerType]
-	if playerDesc[2] ~= "" then
-		EID:ItemReminderAddTempDescriptionEntry("{{Player" .. playerType .. "}}", playerDesc[1], playerDesc[2])
+	if playerDesc and playerDesc[2] ~= "" then
+		EID:ItemReminderAddTempDescriptionEntry(EID:GetPlayerIcon(playerType), playerDesc[1], playerDesc[2])
 	end
 end
 
