@@ -60,6 +60,13 @@ function EID:addTrinket(id, description, itemName, language)
 	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description, EID._currentMod}
 end
 
+-- Adds character specific information, which can be viewed in the Item Reminder
+function EID:addCharacterInfo(characterId, description, playerName, language)
+	playerName = playerName or "Modded Character"
+	language = language or "en_us"
+	EID.descriptions[language].CharacterInfo[characterId] = {playerName, description}
+end
+
 -- Adds information about appending text and multiplying numbers in a modded trinket's Golden/Mom's Box description. All three variables are optional, set to ""/0 or nil to not include them
 -- appendText: Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
 -- numbersToMultiply: The number inside the text that should be multiplied. can be one number, or a table of numbers
@@ -1991,6 +1998,7 @@ function EID:evaluateQueuedItems()
 					-- A new active item was touched; initiate its touch count to 0 for all players
 					-- (Fixes co-op bugs, compared to only initiating it for the toucher)
 					for j = 0, game:GetNumPlayers() - 1 do
+						EID:InitItemInteractionIfAbsent(j)
 						EID.PlayerItemInteractions[j].actives[itemIDStr] = EID.PlayerItemInteractions[j].actives[itemIDStr] or 0
 						EID.PlayerItemInteractions[j+666].actives[itemIDStr] = EID.PlayerItemInteractions[j+666].actives[itemIDStr] or 0
 					end
@@ -2020,11 +2028,13 @@ function EID:InitItemInteractionIfAbsent(playerID)
 	playerID = playerID % 666 -- dead tainted lazarus exception
 	if not EID.PlayerItemInteractions[playerID] then
 		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, pickupHistory = {}, rerollItems = {} }
-		EID.PlayerItemInteractions[playerID+666] = { LastTouch = 0, actives = {}, pickupHistory = {}, rerollItems = {} }
 		-- in AB+, initiate Halo of Flies as an active item (collectible ID 10 is used for ALL Pretty Flies)
 		if not EID.isRepentance then
 			EID.PlayerItemInteractions[playerID].actives["10"] = 0
 		end
+	end
+	if not EID.PlayerItemInteractions[playerID+666] then
+		EID.PlayerItemInteractions[playerID+666] = { LastTouch = 0, actives = {}, pickupHistory = {}, rerollItems = {} }
 	end
 	EID.RecentlyTouchedItems[playerID] = EID.RecentlyTouchedItems[playerID] or {}
 	EID.RecentlyTouchedItems[playerID+666] = EID.RecentlyTouchedItems[playerID+666] or {}
@@ -2307,7 +2317,15 @@ function EID:UpdateAllPlayerLemegetonWisps()
 		table.sort(wisps, function(a, b) return a.FrameCount < b.FrameCount end)
 		for i,v in ipairs(wisps) do wisps[i] = v.SubType end
 	end
-	
+end
+
+-- WIP
+EID.CrackedCrownCheck = {}
+-- Watch pedestals for being a Cracked Crown style pedestal that flips between items too quickly to keep track of
+function EID:WatchForCrackedCrown()
+	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+		local pickup = entity:ToPickup()
+	end
 end
 
 -- Replaces Variable placeholders in string with a given value
