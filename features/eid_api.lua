@@ -2319,15 +2319,6 @@ function EID:UpdateAllPlayerLemegetonWisps()
 	end
 end
 
--- WIP
-EID.CrackedCrownCheck = {}
--- Watch pedestals for being a Cracked Crown style pedestal that flips between items too quickly to keep track of
-function EID:WatchForCrackedCrown()
-	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
-		local pickup = entity:ToPickup()
-	end
-end
-
 -- Replaces Variable placeholders in string with a given value
 -- Example: "My {1} message" --> "My test message"
 function EID:ReplaceVariableStr(str, varID, newString)
