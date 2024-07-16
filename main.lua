@@ -1722,7 +1722,7 @@ end
 function EID:OnUsePill(pillEffectID, player, useFlags)
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
 	-- get the pill color by checking the player's pocket
-	local pillColor = EID.PlayerHeldPill[EID:getPlayerID(player)]
+	local pillColor = EID.PlayerHeldPill[EID:getPlayerID(player)] or 1
 	-- add the pill used to our history for Echo Chamber / Vurp! / transformation progress
 	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags, pillColor)
 	-- add the pill to Wild Card tracking, unless it's a Temperance? pill
