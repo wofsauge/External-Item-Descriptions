@@ -281,9 +281,7 @@ if EID.isRepentance then
 		if curFrame == lastGetItemResult[2] then
 			if initialItemNext then lastGetItemResult[1] = selectedCollectible
 			elseif flipItemNext and lastGetItemResult[1] then
-				if EID.flipItemPositions[curRoomIndex] == nil then
-					EID.flipItemPositions[curRoomIndex] = {}
-				end
+				EID.flipItemPositions[curRoomIndex] = EID.flipItemPositions[curRoomIndex] or {}
 				EID.flipItemPositions[curRoomIndex][lastGetItemResult[4]] = {selectedCollectible, lastGetItemResult[3]}
 			end
 		end
@@ -1059,12 +1057,17 @@ function EID:onGameUpdate()
 	EID:checkPlayersForMissingItems()
 	EID:evaluateQueuedItems()
 	EID:evaluateHeldPill()
+	
+	EID.TabHeldLastFrame = EID.TabHeldThisFrame
+	EID.TabHeldThisFrame = EID:PlayersActionPressed(EID.Config["BagOfCraftingToggleKey"])
 
 	if collSpawned then
 		collSpawned = false
 
 		local curPositions = {}
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			-- Flag pedestals as being describable on frame 0 (for Tainted Isaac / Glitched Crown type pedestals to not be non-existent for a frame)
+			entity:GetData()["EID_DescribeOnFirstFrame"] = true
 			-- Fix Overlapping Pedestals if a collectible spawned this frame (needed for Mega Chest)
 			local pos = entity.Position
 			for _, otherPos in ipairs(curPositions) do
@@ -1087,6 +1090,7 @@ function EID:onGameUpdate()
 	end
 	
 	if EID.isRepentance then
+		EID:WatchForGlitchedCrown()
 		EID:UpdateWildCardEffects()
 		if EID.GameUpdateCount % 10 == 0 then
 			-- Check wisp for adding reminder when using lemegeton
@@ -1400,7 +1404,7 @@ function EID:OnRender()
 
 			for _, entitySearch in ipairs(searchGroups) do
 				for _, entity in ipairs(entitySearch) do
-					if EID:hasDescription(entity) and entity.FrameCount > 0 and not EID.entitiesToPrint[GetPtrHash(entity)] then
+					if EID:hasDescription(entity) and (entity.FrameCount > 0 or entity:GetData()["EID_DescribeOnFirstFrame"]) and not EID.entitiesToPrint[GetPtrHash(entity)] then
 						table.insert(inRangeEntities, entity)
 						local diff = entity.Position:__sub(sourcePos)
 						-- break ties with the render offset (for Mega Chest double collectibles)
