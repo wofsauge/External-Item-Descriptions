@@ -700,7 +700,7 @@ function EID:hasDescription(entity)
 	if EID.Config["EnableEntityDescriptions"] and EID:getTableName(entity.Type, entity.Variant, entity.SubType) == "custom" then
 		isAllowed = __eidEntityDescriptions[entityString] ~= nil
 		isAllowed = isAllowed or EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil
-		isAllowed = isAllowed or entity:GetData() and type(entity:GetData()["EID_Description"]) ~= type(nil)
+		isAllowed = isAllowed or EID:getEntityData(entity, "EID_Description") ~= nil
 	end
 	if entity.Type == EntityType.ENTITY_PICKUP then
 		if entity.SubType == 0 and EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil then
@@ -1631,6 +1631,12 @@ function EID:getEntityData(entity, str)
 		return entity:GetData()[str]
 	end
 	return nil
+end
+
+function EID:setEntityData(entity, str, value)
+	if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:GetData() ~= nil then
+		entity:GetData()[str] = value
+	end
 end
 
 -- Function to fix font compatibility. Resets config font to a value compatible with your current language

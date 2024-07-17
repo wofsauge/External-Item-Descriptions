@@ -329,7 +329,7 @@ if EID.isRepentance then
 		-- Give this new entity its Flip Item data if possible
 		local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed]
 		if flipEntry then
-			entity:GetData()["EID_FlipItemID"] = flipEntry[1]
+			EID:setEntityData(entity, "EID_FlipItemID", flipEntry[1])
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInitFlip, PickupVariant.PICKUP_COLLECTIBLE)
@@ -337,13 +337,13 @@ if EID.isRepentance then
 	function EID:CheckPedestalIndex(entity)
 		-- Only pedestals with indexes that were present at room load can be flip pedestals
 		-- Fixes shop restock machines and Diplopia... mostly. At least while you're in the room.
-		if entity:GetData()["EID_FlipItemID"] and entity.Index > EID.flipMaxIndex then
+		if EID:getEntityData(entity, "EID_FlipItemID") and entity.Index > EID.flipMaxIndex then
 			local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 			local gridPos = game:GetRoom():GetGridIndex(entity.Position)
 			local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed]
 			-- only wipe the data if the grid index matches (so Diplopia pedestals don't)
 			if flipEntry and gridPos == flipEntry[2] then EID.flipItemPositions[curRoomIndex][entity.InitSeed] = nil end
-			entity:GetData()["EID_FlipItemID"] = nil
+			EID:setEntityData(entity, "EID_FlipItemID", nil)
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, EID.CheckPedestalIndex, PickupVariant.PICKUP_COLLECTIBLE)
@@ -756,7 +756,7 @@ if EID.isRepentance then
 				local flipEntry = EID.flipItemPositions[curRoomIndex][pedestal.InitSeed]
 				if flipEntry then
 					if pedestal.Index > EID.flipMaxIndex then EID.flipMaxIndex = pedestal.Index end
-					pedestal:GetData()["EID_FlipItemID"] = flipEntry[1]
+					EID:setEntityData(pedestal, "EID_FlipItemID", flipEntry[1])
 				end
 			end
 		end
@@ -865,9 +865,8 @@ function EID:renderIndicator(entity, playerNum)
 		ArrowOffset = Vector(0, -62)
 	end
 	local arrowPos = Isaac.WorldToScreen(entity.Position + ArrowOffset)
-	if not EID:IsGridEntity(entity) and entity:GetData() and entity:GetData()["EID_RenderOffset"] then
-		entityPos = entityPos + entity:GetData()["EID_RenderOffset"]
-	end
+	entityPos = entityPos + (EID:getEntityData(entity, "EID_RenderOffset") or Vector(0,0))
+
 	-- Move highlights a bit to fit onto the alt Item layout of Flip / Tainted Laz
 	if EID.isRepentance and not EID:IsGridEntity(entity) then
 		if entity.Variant == 100 and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID:getEntityData(entity, "EID_FlipItemID") then
@@ -1067,13 +1066,13 @@ function EID:onGameUpdate()
 		local curPositions = {}
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
 			-- Flag pedestals as being describable on frame 0 (for Tainted Isaac / Glitched Crown type pedestals to not be non-existent for a frame)
-			entity:GetData()["EID_DescribeOnFirstFrame"] = true
+			EID:setEntityData(entity, "EID_DescribeOnFirstFrame", true)
 			-- Fix Overlapping Pedestals if a collectible spawned this frame (needed for Mega Chest)
 			local pos = entity.Position
 			for _, otherPos in ipairs(curPositions) do
 				if pos:Distance(otherPos[2]) == 0 then
-					entity:GetData()["EID_RenderOffset"] = Vector(10,0)
-					otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
+					EID:setEntityData(entity, "EID_RenderOffset", Vector(10,0))
+					EID:setEntityData(otherPos[1], "EID_RenderOffset", Vector(-10,0))
 				end
 			end
 			table.insert(curPositions, {entity, entity.Position})
@@ -1135,7 +1134,7 @@ local function attemptPathfind(entity)
 
 	-- Spawn a Fireplace entity to attempt a pathfind to the target pickup, then remove it afterwards
 	pathCheckerEntity = game:Spawn(33, 0, EID.player.Position, nullVector, EID.player, 6969, 4354)
-	pathCheckerEntity:GetData()["EID_Pathfinder"] = true
+	EID:setEntityData(pathCheckerEntity, "EID_Pathfinder", true)
 	pathCheckerEntity.Visible = false
 	local successful = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
 	pathsChecked[entity.InitSeed] = successful
@@ -1404,12 +1403,13 @@ function EID:OnRender()
 
 			for _, entitySearch in ipairs(searchGroups) do
 				for _, entity in ipairs(entitySearch) do
-					if EID:hasDescription(entity) and (entity.FrameCount > 0 or entity:GetData()["EID_DescribeOnFirstFrame"]) and not EID.entitiesToPrint[GetPtrHash(entity)] then
+					if EID:hasDescription(entity) and (entity.FrameCount > 0 or EID:getEntityData(entity, "EID_DescribeOnFirstFrame")) and not EID.entitiesToPrint[GetPtrHash(entity)] then
 						table.insert(inRangeEntities, entity)
 						local diff = entity.Position:__sub(sourcePos)
 						-- break ties with the render offset (for Mega Chest double collectibles)
-						if diff:Length() == EID.lastDist and entity:GetData()["EID_RenderOffset"] then
-							diff = diff + entity:GetData()["EID_RenderOffset"]
+						local entityDataRenderOffset = EID:getEntityData(entity, "EID_RenderOffset")
+						if diff:Length() == EID.lastDist and entityDataRenderOffset then
+							diff = diff + entityDataRenderOffset
 						end
 						if diff:Length() < EID.lastDist then
 							EID.lastDescriptionEntity = entity
