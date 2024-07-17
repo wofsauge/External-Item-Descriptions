@@ -37,7 +37,7 @@ if EID.isRepentance then
 	EID:AddItemConditional({"5.300.96", "5.350.142", "5.350.176", "5.350.182", "5.350.186"}, 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false}) -- BFFS! Repentance soulstone/trinkets
 	EID:AddPlayerConditional(247, 32, "Tainted Lilith", {locTable = "BFFSSynergies", layer = 3}) -- Tainted Lilith's Gello
 	EID:AddItemConditional("5.100", 248, EID.CheckForHiveMind, {locTable = "BFFSSynergies", replaceColor = "BlinkBlue", noFallback = false, uniqueID = "BFFS"}) -- Hive Mind
-	EID:AddSynergyConditional(247, 248, "No Effect (Familiars)", {layer = 5}) -- Already having Hive Mind / BFFS!
+	EID:AddSynergyConditional(247, 248, "No Effect (Familiars)", nil, {layer = 5}) -- Already having Hive Mind / BFFS!
 	EID:AddConditional(248, EID.CheckFamiliarsForHiveMind, nil, {locTable = "BFFSSynergies", useResult = true, layer = 2}) -- Effect text for Hive Mind pedestal
 	
 	EID:AddSynergyConditional({584, 685, 702, 728}, "5.350.141", "No Effect From", "No Effect") -- Forgotten Lullaby no effect familiars (wisps, Gello)
