@@ -341,17 +341,10 @@ TODOS I'VE DECIDED NOT TODO RIGHT NOW:
 Incubus effects; a lot are AB+ only; annoying to test; plus Lilith has to be added for all of them too
 
 TODOs unrelated to conditionals:
-Luck modifier that prints out a percentage for the effect based on your current luck stat
-What item is Liberty Cap, Broken Syringe, etc. currently giving?
-RNG cheat for Crooked Penny
 Implement the standardized colors for characters, items, map names, etc
-Make Glitched Crown type pedestals work better in EID (pause on one item and press tab to switch to the next item)
 Don't show Void stat ups depending on what Void has absorbed (abyss absorbed = no void stat ups etc, reroll item = might become actives)
 
 REPENTOGON TODOS:
-Glyph of balance (test with bethany but repentogon's is probably always right)
-Item reminder previews of immaculate/cambion progress (cambion's increases after two familiars; vardata like glowing hourglass?)
-Purity's current stat boost
 Attack formula simulator? (yeah right)
 
 MAYBE SOME DAYS:

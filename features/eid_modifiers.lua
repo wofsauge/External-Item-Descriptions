@@ -733,7 +733,7 @@ if EID.isRepentance then
 
 		return descObj
 	end
-	
+
 	-- Handle Glitched Crown style pedestals
 	local currentSelection = {} -- keep track of which description we're looking at for a given pedestal
 	local goingToSpindown = false
@@ -741,54 +741,56 @@ if EID.isRepentance then
 		if not descObj.Entity then return descObj end
 		local entity = descObj.Entity
 		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
-		
-		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][descObj.Entity.InitSeed..descObj.Entity.Index] then
+
+		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][descObj.Entity.InitSeed .. descObj.Entity.Index] then
 			-- this table has collectible ID keys that define the first frame and most recent frame that that ID has been seen on this pedestal
 			-- we need to filter out items that haven't been seen in a while (due to a reroll perhaps), then sort by first frame
-			local pedestalID = descObj.Entity.InitSeed..descObj.Entity.Index
+			local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
 			local items = EID.GlitchedCrownCheck[curRoomIndex][pedestalID]
 			local sortedItems = {}
-			for id,frames in pairs(items) do
+			for id, frames in pairs(items) do
 				if EID.GameUpdateCount - frames[2] > 120 then
 					items[id] = nil
 				else
-					table.insert(sortedItems, {id, frames[1]})
+					table.insert(sortedItems, { id, frames[1] })
 				end
 			end
 			if #sortedItems < 5 then return descObj end
 			table.sort(sortedItems, function(a, b) return a[2] < b[2] end)
-			
+
 			currentSelection[pedestalID] = currentSelection[pedestalID] or 0
-			
+
 			-- watch for Tab being pressed to advance our selection by 1
 			-- when spindown dice is involved, watch for tab being released instead of pressed, it makes more sense
 			if goingToSpindown and EID:TabReleased() or not goingToSpindown and EID:TabPressed() then
 				currentSelection[pedestalID] = currentSelection[pedestalID] + 1
 				if currentSelection[pedestalID] > #sortedItems then currentSelection[pedestalID] = 0 end
 			end
-			
+
 			-- display the overview description
 			if currentSelection[pedestalID] == 0 then
 				descObj = EID:getDescriptionObj(5, 100, 689, nil, false)
 				descObj.Description = ""
-				for _,item in ipairs(sortedItems) do
+				for _, item in ipairs(sortedItems) do
 					descObj.Description = descObj.Description .. "#{{NameC" .. item[1] .. "}}"
 				end
-			-- display a specific description
-			-- don't replace the desc if the pedestal's already showing the correct item
+				-- display a specific description
+				-- don't replace the desc if the pedestal's already showing the correct item
 			else
-				descObj	= EID:getDescriptionObj(5, 100, sortedItems[currentSelection[pedestalID]][1])
+				descObj = EID:getDescriptionObj(5, 100, sortedItems[currentSelection[pedestalID]][1])
 			end
-			
+
 			local nextIcon = "{{Collectible689}}"
-			if currentSelection[pedestalID]+1 <= #sortedItems then nextIcon = "{{Collectible" .. sortedItems[currentSelection[pedestalID]+1][1] .. "}}" end
-			EID:appendToDescription(descObj, "#{{Blank}} ".. EID:ReplaceVariableStr(EID:getDescriptionEntry("GlitchedCrownToggleInfo"),1,nextIcon))
-			
+			if currentSelection[pedestalID] + 1 <= #sortedItems then nextIcon = "{{Collectible" ..
+				sortedItems[currentSelection[pedestalID] + 1][1] .. "}}" end
+			EID:appendToDescription(descObj,
+				"#{{Blank}} " .. EID:ReplaceVariableStr(EID:getDescriptionEntry("GlitchedCrownToggleInfo"), 1, nextIcon))
+
 			-- manually apply Flip; changing the description's item stops future callbacks to avoid infinite loops, but we want Flip still, it works fine
 			descObj.Entity = entity
 			if EID.collectiblesOwned[711] and descObj.ObjSubType ~= entity.SubType then descObj = FlipCallback(descObj) end
 		end
-		
+
 		return descObj
 	end
 
