@@ -5,6 +5,11 @@ EID.TabPreviewID = 0
 EID.inModifierPreview = false
 -- The "Item Reminder" needs to know if it shouldn't display because we're in a Hold Tab desc
 EID.TabDescThisFrame = false
+-- Some modifiers (e.g. Glitched Crown) want to know if Tab was pressed/released, rather than held
+EID.TabHeldThisFrame = false
+EID.TabHeldLastFrame = false
+function EID:TabPressed() return EID.TabHeldThisFrame and not EID.TabHeldLastFrame end
+function EID:TabReleased() return EID.TabHeldLastFrame and not EID.TabHeldThisFrame end
 
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
 EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_VOID] = true
@@ -22,6 +27,7 @@ if EID.isRepentance then
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_FALSE_PHD] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_FLIP] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_GLITCHED_CROWN] = true
 end
 EID.collectiblesOwned = {}
 EID.collectiblesAbsorbed = {}
@@ -413,7 +419,8 @@ if EID.isRepentance then
 
 	-- Handle Spindown Dice description addition
 	local function SpindownDiceCallback(descObj)
-		if EID.InsideItemReminder then return descObj end
+		-- don't display in item reminder, or if we've already printed it earlier in the desc
+		if EID.InsideItemReminder or string.match(descObj.Description, "#{{Collectible723}} :") then return descObj end
 		-- get the ID of the player that owns the Spindown Dice
 		local playerID = (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723])
 		EID:appendToDescription(descObj, "#{{Collectible723}} :")
@@ -726,6 +733,64 @@ if EID.isRepentance then
 
 		return descObj
 	end
+	
+	-- Handle Glitched Crown style pedestals
+	local currentSelection = {} -- keep track of which description we're looking at for a given pedestal
+	local goingToSpindown = false
+	local function GlitchedCrownCallback(descObj)
+		if not descObj.Entity then return descObj end
+		local entity = descObj.Entity
+		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		
+		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][descObj.Entity.InitSeed..descObj.Entity.Index] then
+			-- this table has collectible ID keys that define the first frame and most recent frame that that ID has been seen on this pedestal
+			-- we need to filter out items that haven't been seen in a while (due to a reroll perhaps), then sort by first frame
+			local pedestalID = descObj.Entity.InitSeed..descObj.Entity.Index
+			local items = EID.GlitchedCrownCheck[curRoomIndex][pedestalID]
+			local sortedItems = {}
+			for id,frames in pairs(items) do
+				if EID.GameUpdateCount - frames[2] > 120 then
+					items[id] = nil
+				else
+					table.insert(sortedItems, {id, frames[1]})
+				end
+			end
+			if #sortedItems < 5 then return descObj end
+			table.sort(sortedItems, function(a, b) return a[2] < b[2] end)
+			
+			currentSelection[pedestalID] = currentSelection[pedestalID] or 0
+			
+			-- watch for Tab being pressed to advance our selection by 1
+			-- when spindown dice is involved, watch for tab being released instead of pressed, it makes more sense
+			if goingToSpindown and EID:TabReleased() or not goingToSpindown and EID:TabPressed() then
+				currentSelection[pedestalID] = currentSelection[pedestalID] + 1
+				if currentSelection[pedestalID] > #sortedItems then currentSelection[pedestalID] = 0 end
+			end
+			
+			-- display the overview description
+			if currentSelection[pedestalID] == 0 then
+				descObj = EID:getDescriptionObj(5, 100, 689, nil, false)
+				descObj.Description = ""
+				for _,item in ipairs(sortedItems) do
+					descObj.Description = descObj.Description .. "#{{NameC" .. item[1] .. "}}"
+				end
+			-- display a specific description
+			-- don't replace the desc if the pedestal's already showing the correct item
+			else
+				descObj	= EID:getDescriptionObj(5, 100, sortedItems[currentSelection[pedestalID]][1])
+			end
+			
+			local nextIcon = "{{Collectible689}}"
+			if currentSelection[pedestalID]+1 <= #sortedItems then nextIcon = "{{Collectible" .. sortedItems[currentSelection[pedestalID]+1][1] .. "}}" end
+			EID:appendToDescription(descObj, "#{{Blank}} ".. EID:ReplaceVariableStr(EID:getDescriptionEntry("GlitchedCrownToggleInfo"),1,nextIcon))
+			
+			-- manually apply Flip; changing the description's item stops future callbacks to avoid infinite loops, but we want Flip still, it works fine
+			descObj.Entity = entity
+			if EID.collectiblesOwned[711] and descObj.ObjSubType ~= entity.SubType then descObj = FlipCallback(descObj) end
+		end
+		
+		return descObj
+	end
 
 	--------------------------------
 	-- Although individual conditions/callbacks work well for mods to be able to add through the API,
@@ -747,14 +812,18 @@ if EID.isRepentance then
 			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
-      -- Glowing Hourglass overwrites the description when used three times
+			if EID.collectiblesOwned[689] then table.insert(callbacks, GlitchedCrownCallback) end
+			-- Glowing Hourglass overwrites the description when used three times
 			if REPENTOGON and descObj.ObjSubType == 422 then table.insert(callbacks, GlowingHourglassCallback) end
 			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
 
 			if EID.collectiblesOwned[584] or descObj.ObjSubType == 584 then table.insert(callbacks, BookOfVirtuesCallback) end
 
 			if EID.collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
-			if EID.Config["SpindownDiceResults"] > 0 and (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723]) and descObj.ObjSubType ~= 668 then table.insert(callbacks, SpindownDiceCallback) end
+			if EID.Config["SpindownDiceResults"] > 0 and (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723]) and descObj.ObjSubType ~= 668 then
+				goingToSpindown = true
+				table.insert(callbacks, SpindownDiceCallback)
+			else goingToSpindown = false end
 
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
@@ -820,7 +889,7 @@ EID:addDescriptionModifier("EID Afterbirth+", EIDConditionsAB, nil)
 
 -- should this be done differently so that mods can add tab previews? (tab conditions is done last, but would be done before callbacks mods add, maybe tab should be checked in EID:getDescriptionObj
 local function TabConditions(_)
-	if EID:PlayersActionPressed(EID.Config["BagOfCraftingToggleKey"]) and not EID.inModifierPreview then return true end
+	if EID.TabHeldThisFrame and not EID.inModifierPreview then return true end
 	EID.TabPreviewID = 0
 	return false
 end
