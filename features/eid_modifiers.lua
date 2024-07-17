@@ -579,11 +579,14 @@ if EID.isRepentance then
 			local playerID = EID:getPlayerID(player, true)
 			local playerType = player:GetPlayerType()
 			if EID.OldestItemIndex[playerID] and EID.RecentlyTouchedItems[playerID] then
-				local oldestItem = EID.RecentlyTouchedItems[playerID][EID.OldestItemIndex[playerID]]
-				if oldestItem then
-					EID:appendToDescription(descObj, "#")
-					if #EID.coopAllPlayers > 1 then EID:appendToDescription(descObj, EID:GetPlayerIcon(playerType, "P" .. i .. ":") .. " ") end
-					EID:appendToDescription(descObj, "{{NameC" .. oldestItem .. "}}")
+				local repetitions = player:HasCollectible(451) and 2 or 1 -- Tarot Cloth removes 2 items
+				for indexOffset = 0, repetitions - 1 do
+					local oldestItem = EID.RecentlyTouchedItems[playerID][EID.OldestItemIndex[playerID] + indexOffset]
+					if oldestItem then
+						EID:appendToDescription(descObj, "#")
+						if #EID.coopAllPlayers > 1 then EID:appendToDescription(descObj, EID:GetPlayerIcon(playerType, "P" .. i .. ":") .. " ") end
+						EID:appendToDescription(descObj, "{{NameC" .. oldestItem .. "}}")
+					end
 				end
 			end
 		end
