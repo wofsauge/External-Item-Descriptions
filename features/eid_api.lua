@@ -1762,14 +1762,16 @@ function EID:getPlayerID(entityPlayer, lazarusAdjust)
 		if GetPtrHash(player) == GetPtrHash(entityPlayer) then
 			-- Dead Tainted Lazarus exceptions
 			if lazarusAdjust and EID.isRepentance then
-				-- Check for Birthright to make the ghostly form use the same base ID as the main form
-				if player:GetMainTwin() then
-					if GetPtrHash(player:GetMainTwin()) ~= GetPtrHash(player) then
-						i = EID:getPlayerID(player:GetMainTwin())
+				if player:GetPlayerType() == 38 then
+					-- Check for Birthright to make the ghostly form use the same base ID as the main form
+					if player:GetMainTwin() then
+						if GetPtrHash(player:GetMainTwin()) ~= GetPtrHash(player) then
+							i = EID:getPlayerID(player:GetMainTwin())
+						end
 					end
+					-- Increase the ID by 666 if Dead Tainted Lazarus
+					i = i + 666
 				end
-				-- Increase the ID by 666 if Dead Tainted Lazarus
-				if player:GetPlayerType() == 38 then i = i + 666 end
 			end
 			return i
 		end
