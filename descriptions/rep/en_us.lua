@@ -1299,6 +1299,7 @@ EID.descriptions[languageCode].spindownError = "Item disappears"
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card effect:"
 
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{CONFIG_BoC_Toggle}} to show description)"
+EID.descriptions[languageCode].GlitchedCrownToggleInfo = "(Press {{CONFIG_BoC_Toggle}} to show next description: {1})"
 
 EID.descriptions[languageCode].GlowingHourglassTransformed = "Will change back to Glowing Hourglass next floor"
 

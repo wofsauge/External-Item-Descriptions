@@ -2319,6 +2319,26 @@ function EID:UpdateAllPlayerLemegetonWisps()
 	end
 end
 
+-- This table holds, for each pedestal in the room, a table of item IDs that have been on that pedestal, and timestamps of when they were first and last seen
+-- The Glitched Crown callback when describing the pedestal will sort by first timestamp, and delete entries with too old of a last timestamp (like after a reroll)
+EID.GlitchedCrownCheck = {}
+-- Watch pedestals for being a Glitched Crown style pedestal that flips between items too quickly to display descriptions for
+function EID:WatchForGlitchedCrown()
+	if not EID.collectiblesOwned[689] then return end
+	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+	EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
+	
+	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+		-- Use InitSeed and Index to prevent any Diplopia weirdness
+		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
+		-- Initialize the data about this pedestal showing its current item ID, if necessary
+		-- in order to sort the items displayed, while also trashing items that haven't shown up in a while, keep both "initial frame seen" and "last frame seen"
+		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
+		-- update the last frame seen for the pedestal's current collectible ID
+		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType][2] = EID.GameUpdateCount
+	end
+end
+
 -- Replaces Variable placeholders in string with a given value
 -- Example: "My {1} message" --> "My test message"
 function EID:ReplaceVariableStr(str, varID, newString)
