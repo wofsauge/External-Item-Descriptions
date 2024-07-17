@@ -18,12 +18,23 @@ EID.ItemReminderPlayerEntity = nil -- for description modifiers to reference
 
 -- Data Tables --
 
--- Format : Table of { id = "Category Name", entryGenerators = table of functions to generate descriptions, isScrollable = only shows one entry at a time but is scrollable }
+-- Format : Table of { 	id = "Category Name", 
+--						entryGenerators = table of functions to generate descriptions, 
+--						isScrollable = only shows one entry at a time but is scrollable, 
+--						hideInOverview = if true, dont show category content in overview. can be function or boolean 
+--					 }
 -- Execution order is handles by the order of the table entries.
 -- Category name is interpreted as a lookup for the "EID.descriptions.ItemReminder.CategoryNames" table. If no translation is found, use english or the lookup value
 EID.ItemReminderCategories = {
-	{ id = "Overview", entryGenerators = { } }, -- special handling for Overview category
-	{ id = "Character", entryGenerators = { function(player) EID:ItemReminderHandleCharacterInfo(player) end, } },
+	{ id = "Overview", entryGenerators = {} }, -- special handling for Overview category
+	{ id = "Character",
+		entryGenerators = {
+			function(player) EID:ItemReminderHandleCharacterInfo(player) end
+		},
+		hideInOverview = function(_) -- hide character description from overview, if player is not in the starting room
+			return game:GetLevel():GetStartingRoomIndex() ~= game:GetLevel():GetCurrentRoomIndex()
+		end
+	},
 	{ id = "Special", entryGenerators = { function(player) EID:ItemReminderHandlePoopSpells(player) end, } },
 	{ id = "Wisps",
 		isScrollable = true,
@@ -33,7 +44,7 @@ EID.ItemReminderCategories = {
 			return EID:ItemReminderHandleItemScrollbarFeature(EID.WispsPerPlayer[playerNum], 100, false)
 		end
 	},
-	{ id = "Actives",  entryGenerators = { function(player) EID:ItemReminderHandleActiveItems(player) end, } },
+	{ id = "Actives", entryGenerators = { function(player) EID:ItemReminderHandleActiveItems(player) end, } },
 	{ id = "Pockets",
 		entryGenerators = {
 			function(player) EID:ItemReminderHandleDiceBag(player) end,
@@ -767,8 +778,9 @@ function EID:ItemReminderGetDescription()
 		EID:ItemReminderAddSpecialDescriptions(player)
 		-- execute all functions defined per category
 		for _, category in ipairs(EID.ItemReminderCategories) do
-			-- don't display character info in the overview after a few rooms
-			if category.id ~= "Character" or EID.roomCount < 5 then
+			local hideInOverview = type(category.hideInOverview) == "function" and category.hideInOverview(player)
+					or type(category.hideInOverview) == "boolean" and category.hideInOverview
+			if not hideInOverview then
 				numAvailableDescriptionSlots = 1 -- limit to one description per category in overview mode
 				for _, func in ipairs(category.entryGenerators) do
 					func(player)

@@ -51,7 +51,6 @@ EID.holdTabPlayer = 0
 EID.holdTabCounter = 0
 EID.DInfinityState = {}
 local forgottenDropTimer = 0
-EID.roomCount = 0
 local preHourglassStatus = {}
 
 EID.GameUpdateCount = 0
@@ -777,7 +776,6 @@ end
 
 function EID:onNewRoom()
 	EID:CheckCurrentRoomGridEntities()
-	EID.roomCount = EID.roomCount + 1
 	-- Store values here to be rewound after using Glowing Hour Glass
 	preHourglassStatus = {}
 	preHourglassStatus.absorbedItems = EID:CopyTable(EID.absorbedItems)
@@ -1653,7 +1651,6 @@ local function OnGameStartGeneral(_,isSave)
 	end
 	EID.ShouldCheckWisp = true
 	EID.WildCardEffects = {}
-	EID.roomCount = 0
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
