@@ -1098,6 +1098,8 @@ EID.descriptions[languageCode].VoidText = "If absorbed, gain:"
 -- {1} will become the number text (like "{1} Tears" -> "+0.5 Tears")
 EID.descriptions[languageCode].VoidNames = {"{1} Speed", "{1} Tears", "{1} Damage", "{1} Range", "{1} Shot speed", "{1} Luck"}
 
+EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Damage", "↑ {{Tears}} -4 Tear delay", "↑ {{Speed}} +0.5 Speed", "↑ {{Range}} +7.5 Range#↑ +1 Tear height"}
+
 EID.descriptions[languageCode].CollectionPageInfo = "This item needs to be picked up for the collection page!"
 
 EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorLime}}{1}{{CR}} items currently held (+{2} Damage)"
@@ -1278,6 +1280,10 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Chocolate Milk Overrides"] = "↑ {{Tears}} x1.25 Tears multiplier",
 	["Chocolate Milk Marked"] = "Isaac automatically charges based on distance from the crosshair",
 	["Ghost Pepper Fart"] = "Farting causes a flame to shoot out behind Isaac",
+	["Damage Multiplier Stack"] = "The damage multiplier doesn't stack",
+	["White Poop"] = "Spawns White Poop instead",
+	["White Poop Chance"] = "Chance to spawn White Poop",
+	["Golden Poop Chance"] = "Chance to spawn Golden Poop",
 	
 	["5.300.5"] = {"{{BossRoom}} Teleports Isaac to a random Boss Room"}, -- IV - The Emperor (in The Void)
 	["5.300.18"] = "Teleports Isaac to a random room if there's no Treasure Room", -- XVII - The Stars (Womb and below)
