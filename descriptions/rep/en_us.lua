@@ -1294,6 +1294,8 @@ EID.descriptions[languageCode].VoidShopText = "If absorbed right after pickup, g
 EID.descriptions[languageCode].VoidOptionText = " will be absorbed instead"
 EID.descriptions[languageCode].VoidNames[2] = "{1} Fire rate"
 
+EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Damage", "↑ {{Tears}} +2 Fire rate", "↑ {{Speed}} +0.5 Speed", "↑ {{Range}} +3 Range"}
+
 EID.descriptions[languageCode].spindownError = "Item disappears"
 
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card effect:"
@@ -1432,6 +1434,9 @@ local repConditions = {
 	["Sparks Arc Length"] = "Sparks have longer arc distance",
 	["Sparks Arc Count"] = "Sparks can arc to 2 more enemies",
 	["Sparks Arc Back"] = "Sparks can arc back to the same enemy",
+	
+	["White Poop Jar"] = "Spawns White Poop on 1 charge use",
+	["Golden Poop Jar"] = "Chance to spawn Golden Poop on 1 charge use",
 	
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
