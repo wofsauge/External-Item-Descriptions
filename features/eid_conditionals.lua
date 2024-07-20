@@ -285,6 +285,24 @@ EID:AddConditional("5.300.18", EID.InStageNoTreasureRoom, nil, {layer = 3}) -- T
 EID:AddConditional("5.300.18", EID.IsGreedMode, "Greed", {layer = 2}) -- The Stars random treasure room
 EID:AddConditional("5.300.18", EID.InStageTheShop, "Late Greed", {layer = 1}) -- The Stars no treasure room (I probably went too high detail on this)
 
+-- Ghost Pepper / Bird's Eye + farting (The Poop, Kidney Bean, The Bean, The Black Bean, Butter Bean, Wait What?, Mega Bean, No. 2, IBS)
+EID:AddSynergyConditional(495, {36, 421, 111, 180, 294, 484, 351, 378}, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
+if EID.isRepentance then
+	EID:AddSynergyConditional(495, 725, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
+	EID:AddSynergyConditional(616, {36, 421, 111, 180, 294, 484, 351, 378, 725}, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
+end
+
+-- Damage multipliers not stacking (Cricket's Head, Magic Mushroom, Strength)
+EID:AddSynergyConditional({4, 12, "5.300.12"}, {4, 12, "5.300.12"}, "Damage Multiplier Stack", nil, {uniqueID = "multstack"})
+-- Poop synergies: The Poop, Re-Lax, Card Against Humanity + Midas' Touch, Hallowed Ground
+EID:AddSynergyConditional(36, 543, "White Poop")
+EID:AddSynergyConditional({"5.70.31", "5.300.45"}, 543, "White Poop Chance")
+EID:AddSynergyConditional({36, "5.70.31", "5.300.45"}, 202, "Golden Poop Chance")
+if EID.isRepentance then
+	EID:AddSynergyConditional(720, 543, "White Poop Jar")
+	EID:AddSynergyConditional(720, 202, "Golden Poop Jar")
+end
+
 -- AB+ only misc conditionals
 if not EID.isRepentance then
 	EID:AddConditional(208, EID.IsHardMode, nil, {noFallback = false}) -- Champion Belt (AB+ Hard Mode)
@@ -318,45 +336,4 @@ if EID.isRepentance then
 	EID:AddSynergyConditional({494, 559}, {116, "5.350.72", "5.350.120"}, "Sparks Arc Length")
 	EID:AddSynergyConditional({494, 559}, {63, 520, "5.350.3"}, "Sparks Arc Count")
 	EID:AddSynergyConditional({494, 559}, {"5.350.143"}, "Sparks Arc Back")
-	
-	-- Ghost Pepper / Bird's Eye + farting (The Poop, Kidney Bean, The Bean, The Black Bean, Butter Bean, Wait What?, Mega Bean, No. 2, IBS)
-	EID:AddSynergyConditional(495, {36, 421, 111, 180, 294, 484, 351, 378}, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
-	if EID.isRepentance then
-		EID:AddSynergyConditional(495, 725, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
-		EID:AddSynergyConditional(616, {36, 421, 111, 180, 294, 484, 351, 378, 725}, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
-	end
 end
-
---[[
-BUURAZU'S TODO STUFF:
-
-Overridden / Overrides (Brimstone, Mom's Knife, Epic Fetus stuff) (still need some probably)
-Spoiler achievement descriptions (plus a config setting possibly, to always show the spoilers) (Chaos Card and Plan C?)
-Maybe a find/replace pair for some Keeper descriptions that talk about Red hearts but work for him, Red -> Coin or Red/Coin; Could be good for Dead Cat. or just leave it be
-hallowed ground / midas touch + the poop / card against humanity / everything jar synergies
-Add Void synergy information for some active items (which?) (warn on things like mom's box you don't get double trinket power?)
-Damage multipliers that don't stack
-
-TODOS I'VE DECIDED NOT TODO RIGHT NOW:
-Incubus effects; a lot are AB+ only; annoying to test; plus Lilith has to be added for all of them too
-
-TODOs unrelated to conditionals:
-Implement the standardized colors for characters, items, map names, etc
-Don't show Void stat ups depending on what Void has absorbed (abyss absorbed = no void stat ups etc, reroll item = might become actives)
-
-REPENTOGON TODOS:
-Attack formula simulator? (yeah right)
-
-MAYBE SOME DAYS:
-Bag of Crafting "sort by recipe nearest completion in bag" option
-no recipes mode could suggest ingredient replacement (replace: {lowest}->{highest})
-super bum shouldn't count duplicate progress
-Add a background or something to overlapping local descs
-Pre-cache an entity's description in some way before even looking at them using coroutines
-Reorganize eid_api better, maybe split it in two, shouldn't the api only contain functions other modders would use?
-Make api functions for conditionals/other new features I've made that might be difficult for modders to approach
-"Add golden trinket / mom's box / is rune / is card / placebo recharge / false phd info for mods to add in EID:addCard/Pill?" - did most of these happen?
-check the actual github wiki, i've never looked at that, maybe I should update that some time
-As eid_modifiers' usefulness dwindles, maybe it should add its modifiers like how external mods would add them
-
-]]
