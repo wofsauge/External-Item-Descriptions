@@ -224,6 +224,13 @@ EID.ItemReminderDescriptionModifier = {
 			end
 		end
 	},
+	["5.100.407"] = { -- Purity current stat boost
+		modifierFunction = function(descObj, player, inOverview)
+			local statBoost = player:GetCollectibleRNG(407):GetSeed() % 4
+			EID:ItemReminderAddResult(descObj, EID:getDescriptionEntry("PurityBoosts", statBoost), inOverview)
+			return true
+		end
+	},
 	["5.100.419"] = { -- Teleport 2.0 location
 		modifierFunction = function(descObj, _, inOverview)
 			EID:ItemReminderAddResult(descObj, EID:Teleport2Prediction(), inOverview)
