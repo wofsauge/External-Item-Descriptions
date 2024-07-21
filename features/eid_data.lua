@@ -745,6 +745,11 @@ EID.InlineColors = {
 	["BlinkBlue"] = function(_)
 		return SwagColors({KColor(0.341, 0.529, 0.906, 1), KColor(0.592, 0.717, 0.937, 1)})
 	end,
+	-- Subtle glow between green from Luck Clover and from the Quality 1 shield
+	["BlinkGreen"] = function(_)
+		local c = EID.InlineColors
+		return SwagColors({KColor(0.404, 0.663, 0.306, 1), KColor(0.443, 0.765, 0.247, 1)})
+	end,
 	-- Shiny purple color effect
 	["ColorShinyPurple"] = function(_)
 		return SwagColors({KColor(0.812, 0.627, 1, 1), KColor(0.62, 0.251, 1, 1)}, 40)
@@ -1026,6 +1031,14 @@ EID.runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=
 EID.blackFeatherItems = {[215]=true,[216]=true,[230]=true,[260]=true,[262]=true,[339]=true,[344]=true}
 if EID.isRepentance then EID.blackFeatherItems[654] = true end
 EID.blackFeatherTrinkets = {[17]=true,[22]=true}
+
+-- Luck formulas
+EID.LuckFormulas = {}
+EID.LuckFormulas["5.100.219"] = function(luck) return math.min(100 / (10 - math.floor(luck*0.3)), 50) end -- Old Bandage: Base 10%, 50% at 26.67 Luck
+if EID.isRepentance then
+	EID.LuckFormulas["5.100.219"] = function(luck) return (20 + luck) end -- Old Bandage: Base 20%, 100% at 80 Luck
+	EID.LuckFormulas["5.100.576"] = function(luck) return math.min(luck*0.5 + 6.25, 10) end -- Dirty Mind: Base 6.25%, 10% at 7.5 Luck
+end
 
 
 ---------------- BAG OF CRAFTING DATA ------------------
