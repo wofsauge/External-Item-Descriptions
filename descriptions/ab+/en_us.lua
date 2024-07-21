@@ -239,7 +239,7 @@ EID.descriptions[languageCode].collectibles={
 	{"216", "Ceremonial Robes", "↑ {{Damage}} +1 Damage#{{BlackHeart}} +3 Black Hearts"}, -- Ceremonial Robes
 	{"217", "Mom's Wig", "{{Heart}} Heals 1 heart#5% chance to spawn a blue spider when shooting tears#{{Luck}} 100% chance at 10 luck"}, -- Mom's Wig
 	{"218", "Placenta", "↑ {{Heart}} +1 Health#{{HalfHeart}} 50% chance to heal half a heart every minute"}, -- Placenta
-	{"219", "Old Bandage", "↑ {{EmptyHeart}} +1 Empty heart container#{{Heart}} Taking damage has a chance to spawn a Red Heart"}, -- Old Bandage
+	{"219", "Old Bandage", "↑ {{EmptyHeart}} +1 Empty heart container#{{Heart}} Taking damage has a 10% chance to spawn a Red Heart"}, -- Old Bandage
 	{"220", "Sad Bombs", "{{Bomb}} +5 Bombs#Isaac's bombs shoot 10 tears in a circle when they explode"}, -- Sad Bombs
 	{"221", "Rubber Cement", "Isaac's tears bounce off enemies and obstacles"}, -- Rubber Cement
 	{"222", "Anti-Gravity", "↑ {{Tears}} -2 Tear delay#Holding the fire buttons causes tears to hover in midair#Releasing the fire buttons shoots them in the direction they were fired"}, -- Anti-Gravity
@@ -1099,6 +1099,11 @@ EID.descriptions[languageCode].VoidText = "If absorbed, gain:"
 EID.descriptions[languageCode].VoidNames = {"{1} Speed", "{1} Tears", "{1} Damage", "{1} Range", "{1} Shot speed", "{1} Luck"}
 
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Damage", "↑ {{Tears}} -4 Tear delay", "↑ {{Speed}} +0.5 Speed", "↑ {{Range}} +7.5 Range#↑ +1 Tear height"}
+
+EID.descriptions[languageCode].CrookedPennyHeads = "Heads"
+EID.descriptions[languageCode].CrookedPennyTails = "Tails"
+
+EID.descriptions[languageCode].LuckModifier = "{1}% chance at {2} luck"
 
 EID.descriptions[languageCode].CollectionPageInfo = "This item needs to be picked up for the collection page!"
 
