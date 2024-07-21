@@ -222,7 +222,7 @@ local function SacrificeRoomCallback(descObj)
 end
 
 -- Handle Black Feather dynamic damage up text
--- TODO: Make this co-op friendly, add conditionals to the black feather items
+-- TODO: Make this co-op friendly
 local function BlackFeatherCallback(descObj)
 	local itemCounter = 0
 	for itemID, _ in pairs(EID.blackFeatherItems) do
@@ -284,6 +284,26 @@ local function VurpCallback(descObj)
 	return descObj
 end
 
+-- Handle dynamic Luck chance modifiers
+local function LuckChanceCallback(descObj)
+	for i = 1,#EID.coopAllPlayers do
+		local player = EID.coopAllPlayers[i]
+		if player.Luck ~= 0 then
+			local playerType = player:GetPlayerType()
+			
+			local result = math.max(math.min(EID.LuckFormulas[descObj.fullItemString](player.Luck), 100), 0)
+			local luckLine = EID:getDescriptionEntry("LuckModifier")
+			luckLine = EID:ReplaceVariableStr(luckLine, 1, string.format("%.3g", result))
+			luckLine = EID:ReplaceVariableStr(luckLine, 2, "{{BlinkGreen}}" .. string.format("%.3g", player.Luck) .. "{{CR}}")
+			
+			if #EID.coopAllPlayers == 1 then EID:appendToDescription(descObj, "#{{Luck}} ")
+			else EID:appendToDescription(descObj, "#" .. EID:GetPlayerIcon(playerType, "P" .. i .. ":") .. " ") end
+			EID:appendToDescription(descObj, "{{NoLB}}" .. luckLine)
+		end
+	end
+	return descObj
+end
+
 if EID.isRepentance then
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
@@ -304,21 +324,21 @@ if EID.isRepentance then
 		return descObj
 	end
 
-  -- Handle Glowing Hourglass changed back into Hourglass description
-  local function GlowingHourglassCallback(descObj)
-    if REPENTOGON and EID.collectiblesOwned[422] then
-      local transformedText = EID:getDescriptionEntry("GlowingHourglassTransformed")
-      local numUses = Isaac.GetPlayer(EID.collectiblesOwned[422]):GetActiveItemDesc().VarData
-      if numUses == 3 then
-        -- Replace with the description of The Hourglass
-        descObj.Description = EID:getDescriptionObj(5, 100, 66).Description
-        if transformedText ~= nil then
-          EID:appendToDescription(descObj, "#{{Warning}} "..transformedText)
-        end
-      end
-    end
-    return descObj
-  end
+	-- Handle Glowing Hourglass changed back into Hourglass description
+	local function GlowingHourglassCallback(descObj)
+		if REPENTOGON and EID.collectiblesOwned[422] then
+			local transformedText = EID:getDescriptionEntry("GlowingHourglassTransformed")
+			local numUses = Isaac.GetPlayer(EID.collectiblesOwned[422]):GetActiveItemDesc().VarData
+			if numUses == 3 then
+				-- Replace with the description of The Hourglass
+				descObj.Description = EID:getDescriptionObj(5, 100, 66).Description
+				if transformedText ~= nil then
+				  EID:appendToDescription(descObj, "#{{Warning}} "..transformedText)
+				end
+			end
+		end
+		return descObj
+	end
 
 	-- Handle Book of Virtues description addition
 	local function BookOfVirtuesCallback(descObj)
@@ -872,6 +892,7 @@ local function EIDConditionsAB(descObj)
 
 	local callbacks = {}
 
+	if EID.LuckFormulas[descObj.fullItemString] then table.insert(callbacks, LuckChanceCallback) end
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 		if EID.Config["ItemCollectionIndicator"] and EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
