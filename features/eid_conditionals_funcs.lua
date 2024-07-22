@@ -275,6 +275,16 @@ function EID:ConditionalCharCheck(playerType, includeTainted)
 	end
 end
 
+function EID:PlayersHaveGoldenBomb()
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player:HasGoldenBomb() then
+			return true
+		end
+	end
+	return false
+end
+
 function EID:IsGreedMode()
 	return game:IsGreedMode()
 end
