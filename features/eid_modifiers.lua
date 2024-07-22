@@ -222,31 +222,36 @@ local function SacrificeRoomCallback(descObj)
 end
 
 -- Handle Black Feather dynamic damage up text
--- TODO: Make this co-op friendly
 local function BlackFeatherCallback(descObj)
-	local itemCounter = 0
-	for itemID, _ in pairs(EID.blackFeatherItems) do
-		itemCounter = itemCounter + EID.player:GetCollectibleNum(itemID)
-	end
-	for trinketID, _ in pairs(EID.blackFeatherTrinkets) do
-		if EID.isRepentance then
-			itemCounter = itemCounter + EID.player:GetTrinketMultiplier(trinketID)
-		else
-			if EID.player:HasTrinket(trinketID) then itemCounter = itemCounter + 1 end
+	for i = 1,#EID.coopAllPlayers do
+		local player = EID.coopAllPlayers[i]
+		local playerType = player:GetPlayerType()
+		
+		local itemCounter = 0
+		for itemID, _ in pairs(EID.blackFeatherItems) do
+			itemCounter = itemCounter + player:GetCollectibleNum(itemID)
 		end
+		for trinketID, _ in pairs(EID.blackFeatherTrinkets) do
+			if EID.isRepentance then
+				itemCounter = itemCounter + player:GetTrinketMultiplier(trinketID)
+			else
+				if player:HasTrinket(trinketID) then itemCounter = itemCounter + 1 end
+			end
+		end
+		
+		local hasBox = player:HasCollectible(439)
+		local isGolden = EID.isRepentance and ((descObj.ObjSubType & TrinketType.TRINKET_GOLDEN_FLAG) == TrinketType.TRINKET_GOLDEN_FLAG)
+		local base = EID.isRepentance and 0.5 or 0.2
+		local damageMultiplied = base * itemCounter * (hasBox and 2 or 1) * (isGolden and 2 or 1)
+		local dmgColor = itemCounter == 0 and "CR" or (hasBox or isGolden) and "ColorGold" or "BlinkGray"
+
+		local description = EID:getDescriptionEntry("BlackFeatherInformation")
+		description, _ = EID:ReplaceVariableStr(description, 1, tostring(itemCounter))
+		description, _ =  EID:ReplaceVariableStr(description, 2, "{{"..dmgColor.."}}"..damageMultiplied.."{{CR}}")
+		if #EID.coopAllPlayers > 1 then description =  EID:GetPlayerIcon(playerType, "P" .. i .. ":") .. " " .. description end
+		
+		EID:appendToDescription(descObj, "# "..description)
 	end
-	
-	local hasBox = EID.player:HasCollectible(439)
-	local isGolden = EID.isRepentance and ((descObj.ObjSubType & TrinketType.TRINKET_GOLDEN_FLAG) == TrinketType.TRINKET_GOLDEN_FLAG)
-	local base = EID.isRepentance and 0.5 or 0.2
-	local damageMultiplied = base * itemCounter * (hasBox and 2 or 1) * (isGolden and 2 or 1)
-	local dmgColor = itemCounter == 0 and "CR" or (hasBox or isGolden) and "ColorGold" or "BlinkGray"
-
-	local description = EID:getDescriptionEntry("BlackFeatherInformation")
-	description, _ = EID:ReplaceVariableStr(description, 1, tostring(itemCounter))
-	description, _ =  EID:ReplaceVariableStr(description, 2, "{{"..dmgColor.."}}"..damageMultiplied.."{{CR}}")
-
-	EID:appendToDescription(descObj, "# "..description)
 	return descObj
 end
 
