@@ -95,10 +95,7 @@ EID.ItemReminderDescriptionModifier = {
 		modifierFunction = function(descObj, player)
 			local zodiacItem = player:GetZodiacEffect()
 			if zodiacItem > 0 then
-				local demoDescObj = EID:getDescriptionObj(5, 100, zodiacItem)
-				EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
-				descObj.Icon = demoDescObj.Icon
-				descObj.Description = demoDescObj.Description
+				descObj = EID:ItemReminderReplaceWithResult(descObj, zodiacItem)
 				return true
 			end
 		end
@@ -269,24 +266,25 @@ EID.ItemReminderDescriptionModifier = {
 			end
 		end
 	},
+	["5.100.485"] = { -- Crooked Penny
+		isCheat = true,
+		modifierFunction = function(descObj, player, inOverview)
+			EID:ItemReminderAddResult(descObj, EID:CrookedPennyPrediction(EID:GetItemSeed(player, 485), player:HasCollectible(356)), inOverview)
+			return true
+		end
+	},
 	["5.100.488"] = { -- Metronome
 		isCheat = true,
 		modifierFunction = function(descObj, player)
 			local predictionItem = EID:MetronomePrediction(EID:GetItemSeed(player, 488))
-			local demoDescObj = EID:getDescriptionObj(5, 100, predictionItem)
-			EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
-			descObj.Icon = demoDescObj.Icon
-			descObj.Description = demoDescObj.Description
+			descObj = EID:ItemReminderReplaceWithResult(descObj, predictionItem)
 			return true
 		end
 	},
 	["5.100.489"] = { -- D Infinity
 		modifierFunction = function(descObj, player)
 			local predictionItem = EID:CurrentDInfinity(EID:GetItemSeed(player, 489), player)
-			local demoDescObj = EID:getDescriptionObj(5, 100, predictionItem)
-			EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
-			descObj.Icon = demoDescObj.Icon
-			descObj.Description = demoDescObj.Description
+			descObj = EID:ItemReminderReplaceWithResult(descObj, predictionItem)
 			return true
 		end
 	},
@@ -337,16 +335,23 @@ EID.ItemReminderDescriptionModifier = {
 			end
 		end
 	},
+	["5.350.32"] = { -- Liberty Cap
+		isHiddenInfo = true,
+		modifierFunction = function(descObj, _)
+			local result = EID:LibertyCapPrediction(player)
+			if result then
+				descObj = EID:ItemReminderReplaceWithResult(descObj, result)
+				return true
+			end
+		end
+	},
 	["5.350.64"] = { -- Rainbow Worm
 		isHiddenInfo = true,
 		modifierFunction = function(descObj, _)
 			-- Rainbow Worm's trinket IDs it grants, in order
 			local rainbowWormEffects = { [0] = 9, 11, 65, 27, 10, 12, 26, 66, 96, 144 }
 			local trinketID = rainbowWormEffects[math.floor(game.TimeCounter / 30 / 3) % (EID.isRepentance and 10 or 8)]
-			local demoDescObj = EID:getDescriptionObj(5, 350, trinketID)
-			EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
-			descObj.Icon = demoDescObj.Icon
-			descObj.Description = demoDescObj.Description
+			descObj = EID:ItemReminderReplaceWithResult(descObj, trinketID, 350)
 			return true
 		end
 	},
@@ -355,12 +360,28 @@ EID.ItemReminderDescriptionModifier = {
 		modifierFunction = function(descObj, player)
 			local seed = game:GetLevel():GetCurrentRoom():GetSpawnSeed()
 			local result = EID:RNGNext(seed, 2, 7, 25) % (EID.isRepentance and 189 or 128) + 1
-			
-			local demoDescObj = EID:getDescriptionObj(5, 350, result)
-			EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
-			descObj.Icon = demoDescObj.Icon
-			descObj.Description = demoDescObj.Description
+			descObj = EID:ItemReminderReplaceWithResult(descObj, result, 350)
 			return true
+		end
+	},
+	["5.350.132"] = { -- Broken Syringe
+		isHiddenInfo = true,
+		modifierFunction = function(descObj, _)
+			local result = EID:BrokenSyringePrediction(player)
+			if result then
+				descObj = EID:ItemReminderReplaceWithResult(descObj, result)
+				return true
+			end
+		end
+	},
+	["5.350.153"] = { -- Mom's Lock
+		isHiddenInfo = true,
+		modifierFunction = function(descObj, _)
+			local result = EID:MomsLockPrediction(player)
+			if result then
+				descObj = EID:ItemReminderReplaceWithResult(descObj, result)
+				return true
+			end
 		end
 	},
 	["5.350.166"] = { -- Modeling Clay
@@ -370,10 +391,7 @@ EID.ItemReminderDescriptionModifier = {
 			if EID.Config["ItemReminderShowHiddenInfo"] or player:GetTrinket(0) == 166 or player:GetTrinket(1) == 166 then
 				local modelingClayItem = player:GetModelingClayEffect()
 				if modelingClayItem > 0 then
-					local demoDescObj = EID:getDescriptionObj(5, 100, modelingClayItem)
-					EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
-					descObj.Icon = "{{Collectible" .. modelingClayItem .. "}}"
-					descObj.Description = demoDescObj.Description
+					descObj = EID:ItemReminderReplaceWithResult(descObj, modelingClayItem)
 					return true
 				end
 			end
@@ -419,6 +437,14 @@ function EID:ItemReminderAddResult(descObj, newText, inOverview)
 	else
 		EID:ItemReminderAddResultAppend(descObj, newText)
 	end
+end
+-- Helper function for modifiers like Modeling Clay / Liberty Cap that replace their description with the temporary item's description
+function EID:ItemReminderReplaceWithResult(descObj, result, resultVariant)
+	local demoDescObj = EID:getDescriptionObj(5, resultVariant or 100, result)
+	EID:ItemReminderAddResultHeaderSuffix(descObj, demoDescObj.Name)
+	descObj.Icon = "{{" .. EID:GetIconNameByVariant(resultVariant or 100) .. result .. "}}"
+	descObj.Description = demoDescObj.Description
+	return true
 end
 
 -- Add item description for a given entity to the reminder. Also tries to apply special modifiers if present

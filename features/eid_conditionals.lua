@@ -302,6 +302,7 @@ if EID.isRepentance then
 	EID:AddSynergyConditional(720, 543, "White Poop Jar")
 	EID:AddSynergyConditional(720, 202, "Golden Poop Jar")
 end
+EID:AddConditional(483, EID.PlayersHaveGoldenBomb)
 
 -- AB+ only misc conditionals
 if not EID.isRepentance then

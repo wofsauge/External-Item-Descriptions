@@ -222,31 +222,36 @@ local function SacrificeRoomCallback(descObj)
 end
 
 -- Handle Black Feather dynamic damage up text
--- TODO: Make this co-op friendly, add conditionals to the black feather items
 local function BlackFeatherCallback(descObj)
-	local itemCounter = 0
-	for itemID, _ in pairs(EID.blackFeatherItems) do
-		itemCounter = itemCounter + EID.player:GetCollectibleNum(itemID)
-	end
-	for trinketID, _ in pairs(EID.blackFeatherTrinkets) do
-		if EID.isRepentance then
-			itemCounter = itemCounter + EID.player:GetTrinketMultiplier(trinketID)
-		else
-			if EID.player:HasTrinket(trinketID) then itemCounter = itemCounter + 1 end
+	for i = 1,#EID.coopAllPlayers do
+		local player = EID.coopAllPlayers[i]
+		local playerType = player:GetPlayerType()
+		
+		local itemCounter = 0
+		for itemID, _ in pairs(EID.blackFeatherItems) do
+			itemCounter = itemCounter + player:GetCollectibleNum(itemID)
 		end
+		for trinketID, _ in pairs(EID.blackFeatherTrinkets) do
+			if EID.isRepentance then
+				itemCounter = itemCounter + player:GetTrinketMultiplier(trinketID)
+			else
+				if player:HasTrinket(trinketID) then itemCounter = itemCounter + 1 end
+			end
+		end
+		
+		local hasBox = player:HasCollectible(439)
+		local isGolden = EID.isRepentance and ((descObj.ObjSubType & TrinketType.TRINKET_GOLDEN_FLAG) == TrinketType.TRINKET_GOLDEN_FLAG)
+		local base = EID.isRepentance and 0.5 or 0.2
+		local damageMultiplied = base * itemCounter * (hasBox and 2 or 1) * (isGolden and 2 or 1)
+		local dmgColor = itemCounter == 0 and "CR" or (hasBox or isGolden) and "ColorGold" or "BlinkGray"
+
+		local description = EID:getDescriptionEntry("BlackFeatherInformation")
+		description, _ = EID:ReplaceVariableStr(description, 1, tostring(itemCounter))
+		description, _ =  EID:ReplaceVariableStr(description, 2, "{{"..dmgColor.."}}"..damageMultiplied.."{{CR}}")
+		if #EID.coopAllPlayers > 1 then description =  EID:GetPlayerIcon(playerType, "P" .. i .. ":") .. " " .. description end
+		
+		EID:appendToDescription(descObj, "# "..description)
 	end
-	
-	local hasBox = EID.player:HasCollectible(439)
-	local isGolden = EID.isRepentance and ((descObj.ObjSubType & TrinketType.TRINKET_GOLDEN_FLAG) == TrinketType.TRINKET_GOLDEN_FLAG)
-	local base = EID.isRepentance and 0.5 or 0.2
-	local damageMultiplied = base * itemCounter * (hasBox and 2 or 1) * (isGolden and 2 or 1)
-	local dmgColor = itemCounter == 0 and "CR" or (hasBox or isGolden) and "ColorGold" or "BlinkGray"
-
-	local description = EID:getDescriptionEntry("BlackFeatherInformation")
-	description, _ = EID:ReplaceVariableStr(description, 1, tostring(itemCounter))
-	description, _ =  EID:ReplaceVariableStr(description, 2, "{{"..dmgColor.."}}"..damageMultiplied.."{{CR}}")
-
-	EID:appendToDescription(descObj, "# "..description)
 	return descObj
 end
 
@@ -284,6 +289,26 @@ local function VurpCallback(descObj)
 	return descObj
 end
 
+-- Handle dynamic Luck chance modifiers
+local function LuckChanceCallback(descObj)
+	for i = 1,#EID.coopAllPlayers do
+		local player = EID.coopAllPlayers[i]
+		if player.Luck ~= 0 then
+			local playerType = player:GetPlayerType()
+			
+			local result = math.max(math.min(EID.LuckFormulas[descObj.fullItemString](player.Luck), 100), 0)
+			local luckLine = EID:getDescriptionEntry("LuckModifier")
+			luckLine = EID:ReplaceVariableStr(luckLine, 1, string.format("%.3g", result))
+			luckLine = EID:ReplaceVariableStr(luckLine, 2, "{{BlinkGreen}}" .. string.format("%.3g", player.Luck) .. "{{CR}}")
+			
+			if #EID.coopAllPlayers == 1 then EID:appendToDescription(descObj, "#{{Luck}} ")
+			else EID:appendToDescription(descObj, "#" .. EID:GetPlayerIcon(playerType, "P" .. i .. ":") .. " ") end
+			EID:appendToDescription(descObj, "{{NoLB}}" .. luckLine)
+		end
+	end
+	return descObj
+end
+
 if EID.isRepentance then
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
@@ -304,21 +329,21 @@ if EID.isRepentance then
 		return descObj
 	end
 
-  -- Handle Glowing Hourglass changed back into Hourglass description
-  local function GlowingHourglassCallback(descObj)
-    if REPENTOGON and EID.collectiblesOwned[422] then
-      local transformedText = EID:getDescriptionEntry("GlowingHourglassTransformed")
-      local numUses = Isaac.GetPlayer(EID.collectiblesOwned[422]):GetActiveItemDesc().VarData
-      if numUses == 3 then
-        -- Replace with the description of The Hourglass
-        descObj.Description = EID:getDescriptionObj(5, 100, 66).Description
-        if transformedText ~= nil then
-          EID:appendToDescription(descObj, "#{{Warning}} "..transformedText)
-        end
-      end
-    end
-    return descObj
-  end
+	-- Handle Glowing Hourglass changed back into Hourglass description
+	local function GlowingHourglassCallback(descObj)
+		if REPENTOGON and EID.collectiblesOwned[422] then
+			local transformedText = EID:getDescriptionEntry("GlowingHourglassTransformed")
+			local numUses = Isaac.GetPlayer(EID.collectiblesOwned[422]):GetActiveItemDesc().VarData
+			if numUses == 3 then
+				-- Replace with the description of The Hourglass
+				descObj.Description = EID:getDescriptionObj(5, 100, 66).Description
+				if transformedText ~= nil then
+				  EID:appendToDescription(descObj, "#{{Warning}} "..transformedText)
+				end
+			end
+		end
+		return descObj
+	end
 
 	-- Handle Book of Virtues description addition
 	local function BookOfVirtuesCallback(descObj)
@@ -872,6 +897,7 @@ local function EIDConditionsAB(descObj)
 
 	local callbacks = {}
 
+	if EID.LuckFormulas[descObj.fullItemString] then table.insert(callbacks, LuckChanceCallback) end
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 		if EID.Config["ItemCollectionIndicator"] and EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
