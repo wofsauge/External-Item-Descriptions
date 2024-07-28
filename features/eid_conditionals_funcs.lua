@@ -62,9 +62,39 @@ function EID:addToGeneralCondition(ID, locTable, text, numberToDouble, newNumber
 	language = language or "en_us"
 	if numberToDouble then
 		newNumber = newNumber or numberToDouble * 2
-		text = {numberToDouble, newNumber, text}
+		text = { numberToDouble, newNumber, text }
 	end
 	EID.descriptions[language][locTable][ID] = text
+end
+
+-- Shortcut function for adding Repentance Tarot Cloth conditions
+function EID:addTarotClothBuffsCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "tarotClothBuffs", text, numberToDouble, newNumber, language)
+end
+
+-- Shortcut function for adding Ab+ Tarot Cloth conditions
+function EID:addTarotClothBuffsABCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "tarotClothBuffsAB", text, numberToDouble, newNumber, language)
+end
+
+-- Shortcut function for adding car battery conditions
+function EID:addCarBatteryCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "carBattery", text, numberToDouble, newNumber, language)
+end
+
+-- Shortcut function for adding abyss synergies conditions
+function EID:addAbyssSynergiesCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "abyssSynergies", text, numberToDouble, newNumber, language)
+end
+
+-- Shortcut function for adding book of belial conditions
+function EID:addBookOfBelialBuffsCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "bookOfBelialBuffs", text, numberToDouble, newNumber, language)
+end
+
+-- Shortcut function for adding binge eater conditions
+function EID:addBingeEaterBuffsCondition(ID, text, numberToDouble, newNumber, language)
+	EID:addToGeneralCondition(ID, "bingeEaterBuffs", text, numberToDouble, newNumber, language)
 end
 
 -- Shortcut function for adding BFFS conditions; this is slightly more complex since it supports trinkets
@@ -73,7 +103,7 @@ function EID:addBFFSCondition(ID, text, numberToDouble, newNumber, language)
 	language = language or "en_us"
 	if numberToDouble then
 		newNumber = newNumber or numberToDouble * 2
-		text = {numberToDouble, newNumber, text}
+		text = { numberToDouble, newNumber, text }
 	end
 	if type(ID) ~= "string" then ID = "5.100." .. ID
 	else
@@ -123,12 +153,13 @@ end
 	Argument 4 (optional): Table with any additional options, usually not needed:
 	variableText: If there's a {1} in the desc, it will be replaced with this; can be a function for more dynamic text results, it will get descObj passed into it
 	locTable: Specify a different table to look for the localization string in, rather than ConditionalDescs
-	noTable: Set to true to look in the base localizations only (requires modText) (not used yet...)
+	noTable: Set to true to look in the base localizations only (requires modText)
 	lineColor: Appended lines will be highlighted with this color
 	replaceColor: Find/replace text will be highlighted with this color
 	bulletpoint: Appended lines will begin with this bulletpoint
 	noFallback: Don't fallback to English if this isn't localized; by default, conditionals don't fallback, to avoid printing English text in unupdated languages
 	usePedestalName: If true, display the pedestal item's name in place of {1}
+	useResult: If true, use the result from the conditional function to find the localization string
 	layer: A number used in determining the order that conditionals should be checked in, default -1
 	checkLayers: If true, don't print this condition if a higher layer condition was applied already
 	uniqueID: Only one conditional with the given unique ID will be printed
@@ -244,6 +275,16 @@ function EID:ConditionalCharCheck(playerType, includeTainted)
 	end
 end
 
+function EID:PlayersHaveGoldenBomb()
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player:HasGoldenBomb() then
+			return true
+		end
+	end
+	return false
+end
+
 function EID:IsGreedMode()
 	return game:IsGreedMode()
 end
@@ -258,6 +299,19 @@ end
 
 function EID:IsHardMode()
 	return game.Difficulty == 1 or game.Difficulty == 3
+end
+
+function EID:InStageNum(stageNum)
+	return game:GetLevel():GetAbsoluteStage() == stageNum
+end
+function EID:InStageVoid()
+	return EID:InStageNum(12)
+end
+function EID:InStageNoTreasureRoom()
+	return game:GetLevel():GetAbsoluteStage() > 6
+end
+function EID:InStageTheShop()
+	return EID:IsGreedMode() and EID:InStageNum(0)
 end
 
 -- Check if we have any characters that can't have Red Health, to print additions to descs like Dead Cat
@@ -276,26 +330,54 @@ function EID:CheckForNoRedHealthPlayer()
 	return false
 end
 
--- Check if we have characters with Schoolbag or a pocket active item
-function EID:CheckForMultipleActives(onlyChargeablePockets)
+function EID:CheckForTaintedPlayer()
 	if EID.InsideItemReminder then
 		local player = EID.ItemReminderPlayerEntity
-		if player:HasCollectible(534) then return true end
-		local id = player:GetPlayerType()
-		if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return true end
+		return EID.TaintedIDs[player:GetPlayerType()]
 	else
 		for i = 0, game:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(534) then return true end
+			if EID.TaintedIDs[player:GetPlayerType()] then
+				return true
+			end
+		end
+	end
+	return false
+end
+
+-- Check if we have characters with Schoolbag or a pocket active item
+function EID:CheckForMultipleActives(descObj, onlyChargeablePockets)
+	if EID.InsideItemReminder then
+		local player = EID.ItemReminderPlayerEntity
+		if player:HasCollectible(534) then return 534 end
+		local id = player:GetPlayerType()
+		if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return player:GetActiveItem(2) end
+	else
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if player:HasCollectible(534) then return 534 end
 			local id = player:GetPlayerType()
-			if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return true end
+			if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return player:GetActiveItem(2) end
 		end
 	end
 	return false
 end
 -- Check if we have characters with Schoolbag or a chargeable pocket active item (for 4.5 Volt)
-function EID:CheckForMultipleChargeableActives()
-	return EID:CheckForMultipleActives(true)
+function EID:CheckForMultipleChargeableActives(descObj)
+	return EID:CheckForMultipleActives(descObj, true)
+end
+-- Check if we have a character with a pocket active
+function EID:CheckForPocketActives()
+	if EID.InsideItemReminder then
+		local player = EID.ItemReminderPlayerEntity
+		return EID.PocketActivePlayerIDs[player:GetPlayerType()]
+	else
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			if EID.PocketActivePlayerIDs[player:GetPlayerType()] then return true end
+		end
+	end
+	return false
 end
 
 -- When we have Car Battery, change active pedestal descriptions
@@ -303,8 +385,15 @@ function EID:CheckForCarBattery(descObj)
 	if EID.CarBatteryNoSynergy[descObj.ObjSubType] then return "No Effect" end
 	return descObj.ObjSubType
 end
--- When we're looking at a Car Battery pedestal, check our actives for having no effect
+-- When we're looking at a Car Battery pedestal, check our actives for having an effect or no effect
 function EID:CheckActivesForCarBattery(descObj)
+	if EID.InsideItemReminder then return false end
+	for k,v in pairs(EID.CarBatteryPedestalWhitelist) do
+		if v and EID:PlayersHaveCollectible(k) then return k end
+	end
+	return false
+end
+function EID:CheckActivesForNoCarBattery(descObj)
 	if EID.InsideItemReminder then return false end
 	for k,v in pairs(EID.CarBatteryNoSynergy) do
 		if v and EID:PlayersHaveCollectible(k) then return k end
@@ -324,8 +413,22 @@ function EID:CheckForHiveMind(descObj)
 	return "N/A"
 end
 
--- When we're looking at a BFFS pedestal, check our familiars for having no effect (only finds the earliest one, but whatever)
+-- When we're looking at a BFFS pedestal, check our familiars for having an effect (only finds the earliest one)
 function EID:CheckFamiliarsForBFFS(descObj)
+	if EID.InsideItemReminder then return false end
+	for k,v in pairs(EID.BFFSPedestalWhitelist) do
+		if v and EID:PlayersHaveCollectible(k) then return "5.100." .. k end
+	end
+	return false
+end
+function EID:CheckFamiliarsForHiveMind(descObj)
+	if EID.InsideItemReminder then return false end
+	for k,v in pairs(EID.BFFSPedestalWhitelist) do
+		if EID.HiveMindFamiliars[k] and v and EID:PlayersHaveCollectible(k) then return "5.100." .. k end
+	end
+	return false
+end
+function EID:CheckFamiliarsForNoBFFS(descObj)
 	if EID.InsideItemReminder then return false end
 	for k,v in pairs(EID.BFFSNoSynergy) do
 		if v and EID:PlayersHaveCollectible(k) then return k end
@@ -336,7 +439,7 @@ end
 -- Check for a player having an active item with a specific quantity of charges, or charge type
 -- 0 = normal, 1 = timed, 2 = special
 function EID:CheckPlayersForActiveChargeType(maxCharge, chargeType, checkPockets)
-	checkPockets = checkPockets or true
+	if checkPockets == nil then checkPockets = true end
 	local players = {}
 	if EID.InsideItemReminder then
 		players[1] = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
@@ -440,6 +543,7 @@ function EID:applyConditionals(descObj)
 				local locTable = cond.locTable or "ConditionalDescs"
 				local text = nil
 				local modifierText = type(cond.modifierText) == "function" and cond.modifierText(EID, descObj) or cond.modifierText
+				if cond.useResult then modifierText = result end
 				
 				-- Find our string in the base localization table
 				if cond.noTable then
@@ -459,11 +563,11 @@ function EID:applyConditionals(descObj)
 					if cond.layer > highestLayer then highestLayer = cond.layer end
 					if cond.uniqueID then printedDescs[cond.uniqueID] = true end
 					local variableText, bulletpoint
-					-- If the condition returned a value, use that value
+					-- If the condition returned a value, use that value as an item ID for the bulletpoint/{1} replacement
 					if result ~= true then
-						-- For the time being, we assume the result was a collectible number (will support more soon)
-						variableText = "{{NameOnlyC"..result.."}}"
-						bulletpoint = "Collectible"..result
+						if type(result) == "number" then result = "5.100." .. result end
+						variableText = "{{NameOnly"..result.."}}"
+						bulletpoint = "Item"..result
 					else
 						variableText = type(cond.variableText) == "function" and cond.variableText(EID, descObj) or cond.variableText
 						bulletpoint = cond.bulletpoint

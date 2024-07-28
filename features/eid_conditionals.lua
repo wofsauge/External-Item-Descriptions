@@ -24,15 +24,26 @@ else EID:AddItemConditional("5.300", 451, nil, {locTable = "tarotClothBuffs", re
 
 -- Car Battery
 EID:AddItemConditional("5.100", 356, EID.CheckForCarBattery, {locTable = "carBattery", replaceColor = "BlinkYellowGreen", noFallback = false})
-EID:AddConditional(356, EID.CheckActivesForCarBattery, "No Effect") -- "No effect" text for Car Battery pedestal
+EID:AddConditional(356, EID.CheckActivesForCarBattery, nil, {locTable = "carBattery", useResult = true, layer = 2}) -- Effect text for Car Battery pedestal
+EID:AddConditional(356, EID.CheckActivesForNoCarBattery, "No Effect", {layer = 1}) -- "No effect" text for Car Battery pedestal
 
--- BFFS! / Hive Mind
+
+-- BFFS! / Hive Mind / Forgotten Lullaby
 EID:AddItemConditional({"5.100","5.350.54","5.350.57"}, 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false, uniqueID = "BFFS"})
-EID:AddConditional(247, EID.CheckFamiliarsForBFFS, "No Effect") -- "No effect" text for BFFS pedestal
+EID:AddConditional(247, EID.CheckFamiliarsForBFFS, nil, {locTable = "BFFSSynergies", useResult = true, layer = 2}) -- Effect text for BFFS pedestal
+EID:AddPlayerConditional(247, 13, "Lilith", {locTable = "BFFSSynergies", layer = 3}, false) -- Lilith's Incubus
+EID:AddConditional(247, EID.CheckFamiliarsForNoBFFS, "No Effect", {layer = 1}) -- No effect text for BFFS pedestal
 if EID.isRepentance then
 	EID:AddItemConditional({"5.300.96", "5.350.142", "5.350.176", "5.350.182", "5.350.186"}, 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false}) -- BFFS! Repentance soulstone/trinkets
+	EID:AddPlayerConditional(247, 32, "Tainted Lilith", {locTable = "BFFSSynergies", layer = 3}) -- Tainted Lilith's Gello
 	EID:AddItemConditional("5.100", 248, EID.CheckForHiveMind, {locTable = "BFFSSynergies", replaceColor = "BlinkBlue", noFallback = false, uniqueID = "BFFS"}) -- Hive Mind
-	EID:AddSynergyConditional(247, 248, "No Effect (Familiars)") -- Already having Hive Mind / BFFS!
+	EID:AddSynergyConditional(247, 248, "No Effect (Familiars)", nil, {layer = 5}) -- Already having Hive Mind / BFFS!
+	EID:AddConditional(248, EID.CheckFamiliarsForHiveMind, nil, {locTable = "BFFSSynergies", useResult = true, layer = 2}) -- Effect text for Hive Mind pedestal
+	
+	EID:AddSynergyConditional({584, 685, 702, 728}, "5.350.141", "No Effect From", "No Effect") -- Forgotten Lullaby no effect familiars (wisps, Gello)
+	EID:AddPlayerConditional("5.350.141", 32, "No Effect", {bulletpoint = "Collectible728", variableText = "{{NameOnlyC728}}"}) -- Forgotten Lullaby no effect on Tainted Lilith's Gello
+	EID:AddPlayerConditional("5.350.141", 13, "Lullaby Lilith", nil, false)
+	EID:AddPlayerConditional("5.350.141", 26, "Lullaby Tainted Eve")
 end
 
 -- Abyss, Birthright Book of Belial, Binge Eater
@@ -53,7 +64,8 @@ EID:AddConditional({266, "5.350.46", 385}, EID.IsGreedMode, "Room to Wave")
 
 -- append/overwrite some descriptions
 EID:AddConditional({483, 535, "5.300.15", "5.300.19", "5.300.20", 246, 333, "5.350.120", "5.350.34", "5.350.36", "5.350.41", "5.350.44", "5.350.45", "5.350.72", 514 }, EID.IsGreedMode) -- Mama Mega, Blanket, Temperance, The Moon, The Sun, Blue Map, The Mind, Hairpin, some nogreed trinkets, Broken Modem
-EID:AddConditional({"5.350.5", 208}, EID.IsGreedMode, "No Champion Drops")
+EID:AddConditional({"5.350.5", 208}, EID.IsGreedMode, "No Champion Drops") -- Champion Belt, Purple Heart
+EID:AddConditional(297, EID.IsGreedMode, "Greed") -- Pandora's Box
 
 if EID.isRepentance then
 	EID:AddConditional({567, 693, "5.350.163", "5.350.167", }, EID.IsGreedMode, "Room to Wave")
@@ -85,6 +97,7 @@ EID:AddPlayerConditional(227, 14, "Keeper 0-1") -- Keeper + Piggy Bank
 EID:AddPlayerConditional(501, 14)               -- Keeper + Greed's Gullet
 EID:AddPlayerConditional(230, 14, "Keeper")     -- Keeper + Abaddon
 EID:AddPlayerConditional(152, 2, "Technology 2 One Eye") -- Cain + Technology 2
+EID:AddPlayerConditional(122, 5, nil, nil, false) -- Eve + Whore of Babylon
 if EID.isRepentance then
 	-- Tainted characters reviving as themselves
 	EID:AddPlayerConditional({ 161, "5.350.28" }, 25, "Tainted Revive") -- Ankh, Broken Ankh
@@ -112,12 +125,12 @@ end
 
 
 ------ DUPLICATE COPIES OF ITEMS ------
--- Items that have no effect from multiple copies (AddSelfConditional adds it when holding Diplopia automatically)
+-- Items that have no effect from multiple copies (AddSelfConditional adds it when holding Diplopia / Crooked Penny automatically)
 -- This list is mostly taken from Diplopia's wiki page, there's a lot more with no effect out there I'm sure
 EID:AddSelfConditional({7, 55, 63, 69, 87, 104, 106, 108, 109, 116, 122, 132, 139, 149, 152, 156, 162, 169, 191, 200, 203, 214, 221, 225, 231, 233, 238, 239, 243, 244, 247, 248, 249, 261, 276, 299, 300, 313, 316, 330, 350, 356, 366, 368, 371, 374, 379, 400, 401, 408, 411, 412, 414, 416, 423, 429, 444, 446, 447, 450, 451, 458, 494, 495, 496, 501, 524, 525, 529, 532, 533, 534, 540, 546, }, "No Effect (Copies)")
 -- Items that have an interesting effect from multiple copies
 EID:AddSelfConditional({2, 64, 118, 153, 245, 358}, "Copies")
--- Items that can't be duplicated
+-- Items that can't be duplicated by Diplopia
 EID:AddItemConditional(347, 347, "Can't Be Duplicated", nil, false) -- Diplopia
 if not EID.isRepentance then
 	EID:AddSelfConditional({115, 222, 224, 228, 531}, "No Effect (Copies)")
@@ -173,6 +186,7 @@ if EID.isRepentance then
 	EID:AddSynergyConditional({52, 69, 118, 168, 229, 316, 329, 379, 394, 395, 397, 440, 556, 597, }, 579, "Overridden", "Overrides", {layer = 1000, checkLayers = true}) -- Spirit Sword
 	EID:AddOneSidedSynergyConditional(579, 114, "Spirit Sword Mom's Knife", {layer = 1000, checkLayers = true}) -- Spirit Sword + Mom's Knife
 	EID:AddOneSidedSynergyConditional(579, 68, "Spirit Sword Technology", {layer = 1000, checkLayers = true}) -- Spirit Sword + Technology
+	EID:AddOneSidedSynergyConditional(579, 149, "Spirit Sword Ipecac", {layer = 1000, checkLayers = true}) -- Spirit Sword + Ipecac
 	
 	EID:AddSynergyConditional({553, 572, 678, "5.350.144"}, 168, "Overridden", "Overrides", {layer = 900, checkLayers = true}) -- Epic Fetus
 	EID:AddOneSidedSynergyConditional(561, 168, "Epic Fetus Soy Milk", {layer = 900, checkLayers = true}) -- Epic Fetus + Almond Milk
@@ -192,9 +206,9 @@ end
 
 ----- MISC. ITEM CONDITIONS ------
 -- IV Bag conditions (need to be applied in a specific order)
-EID:AddItemConditional(135, 75, "PHD") -- PHD improves IV Bag
-EID:AddPlayerConditional(135, 14, "Keeper 0-1") -- Keeper gets 0-1 coins
-if EID.isRepentance then EID:AddConditional(135, EID.IsHardMode, "Hard Mode") end -- Hard Mode pays out less
+EID:AddItemConditional(135, 75, "PHD", {layer = 3}) -- PHD improves IV Bag
+EID:AddPlayerConditional(135, 14, "Keeper 0-1", {layer = 2}) -- Keeper gets 0-1 coins
+if EID.isRepentance then EID:AddConditional(135, EID.IsHardMode, "Hard Mode", {layer = 1}) end -- Hard Mode pays out less
 
 -- Suicide item interactions
 EID:AddSynergyConditional({475, "5.300.46"}, {210, 276, 313}, "Suicide 1", "Suicide 2") -- Plan C, Suicide King + Isaac's Heart, Holy Mantle, Gnawed Leaf
@@ -228,7 +242,7 @@ if EID.isRepentance then
 	EID:AddConditional(647, function() return EID:CheckPlayersForActiveChargeType(nil, 1) end, "4.5 Volt Timed") -- 4.5 Volt + Having a timed active
 	EID:AddConditional("5.100", function(EID, descObj) return EID:CheckActiveChargeType(descObj.ObjSubType, nil, 1, 647) end, "4.5 Volt Timed", { bulletpoint = "Collectible647"})
 	EID:AddItemConditional(534, 647, "4.5 Volt Multiple") -- Schoolbag + 4.5 Volt
-	EID:AddConditional(647, EID.CheckForMultipleActives, "4.5 Volt Multiple")-- 4.5 Volt + Schoolbag/Pocket Actives
+	EID:AddConditional(647, EID.CheckForMultipleChargeableActives, "4.5 Volt Multiple")-- 4.5 Volt + Schoolbag/Pocket Actives
 end
 
 -- Sacrificial Altar interactions
@@ -265,6 +279,30 @@ EID:AddItemConditional({8, 113, 163, 167, 99, 100, 174, 95, 268, 67}, 322, "Mong
 if EID.isRepentance then EID:AddItemConditional(608, 322, "Mongo Babies") end
 EID:AddSynergyConditional(261, 222, "Proptosis Anti-Gravity")
 EID:AddSynergyConditional(394, 69, "Chocolate Milk Marked")
+EID:AddConditional("5.300.5", EID.InStageVoid) -- The Emperor random boss room
+EID:AddConditional("5.300.10", EID.InStageNoTreasureRoom) -- The Hermit possibly no shop
+EID:AddConditional("5.300.18", EID.InStageNoTreasureRoom, nil, {layer = 3}) -- The Stars possibly no treasure room
+EID:AddConditional("5.300.18", EID.IsGreedMode, "Greed", {layer = 2}) -- The Stars random treasure room
+EID:AddConditional("5.300.18", EID.InStageTheShop, "Late Greed", {layer = 1}) -- The Stars no treasure room (I probably went too high detail on this)
+
+-- Ghost Pepper / Bird's Eye + farting (The Poop, Kidney Bean, The Bean, The Black Bean, Butter Bean, Wait What?, Mega Bean, No. 2, IBS)
+EID:AddSynergyConditional(495, {36, 421, 111, 180, 294, 484, 351, 378}, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
+if EID.isRepentance then
+	EID:AddSynergyConditional(495, 725, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
+	EID:AddSynergyConditional(616, {36, 421, 111, 180, 294, 484, 351, 378, 725}, "Ghost Pepper Fart", nil, {uniqueID = "pepperfart"})
+end
+
+-- Damage multipliers not stacking (Cricket's Head, Magic Mushroom, Strength)
+EID:AddSynergyConditional({4, 12, "5.300.12"}, {4, 12, "5.300.12"}, "Damage Multiplier Stack", nil, {uniqueID = "multstack"})
+-- Poop synergies: The Poop, Re-Lax, Card Against Humanity + Midas' Touch, Hallowed Ground
+EID:AddSynergyConditional(36, 543, "White Poop")
+EID:AddSynergyConditional({"5.70.31", "5.300.45"}, 543, "White Poop Chance")
+EID:AddSynergyConditional({36, "5.70.31", "5.300.45"}, 202, "Golden Poop Chance")
+if EID.isRepentance then
+	EID:AddSynergyConditional(720, 543, "White Poop Jar")
+	EID:AddSynergyConditional(720, 202, "Golden Poop Jar")
+end
+EID:AddConditional(483, EID.PlayersHaveGoldenBomb)
 
 -- AB+ only misc conditionals
 if not EID.isRepentance then
@@ -291,50 +329,12 @@ if EID.isRepentance then
 	-- eye drops + chargeable passives like brimstone could go here but there's a lot of them
 	EID:AddPlayerConditional(600, {2, 7, 13, 16}) -- Eye Drops + Cain, Azazel, Lilith, Forgotten
 	EID:AddSynergyConditional(152, {708, 444}, "Technology 2 One Eye") -- Technology 2 + Stapler, Lead Pencil
+	EID:AddConditional(482, EID.CheckForTaintedPlayer)
+	EID:AddItemConditional(297, "5.350.175", "PandorasBoxStrangeKeyEffect", {noTable = true})
+	
+	-- Jacob's Ladder / 120 Volt battery synergies
+	EID:AddSynergyConditional({494, 559}, {205, 356}, "Sparks Damage")
+	EID:AddSynergyConditional({494, 559}, {116, "5.350.72", "5.350.120"}, "Sparks Arc Length")
+	EID:AddSynergyConditional({494, 559}, {63, 520, "5.350.3"}, "Sparks Arc Count")
+	EID:AddSynergyConditional({494, 559}, {"5.350.143"}, "Sparks Arc Back")
 end
-
---[[
-BUURAZU'S TODO STUFF:
-
-Overridden / Overrides (Brimstone, Mom's Knife, Epic Fetus stuff)
-Co-op benefit items (not sure what they are tbh)
-Spoiler achievement descriptions (plus a config setting possibly, to always show the spoilers) (Chaos Card and Plan C?)
-BFFs / Hive Mind + Tainted Apollyon, Tainted Eve, Tainted Lilith; melody trinket + Tainted Eve/Lilith; these are insane synergies that deserve attention
-Maybe a find/replace pair for some Keeper descriptions that talk about Red hearts but work for him, Red -> Coin or Red/Coin; Could be good for Dead Cat. or just leave it be
-Crystal Key + Pandora's Box should be moved here? Or leave it in modifiers
-Are Blank Card + Placebo + Clear Rune ready to get moved to here now that I have good ways to return values?
-Jacob's Ladder synergies with other battery items (I didn't even know about this)
-Bean synergies with ghost pepper/bird's eye
-Car Battery / BFFS whitelist for showing certain lines on the car/bffs pedestal, not just "No effect"
-Implement a system where similar texts don't get shown multiple times in one apply conditionals function (hive minds/bffs)
-hallowed ground / midas touch + the poop / card against humanity / everything jar synergies
-Add Void synergy information for some active items (which?) (warn on things like mom's box you don't get double trinket power?)
-Damage multipliers that don't stack
-Clicker only changes Tainteds into other Tainteds?
-
-TODOS I'VE DECIDED NOT TODO RIGHT NOW:
-Incubus effects; a lot are AB+ only; annoying to test; plus Lilith has to be added for all of them too
-
-TODOs unrelated to conditionals:
-Luck modifier that prints out a percentage for the effect based on your current luck stat
-Glyph of Balance prediction in Item Reminder?
-Purity's current stat boost, if possible
-Implement the standardized colors for characters, items, map names, etc
-Character info tab in item reminder
-Make Glitched Crown type pedestals work better in EID (pause on one item and press tab to switch to the next item)
-Don't show Void stat ups depending on what Void has absorbed (abyss absorbed = no void stat ups etc, reroll item = might become actives)
-Wild Card vurp-like desc modifier
-
-MAYBE SOME DAYS:
-Bag of Crafting "sort by recipe nearest completion in bag" option
-no recipes mode could suggest ingredient replacement (replace: {lowest}->{highest})
-super bum shouldn't count duplicate progress
-Add a background or something to overlapping local descs
-Pre-cache an entity's description in some way before even looking at them using coroutines
-Reorganize eid_api better, maybe split it in two, shouldn't the api only contain functions other modders would use?
-Make api functions for conditionals/other new features I've made that might be difficult for modders to approach
-"Add golden trinket / mom's box / is rune / is card / placebo recharge / false phd info for mods to add in EID:addCard/Pill?" - did most of these happen?
-check the actual github wiki, i've never looked at that, maybe I should update that some time
-As eid_modifiers' usefulness dwindles, maybe it should add its modifiers like how external mods would add them
-
-]]

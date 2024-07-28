@@ -95,6 +95,7 @@ local repCollectibles={
 	[211] = {"211", "Spiderbaby", "Taking damage spawns 3-5 blue spiders"}, -- Spiderbaby
 	[214] = {"214", "Anemic", "↑ {{Range}} +1.5 Range#{{Timer}} When taking damage Isaac leaves a trail of blood creep for the room#The creep deals 6 damage per second"}, -- Anemic
 	[218] = {"218", "Placenta", "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#{{HalfHeart}} 50% chance to heal half a heart every minute"}, -- Placenta
+	[219] = {"219", "Old Bandage", "↑ {{EmptyHeart}} +1 Empty heart container#{{Heart}} Taking damage has a 20% chance to spawn a Red Heart"}, -- Old Bandage
 	[222] =	{"222", "Anti-Gravity", "↑ {{Tears}} +1 Fire rate#Holding the fire buttons causes tears to hover in mid-air#Releasing the fire buttons shoots them in the direction they were fired"}, -- Anti-Gravity
 	[223] = {"223", "Pyromaniac", "{{Bomb}} +5 Bombs#{{HalfHeart}} Getting hit by explosions heals half a heart instead of damaging Isaac#{{Burning}} Fire immunity (except projectiles)"}, -- Pyromaniac
 	[224] = {"224", "Cricket's Body", "↑ {{Tears}} +0.5 Fire rate#↓ {{Range}} x0.8 Range multiplier#Tears split in 4 on hit#Split tears deal half damage"}, -- Cricket's Body
@@ -135,7 +136,7 @@ local repCollectibles={
 	[296] = {"296", "Converter", "{{Heart}} Converts 1 Soul or Black Heart into 1 heart container"}, -- Converter
 	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
 	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
-	[297] = {"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#{{NoLB}}Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1{{Coin}}#Home: {{Collectible580}} Red Key"}, -- Pandora's Box
+	[297] = {"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#{{NoLB}}C1: Boss item; C2: C1 + 2{{SoulHeart}}#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#{{NoLB}}Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1{{Coin}}#Home: {{Collectible580}} Red Key"}, -- Pandora's Box
 	[300] = {"300", "Aries", "↑ {{Speed}} +0.25 Speed#Moving above 0.85 Speed makes Isaac immune to contact damage and deals 25 damage to enemies"}, -- Aries
 	[307] = {"307", "Capricorn", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.1 Speed#↑ {{Tears}} +0.5 Fire rate#↑ {{Damage}} +0.5 Damage#↑ {{Range}} +0.75 Range#+1 {{Coin}} coin, {{Bomb}} bomb and {{Key}} key"}, -- Capricorn
 	[308] = {"308", "Aquarius", "Isaac leaves a trail of creep#{{Damage}} The creep deals 66% of Isaac's damage per second and inherits his tear effects"}, -- Aquarius
@@ -221,7 +222,7 @@ local repCollectibles={
 	[489] = {"489", "D Infinity", "Can be made to act as any die item (except {{Collectible723}} Spindown Dice) with the drop button ({{ButtonRT}})#Charge time varies based on the last die used and updates with every use"}, -- D Infinity
 	[491] = {"491", "Acid Baby", "{{Pill}} Spawns a random pill every 7 rooms#{{Poison}} Using a pill poisons all enemies in the room"}, -- Acid Baby
 	[493] = {"493", "Adrenaline", "↑ {{Damage}} Damage up for every empty heart container#The more empty heart containers, the bigger the bonus for each new one"}, -- Adrenaline
-	[494] = {"494", "Jacob's Ladder", "Tears spawn a spark of electricity on impact#Sparks deal half of Isaac's damage#Sparks can spread to other enemies"}, -- Jacob's Ladder
+	[494] = {"494", "Jacob's Ladder", "Tears spawn a spark of electricity on impact#Sparks deal half of Isaac's damage#Sparks can arc to up to 4 other enemies"}, -- Jacob's Ladder
 	[495] = {"495", "Ghost Pepper", "8% chance to shoot a blue fire that blocks enemy shots and deals contact damage#{{Luck}} 50% chance at 10 luck#Fires shrink and disappear after 2 seconds"}, -- Ghost Pepper
 	[496] = {"496", "Euthanasia", "3.33% chance to shoot a needle#{{Luck}} 25% chance at 13 luck#Needles kill normal enemies instantly, bursting them into 10 tears#{{Damage}} Needles deal 3x Isaac's damage against bosses"}, -- Euthanasia
 	[497] = {"497", "Camo Undies", "{{Confusion}} Entering a room camouflages Isaac and confuses all enemies until a tear is shot#↑ {{Speed}} +0.5 Speed while cloaked#Uncloaking deals damage around Isaac and grants a very brief fire rate and damage up"}, -- Camo Undies
@@ -248,7 +249,7 @@ local repCollectibles={
 	[556] = {"556", "Sulfur", "{{Timer}} {{Collectible118}} Brimstone for the room#Using it multiple times in one room grants increased damage and a larger beam"}, -- Sulfur
 	[557] = {"557", "Fortune Cookie", "Grants one of the following rewards:#A fortune#{{SoulHeart}} A Soul Heart#{{Rune}} A Rune or Soul Stone#{{Card}} A Tarot card#{{Trinket}} A Trinket"}, -- Fortune Cookie
 	[558] = {"558", "Eye Sore", "Chance to shoot 1-3 extra tears in random directions#{{Luck}} Not affected by luck"}, -- Eye Sore
-	[559] = {"559", "120 Volt", "Repeatedly zaps nearby enemies#{{Damage}} Electricity deals up to 3.75x Isaac's damage per second"}, -- 120 Volt
+	[559] = {"559", "120 Volt", "Repeatedly zaps nearby enemies#{{Damage}} Electricity deals up to 3.75x Isaac's damage per second#Sparks can arc to up to 4 other enemies"}, -- 120 Volt
 	[560] = {"560", "It Hurts", "{{Timer}} When taking damage, receive for the room:#↑ {{Tears}} +1.2 Fire rate on the first hit#↑ {{Tears}} +0.4 Fire rate for each additional hit#Releases a ring of 10 tears around Isaac"}, -- It Hurts
 	[561] = {"561", "Almond Milk", "↑ {{Tears}} x4 Fire rate multiplier#↓ {{Damage}} x0.3 Damage multiplier#↓ {{Tearsize}} -0.16 Tear size#Tears gain random worm trinket effects and some item effects"}, -- Almond Milk
 	[562] = {"562", "Rock Bottom", "↑ Prevents stats from being lowered for the rest of the run"}, -- Rock Bottom
@@ -669,11 +670,11 @@ EID.descriptions[languageCode].abyssSynergies = {
 
 -- Effect of Car battery on Active Items
 local repCarBattery = {
-	[34] = {2, 4}, -- The Book of Belial -- TODO: Is this +1 damage or another +2 from additional uses?
-	[59] = {2, 4}, -- The Book of Belial (Birthright)
+	[34] = {2, 3}, -- The Book of Belial
+	[59] = {2, 3}, -- The Book of Belial (Birthright)
 	[83] = {" Half", "1"}, -- The Nail
 	[263] = "Triggers it twice", -- Clear Rune
-	[283] = {1, 2, "pickup", "{{CR}}pickups"}, -- D100 TODO: TEST THIS is this really the only change
+	[283] = {1, 2, "pickup", "{{CR}}pickups"}, -- D100
 	[285] = "Devolves enemies twice", -- D10
 	[288] = {"4-8", "8-16"}, -- Box of Spiders
 	[293] = {200, 400}, -- Head of Krampus
@@ -703,7 +704,7 @@ local repCarBattery = {
 	[713] = {"half a heart", "a heart", "a clot", "2 {{CR}}clots"}, -- Sumptorium
 	[719] = {" a ", " 2 ", "item/pickup", "{{CR}}items/pickups"}, -- Keeper's Box
 	[720] = "Spawns a poop alongside the pickup", -- Everything Jar
-	[722] = "Chains 2 enemies down#If there's only one enemy, chains it for 10 seconds", -- Anima Sola
+	[722] = "Chains 2 enemies down#If there's only one enemy, chains it for 10 seconds#Using Anima Sola again unchains the closest enemy", -- Anima Sola
 	[723] = {"one", "two"}, -- Spindown Dice
 }
 EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
@@ -764,13 +765,14 @@ local repBFFSSynergies = {
 	["5.100.706"] = "Locust damage is increased by 25%", -- Abyss
 	["5.100.712"] = "Doubles orbital contact damage", -- Lemegeton
 	["5.100.713"] = "Clot damage is doubled", -- Sumptorium
-	["5.100.728"] = {75, 150, 100, 200}, -- Incubus (+ Lilith exception)
+	["5.100.728"] = {75, 150, 100, 200}, -- Gello (+ Lilith exception)
 	
 	["5.300.96"] = "Doubles wisp tear and contact damage", -- Soul of Bethany
 	["5.350.142"] = "Doubles wisp tear and contact damage", -- Beth's Faith
 	["5.350.182"] = "Doubles wisp tear and contact damage", -- Beth's Essence
 	["5.350.176"] = "Clot damage is doubled", -- Lil Clot
 	["5.350.186"] = "Locust damage is increased by 25%", -- Apollyon's Best Friend
+	["Tainted Lilith"] = "Gello's tear damage is doubled", -- Gello (for BFFS pedestal)
 }
 EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
 
@@ -787,9 +789,9 @@ local repTrinkets={
 	[33] = {"33", "Umbilical Cord", "{{HalfHeart}} Having half a Red Heart or less grants {{Collectible100}} Little Steven#{{Collectible318}} Taking damage has a high chance to spawn a Gemini familiar for the room"}, -- Umbilical Cord
 	[39] = {"39", "Cancer", "↑ {{Tears}} +1 Fire rate"}, -- Cancer
 	[48] = {"48", "A Missing Page", "Taking damage has a 5% chance to deal 80 damage to all enemies in the room#{{Collectible35}} Black Hearts and Necronomicon-like effects deal double damage"}, -- A Missing Page
-	[49] = {"49", "Bloody Penny", "{{HalfHeart}} Picking up a coin has a 25% chance to spawn a half Red Heart"}, -- Bloody Penny
-	[50] = {"50", "Burnt Penny", "{{Bomb}} Picking up a coin has a 25% chance to spawn a bomb"}, -- Burnt Penny
-	[51] = {"51", "Flat Penny", "{{Key}} Picking up a coin has a 25% chance to spawn a key"}, -- Flat Penny
+	[49] = {"49", "Bloody Penny", "{{HalfHeart}} Picking up a coin has a 25% chance to spawn a half Red Heart#Higher chance from nickels and dimes"}, -- Bloody Penny
+	[50] = {"50", "Burnt Penny", "{{Bomb}} Picking up a coin has a 25% chance to spawn a bomb#Higher chance from nickels and dimes"}, -- Burnt Penny
+	[51] = {"51", "Flat Penny", "{{Key}} Picking up a coin has a 25% chance to spawn a key#Higher chance from nickels and dimes"}, -- Flat Penny
 	[65] = {"65", "Tape Worm", "↑ {{Range}} +3 Range"}, -- Tape Worm
 	[66] = {"66", "Lazy Worm", "↓ {{Shotspeed}} -0.5 Shot speed"}, -- Lazy Worm
 	[67] = {"67", "Cracked Dice", "Taking damage has a 50% chance to trigger one of these effects:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible285}} D10#{{Collectible386}} D12#{{Collectible166}} D20"}, -- Cracked Dice
@@ -807,7 +809,7 @@ local repTrinkets={
 	[128] = {"128", "Finger Bone", "{{EmptyBoneHeart}} Taking damage has a 4% chance to grant a Bone Heart"}, -- Finger Bone
 	[129] = {"129", "Jawbreaker", "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 luck"}, -- Jawbreaker
 	[130] = {"130", "Chewed Pen", "{{Slow}} 10% chance to shoot slowing tears#{{Luck}} 100% chance at 18 luck"}, -- Chewed Pen
-	[131] = {"131", "Blessed Penny", "{{HalfSoulHeart}} Picking up a coin has a 17% chance to spawn a half Soul Heart"}, -- Blessed Penny
+	[131] = {"131", "Blessed Penny", "{{HalfSoulHeart}} Picking up a coin has a 17% chance to spawn a half Soul Heart#Higher chance from nickels and dimes"}, -- Blessed Penny
 	[132] = {"132", "Broken Syringe", "25% chance to get a random syringe effect each room"}, -- Broken Syringe
 	[133] = {"133", "Short Fuse", "Isaac's bombs explode faster"}, -- Short Fuse
 	[134] = {"134", "Gigante Bean", "Increases fart size"}, -- Gigante Bean
@@ -817,13 +819,13 @@ local repTrinkets={
 	[138] = {"138", "'M", "Using an active item rerolls it"}, -- 'M
 	[139] = {"139", "Teardrop Charm", "{{Luck}} +4 Luck towards luck-based tear effects"}, -- Teardrop Charm
 	[140] = {"140", "Apple of Sodom", "Picking up Red Hearts can convert them into blue spiders#Works even while at full health#Effect may consume hearts needed for healing"}, -- Apple of Sodom
-	[141] = {"141", "Forgotten Lullaby", "Increases the fire rate of familiars"}, -- Forgotten Lullaby
+	[141] = {"141", "Forgotten Lullaby", "Doubles the fire rate of familiars"}, -- Forgotten Lullaby
 	[142] = {"142", "Beth's Faith", "{{Collectible584}} Entering a new floor spawns 4 Book of Virtues wisps"}, -- Beth's Faith
 	[143] = {"143", "Old Capacitor", "{{Battery}} Prevents active item from charging by clearing a room#{{Battery}} Clearing a room has a 20% chance to spawn a battery#{{Luck}} 33% chance at 5 luck"}, -- Old Capacitor
 	[144] = {"144", "Brain Worm", "Tears turn 90 degrees to target enemies that they may have missed"}, -- Brain Worm
 	[145] = {"145", "Perfection", "↑ {{Luck}} +10 Luck up#Taking damage destroys the trinket"}, -- Perfection
 	[146] = {"146", "Devil's Crown", "{{RedTreasureRoom}} Treasure Room items are replaced with devil deals"}, -- Devil's Crown
-	[147] = {"147", "Charged Penny", "{{Battery}} Picking up a coin has a 17% chance to add 1 charge to the active item"}, -- Charged Penny
+	[147] = {"147", "Charged Penny", "{{Battery}} Picking up a coin has a 17% chance to add 1 charge to the active item#Higher chance from nickels and dimes"}, -- Charged Penny
 	[148] = {"148", "Friendship Necklace", "All familiars orbit around Isaac"}, -- Friendship Necklace
 	[149] = {"149", "Panic Button", "Right before taking damage, uses the active item if it is charged"}, -- Panic Button
 	[150] = {"150", "Blue Key", "Locked doors can be opened for free, but Isaac has to clear a room from the Hush floor before accessing the room behind them"}, -- Blue Key
@@ -1147,7 +1149,7 @@ EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].
 EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "All item pedestals cycle between two options"},
 	{"Magdalene", "", "↑ {{Heart}} +1 Health#The max amount of heart containers is raised to 18"},
-	{"Cain", "", "↑ {{Luck}} +1 Luck#{{Arcade}} All future floors will contain an upgraded Arcade Room (except for Dark Room and Chest)#{{Collectible46}} Greatly increases Lucky Foot's chances of winning effect"},
+	{"Cain", "", "↑ {{Luck}} +1 Luck#{{ArcadeRoom}} All future floors will contain an upgraded Arcade Room (except for Dark Room and Chest)#{{Collectible46}} Greatly increases Lucky Foot's chances of winning effect"},
 	{"Judas", "", "{{Collectible34}} The Book of Belial becomes a passive item similar to {{Collectible584}} Book of Virtues#{{Collectible34}} Grants The Book of Belial if Judas is not currently holding it#↑ {{Damage}} The damage boost it grants scales with the amount of charges the active item combined with it has#Grants special effects for certain active items"},
 	{"???", "", "{{SoulHeart}} Soul Hearts gained from health upgrades are doubled"},
 	{"Eve", "", "{{Collectible122}} Whore of Babylon is active regardless of health#{{Collectible117}} Dead Bird is always active"},
@@ -1293,11 +1295,14 @@ EID.descriptions[languageCode].VoidShopText = "If absorbed right after pickup, g
 EID.descriptions[languageCode].VoidOptionText = " will be absorbed instead"
 EID.descriptions[languageCode].VoidNames[2] = "{1} Fire rate"
 
+EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Damage", "↑ {{Tears}} +2 Fire rate", "↑ {{Speed}} +0.5 Speed", "↑ {{Range}} +3 Range"}
+
 EID.descriptions[languageCode].spindownError = "Item disappears"
 
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card effect:"
 
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Hold {{CONFIG_BoC_Toggle}} to show description)"
+EID.descriptions[languageCode].GlitchedCrownToggleInfo = "(Press {{CONFIG_BoC_Toggle}} to show next description: {1})"
 
 EID.descriptions[languageCode].GlowingHourglassTransformed = "Will change back to Glowing Hourglass next floor"
 
@@ -1404,6 +1409,7 @@ local repConditions = {
 	["Black Feather"] = "↑ {{Damage}} +0.5 Damage", -- Black Feather items
 	["Hemoptysis"] = "Works with {1}", -- Hemoptysis + Brimstone items
 	["5.100.600"] = "x1.2 Fire rate multiplier for {1}", -- Eye Drops (items and some players)
+	["5.100.482"] = "Tainted characters change into other tainted characters", -- Clicker
 	
 	["4.5 Volt Timed"] = "No effect on timed recharges", -- 4.5 Volt + Timed Recharges
 	["4.5 Volt Multiple"] = "Secondary active items only gain charge if the primary active is fully charged", -- 4.5 Volt + Schoolbag/Pocket Actives
@@ -1420,6 +1426,18 @@ local repConditions = {
 	["Ludovico Ipecac"] = "The tear gets +2 damage but doesn't explode or poison",
 	["Technology Ipecac"] = "The laser gets +2 damage and explodes on targets",
 	["Eye of the Occult Beam"] = "Isaac automatically shoots with a crosshair that alters the beam's path",
+	
+	["Lullaby Tainted Eve"] = "Clot fire rate is doubled",
+	["Lullaby Lilith"] = "Incubus fire rate is doubled",
+	
+	-- Jacob's Ladder / 120 Volt battery synergies
+	["Sparks Damage"] = "Sparks deal 50% more damage",
+	["Sparks Arc Length"] = "Sparks have longer arc distance",
+	["Sparks Arc Count"] = "Sparks can arc to 2 more enemies",
+	["Sparks Arc Back"] = "Sparks can arc back to the same enemy",
+	
+	["White Poop Jar"] = "Spawns White Poop on 1 charge use",
+	["Golden Poop Jar"] = "Chance to spawn Golden Poop on 1 charge use",
 	
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)

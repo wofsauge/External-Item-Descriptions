@@ -239,7 +239,7 @@ EID.descriptions[languageCode].collectibles={
 	{"216", "Ceremonial Robes", "↑ {{Damage}} +1 Damage#{{BlackHeart}} +3 Black Hearts"}, -- Ceremonial Robes
 	{"217", "Mom's Wig", "{{Heart}} Heals 1 heart#5% chance to spawn a blue spider when shooting tears#{{Luck}} 100% chance at 10 luck"}, -- Mom's Wig
 	{"218", "Placenta", "↑ {{Heart}} +1 Health#{{HalfHeart}} 50% chance to heal half a heart every minute"}, -- Placenta
-	{"219", "Old Bandage", "↑ {{EmptyHeart}} +1 Empty heart container#{{Heart}} Taking damage has a chance to spawn a Red Heart"}, -- Old Bandage
+	{"219", "Old Bandage", "↑ {{EmptyHeart}} +1 Empty heart container#{{Heart}} Taking damage has a 10% chance to spawn a Red Heart"}, -- Old Bandage
 	{"220", "Sad Bombs", "{{Bomb}} +5 Bombs#Isaac's bombs shoot 10 tears in a circle when they explode"}, -- Sad Bombs
 	{"221", "Rubber Cement", "Isaac's tears bounce off enemies and obstacles"}, -- Rubber Cement
 	{"222", "Anti-Gravity", "↑ {{Tears}} -2 Tear delay#Holding the fire buttons causes tears to hover in midair#Releasing the fire buttons shoots them in the direction they were fired"}, -- Anti-Gravity
@@ -319,7 +319,7 @@ EID.descriptions[languageCode].collectibles={
 	{"296", "Converter", "{{Heart}} Converts 2 Soul/Black Hearts into 1 heart container"}, -- Converter
 	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
 	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
-	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#{{NoLB}}Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1{{Coin}}"}, -- Pandora's Box
+	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#{{NoLB}}C1: Boss item; C2: C1 + 2{{SoulHeart}}#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#{{NoLB}}Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1{{Coin}}"}, -- Pandora's Box
 	{"298", "Unicorn Stump", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot (No contact damage)"}, -- Unicorn Stump
 	{"299", "Taurus", "↓ {{Speed}} -0.3 Speed#↑ {{Speed}} Slowly gain speed while in hostile rooms#At 2 speed, Isaac becomes invincible and deals contact damage#Afterwards, lose the Taurus speed boost for the room"}, -- Taurus
 	{"300", "Aries", "↑ {{Speed}} +0.25 Speed#Touching enemies deals contact damage"}, -- Aries
@@ -505,7 +505,7 @@ EID.descriptions[languageCode].collectibles={
 	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles all blue flies and spiders#Spawns 1 blue fly or spider if Isaac has none"}, -- Compost
 	{"481", "Dataminer", "↑ Random stat up#↓ Random stat down#{{Timer}} Random tear effects for the room#{{Blank}} Corrupts all sprites and music in the room"}, -- Dataminer
 	{"482", "Clicker", "Changes your character to a random character#Removes the most recent item collected"}, -- Clicker
-	{"483", "Mama Mega!", "{{Warning}} SINGLE USE {{Warning}}#Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss Rush, Hush and all secret rooms#Having a golden bomb when using the item consumes it and allows for another use of Mama Mega"}, -- Mama Mega!
+	{"483", "Mama Mega!", "{{Warning}} SINGLE USE {{Warning}}#Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens secret rooms#Opens Boss Rush and Hush regardless of time"}, -- Mama Mega!
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawns a rock wave around Isaac#The rock wave can open rooms and break rocks"}, -- Wait What?
 	{"485", "Crooked Penny", "50% chance to double all items, pickups and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"}, -- Crooked Penny
 	{"486", "Dull Razor", "Hurts Isaac without removing health#Triggers any on-hit item effects"}, -- Dull Razor
@@ -633,7 +633,7 @@ EID.descriptions[languageCode].carBattery = {
 	[485] = "25% chance to quadruple, 25% chance to double and remove the originals, 50% chance to remove", -- Crooked Penny
 	[486] = {"effects", "{{CR}}effects {{BlinkYellowGreen}}twice"}, -- Dull Razor
 	[488] = "Activates twice, but only the second effect stays", -- Metronome
-	[489] = {" a ", " 2 ", "effect", "{{CR}}effects"}, -- D Infinity (TODO: d infinity's desc addon is not visible in item reminder)
+	[489] = {" a ", " 2 ", "effect", "{{CR}}effects"}, -- D Infinity
 	[504] = {" a ", " 2 ", "turret", "{{CR}}turrets"}, -- Brown Nugget
 	[507] = "Triggers twice", -- Sharp Straw
 	[510] = {" a ", " 2 ", "version", "{{CR}}versions"}, -- Delirious
@@ -731,6 +731,7 @@ EID.descriptions[languageCode].BFFSSynergies = {
 	
 	["5.350.54"] = {3.5, 7}, --- Isaac's Head
 	["5.350.57"] = {3.5, 7}, --- ???'s Soul
+	["Lilith"] = "Incubus damage is doubled", -- Incubus (for BFFS pedestal)
 }
 
 ---------- Trinkets ----------
@@ -1097,6 +1098,13 @@ EID.descriptions[languageCode].VoidText = "If absorbed, gain:"
 -- {1} will become the number text (like "{1} Tears" -> "+0.5 Tears")
 EID.descriptions[languageCode].VoidNames = {"{1} Speed", "{1} Tears", "{1} Damage", "{1} Range", "{1} Shot speed", "{1} Luck"}
 
+EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Damage", "↑ {{Tears}} -4 Tear delay", "↑ {{Speed}} +0.5 Speed", "↑ {{Range}} +7.5 Range#↑ +1 Tear height"}
+
+EID.descriptions[languageCode].CrookedPennyHeads = "Heads"
+EID.descriptions[languageCode].CrookedPennyTails = "Tails"
+
+EID.descriptions[languageCode].LuckModifier = "{1}% chance at {2} luck"
+
 EID.descriptions[languageCode].CollectionPageInfo = "This item needs to be picked up for the collection page!"
 
 EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorLime}}{1}{{CR}} items currently held (+{2} Damage)"
@@ -1129,7 +1137,7 @@ EID.descriptions[languageCode].RoomTypeNames = { "Normal Room", "Shop", "I AM ER
 -- Not technically room types but still potentially useful to have localized
 [666] = "Devil/Angel Room", [1024] = "Red Room", [1025] = "Special Red Room" }
 
--- currently used for D1
+-- currently used for D1 and Glyph of Balance; contains Rep pickups for ease of localization
 EID.descriptions[languageCode].PickupNames = {
 	["5.0"] = "None",
 
@@ -1144,6 +1152,8 @@ EID.descriptions[languageCode].PickupNames = {
 
 	["5.40"] = "{{Bomb}} Bomb",
 	["5.40.1"] = "{{Crafting15}} Bomb", ["5.40.2"] = "{{Crafting15}} Double Bomb", ["5.40.3"] = "{{Crafting15}} Troll Bomb", ["5.40.4"] = "{{Crafting16}} Golden Bomb", ["5.40.5"] = "{{Crafting15}} Mega Troll Bomb", ["5.40.7"] = "{{Crafting17}} Giga Bomb",
+	
+	["5.42"] = "{{Crafting29}} Poop Nugget", ["5.42.1"] = "{{Crafting29}} Big Poop Nugget",
 
 	["5.90"] = "{{Battery}} Battery",
 	["5.90.0"] = "{{Crafting19}} Lil' Battery", --AB+ didn't have subtypes for batteries
@@ -1171,6 +1181,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Overrides"] = "Overrides {1}",
 	["Almost No Effect"] = "Little to no effect for {1}",
 	["No Effect"] = "No effect for {1}",
+	["No Effect From"] = "No effect from {1}",
 	["Can't Charge"] = "Can't charge {1}",
 	["Can't Be Charged"] = "Can't be charged by {1}",
 	["Can't Be Duplicated"] = "Can't be duplicated",
@@ -1198,6 +1209,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.350.44"] = {"{{Pill}} Chance for a bonus pill from chests, tinted rocks and destroyed machines"}, -- Safety Cap
 	["5.350.45"] = {"{{Card}} Chance for a bonus card from chests, tinted rocks and destroyed machines"}, -- Ace of Spades
 	["5.350.72"] = {"{{Battery}} +10% chance for random pickups to be a battery#{{Battery}} 5% chance to add 1 charge to held active item when clearing a wave"}, -- Watch Battery
+	["5.100.297 (Greed)"] = {"{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#Basement: 2{{Bomb}} + 2{{Key}}#Caves: Boss item + 2{{SoulHeart}}#Depths: 20{{Coin}}#Womb: 2 Boss items#Sheol: Devil item + 1{{BlackHeart}}#The Shop/Ultra Greed: 1{{Coin}}"}, -- Pandora's Box
 	
 	
 	------ ACHIEVEMENT CHECKS ------
@@ -1272,6 +1284,18 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Technology Ipecac"] = "The laser gets +4 damage and poisons targets",
 	["Chocolate Milk Overrides"] = "↑ {{Tears}} x1.25 Tears multiplier",
 	["Chocolate Milk Marked"] = "Isaac automatically charges based on distance from the crosshair",
+	["Ghost Pepper Fart"] = "Farting causes a flame to shoot out behind Isaac",
+	["Damage Multiplier Stack"] = "The damage multiplier doesn't stack",
+	["White Poop"] = "Spawns White Poop instead",
+	["White Poop Chance"] = "Chance to spawn White Poop",
+	["Golden Poop Chance"] = "Chance to spawn Golden Poop",
+	["5.100.483"] = "{{GoldenBomb}} Having a golden bomb when using the item consumes it and allows for another use of Mama Mega",
+	
+	["5.300.5"] = {"{{BossRoom}} Teleports Isaac to a random Boss Room"}, -- IV - The Emperor (in The Void)
+	["5.300.18"] = "Teleports Isaac to a random room if there's no Treasure Room", -- XVII - The Stars (Womb and below)
+	["5.300.18 (Greed)"] = {"{{TreasureRoom}} Teleports Isaac to a random Treasure Room"}, -- XVII - The Stars (Greed)
+	["5.300.18 (Late Greed)"] = {"Teleports Isaac to the first room of the floor"}, -- XVII - The Stars (Greed Last Floors)
+	["5.300.10"] = "Teleports Isaac to a random room if there's no Shop", -- IX - The Hermit (Womb and below)
 	
 }
 

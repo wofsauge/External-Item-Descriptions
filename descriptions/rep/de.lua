@@ -428,7 +428,7 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "Alle Gegenstandspodeste wechseln zwischen zwei Optionen"},
 	{"Magdalene", "", "↑ {{Heart}} +1 Gesundheit#Die maximale Anzahl der Herzcontainer wird auf 18 erhöht"},
-	{"Cain", "", "↑ {{Luck}} +1 Glück#{{Arcade}} Alle zukünftigen Ebenen enthalten einen verbesserten Arkadenraum (außer Dunkler Raum und Truhe)#{{Collectible46}} Erhöht die Gewinnchancen des Glückspfennigs erheblich"},
+	{"Cain", "", "↑ {{Luck}} +1 Glück#{{ArcadeRoom}} Alle zukünftigen Ebenen enthalten einen verbesserten Arkadenraum (außer Dunkler Raum und Truhe)#{{Collectible46}} Erhöht die Gewinnchancen des Glückspfennigs erheblich"},
 	{"Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des active Items, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte active Items"},
 	{"???", "", "{{SoulHeart}} Seelenherzen, die durch Gesundheits-Upgrades gewonnen werden, werden verdoppelt"},
 	{"Eva", "", "{{Collectible122}} Die Hure von Babylon ist unabhängig von der Gesundheit aktiv#{{Collectible117}} Der Tote Vogel ist immer aktiv"},
