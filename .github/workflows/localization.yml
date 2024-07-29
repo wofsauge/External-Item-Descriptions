@@ -1,0 +1,22 @@
+name: Check Localization
+
+on: [push, workflow_dispatch]
+
+jobs:
+  localizationcheck:
+    name: Check Localization process
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4.5.0
+        with:
+          python-version: '3.10'
+
+      - name: Install PIP packages
+        run: |
+              pip install lupa
+
+      - name: git
+        run: python .github/scripts/localizationChecker.py
