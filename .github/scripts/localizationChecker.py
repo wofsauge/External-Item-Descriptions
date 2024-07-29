@@ -2,11 +2,6 @@ import lupa.lua54 as lupa
 from lupa.lua54 import LuaRuntime
 lua = LuaRuntime(unpack_returned_tuples=True)
 import glob, os
-SCRIPT_PATH = os.path.realpath(__file__)
-SOURCE_MOD_DIRECTORY = os.path.dirname(SCRIPT_PATH)+"\\..\\.."
-
-if "GITHUB_WORKSPACE" in os.environ:
-    SOURCE_MOD_DIRECTORY = os.environ["GITHUB_WORKSPACE"]
 
 # Reset
 Color_Off='\033[0m'       # Text Reset
@@ -26,8 +21,8 @@ BWhite='\033[1;37m'       # Bold White
 lua.execute('EID = {}; EID.descriptions = {} function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
 
 print("reading: en_us.lua",)
-lua.execute(open(SOURCE_MOD_DIRECTORY+"\\descriptions\\ab+\\en_us.lua", "r", encoding="UTF-8").read())
-lua.execute(open(SOURCE_MOD_DIRECTORY+"\\descriptions\\rep\\en_us.lua", "r", encoding="UTF-8").read())
+lua.execute(open(".\\descriptions\\ab+\\en_us.lua", "r", encoding="UTF-8").read())
+lua.execute(open(".\\descriptions\\rep\\en_us.lua", "r", encoding="UTF-8").read())
 
 g = lua.globals()
 # count en_us entries for stats
@@ -62,7 +57,7 @@ en_us_entries = count_entries(g.EID['descriptions']['en_us'])
 print("en_us entries:", en_us_entries)
 
 languages = {}
-for file in glob.glob(SOURCE_MOD_DIRECTORY+"\\descriptions\\ab+\\*.lua") + glob.glob(SOURCE_MOD_DIRECTORY+"\\descriptions\\rep\\*.lua"):
+for file in glob.glob(".\\descriptions\\ab+\\*.lua") + glob.glob(".\\descriptions\\rep\\*.lua"):
     if "en_us" not in file and "transformations" not in file:
         print("reading:",file)
         lua.execute(open(file, "r", encoding="UTF-8").read())
@@ -78,4 +73,4 @@ for lang in languages:
 
 print(f"{Blue}Translation progress:{Color_Off}")
 for lang in languages:
-    print(f"\t{BWhite}{lang}{Color_Off}\t{Blue}{languages[lang][0]}%{Color_Off}\t{Red}{languages[lang][1]} missing{Color_Off}")
+    print(f"\t{BWhite}{lang}{Color_Off}\t{Blue}{round(languages[lang][0],2)}%{Color_Off}\t{Red}{languages[lang][1]} missing{Color_Off}")
