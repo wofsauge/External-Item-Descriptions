@@ -1931,7 +1931,7 @@ function EID:evaluateTransformationProgress(transformation)
 							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + collCount
 
 							-- Undo the Book of Virtues active item getting counted here
-							if tonumber(eSubType) == 584 and player:GetActiveItem() == 584 then
+							if EID.isRepentance and tonumber(eSubType) == 584 and player:GetActiveItem() == 584 then
 								EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] - 1
 							end
 						end
@@ -2005,11 +2005,7 @@ function EID:evaluateQueuedItems()
 				if player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
 					-- A new active item was touched; initiate its touch count to 0 for all players
 					-- (Fixes co-op bugs, compared to only initiating it for the toucher)
-					for j = 0, game:GetNumPlayers() - 1 do
-						EID:InitItemInteractionIfAbsent(j)
-						EID.PlayerItemInteractions[j].actives[itemIDStr] = EID.PlayerItemInteractions[j].actives[itemIDStr] or 0
-						EID.PlayerItemInteractions[j+666].actives[itemIDStr] = EID.PlayerItemInteractions[j+666].actives[itemIDStr] or 0
-					end
+					EID:InitActiveItemInteraction(itemIDStr)
 					
 					local activesTable = EID.PlayerItemInteractions[id].actives
 					EID.ForceRefreshCache = true
@@ -2024,7 +2020,6 @@ function EID:evaluateQueuedItems()
 					if EID.isRepentance and player:GetPlayerType() == 38 then playerID = playerID + 666 end
 					table.insert(EID.RecentlyTouchedItems[playerID], player.QueuedItem.Item.ID)
 					EID:ResetItemReminderSelectedItems("Passives")
-					EID.ItemReminderSelectedItems[#EID.ItemReminderCategories - 1] = 0
 				end
 			end
 		end
@@ -2046,6 +2041,15 @@ function EID:InitItemInteractionIfAbsent(playerID)
 	end
 	EID.RecentlyTouchedItems[playerID] = EID.RecentlyTouchedItems[playerID] or {}
 	EID.RecentlyTouchedItems[playerID+666] = EID.RecentlyTouchedItems[playerID+666] or {}
+end
+-- initialize a touched active item to 0 count for all players
+-- (Fixes co-op bugs, compared to only initiating it for the toucher)
+function EID:InitActiveItemInteraction(itemIDStr)
+	for playerID = 0, game:GetNumPlayers() - 1 do
+		EID:InitItemInteractionIfAbsent(playerID)
+		EID.PlayerItemInteractions[playerID].actives[itemIDStr] = EID.PlayerItemInteractions[playerID].actives[itemIDStr] or 0
+		EID.PlayerItemInteractions[playerID+666].actives[itemIDStr] = EID.PlayerItemInteractions[playerID+666].actives[itemIDStr] or 0
+	end
 end
 
 
@@ -2236,6 +2240,20 @@ function EID:GetAllPassiveItems()
 		end
 	end
 end
+local activeItems = nil -- cache of all active item ids
+function EID:GetAllActiveItems()
+	if activeItems then
+		return activeItems
+	end
+	activeItems = {}
+
+	for i = 1, EID:GetMaxCollectibleID() do
+		local config = EID.itemConfig:GetCollectible(i)
+		if config ~= nil and (config.Type == ItemType.ITEM_ACTIVE) then
+			table.insert(activeItems, i)
+		end
+	end
+end
 
 -- Updates the EID.RecentlyTouchedItems table to include the players currently held passive items
 function EID:UpdateAllPlayerPassiveItems()
@@ -2259,7 +2277,7 @@ function EID:UpdateAllPlayerPassiveItems()
 			end
 		end
 
-		-- add items the player did get with non-standard methods (console command, item effects, etc...)
+		-- add items the player did get with non-standard methods (Bag of Crafting, console command, item effects, etc...)
 		for _, itemID in ipairs(passives) do
 			if player:HasCollectible(itemID, true) then
 				local alreadyInList = false
@@ -2272,6 +2290,17 @@ function EID:UpdateAllPlayerPassiveItems()
 				if not alreadyInList then
 					table.insert(EID.RecentlyTouchedItems[playerNum], itemID)
 					listUpdatedForPlayers[i] = true
+				end
+			end
+		end
+		-- super hacky Tainted Cain active items check, mostly for transformation progress
+		-- Only adds up to one copy of any active, I can't think of a good way to recognize a craft of the same active twice. better than nothing
+		if EID.isRepentance and player:GetPlayerType() == 23 then
+			for i = 0, 1 do
+				local itemID = tostring(player:GetActiveItem(i))
+				if itemID ~= "0" then
+					EID:InitActiveItemInteraction(itemID)
+					if EID.PlayerItemInteractions[playerNum].actives[itemID] == 0 then EID.PlayerItemInteractions[playerNum].actives[itemID] = 1 end
 				end
 			end
 		end
