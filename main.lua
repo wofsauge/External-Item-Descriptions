@@ -1621,12 +1621,10 @@ local function AddActiveItemProgress(player, isD4)
 	local maxSlot = 3
 	if isD4 then maxSlot = 1 end
 	for i = 0, maxSlot do
-		local itemID = tostring(player:GetActiveItem(i))
-		if itemID ~= "0" then
-			if not activesTable[itemID] then
-				activesTable[itemID] = 0
-			end
-			activesTable[itemID] = activesTable[itemID] + 1
+		local itemIDStr = tostring(player:GetActiveItem(i))
+		if itemIDStr ~= "0" then
+			EID:InitActiveItemInteraction(itemIDStr)
+			activesTable[itemIDStr] = activesTable[itemIDStr] + 1
 		end
 	end
 end
