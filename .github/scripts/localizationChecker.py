@@ -1,5 +1,8 @@
 import lupa.lua54 as lupa
 from lupa.lua54 import LuaRuntime
+
+from pathlib import Path
+
 lua = LuaRuntime(unpack_returned_tuples=True)
 import glob, os
 SCRIPT_PATH = os.path.realpath(__file__)
@@ -100,6 +103,9 @@ for lang in languages:
         f"\t{BWhite}{lang}{Color_Off}\t{Blue}{round(languages[lang][0],2)}%{Color_Off}\t{Red}{languages[lang][1]} missing{Color_Off}"
     )
     errorMessage = languages[lang][1] if languages[lang][1] >0 else "🎉"
-    gitWorkflowSummary += f"| {lang} | {round(languages[lang][0],2)}% | {errorMessage} |"
+    gitWorkflowSummary += f"| {lang} | {round(languages[lang][0],2)}% | {errorMessage} |\n"
 
-os.environ["GITHUB_STEP_SUMMARY"] = gitWorkflowSummary
+
+if "GITHUB_STEP_SUMMARY" in os.environ:
+    print("\n\nwrite workflow summary to: ", os.environ["GITHUB_STEP_SUMMARY"])
+    Path(os.environ["GITHUB_STEP_SUMMARY"]).write_text(gitWorkflowSummary)
