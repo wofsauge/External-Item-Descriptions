@@ -312,7 +312,15 @@ EID.ItemReminderDescriptionModifier = {
 			return true
 		end
 	},
-
+	---------------- CARDS ----------------
+	["5.300.73"] = { -- give The Stars? priority in the reminder
+		isRepentance = true,
+		modifierFunction = function(descObj, _, inOverview)
+			-- handled by The Stars? modifier
+			return true
+		end
+	},
+	
 	---------------- TRINKETS ----------------
 
 	["5.350.4"] = { -- Broken Remote has two possible effects depending on if its doubled
@@ -808,7 +816,9 @@ function EID:ItemReminderGetDescription()
 	if EID.ItemReminderSelectedCategory == 0 or EID.Config["ItemReminderDisplayMode"] == "Classic" then
 		-- execute special previews / item results while in the overview
 		numAvailableDescriptionSlots = EID.Config["ItemReminderMaxEntriesCount"]
+		EID.InsideSpecialDescriptions = true -- for modifiers to replace the desc rather than append if they so wish
 		EID:ItemReminderAddSpecialDescriptions(player)
+		EID.InsideSpecialDescriptions = false
 		-- execute all functions defined per category
 		for _, category in ipairs(EID.ItemReminderCategories) do
 			local hideInOverview = type(category.hideInOverview) == "function" and category.hideInOverview(player)

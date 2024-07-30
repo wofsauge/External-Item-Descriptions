@@ -50,7 +50,7 @@ for _, lang in ipairs(languageFilesToCheck) do
 					print("Type mismatch in table '" .. prevKey .. "', key: " .. k)
 					progress[2] = progress[2] + 1
 				elseif type(table2[k]) == "table" then
-					EID:compareTables(table1[k], table2[k], k, progress)
+				  EID:compareTables(table1[k], table2[k], prevKey.."->"..k, progress)
 				else
 					-- check for broken markup stuff
 					local filteredText = EID:replaceShortMarkupStrings(table2[k])

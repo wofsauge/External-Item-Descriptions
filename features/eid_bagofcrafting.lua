@@ -476,7 +476,9 @@ function EID:BoCTrackBagHolding()
 		end
 	else
 		if isCardHold and holdCounter >= 30 and (string.match(animationName, "Walk") and not string.match(animationName, "Pickup") or (EID.bagPlayer:GetCollectibleCount() ~= icount)) then
+			holdCounter = 0
 			EID.BoC.BagItems = {}
+			EID:UpdateAllPlayerPassiveItems()
 		else
 			holdCounter = 0
 		end
