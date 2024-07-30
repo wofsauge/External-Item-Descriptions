@@ -2296,8 +2296,8 @@ function EID:UpdateAllPlayerPassiveItems()
 		-- super hacky Tainted Cain active items check, mostly for transformation progress
 		-- Only adds up to one copy of any active, I can't think of a good way to recognize a craft of the same active twice. better than nothing
 		if EID.isRepentance and player:GetPlayerType() == 23 then
-			for i = 0, 1 do
-				local itemID = tostring(player:GetActiveItem(i))
+			for j = 0, 1 do
+				local itemID = tostring(player:GetActiveItem(j))
 				if itemID ~= "0" then
 					EID:InitActiveItemInteraction(itemID)
 					if EID.PlayerItemInteractions[playerNum].actives[itemID] == 0 then EID.PlayerItemInteractions[playerNum].actives[itemID] = 1 end
