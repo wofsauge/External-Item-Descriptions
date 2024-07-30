@@ -160,7 +160,7 @@ EID.TextReplacementPairs = {
 local controllerSprites = Sprite()
 controllerSprites:Load("gfx/ui/buttons.anm2", true)
 local function getControllerSprite()
-	return (EID.player.ControllerIndex > 0 and controllerSprites) or EID.InlineIconSprite
+	return (EID.player and EID.player.ControllerIndex > 0 and controllerSprites) or EID.InlineIconSprite
 end
 
 --Format: [SHORTCUT]= {Animationname, Frame, Width, Height, LeftOffset [Default: -1], TopOffset [Default: 0], SpriteObject [Default: EID.InlineIconSprite]}
@@ -707,6 +707,10 @@ EID.InlineColors = {
 	["ColorLightYellow"] = KColor(1, 1, 0.5, 1),
 	["ColorBagComplete"] = KColor(0, 1, 0, 0.6),
 	["ColorBagOverfill"] = KColor(1, 0.5, 0.1, 0.6),
+	
+	["ColorIsaac"] = KColor(0.89, 0.776, 0.773, 1),
+	["ColorCard"] = KColor(0.815, 0.651, 0.494, 1), -- actually taken from Ouija Board, real card brown would be too dark for descriptions
+	["ColorPill"] = KColor(0.306, 0.651, 0.851, 1),
 
 	-- Swag Colors
 	-- Rainbow color effect
@@ -727,6 +731,24 @@ EID.InlineColors = {
 	["BlinkYellowRed"] = function(_)
 		local c = EID.InlineColors
 		return SwagColors({c["ColorYellow"], c["ColorRed"]})
+	end,
+	-- Silver to gray, for Black Feather?
+	["BlinkGray"] = function(_)
+		local c = EID.InlineColors
+		return SwagColors({c["ColorGray"], c["ColorSilver"]})
+	end,
+	-- Pink for BFFs <3, the two shades come from Nancy Bombs and Eraser
+	["BlinkPink"] = function(_)
+		return SwagColors({KColor(1, 0.698, 0.886, 1), KColor(1, 0.5, 1, 1)})
+	end,
+	-- Blue for Hive Mind, the two shades come from Hive Mind
+	["BlinkBlue"] = function(_)
+		return SwagColors({KColor(0.341, 0.529, 0.906, 1), KColor(0.592, 0.717, 0.937, 1)})
+	end,
+	-- Subtle glow between green from Luck Clover and from the Quality 1 shield
+	["BlinkGreen"] = function(_)
+		local c = EID.InlineColors
+		return SwagColors({KColor(0.404, 0.663, 0.306, 1), KColor(0.443, 0.765, 0.247, 1)})
 	end,
 	-- Shiny purple color effect
 	["ColorShinyPurple"] = function(_)
@@ -915,41 +937,113 @@ EID.LocalModePositionOffset = {
 	Shop = function(entity) if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:ToPickup() and entity:ToPickup():IsShopItem() then return Vector(0, 35) end end,
 }
 
--- Items that dont have an effect with BFFS! item
-EID.BFFSNoSynergy = {[11] = true, [81] = true, [238] = true, [239] = true, [243] = true,  [265] = true, [268] = true, [269] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [405] = true, [431] = true, [436] = true, [469] = true, [472] = true, [492] = true, [516] = true, [528] = true, [542] = true, [543] = true }
+-- Actives that have no additional effect from Car Battery
+EID.CarBatteryNoSynergy = { [33] = true, [34] = true, [36] = true, [39] = true, [40] = true, [41] = true, [42] = true, [44] = true, [47] = true, [49] = true, [56] = true, [84] = true, [126] = true, [127] = true, [130] = true, [133] = true, [135] = true, [137] = true, [147] = true, [164] = true, [166] = true, [175] = true, [177] = true, [181] = true, [186] = true, [192] = true, [282] = true, [285] = true, [289] = true, [290] = true, [291] = true, [295] = true, [296] = true, [297] = true, [323] = true, [324] = true, [325] = true, [326] = true, [338] = true, [347] = true, [352] = true, [382] = true, [386] = true, [396] = true, [406] = true, [419] = true, [422] = true, [434] = true, [437] = true, [441] = true, [475] = true, [478] = true, [479] = true, [483] = true, [484] = true, [487] = true, [490] = true, [512] = true, [515] = true, [522] = true, [527] = true, [536] = true, [552] = true }
+if EID.isRepentance then
+	EID.CarBatteryNoSynergy[34] = false -- The Book of Belial
+	EID.CarBatteryNoSynergy[284] = true -- D4 (essentially does nothing)
+	EID.CarBatteryNoSynergy[285] = false -- D10
+	EID.CarBatteryNoSynergy[296] = false -- Converter
+	EID.CarBatteryNoSynergy[323] = false -- Isaac's Tears
+	EID.CarBatteryNoSynergy[386] = false -- D12
+	EID.CarBatteryNoSynergy[421] = true -- Kidney Bean
+	EID.CarBatteryNoSynergy[522] = false -- Telekinesis
+	EID.CarBatteryNoSynergy[523] = true -- Moving Box
+	-- Repentance actives
+	EID.CarBatteryNoSynergy[555] = true; EID.CarBatteryNoSynergy[577] = true; EID.CarBatteryNoSynergy[578] = true; EID.CarBatteryNoSynergy[580] = true;
+	EID.CarBatteryNoSynergy[585] = true; EID.CarBatteryNoSynergy[604] = true; EID.CarBatteryNoSynergy[622] = true; EID.CarBatteryNoSynergy[623] = true;
+	EID.CarBatteryNoSynergy[628] = true; EID.CarBatteryNoSynergy[636] = true; EID.CarBatteryNoSynergy[638] = true; EID.CarBatteryNoSynergy[640] = true;
+	EID.CarBatteryNoSynergy[653] = true; EID.CarBatteryNoSynergy[655] = true; EID.CarBatteryNoSynergy[703] = true; EID.CarBatteryNoSynergy[706] = true;
+	EID.CarBatteryNoSynergy[709] = true; EID.CarBatteryNoSynergy[710] = true; EID.CarBatteryNoSynergy[711] = true; EID.CarBatteryNoSynergy[714] = true;
+	EID.CarBatteryNoSynergy[715] = true; EID.CarBatteryNoSynergy[728] = true; EID.CarBatteryNoSynergy[729] = true;
+end
+-- Items that should show their Car Battery synergy while looking at a Car Battery pedestal
+-- Void, Crooked Penny, Metronome, Moving Box, Broken Shovel
+EID.CarBatteryPedestalWhitelist = { [477] = true, [485] = true, [488] = true, [523] = true, [550] = true }
+if EID.isRepentance then
+	EID.CarBatteryPedestalWhitelist[523] = nil -- Moving Box
+	EID.CarBatteryPedestalWhitelist[386] = true -- D12
+	EID.CarBatteryPedestalWhitelist[611] = true -- Larynx
+	EID.CarBatteryPedestalWhitelist[635] = true -- Stitches
+	EID.CarBatteryPedestalWhitelist[685] = true -- Jar of Wisps
+	EID.CarBatteryPedestalWhitelist[720] = true -- Everything Jar
+	EID.CarBatteryPedestalWhitelist[722] = true -- Anima Sola
+end
 
--- todo: this table is wrong, for instance brown nugget didnt have one and then got one
-if REPENTANCE then
-	EID.BFFSNoSynergy[504] = true -- Brown Nugget
+-- Familiars that have no effect from BFFS!
+EID.BFFSNoSynergy = { [10] = true, [11] = true, [81] = true, [178] = true, [238] = true, [239] = true, [243] = true, [265] = true, [268] = true, [269] = true, [276] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [431] = true, [433] = true, [436] = true, [467] = true, [469] = true, [472] = true, [492] = true, [504] = true, [516] = true, [528] = true, [542] = true, [543] = true }
+if EID.isRepentance then
+	EID.BFFSNoSynergy[178] = false -- Holy Water
+	EID.BFFSNoSynergy[276] = false -- Isaac's Heart
+	EID.BFFSNoSynergy[325] = true -- Scissors
+	EID.BFFSNoSynergy[405] = true -- GB Bug
+	EID.BFFSNoSynergy[467] = false -- Finger!
+	EID.BFFSNoSynergy[504] = false -- Brown Nugget
 	EID.BFFSNoSynergy[567] = true -- Paschal Candle
+	EID.BFFSNoSynergy[615] = true -- Lil Dumpy (I couldn't notice any change anyway)
 	EID.BFFSNoSynergy[651] = true -- Star of Bethlehem
 	EID.BFFSNoSynergy[697] = true -- Vanishing Twin
 end
+-- Items that should show their BFFS / Hive Mind synergy while looking at a BFFS / Hive Mind pedestal
+-- Charged Baby, Key Bum, Spider Mod, Succubus, Lil Spewer, Mystery Egg
+EID.BFFSPedestalWhitelist = { [372] = true, [388] = true, [403] = true, [417] = true, [537] = true, [539] = true }
+if EID.isRepentance then
+	EID.BFFSPedestalWhitelist[276] = true -- Isaac's Heart
+	EID.BFFSPedestalWhitelist[569] = true -- Blood Oath
+	EID.BFFSPedestalWhitelist[584] = true -- Book of Virtues
+	EID.BFFSPedestalWhitelist[612] = true -- Lost Soul
+	EID.BFFSPedestalWhitelist[635] = true -- Stitches
+	EID.BFFSPedestalWhitelist[685] = true -- Jar of Wisps
+	EID.BFFSPedestalWhitelist[702] = true -- Vengeful Spirit
+	EID.BFFSPedestalWhitelist[706] = true -- Abyss
+	EID.BFFSPedestalWhitelist[712] = true -- Lemegeton
+	EID.BFFSPedestalWhitelist[713] = true -- Sumptorium
+end
+
+-- Familiars that count for Hive Mind in Repentance (although it could give them No Effect if it just increases size)
+EID.HiveMindFamiliars = { [10] = true, [57] = true, [128] = true, [170] = true, [264] = true, [272] = true, [274] = true, [279] = true, [320] = true, [364] = true, [365] = true, [403] = true, [426] = true, [430] = true, [504] = true, [511] = true, [575] = true, [581] = true, [629] = true, [649] = true, [650] = true, [706] = true, }
+-- Familiars that count for Hive Mind but should be ignored by BFFS (not used yet, maybe used by modded item conditionals)
+EID.BFFSIgnore = {}
+
 
 -- Tainted character's respective normal version ID, for conditionals that apply to both versions of the character
 -- To help with other character pairs, Esau = Jacob, Dead Tainted Lazarus = Tainted Lazarus, Tainted Soul = Tainted Forgotten
 EID.TaintedToRegularID = { [20] = 19, [21] = 0, [22] = 1, [23] = 2, [24] = 3, [25] = 4, [26] = 5, [27] = 6, [28] = 7, [29] = 8, [30] = 9, [31] = 10, [32] = 13, 
 [33] = 14, [34] = 15, [35] = 16, [36] = 18, [37] = 19, [38] = 29, [39] = 37, [40] = 35 }
+-- Player IDs of Tainted characters
+EID.TaintedIDs = {}; for i = 21, 40 do EID.TaintedIDs[i] = true end
 
 -- Character IDs that are Soul/Black Hearts only: ???, The Lost, The Soul
 EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
-if REPENTANCE then
+if EID.isRepentance then
 	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
 	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
 end
--- Character IDs that have a pocket active
-EID.PocketActivePlayerIDs = { [22] = true, [23] = true, [24] = true, [25] = true, [26] = true, [29] = true, [34] = true, [36] = true, [37] = true, [38] = true, [39] = true }
+-- Character IDs that have a pocket active (0 = normal, 1 = timed, 2 = special)
+EID.PocketActivePlayerIDs = { [22] = 0, [23] = 2, [24] = 1, [25] = 2, [26] = 1, [29] = 0, [34] = 0, [36] = 0, [37] = 1, [38] = 0, [39] = 1 }
 
 -- Cards that don't work with Blank Card in Repentance (Note: ? Card is blacklisted here, don't use this for determining what is a card)
 EID.blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[48]=true,[49]=true,[50]=true,[55]=true,[78]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
 -- Cards that are treated as runes
 EID.runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[55]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
 
+-- "Evil" item IDs for Black Feather
+EID.blackFeatherItems = {[215]=true,[216]=true,[230]=true,[260]=true,[262]=true,[339]=true,[344]=true}
+if EID.isRepentance then EID.blackFeatherItems[654] = true end
+EID.blackFeatherTrinkets = {[17]=true,[22]=true}
+
+-- Luck formulas
+EID.LuckFormulas = {}
+EID.LuckFormulas["5.100.219"] = function(luck) return math.min(100 / (10 - math.floor(luck*0.3)), 50) end -- Old Bandage: Base 10%, 50% at 26.67 Luck
+if EID.isRepentance then
+	EID.LuckFormulas["5.100.219"] = function(luck) return (20 + luck) end -- Old Bandage: Base 20%, 100% at 80 Luck
+	EID.LuckFormulas["5.100.576"] = function(luck) return math.min(luck*0.5 + 6.25, 10) end -- Dirty Mind: Base 6.25%, 10% at 7.5 Luck
+end
 
 
 ---------------- BAG OF CRAFTING DATA ------------------
 
-if not REPENTANCE then return end
+if not EID.isRepentance then return end
 
 EID.BoC = {}
 

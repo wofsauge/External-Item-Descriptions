@@ -1,10 +1,28 @@
 -- This file is for various functions that are able to calculate the result effect that an item will have
 local game = Game()
-
 local variantToName = { [70] = "Pill", [100] = "Collectible", [300] = "Card", [350] = "Trinket" }
+
+-- XOR table used for RNG: https://www.jstatsoft.org/article/view/v008i14/xorshift.pdf
+local xortable = {
+[0]={ 1, 3,10},{ 1, 5,16},{ 1, 5,19},{ 1, 9,29},{ 1,11, 6},{ 1,11,16},{ 1,19, 3},{ 1,21,20},{ 1,27,27},
+	{ 2, 5,15},{ 2, 5,21},{ 2, 7, 7},{ 2, 7, 9},{ 2, 7,25},{ 2, 9,15},{ 2,15,17},{ 2,15,25},{ 2,21, 9},
+	{ 3, 1,14},{ 3, 3,26},{ 3, 3,28},{ 3, 3,29},{ 3, 5,20},{ 3, 5,22},{ 3, 5,25},{ 3, 7,29},{ 3,13, 7},
+	{ 3,23,25},{ 3,25,24},{ 3,27,11},{ 4, 3,17},{ 4, 3,27},{ 4, 5,15},{ 5, 3,21},{ 5, 7,22},{ 5, 9,7 },
+	{ 5, 9,28},{ 5, 9,31},{ 5,13, 6},{ 5,15,17},{ 5,17,13},{ 5,21,12},{ 5,27, 8},{ 5,27,21},{ 5,27,25},
+	{ 5,27,28},{ 6, 1,11},{ 6, 3,17},{ 6,17, 9},{ 6,21, 7},{ 6,21,13},{ 7, 1, 9},{ 7, 1,18},{ 7, 1,25},
+	{ 7,13,25},{ 7,17,21},{ 7,25,12},{ 7,25,20},{ 8, 7,23},{ 8,9,23 },{ 9, 5,1 },{ 9, 5,25},{ 9,11,19},
+	{ 9,21,16},{10, 9,21},{10, 9,25},{11, 7,12},{11, 7,16},{11,17,13},{11,21,13},{12, 9,23},{13, 3,17},
+	{13, 3,27},{13, 5,19},{13,17,15},{14, 1,15},{14,13,15},{15, 1,29},{17,15,20},{17,15,23},{17,15,26}
+}
+
 -- reimplementation of RNG:Next()
--- Default RNG shift values for many things are 5, 9, 7
+-- Default RNG shift values for many things are 5, 9, 7 (xor table #35)
 function EID:RNGNext(rngNum, shift1, shift2, shift3)
+	if shift1 and not shift2 then
+		shift3 = xortable[shift1][3]
+		shift2 = xortable[shift1][2]
+		shift1 = xortable[shift1][1]
+	end
 	rngNum = rngNum ~ ((rngNum >> (shift1 or 5)) & 4294967295)
 	rngNum = rngNum ~ ((rngNum << (shift2 or 9)) & 4294967295)
 	rngNum = rngNum ~ ((rngNum >> (shift3 or 7)) & 4294967295)
@@ -17,6 +35,7 @@ function EID:SeedToFloat(seed)
 	return seed * multi;
 end
 
+
 -- D Infinity --
 local dinfinityList = { [0] = 105, 166, 284, 283, 285, 406, 386 }
 -- Repentance's D Infinity order: D1, D4, D6, Eternal D6, D7, D8, D10, D12, D20, D100
@@ -28,7 +47,7 @@ function EID:CurrentDInfinity(rng, player)
 		rng = EID:RNGNext(rng, 0x1, 0x9, 0x1D) -- magic disassembled numbers!
         return dinfinityList[rng % 7]
 	else
-        local playerID = EID:getPlayerID(player)
+        local playerID = EID:getPlayerID(player, true)
         return dinfinityList[EID.DInfinityState[playerID]] or 476
 	end
 end
@@ -42,7 +61,7 @@ if EID.isRepentance then
     function EID:WatchForDice(collectibleType, _, player)
         if not justDidD or collectibleType == 489 then return end
         justDidD = false
-        local playerID = EID:getPlayerID(player)
+        local playerID = EID:getPlayerID(player, true)
         for i,v in ipairs(dinfinityList) do
             if v == collectibleType then EID.DInfinityState[playerID] = i end
         end
@@ -246,7 +265,8 @@ function EID:VoidRoomCheck()
 		(not EID.isRepentance or pickup.OptionsPickupIndex == 0 or EID.VoidOptionIndexes[pickup.OptionsPickupIndex] == nil) then
 			numRunable = numRunable + 1
 			if EID.isRepentance then EID.VoidOptionIndexes[pickup.OptionsPickupIndex] = entity.SubType end
-			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE) then
+			-- Moving Box (523) is counted as a passive item
+			if (EID.itemConfig:GetCollectible(entity.SubType).Type ~= ItemType.ITEM_ACTIVE or entity.SubType == 523) then
 				numVoidable = numVoidable + 1
 			else
 				table.insert(activesAbsorbed, entity.SubType)
@@ -328,3 +348,110 @@ function EID:D1Prediction(rng)
 	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
 	return pickupNames[fullID] or EID:GetEntityXMLNameByString(fullID) or fullID
 end
+
+
+-- Glyph of Balance --
+function EID:GlyphOfBalancePrediction(player)
+	local fullID = "5.0"
+	
+	local playerID = player:GetPlayerType()
+	local skipHearts = EID.isRepentance and EID.NoRedHeartsPlayerIDs[playerID] -- Soul Heart characters can't get hearts in Repentance
+	local skipSoulHearts = EID.isRepentance and (playerID == 18 or playerID == 14 or playerID == 33) -- Bethany and Keepers can't get Soul Hearts with 6 or less containers in Repentance
+	local skipBombs = EID.isRepentance and playerID == 25 -- Tainted ??? (the only character that can't have Bombs)
+	
+	-- Soul Hearts: When Isaac has no Red Heart containers and less than 2 Soul Hearts.
+	if not skipHearts and player:GetEffectiveMaxHearts() == 0 and player:GetSoulHearts() < 4 then
+		fullID = "5.10.3"
+	-- Full Red Hearts: While at 0.5 Red Hearts.
+	-- In AB+, you seem to have to have at least one non-Bone container to trigger this condition
+	elseif not skipHearts and player:CanPickRedHearts() and player:GetHearts() <= 1 and (EID.isRepentance or player:GetMaxHearts() > 0) then
+		fullID = "5.10.1"
+	-- Keys: When Isaac has no keys.
+	elseif player:GetNumKeys() == 0 then
+		fullID = "5.30.1"
+	-- Bombs: When Isaac has no bombs.
+	elseif not skipBombs and player:GetNumBombs() == 0 then
+		fullID = "5.40.1"
+	-- Big Poop Nugget: When Tainted ??? has no poops
+	elseif skipBombs and player:GetPoopMana() == 0 then
+		fullID = "5.42.1"
+	-- Soul Hearts: When Bethany has no soul charges
+	elseif EID.isRepentance and playerID == 18 and player:GetSoulCharge() == 0 then
+		fullID = "5.10.3"
+	-- Red Hearts: When Tainted Bethany has no blood charges
+	elseif EID.isRepentance and playerID == 36 and player:GetBloodCharge() == 0 then
+		fullID = "5.10.1"
+	-- Full Red Hearts: When Isaac has at least half a Red Heart container empty.
+	elseif not skipHearts and player:CanPickRedHearts() then
+		fullID = "5.10.1"
+	-- Pennies: While Isaac has less than 15 pennies.
+	elseif player:GetNumCoins() < 15 then
+		fullID = "5.20.1"
+	-- Keys: When Isaac has less than 5 keys.
+	elseif player:GetNumKeys() < 5 then
+		fullID = "5.30.1"
+	-- Bombs: When Isaac has less than 5 bombs.
+	elseif not skipBombs and player:GetNumBombs() < 5 then
+		fullID = "5.40.1"
+	-- Trinkets: If Isaac has no trinkets and there are no trinkets on the ground in the room.
+	elseif player:GetTrinket(0) == 0 and #Isaac.FindByType(5, 350) == 0 then
+		fullID = "5.350"
+	-- Big Poop Nugget: When Tainted ??? has less than 5 poops
+	elseif skipBombs and player:GetPoopMana() < 5 then
+		fullID = "5.42.1"
+	-- Soul Hearts: When Bethany has less than 12 soul charges
+	elseif EID.isRepentance and playerID == 18 and player:GetSoulCharge() < 12 then
+		fullID = "5.10.3"
+	-- Red Hearts: When Tainted Bethany has less than 12 blood charges
+	elseif EID.isRepentance and playerID == 36 and player:GetBloodCharge() < 12 then
+		fullID = "5.10.1"
+	-- Soul Hearts: When Isaac has less than 6 total Heart containers of any kind.
+	elseif not skipHearts and not skipSoulHearts and player:GetHearts() + player:GetSoulHearts() < 12 then
+		fullID = "5.10.3"
+	end
+	
+	--todo: in REPENTOGON, replace this whole function (in the eid_repentogon lua style)
+	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
+	return pickupNames[fullID] or EID:GetEntityXMLNameByString(fullID) or fullID
+end
+
+--- Crooked Penny ---
+function EID:CrookedPennyPrediction(rng, carBattery)
+	local rng = EID:RNGNext(rng)
+	local seed = rng
+	-- Repentance makes a new seed by XORing the room's decoration seed
+	if EID.isRepentance then
+		local roomSeed = game:GetLevel():GetCurrentRoom():GetDecorationSeed()
+		seed = seed ~ roomSeed
+		if seed == 0 then seed = 1 end
+		seed = EID:RNGNext(seed, 4) -- xorshift #4
+	end
+	
+	local result = ""
+	if seed % 2 == 0 then
+		result = EID:getDescriptionEntry("CrookedPennyHeads")
+	else
+		result = EID:getDescriptionEntry("CrookedPennyTails")
+		-- failures advance crooked penny's RNG an additional time to give the pity penny a seed value
+		rng = EID:RNGNext(rng)
+	end
+	
+	if carBattery then return result .. "#{{Collectible356}} " .. EID:CrookedPennyPrediction(rng)
+	else return result end
+end
+
+-- Liberty Cap, Broken Syringe, Mom's Lock (extremely similar, simple RNG modulos) --
+local libertyItems = {[0] = 21, 71, 120, 121}
+if EID.isRepentance then libertyItems = {[0] = 12, 71, 120, 121, 342, 398} end
+local syringeItems = {[0] = 13, 14, 240, 70, 143, 345, 493, 496}
+local momItems = {[0] = 29, 30, 31, 55, 110, 114, 199, 200, 217, 228, 355, 508, 732}
+
+function EID:TemporaryEffectPrediction(player, rng, itemTable)
+	local tempItem = itemTable[rng % #itemTable]
+	if player:GetEffects():HasCollectibleEffect(tempItem) then return tempItem else return false end
+end
+
+function EID:LibertyCapPrediction(player) return EID:TemporaryEffectPrediction(player, player:GetTrinketRNG(32):GetSeed(), libertyItems) end
+function EID:BrokenSyringePrediction(player) return EID:TemporaryEffectPrediction(player, player:GetTrinketRNG(132):GetSeed(), syringeItems) end
+function EID:MomsLockPrediction(player) return EID:TemporaryEffectPrediction(player, player:GetTrinketRNG(153):GetSeed(), momItems) end
+-- dont forget to actually add these to hold map desc; remember these are Hidden Information

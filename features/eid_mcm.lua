@@ -583,7 +583,7 @@ if MCMLoaded then
 	EID:AddNumberSetting("Reminder", "ItemReminderDisplayMode", "Display Mode",  1, #itemReminderModes, {indexOf = itemReminderModes, infoText = "Changes the display mode. All = overview + categories. NoOverview = categories. Classic = Overview only", onChangeFunc =
 	function(currentNum)
 		EID.MCM_OptionChanged = true
-		EID.ItemReminderSelectedItem = 0
+		EID:ResetItemReminderSelectedItems()
 		EID.ItemReminderSelectedCategory = currentNum ~= 2 and 0 or 1 -- reset category
 		EID.Config["ItemReminderDisplayMode"] = itemReminderModes[currentNum]
 	end})
@@ -688,6 +688,9 @@ if MCMLoaded then
 		EID:AddHotkeySetting("Crafting",
 			"CraftingResultButton", "Result Toggle (Controller)",
 			"Press this button to toggle the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)", true)
+		EID:AddHotkeySetting("Crafting",
+			"CraftingSearchKey", "Search Toggle (Keyboard only)",
+			"Press this key to toggle the search feature", false)
 
 		MCM.AddSpace("EID", "Crafting")
 		--------Clear bag---------
@@ -1045,6 +1048,6 @@ if MCMLoaded then
 	end
 
 	if MCM.i18n == "Chinese" then
-		require("eid_mcm_cn")
+		require("features.eid_mcm_cn")
 	end
 end

@@ -22,13 +22,6 @@ local triggerColors = {
 local actions = { [0] = "use_active_item", "add_temporary_effect", "convert_entities", "area_damage", "spawn_entity", "fart" }
 local triggers = { [0] = "active", "tear_fire", "enemy_hit", "enemy_kill", "damage_taken", "room_clear", "entity_spawned", "pickup_collected", "chain" }
 
---simple decimal rounding
-local function SimpleRound(num, dp)
-	dp = dp or 2
-	local mult = 10^dp
-	return math.floor(num * mult + 0.5)/mult
-end
-
 local function entityToName(Type, Variant, plural)
 	plural = plural or false
 	-- -1 is often used as an "any of this type", even if there's only one of that type, so converting it to 0 can help find names
@@ -122,8 +115,7 @@ function EID:CheckGlitchedItemConfig(id)
 		for i,func in ipairs(getFunctions) do
 			local val = item[func](item) * statMult[i]
 			if val ~= 0 then
-				if (i == 4) then print("range!") end
-				local s = string.format("%.2g",SimpleRound(val))
+				local s = string.format("%.2g",EID:SimpleRound(val))
 				local prefix = "↑ "
 				if val > 0 then s = "+" .. s else prefix = "↓ " end
 				attributes = attributes .. prefix .. EID:ReplaceVariableStr(voidNames[i], 1, s) .. "#"
@@ -156,13 +148,13 @@ function EID:CheckGlitchedItemConfig(id)
 				replacements[1] = "{{ColorGray}}" .. entityToName(effectProp.type, effectProp.variant) .. "{{CR}}"
 			elseif effectType == "fart" then
 				--I think the fart scale is strictly visual and therefore useless
-				--replacements[1] = SimpleRound(effectProp.scale)
-				replacements[1] = string.format("%.4g",SimpleRound(effectProp.radius))
+				--replacements[1] = EID:SimpleRound(effectProp.scale)
+				replacements[1] = string.format("%.4g",EID:SimpleRound(effectProp.radius))
 			elseif effectType == "area_damage" then
-				replacements[1] = string.format("%.4g",SimpleRound(effectProp.damage))
+				replacements[1] = string.format("%.4g",EID:SimpleRound(effectProp.damage))
 				--Fart scales are all small numbers and seem to be tiles; area damage is huge numbers, but still tiles?
 				--so area damage is almost always the entire room
-				replacements[2] = string.format("%.4g",SimpleRound(effectProp.radius))
+				replacements[2] = string.format("%.4g",EID:SimpleRound(effectProp.radius))
 			end
 			
 			if effectTrigger ~= lastEffectTrigger then

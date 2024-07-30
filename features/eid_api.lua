@@ -60,6 +60,13 @@ function EID:addTrinket(id, description, itemName, language)
 	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description, EID._currentMod}
 end
 
+-- Adds character specific information, which can be viewed in the Item Reminder
+function EID:addCharacterInfo(characterId, description, playerName, language)
+	playerName = playerName or "Modded Character"
+	language = language or "en_us"
+	EID.descriptions[language].CharacterInfo[characterId] = {playerName, description}
+end
+
 -- Adds information about appending text and multiplying numbers in a modded trinket's Golden/Mom's Box description. All three variables are optional, set to ""/0 or nil to not include them
 -- appendText: Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
 -- numbersToMultiply: The number inside the text that should be multiplied. can be one number, or a table of numbers
@@ -113,7 +120,17 @@ end
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
-	EID.descriptions[language].custom["5.70." .. id+1] = {id+1, itemName, description, EID._currentMod}
+	EID.descriptions[language].pills[id+1] = {id, itemName, description, EID._currentMod}
+	-- Default the horsepill to the same description as the base pill, for mods that only define the base pill
+	if EID.isRepentance and EID.descriptions[language].horsepills[id+1] == nil then
+		EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
+	end
+end
+function EID:addHorsePill(id, description, itemName, language)
+	if not EID.isRepentance then return end
+	itemName = itemName or nil
+	language = language or "en_us"
+	EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
 end
 
 -- Adds a metadata for a pilleffect. Used for Placebo/False PHD. Optional parameters: class
@@ -301,6 +318,7 @@ function EID:getTableName(Type, Variant, SubType)
 		end
 	elseif idString == "-999.-1" then return "sacrifice"
 	elseif idString == "1000.76" then return "dice"
+	elseif idString == "1.0" then return "players"
 	else return "custom"
 	end
 end
@@ -610,6 +628,8 @@ function EID:getObjectName(Type, Variant, SubType)
 		return EID:getDescriptionEntry("sacrificeHeader").." ("..SubType.."/"..#EID.descriptions["en_us"].sacrifice..")"
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
+	elseif tableName == "players" then
+		return EID:getPlayerName(SubType)
 	elseif tableName == "custom" then
 		local xmlName = EID:GetEntityXMLName(Type, Variant, SubType)
 		return name or xmlName or Type.."."..Variant.."."..SubType
@@ -680,7 +700,7 @@ function EID:hasDescription(entity)
 	if EID.Config["EnableEntityDescriptions"] and EID:getTableName(entity.Type, entity.Variant, entity.SubType) == "custom" then
 		isAllowed = __eidEntityDescriptions[entityString] ~= nil
 		isAllowed = isAllowed or EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil
-		isAllowed = isAllowed or entity:GetData() and type(entity:GetData()["EID_Description"]) ~= type(nil)
+		isAllowed = isAllowed or EID:getEntityData(entity, "EID_Description") ~= nil
 	end
 	if entity.Type == EntityType.ENTITY_PICKUP then
 		if entity.SubType == 0 and EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil then
@@ -715,6 +735,7 @@ function EID:replaceShortMarkupStrings(text)
 	return text
 end
 
+local VariantToColorText = { [100] = "{{ColorYellow}}", [350] = "{{ColorYellow}}", [300] = "{{ColorCard}}", [70] = "{{ColorPill}}" }
 -- Replaces name markup objects with the actual name
 function EID:replaceNameMarkupStrings(text)
 	for word in string.gmatch(text, "{{Name.-}}") do
@@ -733,17 +754,27 @@ function EID:replaceNameMarkupStrings(text)
 			for e in string.gmatch(strTrimmed, "([^.]*)") do
 				table.insert(entityID, tonumber(e))
 			end
-			name = EID:getObjectName(entityID[1], entityID[2], entityID[3])
+			local iconText = ""
+			local colorText = ""
+			if entityID[1] == 1 then
+				if showIcon then iconText = "{{Player" .. entityID[3] .. "}} " end
+				colorText = "{{ColorIsaac}}"
+			else
+				if showIcon then iconText = "{{" .. EID:GetIconNameByVariant(entityID[2]) .. entityID[3] .. "}} " end
+				colorText = VariantToColorText[entityID[2]] or ""
+			end
+			if entityID[2] == 70 then name = iconText .. colorText .. EID:getPillName(entityID[3], false) .. "{{CR}}"
+			else name = iconText .. colorText .. EID:getObjectName(entityID[1], entityID[2], entityID[3]) .. "{{CR}}" end
 		elseif indicator == "C" then -- Collectible
-			name = (showIcon and "{{Collectible"..id.."}} " or "")..EID:getObjectName(5, 100, id)
+			name = (showIcon and "{{Collectible"..id.."}} " or "") .. "{{ColorYellow}}" .. EID:getObjectName(5, 100, id) .. "{{CR}}"
 		elseif indicator == "T" then -- Trinket
-			name = (showIcon and "{{Trinket"..id.."}} " or "")..EID:getObjectName(5, 350, id)
+			name = (showIcon and "{{Trinket"..id.."}} " or "") .. "{{ColorYellow}}" .. EID:getObjectName(5, 350, id) .. "{{CR}}"
 		elseif indicator == "P" then -- Pills
-			name = (showIcon and "{{Pill"..id.."}} " or "")..EID:getPillName(id, false)
+			name = (showIcon and "{{Pill"..id.."}} " or "") .. "{{ColorPill}}" .. EID:getPillName(id, false) .. "{{CR}}"
 		elseif indicator == "K" then -- Card
-			name = (showIcon and "{{Card"..id.."}} " or "")..EID:getObjectName(5, 300, id)
+			name = (showIcon and "{{Card"..id.."}} " or "") .. "{{ColorCard}}" .. EID:getObjectName(5, 300, id) .. "{{CR}}"
 		elseif indicator == "I" then -- Player (I for Isaac)
-			name = (showIcon and "{{Player"..id.."}} " or "")..EID:getPlayerName(id)
+			name = (showIcon and "{{Player"..id.."}} " or "") .. "{{ColorIsaac}}" .. EID:getPlayerName(id) .. "{{CR}}"
 		end
 		text = string.gsub(text, word, name, 1)
 	end
@@ -780,9 +811,24 @@ end
 -- Tries to read special markup used to generate icons for all Collectibles/Trinkets and the default Cards/Pills
 -- Returns an inlineIcon Object or nil if no parsing was possible
 function EID:createItemIconObject(str)
-	local collID,numReplace = string.gsub(str, "Collectible", "")
 	local item = nil
 	local subTypeIdentifier = 0
+
+	-- Check for {{Item#.##.###}} markup; easiest way to handle it is to just call this function again
+	local itemID,numReplaceGeneric = string.gsub(str, "Item", "")
+	if numReplaceGeneric > 0 and itemID ~= "" then
+		local Type, Var, Sub = EID:SplitTVS(itemID)
+		if Type == 1 then return EID:getIcon("Player" .. Sub)
+		elseif Type == 5 then
+			if Var == 100 then return EID:createItemIconObject("Collectible" .. Sub)
+			elseif Var == 350 then return EID:createItemIconObject("Trinket" .. Sub)
+			elseif Var == 300 then return EID:createItemIconObject("Card" .. Sub)
+			elseif Var == 70 then return EID:createItemIconObject("Pill" .. Sub)
+			end
+		end
+	end
+	
+	local collID,numReplace = string.gsub(str, "Collectible", "")
 	if numReplace > 0 and collID ~= "" and tonumber(collID) ~= nil then
 		item = EID.itemConfig:GetCollectible(tonumber(collID))
 		subTypeIdentifier = tonumber(collID)
@@ -799,8 +845,8 @@ function EID:createItemIconObject(str)
 	end
 	local pillID,numReplace4 = string.gsub(str, "Pill", "")
 	if numReplace4 > 0 and pillID ~= "" and tonumber(pillID) ~= nil then
-		if tonumber(pillID) > maxPillID then return EID.InlineIcons[str] or EID.InlineIcons["Pill"] end
-		return {"Pills", tonumber(pillID)-1, 9, 8, 0, 1, EID.CardPillSprite}
+		if tonumber(pillID % 2048) > maxPillID then return EID.InlineIcons[str] or EID.InlineIcons["Pill"] end
+		return {"Pills", tonumber(pillID % 2048)-1, 9, 8, 0, 1, EID.CardPillSprite}
 	end
 	if item == nil then
 		return nil
@@ -974,15 +1020,19 @@ function EID:replaceAllMarkupWithSpaces(text, checkBulletpoint)
 			return ""
 		end
 	end
+	-- iconsFound is used to make the next space after a markup icon be immune to line breaks, but only if it's just one icon with no other text
+	local iconsFound = 0; if text:gsub(" ", ""):gsub("{{.-}}","") ~= "" then iconsFound = -999 end
+	
 	for word in string.gmatch(text, "{{.-}}") do
 		local lookup = EID:getIcon(word)
 		if lookup[1] ~= "ERROR" then
 			text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
+			iconsFound = iconsFound + 1
 		else
 			text = string.gsub(text, word, "", 1)
 		end
 	end
-	return text
+	return text, iconsFound
 end
 
 -- Fits a given string to a specific width
@@ -990,8 +1040,8 @@ end
 function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formattedLines = {}
 	-- Lines with a {{NoLineBreak}} tag should be left in one continuous line
-	if str:find("{{NoLineBreak}}") then
-		str = str:gsub("{{NoLineBreak}}","")
+	if str:find("{{NoLineBreak}}") or str:find("{{NoLB}}") then
+		str = str:gsub("{{NoLineBreak}}",""):gsub("{{NoLB}}","")
 		table.insert(formattedLines,str)
 		return formattedLines
 	end
@@ -999,6 +1049,8 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local text = {}
 	-- the first word we run into might actually be a bulletpoint icon, which should be zero width
 	local isBulletpoint = true
+	-- if we find an icon by itself, we should skip the following space
+	local previousWordWasIcon = false
 	local cursor = 1
 	local word_begin_index = 1
 
@@ -1065,11 +1117,11 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 
 				-- we can break after str[cursor]
 				local word = sub(str, word_begin_index, cursor)
-				local wordFiltered = EID:replaceAllMarkupWithSpaces(word, isBulletpoint)
+				local wordFiltered, iconsFound = EID:replaceAllMarkupWithSpaces(word, isBulletpoint)
 				isBulletpoint = false
 				local wordLength = EID:getStrWidth(wordFiltered)
 
-				if curLength + wordLength <= textboxWidth or curLength < 17 then
+				if curLength + wordLength <= textboxWidth or curLength < 17 or previousWordWasIcon then
 					table.insert(text, word)
 					curLength = curLength + wordLength
 				else
@@ -1077,7 +1129,7 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 					text = { word }
 					curLength = wordLength
 				end
-
+				previousWordWasIcon = (iconsFound == 1)
 				-- next word starts here
 				word_begin_index = cursor + 1
 		end
@@ -1163,15 +1215,77 @@ function EID:updateDescriptionsViaTable(changeTable, tableToUpdate)
 	end
 end
 
+-- Converts e.g. "5.100.69" format strings into 5, 100, and 69; returns 0 for any not included
+function EID:SplitTVS(tvsString)
+	local Type, Var, Sub = 0, 0, 0
+	local tvsTable = {}
+	for i in string.gmatch(tvsString, "[^.]+") do table.insert(tvsTable, tonumber(i)) end
+	Type = tvsTable[1] or Type; Var = tvsTable[2] or Var; Sub = tvsTable[3] or Sub;
+	return Type, Var, Sub
+end
+
+-- Checks if any player has a given item ID (or anyone is a given player ID)
+function EID:PlayersHaveItem(Type, Var, Sub)
+	-- convert "5.100.69" format strings into type, var, sub
+	if type(Type) == "string" then
+		Type, Var, Sub = EID:SplitTVS(Type)
+	-- assume collectible if only Type was given
+	elseif Var == nil then Sub = Type; Type = 5; Var = 100 end
+	if Type == 1 then return EID:PlayersHaveCharacter(Sub)
+	elseif Type == 5 then
+		if Var == 100 then return EID:PlayersHaveCollectible(Sub)
+		elseif Var == 350 then return EID:PlayersHaveTrinket(Sub)
+		elseif Var == 300 then return EID:PlayersHaveCard(Sub)
+		elseif Var == 70 then return EID:PlayersHavePill(Sub)
+		end
+	end
+	return false
+end
+
+-- Checks if the given player has the given item ID (or is the given player ID)
+function EID:PlayerHasItem(player, Type, Var, Sub)
+	-- convert "5.100.69" format strings into type, var, sub
+	if type(Type) == "string" then
+		Type, Var, Sub = EID:SplitTVS(Type)
+	-- assume collectible if only Type was given
+	elseif Var == nil then Sub = Type; Type = 5; Var = 100 end
+	if Type == 1 then return player:GetPlayerType() == Sub
+	elseif Type == 5 then
+		if Var == 100 then return player:HasCollectible(Sub)
+		elseif Var == 350 then return player:HasTrinket(Sub)
+		elseif Var == 300 then return EID:PlayerHasCard(player, Sub)
+		elseif Var == 70 then return EID:PlayerHasPill(player, Sub)
+		end
+	end
+	return false
+end
+
 -- Checks if any player has a given collectible ID, for modifiers
 function EID:PlayersHaveCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(collectibleID) then
-			return true, player
+			return true, player, i
 		end
 	end
 	return false
+end
+
+function EID:PlayersVoidedCollectible(collectibleID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		local playerNum = EID:getPlayerID(player, true)
+		if player:HasCollectible(477) and EID.absorbedItems[tostring(playerNum)] and EID.absorbedItems[tostring(playerNum)][tostring(collectibleID)] then
+			return true, player, i
+		end
+	end
+	return false
+end
+function EID:PlayerVoidedCollectible(player, collectibleID)
+	local i = EID:getPlayerID(player, true)
+	if player:HasCollectible(477) and EID.absorbedItems[tostring(i)] and EID.absorbedItems[tostring(i)][tostring(collectibleID)] then
+		return true
+	end
 end
 
 -- Checks if any player has a given trinket ID, for modifiers
@@ -1179,10 +1293,48 @@ function EID:PlayersHaveTrinket(trinketID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:HasTrinket(trinketID) then
-			return true, player
+			return true, player, i
 		end
 	end
 	return false
+end
+
+function EID:PlayersHaveCard(cardID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		for j = 0, (EID.isRepentance and 3 or 1) do
+			if player:GetCard(j) == cardID then
+				return true, player, i
+			end
+		end
+	end
+	return false
+end
+function EID:PlayerHasCard(player, cardID)
+	for j = 0, (EID.isRepentance and 3 or 1) do
+		if player:GetCard(j) == cardID then
+			return true
+		end
+	end
+end
+
+function EID:PlayersHavePill(pillID)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		for j = 0, (EID.isRepentance and 3 or 1) do
+			if player:GetPill(j) == pillID then
+				return true, player, i
+			end
+		end
+	end
+	return false
+end
+function EID:PlayerHasPill(player, pillID)
+	for j = 0, (EID.isRepentance and 3 or 1) do
+		if player:GetPill(j) == pillID then
+			return true
+		end
+	end
 end
 
 -- Checks if someone is playing as a certain character, for modifiers
@@ -1191,10 +1343,10 @@ function EID:PlayersHaveCharacter(playerType, includeTainted)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:GetPlayerType() == playerType then
-			return true, player
+			return true, player, i
 		end
 		if includeTainted and EID.isRepentance and EID.TaintedToRegularID[player:GetPlayerType()] == playerType then
-			return true, player
+			return true, player, i
 		end
 	end
 	return false
@@ -1229,6 +1381,24 @@ function EID:GetMaxCollectibleID()
 		end
 	end
 	maxCollectibleID = id
+	return id
+end
+
+local maxTrinketID = nil
+function EID:GetMaxTrinketID()
+	if maxTrinketID then
+		return maxTrinketID
+	end
+	local id = TrinketType.NUM_TRINKETS-1
+	local step = 16
+	while step > 0 do
+		if EID.itemConfig:GetTrinket(id+step) ~= nil then
+			id = id + step
+		else
+			step = step // 2
+		end
+	end
+	maxTrinketID = id
 	return id
 end
 
@@ -1463,6 +1633,12 @@ function EID:getEntityData(entity, str)
 	return nil
 end
 
+function EID:setEntityData(entity, str, value)
+	if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:GetData() ~= nil then
+		entity:GetData()[str] = value
+	end
+end
+
 -- Function to fix font compatibility. Resets config font to a value compatible with your current language
 function EID:fixDefinedFont(forceRefresh)
 	local curLang = EID:getLanguage()
@@ -1579,11 +1755,24 @@ function EID:checkPlayersForMissingItems()
 	end
 end
 
-function EID:getPlayerID(entityPlayer)
+function EID:getPlayerID(entityPlayer, lazarusAdjust)
 	if not entityPlayer then return 0 end
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if GetPtrHash(player) == GetPtrHash(entityPlayer) then
+			-- Dead Tainted Lazarus exceptions
+			if lazarusAdjust and EID.isRepentance then
+				if player:GetPlayerType() == 38 then
+					-- Check for Birthright to make the ghostly form use the same base ID as the main form
+					if player:GetMainTwin() then
+						if GetPtrHash(player:GetMainTwin()) ~= GetPtrHash(player) then
+							i = EID:getPlayerID(player:GetMainTwin())
+						end
+					end
+					-- Increase the ID by 666 if Dead Tainted Lazarus
+					i = i + 666
+				end
+			end
 			return i
 		end
 	end
@@ -1593,6 +1782,11 @@ end
 -- Get the current Language. Defaults to english if none is set.
 function EID:getLanguage()
 	local lang = EID.Config["Language"]
+	-- Reset invalid languages (like en_us_detailed)
+	if EID.descriptions[lang] == nil then
+		EID.Config["Language"] = "auto"
+		lang = "auto"
+	end
 	if lang == "auto" then
 		return Options and EID.LanguageMap[Options.Language] or "en_us"
 	end
@@ -1694,24 +1888,21 @@ EID.TransformationProgress = {}
 function EID:evaluateTransformationProgress(transformation)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		EID.TransformationProgress[i] = {}
-		EID.TransformationProgress[i][transformation] = 0
+		local id = EID:getPlayerID(player, true) -- Dead Tainted Lazarus exception
+		EID.TransformationProgress[id] = {}
+		EID.TransformationProgress[id][transformation] = 0
 		local transformData = EID.TransformationData[transformation]
 
 		if not EID.TransformationLookup[transformation] then return end
 
 		if REPENTOGON and transformData and transformData.VanillaForm then
 			 -- REPENTOGON lets us ignore everything else for vanilla transformation progress
-			EID.TransformationProgress[i][transformation] = player:GetPlayerFormCounter(transformData.VanillaForm)
+			EID.TransformationProgress[id][transformation] = player:GetPlayerFormCounter(transformData.VanillaForm)
 		elseif transformData and transformData.VanillaForm and player:HasPlayerForm(transformData.VanillaForm) then
-			EID.TransformationProgress[i][transformation] = transformData.NumNeeded or 3
+			EID.TransformationProgress[id][transformation] = transformData.NumNeeded or 3
 		else
-			local pickupHistory = EID.PlayerItemInteractions[i].pickupHistory
+			local pickupHistory = EID.PlayerItemInteractions[id].pickupHistory
 			local pillsTable = {}
-			-- Dead Tainted Lazarus exception
-			if player:GetPlayerType() == 38 then
-				pickupHistory = EID.PlayerItemInteractions[i].altPickupHistory or pickupHistory
-			end
 			if pickupHistory then
 				for j = 1, #pickupHistory do
 					if pickupHistory[j][1] == "pill" then
@@ -1724,38 +1915,35 @@ function EID:evaluateTransformationProgress(transformation)
 				end
 			end
 
-			local activesTable = EID.PlayerItemInteractions[i].actives
-			if player:GetPlayerType() == 38 then
-				activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
-			end
+			local activesTable = EID.PlayerItemInteractions[id].actives
 			for entityString, _ in pairs(EID.TransformationLookup[transformation]) do
 				local eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
 				if tonumber(eType) == EntityType.ENTITY_PICKUP then
 					if tonumber(eVariant) == PickupVariant.PICKUP_COLLECTIBLE then
-						local currentCount = EID.TransformationProgress[i][transformation]
+						local currentCount = EID.TransformationProgress[id][transformation]
 						if activesTable[tostring(eSubType)] then
-							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + activesTable[tostring(eSubType)]
+							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + activesTable[tostring(eSubType)]
 						else
 							local collCount = player:GetCollectibleNum(eSubType, true)
-							if EID.PlayerItemInteractions[i].rerollItems then
-								collCount = collCount - (EID.PlayerItemInteractions[i].rerollItems[tostring(eSubType)] or 0)
+							if EID.PlayerItemInteractions[id].rerollItems then
+								collCount = collCount - (EID.PlayerItemInteractions[id].rerollItems[tostring(eSubType)] or 0)
 							end
-							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + collCount
+							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + collCount
 
 							-- Undo the Book of Virtues active item getting counted here
-							if tonumber(eSubType) == 584 and player:GetActiveItem() == 584 then
-								EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] - 1
+							if EID.isRepentance and tonumber(eSubType) == 584 and player:GetActiveItem() == 584 then
+								EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] - 1
 							end
 						end
 						-- In AB+, only one copy of a given collectible is counted for trans
-						if not EID.isRepentance and EID.TransformationProgress[i][transformation] > currentCount + 1 then
-							EID.TransformationProgress[i][transformation] = currentCount + 1
+						if not EID.isRepentance and EID.TransformationProgress[id][transformation] > currentCount + 1 then
+							EID.TransformationProgress[id][transformation] = currentCount + 1
 						end
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_TRINKET and player:HasTrinket(eSubType) then
-						EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + player:GetTrinketMultiplier(eSubType)
+						EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + player:GetTrinketMultiplier(eSubType)
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_PILL then
 						if pillsTable[tostring(eSubType)] then
-							EID.TransformationProgress[i][transformation] = EID.TransformationProgress[i][transformation] + pillsTable[tostring(eSubType)]
+							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + pillsTable[tostring(eSubType)]
 						end
 					end
 				end
@@ -1793,48 +1981,45 @@ EID.RecentlyTouchedItems = {}
 local hadQueuedItem = {}
 function EID:evaluateQueuedItems()
 	for i = 0, game:GetNumPlayers() - 1 do
-		EID:InitItemInteractionIfAbsent(i)
 		local player = Isaac.GetPlayer(i)
+		local id = EID:getPlayerID(player, true)
+		EID:InitItemInteractionIfAbsent(id)
+		
 		if player.QueuedItem then
 			-- Refresh our descriptions and grid entity list upon a queued passive item being added to a player
-			if not player.QueuedItem.Item and hadQueuedItem[i] then
+			if not player.QueuedItem.Item and hadQueuedItem[id] then
 				EID.ForceRefreshCache = true
 				EID:CheckCurrentRoomGridEntities()
 			end
-			hadQueuedItem[i] = player.QueuedItem.Item ~= nil
-			if EID.PlayerItemInteractions[i].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
+			hadQueuedItem[id] = player.QueuedItem.Item ~= nil
+			if EID.PlayerItemInteractions[id].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
 				return
 			else
-				EID.PlayerItemInteractions[i].LastTouch = 0
+				EID.PlayerItemInteractions[id].LastTouch = 0
 			end
 
 			if not player.QueuedItem.Touched and player.QueuedItem.Item then
-				EID.PlayerItemInteractions[i].LastTouch = game:GetFrameCount()
+				EID.PlayerItemInteractions[id].LastTouch = game:GetFrameCount()
 				local itemIDStr = tostring(player.QueuedItem.Item.ID)
 				-- Add touched active items to our transformation progress table
 				if player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
 					-- A new active item was touched; initiate its touch count to 0 for all players
 					-- (Fixes co-op bugs, compared to only initiating it for the toucher)
-					for j = 0, game:GetNumPlayers() - 1 do
-						EID.PlayerItemInteractions[j].actives[itemIDStr] = EID.PlayerItemInteractions[j].actives[itemIDStr] or 0
-						EID.PlayerItemInteractions[j].altActives[itemIDStr] = EID.PlayerItemInteractions[j].altActives[itemIDStr] or 0
-					end
-
-					-- Dead Tainted Lazarus exceptions
-					local activesTable = EID.PlayerItemInteractions[i].actives
-					if player:GetPlayerType() == 38 then
-						activesTable = EID.PlayerItemInteractions[i].altActives or activesTable
-					end
+					EID:InitActiveItemInteraction(itemIDStr)
+					
+					local activesTable = EID.PlayerItemInteractions[id].actives
 					EID.ForceRefreshCache = true
 					activesTable[itemIDStr] = activesTable[itemIDStr] + 1
 				elseif player.QueuedItem.Item.Type ~= ItemType.ITEM_TRINKET then
 					-- In AB+, Halo of Flies is counted as an active item due to inaccuracy with GetCollectibleNum
 					if (not EID.isRepentance and itemIDStr == "10") then
-						EID.PlayerItemInteractions[i].actives[itemIDStr] = EID.PlayerItemInteractions[i].actives[itemIDStr] + 1
+						EID.PlayerItemInteractions[id].actives[itemIDStr] = EID.PlayerItemInteractions[id].actives[itemIDStr] + 1
 					end
 					-- Put non-active item pickups into the recent item list, for printing in the Item Reminder
-					table.insert(EID.RecentlyTouchedItems[i], player.QueuedItem.Item.ID)
-					EID.ItemReminderSelectedItem = 0
+					local playerID = i
+					if EID.isRepentance and player:GetPlayerType() == 38 then playerID = playerID + 666 end
+					table.insert(EID.RecentlyTouchedItems[playerID], player.QueuedItem.Item.ID)
+					EID:ResetItemReminderSelectedItems("Passives")
 				end
 			end
 		end
@@ -1843,15 +2028,28 @@ end
 
 -- if the player ItemInteraction table doesnt exist, create it with its init values
 function EID:InitItemInteractionIfAbsent(playerID)
+	playerID = playerID % 666 -- dead tainted lazarus exception
 	if not EID.PlayerItemInteractions[playerID] then
-		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, altActives = {},
-			pickupHistory = {}, altPickupHistory = {}, rerollItems = {} }
+		EID.PlayerItemInteractions[playerID] = { LastTouch = 0, actives = {}, pickupHistory = {}, rerollItems = {} }
 		-- in AB+, initiate Halo of Flies as an active item (collectible ID 10 is used for ALL Pretty Flies)
 		if not EID.isRepentance then
 			EID.PlayerItemInteractions[playerID].actives["10"] = 0
 		end
 	end
+	if not EID.PlayerItemInteractions[playerID+666] then
+		EID.PlayerItemInteractions[playerID+666] = { LastTouch = 0, actives = {}, pickupHistory = {}, rerollItems = {} }
+	end
 	EID.RecentlyTouchedItems[playerID] = EID.RecentlyTouchedItems[playerID] or {}
+	EID.RecentlyTouchedItems[playerID+666] = EID.RecentlyTouchedItems[playerID+666] or {}
+end
+-- initialize a touched active item to 0 count for all players
+-- (Fixes co-op bugs, compared to only initiating it for the toucher)
+function EID:InitActiveItemInteraction(itemIDStr)
+	for playerID = 0, game:GetNumPlayers() - 1 do
+		EID:InitItemInteractionIfAbsent(playerID)
+		EID.PlayerItemInteractions[playerID].actives[itemIDStr] = EID.PlayerItemInteractions[playerID].actives[itemIDStr] or 0
+		EID.PlayerItemInteractions[playerID+666].actives[itemIDStr] = EID.PlayerItemInteractions[playerID+666].actives[itemIDStr] or 0
+	end
 end
 
 
@@ -1903,17 +2101,31 @@ function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColo
 	if EID.isRepentance and (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC or useFlags & UseFlag.USE_NOANNOUNCER == UseFlag.USE_NOANNOUNCER) then
 		allowEchoChamber = false
 	end
-	local playerID = EID:getPlayerID(player)
+	local playerID = EID:getPlayerID(player, true)
 	EID:InitItemInteractionIfAbsent(playerID)
-
 	local historyTable = EID.PlayerItemInteractions[playerID].pickupHistory
-	-- Dead Tainted Lazarus exception
-	if player:GetPlayerType() == 38 then
-		historyTable = EID.PlayerItemInteractions[playerID].altPickupHistory or historyTable
-	end
 
 	-- pickupType = ["pill","card"], pillColorID, effectID, hadEchoChamberWhenUsed
 	table.insert(historyTable, 1, {pickupType, pillColorID, effectID, EID.isRepentance and player:HasCollectible(700) and allowEchoChamber})
+end
+
+EID.WildCardEffects = {}
+EID.WildCardPillColor = {}
+EID.TemporaryWildCardEffects = {} -- resets every frame
+function EID:TrackWildCardEffects(effectID, player, pillColor)
+	local playerID = EID:getPlayerID(player, true)
+	-- ? Card exception; both it and the active it used are ignored by Wild Card
+	if effectID == "5.300.48" then
+		-- Blank Card using ? Card exception; Blank Card being used is still seen
+		if EID.TemporaryWildCardEffects[playerID] ~= "5.100.286" then EID.TemporaryWildCardEffects[playerID] = nil end
+	else
+		EID.TemporaryWildCardEffects[playerID] = effectID
+		EID.WildCardPillColor[playerID] = pillColor -- doesn't matter that much so just set it here
+	end
+end
+function EID:UpdateWildCardEffects()
+	for k,v in pairs(EID.TemporaryWildCardEffects) do EID.WildCardEffects[k] = v end
+	EID.TemporaryWildCardEffects = {}
 end
 
 -- Render a sprite of an entity
@@ -1939,7 +2151,7 @@ end
 -- Collects items that the player got after using D4 item
 function EID:CollectRerolledItemsOfPlayer(player)
 	if maxCollectibleID == nil then maxCollectibleID = EID:GetMaxCollectibleID() end
-	local playerID = EID:getPlayerID(player)
+	local playerID = EID:getPlayerID(player, true)
 	EID.PlayerItemInteractions[playerID].rerollItems = {}
 	for i = 1, maxCollectibleID do
 		local count = player:GetCollectibleNum(i, true)
@@ -1969,6 +2181,12 @@ end
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:GetEntityXMLName(Type, Variant, SubType)
 	return EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
+end
+
+---@diagnostic disable-next-line: duplicate-set-field
+function EID:GetEntityXMLNameByString(tvsString)
+	local Type, Var, Sub = EID:SplitTVS(tvsString)
+	return EID:GetEntityXMLName(Type, Var, Sub)
 end
 
 -- Get an item's RNG seed. We have no use for the RNG object itself because every other function it can do will advance the item's RNG, altering the game state
@@ -2022,6 +2240,20 @@ function EID:GetAllPassiveItems()
 		end
 	end
 end
+local activeItems = nil -- cache of all active item ids
+function EID:GetAllActiveItems()
+	if activeItems then
+		return activeItems
+	end
+	activeItems = {}
+
+	for i = 1, EID:GetMaxCollectibleID() do
+		local config = EID.itemConfig:GetCollectible(i)
+		if config ~= nil and (config.Type == ItemType.ITEM_ACTIVE) then
+			table.insert(activeItems, i)
+		end
+	end
+end
 
 -- Updates the EID.RecentlyTouchedItems table to include the players currently held passive items
 function EID:UpdateAllPlayerPassiveItems()
@@ -2029,43 +2261,119 @@ function EID:UpdateAllPlayerPassiveItems()
 	local listUpdatedForPlayers = {}
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
-		local playerNum = EID:getPlayerID(player)
-
 		if player == nil then
 			return listUpdatedForPlayers -- dont evaluate when bad data is present
 		end
+		
+		local playerNum = EID:getPlayerID(player, true)
+		
+		-- remove items the player no longer has. reverse iteration to make deletion easier
+		for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
+			if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index], true) then
+				table.remove(EID.RecentlyTouchedItems[playerNum], index)
+				listUpdatedForPlayers[i] = true
+				-- If an item earlier than our oldest item is removed (e.g. Eve sacrificial altaring her Dead Bird), reduce it
+				if index < EID.OldestItemIndex[playerNum] then EID.OldestItemIndex[playerNum] = EID.OldestItemIndex[playerNum] - 1 end
+			end
+		end
 
-		-- only update if collectible number changed
-		local currentCollectibleCount = player:GetCollectibleCount()
-		if #EID.RecentlyTouchedItems[playerNum] ~= currentCollectibleCount then
-			
-			-- remove items the player no longer has. reverse itteration to make deletion easier
-			for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
-				if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index]) then
-					table.remove(EID.RecentlyTouchedItems[playerNum], index)
+		-- add items the player did get with non-standard methods (Bag of Crafting, console command, item effects, etc...)
+		for _, itemID in ipairs(passives) do
+			if player:HasCollectible(itemID, true) then
+				local alreadyInList = false
+				for _, heldItemID in ipairs(EID.RecentlyTouchedItems[playerNum]) do
+					if itemID == heldItemID then
+						alreadyInList = true
+						break
+					end
+				end
+				if not alreadyInList then
+					table.insert(EID.RecentlyTouchedItems[playerNum], itemID)
 					listUpdatedForPlayers[i] = true
 				end
 			end
-
-			-- add items the player did get with non-standard methods (console command, item effects, etc...)
-			for _, itemID in ipairs(passives) do
-				if player:HasCollectible(itemID) then
-					local alreadyInList = false
-					for _, heldItemID in ipairs(EID.RecentlyTouchedItems[playerNum]) do
-						if itemID == heldItemID then
-							alreadyInList = true
-							break
-						end
-					end
-					if not alreadyInList then
-						table.insert(EID.RecentlyTouchedItems[playerNum], itemID)
-						listUpdatedForPlayers[i] = true
-					end
+		end
+		-- super hacky Tainted Cain active items check, mostly for transformation progress
+		-- Only adds up to one copy of any active, I can't think of a good way to recognize a craft of the same active twice. better than nothing
+		if EID.isRepentance and player:GetPlayerType() == 23 then
+			for i = 0, 1 do
+				local itemID = tostring(player:GetActiveItem(i))
+				if itemID ~= "0" then
+					EID:InitActiveItemInteraction(itemID)
+					if EID.PlayerItemInteractions[playerNum].actives[itemID] == 0 then EID.PlayerItemInteractions[playerNum].actives[itemID] = 1 end
 				end
 			end
 		end
 	end
 	return listUpdatedForPlayers
+end
+EID.OldestItemIndex = {}
+function EID:SetOldestItemIndex()
+	for i = 0, game:GetNumPlayers() - 1 do
+		EID.RecentlyTouchedItems[i] = EID.RecentlyTouchedItems[i] or {}
+		if EID.OldestItemIndex[i] == nil then EID.OldestItemIndex[i] = #EID.RecentlyTouchedItems[i] + 1 end
+		-- set up Dead Tainted Lazarus to be oldest slot 1
+		if EID.OldestItemIndex[i+666] == nil then EID.OldestItemIndex[i+666] = 1 end
+	end
+end
+
+EID.GulpedTrinkets = {}
+-- Check for gulped trinkets that have been removed (e.g. perfection, walnut)
+function EID:UpdateAllPlayerTrinkets()
+	for i = 1, #EID.coopAllPlayers do
+		local player = EID.coopAllPlayers[i]
+		if player == nil then return end
+		
+		local playerNum = EID:getPlayerID(player, true)
+		if EID.GulpedTrinkets[playerNum] == nil then return end
+		
+		-- remove items the player no longer has. reverse iteration to make deletion easier
+		for index = #EID.GulpedTrinkets[playerNum], 1, -1  do
+			if not player:HasTrinket(EID.GulpedTrinkets[playerNum][index]) then
+				table.remove(EID.GulpedTrinkets[playerNum], index)
+			end
+		end
+	end
+end
+
+EID.WispsPerPlayer = {}
+-- This is automatically called shortly after main.lua sees a Lemegeton get used, and when the Item Reminder is opened
+function EID:UpdateAllPlayerLemegetonWisps()
+	EID.WispsPerPlayer = {}
+	
+	for _, wisp in ipairs(Isaac.FindByType(3, 237, -1, true, false)) do
+		local wispPlayer = wisp:ToFamiliar() and wisp:ToFamiliar().Player
+		if wispPlayer then
+			local playerNum = EID:getPlayerID(wispPlayer, true)
+			EID.WispsPerPlayer[playerNum] = EID.WispsPerPlayer[playerNum] or {}
+			table.insert(EID.WispsPerPlayer[playerNum], wisp)
+		end
+	end
+	-- Sort wisps by age (newest first), and leave just the IDs
+	for playerNum,wisps in pairs(EID.WispsPerPlayer) do
+		table.sort(wisps, function(a, b) return a.FrameCount < b.FrameCount end)
+		for i,v in ipairs(wisps) do wisps[i] = v.SubType end
+	end
+end
+
+-- This table holds, for each pedestal in the room, a table of item IDs that have been on that pedestal, and timestamps of when they were first and last seen
+-- The Glitched Crown callback when describing the pedestal will sort by first timestamp, and delete entries with too old of a last timestamp (like after a reroll)
+EID.GlitchedCrownCheck = {}
+-- Watch pedestals for being a Glitched Crown style pedestal that flips between items too quickly to display descriptions for
+function EID:WatchForGlitchedCrown()
+	if not EID.collectiblesOwned[689] then return end
+	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+	EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
+	
+	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+		-- Use InitSeed and Index to prevent any Diplopia weirdness
+		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
+		-- Initialize the data about this pedestal showing its current item ID, if necessary
+		-- in order to sort the items displayed, while also trashing items that haven't shown up in a while, keep both "initial frame seen" and "last frame seen"
+		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
+		-- update the last frame seen for the pedestal's current collectible ID
+		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType][2] = EID.GameUpdateCount
+	end
 end
 
 -- Replaces Variable placeholders in string with a given value
@@ -2073,4 +2381,27 @@ end
 function EID:ReplaceVariableStr(str, varID, newString)
 	if type(str) ~= "string" or newString == nil then return str end
 	return str:gsub("{"..varID.."}", newString)
+end
+
+-- deep table copy, copied from http://lua-users.org/wiki/CopyTable
+function EID:CopyTable(orig)
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        copy = {}
+        for orig_key, orig_value in next, orig, nil do
+            copy[EID:CopyTable(orig_key)] = EID:CopyTable(orig_value)
+        end
+        setmetatable(copy, EID:CopyTable(getmetatable(orig)))
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
+end
+
+-- simple decimal rounding, instead of just floor or ceil
+function EID:SimpleRound(num, dp)
+	dp = dp or 2
+	local mult = 10^dp
+	return math.floor(num * mult + 0.5)/mult
 end
