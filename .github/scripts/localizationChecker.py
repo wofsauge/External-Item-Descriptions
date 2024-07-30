@@ -24,6 +24,8 @@ BWhite='\033[1;37m'       # Bold White
 
 ignoreNodesWithName = {"fonts"}
 
+maxChecklimit = {"tarotClothBuffs": 2}
+
 
 # count en_us entries for stats
 def count_entries(t):
@@ -34,18 +36,26 @@ def count_entries(t):
             count += count_entries(t[k])
     return count
 
+def getMaxCheckLimit(parentName):
+    for entry in maxChecklimit:
+        if entry in parentName:
+            return maxChecklimit[entry]
+    return float('inf')
+
 # find entries in table2 that are missing or different than in table 1
 def compare_tables(table1, table2, prev_key):
     errorCount = 0
+    checkLimit = getMaxCheckLimit(prev_key)
     for k in table1:
-        if k in ignoreNodesWithName:
+        checkLimit -= 1
+        if k in ignoreNodesWithName or checkLimit < 0:
             # dont evaluate nodes that are listed in this table
             continue
         if k not in table2:
             print(f"\tTable '{prev_key}' does not contain key: {k}")
             errorCount += 1
             # table is missing. add all missing entries as error
-            if lupa.lua_type(table1[k]) == "table": 
+            if lupa.lua_type(table1[k]) == "table":
                 errorCount += count_entries(table1[k])
         elif lupa.lua_type(table2[k]) != lupa.lua_type(table1[k]):
             print(f"\tType mismatch in table '{prev_key}', key: {k}")
@@ -81,8 +91,15 @@ for lang in languages:
     languages[lang] = [percentage, errorCount]
     print(f"{Red}Errors found: {errorCount} / {en_us_entries}{Color_Off}\n\n")
 
+
+
+gitWorkflowSummary = "### Translation progress\n| Language | Completion | Missing entries |\n|---|---|---|\n"
 print(f"{Blue}Translation progress:{Color_Off}")
 for lang in languages:
     print(
         f"\t{BWhite}{lang}{Color_Off}\t{Blue}{round(languages[lang][0],2)}%{Color_Off}\t{Red}{languages[lang][1]} missing{Color_Off}"
     )
+    errorMessage = languages[lang][1] if languages[lang][1] >0 else "🎉"
+    gitWorkflowSummary += f"| {lang} | {round(languages[lang][0],2)}% | {errorMessage} |"
+
+os.environ["GITHUB_STEP_SUMMARY"] = gitWorkflowSummary
