@@ -171,6 +171,8 @@ EID.InlineIcons = {
 	["Warning"] = {"Warning", 0, 10, 9, 3},
 	["Blank"] = {"Blank", 0, 0, 0},
 
+	["ArrowUpDown"] = {"ArrowUpDown", 0, 12, 9, -1},
+
 	["ArrowGrayUp"] = {"ArrowGray", 0, 10, 9, 1},
 	["ArrowGrayRight"] = {"ArrowGray", 1, 10, 9, 1},
 	["ArrowGrayDown"] = {"ArrowGray", 2, 10, 9, 1},
