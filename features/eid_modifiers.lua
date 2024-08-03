@@ -567,7 +567,7 @@ if EID.isRepentance then
 					count = 1
 				end
 			end
-			-- we didn't replace everything; maybe English (Detailed) or other language didn't have the number? append a simple "effect is doubled/tripled"
+			-- we didn't replace everything; maybe the language didn't have the number? append a simple "effect is doubled/tripled"
 			if count == 0 and multiplier > 1 then
 				local goldenDesc = EID:getDescriptionEntry("goldenTrinket") or ""
 				if multiplier == 3 then goldenDesc = EID:getDescriptionEntry("tripledTrinket") or ""
@@ -599,6 +599,7 @@ if EID.isRepentance then
 	-- Handle The Stars? description addition
 	local function TheStarsCallback(descObj)
 		EID:UpdateAllPlayerPassiveItems()
+		local modified = false
 		for i = 1,#EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[i]
 			local playerID = EID:getPlayerID(player, true)
@@ -608,6 +609,11 @@ if EID.isRepentance then
 				for indexOffset = 0, repetitions - 1 do
 					local oldestItem = EID.RecentlyTouchedItems[playerID][EID.OldestItemIndex[playerID] + indexOffset]
 					if oldestItem then
+						-- when inside the item reminder's overview, wipe the description before appending the results
+						if EID.InsideSpecialDescriptions and not modified then
+							descObj.Description = ""
+							modified = true
+						end
 						EID:appendToDescription(descObj, "#")
 						if #EID.coopAllPlayers > 1 then EID:appendToDescription(descObj, EID:GetPlayerIcon(playerType, "P" .. i .. ":") .. " ") end
 						EID:appendToDescription(descObj, "{{NameC" .. oldestItem .. "}}")

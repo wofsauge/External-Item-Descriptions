@@ -943,7 +943,7 @@ EID.descriptions[languageCode].VoidNames = {"Vitesse {{ColorLime}}{1}", "Débit 
 
 EID.descriptions[languageCode].CollectionPageInfo = "Cet objet n'a encore jamais été ramassé !"
 
-EID.descriptions[languageCode].BlackFeatherInformation = "Objets obtenus : {1} (Dégâts {{ColorLime+{2}}}{{CR}})"
+EID.descriptions[languageCode].BlackFeatherInformation = "Objets obtenus : {1} (Dégâts {{ColorLime}}+{2}{{CR}})"
 
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Nom de l'objet test",
