@@ -1218,6 +1218,9 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 	
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
+	["Red to Soul"] = {"{{Heart}} +","{{SoulHeart}} +", "{{Heart}} Full health", "", "{{Heart}} Heals 1 heart", ""}, -- Red HP to Soul Hearts, removes heals
+	["Red to Coin"] = {"{{Heart}} +","{{CoinHeart}} +", "{{Heart}} Full health", "{{CoinHeart}} Full Health", "{{Heart}} Heals 1 heart", "{{CoinHeart}} Heals 1 coin"},
+
 	["5.100.135 (PHD)"] = "Spawns 2-3 coins if you have {1}", -- IV Bag PHD
 	["Keeper 0-1"] = "Spawns 0-1 coin as {1}", -- IV Bag/Piggy Bank Keeper
 	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Tears on pickup", -- Brittle Bones (Keeper+Lost)
