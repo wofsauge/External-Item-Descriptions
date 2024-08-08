@@ -1347,6 +1347,11 @@ local repConditions = {
 	
 	
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
+	["Red to Soul"] = {"{{Heart}} +","{{SoulHeart}} +", "{{Heart}} Full health", "", "{{Heart}} Heals 1 heart", ""}, -- Red HP to Soul Hearts, removes heals
+	["Red to Black"] = {"{{Heart}} +","{{BlackHeart}} +", "{{Heart}} Full health", "", "{{Heart}} Heals 1 heart", ""}, -- Red HP to Black Heart, removes heals
+	["Red to Coin"] = {"{{Heart}} +","{{CoinHeart}} +", "{{Heart}} Full health", "{{CoinHeart}} Full Health", "{{Heart}} Heals 1 heart", "{{CoinHeart}} Heals 1 coin"},
+
+
 	["5.100.642"] = "Single use for {1}", -- Magic Skin + Lost
 	["5.100.240"] = "{1} keeps the stat changes when he drops it", -- Experimental Treatment + Tainted Isaac
 	["5.100.644"] = "{1} keeps the stat increase when he drops it", -- Consolation Prize + Tainted Isaac

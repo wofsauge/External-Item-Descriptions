@@ -82,10 +82,15 @@ EID:AddConditional(297, function() return not EID:HaveNotUnlockedAchievement(366
 ------ NO RED HEALTH PLAYERS ------
 EID:AddConditional({442, "5.350.107", "5.350.119"}, EID.CheckForNoRedHealthPlayer, "No Red") -- Dark Prince's Crown, Crow Heart, Stem Cell
 EID:AddConditional(81, EID.CheckForNoRedHealthPlayer) -- Dead Cat
+EID:AddPlayerConditional({12, 15, 16, 22, 23, 24, 25, 26, 92, 101, 119, 121, 129, 138, 176, 182, 184, 189, 193, 218, 219, 226, 253, 307, 312, 314, 334, 342, 346, 354, 456}, 4, "Red to Soul") -- HP up to Soul heart for ???
+EID:AddPlayerConditional({12, 15, 16, 22, 23, 24, 25, 26, 92, 101, 119, 121, 129, 138, 176, 182, 184, 189, 193, 218, 219, 226, 253, 307, 312, 314, 334, 342, 346, 354, 456}, {14, 33}, "Red to Coin") -- HP up to Coin heart for Keepers
 if EID.isRepentance then
 	EID:AddConditional({569, 671, 676}, EID.CheckForNoRedHealthPlayer, "No Red") -- Blood Oath, Candy Heart, Empty Heart
 	EID:AddPlayerConditional({671, 676}, 14, "No Effect") -- Candy Heart / Empty Heart + Keeper
 	EID:AddPlayerConditional(676, 16, "No Effect", nil, false) -- Empty Heart + Forgotten (not Tainted)
+	EID:AddPlayerConditional({573, 591, 594, 614, 664, 669, 707, "5.350.156"}, 4, "Red to Soul") -- HP up to Soul heart for ???
+	EID:AddPlayerConditional({12, 15, 16, 22, 23, 24, 25, 26, 92, 101, 119, 121, 129, 138, 176, 182, 184, 189, 193, 218, 219, 226, 253, 307, 312, 314, 334, 342, 346, 354, 456, 573, 591, 594, 614, 664, 669, 707, "5.350.156"}, {12, 24}, "Red to Black") -- HP up to Black heart for Dark/Tainted Judas
+	EID:AddPlayerConditional({573, 591, 594, 614, 664, 669, 707, "5.350.156"}, {14, 33}, "Red to Coin") -- HP up to Coin heart for Keeper
 end
 
 
