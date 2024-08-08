@@ -82,8 +82,9 @@ EID:AddConditional(297, function() return not EID:HaveNotUnlockedAchievement(366
 ------ NO RED HEALTH PLAYERS ------
 EID:AddConditional({442, "5.350.107", "5.350.119"}, EID.CheckForNoRedHealthPlayer, "No Red") -- Dark Prince's Crown, Crow Heart, Stem Cell
 EID:AddConditional(81, EID.CheckForNoRedHealthPlayer) -- Dead Cat
-EID:AddPlayerConditional({12, 15, 16, 22, 23, 24, 25, 26, 92, 101, 119, 121, 129, 138, 176, 182, 184, 189, 193, 218, 219, 226, 253, 307, 312, 314, 334, 342, 346, 354, 456}, 4, "Red to Soul") -- HP up to Soul heart for ???
+EID:AddPlayerConditional({12, 15, 16, 22, 23, 24, 25, 26, 101, 119, 121, 129, 138, 176, 182, 184, 189, 193, 218, 219, 226, 253, 307, 312, 314, 334, 342, 346, 354, 456}, 4, "Red to Soul") -- HP up to Soul heart for ???
 EID:AddPlayerConditional({12, 15, 16, 22, 23, 24, 25, 26, 92, 101, 119, 121, 129, 138, 176, 182, 184, 189, 193, 218, 219, 226, 253, 307, 312, 314, 334, 342, 346, 354, 456}, {14, 33}, "Red to Coin") -- HP up to Coin heart for Keepers
+EID:AddPlayerConditional(92, 4) -- ??? + Super Bandage
 if EID.isRepentance then
 	EID:AddConditional({569, 671, 676}, EID.CheckForNoRedHealthPlayer, "No Red") -- Blood Oath, Candy Heart, Empty Heart
 	EID:AddPlayerConditional({671, 676}, 14, "No Effect") -- Candy Heart / Empty Heart + Keeper
@@ -126,6 +127,10 @@ if EID.isRepentance then
 	EID:AddPlayerConditional(205, 22, "Tainted Magdalene")-- Tainted Magdalene + Sharp Plug
 	EID:AddPlayerConditional({"5.350.100", "5.350.101"}, 18, "Bethany", nil, false) -- Bethany + Vibrant/Dim Bulb
 	EID:AddPlayerConditional({"5.350.100", "5.350.101"}, 36, "Tainted Bethany") -- Tainted Bethany + Vibrant/Dim Bulb
+	EID:AddPlayerConditional(722, {37, 39}) -- TJacob Anima Sola
+	EID:AddPlayerConditional(713, 26) -- TEve Sumptorium
+	EID:AddPlayerConditional(711, {29, 38}) -- TLaz Flip
+	EID:AddPlayerConditional(710, 23) -- Tcain Bag of Crafting
 end
 
 

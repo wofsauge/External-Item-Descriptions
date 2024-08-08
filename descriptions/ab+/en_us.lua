@@ -1226,6 +1226,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Tears on pickup", -- Brittle Bones (Keeper+Lost)
 	["5.100.501"] = "{1} can gain additional coin containers", -- Greed's Gullet
 	["5.100.230 (Keeper)"] = "{{Warning}} {1} just dies", -- Abaddon
+	["5.100.92"] = {"{{SoulHeart}} +3 Soul Hearts"}, -- ??? + Super Bandage
 	
 
 	------ DUPLICATE COPIES OF ITEMS ------
@@ -1299,7 +1300,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.18 (Greed)"] = {"{{TreasureRoom}} Teleports Isaac to a random Treasure Room"}, -- XVII - The Stars (Greed)
 	["5.300.18 (Late Greed)"] = {"Teleports Isaac to the first room of the floor"}, -- XVII - The Stars (Greed Last Floors)
 	["5.300.10"] = "Teleports Isaac to a random room if there's no Shop", -- IX - The Hermit (Womb and below)
-	
 }
 
 
