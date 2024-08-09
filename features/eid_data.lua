@@ -1015,10 +1015,22 @@ EID.TaintedIDs = {}; for i = 21, 40 do EID.TaintedIDs[i] = true end
 
 -- Character IDs that are Soul/Black Hearts only: ???, The Lost, The Soul
 EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
+-- More separated table for more exact data
+EID.SpecialHeartPlayers = {}
+EID.SpecialHeartPlayers["Soul"] = { [4] = true, [17] = true }
+EID.SpecialHeartPlayers["Black"] = {}
+EID.SpecialHeartPlayers["Coin"] = { [14] = true }
+EID.SpecialHeartPlayers["Bone"] = { [16] = true }
+EID.SpecialHeartPlayers["None"] = { [10] = true }
 if EID.isRepentance then
 	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
 	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
+	EID.SpecialHeartPlayers["Soul"] = { [4] = true, [17] = true, [25] = true, [35] = true, [36] = true, [40] = true }
+	EID.SpecialHeartPlayers["Black"] = { [12] = true, [24] = true }
+	EID.SpecialHeartPlayers["Coin"][33] = true
+	EID.SpecialHeartPlayers["None"][31] = true
 end
+
 -- Character IDs that have a pocket active (0 = normal, 1 = timed, 2 = special)
 EID.PocketActivePlayerIDs = { [22] = 0, [23] = 2, [24] = 1, [25] = 2, [26] = 1, [29] = 0, [34] = 0, [36] = 0, [37] = 1, [38] = 0, [39] = 1 }
 
@@ -1038,6 +1050,16 @@ EID.LuckFormulas["5.100.219"] = function(luck) return math.min(100 / (10 - math.
 if EID.isRepentance then
 	EID.LuckFormulas["5.100.219"] = function(luck) return (20 + luck) end -- Old Bandage: Base 20%, 100% at 80 Luck
 	EID.LuckFormulas["5.100.576"] = function(luck) return math.min(luck*0.5 + 6.25, 10) end -- Dirty Mind: Base 6.25%, 10% at 7.5 Luck
+end
+
+-- Number of Soul Hearts a character will get from a Health Up item
+-- (Pill ID is off by 1 because of EID one-indexed pill effects)
+EID.HealthUpData = {["5.70.8"] = 1, ["5.70.10"] = 1, [12] = 1, [15] = 1, [16] = 2, [22] = 1, [23] = 1, [24] = 1, [25] = 1, [26] = 1, [92] = 1, [101] = 1, [119] = 1, [121] = 1, [129] = 2, [138] = 1, [176] = 1, [182] = 1, [184] = 1, [189] = 1, [193] = 1, [218] = 1, [219] = 1, [226] = 1, [253] = 1, [307] = 1, [312] = 1, [314] = 1, [334] = 3, [342] = 1, [346] = 1, [354] = 1, [456] = 1 }
+if EID.isRepentance then
+	EID.HealthUpData["5.350.156"] = 1; EID.HealthUpData[573] = 1; EID.HealthUpData[591] = 1; EID.HealthUpData[594] = 2
+	EID.HealthUpData[614] = 1; EID.HealthUpData[664] = 1; EID.HealthUpData[669] = 1; EID.HealthUpData[707] = 1
+
+	EID.BloodUpData = {["5.70.10"] = 2, ["5.350.156"] = 2, ["5.300.12"] = 2, ["5.300.59"] = 4, [12] = 12, [15] = 12, [16] = 12, [22] = 4, [23] = 4, [24] = 4, [25] = 4, [26] = 4, [75] = 4, [92] = 4, [101] = 4, [119] = 10, [121] = 2, [129] = 4, [138] = 4, [176] = 4, [182] = 12, [184] = 4, [189] = 12, [193] = 4, [218] = 4, [226] = 4, [253] = 4, [307] = 4, [312] = 4, [314] = 4, [334] = 6, [342] = 4, [346] = 4, [354] = 4, [428] = 12, [456] = 4, [573] = 12, [591] = 4, [594] = 1, [614] = 10, [621] = 12, [664] = 12, [669] = 12, [707] = 4 }
 end
 
 
