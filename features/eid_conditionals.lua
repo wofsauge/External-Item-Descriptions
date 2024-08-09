@@ -82,15 +82,29 @@ EID:AddConditional(297, function() return not EID:HaveNotUnlockedAchievement(366
 ------ NO RED HEALTH PLAYERS ------
 EID:AddConditional({442, "5.350.107", "5.350.119"}, EID.CheckForNoRedHealthPlayer, "No Red") -- Dark Prince's Crown, Crow Heart, Stem Cell
 EID:AddConditional(81, EID.CheckForNoRedHealthPlayer) -- Dead Cat
-EID:AddPlayerConditional({12, 15, 16, 22, 23, 24, 25, 26, 92, 101, 119, 121, 129, 138, 176, 182, 184, 189, 193, 218, 219, 226, 253, 307, 312, 314, 334, 342, 346, 354, 456}, 4, "Red to Soul") -- HP up to Soul heart for ???
-EID:AddPlayerConditional({12, 15, 16, 22, 23, 24, 25, 26, 92, 101, 119, 121, 129, 138, 176, 182, 184, 189, 193, 218, 219, 226, 253, 307, 312, 314, 334, 342, 346, 354, 456}, {14, 33}, "Red to Coin") -- HP up to Coin heart for Keepers
 if EID.isRepentance then
 	EID:AddConditional({569, 671, 676}, EID.CheckForNoRedHealthPlayer, "No Red") -- Blood Oath, Candy Heart, Empty Heart
 	EID:AddPlayerConditional({671, 676}, 14, "No Effect") -- Candy Heart / Empty Heart + Keeper
 	EID:AddPlayerConditional(676, 16, "No Effect", nil, false) -- Empty Heart + Forgotten (not Tainted)
-	EID:AddPlayerConditional({573, 591, 594, 614, 664, 669, 707, "5.350.156"}, 4, "Red to Soul") -- HP up to Soul heart for ???
-	EID:AddPlayerConditional({12, 15, 16, 22, 23, 24, 25, 26, 92, 101, 119, 121, 129, 138, 176, 182, 184, 189, 193, 218, 219, 226, 253, 307, 312, 314, 334, 342, 346, 354, 456, 573, 591, 594, 614, 664, 669, 707, "5.350.156"}, {12, 24}, "Red to Black") -- HP up to Black heart for Dark/Tainted Judas
-	EID:AddPlayerConditional({573, 591, 594, 614, 664, 669, 707, "5.350.156"}, {14, 33}, "Red to Coin") -- HP up to Coin heart for Keeper
+end
+
+for heartName, chars in pairs(EID.SpecialHeartPlayers) do
+	local c = {}
+	for charID,_ in pairs(chars) do table.insert(c, charID) end -- convert the lookup table into an array
+	for itemID, hearts in pairs(EID.HealthUpData) do
+		if itemID == 92 and (heartName == "Soul" or heartName == "Black") then
+			EID:AddClosestPlayerConditional(92, c, "Super Bandage " .. heartName, nil, false)
+		elseif itemID == 226 and (heartName == "Soul" or heartName == "Black") then
+			EID:AddClosestPlayerConditional(226, c, "Black Lotus " .. heartName, nil, false)
+		else
+			EID:AddClosestPlayerConditional(itemID, c, "Red to " .. heartName, nil, false)
+		end
+	end
+end
+if EID.isRepentance then
+	for itemID,charges in pairs(EID.BloodUpData) do
+		EID:AddPlayerConditional(itemID, 36, "Health Up Blood Charges", {variableText = charges})
+	end
 end
 
 
@@ -115,7 +129,8 @@ if EID.isRepentance then
 	EID:AddPlayerConditional(188, 2)                      -- Cain + Abel
 	EID:AddPlayerConditional({ 360, 728 }, 13)            -- Incubus/Gello + Lilith
 	EID:AddPlayerConditional({ 240, 644 }, 21)            -- Tainted Isaac + Experimental Treatment, Consolation Prize
-	EID:AddPlayerConditional({ 642, 694 }, 10)            -- Lost + Magic Skin, Heartbreak
+	EID:AddPlayerConditional(694, 10)                     -- Lost + Heartbreak
+	EID:AddClosestPlayerConditional(642, 10)              -- Lost + Magic Skin
 	EID:AddPlayerConditional(694, 14, "Keeper", nil, false) -- Keeper + Heartbreak
 	EID:AddPlayerConditional(694, 33, "Tainted Keeper")   -- Tainted Keeper + Heartbreak
 	EID:AddPlayerConditional("5.350.156", 14)             -- Keeper + Mother's Kiss
@@ -126,6 +141,11 @@ if EID.isRepentance then
 	EID:AddPlayerConditional(205, 22, "Tainted Magdalene")-- Tainted Magdalene + Sharp Plug
 	EID:AddPlayerConditional({"5.350.100", "5.350.101"}, 18, "Bethany", nil, false) -- Bethany + Vibrant/Dim Bulb
 	EID:AddPlayerConditional({"5.350.100", "5.350.101"}, 36, "Tainted Bethany") -- Tainted Bethany + Vibrant/Dim Bulb
+	
+	EID:AddPlayerConditional(722, 37) -- TJacob Anima Sola
+	EID:AddPlayerConditional(713, 26) -- TEve Sumptorium
+	EID:AddPlayerConditional(711, 29) -- TLaz Flip
+	EID:AddPlayerConditional(710, 23) -- Tcain Bag of Crafting
 end
 
 
