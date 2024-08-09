@@ -2378,9 +2378,22 @@ end
 
 -- Replaces Variable placeholders in string with a given value
 -- Example: "My {1} message" --> "My test message"
+-- varID can be omitted to replace {1} (or pass in a string table, to replace {1}, {2}, etc.)
 function EID:ReplaceVariableStr(str, varID, newString)
+	if newString == nil then
+		newString = varID
+		varID = 1
+	end
 	if type(str) ~= "string" or newString == nil then return str end
-	return str:gsub("{"..varID.."}", newString)
+	
+	if type(newString) == "table" then
+		for i = 1, #newString do
+			str = str:gsub("{"..i.."}", newString[i])
+		end
+		return str
+	else
+		return str:gsub("{"..varID.."}", newString)
+	end
 end
 
 -- deep table copy, copied from http://lua-users.org/wiki/CopyTable
@@ -2404,4 +2417,11 @@ function EID:SimpleRound(num, dp)
 	dp = dp or 2
 	local mult = 10^dp
 	return math.floor(num * mult + 0.5)/mult
+end
+
+function EID:ArrayContains(t, value)
+	for _,v in ipairs(t) do
+		if v == value then return true end
+	end
+	return false
 end

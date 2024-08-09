@@ -1023,20 +1023,20 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[1] = {"Magdalene", ""},
 	[2] = {"Cain", ""},
 	[3] = {"Judas", ""},
-	[4] = {"???", "Can't have Red Hearts"},
+	[4] = {"???", "Can't have Red Hearts#{{SoulHeart}} Health ups grant Soul Hearts"},
 	[5] = {"Eve", ""},
 	[6] = {"Samson", ""},
-	[7] = {"Azazel", "Flight#Short range Brimstone instead of tears#Can gain Red Hearts"},
+	[7] = {"Azazel", "Flight#{{Collectible118}} Short range Brimstone instead of tears"},
 	[8] = {"Lazarus", "When you die, resurrect as Lazarus Risen with 1 Red Heart container"},
 	[9] = {"Eden", "Start with random stats and items each run"},
-	[10] = {"The Lost", "Flight#Spectral tears#No health#One devil deal per room can be taken for free"},
+	[10] = {"The Lost", "Flight#Spectral tears#{{Warning}} No health#{{DevilRoom}} One devil deal per room can be taken for free"},
 	[11] = {"Lazarus Risen", "Increased stats and x1.2 damage multiplier"},
-	[12] = {"Dark Judas", "x2 Damage multiplier#Can gain Red Hearts#Counts as Judas for completion marks"},
-	[13] = {"Lilith", "Cannot shoot tears#Her Incubus shoots for her"},
-	[14] = {"Keeper", "Heal by picking up coins#Heart pickups are turned into Blue Flies"},
+	[12] = {"Dark Judas", "{{Damage}} x2 Damage multiplier#{{Player3}} Counts as Judas for completion marks"},
+	[13] = {"Lilith", "Cannot shoot tears#{{Collectible360}} Her Incubus shoots for her"},
+	[14] = {"Keeper", "{{CoinHeart}} Heal by picking up coins#Maximum of 2 Coin Hearts#Heart pickups are turned into Blue Flies"},
 	[15] = {"Apollyon", ""},
-	[16] = {"The Forgotten", "You have a melee attack which can be charged and thrown#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
-	[17] = {"The Forgotten Soul", "You have a melee attack which can be charged and thrown#Can have up to 6 Bone Hearts#Press {{ButtonRT}} to switch to The Soul#The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to The Forgotten, and can only move in a small radius around him"},
+	[16] = {"The Forgotten", "You have a melee attack which can be charged and thrown#{{BoneHeart}} Can have up to 6 Bone Hearts#{{Player17}} Press {{ButtonRT}} to switch to The Soul#{{SoulHeart}} The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to a small radius around The Forgotten"},
+	[17] = {"The Forgotten Soul", "You have a melee attack which can be charged and thrown#{{BoneHeart}} Can have up to 6 Bone Hearts#{{Player17}} Press {{ButtonRT}} to switch to The Soul#{{SoulHeart}} The Soul can have up to 6 Soul/Black Hearts and has flight and spectral tears#The Soul is chained to a small radius around The Forgotten"},
 }
 
 ---------- Sacrifice Room ----------
@@ -1189,6 +1189,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Copies)"] = "No additional effect from multiple copies", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "No additional effect on familiars", -- probably just for Hive Mind + BFFS!
 	["No Red"] = "No effect for characters that can't have Red Hearts",
+	["Different Effect"] = "Different effect for {1}",
 	
 	
 	------ GREED MODE ------
@@ -1218,9 +1219,32 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 	
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
-	["Red to Soul"] = {"{{Heart}} +","{{SoulHeart}} +", "{{Heart}} Full health", "", "{{Heart}} Heals 1 heart", ""}, -- Red HP to Soul Hearts, removes heals
-	["Red to Coin"] = {"{{Heart}} +","{{CoinHeart}} +", "{{Heart}} Full health", "{{CoinHeart}} Full Health", "{{Heart}} Heals 1 heart", "{{CoinHeart}} Heals 1 coin"},
-
+	-- NO RED HEALTH CHARS
+	-- These change "+1 Health, Full health" to just "+1 Soul Heart" and etc.
+	["Red to Soul"] = {"↑ {{Heart}} +1 Health", "{{SoulHeart}} +1 Soul Heart", "↑ {{Heart}} +2 Health", "{{SoulHeart}} +2 Soul Hearts", "↑ {{Heart}} +3 Health", "{{SoulHeart}} +3 Soul Hearts",
+	"↑ {{EmptyHeart}} +1 Empty heart container", "{{SoulHeart}} +1 Soul Heart", "↑ {{EmptyHeart}} +2 Empty heart containers", "{{SoulHeart}} +2 Soul Hearts",
+	"{{Heart}} Full health", "", "{{Heart}} Heals 1 heart", "", "{{HalfHeart}} Heals half a heart", "", "{{Heart}} Heals 2 hearts", ""}, -- Red HP to Soul Hearts, removes heals
+	
+	["Red to Black"] = {"↑ {{Heart}} +1 Health", "{{BlackHeart}} +1 Black Heart", "↑ {{Heart}} +2 Health", "{{BlackHeart}} +2 Black Hearts", "↑ {{Heart}} +3 Health", "{{BlackHeart}} +3 Black Hearts",
+	"↑ {{EmptyHeart}} +1 Empty heart container", "{{BlackHeart}} +1 Black Heart", "↑ {{EmptyHeart}} +2 Empty heart containers", "{{BlackHeart}} +2 Black Hearts",
+	"{{Heart}} Full health", "", "{{Heart}} Heals 1 heart", "", "{{HalfHeart}} Heals half a heart", "", "{{Heart}} Heals 2 hearts", ""}, -- Red HP to Black Hearts, removes heals
+	
+	["Red to Bone"] = {"↑ {{Heart}} +1 Health", "{{BoneHeart}} +1 Bone Heart", "↑ {{Heart}} +2 Health", "{{BoneHeart}} +2 Bone Hearts", "↑ {{Heart}} +3 Health", "{{BoneHeart}} +3 Bone Hearts",
+	"↑ {{EmptyHeart}} +1 Empty heart container", "{{EmptyBoneHeart}} +1 Empty Bone Heart", "↑ {{EmptyHeart}} +2 Empty heart containers", "{{EmptyBoneHeart}} +2 Empty Bone Hearts"}, -- Red HP to Bone Hearts
+	
+	["Red to Coin"] = {"{{Heart}} +","{{CoinHeart}} +", "{{EmptyHeart}} +","{{EmptyCoinHeart}} +",
+	"{{Heart}} Full health", "{{CoinHeart}} Full health", "{{Heart}} Heals 1 heart", "{{CoinHeart}} Heals 1 coin", "{{HalfHeart}} Heals half a heart", "{{CoinHeart}} Heals 1 coin", "{{Heart}} Heals 2 hearts", "{{CoinHeart}} Heals 2 coins"}, -- Red HP to Coin Hearts
+	
+	["Red to None"] = {"↑ {{Heart}} +1 Health", "", "↑ {{Heart}} +2 Health", "", "↑ {{Heart}} +3 Health", "",
+	"↑ {{EmptyHeart}} +1 Empty heart container", "", "↑ {{EmptyHeart}} +2 Empty heart containers", "",
+	"{{Heart}} Full health", "", "{{Heart}} Heals 1 heart", "", "{{HalfHeart}} Heals half a heart", "", "{{Heart}} Heals 2 hearts", ""}, -- Red HP to None (The Lost)
+	
+	["Super Bandage Soul"] = {"{{SoulHeart}} +3 Soul Hearts"}, -- for Soul Heart chars
+	["Super Bandage Black"] = {"{{SoulHeart}} +2 Soul Heart#{{BlackHeart}} +1 Black Heart"}, -- for Black Heart chars
+	["Black Lotus Soul"] = {"{{SoulHeart}} +2 Soul Hearts#{{BlackHeart}} +1 Black Heart"}, -- for Soul Heart chars
+	["Black Lotus Black"] = {"{{SoulHeart}} +1 Soul Heart#{{BlackHeart}} +2 Black Hearts"}, -- for Black Heart chars
+	
+	
 	["5.100.135 (PHD)"] = "Spawns 2-3 coins if you have {1}", -- IV Bag PHD
 	["Keeper 0-1"] = "Spawns 0-1 coin as {1}", -- IV Bag/Piggy Bank Keeper
 	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Tears on pickup", -- Brittle Bones (Keeper+Lost)
