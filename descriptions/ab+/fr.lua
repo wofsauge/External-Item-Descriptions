@@ -979,11 +979,11 @@ EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ Dégâts {{ColorLime}}
 EID.descriptions[languageCode].CrookedPennyHeads = "Face"
 EID.descriptions[languageCode].CrookedPennyTails = "Pile"
 
-EID.descriptions[languageCode].LuckModifier = "{1}% at {2} Chance"
+EID.descriptions[languageCode].LuckModifier = "{1}% à {2} Chance"
 
 EID.descriptions[languageCode].CollectionPageInfo = "Cet objet n'a encore jamais été ramassé !"
 
-EID.descriptions[languageCode].BlackFeatherInformation = "Objets obtenus : {1} (Dégâts {{ColorLime}}+{2}{{CR}})"
+EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorSilver}}({1} objets : Dégâts {{ColorLime}}+{2}{{ColorSilver}})"
 
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Nom de l'objet test",
@@ -1079,7 +1079,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.350.44"] = {"Détruire une machine, un rocher marqué ou ouvrir un coffre fait parfois apparaître une pilule"}, -- Safety Cap
 	["5.350.45"] = {"Détruire une machine, un rocher marqué ou ouvrir un coffre fait parfois apparaître une carte"}, -- Ace of Spades
 	["5.350.72"] = {"Augmente la fréquence d'apparition des piles#Terminer une vague charge parfois une barre supplémentaire de l'objet activable"}, -- Watch Battery
-	["5.100.297 (Greed)"] = {"{{Warning}} UTILISATION UNIQUE {{Warning}}#Donne selon l'étage :#Sous-Sol : 2{{Bomb}} + 2{{Key}}#Grottes : Objet de boss + 2{{SoulHeart}}#Profondeurs : 20{{Coin}}#Utérus: 2 objets de boss#Sheol : Objet diabolique + 1{{BlackHeart}}#Boutique : 1{{Coin}}"}, -- Pandora's Box
+	["5.100.297 (Greed)"] = {"{{Warning}} UTILISATION UNIQUE {{Warning}}#{{Blank}} Donne selon l'étage :#SS : {{Bomb}}{{Bomb}} + {{Key}}{{Key}}#Gr : Objet de boss + {{SoulHeart}}{{SoulHeart}}#Pr : 20{{Coin}}#Ut: 2 objets de boss#Sh : Objet diabolique + {{BlackHeart}}#Boutique : {{Coin}}"}, -- Pandora's Box
 
 
 	------ ACHIEVEMENT CHECKS ------
@@ -1088,20 +1088,20 @@ EID.descriptions[languageCode].ConditionalDescs = {
 
 
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
-	["5.100.135 (PHD)"] = "Fait appaaître 2 ou 3 pièces avec {1}", -- IV Bag PHD
-	["Keeper 0-1"] = "Fait apparaître 0 ou 1 pièce avec {1}", -- IV Bag/Piggy Bank Keeper
+	["5.100.135 (PHD)"] = {"1 ou 2", "2 ou 3"}, -- IV Bag PHD
+	["Keeper 0-1"] = {"1 ou 2", "0 ou 1", "2 ou 3", "0 ou 1"}, -- IV Bag/Piggy Bank Keeper
 	["5.100.549"] = {"Débit {{ColorLime}}+0.4#{{ColorSilver}}(Effet propre à {1})"}, -- Brittle Bones (Keeper+Lost)
 	["5.100.501"] = "Permet à {1} d'augmenter son nombre de réceptacles de pièce", -- Greed's Gullet
-	["5.100.230 (Keeper)"] = "{{Warning}} Tue instantanément {1}", -- Abaddon
+	["5.100.230 (Keeper)"] = {"{{Warning}} Tue instantanément {1}"}, -- Abaddon
 
 
 	------ DUPLICATE COPIES OF ITEMS ------
-	["5.100.2 (Copies)"] = "Isaac tire 3 larmes supplémentaires#Ne diminue pas davantage les stats", -- The Inner Eye
-	["5.100.153 (Copies)"] = "Isaac tire 4 larmes supplémentaires#Ne diminue pas davantage les stats", -- Mutant Spider
-	["5.100.245 (Copies)"] = "Isaac tire 2 larmes supplémentaires", -- 20/20
-	["5.100.358 (Copies)"] = "Isaac tire 2 larmes supplémentaires entre les 2 autres", -- The Wiz
-	["5.100.64 (Copies)"] = "Avoir deux exemplaires de cet objet rend gratuit tous les objets de la boutique", -- Steam Sale
-	["5.100.118 (Copies)"] = "Isaac tire un laser supplémentaire", -- Brimstone
+	["5.100.2 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Isaac tire 3 larmes supplémentaires"}, -- The Inner Eye
+	["5.100.153 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Isaac tire 4 larmes supplémentaires"}, -- Mutant Spider
+	["5.100.245 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Isaac tire 2 larmes supplémentaires"}, -- 20/20
+	["5.100.358 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Isaac tire 2 larmes supplémentaires"}, -- The Wiz
+	["5.100.64 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Rend gratuits tous les objets de la boutique"}, -- Steam Sale
+	["5.100.118 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Isaac tire un laser supplémentaire"}, -- Brimstone
 	["5.100.224 (Copies)"] = "Seul le malus de vitesse se cumule", -- Kidney Stone
 
 
@@ -1141,7 +1141,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.70.28"] = "Isaac tire devant lui et sur les côtés", -- R U A Wizard + The Wiz
 	["5.100.523"] = "Compte comme un objet passif pour {1}", -- Moving Box + Void
 	["Mongo Babies"] = "Peut être imité par {1}", -- Mongo Baby + Baby Familiars
-	["Technology 2 One Eye"] = "Le laser remplace complètement les larmes de {1}",
+	["Technology 2 One Eye"] = {"#Toutes les larmes d'Isaac sont tirées de l'œil droit", "", "Remplace complètement les larmes d'Isaac par le laser"},
 	-- ["Brimstone Proptosis"] = "Beams deal additional 2x damage at point blank range, decreasing with distance",
 	["Brimstone Ipecac"] = "Isaac tire des larmes explosives pendant qu'il charge",
 	-- ["Proptosis Anti-Gravity"] = "Tears don't lose damage until they start moving",

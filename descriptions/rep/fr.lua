@@ -101,7 +101,7 @@ local repCollectibles={
 	[181] = {"181", "Poney Blanc", "↑ Vitesse =1.5#Permet à Isaac de voler#Utiliser l'objet fait se ruer Isaac en ligne droite et des rayons de lumière frappent le sol derrière lui#Isaac est invulnérable pendant la ruée"},
 	[182] = {"182", "Sacré-Cœur", "{{Heart}} +1 Réceptacle de cœur#↑ Dégâts {{ColorLime}}x2.3 +1#↑ Portée {{ColorLime}}+0.5#↓ Vitesse des tirs {{ColorError}}-0.25#↓ Débit {{ColorError}}-0.4#Larmes autoguidées"}, -- Sacred Heart
 	[184] = {"184", "Saint Graal", "{{Heart}} +1 Réceptacle de cœur#Permet à Isaac de voler#Soigne un cœur rouge"}, -- Holy Grail
-	[186] = {"186", "Droits du Sang", "Inflige 40 dégâts à tous les ennemis de la salle#{{Warning}} Inflige 1 cœur de dégâts à Isaac#N'inflige qu'un demi-cœur de dégâts s'il est utilisé plusieurs fois dans la même salle"},
+	[186] = {"186", "Droits du Sang", "Inflige 40 dégâts à tous les ennemis de la salle#{{Warning}} Inflige 1 cœur de dégâts à Isaac {{ColorSilver}}(un demi-cœur par utilisation suivante dans la même salle)"},
 	[189] = {"189", "Super Fan de SMB", "{{Heart}} +1 Réceptacle de cœur#↑ Dégâts {{ColorLime}}+0.3#↑ Débit {{ColorLime}}+0.2#↑ Portée {{ColorLime}}+0.5#↑ Vitesse {{ColorLime}}+0.2#Soin complet"}, --SMB Super Fan
     [192] = {"192", "La Télépathie pour les Nuls", "↑ Portée {{ColorLime}}+3.0#Larmes autoguidées#{{Timer}} L'effet dure une salle"}, -- Telepathy for Dummies
 	[193] = {"193", "DE LA VIANDE !", "{{Heart}} +1 Réceptacle de cœur#↑ Dégâts {{ColorLime}}+0.3#Soigne un cœur rouge"}, -- MEAT!
@@ -341,7 +341,7 @@ local repCollectibles={
 	[597] = {"597", "Neptunus", "Ne pas tirer augmente progressivement le débit#Tirer diminue le débit jusqu'à ce qu'il revienne à sa valeur de base"}, --  Neptunus
 	[598] = {"598", "Pluto", "↑ Débit {{ColorLime}}+0.7#Diminue fortement la taille d'Isaac et lui permet de passer entre les obstacles et sous certains projectiles"}, --  Pluto
 	[599] = {"599", "Tête Réduite", "Fait apparaître une Salle Maudite {{CursedRoom}} supplémentaire à chaque étage#Les Salles Maudites sont de meilleure qualité et contiennent une pièce"}, --  Voodoo Head
-	[600] = {"600", "Collyre", "↑ Débit {{ColorLime}}+28%{{ColorWhite}} pour l'œil gauche"}, --  Eye Drops
+	[600] = {"600", "Collyre", "↑ Débit {{ColorLime}}+40%{{ColorWhite}} pour l'œil gauche"}, --  Eye Drops
 	[601] = {"601", "Acte de Contrition", "↑ Débit {{ColorLime}}+0.7#{{EternalHeart}} +1 cœur éternel#Permet au Refuge des Anges d'apparaître même si un Pacte avec le Diable a été signé#Les chances d'ouvrir l'Antre du Diable ou le Refuge des Anges diminuent moins"}, --  Act of Contrition
 	[602] = {"602", "Carte de Membre", "Ouvre une trappe vers l'arrière-boutique dans chaque Boutique {{Shop}}#L'arrière-boutique peut proposer des babioles, des ressources et des objets de n'importe quelle banque"}, --  Member Card
 	[603] = {"603", "Batterie", "Fait apparaître 2 à 4 piles#Recharge complètement l'objet activable"}, --  Battery Pack
@@ -1397,8 +1397,8 @@ local repConditions = {
 	["5.100.344"] = {"{{BlackHeart}} +1 cœur noir#Fait apparaître 3 bombes"}, -- Match Book (Greed)
 	["5.300.74"] = {"Téléporte Isaac dans la première salle de l'étage"}, -- The Moon? (Greed)
 	["5.100.416"] = {"Augmente la capacité maximale du compteur de pièces à 999"}, -- Deep Pockets (Greed)
-	["5.100.566"] = {"{{HalfSoulHeart}} +1 demi-cœur d'âme à chaque nouvel étage#{{Warning}}Devrait révéler le contenu Salle du Trésor pendant le cauchemar entre les étages, mais les mauvais objets sont affichés en mode Avarice"}, -- Dream Catcher (Greed)
-	["5.100.580"] = {"spéciales","spéciales#{{GreedMode}} Les salles spéciales sont plus rares en mode Avarice"}, -- Red Key (Greed)
+	["5.100.566"] = {"{{HalfSoulHeart}} +1 demi-cœur d'âme à chaque nouvel étage#{{Warning}} Devrait révéler le contenu de la Salle du Trésor durant le cauchemar entre les étages, mais les mauvais objets sont affichés en mode Avarice"}, -- Dream Catcher (Greed)
+	["5.100.580"] = {"spéciales","spéciales {{ColorSilver}}(plus rares en mode Avarice)"}, -- Red Key (Greed)
 -- 	["5.300.83"] = {"spéciales","spéciales#{{GreedMode}} Les salles spéciales sont plus rares en mode Avarice"}, -- Soul of Cain (Greed)
 	["5.100.514"] = {"Paralyse parfois les ennemis et projectiles#Les projectiles paralysés disparaissent"}, -- Broken Modem (Greed)
 	["5.350.162"] = {"Terminer une vague a 50% de chances de transformer Isaac en {{ColorLightOrange}}Azazel{{ColorWhite}} pour la durée de la vague suivante"}, -- Azazel's Stump (Greed)
@@ -1409,40 +1409,39 @@ local repConditions = {
 
 
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
-	["5.100.642"] = {"{{Warning}} USAGE UNIQUE {{Warning}}#Fait apparaître un objet qui provient de la banque d'objets de la salle#{{ColorSilver}}Effet unique à {1}"}, -- Magic Skin + Lost
+	["5.100.642"] = {"{{Warning}} USAGE UNIQUE {{Warning}}#Fait apparaître un objet qui provient de la banque d'objets de la salle#{{ColorSilver}}Effet propre à {1}"}, -- Magic Skin + Lost
 	["5.100.240"] = "Les changements de stats persistent même si {1} repose l'objet", -- Experimental Treatment + Tainted Isaac
 	["5.100.644"] = "L'augmentation de stats persiste même si {1} repose l'objet", -- Consolation Prize + Tainted Isaac
-	["5.100.549"] = {"↑ Débit {{ColorLime}}+0.4#{{ColorSilver}}(Effet propre à {1}"}, -- Brittle Bones (Keeper+Lost)
-	["5.100.694"] = {"Permet à {1} de subir jusqu'à 4 dégâts sans mourir#Chaque dégât subi donne {{ColorLime}} Dégâts +1"}, -- Heartbreak + Losts
-	["5.100.694 (Keeper)"] = {"Brise un des réceptacles de pièce du Gardien#↑ Dégâts {{ColorLime}}+0.25{{ColorWhite}} pour chaque réceptacle brisé#Chaque coup fatal laisse le Gardien en vie mais brise un cœur supplémentaire#Le Gardien meurt s'il a 3 cœurs brisés"}, -- Heartbreak + Normal Keeper
-	["5.100.501"] = "Permet à {1} de dépasser la limite de réceptacles de pièce habituelle", -- Greed's Gullet + Keeper
+	["5.100.549"] = {"↑ Débit {{ColorLime}}+0.4#{{ColorSilver}}Effet propre à {1}"}, -- Brittle Bones (Keeper+Lost)
+	["5.100.694"] = {"Permet à {1} de subir jusqu'à 4 dégâts sans mourir#↑ {{ColorLime}}Dégâts +1{{CR}} par dégât subi"}, -- Heartbreak + Losts
+	["5.100.694 (Keeper)"] = {"Brise un des réceptacles de pièce du Gardien#Chaque coup fatal laisse le Gardien en vie mais brise un cœur supplémentaire#↑ Dégâts {{ColorLime}}+0.25{{ColorWhite}} pour chaque réceptacle brisé#Le Gardien meurt s'il a 3 réceptacles brisés"}, -- Heartbreak + Normal Keeper
+	["5.100.501"] = {"{{CoinHeart}} +1 réceptacle de pièce toutes les 25 pièces au compteur#Permet au Gardien de dépasser la limite de réceptacles de pièce"}, -- Greed's Gullet + Keeper
 	["5.100.694 (Tainted Keeper)"] = {"Brise un des réceptacles de pièce du Gardien Impur#↑ Dégâts {{ColorLime}}+0.25{{ColorWhite}} pour chaque réceptacle brisé#Le Gardien Impur meurt si tous ses réceptacles sont brisés"}, -- Heartbreak + Tainted Keeper
 	["5.100.188"] = {"3.5 dégâts par larme","7.5 dégâts par larme"}, -- Cain + Abel
 	["5.100.360"] = {"Imite les stats et les effets des larmes de Lilith"}, -- Lilith + Incubus
 	["5.100.728"] = {"Invoque un familier qui copie les stats et les effets des larmes de Lilith#{{Timer}} L'effet dure une salle"}, -- Lilith + Gello
-	["5.350.156"] = {"{{CoinContainer}} +1 Réceptacle de pièce"}, -- Mother's Kiss
-	["5.100.230 (Keeper)"] = {"↑ Dégâts {{ColorLime}}+1.5#↑ Vitesse {{ColorLime}}+0.2#Retire tous les réceptacles de pièce de {1} sauf un#Le Gardien tire parfois une larme terrifiante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 85 Chance)"}, -- Abaddon
+	["5.100.230 (Keeper)"] = {"↑ Dégâts {{ColorLime}}+1.5#↑ Vitesse {{ColorLime}}+0.2#Retire tous les réceptacles de pièce du Gardien sauf un#Le Gardien tire parfois une larme terrifiante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 85 Chance)"}, -- Abaddon
 	["5.100.230 (Bethany)"] = {"↑ Dégâts {{ColorLime}}+1.5#↑ Vitesse {{ColorLime}}+0.2#{{BlackHeart}} +2 cœurs noirs#Retire tous les réceptacles de cœur de Béthanie sauf un#Béthanie tire parfois une larme terrifiante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 85 Chance)"}, -- Abaddon
-	["5.100.230 (Tainted Bethany)"] = {"↑ Dégâts {{ColorLime}}+1.5#↑ Vitesse {{ColorLime}}+0.2#{{BlackHeart}} +2 cœurs noirs#Isaac tire parfois une larme terrifiante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 85 Chance)"}, -- Abaddon
+	["5.100.230 (Tainted Bethany)"] = {"↑ Dégâts {{ColorLime}}+1.5#↑ Vitesse {{ColorLime}}+0.2#{{BlackHeart}} +2 cœurs noirs#Béthanie tire parfois une larme terrifiante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 85 Chance)"}, -- Abaddon
 	["5.100.245 (Keeper)"] = {"↓ Dégâts {{ColorError}}-20%#Réduit l'écart entre les larmes du {{ColorOrange}}Gardien"}, -- 20/20 + Keeper
 	["5.100.705"] = "Dégâts temporaires {{ColorLime}}+1{{CR}} pour chaque ennemi traversé", -- Dark Arts + Dark/Tainted Judas
-	["5.100.205 (Tainted Magdalene)"] = "Permet à {{ColorOrange}}Marie Impure{{CR}} d'utiliser son {{ColorYellow}}Joli Cœur à volonté", -- Sharp Plug + Tainted Magdalene
+	["5.100.205 (Tainted Magdalene)"] = "Permet à {{ColorOrange}}Marie Impure{{CR}} d'utiliser son {{ColorYellow}}Joli Cœur{{CR}} à volonté", -- Sharp Plug + Tainted Magdalene
 	-- Vibrant/Dim Bulb
-	["5.350.100 (Bethany)"] = "Les charges d'âme de {1} comptent",
-	["5.350.100 (Tainted Bethany)"] = "Les charges de sang de {1} comptent",
-	["5.350.101 (Bethany)"] = "Les charges d'âme de {1} ne comptent pas",
-	["5.350.101 (Tainted Bethany)"] = "Les charges de sang de {1} ne comptent pas",
+	["5.350.100 (Bethany)"] = "Les charges d'âme comptent",
+	["5.350.100 (Tainted Bethany)"] = "Les charges de sang comptent",
+	["5.350.101 (Bethany)"] = "Les charges d'âme ne comptent pas",
+	["5.350.101 (Tainted Bethany)"] = "Les charges de sang ne comptent pas",
 
 
 	------ DUPLICATE COPIES OF ITEMS ------
-	["5.100.2 (Copies)"] = "Isaac tire une larme supplémentaire#Ne diminue pas davantage le débit", -- The Inner Eye
-	["5.100.153 (Copies)"] = "Isaac tire 2 larmes supplémentaires#Ne diminue pas davantage le débit", -- Mutant Spider
-	["5.100.245 (Copies)"] = "Isaac tire une larme supplémentaire#Ne diminue pas davantage les dégâts", -- 20/20
-	["5.100.358 (Copies)"] = "Isaac tire une larme supplémentaire entre les autres", -- The Wiz
-	["5.100.64 (Copies)"] = "Chaque exemplaire de cet objet réduit davantage les prix", -- Steam Sale
-	["5.100.118 (Copies)"] = "Chaque exemplaire de cet objet augmente la taille et les dégâts du laser", -- Brimstone
-	["5.100.531 (Copies)"] = "Obtenir plusieurs fois cet objet ne donne que {{ColorLime}}Dégâts +1", -- Haemolacria
-	["5.100.224 (Copies)"] = "Obtenir plusieurs fois cet objet ne donne que {{ColorLime}}Débit +0.5", -- Cricket's Body
+	["5.100.2 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Isaac tire une larme supplémentaire"}, -- The Inner Eye
+	["5.100.153 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Isaac tire 2 larmes supplémentaires"}, -- Mutant Spider
+	["5.100.245 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Isaac tire une larme supplémentaire"}, -- 20/20
+	["5.100.358 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Isaac tire une larme supplémentaire entre les autres"}, -- The Wiz
+	["5.100.64 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Réduit davantage les prix"}, -- Steam Sale
+	["5.100.118 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#Augmente la taille et les dégâts du laser"}, -- Brimstone
+	["5.100.531 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#↑ Dégâts {{ColorLime}}+1"}, -- Haemolacria
+	["5.100.224 (Copies)"] = {"{{Blank}} {{ColorSilver}}Multiples exemplaires :#↑ Débit {{ColorLime}}+0.5"}, -- Cricket's Body
 
 
 	----- MISC. ITEM CONDITIONS ------
@@ -1456,11 +1455,11 @@ local repConditions = {
 
 	["1000.76.0"] = "{{Warning}} Ne rejoue que le personnage qui marche sur le dé", -- Dice Room 1 (Co-op)
 	["1000.76.5"] = "{{Warning}} Rejoue les objets de tous les personnages", -- Dice Room 6 (Co-op)
-	["5.100.45"] = "#Soigne les autres joueurs d'un demi-cœur rouge", -- Yum Heart (Co-Op)
+	["5.100.45"] = "Soigne les autres joueurs d'un demi-cœur rouge", -- Yum Heart (Co-Op)
 	["5.350.125"] = {"Relie les joueurs et les familiers par des arcs électriques"}, -- Extension Cord (Co-Op)
 
 	["5.100.245"] = "Retire le malus de débit de {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
-	["20/20"] = "Retire le malus de débit de {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	["20/20"] = "{1} retire le malus de débit", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
 
 	["5.100.135 (Hard Mode)"] = {"1 ou 2 pièces", "1 pièce", "2 ou 3", "2"}, -- IV Bag Hard Mode (modify the PHD text too)
 	["5.100.201"] = "Recharge la {1}", -- Iron Bar + Notched Axe
@@ -1468,13 +1467,13 @@ local repConditions = {
 	["5.100.501 (Deep Pockets)"] = "{{Heart}} +1 réceptacle de cœur toutes les 100 pièces au-delà de 99", -- Greed's Gullet + Deep Pockets
 	["? Card Single Use"] = "Déclenche l'effet des objets activables à usage unique sans les faire disparaître", -- Single Use Actives + ? Card
 	["Both Peppers"] = {50,100,10,7}, -- Ghost Pepper + Bird's Eye
-	["Black Feather"] = "↑ Dégâts {{ColorLime}}+0.5", -- Black Feather items
-	["Hemoptysis"] = "Fonctionne avec {1}", -- Hemoptysis + Brimstone items
-	["5.100.600"] = "↑ Débit {{ColorLime}}x1.2{{CR}} avec {1}", -- Eye Drops (items and some players)
+	["Black Feather"] = "Dégâts {{ColorLime}}+0.5", -- Black Feather items
+	["Hemoptysis"] = "Synergise avec {1}", -- Hemoptysis + Brimstone items
+	["5.100.600"] = {"↑ Débit {{ColorLime}}x1.2"}, -- Eye Drops (items and some players)
 	["5.100.482"] = {"personnage au","personnage impur au"}, -- Clicker
 
 	["4.5 Volt Timed"] = "Aucun effet sur les objets à recharge automatique", -- 4.5 Volt + Timed Recharges
-	["4.5 Volt Multiple"] = "Ne recharge l'objet activable secondaire que si le premier est entièrement chargé", -- 4.5 Volt + Schoolbag/Pocket Actives
+	["4.5 Volt Multiple"] = "L'objet activable secondaire ne charge que si le premier est complètement chargé", -- 4.5 Volt + Schoolbag/Pocket Actives
 	["Bulb Zero"] = "Les objets sans barre de charge ne comptent pas", -- Vibrant/Dim Bulb + zero charge actives
 
 	["Brimstone Proptosis"] = "La taille et les dégâts des lasers diminuent selon la distance",
@@ -1489,8 +1488,8 @@ local repConditions = {
 	["Technology Ipecac"] = "Le laser explose au contact d'un ennemi ou d'un obstacle",
 	["Eye of the Occult Beam"] = "Le laser est automatiquent tiré vers un curseur déplaçable",
 
-	["Lullaby Tainted Eve"] = "Double le débit des pâtés",
-	["Lullaby Lilith"] = "Double le débit de l'Incube",
+	["Lullaby Tainted Eve"] = "{{ColorSilver}}(dont celui des pâtés)",
+	["Lullaby Lilith"] = {"Double le débit des familiers de Lilith#{{Blank}} {{ColorSilver}}(dont celui de l'{{ColorYellow}}Incube{{ColorSilver}})"},
 
 	-- Jacob's Ladder / 120 Volt battery synergies
 	["Sparks Damage"] = "Les arcs électriques infligent 50% de dégâts en plus",
