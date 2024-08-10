@@ -1438,8 +1438,8 @@ local repConditions = {
 	["Technology Ipecac"] = "The laser gets +2 damage and explodes on targets",
 	["Eye of the Occult Beam"] = "Isaac automatically shoots with a crosshair that alters the beam's path",
 	
-	["Lullaby Tainted Eve"] = "Clot fire rate is doubled",
-	["Lullaby Lilith"] = "Incubus fire rate is doubled",
+	["Lullaby Clots"] = "(Including clots)",
+	["Lullaby Lilith"] = "(Including Incubus)",
 	
 	-- Jacob's Ladder / 120 Volt battery synergies
 	["Sparks Damage"] = "Sparks deal 50% more damage",

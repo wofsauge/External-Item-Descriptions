@@ -43,7 +43,7 @@ if EID.isRepentance then
 	EID:AddSynergyConditional({584, 685, 702, 728}, "5.350.141", "No Effect From", "No Effect") -- Forgotten Lullaby no effect familiars (wisps, Gello)
 	EID:AddPlayerConditional("5.350.141", 32, "No Effect", {bulletpoint = "Collectible728", variableText = "{{NameOnlyC728}}"}) -- Forgotten Lullaby no effect on Tainted Lilith's Gello
 	EID:AddPlayerConditional("5.350.141", 13, "Lullaby Lilith", nil, false)
-	EID:AddPlayerConditional("5.350.141", 26, "Lullaby Tainted Eve")
+	EID:AddItemConditional("5.350.141", {713, "5.350.176"}, "Lullaby Clots")
 end
 
 -- Abyss, Birthright Book of Belial, Binge Eater
