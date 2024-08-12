@@ -181,6 +181,7 @@ local repCollectibles={
 	[405] = {"405", "恶性漏洞", "{{Throwable}} {{ColorOrange}}可投掷{{CR}}(双击发射键)#重置接触到的敌人和掉落物"}, -- GB Bug
 	[407] = {"407", "纯洁", "↑ 根据角色光环颜色对角色属性进行增强#受伤或进入新房间时，获得新的光环：#{{ColorRed}}红色{{CR}} = {{Damage}}+4.0伤害#{{ColorOrange}}橙色{{CR}} = {{Range}}+3.0射程#{{ColorYellow}}黄色{{CR}} = {{Speed}}+0.5移速#{{ColorBlue}}蓝色{{CR}} = {{Tears}}+2.0射速修正"},
 	[408] = {"408", "祭祀之刃", "消灭敌人时有概率在敌人死亡位置生成持续1秒的黑色硫磺火环# {{Luck}} 运气30：100%几率"}, -- Athame
+	[412] = {"412", "恶魔受胎", "受到第15，30，60，90次伤害后，角色永久获得1个恶魔跟班#可能生成：{{Collectible278}}{{Collectible113}}{{Collectible270}}{{Collectible275}}{{Collectible360}}{{Collectible417}}{{Collectible679}}{{Collectible698}}#最多产生4个跟班"},
 	[415] = {"415", "光明之冠", "{{SoulHeart}} +2魂心#如果没有不满的心之容器：#↑ {{Damage}} +100%伤害倍率#↓ {{Shotspeed}} -0.3弹速#受伤后，当前房间无论心之容器是否是满的，效果消失"}, -- Crown Of Light
 	[416] = {"416", "深口袋", "{{Coin}} 如果房间没有奖励，生成1-3硬币#{{Coin}} 提高硬币上限为999"}, -- Deep Pockets
 	[417] = {"417", "魅魔", "在房间内漂浮的跟班，产生伤害光环，每秒10.8点伤害#↑ {{Damage}} 站在光环中+50%伤害倍率"}, -- Succubus
