@@ -1130,6 +1130,22 @@ EID.descriptions[languageCode].poopSpells = {
 
 ---------- Misc. Text ----------
 
+-- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].ItemReminder = {
+	ResultHeader = " Result",
+	InventoryEmpty = "(Player has no items)",
+	CategoryNames = {
+		Overview = "信息总览",
+		Wisps = "Lemegeton Wisps",
+		Special = "特殊",
+		Actives = "所持主动道具",
+		Pockets = "携带物品",
+		Trinkets = "所持饰品",
+		Passives = "所持被动道具",
+		Character = "角色信息 ",
+	}
+}
+
 -- Void stat names: Replace "Tears" with "Fire Rate"
 EID.descriptions[languageCode].VoidNames[2] = EID.descriptions[languageCode].GlitchedItemText[1]
 
