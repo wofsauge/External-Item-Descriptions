@@ -250,7 +250,7 @@ local function BlackFeatherCallback(descObj)
 		description, _ =  EID:ReplaceVariableStr(description, 2, "{{"..dmgColor.."}}"..damageMultiplied.."{{CR}}")
 		if #EID.coopAllPlayers > 1 then description =  EID:GetPlayerIcon(playerType, "P" .. i .. ":") .. " " .. description end
 		
-		EID:appendToDescription(descObj, "# "..description)
+		EID:appendToDescription(descObj, "#"..description)
 	end
 	return descObj
 end
