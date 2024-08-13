@@ -171,6 +171,8 @@ EID.InlineIcons = {
 	["Warning"] = {"Warning", 0, 10, 9, 3},
 	["Blank"] = {"Blank", 0, 0, 0},
 
+	["ArrowUpDown"] = {"ArrowUpDown", 0, 12, 9, -1},
+
 	["ArrowGrayUp"] = {"ArrowGray", 0, 10, 9, 1},
 	["ArrowGrayRight"] = {"ArrowGray", 1, 10, 9, 1},
 	["ArrowGrayDown"] = {"ArrowGray", 2, 10, 9, 1},
@@ -634,6 +636,7 @@ EID.InlineIcons = {
 	["DailyRun"] = {"Misc", 14, 15, 12, 0, -1},
 	["DailyRunSmall"] = {"Misc", 15, 12, 12, 0, 1},
 	["MagnifyingLens"] = {"Misc", 16, 13, 13, 0, -1},
+	["Padlock"] = {"Misc", 17, 8, 10, 1, 0},
 }
 -- General Stats (Adjust automatically according to the current DLC)
 
