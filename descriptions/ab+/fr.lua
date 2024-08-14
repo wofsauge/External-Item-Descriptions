@@ -83,7 +83,7 @@ EID.descriptions[languageCode].collectibles={
 	{"59", "", "<Cet objet n'existe pas>"},
 	{"60", "Échelle en Bois", "Permet à Isaac de traverser les précipices d'une case"},
 	{"61", "", "<Cet objet n'existe pas>"},
-	{"62", "Morsure de Vampire", "Tuer 13 ennemis soigne Isaac d'un demi-cœur rouge"},
+	{"62", "Morsure de Vampire", "Tuer 13 ennemis soigne un demi-cœur rouge"},
 	{"63", "Pile Électrique", "Permet de surcharger les objets activables#Un objet complètement surchargé peut être utilisé deux fois d'affilée"},
 	{"64", "Soldes", "Réduit le prix des objets du shop de moitié"},
 	{"65", "Guide du Petit Anarchiste", "Invoque 6 troll bombs"},
@@ -314,7 +314,7 @@ EID.descriptions[languageCode].collectibles={
 	{"290", "Bocal en Verre", "Ramasser un cœur rouge quand tous les réceptacles de cœurs rouges d'Isaac sont pleins le met dans le bocal#Utiliser l'objet sort tous les cœurs rouges du bocal et les place sur le sol"},
 	{"291", "Chasse d'Eau", "Tue instantanément tous les ennemis et boss cacas#Transforme les ennemis en cacas"},
 	{"292", "Bible Satanique", "{{BlackHeart}} +1 cœur noir"},
-	{"293", "Tête de Krampus", "Tire un laser de sang dans 4 directions"},
+	{"293", "Tête de Krampus", "Crache un laser de sang dans 4 directions#Les lasers ont 50% de chances de tourner pendant l'attaque"},
 	{"294", "Haricot Blanc", "Isaac pète et repousse les ennemis et les projectiles à proximité#10% de chances de devenir {{ColorYellow}}Wait What?{{ColorWhite}}{{Collectible484}} quand il est échangé avec un autre objet activable"},
 	{"295", "Pot de Vin", "Inflige des dégâts à toute la salle#Retire 1 pièce à Isaac"},
 	{"296", "Adaptateur", "Convertit 2 cœurs d'âme/noirs en un réceptacle de cœur rouge"},
@@ -407,7 +407,7 @@ EID.descriptions[languageCode].collectibles={
 	{"383", "Détonateur Lacrymal", "Divise en 6 toutes les larmes d'Isaac à l'écran"},
 	{"384", "P'tit Boris", "Charge quand Isaac tire, puis se propulse à travers la salle et rebondit contre les murs quand les boutons de tirs sont relâchés"},
 	{"385", "Bumbo", "Ramasse les pièces au sol#Évolue et change de capacités après avoir ramassé assez de pièces#Peut faire apparaître une ressource pour chaque pièce ramassée"},
-	{"386", "D12", "Rejoue tous les obstacles de la salle"},
+	{"386", "D12", "Rejoue tous les rochers de la salle"},
 	{"387", "Encensoir", "Suit Isaac entouré d'une aura de lumière qui ralentit les ennemis et projectiles qui y entrent"},
 	{"388", "Cléchard", "Ramasse les clés au sol et fait parfois apparaître des coffres en échange"},
 	{"389", "Sac de Runes", "Fait apparaître une rune toutes les 5 ou 6 salles"},
@@ -694,14 +694,14 @@ EID.descriptions[languageCode].trinkets={
 	{"43", "Crâne Maudit", "Descendre à un demi-cœur de vie totale téléporte Isaac dans une salle aléatoire"},
 	{"44", "Bouchon de Sécurité", "Augmente la fréquence d'apparition des pilules"},
 	{"45", "As de Pique", "Augmente la fréquence d'apparition des cartes"},
-	{"46", "Fourchette d'Isaac", "Terminer une salle soigne parfois Isaac d'un demi-cœur rouge#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 18 Chance)"},
+	{"46", "Fourchette d'Isaac", "Terminer une salle soigne parfois un demi-cœur rouge#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 18 Chance)"},
 	{"47", "", "<Inutilisé>"},
 	{"48", "Page Déchirée", "Subir un dégât inflige parfois 40 dégâts à tous les ennemis de la salle#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(50% à 60 Chance)"},
 	{"49", "Pièce Sanglante", "Ramasser une pièce a 50% de chances de faire apparaître un demi-cœur rouge"},
 	{"50", "Pièce Brûlée", "Ramasser une pièce a 50% de chances de faire apparaître une bombe"},
 	{"51", "Pièce Plate", "Ramasser une pièce a 50% de chances de faire apparaître une clé"},
 	{"52", "Pièce de Contrefaçon", "Ramasser une pièce a 50% de chances d'augmenter le compteur d'une pièce supplémentaire"},
-	{"53", "Tique", "Retire 15% des PV des boss#Rentrer dans une salle de boss soigne Isaac d'un cœur rouge#{{Warning}} Ne peut pas être retiré sans {{ColorYellow}}Match Stick{{ColorWhite}} {{Trinket41}}"},
+	{"53", "Tique", "Retire 15% des PV des boss#Rentrer dans une salle de boss soigne un cœur rouge#{{Warning}} Ne peut pas être retiré sans {{ColorYellow}}Match Stick{{ColorWhite}} {{Trinket41}}"},
 	{"54", "Tête d'Isaac", "Suit Isaac et tire des larmes transperçantes#{{DamageSmall}} 3.5 dégâts par larme"},
 	{"55", "Foi de Marie", "{{EternalHeart}} +1 cœur éternel au début de chaque étage"},
 	{"56", "Langue de Judas", "Réduit le prix de tous les Devil Deals à 1 réceptacle de cœur#N'affecte pas les objets payés en cœurs d'âme"},
@@ -735,7 +735,7 @@ EID.descriptions[languageCode].trinkets={
 	{"84", "Côte d'Avarice", "Empêche {{ColorCyan}}Greed{{ColorWhite}} et {{ColorCyan}}Super Greed{{ColorWhite}} d'apparaître dans les Shops {{Shop}}"},
 	{"85", "Karma", "Faire un don à une boîte à dons a 33% de chances de:#Soigner 1 cœur rouge {{ColorSilver}}(40%)#Donner 1 pièce {{ColorSilver}}(40%)#Donner {{ColorLime}}Chance +1 {{ColorSilver}}(15%)#Invoquer un mendiant {{ColorSilver}}(5%)"},
 	{"86", "Petite Larve", "Détruire un caca invoque une mouche bleue"},
-	{"87", "Médaillon de Maman", "Utiliser une clé soigne Isaac d'un demi-cœur rouge#Remplace les demi-cœurs rouges au sol par des cœurs entiers"},
+	{"87", "Médaillon de Maman", "Utiliser une clé soigne un demi-cœur rouge#Remplace les demi-cœurs rouges au sol par des cœurs entiers"},
 	{"88", "NON !", "Empêche la génération d'objets activables"},
 	{"89", "Laisse Pour Enfants", "Réduit la distance entre les familiers d'Isaac"},
 	{"90", "Bouchon Brun", "Les cacas détruits explosent et infligent 100 dégâts"},
@@ -767,7 +767,7 @@ EID.descriptions[languageCode].trinkets={
 	{"116", "Locuste de Mort", "Entrer dans une salle hostile invoque un locuste qui inflige {{ColorLime}}dégâts x4"},
 	{"117", "Locuste de Conquête", "Entrer dans une salle hostile invoque 2 à 5 locustes"},
 	{"118", "Aile de Chauve-Souris", "Tuer un ennemi permet parfois à Isaac de voler pour la durée d'une salle"},
-	{"119", "Cellule Souche", "Entrer dans un nouvel étage soigne Isaac d'un demi-cœur rouge"},
+	{"119", "Cellule Souche", "Entrer dans un nouvel étage soigne un demi-cœur rouge"},
 	{"120", "Épingle à Cheveux", "Entrer dans une salle de boss recharge entièrement l'objet activable"},
 	{"121", "Croix de Bois", "Entoure Isaac d'un bouclier sacré {{HolyMantleSmall}} qui nullifie le premier dégât subi dans l'étage#Le bouclier se régénère à chaque étage"},
 	{"122", "Plaquette de Beurre", "Utiliser un objet activable le retire de l'inventaire d'Isaac et le pose sur un piédestal#Subir un dégât a 2% de chances de retirer un objet passif à isaac et de le poser sur un piédestal"},
@@ -792,7 +792,7 @@ EID.descriptions[languageCode].cards={
 	{"9", "VIII - La Justice", "Fait apparaître une clé, une bombe, une pièce et un cœur"},
 	{"10", "IX - L'Ermite", "Téléporte Isaac dans le Shop {{Shop}}"},
 	{"11", "X - La Roue de Fortune", "Fait apparaître une machine à sous {{Slotmachine}} ou une diseuse de bonne aventure {{FortuneTeller}}"},
-	{"12", "XI - La Force", "{{Heart}} +1 Réceptacle de cœur#↑ Dégâts {{ColorLime}}+0.3 x1.5#↑ Vitesse {{ColorLime}}+0.3#↑ Portée {{ColorLime}}+5.25#{{Timer}} L'effet dure une salle"},
+	{"12", "XI - La Force", "{{Heart}} +1 réceptacle de cœur#↑ Dégâts {{ColorLime}}+0.3 x1.5#↑ Vitesse {{ColorLime}}+0.3#↑ Portée {{ColorLime}}+5.25#{{Timer}} L'effet dure une salle"},
 	{"13", "XII - Le Pendu", "Permet à Isaac de voler#{{Timer}} L'effet dure une salle"},
 	{"14", "XIII - La Mort", "Inflige 40 dégâts à tous les ennemis de la salle"},
 	{"15", "XIV - Tempérance", "Fait apparaître une banque du sang {{BloodDonationMachine}}"},
@@ -906,7 +906,7 @@ EID.descriptions[languageCode].pills={
 	{"33", "...L'une te rapetisse", "Diminue la taille d'Isaac#Diminue la hitbox d'Isaac"},
 	{"34", "Infesté !", "Invoque une araignée bleue pour chaque caca dans la salle"},
 	{"35", "Infesté ?", "Invoque une araignée bleue pour chaque ennemi dans la salle#Utilisée dans une salle vide, invoque 1 à 3 araignées"},
-	{"36", "Vitamines !", "Rend Isaac invulnérable#Terrifie tous les ennemis de la salle#Tuer un ennemi peut soigner Isaac d'un demi-cœur rouge#{{Timer}} L'effet dure 6.5 secondes"},
+	{"36", "Vitamines !", "Rend Isaac invulnérable#Terrifie tous les ennemis de la salle#Tuer un ennemi soigne parfois un demi-cœur rouge#{{Timer}} L'effet dure 6.5 secondes"},
 	{"37", "Vision rétro", "Pixellise l'écran pendant 30 secondes"},
 	{"38", "Amis pour la vie !", "Invoque 3 mouches bleues"},
 	{"39", "X-Lax", "Répand une flaque glissante"},
@@ -993,7 +993,7 @@ EID.descriptions[languageCode].MCM = {
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].ItemReminder = {
-	ResultHeader = " Effet de",
+	ResultHeader = "Effet de",
 	InventoryEmpty = "(Aucun objet dans l'inventaire)",
 	CategoryNames = {
 		Overview = "Inventaire global",
@@ -1059,6 +1059,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Copies)"] = "Avoir plusieurs exemplaires ne cumule pas les effets", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "Aucun effet bonus pour les familiers", -- probably just for Hive Mind + BFFS!
 	["No Red"] = "Aucun effet pour les personnages sans cœurs rouges",
+	["Different Effect"] = "Effet différent avec {1}",
 
 
 	------ GREED MODE ------
@@ -1088,6 +1089,30 @@ EID.descriptions[languageCode].ConditionalDescs = {
 
 
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
+		-- NO RED HEALTH CHARS
+	-- These change "+1 Health, Full health" to just "+1 Soul Heart" and etc.
+	["Red to Soul"] = {"{{Heart}} +1 réceptacle de cœur", "{{SoulHeart}} +1 cœur d'âme", "{{Heart}} +2 réceptacles de cœur", "{{SoulHeart}} +2 cœurs d'âme", "{{Heart}} +3 réceptacles de cœur", "{{SoulHeart}} +3 cœurs d'âme",
+	"{{EmptyHeart}} +1 réceptacle de cœur", "{{SoulHeart}} +1 cœur d'âme", "{{EmptyHeart}} +2 réceptacles de cœur", "{{SoulHeart}} +2 cœurs d'âme",
+	"Soin complet", "", "Soigne 1 cœur rouge", "", "Soigne un demi-cœur rouge", "", "Soigne 2 cœurs rouges", ""}, -- Red HP to Soul Hearts, removes heals
+	
+	["Red to Black"] =  {"{{Heart}} +1 réceptacle de cœur", "{{BlackHeart}} +1 cœur noir", "{{Heart}} +2 réceptacles de cœur", "{{BlackHeart}} +2 cœurs noirs", "{{Heart}} +3 réceptacles de cœur", "{{BlackHeart}} +3 cœurs noirs",
+	"{{EmptyHeart}} +1 réceptacle de cœur", "{{BlackHeart}} +1 cœur noir", "{{EmptyHeart}} +2 réceptacles de cœur", "{{BlackHeart}} +2 cœurs noirs",
+	"Soin complet", "", "Soigne 1 cœur rouge", "", "Soigne un demi-cœur rouge", "", "Soigne 2 cœurs rouges", ""}, -- Red HP to Black Hearts, removes heals
+	
+	["Red to Bone"] = {"{{Heart}} +1 réceptacle de cœur", "{{BoneHeart}} +1 cœur d'os", "{{Heart}} +2 réceptacles de cœur", "{{BoneHeart}} +2 cœurs d'os", "{{Heart}} +3 réceptacles de cœur", "{{BoneHeart}} +3 cœurs d'os",
+	"{{Heart}} +1 réceptacle de cœur", "{{EmptyBoneHeart}} +1 cœur d'os", "{{Heart}} +2 réceptacles de cœur", "{{EmptyBoneHeart}} +2 cœurs d'os"}, -- Red HP to Bone Hearts
+	
+	["Red to Coin"] = {"{{Heart}} +","{{CoinHeart}} +", "{{EmptyHeart}} +","{{EmptyCoinHeart}} +",
+	"réceptacle de cœur", "réceptacle de pièce", "Soigne un cœur rouge", "Soigne une pièce", "Soigne un demi-cœur rouge", "Soigne une pièce", "Soigne 2 cœurs rouges", "Soigne 2 pièces"}, -- Red HP to Coin Hearts
+	
+	["Red to None"] = {"{{Heart}} +1 réceptacle de cœur", "", "{{Heart}} +2 réceptacles de cœur", "", "{{Heart}} +3 réceptacles de cœur", "",
+	"{{EmptyHeart}} +1 réceptacle de cœur", "", "{{EmptyHeart}} +2 réceptacles de cœur", "",
+	"Soin complet", "", "Soigne un cœur rouge", "", "soigne un demi-cœur rouge", "", "soigne 2 cœurs rouges", ""}, -- Red HP to None (The Lost)
+	
+	["Super Bandage Soul"] = {"{{SoulHeart}} +3 cœurs d'âme"}, -- for Soul Heart chars
+	["Super Bandage Black"] = {"{{SoulHeart}} +2 cœurs d'âme#{{BlackHeart}} +1 cœur noir"}, -- for Black Heart chars
+	["Black Lotus Soul"] = {"{{SoulHeart}} +2 cœurs d'âme#{{BlackHeart}} +1 cœur noir"}, -- for Soul Heart chars
+	["Black Lotus Black"] = {"{{SoulHeart}} +1 cœur d'âme#{{BlackHeart}} +2 cœurs noirs"}, -- for Black Heart chars
 	["5.100.135 (PHD)"] = {"1 ou 2", "2 ou 3"}, -- IV Bag PHD
 	["Keeper 0-1"] = {"1 ou 2", "0 ou 1", "2 ou 3", "0 ou 1"}, -- IV Bag/Piggy Bank Keeper
 	["5.100.549"] = {"Débit {{ColorLime}}+0.4#{{ColorSilver}}(Effet propre à {1})"}, -- Brittle Bones (Keeper+Lost)
@@ -1159,6 +1184,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["White Poop"] = "Fait plutôt apparaître un Caca Sacré",
 	["White Poop Chance"] = "Fait parfois apparaître un Caca Sacré",
 	["Golden Poop Chance"] = "Fait parfois apparaître un Caca Doré",
+	["5.100.483"] = "L'objet peut être utilisé sans le faire disparaître en échange d'une bombe dorée",
 
 	["5.300.5"] = {"Téléporte Isaac dans une Salle de Boss au hasard"}, -- IV - The Emperor (in The Void)
 	["5.300.18"] = "Téléporte Isaac dans une salle au hasard s'il n'y a pas de Salle du Trésor", -- XVII - The Stars (Womb and below)

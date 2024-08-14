@@ -3,7 +3,7 @@ local showDebugChars = false
 
 -- check integrity of language files
 
-local languageFilesToCheck = {"cs_cz"} -- EID.Languages -- single file check {"ko_kr"}
+local languageFilesToCheck = {"fr"} -- EID.Languages -- single file check {"ko_kr"}
 
 -- count en_us entries for stats
 local count = 0
@@ -47,7 +47,7 @@ for _, lang in ipairs(languageFilesToCheck) do
 					print(" Table '" .. prevKey .. "' does not contain key: " .. k)
 					progress[2] = progress[2] + 1
 				elseif type(table2[k]) ~= type(table1[k]) then
-					print("Type mismatch in table '" .. prevKey .. "', key: " .. k)
+					-- print("Type mismatch in table '" .. prevKey .. "', key: " .. k)
 					progress[2] = progress[2] + 1
 				elseif type(table2[k]) == "table" then
 				  EID:compareTables(table1[k], table2[k], prevKey.."->"..k, progress)
