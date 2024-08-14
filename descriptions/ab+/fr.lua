@@ -996,14 +996,14 @@ EID.descriptions[languageCode].ItemReminder = {
 	ResultHeader = "Effet de",
 	InventoryEmpty = "(Aucun objet dans l'inventaire)",
 	CategoryNames = {
-		Overview = "Inventaire global",
-		Wisps = "Feux follets de Lemegeton",
-		Special = "Effets spéciaux",
-		Actives = "Objets activables",
-		Pockets = "Ressources",
-		Trinkets = "Babioles",
-		Passives = "Objets passifs",
-		Character = "Info personnage",
+		Overview = " Inventaire global ",
+		Wisps = " Feux follets de Lemegeton ",
+		Special = " Effets spéciaux ",
+		Actives = " Objets activables ",
+		Pockets = " Ressources ",
+		Trinkets = " Babioles ",
+		Passives = " Objets passifs ",
+		Character = " Info personnage ",
 	}
 }
 

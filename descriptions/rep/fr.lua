@@ -449,12 +449,12 @@ local repCollectibles={
 	[702] = {"702", "Esprit Vengeur", "Subir un dégât invoque un feu follet invulnérable pour la durée de l'étage#Les feux follets infligent des dégâts de contact mais ne bloquent pas les projectiles"}, --  Vengeful Spirit
 	[703] = {"703", "Ésaü Junior", "Transforme Isaac en Ésaü Junior et inversement#Ésaü Junior peut voler, possède 3 cœurs noirs et a des objets et PV séparés"}, --  Esau Jr.
 	[704] = {"704", "Frénésie", "↑ Vitesse {{ColorLime}}+0.4#↑ Dégâts {{ColorLime}}+3.0#{{ArrowUpDown}} Débit {{ColorError}}x0.5 {{ColorLime}}+2#Remplace les larmes par une attaque au corps-à-corps#{{Timer}} L'effet dure 5 secondes"}, --  Berserk!
-	[705] = {"705", "Arts Obscurs", "↑ Vitesse {{ColorLime}}+1.0{{ColorWhite}}#Permet à Isaac de traverser les ennemis et projectiles pendant 1 seconde#Paralyse et inflige des dégâts à tous les ennemis traversés"}, --  Dark Arts
+	[705] = {"705", "Arts Obscurs", "↑ Vitesse {{ColorLime}}+1.0{{ColorWhite}}#Permet à Isaac de traverser les ennemis et projectiles#{{Timer}} L'effet dure 1 seconde#Paralyse et inflige des dégâts aux ennemis traversés"}, --  Dark Arts
 	[706] = {"706", "Abysse", "Absorbe tous les objets de la salle et invoque un locuste abyssal pour chaque objet détruit#Les locustes abyssaux sont invulnérables et foncent dans la direction où tire Isaac"}, --  Abyss
 	[707] = {"707", "Souper", "{{Heart}} +1 Réceptacle de cœur#Soigne un cœur rouge"}, --  Supper
 	[708] = {"708", "Agrafeuse", "↑ Dégâts {{ColorLime}}+1.0#Toutes les larmes d'Isaac sont tirées de l'œil droit"}, --  Stapler
 	[709] = {"709", "Suplex !", "Permet à Isaac de foncer sur un ennemi et de l'écraser au sol#L'attaque augmente en puissance et en portée selon la taille d'Isaac"}, --  Suplex!
-	[710] = {"710", "Sac de Fabrication", "Permet à Isaac de ramasser jusqu'à 8 ressources#Maintenir le bouton d'activation quand le sac est plein fabrique un objet#La qualité de l'objet dépend de la qualité des ressources ramassées"}, --  Bag of Crafting
+	[710] = {"710", "Sac de Fabrication", "Utiliser l'objet puis tirer balaye le sac#Toucher une ressource avec le sac la place dedans#Maintenir [Utiliser] quand le sac contient 8 ressources fabrique un objet#La qualité de l'objet dépend des ressources ramassées"}, --  Bag of Crafting
 	[711] = {"711", "Inversion", "Affiche un deuxième objet transparent sur les piédestaux#Utiliser l'objet inverse l'objet solide et l'objet transparent#L'objet transparent disparait s'il est laissé seul sur un piédestal#Ne fonctionne qu'avec les objets déjà présents dans une salle"}, --  Flip
 	[712] = {"712", "Lemegeton", "Invoque un feu follet violet en forme d'objet et donne son effet#L'effet est perdu si le feu follet est détruit#25% de chances d'invoquer un objet qui provient de la banque d'objets de la salle"}, --  Lemegeton
 	[713] = {"713", "Sumptorium", "Convertit un demi-cœur en un familier pâté#Le type de pâté change selon le cœur sacrifié"}, --  Sumptorium
@@ -1358,10 +1358,10 @@ EID.descriptions[languageCode].CraftingPreviewBackup = "{{Warning}} Si cet objet
 EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} ressources dans l'étage"
 EID.descriptions[languageCode].CraftingWarningAvailableItems = "Il faut 8 ressources pour afficher les recettes"
 -- {1} will be converted into the name of the key that toggles the BoC visibility
-EID.descriptions[languageCode].CraftingIsHidden = "Les recettes sont cachées (Afficher : {1})"
+EID.descriptions[languageCode].CraftingIsHidden = "Recettes cachées (Afficher : {1})"
 EID.descriptions[languageCode].CraftingMore = "...et {1} autres"
 
-EID.descriptions[languageCode].CraftingResults = "Défiler : {{CONFIG_BoC_Toggle}} + {{ButtonY}}{{ButtonA}}#Verrouiller : {{ButtonX}}#Rafraîchir : {{ButtonB}}#Réinitialiser : Maintenir {{ButtonRB}}#Rechercher : {{ButtonEnter}}"
+EID.descriptions[languageCode].CraftingResults = "Défiler : {{CONFIG_BoC_Toggle}} + {{ButtonY}}{{ButtonA}}#Verrouiller : {{CONFIG_BoC_Toggle}} + {{ButtonX}}#Rafraîchir : {{CONFIG_BoC_Toggle}} + {{ButtonB}}#Réinitialiser : Maintenir {{ButtonRB}}#Rechercher : {{ButtonEnter}}"
 
 EID.descriptions[languageCode].BlankCardCharge = "Temps de charge avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"
 EID.descriptions[languageCode].BlankCardEffect = "Effet avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"
@@ -1440,8 +1440,8 @@ local repConditions = {
 	["Health Up Soul Charges"] = "+{1} charges d'âme",
 	["Health Up Blood Charges"] = "+{1} charges de sang",
 
-	["5.100.705"] = "Dégâts temporaires {{ColorLime}}+1 pour chaque ennemi transpercé", -- Dark Arts + Dark/Tainted Judas
-	["5.100.722"] = {"Enchaîne Ésaü Impur#Réutiliser l'objet ou attendre 5 secondes libère Ésaü et le fait foncer vers Isaac"}, -- TJacob + Anima Sola
+	["5.100.705"] = "Dégâts temporaires {{ColorLime}}+1{{CR}} pour chaque ennemi traversé", -- Dark Arts + Dark/Tainted Judas
+	["5.100.722"] = {"Immobilise Ésaü Impur#Réutiliser l'objet ou attendre 5 secondes libère Ésaü, qui fonce vers Jacob"}, -- TJacob + Anima Sola
 	["5.100.713"] = {"Reconvertit les pâtés en PV#Téléporte le surplus de pâtés à Ève#{{Timer}} 1 seconde de recharge"}, --Teve + Sumptorium
 	["5.100.711"] = {"Affiche", "{{Player38}} Passe à l'autre Lazare#Affiche"}, -- Tlaz + Flip
 	["5.100.710"] = {"Utiliser l'objet puis tirer balaye le sac#Toucher une ressource avec le sac la place dedans#Maintenir [Utiliser] une fois le sac plein fabrique l'objet affiché#La ressource à remplacer quand le sac est plein peut être choisie avec [Lâcher]"}, -- Tcain Bag of Crafting
@@ -1596,10 +1596,10 @@ local repCharacterInfo = {
 
 	[21] = {"Isaac Impur", "Ne peut porter que 8 objets#Les objets sur piédestal alternent entre 2 options#{{ButtonRT}} permet de choisir l'objet à remplacer si l'inventaire est plein"},
 	[22] = {"Marie Impure", "Les PV au-delà de 2 cœurs se vident progressivement#Inflige {{ColorLime}}Dégâts x6{{CR}} au contact#Tuer un ennemi fait parfois apparaître un demi-cœur rouge temporaire {{ColorSilver}}(Garanti si tué au contact)#Les objets soignent le double de cœurs#Les dégâts subis dans les cœurs transparents ne diminuent pas les chances d'ouvrir le Refuge des Anges ou l'Antre du Diable"},
-	[23] = {"Caïn Impur", "Toucher un objet le transforme en ressources#Ramasser 8 ressources avec le Sac de Fabrication permet de fabriquer des objets#{{ButtonRT}} permet de choisir la ressource à remplacer si le sac est plein"},
+	[23] = {"Caïn Impur", "Toucher un objet le transforme en ressources"},
 	[24] = {"Judas Impur", "Ne peut pas avoir de cœurs rouges"},
 	[25] = {"??? Impur", "Ne peut pas avoir de cœurs rouges#Les bombes sont remplacées par des cacas jetables#Infliger des dégâts fait apparaître des cacas jetables"},
-	[26] = {"Ève Impure", "Maintenir un bouton de tir convertit les PV en pâtés#Différents cœurs invoquent différents pâtés#Les PV des pâtés baissent progressivement#Utiliser Sumptorium convertit une partie des pâtés en PV#Maintenir {{ButtonRT}} bloque les pâtés sur place#Avoir un demi-cœur de vie totale et 0 pâtés donne une attaque similaire au {{ColorYellow}}Couteau de Maman"},
+	[26] = {"Ève Impure", "Maintenir un bouton de tir convertit les PV en pâtés#Le type de pâté dépend du type de cœur converti#Les PV des pâtés baissent progressivement#Avoir un demi-cœur de vie totale et 0 pâtés donne une attaque similaire au {{ColorYellow}}Couteau de Maman"},
 	[27] = {"Samson Impur", "{{Blank}} Infliger ou subir suffisamment de dégâts déclenche une frénésie :#Remplace les larmes de Samson par une attaque au corps-à-corps#↑ Vitesse{{ColorLime}} +0.4#↑ Dégâts{{ColorLime}} +3#{{ArrowUpDown}} Débit {{ColorError}}x0.5{{ColorLime}} +2#{{Timer}} L'effet dure 5 secondes et se rallonge d'une seconde par ennemi tué"},
 	[28] = {"Azazel Impur", "Appuyer sur un bouton de tir fait éternuer Azazel#L'éternuement inflige {{ColorLime}}Dégâts x1.5{{CR}} et divise le temps de charge par 2 s'il touche un ennemi#Les ennemis touchés par l'éternuement sont plus vulnérables aux lasers de sang {{BrimstoneCurse}} et explosent à leur mort, ce qui contamine les ennemis à proximité"},
 	[29] = {"Lazare Impur", "Lazare a deux états, chacun avec ses stats et ses objets#Terminer une salle ou utiliser Inversion alterne entre les deux états"},
@@ -1610,8 +1610,8 @@ local repCharacterInfo = {
 	[34] = {"Apollyon Impur", ""},
 	[35] = {"Le Délaissé Impur", "Ne peut pas avoir de cœurs rouges#Le Corps est immobile et invulnérable et doit être lancé par l'Âme pour infliger {{ColorLime}}Dégâts x3{{CR}} au contact#Les bombes sont posées par le Corps"},
 	[36] = {"Béthanie Impure", "Ramasser un cœur rouge ne l'ajoute pas à la barre de PV mais à un compteur#Les cœurs au compteur peuvent être utilisés pour charger les objets activables#Les augmentations de stats sont réduites de 25%"},
-	[37] = {"Jacob Impur", "Ésaü pourchasse Jacob et attaque lorsqu'il est proche#L'attaque d'Ésaü inflige de gros dégâts aux ennemis et perce l'Armure#Subir un dégâts d'Ésaü transforme Jacob en fantôme qui meurt s'il subit un dégât#Sous forme fantôme, Jacob peut signer gratuitement un Pacte avec le Diable"},
-	[38] = {"Lazare Mort Impur", "Lazare a deux états, chacun avec ses stats et ses objets#Terminer une salle ou utiliser Inversion alterne entre les deux états"},
+	[37] = {"Jacob Impur", "Ésaü pourchasse Jacob et attaque lorsqu'il est proche#L'attaque d'Ésaü inflige de gros dégâts aux ennemis et perce leur armure#Subir un dégât d'Ésaü transforme Jacob en fantôme#{{Warning}} Sous forme fantôme, Jacob meurt s'il subit un dégât et peut signer gratuitement un Pacte avec le Diable"},
+	[38] = {"Lazare Impur (Mort)", "Lazare a deux états, chacun avec ses stats et ses objets#Terminer une salle alterne entre les deux états"},
 	[39] = {"Jacob 2 Impur", ""},
 	[40] = {"L'Âme Impure", "Ne peut pas avoir de cœurs rouges#Le Corps est immobile et invulnérable et doit être lancé par l'Âme pour infliger {{ColorLime}}Dégâts x3{{CR}} au contact#Les bombes sont posées par le Corps"},
 }
