@@ -1093,11 +1093,11 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	-- These change "+1 Health, Full health" to just "+1 Soul Heart" and etc.
 	["Red to Soul"] = {"{{Heart}} +1 réceptacle de cœur", "{{SoulHeart}} +1 cœur d'âme", "{{Heart}} +2 réceptacles de cœur", "{{SoulHeart}} +2 cœurs d'âme", "{{Heart}} +3 réceptacles de cœur", "{{SoulHeart}} +3 cœurs d'âme",
 	"{{EmptyHeart}} +1 réceptacle de cœur", "{{SoulHeart}} +1 cœur d'âme", "{{EmptyHeart}} +2 réceptacles de cœur", "{{SoulHeart}} +2 cœurs d'âme",
-	"Soin complet", "", "Soigne 1 cœur rouge", "", "Soigne un demi-cœur rouge", "", "Soigne 2 cœurs rouges", ""}, -- Red HP to Soul Hearts, removes heals
+	"Soin complet", "", "Soigne un cœur rouge", "", "Soigne un demi-cœur rouge", "", "Soigne 2 cœurs rouges", ""}, -- Red HP to Soul Hearts, removes heals
 	
 	["Red to Black"] =  {"{{Heart}} +1 réceptacle de cœur", "{{BlackHeart}} +1 cœur noir", "{{Heart}} +2 réceptacles de cœur", "{{BlackHeart}} +2 cœurs noirs", "{{Heart}} +3 réceptacles de cœur", "{{BlackHeart}} +3 cœurs noirs",
 	"{{EmptyHeart}} +1 réceptacle de cœur", "{{BlackHeart}} +1 cœur noir", "{{EmptyHeart}} +2 réceptacles de cœur", "{{BlackHeart}} +2 cœurs noirs",
-	"Soin complet", "", "Soigne 1 cœur rouge", "", "Soigne un demi-cœur rouge", "", "Soigne 2 cœurs rouges", ""}, -- Red HP to Black Hearts, removes heals
+	"Soin complet", "", "Soigne un cœur rouge", "", "Soigne un demi-cœur rouge", "", "Soigne 2 cœurs rouges", ""}, -- Red HP to Black Hearts, removes heals
 	
 	["Red to Bone"] = {"{{Heart}} +1 réceptacle de cœur", "{{BoneHeart}} +1 cœur d'os", "{{Heart}} +2 réceptacles de cœur", "{{BoneHeart}} +2 cœurs d'os", "{{Heart}} +3 réceptacles de cœur", "{{BoneHeart}} +3 cœurs d'os",
 	"{{Heart}} +1 réceptacle de cœur", "{{EmptyBoneHeart}} +1 cœur d'os", "{{Heart}} +2 réceptacles de cœur", "{{EmptyBoneHeart}} +2 cœurs d'os"}, -- Red HP to Bone Hearts
@@ -1301,7 +1301,7 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[13] = {"Lilith", "Ne peut pas tirer de larmes#Son {{ColorYellow}}Incube{{CR}} tire à sa place"},
 	[14] = {"Le Gardien", "Ne peut se soigner qu'avec des pièces#Les cœurs ramassables sont remplacés par des mouches bleues"},
 	[15] = {"Apollyon", ""},
-	[16] = {"Le Délaissé", "Attaque en frappant avec un os#L'attaque peut être chargée et lancée#Peut avoir jusqu'à 6 cœurs d'os#{{ButtonRT}} permet de passer à l'Âme#L'Âme peut voler, tire des larmes spectrales et peut avoir jusqu'à 6 cœurs d'âme/noirs#L'Âme est enchaînée au corps et ne peut pas trop s'éloigner de lui"},
-	[17] = {"L'Âme", "Attaque en frappant avec un os#L'attaque peut être chargée et lancée#Peut avoir jusqu'à 6 cœurs d'os#{{ButtonRT}} permet de passer à l'Âme#L'Âme peut voler, tire des larmes spectrales et peut avoir jusqu'à 6 cœurs d'âme/noirs#L'Âme est enchaînée au corps et ne peut pas trop s'éloigner de lui"},
+	[16] = {"Le Délaissé", "Attaque au corps-à-corps#Charger l'attaque lance l'os#Ne peut avoir que 6 cœurs d'os# {{ButtonRT}} passe à l'Âme"},
+	[17] = {"L'Âme", "Peut voler#Tire des larmes spectrales#Ne peut avoir que 6 cœurs d'âme/noirs#Le Corps bloque les projectiles ennemis et empêche l'Âme de trop s'éloigner# {{ButtonRT}} passe au Corps"},
 }
 
