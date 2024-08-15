@@ -222,6 +222,9 @@ EID.InlineIcons = {
 	["HolyMantleSmall"] = {"hearts", 19, 9, 9, 1},
 	["RottenBoneHeart"] = {"hearts", 20, 10, 9, 1, 1},
 	["UnknownHeart"] = {"hearts", 21, 10, 9, 1, 1},
+	["HealingRed"] = {"hearts", 22, 11, 9, 1, 1},
+	["HealingCoin"] = {"hearts", 23, 11, 9, 1, 1},
+	["HealingBone"] = {"hearts", 24, 11, 9, 1, 1},
 
 	-- Pickups
 	["Key"] = {"pickups", 0, 8, 9, 0},
