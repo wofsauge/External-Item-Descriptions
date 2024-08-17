@@ -464,7 +464,7 @@ local repCollectibles={
 	[717] = {"717", "Amies du Gardien", "Détruire un obstacle invoque 2 araignées bleues#Les obstacles invoquent des araignées bleues dans les salles hostiles"}, --  Keeper's Kin
 	[718] = {"718", "Corde du Gardien", "<Cet objet n'existe pas>"}, -- Keepers Rope (Cut item)
 	[719] = {"719", "Boîte du Gardien", "Fait apparaître un objet ou une ressource à acheter"}, --  Keeper's Box
-	[720] = {"720", "Bocal de N'Importe Quoi", "Fait apparaître selon son nombre de charges :#{{Blank}} 1:{{PoopPickup}} 2:{{Coin}} 3:{{Bomb}}#{{Blank}} 4:{{Key}} 5:{{Heart}} 6:{{Pill}}#{{Blank}} 7:{{Card}} 8:{{SoulHeart}} 9:{{GoldenHeart}}#{{Blank}} 10:{{GoldenKey}} 11:{{GoldenBomb}}#{{Blank}} 12: Effet aléatoire"}, --  Everything Jar
+	[720] = {"720", "Bocal de N'Importe Quoi", "Fait apparaître selon son nombre de charges :#{{Blank}} 1:{{Poop}} 2:{{Coin}} 3:{{Bomb}}#{{Blank}} 4:{{Key}} 5:{{Heart}} 6:{{Pill}}#{{Blank}} 7:{{Card}} 8:{{SoulHeart}} 9:{{GoldenHeart}}#{{Blank}} 10:{{GoldenKey}} 11:{{GoldenBomb}}#{{Blank}} 12: Effet aléatoire"}, --  Everything Jar
 	[721] = {"721", "TMTRAINER", "Corrompt tous les futurs objets de la partie#Les effets et icônes des objets corrompus sont complètement aléatoires"}, --  TMTRAINER
 	[722] = {"722", "Anima Sola", "Paralyse l'ennemi le plus proche d'Isaac#{{Timer}} L'effet dure 5 secondes"}, --  Anima Sola
 	[723] = {"723", "Dé Compteur", "Retire 1 à l'ID interne de tous les objets de la salle"}, --  Spindown Dice
@@ -861,7 +861,7 @@ local repTrinkets={
 	[92] = {"92", "Couronne Fêlée", "↑ Augmente de 20% les bonus de stats donnés par les objets d'Isaac"}, -- Cracked Crown
 	[96] = {"96", "Ver d'Ouroboros", "↑ Débit {{ColorLime}}+0.4#↑ Portée {{ColorLime}}+1.5#La trajectoire des larmes d'Isaac forme une très grande spirale#Larmes spectrales#Isaac tire parfois une larme autoguidée#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 5 Chance)"},
 	[98] = 	{"98", "Crotte de Nez", "Chance de tirer une crotte de nez qui se colle aux ennemis et inflige les dégâts d'Isaac une fois par seconde#Les crottes de nez se décollent si l'ennemi meurt, s'enterre, saute hors de l'écran ou au bout de 10 secondes"},
-	[101] = {"101", "Ampoule Éteinte", "Si l'objet activable est entièrement déchargé :#↑ Dégâts {{ColorLime}}+1.5#↑ Vitesse {{ColorLime}}+0.5#↑ Portée {{ColorLime}}+1.5#↑ Débit {{ColorLime}}+0.5#↑ Vitesse des tirs {{ColorLime}}+0.3#↑ Chance {{ColorLime}}+2"},
+	[101] = {"101", "Ampoule Éteinte", "Si l'objet activable est entièrement déchargé :#↑ Dégâts {{ColorLime}}+1.5#↑ Débit {{ColorLime}}+0.5#↑ Vitesse {{ColorLime}}+0.5#↑ Portée {{ColorLime}}+1.5#↑ Vitesse des tirs {{ColorLime}}+0.3#↑ Chance {{ColorLime}}+2"},
 	[102] = {"102", "Carte Scindée", "Génère une Salle Secrète de plus à chaque étage#Ne rajoute pas de Salle Secrète à un étage déjà généré"},
 	[104] = {"104", "Os de Poulet", "Subir un dégât a 2% de chances de détruire la babiole et faire apparaître un objet provenant de la banque d'objets de la salle"},
 	[105] = {"105", "Sac de Friandises", "Subir un dégât a 2% de chances de détruire la babiole et faire apparaître {{ColorYellow}}Déjeuner{{ColorWhite}} {{Collectible22}}"},
@@ -1505,13 +1505,13 @@ local repConditions = {
 	["Lullaby Incubus"] = "{{ColorSilver}}(dont celui de l'{{ColorYellow}}Incube{{ColorSilver}})",
 
 	-- Jacob's Ladder / 120 Volt battery synergies
-	["Sparks Damage"] = "Les arcs électriques infligent 50% de dégâts en plus",
-	["Sparks Arc Length"] = "Les arcs électriques sont plus grands",
+	["Sparks Damage"] = "Les arcs électriques infligent +50% de dégâts",
+	["Sparks Arc Length"] = "Les arcs électriques couvrent une plus grande distance",
 	["Sparks Arc Count"] = "Les arcs électriques touchent plus d'ennemis",
 	["Sparks Arc Back"] = "Les arcs électriques peuvent toucher plusieurs fois le même ennemi",
 
-	["White Poop Jar"] = "Remplace le caca par un caca sacré",
-	["Golden Poop Jar"] = "Remplace parfois le caca par un caca doré",
+	["White Poop Jar"] = {"{{Poop}}","{{HolyPoop}}"},
+	["Golden Poop Jar"] = {"{{Poop}}", "{{Poop}}/{{GoldenPoop}}", "{{HolyPoop}}", "{{HolyPoop}}/{{GoldenPoop}}"},
 
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)

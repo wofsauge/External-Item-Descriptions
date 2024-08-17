@@ -57,7 +57,7 @@ EID.descriptions[languageCode].collectibles={
 	{"33", "Bible", "Permet à Isaac de voler pour la durée de la salle#Tue instantanément {{ColorCyan}}Mom's Foot{{ColorWhite}}, {{ColorCyan}}Mom's Heart{{ColorWhite}} et {{ColorCyan}}It Lives!{{ColorWhite}}#{{Warning}} Tue Isaac si utilisée pendant le combat contre {{ColorCyan}}Satan"},
 	{"34", "Livre de Bélial", "{{DevilChance}} Chance de Devil Deal {{ColorLime}}+12.5%#↑ Dégâts{{ColorLime}} +2"},
 	{"35", "Necronomicon", "Inflige 40 dégâts à tous les ennemis de la salle"},
-	{"36", "Tas de Caca", "Pose un caca au sol#Le caca peut être placé devant un précipice et explosé pour créer un pont"},
+	{"36", "Tas de Caca", "Pose un caca au sol"},
 	{"37", "M. Boum", "Place une grosse bombe à la position d'Isaac#L'explosion de la bombe inflige 110 dégâts"},
 	{"38", "Tête de Tammy", "Tire 10 larmes en cercle autour d'Isaac"},
 	{"39", "Soutien-Gorge de Maman", "Pétrifie tous les ennemis dans la salle#{{Timer}} L'effet dure 4 secondes"},
@@ -126,7 +126,7 @@ EID.descriptions[languageCode].collectibles={
 	{"102", "Flacon de Pilules de Maman", "Fait apparaître une pilule"},
 	{"103", "Rhume", "Isaac tire parfois une larme empoisonnée#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 12 Chance)"},
 	{"104", "Parasite", "Les larmes d'Isaac se divisent en deux au contact d'un obstacle ou d'un ennemi"},
-	{"105", "D6", "Rejoue les objets sur piédestal de la salle"},
+	{"105", "D6", "Rejoue tous les objets sur piédestal de la salle"},
 	{"106", "M. Méga", "↑ Dégâts des bombes {{ColorLime}}x2.25#{{Bomb}} +5 Bombes"},
 	{"107", "Ciseaux Cranteurs", "Permet à Isaac de voler#Le corps d'Isaac se sépare de sa tête, pourchasse les ennemis et inflige des dégâts de contact#{{DamageSmall}} 82.5 dégâts par seconde"},
 	{"108", "Hostie", "Réduit tous les dégâts subis à un demi-cœur"},
@@ -748,8 +748,8 @@ EID.descriptions[languageCode].trinkets={
 	{"97", "Amygdale", "Subir suffisamment de dégâts peut invoquer jusqu'à deux familiers#Les familiers bloquent les tirs ennemis et n'infligent pas de dégâts"},
 	{"98", "Crotte de Nez", "Isaac tire parfois une crotte de nez qui se colle aux ennemis et inflige les dégâts d'Isaac une fois par seconde#Les crottes de nez se décollent si l'ennemi meurt, s'enterre, saute hors de l'écran ou au bout de 60 secondes"},
 	{"99", "Balle Rebondissante", "Isaac tire parfois une larme rebondissante"},
-	{"100", "Ampoule Allumée", "{{Blank}} Tenir un objet activable entièrement chargé donne :#↑ Vitesse {{ColorLime}}+0.25#↑ Portée {{ColorLime}}+0.75#↑ Débit {{ColorLime}}+0.2#↑ Vitesse des tirs {{ColorLime}}+0.10#↑ Dégâts {{ColorLime}}+0.5#↑ Chance {{ColorLime}}+1"},
-	{"101", "Ampoule Éteinte", "{{Blank}} Tenir un objet activable entièrement déchargé donne :#↑ Vitesse {{ColorLime}}+0.5#↑ Portée {{ColorLime}}+1.5#↑ Débit {{ColorLime}}+0.4#↑ Vitesse des tirs {{ColorLime}}+0.3#↑ Dégâts {{ColorLime}}+1.5#↑ Chance {{ColorLime}}+2"},
+	{"100", "Ampoule Allumée", "Si l'objet activable est entièrement chargé :#↑ Dégâts {{ColorLime}}+0.5#↑ Débit {{ColorLime}}+0.2#↑ Vitesse {{ColorLime}}+0.25#↑ Portée {{ColorLime}}+0.75#↑ Vitesse des tirs {{ColorLime}}+0.10#↑ Chance {{ColorLime}}+1"},
+	{"101", "Ampoule Éteinte", "Si l'objet activable est entièrement déchargé :#↑ Vitesse {{ColorLime}}+0.5#↑ Portée {{ColorLime}}+1.5#↑ Débit {{ColorLime}}+0.4#↑ Vitesse des tirs {{ColorLime}}+0.3#↑ Dégâts {{ColorLime}}+1.5#↑ Chance {{ColorLime}}+2"},
 	{"102", "Carte Scindée", "Génère une Secret Room de plus à chaque étage#Ne rajoute pas de Secret Room à un étage déjà généré"},
 	{"103", "Égalité !", "Transforme les ressources en leur version doublée si les compteurs de pièces, bombes et clés sont identiques"},
 	{"104", "Os de Poulet", "Subir un dégât a 2% de chances de détruire le trinket et de faire apparaître un objet provenant de la banque d'objets de la salle"},
@@ -826,7 +826,7 @@ EID.descriptions[languageCode].cards={
 	{"43", "Carte de Crédit", "Rend gratuits tous les objets en vente#Fonctionne sur les coûts en pièces et en PV"},
 	{"44", "Carte des Règles", "Donne un indice sur un des secrets du jeu"},
 	{"45", "Une Carte Limite Limite", "Couvre la totalité du sol de la salle de cacas"},
-	{"46", "Roi Suicidaire", "Tue instantanément Isaac et fait apparaître 10 ressources ou objets dans la salle#Les objets générés proviennent de la banque d'objets de la salle où la carte a été utilisée"},
+	{"46", "Roi Suicidaire", "Tue Isaac et fait apparaître 10 ressources ou objets dans la salle#Les objets proviennent de la banque d'objets de la salle où se trouve Isaac"},
 	{"47", "Carte Chance", "Ouvre toutes les portes de la salle, y compris la majorité des portes spéciales"},
 	{"48", "Carte ?", "Utilise l'objet activable d'Isaac sans le décharger"},
 	{"49", "Fragment de Dé", "Rejoue tous les objets et ressources présentes dans la salle"},
@@ -1136,21 +1136,21 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Sacrificial Angels"] = "Sacrifier {1} fait apparaître 2 cœurs noirs",
 	["Sacrificial Void"] = "Peut être utilisé plusieurs fois si absorbé",
 
-	["5.100.116 (1 Room)"] = "Réduit le temps de recharge à 15 secondes dans une salle hostile", -- 9 Volt
-	["5.100.116 (Timed)"] = "La barre de charge commence à moitié pleine", -- 9 Volt
-	["9 Volt 1 Room"] = "Réduit le temps de recharge à 15 secondes dans une salle hostile", -- Actives + 9 Volt
-	["9 Volt Timed"] = "La barre de charge commence à moitié pleine", -- Actives + 9 Volt
+	["5.100.116 (1 Room)"] = "Recharge en 15 secondes dans les salles hostiles", -- 9 Volt
+	["5.100.116 (Timed)"] = "Recharge 2 fois plus vite", -- 9 Volt
+	["9 Volt 1 Room"] = "Recharge en 15 secondes dans les salles hostiles", -- Actives + 9 Volt
+	["9 Volt Timed"] = "Recharge 2 fois plus vite", -- Actives + 9 Volt
 	["5.100.205 (Wafer)"] = {"deux cœurs", "un demi-cœur ({{Collectible205}})"}, -- Sharp Plug + Wafer
 
 	["Suicide 1"] = "{1} ne peut pas empêcher la mort d'Isaac", -- Plan C, Damocles, Suicide King
 	["Suicide 2"] = "Ne peut pas empêcher {1} de tuer Isaac", -- Plan C, Damocles, Suicide King
 
-	["5.100.7"] = "Dégâts {{ColorLime}}x1.5{{ColorWhite}} quand le {1} est actif", -- Blood of the Martyr
-	["5.100.34"] = "Dégâts {{ColorLime}}x1.5", -- Book of Belial
-	["5.300.16"] = "Dégâts {{ColorLime}}x1.5", -- XV - The Devil
+	["5.100.7"] = "Dégâts {{ColorLime}}x1.5", -- Blood of the Martyr
+	["5.100.34"] = {"+2", "+2 x1.5 {{ColorSilver}}(Avec {{Collectible7}} )"}, -- Book of Belial
+	["5.300.16"] = {"+2", "+2 x1.5 {{ColorSilver}}(Avec {{Collectible7}} )"}, -- XV - The Devil
 
-	["5.100.81"] = {"Réduit le nombre de réceptacles de cœurs rouges d'Isaac à 1","Retire tous les cœurs d'Isaac sauf 1"}, -- Dead Cat
-	["5.100.316"] = "{1} annule l'effet de téléportation", -- Cursed Eye
+	["5.100.81"] = {"Réduit le nombre de réceptacles de cœurs rouges d'Isaac à 1","Retire tous les cœurs d'Isaac sauf 1", "réceptacle de cœur", "cœur"}, -- Dead Cat
+	["5.100.316"] = {"{{Warning}} Subir un dégât pendant le chargement de l'attaque téléporte Isaac dans une salle aléatoire", "Pas d'effet de téléportation avec la {1}"}, -- Cursed Eye
 	["5.100.260"] = "Retire l'effet de téléportation de {1}", -- Black Candle
 	["? Card Single Use"] = "Fait disparaître les objets à usage unique après les avoir utilisé", -- Single Use Actives + ? Card
 	["5.300.48"] = "Téléporte Isaac dans la salle d'erreur#Détruit la Carte ? et la {{ColorYellow}}Carte Blanche", -- Blank Card + ? Card
@@ -1160,7 +1160,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 
 	["Bulb Multiple"] = "L'effet est basé sur l'objet activable principal", -- Vibrant/Dim Bulb + Schoolbag/Pocket Actives
 	["Bulb Zero"] = "Les objets sans barre de charge déclenchent l'effet", -- Vibrant/Dim Bulb + zero charge actives
-	["5.350.101 (Timed)"] = "Presque inutile avec les objets à recharge automatique", -- Dim Bulb + Timed Recharges
+	["5.350.101 (Timed)"] = "Inutile avec les objets à recharge automatique", -- Dim Bulb + Timed Recharges
 	["5.100.122"] = {"Isaac n'a qu'un demi-cœur", "Ève n'a qu'un cœur"}, -- Whore of Babylon + Eve
 
 	["5.70.28"] = "Isaac tire devant lui et sur les côtés", -- R U A Wizard + The Wiz
@@ -1181,10 +1181,10 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Chocolate Milk Marked"] = "Isaac charge automatiquement selon sa distance du curseur",
 	["Ghost Pepper Fart"] = "Péter tire une flamme derrière Isaac",
 	["Damage Multiplier Stack"] = "Les multiplicateurs de dégâts ne peuvent pas être cumulés",
-	["White Poop"] = "Fait plutôt apparaître un Caca Sacré",
-	["White Poop Chance"] = "Fait parfois apparaître un Caca Sacré",
-	["Golden Poop Chance"] = "Fait parfois apparaître un Caca Doré",
-	["5.100.483"] = "L'objet peut être utilisé sans le faire disparaître en échange d'une bombe dorée",
+	["White Poop"] = "Le caca est un Caca Sacré",
+	["White Poop Chance"] = "Le caca est parfois sacré",
+	["Golden Poop Chance"] = "Le caca est parfois doré",
+	["5.100.483"] = "L'objet peut être utilisé sans le faire disparaître en échange d'une {{ColorGold}}bombe dorée",
 
 	["5.300.5"] = {"Téléporte Isaac dans une Salle de Boss au hasard"}, -- IV - The Emperor (in The Void)
 	["5.300.18"] = "Téléporte Isaac dans une salle au hasard s'il n'y a pas de Salle du Trésor", -- XVII - The Stars (Womb and below)
