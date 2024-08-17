@@ -1,0 +1,5 @@
+	
+ResultHeader in ItemReminder needs a {1} for the item name
+
+Poop descriptions for T??? in the item reminder should not have names (they aren't used anywhere in the game) and should only display each effect once if there are multiple of the same poop nugget in ???'s inventory
+
