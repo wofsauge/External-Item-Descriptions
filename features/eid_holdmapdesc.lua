@@ -424,18 +424,22 @@ end
 
 -- Adds a formatted "Result" text to the item name 
 function EID:ItemReminderAddResultHeaderSuffix(descObj, newName)
+	local resultHeader = EID:getDescriptionEntry("ItemReminder", "ResultHeader")
+	if not string.find(resultHeader, "{1}") then resultHeader = "{1}" .. resultHeader end
 	if newName then
 		local iconString = EID:GetIconStringByDescriptionObject(descObj)
 		descObj.Name = newName ..
-			" (" .. iconString .. " " .. descObj.Name .. EID:getDescriptionEntry("ItemReminder", "ResultHeader") .. ")"
+			" (" .. iconString .. " " .. EID:ReplaceVariableStr(resultHeader, descObj.Name) .. ")"
 	else
-		descObj.Name = descObj.Name .. EID:getDescriptionEntry("ItemReminder", "ResultHeader")
+		descObj.Name = descObj.Name .. EID:ReplaceVariableStr(resultHeader, descObj.Name)
 	end
 end
 -- Adds a formatted "Result" text appended to the item description
 function EID:ItemReminderAddResultAppend(descObj, newText)
 	local iconString = EID:GetIconStringByDescriptionObject(descObj)
-	descObj.Description = descObj.Description .. "#" .. iconString .. " {{ColorObjName}}" .. descObj.Name .. EID:getDescriptionEntry("ItemReminder", "ResultHeader") .. "#" .. newText
+	local resultHeader = EID:getDescriptionEntry("ItemReminder", "ResultHeader")
+	if not string.find(resultHeader, "{1}") then resultHeader = "{1}" .. resultHeader end
+	descObj.Description = descObj.Description .. "#" .. iconString .. " {{ColorObjName}}" .. EID:ReplaceVariableStr(resultHeader, descObj.Name) .. "#" .. newText
 end
 -- Helper function for modifiers that want to replace the description in the overview, but append to the description otherwise
 function EID:ItemReminderAddResult(descObj, newText, inOverview)
