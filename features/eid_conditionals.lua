@@ -1,8 +1,10 @@
 local game = Game()
 
 EID.DescriptionConditions = {}
--- table of collectible IDs to periodically check if the players own. used by eid_modifiers.lua
+-- table of collectible IDs to periodically check if the players own. used by eid_modifiers.lua too
 EID.collectiblesToCheck = {}
+-- co-op players that have a substantially different effect than the closest player, reset each description. added to and applied by eid_modifiers.lua
+EID.DifferentEffectPlayers = {}
 
 require("features.eid_conditionals_funcs")
 
@@ -87,7 +89,7 @@ if EID.isRepentance then
 	EID:AddPlayerConditional({671, 676}, 14, "No Effect") -- Candy Heart / Empty Heart + Keeper
 	EID:AddPlayerConditional(676, 16, "No Effect", nil, false) -- Empty Heart + Forgotten (not Tainted)
 end
-
+--[[
 for heartName, chars in pairs(EID.SpecialHeartPlayers) do
 	local c = {}
 	for charID,_ in pairs(chars) do table.insert(c, charID) end -- convert the lookup table into an array
@@ -101,6 +103,7 @@ for heartName, chars in pairs(EID.SpecialHeartPlayers) do
 		end
 	end
 end
+]]
 if EID.isRepentance then
 	for itemID,charges in pairs(EID.BloodUpData) do
 		EID:AddPlayerConditional(itemID, 36, "Health Up Blood Charges", {variableText = charges})
@@ -117,6 +120,10 @@ EID:AddPlayerConditional(501, 14)               -- Keeper + Greed's Gullet
 EID:AddPlayerConditional(230, 14, "Keeper")     -- Keeper + Abaddon
 EID:AddPlayerConditional(152, 2, "Technology 2 One Eye") -- Cain + Technology 2
 EID:AddPlayerConditional(122, 5, nil, nil, false) -- Eve + Whore of Babylon
+
+
+EID:AddClosestPlayerConditional({15, 346, 226, 25, 185, 24, 23, 179, 184, 22, 312, 173, 218, 16, 26, 142, 159, 92, 334, 60, 20, 428, 501, 456, 569, 671, 676, 707, 487, "5.350.14", "5.350.46", "5.350.56", "5.350.55", "5.350.107", "5.350.128", "5.350.168", "5.350.156"}, 10, "No Effect Replace", {layer = -1000}) -- Useless Lost items
+
 if EID.isRepentance then
 	-- Tainted characters reviving as themselves
 	EID:AddPlayerConditional({ 161, "5.350.28" }, 25, "Tainted Revive") -- Ankh, Broken Ankh
