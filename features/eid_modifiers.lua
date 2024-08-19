@@ -311,14 +311,16 @@ end
 
 -- Handle changing health up text for non-red HP players
 local function HealthUpCallback(descObj)
+	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
+	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype
+	
 	local closestPlayer = EID:ClosestPlayerTo(descObj.Entity)
 	local playerType = closestPlayer:GetPlayerType()
 	local heartType = EID.CharacterToHeartType[playerType] or "Red"
-	if heartType == "Red" then return descObj end -- todo: determine if there was a further player that would have changed it
-	-- should we have a table of "chars with a different effect" that conditionals/modifiers can add to that gets applied later in main? or applied as the final modifier?
+	if heartType == "Red" then return descObj end
 	
 	-- find/replace Health Up lines
-	local numHearts = EID.HealthUpData[descObj.ObjSubType] or 1
+	local numHearts = EID.HealthUpData[typeVarSub] or 1
 	local text = EID:getDescriptionEntry("RedToX", "Red to " .. heartType)
 	local plural = ""; if numHearts ~= 1 then plural = EID:getDescriptionEntry("Pluralize") end
 	
@@ -341,13 +343,14 @@ local function HealthUpCallback(descObj)
 		descObj.Description = descObj.Description:gsub("{{HealingHalfRed}}(.-)#", "")
 	end
 	
-	-- check if we just made the description blank (TODO: this check doesn't work if another modifier happened, like Spindown Dice)
+	-- check if we just made the description blank
 	if descObj.Description:gsub("#", "") == "" then
 		local noEffectStr = EID:getDescriptionEntry("ConditionalDescs", "No Effect")
 		descObj.Description = "{{Player" .. playerType .. "}} " .. EID:ReplaceVariableStr(noEffectStr, "{{NameOnlyI" .. playerType .. "}}")
 	end
 	
 	-- test the other players for if they have a different effect
+	-- todo: this simple check could have false positives (i.e. Yum Heart is identical for Soul and Black, but this thinks they'll be different)
 	for i = 1, #EID.coopAllPlayers do
 		local t = EID.coopAllPlayers[i]:GetPlayerType()
 		if EID.CharacterToHeartType[t] ~= heartType then
@@ -954,7 +957,8 @@ local function EIDConditionsAB(descObj)
 
 	if EID.LuckFormulas[descObj.fullItemString] then table.insert(callbacks, LuckChanceCallback) end
 	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
-	if EID.HealthUpData[descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype] then table.insert(callbacks, HealthUpCallback) end
+	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype
+	if EID.HealthUpData[typeVarSub] or EID.HealingItemData[typeVarSub] then table.insert(callbacks, HealthUpCallback) end
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 		if EID.Config["ItemCollectionIndicator"] and EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
@@ -973,7 +977,7 @@ local function EIDConditionsAB(descObj)
 	end
 	return callbacks
 end
-EID:addDescriptionModifier("EID Afterbirth+", EIDConditionsAB, nil)
+EID:addDescriptionModifier("EID Afterbirth+", EIDConditionsAB, nil, 1)
 
 -- should this be done differently so that mods can add tab previews? (tab conditions is done last, but would be done before callbacks mods add, maybe tab should be checked in EID:getDescriptionObj
 local function TabConditions(_)
