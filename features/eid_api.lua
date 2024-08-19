@@ -1167,7 +1167,8 @@ end
 
 -- Adds Description object modifiers.
 -- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
-function EID:addDescriptionModifier(modifierName, condition, callback)
+function EID:addDescriptionModifier(modifierName, condition, callback, position)
+	position = position or #EID.DescModifiers + 1
 	for _,v in ipairs(EID.DescModifiers) do
 		if v["name"] == modifierName then
 			v["condition"] = condition
@@ -1175,7 +1176,7 @@ function EID:addDescriptionModifier(modifierName, condition, callback)
 			return
 		end
 	end
-	table.insert(EID.DescModifiers, {
+	table.insert(EID.DescModifiers, position, {
 		name = modifierName,
 		condition = condition,
 		callback = callback
