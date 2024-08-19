@@ -634,6 +634,8 @@ EID.descriptions[languageCode].transformations = {
 }
 
 ---------- MISC ----------
+-- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
+EID.descriptions[languageCode].Pluralize = ""
 
 EID.descriptions[languageCode].VoidText = "Wenn absorbiert, erhalte:"
 -- {1} will become the number text (like "{1} Tränen" -> "+0.5 Tränen")

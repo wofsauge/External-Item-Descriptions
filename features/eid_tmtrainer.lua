@@ -30,11 +30,12 @@ local function entityToName(Type, Variant, plural)
 	local eWithZero = string.gsub(e, "-1", "0")
 	
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
+	local pluralize = EID:getDescriptionEntry("Pluralize")
 	local name = localizedNames[e] or localizedNames[eWithZero] or EID:GetEntityXMLName(Type, Variant, 0) or e
 
 	--print out entities with no name yet
 	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)")
-	elseif plural then name = name .. localizedNames["pluralize"] end
+	elseif plural then name = name .. pluralize end
 
 	return name
 end
@@ -53,6 +54,7 @@ function EID:CheckGlitchedItemConfig(id)
 	
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
 	local localizedNamesEnglish = EID:getDescriptionEntryEnglish("GlitchedItemText")
+	local pluralize = EID:getDescriptionEntry("Pluralize")
 	local attributes = "#"
 	
 	-- Check the base item config for the Hearts/Bombs/Coins/Keys this item adds,
@@ -83,7 +85,7 @@ function EID:CheckGlitchedItemConfig(id)
 				local prefix = "↑ "
 				if val > 0 then s = "+" .. s else prefix = "↓ " end
 				attributes = attributes .. prefix .. EID:ReplaceVariableStr(localizedNames[v] or localizedNamesEnglish[v], 1, s)
-				if val ~= 1 and val ~= -1 then attributes = attributes .. localizedNames["pluralize"] or localizedNamesEnglish["pluralize"] end
+				if val ~= 1 and val ~= -1 then attributes = attributes .. pluralize end
 				attributes = attributes .. "#"
 			end
 		end

@@ -1258,9 +1258,6 @@ EID.descriptions[languageCode].horsepills={
 ---------- Glitched Item Descriptions ----------
 
 EID.descriptions[languageCode].GlitchedItemText = {
-	-- This will be appended to words to pluralize them, make it "" to not pluralize
-	pluralize = "",
-
 	-- Item Config info
 	AddBlackHearts = "{{BlackHeart}} {1} cœur(s) noir(s)",
 	AddBombs = "{{Bomb}} {1} bombe(s)",
