@@ -1,8 +1,11 @@
 local game = Game()
 
 EID.DescriptionConditions = {}
--- table of collectible IDs to periodically check if the players own. used by eid_modifiers.lua
+-- table of collectible IDs to periodically check if the players own. used by eid_modifiers.lua too
 EID.collectiblesToCheck = {}
+-- co-op players that have a substantially different effect than the closest player are tracked in this table, to append "Different effect for X"
+-- added to and applied by eid_modifiers.lua
+EID.DifferentEffectPlayers = {}
 
 require("features.eid_conditionals_funcs")
 
@@ -51,6 +54,7 @@ if EID.isRepentance then
 	EID:AddItemConditional("5.100", 706, nil, { locTable = "abyssSynergies", lineColor = "ColorRed" }, false) -- Abyss (no item reminder)
 	EID:AddItemConditional("5.100", 59, nil, { locTable = "bookOfBelialBuffs" })                         -- Belial Birthright
 	EID:AddItemConditional("5.100", 664, nil, { locTable = "bingeEaterBuffs" })                          -- Binge Eater
+	EID:AddItemConditional({22, 23, 24, 25, 26, 346, 456, 707}, 664, "Binge Eater Healing") -- Binge Eater (Heals 2 hearts)
 end
 
 
@@ -79,32 +83,30 @@ EID:AddConditional("5.350.23", function() return EID:HaveNotUnlockedAchievement(
 EID:AddConditional(297, function() return not EID:HaveNotUnlockedAchievement(366) end) -- Pandora's Box unlocking Moving Box
 
 
+local SoulBlackChars = EID:ConcatTables(EID.SpecialHeartPlayers["Soul"],EID.SpecialHeartPlayers["Black"])
 ------ NO RED HEALTH PLAYERS ------
-EID:AddConditional({442, "5.350.107", "5.350.119"}, EID.CheckForNoRedHealthPlayer, "No Red") -- Dark Prince's Crown, Crow Heart, Stem Cell
+EID:AddClosestPlayerConditional({442, "5.350.46", "5.350.107", "5.350.119"}, SoulBlackChars, "No Effect Replace", nil, false) -- Dark Prince's Crown, Crow Heart, Stem Cell, Isaac's Fork
 EID:AddConditional(81, EID.CheckForNoRedHealthPlayer) -- Dead Cat
 if EID.isRepentance then
-	EID:AddConditional({569, 671, 676}, EID.CheckForNoRedHealthPlayer, "No Red") -- Blood Oath, Candy Heart, Empty Heart
-	EID:AddPlayerConditional({671, 676}, 14, "No Effect") -- Candy Heart / Empty Heart + Keeper
-	EID:AddPlayerConditional(676, 16, "No Effect", nil, false) -- Empty Heart + Forgotten (not Tainted)
+	EID:AddClosestPlayerConditional({569, 671, 676}, SoulBlackChars, "No Effect Replace", nil, false) -- Blood Oath, Candy Heart, Empty Heart
+	EID:AddClosestPlayerConditional({671, 676}, 14, "No Effect Replace") -- Candy Heart / Empty Heart + Keeper
+	EID:AddClosestPlayerConditional(676, 16, "No Effect Replace", nil, false) -- Empty Heart + Forgotten (not Tainted)
+	
+	EID:AddClosestPlayerConditional("5.350.156", 14, "Mother's Kiss Coin") -- Mother's Kiss + Keeper
+	EID:AddClosestPlayerConditional("5.350.156", SoulBlackChars, "Mother's Kiss Soul", nil, false) -- Mother's Kiss + Soul/Black (both give a Soul Heart)
+	EID:AddClosestPlayerConditional("5.350.156", {16, 17}, "Mother's Kiss Bone", {layer = -1}, false) -- Mother's Kiss + Forgotten (including The Soul)
 end
 
-for heartName, chars in pairs(EID.SpecialHeartPlayers) do
-	local c = {}
-	for charID,_ in pairs(chars) do table.insert(c, charID) end -- convert the lookup table into an array
-	for itemID, hearts in pairs(EID.HealthUpData) do
-		if itemID == 92 and (heartName == "Soul" or heartName == "Black") then
-			EID:AddClosestPlayerConditional(92, c, "Super Bandage " .. heartName, nil, false)
-		elseif itemID == 226 and (heartName == "Soul" or heartName == "Black") then
-			EID:AddClosestPlayerConditional(226, c, "Black Lotus " .. heartName, nil, false)
-		else
-			EID:AddClosestPlayerConditional(itemID, c, "Red to " .. heartName, nil, false)
-		end
-	end
-end
+EID:AddClosestPlayerConditional(92, EID.SpecialHeartPlayers["Soul"], "Super Bandage Soul", nil, false)
+EID:AddClosestPlayerConditional(92, EID.SpecialHeartPlayers["Black"], "Super Bandage Black", nil, false)
+EID:AddClosestPlayerConditional(226, EID.SpecialHeartPlayers["Soul"], "Black Lotus Soul", nil, false)
+EID:AddClosestPlayerConditional(226, EID.SpecialHeartPlayers["Black"], "Black Lotus Black", nil, false)
+
 if EID.isRepentance then
 	for itemID,charges in pairs(EID.BloodUpData) do
 		EID:AddPlayerConditional(itemID, 36, "Health Up Blood Charges", {variableText = charges})
 	end
+	-- todo: some blood ups (cards with tarot cloth) should be increased
 end
 
 
@@ -117,6 +119,12 @@ EID:AddPlayerConditional(501, 14)               -- Keeper + Greed's Gullet
 EID:AddPlayerConditional(230, 14, "Keeper")     -- Keeper + Abaddon
 EID:AddPlayerConditional(152, 2, "Technology 2 One Eye") -- Cain + Technology 2
 EID:AddPlayerConditional(122, 5, nil, nil, false) -- Eve + Whore of Babylon
+
+EID:AddClosestPlayerConditional({15, 16, 20, 22, 23, 24, 25, 26, 45, 60, 92, 142, 159, 173, 179, 184, 185, 218, 226, 312, 334, 346, 428, 456, 487, 501, "5.350.14", "5.350.46", "5.350.55", "5.350.56", "5.350.107", "5.350.128"}, 10, "No Effect Replace", {layer = 10000}) -- Useless Lost items
+if EID.isRepentance then
+	EID:AddClosestPlayerConditional({569, 671, 676, 707, "5.350.156", "5.350.168"}, 10, "No Effect Replace", {layer = 10000}) -- Useless Lost items
+end
+
 if EID.isRepentance then
 	-- Tainted characters reviving as themselves
 	EID:AddPlayerConditional({ 161, "5.350.28" }, 25, "Tainted Revive") -- Ankh, Broken Ankh
@@ -133,7 +141,6 @@ if EID.isRepentance then
 	EID:AddClosestPlayerConditional(642, 10)              -- Lost + Magic Skin
 	EID:AddPlayerConditional(694, 14, "Keeper", nil, false) -- Keeper + Heartbreak
 	EID:AddPlayerConditional(694, 33, "Tainted Keeper")   -- Tainted Keeper + Heartbreak
-	EID:AddPlayerConditional("5.350.156", 14)             -- Keeper + Mother's Kiss
 	EID:AddPlayerConditional(230, 18, "Bethany", nil, false) -- Bethany + Abaddon
 	EID:AddPlayerConditional(230, 36, "Tainted Bethany")  -- Tainted Bethany + Abaddon
 	EID:AddPlayerConditional(245, 14, "Keeper")           -- 20/20 + Keeper
