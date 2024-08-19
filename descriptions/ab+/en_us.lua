@@ -1140,7 +1140,7 @@ EID.descriptions[languageCode].MCM = {
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].ItemReminder = {
-	ResultHeader = "Result je {1} Result",
+	ResultHeader = "{1} Result",
 	InventoryEmpty = "(Player has no items)",
 	CategoryNames = {
 		Overview = "Inventory Overview",
