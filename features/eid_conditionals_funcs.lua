@@ -161,7 +161,7 @@ end
 	noFallback: Don't fallback to English if this isn't localized; by default, conditionals don't fallback, to avoid printing English text in unupdated languages
 	usePedestalName: If true, display the pedestal item's name in place of {1}
 	useResult: If true, use the result from the conditional function to find the localization string
-	layer: A number used in determining the order that conditionals should be checked in, default -1
+	layer: A number used in determining the order that conditionals should be checked in, default 0
 	checkLayers: If true, don't print this condition if a higher layer condition was applied already
 	uniqueID: Only one conditional with the given unique ID will be printed
 ]]
@@ -175,7 +175,7 @@ function EID:AddConditional(IDs, funcText, modText, extraTable)
 	if modText == "" then modText = nil end
 	extraTable = extraTable or {}
 	if extraTable.noFallback == nil then extraTable.noFallback = true end
-	extraTable.layer = extraTable.layer or -1
+	extraTable.layer = extraTable.layer or 0
 	for _, id in ipairs(IDs) do
 		if type(id) ~= "string" then id = "5.100." .. id end
 		EID.DescriptionConditions[id] = EID.DescriptionConditions[id] or {}
@@ -607,10 +607,7 @@ function EID:applyConditionals(descObj)
 
 					-- Table with 1 entry = replace
 					elseif #text == 1 then
-						local iconStr = ""
-						if bulletpoint then iconStr = iconStr .. "{{" .. bulletpoint .. "}} " end
-						if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end
-						descObj.Description = iconStr .. EID:ReplaceVariableStr(text[1], variableText)
+						descObj.Description = EID:ReplaceVariableStr(text[1], variableText)
 						
 					-- Table with 2+ entries = find and replace pairs
 					-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
