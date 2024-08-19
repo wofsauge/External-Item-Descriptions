@@ -3,7 +3,8 @@ local game = Game()
 EID.DescriptionConditions = {}
 -- table of collectible IDs to periodically check if the players own. used by eid_modifiers.lua too
 EID.collectiblesToCheck = {}
--- co-op players that have a substantially different effect than the closest player, reset each description. added to and applied by eid_modifiers.lua
+-- co-op players that have a substantially different effect than the closest player are tracked in this table, to append "Different effect for X"
+-- added to and applied by eid_modifiers.lua
 EID.DifferentEffectPlayers = {}
 
 require("features.eid_conditionals_funcs")
