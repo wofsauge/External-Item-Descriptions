@@ -309,13 +309,62 @@ local function LuckChanceCallback(descObj)
 	return descObj
 end
 
+-- Handle changing health up text for non-red HP players
+local function HealthUpCallback(descObj)
+	local closestPlayer = EID:ClosestPlayerTo(descObj.Entity)
+	local playerType = closestPlayer:GetPlayerType()
+	local heartType = EID.CharacterToHeartType[playerType] or "Red"
+	if heartType == "Red" then return descObj end -- todo: determine if there was a further player that would have changed it
+	-- should we have a table of "chars with a different effect" that conditionals/modifiers can add to that gets applied later in main? or applied as the final modifier?
+	
+	-- find/replace Health Up lines
+	local numHearts = EID.HealthUpData[descObj.ObjSubType] or 1
+	local text = EID:getDescriptionEntry("RedToX", "Red to " .. heartType)
+	local plural = ""; if numHearts ~= 1 then plural = EID:getDescriptionEntry("Pluralize") end
+	
+	local pos = 1
+	while pos <= #text do
+		-- replace {1} with the number of hearts and {2} with the plural character
+		local toFind = EID:ReplaceVariableStr(text[pos], {numHearts, plural})
+		if text[pos + 1] then
+			local replaceWith = EID:ReplaceVariableStr(text[pos + 1], {numHearts, plural})
+			descObj.Description = EID:SimpleReplace(descObj.Description, tostring(toFind), replaceWith, 1)
+		end
+		pos = pos + 2
+	end
+	
+	-- remove HealingRed lines entirely for Soul/Black/None health chars
+	descObj.Description = descObj.Description .. "#" -- gsub finds final lines better if the desc ends with a line break
+	if heartType == "Soul" or heartType == "Black" or heartType == "None" then
+		-- Find any lines containing {{HealingRed}} or {{HealingHalfRed}} and remove the line
+		descObj.Description = descObj.Description:gsub("{{HealingRed}}(.-)#", "")
+		descObj.Description = descObj.Description:gsub("{{HealingHalfRed}}(.-)#", "")
+	end
+	
+	-- check if we just made the description blank (TODO: this check doesn't work if another modifier happened, like Spindown Dice)
+	if descObj.Description:gsub("#", "") == "" then
+		local noEffectStr = EID:getDescriptionEntry("ConditionalDescs", "No Effect")
+		descObj.Description = "{{Player" .. playerType .. "}} " .. EID:ReplaceVariableStr(noEffectStr, "{{NameOnlyI" .. playerType .. "}}")
+	end
+	
+	-- test the other players for if they have a different effect
+	for i = 1, #EID.coopAllPlayers do
+		local t = EID.coopAllPlayers[i]:GetPlayerType()
+		if EID.CharacterToHeartType[t] ~= heartType then
+			table.insert(EID.DifferentEffectPlayers, t)
+		end
+	end
+	
+	return descObj
+end
+
 if EID.isRepentance then
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
 		descObj.Description = ""
 		local describedPlayerTypes = {}
-		for i = 0,game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
+		for i = 1, #EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[i]
 			local playerID = player:GetPlayerType()
 			if not player:IsSubPlayer() and player:GetMainTwin( ):GetPlayerType() == playerID and not describedPlayerTypes[playerID] then
 				describedPlayerTypes[playerID] = true
@@ -904,6 +953,8 @@ local function EIDConditionsAB(descObj)
 	local callbacks = {}
 
 	if EID.LuckFormulas[descObj.fullItemString] then table.insert(callbacks, LuckChanceCallback) end
+	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
+	if EID.HealthUpData[descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype] then table.insert(callbacks, HealthUpCallback) end
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 		if EID.Config["ItemCollectionIndicator"] and EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
@@ -930,5 +981,22 @@ local function TabConditions(_)
 	EID.TabPreviewID = 0
 	return false
 end
-
 EID:addDescriptionModifier("EID Tab Previews", TabConditions, TabCallback)
+
+-- If an item has a radically different effect for 2 players, show the effect for the closest player, then append what chars have a different effect here
+-- This is the final change made to the desc, after all other conditionals and modifiers
+local function CoopDifferentEffectCallback(descObj)
+	local displayedChars = {}
+	local differentEffectText = EID:getDescriptionEntry("ConditionalDescs", "Different Effect")
+	for _,v in ipairs(EID.DifferentEffectPlayers) do
+		if not displayedChars[v] then
+			descObj.Description = descObj.Description .. "#{{Player" .. v .. "}} " .. EID:ReplaceVariableStr(differentEffectText, "{{NameOnlyI" .. v .. "}}")
+		end
+		displayedChars[v] = true
+	end
+	return descObj
+end
+local function CoopDifferentEffectConditions(_)
+	return #EID.DifferentEffectPlayers > 0
+end
+EID:addDescriptionModifier("EID Different Effect Players", CoopDifferentEffectConditions, CoopDifferentEffectCallback)
