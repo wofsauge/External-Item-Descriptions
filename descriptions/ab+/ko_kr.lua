@@ -965,6 +965,9 @@ EID.descriptions[languageCode].transformations={
 }
 
 ---------- Misc ----------
+-- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
+EID.descriptions[languageCode].Pluralize = ""
+
 EID.descriptions[languageCode].VoidText = "흡수 시 이하 능력치 증가:"
 EID.descriptions[languageCode].VoidNames = {"이동속도 {1}", "연사 {1}", "공격력 {1}", "사거리 {1}", "탄속 {1}", "행운 {1}"}
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{DamageSmall}}공격력 +4", "↑ {{TearsSmall}}공격 딜레이 -4", "↑ {{SpeedSmall}}이동속도 +0.5", "↑ {{RangeSmall}}사거리 +7.5#↑ 눈물높이 +1"}

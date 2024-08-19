@@ -436,8 +436,8 @@ EID.descriptions[languageCode].bingeEaterBuffs = {
 	[24] = "↑ {{Damage}} +1 Damage#↑ {{Shotspeed}} +0.2 Shot speed#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Dessert
 	[25] = "↑ {{Range}} +2.5 Range#↑ {{Shotspeed}} +0.2 Shot speed#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Breakfast
 	[26] = "↑ {{Damage}} +1 Damage#↑ {{Range}} +2.5 Range#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Rotten Meat
-	[456] = "↑ {{Damage}} +1 Damage#↑ {{Luck}} +1 Luck#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Midnight Snack
 	[346] = "↑ {{Shotspeed}} +0.2 Shot speed#↑ {{Luck}} +1 Luck#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- A Snack
+	[456] = "↑ {{Damage}} +1 Damage#↑ {{Luck}} +1 Luck#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Midnight Snack
 	[707] = "↑ {{Tears}} +0.5 Tears#↑ {{Luck}} +1 Luck#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Supper
 }
 
@@ -1192,9 +1192,6 @@ EID.descriptions[languageCode].birthright ={
 ---------- Glitched Item Descriptions ----------
 
 EID.descriptions[languageCode].GlitchedItemText = {
-	-- This will be appended to words to pluralize them, make it "" to not pluralize
-	pluralize = "s",
-
 	-- Item Config info
 	AddBlackHearts = "{{BlackHeart}} {1} Black Heart",
 	AddBombs = "{{Bomb}} {1} Bomb",
@@ -1357,7 +1354,6 @@ local repConditions = {
 	["5.100.188"] = "Deals 7.5 damage as {1}", -- Cain + Abel
 	["5.100.360"] = "Deals 100% damage as {1}", -- Lilith + Incubus
 	["5.100.728"] = "Deals 100% damage as {1}", -- Lilith + Gello
-	["5.350.156"] = "+1 Coin container for {1}", -- Mother's Kiss
 	["5.100.230 (Keeper)"] = "{1} is left with 1 coin container", -- Abaddon
 	["5.100.230 (Bethany)"] = "{1} is left with half a heart", -- Abaddon
 	["5.100.230 (Tainted Bethany)"] = "{1} doesn't lose her blood charges", -- Abaddon
@@ -1369,6 +1365,10 @@ local repConditions = {
 	["5.100.713"] = {"Recalls all clots to Eve's health bar#Excess clots are simply moved to her location#{{Timer}} 1 second recharge time"}, --Teve + Sumptorium
 	["5.100.711"] = {"Entering", "{{Player38}} Flips Lazarus to the other state#Entering"}, -- Tlaz + Flip
 	["5.100.710"] = {"Upon use, attacking swipes the bag in the chosen direction#Swiping at a pickup puts it in the bag#The Bag's contents can be shifted with {{ButtonRT}} to replace specific pickups when full#Holding the Use key when the bag is full crafts the previewed item#Item quality is based on the quality of the pickups"}, -- Tcain Bag of Crafting
+	
+	["Mother's Kiss Soul"] = {"{{SoulHeart}} +1 Soul Heart while held"},
+	["Mother's Kiss Bone"] = {"{{BoneHeart}} +1 Bone Heart while held"},
+	["Mother's Kiss Coin"] = {"{{CoinHeart}} +1 Coin Heart while held#Increases Coin Heart cap by 1"},
 	
 	-- Vibrant/Dim Bulb
 	["5.350.100 (Bethany)"] = "Works with {1}'s soul charges",
@@ -1401,7 +1401,7 @@ local repConditions = {
 	
 	["1000.76.0"] = "{{Warning}} Only rerolls the character that activates the dice", -- Dice Room 1 (Co-op)
 	["1000.76.5"] = "{{Warning}} All characters' items will be rerolled in co-op!", -- Dice Room 6 (Co-op)
-	["5.100.45"] = "{{HealingRed}} Heals other players for half a heart", -- Yum Heart (Co-Op)
+	["5.100.45"] = "Heals other players for half a heart", -- Yum Heart (Co-Op)
 	["5.350.125"] = "Beams also arc between players", -- Extension Cord (Co-Op)
 	
 	["5.100.245"] = "Removes the fire rate penalty of {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
@@ -1445,7 +1445,8 @@ local repConditions = {
 	
 	["White Poop Jar"] = "Spawns White Poop on 1 charge use",
 	["Golden Poop Jar"] = "Chance to spawn Golden Poop on 1 charge use",
-		
+	
+	["Binge Eater Healing"] = {"Heals 1 heart", "Heals {{BlinkGreen}}2{{CR}} hearts", "+4 blood charges", "+{{BlinkGreen}}6{{CR}} blood charges"},
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 

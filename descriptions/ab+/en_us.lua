@@ -1014,8 +1014,7 @@ EID.descriptions[languageCode].pills={
 }
 
 ---------- Character Info ----------
--- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
--- Soon, these descriptions, along with their starting item descriptions, will be in a tab in the Item Reminder
+-- These descriptions are shown in the Item Reminder
 -- The character names here are also used in getPlayerName to provide localized character names
 -- The numbers are provided to make this a quick reference for Player IDs
 EID.descriptions[languageCode].CharacterInfo = {
@@ -1094,8 +1093,8 @@ EID.descriptions[languageCode].transformations={
 
 ---------- MISC ----------
 
--- string that is appended to a word if it needs to be made plural (e.g. glitched item descriptions)
-EID.descriptions[languageCode].Pluralize = "s" -- TODO: move out of glitcheditemtext in all languages, change eid_tmtrainer code
+-- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
+EID.descriptions[languageCode].Pluralize = "s"
 
 EID.descriptions[languageCode].VoidText = "If absorbed, gain:"
 -- {1} will become the number text (like "{1} Tears" -> "+0.5 Tears")
@@ -1141,7 +1140,7 @@ EID.descriptions[languageCode].MCM = {
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].ItemReminder = {
-	ResultHeader = " Result",
+	ResultHeader = "Result je {1} Result",
 	InventoryEmpty = "(Player has no items)",
 	CategoryNames = {
 		Overview = "Inventory Overview",
