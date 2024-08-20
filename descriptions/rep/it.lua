@@ -117,6 +117,7 @@ local repCollectibles={
 	[262] = {"262", "Pagina Mancante 2", "{{BlackHeart}} +1 Cuore Nero#Subire danni e finire a 1 cuore danneggia tutti i nemici nella stanza#{{Collectible35}} Cuori Neri e effetti simili a \"Il Necronomicon\" infliggono il doppio dei danni"}, -- Missing Page 2
 	[263] = {"263", "Runa Limpida", "{{Rune}} Quando viene raccolto genera 1 runa#{{Rune}} Attiva gli effetti della runa tenuta da Isaac senza usarla"}, -- Clear Rune (Repentance item)
 	[264] = {"264", "Moscastuta", "Orbitale#Attaccca i nemici quando Isaac prende danni#Infligge 6.5 danni al secondo"}, -- Smart Fly
+	[272] = {"272", "BMF", "Mosca esplosiva amichevole#L'esplosione infligge 100 DANNI#{{Warning}} L'esplosione può ferire Isaac"}, -- BBF
 	[273] = {"273", "Cervello di Bob", "Scatta nella direzione verso cui Isaac sta sparando#Esplode quando colpisce un nemico#{{Poison}} L'esplosione infligge 100 danni e avvelena i nemici#{{Warning}} L'esplosione può ferire Isaac"}, -- Bob's Brain
 	[274] = {"274", "Scudiero", "Subire danni genera un orbitale dal medio raggio fino all'uscita dalla stanza#L'orbitale infligge 150 danni al secondo"}, -- Best Bud
 	[275] = {"275", "Mini Zolfo Fuso", "{{Chargeable}} Famiglio che carica e spara un {{Collectible118}} raggio di sangue#Infligge 3 danni a tocco, per un totale di 24 danni"}, -- Lil Brimston
@@ -131,6 +132,7 @@ local repCollectibles={
 	[289] = {"289", "Candela Rossa", "Lancia una fiamma rossa#La fiamma sparisce dopo aver inflitto danni, bloccato 5 proiettili o una volta passati 10 secondi"}, -- Red Candle
 	[291] = {"291", "Sciacquone!", "Trasforma in cacca tutti i nemici che non sono boss#Uccide istantaneamente nemici e boss fatti di cacca#Estingue i focolari e riempie d'acqua la stanza#Trasforma i varchi di lava in terreno percorribile"}, -- Flush!
 	[292] = {"292", "Bibbia Satanica", "{{BlackHeart}} +1 Cuore Nero#{{DevilRoom}} Usare l'oggetto prima di una lotta contro un boss rende la ricompensa del boss un patto con il diavolo#Acquistare questi patti con il diavolo ha le stesse conseguenze dei patti nella Stanza del Diavolo#Non influisce sui piedistalli in \"Il Vuoto\""}, -- Satanic Bible
+	[293] = {"293", "Testa di Krampus", "{{Collectible118}} Spara raggi di zolfo fuso in 4 direzioniCiascuan infligge 200 danni per 1.33 secondi"}, -- Head of Krampus
 	[294] = {"294", "Fagiolo di Lima", "Respinge nemici e proiettili nelle vicinanze#I nemici spinti verso ostacoli prendono 10 danni"}, -- Butter Bean
 	[295] = {"295", "Dita Magiche", "Infligge a tutti i nemici x2 dei danni di Isaac +10#{{Coin}} Costa 1 moneta"}, -- Magic Fingers
 	[296] = {"296", "Convertitore", "{{Heart}} Converte 1 Cuore Celeste/Nero in 1 Portacuori"}, -- Converter
@@ -176,6 +178,7 @@ local repCollectibles={
 	[380] = {"380", "Pay To Play", "{{Coin}} +5 Monete#Blocchi, porte e bauli chiusi a chiave vanno aperti con le monete al posto delle chiavi"}, -- Pay to Play
 	[382] = {"382", "Sfera Amikè", "Può essere lanciata ai nemici per catturarli#Usare l'oggetto dopo aver catturato un nemico lo genera come un alleato amichevole#Camminare sopra la sfera dopo la cattura ricarica istantaneamente l'oggetto"}, -- Friendly Ball
 	[384] = {"384", "Mini Gastrina", "{{Chargeable}} Si getta e rimbalza per la stanza ad una velocità che dipende dalla quantità di carica#Infligge dai 5 ai 25 danni da contatto al secondo in base alla velocità"}, -- Lil Gurdy
+	[386] = {"386", "D12", "Rilancia gli ostacoli in altri ostacoli casuali (ad es. cacca, vasi, TNT, cacca rossa, blocchi di pietra etc.)#Piccola chance di rilanciare gli ostacoli in pulsanti, interruttori di vita, cunicoli o botole"}, -- D12
 	[389] = {"389", "Sacco di Rune", "{{Rune}} Genera 1 runa o pietra dell'anima casuale ogni 7-8 stanze"}, -- Rune Bag
 	[391] = {"391", "Tradimento", "I nemici possono colpirsi a vicenda con i loro proiettili e iniziare a rivoltarsi tra di loro"}, -- Betrayal
 	[393] = {"393", "Bacio del Serpente", "{{Poison}} 15% di chance di sparare lacrime velenose#{{Poison}} Al contatto con i nemici li avvelena#{{BlackHeart}} I nemici avvelenati al contatto una volta morti hanno una chance di lasciare 1 Cuore Nero"}, -- Serpent`s Kiss
@@ -222,10 +225,11 @@ local repCollectibles={
 	[491] = {"491", "Bebè Acido", "{{Pill}} Genera una pillola casuale ogni 7 stanze#{{Poison}} Usare una pillola avvelena i nemici nella stanza"}, -- Acid Baby
 	[493] = {"493", "Adrenalina", "↑ {{Damage}} Più danni per ogni Portacuori vuoto#Più Portacuori vuoti ci sono, maggiore sarà il bonus"}, -- Adrenaline
 	[494] = {"494", "Scala di Giacobbe", "All'impatto le lacrime generano una scintilla elettrica#Le scintille infliggono la metà dei danni di Isaac#Le scintille possono estendersi fino a 4 nemici"}, -- Jacobs Ladder
-	[495] = {"495", "Ghost Pepper", "8% di chance di sparare una fiamma blu che blocca i proiettili nemici e infligge danni da contatto#{{Luck}} 50% chance con 10 di Fortuna#La fiamma si rimpiccolisce e sparisce dopo 2 secondi"}, -- Ghost Pepper
-	[496] = {"496", "Euthanasia", "3.33% di chance di sparare un ago#{{Luck}} 25% di chance con 13 di Fortuna#Gli aghi uccidono istantaneamente i nemici normali, scoppiando in 10 lacrime#{{Damage}} Contro i boss gli aghi infliggono i danni di Isaac x3"}, -- Euthanasia
-	[497] = {"497", "Camo Undies", "{{Confusion}} Entrare in una stanza cammuffa Isaac e confonde tutti i nemici finché non spara#↑ {{Speed}} +0.5 Velocità se nascosto#Smascherarsi infligge danni attorno ad Isaac e conferisce molto brevemente più lacrime e danni"}, -- Camo Undies
-	[501] = {"501", "Greed's Gullet", "{{Heart}} +1 Portacuori per ogni 25 monete in possesso di Isaac#{{Collectible416}} Dopo 99 monete +1 Portacuori per ogni 100 monete"}, -- Greed's Gullet
+	[495] = {"495", "Peperoncino Fantasma", "8% di chance di sparare una fiamma blu che blocca i proiettili nemici e infligge danni da contatto#{{Luck}} 50% chance con 10 di Fortuna#La fiamma si rimpiccolisce e sparisce dopo 2 secondi"}, -- Ghost Pepper
+	[496] = {"496", "Eutanasia", "3.33% di chance di sparare un ago#{{Luck}} 25% di chance con 13 di Fortuna#Gli aghi uccidono istantaneamente i nemici normali, scoppiando in 10 lacrime#{{Damage}} Contro i boss gli aghi infliggono i danni di Isaac x3"}, -- Euthanasia
+	[497] = {"497", "Mutande Camo", "{{Confusion}} Entrare in una stanza cammuffa Isaac e confonde tutti i nemici finché non spara#↑ {{Speed}} +0.5 Velocità se nascosto#Smascherarsi infligge danni attorno ad Isaac e conferisce molto brevemente più lacrime e danni"}, -- Camo Undies
+	[500] = {"500", "Sacco di Sacchi", "Genera in sacco ogni 7-8 stanze"}, -- Sack of Sacks
+	[501] = {"501", "Gozzo di Avarizia", "{{Heart}} +1 Portacuori per ogni 25 monete in possesso di Isaac#{{Collectible416}} Dopo 99 monete +1 Portacuori per ogni 100 monete"}, -- Greed's Gullet
 	[503] = {"503", "Piccolo Corno", "5% di chance di sparare lacrime che evocano una mano di Grande Corno#{{Luck}} 20% di chance con 15 di Fortuna#La mano uccide istantaneamente  i nemici e infligge 36 danni ai boss#Isaac infligge 7 danni da contatto al secondo"}, -- Little Horn
 	[504] = {"504", "Pepita Marrone", "Genera una mosca torretta che spara ai nemici#Ogni colpo infligge 3.5 danni"}, -- Brown Nugget
 	[506] = {"506", "Pugnalatore", "{{BleedingOut}} Colpire un nemico da dietro infligge il doppio dei danni e causa sanguinamento ai nemici, i quali mentre si muovono lasciano del liquido e prendono danni"}, -- Backstabber
@@ -234,6 +238,7 @@ local repCollectibles={
 	[509] = {"509", "Occhio Insanguinato", "Orbitale che ogni 0.33 secondi spara una lacrima ai nemici nelle vicinanze#Infligge 3.5 danni a lacrima#Infligge 20 danni da contatto al secondo"}, -- Bloodshot Eye
 	[514] = {"514", "Modem Sfasciato", "Fa sì che alcuni nemici o proiettili si blocchino ad intermittenza per poco tempo#I proiettili bloccati spariscono#25% di chance di raddoppiare le ricompense di completamento stanza"}, -- Broken Modem
 	[517] = {"517", "Bombe Leste", "{{Bomb}} +7 Bome#Rimuove il delay del piazzamento delle bombe#Le bombe non si respingono a vicenda"}, -- Fast Bombs
+	[522] = {"522", "Telecinesi", "Ferma tutti i proiettili che si avvicinano ad Isaac per 3 secondi e in seguito li rilancia via#Durante l'effetto respinge via i nemici vicini"}, -- Telekinesis
 	[523] = {"523", "Scatola per Traslochi", "Conserva fino a 10 consumabili e oggetti della stanza corrente#Usare di nuovo l'oggetto butta a terra tutto nel piano#Permette ad Isaac di spostare oggetti e/o consumabili tra le stanze"}, -- Moving Box
 	[524] = {"524", "Tecnologia Zero", "Le lacrime di Isaac sono connesse tra loro da raggi d'elettricità#I raggi infliggono i danni di Isaac x4.5 al secondo"}, -- Technology Zero
 	[531] = {"531", "Emolacria", "↑ {{Damage}} +1 Danni#↑ {{Damage}} x1.31 Moltiplicatore Danni#↓ {{Tears}} x0.33 Moltiplicatore rateo di fuoco#↓ {{Range}} x0.8 Moltiplicatore Gittata#Le lacrime di Isaac volano in un arco e all'impatto scoppiano in lacrime più piccole"}, -- Haemolacria
@@ -420,7 +425,6 @@ local repCollectibles={
 	[730] = {"730", "Occhio di Vetro", "↑ {{Damage}} +0.75 Danni#↑ {{Luck}} +1 Fortuna"}, -- Glass Eye
 	[731] = {"731", "Orzaiolo", "↑ {{Damage}} x1.28 Moltiplicatore Danni per l'occhio destro#↑ {{Range}} +6.5 Gittata per l'occhio destro#↓ {{Shotspeed}} -0.3 Velocità Colpi per l'occhio destro"}, -- Stye
 	[732] = {"732", "Anello di Mamma", "↑ {{Damage}} +1 Danni#{{Rune}} Genera 1 runa casuale o 1 pietra dell'anima"}, -- Mom's Ring
-
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
 
@@ -1110,7 +1114,6 @@ EID.descriptions[languageCode].horsepills={
 }
 
 ---------- Character Info ----------
--- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
 local repCharacterInfo = {
 	[4] = {"???", "Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti#{{DevilRoom}} I patti con il diavolo dal prezzo di 1 o 2 Cuori Rossi avranno invece un prezzo di 1 o 2 Cuori Celesti#Distruggere una cacca genera 1 mosca blu"},
 	[8] = {"Lazzaro", "Una volta per piano, se muore:#Resuscita come Lazzaro Risorto#Perde 1 Portacuori#↑ {{Damage}} +0.5 Danni"},
@@ -1191,9 +1194,6 @@ EID.descriptions[languageCode].birthright ={
 ---------- Glitched Item Descriptions ----------
 
 EID.descriptions[languageCode].GlitchedItemText = {
-	-- This will be appended to words to pluralize them, make it "" to not pluralize
-	pluralize = "",
-
 	-- Item Config info
 	AddBlackHearts = "{{BlackHeart}} {1} Cuore/i Nero/i",
 	AddBombs = "{{Bomb}} {1} Bomba/e",
@@ -1238,7 +1238,8 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.70"] = "pillola",
 	["5.90"] = "pila",
 	["5.300"] = "carta",
-	["9.-1"] = "entità nella griglia",
+	["9.-1"] = "proiettile nemico",
+	["999.-1"] = "entità nella griglia",
 	["1000.0"] = "effetto",
 
 	-- Text for the base item that is granted
@@ -1344,9 +1345,6 @@ local repConditions = {
 	
 	
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
-	["Red to Soul"] = {"{{Heart}} +","{{SoulHeart}} +", "{{Heart}} Salute al massimo", "", "{{Heart}} Cura di 1 cuore", ""}, -- Red HP to Soul Hearts, removes heals
-	["Red to Black"] = {"{{Heart}} +","{{BlackHeart}} +", "{{Heart}} Salute al massimo", "", "{{Heart}} Cura di 1 cuore", ""}, -- Red HP to Black Heart, removes heals
-	["Red to Coin"] = {"{{Heart}} +","{{CoinHeart}} +", "{{Heart}} Salute al massimo", "{{CoinHeart}} Salute al massimo", "{{Heart}} Cura di 1 cuore", "{{CoinHeart}} Cura di 1 moneta"},
 	["5.100.642"] = "!!! MONOUSO !!!#Genera un oggetto dalla categoria di oggetti della stanza corrente", -- Magic Skin + Lost
 	["5.100.240"] = "{1} mantiene il cambiamento di statistiche quando lo lascia", -- Experimental Treatment + Tainted Isaac
 	["5.100.644"] = "{1} mantiene l'aumento di statistiche quando lo lascia", -- Consolation Prize + Tainted Isaac
@@ -1446,11 +1444,11 @@ local repConditions = {
 	["Sparks Arc Length"] = "Le scintille si estendono ad una distanza maggiore",
 	["Sparks Arc Count"] = "Le scintille si estendono ad altri 2 nemici",
 	["Sparks Arc Back"] = "Le scintille possono ricolpire lo stesso nemico",
-	["Binge Eater Healing"] = {"Cura di 1 cuore", "Cura di {{BlinkGreen}}2{{CR}} cuori", "+4 cariche sanguinee", "+{{BlinkGreen}}6{{CR}} cariche sanguinee"},
 	
 	["White Poop Jar"] = "Genera una cacca bianca con 1 carica",
 	["Golden Poop Jar"] = "Chance di genere una cacca dorata con 1 carica",
 	
+	["Binge Eater Healing"] = {"Cura di 1 cuore", "Cura di {{BlinkGreen}}2{{CR}} cuori", "+4 cariche sanguinee", "+{{BlinkGreen}}6{{CR}} cariche sanguinee"},
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 

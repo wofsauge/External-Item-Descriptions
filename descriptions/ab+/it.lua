@@ -544,7 +544,7 @@ EID.descriptions[languageCode].collectibles={
 	{"519", "Mini Delirio", "Si trasforma ogni 10 secondi in un famiglio casuale"},
 	{"520", "Morsetti", "Uccidere 15 enemies aggiunge 1 carica all'oggetto attivo"},
 	{"521", "Coupon", "Rende gratuito un oggetto casuale nel {{Shop}} Negozio o nella {{DevilRoom}} Stanza del Diavolo#Tenere l'oggetto garantisce che almeno un oggetto nel Negozio sia in saldo"},
-	{"522", "Telecinesi", "Ferma tutti i proiettili che si avvicinano ad Isaac per 3 secondi e in seguito li rilancia indietro"},
+	{"522", "Telecinesi", "Ferma tutti i proiettili che si avvicinano ad Isaac per 3 secondi e in seguito li rilancia via"},
 	{"523", "Scatola per Traslochi", "Conserva tutti i consumabili e oggetti della stanza corrente#Usare di nuovo l'oggetto butta a terra tutto nel piano#Permette ad Isaac di spostare tra le stanze la sua roba"},
 	{"524", "Tecnologia Zero", "Le lacrime di Isaac sono connesse tra loro da raggi d'elettricità#I raggi infliggono i danni di Isaac"},
 	{"525", "Lebbra", "Subire danni genera un orbitale che blocca i proiettili#Si massimizza a 3 orbitali#Gli orbitali vengono distrutti se subiscono troppi danni"},
@@ -1014,8 +1014,7 @@ EID.descriptions[languageCode].pills={
 }
 
 ---------- Character Info ----------
--- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
--- Soon, these descriptions, along with their starting item descriptions, will be in a tab in the Item Reminder
+-- These descriptions are shown in the Item Reminder
 -- The character names here are also used in getPlayerName to provide localized character names
 -- The numbers are provided to make this a quick reference for Player IDs
 EID.descriptions[languageCode].CharacterInfo = {
