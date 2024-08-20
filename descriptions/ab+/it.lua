@@ -32,11 +32,11 @@ EID.descriptions[languageCode].collectibles={
 	{"9", "Scatolo", "Tutte le mosche nemiche sono amichevoli"},
 	{"10", "Aureola Di Mosche", "+2 Mosche orbitali#Blocca i proiettili nemici"},
 	{"11", "1up!", "↑ {{Heart}} +1 Salute#Una volta morto Isaac resuscita con la salute al massimo"},
-	{"12", "Fungo Magico", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.3 Velocità#↑ {{Damage}} +0.3 Danni#↑ {{Damage}} x1.5 Moltiplicatore Danni#↑ {{Range}} +5.25 Range#↑ +0.5 Altezza Lacrime#Aumento Statura#{{Heart}} Salute al massimo"},
+	{"12", "Fungo Magico", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.3 Velocità#↑ {{Damage}} +0.3 Danni#↑ {{Damage}} x1.5 Moltiplicatore Danni#↑ {{Range}} +5.25 Range#↑ +0.5 Altezza Lacrime#Aumento Statura#{{HealingRed}} Salute al massimo"},
 	{"13", "Il Virus", "↓ {{Speed}} -0.1 Velocità#{{Poison}} Toccare i nemici li avvelena#{{BlackHeart}} I nemici avvelenati possono lasciare Cuori Neri"},
 	{"14", "Iniezione di Ferocia", "↑ {{Speed}} +0.6 Velocità#↑ {{Range}} +5.25 Gittata#↑ +0.5 Altezza Lacrime"},
-	{"15", "<3", "↑ {{Heart}} +1 Salute#{{Heart}} Salute al massimo"},
-	{"16", "Fegato Crudo", "↑ {{Heart}} +2 Salute#{{Heart}} Salute al massimo"},
+	{"15", "<3", "↑ {{Heart}} +1 Salute#{{HealingRed}} Salute al massimo"},
+	{"16", "Fegato Crudo", "↑ {{Heart}} +2 Salute#{{HealingRed}} Salute al massimo"},
 	{"17", "Passepartout", "{{Key}} +99 Chiavi"},
 	{"18", "Un Dollaro", "{{Coin}} +99 Monete"},
 	{"19", "Bum!", "{{Bomb}} +10 Bombe"},
@@ -65,7 +65,7 @@ EID.descriptions[languageCode].collectibles={
 	{"42", "Testa Marcia di Bob", "Usare l'oggetto e sparare in una direzione fa scagliare la testa#{{Poison}} La testa esplode all'impatto e avvelena i nemici colpiti dall'esplosione"},
 	{"43", "", "<item does not exist>"},
 	{"44", "Teletrasporto!", "Teletrasporta Isaac in una stanza casuale che non sia una stanza I AM ERROR"},
-	{"45", "Cuore Gustoso", "{{Heart}} Cura di 1 cuore"},
+	{"45", "Cuore Gustoso", "{{HealingRed}} Cura di 1 cuore"},
 	{"46", "Piede Fortunato", "↑ {{Luck}} +1 Fortuna#+8% di chance di una ricompensa a completamento stanza#Più alte chance di vittoria nel gioco d'azzardo"},
 	{"47", "Telecomando del Dottore", "{{Collectible168}} Se usato, appare un mirino direzionabile#Un missile colpisce il mirino dopo 1.5 secondi#Infligge i danni di Isaac x20"},
 	{"48", "Freccia di Cupido", "Lacrime penetranti"},
@@ -82,7 +82,7 @@ EID.descriptions[languageCode].collectibles={
 	{"59", "", "<item does not exist>"},
 	{"60", "La Scala", "Permette ad Isaac di superare varchi da 1 casella"},
 	{"61", "", "<item does not exist>"},
-	{"62", "Fascino del Vampiro", "{{HalfHeart}} Uccidere 13 nemici cura di mezzo cuore"},
+	{"62", "Fascino del Vampiro", "{{HealingRed}} Uccidere 13 nemici cura di mezzo cuore"},
 	{"63", "La Pila", "{{Battery}} Gli oggetti attivi possono essere sovraccaricati fino a due cariche complete"},
 	{"64", "Saldi di Steam", "{{Shop}} Gli oggetti del Negozio costano il 50% in meno"},
 	{"65", "Ricette dell'Anarchico", "Evoca 6 Bombe Troll intorno al centro della stanza"},
@@ -95,7 +95,7 @@ EID.descriptions[languageCode].collectibles={
 	{"72", "Rosario", "{{SoulHeart}} +3 Cuori Celesti#{{Collectible33}} \"La Bibbia\" viene aggiunta a tute le categorie di oggetti"},
 	{"73", "Cubo di Carne", "Lv1: Orbitale#Lv2: Orbitale che spara#Lv3: Meat Boy#Lv4: Super Meat Boy"},
 	{"74", "Un Quarto", "{{Coin}} +25 Monete"},
-	{"75", "Dottorato", "{{Heart}} Cura 2 cuori#{{Pill}} Genera 1 pillola#{{Pill}} Converte le pillole negative in positive#{{BloodDonationMachine}} Le Macchine di Donazione Sangue concedono più {{Coin}} monete"},
+	{"75", "Dottorato", "{{Heart}} Cura 2 cuori#{{HealingRed}} Genera 1 pillola#{{Pill}} Converte le pillole negative in positive#{{BloodDonationMachine}} Le Macchine di Donazione Sangue concedono più {{Coin}} monete"},
 	{"76", "Vista a Raggi-X", "{{SecretRoom}} Apre tutte le entrate per le stanze segrete"},
 	{"77", "Il mio Piccolo Unicorno", "{{Timer}} Conferisce per 6 secondi:#↑ {{Speed}} +0.28 Velocità#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo"},
 	{"78", "Libro dell'Apocalisse", "{{SoulHeart}} +1 Cuore Celeste#{{AngelDevilChance}} +17.5% di chance di una Stanza del Diavolo/dell'Angelo mentre viene tenuto#Usare l'oggetto ha più alte chance di rimpiazzare il boss del piano con un Cavaliere"},
@@ -112,8 +112,8 @@ EID.descriptions[languageCode].collectibles={
 	{"89", "Morso di Ragno", "{{Slow}} 25% di chance di sparare lacrime rallentanti#{{Luck}} 100% di chance con 15 di Fortuna"},
 	{"90", "La Pietruzza", "↑ {{Tears}} +0.2 Lacrime#↑ {{Damage}} +1 Danni#↓ {{Speed}} -0.2 Velocità"},
 	{"91", "Casco da Minatore", "Rivela il tipo di stanza delle stanze adiacenti#{{SecretRoom}} Può rivelare Stanze Segrete e Super Segrete"},
-	{"92", "Super Cerotto", "↑ {{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore#{{SoulHeart}} +2 Cuori Celesti"},
-	{"93", "Il Gamekid", "{{Timer}} Conferisce per 6.5 secondi:#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo#{{HalfHeart}} Uccidere 2 nemici cura di mezzo cuore#{{Fear}} Spaventa tutti i nemici nella stanza"},
+	{"92", "Super Cerotto", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore#{{SoulHeart}} +2 Cuori Celesti"},
+	{"93", "Il Gamekid", "{{Timer}} Conferisce per 6.5 secondi:#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo#{{HealingRed}} Uccidere 2 nemici cura di mezzo cuore#{{Fear}} Spaventa tutti i nemici nella stanza"},
 	{"94", "Sacco di Penny", "{{Coin}} Genera 1 moneta casuale ogni 2 stanze"},
 	{"95", "Robo-Bebè", "Spara laser#Infligge 3.5 danni a colpo"},
 	{"96", "Piccola C.H.A.D.", "{{HalfHeart}} Genera mezzo Cuore Rosso ogni 3 stanze"},
@@ -139,7 +139,7 @@ EID.descriptions[languageCode].collectibles={
 	{"116", "9 Volt", "{{Battery}} Carica automaticamente la prima barra degli oggetti attivi#{{Battery}} Quando viene raccolto ricarica pienamente l'oggetto attivo"},
 	{"117", "Uccello Morto", "Venire colpito genera un uccello#L'uccello infligge 4.3 danni da contatto al secondo"},
 	{"118", "Zolfo Fuso", "↓ {{Tears}} x3 Moltiplicatore del delay delle lacrime#{{Chargeable}} Le lacrime di Isaac vengono rimpiazzate da un raggio di sangue caricabile"},
-	{"119", "Sacca di sangue", "↑ {{Heart}} +1 Salute#↑ +0.3 Velocità#{{Heart}} Cura di 4 cuori"},
+	{"119", "Sacca di sangue", "↑ {{Heart}} +1 Salute#↑ +0.3 Velocità#{{HealingRed}} Cura di 4 cuori"},
 	{"120", "Buffungo (Piccolo)", "↑ {{Speed}} +0.3 Velocità#↑ {{Tears}} +1.7 Lacrime#↓ {{Damage}} x0.9 Moltiplicatore Danni#↓ {{Damage}} -0.4 Danni"},
 	{"121", "Buffungo (Grande)", "↑ {{EmptyHeart}} +1 Portacuore#↑ {{Damage}} +0.3 Danni#↑ {{Range}} +0.25 Gittata#↑ +0.5 Altezza Lacrime#↓ {{Speed}} -0.1 Velocità"},
 	{"122", "Meretrice di Babilonia", "Quando si è a mezzo Cuore Rosso o meno:#↑ {{Speed}} +0.3 Velocità#↑ {{Damage}} +1.5 Danni"},
@@ -149,7 +149,7 @@ EID.descriptions[languageCode].collectibles={
 	{"126", "Lametta", "↑ {{Damage}} +1.2 Danni#{{Warning}} Infligge 1 cuore di danni ad Isaac#{{Heart}} Rimuove per primi i Cuori Rossi"},
 	{"127", "NonTiRicordarDiMe", "{{Warning}} MONOUSO {{Warning}}#Rilancia e fa ripartire l'intero piano"},
 	{"128", "Forever Alone", "Mosca orbitale a lunga distanza#Infligge 30 danni da contatto al secondo"},
-	{"129", "Secchio di Lardo", "↑ {{EmptyHeart}} +2 Portacuori vuoti#↓ {{Speed}} -0.2 Velocità#{{HalfHeart}} Cura di mezzo cuore"},
+	{"129", "Secchio di Lardo", "↑ {{EmptyHeart}} +2 Portacuori vuoti#↓ {{Speed}} -0.2 Velocità#{{HealingRed}} Cura di mezzo cuore"},
 	{"130", "Un Pony", "{{Speed}} Imposta la Velocità ad almeno 1.5#Volo mentre viene tenuto#Usare l'oggetto fa scattare Isaac nella direzione in cui si sta muovendo"},
 	{"131", "Sacco di Bombe", "{{Bomb}} Genera 1 bomba ogni 2-3 stanze"},
 	{"132", "Un Pezzo di Carbone", "{{Damage}} I danni inflitti dalle lacrime aumentano con la distanza percorsa"},
@@ -202,14 +202,14 @@ EID.descriptions[languageCode].collectibles={
 	{"179", "Destino", "{{EternalHeart}} +1 Cuore Eterno#Volo"},
 	{"180", "Il Fagiolo Nero", "Quando Isaac viene danneggiato scorreggia#{{Poison}} La scorreggia avvelena i nemici"},
 	{"181", "Pony Bianco", "{{Speed}} Imposta la Velocità ad almeno 1.5#Volo mentre viene tenuto#Usare l'oggetto fa scattare Isaac nella direzione in cui si sta muovendo, lasciando dietro di sé raggi di luce"},
-	{"182", "Sacro Cuore", "↑ {{Heart}} +1 Salute#↑ {{Damage}} x2.3 Moltiplicatore Danni#↑ {{Damage}} +1 Danni#↑ {{Range}} +0.38 Gittata#↑ +0.75 Altezza Lacrime#↓ {{Tears}} -0.4 Lacrime#↓ {{Shotspeed}} -0.25 Velocità Colpi#{{Heart}} Salute al massimo#Lacrime a ricerca"},
+	{"182", "Sacro Cuore", "↑ {{Heart}} +1 Salute#↑ {{Damage}} x2.3 Moltiplicatore Danni#↑ {{Damage}} +1 Danni#↑ {{Range}} +0.38 Gittata#↑ +0.75 Altezza Lacrime#↓ {{Tears}} -0.4 Lacrime#↓ {{Shotspeed}} -0.25 Velocità Colpi#{{HealingRed}} Salute al massimo#Lacrime a ricerca"},
 	{"183", "Stuzzicadenti", "↑ {{Tears}} +0.7 Lacrime#↑ {{Shotspeed}} +0.16 Velocità Colpi"},
 	{"184", "Sacro Graal", "↑ {{Heart}} +1 Salute#Volo"},
 	{"185", "Colomba Morta", "Lacrime Spettrali#Volo"},
 	{"186", "Eredità di Sangue", "Infligge 40 danni a tutti i nemici#{{Warning}} Infligge 1 cuore di danno ad Isaac#{{Heart}} Rimuove per primi i Cuori Rossi"},
 	{"187", "Palla di Pelo di Guppy", "Muoversi fa oscillare la palla di pelo#La palla cresce quando uccide un nemico#I danni inflitti dalla palla aumentano con il suo ingrandimento"},
 	{"188", "Abele", "Riflette i movimenti di Isaac#Spara verso Isaac#Infligge 3.5 danni a lacrima"},
-	{"189", "Super Fan di SMB", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.2 Velocità#↑ {{Tears}} +0.2 Lacrime#↑ {{Damage}} +0.3 Danni#↑ {{Range}} +0.5 Gittata#↑ +1 Altezza Lacrime#{{Heart}} Salute al massimo"},
+	{"189", "Super Fan di SMB", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.2 Velocità#↑ {{Tears}} +0.2 Lacrime#↑ {{Damage}} +0.3 Danni#↑ {{Range}} +0.5 Gittata#↑ +1 Altezza Lacrime#{{HealingRed}} Salute al massimo"},
 	{"190", "Bombarolo", "{{Bomb}} +99 Bombe"},
 	{"191", "Banconota da 3 Dollari", "Le lacrime di Isaac ottengono effetti casuali ogni 2-3 secondi"},
 	{"192", "Telepatia per Negati", "{{Timer}} Lacrime a ricerca fino all'uscita dalla stanza"},
@@ -237,13 +237,13 @@ EID.descriptions[languageCode].collectibles={
 	{"214", "Anemia", "↑ {{Range}} +5 Gittata#{{Timer}} Quando Isaac prende danni lascia una scia di sangue fino all'uscita dalla stanza"},
 	{"215", "Testa di Capra", "{{AngelDevilChance}} 100% di chance che si apra una Stanza del Diavolo/Dell'Angelo"},
 	{"216", "Vesti Cerimoniali", "↑ {{Damage}} +1 Danni#{{BlackHeart}} +3 Cuori Neri"},
-	{"217", "Parrucca di Mamma", "{{Heart}} Cura di 1 cuore#5% di chance di generare un ragno blu sparando lacrime#{{Luck}} 100% di chance con 10 di Fortuna"},
-	{"218", "Placenta", " {{Heart}} Cura di 1 cuore#5% di chance di generare un ragno blu sparando lacrime#{{Luck}} 100% di chance con 10 di Fortuna"},
+	{"217", "Parrucca di Mamma", "{{HealingRed}} Cura di 1 cuore#5% di chance di generare un ragno blu sparando lacrime#{{Luck}} 100% di chance con 10 di Fortuna"},
+	{"218", "Placenta", "{{HealingRed}}Cura di 1 cuore#5% di chance di generare un ragno blu sparando lacrime#{{Luck}} 100% di chance con 10 di Fortuna"},
 	{"219", "Cerotto Vecchio", "↑ {{EmptyHeart}} +1 Portacuori vuoto#{{Heart}} Subire danni ha il 10% di chance di generare 1 Cuore Rosso"},
 	{"220", "Bombe Tristi", "{{Bomb}} +5 Bombe#Quando le bombe di Isaac esplodono sparano un cerchio di 10 lacrime"},
 	{"221", "Mastice", "Le lacrime di Isaac rimbalzano sui nemici e sugli ostacoli"},
 	{"222", "Anti-Gravità", "↑ {{Tears}} -2 Delay tra Lacrime#Tenere premuto il tasto di fuoco fa sì che le lacrime levitino a mezz'aria#Rilasciare il tasto di fuoco le lancia nella direzione verso cui erano state sparate"},
-	{"223", "Piromane", "{{Bomb}} +5 Bombe#{{Heart}} Le esplosioni curano Isaac di 1 cuore invece di danneggiarlo#Immunità alle scosse rocciose e ai pestoni di Mamma e Satana"},
+	{"223", "Piromane", "{{Bomb}} +5 Bombe#{{HealingRed}} Le esplosioni curano Isaac di 1 cuore invece di danneggiarlo#Immunità alle scosse rocciose e ai pestoni di Mamma e Satana"},
 	{"224", "Corpo di Cricket", "↑ {{Tears}} -1 Delay tra Lacrime#↑ {{Tearsize}} x1.2 Dimensioni Lacrime#↓ {{Range}} -10 Gittata#Quando le lacrime colpiscono si scindono in 4#Le lacrime scisse infliggono la metà dei danni"},
 	{"225", "Latex", "{{SoulHeart}} Subire danni ha una chance di generare 1 Cuore Celeste#{{HalfHeart}} I nemici hanno una chance di lasciare mezzo Cuore Rosso quando muoiono"},
 	{"226", "Loto Nero", "↑ {{Heart}} +1 Salute#{{SoulHeart}} +1 Cuore Celeste#{{BlackHeart}} +1 Cuore Nero"},
@@ -290,7 +290,7 @@ EID.descriptions[languageCode].collectibles={
 	{"267", "Robo-Bebè 2.0", "Spara laser#Infligge 3.5 damage a colpo#Si muove nella direzione verso cui Isaac sta sparando"},
 	{"268", "Bebè Marcio", "Genera mosche blu mentre Isaac spara"},
 	{"269", "Bebè Decapitato", "Lascia del liquido che infligge 6 danni al secondo"},
-	{"270", "Sanguisuga", "Insegue i nemici#{{HalfHeart}} Quando uccide un nemico cura Isaac di mezzo cuore#Infligge 3.2 danni al secondo"},
+	{"270", "Sanguisuga", "Insegue i nemici#{{HealingRed}} Quando uccide un nemico cura Isaac di mezzo cuore#Infligge 3.2 danni al secondo"},
 	{"271", "Sacco delle Meraviglie", "Genera 1 consumabile casuale ogni tot stanze"},
 	{"272", "BMF", "Mosca esplosiva amichevole#L'esplosione infligge 60 danni#{{Warning}} L'esplosione può ferire Isaac"},
 	{"273", "Cervello di Bob", "Scatta nella direzione verso cui Isaac sta sparando#Esplode quando colpisce un nemico#{{Poison}} L'esplosione infligge 60 danni e avvelena i nemici#{{Warning}} L'esplosione può ferire Isaac"},
@@ -334,7 +334,7 @@ EID.descriptions[languageCode].collectibles={
 	{"309", "Pesci", "↑ {{Tears}} -1 Delay tra Lacrime#↑ {{Tearsize}} x1.25 Dimensioni Lacrime#Aumenta la spinta delle lacrime"},
 	{"310", "Mascara di Eva", "↑ {{Damage}} x2 Moltiplicatore Danni#↓ {{Tears}} x0.5 Moltiplicatore Lacrime#↓ {{Shotspeed}} -0.5 Velocità Colpi"},
 	{"311", "Ombra di Giuda", "{{Player12}} Una volta morto Isaac resuscita nella forma di Giuda Oscuro con un x2 di Moltiplicatore Danni"},
-	{"312", "Fiocco di Madda", "↑ {{Heart}} +1 Salute#{{Heart}}Cura di 1 cuore#Tutti i cuori rossi curano il doppio del loro valore"},
+	{"312", "Fiocco di Madda", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore#Tutti i cuori rossi curano il doppio del loro valore"},
 	{"313", "Manto Sacro", "Annulla il primo danno preso in una stanza"},
 	{"314", "Coscione", "↑ {{Heart}} +1 Salute#↓ {{Speed}} -0.4 Velocità#Isaac può rompere le rocce camminandoci sopra"},
 	{"315", "Calamita Strana", "Le lacrime di Isaac attraggono nemici, consumabili e ninnoli"},
@@ -450,7 +450,7 @@ EID.descriptions[languageCode].collectibles={
 	{"425", "Luce Notturna", "{{Slow}} Genera un cono di luce rallentante di fronte ad Isaac"},
 	{"426", "Fan Ossessionato", "Riproduce i movimenti di Isaac con un delay di 3 secondi#Infligge 30 danni al secondo"},
 	{"427", "Blocco di TNT", "Genera un blocco di TNT spostabile#Usare l'oggetto per una seconda volta nella stessa stanza fa esplodere a distanza il blocco"},
-	{"428", "Pigiamino", "{{Heart}} Salute al massimo#{{SoulHeart}} +4 Cuori Celesti"},
+	{"428", "Pigiamino", "{{HealingRed}} Salute al massimo#{{SoulHeart}} +4 Cuori Celesti"},
 	{"429", "Testa del Mercante", "{{Coin}} Colpire un nemico con una lacrima ha il 5% di chance di generare un Penny"},
 	{"430", "Papà Mosca", "Riproduce i movimenti di Isaac con un delay di 1 secondo#Spara lacrime che infliggono i danni di Isaac ai nemici nelle vicinanze"},
 	{"431", "Bebè Multidimensionale", "Riproduce i movimenti di Isaac con un delay di 2 secondi#Le lacrime che gli passano attraverso sono raddoppiate e ottengono Più Gittata e Velocità Colpi"},
@@ -744,7 +744,7 @@ EID.descriptions[languageCode].trinkets={
 	{"5", "Cuore Viola", "Doppie chance di nemici campioni"},
 	{"6", "Magnete Rotto", "{{Coin}} Attrae monete verso Isaac"},
 	{"7", "Grano del Rosario", "{AngelChance}} Chance di una Stanza dell'Angelo aumentate del 50% #{{Collectible33}} Chance più alte di trovare \"La Bibbia\" nei {{Shop}} Negozi e nelle {{Library}} Biblioteche"},
-	{"8", "Cartuccia", "{Timer}} 5% di chance mentre si subiscono danni di ricevere per 6.5 secondi:#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo#{{HalfHeart}} Uccidere 2 nemici cura di mezzo cuore#{{Fear}} Spaventa tutti i nemici nella stanza"},
+	{"8", "Cartuccia", "{Timer}} 5% di chance mentre si subiscono danni di ricevere per 6.5 secondi:#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo#{{HealingRed}} Uccidere 2 nemici cura di mezzo cuore#{{Fear}} Spaventa tutti i nemici nella stanza"},
 	{"9", "Verme Pulsante", " Le lacrime di Isaac pulsano#Influisce sull'hitbox delle lacrime"},
 	{"10", "Verme Ondulato", "↑ {{Tears}} +0.3 Lacrime#Le lacrime di Isaac hanno un moto ondeggiante"},
 	{"11", "Verme Anello", "Le lacrime di Isaac hanno un moto a spirale molto veloce"},
@@ -782,14 +782,14 @@ EID.descriptions[languageCode].trinkets={
 	{"43", "Teschio Maledetto", "Quando i danni riducono Isaac a mezzo cuore o meno, viene teletrasportato in una stanza causale"},
 	{"44", "Tappino di Sicurezza", "{{Pill}} 10% di chance che la ricompensa per completamento stanza sia 1 pillola#{{Pill}} Chance di 1 pillola extra da bauli, rocce colorate e macchine distrutte"},
 	{"45", "Asso di Picche", "{{Card}} 10% di chance che la ricompensa per completamento stanza sia 1 carta#{{Card}} Chance di 1 carta extra da bauli, rocce colorate e macchine distrutte"},
-	{"46", "Forchetta di Isaac", "{{HalfHeart}} Completare una stanza ha il 10% di chance di curare di mezzo cuore#{{Luck}} 100% di chance con 18 di Fortuna"},
+	{"46", "Forchetta di Isaac", "{{HealingRed}} Completare una stanza ha il 10% di chance di curare di mezzo cuore#{{Luck}} 100% di chance con 18 di Fortuna"},
 	{"47", "", "<Item does not exist>"},
 	{"48", "Una Pagina Mancante", "Subire danni ha il 5% di chance di infliggere 40 danni a tutti i nemici nella stanza"},
 	{"49", "Penny Sanguinolento", "{{HalfHeart}} Raccogliere 1 moneta ha il 50% di chance di generare mezzo Cuore Rosso"},
 	{"50", "Penny Bruciato", "{{Bomb}} Raccogliere 1 moneta ha il 50% di chance di generare 1 Bomba"},
 	{"51", "Penny Appiattito", "{{Key}} Raccogliere 1 moneta ha il 50% di chance di generare 1 Chiave"},
 	{"52", "Penny Contraffatto", "{{Coin}} Raccogliere 1 moneta ha il 50% di chance di aggiungere un'altra moneta al contatore"},
-	{"53", "Zecca", "{{Heart}} All'ingresso in una {{BossRoom}} Stanza del Boss cura di 1 cuore#-15% di salute del boss#{{Warning}} Una volta raccolto, non può più venire rimosso#Rimovibile solo con {{Trinket41}} \"Fiammifero\" o ingoiandolo"},
+	{"53", "Zecca", "{{HealingRed}} All'ingresso in una {{BossRoom}} Stanza del Boss cura di 1 cuore#-15% di salute del boss#{{Warning}} Una volta raccolto, non può più venire rimosso#Rimovibile solo con {{Trinket41}} \"Fiammifero\" o ingoiandolo"},
 	{"54", "Testa Di Isaac", "Famiglio con lacrime penetranti#Infligge 3.5 danni a lacrima"},
 	{"55", "Fede di Madda", "{{EternalHeart}} Entrare in nuovo piano conferisce +1 Cuore Eterno"},
 	{"56", "Lingua di Giuda", "{DevilRoom}} Abbassa tutti i costi di un patto con il diavolo di 1 Portacuori#Non abbassa il costo da 3 Cuori Celesti "},
@@ -821,9 +821,9 @@ EID.descriptions[languageCode].trinkets={
 	{"82", "Ferro di Cavallo Dorato", "+15% di chance di ottenere oggetti doppi nel prossimo piano"},
 	{"83", "Chiave del Negozio", "{{Shop}} Permette ad Isaac di aprire Negozi senza chiavi"},
 	{"84", "Costola di Avarizia", "{{Coin}} 5% più monete e meno cuori dalle ricompense per completamento stanza#Avarizia e Super Avarizia non appaiono più nei {{Shop}} Negozi o {{SecretRoom}} Stanze Segrete"},
-	{"85", "Karma", "{{DonationMachine}} Usare una Macchina di Donazione ha il 33% di chance di:#{{Heart}} Curare di 1 cuore (40%)#{{Coin}} Conferire 1 moneta (40%)#{{Luck}} Conferire +1 Fortuna (15%)#{{Beggar}} Genera un Mendicante (5%)"},
+	{"85", "Karma", "{{DonationMachine}} Usare una Macchina di Donazione ha il 33% di chance di:#{{HealingRed}} Curare di 1 cuore (40%)#{{Coin}} Conferire 1 moneta (40%)#{{Luck}} Conferire +1 Fortuna (15%)#{{Beggar}} Generare un Mendicante (5%)"},
 	{"86", "Piccola Larva", "Distruggere una cacca genera 1 mosca blu"},
-	{"87", "Ciondolo di Mamma", "{{HalfHeart}} Usare una chiave cura di mezzo cuore#{{Heart}} Converte i mezzi cuori in cuori interi"},
+	{"87", "Ciondolo di Mamma", "{{HealingRed}} Usare una chiave cura di mezzo cuore#{{Heart}} Converte i mezzi cuori in cuori interi"},
 	{"88", "NO!", "Previene la generazione di oggetti attivi"},
 	{"89", "Guinzaglio per Bambini", "I famigli restano vicini ad Isaac"},
 	{"90", "Ministercolo", "Quando una cacca viene distrutta esplode, infliggendo 100 danni"},
@@ -855,7 +855,7 @@ EID.descriptions[languageCode].trinkets={
 	{"116", "Locusta dela Morte", "Entrare in una stanza ostile genera una mosca d'attacco#La mosca infligge i danni di Isaac x4"},
 	{"117", "Locusta della Conquista", "Entrare in una stanza ostile genera 1-4 mosche d'attacco#Ogni mosca infligge i danni di Isaac x2"},
 	{"118", "Ali di Pipistrello", "{{Timer}}Uccidere un nemico ha il 5% di chance di conferire il volo fino all'uscita dalla stanza"},
-	{"119", "Cellula Staminale", "Entrare in un nuovo piano cura di mezzo cuore"},
+	{"119", "Cellula Staminale", "{{HealingRed}} Entrare in un nuovo piano cura di mezzo cuore"},
 	{"120", "Forcina per Capelli", "{{Battery}} Entrare in una stanza boss non completata ricarica completamente gli oggetti attivi"},
 	{"121", "Croce di Legno", "{{Collectible313}} Annulla il primo danno preso nel piano"},
 	{"122", "Burro!", "Usare un oggetto attivo butta a terra un piedistallo#Subire danni ha il 2% di chance di buttare a terra uno degli oggetti passivi di isaac"},
@@ -889,13 +889,13 @@ EID.descriptions[languageCode].cards={
 	{"17", "XVI - La Torre", "Genera 6 Bombe Troll"},
 	{"18", "XVII - Le Stelle", "{{TreasureRoom}} Teletrasporta Isaac nella Stanza dei Tesori"},
 	{"19", "XVIII - La Luna", "{{SecretRoom}} Teletrasporta Isaac nella Stanza Segreta"},
-	{"20", "XIX - Il Sole", "{{Heart}} Salute al massimo#Infligge 100 danni a tutti i nemici#{{Timer}} Effetto di mappatura completa fino all'uscita dal piano (eccetto la {{SuperSecretRoom}} Stanza Super Segreta)"},
+	{"20", "XIX - Il Sole", "{{HealingRed}} Salute al massimo#Infligge 100 danni a tutti i nemici#{{Timer}} Effetto di mappatura completa fino all'uscita dal piano (eccetto la {{SuperSecretRoom}} Stanza Super Segreta)"},
 	{"21", "XX - Il Giudizio", "Genera un Mendicante o Mendicacuori#2% di chance di generare un Mendicante speciale"},
 	{"22", "XXI - Il Mondo", "{{Timer}} Effetto di mappatura completa fino all'uscita dal piano (eccetto la {{SuperSecretRoom}} Stanza Super Segreta)"},
 	{"23", "2 di Fiori", "{{Bomb}} Duplica il numero di bombe di Isaac"},
 	{"24", "2 di Quadri", "{{Coin}} Duplica il numero di monete di Isaac"},
 	{"25", "2 di Picche", "{{Key}} Duplica il numero di chiavi di Isaac"},
-	{"26", "2 di Cuori", "{{Heart}} Duplica il numero di cuori di Isaac"},
+	{"26", "2 di Cuori", "{{HealingRed}} Duplica il numero di cuori di Isaac {{ColorSilver}}(non di Portacuori){{CR}}"},
 	{"27", "Asso di Fiori", "{{Bomb}} Converte tutti i consumabili in bombe casuali"},
 	{"28", "Asso di Quadri", "{{Coin}} Converte tutti i consumabili in monete casuali"},
 	{"29", "Asso di Picche", "{{Key}} Converte tutti i consumabili in chiavi casuali"},
@@ -965,11 +965,11 @@ EID.descriptions[languageCode].unidentifiedPill = "Pillola non identificata"
 
 EID.descriptions[languageCode].pills={
 	{"0", "Gas Nocivo", "{{Poison}} Isaac scorreggia e avvelena i nemici nelle vicinanze"},
-	{"1", "Brutto Trip", "{{Heart}} Infligge 1 cuore di danno ad Isaac#{{Heart}} Con 1 cuore o meno diventa una pillola \"Salute al Massimo\""},
+	{"1", "Brutto Trip", "{{Warning}} Infligge 1 cuore di danno ad Isaac#{{Heart}} Con 1 cuore o meno diventa una pillola \"Salute al Massimo\""},
 	{"2", "Palle D'Acciaio", "{{SoulHeart}} +2 Cuori Celesti"},
 	{"3", "Le Bombe sono Chiavi", "Inverte il numero di {{Bomb}} bombe e di {{Key}} chiavi di Isaac"},
 	{"4", "Diarrea Esplosiva", "Isaac genera velocemente 5 bombe accese"},
-	{"5", "Salute al Massimo", "{Heart}} Cura completamente tutti i Portacuori"},
+	{"5", "Salute al Massimo", "{{HealingRed}} Cura completamente tutti i Portacuori"},
 	{"6", "Meno Salute", "↓ {{EmptyHeart}} -1 Salute#{{Heart}} Con 0 o 1 cuore diventa una pillola \"Più Salute\""},
 	{"7", "Più Salute", "↑ {{EmptyHeart}} +1 Portacuore vuoto"},
 	{"8", "Ho Trovato delle Pillole", "Nessun effetto"},
@@ -1000,7 +1000,7 @@ EID.descriptions[languageCode].pills={
 	{"33", "Una ti Rende più Piccolo", "Diminuisce la statura di Isaac#In più diminuisce la sua hitbox"},
 	{"34", "Infestato!", "Genera 1 ragno blu per ogni cacca nella stanza"},
 	{"35", "Infestato?", "Genera 1 ragno blu per ogni nemico nella stanza#Se non ci sono nemici nella stanza genera 1-3 ragni blu"},
-	{"36", "Pillola del Potere!", "{{Timer}} Conferisce per 6.5 secondi:#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo#{{HalfHeart}} Uccidere 2 nemici cura di mezzo cuore#{{Fear}} Spaventa tutti i nemici nella stanza"},
+	{"36", "Pillola del Potere!", "{{Timer}} Conferisce per 6.5 secondi:#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo#{{HealingRed}} Uccidere 2 nemici cura di mezzo cuore#{{Fear}} Spaventa tutti i nemici nella stanza"},
 	{"37", "Rétro Visione", "{{Timer}} Per 3 volte rende lo schermo pixellato per 30 secondi"},
 	{"38", "Amici fino alla Fine!", "Genera 3 mosche blu"},
 	{"39", "Liqui-Lax", "Genera una pozza di liquido scivoloso"},
@@ -1023,20 +1023,20 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[1] = {"Maddalena", ""},
 	[2] = {"Caino", ""},
 	[3] = {"Giuda", ""},
-	[4] = {"???", "Non può avere Cuori Rossi"},
+	[4] = {"???", "Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti"},
 	[5] = {"Eva", ""},
 	[6] = {"Sansone", ""},
-	[7] = {"Azazel", "Volo#Al posto delle lacrime \"Zolfo Fuso\" dal corto raggio#Può ottenere Cuori Rossi"},
+	[7] = {"Azazel", "Volo##{{Collectible118}} Al posto delle lacrime \"Zolfo Fuso\" dal corto raggio"},
 	[8] = {"Lazzaro", "Quando muore resuscita come Lazzaro Risorto con 1 Portacuori"},
 	[9] = {"Eden", "Ogni partita inizia con statistiche e oggetti casuali"},
-	[10] = {"Lo Smarrito", "Volo#Lacrime spettrali#Niente Salute#I patti con il diavolo possono essere stretti gratuitamente una volta per stanza"},
+	[10] = {"Lo Smarrito", "Volo#Lacrime spettrali#{{Warning}} Niente Salute#{{DevilRoom}} I patti con il diavolo possono essere stretti gratuitamente una volta per stanza"},
 	[11] = {"Lazzaro Risorto", "Statistiche aumentate e x1.2 Moltiplicatore Danni"},
-	[12] = {"Giuda Oscuro", "x2 Moltiplicatore Danni#Può ottenere Cuori Rossi#Conta come Giuda per gli obiettivi"},
-	[13] = {"Lilith", "Non può sparare lacrime#Il suo \"Incubo\" spara per lei"},
-	[14] = {"Mercante", "Si cura raccogliendo monete#I cuori consumabili vengono trasformati in mosche blu"},
+	[12] = {"Giuda Oscuro", "{{Damage}} x2 Moltiplicatore Danni#Può ottenere Cuori Rossi#{{Player3}} Conta come Giuda per gli obiettivi"},
+	[13] = {"Lilith", "Non può sparare lacrime#{{Collectible360}} Il suo \"Incubo\" spara per lei"},
+	[14] = {"Mercante", "{{CoinHeart}} Si cura raccogliendo monete#Massimale di 2 Portamonete#I cuori consumabili vengono trasformati in mosche blu"},
 	[15] = {"Apollion", ""},
-	[16] = {"Il Dimenticato", "Hai un attacco in mischia che può essere caricato e lanciato#Può possedere fino a 6 Cuori Ossei#Premere {{ButtonRT}} lo scambia con L'Anima#L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato, e può solamente muoversi entro un breve raggio attorno ad esso"},
-	[17] = {"L'Anima", "Hai un attacco in mischia che può essere caricato e lanciato#Può possedere fino a 6 Cuori Ossei#Premere {{ButtonRT}} lo scambia con L'Anima#L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato, e può solamente muoversi entro un breve raggio attorno ad esso"},
+	[16] = {"Il Dimenticato", "Hai un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
+	[17] = {"L'Anima", "Hai un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
 }
 
 ---------- Sacrifice Room ----------
@@ -1094,6 +1094,9 @@ EID.descriptions[languageCode].transformations={
 
 ---------- MISC ----------
 
+-- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
+EID.descriptions[languageCode].Pluralize = ""
+
 EID.descriptions[languageCode].VoidText = "Se assorbito, si ottiene:"
 -- {1} will become the number text (like "{1} Tears" -> "+0.5 Tears")
 EID.descriptions[languageCode].VoidNames = {"{1} Velocità", "{1} Lacrime", "{1} Danni", "{1} Gittata", "{1} Velocità Colpi", "{1} Fortuna"}
@@ -1109,6 +1112,27 @@ EID.descriptions[languageCode].CollectionPageInfo = "Questo oggetto deve essere 
 
 EID.descriptions[languageCode].BlackFeatherInformation = "Oggetti tenuti al momento: {{ColorLime}}{1}{{CR}} (+{2} Danni)"
 
+-- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
+-- {1} = number of hearts, {2} = plural character
+-- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
+EID.descriptions[languageCode].RedToX = {
+	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
+	["Red to Soul"] = {"↑ {{Heart}} +{1} Salute", "{{SoulHeart}} +{1} Cuore Celeste/i",
+	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{SoulHeart}} +{1} Cuore/i Celeste/i"},
+
+	["Red to Black"] = {"↑ {{Heart}} +{1} Salute", "{{BlackHeart}} +{1} Cuore/i Nero/i",
+	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{BlackHeart}} +{1} Cuore/i Nero/i"},
+
+	["Red to Bone"] = {"↑ {{Heart}} +{1} Salute", "{{BoneHeart}} +{1} Cuore/i Osseo/i",
+	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{EmptyBoneHeart}} +{1} Cuore/i Osseo/i Vuoto/i", "{{HealingRed}}", "{{HealingBone}}"}, -- Red HP to Bone Hearts
+
+	["Red to Coin"] = {"↑ {{Heart}} +{1} Salute", "{{CoinHeart}} +{1} Portamonete",
+	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{EmptyCoinHeart}} +{1} Portamonete vuoto/i",
+	"{{HealingRed}} Cura di {1} cuore/i{2}", "{{HealingCoin}} Cura di {1} moneta/e", "{{HealingRed}} Cura di mezzo cuore", "{{HealingCoin}} Cura di 1 moneta", "{{HealingRed}}", "{{HealingCoin}}"},
+
+	["Red to None"] = {"↑ {{Heart}} +{1} Salute", "", "↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", ""}, -- Red HP to None (The Lost)
+}
+
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Nome Oggetto Demo",
 	DemoObjectTransformation = "Trasformazione Demo",
@@ -1117,7 +1141,7 @@ EID.descriptions[languageCode].MCM = {
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].ItemReminder = {
-	ResultHeader = " Esito",
+	ResultHeader = "{1} Esito",
 	InventoryEmpty = "(Il PG non ha oggetti)",
 	CategoryNames = {
 		Overview = "Panoramica Inventario",
@@ -1181,6 +1205,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Overrides"] = "Sovrascrive {1}",
 	["Almost No Effect"] = "Effetto esiguo o nullo su {1}",
 	["No Effect"] = "Effetto nullo su {1}",
+	["No Effect Replace"] = {"Nessun effetto per {1}"},
 	["No Effect From"] = "Nessun effetto da {1}",
 	["Can't Charge"] = "Non può caricare {1}",
 	["Can't Be Charged"] = "Non può essere caricato da {1}",
@@ -1189,6 +1214,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Copies)"] = "Nessun effetto extra da più copie", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "Nessun effetto extra da famigli", -- probably just for Hive Mind + BFFS!
 	["No Red"] = "Effetto nullo per personaggi che non hanno Cuori Rossi",
+	["Different Effect"] = "Effetto diverso per {1}",
 	
 	
 	------ GREED MODE ------
@@ -1196,7 +1222,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Champion Drops"] = "!!! Nella Modalità Avido campioni non lasciano consumabili!", -- Champion Belt / Purple Heart
 	["5.300.15"] = {"{{DemonBeggar}} Genera un Mendicacuori"}, -- Temperance (Greed)
 	["5.300.19"] = {"Teletrasporta Isaac nella prima stanza del piano"}, -- The Moon (Greed)
-	["5.300.20"] = {"{{Heart}} Salute al massimo#Infligge 100 danni a tutti i nemici"}, -- XIX - The Sun (Greed)
+	["5.300.20"] = {"{{HealingRed}} Salute al massimo#Infligge 100 danni a tutti i nemici"}, -- XIX - The Sun (Greed)
 	["5.100.483 (Greed)"] = "{{GreedMode}} Non si attiva per ciascuna ondata, bensì per ciascuna stanza", -- Mama Mega (Greed)
 	["5.100.535"] = "{{GreedMode}} Nessuno scudo nelle Ondate Boss, solo contro Ultra Avarizia", -- Blanket (Greed)
 	["5.350.120"] = "{{GreedMode}} Nessuna carica nelle Ondate Boss, solo contro Ultra Avarizia", -- Hairpin (Greed)
@@ -1218,6 +1244,11 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 	
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
+	["Super Bandage Soul"] = {"{{SoulHeart}} +3 Cuori Celesti"}, -- for Soul Heart chars
+	["Super Bandage Black"] = {"{{SoulHeart}} +2 Cuori Celesti#{{BlackHeart}} +1 Cuore Nero"}, -- for Black Heart chars
+	["Black Lotus Soul"] = {"{{SoulHeart}} +2 Cuori Celesti#{{BlackHeart}} +1 Cuore Nero"}, -- for Soul Heart chars
+	["Black Lotus Black"] = {"{{SoulHeart}} +1 Cuore Celeste#{{BlackHeart}} +2 Cuori Neri"}, -- for Black Heart chars
+
 	["5.100.135 (PHD)"] = "Genera 2-3 monete se si ha {1}", -- IV Bag PHD
 	["Keeper 0-1"] = "Genera 0-1 monete nel caso di {1}", -- IV Bag/Piggy Bank Keeper
 	["5.100.549"] = "Quando viene raccolto {1} ottiene un semplice ↑ {{Tears}} +0.4 Lacrime", -- Brittle Bones (Keeper+Lost)

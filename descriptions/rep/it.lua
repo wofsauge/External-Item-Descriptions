@@ -18,15 +18,15 @@ local repCollectibles={
 	[2] = {"2", "Il Terzo Occhio", "↓ {{Tears}} x0.51 Moltiplicatore Velocità Colpi#Isaac spara tre lacrime alla volta"}, -- The Inner Eye
 	[5] = {"5", "Il Mio Riflesso", "↑ {{Damage}} +1.5 Danni#↑ {{Range}} +1.5 Gittata#↑ {{Range}} x2 Moltiplicatore Gittata#↑ {{Shotspeed}} x1.6 Moltiplicatore Velocità Colpi#↓ {{Luck}} -1 Fortuna#Le lacrime ottengono un effetto boomerang"}, -- My Reflection
 	[6] = {"6", "La Numero Uno", "↑ {{Tears}} +1.5 Lacrime#↓ {{Range}} -1.5 Gittata #↓ {{Range}} x0.8 Moltiplicatore Gittata"}, -- Number One
-	[12] = {"12", "Fungo Magico", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.3 Velocità#↑ {{Damage}} +0.3 Danni#↑ {{Damage}} x1.5 Moltiplicatore Danni#↑ {{Range}} +2.5 Gittata#Aumento Statura#{{Heart}} Salute al massimo"},
+	[12] = {"12", "Fungo Magico", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.3 Velocità#↑ {{Damage}} +0.3 Danni#↑ {{Damage}} x1.5 Moltiplicatore Danni#↑ {{Range}} +2.5 Gittata#Aumento Statura#{{HealingRed}} Salute al massimo"},
 	[13] = {"13", "Il Virus", "↑ {Speed}} +0.2 Velocità#{{Poison}} Toccare i nemici li avvelena#Il PG infligge 48 danni da contatto al secondo"}, -- The Virus
 	[14] = {"14", "Iniezione di Ferocia", "↑ {{Speed}} +0.3 Velocità#↑ {{Range}} +2.5 Gittata"}, -- Roid Rage
 	[18] = {"18", "Un Dollaro", "{{Coin}} +100 Monete"}, -- A Dollar
-	[22] = {"22", "Pranzo", "↑ {{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore"}, -- Lunch
-	[23] = {"23", "Cena", "↑ {{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore"}, -- Dinner
-	[24] = {"24", "Dessert", "↑ {{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore"}, -- Dessert
-	[25] = {"25", "Colazione", "↑ {{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore"}, -- Breakfast
-	[26] = {"26", "Carne Marcia", "↑ {{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore"}, -- Rotten Meat
+	[22] = {"22", "Pranzo", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore"}, -- Lunch
+	[23] = {"23", "Cena", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore"}, -- Dinner
+	[24] = {"24", "Dessert", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore"}, -- Dessert
+	[25] = {"25", "Colazione", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore"}, -- Breakfast
+	[26] = {"26", "Carne Marcia", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore"}, -- Rotten Meat
 	[29] = {"29", "Mutande di Mamma", "↑ {{Range}} +2.5 Gittata#Genera 3-6 mosche blu"}, -- Moms Underwear
 	[30] = {"30", "Tacchi di Mamma", "↑ {{Range}} +2.5 Gittata#Isaac infligge 24 danni da contatto al secondo"}, -- Mom's Heels
 	[31] = {"31", "Rossetto di Mamma", "↑ {{Range}} +3.75 Gittata#{{UnknownHeart}} Genera 1 cuore casuale"}, -- Mom's Lipstick
@@ -34,7 +34,7 @@ local repCollectibles={
 	[40] = {"40", "Kamikaze!", "Produce una grossa esplosione nella posizione di Isaac#Infligge 185 danni"}, -- Kamikaze!
 	[41] = {"41", "Assorbente di Mamma", "{{Fear}} Spaventa tutti i nemici nella stanza per 5 secondi#Genera 1 mosca blu"}, -- Mom's Pad
 	[42] = {"42", "Testa Marcia di Bob", "Usare l'oggetto e sparare in una direzione fa scagliare la testa#{{Poison}} La testa esplode nel luogo in cui atterra e crea una nube velenosa#Infligge i danni di Isaac + 185"}, -- Bob's Rotten Head
-	[45] = {"45", "Cuore Gustoso", "{{Heart}} Cura di 1 cuore#{{HalfHeart}} Cura altri giocatori di mezzo cuore"}, -- Yum Heart
+	[45] = {"45", "Cuore Gustoso", "{{HealingRed}} Cura di 1 cuore#{{HalfHeart}} Cura altri giocatori di mezzo cuore"}, -- Yum Heart
 	[46] = {"46", "Piede Fortunato", "↑ {{Luck}} +1 Fortuna#Maggiori chance di vittoria nel gioco d'azzardo#Aumenta le chance di una ricompensa a completamento stanza#Trasforma le pillole negative in positive"}, -- Lucky Foot
 	[52] = {"52", "Dr. Fetus", "↓ {{Tears}} x0.4 Moltiplicatore Rateo di Fuoco#{{Bomb}} Isaac spara bombe al posto delle lacrime#{{Damage}} Tali bombe infliggono x10 di danni delle lacrime di Isaac#Se infliggerebbero 60 danni, infliggono invece x5 di danni +30"}, -- Dr. Fetus
 	[53] = {"53", "Magneto", "Isaac attrae a sé i consumabili#Apre i bauli da due caselle di distanza, ignorando i danni dei Bauli Puntuti"}, -- Magneto
@@ -54,7 +54,7 @@ local repCollectibles={
 	[87] = {"87", "Corna di Loki", "25% di chance di sparare in 4 direzioni#{{Luck}} 100% di chance con 15 di Fortuna"}, -- Loki's Horns
 	[91] = {"91", "Casco da Minatore", "Rivela il tipo di stanza delle stanze adiacenti#{{SecretRoom}} Può rivelare Stanze Segrete e Super Segrete#Previene i danni dalla caduta dei proiettili"}, -- Spelunker Hat
 	[98] = {"98", "La Reliquia", "{{SoulHeart}} Genera 1 Cuore Celeste per ogni 7-8 stanze"}, -- The Relic
-	[101] = {"101", "L'Aureola", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.3 Velocità#↑ {{Tears}} +0.2 Lacrime#↑ {{Damage}} +0.3 Danni#↑ {{Range}} +1.5 Gittata#{{Heart}} Cura di 1 cuore"}, -- The Halo
+	[101] = {"101", "L'Aureola", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.3 Velocità#↑ {{Tears}} +0.2 Lacrime#↑ {{Damage}} +0.3 Danni#↑ {{Range}} +1.5 Gittata#{{HealingRed}} Cura di 1 cuore"}, -- The Halo
 	[106] = {"106", "Sig. Mega", "↑ {{Bomb}} x1.85 danni delle bombe#{{Bomb}} +5 Bombe"}, -- Mr. Mega
 	[107] = {"107", "Forbici Seghettate", "{{Timer}} Conferisce fino all'uscita dalla stanza:#Volo#Il corpo di Isaac si separa dalla testa e attacca i nemici con 23.5 danni da contatto al secondo"}, -- The Pinking Shears
 	[110] = {"110", "Lentine di Mamma", "↑ {{Range}} +1.5 Gitttata#20% di chance di sparare lacrime pietrificanti#{{Luck}} 50% di chance con 20 di Fortuna"}, -- Mom's Contacts
@@ -65,7 +65,7 @@ local repCollectibles={
 	[123] = {"123", "Manuale dei Mostri", "{{Timer}} Genera un famiglio casuale fino all'uscita dal piano"}, -- Monster Manual
 	[126] = {"126", "Lametta", "↑ {{Damage}} +1.2 Danni#{{Warning}} Infligge 1 cuore di danni ad Isaac#Dopo il primo uso in una stanza, infligge invece mezzo cuore#{{Heart}} Rimuove per primi i Cuori Rossi"}, -- Razor Blade
 	[129] = {"129", "Secchio di Lardo", "↑ {{Heart}} +2 Salute#↓ {{Speed}} -0.2 Velocità"}, -- Bucket of Lard
-	[138] = {"138", "Stimmate", "↑ {{Heart}} +1 Salute#↑ {{Damage}} +0.3 Danni#{{Heart}} Cura di 1 cuore"}, -- Stigmata
+	[138] = {"138", "Stimmate", "↑ {{Heart}} +1 Salute#↑ {{Damage}} +0.3 Danni#{{HealingRed}} Cura di 1 cuore"}, -- Stigmata
 	[139] = {"139", "Borsetta di Mamma", "{{Trinket}} Genera 1 ninnolo casuale#{{Trinket}} Isaac può tenere 2 ninnoli"}, -- Mom's Purse
 	[140] = {"140", "Maledizione di Bob", "{{Bomb}} +5 Bombe#{{Poison}} Le bombe di Isaac creano una nube velenosa#{{Poison}} Immunità al veleno"}, -- Bob's Curse
 	[142] = {"142", "Scapolare", "{{SoulHeart}} Isaac ottiene 1 Cuore Celeste quando i danni lo riducono a mezzo cuore#Può avvenire solo una volta a stanza#Uscire e rientrare nella stanza permette di attivare nuovamente l'effetto#{{Warning}} Non viene attivato dalle donazioni di cuori"}, -- Scapular
@@ -79,16 +79,16 @@ local repCollectibles={
 	[169] =	{"169", "Polifemo", "↑ {{Damage}} +4 Danni#↑ {{Damage}} x2 Moltiplicatore Danni#↓ {{Tears}} x0.42 Moltiplicatore Rateo di Fuoco#Le lacrime penetrano i nemici uccisi in caso di danni avanzanti"}, -- Polyphemus
 	[171] = {"171", "Chiappe Ragnesche", "{{Slow}} Rallenta i nemici per 4 secondi#Infligge 10 danni a tutti i nemici##I nemici uccisi dall'oggetto generano ragni blu"}, -- Spider Butt
 	[172] = {"172", "Lama Sacrificale", "Orbitale#Blocca i proiettili nemici#Infligge 112.5 danni al secondo"}, -- Sacrificial Dagger
-	[176] = {"176", "Cellule Staminali", "↑ {{Heart}} +1 Salute#↑ {{Shotspeed}} +0.16 Velocità Colpi#{{Heart}} Cura di 1 cuore"}, -- Stem Cells
+	[176] = {"176", "Cellule Staminali", "↑ {{Heart}} +1 Salute#↑ {{Shotspeed}} +0.16 Velocità Colpi#{{HealingRed}} Cura di 1 cuore"}, -- Stem Cells
 	[178] = {"178", "Acqua Santa", "{{Throwable}} Si lancia nella direzione in cui Isaac spara#Si infrange e una volta colpito un nemico infligge 7 danni#Lascia una pozza di liquido pietrificante e danneggiante"}, -- Holy Water
 	[180] = {"180", "Il Fagiolo Nero", "Quando Isaac viene danneggiato scorreggia per più volte#{{Poison}} Le scorregge lasciano nubi velenose e respingono i proiettili"}, -- The Black Bean
-	[182] = {"182", "Sacro Cuore", "↑ {{Heart}} +1 Salute#↑ {{Damage}} x2.3 Moltiplicatore Danni#↑ {{Damage}} +1 Danni#↓ {{Tears}} -0.4 Lacrime#↓ {{Shotspeed}} -0.25 Velocità Colpi#{{Heart}} Salute al Massimo#Lacrime a ricerca"}, -- Sacred Heart
-	[184] = {"184", "Sacro Graal", "↑ {{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore#Volo"}, -- Holy Grail
+	[182] = {"182", "Sacro Cuore", "↑ {{Heart}} +1 Salute#↑ {{Damage}} x2.3 Moltiplicatore Danni#↑ {{Damage}} +1 Danni#↓ {{Tears}} -0.4 Lacrime#↓ {{Shotspeed}} -0.25 Velocità Colpi#{{HealingRed}} Salute al Massimo#Lacrime a ricerca"}, -- Sacred Heart
+	[184] = {"184", "Sacro Graal", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore#Volo"}, -- Holy Grail
 	[186] = {"186", "Eredità di Sangue", "Infligge 40 danni a tutti i nemici#{{Warning}} Infligge 1 cuore di danno ad Isaac#Dopo il primo uso in una stanza, infligge invece mezzo cuore di danno#{{Heart}} Rimuove per primi i Cuori Rossi"}, -- Blood Rights
 	[188] = {"188", "Abele", "Riflette i movimenti di Isaac#Spara verso Isaac#Infligge 3.5 danni a lacrima"}, -- Abel
-	[189] = {"189", "Super Fan di SMB", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.2 Velocità#↑ {{Tears}} +0.2 Lacrime#↑ {{Damage}} +0.3 Danni#↑ {{Range}} +2.5 Gittata#{{Heart}} Salute al massimo"}, -- SMB Super Fan
+	[189] = {"189", "Super Fan di SMB", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.2 Velocità#↑ {{Tears}} +0.2 Lacrime#↑ {{Damage}} +0.3 Danni#↑ {{Range}} +2.5 Gittata#{{HealingRed}} Salute al massimo"}, -- SMB Super Fan
 	[192] = {"192", "Telepatia per Negati", "{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Range}} +3 Gittata#Lacrime a ricerca"}, -- Telepathy for Dummies
-	[193] = {"193", "CARNE!", "↑ {{Heart}} +1 Salute#↑ {{Damage}} +0.3 Danni#{{Heart}} Cura di 1 cuore"}, -- MEAT!
+	[193] = {"193", "CARNE!", "↑ {{Heart}} +1 Salute#↑ {{Damage}} +0.3 Danni#{{HealingRed}} Cura di 1 cuore"}, -- MEAT!
 	[194] = {"194", "Palla Magica", "↑ {{Shotspeed}} +0.16 Velocità Colpi#{{Card}} Genera 1 carta#+15% di chance di un Planetario"}, -- Magic 8 Ball
 	[197] = {"197", "Succhino di Cristo", "↑ {{Damage}} +0.5 Danni#↑ {{Range}} +1.5 Gittata"}, -- Jesus Juice
 	[203] = {"203", "Offerta Imperdibile", "I consumabili hanno il 50% di chance di venire raddoppiati"}, -- Humbleing Bundle
@@ -96,13 +96,13 @@ local repCollectibles={
 	[206] = {"206", "Ghigliottina", "↑ {{Tears}} +0.5 Rateo di Fuoco#↑ {{Damage}} +1 Danni#La testa di Isaac diventa un orbitale che spara, non prende danni e infligge 65 danni da contatto al secondo"}, -- Guillotine
 	[211] = {"211", "Bimboragno", "Subire danni genera 3-5 ragni blu"}, -- Spider Baby
 	[214] = {"214", "Anemia", "↑ {{Range}} +1.5 Gittata#{{Timer}} Quando Isaac prende danni lascia una scia di liquido sanguigno fino all'uscita dalla stanza"}, -- Anemic
-	[218] = {"218", "Placenta", "{{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore#{{HalfHeart}} Ad ogni minuto 50% di chance di curare mezzo cuore"}, -- Placenta
+	[218] = {"218", "Placenta", "{{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore#{{HalfHeart}} Ad ogni minuto 50% di chance di curare mezzo cuore"}, -- Placenta
 	[219] = {"219", "Cerotto Vecchio", "↑ {{EmptyHeart}} +1 Portacuori vuoto#{{Heart}} Subire danni ha il 20% di chance di generare 1 Cuore Rosso"}, -- Old Bandage
 	[222] =	{"222", "Anti-Gravità", "↑ {{Tears}} +1 Rateo di Fuoco#Tenere premuto il tasto di fuoco fa sì che le lacrime levitino a mezz'aria#Rilasciare il tasto di fuoco le lancia nella direzione verso cui erano state sparate"}, -- Anti-Gravity
 	[223] = {"223", "Piromane", "{{Bomb}} +5 Bombe#{{HalfHeart}} Le esplosioni curano Isaac di mezzo cuore invece di danneggiarlo#{{Burning}} Immunità al fuoco (eccetto i proiettili)"}, -- Pyromaniac
 	[224] = {"224", "Corpo di Cricket", "↑ {{Tears}} +0.5 Rateo di Fuoco#↓ {{Range}} x0.8 Moltiplicatore Gittata#Quando le lacrime colpiscono si scindono in 4#Le lacrime scisse infliggono la metà dei danni"}, -- Cricket's Body
 	[225] = {"225", "Latex", "{{SoulHeart}} Subire danni ha una chance di generare un Cuore Celeste#{{Luck}} +2% di chance per punto Fortuna#{{HalfHeart}} I nemici hanno una chance di lasciare mezzo Cuore Rosso quando muoiono"}, -- Gimpy
-	[226] = {"226", "Loto Nero", "↑ {{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore#{{SoulHeart}} +1 Cuore Celeste#{{BlackHeart}} +1 Cuore Nero"}, -- Black Lotus
+	[226] = {"226", "Loto Nero", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore#{{SoulHeart}} +1 Cuore Celeste#{{BlackHeart}} +1 Cuore Nero"}, -- Black Lotus
 	[228] = {"228", "Profumo di Mamma", "↑ {{Tears}} +0.5 Rateo d fuoco#{{Fear}} 15% di chance di sparare lacrime spaventose"}, -- Moms Perfume
 	[229] =	{"229", "Polmone di Monstro", "↓ {{Tears}} x0.23 Moltiplicatore Rateo di Fuoco#{{Chargeable}} Le lacrime vengono caricate e rilasciate in un attacco a raffica"}, -- Monstro's Lung
 	[230] = {"230", "Abaddon", "↑ {{Speed}} +0.2 Velocità#↑ {{Damage}} +1.5 Danni#↓ {{EmptyHeart}} Converte tutti i Portacuori in Cuori Neri#{{BlackHeart}} +2 Cuori Neri#{{Fear}} 15% di chance di sparare lacrime spaventose"}, -- Abaddon
@@ -110,14 +110,14 @@ local repCollectibles={
 	[233] = {"233", "Pianetino", "↑ +6.5 Gittata#Lacrime spettrali#Le lacrime di Isaac gli orbitano attorno"}, -- Tiny Planet
 	[245] = {"245", "Dieci Decimi", "↓ {{Damage}} x0.8 Moltiplicatore Danni#Isaac spara 2 lacrime alla volta"}, -- 20/20
 	[248] = {"248", "Mente Alveare", "Ragni e mosche blu infliggono il doppio dei danni#I ragni e mosche famigli diventano più forti"}, -- Hive Mind
-	[253] = {"253", "Scabbia Magica", "↑ {{Heart}} +1 Salute#↑ {{Luck}} +1 Fortuna#{{Heart}} Heals 1 heart"}, -- Magic Scab
+	[253] = {"253", "Scabbia Magica", "↑ {{Heart}} +1 Salute#↑ {{Luck}} +1 Fortuna#{{HealingRed}} Cura di 1 cuore"}, -- Magic Scab
 	[254] = {"254", "Grumo di Sangue", "↑ {{Damage}} +1 Danni all'occhio sinistro#↑ {{Range}} +2.75 Gittata per l'occhio sinistro"}, -- Blood Clot
 	[256] = {"256", "Bombe Incendiarie", "{{Bomb}} +5 Bombe#{{Burning}} Le bombe di Isaac infliggono danni da contatto#{{Burning}} Le bombe di Isaac lasciano una fiamma quando esplodono#{{Burning}} Immunità al fuoco (eccetto i proiettili)"}, -- Hot Bombs
 	[261] = {"261", "Proptosi", "↑ {{Damage}} +0.5 Danni#↓ I danni inflitti dalle lacrime diminuiscono quanto più tempo sono in aria#A bruciapelo le lacrime infliggono i danni di Isaac x3, e dopo 0.8 secondi zero danni"}, -- Proptosis
 	[262] = {"262", "Pagina Mancante 2", "{{BlackHeart}} +1 Cuore Nero#Subire danni e finire a 1 cuore danneggia tutti i nemici nella stanza#{{Collectible35}} Cuori Neri e effetti simili a \"Il Necronomicon\" infliggono il doppio dei danni"}, -- Missing Page 2
 	[263] = {"263", "Runa Limpida", "{{Rune}} Quando viene raccolto genera 1 runa#{{Rune}} Attiva gli effetti della runa tenuta da Isaac senza usarla"}, -- Clear Rune (Repentance item)
 	[264] = {"264", "Moscastuta", "Orbitale#Attaccca i nemici quando Isaac prende danni#Infligge 6.5 danni al secondo"}, -- Smart Fly
-	[273] = {"273", "Cervello di Bob", "Scatta nella direzione verso cui Isaac sta sparando#Esplode quando colpisce un nemico#{{Poison}} L'esplosione infligge 100 danni, ignora lo scudo dei boss e avvelena i nemici#{{Warning}} L'esplosione può ferire Isaac"}, -- Bob's Brain
+	[273] = {"273", "Cervello di Bob", "Scatta nella direzione verso cui Isaac sta sparando#Esplode quando colpisce un nemico#{{Poison}} L'esplosione infligge 100 danni e avvelena i nemici#{{Warning}} L'esplosione può ferire Isaac"}, -- Bob's Brain
 	[274] = {"274", "Scudiero", "Subire danni genera un orbitale dal medio raggio fino all'uscita dalla stanza#L'orbitale infligge 150 danni al secondo"}, -- Best Bud
 	[275] = {"275", "Mini Zolfo Fuso", "{{Chargeable}} Famiglio che carica e spara un {{Collectible118}} raggio di sangue#Infligge 3 danni a tocco, per un totale di 24 danni"}, -- Lil Brimston
 	[276] = {"276", "Cuore di Isaac", "Isaac diventa invincibile#Genera un cuore famiglio che segue Isaac#Il cuore si carica mentre Isaac spara, rilasciando uno scroscio di lacrime quando smette#{{Warning}} Se il cuore famiglio viene colpito, Isaac prende danni"}, -- Isaac's Heart
@@ -138,11 +138,11 @@ local repCollectibles={
 	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
 	[297] = {"297", "Scrigno di Pandora", "{{Warning}} MONOUSO {{Warning}} Genera ricompense in base al piano:#S1: 2{{SoulHeart}}; S2: 2{{Bomb}} + 2{{Key}}##{{NoLB}}G1: Oggetto del Boss; G2: G1 + 2{{SoulHeart}#P1: 4{{SoulHeart}}; P2: 20{{Coin}}#U1: 2 Oggetti del Boss#U2: {{Collectible33}} \"La Bibbia\"#???/Il Vuoto: Nulla#Sheol: Oggetto Demoniaco + 1{{BlackHeart}}#Catt.: Oggetto Angelico + 1{{EternalHeart}}#{{NoLB}}Camera Oscura: Sblocca {{Collectible523}} \"Scatola per Traslochi\"; Baule: 1{{Coin}}#Casa: {{Collectible580}} \"Chiave Rossa\""}, -- Pandoràs box
 	[300] = {"300", "Ariete", "↑ {{Speed}} +0.25 Velocità#Muoversi con più di 0.85 di Velocità rende Isaac immune ai danni da contatto e infligge ai nemici 25 danni"}, -- Aries
-	[307] = {"307", "Capricorno", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.1 Velocità#↑ {{Tears}} +0.5 Rateo di Fuoco#↑ {{Damage}} +0.5 Danni#↑ {{Range}} +1.5 Gittata#+1 {{Coin}} moneta, {{Bomb}} bomba e {{Key}} chiave#{{Heart}} Cura di 1 cuore"}, -- Capricorn
+	[307] = {"307", "Capricorno", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.1 Velocità#↑ {{Tears}} +0.5 Rateo di Fuoco#↑ {{Damage}} +0.5 Danni#↑ {{Range}} +1.5 Gittata#+1 {{Coin}} moneta, {{Bomb}} bomba e {{Key}} chiave#{{HealingRed}} Cura di 1 cuore"}, -- Capricorn
 	[308] = {"308", "Acquario", "Isaac lascia una scia di liquido#{{Damage}} Il liquido infligge il 66 % dei danni di Isaac al secondo e riceve gli effetti delle lacrime di Isaac"}, -- Aquarius
 	[309] =	{"309", "Pisces", "↑ {{Tears}} +0.5 Rateo di Fuoco#↑ {{Tearsize}} +0.12 Dimensioni Lacrime#Aumenta la spinta delle lacrime"}, --Pisces
 	[310] =	{"310", "Mascara di Eva", "↑ {{Damage}} x2 Moltiplicatore Danni#↓ {{Tears}} x0.66 Molitplicatore Lacrime#↓ {{Shotspeed}} -0.5 Velocità Colpi"}, --Eve's Mascara
-	[314] = {"314", "Coscione", "↑ {{Heart}} +1 Salute#↓ {{Speed}} -0.4 Velocità#{{Heart}} Cura di 1 cuore#Isaac può distruggere le rocce camminandoci sopra"}, -- Thunder Thighs
+	[314] = {"314", "Coscione", "↑ {{Heart}} +1 Salute#↓ {{Speed}} -0.4 Velocità#{{HealingRed}} Cura di 1 cuore#Isaac può distruggere le rocce camminandoci sopra"}, -- Thunder Thighs
 	[315] = {"315", "Calamita Strana", "Le lacrime di Isaac attraggono nemici, consumabili e ninnoli#A fine traiettoria delle lacrime l'effetto di attrazione è più forte"}, -- Strange Attractor
 	[316] = {"316", "Occhio Maledetto", "Carica una serie di 5 lacrime#{{Warning}} Subire danni a caricamento parziale teletrasporta Isaac in una stanza casuale"}, -- Cursed Eye
 	[319] = {"319", "L'Altro Occhio di Caino", "Spara lacrime con gli stessi effetti di Isaac in direzioni casuali#{{Damage}} Infligge il 75% dei danni di Isaac"}, -- Cain's Other Eye
@@ -155,13 +155,13 @@ local repCollectibles={
 	[331] = {"331", "Divinità", "↑ {{Damage}} +0.5 Danni#↓ {{Tears}} -0.3 Lacrime#↓ {{Shotspeed}} -0.3 Velocità Colpi#Lacrime a ricerca#{{Damage}} Le lacrime ottengono un'aura che infligge 60 danni al secondo"}, -- Godhead
 	[336] = {"336", "Cipolla Morta", "↑ {{Tearsize}} +0.22 Dimensioni Lacrime#↓ {{Range}} -1.5 Gittata#↓ {{Shotspeed}} -0.4 Velocità Colpi#Lacrime penetranti + spettrali"}, -- Dead Onion
 	[339] = {"339", "Spilla da Balia", "↑ {{Range}} +2.5 Gittata#↑ {{Shotspeed}} +0.16 Velocità Colpi#{{BlackHeart}} +1 Cuore Nero"}, -- Safety Pin
-	[342] = {"342", "Cappello Blu", "↑ {{Heart}} +1 Salute#↑ {{Tears}} +0.7 Lacrime#↓ {{Shotspeed}} -0.16 Velocità Colpi#{{Heart}} Cura di 1 cuore"}, -- Blue Cap
+	[342] = {"342", "Cappello Blu", "↑ {{Heart}} +1 Salute#↑ {{Tears}} +0.7 Lacrime#↓ {{Shotspeed}} -0.16 Velocità Colpi#{{HealingRed}} Cura di 1 cuore"}, -- Blue Cap
 	[344] = {"344", "Scatola di Cerini", "{{BlackHeart}} +1 Cuore Nero#{{Bomb}} Genera 3 bombe#{{Trinket41}} Genera \"Fiammifero\""}, -- Match Book
 	[345] = {"345", "Sintolio", "↑ {{Damage}} +1 Danni#↑ {{Range}} +5.25 Gittata#↑ +0.5 Altezza Lacrime"}, -- Synthoil
-	[346] = {"346", "Uno Snack", "↑ {{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore"}, -- A Snack
+	[346] = {"346", "Uno Snack", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore"}, -- A Snack
 	[349] = {"349", "Nichelino di Legno", "{{Coin}} Circa il 59% di chance di generare 1 moneta casuale"}, -- Wooden Nickel
 	[352] = {"352", "Cannone di Vetro", "{{Damage} Spara una grossa lacrima penetrante + spettrale che infligge i danni di Isaac x10#{{Warning}} Subire danni mentre viene tenuto:#↓ Rimuove 2 cuori extra di salute#↓ Rompe il cannone per tot stanze#↑ {{Range}} +1.5 Gittata e lascia una scia di sangue fino all'uscita dalla stanza#Il danno extra non può uccidere Isaac#I danni autoinflitti non attivano l'effetto"}, -- Glass Canon
-	[354] = {"354", "Crack Jack", "↑ {{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore#{{Trinket}} Genera 1 ninnolo"}, -- Crack Jacks
+	[354] = {"354", "Crack Jack", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore#{{Trinket}} Genera 1 ninnolo"}, -- Crack Jacks
 	[355] = {"355", "Perle di Mamma", "↑ {{Range}} +2.5 Gittata#↑ {{Luck}} +1 Fortuna#{{SoulHeart}} +1 Cuore Celeste"}, -- Mom's Pearl
 	[360] = {"360", "Incubo", "Spara lacrime con gli stessi effetti di quelle di Isaac#{{Damage}} Infligge il 75% dei danni di Isaac"}, -- Incubus
 	[365] = {"365", "Mosca Smarrita", "Si muove lungo i muri/ostacoli#Infligge 30 danni da contatto al secondo#I nemici nelle vicinanze mirano alla mosca"}, -- Lost Fly
@@ -208,7 +208,7 @@ local repCollectibles={
 	[451] = {"451", "Tappetino del Cartomante", "{{Card}} Genera 1 carta#{{Card}} Gli effetti dei tarocchi sono raddoppiati o potenziati"}, -- Tarot Cloth
 	[453] = {"453", "Frattura Esposta", "↑ {{Range}} +1.5 Gittata#Quando le lacrime colpiscono qualcosa si sgretolano in 1-3 piccole schegge d'ossa"}, -- Compound Fracture
 	[455] = {"455", "Moneta Perduta di Papà", "↑ {{Range}} +2.5 Gittata#{{Luck}} Genera un Penny Fortunato"},
-	[456] = {"456", "Spuntino di Mezzanotte", "↑ {{Heart}} +1 Salute#{{Heart}} Cura di 1 cuore"}, -- Midnight Snack
+	[456] = {"456", "Spuntino di Mezzanotte", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore"}, -- Midnight Snack
 	[459] = {"459", "Sinusite", "20% di chance di sparare una caccola appiccicosa#{{Damage}} Le caccole infliggono i danni di Isaac una volta al secondo e rimangono incollate per 60 secondi#{{Luck}} Non è influenzato dalla Fortuna"}, -- Sinus Infection
 	[462] = {"462", "Occhio di Belial", "↑ {{Range}} +1.5 Gittata#Lacrime penetranti#Colpire un nemico rende la lacrima a ricerca e ne raddoppia i danni"}, -- Eye of Belial
 	[464] = {"464", "Glifo dell'Equilibrio", "{{SoulHeart}} +2 Cuori Celesti#Gli oggetti lasciati dalle ricompense per completamento stanza e dai nemici campioni diventano qualsiasi consumabile di cui Isaac ha più bisogno"}, -- Glyph of Balance
@@ -254,7 +254,7 @@ local repCollectibles={
 	[564] = {"564", "Una Saponetta", "↑ {{Tears}} +0.5 Lacrime#↑ {{Shotspeed}} +0.2 Velocità Colpi"}, -- A Bar of Soap
 	[565] = {"565", "Cucciolo Sanguinario", "Insegue i nemici#Dopo aver ucciso 15 nemici, infligge più danni, genera un mezzo Cuore Rosso ogni 10 uccisioni, ma cerca di ferire Isaac#Dopo aver ucciso 40 nemici, infligge ancora più danni, genera Cuori Rossi, e può distruggere rocce#Infliggergli abbastanza danni lo riporta alal sua prima fase"}, -- Blood Puppy
 	[566] = {"566", "Acchiappasogni", "{{HalfSoulHeart}} All'ingresso in un nuovo piano +1 Mezzo Cuore Celeste#Gli incubi nelle transizioni tra i livelli rivelano il boss e l'oggetto nella Stanza dei Tesori del piano successivo"}, -- Dream Catcher
-	[567] = {"567", "Cero Pasquale", "↑ {{Tears}} Completare una stanza senza subire danni conferisce +0.4 Rateo di Fuoco#Si massimizza a +2 Rateo di Fuoco {{ColorSilver}}(5 stanze)"}, -- Paschal Candle
+	[567] = {"567", "Cero Pasquale", "↑ {{Tears}} Completare una stanza senza subire danni conferisce +0.4 Rateo di Fuoco#Si massimizza a +2 Rateo di Fuoco {{ColorSilver}}(5 stanze){{CR}}"}, -- Paschal Candle
 	[568] = {"568", "Intervento Divino", "Alla doppia premuta del tasto di sparo viene creato uno scudo#Lo scudo dura 1 secondo, spingendo via i nemici e riflettendo proiettili e laser"}, -- Divine Intervention
 	[569] = {"569", "Patto di Sangue", "{{Warning}} Entrare in un nuovo piano prosciuga tutti i Cuori Rossi di Isaac, ma conferisce più velocità e danni per ogni cuore perso#Ogni mezzo cuore perso conta come un colpo per gli effetti di oggetti che richiedono di subire danni"}, -- Blood Oath
 	[570] = {"570", "Biscotto di Pongo", "Ciascuna lacrima di Isaac ha un colore e effetto di stato diverso"}, -- Playdough Cookie
@@ -278,10 +278,10 @@ local repCollectibles={
 	[588] = {"588", "Sol", "{{BossRoom}} Rivela la posizione della Stanza del Boss#{{Timer}} Quando il boss del piano viene sconfitto, conferisce fino all'uscita dal piano:#↑ {{Damage}} +3 Danni#↑ {{Luck}} +1 Fortuna#{{Card20}} L'effetto di \"XIX - Il Sole\"#{{Battery}} Ricarica pienamente l'oggetto attivo#{{CurseBlind}} Rimuove tutte le maledizioni"}, -- Sol
 	[589] = {"589", "Luna", "Aggiunge una {{SecretRoom}} Stanza Segreta e {{SuperSecretRoom}} Super Segreta extra ad ogni piano#Rivela una Stanza Segreta ad ogni piano#{{Timer}} Le Stanze Segrete contengono un fascio di luce che conferisce fino all'uscita dal piano:#↑ {{Tears}} +0.5 Rateo di Fuoco#↑ {{Tears}} +0.5 Rateo di Fuoco per ogni fascio nel piano#{{HalfSoulHeart}} Mezzo Cuore Celeste"}, -- Luna
 	[590] = {"590", "Mercurius", "↑ {{Speed}} +0.4 Velocità#Molte porte rimangono permanentemente aperte"}, -- Mercurius
-	[591] = {"591", "Venus", "↑ {{Heart}} +1 Salute#{{Heart}} Cura 1 cuore#{{Charm}} Ammalia i nemici nelle vicinanze"}, -- Venus
+	[591] = {"591", "Venus", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore#{{Charm}} Ammalia i nemici nelle vicinanze"}, -- Venus
 	[592] = {"592", "Terra", "↑ {{Damage}} +1 Danni#Rimpiazza le lacrime di Isaac con delle rocce#Le rocce infliggono danni variabili, possono distruggere ostacoli e hanno la spinta aumentata"}, -- Terra
 	[593] = {"593", "Mars", "Ad una doppia premuta del tasto di movimento Isaac effettua uno scatto#{{Damage}} Durante lo scatto Isaac è invincibile e infligge x4 dei suoi danni +8#{{Timer}} Tempo di attesa di 3 secondi"}, -- Mars
-	[594] = {"594", "Iupiter", "↑ {{EmptyHeart}} +2 Portacuori vuoti#↓ {{Speed}} -0.3 Velocità#{{HalfHeart}} Cura di mezzo cuore#{{Speed}} Mentre rimane fermo la velocità cresce fino a +0.5#{{Poison}} Muoversi rilascia nubi velenose#{{Poison}} Immunità al veleno"}, -- Jupiter
+	[594] = {"594", "Iupiter", "↑ {{EmptyHeart}} +2 Portacuori vuoti#↓ {{Speed}} -0.3 Velocità#{{HealingRed}} Cura di mezzo cuore#{{Speed}} Mentre rimane fermo la velocità cresce fino a +0.5#{{Poison}} Muoversi rilascia nubi velenose#{{Poison}} Immunità al veleno"}, -- Jupiter
 	[595] = {"595", "Saturnus", "Entrare in una stanza fa sì che 7 lacrime orbitino attorno ad Isaac#Le lacrime durano 13 secondi e infliggono x1.5 dei danni di Isaac +5#I proiettili nemici hanno una chance di orbitare attorno ad Isaac"}, -- Saturnus
 	[596] = {"596", "Uranus", "{{Freezing}} Isaac spara lacrime di ghiaccio che congelano i nemici una volta morti#Toccare un nemico congelato lo fa scivolare via ed esplodere in 10 schegge di ghiaccio"}, -- Uranus
 	[597] = {"597", "Neptunus", "{{Tears}} Non sparare accumula un bonus alle Lacrime per 3 secondi#Mentre Isaac spara il bonus di lacrime decresce"}, -- Neptunus
@@ -301,14 +301,14 @@ local repCollectibles={
 	[611] = {"611", "Laringe", "Isaac urla, danneggiando e respingendo i nemici nelle vicinanze#L'urlo è più forte quanto più l'oggetto ha cariche"}, -- Larynx
 	[612] = {"612", "Anima Smarrita", "Muore in un colpo e resuscita all'inizio del piano successivo#Se arriva in vita al piano successivo, può generare:#{{SoulHeart}} 3 Cuori Celesti#{{EternalHeart}} 2 Cuori Eterni#{{TreasureRoom}} Un oggetto della Stanza dei Tesori#{{AngelRoom}} Un oggetto della Stanza dell'Angelo"}, -- Lost Soul
 	[613] = {"613", "", "<Item does not exist>"},
-	[614] = {"614", "Bombe di Sangue", "↑ {{Heart}} +1 Salute#{{Heart}} Cura 4 cuori#{{HalfHeart}} Se Isaac non ha bombe, una può essere piazzata al costo di mezzo cuore#Le bombe di Isaac lasciano sangue"}, -- Blood Bombs
+	[614] = {"614", "Bombe di Sangue", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 4 cuori#{{HalfHeart}} Se Isaac non ha bombe, una può essere piazzata al costo di mezzo cuore#Le bombe di Isaac lasciano sangue"}, -- Blood Bombs
 	[615] = {"615", "Mini Chiappotte", "Devia un nemico o proiettile poco prima che possa colpire Isaac#Chance di deviare proiettili nelle sue vicinanze#Una volta deviato qualcosa deve essere toccato per venire riattivato"}, -- Lil Dumpy
 	[616] = {"616", "Peperoncino nell'Occhio", "8% di chance di sparare una fiamma rossa che blocca i proiettili nemici e infligge danni da contatto#{{Luck}} 50% di chance con 10 di Fortuna#Le fiamme spariscono dopo 10 secondi, o dopo aver bloccato i proiettili o inferto danni per 4 volte"}, -- Bird's Eye
 	[617] = {"617", "Magnetite", "{{Magnetize}} 17% chance di sparare lacrime magnetizzanti#{{Luck}} 100% di chance con 5 di Fortuna#I nemici magnetizzati attraggono consumabili, proiettili e nemici nelle vicinanze"}, -- Lodestone
 	[618] = {"618", "Pomodoro Marcio", "{{Bait}} 17% di chance di sparare lacrime che marchiano i nemici#{{Luck}} 100% di chance con 5 di Fortuna#I nemici marchiati vengono bersagliati dagli altri nemici"}, -- Rotten Tomato
 	[619] = {"619", "Primogenitura", "Ha un effetto diverso per ciascun personaggio"}, -- Birthright
 	[620] = {"620", "", "<Item does not exist>"},
-	[621] = {"621", "Stufato Rosso", "↑ {{Damage}} +21.6 Danni#{{Heart}} Salute al massimo#L'aumento ai danni si esaurisce dopo 3 minuti#Uccidere nemici mentre l'effetto è attivo lo estende"}, -- Red Stew
+	[621] = {"621", "Stufato Rosso", "↑ {{Damage}} +21.6 Danni#{{HealingRed}} Salute al massimo#L'aumento ai danni si esaurisce dopo 3 minuti#Uccidere nemici mentre l'effetto è attivo lo estende"}, -- Red Stew
 	[622] = {"622", "Genesi", "{{Warning}} MONOUSO {{Warning}}#Rimuove tutti gli oggetti e i consumabili di Isaac#Teletrasporta Isaac in una camera da letto con consumabili e bauli#Per ogni oggetto rimosso, Isaac può scegliere tra 3 oggetti della stessa categoria#Lasciare la stanza porta Isaac al piano successivo"}, -- Genesis
 	[623] = {"623", "Chiave Puntuta", "{{Key}} +5 Chiavi#Lancia una delle chiavi di Isaac nella direzione in cui spara#Le chiavi lanciate infliggono danni, distruggono ostacoli, e aprono porte#I nemici uccisi dalle chiavi possono generare i contenuti di un baule, oggetti inclusi"}, -- Sharp Key
 	[624] = {"624", "Bustina di Espansione", "{{Card}} Genera 5 carte casuali"}, -- Booster Pack
@@ -351,12 +351,12 @@ local repCollectibles={
 	[661] = {"661", "Quintetto", "Uccidere un nemico genera al suo posto un famiglio stazionario#Si massimizza a 5 famigli"}, -- Quints
 	[662] = {"662", "Pacifista (Cut item)", "<Item does not exist>"}, -- Pacifist (Cut item)
 	[663] = {"663", "Unghie e Denti", "1 secondo di invincibilità ogni 6 secondi#Isaac lampeggia poco prima che l'effetto si attivi"}, -- Tooth and Nail
-	[664] = {"664", "Abbuffata", "↑ {{Heart}} +1 Salute#{{Heart}} Salute al massimo#Gli oggetti nutrienti curano 2 cuori#I piedistalli alternano tra il loro oggetto e un oggetto nutriente#Raccogliere un oggetto nutriente conferisce:#↑ {{Damage}} +3.6 Danni temporanei#↑ 2 aumenti di statistica (che variano in base all'oggetto) permanenti#↓ {{Speed}} -0.03 Velocità"}, -- Binge Eater
+	[664] = {"664", "Abbuffata", "↑ {{Heart}} +1 Salute#{{HealingRed}} Salute al massimo#{{HealingRed}} Cura di 2 cuori#I piedistalli alternano tra il loro oggetto e un oggetto nutriente#Raccogliere un oggetto nutriente conferisce:#↑ {{Damage}} +3.6 Danni temporanei#↑ 2 aumenti di statistica (che variano in base all'oggetto) permanenti#↓ {{Speed}} -0.03 Velocità"}, -- Binge Eater
 	[665] = {"665", "Occhio di Guppy", "Rivela i contenuti di {{Chest}} bauli, {{GrabBag}} sacchi, negozianti, e focolari prima che vengano aperti o distrutti"}, -- Guppy's Eye
 	[666] = {"666", "", "<Item does not exist>"},
 	[667] = {"667", "Fantoccio", "{{Bomb}} +1 Bombe#{{Player14}} Genera Mercante come secondo personaggio#Quando muore genera ragni blu e rimuove permanentemente dall'inventario \"Fantoccio\" e qualsiasi oggetto da lui preso#{{DevilRoom}} Finché il fantoccio è in vita li oggetti della Stanza del Diavolo si pagano in monete#{{Warning}} Il fantoggio può raccogliere oggetti di trama"}, -- Strawman
 	[668] = {"668", "Biglietto di Papà", "Inizia L'Ascesa#I ninnoli lasciati nelle {{TreasureRoom}} Stanze dei Tesori o {{BossRoom}} Stanze Boss precedenti diventano {{Card78}} Chiavi Spezzate"}, -- Dad's Note
-	[669] = {"669", "Insaccato", "↑ {{Heart}} +1 Salute#↑ +0.5 Danni#↑ +0.2 Velocità#↑ +1.2 Velocità di tiro#↑ +0.16 Gittata#↑ +1 Fortuna"}, -- Sausage
+	[669] = {"669", "Insaccato", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.2 Velocità#↑ {{Tears}} +0.5 Lacrime#↑ {{Damage}} +0.5 Danni#↑ {{Range}} +2.5 Gittata#↑ {{Shotspeed}} +0.16 Velocità Colpi#↑ {{Luck}} +1 Fortuna#{{HealingRed}} Salute al massimo#↑ {{AngelDevilChance}} +6.9% chance di una Stanza del Diavolo/dell'Angelo#↑ {{PlanetariumChance}} +6.9% chance di una Planetario"}, -- Sausage
 	[670] = {"670", "Alternative?", "Permette ad Isaac di scegliere tra due ricompense di completamento stanza diverse"}, -- Options?
 	[671] = {"671", "Dolce Cuore", "↑ Curarsi con {{Heart}} Cuori Rossi conferisce aumenti a statistiche casuali permanenti#{{Heart}} Genera 1 Cuore Rosso"}, -- Candy Heart
 	[672] = {"672", "Un Etto di Carne", "{{DevilRoom}} Gli oggetti della Stanza del Diavolo si pagano in monete#{{Shop}} Gli oggetti del Negozio si pagano in cuori#I consumabili dei Negozi sono circondati da spine"}, -- A Pound of Flesh
@@ -394,7 +394,7 @@ local repCollectibles={
 	[704] = {"704", "Violenza!", "{{Battery}} Si carica infliggendo danni#{{Timer}} Conferisce per 5 secondi:#↑ {{Speed}} +0.4 Velocità#↓ {{Tears}} x0.5 Moltiplicatore rateo di fuoco#↑ {{Tears}} +2 Rateo di Fuoco#↑ {{Damage}} +3 Danni#Limita gli attacchi ad uno in mischia che riflette i proiettili#{{Timer}} Ogni uccisione incrementa la durata di 1 secondo e conferisce brevemente invincibilità"}, -- Berserk!
 	[705] = {"705", "Arti Oscure", "{{Timer}} Conferisce per 1 secondo (o finché non si spara):↑ {{Speed}} +1 Velocità#Isaac può passare attraverso i nemici/proiettili e li paralizza#Finito l'effetto danneggia i nemici paralizzati, rimuove i proiettili paralizzati e crea un botto nella posizione di Isaac#Gli attacchi e il botto sono tanto più potenti quanti più nemici/proiettili vengono colpiti"}, -- Dark Arts
 	[706] = {"706", "Abisso", "Consuma tutti i piedistalli nella stanza e genera un famiglio locusta per ciascuno di essi#Le locuste infliggono i danni di Isaac 2-3 volte ad attacco#Alcuni oggetti se consumati generano una locusta speciale"}, -- Abyss
-	[707] = {"707", "Cena", "↑ {{Heart}} +1 Salutr#{{Heart}} Cura di 1 cuore"}, -- Supper
+	[707] = {"707", "Cena", "↑ {{Heart}} +1 Salutr#{{HealingRed}} Cura di 1 cuore"}, -- Supper
 	[708] = {"708", "Pinzatrice", "↑ {{Damage}} +1 Danni#Tutte le lacrime di Isaac vengono sparate dall'occhio destro"}, -- Stapler
 	[709] = {"709", "Suplex!", "Isaac scatta nella direzione in cui si sta muovendo#Scattare verso un nemico o un boss lo raccoglie e lo schianta a terra#Lo schianto infligge danni e genera scosse rocciose in base alla statura di Isaac#Durante lo scatto e lo schianto si è invincibili"}, -- Suplex!
 	[710] = {"710", "Sacco del Fai da Te", "Raccoglie fino a 8 consumabili che non possono essere buttati a terra#Usare l'oggetto con 8 consuambili nel sacco assembla un oggetto#La qualità dell'oggetto si basa sulla qualità dei consumabili"}, -- Bag of Crafting
@@ -429,14 +429,14 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon in front of each buff-bulletpoint
 EID.descriptions[languageCode].bingeEaterBuffs = {
-	[22] = "↑ {{Tears}} +0.5 Lacrime#↑ {{Range}} +2.5 Gittata#↓ {{Speed}} -0.03 Velocità", -- Lunch
-	[23] = "↑ {{Tears}} +0.5 Lacrime#↑ {{Shotspeed}} +0.2 Velocità Colpi#↓ {{Speed}} -0.03 Velocità", -- Dinner
-	[24] = "↑ {{Damage}} +1 Danni#↑ {{Shotspeed}} +0.2 Velocità Colpi#↓ {{Speed}} -0.03 Velocità", -- Dessert
-	[25] = "↑ {{Range}} +2.5 Gittata#↑ {{Shotspeed}} +0.2 Velocità Colpi#↓ {{Speed}} -0.03 Velocità", -- Breakfast
-	[26] = "↑ {{Damage}} +1 Danni#↑ {{Range}} +2.5 Gittata#↓ {{Speed}} -0.03 Velocità", -- Rotten Meat
-	[456] = "↑ {{Damage}} +1 Danni#↑ {{Luck}} +1 Fortuna#↓ {{Speed}} -0.03 Velocità", -- Midnight Snack
-	[346] = "↑ {{Shotspeed}} +0.2 Velocità Colpi#↑ {{Luck}} +1 Fortuna#↓ {{Speed}} -0.03 Velocità", -- A Snack
-	[707] = "↑ {{Tears}} +0.5 Lacrime#↑ {{Luck}} +1 Fortuna#↓ {{Speed}} -0.03 Velocità", -- Supper
+	[22] = "↑ {{Tears}} +0.5 Lacrime#↑ {{Range}} +2.5 Gittata#↑ {{Damage}} +3.6 Danni temporanei#↓ {{Speed}} -0.03 Velocità", -- Lunch
+	[23] = "↑ {{Tears}} +0.5 Lacrime#↑ {{Shotspeed}} +0.2 Velocità Colpi#↑ {{Damage}} +3.6 Danni temporanei#↓ {{Speed}} -0.03 Velocità", -- Dinner
+	[24] = "↑ {{Damage}} +1 Danni#↑ {{Shotspeed}} +0.2 Velocità Colpi#↑ {{Damage}} +3.6 Danni temporanei#↓ {{Speed}} -0.03 Velocità", -- Dessert
+	[25] = "↑ {{Range}} +2.5 Gittata#↑ {{Shotspeed}} +0.2 Velocità Colpi#↑ {{Damage}} +3.6 Danni temporanei#↓ {{Speed}} -0.03 Velocità", -- Breakfast
+	[26] = "↑ {{Damage}} +1 Danni#↑ {{Range}} +2.5 Gittata#↑ {{Damage}} +3.6 Danni temporanei#↓ {{Speed}} -0.03 Velocità", -- Rotten Meat
+	[346] = "↑ {{Shotspeed}} +0.2 Velocità Colpi#↑ {{Luck}} +1 Fortuna#↑ {{Damage}} +3.6 Danni temporanei#↓ {{Speed}} -0.03 Velocità", -- A Snack
+	[456] = "↑ {{Damage}} +1 Danni#↑ {{Luck}} +1 Fortuna#↑ {{Damage}} +3.6 Danni temporanei#↓ {{Speed}} -0.03 Velocità", -- Midnight Snack
+	[707] = "↑ {{Tears}} +0.5 Lacrime#↑ {{Luck}} +1 Fortuna#↑ {{Damage}} +3.6 Danni temporanei#↓ {{Speed}} -0.03 Velocità", -- Supper
 }
 
 -- Buffs caused by Book of Belial with Judas' Birthright
@@ -478,171 +478,171 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 
 -- Book of Virtues wisp types
 EID.descriptions[languageCode].bookOfVirtuesfiammelle = {
-	[33] = "Fiammella dell'anello interno#Lacrime a ricerca", -- The Bible
-	[34] = "Fiammella dell'anello mediano#Lacrime dai danni doppi", -- The Book of Belial
-	[35] = "Fiammella dell'anello interno#3.5% di chance di {{Fear}} lacrime spaventose#{{Collectible35}} Se distrutta attiva l'effetto di \"Necronomicon\"", -- The Necronomicon
-	[36] = "Fiammella dell'anello esterno#2.5% di chance di {{Collectible236}} lacrime di \"E. Coli\"", -- The Poop
-	[37] = "Fiammella dell'anello mediano#Se distrutta butta a terra bombe a grappolo a ricerca", -- Mr. Boom
-	[38] = "Fiammella dell'anello esterno#Lacrime veloci ma imprecise", -- Tammy's Head
-	[39] = "Fiammella dell'anello mediano#5% di chance di lacrime pietrificanti", -- Mom's Bra
-	[40] = "Fiammella dell'anello mediano#Lacrime esplosive#Se distrutta esplode", -- Kamikaze!
-	[41] = "Fiammella dell'anello mediano#7.5% di chance di {{Fear}} lacrime spaventose", -- Mom's Pad
-	[42] = "Fiammella dell'anello mediano#7.5% di chance di {{Collectible149}} lacrime di \"Ipecac\"", -- Bob's Rotten Head
-	[44] = "Fiammella dell'anello mediano#10% di chance che le lacrime teletrasportino i nemici#Le fiammelle tremolano ogni 5 secondi", -- Teleport!
-	[45] = "Fiammella dell'anello mediano#20% di chance che  i nemici lascino 1 {{Heart}} Cuore Rosso quando vengono uccisi", -- Yum Heart
-	[47] = "Fiammella dell'anello mediano#Se si usa l'oggetto spara 3 lacrime esplosive verso il mirino", -- Doctor's Remote
-	[49] = "Fiammella dell'anello esterno#Non può sparare lacrime#Se si usa l'oggetto spara un raggio", -- Shoop da Whoop!
-	[56] = "Fiammella dell'anello mediano#Lacrime veloci a corta gittata#La fiammella sgocciola del liquido giallo", -- Lemon Mishap
-	[58] = "Fiammella dell'anello mediano#Salute bassa ma immune ai proiettili#Immunità ai danni durante {{Collectible58}} il suo effetto", -- Book of Shadows
-	[65] = "Fiammella dell'anello mediano#Se distrutta butta a terra una Bomba Troll", -- Anarchist Cookbook
-	[66] = "Fiammella dell'anello mediano#{{Slow}} Se distrutta rallenta i nemici per 3 secondi", -- The Hourglass
-	[77] = "Fiammella dell'anello mediano#Danni da contatto extra", -- My Little Unicorn
-	[78] = "Fiammella dell'anello interno#Non può sparare lacrime#Se distrutta genera una Locusta fino all'uscita dalla stanza", -- Book of Revelations
-	[83] = "Fiammella dell'anello interno#Danni doppi e lacrime respingenti", -- The Nail
-	[84] = "Fiammella dell'anello mediano#Nessun effetto speciale", -- We Need to Go Deeper!
-	[85] = "Fiammella dell'anello interno#Se distrutta lascia 1 {{Card}} carta", -- Deck of Cards
-	[86] = "Fiammella dell'anello mediano#Lacrime dentarie", -- Monstro's Tooth
-	[93] = "Fiammella dell'anello interno#Lacrime anti-gravità#Chance di {{Fear}} lacrime spaventose", -- The Gamekid
+	[33] = "Fiammella dell'anello interno {{InnerWisp}}#Lacrime a ricerca", -- The Bible
+	[34] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime dai danni doppi", -- The Book of Belial
+	[35] = "Fiammella dell'anello interno {{InnerWisp}}#3.5% di chance di {{Fear}} lacrime spaventose#{{Collectible35}} Se distrutta attiva l'effetto di \"Necronomicon\"", -- The Necronomicon
+	[36] = "Fiammella dell'anello esterno {{OuterWisp}}#2.5% di chance di {{Collectible236}} lacrime di \"E. Coli\"", -- The Poop
+	[37] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se distrutta butta a terra bombe a grappolo a ricerca", -- Mr. Boom
+	[38] = "Fiammella dell'anello esterno {{OuterWisp}}#Lacrime veloci ma imprecise", -- Tammy's Head
+	[39] = "Fiammella dell'anello mediano {{MiddleWisp}}#5% di chance di lacrime pietrificanti", -- Mom's Bra
+	[40] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime esplosive#Se distrutta esplode", -- Kamikaze!
+	[41] = "Fiammella dell'anello mediano {{MiddleWisp}}#7.5% di chance di {{Fear}} lacrime spaventose", -- Mom's Pad
+	[42] = "Fiammella dell'anello mediano {{MiddleWisp}}#7.5% di chance di {{Collectible149}} lacrime di \"Ipecac\"", -- Bob's Rotten Head
+	[44] = "Fiammella dell'anello mediano {{MiddleWisp}}#10% di chance che le lacrime teletrasportino i nemici#Le fiammelle tremolano ogni 5 secondi", -- Teleport!
+	[45] = "Fiammella dell'anello mediano {{MiddleWisp}}#20% di chance che  i nemici lascino 1 {{Heart}} Cuore Rosso quando vengono uccisi", -- Yum Heart
+	[47] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se si usa l'oggetto spara 3 lacrime esplosive verso il mirino", -- Doctor's Remote
+	[49] = "Fiammella dell'anello esterno {{OuterWisp}}#Non può sparare lacrime#Se si usa l'oggetto spara un raggio", -- Shoop da Whoop!
+	[56] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime veloci a corta gittata#La fiammella sgocciola del liquido giallo", -- Lemon Mishap
+	[58] = "Fiammella dell'anello mediano {{MiddleWisp}}#Salute bassa ma immune ai proiettili#Immunità ai danni durante {{Collectible58}} il suo effetto", -- Book of Shadows
+	[65] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se distrutta butta a terra una Bomba Troll", -- Anarchist Cookbook
+	[66] = "Fiammella dell'anello mediano {{MiddleWisp}}#{{Slow}} Se distrutta rallenta i nemici per 3 secondi", -- The Hourglass
+	[77] = "Fiammella dell'anello mediano {{MiddleWisp}}#Danni da contatto extra", -- My Little Unicorn
+	[78] = "Fiammella dell'anello interno {{InnerWisp}}#Non può sparare lacrime#Se distrutta genera una Locusta fino all'uscita dalla stanza", -- Book of Revelations
+	[83] = "Fiammella dell'anello interno {{InnerWisp}}#Danni doppi e lacrime respingenti", -- The Nail
+	[84] = "Fiammella dell'anello mediano {{MiddleWisp}}#Nessun effetto speciale", -- We Need to Go Deeper!
+	[85] = "Fiammella dell'anello interno {{InnerWisp}}#Se distrutta lascia 1 {{Card}} carta", -- Deck of Cards
+	[86] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime dentarie", -- Monstro's Tooth
+	[93] = "Fiammella dell'anello interno {{InnerWisp}}#Lacrime anti-gravità#Chance di {{Fear}} lacrime spaventose", -- The Gamekid
 	[97] = "Genera 1 tra 8 fiammelle:#{{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#{{Warning}} Probabilità di effetti esplosivi", -- The Book of Sin
-	[102] = "Fiammella dell'anello interno#Genera 1 tra 6 fiammelle:#lacrime normali che se distrutte generano un ragno nemico o chance di lacrime velenose, pietrificanti, contundenti, infuocate, o che generano Bombe Trolls#Tutte e 6 se distrutte generano una {{Pill}} pillola", -- Mom's Bottle of Pills
-	[105] = "Fiammella dell'anello mediano#+1 Fiammella per oggetto rilanciato", -- The D6
-	[107] = "Fiammella dell'anello interno#Lacrime penetranti", -- The Pinking Shears
-	[111] = "Fiammella dell'anello esterno#{{Poison}} Se distrutta rilascia una scorreggia velenosa", -- The Bean
-	[123] = "Fiammella dell'anello interno#Lacrime casuali", -- Monster Manual
+	[102] = "Fiammella dell'anello interno {{InnerWisp}}#Genera 1 tra 6 fiammelle:#lacrime normali che se distrutte generano un ragno nemico o chance di lacrime velenose, pietrificanti, contundenti, infuocate, o che generano Bombe Trolls#Tutte e 6 se distrutte generano una {{Pill}} pillola", -- Mom's Bottle of Pills
+	[105] = "Fiammella dell'anello mediano {{MiddleWisp}}#+1 Fiammella per oggetto rilanciato", -- The D6
+	[107] = "Fiammella dell'anello interno {{InnerWisp}}#Lacrime penetranti", -- The Pinking Shears
+	[111] = "Fiammella dell'anello esterno {{OuterWisp}}#{{Poison}} Se distrutta rilascia una scorreggia velenosa", -- The Bean
+	[123] = "Fiammella dell'anello interno {{InnerWisp}}#Lacrime casuali", -- Monster Manual
 	[124] = "Genera la fiammella dell'oggetto imitato", -- Dead Sea Scrolls
-	[126] = "Fiammella dell'anello mediano#Fiammelle dalla salute elevata", -- Razor Blade
-	[127] = "Fiammella dell'anello mediano#Una fiammella dalla salute infinita per il piano successivo", -- Forget Me Now
-	[130] = "Fiammella dell'anello mediano#Non può sparare lacrime#Le fiammelle caricano nella direzione in cui Isaac spara", -- A Pony
-	[133] = "Fiammella dell'anello mediano#Genera 3 fiammelle dalla salute elevata", -- Guppy's Paw
-	[135] = "Fiammella dell'anello esterno#Fiammella dalla bassa salute", -- IV Bag
-	[136] = "Fiammella dell'anello mediano#7.5% di chance di {{Bait}} lacrime marchianti#I nemici marchiati vengono attaccati dagli altri nemici", -- Best Friend
-	[137] = "Fiammella dell'anello interno#+1 Fiammella per bomba detonata#Anche le lacrime della fiammella possono venire detonate a distanza", -- Remote Detonator
-	[145] = "Fiammella dell'anello esterno#Al posto delle mosche vengono generate fiammelle#Se distrutta genera 1 mosca blu", -- Guppy's Head
-	[146] = "Fiammella dell'anello interno#Lacrime a ricerca", -- Prayer Card
+	[126] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammelle dalla salute elevata", -- Razor Blade
+	[127] = "Fiammella dell'anello mediano {{MiddleWisp}}#Una fiammella dalla salute infinita per il piano successivo", -- Forget Me Now
+	[130] = "Fiammella dell'anello mediano {{MiddleWisp}}#Non può sparare lacrime#Le fiammelle caricano nella direzione in cui Isaac spara", -- A Pony
+	[133] = "Fiammella dell'anello mediano {{MiddleWisp}}#Genera 3 fiammelle dalla salute elevata", -- Guppy's Paw
+	[135] = "Fiammella dell'anello esterno {{OuterWisp}}#Fiammella dalla bassa salute", -- IV Bag
+	[136] = "Fiammella dell'anello mediano {{MiddleWisp}}#7.5% di chance di {{Bait}} lacrime marchianti#I nemici marchiati vengono attaccati dagli altri nemici", -- Best Friend
+	[137] = "Fiammella dell'anello interno {{InnerWisp}}#+1 Fiammella per bomba detonata#Anche le lacrime della fiammella possono venire detonate a distanza", -- Remote Detonator
+	[145] = "Fiammella dell'anello esterno {{OuterWisp}}#Al posto delle mosche vengono generate fiammelle#Se distrutta genera 1 mosca blu", -- Guppy's Head
+	[146] = "Fiammella dell'anello interno {{InnerWisp}}#Lacrime a ricerca", -- Prayer Card
 	[147] = "Chance di generare dalla cacca fiammelle fecali e dalle rocce 1 tra 5 fiammelle minerarie:#{{Collectible132}} Carbone, {{Collectible201}} Ferro, {{Collectible202}} Oro, {{Collectible68}} Pietrarossa, {{Collectible415}} Diamante", -- Notched Axe
-	[158] = "Fiammella dell'anello mediano#Fiammella dalla salute elevata che spara ai nemici nelle vicinanze", -- Crystal Ball
-	[160] = "Fiammella dell'anello mediano#Al contatto con i nemici evoca un raggio di luce", -- Crack the Sky
-	[164] = "Fiammella dell'anello mediano#Fiammella per una singola stanza", -- The Candle
-	[166] = "Fiammella dell'anello mediano#Distrugge tutti i consumabili nella stanza, ognuno di questi con una chance di generare una fiammella casuale", -- D20
-	[171] = "Fiammella dell'anello mediano#7.5% di chance di {{Slow}} lacrime rallentanti", -- Spider Butt
-	[175] = "Fiammella dell'anello mediano#Le fiammelle aprono bauli/porte chiusi che toccano, incluse le porte per Mega Satana, Ascesa, e Carcassa#Le fiammelle si donano da sole ai {{KeyBeggar}} Chiavai", -- Dad's Key
+	[158] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella dalla salute elevata che spara ai nemici nelle vicinanze", -- Crystal Ball
+	[160] = "Fiammella dell'anello mediano {{MiddleWisp}}#Al contatto con i nemici evoca un raggio di luce", -- Crack the Sky
+	[164] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella per una singola stanza", -- The Candle
+	[166] = "Fiammella dell'anello mediano {{MiddleWisp}}#Distrugge tutti i consumabili nella stanza, ognuno di questi con una chance di generare una fiammella casuale", -- D20
+	[171] = "Fiammella dell'anello mediano {{MiddleWisp}}#7.5% di chance di {{Slow}} lacrime rallentanti", -- Spider Butt
+	[175] = "Fiammella dell'anello mediano {{MiddleWisp}}#Le fiammelle aprono bauli/porte chiusi che toccano, incluse le porte per Mega Satana, Ascesa, e Carcassa#Le fiammelle si donano da sole ai {{KeyBeggar}} Chiavai", -- Dad's Key
 	[177] = "Genera 1 fiammella in base alla ricompensa vinta", -- Portable Slot
-	[181] = "Fiammella dell'anello mediano#10% di chance di {{Collectible374}} lacrime di \"Luce Santa\"", -- White Pony
-	[186] = "Fiammella dell'anello mediano#Fiammella dalla salute elevata", -- Blood Rights
-	[192] = "Fiammella dell'anello mediano#Lacrime a ricerca", -- Telepathy for Dummies
-	[263] = "Fiammella dell'anello mediano#15% di chance che i nemici lascino 1 {{Rune}} runa quando vengono uccisi#Se distrutta lascia 1 {{Rune}} runa", -- Clear Rune
+	[181] = "Fiammella dell'anello mediano {{MiddleWisp}}#10% di chance di {{Collectible374}} lacrime di \"Luce Santa\"", -- White Pony
+	[186] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella dalla salute elevata", -- Blood Rights
+	[192] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime a ricerca", -- Telepathy for Dummies
+	[263] = "Fiammella dell'anello mediano {{MiddleWisp}}#15% di chance che i nemici lascino 1 {{Rune}} runa quando vengono uccisi#Se distrutta lascia 1 {{Rune}} runa", -- Clear Rune
 	[282] = "Genera fino a 6 fiammelle stazionarie fino all'uscita dalla stanza", -- How to Jump
 	[283] = "Rilancia tutte le fiammellle e genera 1 fiammella casuale#Non rilancia \"Libro delle Virtù\"", -- D100
 	[284] = "Rimuove tutte le fiammelle e genera 1 fiammella casuale per ogni 2 oggetti posseduti#Non rilancia \"Libro delle Virtù\"", -- D4
-	[285] = "Fiammella dell'anello mediano#10% di chance di lacrime dagli effetti di \"D10\"", -- D10
-	[286] = "Fiammella dell'anello mediano#15% di chance che i nemici lascino 1 {{Card}} carta quando vengono uccisi#Se distrutta genera 1 {{Card}} carta", -- Blank Card
-	[287] = "Fiammella dell'anello mediano#Se distrutta attiva l'effetto di {{Collectible675}} \"Sfera Incrinata\"", -- Book of Secrets
-	[288] = "Fiammella dell'anello esterno#Al posto dei ragni vengono generate fiammelle#Se distrutta genera un ragno blu", -- Box of Spiders
-	[289] = "Fiammella dell'anello mediano#Fiammella per una singola stanza#Lacrime dalla fiamma rossa", -- Red Candle
-	[290] = "Fiammella dell'anello mediano#Crea una fiammella per cuore invece di buttarli a terra come consumabili#Se distrutta chance di generare 1 {{HalfHeart}} mezzo Cuore Rosso", -- The Jar
-	[291] = "Fiammella dell'anello mediano#Genera una fiammella aggiuntiva per ogni nemico evacquato", -- Flush!
-	[292] = "Fiammella dell'anello mediano#+10% di chance di una {{AngelDevilChance}} Stanza del Diavolo/dell'Angelo per ogni fiammella di \"Bibbia Satanica\"", -- Satanic Bible
-	[293] = "Fiammella dell'anello mediano#Se distrutta spara un raggio di {{Collectible118}} \"Zolfo Fuso\" in 4 direzioni", -- Head of Krampus
-	[294] = "Fiammella dell'anello interno#Fiammella per una singola stanza dalla salute bassa#Non può sparare lacrime#Se distrutta attiva l'effetto di \"Fagiolo di Lima\"", -- Butter Bean
-	[295] = "Fiammella dell'anello interno#Se distrutta chance di generare 1 {{Coin}} moneta", -- Magic Fingers
-	[296] = "Fiammella dell'anello mediano#Fiammella dalla salute elevata che può essere curata con {{Heart}} Cuori Rossi", -- Converter
-	[297] = "Fiammella dell'anello mediano#In base al piano genera 0-8 fiammelle", -- Pandora's Box
-	[298] = "Fiammella dell'anello mediano#Non può sparare lacrime#Immunità ai danni da contatto#Non infligge danni da contatto a meno che non sia attivo l'effetto di \"Moncherino di Unicorno\" o uno simile", -- Unicorn Stump
-	[323] = "Fiammella dell'anello mediano#Genera 6 fiammelle#Durata di vita di 3 secondi", -- Isaac's Tears
-	[324] = "Fiammella dell'anello mediano#Lacrime di {{Collectible570}} \"Biscotto di Pongo\"", -- Undefined
-	[325] = "Fiammella dell'anello mediano#Ammasso di lacrime ad arco", -- Scissors
-	[326] = "Fiammella dell'anello interno#Con una parata perfetta genera 4 fiammelle", -- Breath of Life
-	[338] = "Fiammella dell'anello mediano#Fiammella per una singola stanza#Lacrime boomerangg", -- The Boomerang
-	[347] = "Fiammella dell'anello mediano#Fiammelle dalla salute elevata con lacrime di {{Collectible245}} \"Dieci Decimi\"#Duplica tutte le altre fiammelle", -- Diplopia
-	[348] = "Fiammella dell'anello mediano#Se distrutta genera 1 {{Pill}} pillola", -- Placebo
-	[349] = "Fiammella dell'anello mediano#Se distrutta 50% di chance di lasciare 1 {{Coin}} moneta", -- Wooden Nickel
-	[351] = "Fiammella dell'anello mediano#Se usata rilascia una scossa sismica#Se distrutta rilascia una scorreggia pietrificante + {{Poison}} velenosa", -- Mega Bean
-	[352] = "Fiammella dell'anello mediano#Fiammella dalla basse salute che persiste fra le stanze#Se viene distrutta una fiammella \"Cannone di Vetro\" vengono distrutte anche tutte le altre", -- Glass Cannon
-	[357] = "Fiammella dell'anello mediano#Nessun effetto speciale#Duplica tutte le fiammelle fino all'uscita dalla stanza", -- Box of Friends
-	[382] = "Fiammella dell'anello mediano#I nemici amichevoli generano 1 tra 4 fiammelle quando vengono uccisi in base ai loro attacchi, con lacrime normali, a ricerca, esplosive, o di \"Zolfo Fuso\"", -- Friendly Ball
-	[383] = "Fiammella dell'anello mediano#Le lacrime della fiammella possono venire detonate, tramutandosi in 6 lacrime di Isaac#Persiste tra le stanze#Se distrutta scoppia in lacrime di Isaac", -- Tear Detonator
-	[386] = "Fiammella dell'anello mediano#5% di chance che le lacrime rilancino rocce, vasi, teschi o funghi", -- D12
+	[285] = "Fiammella dell'anello mediano {{MiddleWisp}}#10% di chance di lacrime dagli effetti di \"D10\"", -- D10
+	[286] = "Fiammella dell'anello mediano {{MiddleWisp}}#15% di chance che i nemici lascino 1 {{Card}} carta quando vengono uccisi#Se distrutta genera 1 {{Card}} carta", -- Blank Card
+	[287] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se distrutta attiva l'effetto di {{Collectible675}} \"Sfera Incrinata\"", -- Book of Secrets
+	[288] = "Fiammella dell'anello esterno {{OuterWisp}}#Al posto dei ragni vengono generate fiammelle#Se distrutta genera un ragno blu", -- Box of Spiders
+	[289] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella per una singola stanza#Lacrime dalla fiamma rossa", -- Red Candle
+	[290] = "Fiammella dell'anello mediano {{MiddleWisp}}#Crea una fiammella per cuore invece di buttarli a terra come consumabili#Se distrutta chance di generare 1 {{HalfHeart}} mezzo Cuore Rosso", -- The Jar
+	[291] = "Fiammella dell'anello mediano {{MiddleWisp}}#Genera una fiammella aggiuntiva per ogni nemico evacquato", -- Flush!
+	[292] = "Fiammella dell'anello mediano {{MiddleWisp}}#+10% di chance di una {{AngelDevilChance}} Stanza del Diavolo/dell'Angelo per ogni fiammella di \"Bibbia Satanica\"", -- Satanic Bible
+	[293] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se distrutta spara un raggio di {{Collectible118}} \"Zolfo Fuso\" in 4 direzioni", -- Head of Krampus
+	[294] = "Fiammella dell'anello interno {{InnerWisp}}#Fiammella per una singola stanza dalla salute bassa#Non può sparare lacrime#Se distrutta attiva l'effetto di \"Fagiolo di Lima\"", -- Butter Bean
+	[295] = "Fiammella dell'anello interno {{InnerWisp}}#Se distrutta chance di generare 1 {{Coin}} moneta", -- Magic Fingers
+	[296] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella dalla salute elevata che può essere curata con {{Heart}} Cuori Rossi", -- Converter
+	[297] = "Fiammella dell'anello mediano {{MiddleWisp}}#In base al piano genera 0-8 fiammelle", -- Pandora's Box
+	[298] = "Fiammella dell'anello mediano {{MiddleWisp}}#Non può sparare lacrime#Immunità ai danni da contatto#Non infligge danni da contatto a meno che non sia attivo l'effetto di \"Moncherino di Unicorno\" o uno simile", -- Unicorn Stump
+	[323] = "Fiammella dell'anello mediano {{MiddleWisp}}#Genera 6 fiammelle#Durata di vita di 3 secondi", -- Isaac's Tears
+	[324] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime di {{Collectible570}} \"Biscotto di Pongo\"", -- Undefined
+	[325] = "Fiammella dell'anello mediano {{MiddleWisp}}#Ammasso di lacrime ad arco", -- Scissors
+	[326] = "Fiammella dell'anello interno {{InnerWisp}}#Con una parata perfetta genera 4 fiammelle", -- Breath of Life
+	[338] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella per una singola stanza#Lacrime boomerangg", -- The Boomerang
+	[347] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammelle dalla salute elevata con lacrime di {{Collectible245}} \"Dieci Decimi\"#Duplica tutte le altre fiammelle", -- Diplopia
+	[348] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se distrutta genera 1 {{Pill}} pillola", -- Placebo
+	[349] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se distrutta 50% di chance di lasciare 1 {{Coin}} moneta", -- Wooden Nickel
+	[351] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se usata rilascia una scossa sismica#Se distrutta rilascia una scorreggia pietrificante + {{Poison}} velenosa", -- Mega Bean
+	[352] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella dalla basse salute che persiste fra le stanze#Se viene distrutta una fiammella \"Cannone di Vetro\" vengono distrutte anche tutte le altre", -- Glass Cannon
+	[357] = "Fiammella dell'anello mediano {{MiddleWisp}}#Nessun effetto speciale#Duplica tutte le fiammelle fino all'uscita dalla stanza", -- Box of Friends
+	[382] = "Fiammella dell'anello mediano {{MiddleWisp}}#I nemici amichevoli generano 1 tra 4 fiammelle quando vengono uccisi in base ai loro attacchi, con lacrime normali, a ricerca, esplosive, o di \"Zolfo Fuso\"", -- Friendly Ball
+	[383] = "Fiammella dell'anello mediano {{MiddleWisp}}#Le lacrime della fiammella possono venire detonate, tramutandosi in 6 lacrime di Isaac#Persiste tra le stanze#Se distrutta scoppia in lacrime di Isaac", -- Tear Detonator
+	[386] = "Fiammella dell'anello mediano {{MiddleWisp}}#5% di chance che le lacrime rilancino rocce, vasi, teschi o funghi", -- D12
 	[396] = "Non può sparare lacrime#Ogni portale ha 1 fiammella", -- Ventricle Razor
-	[406] = "Fiammella dell'anello mediano#Danni e rateo di fuoco casuali", -- D8
-	[419] = "Fiammella dell'anello mediano#20% di chance che le lacrime teletrasportino i nemici#Le fiammelle tremolano ogni 5 secondi", -- Teleport 2.0
-	[421] = "Fiammella dell'anello mediano#{{Charm}} Lacrime ammalianti#{{Charm}} Se distrutta rilascia una scorreggia ammaliante", -- Kidney Bean
-	[422] = "Fiammella dell'anello mediano#30% di chance di lacrime pietrificanti#Resuscita tutte le fiammelle distrutte nella stanza precedente", -- Glowing Hourglass
+	[406] = "Fiammella dell'anello mediano {{MiddleWisp}}#Danni e rateo di fuoco casuali", -- D8
+	[419] = "Fiammella dell'anello mediano {{MiddleWisp}}#20% di chance che le lacrime teletrasportino i nemici#Le fiammelle tremolano ogni 5 secondi", -- Teleport 2.0
+	[421] = "Fiammella dell'anello mediano {{MiddleWisp}}#{{Charm}} Lacrime ammalianti#{{Charm}} Se distrutta rilascia una scorreggia ammaliante", -- Kidney Bean
+	[422] = "Fiammella dell'anello mediano {{MiddleWisp}}#30% di chance di lacrime pietrificanti#Resuscita tutte le fiammelle distrutte nella stanza precedente", -- Glowing Hourglass
 	[427] = "Bounces around the room, exploding when shot by Isaac#Non può sparare lacrime o infliggere danni da conttatto", -- Mine Crafter
-	[434] = "Fiammella dell'anello mediano#Al posto delle mosche vengono generate fiammelle#Usando fino a 5 mosche crea 1 fiammella con più danni e salute", -- Jar of Wisps
-	[437] = "Fiammella dell'anello mediano#Se si è colpiti per la prima volta attiva l'effetto di \"D7\"", -- D7
-	[439] = "Fiammella dell'anello mediano#Nessun effetto speciale", -- Mom's Box
-	[441] = "Fiammella dell'anello mediano#{{Chargeable}} Lacrime di \"Zolfo Fuso\" caricabili#Durante un \"Mega Sbotto\" spara continuamente", -- Mega Blast
-	[475] = "Fiammella dell'anello mediano#Genera 8 fiammelle dai danni elevati che perdurano dopo la morte", -- Plan C
-	[476] = "Fiammella dell'anello mediano#Se nessun consumabile viene duplicato genera una seconda fiammella", -- D1
+	[434] = "Fiammella dell'anello mediano {{MiddleWisp}}#Al posto delle mosche vengono generate fiammelle#Usando fino a 5 mosche crea 1 fiammella con più danni e salute", -- Jar of Wisps
+	[437] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se si è colpiti per la prima volta attiva l'effetto di \"D7\"", -- D7
+	[439] = "Fiammella dell'anello mediano {{MiddleWisp}}#Nessun effetto speciale", -- Mom's Box
+	[441] = "Fiammella dell'anello mediano {{MiddleWisp}}#{{Chargeable}} Lacrime di \"Zolfo Fuso\" caricabili#Durante un \"Mega Sbotto\" spara continuamente", -- Mega Blast
+	[475] = "Fiammella dell'anello mediano {{MiddleWisp}}#Genera 8 fiammelle dai danni elevati che perdurano dopo la morte", -- Plan C
+	[476] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se nessun consumabile viene duplicato genera una seconda fiammella", -- D1
 	[477] = "Genera fiammelle di tutti gli oggetti attivi assorbiti#Di per sé non genera fiammelle", -- Void
-	[478] = "Fiammella dell'anello mediano#Se distrutta blocca tutti i nemici e i proiettili per 3 secondi", -- Pause
-	[479] = "Fiammella dell'anello mediano#Se distrutta chance di generare un {{Trinket}} ninnolo", -- Smelter
-	[480] = "Fiammella dell'anello mediano#Salute aumentata per ogni consumabile convertito#Se almeno 1 consumabile è stato convertito genera solo 1 fiammella ", -- Compost
-	[481] = "Fiammella dell'anello mediano#5% di chance che le lacrime trasformino i nemici in fiammelle casuali", -- Dataminer
+	[478] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se distrutta blocca tutti i nemici e i proiettili per 3 secondi", -- Pause
+	[479] = "Fiammella dell'anello mediano {{MiddleWisp}}#Se distrutta chance di generare un {{Trinket}} ninnolo", -- Smelter
+	[480] = "Fiammella dell'anello mediano {{MiddleWisp}}#Salute aumentata per ogni consumabile convertito#Se almeno 1 consumabile è stato convertito genera solo 1 fiammella ", -- Compost
+	[481] = "Fiammella dell'anello mediano {{MiddleWisp}}#5% di chance che le lacrime trasformino i nemici in fiammelle casuali", -- Dataminer
 	[482] = "Genera una fiammella casuale", -- Clicker
-	[483] = "Fiammella dell'anello mediano#Genera 8 fiammelle che se distrutte lasciano 1 Bomba Troll dorata", -- Mama Mega!
-	[484] = "Fiammella dell'anello mediano#Fiammella per una singola stanza#Non può sparare lacrime#Se distrutta attiva l'effetto di \"Aspe', Cosa?\"", -- Wait What?
-	[485] = "Fiammella dell'anello mediano#Tutte le fiammelle di \"Penny Storto\" vengono distrutte o duplicate se una di esse viene danneggiata", -- Crooked Penny
-	[486] = "Fiammella dell'anello mediano#Non può sparare lacrime#Chance di negare i danni subiti da Isaac per poi venire distrutta", -- Dull Razor
+	[483] = "Fiammella dell'anello mediano {{MiddleWisp}}#Genera 8 fiammelle che se distrutte lasciano 1 Bomba Troll dorata", -- Mama Mega!
+	[484] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella per una singola stanza#Non può sparare lacrime#Se distrutta attiva l'effetto di \"Aspe', Cosa?\"", -- Wait What?
+	[485] = "Fiammella dell'anello mediano {{MiddleWisp}}#Tutte le fiammelle di \"Penny Storto\" vengono distrutte o duplicate se una di esse viene danneggiata", -- Crooked Penny
+	[486] = "Fiammella dell'anello mediano {{MiddleWisp}}#Non può sparare lacrime#Chance di negare i danni subiti da Isaac per poi venire distrutta", -- Dull Razor
 	[487] = "Indestructible, permanent wisp#Insegue i nemici per sparargli#Non blocca i proiettili e non infligge danni da contatto", -- Potato Peeler
 	[488] = "Genera la fiammella dell'oggetto imitato (fiamella causale se non è un oggetto attivo)", -- Metronome
-	[489] = "Fiammella dell'anello mediano#Genera una fiammella normale#Effetto extra in base al dado imitato", -- D Infinity
+	[489] = "Fiammella dell'anello mediano {{MiddleWisp}}#Genera una fiammella normale#Effetto extra in base al dado imitato", -- D Infinity
 	[490] = "Genera a random wisp#Se distrutta resuscita dopo aver completato una stanza", -- Eden's Soul
-	[504] = "Fiammella dell'anello mediano#Fiammella per una singola stanza#Lacrime veloci e mirate dai danni esigui", -- Brown Nugget
-	[507] = "Fiammella dell'anello esterno#Chance di generare una fiammella per ogni uccisione", -- Sharp Straw
-	[510] = "Fiammella dell'anello mediano#Lacrime di {{Collectible229}} \"Polmone di Monstro\", {{Collectible268}} \"Bebè Marcio\", {{Collectible87}} \"Corna di Loki\" o di {{Collectible118}} \"Zolfo Fuso\"", -- Delirious
-	[512] = "Fiammella dell'anello mediano#Lacrime magnetiche", -- Black Hole
+	[504] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella per una singola stanza#Lacrime veloci e mirate dai danni esigui", -- Brown Nugget
+	[507] = "Fiammella dell'anello esterno {{OuterWisp}}#Chance di generare una fiammella per ogni uccisione", -- Sharp Straw
+	[510] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime di {{Collectible229}} \"Polmone di Monstro\", {{Collectible268}} \"Bebè Marcio\", {{Collectible87}} \"Corna di Loki\" o di {{Collectible118}} \"Zolfo Fuso\"", -- Delirious
+	[512] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime magnetiche", -- Black Hole
 	[515] = "Genera a random wisp#Se distrutta resuscita dopo aver completato una stanza", -- Mystery Gift
-	[516] = "Fiammella dell'anello mediano#Lacrime veloci#Le lacrime sparano in 8 direzioni nella maniera di \"Irrigatore\"", -- Sprinkler
-	[521] = "Fiammella dell'anello mediano#Triple shot#Comprare qualsiasi cosa distrugge tutte le fiammelle di \"Coupon\"", -- Coupon
-	[522] = "Fiammella dell'anello esterno#I proiettili agguantati diventano fiammelle", -- Telekinesis
-	[523] = "Fiammella dell'anello mediano#La fiammella viene generata solo quando vengono rilasciati oggetti#Se distrutta genera un consumabile casuale", -- Moving Box
-	[527] = "Fiammella dell'anello mediano#Non può sparare lacrime#A completamento stanza le fiammelle aprono bauli/porte", -- Mr. ME!
-	[536] = "Fiammella dell'anello mediano#Converte tutte le fiammelle in {{HalfHeart}} mezzi Cuori Rossi#Dopo il sacrificio genera una fiammella dalla salute e danni elevati", -- Sacrificial Altar
-	[545] = "Fiammella dell'anello interno#Se distrutta genera un Ossuto amichevole", -- Book of the Dead
-	[550] = "Fiammella dell'anello mediano#10% di chance che le lacrime facciano sì che Mamma calpesti i nemici", -- Broken Shovel
-	[552] = "Fiammella dell'anello mediano#10% di chance che le lacrime facciano sì che Mamma calpesti i nemici#Genera anche una fiammella dalla salute elevata che non può sparare lacrime", -- Mom's Shovel
-	[555] = "Fiammella dell'anello mediano#15% di chance di lacrime di {{Collectible202}} \"Tocco di Mida\"", -- Golden Razor
-	[556] = "Fiammella dell'anello mediano#Lacrime di {{Collectible118}} \"Zolfo Fuso\" a corto raggio", -- Sulfur
-	[557] = "Fiammella dell'anello mediano#↑ {{Luck}} +0.2 Fortuna per ogni fiammella di \"Biscotto della Fortuna\"", -- Fortune Cookie
-	[577] = "Fiammella dell'anello mediano#Nessun effetto speciale", -- Damocles
-	[578] = "Fiammella dell'anello mediano#La fiammella sgocciola del liquido giallo", -- Free Lemonade
-	[580] = "Fiammella dell'anello mediano#Chance di creare Porte Rosse quando si entra in una nuova stanza", -- Red Key
-	[582] = "Fiammella dell'anello mediano#Lacrime dai danni esigui#Massimo 1 fiammella di \"Fungo Allucinogeno\"", -- Wavy Cap
+	[516] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime veloci#Le lacrime sparano in 8 direzioni nella maniera di \"Irrigatore\"", -- Sprinkler
+	[521] = "Fiammella dell'anello mediano {{MiddleWisp}}#Triple shot#Comprare qualsiasi cosa distrugge tutte le fiammelle di \"Coupon\"", -- Coupon
+	[522] = "Fiammella dell'anello esterno {{OuterWisp}}#I proiettili agguantati diventano fiammelle", -- Telekinesis
+	[523] = "Fiammella dell'anello mediano {{MiddleWisp}}#La fiammella viene generata solo quando vengono rilasciati oggetti#Se distrutta genera un consumabile casuale", -- Moving Box
+	[527] = "Fiammella dell'anello mediano {{MiddleWisp}}#Non può sparare lacrime#A completamento stanza le fiammelle aprono bauli/porte", -- Mr. ME!
+	[536] = "Fiammella dell'anello mediano {{MiddleWisp}}#Converte tutte le fiammelle in {{HalfHeart}} mezzi Cuori Rossi#Dopo il sacrificio genera una fiammella dalla salute e danni elevati", -- Sacrificial Altar
+	[545] = "Fiammella dell'anello interno {{InnerWisp}}#Se distrutta genera un Ossuto amichevole", -- Book of the Dead
+	[550] = "Fiammella dell'anello mediano {{MiddleWisp}}#10% di chance che le lacrime facciano sì che Mamma calpesti i nemici", -- Broken Shovel
+	[552] = "Fiammella dell'anello mediano {{MiddleWisp}}#10% di chance che le lacrime facciano sì che Mamma calpesti i nemici#Genera anche una fiammella dalla salute elevata che non può sparare lacrime", -- Mom's Shovel
+	[555] = "Fiammella dell'anello mediano {{MiddleWisp}}#15% di chance di lacrime di {{Collectible202}} \"Tocco di Mida\"", -- Golden Razor
+	[556] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime di {{Collectible118}} \"Zolfo Fuso\" a corto raggio", -- Sulfur
+	[557] = "Fiammella dell'anello mediano {{MiddleWisp}}#↑ {{Luck}} +0.2 Fortuna per ogni fiammella di \"Biscotto della Fortuna\"", -- Fortune Cookie
+	[577] = "Fiammella dell'anello mediano {{MiddleWisp}}#Nessun effetto speciale", -- Damocles
+	[578] = "Fiammella dell'anello mediano {{MiddleWisp}}#La fiammella sgocciola del liquido giallo", -- Free Lemonade
+	[580] = "Fiammella dell'anello mediano {{MiddleWisp}}#Chance di creare Porte Rosse quando si entra in una nuova stanza", -- Red Key
+	[582] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime dai danni esigui#Massimo 1 fiammella di \"Fungo Allucinogeno\"", -- Wavy Cap
 	[584] = "Nessun beneficio da copie multiple", -- Book of Virtues
-	[585] = "Fiammella dell'anello mediano#Genera 8 fiammelle normali", -- Alabaster Box
-	[604] = "Conta come fiammella dell'anello mediano#Fiammella per una singola stanza#Genera 3 fiammelle nel punto d'impatto#10% di chance di {{Confusion}} lacrime contundenti", -- Mom's Bracelet
-	[605] = "Fiammella dell'anello mediano#Nessun effetto speciale", -- The Scooper
-	[609] = "Fiammella dell'anello mediano#50% di chance di generare una fiammella invincibile#50% di chance che se usato vengano distrutte tutte le fiammelle di \"D6 Eterno\"", -- Eternal D6
-	[611] = "Fiammella dell'anello mediano#Salute e danni aumentano in base alle cariche", -- Larynx
-	[622] = "Fiammella dell'anello mediano#Rimpiazza tutte le fiammelle con 3 fiammelle normali", -- Genesis
+	[585] = "Fiammella dell'anello mediano {{MiddleWisp}}#Genera 8 fiammelle normali", -- Alabaster Box
+	[604] = "Fiammella per una singola stanza#Genera 1-3 fiammelle nel punto d'impatto (fino ad 8 fiammelle)#10% di chance di {{Confusion}} lacrime contundenti", -- Mom's Bracelet
+	[605] = "Fiammella dell'anello mediano {{MiddleWisp}}#Nessun effetto speciale", -- The Scooper
+	[609] = "Fiammella dell'anello mediano {{MiddleWisp}}#50% di chance di generare una fiammella invincibile#50% di chance che se usato vengano distrutte tutte le fiammelle di \"D6 Eterno\"", -- Eternal D6
+	[611] = "Fiammella dell'anello mediano {{MiddleWisp}}#Salute e danni aumentano in base alle cariche", -- Larynx
+	[622] = "Fiammella dell'anello mediano {{MiddleWisp}}#Rimpiazza tutte le fiammelle con 3 fiammelle normali", -- Genesis
 	[623] = "Fiammella dell'anello medianosNessun effetto speciale", -- Sharp Key
-	[631] = "Fiammella dell'anello mediano#Scinde tutte le fiammelle a metà (metà dei danni)#Se scisse le fiammelle per una terza volta vengono distrutte", -- Meat Cleaver
+	[631] = "Fiammella dell'anello mediano {{MiddleWisp}}#Scinde tutte le fiammelle a metà (metà dei danni)#Se scisse le fiammelle per una terza volta vengono distrutte", -- Meat Cleaver
 	[635] = "Fiammella per una singola stanza#Genera una fiammella stazionaria nella posizione di Isaac prima di venire teletrasportato (fino a 6 fiammelle)", -- Stitches
 	[636] = "Nessuna fiammella", -- R Key
-	[638] = "Fiammella dell'anello mediano#Immunità ai proiettili#Al contatto con i nemici che non sono boss", -- Eraser
-	[639] = "Fiammella dell'anello mediano#Al posto di sparare lacrime genera mosche blu", -- Yuck Heart
-	[640] = "Fiammella dell'anello mediano#Chance di lacrime dalla fiamma blu", -- Urn of Souls
-	[642] = "Fiammella dell'anello mediano#Lacrime velenose", -- Magic Skin
-	[650] = "Fiammella dell'anello mediano#Quando \"Bebè Plum\" rimbalza diagonalmente, tutte le fiammelle di \"Flauto Plum\" sono invincibili e fanno altrettanto", -- Plum Flute
+	[638] = "Fiammella dell'anello mediano {{MiddleWisp}}#Immunità ai proiettili#Al contatto con i nemici che non sono boss", -- Eraser
+	[639] = "Fiammella dell'anello mediano {{MiddleWisp}}#Al posto di sparare lacrime genera mosche blu", -- Yuck Heart
+	[640] = "Fiammella dell'anello mediano {{MiddleWisp}}#Chance di lacrime dalla fiamma blu", -- Urn of Souls
+	[642] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime velenose", -- Magic Skin
+	[650] = "Fiammella dell'anello mediano {{MiddleWisp}}#Quando \"Bebè Plum\" rimbalza diagonalmente, tutte le fiammelle di \"Flauto Plum\" sono invincibili e fanno altrettanto", -- Plum Flute
 	[653] = "Nessuna fiammella#I fantasmi rossi possono sparare lacrime", -- Vade Retro
-	[655] = "Fiammella dell'anello mediano#Fiammelle temporanee durante l'uso#Lacrime veloci", -- Spin to Win
+	[655] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammelle temporanee durante l'uso#Lacrime veloci", -- Spin to Win
 	[685] = "Triplica le fiammelle generate", -- Jar of Wisps
 	[687] = "Genera una fiammella casuale", -- Friend Finder
-	[703] = "Fiammella dell'anello mediano#Nessun effetto speciale", -- Esau Jr.
-	[704] = "Fiammella dell'anello mediano#Fiammella dalla salute elevata#Non può sparare lacrime", -- Berserk!
-	[705] = "Fiammella dell'anello mediano#Fiammella per una singola stanza per ogni nemico ucciso", -- Dark Arts
-	[706] = "Fiammella dell'anello mediano#Fiammella dalla salute elevata#Non può sparare lacrime", -- Abyss
+	[703] = "Fiammella dell'anello mediano {{MiddleWisp}}#Nessun effetto speciale", -- Esau Jr.
+	[704] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella dalla salute elevata#Non può sparare lacrime", -- Berserk!
+	[705] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella per una singola stanza per ogni nemico ucciso", -- Dark Arts
+	[706] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella dalla salute elevata#Non può sparare lacrime", -- Abyss
 	[709] = "Fiammella per una singola stanza#Genera 3 fiammelle nel punto in cui Isaac atterra", -- Suplex!
 	[710] = "Genera una fiammella casuale durante l'assemblaggio", -- Bag of Crafting
-	[711] = "Fiammella dell'anello mediano#Fiammella dalla salute elevata", -- Flip
+	[711] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella dalla salute elevata", -- Flip
 	[712] = "Le fiammelle dell'oggetto sparano lacrime a ricerca", -- Lemegeton
 	[713] = "Nessuna fiammella", -- Sumptorium
-	[719] = "Fiammella dell'anello mediano#20% di chance che i nemici lascino 1 {{Coin}} moneta quando vengono uccisi", -- Keeper's Box
+	[719] = "Fiammella dell'anello mediano {{MiddleWisp}}#20% di chance che i nemici lascino 1 {{Coin}} moneta quando vengono uccisi", -- Keeper's Box
 	[720] = "Genera una fiammella casuale", -- Everything Jar
 	[722] = "Orbita attorno al nemico incatenato e gli spara#La fiammella muore quando muore il nemico", -- Anima Sola
-	[723] = "Fiammella dell'anello mediano#Genera una fiammella casuale e rilancia tutte le fiammelle in quel tipo", -- Spindown Dice
-	[728] = "Fiammella dell'anello mediano#Tutte le fiammelle orbitano attorno a \"Gellò\" mentre viene usato", -- Gello
+	[723] = "Fiammella dell'anello mediano {{MiddleWisp}}#Genera una fiammella casuale e rilancia tutte le fiammelle in quel tipo", -- Spindown Dice
+	[728] = "Fiammella dell'anello mediano {{MiddleWisp}}#Tutte le fiammelle orbitano attorno a \"Gellò\" mentre viene usato", -- Gello
 	[729] = "Fiammella stazionaria per una singola stanza", -- Decap Attack
 }
 
@@ -802,7 +802,7 @@ local repTrinkets={
 	[107] = {"107", "Cuore di Corvo", "Subire danni esaurisce i Cuori Rossi prima dei Cuori Neri/Celesti#{{Warning}} I danni ai Cuori Rossi possono ridurre le chance di una Stanza del Diavolo/dell'Angelo"}, -- Crow Heart
 	[110] = {"110", "Dollaro d'Argento", "{{Shop}} I Negozi appaiono in \"Utero\" e \"Carcassa\""},
 	[111] = {"111", "Corona Sanguinolenta", "{{TreasureRoom}} Le Stanze dei Tesori appaiono in \"Utero\" e \"Carcassa\""}, -- Bloody Crown
-	[119] = {"119", "Cellula Staminale", "Entrare in un nuovo piano cura di mezzo cuore#{HalfHeart}} Cura un minimo di mezzo cuore"}, -- Stem Cell
+	[119] = {"119", "Cellula Staminale", "{{HealingRed}} Entrare in un nuovo piano cura di mezzo cuore#{{HealingRed}} Cura un minimo di mezzo cuore"}, -- Stem Cell
 	[125] = {"125", "Prolunga", "Collega i famigli con raggi d'elettricità#I raggi infliggono 6 danni"}, -- Extension Cord
 	[128] = {"128", "Falangi", "{{EmptyBoneHeart}} Subire danni ha il 4% di chance di conferire un Cuore Osseo"}, -- Finger Bone
 	[129] = {"129", "Spaccamascella", "{{Damage}} 10% di chance di sparare danni che infliggono i danni di Isaac x3.2#{{Luck}} 100% di chance con 9 di Fortuna"}, -- Jawbreaker
@@ -892,9 +892,9 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[46] = { "mezzo cuore", "un cuore", "un cuore e mezzo" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
 	[53] = {
-		"All'ingresso in una {{BossRoom}} Stanza del Boss cura di {{ColorGold}}2{{CR}} cuori#-{{ColorGold}}30{{CR}}% di salute del boss#{{ColorGold}}Rimovibile!",
-		"All'ingresso in una {{BossRoom}} Stanza del Boss cura di {{ColorGold}}2{{CR}} cuori#-{{ColorGold}}30{{CR}}% di salute del boss#{{Warning}} Una volta raccolto, non può più venire rimosso#Rimovibile solo con {{Trinket41}} \"Fiammifero\" o ingoiandolo",
-		"All'ingresso in una {{BossRoom}} Stanza del Boss cura di {{ColorGold}}3{{CR}} cuori#-{{ColorGold}}30{{CR}}% di salute del boss#{{ColorGold}}Rimovibile!",
+		"{{HealingRed}} All'ingresso in una {{BossRoom}} Stanza del Boss cura di {{ColorGold}}2{{CR}} cuori#-{{ColorGold}}30{{CR}}% di salute del boss#{{ColorGold}}Rimovibile!",
+		"{{HealingRed}} All'ingresso in una {{BossRoom}} Stanza del Boss cura di {{ColorGold}}2{{CR}} cuori#-{{ColorGold}}30{{CR}}% di salute del boss#{{Warning}} Una volta raccolto, non può più venire rimosso#Rimovibile solo con {{Trinket41}} \"Fiammifero\" o ingoiandolo",
+		"{{HealingRed}} All'ingresso in una {{BossRoom}} Stanza del Boss cura di {{ColorGold}}3{{CR}} cuori#-{{ColorGold}}30{{CR}}% di salute del boss#{{ColorGold}}Rimovibile!",
 	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
 	[64] = { "Gli aumenti di statistica del verme vengono raddoppiati", "Gli aumenti di statistica del verme vengono triplicati", "Gli aumenti di statistica del verme vengono quadruplicati", },
@@ -1057,15 +1057,15 @@ EID:updateDescriptionsViaTable(repPills, EID.descriptions[languageCode].pills)
 
 EID.descriptions[languageCode].horsepills={
 	{"0", "Gas Nocivo", "{{Poison}} Avvelena tutta la stanza"}, -- Bad Gas
-	{"1", "Brutto Trip", "{{Heart}} Infligge 2 cuori di danno ad Isaac#Con 1 cuore o meno diventa una pasticcona \"Salute al Massimo\" (+3 Cuori Celesti)"}, -- Bad Trip
+	{"1", "Brutto Trip", "{{Warning}} Infligge 2 cuori di danno ad Isaac#Con 1 cuore o meno diventa una pasticcona \"Salute al Massimo\" (+3 Cuori Celesti)"}, -- Bad Trip
 	{"2", "Palle d'Acciaio", "{{SoulHeart}} +4 Cuori Celesti"}, -- Balls of Steel
 	{"3", "Le Bombe sono Chiavi", "Inverte il numero di {{Bomb}} bombe e di {{Key}} chiavi#Aumenta del 50% il numero di bombe e chiavi#Vengono invertite anche bombe e chiavi dorate"}, -- Bombs are Key
 	{"4", "Diarrea Esplosiva", "Evoca qualche Mega Bomba Troll a ricerca"}, -- Explosive Diarrhea
-	{"5", "Salute al Massimo", "{{SoulHeart}} +3 Cuori Celesti#{{Heart}} Salute al Massimo"}, -- Full Health
+	{"5", "Salute al Massimo", "{{SoulHeart}} +3 Cuori Celesti#{{HealingRed}} Salute al Massimo"}, -- Full Health
 	{"6", "Meno Salute", "↓ {{EmptyHeart}} -2 Salute#Con 1 Portacuore o meno diventa una pasticcona \"Più Salute\""}, -- Health Down
 	{"7", "Più Salute", "↑ {{EmptyHeart}} +2 Portacuori vuoti"}, -- Health Up
 	{"8", "Ho Trovato delle Pillole", "Nessun effetto"}, -- I Found Pills
-	{"9", "Pubertà", "Nessun effetto"}, -- Puberty
+	{"9", "Pubertà", "Nessun effetto#Assumerne 3 conferisce la trasformazione \"Adulto\":#↑ {{Heart}} +1 Salute"}, -- Puberty
 	{"10", "Moscarina!", "{{Collectible279}} Conferisce un orbitale \"Grande Fan\"#Non c'è limite nel numero di \"Grande Fan\" in possesso ad Isaac"}, -- Pretty Fly
 	{"11", "Meno Gittata", "↓ {{Range}} -2 Gittata"}, -- Range Down
 	{"12", "Più Gittata", "↑ {{Range}} +2.5 Gittata"}, -- Range Up
@@ -1092,7 +1092,7 @@ EID.descriptions[languageCode].horsepills={
 	{"33", "Una ti Rende più Piccolo", "Diminuisce considerevolmente la statura di Isaac#In più diminuisce le dimensioni dell'hitbox"}, -- One makes you small
 	{"34", "Infestato!", "Genera 2 ragni blu per ogni cacca presente nella stanza"}, -- Infested!
 	{"35", "Infestato?", "Genera 2 ragni blu per ogni nemico nella stanza#Se non ci sono nemici nella stanza genera 2-6 ragni blu"}, -- Infested?
-	{"36", "Pillola del Potere!", "{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Damage}} +7 Danni#↑ {{Range}} +3 Gittata#{{Timer}} Conferisce per 6.5 secondi:#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo#{{HalfHeart}} Uccidere 2 nemici cura di mezzo cuore#{{Fear}} Spaventa tutti i nemici nella stanza"}, -- Power Pill!
+	{"36", "Pillola del Potere!", "{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Damage}} +7 Danni#↑ {{Range}} +3 Gittata#{{Timer}} Conferisce per 6.5 secondi:#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo#{{HealingRed}} Uccidere 2 nemici cura di mezzo cuore#{{Fear}} Spaventa tutti i nemici nella stanza"}, -- Power Pill!
 	{"37", "Rétro Visione", "Rende lo schermo pixellato per 90 secondi"}, -- Retro Vision
 	{"38", "Amici fino alla Fine!", "Genera 6 mosche blu"}, -- Friends Till The End!
 	{"39", "Liqui-Lax", "Genera una pozza di liquido scivoloso dalla lunga durata"}, -- X-Lax
@@ -1101,7 +1101,7 @@ EID.descriptions[languageCode].horsepills={
 	{"42", "Sono Euforico!!!", "Velocizza Isaac e tutti i nemici nella stanza#Si attiva nuovamente dopo 30 e 60 secondi"}, --I'm Excited!!!
 	{"43", "Gulp!", "{{Trinket}} Consuma il ninnolo di Isaac e conferisce permanentemente i suoi effetti"}, -- Gulp!
 	{"44", "Orf!", "{{Collectible149}} Spara un ammasso di lacrime di \"Ipecac\""}, -- Horf!
-	{"45", "Baciato dal Sole!", "{{Timer}} Conferisce per 6 secondi:#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo#{{HalfHeart}} Uccidere 2 nemici cura di mezzo cuore#{{Fear}} Spaventa tutti i nemici nella stanza"}, -- Feels like I'm walking on sunshine!
+	{"45", "Baciato dal Sole!", "{{Timer}} Conferisce per 6 secondi:#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo#{{HealingRed}} Uccidere 2 nemici cura di mezzo cuore#{{Fear}} Spaventa tutti i nemici nella stanza"}, -- Feels like I'm walking on sunshine!
 	{"46", "Vurp!", "Genera come pasticcona l'ultima pillola utilizzata"}, -- Vurp!
 	{"47", "Meno Velocità Colpi", "↓ {{Shotspeed}} -0.3 Velocità Colpi"}, -- Shot Speed Down
 	{"48", "Più Velocità Colpi", "↑ {{Shotspeed}} +0.3 Velocità Colpi"}, -- Shot Speed Up
@@ -1112,35 +1112,35 @@ EID.descriptions[languageCode].horsepills={
 ---------- Character Info ----------
 -- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
 local repCharacterInfo = {
-	[4] = {"???", "Non può avere Cuori Rossi#I patti con il diavolo dal prezzo di 1 o 2 Cuori Rossi avranno invece un prezzo di 1 o 2 Cuori Celesti#Distruggere una cacca genera 1 mosca blu"},
+	[4] = {"???", "Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti#{{DevilRoom}} I patti con il diavolo dal prezzo di 1 o 2 Cuori Rossi avranno invece un prezzo di 1 o 2 Cuori Celesti#Distruggere una cacca genera 1 mosca blu"},
 	[8] = {"Lazzaro", "Una volta per piano, se muore:#Resuscita come Lazzaro Risorto#Perde 1 Portacuori#↑ {{Damage}} +0.5 Danni"},
 	[11] = {"Lazzaro Risorto", "Statistiche aumentate e x1.4 Moltiplicatore Danni#All'ingresso in un nuovo piano ritorna ad essere Lazzaro"},
-	[12] = {"Giuda Oscuro", "x2 Moltiplicatore Danni#Non può avere Cuori Rossi#Gli aumenti di salute conferiscono Cuori Neri#Conta come Giuda per gli obiettivi"},
-	[14] = {"Mercante", "Si cura raccogliendo monete#I cuori consumabili vengono trasformati in mosche blu#I patti con il diavolo costano 15 o 30 monete"},
-	[18] = {"Betania", "Usa Cuori Celesti per caricare l'oggetto attivo#Non può usare Cuori Celesti per la salute"},
+	[12] = {"Giuda Oscuro", "{{Damage}} x2 Moltiplicatore Danni#Non può avere Cuori Rossi#{{BlackHeart}} Gli aumenti di salute conferiscono Cuori Neri#{{Player3}} Conta come Giuda per gli obiettivi"},
+	[14] = {"Mercante", "{{CoinHeart}} Si cura raccogliendo monete#Massimale di 3 Portamonete#{{DevilRoom}} I cuori consumabili vengono trasformati in mosche blu#I patti con il diavolo costano 15 o 30 monete"},
+	[18] = {"Betania", "{{SoulHeart}} Usa Cuori Celesti per caricare l'oggetto attivo#Non può usare Cuori Celesti per la salute"},
 	[19] = {"Giacobbe", "Giacobbe e Esaù sono controllati assieme#Se viene usata una bomba entrambi ne buttano a terra una#Premendo {{ButtonRT}} Esaù rimane fermo#{{ButtonLT}} usa l'oggetto attivo di Giacobbe, {{ButtonRB}} usa quello di Esaù, per usare le sue carte/pillole va tenuto premuto {{ButtonRT}}#Se si può scegliere tra due oggetti, Giacobbe ed Esaù possono prenderli simultaneamente"},
 	[20] = {"Esaù", "Giacobbe e Esaù sono controllati assieme#Se viene usata una bomba entrambi ne buttano a terra una#Premendo {{ButtonRT}} Esaù rimane fermo#{{ButtonLT}} usa l'oggetto attivo di Giacobbe, {{ButtonRB}} usa quello di Esaù, per usare le sue carte/pillole va tenuto premuto {{ButtonRT}}#Se si può scegliere tra due oggetti, Giacobbe ed Esaù possono prenderli simultaneamente"},
 	
 	[21] = {"Isaac Corrotto", "I piedistalli alternano tra 2 scelte#Possono essere portati solo 8 oggetti passivi#Con {{ButtonRT}} si sceglie quale oggetto rilasciare per ottenerne un altro"},
-	[22] = {"Maddalena Corrotta", "La salute al di sopra di 2 Cuori Rossi viene lentamente prosciugata#Al contatto con i nemici effettua un colpo da mischia da x6 di danni#Chance che i nemici lascino mezzi Cuori Rossi che spariscono dopo 2 secondi#Ucciderli in mischia garantisce che vengano lasciati#Cura doppia da fonti che non siano consumabili#Il danno subito dai cuori che perdono salute non influenza le chance di un patto con il diavolo"},
-	[23] = {"Caino Corrotto", "Toccare un piedistallo lo converte in un assortimento di consumabili#Ottiene oggetti assemblando insieme 8 consumabili nel \"Sacco del Fai da Te\"#Quando è pieno i suoi contenuti possono essere spostati con {{ButtonRT}} per sostituire specifici consumabili"},
-	[24] = {"Giuda Corrotto", "Non può avere Cuori Rossi#Gli aumenti di salute conferiscono Cuori Neri"},
-	[25] = {"??? Corrotto", "Non può avere Cuori Rossi#Le bombe vengono sostituite da cacche magiche#Infliggere danni genera cacche consumabili#L'interfaccia ha un'anteprima della prossima cacca magica#Usando \"Vasetto\" si può conservare per dopo la cacca magica successiva"},
-	[26] = {"Eva Corrotta", "Continuare a sparare converte i cuori in grumi famigli#Cuori diversi generano grumi con più salute e lacrime con effettis#I grumi con il tempo perdono salute#Usare \"Sumptorium\" riassorbe i grumi in salute, se possibile#Premendo {{ButtonRT}} i grumi rimangono fermi#Se si rimane senza grumi con mezzo cuore, si ottiene un attacco simile a \"Coltello di Mamma\" finché non ci si cura e si lascia la stanza"},
+	[22] = {"Maddalena Corrotta", "La salute al di sopra di 2 Cuori Rossi viene lentamente prosciugata#Al contatto con i nemici effettua un colpo da mischia da x6 di danni#{{HalfRedHeart}} Chance che i nemici lascino mezzi Cuori Rossi che spariscono dopo 2 secondi#Ucciderli in mischia garantisce che vengano lasciati#{{Collectible45}} Cura doppia da fonti che non siano consumabili#{{AngelDevilChance}} Il danno subito dai cuori che perdono salute non influenza le chance di un patto con il diavolo"},
+	[23] = {"Caino Corrotto", "Toccare un piedistallo lo converte in un assortimento di consumabili"},
+	[24] = {"Giuda Corrotto", "Non può avere Cuori Rossi#{{BlackHeart}} Gli aumenti di salute conferiscono Cuori Neri"},
+	[25] = {"??? Corrotto", "Non può avere Cuori Rossi#Le bombe vengono sostituite da cacche magiche#{{Crafting29}} Infliggere danni genera cacche consumabili#L'interfaccia ha un'anteprima della prossima cacca magica#{{Collectible715}} Usando \"Vasetto\" si può conservare per dopo la cacca magica successiva"},
+	[26] = {"Eva Corrotta", "Continuare a sparare converte i cuori in grumi famigli#Cuori diversi generano grumi con più salute e lacrime con effettis#I grumi con il tempo perdono salute#Premendo {{ButtonRT}} i grumi rimangono fermi#Se si rimane senza grumi con mezzo cuore, si ottiene un attacco simile a \"Coltello di Mamma\" finché non ci si cura e si lascia la stanza"},
 	[27] = {"Sansone Corrotto", "Infliggere o subire danni alimenta la modalità \"Violenza\"#{{Timer}} In modalità \"Violenza\", si riceve per 5 secondi:#↑ {{Speed}} +0.4 Velocità#↓ {{Tears}} x0.5 Moltiplicatore Rateo di Fuoco#↑ {{Tears}} +2 Rateo di Fuoco#↑ {{Damage}} +3 Danni#Restringe gli attacchi ad uno in mischia che riflette i proiettili#{{Timer}} Ogni uccisione incrementa la durata di 1 secondo e conferisce una breve invincibilità"},
 	[28] = {"Azazel Corrotto", "All'inizio della carica starnutisce sangue#Colpire un nemico con lo starnuto dimezza il tempo di carica#Lo starnuto infligge i danni di Azazel x1.5#{{BrimstoneCurse}} I nemici colpiti subiscono danni extra dai raggi di \"Zolfo Fuso\"#I nemici maledetti quando muoiono esplodono e passano la maledizione ai nemici nelle vicinanze"},
-	[29] = {"Lazarro Corrotto", "Lazzaro ha due stadi, ognuno con i suoi oggetti e salute#Ogni qualvolta viene completata una stanza/ondata o viene usato \"Limbo\", viene richiamato l'altro personaggio"},
+	[29] = {"Lazzaro Corrotto", "Lazzaro ha due stadi, ciascuno con i suoi oggetti e salute#Completare una stanza/ondata o usare \"Limbo\" richiama l'altro personaggio"},
 	[30] = {"Eden Corrotto", "Quando si subiscono danni rilancia le sue statistiche, oggetti, ninnoli e consumabili#Gli oggetti vengono rilanciati in un oggetto della stessa categoria#Il danno autoinflitto non conta"},
 	[31] = {"Lo Smarrito Corrotto", "Le carte generate hanno il 10% di chance di essere \"Carta Santa\"#Gli oggetti di Qualità {{Quality2}} o inferiori hanno il 20% di chance di venire rilanciati#Possono essere generati solo oggetti 'offensivi'"},
 	[32] = {"Lilith Corrotta", "Premere il tasto di fuoco lancia un attacco fetale in mischia che infligge x3 di danni#Continuare a sparare fa sì che il feto spari lacrime verso il nemico più vicino"},
-	[33] = {"Mercante Corrotto", "I nemici lasciano monete che spariscono dopo 2 secondi#La maggior parte dei piedistalli costa 15 monete#I patti con il diavolo o gli oggetti angelici costano 15 o 30 monete#I negozi non richiedono una chiave e hanno più merce in vendita"},
+	[33] = {"Mercante Corrotto", "#Massimale di 2 Portamonete#I nemici lasciano monete che spariscono dopo 2 secondi#La maggior parte dei piedistalli costa 15 monete#I patti con il diavolo o gli oggetti angelici costano 15 o 30 monete#I negozi non richiedono una chiave e hanno più merce in vendita"},
 	[34] = {"Apollion Corrotto", ""},
-	[35] = {"Il Dimenticato Corrotto", "Il Dimenticato è una pila d'ossa immobile che viene raccolta e lanciata da L'Anima, infliggendo x3 di danni#Solo L'Anima può subire danni#Le bomeb vengono piazzate nella posizione di Il Dimenticato#Non può avere Cuori Rossi"},
-	[36] = {"Betania Corrotta", "Per caricare l'oggetto attivo usa Cuori Rossi#Non può avere Cuori Rossi#Gli aumenti di statistica hanno un'efficacia del 75%"},
-	[37] = {"Giacobbe Corrotto", "Viene inseguito da Esaù Oscuro, caricando verso di lui a distanza ravvicinata#\"Anima Sola\" incatena brevemente Esaù Oscuro, caricando verso di lui dopo 5 secondi o dopo aver riusato \"Anima Sola\"#La carica di Esaù Oscuro infligge danni ingenti ai nemici e ignora lo scudo dei boss#Se lo colpisce, diventa per il resto del piano uno spirito che muore in un colpo#Mentre è uno spirito può stringere gratuitamente un patto con il diavolo per stanza"},
-	[38] = {"Lazzaro Morto Corrotto", "Lazzaro ha due stadi, ognuno con i suoi oggetti e salute#Ogni qualvolta viene completata una stanza/ondata o viene usato \"Limbo\", viene richiamato l'altro personaggio"},
+	[35] = {"Il Dimenticato Corrotto", "Il Dimenticato è una pila d'ossa immobile che viene raccolta e lanciata da L'Anima, infliggendo x3 di danni#Solo L'Anima può subire danni#Le bomeb vengono piazzate nella posizione di Il Dimenticato#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti"},
+	[36] = {"Betania Corrotta", "{{Heart}} Per caricare l'oggetto attivo usa Cuori Rossi#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti e cariche sanguinee#Gli aumenti di statistica hanno un'efficacia del 75%"},
+	[37] = {"Giacobbe Corrotto", "Viene inseguito da Esaù Oscuro, caricando verso di lui a distanza ravvicinata#La carica infligge danni ingenti ai nemici#Se lo colpisce, diventa per il resto del piano uno spirito che muore in un colpo#Mentre è uno spirito può stringere gratuitamente un patto con il diavolo per stanza"},
+	[38] = {"Lazzaro Morto Corrotto", "Lazzaro ha due stadi, ciascuno con i suoi oggetti e salute#Completare una stanza/ondata o usare \"Limbo\" richiama l'altro personaggio"},
 	[39] = {"Giacobbe Corrotto 2", ""},
-	[40] = {"L'Anima Corrotta", "Il Dimenticato è una pila d'ossa immobile che viene raccolta e lanciata da L'Anima, infliggendo x3 di danni#Solo L'Anima può subire danni#Le bomeb vengono piazzate nella posizione di Il Dimenticato#Non può avere Cuori Rossi"},
+	[40] = {"L'Anima Corrotta", "Il Dimenticato è una pila d'ossa immobile che viene raccolta e lanciata da L'Anima, infliggendo x3 di danni#Solo L'Anima può subire danni#Le bomeb vengono piazzate nella posizione di Il Dimenticato#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti"},
 }
 EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
 
@@ -1174,7 +1174,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Eva Corrotta", "", "{{HalfHeart}} I grumi avuti da Cuori Rossi quando muoiono generano mezzi Cuori Rossi che spariscono dopo 2 secondi"},
 	{"Sansone Corrotto", "", "{{Collectible704}} Uccidere un nemico aggiunge 3 secondi al timer di \"Violenza!\" anziché 1"},
 	{"Azazel Corrotto", "", "{{Collectible726}} Raddoppia le dimesioni dello starnuto di \"Emottisi\" di Azazel Corrotto"},
-	{"Lazarro Corrotto", "", "La forma inattiva di Lazzaro Corrotto appare come un secondo personaggio spettrale#È invincibile e infligge il 25% dei danni#Entrambe le forme ricevono \"Primogenitura\""},
+	{"Lazzaro Corrotto", "", "La forma inattiva di Lazzaro Corrotto appare come un secondo personaggio spettrale#È invincibile e infligge il 25% dei danni#Entrambe le forme ricevono \"Primogenitura\""},
 	{"Eden Corrotto", "", "Ogni oggetto ottenuto prima di \"Primogenitura\" non può più venire rilanciato#Gli oggetti attivi possono venire rilanciati, se buttati a terra e poi ripresi"},
 	{"Lo Smarrito Corrotto", "", "Conferisce 1 via extra che resuscita Lo Smarrito Corrotto nella stessa stanza e infligge 200 danni ai nemici vicini"},
 	{"Lilith Corrotta", "", "{{Collectible728}} I famigli che normalmente seguirebbero Lilith Corrotta seguono invece \"Gellò\"#L'attacco in mischia ottiene +3 danni per famiglio"},
@@ -1198,7 +1198,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	AddBlackHearts = "{{BlackHeart}} {1} Cuore/i Nero/i",
 	AddBombs = "{{Bomb}} {1} Bomba/e",
 	Addmonete = "{{Coin}} {1} Moneta/e",
-	AddHearts = "{{Heart}} Cura {1} cuore/i",
+	AddHearts = "{{HealingRed}} Cura {1} cuore/i",
 	AddKeys = "{{Key}} {1} Chiave/i",
 	AddMaxHearts = "{{EmptyHeart}} {1} Portacuori",
 	AddSoulHearts = "{{SoulHeart}} {1} Cuore/i Celeste/i",
@@ -1344,7 +1344,10 @@ local repConditions = {
 	
 	
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
-	["5.100.642"] = "Monouso per {1}", -- Magic Skin + Lost
+	["Red to Soul"] = {"{{Heart}} +","{{SoulHeart}} +", "{{Heart}} Salute al massimo", "", "{{Heart}} Cura di 1 cuore", ""}, -- Red HP to Soul Hearts, removes heals
+	["Red to Black"] = {"{{Heart}} +","{{BlackHeart}} +", "{{Heart}} Salute al massimo", "", "{{Heart}} Cura di 1 cuore", ""}, -- Red HP to Black Heart, removes heals
+	["Red to Coin"] = {"{{Heart}} +","{{CoinHeart}} +", "{{Heart}} Salute al massimo", "{{CoinHeart}} Salute al massimo", "{{Heart}} Cura di 1 cuore", "{{CoinHeart}} Cura di 1 moneta"},
+	["5.100.642"] = "!!! MONOUSO !!!#Genera un oggetto dalla categoria di oggetti della stanza corrente", -- Magic Skin + Lost
 	["5.100.240"] = "{1} mantiene il cambiamento di statistiche quando lo lascia", -- Experimental Treatment + Tainted Isaac
 	["5.100.644"] = "{1} mantiene l'aumento di statistiche quando lo lascia", -- Consolation Prize + Tainted Isaac
 	["5.100.549"] = "Quando viene raccolto {1} ottiene un semplice ↑ {{Tears}} +0.4 Lacrime", -- Brittle Bones (Keeper+Lost)
@@ -1355,18 +1358,29 @@ local repConditions = {
 	["5.100.188"] = "In quanto {1} infligge 7.5 danni", -- Cain + Abel
 	["5.100.360"] = "In quanto {1} infligge il 100% dei danni", -- Lilith + Incubus
 	["5.100.728"] = "In quanto {1} infligge il 100% dei danni", -- Lilith + Gello
-	["5.350.156"] = "+1 Portamonete per {1}", -- Mother's Kiss
 	["5.100.230 (Keeper)"] = "{1} viene lasciato con 1 Portamonete", -- Abaddon
 	["5.100.230 (Bethany)"] = "{1} viene lasciato con mezzo cuore", -- Abaddon
-	["5.100.230 (Tainted Bethany)"] = "{1} non perde le sue cariche di Cuori Rossi", -- Abaddon
+	["5.100.230 (Tainted Bethany)"] = "{1} non perde le sue cariche sanguinee", -- Abaddon
 	["5.100.245 (Keeper)"] = "Più Rateo di Fuoco e meno dispersione lacrime per {1}", -- 20/20 + Keeper
-	["5.100.705"] = "+1 Danni temporanei per ogni proiettile/nemico", -- Dark Arts + Dark/Tainted Judas
 	["5.100.205 (Tainted Magdalene)"] = "Permette usi infiniti di \"Cuore Gustoso\"", -- Sharp Plug + Tainted Magdalene
+	
+	["5.100.705"] = "+1 Danni temporanei per ogni proiettile/nemico", -- Dark Arts + Dark/Tainted Judas
+	["5.100.722"] = {"Incatena Esaù Oscuro#Dopo 5 secondi o dopo aver riusato \"Anima Sola\", si libera lanciandosi verso Jacob"}, -- TJacob + Anima Sola
+	["5.100.713"] = {"Richiama tutti i grumi alla abrra di salute di Eva#I grumi in eccesso vengono spostati nella sua posizione#{{Timer}} Tempo di ricarica di 1 secondo"}, --Teve + Sumptorium
+	["5.100.711"] = {"Scambio con", "{{Player38}} Inverte Lazzaro nella sua forma alternativa#Scambio con"}, -- Tlaz + Flip
+	["5.100.710"] = {"Se usato, attaccare agita il sacco nella direzione scelta#Agitarlo ad un consumabile lo pone nel sacco#Quando è pieno i suoi contenuti possono essere spostati con {{ButtonRT}} per sostituire specifici consumabili#La qualità dell'oggetto si basa sulla qualità dei consumabili"}, -- Tcain Bag of Crafting
+
+	["Mother's Kiss Soul"] = {"{{SoulHeart}} Se tenuto +1 Cuore Celeste"},
+	["Mother's Kiss Bone"] = {"{{BoneHeart}} Se tenuto +1 Cuore Osseo"},
+	["Mother's Kiss Coin"] = {"{{CoinHeart}} Se tenuto +1 Portamonete#Aumenta di 1 il massimale di Portamonete"},
+	
 	-- Vibrant/Dim Bulb
-	["5.350.100 (Bethany)"] = "Funziona con le cariche di Cuori Celesti di {1}",
-	["5.350.100 (Tainted Bethany)"] = "Funziona con le cariche di Cuori Rossi di {1}",
-	["5.350.101 (Bethany)"] = "Ignora le cariche di Cuori Celesti di {1}",
-	["5.350.101 (Tainted Bethany)"] = "Ignora le cariche di Cuori Rossi di {1}",
+	["5.350.100 (Bethany)"] = "Funziona con le cariche celesti di {1}",
+	["5.350.100 (Tainted Bethany)"] = "Funziona con le cariche sanguinee di {1}",
+	["5.350.101 (Bethany)"] = "Ignora le cariche celesti di {1}",
+	["5.350.101 (Tainted Bethany)"] = "Ignora le cariche sanguinee di {1}",
+	["Health Up Soul Charges"] = "+{1} cariche celesti",
+	["Health Up Blood Charges"] = "+{1} cariche sanguinee",
 	
 	
 	------ DUPLICATE COPIES OF ITEMS ------
@@ -1374,7 +1388,7 @@ local repConditions = {
 	["5.100.153 (Copies)"] = "Isaac spara 2 altre lacrime#Nessuna diminuzione aggiuntiva di statistiche", -- Mutant Spider
 	["5.100.245 (Copies)"] = "Isaac spara 1 altra lacrima#Nessuna diminuzione aggiuntiva di statistiche", -- 20/20
 	["5.100.358 (Copies)"] = "Isaac spara 1 altra lacrima al centro", -- The Wiz
-	["5.100.64 (Copies)"] = "Owning this item multiple times reduces the price further", -- Steam Sale
+	["5.100.64 (Copies)"] = "Possedere copie multiple dell'oggetto riduce ulteriormente i prezzi", -- Steam Sale
 	["5.100.118 (Copies)"] = "Copie aggiuntive di \"Zolfo Fuso\" conferiscono danni maggiori e un raggio più grande", -- Brimstone
 	["5.100.531 (Copies)"] = "Copie aggiuntive conferiscono solo +1 Danni", -- Haemolacria
 	["5.100.224 (Copies)"] = "Copie aggiuntive conferiscono solo +0.5 Rateo di Fuoco", -- Cricket's Body
@@ -1391,7 +1405,7 @@ local repConditions = {
 	
 	["1000.76.0"] = "{{Warning}} Rilancia solo il personaggio che ha attivato il dado", -- Dice Room 1 (Co-op)
 	["1000.76.5"] = "{{Warning}} In co-op vengono rilanciati tutti gli oggetti dei personaggi!", -- Dice Room 6 (Co-op)
-	["5.100.45"] = "{{HalfHeart}} Cura gli altri giocatori di mezzo cuore", -- Yum Heart (Co-Op)
+	["5.100.45"] = "Cura gli altri giocatori di mezzo cuore", -- Yum Heart (Co-Op)
 	["5.350.125"] = "I raggi si estendono anche ai giocatori", -- Extension Cord (Co-Op)
 	
 	["5.100.245"] = "Rimuove la penalità nel rateo di fuoco di {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
@@ -1424,14 +1438,15 @@ local repConditions = {
 	["Technology Ipecac"] = "Il laser ottiene +2 danni sma non esplode sui bersagli",
 	["Eye of the Occult Beam"] = "Isaac spara automaticamente con un mirino che altera la traiettoria del raggio",
 
-	["Lullaby Tainted Eve"] = "Il rateo di fuoco dei grumi viene raddoppiato",
-	["Lullaby Lilith"] = "Il rateo di fuoco di \"Incubo\" viene raddoppiato",
+	["Lullaby Clots"] = "(Include i grumi)",
+	["Lullaby Incubus"] = "(Include \"Incubo\")",
 
 	-- Jacob's Ladder / 120 Volt battery synergies
 	["Sparks Damage"] = "Le scintille infliggono il 50% di più dei danni",
 	["Sparks Arc Length"] = "Le scintille si estendono ad una distanza maggiore",
 	["Sparks Arc Count"] = "Le scintille si estendono ad altri 2 nemici",
 	["Sparks Arc Back"] = "Le scintille possono ricolpire lo stesso nemico",
+	["Binge Eater Healing"] = {"Cura di 1 cuore", "Cura di {{BlinkGreen}}2{{CR}} cuori", "+4 cariche sanguinee", "+{{BlinkGreen}}6{{CR}} cariche sanguinee"},
 	
 	["White Poop Jar"] = "Genera una cacca bianca con 1 carica",
 	["Golden Poop Jar"] = "Chance di genere una cacca dorata con 1 carica",
