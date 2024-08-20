@@ -151,7 +151,8 @@ end
 	Can also be a function for more dynamic deciding
 	
 	Argument 4 (optional): Table with any additional options, usually not needed:
-	variableText: If there's a {1} in the desc, it will be replaced with this; can be a function for more dynamic text results, it will get descObj passed into it
+	variableText: If there's a {1} in the desc, it will be replaced with this; can be a function for more dynamic text results, it will get descObj passed into it; it can also be a table of strings, to replace {1}, {2}, etc.
+	variableText2: Becomes variableText[2]; to add more variable text to things like player conditionals where variableText[1] gets defined dynamically
 	locTable: Specify a different table to look for the localization string in, rather than ConditionalDescs
 	noTable: Set to true to look in the base localizations only (requires modText)
 	lineColor: Appended lines will be highlighted with this color
@@ -160,7 +161,7 @@ end
 	noFallback: Don't fallback to English if this isn't localized; by default, conditionals don't fallback, to avoid printing English text in unupdated languages
 	usePedestalName: If true, display the pedestal item's name in place of {1}
 	useResult: If true, use the result from the conditional function to find the localization string
-	layer: A number used in determining the order that conditionals should be checked in, default -1
+	layer: A number used in determining the order that conditionals should be checked in, default 0
 	checkLayers: If true, don't print this condition if a higher layer condition was applied already
 	uniqueID: Only one conditional with the given unique ID will be printed
 ]]
@@ -174,7 +175,7 @@ function EID:AddConditional(IDs, funcText, modText, extraTable)
 	if modText == "" then modText = nil end
 	extraTable = extraTable or {}
 	if extraTable.noFallback == nil then extraTable.noFallback = true end
-	extraTable.layer = extraTable.layer or -1
+	extraTable.layer = extraTable.layer or 0
 	for _, id in ipairs(IDs) do
 		if type(id) ~= "string" then id = "5.100." .. id end
 		EID.DescriptionConditions[id] = EID.DescriptionConditions[id] or {}
@@ -184,6 +185,9 @@ function EID:AddConditional(IDs, funcText, modText, extraTable)
 		newTable.modifierText = modText;
 		if newTable.usePedestalName then
 			newTable.variableText = "{{NameOnly" .. id .. "}}"
+		end
+		if newTable.variableText2 then
+			newTable.variableText = {newTable.variableText, newTable.variableText2}
 		end
 		table.insert(EID.DescriptionConditions[id], newTable)
 	end
@@ -248,6 +252,11 @@ function EID:AddPlayerConditional(IDs, charIDs, modText, extraTable, includeTain
 	end
 end
 
+-- For adding a conditional that only displays when the closest player to the pedestal is the right character
+function EID:AddClosestPlayerConditional(IDs, charIDs, modText, extraTable, includeTainted)
+	EID:AddPlayerConditional(IDs, charIDs, function() return EID:ClosestCharCheck(modText, charIDs, includeTainted) end, extraTable, includeTainted)
+end
+
 
 ------ Evaluation Functions ------
 
@@ -275,9 +284,37 @@ function EID:ConditionalCharCheck(playerType, includeTainted)
 	end
 end
 
+-- Function to check if we are the closest player and should actually apply the conditional, or just append "Different effect for {1}"
+function EID:ClosestCharCheck(modifierText, playerTypes, includeTainted)
+	if EID.InsideItemReminder or not EID.CurrentConditionalDescObj.Entity then return modifierText end
+	if type(playerTypes) ~= "table" then playerTypes = {playerTypes} end
+	
+	local closestPlayer = EID:ClosestPlayerTo(EID.CurrentConditionalDescObj.Entity)
+	
+	if EID:ArrayContains(playerTypes, closestPlayer:GetPlayerType()) or (includeTainted and EID:ArrayContains(playerTypes, EID.TaintedToRegularID[closestPlayer:GetPlayerType()])) then
+		-- The closest player applies the modifier; check for players that don't get this modifier
+		for i = 1, #EID.coopAllPlayers do
+			local t = EID.coopAllPlayers[i]:GetPlayerType()
+			if not (EID:ArrayContains(playerTypes, t) or (includeTainted and EID:ArrayContains(playerTypes, EID.TaintedToRegularID[t]))) then
+				table.insert(EID.DifferentEffectPlayers, t)
+			end
+		end
+		return modifierText
+	end
+	
+	-- The closest player does not apply the modifier; check for players that do get this modifier
+	for i = 1, #EID.coopAllPlayers do
+		local t = EID.coopAllPlayers[i]:GetPlayerType()
+		if EID:ArrayContains(playerTypes, t) or (includeTainted and EID:ArrayContains(playerTypes, EID.TaintedToRegularID[t])) then
+			table.insert(EID.DifferentEffectPlayers, t)
+		end
+	end
+	return "N/A"
+end
+
 function EID:PlayersHaveGoldenBomb()
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
+	for i = 1, #EID.coopAllPlayers do
+		local player = EID.coopAllPlayers[i]
 		if player:HasGoldenBomb() then
 			return true
 		end
@@ -320,8 +357,8 @@ function EID:CheckForNoRedHealthPlayer()
 		local player = EID.ItemReminderPlayerEntity
 		return EID.NoRedHeartsPlayerIDs[player:GetPlayerType()]
 	else
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
+		for i = 1, #EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[i]
 			if EID.NoRedHeartsPlayerIDs[player:GetPlayerType()] then
 				return true
 			end
@@ -335,8 +372,8 @@ function EID:CheckForTaintedPlayer()
 		local player = EID.ItemReminderPlayerEntity
 		return EID.TaintedIDs[player:GetPlayerType()]
 	else
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
+		for i = 1, #EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[i]
 			if EID.TaintedIDs[player:GetPlayerType()] then
 				return true
 			end
@@ -353,8 +390,8 @@ function EID:CheckForMultipleActives(descObj, onlyChargeablePockets)
 		local id = player:GetPlayerType()
 		if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return player:GetActiveItem(2) end
 	else
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
+		for i = 1, #EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[i]
 			if player:HasCollectible(534) then return 534 end
 			local id = player:GetPlayerType()
 			if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return player:GetActiveItem(2) end
@@ -372,8 +409,8 @@ function EID:CheckForPocketActives()
 		local player = EID.ItemReminderPlayerEntity
 		return EID.PocketActivePlayerIDs[player:GetPlayerType()]
 	else
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
+		for i = 1, #EID.coopAllPlayers do
+			local player = EID.coopAllPlayers[i]
 			if EID.PocketActivePlayerIDs[player:GetPlayerType()] then return true end
 		end
 	end
@@ -444,9 +481,7 @@ function EID:CheckPlayersForActiveChargeType(maxCharge, chargeType, checkPockets
 	if EID.InsideItemReminder then
 		players[1] = EID:ItemReminderGetAllPlayers()[EID.ItemReminderSelectedPlayer + 1] or EID.player
 	else
-		for i = 0, game:GetNumPlayers() - 1 do
-			table.insert(players, Isaac.GetPlayer(i))
-		end
+		players = EID.coopAllPlayers
 	end
 	local maxSlot = EID.isRepentance and 1 or 0
 	if EID.isRepentance and checkPockets then maxSlot = 3 end
@@ -477,9 +512,9 @@ function EID:CheckActiveChargeType(itemID, maxCharge, chargeType, requiredCollec
 	return false
 end
 
--- Check for multiple players existing for items like Yum Heart and Extension Cord, includes J&E (but does it include Forgotten?)
+-- Check for multiple players existing for items like Yum Heart and Extension Cord, includes J&E and Strawmen
 function EID:MultiplePlayerCharacters()
-	return #EID.coopAllPlayers > 1
+	return game:GetNumPlayers() > 1
 end
 
 -- Check the bestiary/character list if we have REPENTOGON, to help avoid spoilers. Otherwise just return true
@@ -506,22 +541,10 @@ end
 
 ----- Apply Conditionals -----
 
--- thing to fix find/replace pairs with hyphens (like "1-2") breaking because hyphen is a special char
--- https://stackoverflow.com/questions/29072601/lua-string-gsub-with-a-hyphen
-local function replace(str, what, with, count)
-	what = string.gsub(what, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1") -- escape pattern
-	with = string.gsub(with, "[%%]", "%%%%")                       -- escape replacement
-	return string.gsub(str, what, with, count)
-end
--- super simple table concatenation: https://www.tutorialspoint.com/concatenation-of-tables-in-lua-programming
-local function TableConcat(t1, t2)
-	for i = 1, #t2 do
-		t1[#t1 + 1] = t2[i]
-	end
-	return t1
-end
-
+EID.CurrentConditionalDescObj = nil
 function EID:applyConditionals(descObj)
+	EID.CurrentConditionalDescObj = descObj
+	EID.DifferentEffectPlayers = {}
 	EID:CheckPlayersCollectibles()
 	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 	local typeVar = descObj.ObjType.."."..descObj.ObjVariant -- for general conditions (Tarot Cloth, Book of Virtues)
@@ -531,8 +554,8 @@ function EID:applyConditionals(descObj)
 	
 	-- Combine specific+generic conditions into one table (in that order)
 	local conds = {}
-	if EID.DescriptionConditions[typeVarSub] then TableConcat(conds, EID.DescriptionConditions[typeVarSub]) end
-	if EID.DescriptionConditions[typeVar] then TableConcat(conds, EID.DescriptionConditions[typeVar]) end
+	if EID.DescriptionConditions[typeVarSub] then EID:ConcatTables(conds, EID.DescriptionConditions[typeVarSub]) end
+	if EID.DescriptionConditions[typeVar] then EID:ConcatTables(conds, EID.DescriptionConditions[typeVar]) end
 	table.sort(conds, function(a, b) return a.layer > b.layer end)
 	-- Check every condition we need to check for this item
 	for _, cond in ipairs(conds) do
@@ -542,7 +565,8 @@ function EID:applyConditionals(descObj)
 				-- Search for the localization string; "S" (for generals) or "T.V.S" or "T.V.S (Modifier)" or "Modifier"
 				local locTable = cond.locTable or "ConditionalDescs"
 				local text = nil
-				local modifierText = type(cond.modifierText) == "function" and cond.modifierText(EID, descObj) or cond.modifierText
+				local modifierText = cond.modifierText
+				while type(modifierText) == "function" do modifierText = modifierText(EID, descObj) end
 				if cond.useResult then modifierText = result end
 				
 				-- Find our string in the base localization table
@@ -575,25 +599,25 @@ function EID:applyConditionals(descObj)
 
 					-- String = append
 					if type(text) == "string" then
-						text = EID:ReplaceVariableStr(text, 1, variableText)
+						text = EID:ReplaceVariableStr(text, variableText)
 						local iconStr = "#"
 						if bulletpoint then iconStr = iconStr .. "{{" .. bulletpoint .. "}} " end
 						if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end
 						EID:appendToDescription(descObj, iconStr .. text:gsub("#", iconStr))
 
-						-- Table with 1 entry = replace
+					-- Table with 1 entry = replace
 					elseif #text == 1 then
-						descObj.Description = EID:ReplaceVariableStr(text[1], 1, variableText)
-
-						-- Table with 2+ entries = find and replace pairs
-						-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
-						-- If there's an odd number of entries, the last one is appended
+						descObj.Description = EID:ReplaceVariableStr(text[1], variableText)
+						
+					-- Table with 2+ entries = find and replace pairs
+					-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.
+					-- If there's an odd number of entries, the last one is appended
 					else
 						local pos = 1
 						while pos <= #text do
 							local toFind = text[pos]
 							if text[pos + 1] then
-								local replaceWith = EID:ReplaceVariableStr(text[pos + 1], 1, variableText)
+								local replaceWith = EID:ReplaceVariableStr(text[pos + 1], variableText)
 								if cond.replaceColor then replaceWith = "{{" .. cond.replaceColor .. "}}" .. replaceWith .. "{{CR}}" end
 								--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
 								if (type(toFind) == "number") then
@@ -604,12 +628,12 @@ function EID:applyConditionals(descObj)
 											return replaceWith
 										end
 									end)
-									-- Basic find+replace for non-numbers
+								-- Basic find+replace for non-numbers
 								else
-									descObj.Description = replace(descObj.Description, tostring(toFind), replaceWith, 1)
+									descObj.Description = EID:SimpleReplace(descObj.Description, tostring(toFind), replaceWith, 1)
 								end
 							else
-								toFind = EID:ReplaceVariableStr(toFind, 1, variableText)
+								toFind = EID:ReplaceVariableStr(toFind, variableText)
 								local iconStr = "#"
 								if bulletpoint then iconStr = iconStr .. "{{" .. bulletpoint .. "}} " end
 								if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end

@@ -937,6 +937,8 @@ EID.descriptions[languageCode].transformations={
 
 
 ---------- MISC ----------
+-- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
+EID.descriptions[languageCode].Pluralize = ""
 
 EID.descriptions[languageCode].VoidText = "Si absorbé :"
 EID.descriptions[languageCode].VoidNames = {"Vitesse {{ColorLime}}{1}", "Débit {{ColorLime}}{1}", "Dégâts {{ColorLime}}{1}", "Portée {{ColorLime}}{1}", "Vitesse des tirs {{ColorLime}}{1}", "Chance {{ColorLime}}{1}"}

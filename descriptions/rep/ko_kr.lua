@@ -1189,9 +1189,6 @@ EID.descriptions[languageCode].horsepills={
 ---------- Glitched Item Descriptions ----------
 
 EID.descriptions[languageCode].GlitchedItemText = {
-	-- This will be appended to words to pluralize them, make it "" to not pluralize
-	pluralize = "",
-
 	-- Item Config info
 	AddBlackHearts = "{{BlackHeart}}블랙하트 {1}",
 	AddBombs = "{{Bomb}}폭탄 {1}",
@@ -1432,8 +1429,8 @@ local repConditions={
 	["Technology Ipecac"] = "공격력 증가가 +2로 감소, 레이저에 가장 가까이 닿은 장애물이나 적의 위치에서 폭발합니다.",
 	["Eye of the Occult Beam"] = "조준점 + 자동 공격이 적용되며 {{ButtonRT}}버튼을 눌러 자동 공격을 멈출 수 있습니다.",
 
-	["Lullaby Tainted Eve"] = "클롯의 연사 x2",
-	["Lullaby Lilith"] = "Incubus의 연사 x2",
+	["Lullaby Clots"] = "클롯의 연사 x2",
+	["Lullaby Incubus"] = "Incubus의 연사 x2",
 
 	-- Jacob's Ladder / 120 Volt battery synergies
 	["Sparks Damage"] = "전류 피해량 +50%",

@@ -171,6 +171,8 @@ EID.InlineIcons = {
 	["Warning"] = {"Warning", 0, 10, 9, 3},
 	["Blank"] = {"Blank", 0, 0, 0},
 
+	["ArrowUpDown"] = {"ArrowUpDown", 0, 12, 9, -1},
+
 	["ArrowGrayUp"] = {"ArrowGray", 0, 10, 9, 1},
 	["ArrowGrayRight"] = {"ArrowGray", 1, 10, 9, 1},
 	["ArrowGrayDown"] = {"ArrowGray", 2, 10, 9, 1},
@@ -220,6 +222,9 @@ EID.InlineIcons = {
 	["HolyMantleSmall"] = {"hearts", 19, 9, 9, 1},
 	["RottenBoneHeart"] = {"hearts", 20, 10, 9, 1, 1},
 	["UnknownHeart"] = {"hearts", 21, 10, 9, 1, 1},
+	["HealingRed"] = {"hearts", 22, 11, 9, 1, 1},
+	["HealingCoin"] = {"hearts", 23, 11, 9, 1, 1},
+	["HealingBone"] = {"hearts", 24, 11, 9, 1, 1},
 
 	-- Pickups
 	["Key"] = {"pickups", 0, 8, 9, 0},
@@ -616,6 +621,11 @@ EID.InlineIcons = {
 	["ItemPoolWoodenChest"] = {"ItemPools", 29, 11, 11, 0, 0},
 	["ItemPoolRottenBeggar"] = {"ItemPools", 30, 11, 11, 0, 0},
 
+	-- Wisps
+	["InnerWisp"] = {"Wisps", 0, 10, 9, 0, 2},
+	["MiddleWisp"] = {"Wisps", 1, 10, 9, 0, 2},
+	["OuterWisp"] = {"Wisps", 2, 10, 9, 0, 2},
+
 	-- Misc
 	["HardMode"] = {"Misc", 0, 16, 12, 0, -2},
 	["GreedMode"] = {"Misc", 1, 16, 12, 0, -2},
@@ -634,6 +644,7 @@ EID.InlineIcons = {
 	["DailyRun"] = {"Misc", 14, 15, 12, 0, -1},
 	["DailyRunSmall"] = {"Misc", 15, 12, 12, 0, 1},
 	["MagnifyingLens"] = {"Misc", 16, 13, 13, 0, -1},
+	["Padlock"] = {"Misc", 17, 8, 10, 1, 0},
 }
 -- General Stats (Adjust automatically according to the current DLC)
 
@@ -1015,10 +1026,29 @@ EID.TaintedIDs = {}; for i = 21, 40 do EID.TaintedIDs[i] = true end
 
 -- Character IDs that are Soul/Black Hearts only: ???, The Lost, The Soul
 EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
+-- More separated table for more exact data
+EID.SpecialHeartPlayers = {}
+EID.SpecialHeartPlayers["Soul"] = { 4, 17 }
+EID.SpecialHeartPlayers["Black"] = {}
+EID.SpecialHeartPlayers["Coin"] = { 14 }
+EID.SpecialHeartPlayers["Bone"] = { 16 }
+EID.SpecialHeartPlayers["None"] = { 10 }
+-- Lookup table for the type of health each player has
+EID.CharacterToHeartType = {}; for i = 0, 17 do EID.CharacterToHeartType[i] = "Red" end
+EID.CharacterToHeartType[4] = "Soul"; EID.CharacterToHeartType[10] = "None"; EID.CharacterToHeartType[14] = "Coin"; EID.CharacterToHeartType[16] = "Bone"; EID.CharacterToHeartType[17] = "Soul"
+
 if EID.isRepentance then
 	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
 	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
+	EID.SpecialHeartPlayers["Soul"] = { 4, 17, 25, 35, 36, 40 }
+	EID.SpecialHeartPlayers["Black"] = { 12, 24 }
+	EID.SpecialHeartPlayers["Coin"] = { 14, 33 }
+	EID.SpecialHeartPlayers["None"] = { 10, 31 }
+	
+	for i = 18, 40 do EID.CharacterToHeartType[i] = "Red" end
+	EID.CharacterToHeartType[12] = "Black"; EID.CharacterToHeartType[24] = "Black"; EID.CharacterToHeartType[25] = "Soul"; EID.CharacterToHeartType[31] = "None"; EID.CharacterToHeartType[33] = "Coin"; EID.CharacterToHeartType[35] = "Soul"; EID.CharacterToHeartType[36] = "Soul"; EID.CharacterToHeartType[40] = "Soul"; 
 end
+
 -- Character IDs that have a pocket active (0 = normal, 1 = timed, 2 = special)
 EID.PocketActivePlayerIDs = { [22] = 0, [23] = 2, [24] = 1, [25] = 2, [26] = 1, [29] = 0, [34] = 0, [36] = 0, [37] = 1, [38] = 0, [39] = 1 }
 
@@ -1038,6 +1068,20 @@ EID.LuckFormulas["5.100.219"] = function(luck) return math.min(100 / (10 - math.
 if EID.isRepentance then
 	EID.LuckFormulas["5.100.219"] = function(luck) return (20 + luck) end -- Old Bandage: Base 20%, 100% at 80 Luck
 	EID.LuckFormulas["5.100.576"] = function(luck) return math.min(luck*0.5 + 6.25, 10) end -- Dirty Mind: Base 6.25%, 10% at 7.5 Luck
+end
+
+-- Number of Health Ups you get from a Health Up item
+-- (Pill ID is off by 1 because of EID one-indexed pill effects)
+EID.HealthUpData = {["5.70.8"] = 1, ["5.70.10"] = 1, ["5.100.12"] = 1, ["5.100.15"] = 1, ["5.100.16"] = 2, ["5.100.22"] = 1, ["5.100.23"] = 1, ["5.100.24"] = 1, ["5.100.25"] = 1, ["5.100.26"] = 1, ["5.100.92"] = 1, ["5.100.101"] = 1, ["5.100.119"] = 1, ["5.100.121"] = 1, ["5.100.129"] = 2, ["5.100.138"] = 1, ["5.100.176"] = 1, ["5.100.182"] = 1, ["5.100.184"] = 1, ["5.100.189"] = 1, ["5.100.193"] = 1, ["5.100.218"] = 1, ["5.100.219"] = 1, ["5.100.226"] = 1, ["5.100.253"] = 1, ["5.100.307"] = 1, ["5.100.312"] = 1, ["5.100.314"] = 1, ["5.100.334"] = 3, ["5.100.342"] = 1, ["5.100.346"] = 1, ["5.100.354"] = 1, ["5.100.456"] = 1, ["5.300.12"] = 1 }
+-- Items with a healing effect that can have the healing line removed for non-red HP characters
+-- Pyromaniac skipped, its healing line says how it prevents explosion damage
+EID.HealingItemData = {["5.100.45"] = true, ["5.100.62"] = true, ["5.100.75"] = true, ["5.100.93"] = true, ["5.100.217"] = true, ["5.100.270"] = true, ["5.100.428"] = true, ["5.350.8"] = true, ["5.350.46"] = true, ["5.350.53"] = true, ["5.350.87"] = true, ["5.350.119"] = true, ["5.300.20"] = true, ["5.300.26"] = true, ["5.70.6"] = true, ["5.70.37"] = true }
+if EID.isRepentance then
+	EID.HealthUpData["5.100.573"] = 1; EID.HealthUpData["5.100.591"] = 1; EID.HealthUpData["5.100.594"] = 2; EID.HealthUpData["5.300.59"] = 2
+	EID.HealthUpData["5.100.614"] = 1; EID.HealthUpData["5.100.664"] = 1; EID.HealthUpData["5.100.669"] = 1; EID.HealthUpData["5.100.707"] = 1
+	EID.HealingItemData["5.100.621"] = true; EID.HealingItemData["5.70.46"] = true;
+
+	EID.BloodUpData = {["5.70.10"] = 2, ["5.350.156"] = 2, ["5.300.12"] = 2, ["5.300.59"] = 4, [12] = 12, [15] = 12, [16] = 12, [22] = 4, [23] = 4, [24] = 4, [25] = 4, [26] = 4, [75] = 4, [92] = 4, [101] = 4, [119] = 10, [121] = 2, [129] = 4, [138] = 4, [176] = 4, [182] = 12, [184] = 4, [189] = 12, [193] = 4, [217] = 2, [218] = 4, [226] = 4, [253] = 4, [307] = 4, [312] = 4, [314] = 4, [334] = 6, [342] = 4, [346] = 4, [354] = 4, [428] = 12, [456] = 4, [535] = 2, [573] = 12, [591] = 4, [594] = 1, [614] = 10, [621] = 12, [664] = 12, [669] = 12, [707] = 4 }
 end
 
 

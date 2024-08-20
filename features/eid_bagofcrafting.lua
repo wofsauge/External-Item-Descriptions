@@ -1124,7 +1124,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 
 	local prefix = "#{{Blank}} "
 	if (lockedResults) then
-		prefix = "#{{Trinket159}} "
+		prefix = "#{{Padlock}} "
 	end
 	local moreDesc = EID:getDescriptionEntry("CraftingMore")
 	

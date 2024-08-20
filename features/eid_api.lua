@@ -1167,7 +1167,8 @@ end
 
 -- Adds Description object modifiers.
 -- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
-function EID:addDescriptionModifier(modifierName, condition, callback)
+function EID:addDescriptionModifier(modifierName, condition, callback, position)
+	position = position or #EID.DescModifiers + 1
 	for _,v in ipairs(EID.DescModifiers) do
 		if v["name"] == modifierName then
 			v["condition"] = condition
@@ -1175,7 +1176,7 @@ function EID:addDescriptionModifier(modifierName, condition, callback)
 			return
 		end
 	end
-	table.insert(EID.DescModifiers, {
+	table.insert(EID.DescModifiers, position, {
 		name = modifierName,
 		condition = condition,
 		callback = callback
@@ -2378,9 +2379,22 @@ end
 
 -- Replaces Variable placeholders in string with a given value
 -- Example: "My {1} message" --> "My test message"
+-- varID can be omitted to replace {1} (or pass in a string table, to replace {1}, {2}, etc.)
 function EID:ReplaceVariableStr(str, varID, newString)
+	if newString == nil then
+		newString = varID
+		varID = 1
+	end
 	if type(str) ~= "string" or newString == nil then return str end
-	return str:gsub("{"..varID.."}", newString)
+	
+	if type(newString) == "table" then
+		for i = 1, #newString do
+			str = str:gsub("{"..i.."}", newString[i])
+		end
+		return str
+	else
+		return str:gsub("{"..varID.."}", newString)
+	end
 end
 
 -- deep table copy, copied from http://lua-users.org/wiki/CopyTable
@@ -2398,10 +2412,53 @@ function EID:CopyTable(orig)
     end
     return copy
 end
+-- super simple table concatenation: https://www.tutorialspoint.com/concatenation-of-tables-in-lua-programming
+function EID:ConcatTables(t1, t2)
+	for i = 1, #t2 do
+		t1[#t1 + 1] = t2[i]
+	end
+	return t1
+end
+
+-- thing to fix find/replace pairs with hyphens (like "1-2") or pluses (like +1 Health) breaking because of special characters
+-- https://stackoverflow.com/questions/29072601/lua-string-gsub-with-a-hyphen
+function EID:SimpleReplace(str, what, with, count)
+	what = string.gsub(what, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1") -- escape pattern
+	with = string.gsub(with, "[%%]", "%%%%")                       -- escape replacement
+	return string.gsub(str, what, with, count)
+end
 
 -- simple decimal rounding, instead of just floor or ceil
 function EID:SimpleRound(num, dp)
 	dp = dp or 2
 	local mult = 10^dp
 	return math.floor(num * mult + 0.5)/mult
+end
+
+function EID:ArrayContains(t, value)
+	for _,v in ipairs(t) do
+		if v == value then return true end
+	end
+	return false
+end
+
+
+-- Find the closest player to the given entity
+function EID:ClosestPlayerTo(entity)
+	local closestDist = 9999999
+	local closestPlayer = EID.player
+	local numPlayers = game:GetNumPlayers()
+	if EID.InsideItemReminder then return EID.ItemReminderPlayerEntity end
+	if entity == nil or numPlayers == 1 then return closestPlayer end
+	
+	for i = 1, #EID.coopAllPlayers do
+		local player = EID.coopAllPlayers[i]
+		local dist = player.Position:Distance(entity.Position)
+		if dist < closestDist then
+			closestDist = dist
+			closestPlayer = player
+		end
+	end
+	
+	return closestPlayer
 end
