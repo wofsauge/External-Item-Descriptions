@@ -332,7 +332,7 @@ local repCollectibles={
 	[585] = {"585", "Boîte d'Albâtre", "Doit être chargée avec des cœurs d'âme#Fait apparaître 2 objets angéliques et 3 cœurs d'âme {{ColorSilver}}(1 objet angélique et 2 cœurs d'âme si un Pacte avec le Diable a été signé)"}, --  Alabaster Box
 	[586] = {"586", "Échelle Vers les Cieux", "Fait apparaître une échelle vers une boutique angélique dans la première salle d'un étage#L'échelle disparaît quand Isaac quitte la salle où elle se trouve"}, --  The Stairway
 	[587] = {"587", "Menorah", "<Cet objet n'existe pas>"}, -- Menorah (Unused but skripted)
-	[588] = {"588", "Sol", "Révèle l'emplacement de la salle de boss {{BossRoom}}#Après avoir battu un boss:#↑ Dégâts {{ColorLime}}+3.0#↑ Chance {{ColorLime}}+1.0#Recharge entièrement l'objet activable#Retire tous les fléaux#Déclenche {{ColorYellow}}XIX-Le Soleil {{Card20}}"}, --  Sol
+	[588] = {"588", "Sol", "Révèle l'emplacement de la salle de boss {{BossRoom}}#Après avoir battu un boss:#↑ Dégâts {{ColorLime}}+3.0#↑ Chance {{ColorLime}}+1.0#Recharge entièrement l'objet activable#Retire tous les fléaux#Déclenche {{ColorCard}}XIX-Le Soleil {{Card20}}"}, --  Sol
 	[589] = {"589", "Luna", "Ajoute une salle secrète et super secrète à chaque étage#Révèle la position d'une des quatre salles secrètes#Ajoute une lumière dans les salles secrètes qui augmente le débit pour l'étage et donne un demi-cœur d'âme"}, --  Luna
 	[590] = {"590", "Mercurius", "↑ Vitesse {{ColorLime}}+0.4#Les portes restent ouvertes en permanence"}, --  Mercurius
 	[591] = {"591", "Venus", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soin complet#Envoûte les ennemis à proximité d'Isaac"}, --  Venus
@@ -1313,16 +1313,16 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 EID.descriptions[languageCode].poopSpells = {
 	{"Caca", "Caca normal qui peut contenir des ressources"},
-	{"Caca avec pépites", "Invoque jusqu'à 3 mouches bleues à la fois tant qu'il est intact"},
-	{"Caca brûlant", "Inflige des dégâts de contact#Allume une flamme quand il est détruit"},
+	{"Caca avec pépites", "Invoque des mouches bleues tant qu'il est intact"},
+	{"Caca brûlant", "Inflige des dégâts de contact et allume une flamme une fois détruit"},
 	{"Caca de pierre", "Inflige de gros dégâts quand il est jeté#Plus difficile à détruire"},
-	{"Caca puant", "Émet des vapeurs toxiques qui empoisonnent les ennemis#{{Warning}} Les vapeurs toxiques explosent si elles entrent en contact avec du feu"},
-	{"Caca noir", "Répand une flaque noire ralentissante#Détruire ce caca inflige 10 dégâts et étourdit tous les ennemis de la salle"},
-	{"Caca sacré", "Est entouré d'une aura#{{Blank}} Quand Isaac se tient dans l'aura:#↑ Dégâts {{ColorLime}}+20%#↑ Débit {{ColorLime}}+150%#Larmes autoguidées#Les dégâts subis ont une chance d'être nullifiés"},
-	{"Flaque brune", "Répand une flaque brune derrière Isaac#La flaque inflige des dégâts de contact aux ennemis#Marcher sur la flaque donne {{ColorLime}}dégâts +1{{ColorWhite}} et {{ColorLime}}débit 1.5 à Isaac#Si la flaque touche un caca, elle prend sa couleur et ses propriétés"},
-	{"Pet", "Repousse les ennemis et projectiles et crée un nuage toxique#{{Warning}} Le nuage toxique explose s'il entre en contact avec du feu"},
-	{"Bombe", "Bombe normale jetable"},
-	{"Diarrhée explosive", "Fait rapidement apparaître 5 bombes aux pieds d'Isaac"},
+	{"Caca puant", "Crée un nuage de poison#{{Warning}} Le poison explose au contact du feu"},
+	{"Caca noir", "Répand une flaque ralentissante#Inflige 10 dégâts et étourdit tous les ennemis de la salle une fois détruit"},
+	{"Caca sacré", "Est entouré d'une aura#{{Blank}} Se tenir dans l'aura donne :#↑ Dégâts {{ColorLime}}+20%#↑ Débit {{ColorLime}}+150%#Larmes autoguidées#Chance de nullifier un dégât subi"},
+	{"Flaque brune", "Répand une flaque brune sous Isaac qui inflige des dégâts de contact aux ennemis#Marcher sur la flaque donne {{ColorLime}}dégâts +1{{ColorWhite}} et {{ColorLime}}débit 1.5 à Isaac#La flaque prend les propriétés des cacas qu'elle touche"},
+	{"Pet", "Repousse les ennemis et projectiles et crée un nuage de poison#{{Warning}} Le poison explose au contact du feu"},
+	{"Bombe", "Bombe jetable"},
+	{"Diarrhée explosive", "Fait apparaître 5 bombes aux pieds d'Isaac"},
 }
 
 ---------- Misc. Text ----------

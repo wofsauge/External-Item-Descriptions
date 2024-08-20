@@ -877,7 +877,7 @@ EID.descriptions[languageCode].pills={
 	{"4", "Diarrhée explosive", "Fait apparaître 5 bombes amorcées derrière Isaac"},
 	{"5", "Soin complet", "{{HealingRed}} Soin complet"},
 	{"6", "PV diminués", "↓ -1 réceptacle de cœur"},
-	{"7", "PV augmentés", "{{Heart}} +1 réceptacle de cœur"},
+	{"7", "PV augmentés", "{{EmptyHeart}} +1 réceptacle de cœur"},
 	{"8", "J'ai trouvé une pilule !", "Aucun effet"},
 	{"9", "Puberté", "Avaler 3 pilules {{ColorYellow}}Puberty{{ColorWhite}} ajoute 1 réceptacle de cœur aux PV d'Isaac"},
 	{"10", "Jolie mouche", "Invoque une mouche qui orbite autour d'Isaac et bloque les projectiles"},
@@ -971,7 +971,7 @@ EID.descriptions[languageCode].transformations={
 
 ---------- MISC ----------
 -- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = ""
+EID.descriptions[languageCode].Pluralize = "s"
 
 EID.descriptions[languageCode].VoidText = "Si absorbé :"
 EID.descriptions[languageCode].VoidNames = {"Vitesse {{ColorLime}}{1}", "Débit {{ColorLime}}{1}", "Dégâts {{ColorLime}}{1}", "Portée {{ColorLime}}{1}", "Vitesse des tirs {{ColorLime}}{1}", "Chance {{ColorLime}}{1}"}
@@ -987,6 +987,28 @@ EID.descriptions[languageCode].CollectionPageInfo = "Cet objet n'a encore jamais
 
 EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorSilver}}({1} objets : Dégâts {{ColorLime}}+{2}{{ColorSilver}})"
 
+-- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
+-- {1} = number of hearts, {2} = plural character
+-- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
+EID.descriptions[languageCode].RedToX = {
+	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
+	["Red to Soul"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{SoulHeart}} +{1} cœur{2} d'âme",
+	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{SoulHeart}} +{1} cœur{2} d'âme", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} cœur{2}"},
+
+	["Red to Black"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{BlackHeart}} +{1} cœur{2} noir{2}",
+	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{BlackHeart}} +{1} cœur{2} noir{2}", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} cœur{2}"},
+
+	["Red to Bone"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{BoneHeart}} +{1} cœur{2} d'os",
+	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{EmptyBoneHeart}} +{1} cœur{2} d'os", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} cœur{2}", 
+	"{{HealingRed}}", "{{HealingBone}}"}, -- Red HP to Bone Hearts
+
+	["Red to Coin"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{CoinHeart}} +{1} réceptacle{2} de pièce",
+	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{EmptyCoinHeart}} +{1} réceptacle{2} de pièce", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} réceptacle{2} de pièce", 
+	"{{HealingRed}} Soigne {1} cœur{2} rouge{2}", "{{HealingCoin}} Soigne {1} pièce{2}", "{{HealingRed}} Soigne un demi-cœur rouge", "{{HealingCoin}} Soigne 1 pièce", "{{HealingRed}}", "{{HealingCoin}}"},
+
+	["Red to None"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "", "{{EmptyHeart}} +{1} réceptacle{2} de cœur", ""}, -- Red HP to None (The Lost)
+}
+
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Nom de l'objet test",
 	DemoObjectTransformation = "Transformation de test",
@@ -995,7 +1017,7 @@ EID.descriptions[languageCode].MCM = {
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].ItemReminder = {
-	ResultHeader = "Effet de",
+	ResultHeader = "Effet de {1}",
 	InventoryEmpty = "(Aucun objet dans l'inventaire)",
 	CategoryNames = {
 		Overview = " Inventaire global ",
@@ -1053,6 +1075,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Overrides"] = "Annule l'effet de {1}",
 	["Almost No Effect"] = "Presque aucun effet avec {1}",
 	["No Effect"] = "Aucun effet avec {1}",
+	["No Effect Replace"] = {"Aucun effet pour {1}"},
 	["No Effect From"] = "Aucun effet par {1}",
 	["Can't Charge"] = "Ne recharge pas {1}",
 	["Can't Be Charged"] = "Ne peut pas être rechargé par {1}",
@@ -1061,7 +1084,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Copies)"] = "Avoir plusieurs exemplaires ne cumule pas les effets", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "Aucun effet bonus pour les familiers", -- probably just for Hive Mind + BFFS!
 	["No Red"] = "Aucun effet pour les personnages sans cœurs rouges",
-	["Different Effect"] = "Effet différent avec {1}",
+	["Different Effect"] = "{{ColorSilver}}(Effet différent avec {1}{{ColorSilver}})",
 
 
 	------ GREED MODE ------
@@ -1091,25 +1114,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 
 
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
-		-- NO RED HEALTH CHARS
-	-- These change "+1 Health, Full health" to just "+1 Soul Heart" and etc.
-	["Red to Soul"] = {"{{Heart}} +1 réceptacle de cœur", "{{SoulHeart}} +1 cœur d'âme", "{{Heart}} +2 réceptacles de cœur", "{{SoulHeart}} +2 cœurs d'âme", "{{Heart}} +3 réceptacles de cœur", "{{SoulHeart}} +3 cœurs d'âme",
-	"{{EmptyHeart}} +1 réceptacle de cœur", "{{SoulHeart}} +1 cœur d'âme", "{{EmptyHeart}} +2 réceptacles de cœur", "{{SoulHeart}} +2 cœurs d'âme",
-	"Soin complet", "", "Soigne un cœur rouge", "", "Soigne un demi-cœur rouge", "", "Soigne 2 cœurs rouges", ""}, -- Red HP to Soul Hearts, removes heals
-	
-	["Red to Black"] =  {"{{Heart}} +1 réceptacle de cœur", "{{BlackHeart}} +1 cœur noir", "{{Heart}} +2 réceptacles de cœur", "{{BlackHeart}} +2 cœurs noirs", "{{Heart}} +3 réceptacles de cœur", "{{BlackHeart}} +3 cœurs noirs",
-	"{{EmptyHeart}} +1 réceptacle de cœur", "{{BlackHeart}} +1 cœur noir", "{{EmptyHeart}} +2 réceptacles de cœur", "{{BlackHeart}} +2 cœurs noirs",
-	"Soin complet", "", "Soigne un cœur rouge", "", "Soigne un demi-cœur rouge", "", "Soigne 2 cœurs rouges", ""}, -- Red HP to Black Hearts, removes heals
-	
-	["Red to Bone"] = {"{{Heart}} +1 réceptacle de cœur", "{{BoneHeart}} +1 cœur d'os", "{{Heart}} +2 réceptacles de cœur", "{{BoneHeart}} +2 cœurs d'os", "{{Heart}} +3 réceptacles de cœur", "{{BoneHeart}} +3 cœurs d'os",
-	"{{Heart}} +1 réceptacle de cœur", "{{EmptyBoneHeart}} +1 cœur d'os", "{{Heart}} +2 réceptacles de cœur", "{{EmptyBoneHeart}} +2 cœurs d'os"}, -- Red HP to Bone Hearts
-	
-	["Red to Coin"] = {"{{Heart}} +","{{CoinHeart}} +", "{{EmptyHeart}} +","{{EmptyCoinHeart}} +",
-	"réceptacle de cœur", "réceptacle de pièce", "Soigne un cœur rouge", "Soigne une pièce", "Soigne un demi-cœur rouge", "Soigne une pièce", "Soigne 2 cœurs rouges", "Soigne 2 pièces"}, -- Red HP to Coin Hearts
-	
-	["Red to None"] = {"{{Heart}} +1 réceptacle de cœur", "", "{{Heart}} +2 réceptacles de cœur", "", "{{Heart}} +3 réceptacles de cœur", "",
-	"{{EmptyHeart}} +1 réceptacle de cœur", "", "{{EmptyHeart}} +2 réceptacles de cœur", "",
-	"Soin complet", "", "Soigne un cœur rouge", "", "soigne un demi-cœur rouge", "", "soigne 2 cœurs rouges", ""}, -- Red HP to None (The Lost)
 	
 	["Super Bandage Soul"] = {"{{SoulHeart}} +3 cœurs d'âme"}, -- for Soul Heart chars
 	["Super Bandage Black"] = {"{{SoulHeart}} +2 cœurs d'âme#{{BlackHeart}} +1 cœur noir"}, -- for Black Heart chars
