@@ -21,11 +21,11 @@ local repCollectibles={
 	[13] = {"13", "Le Virus", "↑ Vitesse {{ColorLime}}+0.2#Rentrer en contact avec un ennemi l'empoisonne"}, -- The Virus
 	[14] = {"14", "Crise d'Hormones", "↑ Vitesse {{ColorLime}}+0.3#↑ Portée {{ColorLime}}+5.25"}, -- Roid Rage
 	[18] = {"18", "Un Dollar", "{{Coin}} +100 Pièces"}, -- A Dollar
-	[22] = {"22", "Déjeuner", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge"}, -- Lunch
-	[23] = {"23", "Dîner", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge"}, -- Dinner
-	[24] = {"24", "Dessert", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge"}, -- Dessert
-	[25] = {"25", "Petit Déjeuner", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge"}, -- Breakfast
-	[26] = {"26", "Viande Avariée", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge"}, -- Rotten Meat
+	[22] = {"22", "Déjeuner", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge"}, -- Lunch
+	[23] = {"23", "Dîner", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge"}, -- Dinner
+	[24] = {"24", "Dessert", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge"}, -- Dessert
+	[25] = {"25", "Petit Déjeuner", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge"}, -- Breakfast
+	[26] = {"26", "Viande Avariée", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge"}, -- Rotten Meat
 	[29] = {"29", "Culotte de Maman", "↑ Portée {{ColorLime}}+1.5#Invoque 3 à 6 mouches bleues"}, -- Moms Underwear
 	[30] = {"30", "Escarpins de Maman", "↑ Portée {{ColorLime}}+1.5#Permet à Isaac d'infliger des dégâts de contact"}, -- Mom's Heels
 	[31] = {"31", "Rouge à Lèvres de Maman", "↑ Portée {{ColorLime}}+2.25#Fait apparaître un cœur"}, -- Mom's Lipstick
@@ -36,7 +36,7 @@ local repCollectibles={
 	[41] = {"41", "Serviette de Maman", "Terrifie tous les ennemis dans la salle#Invoque une mouche bleue#{{Timer}} L'effet dure 5 secondes"},
 	[42] = {"42", "Tête de Bob", "Bombe jetable#Crée un nuage de poison à l'endroit de l'explosion"}, -- Bob's Rotten Head
 	[44] = {"44", "Téléportation !", "Téléporte Isaac dans une salle aléatoire dans l'étage"}, -- Teleport
-	[45] = {"45", "Joli Cœur", "{{HealingRed}} Soigne un cœur rouge"}, -- Yum Heart
+	[45] = {"45", "Joli Cœur", "{{HealingRed}} Soigne 1 cœur rouge"}, -- Yum Heart
 	[46] = {"46", "Pied Chanceux", "↑ Chance {{ColorLime}}+1#Augmente les chances de gagner aux jeux d'argent et d'obtenir des récompenses de salle#Les pilules n'ont plus d'effets négatifs"}, -- Lucky Foot
     [51] = {"51", "Pentagramme", "↑ Dégâts {{ColorLime}}+1.0#{{AngelDevilChanceSmall}} {{ColorLime}}+10%{{ColorWhite}} de chances de Pacte avec le Diable et d'Offrande des Anges"},
 	[52] = {"52", "Dr. Fœtus", "↓ Débit {{ColorError}}-60%#Remplace les larmes d'Isaac par des bombes"},
@@ -76,7 +76,7 @@ local repCollectibles={
 	[129] = {"129", "Seau de Saindoux", "{{Heart}} +2 réceptacles de cœur#{{HealingRed}} Soigne un demi-cœur rouge#↓ Vitesse {{ColorError}}-0.2"}, -- Bucket of Lard
 	[135] = {"135", "Perfusion", "Inflige un demi-cœur de dégâts à Isaac et fait apparaître 1 ou 2 pièces#Retire les cœurs rouges en priorité"},
     [136] = {"136", "Mon Meilleur Ami", "Place une peluche qui attire les ennemis et explose après 5 secondes"},
-	[138] = {"138", "Stigmates", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge#↑ Dégâts {{ColorLime}}+0.3"}, -- Stigmata
+	[138] = {"138", "Stigmates", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge#↑ Dégâts {{ColorLime}}+0.3"}, -- Stigmata
 	[139] = {"139", "Sac à Main de Maman", "Permet à Isaac de porter deux babioles à la fois#Fait apparaître une babiole"}, -- Mom's Purse
 	[140] = {"140", "Malédiction de Bob", "{{Bomb}} +5 bombes#Les bombes d'Isaac laissent un nuage de poison#Rend Isaac invulnérable aux nuages de poison"}, -- Bob's Curse
 	[142] = {"142", "Scapulaire", "Descendre à un demi-cœur de vie totale ajoute un cœur d'âme aux PV d'Isaac#L'effet ne se déclenche qu'une fois par salle#{{Warning}} L'effet ne se déclenche pas sur un don de sang"},
@@ -95,16 +95,16 @@ local repCollectibles={
 	[172] = {"172", "Dague Sacrificielle", "Orbite autour d'Isaac, bloque les projectiles ennemis et inflige des dégâts de contact#{{DamageSmall}} 112.5 dégâts par seconde"},
 	[173] = {"173", "Mitre", "Les cœurs rouges au sol ont 33% de chances d'être convertis en cœurs d'âme"},
 	[174] = {"174", "Bébé Arc-en-Ciel", "Tire des larmes aléatoires#{{DamageSmall}} 3 à 6 dégâts par larme"},
-	[176] = {"176", "Cellules Souches", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge#↑ Vitesse des tirs {{ColorLime}}+0.16"}, -- Stem Cells
+	[176] = {"176", "Cellules Souches", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge#↑ Vitesse des tirs {{ColorLime}}+0.16"}, -- Stem Cells
 	[178] = {"178", "Eau Bénite", "Se projette dans la direction où tire Isaac#Répand une flaque paralysante en se brisant"}, -- Holy Water
 	[180] = {"180", "Haricot Noir", "Subir un dégât fait péter Isaac plusieurs fois et crée des nuages de poison"},
 	[181] = {"181", "Poney Blanc", "↑ Vitesse =1.5#Permet à Isaac de voler#Utiliser l'objet fait se ruer Isaac en ligne droite et des rayons de lumière frappent le sol derrière lui#Isaac est invulnérable pendant la ruée"},
 	[182] = {"182", "Sacré-Cœur", "{{Heart}} +1 réceptacle de cœur#↑ Dégâts {{ColorLime}}x2.3 +1#↑ Portée {{ColorLime}}+0.5#↓ Vitesse des tirs {{ColorError}}-0.25#↓ Débit {{ColorError}}-0.4#Larmes autoguidées"}, -- Sacred Heart
-	[184] = {"184", "Saint Graal", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge#Permet à Isaac de voler"}, -- Holy Grail
+	[184] = {"184", "Saint Graal", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge#Permet à Isaac de voler"}, -- Holy Grail
 	[186] = {"186", "Droits du Sang", "Inflige 40 dégâts à tous les ennemis de la salle#{{Warning}} Inflige 1 cœur de dégâts à Isaac {{ColorSilver}}(un demi-cœur par utilisation suivante dans la même salle)"},
 	[189] = {"189", "Super Fan de SMB", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soin complet#↑ Dégâts {{ColorLime}}+0.3#↑ Débit {{ColorLime}}+0.2#↑ Portée {{ColorLime}}+0.5#↑ Vitesse {{ColorLime}}+0.2"}, --SMB Super Fan
     [192] = {"192", "La Télépathie pour les Nuls", "↑ Portée {{ColorLime}}+3.0#Larmes autoguidées#{{Timer}} L'effet dure une salle"}, -- Telepathy for Dummies
-	[193] = {"193", "DE LA VIANDE !", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge#↑ Dégâts {{ColorLime}}+0.3"}, -- MEAT!
+	[193] = {"193", "DE LA VIANDE !", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge#↑ Dégâts {{ColorLime}}+0.3"}, -- MEAT!
 	[194] = {"194", "Boule Magique", "↑ Vitesse des tirs {{ColorLime}}+0.16#↑ Chance de Planétarium {{ColorLime}}+15%#Fait apparaître une carte"}, -- Magic 8 Ball
 	[197] = {"197", "Sang du Christ", "↑ Dégâts {{ColorLime}}+0.5#↑ Portée {{ColorLime}}+0.38"}, -- Jesus Juice
 	[203] = {"203", "Offre Spéciale", "50% de chances de faire apparaître les versions doublées des ressources"}, -- Humbling Bundle
@@ -114,13 +114,13 @@ local repCollectibles={
 	[211] = {"211", "Bébé Araignée", "Subir un dégât invoque 3 à 5 araignées bleues"}, -- Spider Baby
 	[214] = {"214", "Anémie", "↑ Portée {{ColorLime}}+1.5#Subir un dégât répand une traînée de sang corrosive derrière Isaac#{{Timer}} L'effet dure une salle"}, -- Anemic
 	[215] = {"215", "Tête de Bouc", "{{AngelDevilChanceSmall}} Garantit d'ouvrir l'Antre du Diable ou le Refuge des Anges après avoir battu le boss de l'étage"},
-	[218] = {"218", "Placenta", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge#{{HealingRed}} Soigne parfois un demi-cœur rouge quand le minuteur finit par :00"}, -- Placenta
+	[218] = {"218", "Placenta", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge#{{HealingRed}} Soigne parfois un demi-cœur rouge quand le minuteur finit par :00"}, -- Placenta
 	[219] = {"219", "Vieux Pansement", "{{EmptyHeart}} +1 réceptacle de cœur#Subir un dégât fait parfois apparaître un cœur rouge#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 80 Chance)"},
 	[222] = {"222", "Antigravité", "↑ Débit {{ColorLime}}+1#Maintenir les boutons de tir fait flotter les larmes d'Isaac sur place#Relâcher les boutons de tir envoie toutes les larmes dans la direction où elles ont été tirées"},
 	[223] = {"223", "Pyromanie", "{{Bomb}} +5 Bombes#{{HealingRed}} Les explosions soignent un demi-cœur rouge#Rend Isaac invulnérable aux flammes et aux explosions"},
 	[224] = {"224", "Corps de Cricket", "↑ Débit {{ColorLime}}+0.5#↓ Portée {{ColorError}}-20%#Les larmes d'Isaac se divisent en 4 au contact"}, -- Cricket's Body
 	[225] = {"225", "Latex", "Subir un dégât fait parfois apparaître un cœur d'âme#Tuer un ennemi fait parfois apparaître un demi-cœur rouge#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 46 Chance)"}, -- Gimpy
-	[226] = {"226", "Lotus Noir", "{{Heart}} +1 réceptacle de cœur#{{SoulHeart}} +1 cœur d'âme#{{BlackHeart}} +1 cœur noir#{{HealingRed}} Soigne un cœur rouge"}, -- Black Lotus
+	[226] = {"226", "Lotus Noir", "{{Heart}} +1 réceptacle de cœur#{{SoulHeart}} +1 cœur d'âme#{{BlackHeart}} +1 cœur noir#{{HealingRed}} Soigne 1 cœur rouge"}, -- Black Lotus
 	[227] = {"227", "Tirelire Cochon", "{{Coin}} +3 Pièces#Subir un dégât fait apparaître 1 ou 2 pièces"},
 	[228] = {"228", "Parfum de Maman", "↑ Débit {{ColorLime}}+0.5#Isaac tire parfois une larme terrifiante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 85 Chance)"}, -- Moms Perfume
 	[229] = {"229", "Poumon de Monstro", "↓ Débit {{ColorError}}-77%#Remplace les larmes d'Isaac par une attaque chargée qui crache une gerbe de larmes"},
@@ -133,7 +133,7 @@ local repCollectibles={
 	[245] = {"245", "20/20", "↓ Dégâts {{ColorError}}-20%#Double tir"}, -- 20/20
 	[246] = {"246", "Carte Perdue", "Révèle l'emplacement des salles Secrète {{SecretRoom}} et Super Secrète {{SuperSecretRoom}} sur la carte"},
 	[248] = {"248", "Conscience Collective", "Double les dégâts infligés par les locustes, les mouches et araignées bleues, et les familiers mouches et araignées"}, -- Hive Mind
-	[253] = {"253", "Croûte Magique", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge#↑ Chance {{ColorLime}}+1"}, -- Magic Scab
+	[253] = {"253", "Croûte Magique", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge#↑ Chance {{ColorLime}}+1"}, -- Magic Scab
 	[254] = {"254", "Caillot de Sang", "↑ Dégâts {{ColorLime}}+1#↑ Portée {{ColorLime}}+1.5#L'effet n'est appliqué que sur l'œil gauche"}, -- Blood Clot
 	[256] = {"256", "Bombes Brûlantes", "{{Bomb}} +5 Bombes#Les bombes d'Isaac infligent des dégâts de contact aux ennemis et allument une flamme lorsqu'elles explosent#Rend Isaac invulnérable aux dégâts de feu"}, -- Hot Bombs
 	[260] = {"260", "Bougie Noire", "{{BlackHeart}} +1 cœur noir#Immunité aux fléaux"},
@@ -168,7 +168,7 @@ local repCollectibles={
 	[309] = {"309", "Poissons", "↑ Débit {{ColorLime}}+0.5#Augmente le recul infligé par les larmes d'Isaac"},
     [310] = {"310", "Mascara d'Ève", "↑ Dégâts {{ColorLime}}x2#↓ Débit {{ColorError}}-33%#↓ Vitesse des tirs {{ColorError}}-0.5"},
     [311] = {"311", "Ombre de Judas", "À sa mort, réincarne Isaac en {{ColorLightOrange}}Judas des Ombres"},
-	[314] = {"314", "Seau de Fromage", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge#↓ Vitesse {{ColorError}}-0.4#Marcher sur les obstacles les détruit"}, -- Thunder Thighs
+	[314] = {"314", "Seau de Fromage", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge#↓ Vitesse {{ColorError}}-0.4#Marcher sur les obstacles les détruit"}, -- Thunder Thighs
 	[315] = {"315", "Attracteur Étrange", "Les larmes d'Isaac attirent les ennemis, ressources et babioles#L'attraction augmente selon la distance parcourue par la larme"}, -- Strange Attractor
 	[316] = {"316", "Œil Maudit", "Isaac charge et tire 5 larmes d'un coup#Interrompre le chargement tire moins de larmes#{{Warning}} Subir un dégât pendant le chargement de l'attaque téléporte Isaac dans une salle aléatoire"},
 	[319] = {"319", "Œil Gauche de Caïn", "Tire les même larmes qu'Isaac dans une direction cardinale aléatoire#{{DamageSmall}} Inflige 75% des dégâts d'Isaac"},
@@ -184,15 +184,15 @@ local repCollectibles={
 	[332] = {"332", "Loques de Lazare", "À sa mort, Isaac est réincarné en {{ColorLightOrange}}Lazare Ressuscité"},
 	[336] = {"336", "Oignon Pourri", "↓ Portée {{ColorError}}-1.5#↓ Vitesse des tirs {{ColorError}}-0.4#Larmes spectrales et transperçantes"}, -- Dead Onion
 	[339] = {"339", "Épingle à Nourrice", "↑ Portée {{ColorLime}}+1.5#↑ Vitesse des tirs {{ColorLime}}+0.16#{{BlackHeart}} +1 cœur noir"}, -- Safety Pin
-	[342] = {"342", "Lactarius Indigo", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge#↑ Débit {{ColorLime}}+0.7#↓ Vitesse des tirs {{ColorError}}-16%"}, -- Blue Cap
+	[342] = {"342", "Lactarius Indigo", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge#↑ Débit {{ColorLime}}+0.7#↓ Vitesse des tirs {{ColorError}}-16%"}, -- Blue Cap
 	[344] = {"344", "Boîte d'Allumettes", "{{BlackHeart}} +1 cœur noir#Fait apparaître 3 bombes#Fait apparaître {{ColorYellow}}Allumette {{Trinket41}}"}, -- Match Book
 	[345] = {"345", "Synthol", "↑ Dégâts {{ColorLime}}+1.0#↑ Portée {{ColorLime}}+1.5"}, -- Synthoil
-	[346] = {"346", "Casse-Croûte", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge"}, -- A Snack
+	[346] = {"346", "Casse-Croûte", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge"}, -- A Snack
 	[348] = {"348", "Placebo", "Déclenche l'effet de la pilule portée par Isaac sans la consommer#Le temps de recharge de l'objet varie en fonction de la pilule"},
 	[349] = {"349", "Pièce en Bois","{{Blank}} Peut faire apparaître :#Pièce de 1 centime {{ColorSilver}}(52%)#Pièce de 5 centimes {{ColorSilver}}(6%)#Pièce de 10 centimes {{ColorSilver}}(1%)#Rien {{ColorSilver}}(41%)"},
 	[350] = {"350", "Choc Toxique", "Entrer dans une salle empoisonne les ennemis#Les ennemis répandent une flaque toxique à leur mort"}, -- Toxic Shock
 	[352] = {"352", "Canon de Verre", "Tire une énorme larme spectrale transperçante#{{Warning}} Augmente de deux cœurs les dégâts infligés à Isaac#Quand Isaac subit un dégât, il gagne {{ColorLime}}portée +1.5{{ColorWhite}}, laisse une traînée de sang corrosif derrière lui, et brise le canon#Le canon brisé devra recharger pendant 4 salles avant de pouvoir être utilisé à nouveau"}, -- Glass Canon
-	[354] = {"354", "Boîte de Céréales", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge#Fait apparaître une babiole"}, -- Crack Jacks
+	[354] = {"354", "Boîte de Céréales", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge#Fait apparaître une babiole"}, -- Crack Jacks
     [355] = {"355", "Collier de Maman", "↑ Portée {{ColorLime}}+1.25#↑ Chance {{ColorLime}}+1.0#{{SoulHeart}} +1 cœur d'âme"}, -- Mom's Pearl
 	[360] = {"360", "Incube", "Imite les stats et effets des larmes d'Isaac#{{DamageSmall}} Inflige 75% des dégâts d'Isaac"}, -- Incubus
 	[362] = {"362", "P'tit Coffre", "{{Blank}} Peut faire apparaître à la fin d'une salle :#Une ressource {{ColorSilver}}(25%)#Une babiole {{ColorSilver}}(10%)"},
@@ -247,7 +247,7 @@ local repCollectibles={
 	[451] = {"451", "Nappe de Tarot", "Fait apparaître une carte ou une rune#Double les effets des cartes de tarot ou leur donne un effet supplémentaire"}, -- Tarot Cloth
 	[453] = {"453", "Fracture Ouverte", "↑ Portée {{ColorLime}}+0.38#Les larmes d'Isaac se brisent en 1 à 3 petits morceaux d'os au contact d'un obstacle ou d'un ennemi"}, -- Compound Fracture
 	[455] = {"455", "Médaille de Papa", "↑ Portée {{ColorLime}}+0.38#Fait apparaître une pièce porte-bonheur"},
-	[456] = {"456", "Encas de Minuit", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge"}, -- Midnight Snack
+	[456] = {"456", "Encas de Minuit", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge"}, -- Midnight Snack
 	[458] = {"458", "Nombril", "Permet à Isaac de porter deux babioles#Fait apparaître une babiole"},
 	[459] = {"459", "Sinusite", "20% de chances de tirer une crotte de nez qui se colle aux ennemis et inflige des dégâts une fois par seconde#Les crottes de nez se décollent si l'ennemi meurt, s'enterre, saute hors de l'écran ou après 10 secondes"}, --Sinus Infection
 	[462] = {"462", "Œil de Bélial", "↑ Portée {{ColorLime}}+1.5#Larmes transperçantes#Après avoir transpercé un ennemi, les larmes infligent {{ColorLime}}dégâts x2{{ColorWhite}} et deviennent autoguidées"},
@@ -408,7 +408,7 @@ local repCollectibles={
 	[661] = {"661", "Quintuplés", "Transforme jusqu'à 5 ennemis tués par salle en familiers immobiles"}, --  Quints
 	[662] = {"662", "Pacifisme", "<Cet objet n'existe pas>"}, -- Pacifist (Cut item)
 	[663] = {"663", "Bec et Ongles", "Toutes les 6 secondes, Isaac devient invulnérable pendant 1 seconde"}, --  Tooth and Nail
-	[664] = {"664", "Goinfrerie", "{{Heart}} +1 réceptacle de cœur#Les objets sur piédestal alternent avec un objet de nourriture#Choisir la nourriture donne {{ColorLime}}dégâts +3.6{{ColorWhite}},{{ColorError}} vitesse -0.03{{CR}} et augmente deux stats#Ces bonus de dégâts s'estompent avec le temps"}, --  Binge Eater
+	[664] = {"664", "Goinfrerie", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soin complet#Les objets sur piédestal alternent avec un objet de nourriture#Choisir la nourriture donne {{ColorLime}}dégâts +3.6{{ColorWhite}},{{ColorError}} vitesse -0.03{{CR}}, augmente deux stats, et soigne davantage#Ces bonus de dégâts s'estompent avec le temps"}, --  Binge Eater
 	[665] = {"665", "Œil de Guppy", "Révèle le contenu des coffres, sacs, feux et gardiens avant qu'ils ne soient ouverts ou détruits"}, --  Guppy's Eye
 	[666] = {"666", "", "<Cet objet n'existe pas>"},
 	[667] = {"667", "Gardien en Peluche", "Fait apparaître le {{ColorLightOrange}}Gardien{{ColorWhite}} en tant que personnage secondaire#À sa mort, invoque des araignées bleues et disparait de l'inventaire"}, --  Strawman
@@ -451,7 +451,7 @@ local repCollectibles={
 	[704] = {"704", "Frénésie", "↑ Vitesse {{ColorLime}}+0.4#↑ Dégâts {{ColorLime}}+3.0#{{ArrowUpDown}} Débit {{ColorError}}x0.5 {{ColorLime}}+2#Remplace les larmes par une attaque au corps-à-corps#{{Timer}} L'effet dure 5 secondes"}, --  Berserk!
 	[705] = {"705", "Arts Obscurs", "↑ Vitesse {{ColorLime}}+1.0{{ColorWhite}}#Permet à Isaac de traverser les ennemis et projectiles#{{Timer}} L'effet dure 1 seconde#Paralyse et inflige des dégâts aux ennemis traversés"}, --  Dark Arts
 	[706] = {"706", "Abysse", "Absorbe tous les objets de la salle et invoque un locuste abyssal pour chaque objet détruit#Les locustes abyssaux sont invulnérables et foncent dans la direction où tire Isaac"}, --  Abyss
-	[707] = {"707", "Souper", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne un cœur rouge"}, --  Supper
+	[707] = {"707", "Souper", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge"}, --  Supper
 	[708] = {"708", "Agrafeuse", "↑ Dégâts {{ColorLime}}+1.0#Toutes les larmes d'Isaac sont tirées de l'œil droit"}, --  Stapler
 	[709] = {"709", "Suplex !", "Permet à Isaac de foncer sur un ennemi et de l'écraser au sol#L'attaque augmente en puissance et en portée selon la taille d'Isaac"}, --  Suplex!
 	[710] = {"710", "Sac de Fabrication", "Utiliser l'objet puis tirer balaye le sac#Toucher une ressource avec le sac la place dedans#Maintenir [Utiliser] quand le sac contient 8 ressources fabrique un objet#La qualité de l'objet dépend des ressources ramassées"}, --  Bag of Crafting
@@ -841,7 +841,7 @@ local repTrinkets={
 	[49] = {"49", "Pièce Sanglante", "Ramasser une pièce a 25% de chances de faire apparaître un demi-cœur rouge"}, -- Bloody Penny
 	[50] = {"50", "Pièce Brûlée", "Ramasser une pièce a 25% de chances de faire apparaître une bombe"}, -- Burnt Penny
 	[51] = {"51", "Pièce Plate", "Ramasser une pièce a 25% de chances de faire apparaître une clé"}, -- Flat Penny
-	[53] = {"53", "Tique", "{{HealingRed}} Entrer dans une salle de boss soigne un cœur rouge#Retire 15% des PV des boss#{{Warning}} Ne peut être retirée qu'avec l'{{ColorYellow}}Allumette{{ColorWhite}} {{Trinket41}}"},
+	[53] = {"53", "Tique", "{{HealingRed}} Entrer dans une salle de boss soigne 1 cœur rouge#Retire 15% des PV des boss#{{Warning}} Ne peut être retirée qu'avec l'{{ColorYellow}}Allumette{{ColorWhite}} {{Trinket41}}"},
 	[56] = {"56", "Langue de Judas", "Réduit le prix de tous les Pactes avec le Diable à 1 réceptacle de cœur#N'affecte pas les objets payés en cœurs d'âme"},
 	[59] = {"59", "Œil de Caïn", "Donne parfois l'effet de la {{ColorYellow}}Boussole{{ColorWhite}} {{Collectible21}} pour la durée d'un étage#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 3 Chance)"},
 	[60] = {"60", "Serre de l'Oiseau d'Ève", "Tuer un ennemi invoque parfois un {{ColorYellow}}Oiseau Mort{{ColorWhite}} {{Collectible117}} pour la durée d'une salle#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 8 Chance)"},
@@ -1316,11 +1316,11 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Caca avec pépites", "Invoque des mouches bleues tant qu'il est intact"},
 	{"Caca brûlant", "Inflige des dégâts de contact et allume une flamme une fois détruit"},
 	{"Caca de pierre", "Inflige de gros dégâts quand il est jeté#Plus difficile à détruire"},
-	{"Caca puant", "Crée un nuage de poison#{{Warning}} Le poison explose au contact du feu"},
+	{"Caca puant", "Crée un nuage de poison#{{Warning}} Explose au contact du feu"},
 	{"Caca noir", "Répand une flaque ralentissante#Inflige 10 dégâts et étourdit tous les ennemis de la salle une fois détruit"},
-	{"Caca sacré", "Est entouré d'une aura#{{Blank}} Se tenir dans l'aura donne :#↑ Dégâts {{ColorLime}}+20%#↑ Débit {{ColorLime}}+150%#Larmes autoguidées#Chance de nullifier un dégât subi"},
-	{"Flaque brune", "Répand une flaque brune sous Isaac qui inflige des dégâts de contact aux ennemis#Marcher sur la flaque donne {{ColorLime}}dégâts +1{{ColorWhite}} et {{ColorLime}}débit 1.5 à Isaac#La flaque prend les propriétés des cacas qu'elle touche"},
-	{"Pet", "Repousse les ennemis et projectiles et crée un nuage de poison#{{Warning}} Le poison explose au contact du feu"},
+	{"Caca sacré", "Être dans son aura donne :#↑ Dégâts {{ColorLime}}+20%{{ColorWhite}}, Débit {{ColorLime}}+150%#Larmes autoguidées#Chance de nullifier un dégât subi"},
+	{"Flaque brune", "Répand une flaque sous Isaac qui inflige des dégâts de contact aux ennemis et prend les propriétés des cacas qu'elle touche#Marcher sur la flaque donne {{ColorLime}}dégâts +1{{ColorWhite}} et {{ColorLime}}débit 1.5"},
+	{"Pet", "Repousse les ennemis et projectiles et crée un nuage de poison#{{Warning}} Explose au contact du feu"},
 	{"Bombe", "Bombe jetable"},
 	{"Diarrhée explosive", "Fait apparaître 5 bombes aux pieds d'Isaac"},
 }
@@ -1429,6 +1429,10 @@ local repConditions = {
 	["5.100.705"] = "Dégâts temporaires {{ColorLime}}+1{{CR}} pour chaque ennemi traversé", -- Dark Arts + Dark/Tainted Judas
 	["5.100.205 (Tainted Magdalene)"] = "Permet à {{ColorOrange}}Marie Impure{{CR}} d'utiliser son {{ColorYellow}}Joli Cœur{{CR}} à volonté", -- Sharp Plug + Tainted Magdalene
 	
+	["Mother's Kiss Soul"] = {"{{SoulHeart}} +1 cœur d'âme"},
+	["Mother's Kiss Bone"] = {"{{BoneHeart}} +1 cœur d'os"},
+	["Mother's Kiss Coin"] = {"{{CoinHeart}} +1 réceptacle de pièce held#Dépasse la limite de réceptacles"},
+
 	-- Vibrant/Dim Bulb
 	["5.350.100 (Bethany)"] = "Les charges d'âme comptent",
 	["5.350.100 (Tainted Bethany)"] = "Les charges de sang comptent",
@@ -1510,6 +1514,7 @@ local repConditions = {
 	["White Poop Jar"] = {"{{Poop}}","{{HolyPoop}}"},
 	["Golden Poop Jar"] = {"{{Poop}}", "{{Poop}}/{{GoldenPoop}}", "{{HolyPoop}}", "{{HolyPoop}}/{{GoldenPoop}}"},
 
+	["Binge Eater Healing"] = {"Soigne 1 cœur rouge", "Soigne {{BlinkGreen}}2{{CR}} cœurs rouges", "+4 charges de sang", "+{{BlinkGreen}}6{{CR}} charges de sang"},
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
