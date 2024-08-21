@@ -50,6 +50,7 @@ function EID:addCollectible(id, description, itemName, language)
 	local modName = EID._currentMod
 	-- Glitched Items exception so they don't have a mod name
 	if id > 4294960000 then modName = nil end
+	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description, modName}
 end
 
@@ -57,6 +58,7 @@ end
 function EID:addTrinket(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
+	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description, EID._currentMod}
 end
 
@@ -64,6 +66,7 @@ end
 function EID:addCharacterInfo(characterId, description, playerName, language)
 	playerName = playerName or "Modded Character"
 	language = language or "en_us"
+	EID:CreateDescriptionTableIfMissing("CharacterInfo", language)
 	EID.descriptions[language].CharacterInfo[characterId] = {playerName, description}
 end
 
@@ -86,6 +89,7 @@ function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMult
 
 	EID.GoldenTrinketData[id] = {t = numbersToMultiply, mult = maxMultiplier, append = appendText and true}
 	if appendText then
+		EID:CreateDescriptionTableIfMissing("goldenTrinketEffects", language)
 		EID.descriptions[language].goldenTrinketEffects[id] = { appendText[1], appendText[1], appendText[2] or appendText[1] }
 	end
 end
@@ -101,6 +105,7 @@ end
 function EID:addCard(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
+	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description, EID._currentMod}
 end
 
@@ -120,16 +125,20 @@ end
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
+	EID:CreateDescriptionTableIfMissing("pills", language)
+	EID:CreateDescriptionTableIfMissing("horsepills", language)
 	EID.descriptions[language].pills[id+1] = {id, itemName, description, EID._currentMod}
 	-- Default the horsepill to the same description as the base pill, for mods that only define the base pill
 	if EID.isRepentance and EID.descriptions[language].horsepills[id+1] == nil then
 		EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
 	end
 end
+
 function EID:addHorsePill(id, description, itemName, language)
 	if not EID.isRepentance then return end
 	itemName = itemName or nil
 	language = language or "en_us"
+	EID:CreateDescriptionTableIfMissing("horsepills", language)
 	EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
 end
 
@@ -148,6 +157,7 @@ end
 function EID:addBirthright(characterId, description, playerName, language)
 	playerName = playerName or nil
 	language = language or "en_us"
+	EID:CreateDescriptionTableIfMissing("birthright", language)
 	EID.descriptions[language].birthright[characterId + 1] = {playerName, "", description}
 end
 
@@ -251,6 +261,7 @@ function EID:addEntity(id, variant, subtype, entityName, description, language)
 	if id == EntityType.ENTITY_EFFECT then
 		EID.effectList[variant] = true
 	end
+	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom[id .. "." .. variant .. "." .. subtype] = {
 		subtype,
 		entityName,
@@ -2461,4 +2472,14 @@ function EID:ClosestPlayerTo(entity)
 	end
 	
 	return closestPlayer
+end
+
+-- Creates a description table for a given language to prevent outdated languages from breaking EID API functions for mods
+function EID:CreateDescriptionTableIfMissing(tableName, language)
+	if language and not EID.descriptions[language] then
+		EID.descriptions[language] = {}
+	end
+	if tableName and not EID.descriptions[language][tableName] then
+		EID.descriptions[language][tableName] = {}
+	end
 end

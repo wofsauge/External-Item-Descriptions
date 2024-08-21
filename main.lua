@@ -10,8 +10,8 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.79
-EID.ModVersionCommit = "2d4b5ca"
+EID.ModVersion = 4.80
+EID.ModVersionCommit = "9ad0bb1"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -469,6 +469,10 @@ function EID:addDescriptionToPrint(desc, insertLoc)
 	if desc.Entity then EID.entitiesToPrint[GetPtrHash(desc.Entity)] = true end
 end
 
+function EID:addQuestionMarkDescription(entity, description)
+	EID:addDescriptionToPrint({ Icon = EID.InlineIcons["QuestionMark"], Description = description or "", Entity = entity})
+end
+
 local prevPrintFrame = 0
 
 function EID:printDescriptions(useCached)
@@ -513,10 +517,6 @@ function EID:printNewDescriptions()
 	for _,newDesc in ipairs(EID.descriptionsToPrint) do
 		if newDesc.Description == "UnidentifiedPill" then
 			if EID:renderUnidentifiedPill(newDesc.Entity) ~= false then
-				table.insert(EID.previousDescs, newDesc)
-			end
-		elseif newDesc.Description == "QuestionMark" then
-			if EID:renderQuestionMark(newDesc.Entity) ~= false then
 				table.insert(EID.previousDescs, newDesc)
 			end
 		elseif EID:printDescription(newDesc) ~= false then
@@ -600,7 +600,7 @@ function EID:printDescription(desc, cachedID)
 	end
 	--Display Itemname
 	local curName = ""
-	if EID.Config["ShowItemName"] then
+	if EID.Config["ShowItemName"] and desc.Name then
 		curName = desc.Name
 		if EID.Config["TranslateItemName"] ~= 2 then
 			local curLanguage = EID.Config["Language"]
@@ -617,7 +617,7 @@ function EID:printDescription(desc, cachedID)
 		end
 	end
 	-- Display Entity ID
-	if EID.Config["ShowObjectID"] and desc.ObjType > 0 then
+	if EID.Config["ShowObjectID"] and desc.ObjType and desc.ObjType > 0 then
 		curName = curName.." {{ColorGray}}"..desc.ObjType.."."..desc.ObjVariant.."."..desc.ObjSubType
 	end
 	-- Display Quality
@@ -649,7 +649,7 @@ function EID:printDescription(desc, cachedID)
 	renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 
 	--Display Transformation
-	if not (desc.Transformation == "0" or desc.Transformation == "" or desc.Transformation == nil) then
+	if desc.Transformation and not (desc.Transformation == "0" or desc.Transformation == "") then
 		for transform in string.gmatch(desc.Transformation, "([^,]+)") do
 			--have a blank sprite info table if we aren't displaying it
 			local transformSprite = EID.Config["TransformationIcons"] and EID:getTransformationIcon(transform) or {}
@@ -694,7 +694,7 @@ function EID:printDescription(desc, cachedID)
 		end
 	end
 	-- Display Last Pool for Collectible for full reroll effects (name)
-	if EID.isRepentance and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] and (desc.ObjType == 5 and desc.ObjVariant == 100) then
+	if EID.isRepentance and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] and (desc.ObjType and desc.ObjType == 5 and desc.ObjVariant and desc.ObjVariant == 100) then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
 			local lastPool = game:GetItemPool():GetLastPool()
@@ -798,22 +798,6 @@ end
 EID:AddCallback(ModCallbacks.MC_EXECUTE_CMD, EID.onCmd)
 ---------------------------------------------------------------------------
 ---------------------------Handle Rendering--------------------------------
-
-function EID:renderQuestionMark(entity)
-	EID:PositionLocalMode(entity)
-	if EID.CurrentScaleType == "Size" then
-		if alwaysUseLocalMode then return false
-		else alwaysUseLocalMode = true end
-	end
-	EID.IconSprite:Play("CurseOfBlind")
-	local pos = EID:getTextPosition()
-	if EID.CachingDescription then
-		table.insert(EID.CachedStrings, {})
-		table.insert(EID.CachedIcons, {})
-		table.insert(EID.CachedRenderPoses, Vector(pos.X, pos.Y))
-	end
-	EID:renderIcon(EID.IconSprite, pos.X + 5 * EID.Scale, pos.Y + 5 * EID.Scale, nil, "CurseOfBlind", 0)
-end
 
 function EID:renderUnidentifiedPill(entity)
 	EID:PositionLocalMode(entity)
@@ -1457,8 +1441,11 @@ function EID:OnRender()
 					-- Handle Glitched Items
 					elseif closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
 						if EID:getEntityData(closest, "EID_DontHide") ~= true then
-							if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+							if (REPENTOGON and closest:ToPickup():IsBlind())
+							 or	(EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom)
+							 or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest))
+							 or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+								EID:addQuestionMarkDescription(closest)
 							end
 						end
 
@@ -1494,7 +1481,7 @@ function EID:OnRender()
 						if EID.CraneItemType[tostring(closest.InitSeed)] or EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] then
 							if EID:getEntityData(closest, "EID_DontHide") ~= true then
 								if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-									EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+									EID:addQuestionMarkDescription(closest)
 								end
 							end
 							local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
@@ -1515,8 +1502,14 @@ function EID:OnRender()
 					elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 						--Handle Collectibles
 						if EID:getEntityData(closest, "EID_DontHide") ~= true then
-							if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+							local isHideUncollected = EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(closest.SubType)
+							if (REPENTOGON and closest:ToPickup():IsBlind())
+							 or isHideUncollected
+							 or (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom)
+							 or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest))
+							 or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+								local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil
+								EID:addQuestionMarkDescription(closest, description)
 							end
 						end
 						local descriptionObj = EID:getDescriptionObjByEntity(closest)
@@ -1532,7 +1525,7 @@ function EID:OnRender()
 							(not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and
 							(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
 							if isOptionsSpawn or hideinShop or obstructed then
-								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+								EID:addQuestionMarkDescription(closest)
 							end
 						end
 						local isCantrippedCard = game.Challenge == 43 and closest.SubType > 32768
@@ -1552,7 +1545,7 @@ function EID:OnRender()
 							local obstructed = not EID.Config["DisplayObstructedPillInfo"] and
 							(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
 							if isOptionsSpawn or hideinShop or obstructed then
-								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+								EID:addQuestionMarkDescription(closest)
 							end
 						end
 

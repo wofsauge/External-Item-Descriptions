@@ -435,6 +435,15 @@ EID.InlineIcons = {
 	["PoopSpell10"] = {"PoopSpells", 10, 16, 16, -2, -2}, --Bomb
 	["PoopSpell11"] = {"PoopSpells", 11, 16, 16, -2, -2}, --Explosive Diarrhea
 
+	--Poop
+	["Poop"] = {"Poop", 0, 11, 10, 0, 1},
+	["GoldenPoop"] = {"Poop", 1, 11, 10, 0, 1},
+	["HolyPoop"] = {"Poop", 2, 11, 10, 0, 1},
+	["RedPoop"] = {"Poop", 3, 11, 10, 0, 1},
+	["CornyPoop"] = {"Poop", 4, 11, 10, 0, 1},
+	["BlackPoop"] = {"Poop", 5, 11, 10, 0, 1},
+	["RainbowPoop"] = {"Poop", 6, 11, 10, 0, 1},
+
 	-- Use the Stat Icon name without REP or AB to display the stat icon for the dlc the user is using right now. Example: {{Damage}}
 	-- Stats (Repentance)
 	["DamageREP"] = {"Stats", 0, 12, 16, 0, -1},
@@ -645,6 +654,7 @@ EID.InlineIcons = {
 	["DailyRunSmall"] = {"Misc", 15, 12, 12, 0, 1},
 	["MagnifyingLens"] = {"Misc", 16, 13, 13, 0, -1},
 	["Padlock"] = {"Misc", 17, 8, 10, 1, 0},
+	["QuestionMark"] = {"CurseOfBlind", 0, 14, 14, 6, 7, EID.IconSprite},
 }
 -- General Stats (Adjust automatically according to the current DLC)
 
