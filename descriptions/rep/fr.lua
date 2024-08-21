@@ -1441,7 +1441,6 @@ local repConditions = {
 	["Health Up Soul Charges"] = "+{1} charges d'âme",
 	["Health Up Blood Charges"] = "+{1} charges de sang",
 
-	["5.100.705"] = "Dégâts temporaires {{ColorLime}}+1{{CR}} pour chaque ennemi traversé", -- Dark Arts + Dark/Tainted Judas
 	["5.100.722"] = {"Immobilise Ésaü Impur#Réutiliser l'objet ou attendre 5 secondes libère Ésaü, qui fonce vers Jacob"}, -- TJacob + Anima Sola
 	["5.100.713"] = {"Reconvertit les pâtés en PV#Téléporte le surplus de pâtés à Ève#{{Timer}} 1 seconde de recharge"}, --Teve + Sumptorium
 	["5.100.711"] = {"Affiche", "{{Player38}} Passe à l'autre Lazare#Affiche"}, -- Tlaz + Flip
