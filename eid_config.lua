@@ -437,6 +437,10 @@ EID.UserConfig = {
 	 -- Default: 0   (Deactivate all Savegame features)
 	 ["SaveGameNumber"] = 0,
 
+	 -- Hides descriptions of items, if they are not collected in the collection page
+	 -- Default: false
+	 ["HideUncollectedItemDescriptions"] = false,
+
 	 -- Highlight items, if they need to be collected for the collection page
 	 -- Default: true
 	 ["ItemCollectionIndicator"] = true,
@@ -627,6 +631,7 @@ EID.DefaultConfig = {
 	["SpindownDiceDisplayName"] = false,
 	["SpindownDiceSkipLocked"] = false,
 	["SaveGameNumber"] = 0,
+	["HideUncollectedItemDescriptions"] = false,
 	["ItemCollectionIndicator"] = true,
 	["ItemCollectionColor"] = "ColorFade",
 	["EnableMouseControls"] = false,

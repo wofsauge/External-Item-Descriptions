@@ -73,7 +73,7 @@ function EID:OnMenuRender()
 		end
 		local demoDescObj = EID:getDescriptionObj(5, 100, CollectibleId, nil, false)
 		if CollectibleId < maxVanillaItemID and not Isaac.GetPersistentGameData():IsItemInCollection(CollectibleId) then
-			EID:renderQuestionMark(nil)
+			EID:printDescription({Icon = EID.InlineIcons["QuestionMark"], Description = description or "", Entity = entity}, nil)
 			return
 		end
 

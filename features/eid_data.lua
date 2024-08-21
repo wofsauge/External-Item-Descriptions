@@ -654,6 +654,7 @@ EID.InlineIcons = {
 	["DailyRunSmall"] = {"Misc", 15, 12, 12, 0, 1},
 	["MagnifyingLens"] = {"Misc", 16, 13, 13, 0, -1},
 	["Padlock"] = {"Misc", 17, 8, 10, 1, 0},
+	["QuestionMark"] = {"CurseOfBlind", 0, 14, 14, 6, 7, EID.IconSprite},
 }
 -- General Stats (Adjust automatically according to the current DLC)
 
