@@ -520,14 +520,14 @@ EID.descriptions[languageCode].birthright ={
 
 -- Buffs caused by Binge Eater
 EID.descriptions[languageCode].bingeEaterBuffs = {
-	[22] = "↑ {{HealingRed}}추가 빨간하트 +1#↑ {{TearsSmall}}연사 +0.5#↑ {{RangeSmall}}사거리 +2.5#↓ {{SpeedSmall}}이동속도 -0.03", -- Lunch
-	[23] = "↑ {{HealingRed}}추가 빨간하트 +1#↑ {{TearsSmall}}연사 +0.5#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Dinner
-	[24] = "↑ {{HealingRed}}추가 빨간하트 +1#↑ {{DamageSmall}}최종 공격력 +1#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Dessert
-	[25] = "↑ {{HealingRed}}추가 빨간하트 +1#↑ {{RangeSmall}}사거리 +2.5#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Breakfast
-	[26] = "↑ {{HealingRed}}추가 빨간하트 +1#↑ {{DamageSmall}}최종 공격력 +1#↑ {{RangeSmall}}사거리 +2.5#↓ {{SpeedSmall}}이동속도 -0.03", -- Rotten Meat
-	[346] = "↑ {{HealingRed}}추가 빨간하트 +1#↑ {{ShotspeedSmall}}탄속 +0.2#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- A Snack
-	[456] = "↑ {{HealingRed}}추가 빨간하트 +1#↑ {{DamageSmall}}최종 공격력 +1#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- Midnight Snack
-	[707] = "↑ {{HealingRed}}추가 빨간하트 +1#↑ {{TearsSmall}}연사 +0.5#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- Supper
+	[22] = "↑ {{TearsSmall}}연사 +0.5#↑ {{RangeSmall}}사거리 +2.5#↓ {{SpeedSmall}}이동속도 -0.03", -- Lunch
+	[23] = "↑ {{TearsSmall}}연사 +0.5#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Dinner
+	[24] = "↑ {{DamageSmall}}최종 공격력 +1#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Dessert
+	[25] = "↑ {{RangeSmall}}사거리 +2.5#↑ {{ShotspeedSmall}}탄속 +0.2#↓ {{SpeedSmall}}이동속도 -0.03", -- Breakfast
+	[26] = "↑ {{DamageSmall}}최종 공격력 +1#↑ {{RangeSmall}}사거리 +2.5#↓ {{SpeedSmall}}이동속도 -0.03", -- Rotten Meat
+	[346] = "↑ {{ShotspeedSmall}}탄속 +0.2#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- A Snack
+	[456] = "↑ {{DamageSmall}}최종 공격력 +1#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- Midnight Snack
+	[707] = "↑ {{TearsSmall}}연사 +0.5#↑ {{LuckSmall}}행운 +1#↓ {{SpeedSmall}}이동속도 -0.03", -- Supper
 }
 
 -- Buffs caused by Book of Belial with Judas' Birthright
