@@ -596,9 +596,9 @@ end
 function EID:ItemReminderHandlePoopSpells(player)
 	if EID.isRepentance and player:GetPlayerType() == 25 and EID:ItemReminderCanAddMoreToView() then
 		local poopInfo = EID:getDescriptionEntry("poopSpells")
-		local displayedPoopTypes = {}
+		local displayedPoopTypes = { [0] = true }
 		local descsAvailableToRender = numAvailableDescriptionSlots
-		for i = 0, 9 do -- max 10 poop spell slots
+		for i = 0, 5 do -- max 6 poop spell slots
 			local nextPoop = player:GetPoopSpell(i)
 			if not displayedPoopTypes[nextPoop] then
 				EID:ItemReminderAddTempDescriptionEntry("{{PoopSpell" .. nextPoop .. "}}", poopInfo[nextPoop][1],
