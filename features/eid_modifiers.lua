@@ -312,6 +312,7 @@ end
 -- Handle changing health up text for non-red HP players
 local function HealthUpCallback(descObj)
 	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
+	if descObj.ObjVariant == 70 and descObj.ObjSubType > 2048 then adjustedSubtype = adjustedSubtype + 2048 end -- horsepill exception
 	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype
 	
 	local closestPlayer = EID:ClosestPlayerTo(descObj.Entity)
@@ -322,7 +323,7 @@ local function HealthUpCallback(descObj)
 	-- find/replace Health Up lines
 	local numHearts = EID.HealthUpData[typeVarSub] or 1
 	local text = EID:getDescriptionEntry("RedToX", "Red to " .. heartType)
-	local plural = ""; if numHearts ~= 1 then plural = EID:getDescriptionEntry("Pluralize") end
+	local plural = ""; if numHearts ~= 1 and numHearts ~= -1 then plural = EID:getDescriptionEntry("Pluralize") end
 	
 	local pos = 1
 	while pos <= #text do
