@@ -3,6 +3,7 @@ local modTextsAdded = 0
 local function newModdedCondition(text, language)
 	if text == nil then return nil end
 	modTextsAdded = modTextsAdded + 1
+	EID:CreateDescriptionTableIfMissing("ConditionalDescs", language)
 	EID.descriptions[language].ConditionalDescs["Modded Conditional " .. modTextsAdded] = text
 	return "Modded Conditional " .. modTextsAdded
 end
@@ -64,6 +65,7 @@ function EID:addToGeneralCondition(ID, locTable, text, numberToDouble, newNumber
 		newNumber = newNumber or numberToDouble * 2
 		text = { numberToDouble, newNumber, text }
 	end
+	EID:CreateDescriptionTableIfMissing(locTable, language)
 	EID.descriptions[language][locTable][ID] = text
 end
 
@@ -110,6 +112,7 @@ function EID:addBFFSCondition(ID, text, numberToDouble, newNumber, language)
 		-- We don't have to add a new condition for collectibles, because they're checked with a "5.100" condition
 		EID:AddItemConditional(ID, 247, EID.CheckForBFFS, {locTable = "BFFSSynergies", replaceColor = "BlinkPink", noFallback = false, uniqueID = "BFFS"})
 	end
+	EID:CreateDescriptionTableIfMissing("BFFSSynergies", language)
 	EID.descriptions[language].BFFSSynergies[ID] = text
 end
 
@@ -129,6 +132,7 @@ function EID:addHiveMindCondition(ID, text, numberToDouble, newNumber, language,
 		-- We don't have to add a new condition for collectibles, because they're checked with a "5.100" condition
 		EID:AddItemConditional(ID, 248, EID.CheckForHiveMind, {locTable = "BFFSSynergies", replaceColor = "BlinkBlue", noFallback = false, uniqueID = "BFFS"})
 	end
+	EID:CreateDescriptionTableIfMissing("BFFSSynergies", language)
 	EID.descriptions[language].BFFSSynergies[ID] = text
 end
 
@@ -169,6 +173,7 @@ local function CopyTable(t1)
 	local newTable = {}; for k, v in pairs(t1) do newTable[k] = v end
 	return newTable
 end
+
 -- Every single add conditional function ends up calling this function eventually. This is THE place to define variables every condition MUST have.
 function EID:AddConditional(IDs, funcText, modText, extraTable)
 	if type(IDs) ~= "table" then IDs = { IDs } end

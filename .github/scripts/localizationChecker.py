@@ -26,8 +26,9 @@ White='\033[0;37m'        # White
 BWhite='\033[1;37m'       # Bold White
 
 ignoreNodesWithName = {"fonts"}
+ignoreTypeMissmatchNodesWithName = {"ConditionalDescs", "BFFSSynergies"}
 
-maxChecklimit = {"tarotClothBuffs": 2}
+maxChecklimit = {"tarotClothBuffs": 2, "carBattery": 2, "BFFSSynergies": 2}
 
 
 # count en_us entries for stats
@@ -60,15 +61,30 @@ def compare_tables(table1, table2, prev_key):
             # table is missing. add all missing entries as error
             if lupa.lua_type(table1[k]) == "table":
                 errorCount += count_entries(table1[k])
+
         elif lupa.lua_type(table2[k]) != lupa.lua_type(table1[k]):
-            print(f"\tType mismatch in table '{prev_key}', key: {k}")
-            errorCount += 1
+            if lupa.lua_type(table1[k]) == "table" and len(table1[k]) == 1:
+                # ignore missmatch, if comparing table with 1 entry to a single string
+                continue
+            if lupa.lua_type(table2[k]) == "table" and len(table2[k]) == 1:
+                # ignore missmatch, if comparing table with 1 entry to a single string
+                continue
+            # Ignore if node is inside a table to ignore this type of error
+            ignoreError = False
+            for ignoreNode in ignoreTypeMissmatchNodesWithName:
+                if ignoreNode in prev_key:
+                    ignoreError = True
+                    break
+            if not ignoreError:
+                print(f"\tType mismatch in table '{prev_key}', key: {k}")
+                errorCount += 1
+
         elif lupa.lua_type(table2[k]) == "table":
             errorCount += compare_tables(table1[k], table2[k], str(prev_key)+"->"+str(k))
     return errorCount
 
 
-lua.execute('EID = {}; EID.descriptions = {} function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
+lua.execute('REPENTOGON = true; EID = {}; EID.descriptions = {} function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
 g = lua.globals()
 
 

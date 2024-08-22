@@ -243,7 +243,7 @@ EID.descriptions[languageCode].collectibles={
 	{"220", "Sad Bombs", "{{Bomb}} +5 Bombs#Isaac's bombs shoot 10 tears in a circle when they explode"}, -- Sad Bombs
 	{"221", "Rubber Cement", "Isaac's tears bounce off enemies and obstacles"}, -- Rubber Cement
 	{"222", "Anti-Gravity", "↑ {{Tears}} -2 Tear delay#Holding the fire buttons causes tears to hover in midair#Releasing the fire buttons shoots them in the direction they were fired"}, -- Anti-Gravity
-	{"223", "Pyromaniac", "{{Bomb}} +5 Bombs#{{HealingRed}} Getting hit by explosions heals 1 heart instead of damaging Isaac#Immune to rock wave attacks and Mom and Satan's stomp attacks"}, -- Pyromaniac
+	{"223", "Pyromaniac", "{{Bomb}} +5 Bombs#Immunity to explosions, rock waves, and stomp attacks#{{HealingRed}} Getting hit by explosions heals 1 heart"}, -- Pyromaniac
 	{"224", "Cricket's Body", "↑ {{Tears}} -1 Tear delay#↑ {{Tearsize}} x1.2 Tear size#↓ {{Range}} -10 Range#Tears split up in 4 on hit#Split tears deal half damage"}, -- Cricket's Body
 	{"225", "Gimpy", "{{SoulHeart}} Taking damage has a chance to spawn a Soul Heart#{{HalfHeart}} Enemies have a chance to drop a half Red Heart on death"}, -- Gimpy
 	{"226", "Black Lotus", "↑ {{Heart}} +1 Health#{{SoulHeart}} +1 Soul Heart#{{BlackHeart}} +1 Black Heart"}, -- Black Lotus
@@ -1117,19 +1117,22 @@ EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorLime}}{1}{{CR}}
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
 	["Red to Soul"] = {"↑ {{Heart}} +{1} Health", "{{SoulHeart}} +{1} Soul Heart{2}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{SoulHeart}} +{1} Soul Heart{2}"},
+	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{SoulHeart}} +{1} Soul Heart{2}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Soul Heart{2}"},
 	
 	["Red to Black"] = {"↑ {{Heart}} +{1} Health", "{{BlackHeart}} +{1} Black Heart{2}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{BlackHeart}} +{1} Black Heart{2}"},
+	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{BlackHeart}} +{1} Black Heart{2}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Black Heart{2}"},
 	
 	["Red to Bone"] = {"↑ {{Heart}} +{1} Health", "{{BoneHeart}} +{1} Bone Heart{2}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{EmptyBoneHeart}} +{1} Empty Bone Heart{2}", "{{HealingRed}}", "{{HealingBone}}"}, -- Red HP to Bone Hearts
+	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{EmptyBoneHeart}} +{1} Empty Bone Heart{2}", "{{HealingRed}}", "{{HealingBone}}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyBoneHeart}} {1} Bone Heart{2}"}, -- Red HP to Bone Hearts
 	
 	["Red to Coin"] = {"↑ {{Heart}} +{1} Health", "{{CoinHeart}} +{1} Coin Heart{2}",
 	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{EmptyCoinHeart}} +{1} Empty Coin Heart{2}",
-	"{{HealingRed}} Heals {1} heart{2}", "{{HealingCoin}} Heals {1} coin{2}", "{{HealingRed}} Heals half a heart", "{{HealingCoin}} Heals 1 coin", "{{HealingRed}}", "{{HealingCoin}}"},
+	"{{HealingRed}} Heals {1} heart{2}", "{{HealingCoin}} Heals {1} coin{2}", "{{HealingRed}} Heals half a heart", "{{HealingCoin}} Heals 1 coin", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyCoinHeart}} {1} Coin Heart{2}"}, -- Red HP to Coin Hearts
 	
-	["Red to None"] = {"↑ {{Heart}} +{1} Health", "", "↑ {{EmptyHeart}} +{1} Empty heart container{2}", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {"↑ {{Heart}} +{1} Health", "", "↑ {{EmptyHeart}} +{1} Empty heart container{2}", "", "↓ {{EmptyHeart}} {1} Health", ""}, -- Red HP to None (The Lost)
 }
 
 EID.descriptions[languageCode].MCM = {
@@ -1214,6 +1217,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Familiars)"] = "No additional effect on familiars", -- probably just for Hive Mind + BFFS!
 	["No Red"] = "No effect for characters that can't have Red Hearts",
 	["Different Effect"] = "{{ColorSilver}}Different effect for {1}{{CR}}",
+	["Dies on Use"] = "{{Warning}} {1} dies on use", -- for Razor Blade and such as The Lost
 	
 	
 	------ GREED MODE ------
@@ -1291,6 +1295,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
 	["? Card Single Use"] = "Single use items will disappear after using ? Card", -- Single Use Actives + ? Card
 	["5.300.48"] = "Teleport to I AM ERROR Room#Blank Card and ? Card will be destroyed", -- Blank Card + ? Card
+	["? + Blank Pedestal"] = "Using ? Card with Blank Card teleports you to the I AM ERROR room and destroys both cards", -- Looking at Blank Card with ? Card
 	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
 	["5.100.521"] = "{{Collectible376}} Free items won't be restocked", -- Coupon + Restock/Greed
 	["Black Feather"] = "↑ {{Damage}} +0.2 Damage", -- Black Feather items

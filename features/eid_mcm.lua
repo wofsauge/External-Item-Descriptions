@@ -773,7 +773,9 @@ if MCMLoaded then
 			MCM.AddSpace("EID", "Repentogon")
 		end
 		
-		EID:AddBooleanSetting("Repentogon", "ItemCollectionIndicator", "Highlight uncollected items",{ infoText = "Highlights items that are not yet on the collection page."})
+		MCM.AddText("EID", "Repentogon", "Uncollected Items")
+		EID:AddBooleanSetting("Repentogon", "HideUncollectedItemDescriptions", "Hide uncollected items", { infoText = "Hide descriptions of items that are not yet on the collection page."})
+		EID:AddBooleanSetting("Repentogon", "ItemCollectionIndicator", "Highlight uncollected items", { infoText = "Highlights items that are not yet on the collection page."})
 		-- Needs collection Color
 		MCM.AddSetting(
 			"EID",
@@ -788,7 +790,7 @@ if MCMLoaded then
 				Display = function()
 					if EID.Config["ItemCollectionColor"] == nil then EID.Config["ItemCollectionColor"] = EID.DefaultConfig["ItemCollectionColor"] end
 					EID.MCMCompat_isDisplayingEIDTab = "Visuals";
-					return "Collection Page Highlight color: " .. string.gsub(EID.Config["ItemCollectionColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemCollectionColor"]).."/"..#colorNameArray..")"
+					return "Highlight color: " .. string.gsub(EID.Config["ItemCollectionColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemCollectionColor"]).."/"..#colorNameArray..")"
 				end,
 				OnChange = function(currentNum)
 					EID.MCM_OptionChanged = true
@@ -799,6 +801,7 @@ if MCMLoaded then
 				Info = {"Highlight color for the names of items that need to be picked up for the collection page."}
 			}
 		)
+		MCM.AddSpace("EID", "Repentogon")
 		EID:AddBooleanSetting("Repentogon", "RGON_ShowOnCollectionPage", "Show descriptions on collection page", { infoText = "Displays item effects when navigating the collection page in the main menu."})
 		
 		-- Achievement tracking section
@@ -847,7 +850,8 @@ if MCMLoaded then
 				return "Collection page items missing: "..count end)
 			MCM.AddSpace("EID", "Save Game")
 
-			EID:AddBooleanSetting("Repentogon", "ItemCollectionIndicator", "Highlight uncollected items")
+			EID:AddBooleanSetting("Save Game", "HideUncollectedItemDescriptions", "Hide uncollected items", { infoText = "Hide descriptions of items that are not yet on the collection page."})
+			EID:AddBooleanSetting("Save Game", "ItemCollectionIndicator", "Highlight uncollected items")
 			-- Needs collection Color
 			MCM.AddSetting(
 				"EID",
