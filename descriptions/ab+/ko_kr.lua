@@ -1015,6 +1015,7 @@ EID.descriptions[languageCode].RedToX = {
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].ItemReminder = {
 	ResultHeader = "{1} 예측",
+	InventoryEmpty = "(소지 아이템 없음)",
 	CategoryNames = {
 		Overview = "요약",
 		Wisps = "아이템 불꽃",
@@ -1048,6 +1049,8 @@ EID.descriptions[languageCode].PickupNames = {
 
 	["5.40"] = "{{Bomb}}폭탄",
 	["5.40.1"] = "{{Crafting15}}폭탄", ["5.40.2"] = "{{Crafting15}}1+1 폭탄", ["5.40.3"] = "{{Crafting15}}트롤폭탄", ["5.40.4"] = "{{Crafting16}}황금폭탄", ["5.40.5"] = "{{Crafting15}}슈퍼 트롤폭탄", ["5.40.7"] = "{{Crafting17}}기가폭탄",
+
+	["5.42"] = "{{Crafting29}} 똥", ["5.42.1"] = "{{Crafting29}} 커다란 똥",
 
 	["5.90"] = "{{Battery}}배터리",
 	["5.90.0"] = "{{Crafting19}}리틀 배터리", --AB+ didn't have subtypes for batteries
