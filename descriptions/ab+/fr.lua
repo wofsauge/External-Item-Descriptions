@@ -825,7 +825,7 @@ EID.descriptions[languageCode].cards={
 	{"42", "Carte Chaos", "Utiliser cette carte la lance dans la direction où se déplace Isaac#La carte tue instantanément les ennemis ou boss avec lequels elle rentre en contact#La carte ne peut pas tuer Delirium"},
 	{"43", "Carte de Crédit", "Rend gratuits tous les objets en vente#Fonctionne sur les coûts en pièces et en PV"},
 	{"44", "Carte des Règles", "Donne un indice sur un des secrets du jeu"},
-	{"45", "Une Carte Limite Limite", "Couvre la totalité du sol de la salle de cacas"},
+	{"45", "Une Carte Limite Limite", "Couvre la totalité du sol de la salle de cacas {{Poop}}"},
 	{"46", "Roi Suicidaire", "Tue Isaac et fait apparaître 10 ressources ou objets dans la salle#Les objets proviennent de la banque d'objets de la salle où se trouve Isaac"},
 	{"47", "Carte Chance", "Ouvre toutes les portes de la salle, y compris la majorité des portes spéciales"},
 	{"48", "Carte ?", "Utilise l'objet activable d'Isaac sans le décharger"},
@@ -993,20 +993,24 @@ EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorSilver}}({1} ob
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
 	["Red to Soul"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{SoulHeart}} +{1} cœur{2} d'âme",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{SoulHeart}} +{1} cœur{2} d'âme", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} cœur{2}"},
+	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{SoulHeart}} +{1} cœur{2} d'âme",
+	"↓ {1} réceptacle{2} de cœur", "↓ {1} cœur{2}"},
 
 	["Red to Black"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{BlackHeart}} +{1} cœur{2} noir{2}",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{BlackHeart}} +{1} cœur{2} noir{2}", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} cœur{2}"},
+	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{BlackHeart}} +{1} cœur{2} noir{2}",
+	"↓ {1} réceptacle{2} de cœur", "↓ {1} cœur{2}"},
 
 	["Red to Bone"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{BoneHeart}} +{1} cœur{2} d'os",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{EmptyBoneHeart}} +{1} cœur{2} d'os", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} cœur{2}", 
+	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{EmptyBoneHeart}} +{1} cœur{2} d'os", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} cœur{2}",
+	"↓ {1} réceptacle{2} de cœur", "↓ {1} cœur{2} d'os",
 	"{{HealingRed}}", "{{HealingBone}}"}, -- Red HP to Bone Hearts
 
 	["Red to Coin"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{CoinHeart}} +{1} réceptacle{2} de pièce",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{EmptyCoinHeart}} +{1} réceptacle{2} de pièce", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} réceptacle{2} de pièce", 
+	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{EmptyCoinHeart}} +{1} réceptacle{2} de pièce", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} réceptacle{2} de pièce",
+	"↓ {1} réceptacle{2} de cœur", "↓ {1} réceptacle{2} de pièce",
 	"{{HealingRed}} Soigne {1} cœur{2} rouge{2}", "{{HealingCoin}} Soigne {1} pièce{2}", "{{HealingRed}} Soigne un demi-cœur rouge", "{{HealingCoin}} Soigne 1 pièce", "{{HealingRed}}", "{{HealingCoin}}"},
 
-	["Red to None"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "", "{{EmptyHeart}} +{1} réceptacle{2} de cœur", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "", "{{EmptyHeart}} +{1} réceptacle{2} de cœur", "", "↓ {1} réceptacle{2} de cœur", ""}, -- Red HP to None (The Lost)
 }
 
 EID.descriptions[languageCode].MCM = {
@@ -1085,6 +1089,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Familiars)"] = "Aucun effet bonus pour les familiers", -- probably just for Hive Mind + BFFS!
 	["No Red"] = "Aucun effet pour les personnages sans cœurs rouges",
 	["Different Effect"] = "{{ColorSilver}}(Effet différent avec {1}{{ColorSilver}})",
+	["Dies on Use"] = "{{Warning}} Tue {1} si utilisé",
 
 
 	------ GREED MODE ------
@@ -1159,7 +1164,8 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.316"] = {"{{Warning}} Subir un dégât pendant le chargement de l'attaque téléporte Isaac dans une salle aléatoire", "Pas d'effet de téléportation avec la {1}"}, -- Cursed Eye
 	["5.100.260"] = "Retire l'effet de téléportation de {1}", -- Black Candle
 	["? Card Single Use"] = "Fait disparaître les objets à usage unique après les avoir utilisé", -- Single Use Actives + ? Card
-	["5.300.48"] = "Téléporte Isaac dans la salle d'erreur#Détruit la Carte ? et la {{ColorYellow}}Carte Blanche", -- Blank Card + ? Card
+	["5.300.48"] = "Téléporte Isaac dans la salle d'erreur et détruit la {{ColorCard}}Carte ?{{CR}} et la {{ColorYellow}}Carte Blanche", -- Blank Card + ? Card
+	["? + Blank Pedestal"] = "Téléporte Isaac dans la salle d'erreur et détruit la {{ColorCard}}Carte ?{{CR}} et la {{ColorYellow}}Carte Blanche", -- Looking at Blank Card with ? Card
 	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
 	["5.100.521"] = "{{Collectible376}} Les objets rendus gratuits ne sont pas réapprovisionnés", -- Coupon + Restock/Greed
 	["Black Feather"] = "↑ Dégâts {{ColorLime+0.2}}", -- Black Feather items
@@ -1187,9 +1193,9 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Chocolate Milk Marked"] = "Isaac charge automatiquement selon sa distance du curseur",
 	["Ghost Pepper Fart"] = "Péter tire une flamme derrière Isaac",
 	["Damage Multiplier Stack"] = "Les multiplicateurs de dégâts ne peuvent pas être cumulés",
-	["White Poop"] = {"{{Poop}}", "{{HolyPoop}}"},
-	["White Poop Chance"] = {"{{Poop}}", "{{Poop}}/{{WhitePoop}}"},
-	["Golden Poop Chance"] = {"{{Poop}}", "{{Poop}}/{{GoldenPoop}}", "{{HolyPoop}}", "{{HolyPoop}}/{{GoldenPoop}}"},
+	["White Poop"] = {"{{Poop}}", "{{HolyPoop}}", "Le caca est sacré"},
+	["White Poop Chance"] = {"{{Poop}}", "{{Poop}}/{{WhitePoop}}", "Le caca est parfois sacré"},
+	["Golden Poop Chance"] = {"{{Poop}}", "{{Poop}}/{{GoldenPoop}}", "{{HolyPoop}}", "{{HolyPoop}}/{{GoldenPoop}}", "Le caca est parfois doré"},
 	["5.100.483"] = "L'objet peut être utilisé sans le faire disparaître en échange d'une {{ColorGold}}bombe dorée",
 
 	["5.300.5"] = {"Téléporte Isaac dans une Salle de Boss au hasard"}, -- IV - The Emperor (in The Void)
