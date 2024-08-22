@@ -1005,7 +1005,7 @@ EID.descriptions[languageCode].RedToX = {
 	"{{HealingRed}}", "{{HealingBone}}",
 	"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{EmptyBoneHeart}}최대 체력 {1}"}, -- Red HP to Bone Hearts
 
-	["Red to Coin"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{CoinHeart}}최대 체력 +{1},
+	["Red to Coin"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{CoinHeart}}최대 체력 +{1}",
 	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{EmptyCoinHeart}}빈 최대 체력 +{1}",
 	"↑ {{HealingRed}}빨간하트 +{1}", "↑ {{HealingCoin}}빨간하트 +{1}", "반칸 회복", "한칸 회복", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{EmptyCoinHeart}}최대 체력 {1}"},
 
