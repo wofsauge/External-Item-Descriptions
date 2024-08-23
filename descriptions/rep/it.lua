@@ -99,7 +99,7 @@ local repCollectibles={
 	[218] = {"218", "Placenta", "{{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore#{{HalfHeart}} Ad ogni minuto 50% di chance di curare mezzo cuore"}, -- Placenta
 	[219] = {"219", "Cerotto Vecchio", "↑ {{EmptyHeart}} +1 Portacuori vuoto#{{Heart}} Subire danni ha il 20% di chance di generare 1 Cuore Rosso"}, -- Old Bandage
 	[222] =	{"222", "Anti-Gravità", "↑ {{Tears}} +1 Rateo di Fuoco#Tenere premuto il tasto di fuoco fa sì che le lacrime levitino a mezz'aria#Rilasciare il tasto di fuoco le lancia nella direzione verso cui erano state sparate"}, -- Anti-Gravity
-	[223] = {"223", "Piromane", "{{Bomb}} +5 Bombe#{{HalfHeart}} Le esplosioni curano Isaac di mezzo cuore invece di danneggiarlo#{{Burning}} Immunità al fuoco (eccetto i proiettili)"}, -- Pyromaniac
+	[223] = {"223", "Piromane", "{{Bomb}} +5 Bombe#Immunità alle esplosioni e al fuoco#{{HalfHeart}} Le esplosioni curano Isaac di mezzo cuore invece di danneggiarlo"}, -- Pyromaniac
 	[224] = {"224", "Corpo di Cricket", "↑ {{Tears}} +0.5 Rateo di Fuoco#↓ {{Range}} x0.8 Moltiplicatore Gittata#Quando le lacrime colpiscono si scindono in 4#Le lacrime scisse infliggono la metà dei danni"}, -- Cricket's Body
 	[225] = {"225", "Latex", "{{SoulHeart}} Subire danni ha una chance di generare un Cuore Celeste#{{Luck}} +2% di chance per punto Fortuna#{{HalfHeart}} I nemici hanno una chance di lasciare mezzo Cuore Rosso quando muoiono"}, -- Gimpy
 	[226] = {"226", "Loto Nero", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore#{{SoulHeart}} +1 Cuore Celeste#{{BlackHeart}} +1 Cuore Nero"}, -- Black Lotus
@@ -153,7 +153,7 @@ local repCollectibles={
 	[325] = {"325", "Forbici", "{{Timer}} La testa di Isaac diventa un famiglio stazionario fino all'uscita dalla stanza#Il corpo viene controllato separatamente e schizza lacrime di sangue nella direzione in cui Isaac sta sparando"},
 	[326] = {"326", "Alito di Vita", "Tenere premuto il tasto USA svuota la barra di carica#A barra di carica vuota Isaac diventa temporaneamente invincibile#Se invincibile Isaac evoca raggi di luce a contatto con i nemici#Se il danno è bloccato con tempismo perfetto, spara raggi sacri in 4 direzioni e ottiene brevemente uno scudo#{{Warning}} Tenerlo premuto troppo a lungo infligge danni ad Isaac"}, -- Breath of Life
 	[328] = {"328", "Il Negativo", "↑ {{Damage}} +1 Danni#Subire danni e finire con mezzo Cuore Rosso o meno danneggia tutti i nemici nella stanza"}, -- The Negative
-	[330] = {"330", "Latte di Soia", "↑ {{Tears}} x5.5 Moltiplicatore rateo di fuoco#↓ {{Damage}} x0.2 Moltiplicatore Danni#↓ {{Tearsize}} -0.3 Dimensioni Lacrime#Riduce drasticamente la spinta delle lacrime"}, -- Soy Milk
+	[330] = {"330", "Latte di Soia", "↑ {{Tears}} x5.5 Moltiplicatore Rateo di Fuoco#↓ {{Damage}} x0.2 Moltiplicatore Danni#↓ {{Tearsize}} -0.3 Dimensioni Lacrime#Riduce drasticamente la spinta delle lacrime"}, -- Soy Milk
 	[331] = {"331", "Divinità", "↑ {{Damage}} +0.5 Danni#↓ {{Tears}} -0.3 Lacrime#↓ {{Shotspeed}} -0.3 Velocità Colpi#Lacrime a ricerca#{{Damage}} Le lacrime ottengono un'aura che infligge 60 danni al secondo"}, -- Godhead
 	[336] = {"336", "Cipolla Morta", "↑ {{Tearsize}} +0.22 Dimensioni Lacrime#↓ {{Range}} -1.5 Gittata#↓ {{Shotspeed}} -0.4 Velocità Colpi#Lacrime penetranti + spettrali"}, -- Dead Onion
 	[339] = {"339", "Spilla da Balia", "↑ {{Range}} +2.5 Gittata#↑ {{Shotspeed}} +0.16 Velocità Colpi#{{BlackHeart}} +1 Cuore Nero"}, -- Safety Pin
@@ -241,8 +241,8 @@ local repCollectibles={
 	[522] = {"522", "Telecinesi", "Ferma tutti i proiettili che si avvicinano ad Isaac per 3 secondi e in seguito li rilancia via#Durante l'effetto respinge via i nemici vicini"}, -- Telekinesis
 	[523] = {"523", "Scatola per Traslochi", "Conserva fino a 10 consumabili e oggetti della stanza corrente#Usare di nuovo l'oggetto butta a terra tutto nel piano#Permette ad Isaac di spostare oggetti e/o consumabili tra le stanze"}, -- Moving Box
 	[524] = {"524", "Tecnologia Zero", "Le lacrime di Isaac sono connesse tra loro da raggi d'elettricità#I raggi infliggono i danni di Isaac x4.5 al secondo"}, -- Technology Zero
-	[531] = {"531", "Emolacria", "↑ {{Damage}} +1 Danni#↑ {{Damage}} x1.31 Moltiplicatore Danni#↓ {{Tears}} x0.33 Moltiplicatore rateo di fuoco#↓ {{Range}} x0.8 Moltiplicatore Gittata#Le lacrime di Isaac volano in un arco e all'impatto scoppiano in lacrime più piccole"}, -- Haemolacria
-	[543] = {"543", "Terra Consacrata", "Subire danni genera una cacca bianca#Dentro l'aura della cacca:#↑ {{Tears}} x2.5 Moltiplicatore rateo di fuoco#↑ {{Damage}} x1.2 Moltiplicatore Danni#Lacrime a ricerca#Chance di bloccare i danni"}, -- Hallowed Ground
+	[531] = {"531", "Emolacria", "↑ {{Damage}} +1 Danni#↑ {{Damage}} x1.31 Moltiplicatore Danni#↓ {{Tears}} x0.33 Moltiplicatore Rateo di Fuoco#↓ {{Range}} x0.8 Moltiplicatore Gittata#Le lacrime di Isaac volano in un arco e all'impatto scoppiano in lacrime più piccole"}, -- Haemolacria
+	[543] = {"543", "Terra Consacrata", "Subire danni genera una cacca bianca#Dentro l'aura della cacca:#↑ {{Tears}} x2.5 Moltiplicatore Rateo di Fuoco#↑ {{Damage}} x1.2 Moltiplicatore Danni#Lacrime a ricerca#Chance di bloccare i danni"}, -- Hallowed Ground
 	[549] =	{"549", "Osteogenesi Imperfetta", "{{EmptyBoneHeart}} Rimpiazza tutti i Cuori Rossi di Isaac con 6 Cuori Ossei vuoti#Se si perde 1 Cuore Osseo:#↑ {{Tears}} +0.4 Rateo di Fuoco#Spara 8 lacrime ossute in tutte le direzioni"}, -- Brittle Bones
 	[552] = {"552", "Pala di Mamma", "Genera una botola per il prossimo piano#{{LadderRoom}} Genera un cunicolo se usato su una casella decorativa del piano (erba, sassolini, foglietti, gemme, etc.)#{{Warning}} Usa la pala sul cumulo di terra nella \"Camera Oscura\""}, -- Mom's Shovel
 	[553] = {"553", "Mucormicosi", "25% di chance di sparare una lacrima di spore adesiva#{{Luck}} Non è influenzato dalla Fortuna#{{Poison}} Le spore scoppiano dopo 2.5 secondi, infliggendo danni, avvelenando i nemici nelle vicinanze e rilasciando altre spore"}, -- Mucormycosis
@@ -253,7 +253,7 @@ local repCollectibles={
 	[558] = {"558", "Obbrobrio", "Chance di sparare 1-3 lacrime extra in direzioni casuali#{{Luck}} Non è influenzato dalla Fortuna"}, -- Eye Sore
 	[559] = {"559", "120 Volt", "Dà ripetutamente la scossa ai nemici nelle vicinanze#{{Damage}} L'elettricità infligge fino ai danni di Isaac x3.5 al secondo#Le scintille possono estendersi fino a 4 nemici"}, -- 120 Volt
 	[560] = {"560", "Fa Male", "{{Timer}} Mentre si subiscono danni, conferisce fino all'uscita dalla stanza:#↑ {{Tears}} +1.2 Rateo di Fuoco al primo colpo#↑ {{Tears}} +0.4 Rateo di Fuoco per ogni colpo extra#Rilascia un anello di 10 lacrime attorno ad Isaac"}, -- It Hurts
-	[561] = {"561", "Latte di Mandorla", "↑ {{Tears}} x4 Moltiplicatore rateo di fuoco#↓ {{Damage}} x0.3 Moltiplicatore Danni#↓ {{Tearsize}} -0.16 Dimensioni Lacrime#Le lacrime ottengono effetti dei vermi ninnoli e alcuni effetti di oggetti"}, -- Almond Milk
+	[561] = {"561", "Latte di Mandorla", "↑ {{Tears}} x4 Moltiplicatore Rateo di Fuoco#↓ {{Damage}} x0.3 Moltiplicatore Danni#↓ {{Tearsize}} -0.16 Dimensioni Lacrime#Le lacrime ottengono effetti dei vermi ninnoli e alcuni effetti di oggetti"}, -- Almond Milk
 	[562] = {"562", "Caduto in Basso", "↑ Previene il calo delle statistiche per il resto della partita"}, -- Rock Bottom
 	[563] = {"563", "Bombe Frufru", "{{Bomb}} +5 Bombe#Le bombe di Isaac esplodono con effetti casuali"}, -- Nancy Bombs
 	[564] = {"564", "Una Saponetta", "↑ {{Tears}} +0.5 Lacrime#↑ {{Shotspeed}} +0.2 Velocità Colpi"}, -- A Bar of Soap
@@ -396,12 +396,12 @@ local repCollectibles={
 	[701] = {"701", "Tomba di Isaac", "Genera un {{DirtyChest}} Vecchio Baule all'inizio di ogni piano#I Vecchi Bauli richiedono una chiave per venire aperti e possono contenere: {{SoulHeart}} Cuori Celesti, {{Trinket}} ninnoli o oggetti di Mamma, Papà o angelici"}, -- Isaac's Tomb
 	[702] = {"702", "Spirito Vendicativo", "Subire danni genera 1 fiammella orbitale#Le fiammelle sparano lacrime, non bloccano i proiettili e spariscono al piano successivo#Si massimizza a 6 fiammelle"}, -- Vengeful Spirit
 	[703] = {"703", "Esau Jr.", "Alterna tra il personaggio corrente con Esau Jr.#Esau Jr. ha {{BlackHeart}} 3 Cuori Neri, {{Damage}} +2 Danni, volo, e oggetti casuali pari al numero di oggetti in possesso quando l'oggetto è stato usato per la prima volta#I personaggi hanno salute e oggetti separati#{{Warning}} Se uno dei due personaggi muore la partita termina"}, -- Esau Jr.
-	[704] = {"704", "Violenza!", "{{Battery}} Si carica infliggendo danni#{{Timer}} Conferisce per 5 secondi:#↑ {{Speed}} +0.4 Velocità#↓ {{Tears}} x0.5 Moltiplicatore rateo di fuoco#↑ {{Tears}} +2 Rateo di Fuoco#↑ {{Damage}} +3 Danni#Limita gli attacchi ad uno in mischia che riflette i proiettili#{{Timer}} Ogni uccisione incrementa la durata di 1 secondo e conferisce brevemente invincibilità"}, -- Berserk!
+	[704] = {"704", "Violenza!", "{{Battery}} Si carica infliggendo danni#{{Timer}} Conferisce per 5 secondi:#↑ {{Speed}} +0.4 Velocità#↓ {{Tears}} x0.5 Moltiplicatore Rateo di Fuoco#↑ {{Tears}} +2 Rateo di Fuoco#↑ {{Damage}} +3 Danni#Limita gli attacchi ad uno in mischia che riflette i proiettili#{{Timer}} Ogni uccisione incrementa la durata di 1 secondo e conferisce brevemente invincibilità"}, -- Berserk!
 	[705] = {"705", "Arti Oscure", "{{Timer}} Conferisce per 1 secondo (o finché non si spara):↑ {{Speed}} +1 Velocità#Isaac può passare attraverso i nemici/proiettili e li paralizza#Finito l'effetto danneggia i nemici paralizzati, rimuove i proiettili paralizzati e crea un botto nella posizione di Isaac#Gli attacchi e il botto sono tanto più potenti quanti più nemici/proiettili vengono colpiti"}, -- Dark Arts
 	[706] = {"706", "Abisso", "Consuma tutti i piedistalli nella stanza e genera un famiglio locusta per ciascuno di essi#Le locuste infliggono i danni di Isaac 2-3 volte ad attacco#Alcuni oggetti se consumati generano una locusta speciale"}, -- Abyss
 	[707] = {"707", "Cena", "↑ {{Heart}} +1 Salutr#{{HealingRed}} Cura di 1 cuore"}, -- Supper
 	[708] = {"708", "Pinzatrice", "↑ {{Damage}} +1 Danni#Tutte le lacrime di Isaac vengono sparate dall'occhio destro"}, -- Stapler
-	[709] = {"709", "Suplex!", "Isaac scatta nella direzione in cui si sta muovendo#Scattare verso un nemico o un boss lo raccoglie e lo schianta a terra#Lo schianto infligge danni e genera scosse rocciose in base alla statura di Isaac#Durante lo scatto e lo schianto si è invincibili"}, -- Suplex!
+	[709] = {"709", "Suplex!", "Isaac scatta nella direzione in cui si sta muovendo#Scattare verso un nemico o un boss lo raccoglie e lo schianta a terra#Lo schianto infligge danni e genera scosse sismiche in base alla statura di Isaac#Durante lo scatto e lo schianto si è invincibili"}, -- Suplex!
 	[710] = {"710", "Sacco del Fai da Te", "Raccoglie fino a 8 consumabili che non possono essere buttati a terra#Usare l'oggetto con 8 consuambili nel sacco assembla un oggetto#La qualità dell'oggetto si basa sulla qualità dei consumabili"}, -- Bag of Crafting
 	[711] = {"711", "Limbo", "Entrare in una stanza con piedistalli fa mostrare in essi un secondo oggetto incorporeo#Usare l'oggetto inverte l'oggetto reale con quello incorporeo#Usare \"Limbo\" dopo aver preso il primo oggetto permette ad Isaac di raccogliere l'altro oggetto#{{Warning}} Se si lascia la stanza gli oggetti incorporei lasciati da soli nei piedistalli spariscono"}, -- Flip
 	[712] = {"712", "Lemegeton", "Genera un orbitale che conferisce l'effetto di un oggetto casuale#Gli oggetti hanno il 25% di chance di essere della categoria di oggetti della stanza corrente e il 75% di chance di essere della categoria della Stanza dei Tesori, Stanza del Boss o del Negozio"}, -- Lemegeton
@@ -1277,7 +1277,7 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Cacca di Pietra", "Quando lanciata può infliggere danni per 3 volte#Occorrono molti colpi per distruggerla"},
 	{"Cacca Puzzolente", "Emette una nube tossica#{{Warning}} La nube esplode a contatto con il fuoco!"},
 	{"Cacca Nera", "{{Slow}} Crea del liquido rallentante#{{Confusion}} Se distrutta infligge 10 danni e confonde tutti nemici"},
-	{"Cacca Santa", "{{Collectible543}} Genera una cacca bianca#Dentro l'aura della cacca:#↑ {{Damage}} x1.2 Moltiplicatore Danni#↑ {{Tears}} x2.5 Moltiplicatore rateo di fuoco#Lacrime a ricerca#Chance di bloccare i danni"},
+	{"Cacca Santa", "{{Collectible543}} Genera una cacca bianca#Dentro l'aura della cacca:#↑ {{Damage}} x1.2 Moltiplicatore Danni#↑ {{Tears}} x2.5 Moltiplicatore Rateo di Fuoco#Lacrime a ricerca#Chance di bloccare i danni"},
 	{"Liquido Marrone", "Lascia una scia di liquido#Rimanere sul liquido aumenta il rateo di fuoco e i danni di Isaac#Se il liquido tocca altre cacche ottiene le loro caratteristiche"},
 	{"Scorreggia", "Spinge via nemici e proiettili vicini, e genera una nube tossica#{{Warning}} La nube esplode a contatto con il fuoco!"},
 	{"Bomba", "Bombe lanciabili ordinarie"},
@@ -1348,18 +1348,18 @@ local repConditions = {
 	["5.100.642"] = "!!! MONOUSO !!!#Genera un oggetto dalla categoria di oggetti della stanza corrente", -- Magic Skin + Lost
 	["5.100.240"] = "{1} mantiene il cambiamento di statistiche quando lo lascia", -- Experimental Treatment + Tainted Isaac
 	["5.100.644"] = "{1} mantiene l'aumento di statistiche quando lo lascia", -- Consolation Prize + Tainted Isaac
-	["5.100.549"] = "Quando viene raccolto {1} ottiene un semplice ↑ {{Tears}} +0.4 Lacrime", -- Brittle Bones (Keeper+Lost)
+	["5.100.549"] = "↑ {{Tears}} +0.4 Rateo di Fuoco", -- Brittle Bones (Keeper+Lost)
 	["5.100.694"] = "Funziona per {1}, permettendogli di sopravvivere 4 colpi", -- Heartbreak + Losts
-	["5.100.694 (Keeper)"] = "{1} ottiene 1 Cuore Spezzato, i colpi fatali conferiscono 1 Cuore Spezzato, e muore a 3 Cuori Spezzati", -- Heartbreak + Normal Keeper
+	["5.100.694 (Keeper)"] = "↑ {{Damage}} +0.25 Danni per ogni Cuore Spezzato#{{BrokenHeart}} +1 Cuore Spezzato#I colpi fatali conferiscono +1 Cuore Spezzato#{{Warning}} Il Mercante muore a 3 Cuori Spezzati", -- Heartbreak + Normal Keeper
+	["5.100.694 (Tainted Keeper)"] = "{{Warning}} Dopo aver preso questo oggetto {1} morirà dopo un colpo#↑ {{Damage}} +0.25 Danni per ogni Cuore Spezzato#{{BrokenHeart}} +1 Cuore Spezzato#I colpi fatali conferiscono +1 Cuore Spezzato# Il Mercante Corrotto muore a 2 Cuori Spezzati", -- Heartbreak + Tainted Keeper
 	["5.100.501"] = "{1} può ottenere Portamonete aggiuntivi#Gli oggetti che aumentano la salute con 25 monete possono conferire un Portamonete extra", -- Greed's Gullet + Keeper
-	["5.100.694 (Tainted Keeper)"] = "{1} ottiene 1 Cuore Spezzato e muore a 2 Cuori Spezzati#{{Warning}} Dopo aver preso questo oggetto {1} morirà in un colpo", -- Heartbreak + Tainted Keeper
 	["5.100.188"] = "In quanto {1} infligge 7.5 danni", -- Cain + Abel
 	["5.100.360"] = "In quanto {1} infligge il 100% dei danni", -- Lilith + Incubus
 	["5.100.728"] = "In quanto {1} infligge il 100% dei danni", -- Lilith + Gello
 	["5.100.230 (Keeper)"] = "{1} viene lasciato con 1 Portamonete", -- Abaddon
 	["5.100.230 (Bethany)"] = "{1} viene lasciato con mezzo cuore", -- Abaddon
 	["5.100.230 (Tainted Bethany)"] = "{1} non perde le sue cariche sanguinee", -- Abaddon
-	["5.100.245 (Keeper)"] = "Più Rateo di Fuoco e meno dispersione lacrime per {1}", -- 20/20 + Keeper
+	["5.100.245 (Keeper)"] = "↑ {{Tears}} Più Rateo di Fuoco#↑ Meno dispersione di lacrime#↓ {{Damage}} x0.8 Moltiplicatore Danni", -- 20/20 + Keeper
 	["5.100.205 (Tainted Magdalene)"] = "Permette usi infiniti di \"Cuore Gustoso\"", -- Sharp Plug + Tainted Magdalene
 	
 	["5.100.705"] = "+1 Danni temporanei per ogni proiettile/nemico", -- Dark Arts + Dark/Tainted Judas

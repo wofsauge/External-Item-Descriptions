@@ -64,7 +64,7 @@ EID.descriptions[languageCode].collectibles={
 	{"41", "Assorbente di Mamma", "{{Fear}} Spaventa tutti i nemici nella stanza per 5 secondi"},
 	{"42", "Testa Marcia di Bob", "Usare l'oggetto e sparare in una direzione fa scagliare la testa#{{Poison}} La testa esplode all'impatto e avvelena i nemici colpiti dall'esplosione"},
 	{"43", "", "<item does not exist>"},
-	{"44", "Teletrasporto!", "Teletrasporta Isaac in una stanza casuale che non sia una stanza I AM ERROR"},
+	{"44", "Teletrasporto!", "Teletrasporta Isaac in una stanza casuale che non sia una Stanza I AM ERROR"},
 	{"45", "Cuore Gustoso", "{{HealingRed}} Cura di 1 cuore"},
 	{"46", "Piede Fortunato", "↑ {{Luck}} +1 Fortuna#+8% di chance di una ricompensa a completamento stanza#Più alte chance di vittoria nel gioco d'azzardo"},
 	{"47", "Telecomando del Dottore", "{{Collectible168}} Se usato, appare un mirino direzionabile#Un missile colpisce il mirino dopo 1.5 secondi#Infligge i danni di Isaac x20"},
@@ -172,7 +172,7 @@ EID.descriptions[languageCode].collectibles={
 	{"149", "Ipecac", "↑ {{Damage}} +40 Danni#↓ {{Tears}} Meno Lacrime#Isaac spara lacrime lungo un arco#{{Poison}} Le lacrime esplodono nel punto in cui atterrano, avvelenando i nemici"},
 	{"150", "Amor Duro", "{{Damage}} 10% di chance di sparare denti che infliggono i danni di Isaac x3.2#{{Luck}} 100% di chance con 9 di Fortuna"},
 	{"151", "Mosca al Naso", "Colpire un nemico con una lacrima ha un 1/6 di chance di generare una mosca"},
-	{"152", "Tecnologia 2", "↓ {{Tears}} x2 Moltiplicatore Rateo di fuoco#↓ {{Damage}} x0.65 Moltiplicatore Danni#Sotituisce le lacrime dell'occhio destro di Isaac con un laser costante#{{Damage}} Il laser infligge il 20% dei danni di Isaac per tocco"},
+	{"152", "Tecnologia 2", "↓ {{Tears}} x2 Moltiplicatore Lacrime#↓ {{Damage}} x0.65 Moltiplicatore Danni#Sotituisce le lacrime dell'occhio destro di Isaac con un laser costante#{{Damage}} Il laser infligge il 20% dei danni di Isaac per tocco"},
 	{"153", "Ragno Mutante", "↓ {{Tears}} Meno Lacrime#Isaac spara 4 lacrime alla volta"},
 	{"154", "Esfoliazione Chimica", "↑ {{Damage}} +2 Danni per l'occhio sinistro"},
 	{"155", "Il Guardone", "↑ {{Damage}} x1.35 Moltiplicatore Danni per l'occhio sinistro#Levita intorno alla stanza#Infligge 17.1 danni da contatto al secondo"},
@@ -243,7 +243,7 @@ EID.descriptions[languageCode].collectibles={
 	{"220", "Bombe Tristi", "{{Bomb}} +5 Bombe#Quando le bombe di Isaac esplodono sparano un cerchio di 10 lacrime"},
 	{"221", "Mastice", "Le lacrime di Isaac rimbalzano sui nemici e sugli ostacoli"},
 	{"222", "Anti-Gravità", "↑ {{Tears}} -2 Delay tra Lacrime#Tenere premuto il tasto di fuoco fa sì che le lacrime levitino a mezz'aria#Rilasciare il tasto di fuoco le lancia nella direzione verso cui erano state sparate"},
-	{"223", "Piromane", "{{Bomb}} +5 Bombe#{{HealingRed}} Le esplosioni curano Isaac di 1 cuore invece di danneggiarlo#Immunità alle scosse rocciose e ai pestoni di Mamma e Satana"},
+	{"223", "Piromane", "{{Bomb}} +5 Bombe#Immunità a esplosioni, scosse sismiche e pestoni#{{HealingRed}} Le esplosioni curano Isaac di 1 cuore invece di danneggiarlo"},
 	{"224", "Corpo di Cricket", "↑ {{Tears}} -1 Delay tra Lacrime#↑ {{Tearsize}} x1.2 Dimensioni Lacrime#↓ {{Range}} -10 Gittata#Quando le lacrime colpiscono si scindono in 4#Le lacrime scisse infliggono la metà dei danni"},
 	{"225", "Latex", "{{SoulHeart}} Subire danni ha una chance di generare 1 Cuore Celeste#{{HalfHeart}} I nemici hanno una chance di lasciare mezzo Cuore Rosso quando muoiono"},
 	{"226", "Loto Nero", "↑ {{Heart}} +1 Salute#{{SoulHeart}} +1 Cuore Celeste#{{BlackHeart}} +1 Cuore Nero"},
@@ -397,7 +397,7 @@ EID.descriptions[languageCode].collectibles={
 	{"372", "Bebè Carico", "Ogni 30 secondi in una stanza non completata, il famiglio può:#{{Battery}} Generare una pila (max 2 per stanza)#{{Battery}} Aggiungere una carica all'oggetto attivo (max 2 per stanza)#Pietrificare tutti i nemici nella stanza"},
 	{"373", "Cecchino", "↑ {{Damage}} Le lacrime che colpiscono consecutivamente i nemici conferiscono +25% dei danni (max +100%)#I colpi mancati hanno una chance di resettare il moltiplicatore"},
 	{"374", "Luce Sacra", "10% di chance di sparare lacrime sacre, che quando colpiscono generano un raggio di luce#{{Luck}} 50% di chance con 9 di Fortuna#{{Damage}} Il raggio infligge i danni di Isaac x4"},
-	{"375", "Cascospite", "Conferisce immunità alle esplosioni, scosse rocciose e ai pestoni di Mamma e Satana#25% di chance di riflettere i proiettili nemici"},
+	{"375", "Cascospite", "Conferisce immunità alle esplosioni, scosse sismiche e ai pestoni di Mamma e Satana#25% di chance di riflettere i proiettili nemici"},
 	{"376", "Rifornimento", "Genera 3 consumabili casuali#Comprare oggetti al Negozio lo rifornisce istantaneamente"},
 	{"377", "Sacca Brulicante", "I ragni nemici non bersagliano o infliggono danni da contatto ad Isaac"},
 	{"378", "La Numero Due", "Tenere premuto il tasto di fuoco per 2.35 secondi genera una Bomba Popò"},
@@ -983,7 +983,7 @@ EID.descriptions[languageCode].pills={
 	{"16", "Più Lacrime", "↑ {{Tears}} +0.35 Lacrime"},
 	{"17", "Meno Fortuna", "↓ {{Luck}} -1 Fortuna"},
 	{"18", "Più Fortuna", "↑ {{Luck}} +1 Fortuna"},
-	{"19", "Telepillole", "Teletrasporta Isaac in una stanza casuale#{{ErrorRoom}} Piccola chance di teletrasportare Isaac nella stanza I AM ERROR"},
+	{"19", "Telepillole", "Teletrasporta Isaac in una stanza casuale#{{ErrorRoom}} Piccola chance di teletrasportare Isaac nella Stanza I AM ERROR"},
 	{"20", "Energia per 48 Ore!", "{{Battery}} Ricarica completamente l'oggetto attivo#{{Battery}} Genera 1-2 pile"},
 	{"21", "Ematemesi", "{{Warning}} Esaurisce tutti i Portacuori a parte 1#{{Heart}} Genera 1-4 Cuori Rossi"},
 	{"22", "Paralisi", "Impedisce ad Isaac di muoversi e sparare per 2 secondi"},
@@ -1117,19 +1117,22 @@ EID.descriptions[languageCode].BlackFeatherInformation = "Oggetti tenuti al mome
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
 	["Red to Soul"] = {"↑ {{Heart}} +{1} Salute", "{{SoulHeart}} +{1} Cuore Celeste/i",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{SoulHeart}} +{1} Cuore/i Celeste/i"},
+	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{SoulHeart}} +{1} Cuore/i Celeste/i",
+	"↓ {{EmptyHeart}} {1} Salute", "↓ {{SoulHeart}} {1} Cuore/i Celeste/i"},
 
 	["Red to Black"] = {"↑ {{Heart}} +{1} Salute", "{{BlackHeart}} +{1} Cuore/i Nero/i",
-	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{BlackHeart}} +{1} Cuore/i Nero/i"},
+	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{BlackHeart}} +{1} Cuore/i Nero/i",
+	"↓ {{EmptyHeart}} {1} Salute", "↓ {{SoulHeart}} {1} Cuore/i Nero/i"},
 
 	["Red to Bone"] = {"↑ {{Heart}} +{1} Salute", "{{BoneHeart}} +{1} Cuore/i Osseo/i",
-	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{EmptyBoneHeart}} +{1} Cuore/i Osseo/i Vuoto/i", "{{HealingRed}}", "{{HealingBone}}"}, -- Red HP to Bone Hearts
+	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{EmptyBoneHeart}} +{1} Cuore/i Osseo/i Vuoto/i", "{{HealingRed}}", "{{HealingBone}}", -- Red HP to Bone Hearts
+	"↓ {{EmptyHeart}} {1} Salute", "↓ {{EmptyBoneHeart}} {1} Cuore/i Osseo/i"}, -- Red HP to Bone Hearts
 
 	["Red to Coin"] = {"↑ {{Heart}} +{1} Salute", "{{CoinHeart}} +{1} Portamonete",
 	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{EmptyCoinHeart}} +{1} Portamonete vuoto/i",
-	"{{HealingRed}} Cura di {1} cuore/i{2}", "{{HealingCoin}} Cura di {1} moneta/e", "{{HealingRed}} Cura di mezzo cuore", "{{HealingCoin}} Cura di 1 moneta", "{{HealingRed}}", "{{HealingCoin}}"},
+	"{{HealingRed}} Cura di {1} cuore/i", "{{HealingCoin}} Cura di {1} moneta/e", "{{HealingRed}} Cura di mezzo cuore", "{{HealingCoin}} Cura di 1 moneta", "{{HealingRed}}", "{{HealingCoin}}"},
 
-	["Red to None"] = {"↑ {{Heart}} +{1} Salute", "", "↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {"↑ {{Heart}} +{1} Salute", "", "↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "", "↓ {{EmptyHeart}} {1} Salute", ""}, -- Red HP to None (The Lost)
 }
 
 EID.descriptions[languageCode].MCM = {
@@ -1214,6 +1217,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Familiars)"] = "Nessun effetto extra da famigli", -- probably just for Hive Mind + BFFS!
 	["No Red"] = "Effetto nullo per personaggi che non hanno Cuori Rossi",
 	["Different Effect"] = "Effetto diverso per {1}",
+	["Dies on Use"] = "{{Warning}} Se usato {1} muore", -- for Razor Blade and such as The Lost
 	
 	
 	------ GREED MODE ------
@@ -1243,11 +1247,13 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 	
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
+	-- NO RED HEALTH CHARS
 	["Super Bandage Soul"] = {"{{SoulHeart}} +3 Cuori Celesti"}, -- for Soul Heart chars
 	["Super Bandage Black"] = {"{{SoulHeart}} +2 Cuori Celesti#{{BlackHeart}} +1 Cuore Nero"}, -- for Black Heart chars
 	["Black Lotus Soul"] = {"{{SoulHeart}} +2 Cuori Celesti#{{BlackHeart}} +1 Cuore Nero"}, -- for Soul Heart chars
 	["Black Lotus Black"] = {"{{SoulHeart}} +1 Cuore Celeste#{{BlackHeart}} +2 Cuori Neri"}, -- for Black Heart chars
-
+	
+	
 	["5.100.135 (PHD)"] = "Genera 2-3 monete se si ha {1}", -- IV Bag PHD
 	["Keeper 0-1"] = "Genera 0-1 monete nel caso di {1}", -- IV Bag/Piggy Bank Keeper
 	["5.100.549"] = "Quando viene raccolto {1} ottiene un semplice ↑ {{Tears}} +0.4 Lacrime", -- Brittle Bones (Keeper+Lost)
@@ -1288,7 +1294,8 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.316"] = "{1} rimuove l'effetto di teletrasporto", -- Cursed Eye
 	["5.100.260"] = "Rimuove l'effetto di teletrasporto di {1}", -- Black Candle
 	["? Card Single Use"] = "Dopo l'uso di \"Carta ?\" gli oggetti monouso spariranno", -- Single Use Actives + ? Card
-	["5.300.48"] = "Teletrasporta nella stanza I AM ERROR#\"Carta Vuota\" e \"Carta ?\" verranno distrutte", -- Blank Card + ? Card
+	["5.300.48"] = "Teletrasporta nella Stanza I AM ERROR#\"Carta Vuota\" e \"Carta ?\" verranno distrutte", -- Blank Card + ? Card
+	["? + Blank Pedestal"] = "Usare \"Carta ?\" con \"Carta Vuota\" teletrasporta nella Stanza I AM ERROR e distrugge ambo le carte", -- Looking at Blank Card with ? Card
 	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
 	["5.100.521"] = "{{Collectible376}} Gli oggetti gratuiti non verranno riforniti", -- Coupon + Restock/Greed
 	["Black Feather"] = "↑ {{Damage}} +0.2 Danni", -- Black Feather items
