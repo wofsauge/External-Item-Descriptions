@@ -85,11 +85,11 @@ EID:AddConditional(297, function() return not EID:HaveNotUnlockedAchievement(366
 
 local SoulBlackChars = EID:ConcatTables(EID.SpecialHeartPlayers["Soul"],EID.SpecialHeartPlayers["Black"])
 ------ NO RED HEALTH PLAYERS ------
-EID:AddClosestPlayerConditional({442, "5.350.46", "5.350.107", "5.350.119"}, SoulBlackChars, "No Effect Replace", nil, false) -- Dark Prince's Crown, Crow Heart, Stem Cell, Isaac's Fork
 EID:AddConditional(81, EID.CheckForNoRedHealthPlayer) -- Dead Cat
+
+EID:AddClosestPlayerConditional({133, 442, 487, "5.350.46", "5.350.107", "5.350.119"}, SoulBlackChars, "No Effect Replace", nil, false) -- Dark Prince's Crown, Crow Heart, Stem Cell, Isaac's Fork, Guppy's Paw, Potato Peeler
 if EID.isRepentance then
 	EID:AddClosestPlayerConditional({569, 671, 676}, SoulBlackChars, "No Effect Replace", nil, false) -- Blood Oath, Candy Heart, Empty Heart
-	EID:AddClosestPlayerConditional({671, 676}, 14, "No Effect Replace") -- Candy Heart / Empty Heart + Keeper
 	EID:AddClosestPlayerConditional(676, 16, "No Effect Replace", nil, false) -- Empty Heart + Forgotten (not Tainted)
 	
 	EID:AddClosestPlayerConditional("5.350.156", 14, "Mother's Kiss Coin") -- Mother's Kiss + Keeper
@@ -112,17 +112,21 @@ end
 
 ------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
 -- Note that passing "false" as a 5th variable to AddPlayerConditional will make it so the Tainted version of the char doesn't count, otherwise it does
-EID:AddPlayerConditional(549, { 10, 14 })       -- Keeper/Lost + Brittle Bones
-EID:AddPlayerConditional(108, 14, "No Effect")  -- Keeper + The Wafer
+EID:AddClosestPlayerConditional(549, { 10, 14 })       -- Keeper/Lost + Brittle Bones
+
 EID:AddPlayerConditional(227, 14, "Keeper 0-1") -- Keeper + Piggy Bank
 EID:AddPlayerConditional(501, 14)               -- Keeper + Greed's Gullet
 EID:AddPlayerConditional(230, 14, "Keeper")     -- Keeper + Abaddon
 EID:AddPlayerConditional(152, 2, "Technology 2 One Eye") -- Cain + Technology 2
 EID:AddPlayerConditional(122, 5, nil, nil, false) -- Eve + Whore of Babylon
 
-EID:AddClosestPlayerConditional({15, 16, 20, 22, 23, 24, 25, 26, 45, 60, 92, 142, 159, 173, 179, 184, 185, 218, 226, 312, 334, 346, 428, 456, 487, 501, "5.350.14", "5.350.46", "5.350.55", "5.350.56", "5.350.107", "5.350.128"}, 10, "No Effect Replace", {layer = 10000}) -- Useless Lost items
+EID:AddClosestPlayerConditional({15, 16, 20, 22, 23, 24, 25, 26, 45, 60, 92, 108, 133, 142, 146, 159, 173, 179, 184, 185, 205, 218, 226, 296, 301, 312, 334, 346, 428, 442, 448, 456, 487, 493, 501, "5.350.14", "5.350.46", "5.350.55", "5.350.56", "5.350.107", "5.350.128"}, 10, "No Effect Replace", {layer = 10000}) -- Useless Lost items replace
+EID:AddPlayerConditional({126, 135, 186}, 10, "Dies on Use", {layer = 10000}) -- Lethal Lost items warning
+EID:AddClosestPlayerConditional({108, 122, 296}, 14, "No Effect Replace")  -- Useless Keeper items (The Wafer, Converter, Whore) replace
 if EID.isRepentance then
-	EID:AddClosestPlayerConditional({569, 671, 676, 707, "5.350.156", "5.350.168"}, 10, "No Effect Replace", {layer = 10000}) -- Useless Lost items
+	EID:AddClosestPlayerConditional({569, 639, 671, 676, 707, "5.350.156", "5.350.168"}, 10, "No Effect Replace", {layer = 10000}) -- Useless Lost items replace
+	EID:AddPlayerConditional({713}, 10, "Dies on Use", {layer = 10000}) -- Lethal Lost items warning
+	EID:AddClosestPlayerConditional({671, 676, 686}, 14, "No Effect Replace") -- Useless Keeper items (Candy Heart, Empty Heart, Soul Locket) replace
 end
 
 if EID.isRepentance then
@@ -137,22 +141,22 @@ if EID.isRepentance then
 	EID:AddPlayerConditional(188, 2)                      -- Cain + Abel
 	EID:AddPlayerConditional({ 360, 728 }, 13)            -- Incubus/Gello + Lilith
 	EID:AddPlayerConditional({ 240, 644 }, 21)            -- Tainted Isaac + Experimental Treatment, Consolation Prize
-	EID:AddPlayerConditional(694, 10)                     -- Lost + Heartbreak
 	EID:AddClosestPlayerConditional(642, 10)              -- Lost + Magic Skin
-	EID:AddPlayerConditional(694, 14, "Keeper", nil, false) -- Keeper + Heartbreak
-	EID:AddPlayerConditional(694, 33, "Tainted Keeper")   -- Tainted Keeper + Heartbreak
+	EID:AddPlayerConditional(694, 10, nil, {layer=1})                     -- Lost + Heartbreak
+	EID:AddClosestPlayerConditional(694, 14, "Keeper", nil, false) -- Keeper + Heartbreak
+	EID:AddClosestPlayerConditional(694, 33, "Tainted Keeper")   -- Tainted Keeper + Heartbreak
 	EID:AddPlayerConditional(230, 18, "Bethany", nil, false) -- Bethany + Abaddon
 	EID:AddPlayerConditional(230, 36, "Tainted Bethany")  -- Tainted Bethany + Abaddon
-	EID:AddPlayerConditional(245, 14, "Keeper")           -- 20/20 + Keeper
+	EID:AddClosestPlayerConditional(245, 14, "Keeper")           -- 20/20 + Keeper
 	EID:AddPlayerConditional(705, { 12, 24 })             -- Dark Arts + Dark/Tainted Judas
 	EID:AddPlayerConditional(205, 22, "Tainted Magdalene")-- Tainted Magdalene + Sharp Plug
 	EID:AddPlayerConditional({"5.350.100", "5.350.101"}, 18, "Bethany", nil, false) -- Bethany + Vibrant/Dim Bulb
 	EID:AddPlayerConditional({"5.350.100", "5.350.101"}, 36, "Tainted Bethany") -- Tainted Bethany + Vibrant/Dim Bulb
 	
-	EID:AddPlayerConditional(722, 37) -- TJacob Anima Sola
-	EID:AddPlayerConditional(713, 26) -- TEve Sumptorium
+	EID:AddClosestPlayerConditional(722, 37) -- TJacob Anima Sola
+	EID:AddClosestPlayerConditional(713, 26) -- TEve Sumptorium
 	EID:AddPlayerConditional(711, 29) -- TLaz Flip
-	EID:AddPlayerConditional(710, 23) -- Tcain Bag of Crafting
+	EID:AddClosestPlayerConditional(710, 23) -- Tcain Bag of Crafting
 end
 
 
@@ -297,6 +301,7 @@ end
 EID:AddSynergyConditional(7, {34, "5.300.16"})                                   -- Martyr + Book of Belial/The Devil
 EID:AddSynergyConditional(316, 260)                                              -- Black Candle + Cursed Eye
 EID:AddItemConditional("5.300.48", 286, nil, { lineColor = "ColorSilver" })      -- Blank Card + ? Card
+EID:AddItemConditional(286, "5.300.48", "? + Blank Pedestal")      -- ? Card + Blank Card
 EID:AddSynergyConditional(368, {69, 118, 316, 229, 395, 114, 329}, "Almost No Effect") -- Epiphora + Charge Shots / Ludovico
 
 EID:AddSynergyConditional({127, 297, 347, 490, 483, 515, 475, 536}, "5.300.48", "? Card Single Use") -- ? Card + Single Use Actives
@@ -351,6 +356,7 @@ if EID.isRepentance then
 	-- Item Synergies
 	EID:AddItemConditional(201, 147)                     -- Iron Bar refills Notched Axe
 	EID:AddItemConditional("5.350.172", 260)             -- Black Candle + Cursed Penny
+	EID:AddItemConditional(260, "5.350.172")             -- Cursed Penny + Black Candle
 	EID:AddItemConditional(501, 416)                     -- Greed's Gullet + Deep Pockets
 	EID:AddSynergyConditional(245, { 2, 153, 169 }, nil, "20/20") -- 20/20 + The Inner Eye, Mutant Spider, Polyphemus
 	EID:AddSynergyConditional(596, {"5.350.118", 704, 62, "5.350.60", 520, 411, 621, "5.350.58", "5.350.189", 657}, "Ice Tears") -- Uranus + On Kill Effects
