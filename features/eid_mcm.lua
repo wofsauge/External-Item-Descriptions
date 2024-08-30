@@ -25,6 +25,9 @@ EID.MCMLoaded = MCMLoaded
 local colorNameArray = {}
 EID.MCM_OptionChanged = false
 
+-- Add MCM demo description
+EID.ModIndicator["~~EID-MCM-DEMO~~"] = {Name = "My Demo Mod", Icon = "Delirium"}
+
 local function renderDummyDesc(reload)
 	if reload then
 		MCMCompat_oldPermanentObj = nil
@@ -35,6 +38,7 @@ local function renderDummyDesc(reload)
 	demoDescObj.Name = EID:getDescriptionEntry("MCM","DemoObjectName")
 	demoDescObj.Transformation = EID:getDescriptionEntry("MCM","DemoObjectTransformation")
 	demoDescObj.Description = EID:getDescriptionEntry("MCM","DemoObjectText")
+	demoDescObj.ModName = "~~EID-MCM-DEMO~~"
 	EID:displayPermanentText(demoDescObj, "MCM", "DemoObjectName")
 end
 
