@@ -1241,7 +1241,7 @@ function EID:OnRender()
 	end
 
 	-- Do not check our hide or scale hotkeys while a tab that can modify them is open
-	if EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then
+	if EID.MCMCompat_isDisplayingEIDTab ~= "General" then
 		-- scale key must be handled before resetting to non-local mode
 		handleScaleKey()
 		if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
@@ -1251,8 +1251,8 @@ function EID:OnRender()
 	EID.TabPreviewID = 0
 	EID.TabDescThisFrame = false
 
-	-- If MCM is open, don't show anything unless we're in a tab labeled as "Visuals" or "Crafting"
-	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
+	-- If MCM is open, don't show anything unless we are on a tab that explicitely writes its name in the MCMCompat_isDisplayingEIDTab variable
+	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab == "" then
 		return
 	end
 	if EID.isRepentance then

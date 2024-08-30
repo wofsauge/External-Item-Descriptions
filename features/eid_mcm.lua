@@ -107,12 +107,13 @@ function EID:renderMCMDummyDescription()
 				clearRenderDummyDesc()
 				EID:renderHUDLocationIndicators()
 				MCMCompat_isDisplayingDummyMCMObj = true
-			elseif EID.MCMCompat_isDisplayingEIDTab == "Visuals" and EID.permanentDisplayTextObj == nil then
-				renderDummyDesc()
-				MCMCompat_isDisplayingDummyMCMObj = true
 			elseif EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
 				clearRenderDummyDesc()
 				renderDummyBagOfCraftingDesc()
+				MCMCompat_isDisplayingDummyMCMObj = true
+			elseif EID.permanentDisplayTextObj == nil then
+				-- any other tab
+				renderDummyDesc(false)
 				MCMCompat_isDisplayingDummyMCMObj = true
 			end
 			EID:buildColorArray()
@@ -310,7 +311,7 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = #(EID.Languages) + 1, -- add "auto" language
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = "Visuals"
+				EID.MCMCompat_isDisplayingEIDTab = "General"
 				if EID.Config["Language"] == "auto" then
 					return "Language: Auto (" .. displayLanguage[AnIndexOf(EID.Languages, EID:getLanguage())] .. ")"
 				else
@@ -353,7 +354,7 @@ if MCMLoaded then
 
 	local refreshRateSteps = {1, 2, 3, 4, 6, 10, 12, 15, 20, 30, 60}
 	EID:AddScrollSetting("General", "RefreshRate", "Description Refresh Rate", refreshRateSteps,
-	{displayingTab = "", infoText = "How many times per second EID updates descriptions."})
+	{infoText = "How many times per second EID updates descriptions."})
 
 
 	--------Reset to default
@@ -383,7 +384,7 @@ if MCMLoaded then
 
 	-- Simple toggles of what descriptions the user wants displayed
 
-	EID:AddBooleanSetting("Display", "DisableStartOfRunWarnings", "Start of Run Warnings", {offText = "Enabled", onText = "Disabled",
+	EID:AddBooleanSetting("Display", "DisableStartOfRunWarnings", "Start of Run Warnings", {displayingTab = "", offText = "Enabled", onText = "Disabled",
 		repOnly = true, infoText = "Toggles warnings for achievements being disabled, the game being outdated, and modded crafting recipes."})
 	
 	MCM.AddSpace("EID", "Display")
@@ -406,7 +407,7 @@ if MCMLoaded then
 
 	MCM.AddSpace("EID", "Display")
 	MCM.AddText("EID", "Display", "Description visibility")
-	EID:AddBooleanSetting("Display", "DisplayItemInfo", "Show Item Info", {displayingTab = ""})
+	EID:AddBooleanSetting("Display", "DisplayItemInfo", "Show Item Info")
 	EID:AddBooleanSetting("Display", "DisplayTrinketInfo", "Show Trinket Info")
 	EID:AddBooleanSetting("Display", "DisplayCardInfo", "Show Card Info")
 	EID:AddBooleanSetting("Display", "DisplayPillInfo", "Show Pill Info")
@@ -768,13 +769,13 @@ if MCMLoaded then
 	if  EID.isRepentance then
 		if not REPENTOGON then
 			-- show disclaimer, but also show available features
-			MCM.AddText("EID", "Repentogon", "You need to install REPENTOGON")
+			MCM.AddText("EID", "Repentogon",  function() EID.MCMCompat_isDisplayingEIDTab = ""; return "You need to install REPENTOGON" end)
 			MCM.AddText("EID", "Repentogon", "to use the following features:")
 			MCM.AddSpace("EID", "Repentogon")
 		end
 		
 		MCM.AddText("EID", "Repentogon", "Uncollected Items")
-		EID:AddBooleanSetting("Repentogon", "HideUncollectedItemDescriptions", "Hide uncollected items", { infoText = "Hide descriptions of items that are not yet on the collection page."})
+		EID:AddBooleanSetting("Repentogon", "HideUncollectedItemDescriptions", "Hide uncollected items", {displayingTab = "", infoText = "Hide descriptions of items that are not yet on the collection page."})
 		EID:AddBooleanSetting("Repentogon", "ItemCollectionIndicator", "Highlight uncollected items", { infoText = "Highlights items that are not yet on the collection page."})
 		-- Needs collection Color
 		MCM.AddSetting(
@@ -789,7 +790,6 @@ if MCMLoaded then
 				Maximum = 1000,
 				Display = function()
 					if EID.Config["ItemCollectionColor"] == nil then EID.Config["ItemCollectionColor"] = EID.DefaultConfig["ItemCollectionColor"] end
-					EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 					return "Highlight color: " .. string.gsub(EID.Config["ItemCollectionColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemCollectionColor"]).."/"..#colorNameArray..")"
 				end,
 				OnChange = function(currentNum)
@@ -865,7 +865,6 @@ if MCMLoaded then
 					Maximum = 1000,
 					Display = function()
 						if EID.Config["ItemCollectionColor"] == nil then EID.Config["ItemCollectionColor"] = EID.DefaultConfig["ItemCollectionColor"] end
-						EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 						return "Collection Page Highlight color: " .. string.gsub(EID.Config["ItemCollectionColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemCollectionColor"]).."/"..#colorNameArray..")"
 					end,
 					OnChange = function(currentNum)
@@ -880,7 +879,7 @@ if MCMLoaded then
 		else
 			MCM.AddSpace("EID", "Save Game")
 			MCM.AddSpace("EID", "Save Game")
-			MCM.AddText("EID", "Save Game", function() EID.MCMCompat_isDisplayingEIDTab = ""; return "To enable savegame related features," end)
+			MCM.AddText("EID", "Save Game", "To enable savegame related features,")
 			MCM.AddText("EID", "Save Game", "please run \"scripts\\savegame_reader.exe\"")
 			MCM.AddText("EID", "Save Game", "found in the EID mod folder.")
 		end
@@ -889,7 +888,7 @@ if MCMLoaded then
 
 	---------------------------------------------------------------------------
 	-----------------------------Mouse Controls--------------------------------
-	MCM.AddText("EID", "Mouse", "! THIS FEATURE IS IN EARLY DEVELOPMENT !")
+	MCM.AddText("EID", "Mouse",  function() EID.MCMCompat_isDisplayingEIDTab = "Mouse"; return "! THIS FEATURE IS IN EARLY DEVELOPMENT !" end )
 	MCM.AddSpace("EID", "Mouse")
 	MCM.AddText("EID", "Mouse", "MCM -> General -> Hud Offset")
 	MCM.AddText("EID", "Mouse", "to adjust Hud Offset")
@@ -904,7 +903,6 @@ if MCMLoaded then
 				return EID.Config["EnableMouseControls"]
 			end,
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = "Mouse";
 				local onOff = "False"
 				if EID.Config["EnableMouseControls"] then
 					onOff = "True"
@@ -954,8 +952,8 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = "Colors";
 				if EID.Config["TextColor"] == nil then EID.Config["TextColor"] = EID.DefaultConfig["TextColor"] end
-				EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 				return "Descriptions: " .. string.gsub(EID.Config["TextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TextColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
