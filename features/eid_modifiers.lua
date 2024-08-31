@@ -318,36 +318,36 @@ local function HealthUpCallback(descObj)
 	local closestPlayer = EID:ClosestPlayerTo(descObj.Entity)
 	local playerType = closestPlayer:GetPlayerType()
 	local heartType = EID.CharacterToHeartType[playerType] or "Red"
-	if heartType == "Red" then return descObj end
-	
-	-- find/replace Health Up lines
-	local numHearts = EID.HealthUpData[typeVarSub] or 1
-	local text = EID:getDescriptionEntry("RedToX", "Red to " .. heartType)
-	local plural = ""; if numHearts ~= 1 and numHearts ~= -1 then plural = EID:getDescriptionEntry("Pluralize") end
-	
-	local pos = 1
-	while pos <= #text do
-		-- replace {1} with the number of hearts and {2} with the plural character
-		local toFind = EID:ReplaceVariableStr(text[pos], {numHearts, plural})
-		if text[pos + 1] then
-			local replaceWith = EID:ReplaceVariableStr(text[pos + 1], {numHearts, plural})
-			descObj.Description = EID:SimpleReplace(descObj.Description, tostring(toFind), replaceWith, 1)
+	if heartType ~= "Red" then
+		-- find/replace Health Up lines
+		local numHearts = EID.HealthUpData[typeVarSub] or 1
+		local text = EID:getDescriptionEntry("RedToX", "Red to " .. heartType)
+		local plural = ""; if numHearts ~= 1 and numHearts ~= -1 then plural = EID:getDescriptionEntry("Pluralize") end
+		
+		local pos = 1
+		while pos <= #text do
+			-- replace {1} with the number of hearts and {2} with the plural character
+			local toFind = EID:ReplaceVariableStr(text[pos], {numHearts, plural})
+			if text[pos + 1] then
+				local replaceWith = EID:ReplaceVariableStr(text[pos + 1], {numHearts, plural})
+				descObj.Description = EID:SimpleReplace(descObj.Description, tostring(toFind), replaceWith, 1)
+			end
+			pos = pos + 2
 		end
-		pos = pos + 2
-	end
-	
-	-- remove HealingRed lines entirely for Soul/Black/None health chars
-	descObj.Description = descObj.Description .. "#" -- gsub finds final lines better if the desc ends with a line break
-	if heartType == "Soul" or heartType == "Black" or heartType == "None" then
-		-- Find any lines containing {{HealingRed}} or {{HealingHalfRed}} and remove the line
-		descObj.Description = descObj.Description:gsub("{{HealingRed}}(.-)#", "")
-		descObj.Description = descObj.Description:gsub("{{HealingHalfRed}}(.-)#", "")
-	end
-	
-	-- check if we just made the description blank
-	if descObj.Description:gsub("#", "") == "" then
-		local noEffectStr = EID:getDescriptionEntry("ConditionalDescs", "No Effect")
-		descObj.Description = "{{Player" .. playerType .. "}} " .. EID:ReplaceVariableStr(noEffectStr, "{{NameOnlyI" .. playerType .. "}}")
+		
+		-- remove HealingRed lines entirely for Soul/Black/None health chars
+		descObj.Description = descObj.Description .. "#" -- gsub finds final lines better if the desc ends with a line break
+		if heartType == "Soul" or heartType == "Black" or heartType == "None" then
+			-- Find any lines containing {{HealingRed}} or {{HealingHalfRed}} and remove the line
+			descObj.Description = descObj.Description:gsub("{{HealingRed}}(.-)#", "")
+			descObj.Description = descObj.Description:gsub("{{HealingHalfRed}}(.-)#", "")
+		end
+		
+		-- check if we just made the description blank
+		if descObj.Description:gsub("#", "") == "" then
+			local noEffectStr = EID:getDescriptionEntry("ConditionalDescs", "No Effect")
+			descObj.Description = "{{Player" .. playerType .. "}} " .. EID:ReplaceVariableStr(noEffectStr, "{{NameOnlyI" .. playerType .. "}}")
+		end
 	end
 	
 	-- test the other players for if they have a different effect
@@ -880,6 +880,65 @@ if EID.isRepentance then
 
 		return descObj
 	end
+	
+	-- Handle Tainted Cain pedestals
+	local function TaintedCainPedestalCallback(descObj)
+		if EID.isDeathCertRoom or not descObj.Entity then return descObj end
+		local item = EID.itemConfig:GetCollectible(descObj.ObjSubType)
+		if (item.Tags and item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then return descObj end
+		
+		local closestPlayer = EID:ClosestPlayerTo(descObj.Entity)
+		local playerType = closestPlayer:GetPlayerType()
+		
+		if playerType == PlayerType.PLAYER_CAIN_B then
+			-- Construct the Salvage description
+			local hasBirthright = closestPlayer:HasCollectible(619)
+			local salvageDesc = hasBirthright and EID:getDescriptionEntry("TaintedCainPedestalBaseBirthright") or EID:getDescriptionEntry("TaintedCainPedestalBase")
+			local pickupNames = EID:getDescriptionEntry("PickupNames")
+			
+			-- Guaranteed items from room type
+			local roomType = game:GetLevel():GetCurrentRoomDesc().Data.Type
+			local roomPool = game:GetItemPool():GetPoolForRoom(roomType, 69)
+			if roomType ~= RoomType.ROOM_ERROR and EID.SalvageRoomTypes[roomPool] then
+				local newLine = EID.RoomTypeToMarkup[roomType] .. " " .. EID:getDescriptionEntry("TaintedCainPedestalGuaranteed")
+				newLine = EID:ReplaceVariableStr(newLine, 1, pickupNames[EID.SalvageRoomTypes[roomPool]]:gsub("{{[.-}}]+ ", ""))
+				newLine = EID:ReplaceVariableStr(newLine, "n", EID.PickupStartsWithVowel[EID.SalvageRoomTypes[roomPool]] and "n" or "")
+				salvageDesc = salvageDesc .. "#" .. newLine
+			end
+			
+			-- Bonus items from trinkets
+			for trinketID,pickupID in pairs(EID.SalvageTrinkets) do
+				if closestPlayer:HasTrinket(trinketID) then
+					local newLine = "{{Trinket" .. trinketID .. "}} " .. EID:getDescriptionEntry("TaintedCainPedestalBonus")
+					newLine = EID:ReplaceVariableStr(newLine, 1, pickupNames[pickupID]:gsub("{{[.-}}]+ ", ""))
+					salvageDesc = salvageDesc .. "#" .. newLine
+				end
+			end
+			
+			-- Bonus item from Lucky Toe
+			if closestPlayer:HasTrinket(42) then
+				local newLine = "{{Trinket42}} " .. (hasBirthright and EID:getDescriptionEntry("TaintedCainPedestalLuckyToeBirthright") or EID:getDescriptionEntry("TaintedCainPedestalLuckyToe"))
+				salvageDesc = salvageDesc .. "#" .. newLine
+			end
+			
+			-- Daemon's Tail reduces hearts
+			if closestPlayer:HasTrinket(22) then
+				local newLine = "{{Trinket22}} " .. EID:getDescriptionEntry("TaintedCainPedestalDaemonsTail")
+				salvageDesc = salvageDesc .. "#" .. newLine
+			end
+			descObj.Description = salvageDesc
+			for i = 1, #EID.coopAllPlayers do
+				local t = EID.coopAllPlayers[i]:GetPlayerType()
+				if t ~= PlayerType.PLAYER_CAIN_B then
+					table.insert(EID.DifferentEffectPlayers, t)
+				end
+			end
+		else
+			table.insert(EID.DifferentEffectPlayers, PlayerType.PLAYER_CAIN_B)
+		end
+		
+		return descObj
+	end
 
 	--------------------------------
 	-- Although individual conditions/callbacks work well for mods to be able to add through the API,
@@ -913,6 +972,8 @@ if EID.isRepentance then
 				goingToSpindown = true
 				table.insert(callbacks, SpindownDiceCallback)
 			else goingToSpindown = false end
+			
+			if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then table.insert(callbacks, TaintedCainPedestalCallback) end
 
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
