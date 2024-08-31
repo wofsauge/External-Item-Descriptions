@@ -219,6 +219,8 @@ function EID:learnBagOfCrafting(componentsTable)
 	local componentsAsString = table.concat(components, ",")
 	
 	local recipe = REPENTOGON and EID.bagPlayer:GetBagOfCraftingOutput() or EID:calculateBagOfCrafting(componentsTable)
+	if REPENTOGON and recipe == 0 then recipe = EID:calculateBagOfCrafting(componentsTable) end
+	
 	if (EID.BoC.LearnedRecipes[componentsAsString] ~= recipe) then newRecipeLearned = true end
 	EID.BoC.LearnedRecipes[componentsAsString] = recipe;
 end
@@ -477,6 +479,7 @@ function EID:BoCTrackBagHolding()
 	else
 		if isCardHold and holdCounter >= 30 and (string.match(animationName, "Walk") and not string.match(animationName, "Pickup") or (EID.bagPlayer:GetCollectibleCount() ~= icount)) then
 			holdCounter = 0
+			EID:learnBagOfCrafting(EID.BoC.BagItems)
 			EID.BoC.BagItems = {}
 			EID:UpdateAllPlayerPassiveItems()
 		else
@@ -825,7 +828,7 @@ function EID:handleBagOfCraftingUpdating()
 		end
 	end
 	-- Save the result of the 8 items in our bag
-	if #EID.BoC.BagItems == 8 then
+	if #EID.BoC.BagItems == 8 and not EID:hasCurseBlind() then
 		EID:learnBagOfCrafting(EID.BoC.BagItems)
 	end
 
