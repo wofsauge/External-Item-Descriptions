@@ -1236,6 +1236,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.70"] = "pill",
 	["5.90"] = "battery",
 	["5.300"] = "card",
+	["5.301"] = "rune", -- not a real ID
 	["9.-1"] = "enemy projectile",
 	["999.-1"] = "grid object",
 	["1000.0"] = "effect",
@@ -1262,6 +1263,16 @@ EID.descriptions[languageCode].CraftingWarningAvailableItems = "Needs at least 8
 EID.descriptions[languageCode].CraftingIsHidden = "Currently Hidden (Unhide with {1})"
 -- {1} will be converted into the name of the key that toggles the BoC Search
 EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}}, Search: {1})"
+
+-- Strings for Tainted Cain's pedestal salvaging; the non-base lines will have the corresponding icon automatically
+EID.descriptions[languageCode].TaintedCainPedestalBase = "Spawns 3-8 pickups on touch"
+EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "Spawns {{BlinkBirthright}}6-16{{CR}} pickups on touch"
+EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Guaranteed to spawn a{n} {1}" -- Room type spawns
+EID.descriptions[languageCode].TaintedCainPedestalBonus = "33% chance for a bonus {1}" -- "Safety Cap" type spawns
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "66% chance for a bonus pickup"
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToeBirthright = "66% chance for {{BlinkBirthright}}2{{CR}} bonus pickups"
+EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "Hearts are 80% less likely"
+
 
 ---------- Misc. Text ----------
 
@@ -1378,6 +1389,15 @@ local repConditions = {
 	["Health Up Soul Charges"] = "+{1} soul charges",
 	["Health Up Blood Charges"] = "+{1} blood charges",
 	
+	-- Tainted Bethany stuff
+	["2 of Hearts Blood Charges"] = "Doubles {1}'s blood charges",
+	["Vampire Blood Charges"] = {"↑ {{Damage}} +0.3 Damage#Killing 13 enemies adds 1 blood charge"},
+	["Fork Blood Charges"] = {"Clearing a room has a 10% chance to add 1 blood charge"},
+	["Stem Cell Blood Charges"] = {"Entering a new floor adds 1 blood charge"},
+	
+	["Salvaging Bonus"] = {"and destroyed machines", "destroyed machines, and salvaged items"},
+	["Salvaging Lucky Toe"] = "66% chance for an extra pickup from salvaged items",
+	
 	
 	------ DUPLICATE COPIES OF ITEMS ------
 	["5.100.2 (Copies)"] = "Isaac fires 1 more tear#No additional stat decrease", -- The Inner Eye
@@ -1399,8 +1419,8 @@ local repConditions = {
 	["Sacrificial Star"] = "Star of Bethlehem counts as a familiar",
 	["Sacrificial Clots"] = "Turns Clots into coins",
 	
-	["1000.76.0"] = "{{Warning}} Only rerolls the character that activates the dice", -- Dice Room 1 (Co-op)
-	["1000.76.5"] = "{{Warning}} All characters' items will be rerolled in co-op!", -- Dice Room 6 (Co-op)
+	["1000.76.1"] = "{{Warning}} Only rerolls the character that activates the dice", -- Dice Room 1 (Co-op)
+	["1000.76.6"] = "{{Warning}} All characters' items will be rerolled in co-op!", -- Dice Room 6 (Co-op)
 	["5.100.45"] = "Heals other players for half a heart", -- Yum Heart (Co-Op)
 	["5.350.125"] = "Beams also arc between players", -- Extension Cord (Co-Op)
 	
