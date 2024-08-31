@@ -87,10 +87,10 @@ local SoulBlackChars = EID:ConcatTables(EID.SpecialHeartPlayers["Soul"],EID.Spec
 ------ NO RED HEALTH PLAYERS ------
 EID:AddConditional(81, EID.CheckForNoRedHealthPlayer) -- Dead Cat
 
-EID:AddClosestPlayerConditional({133, 442, 487, "5.350.46", "5.350.107", "5.350.119"}, SoulBlackChars, "No Effect Replace", nil, false) -- Dark Prince's Crown, Crow Heart, Stem Cell, Isaac's Fork, Guppy's Paw, Potato Peeler
+EID:AddClosestPlayerConditional({133, 442, 487, "5.350.46", "5.350.107", "5.350.119"}, SoulBlackChars, "No Effect Replace", {layer = 5000}, false) -- Dark Prince's Crown, Crow Heart, Stem Cell, Isaac's Fork, Guppy's Paw, Potato Peeler
 if EID.isRepentance then
-	EID:AddClosestPlayerConditional({569, 671, 676}, SoulBlackChars, "No Effect Replace", nil, false) -- Blood Oath, Candy Heart, Empty Heart
-	EID:AddClosestPlayerConditional(676, 16, "No Effect Replace", nil, false) -- Empty Heart + Forgotten (not Tainted)
+	EID:AddClosestPlayerConditional({569, 671, 676}, SoulBlackChars, "No Effect Replace", {layer = 5000}, false) -- Blood Oath, Candy Heart, Empty Heart
+	EID:AddClosestPlayerConditional(676, 16, "No Effect Replace", {layer = 5000}, false) -- Empty Heart + Forgotten (not Tainted)
 	
 	EID:AddClosestPlayerConditional("5.350.156", 14, "Mother's Kiss Coin") -- Mother's Kiss + Keeper
 	EID:AddClosestPlayerConditional("5.350.156", SoulBlackChars, "Mother's Kiss Soul", nil, false) -- Mother's Kiss + Soul/Black (both give a Soul Heart)
@@ -152,11 +152,17 @@ if EID.isRepentance then
 	EID:AddPlayerConditional(205, 22, "Tainted Magdalene")-- Tainted Magdalene + Sharp Plug
 	EID:AddPlayerConditional({"5.350.100", "5.350.101"}, 18, "Bethany", nil, false) -- Bethany + Vibrant/Dim Bulb
 	EID:AddPlayerConditional({"5.350.100", "5.350.101"}, 36, "Tainted Bethany") -- Tainted Bethany + Vibrant/Dim Bulb
+	EID:AddPlayerConditional("5.300.26", 36, "2 of Hearts Blood Charges") -- Tainted Bethany + 2 of Hearts
+	EID:AddClosestPlayerConditional(62, 36, "Vampire Blood Charges")
+	EID:AddClosestPlayerConditional("5.350.46", 36, "Fork Blood Charges")
+	EID:AddClosestPlayerConditional("5.350.119", 36, "Stem Cell Blood Charges")
 	
 	EID:AddClosestPlayerConditional(722, 37) -- TJacob Anima Sola
 	EID:AddClosestPlayerConditional(713, 26) -- TEve Sumptorium
 	EID:AddPlayerConditional(711, 29) -- TLaz Flip
 	EID:AddClosestPlayerConditional(710, 23) -- Tcain Bag of Crafting
+	EID:AddPlayerConditional({"5.350.34", "5.350.36", "5.350.41", "5.350.44", "5.350.45"}, 23, "Salvaging Bonus") -- Tcain Safety Cap et al. bonus pickup chance
+	EID:AddPlayerConditional("5.350.42", 23, "Salvaging Lucky Toe") -- Tcain Lucky Toe bonus pickup chance
 end
 
 
@@ -351,7 +357,7 @@ end
 if EID.isRepentance then
 	-- Co-op friendly items
 	EID:AddConditional({45, "5.350.125"}, EID.MultiplePlayerCharacters) -- Yum Heart, Extension Cord
-	EID:AddConditional({"1000.76.0", "1000.76.5"}, EID.MultiplePlayerCharacters) -- Dice Room 1 and 6
+	EID:AddConditional({"1000.76.1", "1000.76.6"}, EID.MultiplePlayerCharacters) -- Dice Room 1 and 6
 	
 	-- Item Synergies
 	EID:AddItemConditional(201, 147)                     -- Iron Bar refills Notched Axe
