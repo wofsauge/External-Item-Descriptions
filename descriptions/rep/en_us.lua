@@ -1265,8 +1265,8 @@ EID.descriptions[languageCode].CraftingIsHidden = "Currently Hidden (Unhide with
 EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}}, Search: {1})"
 
 -- Strings for Tainted Cain's pedestal salvaging; the non-base lines will have the corresponding icon automatically
-EID.descriptions[languageCode].TaintedCainPedestalBase = "Spawns 3-8 pickups on touch"
-EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "Spawns {{BlinkBirthright}}6-16{{CR}} pickups on touch"
+EID.descriptions[languageCode].TaintedCainPedestalBase = "Turns into 3-8 random pickups on touch"
+EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "Turns into {{BlinkBirthright}}6-16{{CR}} random pickups on touch"
 EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Guaranteed to spawn a{n} {1}" -- Room type spawns
 EID.descriptions[languageCode].TaintedCainPedestalBonus = "33% chance for a bonus {1}" -- "Safety Cap" type spawns
 EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "66% chance for a bonus pickup"
