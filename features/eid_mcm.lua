@@ -883,7 +883,7 @@ if MCMLoaded then
 		else
 			MCM.AddSpace("EID", "Save Game")
 			MCM.AddSpace("EID", "Save Game")
-			MCM.AddText("EID", "Save Game", "To enable savegame related features,")
+			MCM.AddText("EID", "Save Game", function() EID.MCMCompat_isDisplayingEIDTab = ""; return "To enable savegame related features," end)
 			MCM.AddText("EID", "Save Game", "please run \"scripts\\savegame_reader.exe\"")
 			MCM.AddText("EID", "Save Game", "found in the EID mod folder.")
 		end
