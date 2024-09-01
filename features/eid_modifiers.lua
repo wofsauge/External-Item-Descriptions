@@ -311,6 +311,7 @@ end
 
 -- Handle changing health up text for non-red HP players
 local function HealthUpCallback(descObj)
+	if not EID.Config["DynamicHealthUps"] then return descObj end
 	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 	if descObj.ObjVariant == 70 and descObj.ObjSubType > 2048 then adjustedSubtype = adjustedSubtype + 2048 end -- horsepill exception
 	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype
@@ -820,70 +821,10 @@ if EID.isRepentance then
 
 		return descObj
 	end
-
-	-- Handle Glitched Crown style pedestals
-	local currentSelection = {} -- keep track of which description we're looking at for a given pedestal
-	local goingToSpindown = false
-	local function GlitchedCrownCallback(descObj)
-		if not descObj.Entity then return descObj end
-		local entity = descObj.Entity
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
-
-		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][descObj.Entity.InitSeed .. descObj.Entity.Index] then
-			-- this table has collectible ID keys that define the first frame and most recent frame that that ID has been seen on this pedestal
-			-- we need to filter out items that haven't been seen in a while (due to a reroll perhaps), then sort by first frame
-			local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
-			local items = EID.GlitchedCrownCheck[curRoomIndex][pedestalID]
-			local sortedItems = {}
-			for id, frames in pairs(items) do
-				if EID.GameUpdateCount - frames[2] > 120 then
-					items[id] = nil
-				else
-					table.insert(sortedItems, { id, frames[1] })
-				end
-			end
-			if #sortedItems < 5 then return descObj end
-			table.sort(sortedItems, function(a, b) return a[2] < b[2] end)
-
-			currentSelection[pedestalID] = currentSelection[pedestalID] or 0
-
-			-- watch for Tab being pressed to advance our selection by 1
-			-- when spindown dice is involved, watch for tab being released instead of pressed, it makes more sense
-			if goingToSpindown and EID:TabReleased() or not goingToSpindown and EID:TabPressed() then
-				currentSelection[pedestalID] = currentSelection[pedestalID] + 1
-				if currentSelection[pedestalID] > #sortedItems then currentSelection[pedestalID] = 0 end
-			end
-
-			-- display the overview description
-			if currentSelection[pedestalID] == 0 then
-				descObj = EID:getDescriptionObj(5, 100, 689, nil, false)
-				descObj.Description = ""
-				for _, item in ipairs(sortedItems) do
-					descObj.Description = descObj.Description .. "#{{NameC" .. item[1] .. "}}"
-				end
-				-- display a specific description
-				-- don't replace the desc if the pedestal's already showing the correct item
-			else
-				descObj = EID:getDescriptionObj(5, 100, sortedItems[currentSelection[pedestalID]][1])
-			end
-
-			local nextIcon = "{{Collectible689}}"
-			if currentSelection[pedestalID] + 1 <= #sortedItems then nextIcon = "{{Collectible" ..
-				sortedItems[currentSelection[pedestalID] + 1][1] .. "}}" end
-			EID:appendToDescription(descObj,
-				"#{{Blank}} " .. EID:ReplaceVariableStr(EID:getDescriptionEntry("GlitchedCrownToggleInfo"), 1, nextIcon))
-
-			-- manually apply Flip; changing the description's item stops future callbacks to avoid infinite loops, but we want Flip still, it works fine
-			descObj.Entity = entity
-			if EID.collectiblesOwned[711] and descObj.ObjSubType ~= entity.SubType then descObj = FlipCallback(descObj) end
-		end
-
-		return descObj
-	end
 	
 	-- Handle Tainted Cain pedestals
 	local function TaintedCainPedestalCallback(descObj)
-		if EID.isDeathCertRoom or not descObj.Entity then return descObj end
+		if EID.isDeathCertRoom or not descObj.Entity or not EID.Config["DynamicSalvageResult"] then return descObj end
 		local item = EID.itemConfig:GetCollectible(descObj.ObjSubType)
 		if (item.Tags and item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then return descObj end
 		
@@ -939,6 +880,73 @@ if EID.isRepentance then
 		
 		return descObj
 	end
+	
+	-- Handle Glitched Crown style pedestals
+	local currentSelection = {} -- keep track of which description we're looking at for a given pedestal
+	local goingToSpindown = false
+	local inGlitchedCrown = false
+	local function GlitchedCrownCallback(descObj)
+		if not descObj.Entity or inGlitchedCrown then return descObj end
+		local entity = descObj.Entity
+		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+
+		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][descObj.Entity.InitSeed .. descObj.Entity.Index] then
+			-- this table has collectible ID keys that define the first frame and most recent frame that that ID has been seen on this pedestal
+			-- we need to filter out items that haven't been seen in a while (due to a reroll perhaps), then sort by first frame
+			local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
+			local items = EID.GlitchedCrownCheck[curRoomIndex][pedestalID]
+			local sortedItems = {}
+			for id, frames in pairs(items) do
+				if EID.GameUpdateCount - frames[2] > 120 then
+					items[id] = nil
+				else
+					table.insert(sortedItems, { id, frames[1] })
+				end
+			end
+			if #sortedItems < 5 then return descObj end
+			table.sort(sortedItems, function(a, b) return a[2] < b[2] end)
+
+			inGlitchedCrown = true
+			currentSelection[pedestalID] = currentSelection[pedestalID] or 0
+
+			-- watch for Tab being pressed to advance our selection by 1
+			-- when spindown dice is involved, watch for tab being released instead of pressed, it makes more sense
+			if goingToSpindown and EID:TabReleased() or not goingToSpindown and EID:TabPressed() then
+				currentSelection[pedestalID] = currentSelection[pedestalID] + 1
+				if currentSelection[pedestalID] > #sortedItems then currentSelection[pedestalID] = 0 end
+			end
+
+			-- display the overview description
+			if currentSelection[pedestalID] == 0 then
+				descObj = EID:getDescriptionObj(5, 100, 689, nil, false)
+				descObj.Description = ""
+				for _, item in ipairs(sortedItems) do
+					descObj.Description = descObj.Description .. "{{Collectible" .. item[1] .. "}} {{NameOnlyC" .. item[1] .. "}}#"
+				end
+				
+			-- display a specific description
+			else
+				descObj = EID:getDescriptionObj(5, 100, sortedItems[currentSelection[pedestalID]][1])
+			end
+			
+			descObj.Entity = entity
+			
+			local nextIcon = "{{Collectible689}}"
+			if currentSelection[pedestalID] + 1 <= #sortedItems then nextIcon = "{{Collectible" ..
+				sortedItems[currentSelection[pedestalID] + 1][1] .. "}}" end
+			EID:appendToDescription(descObj,
+				"#{{Blank}} " .. EID:ReplaceVariableStr(EID:getDescriptionEntry("GlitchedCrownToggleInfo"), 1, nextIcon))
+
+			-- manually apply Flip; changing the description's item stops future callbacks to avoid infinite loops, but we want Flip still, it works fine
+			if descObj.ObjSubType ~= entity.SubType then
+				if EID.collectiblesOwned[711] then descObj = FlipCallback(descObj) end
+			end
+			-- manually apply Tainted Cain
+			if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then descObj = TaintedCainPedestalCallback(descObj) end
+		end
+		inGlitchedCrown = false
+		return descObj
+	end
 
 	--------------------------------
 	-- Although individual conditions/callbacks work well for mods to be able to add through the API,
@@ -961,20 +969,19 @@ if EID.isRepentance then
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
 			if EID.collectiblesOwned[689] then table.insert(callbacks, GlitchedCrownCallback) end
+			
 			-- Glowing Hourglass overwrites the description when used three times
 			if REPENTOGON and descObj.ObjSubType == 422 then table.insert(callbacks, GlowingHourglassCallback) end
 			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
-
 			if EID.collectiblesOwned[584] or descObj.ObjSubType == 584 then table.insert(callbacks, BookOfVirtuesCallback) end
-
+			
+			if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then table.insert(callbacks, TaintedCainPedestalCallback) end
 			if EID.collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
 			if EID.Config["SpindownDiceResults"] > 0 and (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723]) and descObj.ObjSubType ~= 668 then
 				goingToSpindown = true
 				table.insert(callbacks, SpindownDiceCallback)
 			else goingToSpindown = false end
 			
-			if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then table.insert(callbacks, TaintedCainPedestalCallback) end
-
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
 			hasTarot = EID.collectiblesOwned[451]
@@ -1060,6 +1067,7 @@ local function CoopDifferentEffectCallback(descObj)
 		end
 		displayedChars[v] = true
 	end
+	EID.DifferentEffectPlayers = {} -- avoid appending this twice
 	return descObj
 end
 local function CoopDifferentEffectConditions(_)
