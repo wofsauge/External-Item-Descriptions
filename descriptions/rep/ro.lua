@@ -13,7 +13,7 @@ local languageCode = "ro"
 ---------- Collectibles ----------
 
 local repCollectibles={
-	[2] = {"2", "The Inner Eye", "↓ {{Tears}} x0.51 Fire rate multiplier#Isaac shoots 3 tears at once"}, -- The Inner Eye
+	[2] = {"2", "Ochiul Interior", "↓ {{Tears}} x0.51 Lacrimi r#Isac atacă cu 3 lacrimi odata"}, -- The Inner Eye
 	[5] = {"5", "Reflexia Mea", "↑ {{Damage}} +1.5 Daune#↑ {{Range}} x2 + 1.5 Rază de atac#↑ {{Shotspeed}} x1.6 Viteza lacrimilor#↓ {{Luck}} -1 Noroc#Lacrimile au un efect de bumerang"}, -- Reflexia Mea
 	[6] = {"6", "Numarul Unu", "↑ {{Tears}} +1.5 Lacrimi#↓ {{Range}} -1.5 Rază de atac#↓ {{Range}} x0.8 Rază de atac"}, -- Numarul Unu
 	[12] = {"12", "Ciupercă Magică", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +0.3 Daune#↑ {{Damage}} x1.5 Daune#↑ {{Range}} +2.5 Rază de atac#Crește mărimea#{{HealingRed}} Vindecă viața"}, -- Ciupercă Magică
@@ -33,11 +33,11 @@ local repCollectibles={
 	[41] = {"41", "Tamponul Mamei", "{{Fear}} Provoacă frică tuturor inamicilor din cameră#Oferă o muscă albastră"}, -- Tamponul Mamei
 	[42] = {"42", "Capul putrezit a lui Bob", "La folosire și aruncare intr-o direcție îi aruncă capul#{{Poison}} La aterizare capul explodează si creează un nor otrăvitor#Cauzează daunele lui Isaac + 185"}, -- Capul putrezit a lui Bob
 	[46] = {"46", "Piciorul Norocos", "↑ {{Luck}} +1 Noroc#Șanse mai mari să câștigi la păcănele#Crește șansa de obținere a unui obiect la finalizarea unei camere#Transformă toate pastilele rele in pastile bune"}, -- Lucky Foot
-	[49] = {"49", "Shoop da Whoop!", "The next shot is replaced with a beam#It deals 24x Isaac's damage over 0.83 seconds"}, -- Shoop da Whoop!
-	[52] = {"52", "Dr. Fetus", "↓ {{Tears}} x0.4 Fire rate multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 10x Isaac's tear damage#If that results in over 60 damage, they instead deal 5x damage +30"}, -- Dr. Fetus
-	[53] = {"53", "Magneto", "Pickups are attracted to Isaac#Opens chests from 2 tiles away, ignoring damage of Spike Chests"}, -- Magneto
-	[55] = {"55", "Mom's Eye", "50% chance to shoot an extra tear backwards#{{Luck}} 100% chance at 5 luck"}, -- Mom's Eye
-	[59] = {"59", "The Book of Belial", "{{AngelDevilChance}} +12.5% Devil/Angel Room chance while held#{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage"}, -- The Book of Belial (Judas' Birthright)
+	[49] = {"49", "Kamehame..!!!", "Urmatoarea lacrimă este schimbată cu o rază asemănătoare cu cea de la brimstone#Cauzează 24x daunele lui Isac pe durata a 0.83 seconds"}, -- Shoop da Whoop!
+	[52] = {"52", "Dl. Fetus", "↓ {{Tears}} x0.4 Lacrimi#{{Bomb}} Isac impușcă cu bombe înloc de lacrimi#{{Damage}} Aceste bombe cauzează de 10x daunele lui Isac#Dacă asta rezultă in daune de peste 60, ele vor cauza 5x + 30"}, -- Dr. Fetus
+	[53] = {"53", "Magnet", "Obiectele sunt atrase de Isac#Deschide cuferele de la distanță(2 patrate), ignoră daunele provocate de cuferele capcană"}, -- Magneto
+	[55] = {"55", "Ochiul Mamei", "Șansă de 50% să arunci cu o lacrimă in spate#{{Luck}} Șansă de 100% la 5 noroc"}, -- Mom's Eye
+	[59] = {"59", "Cartea lui Belial", "{{AngelDevilChance}} +12.5% șansă de pacturi cu diavol sau inger intimp ce este ținută#{{Timer}} Primesti pe durata camerei:#↑ {{Damage}} +2 Daune"}, -- The Book of Belial (Judas' Birthright)
 	[62] = {"62", "Charm of the Vampire", "↑ {{Damage}} +0.3 Damage#{{HealingRed}} Killing 13 enemies heals half a heart"}, -- Charm of the Vampire
 	[67] = {"67", "Sister Maggy", "Shoots normal tears#Deals 6 damage per tear"}, -- Sister Maggy
 	[69] = {"69", "Chocolate Milk", "{{Chargeable}} Chargeable tears#{{Damage}} Damage scales with charge time, up to 4x"}, -- Chocolate Milk
