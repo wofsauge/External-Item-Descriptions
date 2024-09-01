@@ -422,7 +422,8 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.Quality = EID:getObjectQuality(description)
 	description.Icon = EID:getObjectIcon(description)
 	EID:getObjectItemTypeAndCharge(description)
-
+	
+	EID.DifferentEffectPlayers = {}
 	if checkModifiers ~= false then
 		description = EID:applyConditionals(description)
 		description = EID:applyDescriptionModifier(description, SubType)
