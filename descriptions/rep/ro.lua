@@ -8,31 +8,31 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "en_us"
+local languageCode = "ro"
 
 ---------- Collectibles ----------
 
 local repCollectibles={
 	[2] = {"2", "The Inner Eye", "↓ {{Tears}} x0.51 Fire rate multiplier#Isaac shoots 3 tears at once"}, -- The Inner Eye
-	[5] = {"5", "My Reflection", "↑ {{Damage}} +1.5 Damage#↑ {{Range}} +1.5 Range#↑ {{Range}} x2 Range multiplier#↑ {{Shotspeed}} x1.6 Shot speed multiplier#↓ {{Luck}} -1 Luck#Tears get a boomerang effect"}, -- My Reflection
-	[6] = {"6", "Number One", "↑ {{Tears}} +1.5 Tears#↓ {{Range}} -1.5 Range#↓ {{Range}} x0.8 Range multiplier"}, -- Number One
-	[12] = {"12", "Magic Mushroom", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +0.3 Damage#↑ {{Damage}} x1.5 Damage multiplier#↑ {{Range}} +2.5 Range#Size up#{{HealingRed}} Full health"}, -- Magic Mushroom
-	[13] = {"13", "The Virus", "↑ {{Speed}} +0.2 Speed#{{Poison}} Touching enemies poisons them#Isaac deals 48 contact damage per second"}, -- The Virus
-	[14] = {"14", "Roid Rage", "↑ {{Speed}} +0.3 Speed#↑ {{Range}} +2.5 Range"}, -- Roid Rage
-	[18] = {"18", "A Dollar", "{{Coin}} +100 Coins"}, -- A Dollar
-	[22] = {"22", "Lunch", "↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart"}, -- Lunch
-	[23] = {"23", "Dinner", "↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart"}, -- Dinner
-	[24] = {"24", "Dessert", "↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart"}, -- Dessert
-	[25] = {"25", "Breakfast", "↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart"}, -- Breakfast
-	[26] = {"26", "Rotten Meat", "↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart"}, -- Rotten Meat
-	[29] = {"29", "Mom's Underwear", "↑ {{Range}} +2.5 Range#Spawns 3-6 blue flies"}, -- Mom's Underwear
-	[30] = {"30", "Mom's Heels", "↑ {{Range}} +2.5 Range#Isaac deals 24 contact damage per second"}, -- Mom's Heels
-	[31] = {"31", "Mom's Lipstick", "↑ {{Range}} +3.75 Range#{{UnknownHeart}} Spawns 1 random heart"}, -- Mom's Lipstick
-	[37] = {"37", "Mr. Boom", "Drops a large bomb below Isaac which deals 185 damage"}, -- Mr. Boom
-	[40] = {"40", "Kamikaze!", "Causes a big explosion at Isaac's location#Deals 185 damage"}, -- Kamikaze!
-	[41] = {"41", "Mom's Pad", "{{Fear}} Fears all enemies in the room for 5 seconds#Spawns a blue fly"}, -- Mom's Pad
-	[42] = {"42", "Bob's Rotten Head", "Using the item and firing in a direction throws the head#{{Poison}} The head explodes where it lands and creates a poison cloud#Deals Isaac's damage + 185"}, -- Bob's Rotten Head
-	[46] = {"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#Better chance to win while gambling#Increases room clearing drop chance#Turns bad pills into good ones"}, -- Lucky Foot
+	[5] = {"5", "Reflexia Mea", "↑ {{Damage}} +1.5 Daune#↑ {{Range}} x2 + 1.5 Rază de atac#↑ {{Shotspeed}} x1.6 Viteza lacrimilor#↓ {{Luck}} -1 Noroc#Lacrimile au un efect de bumerang"}, -- Reflexia Mea
+	[6] = {"6", "Numarul Unu", "↑ {{Tears}} +1.5 Lacrimi#↓ {{Range}} -1.5 Rază de atac#↓ {{Range}} x0.8 Rază de atac"}, -- Numarul Unu
+	[12] = {"12", "Ciupercă Magică", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +0.3 Daune#↑ {{Damage}} x1.5 Daune#↑ {{Range}} +2.5 Rază de atac#Crește mărimea#{{HealingRed}} Vindecă viața"}, -- Ciupercă Magică
+	[13] = {"13", "Virusul", "↑ {{Speed}} +0.2 Viteză#{{Poison}} La atingerea inamicilor ii otrăvești#Isaac cauzează 48 daune de contact pe secundă"}, -- Virusul
+	[14] = {"14", "Furie cu Steroizi", "↑ {{Speed}} +0.3 Viteză#↑ {{Range}} +2.5 Rază de atac"}, -- Furie cu Steroizi
+	[18] = {"18", "Un Dolar", "{{Coin}} +100 Monede"}, -- Un Dolar
+	[22] = {"22", "Prânz", "↑ {{Heart}} +1 Inimă#{{HealingRed}} Vindecă o inimă"}, -- Prânz
+	[23] = {"23", "Cină", "↑ {{Heart}} +1 Inimă#{{HealingRed}} Vindecă o inimă"}, -- Cină
+	[24] = {"24", "Desert", "↑ {{Heart}} +1 Inimă#{{HealingRed}} Vindecă o inimă"}, -- Desert
+	[25] = {"25", "Mic Dejun", "↑ {{Heart}} +1 Inimă#{{HealingRed}} Vindecă o inimă"}, -- Mic Dejun
+	[26] = {"26", "Carne Stricată", "↑ {{Heart}} +1 Inimă#{{HealingRed}} Vindecă o inimă"}, -- Carne Stricată
+	[29] = {"29", "Chiloții Mamei", "↑ {{Range}} +2.5 Rază de atac#Oferă 3-6 muște albastre"}, -- Chiloții Mamei
+	[30] = {"30", "Tocurile Mamei", "↑ {{Range}} +2.5 Rază de atac#Isaac cauzează 24 daune de contact pe secundă"}, -- Tocurile Mamei
+	[31] = {"31", "Rujul Mamei", "↑ {{Range}} +3.75 Rază de atace#{{UnknownHeart}} Oferă 1 inimă aleatorie pe jos"}, -- Rujul Mamei
+	[37] = {"37", "Dl. Bum", "Aruncă o bombă mare dedesubt de Isaac care cauzează 185 de daune"}, -- Dl. Bum
+	[40] = {"40", "Kamikaze!", "Provoacă o explozie mare la locația lui Isaac#Cauzează 185 de daune"}, -- Kamikaze!
+	[41] = {"41", "Tamponul Mamei", "{{Fear}} Provoacă frică tuturor inamicilor din cameră#Oferă o muscă albastră"}, -- Tamponul Mamei
+	[42] = {"42", "Capul putrezit a lui Bob", "La folosire și aruncare intr-o direcție îi aruncă capul#{{Poison}} La aterizare capul explodează si creează un nor otrăvitor#Cauzează daunele lui Isaac + 185"}, -- Capul putrezit a lui Bob
+	[46] = {"46", "Piciorul Norocos", "↑ {{Luck}} +1 Noroc#Șanse mai mari să câștigi la păcănele#Crește șansa de obținere a unui obiect la finalizarea unei camere#Transformă toate pastilele rele in pastile bune"}, -- Lucky Foot
 	[49] = {"49", "Shoop da Whoop!", "The next shot is replaced with a beam#It deals 24x Isaac's damage over 0.83 seconds"}, -- Shoop da Whoop!
 	[52] = {"52", "Dr. Fetus", "↓ {{Tears}} x0.4 Fire rate multiplier#{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 10x Isaac's tear damage#If that results in over 60 damage, they instead deal 5x damage +30"}, -- Dr. Fetus
 	[53] = {"53", "Magneto", "Pickups are attracted to Isaac#Opens chests from 2 tiles away, ignoring damage of Spike Chests"}, -- Magneto
