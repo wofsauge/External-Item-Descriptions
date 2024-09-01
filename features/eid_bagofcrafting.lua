@@ -764,6 +764,7 @@ local function MCMLearnedRecipeList()
 	local recipe = EID:calculateBagOfCrafting({15,15,5,1,10,8,8,9})
 	table.insert(sortedResults[recipe], {{15,15,5,1,10,8,8,9}, recipe})
 	currentRecipesList = sortedResults
+	numResults = 1
 	bagOfCraftingOffset = 0
 	bagOfCraftingRefreshes = 0
 	isRefresh = false
