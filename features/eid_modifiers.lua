@@ -367,16 +367,30 @@ if EID.isRepentance then
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
 		descObj.Description = ""
+		if EID.InsideItemReminder then
+			local player = EID.ItemReminderPlayerEntity
+			local playerID = player:GetPlayerType()
+			local birthrightDesc = EID:getDescriptionEntry("birthright", playerID+1)
+			if birthrightDesc ~= nil then
+				local playerName = birthrightDesc[1] or player:GetName()
+				EID:appendToDescription(descObj, EID:GetPlayerIcon(playerID) .. " {{ColorIsaac}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
+			end
+			return descObj
+		end
 		local describedPlayerTypes = {}
 		for i = 1, #EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[i]
 			local playerID = player:GetPlayerType()
-			if not player:IsSubPlayer() and player:GetMainTwin( ):GetPlayerType() == playerID and not describedPlayerTypes[playerID] then
-				describedPlayerTypes[playerID] = true
-				local birthrightDesc = EID:getDescriptionEntry("birthright", playerID+1)
-				if birthrightDesc ~=nil then
-					local playerName = birthrightDesc[1] or player:GetName()
-					EID:appendToDescription(descObj, EID:GetPlayerIcon(playerID) .. " {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
+			if descObj.Entity and playerID == PlayerType.PLAYER_CAIN_B and not EID.isDeathCertRoom then
+				-- Don't add a description if Tainted Cain is looking at a Birthright pedestal, he can't get it...
+			else
+				if not player:IsSubPlayer() and player:GetMainTwin( ):GetPlayerType() == playerID and not describedPlayerTypes[playerID] then
+					describedPlayerTypes[playerID] = true
+					local birthrightDesc = EID:getDescriptionEntry("birthright", playerID+1)
+					if birthrightDesc ~= nil then
+						local playerName = birthrightDesc[1] or player:GetName()
+						EID:appendToDescription(descObj, EID:GetPlayerIcon(playerID) .. " {{ColorIsaac}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
+					end
 				end
 			end
 		end
@@ -940,9 +954,10 @@ if EID.isRepentance then
 			-- manually apply Flip; changing the description's item stops future callbacks to avoid infinite loops, but we want Flip still, it works fine
 			if descObj.ObjSubType ~= entity.SubType then
 				if EID.collectiblesOwned[711] then descObj = FlipCallback(descObj) end
+				-- manually apply Tainted Cain
+				if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then descObj = TaintedCainPedestalCallback(descObj) end
 			end
-			-- manually apply Tainted Cain
-			if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then descObj = TaintedCainPedestalCallback(descObj) end
+			
 		end
 		inGlitchedCrown = false
 		return descObj
