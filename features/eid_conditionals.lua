@@ -209,6 +209,8 @@ EID:AddPlayerConditional(531, 7, "Overrides", {layer = 656, checkLayers = true, 
 EID:AddSynergyConditional({316, 379, 410, 440, 453, 461, 462, 524, 533, 540, }, 118, "Overridden", "Overrides", {layer = 666, checkLayers = true}) -- Brimstone
 EID:AddSynergyConditional(118, 149, "Brimstone Ipecac", nil, {layer = 666, checkLayers = true})
 EID:AddPlayerConditional(149, 7, "Brimstone Ipecac", nil, {layer = 656, checkLayers = true})
+EID:AddSynergyConditional(118, 261, "Brimstone Proptosis", nil, {layer = 666, checkLayers = true})
+EID:AddPlayerConditional(261, 7, "Brimstone Proptosis", nil, {layer = 656, checkLayers = true})
 EID:AddPlayerConditional({316, 379, 410, 440, 453, 461, 462, 524, 533, 540, }, 7, "Overridden", {layer = 656, checkLayers = true, variableText = "{{NameOnlyC118}}"}) -- Azazel overrides the same stuff
 
 EID:AddSynergyConditional({5, 69, 104, 233, 316, 329, 379, 397, 410, 453, 461, 524, 529, 532, 533, 540, "5.350.26"}, 395, "Overridden", "Overrides", {layer = 600, checkLayers = true}) -- Tech X
