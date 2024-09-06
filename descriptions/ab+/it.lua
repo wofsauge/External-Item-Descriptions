@@ -770,18 +770,18 @@ EID.descriptions[languageCode].trinkets={
 	{"31", "Puntina", "10% di chance di sparare lacrime penetranti + spettrali#{{Luck}} 100% di chance con 18 di Fortuna"},
 	{"32", "Fungo della Libertà", "25% di chance di un effetto di un fungo casuale a stanza#Può rivelare stanze speciali sulla minimappa"},
 	{"33", "Cordone Ombelicale", "{{Timer}} Quando la salute di Isaac viene ridotta a mezzo cuore genera {{Collectible100}} \"Piccolo Steven\" fino all'uscita dalla stanza"},
-	{"34", "Cuore di Bambino", "{{UnknownHeart}} 10% di chance che la ricompensa per completamento stanza sia 1 cuore casuale#{{Heart}} Chance di 1 cuore extra da bauli, rocce colorate e macchine distrutte"},
+	{"34", "Cuore di Bambino", "{{UnknownHeart}} 10% di chance che la ricompensa per completamento stanza sia 1 cuore casuale#{{Heart}} 33% di chance di 1 cuore extra da bauli, rocce colorate e macchine distrutte"},
 	{"35", "Corno Ricurvo", "↑ {{Damage}} +2 Danni"},
-	{"36", "Chiave Arrugginita", "{{Key}} 10% di chance che la ricompensa per completamento stanza sia 1 chiave#{{Key}} Chance di 1 chiave extra da bauli, rocce colorate e macchine distrutte"},
+	{"36", "Chiave Arrugginita", "{{Key}} 10% di chance che la ricompensa per completamento stanza sia 1 chiave#{{Key}} 33% di chance di 1 chiave extra da bauli, rocce colorate e macchine distrutte"},
 	{"37", "Zoccolo di Capra", "↑ {{Speed}} +0.15 Velocità"},
 	{"38", "Perla di Mamma", "+10% di chance che i cuori generati siano {{SoulHeart}} Cuori Celesti, {{BlackHeart}} Cuori Neri o {{EmptyBoneHeart}} Cuori Ossei"},
 	{"39", "Cancro", "↑ {{Tears}} -2 Delay tra Lacrime"},
 	{"40", "Toppa Rossa", "{{Timer}} Subire danni ha il 20% di chance di conferire ↑ {{Damage}} +1.8 Danni fino all'uscita dalla stanza#{{Luck}} 100% chance con 8 di Fortuna"},
-	{"41", "Fiammifero", "{{Bomb}} 10% di chance che la ricompensa per completamento stanza sia 1 bomba#{{Bomb}} Chance di 1 bomba extra da bauli, rocce colorate e macchine distrutte#{{Warning}} Rimuove {{Trinket53}} \"Zecca\""},
-	{"42", "Alluce Fortunato", "↑ {{Luck}} +1 Fortana#+8% di chance di 1 ricompensa per completamento stanza#Consumabili extra da bauli, rocce colorate e macchine distrutte"},
+	{"41", "Fiammifero", "{{Bomb}} 10% di chance che la ricompensa per completamento stanza sia 1 bomba#{{Bomb}} 33% di chance di 1 bomba extra da bauli, rocce colorate e macchine distrutte#{{Warning}} Rimuove {{Trinket53}} \"Zecca\""},
+	{"42", "Alluce Fortunato", "↑ {{Luck}} +1 Fortuna#+8% di chance di 1 ricompensa per completamento stanza#33% di chance di consumabili extra da bauli, rocce colorate e macchine distrutte"},
 	{"43", "Teschio Maledetto", "Quando i danni riducono Isaac a mezzo cuore o meno, viene teletrasportato in una stanza causale"},
-	{"44", "Tappino di Sicurezza", "{{Pill}} 10% di chance che la ricompensa per completamento stanza sia 1 pillola#{{Pill}} Chance di 1 pillola extra da bauli, rocce colorate e macchine distrutte"},
-	{"45", "Asso di Picche", "{{Card}} 10% di chance che la ricompensa per completamento stanza sia 1 carta#{{Card}} Chance di 1 carta extra da bauli, rocce colorate e macchine distrutte"},
+	{"44", "Tappino di Sicurezza", "{{Pill}} 10% di chance che la ricompensa per completamento stanza sia 1 pillola#{{Pill}} 33% di chance di 1 pillola extra da bauli, rocce colorate e macchine distrutte"},
+	{"45", "Asso di Picche", "{{Card}} 10% di chance che la ricompensa per completamento stanza sia 1 carta#{{Card}} 33% di chance di 1 carta extra da bauli, rocce colorate e macchine distrutte"},
 	{"46", "Forchetta di Isaac", "{{HealingRed}} Completare una stanza ha il 10% di chance di curare di mezzo cuore#{{Luck}} 100% di chance con 18 di Fortuna"},
 	{"47", "", "<Item does not exist>"},
 	{"48", "Una Pagina Mancante", "Subire danni ha il 5% di chance di infliggere 40 danni a tutti i nemici nella stanza"},
@@ -1232,11 +1232,11 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.246"] = {"{{SuperSecretRoom}} Rivela la posizione nella mappa della Stanza Super Segreta"}, -- Blue Map (Greed)
 	["5.100.333"] = {"{{SuperSecretRoom}} Rivela la posizione nella mappa della Stanza Super Segreta"}, -- The Mind (Greed)
 	["5.100.514"] = {"Fa sì che ad intervalli casuali alcuni nemici e proiettili si fermino brevemente"}, -- Broken Modem (Greed)
-	["5.350.34"] = {"{{Heart}} Chance di un cuore extra da bauli, rocce colorate e da macchine distrutte"}, -- Child's Heart
-	["5.350.36"] = {"{{Key}} Chance di una chiave extra da bauli, rocce colorate e da macchine distrutte"}, -- Rusted Key
-	["5.350.41"] = {"{{Bomb}} Chance di una bomba extra da bauli, rocce colorate e da macchine distrutte#{{Warning}} Rimuove {{Trinket53}} \"Zecca\""}, -- Match Stick
-	["5.350.44"] = {"{{Pill}} Chance di una pillola extra da bauli, rocce colorate e da macchine distrutte"}, -- Safety Cap
-	["5.350.45"] = {"{{Card}} Chance di una carta extra da bauli, rocce colorate e da macchine distrutte"}, -- Ace of Spades
+	["5.350.34"] = {"{{Heart}} 33% di chance di un cuore extra da bauli, rocce colorate e da macchine distrutte"}, -- Child's Heart
+	["5.350.36"] = {"{{Key}} 33% di chance di una chiave extra da bauli, rocce colorate e da macchine distrutte"}, -- Rusted Key
+	["5.350.41"] = {"{{Bomb}} 33% di chance di una bomba extra da bauli, rocce colorate e da macchine distrutte#{{Warning}} Rimuove {{Trinket53}} \"Zecca\""}, -- Match Stick
+	["5.350.44"] = {"{{Pill}} 33% di chance di una pillola extra da bauli, rocce colorate e da macchine distrutte"}, -- Safety Cap
+	["5.350.45"] = {"{{Card}} 33% di chance di una carta extra da bauli, rocce colorate e da macchine distrutte"}, -- Ace of Spades
 	["5.350.72"] = {"{{Battery}} +10% di chance che un consumabile casuale sia una pila#{{Battery}} 5% di chance di aggiungere 1 carica all'oggetto attivo tenuto mentre si completa un'ondata"}, -- Watch Battery
 	["5.100.297 (Greed)"] = {"{{Warning}} MONOUSO {{Warning}} Genera ricompense in base al piano:#Seminterrato: 2{{Bomb}} + 2{{Key}}#Grotte: Oggetto del Boss + 2{{SoulHeart}}#Profondità: 20{{Coin}}#Grembo: 2 Oggetti del Boss#Sheol: Oggetto Demoniaco + 1{{BlackHeart}}#Il Negozio/Ultra Avarizia: 1{{Coin}}"}, -- Pandora's Box
 	
@@ -1316,6 +1316,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Eye of Belial Dr. Fetus"] = "Le bombe penetrano ma non sono a ricerca e non infliggono danni extra",
 	["Epic Fetus Brimstone"] = "{1} ha la priorità#I razzi sparano 10 raggi",
 	["Epic Fetus Mom's Knife"] = "{1} ha la priorità#I razzi sparano 10 coltelli",
+	["Haemolacria Brimstone"] = "{1} ha la priorità#Le lacrime si scindono in 4-7 raggi",
 	["Brimstone Mom's Knife"] = "{1} ha la priorità#In base all'ammontare della carica viene sparata una raffica di coltelli",
 	["Ludovico Ipecac"] = "La lacrima infligge +4 Danni ma non esplode o avvelena",
 	["Technology Ipecac"] = "Il laser infligge +4 Danni e avvelena i bersagli",

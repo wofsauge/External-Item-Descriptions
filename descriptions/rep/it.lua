@@ -1238,6 +1238,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.70"] = "pillola",
 	["5.90"] = "pila",
 	["5.300"] = "carta",
+	["5.301"] = "runa", -- not a real ID
 	["9.-1"] = "proiettile nemico",
 	["999.-1"] = "entità nella griglia",
 	["1000.0"] = "effetto",
@@ -1264,6 +1265,16 @@ EID.descriptions[languageCode].CraftingWarningAvailableItems = "Ne servono almen
 EID.descriptions[languageCode].CraftingIsHidden = "Al momento celata (Rivela con {1})"
 -- {1} will be converted into the name of the key that toggles the BoC Search
 EID.descriptions[languageCode].CraftingResults = "(Scorri: Tieni premuto {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Blocca: {{ButtonX}}, Aggiorna: {{ButtonB}}, Reset del Sacco: Tieni premuto {{ButtonRB}}, Cerca: {1})"
+
+-- Strings for Tainted Cain's pedestal salvaging; the non-base lines will have the corresponding icon automatically
+EID.descriptions[languageCode].TaintedCainPedestalBase = "Al contatto si trasforma in 3-8 consumabili casuali"
+EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "Al contatto si trasforma in {{BlinkBirthright}}6-16{{CR}} consumabili casuali"
+EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Garantisce di generare {1}" -- Room type spawns
+EID.descriptions[languageCode].TaintedCainPedestalBonus = "33% di chance per una {1} extra" -- "Safety Cap" type spawns
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "66% di chance per un consumabile extra"
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToeBirthright = "66% di chance per {{BlinkBirthright}}2{{CR}} consumabili bonus"
+EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "80% di chance in meno di cuori"
+
 
 ---------- Misc. Text ----------
 
@@ -1379,6 +1390,15 @@ local repConditions = {
 	["5.350.101 (Tainted Bethany)"] = "Ignora le cariche sanguinee di {1}",
 	["Health Up Soul Charges"] = "+{1} cariche celesti",
 	["Health Up Blood Charges"] = "+{1} cariche sanguinee",
+
+	-- Tainted Bethany stuff
+	["2 of Hearts Blood Charges"] = "Raddoppia le cariche sanguinee di {1}",
+	["Vampire Blood Charges"] = {"↑ {{Damage}} +0.3 Danni#Uccidere 13 nemici aggiunge 1 carica sanguinea"},
+	["Fork Blood Charges"] = {"Completare una stanza ha il 10% di chance di aggiungere 1 carica sanguinea"},
+	["Stem Cell Blood Charges"] = {"Entrare in nuovo piano aggiunge 1 carica sanguinea"},
+
+	["Salvaging Bonus"] = {"e le macchine distrutte", "macchine distrutte, e oggetti recuperati"},
+	["Salvaging Lucky Toe"] = "66% di chance di un consumabile extra dagli oggetti recuperati",
 	
 	
 	------ DUPLICATE COPIES OF ITEMS ------
@@ -1401,8 +1421,8 @@ local repConditions = {
 	["Sacrificial Star"] = "\"Stella di Betlemme\" conta come famiglio",
 	["Sacrificial Clots"] = "Converte i grumi in monete",
 	
-	["1000.76.0"] = "{{Warning}} Rilancia solo il personaggio che ha attivato il dado", -- Dice Room 1 (Co-op)
-	["1000.76.5"] = "{{Warning}} In co-op vengono rilanciati tutti gli oggetti dei personaggi!", -- Dice Room 6 (Co-op)
+	["1000.76.1"] = "{{Warning}} Rilancia solo il personaggio che ha attivato il dado", -- Dice Room 1 (Co-op)
+	["1000.76.6"] = "{{Warning}} In co-op vengono rilanciati tutti gli oggetti dei personaggi!", -- Dice Room 6 (Co-op)
 	["5.100.45"] = "Cura gli altri giocatori di mezzo cuore", -- Yum Heart (Co-Op)
 	["5.350.125"] = "I raggi si estendono anche ai giocatori", -- Extension Cord (Co-Op)
 	
