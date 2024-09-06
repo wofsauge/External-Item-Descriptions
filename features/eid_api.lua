@@ -422,7 +422,8 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.Quality = EID:getObjectQuality(description)
 	description.Icon = EID:getObjectIcon(description)
 	EID:getObjectItemTypeAndCharge(description)
-
+	
+	EID.DifferentEffectPlayers = {}
 	if checkModifiers ~= false then
 		description = EID:applyConditionals(description)
 		description = EID:applyDescriptionModifier(description, SubType)
@@ -1655,6 +1656,12 @@ end
 function EID:fixDefinedFont(forceRefresh)
 	local curLang = EID:getLanguage()
 	local curFont = EID.Config["FontType"]
+	
+	-- If the textbox width is set to the default, make it match the selected language's default
+	-- Fixes language selection not respecting the language's textbox width, although it also prevents 130 from being used as the width with those languages
+	if EID.Config["TextboxWidth"] == EID.DefaultConfig["TextboxWidth"] then
+		EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth or EID.DefaultConfig["TextboxWidth"]
+	end
 
 	-- If our currently loaded font is still valid, we don't need to reset values
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
@@ -2271,6 +2278,8 @@ end
 function EID:UpdateAllPlayerPassiveItems()
 	local passives = EID:GetAllPassiveItems()
 	local listUpdatedForPlayers = {}
+	-- check if id is smaller max id, because numbers bigger a certain value can crash the game when calling HasCollectible()
+	local maxCollID = EID:GetMaxCollectibleID()
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
 		if player == nil then
@@ -2281,7 +2290,8 @@ function EID:UpdateAllPlayerPassiveItems()
 		
 		-- remove items the player no longer has. reverse iteration to make deletion easier
 		for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
-			if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index], true) then
+			local itemID = EID.RecentlyTouchedItems[playerNum][index]
+			if itemID > maxCollID or not player:HasCollectible(itemID, true) then
 				table.remove(EID.RecentlyTouchedItems[playerNum], index)
 				listUpdatedForPlayers[i] = true
 				-- If an item earlier than our oldest item is removed (e.g. Eve sacrificial altaring her Dead Bird), reduce it
@@ -2291,7 +2301,7 @@ function EID:UpdateAllPlayerPassiveItems()
 
 		-- add items the player did get with non-standard methods (Bag of Crafting, console command, item effects, etc...)
 		for _, itemID in ipairs(passives) do
-			if player:HasCollectible(itemID, true) then
+			if itemID <= maxCollID and player:HasCollectible(itemID, true) then
 				local alreadyInList = false
 				for _, heldItemID in ipairs(EID.RecentlyTouchedItems[playerNum]) do
 					if itemID == heldItemID then
