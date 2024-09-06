@@ -811,7 +811,7 @@ local repCarBattery = {
 	[713] = {"Convertit un {{BlinkYellowGreen}}cœur{{ColorWhite}} en {{BlinkYellowGreen}}2{{ColorWhite}} familiers pâtés#Le type de pâté change selon le cœur sacrifié"}, -- Sumptorium
 	[719] = {"un objet ou une ressource", "2{{ColorWhite}} objets ou ressources"}, -- Keeper's Box
 	[720] = "Crée un caca en plus de l'effet", -- Everything Jar
-	[722] = {"Paralyse les {{BlinkYellowGreen}}2{{ColorWhite}} ennemis les plus proches d'Isaac#{{Timer}} L'effet dure 5 secondes"}, --Anima Sola
+	[722] = {"l'ennemi le plus proche", "les {{BlinkYellowGreen}}2{{ColorWhite}} ennemis les plus proches"}, --Anima Sola
 	[723] = {1,2}, -- Spindown Dice
 }
 --EID.descriptions[languageCode].carBattery[284] = nil -- D4
@@ -969,7 +969,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	--Mysterious Candy
 	[29] = {"une mouche bleue", "deux {{ColorWhite}}mouches bleues", "trois {{ColorWhite}}mouches bleues"},
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
-	[46] = { "un demi-cœur rouge", "un cœur rouge", "un cœur rouge et demi" },
+	[46] = { "un demi-cœur rouge", "un cœur rouge", "un cœur rouge et demi"},
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
 	[53] = {
 		"{{HealingRed}} Entrer dans une salle de Boss {{BossRoom}} soigne {{ColorGold}}2{{ColorWhite}} cœurs rouges#Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#{{ColorGold}}Peut être retirée !",
@@ -1302,6 +1302,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.70"] = "pilules",
 	["5.90"] = "piles",
 	["5.300"] = "cartes",
+	["5.301"] = "runes", -- not a real ID
 	["9.-1"] = "projectile ennemis",
 	["999.-1"] = "obstacles",
 	["1000.0"] = "effets",
@@ -1359,6 +1360,15 @@ EID.descriptions[languageCode].CraftingIsHidden = "Recettes cachées (Afficher :
 EID.descriptions[languageCode].CraftingMore = "...et {1} autres"
 
 EID.descriptions[languageCode].CraftingResults = "Défiler : {{CONFIG_BoC_Toggle}} + {{ButtonY}}{{ButtonA}}#Verrouiller : {{CONFIG_BoC_Toggle}} + {{ButtonX}}#Rafraîchir : {{CONFIG_BoC_Toggle}} + {{ButtonB}}#Réinitialiser : Maintenir {{ButtonRB}}#Rechercher : {{ButtonEnter}}"
+
+-- Strings for Tainted Cain's pedestal salvaging; the non-base lines will have the corresponding icon automatically
+EID.descriptions[languageCode].TaintedCainPedestalBase = "Éclate en 3 à 8 ressources"
+EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "Éclate en {{BlinkBirthright}}6 à 16{{CR}} ressources"
+EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Un {1} garanti" -- Room type spawns
+EID.descriptions[languageCode].TaintedCainPedestalBonus = "+1 {1} {{ColorSilver}}(33%)" -- "Safety Cap" type spawns
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "+1 ressource {{ColorSilver}}(66%)"
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToeBirthright = "+{{BlinkBirthright}}2{{CR}} ressources {{ColorSilver}}(66%)"
+EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "Chances de cœurs {{ColorError}}-88%"
 
 EID.descriptions[languageCode].BlankCardCharge = "Temps de charge avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"
 EID.descriptions[languageCode].BlankCardEffect = "Effet avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"
@@ -1440,6 +1450,15 @@ local repConditions = {
 	["5.350.101 (Tainted Bethany)"] = "Les charges de sang ne comptent pas",
 	["Health Up Soul Charges"] = "+{1} charges d'âme",
 	["Health Up Blood Charges"] = "+{1} charges de sang",
+	
+	-- Tainted Bethany stuff
+	["2 of Hearts Blood Charges"] = {"Multiplie le nombre de charges de sang par 2"},
+	["Vampire Blood Charges"] = {"↑ Dégâts {{ColorLime}}+0.3#Tuer 13 ennemis donne une charge de sang"},
+	["Fork Blood Charges"] = {"Terminer une salle ajoute parfois une charge de sang#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 18 Chance)"},
+	["Stem Cell Blood Charges"] = {"Entrer dans un nouvel étage donne une charge de sang"},
+
+	["Salvaging Bonus"] = {" ou ouvrir un coffre", ", toucher un objet ou ouvrir un coffre"},
+	["Salvaging Lucky Toe"] = "Toucher un objet a 66% de chances de faire apparaître une ressource supplémentaire",
 
 	["5.100.722"] = {"Immobilise Ésaü Impur#Réutiliser l'objet ou attendre 5 secondes libère Ésaü, qui fonce vers Jacob"}, -- TJacob + Anima Sola
 	["5.100.713"] = {"Reconvertit les pâtés en PV#Téléporte le surplus de pâtés à Ève#{{Timer}} 1 seconde de recharge"}, --Teve + Sumptorium
@@ -1466,8 +1485,8 @@ local repConditions = {
 	["Sacrificial Star"] = "L'{{ColorYellow}}Étoile de Bethléem{{CR}} peut être sacrifiée",
 	["Sacrificial Clots"] = "Transforme les pâtés en pièces",
 
-	["1000.76.0"] = "{{Warning}} Ne rejoue que le personnage qui marche sur le dé", -- Dice Room 1 (Co-op)
-	["1000.76.5"] = "{{Warning}} Rejoue les objets de tous les personnages", -- Dice Room 6 (Co-op)
+	["1000.76.1"] = "{{Warning}} Ne rejoue que le personnage qui marche sur le dé", -- Dice Room 1 (Co-op)
+	["1000.76.6"] = "{{Warning}} Rejoue les objets de tous les personnages", -- Dice Room 6 (Co-op)
 	["5.100.45"] = "Soigne les autres joueurs d'un demi-cœur rouge", -- Yum Heart (Co-Op)
 	["5.350.125"] = {"Relie les joueurs et les familiers par des arcs électriques"}, -- Extension Cord (Co-Op)
 
