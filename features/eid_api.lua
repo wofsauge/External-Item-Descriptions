@@ -2271,6 +2271,8 @@ end
 function EID:UpdateAllPlayerPassiveItems()
 	local passives = EID:GetAllPassiveItems()
 	local listUpdatedForPlayers = {}
+	-- check if id is smaller max id, because numbers bigger a certain value can crash the game when calling HasCollectible()
+	local maxCollID = EID:GetMaxCollectibleID()
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
 		if player == nil then
@@ -2281,7 +2283,8 @@ function EID:UpdateAllPlayerPassiveItems()
 		
 		-- remove items the player no longer has. reverse iteration to make deletion easier
 		for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
-			if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index], true) then
+			local itemID = EID.RecentlyTouchedItems[playerNum][index]
+			if itemID > maxCollID or not player:HasCollectible(itemID, true) then
 				table.remove(EID.RecentlyTouchedItems[playerNum], index)
 				listUpdatedForPlayers[i] = true
 				-- If an item earlier than our oldest item is removed (e.g. Eve sacrificial altaring her Dead Bird), reduce it
@@ -2291,7 +2294,7 @@ function EID:UpdateAllPlayerPassiveItems()
 
 		-- add items the player did get with non-standard methods (Bag of Crafting, console command, item effects, etc...)
 		for _, itemID in ipairs(passives) do
-			if player:HasCollectible(itemID, true) then
+			if itemID <= maxCollID and player:HasCollectible(itemID, true) then
 				local alreadyInList = false
 				for _, heldItemID in ipairs(EID.RecentlyTouchedItems[playerNum]) do
 					if itemID == heldItemID then
