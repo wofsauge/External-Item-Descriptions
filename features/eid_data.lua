@@ -775,6 +775,10 @@ EID.InlineColors = {
 	["ColorShinyPurple"] = function(_)
 		return SwagColors({KColor(0.812, 0.627, 1, 1), KColor(0.62, 0.251, 1, 1)}, 40)
 	end,
+	-- Blink between the two shades of tan on Birthright
+	["BlinkBirthright"] = function(_)
+		return SwagColors({KColor(0.831, 0.725, 0.604, 1), KColor(0.671, 0.557, 0.443, 1)})
+	end,
 	-- Text will blink frequently
 	["ColorBlink"] = function(color)
 		local maxAnimTime = 40
@@ -1097,6 +1101,10 @@ end
 ---------------- BAG OF CRAFTING DATA ------------------
 
 if not EID.isRepentance then return end
+
+EID.SalvageTrinkets = { [34] = "5.10", [36] = "5.30", [41] = "5.40", [44] = "5.70", [45] = "5.300" }
+EID.SalvageRoomTypes = { [3] = "5.10.6", [19] = "5.10.6", [4] = "5.10.4", [20] = "5.10.4", [5] = "5.10.11", [22] = "5.10.11", [9] = "5.300.78", [12] = "5.10.12", [21] = "5.10.12", [26] = "5.301" }
+EID.PickupStartsWithVowel = { ["5.10.4"] = true } -- this is just for Eternal Heart in salvage descriptions right now...
 
 EID.BoC = {}
 

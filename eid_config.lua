@@ -357,7 +357,15 @@ EID.UserConfig = {
 	-- Some items (like Teleport!) can have their next result predicted and shown in the Item Reminder
 	-- Default = false
 	["ItemReminderShowRNGCheats"] = false,
-
+	
+	---------- Dynamic Descriptions ------------
+	-- Some descriptions can be completely different depending on what character you are, here you can disable the most extreme ones
+	
+	-- Changes Health Ups and removes healing effect text when playing as a character that can't have red health
+	["DynamicHealthUps"] = true,
+	
+	-- As Tainted Cain, replaces pedestal descriptions with what they will turn into
+	["DynamicSalvageResult"] = true,
 
 	---------- Bag of Crafting ------------
 
@@ -625,7 +633,10 @@ EID.DefaultConfig = {
 	["ItemReminderMaxEntriesCount"] = 5,
 	["ItemReminderShowHiddenInfo"] = false,
 	["ItemReminderShowRNGCheats"] = false,
-
+	
+	["DynamicHealthUps"] = true,
+	["DynamicSalvageResult"] = true,
+	
 	["SpindownDiceResults"] = 3,
 	["SpindownDiceDisplayID"] = false,
 	["SpindownDiceDisplayName"] = false,

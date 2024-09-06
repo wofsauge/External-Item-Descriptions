@@ -422,7 +422,8 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.Quality = EID:getObjectQuality(description)
 	description.Icon = EID:getObjectIcon(description)
 	EID:getObjectItemTypeAndCharge(description)
-
+	
+	EID.DifferentEffectPlayers = {}
 	if checkModifiers ~= false then
 		description = EID:applyConditionals(description)
 		description = EID:applyDescriptionModifier(description, SubType)
@@ -1655,6 +1656,12 @@ end
 function EID:fixDefinedFont(forceRefresh)
 	local curLang = EID:getLanguage()
 	local curFont = EID.Config["FontType"]
+	
+	-- If the textbox width is set to the default, make it match the selected language's default
+	-- Fixes language selection not respecting the language's textbox width, although it also prevents 130 from being used as the width with those languages
+	if EID.Config["TextboxWidth"] == EID.DefaultConfig["TextboxWidth"] then
+		EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth or EID.DefaultConfig["TextboxWidth"]
+	end
 
 	-- If our currently loaded font is still valid, we don't need to reset values
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do

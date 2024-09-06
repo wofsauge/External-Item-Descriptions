@@ -770,18 +770,18 @@ EID.descriptions[languageCode].trinkets={
 	{"31", "Push Pin", "10% chance to shoot piercing + spectral tears#{{Luck}} 100% chance at 18 luck"}, -- Push Pin
 	{"32", "Liberty Cap", "25% chance for a random mushroom effect per room#Can reveal special rooms on the minimap"}, -- Liberty Cap
 	{"33", "Umbilical Cord", "{{Timer}} Spawns {{Collectible100}} Little Steven for the room when Isaac's health is reduced to half a heart"}, -- Umbilical Cord
-	{"34", "Child's Heart", "{{UnknownHeart}} 10% chance for the room clear reward to be a random heart#{{Heart}} Chance for a bonus heart from chests, tinted rocks and destroyed machines"}, -- Child's Heart
+	{"34", "Child's Heart", "{{UnknownHeart}} 10% chance for the room clear reward to be a random heart#{{Heart}} 33% chance for a bonus heart from chests, tinted rocks, and destroyed machines"}, -- Child's Heart
 	{"35", "Curved Horn", "↑ {{Damage}} +2 Damage"}, -- Curved Horn
-	{"36", "Rusted Key", "{{Key}} 10% chance for the room clear reward to be a key#{{Key}} Chance for a bonus key from chests, tinted rocks and destroyed machines"}, -- Rusted Key
+	{"36", "Rusted Key", "{{Key}} 10% chance for the room clear reward to be a key#{{Key}} 33% chance for a bonus key from chests, tinted rocks, and destroyed machines"}, -- Rusted Key
 	{"37", "Goat Hoof", "↑ {{Speed}} +0.15 Speed"}, -- Goat Hoof
 	{"38", "Mom's Pearl", "+10% chance for heart drops to be {{SoulHeart}} Soul Hearts, {{BlackHeart}} Black Hearts or {{EmptyBoneHeart}} Bone Hearts"}, -- Mom's Pearl
 	{"39", "Cancer", "↑ {{Tears}} -2 Tear delay"}, -- Cancer
 	{"40", "Red Patch", "{{Timer}} Taking damage has a 20% chance to grant ↑ {{Damage}} +1.8 damage for the room#{{Luck}} 100% chance at 8 luck"}, -- Red Patch
-	{"41", "Match Stick", "{{Bomb}} 10% chance for the room clear reward to be a bomb#{{Bomb}} Chance for a bonus bomb from chests, tinted rocks and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick"}, -- Match Stick
-	{"42", "Lucky Toe", "↑ {{Luck}} +1 Luck#+8% room clear reward chance#Extra pickups from chests, tinted rocks, and destroyed machines"}, -- Lucky Toe
+	{"41", "Match Stick", "{{Bomb}} 10% chance for the room clear reward to be a bomb#{{Bomb}} 33% chance for a bonus bomb from chests, tinted rocks, and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick"}, -- Match Stick
+	{"42", "Lucky Toe", "↑ {{Luck}} +1 Luck#+8% room clear reward chance#33% chance for an extra pickup from chests, tinted rocks, and destroyed machines"}, -- Lucky Toe
 	{"43", "Cursed Skull", "When damaged down to half a heart or less, Isaac is teleported to a random room"}, -- Cursed Skull
-	{"44", "Safety Cap", "{{Pill}} 10% chance for the room clear reward to be a pill#{{Pill}} Chance for a bonus pill from chests, tinted rocks and destroyed machines"}, -- Safety Cap
-	{"45", "Ace of Spades", "{{Card}} 10% chance for the room clear reward to be a card#{{Card}} Chance for a bonus card from chests, tinted rocks and destroyed machines"}, -- Ace of Spades
+	{"44", "Safety Cap", "{{Pill}} 10% chance for the room clear reward to be a pill#{{Pill}} 33% chance for a bonus pill from chests, tinted rocks, and destroyed machines"}, -- Safety Cap
+	{"45", "Ace of Spades", "{{Card}} 10% chance for the room clear reward to be a card#{{Card}} 33% chance for a bonus card from chests, tinted rocks, and destroyed machines"}, -- Ace of Spades
 	{"46", "Isaac's Fork", "{{HealingRed}} Clearing a room has a 10% chance to heal half a heart#{{Luck}} 100% chance at 18 luck"}, -- Isaac's Fork
 	{"47", "", "<Item does not exist>"},
 	{"48", "A Missing Page", "Taking damage has a 5% chance to deal 40 damage to all enemies in the room"}, -- A Missing Page
@@ -833,7 +833,7 @@ EID.descriptions[languageCode].trinkets={
 	{"94", "Fish Tail", "Doubles all blue fly / spider spawns"}, -- Fish Tail
 	{"95", "Black Tooth", "{{Poison}} 3% chance to shoot poison tooth tears"}, -- Black Tooth
 	{"96", "Ouroboros Worm", "↑ {{Range}} +4 Range#↑ +2 Tear height#Spectral tears#Chance for homing tears#{{Luck}} 100% chance at 9 luck#Isaac's tears move quickly in a spiral pattern"}, -- Ouroboros Worm
-	{"97", "Tonsil", "Taking damage 12-20 times spawns a projectile blocking familiar#Caps at 2 Familiars"}, -- Tonsil
+	{"97", "Tonsil", "Taking damage 12-20 times spawns a projectile blocking familiar#Caps at 2 familiars"}, -- Tonsil
 	{"98", "Nose Goblin", "10% chance to shoot homing sticky tears#{{Damage}} Boogers deal Isaac's damage once per second#Boogers stick for 60 seconds"}, -- Nose Goblin
 	{"99", "Super Ball", "10% chance to shoot bouncing tears"}, -- Super Ball
 	{"100", "Vibrant Bulb", "Holding a fully charged active item grants:#↑ {{Speed}} +0.25 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.5 Damage#↑ {{Range}} +0.75 Range#↑ {{Shotspeed}} +0.1 Shot speed#↑ {{Luck}} +1 Luck"}, -- Vibrant Bulb
@@ -1232,11 +1232,11 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.246"] = {"{{SuperSecretRoom}} Reveals the Super Secret Room location on the map"}, -- Blue Map (Greed)
 	["5.100.333"] = {"{{SuperSecretRoom}} Reveals the Super Secret Room location on the map"}, -- The Mind (Greed)
 	["5.100.514"] = {"Causes some enemies and projectiles to briefly pause at random intervals"}, -- Broken Modem (Greed)
-	["5.350.34"] = {"{{Heart}} Chance for a bonus heart from chests, tinted rocks and destroyed machines"}, -- Child's Heart
-	["5.350.36"] = {"{{Key}} Chance for a bonus key from chests, tinted rocks and destroyed machines"}, -- Rusted Key
-	["5.350.41"] = {"{{Bomb}} Chance for a bonus bomb from chests, tinted rocks and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick"}, -- Match Stick
-	["5.350.44"] = {"{{Pill}} Chance for a bonus pill from chests, tinted rocks and destroyed machines"}, -- Safety Cap
-	["5.350.45"] = {"{{Card}} Chance for a bonus card from chests, tinted rocks and destroyed machines"}, -- Ace of Spades
+	["5.350.34"] = {"{{Heart}} 33% chance for a bonus heart from chests, tinted rocks, and destroyed machines"}, -- Child's Heart
+	["5.350.36"] = {"{{Key}} 33% chance for a bonus key from chests, tinted rocks, and destroyed machines"}, -- Rusted Key
+	["5.350.41"] = {"{{Bomb}} 33% chance for a bonus bomb from chests, tinted rocks, and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick"}, -- Match Stick
+	["5.350.44"] = {"{{Pill}} 33% chance for a bonus pill from chests, tinted rocks, and destroyed machines"}, -- Safety Cap
+	["5.350.45"] = {"{{Card}} 33% chance for a bonus card from chests, tinted rocks, and destroyed machines"}, -- Ace of Spades
 	["5.350.72"] = {"{{Battery}} +10% chance for random pickups to be a battery#{{Battery}} 5% chance to add 1 charge to held active item when clearing a wave"}, -- Watch Battery
 	["5.100.297 (Greed)"] = {"{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#Basement: 2{{Bomb}} + 2{{Key}}#Caves: Boss item + 2{{SoulHeart}}#Depths: 20{{Coin}}#Womb: 2 Boss items#Sheol: Devil item + 1{{BlackHeart}}#The Shop/Ultra Greed: 1{{Coin}}"}, -- Pandora's Box
 	
@@ -1316,6 +1316,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Eye of Belial Dr. Fetus"] = "Bombs pierce, but don't home or do additional damage",
 	["Epic Fetus Brimstone"] = "{1} has priority#Rockets shoot out 10 beams",
 	["Epic Fetus Mom's Knife"] = "{1} has priority#Rockets shoot out 10 knives",
+	["Haemolacria Brimstone"] = "{1} has priority#Tears split into 4-7 beams",
 	["Brimstone Mom's Knife"] = "{1} has priority#A barrage of knives shoot out based on charge amount",
 	["Ludovico Ipecac"] = "The tear gets +4 damage but doesn't explode or poison",
 	["Technology Ipecac"] = "The laser gets +4 damage and poisons targets",
