@@ -1187,6 +1187,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Epic Fetus Brimstone"] = "{1} est prioritaire#Les fusées tirent 10 lasers",
 	["Epic Fetus Mom's Knife"] = "{1} est prioritaire #Les fusées tirent 10 couteaux",
 	["Brimstone Mom's Knife"] = "{1} est prioritaire#Le premier couteau est suivi d'une vague de couteaux supplémentaires",
+	["Haemolacria Brimstone"] = "{1} est prioritaire#Les larmes éclatent en lasers de sang",
 	["Ludovico Ipecac"] = "La larme ne devient ni explosive ni empoisonnée",
 	["Technology Ipecac"] = "Le laser empoisonne les ennemis",
 	["Chocolate Milk Overrides"] = "↑ Débit {{ColorLime}}x1.25",
