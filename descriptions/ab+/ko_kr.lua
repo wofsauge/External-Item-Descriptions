@@ -975,7 +975,7 @@ EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{DamageSmall}}공격�
 EID.descriptions[languageCode].CrookedPennyHeads = "성공"
 EID.descriptions[languageCode].CrookedPennyTails = "실패"
 
-EID.descriptions[languageCode].LuckModifier = "{{LuckSmall}} {2}: 확률 {1}%"
+EID.descriptions[languageCode].LuckModifier = "{2}: 확률 {1}%"
 
 EID.descriptions[languageCode].CollectionPageInfo = "아직 해당 아이템을 획득한 적이 없습니다. 획득하여 아이템 컬렉션에 채워주세요."
 
