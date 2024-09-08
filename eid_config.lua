@@ -314,6 +314,12 @@ EID.UserConfig = {
 	-- Default = false
 	["DisplayVoidStatInfo"] = false,
 
+	---------- Flip Items ----------
+	-- If enabled, displays informations about the "ghost" item that is available for the other player when using the "Flip" item (T-Lazarus)
+	-- REPENTANCE ONLY!!!
+	-- Default = true
+	["DisplayFlipItemDescriptions"] = true,
+
 	---------- Item Reminder Description ------------
 	-- Enable/Disable item reminder feature.
 	-- Hold Map (or the button action chosen below) to show a description of your active item's effect, recently picked up items, and things like Teleport 2.0's destination and Void's absorbed items
@@ -606,6 +612,7 @@ EID.DefaultConfig = {
 	["DisplayBagOfCrafting"] = "always",
 	["DisplayCraneInfo"] = true,
 	["DisplayVoidStatInfo"] = false,
+	["DisplayFlipItemDescriptions"] = true,
 	["BagOfCraftingResults"] = 7,
 	["BagOfCraftingCombinationMax"] = 12,
 	["BagOfCraftingRandomResults"] = 400,

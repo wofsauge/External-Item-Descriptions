@@ -818,7 +818,7 @@ if EID.isRepentance then
 	-- Handle Flip description addition
 	local function FlipCallback(descObj)
 		local flipItemID = EID:getEntityData(descObj.Entity, "EID_FlipItemID")
-		if not flipItemID or flipItemID <= 0 then return descObj end
+		if not flipItemID or flipItemID <= 0 or not EID.Config["DisplayFlipItemDescriptions"] then return descObj end
 		-- Empty pedestal
 		if descObj.ObjSubType == 0 then
 			return EID:getDescriptionObj(5, 100, flipItemID)

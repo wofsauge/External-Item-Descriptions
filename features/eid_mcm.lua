@@ -431,6 +431,8 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Display", "DisplayVoidStatInfo", "Show Void Stat Increases", {infoText = "Displays the stats that would be gained by consuming a passive item."})
 	EID:AddBooleanSetting("Display", "DisplayGlitchedItemInfo", "Show Glitched Item Info", {repOnly = true,
 	infoText = "Note: Installing REPENTOGON is required for more detailed glitched item descriptions!"})
+	EID:AddBooleanSetting("Display", "DisplayFlipItemDescriptions", "Show Flip Item Descriptions", {repOnly = true, 
+	infoText = "Display the effect of ghostly items, when player has the Flip item (T-Lazarus)"})
 
 	MCM.AddSpace("EID", "Display")
 	MCM.AddText("EID", "Display", "Hidden items")
