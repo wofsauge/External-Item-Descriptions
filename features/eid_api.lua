@@ -2493,3 +2493,23 @@ function EID:CreateDescriptionTableIfMissing(tableName, language)
 		EID.descriptions[language][tableName] = {}
 	end
 end
+
+-- returns true if the given pedestal-entity is hidden (questionmark sprite)
+function EID:IsItemHidden(entity)
+	if EID:getEntityData(entity, "EID_DontHide") == true then
+		return false
+	end
+	-- Repentogon check (does not account for curse of blind),
+	-- with expection for alt path item descriptions when config option is enabled
+	if REPENTOGON and entity:ToPickup():IsBlind() and not (not EID.Config["DisableOnAltPath"] and EID:IsAltChoice(entity)) then
+		return true
+	end
+
+	if (EID.Config["DisableOnCurse"] and EID:hasCurseBlind() and not entity:ToPickup().Touched and not EID.isDeathCertRoom)
+	or (EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(entity.SubType))
+	or (EID.Config["DisableOnAltPath"] and not entity:ToPickup().Touched and EID:IsAltChoice(entity))
+	or (EID.Config["DisableOnAprilFoolsChallenge"] and game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
+		return true
+	end
+	return false
+end
