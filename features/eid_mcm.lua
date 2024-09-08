@@ -475,8 +475,8 @@ if MCMLoaded then
 	
 	EID:AddBooleanSetting("Display", "DynamicHealthUps", "Dynamic Health Up Text",
 	{infoText = "Changes Health Ups and removes healing effect text when playing as a character that can't have red health"})
-	EID:AddBooleanSetting("Display", "DynamicSalvageResult", "Show Tainted Cain Salvage Result",
-	{repOnly = true, infoText = "As Tainted Cain, replaces pedestal descriptions with what they will turn into"})
+	EID:AddBooleanSetting("Display", "DisplayTCainSalvageResults", "Show Tainted Cain Salvage Results",
+	{repOnly = true, infoText = "As Tainted Cain, replaces pedestal descriptions with what they will turn into on touch"})
 	
 	
 	--------Obstruction---------

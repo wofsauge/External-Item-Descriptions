@@ -368,10 +368,13 @@ EID.UserConfig = {
 	-- Some descriptions can be completely different depending on what character you are, here you can disable the most extreme ones
 	
 	-- Changes Health Ups and removes healing effect text when playing as a character that can't have red health
+	-- Default = true
 	["DynamicHealthUps"] = true,
 	
-	-- As Tainted Cain, replaces pedestal descriptions with what they will turn into
-	["DynamicSalvageResult"] = true,
+	-- As Tainted Cain, replaces pedestal descriptions with what they will turn 
+	-- REPENTANCE ONLY!!!
+	-- Default = true
+	["DisplayTCainSalvageResults"] = true,
 
 	---------- Bag of Crafting ------------
 
@@ -642,7 +645,7 @@ EID.DefaultConfig = {
 	["ItemReminderShowRNGCheats"] = false,
 	
 	["DynamicHealthUps"] = true,
-	["DynamicSalvageResult"] = true,
+	["DisplayTCainSalvageResults"] = true,
 	
 	["SpindownDiceResults"] = 3,
 	["SpindownDiceDisplayID"] = false,

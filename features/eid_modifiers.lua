@@ -838,7 +838,7 @@ if EID.isRepentance then
 	
 	-- Handle Tainted Cain pedestals
 	local function TaintedCainPedestalCallback(descObj)
-		if EID.isDeathCertRoom or not descObj.Entity or not EID.Config["DynamicSalvageResult"] then return descObj end
+		if EID.isDeathCertRoom or not descObj.Entity or not EID.Config["DisplayTCainSalvageResults"] then return descObj end
 		local item = EID.itemConfig:GetCollectible(descObj.ObjSubType)
 		if (item.Tags and item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then return descObj end
 		
@@ -850,6 +850,9 @@ if EID.isRepentance then
 			local hasBirthright = closestPlayer:HasCollectible(619)
 			local salvageDesc = hasBirthright and EID:getDescriptionEntry("TaintedCainPedestalBaseBirthright") or EID:getDescriptionEntry("TaintedCainPedestalBase")
 			local pickupNames = EID:getDescriptionEntry("PickupNames")
+
+			-- add T-Cain icon at start of line
+			salvageDesc = "{{Player23}} ".. salvageDesc
 			
 			-- Guaranteed items from room type
 			local roomType = game:GetLevel():GetCurrentRoomDesc().Data.Type
@@ -882,6 +885,8 @@ if EID.isRepentance then
 				salvageDesc = salvageDesc .. "#" .. newLine
 			end
 			descObj.Description = salvageDesc
+			descObj.Transformation = nil -- remove transformation info. useless for T-Cain because item will not count towards transformations
+
 			for i = 1, #EID.coopAllPlayers do
 				local t = EID.coopAllPlayers[i]:GetPlayerType()
 				if t ~= PlayerType.PLAYER_CAIN_B then
