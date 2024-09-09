@@ -375,8 +375,8 @@ EID.descriptions[languageCode].collectibles={
 	{"324", "", "사용 시 {{SecretRoom}}비밀방, {{SuperSecretRoom}}일급 비밀방, {{TreasureRoom}}보물방, {{ErrorRoom}}오류방 중 하나로 순간이동합니다."}, -- Undefined
 	{"325", "가위", "사용 시 머리가 분리됩니다.#분리된 머리는 제자리에서 공격하는 방향으로 공격력 3.5의 눈물을 발사합니다."}, -- Scissors
 	{"326", "생명의 숨결", "사용 키를 누르고 있으면 충전량이 줄어들며 충전량이 모두 줄어들면 1초간 무적 상태가 됩니다.#무적 상태가 끝나도 키를 누르면 체력 반 칸의 피해를 입습니다."}, -- Breath of Life
-	{"327", "즉석사진", "피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 5초간 무적 상태가 됩니다.#Chest 스테이지 입장에 필요한 아이템입니다."}, -- The Polaroid
-	{"328", "반전사진", "피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 방 안의 모든 적에게 40의 피해를 줍니다.#Dark Room 스테이지 입장에 필요한 아이템입니다."}, -- The Negative
+	{"327", "즉석사진", "피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 5초간 무적 상태가 됩니다.#Chest 스테이지 진입에 필요한 아이템입니다."}, -- The Polaroid
+	{"328", "반전사진", "피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 방 안의 모든 적에게 40의 피해를 줍니다.#Dark Room 스테이지 진입에 필요한 아이템입니다."}, -- The Negative
 	{"329", "루도비코 요법", "공격이 공격키로 조종 가능한 원격 눈물 공격으로 변경됩니다."}, -- The Ludovico Technique
 	{"330", "두유", "↓ {{DamageSmall}}공격력 배율 x0.2#↑ {{TearsSmall}}연사 배율 x4 +2#↓ {{TearsizeSmall}}눈물크기 x0.5"}, -- Soy Milk
 	{"331", "신", "↑ {{DamageSmall}}공격력 +0.5#↓ {{TearsSmall}}연사 -0.3#↑ {{RangeSmall}}사거리 +1.2#↑ 눈물 높이 +0.8#↓ {{ShotspeedSmall}}탄속 -0.3#공격이 적에게 유도됩니다.#눈물에 후광이 생기며 후광에 닿은 적은 초당 공격력의 x4.5의 피해를 입습니다."}, -- Godhead
@@ -706,19 +706,19 @@ EID.descriptions[languageCode].trinkets={
 	{"31", "고정핀", "10%의 확률로 적과 장애물을 관통하는 공격이 나갑니다.#{{LuckSmall}} 행운 18 이상일 때 100% 확률"}, -- Push Pin
 	{"32", "환각버섯", "방 입장 시 25% 확률로 그 방에서 랜덤한 버섯 아이템 효과를 얻거나 맵에 특수방의 위치가 표시됩니다."}, -- Liberty Cap
 	{"33", "탯줄", "{{HalfHeart}} 전체 체력이 빨간하트 반칸일 때 그 방에서 {{Collectible100}}Little Steven을 소환합니다."}, -- Umbilical Cord
-	{"34", "아이의 심장", "방 클리어 보상이 10% 확률로 {{Heart}}하트로 바뀝니다.#상자에서 {{Heart}}하트가 드랍될 확률이 증가합니다."}, -- Child's Heart
+	{"34", "아이의 심장", "{{Heart}} 방 클리어 보상이 10% 확률로 하트로 바뀝니다.#{{Heart}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 하트를 추가로 드랍합니다."}, -- Child's Heart
 	{"35", "휘어진 뿔", "↑ {{DamageSmall}}공격력 +2"}, -- Curved Horn
-	{"36", "녹슨 열쇠", "방 클리어 보상이 10% 확률로 {{Key}}열쇠로 바뀝니다.#상자에서 {{Key}}열쇠가 드랍될 확률이 증가합니다."}, -- Rusted Key
+	{"36", "녹슨 열쇠", "{{Key}} 방 클리어 보상이 10% 확률로 열쇠로 바뀝니다.#{{Key}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 열쇠를 추가로 드랍합니다."}, -- Rusted Key
 	{"37", "염소 발굽", "↑ {{SpeedSmall}}이동속도 +0.15"}, -- Goat Hoof
 	{"38", "엄마의 진주", "빨간하트가 드랍될 때 {{SoulHeart}}소울하트, {{BlackHeart}}블랙하트, 혹은 {{EmptyBoneHeart}}뼈하트로 바뀔 확률 +10%p"}, -- Mom's Pearl
 	{"39", "암", "↑ {{TearsSmall}}연사 +0.4"}, -- Cancer
 	{"40", "빨간 누더기", "피격 시 20%의 확률로 그 방에서 {{DamageSmall}}공격력이 1.8 증가합니다.#{{LuckSmall}} 행운 8 이상일 때 100% 확률"}, -- Red Patch
-	{"41", "성냥개비", "방 클리어 보상이 10% 확률로 {{Bomb}}폭탄으로 바뀝니다.#상자에서 {{Bomb}}폭탄이 드랍될 확률이 증가합니다.#{{Trinket53}} 흡수하지 않은 Tick 장신구를 제거할 수 있습니다."}, -- Match Stick
-	{"42", "행운의 발가락", "↑ {{LuckSmall}}행운 +1#방 클리어 보상이 등장할 확률이 대폭 증가합니다."}, -- Lucky Toe
+	{"41", "성냥개비", "{{Bomb}} 방 클리어 보상이 10% 확률로 폭탄으로 바뀝니다.#{{Bomb}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 폭탄을 추가로 드랍합니다.#{{Trinket53}} 흡수하지 않은 Tick 장신구를 제거할 수 있습니다."}, -- Match Stick
+	{"42", "행운의 발가락", "↑ {{LuckSmall}}행운 +1#방 클리어 보상이 등장할 확률이 대폭 증가합니다.#상자, 색돌, 터진 기계 등에서 33%의 확률로 픽업을 추가로 드랍합니다."}, -- Lucky Toe
 	{"43", "저주받은 해골", "피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Cursed Skull
-	{"44", "안전 마개", "방 클리어 보상이 10% 확률로 {{Pill}}알약으로 바뀝니다.#{{Chest}} 상자에서 {{Pill}}알약이 드랍될 확률이 증가합니다.#{{GoldenChest}} 황금상자에서 {{Pill}}알약이 등장합니다."}, -- Safety Cap
-	{"45", "스페이드 A", "방 클리어 보상이 10% 확률로 {{Card}}카드로 바뀝니다.#{{Chest}} 상자에서 {{Card}}카드가 등장합니다.#{{GoldenChest}} 황금상자에서 {{Card}}카드가 드랍될 확률이 증가합니다."}, -- Ace of Spades
-	{"46", "아이작의 포크", "방 클리어 시 10% 확률로 {{HealingRed}}체력을 반칸 회복합니다.#{{LuckSmall}} 행운 18 이상일 때 100% 확률"}, -- Isaac's Fork
+	{"44", "안전 마개", "{{Pill}} 방 클리어 보상이 10% 확률로 알약으로 바뀝니다.#{{Pill}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 알약을 추가로 드랍합니다.#{{GoldenChest}} 황금상자에서 {{Pill}}알약이 등장합니다."}, -- Safety Cap
+	{"45", "스페이드 A", "{{Card}} 방 클리어 보상이 10% 확률로 카드로 바뀝니다.#{{Card}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 카드를 추가로 드랍합니다.#{{GoldenChest}} 황금상자에서 {{Card}}카드가 드랍될 확률이 증가합니다."}, -- Ace of Spades
+	{"46", "아이작의 포크", "{{HealingRed}} 방 클리어 시 10% 확률로 체력을 반칸 회복합니다.#{{LuckSmall}} 행운 18 이상일 때 100% 확률"}, -- Isaac's Fork
 	{"47", "The Polariod", "<Item does not exist>"}, -- The Polariod
 	{"48", "찢어진 페이지", "피격 시 5%의 확률로 방 안의 모든 적에게 40의 피해를 줍니다.#{{LuckSmall}} 행운 60 이상일 때 50% 확률"}, -- A Missing Page
 	{"49", "피 묻은 동전", "동전 획득 시 50% 확률로 {{HalfHeart}}빨간하트를 반칸 드랍합니다."}, -- Bloody Penny
@@ -727,11 +727,11 @@ EID.descriptions[languageCode].trinkets={
 	{"52", "가짜 동전", "동전 획득 시 50% 확률로 {{Coin}}동전을 하나 더 얻습니다."}, -- Counterfeit Penny
 	{"53", "진드기", "!!! {{ColorOrange}}교체 및 버리기 불가{{CR}}#방 입장 시 체력이 60 이상인 적의 체력을 15% 깎습니다.#{{HealingRed}} {{BossRoom}}보스방 입장 시 체력을 한칸 회복합니다."}, -- Tick
 	{"54", "아이작의 머리", "캐릭터를 따라다니며 캐릭터가 공격하는 방향으로 공격력 3.5의 적을 관통하는 눈물을 발사합니다."}, -- Isaac's Head
-	{"55", "매기의 믿음", "스테이지 입장 시 {{EthernalHeart}}이터널하트 +1"}, -- Maggy's Faith
+	{"55", "매기의 믿음", "스테이지 진입 시 {{EthernalHeart}}이터널하트 +1"}, -- Maggy's Faith
 	{"56", "유다의 혀", "{{DevilRoom}}악마방 상품 가격이 체력 2칸인 경우 체력 1칸으로 변경됩니다."}, -- Judas' Tongue
 	{"57", "???의 영혼", "방을 대각선으로 돌아다니며 캐릭터가 공격하는 방향으로 공격력 3.5의 적에게 유도되며 장애물을 관통하는 눈물을 발사합니다."}, -- ???'s Soul
 	{"58", "삼손의 머리채", "적 처치 시 1/15의 확률로 그 방에서 {{DamageSmall}}공격력이 0.5씩 (최대 +5) 증가합니다.#{{LuckSmall}} 행운 10 이상일 때 100% 확률"}, -- Samson's Lock
-	{"59", "카인의 오른쪽 눈", "스테이지 입장 시 25%의 확률로 그 스테이지에서 맵에 특수방의 위치를 보여줍니다.#{{LuckSmall}} 행운 3 이상일 때 100% 확률"}, -- Cain's Eye
+	{"59", "카인의 오른쪽 눈", "스테이지 진입 시 25%의 확률로 그 스테이지에서 맵에 특수방의 위치를 보여줍니다.#{{LuckSmall}} 행운 3 이상일 때 100% 확률"}, -- Cain's Eye
 	{"60", "이브의 새 다리", "적 처치 시 5%의 확률로 {{Collectible117}}Dead Bird를 소환합니다.#{{LuckSmall}} 행운 8 이상일 때 100% 확률"}, -- Eve's Bird Foot
 	{"61", "왼손목", "{{RedChest}} 모든 상자가 빨간 상자로 교체됩니다."}, -- The Left Hand
 	{"62", "빛나는 돌", "10초마다 색돌이나 {{LadderRoom}}사다리방이 있는 돌이 빛납니다."}, -- Shiny Rock
@@ -754,7 +754,7 @@ EID.descriptions[languageCode].trinkets={
 	{"79", "끝없는 무명", "{{Card}}카드 또는 {{Pill}}알약 사용 시 25% 확률로 같은 효과의 픽업이 드랍됩니다."}, -- Endless Nameless
 	{"80", "검은 깃털", "Evil up 또는 Sin up 아이템 소지 시 개당 {{DamageSmall}}공격력이 0.2 증가합니다."}, -- Black Feather
 	{"81", "눈먼 분노", "피격 후 무적시간이 2배로 증가합니다."}, -- Blind Rage
-	{"82", "황금 말발굽", "스테이지 입장 시 15% 확률로 {{TreasureRoom}}보물방 아이템이 2개가 나오며 하나를 선택하면 나머지는 사라집니다."}, -- Golden Horse Shoe
+	{"82", "황금 말발굽", "스테이지 진입 시 15% 확률로 {{TreasureRoom}}보물방 아이템이 2개가 나오며 하나를 선택하면 나머지는 사라집니다."}, -- Golden Horse Shoe
 	{"83", "상점 열쇠", "{{Shop}}상점을 열쇠 소모 없이 열 수 있습니다."}, -- Store Key
 	{"84", "그리드의 갈비뼈", "{{Shop}}상점과 {{SecretRoom}}비밀방에서 Greed/Super Greed가 등장하지 않습니다.#이미 Greed를 처치하였을 경우 재입장 시 상점이 복원됩니다.#방 클리어 시 하트가 등장할 경우 33%의 확률로 {{Coin}}동전으로 바뀝니다."}, -- Rib of Greed
 	{"85", "업보", "!!! 기부기계에 기부 시 33%의 확률로 아래 효과 중 하나 발동:#{{Coin}}동전 +1(40%)#{{Blank}} {{Heart}}빨간하트 1칸 회복(40%)#{{Blank}} {{LuckSmall}}행운 +1(15%)#{{Blank}} 거지 소환(5%)"}, -- Karma
@@ -774,7 +774,7 @@ EID.descriptions[languageCode].trinkets={
 	{"99", "탱탱볼", "확률적으로 공격이 무언가에 부딪힐 때 반대 각도로 튕겨져 나갑니다."}, -- Super Ball
 	{"100", "밝은 전구", "액티브 아이템의 충전량이 최대치일때 {{DamageSmall}}공격력 +0.5, {{TearsSmall}}연사 +0.2, {{RangeSmall}}사거리 +0.75, {{SpeedSmall}}이동속도 +0.5, {{ShotspeedSmall}}탄속 +0.1, {{LuckSmall}}행운 +1"}, -- Vibrant Bulb
 	{"101", "꺼진 전구", "액티브 아이템의 충전량이 남아있지 않을때 {{DamageSmall}}공격력 +1.5, {{TearsSmall}}연사 +0.4, {{RangeSmall}}사거리 +1.5, {{SpeedSmall}}이동속도 +0.5, {{ShotspeedSmall}}탄속 +0.3"}, -- Dim Bulb
-	{"102", "조각난 카드", "스테이지 입장 시 {{SecretRoom}}비밀방이 하나 더 생성됩니다."}, -- Fragmented Card
+	{"102", "조각난 카드", "스테이지 진입 시 {{SecretRoom}}비밀방이 하나 더 생성됩니다."}, -- Fragmented Card
 	{"103", "똑같다!", "소지중인 동전, 폭탄, 열쇠의 개수가 모두 같을 때 하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 픽업이 1+1로 나옵니다."}, -- Equality!
 	{"104", "창사골", "!!! 일회용#피격 시 2% 확률로 그 방의 아이템을 하나 생성합니다."}, -- Wish Bone
 	{"105", "점심 도시락", "!!! 일회용#피격 시 2% 확률로 {{Collectible22}}Lunch ({{Heart}}최대 체력 +1) 아이템을 생성합니다."}, -- Bag Lunch
@@ -791,7 +791,7 @@ EID.descriptions[languageCode].trinkets={
 	{"116", "죽음의 메뚜기", "방 입장 시 공격력 4배의 피해를 주는 검은 아군 파리를 소환합니다."}, -- Locust of Death
 	{"117", "정복의 메뚜기", "방 입장 시 하얀 아군 파리를 2~5마리를 소환합니다."}, -- Locust of Conquest
 	{"118", "박쥐 날개", "적 처치 시 확률적으로 그 방에서 비행 능력을 얻습니다."}, -- Bat Wing
-	{"119", "줄기 세포", "{{HealingRed}} 스테이지 입장 시 체력을 반칸 회복합니다."}, -- Stem Cell
+	{"119", "줄기 세포", "{{HealingRed}} 스테이지 진입 시 체력을 반칸 회복합니다."}, -- Stem Cell
 	{"120", "머리핀", "{{BossRoom}}보스방 최초 입장 시 액티브 아이템의 충전량을 모두 충전합니다."}, -- Hairpin
 	{"121", "나무 십자가", "스테이지 당 {{HolyMantle}}1번 피해를 무시하는 보호막을 생성합니다."}, -- Wooden Cross
 	{"122", "버터!", "액티브 아이템 사용 시 사용한 액티브 아이템을 내려놓습니다.#피격 시 2% 확률로 소지중인 패시브 아이템 중 하나를 내려놓습니다."}, -- Butter!
@@ -975,7 +975,7 @@ EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{DamageSmall}}공격�
 EID.descriptions[languageCode].CrookedPennyHeads = "성공"
 EID.descriptions[languageCode].CrookedPennyTails = "실패"
 
-EID.descriptions[languageCode].LuckModifier = "{{LuckSmall}} {2}: 확률 {1}%"
+EID.descriptions[languageCode].LuckModifier = "{2}: 확률 {1}%"
 
 EID.descriptions[languageCode].CollectionPageInfo = "아직 해당 아이템을 획득한 적이 없습니다. 획득하여 아이템 컬렉션에 채워주세요."
 
@@ -1133,11 +1133,11 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.246"] = {"맵에 {{SuperSecretRoom}}일급 비밀방의 위치가 표시됩니다."}, -- Blue Map (Greed)
 	["5.100.333"] = {"맵에 {{SuperSecretRoom}}일급 비밀방의 위치가 표시됩니다."}, -- The Mind (Greed)
 	["5.100.514"] = {"적과 적의 탄환이 때때로 1초간 멈춥니다."}, -- Broken Modem (Greed)
-	["5.350.34"] = {"{{Heart}} 상자, 색돌, 터진 기계 등에서 하트가 드랍될 확률이 증가합니다."}, -- Child's Heart
-	["5.350.36"] = {"{{Key}} 상자, 색돌, 터진 기계 등에서 열쇠가 드랍될 확률이 증가합니다."}, -- Rusted Key
-	["5.350.41"] = {"{{Bomb}} 상자, 색돌, 터진 기계 등에서 폭탄이 드랍될 확률이 증가합니다.#{{Trinket53}} 흡수하지 않은 Tick 장신구를 제거할 수 있습니다."}, -- Match Stick
-	["5.350.44"] = {"{{Pill}} 상자, 색돌, 터진 기계 등에서 알약이 드랍될 확률이 증가합니다."}, -- Safety Cap
-	["5.350.45"] = {"{{Card}} 상자, 색돌, 터진 기계 등에서 카드가 드랍될 확률이 증가합니다."}, -- Ace of Spades
+	["5.350.34"] = {"{{Heart}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 하트를 추가로 드랍합니다."}, -- Child's Heart
+	["5.350.36"] = {"{{Key}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 열쇠를 추가로 드랍합니다."}, -- Rusted Key
+	["5.350.41"] = {"{{Bomb}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 폭탄을 추가로 드랍합니다.#{{Trinket53}} 흡수하지 않은 Tick 장신구를 제거할 수 있습니다."}, -- Match Stick
+	["5.350.44"] = {"{{Pill}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 알약을 추가로 드랍합니다."}, -- Safety Cap
+	["5.350.45"] = {"{{Card}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 카드를 추가로 드랍합니다."}, -- Ace of Spades
 	["5.350.72"] = {"{{Battery}} +10% 픽업 드랍 시 배터리 픽업으로 바꿀 확률 +10%#{{Battery}} 웨이브 시작 시 5% 확률로 충전량을 한칸 더 채워줍니다."}, -- Watch Battery
 	["5.100.297 (Greed)"] = {"!!! 일회용 / 사용 시 스테이지마다 다른 보상을 드랍합니다.#Basement: 2{{Bomb}} + 2{{Key}}#Caves: {{BossRoom}} 1개 + 2{{SoulHeart}}#Depths: 20{{Coin}}#Womb: {{BossRoom}} 2개#Sheol: {{DevilRoom}} 1개 + 1{{BlackHeart}}#The Shop/Ultra Greed: 1{{Coin}}"}, -- Pandora's Box
 
@@ -1214,6 +1214,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Eye of Belial Dr. Fetus"] = "적 관통만 적용, 이외 효과는 무시됨",
 	["Epic Fetus Brimstone"] = "{1}이(가) 우선 적용#미사일 착탄 지점에 레이저를 10방향으로 발사합니다.",
 	["Epic Fetus Mom's Knife"] = "{1}이(가) 우선 적용#미사일 착탄 지점에 칼을 10방향으로 발사합니다.",
+	["Haemolacria Brimstone"] = "{1}이(가) 우선 적용#파열된 작은 눈물이 혈사포로 나갑니다.",
 	["Brimstone Mom's Knife"] = "{1}이(가) 우선 적용#충전 공격 시 충전량에 비례하여 칼 여러개를 공격방향으로 같이 발사합니다.",
 	["Ludovico Ipecac"] = "공격력 증가가 +4로 감소, 독 및 폭발 효과 미적용",
 	["Technology Ipecac"] = "공격력 증가가 +4로 감소, 독 효과만 적용",

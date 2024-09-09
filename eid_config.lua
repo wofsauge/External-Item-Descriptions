@@ -314,6 +314,12 @@ EID.UserConfig = {
 	-- Default = false
 	["DisplayVoidStatInfo"] = false,
 
+	---------- Flip Items ----------
+	-- If enabled, displays informations about the "ghost" item that is available for the other player when using the "Flip" item (T-Lazarus)
+	-- REPENTANCE ONLY!!!
+	-- Default = true
+	["DisplayFlipItemDescriptions"] = true,
+
 	---------- Item Reminder Description ------------
 	-- Enable/Disable item reminder feature.
 	-- Hold Map (or the button action chosen below) to show a description of your active item's effect, recently picked up items, and things like Teleport 2.0's destination and Void's absorbed items
@@ -362,10 +368,13 @@ EID.UserConfig = {
 	-- Some descriptions can be completely different depending on what character you are, here you can disable the most extreme ones
 	
 	-- Changes Health Ups and removes healing effect text when playing as a character that can't have red health
+	-- Default = true
 	["DynamicHealthUps"] = true,
 	
-	-- As Tainted Cain, replaces pedestal descriptions with what they will turn into
-	["DynamicSalvageResult"] = true,
+	-- As Tainted Cain, replaces pedestal descriptions with what they will turn 
+	-- REPENTANCE ONLY!!!
+	-- Default = true
+	["DisplayTCainSalvageResults"] = true,
 
 	---------- Bag of Crafting ------------
 
@@ -606,6 +615,7 @@ EID.DefaultConfig = {
 	["DisplayBagOfCrafting"] = "always",
 	["DisplayCraneInfo"] = true,
 	["DisplayVoidStatInfo"] = false,
+	["DisplayFlipItemDescriptions"] = true,
 	["BagOfCraftingResults"] = 7,
 	["BagOfCraftingCombinationMax"] = 12,
 	["BagOfCraftingRandomResults"] = 400,
@@ -635,7 +645,7 @@ EID.DefaultConfig = {
 	["ItemReminderShowRNGCheats"] = false,
 	
 	["DynamicHealthUps"] = true,
-	["DynamicSalvageResult"] = true,
+	["DisplayTCainSalvageResults"] = true,
 	
 	["SpindownDiceResults"] = 3,
 	["SpindownDiceDisplayID"] = false,
