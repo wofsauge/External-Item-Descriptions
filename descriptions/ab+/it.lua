@@ -499,7 +499,7 @@ EID.descriptions[languageCode].collectibles={
 	{"474", "Tonsilla", "Blocca i proiettili nemici"},
 	{"475", "Piano C", "{{Warning}} MONOUSO {{Warning}}#Infligge 9,999,999 danni a tutti i nemici#{{Warning}} Isaac muore dopo 3 secondi"},
 	{"476", "D1", "Duplica 1 consumabile casuale nella stanza"},
-	{"477", "Vuoto", "Consuma tutti i piedistalli nella stanza#Oggetti attivi: Attiva i loro effetti, e lo stesso varrà per ogni uso futuro di \"Vuoto\"#↑ Gli oggetti passivi conferiscono due aumenti a statistiche casuali"},
+	{"477", "Vuoto", "Consuma tutti i piedistalli nella stanza#Oggetti attivi: Attiva i loro effetti, e lo stesso vale per ogni uso futuro di \"Vuoto\"#↑ Gli oggetti passivi conferiscono due aumenti a statistiche casuali"},
 	{"478", "Pausa", "Blocca tutti i nemici nella stanza fino a quando Isaac non spara#Toccare un nemico bloccato infligge comunque danni ad Isaac#I nemici si sbloccano dopo 30 secondi"},
 	{"479", "Fonderia", "{{Trinket}} Consuma i ninnoli tenuti da Isaac e conferisce permanentemente i loro effetti#Aumenta la chance di generare ninnoli"},
 	{"480", "Compost", "Converte i consumabili in mosche o ragni blu#Raddoppia tutte le mosche e i ragni blu#Se Isaac non ha alcuna mosca o ragno blu ne genera 1"},
