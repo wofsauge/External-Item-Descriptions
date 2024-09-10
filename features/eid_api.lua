@@ -649,10 +649,17 @@ function EID:getObjectName(Type, Variant, SubType)
 	return Type.."."..Variant.."."..SubType
 end
 
-function EID:getPlayerName(id)
+function EID:getPlayerName(id, altFallback)
 	local playerInfo = EID:getDescriptionEntry("CharacterInfo")[id]
 	local birthrightInfo = EID.isRepentance and EID:getDescriptionEntry("birthright")[id+1]
-	return (playerInfo and playerInfo[1]) or (birthrightInfo and birthrightInfo[1]) or "???"
+	return (playerInfo and playerInfo[1]) or (birthrightInfo and birthrightInfo[1]) or altFallback or EID:findPlayerName(id) or "???"
+end
+
+-- Get the name of a given player ID by checking for a matching EntityPlayer
+-- This is for modded characters, whose name is best found by doing EntityPlayer:GetName()
+function EID:findPlayerName(id)
+	local found, entityPlayer = EID:PlayersHaveCharacter(id, false)
+	if entityPlayer then return entityPlayer:GetName() end
 end
 
 -- returns the name of a pill based on the pilleffect id
@@ -769,7 +776,7 @@ function EID:replaceNameMarkupStrings(text)
 			local iconText = ""
 			local colorText = ""
 			if entityID[1] == 1 then
-				if showIcon then iconText = "{{Player" .. entityID[3] .. "}} " end
+				if showIcon then iconText = EID:GetPlayerIcon(entityID[3]) .. " " end
 				colorText = "{{ColorIsaac}}"
 			else
 				if showIcon then iconText = "{{" .. EID:GetIconNameByVariant(entityID[2]) .. entityID[3] .. "}} " end
@@ -786,7 +793,7 @@ function EID:replaceNameMarkupStrings(text)
 		elseif indicator == "K" then -- Card
 			name = (showIcon and "{{Card"..id.."}} " or "") .. "{{ColorCard}}" .. EID:getObjectName(5, 300, id) .. "{{CR}}"
 		elseif indicator == "I" then -- Player (I for Isaac)
-			name = (showIcon and "{{Player"..id.."}} " or "") .. "{{ColorIsaac}}" .. EID:getPlayerName(id) .. "{{CR}}"
+			name = (showIcon and EID:GetPlayerIcon(id) .. " " or "") .. "{{ColorIsaac}}" .. EID:getPlayerName(id) .. "{{CR}}"
 		end
 		text = string.gsub(text, word, name, 1)
 	end
