@@ -259,6 +259,7 @@ end
 
 -- For adding a conditional that only displays when the closest player to the pedestal is the right character
 function EID:AddClosestPlayerConditional(IDs, charIDs, modText, extraTable, includeTainted)
+	if includeTainted == nil then includeTainted = true end
 	EID:AddPlayerConditional(IDs, charIDs, function() return EID:ClosestCharCheck(modText, charIDs, includeTainted) end, extraTable, includeTainted)
 end
 
