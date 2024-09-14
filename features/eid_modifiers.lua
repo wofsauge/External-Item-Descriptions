@@ -338,7 +338,7 @@ local function HealthUpCallback(descObj)
 		
 		-- remove HealingRed lines entirely for Soul/Black/None health chars
 		descObj.Description = descObj.Description .. "#" -- gsub finds final lines better if the desc ends with a line break
-		if heartType == "Soul" or heartType == "Black" or heartType == "None" then
+		if EID.HealthTypesWithoutHealing[heartType] then
 			-- Find any lines containing {{HealingRed}} or {{HealingHalfRed}} and remove the line
 			descObj.Description = descObj.Description:gsub("{{HealingRed}}(.-)#", "")
 			descObj.Description = descObj.Description:gsub("{{HealingHalfRed}}(.-)#", "")

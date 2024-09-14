@@ -1063,6 +1063,11 @@ if EID.isRepentance then
 	EID.CharacterToHeartType[12] = "Black"; EID.CharacterToHeartType[24] = "Black"; EID.CharacterToHeartType[25] = "Soul"; EID.CharacterToHeartType[31] = "None"; EID.CharacterToHeartType[33] = "Coin"; EID.CharacterToHeartType[35] = "Soul"; EID.CharacterToHeartType[36] = "Soul"; EID.CharacterToHeartType[40] = "Soul"; 
 end
 
+EID.HealthTypesWithoutHealing = {}
+EID.HealthTypesWithoutHealing["Soul"] = true
+EID.HealthTypesWithoutHealing["Black"] = true
+EID.HealthTypesWithoutHealing["None"] = true
+
 -- Character IDs that have a pocket active (0 = normal, 1 = timed, 2 = special)
 EID.PocketActivePlayerIDs = { [22] = 0, [23] = 2, [24] = 1, [25] = 2, [26] = 1, [29] = 0, [34] = 0, [36] = 0, [37] = 1, [38] = 0, [39] = 1 }
 
