@@ -853,8 +853,6 @@ function EID:renderIndicator(entity, playerNum)
 	if EID.isRepentance and not EID:IsGridEntity(entity) then
 		if entity.Variant == 100 and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID:getEntityData(entity, "EID_FlipItemID") then
 			entityPos = entityPos + Vector(2.5,2.5)
-		elseif entity.Type == 6 and entity.Variant == 16 then
-			entityPos = entityPos + Vector(0,-5)
 		end
 	end
 	local sprite = nil
