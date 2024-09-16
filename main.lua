@@ -841,7 +841,7 @@ function EID:renderIndicator(entity, playerNum)
 		return
 	end
 	local repDiv = 1
-	local entityPos = Isaac.WorldToScreen(entity.Position)
+	local entityPos = Isaac.WorldToScreen(entity.Position + entity.PositionOffset)
 	local ArrowOffset = Vector(0, -35)
 	if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
 		ArrowOffset = Vector(0, -62)
@@ -853,8 +853,6 @@ function EID:renderIndicator(entity, playerNum)
 	if EID.isRepentance and not EID:IsGridEntity(entity) then
 		if entity.Variant == 100 and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID:getEntityData(entity, "EID_FlipItemID") then
 			entityPos = entityPos + Vector(2.5,2.5)
-		elseif entity.Type == 6 and entity.Variant == 16 then
-			entityPos = entityPos + Vector(0,-5)
 		end
 	end
 	local sprite = nil
