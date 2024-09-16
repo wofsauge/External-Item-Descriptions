@@ -841,7 +841,7 @@ function EID:renderIndicator(entity, playerNum)
 		return
 	end
 	local repDiv = 1
-	local entityPos = Isaac.WorldToScreen(entity.Position + entity.PositionOffset)
+	local entityPos = Isaac.WorldToScreen(entity.PositionOffset + entity.Position or entity.Position)
 	local ArrowOffset = Vector(0, -35)
 	if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
 		ArrowOffset = Vector(0, -62)
