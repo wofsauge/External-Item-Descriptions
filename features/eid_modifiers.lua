@@ -839,7 +839,7 @@ if EID.isRepentance then
 	
 	-- Handle Tainted Cain pedestals
 	local function TaintedCainPedestalCallback(descObj)
-		if EID.isDeathCertRoom or not descObj.Entity or not EID.Config["DisplayTCainSalvageResults"] then return descObj end
+		if game.Challenge == Challenge.CHALLENGE_CANTRIPPED or EID.isDeathCertRoom or not descObj.Entity or not EID.Config["DisplayTCainSalvageResults"] then return descObj end
 		local item = EID.itemConfig:GetCollectible(descObj.ObjSubType)
 		if (item.Tags and item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then return descObj end
 		
