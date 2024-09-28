@@ -140,7 +140,7 @@ EID.descriptions[languageCode].collectibles={
 	{"118", "Azufre", "{{Chargeable}} Cargable#Dispara un chorro de sangre que inflige daño constante"},
 	{"119", "Bolsa de Sangre", "↑ {{Heart}} +1 de Vida#↑ {{Speed}} +0,3 de velocidad#{{HealingRed}} Cura 4 corazones"},
 	{"120", "Hongo Raro", "↑ {{Speed}} Velocidad +0.3#↑ {{Tears}} Lágrimas +1.7#↓ {{Damage}} Daño x0.90 - 0.4"},
-	{"121", "Hongo Raro", "↑ {{EmptyHeart}} +1 contenedor de corazon vacío#↓ {{Speed}} Velocidad -0.1#↑ {{Range}} Alcance +0.25#↑ {{Damage}} Daño +0.3#↑ {{Tearsize}} Tamaño de lágrimas +0.5"},
+	{"121", "Hongo Raro", "↑ {{EmptyHeart}} +1 contenedor de corazón vacío#↓ {{Speed}} Velocidad -0.1#↑ {{Range}} Alcance +0.25#↑ {{Damage}} Daño +0.3#↑ {{Tearsize}} Tamaño de lágrimas +0.5"},
 	{"122", "Ramera de Babilonia", "!!! Al tener medio corazón:#↑ {{Speed}} Velocidad +0.3#↑ {{Damage}} Daño +1.5#Se activa automáticamente con personajes que no poseen salud roja"},
 	{"123", "Manual de monstruos", "Familiar aleatorio en la habitación actual"},
 	{"124", "Pergaminos del Mar Muerto", "Efecto de objeto activo aleatorio"},
@@ -148,7 +148,7 @@ EID.descriptions[languageCode].collectibles={
 	{"126", "Hoja de Afeitar", "↑ +1,2 de daño en la habitación actual#↓ Te inflige 1 corazón de daño"},
 	{"127", "Olvídame Ya", "{{Warning}} UN SOLO USO {{Warning}} #Reinicia toda la planta"},
 	{"128", "Siempre solo", "Mosca orbital de larga distancia #Inflige 30 de daño por contacto cada segundo"},
-	{"129", "Cubo de manteca", "↑ {{EmptyHeart}} +2 contenedores de corazon vacíos#↓ -0,2 de velocidad#{{HealingRed}} Cura medio corazón"},
+	{"129", "Cubo de manteca", "↑ {{EmptyHeart}} +2 contenedores de corazón vacíos#↓ -0,2 de velocidad#{{HealingRed}} Cura medio corazón"},
 	{"130", "Un poni ", "Permite volar mientras lo tengas#Establece tu velocidad en 1,5 en caso de que tengas menos que eso#Embiste en una dirección"},
 	{"131", "Bolsa de Bombas", "Deja caer 1 bomba cada pocas habitaciones"},
 	{"132", "Un Trozo de Carbón", "Más daño basado en la distancia que recorra la lágrima"},
@@ -238,7 +238,7 @@ EID.descriptions[languageCode].collectibles={
 	{"216", "Manto Ceremonial", "↑ {{BlackHeart}} +3 Corazones negros#↑ {{Damage}} Daño +1"},
 	{"217", "Peluca de Mamá", "{{HealingRed}} Cura 1 corazón#Probabilidad aleatoria de generar una araña azul al disparar"},
 	{"218", "Placenta", "↑ {{Heart}} +1 de Vida#{{HealingRed}} 50% de probabilidad de curar medio corazón cada minuto"},
-	{"219", "Vendaje Viejo", "↑ {{EmptyHeart}} +1 contenedor de corazon vacío#Probabilidad aleatoria de dejar caer corazones cuando te golpean"},
+	{"219", "Vendaje Viejo", "↑ {{EmptyHeart}} +1 contenedor de corazón vacío#Probabilidad aleatoria de dejar caer corazones cuando te golpean"},
 	{"220", "Bombas Tristes", "↑ {{Bomb}} +5 Bombas#¡Explosión de lágrimas!"},
 	{"221", "Pegamento Elástico", "Las lágrimas rebotan"},
 	{"222", "Anti-Gravedad", "↑ {{Tears}} Lágrimas +2#Lágrimas antigravedad"},
@@ -775,7 +775,7 @@ EID.descriptions[languageCode].pills={
 	{"4", "Diarrea explosiva", "Invoca 5 bombas troll"},
 	{"5", "Salud completa", "{{HealingRed}} Vida al completo"},
 	{"6", "Menos vida", "↓ {{EmptyHeart}} -1 de Vida"},
-	{"7", "Más vida", "↑ {{EmptyHeart}} +1 contenedor de corazon vacío"},
+	{"7", "Más vida", "↑ {{EmptyHeart}} +1 contenedor de corazón vacío"},
 	{"8", "Sin efecto", "Sin efecto"},
 	{"9", "Pubertad", "Al comer 3 te transformas en Adulto "},
 	{"10", "Mosca bonita", "Añade 1 mosca orbital"},
@@ -925,24 +925,24 @@ EID.descriptions[languageCode].RedToX = {
 	["Red to Soul"] = {
 	"↑ {{Heart}} +1 de Vida", "{{SoulHeart}} +1 Corazón de Alma",
 	"↑ {{Heart}} +{1} de Vida", "{{SoulHeart}} +{1} Corazones de Alma",
-	"↑ {{EmptyHeart}} +1 contenedor de corazon vacío", "{{SoulHeart}} +1 Corazón de Alma",
-	"↑ {{EmptyHeart}} +{1} contenedores de corazon vacíos", "{{SoulHeart}} +{1} Corazones de Alma",
+	"↑ {{EmptyHeart}} +1 contenedor de corazón vacío", "{{SoulHeart}} +1 Corazón de Alma",
+	"↑ {{EmptyHeart}} +{1} contenedores de corazón vacíos", "{{SoulHeart}} +{1} Corazones de Alma",
 	"↓ {{EmptyHeart}} -1 de Vida", "↓ {{SoulHeart}} -1 Corazón de Alma",
 	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{SoulHeart}} {1} Corazones de Alma"},
 	
 	["Red to Black"] = {
 	"↑ {{Heart}} +1 de Vida", "{{BlackHeart}} +1 Corazón Negro",
 	"↑ {{Heart}} +{1} de Vida", "{{BlackHeart}} +{1} Corazones Negros",
-	"↑ {{EmptyHeart}} +1 contenedor de corazon vacío", "{{BlackHeart}} +1 Corazón Negro",
-	"↑ {{EmptyHeart}} +{1} contenedores de corazon vacíos", "{{BlackHeart}} +{1} Corazones Negros",
+	"↑ {{EmptyHeart}} +1 contenedor de corazón vacío", "{{BlackHeart}} +1 Corazón Negro",
+	"↑ {{EmptyHeart}} +{1} contenedores de corazón vacíos", "{{BlackHeart}} +{1} Corazones Negros",
 	"↓ {{EmptyHeart}} -1 de Vida", "↓ {{BlackHeart}} -1 Corazón Negro",
 	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{BlackHeart}} {1} Corazones Negros"},
 	
 	["Red to Bone"] = {
 	"↑ {{Heart}} +1 de Vida", "{{BoneHeart}} +1 Corazón de Hueso",
 	"↑ {{Heart}} +{1} de Vida", "{{BoneHeart}} +{1} Corazones de Hueso",
-	"↑ {{EmptyHeart}} +1 contenedor de corazon vacío", "{{EmptyBoneHeart}} +1 Corazón de Hueso Vacío",
-	"↑ {{EmptyHeart}} +{1} contenedores de corazon vacíos", "{{EmptyBoneHeart}} +{1} Corazones de Hueso Vacíos",
+	"↑ {{EmptyHeart}} +1 contenedor de corazón vacío", "{{EmptyBoneHeart}} +1 Corazón de Hueso Vacío",
+	"↑ {{EmptyHeart}} +{1} contenedores de corazón vacíos", "{{EmptyBoneHeart}} +{1} Corazones de Hueso Vacíos",
 	"↓ {{EmptyHeart}} -1 de Vida", "↓ {{EmptyBoneHeart}} -1 Corazón de Hueso",
 	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{EmptyBoneHeart}} {1} Corazones de Hueso"},
 	
@@ -950,8 +950,8 @@ EID.descriptions[languageCode].RedToX = {
 	"↑ {{Heart}} +1 de Vida", "{{CoinHeart}} +1 Corazón de Moneda",
 	"↑ {{Heart}} +{1} de Vida", "{{CoinHeart}} +{1} Corazones de Moneda",
 
-	"↑ {{EmptyHeart}} +1 contenedor de corazon vacío", "{{EmptyCoinHeart}} +1 Corazón de Moneda Vacío",
-	"↑ {{EmptyHeart}} +{1} contenedor de corazon vacío", "{{EmptyCoinHeart}} +{1} Corazones de Moneda Vacíos",
+	"↑ {{EmptyHeart}} +1 contenedor de corazón vacío", "{{EmptyCoinHeart}} +1 Corazón de Moneda Vacío",
+	"↑ {{EmptyHeart}} +{1} contenedores de corazón vacíos", "{{EmptyCoinHeart}} +{1} Corazones de Moneda Vacíos",
 
 	"{{HealingRed}} Cura 1 corazón", "{{HealingCoin}} Cura 1 Corazón de Moneda",
 	"{{HealingRed}} Cura {1} corazones", "{{HealingCoin}} Cura {1} Corazones de Moneda",
@@ -962,8 +962,8 @@ EID.descriptions[languageCode].RedToX = {
 	
 	["Red to None"] = {
 	"↑ {{Heart}} +{1} de Vida", "",
-	"↑ {{EmptyHeart}} +1 contenedor de corazon vacío", "",
-	"↑ {{EmptyHeart}} +{1} contenedores de corazon vacíos", "",
+	"↑ {{EmptyHeart}} +1 contenedor de corazón vacío", "",
+	"↑ {{EmptyHeart}} +{1} contenedores de corazón vacíos", "",
 	"↓ {{EmptyHeart}} {1} de Vida", ""}, -- Red HP to None (The Lost)
 }
 

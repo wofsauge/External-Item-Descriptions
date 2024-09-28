@@ -64,7 +64,7 @@ local repCollectibles={
 	[115] = {"115", "Ouija Board", "↑ {{Tears}} Lágrimas +0.4#Recibes lágrimas espectrales"},
 	[118] = {"118", "Azufre", "{{Chargeable}} Cargable#Dispara un chorro de sangre que inflige daño constante#↓ {{Tears}} Lágrimas -67%"},
 	[120] = {"120", "Hongo Raro (pequeño)", "↑ {{Tears}} Lágrimas +1.7#↑ {{Speed}} Velocidad +0.3#↓ {{Damage}} Daño -10%#↓ {{Damage}} Resta de daño adicional de -0.4"},
-	[121] = {"121", "Hongo raro (grande)", "↑ {{EmptyHeart}} +1 contenedor de corazon vacío#↓ {{Speed}} Velocidad -0.2#↑ {{Damage}} Daño +1.0#↑ {{Range}} Alcance +0.25#↑ {{Tearsize}} Tamaño de lágrimas +0.5"}, -- Champiñón raro (grande)
+	[121] = {"121", "Hongo raro (grande)", "↑ {{EmptyHeart}} +1 contenedor de corazón vacío#↓ {{Speed}} Velocidad -0.2#↑ {{Damage}} Daño +1.0#↑ {{Range}} Alcance +0.25#↑ {{Tearsize}} Tamaño de lágrimas +0.5"}, -- Champiñón raro (grande)
 	[123] = {"123", "Manual de monstruos", "Genera un familiar aleatorio#Se quedará durante todo el piso"}, -- Manual de monstruos
 	[126] = {"126", "Hoja de Afeitar", "↑ {{Damage}} Daño durante la sala +1.2#{{Warning}} Inflige 1 corazón de daño tras usarlo#Tras el primer uso en la sala, sólo remverá medio corazón#{{Heart}} Remueve primero los corazones rojos"}, -- Razor Blade
 	[129] = {"129", "Cubo de manteca", "↑ {{Heart}} +2 de contenedores de corazón#↓ {{Speed}} Velocidad -0.2"},
@@ -988,7 +988,7 @@ EID.descriptions[languageCode].horsepills={
 	{"4", "Diarrea explosiva", "Genera enormes bombas troll teledirigidas en tu posición"},
 	{"5", "Salud completa", "{{SoulHeart}} +3 Corazones de Alma#{{HealingRed}} Vida al completo"},
 	{"6", "Menos vida", "↓ {{EmptyHeart}} -2 de Vida"},
-	{"7", "Más vida", "↑ {{EmptyHeart}} +2 contenedores de corazon vacíos"},
+	{"7", "Más vida", "↑ {{EmptyHeart}} +2 contenedores de corazón vacíos"},
 	{"8", "", "Sin efecto"},
 	{"9", "Pubertad", "Sin efecto"}, -- Puberty
 	{"10", "Mosca bonita", "{{Collectible279}} Añade 1 Gran fan orbital#No hay límite máximo"},
