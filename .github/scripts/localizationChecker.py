@@ -84,12 +84,12 @@ def compare_tables(table1, table2, prev_key):
     return errorCount
 
 
-lua.execute('REPENTOGON = true; EID = {}; EID.descriptions = {} function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
+lua.execute('REPENTOGON = true; EID = {}; EID.descriptions = {}; function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
 g = lua.globals()
 
-
-print("reading: en_us.lua")
-for englishFile in glob.glob(SOURCE_MOD_DIRECTORY+"/**/en_us.lua", recursive=True):
+# Read English language files first
+for englishFile in glob.glob(SOURCE_MOD_DIRECTORY+"/**/ab+/en_us.lua", recursive=True) + glob.glob(SOURCE_MOD_DIRECTORY+"/**/rep/en_us.lua", recursive=True):
+    print("reading:", englishFile)
     lua.execute(open(englishFile, "r", encoding="UTF-8").read())
 
 en_us_entries = count_entries(g.EID['descriptions']['en_us'])
@@ -97,12 +97,14 @@ print("en_us entries:", en_us_entries)
 
 
 languages = {}
+# Read other language files
 for file in glob.glob(SOURCE_MOD_DIRECTORY+"/**/ab+/*.lua", recursive=True) + glob.glob(SOURCE_MOD_DIRECTORY+"/**/rep/*.lua", recursive=True):
     if "en_us" not in file and "transformations" not in file:
         print("reading:",file)
         lua.execute(open(file, "r", encoding="UTF-8").read())
         languages[os.path.basename(file).replace(".lua","")] = 0
 
+# Evaluate all languages
 for lang in languages:
     print(f"Evaluating language '{lang}'..")
     errorCount = compare_tables(g.EID['descriptions']['en_us'], g.EID['descriptions'][lang], lang)
@@ -111,7 +113,7 @@ for lang in languages:
     print(f"{Red}Errors found: {errorCount} / {en_us_entries}{Color_Off}\n\n")
 
 
-
+# Write git Workflow summary
 gitWorkflowSummary = "### Translation progress\n| Language | Completion | Missing entries |\n|---|---|---|\n"
 print(f"{Blue}Translation progress:{Color_Off}")
 for lang in languages:
