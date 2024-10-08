@@ -917,7 +917,7 @@ function EID:filterIconMarkup(text, renderBulletPointIcon)
 		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Scale
 
 		-- Center the small bullet point icons by adding an extra left offset to them.
-		-- If the icon has an position left offset, that means the offset is already included in the icon itself and we should not add it again
+		-- If the icon has a positive left offset, that means the offset is already included in the icon itself and we should not add it again
 		if renderBulletPointIcon and lookup[3] < 11 and (#lookup < 5 or lookup[5] <= 0)  then
 			preceedingTextWidth  = preceedingTextWidth + math.floor((12 - lookup[3]) / 2) * EID.Scale
 		end
