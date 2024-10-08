@@ -905,7 +905,7 @@ end
 
 -- Searches thru the given string and replaces Iconplaceholders with icons.
 -- Returns 2 values. the string without the placeholders but with an accurate space between lines. and a table of all Inline Sprites
-function EID:filterIconMarkup(text)
+function EID:filterIconMarkup(text, renderBulletPointIcon)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
 		local textposition = string.find(text, word)
@@ -915,6 +915,12 @@ function EID:filterIconMarkup(text)
 
 		local lookup = EID:getIcon(word)
 		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Scale
+
+		-- Center the bullet point icons by adding an extra left offset to them.
+		-- If the icon has an position left offset, that means the offset is already included in the icon itself and we should not add it again
+		if renderBulletPointIcon and lookup[3] < 11 and (#lookup < 5 or lookup[5] <= 0)  then
+			preceedingTextWidth  = preceedingTextWidth + math.floor((12 - lookup[3]) / 2) * EID.Scale
+		end
 
 		table.insert(spriteTable, {lookup, preceedingTextWidth, callback})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
@@ -1166,12 +1172,12 @@ end
 -- needs to be called in a render Callback
 -- args: string, Vector(int, int), Vector(float,float), KColor obj, bool
 -- Returns the last used KColor
-function EID:renderString(str, position, scale, kcolor)
+function EID:renderString(str, position, scale, kcolor, renderBulletPointIcon)
 	str = EID:replaceShortMarkupStrings(str)
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
 	local offsetX = 0
 	for _, textPart in ipairs(textPartsTable) do
-		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1])
+		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1], renderBulletPointIcon)
 		EID:renderInlineIcons(spriteTable, position.X + offsetX, position.Y)
 		if strFiltered then -- prevent possible crash when strFiltered is nil
 			EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
