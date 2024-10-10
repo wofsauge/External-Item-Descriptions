@@ -477,6 +477,8 @@ if MCMLoaded then
 	{infoText = "Changes Health Ups and removes healing effect text when playing as a character that can't have red health"})
 	EID:AddBooleanSetting("Display", "DisplayTCainSalvageResults", "Show Tainted Cain Salvage Results",
 	{repOnly = true, infoText = "As Tainted Cain, replaces pedestal descriptions with what they will turn into on touch"})
+	EID:AddBooleanSetting("Display", "GlitchedCrownSummary", "Show Glitched Crown Summary",
+	{repOnly = true, infoText = "With Glitched Crown, show summary list for cycling pedestals"})
 	
 	
 	--------Obstruction---------
