@@ -599,6 +599,39 @@ EID.descriptions[languageCode].cards={
 	-- Copy & Paste entries from en_us and continue translating from that
 }
 
+--[[ Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
+-- Strings will be appended to the original description (with line breaks replaced with a Tarot Cloth icon)
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple) ]]
+EID.descriptions[languageCode].tarotClothBuffsAB = {
+	[4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
+	[6] = {2, 4}, -- V - The Hierophant
+	[7] = {2, 4}, -- VI - The Lovers
+	[8] = {6, 12}, -- VII - The Chariot
+	[9] = {"Spawnt {{ColorShinyPurple}}2{{CR}} zufällige {{UnknownHeart}} Herzen, {{Coin}} Münzen, {{Bomb}} Bomben und {{Key}} Schlüssel"}, -- VIII - Justice
+	--TODO    [11] = {" a ", " 2 ", "Slot Machine", "{{CR}}Slot Machines", "Fortune Machine", "{{CR}}Fortune Machines"}, -- X - Wheel of Fortune
+	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
+	[14] = {40, 80}, -- XIII - Death
+	--TODO    [15] = {" a ", " 2 ", " Machine", " {{CR}}Machines", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XIV - Temperance (+ Greed version)
+	[17] = {6, 12}, -- XVI - The Tower
+	[20] = {100, 200}, -- XIX - The Sun
+	--TODO    [21] = {" a ", " 2 ", "Beggar ", "{{CR}}Beggars ", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
+	--TODO    [23] = {"Verdoppelt", "Vervierfacht"}, -- 2 of Clubs
+	--TODO    [24] = {"Verdoppelt", "Vervierfacht"}, -- 2 of Diamonds
+	--TODO    [25] = {"Verdoppelt", "Vervierfacht"}, -- 2 of Spades
+	--TODO    [26] = {"Verdoppelt", "Vervierfacht"}, -- 2 of Hearts
+	--TODO    [33] = {"Verdoppelt", "Vervierfacht"}, -- Jera
+	[35] = {1, 2}, -- Dagaz
+	[37] = "Würfelt zwei mal neu", -- Perthro
+	[38] = {3, 6, 3, 6}, -- Berkano
+	[39] = {30, 60}, -- Algiz
+	[40] = "Aktiviert 2 Runeneffecte und versucht sich 2-mal zu verdoppeln", -- Blank Rune
+	[41] = {40, 80}, -- Black Rune
+	[46] = {10, 20}, -- Suicide King
+	[48] = "Aktiviert es zweimal", -- ? Card
+	[53] = {3, 6}, -- Ancient Recall
+}
+
 ---------- Pills ----------
 
 EID.descriptions[languageCode].unidentifiedPill = "Unidentifizierte Pille"
@@ -608,50 +641,124 @@ EID.descriptions[languageCode].pills={
 	-- Copy & Paste entries from en_us and continue translating from that
 }
 
+---------- Character Info ----------
+-- These descriptions are shown in the Item Reminder
+-- The character names here are also used in getPlayerName to provide localized character names
+-- The numbers are provided to make this a quick reference for Player IDs
+EID.descriptions[languageCode].CharacterInfo = {
+	[0] = {"Isaac", ""},
+	[1] = {"Magdalene", ""},
+	[2] = {"Cain", ""},
+	[3] = {"Judas", ""},
+	[4] = {"???", "Kann keine roten Herzen haben#{{SoulHeart}} Gesundheitssteigerungen gewähren Seelenherzen"},
+	[5] = {"Eve", ""},
+	[6] = {"Samson", ""},
+	[7] = {"Azazel", "Flug#{{Collectible118}} Schwefel mit kurzer Reichweite statt Tränen"},
+	[8] = {"Lazarus", "Wenn du stirbst, erwache als auferstandener Lazarus mit 1 Red Heart-Behälter"},
+	[9] = {"Eden", "Beginne bei jedem Lauf mit zufälligen Statistiken und Gegenständen"},
+	[10] = {"The Lost", "Flug#Spektrale Tränen#{{Warning}} Keine Gesundheit#{{DevilRoom}} Ein Teufelsdeal pro Raum kann kostenlos angenommen werden"},
+	[11] = {"Lazarus Risen", "Erhöhte Statistiken und x1,2 Schadensmultiplikator"},
+	[12] = {"Dunkler Judas", "{{Damage}} x2 Schadensmultiplikator#{{Player3}} Zählt als Judas für Abschlussmarken"},
+	[13] = {"Lilith", "Kann keine Tränen schießen#{{Collectible360}} Ihr Incubus schießt für sie"},
+	[14] = {"Keeper", "{{CoinHeart}} Heile durch Aufheben von Münzen#Maximal 2 Münzherzen#Aufgehobene Herzen werden in blaue Fliegen verwandelt"},
+	[15] = {"Apollyon", ""},
+	[16] = {"Der Vergessene", "Du hast einen Nahkampfangriff, der aufgeladen und geworfen werden kann#{{BoneHeart}} Kann bis zu 6 Knochenherzen haben#{{Player17}} Drücke {{ButtonRT}}, um zur Seele zu wechseln#{{SoulHeart}} Die Seele kann bis zu 6 Seelen-/Schwarzherzen haben und hat Flug- und Spektraltränen#Die Seele ist an einen kleinen Radius um den Vergessenen gekettet"},
+	[17] = {"Die Vergessene Seele", "Du hast einen Nahkampfangriff, der aufgeladen und geworfen werden kann#{{BoneHeart}} Kann bis zu 6 Knochenherzen haben#{{Player17}} Drücke {{ButtonRT}}, um zu The Seele#{{SoulHeart}} Die Seele kann bis zu 6 Seelen-/Schwarzherzen haben und verfügt über Flug- und geisterhafte Tränen#Die Seele ist an einen kleinen Radius um den Vergessenen gekettet"},
+}
+
 ---------- Sacrifice Room ----------
 
 EID.descriptions[languageCode].sacrificeHeader = "[Nächste Opferungsbelohung]"
 
-EID.descriptions[languageCode].sacrifice={
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+EID.descriptions[languageCode].sacrifice = {
+	{"1", "", "{{Coin}} 50 % Chance für 1 Münze#{{Bomb}} 100 % Chance für 1 Bombe, wenn auf B1 und der Boss in weniger als 1 Minute getötet wurde"},
+	{"2", "", "{{Coin}} 50 % Chance für 1 Münze#{{Bomb}} 100 % Chance für 1 Bombe, wenn auf B1 und der Boss in weniger als 1 Minute getötet wurde"},
+	{"3", "", "{{AngelChance}} 67 % Chance für erhöhte Engelsraum-Chance"},
+	{"4", "", "{{Chest}} 50 % Chance für 1 zufällige Truhe"},
+	{"5", "", "{{Coin}} 33 % Chance für 3 Münzen#{{AngelChance}} 67 % Chance für erhöhte Engelsraum-Chance"},
+	{"6", "", "{{AngelRoom}} 33 % Chance für einen Teleport zum Engelsraum#{{DevilRoom}} Teleportiert zum Teufel Raum stattdessen, wenn seine Tür auf der aktuellen Etage gespawnt wurde#{{Chest}} 67 % Chance für zufällige Truhe"},
+	{"7", "", "{{AngelRoom}} 33 % Chance für 1 zufälligen Engelsraum-Gegenstand#{{SoulHeart}} 67 % Chance für 1 Seelenherz"},
+	{"8", "", "100 % Chance für 7 Trollbomben"},
+	{"9", "", "100 % Chance, \"Uriel\" zu spawnen"},
+	{"10", "", "{{SoulHeart}} 50 % Chance für 7 Seelenherzen#{{Coin}} 50 % Chance für 30 Münzen"},
+	{"11", "", "100 % Chance, \"Gabriel\" zu spawnen"},
+	{"12", "", "50 % Chance, in den \"Dunkelraum\" zu teleportieren"},
 }
 
 ---------- Dice Room ----------
 
 EID.descriptions[languageCode].diceHeader = "[Würfelraum Effekte]"
 
-EID.descriptions[languageCode].dice={
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+EID.descriptions[languageCode].dice = {
+	{"1", "", "Verwandelt alle deine Gegenstände in zufällige Gegenstände aus dem Raum Itempool, in dem sie erworben wurden"},
+	{"2", "", "Verwandelt alle Gegenstände im Raum in zufällige Gegenstände"},
+	{"3", "", "Verwandelt alle Podest-Gegenstände und Schmuckstücke auf der gesamten Etage in zufällige Gegenstände#Wirkt sich nicht auf {{AngelDevilChance}} Teufels- und Engelsräume oder die {{LadderRoom}} Kriechgänge aus"},
+	{"4", "", "Verwandelt alle Podest-Gegenstände auf der Etage in zufällige Gegenstände#Wirkt sich nicht auf {{AngelDevilChance}} Teufels- und Engelsräume oder die {{LadderRoom}} Kriechgänge aus"},
+	{"5", "", "Startet und generiert die aktuelle Etage neu"},
+	{"6", "", "Verwandelt alle deine Gegenstände in zufällige Gegenstände#Verwandelt alle Gegenstände, Schmuckstücke und Podest-Gegenstände auf der Etage in zufällige Gegenstände"},
 }
 
 ---------- Transformations ----------
 
-EID.descriptions[languageCode].transformations = {
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+EID.descriptions[languageCode].transformations={
+	"",					-- 0 = none
+	"Guppy",			-- 1
+	"Pilzkopf",			-- 2
+	"Beelzebub",		-- 3
+	"Verbunden",		-- 4
+	"Spinner",			-- 5
+	"Ja Mutter?",		-- 6
+	"Oh Mist",			-- 7
+	"Bob",				-- 8
+	"Leviathan",		-- 9
+	"Seraphim",			-- 10
+	"Super Penner",		-- 11
+	"Bücherworm",		-- 12
+	"Spinnen-Baby",		-- 13
+	"Erwachsener",		-- 14
+	"Stampfer"			-- 15
 }
 
 ---------- MISC ----------
+-- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
+EID.descriptions[languageCode].Pluralize = ""
 
 EID.descriptions[languageCode].VoidText = "Wenn absorbiert, erhalte:"
 -- {1} will become the number text (like "{1} Tränen" -> "+0.5 Tränen")
 EID.descriptions[languageCode].VoidNames = {"{1} Tempo", "{1} Tränen", "{1} Schaden", "{1} Reichweite", "{1} Schusstempo", "{1} Glück"}
 
-EID.descriptions[languageCode].CollectionPageInfo = "This item needs to be picked up for the collection page!"
+EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Schaden", "↑ {{Tears}} -4 Schieß-Verzögerung", "↑ {{Speed}} +0.5 Geschwindigkeit", "↑ {{Range}} +7.5 Reichweite#↑ +1 Tränenhöhe"}
 
-EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorLime}}{1}{{CR}} items currently held (+{2} Damage)"
+EID.descriptions[languageCode].CrookedPennyHeads = "Kopf"
+EID.descriptions[languageCode].CrookedPennyTails = "Zahl"
+
+EID.descriptions[languageCode].LuckModifier = "{1}% Wahrscheinlichkeit mit {2} Glück"
+
+EID.descriptions[languageCode].CollectionPageInfo = "Dieses Item muss für die Sammelseite eingesammelt werden!"
+
+EID.descriptions[languageCode].BlackFeatherInformation = "Aktuell {{ColorLime}}{1}{{CR}} Items (+{2} Schaden)"
+
 
 EID.descriptions[languageCode].MCM = {
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	DemoObjectName = "Demo Objektname",
+	DemoObjectTransformation = "Demo Transformation",
+	DemoObjectText = "Dieser Text ist auf Deutsch#Eine sehr coole und lange Beschreibung, um Zeilenumbrüche zu simulieren, die durch die Breite des EID-Textfelds verursacht werden!#{{Collectible4}} Das ist auch eine coole Zeile#{{Heart}} Diese Zeile liebt dich#{{AngelDevilChance}} Diese Zeile kann dein Engel oder dein Teufel sein#\1 {{Damage}} +1 mehr Schaden (vielleicht)",
 }
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].ItemReminder = {
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	ResultHeader = "{1} Ergebnis",
+	InventoryEmpty = "(Spieler hat keine Gegenstände)",
+	CategoryNames = {
+		Overview = "Inventarübersicht",
+		Wisps = "Lemegeton Irrlichter",
+		Special = "Spezial",
+		Actives = "Aktive Gegenstände in Besitz",
+		Pockets = "Taschengegenstände in Besitz",
+		Trinkets = "Trinkets in Besitz",
+		Passives = "Passive Gegenstände in Besitz",
+		Character = "Charakterinfo",
+	}
 }
 
 -- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
@@ -662,8 +769,40 @@ EID.descriptions[languageCode].RoomTypeNames = { "Normaler Raum", "Laden", "I AM
 
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	["5.0"] = "Keine",
+
+	["5.10"] = "{{Heart}} Herz",
+
+	["5.10.1"] = "{{Heart}} Herz", ["5.10.2"] = "{{HalfHeart}} Halbes Herz", ["5.10.3"] = "{{SoulHeart}} Seelenherz", ["5.10.4"] = "{{EternalHeart}} Ewiges Herz", ["5.10.5"] = "{{Heart}} Doppeltes Herz", ["5.10.6"] = "{{BlackHeart}} Schwarzes Herz", ["5.10.7"] = "{{GoldHeart}} Goldenes Herz", ["5.10.8"] = "{{HalfSoulHeart}} Halbes Seelenherz", ["5.10.9"] = "{{Heart}} Verängstigtes Herz", ["5.10.10"] = "{{BlendedHeart}} Gemischtes Herz", ["5.10.11"] = "{{EmptyBoneHeart}} Knochenherz", ["5.10.12"] = "{{RottenHeart}} Faules Herz",
+
+	["5.20"] = "{{Coin}} Münze",
+	["5.20.1"] = "{{Crafting8}} Münze", ["5.20.2"] = "{{Crafting9}} Nickel", ["5.20.3"] = "{{Crafting10}} Zehncentstück", ["5.20.4"] = "{{Crafting8}} Doppelpenny", ["5.20.5"] = "{{Crafting11}} Glückspenny", ["5.20.6"] = "{{Crafting9}} Klebriger Nickel", ["5.20.7"] = "{{Crafting26}} Gold Penny",
+	
+	["5.30"] = "{{Key}} Schlüssel",
+
+	["5.30.1"] = "{{Crafting12}} Schlüssel", ["5.30.2"] = "{{Crafting13}} Goldener Schlüssel", ["5.30.3"] = "{{Crafting12}} Schlüsselring", ["5.30.4"] = "{{Crafting14}} Aufgeladener Schlüssel",
+
+	["5.40"] = "{{Bomb}} Bombe",
+
+	["5.40.1"] = "{{Crafting15}} Bombe", ["5.40.2"] = "{{Crafting15}} Doppelbombe", ["5.40.3"] = "{{Crafting15}} Trollbombe", ["5.40.4"] = "{{Crafting16}} Goldene Bombe", ["5.40.5"] = "{{Crafting15}} Mega-Trollbombe", ["5.40.7"] = "{{Crafting17}} Gigabombe",
+
+	["5.42"] = "{{Crafting29}} Kotklumpen", ["5.42.1"] = "{{Crafting29}} Großer Kotklumpen",
+
+	["5.90"] = "{{Battery}} Batterie",
+	["5.90.0"] = "{{Crafting19}} Kleine Batterie", --AB+ hatte keine Untertypen für Batterien
+	["5.90.1"] = "{{Crafting19}} Kleine Batterie", ["5.90.2"] = "{{Crafting18}} Mikrobatterie", ["5.90.3"] = "{{Crafting20}} Megabatterie", ["5.90.4"] = "{{Crafting28}} Goldene Batterie",
+
+	["5.50"] = "{{Chest}} Truhe", ["5.51"] = "{{BombChest}} Bombentruhe", ["5.52"] = "{{SpikedChest}} Stacheltruhe", ["5.53"] = "{{EternalChest}} Ewige Truhe", ["5.54"] = "{{MimicChest}} Mimic-Truhe", ["5.55"] = "{{OldChest}} Alte Truhe", ["5.56"] = "{{WoodenChest}} Holztruhe", ["5.57"] = "{{MegaChest}} Megatruhe", ["5.58"] = "{{HauntedChest}} Spuktruhe", ["5.60"] = "{{GoldenChest}} Goldene Truhe", ["5.360"] = "{{RedChest}} Rote Truhe",
+
+	["5.69"] = "{{GrabBag}} Sack", ["5.69.1"] = "{{GrabBag}} Sack", ["5.69.2"] = "{{BlackSack}} Schwarzer Sack",
+
+	["5.70"] = "{{Pill}} Pille",
+
+	["5.300"] = "{{Card}} Karte",
+
+	["5.301"] = "{{Rune}} Rune", -- keine echte ID
+
+	["5.350"] = "{{Trinket}} Schmuckstück",
 }
 
 -- Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)

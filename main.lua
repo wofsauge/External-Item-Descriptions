@@ -10,8 +10,8 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.76
-EID.ModVersionCommit = "2ae651d"
+EID.ModVersion = 4.82
+EID.ModVersionCommit = "a697585"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -51,6 +51,7 @@ EID.holdTabPlayer = 0
 EID.holdTabCounter = 0
 EID.DInfinityState = {}
 local forgottenDropTimer = 0
+local preHourglassStatus = {}
 
 EID.GameUpdateCount = 0
 EID.GameRenderCount = 0
@@ -279,9 +280,7 @@ if EID.isRepentance then
 		if curFrame == lastGetItemResult[2] then
 			if initialItemNext then lastGetItemResult[1] = selectedCollectible
 			elseif flipItemNext and lastGetItemResult[1] then
-				if EID.flipItemPositions[curRoomIndex] == nil then
-					EID.flipItemPositions[curRoomIndex] = {}
-				end
+				EID.flipItemPositions[curRoomIndex] = EID.flipItemPositions[curRoomIndex] or {}
 				EID.flipItemPositions[curRoomIndex][lastGetItemResult[4]] = {selectedCollectible, lastGetItemResult[3]}
 			end
 		end
@@ -329,7 +328,7 @@ if EID.isRepentance then
 		-- Give this new entity its Flip Item data if possible
 		local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed]
 		if flipEntry then
-			entity:GetData()["EID_FlipItemID"] = flipEntry[1]
+			EID:setEntityData(entity, "EID_FlipItemID", flipEntry[1])
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInitFlip, PickupVariant.PICKUP_COLLECTIBLE)
@@ -337,13 +336,13 @@ if EID.isRepentance then
 	function EID:CheckPedestalIndex(entity)
 		-- Only pedestals with indexes that were present at room load can be flip pedestals
 		-- Fixes shop restock machines and Diplopia... mostly. At least while you're in the room.
-		if entity:GetData()["EID_FlipItemID"] and entity.Index > EID.flipMaxIndex then
+		if EID:getEntityData(entity, "EID_FlipItemID") and entity.Index > EID.flipMaxIndex then
 			local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 			local gridPos = game:GetRoom():GetGridIndex(entity.Position)
 			local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed]
 			-- only wipe the data if the grid index matches (so Diplopia pedestals don't)
 			if flipEntry and gridPos == flipEntry[2] then EID.flipItemPositions[curRoomIndex][entity.InitSeed] = nil end
-			entity:GetData()["EID_FlipItemID"] = nil
+			EID:setEntityData(entity, "EID_FlipItemID", nil)
 		end
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, EID.CheckPedestalIndex, PickupVariant.PICKUP_COLLECTIBLE)
@@ -375,7 +374,8 @@ end
 
 -- Watch for a Void absorbing active items
 function EID:CheckVoidAbsorbs(_, _, player)
-	local playerID = EID:getPlayerID(player)
+	player = player or EID.player
+	local playerID = EID:getPlayerID(player, true)
 	EID.absorbedItems[tostring(playerID)] = EID.absorbedItems[tostring(playerID)] or {}
 	for _,v in ipairs(EID:VoidRoomCheck()) do
 		EID.absorbedItems[tostring(playerID)][tostring(v)] = true
@@ -469,6 +469,10 @@ function EID:addDescriptionToPrint(desc, insertLoc)
 	if desc.Entity then EID.entitiesToPrint[GetPtrHash(desc.Entity)] = true end
 end
 
+function EID:addQuestionMarkDescription(entity, description)
+	EID:addDescriptionToPrint({ Icon = EID.InlineIcons["QuestionMark"], Description = description or "", Entity = entity})
+end
+
 local prevPrintFrame = 0
 
 function EID:printDescriptions(useCached)
@@ -513,10 +517,6 @@ function EID:printNewDescriptions()
 	for _,newDesc in ipairs(EID.descriptionsToPrint) do
 		if newDesc.Description == "UnidentifiedPill" then
 			if EID:renderUnidentifiedPill(newDesc.Entity) ~= false then
-				table.insert(EID.previousDescs, newDesc)
-			end
-		elseif newDesc.Description == "QuestionMark" then
-			if EID:renderQuestionMark(newDesc.Entity) ~= false then
 				table.insert(EID.previousDescs, newDesc)
 			end
 		elseif EID:printDescription(newDesc) ~= false then
@@ -600,7 +600,7 @@ function EID:printDescription(desc, cachedID)
 	end
 	--Display Itemname
 	local curName = ""
-	if EID.Config["ShowItemName"] then
+	if EID.Config["ShowItemName"] and desc.Name then
 		curName = desc.Name
 		if EID.Config["TranslateItemName"] ~= 2 then
 			local curLanguage = EID.Config["Language"]
@@ -617,7 +617,7 @@ function EID:printDescription(desc, cachedID)
 		end
 	end
 	-- Display Entity ID
-	if EID.Config["ShowObjectID"] and desc.ObjType > 0 then
+	if EID.Config["ShowObjectID"] and desc.ObjType and desc.ObjType > 0 then
 		curName = curName.." {{ColorGray}}"..desc.ObjType.."."..desc.ObjVariant.."."..desc.ObjSubType
 	end
 	-- Display Quality
@@ -649,7 +649,7 @@ function EID:printDescription(desc, cachedID)
 	renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 
 	--Display Transformation
-	if not (desc.Transformation == "0" or desc.Transformation == "" or desc.Transformation == nil) then
+	if desc.Transformation and not (desc.Transformation == "0" or desc.Transformation == "") then
 		for transform in string.gmatch(desc.Transformation, "([^,]+)") do
 			--have a blank sprite info table if we aren't displaying it
 			local transformSprite = EID.Config["TransformationIcons"] and EID:getTransformationIcon(transform) or {}
@@ -672,7 +672,7 @@ function EID:printDescription(desc, cachedID)
 							if #EID.coopAllPlayers > 1 then
 								transformationName = transformationName .. EID:GetPlayerIcon(playerType)
 							end
-							local numCollected = EID.TransformationProgress[EID:getPlayerID(player)] and EID.TransformationProgress[EID:getPlayerID(player)][transform] or 0
+							local numCollected = EID.TransformationProgress[EID:getPlayerID(player, true)] and EID.TransformationProgress[EID:getPlayerID(player, true)][transform] or 0
 							local numMax = EID.TransformationData[transform] and EID.TransformationData[transform].NumNeeded or 3
 							transformationName = transformationName.."("..numCollected.."/"..numMax..") "
 						end
@@ -694,7 +694,7 @@ function EID:printDescription(desc, cachedID)
 		end
 	end
 	-- Display Last Pool for Collectible for full reroll effects (name)
-	if EID.isRepentance and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] and (desc.ObjType == 5 and desc.ObjVariant == 100) then
+	if EID.isRepentance and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] and (desc.ObjType and desc.ObjType == 5 and desc.ObjVariant and desc.ObjVariant == 100) then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
 			local lastPool = game:GetItemPool():GetLastPool()
@@ -755,7 +755,7 @@ if EID.isRepentance then
 				local flipEntry = EID.flipItemPositions[curRoomIndex][pedestal.InitSeed]
 				if flipEntry then
 					if pedestal.Index > EID.flipMaxIndex then EID.flipMaxIndex = pedestal.Index end
-					pedestal:GetData()["EID_FlipItemID"] = flipEntry[1]
+					EID:setEntityData(pedestal, "EID_FlipItemID", flipEntry[1])
 				end
 			end
 		end
@@ -776,6 +776,17 @@ end
 
 function EID:onNewRoom()
 	EID:CheckCurrentRoomGridEntities()
+	-- Store values here to be rewound after using Glowing Hour Glass
+	preHourglassStatus = {}
+	preHourglassStatus.absorbedItems = EID:CopyTable(EID.absorbedItems)
+	preHourglassStatus.PlayerItemInteractions = EID:CopyTable(EID.PlayerItemInteractions)
+	if EID.isRepentance then
+		preHourglassStatus.WildCardEffects = EID:CopyTable(EID.WildCardEffects)
+		preHourglassStatus.WildCardPillColor = EID:CopyTable(EID.WildCardPillColor)
+		preHourglassStatus.DInfinityState = EID:CopyTable(EID.DInfinityState)
+		preHourglassStatus.BagItems = EID:CopyTable(EID.BoC.BagItems)
+		preHourglassStatus.RoomQueries = EID:CopyTable(EID.BoC.RoomQueries)
+	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 
@@ -787,22 +798,6 @@ end
 EID:AddCallback(ModCallbacks.MC_EXECUTE_CMD, EID.onCmd)
 ---------------------------------------------------------------------------
 ---------------------------Handle Rendering--------------------------------
-
-function EID:renderQuestionMark(entity)
-	EID:PositionLocalMode(entity)
-	if EID.CurrentScaleType == "Size" then
-		if alwaysUseLocalMode then return false
-		else alwaysUseLocalMode = true end
-	end
-	EID.IconSprite:Play("CurseOfBlind")
-	local pos = EID:getTextPosition()
-	if EID.CachingDescription then
-		table.insert(EID.CachedStrings, {})
-		table.insert(EID.CachedIcons, {})
-		table.insert(EID.CachedRenderPoses, Vector(pos.X, pos.Y))
-	end
-	EID:renderIcon(EID.IconSprite, pos.X + 5 * EID.Scale, pos.Y + 5 * EID.Scale, nil, "CurseOfBlind", 0)
-end
 
 function EID:renderUnidentifiedPill(entity)
 	EID:PositionLocalMode(entity)
@@ -846,21 +841,18 @@ function EID:renderIndicator(entity, playerNum)
 		return
 	end
 	local repDiv = 1
-	local entityPos = Isaac.WorldToScreen(entity.Position)
+	local entityPos = Isaac.WorldToScreen(entity.PositionOffset and entity.Position + entity.PositionOffset or entity.Position)
 	local ArrowOffset = Vector(0, -35)
 	if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
 		ArrowOffset = Vector(0, -62)
 	end
 	local arrowPos = Isaac.WorldToScreen(entity.Position + ArrowOffset)
-	if not EID:IsGridEntity(entity) and entity:GetData() and entity:GetData()["EID_RenderOffset"] then
-		entityPos = entityPos + entity:GetData()["EID_RenderOffset"]
-	end
+	entityPos = entityPos + (EID:getEntityData(entity, "EID_RenderOffset") or Vector(0,0))
+
 	-- Move highlights a bit to fit onto the alt Item layout of Flip / Tainted Laz
 	if EID.isRepentance and not EID:IsGridEntity(entity) then
 		if entity.Variant == 100 and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID:getEntityData(entity, "EID_FlipItemID") then
 			entityPos = entityPos + Vector(2.5,2.5)
-		elseif entity.Type == 6 and entity.Variant == 16 then
-			entityPos = entityPos + Vector(0,-5)
 		end
 	end
 	local sprite = nil
@@ -1044,18 +1036,23 @@ function EID:onGameUpdate()
 	EID:checkPlayersForMissingItems()
 	EID:evaluateQueuedItems()
 	EID:evaluateHeldPill()
+	
+	EID.TabHeldLastFrame = EID.TabHeldThisFrame
+	EID.TabHeldThisFrame = EID:PlayersActionPressed(EID.Config["BagOfCraftingToggleKey"])
 
 	if collSpawned then
 		collSpawned = false
 
 		local curPositions = {}
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			-- Flag pedestals as being describable on frame 0 (for Tainted Isaac / Glitched Crown type pedestals to not be non-existent for a frame)
+			EID:setEntityData(entity, "EID_DescribeOnFirstFrame", true)
 			-- Fix Overlapping Pedestals if a collectible spawned this frame (needed for Mega Chest)
 			local pos = entity.Position
 			for _, otherPos in ipairs(curPositions) do
 				if pos:Distance(otherPos[2]) == 0 then
-					entity:GetData()["EID_RenderOffset"] = Vector(10,0)
-					otherPos[1]:GetData()["EID_RenderOffset"] = Vector(-10,0)
+					EID:setEntityData(entity, "EID_RenderOffset", Vector(10,0))
+					EID:setEntityData(otherPos[1], "EID_RenderOffset", Vector(-10,0))
 				end
 			end
 			table.insert(curPositions, {entity, entity.Position})
@@ -1063,31 +1060,33 @@ function EID:onGameUpdate()
 
 		EID.RecheckVoid = true
 	end
-
-	if EID.isRepentance and EID.GameUpdateCount % 10 == 0 then
-		-- Check wisp for adding reminder when using lemegeton
-		if EID.ShouldCheckWisp then
-			for _, wisp in ipairs(Isaac.FindByType(3, 237, -1, true, false)) do
-				if wisp.FrameCount < 10 then
-					local player = wisp:ToFamiliar() and wisp:ToFamiliar().Player
-					if player then
-						local playerID = EID:getPlayerID(player)
-						EID:InitItemInteractionIfAbsent(playerID)
-						table.insert(EID.RecentlyTouchedItems[playerID], wisp.SubType)
-					end
-				end
+	
+	-- Check player items for starting items
+	if EID.ShouldCheckStartingItems then
+		EID:UpdateAllPlayerPassiveItems()
+		EID:SetOldestItemIndex()
+		EID.ShouldCheckStartingItems = false
+	end
+	
+	if EID.isRepentance then
+		EID:WatchForGlitchedCrown()
+		EID:UpdateWildCardEffects()
+		if EID.GameUpdateCount % 10 == 0 then
+			-- Check wisp for adding reminder when using lemegeton
+			if EID.ShouldCheckWisp then
+				EID:UpdateAllPlayerLemegetonWisps()
+				EID.ShouldCheckWisp = false
 			end
-			EID.ShouldCheckWisp = false
-		end
-		-- Remove Crane Game item data if it's giving the prize out
-		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
-			if EID.CraneItemType[tostring(crane.InitSeed)] then
-				if crane:GetSprite():IsPlaying("Prize") then
-					EID.CraneItemType[tostring(crane.InitSeed)] = nil
-				-- Pair the Crane Game's new drop seed with the latest collectible ID it's gotten
-				-- (fixes Glowing Hour Glass rewinds)
-				elseif EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] == nil then
-					EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] = EID.CraneItemType[tostring(crane.InitSeed)]
+			-- Remove Crane Game item data if it's giving the prize out
+			for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+				if EID.CraneItemType[tostring(crane.InitSeed)] then
+					if crane:GetSprite():IsPlaying("Prize") then
+						EID.CraneItemType[tostring(crane.InitSeed)] = nil
+					-- Pair the Crane Game's new drop seed with the latest collectible ID it's gotten
+					-- (fixes Glowing Hour Glass rewinds)
+					elseif EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] == nil then
+						EID.CraneItemType[crane.InitSeed.."Drop"..crane.DropSeed] = EID.CraneItemType[tostring(crane.InitSeed)]
+					end
 				end
 			end
 		end
@@ -1115,7 +1114,7 @@ local function attemptPathfind(entity)
 
 	-- Spawn a Fireplace entity to attempt a pathfind to the target pickup, then remove it afterwards
 	pathCheckerEntity = game:Spawn(33, 0, EID.player.Position, nullVector, EID.player, 6969, 4354)
-	pathCheckerEntity:GetData()["EID_Pathfinder"] = true
+	EID:setEntityData(pathCheckerEntity, "EID_Pathfinder", true)
 	pathCheckerEntity.Visible = false
 	local successful = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
 	pathsChecked[entity.InitSeed] = successful
@@ -1185,20 +1184,20 @@ function EID:CheckPosModifiers()
 	else
 		-- Tainted Isaac and Tainted ??? unique HUD adjustment
 		if EID.player:GetPlayerType() == 21 or EID.player:GetPlayerType() == 25 then
-			EID:addTextPosModifier("Tainted HUD", Vector(0,30))
+			EID:addTextPosModifier("Tainted HUD", Vector(0,26))
 		else
 			EID:removeTextPosModifier("Tainted HUD")
 		end
 		-- Jacob and Esau card/pill adjustment
 		if EID.player:GetPlayerType() == 19 then
-			EID:addTextPosModifier("J&E HUD", Vector(0,15))
+			EID:addTextPosModifier("J&E HUD", Vector(0,16))
 		else
 			EID:removeTextPosModifier("J&E HUD")
 		end
 		-- Magdalene Birthright, Keeper & Tainted Keeper third/fourth row of hearts adjustment
 		if EID.player:GetEffectiveMaxHearts() + EID.player:GetSoulHearts() + (EID.player:GetBrokenHearts() * 2) >= 37 then
 			EID:removeTextPosModifier("18 Heart HUD")
-			EID:addTextPosModifier("24 Heart HUD", Vector(0,22))
+			EID:addTextPosModifier("24 Heart HUD", Vector(0,20))
 		elseif EID.player:GetEffectiveMaxHearts() + EID.player:GetSoulHearts() + (EID.player:GetBrokenHearts() * 2) >= 25 then
 			EID:removeTextPosModifier("24 Heart HUD")
 			EID:addTextPosModifier("18 Heart HUD", Vector(0,10))
@@ -1240,7 +1239,7 @@ function EID:OnRender()
 	end
 
 	-- Do not check our hide or scale hotkeys while a tab that can modify them is open
-	if EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" then
+	if EID.MCMCompat_isDisplayingEIDTab ~= "General" then
 		-- scale key must be handled before resetting to non-local mode
 		handleScaleKey()
 		if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
@@ -1250,8 +1249,8 @@ function EID:OnRender()
 	EID.TabPreviewID = 0
 	EID.TabDescThisFrame = false
 
-	-- If MCM is open, don't show anything unless we're in a tab labeled as "Visuals" or "Crafting"
-	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab ~= "Visuals" and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting" then
+	-- If MCM is open, don't show anything unless we are on a tab that explicitely writes its name in the MCMCompat_isDisplayingEIDTab variable
+	if ModConfigMenu and ModConfigMenu.IsVisible and ModConfigMenu.Config["Mod Config Menu"].HideHudInMenu and EID.MCMCompat_isDisplayingEIDTab == "" then
 		return
 	end
 	if EID.isRepentance then
@@ -1298,7 +1297,7 @@ function EID:OnRender()
 		local dropTriggered, playerNumPressingDrop = EID:PlayersActionPressed(ButtonAction.ACTION_DROP, Input.IsActionTriggered)
 		if dropTriggered then
 			local playerPressingDrop = EID.coopMainPlayers[playerNumPressingDrop]
-			local playerID = EID:getPlayerID(playerPressingDrop)
+			local playerID = EID:getPlayerID(playerPressingDrop, true)
 			local playerType = playerPressingDrop:GetPlayerType()
 			-- Forgotten's drop requires a double tap to actually count for this
 			if (playerType == 16 or playerType == 17) then
@@ -1384,12 +1383,13 @@ function EID:OnRender()
 
 			for _, entitySearch in ipairs(searchGroups) do
 				for _, entity in ipairs(entitySearch) do
-					if EID:hasDescription(entity) and entity.FrameCount > 0 and not EID.entitiesToPrint[GetPtrHash(entity)] then
+					if EID:hasDescription(entity) and (entity.FrameCount > 0 or EID:getEntityData(entity, "EID_DescribeOnFirstFrame")) and not EID.entitiesToPrint[GetPtrHash(entity)] then
 						table.insert(inRangeEntities, entity)
 						local diff = entity.Position:__sub(sourcePos)
 						-- break ties with the render offset (for Mega Chest double collectibles)
-						if diff:Length() == EID.lastDist and entity:GetData()["EID_RenderOffset"] then
-							diff = diff + entity:GetData()["EID_RenderOffset"]
+						local entityDataRenderOffset = EID:getEntityData(entity, "EID_RenderOffset")
+						if diff:Length() == EID.lastDist and entityDataRenderOffset then
+							diff = diff + entityDataRenderOffset
 						end
 						if diff:Length() < EID.lastDist then
 							EID.lastDescriptionEntity = entity
@@ -1438,26 +1438,23 @@ function EID:OnRender()
 
 					-- Handle Glitched Items
 					elseif closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
-						if EID:getEntityData(closest, "EID_DontHide") ~= true then
-							if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+						if EID:IsItemHidden(closest) then
+							EID:addQuestionMarkDescription(closest)
+						else
+							local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
+							local glitchedName = EID.itemConfig:GetCollectible(closest.SubType).Name
+							local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
+
+							-- force the default glitchy description if option is off
+							if not EID.Config["DisplayGlitchedItemInfo"] then
+								glitchedObj.Description = glitchedDesc
+							-- grab the Item Config info if we haven't created a desc for it before, or its name has changed since we did (different game session)
+							elseif glitchedObj.Description == glitchedDesc or glitchedObj.Name ~= glitchedName then
+								EID:addCollectible(closest.SubType, EID:CheckGlitchedItemConfig(closest.SubType), glitchedName)
+								glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
 							end
+							EID:addDescriptionToPrint(glitchedObj)
 						end
-
-						local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
-						local glitchedName = EID.itemConfig:GetCollectible(closest.SubType).Name
-						local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
-
-						-- force the default glitchy description if option is off
-						if not EID.Config["DisplayGlitchedItemInfo"] then
-							glitchedObj.Description = glitchedDesc
-						-- grab the Item Config info if we haven't created a desc for it before, or its name has changed since we did (different game session)
-						elseif glitchedObj.Description == glitchedDesc or glitchedObj.Name ~= glitchedName then
-							EID:addCollectible(closest.SubType, EID:CheckGlitchedItemConfig(closest.SubType), glitchedName)
-							glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
-						end
-
-						EID:addDescriptionToPrint(glitchedObj)
 					-- Handle Dice Room Floor
 					elseif closest.Type == 1000 and closest.Variant == 76 then
 						EID:addDescriptionToPrint(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1, closest))
@@ -1465,10 +1462,10 @@ function EID:OnRender()
 					elseif closest.Type == 1000 and closest.Variant == 161 and closest.SubType <= 2 then
 						local subtypeToCard = {18, 5, 19}
 						-- Reuse the descriptions of The Emperor/Stars/Moon, so no localization needed
-						local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest, false)
+						local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest)
 						-- Card Reading's name
 						descriptionObj.Name = EID:getObjectName(5, 100, 660)
-						-- Only keep the first line of the description
+						-- Only keep the first line of the description (to avoid Tarot Cloth effects or Planetarium mention on The Stars)
 						descriptionObj.Description = string.sub(descriptionObj.Description, 1, string.find(descriptionObj.Description, "#"))
 						EID:addDescriptionToPrint(descriptionObj)
 					-- Handle Crane Game
@@ -1476,7 +1473,7 @@ function EID:OnRender()
 						if EID.CraneItemType[tostring(closest.InitSeed)] or EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] then
 							if EID:getEntityData(closest, "EID_DontHide") ~= true then
 								if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-									EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+									EID:addQuestionMarkDescription(closest)
 								end
 							end
 							local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
@@ -1496,10 +1493,10 @@ function EID:OnRender()
 
 					elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 						--Handle Collectibles
-						if EID:getEntityData(closest, "EID_DontHide") ~= true then
-							if (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom) or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest)) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
-							end
+						if EID:IsItemHidden(closest) then
+							local isHideUncollected = EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(closest.SubType)
+							local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil
+							EID:addQuestionMarkDescription(closest, description)
 						end
 						local descriptionObj = EID:getDescriptionObjByEntity(closest)
 						EID:addDescriptionToPrint(descriptionObj)
@@ -1514,7 +1511,7 @@ function EID:OnRender()
 							(not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and
 							(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
 							if isOptionsSpawn or hideinShop or obstructed then
-								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+								EID:addQuestionMarkDescription(closest)
 							end
 						end
 						local isCantrippedCard = game.Challenge == 43 and closest.SubType > 32768
@@ -1534,7 +1531,7 @@ function EID:OnRender()
 							local obstructed = not EID.Config["DisplayObstructedPillInfo"] and
 							(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
 							if isOptionsSpawn or hideinShop or obstructed then
-								EID:addDescriptionToPrint({ Description = "QuestionMark", Entity = closest})
+								EID:addQuestionMarkDescription(closest)
 							end
 						end
 
@@ -1596,23 +1593,17 @@ EID:AddCallback(ModCallbacks.MC_POST_RENDER, EID.OnRender)
 
 local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true
-	local playerID = EID:getPlayerID(player)
+	local playerID = EID:getPlayerID(player, true)
 	EID:InitItemInteractionIfAbsent(playerID)
-	-- Dead Tainted Lazarus exceptions
 	local activesTable = EID.PlayerItemInteractions[playerID].actives
-	if player:GetPlayerType() == 38 then
-		activesTable = EID.PlayerItemInteractions[playerID].altActives or activesTable
-	end
 	-- don't check pocket items after D4, they don't reroll and would get counted twice
 	local maxSlot = 3
 	if isD4 then maxSlot = 1 end
 	for i = 0, maxSlot do
-		local itemID = tostring(player:GetActiveItem(i))
-		if itemID ~= "0" then
-			if not activesTable[itemID] then
-				activesTable[itemID] = 0
-			end
-			activesTable[itemID] = activesTable[itemID] + 1
+		local itemIDStr = tostring(player:GetActiveItem(i))
+		if itemIDStr ~= "0" then
+			EID:InitActiveItemInteraction(itemIDStr)
+			activesTable[itemIDStr] = activesTable[itemIDStr] + 1
 		end
 	end
 end
@@ -1629,21 +1620,59 @@ local function OnGameStartGeneral(_,isSave)
 	EID:GetTransformationsOfModdedItems()
 	EID:buildTransformationTables()
 	EID.RecentlyTouchedItems = {}
+	EID.GulpedTrinkets = {}
+	EID.OldestItemIndex = {}
 	if not isSave then
 		EID.PlayerItemInteractions = {}
 		EID.DInfinityState = {}
 	end
+	EID.ShouldCheckWisp = true
+	EID.WildCardEffects = {}
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
+
+local function OnPostPlayerInit()
+	EID.ShouldCheckStartingItems = true -- for The Stars? tracking
+end
+EID:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, OnPostPlayerInit)
 
 -- Add currently held active items after D4 was used. Used for Transformation Progress
 local function OnUseD4(_, _, _, player)
 	-- in AB+, USE_ITEM doesn't provide a player
 	AddActiveItemProgress(player or EID.player, true)
-	-- repentance fixed needing to blacklist your new items from counting (and AB+ counts everything)
-	--EID:CollectRerolledItemsOfPlayer(player or EID.player)
+	if EID.isRepentance then
+		local playerNum = EID:getPlayerID(player, true)
+		EID.OldestItemIndex[playerNum] = -1 -- D4 makes it impossible for us to know what the oldest item is for The Stars?
+	end
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
+
+-- Watch for smelting trinkets; includes Gulp and Marbles
+local function OnUseSmelter(_, _, _, player)
+	player = player or EID.player
+	local playerNum = EID:getPlayerID(player, true)
+	
+	EID.GulpedTrinkets[playerNum] = EID.GulpedTrinkets[playerNum] or {}
+	for i=0,1 do
+		local trinket = player:GetTrinket(i)
+		if trinket > 0 then table.insert(EID.GulpedTrinkets[playerNum], trinket) end
+	end
+end
+EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseSmelter, CollectibleType.COLLECTIBLE_SMELTER)
+
+-- Watch for Glowing Hourglass to revert certain variables
+local function OnUseGlowingHourglass(_, _, _, _)
+	EID.absorbedItems = EID:CopyTable(preHourglassStatus.absorbedItems)
+	EID.PlayerItemInteractions = EID:CopyTable(preHourglassStatus.PlayerItemInteractions)
+	if EID.isRepentance then
+		EID.WildCardEffects = EID:CopyTable(preHourglassStatus.WildCardEffects)
+		EID.WildCardPillColor = EID:CopyTable(preHourglassStatus.WildCardPillColor)
+		EID.DInfinityState = EID:CopyTable(preHourglassStatus.DInfinityState)
+		EID.BoC.BagItems = EID:CopyTable(preHourglassStatus.BagItems)
+		EID.BoC.RoomQueries = EID:CopyTable(preHourglassStatus.RoomQueries)
+	end
+end
+EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseGlowingHourglass, CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS)
 
 -- Re-init transformation progress and item interactions after using Genesis
 if EID.isRepentance then
@@ -1658,17 +1687,27 @@ if EID.isRepentance then
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseLemegeton, CollectibleType.COLLECTIBLE_LEMEGETON)
 
+	-- Watch for any active item usage for Wild Card
+	local function OnUseGeneral(_, collectibleType, _, player, useFlags, activeSlot)
+		-- add the active to Wild Card tracking if it was a real active usage
+		if useFlags & UseFlag.USE_OWNED > 0 and activeSlot >= 0 then
+			EID:TrackWildCardEffects("5.100." .. collectibleType, player)
+		end
+	end
+	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseGeneral)
 end
 
 function EID:OnUsePill(pillEffectID, player, useFlags)
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
 	-- get the pill color by checking the player's pocket
-	local pillColor = EID.PlayerHeldPill[EID:getPlayerID(player)]
+	local pillColor = EID.PlayerHeldPill[EID:getPlayerID(player)] or 1
 	-- add the pill used to our history for Echo Chamber / Vurp! / transformation progress
 	EID:AddPickupToHistory("pill", pillEffectID+1, player, useFlags, pillColor)
+	-- add the pill to Wild Card tracking, unless it's a Temperance? pill
+	if EID.isRepentance and useFlags ~= UseFlag.USE_NOANNOUNCER then EID:TrackWildCardEffects("5.70." .. (pillEffectID+1), player, pillColor) end
 	EID.ForceRefreshCache = true -- for transformation progress update
 
-	-- for tracking used pills, ignore gold pills and noannouncer flag pills
+	-- for tracking used pills, ignore gold pills and noannouncer flag pills (Temperance?)
 	-- (not using a bitmask, because Placebo is mimic+noannouncer, and we want to count those)
 	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags == UseFlag.USE_NOANNOUNCER) then return end
 	EID.UsedPillColors[tostring(pillColor)] = true
@@ -1678,6 +1717,8 @@ EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
 function EID:OnUseCard(cardID, player, useFlags)
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
 	EID:AddPickupToHistory("card", cardID, player, useFlags)
+	-- add the card to Wild Card tracking unless it's Wild Card
+	if EID.isRepentance and cardID ~= 80 then EID:TrackWildCardEffects("5.300." .. cardID, player) end
 end
 EID:AddCallback(ModCallbacks.MC_USE_CARD, EID.OnUseCard)
 
@@ -1693,16 +1734,34 @@ local configIgnoreList = {
 	["PlayerItemInteractions"] = true,
 	["UsedPillColors"] = true,
 	["RecentlyTouchedItems"] = true,
+	["GulpedTrinkets"] = true,
+	["WildCardEffects"] = true,
+	["DInfinityState"] = true,
+	["OldestItemIndex"] = true,
 }
 --------------------------------
---------Handle Savadata---------
+--------Handle Savedata---------
 --------------------------------
 function EID:OnGameStart(isSave)
 	--Loading Moddata--
-
 	if EID:HasData() then
 		local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
-
+		
+		-- JSON saves integer table keys as strings. we need to transform them back... used in OnGameStart
+		local function ConvertSavedTable(tableName)
+			for playerID, data in pairs(savedEIDConfig[tableName] or {}) do
+				local convertedData = {}
+				if type(data) == "table" then
+					for key, value in pairs(data) do
+						convertedData[tonumber(key) or key] = value
+					end
+				else
+					convertedData = data
+				end
+				EID[tableName][tonumber(playerID)] = convertedData
+			end
+		end
+		
 		-- collection progress
 		EID.CollectedItems = savedEIDConfig["CollectedItems"] or {}
 		if EID.SaveGame and savedEIDConfig["SaveGameNumber"] > 0 then
@@ -1713,44 +1772,35 @@ function EID:OnGameStart(isSave)
 		EID.PlayerItemInteractions = {}
 		if isSave then
 			-- JSON saves integer table keys as strings. we need to transform them back...
-			for playerID, data in pairs(savedEIDConfig["PlayerItemInteractions"] or {}) do
-				local convertedData = {}
-				for key, value in pairs(data) do
-					convertedData[tonumber(key) or key] = value
-				end
-				EID.PlayerItemInteractions[tonumber(playerID)] = convertedData
-			end
-
-			for playerID, data in pairs(savedEIDConfig["RecentlyTouchedItems"] or {}) do
-				local convertedData = {}
-				for key, value in pairs(data) do
-					convertedData[tonumber(key) or key] = value
-				end
-				EID.RecentlyTouchedItems[tonumber(playerID)] = convertedData
-			end
+			ConvertSavedTable("PlayerItemInteractions")
+			ConvertSavedTable("RecentlyTouchedItems")
+			ConvertSavedTable("GulpedTrinkets")
+			ConvertSavedTable("WildCardEffects")
+			ConvertSavedTable("DInfinityState")
+			ConvertSavedTable("OldestItemIndex")
 		else
 			-- check for the players' starting active items
 			CheckAllActiveItemProgress()
 		end
 		EID.UsedPillColors = {}
+		EID.absorbedItems = {}
 		if isSave then
 			EID.UsedPillColors = savedEIDConfig["UsedPillColors"] or {}
+			EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
 		end
-
+		
 		if EID.isRepentance then
 			EID.BoC.BagItems = {}
 			EID.BoC.LearnedRecipes = {}
 			EID.CraneItemType = {}
 			EID.flipItemPositions = {}
-			EID.absorbedItems = {}
-
+			
 			if isSave then
 				EID.BoC.BagItems = savedEIDConfig["BagContent"] or {}
 				EID.BoC.LearnedRecipes = savedEIDConfig["BagLearnedRecipes"] or {}
 				EID.BoC.RoomQueries = savedEIDConfig["BagFloorContent"] or {}
 				EID.CraneItemType = savedEIDConfig["CraneItemType"] or {}
-				EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
-
+				
 				-- turn list back into dict because json cant save dict indices.
 				local flipItemTable = {}
 				for _, v in ipairs(savedEIDConfig["FlipItemPositions"]) do
@@ -1794,7 +1844,7 @@ function EID:OnGameStart(isSave)
 		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 		EID.Scale = EID.Config["Size"]
 		EID.ItemReminderSelectedCategory = EID.Config["ItemReminderDisplayMode"] == "NoOverview" and 1 or 0
-
+		
 		EID:fixDefinedFont()
 		EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 	end
@@ -1808,8 +1858,8 @@ function EID:OnGameExit()
 		EID.Config["BagLearnedRecipes"] = EID.BoC.LearnedRecipes or {}
 		EID.Config["BagFloorContent"] = EID.BoC.RoomQueries or {}
 		EID.Config["CraneItemType"] = EID.CraneItemType or {}
-		EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
-
+		EID.Config["WildCardEffects"] = EID.WildCardEffects or {}
+		EID.Config["DInfinityState"] = EID.DInfinityState or {}
 		-- turn dictionary into list because json cant save dict indices.
 		local flipItemTable = {}
 		for k, v in pairs(EID.flipItemPositions) do
@@ -1824,7 +1874,10 @@ function EID:OnGameExit()
 	EID.Config["CollectedItems"] = EID.CollectedItems
 	EID.Config["PlayerItemInteractions"] = EID.PlayerItemInteractions or {}
 	EID.Config["RecentlyTouchedItems"] = EID.RecentlyTouchedItems or {}
+	EID.Config["GulpedTrinkets"] = EID.GulpedTrinkets or {}
 	EID.Config["UsedPillColors"] = EID.UsedPillColors
+	EID.Config["AbsorbedItems"] = EID.absorbedItems or {}
+	EID.Config["OldestItemIndex"] = EID.OldestItemIndex or {}
 
 	EID.SaveData(EID, json.encode(EID.Config))
 	EID:hidePermanentText()

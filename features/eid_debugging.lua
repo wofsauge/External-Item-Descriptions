@@ -3,7 +3,7 @@ local showDebugChars = false
 
 -- check integrity of language files
 
-local languageFilesToCheck = {"cs_cz"} -- EID.Languages -- single file check {"ko_kr"}
+local languageFilesToCheck = {"fr"} -- EID.Languages -- single file check {"ko_kr"}
 
 -- count en_us entries for stats
 local count = 0
@@ -19,39 +19,61 @@ EID:countEntries(EID.descriptions["en_us"])
 local enUSEntries = count
 print("en_us entries: "..enUSEntries)
 
-for _,lang in ipairs(languageFilesToCheck) do
+
+local maxChecklimit = {["tarotClothBuffs"] = 2}
+function EID:getMaxCheckLimit(parentName)
+    for entry, _ in pairs(maxChecklimit) do
+        if string.find(parentName, entry) then
+            return maxChecklimit[entry]
+		end
+	end
+    return math.maxinteger
+end
+
+local ignoreNodesWithName = {["fonts"] = true}
+
+
+for _, lang in ipairs(languageFilesToCheck) do
 	print("Now checking integrity of languagefile: " .. lang)
 	-- Generic function to compare two tables
 	function EID:compareTables(table1, table2, prevKey, progress)
+		local checkLimit = EID:getMaxCheckLimit(prevKey)
 		for k, _ in pairs(table1) do
 			progress[1] = progress[1] + 1
-			if not table2[k] then
-				print(" Table '" .. prevKey .. "' does not contain key: " .. k)
-				progress[2] = progress[2] + 1
-			elseif type(table2[k]) ~= type(table1[k]) then
-				print("Type mismatch in table '" .. prevKey .. "', key: " .. k)
-				progress[2] = progress[2] + 1
-			elseif type(table2[k]) == "table" then
-				EID:compareTables(table1[k], table2[k], k, progress)
-			else
-				-- check for broken markup stuff
-				local filteredText = EID:replaceShortMarkupStrings(table2[k])
-				local textPartsTable = EID:filterColorMarkup(filteredText, EID:getNameColor())
-				for _, textPart in ipairs(textPartsTable) do
-					local filteredSpriteText, spriteTable = EID:filterIconMarkup(textPart[1])
+			checkLimit = checkLimit - 1
+			if not (ignoreNodesWithName[k] or checkLimit < 0) then
+				-- only evaluate nodes that are not listed in this table
+				if not table2[k] then
+					print(" Table '" .. prevKey .. "' does not contain key: " .. k)
+					progress[2] = progress[2] + 1
+				elseif type(table2[k]) ~= type(table1[k]) then
+					-- print("Type mismatch in table '" .. prevKey .. "', key: " .. k)
+					progress[2] = progress[2] + 1
+				elseif type(table2[k]) == "table" then
+				  EID:compareTables(table1[k], table2[k], prevKey.."->"..k, progress)
+				else
+					-- check for broken markup stuff
+					local filteredText = EID:replaceShortMarkupStrings(table2[k])
+					local textPartsTable = EID:filterColorMarkup(filteredText, EID:getNameColor())
+					for _, textPart in ipairs(textPartsTable) do
+						local filteredSpriteText, spriteTable = EID:filterIconMarkup(textPart[1])
 
-					if string.find(filteredSpriteText, "{{") or string.find(filteredSpriteText, "}}") then
-						print(" Table '" .. prevKey .. "' entry '" .. k .. "' does contain a broken markup object: '" .. table2[k])
-						progress[1] = progress[1] - 2
-						progress[2] = progress[2] + 1
-						break
-					else
-						for _, sprite in ipairs(spriteTable) do
-							if sprite[1][1] == "ERROR" then
-								print(" Table '" .. prevKey .. "' entry '" .. k .. "' does contain a bad icon markup in string: '" .. table2[k])
-								progress[1] = progress[1] - 2
-								progress[2] = progress[2] + 1
-								break
+						if string.find(filteredSpriteText, "{{") or string.find(filteredSpriteText, "}}") then
+							print(" Table '" ..
+							prevKey .. "' entry '" .. k .. "' does contain a broken markup object: '" .. table2[k])
+							progress[1] = progress[1] - 2
+							progress[2] = progress[2] + 1
+							break
+						else
+							for _, sprite in ipairs(spriteTable) do
+								if sprite[1][1] == "ERROR" then
+									print(" Table '" ..
+									prevKey ..
+									"' entry '" .. k .. "' does contain a bad icon markup in string: '" .. table2[k])
+									progress[1] = progress[1] - 2
+									progress[2] = progress[2] + 1
+									break
+								end
 							end
 						end
 					end

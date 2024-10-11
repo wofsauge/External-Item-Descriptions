@@ -428,7 +428,7 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "Alle Gegenstandspodeste wechseln zwischen zwei Optionen"},
 	{"Magdalene", "", "↑ {{Heart}} +1 Gesundheit#Die maximale Anzahl der Herzcontainer wird auf 18 erhöht"},
-	{"Cain", "", "↑ {{Luck}} +1 Glück#{{Arcade}} Alle zukünftigen Ebenen enthalten einen verbesserten Arkadenraum (außer Dunkler Raum und Truhe)#{{Collectible46}} Erhöht die Gewinnchancen des Glückspfennigs erheblich"},
+	{"Cain", "", "↑ {{Luck}} +1 Glück#{{ArcadeRoom}} Alle zukünftigen Ebenen enthalten einen verbesserten Arkadenraum (außer Dunkler Raum und Truhe)#{{Collectible46}} Erhöht die Gewinnchancen des Glückspfennigs erheblich"},
 	{"Judas", "", "{{Collectible34}} Das Buch Belials wird zu einem passiven Gegenstand ähnlich dem {{Collectible584}} Buch der Tugenden#{{Collectible34}} Gewährt das Buch Belials, wenn Judas es derzeit nicht hält#↑ {{Damage}} Der von ihm gewährte Schadensbonus skaliert mit der Anzahl der Ladungen des active Items, mit dem er kombiniert ist#Gewährt spezielle Effekte für bestimmte active Items"},
 	{"???", "", "{{SoulHeart}} Seelenherzen, die durch Gesundheits-Upgrades gewonnen werden, werden verdoppelt"},
 	{"Eva", "", "{{Collectible122}} Die Hure von Babylon ist unabhängig von der Gesundheit aktiv#{{Collectible117}} Der Tote Vogel ist immer aktiv"},
@@ -472,14 +472,14 @@ EID.descriptions[languageCode].birthright ={
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon in front of each buff-bulletpoint
 EID.descriptions[languageCode].bingeEaterBuffs = {
-	[22] = {"22", "Mittagessen", "↑ {{Tears}} +0,5 Tränen#↑ {{Range}} +2,5 Reichweite#↓ {{Speed}} -0,03 Geschwindigkeit"}, -- Lunch
-	[23] = {"23", "Abendessen", "↑ {{Tears}} +0,5 Tränen#↑ {{Shotspeed}} +0,2 Schussgeschwindigkeit#↓ {{Speed}} -0,03 Geschwindigkeit"}, -- Dinner
-	[24] = {"24", "Dessert", "↑ {{Damage}} +1 Schaden#↑ {{Shotspeed}} +0,2 Schussgeschwindigkeit#↓ {{Speed}} -0,03 Geschwindigkeit"}, -- Dessert
-	[25] = {"25", "Frühstück", "↑ {{Range}} +2,5 Reichweite#↑ {{Shotspeed}} +0,2 Schussgeschwindigkeit#↓ {{Speed}} -0,03 Geschwindigkeit"}, -- Breakfast
-	[26] = {"26", "Verdorbenes Fleisch", "↑ {{Damage}} +1 Schaden#↑ {{Range}} +2,5 Reichweite#↓ {{Speed}} -0,03 Geschwindigkeit"}, -- Rotten Meat
-	[456] = {"456", "Mitternachtssnack", "↑ {{Damage}} +1 Schaden#↑ {{Luck}} +1 Glück#↓ {{Speed}} -0,03 Geschwindigkeit"}, -- Midnight Snack
-	[346] = {"346", "Ein Snack", "↑ {{Shotspeed}} +0,2 Schussgeschwindigkeit#↑ {{Luck}} +1 Glück#↓ {{Speed}} -0,03 Geschwindigkeit"}, -- A Snack
-	[707] = {"707", "Abendessen", "↑ {{Tears}} +0,5 Tränen#↑ {{Luck}} +1 Glück#↓ {{Speed}} -0,03 Geschwindigkeit"}, -- Supper
+	[22] = "↑ {{Tears}} +0,5 Tränen#↑ {{Range}} +2,5 Reichweite#↑ {{Damage}} +3.6 temporärer Schaden#↓ {{Speed}} -0,03 Geschwindigkeit", -- Lunch
+	[23] = "↑ {{Tears}} +0,5 Tränen#↑ {{Shotspeed}} +0,2 Schussgeschwindigkeit#↑ {{Damage}} +3.6 temporärer Schaden#↓ {{Speed}} -0,03 Geschwindigkeit", -- Dinner
+	[24] = "↑ {{Damage}} +1 Schaden#↑ {{Shotspeed}} +0,2 Schussgeschwindigkeit#↑ {{Damage}} +3.6 temporärer Schaden#↓ {{Speed}} -0,03 Geschwindigkeit", -- Dessert
+	[25] = "↑ {{Range}} +2,5 Reichweite#↑ {{Shotspeed}} +0,2 Schussgeschwindigkeit#↑ {{Damage}} +3.6 temporärer Schaden#↓ {{Speed}} -0,03 Geschwindigkeit", -- Breakfast
+	[26] = "↑ {{Damage}} +1 Schaden#↑ {{Range}} +2,5 Reichweite#↑ {{Damage}} +3.6 temporärer Schaden#↓ {{Speed}} -0,03 Geschwindigkeit", -- Rotten Meat
+	[456] = "↑ {{Damage}} +1 Schaden#↑ {{Luck}} +1 Glück#↑ {{Damage}} +3.6 temporärer Schaden#↓ {{Speed}} -0,03 Geschwindigkeit", -- Midnight Snack
+	[346] = "↑ {{Shotspeed}} +0,2 Schussgeschwindigkeit#↑ {{Luck}} +1 Glück#↑ {{Damage}} +3.6 temporärer Schaden#↓ {{Speed}} -0,03 Geschwindigkeit", -- A Snack
+	[707] = "↑ {{Tears}} +0,5 Tränen#↑ {{Luck}} +1 Glück#↑ {{Damage}} +3.6 temporärer Schaden#↓ {{Speed}} -0,03 Geschwindigkeit", -- Supper
 }
 
 -- Buffs caused by Book of Belial with Judas' Birthright
@@ -924,7 +924,7 @@ local repCards={
 	[64] = {"64", "VIII - Die Gerechtigkeit?", "{{GoldenChest}} Spawnt 2-4 goldene Truhen"}, -- VIII - Justice?
 	[65] = {"65", "IX - Der Eremit?", "{{Coin}} Verwandelt alle Pickups und Gegenstände im Raum in eine Anzahl von Münzen, die ihrem Kaufwert entspricht#Wenn nichts umzuwandeln ist, spawnt eine Penny stattdessen"}, -- IX - The Hermit?
 	[66] = {"66", "X - Rad des Schicksals?", "{{DiceRoom}} Löst einen zufälligen Würfelraumeffekt aus"}, -- X - Wheel of Fortune?
-	[67] = {"67", "XI - Die Stärke?", "{{Timer}} Gegner im Raum sind {{Slow}} verlangsamt und nehmen 60 Sekunden lang doppelten Schaden"}, -- XI - Strength?
+	[67] = {"67", "XI - Die Stärke?", "{{Timer}} Gegner im Raum sind {{Slow}} verlangsamt und nehmen 30 Sekunden lang doppelten Schaden"}, -- XI - Strength?
 	[68] = {"68", "XII - Der Gehängte?", "{{Timer}} Erhalte für 30 Sekunden:#↓ {{Speed}} -0,1 Geschwindigkeit#Dreifachschuss#{{Coin}} Getötete Feinde lassen Münzen fallen"}, -- XII - The Hanged Man?
 	[69] = {"69", "XIII - Tod?", "{{Collectible545}} Aktiviert das Buch der Toten#Spawnt Knochenwesen für jeden im Raum getöteten Feind"}, -- XIII - Death?
 	[70] = {"70", "XIV - Mäßigkeit?", "{{Pill}} Zwingt Isaac, 5 zufällige Pillen zu essen"}, -- XIV - Temperance?
@@ -988,6 +988,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[64] = {4, 14, 2, 4}, -- VIII - VIII - Justice?
 	[65] = "Erzeugt 1 zusätzlichen {{Coin}} Cent", -- IX - The Hermit?
 	[66] = {"{{DiceRoom}} Löst {{ColorShinyPurple}}2{{CR}} zufällige Effekte eines Würfelraums aus"}, -- X - Wheel of Fortune?
+	[67] = {30, 60}, -- XI - Strength?
 	[68] = {30, 60}, -- XII - The Hanged Man?
 	[70] = {5, 10}, -- XIV - Temperance?
 	[72] = {7, 14}, -- XVI - The Tower?
@@ -1088,9 +1089,6 @@ EID.descriptions[languageCode].horsepills={
 ---------- Glitched Item Descriptions ----------
 
 EID.descriptions[languageCode].GlitchedItemText = {
-	-- This will be appended to words to pluralize them, make it "" to not pluralize
-	pluralize = "",
-
 	-- Item Config info
 	AddBlackHearts = "{{BlackHeart}} {1} Schwarzes Herz",
 	AddBombs = "{{Bomb}} {1} Bombe",
@@ -1168,6 +1166,8 @@ EID.descriptions[languageCode].VoidShopText = "Wenn sofort nach dem Aufsammeln a
 EID.descriptions[languageCode].VoidOptionText = " wird stattdessen absorbiert"
 EID.descriptions[languageCode].VoidNames[2] = "{1} Feuerrate"
 
+EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Schaden", "↑ {{Tears}} +2 Feuerrate", "↑ {{Speed}} +0.5 Geschwindigkeit", "↑ {{Range}} +3 Reichweite"}
+
 EID.descriptions[languageCode].spindownError = "Gegenstand verschwindet"
 
 EID.descriptions[languageCode].CraftingBagContent = "Tasche:"
@@ -1181,12 +1181,12 @@ EID.descriptions[languageCode].CraftingBestQuality = "Beste Qualität:"
 EID.descriptions[languageCode].CraftingHideKey = "Verstecken:"
 EID.descriptions[languageCode].CraftingPreviewKey = "Vorschau:"
 -- {1} will be converted to the number of recipes
-EID.descriptions[languageCode].CraftingMore = "...+{1} more"
+EID.descriptions[languageCode].CraftingMore = "...+{1} mehr"
 -- {1} will be converted into the number of available items
-EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} of 8 items available"
-EID.descriptions[languageCode].CraftingWarningAvailableItems = "Needs at least 8 to show crafting recipes!"
+EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} von 8 Gegenstände verfügbar"
+EID.descriptions[languageCode].CraftingWarningAvailableItems = "Benötigt mindestens 8 um Rezepte anzuzeigen!"
 -- {1} will be converted into the name of the key that toggles the BoC visibility
-EID.descriptions[languageCode].CraftingIsHidden = "Currently Hidden (Unhide with {1})"
+EID.descriptions[languageCode].CraftingIsHidden = "Aktuell ausgeblendet (einblenden mit {1})"
 
 -- {1} will be converted into the name of the key that toggles the BoC Search
 EID.descriptions[languageCode].CraftingResults = "(Scrollen: Halte {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Sperren: {{ButtonX}}, Aktualisieren: {{ButtonB}}, Tasche zurücksetzen: Halte {{ButtonRB}}, Suche: {1})"
@@ -1195,23 +1195,22 @@ EID.descriptions[languageCode].BlankCardEffect = "Effekt der Blanko-Karte:"
 EID.descriptions[languageCode].VariableCharge = "{1} Ladung:"
 
 EID.descriptions[languageCode].FlipItemToggleInfo = "(Halte {{CONFIG_BoC_Toggle}} gedrückt, um die Beschreibung anzuzeigen)"
+EID.descriptions[languageCode].GlitchedCrownToggleInfo = "(Drücke {{CONFIG_BoC_Toggle}}, um die Beschreibung anzuzeigen: {1})"
 
-EID.descriptions[languageCode].GlowingHourglassTransformed = "Will change back to Glowing Hourglass next floor"
+EID.descriptions[languageCode].GlowingHourglassTransformed = "Verwandelt sich im nächsten Stockwerk wieder in Leuchtende Sanduhr"
 
 EID.descriptions[languageCode].FalsePHDHeart = "Spawnt 1 {{BlackHeart}} Schwarzes Herz"
 EID.descriptions[languageCode].FalsePHDDamage = "↑ {{Damage}} +0,6 Schaden"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "↑ {{Damage}} +1,2 Schaden"
 
-EID.descriptions[languageCode].ExperimentalPillPHD = "No stat decrease"
-EID.descriptions[languageCode].ExperimentalPillFalsePHD = "No random stat increase"
+EID.descriptions[languageCode].ExperimentalPillPHD = "Keine Status-Verbesserungen"
+EID.descriptions[languageCode].ExperimentalPillFalsePHD = "Keine zufälligen Status-Verbesserungen"
 
 EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Stattdessen verbraucht der Schlüssel und spawnt 6 Gegenstände aus zufälligen Pools"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} WARNUNG {{Warning}}"
 EID.descriptions[languageCode].AchievementWarningText = "Erfolge sind deaktiviert!#Um Fortschritt und Erfolge zu aktivieren, musst du zuerst Mom (Tiefen II) besiegen, ohne Mods zu aktivieren.#(Wenn du Mom besiegt hast, kann diese Meldung ignoriert werden)#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
-
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID ist für die neueste Steam-Version aktualisiert#Ihre Spielversion wird nicht offiziell unterstützt, daher sind einige Beschreibungen und Funktionen möglicherweise ungenau#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
-
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modifizierte Gegenstände können die Berechnung der Crafting-Rezepte ungenau machen!#Installiere REPENTOGON für verbesserte Unterstützung modifizierter Rezepte#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
 
 EID.descriptions[languageCode].ResultsWithX = "(Ergebnisse mit {1})"
@@ -1221,83 +1220,22 @@ EID.descriptions[languageCode].ResultsWithX = "(Ergebnisse mit {1})"
 -- Tables with one entry will completely replace the original description
 -- Tables with two or more entries are find-replace pairs
 local repConditions={
-	["Tainted Revive"] = "{1} simply revives",
-	
-	["5.100.135 (Hard Mode)"] = {"1-2 coins", "1 coin", "2-3 coins", "2 coins"}, -- IV Bag Hard Mode (modify the PHD text too)
-	["5.100.642"] = "Single use for {1}", -- Magic Skin
-	["5.100.240"] = "{1} keeps the stat changes when he drops it", -- Experimental Treatment
-	["5.100.644"] = "{1} keeps the stat increase when he drops it", -- Consolation Prize
-	
-	["5.100.549"] = "{1} simply gets ↑ {{Tears}} +0.4 Fire rate on pickup", -- Brittle Bones (Keeper+Lost)
-	["5.100.694"] = "Works for {1}, letting him survive 4 hits", -- Heartbreak
-	
-	["5.100.201"] = "Refills {1}'s charge on pickup", --Iron Bar
-	["5.350.172"] = "{1} removes the teleportation effect", -- Cursed Penny
-	["5.100.188"] = "Deals 7.5 damage as {1}", -- Cain + Abel
-	["5.100.360"] = "Deals 100% damage as {1}", -- Lilith + Incubus
-	["5.100.501 (Deep Pockets)"] = "+1 Heart container for every 100 coins past 99", -- Greed's Gullet + Deep Pockets
-	["5.350.156"] = "+1 Coin container for {1}", -- Mother's Kiss
-	["5.100.230 (Keeper)"] = "{1} is left with 1 coin container", -- Abaddon
-	["5.100.230 (Bethany)"] = "{1} is left with half a heart", -- Abaddon
-	["5.100.230 (Tainted Bethany)"] = "{1} doesn't lose her blood charges", -- Abaddon
-	
-	["5.100.245"] = "Removes the fire rate penalty of {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
-	["5.100.245 (Keeper)"] = "Fire rate up and decreased tear spread for {1}", -- 20/20 + Keeper
-	["20/20"] = "No fire rate penalty with {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
-	["5.100.705"] = "Temporary +1 damage up for each bullet/enemy", -- Dark Arts + Dark/Tainted Judas
-	["5.100.205 (Tainted Magdalene)"] = "Allows infinite usage of Yum Heart", -- Sharp Plug + Tainted Magdalene
-	["Ice Tears"] = "Freezing an enemy doesn't count as killing", -- Uranus Anti-Synergy
-	["5.100.45"] = "{{HalfHeart}} Heals other players for half a heart", -- Yum Heart (Co-Op)
-
-	["5.100.344"] = {"{{BlackHeart}} +1 Black Heart#{{Bomb}} Spawns 3 bombs"}, -- Match Book (Greed)
-	["5.300.74"] = {"Teleports Isaac to the first room of the floor"}, -- The Moon? (Greed)
-	["5.100.416"] = {"{{Coin}} Increases the coin cap to 999"}, -- Deep Pockets (Greed)
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
 local repBFFSSynergies = {
-	["5.100.360"] = "Shoots tears that deal 150% of your damage. 200% for Lilith", -- Incubus
-	["5.100.569"] = "+2 full hearts when health is drained", -- Blood Oath
-	["5.100.610"] = "Spawns 4 rock waves in an x pattern. Doubles bird damage. Damage of waves unaffected.", -- Bird Cage
-	["5.100.178"] = "Double water damage and spawns a blue flame at point of impact", -- Holy Water
-	["5.100.276"] = "Fires additional shots in random directions and leaves a larger puddle of creep", -- Isaac's Heart
-	["5.100.612"] = "Gives the Lost Soul a Holy Mantle effect", -- Lost Soul
-	["5.100.635"] = "On use, fires 8 tears from the players position that have the same effects as his tears", -- Stitches
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
 }
 EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
 
 -- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
 local repCharacterInfo = {
-	[4] = {"???", "Can't have Red Hearts#Devil deals that would cost 1 or 2 Red Hearts will cost 1 or 2 Soul Hearts instead#Destroying poop spawns 1 blue fly"},
-	[8] = {"Lazarus", "Once per floor, when you die:#Resurrect as Lazarus Risen#Lose 1 Red Heart container#↑ {{Damage}} 0.5 Damage up"},
-	[11] = {"Lazarus Risen", "Increased stats and 1.4x damage multiplier#When entering a new floor, turn back into Lazarus"},
-	[12] = {"Dark Judas", "Can't have Red Hearts#Health ups grant Black Hearts#2x Damage multiplier"},
-	[14] = {"Keeper", "Heal by picking up coins#Heart pickups are turned into Blue Flies#Devil deals cost 15 or 30 coins"},
-	[18] = {"Bethany", "Use Soul Hearts to charge your active item#Can't use Soul Hearts as health#The first Devil room is guaranteed to be an Angel room instead"},
-	[19] = {"Jacob", "Control Jacob and Esau at the same time#Both characters drop a bomb when one is used#Esau stays in place while holding {{ButtonRT}}#When there's a choice between items, Jacob and Esau can grab two simultaneously"},
-	[20] = {"Esau", ""},
-	
-	[21] = {"Tainted Isaac", "Item pedestals cycle between 2 options#You can only carry 8 passive items#Cycle which item will be dropped for a 9th item with {{ButtonRT}}"},
-	[22] = {"Tainted Magdalene", "Health above 2 Red Hearts will slowly drain#On contact, do a melee swing#Chance for enemies to drop Half Red Hearts that disappear in 2 seconds#Drop is guaranteed on melee kill#Heal twice as much from non-pickup sources#Damage taken to draining hearts doesn't affect Devil Deal chance"},
-	[23] = {"Tainted Cain", "Touching an item pedestal turns it into a variety of pickups#Gain collectibles by crafting 8 pickups together in the Bag of Crafting#The Bag's contents can be shifted with {{ButtonRT}} to replace specific pickups when full"},
-	[24] = {"Tainted Judas", "Can't have Red Hearts#Health ups grant Black Hearts"},
-	[25] = {"Tainted ???", "Bombs are replaced with Poop Spells#Doing damage spawns poop pickups#The HUD has a preview of your upcoming poop spells#You can store the next spell for later by using Hold#Can't have Red Hearts"},
-	[26] = {"Tainted Eve", "Holding Fire will convert your hearts into Clot familiars#Different Heart types spawn Clots with more health and tear effects#Clots lose health over time#Using Sumptorium will absorb the Clots back into your health, if possible#Clots stay in place while holding {{ButtonRT}}"},
-	[27] = {"Tainted Samson", "Dealing or taking damage builds up Berserk mode#{{Timer}} When you go berserk, receive for 5 seconds:#↑ {{Speed}} +0.4 Speed#↓ {{Tears}} x0.5 Fire rate multiplier#↑ {{Tears}} +2 Fire rate#↑ {{Damage}} +3 Damage#Restricts attacks to a melee that reflects shots#{{Timer}} Each kill increases the duration by 1 second and grants brief invincibility"},
-	[28] = {"Tainted Azazel", "When you start charging, you sneeze blood#Hitting an enemy with the sneeze halves your charge time#The sneeze deals 1.5x Azazel's damage#{{BrimstoneCurse}} Affected enemies take extra damage from Brimstone beams#On death, cursed enemies explode and pass on the curse to nearby enemies"},
-	[29] = {"Tainted Lazarus", "Lazarus has two states, each with their own items and health#Whenever you clear a room/wave or use Flip, you're switched to the other state"},
-	[30] = {"Tainted Eden", "When you take damage, reroll your stats, items, trinket, and consumables#Items reroll into an item from the same item pool#Self-damage doesn't reroll"},
-	[31] = {"Tainted Lost", "Cards that spawn have a 10% chance to be Holy Card#Quality {{Quality2}} or less items have a 20% chance to be rerolled#Only \"offensive\" items can spawn"},
-	[32] = {"Tainted Lilith", "Pressing Fire launches a short-range fetus melee attack that does 3x damage#Holding Fire keeps the fetus out shooting tears"},
-	[33] = {"Tainted Keeper", "Enemies drop coins that disappear in 2 seconds#Most item pedestals cost 15 coins#Devil deals and Angel items cost 15 or 30 coins#Shops don't require a key and have increased stock"},
-	[34] = {"Tainted Apollyon", ""},
-	[35] = {"Tainted Forgotten", "The Forgotten is an immobile bone pile that is picked up and thrown by The Soul for 3x damage#Only The Soul can take damage#Bombs are placed at Forgotten's location#Can't have Red Hearts"},
-	[36] = {"Tainted Bethany", "Use Red Hearts to charge your active item#Can't have Red Hearts"},
-	[37] = {"Tainted Jacob", "Dark Esau chases you, charging towards you when close#Anima Sola will chain Dark Esau down briefly, charging at you after 5(?) seconds or on using Anima Sola again#Dark Esau's charge does a lot of damage to enemies and ignores Boss Armor#If he hits you, you turn into a ghost that dies in one hit for the rest of the floor#While a ghost, one devil deal per room can be taken for free"},
-	[38] = {"Dead Tainted Lazarus", "Lazarus has two states, each with their own items and health#Whenever you clear a room/wave or use Flip, you're switched to the other state"},
-	[39] = {"Tainted Jacob 2", ""},
-	[40] = {"Tainted Forgotten Soul", "The Forgotten is an immobile bone pile that is picked up and thrown by The Soul for 3x damage#Only The Soul can take damage#Bombs are placed at Forgotten's location#Can't have Red Hearts"},
-}
+	-- Not yet Translated!
+	-- Copy & Paste entries from en_us and continue translating from that
+	}
 EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
 
 

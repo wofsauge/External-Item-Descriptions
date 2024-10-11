@@ -25,6 +25,9 @@ EID.MCMLoaded = MCMLoaded
 local colorNameArray = {}
 EID.MCM_OptionChanged = false
 
+-- Add MCM demo description
+EID.ModIndicator["~~EID-MCM-DEMO~~"] = {Name = "My Demo Mod", Icon = "Delirium"}
+
 local function renderDummyDesc(reload)
 	if reload then
 		MCMCompat_oldPermanentObj = nil
@@ -35,6 +38,7 @@ local function renderDummyDesc(reload)
 	demoDescObj.Name = EID:getDescriptionEntry("MCM","DemoObjectName")
 	demoDescObj.Transformation = EID:getDescriptionEntry("MCM","DemoObjectTransformation")
 	demoDescObj.Description = EID:getDescriptionEntry("MCM","DemoObjectText")
+	demoDescObj.ModName = "~~EID-MCM-DEMO~~"
 	EID:displayPermanentText(demoDescObj, "MCM", "DemoObjectName")
 end
 
@@ -107,12 +111,13 @@ function EID:renderMCMDummyDescription()
 				clearRenderDummyDesc()
 				EID:renderHUDLocationIndicators()
 				MCMCompat_isDisplayingDummyMCMObj = true
-			elseif EID.MCMCompat_isDisplayingEIDTab == "Visuals" and EID.permanentDisplayTextObj == nil then
-				renderDummyDesc()
-				MCMCompat_isDisplayingDummyMCMObj = true
 			elseif EID.MCMCompat_isDisplayingEIDTab == "Crafting" then
 				clearRenderDummyDesc()
 				renderDummyBagOfCraftingDesc()
+				MCMCompat_isDisplayingDummyMCMObj = true
+			elseif EID.permanentDisplayTextObj == nil then
+				-- any other tab
+				renderDummyDesc(false)
 				MCMCompat_isDisplayingDummyMCMObj = true
 			end
 			EID:buildColorArray()
@@ -294,6 +299,7 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	---------------------------------General-----------------------------------
 	-- Language
+	MCM.AddText("EID", "General", "Language")
 	MCM.AddSetting(
 		"EID",
 		"General",
@@ -309,7 +315,7 @@ if MCMLoaded then
 			Minimum = 1,
 			Maximum = #(EID.Languages) + 1, -- add "auto" language
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = "Visuals"
+				EID.MCMCompat_isDisplayingEIDTab = "General"
 				if EID.Config["Language"] == "auto" then
 					return "Language: Auto (" .. displayLanguage[AnIndexOf(EID.Languages, EID:getLanguage())] .. ")"
 				else
@@ -330,60 +336,29 @@ if MCMLoaded then
 				end
 				renderDummyDesc(true)
 			end,
-			Info = {"Changes the language.","Languages marked with (WIP) are incomplete"}
+			Info = {"Changes the language.","Languages marked as WIP are incomplete."}
 		}
 	)
 	-- Item Name Language
 	local translateStates = {"English", "Current Language", "Current + English"}
 	EID:AddNumberSetting("General", "TranslateItemName", "Name Language", 1, 3, {displayTable = translateStates,
-	infoText = {"If translated names are available,","this changes how item names are displayed."}})
+	infoText = {"Displays item, trinket and character names in a different language than descriptions."}})
+	
+	MCM.AddSpace("EID", "General")
+	MCM.AddText("EID", "General", "Keybinds")
 
 	-- Hide Keys
 	EID:AddHotkeySetting("General", "HideKey", "Toggle (Keyboard)",
-		"Press this key to toggle the description display", false)
+		"Press this key to toggle the description display.", false)
 	EID:AddHotkeySetting("General", "HideButton", "Toggle (Controller)",
-		"Press this button to toggle the description display (Left Stick or Right Stick recommended; most other buttons will not work)", true)
+		"Press this button to toggle the description display (Left Stick or Right Stick recommended; most other buttons will not work).", true)
 
 	MCM.AddSpace("EID", "General")
+	MCM.AddText("EID", "General", "Advanced")
 
-	-- Position / Textbox Size
-	EID:AddNumberSetting("General", "XPosition", "Position X", 0, 500, {modifyBy = 5, infoText = "Default = 60"})
-	EID:AddNumberSetting("General", "YPosition", "Position Y", 0, 500, {modifyBy = 5, infoText = "Default = 45"})
-	EID:AddNumberSetting("General", "LineHeight", "Line Height", 1, 30, {infoText = "Default = 11 (varies per language)"})
-	EID:AddNumberSetting("General", "TextboxWidth", "Textbox Width", 1, 500, {modifyBy = 5, infoText = "Default = 130 (varies per language)"})
-
-	MCM.AddSpace("EID", "General")
-
-	EID:AddBooleanSetting("General", "InitiallyHidden", "Is Initially Hidden")
-	EID:AddBooleanSetting("General", "DisableStartOfRunWarnings", "Start of Run Warnings", {offText = "Enabled", onText = "Disabled",
-		repOnly = true, infoText = "Toggle the achievement, outdated game version, and modded crafting recipes warnings"})
-
-	EID:AddBooleanSetting("General", "DisableOnCurse", 'Show on "Curse of the Blind"', {offText = "True", onText = "False"})
-	EID:AddBooleanSetting("General", "DisableOnAprilFoolsChallenge", "Show on April Fools Challenge", {offText = "True", onText = "False"})
-	EID:AddBooleanSetting("General", "DisableOnAltPath", "Show Hidden Alt-Path Item", {offText = "True", onText = "False",
-		repOnly = true, infoText = "Show the description for the blind item in Downpour/Mines/etc."})
-
-	EID:AddBooleanSetting("General", "OnlyShowPillWhenUsedAtLeastOnce", "Show pill effect after one use", {infoText = "Keeps pilleffect descriptions unidentified, until the player has used the pill at least once in the run. This ignores effects caused by PHD and False PHD"})
-	EID:AddBooleanSetting("General", "ShowUnidentifiedPillDescriptions", "Show Unidentified Pill Effects")
-	EID:AddBooleanSetting("General", "HideInBattle", "Hide in Battle", {infoText = "Hides the descriptions when in a fight"})
-
-	MCM.AddSpace("EID", "General")
-	--indicator
-	local indicators = {"arrow", "blink", "border", "highlight", "none"}
-	EID:AddNumberSetting("General", "Indicator", "Indicator", 1, 5, {indexOf = indicators,
-		infoText = {"Change how the currently described item is marked"}})
-
-	MCM.AddSpace("EID", "General")
-
-	-- maxDistance
-	local distances = {1, 1.5, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	EID:AddScrollSetting("General", "MaxDistance", "Max Distance", distances, {label = " Grids",
-		infoText = "Distance to the object until descriptions are displayed"})
-	EID:AddBooleanSetting("General", "DisplayAllNearby", "Display All Objects In Range",
-		{ infoText = "Descriptions besides the closest one will be shown using the Local display mode" })
-	local descsToDisplaySteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 99}
-	EID:AddScrollSetting("General", "MaxDescriptionsToDisplay", "Max Descriptions to Display", descsToDisplaySteps,
-	{infoText = "Max number of descriptions to display per frame"})
+	local refreshRateSteps = {1, 2, 3, 4, 6, 10, 12, 15, 20, 30, 60}
+	EID:AddScrollSetting("General", "RefreshRate", "Description Refresh Rate", refreshRateSteps,
+	{infoText = "How many times per second EID updates descriptions."})
 
 
 	--------Reset to default
@@ -395,7 +370,7 @@ if MCMLoaded then
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function() return true end,
-			Display = function() return "<---- RESET CONFIG TO DEFAULT ---->" end,
+			Display = function() return "! --- RESET CONFIG TO DEFAULT --- !" end,
 			OnChange = function(currentBool)
 				local resetFont = (EID.Config["FontType"] ~= "default")
 				for k,v in pairs(EID.DefaultConfig) do EID.Config[k] = v end
@@ -404,69 +379,128 @@ if MCMLoaded then
 				if resetFont then EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt") end
 				renderDummyDesc(true)
 			end,
-			Info = {"Press this to reset the config back to its default values"}
+			Info = {"Resets all options back to their default values."}
 		}
 	)
 
 	---------------------------------------------------------------------------
 	---------------------------------Display-----------------------------------
 
-	local refreshRateSteps = {1, 2, 3, 4, 6, 10, 12, 15, 20, 30, 60}
-	EID:AddScrollSetting("Display", "RefreshRate", "Description Refresh Rate", refreshRateSteps,
-	{displayingTab = "", infoText = "How many times per second that EID updates what description to show"})
-	EID:AddBooleanSetting("Display", "CoopDescriptions", "Co-op Player Descriptions",
-	{infoText = "Allow Players 2, 3, and 4 to display descriptions in Co-op"})
-	EID:AddBooleanSetting("Display", "PairedPlayerDescriptions", "Paired Player Descriptions", {repOnly = true,
-	infoText = "Allow paired characters like Esau and Tainted Forgotten's bone pile to display descriptions"})
+	-- Simple toggles of what descriptions the user wants displayed
+
+	EID:AddBooleanSetting("Display", "DisableStartOfRunWarnings", "Start of Run Warnings", {offText = "Enabled", onText = "Disabled",
+		repOnly = true, infoText = "Toggles warnings for achievements being disabled, the game being outdated, and modded crafting recipes."})
+	
+	if EID.isRepentance then MCM.AddSpace("EID", "Display") end
+	MCM.AddText("EID", "Display", "Gameplay")
+
+	EID:AddBooleanSetting("Display", "HideInBattle", "Hide in Battle", {displayingTab = "", infoText = "Hides descriptions when enemies are present."})
+	EID:AddBooleanSetting("Display", "InitiallyHidden", "Is Initially Hidden", {infoText = "Hides descriptions by default. Press the Toggle key to show them again."})
+	
 	MCM.AddSpace("EID", "Display")
 
-	-- Simple toggles of what descriptions the user wants displayed
-	EID:AddBooleanSetting("Display", "DisplayItemInfo", "Collectible Infos", {displayingTab = ""})
-	EID:AddBooleanSetting("Display", "DisplayTrinketInfo", "Trinket Infos")
-	EID:AddBooleanSetting("Display", "DisplayCardInfo", "Card Infos")
-	EID:AddBooleanSetting("Display", "DisplayPillInfo", "Pill Infos")
-	EID:AddBooleanSetting("Display", "DisplayGlitchedItemInfo", "Glitched Item Infos", {repOnly = true,
+	-- maxDistance
+	local distances = {1, 1.5, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	EID:AddScrollSetting("Display", "MaxDistance", "Max Distance", distances, {label = " Grids",
+		infoText = "Distance at which descriptions are displayed."})
+	EID:AddBooleanSetting("Display", "DisplayAllNearby", "Multiple descriptions",
+		{ infoText = {"Displays the descriptions of all objects in range.", "Descriptions besides the closest one are in Local Display mode."}})
+	local descsToDisplaySteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 99}
+	EID:AddScrollSetting("Display", "MaxDescriptionsToDisplay", "Max Descriptions", descsToDisplaySteps,
+	{infoText = "Maximum number of descriptions to display at once."})
+
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Description visibility")
+	EID:AddBooleanSetting("Display", "DisplayItemInfo", "Show Item Info")
+	EID:AddBooleanSetting("Display", "DisplayTrinketInfo", "Show Trinket Info")
+	EID:AddBooleanSetting("Display", "DisplayCardInfo", "Show Card Info")
+	EID:AddBooleanSetting("Display", "DisplayPillInfo", "Show Pill Info")
+
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Special rooms")
+
+	EID:AddBooleanSetting("Display", "DisplaySacrificeInfo", "Show Sacrifice Room Info", {infoText = "Displays reward chances for the next sacrifice in sacrifice rooms."})
+	EID:AddBooleanSetting("Display", "DisplayDiceInfo", "Show Dice Room Info", {infoText = "Displays the effect of the big dice in dice rooms."})
+	EID:AddBooleanSetting("Display", "DisplaySanguineInfo", "Show Sanguine Bond Info", {repOnly = true, infoText = "Displays possible Sanguine Bond rewards while in a Devil Room."})
+	EID:AddBooleanSetting("Display", "PredictionSanguineBond", "Predict Sanguine Bond Result", {repOnly = true, infoText = "Highlights the next Sanguine Bond reward in the description."})
+
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Items and Machines")
+
+	EID:AddBooleanSetting("Display", "DisplayCraneInfo", "Show Crane Game Info", {repOnly = true, infoText = "Displays the description of items in Crane Games."})
+	EID:AddBooleanSetting("Display", "DisplayVoidStatInfo", "Show Void Stat Increases", {infoText = "Displays the stats that would be gained by consuming a passive item."})
+	EID:AddBooleanSetting("Display", "DisplayGlitchedItemInfo", "Show Glitched Item Info", {repOnly = true,
 	infoText = "Note: Installing REPENTOGON is required for more detailed glitched item descriptions!"})
-	EID:AddBooleanSetting("Display", "DisplaySacrificeInfo", "Sacrifice Room Infos")
-	EID:AddBooleanSetting("Display", "DisplayDiceInfo", "Dice Room Infos")
-	EID:AddBooleanSetting("Display", "DisplayCraneInfo", "Crane Game Infos", {repOnly = true})
-	EID:AddBooleanSetting("Display", "DisplayVoidStatInfo", "Void Stat Increase Infos")
-	EID:AddBooleanSetting("Display", "DisplaySanguineInfo", "Sanguine Bond Infos", {repOnly = true})
-	EID:AddBooleanSetting("Display", "PredictionSanguineBond", "Predict Sanguine Bond Result", {repOnly = true, infoText = "The next reward from Sanguine Bond can be predicted and highlighted in the description"})
+	EID:AddBooleanSetting("Display", "DisplayFlipItemDescriptions", "Show Flip Item Descriptions", {repOnly = true, 
+	infoText = "Display the effect of ghostly items, when player has the Flip item (T-Lazarus)"})
+
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Hidden items")
+
+	EID:AddBooleanSetting("Display", "DisableOnCurse", 'Show on "Curse of the Blind"', {offText = "True", onText = "False"})
+	EID:AddBooleanSetting("Display", "DisableOnAprilFoolsChallenge", "Show on April Fools Challenge", {offText = "True", onText = "False"})
+	EID:AddBooleanSetting("Display", "DisableOnAltPath", "Show Hidden Alt-Path Item", {offText = "True", onText = "False",
+		repOnly = true, infoText = "Shows the description for the blind item in alt path floors."})
+
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Co-op")
+
+	EID:AddBooleanSetting("Display", "CoopDescriptions", "Co-op Player Descriptions",
+	{infoText = "Allows Players 2, 3, and 4 to display descriptions in co-op."})
+	EID:AddBooleanSetting("Display", "PairedPlayerDescriptions", "Paired Player Descriptions", {repOnly = true,
+	infoText = "Allows paired characters like Esau and Tainted Forgotten's bone pile to display descriptions."})
 
 	local diceSteps = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	-- Spindown Dice Settings
-	if EID.isRepentance then MCM.AddSpace("EID", "Display") end
-
-	EID:AddScrollSetting("Display", "SpindownDiceResults", "Spindown Dice", diceSteps, {repOnly = true, label = " Items",
-		infoText = "Number of item previews when holding Spindown Dice"})
+	if EID.isRepentance then
+		MCM.AddSpace("EID", "Display")
+		MCM.AddText("EID", "Display", "Spindown Dice")
+	end
+	
+	EID:AddScrollSetting("Display", "SpindownDiceResults", "Preview rerolls", diceSteps, {repOnly = true, label = " Items",
+		infoText = "Number of item previews to display when holding Spindown Dice."})
 
 	-- Display IDs for Spindown Dice results
 	EID:AddBooleanSetting("Display", "SpindownDiceDisplayID", "Display IDs",
-	{repOnly = true, infoText = "Display IDs for Spindown Dice results"})
+	{repOnly = true, infoText = "Displays IDs of Spindown Dice results."})
 	-- Display names for Spindown Dice results
 	EID:AddBooleanSetting("Display", "SpindownDiceDisplayName", "Display Names",
-	{repOnly = true, infoText = "Display names for Spindown Dice results"})
+	{repOnly = true, infoText = "Displays names of Spindown Dice results."})
 	-- Spindown Dice skip locked items
 	EID:AddBooleanSetting("Display", "SpindownDiceSkipLocked", "Skip Locked Items",
-	{repOnly = true, infoText = "Skip locked items in the preview just as the dice will; the method to check for unlock status is not perfect, though"})
-
+	{repOnly = true, infoText = {"The preview skips locked items, like the dice does.", "(The unlock status check is not perfect and may be wrong)"}})
+	
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Dynamic Descriptions")
+	
+	EID:AddBooleanSetting("Display", "DynamicHealthUps", "Dynamic Health Up Text",
+	{infoText = "Changes Health Ups and removes healing effect text when playing as a character that can't have red health"})
+	EID:AddBooleanSetting("Display", "DisplayTCainSalvageResults", "Show Tainted Cain Salvage Results",
+	{repOnly = true, infoText = "As Tainted Cain, replaces pedestal descriptions with what they will turn into on touch"})
+	
+	
 	--------Obstruction---------
 	MCM.AddSpace("EID", "Display")
-	MCM.AddText("EID", "Display", "Display Infos when Obstructed")
+	MCM.AddText("EID", "Display", "Unreachable items")
 
-	EID:AddBooleanSetting("Display", "DisableObstructionOnFlight", "Show again when you have Flight")
-	EID:AddBooleanSetting("Display", "DisplayObstructedCardInfo", "Obstructed Card Infos")
-	EID:AddBooleanSetting("Display", "DisplayObstructedPillInfo", "Obstructed Pill Infos")
-	EID:AddBooleanSetting("Display", "DisplayObstructedSoulstoneInfo", "Obstructed Soulstone Infos", {repOnly = true})
+	EID:AddBooleanSetting("Display", "DisplayObstructedCardInfo", "Show Unreachable Card Info", {infoText = "Hides the description of cards that can't be reached without breaking or flying over obstacles."})
+	EID:AddBooleanSetting("Display", "DisplayObstructedPillInfo", "Show Unreachable Pill Info", {infoText = "Hides the description of pills that can't be reached without breaking or flying over obstacles."})
+	EID:AddBooleanSetting("Display", "DisplayObstructedSoulstoneInfo", "Show Unreachable Soulstone Info", {repOnly = true, infoText = "Hides the description of soul stones that can't be reached without breaking or flying over obstacles."})
+	EID:AddBooleanSetting("Display", "DisableObstructionOnFlight", "Always show with flight", {infoText = "When Isaac has flight, considers all resources reachable and displays their descriptions"})
+
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Pills")
+	
+	EID:AddBooleanSetting("Display", "OnlyShowPillWhenUsedAtLeastOnce", "Show pill effect after one use", {infoText = "Keeps pills unidentified until Isaac has used them at least once in the run. PHD and False PHD identify pills regardless of this setting."})
+	EID:AddBooleanSetting("Display", "ShowUnidentifiedPillDescriptions", "Show Unidentified Pill Effects")
 
 	-------Shop Spoilers-------
 	MCM.AddSpace("EID", "Display")
-	MCM.AddText("EID", "Display", "Display Infos in Shops")
+	MCM.AddText("EID", "Display", "Consumables for Sale")
 
-	EID:AddBooleanSetting("Display", "DisplayCardInfoShop", "Shop Card Infos")
-	EID:AddBooleanSetting("Display", "DisplayPillInfoShop", "Shop Pill Infos")
-	EID:AddBooleanSetting("Display", "DisplaySoulstoneInfoShop", "Shop Soulstone Infos", {repOnly = true})
+	EID:AddBooleanSetting("Display", "DisplayCardInfoShop", "Purchaseable Card Info")
+	EID:AddBooleanSetting("Display", "DisplayPillInfoShop", "Purchaseable Pill Info")
+	EID:AddBooleanSetting("Display", "DisplaySoulstoneInfoShop", "Purchaseable Soulstone Info", {repOnly = true})
 
 	----"Options?" Spoilers----
 	if EID.isRepentance then
@@ -474,12 +508,18 @@ if MCMLoaded then
 		MCM.AddText("EID", "Display", "Interaction with 'Options?'")
 	end
 
-	EID:AddBooleanSetting("Display", "DisplayCardInfoOptions?", "'Options?' Card Infos", {repOnly = true})
-	EID:AddBooleanSetting("Display", "DisplayPillInfoOptions?", "'Options?' Pill Infos", {repOnly = true})
-
+	EID:AddBooleanSetting("Display", "DisplayCardInfoOptions?", "'Options?' Card Info", {repOnly = true})
+	EID:AddBooleanSetting("Display", "DisplayPillInfoOptions?", "'Options?' Pill Info", {repOnly = true})
 
 	---------------------------------------------------------------------------
 	---------------------------------Visuals-----------------------------------
+
+	-- Transparency
+	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
+	EID:AddScrollSetting("Visuals", "Transparency", "Opacity", transparencies)
+
+	MCM.AddSpace("EID", "Visuals")
+
 	-- Font Type
 	MCM.AddSetting(
 		"EID",
@@ -511,7 +551,25 @@ if MCMLoaded then
 	-- Display Mode
 	local displayModes = {"default", "local"}
 	EID:AddNumberSetting("Visuals", "DisplayMode", "Display Mode", 1, #displayModes, {indexOf = displayModes,
-		infoText = {"Changes display mode of descriptions", "Default: Text is displayed in the top left", "Local: Text is displayed under the described object"}})
+		infoText = {"Changes the display mode of descriptions.", "Default: Text is displayed in the top left.", "Local: Text is displayed under the described object."}})
+	-- Local Mode Centered or not
+	EID:AddBooleanSetting("Visuals", "LocalModeCentered", "Local Mode Centered")
+	--indicator
+	local indicators = {"arrow", "blink", "border", "highlight", "none"}
+	EID:AddNumberSetting("Visuals", "Indicator", "Indicator", 1, 5, {indexOf = indicators,
+		infoText = {"Changes how the item being described is marked."}})
+
+	MCM.AddSpace("EID", "Visuals")
+	MCM.AddText("EID", "Visuals", "Position")
+
+	-- Position / Textbox Size
+	EID:AddNumberSetting("Visuals", "XPosition", "Position X", 0, 500, {modifyBy = 5, infoText = "Default = 60"})
+	EID:AddNumberSetting("Visuals", "YPosition", "Position Y", 0, 500, {modifyBy = 5, infoText = "Default = 45"})
+	EID:AddNumberSetting("Visuals", "LineHeight", "Line Height", 1, 30, {infoText = "Default = 11 (varies per language)"})
+	EID:AddNumberSetting("Visuals", "TextboxWidth", "Textbox Width", 1, 500, {modifyBy = 5, infoText = "Default = 130 (varies per language)"})
+
+	MCM.AddSpace("EID", "Visuals")
+	MCM.AddText("EID", "Visuals", "Size")
 
 	-- Scale/Size
 	EID:AddNumberSetting("Visuals", "Size", "Text Size", 0.5, 2, {modifyBy = 0.25, onChangeFunc =
@@ -530,40 +588,32 @@ if MCMLoaded then
 	EID:AddHotkeySetting("Visuals",
 	"SizeHotkey", "Toggle Size (Keyboard)",
 	{"Press this key to change the text size.", "Hold this key to smoothly change the text size."}, false)
-	-- Local Mode Centered or not
-	EID:AddBooleanSetting("Visuals", "LocalModeCentered", "Local Mode Centered")
-	-- Transparency
-	local transparencies = {0.1, 0.175, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 0.8, 0.9, 1}
-	EID:AddScrollSetting("Visuals", "Transparency", "Transparency", transparencies)
-	-- Color blind
-	local colorBlindModes = {[0] = "Off", "Protanopia (red weak)", "Deuteranopia (green weak)", "Tritanopia (blue weak)"}
-	EID:AddNumberSetting("Visuals", "ColorblindMode", "Colorblind Mode", 0, #colorBlindModes, {displayTable = colorBlindModes, infoText = "Changes some colors to enable colorblind people to use some features of the mod easier."})
 
 	MCM.AddSpace("EID", "Visuals")
-
+	MCM.AddText("EID", "Visuals", "Icons")
 
 	-------Markup icon Sizes---------
 	local markupSizes = {"default", "big", "small"}
 	EID:AddNumberSetting("Visuals", "MarkupSize", "Markup Icon Size", 1, #markupSizes, {indexOf = markupSizes})
-
 	EID:AddBooleanSetting("Visuals", "StatChangeIcons", "Stat Change Icons")
 	EID:AddBooleanSetting("Visuals", "StatAndPickupBulletpoints", "Stat/Pickup Bulletpoint Icons")
 
 
 	MCM.AddSpace("EID", "Visuals")
+	MCM.AddText("EID", "Visuals", "Description elements")
 
 	-- Simple toggles of what is shown in the title and transformation lines of a description
-	EID:AddBooleanSetting("Visuals", "ShowItemName", "Display Item Name")
-	EID:AddBooleanSetting("Visuals", "ShowItemType", "Display Item Type")
-	EID:AddBooleanSetting("Visuals", "ShowItemIcon", "Display Item Icon")
-	EID:AddBooleanSetting("Visuals", "ShowItemDescription", "Display Item Description")
+	EID:AddBooleanSetting("Visuals", "ShowItemName", "Display Name")
+	EID:AddBooleanSetting("Visuals", "ShowItemType", "Display Type")
+	EID:AddBooleanSetting("Visuals", "ShowItemIcon", "Display Icon")
+	EID:AddBooleanSetting("Visuals", "ShowItemDescription", "Display Description")
+	EID:AddBooleanSetting("Visuals", "ShowQuality", "Display Quality", {repOnly = true})
 	EID:AddBooleanSetting("Visuals", "TransformationText", "Display Transformation Name")
 	EID:AddBooleanSetting("Visuals", "TransformationIcons", "Display Transformation Icon")
 	EID:AddBooleanSetting("Visuals", "TransformationProgress", "Display Transformation Progress")
-	EID:AddBooleanSetting("Visuals", "ShowQuality", "Display Quality Info", {repOnly = true})
-	EID:AddBooleanSetting("Visuals", "ShowItemPoolIcon", "Display Item Pool Icon", {repOnly = true, infoText = "Displays collectible's item pool icon that is expected for full reroll effects."})
-	EID:AddBooleanSetting("Visuals", "ShowItemPoolText", "Display Item Pool Name", {repOnly = true, infoText = "Displays collectible's item pool name that is expected for full reroll effects."})
-	EID:AddBooleanSetting("Visuals", "ShowObjectID", "Display Object ID")
+	EID:AddBooleanSetting("Visuals", "ShowItemPoolIcon", "Display Item Pool Icon", {repOnly = true, infoText = "Displays the icon of the expected item pool for full rerolls."})
+	EID:AddBooleanSetting("Visuals", "ShowItemPoolText", "Display Item Pool Name", {repOnly = true, infoText = "Displays the name of the expected item pool for full rerolls."})
+	EID:AddBooleanSetting("Visuals", "ShowObjectID", "Display ID")
 
 	-------Mod indicator for modded items---------
 	local modIndicatorDisplays = {"Both","Name only","Icon only", "None"}
@@ -574,47 +624,49 @@ if MCMLoaded then
 	---------------------------------------------------------------------------
 	------------------------------Item Reminder--------------------------------
 
-	EID:AddBooleanSetting("Reminder", "ItemReminderEnabled", "Item Reminder", {displayingTab = "",offText = "Disabled", onText = "Enabled", infoText = "Hold Map to show your active item's effect, recently picked up items, and much more"})
-	
-	local itemReminderModes = {"All", "NoOverview", "Classic"}
-
-	MCM.AddSpace("EID", "Reminder")
-	MCM.AddText("EID", "Reminder", "Options")
-	EID:AddNumberSetting("Reminder", "ItemReminderDisplayMode", "Display Mode",  1, #itemReminderModes, {indexOf = itemReminderModes, infoText = "Changes the display mode. All = overview + categories. NoOverview = categories. Classic = Overview only", onChangeFunc =
-	function(currentNum)
-		EID.MCM_OptionChanged = true
-		EID.ItemReminderSelectedItem = 0
-		EID.ItemReminderSelectedCategory = currentNum ~= 2 and 0 or 1 -- reset category
-		EID.Config["ItemReminderDisplayMode"] = itemReminderModes[currentNum]
-	end})
-	EID:AddBooleanSetting("Reminder", "ItemReminderDisableInputs", "Disable Player Inputs", { infoText = "Prevents the player from doing inputs when item reminder is visible"})
-	EID:AddBooleanSetting("Reminder", "ItemReminderShowHiddenInfo", "Show Hidden Information", { infoText = "Items like Error (404) or Rainbow Worm can have their current granted item revealed in the Item Reminder"})
-	EID:AddBooleanSetting("Reminder", "ItemReminderShowRNGCheats", "Show RNG Predictions", { infoText = "Some items can have their next random result predicted and shown in the Item Reminder"})
+	EID:AddBooleanSetting("Reminder", "ItemReminderEnabled", "Item Reminder", {displayingTab = "",offText = "Disabled", onText = "Enabled", infoText = "Allows you to see your active item's effect, recently picked up items, and much more from anywhere"})
 
 	MCM.AddSpace("EID", "Reminder")
 	MCM.AddText("EID", "Reminder", "Controls")
 	local actionToName = { [0] = "Move Left", "Move Right", "Move Up", "Move Down", "Shoot Left", "Shoot Right", "Shoot Up", "Shoot Down", "Bomb", "Item", "Pill/Card", "Drop", "Pause", "Map" }
 
 	EID:AddNumberSetting("Reminder", "BagOfCraftingToggleKey", "Hold to Show", 8, 13, {displayTable = actionToName,
-	infoText = {"Hold this key to display the Item Reminder description, show Flip/Spindown previews and control the Bag of Crafting recipe list"}})
+	infoText = {"Hold this key to display the Item Reminder."}})
 
 	EID:AddNumberSetting("Reminder", "ItemReminderNavigateLeftButton", "Navigate Left", 0, 13, {displayTable = actionToName,
-	infoText = {"Keybinding that is used to scroll thru the categories in the left direction"}})
+	infoText = {"Press this key to scroll left through the categories."}})
 
 	EID:AddNumberSetting("Reminder", "ItemReminderNavigateRightButton", "Navigate Right", 0, 13, {displayTable = actionToName,
-	infoText = {"Keybinding that is used to scroll thru the categories in the left direction"}})
+	infoText = {"Press this key to scroll right through the categories."}})
 
 	EID:AddNumberSetting("Reminder", "ItemReminderNavigateDownButton", "Navigate Down", 0, 13, {displayTable = actionToName,
-	infoText = {"Keybinding that is used to scroll thru the players in the left direction"}})
+	infoText = {"Press this key to scroll down the list of players/characters when applicable."}})
 
 	EID:AddNumberSetting("Reminder", "ItemReminderNavigateUpButton", "Navigate Up", 0, 13, {displayTable = actionToName,
-	infoText = {"Keybinding that is used to scroll thru the players in the right direction"}})
+	infoText = {"Press this key to scroll up the list of players/characters when applicable."}})
+
+	local itemReminderModes = {"All", "NoOverview", "Classic"}
+
+	MCM.AddSpace("EID", "Reminder")
+	MCM.AddText("EID", "Reminder", "Options")
+	EID:AddNumberSetting("Reminder", "ItemReminderDisplayMode", "Display Mode",  1, #itemReminderModes, {indexOf = itemReminderModes, infoText = "Changes the display mode. All = Overview + categories. NoOverview = Categories only. Classic = Overview only.", onChangeFunc =
+	function(currentNum)
+		EID.MCM_OptionChanged = true
+		EID:ResetItemReminderSelectedItems()
+		EID.ItemReminderSelectedCategory = currentNum ~= 2 and 0 or 1 -- reset category
+		EID.Config["ItemReminderDisplayMode"] = itemReminderModes[currentNum]
+	end})
+	EID:AddBooleanSetting("Reminder", "ItemReminderDisableInputs", "Disable Player Inputs", { infoText = "Prevents game inputs from being registered when the Item Reminder is visible."})
+	EID:AddBooleanSetting("Reminder", "ItemReminderShowHiddenInfo", "Show Hidden Information", { infoText = "Reveals the current effect of 'random' items like Error (404) or Rainbow Worm in the Item Reminder."})
+	EID:AddBooleanSetting("Reminder", "ItemReminderShowRNGCheats", "Show RNG Predictions", { infoText = "Displays the next random result of certain items in the Item Reminder."})
+
+
 
 	MCM.AddSpace("EID", "Reminder")
 	MCM.AddText("EID", "Reminder", "Item Descriptions")
 
-	EID:AddNumberSetting("Reminder", "ItemReminderMaxEntriesCount", "Max Entries", 0, 10, {infoText = {"Number of Descriptions possible to be displayed in the Item Reminder feature"}})
-	EID:AddNumberSetting("Reminder", "ItemReminderOverviewHideAfterRows", "Overview hide after X rows", 1, 20, {infoText = {"Reduces the length of the description in the overview categorie, if they are to long to display"}})
+	EID:AddNumberSetting("Reminder", "ItemReminderMaxEntriesCount", "Max Entries", 0, 10, {infoText = {"Number of descriptions that can be displayed at once in the Item Reminder."}})
+	EID:AddNumberSetting("Reminder", "ItemReminderOverviewHideAfterRows", "Overview crop after X rows", 1, 20, {infoText = {"Reduces the length of descriptions that are too long in the overview category."}})
 	
 
 	---------------------------------------------------------------------------
@@ -623,23 +675,16 @@ if MCMLoaded then
 	if EID.isRepentance then
 		-- Bag of Crafting Display
 		local bagDisplays = {"always","hold","never"}
-		EID:AddNumberSetting("Crafting", "DisplayBagOfCrafting", "Show Display", 1, #bagDisplays, { displayingTab = "Crafting", indexOf = bagDisplays, infoText = {"Always = Always show Results", "Hold = Show when holding up bag", "Never = Disable Bag of Crafting feature"}})
+		EID:AddNumberSetting("Crafting", "DisplayBagOfCrafting", "Show Display", 1, #bagDisplays, { displayingTab = "Crafting", indexOf = bagDisplays, infoText = {"Always = Always show results", "Hold = Show results when holding up bag", "Never = Disable the Bag of Crafting Helper."}})
 
 		-- Bag of Crafting Display Mode
 		local bagDisplayModes = {"Recipe List", "Learned Recipe List","Item Probability","Preview Only","Pickups Only"}
 		EID:AddNumberSetting("Crafting", "BagOfCraftingDisplayRecipesMode", "Display Mode", 1, #bagDisplayModes, { indexOf = bagDisplayModes,
-			infoText = {"Toggle showing list of recipes, recipes you've learned, what item pool/quality you might get, item preview when bag is full, or only floor pickups"}})
+			infoText = {"Toggles showing all recipes, recipes you've learned, what item pool/quality you might get, item previews when the bag is full, or floor pickups only."}})
 
 		-- Bag of Crafting Hide in Battle
 		EID:AddBooleanSetting("Crafting", "BagOfCraftingHideInBattle", "Hide in Battle", {onText = "Yes", offText = "No",
-			infoText = "Hides the Bag of Crafting info when in a fight"})
-		-- Bag of Crafting Show Controls
-		EID:AddBooleanSetting("Crafting", "BagOfCraftingShowControls", "Show Controls", {onText = "Yes", offText = "No",
-			infoText = "Show the text for the Hide/Preview and Recipe List hotkeys"})
-
-		-- Bag of Crafting 8 icons toggle
-		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayIcons", "Show Recipes/Best Bag as", {onText = "8 Icons", offText = "Groups",
-			infoText = "Choose if you want recipes (and the Best Quality bag in Item Probability Mode) shown as 8 icons, or as grouped ingredients"})
+			infoText = "Hides the Bag of Crafting Helper when enemies are present."})
 
 		MCM.AddSpace("EID", "Crafting")
 		MCM.AddText("EID", "Crafting", function() return "Recipe List Options" end)
@@ -647,7 +692,7 @@ if MCMLoaded then
 		-- Bag of Crafting item names
 		local bagSortTypes = {"Quality", "Name"}
 		EID:AddNumberSetting("Crafting", "BagOfCraftingSortOrder", "Sort Recipes by", 1, #bagSortTypes,
-			{ indexOf = bagSortTypes, infoText = "Sort the recipe list by quality + name, or just name", onChangeFunc =
+			{ indexOf = bagSortTypes, infoText = "Toggles whether recipes are sorted by quality + name, or just name.", onChangeFunc =
 		function(currentNum)
 			EID.MCM_OptionChanged = true
 			EID.BoC.SortNeeded = true
@@ -656,43 +701,53 @@ if MCMLoaded then
 		
 		-- Bag of Crafting item names
 		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayNames", "Show Item Names",
-			{ infoText = "If on, each recipe result takes two lines, one for the item name, one for the recipe"})
-		
+			{ infoText = "Toggles whether item names are shown above recipes."})
+
 		-- Bag of Crafting results per page
 		local bagSteps = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
-		EID:AddScrollSetting("Crafting", "BagOfCraftingResults", "Displayed Recipes", bagSteps,
-			{ infoText = "Page size for the preview of items currently craftable with Bag of Crafting"})
+		EID:AddScrollSetting("Crafting", "BagOfCraftingResults", "Recipes to Display", bagSteps,
+			{ infoText = "Numbers of craftable items from the list to show at once."})
+
+		-- Bag of Crafting 8 icons toggle
+		EID:AddBooleanSetting("Crafting", "BagOfCraftingDisplayIcons", "Show Recipes/Best Bag as", {onText = "8 Icons", offText = "Groups",
+		infoText = "Toggles whether recipes are shown as grouped ingredients or always 8 icons."})
+
+		MCM.AddSpace("EID", "Crafting")
+		MCM.AddText("EID", "Crafting", "Controls")
+
+		-- Bag of Crafting Show Controls
+		EID:AddBooleanSetting("Crafting", "BagOfCraftingShowControls", "Show Controls", {onText = "Yes", offText = "No",
+		infoText = "Shows all the Bag of Crafting Helper hotkeys."})
+		EID:AddHotkeySetting("Crafting",
+			"CraftingHideKey", "Toggle (Keyboard)",
+			"Press this key to toggle the crafting display, allowing you to check descriptions of items/pickups on the floor.", false)
+		EID:AddHotkeySetting("Crafting",
+			"CraftingHideButton", "Toggle (Controller)",
+			"Press this button to toggle the crafting display (Left Stick or Right Stick recommended; most other buttons will not work).", true)
+		EID:AddHotkeySetting("Crafting",
+			"CraftingResultKey", "Result Toggle (Keyboard)",
+			"Press this key to toggle the description of the item ready to be crafted in Recipe List/No Recipe Mode.", false)
+		EID:AddHotkeySetting("Crafting",
+			"CraftingResultButton", "Result Toggle (Controller)",
+			"Press this button to toggle the description of the item ready to be crafted. (Left Stick or Right Stick recommended; most other buttons will not work)", true)
+		EID:AddHotkeySetting("Crafting",
+			"CraftingSearchKey", "Search (Keyboard only)",
+			"Press this key to start searching the recipe list.", false)
+
+		MCM.AddSpace("EID", "Crafting")
+		MCM.AddText("EID", "Crafting", "Advanced")
 
 		-- Bag of Crafting thorough recipe checks
 		local combSteps = {8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18}
 		EID:AddScrollSetting("Crafting", "BagOfCraftingCombinationMax", "Thorough Calculations", combSteps,
-			{ infoText = {"Get every recipe for the X best components; setting this high slows down recipe checking", "(12 = 500 combinations, 14 = 3,000, 16 = 13,000)"}})
-
+			{ infoText = {"Gets every recipe for the X best components; higher values mean slower calculations.", "(12 = 500 combinations, 14 = 3,000, 16 = 13,000)"}})
 		-- Bag of Crafting random recipe checks
 		local calcSteps = {200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200}
 		EID:AddScrollSetting("Crafting", "BagOfCraftingRandomResults", "Random Calculations", calcSteps,
-			{ infoText = "An additional X number of randomly chosen recipes will be checked, changing each pickup spawn/despawn or refresh"})
+			{ infoText = "Checks an additional X randomly chosen recipes on each pickup spawn/despawn/refresh."})
 
 		MCM.AddSpace("EID", "Crafting")
 
-		EID:AddHotkeySetting("Crafting",
-			"CraftingHideKey", "Toggle (Keyboard)",
-			"Press this key to toggle the crafting display, allowing you to check descriptions of items/pickups on the floor", false)
-		EID:AddHotkeySetting("Crafting",
-			"CraftingHideButton", "Toggle (Controller)",
-			"Press this button to toggle the crafting display (Left Stick or Right Stick recommended; most other buttons will not work)", true)
-
-		EID:AddHotkeySetting("Crafting",
-			"CraftingResultKey", "Result Toggle (Keyboard)",
-			"Press this key to toggle the description of the item ready to be crafted in Recipe List/No Recipe Mode", false)
-		EID:AddHotkeySetting("Crafting",
-			"CraftingResultButton", "Result Toggle (Controller)",
-			"Press this button to toggle the description of the item ready to be crafted (Left Stick or Right Stick recommended; most other buttons will not work)", true)
-		EID:AddHotkeySetting("Crafting",
-			"CraftingSearchKey", "Search Toggle (Keyboard only)",
-			"Press this key to toggle the search feature", false)
-
-		MCM.AddSpace("EID", "Crafting")
 		--------Clear bag---------
 		MCM.AddSetting(
 			"EID",
@@ -700,11 +755,11 @@ if MCMLoaded then
 			{
 				Type = ModConfigMenu.OptionType.BOOLEAN,
 				CurrentSetting = function() return true end,
-				Display = function() return "<---- Clear Bag Content ---->" end,
+				Display = function() return "! --- Clear Bag Contents --- !" end,
 				OnChange = function()
 					EID.BoC.BagItems = {}
 				end,
-				Info = {"Press this to clear all currently detected items on the bag"}
+				Info = {"Press this to clear all items currently detected in the bag."}
 			}
 		)
 		--------Clear Floor---------
@@ -714,13 +769,13 @@ if MCMLoaded then
 			{
 				Type = ModConfigMenu.OptionType.BOOLEAN,
 				CurrentSetting = function() return true end,
-				Display = function() return "<---- Clear Floor item list ---->" end,
+				Display = function() return "! --- Clear Floor item list --- !" end,
 				OnChange = function()
 					EID.BoC.RoomQueries = {}
 					EID.BoC.FloorQuery = {}
 					EID.BoC.CurrentPickupCount = -1
 				end,
-				Info = {"Press this to clear all currently detected items on the floor"}
+				Info = {"Press this to clear all items currently detected on the floor."}
 			}
 		)
 	end
@@ -730,11 +785,14 @@ if MCMLoaded then
 	if  EID.isRepentance then
 		if not REPENTOGON then
 			-- show disclaimer, but also show available features
-			MCM.AddText("EID", "Repentogon", "You need to install REPENTOGON to use the following features:")
+			MCM.AddText("EID", "Repentogon",  function() EID.MCMCompat_isDisplayingEIDTab = ""; return "You need to install REPENTOGON" end)
+			MCM.AddText("EID", "Repentogon", "to use the following features:")
 			MCM.AddSpace("EID", "Repentogon")
 		end
 		
-		EID:AddBooleanSetting("Repentogon", "ItemCollectionIndicator", "Highlight uncollected items",{ infoText = "Highlight items, if they need to be collected for the collection page"})
+		MCM.AddText("EID", "Repentogon", "Uncollected Items")
+		EID:AddBooleanSetting("Repentogon", "HideUncollectedItemDescriptions", "Hide uncollected items", {displayingTab = "", infoText = "Hide descriptions of items that are not yet on the collection page."})
+		EID:AddBooleanSetting("Repentogon", "ItemCollectionIndicator", "Highlight uncollected items", { infoText = "Highlights items that are not yet on the collection page."})
 		-- Needs collection Color
 		MCM.AddSetting(
 			"EID",
@@ -748,8 +806,7 @@ if MCMLoaded then
 				Maximum = 1000,
 				Display = function()
 					if EID.Config["ItemCollectionColor"] == nil then EID.Config["ItemCollectionColor"] = EID.DefaultConfig["ItemCollectionColor"] end
-					EID.MCMCompat_isDisplayingEIDTab = "Visuals";
-					return "Collection Page Highlight color: " .. string.gsub(EID.Config["ItemCollectionColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemCollectionColor"]).."/"..#colorNameArray..")"
+					return "Highlight color: " .. string.gsub(EID.Config["ItemCollectionColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemCollectionColor"]).."/"..#colorNameArray..")"
 				end,
 				OnChange = function(currentNum)
 					EID.MCM_OptionChanged = true
@@ -757,15 +814,16 @@ if MCMLoaded then
 					if currentNum > #colorNameArray then currentNum = 1 end
 					EID.Config["ItemCollectionColor"] = colorNameArray[currentNum]
 				end,
-				Info = {"Color in which item names are colored to highlight that this item needs to be collected for the collection page"}
+				Info = {"Highlight color for the names of items that need to be picked up for the collection page."}
 			}
 		)
+		MCM.AddSpace("EID", "Repentogon")
 		EID:AddBooleanSetting("Repentogon", "RGON_ShowOnCollectionPage", "Show descriptions on collection page", { infoText = "Displays item effects when navigating the collection page in the main menu."})
 		
 		-- Achievement tracking section
 		MCM.AddSpace("EID", "Repentogon")
 		MCM.AddText("EID", "Repentogon", "Achievement tracking")
-		EID:AddBooleanSetting("Repentogon", "RGON_DonationMachineDescriptions", "Donation machine progress", { infoText = "Displays the number of coins required to gain the next achievement from donation machines"})
+		EID:AddBooleanSetting("Repentogon", "RGON_DonationMachineDescriptions", "Donation machine progress", { infoText = "Displays the number of coins until the next donation machine achievement."})
 	end
 	---------------------------------------------------------------------------
 	----------------------------Savegame Config--------------------------------
@@ -796,7 +854,7 @@ if MCMLoaded then
 						EID.MCM_OptionChanged = true
 						EID.Config["SaveGameNumber"] = currentNum
 					end,
-					Info = {"Save game you are currently on. This info needs to be set to get the correct lookup tables"}
+					Info = {"Save game you are currently on. This info needs to be set to get the correct lookup tables."}
 				}
 			)
 			MCM.AddText("EID", "Save Game", function()
@@ -808,7 +866,8 @@ if MCMLoaded then
 				return "Collection page items missing: "..count end)
 			MCM.AddSpace("EID", "Save Game")
 
-			EID:AddBooleanSetting("Repentogon", "ItemCollectionIndicator", "Highlight uncollected items")
+			EID:AddBooleanSetting("Save Game", "HideUncollectedItemDescriptions", "Hide uncollected items", { infoText = "Hide descriptions of items that are not yet on the collection page."})
+			EID:AddBooleanSetting("Save Game", "ItemCollectionIndicator", "Highlight uncollected items")
 			-- Needs collection Color
 			MCM.AddSetting(
 				"EID",
@@ -822,7 +881,6 @@ if MCMLoaded then
 					Maximum = 1000,
 					Display = function()
 						if EID.Config["ItemCollectionColor"] == nil then EID.Config["ItemCollectionColor"] = EID.DefaultConfig["ItemCollectionColor"] end
-						EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 						return "Collection Page Highlight color: " .. string.gsub(EID.Config["ItemCollectionColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["ItemCollectionColor"]).."/"..#colorNameArray..")"
 					end,
 					OnChange = function(currentNum)
@@ -831,7 +889,7 @@ if MCMLoaded then
 						if currentNum > #colorNameArray then currentNum = 1 end
 						EID.Config["ItemCollectionColor"] = colorNameArray[currentNum]
 					end,
-					Info = {"Color in which item names are colored to highlight that this item needs to be collected for the collection page"}
+					Info = {"Highlight color for the names of items that need to be picked up for the collection page."}
 				}
 			)
 		else
@@ -839,14 +897,14 @@ if MCMLoaded then
 			MCM.AddSpace("EID", "Save Game")
 			MCM.AddText("EID", "Save Game", function() EID.MCMCompat_isDisplayingEIDTab = ""; return "To enable savegame related features," end)
 			MCM.AddText("EID", "Save Game", "please run \"scripts\\savegame_reader.exe\"")
-			MCM.AddText("EID", "Save Game", "found in the EID mod folder")
+			MCM.AddText("EID", "Save Game", "found in the EID mod folder.")
 		end
 	end  -- if not repentogon
 
 
 	---------------------------------------------------------------------------
 	-----------------------------Mouse Controls--------------------------------
-	MCM.AddText("EID", "Mouse", "! THIS FEATURE IS IN EARLY DEVELOPMENT !")
+	MCM.AddText("EID", "Mouse",  function() EID.MCMCompat_isDisplayingEIDTab = "Mouse"; return "! THIS FEATURE IS IN EARLY DEVELOPMENT !" end )
 	MCM.AddSpace("EID", "Mouse")
 	MCM.AddText("EID", "Mouse", "MCM -> General -> Hud Offset")
 	MCM.AddText("EID", "Mouse", "to adjust Hud Offset")
@@ -861,7 +919,6 @@ if MCMLoaded then
 				return EID.Config["EnableMouseControls"]
 			end,
 			Display = function()
-				EID.MCMCompat_isDisplayingEIDTab = "Mouse";
 				local onOff = "False"
 				if EID.Config["EnableMouseControls"] then
 					onOff = "True"
@@ -871,7 +928,7 @@ if MCMLoaded then
 			OnChange = function(currentBool)
 				EID.Config["EnableMouseControls"] = currentBool
 			end,
-			Info = {"If enabled, allows to hover over certain HUD elements to get descriptions"}
+			Info = {"Enabling this option allows hovering over certain HUD elements to get descriptions."}
 		}
 	)
 	-- Enable mouse controls
@@ -911,8 +968,8 @@ if MCMLoaded then
 			Minimum = 0,
 			Maximum = 1000,
 			Display = function()
+				EID.MCMCompat_isDisplayingEIDTab = "Colors";
 				if EID.Config["TextColor"] == nil then EID.Config["TextColor"] = EID.DefaultConfig["TextColor"] end
-				EID.MCMCompat_isDisplayingEIDTab = "Visuals";
 				return "Descriptions: " .. string.gsub(EID.Config["TextColor"], "Color", "").. " ("..AnIndexOf(colorNameArray, EID.Config["TextColor"]).."/"..#colorNameArray..")"
 			end,
 			OnChange = function(currentNum)
@@ -921,7 +978,7 @@ if MCMLoaded then
 				if currentNum > #colorNameArray then currentNum = 1 end
 				EID.Config["TextColor"] = colorNameArray[currentNum]
 			end,
-			Info = {"Changes the color of normal texts."}
+			Info = {"Changes the color of regular text."}
 		}
 	)
 	-- Name Color
@@ -945,7 +1002,7 @@ if MCMLoaded then
 				if currentNum > #colorNameArray then currentNum = 1 end
 				EID.Config["ItemNameColor"] = colorNameArray[currentNum]
 			end,
-			Info = {"Changes the color of name texts."}
+			Info = {"Changes the color of names."}
 		}
 	)
 	-- Transform Color
@@ -969,7 +1026,7 @@ if MCMLoaded then
 				if currentNum > #colorNameArray then currentNum = 1 end
 				EID.Config["TransformationColor"] = colorNameArray[currentNum]
 			end,
-			Info = {"Changes the color of transformation texts."}
+			Info = {"Changes the color of transformations."}
 		}
 	)
 	-- Error Color
@@ -993,7 +1050,7 @@ if MCMLoaded then
 				if currentNum > #colorNameArray then currentNum = 1 end
 				EID.Config["ErrorColor"] = colorNameArray[currentNum]
 			end,
-			Info = {"Changes the color of error messages like Unknown pills"}
+			Info = {"Changes the color of error messages like 'Unidentified pill'."}
 		}
 	)
 	-- Mod indicator Color
@@ -1017,7 +1074,7 @@ if MCMLoaded then
 				if currentNum > #colorNameArray then currentNum = 1 end
 				EID.Config["ModIndicatorTextColor"] = colorNameArray[currentNum]
 			end,
-			Info = {"Changes the color of mod indicator texts (as long as they are enabled)."}
+			Info = {"Changes the color of mod indicator text (if enabled)."}
 		}
 	)
 	-- Last Pool indicator Color (REPENTANCE ONLY)
@@ -1042,10 +1099,15 @@ if MCMLoaded then
 					if currentNum > #colorNameArray then currentNum = 1 end
 					EID.Config["ItemPoolTextColor"] = colorNameArray[currentNum]
 				end,
-				Info = {"Changes the color of last item pool indicator texts (as long as they are enabled)."}
+				Info = {"Changes the color of the last item pool indicator text (if enabled)."}
 			}
 		)
 	end
+
+	MCM.AddSpace("EID", "Colors")
+	-- Color blind
+	local colorBlindModes = {[0] = "Off", "Protanopia (red weak)", "Deuteranopia (green weak)", "Tritanopia (blue weak)"}
+	EID:AddNumberSetting("Colors", "ColorblindMode", "Colorblind Mode", 0, #colorBlindModes, {displayTable = colorBlindModes, infoText = "Changes some colors to make the mod more colorblind-friendly."})
 
 	if MCM.i18n == "Chinese" then
 		require("features.eid_mcm_cn")

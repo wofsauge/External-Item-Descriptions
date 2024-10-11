@@ -884,7 +884,7 @@ local repCards={
 	[64] = {"64", "VIII - Spravedlnost?", "Vytvoří 2-4 zlaté truhly"}, -- VIII - Justice?
 	[65] = {"65", "IX - Poustevník?", "Promění pickupy a předměty v místnosti na mince#{{Shop}} Hodnoty mincí se rovnají těm hodnotám jako těm v obchodu"}, -- IX - The Hermit?
 	[66] = {"66", "X - Kolo štěstí?", "Náhodný efekt kostkové místnosti"}, -- X - Wheel of Fortune?
-	[67] = {"67", "XI - Síla?", "{{Weakness}} Nepřátelé v aktuální místnosti jsou oslabeni, zpomaleni a utrpí dvojnásobné poškození#Trvá 1 minutu"}, -- XI - Strength?
+	[67] = {"67", "XI - Síla?", "{{Weakness}} Nepřátelé v aktuální místnosti jsou oslabeni, zpomaleni a utrpí dvojnásobné poškození#Trvá 30 sekund"}, -- XI - Strength?
 	[68] = {"68", "XII - Viselec?", "{{Player14}} Promění hráče na Keepera na 30 sekund#Udělí ti trojitý výstřel a zpomalení#Zabití nepřátelé vytváří náhodné mince"}, -- XII - The Hanged Man?
 	[69] = {"69", "XIII - Smrt?", "Vyvolá efekt {{Collectible545}}Knihy Mrtvých#Za každého zabitého nepřítele v místnosti vytvoří kostěné entity"}, -- XIII - Death?
 	[70] = {"70", "XIV - Umírněnost?", "Sníš 5 náhodných pilulek"}, -- XIV - Temperance?
@@ -946,7 +946,8 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[64] = "Vytvoří 4-14 zlatých truhel", -- VIII - Justice?
     [65] = "Vytvoří 1 další minci", -- IX - The Hermit?
 	[66] = "Vyvolá další efekt místnosti s kostkou", -- X - Wheel of Fortune?
-	[68] = "Zdvojnásobí dobu účinku", -- XII - The Hanged Man?
+	[67] = {30, 60}, -- XI - Strength?
+	[68] = {30, 60}, -- XII - The Hanged Man?
 	[70] = "{{Pill}} Sníš 10 náhodných pilulek", -- XIV - Temperance?
 	[72] = "Vytvoří 14 kamenných shluků", -- XVI - The Tower?
 	[73] = "Odebere 2 předměty a vytvoří 4", -- XVII - The Stars?
@@ -1032,9 +1033,6 @@ EID.descriptions[languageCode].horsepills={
 ---------- Popisy Glitchnutých předmětů ----------
 
 EID.descriptions[languageCode].GlitchedItemText = {
-	-- This will be appended to words to pluralize them, make it "" to not pluralize
-	pluralize = "s",
-
 	-- Item Config info
 	AddBlackHearts = "{{BlackHeart}} {1} Černé Srdce",
 	AddBombs = "{{Bomb}} {1} Bomba",

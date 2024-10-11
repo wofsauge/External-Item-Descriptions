@@ -171,6 +171,8 @@ EID.InlineIcons = {
 	["Warning"] = {"Warning", 0, 10, 9, 3},
 	["Blank"] = {"Blank", 0, 0, 0},
 
+	["ArrowUpDown"] = {"ArrowUpDown", 0, 12, 9, -1},
+
 	["ArrowGrayUp"] = {"ArrowGray", 0, 10, 9, 1},
 	["ArrowGrayRight"] = {"ArrowGray", 1, 10, 9, 1},
 	["ArrowGrayDown"] = {"ArrowGray", 2, 10, 9, 1},
@@ -220,6 +222,9 @@ EID.InlineIcons = {
 	["HolyMantleSmall"] = {"hearts", 19, 9, 9, 1},
 	["RottenBoneHeart"] = {"hearts", 20, 10, 9, 1, 1},
 	["UnknownHeart"] = {"hearts", 21, 10, 9, 1, 1},
+	["HealingRed"] = {"hearts", 22, 11, 9, 1, 1},
+	["HealingCoin"] = {"hearts", 23, 11, 9, 1, 1},
+	["HealingBone"] = {"hearts", 24, 11, 9, 1, 1},
 
 	-- Pickups
 	["Key"] = {"pickups", 0, 8, 9, 0},
@@ -430,6 +435,15 @@ EID.InlineIcons = {
 	["PoopSpell10"] = {"PoopSpells", 10, 16, 16, -2, -2}, --Bomb
 	["PoopSpell11"] = {"PoopSpells", 11, 16, 16, -2, -2}, --Explosive Diarrhea
 
+	--Poop
+	["Poop"] = {"Poop", 0, 11, 10, 0, 1},
+	["GoldenPoop"] = {"Poop", 1, 11, 10, 0, 1},
+	["HolyPoop"] = {"Poop", 2, 11, 10, 0, 1},
+	["RedPoop"] = {"Poop", 3, 11, 10, 0, 1},
+	["CornyPoop"] = {"Poop", 4, 11, 10, 0, 1},
+	["BlackPoop"] = {"Poop", 5, 11, 10, 0, 1},
+	["RainbowPoop"] = {"Poop", 6, 11, 10, 0, 1},
+
 	-- Use the Stat Icon name without REP or AB to display the stat icon for the dlc the user is using right now. Example: {{Damage}}
 	-- Stats (Repentance)
 	["DamageREP"] = {"Stats", 0, 12, 16, 0, -1},
@@ -616,6 +630,11 @@ EID.InlineIcons = {
 	["ItemPoolWoodenChest"] = {"ItemPools", 29, 11, 11, 0, 0},
 	["ItemPoolRottenBeggar"] = {"ItemPools", 30, 11, 11, 0, 0},
 
+	-- Wisps
+	["InnerWisp"] = {"Wisps", 0, 10, 9, 0, 2},
+	["MiddleWisp"] = {"Wisps", 1, 10, 9, 0, 2},
+	["OuterWisp"] = {"Wisps", 2, 10, 9, 0, 2},
+
 	-- Misc
 	["HardMode"] = {"Misc", 0, 16, 12, 0, -2},
 	["GreedMode"] = {"Misc", 1, 16, 12, 0, -2},
@@ -634,6 +653,8 @@ EID.InlineIcons = {
 	["DailyRun"] = {"Misc", 14, 15, 12, 0, -1},
 	["DailyRunSmall"] = {"Misc", 15, 12, 12, 0, 1},
 	["MagnifyingLens"] = {"Misc", 16, 13, 13, 0, -1},
+	["Padlock"] = {"Misc", 17, 8, 10, 1, 0},
+	["QuestionMark"] = {"CurseOfBlind", 0, 14, 14, 6, 7, EID.IconSprite},
 }
 -- General Stats (Adjust automatically according to the current DLC)
 
@@ -745,9 +766,18 @@ EID.InlineColors = {
 	["BlinkBlue"] = function(_)
 		return SwagColors({KColor(0.341, 0.529, 0.906, 1), KColor(0.592, 0.717, 0.937, 1)})
 	end,
+	-- Subtle glow between green from Luck Clover and from the Quality 1 shield
+	["BlinkGreen"] = function(_)
+		local c = EID.InlineColors
+		return SwagColors({KColor(0.404, 0.663, 0.306, 1), KColor(0.443, 0.765, 0.247, 1)})
+	end,
 	-- Shiny purple color effect
 	["ColorShinyPurple"] = function(_)
 		return SwagColors({KColor(0.812, 0.627, 1, 1), KColor(0.62, 0.251, 1, 1)}, 40)
+	end,
+	-- Blink between the two shades of tan on Birthright
+	["BlinkBirthright"] = function(_)
+		return SwagColors({KColor(0.831, 0.725, 0.604, 1), KColor(0.671, 0.557, 0.443, 1)})
 	end,
 	-- Text will blink frequently
 	["ColorBlink"] = function(color)
@@ -952,6 +982,18 @@ if EID.isRepentance then
 	EID.CarBatteryNoSynergy[709] = true; EID.CarBatteryNoSynergy[710] = true; EID.CarBatteryNoSynergy[711] = true; EID.CarBatteryNoSynergy[714] = true;
 	EID.CarBatteryNoSynergy[715] = true; EID.CarBatteryNoSynergy[728] = true; EID.CarBatteryNoSynergy[729] = true;
 end
+-- Items that should show their Car Battery synergy while looking at a Car Battery pedestal
+-- Void, Crooked Penny, Metronome, Moving Box, Broken Shovel
+EID.CarBatteryPedestalWhitelist = { [477] = true, [485] = true, [488] = true, [523] = true, [550] = true }
+if EID.isRepentance then
+	EID.CarBatteryPedestalWhitelist[523] = nil -- Moving Box
+	EID.CarBatteryPedestalWhitelist[386] = true -- D12
+	EID.CarBatteryPedestalWhitelist[611] = true -- Larynx
+	EID.CarBatteryPedestalWhitelist[635] = true -- Stitches
+	EID.CarBatteryPedestalWhitelist[685] = true -- Jar of Wisps
+	EID.CarBatteryPedestalWhitelist[720] = true -- Everything Jar
+	EID.CarBatteryPedestalWhitelist[722] = true -- Anima Sola
+end
 
 -- Familiars that have no effect from BFFS!
 EID.BFFSNoSynergy = { [10] = true, [11] = true, [81] = true, [178] = true, [238] = true, [239] = true, [243] = true, [265] = true, [268] = true, [269] = true, [276] = true, [278] = true, [280] = true, [281] = true, [387] = true, [404] = true, [431] = true, [433] = true, [436] = true, [467] = true, [469] = true, [472] = true, [492] = true, [504] = true, [516] = true, [528] = true, [542] = true, [543] = true }
@@ -967,23 +1009,65 @@ if EID.isRepentance then
 	EID.BFFSNoSynergy[651] = true -- Star of Bethlehem
 	EID.BFFSNoSynergy[697] = true -- Vanishing Twin
 end
+-- Items that should show their BFFS / Hive Mind synergy while looking at a BFFS / Hive Mind pedestal
+-- Charged Baby, Key Bum, Spider Mod, Succubus, Lil Spewer, Mystery Egg
+EID.BFFSPedestalWhitelist = { [372] = true, [388] = true, [403] = true, [417] = true, [537] = true, [539] = true }
+if EID.isRepentance then
+	EID.BFFSPedestalWhitelist[276] = true -- Isaac's Heart
+	EID.BFFSPedestalWhitelist[569] = true -- Blood Oath
+	EID.BFFSPedestalWhitelist[584] = true -- Book of Virtues
+	EID.BFFSPedestalWhitelist[612] = true -- Lost Soul
+	EID.BFFSPedestalWhitelist[635] = true -- Stitches
+	EID.BFFSPedestalWhitelist[685] = true -- Jar of Wisps
+	EID.BFFSPedestalWhitelist[702] = true -- Vengeful Spirit
+	EID.BFFSPedestalWhitelist[706] = true -- Abyss
+	EID.BFFSPedestalWhitelist[712] = true -- Lemegeton
+	EID.BFFSPedestalWhitelist[713] = true -- Sumptorium
+end
 
 -- Familiars that count for Hive Mind in Repentance (although it could give them No Effect if it just increases size)
 EID.HiveMindFamiliars = { [10] = true, [57] = true, [128] = true, [170] = true, [264] = true, [272] = true, [274] = true, [279] = true, [320] = true, [364] = true, [365] = true, [403] = true, [426] = true, [430] = true, [504] = true, [511] = true, [575] = true, [581] = true, [629] = true, [649] = true, [650] = true, [706] = true, }
+-- Familiars that count for Hive Mind but should be ignored by BFFS (not used yet, maybe used by modded item conditionals)
+EID.BFFSIgnore = {}
+
 
 -- Tainted character's respective normal version ID, for conditionals that apply to both versions of the character
 -- To help with other character pairs, Esau = Jacob, Dead Tainted Lazarus = Tainted Lazarus, Tainted Soul = Tainted Forgotten
 EID.TaintedToRegularID = { [20] = 19, [21] = 0, [22] = 1, [23] = 2, [24] = 3, [25] = 4, [26] = 5, [27] = 6, [28] = 7, [29] = 8, [30] = 9, [31] = 10, [32] = 13, 
 [33] = 14, [34] = 15, [35] = 16, [36] = 18, [37] = 19, [38] = 29, [39] = 37, [40] = 35 }
--- Player IDs of Tainted characters, might be useful for something
+-- Player IDs of Tainted characters
 EID.TaintedIDs = {}; for i = 21, 40 do EID.TaintedIDs[i] = true end
 
 -- Character IDs that are Soul/Black Hearts only: ???, The Lost, The Soul
 EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
+-- More separated table for more exact data
+EID.SpecialHeartPlayers = {}
+EID.SpecialHeartPlayers["Soul"] = { 4, 17 }
+EID.SpecialHeartPlayers["Black"] = {}
+EID.SpecialHeartPlayers["Coin"] = { 14 }
+EID.SpecialHeartPlayers["Bone"] = { 16 }
+EID.SpecialHeartPlayers["None"] = { 10 }
+-- Lookup table for the type of health each player has
+EID.CharacterToHeartType = {}; for i = 0, 17 do EID.CharacterToHeartType[i] = "Red" end
+EID.CharacterToHeartType[4] = "Soul"; EID.CharacterToHeartType[10] = "None"; EID.CharacterToHeartType[14] = "Coin"; EID.CharacterToHeartType[16] = "Bone"; EID.CharacterToHeartType[17] = "Soul"
+
 if EID.isRepentance then
 	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
 	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
+	EID.SpecialHeartPlayers["Soul"] = { 4, 17, 25, 35, 36, 40 }
+	EID.SpecialHeartPlayers["Black"] = { 12, 24 }
+	EID.SpecialHeartPlayers["Coin"] = { 14, 33 }
+	EID.SpecialHeartPlayers["None"] = { 10, 31 }
+	
+	for i = 18, 40 do EID.CharacterToHeartType[i] = "Red" end
+	EID.CharacterToHeartType[12] = "Black"; EID.CharacterToHeartType[24] = "Black"; EID.CharacterToHeartType[25] = "Soul"; EID.CharacterToHeartType[31] = "None"; EID.CharacterToHeartType[33] = "Coin"; EID.CharacterToHeartType[35] = "Soul"; EID.CharacterToHeartType[36] = "Soul"; EID.CharacterToHeartType[40] = "Soul"; 
 end
+
+EID.HealthTypesWithoutHealing = {}
+EID.HealthTypesWithoutHealing["Soul"] = true
+EID.HealthTypesWithoutHealing["Black"] = true
+EID.HealthTypesWithoutHealing["None"] = true
+
 -- Character IDs that have a pocket active (0 = normal, 1 = timed, 2 = special)
 EID.PocketActivePlayerIDs = { [22] = 0, [23] = 2, [24] = 1, [25] = 2, [26] = 1, [29] = 0, [34] = 0, [36] = 0, [37] = 1, [38] = 0, [39] = 1 }
 
@@ -997,10 +1081,35 @@ EID.blackFeatherItems = {[215]=true,[216]=true,[230]=true,[260]=true,[262]=true,
 if EID.isRepentance then EID.blackFeatherItems[654] = true end
 EID.blackFeatherTrinkets = {[17]=true,[22]=true}
 
+-- Luck formulas
+EID.LuckFormulas = {}
+EID.LuckFormulas["5.100.219"] = function(luck) return math.min(100 / (10 - math.floor(luck*0.3)), 50) end -- Old Bandage: Base 10%, 50% at 26.67 Luck
+if EID.isRepentance then
+	EID.LuckFormulas["5.100.219"] = function(luck) return (20 + luck) end -- Old Bandage: Base 20%, 100% at 80 Luck
+	EID.LuckFormulas["5.100.576"] = function(luck) return math.min(luck*0.5 + 6.25, 10) end -- Dirty Mind: Base 6.25%, 10% at 7.5 Luck
+end
+
+-- Number of Health Ups you get from a Health Up item
+-- (Pill ID is off by 1 because of EID one-indexed pill effects)
+EID.HealthUpData = {["5.70.7"] = -1, ["5.70.8"] = 1, ["5.70.2055"] = -2, ["5.70.2056"] = 2, ["5.70.10"] = 1, ["5.100.12"] = 1, ["5.100.15"] = 1, ["5.100.16"] = 2, ["5.100.22"] = 1, ["5.100.23"] = 1, ["5.100.24"] = 1, ["5.100.25"] = 1, ["5.100.26"] = 1, ["5.100.92"] = 1, ["5.100.101"] = 1, ["5.100.119"] = 1, ["5.100.121"] = 1, ["5.100.129"] = 2, ["5.100.138"] = 1, ["5.100.176"] = 1, ["5.100.182"] = 1, ["5.100.184"] = 1, ["5.100.189"] = 1, ["5.100.193"] = 1, ["5.100.218"] = 1, ["5.100.219"] = 1, ["5.100.226"] = 1, ["5.100.253"] = 1, ["5.100.307"] = 1, ["5.100.312"] = 1, ["5.100.314"] = 1, ["5.100.334"] = 3, ["5.100.342"] = 1, ["5.100.346"] = 1, ["5.100.354"] = 1, ["5.100.456"] = 1, ["5.300.12"] = 1 }
+-- Items with a healing effect that can have the healing line removed for non-red HP characters
+EID.HealingItemData = {["5.100.45"] = true, ["5.100.62"] = true, ["5.100.75"] = true, ["5.100.93"] = true, ["5.100.217"] = true, ["5.100.223"] = true, ["5.100.270"] = true, ["5.100.428"] = true, ["5.350.8"] = true, ["5.350.46"] = true, ["5.350.53"] = true, ["5.350.87"] = true, ["5.350.119"] = true, ["5.300.20"] = true, ["5.300.26"] = true, ["5.70.6"] = true, ["5.70.37"] = true }
+if EID.isRepentance then
+	EID.HealthUpData["5.100.573"] = 1; EID.HealthUpData["5.100.591"] = 1; EID.HealthUpData["5.100.594"] = 2; EID.HealthUpData["5.300.59"] = 2
+	EID.HealthUpData["5.100.614"] = 1; EID.HealthUpData["5.100.664"] = 1; EID.HealthUpData["5.100.669"] = 1; EID.HealthUpData["5.100.707"] = 1
+	EID.HealingItemData["5.100.621"] = true; EID.HealingItemData["5.70.46"] = true;
+
+	EID.BloodUpData = {["5.70.10"] = 2, ["5.350.156"] = 2, ["5.300.12"] = 2, ["5.300.59"] = 4, [12] = 12, [15] = 12, [16] = 12, [22] = 4, [23] = 4, [24] = 4, [25] = 4, [26] = 4, [75] = 4, [92] = 4, [101] = 4, [119] = 10, [121] = 2, [129] = 4, [138] = 4, [176] = 4, [182] = 12, [184] = 4, [189] = 12, [193] = 4, [217] = 2, [218] = 4, [226] = 4, [253] = 4, [307] = 4, [312] = 4, [314] = 4, [334] = 6, [342] = 4, [346] = 4, [354] = 4, [428] = 12, [456] = 4, [535] = 2, [573] = 12, [591] = 4, [594] = 1, [614] = 10, [621] = 12, [664] = 12, [669] = 12, [707] = 4 }
+end
+
 
 ---------------- BAG OF CRAFTING DATA ------------------
 
 if not EID.isRepentance then return end
+
+EID.SalvageTrinkets = { [34] = "5.10", [36] = "5.30", [41] = "5.40", [44] = "5.70", [45] = "5.300" }
+EID.SalvageRoomTypes = { [3] = "5.10.6", [19] = "5.10.6", [4] = "5.10.4", [20] = "5.10.4", [5] = "5.10.11", [22] = "5.10.11", [9] = "5.300.78", [12] = "5.10.12", [21] = "5.10.12", [26] = "5.301" }
+EID.PickupStartsWithVowel = { ["5.10.4"] = true } -- this is just for Eternal Heart in salvage descriptions right now...
 
 EID.BoC = {}
 
