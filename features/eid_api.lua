@@ -908,7 +908,7 @@ end
 function EID:filterIconMarkup(text, renderBulletPointIcon)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
-		local textposition = string.find(text, word)
+		local textposition = string.find(text, word) or 1
 
 		local callback = EID._NextIconModifier
 		EID._NextIconModifier = nil
