@@ -447,7 +447,7 @@ local syringeItems = {[0] = 13, 14, 240, 70, 143, 345, 493, 496}
 local momItems = {[0] = 29, 30, 31, 55, 110, 114, 199, 200, 217, 228, 355, 508, 732}
 
 function EID:TemporaryEffectPrediction(player, rng, itemTable)
-	local tempItem = itemTable[rng % #itemTable]
+	local tempItem = itemTable[rng % (1 + #itemTable)] -- # operator doesnt account for values assigned to keys (e.g. "[0]=" entries)
 	if player:GetEffects():HasCollectibleEffect(tempItem) then return tempItem else return false end
 end
 

@@ -345,7 +345,7 @@ EID.ItemReminderDescriptionModifier = {
 	},
 	["5.350.32"] = { -- Liberty Cap
 		isHiddenInfo = true,
-		modifierFunction = function(descObj, _)
+		modifierFunction = function(descObj, player)
 			local result = EID:LibertyCapPrediction(player)
 			if result then
 				descObj = EID:ItemReminderReplaceWithResult(descObj, result)
@@ -365,7 +365,7 @@ EID.ItemReminderDescriptionModifier = {
 	},
 	["5.350.75"] = {   -- 404 Error
 		isHiddenInfo = true,
-		modifierFunction = function(descObj, player)
+		modifierFunction = function(descObj, _)
 			local seed = game:GetLevel():GetCurrentRoom():GetSpawnSeed()
 			local result = EID:RNGNext(seed, 2, 7, 25) % (EID.isRepentance and 189 or 128) + 1
 			descObj = EID:ItemReminderReplaceWithResult(descObj, result, 350)
@@ -374,7 +374,7 @@ EID.ItemReminderDescriptionModifier = {
 	},
 	["5.350.132"] = { -- Broken Syringe
 		isHiddenInfo = true,
-		modifierFunction = function(descObj, _)
+		modifierFunction = function(descObj, player)
 			local result = EID:BrokenSyringePrediction(player)
 			if result then
 				descObj = EID:ItemReminderReplaceWithResult(descObj, result)
@@ -384,7 +384,7 @@ EID.ItemReminderDescriptionModifier = {
 	},
 	["5.350.153"] = { -- Mom's Lock
 		isHiddenInfo = true,
-		modifierFunction = function(descObj, _)
+		modifierFunction = function(descObj, player)
 			local result = EID:MomsLockPrediction(player)
 			if result then
 				descObj = EID:ItemReminderReplaceWithResult(descObj, result)
