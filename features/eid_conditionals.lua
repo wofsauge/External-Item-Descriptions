@@ -327,6 +327,8 @@ EID:AddItemConditional("5.300.48", 286, nil, { lineColor = "ColorSilver" })     
 EID:AddItemConditional(286, "5.300.48", "? + Blank Pedestal")      -- ? Card + Blank Card
 EID:AddSynergyConditional(368, {69, 118, 316, 229, 395, 114, 329}, "Almost No Effect") -- Epiphora + Charge Shots / Ludovico
 
+EID:AddSynergyConditional({127, 297, 347, 490, 483, 515, 475}, 477, "Void Single Use") -- Void + Single Use Actives
+if EID.isRepentance then EID:AddSynergyConditional({536, 585, 577, 628, 636}, 477, "Void Single Use") end -- Void + Single Use Actives
 EID:AddSynergyConditional({127, 297, 347, 490, 483, 515, 475, 536}, "5.300.48", "? Card Single Use") -- ? Card + Single Use Actives
 if EID.isRepentance then EID:AddSynergyConditional({585, 577, 628, 636}, "5.300.48", "? Card Single Use") end -- ? Card + Single Use Actives
 
