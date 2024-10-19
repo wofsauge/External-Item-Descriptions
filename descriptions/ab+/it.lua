@@ -1293,6 +1293,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.81"] = "I personaggi che non hanno Cuori Rossi vengono portati ad 1 Cuore Celeste/Nero", -- Dead Cat
 	["5.100.316"] = "{1} rimuove l'effetto di teletrasporto", -- Cursed Eye
 	["5.100.260"] = "Rimuove l'effetto di teletrasporto di {1}", -- Black Candle
+	["Void Single Use"] = "Gli oggetti monouso vengono attivati una volta sola", -- Single Use Actives + Void
 	["? Card Single Use"] = "Dopo l'uso di \"Carta ?\" gli oggetti monouso spariranno", -- Single Use Actives + ? Card
 	["5.300.48"] = "Teletrasporta nella Stanza I AM ERROR#\"Carta Vuota\" e \"Carta ?\" verranno distrutte", -- Blank Card + ? Card
 	["? + Blank Pedestal"] = "Usare \"Carta ?\" con \"Carta Vuota\" teletrasporta nella Stanza I AM ERROR e distrugge ambo le carte", -- Looking at Blank Card with ? Card
