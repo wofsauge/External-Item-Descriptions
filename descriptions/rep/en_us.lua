@@ -1295,7 +1295,7 @@ EID.descriptions[languageCode].poopSpells = {
 
 	--Undetected poop, for Poop API
 	--[Poop name in code] = {Icon, Name, Description}
-	["Unknown"] = {"{{PoopSpell1}}", "Unkown Poop", "The effects of the poop are unkown"}
+	["Unknown"] = {"{{PoopSpell1}}", "Unknown Poop", "The effects of the poop are Unknown"}
 }
 
 EID.descriptions[languageCode].itemPoolFor = "Pool for Item:"
