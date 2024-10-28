@@ -618,7 +618,7 @@ function EID:ItemReminderHandlePoopSpells(player)
 					if ignoreExisting or not displayedPoopTypes[customPoop] then
 						local poopName = customPoop[2]
 						if customPoop[4] then
-							poopName = poopName + EID:getModNameString({ ["ModName"] = customPoop[4] })
+							poopName = poopName .. EID:getModNameString({ ["ModName"] = customPoop[4] })
 						end
 						EID:ItemReminderAddTempDescriptionEntry(customPoop[1], poopName, customPoop[3])
 
