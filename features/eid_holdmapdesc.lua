@@ -604,10 +604,14 @@ function EID:ItemReminderHandlePoopSpells(player)
 			--Custom Poop support
 			if CustomPoopAPI then
 				local poopSaveData = CustomPoopAPI.GetPersistentPlayerData(player)
-				nextPoop = PoopSpellType["SPELL_"..poopSaveData.Poops[i + 1]] --Yes, this works LOL
-				if nextPoop == nil then --Not a spell from the base game. Might add custom poop support eventually instead of skipping the creep.
+				local poopKey = poopSaveData.Poops[i + 1]
+				if poopKey == "DIARREAH" then poopKey = "DIARRHEA" end --Typo from Custom Poop API's side
+
+				nextPoop = PoopSpellType["SPELL_"..poopKey] --Yes, this works LOL
+
+				if nextPoop == nil then
 					nextPoop = PoopSpellType.SPELL_NONE --Prevent from rendering normally
-					local customPoop = EID:getDescriptionEntry("poopSpells")[poopSaveData.Poops[i + 1]]
+					local customPoop = EID:getDescriptionEntry("poopSpells")[poopKey]
 
 					local ignoreExisting = false
 					if customPoop == nil then --If the poop still doesn't exist, use the unkown one instead
