@@ -279,6 +279,17 @@ function EID:addIcon(shortcut, animationName, animationFrame, width, height, lef
 	EID.InlineIcons[shortcut] = {animationName, animationFrame, width, height, leftOffset, topOffset, spriteObject}
 end
 
+-- Adds a custom poop spell to T???'s poop descriptions. This spell should be added with the "Custom Poop API" library to actually appear in-game.
+-- Token is the name of the spell in the Custom Poop API code. Examples: "CORNY", "BURNING", "BOMB".
+-- Name is the actual name you want to display. Examples: "Corny Poop", "Burning Poop", "Bomb".
+-- Icon is the displayed poop icon. Should be a markup.
+-- Description is the actual description showed to the player. Examples: "Spawns blue flies while intact", "Deals contact damage while intact#Leaves a fire behind when destroyed", "Normal throwable bomb".
+-- Language is the language you want to add it to. Examples: "en_us", "spa", "ru".
+-- EXAMPLE: EID:addCustomPoopSpell("MYPOOP", "I Made This Poop", "{{PoopSpell1}}", "Can be throwed to deal damage", "en_us")
+function EID:addCustomPoopSpell(token, name, icon, description, language)
+	EID.descriptions[language]["poopSpells"][token] = {icon, name, description, EID._currentMod}
+end
+
 -- Adds a new color object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your color)
 -- Shortcuts are case Sensitive! Shortcuts can be overriden with this function to allow for full control over everything
 -- Define a callback to let it be called when interpreting the color-markup. define a kColor otherwise for a simple color change

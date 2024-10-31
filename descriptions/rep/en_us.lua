@@ -1292,6 +1292,10 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Fart", "Push nearby enemies and bullets back, and spawn a toxic cloud#{{Warning}} The cloud explodes if it touches fire!"},
 	{"Bomb", "Normal throwable bomb"},
 	{"Explosive Diarrhea", "Isaac quickly spawns 5 lit bombs"},
+
+	--Undetected poop, for Poop API
+	--[Poop name in code] = {Icon, Name, Description}
+	["Unknown"] = {"{{PoopSpell1}}", "Unknown Poop", "The effects of the poop are Unknown"}
 }
 
 EID.descriptions[languageCode].itemPoolFor = "Pool for Item:"

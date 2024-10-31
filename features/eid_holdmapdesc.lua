@@ -600,6 +600,39 @@ function EID:ItemReminderHandlePoopSpells(player)
 		local descsAvailableToRender = numAvailableDescriptionSlots
 		for i = 0, 5 do -- max 6 poop spell slots
 			local nextPoop = player:GetPoopSpell(i)
+
+			--Custom Poop support
+			if CustomPoopAPI then
+				local poopSaveData = CustomPoopAPI.GetPersistentPlayerData(player)
+				local poopKey = poopSaveData.Poops[i + 1]
+				if poopKey == "DIARREAH" then poopKey = "DIARRHEA" end --Typo from Custom Poop API's side
+
+				nextPoop = PoopSpellType["SPELL_"..poopKey] --Yes, this works LOL
+
+				if nextPoop == nil then
+					nextPoop = PoopSpellType.SPELL_NONE --Prevent from rendering normally
+					local customPoop = EID:getDescriptionEntry("poopSpells")[poopKey]
+
+					local ignoreExisting = false
+					if customPoop == nil then --If the poop still doesn't exist, use the unkown one instead
+						customPoop = EID:getDescriptionEntry("poopSpells")["Unknown"] or EID.descriptions["en_us"]["poopSpells"]["Unknown"]
+						ignoreExisting = true
+					end
+
+					if ignoreExisting or not displayedPoopTypes[customPoop] then
+						local poopName = customPoop[2]
+						if customPoop[4] then
+							poopName = poopName .. EID:getModNameString({ ["ModName"] = customPoop[4] })
+						end
+						EID:ItemReminderAddTempDescriptionEntry(customPoop[1], poopName, customPoop[3])
+
+						displayedPoopTypes[customPoop] = true
+						descsAvailableToRender = descsAvailableToRender - 1
+					end
+				end
+			end
+			--End of custom poop support
+
 			if not displayedPoopTypes[nextPoop] then
 				EID:ItemReminderAddTempDescriptionEntry("{{PoopSpell" .. nextPoop .. "}}", poopInfo[nextPoop][1],
 					poopInfo[nextPoop][2])

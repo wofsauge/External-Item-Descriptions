@@ -45,13 +45,14 @@ end
 
 -- Function for adding text to a pedestal's description when you're playing a specific character
 -- The character's head icon will be at the start of appended lines
--- Optional parameters: replaceText, language, extraTable
+-- By default, adding a conditional to a base character will also add it to the Tainted version of the character
+-- Optional parameters: replaceText, language, extraTable, includeTainted
 -- Example usage: EID:addPlayerCondition(myAngstyItemID, PlayerType.PLAYER_EVE, "Gives Eve extra mascara (2x Damage multiplier)")
-function EID:addPlayerCondition(ID, playerID, text, replaceText, language, extraTable)
+function EID:addPlayerCondition(ID, playerID, text, replaceText, language, extraTable, includeTainted)
 	language = language or "en_us"
 	if replaceText then text = {text, replaceText} end
 	local modifierText = newModdedCondition(text, language)
-	EID:AddPlayerConditional(ID, playerID, modifierText, extraTable)
+	EID:AddPlayerConditional(ID, playerID, modifierText, extraTable, includeTainted)
 end
 
 -- Shortcut function for tarotClothBuffs, tarotClothBuffsAB, carBattery, abyssSynergies, bookOfBelialBuffs, bingeEaterBuffs
