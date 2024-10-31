@@ -1299,6 +1299,7 @@ EID.descriptions[languageCode].poopSpells = {
 	--[Poop name in code] = {Icon, Name, Description}
 	["Unknown"] = {"{{PoopSpell1}}", "Cacca Ignota", "Gli effetti di questa cacca sono ignoti"}
 }
+
 EID.descriptions[languageCode].itemPoolFor = "Categoria/e dell'oggetto:"
 EID.descriptions[languageCode].itemPoolNames = {
 	[0] = "Tesoro", "Negozio", "Boss", "Diavolo", "Angelo", "Segreta", "Biblioteca", "Truffaldino", "Baule Dorato", "Baule Rosso", "Mendicante", "Mendicacuori", "Maledetta", "Chiavaio", "Elettrizzato", "Baule di Mamma", "Tesoro - Avido", "Boss - Avido", "Negozio - Avido", "Diavolo - Avido", "Angelo - Avido", "Maledetta - Avido", "Segreta - Avido", "Gioco della Gru", "Ultra Segreta", "Scroccabombe", "Planetario", "Vecchio Baule", "Negozio di Bebé", "Baule di Legno", "Mendicarcassa",
