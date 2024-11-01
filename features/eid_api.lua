@@ -279,6 +279,17 @@ function EID:addIcon(shortcut, animationName, animationFrame, width, height, lef
 	EID.InlineIcons[shortcut] = {animationName, animationFrame, width, height, leftOffset, topOffset, spriteObject}
 end
 
+-- Adds a custom poop spell to T???'s poop descriptions. This spell should be added with the "Custom Poop API" library to actually appear in-game.
+-- Token is the name of the spell in the Custom Poop API code. Examples: "CORNY", "BURNING", "BOMB".
+-- Name is the actual name you want to display. Examples: "Corny Poop", "Burning Poop", "Bomb".
+-- Icon is the displayed poop icon. Should be a markup.
+-- Description is the actual description showed to the player. Examples: "Spawns blue flies while intact", "Deals contact damage while intact#Leaves a fire behind when destroyed", "Normal throwable bomb".
+-- Language is the language you want to add it to. Examples: "en_us", "spa", "ru".
+-- EXAMPLE: EID:addCustomPoopSpell("MYPOOP", "I Made This Poop", "{{PoopSpell1}}", "Can be throwed to deal damage", "en_us")
+function EID:addCustomPoopSpell(token, name, icon, description, language)
+	EID.descriptions[language]["poopSpells"][token] = {icon, name, description, EID._currentMod}
+end
+
 -- Adds a new color object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your color)
 -- Shortcuts are case Sensitive! Shortcuts can be overriden with this function to allow for full control over everything
 -- Define a callback to let it be called when interpreting the color-markup. define a kColor otherwise for a simple color change
@@ -905,16 +916,22 @@ end
 
 -- Searches thru the given string and replaces Iconplaceholders with icons.
 -- Returns 2 values. the string without the placeholders but with an accurate space between lines. and a table of all Inline Sprites
-function EID:filterIconMarkup(text)
+function EID:filterIconMarkup(text, renderBulletPointIcon)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
-		local textposition = string.find(text, word)
+		local textposition = string.find(text, word) or 1
 
 		local callback = EID._NextIconModifier
 		EID._NextIconModifier = nil
 
 		local lookup = EID:getIcon(word)
 		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Scale
+
+		-- Center the small bullet point icons by adding an extra left offset to them.
+		-- If the icon has a positive left offset, that means the offset is already included in the icon itself and we should not add it again
+		if renderBulletPointIcon and lookup[3] < 11 and (#lookup < 5 or lookup[5] <= 0)  then
+			preceedingTextWidth  = preceedingTextWidth + math.floor((12 - lookup[3]) / 2) * EID.Scale
+		end
 
 		table.insert(spriteTable, {lookup, preceedingTextWidth, callback})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
@@ -1166,12 +1183,12 @@ end
 -- needs to be called in a render Callback
 -- args: string, Vector(int, int), Vector(float,float), KColor obj, bool
 -- Returns the last used KColor
-function EID:renderString(str, position, scale, kcolor)
+function EID:renderString(str, position, scale, kcolor, renderBulletPointIcon)
 	str = EID:replaceShortMarkupStrings(str)
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
 	local offsetX = 0
 	for _, textPart in ipairs(textPartsTable) do
-		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1])
+		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1], renderBulletPointIcon)
 		EID:renderInlineIcons(spriteTable, position.X + offsetX, position.Y)
 		if strFiltered then -- prevent possible crash when strFiltered is nil
 			EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
@@ -2107,6 +2124,9 @@ function EID:getObjectIcon(descObj)
 			end
 			return EID:createItemIconObject("Pill" .. descObj.ObjSubType)
 		end
+	-- Handle Dice Room Floor
+	elseif descObj.ObjType == 1000 and descObj.ObjVariant == 76 then
+		return EID.InlineIcons["DiceFace" .. descObj.ObjSubType]
 	end
 end
 
@@ -2390,18 +2410,39 @@ end
 EID.GlitchedCrownCheck = {}
 -- Watch pedestals for being a Glitched Crown style pedestal that flips between items too quickly to display descriptions for
 function EID:WatchForGlitchedCrown()
-	if not EID.collectiblesOwned[689] then return end
-	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
-	EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
-	
-	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
-		-- Use InitSeed and Index to prevent any Diplopia weirdness
-		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
-		-- Initialize the data about this pedestal showing its current item ID, if necessary
-		-- in order to sort the items displayed, while also trashing items that haven't shown up in a while, keep both "initial frame seen" and "last frame seen"
-		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
-		-- update the last frame seen for the pedestal's current collectible ID
-		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType][2] = EID.GameUpdateCount
+	if REPENTOGON then
+		-- In REPENTOGON, always check even without Glitched Crown, allowing to check 5+ Soul of Isaac usage, or Everything Jar
+		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
+
+		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			-- Use InitSeed and Index to prevent any Diplopia weirdness
+			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
+			local pickup = entity:ToPickup()
+			local cycle = pickup:GetCollectibleCycle()
+			if #cycle > 1 then
+				for i, subType in ipairs(cycle) do
+					EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][subType] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][subType] or {EID.GameUpdateCount + i, EID.GameUpdateCount + i}
+					-- update the last frame seen for the pedestal's current collectible ID
+					EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][subType][2] = EID.GameUpdateCount + i
+				end
+			end
+		end
+	else
+		if not EID.collectiblesOwned[689] then return end
+
+		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
+		
+		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			-- Use InitSeed and Index to prevent any Diplopia weirdness
+			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
+			-- Initialize the data about this pedestal showing its current item ID, if necessary
+			-- in order to sort the items displayed, while also trashing items that haven't shown up in a while, keep both "initial frame seen" and "last frame seen"
+			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
+			-- update the last frame seen for the pedestal's current collectible ID
+			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType][2] = EID.GameUpdateCount
+		end
 	end
 end
 

@@ -989,7 +989,7 @@ if EID.isRepentance then
 			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
-			if EID.collectiblesOwned[689] then table.insert(callbacks, GlitchedCrownCallback) end
+			if (REPENTOGON or EID.collectiblesOwned[689]) and EID.Config["GlitchedCrownSummary"] then table.insert(callbacks, GlitchedCrownCallback) end
 			
 			-- Glowing Hourglass overwrites the description when used three times
 			if REPENTOGON and descObj.ObjSubType == 422 then table.insert(callbacks, GlowingHourglassCallback) end

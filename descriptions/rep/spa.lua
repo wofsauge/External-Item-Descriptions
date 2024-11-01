@@ -1087,18 +1087,20 @@ EID.descriptions[languageCode].GlitchedItemText = {
 
 ---------- Misc. Text ----------
 -- Poop spells
-EID.descriptions[languageCode].poopSpells = {
+EID.descriptions[languageCode].poopSpells = { --¿Deberíamos cambiar "Popó" a "Caca"? (Y de paso poner nombres normales para los hechizos)
 	{"Popó", "Popó normal, puede generar recolectables"},
 	{"Mazorqueada", "Genera moscas azules al estar intacta"},
 	{"¡ESTO ARDE!", "Inflige daño por contacto al estar intacta#{{Burning}} Genera fuego al ser destruida"},
 	{"Hice caca seca", "Can deal damage 3 times when thrown#Takes a lot of hits to destroy"},
 	{"Esto está podrido...", "{{Poison}} Genera nubes tóxicas#!!! ¡La nube explotará si entra en contacto con fuego!"},
-	{"", "{{Slow}} Genera creep ralentizante#{{Confusion}} Inflige 10 de daño y confunde a los enemigos"},
+	{"Popó Negra", "{{Slow}} Genera creep ralentizante#{{Confusion}} Inflige 10 de daño y confunde a los enemigos"},
 	{"¡Santa cagada!", "{{Collectible543}} Lanzas una popó blanca con un aura#Al estar dentro del aura, recibes:#↑ {{Damage}} Daño +20%#↑ {{Tears}} Lágrimas +150% #Lágrimas teledirigidas#Posibilidad de bloquear daño"},
 	{"Diarrea", "Dejas un camino de creep#Pararte sobre el creep otorga: #↑ {{Tears}} Más lágrimas#↑ {{Damage}} Más daño#Si el creep toca una popó con efecto especial, adquirirá sus propiedades"},
 	{"Un pedo", "Empuja enemigos y disparos#{{Poison}} Genera una bomba tóxico#!!! ¡La nube explotará si entra en contacto con fuego!"},
 	{"Bomba", "Normal throwable bomb"},
 	{"Diarrea explosiva", "Genera 5 bombas encendidas a tu paso"},
+
+	["Unknown"] = {"{{PoopSpell1}}", "Popó Desconocida", "Los efectos de la popó son desconocidos"}
 }
 -- Poop spells end
 

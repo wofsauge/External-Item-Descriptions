@@ -509,6 +509,10 @@ EID.UserConfig = {
 	-- REPENTANCE ONLY!!!
 	-- Default = false
 	["SpindownDiceSkipLocked"] = false,
+	-- Show summary list for Glitched Crown, 5 item names are shown first, and press tap to cycle descriptions
+	-- REPENTANCE ONLY!!!
+	-- Default = true
+	["GlitchedCrownSummary"] = true,
 
 	-- Error message displayed when an error occurs
 	-- Default = [Effect not defined]
@@ -651,6 +655,7 @@ EID.DefaultConfig = {
 	["SpindownDiceDisplayID"] = false,
 	["SpindownDiceDisplayName"] = false,
 	["SpindownDiceSkipLocked"] = false,
+	["GlitchedCrownSummary"] = true,
 	["SaveGameNumber"] = 0,
 	["HideUncollectedItemDescriptions"] = false,
 	["ItemCollectionIndicator"] = true,
