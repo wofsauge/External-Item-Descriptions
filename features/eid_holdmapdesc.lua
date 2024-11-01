@@ -940,13 +940,18 @@ function EID:ItemReminderGetDescription()
 
 	-- Default: put all descriptions into one long description
 	for _, entry in ipairs(EID.ItemReminderTempDescriptions) do
+		if EID.Config["ShowItemIcon"] then
+			finalHoldMapDesc = finalHoldMapDesc .. entry[1] .. " "
+		end
+		if EID.Config["ShowItemName"] then
+			finalHoldMapDesc = finalHoldMapDesc .. "{{ColorEIDObjName}}" .. entry[2]
+		end
 		local description = entry[3] .. "#"
 
 		if tryTrim then
 			description = EID:ItemReminderTrimBulletPoints(description)
 		end
-
-		finalHoldMapDesc = finalHoldMapDesc .. entry[1] .. " {{ColorEIDObjName}}" .. entry[2] .. "#" .. description
+		finalHoldMapDesc = finalHoldMapDesc .. "#" .. description
 	end
 
 	EID.InsideItemReminder = false
