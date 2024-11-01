@@ -2124,6 +2124,9 @@ function EID:getObjectIcon(descObj)
 			end
 			return EID:createItemIconObject("Pill" .. descObj.ObjSubType)
 		end
+	-- Handle Dice Room Floor
+	elseif descObj.ObjType == 1000 and descObj.ObjVariant == 76 then
+		return EID.InlineIcons["DiceFace" .. descObj.ObjSubType]
 	end
 end
 
