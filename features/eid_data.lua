@@ -635,6 +635,14 @@ EID.InlineIcons = {
 	["MiddleWisp"] = {"Wisps", 1, 10, 9, 0, 2},
 	["OuterWisp"] = {"Wisps", 2, 10, 9, 0, 2},
 
+	-- Dice Faces
+	["DiceFace1"] = {"DiceFaces", 0, 14, 14, 0, -1},
+	["DiceFace2"] = {"DiceFaces", 1, 14, 14, 0, -1},
+	["DiceFace3"] = {"DiceFaces", 2, 14, 14, 0, -1},
+	["DiceFace4"] = {"DiceFaces", 3, 14, 14, 0, -1},
+	["DiceFace5"] = {"DiceFaces", 4, 14, 14, 0, -1},
+	["DiceFace6"] = {"DiceFaces", 5, 14, 14, 0, -1},
+
 	-- Misc
 	["HardMode"] = {"Misc", 0, 16, 12, 0, -2},
 	["GreedMode"] = {"Misc", 1, 16, 12, 0, -2},
