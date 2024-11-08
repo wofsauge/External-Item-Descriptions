@@ -635,6 +635,14 @@ EID.InlineIcons = {
 	["MiddleWisp"] = {"Wisps", 1, 10, 9, 0, 2},
 	["OuterWisp"] = {"Wisps", 2, 10, 9, 0, 2},
 
+	-- Dice Faces
+	["DiceFace1"] = {"DiceFaces", 0, 14, 14, 0, -1},
+	["DiceFace2"] = {"DiceFaces", 1, 14, 14, 0, -1},
+	["DiceFace3"] = {"DiceFaces", 2, 14, 14, 0, -1},
+	["DiceFace4"] = {"DiceFaces", 3, 14, 14, 0, -1},
+	["DiceFace5"] = {"DiceFaces", 4, 14, 14, 0, -1},
+	["DiceFace6"] = {"DiceFaces", 5, 14, 14, 0, -1},
+
 	-- Misc
 	["HardMode"] = {"Misc", 0, 16, 12, 0, -2},
 	["GreedMode"] = {"Misc", 1, 16, 12, 0, -2},
@@ -1062,6 +1070,11 @@ if EID.isRepentance then
 	for i = 18, 40 do EID.CharacterToHeartType[i] = "Red" end
 	EID.CharacterToHeartType[12] = "Black"; EID.CharacterToHeartType[24] = "Black"; EID.CharacterToHeartType[25] = "Soul"; EID.CharacterToHeartType[31] = "None"; EID.CharacterToHeartType[33] = "Coin"; EID.CharacterToHeartType[35] = "Soul"; EID.CharacterToHeartType[36] = "Soul"; EID.CharacterToHeartType[40] = "Soul"; 
 end
+
+EID.HealthTypesWithoutHealing = {}
+EID.HealthTypesWithoutHealing["Soul"] = true
+EID.HealthTypesWithoutHealing["Black"] = true
+EID.HealthTypesWithoutHealing["None"] = true
 
 -- Character IDs that have a pocket active (0 = normal, 1 = timed, 2 = special)
 EID.PocketActivePlayerIDs = { [22] = 0, [23] = 2, [24] = 1, [25] = 2, [26] = 1, [29] = 0, [34] = 0, [36] = 0, [37] = 1, [38] = 0, [39] = 1 }

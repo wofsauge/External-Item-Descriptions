@@ -10,8 +10,8 @@ EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.80
-EID.ModVersionCommit = "9ad0bb1"
+EID.ModVersion = 4.83
+EID.ModVersionCommit = "c467bb0"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -728,7 +728,7 @@ function EID:printBulletPoints(description, renderPos)
 				local bpIcon, rejectedIcon = EID:handleBulletpointIcon(lineToPrint)
 				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
 					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
-					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor)
+					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor, true)
 				else
 					if rejectedIcon then lineToPrint = string.gsub(lineToPrint, rejectedIcon .. " ", "", 1) end
 					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
@@ -841,7 +841,7 @@ function EID:renderIndicator(entity, playerNum)
 		return
 	end
 	local repDiv = 1
-	local entityPos = Isaac.WorldToScreen(entity.Position)
+	local entityPos = Isaac.WorldToScreen(entity.PositionOffset and entity.Position + entity.PositionOffset or entity.Position)
 	local ArrowOffset = Vector(0, -35)
 	if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
 		ArrowOffset = Vector(0, -62)
@@ -853,8 +853,6 @@ function EID:renderIndicator(entity, playerNum)
 	if EID.isRepentance and not EID:IsGridEntity(entity) then
 		if entity.Variant == 100 and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID:getEntityData(entity, "EID_FlipItemID") then
 			entityPos = entityPos + Vector(2.5,2.5)
-		elseif entity.Type == 6 and entity.Variant == 16 then
-			entityPos = entityPos + Vector(0,-5)
 		end
 	end
 	local sprite = nil
@@ -1440,29 +1438,23 @@ function EID:OnRender()
 
 					-- Handle Glitched Items
 					elseif closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
-						if EID:getEntityData(closest, "EID_DontHide") ~= true then
-							if (REPENTOGON and closest:ToPickup():IsBlind())
-							 or	(EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom)
-							 or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest))
-							 or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-								EID:addQuestionMarkDescription(closest)
+						if EID:IsItemHidden(closest) then
+							EID:addQuestionMarkDescription(closest)
+						else
+							local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
+							local glitchedName = EID.itemConfig:GetCollectible(closest.SubType).Name
+							local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
+
+							-- force the default glitchy description if option is off
+							if not EID.Config["DisplayGlitchedItemInfo"] then
+								glitchedObj.Description = glitchedDesc
+							-- grab the Item Config info if we haven't created a desc for it before, or its name has changed since we did (different game session)
+							elseif glitchedObj.Description == glitchedDesc or glitchedObj.Name ~= glitchedName then
+								EID:addCollectible(closest.SubType, EID:CheckGlitchedItemConfig(closest.SubType), glitchedName)
+								glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
 							end
+							EID:addDescriptionToPrint(glitchedObj)
 						end
-
-						local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
-						local glitchedName = EID.itemConfig:GetCollectible(closest.SubType).Name
-						local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
-
-						-- force the default glitchy description if option is off
-						if not EID.Config["DisplayGlitchedItemInfo"] then
-							glitchedObj.Description = glitchedDesc
-						-- grab the Item Config info if we haven't created a desc for it before, or its name has changed since we did (different game session)
-						elseif glitchedObj.Description == glitchedDesc or glitchedObj.Name ~= glitchedName then
-							EID:addCollectible(closest.SubType, EID:CheckGlitchedItemConfig(closest.SubType), glitchedName)
-							glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
-						end
-
-						EID:addDescriptionToPrint(glitchedObj)
 					-- Handle Dice Room Floor
 					elseif closest.Type == 1000 and closest.Variant == 76 then
 						EID:addDescriptionToPrint(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1, closest))
@@ -1501,16 +1493,10 @@ function EID:OnRender()
 
 					elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 						--Handle Collectibles
-						if EID:getEntityData(closest, "EID_DontHide") ~= true then
+						if EID:IsItemHidden(closest) then
 							local isHideUncollected = EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(closest.SubType)
-							if (REPENTOGON and closest:ToPickup():IsBlind())
-							 or isHideUncollected
-							 or (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom)
-							 or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest))
-							 or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-								local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil
-								EID:addQuestionMarkDescription(closest, description)
-							end
+							local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil
+							EID:addQuestionMarkDescription(closest, description)
 						end
 						local descriptionObj = EID:getDescriptionObjByEntity(closest)
 						EID:addDescriptionToPrint(descriptionObj)
