@@ -364,6 +364,14 @@ local function HealthUpCallback(descObj)
 	return descObj
 end
 
+-- Handle Single use Item description add-on
+local function SingleUseCallback(descObj)
+	local infoText = EID:getDescriptionEntry("SingleUseInfo")
+	descObj.Description = infoText .. "#" .. descObj.Description
+
+	return descObj
+end
+
 if EID.isRepentance then
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
@@ -1052,6 +1060,8 @@ local function EIDConditionsAB(descObj)
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 		if EID.Config["ItemCollectionIndicator"] and EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
+
+		if EID.SingleUseCollectibles[descObj.ObjSubType] then table.insert(callbacks, SingleUseCallback) end
 
 		if descObj.ObjSubType == 297 then table.insert(callbacks, PandorasBoxCallback) end
 

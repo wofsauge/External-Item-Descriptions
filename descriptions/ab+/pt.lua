@@ -148,7 +148,7 @@ EID.descriptions[languageCode].collectibles={
 	{"124", "", "Efeito aleatório do item ativo"},
 	{"125", "", "Bombas Teleguiadas#+5 Bombas"},
 	{"126", "", "↑ +1.2 Dano up#↓ -1 Saúde down"},
-	{"127", "", "!!! USO ÚNICO !#Rolar novamente o andar inteiro"},
+	{"127", "", "Rolar novamente o andar inteiro"},
 	{"128", "", "Mosca orbital#Tão distante"},
 	{"129", "", "↑ +2 Saúde Up#↓ -0.2 Velocidade Down#Cura meio coração"},
 	{"130", "", "Concede o voo enquanto estiver em espera#Arrancada em uma direção"},
@@ -318,7 +318,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "", "Derruba os inimigos próximos"},
 	{"295", "", "Danificar a sala inteira#Preço: 1 moeda"},
 	{"296", "", "!!! converte:#2 Corações de alma/negro em 1 coração vermelho"},
-	{"297", "", "!!! USO ÚNICO !#!!! Larga as coisas com base no chão e é ativado:#B1: 2 Corações de alma#B2: 2 chaves e bombas#C1: 1 Item de chefe#C2: B1+C1#D1: 4 Corações de alma#D2: 30 moedas#W1: 2 Items de chefe#W2: Bíblia#Sheol: 1 item Diabo + Coração negro#Cat: 1 Item de Anjo + Coração de alma#Chest: 1 moeda"},
+	{"297", "", "!!! Larga as coisas com base no chão e é ativado:#B1: 2 Corações de alma#B2: 2 chaves e bombas#C1: 1 Item de chefe#C2: B1+C1#D1: 4 Corações de alma#D2: 30 moedas#W1: 2 Items de chefe#W2: Bíblia#Sheol: 1 item Diabo + Coração negro#Cat: 1 Item de Anjo + Coração de alma#Chest: 1 moeda"},
 	{"298", "", "Invencibilidade temporária e Velocidade up"},
 	{"299", "", "ganha velocidade enquanto está em uma sala com inimigos até obter o efeito My Little Unicorn por alguns segundos"},
 	{"300", "", "↑ +0.25 Velocidade up#Tocar nos inimigos os machuca"},
@@ -368,7 +368,7 @@ EID.descriptions[languageCode].collectibles={
 	{"344", "", "+1 Coração negro#+3 Bombas"},
 	{"345", "", "↑ +1.0 Dano Up#↑ +5.25 Alcance Up#↑ +0.5 Altura da lágrima"},
 	{"346", "", "↑ +1 Saúde Up"},
-	{"347", "", "!!! USO ÚNICO !#Duplica todos os pedestais/ consumíveis na sala atual"},
+	{"347", "", "Duplica todos os pedestais/ consumíveis na sala atual"},
 	{"348", "", "Copia o efeito da pílula que você está segurando no momento"},
 	{"349", "", "50% de chance de largar uma moeda aleatória"},
 	{"350", "", "No início de cada quarto, todo inimigo recebe um efeito venenoso"},
@@ -496,7 +496,7 @@ EID.descriptions[languageCode].collectibles={
 	{"472", "", "Outros familiares seguem#Pára de se mover enquanto dispara lágrimas#Teleportará de volta para você quando você parar de atirar"},
 	{"473", "", "Familiar que avança lentamente e danifica os inimigos em seu caminho"},
 	{"474", "", "Bloqueia projéteis inimigos"},
-	{"475", "", "!!! USO ÚNICO ! #Causa 9.999.999 de dano a todos os inimigos e mata 3 segundos depois"},
+	{"475", "", "Causa 9.999.999 de dano a todos os inimigos e mata 3 segundos depois"},
 	{"476", "", "Duplica 1 pick-up aleatório na sala atual"},
 	{"477", "", "!!! WQuando usado, consuma qualquer item de pedestal na sala#Item ativo: seu efeito será adicionado ao efeito de Vazio (Empilhamento dos efeitos)#↑ Item passivo: pequena atualização de estatística para uma estatística aleatória"},
 	{"478", "", "Congela todos os inimigos na sala até você pressionar o botão de disparo novamente#Tocar em um inimigo congelado irá prejudicar você com um status aleatório"},
@@ -504,14 +504,14 @@ EID.descriptions[languageCode].collectibles={
 	{"480", "", "Gera 1 mosca/aranha azul para cada coleta no quarto"},
 	{"481", "", "Quando usado, ↑/↓ pequena quantidade em stat aleatória#Efeito de lagrima aleatório para a sala atual#gira os sprites em 90 graus"},
 	{"482", "", "Muda você para um outro personagem aleatório#Remove o último item que você coletou"},
-	{"483", "", "!!! USO ÚNICO ! #Afeta o andar inteiro#Explode todos os objetos#Causa 200 de dano a todos os inimigos#Opens boss rush / hush door / secret rooms"},
+	{"483", "", "Afeta o andar inteiro#Explode todos os objetos#Causa 200 de dano a todos os inimigos#Opens boss rush / hush door / secret rooms"},
 	{"484", "", "Ao usar, afasta os inimigos e gera uma onda de pedras"},
 	{"485", "", "50% chance de dobrar todos os itens, consumíveis e baús no quarto#50% chance de remover itens / pickups no quarto e gerar 1 moeda"},
 	{"486", "", "Hurts you without damaging you#Can trigger item effects"},
 	{"487", "", "Remove um recipiente de coração vermelho e fornece ↑ +0.2 Dano Up Dá a você um efeito de item aleatório para a salae \"Cube of Meat\""},
 	{"488", "", "Dá a você um efeito de item aleatório para a sala"},
 	{"489", "", "Efeito aleatório de dados"},
-	{"490", "", "!!! USO ÚNICO !#Cria 2 itens aleatórios, dependendo do pool de itens dos quartos atuais"},
+	{"490", "", "Cria 2 itens aleatórios, dependendo do pool de itens dos quartos atuais"},
 	{"491", "", "Dropa uma pílula aleatória a cada 2 quartos#Usar uma pílula causa dano aos inimigos"},
 	{"492", "", "↑ +1 Sorte Up#Destaca a localização de salas secretas, pedras coloridas e alçapões"},
 	{"493", "", "Para cada recipiente vazio de coração:#↑ +0.2 Dano Up"},
@@ -536,7 +536,7 @@ EID.descriptions[languageCode].collectibles={
 	{"512", "", "Buraco negro jogável, que suga tudo"},
 	{"513", "", "↑ +0.1 Dano Up#+1 Coração de alma#Chance aleatória de encantar/temer um inimigo#Chance aleatória de gerar um cocô de arco-íris ao receber dano"},
 	{"514", "", "Causas inimigos aleatórios para 'lag' em intervalos aleatórios, levando-os a congelar logo no lugar"},
-	{"515", "", "!!! USO ÚNICO !#Cria um item aleatório do pool de itens da sala atual#Chance de gerar Lump of Coal ou The Poop"},
+	{"515", "", "Cria um item aleatório do pool de itens da sala atual#Chance de gerar Lump of Coal ou The Poop"},
 	{"516", "", "Gera um sprinkler que gira em círculo, borrifando lágrimas em todas as direções"},
 	{"517", "", "+7 Bombas#Permite que você coloque rapidamente bombas no chão"},
 	{"518", "", "Dá a você um familiar aleatório que parece um coop aleatório#Tem um efeito de chá aleatório#Será randomizado novamente a cada andar"},
@@ -870,3 +870,6 @@ EID.descriptions[languageCode].transformations={
 	"Adult",			-- 14
 	"Stompy"			-- 15
 }
+
+EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} USO ÚNICO {{Warning}}"
+
