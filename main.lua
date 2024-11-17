@@ -1707,9 +1707,8 @@ function EID:OnUsePill(pillEffectID, player, useFlags)
 	if EID.isRepentance and useFlags ~= UseFlag.USE_NOANNOUNCER then EID:TrackWildCardEffects("5.70." .. (pillEffectID+1), player, pillColor) end
 	EID.ForceRefreshCache = true -- for transformation progress update
 
-	-- for tracking used pills, ignore gold pills and noannouncer flag pills (Temperance?)
-	-- (not using a bitmask, because Placebo is mimic+noannouncer, and we want to count those)
-	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags == UseFlag.USE_NOANNOUNCER) then return end
+	-- for tracking used pills, ignore gold pills and no animation pills, since those dont show what pull you used
+	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then return end
 	EID.UsedPillColors[tostring(pillColor)] = true
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
