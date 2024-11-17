@@ -2015,6 +2015,10 @@ function EID:evaluateHeldPill()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		EID.PlayerHeldPill[i] = player:GetPill(0)
+		-- Magdalene starts with an identified pill. We need to account for that
+		if player:GetPlayerType() == PlayerType.PLAYER_MAGDALENE and player.FrameCount <= 1 then
+			EID.UsedPillColors[tostring(EID.PlayerHeldPill[i])] = true
+		end
 	end
 end
 
