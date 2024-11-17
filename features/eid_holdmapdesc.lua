@@ -431,7 +431,7 @@ function EID:ItemReminderAddResultHeaderSuffix(descObj, newName)
 		descObj.Name = newName ..
 			" (" .. iconString .. " " .. EID:ReplaceVariableStr(resultHeader, descObj.Name) .. ")"
 	else
-		descObj.Name = descObj.Name .. EID:ReplaceVariableStr(resultHeader, descObj.Name)
+		descObj.Name = EID:ReplaceVariableStr(resultHeader, descObj.Name)
 	end
 end
 -- Adds a formatted "Result" text appended to the item description
