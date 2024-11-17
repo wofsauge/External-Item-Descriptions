@@ -2520,7 +2520,7 @@ end
 -- Find the closest player to the given entity
 function EID:ClosestPlayerTo(entity)
 	local closestDist = 9999999
-	local closestPlayer = EID.player
+	local closestPlayer = EID.player or Isaac.GetPlayer()
 	local numPlayers = game:GetNumPlayers()
 	if EID.InsideItemReminder then return EID.ItemReminderPlayerEntity end
 	if entity == nil or numPlayers == 1 then return closestPlayer end
@@ -2528,7 +2528,7 @@ function EID:ClosestPlayerTo(entity)
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
 		local dist = player.Position:Distance(entity.Position)
-		if dist < closestDist then
+		if dist < closestDist and player then
 			closestDist = dist
 			closestPlayer = player
 		end
