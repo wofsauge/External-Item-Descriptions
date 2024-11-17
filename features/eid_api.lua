@@ -1308,20 +1308,21 @@ function EID:PlayersHaveCollectible(collectibleID)
 	return false
 end
 
+-- Returns true, if any player has a given voided collectible
 function EID:PlayersVoidedCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		local playerNum = EID:getPlayerID(player, true)
-		if player:HasCollectible(477) and EID.absorbedItems[tostring(playerNum)] and EID.absorbedItems[tostring(playerNum)][tostring(collectibleID)] then
-			return true, player, i
-		end
+		return EID:PlayerVoidedCollectible(player, collectibleID)
 	end
 	return false
 end
+
+-- Returns true, if the player has a given voided collectible
 function EID:PlayerVoidedCollectible(player, collectibleID)
-	local i = EID:getPlayerID(player, true)
-	if player:HasCollectible(477) and EID.absorbedItems[tostring(i)] and EID.absorbedItems[tostring(i)][tostring(collectibleID)] then
-		return true
+	local playerNum = EID:getPlayerID(player, true)
+	local isCollectibleAbsorbed = EID.absorbedItems[tostring(playerNum)] and EID.absorbedItems[tostring(playerNum)][tostring(collectibleID)]
+	if player:HasCollectible(477) and isCollectibleAbsorbed and not EID.SingleUseCollectibles[collectibleID] then
+		return true, player, i
 	end
 end
 
@@ -1336,40 +1337,40 @@ function EID:PlayersHaveTrinket(trinketID)
 	return false
 end
 
+-- Returns true, if any player has a given card
 function EID:PlayersHaveCard(cardID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		for j = 0, (EID.isRepentance and 3 or 1) do
-			if player:GetCard(j) == cardID then
-				return true, player, i
-			end
-		end
+		return EID:PlayerHasCard(player, cardID)
 	end
 	return false
 end
+
+-- Returns true, if the player has a given card
 function EID:PlayerHasCard(player, cardID)
+	local playerNum = EID:getPlayerID(player, true)
 	for j = 0, (EID.isRepentance and 3 or 1) do
 		if player:GetCard(j) == cardID then
-			return true
+			return true, player, playerNum
 		end
 	end
 end
 
+-- Returns true, if any player has a given pill color
 function EID:PlayersHavePill(pillID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		for j = 0, (EID.isRepentance and 3 or 1) do
-			if player:GetPill(j) == pillID then
-				return true, player, i
-			end
-		end
+		return EID:PlayerHasPill(player, pillID)
 	end
 	return false
 end
+
+-- Returns true, if the player has a given pill color
 function EID:PlayerHasPill(player, pillID)
+	local playerNum = EID:getPlayerID(player, true)
 	for j = 0, (EID.isRepentance and 3 or 1) do
 		if player:GetPill(j) == pillID then
-			return true
+			return true, player, playerNum
 		end
 	end
 end
