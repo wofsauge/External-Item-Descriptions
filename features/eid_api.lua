@@ -1321,7 +1321,7 @@ end
 function EID:PlayerVoidedCollectible(player, collectibleID)
 	local playerNum = EID:getPlayerID(player, true)
 	local isCollectibleAbsorbed = EID.absorbedItems[tostring(playerNum)] and EID.absorbedItems[tostring(playerNum)][tostring(collectibleID)]
-	if player:HasCollectible(477) and isCollectibleAbsorbed and not EID.SingleUseCollectibles[collectibleID] then
+	if player:HasCollectible(477) and isCollectibleAbsorbed then
 		return true, player, i
 	end
 end

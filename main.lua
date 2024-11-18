@@ -377,8 +377,17 @@ function EID:CheckVoidAbsorbs(_, _, player)
 	player = player or EID.player
 	local playerID = EID:getPlayerID(player, true)
 	EID.absorbedItems[tostring(playerID)] = EID.absorbedItems[tostring(playerID)] or {}
+	-- Remove single use items from Void on use in Repentance
+	if EID.isRepentance then
+		for k,_ in pairs(EID.SingleUseCollectibles) do
+			EID.absorbedItems[tostring(playerID)][tostring(k)] = nil
+		end
+	end
 	for _,v in ipairs(EID:VoidRoomCheck()) do
-		EID.absorbedItems[tostring(playerID)][tostring(v)] = true
+		-- Don't include single use items in AB+ (they're immediately used and gone)
+		if EID.isRepentance or not EID.SingleUseCollectibles[v] then
+			EID.absorbedItems[tostring(playerID)][tostring(v)] = true
+		end
 	end
 	EID.RecheckVoid = true
 end
