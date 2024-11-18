@@ -1325,6 +1325,8 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Pet", "Repousse les ennemis et projectiles et crée un nuage de poison#{{Warning}} Explose au contact du feu"},
 	{"Bombe", "Bombe jetable"},
 	{"Diarrhée explosive", "Fait apparaître 5 bombes aux pieds d'Isaac"},
+
+	["Unknown"] = {"{{PoopSpell1}}", "Caca inconnu", "Effets inconnus"}
 }
 
 ---------- Misc. Text ----------
