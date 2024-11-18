@@ -175,7 +175,7 @@ EID.descriptions[languageCode].collectibles={
 	{"124", "사해사본", "사용 시 랜덤한 액티브 아이템의 효과를 발동합니다."}, -- Dead Sea Scrolls
 	{"125", "보비 폭탄", "↑ {{Bomb}}폭탄 +5#폭탄에 유도 효과가 생깁니다."}, -- Bobby-Bomb
 	{"126", "면도날", "사용 시 체력 한칸을 깎고 그방에서 {{DamageSmall}}공격력 +1.2#공격력 증가 효과는 중첩됩니다.#빨간하트를 우선적으로 깎습니다."}, -- Razor Blade
-	{"127", "날 잊어 주세요", "{{Warning}} 일회용 {{Warning}}#스테이지를 재시작합니다."}, -- Forget Me Now
+	{"127", "날 잊어 주세요", "스테이지를 재시작합니다."}, -- Forget Me Now
 	{"128", "영원한 솔로", "캐릭터 주위를 돌며 접촉하는 적에게 초당 30의 피해를 입힙니다."}, -- Forever alone
 	{"129", "돼지기름 한 통", "↑ {{EmptyHeart}}빈 최대 체력 +2#↑ {{HalfHeart}}빨간하트 +0.5#↓ {{SpeedSmall}}이동속도 -0.2"}, -- Bucket of Lard
 	{"130", "조랑말", "소지중일 때 비행 능력을 얻습니다.#{{SpeedSmall}}이동속도가 1.5 이상으로 고정됩니다.#사용 시 바라보는 방향으로 돌진하여 접촉한 적에게 40의 피해를 입힙니다."}, -- A Pony
@@ -345,7 +345,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "흰강낭콩", "사용 시 방귀를 뀌며 주변의 적을 더 강하게 밀쳐냅니다.#다른 액티브 아이템과 교체 시 확률적으로 {{Collectible484}}Wait What? 아이템으로 바뀝니다."}, -- Butter Bean
 	{"295", "침대 안마기", "사용 시 동전 하나를 소모해 방 안의 모든 적에게 눈물 공격력 x2의 피해를 줍니다."}, -- Magic Fingers
 	{"296", "변환기", "사용 시 소울하트 2칸을 {{Heart}}최대 체력 1칸으로 바꿉니다."}, -- Converter
-	{"297", "판도라의 상자", "!!! 일회용 / 사용 시 스테이지마다 다른 보상을 드랍합니다.#B1(1): {{SoulHeart}} 2개; B2(2): {{Bomb}} 2개 + {{Key}} 2개#C1(3): {{BossRoom}}아이템 1개; C2(4): {{BossRoom}} 1개 + {{SoulHeart}} 2개#D1(5): {{SoulHeart}} 4개; D2(6): {{Coin}} 20개#W1(7): {{BossRoom}} 2개; W2(8): {{Collectible33}}The Bible#???/Void: 없음#Sheol: {{DevilRoom}}악마방 아이템 1개 + {{BlackHeart}} 1개#Cath: {{AngelRoom}}천사방 아이템 1개 + {{EthernalHeart}} 1개 #Dark: {{Collectible523}}Moving Box 해금#Chest: {{Coin}}동전 1개"}, -- Pandora's Box
+	{"297", "판도라의 상자", "사용 시 스테이지마다 다른 보상을 드랍합니다.#B1(1): {{SoulHeart}} 2개; B2(2): {{Bomb}} 2개 + {{Key}} 2개#C1(3): {{BossRoom}}아이템 1개; C2(4): {{BossRoom}} 1개 + {{SoulHeart}} 2개#D1(5): {{SoulHeart}} 4개; D2(6): {{Coin}} 20개#W1(7): {{BossRoom}} 2개; W2(8): {{Collectible33}}The Bible#???/Void: 없음#Sheol: {{DevilRoom}}악마방 아이템 1개 + {{BlackHeart}} 1개#Cath: {{AngelRoom}}천사방 아이템 1개 + {{EthernalHeart}} 1개 #Dark: {{Collectible523}}Moving Box 해금#Chest: {{Coin}}동전 1개"}, -- Pandora's Box
 	{"298", "유니콘의 잘린 뿔", "사용 시 6초간 캐릭터의 {{SpeedSmall}}이동속도 +0.28, 공격불능 및 접촉공격불능 무적 상태가 됩니다."}, -- Unicorn Stump
 	{"299", "황소자리", "↓ {{SpeedSmall}}이동속도 -0.3#방 안에 적이 있을 때 이동속도가 점점 증가하며 이동속도가 2.0이 되면 5초간 무적 상태가 됩니다."}, -- Taurus
 	{"300", "양자리", "↑ {{SpeedSmall}}이동속도 +0.25#높은 속도로 적과 접촉시 적에게 18의 피해를 줍니다."}, -- Aries
@@ -395,7 +395,7 @@ EID.descriptions[languageCode].collectibles={
 	{"344", "종이 성냥", "↑ {{BlackHeart}}블랙하트 +1#{{Bomb}}폭탄을 3개 드랍합니다."}, -- Match Book
 	{"345", "합성 스테로이드", "↑ {{DamageSmall}}공격력 +1#↑ {{RangeSmall}}사거리 +5.25#↑ 눈물 높이 +0.5"}, -- Synthoil
 	{"346", "과자", "↑ {{Heart}}최대 체력 +1"}, -- A Snack
-	{"347", "복시", "!!! 일회용#사용 시 장신구를 제외한 방 안의 모든 아이템과 픽업을 2배로 복사합니다."}, -- Diplopia
+	{"347", "복시", "사용 시 장신구를 제외한 방 안의 모든 아이템과 픽업을 2배로 복사합니다."}, -- Diplopia
 	{"348", "위약", "사용 시 현재 소지중인 {{Pill}}알약의 효과를 발동합니다."}, -- Placebo
 	{"349", "나무 동전", "사용 시 56% 확률로 {{Coin}}동전을 하나 드랍합니다."}, -- Wooden Nickel
 	{"350", "독성 쇼크", "{{Poison}} 방 입장 시 방 안의 모든 적에게 공격력 x2의 피해를 줍니다.#적 처치 시 초록 장판이 생기며 장판에 닿은 적은 초당 30의 피해를 입습니다."}, -- Toxic Shock
@@ -523,7 +523,7 @@ EID.descriptions[languageCode].collectibles={
 	{"472", "아기 왕", "캐릭터를 따라다니며 공격키를 누르고 있으면 움직이지 않습니다.#다른 패밀리어들이 이 패밀리어를 기준으로 이동합니다."}, -- King Baby
 	{"473", "커다란 처비", "공격하는 방향으로 느리게 돌진해 접촉하는 적에게 초당 40.5의 피해를 입힙니다."}, -- Big Chubby
 	{"474", "편도선", "."}, -- Tonsil
-	{"475", "플랜 C", "!!! 일회용#사용 시 방 안의 모든 적에게 9,999,999의 피해를 주며 3초 후 사망합니다."}, -- Plan C
+	{"475", "플랜 C", "사용 시 방 안의 모든 적에게 9,999,999의 피해를 주며 3초 후 사망합니다."}, -- Plan C
 	{"476", "1면 주사위", "사용 시 방 안의 픽업 중 하나를 복사합니다."}, -- D1
 	{"477", "공허", "사용 시 방 안의 아이템을 흡수합니다.#액티브 흡수와 동시에, 그리고 아이템을 사용할 때마다 흡수한 액티브의 효과가 발동됩니다.#패시브 흡수 시 랜덤한 능력치가 2개 증가합니다."}, -- Void
 	{"478", "일시정지", "사용 시 방 안의 모든 적의 움직임이 30초간 멈춥니다.#공격키를 누르면 효과가 풀립니다."}, -- Pause
@@ -531,14 +531,14 @@ EID.descriptions[languageCode].collectibles={
 	{"480", "퇴비", "사용 시 방 안의 픽업을 흡수하고 흡수한 개수만큼 파란 아군 파리 및 거미를 소환하며 현재 소지 중인 파란 아군 파리 및 거미를 2배로 늘립니다.#파란 아군 파리 및 거미가 하나도 없을 경우 둘 중 한마리를 소환합니다."}, -- Compost
 	{"481", "데이터마이너", "사용 시 그 방에서 능력치가 랜덤으로 증가하거나 감소하며 눈물에 랜덤한 효과가 부여됩니다."}, -- Dataminer
 	{"482", "클리커", "사용 시 가장 최근에 획득한 패시브 아이템을 제거하고 캐릭터를 랜덤하게 바꿉니다."}, -- Clicker
-	{"483", "맘마 메가!", "!!! 일회용#사용 시 그 스테이지에서 방 최초 입장마다 방 안의 모든 적에게 200의 폭발 피해를 입힙니다.#사용한 스테이지에서 {{BossRoom}}보스방 {{ColorOrange}}최초 입장 시{{CR}} 보스러시/Blue Womb으로 향하는 문이 열립니다."}, -- Mama Mega!
+	{"483", "맘마 메가!", "사용 시 그 스테이지에서 방 최초 입장마다 방 안의 모든 적에게 200의 폭발 피해를 입힙니다.#사용한 스테이지에서 {{BossRoom}}보스방 {{ColorOrange}}최초 입장 시{{CR}} 보스러시/Blue Womb으로 향하는 문이 열립니다."}, -- Mama Mega!
 	{"484", "잠깐 뭐야?", "사용 시 방귀를 뀌며 주변의 적을 더 강하게 밀쳐내고 캐릭터 주위에 충격파를 일으킵니다."}, -- Wait What?
 	{"485", "구부러진 동전", "사용 시 50% 확률로 방 안의 모든 아이템을 2배로 복사하며 복사 실패 시 아이템을 모두 없애고 동전을 1개 드랍합니다."}, -- Crooked Penny
 	{"486", "무딘 면도칼", "사용 시 피해를 입지 않고 피격 시 발동 효과를 발동합니다."}, -- Dull Razor
 	{"487", "감자칼", "!!! 사용 시 이하 효과 발동:#최대 체력 1칸을 제거하고 영구적으로 {{Collectible73}}Cube of Meat를 하나 얻으며 {{DamageSmall}}공격력이 0.2 증가합니다.#그 방에서 {{RangeSmall}}사거리 +5 증가하며 캐릭터가 지나간 자리에 빨간 장판이 생기며 닿은 적은 초당 6의 피해를 입습니다."}, -- Potato Peeler
 	{"488", "메트로놈", "사용 시 그 방에서 랜덤한 아이템 효과를 발동합니다."}, -- Metronome
 	{"489", "무한 주사위", "사용 할 때마다 랜덤한 종류의 주사위로 바뀝니다."}, -- D infinity
-	{"490", "에덴의 영혼", "!!! 일회용#사용 시 그 방의 아이템을 2개 생성합니다."}, -- Eden's Soul
+	{"490", "에덴의 영혼", "사용 시 그 방의 아이템을 2개 생성합니다."}, -- Eden's Soul
 	{"491", "산성 아기", "{{Pill}} 방 3개 클리어 시 알약을 하나 드랍합니다.#{{Poison}} 알약 사용 시 방 안의 모든 적을 1초간 중독시킵니다."}, -- Acid Baby
 	{"492", "", "↑ {{LuckSmall}}행운 +1#방 안에 {{SecretRoom}}{{SuperSecretRoom}}비밀방, 색돌, {{LadderRoom}}사다리방이 있는 위치로 날아갑니다."}, -- YO LISTEN!
 	{"493", "아드레날린", "{{EmptyHeart}}빈 최대 체력 한칸 당 {{DamageSmall}}공격력 +0.2"}, -- Adrenaline
@@ -563,7 +563,7 @@ EID.descriptions[languageCode].collectibles={
 	{"512", "블랙홀", "사용 시 공격하는 방향으로 적들을 모두 빨아들여 붙잡아놓는 블랙홀을 소환합니다.#블랙홀은 6초동안 지속되며 주변 장애물들을 모두 파괴합니다."}, -- Black Hole
 	{"513", "멍청이", "↑ {{SoulHeart}}소울하트 +1#↑ {{DamageSmall}}공격력 +0.1#일정 확률로 적 하나를 {{Charm}}매혹시키거나 {{Fear}}캐릭터에게서 멀어지게 합니다.#피격 시 확률적으로 무지개똥을 쌉니다."}, -- Bozo
 	{"514", "고장난 모뎀", "적과 적의 탄환이 때때로 1초간 멈춥니다.#방 클리어 보상이 25% 확률로 두배로 나옵니다."}, -- Broken Modem
-	{"515", "수수께끼의 선물", "!!! 일회용#사용 시 그 방의 아이템, A Lump of Coal, The Poop 중 하나를 생성합니다.#{{LuckSmall}} 아이템 소환 확률은 행운 수치에 비례합니다."}, -- Mystery Gift
+	{"515", "수수께끼의 선물", "사용 시 그 방의 아이템, A Lump of Coal, The Poop 중 하나를 생성합니다.#{{LuckSmall}} 아이템 소환 확률은 행운 수치에 비례합니다."}, -- Mystery Gift
 	{"516", "스프링클러", "사용 시 360도 방향으로 캐릭터의 공격과 같은 공격을 발사하는 스프링클러를 소환합니다."}, -- Sprinkler
 	{"517", "빠른 폭탄", "↑ {{Bomb}}폭탄 +7#폭탄을 설치할 때 지연 없이 빠르게 설치할 수 있습니다."}, -- Fast Bombs
 	{"518", "친구 든 상자", "공격하는 방향으로 특수 효과 눈물을 발사합니다.#효과는 스테이지마다 바뀝니다."}, -- Buddy in a Box
@@ -584,7 +584,7 @@ EID.descriptions[languageCode].collectibles={
 	{"533", "삼성송", "공격이 하얀색 빛줄기 공격으로 변경됩니다.#빛줄기는 적에게 다단히트로 공격력 x0.33의 피해를 주며 적을 관통합니다."}, -- Trisagion
 	{"534", "책가방", "액티브 아이템을 두개 들 수 있습니다.#액티브 아이템은 {{ButtonRT}}버튼으로 교체할 수 있습니다."}, -- Schoolbag
 	{"535", "담요", "↑ {{SoulHeart}}소울하트 +1#↑ {{HealingRed}}빨간하트 +1#{{HolyMantleSmall}} {{BossRoom}}보스방에서 피격 시 피해를 무시하는 보호막을 1회 제공합니다."}, -- Blanket
-	{"536", "희생의 제단", "!!! 일회용#사용 시 생물 패밀리어를 최대 2마리 제거하고 제거한 패밀리어 수 만큼 {{DevilRoom}}악마방 아이템을 생성합니다."}, -- Sacrificial Altar
+	{"536", "희생의 제단", "사용 시 생물 패밀리어를 최대 2마리 제거하고 제거한 패밀리어 수 만큼 {{DevilRoom}}악마방 아이템을 생성합니다."}, -- Sacrificial Altar
 	{"537", "꼬마 구토쟁이", "획득 시 {{Pill}}알약을 하나 드랍합니다.#{{Chargeable}} 공격하는 방향으로 장판을 충전하여 뱉습니다.#장판의 효과는 알약을 사용할 때마다 달라집니다."}, -- Lil Spewer
 	{"538", "구슬", "장신구를 3개 드랍합니다.#피격 시 5%의 확률로 소지중인 장신구를 흡수해 효과를 영구적으로 얻습니다."}, -- Marbles
 	{"539", "이상한 알", "피격 시 매혹된 아군 적을 소환합니다.#피격당하지 않고 방을 넘어갈수록 소환되는 적이 더욱 강해집니다."}, -- Mystery Egg
@@ -981,6 +981,8 @@ EID.descriptions[languageCode].CollectionPageInfo = "아직 해당 아이템을 
 
 EID.descriptions[languageCode].BlackFeatherInformation = "현재 아이템 {{ColorLime}}{1}{{CR}}개 소지 중 (공격력 +{2})"
 
+EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} 일회용 {{Warning}}"
+
 EID.descriptions[languageCode].MCM={
 	DemoObjectName = "아이템 설명 모드 표시용",
 	DemoObjectTransformation = "테스트 변신 세트 표시",
@@ -1139,7 +1141,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.350.44"] = {"{{Pill}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 알약을 추가로 드랍합니다."}, -- Safety Cap
 	["5.350.45"] = {"{{Card}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 카드를 추가로 드랍합니다."}, -- Ace of Spades
 	["5.350.72"] = {"{{Battery}} +10% 픽업 드랍 시 배터리 픽업으로 바꿀 확률 +10%#{{Battery}} 웨이브 시작 시 5% 확률로 충전량을 한칸 더 채워줍니다."}, -- Watch Battery
-	["5.100.297 (Greed)"] = {"!!! 일회용 / 사용 시 스테이지마다 다른 보상을 드랍합니다.#Basement: 2{{Bomb}} + 2{{Key}}#Caves: {{BossRoom}} 1개 + 2{{SoulHeart}}#Depths: 20{{Coin}}#Womb: {{BossRoom}} 2개#Sheol: {{DevilRoom}} 1개 + 1{{BlackHeart}}#The Shop/Ultra Greed: 1{{Coin}}"}, -- Pandora's Box
+	["5.100.297 (Greed)"] = {"사용 시 스테이지마다 다른 보상을 드랍합니다.#Basement: 2{{Bomb}} + 2{{Key}}#Caves: {{BossRoom}} 1개 + 2{{SoulHeart}}#Depths: 20{{Coin}}#Womb: {{BossRoom}} 2개#Sheol: {{DevilRoom}} 1개 + 1{{BlackHeart}}#The Shop/Ultra Greed: 1{{Coin}}"}, -- Pandora's Box
 
 	------ ACHIEVEMENT CHECKS ------
 	["5.350.23"] = "!!! {{SacrificeRoom}}희생방에서 사망 시 The Lost 캐릭터가 해금됩니다.", -- Missing Poster (Unlock The Lost)

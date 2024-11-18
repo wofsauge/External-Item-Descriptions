@@ -148,7 +148,7 @@ EID.descriptions[languageCode].collectibles={
 	{"124", "Manuscrits de la Mer Morte", "Déclenche l'effet d'un objet activable au hasard#Ne peut pas déclencher d'effets qui infligent des dégâts directs à Isaac"},
 	{"125", "Bobby-Bombes", "{{Bomb}} +5 Bombes#Les bombes placées par Isaac se déplacent en direction des ennemis"},
 	{"126", "Lame de Rasoir", "↑ Dégâts {{ColorLime}}+1.2#{{Warning}} Inflige 1 cœur de dégâts à Isaac#Retire les cœurs rouges en priorité"},
-	{"127", "Pilule Tranquillisante", "{{Warning}} USAGE UNIQUE {{Warning}}#Rejoue et redémarre l'étage"},
+	{"127", "Pilule Tranquillisante", "Rejoue et redémarre l'étage"},
 	{"128", "Seul à Jamais", "Orbite autour d'Isaac et inflige des dégâts de contact#{{DamageSmall}} 30 dégâts par seconde"},
 	{"129", "Seau de Saindoux", "{{EmptyHeart}} +2 réceptacles de cœur#{{HealingRed}} Soigne un demi-cœur rouge#↓ Vitesse {{ColorError}}-0.2"},
 	{"130", "Poney Noir", "↑ Vitesse =1.5#Permet à Isaac de voler#Utiliser l'objet déclenche une ruée dans la direction où se déplace Isaac#Isaac est invulnérable durant la ruée"},
@@ -318,7 +318,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "Haricot Blanc", "Isaac pète et repousse les ennemis et les projectiles à proximité#10% de chances de devenir {{ColorYellow}}Wait What?{{ColorWhite}}{{Collectible484}} quand il est échangé avec un autre objet activable"},
 	{"295", "Pot de Vin", "Inflige des dégâts à toute la salle#Retire 1 pièce à Isaac"},
 	{"296", "Adaptateur", "Convertit 2 cœurs d'âme/noirs en un réceptacle de cœur rouge"},
-	{"297", "Boîte de Pandore", "{{Warning}} UTILISATION UNIQUE {{Warning}}#Donne selon l'étage :#B1 : 2 {{SoulHeart}}#B2 : 2 {{Key}} + 2 {{Bomb}}#C1 : 1 Objet de boss#C2 : 1 Objet de boss + 2 {{SoulHeart}}#D1 : 4 {{SoulHeart}}#D2 : 30 {{Coin}}#W1 : 2 Objets de boss#W2 : {{ColorYellow}}The Bible{{ColorWhite}} {{Collectible33}}#??? / Néant : Rien#Sheol : 1 Objet du Diable, 1 {{BlackHeart}}#Cathedral : 1 Objet d'Ange + 1 {{SoulHeart}}#Dark Room: Débloque la {{ColorYellow}}Carton de Déménagement{{ColorWhite}} {{Collectible523}}#Chest : 1 {{Coin}}"},
+	{"297", "Boîte de Pandore", "Donne selon l'étage :#B1 : 2 {{SoulHeart}}#B2 : 2 {{Key}} + 2 {{Bomb}}#C1 : 1 Objet de boss#C2 : 1 Objet de boss + 2 {{SoulHeart}}#D1 : 4 {{SoulHeart}}#D2 : 30 {{Coin}}#W1 : 2 Objets de boss#W2 : {{ColorYellow}}The Bible{{ColorWhite}} {{Collectible33}}#??? / Néant : Rien#Sheol : 1 Objet du Diable, 1 {{BlackHeart}}#Cathedral : 1 Objet d'Ange + 1 {{SoulHeart}}#Dark Room: Débloque la {{ColorYellow}}Carton de Déménagement{{ColorWhite}} {{Collectible523}}#Chest : 1 {{Coin}}"},
 	{"298", "Corne Brisée", "#↑ Vitesse {{ColorLime}}+0.28#Rend Isaac invulnérable#{{Timer}} L'effet dure 6 secondes"},
 	{"299", "Taureau", "↓ Vitesse {{ColorError}}-0.3#La vitesse d'Isaac augmente progressivement dans les salles hostiles#Quand sa vitesse atteint 2, Isaac devient invulnérable pendant 5 secondes"},
 	{"300", "Bélier", "↑ Vitesse {{ColorLime}}+0.25#Entrer en contact avec un ennemi lui inflige des dégâts"},
@@ -368,7 +368,7 @@ EID.descriptions[languageCode].collectibles={
 	{"344", "Boîte d'Allumettes", "{{BlackHeart}} +1 cœur noir#Fait apparaître 2 ou 3 Bombes"},
 	{"345", "Synthol", "↑ Dégâts {{ColorLime}}+1.0#↑ Portée {{ColorLime}}+5.25#↑ Hauteur des larmes {{ColorLime}}+0.5"},
 	{"346", "Casse-Croûte", "{{Heart}} +1 réceptacle de cœur"},
-	{"347", "Diplopie", "{{Warning}} USAGE UNIQUE {{Warning}}#Duplique tous les objets et ressources de la salle"},
+	{"347", "Diplopie", "Duplique tous les objets et ressources de la salle"},
 	{"348", "Placebo", "Déclenche l'effet de la pilule portée par Isaac sans la consommer"},
 	{"349", "Pièce en Bois", "{{Blank}} Peut faire apparaître :#Pièce de 1 centime {{ColorSilver}}(50%)#Pièce de 5 centimes {{ColorSilver}}(5%)#Pièce de 10 centimes {{ColorSilver}}(1%)#Rien {{ColorSilver}}(44%)"},
 	{"350", "Choc Toxique", "Entrer dans une salle empoisonne tous les ennemis#Les ennemis répandent une flaque toxique à leur mort"},
@@ -496,7 +496,7 @@ EID.descriptions[languageCode].collectibles={
 	{"472", "Bébé Roi", "Tirer immobilise tous les familiers#Arrêter de tirer téléporte les familiers à Isaac"},
 	{"473", "Gros Dodu", "Se déplace lentement dans la direction des tirs d'Isaac#Bloque les projectiles ennemis et inflige des dégâts de contact#{{DamageSmall}} 40.5 dégâts par seconde"},
 	{"474", "Amygdale", "Bloque les projectiles"},
-	{"475", "Suppo de Satan", "{{Warning}} USAGE UNIQUE {{Warning}}#Tue instantanément tous les ennemis et boss de la salle, puis tue Isaac 3 secondes après"},
+	{"475", "Suppo de Satan", "Tue instantanément tous les ennemis et boss de la salle, puis tue Isaac 3 secondes après"},
 	{"476", "D1", "Duplique une ressource aléatoire dans la salle"},
 	{"477", "Néant", "Absorbe tous les objets sur piédestal de la salle#Objets actifs :#{{Blank}} Les prochaines utilisations de Void activeront l'effet de tous les objets absorbés#Objets passifs :#{{Blank}} Augmente 2 stats aléatoires"},
 	{"478", "Pause", "Immobilise tous les ennemis de la salle#Les ennemis immobilisés peuvent infliger des dégâts de contact à Isaac#{{Timer}}L'effet prend fin si Isaac tire"},
@@ -504,14 +504,14 @@ EID.descriptions[languageCode].collectibles={
 	{"480", "Composte", "Convertit toutes les ressources dans la salle en mouches ou araignées bleues#Double les mouches et araignées bleues déjà présentes"},
 	{"481", "Pioche Pirate", "↑ Augmente une stat#↓ Diminue une stat#Donne aux larmes d'Isaac des effets aléatoires#Déforme visuellement les éléments de la salle#{{Timer}} L'effet dure une salle"},
 	{"482", "Télécommande", "Transforme le personnage actuel en un autre personnage au hasard#Retire de l'inventaire du personnage le dernier objet passif obtenu"},
-	{"483", "Mama Méga", "{{Warning}} USAGE UNIQUE {{Warning}}#{{Blank}} Ravage toutes les salles inexplorées de l'étage d'une énorme explosion#Si Isaac possède une bombe dorée, utiliser Mama Méga la consomme et permet à l'objet d'être utilisé une seconde fois"},
+	{"483", "Mama Méga", "Ravage toutes les salles inexplorées de l'étage d'une énorme explosion#Si Isaac possède une bombe dorée, utiliser Mama Méga la consomme et permet à l'objet d'être utilisé une seconde fois"},
 	{"484", "Attends, Quoi ?", "Isaac pète, repousse les ennemis et provoque une vague de rochers"},
 	{"485", "Pièce Tordue", "{{ColorLime}}50%{{ColorWhite}} de chances de dupliquer toutes les ressources et objets de la salle#{{ColorError}}50%{{ColorWhite}} de chances de remplacer toutes les ressources et objets de la salle par une pièce"},
 	{"486", "Lame Émoussée", "Inflige un dégât factice à Isaac qui ne retire pas de points de vie#Déclenche les effets qui s'activent quand Isaac subit des dégâts"},
 	{"487", "Épluche-Légumes", "↑ Dégâts {{ColorLime}}+0.2#Retire un réceptacle de cœur#Donne {{ColorYellow}}Cube of Meat{{ColorWhite}}{{Collectible73}}"},
 	{"488", "Métronome", "Active l'effet d'un objet activable ou passif aléatoire#{{Timer}} L'effet dure une salle"},
 	{"489", "Dé Infini", "Active l'effet d'un dé aléatoire"},
-	{"490", "Âme d'Éden", "{{Warning}} USAGE UNIQUE {{Warning}}#Fait apparaître deux objets#Les objets proviennent de la banque d'objets de la salle où se trouve Isaac"},
+	{"490", "Âme d'Éden", "Fait apparaître deux objets#Les objets proviennent de la banque d'objets de la salle où se trouve Isaac"},
 	{"491", "Bébé Drogué", "Fait apparaître une pilule toutes les 3 salles#Avaler une pilule empoisonne tous les ennemis de la salle"},
 	{"492", "Fée Agaçante", "↑ Chance {{ColorLime}}+1#Révèle la position des rochers marqués, des entrées de Crawl Spaces {{LadderRoom}}, des Secret Rooms {{SecretRoom}} et des Super Secret Rooms {{SuperSecretRoom}}"},
 	{"493", "Adrénaline", "Pour chaque réceptacle de cœur vide :#↑ Dégâts {{ColorLime}}+0.2"},
@@ -536,7 +536,7 @@ EID.descriptions[languageCode].collectibles={
 	{"512", "Trou Noir", "Permet à Isaac de lancer un trou noir qui attire tout dans la salle, inflige des dégâts de contact et détruit les rochers à proximité"},
 	{"513", "Bozo", "↑ Dégâts {{ColorLime}}+0.1#{{SoulHeart}} +1 cœur d'âme#Envoûte ou terrifie parfois un ennemi#Subir un dégât fait parfois apparaître un caca arc-en-ciel"},
 	{"514", "Routeur Cassé", "Paralyse parfois les ennemis et projectiles#25% de chances de dupliquer une récompense de salle#{{LuckSmall}} Effet affecté par la statistique de chance"},
-	{"515", "Cadeau Surprise", "{{Warning}} USAGE UNIQUE {{Warning}}#Fait apparaître un objet aléatoire qui provient de la banque d'objets de la salle où il a été ouvert#Peut faire apparaître {{ColorYellow}}A Lump of Coal{{ColorWhite}}{{Collectible132}} ou {{ColorYellow}}The Poop{{ColorWhite}}{{Collectible36}} à la place#{{LuckSmall}} Effet affecté par la statistique de chance"},
+	{"515", "Cadeau Surprise", "Fait apparaître un objet aléatoire qui provient de la banque d'objets de la salle où il a été ouvert#Peut faire apparaître {{ColorYellow}}A Lump of Coal{{ColorWhite}}{{Collectible132}} ou {{ColorYellow}}The Poop{{ColorWhite}}{{Collectible36}} à la place#{{LuckSmall}} Effet affecté par la statistique de chance"},
 	{"516", "Arroseur Automatique", "Place un arroseur qui tourne sur lui-même et tire des larmes identiques à celles d'Isaac"},
 	{"517", "Bombes Éclair", "{{Bomb}} +7 Bombes#Permet à Isaac de poser plusieurs bombes sans délai"},
 	{"518", "Pote en Boîte", "Familier dont l'apparence et les effets de larmes changent à chaque étage"},
@@ -557,7 +557,7 @@ EID.descriptions[languageCode].collectibles={
 	{"533", "Trisagion", "Remplace les larmes d'Isaac par des rayons de lumière#Les rayons de lumière infligent {{ColorError}}dégâts -66%{{ColorWhite}} mais peuvent toucher le même ennemi plusieurs fois#Larmes transperçantes"},
 	{"534", "Cartable", "Permet à Isaac de porter deux objets activables#Les objets peuvent être échangés avec le bouton {{ColorSilver}}[Lâcher]"},
 	{"535", "Couverture", "{{SoulHeart}} +1 cœur d'âme#{{HealingRed}} Soigne 1 cœur rouge#Nullifie le premier dégât subi dans une salle de boss"},
-	{"536", "Autel Sacrificiel", "{{Warning}} USAGE UNIQUE {{Warning}}#Sacrifie jusqu'à 2 des familiers d'Isaac#Chaque familier sacrifié fait apparaître un objet diabolique"},
+	{"536", "Autel Sacrificiel", "Sacrifie jusqu'à 2 des familiers d'Isaac#Chaque familier sacrifié fait apparaître un objet diabolique"},
 	{"537", "P'tit Spewer", "Crache des flaques#Avaler une pilule change la couleur et l'effet des flaques du familier#Fait apparaître une pilule"},
 	{"538", "Sac de Billes", "Fait apparaître 3 trinkets#Subir un dégât a 5% de chances d'absorber le trinket porté par Isaac et d'activer ses effets de manière permanente"},
 	{"539", "Œuf Mystère", "Subir un dégât invoque un ennemi envoûté#Plus Isaac termine de salles sans subir de dégâts, plus l'ennemi invoqué est puissant"},
@@ -987,6 +987,8 @@ EID.descriptions[languageCode].CollectionPageInfo = "Cet objet n'a encore jamais
 
 EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorSilver}}({1} objets : Dégâts {{ColorLime}}+{2}{{ColorSilver}})"
 
+EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} USAGE UNIQUE {{Warning}}"
+
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
 -- {1} = number of hearts, {2} = plural character
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
@@ -1110,7 +1112,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.350.44"] = {"Détruire une machine, un rocher marqué ou ouvrir un coffre fait parfois apparaître une pilule"}, -- Safety Cap
 	["5.350.45"] = {"Détruire une machine, un rocher marqué ou ouvrir un coffre fait parfois apparaître une carte"}, -- Ace of Spades
 	["5.350.72"] = {"Augmente la fréquence d'apparition des piles#Terminer une vague charge parfois une barre supplémentaire de l'objet activable"}, -- Watch Battery
-	["5.100.297 (Greed)"] = {"{{Warning}} UTILISATION UNIQUE {{Warning}}#{{Blank}} Donne selon l'étage :#SS : {{Bomb}}{{Bomb}} + {{Key}}{{Key}}#Gr : Objet de boss + {{SoulHeart}}{{SoulHeart}}#Pr : 20{{Coin}}#Ut: 2 objets de boss#Sh : Objet diabolique + {{BlackHeart}}#Boutique : {{Coin}}"}, -- Pandora's Box
+	["5.100.297 (Greed)"] = {"Donne selon l'étage :#SS : {{Bomb}}{{Bomb}} + {{Key}}{{Key}}#Gr : Objet de boss + {{SoulHeart}}{{SoulHeart}}#Pr : 20{{Coin}}#Ut: 2 objets de boss#Sh : Objet diabolique + {{BlackHeart}}#Boutique : {{Coin}}"}, -- Pandora's Box
 
 
 	------ ACHIEVEMENT CHECKS ------

@@ -1110,6 +1110,22 @@ if EID.isRepentance then
 	EID.BloodUpData = {["5.70.10"] = 2, ["5.350.156"] = 2, ["5.300.12"] = 2, ["5.300.59"] = 4, [12] = 12, [15] = 12, [16] = 12, [22] = 4, [23] = 4, [24] = 4, [25] = 4, [26] = 4, [75] = 4, [92] = 4, [101] = 4, [119] = 10, [121] = 2, [129] = 4, [138] = 4, [176] = 4, [182] = 12, [184] = 4, [189] = 12, [193] = 4, [217] = 2, [218] = 4, [226] = 4, [253] = 4, [307] = 4, [312] = 4, [314] = 4, [334] = 6, [342] = 4, [346] = 4, [354] = 4, [428] = 12, [456] = 4, [535] = 2, [573] = 12, [591] = 4, [594] = 1, [614] = 10, [621] = 12, [664] = 12, [669] = 12, [707] = 4 }
 end
 
+EID.SingleUseCollectibles = {
+	[127] = true, -- Forget Me Now
+	[297] = true, -- Pandora's Box
+	[347] = true, -- Diplopia
+	[475] = true, -- Plan C
+	[483] = true, -- Mama Mega!
+	[490] = true, -- Eden's Soul
+	[515] = true, -- Mystery Gift
+	[536] = true, -- Sacrificial Altar
+}
+if EID.isRepentance then
+	EID.SingleUseCollectibles[577] = true -- Damocles
+	EID.SingleUseCollectibles[622] = true -- Genesis
+	EID.SingleUseCollectibles[628] = true -- Death Certificate
+	EID.SingleUseCollectibles[636] = true -- R Key
+end
 
 ---------------- BAG OF CRAFTING DATA ------------------
 

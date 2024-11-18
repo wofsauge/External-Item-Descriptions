@@ -146,7 +146,7 @@ EID.descriptions[languageCode].collectibles={
 	{"124", "Pergaminos del Mar Muerto", "Efecto de objeto activo aleatorio"},
 	{"125", "Bobby-Bomba", "↑ {{Bomb}} +5 Bombas#Bombas teledirigidas"},
 	{"126", "Hoja de Afeitar", "↑ +1,2 de daño en la habitación actual#↓ Te inflige 1 corazón de daño"},
-	{"127", "Olvídame Ya", "{{Warning}} UN SOLO USO {{Warning}} #Reinicia toda la planta"},
+	{"127", "Olvídame Ya", "Reinicia toda la planta"},
 	{"128", "Siempre solo", "Mosca orbital de larga distancia #Inflige 30 de daño por contacto cada segundo"},
 	{"129", "Cubo de manteca", "↑ {{EmptyHeart}} +2 contenedores de corazón vacíos#↓ -0,2 de velocidad#{{HealingRed}} Cura medio corazón"},
 	{"130", "Un poni ", "Permite volar mientras lo tengas#Establece tu velocidad en 1,5 en caso de que tengas menos que eso#Embiste en una dirección"},
@@ -316,7 +316,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "Frijol Mantequilla", "Repele a los enemigos y proyectiles cercanos#10 % de probabilidad de convertirse en \"Wait What?\" (Espera, ¿qué?) al intercambiarlo por otro objeto activable y volverlo a coger"},
 	{"295", "Dedos mágicos", "Daña toda la habitación con el doble de tu daño#Precio: 1 moneda"},
 	{"296", "Conversor", "!!! Convierte:#2 corazones de alma/negros en un corazón rojo"},
-	{"297", "Caja de Pandora", "!!! ÚNICO USO !#!!! Genera cosas en función del piso en el que se active:#B1: 2 corazones de alma; B2: 2 llaves y bombas#C1: 1 objeto de jefe; C2: B1+C1#D1: {{SoulHeart}} 4 corazones de alma; D2: 20 monedas#W1: 2 objetos {{BossRoom}}; W2: {{Collectible33}} Biblia#Sheol: 1 objeto {{DevilRoom}} + 1 {{BlackHeart}}; Catedral: 1 objeto {{AngelRoom}} + 1 {{SoulHeart}}#Cofre: {{Coin}} 1 moneda"},
+	{"297", "Caja de Pandora", "Genera cosas en función del piso en el que se active:#B1: 2 corazones de alma; B2: 2 llaves y bombas#C1: 1 objeto de jefe; C2: B1+C1#D1: {{SoulHeart}} 4 corazones de alma; D2: 20 monedas#W1: 2 objetos {{BossRoom}}; W2: {{Collectible33}} Biblia#Sheol: 1 objeto {{DevilRoom}} + 1 {{BlackHeart}}; Catedral: 1 objeto {{AngelRoom}} + 1 {{SoulHeart}}#Cofre: {{Coin}} 1 moneda"},
 	{"298", "Paso de Unicornio", "Invencibilidad y +0,28 velocidad que dura hasta 6 segundos"},
 	{"299", "Tauro", "¡Te hace más rápido en las habitaciones hostiles!#Invencibilidad al alcanzar la velocidad suficiente"},
 	{"300", "Aries", "↑ {{Speed}} Velocidad +0.25#Tocar a los enemigos les daña"},
@@ -366,7 +366,7 @@ EID.descriptions[languageCode].collectibles={
 	{"344", "Caja de Fósforos", "+1 corazón negro#Genera de 2 a 3 bombas"},
 	{"345", "Synthol", "↑ {{Range}} Alcance +5.25#↑ {{Damage}} Daño +1.0#↑ {{Tearsize}} Tamaño de lágrimas +0.5"},
 	{"346", "Un Bocadillo", "↑ {{Heart}} +1 de Vida"},
-	{"347", "Diplopia", "!!! UN SOLO USO #Duplica los pedestales y consumibles de la habitación actual"},
+	{"347", "Diplopia", "Duplica los pedestales y consumibles de la habitación actual"},
 	{"348", "Placebo", "Copia el efecto de la píldora que tienes"},
 	{"349", "Moneda de Madera", "50 % de probabilidad de generar una moneda aleatoria"},
 	{"350", "Shock tóxico", "{{Poison}} Al entrar en cada habitación los enemigos se envenenan"},
@@ -494,7 +494,7 @@ EID.descriptions[languageCode].collectibles={
 	{"472", "Rey bebé", "Le siguen otros familiares#No se mueve mientras disparas#Se teletransporta a ti cuando dejas de disparar"},
 	{"473", "Gran Chubby", "Carga hacia delante lentamente#Inflige 40,5 de daño por contacto"},
 	{"474", "Amígdala", "Bloquea los proyectiles enemigos"},
-	{"475", "Plan C", "!!! UN SOLO USO #Inflige 9.999.999 de daño a todos los enemigos y te mata 3 segundos después"},
+	{"475", "Plan C", "Inflige 9.999.999 de daño a todos los enemigos y te mata 3 segundos después"},
 	{"476", "D1", "Duplica un recolectable aleatorio en la habitación actual"},
 	{"477", "Vacío", "!!! Al usarlo, consume cualquier objeto de pedestal en la habitación#Objeto activo: Se añade el efecto al de Vacío(Apilando los efectos)#↑ Objeto pasivo: Pequeña mejora aleatoria"},
 	{"478", "Pausa", "Congela a los enemigos hasta que vuelvas a disparar#Tocar a un enemigo congelado te hará daño"},
@@ -502,14 +502,14 @@ EID.descriptions[languageCode].collectibles={
 	{"480", "Abono", "Convierte los recolectables en moscas o arañas azules"},
 	{"481", "Dataminer", "Al usarlo, ↑/↓ una pequeña cantidad de una estadística aleatoria#Efecto aleatorio de lágrima para la habitación actual"},
 	{"482", "Control Remoto", "Te convierte en otro personaje aleatorio#Elimina el último objeto que hayas tomado"},
-	{"483", "¡Mamá Mega!", "!!! UN SOLO USO#Afecta a toda la planta#Explota todos los objetos#Inflige 200 de daño a todos los enemigos#Abre la Boss rush/puerta de Hush/sala secreta"},
+	{"483", "¡Mamá Mega!", "Afecta a toda la planta#Explota todos los objetos#Inflige 200 de daño a todos los enemigos#Abre la Boss rush/puerta de Hush/sala secreta"},
 	{"484", "Espera... ¿qué?", "Al usarlo, empuja a los enemigos y genera una ola de rocas#Puede abrir habitaciones o romper piedras"},
 	{"485", "Moneda Doblada", "50% de probabilidad de duplicar todos los objetos, consumibles y cofres de la habitación#50% de probabilidad de eliminar objetos/recolectables de la habitación y soltar una moneda"},
 	{"486", "Hoja sin Filo", "Hace que el jugador sufra daño sin perder ningún corazón#Puede activar efectos de otros objetos que tengas"},
 	{"487", "Pelador de Papas", "{{Heart}} Elimina un contenedor, a cambio, otorga:#↑ {{Damage}} Daño +0.2 de daño#{{Collectible73}} Un Cubo de carne"},
 	{"488", "Metrónomo", "Otorga un efecto de objeto aleatorio en la habitación"},
 	{"489", "D infinito", "Efecto de dado aleatorio en cada uso"},
-	{"490", "Alma de Edén", "!!! UN SOLO USO#Genera 2 objetos aleatorios de la habitación actual"},
+	{"490", "Alma de Edén", "Genera 2 objetos aleatorios de la habitación actual"},
 	{"491", "Bebé ácido", "Genera una píldora aleatoria cada tres habitaciones#Usar una píldora daña a los enemigos"},
 	{"492", "YO LISTEN!", "↑ {{Luck}} +1 de suerte#Resalta la localización de salas secretas, rocas marcadas y trampillas"},
 	{"493", "Adrenalina", "Por cada contenedor de corazón vacío:#↑ {{Damage}} +0,2 de daño"},
@@ -534,7 +534,7 @@ EID.descriptions[languageCode].collectibles={
 	{"512", "Agujero negro", "Agujero negro lanzable, que lo absorbe todo#Inflige 0,4 de daño por tick#Destruye rocas cercanas#Dura seis segundos"},
 	{"513", "Bozo", "↑ {{Damage}} Daño +0.1#↑ {{SoulHeart}} +1 corazón de alma#Posibilidad de encantar/asustar a un enemigo#Posibilidad de generar una caca arcoíris al ser golpeado"},
 	{"514", "Modem Roto", "Los enemigos se quedan paralizados de manera aleatoria por unos instantes#25 % de probabilidad de generar el doble de recolectables al limpiar la habitación"},
-	{"515", "Regalo misterioso", "!!! UN SOLO USO#Genera un objeto aleatorio de la habitación actual#Probabilidad de generar:#{{Collectible132}} Un trozo de carbón#{{Collectible36}} La Caca"},
+	{"515", "Regalo misterioso", "Genera un objeto aleatorio de la habitación actual#Probabilidad de generar:#{{Collectible132}} Un trozo de carbón#{{Collectible36}} La Caca"},
 	{"516", "Aspersor", "Genera una torreta que gira y dispara tus lágrimas en todas las direcciones"},
 	{"517", "Bombas Rápidas", "↑ {{Bomb}} +7 Bombas#Te permite colocar bombas muy rápido"},
 	{"518", "Compañero Encajonado", "Familiar que cambia de aspecto#Efecto de lágrima aleatorio cada planta"},
@@ -555,7 +555,7 @@ EID.descriptions[languageCode].collectibles={
 	{"533", "Trisagio", "Dispara rayos de luz blanca#(Brimstone sagrado)"},
 	{"534", "Mochila", "Te permite tener 2 objetos activables#Cámbialos pulsando la tecla de soltar objetos (mantén si eres \"The Forgotten\")"},
 	{"535", "Manto", "{{SoulHeart}} +1 corazón de alma#{{Heart}} Cura un corazón rojo#{{HolyMantle}} Otorga un escudo al entrar a la sala del jefe"},
-	{"536", "Altar de sacrificio", "!!! UN SOLO USO#Sacrifica 1-2 familiares para generar un objeto del Diablo{{DevilRoom}}#Convierte tus moscas o arañas azules en monedas"},
+	{"536", "Altar de sacrificio", "Sacrifica 1-2 familiares para generar un objeto del Diablo{{DevilRoom}}#Convierte tus moscas o arañas azules en monedas"},
 	{"537", "Arcadio", "+1 píldora#Familiar que deja un rastro de creep#El tipo de creep cambia cada vez que uses una píldora"},
 	{"538", "Canicas", "Deja caer 3 trinkets aleatorios#Que te golpeen puede añadir el efecto del trinket permanentemente"},
 	{"539", "Huevo misterioso", "Genera un enemigo encantado cuando te golpean#Genera aliados más fuertes cuantas más habitaciones limpies sin que te golpeen"},
@@ -881,6 +881,8 @@ EID.descriptions[languageCode].MCM = {
 }
 
 EID.descriptions[languageCode].CollectionPageInfo = "¡Debes tomar este objeto para completar la pagina de colección!"
+
+EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} UN SOLO USO {{Warning}}"
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].ItemReminder = {
