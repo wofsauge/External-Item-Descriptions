@@ -474,4 +474,37 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         ["Changes some colors to make the mod more colorblind-friendly."] = "更改一些颜色, 使模组对色盲更加友好",
     })
 
+    MCM.TranslateOptionsPopupWithTable("EID","General",{
+        {"This setting is currently set to \"","当前设置为\""},
+        {"\".$newlinePress this button to keep it unchanged.$newline$newline","\".$newline按此键保持设置不变。$newline"},
+        {"Press a button on your ","在"},
+        {" to change this setting.$newline$newline", "上按任意键改变设置$newline"},
+        {"Press ", "按"},
+        {" to go back and clear this setting.","返回并清除设置"},
+        {"back","返回"},
+        {"keyboard","键盘"},
+        {"controller","手柄"},
+    })
+    MCM.TranslateOptionsPopupWithTable("EID","Visuals",{
+        {"This setting is currently set to \"","当前设置为\""},
+        {"\".$newlinePress this button to keep it unchanged.$newline$newline","\".$newline按此键保持设置不变。$newline"},
+        {"Press a button on your ","在"},
+        {" to change this setting.$newline$newline", "上按任意键改变设置$newline"},
+        {"Press ", "按"},
+        {" to go back and clear this setting.","返回并清除设置"},
+        {"back","返回"},
+        {"keyboard","键盘"},
+        {"controller","手柄"},
+    })
+    MCM.TranslateOptionsPopupWithTable("EID","Crafting",{
+        {"This setting is currently set to \"","当前设置为\""},
+        {"\".$newlinePress this button to keep it unchanged.$newline$newline","\".$newline按此键保持设置不变。$newline"},
+        {"Press a button on your ","在"},
+        {" to change this setting.$newline$newline", "上按任意键改变设置$newline"},
+        {"Press ", "按"},
+        {" to go back and clear this setting.","返回并清除设置"},
+        {"back","返回"},
+        {"keyboard","键盘"},
+        {"controller","手柄"},
+    })
 end
