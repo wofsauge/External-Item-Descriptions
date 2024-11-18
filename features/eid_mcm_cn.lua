@@ -209,7 +209,7 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         {"None","无"},
         {"True","是"},
         {"False","否"},
-        {"cn_default,"官中字体"},
+        {"cn_default","官中字体"},
         {"cn_old","旧版宋体"},
         {"cn_alt","新版像素体(默认)"},
         {"default", "默认"},
