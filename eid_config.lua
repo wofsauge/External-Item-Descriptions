@@ -23,7 +23,7 @@ EID.UserConfig = {
 	--
 	-- If you want to make a translation, please contact me :) (wofsauge)
 	--
-	["Language"] = "fr",
+	["Language"] = "auto",
 	-- Change if item names should be displayed in English, your translated language or both
 	-- States: 1 = English , 2 = translated,  3 = both
 	-- Default = 2
