@@ -6,6 +6,7 @@ EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
 EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, so we save the value before anyone can alter it
+EID.isRepentancePlus = FontRenderSettings ~= nil -- Repentance+ adds FontRenderSettings() class. We use this to check if the DLC is enabled
 
 require("eid_config")
 EID.Config = EID.UserConfig
@@ -130,6 +131,17 @@ if EID.isRepentance then
 	local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
 	require("features.eid_bagofcrafting")
 	require("features.eid_tmtrainer")
+
+	if EID.isRepentancePlus then
+		EID.GameVersion = "rep+"
+		for _,lang in ipairs(EID.Languages) do
+			local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
+			if not wasSuccessful and not string.find(err, "not found") then
+				Isaac.ConsoleOutput("Load rep+ "..lang.." failed: "..tostring(err))
+			end
+		end
+		local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
+	end
 end
 
 EID.LastRenderCallColor = EID:getTextColor()
