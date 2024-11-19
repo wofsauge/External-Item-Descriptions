@@ -1111,6 +1111,8 @@ EID.descriptions[languageCode].CollectionPageInfo = "Questo oggetto deve essere 
 
 EID.descriptions[languageCode].BlackFeatherInformation = "Oggetti tenuti al momento: {{ColorLime}}{1}{{CR}} (+{2} Danni)"
 
+EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} USO SINGOLO {{Warning}}"
+
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
 -- {1} = number of hearts, {2} = plural character
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines

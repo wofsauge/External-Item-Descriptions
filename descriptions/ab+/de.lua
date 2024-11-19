@@ -319,7 +319,7 @@ EID.descriptions[languageCode].collectibles={
 	{"296", "Converter", "{{Heart}} Converts 2 Schwarze/Seeelenherzen into 1 Herzcontainer"}, -- Converter
 	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
 	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
-	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#Dark Room: Unlocks {{Collectible523}} Moving Box; Chest: 1{{Coin}}"}, -- Pandora's Box
+	{"297", "Pandora's Box", "Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#C1: Boss item; C2: B1+C1#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#Dark Room: Unlocks {{Collectible523}} Moving Box; Chest: 1{{Coin}}"}, -- Pandora's Box
 	{"298", "Unicorn Stump", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Tempo#Unverwundbarkeit#Isaac can't shoot (No contact damage)"}, -- Unicorn Stump
 	{"299", "Taurus", "↓ {{Speed}} -0.3 Tempo#↑ {{Speed}} Slowly gain speed while in hostile rooms#At 2 speed, Isaac becomes invincible and deals contact damage#Afterwards, lose the Taurus speed boost für diesen Raum"}, -- Taurus
 	{"300", "Aries", "↑ {{Speed}} +0.25 Tempo#Touching enemies deals contact damage"}, -- Aries
@@ -369,7 +369,7 @@ EID.descriptions[languageCode].collectibles={
 	{"344", "Match Book", "{{BlackHeart}} +1 Schwarzes Herz#{{Bomb}} Spawns 3 Bomben"}, -- Match Book
 	{"345", "Synthoil", "↑ {{Damage}} +1 Schaden#↑ {{Range}} +5.25 Reichweite#↑ +0.5 Tränenhöhe"}, -- Synthoil
 	{"346", "A Snack", "↑ {{Heart}} +1 Gesundheit"}, -- A Snack
-	{"347", "Diplopia", "{{Warning}} SINGLE USE {{Warning}}#Duplicates all item pedestals and pickups in the room"}, -- Diplopia
+	{"347", "Diplopia", "Duplicates all item pedestals and pickups in the room"}, -- Diplopia
 	{"348", "Placebo", "{{Pill}} Triggers the effect of the pill Isaac holds without using it"}, -- Placebo
 	{"349", "Wooden Nickel", "{{Coin}} 56% chance to spawn a random coin"}, -- Wooden Nickel
 	{"350", "Toxic Shock", "{{Poison}} Entering a room poisons all enemies#Enemies killed leave a puddle of creep#The creep deals 30 damage per second"}, -- Toxic Shock
@@ -497,7 +497,7 @@ EID.descriptions[languageCode].collectibles={
 	{"472", "King Baby", "Other familiars follow it#Stops moving when Isaac shoots#Teleports back to Isaac when he stops shooting"}, -- King Baby
 	{"473", "Big Chubby", "Very slowly charges forwards#Blocks shots#Deals 40.5 contact damage per second"}, -- Big Chubby
 	{"474", "Tonsil", "Blocks enemy projectiles"}, -- Tonsil
-	{"475", "Plan C", "{{Warning}} SINGLE USE {{Warning}}#Deals 9,999,999 damage to all enemies#{{Warning}} Kills Isaac 3 seconds later"}, -- Plan C
+	{"475", "Plan C", "Deals 9,999,999 damage to all enemies#{{Warning}} Kills Isaac 3 seconds later"}, -- Plan C
 	{"476", "D1", "Duplicates a random pickup in the room"}, -- D1
 	{"477", "Void", "Consumes all pedestal items in the room#Active items: Their effects activate, and will activate with every future use of Void#↑ Passive items grant two random stat ups"}, -- Void
 	{"478", "Pause", "Pauses all enemies in the room until Isaac shoots#Touching a paused enemy still deals damage to Isaac#Enemies unpause after 30 seconds"}, -- Pause
@@ -505,14 +505,14 @@ EID.descriptions[languageCode].collectibles={
 	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles all blue flies and spiders#Spawns 1 blue fly or spider if Isaac has none"}, -- Compost
 	{"481", "Dataminer", "↑ Random stat up#↓ Random stat down#{{Timer}} Random tear effects für diesen Raum#{{Blank}} Corrupts all sprites and music in the room"}, -- Dataminer
 	{"482", "Clicker", "Changes your character to a random character#Removes the most recent item collected"}, -- Clicker
-	{"483", "Mama Mega!", "{{Warning}} SINGLE USE {{Warning}}#Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss-Ansturm, Hush and all Geheimräume#Having a golden bomb when using the item consumes it and allows for another use of Mama Mega"}, -- Mama Mega!
+	{"483", "Mama Mega!", "Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss-Ansturm, Hush and all Geheimräume#Having a golden bomb when using the item consumes it and allows for another use of Mama Mega"}, -- Mama Mega!
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawns a rock wave around Isaac#The rock wave can open rooms and break rocks"}, -- Wait What?
 	{"485", "Crooked Penny", "50% chance to double all items, pickups and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"}, -- Crooked Penny
 	{"486", "Dull Razor", "Hurts Isaac without removing health#Triggers any on-hit item effects"}, -- Dull Razor
 	{"487", "Potato Peeler", "{{EmptyHeart}} Removes 1 Herzcontainer for:#↑ {{Damage}} +0.2 Schaden#{{Collectible73}} A Cube of Meat#{{Timer}} Erhalte für diesen Raum:#↑ {{Range}} +5 Reichweite#{{Collectible214}} Leave a trail of blood creep"}, -- Potato Peeler
 	{"488", "Metronome", "Grants a random item effect für diesen Raum"}, -- Metronome
 	{"489", "D Infinity", "Triggers a random dice effect each use"}, -- D Infinity
-	{"490", "Eden's Soul", "{{Warning}} SINGLE USE {{Warning}}#Spawns 2 random items depending on the current room's Gegenstandspool#Starts with no charges"}, -- Eden's Soul
+	{"490", "Eden's Soul", "Spawns 2 random items depending on the current room's Gegenstandspool#Starts with no charges"}, -- Eden's Soul
 	{"491", "Acid Baby", "{{Pill}} Spawns a random pill every 3 rooms#{{Poison}} Using a pill poisons all enemies in the room"}, -- Acid Baby
 	{"492", "YO LISTEN!", "↑ {{Luck}} +1 Glück#Highlights the location of {{SecretRoom}} Geheimräume, tinted rocks and {{LadderRoom}} Kriechkeller"}, -- YO LISTEN!
 	{"493", "Adrenaline", "For every empty Herzcontainer:#↑ {{Damage}} +0.2 Schaden"}, -- Adrenaline
@@ -537,7 +537,7 @@ EID.descriptions[languageCode].collectibles={
 	{"512", "Black Hole", "Throwable black hole, which sucks in everything#Deals 6 damage per second#Destroys nearby rocks#Lasts 6 seconds"}, -- Black Hole
 	{"513", "Bozo", "↑ {{Damage}} +0.1 Schaden#{{SoulHeart}} +1 Seelenherz#{{Charm}} Randomly charms/fears enemies#Taking damage has a random chance to spawn a Rainbow Poop"}, -- Bozo
 	{"514", "Broken Modem", "Causes some enemies and projectiles to briefly pause at random intervals#25% chance to double room clear drops"}, -- Broken Modem
-	{"515", "Mystery Gift", "{{Warning}} SINGLE USE {{Warning}}#Spawns a random item from the current room's Gegenstandspool#Chance to spawn Lump of Coal or The Poop instead"}, -- Mystery Gift
+	{"515", "Mystery Gift", "Spawns a random item from the current room's Gegenstandspool#Chance to spawn Lump of Coal or The Poop instead"}, -- Mystery Gift
 	{"516", "Sprinkler", "Spawns a Sprinkler that shoots the same tears as Isaac in a circle around itself"}, -- Sprinkler
 	{"517", "Fast Bomben", "{{Bomb}} +7 Bomben#Removes the delay between bomb placements"}, -- Fast Bomben
 	{"518", "Buddy in a Box", "Familiar which looks like a random co-op baby#Has random tear effects#Effects change every floor"}, -- Buddy in a Box
@@ -558,7 +558,7 @@ EID.descriptions[languageCode].collectibles={
 	{"533", "Trisagion", "Replaces Isaac's tears with piercing beams of light#The beams deal 33% damage but can hit enemies multiple times"}, -- Trisagion
 	{"534", "Schoolbag", "Allows Isaac to hold 2 active items#The items can be swapped using the Drop button ({{ButtonRT}})"}, -- Schoolbag
 	{"535", "Blanket", "{{Heart}} Heals 1 heart#{{SoulHeart}} +1 Seelenherz#{{HolyMantle}} Entering a Bossraum grants a Holy Mantle shield (prevents damage once)"}, -- Blanket
-	{"536", "Sacrificial Altar", "{{Warning}} SINGLE USE {{Warning}}#Sacrifices up to 2 familiars and spawns a devil item for each sacrifice#{{Coin}} Turns blue spiders/flies into Münzen"}, -- Sacrificial Altar
+	{"536", "Sacrificial Altar", "Sacrifices up to 2 familiars and spawns a devil item for each sacrifice#{{Coin}} Turns blue spiders/flies into Münzen"}, -- Sacrificial Altar
 	{"537", "Lil Spewer", "{{Pill}} Spawns a random pill on pickup#Fires a line of creep#The type of creep changes with each pill use"}, -- Lil Spewer
 	{"538", "Marbles", "{{Trinket}} Spawns 3 random trinkets#{{Collectible479}} Taking damage has a 10% chance to consume Isaac's held trinket and grant its effects permanently"}, -- Marbles
 	{"539", "Mystery Egg", "Taking damage spawns a charmed enemy#Spawns stronger friends the more rooms are cleared without taking damage"}, -- Mystery Egg
@@ -738,6 +738,7 @@ EID.descriptions[languageCode].CollectionPageInfo = "Dieses Item muss für die S
 
 EID.descriptions[languageCode].BlackFeatherInformation = "Aktuell {{ColorLime}}{1}{{CR}} Items (+{2} Schaden)"
 
+EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} Einmalgebrauch {{Warning}}"
 
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Demo Objektname",

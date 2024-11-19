@@ -2,7 +2,7 @@
 -----  Basic Korean descriptions  -----
 ---------------------------------------
 
--- Last Sync with en_us: 2023-10-27
+-- Last Sync with en_us or update: 2024-11-18
 
 -- FORMAT: Item ID | Name | Description
 
@@ -22,11 +22,11 @@ EID.descriptions[languageCode].languageName = "Korean"
 -- Fonts to be used with this languagepack
 --[[
 	Description for Korean fonts :
+	korean_yoonwebdotum10(윤디자인웹돋움) - Default Korean font that was used from former EID Korean. Shadow/Borderless/Inverted version available. Recommended LineHeight : 13
 	korean_yoonwebdotum9(윤디자인웹돋움) - Small size of default Korean font that was used from former EID Korean. Recommended LineHeight : 11
-	korean_yoonwebdotum10(윤디자인웹돋움) - Default Korean font that was used from former EID Korean. Recommended LineHeight : 13
 	korean_lanapixel(Lanapixel) - Used for official translation for TBoI : Repentance. Recommended LineHeight : 11
-	korean_soyakkoma(소야꼬마9) - A fancy font that improves readability. Borderless/Inverted version available. Recommended LineHeight : 13
-	korean_soyanon(소야논8) - A fancy font that that was used from former EID Korean. Recommended LineHeight : 11
+	korean_soyakkoma(소야꼬마9) - A fancy font that improves readability. Shadow/Borderless/Inverted version available. Recommended LineHeight : 13
+	korean_soyanon(소야논8) - A fancy font that that was used from former EID Korean. Shadow version available. Recommended LineHeight : 11
 	korean_galmoori9(갈무리9) - A font that inspired from Nintendo DS Korean font. Recommended LineHeight : 11
 	korean_galmoori11(갈무리11) - A font that inspired from Nintendo DS Korean font. Used for unofficial Korean mod by Blackcreamtea. Recommended LineHeight : 13
 
@@ -34,15 +34,18 @@ EID.descriptions[languageCode].languageName = "Korean"
 	eid_korean_hcrdotum_0.png is untouched due to game crashes for changing file names.
  ]]
 EID.descriptions[languageCode].fonts = {
-	{name="korean_yoonwebdotum9", lineHeight=11, textboxWidth = 150},
+	{name="korean_yoonwebdotum10_shadow", lineHeight=13, textboxWidth = 175},
 	{name="korean_yoonwebdotum10", lineHeight=13, textboxWidth = 175},
 	{name="korean_yoonwebdotum10_borderless", lineHeight=13, textboxWidth = 175},
 	{name="korean_yoonwebdotum10_inverted", lineHeight=13, textboxWidth = 175},
+	{name="korean_yoonwebdotum9", lineHeight=11, textboxWidth = 150},
 	{name="korean_lanapixel", lineHeight=12, textboxWidth = 150},
 	{name="korean_soyakkoma", lineHeight=13, textboxWidth = 150},
+	{name="korean_soyakkoma_shadow", lineHeight=13, textboxWidth = 150},
 	{name="korean_soyakkoma_borderless", lineHeight=13, textboxWidth = 150},
 	{name="korean_soyakkoma_inverted", lineHeight=13, textboxWidth = 150},
 	{name="korean_soyanon", lineHeight=12, textboxWidth = 150},
+	{name="korean_soyanon_shadow", lineHeight=12, textboxWidth = 150},
 	{name="korean_galmoori9", lineHeight=12, textboxWidth = 150},
 	{name="korean_galmoori11", lineHeight=14, textboxWidth = 160}
 }
@@ -63,7 +66,7 @@ EID.descriptions[languageCode].collectibles={
 	{"12", "마법의 버섯", "↑ {{Heart}}최대 체력 +1#{{HealingRed}} 체력을 모두 회복합니다.#↑ {{DamageSmall}}공격력 +0.5#↑ {{DamageSmall}}공격력 배율 x1.5#↑ {{RangeSmall}}사거리 +5.25#↑ 눈물 높이 +0.5#↑ {{SpeedSmall}}이동속도 +0.3#캐릭터의 크기가 커집니다."}, -- Magic Mushroom
 	{"13", "바이러스", "↓ {{SpeedSmall}}이동속도 -0.1#{{Poison}} 적에게 접촉시 적에게 12의 피해를 주고 적을 중독시킵니다.#중독된 적 처치 시 20% 확률로 {{BlackHeart}}블랙하트를 드랍합니다."}, -- The Virus
 	{"14", "불량 스테로이드", "↑ {{RangeSmall}}사거리 +5.25#↑ 눈물 높이 +0.5#↑ {{SpeedSmall}}이동속도 +0.6"}, -- Roid Rage
-	{"15", "♡", "↑ {{Heart}}최대 체력 +1 #{{HealingRed}} 체력을 모두 회복합니다."}, -- <3
+	{"15", "♡", "↑ {{Heart}}최대 체력 +1#{{HealingRed}} 체력을 모두 회복합니다."}, -- <3
 	{"16", "생간", "↑ {{Heart}}최대 체력 +2#{{HealingRed}} 체력을 모두 회복합니다."}, -- Raw Liver
 	{"17", "해골 열쇠", "↑ {{Key}}열쇠 +99"}, -- Skeleton Key
 	{"18", "달러", "↑ {{Coin}}동전 +99"}, -- A Dollar
@@ -82,7 +85,7 @@ EID.descriptions[languageCode].collectibles={
 	{"31", "엄마의 립스틱", "↑ {{RangeSmall}}사거리 +5.25#↑ 눈물 높이 +0.5"}, -- Mom's Lipstick
 	{"32", "철제 옷걸이", "↑ {{TearsSmall}}연사 +0.7"}, -- Wire Coat Hanger
 	{"33", "성경", "사용 시 그 방에서 비행 능력을 얻습니다.#{{MomBossSmall}}Mom, {{MomsHeartSmall}}Mom's Heart/It Lives 보스에게 사용 시 보스를 즉사시킵니다.#!!! {{SatanSmall}}Satan 보스에게 사용 시 캐릭터가 즉사합니다."}, -- The Bible
-	{"34", "벨리알의 책", "{{DevilChanceSmall}} 소지중일 때 악마방 확률 +12.5%#사용 시 그 방에서 {{DamageSmall}}공격력 +2"}, -- The Book of Belial
+	{"34", "벨리알의 책", "{{DevilChanceSmall}} 소지중일 때 악마방 확률 +12.5%#{{Timer}} 사용 시 그 방에서:#{{DamageSmall}}공격력 +2"}, -- The Book of Belial
 	{"35", "네크로노미콘", "사용 시 방 전체 적에게 40의 피해를 줍니다."}, -- The Necronomicon
 	{"36", "똥", "사용 시 똥을 싸며 주변의 적을 더 강하게 밀쳐냅니다.#1칸짜리 구덩이 바로 옆에서 똥을 싸고 폭탄으로 터트리면 해당 구덩이를 메울 수 있습니다."}, -- The Poop
 	{"37", "미스터 붐", "사용 시 캐릭터의 위치에 공격력 110의 대형 폭탄을 설치합니다."}, -- Mr. Boom
@@ -92,7 +95,7 @@ EID.descriptions[languageCode].collectibles={
 	{"41", "엄마의 패드", "{{Fear}} 사용 시 방 안의 모든 적들을 5초간 캐릭터에게서 도망가게 합니다."}, -- Mom's Pad
 	{"42", "밥의 썩은 머리통", "사용 시 공격하는 방향으로 공격력 50의 독폭탄을 발사합니다.#{{Poison}} 독폭탄은 캐릭터의 눈물 효과가 적용되며 맞은 적을 중독시킵니다."}, -- Bob's Rotten Head
 	{"43", "Pills here!", "<item does not exist>"}, -- Pills here!
-	{"44", "순간이동!", "사용 시 스테이지 안의 랜덤한 방으로 순간이동합니다.#!!! 오류방으로는 이동하지 않습니다."}, -- Teleport!
+	{"44", "순간이동!", "사용 시 스테이지 안의 랜덤 방으로 순간이동합니다.#!!! 오류방으로는 이동하지 않습니다."}, -- Teleport!
 	{"45", "맛난 하트", "{{HealingRed}} 사용 시 체력 1칸을 회복합니다."}, -- Yum Heart
 	{"46", "행운의 발", "↑ {{LuckSmall}}행운 +1#↑ 방 클리어 보상이 등장할 확률이 대폭 증가합니다.#야바위와 도박기계의 성공 확률이 증가합니다."}, -- Lucky Foot
 	{"47", "박사의 원격 조종기", "{{Collectible168}} 사용 시 조준점을 이동시킨 곳으로 캐릭터의 공격력 x20의 미사일을 발사합니다."}, -- Doctor's Remote
@@ -117,7 +120,7 @@ EID.descriptions[languageCode].collectibles={
 	{"66", "모래시계", "{{Slow}} 사용 시 방 안의 모든 적들을 8초간 둔화시킵니다."}, -- The Hourglass
 	{"67", "매기", "공격하는 방향으로 공격력 3.5의 눈물을 발사합니다."}, -- Sister Maggy
 	{"68", "기계장치", "공격이 레이저 공격으로 변경됩니다.#레이저는 사거리 제한이 없으며 적을 관통합니다."}, -- Technology
-	{"69", "초콜릿 우유", "↓ {{TearsSmall}}공격 딜레이 x2.5 (최대 충전 기준)#{{Chargeable}} 눈물을 충전하며 발사합니다. #충전 상태에 따라 공격력 배율이 x0.1 ~ x4로 증감합니다."}, -- Chocolate Milk
+	{"69", "초콜릿 우유", "↓ {{TearsSmall}}공격 딜레이 x2.5 (최대 충전 기준)#{{Chargeable}} 눈물을 충전하며 발사합니다.#충전 상태에 따라 공격력 배율이 x0.1 ~ x4로 증감합니다."}, -- Chocolate Milk
 	{"70", "성장 호르몬", "↑ {{DamageSmall}}공격력 +1#↑ {{SpeedSmall}}이동속도 +0.4"}, -- Growth Hormones
 	{"71", "미니 버섯", "↓ {{RangeSmall}}사거리 -4.25#↑ {{SpeedSmall}}이동속도 +0.3#↑ 눈물 높이 +1.5 (실 사거리 증가)#캐릭터의 크기가 작아집니다."}, -- Mini Mush
 	{"72", "묵주", "↑ {{SoulHeart}}소울하트 +3#!!! {{Collectible33}}The Bible이 모든 배열에서 등장합니다."}, -- Rosary
@@ -126,15 +129,15 @@ EID.descriptions[languageCode].collectibles={
 	{"75", "박사학위", "↑ {{HealingRed}}빨간하트 +2#{{Pill}}알약을 하나 드랍합니다.#확인되지 않은 알약의 효과를 알 수 있습니다.#↑ 부정적인 알약 효과가 등장하지 않습니다.#헌혈기 사용 시 동전 1~2개를 추가로 드랍합니다."}, -- PHD
 	{"76", "투시 안경", "{{SecretRoom}}비밀방 및 {{SuperSecretRoom}}일급비밀방이 자동으로 열립니다."}, -- X-Ray Vision
 	{"77", "나의 작은 유니콘", "사용 시 6초간 캐릭터의 {{SpeedSmall}}이동속도 +0.28, 무적 상태가 되며 접촉한 적에게 초당 40의 피해를 입힙니다."}, -- My Little Unicorn
-	{"78", "요한묵시록", "{{DevilChanceSmall}} 소지중일 때 악마방 확률 +17.5%#사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 현재 층의 보스를 4기사로 교체합니다."}, -- Book of Revelations
+	{"78", "요한묵시록", "{{DevilChanceSmall}} 소지중일 때 악마방 확률 +17.5%#사용 시 {{SoulHeart}}소울하트 +1#가능한 경우, 그 스테이지의 보스를 4기사로 교체합니다."}, -- Book of Revelations
 	{"79", "낙인", "↑ {{SoulHeart}}소울하트 +1#↑ {{DamageSmall}}공격력 +1#↑ {{SpeedSmall}}이동속도 +0.2"}, -- The Mark
 	{"80", "계약", "↑ {{SoulHeart}}소울하트 +2#↑ {{DamageSmall}}공격력 +0.5#↑ {{TearsSmall}}연사 +0.7"}, -- The Pact
 	{"81", "죽은 고양이", "↑ 목숨 +9#!!! {{Heart}}최대 체력이 1칸이 됩니다.#사망 시 전 방에서 최대 체력 1칸으로 부활합니다."}, -- Dead Cat
 	{"82", "구덩이의 제왕", "↑ {{SpeedSmall}}이동속도 +0.3#비행 능력을 얻습니다."}, -- Lord of the Pit
-	{"83", "대못", "!!! 사용 시: #{{SoulHeart}}소울하트 +1#그 방에서 {{DamageSmall}}공격력 +0.3, {{SpeedSmall}}이동속도 -0.2#접촉한 적에게 피해를 입히며 장애물을 부술 수 있습니다."}, -- The Nail
+	{"83", "대못", "!!! 사용 시:#{{SoulHeart}}소울하트 +1#{{Timer}} 사용 시 그 방에서:#{{DamageSmall}}공격력 +0.3#{{SpeedSmall}}이동속도 -0.2#접촉한 적에게 피해를 입히며 장애물을 부술 수 있습니다."}, -- The Nail
 	{"84", "더 깊이 내려가야 해!", "사용 시 다음 스테이지로 가는 다락문을 생성합니다.#10%의 확률로 {{LadderRoom}}사다리방으로 가는 다락문을 생성합니다."}, -- We Need To Go Deeper!
 	{"85", "카드 덱", "사용 시 {{Card}}카드를 하나 획득합니다."}, -- Deck of Cards
-	{"86", "몬스트로의 이빨", "사용 시 Monstro가 랜덤한 적에게 떨어져 120의 피해를 입힙니다.#!!! 적이 없을 때 사용 시 캐릭터의 위치로 떨어집니다."}, -- Monstro's Tooth
+	{"86", "몬스트로의 이빨", "사용 시 Monstro가 랜덤 적에게 떨어져 120의 피해를 입힙니다.#!!! 적이 없을 때 사용 시 캐릭터의 위치로 떨어집니다."}, -- Monstro's Tooth
 	{"87", "로키의 뿔", "25%의 확률로 공격이 4방향으로 나갑니다.#{{LuckSmall}} 행운 7 이상일 때 100% 확률"}, -- Loki's Horns
 	{"88", "리틀 처비", "공격하는 방향으로 돌진해 접촉하는 적에게 초당 52.5의 피해를 입힙니다."}, -- Little Chubby
 	{"89", "거미물림", "{{Slow}} 25%의 확률로 적을 둔화시키는 공격이 나갑니다.#{{LuckSmall}} 행운 15 이상일 때 100% 확률"}, -- Spider Bite
@@ -145,7 +148,7 @@ EID.descriptions[languageCode].collectibles={
 	{"94", "동전 주머니", "방 2개 클리어 시 {{Coin}}동전을 하나 드랍합니다."}, -- Sack of Pennies
 	{"95", "로보베이비", "공격하는 방향으로 공격력 3.5의 레이저를 발사합니다."}, -- Robo-Baby
 	{"96", "리틀 차드", "방 3개 클리어 시 {{HalfHeart}}빨간하트 반칸을 드랍합니다."}, -- Little C.H.A.D.
-	{"97", "죄악의 책", "사용 시 랜덤한 픽업을 드랍합니다."}, -- The Book of Sin
+	{"97", "죄악의 책", "사용 시 랜덤 픽업을 드랍합니다."}, -- The Book of Sin
 	{"98", "성유물", "방 5~6개 클리어 시 {{SoulHeart}}소울하트 하나를 드랍합니다. "}, -- The Relic
 	{"99", "리틀 기쉬", "{{Slow}} 공격하는 방향으로 공격력 3.5의 적을 둔화시키는 눈물을 발사합니다."}, -- Little Gish
 	{"100", "리틀 스티븐", "공격하는 방향으로 공격력 3.5의 유도 눈물을 발사합니다."}, -- Little Steven
@@ -155,7 +158,7 @@ EID.descriptions[languageCode].collectibles={
 	{"104", "기생충", "눈물이 무언가에 부딪힐 때마다 양옆으로 갈라집니다.#갈라진 눈물의 공격력은 갈라지기 이전의 절반입니다.#!!! 공격력이 1 이하인 경우 눈물이 갈라지지 않음"}, -- The Parasite
 	{"105", "주사위", "사용 시 방 안의 모든 아이템을 다른 아이템으로 바꿉니다."}, -- The D6
 	{"106", "미스터 메가", "↑ {{Bomb}}폭탄 +5#폭탄 공격력 배율 x1.83#폭탄의 범위가 넓어집니다."}, -- Mr. Mega
-	{"107", "핑킹 가위", "사용 시 그 방에서 비행 능력을 얻으며 몸이 분리됩니다.#분리된 몸은 적을 따라다니며 접촉한 적에게 초당 82.5의 피해를 입힙니다."}, -- The Pinking Shears
+	{"107", "핑킹 가위", "{{Timer}} 사용 시 그 방에서:#비행 능력을 얻으며 몸이 분리됩니다.#분리된 몸은 적을 따라다니며 접촉한 적에게 초당 82.5의 피해를 입힙니다."}, -- The Pinking Shears
 	{"108", "제병", "캐릭터가 받는 피해를 절반으로 줄여줍니다.#!!! 일부 피해는 해당 효과를 무시합니다."}, -- The Wafer
 	{"109", "돈 = 힘", "동전 1개당 {{DamageSmall}}공격력 +0.04#{{Blank}} (최대 +3.96)"}, -- Money = Power
 	{"110", "엄마의 콘텍트렌즈", "↑ {{RangeSmall}}사거리 +0.25#↑ 눈물 높이 +0.5#20%의 확률로 적을 멈추게 만드는 공격이 나갑니다.#{{LuckSmall}} 행운 20 이상일 때 50% 확률"}, -- Mom's Contacts
@@ -170,12 +173,12 @@ EID.descriptions[languageCode].collectibles={
 	{"119", "혈액 팩", "↑ {{Heart}}최대 체력 +1#↑ {{HealingRed}}빨간하트 +4#↑ {{SpeedSmall}}이동속도 +0.3"}, -- Blood Bag
 	{"120", "이상한 버섯", "↓ {{DamageSmall}}공격력 {{ColorOrange}}증가량{{CR}} 배율 x0.9#↓ {{DamageSmall}}추가 공격력 -0.4#↑ {{TearsSmall}}연사 +1.7#↑ {{SpeedSmall}}이동속도 +0.3#캐릭터의 머리가 작아집니다."}, -- Odd Mushroom
 	{"121", "이상한 버섯", "↑ {{EmptyHeart}}빈 최대 체력 +1#↑ {{DamageSmall}}공격력 +0.3#↑ {{RangeSmall}}사거리 +0.25#↑ 눈물 높이 +0.5#↓ {{SpeedSmall}}이동속도 -0.1#캐릭터의 머리가 커집니다."}, -- Odd Mushroom
-	{"122", "바빌론의 창녀", "!!! {{HalfHeart}}빨간하트가 반칸 이하일 때: #↑ {{DamageSmall}}공격력 +1.5#↑ {{SpeedSmall}}이동속도 +0.3"}, -- Whore of Babylon
-	{"123", "몬스터 도감", "사용 시 그 방에서 랜덤 패밀리어를 하나 소환합니다."}, -- Monster Manual
-	{"124", "사해사본", "사용 시 랜덤한 액티브 아이템의 효과를 발동합니다."}, -- Dead Sea Scrolls
+	{"122", "바빌론의 창녀", "!!! {{HalfHeart}}빨간하트가 반칸 이하일 때:#↑ {{DamageSmall}}공격력 +1.5#↑ {{SpeedSmall}}이동속도 +0.3"}, -- Whore of Babylon
+	{"123", "몬스터 도감", "{{Timer}} 사용 시 그 방에서:#랜덤 패밀리어를 하나 소환합니다."}, -- Monster Manual
+	{"124", "사해사본", "사용 시 랜덤 액티브 아이템의 효과를 발동합니다."}, -- Dead Sea Scrolls
 	{"125", "보비 폭탄", "↑ {{Bomb}}폭탄 +5#폭탄에 유도 효과가 생깁니다."}, -- Bobby-Bomb
 	{"126", "면도날", "사용 시 체력 한칸을 깎고 그방에서 {{DamageSmall}}공격력 +1.2#공격력 증가 효과는 중첩됩니다.#빨간하트를 우선적으로 깎습니다."}, -- Razor Blade
-	{"127", "날 잊어 주세요", "{{Warning}} 일회용 {{Warning}}#스테이지를 재시작합니다."}, -- Forget Me Now
+	{"127", "날 잊어 주세요", "스테이지를 재시작합니다."}, -- Forget Me Now
 	{"128", "영원한 솔로", "캐릭터 주위를 돌며 접촉하는 적에게 초당 30의 피해를 입힙니다."}, -- Forever alone
 	{"129", "돼지기름 한 통", "↑ {{EmptyHeart}}빈 최대 체력 +2#↑ {{HalfHeart}}빨간하트 +0.5#↓ {{SpeedSmall}}이동속도 -0.2"}, -- Bucket of Lard
 	{"130", "조랑말", "소지중일 때 비행 능력을 얻습니다.#{{SpeedSmall}}이동속도가 1.5 이상으로 고정됩니다.#사용 시 바라보는 방향으로 돌진하여 접촉한 적에게 40의 피해를 입힙니다."}, -- A Pony
@@ -192,7 +195,7 @@ EID.descriptions[languageCode].collectibles={
 	{"141", "분장 소년", "{{Coin}}동전 7개를 드랍합니다."}, -- Pageant Boy
 	{"142", "성의", "피격 시 전체 체력이 반칸 남았을때 방당 1회 한정으로 {{SoulHeart}}소울하트를 하나 획득합니다.#방 이동 시 해당 효과를 다시 발동할 수 있습니다."}, -- Scapular
 	{"143", "스피드볼 마약", "↑ {{SpeedSmall}}이동속도 +0.3#↑ {{ShotspeedSmall}}탄속 +0.2"}, -- Speed Ball
-	{"144", "거지 친구", "방 안을 돌아다니며 동전을 먹으며 동전 3~4개마다 랜덤한 픽업을 드랍합니다."}, -- Bum Friend
+	{"144", "거지 친구", "방 안을 돌아다니며 동전을 먹으며 동전 3~4개마다 랜덤 픽업을 드랍합니다."}, -- Bum Friend
 	{"145", "구피의 머리", "사용 시 파란 아군 파리를 2~4마리 소환합니다."}, -- Guppy's Head
 	{"146", "기도 카드", "사용 시 {{EthernalHeart}}이터널하트 +1"}, -- Prayer Card
 	{"147", "각진 곡괭이", "사용 시 그 방의 장애물을 부술 수 있습니다.#!!! 피격 시 해제됨"}, -- Notched Axe
@@ -239,8 +242,8 @@ EID.descriptions[languageCode].collectibles={
 	{"188", "아벨", "캐릭터의 반대로 움직이며 캐릭터가 있는 방향으로 공격력 3.5의 눈물을 발사합니다."}, -- Abel
 	{"189", "슈미보 광팬", "↑ {{Heart}}최대 체력 +1#{{HealingRed}} 체력을 모두 회복합니다.#↑ {{DamageSmall}}공격력 +0.3#↑ {{TearsSmall}}연사 +0.2#↑ {{RangeSmall}}사거리 +0.5#↑ 눈물 높이 +1#↑ {{SpeedSmall}}이동속도 +0.2"}, -- SMB Super Fan
 	{"190", "폭탄마", "↑ {{Bomb}}폭탄 +99"}, -- Pyro
-	{"191", "3달러 지폐", "3초마다 두 종류의 랜덤한 눈물 효과가 적용됩니다."}, -- 3 Dollar Bill
-	{"192", "천재반을 위한 텔레파시법", "사용 시 그 방에서 공격이 적에게 유도됩니다."}, -- Telepathy For Dummies
+	{"191", "3달러 지폐", "3초마다 두 종류의 랜덤 눈물 효과가 적용됩니다."}, -- 3 Dollar Bill
+	{"192", "천재반을 위한 텔레파시법", "{{Timer}} 사용 시 그 방에서:#공격이 적에게 유도됩니다."}, -- Telepathy For Dummies
 	{"193", "고기!", "↑ {{Heart}}최대 체력 +1#↑ {{DamageSmall}}공격력 +0.3"}, -- MEAT!
 	{"194", "마법의 8번 공", "↑ {{ShotspeedSmall}}탄속 +0.16#{{Card}}카드를 하나 드랍합니다."}, -- Magic 8 Ball
 	{"195", "엄마의 동전 지갑", "{{Pill}}알약을 4개 드랍합니다."}, -- Mom's Coin Purse
@@ -255,7 +258,7 @@ EID.descriptions[languageCode].collectibles={
 	{"204", "주머니 가방", "피격 시 50% 확률로 픽업을 드랍합니다."}, -- Fanny Pack
 	{"205", "날카로운 플러그", "액티브 아이템의 {{ColorOrange}}충전량이 없을 때{{CR}} 액티브 아이템 사용 시 체력 두 칸을 깎고 액티브의 충전량을 모두 충전합니다."}, -- Sharp Plug
 	{"206", "단두대", "↑ {{DamageSmall}}공격력 +1#↑ {{TearsSmall}}연사 +0.2#머리가 분리되어 몸의 주변을 돌며 적의 탄환을 막아주고 접촉하는 적에게 초당 105의 피해를 입힙니다."}, -- Guillotine
-	{"207", "밴드 덩어리", "획득할 때마다 성장합니다.#1/2단계: 캐릭터 주위를 돌며 적의 탄환을 막아줍니다.#{{Charm}} 2/3단계: 공격하는 방향으로 공격력 3.5의 매혹 눈물을 발사합니다.#3/4단계: 적을 따라다니며 접촉한 적에게 초당 7/11의 피해를 입힙니다. #4단계: 밴디지 걸이 적 처치 시 일정 확률로 {{Heart}}빨간하트를 드랍합니다."}, -- Ball of Bandages
+	{"207", "밴드 덩어리", "획득할 때마다 성장합니다.#1/2단계: 캐릭터 주위를 돌며 적의 탄환을 막아줍니다.#{{Charm}} 2/3단계: 공격하는 방향으로 공격력 3.5의 매혹 눈물을 발사합니다.#3/4단계: 적을 따라다니며 접촉한 적에게 초당 7/11의 피해를 입힙니다.#4단계: 밴디지 걸이 적 처치 시 일정 확률로 {{Heart}}빨간하트를 드랍합니다."}, -- Ball of Bandages
 	{"208", "챔피언 벨트", "↑ {{DamageSmall}}공격력 +1#!!! 일반적인 적이 챔피언으로 바뀔 확률 +5~20%p#챔피언 몬스터는 체력이 평소의 2배, 캐릭터에게 최소 체력 1칸의 피해를 주며 색상별로 특수 효과가 적용됩니다."}, -- Champion Belt
 	{"209", "궁둥이 폭탄", "↑ {{Bomb}}폭탄 +5#{{Confusion}} 폭탄이 터질 때 방 안의 모든 적에게 10의 피해를 주고 4초간 혼란시킵니다.#!!! 똥 타입 보스의 체력을 25% 회복시킵니다."}, -- Butt Bombs
 	{"210", "갉아먹힌 나뭇잎", "2초간 어떠한 키도 입력하지 않을 시 캐릭터가 무적 상태가 됩니다."}, -- Gnawed Leaf
@@ -319,7 +322,7 @@ EID.descriptions[languageCode].collectibles={
 	{"268", "썩은 아기", "공격할 때마다 파란 아군 파리를 최대 1마리씩 소환합니다."}, -- Rotten Baby
 	{"269", "머리없는 아기", "캐릭터를 따라다니며 지나간 자리에 빨간 장판이 생기며 닿은 적은 초당 6의 피해를 입습니다."}, -- Headless Baby
 	{"270", "거머리", "적을 따라다니며 접촉한 적에게 초당 3.2의 피해를 줍니다.#{{HealingRed}} 적 처치 시 체력을 반칸 회복합니다."}, -- Leech
-	{"271", "수수께끼의 주머니", "방 5~6개 클리어 시 랜덤한 픽업을 드랍합니다."}, -- Mystery Sack
+	{"271", "수수께끼의 주머니", "방 5~6개 클리어 시 랜덤 픽업을 드랍합니다."}, -- Mystery Sack
 	{"272", "베프", "대각선으로 돌아다니며 적에게 접촉 시 폭발하여 60의 피해를 입힙니다."}, -- BBF
 	{"273", "밥의 뇌", "공격하는 방향으로 날아가며 적에게 접촉 시 폭발하여 60의 피해를 입힙니다."}, -- Bob's Brain
 	{"274", "최고의 짝꿍", "피격 시 캐릭터 주위를 돌며 접촉하는 적에게 초당 75의 피해를 줍니다."}, -- Best Bud
@@ -334,7 +337,7 @@ EID.descriptions[languageCode].collectibles={
 	{"283", "100면 주사위", "사용 시 방 안의 아이템, 픽업, 소지중인 패시브 아이템을 모두 바꿉니다."}, -- D100
 	{"284", "4면 주사위", "사용 시 소지중인 패시브 아이템을 모두 바꿉니다."}, -- D4
 	{"285", "10면 주사위", "사용 시 방 안의 모든 적을 바꿉니다."}, -- D10
-	{"286", "빈 카드", "사용 시 현재 소지중인 {{Card}}카드 또는 {{Rune}}룬의 효과를 발동합니다."}, -- Blank Card
+	{"286", "빈 카드", "사용 시 가장 앞면에 소지중인 {{Card}}카드 또는 {{Rune}}룬의 효과를 발동합니다."}, -- Blank Card
 	{"287", "비밀의 책", "사용 시 맵에 {{Collectible21}}특수방 위치, {{Collectible246}}비밀방 위치, {{Collectible54}}스테이지 구조 중 하나를 표시합니다."}, -- Book of Secrets
 	{"288", "거미 상자", "사용 시 파란 아군 거미를 2~4마리 소환합니다."}, -- Box of Spiders
 	{"289", "빨간 양초", "사용 시 공격하는 방향으로 최대 공격력 125의 지속 불꽃을 날립니다."}, -- Red Candle
@@ -345,7 +348,7 @@ EID.descriptions[languageCode].collectibles={
 	{"294", "흰강낭콩", "사용 시 방귀를 뀌며 주변의 적을 더 강하게 밀쳐냅니다.#다른 액티브 아이템과 교체 시 확률적으로 {{Collectible484}}Wait What? 아이템으로 바뀝니다."}, -- Butter Bean
 	{"295", "침대 안마기", "사용 시 동전 하나를 소모해 방 안의 모든 적에게 눈물 공격력 x2의 피해를 줍니다."}, -- Magic Fingers
 	{"296", "변환기", "사용 시 소울하트 2칸을 {{Heart}}최대 체력 1칸으로 바꿉니다."}, -- Converter
-	{"297", "판도라의 상자", "!!! 일회용 / 사용 시 스테이지마다 다른 보상을 드랍합니다.#B1(1): {{SoulHeart}} 2개; B2(2): {{Bomb}} 2개 + {{Key}} 2개#C1(3): {{BossRoom}}아이템 1개; C2(4): {{BossRoom}} 1개 + {{SoulHeart}} 2개#D1(5): {{SoulHeart}} 4개; D2(6): {{Coin}} 20개#W1(7): {{BossRoom}} 2개; W2(8): {{Collectible33}}The Bible#???/Void: 없음#Sheol: {{DevilRoom}}악마방 아이템 1개 + {{BlackHeart}} 1개#Cath: {{AngelRoom}}천사방 아이템 1개 + {{EthernalHeart}} 1개 #Dark: {{Collectible523}}Moving Box 해금#Chest: {{Coin}}동전 1개"}, -- Pandora's Box
+	{"297", "판도라의 상자", "사용 시 스테이지마다 다른 보상을 드랍합니다.#{{NoLB}}B1(1): {{SoulHeart}} 2개; B2(2): {{Bomb}} 2개 + {{Key}} 2개#{{NoLB}}C1(3): {{BossRoom}}아이템 1개; C2(4): {{BossRoom}} 1개 + {{SoulHeart}} 2개#{{NoLB}}D1(5): {{SoulHeart}} 4개; D2(6): {{Coin}} 20개#{{NoLB}}W1(7): {{BossRoom}} 2개; W2(8): {{Collectible33}}The Bible#???/Void: 없음#{{NoLB}}Sheol: {{DevilRoom}}악마방 아이템 1개 + {{BlackHeart}} 1개#{{NoLB}}Cath: {{AngelRoom}}천사방 아이템 1개 + {{EthernalHeart}} 1개#{{NoLB}}Dark: {{Collectible523}}Moving Box 해금#{{NoLB}}Chest: {{Coin}}동전 1개"}, -- Pandora's Box
 	{"298", "유니콘의 잘린 뿔", "사용 시 6초간 캐릭터의 {{SpeedSmall}}이동속도 +0.28, 공격불능 및 접촉공격불능 무적 상태가 됩니다."}, -- Unicorn Stump
 	{"299", "황소자리", "↓ {{SpeedSmall}}이동속도 -0.3#방 안에 적이 있을 때 이동속도가 점점 증가하며 이동속도가 2.0이 되면 5초간 무적 상태가 됩니다."}, -- Taurus
 	{"300", "양자리", "↑ {{SpeedSmall}}이동속도 +0.25#높은 속도로 적과 접촉시 적에게 18의 피해를 줍니다."}, -- Aries
@@ -364,7 +367,7 @@ EID.descriptions[languageCode].collectibles={
 	{"313", "신성한 망토", "피격 시 방당 1회 한정으로 피해를 무시합니다.#!!! 헌혈류 피격은 막아주지 않습니다."}, -- Holy Mantle
 	{"314", "살찐 허벅지", "↑ {{Heart}}최대 체력 +1#↓ {{SpeedSmall}}이동속도 -0.4#장애물을 부술 수 있습니다."}, -- Thunder Thighs
 	{"315", "이상한 끌개", "적과 픽업이 공격에 끌려옵니다."}, -- Strange Attractor
-	{"316", "저주받은 눈알", "{{Chargeable}} 눈물을 충전한 다음 최대 4발의 눈물을 일렬로 발사합니다.#!!! 충전중 피격 시 스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Cursed Eye
+	{"316", "저주받은 눈알", "{{Chargeable}} 눈물을 충전한 다음 최대 4발의 눈물을 일렬로 발사합니다.#!!! 충전중 피격 시 스테이지 안의 랜덤 방으로 순간이동합니다."}, -- Cursed Eye
 	{"317", "이상한 액체", "공격이 무언가에 부딪힐 때 초록 장판이 생기며 장판에 닿은 적은 초당 30의 피해를 입습니다."}, -- Mysterious Liquid
 	{"318", "쌍둥이자리", "캐릭터와 연결되어 이동하며 적을 따라다니며 접촉한 적에게 초당 6의 피해를 입힙니다."}, -- Gemini
 	{"319", "카인의 왼쪽 눈", "대각선으로 이동하며 공격하는 방향으로 캐릭터의 공격력과 같은 눈물을 발사합니다."}, -- Cain's Other Eye
@@ -395,8 +398,8 @@ EID.descriptions[languageCode].collectibles={
 	{"344", "종이 성냥", "↑ {{BlackHeart}}블랙하트 +1#{{Bomb}}폭탄을 3개 드랍합니다."}, -- Match Book
 	{"345", "합성 스테로이드", "↑ {{DamageSmall}}공격력 +1#↑ {{RangeSmall}}사거리 +5.25#↑ 눈물 높이 +0.5"}, -- Synthoil
 	{"346", "과자", "↑ {{Heart}}최대 체력 +1"}, -- A Snack
-	{"347", "복시", "!!! 일회용#사용 시 장신구를 제외한 방 안의 모든 아이템과 픽업을 2배로 복사합니다."}, -- Diplopia
-	{"348", "위약", "사용 시 현재 소지중인 {{Pill}}알약의 효과를 발동합니다."}, -- Placebo
+	{"347", "복시", "사용 시 장신구를 제외한 방 안의 모든 아이템과 픽업을 2배로 복사합니다."}, -- Diplopia
+	{"348", "위약", "사용 시 가장 앞면에 소지중인 {{Pill}}알약의 효과를 발동합니다."}, -- Placebo
 	{"349", "나무 동전", "사용 시 56% 확률로 {{Coin}}동전을 하나 드랍합니다."}, -- Wooden Nickel
 	{"350", "독성 쇼크", "{{Poison}} 방 입장 시 방 안의 모든 적에게 공격력 x2의 피해를 줍니다.#적 처치 시 초록 장판이 생기며 장판에 닿은 적은 초당 30의 피해를 입습니다."}, -- Toxic Shock
 	{"351", "대빵 큰 콩", "사용 시 방 안의 모든 적을 2초간 석화시키며 바라보는 방향으로 충격파를 발사합니다."}, -- Mega Bean
@@ -405,7 +408,7 @@ EID.descriptions[languageCode].collectibles={
 	{"354", "식품 완구", "↑ {{Heart}}최대 체력 +1#장신구를 하나 드랍합니다."}, -- Crack Jacks
 	{"355", "엄마의 진주목걸이", "↑ {{RangeSmall}}사거리 +1.25#↑ 눈물 높이 +0.5#↑ {{LuckSmall}}행운 +1"}, -- Mom's Pearls
 	{"356", "자동차 건전지", "액티브 아이템 사용 시 효과가 두번 발동됩니다."}, -- Car Battery
-	{"357", "친구 상자", "사용 시 그 방에서 소지중인 패밀리어를 복사합니다.#복사할 수 있는 패밀리어가 없다면 그 방에서 {{Collectible113}}Demon Baby 패밀리어를 소환합니다."}, -- Box of Friends
+	{"357", "친구 상자", "{{Timer}} 사용 시 그 방에서:#소지중인 패밀리어를 복사합니다.#복사할 수 있는 패밀리어가 없다면 그 방에서 {{Collectible113}}Demon Baby 패밀리어를 소환합니다."}, -- Box of Friends
 	{"358", "법사", "공격이 2발로 나가며 각각 대각선으로 나갑니다.#공격이 장애물을 관통합니다."}, -- The Wiz
 	{"359", "8인치 대못", "↑ {{DamageSmall}}공격력 +1.5#공격이 적을 더 강하게 밀쳐냅니다."}, -- 8 Inch Nails
 	{"360", "인큐버스", "공격하는 방향으로 캐릭터의 공격과 같은 공격을 발사합니다."}, -- Incubus
@@ -424,39 +427,39 @@ EID.descriptions[languageCode].collectibles={
 	{"373", "명사수의 눈", "눈물이 적에게 명중할 때마다 {{DamageSmall}}공격력이 +25%씩 최대 2배까지 증가합니다.#눈물이 빗나갈 시 일정 확률로 공격력 증가치가 초기화 됩니다."}, -- Dead Eye
 	{"374", "신성한 빛", "10%의 확률로 적에게 명중 시 공격력 x4의 빛줄기가 떨어지는 공격이 나갑니다.#{{LuckSmall}} 행운 9 이상일 때 50% 확률"}, -- Holy Light
 	{"375", "호스트 모자", "폭발 공격에 피해를 입지 않습니다.#적 탄환에 맞았을 때 25% 확률로 피해를 무시하며 캐릭터의 눈물과 같은 눈물을 3발 발사합니다."}, -- Host Hat
-	{"376", "재입고", "랜덤한 픽업을 3개 드랍합니다.#{{Shop}}상점에서 물건 구매 시 같은 종류의 아이템이 재입고됩니다."}, -- Restock
+	{"376", "재입고", "랜덤 픽업을 3개 드랍합니다.#{{Shop}}상점에서 물건 구매 시 같은 종류의 아이템이 재입고됩니다."}, -- Restock
 	{"377", "터진 알주머니", "거미류 적들이 공격하지 않거나 약해집니다."}, -- Bursting Sack
 	{"378", "똥싸개", "공격키를 3초간 누르고 있을시 캐릭터의 자리에 똥폭탄이 생성됩니다."}, -- No. 2
 	{"379", "두개의 눈동자", "↑ {{TearsizeSmall}}눈물크기 x2#공격이 장애물을 관통합니다."}, -- Pupula Duplex
 	{"380", "정액제", "↑ {{Coin}}동전 +5#열쇠를 소모하는 문을 열때 동전을 대신 소모합니다."}, -- Pay To Play
-	{"381", "에덴의 축복", "↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤한 아이템을 하나 들고 시작합니다."}, -- Eden's Blessing
+	{"381", "에덴의 축복", "↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤 아이템을 하나 들고 시작합니다."}, -- Eden's Blessing
 	{"382", "익숙한 공", "사용 시 공격하는 방향으로 몬스터볼을 던집니다.#몬스터볼에 맞은 적은 포획되며 다음 사용 시 아군 상태로 소환됩니다."}, -- Friendly Ball
 	{"383", "눈물 기폭제", "사용 시 방 안의 모든 눈물이 6갈래로 분열합니다."}, -- Tear Detonator
 	{"384", "꼬마 거디", "{{Chargeable}} 공격키를 누르고 있는 동안 충전되며 공격키를 떼면 공격했던 방향으로 돌진해 벽에 튕겨다니며 적을 공격하며 이동 속도에 따라 5~90의 피해를 줍니다."}, -- Lil Gurdy
 	{"385", "범보", "방 안을 돌아다니며 동전을 먹으며 일정 개수 이상 먹으면 성장합니다.#1단계({{Coin}}~5): X#2단계({{Coin}}6~11): 방 클리어 시 때때로 픽업을 드랍합니다.#3단계({{Coin}}12~23): 적에게 공격력 3.5의 일정 확률로 맞추면 동전을 드랍하는 눈물을 발사합니다.#4단계({{Coin}}24~): 적을 따라다니며 접촉한 적에게 초당 37.5의 피해를 입히며 {{ColorOrange}}때때로 {{Bomb}}폭탄을 설치합니다.{{CR}}"}, -- Bumbo
 	{"386", "12면 주사위", "사용 시 방 안의 모든 장애물을 바꿉니다."}, -- D12
 	{"387", "향로", "{{Slow}} 오라를 가지고 캐릭터를 따라다니며 오라 안에 들어온 적과 탄환을 둔화시킵니다."}, -- Censer
-	{"388", "열쇠 거지", "방 안을 돌아다니며 열쇠를 먹으며 일정 개수 이상 먹으면 랜덤한 {{Chest}}상자를 드랍합니다."}, -- Key Bum
+	{"388", "열쇠 거지", "방 안을 돌아다니며 열쇠를 먹으며 일정 개수 이상 먹으면 랜덤 {{Chest}}상자를 드랍합니다."}, -- Key Bum
 	{"389", "룬 가방", "{{Rune}} 방 5~6개 클리어 시 룬을 하나 드랍합니다."}, -- Rune Bag
 	{"390", "세라핌", "공격하는 방향으로 공격력 10의 유도 눈물을 발사합니다."}, -- Seraphim
 	{"391", "배신", "{{Charm}} 피격 시 방 안의 모든 적을 5초간 매혹시킵니다."}, -- Betrayal
-	{"392", "황도궁", "스테이지마다 랜덤한 별자리 아이템의 효과를 가집니다."}, -- Zodiac
+	{"392", "황도궁", "스테이지마다 랜덤 별자리 아이템의 효과를 가집니다."}, -- Zodiac
 	{"393", "독뱀의 키스", "{{Poison}} 15%의 확률로 적을 중독시키는 공격이 나갑니다.#중독된 적이 죽을때 20% 확률로 {{BlackHeart}}블랙하트가 드랍됩니다."}, -- Serpent's Kiss
 	{"394", "조준", "↑ {{TearsSmall}}연사 +0.7#↑ {{RangeSmall}}사거리 +3.15#↑ 눈물 높이 +0.3#조준점을 조종할 수 있으며 자동으로 조준점이 있는 방향을 향해 눈물을 발사합니다."}, -- Marked
 	{"395", "기계 X", "{{Chargeable}} 공격이 충전형 레이저 고리 공격으로 변경됩니다.#레이저는 사거리 제한이 없으며 적과 장애물을 관통합니다."}, -- Tech X
 	{"396", "심실 절단기", "사용 시 파란 포탈과 주황 포탈을 번갈아 생성합니다.#각 포탈로 입장하면 다른쪽 포탈로 나올 수 있습니다."}, -- Ventricle Razor
 	{"397", "조종 광선", "↑ {{TearsSmall}}연사 +0.5#↑ {{RangeSmall}}사거리 +5.25#↑ {{ShotspeedSmall}}탄속 +0.16#눈물이 캐릭터가 바라보는 방향의 일직선으로만 나갑니다."}, -- Tractor Beam
 	{"398", "신의 살점", "10%의 확률로 적을 작아지게 만드는 공격이 나갑니다.#작아진 적은 밟아 죽일 수 있습니다."}, -- God's Flesh
-	{"399", "공허의 구렁텅이", "↑ {{DamageSmall}}공격력 +1#{{Chargeable}} 공격키를 2.5초 이상 누르면 충전되며 공격키를 떼면 캐릭터 주위에 검은 고리가 둘러져 접촉한 적에게 현재 공격력만큼의 피해를 줍니다.#고리로 적 처치 시 5% 확률로 {{BlackHeart}}블랙하트를 드랍합니다."}, -- Maw Of The Void
+	{"399", "공허의 구렁텅이", "↑ {{DamageSmall}}공격력 +1#{{Chargeable}} 공격키를 2.5초 이상 누르면 충전되며 공격키를 떼면 캐릭터 주위에 검은 고리가 둘러져 접촉한 적에게 최대 공격력 x30의 피해를 줍니다.#고리로 적 처치 시 5% 확률로 {{BlackHeart}}블랙하트를 드랍합니다."}, -- Maw Of The Void
 	{"400", "운명의 창", "캐릭터의 정면에 창이 생기며 창은 적에게 공격력 x2의 피해를 주며 {{Fear}}캐릭터에게서 도망가게 합니다."}, -- Spear Of Destiny
 	{"401", "폭발물", "25%의 확률로 접착 눈물이 나갑니다.#접착 눈물이 적에게 붙을 시 몇초 후 폭발하여 60의 피해를 입힙니다."}, -- Explosivo
 	{"402", "혼돈", "픽업을 1~6개 드랍합니다.#등장 아이템의 방 배열 구분이 사라집니다."}, -- Chaos
-	{"403", "스파이더모드", "방 안을 돌아다니며 접촉한 적에게 랜덤한 상태이상을 부여합니다.#적의 체력과 적에게 주는 피해량이 수치로 표시됩니다.#방 클리어 시 일정 확률로 배터리 픽업이나 자폭 거미를 드랍합니다."}, -- Spider Mod
-	{"404", "방귀쟁이 아기", "캐릭터를 따라다니며 적의 탄환을 막아줍니다.#탄환을 막을 시 10% 확률로 랜덤한 효과의 방귀를 뀝니다."}, -- Farting Baby
-	{"405", "게임 버그", "대각선으로 돌아다니며 접촉한 적에게 초당 120의 피해를 주며 랜덤한 상태이상을 부여합니다."}, -- GB Bug
+	{"403", "스파이더모드", "방 안을 돌아다니며 접촉한 적에게 랜덤 상태이상을 부여합니다.#적의 체력과 적에게 주는 피해량이 수치로 표시됩니다.#방 클리어 시 일정 확률로 배터리 픽업이나 자폭 거미를 드랍합니다."}, -- Spider Mod
+	{"404", "방귀쟁이 아기", "캐릭터를 따라다니며 적의 탄환을 막아줍니다.#탄환을 막을 시 10% 확률로 랜덤 효과의 방귀를 뀝니다."}, -- Farting Baby
+	{"405", "게임 버그", "대각선으로 돌아다니며 접촉한 적에게 초당 120의 피해를 주며 랜덤 상태이상을 부여합니다."}, -- GB Bug
 	{"406", "8면 주사위", "사용 시 {{DamageSmall}}공격력, {{TearsSmall}}연사, {{RangeSmall}}사거리, {{SpeedSmall}}이동속도 배율을 랜덤으로 바꿉니다.#!!! 바뀐 배율의 총합은 항상 동일합니다."}, -- D8
 	{"407", "순도", "캐릭터 머리에 오라가 생기며 오라 색에 따라 특정 능력치가 증가합니다.#피격시 비활성화되며 방 이동시 다른 색으로 변합니다.#{{ColorRed}}빨강:{{CR}} {{DamageSmall}}공격력 +4.0#{{Blank}} {{ColorCyan}}파랑:{{CR}} {{TearsSmall}}눈물 딜레이 -4#{{Blank}} {{ColorOrange}}주황:{{CR}} {{RangeSmall}}사거리 +7.5, 눈물 높이 +1#{{Blank}} {{ColorYellow}}노랑:{{CR}} {{SpeedSmall}}이동속도 +0.5"}, -- Purity
-	{"408", "마법 단검", "피격 시 캐릭터 주위에 검은 고리가 둘러져 접촉한 적에게 현재 공격력만큼의 피해를 줍니다.#고리로 적 처치 시 15% 확률로 {{BlackHeart}}블랙하트를 드랍합니다."}, -- Athame
+	{"408", "마법 단검", "피격 시 캐릭터 주위에 검은 고리가 둘러져 접촉한 적에게 최대 공격력 x30의 피해를 줍니다.#고리로 적 처치 시 15% 확률로 {{BlackHeart}}블랙하트를 드랍합니다."}, -- Athame
 	{"409", "빈 그릇", "↑ {{BlackHeart}}블랙하트 +2#{{EmptyHeart}}빨간하트가 없을 때 비행 능력을 얻으며 40초마다 10초간 무적 상태가 됩니다."}, -- Empty Vessel
 	{"410", "악마의 눈", "공격 시 3.33%의 확률로 푸른 눈을 발사하며 눈은 날아가면서 캐릭터가 공격하는 방향으로 캐릭터의 눈물 효과와 같은 눈물을 발사합니다.#{{LuckSmall}} 행운 20 이상일 때 10% 확률"}, -- Evil Eye
 	{"411", "욕망의 피", "적 처치 시 그 방에서 {{DamageSmall}}공격력이 +0.5씩(최대 +5) 증가합니다."}, -- Lusty Blood
@@ -471,7 +474,7 @@ EID.descriptions[languageCode].collectibles={
 	{"420", "검은 가루", "캐릭터가 지나간 곳에 검은 가루가 남으며, 가루로 원을 그리면 마법진이 생성되어 마법진 위의 적에게 틱당 10의 피해를 줍니다."}, -- Black Powder
 	{"421", "강낭콩", "{{Charm}} 사용 시 매혹 방귀를 뀌며 주변의 적에게 5의 피해를 줍니다."}, -- Kidney Bean
 	{"422", "빛나는 모래시계", "사용 시 모든 상태를 이전 방의 시점으로 시간을 되돌립니다."}, -- Glowing Hour Glass
-	{"423", "보호의 고리", "캐릭터 주위에 하얀 고리가 둘러지며 고리에 접촉하는 적에게 현재 공격력만큼의 피해를 줍니다.#탄환이 고리에 접촉할 시 확률적으로 유도 반사판을 발사합니다."}, -- Circle of Protection
+	{"423", "보호의 고리", "캐릭터 주위에 하얀 고리가 둘러지며 고리에 접촉하는 적에게 초당 캐릭터의 공격력 x1.0만큼의 피해를 줍니다.#탄환이 고리에 접촉할 시 확률적으로 유도 반사판을 발사합니다."}, -- Circle of Protection
 	{"424", "자루 머리", "{{GrabBag}} 자루를 하나 드랍합니다.#{{GrabBag}} 특정 픽업을 일정 확률로 픽업 자루로 바꿉니다.#!!! 픽업 대체 확률({{ColorRed}}고정 드랍 포함{{CR}}):#{{Coin}} 동전: 10%#{{Key}} 열쇠: 20%#{{Bomb}} 폭탄: 20%(방 클리어 트롤 폭탄 포함)#{{Card}} 카드/룬: 20%#{{Battery}} 배터리: 20%"}, -- Sack Head
 	{"425", "손전등", "{{Slow}} 캐릭터의 몸통이 바라보는 방향으로 손전등을 비추며 빛 안에 들어온 적이나 탄환을 둔화시킵니다."}, -- Night Light
 	{"426", "집착하는 추종자", "캐릭터가 지나간 길을 3초 후 따라가며 접촉한 적에게 초당 30의 피해를 입힙니다."}, -- Obsessed Fan
@@ -480,14 +483,14 @@ EID.descriptions[languageCode].collectibles={
 	{"429", "키퍼의 머리", "눈물이 적에게 명중 시 5% 확률로 {{Coin}}동전을 드랍합니다."}, -- Head of the Keeper
 	{"430", "파리 아저씨", "캐릭터가 지나간 길을 1초 후 따라가며 근처의 적에게 캐릭터의 공격력과 같은 눈물을 발사합니다."}, -- Papa Fly
 	{"431", "다차원 아기", "캐릭터가 지나간 길을 2초 후 따라가며 눈물이 통과하면 2개로 복제되어 나갑니다."}, -- Multidimensional Baby
-	{"432", "반짝이 폭탄", "↑ {{Bomb}}폭탄 +5#폭탄이 터질 때 25%의 확률로 랜덤한 픽업 또는 장신구가 드랍되거나 15%의 확률로 랜덤한 적을 {{Charm}}매혹시킵니다."}, -- Glitter Bombs
+	{"432", "반짝이 폭탄", "↑ {{Bomb}}폭탄 +5#폭탄이 터질 때 25%의 확률로 랜덤 픽업 또는 장신구가 드랍되거나 15%의 확률로 랜덤 적을 {{Charm}}매혹시킵니다."}, -- Glitter Bombs
 	{"433", "내 그림자", "피격 시 방 안의 모든 적을 {{Fear}}도망가게 하며 초당 5의 피해를 주는 검은색 아군 애벌레를 소환합니다."}, -- My Shadow
 	{"434", "파리 담은 병", "적 처치 시 병에 파리가 저장됩니다.(최대 20마리)#사용 시 저장된 파리 수 만큼 파란 아군 파리를 소환합니다."}, -- Jar of Flies
 	{"435", "꼬마 로키", "공격력 3.5의 눈물을 4갈래로 발사합니다."}, -- Lil Loki
 	{"436", "우유!", "피격 시 그 방에서 {{TearsSmall}}연사 +0.3"}, -- Milk!
 	{"437", "7면체 주사위", "사용 시 그 방을 다시 시작하며, 방 클리어 시 이전과 다른 보상이 드랍됩니다."}, -- D7
 	{"438", "쪽쪽이", "↑ {{SoulHeart}}소울하트 +1#↑ {{TearsSmall}}연사 +0.7#캐릭터의 크기가 작아집니다."}, -- Binky
-	{"439", "엄마의 상자", "사용 시 랜덤한 장신구를 하나 드랍합니다.#소지중일 때 {{LuckSmall}}행운이 1 증가하며 들고있는 장신구의 효과가 2배 증가합니다."}, -- Mom's Box
+	{"439", "엄마의 상자", "사용 시 랜덤 장신구를 하나 드랍합니다.#소지중일 때 {{LuckSmall}}행운이 1 증가하며 들고있는 장신구의 효과가 2배 증가합니다."}, -- Mom's Box
 	{"440", "신장 결석", "↓ {{RangeSmall}}사거리 -17#↓ {{SpeedSmall}}최대 이동속도 -0.2#공격중에 때때로 충전이 진행되고 충전이 끝났을 때 공격키를 떼면 {{TearsSmall}}연사가 최대가 되며 눈물을 한번에 발사합니다."}, -- Kidney Stone
 	{"441", "메가 블래스트", "사용 시 15초 동안 공격력 x5의 대형 혈사포를 발사합니다."}, -- Mega Blast
 	{"442", "암흑 왕자의 왕관", "{{Heart}}빨간하트가 1칸일 때 {{TearsSmall}}연사 +0.7, {{RangeSmall}}사거리 +1.5, 눈물 높이 +1, {{ShotspeedSmall}}탄속 +0.2"}, -- Dark Princes Crown
@@ -523,22 +526,22 @@ EID.descriptions[languageCode].collectibles={
 	{"472", "아기 왕", "캐릭터를 따라다니며 공격키를 누르고 있으면 움직이지 않습니다.#다른 패밀리어들이 이 패밀리어를 기준으로 이동합니다."}, -- King Baby
 	{"473", "커다란 처비", "공격하는 방향으로 느리게 돌진해 접촉하는 적에게 초당 40.5의 피해를 입힙니다."}, -- Big Chubby
 	{"474", "편도선", "."}, -- Tonsil
-	{"475", "플랜 C", "!!! 일회용#사용 시 방 안의 모든 적에게 9,999,999의 피해를 주며 3초 후 사망합니다."}, -- Plan C
+	{"475", "플랜 C", "사용 시 방 안의 모든 적에게 9,999,999의 피해를 주며 3초 후 사망합니다."}, -- Plan C
 	{"476", "1면 주사위", "사용 시 방 안의 픽업 중 하나를 복사합니다."}, -- D1
-	{"477", "공허", "사용 시 방 안의 아이템을 흡수합니다.#액티브 흡수와 동시에, 그리고 아이템을 사용할 때마다 흡수한 액티브의 효과가 발동됩니다.#패시브 흡수 시 랜덤한 능력치가 2개 증가합니다."}, -- Void
+	{"477", "공허", "사용 시 방 안의 아이템을 흡수합니다.#액티브 흡수와 동시에, 그리고 아이템을 사용할 때마다 흡수한 액티브의 효과가 발동됩니다.#패시브 흡수 시 랜덤 능력치가 2개 증가합니다."}, -- Void
 	{"478", "일시정지", "사용 시 방 안의 모든 적의 움직임이 30초간 멈춥니다.#공격키를 누르면 효과가 풀립니다."}, -- Pause
 	{"479", "용광로", "사용 시 소지중인 장신구를 흡수해 효과를 영구적으로 얻습니다.#소지 시 방 클리어 보상이 2%의 확률로 장신구로 바뀝니다."}, -- Smelter
-	{"480", "퇴비", "사용 시 방 안의 픽업을 흡수하고 흡수한 개수만큼 파란 아군 파리 및 거미를 소환하며 현재 소지 중인 파란 아군 파리 및 거미를 2배로 늘립니다.#파란 아군 파리 및 거미가 하나도 없을 경우 둘 중 한마리를 소환합니다."}, -- Compost
-	{"481", "데이터마이너", "사용 시 그 방에서 능력치가 랜덤으로 증가하거나 감소하며 눈물에 랜덤한 효과가 부여됩니다."}, -- Dataminer
+	{"480", "퇴비", "사용 시 방 안의 픽업을 흡수하고 흡수한 개수만큼 파란 아군 파리 및 거미를 소환하며 소지 중인 파란 아군 파리 및 거미를 2배로 늘립니다.#파란 아군 파리 및 거미가 하나도 없을 경우 둘 중 한마리를 소환합니다."}, -- Compost
+	{"481", "데이터마이너", "사용 시 그 방에서 능력치가 랜덤으로 증가하거나 감소하며 눈물에 랜덤 효과가 부여됩니다."}, -- Dataminer
 	{"482", "클리커", "사용 시 가장 최근에 획득한 패시브 아이템을 제거하고 캐릭터를 랜덤하게 바꿉니다."}, -- Clicker
-	{"483", "맘마 메가!", "!!! 일회용#사용 시 그 스테이지에서 방 최초 입장마다 방 안의 모든 적에게 200의 폭발 피해를 입힙니다.#사용한 스테이지에서 {{BossRoom}}보스방 {{ColorOrange}}최초 입장 시{{CR}} 보스러시/Blue Womb으로 향하는 문이 열립니다."}, -- Mama Mega!
+	{"483", "맘마 메가!", "사용 시 그 스테이지에서 방 최초 입장마다 방 안의 모든 적에게 200의 폭발 피해를 입힙니다.#사용한 스테이지에서 {{BossRoom}}보스방 {{ColorOrange}}최초 입장 시{{CR}} 보스러시/Blue Womb으로 향하는 문이 열립니다."}, -- Mama Mega!
 	{"484", "잠깐 뭐야?", "사용 시 방귀를 뀌며 주변의 적을 더 강하게 밀쳐내고 캐릭터 주위에 충격파를 일으킵니다."}, -- Wait What?
 	{"485", "구부러진 동전", "사용 시 50% 확률로 방 안의 모든 아이템을 2배로 복사하며 복사 실패 시 아이템을 모두 없애고 동전을 1개 드랍합니다."}, -- Crooked Penny
 	{"486", "무딘 면도칼", "사용 시 피해를 입지 않고 피격 시 발동 효과를 발동합니다."}, -- Dull Razor
-	{"487", "감자칼", "!!! 사용 시 이하 효과 발동:#최대 체력 1칸을 제거하고 영구적으로 {{Collectible73}}Cube of Meat를 하나 얻으며 {{DamageSmall}}공격력이 0.2 증가합니다.#그 방에서 {{RangeSmall}}사거리 +5 증가하며 캐릭터가 지나간 자리에 빨간 장판이 생기며 닿은 적은 초당 6의 피해를 입습니다."}, -- Potato Peeler
-	{"488", "메트로놈", "사용 시 그 방에서 랜덤한 아이템 효과를 발동합니다."}, -- Metronome
-	{"489", "무한 주사위", "사용 할 때마다 랜덤한 종류의 주사위로 바뀝니다."}, -- D infinity
-	{"490", "에덴의 영혼", "!!! 일회용#사용 시 그 방의 아이템을 2개 생성합니다."}, -- Eden's Soul
+	{"487", "감자칼", "!!! {{NoLB}}사용 시 {{EmptyHeart}} 최대 체력 1칸을 깎으며 이하의 피격 효과 발동:#{{DamageSmall}}공격력 +0.2#{{Collectible73}}Cube of Meat +1#{{Timer}} 그 방에서:#{{RangeSmall}}사거리 +5#캐릭터가 지나간 자리에 빨간 장판이 생기며 닿은 적은 초당 6의 피해를 입습니다."}, -- Potato Peeler
+	{"488", "메트로놈", "{{Timer}} 사용 시 그 방에서:#랜덤 아이템 효과를 발동합니다."}, -- Metronome
+	{"489", "무한 주사위", "사용 할 때마다 랜덤 종류의 주사위로 바뀝니다."}, -- D infinity
+	{"490", "에덴의 영혼", "사용 시 그 방의 아이템을 2개 생성합니다."}, -- Eden's Soul
 	{"491", "산성 아기", "{{Pill}} 방 3개 클리어 시 알약을 하나 드랍합니다.#{{Poison}} 알약 사용 시 방 안의 모든 적을 1초간 중독시킵니다."}, -- Acid Baby
 	{"492", "", "↑ {{LuckSmall}}행운 +1#방 안에 {{SecretRoom}}{{SuperSecretRoom}}비밀방, 색돌, {{LadderRoom}}사다리방이 있는 위치로 날아갑니다."}, -- YO LISTEN!
 	{"493", "아드레날린", "{{EmptyHeart}}빈 최대 체력 한칸 당 {{DamageSmall}}공격력 +0.2"}, -- Adrenaline
@@ -558,16 +561,16 @@ EID.descriptions[languageCode].collectibles={
 	{"507", "날카로운 빨대", "사용 시 방 안의 모든 적에게 눈물 공격력 + 적 체력의 10%의 피해를 줍니다."}, -- Sharp Straw
 	{"508", "엄마의 면도칼", "{{BleedingOut}} 캐릭터 주위를 돌며 접촉하는 적에게 초당 공격력 x3의 피해를 출혈 피해를 줍니다."}, -- Mom's Razor
 	{"509", "피눈물 눈알", "캐릭터 주위를 돌며 자신이 바라보는 방향으로 공격력 3.5의 눈물을 발사합니다.#접촉하는 적에게 초당 30의 피해를 줍니다."}, -- Bloodshot Eye
-	{"510", "정신착란", "사용 시 그 방에서 Delirium 버전의 아군 보스를 소환합니다."}, -- Delirious
+	{"510", "정신착란", "{{Timer}} 사용 시 그 방에서:#{{DeliriumSmall}} Delirium 버전의 아군 보스를 소환합니다."}, -- Delirious
 	{"511", "성난 파리", "적의 주위를 돌면서 접촉하는 적에게 초당 30의 피해를 입힙니다."}, -- Angry Fly
 	{"512", "블랙홀", "사용 시 공격하는 방향으로 적들을 모두 빨아들여 붙잡아놓는 블랙홀을 소환합니다.#블랙홀은 6초동안 지속되며 주변 장애물들을 모두 파괴합니다."}, -- Black Hole
 	{"513", "멍청이", "↑ {{SoulHeart}}소울하트 +1#↑ {{DamageSmall}}공격력 +0.1#일정 확률로 적 하나를 {{Charm}}매혹시키거나 {{Fear}}캐릭터에게서 멀어지게 합니다.#피격 시 확률적으로 무지개똥을 쌉니다."}, -- Bozo
 	{"514", "고장난 모뎀", "적과 적의 탄환이 때때로 1초간 멈춥니다.#방 클리어 보상이 25% 확률로 두배로 나옵니다."}, -- Broken Modem
-	{"515", "수수께끼의 선물", "!!! 일회용#사용 시 그 방의 아이템, A Lump of Coal, The Poop 중 하나를 생성합니다.#{{LuckSmall}} 아이템 소환 확률은 행운 수치에 비례합니다."}, -- Mystery Gift
+	{"515", "수수께끼의 선물", "사용 시 그 방의 아이템, A Lump of Coal, The Poop 중 하나를 생성합니다.#{{LuckSmall}} 아이템 소환 확률은 행운 수치에 비례합니다."}, -- Mystery Gift
 	{"516", "스프링클러", "사용 시 360도 방향으로 캐릭터의 공격과 같은 공격을 발사하는 스프링클러를 소환합니다."}, -- Sprinkler
 	{"517", "빠른 폭탄", "↑ {{Bomb}}폭탄 +7#폭탄을 설치할 때 지연 없이 빠르게 설치할 수 있습니다."}, -- Fast Bombs
 	{"518", "친구 든 상자", "공격하는 방향으로 특수 효과 눈물을 발사합니다.#효과는 스테이지마다 바뀝니다."}, -- Buddy in a Box
-	{"519", "꼬마 델리리움", "10초마다 랜덤한 패밀리어로 바뀝니다."}, -- Lil Delirium
+	{"519", "꼬마 델리리움", "10초마다 랜덤 패밀리어로 바뀝니다."}, -- Lil Delirium
 	{"520", "점퍼 케이블", "적 15기 처치 시 액티브 아이템 충전량을 한칸 충전합니다."}, -- Jumper Cables
 	{"521", "쿠폰", "{{Shop}}상점이나 {{DevilRoom}}악마방에서 사용 시 랜덤 상품 하나를 거래없이 얻을 수 있습니다."}, -- Coupon
 	{"522", "염동력", "사용 시 3초동안 캐릭터에게 날아오는 적의 탄환을 붙잡습니다.#3초가 끝나면 붙잠은 탄환을 다시 되돌려 발사합니다."}, -- Telekinesis
@@ -578,13 +581,13 @@ EID.descriptions[languageCode].collectibles={
 	{"527", "미 씨!", "사용 시 조준점으로 목표를 설정하며 유령이 나타나 목표하는 대상에 상호작용합니다."}, -- Mr. ME!
 	{"528", "천사빛 프리즘", "캐릭터 주위를 돌며 공격이 통과하면 4갈래로 갈라져 나갑니다."}, -- Angelic Prism
 	{"529", "뽁!", "눈물이 체공하며 다른 눈물과 부딪힐 시 서로 튕겨나가며 움직입니다."}, -- Pop!
-	{"530", "죽음의 살생부", "{{DeathMark}} 해골마크가 뜬 적을 순차적으로 처치 시 픽업이 드랍되거나 랜덤한 능력치가 하나 증가합니다."}, -- Death's List
+	{"530", "죽음의 살생부", "{{DeathMark}} 해골마크가 뜬 적을 순차적으로 처치 시 픽업이 드랍되거나 랜덤 능력치가 하나 증가합니다."}, -- Death's List
 	{"531", "피눈물병", "↓ {{TearsSmall}}공격 딜레이 x2 +10#공격력 x1.31의 눈물을 포물선으로 발사하며 무언가에 부딪힐 시 파열되어 작은 눈물이 흩어집니다."}, -- Haemolacria
 	{"532", "눈물먹이", "눈물이 체공하며 눈물에 눈물이 흡수됩니다.#최대 5번 흡수 시 파열되어 8방향으로 작은 눈물이 발사됩니다."}, -- Lachryphagy
 	{"533", "삼성송", "공격이 하얀색 빛줄기 공격으로 변경됩니다.#빛줄기는 적에게 다단히트로 공격력 x0.33의 피해를 주며 적을 관통합니다."}, -- Trisagion
 	{"534", "책가방", "액티브 아이템을 두개 들 수 있습니다.#액티브 아이템은 {{ButtonRT}}버튼으로 교체할 수 있습니다."}, -- Schoolbag
 	{"535", "담요", "↑ {{SoulHeart}}소울하트 +1#↑ {{HealingRed}}빨간하트 +1#{{HolyMantleSmall}} {{BossRoom}}보스방에서 피격 시 피해를 무시하는 보호막을 1회 제공합니다."}, -- Blanket
-	{"536", "희생의 제단", "!!! 일회용#사용 시 생물 패밀리어를 최대 2마리 제거하고 제거한 패밀리어 수 만큼 {{DevilRoom}}악마방 아이템을 생성합니다."}, -- Sacrificial Altar
+	{"536", "희생의 제단", "사용 시 생물 패밀리어를 최대 2마리 제거하고 제거한 패밀리어 수 만큼 {{DevilRoom}}악마방 아이템을 생성합니다."}, -- Sacrificial Altar
 	{"537", "꼬마 구토쟁이", "획득 시 {{Pill}}알약을 하나 드랍합니다.#{{Chargeable}} 공격하는 방향으로 장판을 충전하여 뱉습니다.#장판의 효과는 알약을 사용할 때마다 달라집니다."}, -- Lil Spewer
 	{"538", "구슬", "장신구를 3개 드랍합니다.#피격 시 5%의 확률로 소지중인 장신구를 흡수해 효과를 영구적으로 얻습니다."}, -- Marbles
 	{"539", "이상한 알", "피격 시 매혹된 아군 적을 소환합니다.#피격당하지 않고 방을 넘어갈수록 소환되는 적이 더욱 강해집니다."}, -- Mystery Egg
@@ -622,13 +625,13 @@ EID.descriptions[languageCode].carBattery = {
 	[85] = {"하나", "2장"}, -- Deck of Cards
 	[86] = "{{BlinkYellowGreen}}Monstro가 한 마리 더 떨어집니다.", -- Monstro's Tooth
 	[93] = {6.5, 13}, -- The Gamekid
-	[97] = {"사용 시 랜덤한 픽업을 {{BlinkYellowGreen}}2개{{CR}} 드랍합니다."}, -- The Book of Sin
+	[97] = {"사용 시 랜덤 픽업을 {{BlinkYellowGreen}}2개{{CR}} 드랍합니다."}, -- The Book of Sin
 	[102] = {"하나", "2개"}, -- Mom's Bottle of Pills
 	[105] = "!!! {{BlinkYellowRed}}일부 아이템이 배열에서 지워질 수 있음{{CR}}", -- The D6
 	[107] = "분리된 몸 추가 생성", -- The Pinking Shears
 	[111] = "방귀의 피해량 x2, 효과 지속시간은 연장되지 않음", -- The Bean
 	[123] = {"하나", "2명"}, -- Monster Manual
-	[124] = {"랜덤한 액티브 아이템", "랜덤한 액티브 아이템 2개"}, -- Dead Sea Scrolls
+	[124] = {"랜덤 액티브 아이템", "랜덤 액티브 아이템 2개"}, -- Dead Sea Scrolls
 	[136] = {"하나", "2개"}, -- Best Friend
 	[145] = {"2~4","4~8"}, -- Guppy's Head
 	[146] = {"{{EthernalHeart}}이터널하트 +1", "{{Heart}}최대 체력 +1"}, -- Prayer Card
@@ -676,7 +679,7 @@ EID.descriptions[languageCode].trinkets={
 	{"1", "삼킨 동전", "피격 시 {{Coin}}동전을 1~2개 드랍합니다."}, -- Swallowed Penny
 	{"2", "굳은 똥", "똥 파괴 시 픽업이 드랍될 확률이 50% 증가합니다."}, -- Petrified Poop
 	{"3", "AAA 건전지", "방 클리어 시 액티브 아이템의 충전량이 1칸 남았을 경우 액티브를 자동으로 충전합니다."}, -- AAA Battery
-	{"4", "고장난 조종기", "{{Collectible44}} 액티브 아이템 사용 시 스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Broken Remote
+	{"4", "고장난 조종기", "{{Collectible44}} 액티브 아이템 사용 시 스테이지 안의 랜덤 방으로 순간이동합니다."}, -- Broken Remote
 	{"5", "퍼플 하트 훈장", "!!! 적이 챔피언의 형태로 나올 확률이 2배로 증가합니다.#가능한 경우, 보스가 챔피언의 형태로 나올 확률이 증가합니다."}, -- Purple Heart
 	{"6", "깨진 자석", "{{Coin}}동전이 캐릭터에게 끌려옵니다."}, -- Broken Magnet
 	{"7", "묵주 구슬", "↑ {{AngelChanceSmall}}천사방 확률 +50%#!!! {{Library}}책방과 {{Shop}}상점에서 {{Collectible33}}The Bible이 등장할 확률이 증가합니다."}, -- Rosary Bead
@@ -688,7 +691,7 @@ EID.descriptions[languageCode].trinkets={
 	{"13", "상점 상품권", "!!! 일회용#{{Shop}} 상점에서 아이템 하나를 무료로 구매할 수 있습니다."}, -- Store Credit
 	{"14", "굳은살", "가시나 장판에 피해를 입지 않습니다.#!!! 적의 공격으로 생성되는 가시에는 피해를 입습니다."}, -- Callus
 	{"15", "행운의 돌조각", "장애물 파괴 시 {{Coin}}동전을 드랍합니다."}, -- Lucky Rock
-	{"16", "엄마의 발톱", "2분마다 엄마발이 랜덤한 위치에 떨어집니다."}, -- Mom's Toenail
+	{"16", "엄마의 발톱", "2분마다 엄마발이 랜덤 위치에 떨어집니다."}, -- Mom's Toenail
 	{"17", "검은 립스틱", "{{BlackHeart}}블랙하트가 나올 확률이 증가합니다."}, -- Black Lipstick
 	{"18", "성경 책자", "{{EthernalHeart}}이터널하트가 나올 확률이 증가합니다."}, -- Bible Tract
 	{"19", "종이 클립", "{{GoldenChest}}황금상자를 열쇠 소모 없이 열 수 있습니다."}, -- Paper Clip
@@ -704,7 +707,7 @@ EID.descriptions[languageCode].trinkets={
 	{"29", "생선 머리", "피격 시 파란 아군 파리를 소환합니다."}, -- Fish Head
 	{"30", "분홍 눈알", "10%의 확률로 적을 {{Poison}}중독시키는 공격이 나갑니다.#{{LuckSmall}} 행운 18 이상일 때 100% 확률"}, -- Pinky Eye
 	{"31", "고정핀", "10%의 확률로 적과 장애물을 관통하는 공격이 나갑니다.#{{LuckSmall}} 행운 18 이상일 때 100% 확률"}, -- Push Pin
-	{"32", "환각버섯", "방 입장 시 25% 확률로 그 방에서 랜덤한 버섯 아이템 효과를 얻거나 맵에 특수방의 위치가 표시됩니다."}, -- Liberty Cap
+	{"32", "환각버섯", "방 입장 시 25% 확률로 그 방에서 랜덤 버섯 아이템 효과를 얻거나 맵에 특수방의 위치가 표시됩니다."}, -- Liberty Cap
 	{"33", "탯줄", "{{HalfHeart}} 전체 체력이 빨간하트 반칸일 때 그 방에서 {{Collectible100}}Little Steven을 소환합니다."}, -- Umbilical Cord
 	{"34", "아이의 심장", "{{Heart}} 방 클리어 보상이 10% 확률로 하트로 바뀝니다.#{{Heart}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 하트를 추가로 드랍합니다."}, -- Child's Heart
 	{"35", "휘어진 뿔", "↑ {{DamageSmall}}공격력 +2"}, -- Curved Horn
@@ -715,7 +718,7 @@ EID.descriptions[languageCode].trinkets={
 	{"40", "빨간 누더기", "피격 시 20%의 확률로 그 방에서 {{DamageSmall}}공격력이 1.8 증가합니다.#{{LuckSmall}} 행운 8 이상일 때 100% 확률"}, -- Red Patch
 	{"41", "성냥개비", "{{Bomb}} 방 클리어 보상이 10% 확률로 폭탄으로 바뀝니다.#{{Bomb}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 폭탄을 추가로 드랍합니다.#{{Trinket53}} 흡수하지 않은 Tick 장신구를 제거할 수 있습니다."}, -- Match Stick
 	{"42", "행운의 발가락", "↑ {{LuckSmall}}행운 +1#방 클리어 보상이 등장할 확률이 대폭 증가합니다.#상자, 색돌, 터진 기계 등에서 33%의 확률로 픽업을 추가로 드랍합니다."}, -- Lucky Toe
-	{"43", "저주받은 해골", "피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 스테이지 안의 랜덤한 방으로 순간이동합니다."}, -- Cursed Skull
+	{"43", "저주받은 해골", "피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 스테이지 안의 랜덤 방으로 순간이동합니다."}, -- Cursed Skull
 	{"44", "안전 마개", "{{Pill}} 방 클리어 보상이 10% 확률로 알약으로 바뀝니다.#{{Pill}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 알약을 추가로 드랍합니다.#{{GoldenChest}} 황금상자에서 {{Pill}}알약이 등장합니다."}, -- Safety Cap
 	{"45", "스페이드 A", "{{Card}} 방 클리어 보상이 10% 확률로 카드로 바뀝니다.#{{Card}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 카드를 추가로 드랍합니다.#{{GoldenChest}} 황금상자에서 {{Card}}카드가 드랍될 확률이 증가합니다."}, -- Ace of Spades
 	{"46", "아이작의 포크", "{{HealingRed}} 방 클리어 시 10% 확률로 체력을 반칸 회복합니다.#{{LuckSmall}} 행운 18 이상일 때 100% 확률"}, -- Isaac's Fork
@@ -736,7 +739,7 @@ EID.descriptions[languageCode].trinkets={
 	{"61", "왼손목", "{{RedChest}} 모든 상자가 빨간 상자로 교체됩니다."}, -- The Left Hand
 	{"62", "빛나는 돌", "10초마다 색돌이나 {{LadderRoom}}사다리방이 있는 돌이 빛납니다."}, -- Shiny Rock
 	{"63", "안전 가위", "트롤폭탄을 {{Bomb}}폭탄 픽업으로 바꿉니다.#슈퍼 트롤폭탄을 1+1 {{Bomb}}폭탄 픽업으로 바꿉니다."}, -- Safety Scissors
-	{"64", "무지개 벌레", "3초마다 랜덤한 벌레 장신구 효과가 발동됩니다."}, -- Rainbow Worm
+	{"64", "무지개 벌레", "3초마다 랜덤 벌레 장신구 효과가 발동됩니다."}, -- Rainbow Worm
 	{"65", "테이프 벌레", "↑ {{RangeSmall}}사거리 x2#↓ 눈물 높이 배율 x0.5"}, -- Tape Worm
 	{"66", "게으른 벌레", "↑ {{RangeSmall}}사거리 +4.0#↑ 눈물 높이 +2#↓ {{ShotspeedSmall}}탄속 -0.4"}, -- Lazy Worm
 	{"67", "금이 간 주사위", "피격 시 확률적으로 {{Collectible105}}방 안의 아이템, {{Collectible166}}픽업, {{Collectible386}}오브젝트 또는 {{Collectible406}}능력치 배율을 바꿉니다."}, -- Cracked Dice
@@ -747,7 +750,7 @@ EID.descriptions[languageCode].trinkets={
 	{"72", "손목시계용 전지", "{{Battery}} 방 클리어 보상이 배터리 픽업으로 교체될 확률이 5%에서 6.67%로 증가합니다.#{{Battery}} 픽업 드랍 시 2%의 확률로 배터리 픽업으로 바꿉니다.#방 클리어 시 5% 확률로 충전량을 한칸 더 채워줍니다."}, -- Watch Battery
 	{"73", "폭파용 뇌관", "폭탄이 터질 때 10% 확률로 {{Bomb}}폭탄 픽업이 드랍됩니다."}, -- Blasting Cap
 	{"74", "벽체 탐지기", "장애물 파괴 시 {{LadderRoom}}사다리방이 등장할 확률 +0.5%"}, -- Stud Finder
-	{"75", "오류", "방마다 다른 랜덤한 장신구의 효과가 발동됩니다."}, -- Error
+	{"75", "오류", "방마다 다른 랜덤 장신구의 효과가 발동됩니다."}, -- Error
 	{"76", "포커 칩", "{{Chest}} 상자에서 50% 확률로 픽업이 추가로 드랍되거나 Attack Fly가 나옵니다."}, -- Poker Chip
 	{"77", "물집", "공격이 적을 더 강하게 밀쳐냅니다."}, -- Blister
 	{"78", "초침", "적에게 걸린 상태이상의 지속시간이 2배로 증가합니다."}, -- Second Hand
@@ -780,7 +783,7 @@ EID.descriptions[languageCode].trinkets={
 	{"105", "점심 도시락", "!!! 일회용#피격 시 2% 확률로 {{Collectible22}}Lunch ({{Heart}}최대 체력 +1) 아이템을 생성합니다."}, -- Bag Lunch
 	{"106", "잃어버린 코르크", "캐릭터와 패밀리어가 생성하는 장판의 범위가 넓어집니다."}, -- Lost Cork
 	{"107", "까마귀 심장", "피격 시 빨간하트가 가장 우선적으로 소모됩니다.#!!! 악마방/천사방 확률을 방어해 주지 않습니다."}, -- Crow Heart
-	{"108", "호두", "!!! 일회용#캐릭터가 폭발에 휘말릴 경우 확률적으로 랜덤한 픽업을 드랍합니다."}, -- Walnut
+	{"108", "호두", "!!! 일회용#캐릭터가 폭발에 휘말릴 경우 확률적으로 랜덤 픽업을 드랍합니다."}, -- Walnut
 	{"109", "청테이프", "캐릭터의 위치를 기준으로 캐릭터를 따라오는 패밀리어의 위치를 고정시킵니다.#공전형 패밀리어가 회전하지 않습니다."}, -- Duct Tape
 	{"110", "은화", "7, 8 스테이지에서 {{Shop}}상점이 생성됩니다."}, -- Silver Dollar
 	{"111", "피투성이 왕관", "7, 8 스테이지에서 {{TreasureRoom}}보물방이 생성됩니다."}, -- Bloody Crown
@@ -807,8 +810,8 @@ EID.descriptions[languageCode].trinkets={
 EID.descriptions[languageCode].cards={
 	{"1", "0 - 바보", "그 스테이지의 시작방으로 순간이동합니다."}, -- 0 - The Fool
 	{"2", "I - 마법사", "{{Collectible192}} 그 방에서 공격이 적에게 유도됩니다."}, -- I - The Magician
-	{"3", "II - 여교황", "엄마발이 랜덤한 적에게 떨어져 300의 피해를 입힙니다.#!!! 적이 없는 방이나 {{MomBossSmall}}Mom 전투 중일 때 사용 시 엄마발이 캐릭터의 위치에 떨어집니다."}, -- II - The High Priestess
-	{"4", "III - 여제", "{{Collectible122}} 그 방에서 {{DamageSmall}}공격력 +1.5, {{SpeedSmall}}이동속도 +0.3"}, -- III - The Empress
+	{"3", "II - 여교황", "엄마발이 랜덤 적에게 떨어져 300의 피해를 입힙니다.#!!! 적이 없는 방이나 {{MomBossSmall}}Mom 전투 중일 때 사용 시 엄마발이 캐릭터의 위치에 떨어집니다."}, -- II - The High Priestess
+	{"4", "III - 여제", "{{Collectible122}} {{Timer}} 사용 시 그 방에서:#{{DamageSmall}}공격력 +1.5#{{SpeedSmall}}이동속도 +0.3"}, -- III - The Empress
 	{"5", "IV - 황제", "{{BossRoom}} 보스방으로 순간이동합니다."}, -- IV - The Emperor
 	{"6", "V - 교황", "{{SoulHeart}} 소울하트를 2개 드랍합니다."}, -- V - The Hierophant
 	{"7", "VI - 연인", "{{Heart}} 빨간하트를 2개 드랍합니다."}, -- VI - The Lovers
@@ -816,7 +819,7 @@ EID.descriptions[languageCode].cards={
 	{"9", "VIII - 정의", "{{Heart}}하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠를 하나씩 드랍합니다."}, -- VIII - Justice
 	{"10", "IX - 은둔자", "{{Shop}}상점으로 순간이동합니다."}, -- IX - The Hermit
 	{"11", "X - 운명의 수레바퀴", "{{Slotmachine}}도박기계 혹은 {{FortuneTeller}}운세기계를 생성합니다."}, -- X - Wheel of Fortune
-	{"12", "XI - 힘", "그 방에서 {{Heart}}최대 체력 +1, {{DamageSmall}}공격력 +0.3, {{DamageSmall}}공격력 배율 +50%, {{RangeSmall}}사거리 +5.25, 눈물 높이 +0.5, {{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
+	{"12", "XI - 힘", "{{Timer}} 사용 시 그 방에서:#{{Heart}}최대 체력 +1#{{DamageSmall}}공격력 +0.3#{{DamageSmall}}공격력 배율 +50%#{{RangeSmall}}사거리 +5.25#눈물 높이 +0.5#{{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
 	{"13", "XII - 매달린 남자", "{{Collectible20}} 그 방에서 비행 능력을 얻습니다."}, -- XII - The Hanged Man
 	{"14", "XIII - 죽음", "{{Collectible35}} 방 안의 모든 적에게 40의 피해를 줍니다."}, -- XIII - Death
 	{"15", "XIV - 절제", "{{DonationMachine}}헌혈기계를 하나 생성합니다."}, -- XIV - Temperance
@@ -839,13 +842,13 @@ EID.descriptions[languageCode].cards={
 	{"32", "하갈라즈", "방 안의 모든 장애물을 제거합니다."}, -- Hagalaz
 	{"33", "제라", "방 안의 모든 픽업을 복제합니다."}, -- Jera
 	{"34", "에와즈", "{{Collectible84}} 다음 스테이지로 가는 다락문을 생성합니다."}, -- Ehwaz
-	{"35", "다가즈", "{{SoulHeart}}소울하트 +1#{{CurseCursedSmall}} Labyrinth 및 특수 시드를 제외한 현재 스테이지의 저주를 제거합니다."}, -- Dagaz
+	{"35", "다가즈", "{{SoulHeart}}소울하트 +1#{{CurseCursedSmall}} Labyrinth 및 특수 시드를 제외한 그 스테이지의 저주를 제거합니다."}, -- Dagaz
 	{"36", "엔수즈", "{{Collectible333}} 그 스테이지에서 맵에 특수방 위치, 비밀방 위치, 스테이지 구조가 표시됩니다."}, -- Ansuz
 	{"37", "페트로", "{{Collectible105}} 방 안의 모든 아이템을 다른 아이템으로 바꿉니다."}, -- Perthro
 	{"38", "벨카노", "파란 아군 파리/거미를 3마리씩 소환합니다."}, -- Berkano
 	{"39", "알기즈", "{{Collectible58}} 30초동안 무적 상태가 됩니다."}, -- Algiz
-	{"40", "비어있는 룬", "랜덤한 {{Rune}}룬 효과를 발동합니다.#25% 확률로 Blank Rune을 드랍합니다."}, -- Blank Rune
-	{"41", "검은 룬", "방 안의 아이템을 흡수하고 흡수한 만큼 랜덤한 능력치가 2개씩 증가합니다.#방 안의 픽업을 흡수하고 흡수한 개수만큼 파란 아군 파리 및 거미를 소환합니다.#방 안의 모든 적에게 40의 피해를 줍니다."}, -- Black Rune
+	{"40", "비어있는 룬", "랜덤 {{Rune}}룬 효과를 발동합니다.#25% 확률로 Blank Rune을 드랍합니다."}, -- Blank Rune
+	{"41", "검은 룬", "방 안의 아이템을 흡수하고 흡수한 만큼 랜덤 능력치가 2개씩 증가합니다.#방 안의 픽업을 흡수하고 흡수한 개수만큼 파란 아군 파리 및 거미를 소환합니다.#방 안의 모든 적에게 40의 피해를 줍니다."}, -- Black Rune
 	{"42", "혼돈 카드", "{{ColorOrange}}캐릭터의 몸통이 바라보는 방향{{CR}}으로 카드를 던지며 카드에 맞은 적은 즉사합니다.#!!! Delirium은 면역"}, -- Chaos Card
 	{"43", "신용카드", "{{Shop}}상점 또는 {{DevilRoom}}악마방에서 사용 시 모든 상품을 무료로 획득할 수 있습니다."}, -- Credit Card
 	{"44", "규칙 카드", "게임 힌트를 화면에 출력합니다."}, -- Rules Card
@@ -854,11 +857,11 @@ EID.descriptions[languageCode].cards={
 	{"47", "감옥 탈출 카드", "방 안의 닫혀있는 문을 모두 엽니다."}, -- Get Out Of Jail Free Card
 	{"48", "? 카드", "소지중인 액티브 아이템의 효과를 발동합니다."}, -- ? Card
 	{"49", "주사위 파편", "방 안의 모든 아이템과 픽업을 다른 아이템으로 바꿉니다."}, -- Dice Shard
-	{"50", "비상 연락처", "엄마손 2개가 랜덤한 적에게 떨어져 적을 붙잡습니다."}, -- Emergency Contact
+	{"50", "비상 연락처", "엄마손 2개가 랜덤 적에게 떨어져 적을 붙잡습니다."}, -- Emergency Contact
 	{"51", "신성한 카드", "{{HolyMantle}} 사용한 방에서 피격 시 피해를 1회 무시하는 방어막을 제공합니다.#25% 확률로 Holy Card를 드랍합니다."}, -- Holy Card
-	{"52", "거대한 성장", "그 방에서 {{DamageSmall}}공격력 +7, {{RangeSmall}}사거리 +30"}, -- Huge Growth
+	{"52", "거대한 성장", "{{Timer}} 사용 시 그 방에서:#{{DamageSmall}}공격력 +7#{{RangeSmall}}사거리 +30"}, -- Huge Growth
 	{"53", "고대의 부름", "카드를 3개 드랍합니다."}, -- Ancient Recall
-	{"54", "시간 여행", "그 방에서 {{SpeedSmall}}이동속도 +0.5, {{ShotspeedSmall}}탄속 -1#{{Slow}} 방 안의 모든 적들이 영구적으로 느려집니다."}, -- Era Walk
+	{"54", "시간 여행", "{{Timer}} 사용 시 그 방에서:#{{SpeedSmall}}이동속도 +0.5#{{ShotspeedSmall}}탄속 -1#{{Slow}} 방 안의 모든 적들이 영구적으로 느려집니다."}, -- Era Walk
 }
 
 ---------- Pills ----------
@@ -884,7 +887,7 @@ EID.descriptions[languageCode].pills={
 	{"16", "연사 증가", "↑ {{TearsSmall}}연사 +0.35"}, -- Tears Up
 	{"17", "행운 감소", "↓ {{LuckSmall}}행운 -1"}, -- Luck Down
 	{"18", "행운 증가", "↑ {{LuckSmall}}행운 +1"}, -- Luck Up
-	{"19", "순간이동약", "스테이지 안의 랜덤한 방으로 순간이동합니다.#{{ErrorRoom}} 낮은 확률로 오류방으로 이동합니다."}, -- Telepills
+	{"19", "순간이동약", "스테이지 안의 랜덤 방으로 순간이동합니다.#{{ErrorRoom}} 낮은 확률로 오류방으로 이동합니다."}, -- Telepills
 	{"20", "48시간 풀충전!", "액티브 아이템 충전량을 모두 충전하고 배터리 픽업을 1~2개 드랍합니다."}, -- 48 Hour Energy!
 	{"21", "토혈", "빨간하트가 한칸이 되며 {{Heart}}빨간하트 픽업을 1~4개 드랍합니다."}, -- Hematemesis
 	{"22", "마비", "3초간 캐릭터가 마비 상태가 됩니다."}, -- Paralysis
@@ -981,6 +984,8 @@ EID.descriptions[languageCode].CollectionPageInfo = "아직 해당 아이템을 
 
 EID.descriptions[languageCode].BlackFeatherInformation = "현재 아이템 {{ColorLime}}{1}{{CR}}개 소지 중 (공격력 +{2})"
 
+EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} 일회용 {{Warning}}"
+
 EID.descriptions[languageCode].MCM={
 	DemoObjectName = "아이템 설명 모드 표시용",
 	DemoObjectTransformation = "테스트 변신 세트 표시",
@@ -993,10 +998,12 @@ EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
 	-- For Korean, keep all description except lost, just icon changes
 	["Red to Soul"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{SoulHeart}}최대 체력 +{1}",
+	"↑ {{HealingRed}}빨간하트 +{1}", "",
 	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{SoulHeart}}최대 체력 +{1}",
 	"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{SoulHeart}}최대 체력 {1}"},
 
 	["Red to Black"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{BlackHeart}}최대 체력 +{1}",
+	"↑ {{HealingRed}}빨간하트 +{1}", "",
 	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{BlackHeart}}최대 체력 +{1}",
 	"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{BlackHeart}}최대 체력 {1}"},
 
@@ -1009,7 +1016,7 @@ EID.descriptions[languageCode].RedToX = {
 	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{EmptyCoinHeart}}빈 최대 체력 +{1}",
 	"↑ {{HealingRed}}빨간하트 +{1}", "↑ {{HealingCoin}}빨간하트 +{1}", "반칸 회복", "한칸 회복", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{EmptyCoinHeart}}최대 체력 {1}"},
 
-	["Red to None"] = {"↑ {{Heart}}최대 체력 +{1}", "", "↑ {{EmptyHeart}}빈 최대 체력{2} +{1}", "", "↓ {{EmptyHeart}}최대 체력 {1}", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {"↑ {{Heart}}최대 체력 +{1}", "", "↑ {{EmptyHeart}}빈 최대 체력{2} +{1}", "", "↓ {{EmptyHeart}}최대 체력 {1}", "", "↑ {{HealingRed}}빨간하트 +{1}", ""}, -- Red HP to None (The Lost)
 }
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
@@ -1119,7 +1126,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Familiars)"] = "추가 효과 없음", -- probably just for Hive Mind + BFFS!
 	["No Red"] = "최대 체력이 소울하트인 캐릭터에는 무효과",
 	["Different Effect"] = "{{ColorSilver}}{1}에 다른 효과 존재{{CR}}",
-	["Dies on Use"] = "{{Warning}} {1}: 사용 시 사망", -- for Razor Blade and such as The Lost
+	["Dies on Use"] = "!!! {1}: 사용 시 사망", -- for Razor Blade and such as The Lost
 
 	------ GREED MODE ------
 	["Room to Wave"] = {"방", "웨이브", "방", "웨이브"}, -- convert room clear effects to wave clear effects
@@ -1139,7 +1146,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.350.44"] = {"{{Pill}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 알약을 추가로 드랍합니다."}, -- Safety Cap
 	["5.350.45"] = {"{{Card}} 상자, 색돌, 터진 기계 등에서 33%의 확률로 카드를 추가로 드랍합니다."}, -- Ace of Spades
 	["5.350.72"] = {"{{Battery}} +10% 픽업 드랍 시 배터리 픽업으로 바꿀 확률 +10%#{{Battery}} 웨이브 시작 시 5% 확률로 충전량을 한칸 더 채워줍니다."}, -- Watch Battery
-	["5.100.297 (Greed)"] = {"!!! 일회용 / 사용 시 스테이지마다 다른 보상을 드랍합니다.#Basement: 2{{Bomb}} + 2{{Key}}#Caves: {{BossRoom}} 1개 + 2{{SoulHeart}}#Depths: 20{{Coin}}#Womb: {{BossRoom}} 2개#Sheol: {{DevilRoom}} 1개 + 1{{BlackHeart}}#The Shop/Ultra Greed: 1{{Coin}}"}, -- Pandora's Box
+	["5.100.297 (Greed)"] = {"사용 시 스테이지마다 다른 보상을 드랍합니다.#Basement: 2{{Bomb}} + 2{{Key}}#Caves: {{BossRoom}} 1개 + 2{{SoulHeart}}#Depths: 20{{Coin}}#Womb: {{BossRoom}} 2개#Sheol: {{DevilRoom}} 1개 + 1{{BlackHeart}}#The Shop/Ultra Greed: 1{{Coin}}"}, -- Pandora's Box
 
 	------ ACHIEVEMENT CHECKS ------
 	["5.350.23"] = "!!! {{SacrificeRoom}}희생방에서 사망 시 The Lost 캐릭터가 해금됩니다.", -- Missing Poster (Unlock The Lost)
@@ -1191,6 +1198,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.81"] = "최대 체력이 소울/블랙하트인 캐릭터는 소울/블랙하트가 1칸이 됨", -- Dead Cat
 	["5.100.316"] = "{1} 소지 시 순간이동 면역", -- Cursed Eye
 	["5.100.260"] = "{1}의 순간이동 효과를 제거합니다.", -- Black Candle
+	["Void Single Use"] = "Void로 발동 시에도 1회만 발동됨", -- Single Use Actives + Void
 	["? Card Single Use"] = "?카드로 복사 시에도 제거됨", -- Single Use Actives + ? Card
 	["5.300.48"] = "!!! 오류방으로 순간이동합니다.#Blank Card와 ? 카드가 제거됩니다.", -- Blank Card + Q Card
 	["? + Blank Pedestal"] = "? Card + Blank Card: 오류방으로 순간하며 둘 다 제거됩니다.", -- Looking at Blank Card with ? Card
