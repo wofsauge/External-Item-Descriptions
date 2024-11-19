@@ -18,7 +18,7 @@ EID.descriptions[languageCode].custom = {} -- table for custom entity descriptio
 EID.descriptions[languageCode].languageName = "Chinese"
 
 -- Fonts to be used with this languagepack
-EID.descriptions[languageCode].fonts = {{name = "default_cn", lineHeight = 14, textboxWidth = 150}}
+EID.descriptions[languageCode].fonts = {{name = "cn_alt", lineHeight = 13, textboxWidth = 140}, {name = "cn_default", lineHeight = 13, textboxWidth = 140}, {name = "cn_old", lineHeight = 14, textboxWidth = 150}}
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
@@ -973,9 +973,9 @@ EID.descriptions[languageCode].CollectionPageInfo = "此道具尚未收集！"
 EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} 一次性 {{Warning}}"
 
 EID.descriptions[languageCode].MCM = {
-	DemoObjectName = "项目名预览",
-	DemoObjectTransformation = "套装预览",
-	DemoObjectText = "这份文本是中文的#这是一条非常酷的长文本，用来模拟EID文本框自动分行功能！#\1 这也是一条非常酷的文本#祝使用愉快{{Heart}}",
+	DemoObjectName = "测试道具名",
+	DemoObjectTransformation = "测试套装",
+	DemoObjectText = "这份文本是中文的#一条又酷又长的描述, 用来模拟EID文本框自动分行功能!#{{Collectible4}} 这也是很酷的一行#{{Heart}} 爱来自这行#{{AngelDevilChance}} 天使还是恶魔, 这是一个问题#\1 {{Damage}}属性+1, 原地起飞",
 }
 
 -- 长按地图键会以"道具名称的结果"为描述预测结果
