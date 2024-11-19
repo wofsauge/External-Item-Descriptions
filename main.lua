@@ -11,8 +11,8 @@ EID.isRepentancePlus = FontRenderSettings ~= nil -- Repentance+ adds FontRenderS
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.84
-EID.ModVersionCommit = "f6d96b9"
+EID.ModVersion = 4.85
+EID.ModVersionCommit = "5ef24ca"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
