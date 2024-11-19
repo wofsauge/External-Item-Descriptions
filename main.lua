@@ -132,6 +132,7 @@ if EID.isRepentance then
 	require("features.eid_bagofcrafting")
 	require("features.eid_tmtrainer")
 
+	-- Load Repentance+ DLC data 
 	if EID.isRepentancePlus then
 		EID.GameVersion = "rep+"
 		for _,lang in ipairs(EID.Languages) do
@@ -141,6 +142,8 @@ if EID.isRepentance then
 			end
 		end
 		local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
+
+		require("features.eid_xmldata_rep+")
 	end
 end
 
