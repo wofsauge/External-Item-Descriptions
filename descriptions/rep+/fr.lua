@@ -14,13 +14,13 @@ local languageCode = "fr"
 
 local collectibles = {
 	-- Change: added "Creep persists until you exit the room"
-	[56] = 	{"56", "Petit Acident", "Répand une flaque jaune au sol et inflige des dégâts aux ennemis qui marchent dedans#La flaque disparaît quand Isaac quitte la salle"}, -- Lemon Mishap
+	[56] = 	{"56", "Petit Acident", "Répand une flaque au sol et inflige des dégâts aux ennemis qui marchent dedans#La flaque disparaît quand Isaac quitte la salle"}, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
-	[117] = {"117", "Dead Bird", "Subir un dégât invoque un oiseau qui pourchasse et inflige des dégâts aux ennemis#L'oiseau reste actif si Isaac est n'a qu'un demi-cœur rouge ou moins#{{DamageSmall}} 4.3 dégâts par seconde"}, -- Dead Bird
+	[117] = {"117", "Dead Bird", "Subir un dégât invoque un oiseau qui pourchasse et inflige des dégâts aux ennemis#L'oiseau reste actif si Isaac n'a qu'un demi-cœur rouge ou moins#{{DamageSmall}} 4.3 dégâts par seconde"}, -- Dead Bird
 	-- Change: Complete rewrite
-	[351] = {"351", "Mega Bean", "Crée un énorme pet qui pétrifie et inflige des dégâts à tous les ennemis de la salle, empoisonne les ennemis à proximité et détruit les obstacles et les portes"}, -- Mega Bean
+	[351] = {"351", "Mega Bean", "Isaac pète, ce qui pétrifie et inflige des dégâts à tous les ennemis de la salle, empoisonne les ennemis à proximité et détruit les obstacles et les portes"}, -- Mega Bean
 	-- Change: Complete rewrite
-	[436] = {"436", "Milk!", "Suit Isaac et bloque les projectiles#Après 10 projectiles bloqués, donne {{ColorLime}}débit augmenté{{CR}} pour l'étage"}, -- Milk!
+	[436] = {"436", "Milk!", "Suit Isaac et bloque les projectiles ennemis#Après 10 projectiles bloqués, donne {{ColorLime}}débit augmenté{{CR}} pour l'étage"}, -- Milk!
 	-- Change: Complete rewrite
 	[447] = {"447", "Linger Bean", "Tirer pendant 4 secondes crée un nuage qui grandit pendant 10 secondes#Le nuage inflige des dégâts inverses à sa taille"}, -- Linger Bean
 	-- Change: added " and fires radial bursts of tears"
@@ -32,9 +32,9 @@ local collectibles = {
 	-- Change: added "Tears leave a pool of creep on impact"
 	[560] = {"560", "It Hurts", "Subir un dégât projette 10 larmes autour d'Isaac et répand des flaques de sang sous ses larmes#↑ Débit {{ColorLime}}+1.2{{ColorWhite}} au premier dégât subi, {{ColorLime}}+0.4{{ColorWhite}} pour chaque dégât suivant"}, -- It Hurts
 	-- Change: Heals 2 hearts instead of 1/2
-	[594] = {"594", "Jupiter", "↓ Vitesse {{ColorError}}-0.3#{{Heart}} +2 réceptacles de cœur#{{HealingRed}} Soigne 2 cœurs rouges#Immunise Isaac contre le poison#Rester immobile accumule de la vitesse#Se déplacer relâche un nuage de gaz empoisonné"}, -- Jupiter
+	[594] = {"594", "Jupiter", "↓ Vitesse {{ColorError}}-0.3#{{Heart}} +2 réceptacles de cœur#{{HealingRed}} Soigne 2 cœurs rouges#Immunise Isaac contre le poison#Rester immobile accumule de la vitesse, se déplacer relâche un nuage de gaz empoisonné"}, -- Jupiter
 	-- Change: Complete rewrite
-	[632] = {"632", "Evil Charm", "↑ Chance {{ColorLime}}+2.0#Immunise Isaac contre le poison, la terreur, les toiles d'araignée, la confusion et les dégâts de feu#Les flaques n'infligent de dégâts à Isaac qu'au bout d'1 seconde"},
+	[632] = {"632", "Evil Charm", "↑ Chance {{ColorLime}}+2.0#Immunise Isaac contre les toiles d'araignée, les dégâts de feu, le poison, la terreur et la confusion#Les flaques n'infligent de dégâts à Isaac qu'au bout d'une seconde"},
 	-- Change: Complete rewrite
 	[681] = {"681", "Lil Portal", "Appuyer 2 fois sur un bouton de tir projette le vortex#Inflige des dégâts de contact et consomme les ressources sur son chemin#Chaque ressource absorbée augmente sa taille, ses dégâts et fait apparaître une mouche bleue#Consommer 3 ressources fait apparaître un vortex vers une salle spéciale dont le contenu persiste pour le reste de la partie"}, -- Lil Portal
 

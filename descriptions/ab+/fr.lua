@@ -77,7 +77,7 @@ EID.descriptions[languageCode].collectibles={
 	{"53", "Gros Aimant", "Isaac attire les ressources"},
 	{"54", "Carte au Trésor", "Révèle la disposition des salles sur la carte"},
 	{"55", "Œil de Maman", "Isaac tire parfois une larme additionnelle dans la direction opposée#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 2 Chance)"},
-	{"56", "Petit Acident", "Répand une flaque jaune au sol et inflige des dégâts aux ennemis qui marchent dedans"},
+	{"56", "Petit Acident", "Répand une flaque au sol et inflige des dégâts aux ennemis qui marchent dedans"},
 	{"57", "Admiration Distante", "Orbite autour d'Isaac et inflige des dégâts de contact#{{DamageSmall}} 75 dégâts par seconde"},
 	{"58", "Livre des Ombres", "Rend Isaac invulnérable pendant 10 secondes"},
 	{"59", "", "<Cet objet n'existe pas>"},
