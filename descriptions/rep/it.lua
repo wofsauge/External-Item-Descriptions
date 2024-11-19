@@ -373,7 +373,7 @@ local repCollectibles={
 	[678] = {"678", "Taglio Cesareo", "{{Chargeable}} Rimpiazza le lacrime di Isaac con un attacco caricato che spara feti spettrali e a ricerca#{{Damage}} I feti infliggono i danni di Isaac x2.8 al secondo"}, -- C Section
 	[679] = {"679", "Mini Abbadon", "{{Collectible399}} Famiglio che carica e rilascia un cerchio di \"Fauci dell'Oblio\" che infligge 52.5 danni in un 1 secondo"}, -- Lil Abaddon
 	[680] = {"680", "Vendetta di Montezuma", "{{Chargeable}} Sparare carica un raggio posteriore a corto raggio dai danni elevati#Non rimpiazza la lacrime di Isaac"}, -- Montezumàs Revenge
-	[681] = {"681", "Mini Portale", "Infligge danni da contatto e vola in avanti#Mangia lungo la via i consumabili#Ogni consumabile mangiato aumenta la sua taglia, i danni, e genera 1 mosca blu#Mangiare 4 consumabili genera un portale per una stanza inesplorata"}, -- Lil Portal
+	[681] = {"681", "Mini Portale", "Infligge danni da contatto e vola in avanti#Dissipa i consumabili lungo la via#Ogni consumabile dissipato aumenta la sua taglia e i danni, e genera 1 mosca blu#Dissipare 4 consumabili genera un portale per una stanza inesplorata"}, -- Lil Portal
 	[682] = {"682", "Amico Verme", "A volte sbuca dal terreno per afferrare un nemico#I nemici afferrati subiscono 8 danni al secondo, vengono rallentati e non possono muoversi"}, -- Worm Friend
 	[683] = {"683", "Speroni Ossei", "Quando i nemici muoiono generano schegge d'ossa#Le ossa bloccano i proiettili e infliggono danni da contatto"}, -- Bone Spurs
 	[684] = {"684", "Anima Affamata", "Uccidere un nemico ha una chance di generare un fantasma#I fantasmi inseguono i nemici, infliggono danni da contatto ed esplodono dopo 5 secondi#Isaac non subisce danni dalle loro esplosioni"}, -- Hungry Soul
@@ -1302,7 +1302,7 @@ EID.descriptions[languageCode].poopSpells = {
 
 EID.descriptions[languageCode].itemPoolFor = "Categoria/e dell'oggetto:"
 EID.descriptions[languageCode].itemPoolNames = {
-	[0] = "Tesoro", "Negozio", "Boss", "Diavolo", "Angelo", "Segreta", "Biblioteca", "Truffaldino", "Baule Dorato", "Baule Rosso", "Mendicante", "Mendicacuori", "Maledetta", "Chiavaio", "Elettrizzato", "Baule di Mamma", "Tesoro - Avido", "Boss - Avido", "Negozio - Avido", "Diavolo - Avido", "Angelo - Avido", "Maledetta - Avido", "Segreta - Avido", "Gioco della Gru", "Ultra Segreta", "Scroccabombe", "Planetario", "Vecchio Baule", "Negozio di Bebé", "Baule di Legno", "Mendicarcassa",
+	[0] = "Tesoro", "Negozio", "Boss", "Diavolo", "Angelo", "Segreta", "Biblioteca", "Truffaldino", "Baule Dorato", "Baule Rosso", "Mendicante", "Mendicacuori", "Maledetta", "Chiavaio", "Elettrizzato", "Baule di Mamma", "Tesoro - Avido", "Boss - Avido", "Negozio - Avido", "Diavolo - Avido", "Angelo - Avido", "Maledetta - Avido", "Segreta - Avido", "Gioco della Gru", "Ultra Segreta", "Scroccabombe", "Planetario", "Vecchio Baule", "Negozio di Bebè", "Baule di Legno", "Mendicarcassa",
 }
 
 EID.descriptions[languageCode].VoidShopText = "Se assorbito subito dopo venir preso:"
