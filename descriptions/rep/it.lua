@@ -612,7 +612,7 @@ EID.descriptions[languageCode].bookOfVirtuesfiammelle = {
 	[577] = "Fiammella dell'anello mediano {{MiddleWisp}}#Nessun effetto speciale", -- Damocles
 	[578] = "Fiammella dell'anello mediano {{MiddleWisp}}#La fiammella sgocciola del liquido giallo", -- Free Lemonade
 	[580] = "Fiammella dell'anello mediano {{MiddleWisp}}#Chance di creare Porte Rosse quando si entra in una nuova stanza", -- Red Key
-	[582] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime dai danni esigui#Massimo 1 fiammella di \"Fungo Allucinogeno\"", -- Wavy Cap
+	[582] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime dai danni esigui#1 fiammella di \"Fungo Allucinogeno\" max", -- Wavy Cap
 	[584] = "Nessun beneficio da copie multiple", -- Book of Virtues
 	[585] = "Fiammella dell'anello mediano {{MiddleWisp}}#Genera 8 fiammelle normali", -- Alabaster Box
 	[604] = "Fiammella per una singola stanza#Genera 1-3 fiammelle nel punto d'impatto (fino ad 8 fiammelle)#10% di chance di {{Confusion}} lacrime contundenti", -- Mom's Bracelet
@@ -1180,7 +1180,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Azazel Corrotto", "", "{{Collectible726}} Raddoppia le dimesioni dello starnuto di \"Emottisi\" di Azazel Corrotto"},
 	{"Lazzaro Corrotto", "", "La forma inattiva di Lazzaro Corrotto appare come un secondo personaggio spettrale#È invincibile e infligge il 25% dei danni#Entrambe le forme ricevono \"Primogenitura\""},
 	{"Eden Corrotto", "", "Ogni oggetto ottenuto prima di \"Primogenitura\" non può più venire rilanciato#Gli oggetti attivi possono venire rilanciati, se buttati a terra e poi ripresi"},
-	{"Lo Smarrito Corrotto", "", "Conferisce 1 via extra che resuscita Lo Smarrito Corrotto nella stessa stanza e infligge 200 danni ai nemici vicini"},
+	{"Lo Smarrito Corrotto", "", "Conferisce 1 vita extra che resuscita Lo Smarrito Corrotto nella stessa stanza e infligge 200 danni ai nemici vicini"},
 	{"Lilith Corrotta", "", "{{Collectible728}} I famigli che normalmente seguirebbero Lilith Corrotta seguono invece \"Gellò\"#L'attacco in mischia ottiene +3 danni per famiglio"},
 	{"Mercante Corrotto", "", "{{Coin}} Attrae con forza maggiore le monete lasciate dai nemici sconfitti#Nessun effetto sulle altre monete"},
 	{"Apollion Corrotto", "", "Finché il tasto di fuoco viene premuto le locuste danneggiano incessantemente i nemici senza ritornare"},
@@ -1327,10 +1327,10 @@ EID.descriptions[languageCode].FalsePHDHorseDamage = "↑ {{Damage}} +1.2 Danni"
 EID.descriptions[languageCode].ExperimentalPillPHD = "Nessuna diminuzione di statistiche"
 EID.descriptions[languageCode].ExperimentalPillFalsePHD = "Nessun aumento di statistica casuale"
 
-EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Consuma invece la chiave and Genera 6 items from random pools"
+EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Consuma invece la chiave e genera 6 oggetti da categorie casuali"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} ATTENZIONE {{Warning}}"
-EID.descriptions[languageCode].AchievementWarningText = "Gli achievement sono disabilitati!#Per abilitare la progressione e gli achievement, come prima cosa occorre uccidere Mamma (Profondità II) senza abilitare alcuna mod.#(Se hai sconfitto Mamma, questo messaggio è un bug e può essere ignorato)#(Questo avvertimento può essere disattivato nelle configurazioni)"
+EID.descriptions[languageCode].AchievementWarningText = "Gli achievement sono disabilitati!#Per abilitare la progressione e gli achievement, come prima cosa occorre uccidere Mamma (Profondità II) senza abilitare alcuna mod#(Se hai sconfitto Mamma, questo messaggio è un bug e può essere ignorato)#(Questo avvertimento può essere disattivato nelle configurazioni)"
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID è aggiornato alla versione di Steam più recente#La versione del tuo gioco non è supportata ufficialmente, pertanto alcune descrizioni e componenti saranno imprecise#(Questo avvertimento può essere disattivato nelle configurazioni)"
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Gli oggetti moddati possono rendere imprecisi i calcoli delle ricette di assemblaggio!#Installa REPENTOGON per avere un supporto migliore per le ricette moddate#(Questo avvertimento può essere disattivato nelle configurazioni)"
 
