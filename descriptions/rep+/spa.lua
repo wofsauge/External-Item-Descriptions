@@ -37,14 +37,8 @@ local collectibles = {
 	[632] = {"632", "Nazar", "↑ {{Luck}} Suerte +2#Inmunidad a efectos de {{Burning}} daño por fuego, {{Confusion}} confusion, {{Fear}} miedo, {{Slow}} Telarañas y {{Poison}} Veneno#Otorga 1 segundo de inmunidad al creep"}, -- Amuleto Maldito
 	-- Change: Complete rewrite
 	[681] = {"681", "Portal Pequeño", "Disparar 2 veces en una direccion lanza el portal#Inflige daño por contacto al ser lanzado#Consume los recolectables a su paso#Cada uno aumentará su tamaño, daño, y generará una Mosca Azul#Consumir 2-3 recolectables genera un portal a una habitacion especial y el familiar desaparece por el resto del nivel#El contenido de la habitacion persiste por el resto de la partida"}, -- Portal Pequeño
-
-	
-	
-	-- TODO: check how exactly the quality affects the damage of the wisp
-	-- OFFICIAL CHANGELOG TEXT: Abyss - Item quality now impacts the damage of the summoned locust. Locusts now inherit many different effects based on the item destroyed by Abyss.
-	--[706] = {"706", "Abyss", "Consumes all item pedestals in the room and spawns a locust familiar for each one#Locusts deal Isaac's damage 2-3 times an attack#Some items spawn a special locust when consumed"}, -- Abyss
-	
-	
+	-- Change: Added info about the damage based on item quality
+	[706] = {"706", "Abismo", "Consume todo objeto dentro de la habitacion y genera una mosca familiar por objeto#Algunos objetos generan una mosca especial al ser consumidos#{{Damage}} Las moscas hacen daño igual a Isaac multiplicado por la calidad del objeto consumido:#{{Quality0}} - 0.5x#{{Quality1}} - 0.75x#{{Quality2}} - 1.0x#{{Quality3}} - 1.5x#{{Quality4}} - 2.0x"}, -- Abismo	
 }
 EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].collectibles)
 
@@ -57,10 +51,10 @@ local trinkets = {
 	[97] = {"97", "Amígdala", "Recibir daño 6-12 veces genera un familiar que bloquea proyectiles#Limite de 2 familiaresa la vez"}, -- Amígdala
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "Fusible corto", "Las bombas colocadas explotan más rápido#Las bombas hacen un 15% mas de daño"}, -- Fusible corto
-	
-	-- TODO: Translate this text and the description in the ab+ file. in ab+, it is 2%. in rep+ its 5% chance
-	--[104] = {"104", "Wish Bone", "5% chance to get destroyed and spawn a pedestal item when hit"}, -- Wish Bone
-	--[105] = {"105", "Bag Lunch", "{{Collectible22}} 5% chance to get destroyed and spawn Lunch when hit"}, -- Bag Lunch
+	-- Change: "2%" to "5%"
+	[104] = {"104", "Hueso de los deseos", "Probabilidad de 5% de destruise y generar un objeto al ser golpeado"}, -- Hueso de los deseos
+	-- Change: "2%" to "5%"
+	[105] = {"105", "Bolsa del almuerzo", "Probabilidad de 5% de destruirse y generar {{Collectible22}} Almuerzo al ser golpeado"}, -- Bolsa del almuerzo
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
