@@ -462,7 +462,7 @@ EID.descriptions[languageCode].collectibles={
 	{"437", "D7", "Ripristina la stanza e resuscita tutti i nemici#Può essere usato per ottenere più ricompense per completamento stanza da una singola stanza#Se usata dopo una lotta con Avarizia, rilancia la stanza in un ordinario Negozio/Stanza Segreta"},
 	{"438", "Ciuccio", "↑ {{Tears}} +0.75 Lacrime#↑ Diminuzione Statura#{{SoulHeart}} +1 Cuore Celeste"},
 	{"439", "Scatola di Mamma", "{{Trinket}} Genera 1 ninnolo casuale#Mentre viene tenuto:#↑ {{Luck}} +1 Fortuna#{{Trinket}} Raddoppia gli effetti dei ninnoli"},
-	{"440", "Calcoli Renali", "↑ +2 Altezza Lacrime#↓ {{Speed}} -0.2 Velocità#↓ {{Range}} -17 Gittata#Isaac occasionalmente smette di sparare e carica un attacco che rilascia uno scroscio di lacrime e un calcolo renale"},
+	{"440", "Calcolo Renale", "↑ +2 Altezza Lacrime#↓ {{Speed}} -0.2 Velocità#↓ {{Range}} -17 Gittata#Isaac occasionalmente smette di sparare e carica un attacco che rilascia uno scroscio di lacrime e un calcolo renale"},
 	{"441", "Mega Sbotto", "{{Timer}} Spara un grosso raggio di sangue di Mega Satana per 15 secondi#Il raggio persiste tra stanze e piani"},
 	{"442", "Corona del Principe delle Tenebre", "Se si rimane con 1 Cuore Rosso pieno:#↑ {{Tears}} +0.75 Lacrime#↑ {{Range}} +1.5 Gittata#↑ +1 Altezza Lacrime#↑ {{Shotspeed}} +0.2 Velocità Colpi"},
 	{"443", "Mela!", "↑ {{Tears}} +0.3 Lacrime#{{Damage}} 6.66% di chance di sparare lamette che infliggono i danni di Isaac x4#{{Luck}} 100% di chance con 14 di Fortuna"},
