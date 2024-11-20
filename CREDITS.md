@@ -17,7 +17,7 @@ If you enjoy this mod and want to help on it, check it out on GitHub: https://gi
 - **Polish**: by Rickyy, Kennyluz, MERITT, DimonoKingoKongo
 - **Portuguese**: by Marcelino Cruz
 - **Russian**: by hell2Pay, fly_6, Dezzelshipc and Sekaz
-- **Spanish**: by Lidia Arroyo Purroy, maintained by AutisticGoat (Kotry)
+- **Spanish**: by Lidia Arroyo Purroy, MartinFierro, maintained by AutisticGoat (Kotry)
 - **Brazilian - Portuguese**: by LuanRoger and NotZin02
 - **Turkish**: by Cagdas Salur, Mert Dutal
 - **Ukrainian**: by x3xto
