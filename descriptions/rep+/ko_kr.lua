@@ -39,7 +39,7 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[681] = {"681", "꼬마 포탈", "{{Throwable}} 공격키를 2번 연속 누르면 공격 방향으로 날아가며;#접촉한 적에게 피해를 주고 픽업에 접촉 시 픽업을 파란 아군 파리로 바꿉니다.#여러 개의 픽업을 바꿀 시 차원의 방으로 이동하는 포탈을 생성합니다.#차원의 방은 현재 게임 내내, 스테이지 이동 시에도 유지됩니다.#스테이지 진입 시 포탈이 다시 복원됩니다."}, -- Lil Portal
 	-- Change: tem quality now impacts the damage of the summoned locust. Locusts now inherit many different effects based on the item destroyed by Abyss.
-	[706] = {"706", "Abyss", "사용 시 그 방의 아이템을 흡수하며 흡수한 아이템의 수만큼 특수한 아군 파리를 소환합니다.#흡수한 아이템에 따라 소환되는 아군 파리의 능력이 달라집니다.#소환된 아군 파리는 공격방향으로 돌진하며 접촉한 적에게 흡수한 아이템의 등급에 따라 초당 공격력 x?~?의 피해를 줍니다.#!!! {{NoLB}}{{Quality0}}:0.5x/{{Quality1}}:0.75x/{{Quality2}}:1.0x/{{Quality3}}:1.5x/{{Quality4}}:2.0x"}, -- Abyss
+	[706] = {"706", "무저갱", "사용 시 그 방의 아이템을 흡수하며 흡수한 아이템의 수만큼 특수한 아군 파리를 소환합니다.#흡수한 아이템에 따라 소환되는 아군 파리의 능력이 달라집니다.#소환된 아군 파리는 공격방향으로 돌진하며 접촉한 적에게 흡수한 아이템의 등급에 따라 초당 공격력 x?~?의 피해를 줍니다.#!!! {{NoLB}}{{Quality0}}:0.5x/{{Quality1}}:0.75x/{{Quality2}}:1.0x/{{Quality3}}:1.5x/{{Quality4}}:2.0x"}, -- Abyss
 
 }
 EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].collectibles)
