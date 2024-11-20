@@ -26,7 +26,7 @@ local collectibles = {
 	-- Change: added " and fires radial bursts of tears"
 	[470] = {"470", "Calmina", "Rimbalza per la stanza#Infligge 30 danni da contatto al secondo#Quando Isaac spara smette di muoversi#Mentre è fermo blocca i proiettili e spara cerchi di lacrime a scrosci"}, -- Hushy
 	-- Change: added "Turns item pedestals into glitched items"
-	[481] = {"481", "Dataminer", "↑ Aumento casuale di statistiche#↓ Diminuzione casuale di statistiche#{{Timer}} Effetti delle lacrime casuali fino all'uscita dalla stanza#Converte i piedistalli in oggetti casuali#{{Blank}} Corrompe tutti gli sprite e la musica nella stanza"}, -- Dataminer
+	[481] = {"481", "Dataminer", "↑ Aumento di una statistica casuale#↓ Diminuzione di una statistica casuale#{{Timer}} Effetti delle lacrime casuali fino all'uscita dalla stanza#Converte i piedistalli in oggetti casuali#{{Blank}} Corrompe tutti gli sprite e la musica nella stanza"}, -- Dataminer
 	-- Change: Complete rewrite
 	[510] = {"510", "Delirante", "Genera un Delirio amichevole#Persiste fra le stanze#{{Warning}} Può essere attivo solo un boss per volta#La carica dell'oggetto dipende dalla qualità del boss generato in precedenza"}, -- Delirious
 	-- Change: added "Tears leave a pool of creep on impact"
