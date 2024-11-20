@@ -1132,7 +1132,7 @@ EID.descriptions[languageCode].RedToX = {
 
 	["Red to Coin"] = {"↑ {{Heart}} +{1} Salute", "{{CoinHeart}} +{1} Portamonete",
 	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{EmptyCoinHeart}} +{1} Portamonete vuoto/i",
-	"{{HealingRed}} Cura di {1} cuore/i", "{{HealingCoin}} Cura di {1} moneta/e", "{{HealingRed}} Cura di mezzo cuore", "{{HealingCoin}} Cura di 1 moneta", "{{HealingRed}}", "{{HealingCoin}}"},
+	"{{HealingRed}} Cura di {1} cuore/i", "{{HealingCoin}} Cura di {1} moneta/e", "{{HealingRed}} Cura di mezzo cuore", "{{HealingCoin}} Cura di 1 moneta", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Salute", "↓ {{EmptyCoinHeart}} {1} Portamonete"},
 
 	["Red to None"] = {"↑ {{Heart}} +{1} Salute", "", "↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "", "↓ {{EmptyHeart}} {1} Salute", ""}, -- Red HP to None (The Lost)
 }
