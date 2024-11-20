@@ -61,12 +61,10 @@ local trinkets = {
 	[97] = {"97", "扁桃腺", "6～12回ダメージを 受けると、敵の弾を ブロックする使い魔が スポーンする#最大2体までスポーン"}, -- Tonsil
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "ショート ヒューズ", "設置した爆弾が起爆する までの時間が、1.5秒から 0.66秒に短縮される#爆弾のダメージ +15%"}, -- Short Fuse
-	
-	
-	-- TODO: check the new exact percentage of wish bone and bag lunch drops
-	-- OFFICIAL CHANGELOG TEXT: Increased the chances of the Wish Bone and Bag Lunch trinkets spawning an item.
-	--[104] = {"104", "ウィッシュボーン", "ダメージを受けた時 2%の確率でその部屋の アイテムプールから ランダムなアイテムを スポーンする#効果発動後に消滅する"}, -- Wish Bone
-	--[105] = {"105", "弁当袋", "ダメージを受けた時 2%の確率で{{Collectible22}}昼ごはんが スポーンする#効果発動後に消滅する"}, -- Bag Lunch
+	-- Change: "2%" to "5%"
+	[104] = {"104", "ウィッシュボーン", "ダメージを受けた時 5%の確率でその部屋の アイテムプールから ランダムなアイテムを スポーンする#効果発動後に消滅する"}, -- Wish Bone
+	-- Change: "2%" to "5%"
+	[105] = {"105", "弁当袋", "ダメージを受けた時 5%の確率で{{Collectible22}}昼ごはんが スポーンする#効果発動後に消滅する"}, -- Bag Lunch
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
