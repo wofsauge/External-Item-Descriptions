@@ -16,7 +16,7 @@ local collectibles = {
 	-- Change: added "Creep persists until you exit the room"
 	[56] = {"56", "Limonata Accidentale", "Versa una pozza di liquido#TIl liquido infligge 24 danni da contatto al secondo#Il liquido persiste fino all'uscita dalla stanza"}, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
-	[117] = {"117", "Uccello Morto", "Venire colpito genera un uccello#L'uccello infligge 4.3 danni da contatto al secondo#Se il giocatore ha mezzo cuore persiste fra le stanze"}, -- Dead Bird
+	[117] = {"117", "Uccello Morto", "Venire colpito genera un uccello#L'uccello infligge 4.3 danni da contatto al secondo#Persiste fra le stanze se il personaggio ha mezzo cuore"}, -- Dead Bird
 	-- Change: Complete rewrite
 	[351] = {"351", "Mega Fagiolo", "Infligge 100 danni e pietrifica tutti i nemici nella stanza#{{Poison}} Infligge 5 danni e avvelena i nemici nelle vicinanze#Può aprire stanze segrete e rompere rocce"}, -- Mega Bean
 	-- Change: Complete rewrite
@@ -26,7 +26,7 @@ local collectibles = {
 	-- Change: added " and fires radial bursts of tears"
 	[470] = {"470", "Calmina", "Rimbalza per la stanza#Infligge 30 danni da contatto al secondo#Quando Isaac spara smette di muoversi#Mentre è fermo blocca i proiettili e spara cerchi di lacrime a scrosci"}, -- Hushy
 	-- Change: added "Turns item pedestals into glitched items"
-	[481] = {"481", "Dataminer", "↑ Aumento casuale di statistiche#↓ Diminuzione casuale di statistiche#{{Timer}} Effetti delle lacrime casuali fino all'uscita dalla stanza#Converte i piedistalli in oggetti casuali#{{Blank}} Corrompe tutti gli sprite e la musica nella stanza"}, -- Dataminer
+	[481] = {"481", "Dataminer", "↑ Aumento di una statistica casuale#↓ Diminuzione di una statistica casuale#{{Timer}} Effetti delle lacrime casuali fino all'uscita dalla stanza#Converte i piedistalli in oggetti casuali#{{Blank}} Corrompe tutti gli sprite e la musica nella stanza"}, -- Dataminer
 	-- Change: Complete rewrite
 	[510] = {"510", "Delirante", "Genera un Delirio amichevole#Persiste fra le stanze#{{Warning}} Può essere attivo solo un boss per volta#La carica dell'oggetto dipende dalla qualità del boss generato in precedenza"}, -- Delirious
 	-- Change: added "Tears leave a pool of creep on impact"
@@ -36,7 +36,7 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[632] = {"632", "Nazar", "↑ {{Luck}} +2 Fortuna#Immunità ai {{Burning}} danni da fuoco e agli effetti di {{Confusion}} confusione, {{Fear}} paura, e {{Poison}} veleno#Conferisce un'immunità di 1 secondo ai liquidi"}, -- Evil Charm
 	-- Change: Complete rewrite
-	[681] = {"681", "Mini Portale", "Alla doppia premuta del tasto di sparo lancia via il portale#Se lanciato infligge danni da contatto#Dissipa i consumabili lungo la via#Ogni consumabile aumenta le dimensioni e i danni, e genera 1 mosca blu#Dissipare 2-3 consumabili genera un portale per una stanza speciale, e il famiglio sparisce per il resto del piano#I contenuti nella stanza persistono per il resto della partita"}, -- Lil Portal
+	[681] = {"681", "Mini Portale", "Alla doppia premuta del tasto di sparo il portale viene lanciato#Se lanciato infligge danni da contatto#Dissipa i consumabili lungo la via#Ogni consumabile dissipato ne aumenta le dimensioni e i danni, e genera 1 mosca blu#Dissipare 2-3 consumabili genera un portale per una stanza speciale, e il famiglio sparisce per il resto del piano#I contenuti nella stanza persistono per il resto della partita"}, -- Lil Portal
 
 	
 	

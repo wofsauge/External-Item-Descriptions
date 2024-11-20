@@ -91,7 +91,7 @@ EID.descriptions[languageCode].collectibles={
 	{"68", "Tecnologia", "Isaac spara laser al posto delle lacrime"},
 	{"69", "Latte al Cioccolato", "{{Chargeable}} Lacrime caricabili#{{Damage}} I danni scalano con i tempi di carica fino a x4#{{Tears}} Il tempo massimo di carica è il delay tra lacrime x2.5"},
 	{"70", "Ormoni della Crescita", "↑ {{Speed}} +0.4 Velocità#↑ {{Damage}} +1 Danni"},
-	{"71", "Mini Fungo", "↑ {{Speed}} +0.3 Velocità#↑ +1.5 Altezza Lacrime#↑ Riduzione Statura#↓ {{Range}} -4.25 Gittata#Più Altezza Lacrime e meno Gittata = leggermente Più Gittata"},
+	{"71", "Mini Fungo", "↑ {{Speed}} +0.3 Velocità#↑ +1.5 Altezza Lacrime#↑ Diminuzione Statura#↓ {{Range}} -4.25 Gittata#Più Altezza Lacrime e meno Gittata = leggermente Più Gittata"},
 	{"72", "Rosario", "{{SoulHeart}} +3 Cuori Celesti#{{Collectible33}} \"La Bibbia\" viene aggiunta a tute le categorie di oggetti"},
 	{"73", "Cubo di Carne", "Lv1: Orbitale#Lv2: Orbitale che spara#Lv3: Meat Boy#Lv4: Super Meat Boy"},
 	{"74", "Un Quarto", "{{Coin}} +25 Monete"},
@@ -362,7 +362,7 @@ EID.descriptions[languageCode].collectibles={
 	{"337", "Cipollotto Rotto", "{{Slow}} Rallenta ogni 4° stanza#13% di chance che tale stanza sia velocizzata"},
 	{"338", "Il Boomerang", "Boomerang lanciabile#Pietrifica i nemici e infligge i danni di Isaac x2#Può afferrare e riportare oggetti"},
 	{"339", "Spilla da Balia", "↑ {{Range}} +5.25 Gittata#↑ +0.5 Altezza Lacrime#↑ {{Shotspeed}} +0.16 Velocità Colpi#{{BlackHeart}} +1 Cuore Nero"},
-	{"340", "Pillola di Caffeina", "↑ {{Speed}} +0.3 Velocità#↑ Riduzione Statura#{{Pill}} Genera una pillola casuale"},
+	{"340", "Pillola di Caffeina", "↑ {{Speed}} +0.3 Velocità#↑ Diminuzione Statura#{{Pill}} Genera una pillola casuale"},
 	{"341", "Foto Strappata", "↑ {{Tears}} +0.7 Lacrime#↑ {{Shotspeed}} +0.16 Velocità Colpi"},
 	{"342", "Cappello Blu", "↑ {{Heart}} +1 Salute#↑ {{Tears}} +0.7 Lacrime#↓ {{Shotspeed}} -0.16 Velocità Colpi"},
 	{"343", "Chiave dell'Ometto", "↑ {{Luck}} +1 Fortuna#{{SoulHeart}} +1 Cuore Celeste#{{Key}} Genera 2 chiavi"},
@@ -460,7 +460,7 @@ EID.descriptions[languageCode].collectibles={
 	{"435", "Mini Loki", "Spara 4 lacrime in un pattern a croce#Infligge 3.5 danni a lacrima"},
 	{"436", "Latte!", "{{Tears}} Subire danni conferisce più Lacrime per il resto della stanza"},
 	{"437", "D7", "Ripristina la stanza e resuscita tutti i nemici#Può essere usato per ottenere più ricompense per completamento stanza da una singola stanza#Se usata dopo una lotta con Avarizia, rilancia la stanza in un ordinario Negozio/Stanza Segreta"},
-	{"438", "Ciuccio", "↑ {{Tears}} +0.75 Lacrime#↑ Riduzione Statura#{{SoulHeart}} +1 Cuore Celeste"},
+	{"438", "Ciuccio", "↑ {{Tears}} +0.75 Lacrime#↑ Diminuzione Statura#{{SoulHeart}} +1 Cuore Celeste"},
 	{"439", "Scatola di Mamma", "{{Trinket}} Genera 1 ninnolo casuale#Mentre viene tenuto:#↑ {{Luck}} +1 Fortuna#{{Trinket}} Raddoppia gli effetti dei ninnoli"},
 	{"440", "Calcoli Renali", "↑ +2 Altezza Lacrime#↓ {{Speed}} -0.2 Velocità#↓ {{Range}} -17 Gittata#Isaac occasionalmente smette di sparare e carica un attacco che rilascia uno scroscio di lacrime e un calcolo renale"},
 	{"441", "Mega Sbotto", "{{Timer}} Spara un grosso raggio di sangue di Mega Satana per 15 secondi#Il raggio persiste tra stanze e piani"},
@@ -503,7 +503,7 @@ EID.descriptions[languageCode].collectibles={
 	{"478", "Pausa", "Blocca tutti i nemici nella stanza fino a quando Isaac non spara#Toccare un nemico bloccato infligge comunque danni ad Isaac#I nemici si sbloccano dopo 30 secondi"},
 	{"479", "Fonderia", "{{Trinket}} Consuma i ninnoli tenuti da Isaac e conferisce permanentemente i loro effetti#Aumenta la chance di generare ninnoli"},
 	{"480", "Compost", "Converte i consumabili in mosche o ragni blu#Raddoppia tutte le mosche e i ragni blu#Se Isaac non ha alcuna mosca o ragno blu ne genera 1"},
-	{"481", "Dataminer", "↑ Aumento statistica casuale#↓ Riduzione statistica casuale#{{Timer}} Fino all'uscita dalla stanza un effetto delle lacrime casuale#{{Blank}} Corrompe tutti gli sprite e la musica della stanza"},
+	{"481", "Dataminer", "↑ Aumento di una statistica casuale#↓ Diminuzione di una statistica casuale#{{Timer}} Fino all'uscita dalla stanza un effetto delle lacrime casuale#{{Blank}} Corrompe tutti gli sprite e la musica della stanza"},
 	{"482", "Telecomando", "Cambia il tuo personaggio in uno casuale#Rimuove l'oggetto preso più di recente"},
 	{"483", "Mamma Mega!", "{{Warning}} MONOUSO {{Warning}}#Coinvolge tutto il piano#Fa esplodere tutti gli ostacoli#Infligge 200 danni a tutti i nemici#Apre le stanze segrete#Apre la porta per Boss Rush e per Calma a prescindere dal tempo"},
 	{"484", "Aspe', Cosa?", "Se usato spinge via i nemici e genera una scossa sismica attorno ad Isaac#La scossa sismica può aprire le stanze e distruggere le rocce"},
@@ -552,7 +552,7 @@ EID.descriptions[languageCode].collectibles={
 	{"527", "Mr. GUARDI!", "Mostra per qualche secondo un cursore spostabile, dopodiché evoca uno spettro che, in base alla posizione del cursore, può:#Aprire porte o bauli#Recuperare un oggetto#50% di chance di rubare dal Negozio/Stanza del Diavolo#Attaccare un nemico finché non muore#Esplodere muri, rocce, negozianti, statue di angeli, macchine o scrocconi"},
 	{"528", "Prisma Angelico", "Prisma orbitale#Le lacrime amiche che lo colpiscono si scindono in 4"},
 	{"529", "Pop!", "Le lacrime di Isaac rimbalzano tra loro e quando smettono di muoversi spariscono"},
-	{"530", "Lista Nera", "Uccidere i nemici nell'ordine imposto dal marchio {{DeathMark}} sopra di loro conferisce 1 consumabile casuale o un aumento di statistica"},
+	{"530", "Lista Nera", "Uccidere i nemici nell'ordine imposto dal marchio {{DeathMark}} sopra di loro conferisce 1 consumabile casuale o un aumento di una statistica"},
 	{"531", "Emolacria", "↑ {{Damage}} x1.31 Moltiplicatore Danni#↓ {{Tears}} x2 Moltiplicatore Delay tra Lacrime#↓ {{Tears}} +10 Delay tra Lacrime #Le lacrime di Isaac volano in un arco e all'impatto scoppiano in laccrime più piccole"},
 	{"532", "Lacrifagia", "Le lacrime di Isaac rallentano progressivamente, per poi fermarsi e scoppiare in 8 lacrime più piccole#Le lacrime possono fondersi tra loro per ingrandirsi"},
 	{"533", "Trisagion", "Rimpiazza le lacrime di Isaac con raggi di luce penetranti#I raggi infliggono il 33% dei danni ma possono colpire più volte i nemici"},
@@ -1264,8 +1264,8 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 
 	------ DUPLICATE COPIES OF ITEMS ------
-	["5.100.2 (Copies)"] = "Isaac spara altre 3 lacrime#Nessuna ulteriore diminuzione di statistica", -- The Inner Eye
-	["5.100.153 (Copies)"] = "Isaac spara altre 4 lacrime#Nessun ulteriore aumento di statistica", -- Mutant Spider
+	["5.100.2 (Copies)"] = "Isaac spara altre 3 lacrime#Nessuna ulteriore diminuzione della statistica", -- The Inner Eye
+	["5.100.153 (Copies)"] = "Isaac spara altre 4 lacrime#Nessun ulteriore aumento della statistica", -- Mutant Spider
 	["5.100.245 (Copies)"] = "Isaac spara altre 2 lacrime", -- 20/20
 	["5.100.358 (Copies)"] = "Isaac spara altre 2 lacrime più vicine al centro", -- The Wiz
 	["5.100.64 (Copies)"] = "Possedere questo oggetto per 2 volte rende gratuiti tutti gli oggetti nel Negozio", -- Steam Sale

@@ -132,7 +132,7 @@ local repCollectibles={
 	[289] = {"289", "Candela Rossa", "Lancia una fiamma rossa#La fiamma sparisce dopo aver inflitto danni, bloccato 5 proiettili o una volta passati 10 secondi"}, -- Red Candle
 	[291] = {"291", "Sciacquone!", "Trasforma in cacca tutti i nemici che non sono boss#Uccide istantaneamente nemici e boss fatti di cacca#Estingue i focolari e riempie d'acqua la stanza#Trasforma i varchi di lava in terreno percorribile"}, -- Flush!
 	[292] = {"292", "Bibbia Satanica", "{{BlackHeart}} +1 Cuore Nero#{{DevilRoom}} Usare l'oggetto prima di una lotta contro un boss rende la ricompensa del boss un patto con il diavolo#Acquistare questi patti con il diavolo ha le stesse conseguenze dei patti nella Stanza del Diavolo#Non influisce sui piedistalli in \"Il Vuoto\""}, -- Satanic Bible
-	[293] = {"293", "Testa di Krampus", "{{Collectible118}} Spara raggi di zolfo fuso in 4 direzioniCiascuan infligge 200 danni per 1.33 secondi"}, -- Head of Krampus
+	[293] = {"293", "Testa di Krampus", "{{Collectible118}} Spara raggi di zolfo fuso in 4 direzioni#I raggi infliggono 200 danni per 1.33 secondi"}, -- Head of Krampus
 	[294] = {"294", "Fagiolo di Lima", "Respinge nemici e proiettili nelle vicinanze#I nemici spinti verso ostacoli prendono 10 danni"}, -- Butter Bean
 	[295] = {"295", "Dita Magiche", "Infligge a tutti i nemici x2 dei danni di Isaac +10#{{Coin}} Costa 1 moneta"}, -- Magic Fingers
 	[296] = {"296", "Convertitore", "{{Heart}} Converte 1 Cuore Celeste/Nero in 1 Portacuori"}, -- Converter
@@ -373,7 +373,7 @@ local repCollectibles={
 	[678] = {"678", "Taglio Cesareo", "{{Chargeable}} Rimpiazza le lacrime di Isaac con un attacco caricato che spara feti spettrali e a ricerca#{{Damage}} I feti infliggono i danni di Isaac x2.8 al secondo"}, -- C Section
 	[679] = {"679", "Mini Abbadon", "{{Collectible399}} Famiglio che carica e rilascia un cerchio di \"Fauci dell'Oblio\" che infligge 52.5 danni in un 1 secondo"}, -- Lil Abaddon
 	[680] = {"680", "Vendetta di Montezuma", "{{Chargeable}} Sparare carica un raggio posteriore a corto raggio dai danni elevati#Non rimpiazza la lacrime di Isaac"}, -- Montezumàs Revenge
-	[681] = {"681", "Mini Portale", "Infligge danni da contatto e vola in avanti#Dissipa i consumabili lungo la via#Ogni consumabile dissipato aumenta la sua taglia e i danni, e genera 1 mosca blu#Dissipare 4 consumabili genera un portale per una stanza inesplorata"}, -- Lil Portal
+	[681] = {"681", "Mini Portale", "Infligge danni da contatto e vola in avanti#Dissipa i consumabili lungo la via#Ogni consumabile dissipato ne aumenta le dimensioni e i danni, e genera 1 mosca blu#Dissipare 4 consumabili genera un portale per una stanza inesplorata"}, -- Lil Portal
 	[682] = {"682", "Amico Verme", "A volte sbuca dal terreno per afferrare un nemico#I nemici afferrati subiscono 8 danni al secondo, vengono rallentati e non possono muoversi"}, -- Worm Friend
 	[683] = {"683", "Speroni Ossei", "Quando i nemici muoiono generano schegge d'ossa#Le ossa bloccano i proiettili e infliggono danni da contatto"}, -- Bone Spurs
 	[684] = {"684", "Anima Affamata", "Uccidere un nemico ha una chance di generare un fantasma#I fantasmi inseguono i nemici, infliggono danni da contatto ed esplodono dopo 5 secondi#Isaac non subisce danni dalle loro esplosioni"}, -- Hungry Soul
@@ -612,7 +612,7 @@ EID.descriptions[languageCode].bookOfVirtuesfiammelle = {
 	[577] = "Fiammella dell'anello mediano {{MiddleWisp}}#Nessun effetto speciale", -- Damocles
 	[578] = "Fiammella dell'anello mediano {{MiddleWisp}}#La fiammella sgocciola del liquido giallo", -- Free Lemonade
 	[580] = "Fiammella dell'anello mediano {{MiddleWisp}}#Chance di creare Porte Rosse quando si entra in una nuova stanza", -- Red Key
-	[582] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime dai danni esigui#Massimo 1 fiammella di \"Fungo Allucinogeno\"", -- Wavy Cap
+	[582] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime dai danni esigui#1 fiammella di \"Fungo Allucinogeno\" max", -- Wavy Cap
 	[584] = "Nessun beneficio da copie multiple", -- Book of Virtues
 	[585] = "Fiammella dell'anello mediano {{MiddleWisp}}#Genera 8 fiammelle normali", -- Alabaster Box
 	[604] = "Fiammella per una singola stanza#Genera 1-3 fiammelle nel punto d'impatto (fino ad 8 fiammelle)#10% di chance di {{Confusion}} lacrime contundenti", -- Mom's Bracelet
@@ -1152,16 +1152,16 @@ EID.descriptions[languageCode].birthright ={
 	{"Isaac", "", "Tutti i piedistalli alternano tra 2 scelte"},
 	{"Maddalena", "", "↑ {{Heart}} +1 Salute#Il massimo ammontare di Portacuori sale a 18"},
 	{"Caino", "", "↑ {{Luck}} +1 Fortuna#{{ArcadeRoom}} Tutti i piani futuri (esclusi Camera Oscura e Baule) conterranno una Sala Arcade potenziata#{{Collectible46}} Aumenta enormemente le chance di vittoria di \"Piede Fortunato\""},
-	{"Giuda", "", "{{Collectible34}} \"Il Libro di Belial\" diventa un oggetto passivo simile a {{Collectible584}} \"Libro delle Virtù\"#{{Collectible34}} Se Giuda non lo possiede conferisce \"Il Libro di Belial\"#↑ {{Damage}} L'aumento di danni conferito scala con il numero di cariche dell'oggetto attivo unito ad esso#Conferisce effetti speciali ad alcuni oggetti attivi"},
+	{"Giuda", "", "{{Collectible34}} \"Il Libro di Belial\" diventa un oggetto passivo simile a {{Collectible584}} \"Libro delle Virtù\"#{{Collectible34}} Se Giuda non lo possiede conferisce \"Il Libro di Belial\"#↑ {{Damage}} L'aumento dei danni conferito scala con il numero di cariche dell'oggetto attivo unito ad esso#Conferisce effetti speciali ad alcuni oggetti attivi"},
 	{"???", "", "{{SoulHeart}} I Cuori Celesti ottenuti da aumenti di salute vengono raddoppiati"},
 	{"Eva", "", "{{Collectible122}} \"Meretrice di Babilonia\" è sempre attivo a prescindere dalla salute#{{Collectible117}} \"Uccello Morto\" è sempre attivo"},
 	{"Sansone", "", "{{Collectible157}} \"Furia Sanguinolenta\" può venire attivato altre 4 volte per piano, fino a +14 danni dopo 10 attivazioni"},
 	{"Azazel", "", "Il raggio di \"Zolfo Fuso\" di Azazel diventa molto più largo#Non aumenta i danni"},
-	{"Lazzaro", "", "↑ Resuscitare come Lazzaro Risorto conferisce {{Damage}} +7.2 Danni#{{Timer}} L'aumento di danni si esaurisce dopo 60 secondi#{{Blank}} Uccidere nemici mentre l'effetto è attivo lo estende"},
+	{"Lazzaro", "", "↑ Resuscitare come Lazzaro Risorto conferisce {{Damage}} +7.2 Danni#{{Timer}} L'aumento dei danni si esaurisce dopo 60 secondi#{{Blank}} Uccidere nemici mentre l'effetto è attivo lo estende"},
 	{"Eden", "", "Genera 3 oggetti casuali da categorie casuali#Può esserne preso solamente 1"},
 	{"Lo Smarrito", "", "Previene la generazione di oggetti inutili per Lo Smarrito#Esempi: oggetti che conferiscono solamente salute, volo o lacrime spettrali o che si attivano dopo aver subito danni"},
-	{"Lazarro Risorto", "", "{{Damage}} +7.2 Danni#{{Timer}} L'aumento di danni si esaurisce dopo 60 secondi#{{Blank}} Uccidere nemici mentre l'effetto è attivo lo estende#L'effetto si attiva ogni volta che Lazzaro resuscita come Lazzaro Risorto"},
-	{"Giuda Oscuro", "", "{{Collectible34}} \"Il Libro di Belial\" diventa un oggetto passivo simile a {{Collectible584}} \"Libro delle Virtù\"#{{Collectible34}} Se Giuda non lo possiede conferisce \"Il Libro di Belial\"#↑ {{Damage}} L'aumento di danni conferito scala con il numero di cariche dell'oggetto attivo unito ad esso#Conferisce effetti speciali ad alcuni oggetti attivi"},
+	{"Lazarro Risorto", "", "{{Damage}} +7.2 Danni#{{Timer}} L'aumento dei danni si esaurisce dopo 60 secondi#{{Blank}} Uccidere nemici mentre l'effetto è attivo lo estende#L'effetto si attiva ogni volta che Lazzaro resuscita come Lazzaro Risorto"},
+	{"Giuda Oscuro", "", "{{Collectible34}} \"Il Libro di Belial\" diventa un oggetto passivo simile a {{Collectible584}} \"Libro delle Virtù\"#{{Collectible34}} Se Giuda non lo possiede conferisce \"Il Libro di Belial\"#↑ {{Damage}} L'aumento dei danni conferito scala con il numero di cariche dell'oggetto attivo unito ad esso#Conferisce effetti speciali ad alcuni oggetti attivi"},
 	{"Lilith", "", "I famigli sono posizionati di fronte a Lilith"},
 	{"Mercante", "", "↑ {{CoinHeart}} +1 Salute#Il massimo ammontare di Portamonete sale a 4"},
 	{"Apollion", "", "{{Collectible477}} Usare \"Vuoto\" ha una chance di generare un oggetto che era stato assorbito in precedenza#Non rimuove i bonus alle statistiche#Più oggetti vengono assorbiti, maggiori le chance che se usato venga generato un oggetto"},
@@ -1180,7 +1180,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Azazel Corrotto", "", "{{Collectible726}} Raddoppia le dimesioni dello starnuto di \"Emottisi\" di Azazel Corrotto"},
 	{"Lazzaro Corrotto", "", "La forma inattiva di Lazzaro Corrotto appare come un secondo personaggio spettrale#È invincibile e infligge il 25% dei danni#Entrambe le forme ricevono \"Primogenitura\""},
 	{"Eden Corrotto", "", "Ogni oggetto ottenuto prima di \"Primogenitura\" non può più venire rilanciato#Gli oggetti attivi possono venire rilanciati, se buttati a terra e poi ripresi"},
-	{"Lo Smarrito Corrotto", "", "Conferisce 1 via extra che resuscita Lo Smarrito Corrotto nella stessa stanza e infligge 200 danni ai nemici vicini"},
+	{"Lo Smarrito Corrotto", "", "Conferisce 1 vita extra che resuscita Lo Smarrito Corrotto nella stessa stanza e infligge 200 danni ai nemici vicini"},
 	{"Lilith Corrotta", "", "{{Collectible728}} I famigli che normalmente seguirebbero Lilith Corrotta seguono invece \"Gellò\"#L'attacco in mischia ottiene +3 danni per famiglio"},
 	{"Mercante Corrotto", "", "{{Coin}} Attrae con forza maggiore le monete lasciate dai nemici sconfitti#Nessun effetto sulle altre monete"},
 	{"Apollion Corrotto", "", "Finché il tasto di fuoco viene premuto le locuste danneggiano incessantemente i nemici senza ritornare"},
@@ -1325,12 +1325,12 @@ EID.descriptions[languageCode].FalsePHDDamage = "↑ {{Damage}} +0.6 Danni"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "↑ {{Damage}} +1.2 Danni"
 
 EID.descriptions[languageCode].ExperimentalPillPHD = "Nessuna diminuzione di statistiche"
-EID.descriptions[languageCode].ExperimentalPillFalsePHD = "Nessun aumento casuale di statistiche"
+EID.descriptions[languageCode].ExperimentalPillFalsePHD = "Nessun aumento di statistica casuale"
 
-EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Consuma invece la chiave and Genera 6 items from random pools"
+EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Consuma invece la chiave e genera 6 oggetti da categorie casuali"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} ATTENZIONE {{Warning}}"
-EID.descriptions[languageCode].AchievementWarningText = "Gli achievement sono disabilitati!#Per abilitare la progressione e gli achievement, come prima cosa occorre uccidere Mamma (Profondità II) senza abilitare alcuna mod.#(Se hai sconfitto Mamma, questo messaggio è un bug e può essere ignorato)#(Questo avvertimento può essere disattivato nelle configurazioni)"
+EID.descriptions[languageCode].AchievementWarningText = "Gli achievement sono disabilitati!#Per abilitare la progressione e gli achievement, come prima cosa occorre uccidere Mamma (Profondità II) senza abilitare alcuna mod#(Se hai sconfitto Mamma, questo messaggio è un bug e può essere ignorato)#(Questo avvertimento può essere disattivato nelle configurazioni)"
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID è aggiornato alla versione di Steam più recente#La versione del tuo gioco non è supportata ufficialmente, pertanto alcune descrizioni e componenti saranno imprecise#(Questo avvertimento può essere disattivato nelle configurazioni)"
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Gli oggetti moddati possono rendere imprecisi i calcoli delle ricette di assemblaggio!#Installa REPENTOGON per avere un supporto migliore per le ricette moddate#(Questo avvertimento può essere disattivato nelle configurazioni)"
 
