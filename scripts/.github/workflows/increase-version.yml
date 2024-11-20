@@ -1,0 +1,23 @@
+name: IncreaseVersion
+
+on:
+  workflow_dispatch
+
+jobs:
+  increase_version:
+    name: Increase mod version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4.5.0
+        with:
+          python-version: '3.10'
+
+      - name: git
+        run: |
+          # setup the username and email.
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+      - run: python .github/scripts/release.py

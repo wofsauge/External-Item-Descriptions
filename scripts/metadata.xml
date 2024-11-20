@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>!!~External item descriptions</name>
+    <directory>external item descriptions</directory>
+    <id>836319872</id>
+    <description>[img]https://i.imgur.com/l9nbaxP.png[/img]
+This mod displays detailed information about all items, trinkets, cards, runes and pills DIRECTLY onto your screen. Say goodbye to your browser tab with platinumgod or the wiki open ;)
+
+[img]https://i.imgur.com/bRGqujD.png[/img] [url=https://discord.gg/HhD4vMM4bZ]Need help or want to chat? Join our Discord server![/url]
+[img]https://i.imgur.com/P6a8043.png[/img] [url=https://github.com/wofsauge/External-Item-Descriptions]Check this project out on GitHub![/url]
+
+[img]https://i.imgur.com/QmqdAmr.png[/img]
+[list]
+[*] [b]Compatible with Afterbirth+, Repentance and Repentogon[/b]
+[*] Displays information for all collectibles, trinkets, cards, runes, pills, horsepills and some rooms
+[*] Displays [b]additional information[/b] like item type, charges, transformations, Spindown Dice results, Bag of Crafting recipes, TMTRAINER item effects (Detailed informations require REPENTOGON installed!), and much much more!
+[*] Mod support for nearly all mods!
+[*] Extended features available with [url=https://repentogon.com/]Repentogon[/url]
+[*] Easy to use API ([url=https://github.com/wofsauge/External-Item-Descriptions/wiki]Documentation here[/url])
+[*] A huge amount of custom options like:
+[list]
+[*] Indicators
+[*] Font styles
+[*] 17+ Languages
+[*] And a lot of visual options!
+[/list]
+[/list]
+
+[b]Press F2 to hide/show the descriptions![/b]
+
+[img]https://i.imgur.com/NqSBJqj.png[/img]
+[img]https://i.imgur.com/mJshXnR.png[/img]
+Supported Languages:
+Chinese, Czech, Dutch, English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Brazilian-Portuguese, Turkish, Ukrainian
+
+[img]https://i.imgur.com/RVtZEqp.png[/img]
+For [b]Steam users[/b], simply press the &quot;Subscribe&quot; button on the mod's Steam Workshop page. This will automatically install the mod for you.
+For [b]manual mod installation[/b], read this tutorial &quot;[url=https://github.com/wofsauge/External-Item-Descriptions/wiki/How-to-install-the-mod]How to install the mod[/url]&quot;
+If you have problems installing use the [url=https://wofsauge.github.io/IsaacDocs/rep/faq/interactive_FAQ.html]Interactive FAQ[/url].
+[img]https://i.imgur.com/PFTZnfC.png[/img]
+Simply install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]'Mod Config Menu Pure'[/url]. You can use it to configure the mod while playing.
+
+Alternatively, edit the `eid_config.lua` file like described [url=https://github.com/wofsauge/External-Item-Descriptions/wiki/Edit-the-configuration-manually]here[/url]
+
+[img]https://i.imgur.com/vUP4whT.png[/img]
+There are multiple Versions of the mod, depending on which DLCs you have installed.
+You are currently looking at the version for Afterbirth+ and Repentance.
+
+[url=https://github.com/wofsauge/External-Item-Descriptions#versions]Alternative versions for all other DLCs, or for manual installation purposes can be found here[/url]
+
+[img]https://i.imgur.com/jrdGbna.png[/img]
+[url=https://github.com/wofsauge/External-Item-Descriptions/blob/master/CREDITS.md]Check out the credits here[/url]
+</description>
+    <version>4.85</version>
+    <visibility>Public</visibility>
+    <tag id="Lua"/>
+    <tag id="Items"/>
+    <tag id="Active Items"/>
+    <tag id="Trinkets"/>
+    <tag id="Pills"/>
+    <tag id="Cards"/>
+    <tag id="Tweaks"/>
+</metadata>

@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  workflow_dispatch
+
+jobs:
+  release:
+    name: Increase mod version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4.5.0
+        with:
+          python-version: '3.10'
+
+      - name: git
+        run: |
+          # setup the username and email.
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+      - run: python .github/scripts/release.py
+
+      - name: Upload the mod to Steam Workshop
+        uses: IsaacScript/isaac-steam-workshop-upload@v2
+        with:
+          mod_path: .
+          change_note: "Changes for this mod are [url=https://github.com/wofsauge/External-Item-Descriptions/releases]tracked on GitHub[/url]."
+        env:
+          CONFIG_VDF_CONTENTS: ${{ secrets.CONFIG_VDF_CONTENTS }}
