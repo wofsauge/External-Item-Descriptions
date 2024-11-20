@@ -552,7 +552,7 @@ EID.descriptions[languageCode].collectibles={
 	{"527", "Mr. GUARDI!", "Mostra per qualche secondo un cursore spostabile, dopodiché evoca uno spettro che, in base alla posizione del cursore, può:#Aprire porte o bauli#Recuperare un oggetto#50% di chance di rubare dal Negozio/Stanza del Diavolo#Attaccare un nemico finché non muore#Esplodere muri, rocce, negozianti, statue di angeli, macchine o scrocconi"},
 	{"528", "Prisma Angelico", "Prisma orbitale#Le lacrime amiche che lo colpiscono si scindono in 4"},
 	{"529", "Pop!", "Le lacrime di Isaac rimbalzano tra loro e quando smettono di muoversi spariscono"},
-	{"530", "Lista Nera", "Uccidere i nemici nell'ordine imposto dal marchio {{DeathMark}} sopra di loro conferisce 1 consumabile casuale o un aumento di statistica"},
+	{"530", "Lista Nera", "Uccidere i nemici nell'ordine imposto dal marchio {{DeathMark}} sopra di loro conferisce 1 consumabile casuale o un aumento di una statistica"},
 	{"531", "Emolacria", "↑ {{Damage}} x1.31 Moltiplicatore Danni#↓ {{Tears}} x2 Moltiplicatore Delay tra Lacrime#↓ {{Tears}} +10 Delay tra Lacrime #Le lacrime di Isaac volano in un arco e all'impatto scoppiano in laccrime più piccole"},
 	{"532", "Lacrifagia", "Le lacrime di Isaac rallentano progressivamente, per poi fermarsi e scoppiare in 8 lacrime più piccole#Le lacrime possono fondersi tra loro per ingrandirsi"},
 	{"533", "Trisagion", "Rimpiazza le lacrime di Isaac con raggi di luce penetranti#I raggi infliggono il 33% dei danni ma possono colpire più volte i nemici"},
