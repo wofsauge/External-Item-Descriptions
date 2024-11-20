@@ -1122,6 +1122,7 @@ EID.SingleUseCollectibles = {
 }
 if EID.isRepentance then
 	EID.SingleUseCollectibles[577] = true -- Damocles
+	EID.SingleUseCollectibles[585] = true -- Alabaster Box
 	EID.SingleUseCollectibles[622] = true -- Genesis
 	EID.SingleUseCollectibles[628] = true -- Death Certificate
 	EID.SingleUseCollectibles[636] = true -- R Key

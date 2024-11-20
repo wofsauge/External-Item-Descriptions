@@ -1,10 +1,9 @@
 ---------------------------------------
 -----  Basic Japanese descriptions ----
 ---------------------------------------
--- Last Update: 2024-04-12
+-- Last Update: 2024-11-18
 
 -- FORMAT: Item ID | Name | Description
-
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
@@ -20,6 +19,7 @@ EID.descriptions[languageCode].languageName = "Japanese"
 EID.descriptions[languageCode].fonts = {{name="default", lineHeight= 12}, {name="inverted", lineHeight = 12}, {name="borderless", lineHeight= 12}}
 
 ---------- Collectibles ----------
+
 EID.descriptions[languageCode].collectibles={
     {"1", "悲しみオニオン", "↑ 連射速度 +0.7"}, -- The Sad Onion
     {"2", "心眼", "トリプルショットの涙#↓ 連射速度"}, -- The Inner Eye
@@ -65,7 +65,7 @@ EID.descriptions[languageCode].collectibles={
     {"42", "ボブの腐った頭", "手投げ式の毒爆弾"}, -- Bob's Rotten Head
     {"43", "", "<item does not exist>"},
     {"44", "瞬間移動", "ランダムな部屋に テレポートする#{{Blank}} (I AM ERRORを除く)"}, -- Teleport!
-    {"45", "ヤム ハート", "赤ハートを1個回復"}, -- Yum Heart
+    {"45", "ヤム ハート", "赤ハートを1回復"}, -- Yum Heart
     {"46", "幸せの足", "↑ 運 +1#ギャンブルの勝率アップ#部屋クリア時の報酬 スポーン確率アップ"}, -- Lucky Foot
     {"47", "ドクターのスイッチ", "指定地点にミサイルを 落とす#ミサイルは攻撃力ｘ20の ダメージを与える"}, -- Doctor's Remote
     {"48", "キューピッドの矢", "涙に貫通効果を付与"}, -- Cupid's Arrow
@@ -137,13 +137,13 @@ EID.descriptions[languageCode].collectibles={
     {"114", "ママの包丁", "涙がナイフに置き換わる#保持中のナイフは2倍の ダメージを与える#チャージ攻撃でナイフを 発射でき、折り返し地点 では6倍のダメージを与える"}, -- Mom's Knife
     {"115", "ウィジャボード", "涙に透過効果を付与"}, -- Ouija Board
     {"116", "９ボルト", "アクティブアイテムを フルチャージ#アクティブアイテムの 必要チャージ量が1減る#必要チャージ量が1の アイテムは、15秒の 時間式になる#時間式のアイテムは、 その時間が半減する"}, -- 9 Volt
-    {"117", "鳥の死体", "ダメージを受けると鳥が 現れ、その部屋に居る間、 敵を追いかけて攻撃する#毎秒5の接触ダメージ"}, -- Dead Bird
+    {"117", "鳥の死体", "ダメージを受けると鳥が 現れ、その部屋に居る間、 敵を追いかけて攻撃する#毎秒4.3の接触ダメージ"}, -- Dead Bird
     {"118", "ブリムストーン", "涙がチャージ式のレーザー ビームに置き換わる"}, -- Brimstone
     {"119", "血液袋", "↑ 最大体力 +1#↑ 移動速度 +0.3#体力を4回復"}, -- Blood Bag
     {"120", "変なキノコ", "↑ 連射速度 +1.7#↑ 移動速度 +0.3#↓ 攻撃力　 -10%#↓ 攻撃力　 -0.4"}, -- Odd Mushroom
     {"121", "変なきのこ", "↑ 最大体力 +1#↑ 攻撃力　 +0.3#↑ 射程　　 +0.25#↑ 涙の高さ +0.5#↓ 移動速度 -0.1"}, -- Odd Mushroom
     {"122", "バビロンの女", "残り体力が半赤ハート 以下の時：#↑ 攻撃力　 +1.5#↑ 移動速度 +0.3"}, -- Whore of Babylon
-    {"123", "モンスター マニュアル", "ランダムな使い魔を 1匹付与する#その部屋でのみ有効"}, -- Monster Manual
+    {"123", "モンスター マニュアル", "ランダムな使い魔を 1体付与する#その部屋でのみ有効"}, -- Monster Manual
     {"124", "死海文書", "ランダムなアクティブ アイテムの効果を発動"}, -- Dead Sea Scrolls
     {"125", "ボビーボム", "爆弾がホーミング化#爆弾 +5"}, -- Bobby-Bomb
     {"126", "レイザー ブレード", "ハート1個のダメージを 受け、その部屋に居る間、 攻撃力を1.2増やす#赤ハートを優先して消費"}, -- Razor Blade
@@ -151,7 +151,7 @@ EID.descriptions[languageCode].collectibles={
     {"128", "永遠の孤独", "青いハエがアイザックを 周回し、接触した敵に 毎秒30ダメージを与える"}, -- Forever Alone
     {"129", "一杯の背アブラ", "↑ 最大体力 +2#↓ 移動速度 -0.2#体力0.5回復"}, -- Bucket of Lard
     {"130", "ポニー", "保持中、飛行能力を付与し、 1.5以下の移動速度を 1.5に修正する#使用すると進行方向に 無敵状態で突進し、 敵に40ダメージを与える"}, -- A Pony
-    {"131", "ボム袋", "2～3部屋クリアするたび 爆弾を1個スポーンする 使い魔"}, -- Bomb Bag
+    {"131", "ボム袋", "3部屋クリアするたび 爆弾を1個スポーンする 使い魔"}, -- Bomb Bag
     {"132", "炭の塊", "飛距離に応じて涙の ダメージが増加する"}, -- A Lump of Coal
     {"133", "ガッピーの足", "最大体力1個を 青ハート3個に変換"}, -- Guppy's Paw
     {"134", "ガッピーの尻尾", "部屋のクリア報酬が 33%の確率で宝箱に、 22%の確率で無報酬に、 それぞれ置き換わる"}, -- Guppy's Tail
@@ -164,7 +164,7 @@ EID.descriptions[languageCode].collectibles={
     {"141", "ページェント ボーイ", "ランダムなコインを 7枚スポーンする"}, -- Pageant Boy
     {"142", "スカプラリオ", "残り体力が半ハートに なった時、青ハートを 1個付与する#効果は1部屋で1回のみ 有効だが、部屋に入り 直すと再度有効化する"}, -- Scapular
     {"143", "スピード ボール", "↑ 移動速度 +0.3#↑ 弾速　　 +0.2"}, -- Speed Ball
-    {"144", "ろくでなしフレンド", "コインを拾いランダムな ピックアップに変換する 乞食が現れる"}, -- Bum Friend
+    {"144", "ろくでなしフレンド", "コインを拾いランダムな ピックアップに変換する 乞食が現れる#3～4枚で1ピックアップ"}, -- Bum Friend
     {"145", "ガッピーの頭", "青ハエを2～4匹スポーン"}, -- Guppy's Head
     {"146", "祈りのカード", "白ハートを1個付与"}, -- Prayer Card
     {"147", "大斧", "その部屋に居る間、斧で 障害物や壁を破壊できる"}, -- Notched Axe
@@ -247,7 +247,7 @@ EID.descriptions[languageCode].collectibles={
     {"224", "クリケットの体", "↑ 連射間隔 -1#↓ 射程　　 -10#↓ 涙サイズ +20%#衝突した涙が四つに分裂する#分裂した涙はダメージ量が 半減する"}, -- Cricket's Body
     {"225", "ギンピー", "ダメージを受けた時、 一定確率で青ハートが スポーンする#確率：運0=10%、20=50%#死んだ敵が1～10%の確率で 半赤ハートを落とす （HPが高い敵ほど高確率）"}, -- Gimpy
     {"226", "ブラックロータス", "↑ 最大体力 +1#青ハート +1#黒ハート +1"}, -- Black Lotus
-    {"227", "貯金箱", "コイン +3#ダメージを受けるたび コインを1～2枚スポーン#キーパープレイ時は 0～1枚のスポーン"}, -- Piggy Bank
+    {"227", "貯金箱", "コイン +3#ダメージを受けるたび コインを1～2枚スポーン"}, -- Piggy Bank
     {"228", "ママの香水", "一定確率で涙に 恐怖効果を付与#確率：運0=15%、85=100%#↑ 連射間隔 -1"}, -- Mom's Perfume
     {"229", "モンストロの肺", "涙をチャージ式に置き換え、 一度に14発の涙を同時発射 できるようになる#↓ 連射間隔 ｘ4.3"}, -- Monstro's Lung
     {"230", "アバドン", "↑ 攻撃力　 +1.5#↑ 移動速度 +0.2#最大体力を0にし、6個の 黒ハートを付与する#一定確率で涙に 恐怖効果を付与#確率：運0=15%、85=100%"}, -- Abaddon
@@ -284,7 +284,7 @@ EID.descriptions[languageCode].collectibles={
     {"261", "プロップトーシス", "↑ 攻撃力 +100%#↓ 涙のサイズとダメージが 飛距離と共に減少する"}, -- Proptosis
     {"262", "失われたページ２", "黒ハート +1#ダメージを受け、残りの 体力がハート1個以下に なった時、ネクロノミコン 効果が発動する (全ての敵に40ダメージ)"}, -- Missing Page 2
     {"263", "", "<item does not exist>"},
-    {"264", "スマートフライ", "黄色いハエがアイザックを 周回し、敵に接触ダメージ を与え、弾をブロックする#ダメージを受けると アイザックから離れ、 敵を追いかけ攻撃する"}, -- Smart Fly
+    {"264", "スマートフライ", "黄色いハエがアイザックを 周回し、敵に接触ダメージ を与え、弾をブロックする#ダメージを受けると アイザックから離れ、 敵を追いかけ攻撃する#毎秒22.5の接触ダメージ"}, -- Smart Fly
     {"265", "乾燥ベイビー", "アイザックを追従し、 敵の弾をブロックする 使い魔#弾ブロック時、10%の 確率でネクロノミコン 効果を発動する"}, -- Dry Baby
     {"266", "ジューシー袋", "触れた敵をスロー状態に する液体を流しながら アイザックを追従する 使い魔#部屋をクリアするたび 1～2匹の青クモをスポーン"}, -- Juicy Sack
     {"267", "ロボベイビー改", "攻撃方向に連動して移動し、 正面の敵を自動でレーザー 攻撃する使い魔#レーザーは3.5ダメージを 与える"}, -- Robo-Baby 2.0
@@ -295,7 +295,7 @@ EID.descriptions[languageCode].collectibles={
     {"272", "BBF", "部屋を飛び回り、敵との 接触時に爆発する使い魔#接触で10、爆発で60の ダメージを与える"},
     {"273", "ボブの脳みそ", "涙の発射方向に連動して 飛び出し、敵との衝突で 爆発する使い魔#爆発は60のダメージと 毒を与える"}, -- Bob's Brain
     {"274", "ベストバディー", "ダメージを受けると白い ハエが現れ、その部屋に 居る間、アイザックを 周回する#毎秒75の接触ダメージ"}, -- Best Bud
-    {"275", "小さなブリムストーン", "ブリムストーンで攻撃する 使い魔　　#ビームは完全にヒットした 場合、合計31のダメージを 与える"}, -- Lil Brimstone
+    {"275", "小さなブリムストーン", "ブリムストーンで攻撃する 使い魔　　#ビームは完全ヒット時、 31.5のダメージを与える"}, -- Lil Brimstone
     {"276", "アイザックの心臓", "アイザックに追従する 心臓が現れ、ダメージ 判定が心臓側に移行する"}, -- Isaac's Heart
     {"277", "チビホーント", "敵を追いかけて攻撃し、 毎秒4ダメージを与え、 恐怖状態にする使い魔"}, -- Lil Haunt
     {"278", "ダークバム", "赤ハートを拾い集める 乞食の使い魔#1.5個拾うたび、青ハート・ 青クモ・敵クモのいずれかを スポーンする"}, -- Dark Bum
@@ -313,13 +313,13 @@ EID.descriptions[languageCode].collectibles={
     {"290", "入れ物", "体力が満タンの状態で 赤ハートを拾うと、最大 4個までストックできる#使用すると、中身を全て その場に落とす"}, -- The Jar
     {"291", "ジャー", "全ての雑魚敵がうんちに変化#うんちタイプのボスが即死"}, -- Flush!
     {"292", "邪悪な聖書", "黒ハートを1個付与"}, -- Satanic Bible
-    {"293", "クランプスの頭", "ブリムストーンビームを 十字方向に放つ"}, -- Head of Krampus
+    {"293", "クランプスの頭", "ブリムストーンビームを 十字方向に放つ#各ビームは最大440の ダメージを与える"}, -- Head of Krampus
     {"294", "バタービーンズ", "おならで近くの敵と弾を ノックバックさせる#他のアクティブアイテム との交換・再取得を繰り 返した時、10%の確率で {{Collectible484}}WaitWhat?に変化する"}, -- Butter Bean
     {"295", "マジックフィンガー", "1コイン消費し、部屋の 全ての敵に攻撃力ｘ2の ダメージを与える"}, -- Magic Fingers
     --NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
     --For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
     {"296", "コンバーター", "青／黒ハートを2個消費し、 最大体力を1個増やす"}, -- Converter
-    {"297", "パンドラの箱", "使用フロアで効果が変化：#B1:青ハート 2個#B2:爆弾と鍵 各2個#C1:ボスアイテム 1個#C2:B1+C1#D1:青ハート 4個#D2:コイン 20枚#W1:ボスアイテム 2個#W2:{{Collectible33}} 聖書#???/Void:なし#Sheol:悪魔部屋アイテム1個 　　　黒ハート 1個#Cat:天使部屋アイテム 1個 　　白ハート 1個#DarkRoom:{{Collectible523}}お引越し用の箱 　　　　　 をアンロック#Chest:コイン 1枚"}, -- Pandora's Box
+    {"297", "パンドラの箱", "使用フロアで効果が変化：#B1:青ハート 2個#B2:爆弾と鍵 各2個#C1:ボスアイテム 1個#C2:B1+C1#D1:青ハート 4個#D2:コイン 20枚#W1:ボスアイテム 2個#W2:{{Collectible33}} 聖書#???/Void:なし#Sheol:悪魔部屋アイテム1個 　　　黒ハート 1個#Cat:天使部屋アイテム 1個 　　白ハート 1個#DarkRoom:{{Collectible523}}お引越し用の箱をアンロック#Chest:コイン 1枚"}, -- Pandora's Box
     {"298", "ユニコーンの欠けた角", "6秒間、無敵状態になり 移動速度が0.28アップ するが、涙攻撃能力を 一時的に失う"}, -- Unicorn Stump
     {"299", "おうし座", "バトル中、移動速度が 徐々に増加する#速度が上限に達した時、 5秒間の無敵状態と 接触ダメージ効果を得る#↓ 移動速度 -0.3"}, -- Taurus
     {"300", "おひつじ座", "↑ 移動速度 +0.25#素早く敵に衝突すると 18のダメージを与える"}, -- Aries
@@ -343,11 +343,11 @@ EID.descriptions[languageCode].collectibles={
     {"318", "ふたご座", "アイザックと肉の鎖で つながれた使い魔が 敵を追いかけ攻撃し、 毎秒6ダメージを与える"}, -- Gemini
     {"319", "ケインの予備眼", "目玉が部屋を飛び回り、 アイザックと同じ涙を 発射する"}, -- Cain's Other Eye
     {"320", "？？？唯一の友", "攻撃方向に連動して移動し、 毎秒37.5の接触ダメージを 与える使い魔"}, -- ???'s Only Friend
-    {"321", "サムソンの鎖", "アイザックに鉄球付きの 鎖がつながり、鉄球が 敵に接触ダメージを与え、 弾をブロックする#毎秒10の接触ダメージ#鉄球は障害物を破壊する"}, -- Samson's Chains
+    {"321", "サムソンの鎖", "アイザックに鉄球付きの 鎖がつながり、鉄球が 敵に接触ダメージを与え、 弾をブロックする#毎秒10.7の接触ダメージ#鉄球は障害物を破壊する"}, -- Samson's Chains
     {"322", "モンゴベイビー", "他の使い魔の涙をコピー して攻撃する使い魔#コピー対象が居ない場合、 3.5 ダメージのノーマルな 涙で攻撃する"}, -- Mongo Baby
     {"323", "アイザックのナミダ", "8方向に涙を同時発射する#涙を発射するとチャージが 回復する"}, -- Isaac's Tears
     {"324", "未定義", "トレジャールーム・隠し 部屋・I AM ERROR部屋の いずれかにテレポート"}, -- Undefined
-    {"325", "ハサミ", "体から分離した頭がその 場に固定され、涙を放つ#操作する体側からも涙を 発射可能"}, -- Scissors
+    {"325", "ハサミ", "分離した頭がその場に固定 され、3.5ダメージの涙を放つ#操作する体側からも 涙を発射できる"}, -- Scissors
     {"326", "生命の息吹", "使用ボタンを押し続けると チャージ量が徐々に減り、 空になった瞬間無敵状態に なる#チャージ量が空になった後 更にボタンを1秒以上押し 続けるとダメージを受ける"}, -- Breath of Life
     {"327", "ポラロイド", "ダメージを受け、残りの 体力が半赤ハート以下に なった時、シールドを展開#シールドは5秒間持続し、 全てのダメージを無効化"}, -- The Polaroid
     {"328", "ネガティブ", "ダメージを受け、残りの 体力が半赤ハート以下に なった時、ネクロノミコン 効果を発動する （全ての敵に40ダメージ）"}, -- The Negative
@@ -371,7 +371,7 @@ EID.descriptions[languageCode].collectibles={
     {"346", "スナック", "↑ 最大体力 +1"}, -- A Snack
     {"347", "複視症状", "部屋の全てのアイテムと ピックアップを複製する"}, -- Diplopia
     {"348", "プラシーボ", "保持中のピルの効果を コピーして発動する"}, -- Placebo
-    {"349", "木製硬貨", "50%の確率でランダムな コインを1枚スポーン"}, -- Wooden Nickel
+    {"349", "木製硬貨", "56%の確率でランダムな コインを1枚スポーン"}, -- Wooden Nickel
     {"350", "有毒ショック", "バトル開始時、部屋の 全ての敵を毒状態にする#死んだ敵が緑色の液体を 残し、触れた敵に毎秒30 ダメージを与える"}, -- Toxic Shock
     {"351", "メガ豆", "部屋の全ての敵を数秒間 石化させる#近くの敵に5ダメージと 毒を与える#地割れを起こし、触れた 敵に10ダメージを与え、 障害物を破壊する"}, -- Mega Bean
     {"352", "ガラスの大砲", "残り体力を半ハートまで 減らし、敵と障害物を 貫通する大粒の涙を放つ#攻撃力ｘ10+10のダメージ"}, -- Glass Cannon
@@ -547,7 +547,7 @@ EID.descriptions[languageCode].collectibles={
     {"522", "テレキネシス", "使用後3秒間、敵の弾が アイザックの周囲で一時 停止し、固定される#3秒経過すると弾が跳ね 返され、3.5ダメージを 与える"}, -- Telekinesis
     {"523", "お引越し用の箱", "部屋の全てのアイテムと ピックアップを保存して 運べる#保存した状態で再使用 すると、中身をその場で 展開する"}, -- Moving Box
     {"524", "テクノロジーゼロ", "涙同士が電気ビームで つながり、触れた敵に ダメージを与える#電気ビームは攻撃力と 等しいダメージを与える"}, -- Technology Zero
-    {"525", "レプロシー", "ダメージを受けると 肉片がスポーンし、 アイザックを周回する#肉片は敵に接触ダメージを 与え、弾をブロックする#肉片は一定量の接触・ ブロックで破壊される#最大3つまでスポーン"}, -- Leprosy
+    {"525", "レプロシー", "ダメージを受けると 肉片がスポーンし、 アイザックを周回する#肉片は接触した敵に 毎秒35のダメージを与え、 弾をブロックする#肉片は一定量の接触・ ブロックで破壊される#最大3つまでスポーン"}, -- Leprosy
     {"526", "７つの封印", "10秒ごとにランダムな ハービンガーに変化する 使い魔#敵に接触ダメージを与え、 イナゴをスポーンする"}, -- 7 Seals
     {"527", "ミスターボク！", "!!! 照準を合わせた対象に 応じて効果が変化する#アイテムなど：拾って アイザックの元へ運ぶ#お店・悪魔部屋：50%の 確率でアイテムを盗む#宝箱・ドア：鍵や爆弾を 消費せずに開く#敵：追いかけ攻撃する#破壊可能なもの：爆破"}, -- Mr. ME!
     {"528", "エンジェリック プリズム", "プリズムがアイザックを 周回し、涙がそれを通過 すると、四色の涙に分裂 して発射される#使い魔の涙にも有効"}, -- Angelic Prism
@@ -577,14 +577,13 @@ EID.descriptions[languageCode].collectibles={
     {"552", "ママのシャベル", "次のフロアにつながる トラップドアを生成#10%の確率でクロール スペースにつながる#!!! ある場所で使うと…？"}, -- Mom's Shovel
 }
 
-
 ---------- Modifiers ----------
 
 -- Effect of Car battery on Active Items
 EID.descriptions[languageCode].carBattery = {
-	[34] = {"+2", "+4"}, -- Book of Belial
+	["No Effect"] = "効果なし",
 	[35] = {"40ダメージ", "80ダメージ"}, -- Necronomicon
-	[37] = {"110ダメージ", "220ダメージ"}, -- Mr. Boom
+	[37] = {"爆弾を", "{{CR}}爆弾を{{BlinkYellowGreen}}2個{{CR}}"}, -- Mr. Boom
 	[38] = {"10発", "20発"}, --Tammy's Head
 	[45] = {"1個", "2個"}, -- Yum Heart
 	[58] = {"10秒間", "20秒間"}, -- Book of Shadows
@@ -598,19 +597,25 @@ EID.descriptions[languageCode].carBattery = {
 	[93] = {"6秒間", "12秒間"}, -- The Gamekid
 	[97] = {"1個", "2個"}, -- The Book of Sin
 	[102] = {"1個", "2個"}, --Mom's Bottle of Pills
+	[105] = "二重リロールでアイテム プールの枯渇が加速", -- The D6
 	[107] = "体が二つスポーンする", -- The Pinking Shears
 	[111] = "ダメージ2倍", -- The Bean
-	[123] = {"1匹", "2匹"}, -- Monster Manual
+	[123] = {"1体", "2体"}, -- Monster Manual
 	[124] = {"ランダムなアクティブ アイテムの効果を{{BlinkYellowGreen}}2回{{CR}}発動"}, -- Dead Sea Scrolls
 	[136] = {"敵を引きつけるデコイの 爆弾を{{BlinkYellowGreen}}2個{{CR}}設置する"}, -- Best Friend
 	[145] = {"2～4匹","4～7匹"}, -- Guppy's Head
 	[146] = {"1個", "2個"}, -- Prayer Card
 	[158] = {"1個", "2個"}, -- Crystal Ball	
+	[160] = {5, 10}, -- Crack the Sky
 	[171] = {"10ダメージ", "20ダメージ"}, -- Spider Butt
+	[283] = "二重リロールでアイテム プールの枯渇が加速するも、 変身の条件達成にはプラス", -- D100
+	[284] = "二重リロールでアイテム プールの枯渇が加速するも、 変身の条件達成にはプラス", -- D4
 	[286] = "2回発動する", -- Blank Card
+	[287] = {"いずれかの効果を", "{{CR}}から{{BlinkYellowGreen}}二つ{{CR}}の効果を"}, -- Book of Secrets
 	[288] = {"1～4匹", "2～8匹"}, -- Box of Spiders
 	[292] = {"1個", "2個"}, -- Satanic Bible
-	[293] = "ダメージ2倍", -- Head of Krampus
+	[293] = {440, 880}, -- Head of Krampus
+	[294] = "ノックバック強化", -- Butter Bean
 	[298] = {"6秒間", "12秒間"}, -- Unicorn Stump
 	[348] = "2回発動する", --Placebo
 	[349] = "2回発動する", -- Wooden Nickel
@@ -619,7 +624,6 @@ EID.descriptions[languageCode].carBattery = {
 	[383] = {"6つ", "36個"}, -- Tear Detonator
 	[421] = "ダメージ2倍", -- Kidney Bean
 	[427] = {"移動可能なTNTを {{BlinkYellowGreen}}2個{{CR}}設置する"}, -- Mine Crafter
-	[437] = "報酬アップなく、敵の スポーン2倍", -- D7
 	[439] = "2個スポーンする", -- Mom's Box
 	[476] = {"1個", "2個"}, --D1
 	[477] = "吸収したアイテムにも 2倍効果が適用される", -- Void
@@ -640,7 +644,98 @@ EID.descriptions[languageCode].carBattery = {
 	[550] = {"踏み潰し攻撃を {{BlinkYellowGreen}}二部屋{{CR}}の間停止する#チャレンジルーム・ ボスラッシュでは {{BlinkYellowGreen}}2ウェーブ{{CR}}間停止する"}, -- Broken Shovel
 }
 
+-- Effect of BFFS! on Familiars
+EID.descriptions[languageCode].BFFSSynergies = {
+	["No Effect"] = "{1}の効果なし",
+	["5.100.8"] = {3.5, 7}, -- Brother Bobby
+	["5.100.57"] = {75, 150}, -- Distant Admiration
+	["5.100.67"] = {3.5, 7}, -- Sister Maggy
+	["5.100.73"] = "ダメージ2倍", -- Cube of Meat
+	["5.100.88"] = {52.5, 105}, -- Little Chubby
+	["5.100.94"] = {"2", "1～2"}, -- Sack of Pennies
+	["5.100.95"] = {3.5, 7}, -- Robo-Baby
+	["5.100.96"] = {"3", "2～3"}, -- Little C.H.A.D.
+	["5.100.98"] = {"5～6", "4～5"}, -- The Relic
+	["5.100.99"] = {3.5, 7}, -- Little Gish
+	["5.100.100"] = {3.5, 7}, -- Little Steven
+	["5.100.107"] = {82.5, 165}, -- The Pinking Shears
+	["5.100.112"] = {105, 210}, -- Guardian Angel
+	["5.100.113"] = {3, 6}, -- Demon Baby
+	["5.100.117"] = {4.3, 8.6}, -- Dead Bird
+	["5.100.128"] = {30, 60}, -- Forever Alone
+	["5.100.131"] = {"3", "2～3"}, -- Bomb Bag
+	["5.100.144"] = {"3～4", "3"}, -- Bum Friend
+	["5.100.155"] = {17, 34}, -- The Peeper
+	["5.100.163"] = {3.5, 7}, -- Ghost Baby
+	["5.100.167"] = {4, 8}, -- Harlequin Baby
+	["5.100.170"] = {40, 80}, -- Daddy Longlegs
+	["5.100.172"] = {225, 450}, -- Sacrificial Dagger
+	["5.100.174"] = {"3～5", "6～10"}, -- Rainbow Baby
+	["5.100.187"] = "ダメージ2倍", -- Guppy's Hairball
+	["5.100.188"] = {3.5, 7, 7.5, 15}, -- Abel (includes Cain's Rep synergy)
+	["5.100.206"] = {105, 210}, -- Guillotine
+	["5.100.207"] = "ダメージ2倍", -- Ball of Bandages
+	["5.100.264"] = {22.5, 45}, -- Smart Fly
+	["5.100.266"] = "青クモを追加スポーン", -- Juicy Sack
+	["5.100.267"] = {3.5, 7}, -- Robo-Baby 2.0
+	["5.100.270"] = {3.2, 6.4}, -- Leech
+	["5.100.271"] = {"5～6", "4～5"}, -- Mystery Sack
+	["5.100.272"] = {60, 85}, -- BBF
+	["5.100.273"] = {60, 85}, -- Bob's Brain
+	["5.100.274"] = {75, 150}, -- Best Bud
+	["5.100.275"] = {31.5, 63}, -- Lil Brimstone
+	["5.100.277"] = {4, 8}, -- Lil Haunt
+	["5.100.279"] = {8.57, 17.14}, -- Big Fan
+	["5.100.318"] = {6, 12}, -- Gemini
+	["5.100.319"] = {"ダメージ2倍"}, -- Cain's Other Eye
+	["5.100.320"] = {37.5, 75}, -- ???'s Only Friend
+	["5.100.321"] = {10.7, 21.4}, -- Samson's Chains
+	["5.100.322"] = {3.5, 7}, -- Mongo Baby
+	["5.100.325"] = {3.5, 7}, -- Scissors
+	["5.100.360"] = "ダメージ2倍", -- Incubus
+	["5.100.361"] = "ダメージ2倍", -- Fate's Reward
+	["5.100.362"] = {25, 31, 10, 12.5}, -- Lil Chest
+	["5.100.363"] = {105, 210}, -- Sworn Protector
+	["5.100.364"] = {45, 90}, -- Friend Zone
+	["5.100.365"] = {105, 210}, -- Lost Fly
+	["5.100.372"] = "電池のスポーン確率アップ", -- Charged Baby
+	["5.100.384"] = {"5～90", "10～180"}, -- Lil Gurdy
+	["5.100.385"] = "ダメージ2倍", -- Bumbo
+	["5.100.388"] = "宝箱のスポーン確率アップ", -- Key Bum
+	["5.100.389"] = {"5～6", "4～5"}, -- Rune Bag
+	["5.100.390"] = {10, 20}, -- Seraphim
+	["5.100.403"] = "電池のスポーン確率アップ", -- Spider Mod
+	["5.100.405"] = {120, 240}, -- GB Bug
+	["5.100.417"] = "ダメージを与えるオーラの 範囲拡大（攻撃力アップの オーラ範囲は据え置き）", -- Succubus
+	["5.100.426"] = {30, 60}, -- Obsessed Fan
+	["5.100.430"] = "ダメージ2倍", -- Papa Fly
+	["5.100.435"] = {3.5, 7}, -- Lil Loki
+	["5.100.468"] = {30, 60}, -- Shade
+	["5.100.470"] = {30, 60}, -- Hushy
+	["5.100.471"] = {3.5, 7}, -- Lil Monstro
+	["5.100.473"] = {40.5, 81}, -- Big Chubby
+	["5.100.491"] = {"3", "2～3"}, -- Acid Baby
+	["5.100.500"] = {"5～6", "4～5"}, -- Sack of Sacks
+	["5.100.508"] = {3, 6}, -- Mom's Razor
+	["5.100.509"] = {3.5, 7, 30, 60}, -- Bloodshot Eye
+	["5.100.511"] = {30, 60}, -- Angry Fly
+	["5.100.518"] = "ダメージ2倍", -- Buddy in a Box
+	["5.100.519"] = "ダメージ2倍", -- Lil Delirium
+	["5.100.525"] = {35, 70}, -- Leprosy
+	["5.100.526"] = "接触ダメージ2倍", -- 7 Seals
+	["5.100.537"] = "液体の範囲拡大のみ", -- Lil Spewer
+	["5.100.539"] = "チャンピオンタイプの 敵が生まれる", -- Mystery Egg
+	["5.100.544"] = {6, 12}, -- Pointy Rib
+	["5.100.545"] = "周回する骨のダメージ2倍", -- Book of the Dead
+	["5.100.548"] = {7, 14}, -- Jaw Bone
+	
+	["5.350.54"] = {3.5, 7}, --- Isaac's Head
+	["5.350.57"] = {3.5, 7}, --- ???'s Soul
+	["Lilith"] = "インキュバスのダメージ2倍", -- Incubus (for BFFS pedestal)
+}
+
 ---------- Trinkets ----------
+
 EID.descriptions[languageCode].trinkets={
     {"1", "飲み込んだペニー", "ダメージを受けた時 コインを1枚スポーン"}, -- Swallowed Penny
     {"2", "固まったうんち", "うんち破壊時、50%の 確率でピックアップが スポーン"}, -- Petrified Poop
@@ -695,10 +790,10 @@ EID.descriptions[languageCode].trinkets={
     {"51", "平らなペニー", "コイン取得時、50%の 確率で鍵をスポーン"}, -- Flat Penny
     {"52", "偽造ペニー", "コイン取得時、50%の 確率で所持金が1増える"}, -- Counterfeit Penny
     {"53", "ダニ", "ボスを含む、HP60以上の 敵のHPを15%減少させる#ボス部屋に入った時、 赤ハート1個回復#!!! 取得すると取り外せない#{{Trinket41}} マッチ棒で除去可能"}, -- Tick
-    {"54", "アイザックの頭", "貫通効果付き涙で攻撃する 使い魔を付与"}, -- Isaac's Head
+    {"54", "アイザックの頭", "3.5ダメージの貫通効果 付き涙で攻撃する、 追従型の使い魔を付与"}, -- Isaac's Head
     {"55", "マギーの信念", "フロア開始時、白ハートを 1個付与する"}, -- Maggy's Faith
     {"56", "ユダの舌", "悪魔取引のコストを 赤ハート1個に割り引く#{{Player4}} 青ハート3個の取引は、 ？？？使用時のみ 青ハート1個に割り引く"}, -- Judas' Tongue
-    {"57", "？？？の魂", "部屋を飛び回り、透過と ホーミング効果付き涙で 攻撃する使い魔を付与"}, -- ???'s Soul
+    {"57", "？？？の魂", "部屋を飛び回り、透過と ホーミング効果を持つ 3.5ダメージの涙で攻撃 する使い魔を付与"}, -- ???'s Soul
     {"58", "サムソンの髷", "敵を倒した時、一定確率で 攻撃力 +0.5（最大 +5）#確率：運0=6.66%、10=100%#その部屋でのみ有効"}, -- Samson's Lock
     {"59", "ケインの目", "フロア開始時、一定確率で {{Collectible21}}コンパスの効果を付与#確率：運0=25%、3=100%"}, -- Cain's Eye
     {"60", "イブの鳥足", "敵を倒した時、一定確率で {{Collectible117}}鳥の死体が現れる#確率：運0=5%、8=100%"}, -- Eve's Bird Foot
@@ -713,7 +808,7 @@ EID.descriptions[languageCode].trinkets={
     {"69", "消えかけインスタント写真", "アイザックが時々透明に なり、敵を混乱させる"}, -- Faded Polaroid
     {"70", "寄生虫", "バトル中、ランダムに 青クモがスポーンする"}, -- Louse
     {"71", "ボブの膀胱", "爆弾が置かれた場所に 緑色の液体が残り、 触れた敵にダメージを 与える"}, -- Bob's Bladder
-    {"72", "時計の電池", "部屋クリア時の報酬に 電池が出現する確率が 6.67%アップ#ランダムピックアップが 電池になる確率が2%アップ#部屋をクリアした時、 5%の確率でアクティブ アイテムが1チャージ"}, -- Watch Battery
+    {"72", "時計の電池", "部屋クリア時の報酬に 電池が出現する確率 +6.67%#ランダムピックアップが 電池になる確率 +2%#部屋をクリアした時、 5%の確率でアクティブ アイテムが1チャージ"}, -- Watch Battery
     {"73", "キャップ飛ばし", "爆発した爆弾が10%の 確率で爆弾をスポーン"}, -- Blasting Cap
     {"74", "トゲトゲファインダー", "クロールスペースの 出現率が0.5%アップ"}, -- Stud Finder
     {"75", "エラー", "部屋ごとにランダムな トリンケットの効果を 付与する"}, -- Error
@@ -773,6 +868,7 @@ EID.descriptions[languageCode].trinkets={
 }
 
 ---------- Cards ----------
+
 EID.descriptions[languageCode].cards={
     {"1", "0 - 愚者", "フロア開始時の部屋に テレポートする"}, -- The Fool
     {"2", "I - 魔術師", "その部屋に居る間、涙に ホーミング効果を付与"}, -- The Magician
@@ -830,7 +926,41 @@ EID.descriptions[languageCode].cards={
     {"54", "時代のウォーク", "その部屋に居る間：#全ての敵をスロー状態に#↑ 移動速度 +0.5#↓ 弾速　　 -1"}, -- Era Walk
 }
 
+--[[ Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
+-- Strings will be appended to the original description (with line breaks replaced with a Tarot Cloth icon)
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple) ]]
+EID.descriptions[languageCode].tarotClothBuffsAB = {
+	[4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
+	[6] = {2, 4}, -- V - The Hierophant
+	[7] = {2, 4}, -- VI - The Lovers
+	[8] = {6, 12}, -- VII - The Chariot
+	[9] = {1, 2}, -- VIII - Justice
+	[11] = {"スロットマシーンか 占いマシーンを{{ColorShinyPurple}}2つ{{CR}}スポーン"}, -- X - Wheel of Fortune
+	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
+	[14] = {40, 80}, -- XIII - Death
+	[15] = {"献血機をスポーン", "{{CR}}献血機を{{ColorShinyPurple}}2つ{{CR}}スポーン", "悪魔乞食を1体スポーン", "{{CR}}悪魔乞食を{{ColorShinyPurple}}2体{{CR}}スポーン"}, -- XIV - Temperance (+ Greed version)
+	[17] = {6, 12}, -- XVI - The Tower
+	[20] = {100, 200}, -- XIX - The Sun
+	[21] = {"スポーン", "{{ColorShinyPurple}}2体{{CR}}スポーン"}, -- XX - Judgement
+	[23] = {"2倍", "4倍"}, -- 2 of Clubs
+	[24] = {"2倍", "4倍"}, -- 2 of Diamonds
+	[25] = {"2倍", "4倍"}, -- 2 of Spades
+	[26] = {"2倍", "4倍"}, -- 2 of Hearts
+	[33] = {"2倍", "4倍"}, -- Jera
+	[35] = {1, 2}, -- Dagaz
+	[37] = {"リロール", "{{ColorShinyPurple}}2回{{CR}}リロール"}, -- Perthro
+	[38] = {3, 6}, -- Berkano
+	[39] = {30, 60}, -- Algiz
+	[40] = {"ランダムなルーンの 効果を{{ColorShinyPurple}}2回{{CR}}発動する#25%の確率でブランク ルーンをスポーンする （{{ColorShinyPurple}}2回{{CR}}抽選を行う）"}, -- Blank Rune
+	[41] = {40, 80}, -- Black Rune
+	[46] = {10, 20}, -- Suicide King
+	[48] = "2回コピーする", -- ? Card
+	[53] = {3, 6}, -- Ancient Recall
+}
+
 ---------- Pills ----------
+
 EID.descriptions[languageCode].unidentifiedPill = "未識別のピル"
 
 EID.descriptions[languageCode].pills={
@@ -883,7 +1013,33 @@ EID.descriptions[languageCode].pills={
     {"46", "げふっ、ゲロ！", "最後に使用したピルを スポーンする"}, -- Vurp!
 }
 
+---------- Character Info ----------
+-- These descriptions are shown in the Item Reminder
+-- The character names here are also used in getPlayerName to provide localized character names
+-- The numbers are provided to make this a quick reference for Player IDs
+EID.descriptions[languageCode].CharacterInfo = {
+	[0] = {"Isaac", ""},
+	[1] = {"Magdalene", ""},
+	[2] = {"Cain", ""},
+	[3] = {"Judas", ""},
+	[4] = {"???", "赤ハートを持てない#体力が増える効果は、 代わりに青ハート+1"},
+	[5] = {"Eve", ""},
+	[6] = {"Samson", ""},
+	[7] = {"Azazel", "飛行#{{Collectible118}} 短射程のブリムストーンで攻撃"},
+	[8] = {"Lazarus", "死ぬと、最大体力1の 復活ラザラスとして その部屋で復活する"},
+	[9] = {"Eden", "ゲームを始めるたび初期 アイテムとステータスが ランダムに変動する"},
+	[10] = {"The Lost", "飛行#透過効果付きの涙#{{Warning}} 体力なし#悪魔取引が一部屋につき 一回無料　　　"},
+	[11] = {"Lazarus Risen", "↑ 移動速度#↑ 射程#↑ 運#↑ 攻撃力 x1.2"},
+	[12] = {"Dark Judas", "↑ 攻撃力 x2#{{Player3}} 実績はユダとして扱う"},
+	[13] = {"Lilith", "涙を撃てない#{{Collectible360}} インキュバスが 代わりに攻撃する"},
+	[14] = {"Keeper", "コインで体力回復#最大体力2#ハートのピックアップは 青ハエに置き換わる"},
+	[15] = {"Apollyon", ""},
+	[16] = {"The Forgotten", "チャージで投てきも可能な、 骨による近接攻撃#骨ハート最大6#{{Player17}} {{ButtonRT}}でザ・ソウルに切替：#{{Blank}} 青／黒ハート最大6#{{Blank}} 飛行#{{Blank}} 透過効果付きの涙#鎖でフォーガットンに 縛られ、範囲内しか動けない"},
+	[17] = {"The Forgotten Soul", "チャージで投てきも可能な、 骨による近接攻撃#骨ハート最大6#{{Player17}} {{ButtonRT}}でザ・ソウルに切替：#{{Blank}} 青／黒ハート最大6#{{Blank}} 飛行#{{Blank}} 透過効果付きの涙#鎖でフォーガットンに 縛られ、範囲内しか動けない"},
+}
+
 ---------- Sacrifice Room ----------
+
 EID.descriptions[languageCode].sacrificeHeader = "[次の生贄部屋の報酬]"
 
 EID.descriptions[languageCode].sacrifice={
@@ -902,6 +1058,7 @@ EID.descriptions[languageCode].sacrifice={
 }
 
 ---------- Dice Room ----------
+
 EID.descriptions[languageCode].diceHeader = "[ダイス部屋の効果]"
 
 EID.descriptions[languageCode].dice={
@@ -914,6 +1071,7 @@ EID.descriptions[languageCode].dice={
 }
 
 ---------- Transformations ----------
+
 EID.descriptions[languageCode].transformations={
     "",   				 -- 0 = none
     "Guppy",   		 -- 1
@@ -933,8 +1091,8 @@ EID.descriptions[languageCode].transformations={
     "Stompy"   		 -- 15
 }
 
-
 ---------- MISC ----------
+
 -- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
 EID.descriptions[languageCode].Pluralize = ""
 
@@ -942,9 +1100,42 @@ EID.descriptions[languageCode].VoidText = "吸収した時："
 -- {1} will become the number text (like "{1} Tears up" -> "+0.5 Tears up")
 EID.descriptions[languageCode].VoidNames = {"{1} 移動速度アップ", "{1} 連射速度アップ", "{1} 攻撃力アップ", "{1} 射程アップ", "{1} 弾速アップ", "{1} 運アップ"}
 
-EID.descriptions[languageCode].CollectionPageInfo = "コレクションページに登録されていない、今まで未取得のアイテム"
+EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ 攻撃力 +4", "↑ 連射速度 +2", "↑ 移動速度 +0.5", "↑ 射程 +7.5#↑ 涙の高さ +1"}
+
+EID.descriptions[languageCode].CrookedPennyHeads = "表"
+EID.descriptions[languageCode].CrookedPennyTails = "裏"
+
+EID.descriptions[languageCode].LuckModifier = "確率：運{2}で{1}%"
+
+EID.descriptions[languageCode].CollectionPageInfo = "コレクションページに 登録されていない、 今まで未取得のアイテム"
 
 EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} 使い切りアイテム {{Warning}}"
+
+EID.descriptions[languageCode].BlackFeatherInformation = "現在{{ColorLime}}{1}{{CR}}個の対象アイテムを 所持（攻撃力 +{2}）"
+
+-- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
+-- {1} = number of hearts, {2} = plural character
+-- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
+EID.descriptions[languageCode].RedToX = {
+	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
+	["Red to Soul"] = {"↑ 最大体力 +{1}", "青ハート +{1}",
+	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{SoulHeart}} +{1} Soul Heart{2}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Soul Heart{2}"},
+	
+	["Red to Black"] = {"↑ 最大体力 +{1}", "黒ハート +{1}",
+	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{BlackHeart}} +{1} Black Heart{2}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Black Heart{2}"},
+	
+	["Red to Bone"] = {"↑ 最大体力 +{1}", "骨ハート +{1}",
+	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{EmptyBoneHeart}} +{1} Empty Bone Heart{2}", "{{HealingRed}}", "{{HealingBone}}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyBoneHeart}} {1} Bone Heart{2}"}, -- Red HP to Bone Hearts
+	
+	["Red to Coin"] = {"↑ 最大体力 +{1}", "↑ 最大体力 +{1}",
+	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{EmptyCoinHeart}} +{1} Empty Coin Heart{2}",
+	"{{HealingRed}} Heals {1} heart{2}", "{{HealingCoin}} Heals {1} coin{2}", "{{HealingRed}} Heals half a heart", "{{HealingCoin}} Heals 1 coin", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyCoinHeart}} {1} Coin Heart{2}"}, -- Red HP to Coin Hearts
+	
+	["Red to None"] = {"↑ 最大体力 +{1}", "", "↑ {{EmptyHeart}} +{1} Empty heart container{2}", "", "↓ {{EmptyHeart}} {1} Health", ""}, -- Red HP to None (The Lost)
+}
 
 EID.descriptions[languageCode].MCM = {
     DemoObjectName = "Demo Object Name",
@@ -954,7 +1145,18 @@ EID.descriptions[languageCode].MCM = {
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
 EID.descriptions[languageCode].ItemReminder = {
-	ResultHeader = " 結果",
+	ResultHeader = "{1} 結果",
+	InventoryEmpty = "(所持アイテムなし)",
+	CategoryNames = {
+		Overview = "インベントリの概要",
+		Wisps = "レメゲトンのウィスプ",
+		Special = "スペシャル",
+		Actives = "アクティブアイテム",
+		Pockets = "ポケットアイテム",
+		Trinkets = "トリンケット",
+		Passives = "パッシブアイテム",
+		Character = "キャラクター情報",
+	}
 }
 
 -- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
@@ -963,7 +1165,7 @@ EID.descriptions[languageCode].RoomTypeNames = { "通常の部屋", "お店", "I
 -- Not technically room types but still potentially useful to have localized
 [666] = "天使／悪魔部屋", [1024] = "赤い部屋", [1025] = "特殊な赤い部屋" }
 
--- currently used for D1
+-- currently used for D1 and Glyph of Balance; contains Rep pickups for ease of localization
 EID.descriptions[languageCode].PickupNames = {
 	["5.0"] = "None",
 
@@ -978,6 +1180,8 @@ EID.descriptions[languageCode].PickupNames = {
 
 	["5.40"] = "{{Bomb}} 爆弾",
 	["5.40.1"] = "{{Crafting15}} 爆弾", ["5.40.2"] = "{{Crafting15}} 爆弾ｘ2", ["5.40.3"] = "{{Crafting15}} トロル爆弾", ["5.40.4"] = "{{Crafting16}} 金爆弾", ["5.40.5"] = "{{Crafting15}} メガトロル爆弾", ["5.40.7"] = "{{Crafting17}} 巨大爆弾",
+
+	["5.42"] = "{{Crafting29}} Poop Nugget", ["5.42.1"] = "{{Crafting29}} Big Poop Nugget",
 
 	["5.90"] = "{{Battery}} 電池",
 	["5.90.0"] = "{{Crafting19}} 電池", --AB+ didn't have subtypes for batteries
@@ -994,14 +1198,146 @@ EID.descriptions[languageCode].PickupNames = {
 
 }
 
+-- Conditional descriptions - DO NOT TRANSLATE THE FIRST PART IN ["BRACKETS"]
+-- Strings will be appended to the original description
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (if there's an odd number of entries, the last entry is appended)
+-- For collectible/player conditionals, lines will automatically have their bulletpoint, and {1} is replaced with their name
 EID.descriptions[languageCode].ConditionalDescs = {
-	["5.300.48"] = "I AM ERRORにテレポート#白紙のカードと？カード 両方が消失する", -- Blank Card + Q Card
-
-	["5.100.81"] = "赤ハートを持てない キャラクターの場合、 青／黒ハートを1個に 設定・復活", -- Dead Cat
-	["5.100.241"] = "{{GreedMode}} グリードモードでは 効果なし", -- Contract From Below
-	["Keeper 0-1"] = "{{Player14}} キーパー使用時は0～1コイン", -- IV Bag Keeper
-	["5.100.135 (PHD)"] = "{{Collectible75}} PHD所有時は2～3コイン", -- IV Bag PHD
-	["No Red"] = "赤ハートを持てない キャラクターの場合、 効果なし", -- Dark Prince's Crown
-	["5.300.15"] = "{{DemonBeggar}} 悪魔乞食をスポーン", -- Temperance (Greed Mode effect)
+	------ GENERAL STRINGS ------
+	["Overridden"] = "{1}で上書きされる",
+	["Overrides"] = "{1}を上書きする",
+	["Almost No Effect"] = "{1}とはシナジーなし",
+	["No Effect"] = "{1}には効果なし",
+	["No Effect Replace"] = "{1}には効果なし", -- Useless Keeper items (The Wafer, Converter, Whore)
+	["No Effect From"] = "{1}の効果なし",
+	["Can't Charge"] = "{1}：チャージ不可",
+	["Can't Be Charged"] = "{1}：チャージ不可",
+	["Can't Be Duplicated"] = "複製できない",
+	["No Effect (Greed)"] = "{{GreedMode}} グリードモードでは効果なし",
+	["No Effect (Copies)"] = "複数所持でも効果なし", -- Having the item already, or having Diplopia while looking at a pedestal
+	["No Effect (Familiars)"] = "追加の効果なし", -- probably just for Hive Mind + BFFS!
+	["No Red"] = "赤ハートを持てない キャラに効果なし",
+	["Different Effect"] = "{{ColorSilver}}{1}では効果が変化{{CR}}",
+	["Dies on Use"] = "{{Warning}} {1}で使うと死ぬ", -- for Razor Blade and such as The Lost
+	
+	
+	------ GREED MODE ------
+	["Room to Wave"] = {"room", "wave", "room", "wave"}, -- convert room clear effects to wave clear effects
+	["No Champion Drops"] = "!!! グリードモードでは、 チャンピオンタイプの 敵はピックアップを 落としません", -- Champion Belt / Purple Heart
+	["5.300.15"] = {"{{DemonBeggar}} 悪魔乞食を1体スポーン"}, -- Temperance (Greed)
+	["5.300.19"] = {"フロア開始時の部屋に テレポートする"}, -- The Moon (Greed)
+--  ["5.300.20"] = {"{{HealingRed}} Full health#Deals 100 damage to all enemies"}, -- XIX - The Sun (Greed)
+	["5.100.483 (Greed)"] = "{{GreedMode}} ウェーブごとではなく、 各部屋で一度ずつ爆発", -- Mama Mega (Greed)
+	["5.100.535"] = "{{GreedMode}} シールド効果は最終 フロアでのみ有効", -- Blanket (Greed)
+	["5.350.120"] = "{{GreedMode}} チャージ効果は最終 フロアでのみ有効", -- Hairpin (Greed)
+--  ["5.100.246"] = {"{{SuperSecretRoom}} Reveals the Super Secret Room location on the map"}, -- Blue Map (Greed)
+--  ["5.100.333"] = {"{{SuperSecretRoom}} Reveals the Super Secret Room location on the map"}, -- The Mind (Greed)
+	["5.100.514"] = {"敵と弾がランダムな 間隔で遅延を起こす"}, -- Broken Modem (Greed)
+	["5.350.34"] = {"宝箱・ｘ岩・破壊した 機械・殺した乞食から、 33%の確率でハートが 追加でスポーンする"}, -- Child's Heart
+	["5.350.36"] = {"宝箱・ｘ岩・破壊した 機械・殺した乞食から、 33%の確率で鍵が追加で スポーンする"}, -- Rusted Key
+	["5.350.41"] = {"宝箱・ｘ岩・破壊した 機械・殺した乞食から、 33%の確率で爆弾が 追加でスポーンする#!!! {{Trinket53}}ダニを除去できる"}, -- Match Stick
+	["5.350.44"] = {"宝箱・ｘ岩・破壊した 機械・殺した乞食から、 33%の確率でピルが 追加でスポーンする"}, -- Safety Cap
+	["5.350.45"] = {"宝箱・ｘ岩・破壊した 機械・殺した乞食から、 33%の確率でカードが 追加でスポーンする"}, -- Ace of Spades
+	["5.350.72"] = {"ランダムピックアップが 電池になる確率 +2%#ウェーブをクリアした時、 5%の確率でアクティブ アイテムが1チャージ"}, -- Watch Battery
+	["5.100.297 (Greed)"] = {"{{Warning}} 使い切りアイテム {{Warning}}#使用フロアで効果が変化：#Basement：爆弾と鍵 各2個#Caves：ボスアイテム1個 + 青ハート2個#Depths：コイン 20枚#Womb：ボスアイテム2個#Sheol：悪魔部屋アイテム1個 + 黒ハート1個#The Shop/Ultra Greed：コイン1枚"}, -- Pandora's Box
+	
+	
+	------ ACHIEVEMENT CHECKS ------
 	["5.350.23"] = "{{Warning}} 保持中に生贄部屋で死ぬと ザ・ロストをアンロック", -- Missing Poster (Unlock The Lost)
+	["5.100.297"] = {"{{Collectible523}}お引越し用の箱をアンロック", "何もなし"}, -- Pandora's Box unlocking Moving Box
+	
+	
+	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
+	-- NO RED HEALTH CHARS
+	["Super Bandage Soul"] = {"青ハート +3"}, -- for Soul Heart chars
+	["Super Bandage Black"] = {"青ハート +2#黒ハート +1"}, -- for Black Heart chars
+	["Black Lotus Soul"] = {"青ハート +2#黒ハート +1"}, -- for Soul Heart chars
+	["Black Lotus Black"] = {"青ハート +1#黒ハート +2"}, -- for Black Heart chars
+	
+	
+	["5.100.135 (PHD)"] = "{1}所有時は2～3コイン", -- IV Bag PHD
+	["Keeper 0-1"] = "{1}は0～1コイン （PHDよりも優先）", -- IV Bag/Piggy Bank Keeper
+	["5.100.549"] = "{1}は取得時：# ↑ 連射速度 +0.4", -- Brittle Bones (Keeper+Lost)
+	["5.100.501"] = "{1}：最大体力アップ可", -- Greed's Gullet
+	["5.100.230 (Keeper)"] = "{{Warning}} {1}：取ると死ぬ", -- Abaddon
+	
+
+	------ DUPLICATE COPIES OF ITEMS ------
+	["5.100.2 (Copies)"] = "同時発射数 +3#連射速度ダウンなし", -- The Inner Eye
+	["5.100.153 (Copies)"] = "同時発射数 +4#連射速度ダウンなし", -- Mutant Spider
+	["5.100.245 (Copies)"] = "同時発射数 +2", -- 20/20
+	["5.100.358 (Copies)"] = "同時発射数 +2", -- The Wiz
+--  ["5.100.64 (Copies)"] = "Owning this item a second time makes all Shop items free", -- Steam Sale
+	["5.100.118 (Copies)"] = "ビームを追加で発射する", -- Brimstone
+	["5.100.440 (Copies)"] = "移動速度 -0.2", -- Kidney Stone
+	
+	
+	----- MISC. ITEM CONDITIONS ------
+	["Sacrificial Nugget"] = "{{ColorYellow}}ブラウンナゲット{{CR}}の ハエは使い魔扱い",
+	["Sacrificial Conception"] = "{1}から 生まれた使い魔も対象で、 その場合、生贄になった 使い魔はあとで復活する",
+	["Sacrificial Angels"] = "{1}： 生贄に捧げられた時、 黒ハートを2個スポーン",
+	["Sacrificial Void"] = "{{ColorYellow}}ボイド{{CR}}に吸収すると 何度でも使用できる",
+	
+--  ["5.100.116 (1 Room)"] = "1 Room recharges become 15 second recharges while in an uncleared room", -- 9 Volt
+--  ["5.100.116 (Timed)"] = "Timed recharges start half full", -- 9 Volt
+--  ["9 Volt 1 Room"] = "15 second recharge while in an uncleared room", -- Actives + 9 Volt
+--  ["9 Volt Timed"] = "Charge starts half full after use", -- Actives + 9 Volt
+	["5.100.205 (Wafer)"] = "チャージ時のダメージを 半ハートに軽減する", -- Sharp Plug + Wafer
+	
+	["Suicide 1"] = "{1}では死を防げない", -- Plan C, Damocles, Suicide King
+	["Suicide 2"] = "{1}による死を防げない", -- Plan C, Damocles, Suicide King
+	
+--  ["5.100.7"] = "x1.5 Damage multiplier while {1} effect is active", -- Blood of the Martyr
+--  ["5.100.34"] = "x1.5 Damage multiplier", -- Book of Belial
+--  ["5.300.16"] = "x1.5 Damage multiplier", -- XV - The Devil
+	
+	["5.100.81"] = "赤ハートを持てないキャラは 青／黒ハートを1個にする", -- Dead Cat
+--  ["5.100.316"] = "{1}removes the teleportation effect", -- Cursed Eye
+--  ["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
+	["? Card Single Use"] = "使い切りアイテムは ？カードを使うと消失する", -- Single Use Actives + ? Card
+	["5.300.48"] = "I AM ERRORにテレポート#白紙のカードと？カード 両方が消失する", -- Blank Card + ? Card
+	["? + Blank Pedestal"] = "白紙のカードで？カードを 使うと、I _AM_ERRORに テレポートし、両カード共 消失する", -- Looking at Blank Card with ? Card
+--  ["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
+	["5.100.521"] = "{{Collectible376}} 無料化すると、商品が 補充されなくなる", -- Coupon + Restock/Greed
+	["Black Feather"] = "↑ 攻撃力 +0.2", -- Black Feather items
+	
+	["Bulb Multiple"] = "一番目のアイテムのみ参照", -- Vibrant/Dim Bulb + Schoolbag/Pocket Actives
+	["Bulb Zero"] = "チャージバーが無い アイテムでは常に有効", -- Vibrant/Dim Bulb + zero charge actives
+--  ["5.350.101 (Timed)"] = "Basically useless with timed recharges", -- Dim Bulb + Timed Recharges
+	["5.100.122"] = "{1}は赤ハート1個以下で 有効化する", -- Whore of Babylon + Eve
+	
+	["5.70.28"] = "正面と真横に発射する", -- R U A Wizard + The Wiz
+	["5.100.523"] = "パッシブアイテム扱いで吸収", -- Moving Box + Void
+	["Mongo Babies"] = "{1}でコピー可", -- Mongo Baby + Baby Familiars
+	["Technology 2 One Eye"] = "涙を撃てなくなる代わりに、 右目から{{Collectible68}}テクノロジーの レーザーを同時に発射する",
+	["Brimstone Proptosis"] = "ビームはゼロ距離で 2倍のダメージを与え、 距離が離れるほど ダメージが低下する",
+	["Brimstone Ipecac"] = "チャージ中に吐き気薬の 涙が発射される#レーザーのダメージ +40",
+	["Proptosis Anti-Gravity"] = "静止中の涙はダメージと サイズを維持する",
+	["Epic Fetus Soy Milk"] = "発射間隔は変わらず、 ダメージは大幅ダウン",
+	["Eye of Belial Dr. Fetus"] = "爆弾は貫通するも、 追加ダメージを与えず、 ホーミングもしない",
+	["Epic Fetus Brimstone"] = "{1}が優先される#爆発時、10本のレーザーを放つ",
+	["Epic Fetus Mom's Knife"] = "{1}が優先される#爆発時、10本のナイフを放つ",
+	["Haemolacria Brimstone"] = "{1}が優先される#涙が4～7本のレーザーを放つ",
+	["Brimstone Mom's Knife"] = "{1}が優先される#チャージ量に応じてナイフの 弾幕が発射される",
+	["Ludovico Ipecac"] = "攻撃力+4、毒・爆発なし",
+	["Technology Ipecac"] = "攻撃力+4、毒効果付与",
+	["Chocolate Milk Overrides"] = "↑ 連射速度 x1.25",
+	["Chocolate Milk Marked"] = "照準との距離に応じて 連射速度とダメージが 自動的に切り替わる",
+	["Ghost Pepper Fart"] = "おならと同時に炎を放つ",
+	["Damage Multiplier Stack"] = "ダメージ倍率はスタックしない",
+	["White Poop"] = "白いうんちをスポーン",
+	["White Poop Chance"] = "白いうんちを確率スポーン",
+	["Golden Poop Chance"] = "黄金うんちを確率スポーン",
+--  ["5.100.483"] = "{{GoldenBomb}} 金爆弾を所持している時、 ママメガ！の代わりに それを消費して効果を 発動できる",
+	
+	["5.300.5"] = {"ランダムなボス部屋に テレポートする"}, -- IV - The Emperor (in The Void)
+	["5.300.18"] = "トレジャールームが無い 場合、ランダムな部屋に テレポートする", -- XVII - The Stars (Womb and below)
+	["5.300.18 (Greed)"] = {"ランダムなトレジャー ルームにテレポート"}, -- XVII - The Stars (Greed)
+	["5.300.18 (Late Greed)"] = {"フロア開始時の部屋に テレポートする"}, -- XVII - The Stars (Greed Last Floors)
+	["5.300.10"] = "お店が無い場合、ランダムな 部屋にテレポートする", -- IX - The Hermit (Womb and below)
+	
 }
+
+
+

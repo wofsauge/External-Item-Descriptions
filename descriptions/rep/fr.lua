@@ -312,7 +312,7 @@ local repCollectibles={
 	[565] = {"565", "Chiot de Sang", "Pourchasse et inflige des dégâts aux ennemis#Après avoir tué assez d'ennemis, il s'énerve et peut aussi attaquer Isaac#Il peut être calmé si Isaac lui inflige assez de dégâts ou le fait exploser"}, --  Blood Puppy
 	[566] = {"566", "Attrape-Rêve", "{{HalfSoulHeart}} +1 demi-cœur d'âme à chaque nouvel étage#Révèle le boss et le contenu de la Salle du Trésor dans le cauchemar entre les étages"}, --  Dream Catcher
 	[567] = {"567", "Cierge Pascal", "↑ Débit {{ColorLime}}+0.4{{ColorWhite}} pour chaque salle terminée sans subir de dégâts {{ColorSilver}}(jusqu'à {{ColorLime}}débit +5{{ColorSilver}})#Subir un dégât remet le bonus à zéro"}, --  Paschal Candle
-	[568] = {"568", "Intervention Divine", "Appuyer deux fois sur un bouton de tir invoque un bouclier qui repousse les ennemis et renvoie les projectiles et lasers#{{Timer}} L'effet dure 1 seconde#{{Timer}} 3 secondes de recharge"}, --  Divine Intervention
+	[568] = {"568", "Intervention Divine", "Appuyer 2 fois sur un bouton de tir invoque un bouclier qui repousse les ennemis et renvoie les projectiles et lasers#{{Timer}} L'effet dure 1 seconde#{{Timer}} 3 secondes de recharge"}, --  Divine Intervention
 	[569] = {"569", "Serment du Sang", "Au début de chaque étage, vide Isaac de tous ses cœurs rouges sans le tuer#Chaque cœur perdu augmente les dégâts et la vitesse pour l'étage#Chaque demi-cœur perdu compte comme un dégât individuel infligé à Isaac"}, --  Blood Oath
 	[570] = {"570", "Cookie en Pâte à Modeler", "Donne un effet différent à chaque larme d'Isaac"}, --  Playdough Cookie
 	[571] = {"571", "Chaussettes Orphelines", "↑ Vitesse {{ColorLime}}+0.3#{{SoulHeart}} +2 cœurs d'âme#Rend Isaac invulnérable aux flaques corrosives et aux piques"}, --  Orphan Socks
@@ -1325,6 +1325,8 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Pet", "Repousse les ennemis et projectiles et crée un nuage de poison#{{Warning}} Explose au contact du feu"},
 	{"Bombe", "Bombe jetable"},
 	{"Diarrhée explosive", "Fait apparaître 5 bombes aux pieds d'Isaac"},
+
+	["Unknown"] = {"{{PoopSpell1}}", "Caca inconnu", "Effets inconnus"}
 }
 
 ---------- Misc. Text ----------

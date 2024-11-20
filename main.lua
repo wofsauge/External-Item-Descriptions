@@ -6,12 +6,13 @@ EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
 EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, so we save the value before anyone can alter it
+EID.isRepentancePlus = FontRenderSettings ~= nil -- Repentance+ adds FontRenderSettings() class. We use this to check if the DLC is enabled
 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.83
-EID.ModVersionCommit = "c467bb0"
+EID.ModVersion = 4.85
+EID.ModVersionCommit = "5ef24ca"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -130,6 +131,20 @@ if EID.isRepentance then
 	local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
 	require("features.eid_bagofcrafting")
 	require("features.eid_tmtrainer")
+
+	-- Load Repentance+ DLC data 
+	if EID.isRepentancePlus then
+		EID.GameVersion = "rep+"
+		for _,lang in ipairs(EID.Languages) do
+			local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
+			if not wasSuccessful and not string.find(err, "not found") then
+				Isaac.ConsoleOutput("Load rep+ "..lang.." failed: "..tostring(err))
+			end
+		end
+		local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
+
+		require("features.eid_xmldata_rep+")
+	end
 end
 
 EID.LastRenderCallColor = EID:getTextColor()
@@ -377,8 +392,17 @@ function EID:CheckVoidAbsorbs(_, _, player)
 	player = player or EID.player
 	local playerID = EID:getPlayerID(player, true)
 	EID.absorbedItems[tostring(playerID)] = EID.absorbedItems[tostring(playerID)] or {}
+	-- Remove single use items from Void on use in Repentance
+	if EID.isRepentance then
+		for k,_ in pairs(EID.SingleUseCollectibles) do
+			EID.absorbedItems[tostring(playerID)][tostring(k)] = nil
+		end
+	end
 	for _,v in ipairs(EID:VoidRoomCheck()) do
-		EID.absorbedItems[tostring(playerID)][tostring(v)] = true
+		-- Don't include single use items in AB+ (they're immediately used and gone)
+		if EID.isRepentance or not EID.SingleUseCollectibles[v] then
+			EID.absorbedItems[tostring(playerID)][tostring(v)] = true
+		end
 	end
 	EID.RecheckVoid = true
 end
