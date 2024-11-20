@@ -14,7 +14,7 @@ local languageCode = "spa"
 
 local collectibles = {
 	-- Change: added "Creep persists until you exit the room"
-	[56] = {"56", "Accidente de Limón", "Crea una piscina de limonada#La limonada Inflige 24 de daño por segundo#este persiste hasta que abandones la habitacion"}, -- Accidente de Limón
+	[56] = {"56", "Accidente de Limón", "Crea una piscina de limonada#La limonada Inflige 24 de daño por segundo#esta persiste hasta que abandones la habitacion"}, -- Accidente de Limón
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
 	[117] = {"117", "Ave Muerta", "Tras ser golpeado genera un pajaro que ataca a los enemigos#El pajaro inflige 4.3 de daño de contacto por segundo#Persiste entre habitaciones si el jugador esta a 1/2 corazon"}, -- Ave Muerta
 	-- Change: Complete rewrite
@@ -34,9 +34,9 @@ local collectibles = {
 	-- Change: Heals 2 hearts instead of 1/2
 	[594] = {"594", "Júpiter", "↑ {{EmptyHeart}} +2 Contenedores de Corazón Vacíos#↓ {{Speed}} Velocidad -0.3#{{HealingRed}} Cura 2 corazones#{{Speed}} Bonus de velocidad +0.5 al quedarse quieto#{{Poison}} Libera nubes de veneno al moverse#{{Poison}} inmunidad al Veneno"}, -- Júpiter
 	-- Change: Complete rewrite
-	[632] = {"632", "Nazar", "↑ {{Luck}} Suerte +2#Inmunidad a efectos de {{Burning}} daño por fuego, {{Confusion}} confusion, {{Fear}} miedo, {{Slow}} Telarañas y {{Poison}} Veneno#Otorga 1 segundo de inmunidad al creep"}, -- Amuleto Maldito
+	[632] = {"632", "Nazar", "↑ {{Luck}} Suerte +2#Inmunidad a efectos de {{Burning}} Quemadura, {{Confusion}} Confusión, {{Fear}} Miedo, {{Slow}} Telarañas y {{Poison}} Veneno#Otorga 1 segundo de inmunidad al creep"}, -- Amuleto Maldito
 	-- Change: Complete rewrite
-	[681] = {"681", "Portal Pequeño", "Disparar 2 veces en una direccion lanza el portal#Inflige daño por contacto al ser lanzado#Consume los recolectables a su paso#Cada uno aumentará su tamaño, daño, y generará una Mosca Azul#Consumir 2-3 recolectables genera un portal a una habitacion especial y el familiar desaparece por el resto del nivel#El contenido de la habitacion persiste por el resto de la partida"}, -- Portal Pequeño
+	[681] = {"681", "Portal Pequeño", "Disparar 2 veces en una dirección lanza el portal#Inflige daño por contacto al ser lanzado#Consume los recolectables a su paso#Cada uno aumentará su tamaño, daño, y generará una Mosca Azul#Consumir 2-3 recolectables genera un portal a una habitacion especial y el familiar desaparece por el resto del nivel#El contenido de la habitacion persiste por el resto de la partida"}, -- Portal Pequeño
 	-- Change: Added info about the damage based on item quality
 	[706] = {"706", "Abismo", "Consume todo objeto dentro de la habitacion y genera una mosca familiar por objeto#Algunos objetos generan una mosca especial al ser consumidos#{{Damage}} Las moscas hacen daño igual a Isaac multiplicado por la calidad del objeto consumido:#{{Quality0}} - 0.5x#{{Quality1}} - 0.75x#{{Quality2}} - 1.0x#{{Quality3}} - 1.5x#{{Quality4}} - 2.0x"}, -- Abismo	
 }
@@ -46,13 +46,13 @@ EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].coll
 
 local trinkets = {
 	-- Change: added ", {{Trinket135}} A Lighter"
-	[53] = {"53", "La garrapata", "{{HealingRed}} Cura 1 corazón al entrar a una {{BossRoom}} Sala de Jefe#El jefe comienza con -15% de vida#{{Warning}} Al ser recogido, no puede ser quitado#Solo es removible con {{Trinket41}} la Cerilla {{Trinket135}} el Mechero, o tragándotelo"}, -- La garrapata
+	[53] = {"53", "La garrapata", "{{HealingRed}} Cura 1 corazón al entrar a una {{BossRoom}} Sala de Jefe#El jefe comienza con -15% de vida#{{Warning}} Al ser recogido, no puede ser soltado#Solo es quitado con {{Trinket41}} la Cerilla {{Trinket135}} el Mechero, o tragándotelo"}, -- La garrapata
 	-- Change: Changed "12-20 times" to "6-12 times"
-	[97] = {"97", "Amígdala", "Recibir daño 6-12 veces genera un familiar que bloquea proyectiles#Limite de 2 familiaresa la vez"}, -- Amígdala
+	[97] = {"97", "Amígdala", "Recibir daño 6-12 veces genera un familiar que bloquea proyectiles#Limite de 2 familiares a la vez"}, -- Amígdala
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "Fusible corto", "Las bombas colocadas explotan más rápido#Las bombas hacen un 15% mas de daño"}, -- Fusible corto
 	-- Change: "2%" to "5%"
-	[104] = {"104", "Hueso de los deseos", "Probabilidad de 5% de destruise y generar un objeto al ser golpeado"}, -- Hueso de los deseos
+	[104] = {"104", "Hueso de los deseos", "Probabilidad de 5% de destruirse y generar un objeto al ser golpeado"}, -- Hueso de los deseos
 	-- Change: "2%" to "5%"
 	[105] = {"105", "Bolsa del almuerzo", "Probabilidad de 5% de destruirse y generar {{Collectible22}} Almuerzo al ser golpeado"}, -- Bolsa del almuerzo
 }
