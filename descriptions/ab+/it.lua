@@ -1264,8 +1264,8 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 
 	------ DUPLICATE COPIES OF ITEMS ------
-	["5.100.2 (Copies)"] = "Isaac spara altre 3 lacrime#Nessuna ulteriore diminuzione di statistica", -- The Inner Eye
-	["5.100.153 (Copies)"] = "Isaac spara altre 4 lacrime#Nessun ulteriore aumento di statistica", -- Mutant Spider
+	["5.100.2 (Copies)"] = "Isaac spara altre 3 lacrime#Nessuna ulteriore diminuzione della statistica", -- The Inner Eye
+	["5.100.153 (Copies)"] = "Isaac spara altre 4 lacrime#Nessun ulteriore aumento della statistica", -- Mutant Spider
 	["5.100.245 (Copies)"] = "Isaac spara altre 2 lacrime", -- 20/20
 	["5.100.358 (Copies)"] = "Isaac spara altre 2 lacrime più vicine al centro", -- The Wiz
 	["5.100.64 (Copies)"] = "Possedere questo oggetto per 2 volte rende gratuiti tutti gli oggetti nel Negozio", -- Steam Sale
