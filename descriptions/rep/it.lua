@@ -36,7 +36,7 @@ local repCollectibles={
 	[42] = {"42", "Testa Marcia di Bob", "Usare l'oggetto e sparare in una direzione fa scagliare la testa#{{Poison}} La testa esplode nel luogo in cui atterra e crea una nube velenosa#Infligge i danni di Isaac + 185"}, -- Bob's Rotten Head
 	[45] = {"45", "Cuore Gustoso", "{{HealingRed}} Cura di 1 cuore#{{HalfHeart}} Cura altri giocatori di mezzo cuore"}, -- Yum Heart
 	[46] = {"46", "Piede Fortunato", "↑ {{Luck}} +1 Fortuna#Maggiori chance di vittoria nel gioco d'azzardo#Aumenta le chance di una ricompensa a completamento stanza#Trasforma le pillole negative in positive"}, -- Lucky Foot
-	[52] = {"52", "Dr. Fetus", "↓ {{Tears}} x0.4 Moltiplicatore Rateo di Fuoco#{{Bomb}} Isaac spara bombe al posto delle lacrime#{{Damage}} Tali bombe infliggono x10 di danni delle lacrime di Isaac#Se infliggerebbero 60 danni, infliggono invece x5 di danni +30"}, -- Dr. Fetus
+	[52] = {"52", "Dr. Fetus", "↓ {{Tears}} x0.4 Moltiplicatore Rateo di Fuoco#{{Bomb}} Isaac spara bombe al posto delle lacrime#{{Damage}} Tali bombe infliggono x10 di danni delle lacrime di Isaac#Se infliggerebbero 60 danni o più, infliggono invece x5 di danni +30"}, -- Dr. Fetus
 	[53] = {"53", "Magneto", "Isaac attrae a sé i consumabili#Apre i bauli da due caselle di distanza, ignorando i danni dei Bauli Puntuti"}, -- Magneto
 	[55] = {"55", "Occhio di Mamma", "50% di chance di sparare una lacrima extra dietro di sé#{{Luck}} 100% di chance con 5 di Fortuna"}, -- Mom's Eye
 	[59] = {"59", "Il Libro di Belial", "{{AngelDevilChance}} +12.5% di chance di una Stanza del Diavolo/dell'Angelo mentre viene tenuto#{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Damage}} +2 Danni"}, -- The Book of Belial (Judas' Birthright)
@@ -141,7 +141,7 @@ local repCollectibles={
 	[297] = {"297", "Scrigno di Pandora", "{{Warning}} MONOUSO {{Warning}} Genera ricompense in base al piano:#S1: 2{{SoulHeart}}; S2: 2{{Bomb}} + 2{{Key}}##{{NoLB}}G1: Oggetto del Boss; G2: G1 + 2{{SoulHeart}#P1: 4{{SoulHeart}}; P2: 20{{Coin}}#U1: 2 Oggetti del Boss#U2: {{Collectible33}} \"La Bibbia\"#???/Il Vuoto: Nulla#Sheol: Oggetto Demoniaco + 1{{BlackHeart}}#Catt.: Oggetto Angelico + 1{{EternalHeart}}#{{NoLB}}Camera Oscura: Sblocca {{Collectible523}} \"Scatola per Traslochi\"; Baule: 1{{Coin}}#Casa: {{Collectible580}} \"Chiave Rossa\""}, -- Pandoràs box
 	[300] = {"300", "Ariete", "↑ {{Speed}} +0.25 Velocità#Muoversi con più di 0.85 di Velocità rende Isaac immune ai danni da contatto e infligge ai nemici 25 danni"}, -- Aries
 	[307] = {"307", "Capricorno", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.1 Velocità#↑ {{Tears}} +0.5 Rateo di Fuoco#↑ {{Damage}} +0.5 Danni#↑ {{Range}} +1.5 Gittata#+1 {{Coin}} moneta, {{Bomb}} bomba e {{Key}} chiave#{{HealingRed}} Cura di 1 cuore"}, -- Capricorn
-	[308] = {"308", "Acquario", "Isaac lascia una scia di liquido#{{Damage}} Il liquido infligge il 66 % dei danni di Isaac al secondo e riceve gli effetti delle lacrime di Isaac"}, -- Aquarius
+	[308] = {"308", "Acquario", "Isaac lascia una scia di liquido#{{Damage}} Il liquido infligge il 66% dei danni di Isaac al secondo e riceve gli effetti delle lacrime di Isaac"}, -- Aquarius
 	[309] =	{"309", "Pisces", "↑ {{Tears}} +0.5 Rateo di Fuoco#↑ {{Tearsize}} +0.12 Dimensioni Lacrime#Aumenta la spinta delle lacrime"}, --Pisces
 	[310] =	{"310", "Mascara di Eva", "↑ {{Damage}} x2 Moltiplicatore Danni#↓ {{Tears}} x0.66 Molitplicatore Lacrime#↓ {{Shotspeed}} -0.5 Velocità Colpi"}, --Eve's Mascara
 	[314] = {"314", "Coscione", "↑ {{Heart}} +1 Salute#↓ {{Speed}} -0.4 Velocità#{{HealingRed}} Cura di 1 cuore#Isaac può distruggere le rocce camminandoci sopra"}, -- Thunder Thighs
@@ -180,7 +180,7 @@ local repCollectibles={
 	[384] = {"384", "Mini Gastrina", "{{Chargeable}} Si getta e rimbalza per la stanza ad una velocità che dipende dalla quantità di carica#Infligge dai 5 ai 25 danni da contatto al secondo in base alla velocità"}, -- Lil Gurdy
 	[386] = {"386", "D12", "Rilancia gli ostacoli in altri ostacoli casuali (ad es. cacca, vasi, TNT, cacca rossa, blocchi di pietra etc.)#Piccola chance di rilanciare gli ostacoli in pulsanti, tasterminatori, cunicoli o botole"}, -- D12
 	[389] = {"389", "Sacco di Rune", "{{Rune}} Genera 1 runa o pietra dell'anima casuale ogni 7-8 stanze"}, -- Rune Bag
-	[391] = {"391", "Tradimento", "I nemici possono colpirsi a vicenda con i loro proiettili e iniziare a rivoltarsi tra di loro"}, -- Betrayal
+	[391] = {"391", "Tradimento", "I nemici possono colpirsi a vicenda con i loro proiettili e iniziare a rivoltarsi tra loro"}, -- Betrayal
 	[393] = {"393", "Bacio del Serpente", "{{Poison}} 15% di chance di sparare lacrime velenose#{{Poison}} Al contatto con i nemici li avvelena#{{BlackHeart}} I nemici avvelenati al contatto una volta morti hanno una chance di lasciare 1 Cuore Nero"}, -- Serpent`s Kiss
 	[394] = {"394", "Mirino", "↑ {{Tears}} +0.7 Lacrime#↑ {{Range}} +3 Gittata#Isaac spara automaticamente lacrime verso un mirino mobile rosso presente sul terreno#Anche i famigli sparano verso il bersaglio#Premendo il tasto di rilascio ({{ButtonRT}}) si può smettere di sparare, resettando la posizione del mirino"}, -- Marked
 	[395] = {"395", "Tecn. X", "Le lacrime di Isaac vengono rimpiazzate da un anello laser caricabile#Le dimensioni e i danni dell'anello aumentano in base alla quantità di carica fino al 100%"}, -- Tech X
@@ -221,16 +221,16 @@ local repCollectibles={
 	[476] =	{"476", "D1", "Raddoppia 1 consumabile casuale nella stanza#I consumabili duplicati potrebbero non essere identici agli originali"}, -- D1
 	[477] = {"477", "Vuoto", "Consuma tutti i piedistalli nella stanza#Oggetti attivi: i loro effetti si attivano ad ogni uso futuro di \"Vuoto\"#↑ Gli oggetti passivi conferiscono due aumenti a statistiche casuali"}, -- Void
 	[487] = {"487", "Pelapatate", "{{EmptyHeart}} Rimuove 1 Portacuori per:#↑ {{Damage}} +0.2 Danni#{{Collectible73}} Un \"Cubo di Carne\"#{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Range}} +1.5 Gittata#{{Collectible214}} Lasci una scia di sangue"}, -- Potato Peeler
-	[489] = {"489", "D Infinito", "Può operare come qualsiasi dado (escluso {{Collectible723}} \"Dado Decrementale\") con il tasto di rilascio ({{ButtonRT}})#I tempi di carica dipendono dall'ultimo dado usato e si aggiorna ad ogni uso"}, -- D Infinity
+	[489] = {"489", "D Infinito", "Può operare come qualsiasi dado (escluso {{Collectible723}} \"Dado Decrementale\") mediante il tasto di rilascio ({{ButtonRT}})#I tempi di carica dipendono dall'ultimo dado usato e si aggiorna ad ogni uso"}, -- D Infinity
 	[491] = {"491", "Bebè Acido", "{{Pill}} Genera una pillola casuale ogni 7 stanze#{{Poison}} Usare una pillola avvelena i nemici nella stanza"}, -- Acid Baby
 	[493] = {"493", "Adrenalina", "↑ {{Damage}} Più danni per ogni Portacuori vuoto#Più Portacuori vuoti ci sono, maggiore sarà il bonus"}, -- Adrenaline
 	[494] = {"494", "Scala di Giacobbe", "All'impatto le lacrime generano una scintilla elettrica#Le scintille infliggono la metà dei danni di Isaac#Le scintille possono estendersi fino a 4 nemici"}, -- Jacobs Ladder
 	[495] = {"495", "Peperoncino Fantasma", "8% di chance di sparare una fiamma blu che blocca i proiettili nemici e infligge danni da contatto#{{Luck}} 50% chance con 10 di Fortuna#La fiamma si rimpiccolisce e sparisce dopo 2 secondi"}, -- Ghost Pepper
 	[496] = {"496", "Eutanasia", "3.33% di chance di sparare un ago#{{Luck}} 25% di chance con 13 di Fortuna#Gli aghi uccidono istantaneamente i nemici normali, scoppiando in 10 lacrime#{{Damage}} Contro i boss gli aghi infliggono i danni di Isaac x3"}, -- Euthanasia
 	[497] = {"497", "Mutande Camo", "{{Confusion}} Entrare in una stanza cammuffa Isaac e confonde tutti i nemici finché non spara#↑ {{Speed}} +0.5 Velocità se nascosto#Smascherarsi infligge danni attorno ad Isaac e conferisce molto brevemente più lacrime e danni"}, -- Camo Undies
-	[500] = {"500", "Sacco di Sacchi", "Genera in sacco ogni 7-8 stanze"}, -- Sack of Sacks
+	[500] = {"500", "Sacco di Sacchi", "Genera 1 sacco ogni 7-8 stanze"}, -- Sack of Sacks
 	[501] = {"501", "Gozzo di Avarizia", "{{Heart}} +1 Portacuori per ogni 25 monete in possesso di Isaac#{{Collectible416}} Dopo 99 monete +1 Portacuori per ogni 100 monete"}, -- Greed's Gullet
-	[503] = {"503", "Piccolo Corno", "5% di chance di sparare lacrime che evocano una mano di Grande Corno#{{Luck}} 20% di chance con 15 di Fortuna#La mano uccide istantaneamente  i nemici e infligge 36 danni ai boss#Isaac infligge 7 danni da contatto al secondo"}, -- Little Horn
+	[503] = {"503", "Piccolo Corno", "5% di chance di sparare lacrime che evocano una mano di Grande Corno#{{Luck}} 20% di chance con 15 di Fortuna#La mano uccide istantaneamente i nemici e infligge 36 danni ai boss#Isaac infligge 7 danni da contatto al secondo"}, -- Little Horn
 	[504] = {"504", "Pepita Marrone", "Genera una mosca torretta che spara ai nemici#Ogni colpo infligge 3.5 danni"}, -- Brown Nugget
 	[506] = {"506", "Pugnalatore", "{{BleedingOut}} Colpire un nemico da dietro infligge il doppio dei danni e causa sanguinamento ai nemici, i quali mentre si muovono lasciano del liquido e prendono danni"}, -- Backstabber
 	[507] = {"507", "Cannuccia Appuntita", "{{Damage}} Infligge a tutti i nemici i danni di Isaac +10% della salute massima di ciascun nemico#{{HalfHeart}} Infliggere danni con la cannuccia può generare mezzi cuori"}, -- Sharp Straw
@@ -257,7 +257,7 @@ local repCollectibles={
 	[562] = {"562", "Caduto in Basso", "↑ Previene il calo delle statistiche per il resto della partita"}, -- Rock Bottom
 	[563] = {"563", "Bombe Frufru", "{{Bomb}} +5 Bombe#Le bombe di Isaac esplodono con effetti casuali"}, -- Nancy Bombs
 	[564] = {"564", "Una Saponetta", "↑ {{Tears}} +0.5 Lacrime#↑ {{Shotspeed}} +0.2 Velocità Colpi"}, -- A Bar of Soap
-	[565] = {"565", "Cucciolo Sanguinario", "Insegue i nemici#Dopo aver ucciso 15 nemici, infligge più danni, genera un mezzo Cuore Rosso ogni 10 uccisioni, ma cerca di ferire Isaac#Dopo aver ucciso 40 nemici, infligge ancora più danni, genera Cuori Rossi, e può distruggere rocce#Infliggergli abbastanza danni lo riporta alal sua prima fase"}, -- Blood Puppy
+	[565] = {"565", "Cucciolo Sanguinario", "Insegue i nemici#Dopo aver ucciso 15 nemici, infligge più danni, genera un mezzo Cuore Rosso ogni 10 uccisioni, ma cerca di ferire Isaac#Dopo aver ucciso 40 nemici, infligge ancora più danni, genera Cuori Rossi, e può distruggere rocce#Infliggergli abbastanza danni lo riporta alla sua prima fase"}, -- Blood Puppy
 	[566] = {"566", "Acchiappasogni", "{{HalfSoulHeart}} All'ingresso in un nuovo piano +1 Mezzo Cuore Celeste#Gli incubi nelle transizioni tra i livelli rivelano il boss e l'oggetto nella Stanza dei Tesori del piano successivo"}, -- Dream Catcher
 	[567] = {"567", "Cero Pasquale", "↑ {{Tears}} Completare una stanza senza subire danni conferisce +0.4 Rateo di Fuoco#Si massimizza a +2 Rateo di Fuoco {{ColorSilver}}(5 stanze){{CR}}"}, -- Paschal Candle
 	[568] = {"568", "Intervento Divino", "Alla doppia premuta del tasto di sparo viene creato uno scudo#Lo scudo dura 1 secondo, spingendo via i nemici e riflettendo proiettili e laser"}, -- Divine Intervention
@@ -271,7 +271,7 @@ local repCollectibles={
 	[576] = {"576", "Mente Sporca", "Tutte le Cacchine nemiche sono amichevoli#Distruggere la cacca genera 1-4 Cacchine#La tipologia di Cacchina dipende dalla tipologia di cacca#Le rocce possono essere rimpiazzate da cacca"}, -- Dirty Mind
 	[577] = {"577", "Damocle", "{{Warning}} MONOUSO {{Warning}}#Una spada pende al di sopra della testa di Isaac, raddoppiando tutti i piedistalli#Non raddoppia gli oggetti con un prezzo o provenienti dai bauli#{{Warning}} Dopo aver subito qualsiasi danno, la spada ha ad ogni frame una chance estremamente bassa di uccidere Isaac#Gli effetti d'invincibilità possono prevenire la morte"}, -- Damocles
 	[578] = {"578", "Limonata Gratis", "Crea una grande pozza di liquido giallo#TIl liquido infligge 24 damage al secondo"}, -- Free Lemonade
-	[579] = {"579", "Spada dello Spirito", "Isaac agita una spada al posto di sparare lacrime#{{Damage}} La spada infligge x3 dei danni di Isaac +3.5 e viene gitata con la stessa velocità con cui viene premuto il tasto di fuoco#{{Chargeable}} Caricarla effettua un attacco rotante e spara un proiettile#Agitare la spada con la salute al massimo le fa sparare proiettili#{{Tears}} La statistica delle Lacrime influisce sui tempi di carica e ogni quanto viene sparato un proiettile mentre la salute è al massimo"}, -- Spirit Sword
+	[579] = {"579", "Spada dello Spirito", "Isaac agita una spada al posto di sparare lacrime#{{Damage}} La spada infligge x3 dei danni di Isaac +3.5 e viene gitata con la stessa velocità con cui viene premuto il tasto di fuoco#{{Chargeable}} Caricarla effettua un attacco rotante e spara un proiettile#Agitare la spada con la salute al massimo le fa sparare proiettili#{{Tears}} La statistica Lacrime influisce sui tempi di carica e ogni quanto viene sparato un proiettile mentre la salute è al massimo"}, -- Spirit Sword
 	[580] = {"580", "Chiave Rossa", "Crea una stanza rossa adiacente ad una stanza normale, indicata dalla sagoma di una porta#Le Stanze Rosse possono essere stanze speciali#{{ErrorRoom}} Entrare in una stanza rossa al di fuori della mappa 13x13 del piano teletrasporta Isaac nella Stanza I AM ERROR"}, -- Red Key
 	[581] = {"581", "Mosca Psichica", "Insegue e devia i proiettili nemici#Infligge 15 danni da contatto al secondo"}, -- Psy Fly
 	[582] = {"582", "Fungo Allucinogeno", "↑ {{Tears}} +0.75 Rateo di Fuoco#↓ {{Speed}} -0.03 Velocità#Distorce lo schermo#Ad ogni uso impiega più tempo a caricarsi#Lasciare le stanze o completarle ne riduce gli effetti"}, -- Wavy Cap
@@ -338,7 +338,7 @@ local repCollectibles={
 	[643] = {"643", "Rivelazione", "{{SoulHeart}} +2 Cuori Celesti#Volo#{{Chargeable}} Raggio sacro dai danni elevati#Non rimpiazza le lacrime di Isaac"}, -- Revelation
 	[644] = {"644", "Premio di Consolazione", "↑ Aumenta la più bassa tra  Velocità, Rateo di Fuoco, Danni, e Gittata#Genera tra 3 {{Coin}} monete, 1 {{Bomb}} bomba, o 1 {{Key}} chiave in base a cosa Isaac ha di meno"}, -- Consolation Prize
 	[645] = {"645", "Minitoma", "Grosso orbitale che  blocca i proiettili#Infligge 3.5 danni da contatto al secondo#Dopo aver subito 3 colpi si scinde in versione più piccole di se stessi#Le versioni piú piccole si sfaldano in ragni blu#Resuscita 5 secondi dopo la sua sparizione totale"}, -- Tinytoma
-	[646] = {"646", "Bombe Zolfo Fuso", "{{Bomb}} +5 Bombe#{{Collectible118}} Le bombe di Isaac rilasciano dei raggi di zolfo fuso in 4 direzioni#I raggi non feriscono Isaac "}, -- Brimstone Bombs
+	[646] = {"646", "Bombe Zolfo Fuso", "{{Bomb}} +5 Bombe#{{Collectible118}} Le bombe di Isaac rilasciano dei raggi di zolfo fuso in 4 direzioni#I raggi non feriscono Isaac"}, -- Brimstone Bombs
 	[647] = {"647", "4.5 Volt", "Completare le stanze non carica più gli oggetti attivi#Infliggere danni ai nemici riempie lentamente la barra di carica#I danni richiesti per le cariche aumentano ad ogni piano"}, -- 4.5 Volt
 	[648] = {"648", "", "<Item does not exist>"},
 	[649] = {"649", "Plum Fruttato", "Si muove diagonalmente attorno alla stanza, sparando lungo la via lacrime che infliggono 3 danni#Infligge 6 danni da contatto al secondo"}, -- Fruity Plum
@@ -361,7 +361,7 @@ local repCollectibles={
 	[666] = {"666", "", "<Item does not exist>"},
 	[667] = {"667", "Fantoccio", "{{Bomb}} +1 Bombe#{{Player14}} Genera Mercante come secondo personaggio#Quando muore genera ragni blu e rimuove permanentemente dall'inventario \"Fantoccio\" e qualsiasi oggetto da lui preso#{{DevilRoom}} Finché il fantoccio è in vita li oggetti della Stanza del Diavolo si pagano in monete#{{Warning}} Il fantoccio può raccogliere oggetti di trama"}, -- Strawman
 	[668] = {"668", "Biglietto di Papà", "Inizia L'Ascesa#I ninnoli lasciati nelle {{TreasureRoom}} Stanze dei Tesori o {{BossRoom}} Stanze Boss precedenti diventano {{Card78}} Chiavi Spezzate"}, -- Dad's Note
-	[669] = {"669", "Insaccato", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.2 Velocità#↑ {{Tears}} +0.5 Lacrime#↑ {{Damage}} +0.5 Danni#↑ {{Range}} +2.5 Gittata#↑ {{Shotspeed}} +0.16 Velocità Colpi#↑ {{Luck}} +1 Fortuna#{{HealingRed}} Salute al massimo#↑ {{AngelDevilChance}} +6.9% chance di una Stanza del Diavolo/dell'Angelo#↑ {{PlanetariumChance}} +6.9% chance di una Planetario"}, -- Sausage
+	[669] = {"669", "Insaccato", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.2 Velocità#↑ {{Tears}} +0.5 Lacrime#↑ {{Damage}} +0.5 Danni#↑ {{Range}} +2.5 Gittata#↑ {{Shotspeed}} +0.16 Velocità Colpi#↑ {{Luck}} +1 Fortuna#{{HealingRed}} Salute al massimo#↑ {{AngelDevilChance}} +6.9% chance di una Stanza del Diavolo/dell'Angelo#↑ {{PlanetariumChance}} +6.9% chance di un Planetario"}, -- Sausage
 	[670] = {"670", "Alternative?", "Permette ad Isaac di scegliere tra due ricompense di completamento stanza diverse"}, -- Options?
 	[671] = {"671", "Dolce Cuore", "↑ Curarsi con {{Heart}} Cuori Rossi conferisce aumenti a statistiche casuali permanenti#{{Heart}} Genera 1 Cuore Rosso"}, -- Candy Heart
 	[672] = {"672", "Un Etto di Carne", "{{DevilRoom}} Gli oggetti della Stanza del Diavolo si pagano in monete#{{Shop}} Gli oggetti del Negozio si pagano in cuori#I consumabili dei Negozi sono circondati da spine"}, -- A Pound of Flesh
@@ -397,7 +397,7 @@ local repCollectibles={
 	[702] = {"702", "Spirito Vendicativo", "Subire danni genera 1 fiammella orbitale#Le fiammelle sparano lacrime, non bloccano i proiettili e spariscono al piano successivo#Si massimizza a 6 fiammelle"}, -- Vengeful Spirit
 	[703] = {"703", "Esau Jr.", "Alterna tra il personaggio corrente con Esau Jr.#Esau Jr. ha {{BlackHeart}} 3 Cuori Neri, {{Damage}} +2 Danni, volo, e oggetti casuali pari al numero di oggetti in possesso quando l'oggetto è stato usato per la prima volta#I personaggi hanno salute e oggetti separati#{{Warning}} Se uno dei due personaggi muore la partita ha fine"}, -- Esau Jr.
 	[704] = {"704", "Violenza!", "{{Battery}} Si carica infliggendo danni#{{Timer}} Conferisce per 5 secondi:#↑ {{Speed}} +0.4 Velocità#↓ {{Tears}} x0.5 Moltiplicatore Rateo di Fuoco#↑ {{Tears}} +2 Rateo di Fuoco#↑ {{Damage}} +3 Danni#Limita gli attacchi ad uno in mischia che riflette i proiettili#{{Timer}} Ogni uccisione incrementa la durata di 1 secondo e conferisce brevemente invincibilità"}, -- Berserk!
-	[705] = {"705", "Arti Oscure", "{{Timer}} Conferisce per 1 secondo (o finché non si spara):↑ {{Speed}} +1 Velocità#Isaac può passare attraverso i nemici/proiettili e li paralizza#Finito l'effetto danneggia i nemici paralizzati, rimuove i proiettili paralizzati e crea un botto nella posizione di Isaac#Gli attacchi e il botto sono tanto più potenti quanti più nemici/proiettili vengono colpiti"}, -- Dark Arts
+	[705] = {"705", "Arti Oscure", "{{Timer}} Conferisce per 1 secondo (o finché non si spara):↑ {{Speed}} +1 Velocità#Isaac può passare attraverso i nemici/proiettili e li paralizza#Finito l'effetto danneggia i nemici paralizzati, rimuove i proiettili paralizzati e crea una zaffata nella posizione di Isaac#Gli attacchi e la zaffata sono tanto più potenti quanti più nemici/proiettili vengono colpiti"}, -- Dark Arts
 	[706] = {"706", "Abisso", "Consuma tutti i piedistalli nella stanza e genera un famiglio locusta per ciascuno di essi#Le locuste infliggono i danni di Isaac 2-3 volte ad attacco#Alcuni oggetti se consumati generano una locusta speciale"}, -- Abyss
 	[707] = {"707", "Cena", "↑ {{Heart}} +1 Salutr#{{HealingRed}} Cura di 1 cuore"}, -- Supper
 	[708] = {"708", "Pinzatrice", "↑ {{Damage}} +1 Danni#Tutte le lacrime di Isaac vengono sparate dall'occhio destro"}, -- Stapler
@@ -406,8 +406,8 @@ local repCollectibles={
 	[711] = {"711", "Limbo", "Entrare in una stanza con piedistalli fa mostrare in essi un secondo oggetto incorporeo#Usare l'oggetto inverte l'oggetto reale con quello incorporeo#Usare \"Limbo\" dopo aver preso il primo oggetto permette ad Isaac di raccogliere l'altro oggetto#{{Warning}} Se si lascia la stanza gli oggetti incorporei lasciati da soli nei piedistalli spariscono"}, -- Flip
 	[712] = {"712", "Lemegeton", "Genera un orbitale che conferisce l'effetto di un oggetto casuale#Gli oggetti hanno il 25% di chance di essere della categoria di oggetti della stanza corrente e il 75% di chance di essere della categoria della Stanza dei Tesori, Stanza del Boss o del Negozio"}, -- Lemegeton
 	[713] = {"713", "Sumptorium", "Rimuove mezzo cuore e crea un grumo#I grumi copiano le lacrime di Isaac#Ogni tipo di cuore genera un grumo con salute, danni e effetti delle lacrime diversi"}, -- Sumptorium
-	[714] = {"714", "Richiamo", "Richiama il corpo del Dimenticato da qualsiasi distanza#Durante il richiamo del Dimenticato L'Anima è invincibile"}, -- Recall
-	[715] = {"715", "Vasetto", "Usare l'oggetto quando è vuoto conserva al suo interno la cacca successiva#Usare l'oggetto con una cacca al suo interno usa quella cacca"}, -- Hold
+	[714] = {"714", "Richiamo", "Richiama il corpo di Il Dimenticato da qualsiasi distanza#L'Anima è invincibile durante il richiamo di Il Dimenticato"}, -- Recall
+	[715] = {"715", "Vasetto", "Usare l'oggetto quando è vuoto immagazzina al suo interno la cacca successiva#Usare l'oggetto con una cacca al suo interno usa quella cacca"}, -- Hold
 	[716] = {"716", "Sacca del Mercante", "Genera 3 {{Coin}} monete e 1 {{Key}} chiave#{{Shop}} Spendere 3 monete conferisce tra:#↑ {{Speed}} +0.03 Velocità#↑ {{Damage}} +0.5 Danni#↑ {{Range}} +0.25 Gittata"}, -- Keeper's Sack
 	[717] = {"717", "Strirpe del Mercante", "Roccce e altri ostacoli se distrutti generano 2 ragni blu#Nelle stanze ostili le rocce possono occasionalmente generare ragni blu"}, -- Keeper's Kin
 	[718] = {"718", "", "<Item does not exist>"},
@@ -1126,7 +1126,7 @@ local repCharacterInfo = {
 	[20] = {"Esaù", "Giacobbe e Esaù sono controllati assieme#Se viene usata una bomba entrambi ne buttano a terra una#Premendo {{ButtonRT}} Esaù rimane fermo#{{ButtonLT}} usa l'oggetto attivo di Giacobbe, {{ButtonRB}} usa quello di Esaù, per usare le sue carte/pillole va tenuto premuto {{ButtonRT}}#Se si può scegliere tra due oggetti, Giacobbe ed Esaù possono prenderli simultaneamente"},
 	
 	[21] = {"Isaac Corrotto", "I piedistalli alternano tra 2 scelte#Possono essere portati solo 8 oggetti passivi#Con {{ButtonRT}} si sceglie quale oggetto rilasciare per ottenerne un altro"},
-	[22] = {"Maddalena Corrotta", "La salute al di sopra di 2 Cuori Rossi viene lentamente prosciugata#Al contatto con i nemici effettua un colpo da mischia da x6 di danni#{{HalfRedHeart}} Chance che i nemici lascino mezzi Cuori Rossi che spariscono dopo 2 secondi#Ucciderli in mischia garantisce che vengano lasciati#{{Collectible45}} Cura doppia da fonti che non siano consumabili#{{AngelDevilChance}} Il danno subito dai cuori che perdono salute non influenza le chance di un patto con il diavolo"},
+	[22] = {"Maddalena Corrotta", "La salute al di sopra di 2 Cuori Rossi viene lentamente prosciugata#Al contatto con i nemici effettua un colpo da mischia da x6 di danni#{{HalfRedHeart}} Chance che i nemici lascino mezzi Cuori Rossi che spariscono dopo 2 secondi#Ucciderli in mischia garantisce che vengano lasciati#{{Collectible45}} Cura doppia da fonti che non siano consumabili#{{AngelDevilChance}} Il danno subito dai cuori che perdono salute non influenza le chance per un patto con il diavolo"},
 	[23] = {"Caino Corrotto", "Toccare un piedistallo lo converte in un assortimento di consumabili"},
 	[24] = {"Giuda Corrotto", "Non può avere Cuori Rossi#{{BlackHeart}} Gli aumenti di salute conferiscono Cuori Neri"},
 	[25] = {"??? Corrotto", "Non può avere Cuori Rossi#Le bombe vengono sostituite da cacche magiche#{{Crafting29}} Infliggere danni genera cacche consumabili#L'interfaccia ha un'anteprima della prossima cacca magica#{{Collectible715}} Usando \"Vasetto\" si può conservare per dopo la cacca magica successiva"},
@@ -1139,12 +1139,12 @@ local repCharacterInfo = {
 	[32] = {"Lilith Corrotta", "Premere il tasto di fuoco lancia un attacco fetale in mischia che infligge x3 di danni#Continuare a sparare fa sì che il feto spari lacrime verso il nemico più vicino"},
 	[33] = {"Mercante Corrotto", "#Massimale di 2 Portamonete#I nemici lasciano monete che spariscono dopo 2 secondi#La maggior parte dei piedistalli costa 15 monete#I patti con il diavolo o gli oggetti angelici costano 15 o 30 monete#I negozi non richiedono una chiave e hanno più merce in vendita"},
 	[34] = {"Apollion Corrotto", ""},
-	[35] = {"Il Dimenticato Corrotto", "Il Dimenticato è una pila d'ossa immobile che viene raccolta e lanciata da L'Anima, infliggendo x3 di danni#Solo L'Anima può subire danni#Le bomeb vengono piazzate nella posizione di Il Dimenticato#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti"},
+	[35] = {"Il Dimenticato Corrotto", "Il Dimenticato è una pila d'ossa immobile che viene raccolta e lanciata da L'Anima, infliggendo x3 di danni#Solo L'Anima può subire danni#Le bombe vengono piazzate nella posizione di Il Dimenticato#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti"},
 	[36] = {"Betania Corrotta", "{{Heart}} Per caricare l'oggetto attivo usa Cuori Rossi#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti e cariche sanguinee#Gli aumenti di statistica hanno un'efficacia del 75%"},
 	[37] = {"Giacobbe Corrotto", "Viene inseguito da Esaù Oscuro, caricando verso di lui a distanza ravvicinata#La carica infligge danni ingenti ai nemici#Se lo colpisce, diventa per il resto del piano uno spirito che muore in un colpo#Mentre è uno spirito può stringere gratuitamente un patto con il diavolo per stanza"},
 	[38] = {"Lazzaro Morto Corrotto", "Lazzaro ha due stadi, ciascuno con i suoi oggetti e salute#Completare una stanza/ondata o usare \"Limbo\" richiama l'altro personaggio"},
 	[39] = {"Giacobbe Corrotto 2", "Volo#Lacrime spettrali#{{Warning}} Salute nulla#{{Warning}} Se colpito da Esaù Oscuro muore#{{DevilRoom}} Può stringere gratuitamente un patto con il diavolo per stanza#Al piano successivo ritorna ad essere Giacobbe Corrotto"},
-	[40] = {"L'Anima Corrotta", "Il Dimenticato è una pila d'ossa immobile che viene raccolta e lanciata da L'Anima, infliggendo x3 di danni#Solo L'Anima può subire danni#Le bomeb vengono piazzate nella posizione di Il Dimenticato#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti"},
+	[40] = {"L'Anima Corrotta", "Il Dimenticato è una pila d'ossa immobile che viene raccolta e lanciata da L'Anima, infliggendo x3 di danni#Solo L'Anima può subire danni#Le bombe vengono piazzate nella posizione di Il Dimenticato#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti"},
 }
 EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
 
@@ -1184,12 +1184,12 @@ EID.descriptions[languageCode].birthright ={
 	{"Lilith Corrotta", "", "{{Collectible728}} I famigli che normalmente seguirebbero Lilith Corrotta seguono invece \"Gellò\"#L'attacco in mischia ottiene +3 danni per famiglio"},
 	{"Mercante Corrotto", "", "{{Coin}} Attrae con forza maggiore le monete lasciate dai nemici sconfitti#Nessun effetto sulle altre monete"},
 	{"Apollion Corrotto", "", "Finché il tasto di fuoco viene premuto le locuste danneggiano incessantemente i nemici senza ritornare"},
-	{"Il Dimenticato Corrotto", "", "{{Collectible714}} L'Anima Corrotta ottiene l'abilità \"Richiamo\" per recuperare da lontano Il Dimenticato Corrotto#Mentre Il Dimenticato ritorna L'Anima è invincibile"},
+	{"Il Dimenticato Corrotto", "", "{{Collectible714}} L'Anima Corrotta ottiene l'abilità \"Richiamo\" per recuperare da lontano Il Dimenticato Corrotto#L'Anima è invincibile durante il richiamo di Il Dimenticato"},
 	{"Betania Corrotta", "", "Genera 4 fiammelle di oggetti casuali di Qualità {{Quality3}} e {{Quality4}} con salute molto più elevata del normale"},
 	{"Giacobbe Corrotto", "", "Esaù Oscuro si scinde in due, creando un clone d'ombra di sé stesso#Entrambi gli Esaù caricano sempre nello stesso momento#{{Collectible722}} Il tempo di attesa di \"Anima Sola\" è ridotto a 10 secondi#Usare \"Anima Sola\" incatena entrambi gli Esaù per 6.67 secondi"},
 	{"Lazzaro Morto Corrotto", "", "La forma inattiva di Lazzaro Corrotto appare come un secondo personaggio spettrale#È invincibile e infligge il 25% dei danni#Entrambe le forme ricevono \"Primogenitura\""},
 	{"Giacobbe Corrotto 2", "", ""},
-	{"L'Anima Corrotta", "", "{{Collectible714}} L'Anima Corrotta ottiene l'abilità \"Richiamo\" per recuperare da lontano Il Dimenticato Corrotto#Mentre Il Dimenticato ritorna L'Anima è invincibile"},
+	{"L'Anima Corrotta", "", "{{Collectible714}} L'Anima Corrotta ottiene l'abilità \"Richiamo\" per recuperare da lontano Il Dimenticato Corrotto#L'Anima è invincibile durante il richiamo di Il Dimenticato"},
 }
 
 ---------- Glitched Item Descriptions ----------
@@ -1234,7 +1234,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.10"] = "cuore",
 	["5.20"] = "moneta",
 	["5.30"] = "chiave",
-	["5.40"] = "bomba cosnumabile",
+	["5.40"] = "bomba consumabile",
 	["5.69"] = "sacco",
 	["5.70"] = "pillola",
 	["5.90"] = "pila",
@@ -1332,7 +1332,7 @@ EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Consuma invece la 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Warning}} ATTENZIONE {{Warning}}"
 EID.descriptions[languageCode].AchievementWarningText = "Gli achievement sono disabilitati!#Per abilitare la progressione e gli achievement, come prima cosa occorre uccidere Mamma (Profondità II) senza abilitare alcuna mod#(Se hai sconfitto Mamma, questo messaggio è un bug e può essere ignorato)#(Questo avvertimento può essere disattivato nelle configurazioni)"
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID è aggiornato alla versione di Steam più recente#La versione del tuo gioco non è supportata ufficialmente, pertanto alcune descrizioni e componenti saranno imprecise#(Questo avvertimento può essere disattivato nelle configurazioni)"
-EID.descriptions[languageCode].ModdedRecipesWarningText = "Gli oggetti moddati possono rendere imprecisi i calcoli delle ricette di assemblaggio!#Installa REPENTOGON per avere un supporto migliore per le ricette moddate#(Questo avvertimento può essere disattivato nelle configurazioni)"
+EID.descriptions[languageCode].ModdedRecipesWarningText = "Gli oggetti moddati possono rendere imprecisi i calcoli delle ricette di assemblaggio!#Installa REPENTOGON per avere un miglior supporto per le ricette moddate#(Questo avvertimento può essere disattivato nelle configurazioni)"
 
 
 -- Conditional descriptions - DO NOT TRANSLATE THE FIRST PART IN ["BRACKETS"]
@@ -1349,7 +1349,7 @@ local repConditions = {
 	["5.100.344"] = {"{{BlackHeart}} +1 Cuore Nero#{{Bomb}} Genera 3 bombe"}, -- Match Book (Greed)
 	["5.300.74"] = {"Teletrasporta Isaac nella prima stanza del piano"}, -- The Moon? (Greed)
 	["5.100.416"] = {"{{Coin}} Aumenta il massimo di monete a 999"}, -- Deep Pockets (Greed)
-	["5.100.566"] = {"{{HalfSoulHeart}} All'ingresso in un nuovo piano +1 mezzo Cuore Celeste#!!! Nella Modalità Avido gli incubi nelle transizioni tra i livellimostrano gli oggetti sbagliati"}, -- Dream Catcher (Greed)
+	["5.100.566"] = {"{{HalfSoulHeart}} All'ingresso in un nuovo piano +1 mezzo Cuore Celeste#!!! Nella Modalità Avido gli incubi nelle transizioni tra i livelli mostrano oggetti errati"}, -- Dream Catcher (Greed)
 	["5.100.580"] = "{{GreedMode}} Nella Modalità Avido può raramente creare delle stanze speciali#{{SuperSecretRoom}} Può essere d'aiuto nel trovare Stanze Super Segrete", -- Red Key (Greed)
 	["5.300.83"] = "{{GreedMode}} Nella Modalità Avido può raramente creare delle stanze speciali#{{SuperSecretRoom}} Può essere d'aiuto nel trovare Stanze Super Segrete", -- Soul of Cain (Greed)
 	["5.100.514"] = {"Fa sì che alcuni nemici o proiettili si blocchino ad intermittenza per poco tempo#I proiettili bloccati spariscono"}, -- Broken Modem (Greed)
@@ -1382,7 +1382,7 @@ local repConditions = {
 	["5.100.722"] = {"Incatena Esaù Oscuro#Dopo 5 secondi o dopo aver riusato \"Anima Sola\", si libera lanciandosi verso Jacob"}, -- TJacob + Anima Sola
 	["5.100.713"] = {"Richiama tutti i grumi alla abrra di salute di Eva#I grumi in eccesso vengono spostati nella sua posizione#{{Timer}} Tempo di ricarica di 1 secondo"}, --Teve + Sumptorium
 	["5.100.711"] = {"Scambio con", "{{Player38}} Inverte Lazzaro nella sua forma alternativa#Scambio con"}, -- Tlaz + Flip
-	["5.100.710"] = {"Se usato, attaccare agita il sacco nella direzione scelta#Agitarlo ad un consumabile lo pone nel sacco#Quando è pieno i suoi contenuti possono essere spostati con {{ButtonRT}} per sostituire specifici consumabili#La qualità dell'oggetto si basa sulla qualità dei consumabili"}, -- Tcain Bag of Crafting
+	["5.100.710"] = {"Se usato, attaccare agita il sacco nella direzione scelta#Agitarlo su un consumabile lo pone nel sacco#Quando è pieno i suoi contenuti possono essere spostati con {{ButtonRT}} per sostituire specifici consumabili#La qualità dell'oggetto si basa sulla qualità dei consumabili"}, -- Tcain Bag of Crafting
 
 	["Mother's Kiss Soul"] = {"{{SoulHeart}} Se tenuto +1 Cuore Celeste"},
 	["Mother's Kiss Bone"] = {"{{BoneHeart}} Se tenuto +1 Cuore Osseo"},
