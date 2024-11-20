@@ -36,7 +36,7 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[632] = {"632", "Nazar", "↑ {{Luck}} +2 Fortuna#Immunità ai {{Burning}} danni da fuoco e agli effetti di {{Confusion}} confusione, {{Fear}} paura, e {{Poison}} veleno#Conferisce un'immunità di 1 secondo ai liquidi"}, -- Evil Charm
 	-- Change: Complete rewrite
-	[681] = {"681", "Mini Portale", "Alla doppia premuta del tasto di sparo lancia via il portale#Se lanciato infligge danni da contatto#Dissipa i consumabili lungo la via#Ogni consumabile aumenta le dimensioni e i danni, e genera 1 mosca blu#Dissipare 2-3 consumabili genera un portale per una stanza speciale, e il famiglio sparisce per il resto del piano#I contenuti nella stanza persistono per il resto della partita"}, -- Lil Portal
+	[681] = {"681", "Mini Portale", "Alla doppia premuta del tasto di sparo il portale viene lanciato#Se lanciato infligge danni da contatto#Dissipa i consumabili lungo la via#Ogni consumabile aumenta le dimensioni e i danni, e genera 1 mosca blu#Dissipare 2-3 consumabili genera un portale per una stanza speciale, e il famiglio sparisce per il resto del piano#I contenuti nella stanza persistono per il resto della partita"}, -- Lil Portal
 
 	
 	
