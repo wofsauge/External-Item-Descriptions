@@ -481,7 +481,7 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 }
 
 -- Book of Virtues wisp types
-EID.descriptions[languageCode].bookOfVirtuesfiammelle = {
+EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[33] = "Fiammella dell'anello interno {{InnerWisp}}#Lacrime a ricerca", -- The Bible
 	[34] = "Fiammella dell'anello mediano {{MiddleWisp}}#Lacrime dai danni doppi", -- The Book of Belial
 	[35] = "Fiammella dell'anello interno {{InnerWisp}}#3.5% di chance di {{Fear}} lacrime spaventose#{{Collectible35}} Se distrutta attiva l'effetto di \"Necronomicon\"", -- The Necronomicon
@@ -1198,6 +1198,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
 	AddBlackHearts = "{{BlackHeart}} {1} Cuore/i Nero/i",
 	AddBombs = "{{Bomb}} {1} Bomba/e",
+	AddCoins = "{{Coin}} {1} Moneta/e",
 	Addmonete = "{{Coin}} {1} Moneta/e",
 	AddHearts = "{{HealingRed}} Cura {1} cuore/i",
 	AddKeys = "{{Key}} {1} Chiave/i",
@@ -1419,7 +1420,7 @@ local repConditions = {
 	
 	----- MISC. ITEM CONDITIONS ------
 	["Sacrificial Nugget"] = "Converte le torrette di \"Pepita Marrone\" in monete",
-	["Sacrificial Item fiammelle"] = "I famigli creati da \"Lemegeton\" possono essere sacrificati#Converte tutte le fiammelle di \"Lemegeton\" in {{HalfSoulHeart}} mezzi Cuori Celesti",
+	["Sacrificial Item Wisps"] = "I famigli creati da \"Lemegeton\" possono essere sacrificati#Converte tutte le fiammelle di \"Lemegeton\" in {{HalfSoulHeart}} mezzi Cuori Celesti",
 	["Sacrificial Plum"] = "Il Plum evocato conta come famiglio, e non rimuove \"Flauto Plum\"",
 	["Sacrificial Quints"] = "Se viene sacrificato un famiglio di \"Quintetto\", si perde l'oggetto",
 	["Sacrificial Abyss"] = "Le locuste di \"Abisso\" contano come famigli",
