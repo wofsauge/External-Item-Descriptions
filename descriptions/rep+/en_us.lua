@@ -57,12 +57,10 @@ local trinkets = {
 	[97] = {"97", "Tonsil", "Taking damage 6-12 times spawns a projectile blocking familiar#Caps at 2 familiars"}, -- Tonsil
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "Short Fuse", "Isaac's bombs explode faster#Bombs deal 15% more damage"}, -- Short Fuse
-	
-	
-	-- TODO: check the new exact percentage of wish bone and bag lunch drops
-	-- OFFICIAL CHANGELOG TEXT: Increased the chances of the Wish Bone and Bag Lunch trinkets spawning an item.
-	--[104] = {"104", "Wish Bone", "2% chance to get destroyed and spawn a pedestal item when hit"}, -- Wish Bone
-	--[105] = {"105", "Bag Lunch", "{{Collectible22}} 2% chance to get destroyed and spawn Lunch when hit"}, -- Bag Lunch
+	-- Change: "2%" to "5%"
+	[104] = {"104", "Wish Bone", "5% chance to get destroyed and spawn a pedestal item when hit"}, -- Wish Bone
+	-- Change: "2%" to "5%"
+	[105] = {"105", "Bag Lunch", "{{Collectible22}} 5% chance to get destroyed and spawn Lunch when hit"}, -- Bag Lunch
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
