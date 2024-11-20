@@ -1325,7 +1325,7 @@ EID.descriptions[languageCode].FalsePHDDamage = "↑ {{Damage}} +0.6 Danni"
 EID.descriptions[languageCode].FalsePHDHorseDamage = "↑ {{Damage}} +1.2 Danni"
 
 EID.descriptions[languageCode].ExperimentalPillPHD = "Nessuna diminuzione di statistiche"
-EID.descriptions[languageCode].ExperimentalPillFalsePHD = "Nessun aumento casuale di statistiche"
+EID.descriptions[languageCode].ExperimentalPillFalsePHD = "Nessun aumento di statistica casuale"
 
 EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Consuma invece la chiave and Genera 6 items from random pools"
 
