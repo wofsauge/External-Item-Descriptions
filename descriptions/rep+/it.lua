@@ -16,7 +16,7 @@ local collectibles = {
 	-- Change: added "Creep persists until you exit the room"
 	[56] = {"56", "Limonata Accidentale", "Versa una pozza di liquido#TIl liquido infligge 24 danni da contatto al secondo#Il liquido persiste fino all'uscita dalla stanza"}, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
-	[117] = {"117", "Uccello Morto", "Venire colpito genera un uccello#L'uccello infligge 4.3 danni da contatto al secondo#Se il giocatore ha mezzo cuore persiste fra le stanze"}, -- Dead Bird
+	[117] = {"117", "Uccello Morto", "Venire colpito genera un uccello#L'uccello infligge 4.3 danni da contatto al secondo#Persiste fra le stanze se il personaggio ha mezzo cuore"}, -- Dead Bird
 	-- Change: Complete rewrite
 	[351] = {"351", "Mega Fagiolo", "Infligge 100 danni e pietrifica tutti i nemici nella stanza#{{Poison}} Infligge 5 danni e avvelena i nemici nelle vicinanze#Può aprire stanze segrete e rompere rocce"}, -- Mega Bean
 	-- Change: Complete rewrite
