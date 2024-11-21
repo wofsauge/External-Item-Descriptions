@@ -37,14 +37,8 @@ local collectibles = {
 	[632] = {"632", "邪眼护符", "↑ {{Luck}} 幸运+2#免疫{{Burning}}火焰伤害, {{Confusion}}混乱, {{Fear}}恐惧, {{Slow}}蜘蛛网, {{Poison}}毒气效果#获得1秒水迹免疫"}, -- Evil Charm
 	-- Change: Complete rewrite
 	[681] = {"681", "黑洞宝宝", "双击发射键可发射传送门#发射后造成接触伤害#消耗经过的掉落物#消耗掉落物会提升其尺寸, 伤害并生成1只蓝苍蝇#消耗2-3掉落物生成至特殊房间的传送门, 跟班在本层后续中消失#房间中的内容本局持续存在"}, -- Lil Portal
-
-	
-	
-	-- TODO: check how exactly the quality affects the damage of the wisp
-	-- OFFICIAL CHANGELOG TEXT: Abyss - Item quality now impacts the damage of the summoned locust. Locusts now inherit many different effects based on the item destroyed by Abyss.
-	--[706] = {"706", "Abyss", "Consumes all item pedestals in the room and spawns a locust familiar for each one#Locusts deal Isaac's damage 2-3 times an attack#Some items spawn a special locust when consumed"}, -- Abyss
-	
-	
+	-- Change: Added info about the damage based on item quality
+	[706] = {"706", "无底坑", "消耗房间中所有底座道具并对应生成蝗虫跟班#一些道具会生成特殊蝗虫#{{Damage}} 蝗虫造成1x角色伤害, 并根据道具质量修正:#{{Quality0}} - 0.5x#{{Quality1}} - 0.75x#{{Quality2}} - 1.0x#{{Quality3}} - 1.5x#{{Quality4}} - 2.0x"}, -- Abyss
 }
 EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].collectibles)
 
@@ -57,12 +51,10 @@ local trinkets = {
 	[97] = {"97", "扁桃体", "受伤6-12次后, 获得阻挡弹幕的跟班#最多+2个跟班"}, -- Tonsil
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "短引线", "角色的炸弹爆炸更快#炸弹造成的伤害提高15%"}, -- Short Fuse
-	
-	
-	-- TODO: check the new exact percentage of wish bone and bag lunch drops
-	-- OFFICIAL CHANGELOG TEXT: Increased the chances of the Wish Bone and Bag Lunch trinkets spawning an item.
-	--[104] = {"104", "Wish Bone", "2% chance to get destroyed and spawn a pedestal item when hit"}, -- Wish Bone
-	--[105] = {"105", "Bag Lunch", "{{Collectible22}} 2% chance to get destroyed and spawn Lunch when hit"}, -- Bag Lunch
+	-- Change: "2%" to "5%"
+	[104] = {"104", "许愿骨", "受伤时, 2%几率被摧毁并生成1底座道具"}, -- Wish Bone
+	-- Change: "2%" to "5%"
+	[105] = {"105", "午餐袋", "{{Collectible22}} 受伤时, 2%几率被摧毁并生成午餐"}, -- Bag Lunch
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
