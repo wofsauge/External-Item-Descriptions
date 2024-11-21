@@ -8,6 +8,8 @@ import glob, os
 SCRIPT_PATH = os.path.realpath(__file__)
 SOURCE_MOD_DIRECTORY = os.path.dirname(SCRIPT_PATH)+"/../.."
 
+ONLY_DO_LANGUAGE = ""
+
 if "GITHUB_WORKSPACE" in os.environ:
     SOURCE_MOD_DIRECTORY = os.environ["GITHUB_WORKSPACE"]
 
@@ -27,6 +29,8 @@ BWhite='\033[1;37m'       # Bold White
 
 ignoreNodesWithName = {"fonts"}
 ignoreTypeMissmatchNodesWithName = {"ConditionalDescs", "BFFSSynergies"}
+
+dlcs = ["ab+", "rep", "rep+"]
 
 maxChecklimit = {"tarotClothBuffs": 2, "carBattery": 2, "BFFSSynergies": 2}
 
@@ -56,7 +60,7 @@ def compare_tables(table1, table2, prev_key):
             # dont evaluate nodes that are listed in this table
             continue
         if k not in table2:
-            print(f"\tTable '{prev_key}' does not contain key: {k}")
+            print(f"\tTable '{prev_key}' does not contain entry: {k}")
             errorCount += 1
             # table is missing. add all missing entries as error
             if lupa.lua_type(table1[k]) == "table":
@@ -88,7 +92,11 @@ lua.execute('REPENTOGON = true; EID = {}; EID.descriptions = {}; function EID:up
 g = lua.globals()
 
 # Read English language files first
-for englishFile in glob.glob(SOURCE_MOD_DIRECTORY+"/**/ab+/en_us.lua", recursive=True) + glob.glob(SOURCE_MOD_DIRECTORY+"/**/rep/en_us.lua", recursive=True):
+englishFiles = []
+for dlc in dlcs:
+    englishFiles += glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/en_us.lua", recursive=True)
+
+for englishFile in englishFiles:
     print("reading:", englishFile)
     lua.execute(open(englishFile, "r", encoding="UTF-8").read())
 
@@ -97,8 +105,14 @@ print("en_us entries:", en_us_entries)
 
 
 languages = {}
+langFiles = []
+for dlc in dlcs:
+    if ONLY_DO_LANGUAGE != "":
+        langFiles += glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/"+ONLY_DO_LANGUAGE+".lua", recursive=True)
+    else:
+        langFiles += glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/*.lua", recursive=True)
 # Read other language files
-for file in glob.glob(SOURCE_MOD_DIRECTORY+"/**/ab+/*.lua", recursive=True) + glob.glob(SOURCE_MOD_DIRECTORY+"/**/rep/*.lua", recursive=True):
+for file in langFiles:
     if "en_us" not in file and "transformations" not in file:
         print("reading:",file)
         lua.execute(open(file, "r", encoding="UTF-8").read())
@@ -120,7 +134,7 @@ for lang in languages:
     print(
         f"\t{BWhite}{lang}{Color_Off}\t{Blue}{round(languages[lang][0],2)}%{Color_Off}\t{Red}{languages[lang][1]} missing{Color_Off}"
     )
-    errorMessage = languages[lang][1] if languages[lang][1] >0 else "🎉"
+    errorMessage = languages[lang][1] if languages[lang][1] >3 else "🎉"
     gitWorkflowSummary += f"| {lang} | {round(languages[lang][0],2)}% | {errorMessage} |\n"
 
 

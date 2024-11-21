@@ -101,7 +101,7 @@ EID.descriptions[languageCode].collectibles={
 	{"78", "Libro dell'Apocalisse", "{{SoulHeart}} +1 Cuore Celeste#{{AngelDevilChance}} +17.5% di chance di una Stanza del Diavolo/dell'Angelo mentre viene tenuto#Usare l'oggetto ha più alte chance di rimpiazzare il boss del piano con un Cavaliere"},
 	{"79", "Il Marchio", "↑ {{Speed}} +0.2 Velocità#↑ {{Damage}} +1 Danni#{{SoulHeart}} +1 Cuore Celeste"},
 	{"80", "Il Patto", "↑ {{Tears}} +0.7 Lacrime#↑ {{Damage}} +0.5 Danni#{{SoulHeart}} +2 Cuori Celesti"},
-	{"81", "Gatto Morto", "↑ +9 Vite#Una volta morto Isaac resuscita con 1 portacuori#{{Warning}} Quando viene raccolto imposta i portacuori di Isaac ad 1"},
+	{"81", "Gatto Morto", "↑ +9 Vite#Una volta morto Isaac resuscita con 1 Portacuori#{{Warning}} Quando viene raccolto imposta i Portacuori di Isaac ad 1"},
 	{"82", "Signore dell'Abisso", "↑ {{Speed}} +0.3 Velocità#Volo"},
 	{"83", "Il Chiodo", "Se usato:#{{SoulHeart}} +1 Cuore Celeste#{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Damage}} +0.7 Danni#↓ {{Speed}} -0.18 Velocità#Isaac infligge 40 danni da contatto al secondo#Permette ad Isaac di distruggere le rocce camminandoci sopra"},
 	{"84", "Scaviamo più a Fondo!", "Apre una botola per il prossimo piano#{{LadderRoom}} 10% di chance di aprire una botola con cunicolo"},
@@ -189,7 +189,7 @@ EID.descriptions[languageCode].collectibles={
 	{"166", "D20", "Rilancia tutti i consumabili nella stanza"},
 	{"167", "Bebè Arlecchino", "Spara due lacrime in una traiettoria a forma di V#Infligge 4 danni a lacrima"},
 	{"168", "Epic Fetus", "Al posto delle lacrime appare un mirino direzionabile#Un missile colpisce il mirino dopo 1.5 secondi#Infligge i danni di Isaac x20"},
-	{"169", "Polifemo", "↑ {{Damage}} +4 Danni#↑ {{Damage}} x2 Moltiplicatore Danni#↓ {{Tears}} Meno Lacrime#Le lacrime penetrano i nemici uccisi in caso di danni avanzanti"},
+	{"169", "Polifemo", "↑ {{Damage}} +4 Danni#↑ {{Damage}} x2 Moltiplicatore Danni#↓ {{Tears}} Meno Lacrime#Le lacrime penetrano i nemici uccisi in caso di danni residui"},
 	{"170", "Papà Gambalunga", "Schiaccia un nemico casuale#Infligge 40 danni al secondo"},
 	{"171", "Chiappe Ragnesche", "{{Slow}} Rallenta i nemici per 4 secondi#Infligge 10 danni a tutti i nemici"},
 	{"172", "Lama Sacrificale", "Orbitale#Blocca i proiettili nemici#Infligge 225 danni al secondo"},
@@ -383,7 +383,7 @@ EID.descriptions[languageCode].collectibles={
 	{"358", "Il Genio", "Lacrime spettrali#Isaac spara in diagonale 2 lacrime alla volta"},
 	{"359", "Chiodo schiaccia Chiodo", "↑ {{Damage}} +1.5 Danni#Aumenta la spinta delle lacrime"},
 	{"360", "Incubo", "Spara lacrime con lo stesso rateo di fuoco, danni ed effetti di quelle di Isaac"},
-	{"361", "Dono del Destino", "Spara lacrime con gli stessi danni ed effetti di quelle di Isaac#Spara alla metà del rateo degli altri famigli"},
+	{"361", "Dono del Destino", "Spara lacrime con gli stessi danni ed effetti di quelle di Isaac#Spara alla metà del rateo di fuoco degli altri famigli"},
 	{"362", "Bauletto", "Genera 1 consumabile casuale ogni qualche stanza"},
 	{"363", "Eterno Protettore", "Orbitale#Infligge 105 danni da contatto al secondo#Blocca e attrae i proiettili nemici#{{EternalHeart}} Bloccare dieci proiettili in una stanza genera 1 Cuore Eterno"},
 	{"364", "Friend Zone", "Mosca orbitale a medio raggio#Infligge 45 danni da contatto al secondo"},
@@ -462,7 +462,7 @@ EID.descriptions[languageCode].collectibles={
 	{"437", "D7", "Ripristina la stanza e resuscita tutti i nemici#Può essere usato per ottenere più ricompense per completamento stanza da una singola stanza#Se usata dopo una lotta con Avarizia, rilancia la stanza in un ordinario Negozio/Stanza Segreta"},
 	{"438", "Ciuccio", "↑ {{Tears}} +0.75 Lacrime#↑ Diminuzione Statura#{{SoulHeart}} +1 Cuore Celeste"},
 	{"439", "Scatola di Mamma", "{{Trinket}} Genera 1 ninnolo casuale#Mentre viene tenuto:#↑ {{Luck}} +1 Fortuna#{{Trinket}} Raddoppia gli effetti dei ninnoli"},
-	{"440", "Calcoli Renali", "↑ +2 Altezza Lacrime#↓ {{Speed}} -0.2 Velocità#↓ {{Range}} -17 Gittata#Isaac occasionalmente smette di sparare e carica un attacco che rilascia uno scroscio di lacrime e un calcolo renale"},
+	{"440", "Calcolo Renale", "↑ +2 Altezza Lacrime#↓ {{Speed}} -0.2 Velocità#↓ {{Range}} -17 Gittata#Isaac occasionalmente smette di sparare e carica un attacco che rilascia uno scroscio di lacrime e un calcolo renale"},
 	{"441", "Mega Sbotto", "{{Timer}} Spara un grosso raggio di sangue di Mega Satana per 15 secondi#Il raggio persiste tra stanze e piani"},
 	{"442", "Corona del Principe delle Tenebre", "Se si rimane con 1 Cuore Rosso pieno:#↑ {{Tears}} +0.75 Lacrime#↑ {{Range}} +1.5 Gittata#↑ +1 Altezza Lacrime#↑ {{Shotspeed}} +0.2 Velocità Colpi"},
 	{"443", "Mela!", "↑ {{Tears}} +0.3 Lacrime#{{Damage}} 6.66% di chance di sparare lamette che infliggono i danni di Isaac x4#{{Luck}} 100% di chance con 14 di Fortuna"},
@@ -485,7 +485,7 @@ EID.descriptions[languageCode].collectibles={
 	{"460", "Glaucoma", "{{Confusion}} 5% di chance di sparare lacrime stordenti#Scurisce leggermente lo schermo"},
 	{"461", "Parassitoide", "15% di chance di sparare sacche ovali#{{Luck}} 50% di chance con 5 di Fortuna#{{Slow}} Quando le sacche ovali colpiscono generano del liquido rallentante e un ragno o mosca blu"},
 	{"462", "Occhio di Belial", "↑ {{Range}} +1.5 Gittata#↑ +1 Altezza Lacrime#Lacrime penetranti#Colpire un nemico rende la lacrima a ricerca e ne raddoppia i danni"},
-	{"463", "Acido Solforico", "↑ {{Damage}} +0.3 Danni#Le lacrime di Isaacpossono distruggere le rocce e aprire le porte"},
+	{"463", "Acido Solforico", "↑ {{Damage}} +0.3 Danni#Le lacrime di Isaac possono distruggere le rocce e aprire le porte"},
 	{"464", "Glifo dell'Equilibrio", "{{SoulHeart}} +2 Cuori Celesti#I nemici lasciano qualsiasi consumabile di cui Isaac ha più bisogno"},
 	{"465", "Levetta Analogica", "↑ {{Tears}} +0.3 Lacrime#Permette ad Isaac di sparare lacrime in tutte le direzioni"},
 	{"466", "Contagio", "{{Poison}} Il primo nemico ucciso in una stanza esplode e avvelena tutti i nemici nelle vicinanze"},
@@ -509,7 +509,7 @@ EID.descriptions[languageCode].collectibles={
 	{"484", "Aspe', Cosa?", "Se usato spinge via i nemici e genera una scossa sismica attorno ad Isaac#La scossa sismica può aprire le stanze e distruggere le rocce"},
 	{"485", "Penny Storto", "50% di chance di raddoppiare tutti gli oggetti, consumabili e bauli nella stanza#50% di chance di rimuovere oggetti / consumabili nella stanza e di generare 1 moneta"},
 	{"486", "Lametta Smussata", "Ferisce Isaac senza togliere salute#Attiva gli effetti di oggetti che richiedono di subire danni"},
-	{"487", "Pelapatate", "{{EmptyHeart}} Rimuove 1 Portacuori per:#↑ {{Damage}} +0.2 Danni#{{Collectible73}} Un \"Cubo di Carne\"#{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Range}} +5 Gittata#{{Collectible214}} Lasci una scia di sangue"},
+	{"487", "Pelapatate", "{{EmptyHeart}} Rimuove 1 Portacuori per:#↑ {{Damage}} +0.2 Danni#{{Collectible73}} Un \"Cubo di Carne\"#{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Range}} +5 Gittata#{{Collectible214}} Lascia una scia di sangue"},
 	{"488", "Metronomo", "Conferisce l'effetto di un oggetto casuale fino all'uscita dalla stanza"},
 	{"489", "D Infinito", "Attiva l'effetto di un dado casuale ad ogni uso"},
 	{"490", "Anima di Eden", "{{Warning}} MONOUSO {{Warning}}#Genera 2 oggetti casuali in base alla categoria di oggetti della stanza corrente#Parte senza cariche"},
@@ -533,7 +533,7 @@ EID.descriptions[languageCode].collectibles={
 	{"508", "Rasoio di Mamma", "{{BleedingOut}} Orbitale che causa sanguinamento, infliggendo 10% della salute massima del nemico di danno ogni 5 secondi#{{Damage}} Infligge i danni di Isaac x3 al secondo#Non blocca i proiettili"},
 	{"509", "Occhio Insanguinato", "Orbitale che ogni 2 secondi spara una lacrima in una direzione casuale#Infligge 3.5 danni a lacrima#Infligge 30 danni da contatto al secondo#Non blocca i proiettili"},
 	{"510", "Delirante", "{{Timer}} Genera una forma boss di Delirio amichevole fino all'uscita dalla stanza"},
-	{"511", "Moscarrabbiata", "Orbita un nemico casuale finché esso non muore#Infligge 30 danni da contatto agli altri nemici"},
+	{"511", "Moscarrabbiata", "Orbita attorno a un nemico casuale finché esso non muore#Infligge 30 danni da contatto agli altri nemici"},
 	{"512", "Buco Nero", "Buco nero lanciabile che risucchia qualsiasi cosa#Infligge 0.4 danni per tocco#Distrugge rocce nelle vicinanze#Dura 6 secondi"},
 	{"513", "Pagliaccio", "↑ {{Damage}} +0.1 Danni#{{SoulHeart}} +1 Cuore Celeste#{{Charm}} Ammalia/spaventa i nemici in maniera casuale#Subire ha una chance casuale di generare una Cacca Arcobaleno"},
 	{"514", "Modem Sfasciato", "Fa sì che alcuni nemici o proiettili si blocchino ad intermittenza per poco tempo#25% di chance di raddoppiare le ricompense di completamento stanza"},
@@ -850,7 +850,7 @@ EID.descriptions[languageCode].trinkets={
 	{"111", "Corona Sanguinolenta", "{{TreasureRoom}} Le Stanze dei Tesori appaiono in \"Utero\""},
 	{"112", "Pay To Win", "{{RestockMachine}} Le cassette di rifornimento vengono sempre generate nelle {{TreasureRoom}} Stanze dei Tesori"},
 	{"113", "Locusta della Guerra", "Entrare in una stanza ostile genera una mosca esplosiva d'attacco#La mosca infligge i danni di Isaac x2 + danni esplosivi"},
-	{"114", "Locusta della Pestilenza", "{{Poison}} Entrare in una stanza ostile generauna mosca velenosa d'attacco#La mosca infligge i danni di Isaac x2"},
+	{"114", "Locusta della Pestilenza", "{{Poison}} Entrare in una stanza ostile genera una mosca velenosa d'attacco#La mosca infligge i danni di Isaac x2"},
 	{"115", "Locusta della Carestia", "{{Slow}} Entrare in una stanza ostile genera una mosca rallentante d'attacco#La mosca infligge i danni di Isaac x2"},
 	{"116", "Locusta dela Morte", "Entrare in una stanza ostile genera una mosca d'attacco#La mosca infligge i danni di Isaac x4"},
 	{"117", "Locusta della Conquista", "Entrare in una stanza ostile genera 1-4 mosche d'attacco#Ogni mosca infligge i danni di Isaac x2"},
@@ -1034,8 +1034,8 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[13] = {"Lilith", "Non può sparare lacrime#{{Collectible360}} Il suo \"Incubo\" spara per lei"},
 	[14] = {"Mercante", "{{CoinHeart}} Si cura raccogliendo monete#Massimale di 2 Portamonete#I cuori consumabili vengono trasformati in mosche blu"},
 	[15] = {"Apollion", ""},
-	[16] = {"Il Dimenticato", "Hai un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
-	[17] = {"L'Anima", "Hai un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
+	[16] = {"Il Dimenticato", "Si ha un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
+	[17] = {"L'Anima", "Si ha un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
 }
 
 ---------- Sacrifice Room ----------
@@ -1048,13 +1048,13 @@ EID.descriptions[languageCode].sacrifice={
 	{"3", "", "{{AngelChance}} 67% di chance che aumentino le chance di una Stanza dell'Angelo"},
 	{"4", "", "{{Chest}} 50% di chance di 1 baule casuale"},
 	{"5", "", "{{Coin}} 33% chance di 3 monete#{{AngelChance}} 67% di chance che aumentino le chance di una Stanza dell'Angelo"},
-	{"6", "", "{{AngelRoom}} 33% di chance di teletrasportare nella Stanza dell'Angelo#{{DevilRoom}} Teletrasporta nella Stanza del Diavolo se la sua porta è stata generata nel piano corrente#{{Chest}} 67% di chance di un baule casuale"},
+	{"6", "", "{{AngelRoom}} 33% di chance di teletrasportarsi nella Stanza dell'Angelo#{{DevilRoom}} Teletrasporta nella Stanza del Diavolo se la sua porta è stata generata nel piano corrente#{{Chest}} 67% di chance di un baule casuale"},
 	{"7", "", "{{AngelRoom}} 33% di chance di 1 oggetto della stanza dell'Angelo#{{SoulHeart}} 67% di chance di 1 Cuore Celeste"},
 	{"8", "", "100% di chance di 7 Bombe Troll"},
 	{"9", "", "100% di chance di genrare Uriel"},
 	{"10", "", "{{SoulHeart}} 50% chance di 7 Cuori Celesti#{{Coin}} 50% chance di 30 monete"},
 	{"11", "", "100% di chance di generare Gabriel"},
-	{"12", "", "50% di chance di teletrasportare nellaa \"Camera Oscura\""},
+	{"12", "", "50% di chance di teletrasportarsi nella \"Camera Oscura\""},
 }
 
 ---------- Dice Room ----------
@@ -1132,7 +1132,7 @@ EID.descriptions[languageCode].RedToX = {
 
 	["Red to Coin"] = {"↑ {{Heart}} +{1} Salute", "{{CoinHeart}} +{1} Portamonete",
 	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{EmptyCoinHeart}} +{1} Portamonete vuoto/i",
-	"{{HealingRed}} Cura di {1} cuore/i", "{{HealingCoin}} Cura di {1} moneta/e", "{{HealingRed}} Cura di mezzo cuore", "{{HealingCoin}} Cura di 1 moneta", "{{HealingRed}}", "{{HealingCoin}}"},
+	"{{HealingRed}} Cura di {1} cuore/i", "{{HealingCoin}} Cura di {1} moneta/e", "{{HealingRed}} Cura di mezzo cuore", "{{HealingCoin}} Cura di 1 moneta", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Salute", "↓ {{EmptyCoinHeart}} {1} Portamonete"},
 
 	["Red to None"] = {"↑ {{Heart}} +{1} Salute", "", "↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "", "↓ {{EmptyHeart}} {1} Salute", ""}, -- Red HP to None (The Lost)
 }
@@ -1288,7 +1288,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Suicide 1"] = "{1} non può prevenire la morte", -- Plan C, Damocles, Suicide King
 	["Suicide 2"] = "Non previene la morte da {1}", -- Plan C, Damocles, Suicide King
 	
-	["5.100.7"] = "x1.5 Moltiplicatore Danni se è attivo  l'effetto di {1}", -- Blood of the Martyr
+	["5.100.7"] = "x1.5 Moltiplicatore Danni se è attivo l'effetto di {1}", -- Blood of the Martyr
 	["5.100.34"] = "x1.5 Moltiplicatore Danni", -- Book of Belial
 	["5.300.16"] = "x1.5 Moltiplicatore Danni", -- XV - The Devil
 	
