@@ -13,7 +13,7 @@ local languageCode = "ro"
 ---------- Collectibles ----------
 
 local repCollectibles={
-	[2] = {"2", "Ochiul Interior", "↓ {{Tears}} x0.51 Lacrimi r#Isac atacă cu 3 lacrimi odata"}, -- The Inner Eye
+	[2] = {"2", "Ochiul Interior", "↓ {{Tears}} x0.51 Rată de Atac#Isac atacă cu 3 lacrimi"}, -- The Inner Eye
 	[5] = {"5", "Reflexia Mea", "↑ {{Damage}} +1.5 Daune#↑ {{Range}} x2 + 1.5 Rază de atac#↑ {{Shotspeed}} x1.6 Viteza lacrimilor#↓ {{Luck}} -1 Noroc#Lacrimile au un efect de bumerang"}, -- Reflexia Mea
 	[6] = {"6", "Numarul Unu", "↑ {{Tears}} +1.5 Lacrimi#↓ {{Range}} -1.5 Rază de atac#↓ {{Range}} x0.8 Rază de atac"}, -- Numarul Unu
 	[12] = {"12", "Ciupercă Magică", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +0.3 Daune#↑ {{Damage}} x1.5 Daune#↑ {{Range}} +2.5 Rază de atac#Crește mărimea#{{HealingRed}} Vindecă viața"}, -- Ciupercă Magică
