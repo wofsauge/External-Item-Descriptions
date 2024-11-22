@@ -261,13 +261,13 @@ local repCollectibles={
 	[568] = {"568", "Divine Intervention", "Double-tapping a fire key creates a shield#The shield lasts 1 second, pushes enemies away and reflects enemy projectiles and lasers"}, -- Divine Intervention
 	[569] = {"569", "Blood Oath", "{{Warning}} Entering a new floor drains all of Isaac's Red Hearts, but grants speed and damage bonuses for each heart lost#Each half heart lost counts as an individual hit for on-hit effects"}, -- Blood Oath
 	[570] = {"570", "Playdough Cookie", "Each of Isaac's tears have a different color and status effect"}, -- Playdough Cookie
-	[571] = {"571", "Orphan Socks", "↑ {{Speed}} +0.3 Speed#↑ {{SoulHeart}} +2 Soul Hearts#Immune to creep and floor spikes"}, -- Orphan Socks
+	[571] = {"571", "Orphan Socks", "↑ {{Speed}} +0.3 Speed#{{SoulHeart}} +2 Soul Hearts#Immune to creep and floor spikes"}, -- Orphan Socks
 	[572] = {"572", "Eye of the Occult", "↑ {{Damage}} +1 Damage#↑ {{Range}} +2 Range#↓ {{Shotspeed}} -0.16 Shot speed#Isaac's tears can be controlled in mid-air"}, -- Eye of the Occult
 	[573] = {"573", "Immaculate Heart", "↑ {{Heart}} +1 Health#↑ {{Damage}} x1.2 Damage multiplier#{{HealingRed}} Full health#20% chance to shoot an extra orbiting spectral tear"}, -- Immaculate Heart
 	[574] = {"574", "Monstrance", "Isaac is surrounded by a damaging aura#The closer enemies are to Isaac, the more damage the aura deals to them"}, -- Monstrance
 	[575] = {"575", "The Intruder", "{{Slow}} Buries itself in Isaac's head and shoots 4 extra slowing tears that deal 1.5 damage#Taking damage can make the spider exit the head and chase enemies"}, -- The Intruder
 	[576] = {"576", "Dirty Mind", "All Dip (small poop) enemies are friendly#Destroying poop spawns 1-4 Dips#Dip type depends on the poop type#Rocks may be replaced with poop"}, -- Dirty Mind
-	[577] = {"577", "Damocles", "{{Warning}} SINGLE USE {{Warning}}#Hangs a sword above Isaac's head, which doubles all pedestal items#Does not double items that have a price or come from chests#{{Warning}} After taking any damage, the sword has an extremely low chance to instantly kill Isaac every frame#Invincibility effects can prevent the death"}, -- Damocles
+	[577] = {"577", "Damocles", "Hangs a sword above Isaac's head, which doubles all pedestal items#Does not double items that have a price or come from chests#{{Warning}} After taking any damage, the sword has an extremely low chance to instantly kill Isaac every frame#Invincibility effects can prevent the death"}, -- Damocles
 	[578] = {"578", "Free Lemonade", "Creates a large pool of yellow creep#The creep deals 24 damage per second"}, -- Free Lemonade
 	[579] = {"579", "Spirit Sword", "Instead of shooting tears, swing a sword#{{Damage}} The sword deals 3x Isaac's damage +3.5 and swings as fast as the fire button is tapped#{{Chargeable}} Charging does a spin attack + projectile shot#Shoots projectiles with swings at full health"}, -- Spirit Sword
 	[580] = {"580", "Red Key", "Creates a red room adjacent to a regular room, indicated by a door outline#Red Rooms can be special rooms#{{ErrorRoom}} Entering a room outside the 13x13 floor map teleports Isaac to the I AM ERROR room"}, -- Red Key
@@ -312,13 +312,13 @@ local repCollectibles={
 	[619] = {"619", "Birthright", "Has a different effect for each character"}, -- Birthright
 	[620] = {"620", "", "<Item does not exist>"},
 	[621] = {"621", "Red Stew", "↑ {{Damage}} +21.6 Damage#{{HealingRed}} Full health#The damage up wears off over 3 minutes#Killing enemies while the effect is active extends it"}, -- Red Stew
-	[622] = {"622", "Genesis", "{{Warning}} SINGLE USE {{Warning}}#Removes all of Isaac's items and pickups#Teleports Isaac to a bedroom with pickups and chests#For every item removed, Isaac can choose between 3 items from the same pool#Leaving the bedroom takes Isaac to the next floor"}, -- Genesis
+	[622] = {"622", "Genesis", "Removes all of Isaac's items and pickups#Teleports Isaac to a bedroom with pickups and chests#For every item removed, Isaac can choose between 3 items from the same pool#Leaving the bedroom takes Isaac to the next floor"}, -- Genesis
 	[623] = {"623", "Sharp Key", "{{Key}} +5 Keys#Throws one of Isaac's keys in the direction he shoots#Thrown keys deal damage, destroy obstacles, and open doors#Enemies killed with keys can spawn the contents of a chest, including items"}, -- Sharp Key
 	[624] = {"624", "Booster Pack", "{{Card}} Spawns 5 random cards"}, -- Booster Pack
 	[625] = {"625", "Mega Mush", "Gigantifies Isaac and grants:#↑ {{Damage}} x4 Damage multiplier#↑ {{Range}} +2 Range#↓ {{Tears}} -1.9 Tears#Invincibility#Ability to crush enemies and obstacles#{{Timer}} Lasts for 30 seconds and persists between rooms and floors"}, -- Mega Mush
 	[626] = {"626", "Knife Piece 1", "Turns into a throwable knife that deals 25 damage when combined with {{Collectible627}} Knife Piece 2#The knife can open a door made of flesh"}, -- Knife Piece 1
 	[627] = {"627", "Knife Piece 2", "Turns into a throwable knife that deals 25 damage when combined with {{Collectible626}} Knife Piece 1#The knife can open a door made of flesh"}, -- Knife Piece 2
-	[628] = {"628", "Death Certificate", "{{Warning}} SINGLE USE {{Warning}}#Teleports Isaac to a floor that contains every item in the game#Choosing an item from this floor teleports Isaac back to the room he came from"}, -- Death Certificate
+	[628] = {"628", "Death Certificate", "Teleports Isaac to a floor that contains every item in the game#Choosing an item from this floor teleports Isaac back to the room he came from"}, -- Death Certificate
 	[629] = {"629", "Bot Fly", "Shoots shielded tears to destroy enemy projectiles#Deals 3 contact damage per second"}, -- Bot Fly
 	[630] = {"630", "", "<Item does not exist>"},
 	[631] = {"631", "Meat Cleaver", "Splits all enemies in the room into 2 smaller versions with 40% health#Enemies that naturally split (like Envy) take enough damage to split instead#Deals 25 damage to enemies that can't be split"}, -- Meat Cleaver
@@ -326,7 +326,7 @@ local repCollectibles={
 	[633] = {"633", "Dogma", "↑ {{Speed}} +0.1 Speed#↑ {{Damage}} +2 Damage#Flight and one-time {{HolyMantleSmall}} Holy Mantle shield#{{Heart}} Heals Isaac with Red and Soul Hearts if he has less than 6 hearts"}, -- Dogma
 	[634] = {"634", "Purgatory", "Red cracks spawn on the ground in hostile rooms#Walking over the cracks summons homing exploding ghosts"}, -- Purgatory
 	[635] = {"635", "Stitches", "Spawns a familiar that moves in the direction Isaac shoots#On use, Isaac swaps places with the familiar and becomes briefly invincible#Teleporting onto things can damage or destroy them"}, -- Stitches
-	[636] = {"636", "R Key", "{{Warning}} SINGLE USE {{Warning}}#Restarts the entire run#All items, trinkets, stats and pickups collected are kept#The timer does not reset"}, -- R Key
+	[636] = {"636", "R Key", "Restarts the entire run#All items, trinkets, stats and pickups collected are kept#The timer does not reset"}, -- R Key
 	[637] = {"637", "Knockout Drops", "{{Confusion}} 10% chance to shoot a fist that inflicts confusion and extreme knockback#{{Luck}} 100% chance at 9 luck#Enemies take damage when they get knocked into a wall/obstacle"}, -- Knockout Drops
 	[638] = {"638", "Eraser", "Throws an eraser that instantly kills an enemy#Prevents the erased enemy from spawning for the rest of the run#Deals 15 damage to bosses#Can only be used once per floor"}, -- Eraser
 	[639] = {"639", "Yuck Heart", "{{RottenHeart}} +1 Rotten Heart"}, -- Yuck Heart
@@ -1014,7 +1014,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[64] = {4, 14, 2, 4}, -- VIII - Justice?
 	[65] = "Spawns 1 additional {{Coin}} penny", -- IX - The Hermit?
 	[66] = {" a ", " 2 ", "effect", "{{CR}}effects"}, -- X - Wheel of Fortune?
-        [67] = {30, 60}, -- XI - Strength?
+	[67] = {30, 60}, -- XI - Strength?
 	[68] = {30, 60}, -- XII - The Hanged Man?
 	[70] = {5, 10}, -- XIV - Temperance?
 	[72] = {7, 14}, -- XVI - The Tower?
@@ -1237,7 +1237,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.70"] = "pill",
 	["5.90"] = "battery",
 	["5.300"] = "card",
-	["5.301"] = "rune",
+	["5.301"] = "rune", -- not a real ID
 	["9.-1"] = "enemy projectile",
 	["999.-1"] = "grid object",
 	["1000.0"] = "effect",
@@ -1247,33 +1247,32 @@ EID.descriptions[languageCode].GlitchedItemText = {
 }
 
 ---------- Bag of Crafting Text ----------
-EID.descriptions[languageCode].CraftingBagContent = "Sac:"
-EID.descriptions[languageCode].CraftingRoomContent = "Caperă:"
-EID.descriptions[languageCode].CraftingFloorContent = "Etaj:"
-EID.descriptions[languageCode].CraftingSearch = "Caută:"
-EID.descriptions[languageCode].CraftingBagQuality = "Calitatea Sacului:"
-EID.descriptions[languageCode].CraftingBestQuality = "Cea Mai Buna Calitate:"
-EID.descriptions[languageCode].CraftingHideKey = "Ascunde:"
-EID.descriptions[languageCode].CraftingPreviewKey = "Previzualizare:"
+EID.descriptions[languageCode].CraftingBagContent = "Bag:"
+EID.descriptions[languageCode].CraftingRoomContent = "Room:"
+EID.descriptions[languageCode].CraftingFloorContent = "Floor:"
+EID.descriptions[languageCode].CraftingSearch = "Search:"
+EID.descriptions[languageCode].CraftingBagQuality = "Bag Quality:"
+EID.descriptions[languageCode].CraftingBestQuality = "Best Quality:"
+EID.descriptions[languageCode].CraftingHideKey = "Hide:"
+EID.descriptions[languageCode].CraftingPreviewKey = "Preview:"
 -- {1} will be converted to the number of recipes
-EID.descriptions[languageCode].CraftingMore = "...+{1} Mai Multe"
+EID.descriptions[languageCode].CraftingMore = "...+{1} more"
 -- {1} will be converted into the number of available items
-EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} din 8 Iteme Disponibile"
-EID.descriptions[languageCode].CraftingWarningAvailableItems = "Trebuie cel puțin 8 pickup-uri ca sa vezi reșetele"
+EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} of 8 items available"
+EID.descriptions[languageCode].CraftingWarningAvailableItems = "Needs at least 8 to show crafting recipes!"
 -- {1} will be converted into the name of the key that toggles the BoC visibility
-EID.descriptions[languageCode].CraftingIsHidden = "Ascuns (Afișează cu {1})"
+EID.descriptions[languageCode].CraftingIsHidden = "Currently Hidden (Unhide with {1})"
 -- {1} will be converted into the name of the key that toggles the BoC Search
-EID.descriptions[languageCode].CraftingResults = "(Scroll: Ține apăsat {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Blochează: {{ButtonX}}, Reîmprospătare: {{ButtonB}}, Resetare Sac: Ține apăsat {{ButtonRB}}, Caută: {1})"
+EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}}, Search: {1})"
 
 -- Strings for Tainted Cain's pedestal salvaging; the non-base lines will have the corresponding icon automatically
-EID.descriptions[languageCode].TaintedCainPedestalBase = "La atingere se transformă în 3-8 pickup-uri"
-EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "La atingere se transformă în {{BlinkBirthright}}6-16{{CR}} pickup-uri aleatorii"
-EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Garantat să arunce o{n} {1}" -- Room type spawns
-EID.descriptions[languageCode].TaintedCainPedestalBonus = "33% șansă pentru {1} bonus " -- "Safety Cap" type spawns
-EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "66% șansa pentru un pick-up bonus"
-EID.descriptions[languageCode].TaintedCainPedestalLuckyToeBirthright = "66% șansă pentru {{BlinkBirthright}}2{{CR}} pickup-uri bonus"
-EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "Inimile sunt cu 80% mai puțin probabil sa apară"
-
+EID.descriptions[languageCode].TaintedCainPedestalBase = "Turns into 3-8 random pickups on touch"
+EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "Turns into {{BlinkBirthright}}6-16{{CR}} random pickups on touch"
+EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Guaranteed to spawn a{n} {1}" -- Room type spawns
+EID.descriptions[languageCode].TaintedCainPedestalBonus = "33% chance for a bonus {1}" -- "Safety Cap" type spawns
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "66% chance for a bonus pickup"
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToeBirthright = "66% chance for {{BlinkBirthright}}2{{CR}} bonus pickups"
+EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "Hearts are 80% less likely"
 
 
 ---------- Misc. Text ----------
@@ -1293,6 +1292,10 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Fart", "Push nearby enemies and bullets back, and spawn a toxic cloud#{{Warning}} The cloud explodes if it touches fire!"},
 	{"Bomb", "Normal throwable bomb"},
 	{"Explosive Diarrhea", "Isaac quickly spawns 5 lit bombs"},
+
+	--Undetected poop, for Poop API
+	--[Poop name in code] = {Icon, Name, Description}
+	["Unknown"] = {"{{PoopSpell1}}", "Unknown Poop", "The effects of the poop are Unknown"}
 }
 
 EID.descriptions[languageCode].itemPoolFor = "Pool for Item:"
@@ -1328,6 +1331,7 @@ EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}{{Warni
 EID.descriptions[languageCode].AchievementWarningText = "Achievements are disabled!#In order to enable progression and achievements, you first need to kill Mom (Depths II) without any mods enabled.#(If you've defeated Mom, this message is a bug and can be ignored)#(This warning can be disabled in the config)"
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID is updated for the newest Steam version#Your game version is not officially supported, so some descriptions and features will be inaccurate#(This warning can be disabled in the config)"
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Install REPENTOGON for improved modded recipe support#(This warning can be disabled in the config)"
+
 
 -- Conditional descriptions - DO NOT TRANSLATE THE FIRST PART IN ["BRACKETS"]
 -- Strings will be appended to the original description
@@ -1389,9 +1393,8 @@ local repConditions = {
 	["5.350.101 (Tainted Bethany)"] = "Ignores {1}'s blood charges",
 	["Health Up Soul Charges"] = "+{1} soul charges",
 	["Health Up Blood Charges"] = "+{1} blood charges",
-
-
-        	-- Tainted Bethany stuff
+	
+	-- Tainted Bethany stuff
 	["2 of Hearts Blood Charges"] = "Doubles {1}'s blood charges",
 	["Vampire Blood Charges"] = {"↑ {{Damage}} +0.3 Damage#Killing 13 enemies adds 1 blood charge"},
 	["Fork Blood Charges"] = {"Clearing a room has a 10% chance to add 1 blood charge"},
@@ -1400,7 +1403,6 @@ local repConditions = {
 	["Salvaging Bonus"] = {"and destroyed machines", "destroyed machines, and salvaged items"},
 	["Salvaging Lucky Toe"] = "66% chance for an extra pickup from salvaged items",
 	
-        
 	
 	------ DUPLICATE COPIES OF ITEMS ------
 	["5.100.2 (Copies)"] = "Isaac fires 1 more tear#No additional stat decrease", -- The Inner Eye
@@ -1422,8 +1424,8 @@ local repConditions = {
 	["Sacrificial Star"] = "Star of Bethlehem counts as a familiar",
 	["Sacrificial Clots"] = "Turns Clots into coins",
 	
-	["1000.76.0"] = "{{Warning}} Only rerolls the character that activates the dice", -- Dice Room 1 (Co-op)
-	["1000.76.5"] = "{{Warning}} All characters' items will be rerolled in co-op!", -- Dice Room 6 (Co-op)
+	["1000.76.1"] = "{{Warning}} Only rerolls the character that activates the dice", -- Dice Room 1 (Co-op)
+	["1000.76.6"] = "{{Warning}} All characters' items will be rerolled in co-op!", -- Dice Room 6 (Co-op)
 	["5.100.45"] = "Heals other players for half a heart", -- Yum Heart (Co-Op)
 	["5.350.125"] = "Beams also arc between players", -- Extension Cord (Co-Op)
 	
