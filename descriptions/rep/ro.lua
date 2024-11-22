@@ -1236,6 +1236,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.70"] = "pill",
 	["5.90"] = "battery",
 	["5.300"] = "card",
+	["5.301"] = "rune",
 	["9.-1"] = "enemy projectile",
 	["999.-1"] = "grid object",
 	["1000.0"] = "effect",
@@ -1245,23 +1246,34 @@ EID.descriptions[languageCode].GlitchedItemText = {
 }
 
 ---------- Bag of Crafting Text ----------
-EID.descriptions[languageCode].CraftingBagContent = "Bag:"
-EID.descriptions[languageCode].CraftingRoomContent = "Room:"
-EID.descriptions[languageCode].CraftingFloorContent = "Floor:"
-EID.descriptions[languageCode].CraftingSearch = "Search:"
-EID.descriptions[languageCode].CraftingBagQuality = "Bag Quality:"
-EID.descriptions[languageCode].CraftingBestQuality = "Best Quality:"
-EID.descriptions[languageCode].CraftingHideKey = "Hide:"
-EID.descriptions[languageCode].CraftingPreviewKey = "Preview:"
+EID.descriptions[languageCode].CraftingBagContent = "Sac:"
+EID.descriptions[languageCode].CraftingRoomContent = "Caperă:"
+EID.descriptions[languageCode].CraftingFloorContent = "Etaj:"
+EID.descriptions[languageCode].CraftingSearch = "Caută:"
+EID.descriptions[languageCode].CraftingBagQuality = "Calitatea Sacului:"
+EID.descriptions[languageCode].CraftingBestQuality = "Cea Mai Buna Calitate:"
+EID.descriptions[languageCode].CraftingHideKey = "Ascunde:"
+EID.descriptions[languageCode].CraftingPreviewKey = "Previzualizare:"
 -- {1} will be converted to the number of recipes
-EID.descriptions[languageCode].CraftingMore = "...+{1} more"
+EID.descriptions[languageCode].CraftingMore = "...+{1} Mai Multe"
 -- {1} will be converted into the number of available items
-EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} of 8 items available"
-EID.descriptions[languageCode].CraftingWarningAvailableItems = "Needs at least 8 to show crafting recipes!"
+EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} din 8 Iteme Disponibile"
+EID.descriptions[languageCode].CraftingWarningAvailableItems = "Trebuie cel puțin 8 pickup-uri ca sa vezi reșetele"
 -- {1} will be converted into the name of the key that toggles the BoC visibility
-EID.descriptions[languageCode].CraftingIsHidden = "Currently Hidden (Unhide with {1})"
+EID.descriptions[languageCode].CraftingIsHidden = "Ascuns (Afișează cu {1})"
 -- {1} will be converted into the name of the key that toggles the BoC Search
-EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}}, Search: {1})"
+EID.descriptions[languageCode].CraftingResults = "(Scroll: Ține apăsat {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Blochează: {{ButtonX}}, Reîmprospătare: {{ButtonB}}, Resetare Sac: Ține apăsat {{ButtonRB}}, Caută: {1})"
+
+-- Strings for Tainted Cain's pedestal salvaging; the non-base lines will have the corresponding icon automatically
+EID.descriptions[languageCode].TaintedCainPedestalBase = "La atingere se transformă în 3-8 pickup-uri"
+EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "La atingere se transformă în {{BlinkBirthright}}6-16{{CR}} pickup-uri aleatorii"
+EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Garantat să arunce o{n} {1}" -- Room type spawns
+EID.descriptions[languageCode].TaintedCainPedestalBonus = "33% șansă pentru {1} bonus " -- "Safety Cap" type spawns
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "66% șansa pentru un pick-up bonus"
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToeBirthright = "66% șansă pentru {{BlinkBirthright}}2{{CR}} pickup-uri bonus"
+EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "Inimile sunt cu 80% mai puțin probabil sa apară"
+
+
 
 ---------- Misc. Text ----------
 
