@@ -4,7 +4,7 @@
 
 -- FORMAT: Item ID | Name | Description
 
--- Special character markup:
+-- Special character markup:d
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
@@ -1328,7 +1328,6 @@ EID.descriptions[languageCode].AchievementWarningText = "Achievements are disabl
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID is updated for the newest Steam version#Your game version is not officially supported, so some descriptions and features will be inaccurate#(This warning can be disabled in the config)"
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modded items could make the crafting recipe calculation inaccurate!#Install REPENTOGON for improved modded recipe support#(This warning can be disabled in the config)"
 
-
 -- Conditional descriptions - DO NOT TRANSLATE THE FIRST PART IN ["BRACKETS"]
 -- Strings will be appended to the original description
 -- Tables with one entry will completely replace the original description
@@ -1389,7 +1388,18 @@ local repConditions = {
 	["5.350.101 (Tainted Bethany)"] = "Ignores {1}'s blood charges",
 	["Health Up Soul Charges"] = "+{1} soul charges",
 	["Health Up Blood Charges"] = "+{1} blood charges",
+
+
+        	-- Tainted Bethany stuff
+	["2 of Hearts Blood Charges"] = "Doubles {1}'s blood charges",
+	["Vampire Blood Charges"] = {"↑ {{Damage}} +0.3 Damage#Killing 13 enemies adds 1 blood charge"},
+	["Fork Blood Charges"] = {"Clearing a room has a 10% chance to add 1 blood charge"},
+	["Stem Cell Blood Charges"] = {"Entering a new floor adds 1 blood charge"},
 	
+	["Salvaging Bonus"] = {"and destroyed machines", "destroyed machines, and salvaged items"},
+	["Salvaging Lucky Toe"] = "66% chance for an extra pickup from salvaged items",
+	
+        
 	
 	------ DUPLICATE COPIES OF ITEMS ------
 	["5.100.2 (Copies)"] = "Isaac fires 1 more tear#No additional stat decrease", -- The Inner Eye
