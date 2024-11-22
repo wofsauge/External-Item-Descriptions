@@ -38,7 +38,7 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[681] = {"681", "黑洞宝宝", "双击发射键可发射传送门#发射后造成接触伤害#消耗经过的掉落物#消耗掉落物会提升其尺寸, 伤害并生成1只蓝苍蝇#消耗2-3掉落物生成至特殊房间的传送门, 跟班在本层后续中消失#房间中的内容本局持续存在"}, -- Lil Portal
 	-- Change: Added info about the damage based on item quality
-	[706] = {"706", "无底坑", "消耗房间中所有底座道具并对应生成蝗虫跟班#一些道具会生成特殊蝗虫#{{Damage}} 蝗虫造成1x角色伤害, 并根据道具质量修正:#{{Quality0}} - 0.5x#{{Quality1}} - 0.75x#{{Quality2}} - 1.0x#{{Quality3}} - 1.5x#{{Quality4}} - 2.0x"}, -- Abyss
+	[706] = {"706", "无底坑", "消耗房间中所有底座道具并对应生成蝗虫跟班#一些道具会生成特殊蝗虫#{{Damage}} 蝗虫造成1x角色伤害, 并根据道具品质修正:#{{Quality0}} - 0.5x#{{Quality1}} - 0.75x#{{Quality2}} - 1.0x#{{Quality3}} - 1.5x#{{Quality4}} - 2.0x"}, -- Abyss
 }
 EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].collectibles)
 
@@ -52,9 +52,9 @@ local trinkets = {
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "短引线", "角色的炸弹爆炸更快#炸弹造成的伤害提高15%"}, -- Short Fuse
 	-- Change: "2%" to "5%"
-	[104] = {"104", "许愿骨", "受伤时, 2%几率被摧毁并生成1底座道具"}, -- Wish Bone
+	[104] = {"104", "许愿骨", "受伤时, 5%几率被摧毁并生成1底座道具"}, -- Wish Bone
 	-- Change: "2%" to "5%"
-	[105] = {"105", "午餐袋", "{{Collectible22}} 受伤时, 2%几率被摧毁并生成午餐"}, -- Bag Lunch
+	[105] = {"105", "午餐袋", "{{Collectible22}} 受伤时, 5%几率被摧毁并生成午餐"}, -- Bag Lunch
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
