@@ -38,8 +38,7 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[681] = {"681", "P'tit Vortex", "Appuyer 2 fois sur un bouton de tir projette le vortex#Inflige des dégâts de contact et consomme les ressources sur son chemin#Chaque ressource absorbée augmente sa taille, ses dégâts et fait apparaître une mouche bleue#Consommer 3 ressources fait apparaître un vortex vers une salle spéciale dont le contenu persiste pour le reste de la partie"}, -- Lil Portal
 
-	[706] = {"706", "Abysse", "Absorbe tous les objets de la salle et invoque un locuste abyssal pour chaque objet détruit#Les locustes abyssaux sont invulnérables et infligent entre {{ColorError}}50%{{CR}} et {{ColorLime}}200%{{CR}} des dégâts d'Isaac selon la qualité de l'objet absorbé"},
-	
+	[706] = {"706", "Abysse", "Absorbe tous les objets de la salle et invoque un locuste abyssal pour chaque objet détruit#Les locustes abyssaux sont invulnérables et infligent entre {{ColorError}}50%{{CR}} et {{ColorLime}}200%{{CR}} des dégâts d'Isaac selon la qualité de l'objet absorbé"},	
 }
 EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].collectibles)
 
@@ -52,11 +51,9 @@ local trinkets = {
 	[97] = {"97", "Amygdale", "Subir entre 6 et 12 dégâts invoque jusqu'à deux familiers#Les familiers bloquent les tirs ennemis et n'infligent pas de dégâts"}, -- Tonsil
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "Pétard", "Les bombes placées par Isaac explosent plus rapidement et infligent {{ColorLime}} dégâts +15%"}, -- Short Fuse
-	
-	
-	-- TODO: check the new exact percentage of wish bone and bag lunch drops
-	-- OFFICIAL CHANGELOG TEXT: Increased the chances of the Wish Bone and Bag Lunch trinkets spawning an item.
+	-- Change: "2%" to "5%"
 	[104] = {"104", "Os de Poulet", "Subir un dégât a 5% de chances de détruire la babiole et faire apparaître un objet provenant de la banque d'objets de la salle"},
+  -- Change: "2%" to "5%"
 	[105] = {"105", "Sac de Friandises", "Subir un dégât a 5% de chances de détruire la babiole et faire apparaître {{ColorYellow}}Déjeuner{{ColorWhite}} {{Collectible22}}"},
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
