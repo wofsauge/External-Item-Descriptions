@@ -112,7 +112,11 @@ table.sort(EID.Languages)
 pcall(require,"scripts.eid_savegames")
 require("features.eid_mcm")
 require("features.eid_data")
-require("features.eid_xmldata")
+if EID.isRepentancePlus then
+	require("features.eid_xmldata_rep+")
+else
+	require("features.eid_xmldata")
+end
 require("features.eid_api")
 require("features.eid_conditionals")
 require("features.eid_modifiers")
@@ -142,8 +146,6 @@ if EID.isRepentance then
 			end
 		end
 		local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
-
-		require("features.eid_xmldata_rep+")
 	end
 end
 
