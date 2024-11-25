@@ -1,3 +1,4 @@
+if EID and EID.Name then print("Error: Two instances of EID found! Please uninstall one of them!") return end -- If EID is already loaded, warn the user and dont load the second one.
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
