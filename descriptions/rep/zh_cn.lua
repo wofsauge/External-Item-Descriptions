@@ -1202,3 +1202,8 @@ if EID.enableDebug then
 	EID.descriptions[languageCode].repCards = repCards
 	EID.descriptions[languageCode].repPills = repPills
 end
+
+if REPENTOGON then
+	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "捐款机", "再捐{2}硬币可解锁下个成就 ({1}硬币)#{{Luck}} 捐款时2%几率+1运气#{{AngelRoom}} 捐10硬币可增加天使房几率"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "贪婪捐款机", "再捐{2}硬币可解锁下个成就 ({1}硬币)"}
+end
