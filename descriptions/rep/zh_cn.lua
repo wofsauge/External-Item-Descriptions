@@ -99,7 +99,7 @@ local repCollectibles={
 	[222] =	{"222", "反重力", "↑ {{Tears}} 射速+1#按住发射键会使泪弹悬空#松开后, 所有泪弹会向发射方向继续前进"}, -- Anti-Gravity
 	[223] = {"223", "纵火狂", "{{Bomb}} +5炸弹#免疫爆炸和火焰#{{HealingRed}} 受爆炸击中时治疗半红心"}, -- Pyromaniac
 	[224] = {"224", "柯吉猫的身体", "↑ {{Tears}} 射速+0.5#↓ {{Range}} 射程修正x0.8#泪弹击中后会分裂为4颗#分裂的泪弹造成的伤害减半"}, -- Cricket's Body
-	[225] = {"225", "兽性面具", "{{SoulHeart}} 受伤时, 8%几率生成1魂心#{{Luck}} +2% chance per luck#{{HalfHeart}} 敌人死亡时几率掉落1半红心"}, -- Gimpy
+	[225] = {"225", "兽性面具", "{{SoulHeart}} 受伤时, 8%几率生成1魂心#{{Luck}} 每点运气+2%几率#{{HalfHeart}} 敌人死亡时几率掉落1半红心"}, -- Gimpy
 	[226] = {"226", "黑莲花", "↑ {{Heart}} +1心之容器#{{HealingRed}} 治疗1红心#{{SoulHeart}} +1魂心#{{BlackHeart}} +1黑心"}, -- Black Lotus
 	[228] = {"228", "妈妈的香水", "↑ {{Tears}} 射速+0.5#{{Fear}} 15%几率发射恐惧泪弹"}, -- Moms Perfume
 	[229] = {"229", "萌死戳的肺", "↓ {{Tears}} 射速修正x0.23#{{Chargeable}} 泪弹可蓄力并在松开时散射"}, -- Monstro's Lung
@@ -189,7 +189,7 @@ local repCollectibles={
 	[404] = {"404", "放屁宝宝", "阻挡弹幕的跟班#如果被击中有几率放屁，效果为魅惑/中毒/击退三种其一#屁造成5.0-6.0点伤害"}, -- Farting Baby
 	[405] = {"405", "恶性漏洞", "{{Throwable}} {{ColorOrange}}可投掷{{CR}}(双击发射键)#重置接触到的敌人和掉落物"}, -- GB Bug
 	[407] = {"407", "纯洁", "↑ 根据角色光环颜色对角色属性进行增强#受伤或进入新房间时，获得新的光环：#{{ColorRed}}红色{{CR}} = {{Damage}}+4.0伤害#{{ColorOrange}}橙色{{CR}} = {{Range}}+3.0射程#{{ColorYellow}}黄色{{CR}} = {{Speed}}+0.5移速#{{ColorBlue}}蓝色{{CR}} = {{Tears}}+2.0射速修正"},
-	[408] = {"408", "祭祀之刃", "消灭敌人时有概率在敌人死亡位置生成持续1秒的黑色硫磺火环# {{Luck}} 运气30：100%几率"}, -- Athame
+	[408] = {"408", "祭祀之刃", "消灭敌人时有几率在敌人死亡位置生成持续1秒的黑色硫磺火环# {{Luck}} 运气30：100%几率"}, -- Athame
 	[412] = {"412", "恶魔受胎", "受到第15，30，60，90次伤害后，角色永久获得1个恶魔跟班#可能生成：{{Collectible278}}{{Collectible113}}{{Collectible270}}{{Collectible275}}{{Collectible360}}{{Collectible417}}{{Collectible679}}{{Collectible698}}#最多产生4个跟班"},
 	[415] = {"415", "光明之冠", "{{SoulHeart}} +2魂心#如果没有不满的心之容器：#↑ {{Damage}} +100%伤害倍率#↓ {{Shotspeed}} -0.3弹速#受伤后，当前房间无论心之容器是否是满的，效果消失"}, -- Crown Of Light
 	[416] = {"416", "深口袋", "{{Coin}} 如果房间没有奖励，生成1-3硬币#{{Coin}} 提高硬币上限为999"}, -- Deep Pockets
@@ -722,8 +722,8 @@ local repCarBattery = {
 	[293] = {200, 400}, -- Head of Krampus
 	[296] = {1, 2, 1, 2}, -- Converter
 	[323] = "每个方向发射两颗重叠的眼泪", -- Isaac's Tears
-	[386] = "增加生成稀有石头的概率", -- D12
-	[485] = "25%概率使道具、掉落物和箱子翻四倍, 75%概率移除它们并生成硬币", -- Crooked Penny
+	[386] = "增加生成稀有石头的几率", -- D12
+	[485] = "25%几率使道具、掉落物和箱子翻四倍, 75%几率移除它们并生成硬币", -- Crooked Penny
 	[489] = "触发两次选中的骰子效果", -- D Infinity
 	[522] = {3, 6}, -- Telekinesis
 	[557] = {1, 2}, -- Fortune Cookie
@@ -1201,4 +1201,9 @@ if EID.enableDebug then
 	EID.descriptions[languageCode].repTrinkets = repTrinkets
 	EID.descriptions[languageCode].repCards = repCards
 	EID.descriptions[languageCode].repPills = repPills
+end
+
+if REPENTOGON then
+	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "捐款机", "再捐{2}硬币可解锁下个成就 ({1}硬币)#{{Luck}} 捐款时2%几率+1运气#{{AngelRoom}} 捐10硬币可增加天使房几率"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "贪婪捐款机", "再捐{2}硬币可解锁下个成就 ({1}硬币)"}
 end
