@@ -493,7 +493,7 @@ EID.descriptions[languageCode].collectibles={
 	{"468", "Ombroso", "Segue i movimenti di Isaac con un delay di 1 secondo#Infligge 30 danni da contatto al secondo#Dopo aver inferto 600 danni, viene assorbito da Isaac, aumentando i suoi danni da contatto"},
 	{"469", "Depressione", "Lascia una scia di liquido#Il liquido infligge 6 danni al secondo#I nemici che toccano la nuvola possono essere colpiti da un raggio di luce sacra"},
 	{"470", "Calmina", "Rimbalza per la stanza#Infligge 30 danni da contatto al secondo#Quando Isaac spara smette di muoversi#Mentre è fermo blocca i proiettili"},
-	{"471", "Mini Monstro", "{Chargeable}} Carica un attacco a raffica simile a quello di {{Collectible229}} \"Polmone di Monstro\"#Ogni lacrima infligge 3.5 danni"},
+	{"471", "Mini Monstro", "{{Chargeable}} Carica un attacco a raffica simile a quello di {{Collectible229}} \"Polmone di Monstro\"#Ogni lacrima infligge 3.5 danni"},
 	{"472", "Re Bebè", "È seguito dagli altri famigli#Quando Isaac spara smette di muoversi#Quando Isaac smette di sparare si teletrasporta da lui"},
 	{"473", "Cicciottona", "Si lancia in avanti molto lentamente#Blocca i proiettili#Infligge 40.5 danni da contatto al secondo"},
 	{"474", "Tonsilla", "Blocca i proiettili nemici"},
