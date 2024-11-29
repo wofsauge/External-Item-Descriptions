@@ -22,7 +22,7 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[436] = {"436", "Latte!", "Blocca i proiettili nemici#{{Tears}} Dopo 10 colpi, si rompe e conferisce più Lacrime per il resto del piano"}, -- Milk!
 	-- Change: Complete rewrite
-	[447] = {"447", "Fagiolo Aleggiante", "Sparere senza fermarsi per 4 secondi genera una nube tossica#Dopo 10 secondi la nube aumenta di dimensioni#Con l'aumento delle dimensioni la nube infligge meno danni#Sparandole si può spostarla"}, -- Linger Bean
+	[447] = {"447", "Fagiolo Aleggiante", "Sparare senza fermarsi per 4 secondi genera una nube tossica#Dopo 10 secondi la nube aumenta di dimensioni#Con l'aumento delle dimensioni la nube infligge meno danni#Sparandole si può spostarla"}, -- Linger Bean
 	-- Change: added " and fires radial bursts of tears"
 	[470] = {"470", "Calmina", "Rimbalza per la stanza#Infligge 30 danni da contatto al secondo#Quando Isaac spara smette di muoversi#Mentre è fermo blocca i proiettili e spara cerchi di lacrime a scrosci"}, -- Hushy
 	-- Change: added "Turns item pedestals into glitched items"
