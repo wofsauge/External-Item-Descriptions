@@ -291,7 +291,7 @@ EID.descriptions[languageCode].collectibles={
 	{"269", "Bezhlavé Dítě", "Zanechává po sobě kaluž udělující 6 poškození za sekundu"},
 	{"270", "Pijavice", "{{HalfHeart}} Vyléčí polovinu Srdce, když zabije nepřítele#Uděluje 3.2 poškození za sekundu"},
 	{"271", "Tajemný Pytel", "Každých pár pokojů vytvoří náhodné pickupy"},
-	{"272", "VKM", "Přátelská explodující moucha#Exploze způsobí 60 poškození"},
+	{"272", "VKM (Velká Kamarádská Moucha)", "Explodující moucha#Exploze způsobí 60 poškození"},
 	{"273", "Bobův Mozek", "Společník jakožto vrhací bomba#Exploze způsobí 60 poškození"},
 	{"274", "Nejlepší Kámoš", "Když dostaneš zásah, získáte orbitální mušku střední vzdálenosti#Uděluje 75 poškození za sekundu"},
 	{"275", "Maličký Leviatan", "{{Collectible118}} Střílí brimstone laser#Jeho rána uděluje 31.5 poškození za sekundu"},
@@ -535,7 +535,7 @@ EID.descriptions[languageCode].collectibles={
 	{"513", "Klaun Bozo", "↑ +0.1 Větší Poškození#+1 Duševní Srdce#Náhodná šance na okouzlení/zastrašení nepřítele#Náhodná šance na vytvoření duhového hovínka při utrpení poškození"},
 	{"514", "Rozbitý Modem", "Způsobuje, že se náhodní nepřátelé 'lagují' v náhodných intervalech, což způsobí jejich krátké zamrznutí#Efekt platí i pro nepřátelské střely a pickupy#25% šance na zdvojnásobení odměn z místnosti"},
 	{"515", "Tajemný Dárek", "Vytvoří náhodný předmět ze skupiny předmětů aktuální místnosti#Šance místo toho vytvořit Hroudu Uhlí nebo Hovno"},
-	{"516", "Rozstřikovač", "Vytvoří Rozstřikovač, který se otáčí v kruhu a rozstřikuje tvoje slzy na všechny strany"},
+	{"516", "Rozstřikovač", "Vytvoří rozstřikovač, který se otáčí v kruhu a rozstřikuje tvoje slzy na všechny strany"},
 	{"517", "Rychlé Bomby", "{{Bomb}} +7 Bomb#Umožňuje ti rychle umisťovat bomby"},
 	{"518", "Kamarád v Bedně", "Spojenec, který vypadá jako náhodné dítě z coopu#Má náhodný efekt slz#Každé patro se náhodně mění"},
 	{"519", "Maličký Delirium", "Spojenec, který se každých 10 sekund promění v dalšího náhodného spojence"},
@@ -844,8 +844,168 @@ EID.descriptions[languageCode].dice={
 	{"3", "", "Zamíchá všechny pickupy a trinkety na celém patře#Neovlivňuje {{DevilRoom}} Ďábelskou nebo {{AngelRoom}} Andělskou Místnost"},
 	{"4", "", "Zamíchá všechny předměty na podstavcích na patře#Neovlivňuje {{DevilRoom}} Ďábelskou nebo {{AngelRoom}} Andělskou Místnost"},
 	{"5", "", "Zamíchá a restartuje aktuální patro"},
-	{"6", "", "Zamíchá všechny předměty, pickupy, trinkety a předměty na podstavcích, včetně všeho na patře"}
+	{"6", "", "Zamíchá všechny tvoje předměty, pickupy, trinkety a předměty na podstavcích, prostě všechno na patře"}
 }
+
+
+---------- Modifikátory ----------
+
+-- Effect of Car Battery on Active Items
+EID.descriptions[languageCode].carBattery = {
+	["No Effect"] = "Žádný efekt",
+	[35] = {40, 80}, -- The Necronomicon
+	[37] = { " a ", " 2 ", "bomba/y", "{{CR}}bomby" }, -- Mr. Boom
+	[38] = {10, 20}, -- Tammy's Head
+	[45] = {1, 2, "srdce", "{{CR}}srdce"}, -- Yum Heart
+	[58] = {10, 20}, -- Book of Shadows
+	[65] = {6, 12}, -- Anarchist's Cookbook
+	[66] = {8, 16}, -- The Hourglass
+	[77] = {6, 12}, -- My Little Unicorn
+	[78] = {1, 2}, -- Book of Revelations
+	[83] = {1, 2}, -- The Nail
+	[85] = {1, 2, "karta", "{{CR}}karty"}, -- Deck of Cards
+	[86] = {120, 240}, -- Monstro's Tooth
+	[93] = {6.5, 13}, -- The Gamekid
+	[97] = {" a ", " 2 ", "pickup", "{{CR}}pickupy"}, -- The Book of Sin
+	[102] = {1, 2, "pilulka", "{{CR}}pilulky"}, -- Mom's Bottle of Pills
+	[105] = "Přetočí dvakrát, čímž rychleji vyčerpá předměty ze seznamu předmětů", -- The D6
+	[107] = "Vytvoří dvě těla", -- The Pinking Shears
+	[111] = {5, 10}, -- The Bean
+	[123] = {" a ", " 2 ", "Spojenec", "{{CR}}spojenci"}, -- Monster Manual
+	[124] = {" a ", " 2 ", "efekt", "{{CR}}efekty"}, -- Dead Sea Scrolls
+	[136] = {" a ", " 2 ", "Izák", "{{CR}}Izáky"}, -- Best Friend
+	[145] = {"2-4", "4-8"}, -- Guppy's Head
+	[146] = {1, 2, " Srdce", " {{CR}}Srdce"}, -- Prayer Card (should this just say +1 health...)
+	[158] = {" a ", " 2 ", " Srdce", " {{CR}}Srdce", "runa", "{{CR}}runy", "karta", "{{CR}}karty"}, -- Crystal Ball
+	[160] = {5, 10}, -- Crack the Sky
+	[171] = {10, 20}, -- Spider Butt
+	[283] = "Přetočí dvakrát, pomůže s transformacemi ale rychleji vyčerpá předměty ze seznamu předmětů", -- D100
+	[284] = "Přetočí dvakrát, pomůže s transformacemi ale rychleji vyčerpá předměty ze seznamu předmětů", -- D4
+	[286] = "Spustí se nadvakrát", -- Blank Card
+	[287] = {"one", "two"}, -- Book of Secrets
+	[288] = {"1-4", "2-8"}, -- Box of Spiders
+	[292] = {1, 2}, -- Satanic Bible
+	[293] = {440, 880}, -- Head of Krampus
+	[294] = "Zvýšený knockback", -- Butter Bean
+	[298] = {6, 12}, -- Unicorn Stump
+	[348] = "Spustí se nadvakrát", -- Placebo
+	[349] = "Vyvolá šanci dvakrát", -- Wooden Nickel
+	[351] = {5, 10}, -- Mega Bean
+	[357] = {"Duplikuje", "Triplikuje"}, -- Box of Friends
+	[383] = {6, 36}, -- Tear Detonator
+	[421] = {5, 10}, -- Kidney Bean
+	[427] = {" a ", " 2 ", "barel", "{{CR}}barely", "barel", "{{CR}}barely"}, -- Mine Crafter
+	[439] = {" a ", " 2 ", "trinket", "{{CR}}trinkety"}, -- Mom's Box
+	[476] = {" a ", " 2 ", "pickup", "{{CR}}pickupy"}, -- D1
+	[477] = "Aktivuje každou absorbovanou aktivní položku dvakrát", -- Void
+	[480] = {"Duplikuje", "Čtyřnásobuje"}, -- Compost
+	[481] = "Dvě zvýšení a snížení statistik", -- Dataminer
+	[482] = "Dvakrát změní tvoji postavu a odstraní dva předměty", -- Clicker
+	[485] = "25% šance na zčtyřnásobení, 25% šance na zdvojnásobení a odstranění originálů, 50% šance na odstranění", -- Crooked Penny
+	[486] = {"efekty", "{{CR}}efekty {{BlinkYellowGreen}}dvakrát"}, -- Dull Razor
+	[488] = "Aktivuje se dvakrát, ale zůstane pouze druhý efekt", -- Metronome
+	[489] = {" a ", " 2 ", "efekt", "{{CR}}efekty"}, -- D Infinity
+	[504] = {" a ", " 2 ", "střílna", "{{CR}}střílny"}, -- Brown Nugget
+	[507] = "Spustí se nadvakrát", -- Sharp Straw
+	[510] = {" a ", " 2 ", "verze", "{{CR}}verze"}, -- Delirious
+	[516] = {" a ", " 2 ", "Rozstřikovač", "{{CR}}Rozstřikovače"}, -- Sprinkler
+	[521] = {"jeden", "dva", "předměty", "{{CR}}items"}, -- Coupon
+	[523] = "Vymění obsah krabice za pickupy v místnosti", -- Moving Box
+	[545] = {8, 16}, -- Book of the Dead
+	[550] = "Zastaví dupání ve dvou místnostech (nebo vlny v Boss Rushi)", -- Broken Shovel
+}
+
+
+-- Effect of BFFS! on Familiars
+EID.descriptions[languageCode].BFFSSynergies = {
+	["No Effect"] = "Žádný účinek od {1}",
+	["5.100.8"] = {3.5, 7}, -- Brother Bobby
+	["5.100.57"] = {75, 150}, -- Distant Admiration
+	["5.100.67"] = {3.5, 7}, -- Sister Maggy
+	["5.100.73"] = "Dvojnásobné poškození", -- Cube of Meat
+	["5.100.88"] = {52.5, 105}, -- Little Chubby
+	["5.100.94"] = {"2", "1-2"}, -- Sack of Pennies
+	["5.100.95"] = {3.5, 7}, -- Robo-Baby
+	["5.100.96"] = {"3", "2-3"}, -- Little C.H.A.D.
+	["5.100.98"] = {"5-6", "4-5"}, -- The Relic
+	["5.100.99"] = {3.5, 7}, -- Little Gish
+	["5.100.100"] = {3.5, 7}, -- Little Steven
+	["5.100.107"] = {82.5, 165}, -- The Pinking Shears
+	["5.100.112"] = {105, 210}, -- Guardian Angel
+	["5.100.113"] = {3, 6}, -- Demon Baby
+	["5.100.117"] = {4.3, 8.6}, -- Dead Bird
+	["5.100.128"] = {30, 60}, -- Forever Alone
+	["5.100.131"] = {"3", "2-3"}, -- Bomb Bag
+	["5.100.144"] = {"3-4", "3"}, -- Bum Friend
+	["5.100.155"] = {17, 34}, -- The Peeper
+	["5.100.163"] = {3.5, 7}, -- Ghost Baby
+	["5.100.167"] = {4, 8}, -- Harlequin Baby
+	["5.100.170"] = {40, 80}, -- Daddy Longlegs
+	["5.100.172"] = {225, 450}, -- Sacrificial Dagger
+	["5.100.174"] = {"3-5", "6-10"}, -- Rainbow Baby
+	["5.100.187"] = "Dvojnásobné poškození", -- Guppy's Hairball
+	["5.100.188"] = {3.5, 7, 7.5, 15}, -- Abel (includes Cain's Rep synergy)
+	["5.100.206"] = {105, 210}, -- Guillotine
+	["5.100.207"] = "Dvojnásobné poškození", -- Ball of Bandages
+	["5.100.264"] = {22.5, 45}, -- Smart Fly
+	["5.100.266"] = "Vytvoří dalšího modrého pavouka", -- Juicy Sack
+	["5.100.267"] = {3.5, 7}, -- Robo-Baby 2.0
+	["5.100.270"] = {3.2, 6.4}, -- Leech
+	["5.100.271"] = {"5-6", "4-5"}, -- Mystery Sack
+	["5.100.272"] = {60, 85}, -- BBF
+	["5.100.273"] = {60, 85}, -- Bob's Brain
+	["5.100.274"] = {75, 150}, -- Best Bud
+	["5.100.275"] = {31.5, 63}, -- Lil Brimstone
+	["5.100.277"] = {4, 8}, -- Lil Haunt
+	["5.100.279"] = {30, 60}, -- Big Fan
+	["5.100.318"] = {6, 12}, -- Gemini
+	["5.100.319"] = {"Izákovo poškození", "dvojnásobné {{CR}}Izákovo poškození"}, -- Cain's Other Eye
+	["5.100.320"] = {37.5, 75}, -- ???'s Only Friend
+	["5.100.321"] = {10.7, 21.4}, -- Samson's Chains
+	["5.100.322"] = {3.5, 7}, -- Mongo Baby
+	["5.100.325"] = {3.5, 7}, -- Scissors
+	["5.100.360"] = "Dvojnásobné poškození", -- Incubus
+	["5.100.361"] = "Dvojnásobné poškození", -- Fate's Reward
+	["5.100.362"] = {35, 44}, -- Lil Chest
+	["5.100.363"] = {105, 210}, -- Sworn Protector
+	["5.100.364"] = {45, 90}, -- Friend Zone
+	["5.100.365"] = {105, 210}, -- Lost Fly
+	["5.100.372"] = "Vyšší šance na vytvoření baterií", -- Charged Baby
+	["5.100.384"] = {"5-90", "10-180"}, -- Lil Gurdy
+	["5.100.385"] = "Dvojnásobné poškození", -- Bumbo
+	["5.100.388"] = "Častěji vytváří truhly", -- Key Bum
+	["5.100.389"] = {"5-6", "4-5"}, -- Rune Bag
+	["5.100.390"] = {10, 20}, -- Seraphim
+	["5.100.403"] = "Vyšší šance na vytvoření baterií", -- Spider Mod
+	["5.100.405"] = {120, 240}, -- GB Bug
+	["5.100.417"] = "Poškozující aura se zvětší, ale samotné poškození aury ne", -- Succubus
+	["5.100.426"] = {30, 60}, -- Obsessed Fan
+	["5.100.430"] = {"Izákovo poškození", "dvojnásobné {{CR}}Izákovo poškození"}, -- Papa Fly
+	["5.100.435"] = {3.5, 7}, -- Lil Loki
+	["5.100.468"] = {30, 60}, -- Shade
+	["5.100.470"] = {30, 60}, -- Hushy
+	["5.100.471"] = {3.5, 7}, -- Lil Monstro
+	["5.100.473"] = {40.5, 81}, -- Big Chubby
+	["5.100.491"] = {"3", "2-3"}, -- Acid Baby
+	["5.100.500"] = {"5-6", "4-5"}, -- Sack of Sacks
+	["5.100.508"] = {3, 6}, -- Mom's Razor
+	["5.100.509"] = {3.5, 7, 30, 60}, -- Bloodshot Eye
+	["5.100.511"] = {30, 60}, -- Angry Fly
+	["5.100.518"] = "Dvojnásobné poškození", -- Buddy in a Box
+	["5.100.519"] = "Dvojnásobné poškození", -- Lil Delirium
+	["5.100.525"] = {35, 70}, -- Leprosy
+	["5.100.526"] = "Kontaktní poškození jezdce je dvojnásobné", -- 7 Seals
+	["5.100.537"] = "Zvyšuje velikost kaluže, ale ne její poškození", -- Lil Spewer
+	["5.100.539"] = "Vytvoří šampionskou variantu nepřítele", -- Mystery Egg
+	["5.100.544"] = {6, 12}, -- Pointy Rib
+	["5.100.545"] = "Kontaktní poškození kostního orbitálu je dvojnásobné", -- Book of the Dead
+	["5.100.548"] = {7, 14}, -- Jaw Bone
+	
+	["5.350.54"] = {3.5, 7}, --- Isaac's Head
+	["5.350.57"] = {3.5, 7}, --- ???'s Soul
+	["Lilith"] = "Poškození inkubusů je dvojnásobné", -- Incubus (for BFFS pedestal)
+}
+
 
 ---------- Transformations ----------
 EID.descriptions[languageCode].transformations = {
@@ -879,11 +1039,49 @@ EID.descriptions[languageCode].CollectionPageInfo = "Tento předmět je potřeba
 
 EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} JEDNO POUŽITÍ {{Warning}}"
 
+EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Poškození", "↑ {{Tears}} -4 Zpoždění slz", "↑ {{Speed}} +0.5 Rychlost", "↑ {{Range}} +7.5 Rozsah#↑ +1 Výška slz"}
+
+EID.descriptions[languageCode].CrookedPennyHeads = "Panna"
+EID.descriptions[languageCode].CrookedPennyTails = "Orel"
+
+EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorLime}}{1}{{CR}} aktuálně držené předměty (+{2} poškození)"
+
+EID.descriptions[languageCode].LuckModifier = "{1}% šance při {2} štěstí"
+
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Demo Jméno Objektu",
 	DemoObjectTransformation = "Demo Transformace",
 	DemoObjectText = "Tento text je v češtině#Velmi skvělý a dlouhý popis pro simulaci zalomení řádků způsobených šířkou textového pole EID!#{{Collectible4}} Toto je také skvělý řádek#{{Heart}} Tento řádek tě má rád#{{AngelDevilChance}} Tento řádek může být tvůj anděl nebo ďábel#{{Damage}} +1 Zvýšení statistiky"
 }
+
+-- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
+-- {1} = number of hearts, {2} = plural character
+-- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
+EID.descriptions[languageCode].RedToX = {
+	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
+	["Red to Soul"] = {"↑ {{Heart}} +{1} Zdraví", "{{SoulHeart}} +{1} Duševní Srdce{2}",
+	"↑ {{EmptyHeart}} +{1} Místo na srdce{2}", "{{SoulHeart}} +{1} Duševní Srdce{2}",
+	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{SoulHeart}} {1} Duševní Srdce{2}"},
+	
+	["Red to Black"] = {"↑ {{Heart}} +{1} Zdraví", "{{BlackHeart}} +{1} Černé Srdce{2}",
+	"↑ {{EmptyHeart}} +{1} Místo na srdce{2}", "{{BlackHeart}} +{1} Černé Srdce{2}",
+	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{SoulHeart}} {1} Černé Srdce{2}"},
+	
+	["Red to Bone"] = {"↑ {{Heart}} +{1} Zdraví", "{{BoneHeart}} +{1} Kostěné Srdce{2}",
+	"↑ {{EmptyHeart}} +{1} Místo na srdce{2}", "{{EmptyBoneHeart}} +{1} Prázdné kostěné srdce{2}", "{{HealingRed}}", "{{HealingBone}}",
+	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{EmptyBoneHeart}} {1} Kostěné Srdce{2}"}, -- Red HP to Bone Hearts
+	
+	["Red to Coin"] = {"↑ {{Heart}} +{1} Zdraví", "{{CoinHeart}} +{1} Mincové Srdce{2}",
+	"↑ {{EmptyHeart}} +{1} Místo na srdce{2}", "{{EmptyCoinHeart}} +{1} Prázdné Mincové Srdce{2}",
+	"{{HealingRed}} Vyléčí {1} srdce{2}", "{{HealingCoin}} Vyléčí {1} minci{2}", "{{HealingRed}}  Vyléčí půlku srdce", "{{HealingCoin}} Vyléčí 1 minci", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Zdraví", "↓ {{EmptyCoinHeart}} {1} Mincové Srdce{2}"}, -- Red HP to Coin Hearts
+	
+	["Red to None"] = {"↑ {{Heart}} +{1} Zdraví", "", "↑ {{EmptyHeart}} +{1} Místo na srdce{2}", "", "↓ {{EmptyHeart}} {1} Zdraví", ""}, -- Red HP to None (The Lost)
+}
+
+
+EID.descriptions[languageCode].RoomTypeNames = { "Normální místnost", "Obchod", "JSEM ERROR místnost", "Pokladnice", "Boss Místnost", "Miniboss Místnost", "Tajná místnost", "Super tajná místnost", "Herna", "Místnost prokletí", "Vyzyvatelská Místnost", "Knihovna", "Obětní místnost", "Ďábelská místnost", "Andělská místnost", "Místnost prolézacího prostoru", "Boss Rush místnost", "Izákův pokoj", "Pustá místnost", "Truhlová místnost", "Kostková místnost", "Černý trh", "Východ místnosti", "Planetárium", "Vstup pro teleport", "Výstup pro teleport", "Padací dvířka alternativní cesty", "Místnost s modrým klíčem", "Ultra tajná místnost",
+-- Not technically room types but still potentially useful to have localized
+[666] = "Ďábelská/Andělská místnost", [1024] = "Červená místnost", [1025] = "Speciální červená místnost" }
 
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {
@@ -901,19 +1099,37 @@ EID.descriptions[languageCode].PickupNames = {
 	["5.40"] = "{{Bomb}} Bomb",
 	["5.40.1"] = "{{Crafting15}} Bomb", ["5.40.2"] = "{{Crafting15}} Double Bomb", ["5.40.3"] = "{{Crafting15}} Troll Bomb", ["5.40.4"] = "{{Crafting16}} Golden Bomb", ["5.40.5"] = "{{Crafting15}} Megatroll Bomb", ["5.40.7"] = "{{Crafting17}} Giga Bomb",
 
-	["5.90"] = "{{Battery}} Battery",
-	["5.90.0"] = "{{Crafting19}} Lil' Battery", --AB+ didn't have subtypes for batteries
-	["5.90.1"] = "{{Crafting19}} Lil' Battery", ["5.90.2"] = "{{Crafting18}} Micro Battery", ["5.90.3"] = "{{Crafting20}} Mega Battery", ["5.90.4"] = "{{Crafting28}} Golden Battery",
+	["5.42"] = "{{Crafting29}} Hovnový Nuget", ["5.42.1"] = "{{Crafting29}} Velký Hovnový Nuget",
 
-	["5.50"] = "{{Chest}} Chest", ["5.51"] = "{{BombChest}} Bomb Chest", ["5.52"] = "{{SpikedChest}} Spiked Chest", ["5.53"] = "{{EternalChest}} Eternal Chest", ["5.54"] = "{{MimicChest}} Mimic Chest", ["5.55"] = "{{OldChest}} Old Chest", ["5.56"] = "{{WoodenChest}} Wooden Chest", ["5.57"] = "{{MegaChest}} Mega Chest", ["5.58"] = "{{HauntedChest}} Haunted Chest", ["5.60"] = "{{GoldenChest}} Golden Chest", ["5.360"] = "{{RedChest}} Red Chest",
+	["5.90"] = "{{Battery}} Baterie",
+	["5.90.0"] = "{{Crafting19}} Malá Baterie", --AB+ didn't have subtypes for batteries
+	["5.90.1"] = "{{Crafting19}} Malá Baterie", ["5.90.2"] = "{{Crafting18}} Mikro Baterie", ["5.90.3"] = "{{Crafting20}} Mega Baterie", ["5.90.4"] = "{{Crafting28}} Zlatá Baterie",
 
-	["5.69"] = "{{GrabBag}} Grab Bag", ["5.69.1"] = "{{GrabBag}} Grab Bag", ["5.69.2"] = "{{BlackSack}} Black Sack",
+	["5.50"] = "{{Chest}} Truhla", ["5.51"] = "{{BombChest}} Bombová Truhla", ["5.52"] = "{{SpikedChest}} Ostnatá Truhla", ["5.53"] = "{{EternalChest}} Věčná Truhla", ["5.54"] = "{{MimicChest}} Mimik Truhla", ["5.55"] = "{{OldChest}} Stará Truhla", ["5.56"] = "{{WoodenChest}} Dřevěnná Truhla", ["5.57"] = "{{MegaChest}} Mega Truhla", ["5.58"] = "{{HauntedChest}} Strašidelná Truhla", ["5.60"] = "{{GoldenChest}} Zlatá Truhla", ["5.360"] = "{{RedChest}} Červená Truhla",
 
-	["5.70"] = "{{Pill}} Pill",
-	["5.300"] = "{{Card}} Card",
-	["5.301"] = "{{Rune}} Rune", -- not a real id
+	["5.69"] = "{{GrabBag}} Pytlík", ["5.69.1"] = "{{GrabBag}} Pytlík", ["5.69.2"] = "{{BlackSack}} Černý Pytlík",
+
+	["5.70"] = "{{Pill}} Pilulka",
+	["5.300"] = "{{Card}} Karta",
+	["5.301"] = "{{Rune}} Runa", -- not a real id
 	["5.350"] = "{{Trinket}} Trinket",
 
+}
+
+-- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
+EID.descriptions[languageCode].ItemReminder = {
+	ResultHeader = "{1} Výsledek",
+	InventoryEmpty = "(Hráč nemá žádné předměty)",
+	CategoryNames = {
+		Overview = "Přehled inventáře",
+		Wisps = "Bludičky Lemegeton",
+		Special = "Speciální",
+		Actives = "Držené aktivní předměty",
+		Pockets = "Držené kapesní předměty",
+		Trinkets = "Držené Trinkety",
+		Passives = "Držené pasivní předměty",
+		Character = "Informace o postavě",
+	}
 }
 
 ---------- Character Info ----------
