@@ -1,3 +1,4 @@
+if EID and EID.Name then print("Error: Two instances of EID found! Please uninstall one of them!") return end -- If EID is already loaded, warn the user and dont load the second one.
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
@@ -11,7 +12,7 @@ EID.isRepentancePlus = FontRenderSettings ~= nil -- Repentance+ adds FontRenderS
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.86
+EID.ModVersion = 4.87
 EID.ModVersionCommit = "ca654bfa"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
@@ -112,7 +113,11 @@ table.sort(EID.Languages)
 pcall(require,"scripts.eid_savegames")
 require("features.eid_mcm")
 require("features.eid_data")
-require("features.eid_xmldata")
+if EID.isRepentancePlus then
+	require("features.eid_xmldata_rep+")
+else
+	require("features.eid_xmldata")
+end
 require("features.eid_api")
 require("features.eid_conditionals")
 require("features.eid_modifiers")
@@ -142,8 +147,6 @@ if EID.isRepentance then
 			end
 		end
 		local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
-
-		require("features.eid_xmldata_rep+")
 	end
 end
 
