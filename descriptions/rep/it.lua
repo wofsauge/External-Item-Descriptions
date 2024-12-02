@@ -1053,8 +1053,8 @@ local repPills={
 	[38] = {"37", "Rétro Visione", "{{Timer}} Rende lo schermo pixellato per 30 secondi"},
 	[42] = {"41", "Ho Sonno...", "{{Slow}} Rallenta Isaac e tutti i nemici nella stanza"}, -- I'm Drowsy...
 	[43] = {"42", "Sono Euforico!!!", "{{Timer}} Velocizza Isaac e tutti i nemici nella stanza#Si attiva nuovamente dopo 30 e 60 secondi"}, -- I'm Excited!!!
-	[48] = {"47", "Meno Velocità Colpi", "↓ {Shotspeed}} -0.15 Velocità Colpi"}, -- Shot Speed Down
-	[49] = {"48", "Più Velocità Colpi", "↑ {Shotspeed}} +0.15 Velocità Colpi"}, -- Shot Speed Up
+	[48] = {"47", "Meno Velocità Colpi", "↓ {{Shotspeed}} -0.15 Velocità Colpi"}, -- Shot Speed Down
+	[49] = {"48", "Più Velocità Colpi", "↑ {{Shotspeed}} +0.15 Velocità Colpi"}, -- Shot Speed Up
 	[50] = {"49", "Pillola Sperimentale", "↑ Aumenta 1 statistica casuale#↓ Diminuisce 1 statistica casuale"}, -- Experimental Pill
 	[9999] = {"", "Pillola Dorata", "Effetto di una pillola casuale#Chance di autodistruggersi dopo qualche uso"}, -- golden Pill
 }
