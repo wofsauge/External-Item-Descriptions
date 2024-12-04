@@ -20,7 +20,7 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[351] = {"351", "超级豆子", "使房间中所有敌人石化并造成100点伤害#{{Poison}} 造成5点伤害并使附近敌人中毒#向角色移动方向发出岩石波#岩石波可打开隐藏房和粉碎岩石"}, -- Mega Bean
 	-- Change: "10%" to "20%"
-	[398] = {"398", "神体蘑菇", "20%几率发射使敌人缩小的泪弹#缩小的敌人可以被踩死"}, -- Tractor Beam
+	[398] = {"398", "神体蘑菇", "20%几率发射使敌人缩小的泪弹#缩小的敌人可以被踩死"}, -- God's Flesh
 	-- Change: Complete rewrite
 	[436] = {"436", "牛奶！", "阻挡弹幕#{{Tears}} 受击10次后, 破裂并在本层获得射速提升"}, -- Milk!
 	-- Change: Complete rewrite
