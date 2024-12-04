@@ -130,7 +130,7 @@ EID.descriptions[languageCode].collectibles={
 	{"107", "Forbici Seghettate", "{{Timer}} Conferisce fino all'uscita dalla stanza:#Volo#Il corpo di Isaac si separa dalla testa e attacca i nemici con 82.5 danni da contatto al secondo"},
 	{"108", "L'Ostia", "Riduce la maggior parte dei danni presi a mezzo cuore"},
 	{"109", "Soldi = Forza", "↑ +0.04 Danni per ogni {{Coin}} moneta che ha Isaac"},
-	{"110", "Lentine di Mamma", "↑ {{Range}} +0.25 Gitttata#↑ +0.5 Altezza Lacrime#20% di chance di sparare lacrime pietrificanti#{{Luck}} 50% di chance con 20 di Fortuna"},
+	{"110", "Lentine di Mamma", "↑ {{Range}} +0.25 Gittata#↑ +0.5 Altezza Lacrime#20% di chance di sparare lacrime pietrificanti#{{Luck}} 50% di chance con 20 di Fortuna"},
 	{"111", "Il Fagiolo", "{{Poison}} Infligge 5 danni ai nemici nelle vicinanze e li avvelena#Il veleno infligge i danni di Isaac per 6 volte"},
 	{"112", "Angelo Custode", "Orbitale#Velocizza tutti gli altri orbitali#Blocca i proiettili#Infligge 105 danni da contatto al secondo"},
 	{"113", "Bebè Demone", "Spara ai nemici che gli si avvicinano#Infligge 3 danni a lacrima"},
