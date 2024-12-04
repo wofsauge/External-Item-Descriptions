@@ -266,7 +266,7 @@ EID.descriptions[languageCode].collectibles={
 	{"244", "Tech.5", "Střílíš náhodné laserové výstřely"},
 	{"245", "20/20", "Zdvojnásobí všechny tvoje střely"},
 	{"246", "Modrá Mapa", "{{SecretRoom}} Odhaluje tajné místnosti"},
-	{"247", "NEJKY!", "Tvoji spojenci působí dvojnásobné poškození"},
+	{"247", "NEJKY!", "Tvoji spojenci mají dvojnásobné poškození"},
 	{"248", "Úlové Myšlení", "Modří pavouci/mouchy působí dvojnásobné poškození"},
 	{"249", "Jsou Tu Možnosti", "Namísto 1 se objeví 2 Boss předměty#!!! Vzít lze pouze jeden"},
 	{"250", "1+1 Bomby", "{{Bomb}} Všechny bomby se stanou dvojitými bombami"},
@@ -717,7 +717,7 @@ EID.descriptions[languageCode].cards={
 	{"7", "VI - Zamilovaní", "{{Heart}} Vytvoří 2 Červené Srdce"},
 	{"8", "VII - Vůz", "Nesmrtelnost + kontaktní poškození na 6 sekund"},
 	{"9", "VIII - Spravedlnost", "Vytvoří 1 bombu, 1 klíč, 1 minci a 1 srdce"},
-	{"10", "IX - Poustevník", "{{Shop}} Teleportuje tě do Obchodu"},
+	{"10", "IX - Poustevník", "{{Shop}} Teleportuje tě do obchodu"},
 	{"11", "X - Kolo Štěstí", "Vytvoří {{Slotmachine}} Hrací Automat nebo {{FortuneTeller}} Věštecký Stroj"},
 	{"12", "XI - Síla", "↑ {{Heart}} +1 Zvýšení Zdraví#↑ {{Damage}} +0.3 Větší Poškození#↑ {{Damage}} +50% Větší Poškození#↑ {{Range}} +5.25 Větší Dostřel#↑ +0.5 Výška Slz#↑ {{Speed}} +0.3 Zvýšení Rychlosti pro aktuální místnost"},
 	{"13", "XII - Viselec", "Uděluje ti létání pro aktuální místnost"},
@@ -763,6 +763,41 @@ EID.descriptions[languageCode].cards={
 	{"53", "Starověké Odvolání", "{{Card}} Při použití vytvoří 3 náhodné karty"},
 	{"54", "Érová Chůze", "{{Slow}} Zpomalí nepřátele#↑ {{Speed}} +0.5 Zvýšení Rychlosti#↓ {{Shotspeed}} -1 Menší Rychlost Střel#Efekt trvá pro aktuální místnost"},
 }
+
+
+--[[ Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
+-- Strings will be appended to the original description (with line breaks replaced with a Tarot Cloth icon)
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple) ]]
+EID.descriptions[languageCode].tarotClothBuffsAB = {
+	[4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
+	[6] = {2, 4}, -- V - The Hierophant
+	[7] = {2, 4}, -- VI - The Lovers
+	[8] = {6, 12}, -- VII - The Chariot
+	[9] = {"Vytvoří {{ColorShinyPurple}}2{{CR}} náhodná {{UnknownHeart}} srdce, {{Coin}} mince, {{Bomb}} bomby a {{Key}} klíče"}, -- VIII - Justice
+	[11] = {" a ", " 2 ", "Hrací Automat", "{{CR}}Hrací Automaty", "Věštecký Stroj", "{{CR}}Věštecké Stroje"}, -- X - Wheel of Fortune
+	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
+	[14] = {40, 80}, -- XIII - Death
+	[15] = {" a ", " 2 ", " Machine", " {{CR}}Machines", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XIV - Temperance (+ Greed version)
+	[17] = {6, 12}, -- XVI - The Tower
+	[20] = {100, 200}, -- XIX - The Sun
+	[21] = {" a ", " 2 ", "Žebrák ", "{{CR}}Žebráci ", "Ďábelský žebrák", "{{CR}}Ďábelské žebráky"}, -- XX - Judgement
+	[23] = {"Duplikuje", "Zčtyřnásobuje"}, -- 2 of Clubs
+	[24] = {"Duplikuje", "Zčtyřnásobuje"}, -- 2 of Diamonds
+	[25] = {"Duplikuje", "Zčtyřnásobuje"}, -- 2 of Spades
+	[26] = {"Duplikuje", "Zčtyřnásobuje"}, -- 2 of Hearts
+	[33] = {"Duplikuje", "Zčtyřnásobuje"}, -- Jera
+	[35] = {1, 2}, -- Dagaz
+	[37] = "Přetočí dvakrát", -- Perthro
+	[38] = {3, 6, 3, 6}, -- Berkano
+	[39] = {30, 60}, -- Algiz
+	[40] = "Spustí 2 runové efekty a pokusí se dvakrát duplikovat", -- Blank Rune
+	[41] = {40, 80}, -- Black Rune
+	[46] = {10, 20}, -- Suicide King
+	[48] = "Použije se dvakrát", -- ? Card
+	[53] = {3, 6}, -- Ancient Recall
+}
+
 
 ---------- Pills ----------
 EID.descriptions[languageCode].unidentifiedPill = "Neznámá Pilulka"
@@ -1164,6 +1199,7 @@ EID.descriptions[languageCode].CharacterInfo = {
 
 EID.descriptions[languageCode].ConditionalDescs = {
 	------ GENERAL STRINGS ------
+	["5.300.48"] = "Teleportuje tě do JSEM ERROR místnosti#Prázdná Karta a ?-Karta bude zničena", -- Blank Card + Q Card
 	["Overridden"] = "Je přepsán předmětem {1}",
 	["Overrides"] = "Přepíše {1}",
 	["Almost No Effect"] = "Malý až žádný efekt pro {1}",
