@@ -1143,7 +1143,7 @@ local repCharacterInfo = {
 	[36] = {"Betania Corrotta", "{{Heart}} Per caricare l'oggetto attivo usa Cuori Rossi#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti e cariche sanguinee#Gli aumenti di statistica hanno un'efficacia del 75%"},
 	[37] = {"Giacobbe Corrotto", "Viene inseguito da Esaù Oscuro, caricando verso di lui a distanza ravvicinata#La carica infligge danni ingenti ai nemici#Se lo colpisce, diventa per il resto del piano uno spirito che muore in un colpo#Mentre è uno spirito può stringere gratuitamente un patto con il diavolo per stanza"},
 	[38] = {"Lazzaro Morto Corrotto", "Lazzaro ha due stadi, ciascuno con i suoi oggetti e salute#Completare una stanza/ondata o usare \"Limbo\" richiama l'altro personaggio"},
-	[39] = {"Giacobbe Corrotto 2", "Volo#Lacrime spettrali#{{Warning}} Salute nulla#{{Warning}} Se colpito da Esaù Oscuro muore#{{DevilRoom}} Può stringere gratuitamente un patto con il diavolo per stanza#Al piano successivo ritorna ad essere Giacobbe Corrotto"},
+	[39] = {"L'Anima di Giacobbe Corrotta", "Volo#Lacrime spettrali#{{Warning}} Salute nulla#{{Warning}} Se colpito da Esaù Oscuro muore#{{DevilRoom}} Può stringere gratuitamente un patto con il diavolo per stanza#Al piano successivo ritorna ad essere Giacobbe Corrotto"},
 	[40] = {"L'Anima Corrotta", "Il Dimenticato è una pila d'ossa immobile che viene raccolta e lanciata da L'Anima, infliggendo x3 di danni#Solo L'Anima può subire danni#Le bombe vengono piazzate nella posizione di Il Dimenticato#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti"},
 }
 EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
@@ -1188,8 +1188,8 @@ EID.descriptions[languageCode].birthright ={
 	{"Betania Corrotta", "", "Genera 4 fiammelle di oggetti casuali di Qualità {{Quality3}} e {{Quality4}} con salute molto più elevata del normale"},
 	{"Giacobbe Corrotto", "", "Esaù Oscuro si scinde in due, creando un clone d'ombra di sé stesso#Entrambi gli Esaù caricano sempre nello stesso momento#{{Collectible722}} Il tempo di attesa di \"Anima Sola\" è ridotto a 10 secondi#Usare \"Anima Sola\" incatena entrambi gli Esaù per 6.67 secondi"},
 	{"Lazzaro Morto Corrotto", "", "La forma inattiva di Lazzaro Corrotto appare come un secondo personaggio spettrale#È invincibile e infligge il 25% dei danni#Entrambe le forme ricevono \"Primogenitura\""},
-	{"Giacobbe Corrotto 2", "", ""},
-	{"L'Anima Corrotta", "", "{{Collectible714}} L'Anima Corrotta ottiene l'abilità \"Richiamo\" per recuperare da lontano Il Dimenticato Corrotto#L'Anima è invincibile durante il richiamo di Il Dimenticato"},
+	{"L'Anima di Giacobbe Corrotta", "", "Esaù Oscuro si scinde in due, creando un clone d'ombra di sé stesso#Entrambi gli Esaù caricano sempre nello stesso momento#{{Collectible722}} Il tempo di attesa di \"Anima Sola\" è ridotto a 10 secondi#Usare \"Anima Sola\" incatena entrambi gli Esaù per 6.67 secondi"},
+	{"L'Anima Dimenticata Corrotta", "", "{{Collectible714}} L'Anima Corrotta ottiene l'abilità \"Richiamo\" per recuperare da lontano Il Dimenticato Corrotto#L'Anima è invincibile durante il richiamo di Il Dimenticato"},
 }
 
 ---------- Glitched Item Descriptions ----------

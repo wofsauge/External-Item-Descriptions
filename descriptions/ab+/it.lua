@@ -1035,7 +1035,7 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[14] = {"Mercante", "{{CoinHeart}} Si cura raccogliendo monete#Massimale di 2 Portamonete#I cuori consumabili vengono trasformati in mosche blu"},
 	[15] = {"Apollion", ""},
 	[16] = {"Il Dimenticato", "Si ha un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
-	[17] = {"L'Anima", "Si ha un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
+	[17] = {"L'Anima Dimenticata", "Si ha un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
 }
 
 ---------- Sacrifice Room ----------
