@@ -431,14 +431,14 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 -- Buffs caused by Binge Eater
 -- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon in front of each buff-bulletpoint
 EID.descriptions[languageCode].bingeEaterBuffs = {
-	[22] = "↑ {{Tears}} +0.5 Lacrimi#↑ {{Range}} +2.5 Rază de atac#↑ {{Damage}} +3.6 daune temporare#↓ {{Speed}} -0.03 Viteză", -- Lunch
-	[23] = "↑ {{Tears}} +0.5 Lacrimi#↑ {{Shotspeed}} +0.2 Viteza lacrimilor#↑ {{Damage}} +3.6 daune temporare#↓ {{Speed}} -0.03 Viteză", -- Dinner
-	[24] = "↑ {{Damage}} +1 Daune#↑ {{Shotspeed}} +0.2 Viteza lacrimilor#↑ {{Damage}} +3.6 daune temporare#↓ {{Speed}} -0.03 Viteză", -- Dessert
-	[25] = "↑ {{Range}} +2.5 Rază de atac#↑ {{Shotspeed}} +0.2 Viteza lacrimilor#↑ {{Damage}} +3.6 daune temporare#↓ {{Speed}} -0.03 Viteză", -- Breakfast
-	[26] = "↑ {{Damage}} +1 Daune#↑ {{Range}} +2.5 Rază de atac#↑ {{Damage}} +3.6 daune temporaree#↓ {{Speed}} -0.03 Viteză", -- Rotten Meat
-	[346] = "↑ {{Shotspeed}} +0.2 Viteza lacrimilor#↑ {{Luck}} +1 Noroc#↑ {{Damage}} +3.6 daune temporare#↓ {{Speed}} -0.03 Viteză", -- A Snack
-	[456] = "↑ {{Damage}} +1 Daune#↑ {{Luck}} 1 Noroc#↑ {{Damage}} +3.6 daune temporare#↓ {{Speed}} -0.03 Viteză", -- Midnight Snack
-	[707] = "↑ {{Tears}} +0.5 Lacrimi#↑ {{Luck}} 1 Noroc#↑ {{Damage}} +3.6 daune temporare#↓ {{Speed}} -0.03 Viteză", -- Supper
+	[22] = "↑ {{Tears}} +0.5 Tears#↑ {{Range}} +2.5 Range#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Lunch
+	[23] = "↑ {{Tears}} +0.5 Tears#↑ {{Shotspeed}} +0.2 Shot speed#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Dinner
+	[24] = "↑ {{Damage}} +1 Damage#↑ {{Shotspeed}} +0.2 Shot speed#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Dessert
+	[25] = "↑ {{Range}} +2.5 Range#↑ {{Shotspeed}} +0.2 Shot speed#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Breakfast
+	[26] = "↑ {{Damage}} +1 Damage#↑ {{Range}} +2.5 Range#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Rotten Meat
+	[346] = "↑ {{Shotspeed}} +0.2 Shot speed#↑ {{Luck}} +1 Luck#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- A Snack
+	[456] = "↑ {{Damage}} +1 Damage#↑ {{Luck}} +1 Luck#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Midnight Snack
+	[707] = "↑ {{Tears}} +0.5 Tears#↑ {{Luck}} +1 Luck#↑ {{Damage}} Temporary +3.6 damage#↓ {{Speed}} -0.03 Speed", -- Supper
 }
 
 -- Buffs caused by Book of Belial with Judas' Birthright
@@ -650,9 +650,9 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 
 -- Special Locust effects when Item was eaten by Abyss
 EID.descriptions[languageCode].abyssSynergies = {
-	[2] = "3 locuste normale", -- The Inner Eye
-	[3] = "Locuste mov cu orientare", -- Spoon Bender
-	[4] = "Locuste roșii marii care povoacă daune triple", -- Cricket's Head
+	[2] = "Three normal locusts", -- The Inner Eye
+	[3] = "Purple homing locust", -- Spoon Bender
+	[4] = "Red large locust that deals triple damage", -- Cricket's Head
 	[6] = "Yellow fast short range locust that deals damage more quickly", -- Number One
 	[7] = "Red locust that deals double damage", -- Blood of the Martyr
 	[10] = "Two gray locusts that deal half damage", -- Halo of Flies
@@ -779,17 +779,17 @@ EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].
 ---------- Trinkets ----------
 
 local repTrinkets={
-	[10] = {"10", "Vierme Neastâmpărat", "↑ {{Tears}} +0.4 Lacrimi#Lacrimi spectrale#Lacrimile lui Isaac se mișcă în valuri"}, -- Wiggle Worm
-	[11] = {"11", "Vierme Inel", "↑ {{Tears}} +0.47 Lacrimi#Lacrimi spectrale#Lacrimile lui Isaac se mișcă spiralat cu viteză mare"}, -- Ring Worm
-	[15] = {"15", "Piatră Norocoasă", "{{Coin}} Distrugerea pietrelor are o șansă de 33% să ofere un bănuț"},-- Lucky Rock
-	[16] = {"16", "Unghia Mamei", "Piciorul Mamei cade in locuri aleatorii la fiecare 20 de secunde"}, -- Mom's Toenail
-	[24] = {"24", "Bănuț Murdar", "{{Coin}} 20% șansă mai mare ca un bănuț să fie în rahați#{{Poison}} Colectând bani, Isaac se beșește și otrăvește inamicii din jur și aruncă proiectilele"}, -- Butt Penny
-	[26] = {"26", "Ancylostoma", "↑ {{Tears}} +0.4 Lacrimi#↑ {{Range}} +1.5 Rază de atac#Lacrimi Spectrale#Lacrimile lui Isaac se mișcă triunghiular"}, -- Hook Worm
-	[32] = {"32", "Ciupercă Pălarie", "25% Șansă pentru un efect aleatoriu de ciupercă la fiecare cameră"}, -- Liberty Cap
-	[33] = {"33", "Cordonul Ombilicald", "{{HalfHeart}} Dacă ai o jumătate de Inima Roșie sau mai pușin {{Collectible100}} Micul Steven#{{Collectible318}} Dacă ești vătămat este o șansă mare sa primști un familar geaman pe durarta camerei"}, -- Umbilical Cord
-	[39] = {"39", "Cancer", "↑ {{Tears}} +1 Viteză de atac"}, -- Cancer
-	[48] = {"48", "O Pagină Lipsă", "5% șansă sa provoci 80 de daune tuturor inamicilor din cameră dacă ești vătămat#{{Collectible35}} Efectele Inimilor Negre sau Necronomicon sunt dublate"}, -- A Missing Page
-	[49] = {"49", "Bănuț Însângerat", "{{HalfHeart}} 25% șansă să primesti jumătate de Inimă Roșie dacă colectezi bănuți#Șansă mai mare de la banuții mai valoroși"}, -- Bloody Penny
+	[10] = {"10", "Wiggle Worm", "↑ {{Tears}} +0.4 Tears#Spectral tears#Isaac's tears move in waves"}, -- Wiggle Worm
+	[11] = {"11", "Ring Worm", "↑ {{Tears}} +0.47 Tears#Spectral tears#Isaac's tears move in spirals with high speed"}, -- Ring Worm
+	[15] = {"15", "Lucky Rock", "{{Coin}} Destroying rocks has a 33% chance to spawn a coin"},-- Lucky Rock
+	[16] = {"16", "Mom's Toenail", "Mom's Foot stomps a random spot in the room every 20 seconds"}, -- Mom's Toenail
+	[24] = {"24", "Butt Penny", "{{Coin}} 20% higher chance for coins to spawn from poop#{{Poison}} Picking up coins makes Isaac fart, which poisons and knocks back enemies and projectiles"}, -- Butt Penny
+	[26] = {"26", "Hook Worm", "↑ {{Tears}} +0.4 Tears#↑ {{Range}} +1.5 Range#Spectral tears#Isaac's tears move in angular patterns"}, -- Hook Worm
+	[32] = {"32", "Liberty Cap", "25% chance for a random mushroom effect per room"}, -- Liberty Cap
+	[33] = {"33", "Umbilical Cord", "{{HalfHeart}} Having half a Red Heart or less grants {{Collectible100}} Little Steven#{{Collectible318}} Taking damage has a high chance to spawn a Gemini familiar for the room"}, -- Umbilical Cord
+	[39] = {"39", "Cancer", "↑ {{Tears}} +1 Fire rate"}, -- Cancer
+	[48] = {"48", "A Missing Page", "Taking damage has a 5% chance to deal 80 damage to all enemies in the room#{{Collectible35}} Black Hearts and Necronomicon-like effects deal double damage"}, -- A Missing Page
+	[49] = {"49", "Bloody Penny", "{{HalfHeart}} Picking up a coin has a 25% chance to spawn a half Red Heart#Higher chance from nickels and dimes"}, -- Bloody Penny
 	[50] = {"50", "Burnt Penny", "{{Bomb}} Picking up a coin has a 25% chance to spawn a bomb#Higher chance from nickels and dimes"}, -- Burnt Penny
 	[51] = {"51", "Flat Penny", "{{Key}} Picking up a coin has a 25% chance to spawn a key#Higher chance from nickels and dimes"}, -- Flat Penny
 	[65] = {"65", "Tape Worm", "↑ {{Range}} +3 Range"}, -- Tape Worm
@@ -927,20 +927,20 @@ EID.descriptions[languageCode].goldenTrinketData = { }
 local repCards={
 	[2] = {"2", "I - The Magician", "{{Timer}} Receive for the room:#↑ {{Range}} +3 Range#Homing tears"}, -- I - The Magician
 	[12] = {"12", "XI - Strength", "{{Timer}} Receive for the room:#↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +0.3 Damage#↑ {{Damage}} x1.5 Damage multiplier#↑ {{Range}} +2.5 Range"}, -- XI - Strength
-	[16] = {"16", "XV - Diavolul", "{{Timer}} Pe durata camerei:#↑ {{Damage}} +2 Daune"}, -- XV - The Devil
-	[18] = {"18", "XVII - Steaua", "{{TreasureRoom}} Isaac este transportat în Camera Comorilor#{{Planetarium}} Dacă este un Planetariu Isaac va fi transportat acolo"}, -- XVII - The Stars
-	[27] = {"27", "As de Treflă", "{{Bomb}} Transformă pickupurile și inamicii non-șefi în bombe aleatorii"}, -- Ace of Clubs
-	[28] = {"28", "As de Romb", "{{Coin}} Transformă pickupurile și inamicii non-șefi în bănuți aleatorii"}, -- Ace of Diamonds
-	[29] = {"29", "As de Inimă Neagră", "{{Key}} Transformă pickupurile și inamicii non-șefi în chiei aleatorii"}, -- Ace of Spades
-	[30] = {"30", "As de Inimă Roșie", "{{UnknownHeart}} Transformă pickupurile și inamicii non-șefi în inimi aleatori"}, -- Ace of Hearts
+	[16] = {"16", "XV - The Devil", "{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage"}, -- XV - The Devil
+	[18] = {"18", "XVII - The Stars", "{{TreasureRoom}} Teleports Isaac to the Treasure Room#{{Planetarium}} If there is a Planetarium, it teleports there instead"}, -- XVII - The Stars
+	[27] = {"27", "Ace of Clubs", "{{Bomb}} Turns all pickups, chests and non-boss enemies into random bombs"}, -- Ace of Clubs
+	[28] = {"28", "Ace of Diamonds", "{{Coin}} Turns all pickups, chests and non-boss enemies into random coins"}, -- Ace of Diamonds
+	[29] = {"29", "Ace of Spades", "{{Key}} Turns all pickups, chests and non-boss enemies into random keys"}, -- Ace of Spades
+	[30] = {"30", "Ace of Hearts", "{{UnknownHeart}} Turns all pickups, chests and non-boss enemies into random hearts"}, -- Ace of Hearts
 	[34] = {"34", "Ehwaz", "Spawns a trapdoor to the next floor#{{LadderRoom}} Spawns a crawlspace if used on a decorative floor tile (grass, small rocks, papers, gems, etc.)"}, -- Ehwaz
-	[39] = {"39", "Algiz", "{{Timer}} Isaac devine invincibil pentru 20 de secunde"}, -- Algiz
-	[42] = {"42", "Cartea Dezastrului", "Este aruncată în direcția în care Isaac se mișcă#Omoară toți inamicii cu care intră în contact (cu excepția Delirium sau the Beast)"}, -- Chaos Card
+	[39] = {"39", "Algiz", "{{Timer}} Makes Isaac invincible for 20 seconds"}, -- Algiz
+	[42] = {"42", "Chaos Card", "Using the card throws it in the direction Isaac is moving#Instantly kills ANY enemy it touches (except Delirium or the Beast)"}, -- Chaos Card
 	[51] = {"51", "Holy Card", "{{HolyMantle}} A one-use Holy Mantle shield (prevents damage once)"}, -- Holy Card
 	[52] = {"52", "Huge Growth", "{{Timer}} Receive for the room:#↑ {{Damage}} +7 Damage#↑ {{Range}} +3 Range#Size up#Allows Isaac to destroy rocks by walking into them"}, -- Huge Growth
 	[55] = {"55", "Rune Shard", "{{Rune}} Activates a random rune effect#The rune effect is weaker"}, -- Rune Shard
 	[56] = {"56", "0 - The Fool?", "Drops all of Isaac's hearts but one and all of his pickups on the floor#Coins and bombs are dropped as {{Collectible74}} The Quarter or {{Collectible19}} Boom! if possible"}, -- 0 - The Fool?
-	[57] = {"57", "I - Magicianul?", "{{Timer}} Oferă o aură care alungă inamicii și proiectilele lor pentru 60 de secunde"}, -- I - The Magician?
+	[57] = {"57", "I - The Magician?", "{{Timer}} Grants an aura that repels enemies and projectiles for 60 seconds"}, -- I - The Magician?
 	[58] = {"58", "II - The High Priestess?", "{{Timer}} Mom's Foot tries to stomp Isaac for 60 seconds"}, -- II - The High Priestess?
 	[59] = {"59", "III - The Empress?", "{{Timer}} Receive for 60 seconds:#↑ {{Heart}} +2 Health#↑ {{Tears}} +1.5 Fire rate#↓ {{Speed}} -0.1 Speed"}, -- III - The Empress?
 	[60] = {"60", "IV - The Emperor?", "Teleports Isaac to an extra Boss room that can be defeated for an item#The boss is chosen from two floors deeper than the current one"}, -- IV - The Emperor?
@@ -950,7 +950,7 @@ local repCards={
 	[64] = {"64", "VIII - Justice?", "{{GoldenChest}} Spawns 2-4 golden chests"}, -- VIII - Justice?
 	[65] = {"65", "IX - The Hermit?", "{{Coin}} Turns all pickups and items in the room into a number of coins equal to their Shop value#If there is nothing to turn, spawns a Penny instead"}, -- IX - The Hermit?
 	[66] = {"66", "X - Wheel of Fortune?", "{{DiceRoom}} Triggers a random Dice Room effect"}, -- X - Wheel of Fortune?
-	[67] = {"67", "XI - Strength?", "{{Timer}} Enemies in the room are {{Slow}} slowed and take double damage for 60 seconds"}, -- XI - Strength?
+	[67] = {"67", "XI - Strength?", "{{Timer}} Enemies in the room are {{Slow}} slowed and take double damage for 30 seconds"}, -- XI - Strength?
 	[68] = {"68", "XII - The Hanged Man?", "{{Timer}} Receive for 30 seconds:#↓ {{Speed}} -0.1 Speed#Triple shot#{{Coin}} Killed enemies drop coins"}, -- XII - The Hanged Man?
 	[69] = {"69", "XIII - Death?", "{{Collectible545}} Activates Book of the Dead#Spawns Bone entities for each enemy killed in room"}, -- XIII - Death?
 	[70] = {"70", "XIV - Temperance?", "{{Pill}} Forces Isaac to eat 5 random pills"}, -- XIV - Temperance?
@@ -964,7 +964,7 @@ local repCards={
 	[78] = {"78", "Cracked Key", "{{Collectible580}} Single-use Red Key"}, -- Cracked Key
 	[79] = {"79", "Queen of Hearts", "{{Heart}} Spawns 1-20 Red Hearts"}, -- Queen of Hearts
 	[80] = {"80", "Wild Card", "Copies the effect of your most recently used pill, card, rune, soul stone or activated item"}, -- Wild Card
-	[81] = {"81", "Sufletul lui Isaac", "Toate piedestalele din cameră se schimbă între două iteme"}, -- Soul of Isaac
+	[81] = {"81", "Soul of Isaac", "Makes all item pedestals in the room cycle between two different items"}, -- Soul of Isaac
 	[82] = {"82", "Soul of Magdalene", "{{Timer}} Effect lasts for the room:#{{HalfHeart}} Enemies killed drop half Red Hearts that disappear after 2 seconds"}, -- Soul of Magdalene
 	[83] = {"83", "Soul of Cain", "Opens all doors in the room#{{Collectible580}} Creates red rooms on every wall possible"}, -- Soul of Cain
 	[84] = {"84", "Soul of Judas", "{{Collectible705}} Activates Dark Arts with a 3 second duration#Temporary ↑ {{Damage}} damage up for every enemy/projectile hit"}, -- Soul of Judas
@@ -973,7 +973,7 @@ local repCards={
 	[87] = {"87", "Soul of Samson", "{{Collectible704}} Activates Berserk! for 10 seconds#{{Timer}} Each kill increases the duration by 1 second"}, -- Soul of Samson
 	[88] = {"88", "Soul of Azazel", "{{Collectible441}} Fires a Mega Blast beam for 7.5 seconds"}, -- Soul of Azazel
 	[89] = {"89", "Soul of Lazarus", "Isaac dies and immediately revives at half a heart#This item is automatically used upon taking fatal damage (acts as an extra life)"}, -- Soul of Lazarus
-	[90] = {"90", "Sufletul lui Eden", "Schimbă toate itemele si pickupurile din cameră#Itemele vin din pooluri diferite"}, -- Soul of Eden
+	[90] = {"90", "Soul of Eden", "Rerolls item pedestals and pickups in the room#The rerolled items come from random item pools"}, -- Soul of Eden
 	[91] = {"91", "Soul of the Lost", "{{Player10}} Turns the player into The Lost for the room#Allows taking one {{DevilRoom}} Devil Room item for free#Allows entering the Mausoleum or Gehenna door for free"}, -- Soul of the Lost
 	[92] = {"92", "Soul of Lilith", "Permanently grants a random familiar"}, -- Soul of Lilith
 	[93] = {"93", "Soul of the Keeper", "{{Coin}} Spawns 1-25 random coins"}, -- Soul of the Keeper
@@ -1014,6 +1014,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[64] = {4, 14, 2, 4}, -- VIII - Justice?
 	[65] = "Spawns 1 additional {{Coin}} penny", -- IX - The Hermit?
 	[66] = {" a ", " 2 ", "effect", "{{CR}}effects"}, -- X - Wheel of Fortune?
+	[67] = {30, 60}, -- XI - Strength?
 	[68] = {30, 60}, -- XII - The Hanged Man?
 	[70] = {5, 10}, -- XIV - Temperance?
 	[72] = {7, 14}, -- XVI - The Tower?
@@ -1140,7 +1141,7 @@ local repCharacterInfo = {
 	[36] = {"Tainted Bethany", "{{Heart}} Use Red Hearts to charge your active item#Can't have Red Hearts#{{SoulHeart}} Health ups grant Soul Hearts and blood charges#Stat increases are only 75% effective"},
 	[37] = {"Tainted Jacob", "Dark Esau chases you, charging towards you when close#The charge does a lot of damage to enemies#If he hits you, you turn into a ghost that dies in one hit for the rest of the floor#While a ghost, one devil deal per room can be taken for free"},
 	[38] = {"Dead Tainted Lazarus", "Lazarus has two states, each with their own items and health#Clearing a room/wave or using Flip switches to the other state"},
-	[39] = {"Tainted Jacob 2", ""},
+	[39] = {"Tainted Jacob's Soul", "Flight#Spectral tears#{{Warning}} No health#{{Warning}} Die if hit by Dark Esau#{{DevilRoom}} One devil deal per room can be taken for free#Turn back into Tainted Jacob in the next floor"},
 	[40] = {"Tainted Forgotten Soul", "The Forgotten is an immobile bone pile that is picked up and thrown by The Soul for 3x damage#Only The Soul can take damage#Bombs are placed at Forgotten's location#Can't have Red Hearts#{{SoulHeart}} Health ups grant Soul Hearts"},
 }
 EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
@@ -1185,7 +1186,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Tainted Bethany", "", "Spawns four random item wisps of Quality {{Quality3}} and {{Quality4}} with significantly higher HP than normal"},
 	{"Tainted Jacob", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus always charge at the same time#{{Collectible722}} Anima Sola's cooldown is reduced to 10 seconds#Using Anima Sola chains both Esaus for 6.67 seconds"},
 	{"Dead Tainted Lazarus", "", "The non-active form of Tainted Lazarus appears as a ghostly second character#He is invincible and deals 25% damage#Both forms receive the Birthright item"},
-	{"Tainted Jacob 2", "", ""},
+	{"Tainted Jacob's Soul", "", "Dark Esau splits into two, creating a shadowy clone of itself#Both Esaus always charge at the same time#{{Collectible722}} Anima Sola's cooldown is reduced to 10 seconds#Using Anima Sola chains both Esaus for 6.67 seconds"},
 	{"Tainted Forgotten Soul", "", "{{Collectible714}} Tainted Soul gains the Recall ability to retrieve Tainted Forgotten from a distance#The Soul is invincible while the Forgotten is returning"},
 }
 
@@ -1236,6 +1237,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.70"] = "pill",
 	["5.90"] = "battery",
 	["5.300"] = "card",
+	["5.301"] = "rune", -- not a real ID
 	["9.-1"] = "enemy projectile",
 	["999.-1"] = "grid object",
 	["1000.0"] = "effect",
@@ -1263,6 +1265,16 @@ EID.descriptions[languageCode].CraftingIsHidden = "Currently Hidden (Unhide with
 -- {1} will be converted into the name of the key that toggles the BoC Search
 EID.descriptions[languageCode].CraftingResults = "(Scroll: Hold {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Lock: {{ButtonX}}, Refresh: {{ButtonB}}, Reset Bag: Hold {{ButtonRB}}, Search: {1})"
 
+-- Strings for Tainted Cain's pedestal salvaging; the non-base lines will have the corresponding icon automatically
+EID.descriptions[languageCode].TaintedCainPedestalBase = "Turns into 3-8 random pickups on touch"
+EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "Turns into {{BlinkBirthright}}6-16{{CR}} random pickups on touch"
+EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Guaranteed to spawn a{n} {1}" -- Room type spawns
+EID.descriptions[languageCode].TaintedCainPedestalBonus = "33% chance for a bonus {1}" -- "Safety Cap" type spawns
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "66% chance for a bonus pickup"
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToeBirthright = "66% chance for {{BlinkBirthright}}2{{CR}} bonus pickups"
+EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "Hearts are 80% less likely"
+
+
 ---------- Misc. Text ----------
 
 EID.descriptions[languageCode].ResultsWithX = "(Results with {1})"
@@ -1280,6 +1292,10 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Fart", "Push nearby enemies and bullets back, and spawn a toxic cloud#{{Warning}} The cloud explodes if it touches fire!"},
 	{"Bomb", "Normal throwable bomb"},
 	{"Explosive Diarrhea", "Isaac quickly spawns 5 lit bombs"},
+
+	--Undetected poop, for Poop API
+	--[Poop name in code] = {Icon, Name, Description}
+	["Unknown"] = {"{{PoopSpell1}}", "Unknown Poop", "The effects of the poop are Unknown"}
 }
 
 EID.descriptions[languageCode].itemPoolFor = "Pool for Item:"
@@ -1378,6 +1394,15 @@ local repConditions = {
 	["Health Up Soul Charges"] = "+{1} soul charges",
 	["Health Up Blood Charges"] = "+{1} blood charges",
 	
+	-- Tainted Bethany stuff
+	["2 of Hearts Blood Charges"] = "Doubles {1}'s blood charges",
+	["Vampire Blood Charges"] = {"↑ {{Damage}} +0.3 Damage#Killing 13 enemies adds 1 blood charge"},
+	["Fork Blood Charges"] = {"Clearing a room has a 10% chance to add 1 blood charge"},
+	["Stem Cell Blood Charges"] = {"Entering a new floor adds 1 blood charge"},
+	
+	["Salvaging Bonus"] = {"and destroyed machines", "destroyed machines, and salvaged items"},
+	["Salvaging Lucky Toe"] = "66% chance for an extra pickup from salvaged items",
+	
 	
 	------ DUPLICATE COPIES OF ITEMS ------
 	["5.100.2 (Copies)"] = "Isaac fires 1 more tear#No additional stat decrease", -- The Inner Eye
@@ -1399,8 +1424,8 @@ local repConditions = {
 	["Sacrificial Star"] = "Star of Bethlehem counts as a familiar",
 	["Sacrificial Clots"] = "Turns Clots into coins",
 	
-	["1000.76.0"] = "{{Warning}} Only rerolls the character that activates the dice", -- Dice Room 1 (Co-op)
-	["1000.76.5"] = "{{Warning}} All characters' items will be rerolled in co-op!", -- Dice Room 6 (Co-op)
+	["1000.76.1"] = "{{Warning}} Only rerolls the character that activates the dice", -- Dice Room 1 (Co-op)
+	["1000.76.6"] = "{{Warning}} All characters' items will be rerolled in co-op!", -- Dice Room 6 (Co-op)
 	["5.100.45"] = "Heals other players for half a heart", -- Yum Heart (Co-Op)
 	["5.350.125"] = "Beams also arc between players", -- Extension Cord (Co-Op)
 	
