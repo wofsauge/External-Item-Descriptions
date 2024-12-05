@@ -16,9 +16,11 @@ local collectibles = {
 	-- Change: added "Creep persists until you exit the room"
 	[56] = {"56", "烦事柠檬", "留下一摊水迹#水迹每秒造成24点伤害#水迹在离开房间前持续存在"}, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
-	[117] = {"117", "死鸟", "受伤时, 生成1只攻击敌人的鸟#鸟每秒造成4.3点接触伤害#角色只有半心时, 切换房间持续存在"}, -- Dead Bird
+	[117] = {"117", "死鸟", "受伤时, 生成1只攻击敌人的鸟#鸟每秒造成4.3点接触伤害#角色只有半心时, 切换房间也持续存在"}, -- Dead Bird
 	-- Change: Complete rewrite
 	[351] = {"351", "超级豆子", "使房间中所有敌人石化并造成100点伤害#{{Poison}} 造成5点伤害并使附近敌人中毒#向角色移动方向发出岩石波#岩石波可打开隐藏房和粉碎岩石"}, -- Mega Bean
+	-- Change: "10%" to "20%"
+	[398] = {"398", "神体蘑菇", "20%几率发射使敌人缩小的泪弹#缩小的敌人可以被踩死"}, -- God's Flesh
 	-- Change: Complete rewrite
 	[436] = {"436", "牛奶！", "阻挡弹幕#{{Tears}} 受击10次后, 破裂并在本层获得射速提升"}, -- Milk!
 	-- Change: Complete rewrite
@@ -30,7 +32,7 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[510] = {"510", "精神错乱", "生成1个友好的精神错乱版的头目#切换房间持续存在#{{Warning}} 一次只能激活1个头目#道具充能取决于上次生成的头目品质"}, -- Delirious
 	-- Change: added "Tears leave a pool of creep on impact"
-	[560] = {"560", "好疼", "{{Timer}} 受伤时, 在当前房间获得:#↑ {{TearsSmall}} 首次受伤时射速修正+1.2#↑ {{TearsSmall}} 随后受伤时射速修正+0.4#在角色环形周围释放10颗泪弹#泪弹击中时留下水迹"}, -- It Hurts
+	[560] = {"560", "好疼", "{{Timer}} 受伤时, 在当前房间中获得:#↑ {{Tears}} 首次受伤射速+1.2#↑ {{Tears}} 后续受伤射速+0.4#在角色周围释放10颗泪弹#泪弹击中时留下水迹"}, -- It Hurts
 	-- Change: Heals 2 hearts instead of 1/2
 	[594] = {"594", "木星", "↑ {{EmptyHeart}} +2空心之容器#↓ {{Speed}} 移速-0.3#{{HealingRed}} 治疗2红心#{{Speed}} 静止不动时, 移速逐渐升高至+0.5#{{Poison}} 移动时释放毒气#{{Poison}} 免疫中毒"}, -- Jupiter
 	-- Change: Complete rewrite

@@ -2,7 +2,7 @@
 ----- Basic Czech descriptions -----
 ---------------------------------------
 
--- Last Update: 11.11.2021
+-- Last Update: 02.12.2024
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -34,6 +34,7 @@ local repCollectibles={
 	[44] = {"44", "Teleport", "Teleportuje Izáka do náhodné místnosti kromě JSEM ERROR místnosti#Jeho směr trochu ovlivníš pohybem do požadovaného směru"}, -- Teleport
 	[45] = {"45", "Mňamka Srdce", "{{Heart}} Vyléčí 1 červené srdce#Také vyléčí půl srdce u ostatních hráčů"}, -- Yum Heart
 	[46] = {"46", "Šťastná Noha", "↑ +1 {{Luck}} Zvýšení Štěstí#Lepší šance na výhru při hraní hazardních her#Zvyšuje šanci na odměnu za vyklizení místnosti#Promění některé špatné pilulky na dobré"}, -- Lucky Foot
+	[49] = {"49", "Shoop da Whoop!", "Další výstřel je nahrazen paprskem#Způsobí 24násobné Izákovo poškození za 0,83 sekundy"}, -- Shoop da Whoop!
 	[52] = {"52", "Dr. Zárodek", "{{Bomb}} Bomby namísto slz#{{Damage}} Každá bomba způsobí 10x tvoje poškození + 30#Pokud to způsobí poškození více než 60, způsobí to 5x tvoje poškození + 30#↓ {{Tears}} -60% Méně Slz"}, --Dr. Fetus
 	[53] = {"53", "Magneto", "Magneticky přitahuje pickupy#Otevírá truhly na dálku, ignoruje poškození truhel s hroty"}, -- Magneto
 	[55] = {"55", "Mámino Oko", "50% šance na vystřelení slzy dozadu#{{Luck}} 100% šance při 5 Štěstí"}, -- Mom's Eye
@@ -49,12 +50,13 @@ local repCollectibles={
 	[78] = {"78", "Kniha Zjevení", "{{SoulHeart}} +1 Duševní Srdce#Při použití nahradí bosse jeden Jezdec Apokalypsy#↑ {{AngelDevilChance}} +17.5% šance na Ďábelskou nebo Andělskou místnost"}, -- Book of Revelations
 	[79] = {"79", "Značka", "↑ {{Damage}} +1 Větší Poškození#↑ {{Speed}} +0.2 Zvýšení Rychlosti#{{BlackHeart}} +1 Černé srdce"}, -- The Mark
 	[80] = {"80", "Pakt", "↑ {{Damage}} +0.5 Větší Poškození#↑ {{Tears}} +0.7 Více Slz#{{BlackHeart}} +2 Černá srdce"}, -- The Pact
-	[83] = {"83", "Hřebík", "{{HalfBlackHeart}} + Půlka černého srdce#↑ {{Damage}} +2 Větší Poškození#↓ {{Speed}} -0.18 Snížení Rychlosti#Uděluje kontaktní poškození#Ničí kameny po jejich přejití"}, -- The Nail
+	[83] = {"83", "Hřebík", "{{HalfBlackHeart}} + Půlka černé/ho srdce#↑ {{Damage}} +2 Větší Poškození#↓ {{Speed}} -0.18 Snížení Rychlosti#Uděluje kontaktní poškození#Ničí kameny po jejich přejití"}, -- The Nail
 	[84] = {"84", "Musíme jít hlouběji!", "Vytvoří padací dveře do dalšího patra#{{LadderRoom}} Vytvoří průlezný prostor při použití na dekoraci (tráva, kamínky, papíry, drahokamy, apod.)"}, -- We Need To Go Deeper!
 	[87] = {"87", "Lokiho Rohy", "25% šance na vystřelení ve 4 směrech#{{Luck}} 100% šance při 15 Štěstí"}, -- Loki's Horns
 	[91] = {"91", "Horníkova Helma", "Odhalí typ místnosti sousedních místností#{{SecretRoom}} Může také odhalit Tajné Místnosti, Super Tajné Místnosti a Mini-Boss Místnosti#Blokuje střely padající shora"}, -- Spelunker Hat
 	[98] = {"98", "Relikvie", "{{SoulHeart}} Vytvoří 1 Duševní Srdce každých 7-8 místností"}, -- The Relic
 	[101] = {"101", "Svatozář", "↑ {{Heart}} +1  Zvýšení Zdraví#{{Heart}} Vyléčí 1 červené srdce#↑ {{Damage}} +0.3 Větší Poškození#↑ {{Tears}} +0.2 Více Slz#↑ {{Range}} +0.38 Větší Dostřel#↑ {{Speed}} +0.3 Zvýšení Rychlosti"}, -- The Halo
+	[107] = {"107", "Velké Nůžky", "{{Timer}} Za místnost získáš:#Létání#Izákovo tělo se oddělí od jeho hlavy a útočí na nepřátele s 23,5 kontaktním poškozením za sekundu"}, -- The Pinking Shears
 	[106] = {"106", "Pan Mega", "↑ Poškození bomb x1.85#{{Bomb}} +5 Bomb"}, -- Mr. Mega
 	[110] = {"110", "Mámina Kontaktní Čočka", "20% šance na vystřelení Mrazivé Slzy#{{Luck}} 50% šance při 20 Štěstí#↑ {{Range}} +0.38 Větší Dostřel"}, -- Mom's Contacts
 	[114] = {"114", "Mámin Nůž", "Kontrolovatelný nůž#Nůž způsobí 2x poškození Izáka při držení a 6x poškození v co největší vzdálenosti"}, -- Mom's Knife
@@ -80,6 +82,7 @@ local repCollectibles={
 	[169] = {"169", "Polyfémos", "↑ {{Damage}} +100% Větší Poškození#↑ {{Damage}} +4 dodatečné Větší Poškození#↓ {{Tears}} -58% Méně Slz#Slzy pokračují i ​​po zabití nepřítele"},
 	[171] = {"171", "Pavoučí Prdel", "{{Slow}} Zpomalí nepřátele na 4 sekundy#10 poškození všem nepřátelům#Zabití nepřátelé vytvoří modré pavouky"}, -- Spider Butt
 	[172] = {"172", "Obětní Dýka", "Orbitální nůž#Blokuje nepřátelské střely#Udává 112.5 poškození za sekundu"}, -- Sacrificial Dagger
+	[173] = {"173", "Mitra", "{{SoulHeart}} 33% šance, že se místo červených srdcí objeví Duševní Srdce"}, -- Mitre
 	[176] = {"176", "Kmenové Buňky", "↑ {{Heart}} +1 Zvýšení Zdraví#↑ {{Shotspeed}} +0.16 Vyšší Rychlost Střel#{{Heart}} Vyléčí 1 červené srdce"}, -- Stem Cells
 	[178] = {"178", "Svěcená Voda", "{{Throwable}} {{ColorOrange}}Vrhatelné{{CR}}#Spustí se v tom směru, ve kterém Izák střílí#Při dotyku s nepřítelem se rozbije a způsobí 7 poškození#Zanechá po sobě poškozující kaluž, která zkamení nepřátele"}, -- Holy Water
 	[180] = {"180", "Černá Fazole", "Při doteku prdíš a zanecháváš za sebou jedovaté prdy"},
@@ -98,9 +101,11 @@ local repCollectibles={
 	[211] = {"211", "Pavoučí Miláček", "Při utrpení poškození vytvoří 3-5 modrých pavouků"}, -- Spiderbaby
 	[214] = {"214", "Anémie (Chudokrevost)", "↑ {{Range}} +1.5 Větší Dostřel#Po utrpení zásahu zanechává na zemi poškozující kaluž"}, -- Anemic
 	[218] = {"218", "Placenta", "↑ {{Heart}} +1 Zvýšení Zdraví#{{Heart}} Vyléčí 1 červené srdce#{{HalfHeart}} Šance na vyléčení půl srdce každou minutu"}, -- Placenta
+	[219] = {"219", "Starý Obvaz", "↑ {{EmptyHeart}} +1 Prázdné místo pro srdce#{{Heart}} Při utrpení poškození je 20% šance na vytvoření červeného srdce"}, -- Old Bandage
 	[222] = {"222", "Anti-Gravitace", "Podržením tlačítka pro střelbu se ve vzduchu budou vznášet slzy#Po uvolnění budou všechny slzy vystřeleny tím směrem, kterým byly vystřeleny původně#↑ {{Tears}} +1 Více Slz"}, -- Anti-Gravity
 	[223] = {"223", "Pyromaniak", "Výbuchy tě léčí#{{Bomb}} +5 Bomb"},
 	[224] = {"224", "Kriketovo Tělo", "Slzy se při zásahu rozdělují na 4#Rozdělené slzy způsobí poloviční poškození#↑ {{Tears}} +0.5 Více Slz#↓ {{Range}} -20% Menší Dostřel"}, -- Cricket's Body
+	[225] = {"225", "Fetišista", "{{SoulHeart}} Při utrpení poškození je 8% šance na vytvoření Duševního Srdce#{{Luck}} +2% šance na štěstí#{{HalfHeart}} Nepřátelé mají šanci upustit poloviční červené srdce"}, -- Gimpy
 	[226] = {"226", "Černý Lotus", "↑ {{Heart}} +1 Zvýšení Zdraví#{{SoulHeart}} +1 Duševní Srdce#{{BlackHeart}} +1 Černé Srdce"},
 	[228] = {"228", "Maminčin Parfém", "{{Fear}} 15% šance vystřelit zastrašující slzy#↑ {{Tears}} +0.5 Více Slz"}, -- Mom's Perfume
 	[229] = {"229", "Monstrova plíce", "{{Chargeable}} Slzy jsou nabíjeny a vypouštěny ve stylu brokovnice#↓ {{Tears}} -77% Méně Slz"}, -- Monstro's Lung
@@ -118,22 +123,25 @@ local repCollectibles={
 	[262] = {"262", "Chybějící stránka 2", "{{BlackHeart}} +1 Černé Srdce#Když zdraví klesne na 1 srdce, udělí poškození všem nepřátelům v místnosti#{{Collectible35}} Černá srdce a efekt u Necronomiconu způsobí dvakrát větší poškození"}, -- Missing Page 2
 	[263] = {"263", "Čistá Runa", "{{Rune}} Kopíruje efekt momentálně držené runy nebo kamene duší#Vytvoří 1 náhodnou runu"}, -- Clear Rune   (REPENTANCE ITEM)
 	[264] = {"264", "Chytrá Muška", "Orbitální moucha#Když dostaneš zásah, zaútočí na nepřátele#Uděluje 22.5 poškození za sekundu"},
+	[272] = {"272", "VKM (Velká Kamarádská Moucha)", "Explodující moucha#Exploze způsobí 100 poškození#{{Warning}} Exploze může Izáka zranit"}, -- BBF
 	[273] = {"273", "Bobův Mozek", "{{Throwable}} {{ColorOrange}}Vrhatelná{{CR}} bomba#Exploze způsobí 100 poškození#Poškození ignoruje brnění"}, -- Bob's Brain
 	[274] = {"274", "Nejlepší Kámoš", "Když dostaneš zásah, získáš orbitální mušku střední vzdálenosti#Orbitál uděluje 150 poškození za sekundu"}, -- Best Bud
 	[275] = {"275", "Malej Brimstone", "{{Collectible118}} Střílí brimstone laser#Jeho rána uděluje 2 poškození za tik, za celkovou škodu 20"}, -- Lil Brimstone
 	[276] = {"276", "Izákovo Srdce", "Získáš nezranitelné tělo#!!! Když je zasaženo Srdce, utrpíš poškození#Spojenec se při výstřelech nabíjí, při vypouštění uvolňuje salvu slz"}, -- Isaac's Heart
 	[278] = {"278", "Temný Žebrák", "{{Heart}} Převádí 1.5 červeného srdce buď na duševní/černé srdce, nepřátelského pavouka, modrého pavouka, pilulku, kartu nebo runu"}, -- Dark Bum
 	[280] = {"280", "Sissy Dlouhonožka", "Náhodně vytváří modré pavouky pokud je v nepřátelské místnosti#{{Charm}} Okouzlí nepřátele, se kterými přijde do kontaktu"}, -- Sissy Longlegs
-	[283] = {"283", "D100", "Zamíchá všechny pickupy, předměty a všechny tvoje pasivní předměty#Duplikuje 1 náhodný pickup v místnosti#Restartuje aktuální místnost, respawne tě a zamíchá nepřátele v oné místnosti#Zamíchá kameny v místnosti"}, -- D100
+	[283] = {"283", "D100", "Zamíchá všechny pickupy, předměty a tvoje pasivní předměty#Duplikuje 1 náhodný pickup/y v místnosti#Restartuje aktuální místnost, respawne tě a zamíchá nepřátele v oné místnosti#Zamíchá kameny v místnosti"}, -- D100
 	[285] = {"285", "D10", "Zamíchá nepřátele v místnosti#Pokusí se je zamíchat na nepřátele s podobným maximálním HP"}, -- D10
+	[286] = {"286", "Prázdná Karta", "Spustí efekt karty, kterou Izák drží, aniž by ji použil"}, -- Blank Card
 	[287] = {"287", "Kniha Tajemství", "Dá ti {{Collectible54}}Mapu pokladů, {{Collectible21}}Kompas nebo {{Collectible246}}Modrou Mapu pro aktuální patro#Poskytuje pouze efekty mapování, které ještě nemáš#Pokud všechny efekty jsou už aktivní, dá ti {{Collectible76}}Rentgenové Vidění"}, -- Book of Secrets
-	[288] = {"288", "Krabice Plná Pavouků", "Vytvoří 4-8 modré pavouky"}, -- Box of Spiders
+	[288] = {"288", "Krabice Plná Pavouků", "Vytvoří 4-8 modrých pavouků"}, -- Box of Spiders
 	[289] = {"289", "Červená Svíčka", "Vytvoří červený plamen#Plamen zůstává do té doby dokud nezpůsobí poškození nebo pětkrát nezablokuje střely anebo po 10 sekundách"}, -- Red Candle
 	[291] = {"291", "Spláchnutej!", "Proměňuje ne-bossové nepřátele na hovna#Instantně zabíjí hovnové nepřátele a bosse#Hasí ohniště a naplňí místnost vodou#Proměňuje jámy naplněné lávou na půdu"}, -- Flush!
 	[292] = {"292", "Satanská Bible", "{{BlackHeart}} +1 Černé srdce#{{DevilRoom}} Pokud je předmět použitý před bossem, pak po dokončení místnosti budeš moci uzavřít obchod s ďáblem#!!! Vezmeš-li si tento předmět, nechť budeš uzamčen do ďábelských obchodů po zbytek tohoto běhu!"}, -- Satanic Bible
+	[293] = {"293", "Krampusova Hlava", "{{Collectible118}} Vystřelí čtyřcestný krvavý paprsek#Každý způsobí 200 poškození během 1,33 sekundy"}, -- Head of Krampus
 	[294] = {"294", "Máslová Fazole", "Odrazí blízké nepřátele a jejich střely#Nepřátelé zatlačení do překážek utrpí 10 poškození"}, -- Butter Bean
 	[295] = {"295", "Kouzelné Prstíky", "Udělí 2x hráčovo poškození v celé místnosti + 10 #{{Coin}} Cena: 1 mince"}, -- Magic Fingers
-	[296] = {"296", "Konvertor", "Převádí 1 Duševní nebo Černé srdce na 1 slot pro červené srdce"}, -- Converter
+	[296] = {"296", "Konvertor", "Převádí 1 Duševní nebo Černé srdce na 1 místo/a pro červené srdce"}, -- Converter
 	--NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
 	--For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
 	[297] = {"297", "Pandořina Skříňka", "vytváří předměty dle patra:#B1: 2 {{SoulHeart}}#B2: 2 {{Bomb}} a 2 {{Key}}#C1: 1 {{BossRoom}}#C2: B1+C1#D1: 4 {{SoulHeart}}#D2: 20 {{Coin}}#W1: 2 Boss předměty#W2: {{Collectible33}}Bible#???/Void: Nic#Sheol: 1 {{DevilRoom}} + 1 {{BlackHeart}}#Dark Room: Odemkne {{Collectible523}}Krabici#Cat: 1 {{AngelRoom}} + 1 {{SoulHeart}}#Chest: 1 {{Coin}}#Home: {{Collectible580}}"}, -- Pandora's Box
@@ -145,9 +153,11 @@ local repCollectibles={
 	[311] = {"311", "Jidášův Stín", "{{Player12}} Když zemřeš, znovuzrodíš se jako Temný Jidáš#{{Damage}} Ten má 2x Násobič Poškození#{{Player24}} Poskvrněný Jidáš se sám oživí"}, -- Judas' Shadow
 	[314] = {"314", "Boky Jako Skříň", "↑ {{Heart}} +1 Zvýšení Zdraví#↓ {{Speed}} -0.4 Snížení Rychlosti#{{Heart}} Vyléčí 1 červené srdce#Při chůzi přes kameny je zničí"}, -- Thunder Thighs
 	[315] = {"315", "Podivný Přitahovák", "Magnetické slzy#Ovlivňuje nepřátele, pickupy a trinkety#Předměty budou přitahovány tam kam slza dopadne"}, -- Strange Attractor
+	[316] = {"316", "Prokleté Oko", "Nabitá vlna 5 slz#{{Warning}} Získání poškození při částečném nabití teleportuje Izáka do náhodné místnosti"}, -- Cursed Eye
 	[319] = {"319", "Kainovo Druhé Oko", "Odráží se po místnosti#Střílí směrem k Izákovi#{{Damage}} Jeho poškození se rovná tvému poškození"},
 	[320] = {"320", "Jediný Přítel ???", "Ovladatelná muška#Uděluje 3.5 kontaktního poškození za tik"}, -- ???'s Only Friend
 	[323] = {"323", "Izákovy Slzy", "Při použití vystřelíš 8 slz ve všech směrech#Slzy kopírují ty tvoje#Nabíjí se při střílení"},
+	[325] = {"325", "Nůžky", "{{Timer}} Izákova hlava se promění v nehybného spojence v aktuální místnosti#Tělo je ovládáno odděleně a tryská krvavé slzy směrem, kterým Izák střílí"}, -- Scissors
 	[326] = {"326", "Dech Života", "Pro neporazitelnost podrž mezerník, dokud nebude nabíjecí lišta prázdná#Paprsky světla zasáhnou nepřátele, kteří se tě dotkli, během tvé neporazitelnosti#!!! Nedržto to příliš dlouho!"}, -- Breath of Life
 	[328] = {"328", "Negativ", "↑ {{Damage}} +1 Větší Poškození#Poškodí všechny nepřátele v místnosti při zásahu a při polovičním nebo žádném červeném srdci"}, -- The Negative
 	[330] = {"330", "Sójové Mléko", "↑ {{Tears}} 5.5x Více Slz#↓ {{Damage}} -80% Menší Poškození#Drasticky snižuje knockback"}, -- Soy Milk
@@ -159,6 +169,7 @@ local repCollectibles={
 	[344] = {"344", "Zápalky", "{{BlackHeart}} +1 Černé srdce#{{Bomb}} Vytvoří 2-3 bomby a {{Trinket41}}Sirku"}, -- Match Book
 	[345] = {"345", "Synthol (steroidy)", "↑ {{Damage}} +1 Větší Poškození#↑ {{Range}} +1.5 Větší Dostřel"}, -- Synthoil
 	[346] = {"346", "Svačina", "↑ {{Heart}} +1 Zvýšení Zdraví#{{Heart}} Vyléčí 1 červené srdce"}, -- A Snack
+	[349] = {"349", "Dřevěný Niklák", "{{Coin}} 59% šance na vytvoření náhodné mince"}, -- Wooden Nickel
 	[350] = {"350", "Toxický Šok", "{{Poison}} Na začátku každé místnosti otrávíš každého nepřítele#Zabití nepřátelé zanechávají po sobě louži#Poskytuje imunitu vůči toxickým oblakům"}, -- Toxic Shock
 	[352] = {"352", "Skleněné Dělo", "Vystřelí jednu velkou průraznou spektrální slzu ((DMG x 10) + 10)#!!! Když dostaneš poškození:#↓ Ztratíš navíc 2 srdce ze zdraví#↑ {{Range}} +1.5 Větší Dostřel a zanecháš krvavou kaluž v místnosti#To extra poškození tě nazabije#Sebepoškození se nepočítá"}, -- Glass Cannon
 	[354] = {"354", "Crack-Jackův Karamelový Popcorn", "↑ {{Heart}} +1 Zvýšení Zdraví#{{Trinket}} Vytvoří náhodný trinket#{{Heart}} Vyléčí 1 červené srdce"}, -- Crack Jacks
@@ -177,6 +188,7 @@ local repCollectibles={
 	[380] = {"380", "Zaplať za hraní", "{{Coin}} +5 mincí#Nyní otevíráš zamčené dveře a truhly pomocí mincí namísto klíčů"}, -- Pay To Play
 	[382] = {"382", "Kamarádský Míček", "Můžeš jej vrhnout na nepřátele k jejich zachycení#Při dalším použití se znovu objeví stejný nepřítel, ale už jako přátelský společník#Chůze po míči (po zachycení ) předmět okamžitě dobije"}, -- Friendly Ball
 	[384] = {"384", "Malý Gurdy", "{{Chargeable}} Vystřelí se a bude létat po místnosti#Způsobí 5-25 kontaktního poškození v závislosti na jeho rychlosti"}, -- Lil Gurdy
+	[386] = {"386", "D12", "Přetočí jakoukoli překážku na jinou náhodnou překážku (např. hovínka, vázy, TNT, červená hovínka, kamenné bloky apod.)#Malá šance přetočit překážky na tlačítka, průlezný prostor nebo padací dveře"}, -- D12
 	[389] = {"389", "Pytlíček Run", "{{Rune}} Vytvoří náhodnou runu každých 7-8 místností#Také může vytvořit kámen duší"}, -- Rune Bag
 	[391] = {"391", "Zrada", "{{Charm}} Pokaždé, když Izák utrpí poškození, okouzlí každého nepřítele v místnosti a ti pak můžou bojovat mezi sebou"},
 	[393] = {"393", "Hadí Polibek", "{{Poison}} 15% šance vystřelit jedovaté slzy#{{Luck}} Není ovlivněno štěstím#{{Poison}} Otráví nepřátelé při doteku#{{BlackHeart}} Nepřátelé zabití kontaktním jedem mají 20% šanci vytvořit černé srdce"}, -- Serpent's Kiss
@@ -226,6 +238,7 @@ local repCollectibles={
 	[495] = {"495", "Naga Jolokia (Chilli Paprička)", "8% šance na vystřelení modrého plamene, který blokuje nepřátelské výstřely a působí kontaktní poškození#{{Luck}} 50% šance při 10 Štěstí#The flame disappears after 2 seconds"}, -- Ghost Pepper
 	[496] = {"496", "Eutanázie", "3.33% šance na vystřelení jehel#{{Luck}} 50% šance při 15 Štěstí#Jehly okamžitě zabijí normální nepřátele a roztříští je do 10 slz#Jehly způsobí 3x poškození Bossům"}, -- Euthanasia
 	[497] = {"497", "Maskáčové Spodní Prádlo", "Když vejdeš do místnosti, budeš zamaskován a zmáteš všechny nepřátele, dokud nezačneš střílet#↑ {{Speed}} +0.5 Zvýšení Rychlosti při zahalení#Po odmaskování, způsobíš poškození kolem sebe a získáš Více Slz a Větší Poškození"}, -- Camo Undies
+	[500] = {"500", "Pytel Pytlů", "Vytvoří pytlík každých 7-8 místností"}, -- Sack of Sacks
 	[501] = {"501", "Greedův Jícen", "Za každých 25 mincí ti přibyde 1 místo pro srdce#{{Player14}} Keeper může získat další místo pro Mincové Srdce#{{Collectible416}} Získáš místo pro srdce za každých 100 mincí, které máš po 99"}, -- Greed's Gullet
 	[503] = {"503", "Malej Horn", "5% šance na vystřelení slzy, která vyvolá ruku Big Horna#{{Luck}} 20% šance při 15 Štěstí#Ruka instantně zabijí nepřátele a uděluje poškození Bossům#Při kontaktu s nepřáteli udělí 3.5 poškození"}, -- Little Horn
 	[504] = {"504", "Hnědý Nuget", "Vytvoří mouchu, která stojí na místě a střílí na nepřátele#Každý výstřel způsobí 3.5 poškození"}, -- Brown Nugget
@@ -235,6 +248,7 @@ local repCollectibles={
 	[509] = {"509", "Krví Podlité Oko", "Orbitál, který vystřelí slzu každé 1/3 sekundy když je nepřítel poblíž#Uděluje 3.5 poškození za slzu#Uděluje 30 kontaktního poškození za sekundu"}, -- Bloodshot Eye
 	[514] = {"514", "Rozbitý Modem", "Způsobuje, že se náhodní nepřátelé 'lagují' v náhodných intervalech, což způsobí jejich krátké zamrznutí#Efekt platí i pro nepřátelské střely a pickupy#25% šance na zdvojnásobení odměn z místnosti"}, -- Broken Modem
 	[517] = {"517", "Rychlo-Bomby", "{{Bomb}} +7 Bomb#Umožňí ti rychleji umístit bomby#Bomby se navzájem neodstrkují"}, -- Fast Bombs
+	[522] = {"522", "Telekineze", "Zastaví na 3 sekundy všechny nepřátelské projektily, které se přiblíží k Izákovi, a poté je od něj odhodí#Během efektu odtlačí nepřátele poblíž pryč"}, -- Telekinesis
 	[523] = {"523", "Stěhovací Krabice", "Při použití uloží až 10 pickupů z aktuální místnosti#Opětovným použitím je vrátíš zpět na podlahu#To ti umožní přesouvat věci mezi místnostmi"}, -- Moving Box
 	[524] = {"524", "Technologie Nula", "Slzy budou spojeny elektřinou#Elektřina způsobí 33 % tvého poškození"}, -- Technology Zero
 	[531] = {"531", "Hemolakrie", "Slzy létají obloukem a při dopadu se rozdělí v menší slzy#↑ {{Damage}} +1 Větší Poškození#↑ {{Damage}} +50% Násobič Poškození#↓ {{Tears}} Méně Slz#↓ {{Range}} -20% Menší Dostřel"}, -- Haemolacria
@@ -284,7 +298,7 @@ local repCollectibles={
 	[591] = {"591", "Venuše", "↑ {{Heart}} +1 Zvýšení Zdraví#{{Heart}} Vyléčí 1 Červené Srdce#{{Charm}} Okouzlí nepřátele poblíž"}, -- Venus
 	[592] = {"592", "Země", "↑ {{Damage}} +1 Větší Poškození#Nahrazuje slzy kameny#Udělují proměnlivé poškození#Dokážou zničit objekty#Více odrazuje nepřátele"}, -- Terra
 	[593] = {"593", "Mars", "Vystřelíš se dopředu dvojitým kliknutím na klávesu pohybu, budeš nesmrtelný a způsobíš 4x tvého poškození#3 sekundy cooldown"}, -- Mars
-	[594] = {"594", "Jupiter", "↑ {{Heart}} +2 Zvýšení Zdraví#{{HalfHeart}} Vyléčí půlku Červeného Srdce#↓ {{Speed}} -0.3 Snížení Rychlosti#{{Poison}} Učiní tě imunní vůči jedu#{{Speed}} Vybuduj až +0,5 rychlosti, pokud stojíš na místě#{{Poison}} Při pohybu se za tebou uvolňují jedovaté prdové mraky"}, -- Jupiter
+	[594] = {"594", "Jupiter", "↑ {{Heart}} +2 Zvýšení Zdraví#{{HalfHeart}} Vyléčí půlku Červeného Srdce#↓ {{Speed}} -0.3 Snížení Rychlosti#{{Poison}} Učiní tě imunní vůči jedu#{{Speed}} Vybuduj až +0,5 rychlosti, pokud stojíš na místě#{{Poison}} Při pohybu se za tebou uvolňují jedovaté prdy"}, -- Jupiter
 	[595] = {"595", "Saturn", "Obklopuje tě kruh#Při vstupu do místnosti v něm bude obíhat 7 slz#Šance na zachycení nepřátelských projektilů do kruhu"}, -- Saturnus
 	[596] = {"596", "Uran", "{{Freezing}} Střílíš ledové slzy, které zpomalují nepřátele a zmrazují monstra, které slzy zabijou#Při dotyku zmrzlých nepřátel je odstrčíš, poté explodují a rozdělí se na 6 ledových střepů"}, -- Uranus
 	[597] = {"597", "Neptun", "{{Chargeable}} Nabíjetelné (automatické)#Vybuduješ masivní slzný bonus během 3 sekund při nestřílení#Opětovná střelba uvolní uložené slzy#Slzný bonus odpadá, když střílíš"}, -- Neptunus
@@ -300,7 +314,7 @@ local repCollectibles={
 	[607] = {"607", "Uvařené Dítě", "Spojenec, který vystřeluje chaotické návaly slz na všechny strany#Způsobí 3.5 nebo 5.3 poškození za slzu"}, -- Boiled Baby
 	[608] = {"608", "Zmrazené Děcko", "Spojenec, který vystřeluje zkameňující slzy#Zmrazí monstra při jejich zabití"}, -- Freezer Baby
 	[609] = {"609", "Věčná D6", "Zamíchá s podstavci v aktuální místnosti#Předměty mají 30% šanci, že zmizí"}, -- Eternal D6
-	[610] = {"610", "Ptačí Klec", "Spojenec který skočí na nepřítele při prvním zásahu v místnosti#Způsobí 45 poškození a uvolní kamennou vlnu#Poté pronásledujte nepřátele"}, -- Bird Cage
+	[610] = {"610", "Ptačí Klec", "Spojenec který skočí na nepřítele při prvním zásahu v místnosti#Způsobí 45 poškození a uvolní kamennou vlnu#Poté pronásleduje nepřátele"}, -- Bird Cage
 	[611] = {"611", "Hrtan", "Přinutí tě křičet, poškozovat a tlačit nepřátele v okolí#Výkřik je tím silnější, čím více nábojů má předmět"}, -- Larynx
 	[612] = {"612", "Ztracená Duše", "Duševní spojenec, který zemře při jednom zásahem a znovu se objeví na začátku dalšího patra#Pokud přežije celé patro, vytvoří {{SoulHeart}} 3 Duševní Srdce, {{EternalHeart}} 2 Srdce Věčnosti nebo {{TreasureRoom}} předmět z Pokladnice anebo {{AngelRoom}} předmět z Andělské místnosti"}, -- Lost Soul
 	[613] = {"613", "", "<předmět neexistuje>"},
@@ -312,7 +326,7 @@ local repCollectibles={
 	[619] = {"619", "Prvorozenství", "Pro každou postavu má jiný účinek"}, -- Birthright
 	[620] = {"620", "", "<předmět neexistuje>"},
 	[621] = {"621", "Červený Guláš", "↑ {{Damage}} +21.6 Větší Poškození#{{Heart}} Plné zdraví#Poškození pomine během následujících 3 minut#Čas se prodlužuje při zabíjení nepřátel během aktivního efektu"}, -- Red Stew
-	[622] = {"622", "Genesis", "Odstraní všechny Izákovy předměty a pickupy#Teleportuje tě do jedinečné ložnice se pickupy, truhlami a padacími dveřmi#U každého ztraceného předmětu se zobrazí sada 3 položek, ze kterých si můžeš vybrat"}, -- Genesis
+	[622] = {"622", "Genesis", "Odstraní všechny Izákovy předměty a pickupy#Teleportuje tě do speciální ložnice se pickupy, truhlami a padacími dveřmi#U každého ztraceného předmětu se zobrazí sada 3 položek, ze kterých si můžeš vybrat"}, -- Genesis
 	[623] = {"623", "Ostrý Klíč", "{{Key}} +5 klíčů#Hoď svým klíčem, abys způsobil poškození, zničil překážky nebo otevřel dveře#Nepřátelé s ním zabití mají šanci vytvořit obsah truhly včetně předmětů"}, -- Sharp Key
 	[624] = {"624", "Startovací Balíček Karet", "{{Card}} Vytvoří 5 náhodných karet"}, -- Booster Pack
 	[625] = {"625", "Mega Houba", "Zgigantizuje tě na 30 sekund, a účinek přetrvává mezi místnostmi#Zatímco jsi obrem, máš:#↑ {{Damage}} +300 % násobitel poškození#↑ {{Range}} +7 Větší Dostřel#↓ {{Tears}} -60% Méně Slz#Poskytuje neporazitelnost a schopnost rozdrtit nepřátele a překážky#"}, -- Mega Mush
@@ -340,7 +354,7 @@ local repCollectibles={
 	[647] = {"647", "4.5 Voltovka", "Aktivní předměty se nedobíjejí při vyklízení místností#Místo toho se nabíjí při udělování poškození nepřátelům#Vzorec: 40 + 20 * patro"}, -- 4.5 Volt
 	[648] = {"648", "", "<předmět neexistuje>"},
 	[649] = {"649", "Švestička", "Malý Baby Plum spojenec#Pohybuje se diagonálně po místnosti a střílí za sebou slzy"}, -- Fruity Plum
-	[650] = {"650", "Švestkova Flétna", "Vyvolá přátelskou Baby Plum v aktuální místnosti na 10 sekund"}, -- Plum Flute
+	[650] = {"650", "Švestkova Flétna", "Vyvolá přátelskou Švestičku v aktuální místnosti na 10 sekund"}, -- Plum Flute
 	[651] = {"651", "Betlémská Hvězda", "Spojenec, který pomalu putuje směrem k {{BossRoom}} místnosti s Bossem#Pokud stojíš v její auře, uděluje:#↑ {{Damage}} +1 Větší Poškození#↑ {{Damage}} +20% násobič poškození#↑ {{Tears}} +150% Slzný násobič#Naváděné slzy"}, -- Star of Bethlehem
 	[652] = {"652", "Ledové Dítě", "Spojenec, který se klouže po místnosti, když do něj strčíte#{{Freezing}} Zpomaluje, způsobuje kontaktní poškození a zmrazí příšery, které zabije"}, -- Cube Baby
 	[653] = {"653", "Ustup", "Když předmět držíš, nepřátelé, kteří nejsou duchové, vytvářejí po smrti malé červené duchy#Při použití způsobí, že duchové explodují"}, -- Vade Retro
@@ -371,13 +385,13 @@ local repCollectibles={
 	[678] = {"678", "Císařský Řez", "{{Chargeable}} Získáš nabíjecí útok, který vystřelí naváděné, spektrální zárodky"}, -- C Section
 	[679] = {"679", "Malej Abaddón", "{{Collectible399}} Spojenec, který střílí mini útok Chřtánu Prázdnoty"}, -- Lil Abaddon
 	[680] = {"680", "Montezumova Pomsta", "{{Chargeable}} Při střelbě nabíjíš krátký hovnový brimstonový laser#Vystřelí se za tebou"}, -- Montezuma's Revenge
-	[681] = {"681", "Malý Portál", "Způsobuje kontaktní poškození a létá vpřed#Konzumuje pickupy ve své cestě#Každý z nich mu zvýší jeho velikost, poškození a vytvoří modrou mušku#Každé čtyři pickupy vyvolá portál do neprozkoumané místnosti"}, -- Lil Portal
+	[681] = {"681", "Malý Portál", "Způsobuje kontaktní poškození a létá vpřed#Konzumuje při tom pickupy, které má před sebou#Každý z nich mu zvětší jeho velikost, poškození a vytvoří modrou mušku#Každé čtyři pickupy vyvolá portál do neprozkoumané místnosti"}, -- Lil Portal
 	[682] = {"682", "Červí Kámoš", "Způsobí, že chapadlo vyletí ze země a zachytí nepřítele#Uchopení nepřátelé utrpí poškození, jsou zpomaleni a nemohou se pohybovat"}, -- Worm Friend
 	[683] = {"683", "Kostní Ostruha", "Nepřátelé po smrti vytvoří levitující kosti#Blokují střely a způsobují kontaktní poškození"}, -- Bone Spurs
 	[684] = {"684", "Hladová Duše", "Šance na vytvoření duchů po zabití nepřítele#Duchové pronásledují nepřátele a způsobují kontaktní poškození#Po 5 sekundách duch exploduje a způsobí 7 poškození okolním nepřátelům#Výbuch ti neudělí žádné poškození"}, -- Hungry Soul
 	[685] = {"685", "Nádoba s Bludičkami", "Vytváří náhodné bludičky, které střílí různé slzy, blokují výstřely a způsobují kontaktní poškození#Počet vytvořených bludiček se zvyšuje, čím více předmět používáš"}, -- Jar of Wisps
 	[686] = {"686", "Duševní Medailónek", "{{SoulHeart}} Poskytuje trvalé zvýšení statistik, kdykoli sebereš Duševní Srdce#{{SoulHeart}} Při sebrání tohoto předmětu vytvoří Duševní Srdce"}, -- Soul Locket
-	[687] = {"687", "Hledač Přátel", "Vytvoří náhodné přátelské monstrum, které napodobuje Izákovy pohyby a útoky"}, -- Friend Finder
+	[687] = {"687", "Hledač Přátel", "Vytvoří náhodné přátelské monstrum, které napodobuje Izákovy pohyby i útoky"}, -- Friend Finder
 	[688] = {"688", "Vnitřní Dítě", "+1 život#Znovuzrození v aktuální místnosti s půl srdcem, masivním zmenšením velikosti a +0.2 Zvýšení Rychlosti"}, -- Inner Child
 	[689] = {"689", "Poškozená Koruna", "Předměty na podstavcích rychle cyklují mezi 5 náhodnými předměty"}, -- Glitched Crown
 	[690] = {"690", "Břišní Želé", "Způsobí, že se nepřátelé odráží od Izáka#Odrážení nepřátel do překážek způsobí poškození#50% šance, že Izák bude ignorovat kontaktní poškození#50% šance na odražení nepřátelských projektilů"}, -- Belly Jelly
@@ -405,7 +419,7 @@ local repCollectibles={
 	[712] = {"712", "Lemegeton", "Vytvoří spojeneckou orbitální bludičku, která hráči uděluje efekt předmětu, ale může být zničena#Předměty mají 25% šanci, že pocházejí ze sady předmětů pro aktuální místnost nebo ze sady předmětů z Pokladnice, Boss Místnosti nebo Obchodů"}, -- Lemegeton
 	[713] = {"713", "Sumptorium", "Odstraňuje půlku srdce a vytváří krevní sraženinu jakožto spojence#Každý typ srdce vytváří sraženinu s různým HP, poškozením a efektem slz"}, -- Sumptorium
 	[714] = {"714", "Přivolání", "Získáš zpět tělo Zapomenutého z jakékoliv vzdálenosti"}, -- Recall
-	[715] = {"715", "Podrž To", "Uvnitř uchovává jednu hovnovou bombu, kterou lze použít později"}, -- Hold
+	[715] = {"715", "Podrž to", "Uvnitř uchovává jednu hovnovou bombu, kterou lze použít později"}, -- Hold
 	[716] = {"716", "Keeperův Pytel", "Vytvoří {{Coin}} 3 náhodné mince a {{Key}} 1 klíč#{{Shop}} Každé 3 mince utracené při nákupu přinese jednu z následujících možností:#↑ {{Damage}} +0.5 Větší Poškození#↑ {{Range}} +0.25 Větší Dostřel#↑ {{Speed}} +0.03 Zvýšení Rychlosti"}, -- Keeper's Sack
 	[717] = {"717", "Keeperovi Příbuzní", "Kameny a ostatní kamenné překážky vytvoří 2 modré pavouky, když jsou zničeny#Kameny mohou příležitostně vytvořit modré pavouky, když jste v nepřátelské místnosti"}, -- Keeper's Kin
 	[718] = {"718", "Keeperovo Roucho (Cut item)", "<Předmět Neexistuje>"}, -- Keepers Robe (Cut item)
@@ -426,6 +440,40 @@ local repCollectibles={
 
 }
 EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].collectibles)
+
+---------- Character Info ----------
+local repCharacterInfo = {
+	[4] = {"???", "Nemůže mít červené srdce#{{SoulHeart}} Zvýšení zdraví mu dává Duševní srdce#{{DevilRoom}} Ďábelské Dohody, které by stály 1 nebo 2 červené srdce, budou teď stát 1 nebo 2 duševní srdce#Zničení hovna vytvoří 1 modrou mušku"},
+	[8] = {"Lazarus", "Jednou za patro, když zemřeš:#Vzkříšíš se jako Povstalý Lazarus#Ztratíš 1 místo pro červené srdce#↑ {{Damage}} 0.5 Více poškození"},
+	[11] = {"Povstalý Lazarus", "Zvýšené statistiky a x1,4 multiplikátor poškození#Při vstupu do nového patra se přetočíš zpět do Lazara"},
+	[12] = {"Temný Jidáš", "{{Damage}} x2 Násobitel poškození#Nemůže mít červené srdce#{{BlackHeart}} Zvýšení zdraví mu dává Černá srdce#{{Player3}} Počítá se jako Jidáš pro dokončení v menu u výběru postav"},
+	[14] = {"Keeper", "{{CoinHeart}} Uzdravíš se sbíráním mincí#Maximum jsou 3 Mincové srdce#Jakékoliv srdcové pickupy jsou přeměněny na modré mušky#{{DevilRoom}} Ďábelské Dohody stojí 15 nebo 30 mincí"},
+	[18] = {"Bethany", "{{SoulHeart}} Použij Duševní srdce k nabití aktivního předmětu#Duševní srdce nelze použít jako zdraví"},
+	[19] = {"Jákob", "Ovládáš Jákoba a Ezaua současně#Obě postavy položí bombu, když je použita jedna#Ezau zůstává na místě když podržíš {{ButtonRT}}#{{ButtonLT}} použije Jákobův aktivní předmět, {{ButtonRB}} použije Ezauův aktivní předmět, podrž {{ButtonRT}} pro použití jejich karet/pilulek#Když je na výběr mezi předměty, Jákob a Ezau mohou vzít oba současně"},
+	[20] = {"Esau", "Ovládáš Jákoba a Ezaua současně#Obě postavy položí bombu, když je použita jedna#Ezau zůstává na místě když podržíš {{ButtonRT}}#{{ButtonLT}} použije Jákobův aktivní předmět, {{ButtonRB}} použije Ezauův aktivní předmět, podrž {{ButtonRT}} pro použití jejich karet/pilulek#Když je na výběr mezi předměty, Jákob a Ezau mohou vzít oba současně"},
+	
+	[21] = {"Poskvrněný Izák", "Všechny předměty cyklují mezi dvěma možnostmi#Můžeš mít pouze 8 pasivních předmětů#Pomocí {{ButtonRT}} změníš, který předmět bude vyřazen pro 9. předmět"},
+	[22] = {"Poskvrněná Magdaléna", "Zdraví nad 2 červená srdce se pomalu vyčerpává#Při kontaktu uděláš švih na blízko pro 6násobné poškození#{{HalfRedHeart}} Šance pro nepřátele vytvoření půlek červených srdcí, která zmizí do 2 sekund#Drop je zaručen při zabití zblízka#{{Collectible45}} Uzdravíš se dvakrát tolik z jiných zdrojů#{{AngelDevilChance}} Poškození způsobené během vyčerpávání srdcí neovlivní Ďábelskou šanci "},
+	[23] = {"Poskvrněný Kain", "Dotykem předmětu na podstavci se z něj stane hromádka pickupů"},
+	[24] = {"Poskvrněný Jidáš", "Nemůže mít červené srdce#{{BlackHeart}} Zvýšení zdraví mu dává Černá srdce"},
+	[25] = {"Poskvrněný ???", "Bomby jsou nahrazeny 'Hovínkovými kouzly'#{{Crafting29}} Způsobování poškození vytvoří hovnové pickupy#{{Collectible715}} Další kouzlo si můžeš uložit na později pomocí 'Podrž to'"},
+	[26] = {"Poskvrněná Eva", "Podržením tlačítka pro střelbu promění tvoje srdce na spojence jakožto krevní sraženiny#Různé typy srdcí zplodí sraženiny s více zdravým a slznými účinky#Sraženiny časem ztrácejí zdraví#Při držení tlačítka {{ButtonRT}} zůstávají sraženiny na místě#Když ti zbyde půl srdce a jsi bez sraženin, získáš nožní útok podobný jako 'Mámin Nůž', dokud se nevyléčíš a neopustíš místnost."},
+	[27] = {"Poskvrněný Samson", "Způsobování nebo při utrpení poškození se hromadí režim Zběsilosti#{{Timer}} Když jsi zběsilý, dostaneš na 5 sekund:#↑ {{Speed}} +0.4 Rychlost#↓ {{Tears}} x0.5 multiplikátor rychlosti slz#↑ {{Tears}} +2 rychlost slz#↑ {{Damage}} +3 Poškození#Omezuje útoky na boj zblízka, který odráží výstřely#{{Timer}} Každé zabití prodlužuje dobu trvání o 1 sekundu a poskytuje krátkou neporazitelnost"},
+	[28] = {"Poskvrněný Azazel", "Když začneš nabíjet, kýchneš krev#Zasáhnutím nepřítele kýchnutím zkrátí dobu nabíjení na polovinu#Kýchání způsobí 1,5x Azazelovo poškození#{{BrimstoneCurse}} Poškození nepřátelé utrpí další poškození od Brimstone laserů#Po smrti prokletých nepřátelů oni explodují a předají kletbu okolním nepřátelům"},
+	[29] = {"Poskvrněný Lazarus", "Lazarus má dva stavy, každý s vlastními předměty a zdravím#Vyčištěním místnosti/vlny nebo použitím 'Převrácení' se přepneš do druhého stavu"},
+	[30] = {"Poskvrněný Eden", "Když utrpíš poškození, přetočíš své statistiky, předměty, trinket a tvoje mince/klíče/bomby#Protečené předměty se vyberou ze stejného seznamu předmětů#Sebepoškození se nepočítá"},
+	[31] = {"Poskvrněný Ztracený", "{{Card51}} Karty, které se objeví, mají 10% šanci, že budou Svatou Kartou#Předměty v kvalitě {{Quality2}} nebo méně mají 20% šanci, že budou přetočeny#Pouze \"útočné\" položky se mohou objevit"},
+	[32] = {"Poskvrněná Lilith", "Stisknutím tlačítka pro střelbu vymrštíš plod na útok nablízko, který způsobí 3x poškození#Podržením tlačítka udrží plod a střílí slzy směrem k nejbližšímu nepříteli"},
+	[33] = {"Poskvrněný Keeper", "Maximálně 2 Mincové srdce#Nepřátelé vytvoří mince, které zmizí do 2 sekund#Většina předmětů stojí 15 mincí#Ďábelské dohody a Andělské předměty stojí 15 nebo 30 mincí#Obchody nevyžadují klíč a mají více zboží v nabídce"},
+	[34] = {"Poskvrněný Apollyón", ""},
+	[35] = {"Poskvrněný Zapomenutý", "Zapomenutý je nepohyblivá hromádka kostí, kterou 'Duše' může zvednout a hodit, udělujíce 3x poškození#Pouze Duše může utrpět poškození#Bomby jsou umístěny na místě, kde právě leží Zapomenutý#Nemůže mít červené srdce#{{SoulHeart}} Zvýšení zdraví mu dává Duševní srdce"},
+	[36] = {"Poskvrněná Bethany", "{{Heart}} Použij červená srdce k nabití aktivního předmětu#Nemůže mít červené srdce#{{SoulHeart}} Zvýšení zdraví ji dává Duševní srdce a krevní náboje#Zvýšení statistik je účinné pouze ze 75 %."},
+	[37] = {"Poskvrněný Jákob", "Temný Ezau tě pronásleduje (a BUDE pronásledovat) a vrhne se po tobě když je dostatečně blízko#Onen Ezauův náběh způsobí nepřátelům velké poškození#Pokud tě zasáhne, proměníš se v ducha, který zemře jedním zásahem po zbytek patra#Zatímco jsi duchem, jedna ďábelská dohoda na místnost může být vzata zadarmo"},
+	[38] = {"Mrtvý Poskvrněný Lazarus", "Lazarus má dva stavy, každý s vlastními předměty a zdravím#Vyčištěním místnosti/vlny nebo použitím 'Převrácení' se přepneš do druhého stavu"},
+	[39] = {"Duše Poskvrněného Jákoba", "Létání#Spektrální slzy#{{Warning}} Žádné zdraví#{{Warning}} Zemřeš, pokud jsi zasažen Temným Ezauem#{{DevilRoom}} Jedna ďábelská dohoda na místnost může být vzata zadarmo#Změníš se zpět na Poskvrněného Jákoba v dalším patře"},
+	[40] = {"Poskvrněná Duše Zapomenutého", "Zapomenutý je nepohyblivá hromádka kostí, kterou 'Duše' může zvednout a hodit, udělujíce 3x poškození#Pouze Duše může utrpět poškození#Bomby jsou umístěny na místě, kde právě leží Zapomenutý#Nemůže mít červené srdce#{{SoulHeart}} Zvýšení zdraví mu dává Duševní srdce"},
+}
+EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
 
 
 ---------- Modifikátory ----------
@@ -854,6 +902,18 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[183] = { "Může zkopírovat/udělit 2 spojence", "Může zkopírovat/udělit 2 spojence", "Může zkopírovat/udělit 3 spojence" },
 }
 
+--[[
+Localizations may choose to overwrite specific data from EID.GoldenTrinketData in this table. For advanced users only.
+Example: If French uses "Double" instead of "2x" for Purple Heart, they can do:
+EID.descriptions[languageCode].goldenTrinketData = {
+	[5] = {findReplace = true, mult = 2},
+}
+and then place
+	[5] = { "Double", "Quadruple" },
+in their goldenTrinketEffects
+]]
+EID.descriptions[languageCode].goldenTrinketData = { }
+
 ---------- Karty ----------
 
 local repCards={
@@ -952,6 +1012,27 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[72] = "Vytvoří 14 kamenných shluků", -- XVI - The Tower?
 	[73] = "Odebere 2 předměty a vytvoří 4", -- XVII - The Stars?
 	[76] = "{{RestockMachine}} Vytvoří 2 stroje na doplnění zásob", -- XX - Judgement?
+}
+
+
+-- There's some odd behavior with Blank Card + Tarot Cloth not doubling some cards
+-- These will be appended after Blank Card recharge time and "Blank Card effect:"
+EID.descriptions[languageCode].tarotClothBlankCardBuffs = {
+	[11] = "Vytvoří 1 stroj", -- X - Wheel of Fortune
+	[12] = "Zvýšení statistik se nezdvojnásobí", -- XI - Strength
+	[14] = "Způsobí 40 poškození", -- XIII - Death
+	[15] = "Vytvoří 1 stroj", -- XIV - Temperance
+	[16] = "+2 Poškození", -- XV - The Devil
+	[20] = "Způsobí 200 poškození", -- XIX - The Sun
+	[21] = "Vytvoří 1 žebráka", -- XX - Judgement
+	[56] = "Upustí 3 předměty", -- 0 - The Fool?
+	[64] = "Vytvoří 2-7 truhel", -- VIII - Justice?
+	[65] = "Nevytvoří další minci", -- IX - The Hermit?
+	[66] = "Spustí 1 efekt", -- X - Wheel of Fortune?
+	[68] = "Trvá 30 sekund", -- XII - The Hanged Man?
+	[72] = "Vytvoří 7 shluků", -- XVI - The Tower?
+	[73] = "Odebere 1 předmět a vytvoří 2", -- XVII - The Stars?
+	[76] = "Vytvoří 1 stroj", -- XX - Judgement?
 }
 
 ---------- Pilulky ----------
@@ -1077,10 +1158,13 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.70"] = "Pilulka",
 	["5.90"] = "Baterie",
 	["5.300"] = "Karta",
+	["5.301"] = "Runa", -- not a real ID
 	["9.-1"] = "nepřátelský projektil",
 	["999.-1"] = "objekt mřížky",
 	["1000.0"] = "efekt",
-
+	
+	-- Text for the base item that is granted
+	grants = "Poskytne ",
 }
 
 ---------- Smíšený text ----------
@@ -1096,7 +1180,16 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Hnědá Kaluž", "Zanecháš po sobě kaluž#Stání na kaluži ti zvýší rychlost střelby a poškození#Pokud se kaluž dotýká jiných hoven, získává jejich atributy"},
 	{"Prd", "Odtlačí okolní nepřátele a projektily zpět a vytvoří jedovatý oblak#!!! Oblak exploduje, pokud se dotkne ohně!"},
 	{"Bomba", "Normální vrhatelná bomba"},
-	{"Výbušný Průjem", "Během několika příštích sekund vytvoříš na svojí pozici 5 zapálených bomb"},
+	{"Výbušný Průjem", "Během několika příštích sekund vytvoříš za sebou 5 zapálených bomb"},
+	
+	--Undetected poop, for Poop API
+	--[Poop name in code] = {Icon, Name, Description}
+	["Unknown"] = {"{{PoopSpell1}}", "Neznámé hovno", "Účinky hovna jsou neznámé"}
+}
+
+EID.descriptions[languageCode].itemPoolFor = "Předmět ze seznamu předmětů:"
+EID.descriptions[languageCode].itemPoolNames = {
+	[0] = "Pokladnice", "Obchod", "Boss", "Ďábel", "Anděl", "Tajný", "Knihovna", "Skořápky", "Zlatá truhla", "Červená truhla", "Žebrák", "Démoní žebrák", "Prokletí", "Klíčník", "Baterkový žebrák", "Mámina truhla", "Greedův poklad", "Greed Boss", "Greed Obchod", "Greed Ďábel", "Greed Anděl", "Greed Prokletí", "Greed Tajný", "Drapák", "Ultra tajné", "Bombový žebrák", "Planetárium", "Stará truhla", "Dětský obchod", "Dřevěná truhla", "Prohnilý žebrák",
 }
 
 EID.descriptions[languageCode].VoidShopText = "Pokud se absorbuje hned po pickupu, získáš:"
@@ -1120,8 +1213,17 @@ EID.descriptions[languageCode].CraftingResults = "(Posouvání: Podrž {{CONFIG_
 
 EID.descriptions[languageCode].VariableCharge = "Nabití {1}:"
 
-EID.descriptions[languageCode].FlipItemToggleInfo = "(Podržením tlačítka {{ButtonSelect}} (Mapa) zobrazíš popis)"
+EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Poškození", "↑ {{Tears}} +2 Rychlost střel", "↑ {{Speed}} +0.5 Rychlost", "↑ {{Range}} +3 Dosah"}
 
+EID.descriptions[languageCode].BlankCardEffect = "Efekt Prázdné Karty:"
+
+EID.descriptions[languageCode].FlipItemToggleInfo = "(Podržením tlačítka {{ButtonSelect}} (Mapa) zobrazíš popis)"
+EID.descriptions[languageCode].GlitchedCrownToggleInfo = "(Podržením tlačítka {{CONFIG_BoC_Toggle}} zobrazíš další popisek: {1})"
+
+EID.descriptions[languageCode].GlowingHourglassTransformed = "V příštím patře se změní zpět na Zářící Přesýpací Hodiny"
+
+EID.descriptions[languageCode].ExperimentalPillPHD = "Žádné snížení statistik"
+EID.descriptions[languageCode].ExperimentalPillFalsePHD = "Žádné náhodné zvýšení statistik"
 
 EID.descriptions[languageCode].FalsePHDHeart = "{{BlackHeart}} Vytvoří 1 Černé Srdce"
 EID.descriptions[languageCode].FalsePHDDamage = "{{Damage}} +0.6 Větší Poškození"
@@ -1152,39 +1254,295 @@ EID.descriptions[languageCode].ItemReminder = {
 	ResultHeader = " Result",
 }
 
--- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
--- Includes Repentance room types for localization convenience
-EID.descriptions[languageCode].RoomTypeNames = { "Normal Room", "Shop", "I AM ERROR Room", "Treasure Room", "Boss Room", "Miniboss Room", "Secret Room", "Super Secret Room", "Arcade Room", "Curse Room", "Challenge Room", "Library", "Sacrifice Room", "Devil Room", "Angel Room", "Crawlspace Room", "Boss Rush Room", "Isaac's Room", "Barren Room", "Chest Room", "Dice Room", "Black Market", "Exit Room", "Planetarium", "Teleporter Entrance", "Teleporter Exit", "Alt Path Trapdoor", "Blue Key Room", "Ultra Secret Room",
--- Not technically room types but still potentially useful to have localized
-[666] = "Angel/Devil Room", [1024] = "Red Room", [1025] = "Special Red Room" }
-
--- currently used for D1
-EID.descriptions[languageCode].PickupNames = {
-	["5.0"] = "None",
-
-	["5.10"] = "{{Heart}} Heart",
-	["5.10.1"] = "{{Heart}} Heart", ["5.10.2"] = "{{HalfHeart}} Half Heart", ["5.10.3"] = "{{SoulHeart}} Soul Heart", ["5.10.4"] = "{{EternalHeart}} Eternal Heart", ["5.10.5"] = "{{Heart}} Double Heart", ["5.10.6"] = "{{BlackHeart}} Black Heart", ["5.10.7"] = "{{GoldHeart}} Gold Heart", ["5.10.8"] = "{{HalfSoulHeart}} Half Soul Heart", ["5.10.9"] = "{{Heart}} Scared Heart", ["5.10.10"] = "{{BlendedHeart}} Blended Heart", ["5.10.11"] = "{{EmptyBoneHeart}} Bone Heart", ["5.10.12"] = "{{RottenHeart}} Rotten Heart",
-
-	["5.20"] = "{{Coin}} Coin",
-	["5.20.1"] = "{{Crafting8}} Penny", ["5.20.2"] = "{{Crafting9}} Nickel", ["5.20.3"] = "{{Crafting10}} Dime", ["5.20.4"] = "{{Crafting8}} Double Penny", ["5.20.5"] = "{{Crafting11}} Lucky Penny", ["5.20.6"] = "{{Crafting9}} Sticky Nickel", ["5.20.7"] = "{{Crafting26}} Golden Penny",
-
-	["5.30"] = "{{Key}} Key",
-	["5.30.1"] = "{{Crafting12}} Key", ["5.30.2"] = "{{Crafting13}} Golden Key", ["5.30.3"] = "{{Crafting12}} Key Ring", ["5.30.4"] = "{{Crafting14}} Charged Key",
-
-	["5.40"] = "{{Bomb}} Bomb",
-	["5.40.1"] = "{{Crafting15}} Bomb", ["5.40.2"] = "{{Crafting15}} Double Bomb", ["5.40.3"] = "{{Crafting15}} Troll Bomb", ["5.40.4"] = "{{Crafting16}} Golden Bomb", ["5.40.5"] = "{{Crafting15}} Megatroll Bomb", ["5.40.7"] = "{{Crafting17}} Giga Bomb",
-
-	["5.90"] = "{{Battery}} Battery",
-	["5.90.0"] = "{{Crafting19}} Lil' Battery", --AB+ didn't have subtypes for batteries
-	["5.90.1"] = "{{Crafting19}} Lil' Battery", ["5.90.2"] = "{{Crafting18}} Micro Battery", ["5.90.3"] = "{{Crafting20}} Mega Battery", ["5.90.4"] = "{{Crafting28}} Golden Battery",
-
-	["5.50"] = "{{Chest}} Chest", ["5.51"] = "{{BombChest}} Bomb Chest", ["5.52"] = "{{SpikedChest}} Spiked Chest", ["5.53"] = "{{EternalChest}} Eternal Chest", ["5.54"] = "{{MimicChest}} Mimic Chest", ["5.55"] = "{{OldChest}} Old Chest", ["5.56"] = "{{WoodenChest}} Wooden Chest", ["5.57"] = "{{MegaChest}} Mega Chest", ["5.58"] = "{{HauntedChest}} Haunted Chest", ["5.60"] = "{{GoldenChest}} Golden Chest", ["5.360"] = "{{RedChest}} Red Chest",
-
-	["5.69"] = "{{GrabBag}} Grab Bag", ["5.69.1"] = "{{GrabBag}} Grab Bag", ["5.69.2"] = "{{BlackSack}} Black Sack",
-
-	["5.70"] = "{{Pill}} Pill",
-	["5.300"] = "{{Card}} Card",
-	["5.301"] = "{{Rune}} Rune", -- not a real id
-	["5.350"] = "{{Trinket}} Trinket",
-
+-- Effect of Car battery on Active Items
+local repCarBattery = {
+	[34] = {2, 3}, -- The Book of Belial
+	[59] = {2, 3}, -- The Book of Belial (Birthright)
+	[83] = {"Půlka", "1"}, -- The Nail
+	[263] = "Spustí se dvakrát", -- Clear Rune
+	[283] = {1, 2, "pickup/y", "{{CR}}pickup/y"}, -- D100
+	[285] = "Devolvuje nepřátele nadvakrát", -- D10
+	[288] = {"4-8", "8-16"}, -- Box of Spiders
+	[293] = {200, 400}, -- Head of Krampus
+	[296] = {1, 2, " Srdce", " {{CR}}Srdce", 1, 2, "místa pro srdce", "{{CR}}containers"}, -- Converter
+	[323] = "Slzy způsobí dvojnásobné poškození", -- Isaac's Tears
+	[386] = "Zvýšená šance na vzácné překážky", -- D12
+	[485] = "25% šance na čtyřnásobek, 75% šance na odstranění", -- Crooked Penny
+	[489] = "Použije vybranou kostku dvakrát", -- D Infinity
+	[522] = {3, 6}, -- Telekinesis
+	[557] = {"jedna", "dva"}, -- Fortune Cookie
+	[582] = "Spustí se dvakrát", -- Wavy Cap
+	[584] = "Vytvoří dvě bludičky", -- Book of Virtues
+	[605] = {" a ", " 2 ", "spojence", "{{CR}}spojence"}, -- The Scooper
+	[609] = {25, 44}, -- Eternal D6
+	[611] = "Spustí další výkřik na jedno nabití", -- Larynx
+	[625] = {30, 60}, -- Mega Mush
+	[631] = {25, 50}, -- Meat Cleaver
+	[635] = "Okamžitě tě nadvakrát vymění#Skvělé pro teleportaci DO nepřátel, ale nemůže sbírat předměty, které jsou mimo dosah", -- Stitches
+	[639] = {1, 2, "Srdce", " {{CR}}Srdce"}, -- Yuck Heart
+	[642] = "Spustí se dvakrát", -- Magic Skin
+	[650] = {"Vyvolá", "{{CR}}Vyvolá druhou"}, -- Plum Flute
+	[685] = "Vytvoří dvojnásob bludiček, ale počet použití se zvyšuje o 1", -- Jar of Wisps
+	[687] = {"Vytvoří náhodné přátelské monstrum, které napodobuje", "{{CR}}Vytvoří 2 náhodná přátelská monstra, která napodobují"}, -- Friend Finder
+	[704] = "Trvá 10 sekund, ale za zabití nepřítele prodloužíš zbývající čas jen maximálně o 5 sekund", -- Berserk!
+	[705] = {1, 2}, -- Dark Arts
+	[712] = {"Vytvoří spojeneckou orbitální bludičku", "{{CR}}Vytvoří 2 orbitální bludičky"}, -- Lemegeton
+	[713] = {"půlku srdce", "celé srdce", "sraženina", "{{CR}}sraženiny"}, -- Sumptorium
+	[719] = {"Vytvoří náhodný předmět", "{{CR}}Vytvoří 2 náhodné předměty"}, -- Keeper's Box
+	[720] = "Vedle pickupu vytvoří i hovno", -- Everything Jar
+	[722] = "Spoutá 2 nepřátele#Pokud je tam jen jeden nepřítel, spoutáš ho na 10 sekund#Opětovné použití Osamělé Duše uvolní z řetězu nejbližšího nepřítele", -- Anima Sola
+	[723] = {"jedno číslo", "dvě čísla"}, -- Spindown Dice
 }
+EID:updateDescriptionsViaTable(repCarBattery, EID.descriptions[languageCode].carBattery)
+
+-- Effect of BFFS!/Hive Mind on Familiars
+local repBFFSSynergies = {
+	["5.100.67"] = {6, 12}, -- Sister Maggy
+	["5.100.98"] = {"7-8", "6"}, -- The Relic
+	["5.100.107"] = {23.5, 47}, -- The Pinking Shears
+	["5.100.172"] = {112.5, 225}, -- Sacrificial Dagger
+	["5.100.178"] = {7, 14, "Spawns a blue flame at point of impact"}, -- Holy Water
+	["5.100.206"] = {56, 112}, -- Guillotine
+	["5.100.264"] = {6.5, 13}, -- Smart Fly
+	["5.100.272"] = {100, 125}, -- BBF
+	["5.100.273"] = {100, 125}, -- Bob's Brain
+	["5.100.274"] = {150, 300}, -- Best Bud
+	["5.100.275"] = {24, 48}, -- Lil Brimstone
+	["5.100.276"] = "Vystřelí další střely v náhodných směrech a zanechá po sobě větší louži", -- Isaac's Heart
+	["5.100.319"] = {75, 150}, -- Cain's Other Eye
+	["5.100.320"] = {15, 30}, -- ???'s Only Friend
+	["5.100.360"] = {75, 150, 100, 200}, -- Incubus (+ Lilith exception)
+	["5.100.365"] = {30, 60}, -- Lost Fly
+	["5.100.384"] = {"5-20", "10-40"}, -- Lil Gurdy
+	["5.100.389"] = {"7-8", "6"}, -- Rune Bag
+	["5.100.467"] = {10, 20}, -- Finger!
+	["5.100.468"] = {75, 150}, -- Shade
+	["5.100.491"] = {"7", "6"}, -- Acid Baby
+	["5.100.500"] = {"7-8", "6"}, -- Sack of Sacks
+	["5.100.504"] = {3.5, 7}, -- Brown Nugget
+	["5.100.508"] = {1.5, 3}, -- Mom's Razor
+	["5.100.509"] = {3.5, 7, 20, 40}, -- Bloodshot Eye
+	
+	["5.100.565"] = "Dvojité poškození, pokud je stále přátelské", -- Blood Puppy
+	["5.100.569"] = "Pokud je spuštěno, uděluje další poškození a rychlost", -- Blood Oath
+	["5.100.575"] = {1.5, 3}, -- The Intruder
+	["5.100.581"] = {15, 30}, -- Psy Fly
+	["5.100.584"] = "Zdvojnásobuje slzy bludiček a kontaktní poškození", -- Book of Virtues
+	["5.100.605"] = {36, 72}, -- The Scooper
+	["5.100.607"] = {3.5, 7, 5.25, 10.5}, -- Boiled Baby
+	["5.100.608"] = {3.5, 7}, -- Freezer Baby
+	["5.100.610"] = {45, 90, "kamenná vlna", "4 {{CR}}kamenné vlny", 6.5, 13}, -- Bird Cage
+	["5.100.612"] = "Dává ztracené duši efekt Svatého Pláště", -- Lost Soul
+	["5.100.626"] = {25, 50}, -- Knife Piece 1
+	["5.100.627"] = {25, 50}, -- Knife Piece 2
+	["5.100.629"] = {3, 6}, -- Bot Fly
+	["5.100.635"] = "Při použití vystřelí 8 slz z pozice hráče", -- Stitches
+	["5.100.645"] = {3.5, 7}, -- Tinytoma
+	["5.100.649"] = {3, 6, 2, 4}, -- Fruity Plum
+	["5.100.650"] = "Kontaktní poškození je zdvojnásobeno", -- Plum Flute
+	["5.100.652"] = {17.5, 35}, -- Cube Baby
+	["5.100.655"] = {10.5, 21, "Žádné bonusové poškození od 'NEJKY!' pro všechny spojence, když se používá Káča"}, -- Spin to Win
+	["5.100.679"] = {52.5, 105}, -- Lil Abaddon
+	["5.100.681"] = "Poškození je zdvojnásobeno", -- Lil Portal
+	["5.100.682"] = {8, 16}, -- Worm Friend
+	["5.100.685"] = "Zdvojnásobuje slzy bludiček a kontaktní poškození", -- Jar of Wisps
+	["5.100.698"] = {37.5, 75}, -- Twisted Pair
+	["5.100.702"] = "Zdvojnásobuje slzy bludiček a kontaktní poškození", -- Vengeful Spirit
+	["5.100.706"] = "Poškození od kobylek/mušek je zvýšeno o 25%", -- Abyss
+	["5.100.712"] = "Zdvojnásobuje kontaktní poškození od orbitálu", -- Lemegeton
+	["5.100.713"] = "Poškození od sraženin je dvojnásobné", -- Sumptorium
+	["5.100.728"] = {75, 150, 100, 200}, -- Gello (+ Lilith exception)
+	
+	["5.300.96"] = "Zdvojnásobuje slzy bludiček a kontaktní poškození", -- Soul of Bethany
+	["5.350.142"] = "Zdvojnásobuje slzy bludiček a kontaktní poškození", -- Beth's Faith
+	["5.350.182"] = "Zdvojnásobuje slzy bludiček a kontaktní poškození", -- Beth's Essence
+	["5.350.176"] = "Poškození od sraženin je dvojnásobné", -- Lil Clot
+	["5.350.186"] = "Poškození od kobylek/mušek je zvýšeno o 25%", -- Apollyon's Best Friend
+	["Tainted Lilith"] = "Gellovo slzné poškození je dvojnásobné", -- Gello (for BFFS pedestal)
+}
+EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
+
+
+-- Conditional descriptions - DO NOT TRANSLATE THE FIRST PART IN ["BRACKETS"]
+-- Strings will be appended to the original description
+-- Tables with one entry will completely replace the original description
+-- Tables with two or more entries are find-replace pairs (if there's an odd number of entries, the last entry is appended)
+-- For collectible/player conditionals, lines will automatically have their bulletpoint, and {1} is replaced with their name
+local repConditions = {
+	------ GENERAL STRINGS ------
+	["Tainted Revive"] = "{1} se oživí",
+	["Ice Tears"] = "Zmrazení nepřítele se nepočítá jako zabití", -- Uranus Anti-Synergy
+	
+	------ GREED MODE ------
+	["5.100.344"] = {"{{BlackHeart}} +1 Černé Srdce#{{Bomb}} Vytvoří 3 bomby"}, -- Match Book (Greed)
+	["5.300.74"] = {"Teleportuje Izáka do první místnosti na patře"}, -- The Moon? (Greed)
+	["5.100.416"] = {"{{Coin}} Zvyšuje limit mincí na 999"}, -- Deep Pockets (Greed)
+	["5.100.566"] = {"{{HalfSoulHeart}} +1 půlka Duševního Srdce při vstupu do nového patra#!!! Noční můra při vstupu do nového patra ukazuje nesprávné předměty v Greed Módu"}, -- Dream Catcher (Greed)
+	["5.100.580"] = "{{GreedMode}} V Greed Módu dokáže jen výjimečně vytvořit speciální místnosti#{{SuperSecretRoom}} Stále může pomoci najít super tajnou místnost", -- Red Key (Greed)
+	["5.300.83"] = "{{GreedMode}} V Greed Módu dokáže jen výjimečně vytvořit speciální místnosti#{{SuperSecretRoom}} Stále může pomoci najít super tajnou místnost", -- Soul of Cain (Greed)
+	["5.100.514"] = {"Způsobí, že se někteří nepřátelé a střely krátce zastaví v náhodných intervalech#Pozastavené střely zmizí"}, -- Broken Modem (Greed)
+	["5.350.162"] = {"{{Player7}} Vyčištění vlny má 50% šanci proměnit hráče v Azazela#{{Timer}} Účinek trvá, dokud se nevyčistí další vlna"}, -- Azazel's Stump (Greed)
+	
+	
+	------ ACHIEVEMENT CHECKS ------
+	-- todo...
+	
+	
+	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
+	["5.100.642"] = {"!!! JEDNORÁZOVÉ POUŽITÍ !!!#Vytvoří předmět ze seznamu předmětů aktuální místnosti"}, -- Magic Skin + Lost
+	["5.100.240"] = "{1} ponechává změny statistiky, když jej upustí", -- Experimental Treatment + Tainted Isaac
+	["5.100.644"] = "{1} udržuje zvýšení statistiky, když jej upustí", -- Consolation Prize + Tainted Isaac
+	["5.100.549"] = {"↑ {{Tears}} +0.4 Rychlost Střel"}, -- Brittle Bones (Keeper+Lost)
+	["5.100.694"] = "Funguje pro {1} a umožňuje mu přežít 4 zásahy", -- Heartbreak + Losts
+	["5.100.694 (Keeper)"] = {"↑ {{Damage}} +0,25 poškození za každé zlomené srdce#{{BrokenHeart}} +1 Zlomené srdce#{{BrokenHeart}} Každý vážný zásah poskytuje +1 Zlomené srdce#{{Warning}} Keeper umírá se 3 Zlomenými srdci"}, -- Heartbreak + Normal Keeper
+	["5.100.694 (Tainted Keeper)"] = {"{{Warning}} {1} zemře jedním zásahem po získání tohoto předmětu#↑ {{Damage}} +0,25 poškození za každé zlomené srdce#{{BrokenHeart}} +1 Zlomené srdce#{{BrokenHeart}} Každý vážný zásah poskytuje +1 Zlomené srdce#Keeper umírá se 2 Zlomenými srdci"}, -- Heartbreak + Tainted Keeper
+	["5.100.501"] = "{1} může získat další místa pro Mincové srdce#Předměty ohledně Více Zdraví mohou poskytnout další místo za každých 25 mincí", -- Greed's Gullet + Keeper
+	["5.100.188"] = "Způsobí poškození 7.5 jako {1}", -- Cain + Abel
+	["5.100.360"] = "Způsobuje 100% poškození jako {1}", -- Lilith + Incubus
+	["5.100.728"] = "Způsobuje 100% poškození jako {1}", -- Lilith + Gello
+	["5.100.230 (Keeper)"] = "{1} zbyde s 1 místem pro mincové srdce", -- Abaddon
+	["5.100.230 (Bethany)"] = "{1} zbyde s půlkou srdce", -- Abaddon
+	["5.100.230 (Tainted Bethany)"] = "{1} neztratí své krevní náboje", -- Abaddon
+	["5.100.245 (Keeper)"] = {"↑ {{Tears}} Zvýšená rychlost slz#↑ Snížené šíření slz#↓ {{Damage}} x0.8 multiplikátor poškození"}, -- 20/20 + Keeper
+	["5.100.205 (Tainted Magdalene)"] = "Umožňuje nekonečné použití Mňamky Srdce", -- Sharp Plug + Tainted Magdalene
+	
+	["5.100.705"] = "Dočasné +1 poškození za každou střelu/nepřítele", -- Dark Arts + Dark/Tainted Judas
+	["5.100.722"] = {"Připoutá Temného Ezaua#Po 5 sekundách nebo po opětovném použití Osamělé Duše se osvobodí a vrhne se k Jákobovi"}, -- TJacob + Anima Sola
+	["5.100.713"] = {"Přivolá všechny krevní sraženiny do Evina zdraví#Přebytečné sraženiny se jednoduše přesunou blíže k Evě#{{Timer}} Doba nabíjení 1 sekunda"}, --Teve + Sumptorium
+	["5.100.711"] = {"Vstupem", "{{Player38}} převrátí Lazara do druhého stavu#Vstoupení"}, -- Tlaz + Flip
+	["5.100.710"] = {"Při použití útoku švihne pytlem zvoleným směrem#Švihnutím přes pickup jej vloží do pytle#Obsah v pytli lze posunout pomocí tlačítka {{ButtonRT}} a nahradit tak konkrétní pickupy, když je pytel plný#Když je pytlík plný, podrž klávesu pro použití a vytvoříš tak zobrazený předmět#Kvalita předmětu je založena na kvalitě pickupů"}, -- Tcain Bag of Crafting
+	
+	["Mother's Kiss Soul"] = {"{{SoulHeart}} +1 Duševní Srdce při držení"},
+	["Mother's Kiss Bone"] = {"{{BoneHeart}} +1 Kostěné Srdce při držení"},
+	["Mother's Kiss Coin"] = {"{{CoinHeart}} +1 Mincové Srdce při držení#Zvyšuje limit Mincového srdce o 1"},
+	
+	-- Vibrant/Dim Bulb
+	["5.350.100 (Bethany)"] = "Pracuje s {1} duševními náboji",
+	["5.350.100 (Tainted Bethany)"] = "Pracuje s {1} krevními náboji",
+	["5.350.101 (Bethany)"] = "Ignoruje duševní náboje {1}",
+	["5.350.101 (Tainted Bethany)"] = "Ignoruje krevní náboje {1}",
+	["Health Up Soul Charges"] = "+{1} duševní náboj",
+	["Health Up Blood Charges"] = "+{1} krevní náboj",
+	
+	-- Tainted Bethany stuff
+	["2 of Hearts Blood Charges"] = "Zdvojnásobuje {1} krevní náboje",
+	["Vampire Blood Charges"] = {"↑ {{Damage}} +0.3 Poškození#Zabití 13 nepřátel přidá 1 krvavý náboj"},
+	["Fork Blood Charges"] = {"Vyčištění místnosti má 10% šanci na přidání 1 krvavého náboje"},
+	["Stem Cell Blood Charges"] = {"Vstupem do nového patra přidá 1 krevní náboj"},
+	
+	["Salvaging Bonus"] = {"a zničené stroje", "zničené stroje a zachráněné předměty"},
+	["Salvaging Lucky Toe"] = "66% šance na extra pickup ze zachráněných položek",
+	
+	
+	------ DUPLICATE COPIES OF ITEMS ------
+	["5.100.2 (Copies)"] = "Izák vystřelí ještě 1 slzu#Žádné další snížení statistik", -- The Inner Eye
+	["5.100.153 (Copies)"] = "Izák vystřelí ještě 2 slzy#Žádné další snížení statistik", -- Mutant Spider
+	["5.100.245 (Copies)"] = "Izák vystřelí ještě 1 slzu#Žádné další snížení statistik", -- 20/20
+	["5.100.358 (Copies)"] = "Izák vystřelí doprostřed ještě 1 slzu", -- The Wiz
+	["5.100.64 (Copies)"] = "Vícenásobné držení tohoto předmětu dále sníží cenu", -- Steam Sale
+	["5.100.118 (Copies)"] = "Více Brimstonů poskytne větší poškození a větší paprsek", -- Brimstone
+	["5.100.531 (Copies)"] = "Další kopie dávají pouze +1 poškození", -- Haemolacria
+	["5.100.224 (Copies)"] = "Další kopie dávají pouze +0,5 rychlost střel", -- Cricket's Body
+	
+	
+	----- MISC. ITEM CONDITIONS ------
+	["Sacrificial Nugget"] = "Promění střílny Hnědého Nugetu na mince",
+	["Sacrificial Item Wisps"] = "Spojenci vytvořené Lemegetonem lze obětovat#Promění všechny bludičky z Lemegetonu na {{HalfSoulHeart}} půlky Duševních Srdcí",
+	["Sacrificial Plum"] = "Vyvolaná Švestka se počítá jako spojenec a Švestkovu flétnu neodstraní",
+	["Sacrificial Quints"] = "Pokud je obětován spojenec od 'Paterčat', tak ztratíš Paterčata",
+	["Sacrificial Abyss"] = "Mušky od 'Propasti' se počítají jako spojenci",
+	["Sacrificial Star"] = "Betlémská hvězda se počítá jako spojenec",
+	["Sacrificial Clots"] = "Proměňuje sraženiny na mince",
+	
+	["1000.76.1"] = "{{Warning}} Přetočí pouze postavu, která aktivuje kostku", -- Dice Room 1 (Co-op)
+	["1000.76.6"] = "{{Warning}} Předměty všech postav budou znovu přetočeny v Co-opu!", -- Dice Room 6 (Co-op)
+	["5.100.45"] = "Léčí ostatní hráče za půl srdce", -- Yum Heart (Co-Op)
+	["5.350.125"] = "Mezi hráči se také obloukem vytváří paprsky", -- Extension Cord (Co-Op)
+	
+	["5.100.245"] = "Odstraňuje snížení rychlosti střel od {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	["20/20"] = "Žádné snížení rychlosti střel s {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
+	
+	["5.100.135 (Hard Mode)"] = {"1-2 mince", "1 mince", "2-3 mince", "2 mince"}, -- IV Bag Hard Mode (modify the PHD text too)
+	["5.100.201"] = "Doplní nabití {1} při vyzvednutí", -- Iron Bar + Notched Axe
+	["5.350.172"] = "{1} odstraní efekt teleportace", -- Cursed Penny + Black Candle
+	["5.100.501 (Deep Pockets)"] = "+1 místo pro srdce za každých 100 mincí po 99", -- Greed's Gullet + Deep Pockets
+	["? Card Single Use"] = "Předměty na jedno použití lze použít vícekrát s '? Kartou'", -- Single Use Actives + ? Card
+	["Both Peppers"] = "S {1} je základní šance vystřelit plamen 12,5 %, až 100 % při 7 štěstí", -- Ghost Pepper + Bird's Eye
+	["Black Feather"] = "↑ {{Damage}} +0.5 Poškození", -- Black Feather items
+	["Hemoptysis"] = "Funguje s {1}", -- Hemoptysis + Brimstone items
+	["5.100.600"] = "x1,2 multiplikátor rychlosti střel pro {1}", -- Eye Drops (items and some players)
+	["5.100.482"] = "Poskvrněné postavy se mění v jiné poskvrněné postavy", -- Clicker
+	
+	["4.5 Volt Timed"] = "Žádný vliv na časované dobíjení", -- 4.5 Volt + Timed Recharges
+	["4.5 Volt Multiple"] = "Sekundární aktivní předměty získávají dobíjení pouze v případě, že primární aktivní předmět je plně nabitý", -- 4.5 Volt + Schoolbag/Pocket Actives
+	["Bulb Zero"] = "Aktivní s 0 maximálními nabitími se nepočítají", -- Vibrant/Dim Bulb + zero charge actives
+	
+	["Brimstone Proptosis"] = "Paprsky způsobí 6x poškození v dosahu prázdného bodu, které se zmenšuje se vzdáleností",
+	["Brimstone Ipecac"] = "Laser získá poškození +2 a exploduje na nepřátele a překážky",
+	["Brimstone Pop!"] = "Kratší paprsek, který na konci vystřelí {1} slz",
+	["Eye of Belial Dr. Fetus"] = "Bomby proniknou a způsobí 2,5x poškození, ale nejsou naváděné ani nezpůsobují další výbuchové poškození",
+	["Spirit Sword C Section"] = "{1} má prioritu#Zárodky drží meče a dělají rotující útoky",
+	["Spirit Sword Mom's Knife"] = "{1} má prioritu#Rotační útok vyhodí meč dopředu",
+	["Spirit Sword Technology"] = "Meč se stává světelným mečem, který může odrážet nepřátelské výstřely",
+	["Spirit Sword Ipecac"] = "Meč dostane +6 poškození a uděluje otravu, ale neexploduje#Paprsky mečů však explodují",
+	["Ludovico Ipecac"] = "Slza dostane +2 poškození, ale neexploduje ani neotráví",
+	["Technology Ipecac"] = "Laser získá poškození +2 a exploduje na cíle",
+	["Eye of the Occult Beam"] = "Izák automaticky střílí na zaměřovací kříž, který mění dráhu paprsku",
+	
+	["Lullaby Clots"] = "(Včetně sraženin)",
+	["Lullaby Incubus"] = "(Včetně Inkubusu)",
+	
+	-- Jacob's Ladder / 120 Volt battery synergies
+	["Sparks Damage"] = "Jiskry způsobí o 50 % větší poškození",
+	["Sparks Arc Length"] = "Jiskry mají delší obloukovou vzdálenost",
+	["Sparks Arc Count"] = "Jiskry mohou vystřelit na další 2 nepřátele",
+	["Sparks Arc Back"] = "Jiskry se mohou vrátit ke stejnému nepříteli",
+	
+	["White Poop Jar"] = "Vytvoří bílé hovínko na 1 nabití",
+	["Golden Poop Jar"] = "Šance na vytvoření zlatého hovna na 1 nabití",
+	
+	["Binge Eater Healing"] = {"Vyléčí 1 srdce", "Vyléčí {{BlinkGreen}}2{{CR}} srdce", "+4 krevní nabití", "+{{BlinkGreen}}6{{CR}} krevní nabití"},
+}
+EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
+
+---------- Texty Craftovacího Pytlíku ----------
+EID.descriptions[languageCode].CraftingBagContent = "Pytlík:"
+EID.descriptions[languageCode].CraftingRoomContent = "Místnost:"
+EID.descriptions[languageCode].CraftingFloorContent = "Patro:"
+EID.descriptions[languageCode].CraftingSearch = "Najít:"
+EID.descriptions[languageCode].CraftingBagQuality = "Kvalita Pytlíku:"
+EID.descriptions[languageCode].CraftingBestQuality = "Nejlepší Kvalita:"
+EID.descriptions[languageCode].CraftingHideKey = "Schovat:"
+EID.descriptions[languageCode].CraftingPreviewKey = "Náhled:"
+-- {1} will be converted to the number of recipes
+EID.descriptions[languageCode].CraftingMore = "...+{1} víc"
+-- {1} will be converted into the number of available items
+EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} z 8 dostupných předmětů"
+EID.descriptions[languageCode].CraftingWarningAvailableItems = "K zobrazení receptů potřebuje alespoň 8!"
+-- {1} will be converted into the name of the key that toggles the BoC visibility
+EID.descriptions[languageCode].CraftingIsHidden = "Aktuálně skryto (zobrazit pomocí {1})"
+-- {1} will be converted into the name of the key that toggles the BoC Search
+EID.descriptions[languageCode].CraftingResults = "(Scrollovat: Podrž {{CONFIG_BoC_Toggle}} + {{ButtonY}} {{ButtonA}}, Zamknout: {{ButtonX}}, Obnovit: {{ButtonB}}, Resetovat Pytlík: Podrž {{ButtonRB}}, Najít: {1})"
+
+-- Strings for Tainted Cain's pedestal salvaging; the non-base lines will have the corresponding icon automatically
+EID.descriptions[languageCode].TaintedCainPedestalBase = "Při doteku se změní na 3-8 náhodných pickupů"
+EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "Promění se v {{BlinkBirthright}}6-16{{CR}} náhodných pickupů při doteku"
+EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Zaručeno, že se vytvoří {n} {1}" -- Room type spawns
+EID.descriptions[languageCode].TaintedCainPedestalBonus = "33% šance na bonus {1}" -- "Safety Cap" type spawns
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "66% šance na bonusový pickup"
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToeBirthright = "66% šance na {{BlinkBirthright}}2{{CR}} bonusové pickupy"
+EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "O 80 % menší pravděpodobnost na srdce"
+
+
+-- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
+if EID.enableDebug then
+	EID.descriptions[languageCode].repCollectibles = repCollectibles
+	EID.descriptions[languageCode].repTrinkets = repTrinkets
+	EID.descriptions[languageCode].repCards = repCards
+	EID.descriptions[languageCode].repPills = repPills
+end
+
+if REPENTOGON then
+	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "Darovací stroj", "Další úspěch za {1} mincí, zbývá {2} mincí/mince#{{Luck}} 2% šance na +1 štěstí při darování#{{AngelRoom}} Darování 10 mincí zvyšuje šanci na Andělskou místnost"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Greed Darovací stroj", "Další úspěch za {1} mincí, zbývá {2} mincí/mince"}
+end

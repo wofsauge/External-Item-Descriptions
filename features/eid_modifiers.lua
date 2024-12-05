@@ -91,19 +91,19 @@ local function VoidCallback(descObj, isRune)
 	local prefix = (isRune and "{{Card41}} ") or "{{Collectible477}} "
 	local pickup = descObj.Entity and descObj.Entity:ToPickup()
 	local isAltOption = false
+	local shopItem = pickup and pickup:IsShopItem()
 	-- Test if this is an Option pedestal, Repentance only absorbs the lowest index one
-	if EID.isRepentance then
+	-- (Don't check for options if it's a shop item, e.g. Tainted Keeper choice pedestals)
+	if EID.isRepentance and not shopItem then
 		local optionIndex = pickup and pickup.OptionsPickupIndex
 		local firstOption = EID.VoidOptionIndexes[optionIndex]
-		if (EID.isRepentance and optionIndex and optionIndex ~= 0 and descObj.ObjSubType ~= firstOption) then
-			EID:appendToDescription(descObj, "#" .. prefix .. "{{Collectible"..firstOption..
-			"}}" .. EID:getObjectName(5, 100, firstOption) .. EID:getDescriptionEntry("VoidOptionText"))
+		if (optionIndex and optionIndex ~= 0 and firstOption and descObj.ObjSubType ~= firstOption) then
+			EID:appendToDescription(descObj, "#" .. prefix .. "{{NameC"..firstOption.."}}" .. EID:getDescriptionEntry("VoidOptionText"))
 			isAltOption = true
 		end
 	end
 	-- Print Stat up info if Black Rune or non-active item
 	if isRune or EID.itemConfig:GetCollectible(descObj.ObjSubType).Type ~= 3 then
-		local shopItem = pickup and pickup:IsShopItem()
 		-- Afterbirth+ really can't do anything with Void and a shop item, so just return
 		if (not EID.isRepentance and shopItem) then return descObj end
 
