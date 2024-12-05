@@ -802,7 +802,7 @@ EID.descriptions[languageCode].trinkets={
 	{"63", "Forbicine", "{{Bomb}} Trasforma le Bombe Troll in bombe consumabili"},
 	{"64", "Verme Arcobaleno", "Ogni 3 secondi conferisce un effetto di un verme casuale"},
 	{"65", "Verme Solitario", "↑ {{Range}} x2 Moltiplicatore Gittata#↓ x0.5 Altezza Lacrime"},
-	{"66", "Verme Pigro", "↑ {{Range}} +4 Gitttata#↑ +2 Altezza Lacrime#↓ {{Shotspeed}} -0.4 Velocità Colpi"},
+	{"66", "Verme Pigro", "↑ {{Range}} +4 Gittata#↑ +2 Altezza Lacrime#↓ {{Shotspeed}} -0.4 Velocità Colpi"},
 	{"67", "Dado Incrinato", "Subire danni ha il 50% di attivare uno dei seguenti effetti:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible386}} D12 #{{Collectible166}} D20"},
 	{"68", "Super Magnete", "Isaac attrae consumabili e nemici"},
 	{"69", "Polaroid Sbiadita", "Cammuffa Isaac ad intervalli casuali#{{Confusion}} Confonde i nemici"},
