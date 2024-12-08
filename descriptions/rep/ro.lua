@@ -420,7 +420,7 @@ local repCollectibles={
 	[727] = {"727", "Ghost Bombs", "{{Bomb}} +5 Bombs#Isaac's bombs spawn ghosts that chase enemies#Ghosts deal 2x Isaac's damage per second and explode after 10 seconds"}, -- Ghost Bombs
 	[728] = {"728", "Gello", "A demon familiar bursts out of Isaac for the room#The demon shoots towards the nearest enemy, mimicing Isaac's tears, stats and effects#{{Damage}} Its tears deal 75% of Isaac's damage"}, -- Gello
 	[729] = {"729", "Decap Attack", "Throws Isaac's head in a direction#The head deals contact damage and shoots tears from where it lands#Using the item again or stepping on the head reattaches it"}, -- Decap Attack
-	[730] = {"730", "Glass Eye", "↑ {{Damage}} +0.75 Damage#↑ {{Luck}} +1 Luck"}, -- Glass Eye
+	[730] = {"730", "Ochi de Sticlă", "↑ {{Damage}} +0.75 Daune#↑ {{Luck}} +1 Noroc"}, -- Glass Eye
 	[731] = {"731", "Stye", "↑ {{Damage}} x1.28 Damage multiplier for the right eye#↑ {{Range}} +6.5 Range for the right eye#↓ {{Shotspeed}} -0.3 Shot speed for the right eye"}, -- Stye
 	[732] = {"732", "Inelul Mamei", "↑ {{Damage}} +1 Daune#{{Rune}} Oferă o rună sau o piatră suflet la întâplare"}, -- Mom's Ring
 }
