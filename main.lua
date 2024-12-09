@@ -6,14 +6,14 @@ EID.Languages = {"en_us", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "
 EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
-EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, so we save the value before anyone can alter it
-EID.isRepentancePlus = FontRenderSettings ~= nil -- Repentance+ adds FontRenderSettings() class. We use this to check if the DLC is enabled
+EID.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil -- Repentance+ adds FontRenderSettings() class. We use this to check if the DLC is enabled. V1.9.7.7 added REPENTANCE_PLUS variable
+EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can be altered by any mod, so we save the value before anyone can alter it. V1.9.7.7 removed REPENTANCE variable, so we additionally check for Rep+
 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.87
-EID.ModVersionCommit = "ca654bfa"
+EID.ModVersion = 4.88
+EID.ModVersionCommit = "b275d168"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
