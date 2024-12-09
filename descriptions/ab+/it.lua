@@ -802,7 +802,7 @@ EID.descriptions[languageCode].trinkets={
 	{"63", "Forbicine", "{{Bomb}} Trasforma le Bombe Troll in bombe consumabili"},
 	{"64", "Verme Arcobaleno", "Ogni 3 secondi conferisce un effetto di un verme casuale"},
 	{"65", "Verme Solitario", "↑ {{Range}} x2 Moltiplicatore Gittata#↓ x0.5 Altezza Lacrime"},
-	{"66", "Verme Pigro", "↑ {{Range}} +4 Gitttata#↑ +2 Altezza Lacrime#↓ {{Shotspeed}} -0.4 Velocità Colpi"},
+	{"66", "Verme Pigro", "↑ {{Range}} +4 Gittata#↑ +2 Altezza Lacrime#↓ {{Shotspeed}} -0.4 Velocità Colpi"},
 	{"67", "Dado Incrinato", "Subire danni ha il 50% di attivare uno dei seguenti effetti:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible386}} D12 #{{Collectible166}} D20"},
 	{"68", "Super Magnete", "Isaac attrae consumabili e nemici"},
 	{"69", "Polaroid Sbiadita", "Cammuffa Isaac ad intervalli casuali#{{Confusion}} Confonde i nemici"},
@@ -1035,7 +1035,7 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[14] = {"Mercante", "{{CoinHeart}} Si cura raccogliendo monete#Massimale di 2 Portamonete#I cuori consumabili vengono trasformati in mosche blu"},
 	[15] = {"Apollion", ""},
 	[16] = {"Il Dimenticato", "Si ha un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
-	[17] = {"L'Anima", "Si ha un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
+	[17] = {"L'Anima Dimenticata", "Si ha un attacco in mischia che può essere caricato e lanciato#{{BoneHeart}} Può possedere fino a 6 Cuori Ossei#{{Player17}} Premere {{ButtonRT}} lo scambia con L'Anima#{{SoulHeart}} L'Anima può possedere fino a 6 Cuori Celesti/Neri, vola e ha lacrime spettrali#L'Anima è incatenata ad Il Dimenticato entro un breve raggio"},
 }
 
 ---------- Sacrifice Room ----------
