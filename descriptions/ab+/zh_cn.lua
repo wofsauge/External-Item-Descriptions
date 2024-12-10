@@ -2,7 +2,7 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2024.11.17
+-- Last Update: 2024.12.06
 
 -- FORMAT: Item ID | Name | Description
 
@@ -1149,7 +1149,7 @@ EID.descriptions[languageCode].ItemReminder = {
 		Wisps = "所罗门魔典魂火",
 		Special = "特殊",
 		Actives = "持有的主动道具",
-		Pockets = "持有的次要主动道具",
+		Pockets = "持有的口袋道具",
 		Trinkets = "持有的饰品",
 		Passives = "持有的被动道具",
 		Character = "角色信息",
@@ -1301,7 +1301,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Black Feather"] = "↑ {{Damage}} 伤害+0.2", -- Black Feather items
 
 	["Bulb Multiple"] = "只检查主要主动道具", -- Vibrant/Dim Bulb + Schoolbag/Pocket Actives
-	["Bulb Zero"] = "无充能主动道具能触发灯泡", -- Vibrant/Dim Bulb + zero charge actives
+	["Bulb Zero"] = "零充能的主动道具能触发灯泡", -- Vibrant/Dim Bulb + zero charge actives
 	["5.350.101 (Timed)"] = "对时间充能的主动道具来说基本没用", -- Dim Bulb + Timed Recharges
 	["5.100.122"] = "{1}: 处于1红心时触发", -- Whore of Babylon + Eve
 
