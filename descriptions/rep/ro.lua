@@ -348,10 +348,17 @@ local repCollectibles={
 	[655] = {"655", "Învârte să Câștigi", "Oferă un orbital care blochează proiectilele inamicilor și provoacă 10.5 daune de contact pe secundă#Folosirea itemului oferă:#↑ {{Speed}} +0.5 Viteză#Crește viteza și daunele orbitalului"}, -- Spin to Win
 	[656] = {"656", "Damocles", "{{Warning}}#O sabie atârnă deasupra lui Isaac care dublează toate piedestalele#Itemele care costa sau vin din chesturi nu sunt dublate#{{Warning}} După ce Isaac este vătămat sabia are o șansă extrem de mică să îl omoare pe Isaac la fiecare frame#Efectele de invincibilitate pot preveni acest efect"}, -- Damocles (hidden passive version)
 	[657] = {"657", "Vasculită", "Inamicii explodează în lacrimi când mor#Lacrimile primesc efectele lui Isaac"}, -- Vasculitis
-	[658] = {"658", "Celulă Gigant", "vătămarea oferă Mini Isaaci#Mini Isaaci urmăresc și trag în inamicii din apropiere"}, -- Giant Cell
-	[659] = {"659", "Tropicamidum", "↑ {{Range}} +2.5 Rază de atac#↑ {{Tearsize}} +0.22 Marimea lacrimelor"}, -- Tropicamide
-	[660] = {"660", "Citit în Cărți", "Două portale apar la începutul fiecărui etaj în prima cameră#Portalele dispar dacă ieși din cameră#{{Blank}} {{ColorRed}}Roșu: {{CR}}{{BossRoom}} Camera Șefului#{{Blank}} {{ColorYellow}}Galben: {{CR}}{{TreasureRoom}} Camera Comorilor#{{Blank}} {{ColorBlue}}Albastru: {{CR}}{{SecretRoom}} Camera Secretă"}, -- Card Reading
-	[661] = {"661", "Cvadrupleti", "Omorârea inamicilor oferă în locul lor un familiar staționar#Maxim 5 familiari"}, -- Quints
+<<<<<<< HEAD
+[658] = {"658", "Celulă Gigant", "Vătămarea cauzează ca un mini Isaac să apară#Mini Isaaci urmăresc și atacă inamicii din apropiere"}, -- Giant Cell
+[659] = {"659", "Tropicamide", "↑ {{Range}} +2.5 Range#↑ {{Tearsize}} +0.22 Tear size"}, -- Tropicamide
+[660] = {"660", "Card Reading", "Spawns two portals in the first room of each floor#Leaving the room despawns the portals#{{Blank}} {{ColorRed}}Red: {{CR}}{{BossRoom}} Boss Room#{{Blank}} {{ColorYellow}}Yellow: {{CR}}{{TreasureRoom}} Item Room#{{Blank}} {{ColorBlue}}Blue: {{CR}}{{SecretRoom}} Secret Room"}, -- Card Reading
+[661] = {"661", "Quints", "Killing an enemy spawns a stationary familiar in its place#Caps at 5 familiars"}, -- Quints
+=======
+	[658] = {"658", "Celulă Gigant", "Vătămarea cauzează ca un mini Isaac să apară#Mini Isaaci urmăresc și atacă inamicii din apropiere"}, -- Giant Cell
+	[659] = {"659", "Tropicamide", "↑ {{Range}} +2.5 Range#↑ {{Tearsize}} +0.22 Tear size"}, -- Tropicamide
+	[660] = {"660", "Card Reading", "Spawns two portals in the first room of each floor#Leaving the room despawns the portals#{{Blank}} {{ColorRed}}Red: {{CR}}{{BossRoom}} Boss Room#{{Blank}} {{ColorYellow}}Yellow: {{CR}}{{TreasureRoom}} Item Room#{{Blank}} {{ColorBlue}}Blue: {{CR}}{{SecretRoom}} Secret Room"}, -- Card Reading
+	[661] = {"661", "Quints", "Killing an enemy spawns a stationary familiar in its place#Caps at 5 familiars"}, -- Quints
+>>>>>>> e5d63c84b0291ca2833b120dbfd149e42350c16e
 	[662] = {"662", "", "<Item does not exist>"},
 	[663] = {"663", "Dinte și Unghii", "1 secundă de invincibilitate la fiecare 6 secunde#Isaac se aprinde intermitent înainte ca efectul să apară"}, -- Tooth and Nail
 	[664] = {"664", "Hiperfagie", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă inimile#Itemele se schimbă între ele și un item de mâncare#Itemele de mâncare oferă:#{{HealingRed}} Vindecă 2 vieți#↑ {{Damage}} +3.6 Daune temporare#↑ 2 statusuri permanente (depinde de mâncare)#↓ {{Speed}} -0.03 Viteză"}, -- Binge Eater
