@@ -304,6 +304,7 @@ local abyssSynergies = {
 	[727] = abyssPresets.yellowExplode, -- Ghost Bombs
 	[706] = "16个分别造成不同效果的蝗虫", -- Abyss
 }
+EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
 
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
