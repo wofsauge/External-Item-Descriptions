@@ -2,7 +2,6 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2024.12.06
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
@@ -450,9 +449,9 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[127] = "↑ {{Damage}} 下一层伤害+2", -- Forget me Now
 	[133] = "↑ {{Damage}} 伤害+0.5", -- Guppy's Paw
 	[135] = "每次使用↑ {{Damage}} 暂时伤害+0.66", -- IV Bag
-	[147] = "铁镐耐久和击退力提高, 使用速度更快, 使敌人{{Burning}}着火, 摧毁大便和障碍物时掉落更多掉落物", -- Notched Axe
+	[147] = "铁镐耐久和击退力提高, 使用速度更快, 使敌人{{Burning}}燃烧, 摧毁大便和障碍物时掉落更多掉落物", -- Notched Axe
 	[186] = "同时产生{{Collectible126}}剃刀片的效果", -- Blood Rights
-	[282] = "留下一路火焰, 能造成接触伤害并使敌人{{Burning}}着火", -- How to Jump
+	[282] = "留下一路火焰, 能造成接触伤害并使敌人{{Burning}}燃烧", -- How to Jump
 	[290] = "一次消耗1心, 获得{{Damage}}伤害提升并在地上留下血迹", -- The Jar
 	[295] = "有几率产生{{Collectible555}}金剃刀片的效果", -- Magic Fingers
 	[297] = "除正常奖励外, 还永久获得1个恶魔类跟班", -- Pandora's Box
@@ -653,18 +652,18 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 EID.descriptions[languageCode].abyssSynergies = {
 	[2] = "3只普通蝗虫", -- The Inner Eye
 	[3] = "紫色追踪蝗虫", -- Spoon Bender
-	[4] = "红色大蝗虫, 造成3倍伤害", -- Cricket's Head
+	[4] = "红色大型蝗虫, 造成3倍伤害", -- Cricket's Head
 	[6] = "黄色短距离快速蝗虫, 快速造成伤害", -- Number One
 	[7] = "红色蝗虫, 造成2倍伤害", -- Blood of the Martyr
 	[10] = "2只灰色蝗虫, 造成一半伤害", -- Halo of Flies
 	[13] = "绿色蝗虫, 使敌人中毒", -- The Virus
 	[103] = "绿色蝗虫, 使敌人中毒", -- The Common Cold
-	[118] = "更大的灰色蝗虫, 其他属性正常", -- Brimstone
-	[149] = "缓慢的绿色大蝗虫, 造成1.5x角色伤害并使敌人中毒", -- Ipecac
+	[118] = "较大的灰色蝗虫, 其他属性正常", -- Brimstone
+	[149] = "缓慢的大型绿色蝗虫, 造成1.5x角色伤害并使敌人中毒", -- Ipecac
 	[153] = "4只普通蝗虫", -- Mutant Spider
-	[257] = "燃烧的橙色蝗虫, 使敌人着火", -- Fire Mind
+	[257] = "橙色蝗虫, 使敌人燃烧", -- Fire Mind
 	[305] = "绿色蝗虫, 使敌人中毒", -- Scorpio
-	[374] = "青色发光蝗虫, 生成造成3x角色伤害的光束", -- Holy Light
+	[374] = "青色蝗虫, 生成造成3x角色伤害的光束", -- Holy Light
 	[494] = "淡蓝色蝗虫, 带有电弧, 每个电弧造成0.1点伤害", -- Jacob's Ladder
 	[559] = "淡蓝色蝗虫, 带有电弧, 每个电弧造成0.1点伤害", -- 120 Volt
 }

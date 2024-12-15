@@ -58,6 +58,8 @@ def addUpdatedTables(languageCode, dlc):
         updatedTables = ["collectibles", "trinkets"]
         if dlc == "rep":
             updatedTables += ["cards", "pills", "carBattery", "BFFSSynergies", "CharacterInfo", "ConditionalDescs", "VoidNames", "custom"]
+        if dlc == "rep+":
+            updatedTables += ["abyssSynergies"]
 
         # korean uses some additional addititve tables
         if languageCode == "ko_kr":
