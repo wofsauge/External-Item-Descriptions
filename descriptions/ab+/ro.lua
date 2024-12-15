@@ -27,47 +27,47 @@ EID.descriptions[languageCode].collectibles={
 	{"4", "Capul lui Cricket", "↑ {{Damage}} +0.5 Daune#↑ {{Damage}} x1.5 Daune"}, -- Cricket's Head
 	{"5", "Reflexia Mea", "↑ {{Range}} +1.5 Rază de atac#↑ +1 Înălțimea lacrimilor#↑ {{Shotspeed}} +0.6 Viteza lacrimilor#Lacrimile au un efect de bumerang"}, -- My Reflection
 	{"6", "Numarul Unu", "↑ {{Tears}} +1.5 Lacrimi#↑ +0.76 Înălțimea lacrimilor#↓ {{Range}} -17.62 Rază de atac"}, -- Number One
-	{"7", "Blood of the Martyr", "↑ {{Damage}} +1 Damage"}, -- Blood of the Martyr
-	{"8", "Brother Bobby", "Shoots normal tears#Deals 3.5 damage per tear"}, -- Brother Bobby
-	{"9", "Skatole", "All fly enemies are friendly"}, -- Skatole
-	{"10", "Halo of Flies", "+2 Fly orbitals#Blocks enemy projectiles"}, -- Halo of Flies
-	{"11", "1up!", "↑ +1 Life#Isaac respawns with full health on death"}, -- 1up!
-	{"12", "Magic Mushroom", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +0.3 Damage#↑ {{Damage}} x1.5 Damage multiplier#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height#Size up#{{HealingRed}} Full health"}, -- Magic Mushroom
-	{"13", "The Virus", "↓ {{Speed}} -0.1 Speed#{{Poison}} Touching enemies poisons them#{{BlackHeart}} Poisoned enemies can drop Black Hearts"}, -- The Virus
-	{"14", "Roid Rage", "↑ {{Speed}} +0.6 Speed#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Roid Rage
-	{"15", "<3", "↑ {{Heart}} +1 Health#{{HealingRed}} Full health"}, -- <3
-	{"16", "Raw Liver", "↑ {{Heart}} +2 Health#{{HealingRed}} Full health"}, -- Raw Liver
-	{"17", "Skeleton Key", "{{Key}} +99 Keys"}, -- Skeleton Key
-	{"18", "A Dollar", "{{Coin}} +99 Coins"}, -- A Dollar
-	{"19", "Boom!", "{{Bomb}} +10 Bombs"}, -- Boom!
-	{"20", "Transcendence", "Flight"}, -- Transcendence
-	{"21", "The Compass", "Reveals icons on the map#Does not reveal the layout of the map"}, -- The Compass
-	{"22", "Lunch", "↑ {{Heart}} +1 Health"}, -- Lunch
-	{"23", "Dinner", "↑ {{Heart}} +1 Health"}, -- Dinner
-	{"24", "Dessert", "↑ {{Heart}} +1 Health"}, -- Dessert
-	{"25", "Breakfast", "↑ {{Heart}} +1 Health"}, -- Breakfast
-	{"26", "Rotten Meat", "↑ {{Heart}} +1 Health"}, -- Rotten Meat
-	{"27", "Wooden Spoon", "↑ {{Speed}} +0.3 Speed"}, -- Wooden Spoon
-	{"28", "The Belt", "↑ {{Speed}} +0.3 Speed"}, -- The Belt
-	{"29", "Mom's Underwear", "↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Mom's Underwear
-	{"30", "Mom's Heels", "↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Mom's Heels
-	{"31", "Mom's Lipstick", "↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Mom's Lipstick
-	{"32", "Wire Coat Hanger", "↑ {{Tears}} +0.7 Tears"}, -- Wire Coat Hanger
-	{"33", "The Bible", "{{Timer}} Flight for the room#{{MomsHeart}} Kills Mom's Foot and Mom's Heart instantly#{{Warning}} Kills Isaac when used on Satan"}, -- The Bible
-	{"34", "The Book of Belial", "{{AngelDevilChance}} +12.5% Devil/Angel Room chance while held#{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage"}, -- The Book of Belial
-	{"35", "The Necronomicon", "Deals 40 damage to all enemies in the room"}, -- The Necronomicon
-	{"36", "The Poop", "Spawns one poop and knocks back enemies#Can be placed next to a pit and destroyed with a bomb to make a bridge"}, -- The Poop
-	{"37", "Mr. Boom", "Drops a large bomb below Isaac which deals 110 damage"}, -- Mr. Boom
-	{"38", "Tammy's Head", "Shoots 10 tears in a circle around Isaac#The tears copy Isaac's tear effects, plus 25 damage"}, -- Tammy's Head
-	{"39", "Mom's Bra", "Petrifies all enemies in the room for 4 seconds"}, -- Mom's Bra
-	{"40", "Kamikaze!", "Causes an explosion at Isaac's location#It deals 40 damage"}, -- Kamikaze!
-	{"41", "Mom's Pad", "{{Fear}} Fears all enemies in the room for 5 seconds"}, -- Mom's Pad
-	{"42", "Bob's Rotten Head", "Using the item and firing in a direction throws the head#{{Poison}} The head explodes on impact and poisons enemies"}, -- Bob's Rotten Head
+	{"7", "Sângele Martirului", "↑ {{Damage}} +1 Daune"}, -- Blood of the Martyr
+	{"8", "Fratele Bobby", "Trage cu lacrimi normale#Provoacă 3.5 daune"}, -- Brother Bobby
+	{"9", "Scatol", "Toți inamicii muscă sunt prietenoși"}, -- Skatole
+	{"10", "Cerc de Muște", "+2 Orbitali muscă#Blochează proiectilele inamicilor"}, -- Halo of Flies
+	{"11", "1usu!", "↑ +1 Reînviere#Isaac reînvie cu inimile pline"}, -- 1up!
+	{"12", "Ciupercă Magică", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +0.3 Daune#↑ {{Damage}} x1.5 Daune#↑ {{Range}} +2.5 Rază de atac#Crește mărimea#{{HealingRed}} Vindecă viața"}, -- Magic Mushroom
+	{"13", "Virusul", "↑ {{Speed}} +0.2 Viteză#{{Poison}} La atingerea inamicilor ii otrăvești#Isaac cauzează 48 daune de contact pe secundă"}, -- The Virus
+	{"14", "Furie cu Steroizi", "↑ {{Speed}} +0.3 Viteză#↑ {{Range}} +2.5 Rază de atac"}, -- Roid Rage
+	{"15", "<3", "↑ {{Heart}} +1 Viață#{{HealingRed}} Umple inimile"}, -- <3
+	{"16", "Ficat Crud", "↑ {{Heart}} +2 Viați#{{HealingRed}} Umple inimile"}, -- Raw Liver
+	{"17", "Cheie Schelet", "{{Key}} +99 Chei"}, -- Skeleton Key
+	{"18", "Un Leu", "{{Coin}} +99 Bănuți"}, -- A Dollar
+	{"19", "Boom!", "{{Bomb}} +10 Bombe"}, -- Boom!
+	{"20", "Transcendență", "Zbor"}, -- Transcendence
+	{"21", "Busolă", "Dezvăluie iconițele pe hartă#Nu dezvăluie harta"}, -- The Compass
+	{"22", "Prânz", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Lunch
+	{"23", "Cină", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Dinner
+	{"24", "Desert", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}}, -- Dessert
+	{"25", "Mic Dejun", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Breakfast
+	{"26", "Carne Stricată", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Rotten Meat
+	{"27", "Lingură de Lemn", "↑ {{Speed}} +0.3 Viteză"}, -- Wooden Spoon
+	{"28", "Curea", "↑ {{Speed}} +0.3 Viteză"}, -- The Belt
+	{"29", "Chiloții Mamei", "↑ {{Range}} +2.5 Rază de atac#Oferă 3-6 muște albastre"}, -- Mom's Underwear
+	{"30", "Rujul Mamei", "↑ {{Range}} +3.75 Rază de atace#{{UnknownHeart}} Oferă 1 inimă aleatorie pe jos"}, -- Mom's Heels
+	{"31", "Rujul Mamei", "↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Mom's Lipstick
+	{"32", "Umerasș", "↑ {{Tears}} +0.7 Lacrimi"}, -- Wire Coat Hanger
+	{"33", "Biblia", "{{Timer}} Zbor pe durata camerei#{{MomsHeart}} Omoară Piciorul și Inima Mamei instant#{{Warning}} Îl omoară pe Isaac dacă este folosită pe Satana"}, -- The Bible
+	{"34", "Cartea lui Belial", "{{AngelDevilChance}} +12.5% Șansă la Camera Înger/Diavol cât timp este ținută#{{Timer}} Oferă pe durata camerei:#↑ {{Damage}} +2 Daune"}, -- The Book of Belial
+	{"35", "Necronomiconul", "Provoacă 40 de daune toturor inamicilor din cameră"}, -- The Necronomicon
+	{"36", "Rahatul", "Oferă un rahat și aruncă inamicii din apropiere#Poate fi plasat langă o gaură și explodat cu o bombă sa creze un pod"}, -- The Poop
+	{"37", "Dl. Bum", "Aruncă o bombă mare dedesubt de Isaac care cauzează 185 de daune"}, -- Mr. Boom
+	{"38", "Capul lui Tammy", "Aruncă cu 10 lacrimi în cerc în jurul lui ISaac#Lacrimile au efectele lui Isaac + 25 daune"}, -- Tammy's Head
+	{"39", "Sutienul Mamei", "Pietrifică toți inamicii din cameră pentru 4 secunde"}, -- Mom's Bra
+	{"40", "Kamikaze!", "Provoacă o explozie mare la locația lui Isaac#Cauzează 185 de daune"}, -- Kamikaze!
+	{"41", "Tamponul Mamei", "{{Fear}} Provoacă frică tuturor inamicilor din cameră#Oferă o muscă albastră"}, -- Mom's Pad
+	{"42","Capul putrezit a lui Bob", "La folosire și aruncare intr-o direcție îi aruncă capul#{{Poison}} La aterizare capul explodează si creează un nor otrăvitor#Cauzează daunele lui Isaac + 185"}, -- Bob's Rotten Head
 	{"43", "", "<item does not exist>"},
-	{"44", "Teleport!", "Teleports Isaac into a random room, except I AM ERROR rooms"}, -- Teleport!
-	{"45", "Yum Heart", "{{HealingRed}} Heals 1 heart"}, -- Yum Heart
-	{"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#+8% room clear reward chance#Better chance to win while gambling"}, -- Lucky Foot
-	{"47", "Doctor's Remote", "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#It deals 20x Isaac's damage"}, -- Doctor's Remote
+	{"44", "Teleport!", "Îl teleportează pe Isaac într-o cameră aleatorie cu excepția I AM ERROR ROOM"}, -- Teleport!
+	{"45", "Inimă Yum", "{{HealingRed}} Vindecă 1 inimă"}, -- Yum Heart
+	{"46", "Piciorul Norocos", "↑ {{Luck}} +1 Noroc#+8% șansă să primești o recompensă la finalizarea camerei#Șanse mai mari să câștigi la păcănele"}, -- Lucky Foot
+	{"47", "Telecomanda Doctorului", "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#It deals 20x Isaac's damage"}, -- Doctor's Remote
 	{"48", "Cupid's Arrow", "Piercing tears"}, -- Cupid's Arrow
 	{"49", "Shoop da Whoop!", "The next shot is replaced with a beam#It deals 26x Isaac's damage over 0.9 seconds"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Damage"}, -- Steven
