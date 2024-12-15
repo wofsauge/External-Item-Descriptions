@@ -8,7 +8,7 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "en_us"
+local languageCode = "ro"
 
 -- init en_us table
 EID.descriptions[languageCode] = {}
@@ -21,12 +21,12 @@ EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {na
 ---------- Collectibles ----------
 
 EID.descriptions[languageCode].collectibles={
-	{"1", "The Sad Onion", "↑ {{Tears}} +0.7 Tears"}, -- The Sad Onion
-	{"2", "The Inner Eye", "↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Isaac shoots 3 tears at once"}, -- The Inner Eye
-	{"3", "Spoon Bender", "Homing tears"}, -- Spoon Bender
-	{"4", "Cricket's Head", "↑ {{Damage}} +0.5 Damage#↑ {{Damage}} x1.5 Damage multiplier"}, -- Cricket's Head
-	{"5", "My Reflection", "↑ {{Range}} +1.5 Range#↑ +1 Tear height#↑ {{Shotspeed}} +0.6 Shot speed#Tears get a boomerang effect"}, -- My Reflection
-	{"6", "Number One", "↑ {{Tears}} +1.5 Tears#↑ +0.76 Tear height#↓ {{Range}} -17.62 Range"}, -- Number One
+	{"1", "Ceapa Tristă", "↑ {{Tears}} +0.7 Lacrimi"}, -- The Sad Onion
+	{"2", "Ochiul Interior", "↓ {{Tears}} x0.48 Viteză de atac#↓ {{Tears}} +3 Întârzierea lacrimilor#Isaac atacă cu 3 lacrimi"}, -- The Inner Eye
+	{"3", "Lingură Îndoită", "Lacrimi balistice"}, -- Spoon Bender
+	{"4", "Capul lui Cricket", "↑ {{Damage}} +0.5 Daune#↑ {{Damage}} x1.5 Daune"}, -- Cricket's Head
+	{"5", "Reflexia Mea", "↑ {{Range}} +1.5 Rază de atac#↑ +1 Înălțimea lacrimilor#↑ {{Shotspeed}} +0.6 Viteza lacrimilor#Lacrimile au un efect de bumerang"}, -- My Reflection
+	{"6", "Numarul Unu", "↑ {{Tears}} +1.5 Lacrimi#↑ +0.76 Înălțimea lacrimilor#↓ {{Range}} -17.62 Rază de atac"}, -- Number One
 	{"7", "Blood of the Martyr", "↑ {{Damage}} +1 Damage"}, -- Blood of the Martyr
 	{"8", "Brother Bobby", "Shoots normal tears#Deals 3.5 damage per tear"}, -- Brother Bobby
 	{"9", "Skatole", "All fly enemies are friendly"}, -- Skatole
