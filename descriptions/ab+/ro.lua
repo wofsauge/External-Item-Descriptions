@@ -57,17 +57,17 @@ EID.descriptions[languageCode].collectibles={
 	{"34", "Cartea lui Belial", "{{AngelDevilChance}} +12.5% Șansă la Camera Înger/Diavol cât timp este ținută#{{Timer}} Oferă pe durata camerei:#↑ {{Damage}} +2 Daune"}, -- The Book of Belial
 	{"35", "Necronomiconul", "Provoacă 40 de daune toturor inamicilor din cameră"}, -- The Necronomicon
 	{"36", "Rahatul", "Oferă un rahat și aruncă inamicii din apropiere#Poate fi plasat langă o gaură și explodat cu o bombă sa creze un pod"}, -- The Poop
-	{"37", "Dl. Bum", "Aruncă o bombă mare dedesubt de Isaac care cauzează 185 de daune"}, -- Mr. Boom
+	{"37", "Dl. Bum", "Aruncă o bombă mare dedesubt de Isaac care cauzează 110 de daune"}, -- Mr. Boom
 	{"38", "Capul lui Tammy", "Aruncă cu 10 lacrimi în cerc în jurul lui ISaac#Lacrimile au efectele lui Isaac + 25 daune"}, -- Tammy's Head
 	{"39", "Sutienul Mamei", "Pietrifică toți inamicii din cameră pentru 4 secunde"}, -- Mom's Bra
-	{"40", "Kamikaze!", "Provoacă o explozie mare la locația lui Isaac#Cauzează 185 de daune"}, -- Kamikaze!
+	{"40", "Kamikaze!", "Provoacă o explozie mare la locația lui Isaac#Cauzează 110 de daune"}, -- Kamikaze!
 	{"41", "Tamponul Mamei", "{{Fear}} Provoacă frică tuturor inamicilor din cameră#Oferă o muscă albastră"}, -- Mom's Pad
-	{"42","Capul putrezit a lui Bob", "La folosire și aruncare intr-o direcție îi aruncă capul#{{Poison}} La aterizare capul explodează si creează un nor otrăvitor#Cauzează daunele lui Isaac + 185"}, -- Bob's Rotten Head
+	{"42","Capul putrezit a lui Bob", "La folosire și aruncare intr-o direcție îi aruncă capul#{{Poison}} La aterizare capul explodează si creează un nor otrăvitor#Cauzează daunele lui Isaac + 110"}, -- Bob's Rotten Head
 	{"43", "", "<item does not exist>"},
 	{"44", "Teleport!", "Îl teleportează pe Isaac într-o cameră aleatorie cu excepția I AM ERROR ROOM"}, -- Teleport!
 	{"45", "Inimă Yum", "{{HealingRed}} Vindecă 1 inimă"}, -- Yum Heart
 	{"46", "Piciorul Norocos", "↑ {{Luck}} +1 Noroc#+8% șansă să primești o recompensă la finalizarea camerei#Șanse mai mari să câștigi la păcănele"}, -- Lucky Foot
-	{"47", "Telecomanda Doctorului", "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#It deals 20x Isaac's damage"}, -- Doctor's Remote
+	{"47", "Telecomanda Doctorului", "{{Collectible168}} la faolosire o țintă apare pe ecran#După 1.5 secunde o rachetă aterizează în țintă#Provoacă 20x daune"}, -- Doctor's Remote
 	{"48", "Cupid's Arrow", "Piercing tears"}, -- Cupid's Arrow
 	{"49", "Shoop da Whoop!", "The next shot is replaced with a beam#It deals 26x Isaac's damage over 0.9 seconds"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Damage"}, -- Steven
