@@ -100,7 +100,7 @@ local repCollectibles={
 	[223] = {"223", "Piromaniac", "{{Bomb}} +5 Bombe# Imunitate la explozi și foc#{{HealingRed}} Exploziile te vindeca jumatate de inimă"}, -- Pyromaniac
 	[224] = {"224", "Corpul lui Cricket", "↑ {{Tears}} +0.5 Lacrimi#↓ {{Range}} x0.8 Rază de atac#Lacrimile se împart în 4 la contact#Lacrimile împărțite cauzează jumătate din daune"}, -- Cricket's Body
 	[225] = {"225", "Masca Plăcerii", "{{SoulHeart}} Șansă de 8% să primești o inimă suflet dacă ești vătămat#{{Luck}} Șansă de +2% pe nivel de noroc{{HalfHeart}} Inamicii au o șansă să ofere jumătate de inimă roșie"}, -- Gimpy
-	[226] = {"226", "Lotusul Negru", "↑ {{Heart}} +1 Viață}} Vindecă o inimă{{SoulHeart}} +1 Inimă Suflet{{BlackHeart}} +1 Inimă Neagră"}, -- Black Lotus
+	[226] = {"226", "Lotusul Negru", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă#{{SoulHeart}} +1 Inimă Suflet#{{BlackHeart}} +1 Inimă Neagră"}, -- Black Lotus
 	[228] = {"228", "Parfumul Mamei", "↑ {{Tears}} +0.5 Lacrimi#{{Fear}} Șansă de 15% să tragi cu lacrimi provocatoare de frică"}, -- Mom's Perfume
 	[229] =	{"229", "Plămânii lui Monstro", "↓ {{Tears}} x0.23 Viteză de atac#{{Chargeable}} Lacrimile sunt încărcate și eliberate într-un efect de shotgun"}, -- Monstro's Lung
 	[230] = {"230", "Abaddon", "↑ {{Speed}} +0.2 Viteză#↑ {{Damage}} +1.5 Daune#Transformă toate inimile roșii pe care le ai in Inimi Negre{{BlackHeart}} +2 Inimi Negre#{{Fear}} Șansă de 15% să tragi cu lacrimi provocatoare de frică, șansa depinde de noroc"}, -- Abaddon
@@ -184,7 +184,7 @@ local repCollectibles={
 	[395] = {"395", "Tehnologie X", "Lacrimile lui Isaac sunt înlocuite cu un inel laser reîncărcabil#Dimensiunea inelului și daunele cresc cu până la 100% depinzând de timpul de încărcare"}, -- Tech X
 	[397] = {"397", "Rază Tractoare", "↑ {{Tears}} +1 Viteză de atac#↑ {{Range}} +2.5 Rază de atac#↑ {{Shotspeed}} +0.16 Viteza de lacrimilor#Lacrimile lui Isac călătoresc mereu de-a lungul unei raze de lumină din fața lui"}, -- Tractor Beam
 	[399] = {"399", "Gura Abisului", "{{Chargeable}} Tragerea cu lacrimilor timp de 2,35 secunde și eliberarea butonului creează un inel negru de Brimstone în jurul lui Isac#Provoacă 30x din daunele lui Isac și durează 1.97 secunde"}, -- Maw of the Void
-	[401] = {"401", "Exploziv", "Șansă de 25% să arunci cu o lacrimă lipicioasă#Lacrimile lipicioase cresc și explodează după câteva secunde, provocând daune lui Isac + 60"}, -- Explosivo
+	[401] = {"401", "Exploziv", "Șansă25% șansă să arunci cu o lacrimă lipicioasă#Lacrimile lipicioase cresc și explodează după câteva secunde, provocând daune lui Isac + 60"}, -- Explosivo
 	[404] = {"404", "Bebeluș Beșinos", "Blochează proiectilele#Șansă de 10% să se beșască și să {{Charm}} vrăjească, {{Poison}} otrăvească sau să împingă inamicii#Beșina provoacă între 5-6 daune"}, -- Farting Baby
 	[405] = {"405", "GB Bug", "{{Throwable}} Aruncabil (apasă de 2 ori pe butonul de tragere)#Schimbă inamicii și pickupurile cu care intra in contact"}, -- GB Bug
 	[407] = {"407", "Puritate", "↑ Amplifică una dintre statisticile lui Isac în funcție de culoarea aurei#La vătămare efectul este eliminat, iar unul nou este oferit in următoarea cameră#{{ColorYellow}}Galben{{CR}} = ↑ {{Speed}} +0.5 Viteză}} = ↑ {{Tears}} +2 Fire rate#{{ColorRed}}Red{{CR}} = ↑ {{Damage}} +4 Damage#{{ColorOrange}}Orange{{CR}} = ↑ {{Range}} +3 Range"}, -- Purity
