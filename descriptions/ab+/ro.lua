@@ -21,39 +21,39 @@ EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {na
 ---------- Collectibles ----------
 
 EID.descriptions[languageCode].collectibles={
-	{"1", "The Sad Onion", "↑ {{Tears}} +0.7 Tears"}, -- The Sad Onion
-	{"2", "The Inner Eye", "↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Isaac shoots 3 tears at once"}, -- The Inner Eye
-	{"3", "Spoon Bender", "Homing tears"}, -- Spoon Bender
-	{"4", "Cricket's Head", "↑ {{Damage}} +0.5 Damage#↑ {{Damage}} x1.5 Damage multiplier"}, -- Cricket's Head
-	{"5", "My Reflection", "↑ {{Range}} +1.5 Range#↑ +1 Tear height#↑ {{Shotspeed}} +0.6 Shot speed#Tears get a boomerang effect"}, -- My Reflection
-	{"6", "Number One", "↑ {{Tears}} +1.5 Tears#↑ +0.76 Tear height#↓ {{Range}} -17.62 Range"}, -- Number One
-	{"7", "Blood of the Martyr", "↑ {{Damage}} +1 Damage"}, -- Blood of the Martyr
-	{"8", "Brother Bobby", "Shoots normal tears#Deals 3.5 damage per tear"}, -- Brother Bobby
-	{"9", "Skatole", "All fly enemies are friendly"}, -- Skatole
-	{"10", "Halo of Flies", "+2 Fly orbitals#Blocks enemy projectiles"}, -- Halo of Flies
-	{"11", "1up!", "↑ +1 Life#Isaac respawns with full health on death"}, -- 1up!
-	{"12", "Magic Mushroom", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +0.3 Damage#↑ {{Damage}} x1.5 Damage multiplier#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height#Size up#{{HealingRed}} Full health"}, -- Magic Mushroom
-	{"13", "The Virus", "↓ {{Speed}} -0.1 Speed#{{Poison}} Touching enemies poisons them#{{BlackHeart}} Poisoned enemies can drop Black Hearts"}, -- The Virus
-	{"14", "Roid Rage", "↑ {{Speed}} +0.6 Speed#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Roid Rage
-	{"15", "<3", "↑ {{Heart}} +1 Health#{{HealingRed}} Full health"}, -- <3
-	{"16", "Raw Liver", "↑ {{Heart}} +2 Health#{{HealingRed}} Full health"}, -- Raw Liver
-	{"17", "Skeleton Key", "{{Key}} +99 Keys"}, -- Skeleton Key
-	{"18", "A Dollar", "{{Coin}} +99 Coins"}, -- A Dollar
-	{"19", "Boom!", "{{Bomb}} +10 Bombs"}, -- Boom!
-	{"20", "Transcendence", "Flight"}, -- Transcendence
-	{"21", "The Compass", "Reveals icons on the map#Does not reveal the layout of the map"}, -- The Compass
-	{"22", "Lunch", "↑ {{Heart}} +1 Health"}, -- Lunch
-	{"23", "Dinner", "↑ {{Heart}} +1 Health"}, -- Dinner
-	{"24", "Dessert", "↑ {{Heart}} +1 Health"}, -- Dessert
-	{"25", "Breakfast", "↑ {{Heart}} +1 Health"}, -- Breakfast
-	{"26", "Rotten Meat", "↑ {{Heart}} +1 Health"}, -- Rotten Meat
-	{"27", "Wooden Spoon", "↑ {{Speed}} +0.3 Speed"}, -- Wooden Spoon
-	{"28", "The Belt", "↑ {{Speed}} +0.3 Speed"}, -- The Belt
-	{"29", "Mom's Underwear", "↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Mom's Underwear
-	{"30", "Mom's Heels", "↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Mom's Heels
-	{"31", "Mom's Lipstick", "↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Mom's Lipstick
-	{"32", "Wire Coat Hanger", "↑ {{Tears}} +0.7 Tears"}, -- Wire Coat Hanger
-	{"33", "The Bible", "{{Timer}} Flight for the room#{{MomsHeart}} Kills Mom's Foot and Mom's Heart instantly#{{Warning}} Kills Isaac when used on Satan"}, -- The Bible
+	{"1", "Ceapa Tristă", "↑ {{Tears}} +0.7 Viteză de atac"}, -- Ceapa Tristă
+	{"2", "Ochiul Interior", "↓ {{Tears}} x0.48 Viteză de atac#↓ {{Tears}} +3 Întârziere a lacrimilor #Isaac trage cu 3 lacrimi odată"}, -- Ochiul Interior
+	{"3", "Lingura Îndoită", "Lacrimi Balistice"}, -- Lingura Îndoită
+	{"4", "Cap de Greier", "↑ {{Damage}} +0.5 Daune#↑ {{Damage}} x1.5 Multiplicator de daune"}, -- Cap de Greier
+	{"5", "Reflexia Mea", "↑ {{Range}} +1.5 Distanță#↑ +1 Mărimea Lacrimilor#↑ {{Shotspeed}} +0.6 Viteza atacului#Lacrimile primesc un efect bumerang"}, -- Reflexia Mea
+	{"6", "Numărul Unu", "↑ {{Tears}} +1.5 Viteză de Atac#↑ +0.76 Mărimea Lacrimilor#↓ {{Range}} -17.62 Distanță"}, -- Numărul Unu
+	{"7", "Sângele Martirului", "↑ {{Damage}} +1 Daune"}, -- Sângele Martirului
+	{"8", "Fratele Bobby", "Împușcă Lacrimi Normale#Are 3.5 atac pe lacrimă"}, -- Fratele Bobby
+	{"9", "Skatole", "Toate muștele inamice sunt prietenoase"}, -- Skatole
+	{"10", "Aureola de Muște", "+2 Muște Orbital#Blochează proiectilele inamicilor"}, -- Aureola de Muște
+	{"11", "1sus!", "↑ +1 Viață#Isaac reînvie cu viață plină la moarte"}, -- 1sus!
+	{"12", "Ciuperca Magică", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +0.3 Daune#↑ {{Damage}} x1.5 Multiplicator de daune#↑ {{Range}} +5.25 Distanță#↑ +0.5 Mărimea Lacrimilor#Crește mărimea#{{HealingRed}} Viață plină"}, -- Ciuperca Magică
+	{"13", "Virusul", "↓ {{Speed}} -0.1 Viteză#{{Poison}} Atingerea inamicilor îi otrăvește#{{BlackHeart}} Inamicii otrăviți pot oferi Inimi Negre"}, -- Virusul
+	{"14", "Furie cu steroizi", "↑ {{Speed}} +0.6 Viteză#↑ {{Range}} +5.25 Distanță#↑ +0.5 Mărimea lacrimilor"}, -- Furie cu steroizi
+	{"15", "<3", "↑ {{Heart}} +1 Viață#{{HealingRed}} Viață plină"}, -- <3
+	{"16", "Ficat Crud", "↑ {{Heart}} +2 Inimi#{{HealingRed}} Viață plină"}, -- Ficat Crud
+	{"17", "Cheia Schelet", "{{Key}} +99 Chei"}, -- Cheia Schelet
+	{"18", "Un Leu", "{{Coin}} +100 Bănuți (99 fără "Buzunare Adânci")"}, -- Un Leu
+	{"19", "Boom!", "{{Bomb}} +10 Bombe"}, -- Boom!
+	{"20", "Transcendență", "Zbor"}, -- Transcendență
+	{"21", "Busola", "Arată iconițele pe hartă#Nu arată aspectul hărții"}, -- Busola
+	{"22", "Prânz", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Prânz
+	{"23", "Cină", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Cină
+	{"24", "Desert", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Desert
+	{"25", "Mic Dejun", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Mic Dejun
+	{"26", "Carne Stricată", "↑ {{Heart}} +1 Viață"}, -- Carne Stricată
+	{"27", "Lingură de Lemn", "↑ {{Speed}} +0.3 Viteză"}, -- Lingură de Lemn
+	{"28", "Cureaua", "↑ {{Speed}} +0.3 Viteză"}, -- Cureaua
+	{"29", "Chiloții Mamei", "↑ {{Range}} +2.5 Distanță#Oferă 3-6 muște albastre"}, -- Chiloții Mamei
+	{"30", "Tocurile Mamei", "↑ {{Range}} +2.5 Distanță#Isaac cauzează 24 daune la contact pe secundă"}, -- Tocurile Mamei
+	{"31", "Rujul Mamei", "↑ {{Range}} +3.75 Distanță#{{UnknownHeart}} Oferă 1 inimă aleatorie pe jos"}, -- Rujul Mamei
+	{"32", "Cuier de Sârmă", "↑ {{Tears}} +0.7 Viteză de Atac"}, -- Cuier de Sârmă
+	{"33", "Biblia", "{{Timer}} Zboară o cameră#{{MomsHeart}} Omoară Piciorul Mamei și Inima Mamei instant#{{Warning}} Îl Omoară pe Isaac când este folosită pe Satan"}, -- Biblia
 	{"34", "The Book of Belial", "{{AngelDevilChance}} +12.5% Devil/Angel Room chance while held#{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage"}, -- The Book of Belial
 	{"35", "The Necronomicon", "Deals 40 damage to all enemies in the room"}, -- The Necronomicon
 	{"36", "The Poop", "Spawns one poop and knocks back enemies#Can be placed next to a pit and destroyed with a bomb to make a bridge"}, -- The Poop
