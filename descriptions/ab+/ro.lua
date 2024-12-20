@@ -21,53 +21,53 @@ EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {na
 ---------- Collectibles ----------
 
 EID.descriptions[languageCode].collectibles={
-	{"1", "Ceapa Tristă", "↑ {{Tears}} +0.7 Lacrimi"}, -- The Sad Onion
-	{"2", "Ochiul Interior", "↓ {{Tears}} x0.48 Viteză de atac#↓ {{Tears}} +3 Întârzierea lacrimilor#Isaac atacă cu 3 lacrimi"}, -- The Inner Eye
-	{"3", "Lingură Îndoită", "Lacrimi balistice"}, -- Spoon Bender
-	{"4", "Capul lui Cricket", "↑ {{Damage}} +0.5 Daune#↑ {{Damage}} x1.5 Daune"}, -- Cricket's Head
-	{"5", "Reflexia Mea", "↑ {{Range}} +1.5 Rază de atac#↑ +1 Înălțimea lacrimilor#↑ {{Shotspeed}} +0.6 Viteza lacrimilor#Lacrimile au un efect de bumerang"}, -- My Reflection
-	{"6", "Numarul Unu", "↑ {{Tears}} +1.5 Lacrimi#↑ +0.76 Înălțimea lacrimilor#↓ {{Range}} -17.62 Rază de atac"}, -- Number One
-	{"7", "Sângele Martirului", "↑ {{Damage}} +1 Daune"}, -- Blood of the Martyr
-	{"8", "Fratele Bobby", "Trage cu lacrimi normale#Provoacă 3.5 daune"}, -- Brother Bobby
-	{"9", "Scatol", "Toți inamicii muscă sunt prietenoși"}, -- Skatole
-	{"10", "Cerc de Muște", "+2 Orbitali muscă#Blochează proiectilele inamicilor"}, -- Halo of Flies
-	{"11", "1sus!", "↑ +1 Reînviere#Isaac reînvie cu inimile pline"}, -- 1up!
-	{"12", "Ciupercă Magică", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +0.3 Daune#↑ {{Damage}} x1.5 Daune#↑ {{Range}} +2.5 Rază de atac#Crește mărimea#{{HealingRed}} Vindecă viața"}, -- Magic Mushroom
-	{"13", "Virusul", "↑ {{Speed}} +0.2 Viteză#{{Poison}} La atingerea inamicilor ii otrăvești#Isaac cauzează 48 daune de contact pe secundă"}, -- The Virus
-	{"14", "Furie cu Steroizi", "↑ {{Speed}} +0.3 Viteză#↑ {{Range}} +2.5 Rază de atac"}, -- Roid Rage
-	{"15", "<3", "↑ {{Heart}} +1 Viață#{{HealingRed}} Umple inimile"}, -- <3
-	{"16", "Ficat Crud", "↑ {{Heart}} +2 Viați#{{HealingRed}} Umple inimile"}, -- Raw Liver
-	{"17", "Cheie Schelet", "{{Key}} +99 Chei"}, -- Skeleton Key
-	{"18", "Un Leu", "{{Coin}} +99 Bănuți"}, -- A Dollar
+	{"1", "Ceapa Tristă", "↑ {{Tears}} +0.7 Viteză de atac"}, -- Ceapa Tristă
+	{"2", "Ochiul Interior", "↓ {{Tears}} x0.48 Viteză de atac#↓ {{Tears}} +3 Întârziere a lacrimilor #Isaac trage cu 3 lacrimi odată"}, -- Ochiul Interior
+	{"3", "Lingura Îndoită", "Lacrimi Balistice"}, -- Lingura Îndoită
+	{"4", "Cap de Greier", "↑ {{Damage}} +0.5 Daune#↑ {{Damage}} x1.5 Multiplicator de daune"}, -- Cap de Greier
+	{"5", "Reflexia Mea", "↑ {{Range}} +1.5 Distanță#↑ +1 Mărimea Lacrimilor#↑ {{Shotspeed}} +0.6 Viteza atacului#Lacrimile primesc un efect bumerang"}, -- Reflexia Mea
+	{"6", "Numărul Unu", "↑ {{Tears}} +1.5 Viteză de Atac#↑ +0.76 Mărimea Lacrimilor#↓ {{Range}} -17.62 Distanță"}, -- Numărul Unu
+	{"7", "Sângele Martirului", "↑ {{Damage}} +1 Daune"}, -- Sângele Martirului
+	{"8", "Fratele Bobby", "Împușcă Lacrimi Normale#Are 3.5 atac pe lacrimă"}, -- Fratele Bobby
+	{"9", "Skatole", "Toate muștele inamice sunt prietenoase"}, -- Skatole
+	{"10", "Aureola de Muște", "+2 Muște Orbital#Blochează proiectilele inamicilor"}, -- Aureola de Muște
+	{"11", "1sus!", "↑ +1 Viață#Isaac reînvie cu viață plină la moarte"}, -- 1sus!
+	{"12", "Ciuperca Magică", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +0.3 Daune#↑ {{Damage}} x1.5 Multiplicator de daune#↑ {{Range}} +5.25 Distanță#↑ +0.5 Mărimea Lacrimilor#Crește mărimea#{{HealingRed}} Viață plină"}, -- Ciuperca Magică
+	{"13", "Virusul", "↓ {{Speed}} -0.1 Viteză#{{Poison}} Atingerea inamicilor îi otrăvește#{{BlackHeart}} Inamicii otrăviți pot oferi Inimi Negre"}, -- Virusul
+	{"14", "Furie cu steroizi", "↑ {{Speed}} +0.6 Viteză#↑ {{Range}} +5.25 Distanță#↑ +0.5 Mărimea lacrimilor"}, -- Furie cu steroizi
+	{"15", "<3", "↑ {{Heart}} +1 Viață#{{HealingRed}} Viață plină"}, -- <3
+	{"16", "Ficat Crud", "↑ {{Heart}} +2 Inimi#{{HealingRed}} Viață plină"}, -- Ficat Crud
+	{"17", "Cheia Schelet", "{{Key}} +99 Chei"}, -- Cheia Schelet
+	{"18", "Un Leu", "{{Coin}} +100 Bănuți (99 fără "Buzunare Adânci")"}, -- Un Leu
 	{"19", "Boom!", "{{Bomb}} +10 Bombe"}, -- Boom!
-	{"20", "Transcendență", "Zbor"}, -- Transcendence
-	{"21", "Busolă", "Dezvăluie iconițele pe hartă#Nu dezvăluie harta"}, -- The Compass
-	{"22", "Prânz", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Lunch
-	{"23", "Cină", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Dinner
-	{"24", "Desert", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}}, -- Dessert
-	{"25", "Mic Dejun", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Breakfast
-	{"26", "Carne Stricată", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Rotten Meat
-	{"27", "Lingură de Lemn", "↑ {{Speed}} +0.3 Viteză"}, -- Wooden Spoon
-	{"28", "Curea", "↑ {{Speed}} +0.3 Viteză"}, -- The Belt
-	{"29", "Chiloții Mamei", "↑ {{Range}} +2.5 Rază de atac#Oferă 3-6 muște albastre"}, -- Mom's Underwear
-	{"30", "Rujul Mamei", "↑ {{Range}} +3.75 Rază de atace#{{UnknownHeart}} Oferă 1 inimă aleatorie pe jos"}, -- Mom's Heels
-	{"31", "Rujul Mamei", "↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Mom's Lipstick
-	{"32", "Umeraș", "↑ {{Tears}} +0.7 Lacrimi"}, -- Wire Coat Hanger
-	{"33", "Biblia", "{{Timer}} Zbor pe durata camerei#{{MomsHeart}} Omoară Piciorul și Inima Mamei instant#{{Warning}} Îl omoară pe Isaac dacă este folosită pe Satana"}, -- The Bible
-	{"34", "Cartea lui Belial", "{{AngelDevilChance}} +12.5% Șansă la Camera Înger/Diavol cât timp este ținută#{{Timer}} Oferă pe durata camerei:#↑ {{Damage}} +2 Daune"}, -- The Book of Belial
-	{"35", "Necronomiconul", "Provoacă 40 de daune toturor inamicilor din cameră"}, -- The Necronomicon
-	{"36", "Rahatul", "Oferă un rahat și aruncă inamicii din apropiere#Poate fi plasat langă o gaură și explodat cu o bombă sa creze un pod"}, -- The Poop
-	{"37", "Dl. Bum", "Aruncă o bombă mare dedesubt de Isaac care cauzează 110 de daune"}, -- Mr. Boom
-	{"38", "Capul lui Tammy", "Aruncă cu 10 lacrimi în cerc în jurul lui ISaac#Lacrimile au efectele lui Isaac + 25 daune"}, -- Tammy's Head
-	{"39", "Sutienul Mamei", "Pietrifică toți inamicii din cameră pentru 4 secunde"}, -- Mom's Bra
-	{"40", "Kamikaze!", "Provoacă o explozie mare la locația lui Isaac#Cauzează 110 de daune"}, -- Kamikaze!
-	{"41", "Tamponul Mamei", "{{Fear}} Provoacă frică tuturor inamicilor din cameră#Oferă o muscă albastră"}, -- Mom's Pad
-	{"42","Capul putrezit a lui Bob", "La folosire și aruncare intr-o direcție îi aruncă capul#{{Poison}} La aterizare capul explodează si creează un nor otrăvitor#Cauzează daunele lui Isaac + 110"}, -- Bob's Rotten Head
+	{"20", "Transcendență", "Zbor"}, -- Transcendență
+	{"21", "Busola", "Arată iconițele pe hartă#Nu arată aspectul hărții"}, -- Busola
+	{"22", "Prânz", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Prânz
+	{"23", "Cină", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Cină
+	{"24", "Desert", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Desert
+	{"25", "Mic Dejun", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Mic Dejun
+	{"26", "Carne Stricată", "↑ {{Heart}} +1 Viață"}, -- Carne Stricată
+	{"27", "Lingură de Lemn", "↑ {{Speed}} +0.3 Viteză"}, -- Lingură de Lemn
+	{"28", "Cureaua", "↑ {{Speed}} +0.3 Viteză"}, -- Cureaua
+	{"29", "Chiloții Mamei", "↑ {{Range}} +2.5 Distanță#Oferă 3-6 muște albastre"}, -- Chiloții Mamei
+	{"30", "Tocurile Mamei", "↑ {{Range}} +2.5 Distanță#Isaac cauzează 24 daune la contact pe secundă"}, -- Tocurile Mamei
+	{"31", "Rujul Mamei", "↑ {{Range}} +3.75 Distanță#{{UnknownHeart}} Oferă 1 inimă aleatorie pe jos"}, -- Rujul Mamei
+	{"32", "Cuier de Sârmă", "↑ {{Tears}} +0.7 Viteză de Atac"}, -- Cuier de Sârmă
+	{"33", "Biblia", "{{Timer}} Zboară o cameră#{{MomsHeart}} Omoară Piciorul Mamei și Inima Mamei instant#{{Warning}} Îl Omoară pe Isaac când este folosită pe Satan"}, -- Biblia
+	{"34", "The Book of Belial", "{{AngelDevilChance}} +12.5% Devil/Angel Room chance while held#{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage"}, -- The Book of Belial
+	{"35", "The Necronomicon", "Deals 40 damage to all enemies in the room"}, -- The Necronomicon
+	{"36", "The Poop", "Spawns one poop and knocks back enemies#Can be placed next to a pit and destroyed with a bomb to make a bridge"}, -- The Poop
+	{"37", "Mr. Boom", "Drops a large bomb below Isaac which deals 110 damage"}, -- Mr. Boom
+	{"38", "Tammy's Head", "Shoots 10 tears in a circle around Isaac#The tears copy Isaac's tear effects, plus 25 damage"}, -- Tammy's Head
+	{"39", "Mom's Bra", "Petrifies all enemies in the room for 4 seconds"}, -- Mom's Bra
+	{"40", "Kamikaze!", "Causes an explosion at Isaac's location#It deals 40 damage"}, -- Kamikaze!
+	{"41", "Mom's Pad", "{{Fear}} Fears all enemies in the room for 5 seconds"}, -- Mom's Pad
+	{"42", "Bob's Rotten Head", "Using the item and firing in a direction throws the head#{{Poison}} The head explodes on impact and poisons enemies"}, -- Bob's Rotten Head
 	{"43", "", "<item does not exist>"},
-	{"44", "Teleport!", "Îl teleportează pe Isaac într-o cameră aleatorie cu excepția I AM ERROR ROOM"}, -- Teleport!
-	{"45", "Inimă Yum", "{{HealingRed}} Vindecă 1 inimă"}, -- Yum Heart
-	{"46", "Piciorul Norocos", "↑ {{Luck}} +1 Noroc#+8% șansă să primești o recompensă la finalizarea camerei#Șanse mai mari să câștigi la păcănele"}, -- Lucky Foot
-	{"47", "Telecomanda Doctorului", "{{Collectible168}} la faolosire o țintă apare pe ecran#După 1.5 secunde o rachetă aterizează în țintă#Provoacă 20x daune"}, -- Doctor's Remote
+	{"44", "Teleport!", "Teleports Isaac into a random room, except I AM ERROR rooms"}, -- Teleport!
+	{"45", "Yum Heart", "{{HealingRed}} Heals 1 heart"}, -- Yum Heart
+	{"46", "Lucky Foot", "↑ {{Luck}} +1 Luck#+8% room clear reward chance#Better chance to win while gambling"}, -- Lucky Foot
+	{"47", "Doctor's Remote", "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#It deals 20x Isaac's damage"}, -- Doctor's Remote
 	{"48", "Cupid's Arrow", "Piercing tears"}, -- Cupid's Arrow
 	{"49", "Shoop da Whoop!", "The next shot is replaced with a beam#It deals 26x Isaac's damage over 0.9 seconds"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Damage"}, -- Steven
@@ -147,7 +147,7 @@ EID.descriptions[languageCode].collectibles={
 	{"124", "Dead Sea Scrolls", "Triggers a random active item effect"}, -- Dead Sea Scrolls
 	{"125", "Bobby-Bomb", "{{Bomb}} +5 Bombs#Homing bombs"}, -- Bobby-Bomb
 	{"126", "Razor Blade", "↑ {{Damage}} +1.2 Damage for the room#{{Warning}} Deals 1 heart of damage to Isaac#{{Heart}} Removes Red Hearts first"}, -- Razor Blade
-	{"127", "Forget Me Now", "{{Warning}} SINGLE USE {{Warning}}#Rerolls and restarts the entire floor"}, -- Forget Me Now
+	{"127", "Forget Me Now", "Rerolls and restarts the entire floor"}, -- Forget Me Now
 	{"128", "Forever Alone", "Long range fly orbital#Deals 30 contact damage per second"}, -- Forever Alone
 	{"129", "Bucket of Lard", "↑ {{EmptyHeart}} +2 Empty heart containers#↓ {{Speed}} -0.2 Speed#{{HealingRed}} Heals half a heart"}, -- Bucket of Lard
 	{"130", "A Pony", "While held:#{{Speed}} Sets your Speed to at least 1.5#Flight#Upon use, dashes in the direction of Isaac's movement"}, -- A Pony
@@ -319,7 +319,7 @@ EID.descriptions[languageCode].collectibles={
 	{"296", "Converter", "{{Heart}} Converts 2 Soul/Black Hearts into 1 heart container"}, -- Converter
 	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
 	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
-	{"297", "Pandora's Box", "{{Warning}} SINGLE USE {{Warning}} Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#{{NoLB}}C1: Boss item; C2: C1 + 2{{SoulHeart}}#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#{{NoLB}}Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1{{Coin}}"}, -- Pandora's Box
+	{"297", "Pandora's Box", "{{NoLB}}Spawns rewards based on floor:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#{{NoLB}}C1: Boss item; C2: C1 + 2{{SoulHeart}}#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Boss items#W2: {{Collectible33}} The Bible#???/Void: Nothing#Sheol: Devil item + 1{{BlackHeart}}#Cathe: Angel item + 1{{EternalHeart}}#{{NoLB}}Dark Room: Unlocks {{Collectible523}} Moving Box#Chest: 1{{Coin}}"}, -- Pandora's Box
 	{"298", "Unicorn Stump", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot (No contact damage)"}, -- Unicorn Stump
 	{"299", "Taurus", "↓ {{Speed}} -0.3 Speed#↑ {{Speed}} Slowly gain speed while in hostile rooms#At 2 speed, Isaac becomes invincible and deals contact damage#Afterwards, lose the Taurus speed boost for the room"}, -- Taurus
 	{"300", "Aries", "↑ {{Speed}} +0.25 Speed#Touching enemies deals contact damage"}, -- Aries
@@ -369,7 +369,7 @@ EID.descriptions[languageCode].collectibles={
 	{"344", "Match Book", "{{BlackHeart}} +1 Black Heart#{{Bomb}} Spawns 3 bombs"}, -- Match Book
 	{"345", "Synthoil", "↑ {{Damage}} +1 Damage#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Synthoil
 	{"346", "A Snack", "↑ {{Heart}} +1 Health"}, -- A Snack
-	{"347", "Diplopia", "{{Warning}} SINGLE USE {{Warning}}#Duplicates all item pedestals and pickups in the room"}, -- Diplopia
+	{"347", "Diplopia", "Duplicates all item pedestals and pickups in the room"}, -- Diplopia
 	{"348", "Placebo", "{{Pill}} Triggers the effect of the pill Isaac holds without using it"}, -- Placebo
 	{"349", "Wooden Nickel", "{{Coin}} 56% chance to spawn a random coin"}, -- Wooden Nickel
 	{"350", "Toxic Shock", "{{Poison}} Entering a room poisons all enemies#Enemies killed leave a puddle of creep#The creep deals 30 damage per second"}, -- Toxic Shock
@@ -497,7 +497,7 @@ EID.descriptions[languageCode].collectibles={
 	{"472", "King Baby", "Other familiars follow it#Stops moving when Isaac shoots#Teleports back to Isaac when he stops shooting"}, -- King Baby
 	{"473", "Big Chubby", "Very slowly charges forwards#Blocks shots#Deals 40.5 contact damage per second"}, -- Big Chubby
 	{"474", "Tonsil", "Blocks enemy projectiles"}, -- Tonsil
-	{"475", "Plan C", "{{Warning}} SINGLE USE {{Warning}}#Deals 9,999,999 damage to all enemies#{{Warning}} Kills Isaac 3 seconds later"}, -- Plan C
+	{"475", "Plan C", "Deals 9,999,999 damage to all enemies#{{Warning}} Kills Isaac 3 seconds later"}, -- Plan C
 	{"476", "D1", "Duplicates a random pickup in the room"}, -- D1
 	{"477", "Void", "Consumes all pedestal items in the room#Active items: Their effects activate, and will activate with every future use of Void#↑ Passive items grant two random stat ups"}, -- Void
 	{"478", "Pause", "Pauses all enemies in the room until Isaac shoots#Touching a paused enemy still deals damage to Isaac#Enemies unpause after 30 seconds"}, -- Pause
@@ -505,14 +505,14 @@ EID.descriptions[languageCode].collectibles={
 	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles all blue flies and spiders#Spawns 1 blue fly or spider if Isaac has none"}, -- Compost
 	{"481", "Dataminer", "↑ Random stat up#↓ Random stat down#{{Timer}} Random tear effects for the room#{{Blank}} Corrupts all sprites and music in the room"}, -- Dataminer
 	{"482", "Clicker", "Changes your character to a random character#Removes the most recent item collected"}, -- Clicker
-	{"483", "Mama Mega!", "{{Warning}} SINGLE USE {{Warning}}#Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens secret rooms#Opens Boss Rush and Hush regardless of time"}, -- Mama Mega!
+	{"483", "Mama Mega!", "Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens secret rooms#Opens Boss Rush and Hush regardless of time"}, -- Mama Mega!
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawns a rock wave around Isaac#The rock wave can open rooms and break rocks"}, -- Wait What?
 	{"485", "Crooked Penny", "50% chance to double all items, pickups and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"}, -- Crooked Penny
 	{"486", "Dull Razor", "Hurts Isaac without removing health#Triggers any on-hit item effects"}, -- Dull Razor
 	{"487", "Potato Peeler", "{{EmptyHeart}} Removes 1 heart container for:#↑ {{Damage}} +0.2 Damage#{{Collectible73}} A Cube of Meat#{{Timer}} Receive for the room:#↑ {{Range}} +5 Range#{{Collectible214}} Leave a trail of blood creep"}, -- Potato Peeler
 	{"488", "Metronome", "Grants a random item effect for the room"}, -- Metronome
 	{"489", "D Infinity", "Triggers a random dice effect each use"}, -- D Infinity
-	{"490", "Eden's Soul", "{{Warning}} SINGLE USE {{Warning}}#Spawns 2 random items depending on the current room's item pool#Starts with no charges"}, -- Eden's Soul
+	{"490", "Eden's Soul", "Spawns 2 random items depending on the current room's item pool#Starts with no charges"}, -- Eden's Soul
 	{"491", "Acid Baby", "{{Pill}} Spawns a random pill every 3 rooms#{{Poison}} Using a pill poisons all enemies in the room"}, -- Acid Baby
 	{"492", "YO LISTEN!", "↑ {{Luck}} +1 Luck#Highlights the location of {{SecretRoom}} secret rooms, tinted rocks and {{LadderRoom}} crawlspaces"}, -- YO LISTEN!
 	{"493", "Adrenaline", "For every empty heart container:#↑ {{Damage}} +0.2 Damage"}, -- Adrenaline
@@ -537,7 +537,7 @@ EID.descriptions[languageCode].collectibles={
 	{"512", "Black Hole", "Throwable black hole, which sucks in everything#Deals 6 damage per second#Destroys nearby rocks#Lasts 6 seconds"}, -- Black Hole
 	{"513", "Bozo", "↑ {{Damage}} +0.1 Damage#{{SoulHeart}} +1 Soul Heart#{{Charm}} Randomly charms/fears enemies#Taking damage has a random chance to spawn a Rainbow Poop"}, -- Bozo
 	{"514", "Broken Modem", "Causes some enemies and projectiles to briefly pause at random intervals#25% chance to double room clear drops"}, -- Broken Modem
-	{"515", "Mystery Gift", "{{Warning}} SINGLE USE {{Warning}}#Spawns a random item from the current room's item pool#Chance to spawn Lump of Coal or The Poop instead"}, -- Mystery Gift
+	{"515", "Mystery Gift", "Spawns a random item from the current room's item pool#Chance to spawn Lump of Coal or The Poop instead"}, -- Mystery Gift
 	{"516", "Sprinkler", "Spawns a Sprinkler that shoots the same tears as Isaac in a circle around itself"}, -- Sprinkler
 	{"517", "Fast Bombs", "{{Bomb}} +7 Bombs#Removes the delay between bomb placements"}, -- Fast Bombs
 	{"518", "Buddy in a Box", "Familiar which looks like a random co-op baby#Has random tear effects#Effects change every floor"}, -- Buddy in a Box
@@ -558,7 +558,7 @@ EID.descriptions[languageCode].collectibles={
 	{"533", "Trisagion", "Replaces Isaac's tears with piercing beams of light#The beams deal 33% damage but can hit enemies multiple times"}, -- Trisagion
 	{"534", "Schoolbag", "Allows Isaac to hold 2 active items#The items can be swapped using the Drop button ({{ButtonRT}})"}, -- Schoolbag
 	{"535", "Blanket", "{{Heart}} Heals 1 heart#{{SoulHeart}} +1 Soul Heart#{{HolyMantle}} Entering a boss room grants a Holy Mantle shield (prevents damage once)"}, -- Blanket
-	{"536", "Sacrificial Altar", "{{Warning}} SINGLE USE {{Warning}}#Sacrifices up to 2 familiars and spawns a devil item for each sacrifice#{{Coin}} Turns blue spiders/flies into coins"}, -- Sacrificial Altar
+	{"536", "Sacrificial Altar", "Sacrifices up to 2 familiars and spawns a devil item for each sacrifice#{{Coin}} Turns blue spiders/flies into coins"}, -- Sacrificial Altar
 	{"537", "Lil Spewer", "{{Pill}} Spawns a random pill on pickup#Fires a line of creep#The type of creep changes with each pill use"}, -- Lil Spewer
 	{"538", "Marbles", "{{Trinket}} Spawns 3 random trinkets#{{Collectible479}} Taking damage has a 10% chance to consume Isaac's held trinket and grant its effects permanently"}, -- Marbles
 	{"539", "Mystery Egg", "Taking damage spawns a charmed enemy#Spawns stronger friends the more rooms are cleared without taking damage"}, -- Mystery Egg
@@ -575,7 +575,6 @@ EID.descriptions[languageCode].collectibles={
 	{"550", "Broken Shovel", "Mom's Foot constantly tries to stomp Isaac#Using the item stops the stomping for the room (or one Boss Rush wave)#{{Warning}} (Try to beat Boss Rush with it!)"}, -- Broken Shovel
 	{"551", "Broken Shovel", "Completes Mom's Shovel#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\""}, -- Broken Shovel
 	{"552", "Mom's Shovel", "Spawns a trapdoor to the next floor#10% chance for {{LadderRoom}} crawlspace trapdoor#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\""}, -- Mom's Shovel
-}
 
 ---------- Modifiers ----------
 
