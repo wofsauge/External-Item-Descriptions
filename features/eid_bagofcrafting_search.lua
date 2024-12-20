@@ -47,20 +47,20 @@ end
 function EID:BoCSGetSearchValue()
 	local s = searchValue
 	for _, callbackData in pairs(Isaac.GetCallbacks("EIDCallbacks.SEARCH_NAME_CONVERSION")) do
-		if callbackData.Param == EID:getLanguage() then
-			local newString = callbackData.Function(callbackData.Mod, callbackData.Param, s)
-			if newString and type(newString) == "string" then
-				s = newString
-			end
+		local newString = callbackData.Function(callbackData.Mod, s)
+		if type(newString) == "string" then
+			s = newString
 		end
 	end
 	return s
 end
 
-EID:AddCallback("EIDCallbacks.SEARCH_NAME_CONVERSION", function (_, lang, string)
+EID:AddCallback("EIDCallbacks.SEARCH_NAME_CONVERSION", function(_, searchString)
 	-- TODO : make english search inside ko_kr language setting (priotity low though)
-	return EID.engKeystrokeToKor(string)
-end, "ko_kr")
+	if EID:getLanguage() == "ko_kr" then
+		return EID.engKeystrokeToKor(searchString)
+	end
+end)
 
 function EID:BoCSGetLocked()
 	return locked

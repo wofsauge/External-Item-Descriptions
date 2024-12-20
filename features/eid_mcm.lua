@@ -388,13 +388,13 @@ if MCMLoaded then
 
 	-- Simple toggles of what descriptions the user wants displayed
 
-	EID:AddBooleanSetting("Display", "DisableStartOfRunWarnings", "Start of Run Warnings", {displayingTab = "", offText = "Enabled", onText = "Disabled",
+	EID:AddBooleanSetting("Display", "DisableStartOfRunWarnings", "Start of Run Warnings", {offText = "Enabled", onText = "Disabled",
 		repOnly = true, infoText = "Toggles warnings for achievements being disabled, the game being outdated, and modded crafting recipes."})
 	
-	MCM.AddSpace("EID", "Display")
+	if EID.isRepentance then MCM.AddSpace("EID", "Display") end
 	MCM.AddText("EID", "Display", "Gameplay")
 
-	EID:AddBooleanSetting("Display", "HideInBattle", "Hide in Battle", {infoText = "Hides descriptions when enemies are present."})
+	EID:AddBooleanSetting("Display", "HideInBattle", "Hide in Battle", {displayingTab = "", infoText = "Hides descriptions when enemies are present."})
 	EID:AddBooleanSetting("Display", "InitiallyHidden", "Is Initially Hidden", {infoText = "Hides descriptions by default. Press the Toggle key to show them again."})
 	
 	MCM.AddSpace("EID", "Display")
@@ -431,6 +431,8 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Display", "DisplayVoidStatInfo", "Show Void Stat Increases", {infoText = "Displays the stats that would be gained by consuming a passive item."})
 	EID:AddBooleanSetting("Display", "DisplayGlitchedItemInfo", "Show Glitched Item Info", {repOnly = true,
 	infoText = "Note: Installing REPENTOGON is required for more detailed glitched item descriptions!"})
+	EID:AddBooleanSetting("Display", "DisplayFlipItemDescriptions", "Show Flip Item Descriptions", {repOnly = true, 
+	infoText = "Display the effect of ghostly items, when player has the Flip item (T-Lazarus)"})
 
 	MCM.AddSpace("EID", "Display")
 	MCM.AddText("EID", "Display", "Hidden items")
@@ -450,10 +452,11 @@ if MCMLoaded then
 
 	local diceSteps = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	-- Spindown Dice Settings
-	if EID.isRepentance then MCM.AddSpace("EID", "Display") end
-
-	MCM.AddText("EID", "Display", "Spindown Dice")
-
+	if EID.isRepentance then
+		MCM.AddSpace("EID", "Display")
+		MCM.AddText("EID", "Display", "Spindown Dice")
+	end
+	
 	EID:AddScrollSetting("Display", "SpindownDiceResults", "Preview rerolls", diceSteps, {repOnly = true, label = " Items",
 		infoText = "Number of item previews to display when holding Spindown Dice."})
 
@@ -466,7 +469,18 @@ if MCMLoaded then
 	-- Spindown Dice skip locked items
 	EID:AddBooleanSetting("Display", "SpindownDiceSkipLocked", "Skip Locked Items",
 	{repOnly = true, infoText = {"The preview skips locked items, like the dice does.", "(The unlock status check is not perfect and may be wrong)"}})
-
+	
+	MCM.AddSpace("EID", "Display")
+	MCM.AddText("EID", "Display", "Dynamic Descriptions")
+	
+	EID:AddBooleanSetting("Display", "DynamicHealthUps", "Dynamic Health Up Text",
+	{infoText = "Changes Health Ups and removes healing effect text when playing as a character that can't have red health"})
+	EID:AddBooleanSetting("Display", "DisplayTCainSalvageResults", "Show Tainted Cain Salvage Results",
+	{repOnly = true, infoText = "As Tainted Cain, replaces pedestal descriptions with what they will turn into on touch"})
+	EID:AddBooleanSetting("Display", "GlitchedCrownSummary", "Show Glitched Crown Summary",
+	{repOnly = true, infoText = "With Glitched Crown, show summary list for cycling pedestals"})
+	
+	
 	--------Obstruction---------
 	MCM.AddSpace("EID", "Display")
 	MCM.AddText("EID", "Display", "Unreachable items")
@@ -883,7 +897,7 @@ if MCMLoaded then
 		else
 			MCM.AddSpace("EID", "Save Game")
 			MCM.AddSpace("EID", "Save Game")
-			MCM.AddText("EID", "Save Game", "To enable savegame related features,")
+			MCM.AddText("EID", "Save Game", function() EID.MCMCompat_isDisplayingEIDTab = ""; return "To enable savegame related features," end)
 			MCM.AddText("EID", "Save Game", "please run \"scripts\\savegame_reader.exe\"")
 			MCM.AddText("EID", "Save Game", "found in the EID mod folder.")
 		end

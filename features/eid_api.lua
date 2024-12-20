@@ -279,6 +279,17 @@ function EID:addIcon(shortcut, animationName, animationFrame, width, height, lef
 	EID.InlineIcons[shortcut] = {animationName, animationFrame, width, height, leftOffset, topOffset, spriteObject}
 end
 
+-- Adds a custom poop spell to T???'s poop descriptions. This spell should be added with the "Custom Poop API" library to actually appear in-game.
+-- Token is the name of the spell in the Custom Poop API code. Examples: "CORNY", "BURNING", "BOMB".
+-- Name is the actual name you want to display. Examples: "Corny Poop", "Burning Poop", "Bomb".
+-- Icon is the displayed poop icon. Should be a markup.
+-- Description is the actual description showed to the player. Examples: "Spawns blue flies while intact", "Deals contact damage while intact#Leaves a fire behind when destroyed", "Normal throwable bomb".
+-- Language is the language you want to add it to. Examples: "en_us", "spa", "ru".
+-- EXAMPLE: EID:addCustomPoopSpell("MYPOOP", "I Made This Poop", "{{PoopSpell1}}", "Can be throwed to deal damage", "en_us")
+function EID:addCustomPoopSpell(token, name, icon, description, language)
+	EID.descriptions[language]["poopSpells"][token] = {icon, name, description, EID._currentMod}
+end
+
 -- Adds a new color object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your color)
 -- Shortcuts are case Sensitive! Shortcuts can be overriden with this function to allow for full control over everything
 -- Define a callback to let it be called when interpreting the color-markup. define a kColor otherwise for a simple color change
@@ -422,7 +433,8 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.Quality = EID:getObjectQuality(description)
 	description.Icon = EID:getObjectIcon(description)
 	EID:getObjectItemTypeAndCharge(description)
-
+	
+	EID.DifferentEffectPlayers = {}
 	if checkModifiers ~= false then
 		description = EID:applyConditionals(description)
 		description = EID:applyDescriptionModifier(description, SubType)
@@ -624,14 +636,17 @@ function EID:getObjectName(Type, Variant, SubType)
 	if tableName == "collectibles" then
 		if EID.itemConfig:GetCollectible(SubType) == nil then return Type.."."..Variant.."."..SubType end
 		local vanillaName = EID.itemConfig:GetCollectible(SubType).Name
-		return name or (not string.find(vanillaName, "^#") and vanillaName) or (EID.descriptions["en_us"][tableName][SubType] and EID.descriptions["en_us"][tableName][SubType][2]) or vanillaName
+		local englishName = EID.descriptions["en_us"][tableName][SubType] and EID.descriptions["en_us"][tableName][SubType][2]
+		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "trinkets" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
 		local vanillaName = EID.itemConfig:GetTrinket(adjustedSubtype).Name
-		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][adjustedSubtype][2] or vanillaName
+		local englishName = EID.descriptions["en_us"][tableName][adjustedSubtype] and EID.descriptions["en_us"][tableName][adjustedSubtype][2]
+		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "cards" then
 		local vanillaName = EID.itemConfig:GetCard(SubType).Name
-		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
+		local englishName = EID.descriptions["en_us"][tableName][SubType] and EID.descriptions["en_us"][tableName][SubType][2]
+		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
 		return EID:getPillName(adjustedSubtype, tableName == "horsepills")
@@ -648,10 +663,17 @@ function EID:getObjectName(Type, Variant, SubType)
 	return Type.."."..Variant.."."..SubType
 end
 
-function EID:getPlayerName(id)
+function EID:getPlayerName(id, altFallback)
 	local playerInfo = EID:getDescriptionEntry("CharacterInfo")[id]
 	local birthrightInfo = EID.isRepentance and EID:getDescriptionEntry("birthright")[id+1]
-	return (playerInfo and playerInfo[1]) or (birthrightInfo and birthrightInfo[1]) or "???"
+	return (playerInfo and playerInfo[1]) or (birthrightInfo and birthrightInfo[1]) or altFallback or EID:findPlayerName(id) or "???"
+end
+
+-- Get the name of a given player ID by checking for a matching EntityPlayer
+-- This is for modded characters, whose name is best found by doing EntityPlayer:GetName()
+function EID:findPlayerName(id)
+	local found, entityPlayer = EID:PlayersHaveCharacter(id, false)
+	if entityPlayer then return entityPlayer:GetName() end
 end
 
 -- returns the name of a pill based on the pilleffect id
@@ -768,7 +790,7 @@ function EID:replaceNameMarkupStrings(text)
 			local iconText = ""
 			local colorText = ""
 			if entityID[1] == 1 then
-				if showIcon then iconText = "{{Player" .. entityID[3] .. "}} " end
+				if showIcon then iconText = EID:GetPlayerIcon(entityID[3]) .. " " end
 				colorText = "{{ColorIsaac}}"
 			else
 				if showIcon then iconText = "{{" .. EID:GetIconNameByVariant(entityID[2]) .. entityID[3] .. "}} " end
@@ -785,7 +807,7 @@ function EID:replaceNameMarkupStrings(text)
 		elseif indicator == "K" then -- Card
 			name = (showIcon and "{{Card"..id.."}} " or "") .. "{{ColorCard}}" .. EID:getObjectName(5, 300, id) .. "{{CR}}"
 		elseif indicator == "I" then -- Player (I for Isaac)
-			name = (showIcon and "{{Player"..id.."}} " or "") .. "{{ColorIsaac}}" .. EID:getPlayerName(id) .. "{{CR}}"
+			name = (showIcon and EID:GetPlayerIcon(id) .. " " or "") .. "{{ColorIsaac}}" .. EID:getPlayerName(id) .. "{{CR}}"
 		end
 		text = string.gsub(text, word, name, 1)
 	end
@@ -897,16 +919,22 @@ end
 
 -- Searches thru the given string and replaces Iconplaceholders with icons.
 -- Returns 2 values. the string without the placeholders but with an accurate space between lines. and a table of all Inline Sprites
-function EID:filterIconMarkup(text)
+function EID:filterIconMarkup(text, renderBulletPointIcon)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
-		local textposition = string.find(text, word)
+		local textposition = string.find(text, word) or 1
 
 		local callback = EID._NextIconModifier
 		EID._NextIconModifier = nil
 
 		local lookup = EID:getIcon(word)
 		local preceedingTextWidth = EID:getStrWidth(string.sub(text, 0, textposition - 1)) * EID.Scale
+
+		-- Center the small bullet point icons by adding an extra left offset to them.
+		-- If the icon has a positive left offset, that means the offset is already included in the icon itself and we should not add it again
+		if renderBulletPointIcon and lookup[3] < 11 and (#lookup < 5 or lookup[5] <= 0)  then
+			preceedingTextWidth  = preceedingTextWidth + math.floor((12 - lookup[3]) / 2) * EID.Scale
+		end
 
 		table.insert(spriteTable, {lookup, preceedingTextWidth, callback})
 		text = string.gsub(text, word, EID:generatePlaceholderString(lookup[3]), 1)
@@ -1158,12 +1186,12 @@ end
 -- needs to be called in a render Callback
 -- args: string, Vector(int, int), Vector(float,float), KColor obj, bool
 -- Returns the last used KColor
-function EID:renderString(str, position, scale, kcolor)
+function EID:renderString(str, position, scale, kcolor, renderBulletPointIcon)
 	str = EID:replaceShortMarkupStrings(str)
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
 	local offsetX = 0
 	for _, textPart in ipairs(textPartsTable) do
-		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1])
+		local strFiltered, spriteTable = EID:filterIconMarkup(textPart[1], renderBulletPointIcon)
 		EID:renderInlineIcons(spriteTable, position.X + offsetX, position.Y)
 		if strFiltered then -- prevent possible crash when strFiltered is nil
 			EID.font:DrawStringScaledUTF8(strFiltered, position.X + offsetX, position.Y, scale.X, scale.Y, textPart[2], 0, false)
@@ -1283,20 +1311,21 @@ function EID:PlayersHaveCollectible(collectibleID)
 	return false
 end
 
+-- Returns true, if any player has a given voided collectible
 function EID:PlayersVoidedCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		local playerNum = EID:getPlayerID(player, true)
-		if player:HasCollectible(477) and EID.absorbedItems[tostring(playerNum)] and EID.absorbedItems[tostring(playerNum)][tostring(collectibleID)] then
-			return true, player, i
-		end
+		return EID:PlayerVoidedCollectible(player, collectibleID)
 	end
 	return false
 end
+
+-- Returns true, if the player has a given voided collectible
 function EID:PlayerVoidedCollectible(player, collectibleID)
-	local i = EID:getPlayerID(player, true)
-	if player:HasCollectible(477) and EID.absorbedItems[tostring(i)] and EID.absorbedItems[tostring(i)][tostring(collectibleID)] then
-		return true
+	local playerNum = EID:getPlayerID(player, true)
+	local isCollectibleAbsorbed = EID.absorbedItems[tostring(playerNum)] and EID.absorbedItems[tostring(playerNum)][tostring(collectibleID)]
+	if player:HasCollectible(477) and isCollectibleAbsorbed then
+		return true, player, i
 	end
 end
 
@@ -1311,40 +1340,40 @@ function EID:PlayersHaveTrinket(trinketID)
 	return false
 end
 
+-- Returns true, if any player has a given card
 function EID:PlayersHaveCard(cardID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		for j = 0, (EID.isRepentance and 3 or 1) do
-			if player:GetCard(j) == cardID then
-				return true, player, i
-			end
-		end
+		return EID:PlayerHasCard(player, cardID)
 	end
 	return false
 end
+
+-- Returns true, if the player has a given card
 function EID:PlayerHasCard(player, cardID)
+	local playerNum = EID:getPlayerID(player, true)
 	for j = 0, (EID.isRepentance and 3 or 1) do
 		if player:GetCard(j) == cardID then
-			return true
+			return true, player, playerNum
 		end
 	end
 end
 
+-- Returns true, if any player has a given pill color
 function EID:PlayersHavePill(pillID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		for j = 0, (EID.isRepentance and 3 or 1) do
-			if player:GetPill(j) == pillID then
-				return true, player, i
-			end
-		end
+		return EID:PlayerHasPill(player, pillID)
 	end
 	return false
 end
+
+-- Returns true, if the player has a given pill color
 function EID:PlayerHasPill(player, pillID)
+	local playerNum = EID:getPlayerID(player, true)
 	for j = 0, (EID.isRepentance and 3 or 1) do
 		if player:GetPill(j) == pillID then
-			return true
+			return true, player, playerNum
 		end
 	end
 end
@@ -1655,6 +1684,12 @@ end
 function EID:fixDefinedFont(forceRefresh)
 	local curLang = EID:getLanguage()
 	local curFont = EID.Config["FontType"]
+	
+	-- If the textbox width is set to the default, make it match the selected language's default
+	-- Fixes language selection not respecting the language's textbox width, although it also prevents 130 from being used as the width with those languages
+	if EID.Config["TextboxWidth"] == EID.DefaultConfig["TextboxWidth"] then
+		EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth or EID.DefaultConfig["TextboxWidth"]
+	end
 
 	-- If our currently loaded font is still valid, we don't need to reset values
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
@@ -1983,6 +2018,10 @@ function EID:evaluateHeldPill()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		EID.PlayerHeldPill[i] = player:GetPill(0)
+		-- Magdalene starts with an identified pill. We need to account for that
+		if player:GetPlayerType() == PlayerType.PLAYER_MAGDALENE and player.FrameCount <= 1 then
+			EID.UsedPillColors[tostring(EID.PlayerHeldPill[i])] = true
+		end
 	end
 end
 
@@ -2093,6 +2132,9 @@ function EID:getObjectIcon(descObj)
 			end
 			return EID:createItemIconObject("Pill" .. descObj.ObjSubType)
 		end
+	-- Handle Dice Room Floor
+	elseif descObj.ObjType == 1000 and descObj.ObjVariant == 76 then
+		return EID.InlineIcons["DiceFace" .. descObj.ObjSubType]
 	end
 end
 
@@ -2271,6 +2313,8 @@ end
 function EID:UpdateAllPlayerPassiveItems()
 	local passives = EID:GetAllPassiveItems()
 	local listUpdatedForPlayers = {}
+	-- check if id is smaller max id, because numbers bigger a certain value can crash the game when calling HasCollectible()
+	local maxCollID = EID:GetMaxCollectibleID()
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
 		if player == nil then
@@ -2281,7 +2325,8 @@ function EID:UpdateAllPlayerPassiveItems()
 		
 		-- remove items the player no longer has. reverse iteration to make deletion easier
 		for index = #EID.RecentlyTouchedItems[playerNum], 1, -1  do
-			if not player:HasCollectible(EID.RecentlyTouchedItems[playerNum][index], true) then
+			local itemID = EID.RecentlyTouchedItems[playerNum][index]
+			if itemID > maxCollID or not player:HasCollectible(itemID, true) then
 				table.remove(EID.RecentlyTouchedItems[playerNum], index)
 				listUpdatedForPlayers[i] = true
 				-- If an item earlier than our oldest item is removed (e.g. Eve sacrificial altaring her Dead Bird), reduce it
@@ -2291,7 +2336,7 @@ function EID:UpdateAllPlayerPassiveItems()
 
 		-- add items the player did get with non-standard methods (Bag of Crafting, console command, item effects, etc...)
 		for _, itemID in ipairs(passives) do
-			if player:HasCollectible(itemID, true) then
+			if itemID <= maxCollID and player:HasCollectible(itemID, true) then
 				local alreadyInList = false
 				for _, heldItemID in ipairs(EID.RecentlyTouchedItems[playerNum]) do
 					if itemID == heldItemID then
@@ -2373,18 +2418,39 @@ end
 EID.GlitchedCrownCheck = {}
 -- Watch pedestals for being a Glitched Crown style pedestal that flips between items too quickly to display descriptions for
 function EID:WatchForGlitchedCrown()
-	if not EID.collectiblesOwned[689] then return end
-	local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
-	EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
-	
-	for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
-		-- Use InitSeed and Index to prevent any Diplopia weirdness
-		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
-		-- Initialize the data about this pedestal showing its current item ID, if necessary
-		-- in order to sort the items displayed, while also trashing items that haven't shown up in a while, keep both "initial frame seen" and "last frame seen"
-		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
-		-- update the last frame seen for the pedestal's current collectible ID
-		EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType][2] = EID.GameUpdateCount
+	if REPENTOGON then
+		-- In REPENTOGON, always check even without Glitched Crown, allowing to check 5+ Soul of Isaac usage, or Everything Jar
+		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
+
+		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			-- Use InitSeed and Index to prevent any Diplopia weirdness
+			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
+			local pickup = entity:ToPickup()
+			local cycle = pickup:GetCollectibleCycle()
+			if #cycle > 1 then
+				for i, subType in ipairs(cycle) do
+					EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][subType] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][subType] or {EID.GameUpdateCount + i, EID.GameUpdateCount + i}
+					-- update the last frame seen for the pedestal's current collectible ID
+					EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][subType][2] = EID.GameUpdateCount + i
+				end
+			end
+		end
+	else
+		if not EID.collectiblesOwned[689] then return end
+
+		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
+		
+		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			-- Use InitSeed and Index to prevent any Diplopia weirdness
+			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
+			-- Initialize the data about this pedestal showing its current item ID, if necessary
+			-- in order to sort the items displayed, while also trashing items that haven't shown up in a while, keep both "initial frame seen" and "last frame seen"
+			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
+			-- update the last frame seen for the pedestal's current collectible ID
+			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType][2] = EID.GameUpdateCount
+		end
 	end
 end
 
@@ -2457,7 +2523,7 @@ end
 -- Find the closest player to the given entity
 function EID:ClosestPlayerTo(entity)
 	local closestDist = 9999999
-	local closestPlayer = EID.player
+	local closestPlayer = EID.player or Isaac.GetPlayer()
 	local numPlayers = game:GetNumPlayers()
 	if EID.InsideItemReminder then return EID.ItemReminderPlayerEntity end
 	if entity == nil or numPlayers == 1 then return closestPlayer end
@@ -2465,7 +2531,7 @@ function EID:ClosestPlayerTo(entity)
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
 		local dist = player.Position:Distance(entity.Position)
-		if dist < closestDist then
+		if dist < closestDist and player then
 			closestDist = dist
 			closestPlayer = player
 		end
@@ -2482,4 +2548,24 @@ function EID:CreateDescriptionTableIfMissing(tableName, language)
 	if tableName and not EID.descriptions[language][tableName] then
 		EID.descriptions[language][tableName] = {}
 	end
+end
+
+-- returns true if the given pedestal-entity is hidden (questionmark sprite)
+function EID:IsItemHidden(entity)
+	if EID:getEntityData(entity, "EID_DontHide") == true then
+		return false
+	end
+	-- Repentogon check (does not account for curse of blind),
+	-- with expection for alt path item descriptions when config option is enabled
+	if REPENTOGON and entity:ToPickup():IsBlind() and not (not EID.Config["DisableOnAltPath"] and EID:IsAltChoice(entity)) then
+		return true
+	end
+
+	if (EID.Config["DisableOnCurse"] and EID:hasCurseBlind() and not entity:ToPickup().Touched and not EID.isDeathCertRoom)
+	or (EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(entity.SubType))
+	or (EID.Config["DisableOnAltPath"] and not entity:ToPickup().Touched and EID:IsAltChoice(entity))
+	or (EID.Config["DisableOnAprilFoolsChallenge"] and game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
+		return true
+	end
+	return false
 end

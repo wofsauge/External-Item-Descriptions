@@ -8,6 +8,8 @@ import glob, os
 SCRIPT_PATH = os.path.realpath(__file__)
 SOURCE_MOD_DIRECTORY = os.path.dirname(SCRIPT_PATH)+"/../.."
 
+ONLY_DO_LANGUAGE = ""
+
 if "GITHUB_WORKSPACE" in os.environ:
     SOURCE_MOD_DIRECTORY = os.environ["GITHUB_WORKSPACE"]
 
@@ -28,6 +30,8 @@ BWhite='\033[1;37m'       # Bold White
 ignoreNodesWithName = {"fonts"}
 ignoreTypeMissmatchNodesWithName = {"ConditionalDescs", "BFFSSynergies"}
 
+dlcs = ["ab+", "rep", "rep+"]
+
 maxChecklimit = {"tarotClothBuffs": 2, "carBattery": 2, "BFFSSynergies": 2}
 
 
@@ -46,6 +50,26 @@ def getMaxCheckLimit(parentName):
             return maxChecklimit[entry]
     return float('inf')
 
+def addUpdatedTables(languageCode, dlc):
+    if dlc != "ab+":
+        # Add language table
+        lua.execute('EID.descriptions["'+languageCode+'"] = {}')
+        # Add all tables that are assumed to exist already in ab+
+        updatedTables = ["collectibles", "trinkets"]
+        if dlc == "rep":
+            updatedTables += ["cards", "pills", "carBattery", "BFFSSynergies", "CharacterInfo", "ConditionalDescs", "VoidNames", "custom"]
+        if dlc == "rep+":
+            updatedTables += ["abyssSynergies"]
+
+        # korean uses some additional addititve tables
+        if languageCode == "ko_kr":
+            if dlc == "rep":
+                updatedTables += ["dice", "MCM"]
+            else:
+                updatedTables += ["bookOfVirtuesWisps"]
+        for table in updatedTables:
+            lua.execute('EID.descriptions["'+languageCode+'"].'+table+' = {}')
+
 # find entries in table2 that are missing or different than in table 1
 def compare_tables(table1, table2, prev_key):
     errorCount = 0
@@ -56,7 +80,7 @@ def compare_tables(table1, table2, prev_key):
             # dont evaluate nodes that are listed in this table
             continue
         if k not in table2:
-            print(f"\tTable '{prev_key}' does not contain key: {k}")
+            print(f"\tTable '{prev_key}' does not contain entry: {k}")
             errorCount += 1
             # table is missing. add all missing entries as error
             if lupa.lua_type(table1[k]) == "table":
@@ -84,43 +108,77 @@ def compare_tables(table1, table2, prev_key):
     return errorCount
 
 
-lua.execute('REPENTOGON = true; EID = {}; EID.descriptions = {} function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
-g = lua.globals()
+languageProgress = {}
+en_us_entries = {}
+for dlc in dlcs:
+    lua.execute('REPENTOGON = true; EID = {}; EID.descriptions = {}; function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
+    g = lua.globals()
+    addUpdatedTables("en_us", dlc)
 
-
-print("reading: en_us.lua")
-for englishFile in glob.glob(SOURCE_MOD_DIRECTORY+"/**/en_us.lua", recursive=True):
+    # Read English language files first
+    englishFile = glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/en_us.lua", recursive=True)[0]
+    print("reading:", englishFile)
     lua.execute(open(englishFile, "r", encoding="UTF-8").read())
 
-en_us_entries = count_entries(g.EID['descriptions']['en_us'])
-print("en_us entries:", en_us_entries)
+    en_us_entries[dlc] = count_entries(g.EID['descriptions']['en_us'])
+    print("en_us "+dlc+" entries:", en_us_entries[dlc])
 
 
-languages = {}
-for file in glob.glob(SOURCE_MOD_DIRECTORY+"/**/ab+/*.lua", recursive=True) + glob.glob(SOURCE_MOD_DIRECTORY+"/**/rep/*.lua", recursive=True):
-    if "en_us" not in file and "transformations" not in file:
-        print("reading:",file)
-        lua.execute(open(file, "r", encoding="UTF-8").read())
-        languages[os.path.basename(file).replace(".lua","")] = 0
+    langFiles = []
+    if ONLY_DO_LANGUAGE != "":
+        langFiles += glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/"+ONLY_DO_LANGUAGE+".lua", recursive=True)
+    else:
+        langFiles += glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/*.lua", recursive=True)
+    # Read other language files
+    for file in langFiles:
+        if "en_us" not in file and "transformations" not in file:
+            languageCode = os.path.basename(file).replace(".lua","")
+            print("reading:",file)
+            addUpdatedTables(languageCode, dlc)
+            lua.execute(open(file, "r", encoding="UTF-8").read())
+            if languageCode not in languageProgress:
+                languageProgress[languageCode] = {}
 
-for lang in languages:
-    print(f"Evaluating language '{lang}'..")
-    errorCount = compare_tables(g.EID['descriptions']['en_us'], g.EID['descriptions'][lang], lang)
-    percentage = (en_us_entries - errorCount) / en_us_entries*100
-    languages[lang] = [percentage, errorCount]
-    print(f"{Red}Errors found: {errorCount} / {en_us_entries}{Color_Off}\n\n")
+            # Evaluate language for completeness
+            print(f"Evaluating language '{languageCode}'..")
+            errorCount = compare_tables(g.EID['descriptions']['en_us'], g.EID['descriptions'][languageCode], languageCode+"("+dlc+")")
+            percentage = (en_us_entries[dlc] - errorCount) / en_us_entries[dlc] * 100
+            languageProgress[languageCode][dlc] = [percentage, errorCount]
+            print(f"{Red}Errors found: {errorCount} / {en_us_entries[dlc]}{Color_Off}\n\n")
 
 
+# Calculate total english entries
+total_en_us_entries = 0
+for entries in en_us_entries.values():
+    total_en_us_entries += entries
 
-gitWorkflowSummary = "### Translation progress\n| Language | Completion | Missing entries |\n|---|---|---|\n"
+# Write git Workflow summary
+gitWorkflowSummary = "### Translation progress\n| Language | Completion (AB+) |Completion (REP) |Completion (REP+) |Completion (Total) |\n|---|---|---|---|---|\n"
 print(f"{Blue}Translation progress:{Color_Off}")
-for lang in languages:
-    print(
-        f"\t{BWhite}{lang}{Color_Off}\t{Blue}{round(languages[lang][0],2)}%{Color_Off}\t{Red}{languages[lang][1]} missing{Color_Off}"
-    )
-    errorMessage = languages[lang][1] if languages[lang][1] >0 else "🎉"
-    gitWorkflowSummary += f"| {lang} | {round(languages[lang][0],2)}% | {errorMessage} |\n"
+for lang in languageProgress.keys():
+    gitWorkflowSummary += f"| {lang} "
+    totalMissing = 0
+    for dlc in dlcs:
+        gitCompletionMessage = ""
+        if dlc in languageProgress[lang]:
+            percent = round(languageProgress[lang][dlc][0], 2)
+            missingEntries = languageProgress[lang][dlc][1]
+            totalMissing += missingEntries
+            print(f"\t{BWhite}{lang}({dlc}){Color_Off}\t{Blue}{percent}%{Color_Off}\t{Red}{missingEntries} missing{Color_Off}")
+            gitCompletionMessage = f"{percent}% ({missingEntries} left)" if missingEntries >3 else "100% 🎉"
+        else:
+            print(
+            f"\t{BWhite}{lang}({dlc}){Color_Off}\t\t{Red}DLC translation missing!{Color_Off}")
+            gitCompletionMessage = f"0% ({en_us_entries[dlc]} left)"
+            totalMissing += en_us_entries[dlc]
+                
+        gitWorkflowSummary += f"| {gitCompletionMessage} "
+    
+    totalPercent = round((total_en_us_entries - totalMissing) / total_en_us_entries * 100, 2)
+    gitWorkflowSummary += f"|{totalPercent}% ({totalMissing}) "
+    gitWorkflowSummary += "|\n"
 
+print(gitWorkflowSummary)
 
 if "GITHUB_STEP_SUMMARY" in os.environ:
     print("\n\nwrite workflow summary to: ", os.environ["GITHUB_STEP_SUMMARY"])

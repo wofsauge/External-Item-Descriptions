@@ -219,6 +219,8 @@ function EID:learnBagOfCrafting(componentsTable)
 	local componentsAsString = table.concat(components, ",")
 	
 	local recipe = REPENTOGON and EID.bagPlayer:GetBagOfCraftingOutput() or EID:calculateBagOfCrafting(componentsTable)
+	if REPENTOGON and recipe == 0 then recipe = EID:calculateBagOfCrafting(componentsTable) end
+	
 	if (EID.BoC.LearnedRecipes[componentsAsString] ~= recipe) then newRecipeLearned = true end
 	EID.BoC.LearnedRecipes[componentsAsString] = recipe;
 end
@@ -477,6 +479,7 @@ function EID:BoCTrackBagHolding()
 	else
 		if isCardHold and holdCounter >= 30 and (string.match(animationName, "Walk") and not string.match(animationName, "Pickup") or (EID.bagPlayer:GetCollectibleCount() ~= icount)) then
 			holdCounter = 0
+			EID:learnBagOfCrafting(EID.BoC.BagItems)
 			EID.BoC.BagItems = {}
 			EID:UpdateAllPlayerPassiveItems()
 		else
@@ -597,7 +600,8 @@ local function getFloorItemsString(showPreviews, roomItems)
 	local floorString = ""
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
 	if #bagItems >0 then
-		if showPreviews and #bagItems == 8 then
+		-- Don't show an item preview in Learned Recipe List if Curse of the Blind is active
+		if showPreviews and #bagItems == 8 and (EID.Config["BagOfCraftingDisplayRecipesMode"] == "Recipe List" or not EID:hasCurseBlind() or not EID.Config["DisableOnCurse"]) then
 			local recipe = REPENTOGON and EID.bagPlayer:GetBagOfCraftingOutput() or EID:calculateBagOfCrafting(bagItems)
 			-- when using REPENTOGON, MCM needs to think its bag is full
 			if EID.BoC.BagItemsOverride then recipe = EID:calculateBagOfCrafting(bagItems) end
@@ -608,7 +612,8 @@ local function getFloorItemsString(showPreviews, roomItems)
 	end
 	local curRoomItems = EID.BoC.RoomOverride or roomItems
 	if #curRoomItems >0 then
-		if showPreviews and #curRoomItems == 8 then
+		-- Don't show a room/floor item preview in Learned Recipe List mode
+		if showPreviews and #curRoomItems == 8 and EID.Config["BagOfCraftingDisplayRecipesMode"] == "Recipe List" then
 			local recipe = EID:calculateBagOfCrafting(curRoomItems)
 			floorString = floorString .. "{{Collectible"..recipe.."}} "
 		end
@@ -617,7 +622,8 @@ local function getFloorItemsString(showPreviews, roomItems)
 	end
 	local floorQuery = EID.BoC.FloorOverride or EID.BoC.FloorQuery
 	if #floorQuery >0 and #curRoomItems ~= #floorQuery then
-		if showPreviews and #floorQuery == 8 then
+		-- Don't show a room/floor item preview in Learned Recipe List mode
+		if showPreviews and #floorQuery == 8 and EID.Config["BagOfCraftingDisplayRecipesMode"] == "Recipe List" then
 			local recipe = EID:calculateBagOfCrafting(floorQuery)
 			floorString = floorString .. "{{Collectible"..recipe.."}} "
 		end
@@ -761,6 +767,7 @@ local function MCMLearnedRecipeList()
 	local recipe = EID:calculateBagOfCrafting({15,15,5,1,10,8,8,9})
 	table.insert(sortedResults[recipe], {{15,15,5,1,10,8,8,9}, recipe})
 	currentRecipesList = sortedResults
+	numResults = 1
 	bagOfCraftingOffset = 0
 	bagOfCraftingRefreshes = 0
 	isRefresh = false
@@ -825,7 +832,7 @@ function EID:handleBagOfCraftingUpdating()
 		end
 	end
 	-- Save the result of the 8 items in our bag
-	if #EID.BoC.BagItems == 8 then
+	if #EID.BoC.BagItems == 8 and (not EID:hasCurseBlind() or not EID.Config["DisableOnCurse"]) then
 		EID:learnBagOfCrafting(EID.BoC.BagItems)
 	end
 

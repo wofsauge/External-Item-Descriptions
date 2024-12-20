@@ -91,19 +91,19 @@ local function VoidCallback(descObj, isRune)
 	local prefix = (isRune and "{{Card41}} ") or "{{Collectible477}} "
 	local pickup = descObj.Entity and descObj.Entity:ToPickup()
 	local isAltOption = false
+	local shopItem = pickup and pickup:IsShopItem()
 	-- Test if this is an Option pedestal, Repentance only absorbs the lowest index one
-	if EID.isRepentance then
+	-- (Don't check for options if it's a shop item, e.g. Tainted Keeper choice pedestals)
+	if EID.isRepentance and not shopItem then
 		local optionIndex = pickup and pickup.OptionsPickupIndex
 		local firstOption = EID.VoidOptionIndexes[optionIndex]
-		if (EID.isRepentance and optionIndex and optionIndex ~= 0 and descObj.ObjSubType ~= firstOption) then
-			EID:appendToDescription(descObj, "#" .. prefix .. "{{Collectible"..firstOption..
-			"}}" .. EID:getObjectName(5, 100, firstOption) .. EID:getDescriptionEntry("VoidOptionText"))
+		if (optionIndex and optionIndex ~= 0 and firstOption and descObj.ObjSubType ~= firstOption) then
+			EID:appendToDescription(descObj, "#" .. prefix .. "{{NameC"..firstOption.."}}" .. EID:getDescriptionEntry("VoidOptionText"))
 			isAltOption = true
 		end
 	end
 	-- Print Stat up info if Black Rune or non-active item
 	if isRune or EID.itemConfig:GetCollectible(descObj.ObjSubType).Type ~= 3 then
-		local shopItem = pickup and pickup:IsShopItem()
 		-- Afterbirth+ really can't do anything with Void and a shop item, so just return
 		if (not EID.isRepentance and shopItem) then return descObj end
 
@@ -134,68 +134,72 @@ local function BlackRuneCallback(descObj)
 	return VoidCallback(descObj, true)
 end
 
--- Map each text block of Pandora's Box to the AbsoluteStage number it's watching for
--- Exception: 9 (???) should also watch for 12 (The Void)
--- Localizations must have their text blocks in this order:
--- B1, B2, C1, C2, D1, D2, W1, W2, ???/The Void, Sheol, Cathedral, Dark Room, The Chest, Home
-local pandorasStages = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11, 11, 13 }
--- Stage numbers where whether it's alt or not matters for Pandora's Box
-local altStages = { [10] = false, [11] = true, [12] = false, [13] = true }
--- Greed Mode Absolute Stage / Pandora's Box Behavior: 1: B2, 3: C2, 5: D2, 7: W1, 10: Sheol, 0: Chest
-local greedStages = { -1, 1, -1, 3, -1, 5, 7, -1, -1, 10, -1, -1, 0, -1 }
-EID.PandorasGreedConditional = false -- helper variable to let item reminder know that we have the 6-entry greed pandora desc
+-- Map each text block of Pandora's Box to the AbsoluteStage number. Second entry is the block used for Alt-Stages
+local pandoraStages = {
+	[1] = { 1, 1 }, -- B1
+	[2] = { 2, 2 }, -- B2
+	[3] = { 3, 3 }, -- C1
+	[4] = { 4, 4 }, -- C2
+	[5] = { 5, 5 }, -- D1
+	[6] = { 6, 6 }, -- D2
+	[7] = { 7, 7 }, -- W1
+	[8] = { 8, 8 }, -- W2
+	[9] = { 9, 9 }, -- ???
+	[10] = { 10, 11 }, -- Sheol, Cathedral
+	[11] = { 12, 13 }, -- Dark Room, Chest
+	[12] = { 9, 9 }, -- Void
+	[13] = { 14, 14 }, -- Home
+}
+local pandoraGreedStages = {
+	[1] = { 2, 2, 1 }, -- Basement
+	[2] = { 4, 4, 2 }, -- Cellar
+	[3] = { 6, 6, 3 }, -- Depths
+	[4] = { 8, 8, 4 }, -- Womb
+	[5] = { 10, 10, 5 }, -- Sheol
+	[6] = { 13, 13, 6 }, -- Shop
+	[7] = { 13, 13, 6 }, -- Chest
+}
 
 local function PandorasBoxCallback(descObj)
-	local pandoraCount = 0
+	local hasModifier = game:IsGreedMode() and EID:getDescriptionEntry("ConditionalDescs", "5.100.297 (Greed)", true)
+
 	local level = game:GetLevel()
-	local stageNum = level:GetAbsoluteStage()
-	local altStage = level:IsAltStage()
-	local doMarkup = false
-	-- Greed Mode has different Pandora's Box rules and stage numbers
-	local stageCheck = game:IsGreedMode() and greedStages or pandorasStages
-	local altCheck = game:IsGreedMode() and {} or altStages
+	local stageNum = game:IsGreedMode() and level:GetStage() or level:GetAbsoluteStage()
+
+	local stageTable = game:IsGreedMode() and pandoraGreedStages or pandoraStages
+	local textBlockToUse = stageTable[stageNum][hasModifier and 3 or level:IsAltStage() and 2 or 1]
 
 	-- floor result information must be separated by line breaks or semicolons in localizations
-	local totalCount = 0
-	for w in string.gmatch(descObj.Description, "([^#;]+)") do
-		if totalCount > 0 or string.find(w,"2") then
-			totalCount = totalCount + 1
+	local levelDescriptions = {}
+	local hasVoidEntry = false
+	for lvlDesc in string.gmatch(descObj.Description, "([^#;]+)") do
+		table.insert(levelDescriptions, lvlDesc)
+		if lvlDesc:find("???") then
+			hasVoidEntry = true
 		end
-	end
-	local skip9and12 = false
-	EID.PandorasGreedConditional = false
-	-- many localizations do not have the ???/Void entry and the Dark Room entry
-	-- this seemed better than forcing them to have it
-	if totalCount == (EID.isRepentance and 12 or 11) then
-		skip9and12 = true
-	-- If the localization has a simplified Greed Mode desc, it will only have 6 entries
-	elseif totalCount == 6 then
-		EID.PandorasGreedConditional = true
-		greedStages = { 1, 3, 5, 7, 10, 0 }
 	end
 
-	for w in string.gmatch(descObj.Description, "([^#;]+)") do
-		doMarkup = false
-		-- the first captured group to care about is the one that contains a 2 (2 soul hearts)
-		if pandoraCount > 0 or string.find(w,"2") then
-			pandoraCount = pandoraCount + 1
-			if skip9and12 and (pandoraCount == 9 or pandoraCount == 12) then
-				pandoraCount = pandoraCount + 1
-			end
-			if (altCheck[pandoraCount] == nil or altStage == altCheck[pandoraCount]) then
-				if stageCheck[pandoraCount] == stageNum then doMarkup = true
-				--special exception for ???/The Void
-				elseif pandoraCount == 9 and stageNum == 12 then doMarkup = true
-				end
-			end
-			if doMarkup then
-				-- gsub behaves very poorly with punctuation so you need a punctuation-escaping gsub helper...
-				descObj.Description = string.gsub(descObj.Description, w:gsub("([^%w])", "%%%1"), "{{ColorBagComplete}}" .. w .. "{{CR}}")
-			end
-			-- don't check any lines of the description after Home
-			if pandoraCount	== (EID.isRepentance and 14 or 13) then break end
+	-- Some languages are missing the ???/Void entry or more. We account for that
+	if not hasVoidEntry and not hasModifier then
+		-- void entry is supposed to be highlighted, but its missing, or the description is lacking multiple entries
+		if textBlockToUse == 9 or (#levelDescriptions < 15 and textBlockToUse > 9) then
+			return descObj
+		end
+		-- void entry is missing and a later entry should be highlighted. We adjust the id accordingly
+		if textBlockToUse > 9 then
+			textBlockToUse = textBlockToUse - 1
 		end
 	end
+
+	-- look up the line to highlight. skip the first 2 lines, because they are generic item infos
+	local textBlockToHighlight = levelDescriptions[textBlockToUse + 2]
+	if textBlockToHighlight then
+		-- Escape the content of the string, because gsub() expects pattern definitions
+		local clearedTextBlock = string.gsub(textBlockToHighlight, "%p", "%%%0")
+		local replacementText = "{{ColorBagComplete}}" .. textBlockToHighlight .. "{{CR}}"
+		descObj.Description = string.gsub(descObj.Description, clearedTextBlock, replacementText)
+	end
+
 	return descObj
 end
 
@@ -311,6 +315,7 @@ end
 
 -- Handle changing health up text for non-red HP players
 local function HealthUpCallback(descObj)
+	if not EID.Config["DynamicHealthUps"] then return descObj end
 	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 	if descObj.ObjVariant == 70 and descObj.ObjSubType > 2048 then adjustedSubtype = adjustedSubtype + 2048 end -- horsepill exception
 	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype
@@ -318,43 +323,44 @@ local function HealthUpCallback(descObj)
 	local closestPlayer = EID:ClosestPlayerTo(descObj.Entity)
 	local playerType = closestPlayer:GetPlayerType()
 	local heartType = EID.CharacterToHeartType[playerType] or "Red"
-	if heartType == "Red" then return descObj end
-	
-	-- find/replace Health Up lines
-	local numHearts = EID.HealthUpData[typeVarSub] or 1
-	local text = EID:getDescriptionEntry("RedToX", "Red to " .. heartType)
-	local plural = ""; if numHearts ~= 1 and numHearts ~= -1 then plural = EID:getDescriptionEntry("Pluralize") end
-	
-	local pos = 1
-	while pos <= #text do
-		-- replace {1} with the number of hearts and {2} with the plural character
-		local toFind = EID:ReplaceVariableStr(text[pos], {numHearts, plural})
-		if text[pos + 1] then
-			local replaceWith = EID:ReplaceVariableStr(text[pos + 1], {numHearts, plural})
-			descObj.Description = EID:SimpleReplace(descObj.Description, tostring(toFind), replaceWith, 1)
+	if heartType ~= "Red" then
+		-- find/replace Health Up lines
+		local numHearts = EID.HealthUpData[typeVarSub] or 1
+		local text = EID:getDescriptionEntry("RedToX", "Red to " .. heartType)
+		local plural = ""; if numHearts ~= 1 and numHearts ~= -1 then plural = EID:getDescriptionEntry("Pluralize") end
+		
+		local pos = 1
+		while pos <= #text do
+			-- replace {1} with the number of hearts and {2} with the plural character
+			local toFind = EID:ReplaceVariableStr(text[pos], {numHearts, plural})
+			if text[pos + 1] then
+				local replaceWith = EID:ReplaceVariableStr(text[pos + 1], {numHearts, plural})
+				descObj.Description = EID:SimpleReplace(descObj.Description, tostring(toFind), replaceWith, 1)
+			end
+			pos = pos + 2
 		end
-		pos = pos + 2
-	end
-	
-	-- remove HealingRed lines entirely for Soul/Black/None health chars
-	descObj.Description = descObj.Description .. "#" -- gsub finds final lines better if the desc ends with a line break
-	if heartType == "Soul" or heartType == "Black" or heartType == "None" then
-		-- Find any lines containing {{HealingRed}} or {{HealingHalfRed}} and remove the line
-		descObj.Description = descObj.Description:gsub("{{HealingRed}}(.-)#", "")
-		descObj.Description = descObj.Description:gsub("{{HealingHalfRed}}(.-)#", "")
-	end
-	
-	-- check if we just made the description blank
-	if descObj.Description:gsub("#", "") == "" then
-		local noEffectStr = EID:getDescriptionEntry("ConditionalDescs", "No Effect")
-		descObj.Description = "{{Player" .. playerType .. "}} " .. EID:ReplaceVariableStr(noEffectStr, "{{NameOnlyI" .. playerType .. "}}")
+		
+		-- remove HealingRed lines entirely for Soul/Black/None health chars
+		descObj.Description = descObj.Description .. "#" -- gsub finds final lines better if the desc ends with a line break
+		if EID.HealthTypesWithoutHealing[heartType] then
+			-- Find any lines containing {{HealingRed}} or {{HealingHalfRed}} and remove the line
+			descObj.Description = descObj.Description:gsub("{{HealingRed}}(.-)#", "")
+			descObj.Description = descObj.Description:gsub("{{HealingHalfRed}}(.-)#", "")
+		end
+		
+		-- check if we just made the description blank
+		if descObj.Description:gsub("#", "") == "" then
+			local noEffectStr = EID:getDescriptionEntry("ConditionalDescs", "No Effect")
+			descObj.Description = EID:GetPlayerIcon(playerType) .. " " .. EID:ReplaceVariableStr(noEffectStr, EID:getPlayerName(playerType))
+		end
 	end
 	
 	-- test the other players for if they have a different effect
 	-- todo: this simple check could have false positives (i.e. Yum Heart is identical for Soul and Black, but this thinks they'll be different)
 	for i = 1, #EID.coopAllPlayers do
 		local t = EID.coopAllPlayers[i]:GetPlayerType()
-		if EID.CharacterToHeartType[t] ~= heartType then
+		local playerHeartType = EID.CharacterToHeartType[t] or "Red"
+		if playerHeartType ~= heartType then
 			table.insert(EID.DifferentEffectPlayers, t)
 		end
 	end
@@ -362,20 +368,42 @@ local function HealthUpCallback(descObj)
 	return descObj
 end
 
+-- Handle Single use Item description add-on
+local function SingleUseCallback(descObj)
+	local infoText = EID:getDescriptionEntry("SingleUseInfo")
+	descObj.Description = infoText .. "#" .. descObj.Description
+
+	return descObj
+end
+
 if EID.isRepentance then
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
 		descObj.Description = ""
+		if EID.InsideItemReminder then
+			local player = EID.ItemReminderPlayerEntity
+			local playerID = player:GetPlayerType()
+			local birthrightDesc = EID:getDescriptionEntry("birthright", playerID+1)
+			if birthrightDesc ~= nil then
+				local playerName = birthrightDesc[1] or player:GetName()
+				EID:appendToDescription(descObj, EID:GetPlayerIcon(playerID) .. " {{ColorIsaac}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
+			end
+			return descObj
+		end
 		local describedPlayerTypes = {}
 		for i = 1, #EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[i]
 			local playerID = player:GetPlayerType()
-			if not player:IsSubPlayer() and player:GetMainTwin( ):GetPlayerType() == playerID and not describedPlayerTypes[playerID] then
-				describedPlayerTypes[playerID] = true
-				local birthrightDesc = EID:getDescriptionEntry("birthright", playerID+1)
-				if birthrightDesc ~=nil then
-					local playerName = birthrightDesc[1] or player:GetName()
-					EID:appendToDescription(descObj, EID:GetPlayerIcon(playerID) .. " {{ColorGray}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
+			if descObj.Entity and playerID == PlayerType.PLAYER_CAIN_B and not EID.isDeathCertRoom then
+				-- Don't add a description if Tainted Cain is looking at a Birthright pedestal, he can't get it...
+			else
+				if not player:IsSubPlayer() and player:GetMainTwin( ):GetPlayerType() == playerID and not describedPlayerTypes[playerID] then
+					describedPlayerTypes[playerID] = true
+					local birthrightDesc = EID:getDescriptionEntry("birthright", playerID+1)
+					if birthrightDesc ~= nil then
+						local playerName = birthrightDesc[1] or player:GetName()
+						EID:appendToDescription(descObj, EID:GetPlayerIcon(playerID) .. " {{ColorIsaac}}"..playerName.."{{CR}}#"..birthrightDesc[3].."#")
+					end
 				end
 			end
 		end
@@ -803,7 +831,7 @@ if EID.isRepentance then
 	-- Handle Flip description addition
 	local function FlipCallback(descObj)
 		local flipItemID = EID:getEntityData(descObj.Entity, "EID_FlipItemID")
-		if not flipItemID or flipItemID <= 0 then return descObj end
+		if not flipItemID or flipItemID <= 0 or not EID.Config["DisplayFlipItemDescriptions"] then return descObj end
 		-- Empty pedestal
 		if descObj.ObjSubType == 0 then
 			return EID:getDescriptionObj(5, 100, flipItemID)
@@ -820,12 +848,77 @@ if EID.isRepentance then
 
 		return descObj
 	end
+	
+	-- Handle Tainted Cain pedestals
+	local function TaintedCainPedestalCallback(descObj)
+		if game.Challenge == Challenge.CHALLENGE_CANTRIPPED or EID.isDeathCertRoom or not descObj.Entity or not EID.Config["DisplayTCainSalvageResults"] then return descObj end
+		local item = EID.itemConfig:GetCollectible(descObj.ObjSubType)
+		if (item.Tags and item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then return descObj end
+		
+		local closestPlayer = EID:ClosestPlayerTo(descObj.Entity)
+		local playerType = closestPlayer:GetPlayerType()
+		
+		if playerType == PlayerType.PLAYER_CAIN_B then
+			-- Construct the Salvage description
+			local hasBirthright = closestPlayer:HasCollectible(619)
+			local salvageDesc = hasBirthright and EID:getDescriptionEntry("TaintedCainPedestalBaseBirthright") or EID:getDescriptionEntry("TaintedCainPedestalBase")
+			local pickupNames = EID:getDescriptionEntry("PickupNames")
 
+			-- add T-Cain icon at start of line
+			salvageDesc = "{{Player23}} ".. salvageDesc
+			
+			-- Guaranteed items from room type
+			local roomType = game:GetLevel():GetCurrentRoomDesc().Data.Type
+			local roomPool = game:GetItemPool():GetPoolForRoom(roomType, 69)
+			if roomType ~= RoomType.ROOM_ERROR and EID.SalvageRoomTypes[roomPool] then
+				local newLine = EID.RoomTypeToMarkup[roomType] .. " " .. EID:getDescriptionEntry("TaintedCainPedestalGuaranteed")
+				newLine = EID:ReplaceVariableStr(newLine, 1, pickupNames[EID.SalvageRoomTypes[roomPool]]:gsub("{{[.-}}]+ ", ""))
+				newLine = EID:ReplaceVariableStr(newLine, "n", EID.PickupStartsWithVowel[EID.SalvageRoomTypes[roomPool]] and "n" or "")
+				salvageDesc = salvageDesc .. "#" .. newLine
+			end
+			
+			-- Bonus items from trinkets
+			for trinketID,pickupID in pairs(EID.SalvageTrinkets) do
+				if closestPlayer:HasTrinket(trinketID) then
+					local newLine = "{{Trinket" .. trinketID .. "}} " .. EID:getDescriptionEntry("TaintedCainPedestalBonus")
+					newLine = EID:ReplaceVariableStr(newLine, 1, pickupNames[pickupID]:gsub("{{[.-}}]+ ", ""))
+					salvageDesc = salvageDesc .. "#" .. newLine
+				end
+			end
+			
+			-- Bonus item from Lucky Toe
+			if closestPlayer:HasTrinket(42) then
+				local newLine = "{{Trinket42}} " .. (hasBirthright and EID:getDescriptionEntry("TaintedCainPedestalLuckyToeBirthright") or EID:getDescriptionEntry("TaintedCainPedestalLuckyToe"))
+				salvageDesc = salvageDesc .. "#" .. newLine
+			end
+			
+			-- Daemon's Tail reduces hearts
+			if closestPlayer:HasTrinket(22) then
+				local newLine = "{{Trinket22}} " .. EID:getDescriptionEntry("TaintedCainPedestalDaemonsTail")
+				salvageDesc = salvageDesc .. "#" .. newLine
+			end
+			descObj.Description = salvageDesc
+			descObj.Transformation = nil -- remove transformation info. useless for T-Cain because item will not count towards transformations
+
+			for i = 1, #EID.coopAllPlayers do
+				local t = EID.coopAllPlayers[i]:GetPlayerType()
+				if t ~= PlayerType.PLAYER_CAIN_B then
+					table.insert(EID.DifferentEffectPlayers, t)
+				end
+			end
+		else
+			table.insert(EID.DifferentEffectPlayers, PlayerType.PLAYER_CAIN_B)
+		end
+		
+		return descObj
+	end
+	
 	-- Handle Glitched Crown style pedestals
 	local currentSelection = {} -- keep track of which description we're looking at for a given pedestal
 	local goingToSpindown = false
+	local inGlitchedCrown = false
 	local function GlitchedCrownCallback(descObj)
-		if not descObj.Entity then return descObj end
+		if not descObj.Entity or inGlitchedCrown then return descObj end
 		local entity = descObj.Entity
 		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
 
@@ -845,6 +938,7 @@ if EID.isRepentance then
 			if #sortedItems < 5 then return descObj end
 			table.sort(sortedItems, function(a, b) return a[2] < b[2] end)
 
+			inGlitchedCrown = true
 			currentSelection[pedestalID] = currentSelection[pedestalID] or 0
 
 			-- watch for Tab being pressed to advance our selection by 1
@@ -859,14 +953,16 @@ if EID.isRepentance then
 				descObj = EID:getDescriptionObj(5, 100, 689, nil, false)
 				descObj.Description = ""
 				for _, item in ipairs(sortedItems) do
-					descObj.Description = descObj.Description .. "#{{NameC" .. item[1] .. "}}"
+					descObj.Description = descObj.Description .. "{{Collectible" .. item[1] .. "}} {{NameOnlyC" .. item[1] .. "}}#"
 				end
-				-- display a specific description
-				-- don't replace the desc if the pedestal's already showing the correct item
+				
+			-- display a specific description
 			else
 				descObj = EID:getDescriptionObj(5, 100, sortedItems[currentSelection[pedestalID]][1])
 			end
-
+			
+			descObj.Entity = entity
+			
 			local nextIcon = "{{Collectible689}}"
 			if currentSelection[pedestalID] + 1 <= #sortedItems then nextIcon = "{{Collectible" ..
 				sortedItems[currentSelection[pedestalID] + 1][1] .. "}}" end
@@ -874,10 +970,14 @@ if EID.isRepentance then
 				"#{{Blank}} " .. EID:ReplaceVariableStr(EID:getDescriptionEntry("GlitchedCrownToggleInfo"), 1, nextIcon))
 
 			-- manually apply Flip; changing the description's item stops future callbacks to avoid infinite loops, but we want Flip still, it works fine
-			descObj.Entity = entity
-			if EID.collectiblesOwned[711] and descObj.ObjSubType ~= entity.SubType then descObj = FlipCallback(descObj) end
+			if descObj.ObjSubType ~= entity.SubType then
+				if EID.collectiblesOwned[711] then descObj = FlipCallback(descObj) end
+				-- manually apply Tainted Cain
+				if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then descObj = TaintedCainPedestalCallback(descObj) end
+			end
+			
 		end
-
+		inGlitchedCrown = false
 		return descObj
 	end
 
@@ -901,19 +1001,20 @@ if EID.isRepentance then
 			-- Using magic numbers here in case it's slightly faster, and because the callback names give context
 			-- Check Birthright first because it overwrites the description instead of appending to it
 			if descObj.ObjSubType == 619 then table.insert(callbacks, BirthrightCallback) end
-			if EID.collectiblesOwned[689] then table.insert(callbacks, GlitchedCrownCallback) end
+			if (REPENTOGON or EID.collectiblesOwned[689]) and EID.Config["GlitchedCrownSummary"] then table.insert(callbacks, GlitchedCrownCallback) end
+			
 			-- Glowing Hourglass overwrites the description when used three times
 			if REPENTOGON and descObj.ObjSubType == 422 then table.insert(callbacks, GlowingHourglassCallback) end
 			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
-
 			if EID.collectiblesOwned[584] or descObj.ObjSubType == 584 then table.insert(callbacks, BookOfVirtuesCallback) end
-
+			
+			if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then table.insert(callbacks, TaintedCainPedestalCallback) end
 			if EID.collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
 			if EID.Config["SpindownDiceResults"] > 0 and (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723]) and descObj.ObjSubType ~= 668 then
 				goingToSpindown = true
 				table.insert(callbacks, SpindownDiceCallback)
 			else goingToSpindown = false end
-
+			
 		-- Card / Rune Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
 			hasTarot = EID.collectiblesOwned[451]
@@ -964,6 +1065,8 @@ local function EIDConditionsAB(descObj)
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 		if EID.Config["ItemCollectionIndicator"] and EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
 
+		if EID.SingleUseCollectibles[descObj.ObjSubType] then table.insert(callbacks, SingleUseCallback) end
+
 		if descObj.ObjSubType == 297 then table.insert(callbacks, PandorasBoxCallback) end
 
 		if EID.Config["DisplayVoidStatInfo"] then
@@ -995,10 +1098,11 @@ local function CoopDifferentEffectCallback(descObj)
 	local differentEffectText = EID:getDescriptionEntry("ConditionalDescs", "Different Effect")
 	for _,v in ipairs(EID.DifferentEffectPlayers) do
 		if not displayedChars[v] then
-			descObj.Description = descObj.Description .. "#{{Player" .. v .. "}} " .. EID:ReplaceVariableStr(differentEffectText, "{{NameOnlyI" .. v .. "}}")
+			descObj.Description = descObj.Description .. "#" .. EID:GetPlayerIcon(v) .. " " .. EID:ReplaceVariableStr(differentEffectText, EID:getPlayerName(v))
 		end
 		displayedChars[v] = true
 	end
+	EID.DifferentEffectPlayers = {} -- avoid appending this twice
 	return descObj
 end
 local function CoopDifferentEffectConditions(_)

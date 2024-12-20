@@ -1,3 +1,4 @@
+if EID and EID.Name then print("Error: Two instances of EID found! Please uninstall one of them!") return end -- If EID is already loaded, warn the user and dont load the second one.
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
@@ -5,13 +6,14 @@ EID.Languages = {"en_us", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "
 EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
-EID.isRepentance = REPENTANCE -- REPENTANCE variable can be altered by any mod, so we save the value before anyone can alter it
+EID.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil -- Repentance+ adds FontRenderSettings() class. We use this to check if the DLC is enabled. V1.9.7.7 added REPENTANCE_PLUS variable
+EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can be altered by any mod, so we save the value before anyone can alter it. V1.9.7.7 removed REPENTANCE variable, so we additionally check for Rep+
 
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.80
-EID.ModVersionCommit = "9ad0bb1"
+EID.ModVersion = 4.89
+EID.ModVersionCommit = "73a5cce"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -111,7 +113,11 @@ table.sort(EID.Languages)
 pcall(require,"scripts.eid_savegames")
 require("features.eid_mcm")
 require("features.eid_data")
-require("features.eid_xmldata")
+if EID.isRepentancePlus then
+	require("features.eid_xmldata_rep+")
+else
+	require("features.eid_xmldata")
+end
 require("features.eid_api")
 require("features.eid_conditionals")
 require("features.eid_modifiers")
@@ -130,6 +136,18 @@ if EID.isRepentance then
 	local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
 	require("features.eid_bagofcrafting")
 	require("features.eid_tmtrainer")
+
+	-- Load Repentance+ DLC data 
+	if EID.isRepentancePlus then
+		EID.GameVersion = "rep+"
+		for _,lang in ipairs(EID.Languages) do
+			local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
+			if not wasSuccessful and not string.find(err, "not found") then
+				Isaac.ConsoleOutput("Load rep+ "..lang.." failed: "..tostring(err))
+			end
+		end
+		local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
+	end
 end
 
 EID.LastRenderCallColor = EID:getTextColor()
@@ -377,8 +395,17 @@ function EID:CheckVoidAbsorbs(_, _, player)
 	player = player or EID.player
 	local playerID = EID:getPlayerID(player, true)
 	EID.absorbedItems[tostring(playerID)] = EID.absorbedItems[tostring(playerID)] or {}
+	-- Remove single use items from Void on use in Repentance
+	if EID.isRepentance then
+		for k,_ in pairs(EID.SingleUseCollectibles) do
+			EID.absorbedItems[tostring(playerID)][tostring(k)] = nil
+		end
+	end
 	for _,v in ipairs(EID:VoidRoomCheck()) do
-		EID.absorbedItems[tostring(playerID)][tostring(v)] = true
+		-- Don't include single use items in AB+ (they're immediately used and gone)
+		if EID.isRepentance or not EID.SingleUseCollectibles[v] then
+			EID.absorbedItems[tostring(playerID)][tostring(v)] = true
+		end
 	end
 	EID.RecheckVoid = true
 end
@@ -728,7 +755,7 @@ function EID:printBulletPoints(description, renderPos)
 				local bpIcon, rejectedIcon = EID:handleBulletpointIcon(lineToPrint)
 				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
 					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
-					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor)
+					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor, true)
 				else
 					if rejectedIcon then lineToPrint = string.gsub(lineToPrint, rejectedIcon .. " ", "", 1) end
 					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
@@ -841,7 +868,7 @@ function EID:renderIndicator(entity, playerNum)
 		return
 	end
 	local repDiv = 1
-	local entityPos = Isaac.WorldToScreen(entity.Position)
+	local entityPos = Isaac.WorldToScreen(entity.PositionOffset and entity.Position + entity.PositionOffset or entity.Position)
 	local ArrowOffset = Vector(0, -35)
 	if entity.Variant == 100 and not entity:ToPickup():IsShopItem() then
 		ArrowOffset = Vector(0, -62)
@@ -853,8 +880,6 @@ function EID:renderIndicator(entity, playerNum)
 	if EID.isRepentance and not EID:IsGridEntity(entity) then
 		if entity.Variant == 100 and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP) and EID:getEntityData(entity, "EID_FlipItemID") then
 			entityPos = entityPos + Vector(2.5,2.5)
-		elseif entity.Type == 6 and entity.Variant == 16 then
-			entityPos = entityPos + Vector(0,-5)
 		end
 	end
 	local sprite = nil
@@ -1440,29 +1465,23 @@ function EID:OnRender()
 
 					-- Handle Glitched Items
 					elseif closest.Type == 5 and closest.Variant == 100 and closest.SubType > 4294960000 then
-						if EID:getEntityData(closest, "EID_DontHide") ~= true then
-							if (REPENTOGON and closest:ToPickup():IsBlind())
-							 or	(EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom)
-							 or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest))
-							 or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-								EID:addQuestionMarkDescription(closest)
+						if EID:IsItemHidden(closest) then
+							EID:addQuestionMarkDescription(closest)
+						else
+							local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
+							local glitchedName = EID.itemConfig:GetCollectible(closest.SubType).Name
+							local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
+
+							-- force the default glitchy description if option is off
+							if not EID.Config["DisplayGlitchedItemInfo"] then
+								glitchedObj.Description = glitchedDesc
+							-- grab the Item Config info if we haven't created a desc for it before, or its name has changed since we did (different game session)
+							elseif glitchedObj.Description == glitchedDesc or glitchedObj.Name ~= glitchedName then
+								EID:addCollectible(closest.SubType, EID:CheckGlitchedItemConfig(closest.SubType), glitchedName)
+								glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
 							end
+							EID:addDescriptionToPrint(glitchedObj)
 						end
-
-						local glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
-						local glitchedName = EID.itemConfig:GetCollectible(closest.SubType).Name
-						local glitchedDesc = EID:getXMLDescription(closest.Type, closest.Variant, closest.SubType)
-
-						-- force the default glitchy description if option is off
-						if not EID.Config["DisplayGlitchedItemInfo"] then
-							glitchedObj.Description = glitchedDesc
-						-- grab the Item Config info if we haven't created a desc for it before, or its name has changed since we did (different game session)
-						elseif glitchedObj.Description == glitchedDesc or glitchedObj.Name ~= glitchedName then
-							EID:addCollectible(closest.SubType, EID:CheckGlitchedItemConfig(closest.SubType), glitchedName)
-							glitchedObj = EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType, closest)
-						end
-
-						EID:addDescriptionToPrint(glitchedObj)
 					-- Handle Dice Room Floor
 					elseif closest.Type == 1000 and closest.Variant == 76 then
 						EID:addDescriptionToPrint(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1, closest))
@@ -1501,16 +1520,10 @@ function EID:OnRender()
 
 					elseif closest.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 						--Handle Collectibles
-						if EID:getEntityData(closest, "EID_DontHide") ~= true then
+						if EID:IsItemHidden(closest) then
 							local isHideUncollected = EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(closest.SubType)
-							if (REPENTOGON and closest:ToPickup():IsBlind())
-							 or isHideUncollected
-							 or (EID:hasCurseBlind() and not closest:ToPickup().Touched and EID.Config["DisableOnCurse"] and not EID.isDeathCertRoom)
-							 or (EID.Config["DisableOnAltPath"] and not closest:ToPickup().Touched and EID:IsAltChoice(closest))
-							 or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-								local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil
-								EID:addQuestionMarkDescription(closest, description)
-							end
+							local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil
+							EID:addQuestionMarkDescription(closest, description)
 						end
 						local descriptionObj = EID:getDescriptionObjByEntity(closest)
 						EID:addDescriptionToPrint(descriptionObj)
@@ -1721,9 +1734,8 @@ function EID:OnUsePill(pillEffectID, player, useFlags)
 	if EID.isRepentance and useFlags ~= UseFlag.USE_NOANNOUNCER then EID:TrackWildCardEffects("5.70." .. (pillEffectID+1), player, pillColor) end
 	EID.ForceRefreshCache = true -- for transformation progress update
 
-	-- for tracking used pills, ignore gold pills and noannouncer flag pills (Temperance?)
-	-- (not using a bitmask, because Placebo is mimic+noannouncer, and we want to count those)
-	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags == UseFlag.USE_NOANNOUNCER) then return end
+	-- for tracking used pills, ignore gold pills and no animation pills, since those dont show what pull you used
+	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then return end
 	EID.UsedPillColors[tostring(pillColor)] = true
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)

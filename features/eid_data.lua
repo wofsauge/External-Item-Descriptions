@@ -245,6 +245,9 @@ EID.InlineIcons = {
 	["GrabBag"] = {"pickups", 11, 8, 8, 0, 2},
 	["BlackSack"] = {"pickups", 12, 8, 8, 0, 2},
 
+	["Nickel"] = {"pickups", 13, 8, 9, 0, 1},
+	["Dime"] = {"pickups", 14, 8, 9, 0, 1},
+
 	-- Collectible
 	["Collectible"] = {"Collectible", 0, 7, 7},
 	----- Use Markup "Collectible"+ ITEMID to render collectible sprites (example: {{Collectible1}} = Sad Onion)
@@ -264,6 +267,7 @@ EID.InlineIcons = {
 	["RestockMachine"] = {"machines", 5, 8, 7, 0, 3},
 	["Mirror"] = {"machines", 6, 8, 7, 0, 2},
 	["CraneGame"] = {"machines", 7, 8, 7, 0, 3},
+	["ReviveMachine"] = {"machines", 8, 8, 7, 0, 3},
 
 	-- Beggars
 	["Beggar"] = {"Beggars", 0, 8, 7, 0, 3},
@@ -635,6 +639,14 @@ EID.InlineIcons = {
 	["MiddleWisp"] = {"Wisps", 1, 10, 9, 0, 2},
 	["OuterWisp"] = {"Wisps", 2, 10, 9, 0, 2},
 
+	-- Dice Faces
+	["DiceFace1"] = {"DiceFaces", 0, 14, 14, 0, -1},
+	["DiceFace2"] = {"DiceFaces", 1, 14, 14, 0, -1},
+	["DiceFace3"] = {"DiceFaces", 2, 14, 14, 0, -1},
+	["DiceFace4"] = {"DiceFaces", 3, 14, 14, 0, -1},
+	["DiceFace5"] = {"DiceFaces", 4, 14, 14, 0, -1},
+	["DiceFace6"] = {"DiceFaces", 5, 14, 14, 0, -1},
+
 	-- Misc
 	["HardMode"] = {"Misc", 0, 16, 12, 0, -2},
 	["GreedMode"] = {"Misc", 1, 16, 12, 0, -2},
@@ -774,6 +786,10 @@ EID.InlineColors = {
 	-- Shiny purple color effect
 	["ColorShinyPurple"] = function(_)
 		return SwagColors({KColor(0.812, 0.627, 1, 1), KColor(0.62, 0.251, 1, 1)}, 40)
+	end,
+	-- Blink between the two shades of tan on Birthright
+	["BlinkBirthright"] = function(_)
+		return SwagColors({KColor(0.831, 0.725, 0.604, 1), KColor(0.671, 0.557, 0.443, 1)})
 	end,
 	-- Text will blink frequently
 	["ColorBlink"] = function(color)
@@ -1059,6 +1075,11 @@ if EID.isRepentance then
 	EID.CharacterToHeartType[12] = "Black"; EID.CharacterToHeartType[24] = "Black"; EID.CharacterToHeartType[25] = "Soul"; EID.CharacterToHeartType[31] = "None"; EID.CharacterToHeartType[33] = "Coin"; EID.CharacterToHeartType[35] = "Soul"; EID.CharacterToHeartType[36] = "Soul"; EID.CharacterToHeartType[40] = "Soul"; 
 end
 
+EID.HealthTypesWithoutHealing = {}
+EID.HealthTypesWithoutHealing["Soul"] = true
+EID.HealthTypesWithoutHealing["Black"] = true
+EID.HealthTypesWithoutHealing["None"] = true
+
 -- Character IDs that have a pocket active (0 = normal, 1 = timed, 2 = special)
 EID.PocketActivePlayerIDs = { [22] = 0, [23] = 2, [24] = 1, [25] = 2, [26] = 1, [29] = 0, [34] = 0, [36] = 0, [37] = 1, [38] = 0, [39] = 1 }
 
@@ -1093,10 +1114,31 @@ if EID.isRepentance then
 	EID.BloodUpData = {["5.70.10"] = 2, ["5.350.156"] = 2, ["5.300.12"] = 2, ["5.300.59"] = 4, [12] = 12, [15] = 12, [16] = 12, [22] = 4, [23] = 4, [24] = 4, [25] = 4, [26] = 4, [75] = 4, [92] = 4, [101] = 4, [119] = 10, [121] = 2, [129] = 4, [138] = 4, [176] = 4, [182] = 12, [184] = 4, [189] = 12, [193] = 4, [217] = 2, [218] = 4, [226] = 4, [253] = 4, [307] = 4, [312] = 4, [314] = 4, [334] = 6, [342] = 4, [346] = 4, [354] = 4, [428] = 12, [456] = 4, [535] = 2, [573] = 12, [591] = 4, [594] = 1, [614] = 10, [621] = 12, [664] = 12, [669] = 12, [707] = 4 }
 end
 
+EID.SingleUseCollectibles = {
+	[127] = true, -- Forget Me Now
+	[297] = true, -- Pandora's Box
+	[347] = true, -- Diplopia
+	[475] = true, -- Plan C
+	[483] = true, -- Mama Mega!
+	[490] = true, -- Eden's Soul
+	[515] = true, -- Mystery Gift
+	[536] = true, -- Sacrificial Altar
+}
+if EID.isRepentance then
+	EID.SingleUseCollectibles[577] = true -- Damocles
+	EID.SingleUseCollectibles[585] = true -- Alabaster Box
+	EID.SingleUseCollectibles[622] = true -- Genesis
+	EID.SingleUseCollectibles[628] = true -- Death Certificate
+	EID.SingleUseCollectibles[636] = true -- R Key
+end
 
 ---------------- BAG OF CRAFTING DATA ------------------
 
 if not EID.isRepentance then return end
+
+EID.SalvageTrinkets = { [34] = "5.10", [36] = "5.30", [41] = "5.40", [44] = "5.70", [45] = "5.300" }
+EID.SalvageRoomTypes = { [3] = "5.10.6", [19] = "5.10.6", [4] = "5.10.4", [20] = "5.10.4", [5] = "5.10.11", [22] = "5.10.11", [9] = "5.300.78", [12] = "5.10.12", [21] = "5.10.12", [26] = "5.301" }
+EID.PickupStartsWithVowel = { ["5.10.4"] = true } -- this is just for Eternal Heart in salvage descriptions right now...
 
 EID.BoC = {}
 
