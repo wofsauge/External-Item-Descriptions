@@ -173,7 +173,7 @@ EID.ItemReminderDescriptionModifier = {
 					local inAscent = EID.isRepentance and (level:IsAscent() or level:IsPreAscent())
 					local final = not level:IsNextStageAvailable()
 					
-					if EID:IsGreedMode() and not EID.PandorasGreedConditional then
+					if EID:IsGreedMode() then
 						skip = 1
 						if stageNum == 5 then skip = 0 -- Depths 2 -> Womb 1
 						elseif stageNum == 7 or stageNum == 10 then skip = 2
@@ -345,7 +345,7 @@ EID.ItemReminderDescriptionModifier = {
 	},
 	["5.350.32"] = { -- Liberty Cap
 		isHiddenInfo = true,
-		modifierFunction = function(descObj, _)
+		modifierFunction = function(descObj, player)
 			local result = EID:LibertyCapPrediction(player)
 			if result then
 				descObj = EID:ItemReminderReplaceWithResult(descObj, result)
@@ -365,7 +365,7 @@ EID.ItemReminderDescriptionModifier = {
 	},
 	["5.350.75"] = {   -- 404 Error
 		isHiddenInfo = true,
-		modifierFunction = function(descObj, player)
+		modifierFunction = function(descObj, _)
 			local seed = game:GetLevel():GetCurrentRoom():GetSpawnSeed()
 			local result = EID:RNGNext(seed, 2, 7, 25) % (EID.isRepentance and 189 or 128) + 1
 			descObj = EID:ItemReminderReplaceWithResult(descObj, result, 350)
@@ -374,7 +374,7 @@ EID.ItemReminderDescriptionModifier = {
 	},
 	["5.350.132"] = { -- Broken Syringe
 		isHiddenInfo = true,
-		modifierFunction = function(descObj, _)
+		modifierFunction = function(descObj, player)
 			local result = EID:BrokenSyringePrediction(player)
 			if result then
 				descObj = EID:ItemReminderReplaceWithResult(descObj, result)
@@ -384,7 +384,7 @@ EID.ItemReminderDescriptionModifier = {
 	},
 	["5.350.153"] = { -- Mom's Lock
 		isHiddenInfo = true,
-		modifierFunction = function(descObj, _)
+		modifierFunction = function(descObj, player)
 			local result = EID:MomsLockPrediction(player)
 			if result then
 				descObj = EID:ItemReminderReplaceWithResult(descObj, result)
@@ -431,7 +431,7 @@ function EID:ItemReminderAddResultHeaderSuffix(descObj, newName)
 		descObj.Name = newName ..
 			" (" .. iconString .. " " .. EID:ReplaceVariableStr(resultHeader, descObj.Name) .. ")"
 	else
-		descObj.Name = descObj.Name .. EID:ReplaceVariableStr(resultHeader, descObj.Name)
+		descObj.Name = EID:ReplaceVariableStr(resultHeader, descObj.Name)
 	end
 end
 -- Adds a formatted "Result" text appended to the item description
@@ -600,6 +600,39 @@ function EID:ItemReminderHandlePoopSpells(player)
 		local descsAvailableToRender = numAvailableDescriptionSlots
 		for i = 0, 5 do -- max 6 poop spell slots
 			local nextPoop = player:GetPoopSpell(i)
+
+			--Custom Poop support
+			if CustomPoopAPI then
+				local poopSaveData = CustomPoopAPI.GetPersistentPlayerData(player)
+				local poopKey = poopSaveData.Poops[i + 1]
+				if poopKey == "DIARREAH" then poopKey = "DIARRHEA" end --Typo from Custom Poop API's side
+
+				nextPoop = PoopSpellType["SPELL_"..poopKey] --Yes, this works LOL
+
+				if nextPoop == nil then
+					nextPoop = PoopSpellType.SPELL_NONE --Prevent from rendering normally
+					local customPoop = EID:getDescriptionEntry("poopSpells")[poopKey]
+
+					local ignoreExisting = false
+					if customPoop == nil then --If the poop still doesn't exist, use the unkown one instead
+						customPoop = EID:getDescriptionEntry("poopSpells")["Unknown"] or EID.descriptions["en_us"]["poopSpells"]["Unknown"]
+						ignoreExisting = true
+					end
+
+					if ignoreExisting or not displayedPoopTypes[customPoop] then
+						local poopName = customPoop[2]
+						if customPoop[4] then
+							poopName = poopName .. EID:getModNameString({ ["ModName"] = customPoop[4] })
+						end
+						EID:ItemReminderAddTempDescriptionEntry(customPoop[1], poopName, customPoop[3])
+
+						displayedPoopTypes[customPoop] = true
+						descsAvailableToRender = descsAvailableToRender - 1
+					end
+				end
+			end
+			--End of custom poop support
+
 			if not displayedPoopTypes[nextPoop] then
 				EID:ItemReminderAddTempDescriptionEntry("{{PoopSpell" .. nextPoop .. "}}", poopInfo[nextPoop][1],
 					poopInfo[nextPoop][2])
@@ -911,13 +944,18 @@ function EID:ItemReminderGetDescription()
 
 	-- Default: put all descriptions into one long description
 	for _, entry in ipairs(EID.ItemReminderTempDescriptions) do
+		if EID.Config["ShowItemIcon"] then
+			finalHoldMapDesc = finalHoldMapDesc .. entry[1] .. " "
+		end
+		if EID.Config["ShowItemName"] then
+			finalHoldMapDesc = finalHoldMapDesc .. "{{ColorEIDObjName}}" .. entry[2]
+		end
 		local description = entry[3] .. "#"
 
 		if tryTrim then
 			description = EID:ItemReminderTrimBulletPoints(description)
 		end
-
-		finalHoldMapDesc = finalHoldMapDesc .. entry[1] .. " {{ColorEIDObjName}}" .. entry[2] .. "#" .. description
+		finalHoldMapDesc = finalHoldMapDesc .. "#" .. description
 	end
 
 	EID.InsideItemReminder = false

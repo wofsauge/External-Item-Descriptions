@@ -160,8 +160,8 @@ local repCollectibles={
 	[294] = {"294", "Haricot Beurre", "Repousse les ennemis et les projectiles#Projeter un ennemi contre un mur ou un obstacle lui inflige des dégâts"}, -- Butter Bean
 	[295] = {"295", "Pot de Vin", "Retire une pièce à Isaac#Inflige{{ColorLime}} dégâts x2{{CR}} à tous les ennemis dans la salle"}, -- Magic Fingers
 	[296] = {"296", "Adaptateur", "Convertit un cœur d'âme ou un cœur noir en un réceptacle de cœur"}, -- Converter
---	[297] = {"297", "Boîte de Pandore", "{{Warning}} USAGE UNIQUE {{Warning}}#{{Blank}} Donne selon l'étage :#{{ColorTransform}}SS1{{ColorWhite}} : 2 cœurs d'âme#{{ColorTransform}}SS2{{ColorWhite}} : 2 clés, 2 bombes#{{ColorTransform}}G1{{ColorWhite}} : 1 Objet de boss#{{ColorTransform}}G2{{ColorWhite}} : SS1 + G1#{{ColorTransform}}P1{{ColorWhite}} : 4 cœurs d'âme#{{ColorTransform}}P2{{ColorWhite}} : 30 pièces#{{ColorTransform}}U1{{ColorWhite}} : 2 Objets de boss#{{ColorTransform}}U2{{ColorWhite}} : La {{ColorYellow}}Bible{{ColorWhite}} {{Collectible33}}#{{ColorTransform}}Shéol{{ColorWhite}} : 1 Objet du Diable, 1 cœur noir#{{ColorTransform}}Cathédrale{{ColorWhite}} : 1 Objet d'Ange + 1 cœur d'âme#{{ColorTransform}}Coffre{{ColorWhite}} : 1 Pièce#{{ColorTransform}}Chambre Noire{{ColorWhite}} : Débloque le{{ColorYellow}}Carton de Déménagement{{ColorWhite}} {{Collectible523}}#{{ColorTransform}}Maison{{ColorWhite}} : La {{ColorYellow}}Clé Rouge{{ColorWhite}} {{Collectible580}}"}, -- Pandora's box
-	[297] = {"297", "Boîte de Pandore", "{{Warning}} USAGE UNIQUE {{Warning}}#{{Blank}} Donne selon l'étage :#SS1 : {{SoulHeart}}{{SoulHeart}}#SS2 : {{Key}}{{Key}}{{Bomb}}{{Bomb}}#Gr1 : Objet de boss#Gr2 : Objet de boss + {{SoulHeart}}{{SoulHeart}}#Pr1 : {{SoulHeart}}{{SoulHeart}}{{SoulHeart}}{{SoulHeart}}#Pr2 : 30{{Coin}}#Ut1 : 2 Objets de boss#Ut2 : La {{ColorYellow}}Bible {{Collectible33}}#??? / Néant : Rien#Shé : Objet diabolique + {{BlackHeart}}#Cat : Objet angélique + {{SoulHeart}}#Chambre Noire : Débloque le {{ColorYellow}}Carton de Déménagement {{Collectible523}}#Coffre : {{Coin}}#Maison : La {{ColorYellow}}Clé Rouge {{Collectible580}}"}, -- Pandora's box
+--	[297] = {"297", "Boîte de Pandore", "Donne selon l'étage :#{{ColorTransform}}SS1{{ColorWhite}} : 2 cœurs d'âme#{{ColorTransform}}SS2{{ColorWhite}} : 2 clés, 2 bombes#{{ColorTransform}}G1{{ColorWhite}} : 1 Objet de boss#{{ColorTransform}}G2{{ColorWhite}} : SS1 + G1#{{ColorTransform}}P1{{ColorWhite}} : 4 cœurs d'âme#{{ColorTransform}}P2{{ColorWhite}} : 30 pièces#{{ColorTransform}}U1{{ColorWhite}} : 2 Objets de boss#{{ColorTransform}}U2{{ColorWhite}} : La {{ColorYellow}}Bible{{ColorWhite}} {{Collectible33}}#{{ColorTransform}}Shéol{{ColorWhite}} : 1 Objet du Diable, 1 cœur noir#{{ColorTransform}}Cathédrale{{ColorWhite}} : 1 Objet d'Ange + 1 cœur d'âme#{{ColorTransform}}Coffre{{ColorWhite}} : 1 Pièce#{{ColorTransform}}Chambre Noire{{ColorWhite}} : Débloque le{{ColorYellow}}Carton de Déménagement{{ColorWhite}} {{Collectible523}}#{{ColorTransform}}Maison{{ColorWhite}} : La {{ColorYellow}}Clé Rouge{{ColorWhite}} {{Collectible580}}"}, -- Pandora's box
+	[297] = {"297", "Boîte de Pandore", "Donne selon l'étage :#SS1 : {{SoulHeart}}{{SoulHeart}}#SS2 : {{Key}}{{Key}}{{Bomb}}{{Bomb}}#Gr1 : Objet de boss#Gr2 : Objet de boss + {{SoulHeart}}{{SoulHeart}}#Pr1 : {{SoulHeart}}{{SoulHeart}}{{SoulHeart}}{{SoulHeart}}#Pr2 : 30{{Coin}}#Ut1 : 2 Objets de boss#Ut2 : La {{ColorYellow}}Bible {{Collectible33}}#??? / Néant : Rien#Shé : Objet diabolique + {{BlackHeart}}#Cat : Objet angélique + {{SoulHeart}}#Chambre Noire : Débloque le {{ColorYellow}}Carton de Déménagement {{Collectible523}}#Coffre : {{Coin}}#Maison : La {{ColorYellow}}Clé Rouge {{Collectible580}}"}, -- Pandora's box
 	[300] = {"300", "Bélier", "↑ Vitesse {{ColorLime}}+0.25#Isaac inflige des dégâts de contact aux ennemis#Marcher suffisamment vite rend Isaac invulnérable aux dégâts de contact"}, -- Aries
 	[307] = {"307", "Capricorne", "↑ Dégâts {{ColorLime}}+0.93#↑ Vitesse {{ColorLime}}+0.1#↑ Portée {{ColorLime}}+0.75#↑ Débit {{ColorLime}}+0.5#{{Heart}} +1 réceptacle de cœur#{{Bomb}} +1 Bombe#{{Coin}} +1 pièce#{{Key}} +1 clé"}, -- Capricorn
 	[308] = {"308", "Verseau", "Isaac répand derrière lui une trainée d'eau qui inflige 66% de ses dégâts#La traînée d'eau hérite des effets des larmes d'Isaac"}, -- Aquarius
@@ -260,7 +260,7 @@ local repCollectibles={
 	[477] = {"477", "Néant", "Absorbe tous les objets sur piédestal dans la salle#{{ColorLightYellow}}Objets activables{{ColorWhite}} : Les utilisations suivantes de Néant déclenchent l'effet de tous les objets absorbés#{{ColorLightYellow}}Objets passifs{{ColorWhite}} : Augmente 2 stats aléatoires"},
 	[478] = {"478", "Pause !", "Immobilise tous les ennemis dans la salle#Les ennemis immobilisés peuvent infliger des dégâts de contact à Isaac#{{Timer}} L'effet prend fin après 30 secondes ou si Isaac tire"},
 	[479] = {"479", "Fondeuse", "Absorbe la babiole portée par Isaac et active son effet de manière permanente"},
-	[483] = {"483", "Mama Méga", "{{Warning}} USAGE UNIQUE {{Warning}}#Une grosse explosion ravage toutes les salles de l'étage"},
+	[483] = {"483", "Mama Méga", "Une grosse explosion ravage toutes les salles de l'étage"},
 	[487] = {"487", "Épluche-Légumes", "↑ Dégâts {{ColorLime}}+0.2#↓ {{ColorError}}-1{{ColorWhite}} réceptacle de cœur#Donne un {{ColorYellow}}Cube de Viande{{ColorWhite}}{{Collectible73}}"},
 	[489] = {"489", "Dé Infini", "Imite les effets de dé (sauf le {{ColorYellow}}Dé Compteur{{ColorWhite}} {{Collectible723}})#L'effet du dé peut être modifié en appuyant sur la touche {{ColorSilver}}[Lâcher] #Le temps de recharge varie selon le dé utilisé"}, -- D Infinity
 	[491] = {"491", "Bébé Drogué", "Fait apparaître une pilule toutes les 7 salles#Avaler une pilule empoisonne tous les ennemis de la salle"}, -- Acid Baby
@@ -281,7 +281,7 @@ local repCollectibles={
 	[508] = {"508", "Rasoir de Maman", "Orbite autour d'Isaac#Inflige {{ColorLime}}dégâts x3{{CR}} et fait saigner les ennemis au contact#Le saignement inflige des dégâts à l'ennemi selon sa vitesse et lui fait répandre du sang corrosif"},
 	[509] = {"509", "Nœnœil", "Orbite autour d'Isaac, inflige des dégâts de contact et tire sur les ennemis à proximité#{{DamageSmall}} 20 dégâts par seconde#{{Blank}} 3.5 dégâts par larme"}, -- Bloodshot Eye
 	[514] = {"514", "Routeur Cassé", "Paralyse parfois les ennemis et projectiles#Les projectiles paralysés disparaissent#25% de chances de dupliquer une récompense de salle#{{LuckSmall}} Effet affecté par la statistique de chance"},
-	[515] = {"515", "Cadeau Surprise", "{{Warning}} USAGE UNIQUE {{Warning}}#Fait apparaître un objet#L'objet provient de la banque d'objets de la salle où se trouve Isaac#Peut faire apparaître le {{ColorYellow}}Morceau de Charbon{{ColorWhite}}{{Collectible132}} ou le {{ColorYellow}}Tas de Caca{{ColorWhite}} {{Collectible36}} à la place#{{LuckSmall}} Effet affecté par la statistique de chance"},
+	[515] = {"515", "Cadeau Surprise", "Fait apparaître un objet#L'objet provient de la banque d'objets de la salle où se trouve Isaac#Peut faire apparaître le {{ColorYellow}}Morceau de Charbon{{ColorWhite}}{{Collectible132}} ou le {{ColorYellow}}Tas de Caca{{ColorWhite}} {{Collectible36}} à la place#{{LuckSmall}} Effet affecté par la statistique de chance"},
 	[517] = {"517", "Bombes Éclair", "{{Bomb}} +7 Bombes#Permet à Isaac de poser plusieurs bombes sans délai#Les bombes d'Isaac ne se repoussent plus entre elles en explosant"},
 	[521] = {"521", "Coupon", "Rend gratuit un objet payant dans la salle#Fonctionne pour les coûts en pièces et en PV#Porter l'objet garantit un objet en solde à la Boutique"},
 	[522] = {"522", "Télékinésie", "Entoure Isaac d'une aura qui repousse les ennemis et immobilise leurs projectiles#Après 3 secondes, les projectiles immobilisés sont renvoyés"}, -- Telekinesis
@@ -312,7 +312,7 @@ local repCollectibles={
 	[565] = {"565", "Chiot de Sang", "Pourchasse et inflige des dégâts aux ennemis#Après avoir tué assez d'ennemis, il s'énerve et peut aussi attaquer Isaac#Il peut être calmé si Isaac lui inflige assez de dégâts ou le fait exploser"}, --  Blood Puppy
 	[566] = {"566", "Attrape-Rêve", "{{HalfSoulHeart}} +1 demi-cœur d'âme à chaque nouvel étage#Révèle le boss et le contenu de la Salle du Trésor dans le cauchemar entre les étages"}, --  Dream Catcher
 	[567] = {"567", "Cierge Pascal", "↑ Débit {{ColorLime}}+0.4{{ColorWhite}} pour chaque salle terminée sans subir de dégâts {{ColorSilver}}(jusqu'à {{ColorLime}}débit +5{{ColorSilver}})#Subir un dégât remet le bonus à zéro"}, --  Paschal Candle
-	[568] = {"568", "Intervention Divine", "Appuyer deux fois sur un bouton de tir invoque un bouclier qui repousse les ennemis et renvoie les projectiles et lasers#{{Timer}} L'effet dure 1 seconde#{{Timer}} 3 secondes de recharge"}, --  Divine Intervention
+	[568] = {"568", "Intervention Divine", "Appuyer 2 fois sur un bouton de tir invoque un bouclier qui repousse les ennemis et renvoie les projectiles et lasers#{{Timer}} L'effet dure 1 seconde#{{Timer}} 3 secondes de recharge"}, --  Divine Intervention
 	[569] = {"569", "Serment du Sang", "Au début de chaque étage, vide Isaac de tous ses cœurs rouges sans le tuer#Chaque cœur perdu augmente les dégâts et la vitesse pour l'étage#Chaque demi-cœur perdu compte comme un dégât individuel infligé à Isaac"}, --  Blood Oath
 	[570] = {"570", "Cookie en Pâte à Modeler", "Donne un effet différent à chaque larme d'Isaac"}, --  Playdough Cookie
 	[571] = {"571", "Chaussettes Orphelines", "↑ Vitesse {{ColorLime}}+0.3#{{SoulHeart}} +2 cœurs d'âme#Rend Isaac invulnérable aux flaques corrosives et aux piques"}, --  Orphan Socks
@@ -321,7 +321,7 @@ local repCollectibles={
 	[574] = {"574", "Monstrance", "Entoure Isaac de deux auras qui infligent des dégâts aux ennemis#L'aura intérieure inflige plus de dégâts que l'aura extérieure"}, --  Monstrance
 	[575] = {"575", "L'Envahisseur", "Se niche dans la tête d'Isaac et tire 4 larmes ralentissantes#Subir un dégât fait parfois sortir l'araignée#Une fois sortie, l'araignée tire deux fois plus vite et bondit sur les ennemis#{{LuckSmall}} Effet affecté par la statistique de chance#{{DamageSmall}} 1.5 dégâts par larme"}, --  The Intruder
 	[576] = {"576", "Coprophilie", "Détruire un caca fait apparaître 1 à 4 petits cacas amicaux#Leur type dépend du type de caca détruit#Tous les ennemis {{ColorCyan}}crottes{{ColorWhite}} deviennent amicaux#Remplace certains rochers par des cacas"}, --  Dirty Mind
-	[577] = {"577", "Damoclès", "{{Warning}} USAGE UNIQUE {{Warning}}#Une fois utilisé, ajoute un objet gratuit à tous les futurs piédestaux#{{Warning}} Dès qu'Isaac subit un dégât, l'épée a une chance de tomber et  le tuer à chaque seconde qui passe#Une fois l'épée tombée, les objets sur piédestal ne sont plus doublés"}, --  Damocles
+	[577] = {"577", "Damoclès", "Une fois utilisé, ajoute un objet gratuit à tous les futurs piédestaux#{{Warning}} Dès qu'Isaac subit un dégât, l'épée a une chance de tomber et  le tuer à chaque seconde qui passe#Une fois l'épée tombée, les objets sur piédestal ne sont plus doublés"}, --  Damocles
 	[578] = {"578", "Carafe de Limonade", "Répand une grande flaque corrosive sur le sol"}, --  Free Lemonade
 	[579] = {"579", "Épée de l'Esprit", "↑ Dégâts {{ColorLime}}x3 +3.5#Remplace les larmes d'Isaac par une épée#Charger l'attaque fait tournoyer l'épée autour d'Isaac#Si les PV d'Isaac sont égaux ou supérieurs à ses réceptacles de cœur, l'épée tire des projectiles"}, --  Spirit Sword
 	[580] = {"580", "Clé Rouge", "Ouvre une porte vers une salle rouge dans les murs marqués d'une porte rouge#Les salles rouges peuvent être des salles spéciales#Entrer dans une salle en dehors de la grille de 13x13 téléporte Isaac dans la salle d'erreur"}, --  Red Key
@@ -366,13 +366,13 @@ local repCollectibles={
 	[619] = {"619", "Droit d'Aînesse", "A un effet différent pour chaque personnage"}, --  Birthright
 	[620] = {"620", "", "<Cet objet n'existe pas>"},
 	[621] = {"621", "Potage de Lentilles", "{{HealingRed}} Soin complet#↑ Dégâts {{ColorLime}}+21.6#Le bonus de dégâts diminue progressivement sur une période de 3 minutes jusqu'à retourner à zéro#Tuer des ennemis ralentit la diminution"}, --  Red Stew
-	[622] = {"622", "Genèse", "{{Warning}} USAGE UNIQUE {{Warning}}#Retire tous les objets et ressources d'Isaac#Téléporte Isaac dans une pièce où il peut choisir entre 3 objets pour remplacer chaque objet perdu#Sortir de cette salle fait passer Isaac à l'étage suivant"}, --  Genesis
+	[622] = {"622", "Genèse", "Retire tous les objets et ressources d'Isaac#Téléporte Isaac dans une pièce où il peut choisir entre 3 objets pour remplacer chaque objet perdu#Sortir de cette salle fait passer Isaac à l'étage suivant"}, --  Genesis
 	[623] = {"623", "Clé Aiguisée", "{{Key}} +5 Clés#Permet à Isaac de jeter une de ses clés pour infliger des dégâts, détruire des obstacles ou ouvrir des serrures#Tuer un ennemi avec une clé peut faire apparaître le contenu d'un coffre"}, --  Sharp Key
 	[624] = {"624", "Paquet d'Extension", "Fait apparaître 5 cartes"}, --  Booster Pack
 	[625] = {"625", "Méga Champi", "↑ Dégâts {{ColorLime}}x4#↑ Portée {{ColorLime}}+2#↓ Débit {{ColorError}}-1.9#Rend Isaac géant, invulnérable et lui permet de tout détruire au contact#{{Timer}} L'effet dure 30 secondes et persiste entre les salles"}, --  Mega Mush
 	[626] = {"626", "1er Morceau de Couteau", "La première partie d'un couteau"}, --  Knife Piece 1
 	[627] = {"627", "2è Morceau de Couteau", "Combiné avec la {{ColorYellow}}poignée{{ColorWhite}} {{Collectible626}}, forme un couteau#Le couteau inflige des dégâts et peut ouvrir une porte faite de chair#{{DamageSmall}} 25 dégâts par seconde"}, --  Knife Piece 2
-	[628] = {"628", "Acte de Décès", "{{Warning}} USAGE UNIQUE {{Warning}}#Téléporte Isaac dans un étage contenant tous les objets du jeu#Après avoir choisi un objet, Isaac est renvoyé dans la salle où il a utilisé l'Acte de Décès"}, --  Death Certificate
+	[628] = {"628", "Acte de Décès", "Téléporte Isaac dans un étage contenant tous les objets du jeu#Après avoir choisi un objet, Isaac est renvoyé dans la salle où il a utilisé l'Acte de Décès"}, --  Death Certificate
 	[629] = {"629", "Robomouche", "Suit Isaac, inflige des dégâts de contact et tire sur les projectiles ennemis pour les détruire#{{DamageSmall}} 3 dégâts par seconde"}, --  Bot Fly
 	[630] = {"630", "", "<Cet objet n'existe pas>"},
 	[631] = {"631", "Couteau de Boucher", "Découpe tous les ennemis et boss de la salle en 2 versions plus petites avec moins de vie#Inflige 25 dégâts aux ennemis trop petits pour être découpés"}, --  Meat Cleaver
@@ -380,7 +380,7 @@ local repCollectibles={
 	[633] = {"633", "Dogma", "↑ Dégâts {{ColorLime}}+2.0#↑ Vitesse {{ColorLime}}+0.1#Permet à Isaac de voler#Nullifie le prochain dégât subi#Si Isaac a moins de 6 cœurs, le soigne avec les cœurs nécessaires"}, --  Dogma
 	[634] = {"634", "Purgatoire", "Crée une fissure dans le sol des salles hostiles#Marcher sur une fissure invoque un fantôme qui pourchasse les ennemis puis explose"}, --  Purgatory
 	[635] = {"635", "Marionnette", "Peut être déplacée avec les boutons de tir#Utiliser l'objet inverse la position d'Isaac avec celle du familier#Se téléporter détruit ou inflige des dégâts à ce qui se trouve au point d'arrivée"}, --  Stitches
-	[636] = {"636", "Touche R", "{{Warning}} USAGE UNIQUE {{Warning}}#Relance une partie depuis le premier étage mais conserve les stats, ressources et objets obtenus par Isaac#Ne remet pas le chronomètre à zéro"}, --  R Key
+	[636] = {"636", "Touche R", "Relance une partie depuis le premier étage mais conserve les stats, ressources et objets obtenus par Isaac#Ne remet pas le chronomètre à zéro"}, --  R Key
 	[637] = {"637", "Gouttes K.O.", "Isaac tire parfois une larme poing qui repousse fortement les ennemis et les étourdit#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 9 Chance)"}, --  Knockout Drops
 	[638] = {"638", "Gomme", "Utiliser l'objet et tirer dans une direction lance une gomme qui efface un ennemi si elle le touche#Les ennemis effacés n'apparaissent plus pour le reste de la partie#{{Timer}} 1 utilisation par étage"}, --  Eraser
 	[639] = {"639", "Cœur Moisi", "{{RottenHeart}} +1 cœur moisi"}, --  Yuck Heart
@@ -556,7 +556,7 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[352] = "Déclenche l'effet du Livre de Bélial quand le canon se brise#Le bonus de dégâts persiste jusqu'à ce que le canon soit réparé", -- Glass Cannon
 	[383] = "Augmente les dégâts des éclats de larmes", -- Tear Detonator
 	[475] = "Réincarne Judas en Judas Obscur s'il a une vie supplémentaire", -- Plan C
-	[482] = "Remplace le dernier objet obtenu par {{ColorYellow}}Pentagramme{{ColorWhite}} {{Collectible51}}}", -- Clicker
+	[482] = "Remplace le dernier objet obtenu par {{ColorYellow}}Pentagramme{{ColorWhite}} {{Collectible51}}", -- Clicker
 	[487] = "Augmente le bonus de dégâts", -- Potato Peeler
 	[536] = "Dégâts {{ColorLime}}+10.8{{ColorWhite}} de manière temporaire pour chaque familier sacrifié", -- Sacrificial Altar
 	[555] = "Inflige des dégâts à tous les ennemis de la salle et les transforme en or", -- Golden Razor
@@ -811,7 +811,7 @@ local repCarBattery = {
 	[713] = {"Convertit un {{BlinkYellowGreen}}cœur{{ColorWhite}} en {{BlinkYellowGreen}}2{{ColorWhite}} familiers pâtés#Le type de pâté change selon le cœur sacrifié"}, -- Sumptorium
 	[719] = {"un objet ou une ressource", "2{{ColorWhite}} objets ou ressources"}, -- Keeper's Box
 	[720] = "Crée un caca en plus de l'effet", -- Everything Jar
-	[722] = {"Paralyse les {{BlinkYellowGreen}}2{{ColorWhite}} ennemis les plus proches d'Isaac#{{Timer}} L'effet dure 5 secondes"}, --Anima Sola
+	[722] = {"l'ennemi le plus proche", "les {{BlinkYellowGreen}}2{{ColorWhite}} ennemis les plus proches"}, --Anima Sola
 	[723] = {1,2}, -- Spindown Dice
 }
 --EID.descriptions[languageCode].carBattery[284] = nil -- D4
@@ -969,7 +969,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	--Mysterious Candy
 	[29] = {"une mouche bleue", "deux {{ColorWhite}}mouches bleues", "trois {{ColorWhite}}mouches bleues"},
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
-	[46] = { "un demi-cœur rouge", "un cœur rouge", "un cœur rouge et demi" },
+	[46] = { "un demi-cœur rouge", "un cœur rouge", "un cœur rouge et demi"},
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
 	[53] = {
 		"{{HealingRed}} Entrer dans une salle de Boss {{BossRoom}} soigne {{ColorGold}}2{{ColorWhite}} cœurs rouges#Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#{{ColorGold}}Peut être retirée !",
@@ -1079,6 +1079,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[64] = {4, 14, 2, 4}, -- VIII - Justice?
 	[65] = "Fait apparaître 1 pièce supplémentaire", -- IX - The Hermit?
 	[66] = {"Déclenche {{ColorShinyPurple}}2{{ColorWhite}} effets de salle de dé au hasard"}, -- X - Wheel of Fortune?
+	[67] = {30, 60}, -- XI - Strength?
 	[68] = {30, 60}, -- XII - The Hanged Man?
 	[70] = {5, 10}, -- XIV - Temperance?
 	[72] = {7, 14}, -- XVI - The Tower?
@@ -1127,7 +1128,7 @@ local repCards={
 	[64] = {"64", "VIII - La Justice ?", "Fait apparaître 2 à 4 coffres dorés {{GoldenChest}}"},
 	[65] = {"65", "IX - L'Ermite ?", "Convertit les ressources et objets de la salle en pièces#Le nombre de pièces est égal à la valeur des objets dans la boutique"},
 	[66] = {"66", "X - La Roue de Fortune ?", "Déclenche l'effet d'une salle de dé au hasard"},
-	[67] = {"67", "XI - La Force ?", "Les ennemis sont ralentis et subissent deux fois plus de dégâts#{{TimerSmall}} L'effet dure 60 secondes ou jusqu'à ce qu'Isaac quitte la salle"},
+	[67] = {"67", "XI - La Force ?", "Les ennemis sont ralentis et subissent deux fois plus de dégâts#{{TimerSmall}} L'effet dure 30 secondes ou jusqu'à ce qu'Isaac quitte la salle"},
 	[68] = {"68", "XII - Le Pendu ?", "↓ Vitesse {{ColorError}}-0.1#Triple tir#Tuer un ennemi fait apparaître une pièce#{{Timer}} L'effet dure 60 secondes"},
 	[69] = {"69", "XIII - La Mort ?", "Invoque une entité squelette pour chaque ennemi tué dans la salle"},
 	[70] = {"70", "XIV - Tempérance ?", "Déclenche l'effet de 5 pilules"},
@@ -1302,6 +1303,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.70"] = "pilules",
 	["5.90"] = "piles",
 	["5.300"] = "cartes",
+	["5.301"] = "runes", -- not a real ID
 	["9.-1"] = "projectile ennemis",
 	["999.-1"] = "obstacles",
 	["1000.0"] = "effets",
@@ -1323,6 +1325,8 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Pet", "Repousse les ennemis et projectiles et crée un nuage de poison#{{Warning}} Explose au contact du feu"},
 	{"Bombe", "Bombe jetable"},
 	{"Diarrhée explosive", "Fait apparaître 5 bombes aux pieds d'Isaac"},
+
+	["Unknown"] = {"{{PoopSpell1}}", "Caca inconnu", "Effets inconnus"}
 }
 
 ---------- Misc. Text ----------
@@ -1359,6 +1363,15 @@ EID.descriptions[languageCode].CraftingIsHidden = "Recettes cachées (Afficher :
 EID.descriptions[languageCode].CraftingMore = "...et {1} autres"
 
 EID.descriptions[languageCode].CraftingResults = "Défiler : {{CONFIG_BoC_Toggle}} + {{ButtonY}}{{ButtonA}}#Verrouiller : {{CONFIG_BoC_Toggle}} + {{ButtonX}}#Rafraîchir : {{CONFIG_BoC_Toggle}} + {{ButtonB}}#Réinitialiser : Maintenir {{ButtonRB}}#Rechercher : {{ButtonEnter}}"
+
+-- Strings for Tainted Cain's pedestal salvaging; the non-base lines will have the corresponding icon automatically
+EID.descriptions[languageCode].TaintedCainPedestalBase = "Éclate en 3 à 8 ressources"
+EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "Éclate en {{BlinkBirthright}}6 à 16{{CR}} ressources"
+EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Un {1} garanti" -- Room type spawns
+EID.descriptions[languageCode].TaintedCainPedestalBonus = "+1 {1} {{ColorSilver}}(33%)" -- "Safety Cap" type spawns
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "+1 ressource {{ColorSilver}}(66%)"
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToeBirthright = "+{{BlinkBirthright}}2{{CR}} ressources {{ColorSilver}}(66%)"
+EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "Chances de cœurs {{ColorError}}-88%"
 
 EID.descriptions[languageCode].BlankCardCharge = "Temps de charge avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"
 EID.descriptions[languageCode].BlankCardEffect = "Effet avec {{ColorYellow}}Carte Blanche{{ColorWhite}} :"
@@ -1410,7 +1423,7 @@ local repConditions = {
 
 
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
-	["5.100.642"] = {"{{Warning}} USAGE UNIQUE {{Warning}}#Fait apparaître un objet qui provient de la banque d'objets de la salle#{{ColorSilver}}Effet propre à {1}"}, -- Magic Skin + Lost
+	["5.100.642"] = {"Fait apparaître un objet qui provient de la banque d'objets de la salle#{{ColorSilver}}Effet propre à {1}"}, -- Magic Skin + Lost
 	["5.100.240"] = "Les changements de stats persistent même si {1} repose l'objet", -- Experimental Treatment + Tainted Isaac
 	["5.100.644"] = "L'augmentation de stats persiste même si {1} repose l'objet", -- Consolation Prize + Tainted Isaac
 	["5.100.549"] = {"↑ Débit {{ColorLime}}+0.4#{{ColorSilver}}Effet propre à {1}"}, -- Brittle Bones (Keeper+Lost)
@@ -1440,6 +1453,15 @@ local repConditions = {
 	["5.350.101 (Tainted Bethany)"] = "Les charges de sang ne comptent pas",
 	["Health Up Soul Charges"] = "+{1} charges d'âme",
 	["Health Up Blood Charges"] = "+{1} charges de sang",
+	
+	-- Tainted Bethany stuff
+	["2 of Hearts Blood Charges"] = {"Multiplie le nombre de charges de sang par 2"},
+	["Vampire Blood Charges"] = {"↑ Dégâts {{ColorLime}}+0.3#Tuer 13 ennemis donne une charge de sang"},
+	["Fork Blood Charges"] = {"Terminer une salle ajoute parfois une charge de sang#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 18 Chance)"},
+	["Stem Cell Blood Charges"] = {"Entrer dans un nouvel étage donne une charge de sang"},
+
+	["Salvaging Bonus"] = {" ou ouvrir un coffre", ", toucher un objet ou ouvrir un coffre"},
+	["Salvaging Lucky Toe"] = "Toucher un objet a 66% de chances de faire apparaître une ressource supplémentaire",
 
 	["5.100.722"] = {"Immobilise Ésaü Impur#Réutiliser l'objet ou attendre 5 secondes libère Ésaü, qui fonce vers Jacob"}, -- TJacob + Anima Sola
 	["5.100.713"] = {"Reconvertit les pâtés en PV#Téléporte le surplus de pâtés à Ève#{{Timer}} 1 seconde de recharge"}, --Teve + Sumptorium
@@ -1466,8 +1488,8 @@ local repConditions = {
 	["Sacrificial Star"] = "L'{{ColorYellow}}Étoile de Bethléem{{CR}} peut être sacrifiée",
 	["Sacrificial Clots"] = "Transforme les pâtés en pièces",
 
-	["1000.76.0"] = "{{Warning}} Ne rejoue que le personnage qui marche sur le dé", -- Dice Room 1 (Co-op)
-	["1000.76.5"] = "{{Warning}} Rejoue les objets de tous les personnages", -- Dice Room 6 (Co-op)
+	["1000.76.1"] = "{{Warning}} Ne rejoue que le personnage qui marche sur le dé", -- Dice Room 1 (Co-op)
+	["1000.76.6"] = "{{Warning}} Rejoue les objets de tous les personnages", -- Dice Room 6 (Co-op)
 	["5.100.45"] = "Soigne les autres joueurs d'un demi-cœur rouge", -- Yum Heart (Co-Op)
 	["5.350.125"] = {"Relie les joueurs et les familiers par des arcs électriques"}, -- Extension Cord (Co-Op)
 
