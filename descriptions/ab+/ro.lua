@@ -31,7 +31,7 @@ EID.descriptions[languageCode].collectibles={
 	{"8", "Fratele Bobby", "Trage cu lacrimi normale#Provoacă 3.5 daune"}, -- Brother Bobby
 	{"9", "Scatol", "Toți inamicii muscă sunt prietenoși"}, -- Skatole
 	{"10", "Cerc de Muște", "+2 Orbitali muscă#Blochează proiectilele inamicilor"}, -- Halo of Flies
-	{"11", "1usu!", "↑ +1 Reînviere#Isaac reînvie cu inimile pline"}, -- 1up!
+	{"11", "1sus!", "↑ +1 Reînviere#Isaac reînvie cu inimile pline"}, -- 1up!
 	{"12", "Ciupercă Magică", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +0.3 Daune#↑ {{Damage}} x1.5 Daune#↑ {{Range}} +2.5 Rază de atac#Crește mărimea#{{HealingRed}} Vindecă viața"}, -- Magic Mushroom
 	{"13", "Virusul", "↑ {{Speed}} +0.2 Viteză#{{Poison}} La atingerea inamicilor ii otrăvești#Isaac cauzează 48 daune de contact pe secundă"}, -- The Virus
 	{"14", "Furie cu Steroizi", "↑ {{Speed}} +0.3 Viteză#↑ {{Range}} +2.5 Rază de atac"}, -- Roid Rage
@@ -52,7 +52,7 @@ EID.descriptions[languageCode].collectibles={
 	{"29", "Chiloții Mamei", "↑ {{Range}} +2.5 Rază de atac#Oferă 3-6 muște albastre"}, -- Mom's Underwear
 	{"30", "Rujul Mamei", "↑ {{Range}} +3.75 Rază de atace#{{UnknownHeart}} Oferă 1 inimă aleatorie pe jos"}, -- Mom's Heels
 	{"31", "Rujul Mamei", "↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- Mom's Lipstick
-	{"32", "Umerasș", "↑ {{Tears}} +0.7 Lacrimi"}, -- Wire Coat Hanger
+	{"32", "Umeraș", "↑ {{Tears}} +0.7 Lacrimi"}, -- Wire Coat Hanger
 	{"33", "Biblia", "{{Timer}} Zbor pe durata camerei#{{MomsHeart}} Omoară Piciorul și Inima Mamei instant#{{Warning}} Îl omoară pe Isaac dacă este folosită pe Satana"}, -- The Bible
 	{"34", "Cartea lui Belial", "{{AngelDevilChance}} +12.5% Șansă la Camera Înger/Diavol cât timp este ținută#{{Timer}} Oferă pe durata camerei:#↑ {{Damage}} +2 Daune"}, -- The Book of Belial
 	{"35", "Necronomiconul", "Provoacă 40 de daune toturor inamicilor din cameră"}, -- The Necronomicon
