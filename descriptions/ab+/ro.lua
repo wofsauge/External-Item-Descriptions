@@ -163,39 +163,39 @@ EID.descriptions[languageCode].collectibles={
 	{"140", "Blestemul lui Bob", "{{Bomb}} +5 Bombe#{{Poison}} Bombele lui Isaac otrăvesc inamicii prinși în explozie "}, -- Bob's Curse
 	{"141", "Băiatul Misterios", "{{Coin}} Apar 7 bănuți aleatorii"}, -- Pageant Boy
 	{"142", "Scapular", "{{SoulHeart}} Isaac primește 1 Inimă Suflet când are jumătate de inimă#Se poate întâmpla doar o dată pe cameră#Ieșind și reintrând în cameră permite efectului să se declanșeze din nou"}, -- Scapular
-	{"143", "Minge Rapidă", "↑ {{Speed}} +0.3 Viteză#↑ {{Shotspeed}} +0.2 Viteza Lacrimelor"}, -- Speed Ball
+	{"143", "Minge Rapidă", "↑ {{Speed}} +0.3 Viteză#↑ {{Shotspeed}} +0.2 Viteza Lacrimilor"}, -- Speed Ball
 	{"144", "Prieten Vagabond", "{{Coin}} Ia bănuții de lângă el#Apar lucruri aleatorii la fiecare 3-4 bănuți"}, -- Bum Friend
 	{"145", "Capul lui Guppy", "Apar 2-4 muște albastre"}, -- Guppy's Head
 	{"146", "Carte de Rugăciuni", "{{EternalHeart}} +1 Inimă Eternală"}, -- Prayer Card
-	{"147", "Notched Axe", "{{Timer}} For the room, Isaac can break rocks and Secret Room walls by walking into them"}, -- Notched Axe
-	{"148", "Infestation", "Taking damage spawns 1-3 blue flies"}, -- Infestation
-	{"149", "Ipecac", "↑ {{Damage}} +40 Damage#↓ {{Tears}} x0.5 Tears multiplier#↓ {{Tears}} +10 Tear delay#Isaac's tears are shot in an arc#{{Poison}} The tears explode and poison enemies where they land"}, -- Ipecac
-	{"150", "Tough Love", "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 luck"}, -- Tough Love
-	{"151", "The Mulligan", "Tears have a 1/6 chance to spawn a blue fly when hitting an enemy"}, -- The Mulligan
-	{"152", "Technology 2", "↓ {{Tears}} x0.5 Tears multiplier#↓ {{Damage}} x0.65 Damage multiplier#Replaces Isaac's right eye tears with a continuous laser#{{Damage}} It deals 3x Isaac's damage per second"}, -- Technology 2
-	{"153", "Mutant Spider", "↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Isaac shoots 4 tears at once"}, -- Mutant Spider
-	{"154", "Chemical Peel", "↑ {{Damage}} +2 Damage for the left eye"}, -- Chemical Peel
-	{"155", "The Peeper", "Floats around the room#Deals 17 contact damage per second"}, -- The Peeper
-	{"156", "Habit", "{{Battery}} Taking damage adds 1 charge to the active item"}, -- Habit
-	{"157", "Bloody Lust", "↑ {{Damage}} Taking damage grants a damage up#Applies up to 6 times per floor#Lasts for the whole floor"}, -- Bloody Lust
-	{"158", "Crystal Ball", "Spawns a {{SoulHeart}} Soul Heart, {{Rune}} rune or {{Card}} card#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"}, -- Crystal Ball
-	{"159", "Spirit of the Night", "Spectral tears#Flight"}, -- Spirit of the Night
-	{"160", "Crack the Sky", "Spawns 5 beams of light near enemies#Each beam deals 8x Isaac's damage + 160 over 0.8 seconds"}, -- Crack the Sky
-	{"161", "Ankh", "{{Player4}} Respawn as ??? (Blue Baby) on death"}, -- Ankh
-	{"162", "Celtic Cross", "Taking damage has a 20% chance to make Isaac temporarily invincible#{{Luck}} 100% chance at 27 luck"}, -- Celtic Cross
-	{"163", "Ghost Baby", "Shoots spectral tears#Deals 3.5 damage per tear"}, -- Ghost Baby
-	{"164", "The Candle", "Throws a blue flame#It deals contact damage, blocks enemy tears, and despawns after 2 seconds"}, -- The Candle
-	{"165", "Cat-o-nine-tails", "↑ {{Damage}} +1 Damage#↑ {{Shotspeed}} +0.23 Shot speed"}, -- Cat-o-nine-tails
-	{"166", "D20", "Rerolls all pickups in the room"}, -- D20
-	{"167", "Harlequin Baby", "Shoots two tears in a V-shaped pattern#Deals 4 damage per tear"}, -- Harlequin Baby
-	{"168", "Epic Fetus", "Instead of shooting tears, aim a crosshair#A rocket lands on the crosshair after 1.5 seconds#{{Damage}} Rockets deal 20x Isaac's damage"}, -- Epic Fetus
-	{"169", "Polyphemus", "↑ {{Damage}} +4 Damage#↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.48 Tears multiplier#↓ {{Tears}} +3 Tear delay#Tears pierce killed enemies if there is leftover damage"}, -- Polyphemus
-	{"170", "Daddy Longlegs", "Stomps on a nearby enemy every 4 seconds#Deals 40 damage per second"}, -- Daddy Longlegs
-	{"171", "Spider Butt", "{{Slow}} Slows down enemies for 4 seconds#Deals 10 damage to all enemies"}, -- Spider Butt
-	{"172", "Sacrificial Dagger", "Orbital#Blocks enemy shots#Deals 225 contact damage per second"}, -- Sacrificial Dagger
-	{"173", "Mitre", "{{SoulHeart}} 50% chance that Red Hearts spawn as Soul Hearts instead"}, -- Mitre
-	{"174", "Rainbow Baby", "Shoots random tears#Deals 3-5 damage per tear"}, -- Rainbow Baby
-	{"175", "Dad's Key", "Opens all doors in the room, including {{SecretRoom}}{{SuperSecretRoom}}Secret Rooms, {{ChallengeRoom}}{{BossRushRoom}}Challenge Rooms, and the Mega Satan door"}, -- Dad's Key
+	{"147", "Topor Crestat", "{{Timer}} Pentru cameră, Isaac poate sparge pietre și pereți de Cameră Secretă mergând în ei"}, -- Notched Axe
+	{"148", "Infestație", "După luarea unei daune apar 1-3 muște albastre"}, -- Infestation
+	{"149", "Ipecac", "↑ {{Damage}} +40 Daune#↓ {{Tears}} x0.5 Viteză de Atac#↓ {{Tears}} +10 Întârziere a Lacrimilor#Lacrimile lui Isaac sunt trase într-o arcă#{{Poison}} Lacrimile explodează și otrăvesc inamicii unde cad"}, -- Ipecac
+	{"150", "Dragoste Dură", "{{Damage}} 10% șansă să tragi cu un dinte care dă 3.2x daunele lui Isaac#{{Luck}} 100% șansă la 9 noroc"}, -- Tough Love
+	{"151", "Mulligan-ul", "Lacrimile au o șansă de 1/6 să facă să apară o muscă albastră când nimeresc un inamic"}, -- The Mulligan
+	{"152", "Tehnologie 2", "↓ {{Tears}} x0.5 Viteză de Atac#↓ {{Damage}} x0.65 Daune#Înlocuiește lacrimile ochiului drept al lui Isaac cu un laser continuu#{{Damage}} Dă 3x daunele lui Isaac pe secundă"}, -- Technology 2
+	{"153", "Păianjenul Mutant", "↓ {{Tears}} x0.48 Viteză de Atac#↓ {{Tears}} +3 Întârziere a lacrimilor#Isaac trage 4 lacrimi odată"}, -- Mutant Spider
+	{"154", "Coajă Chimică", "↑ {{Damage}} +2 Daune pentru ochiul stâng"}, -- Chemical Peel
+	{"155", "Peeper-ul", "Plutește prin cameră#Dă 17 daune de contact pe secundă"}, -- The Peeper
+	{"156", "Obicei", "{{Battery}} Luând daune adaugă 1 încărcare Articolului Activ"}, -- Habit
+	{"157", "Poftă Sângeroasă", "↑ {{Damage}} După luarea unei daune primești mai multe Daune#Se adaugă până la 6 ori pe etaj#Ține tot etajul"}, -- Bloody Lust
+	{"158", "Mingea de Cristal", "Apare o {{SoulHeart}} Inimă Suflet, {{Rune}} rună sau {{Card}} carte#{{Timer}} Vezi toată harta etajului (în afară de {{SuperSecretRoom}} Camera Super Secretă)"}, -- Crystal Ball
+	{"159", "Spiritul Nopții", "Lacrimi Balistice#Zbori"}, -- Spirit of the Night
+	{"160", "Crapă Cerul", "Apar 5 raze de lumină lângă inamici#Fiecare rază dă 8x daunele lui Isaac + 160 în 0.8 secunde"}, -- Crack the Sky
+	{"161", "Ankh", "{{Player4}} Reînvii ca ??? (Bebelușul Albastru) după moarte"}, -- Ankh
+	{"162", "Crucea Celtică", "După luarea unei Daune Isaac are 20% șansă să devină invincibil#{{Luck}} 100% șansă la 27 noroc"}, -- Celtic Cross
+	{"163", "Bebelușul Fantomă", "Trage Lacrimi Fantomatice#Dă 3.5 daune pe lacrimă"}, -- Ghost Baby
+	{"164", "Lumânarea", "Aruncă o flacără albastră#Dă daune de contact, blochează lacrimile inamicilor, și dispare după 2 secunde"}, -- The Candle
+	{"165", "Pisica-cu-9-cozi", "↑ {{Damage}} +1 Daune#↑ {{Shotspeed}} +0.23 Viteza Lacrimilor"}, -- Cat-o-nine-tails
+	{"166", "D20", "Realege toate lucrurile (pickups) din cameră"}, -- D20
+	{"167", "Bebelușul Harlequin", "Trage 2 lacrimi în formă de V#Dă 4 daune pe lacrimă"}, -- Harlequin Baby
+	{"168", "Fătul Epic", "În loc să tragă cu lacrimi, țintește o reticulă#O rachetă cade pe reticulă după 1.5 secunde#{{Damage}} Rachetele dau 20x daunele lui Isaac"}, -- Epic Fetus
+	{"169", "Polifem", "↑ {{Damage}} +4 Daune#↑ {{Damage}} x2 Daune#↓ {{Tears}} x0.48 Viteză de Atac#↓ {{Tears}} +3 Întârzierea Lacrimilor#Lacrimilă intră prin inamicii omorâți dacă mai există daune"}, -- Polyphemus
+	{"170", "Tăticul Picioare-Mari", "Calcă un inamic apropiat la fiecare 4 secunde#Dă 40 daune pe secundă"}, -- Daddy Longlegs
+	{"171", "Fundul Păianjenului", "{{Slow}} Încetinește inamicii pentru 4 secunde#Dă 10 daune tuturor inamicilor"}, -- Spider Butt
+	{"172", "Pumnalul de Sacrificii", "Orbital#Blochează împușcăturile inamicilor#Dă 225 daune de contact pe secundă"}, -- Sacrificial Dagger
+	{"173", "Mitră", "{{SoulHeart}} 50% șansă ca Inimile Roșii apar ca Inimi Suflet"}, -- Mitre
+	{"174", "Bebeluș Curcubeu", "Trage lacrimi aleatorii#Dă 3-5 daune pe lacrimă"}, -- Rainbow Baby
+	{"175", "Cheile Tatălui", "Deschide toate ușile din cameră, incluzând {{SecretRoom}}{{SuperSecretRoom}}Camerele Secrete, {{ChallengeRoom}}{{BossRushRoom}}Camerele Provocare, și ușa lui Mega Satan"}, -- Dad's Key
 	{"176", "Stem Cells", "↑ {{Heart}} +1 Health#↑ {{Shotspeed}} +0.16 Shot speed"}, -- Stem Cells
 	{"177", "Portable Slot", "{{Coin}} Spend 1 coin for a chance to spawn a pickup"}, -- Portable Slot
 	{"178", "Holy Water", "Taking damage spills a pool of creep#The creep deals 24 damage per second"}, -- Holy Water
