@@ -21,122 +21,122 @@ EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {na
 ---------- Collectibles ----------
 
 EID.descriptions[languageCode].collectibles={
-	{"1", "Ceapa Tristă", "↑ {{Tears}} +0.7 Viteză de atac"}, -- Ceapa Tristă
-	{"2", "Ochiul Interior", "↓ {{Tears}} x0.48 Viteză de atac#↓ {{Tears}} +3 Întârziere a lacrimilor #Isaac trage cu 3 lacrimi odată"}, -- Ochiul Interior
-	{"3", "Lingura Îndoită", "Lacrimi Balistice"}, -- Lingura Îndoită
-	{"4", "Cap de Greier", "↑ {{Damage}} +0.5 Daune#↑ {{Damage}} x1.5 Multiplicator de daune"}, -- Cap de Greier
-	{"5", "Reflexia Mea", "↑ {{Range}} +1.5 Distanță#↑ +1 Mărimea Lacrimilor#↑ {{Shotspeed}} +0.6 Viteza atacului#Lacrimile primesc un efect bumerang"}, -- Reflexia Mea
-	{"6", "Numărul Unu", "↑ {{Tears}} +1.5 Viteză de Atac#↑ +0.76 Mărimea Lacrimilor#↓ {{Range}} -17.62 Distanță"}, -- Numărul Unu
-	{"7", "Sângele Martirului", "↑ {{Damage}} +1 Daune"}, -- Sângele Martirului
-	{"8", "Fratele Bobby", "Împușcă Lacrimi Normale#Are 3.5 atac pe lacrimă"}, -- Fratele Bobby
+	{"1", "Ceapa Tristă", "↑ {{Tears}} +0.7 Viteză de atac"}, -- The Sad Onion
+	{"2", "Ochiul Interior", "↓ {{Tears}} x0.48 Viteză de atac#↓ {{Tears}} +3 Întârziere a lacrimilor #Isaac trage cu 3 lacrimi odată"}, -- The Inner Eye
+	{"3", "Lingura Îndoită", "Lacrimi Balistice"}, -- Spoon Bender
+	{"4", "Cap de Greier", "↑ {{Damage}} +0.5 Daune#↑ {{Damage}} x1.5 Multiplicator de daune"}, -- Cricket's Head
+	{"5", "Reflexia Mea", "↑ {{Range}} +1.5 Distanță#↑ +1 Mărimea Lacrimilor#↑ {{Shotspeed}} +0.6 Viteza atacului#Lacrimile primesc un efect bumerang"}, -- My Reflection
+	{"6", "Numărul Unu", "↑ {{Tears}} +1.5 Viteză de Atac#↑ +0.76 Mărimea Lacrimilor#↓ {{Range}} -17.62 Distanță"}, -- Number One
+	{"7", "Sângele Martirului", "↑ {{Damage}} +1 Daune"}, -- Blood of the Martyr
+	{"8", "Fratele Bobby", "Împușcă Lacrimi Normale#Are 3.5 atac pe lacrimă"}, -- Brother Bobby
 	{"9", "Skatole", "Toate muștele inamice sunt prietenoase"}, -- Skatole
-	{"10", "Aureola de Muște", "+2 Muște Orbital#Blochează proiectilele inamicilor"}, -- Aureola de Muște
-	{"11", "1sus!", "↑ +1 Viață#Isaac reînvie cu viață plină la moarte"}, -- 1sus!
-	{"12", "Ciuperca Magică", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +0.3 Daune#↑ {{Damage}} x1.5 Multiplicator de daune#↑ {{Range}} +5.25 Distanță#↑ +0.5 Mărimea Lacrimilor#Crește mărimea#{{HealingRed}} Viață plină"}, -- Ciuperca Magică
-	{"13", "Virusul", "↓ {{Speed}} -0.1 Viteză#{{Poison}} Atingerea inamicilor îi otrăvește#{{BlackHeart}} Inamicii otrăviți pot oferi Inimi Negre"}, -- Virusul
-	{"14", "Furie cu steroizi", "↑ {{Speed}} +0.6 Viteză#↑ {{Range}} +5.25 Distanță#↑ +0.5 Mărimea lacrimilor"}, -- Furie cu steroizi
+	{"10", "Aureola de Muște", "+2 Muște Orbital#Blochează proiectilele inamicilor"}, -- Halo of Flies
+	{"11", "1sus!", "↑ +1 Viață#Isaac reînvie cu viață plină la moarte"}, -- 1up!
+	{"12", "Ciuperca Magică", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +0.3 Daune#↑ {{Damage}} x1.5 Multiplicator de daune#↑ {{Range}} +5.25 Distanță#↑ +0.5 Mărimea Lacrimilor#Crește mărimea#{{HealingRed}} Viață plină"}, -- Magic Mushroom
+	{"13", "Virusul", "↓ {{Speed}} -0.1 Viteză#{{Poison}} Atingerea inamicilor îi otrăvește#{{BlackHeart}} Inamicii otrăviți pot oferi Inimi Negre"}, -- The Virus
+	{"14", "Furie cu steroizi", "↑ {{Speed}} +0.6 Viteză#↑ {{Range}} +5.25 Distanță#↑ +0.5 Mărimea lacrimilor"}, -- Roid Rage
 	{"15", "<3", "↑ {{Heart}} +1 Viață#{{HealingRed}} Viață plină"}, -- <3
-	{"16", "Ficat Crud", "↑ {{Heart}} +2 Inimi#{{HealingRed}} Viață plină"}, -- Ficat Crud
-	{"17", "Cheia Schelet", "{{Key}} +99 Chei"}, -- Cheia Schelet
-	{"18", "Un Leu", "{{Coin}} +100 Bănuți (99 fără "Buzunare Adânci")"}, -- Un Leu
+	{"16", "Ficat Crud", "↑ {{Heart}} +2 Inimi#{{HealingRed}} Viață plină"}, -- Raw Liver
+	{"17", "Cheia Schelet", "{{Key}} +99 Chei"}, -- Skeleton Key
+	{"18", "Un Leu", "{{Coin}} +100 Bănuți (99 fără "Buzunare Adânci")"}, -- A Dollar
 	{"19", "Boom!", "{{Bomb}} +10 Bombe"}, -- Boom!
-	{"20", "Transcendență", "Zbor"}, -- Transcendență
-	{"21", "Busola", "Arată iconițele pe hartă#Nu arată aspectul hărții"}, -- Busola
-	{"22", "Prânz", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Prânz
-	{"23", "Cină", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Cină
-	{"24", "Desert", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Desert
-	{"25", "Mic Dejun", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Mic Dejun
-	{"26", "Carne Stricată", "↑ {{Heart}} +1 Viață"}, -- Carne Stricată
-	{"27", "Lingură de Lemn", "↑ {{Speed}} +0.3 Viteză"}, -- Lingură de Lemn
-	{"28", "Cureaua", "↑ {{Speed}} +0.3 Viteză"}, -- Cureaua
-	{"29", "Chiloții Mamei", "↑ {{Range}} +2.5 Distanță#Oferă 3-6 muște albastre"}, -- Chiloții Mamei
-	{"30", "Tocurile Mamei", "↑ {{Range}} +2.5 Distanță#Isaac cauzează 24 daune la contact pe secundă"}, -- Tocurile Mamei
-	{"31", "Rujul Mamei", "↑ {{Range}} +3.75 Distanță#{{UnknownHeart}} Oferă 1 inimă aleatorie pe jos"}, -- Rujul Mamei
-	{"32", "Cuier de Sârmă", "↑ {{Tears}} +0.7 Viteză de Atac"}, -- Cuier de Sârmă
-	{"33", "Biblia", "{{Timer}} Zboară o cameră#{{MomsHeart}} Omoară Piciorul Mamei și Inima Mamei instant#{{Warning}} Îl Omoară pe Isaac când este folosită pe Satan"}, -- Biblia
-	{"34", "Cartea lui Belial", "{{AngelDevilChance}} +12.5% Șansă la camerele Diavol/Înger când e ținută#{{Timer}} Primește pentru cameră:#↑ {{Damage}} +2 Daune"}, -- Cartea lui Belial
+	{"20", "Transcendență", "Zbor"}, -- Transcendence
+	{"21", "Busola", "Arată iconițele pe hartă#Nu arată aspectul hărții"}, -- The Compass
+	{"22", "Prânz", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Lunch
+	{"23", "Cină", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Dinner
+	{"24", "Desert", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Dessert
+	{"25", "Mic Dejun", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă o inimă"}, -- Breakfast
+	{"26", "Carne Stricată", "↑ {{Heart}} +1 Viață"}, -- Rotten Meat
+	{"27", "Lingură de Lemn", "↑ {{Speed}} +0.3 Viteză"}, -- Wooden Spoon
+	{"28", "Cureaua", "↑ {{Speed}} +0.3 Viteză"}, -- The Belt
+	{"29", "Chiloții Mamei", "↑ {{Range}} +2.5 Distanță#Oferă 3-6 muște albastre"}, -- Mom's Underwear
+	{"30", "Tocurile Mamei", "↑ {{Range}} +2.5 Distanță#Isaac cauzează 24 daune la contact pe secundă"}, -- Mom's Heels
+	{"31", "Rujul Mamei", "↑ {{Range}} +3.75 Distanță#{{UnknownHeart}} Oferă 1 inimă aleatorie pe jos"}, -- Mom's Lipstick
+	{"32", "Cuier de Sârmă", "↑ {{Tears}} +0.7 Viteză de Atac"}, -- Wire Coat Hanger
+	{"33", "Biblia", "{{Timer}} Zboară o cameră#{{MomsHeart}} Omoară Piciorul Mamei și Inima Mamei instant#{{Warning}} Îl Omoară pe Isaac când este folosită pe Satan"}, -- The Bible
+	{"34", "Cartea lui Belial", "{{AngelDevilChance}} +12.5% Șansă la camerele Diavol/Înger când e ținută#{{Timer}} Primește pentru cameră:#↑ {{Damage}} +2 Daune"}, -- The Book of Belial
 	{"35", "The Necronomicon", "Dă 40 daune tuturor inamicilor din cameră"}, -- The Necronomicon
-	{"36", "Rahatul", "Depune un rahat și împinge inamicii#Poate fi pus langă o gaură și distrus cu o bombă pentru a face un pod"}, -- Rahatul
-	{"37", "Dl. Bum", "Aruncă o bombă mare sub Isaac care dă 110 daune"}, -- Dl. Bum
-	{"38", "Capul lui Tammy", "Trage 10 lacrimi într-un cerc împrejurul lui Isaac#Lacrimile copiază efectele lui Isaac, plus 25 daune"}, -- Capul lui Tammy
-	{"39", "Sutienul Mamei", "Pietrifică toți inamicii din cameră 4 secunde"}, -- Sutienul Mamei
+	{"36", "Rahatul", "Depune un rahat și împinge inamicii#Poate fi pus langă o gaură și distrus cu o bombă pentru a face un pod"}, -- The Poop
+	{"37", "Dl. Bum", "Aruncă o bombă mare sub Isaac care dă 110 daune"}, -- Mr. Boom
+	{"38", "Capul lui Tammy", "Trage 10 lacrimi într-un cerc împrejurul lui Isaac#Lacrimile copiază efectele lui Isaac, plus 25 daune"}, -- Tammy's Head
+	{"39", "Sutienul Mamei", "Pietrifică toți inamicii din cameră 4 secunde"}, -- Mom's Bra
 	{"40", "Kamikaze!", "Cauzează o explozie la locația lui Isaac#Dă 40 daune"}, -- Kamikaze!
-	{"41", "Tamponul Mamei", "{{Fear}} Înfricoșează toți inamicii din cameră 5 secunde"}, -- Tamponul Mamei
-	{"42", "Capul Putred al lui Bob", "Folosind obiectul și trăgând într-o direcție aruncă capul#{{Poison}} Capul explodează la impact și otrăvește inamicii"}, -- Capul Putred al lui Bob
+	{"41", "Tamponul Mamei", "{{Fear}} Înfricoșează toți inamicii din cameră 5 secunde"}, -- Mom's Pad
+	{"42", "Capul Putred al lui Bob", "Folosind obiectul și trăgând într-o direcție aruncă capul#{{Poison}} Capul explodează la impact și otrăvește inamicii"}, -- Bob's Rotten Head
 	{"43", "", "<item does not exist>"},
-	{"44", "Teleportare!", "Îl teleportează pe Isaac într-o cameră aleatorie, în afară de camerele SUNT O EROARE (I AM ERROR) "}, -- Teleportare!
-	{"45", "Yum, Inimă", "{{HealingRed}} Vindecă 1 inimă"}, -- Yum, Inimă
-	{"46", "Picior Norocos", "↑ {{Luck}} +1 Noroc#+8% șansă de răsplată la completarea camerei #Șansă mai bună de câștig când pariezi"}, -- Picior Norocos
-	{"47", "Telecomanda Doctorului", "{{Collectible168}} La folosire, începe să țintească o reticulă#O rachetă aterizează pe reticulă după 1.5 secunde#Dă 20x daunele lui Isaac"}, -- Telecomanda Doctorului
-	{"48", "Săgeata lui Cupid", "Lacrimi pătrunzătoare"}, -- Săgeata lui Cupid
+	{"44", "Teleportare!", "Îl teleportează pe Isaac într-o cameră aleatorie, în afară de camerele SUNT O EROARE (I AM ERROR) "}, -- Teleport!
+	{"45", "Yum, Inimă", "{{HealingRed}} Vindecă 1 inimă"}, -- Yum Heart
+	{"46", "Picior Norocos", "↑ {{Luck}} +1 Noroc#+8% șansă de răsplată la completarea camerei #Șansă mai bună de câștig când pariezi"}, -- Lucky Foot
+	{"47", "Telecomanda Doctorului", "{{Collectible168}} La folosire, începe să țintească o reticulă#O rachetă aterizează pe reticulă după 1.5 secunde#Dă 20x daunele lui Isaac"}, -- Doctor's Remote
+	{"48", "Săgeata lui Cupid", "Lacrimi pătrunzătoare"}, -- Cupid's Arrow
 	{"49", "Shoop da Whoop!", "Următorul atac este înlocuit cu o rază#Dă 26x daunele lui Isaac în 0.9 secunde"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} +1 Daune"}, -- Steven
-	{"51", "Pentagramă", "↑ {{Damage}} +1 Daune#{{AngelDevilChance}} +10% șansă de cameră Diavol/Înger"}, -- Pentagramă
-	{"52", "Dr. Făt", "↓ {{Tears}} x0.4 Multiplicator de lacrimi#{{Bomb}} Isaac trage bombe în loc de lacrimi#{{Damage}} Acele bombe dau 5x daunele lui Isaac + 30"}, -- Dr. Făt
+	{"51", "Pentagramă", "↑ {{Damage}} +1 Daune#{{AngelDevilChance}} +10% șansă de cameră Diavol/Înger"}, -- Pentagram
+	{"52", "Dr. Făt", "↓ {{Tears}} x0.4 Multiplicator de lacrimi#{{Bomb}} Isaac trage bombe în loc de lacrimi#{{Damage}} Acele bombe dau 5x daunele lui Isaac + 30"}, -- Dr. Fetus
 	{"53", "Magneto", "Pickup-urile sunt atrase la Isaac"}, -- Magneto
-	{"54", "Harta Comorilor", "Arată aspectul hărții#Nu arată iconițele camerelor"}, -- Harta Comorilor
-	{"55", "Ochiul Mamei", "50% șansă să tragi o lacrimă extra în spate#{{Luck}} 100% șansă la 2 noroc"}, -- Ochiul Mamei
-	{"56", "Accidentul Lămâii", "Varsă o baltă de fluid#Fluidul dă 24 daune pe secundă"}, -- Accidentul Lămâii
-	{"57", "Admirație Distantă", "Muscă orbital de distanță medie#Dă 75 daune de contact pe secundă"}, -- Admirație Distantă
-	{"58", "Cartea Umbrelor", "{{Timer}} Invincibilitate pentru 10 secunde"}, -- Cartea Umbrelor
+	{"54", "Harta Comorilor", "Arată aspectul hărții#Nu arată iconițele camerelor"}, -- Treasure Map
+	{"55", "Ochiul Mamei", "50% șansă să tragi o lacrimă extra în spate#{{Luck}} 100% șansă la 2 noroc"}, -- Mom's Eye
+	{"56", "Accidentul Lămâii", "Varsă o baltă de fluid#Fluidul dă 24 daune pe secundă"}, -- Lemon Mishap
+	{"57", "Admirație Distantă", "Muscă orbital de distanță medie#Dă 75 daune de contact pe secundă"}, -- Distant Admiration
+	{"58", "Cartea Umbrelor", "{{Timer}} Invincibilitate pentru 10 secunde"}, -- Book of Shadows
 	{"59", "", "<item does not exist>"},
-	{"60", "Scara", "Îi permite lui Isaac să traverseze găuri de o placă"}, -- Scara
+	{"60", "Scara", "Îi permite lui Isaac să traverseze găuri de o placă"}, -- The Ladder
 	{"61", "", "<item does not exist>"},
-	{"62", "Farmecul Vampirului", "{{HealingRed}} Omorârea a 13 inamici vindecă o jumătate de inimă"}, -- Farmecul Vampirului
-	{"63", "Bateria", "{{Battery}} Articolele Active pot fi supraîncărcate la două încărcări pline"}, -- Bateria
-	{"64", "Vânzarea Steam", "{{Shop}} Articolele din magazin costă cu 50% mai puțin"}, -- Vânzarea Steam
-	{"65", "Cartea de Bucate a Anarhistului", "Apar 6 Bombe Troll lângă centrul camerei"}, -- Cartea de Bucate a Anarhistului
-	{"66", "Clepsidra", "{{Slow}} Încetinește inamicii pentru 8 secunde"}, -- Clepsidra
-	{"67", "Sora Maggy", "Trage lacrimi normale#Dă 3.5 daune pe lacrimă"}, -- Sora Maggy
-	{"68", "Tehnologie", "Isaac trage lasere în loc de lacrimi"}, -- Tehnologie
-	{"69", "Lapte cu Ciocolată", "{{Chargeable}} Lacrimi încărcabile#{{Damage}} Daunele se măresc odată cu timpul de încărcare, până la 4x#{{Tears}} Timpul de încărcare maxim este de 2.5x întârzierea lacrimilor"}, -- Lapte cu Ciocolată
-	{"70", "Hormoni de Creștere", "↑ {{Speed}} +0.4 Viteză#↑ {{Damage}} +1 Daune"}, -- Hormoni de Creștere
-	{"71", "Mush Mini", "↑ {{Speed}} +0.3 Viteză#↑ +1.5 Mărimea lacrimilor#↑ Mărimea scade#↓ {{Range}} -4.25 Distanță#Crește mărimea lacrimilor și scade distanța = crește puțin distanța"}, -- Mush Mini
-	{"72", "Rozariu", "{{SoulHeart}} +3 Inimi Suflet#{{Collectible33}} Biblia este adăugată tuturor grupurilor de articole"}, -- Rozariu
-	{"73", "Un Cub de Carne", "Lv1: Orbital#Lv2: Orbital care trage#Lv3: Băiatul Carne#Lv4: Super Băiatul Carne"}, -- Un Cub de Carne
-	{"74", "Un Sfert", "{{Coin}} +25 Bănuți"}, -- Un Sfert
+	{"62", "Farmecul Vampirului", "{{HealingRed}} Omorârea a 13 inamici vindecă o jumătate de inimă"}, -- Charm of the Vampire
+	{"63", "Bateria", "{{Battery}} Articolele Active pot fi supraîncărcate la două încărcări pline"}, -- The Battery
+	{"64", "Vânzarea Steam", "{{Shop}} Articolele din magazin costă cu 50% mai puțin"}, -- Steam Sale
+	{"65", "Cartea de Bucate a Anarhistului", "Apar 6 Bombe Troll lângă centrul camerei"}, -- Anarchist Cookbook
+	{"66", "Clepsidra", "{{Slow}} Încetinește inamicii pentru 8 secunde"}, -- The Hourglass
+	{"67", "Sora Maggy", "Trage lacrimi normale#Dă 3.5 daune pe lacrimă"}, -- Sister Maggy
+	{"68", "Tehnologie", "Isaac trage lasere în loc de lacrimi"}, -- Technology
+	{"69", "Lapte cu Ciocolată", "{{Chargeable}} Lacrimi încărcabile#{{Damage}} Daunele se măresc odată cu timpul de încărcare, până la 4x#{{Tears}} Timpul de încărcare maxim este de 2.5x întârzierea lacrimilor"}, -- Chocolate Milk
+	{"70", "Hormoni de Creștere", "↑ {{Speed}} +0.4 Viteză#↑ {{Damage}} +1 Daune"}, -- Growth Hormones
+	{"71", "Mush Mini", "↑ {{Speed}} +0.3 Viteză#↑ +1.5 Mărimea lacrimilor#↑ Mărimea scade#↓ {{Range}} -4.25 Distanță#Crește mărimea lacrimilor și scade distanța = crește puțin distanța"}, -- Mini Mush
+	{"72", "Rozariu", "{{SoulHeart}} +3 Inimi Suflet#{{Collectible33}} Biblia este adăugată tuturor grupurilor de articole"}, -- Rosary
+	{"73", "Un Cub de Carne", "Lv1: Orbital#Lv2: Orbital care trage#Lv3: Băiatul Carne#Lv4: Super Băiatul Carne"}, -- Cube of Meat
+	{"74", "Un Sfert", "{{Coin}} +25 Bănuți"}, -- A Quarter
 	{"75", "PHD", "{{HealingRed}} Vindecă 2 inimi#{{Pill}} Apare 1 pastilă#{{Pill}} Schimbă pastilele rele în pastile bune#{{BloodDonationMachine}} Mașina de Donație de Sânge dă mai mulți {{Coin}} Bănuți"}, -- PHD
-	{"76", "Viziune X-Ray", "{{SecretRoom}} Deschide toate intrările camerelor secrete"}, -- Viziune X-Ray
-	{"77", "Micul Meu Unicorn", "{{Timer}} Primește pentru 6 secunde:#↑ {{Speed}} +0.28 Viteză#Invincibilitate#Isaac nu poate trage dar dă 40 daune de contact pe secundă"}, -- Micul Meu Unicorn
-	{"78", "Cartea Revelațiilor", "{{SoulHeart}} +1 Inimă Suflet#{{AngelDevilChance}} +17.5% șansă de cameră Diavol/Înger când este ținută#Folosirea articolului are o șansă mare să înlocuiască boss-ul etajului cu un Om-Cal (Horseman)"}, -- Cartea Revelațiilor
-	{"79", "Marcajul", "↑ {{Speed}} +0.2 Viteză#↑ {{Damage}} +1 Daune#{{SoulHeart}} +1 Inimă Suflet"}, -- Marcajul
-	{"80", "Pactul", "↑ {{Tears}} +0.7 Viteză de Atac#↑ {{Damage}} +0.5 Daune#{{SoulHeart}} +2 Inimi Suflet"}, -- Pactul
-	{"81", "Pisica Moartă", "↑ +9 Reînvieri#Isaac reapare cu 1 container de inimă la moarte#{{Warning}} Setează containerele de inimi ale lui Isaac la 1 când este luat"}, -- Pisica Moartă
-	{"82", "Stăpânul Gropii", "↑ {{Speed}} +0.3 Viteză#Isaac poate zbura"}, -- Stăpânul Gropii
-	{"83", "Cuiul", "Când este folosit:#{{SoulHeart}} +1 Inimă Suflet#{{Timer}} Primește pentru cameră:#↑ {{Damage}} +0.7 Daune#↓ {{Speed}} -0.18 Viteză#Isaac dă 40 daune de contact pe secundă#Îi permite lui Isaac să distrugă pietre când merge în ele"}, -- Cuiul
-	{"84", "Trebuie să Mergem mai Adânc!", "Deschide o trapă către următorul etaj#{{LadderRoom}} 10% șansă să deschidă o trapă strâmtă"}, -- Trebuie să Mergem mai Adânc!
-	{"85", "Set de Cărți", "{{Card}} Apare 1 carte"}, -- Set de Cărți
-	{"86", "Dintele lui Monstro", "Monstro cade pe un inamic și dă 120 daune#{{Warning}} Monstro cade pe Isaac dacă camera nu are inamici"}, -- Dintele lui Monstro
-	{"87", "Coarnele lui Loki", "25% șansă să tragi în 4 direcții#{{Luck}} 100% șansă la 7 noroc"}, -- Coarnele lui Loki
-	{"88", "Micul Dolofan", "Încarcă înainte în direcția în care Isaac trage#Dă 52.5 daune de contact pe secundă"}, -- Micul Dolofan
-	{"89", "Mușcătură de Păianjen", "{{Slow}} 25% șansă să tragă lacrimi încetinitoare#{{Luck}} 100% șansă la 15 noroc"}, -- Mușcătură de Păianjen
-	{"90", "Mica Piatră", "↑ {{Tears}} +0.2 Viteză de Atac#↑ {{Damage}} +1 Daune#↓ {{Speed}} -0.2 Viteză"}, -- Mica Piatră
-	{"91", "Pălăria Speologului", "Arată tipul camerei alăturate cu camera următoare#{{SecretRoom}} Poate arăta Camerele Secrete și Super Secrete"}, -- Pălăria Speologului
-	{"92", "Super Bandajul", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă 1 inimă#{{SoulHeart}} +2 Inimi Suflet"}, -- Super Bandajul
-	{"93", "Gamekid-ul", "{{Timer}} Primește pentru 6.5 secunde:#Invincibilitate#Isaac nu poate trage dar dă 40 daune de contact pe secundă#{{HealingRed}} Omorârea a 2 inamici vindecă jumătate de inimă#{{Fear}} Înfricoșează toți inamicii din cameră"}, -- Gamekid-ul
-	{"94", "Sac de Bănuți", "{{Coin}} Apare un bănuț aleator la fiecare 2 camere"}, -- Sac de Bănuți
-	{"95", "Robo-Bebeluș", "Trage cu lasere#Dă 3.5 daune pe împușcătură"}, -- Robo-Bebeluș
-	{"96", "Micul C.H.A.D.", "{{HalfHeart}} Apare o jumătate de Inimă Roșie la fiecare 3 camere"}, -- Micul C.H.A.D.
-	{"97", "Cartea Păcatului", "Apare un lucru aleator"}, -- Cartea Păcatului
-	{"98", "Relicva", "{{SoulHeart}} Apare 1 Inimă Suflet la fiecare 5-6 camere"}, -- Relicva
-	{"99", "Micul Gish", "{{Slow}} Trage cu inimi încetinitoare#Dă 3.5 daune pe lacrimă"}, -- Micul Gish
-	{"100", "Micul Steven", "Trage cu lacrimi balistice#Dă 3.5 daune pe lacrimă"}, -- Micul Steven
-	{"101", "Aureola", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Tears}} +0.2 Viteză de Atac#↑ {{Damage}} +0.3 Daune#↑ {{Range}} +0.25 Distanță#↑ +0.5 Mărimea Lacrimei"}, -- Aureola
-	{"102", "Sticla de Pastile a Mamei", "{{Pill}} Apare 1 pastilă"}, -- Sticla de Pastile a Mamei
-	{"103", "Răceala Comună", "{{Poison}} 25% șansă să tragi lacrimi otrăvite#{{Luck}} 100% șansă la 12 noroc"}, -- Răceala Comună
-	{"104", "Parazitul", "Lacrimile se înjumătățesc la contact#Jumătățile de inimă dau jumătate daune"}, -- Parazitul
-	{"105", "D6-le", "Realege piedestalul articolelor din cameră"}, -- D6-le
-	{"106", "Dl. Mega", "↑ {{Bomb}} x1.83 Daune ale bombelor#{{Bomb}} +5 Bombe"}, -- Dl. Mega
-	{"107", "Foarfecele Roz", "{{Timer}} Primește în cameră:#Flight#Corpul lui Isaac se separă de cap și atacă inamicii cu 82.5 daune de contact pe secundă"}, -- Foarfecele Roz
-	{"108", "Napolitana", "Reduce majoritatea daunelor luate la jumătate de inimă"}, -- Napolitana
-	{"109", "Bani = Putere", "↑ {{Damage}} +0.04 Daune pentru fiecare {{Coin}} bănuț Isaac îl are"}, -- Bani = Putere
-	{"110", "Contactele Mamei", "↑ {{Range}} +0.25 Distanță#↑ +0.5 Mărimea lacrimilor#20% șansă să tragi cu lacrimi pietrificatoare#{{Luck}} 50% șansă la 20 noroc"}, -- Contactele Mamei
-	{"111", "Fasolea", "{{Poison}} Dă 5 daune inamicilor apropiați și îi otrăvește#Otrava dă daunele lui Isaac de 6 ori"}, -- Fasolea
-	{"112", "Îngerul Protector", "Orbital#Accelereză ceilalți orbitali#Blochează proiectilele#Dă 105 daune de contact pe secundă"}, -- Îngerul Protector
-	{"113", "Bebelușul Demon", "Trage în inamicii care se apropie de el#Dă 3 daune pe lacrimă"}, -- Bebelușul Demon
-	{"114", "Cuțitul Mamei", "Lacrimile luo Isaac sunt înlocuite de un cuțit aruncabil#{{Damage}} Cuțitul dă 2x daunele lui Isaac când este ținut și 6x la cea mai mare distanță posibilă"}, -- Cuțitul Mamei
-	{"115", "Tabla Ouija", "Lacrimi balistice"}, -- Tabla Ouijia
-	{"116", "9 Volți", "{{Battery}} Încarcă automat prima bară a Articolelor Active#{{Battery}} Încarcă Articolul Activ când este luat"}, -- 9 Volți
+	{"76", "Viziune X-Ray", "{{SecretRoom}} Deschide toate intrările camerelor secrete"}, -- X-Ray Vision
+	{"77", "Micul Meu Unicorn", "{{Timer}} Primește pentru 6 secunde:#↑ {{Speed}} +0.28 Viteză#Invincibilitate#Isaac nu poate trage dar dă 40 daune de contact pe secundă"}, -- My Little Unicorn
+	{"78", "Cartea Revelațiilor", "{{SoulHeart}} +1 Inimă Suflet#{{AngelDevilChance}} +17.5% șansă de cameră Diavol/Înger când este ținută#Folosirea articolului are o șansă mare să înlocuiască boss-ul etajului cu un Om-Cal (Horseman)"}, -- Book of Revelations
+	{"79", "Marcajul", "↑ {{Speed}} +0.2 Viteză#↑ {{Damage}} +1 Daune#{{SoulHeart}} +1 Inimă Suflet"}, -- The Mark
+	{"80", "Pactul", "↑ {{Tears}} +0.7 Viteză de Atac#↑ {{Damage}} +0.5 Daune#{{SoulHeart}} +2 Inimi Suflet"}, -- The Pact
+	{"81", "Pisica Moartă", "↑ +9 Reînvieri#Isaac reapare cu 1 container de inimă la moarte#{{Warning}} Setează containerele de inimi ale lui Isaac la 1 când este luat"}, -- Dead Cat
+	{"82", "Stăpânul Gropii", "↑ {{Speed}} +0.3 Viteză#Isaac poate zbura"}, -- Lord of the Pit
+	{"83", "Cuiul", "Când este folosit:#{{SoulHeart}} +1 Inimă Suflet#{{Timer}} Primește pentru cameră:#↑ {{Damage}} +0.7 Daune#↓ {{Speed}} -0.18 Viteză#Isaac dă 40 daune de contact pe secundă#Îi permite lui Isaac să distrugă pietre când merge în ele"}, -- The Nail
+	{"84", "Trebuie să Mergem mai Adânc!", "Deschide o trapă către următorul etaj#{{LadderRoom}} 10% șansă să deschidă o trapă strâmtă"}, -- We Need To Go Deeper!
+	{"85", "Set de Cărți", "{{Card}} Apare 1 carte"}, -- Deck of Cards
+	{"86", "Dintele lui Monstro", "Monstro cade pe un inamic și dă 120 daune#{{Warning}} Monstro cade pe Isaac dacă camera nu are inamici"}, -- Monstro's Tooth
+	{"87", "Coarnele lui Loki", "25% șansă să tragi în 4 direcții#{{Luck}} 100% șansă la 7 noroc"}, -- Loki's Horns
+	{"88", "Micul Dolofan", "Încarcă înainte în direcția în care Isaac trage#Dă 52.5 daune de contact pe secundă"}, -- Little Chubby
+	{"89", "Mușcătură de Păianjen", "{{Slow}} 25% șansă să tragă lacrimi încetinitoare#{{Luck}} 100% șansă la 15 noroc"}, -- Spider Bite
+	{"90", "Mica Piatră", "↑ {{Tears}} +0.2 Viteză de Atac#↑ {{Damage}} +1 Daune#↓ {{Speed}} -0.2 Viteză"}, -- The Small Rock
+	{"91", "Pălăria Speologului", "Arată tipul camerei alăturate cu camera următoare#{{SecretRoom}} Poate arăta Camerele Secrete și Super Secrete"}, -- Spelunker Hat
+	{"92", "Super Bandajul", "↑ {{Heart}} +1 Viață#{{HealingRed}} Vindecă 1 inimă#{{SoulHeart}} +2 Inimi Suflet"}, -- Super Bandage
+	{"93", "Gamekid-ul", "{{Timer}} Primește pentru 6.5 secunde:#Invincibilitate#Isaac nu poate trage dar dă 40 daune de contact pe secundă#{{HealingRed}} Omorârea a 2 inamici vindecă jumătate de inimă#{{Fear}} Înfricoșează toți inamicii din cameră"}, -- The Gamekid
+	{"94", "Sac de Bănuți", "{{Coin}} Apare un bănuț aleator la fiecare 2 camere"}, -- Sack of Pennies
+	{"95", "Robo-Bebeluș", "Trage cu lasere#Dă 3.5 daune pe împușcătură"}, -- Robo-Baby
+	{"96", "Micul C.H.A.D.", "{{HalfHeart}} Apare o jumătate de Inimă Roșie la fiecare 3 camere"}, -- Little C.H.A.D.
+	{"97", "Cartea Păcatului", "Apare un lucru aleator"}, -- The Book of Sin
+	{"98", "Relicva", "{{SoulHeart}} Apare 1 Inimă Suflet la fiecare 5-6 camere"}, -- The Relic
+	{"99", "Micul Gish", "{{Slow}} Trage cu inimi încetinitoare#Dă 3.5 daune pe lacrimă"}, -- Little Gish
+	{"100", "Micul Steven", "Trage cu lacrimi balistice#Dă 3.5 daune pe lacrimă"}, -- Little Steven
+	{"101", "Aureola", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Tears}} +0.2 Viteză de Atac#↑ {{Damage}} +0.3 Daune#↑ {{Range}} +0.25 Distanță#↑ +0.5 Mărimea Lacrimei"}, -- The Halo
+	{"102", "Sticla de Pastile a Mamei", "{{Pill}} Apare 1 pastilă"}, -- Mom's Bottle of Pills
+	{"103", "Răceala Comună", "{{Poison}} 25% șansă să tragi lacrimi otrăvite#{{Luck}} 100% șansă la 12 noroc"}, -- The Common Cold
+	{"104", "Parazitul", "Lacrimile se înjumătățesc la contact#Jumătățile de inimă dau jumătate daune"}, -- The Parasite
+	{"105", "D6-le", "Realege piedestalul articolelor din cameră"}, -- The D6
+	{"106", "Dl. Mega", "↑ {{Bomb}} x1.83 Daune ale bombelor#{{Bomb}} +5 Bombe"}, -- Mr. Mega
+	{"107", "Foarfecele Roz", "{{Timer}} Primește în cameră:#Flight#Corpul lui Isaac se separă de cap și atacă inamicii cu 82.5 daune de contact pe secundă"}, -- The Pinking Shears
+	{"108", "Napolitana", "Reduce majoritatea daunelor luate la jumătate de inimă"}, -- The Wafer
+	{"109", "Bani = Putere", "↑ {{Damage}} +0.04 Daune pentru fiecare {{Coin}} bănuț Isaac îl are"}, -- Money = Power
+	{"110", "Contactele Mamei", "↑ {{Range}} +0.25 Distanță#↑ +0.5 Mărimea lacrimilor#20% șansă să tragi cu lacrimi pietrificatoare#{{Luck}} 50% șansă la 20 noroc"}, -- Mom's Contacts
+	{"111", "Fasolea", "{{Poison}} Dă 5 daune inamicilor apropiați și îi otrăvește#Otrava dă daunele lui Isaac de 6 ori"}, -- The Bean
+	{"112", "Îngerul Protector", "Orbital#Accelereză ceilalți orbitali#Blochează proiectilele#Dă 105 daune de contact pe secundă"}, -- Guardian Angel
+	{"113", "Bebelușul Demon", "Trage în inamicii care se apropie de el#Dă 3 daune pe lacrimă"}, -- Demon Baby
+	{"114", "Cuțitul Mamei", "Lacrimile luo Isaac sunt înlocuite de un cuțit aruncabil#{{Damage}} Cuțitul dă 2x daunele lui Isaac când este ținut și 6x la cea mai mare distanță posibilă"}, -- Mom's Knife
+	{"115", "Tabla Ouija", "Lacrimi balistice"}, -- Ouija Board
+	{"116", "9 Volți", "{{Battery}} Încarcă automat prima bară a Articolelor Active#{{Battery}} Încarcă Articolul Activ când este luat"}, -- 9 Volts
 	{"117", "Pasăre Moartă", "Taking damage spawns a bird that attacks enemies#The bird deals 4.3 contact damage per second"}, -- Dead Bird
 	{"118", "Brimstone", "↓ {{Tears}} x0.33 Tears multiplier#{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam#{{Damage}} It deals 13x Isaac's damage over 0.9 seconds"}, -- Brimstone
 	{"119", "Blood Bag", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#{{HealingRed}} Heals 4 hearts"}, -- Blood Bag
