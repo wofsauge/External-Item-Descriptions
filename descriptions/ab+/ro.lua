@@ -196,31 +196,31 @@ EID.descriptions[languageCode].collectibles={
 	{"173", "Mitră", "{{SoulHeart}} 50% șansă ca Inimile Roșii apar ca Inimi Suflet"}, -- Mitre
 	{"174", "Bebeluș Curcubeu", "Trage lacrimi aleatorii#Dă 3-5 daune pe lacrimă"}, -- Rainbow Baby
 	{"175", "Cheile Tatălui", "Deschide toate ușile din cameră, incluzând {{SecretRoom}}{{SuperSecretRoom}}Camerele Secrete, {{ChallengeRoom}}{{BossRushRoom}}Camerele Provocare, și ușa lui Mega Satan"}, -- Dad's Key
-	{"176", "Stem Cells", "↑ {{Heart}} +1 Health#↑ {{Shotspeed}} +0.16 Shot speed"}, -- Stem Cells
-	{"177", "Portable Slot", "{{Coin}} Spend 1 coin for a chance to spawn a pickup"}, -- Portable Slot
-	{"178", "Holy Water", "Taking damage spills a pool of creep#The creep deals 24 damage per second"}, -- Holy Water
-	{"179", "Fate", "{{EternalHeart}} +1 Eternal Heart#Flight"}, -- Fate
-	{"180", "The Black Bean", "Isaac farts when damaged#{{Poison}} The fart poisons enemies"}, -- The Black Bean
-	{"181", "White Pony", "{{Speed}} Sets your Speed to at least 1.5#Flight while held#Using the item dashes in the direction of Isaac's movement, leaving behind beams of light"}, -- White Pony
-	{"182", "Sacred Heart", "↑ {{Heart}} +1 Health#↑ {{Damage}} x2.3 Damage multiplier#↑ {{Damage}} +1 Damage#↑ {{Range}} +0.38 Range#↑ +0.75 Tear height#↓ {{Tears}} -0.4 Tears#↓ {{Shotspeed}} -0.25 Shot speed#{{HealingRed}} Full health#Homing tears"}, -- Sacred Heart
-	{"183", "Tooth Picks", "↑ {{Tears}} +0.7 Tears#↑ {{Shotspeed}} +0.16 Shot speed"}, -- Tooth Picks
-	{"184", "Holy Grail", "↑ {{Heart}} +1 Health#Flight"}, -- Holy Grail
-	{"185", "Dead Dove", "Spectral tears#Flight"}, -- Dead Dove
-	{"186", "Blood Rights", "Deals 40 damage to every enemy#{{Warning}} Deals 1 heart of damage to Isaac#{{Heart}} Removes Red Hearts first"}, -- Blood Rights
-	{"187", "Guppy's Hairball", "Moving swings the hairball around#The ball grows when it kills an enemy#It deals more damage the bigger it is"}, -- Guppy's Hairball
-	{"188", "Abel", "Mirrors Isaac's movement#Shoots towards Isaac#Deals 3.5 damage per tear"}, -- Abel
-	{"189", "SMB Super Fan", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.2 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +0.5 Range#↑ +1 Tear height#{{HealingRed}} Full health"}, -- SMB Super Fan
-	{"190", "Pyro", "{{Bomb}} +99 Bombs"}, -- Pyro
-	{"191", "3 Dollar Bill", "Isaac's tears get random effects every 2-3 seconds"}, -- 3 Dollar Bill
-	{"192", "Telepathy For Dummies", "{{Timer}} Homing tears for the room"}, -- Telepathy For Dummies
-	{"193", "MEAT!", "↑ {{Heart}} +1 Health#↑ {{Damage}} +0.3 Damage"}, -- MEAT!
-	{"194", "Magic 8 Ball", "↑ {{Shotspeed}} +0.16 Shot speed#{{Card}} Spawns a card"}, -- Magic 8 Ball
-	{"195", "Mom's Coin Purse", "{{Pill}} Spawns 4 pills"}, -- Mom's Coin Purse
-	{"196", "Squeezy", "↑ {{Tears}} +0.4 Tears#{{SoulHeart}} Spawns 2 Soul Hearts"}, -- Squeezy
-	{"197", "Jesus Juice", "↑ {{Damage}} +0.5 Damage#↑ {{Range}} +0.25 Range#↑ +0.5 Tear height"}, -- Jesus Juice
-	{"198", "Box", "Spawns 1 pickup of each type"}, -- Box
-	{"199", "Mom's Key", "{{Key}} +2 Keys#Chests contain more pickups"}, -- Mom's Key
-	{"200", "Mom's Eyeshadow", "{{Charm}} 10% chance to shoot charming tears#{{Luck}} 100% chance at 27 luck"}, -- Mom's Eyeshadow
+	{"176", "Celule Stem", "↑ {{Heart}} +1 Viață#↑ {{Shotspeed}} +0.16 Viteza Lacrimei"}, -- Stem Cells
+	{"177", "Păcăneaua Portabilă", "{{Coin}} Plătești 1 bănuț pentru o șansă să apară un lucru"}, -- Portable Slot
+	{"178", "Apă Sfințită", "Luând o daună varsă o baltă de fluid#Fluidul dă 24 daune pe secundă"}, -- Holy Water
+	{"179", "Soartă", "{{EternalHeart}} +1 Inimă Eternală#Zbori"}, -- Fate
+	{"180", "Fasolea Neagră", "Isaac se bășește când este vătămat#{{Poison}} Bășina otrăvește inamicii"}, -- The Black Bean
+	{"181", "Ponei Alb", "{{Speed}} Setează Viteza ta la cel puțin 1.5#Zbori când îl ți#Folosirea articolului se aruncă în direcția în care Isaac merge, lăsând în spate raze de lumină"}, -- White Pony
+	{"182", "Inima Sacră", "↑ {{Heart}} +1 Viață#↑ {{Damage}} x2.3 Daune#↑ {{Damage}} +1 Daune#↑ {{Range}} +0.38 Distanță#↑ +0.75 Mărimea lacrimilor#↓ {{Tears}} -0.4 Viteză de Atac#↓ {{Shotspeed}} -0.25 Viteza Lacrimei#{{HealingRed}} Viață plină#Lacrimi Balistice"}, -- Sacred Heart
+	{"183", "Scobitori", "↑ {{Tears}} +0.7 Viteză de Atac#↑ {{Shotspeed}} +0.16 Viteza Lacrimilor"}, -- Tooth Picks
+	{"184", "Sfântul Graal", "↑ {{Heart}} +1 Viață#Zbori"}, -- Holy Grail
+	{"185", "Porumbel Mort", "Inimi Fantomatice#Zbori"}, -- Dead Dove
+	{"186", "Drepturi de Sânge", "Dă 40 daune fiecărui inamic#{{Warning}} Dă 1 inimă de daune lui Isaac#{{Heart}} Scoate Inimile Roșii primele"}, -- Blood Rights
+	{"187", "Mingea de Păr a lui Guppy", "Mișcându-te aruncă mingea #Mingea Crește când omoară un inamic#Dă mai multe daune cu cât crește"}, -- Guppy's Hairball
+	{"188", "Abel", "Oglindește mișcările lui Isaac#Trage înspre Isaac#Dă 3.5 daune pe lacrimă"}, -- Abel
+	{"189", "SMB Super Fan", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.2 Viteză#↑ {{Tears}} +0.2 Viteză de Atac#↑ {{Damage}} +0.3 Daune#↑ {{Range}} +0.5 Distanță#↑ +1 Mărimea Lacrimilor#{{HealingRed}} Viață Plină"}, -- SMB Super Fan
+	{"190", "Pyro", "{{Bomb}} +99 Bombe"}, -- Pyro
+	{"191", "Bancnota de 3 Lei", "Lacrimile lui Isaac primesc un efect aleator la fiecare 2-3 secunde"}, -- 3 Dollar Bill
+	{"192", "Telepatie pentru Proști", "{{Timer}} Lacrimi balistice pentru cameră"}, -- Telepathy For Dummies
+	{"193", "CARNE!", "↑ {{Heart}} +1 Viață#↑ {{Damage}} +0.3 Daune"}, -- MEAT!
+	{"194", "Mingea 8 Magică", "↑ {{Shotspeed}} +0.16 Viteza Lacrimilor#{{Card}} Apare o carte"}, -- Magic 8 Ball
+	{"195", "Portofelul Mamei", "{{Pill}} Apar 4 pastile"}, -- Mom's Coin Purse
+	{"196", "Squeezy", "↑ {{Tears}} +0.4 Viteză de Atac#{{SoulHeart}} Apar 2 Inimi Suflet"}, -- Squeezy
+	{"197", "Sucul lui Iisus", "↑ {{Damage}} +0.5 Daune#↑ {{Range}} +0.25 Distanță#↑ +0.5 Mărimea Lacrimilor"}, -- Jesus Juice
+	{"198", "Cutie", "Apare 1 lucru din fiecare tip"}, -- Box
+	{"199", "Cheia Mamei", "{{Key}} +2 Chei#Cutiile conțin mai multe lucruri"}, -- Mom's Key
+	{"200", "Fardul Mamei", "{{Charm}} 10% șansă să tragi lacrimi fermecătoare#{{Luck}} 100% șansă la 27 noroc"}, -- Mom's Eyeshadow
 	{"201", "Iron Bar", "↑ {{Damage}} +0.3 Damage#{{Confusion}} 10% chance to shoot concussive tears#{{Luck}} 100% chance at 27 luck"}, -- Iron Bar
 	{"202", "Midas' Touch", "Touching enemies petrifies them and turns them gold#Isaac deals contact damage based on his coin count#{{Coin}} Killing a golden enemy spawns coins#Poop spawned by Isaac has a high chance to be golden poop"}, -- Midas' Touch
 	{"203", "Humbleing Bundle", "Pickups spawned are doubled if possible"}, -- Humbleing Bundle
