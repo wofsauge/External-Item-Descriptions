@@ -8,7 +8,7 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "en_us"
+local languageCode = "RO_ro"
 
 ---------- Collectibles ----------
 
@@ -52,7 +52,7 @@ local repCollectibles={
 	[87] = {"87", "Coarnele lui Loki", "Șansă de 25% sa arunci lacrimi in 4 direcții#{{Luck}} Dacă ai norocul la 15 șansa este de 100%"}, -- Loki's Horns
 	[91] = {"91", "Cască de Miner", "Camerele de pe harta sunt afișate de la distanță mai mare#{{SecretRoom}} Poate de asemenea să arate locația camerelor secrete și super secrete#Previne loviturile cauzate de obiecte căzătoare"}, -- Spelunker Hat
 	[98] = {"98", "Relicva", "{{SoulHeart}} Ofera o Inima Suflet la fiecare 7-8 camere"}, -- The Relic
-	[101] = {"101", "aureola", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Tears}} +0.2 Lacrimi#↑ {{Damage}} +0.3 Daune#↑ {{Range}} +1.5 Rază de atac#{{HealingRed}} Vindecă o inimă"}, -- The Halo
+	[101] = {"101", "Aureola", "↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Tears}} +0.2 Lacrimi#↑ {{Damage}} +0.3 Daune#↑ {{Range}} +1.5 Rază de atac#{{HealingRed}} Vindecă o inimă"}, -- The Halo
 	[106] = {"106", "Dl. Mega", "↑ x1.85 Daune cu bomba#{{Bomb}} +5 Bombe"}, -- Mr. Mega
 	[107] = {"107", "Foarfece Zig-Zag", "{{Timer}} Pe durata camerei:#Abilitatea de a zbura#Corpul lui Isaac este separat de cap și atacă inamicii cu 23.5 daune de contact pe secundă"}, -- The Pinking Shears
 	[110] = {"110", "Lentilele Mamei", "↑ {{Range}} +1.5 Rază de atac#Sansă de 20% ca lacrimile să pietrifice inamicii#{{Luck}} Șansă de 50% la 20 noroc"}, -- Mom's Contacts
