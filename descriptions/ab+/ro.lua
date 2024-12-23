@@ -221,26 +221,26 @@ EID.descriptions[languageCode].collectibles={
 	{"198", "Cutie", "Apare 1 lucru din fiecare tip"}, -- Box
 	{"199", "Cheia Mamei", "{{Key}} +2 Chei#Cutiile conțin mai multe lucruri"}, -- Mom's Key
 	{"200", "Fardul Mamei", "{{Charm}} 10% șansă să tragi lacrimi fermecătoare#{{Luck}} 100% șansă la 27 noroc"}, -- Mom's Eyeshadow
-	{"201", "Iron Bar", "↑ {{Damage}} +0.3 Damage#{{Confusion}} 10% chance to shoot concussive tears#{{Luck}} 100% chance at 27 luck"}, -- Iron Bar
-	{"202", "Midas' Touch", "Touching enemies petrifies them and turns them gold#Isaac deals contact damage based on his coin count#{{Coin}} Killing a golden enemy spawns coins#Poop spawned by Isaac has a high chance to be golden poop"}, -- Midas' Touch
+	{"201", "Țeavă din Fier", "↑ {{Damage}} +0.3 Daune#{{Confusion}} 10% șansă să tragi cu lacrimi concusive#{{Luck}} 100% șansă la 27 noroc"}, -- Iron Bar
+	{"202", "Atingerea lui Midas", "Atingând inamicii îi pietrifică și îi transformă în aur#Isaac dă daune de contact bazate pe numărul de bănuți#{{Coin}} Omorând un inamic auriu face să apară bănuți#Rahatul lui Isaac are o șansă mare să fie auriu"}, -- Midas' Touch
 	{"203", "Humbleing Bundle", "Pickups spawned are doubled if possible"}, -- Humbleing Bundle
-	{"204", "Fanny Pack", "Taking damage has a 50% chance to spawn a random pickup"}, -- Fanny Pack
-	{"205", "Sharp Plug", "{{Battery}} Using an uncharged active item fully recharges it at the cost of 2 hearts#Only works when the item has no charges"}, -- Sharp Plug
-	{"206", "Guillotine", "↑ {{Tears}} -1 Tear delay#↑ {{Damage}} +1 Damage#Isaac's head becomes an orbital that shoots, doesn't take damage and deals 105 contact damage per second"}, -- Guillotine
-	{"207", "Ball of Bandages", "Lv1: Orbital#{{Charm}} Lv2: Orbital that shoots charmed tears#{{Charm}} Lv3: Bandage Girl#{{Charm}} Lv4: Super Bandage Girl"}, -- Ball of Bandages
-	{"208", "Champion Belt", "↑ {{Damage}} +1 Damage#Champion enemy chance goes from 5% to 20%#Doesn't increase chance of champion bosses"}, -- Champion Belt
-	{"209", "Butt Bombs", "{{Bomb}} +5 Bombs#{{Confusion}} Explosions concuss and damage every enemy in the room"}, -- Butt Bombs
-	{"210", "Gnawed Leaf", "After 1 second of inactivity, Isaac becomes invincible"}, -- Gnawed Leaf
-	{"211", "Spiderbaby", "Taking damage spawns 1-2 blue spiders"}, -- Spiderbaby
-	{"212", "Guppy's Collar", "50% chance to revive with half a heart on death"}, -- Guppy's Collar
-	{"213", "Lost Contact", "↓ {{Shotspeed}} -0.15 Shot speed#Isaac's tears destroy enemy shots"}, -- Lost Contact
-	{"214", "Anemic", "↑ {{Range}} +5 Range#{{Timer}} When taking damage Isaac leaves a trail of blood creep for the room#The creep deals 6 damage per second"}, -- Anemic
-	{"215", "Goat Head", "{{AngelDevilChance}} 100% Devil/Angel Room chance"}, -- Goat Head
-	{"216", "Ceremonial Robes", "↑ {{Damage}} +1 Damage#{{BlackHeart}} +3 Black Hearts"}, -- Ceremonial Robes
-	{"217", "Mom's Wig", "{{HealingRed}} Heals 1 heart#5% chance to spawn a blue spider when shooting tears#{{Luck}} 100% chance at 10 luck"}, -- Mom's Wig
-	{"218", "Placenta", "↑ {{Heart}} +1 Health#{{HealingRed}} 50% chance to heal half a heart every minute"}, -- Placenta
-	{"219", "Old Bandage", "↑ {{EmptyHeart}} +1 Empty heart container#{{Heart}} Taking damage has a 10% chance to spawn a Red Heart"}, -- Old Bandage
-	{"220", "Sad Bombs", "{{Bomb}} +5 Bombs#Isaac's bombs shoot 10 tears in a circle when they explode"}, -- Sad Bombs
+	{"204", "Borsetă", "Luând orice daună are o șansă de 50% să facă să apară un lucru aleator"}, -- Fanny Pack
+	{"205", "Priză Ascuțită", "{{Battery}} Folosing un Articol Activ neîncărcat, îl încarcă cu costul a 2 inimi#Funcționează doar când articolul nu are nici o bară încărcată"}, -- Sharp Plug
+	{"206", "Ghilotină", "↑ {{Tears}} -1 Întârziere a Lacrimilor#↑ {{Damage}} +1 Daune#Capul lui Isaac devine un orbital care trage, nu primește daune și dă 105 daune de contact pe secundă"}, -- Guillotine
+	{"207", "Minge din Bandaje", "Lv1: Orbital#{{Charm}} Lv2: Orbital care trage lacrimi fermecătoare#{{Charm}} Lv3: Fata Bandaj#{{Charm}} Lv4: Super Fata Bandaj"}, -- Ball of Bandages
+	{"208", "Cureaua Campionului", "↑ {{Damage}} +1 Daune#Șansa de inamic campion crește de la 5% la 20%#Nu crește șansa de boși campioni"}, -- Champion Belt
+	{"209", "Bombe Fund", "{{Bomb}} +5 Bombe#{{Confusion}} Exploziile zdruncină și daunează fiecare inamic din cameră"}, -- Butt Bombs
+	{"210", "Frunză Roasă", "După 1 secundă de inactivitate, Isaac devine invincibil"}, -- Gnawed Leaf
+	{"211", "Bebeluș-păianjel", "După primirea unei daune apar 1-2 păianjeni albaștri"}, -- Spiderbaby
+	{"212", "Zgarda lui Guppy", "50% șansă să reînvii cu o jumătate de inimă la moarte"}, -- Guppy's Collar
+	{"213", "Contact Pierdut", "↓ {{Shotspeed}} -0.15 Viteza Lacrimilor#Lacrimile lui Isaac distrug lacrimile inamice"}, -- Lost Contact
+	{"214", "Anemic", "↑ {{Range}} +5 Distanță#{{Timer}} După primirea unei daune Isaac lasă o dâră de fluid sângeriu în cameră#Fluidul dă 6 daune pe secundă"}, -- Anemic
+	{"215", "Cap de Capră", "{{AngelDevilChance}} 100% șansă de cameră Demon/Înger"}, -- Goat Head
+	{"216", "Robe Ceremoniale", "↑ {{Damage}} +1 Daune#{{BlackHeart}} +3 Inimi Negre"}, -- Ceremonial Robes
+	{"217", "Peruca Mamei", "{{HealingRed}} Vindecă 1 inimă#5% șansă să apară un păianjen albastru când tragi lacrimi#{{Luck}} 100% șansă la 10 noroc"}, -- Mom's Wig
+	{"218", "Placentă", "↑ {{Heart}} +1 Viață#{{HealingRed}} 50% șansă să vindeci jumătate de inimă în fiecare minut"}, -- Placenta
+	{"219", "Bandaj Vechi", "↑ {{EmptyHeart}} +1 Container gol de inimă#{{Heart}} Luând daune are o șansă de 10% să apară o Inimă Roșie"}, -- Old Bandage
+	{"220", "Bombe Triste", "{{Bomb}} +5 Bombe#Bombele lui Isaac trag 10 lacrimi într-un cerc când explodează"}, -- Sad Bombs
 	{"221", "Rubber Cement", "Isaac's tears bounce off enemies and obstacles"}, -- Rubber Cement
 	{"222", "Anti-Gravity", "↑ {{Tears}} -2 Tear delay#Holding the fire buttons causes tears to hover in midair#Releasing the fire buttons shoots them in the direction they were fired"}, -- Anti-Gravity
 	{"223", "Pyromaniac", "{{Bomb}} +5 Bombs#Immunity to explosions, rock waves, and stomp attacks#{{HealingRed}} Getting hit by explosions heals 1 heart"}, -- Pyromaniac
