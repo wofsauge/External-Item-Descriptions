@@ -2,7 +2,7 @@ if EID and EID.Name then print("Error: Two instances of EID found! Please uninst
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
-EID.Languages = {"en_us", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_nl", "uk_ua", "el_gr", "ro"}
+EID.Languages = {"en_us", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_nl", "uk_ua", "el_gr", "ro_ro"}
 EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
