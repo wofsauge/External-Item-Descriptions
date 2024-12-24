@@ -5,7 +5,7 @@
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:d
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line	
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
 local languageCode = "ro_ro"
@@ -813,11 +813,11 @@ local repTrinkets={
 	[132] = {"132", "Seringă Spartă", "25% șansă să primești un efect de seringă aleatorie la fiecare cameră"}, -- Broken Syringe
 	[133] = {"133", "Fitil Scurt", "Bombele lui Isaac explodează mai rapid"}, -- Short Fuse
 	[134] = {"134", "Fasole Gigant", "Beșinile au raza mărită"}, -- Gigante Bean
-	[135] = {"135", "O Brichetă", "{{Burning}} Entering a room has a 20% chance to burn random enemies"}, -- A Lighter
-	[136] = {"136", "Broken Padlock", "Doors, key blocks and golden chests can be opened with explosions#Explosions can also open the \"Strange Door\" in \"Depths II\""}, -- Broken Padlock
-	[137] = {"137", "Myosotis", "Entering a new floor spawns up to 4 uncollected pickups from the previous floor in the starting room"}, -- Myosotis
-	[138] = {"138", "'M", "Using an active item rerolls it"}, -- 'M
-	[139] = {"139", "Teardrop Charm", "{{Luck}} +4 Luck towards luck-based tear effects"}, -- Teardrop Charm
+	[135] = {"135", "O Brichetă", "{{Burning}} 20% Șansă ca inamicii să ardă la intrarea ăn cameră"}, -- A Lighter
+	[136] = {"136", "Lacăt Spart", "ușiile, blocajele cu chei si cuferele de aur pot fi deschise cu explozii#Exploziile pot sa deschidă de asemenea \"Strange Door\" în \"Depths II\""}, -- Broken Padlock
+	[137] = {"137", "Nu-mă-uita", "Intrarea într-un nou etaj oferă până la 4 pickupuri necolectate din etajul anterior în camera de început"}, -- Myosotis
+	[138] = {"138", "'M", "Schimbă itemul activ la folosire"}, -- 'M
+	[139] = {"139", "Amuletă Lacrimă", "{{Luck}} +4 Noroc pentru efectele pe lacrimi"}, -- Teardrop Charm
 	[140] = {"140", "Apple of Sodom", "Picking up Red Hearts can convert them into blue spiders#Works even while at full health#Effect may consume hearts needed for healing"}, -- Apple of Sodom
 	[141] = {"141", "Forgotten Lullaby", "Doubles the fire rate of familiars"}, -- Forgotten Lullaby
 	[142] = {"142", "Beth's Faith", "{{Collectible584}} Entering a new floor spawns 4 Book of Virtues wisps"}, -- Beth's Faith
