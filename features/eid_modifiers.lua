@@ -459,7 +459,7 @@ if EID.isRepentance then
 		for p = 1,#EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[p]
 			local playerID = player:GetPlayerType()
-			local playerName = player:GetName()
+			local playerName = EID:getPlayerName(player:GetPlayerType())
 
 			local playerStats = {}
 			playerStats[1] = EID:SimpleRound((player.MoveSpeed * 4.5) - 2)
