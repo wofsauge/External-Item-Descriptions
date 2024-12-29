@@ -256,11 +256,11 @@ EID.descriptions[languageCode].collectibles={
 	{"233", "Planetă mică", "↑ +7 Mărimea lacrimilor#Inimi fantomatice#Lacrimile lui Isaac orbitează în jurul lui"}, -- Tiny Planet
 	{"234", "Infestare 2", "Omorând un inamic face să apară un păianjen albastru"}, -- Infestation 2
 	{"235", "", "<item does not exist>"},
-	{"236", "E. Coli", "Touching an enemy turns it into poop"}, -- E. Coli
-	{"237", "Death's Touch", "↑ {{Damage}} +1.5 Damage#↑ {{Tearsize}} x2 Tear size#↓ {{Tears}} -0.3 Tears#Piercing tears"}, -- Death's Touch
-	{"238", "Key Piece 1", "{{Warning}} Getting both parts of the key opens a big golden door#{{AngelChance}} +25% Angel Room chance#{{EternalHeart}} +2% chance for Eternal Hearts"}, -- Key Piece 1
-	{"239", "Key Piece 2", "{{Warning}} Getting both parts of the key opens a big golden door#{{AngelChance}} +25% Angel Room chance#{{EternalHeart}} +2% chance for Eternal Hearts"}, -- Key Piece 2
-	{"240", "Experimental Treatment", "↑ Increases 4 random stats#↓ Decreases 2 random stats"}, -- Experimental Treatment
+	{"236", "E. Coli", "Atingând un inamic îl transformă într-un rahat"}, -- E. Coli
+	{"237", "Atingerea Morții", "↑ {{Damage}} +1.5 Daune#↑ {{Tearsize}} x2 Mărimea lacrimilor#↓ {{Tears}} -0.3 Viteză de Atac#Lacrimi pătrunzătoare"}, -- Death's Touch
+	{"238", "Piesă de cheie 1", "{{Warning}} Luând ambele părți ale cheii deschide o ușă mare aurie#{{AngelChance}} +25% șansă la cameră Înger#{{EternalHeart}} +2% șansă pentru Inimi Eterne"}, -- Key Piece 1
+	{"239", "Piesă de cheie 2", "{{Warning}} Luând ambele părți ale cheii deschide o ușă mare aurie#{{AngelChance}} +25% șansă la cameră Înger#{{EternalHeart}} +2% șansă pentru Inimi Eterne"}, -- Key Piece 2
+	{"240", "Tratament Experimental", "↑ Crește 4 statistici aleatorii#↓ Scade 2 statistici aleatorii"}, -- Experimental Treatment
 	{"241", "Contract from Below", "Doubles all room clear rewards#33% chance for no room clear reward"}, -- Contract from Below
 	{"242", "Infamy", "50% chance to block enemy shots"}, -- Infamy
 	{"243", "Trinity Shield", "Blocks enemy shots coming from the direction Isaac is shooting"}, -- Trinity Shield
