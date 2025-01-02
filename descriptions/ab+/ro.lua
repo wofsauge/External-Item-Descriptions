@@ -241,26 +241,26 @@ EID.descriptions[languageCode].collectibles={
 	{"218", "Placentă", "↑ {{Heart}} +1 Viață#{{HealingRed}} 50% șansă să vindeci jumătate de inimă în fiecare minut"}, -- Placenta
 	{"219", "Bandaj Vechi", "↑ {{EmptyHeart}} +1 Container gol de inimă#{{Heart}} Luând daune are o șansă de 10% să apară o Inimă Roșie"}, -- Old Bandage
 	{"220", "Bombe Triste", "{{Bomb}} +5 Bombe#Bombele lui Isaac trag 10 lacrimi într-un cerc când explodează"}, -- Sad Bombs
-	{"221", "Rubber Cement", "Isaac's tears bounce off enemies and obstacles"}, -- Rubber Cement
-	{"222", "Anti-Gravity", "↑ {{Tears}} -2 Tear delay#Holding the fire buttons causes tears to hover in midair#Releasing the fire buttons shoots them in the direction they were fired"}, -- Anti-Gravity
-	{"223", "Pyromaniac", "{{Bomb}} +5 Bombs#Immunity to explosions, rock waves, and stomp attacks#{{HealingRed}} Getting hit by explosions heals 1 heart"}, -- Pyromaniac
-	{"224", "Cricket's Body", "↑ {{Tears}} -1 Tear delay#↑ {{Tearsize}} x1.2 Tear size#↓ {{Range}} -10 Range#Tears split up in 4 on hit#Split tears deal half damage"}, -- Cricket's Body
-	{"225", "Gimpy", "{{SoulHeart}} Taking damage has a chance to spawn a Soul Heart#{{HalfHeart}} Enemies have a chance to drop a half Red Heart on death"}, -- Gimpy
-	{"226", "Black Lotus", "↑ {{Heart}} +1 Health#{{SoulHeart}} +1 Soul Heart#{{BlackHeart}} +1 Black Heart"}, -- Black Lotus
-	{"227", "Piggy Bank", "{{Coin}} +3 Coins#{{Coin}} Taking damage spawns 1-2 coins"}, -- Piggy Bank
-	{"228", "Mom's Perfume", "↑ {{Tears}} -1 Tear delay#{{Fear}} 15% chance to shoot fear tears"}, -- Mom's Perfume
-	{"229", "Monstro's Lung", "↓ {{Tears}} x0.23 Tears multiplier#{{Chargeable}} Tears are charged and released in a shotgun style attack"}, -- Monstro's Lung
-	{"230", "Abaddon", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1.5 Damage#↓ {{EmptyHeart}} Removes all heart containers#{{BlackHeart}} +6 Black Hearts#{{Fear}} 15% chance to shoot fear tears"}, -- Abaddon
-	{"231", "Ball of Tar", "{{Slow}} 10% chance to shoot slowing tears#{{Luck}} 100% chance at 18 luck#{{Slow}} Isaac leaves a trail of slowing creep"}, -- Ball of Tar
-	{"232", "Stop Watch", "↑ {{Speed}} +0.3 Speed#{{Slow}} Taking damage slows all enemies in the room permanently"}, -- Stop Watch
-	{"233", "Tiny Planet", "↑ +7 Tear height#Spectral tears#Isaac's tears orbit around him"}, -- Tiny Planet
-	{"234", "Infestation 2", "Killing an enemy spawns a blue spider"}, -- Infestation 2
+	{"221", "Ciment de Cauciuc", "Lacrimile lui Isaac sar din inamici și din obstacole"}, -- Rubber Cement
+	{"222", "Anti-Gravitație", "↑ {{Tears}} -2 Întârzierea Lacrimilor#Ținerea unui buton de tragere face ca lacrimile să plutească în aer#Eliberarea unui buton de tragere eliberează lacrimile în direcția în care au fost trase"}, -- Anti-Gravity
+	{"223", "Piroman", "{{Bomb}} +5 Bombe#Imunitate la explozii, valuri de pietre, și atacuri de picior#{{HealingRed}} Fiind atins de o explozie vindecă 1 inimă"}, -- Pyromaniac
+	{"224", "Corpul Greierului", "↑ {{Tears}} -1 Întârzierea Lacrimilor#↑ {{Tearsize}} x1.2 Mărimea Lacrimilor#↓ {{Range}} -10 Distanță#Lacrimile se despart în 4 când lovesc#Sferturile de lacrimi dau jumătate de daune"}, -- Cricket's Body
+	{"225", "Șchiopul", "{{SoulHeart}} Luând orice daună are o șansă să facă să apară o Inimă Suflet#{{HalfHeart}} Inamicii au o șansă să dea o Inimă Roșie la moarte"}, -- Gimpy
+	{"226", "Lotusul Negru", "↑ {{Heart}} +1 Viață#{{SoulHeart}} +1 Inimă Suflet#{{BlackHeart}} +1 Inimă Neagră"}, -- Black Lotus
+	{"227", "Pușculița Porcușor", "{{Coin}} +3 Bănuți#{{Coin}} La primirea oricărei daune apar 1-2 bănuți"}, -- Piggy Bank
+	{"228", "Parfumul Mamei", "↑ {{Tears}} -1 Întârzierea Lacrimilor#{{Fear}} 15% șansă să tragi cu lacrimi înfricoșătoare"}, -- Mom's Perfume
+	{"229", "Plămânul lui Monstro", "↓ {{Tears}} x0.23 Viteză de Atac#{{Chargeable}} Lacrimile sunt încărcate ți trase într-un atac de tip shotgun"}, -- Monstro's Lung
+	{"230", "Abaddon", "↑ {{Speed}} +0.2 Viteză#↑ {{Damage}} +1.5 Daune#↓ {{EmptyHeart}} Scoate toate containerele de inimă#{{BlackHeart}} +6 Inimi Negre#{{Fear}} 15% șansă să tragi cu lacrimi înfricoșătoare"}, -- Abaddon
+	{"231", "Minge din Smoală", "{{Slow}} 10% șansă să tragi cu lacrimi încetinitoare#{{Luck}} 100% șansă la 18 noroc#{{Slow}} Isaac lasă o dâră de fluid încetinitor"}, -- Ball of Tar
+	{"232", "Cronometru", "↑ {{Speed}} +0.3 Viteză#{{Slow}} Primirea oricărei daune încetinește toți inamicii din cameră permanent"}, -- Stop Watch
+	{"233", "Planetă mică", "↑ +7 Mărimea lacrimilor#Inimi fantomatice#Lacrimile lui Isaac orbitează în jurul lui"}, -- Tiny Planet
+	{"234", "Infestare 2", "Omorând un inamic face să apară un păianjen albastru"}, -- Infestation 2
 	{"235", "", "<item does not exist>"},
-	{"236", "E. Coli", "Touching an enemy turns it into poop"}, -- E. Coli
-	{"237", "Death's Touch", "↑ {{Damage}} +1.5 Damage#↑ {{Tearsize}} x2 Tear size#↓ {{Tears}} -0.3 Tears#Piercing tears"}, -- Death's Touch
-	{"238", "Key Piece 1", "{{Warning}} Getting both parts of the key opens a big golden door#{{AngelChance}} +25% Angel Room chance#{{EternalHeart}} +2% chance for Eternal Hearts"}, -- Key Piece 1
-	{"239", "Key Piece 2", "{{Warning}} Getting both parts of the key opens a big golden door#{{AngelChance}} +25% Angel Room chance#{{EternalHeart}} +2% chance for Eternal Hearts"}, -- Key Piece 2
-	{"240", "Experimental Treatment", "↑ Increases 4 random stats#↓ Decreases 2 random stats"}, -- Experimental Treatment
+	{"236", "E. Coli", "Atingând un inamic îl transformă într-un rahat"}, -- E. Coli
+	{"237", "Atingerea Morții", "↑ {{Damage}} +1.5 Daune#↑ {{Tearsize}} x2 Mărimea lacrimilor#↓ {{Tears}} -0.3 Viteză de Atac#Lacrimi pătrunzătoare"}, -- Death's Touch
+	{"238", "Piesă de cheie 1", "{{Warning}} Luând ambele părți ale cheii deschide o ușă mare aurie#{{AngelChance}} +25% șansă la cameră Înger#{{EternalHeart}} +2% șansă pentru Inimi Eterne"}, -- Key Piece 1
+	{"239", "Piesă de cheie 2", "{{Warning}} Luând ambele părți ale cheii deschide o ușă mare aurie#{{AngelChance}} +25% șansă la cameră Înger#{{EternalHeart}} +2% șansă pentru Inimi Eterne"}, -- Key Piece 2
+	{"240", "Tratament Experimental", "↑ Crește 4 statistici aleatorii#↓ Scade 2 statistici aleatorii"}, -- Experimental Treatment
 	{"241", "Contract from Below", "Doubles all room clear rewards#33% chance for no room clear reward"}, -- Contract from Below
 	{"242", "Infamy", "50% chance to block enemy shots"}, -- Infamy
 	{"243", "Trinity Shield", "Blocks enemy shots coming from the direction Isaac is shooting"}, -- Trinity Shield
