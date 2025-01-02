@@ -91,19 +91,19 @@ local function VoidCallback(descObj, isRune)
 	local prefix = (isRune and "{{Card41}} ") or "{{Collectible477}} "
 	local pickup = descObj.Entity and descObj.Entity:ToPickup()
 	local isAltOption = false
+	local shopItem = pickup and pickup:IsShopItem()
 	-- Test if this is an Option pedestal, Repentance only absorbs the lowest index one
-	if EID.isRepentance then
+	-- (Don't check for options if it's a shop item, e.g. Tainted Keeper choice pedestals)
+	if EID.isRepentance and not shopItem then
 		local optionIndex = pickup and pickup.OptionsPickupIndex
 		local firstOption = EID.VoidOptionIndexes[optionIndex]
-		if (EID.isRepentance and optionIndex and optionIndex ~= 0 and descObj.ObjSubType ~= firstOption) then
-			EID:appendToDescription(descObj, "#" .. prefix .. "{{Collectible"..firstOption..
-			"}}" .. EID:getObjectName(5, 100, firstOption) .. EID:getDescriptionEntry("VoidOptionText"))
+		if (optionIndex and optionIndex ~= 0 and firstOption and descObj.ObjSubType ~= firstOption) then
+			EID:appendToDescription(descObj, "#" .. prefix .. "{{NameC"..firstOption.."}}" .. EID:getDescriptionEntry("VoidOptionText"))
 			isAltOption = true
 		end
 	end
 	-- Print Stat up info if Black Rune or non-active item
 	if isRune or EID.itemConfig:GetCollectible(descObj.ObjSubType).Type ~= 3 then
-		local shopItem = pickup and pickup:IsShopItem()
 		-- Afterbirth+ really can't do anything with Void and a shop item, so just return
 		if (not EID.isRepentance and shopItem) then return descObj end
 
@@ -134,68 +134,72 @@ local function BlackRuneCallback(descObj)
 	return VoidCallback(descObj, true)
 end
 
--- Map each text block of Pandora's Box to the AbsoluteStage number it's watching for
--- Exception: 9 (???) should also watch for 12 (The Void)
--- Localizations must have their text blocks in this order:
--- B1, B2, C1, C2, D1, D2, W1, W2, ???/The Void, Sheol, Cathedral, Dark Room, The Chest, Home
-local pandorasStages = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11, 11, 13 }
--- Stage numbers where whether it's alt or not matters for Pandora's Box
-local altStages = { [10] = false, [11] = true, [12] = false, [13] = true }
--- Greed Mode Absolute Stage / Pandora's Box Behavior: 1: B2, 3: C2, 5: D2, 7: W1, 10: Sheol, 0: Chest
-local greedStages = { -1, 1, -1, 3, -1, 5, 7, -1, -1, 10, -1, -1, 0, -1 }
-EID.PandorasGreedConditional = false -- helper variable to let item reminder know that we have the 6-entry greed pandora desc
+-- Map each text block of Pandora's Box to the AbsoluteStage number. Second entry is the block used for Alt-Stages
+local pandoraStages = {
+	[1] = { 1, 1 }, -- B1
+	[2] = { 2, 2 }, -- B2
+	[3] = { 3, 3 }, -- C1
+	[4] = { 4, 4 }, -- C2
+	[5] = { 5, 5 }, -- D1
+	[6] = { 6, 6 }, -- D2
+	[7] = { 7, 7 }, -- W1
+	[8] = { 8, 8 }, -- W2
+	[9] = { 9, 9 }, -- ???
+	[10] = { 10, 11 }, -- Sheol, Cathedral
+	[11] = { 12, 13 }, -- Dark Room, Chest
+	[12] = { 9, 9 }, -- Void
+	[13] = { 14, 14 }, -- Home
+}
+local pandoraGreedStages = {
+	[1] = { 2, 2, 1 }, -- Basement
+	[2] = { 4, 4, 2 }, -- Cellar
+	[3] = { 6, 6, 3 }, -- Depths
+	[4] = { 8, 8, 4 }, -- Womb
+	[5] = { 10, 10, 5 }, -- Sheol
+	[6] = { 13, 13, 6 }, -- Shop
+	[7] = { 13, 13, 6 }, -- Chest
+}
 
 local function PandorasBoxCallback(descObj)
-	local pandoraCount = 0
+	local hasModifier = game:IsGreedMode() and EID:getDescriptionEntry("ConditionalDescs", "5.100.297 (Greed)", true)
+
 	local level = game:GetLevel()
-	local stageNum = level:GetAbsoluteStage()
-	local altStage = level:IsAltStage()
-	local doMarkup = false
-	-- Greed Mode has different Pandora's Box rules and stage numbers
-	local stageCheck = game:IsGreedMode() and greedStages or pandorasStages
-	local altCheck = game:IsGreedMode() and {} or altStages
+	local stageNum = game:IsGreedMode() and level:GetStage() or level:GetAbsoluteStage()
+
+	local stageTable = game:IsGreedMode() and pandoraGreedStages or pandoraStages
+	local textBlockToUse = stageTable[stageNum][hasModifier and 3 or level:IsAltStage() and 2 or 1]
 
 	-- floor result information must be separated by line breaks or semicolons in localizations
-	local totalCount = 0
-	for w in string.gmatch(descObj.Description, "([^#;]+)") do
-		if totalCount > 0 or string.find(w,"2") then
-			totalCount = totalCount + 1
+	local levelDescriptions = {}
+	local hasVoidEntry = false
+	for lvlDesc in string.gmatch(descObj.Description, "([^#;]+)") do
+		table.insert(levelDescriptions, lvlDesc)
+		if lvlDesc:find("???") then
+			hasVoidEntry = true
 		end
-	end
-	local skip9and12 = false
-	EID.PandorasGreedConditional = false
-	-- many localizations do not have the ???/Void entry and the Dark Room entry
-	-- this seemed better than forcing them to have it
-	if totalCount == (EID.isRepentance and 12 or 11) then
-		skip9and12 = true
-	-- If the localization has a simplified Greed Mode desc, it will only have 6 entries
-	elseif totalCount == 6 then
-		EID.PandorasGreedConditional = true
-		greedStages = { 1, 3, 5, 7, 10, 0 }
 	end
 
-	for w in string.gmatch(descObj.Description, "([^#;]+)") do
-		doMarkup = false
-		-- the first captured group to care about is the one that contains a 2 (2 soul hearts)
-		if pandoraCount > 0 or string.find(w,"2") then
-			pandoraCount = pandoraCount + 1
-			if skip9and12 and (pandoraCount == 9 or pandoraCount == 12) then
-				pandoraCount = pandoraCount + 1
-			end
-			if (altCheck[pandoraCount] == nil or altStage == altCheck[pandoraCount]) then
-				if stageCheck[pandoraCount] == stageNum then doMarkup = true
-				--special exception for ???/The Void
-				elseif pandoraCount == 9 and stageNum == 12 then doMarkup = true
-				end
-			end
-			if doMarkup then
-				-- gsub behaves very poorly with punctuation so you need a punctuation-escaping gsub helper...
-				descObj.Description = string.gsub(descObj.Description, w:gsub("([^%w])", "%%%1"), "{{ColorBagComplete}}" .. w .. "{{CR}}")
-			end
-			-- don't check any lines of the description after Home
-			if pandoraCount	== (EID.isRepentance and 14 or 13) then break end
+	-- Some languages are missing the ???/Void entry or more. We account for that
+	if not hasVoidEntry and not hasModifier then
+		-- void entry is supposed to be highlighted, but its missing, or the description is lacking multiple entries
+		if textBlockToUse == 9 or (#levelDescriptions < 15 and textBlockToUse > 9) then
+			return descObj
+		end
+		-- void entry is missing and a later entry should be highlighted. We adjust the id accordingly
+		if textBlockToUse > 9 then
+			textBlockToUse = textBlockToUse - 1
 		end
 	end
+
+	-- look up the line to highlight. skip the first 2 lines, because they are generic item infos
+	local textBlockToHighlight = levelDescriptions[textBlockToUse + 2]
+	if textBlockToHighlight then
+		-- Escape the content of the string, because gsub() expects pattern definitions
+		local clearedTextBlock = string.gsub(textBlockToHighlight, "%p", "%%%0")
+		local replacementText = "{{ColorBagComplete}}" .. textBlockToHighlight .. "{{CR}}"
+		descObj.Description = string.gsub(descObj.Description, clearedTextBlock, replacementText)
+	end
+
 	return descObj
 end
 
@@ -364,6 +368,14 @@ local function HealthUpCallback(descObj)
 	return descObj
 end
 
+-- Handle Single use Item description add-on
+local function SingleUseCallback(descObj)
+	local infoText = EID:getDescriptionEntry("SingleUseInfo")
+	descObj.Description = infoText .. "#" .. descObj.Description
+
+	return descObj
+end
+
 if EID.isRepentance then
 	-- Handle Birthright
 	local function BirthrightCallback(descObj)
@@ -447,7 +459,7 @@ if EID.isRepentance then
 		for p = 1,#EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[p]
 			local playerID = player:GetPlayerType()
-			local playerName = player:GetName()
+			local playerName = EID:getPlayerName(player:GetPlayerType())
 
 			local playerStats = {}
 			playerStats[1] = EID:SimpleRound((player.MoveSpeed * 4.5) - 2)
@@ -1052,6 +1064,8 @@ local function EIDConditionsAB(descObj)
 	-- Collectible Pedestal Callbacks
 	if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
 		if EID.Config["ItemCollectionIndicator"] and EID:requiredForCollectionPage(descObj.ObjSubType) then table.insert(callbacks, ItemCollectionPageCallback) end
+
+		if EID.SingleUseCollectibles[descObj.ObjSubType] then table.insert(callbacks, SingleUseCallback) end
 
 		if descObj.ObjSubType == 297 then table.insert(callbacks, PandorasBoxCallback) end
 

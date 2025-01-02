@@ -173,7 +173,7 @@ EID.ItemReminderDescriptionModifier = {
 					local inAscent = EID.isRepentance and (level:IsAscent() or level:IsPreAscent())
 					local final = not level:IsNextStageAvailable()
 					
-					if EID:IsGreedMode() and not EID.PandorasGreedConditional then
+					if EID:IsGreedMode() then
 						skip = 1
 						if stageNum == 5 then skip = 0 -- Depths 2 -> Womb 1
 						elseif stageNum == 7 or stageNum == 10 then skip = 2
@@ -431,7 +431,7 @@ function EID:ItemReminderAddResultHeaderSuffix(descObj, newName)
 		descObj.Name = newName ..
 			" (" .. iconString .. " " .. EID:ReplaceVariableStr(resultHeader, descObj.Name) .. ")"
 	else
-		descObj.Name = descObj.Name .. EID:ReplaceVariableStr(resultHeader, descObj.Name)
+		descObj.Name = EID:ReplaceVariableStr(resultHeader, descObj.Name)
 	end
 end
 -- Adds a formatted "Result" text appended to the item description

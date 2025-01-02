@@ -636,14 +636,17 @@ function EID:getObjectName(Type, Variant, SubType)
 	if tableName == "collectibles" then
 		if EID.itemConfig:GetCollectible(SubType) == nil then return Type.."."..Variant.."."..SubType end
 		local vanillaName = EID.itemConfig:GetCollectible(SubType).Name
-		return name or (not string.find(vanillaName, "^#") and vanillaName) or (EID.descriptions["en_us"][tableName][SubType] and EID.descriptions["en_us"][tableName][SubType][2]) or vanillaName
+		local englishName = EID.descriptions["en_us"][tableName][SubType] and EID.descriptions["en_us"][tableName][SubType][2]
+		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "trinkets" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
 		local vanillaName = EID.itemConfig:GetTrinket(adjustedSubtype).Name
-		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][adjustedSubtype][2] or vanillaName
+		local englishName = EID.descriptions["en_us"][tableName][adjustedSubtype] and EID.descriptions["en_us"][tableName][adjustedSubtype][2]
+		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "cards" then
 		local vanillaName = EID.itemConfig:GetCard(SubType).Name
-		return name or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][SubType][2] or vanillaName
+		local englishName = EID.descriptions["en_us"][tableName][SubType] and EID.descriptions["en_us"][tableName][SubType][2]
+		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
 		return EID:getPillName(adjustedSubtype, tableName == "horsepills")
@@ -1308,20 +1311,21 @@ function EID:PlayersHaveCollectible(collectibleID)
 	return false
 end
 
+-- Returns true, if any player has a given voided collectible
 function EID:PlayersVoidedCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		local playerNum = EID:getPlayerID(player, true)
-		if player:HasCollectible(477) and EID.absorbedItems[tostring(playerNum)] and EID.absorbedItems[tostring(playerNum)][tostring(collectibleID)] then
-			return true, player, i
-		end
+		return EID:PlayerVoidedCollectible(player, collectibleID)
 	end
 	return false
 end
+
+-- Returns true, if the player has a given voided collectible
 function EID:PlayerVoidedCollectible(player, collectibleID)
-	local i = EID:getPlayerID(player, true)
-	if player:HasCollectible(477) and EID.absorbedItems[tostring(i)] and EID.absorbedItems[tostring(i)][tostring(collectibleID)] then
-		return true
+	local playerNum = EID:getPlayerID(player, true)
+	local isCollectibleAbsorbed = EID.absorbedItems[tostring(playerNum)] and EID.absorbedItems[tostring(playerNum)][tostring(collectibleID)]
+	if player:HasCollectible(477) and isCollectibleAbsorbed then
+		return true, player, i
 	end
 end
 
@@ -1336,40 +1340,40 @@ function EID:PlayersHaveTrinket(trinketID)
 	return false
 end
 
+-- Returns true, if any player has a given card
 function EID:PlayersHaveCard(cardID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		for j = 0, (EID.isRepentance and 3 or 1) do
-			if player:GetCard(j) == cardID then
-				return true, player, i
-			end
-		end
+		return EID:PlayerHasCard(player, cardID)
 	end
 	return false
 end
+
+-- Returns true, if the player has a given card
 function EID:PlayerHasCard(player, cardID)
+	local playerNum = EID:getPlayerID(player, true)
 	for j = 0, (EID.isRepentance and 3 or 1) do
 		if player:GetCard(j) == cardID then
-			return true
+			return true, player, playerNum
 		end
 	end
 end
 
+-- Returns true, if any player has a given pill color
 function EID:PlayersHavePill(pillID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		for j = 0, (EID.isRepentance and 3 or 1) do
-			if player:GetPill(j) == pillID then
-				return true, player, i
-			end
-		end
+		return EID:PlayerHasPill(player, pillID)
 	end
 	return false
 end
+
+-- Returns true, if the player has a given pill color
 function EID:PlayerHasPill(player, pillID)
+	local playerNum = EID:getPlayerID(player, true)
 	for j = 0, (EID.isRepentance and 3 or 1) do
 		if player:GetPill(j) == pillID then
-			return true
+			return true, player, playerNum
 		end
 	end
 end
@@ -2014,6 +2018,10 @@ function EID:evaluateHeldPill()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		EID.PlayerHeldPill[i] = player:GetPill(0)
+		-- Magdalene starts with an identified pill. We need to account for that
+		if player:GetPlayerType() == PlayerType.PLAYER_MAGDALENE and player.FrameCount <= 1 then
+			EID.UsedPillColors[tostring(EID.PlayerHeldPill[i])] = true
+		end
 	end
 end
 
@@ -2515,7 +2523,7 @@ end
 -- Find the closest player to the given entity
 function EID:ClosestPlayerTo(entity)
 	local closestDist = 9999999
-	local closestPlayer = EID.player
+	local closestPlayer = EID.player or Isaac.GetPlayer()
 	local numPlayers = game:GetNumPlayers()
 	if EID.InsideItemReminder then return EID.ItemReminderPlayerEntity end
 	if entity == nil or numPlayers == 1 then return closestPlayer end
@@ -2523,7 +2531,7 @@ function EID:ClosestPlayerTo(entity)
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
 		local dist = player.Position:Distance(entity.Position)
-		if dist < closestDist then
+		if dist < closestDist and player then
 			closestDist = dist
 			closestPlayer = player
 		end
