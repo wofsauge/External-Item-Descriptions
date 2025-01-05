@@ -261,28 +261,28 @@ EID.descriptions[languageCode].collectibles={
 	{"238", "Piesă de cheie 1", "{{Warning}} Luând ambele părți ale cheii deschide o ușă mare aurie#{{AngelChance}} +25% șansă la cameră Înger#{{EternalHeart}} +2% șansă pentru Inimi Eterne"}, -- Key Piece 1
 	{"239", "Piesă de cheie 2", "{{Warning}} Luând ambele părți ale cheii deschide o ușă mare aurie#{{AngelChance}} +25% șansă la cameră Înger#{{EternalHeart}} +2% șansă pentru Inimi Eterne"}, -- Key Piece 2
 	{"240", "Tratament Experimental", "↑ Crește 4 statistici aleatorii#↓ Scade 2 statistici aleatorii"}, -- Experimental Treatment
-	{"241", "Contract from Below", "Doubles all room clear rewards#33% chance for no room clear reward"}, -- Contract from Below
-	{"242", "Infamy", "50% chance to block enemy shots"}, -- Infamy
-	{"243", "Trinity Shield", "Blocks enemy shots coming from the direction Isaac is shooting"}, -- Trinity Shield
-	{"244", "Tech.5", "Occasionally shoot lasers in addition to Isaac's tears"}, -- Tech.5
-	{"245", "20/20", "Isaac shoots 2 tears at once"}, -- 20/20
-	{"246", "Blue Map", "{{SecretRoom}} Reveals secret room locations on the map"}, -- Blue Map
-	{"247", "BFFS!", "Familiars deal double damage"}, -- BFFS!
-	{"248", "Hive Mind", "Blue spiders and flies deal double damage"}, -- Hive Mind
-	{"249", "There's Options", "Allows Isaac to choose between 2 items after beating a boss"}, -- There's Options
-	{"250", "Bogo Bombs", "{{Bomb}} All bomb drops become double bombs"}, -- Bogo Bombs
-	{"251", "Starter Deck", "{{Card}} Spawns 1 card on pickup#Isaac can carry 2 cards#Turns all pills into cards"}, -- Starter Deck
-	{"252", "Little Baggy", "{{Pill}} Spawns 1 pill on pickup#Isaac can carry 2 pills#Turns all cards into pills"}, -- Little Baggy
-	{"253", "Magic Scab", "↑ {{Heart}} +1 Health#↑ {{Luck}} +1 Luck"}, -- Magic Scab
-	{"254", "Blood Clot", "↑ {{Damage}} +1 Damage for the left eye#↑ {{Range}} +5 Range for the left eye#↑ +0.5 Tear height"}, -- Blood Clot
-	{"255", "Screw", "↑ {{Tears}} +0.5 Tears#↑ {{Shotspeed}} +0.2 Shot speed"}, -- Screw
-	{"256", "Hot Bombs", "{{Bomb}} +5 Bombs#{{Burning}} Isaac's bombs leave a flame where they explode"}, -- Hot Bombs
-	{"257", "Fire Mind", "{{Burning}} Isaac's tears light enemies on fire#10% chance for tears to explode on enemy impact#{{Luck}} 100% chance at 13 luck#{{Warning}} The explosion can hurt Isaac"}, -- Fire Mind
-	{"258", "Missing No.", "Rerolls all of Isaac's items and stats on pickup and at every new floor"}, -- Missing No.
-	{"259", "Dark Matter", "↑ {{Damage}} +1 Damage#{{Fear}} 33% chance to shoot fear tears#{{Luck}} 100% chance at 20 luck"}, -- Dark Matter
-	{"260", "Black Candle", "{{CurseBlind}} Immune to curses#{{BlackHeart}} +1 Black Heart#{{AngelDevilChance}} +15% Devil/Angel Room chance"}, -- Black Candle
-	{"261", "Proptosis", "↑ {{Damage}} x2 Damage multiplier#↓ Tears deal less damage the further they travel"}, -- Proptosis
-	{"262", "Missing Page 2", "{{BlackHeart}} +1 Black Heart#Taking damage down to 1 heart damages all enemies in the room"}, -- Missing Page 2
+	{"241", "Contractul de Dedesubt", "Dublează toate recompensele la golirea camerelor#33% șansă de nici o recompensă la golirea camerei"}, -- Contract from Below
+	{"242", "Infamie", "50% șansă să blochezi împușcăturile inamicilor"}, -- Infamy
+	{"243", "Scutul Treimii", "Blochează împușcăturile inamicilor care vin din direcția în care Isaac trage"}, -- Trinity Shield
+	{"244", "Tehn.5", "Ocazional trage lasere în adiție lacrimilor lui Isaac"}, -- Tech.5
+	{"245", "20/20", "Isaac trage cu 2 lacrimi odată"}, -- 20/20
+	{"246", "Hartă Albastră", "{{SecretRoom}} Arată locațiile camerelor secrete pe hartă"}, -- Blue Map
+	{"247", "CMMP!", "Familiarii dau daune duble"}, -- BFFS!
+	{"248", "Mintea Stupului", "Păianjenii și muștele albastre dau daune duble"}, -- Hive Mind
+	{"249", "Sunt Opțiuni", "Îi permite lui Isaac să aleagă dintre 2 articole după ce bate un boss"}, -- There's Options
+	{"250", "Bombe Bogo", "{{Bomb}} Toate bombele de pe jos devin duble"}, -- Bogo Bombs
+	{"251", "Pachetul Începătorului", "{{Card}} Apare 1 carte când îl iei#Isaac poate căra 2 cărți#Toate pastilele devin cărți"}, -- Starter Deck
+	{"252", "Mica Punguță", "{{Pill}} Apare 1 pastilă când îl iei#Isaac poate căra 2 pastile#Toate cărțile devin pastile"}, -- Little Baggy
+	{"253", "Crusta Magică", "↑ {{Heart}} +1 Viață#↑ {{Luck}} +1 Noroc"}, -- Magic Scab
+	{"254", "Cheag de Sânge", "↑ {{Damage}} +1 Daune pentru ochiul stâng#↑ {{Range}} +5 Distanță pentru ochiul stâng#↑ +0.5 Mărimea Lacrimilor"}, -- Blood Clot
+	{"255", "Șurub", "↑ {{Tears}} +0.5 Viteză de Atac#↑ {{Shotspeed}} +0.2 Viteza Atacurilor"}, -- Screw
+	{"256", "Bombe Fierbinți", "{{Bomb}} +5 Bombe#{{Burning}} Bombele lui Isaac lasă o flacără unde explodează"}, -- Hot Bombs
+	{"257", "Mintea de Foc", "{{Burning}} Lacrimile lui Isaac dau foc inamicilor#10% șansă ca lacrimile să explodeze pe inamici la impact#{{Luck}} 100% șansă la 13 noroc#{{Warning}} Explozia îl poate răni pe Isaac"}, -- Fire Mind
+	{"258", "Nr. Lipsă", "Schimbă toate articolele și statisticile lui Isaac când îl iei, la fiecare nou etaj"}, -- Missing No.
+	{"259", "Materie Neagră", "↑ {{Damage}} +1 Daune#{{Fear}} 33% șansă să tragi lacrimi înfricoșătoare#{{Luck}} 100% șansă la 20 noroc"}, -- Dark Matter
+	{"260", "Lumânarea Neagră", "{{CurseBlind}} Imunitate la blesteme#{{BlackHeart}} +1 Inimă Neagră#{{AngelDevilChance}} +15% șansă la camere Înger/Demon"}, -- Black Candle
+	{"261", "Proptoza", "↑ {{Damage}} x2 Daune#↓ Lacrimile dau mai puține daune cu cât de departe ajung"}, -- Proptosis
+	{"262", "Pagina Dispărută 2", "{{BlackHeart}} +1 Inimă Neagră#Luând daune până la 1 inimă dăunează toți inamicii din cameră"}, -- Missing Page 2
 	{"263", "", "<item does not exist>"},
 	{"264", "Smart Fly", "Orbital#Attacks enemies when Isaac takes damage#Deals 22.5 contact damage per second"}, -- Smart Fly
 	{"265", "Dry Baby", "10% chance to damage all enemies in the room when it is hit by an enemy tear"}, -- Dry Baby
