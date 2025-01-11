@@ -43,7 +43,57 @@ local maxCardID = Card.NUM_CARDS - 1
 local maxPillID = PillColor.NUM_PILLS - 1
 local dynamicSpriteCache = {} -- used to store sprite objects of collectible icons etc.
 
--- Adds a description for a collectible. Optional parameters: itemName, language
+--#region Luadoc definitions
+
+---@alias EID_LanguageCode
+---| "cs_cz" @Czech
+---| "de" @German
+---| "en_us" @English
+---| "fr" @French
+---| "it" @Italian
+---| "ja_jp" @Japanese
+---| "ko_kr" @Korean
+---| "pl" @Polish
+---| "pt_br" @Portuguese
+---| "ru" @Russian
+---| "spa" @Spanish
+---| "tr_tr" @Turkish
+---| "uk_ua" @Ukrainian
+---| "zh_cn" @Simplified Chinese
+
+---@alias EID_PillClass "3-"|"2-"|"1-"|"0"|"1+"|"2+"|"3+"
+
+---@alias EID_TypeVariantAlias
+---| "collectible" @ "5.100"
+---| "collectibles" @ "5.100"
+---| "trinket" @ "5.350"
+---| "trinkets" @ "5.350"
+---| "card" @ "5.300"
+---| "cards" @ "5.300"
+---| "pill" @ "5.70"
+---| "pills" @ "5.70"
+---| "horsepills" @ "5.70"
+---| "horsepill" @ "5.70"
+---| "sacrifice" @ "-999.-1"
+---| "dice" @ "1000.76"
+---| "entity" @ Indicates that a full entity identifier is used
+
+---@class EID_GoldenTrinketData
+---@field t number[]? @The numbers inside the text that should be multiplied
+---@field mult number? @Max multiplier applied. assumed to be 3.
+---@field mults number[]? @Custom multipliers. A Missing Page's damage goes from 80 to 120 to 160; so its multipliers are 1.5 and 2, instead of 2 and 3
+---@field append boolean? @If true, text is added to the description
+---@field findReplace boolean? @If true, the text is replaced
+---@field fullReplace boolean? @If true, description is fully replaced
+---@field goldenOnly boolean? @If true, the description is modified only when the trinket is golden
+
+--#endregion
+
+---Adds a description for a collectible.
+---@param id CollectibleType
+---@param description string
+---@param itemName string?
+---@param language EID_LanguageCode? @Default: "en_us"
 function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
@@ -54,7 +104,11 @@ function EID:addCollectible(id, description, itemName, language)
 	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description, modName}
 end
 
--- Adds a description for a trinket. Optional parameters: itemName, language
+---Adds a description for a trinket.
+---@param id TrinketType
+---@param description string
+---@param itemName? string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addTrinket(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
@@ -62,7 +116,11 @@ function EID:addTrinket(id, description, itemName, language)
 	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description, EID._currentMod}
 end
 
--- Adds character specific information, which can be viewed in the Item Reminder
+---Adds character specific information, which can be viewed in the Item Reminder
+---@param characterId PlayerType
+---@param description string
+---@param playerName? string @Default: "Modded Character"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addCharacterInfo(characterId, description, playerName, language)
 	playerName = playerName or "Modded Character"
 	language = language or "en_us"
@@ -70,13 +128,14 @@ function EID:addCharacterInfo(characterId, description, playerName, language)
 	EID.descriptions[language].CharacterInfo[characterId] = {playerName, description}
 end
 
--- Adds information about appending text and multiplying numbers in a modded trinket's Golden/Mom's Box description. All three variables are optional, set to ""/0 or nil to not include them
--- appendText: Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
--- numbersToMultiply: The number inside the text that should be multiplied. can be one number, or a table of numbers
--- maxMultiplier: is what tripling (Golden+Mom's Box) should multiply the numbers by (normally 3)
--- (If it's less than 2, it also applies to doubling)
--- Example: My modded trinket gives +0.5 range and when tripled, adds homing instead of tripling the range boost
--- EID:addGoldenTrinketMetadata(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 0.5, 2)
+---Adds information about appending text and multiplying numbers in a modded trinket's Golden/Mom's Box description. All three variables are optional, set to ""/0 or nil to not include them
+---@param appendText? string | string[] @Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
+---@param numbersToMultiply? number | number[] @The number inside the text that should be multiplied. can be one number, or a table of numbers
+---@param maxMultiplier? number @Is what tripling (Golden+Mom's Box) should multiply the numbers by, normally 3. If it's less than 2, it also applies to doubling
+-- Example: My modded trinket gives +0.5 range and when tripled, adds homing instead of tripling the range boost:
+--- ```lua
+--- EID:addGoldenTrinketMetadata(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 0.5, 2)
+--- ```
 function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMultiplier, language)
 	maxMultiplier = maxMultiplier or 3
 	language = language or "en_us"
@@ -94,14 +153,22 @@ function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMult
 	end
 end
 
--- Add a fully custom data table to the table of Golden Trinket effects
--- Check the comments above EID.GoldenTrinketData in eid_data.lua for some info about what is possible
--- You may also want to add text entries into EID.descriptions[languageCode].goldenTrinketEffects
+---@see EID_GoldenTrinketData
+---Add a fully custom data table to the table of Golden Trinket effects.
+---Check GoldenTrinketCallback in [eid_modifiers.lua](eid_modifiers.lua) to see the specifics of how it works.
+---You may also want to add text entries into `EID.descriptions[languageCode].goldenTrinketEffects`
+---<br><hr><br>
+---@param id TrinketType
+---@param dataTable EID_GoldenTrinketData
 function EID:addGoldenTrinketTable(id, dataTable)
 	EID.GoldenTrinketData[id] = dataTable
 end
 
--- Adds a description for a card/rune. Optional parameters: itemName, language
+---Adds a description for a card/rune
+---@param id Card
+---@param description string
+---@param itemName? string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addCard(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
@@ -109,8 +176,10 @@ function EID:addCard(id, description, itemName, language)
 	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description, EID._currentMod}
 end
 
--- Adds a metadata for a card. Used for Blank Card/Clear Rune. Optional parameters: isRune
--- Avalilable values for mimicCharge : 1~12
+---Adds a metadata for a card. Used for Blank Card/Clear Rune.
+---@param id Card
+---@param mimicCharge integer @Range: [1, 12]
+---@param isRune? boolean @Whether the card is a rune
 function EID:addCardMetadata(id, mimicCharge, isRune)
 	if isRune then
 		EID.blankCardHidden[id] = true
@@ -121,7 +190,11 @@ function EID:addCardMetadata(id, mimicCharge, isRune)
 	}
 end
 
--- Adds a description for a pilleffect id. Optional parameters: itemName, language
+---Adds a description for a PillEffect id
+---@param id PillEffect
+---@param description string
+---@param itemName? string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
@@ -134,6 +207,11 @@ function EID:addPill(id, description, itemName, language)
 	end
 end
 
+---Adds a horsepill-specific description for a PillEffect
+---@param id PillEffect
+---@param description string
+---@param itemName? string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addHorsePill(id, description, itemName, language)
 	if not EID.isRepentance then return end
 	itemName = itemName or nil
@@ -142,10 +220,10 @@ function EID:addHorsePill(id, description, itemName, language)
 	EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
 end
 
--- Adds a metadata for a pilleffect. Used for Placebo/False PHD. Optional parameters: class
--- Avalilable values for mimicCharge : 1~12
--- For class value, "3-" ~ "3+" are available, although False PHD only cares for negative values.
--- "3-" : Major negative effect - Gives +0.6 Damage / "2-", "1-" : Minor negative effect - Spawns a Black Heart
+---Adds a metadata for a pilleffect. Used for Placebo/False PHD
+---@param id PillEffect
+---@param mimicCharge integer @Range: [1, 12]
+---@param class? EID_PillClass @Default: "0". With False PHD, "3-" gives +0.6 Damage, "2-" and "1-" spawn a Black Heart
 function EID:addPillMetadata(id, mimicCharge, class)
 	EID.pillMetadata[id] = {
 		mimiccharge = type(mimicCharge) == "number" and mimicCharge or -1,
@@ -153,7 +231,11 @@ function EID:addPillMetadata(id, mimicCharge, class)
 	}
 end
 
--- Adds a character specific description for the item "Birthright". Optional parameters: playerName, language
+---Adds a character specific description for the item "Birthright"
+---@param characterId PlayerType
+---@param description string
+---@param playerName? string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addBirthright(characterId, description, playerName, language)
 	playerName = playerName or nil
 	language = language or "en_us"
@@ -161,7 +243,10 @@ function EID:addBirthright(characterId, description, playerName, language)
 	EID.descriptions[language].birthright[characterId + 1] = {playerName, "", description}
 end
 
--- Creates a new transformation with a given unique name and a display name
+---Creates a new transformation with a given unique name and a display name
+---@param uniqueName string
+---@param displayName string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:createTransformation(uniqueName, displayName, language)
 	language = language or "en_us"
 	if EID.CustomTransformations[uniqueName] == nil then
@@ -170,15 +255,22 @@ function EID:createTransformation(uniqueName, displayName, language)
 	EID.CustomTransformations[uniqueName][language] = displayName
 end
 
--- Assigns transformations to an entity (Adds to existing transformations)
--- valid target types: [collectible, trinket, card, pill, entity]
--- when type = entity, targetIdentifier must be in the format "ID.Variant.subtype". for any other type, it can just be the id
--- EXAMPLE: EID:assignTransformation("collectible", 1, "My Transformation")
+---Assigns transformations to an entity (Adds to existing transformations)
+---Target entity identifier is in `Type.Variant.SubType` format and is formed based on `targetType` and `targetIdentifier`<br>
+---Example: adding "My Transformation" to Sad Onion:
+--- ```lua
+--- EID:assignTransformation("collectible", 1, "My Transformation")
+--- ```
+--- <hr>
+---@param targetType? EID_TypeVariantAlias @Alias for a `Type.Variant` of entity
+---@param targetIdentifier integer | string @If valid `targetType` is specified, `SubType` of the entity. Otherwise, the full entity identifier
+---@param transformationString string @Transformation name
 function EID:assignTransformation(targetType, targetIdentifier, transformationString)
 	local entryID = EID:getIDVariantString(targetType)
 	if entryID ~= nil then
 		entryID = entryID.."."..targetIdentifier
 	else
+		---@cast targetIdentifier string
 		entryID = targetIdentifier
 	end
 	EID:removeEntryFromString(EID.CustomTransformAssignments, entryID, transformationString)
@@ -190,8 +282,9 @@ function EID:assignTransformation(targetType, targetIdentifier, transformationSt
 	EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
 end
 
--- Try to automatically assign vanilla transformations to the entity
-function EID:tryAutodetectTransformationsCollectible(collectibleID)
+---Try to automatically assign vanilla transformations to the entity
+---@param collectibleID CollectibleType
+function EID:tryAutodetectTransformationsCollectible(collectibleID) --?Should this be in API?
 	if not EID.isRepentance then return end
 	local config = EID.itemConfig:GetCollectible(collectibleID)
 	local transformations = {}
@@ -213,15 +306,22 @@ function EID:tryAutodetectTransformationsCollectible(collectibleID)
 	end
 end
 
--- Removes a transformation of an entity
--- valid target types: [collectible, trinket, card, pill, entity]
--- when type = entity, targetIdentifier must be in the format "ID.Variant.subtype". for any other type, it can just be the id
--- EXAMPLE: EID:removeTransformation("collectible", 1, "My Transformation")
+---Removes a transformation of an entity
+---Target entity identifier is in `Type.Variant.SubType` format and is formed based on `targetType` and `targetIdentifier`<br>
+---Example: removing "My Transformation" from Sad Onion:
+---```lua
+---EID:removeTransformation("collectible", 1, "My Transformation")
+---```
+---<hr>
+---@param targetType? EID_TypeVariantAlias @Alias for a `Type.Variant` of entity
+---@param targetIdentifier integer | string @If valid `targetType` is specified, `SubType` of the entity. Otherwise, the full entity identifier
+---@param transformationString string @Transformation name
 function EID:removeTransformation(targetType, targetIdentifier, transformationString)
 	local entryID = EID:getIDVariantString(targetType)
 	if entryID ~= nil then
 		entryID = entryID.."."..targetIdentifier
 	else
+		---@cast targetIdentifier string
 		entryID = targetIdentifier
 	end
 	EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
@@ -233,10 +333,13 @@ function EID:removeTransformation(targetType, targetIdentifier, transformationSt
 	EID:removeEntryFromString(EID.CustomTransformAssignments, entryID, transformationString)
 end
 
--- Removes a given value from the string inside a table. Example: "1,2,3", removing 2 will return "1,3"
+---Removes a given value from the string inside a table. Example: "1,2,3", removing 2 will return "1,3"
+---@param sourceTable table<any, string>
+---@param entryKey any
+---@param entryValue string
 function EID:removeEntryFromString(sourceTable, entryKey, entryValue)
 	if sourceTable[entryKey] == nil then return end
-	local newEntry = ""
+	local newEntry = "" ---@type string|nil
 	for str in string.gmatch(sourceTable[entryKey], "([^,]+)") do
 		local addToList = true
 		for removeStr in string.gmatch(entryValue, "([^,]+)") do
@@ -248,13 +351,19 @@ function EID:removeEntryFromString(sourceTable, entryKey, entryValue)
 			newEntry = newEntry..","..str
 		end
 	end
+	---@cast newEntry string
 	newEntry = newEntry:sub(2)
 	if newEntry == "" then newEntry = nil end
 	sourceTable[entryKey] = newEntry
 end
 
--- Adds a description for a an Entity. Optional parameters: language, transformations
--- when subtype is -1 or empty, it will affect all subtypes of that entity
+---Adds a description for a an arbitrary Entity
+---@param id EntityType
+---@param variant integer
+---@param subtype? integer @If `nil` or `-1`, it will affect all subtypes of that entity
+---@param entityName string
+---@param description string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addEntity(id, variant, subtype, entityName, description, language)
 	subtype = subtype or nil
 	language = language or "en_us"
@@ -269,30 +378,42 @@ function EID:addEntity(id, variant, subtype, entityName, description, language)
 	}
 end
 
--- Adds a new icon object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your icon)
--- Shortcuts are case Sensitive! Shortcuts can be overriden with this function to allow for full control over everything
--- Setting "animationFrame" to -1 will play the animation. The spriteObject needs to be of class Sprite() and have an .anm2 loaded
--- default values: leftOffset= -1 , topOffset = 0
+---Adds a new icon object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your icon).
+---Shortcuts are case sensitive! Shortcuts can be overriden with this function to allow for full control over everything
+---@param shortcut string
+---@param animationName string
+---@param animationFrame integer @-1 to play the animation
+---@param width integer
+---@param height integer
+---@param leftOffset? integer @Default: -1
+---@param topOffset? integer @Default: 0
 function EID:addIcon(shortcut, animationName, animationFrame, width, height, leftOffset, topOffset, spriteObject)
 	leftOffset = leftOffset or -1
 	topOffset = topOffset or 0
 	EID.InlineIcons[shortcut] = {animationName, animationFrame, width, height, leftOffset, topOffset, spriteObject}
 end
 
--- Adds a custom poop spell to T???'s poop descriptions. This spell should be added with the "Custom Poop API" library to actually appear in-game.
--- Token is the name of the spell in the Custom Poop API code. Examples: "CORNY", "BURNING", "BOMB".
--- Name is the actual name you want to display. Examples: "Corny Poop", "Burning Poop", "Bomb".
--- Icon is the displayed poop icon. Should be a markup.
--- Description is the actual description showed to the player. Examples: "Spawns blue flies while intact", "Deals contact damage while intact#Leaves a fire behind when destroyed", "Normal throwable bomb".
--- Language is the language you want to add it to. Examples: "en_us", "spa", "ru".
--- EXAMPLE: EID:addCustomPoopSpell("MYPOOP", "I Made This Poop", "{{PoopSpell1}}", "Can be throwed to deal damage", "en_us")
+---Adds a custom poop spell to T???'s poop descriptions.
+---This spell should be added with the "Custom Poop API" library to actually appear in-game.
+---Example:
+---```lua
+---EID:addCustomPoopSpell("MYPOOP", "I Made This Poop", "{{PoopSpell1}}", "Can be throwed to deal damage", "en_us")
+---```
+---@param token string @The name of the spell in the Custom Poop API code
+---@param name string @The name of the spell as it should appear in the description
+---@param icon string @Markup icon of the poop
+---@param description string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addCustomPoopSpell(token, name, icon, description, language)
 	EID.descriptions[language]["poopSpells"][token] = {icon, name, description, EID._currentMod}
 end
 
--- Adds a new color object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your color)
--- Shortcuts are case Sensitive! Shortcuts can be overriden with this function to allow for full control over everything
--- Define a callback to let it be called when interpreting the color-markup. define a kColor otherwise for a simple color change
+---Adds a new color object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your color)
+---Shortcuts are case sensitive! Shortcuts can be overriden with this function to allow for full control over everything
+---Either `kColor` or `callback` must be provided
+---@param shortcut string
+---@param kColor? KColor @Constant color
+---@param callback? fun(color:KColor):KColor @Called whenever the color markup is interpreted
 function EID:addColor(shortcut, kColor, callback)
 	if callback ~= nil then
 		EID.InlineColors[shortcut] = callback
