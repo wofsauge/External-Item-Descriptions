@@ -78,6 +78,11 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 ---| "dice" @ "1000.76"
 ---| "entity" @ Indicates that a full entity identifier is used
 
+---@alias EID_Dimension
+---| 0 @Normal dimension
+---| 1 @Secondary dimension, used by Downpour mirror dimension and Mines escape sequence
+---| 2 @Death Certificate dimension
+
 ---@class EID_GoldenTrinketData
 ---@field t number[]? @The numbers inside the text that should be multiplied
 ---@field mult number? @Max multiplier applied. assumed to be 3.
@@ -1148,7 +1153,9 @@ function EID:createItemIconObject(str)
 	end
 end
 
--- Returns the icon for a given transformation name or ID
+---Returns the icon for a given transformation name or ID
+---@param str string
+---@return EID_Icon
 function EID:getTransformationIcon(str)
 	if str == nil then
 		return EID.InlineIcons["ERROR"]
@@ -1163,13 +1170,18 @@ function EID:getTransformationIcon(str)
 	return transformSprite
 end
 
--- Returns the width of a given string in Pixels
+---Returns the width of a given string in Pixels
+---@param str string
+---@return integer
 function EID:getStrWidth(str)
 	return EID.font:GetStringWidthUTF8(str)
 end
 
--- Searches thru the given string and replaces Iconplaceholders with icons.
--- Returns 2 values. the string without the placeholders but with an accurate space between lines. and a table of all Inline Sprites
+---Searches through the given string and replaces Icon placeholders with icons.
+---Returns 2 values. the string without the placeholders but with an accurate space between lines. And a table of all Inline Sprites
+---@param text string
+---@param renderBulletPointIcon boolean
+---@return string, [EID_Icon, integer, function?][]
 function EID:filterIconMarkup(text, renderBulletPointIcon)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
@@ -1193,8 +1205,10 @@ function EID:filterIconMarkup(text, renderBulletPointIcon)
 	return text, spriteTable
 end
 
---renders a list of given inline sprite objects returned by the "EID:filterIconMarkup()" function
--- Table entry format: {EID.InlineIcons Object, Width of text preceeding the icon}
+---Renders a list of given inline sprite objects returned by the "EID:filterIconMarkup()" function
+---@param spriteTable [EID_Icon, integer, fun(spriteObj:Sprite)?][]
+---@param posX integer
+---@param posY integer
 function EID:renderInlineIcons(spriteTable, posX, posY)
 	for _, sprite in ipairs(spriteTable) do
 		local Xoffset = sprite[1][5] or -1
@@ -1212,7 +1226,13 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 	end
 end
 
--- helper function to render Icons in specific EID settins
+---Helper function to render Icons in specific EID settings
+---@param spriteObj Sprite
+---@param posX integer
+---@param posY integer
+---@param callback fun(spriteObj: Sprite)
+---@param animName string
+---@param animFrame integer
 function EID:renderIcon(spriteObj, posX, posY, callback, animName, animFrame)
 	spriteObj.Scale = Vector(EID.Scale, EID.Scale)
 	spriteObj.Color = Color(1, 1, 1, EID.Config["Transparency"], 0, 0, 0)
@@ -1227,8 +1247,10 @@ function EID:renderIcon(spriteObj, posX, posY, callback, animName, animFrame)
 	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
 end
 
--- Returns the icon used for the bulletpoint. It will look at the first word in the given string.
--- Also returns the first word if it was rejected (so it can be removed from the line)
+---Returns the icon used for the bulletpoint. It will look at the first word in the given string.
+---Also returns the first word if it was rejected (so it can be removed from the line)
+---@param text string
+---@return string, string?
 function EID:handleBulletpointIcon(text)
 	local firstWord = EID:removeColorMarkup(string.match(text, "([^%s]+)"))
 	if EID:getIcon(firstWord) ~= EID.InlineIcons["ERROR"] and string.find(firstWord, "{{.-}}")~=nil then
@@ -1240,11 +1262,14 @@ function EID:handleBulletpointIcon(text)
 	return "\007"
 end
 
--- Gets a KColor from a Markup-string (example Input: "{{ColorText}}")
--- Returns the KColor object and a boolean value indicating if the given string was a color markup or not
 local colorFunc = nil
+---Gets a KColor from a Markup-string (example Input: "{{ColorText}}").
+---Returns the KColor object and a boolean value indicating if the given string was a color markup or not
+---@param str string
+---@param baseKColor KColor
+---@return KColor, boolean
 function EID:getColor(str, baseKColor)
-	local color = baseKColor
+	local color = baseKColor ---@type KColor | function
 	local isColorMarkup = false
 	if str ~= nil then
 		local strTrimmed = string.gsub(str,"{{(.-)}}",function(a) return a end, 1)
@@ -1268,15 +1293,18 @@ function EID:getColor(str, baseKColor)
 	return color, isColorMarkup
 end
 
--- Filters a given string and looks for Colormarkup. Splits the text into subsections limited by them.
--- Returns: Table of subsections of the text, their respective KColor, and the width of the subsection
+---Filters a given string and looks for Colormarkup. Splits the text into subsections limited by them.
+---Returns: Table of subsections of the text, their respective KColor, and the width of the subsection
+---@param text string
+---@param baseKColor KColor
+---@return [string, KColor, integer][]
 function EID:filterColorMarkup(text, baseKColor)
 	local textPartsTable = {}
 	local lastColor = baseKColor
 	local lastFunc = colorFunc
 	local lastPosition = 0
 	for word in string.gmatch(text, "{{.-}}") do
-		local textposition = string.find(text, word)
+		local textposition = string.find(text, word) ---@cast textposition integer
 		local lookup, isColor = EID:getColor(word, lastColor)
 		if isColor then
 			local preceedingText = string.sub(text, lastPosition, textposition - 1)
@@ -1293,7 +1321,9 @@ function EID:filterColorMarkup(text, baseKColor)
 	return textPartsTable
 end
 
--- A simple function to remove color markup, to preserve bulletpoint icons after start-of-line color markup
+---Removes color markup, preserves bulletpoint icons after start-of-line color markup
+---@param text string
+---@return string
 function EID:removeColorMarkup(text)
 	for word in string.gmatch(text, "{{Color.-}}") do
 		text = string.gsub(text, word, "", 1)
@@ -1301,7 +1331,10 @@ function EID:removeColorMarkup(text)
 	return text
 end
 
--- A simple function to replace all markup {{ }} with placeholder strings, to use in fitTextToWidth
+---Replaces all markup {{ }} with placeholder strings, to use in fitTextToWidth
+---@param text string
+---@param checkBulletpoint? boolean
+---@return string, integer?
 function EID:replaceAllMarkupWithSpaces(text, checkBulletpoint)
 	if checkBulletpoint then
 		-- Check for the text to just be a bulletpoint icon, which should be considered as zero width
@@ -1325,8 +1358,11 @@ function EID:replaceAllMarkupWithSpaces(text, checkBulletpoint)
 	return text, iconsFound
 end
 
--- Fits a given string to a specific width
--- returns the string as a table of lines
+---Fits a given string to a specific width
+---@param str string
+---@param textboxWidth integer
+---@param breakUtf8Chars boolean
+---@return string[] @Input string split into lines
 function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formattedLines = {}
 	-- Lines with a {{NoLineBreak}} tag should be left in one continuous line
@@ -1433,10 +1469,14 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	return formattedLines
 end
 
--- Renders a given string using the EID Custom font. This will also apply any markup and render icons
--- needs to be called in a render Callback
--- args: string, Vector(int, int), Vector(float,float), KColor obj, bool
--- Returns the last used KColor
+---Renders a given string using the EID Custom font. This will also apply any markup and render icons
+---Should be called in a render callback
+---@param str string
+---@param position Vector
+---@param scale Vector
+---@param kcolor KColor
+---@param renderBulletPointIcon boolean
+---@return KColor
 function EID:renderString(str, position, scale, kcolor, renderBulletPointIcon)
 	str = EID:replaceShortMarkupStrings(str)
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
@@ -1455,8 +1495,11 @@ function EID:renderString(str, position, scale, kcolor, renderBulletPointIcon)
 	return textPartsTable[#textPartsTable][2]
 end
 
--- Adds Description object modifiers.
--- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
+---Adds Description object modifiers such as Spindown dice or Tarot Cloth
+---@param modifierName string
+---@param condition fun(descObj: EID_DescObj): boolean
+---@param callback fun(descObj: EID_DescObj): EID_DescObj
+---@param position? integer
 function EID:addDescriptionModifier(modifierName, condition, callback, position)
 	position = position or #EID.DescModifiers + 1
 	for _,v in ipairs(EID.DescModifiers) do
@@ -1473,8 +1516,10 @@ function EID:addDescriptionModifier(modifierName, condition, callback, position)
 	})
 end
 
--- Removes a Description object modifier
--- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
+---Removes a Description object modifier
+---<br><hr><br>
+---@see EID.addDescriptionModifier
+---@param modifierName string
 function EID:removeDescriptionModifier(modifierName)
 	for i,v in ipairs(EID.DescModifiers) do
 		if v["name"] == modifierName then
@@ -1484,7 +1529,10 @@ function EID:removeDescriptionModifier(modifierName)
 	end
 end
 
--- Interpolates between 2 KColors with a given fraction.
+---Interpolates between 2 KColors with a given fraction.
+---@param kColor1 KColor
+---@param kColor2 KColor
+---@param fraction number @Range: [0,1]
 function EID:interpolateColors(kColor1, kColor2, fraction)
 	local t =
 		KColor(
@@ -1496,6 +1544,10 @@ function EID:interpolateColors(kColor1, kColor2, fraction)
 	return t
 end
 
+---Replaces all values in `changeTable` with the values in `tableToUpdate`.
+---If a value is an empty string, it will be removed.
+---@param changeTable table
+---@param tableToUpdate table
 function EID:updateDescriptionsViaTable(changeTable, tableToUpdate)
 	for k,v in pairs(changeTable) do
 		if v == "" then
@@ -1506,7 +1558,9 @@ function EID:updateDescriptionsViaTable(changeTable, tableToUpdate)
 	end
 end
 
--- Converts e.g. "5.100.69" format strings into 5, 100, and 69; returns 0 for any not included
+---Converts e.g. "5.100.69" format strings into `5, 100, 69`. Returns 0 for any not included
+---@param tvsString string
+---@return integer, integer, integer
 function EID:SplitTVS(tvsString)
 	local Type, Var, Sub = 0, 0, 0
 	local tvsTable = {}
@@ -1515,7 +1569,11 @@ function EID:SplitTVS(tvsString)
 	return Type, Var, Sub
 end
 
--- Checks if any player has a given item ID (or anyone is a given player ID)
+---Checks if any player has a given item ID (or anyone is a given player ID)
+---@param Type EntityType
+---@param Var integer
+---@param Sub integer
+---@return boolean
 function EID:PlayersHaveItem(Type, Var, Sub)
 	-- convert "5.100.69" format strings into type, var, sub
 	if type(Type) == "string" then
@@ -1533,7 +1591,12 @@ function EID:PlayersHaveItem(Type, Var, Sub)
 	return false
 end
 
--- Checks if the given player has the given item ID (or is the given player ID)
+---Checks if the given player has the given item ID (or is the given player ID)
+---@param player EntityPlayer
+---@param Type EntityType
+---@param Var integer
+---@param Sub integer
+---@return boolean
 function EID:PlayerHasItem(player, Type, Var, Sub)
 	-- convert "5.100.69" format strings into type, var, sub
 	if type(Type) == "string" then
@@ -1551,7 +1614,9 @@ function EID:PlayerHasItem(player, Type, Var, Sub)
 	return false
 end
 
--- Checks if any player has a given collectible ID, for modifiers
+---Checks if any player has a given collectible ID, for modifiers
+---@param collectibleID CollectibleType
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayersHaveCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1562,7 +1627,9 @@ function EID:PlayersHaveCollectible(collectibleID)
 	return false
 end
 
--- Returns true, if any player has a given voided collectible
+---Returns true, if any player has a given voided collectible
+---@param collectibleID CollectibleType
+---@return boolean, EntityPlayer?
 function EID:PlayersVoidedCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1571,16 +1638,22 @@ function EID:PlayersVoidedCollectible(collectibleID)
 	return false
 end
 
--- Returns true, if the player has a given voided collectible
+---Returns true, if the player has a given voided collectible
+---@param player EntityPlayer
+---@param collectibleID CollectibleType
+---@return boolean, EntityPlayer?
 function EID:PlayerVoidedCollectible(player, collectibleID)
 	local playerNum = EID:getPlayerID(player, true)
 	local isCollectibleAbsorbed = EID.absorbedItems[tostring(playerNum)] and EID.absorbedItems[tostring(playerNum)][tostring(collectibleID)]
 	if player:HasCollectible(477) and isCollectibleAbsorbed then
-		return true, player, i
+		return true, player
 	end
+	return false
 end
 
--- Checks if any player has a given trinket ID, for modifiers
+---Checks if any player has a given trinket ID, for modifiers
+---@param trinketID TrinketType
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayersHaveTrinket(trinketID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1591,7 +1664,9 @@ function EID:PlayersHaveTrinket(trinketID)
 	return false
 end
 
--- Returns true, if any player has a given card
+---Returns true, if any player has a given card
+---@param cardID Card
+---@return boolean, EntityPlayer?
 function EID:PlayersHaveCard(cardID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1600,7 +1675,10 @@ function EID:PlayersHaveCard(cardID)
 	return false
 end
 
--- Returns true, if the player has a given card
+---Returns true, if the player has a given card
+---@param player EntityPlayer
+---@param cardID Card
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayerHasCard(player, cardID)
 	local playerNum = EID:getPlayerID(player, true)
 	for j = 0, (EID.isRepentance and 3 or 1) do
@@ -1608,9 +1686,12 @@ function EID:PlayerHasCard(player, cardID)
 			return true, player, playerNum
 		end
 	end
+	return false
 end
 
--- Returns true, if any player has a given pill color
+---Returns true, if any player has a given pill color
+---@param pillID PillColor
+---@return boolean, EntityPlayer?
 function EID:PlayersHavePill(pillID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1619,7 +1700,10 @@ function EID:PlayersHavePill(pillID)
 	return false
 end
 
--- Returns true, if the player has a given pill color
+---Returns true, if the player has a given pill color
+---@param player EntityPlayer
+---@param pillID PillColor
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayerHasPill(player, pillID)
 	local playerNum = EID:getPlayerID(player, true)
 	for j = 0, (EID.isRepentance and 3 or 1) do
@@ -1627,10 +1711,13 @@ function EID:PlayerHasPill(player, pillID)
 			return true, player, playerNum
 		end
 	end
+	return false
 end
 
--- Checks if someone is playing as a certain character, for modifiers
--- includeTainted means we don't care if the player is Tainted or not (for things that, say, apply to Lost/Tainted Lost)
+---Checks if someone is playing as a certain character, for modifiers
+---@param playerType PlayerType
+---@param includeTainted? boolean @If true, doesn't care if the player is tainted or not
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayersHaveCharacter(playerType, includeTainted)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1644,7 +1731,9 @@ function EID:PlayersHaveCharacter(playerType, includeTainted)
 	return false
 end
 
--- Converts a given CollectibleID into the respective Spindown dice result
+---Converts a given CollectibleID into the respective Spindown dice result
+---@param collectibleID CollectibleType
+---@return CollectibleType
 function EID:getSpindownResult(collectibleID)
 	if collectibleID <= 0 or collectibleID > 4294960000 then return 0 end
 	local newID = collectibleID
@@ -1657,8 +1746,9 @@ function EID:getSpindownResult(collectibleID)
 	return newID
 end
 
--- Returns the maximum collectible id, including modded items
 local maxCollectibleID = nil -- cache after first use. this number will not change mid game
+---Returns the maximum collectible id, including modded items
+---@return CollectibleType
 function EID:GetMaxCollectibleID()
 	if maxCollectibleID then
 		return maxCollectibleID
@@ -1677,6 +1767,8 @@ function EID:GetMaxCollectibleID()
 end
 
 local maxTrinketID = nil
+---Returns the maximum trinket id, including modded trinkets
+---@return TrinketType
 function EID:GetMaxTrinketID()
 	if maxTrinketID then
 		return maxTrinketID
@@ -1694,6 +1786,7 @@ function EID:GetMaxTrinketID()
 	return id
 end
 
+---@return boolean
 function EID:DetectModdedItems()
 	if EID:GetMaxCollectibleID() > EID.XMLMaxItemID then
 		return true
@@ -1704,8 +1797,10 @@ function EID:DetectModdedItems()
 	return false
 end
 
--- REPENTANCE ONLY! Return whether the collectible is considered available
--- Bag of Crafting rerolls unavailable items; this function is kept brief to help BoC speed
+---REPENTANCE ONLY! Return whether the collectible is considered available.
+---Bag of Crafting rerolls unavailable items; this function is kept brief to help BoC speed
+---@param collectibleID CollectibleType
+---@return boolean
 function EID:isCollectibleAvailable(collectibleID)
 	if EID.itemAvailableStates[collectibleID] == nil then
 		EID.itemAvailableStates[collectibleID] = EID.itemConfig:GetCollectible(collectibleID):IsAvailable()
@@ -1713,9 +1808,11 @@ function EID:isCollectibleAvailable(collectibleID)
 	return EID.itemAvailableStates[collectibleID]
 end
 
--- REPENTANCE ONLY! Return our best guess on whether an achievement-locked collectible is unlocked
--- (Things like Tainted Lost and Sacred Orb give false negatives)
--- Spindown Dice skips over locked items, but not unavailable items
+---REPENTANCE ONLY! Return our best guess on whether an achievement-locked collectible is unlocked
+---(Things like Tainted Lost and Sacred Orb give false negatives)
+---Spindown Dice skips over locked items, but not unavailable items
+---@param collectibleID CollectibleType
+---@return boolean
 function EID:isCollectibleUnlocked(collectibleID)
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if item == nil then return false end
@@ -1740,8 +1837,10 @@ function EID:isCollectibleUnlocked(collectibleID)
 end
 EID.isCollectibleUnlockedAnyPool = EID.isCollectibleUnlocked -- old name before ItemConfig:IsAvailable was added
 
--- REPENTANCE ONLY! Return whether the collectible is completely disallowed by the current game mode
--- Bag of Crafting and Spindown Dice skip over disallowed items entirely
+---REPENTANCE ONLY! Return whether the collectible is completely disallowed by the current game mode.
+---Bag of Crafting and Spindown Dice skip over disallowed items entirely
+---@param collectibleID CollectibleType
+---@return boolean
 function EID:isCollectibleAllowed(collectibleID)
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if item == nil then return false
@@ -1754,7 +1853,8 @@ function EID:isCollectibleAllowed(collectibleID)
 	end
 end
 
--- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
+---Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
+---@return boolean
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:AreAchievementsAllowed()
 	-- Tainted characters have definitely beaten Mom!
@@ -1774,10 +1874,9 @@ function EID:AreAchievementsAllowed()
 	return true
 end
 
--- Returns the dimension ID the player is currently in.
--- 0: Normal Dimension
--- 1: Secondary dimension, used by Downpour mirror dimension and Mines escape sequence
--- 2: Death Certificate dimension
+---Returns the dimension ID the player is currently in.
+---@param level Level
+---@return EID_Dimension?
 function EID:GetDimension(level)
 	local roomIndex = level:GetCurrentRoomIndex()
 
@@ -1790,12 +1889,15 @@ function EID:GetDimension(level)
     return nil
 end
 
--- Converts a given table into a string containing the crafting icons of the table
--- Example input: {1,2,3,4,5,6,7,8}
--- Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
 local emptyPickupTable = {}
 for i=1, 29 do emptyPickupTable[i] = 0 end
 
+---Converts a given table into a string containing the crafting icons of the table
+---Example input: {1,2,3,4,5,6,7,8}
+---Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
+---@param craftTable integer[]
+---@param indicateCompleteContent boolean
+---@return string
 function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
 	table.sort(sortedList, function(a, b) return a < b end)
@@ -1811,9 +1913,10 @@ function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	return iconString
 end
 
--- Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
--- Example input: {1,1,1,2,2,3,3,3}
--- Result: "3{{Crafting1}}2{{Crafting2}}3{{Crafting3}}"
+---Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
+---@param craftTable integer[] @Example: {1,1,1,2,2,3,3,3}
+---@param indicateCompleteContent boolean
+---@return string @Example: "3{{Crafting1}}2{{Crafting2}}3{{Crafting3}}"
 function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
 	local filteredList = {table.unpack(emptyPickupTable)}
@@ -1839,11 +1942,14 @@ function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	return iconString
 end
 
--- Checks how many of an item there are in the bag
--- Returns false if the item is not in the bag
--- Returns 0 if there are fewer than the target amount
--- Returns 1 if there are exactly the target amount
--- Returns 2 if there are more than the target amount
+---Checks how many of an item there are in the bag
+---@param itemID integer
+---@param itemCount integer
+---@return
+---|false @Item is not in the bag
+---| 0 @There are fewer items than the target amount
+---| 1 @There are exactly the target amount
+---| 2 @There are more items than the target amount
 function EID:bagContainsItem(itemID, itemCount)
 	local foundCount = 0
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
@@ -1864,8 +1970,10 @@ function EID:bagContainsItem(itemID, itemCount)
 	end
 end
 
--- Get the number of pickups in the given recipe table that are inside our bag
--- (For checking if a recipe is possible to create if you need to use every item in your bag)
+---Get the number of pickups in the given recipe table that are inside our bag
+---Is for checking if a recipe is possible to create if you need to use every item in your bag
+---@param craftTable integer[]
+---@return integer
 function EID:bagContainsCount(craftTable)
 	local count = 0
 	local ingredCount = {table.unpack(emptyPickupTable)}
