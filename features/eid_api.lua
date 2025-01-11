@@ -87,6 +87,33 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 ---@field fullReplace boolean? @If true, description is fully replaced
 ---@field goldenOnly boolean? @If true, the description is modified only when the trinket is golden
 
+---@class EID_Icon
+---@field [1] string @Animation name
+---@field [2] integer @Animation frame
+---@field [3] integer @Width
+---@field [4] integer @Height
+---@field [5] integer? @Left offset
+---@field [6] integer? @Top offset
+---@field [7] Sprite @Sprite object
+
+---@class EID_DescObj
+---@field ObjType integer
+---@field ObjVariant integer
+---@field ObjSubType integer
+---@field fullItemString string @String in `Type.Variant.SubType` format
+---@field Name string
+---@field Description string
+---@field Transformation string
+---@field ModName string
+---@field Quality integer
+---@field Icon EID_Icon
+---@field Entity Entity?
+---@field ShowWhenUndefined boolean
+---@field PermanentTextEnglish string?
+---@field ItemType integer?
+---@field ChargeType integer?
+---@field Charges integer? @Max charges
+
 --#endregion
 
 ---Adds a description for a collectible.
@@ -422,20 +449,26 @@ function EID:addColor(shortcut, kColor, callback)
 	end
 end
 
--- Overrides all potentially displayed texts and permanently displays the given texts. Can be turned of again using the "EID:hidePermanentText()" function
+---Overrides all potentially displayed texts and permanently displays the given texts
+---<br><hr>
+---@see EID.hidePermanentText @Hides permanently displayed text object.
+---@param descriptionObject EID_DescObj @Description object to display
+---@param permName1 string
+---@param permName2 string
 function EID:displayPermanentText(descriptionObject, permName1, permName2)
 	descriptionObject.PermanentTextEnglish = EID:getDescriptionEntryEnglish(permName1, permName2)
 	EID.permanentDisplayTextObj = descriptionObject
 	EID.isDisplayingPermanent = true
 end
 
--- Hides permanently displayed text objects if they exist.
+---Hides permanently displayed text objects if they exist.
 function EID:hidePermanentText()
 	EID.permanentDisplayTextObj = nil
 	EID.isDisplayingPermanent = false
 end
 
--- function to turn entity type names into actual ingame ID.Variant pairs
+---Turns entity type names into actual ingame ID.Variant pairs
+---@param typeName EID_TypeVariantAlias
 function EID:getIDVariantString(typeName)
 	if typeName == "collectible" or typeName == "collectibles" then return "5.100"
 	elseif typeName == "trinket" or typeName == "trinkets" then return "5.350"
@@ -447,7 +480,11 @@ function EID:getIDVariantString(typeName)
 	return nil
 end
 
--- function to turn entity typ and variants into their EID table-name
+---Turns entity type and variant into their EID table-name
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return string
 function EID:getTableName(Type, Variant, SubType)
 	local idString = Type.."."..Variant
 	if idString == "5.100" then return "collectibles"
@@ -466,10 +503,14 @@ function EID:getTableName(Type, Variant, SubType)
 	end
 end
 
--- Loads a given font from a given file path and use it to render text
+---Loads a given font from a given file path and use it to render text
+---@param fontFileName string
+---@return boolean @True if the font was loaded successfully
 function EID:loadFont(fontFileName)
+	---@diagnostic disable
 	EID.font:Load(fontFileName, "") -- GoG Version of game somehow wants a string as the second argument
 	EID.font:SetMissingCharacter(2)
+	---@diagnostic enable
 	if not EID.font:IsLoaded() then
 		Isaac.DebugString("EID - ERROR: Could not load font from '" .. EID.modPath .. "resources/font/default.fnt" .. "'")
 		return false
@@ -477,17 +518,20 @@ function EID:loadFont(fontFileName)
 	return true
 end
 
--- Returns if EID is displaying text right now
+---Returns if EID is displaying text right now
+---@return boolean
 function EID:isDisplayingText()
 	return EID.isDisplaying
 end
 
--- Returns true, if curse of blind is active
+---Returns true, if curse of blind is active
+---@return boolean
 function EID:hasCurseBlind()
 	return game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND > 0
 end
 
--- returns the current text position
+---Returns the current text position
+---@return Vector
 function EID:getTextPosition()
 	local posVector = Vector(EID.UsedPosition.X, EID.UsedPosition.Y)
 	-- Only apply position modifiers when not in Local Mode
@@ -499,43 +543,55 @@ function EID:getTextPosition()
 	return posVector
 end
 
--- Adds a text position modifier Vector, which will be applied to the text position variable
--- Useful to add small offsets. For example: for schoolbag HUD
+---Adds a text position modifier Vector, which will be applied to the text position variable.
+---Useful to add small offsets. For example: for schoolbag HUD
+---@param identifier string
+---@param modifierVector Vector
 function EID:addTextPosModifier(identifier, modifierVector)
 	EID.PositionModifiers[identifier] = modifierVector
 end
 
--- Removes a text position modifier Vector
--- Useful to remove small offsets. For example: for schoolbag HUD
+---Removes a text position modifier Vector
+---@param identifier string
 function EID:removeTextPosModifier(identifier)
 	EID.PositionModifiers[identifier] = nil
 end
 
--- Changes the initial position of all eid descriptions
--- Useful to totally alter and override the current initial Overlay position
+---Changes the initial position of all eid descriptions
+---Useful to totally alter and override the current initial Overlay position
+---@param newPosVector Vector
 function EID:alterTextPos(newPosVector)
 	EID.UsedPosition = newPosVector
 end
 
--- returns the entity that is currently described. returns last described entity if currently not displaying text
+---Returns the entity that is currently described. Returns last described entity if currently not displaying text
+---@return Entity?
 function EID:getLastDescribedEntity()
 	return EID.lastDescriptionEntity
 end
 
--- Appends a given string to the description of a given Description object
+---Appends a given string to the description of a given Description object
+---@param descObj EID_DescObj
+---@param appendString string
 function EID:appendToDescription(descObj, appendString)
 	descObj.Description = descObj.Description..appendString
 end
 
--- returns the description object of a specific entity
--- falls back to english if the objID isnt available
+---Returns the description object of a specific entity.
+---Falls back to english if the objID isnt available
+---@param entity Entity
 function EID:getDescriptionObjByEntity(entity)
 	return EID:getDescriptionObj(entity.Type, entity.Variant, entity.SubType, entity)
 end
 
--- returns the description object of the specified entity
--- falls back to english if the objID isnt available
--- entity is optional
+---Returns the description object of the specified entity.
+---Falls back to english if the objID isnt available
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@param entity? Entity
+---@param checkModifiers? boolean @Default: true
+---@return EID_DescObj
 function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	local description = {}
 	description.ObjType = Type
@@ -563,7 +619,11 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	return description
 end
 
--- returns description Object from the legacy mod descriptions if they exist
+---Returns description Object from the legacy mod descriptions if they exist
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return [string, string, string]?
 function EID:getLegacyModDescription(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local customDesc = __eidEntityDescriptions[Type.."."..Variant.."."..SubType]
@@ -581,7 +641,10 @@ function EID:getLegacyModDescription(Type, Variant, SubType)
 	return nil
 end
 
--- apply Description Modifier to a given description object
+---Apply Description Modifier to a given description object
+---@param description EID_DescObj
+---@param SubType integer
+---@return EID_DescObj
 function EID:applyDescriptionModifier(description, SubType)
 	for _,modifier in ipairs(EID.DescModifiers) do
 		local result = modifier.condition(description)
@@ -598,7 +661,9 @@ function EID:applyDescriptionModifier(description, SubType)
 	return description
 end
 
--- Returns the icon and mod name of a given EID description object as a preformatted description string
+---Returns the icon and mod name of a given EID description object as a preformatted description string
+---@param descObj EID_DescObj
+---@return string
 function EID:getModNameString(descObj)
 	local modString = ""
 	if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
@@ -612,7 +677,10 @@ function EID:getModNameString(descObj)
 	return modString
 end
 
--- Attempts to merge two given Description objects into one
+---Attempts to merge two given Description objects into one
+---@param oldDescObj EID_DescObj
+---@param newDescObj EID_DescObj
+---@return EID_DescObj
 function EID:mergeDescriptionObjects(oldDescObj, newDescObj)
 	for k,v in pairs(oldDescObj) do
 		if not newDescObj[k] then
@@ -622,6 +690,8 @@ function EID:mergeDescriptionObjects(oldDescObj, newDescObj)
 	return newDescObj
 end
 
+---Writes charge-related information to a given description object
+---@param descObj EID_DescObj
 function EID:getObjectItemTypeAndCharge(descObj)
 	if not (descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType ~= nil) then
 		return
@@ -641,8 +711,12 @@ function EID:getObjectItemTypeAndCharge(descObj)
 	end
 end
 
--- returns the specified object table in the current language.
--- falls back to english if it doesnt exist, unless specified otherwise
+---Returns the specified object string in the current language.
+---Falls back to english if it doesnt exist, unless `noFallback` is true
+---@param objTable string
+---@param objID? integer
+---@param noFallback? boolean
+---@return string
 function EID:getDescriptionEntry(objTable, objID, noFallback)
 	if not objID then
 		if noFallback then return EID.descriptions[EID:getLanguage()][objTable]
@@ -654,6 +728,10 @@ function EID:getDescriptionEntry(objTable, objID, noFallback)
 	end
 end
 
+---Returns the specified object string in english.
+---@param objTable string
+---@param objID? integer
+---@return string
 function EID:getDescriptionEntryEnglish(objTable, objID)
 	if not objID then
 		return EID.descriptions["en_us"][objTable]
@@ -662,8 +740,12 @@ function EID:getDescriptionEntryEnglish(objTable, objID)
 	end
 end
 
--- returns the description data table related to a given id, variant and subtype
--- falls back to english if it doesnt exist
+---Returns the description data table related to a given id, variant and subtype.
+---Falls back to english if it doesnt exist
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return string
 function EID:getDescriptionData(Type, Variant, SubType)
 	local fullString = Type.."."..Variant
 	local adjustedID = EID:getAdjustedSubtype(Type, Variant, SubType)
@@ -675,7 +757,11 @@ function EID:getDescriptionData(Type, Variant, SubType)
 	return moddedDesc or legacyModdedDescription or defaultDesc
 end
 
--- Returns an adjusted SubType id for special cases like Horse Pills and Golden Trinkets
+---Returns an adjusted SubType for special cases like Horse Pills and Golden Trinkets
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return integer
 function EID:getAdjustedSubtype(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	if tableName == "trinkets" then
@@ -699,8 +785,14 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 	return SubType
 end
 
--- Get the transformation uniqueName / ID of a given entity
--- Example: EID:getTransformation(5,100,34)  will return "12" which is the id for Bookworm
+---Get the transformation uniqueName / ID of a given entity
+---Example:
+---```lua
+---EID:getTransformation(5,100,34) --Returns "12" which is the id for Bookworm
+---```
+---@param id EntityType
+---@param variant integer
+---@param subType integer
 function EID:getTransformation(id, variant, subType)
 	local adjustedSubtype = EID:getAdjustedSubtype(id, variant, subType)
 	local entityString = id.."."..variant.."."..adjustedSubtype
@@ -730,7 +822,9 @@ function EID:getTransformation(id, variant, subType)
 	return transformationList
 end
 
---Get the name of the given transformation by its uniqueName / ID
+---Get the name of the given transformation by its uniqueName / ID
+---@param id string
+---@return string
 function EID:getTransformationName(id)
 	local str = "Custom"
 	if tonumber(id) == nil then
@@ -744,7 +838,11 @@ function EID:getTransformationName(id)
 	return EID:getDescriptionEntry("transformations")[tonumber(id) + 1] or str
 end
 
--- tries to get the ingame name of an item based on its ID
+---Tries to get the ingame name of an item based on its ID
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return string
 function EID:getObjectName(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
@@ -784,20 +882,29 @@ function EID:getObjectName(Type, Variant, SubType)
 	return Type.."."..Variant.."."..SubType
 end
 
+---Returns the name of a player based on their ID
+---@param id PlayerType
+---@param altFallback? string
+---@return string
 function EID:getPlayerName(id, altFallback)
 	local playerInfo = EID:getDescriptionEntry("CharacterInfo")[id]
 	local birthrightInfo = EID.isRepentance and EID:getDescriptionEntry("birthright")[id+1]
 	return (playerInfo and playerInfo[1]) or (birthrightInfo and birthrightInfo[1]) or altFallback or EID:findPlayerName(id) or "???"
 end
 
--- Get the name of a given player ID by checking for a matching EntityPlayer
--- This is for modded characters, whose name is best found by doing EntityPlayer:GetName()
+---Get the name of a given player ID by checking for a matching EntityPlayer.
+---This is for modded characters, whose name is best found by doing EntityPlayer:GetName()
+---@param id PlayerType
+---@return string
 function EID:findPlayerName(id)
 	local found, entityPlayer = EID:PlayersHaveCharacter(id, false)
 	if entityPlayer then return entityPlayer:GetName() end
 end
 
--- returns the name of a pill based on the pilleffect id
+---Returns the name of a pill based on the pilleffect id
+---@param pillID PillEffect
+---@param isHorsepill boolean
+---@return string
 function EID:getPillName(pillID, isHorsepill)
 	local moddedDesc = EID:getDescriptionEntry("custom", "5.70."..pillID)
 	local legacyModdedDescription = EID:getLegacyModDescription(5, 70, pillID)
@@ -813,10 +920,15 @@ function EID:getPillName(pillID, isHorsepill)
 		vanillaName = EID.itemConfig:GetPillEffect(pillID - 1).Name
 	end
 	name = name and name[2] or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][pillID][2] or vanillaName
-	return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
+	name = string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
+	return name
 end
 
--- tries to get the ingame description of an object, based on their description in the XML files
+---Tries to get the ingame description of an object, based on their description in the XML files
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return string
 function EID:getXMLDescription(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local desc= nil
@@ -831,7 +943,9 @@ function EID:getXMLDescription(Type, Variant, SubType)
 	return desc or "(no description available)"
 end
 
--- check if an entity is part of the describable entities
+---Check if an entity is part of the describable entities
+---@param entity Entity
+---@return boolean
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:hasDescription(entity)
 	if not EID:EntitySanityCheck(entity) then return false end
@@ -866,6 +980,7 @@ function EID:hasDescription(entity)
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EID.Config["DisplayCardInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
+		---@diagnostic disable-next-line: return-type-mismatch
 		return isAllowed and (entity.SubType > 0 or
 			-- For Flip descriptions, allow 5.100.0 pedestals to have descriptions under VERY specific criteria!
 			(EID.isRepentance and EID:getEntityData(entity, "EID_FlipItemID") and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP)))
@@ -881,7 +996,9 @@ function EID:hasDescription(entity)
 	return isAllowed
 end
 
--- Replaces shorthand-representations of a character with the internal reference
+---Replaces shorthand-representations of a character with the internal reference
+---@param text string
+---@return string
 function EID:replaceShortMarkupStrings(text)
 	for _, pair in ipairs(EID.TextReplacementPairs) do
 		text = string.gsub(text, pair[1], pair[2])
@@ -890,7 +1007,9 @@ function EID:replaceShortMarkupStrings(text)
 end
 
 local VariantToColorText = { [100] = "{{ColorYellow}}", [350] = "{{ColorYellow}}", [300] = "{{ColorCard}}", [70] = "{{ColorPill}}" }
--- Replaces name markup objects with the actual name
+---Replaces name markup objects with the actual name
+---@param text string
+---@return string
 function EID:replaceNameMarkupStrings(text)
 	for word in string.gmatch(text, "{{Name.-}}") do
 		local strTrimmed = string.gsub(word, "{{Name(.-)}}", function(a) return a end)
@@ -935,14 +1054,18 @@ function EID:replaceNameMarkupStrings(text)
 	return text
 end
 
--- Generates a string with the defined pixel-length using a custom 1px wide character
--- This will only work for this specific custom font
+---Generates a string with the defined pixel-length using a custom 1px wide character.
+---This will only work for this specific custom font.
+---@param length integer
+---@return string
 function EID:generatePlaceholderString(length)
 	return string.rep("¤", length)
 end
 
--- Returns the inlineIcon object of a given Iconstring
--- can be used to validate an iconstring
+---Returns the inlineIcon object of a given Iconstring.
+---Can be used to validate an iconstring
+---@param str string
+---@return EID_Icon
 function EID:getIcon(str)
 	if str == nil then
 		return EID.InlineIcons["ERROR"]
@@ -950,20 +1073,24 @@ function EID:getIcon(str)
 	local strTrimmed = string.gsub(str,"{{(.-)}}",function(a) return a end )
 	if #strTrimmed <= #str then
 		local itemIconObj = EID:createItemIconObject(strTrimmed)
+		---@diagnostic disable-next-line: return-type-mismatch
 		if itemIconObj then return itemIconObj end
 
 		if type(EID.InlineIcons[strTrimmed]) == "function" then
 			return EID.InlineIcons[strTrimmed](str) or EID.InlineIcons["ERROR"]
 		end
 
+		---@diagnostic disable-next-line: return-type-mismatch
 		return EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
 	else
 		return EID.InlineIcons["ERROR"]
 	end
 end
 
--- Tries to read special markup used to generate icons for all Collectibles/Trinkets and the default Cards/Pills
--- Returns an inlineIcon Object or nil if no parsing was possible
+---Tries to read special markup used to generate icons for all Collectibles/Trinkets and the default Cards/Pills
+---Returns an inlineIcon Object or nil if no parsing was possible
+---@param str string
+---@return EID_Icon?
 function EID:createItemIconObject(str)
 	local item = nil
 	local subTypeIdentifier = 0
@@ -982,6 +1109,7 @@ function EID:createItemIconObject(str)
 		end
 	end
 	
+	---@diagnostic disable
 	local collID,numReplace = string.gsub(str, "Collectible", "")
 	if numReplace > 0 and collID ~= "" and tonumber(collID) ~= nil then
 		item = EID.itemConfig:GetCollectible(tonumber(collID))
@@ -1002,6 +1130,8 @@ function EID:createItemIconObject(str)
 		if tonumber(pillID % 2048) > maxPillID then return EID.InlineIcons[str] or EID.InlineIcons["Pill"] end
 		return {"Pills", tonumber(pillID % 2048)-1, 9, 8, 0, 1, EID.CardPillSprite}
 	end
+	---@diagnostic enable
+
 	if item == nil then
 		return nil
 	end
