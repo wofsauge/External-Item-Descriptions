@@ -808,6 +808,7 @@ end
 ---@param id EntityType
 ---@param variant integer
 ---@param subType integer
+---@return string
 function EID:getTransformation(id, variant, subType)
 	local adjustedSubtype = EID:getAdjustedSubtype(id, variant, subType)
 	local entityString = id.."."..variant.."."..adjustedSubtype
@@ -1544,6 +1545,7 @@ end
 ---@param kColor1 KColor
 ---@param kColor2 KColor
 ---@param fraction number @Range: [0,1]
+---@return KColor
 function EID:interpolateColors(kColor1, kColor2, fraction)
 	local t =
 		KColor(
@@ -2092,6 +2094,7 @@ end
 
 ---Check if a given font name is valid for the currently selected language
 ---@param fontType string
+---@return boolean
 function EID:canUseFontType(fontType)
 	local curLang = EID:getLanguage()
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
@@ -2104,6 +2107,7 @@ end
 
 ---Creates a copy of a KColor object. This prevents overwriting existing KColor objects
 ---@param colorObj KColor
+---@return KColor
 function EID:copyKColor(colorObj)
 	return KColor(colorObj.Red, colorObj.Green, colorObj.Blue, colorObj.Alpha)
 end
@@ -2111,26 +2115,31 @@ end
 ---Compares two KColors. Returns true if they are equal
 ---@param c1 KColor
 ---@param c2 KColor
+---@return boolean
 function EID:areColorsEqual(c1, c2)
 	return c1.Red == c2.Red and c1.Green == c2.Green and c1.Blue == c2.Blue and c1.Alpha == c2.Alpha
 end
 
 ---Get KColor object of "Entity Name" texts
+---@return KColor, boolean
 function EID:getNameColor()
 	return EID:getColor(EID.Config["ItemNameColor"], EID.InlineColors["ColorEIDObjName"])
 end
 
 ---Get KColor object of "Description" texts
+---@return KColor, boolean
 function EID:getTextColor()
 	return EID:getColor(EID.Config["TextColor"], EID.InlineColors["ColorEIDText"])
 end
 
 ---Get KColor object of "Transformation" texts
+---@return KColor, boolean
 function EID:getTransformationColor()
 	return EID:getColor(EID.Config["TransformationColor"], EID.InlineColors["ColorEIDTransform"])
 end
 
 ---Get KColor object of "Error" texts
+---@return KColor, boolean
 function EID:getErrorColor()
 	return EID:getColor(EID.Config["ErrorColor"], EID.InlineColors["ColorEIDError"])
 end
@@ -2161,6 +2170,7 @@ function EID:addCoroutine(name, func, overwrite)
 end
 
 ---Remove a coroutine from the coroutine list
+---@param name string
 function EID:removeCoroutine(name)
 	EID.Coroutines[name] = nil
 end
