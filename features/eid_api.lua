@@ -745,7 +745,7 @@ end
 
 ---Returns the specified object string in english.
 ---@param objTable string
----@param objID? integer
+---@param objID? any
 ---@return string
 function EID:getDescriptionEntryEnglish(objTable, objID)
 	if not objID then
@@ -910,7 +910,7 @@ end
 ---Get the name of a given player ID by checking for a matching EntityPlayer.
 ---This is for modded characters, whose name is best found by doing EntityPlayer:GetName()
 ---@param id PlayerType
----@return string
+---@return string?
 function EID:findPlayerName(id)
 	local found, entityPlayer = EID:PlayersHaveCharacter(id, false)
 	if entityPlayer then return entityPlayer:GetName() end
@@ -1035,7 +1035,7 @@ function EID:replaceNameMarkupStrings(text)
 			showIcon = false
 		end
 		local indicator = string.sub(strTrimmed, 1, 1)
-		local id = tonumber(string.sub(strTrimmed, 2, -1))
+		local id = tonumber(string.sub(strTrimmed, 2, -1)) ---@cast id integer
 		local name = ""
 		if tonumber(indicator) then
 			local entityID = {}
@@ -1297,6 +1297,7 @@ function EID:getColor(str, baseKColor)
 			isColorMarkup = type(EID.InlineColors[strTrimmed]) ~= type(nil)
 		end
 	end
+	---@cast color KColor
 	color = EID:copyKColor(color)
 	color.Alpha = math.min(color.Alpha, EID.Config["Transparency"])
 
@@ -1872,6 +1873,7 @@ function EID:AreAchievementsAllowed()
 	if EID.player:GetPlayerType() < 21 then
 		-- Challenge runs and TMTrainer might break the pool, so ignore them.
 		if not game:GetSeeds():IsCustomRun() and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
+			---@diagnostic disable-next-line: undefined-field
 			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlocked(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
 			if not hasBookOfRevelationsUnlocked then
 				local hasCubeOfMeatUnlocked = EID:isCollectibleUnlocked(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
