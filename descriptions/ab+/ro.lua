@@ -284,17 +284,17 @@ EID.descriptions[languageCode].collectibles={
 	{"261", "Proptoza", "↑ {{Damage}} x2 Daune#↓ Lacrimile dau mai puține daune cu cât de departe ajung"}, -- Proptosis
 	{"262", "Pagina Dispărută 2", "{{BlackHeart}} +1 Inimă Neagră#Luând daune până la 1 inimă dăunează toți inamicii din cameră"}, -- Missing Page 2
 	{"263", "", "<item does not exist>"},
-	{"264", "Smart Fly", "Orbital#Attacks enemies when Isaac takes damage#Deals 22.5 contact damage per second"}, -- Smart Fly
-	{"265", "Dry Baby", "10% chance to damage all enemies in the room when it is hit by an enemy tear"}, -- Dry Baby
-	{"266", "Juicy Sack", "{{Slow}} Leaves slowing creep#Spawns 1-2 friendly spiders after clearing a room"}, -- Juicy Sack
-	{"267", "Robo-Baby 2.0", "Shoots lasers#Deals 3.5 damage per shot#Moves in the direction Isaac is shooting"}, -- Robo-Baby 2.0
-	{"268", "Rotten Baby", "Spawns blue flies when Isaac shoots"}, -- Rotten Baby
-	{"269", "Headless Baby", "Leaves creep which deals 6 damage per second"}, -- Headless Baby
-	{"270", "Leech", "Chases enemies#{{HealingRed}} Heals Isaac for half a heart when it kills an enemy#Deals 3.2 damage per second"}, -- Leech
-	{"271", "Mystery Sack", "Spawns a random pickup every 5-6 rooms"}, -- Mystery Sack
-	{"272", "BBF", "Friendly exploding fly#The explosion deals 60 damage#{{Warning}} The explosion can hurt Isaac"}, -- BBF
-	{"273", "Bob's Brain", "Dashes in the direction Isaac is shooting#Explodes when it hits an enemy#{{Poison}} The explosion deals 60 damage and poisons enemies#{{Warning}} The explosion can hurt Isaac"}, -- Bob's Brain
-	{"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#It deals 75 contact damage per second"}, -- Best Bud
+	{"264", "Muscă deșteaptă", "Orbital#Atacă inamicii când Isaac primește daune#Dă 22.5 daune de contact pe secundă"}, -- Smart Fly
+	{"265", "Bebeluș Uscat", "10% șansă să dai daune tuturor inamicilor din cameră când este lovit de o lacrimă inamică"}, -- Dry Baby
+	{"266", "Sac Suculent", "{{Slow}} Lasă un fluid încetinitor#Apar 1-2 păianjeni după golirea unei camere"}, -- Juicy Sack
+	{"267", "Robo-Bebeluș 2.0", "Trage cu lasere#Dă 3.5 daune pe atac#Se mișcă în direcția în care Isaac trage"}, -- Robo-Baby 2.0
+	{"268", "Bebeluș Putrezit", "Apar muște albastre când Isaac trage"}, -- Rotten Baby
+	{"269", "Bebeluș Fără Cap", "Lasă un fluid care dă 6 daune pe secundă"}, -- Headless Baby
+	{"270", "Lipitoare", "Urmărește inamicii#{{HealingRed}} Îl vindecă pe Isaac cu jumătate de inimă roșie când omoară un inamic#Dă 3.2 daune pe secundă"}, -- Leech
+	{"271", "Sac Misterios", "Apare un lucru aleator la fiecare 5-6 camere"}, -- Mystery Sack
+	{"272", "BBF", "Muscă prietenoasă explozivă#Explozia dă 60 daune#{{Warning}} Explozia îl poate răni pe Isaac"}, -- BBF
+	{"273", "Creierul lui Bob", "Se aruncă în direcția în care Isaac trage#Explodează când nimerește un inamic#{{Poison}} Explozia dă 60 daune și otrăvește inamicii#{{Warning}} Explozia îl poate răni pe Isaac"}, -- Bob's Brain
+	{"274", "Cel mai bun Prieten", "După luarea unei daune apare un orbital cu distanță medie pentru cameră#Dă 75 daune de contact pe secundă"}, -- Best Bud
 	{"275", "Lil Brimstone", "{{Chargeable}} Familiar that charges and shoots a {{Collectible118}} blood beam#It deals 31.5 damage over 0.63 seconds"}, -- Lil Brimstone
 	{"276", "Isaac's Heart", "Isaac becomes invincible#Spawns a heart familiar that follows Isaac#{{Warning}} If the heart familiar gets hit, Isaac takes damage"}, -- Isaac's Heart
 	{"277", "Lil Haunt", "{{Fear}} Chases and fears enemies#Deals 4 contact damage per second"}, -- Lil Haunt
