@@ -488,7 +488,7 @@ EID.descriptions[languageCode].collectibles={
 	{"463", "Sulfuric Acid", "↑ {{Damage}} +0.3 Damage#Isaac's tears can destroy rocks and open doors"}, -- Sulfuric Acid
 	{"464", "Glyph of Balance", "{{SoulHeart}} +2 Soul Hearts#Champion enemies drop whatever pickup Isaac needs the most"}, -- Glyph of Balance
 	{"465", "Analog Stick", "↑ {{Tears}} +0.3 Tears#Allows Isaac to shoot tears in any direction"}, -- Analog Stick
-	{"466", "Contagion", "{{Poison}} The first enemy killed in a room explodes and poison all nearby enemies"}, -- Contagion
+	{"466", "Contagion", "{{Poison}} The first enemy killed in a room explodes and poisons all nearby enemies#Enemies that die while poisoned also explode and poison nearby enemies"}, -- Contagion
 	{"467", "Finger!", "{{Damage}} Constantly deals 10% of Isaac's damage in the direction it points"}, -- Finger!
 	{"468", "Shade", "Follows Isaac's movement on a 1 second delay#Deals 30 contact damage per second#After it deals 600 damage, it is absorbed by Isaac, increasing his contact damage"}, -- Shade
 	{"469", "Depression", "Leaves a trail of creep#The creep deals 6 damage per second#Enemies that touch the cloud can be hit by a holy light beam"}, -- Depression
