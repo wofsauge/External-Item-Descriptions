@@ -488,7 +488,7 @@ EID.descriptions[languageCode].collectibles={
 	{"463", "Acido Solforico", "↑ {{Damage}} +0.3 Danni#Le lacrime di Isaac possono distruggere le rocce e aprire le porte"},
 	{"464", "Glifo dell'Equilibrio", "{{SoulHeart}} +2 Cuori Celesti#I nemici lasciano qualsiasi consumabile di cui Isaac ha più bisogno"},
 	{"465", "Levetta Analogica", "↑ {{Tears}} +0.3 Lacrime#Permette ad Isaac di sparare lacrime in tutte le direzioni"},
-	{"466", "Contagio", "{{Poison}} Il primo nemico ucciso in una stanza esplode e avvelena tutti i nemici nelle vicinanze"},
+	{"466", "Contagio", "{{Poison}} Il primo nemico ucciso in una stanza esplode e avvelena tutti i nemici nelle vicinanze#I nemici avvelenati quando muoiono esplodono e avvelenano i nemici nelle vicinanze"},
 	{"467", "Dito!", "{{Damage}} Infligge costantemente il 10% dei danni di Isaac nella direzione che indica"},
 	{"468", "Ombroso", "Segue i movimenti di Isaac con un delay di 1 secondo#Infligge 30 danni da contatto al secondo#Dopo aver inferto 600 danni, viene assorbito da Isaac, aumentando i suoi danni da contatto"},
 	{"469", "Depressione", "Lascia una scia di liquido#Il liquido infligge 6 danni al secondo#I nemici che toccano la nuvola possono essere colpiti da un raggio di luce sacra"},
