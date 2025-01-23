@@ -49,7 +49,7 @@ local pathsChecked = {}
 local altPathItemChecked = {}
 local alwaysUseLocalMode = false -- set to true after drawing a non-local mode description this frame
 EID.ForceRefreshCache = false -- set to true to force-refresh descriptions, currently used for potential transformation text changes
-EID.holdTabPlayer = 0
+EID.holdTabPlayer = nil
 EID.holdTabCounter = 0
 EID.DInfinityState = {}
 local forgottenDropTimer = 0
@@ -294,7 +294,7 @@ if EID.isRepentance then
 		-- (it also watches for item rerolls to fill the new entity's GetData)
 		-- POST_NEW_ROOM then handles putting the result in the entity's GetData
 		local curFrame = Isaac.GetFrameCount()
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		if curFrame == lastGetItemResult[2] then
 			if initialItemNext then lastGetItemResult[1] = selectedCollectible
 			elseif flipItemNext and lastGetItemResult[1] then
@@ -328,7 +328,7 @@ if EID.isRepentance then
 		flipItemNext = true
 		lastGetItemResult[4] = entity.InitSeed
 
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		local gridPos = game:GetRoom():GetGridIndex(entity.Position)
 
 		-- Update a Flip item's init seed after D6 rerolls or using Flip (aka Grid Index didn't change, Init Seed did)
@@ -355,7 +355,7 @@ if EID.isRepentance then
 		-- Only pedestals with indexes that were present at room load can be flip pedestals
 		-- Fixes shop restock machines and Diplopia... mostly. At least while you're in the room.
 		if EID:getEntityData(entity, "EID_FlipItemID") and entity.Index > EID.flipMaxIndex then
-			local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 			local gridPos = game:GetRoom():GetGridIndex(entity.Position)
 			local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed]
 			-- only wipe the data if the grid index matches (so Diplopia pedestals don't)
@@ -370,7 +370,7 @@ if EID.isRepentance then
 		-- also, reload our descriptions due to transformation progress changing upon Flip
 		EID.ForceRefreshCache = true
 		lastFrameGridChecked = Isaac.GetFrameCount()
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		if EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 			for _, pedestal in ipairs(pedestals) do
@@ -775,7 +775,7 @@ EID.isDeathCertRoom = false
 if EID.isRepentance then
 	function EID:AssignFlipItems()
 		EID.flipMaxIndex = -1
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		if EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 			for _, pedestal in ipairs(pedestals) do
@@ -895,7 +895,7 @@ function EID:renderIndicator(entity, playerNum)
 	end
 
 	-- Don't apply sprite.Color changes to Effects (Dice Floors, Card Reading Portals), use Arrow instead
-	if EID.Config["Indicator"] == "arrow" or entity.Type == 1000 or EID:IsGridEntity(entity) then
+	if EID.Config["Indicator"] == "arrow" or entity.Type == 1000 or sprite == nil then
 		ArrowSprite:RenderLayer(playerNum-1, arrowPos, nullVector, nullVector)
 	else
 		local colorMult = {1,1,1}
