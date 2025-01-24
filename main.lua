@@ -1184,7 +1184,7 @@ function EID:CheckStartOfRunWarnings()
 			if not EID:AreAchievementsAllowed() then
 				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 				demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-				demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+				demoDescObj.Description = ("{{AchievementLocked}} "..EID:getDescriptionEntry("AchievementWarningText")) or ""
 				EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
 				hasShownStartWarning = true
 			end
