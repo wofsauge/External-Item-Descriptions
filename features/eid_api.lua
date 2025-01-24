@@ -2931,15 +2931,16 @@ function EID:WatchForGlitchedCrown()
 
 		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
-		
+
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			local index = entity.InitSeed..entity.Index
 			-- Use InitSeed and Index to prevent any Diplopia weirdness
-			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
+			EID.GlitchedCrownCheck[curRoomIndex][index] = EID.GlitchedCrownCheck[curRoomIndex][index] or {}
 			-- Initialize the data about this pedestal showing its current item ID, if necessary
 			-- in order to sort the items displayed, while also trashing items that haven't shown up in a while, keep both "initial frame seen" and "last frame seen"
-			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
+			EID.GlitchedCrownCheck[curRoomIndex][index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
 			-- update the last frame seen for the pedestal's current collectible ID
-			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType][2] = EID.GameUpdateCount
+			EID.GlitchedCrownCheck[curRoomIndex][index][entity.SubType][2] = EID.GameUpdateCount
 		end
 	end
 end

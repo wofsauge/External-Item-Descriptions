@@ -919,11 +919,12 @@ if EID.isRepentance then
 		if not descObj.Entity or inGlitchedCrown then return descObj end
 		local entity = descObj.Entity
 		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
 
-		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][descObj.Entity.InitSeed .. descObj.Entity.Index] then
+		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][pedestalID] then
 			-- this table has collectible ID keys that define the first frame and most recent frame that that ID has been seen on this pedestal
 			-- we need to filter out items that haven't been seen in a while (due to a reroll perhaps), then sort by first frame
-			local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
+
 			local items = EID.GlitchedCrownCheck[curRoomIndex][pedestalID]
 			local sortedItems = {}
 			for id, frames in pairs(items) do
