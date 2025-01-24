@@ -1214,13 +1214,14 @@ function EID:filterIconMarkup(text, renderBulletPointIcon)
 end
 
 ---Renders a list of given inline sprite objects returned by the "EID:filterIconMarkup()" function
----@param spriteTable [EID_Icon, integer, fun(spriteObj:Sprite)?][]
+---@param spriteTable [EID_Icon, integer?, fun(spriteObj:Sprite)?][]
 ---@param posX integer
 ---@param posY integer
 function EID:renderInlineIcons(spriteTable, posX, posY)
 	for _, sprite in ipairs(spriteTable) do
 		local Xoffset = sprite[1][5] or -1
 		local Yoffset = sprite[1][6] or 0
+		local additionalXOffset = sprite[2] or 0
 		local spriteObj = (type(sprite[1][7]) == "function" and sprite[1][7]()) or sprite[1][7] or EID.InlineIconSprite
 		if sprite[1][2] >= 0 then
 			spriteObj:SetFrame(sprite[1][1], sprite[1][2])
@@ -1230,7 +1231,7 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 			spriteObj:Update()
 		end
 
-		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale, sprite[3], sprite[1][1], sprite[1][2])
+		EID:renderIcon(spriteObj, posX + additionalXOffset + Xoffset * EID.Scale, posY + Yoffset * EID.Scale, sprite[3], sprite[1][1], sprite[1][2])
 	end
 end
 

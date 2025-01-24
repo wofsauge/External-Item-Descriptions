@@ -602,7 +602,7 @@ function EID:printDescription(desc, cachedID)
 	EID.lineHeight = EID.Config["LineHeight"]
 	if EID.Config["ShowItemIcon"] and desc.Icon then
 		offsetX = offsetX + 14
-		EID:renderInlineIcons({{desc.Icon,0}}, renderPos.X - 3 * EID.Scale, renderPos.Y - 4 * EID.Scale)
+		EID:renderInlineIcons({{desc.Icon}}, renderPos.X - 3 * EID.Scale, renderPos.Y - 4 * EID.Scale)
 	end
 
 	--Display ItemType / Charge
@@ -683,7 +683,7 @@ function EID:printDescription(desc, cachedID)
 			local transformLineHeight = EID.lineHeight
 			if EID.Config["TransformationIcons"] then
 				transformLineHeight = math.max(EID.lineHeight, transformSprite[4])
-				EID:renderInlineIcons({{transformSprite,0}}, renderPos.X, renderPos.Y)
+				EID:renderInlineIcons({{transformSprite}}, renderPos.X, renderPos.Y)
 			end
 			if EID.Config["TransformationText"] or EID.Config["TransformationProgress"] then
 				local transformationName = ""
@@ -832,30 +832,40 @@ function EID:renderUnidentifiedPill(entity)
 		if alwaysUseLocalMode then return false
 		else alwaysUseLocalMode = true end
 	end
+	EID.isDisplaying = true
+
 	local pillColor = entity.SubType
 	if pillColor >= 2049 then
 		pillColor = pillColor - 2048
 	end
-	local pos = EID:getTextPosition()
+	local renderPos = EID:getTextPosition()
+	local textScale = Vector(EID.Scale, EID.Scale)
+	local offsetX = 0
 	if EID.CachingDescription then
 		table.insert(EID.CachedStrings, {})
 		table.insert(EID.CachedIcons, {})
-		table.insert(EID.CachedRenderPoses, Vector(pos.X, pos.Y))
+		table.insert(EID.CachedRenderPoses, Vector(renderPos.X, renderPos.Y))
 	end
 
 	local descriptionObj = EID:getDescriptionObj(entity.Type, entity.Variant, entity.SubType, entity, false)
-	descriptionObj.Name = EID:getDescriptionEntry("unidentifiedPill")
 	descriptionObj.Description = ""
 	descriptionObj.ShowWhenUnidentified = false
 	descriptionObj = EID:applyDescriptionModifier(descriptionObj, -999)
 
-	if EID.Config["ShowItemIcon"] then
-		descriptionObj.Name = "{{Pill"..pillColor.."}} "..descriptionObj.Name
+	if EID.Config["ShowItemIcon"] and descriptionObj.Icon then
+		offsetX = offsetX + 14
+		EID:renderInlineIcons({{descriptionObj.Icon}}, renderPos.X - 3 * EID.Scale, renderPos.Y - 4 * EID.Scale)
+		EID:renderInlineIcons({{EID.InlineIcons["SecretRoom"]}}, renderPos.X + 1 * EID.Scale, renderPos.Y - 4 * EID.Scale)
 	end
-	EID:renderString(descriptionObj.Name, pos + Vector(0,-1), Vector(EID.Scale, EID.Scale), EID:getErrorColor())
+	EID:renderString(
+		EID:getDescriptionEntry("unidentifiedPill"),
+		renderPos + (Vector(offsetX, -3) * EID.Scale),
+		textScale,
+		EID:getErrorColor()
+	)
 	if EID.Config["ShowItemDescription"] and descriptionObj.ShowWhenUnidentified then
-		pos.Y = pos.Y + EID.lineHeight * EID.Scale
-		EID:printBulletPoints(descriptionObj.Description, pos)
+		renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
+		EID:printBulletPoints(descriptionObj.Description, renderPos)
 	end
 end
 
