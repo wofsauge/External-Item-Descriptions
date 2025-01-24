@@ -1117,11 +1117,8 @@ function EID:createItemIconObject(str)
 		local Type, Var, Sub = EID:SplitTVS(itemID)
 		if Type == 1 then return EID:getIcon("Player" .. Sub)
 		elseif Type == 5 then
-			if Var == 100 then return EID:createItemIconObject("Collectible" .. Sub)
-			elseif Var == 350 then return EID:createItemIconObject("Trinket" .. Sub)
-			elseif Var == 300 then return EID:createItemIconObject("Card" .. Sub)
-			elseif Var == 70 then return EID:createItemIconObject("Pill" .. Sub)
-			end
+			local iconName = EID:GetIconNameByVariant(Var)
+			return EID:createItemIconObject(iconName .. Sub)
 		end
 	end
 	
@@ -2559,18 +2556,8 @@ function EID:getObjectIcon(descObj)
 	end
 
 	if descObj.ObjType == 5 then
-		if descObj.ObjVariant == 100 then
-			return EID:createItemIconObject("Collectible" .. descObj.ObjSubType)
-		elseif descObj.ObjVariant == 350 then
-			return EID:createItemIconObject("Trinket" .. descObj.ObjSubType)
-		elseif descObj.ObjVariant == 300 then
-			return EID:createItemIconObject("Card" .. descObj.ObjSubType)
-		elseif descObj.ObjVariant == 70 then
-			if descObj.ObjSubType >= 2049 then
-				return EID:createItemIconObject("Pill" .. (descObj.ObjSubType - 2048))
-			end
-			return EID:createItemIconObject("Pill" .. descObj.ObjSubType)
-		end
+		local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
+		return EID:createItemIconObject(iconName .. descObj.ObjSubType)
 	-- Handle Dice Room Floor
 	elseif descObj.ObjType == 1000 and descObj.ObjVariant == 76 then
 		---@diagnostic disable-next-line: return-type-mismatch
@@ -2742,13 +2729,19 @@ end
 ---@return string
 function EID:GetIconStringByDescriptionObject(descObj)
 	if descObj and descObj.Icon then
-		if type(descObj.Icon) == "table" then 
-			local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
-			if iconName == "Card" or iconName == "Pill" then
-				return "{{" .. iconName .. (descObj.Icon[2] + 1) .. "}}"
+		-- icon object assigned to Icon attribute
+		if type(descObj.Icon) == "table" then
+			local subType = descObj.ObjSubType
+			if descObj.ObjType == 1 then
+				return "{{Player" .. (subType or "") .. "}}"
+			elseif descObj.ObjType == 5 then
+				local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
+				return "{{" .. iconName .. subType .. "}}"
+			elseif descObj.ObjType == 1000 and descObj.ObjVariant == 76 then
+				return "{{DiceFace" .. subType .. "}}"
 			end
-			return "{{" .. iconName .. descObj.Icon[2] .. "}}"
-		elseif type(descObj.Icon) == "string" then 
+		-- String assigned to Icon attribute
+		elseif type(descObj.Icon) == "string" then
 			---@diagnostic disable-next-line: return-type-mismatch
 			return descObj.Icon
 		end
