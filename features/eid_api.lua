@@ -1118,7 +1118,9 @@ function EID:createItemIconObject(str)
 		if Type == 1 then return EID:getIcon("Player" .. Sub)
 		elseif Type == 5 then
 			local iconName = EID:GetIconNameByVariant(Var)
-			return EID:createItemIconObject(iconName .. Sub)
+			if iconName then
+				return EID:createItemIconObject(iconName .. Sub)
+			end
 		end
 	end
 	
@@ -2558,7 +2560,9 @@ function EID:getObjectIcon(descObj)
 
 	if descObj.ObjType == 5 then
 		local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
-		return EID:createItemIconObject(iconName .. descObj.ObjSubType)
+		if iconName then
+			return EID:createItemIconObject(iconName .. descObj.ObjSubType)
+		end
 	-- Handle Dice Room Floor
 	elseif descObj.ObjType == 1000 and descObj.ObjVariant == 76 then
 		---@diagnostic disable-next-line: return-type-mismatch
@@ -2737,7 +2741,9 @@ function EID:GetIconStringByDescriptionObject(descObj)
 				return "{{Player" .. (subType or "") .. "}}"
 			elseif descObj.ObjType == 5 then
 				local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
-				return "{{" .. iconName .. subType .. "}}"
+				if iconName then
+					return "{{" .. iconName .. subType .. "}}"
+				end
 			elseif descObj.ObjType == 1000 and descObj.ObjVariant == 76 then
 				return "{{DiceFace" .. subType .. "}}"
 			end
