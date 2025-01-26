@@ -113,7 +113,7 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 ---@field Quality integer
 ---@field Icon EID_Icon
 ---@field Entity Entity?
----@field ShowWhenUndefined boolean
+---@field ShowWhenUnidentified boolean?
 ---@field PermanentTextEnglish string?
 ---@field ItemType integer?
 ---@field ChargeType integer?
@@ -304,7 +304,7 @@ end
 --- EID:assignTransformation("collectible", 1, "My Transformation")
 --- ```
 --- <hr>
----@param targetType? EID_TypeVariantAlias @Alias for a `Type.Variant` of entity
+---@param targetType EID_TypeVariantAlias @Alias for a `Type.Variant` of entity
 ---@param targetIdentifier integer | string @If valid `targetType` is specified, `SubType` of the entity. Otherwise, the full entity identifier
 ---@param transformationString string @Transformation name
 function EID:assignTransformation(targetType, targetIdentifier, transformationString)
@@ -355,7 +355,7 @@ end
 ---EID:removeTransformation("collectible", 1, "My Transformation")
 ---```
 ---<hr>
----@param targetType? EID_TypeVariantAlias @Alias for a `Type.Variant` of entity
+---@param targetType EID_TypeVariantAlias @Alias for a `Type.Variant` of entity
 ---@param targetIdentifier integer | string @If valid `targetType` is specified, `SubType` of the entity. Otherwise, the full entity identifier
 ---@param transformationString string @Transformation name
 function EID:removeTransformation(targetType, targetIdentifier, transformationString)
@@ -469,7 +469,7 @@ end
 ---@see EID.hidePermanentText @Hides permanently displayed text object.
 ---@param descriptionObject EID_DescObj @Description object to display
 ---@param permName1 string
----@param permName2 string
+---@param permName2 string?
 function EID:displayPermanentText(descriptionObject, permName1, permName2)
 	descriptionObject.PermanentTextEnglish = EID:getDescriptionEntryEnglish(permName1, permName2)
 	EID.permanentDisplayTextObj = descriptionObject
@@ -601,7 +601,7 @@ end
 
 ---Returns the description object of the specified entity.
 ---Falls back to english if the objID isnt available
----@param Type EntityType
+---@param Type EntityType | integer
 ---@param Variant integer
 ---@param SubType integer
 ---@param entity? Entity
@@ -729,17 +729,17 @@ end
 ---Returns the specified object string in the current language.
 ---Falls back to english if it doesnt exist, unless `noFallback` is true
 ---@param objTable string
----@param objID? integer
+---@param objIdentifier? integer | string
 ---@param noFallback? boolean
 ---@return string
-function EID:getDescriptionEntry(objTable, objID, noFallback)
-	if not objID then
+function EID:getDescriptionEntry(objTable, objIdentifier, noFallback)
+	if not objIdentifier then
 		if noFallback then return EID.descriptions[EID:getLanguage()][objTable]
 		else return EID.descriptions[EID:getLanguage()][objTable] or EID.descriptions["en_us"][objTable] end
 	else
 		local translatedTable = EID.descriptions[EID:getLanguage()][objTable]
-		if noFallback then return translatedTable and translatedTable[objID]
-		else return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]) end
+		if noFallback then return translatedTable and translatedTable[objIdentifier]
+		else return (translatedTable and translatedTable[objIdentifier]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objIdentifier]) end
 	end
 end
 
@@ -913,12 +913,12 @@ end
 ---@param id PlayerType
 ---@return string?
 function EID:findPlayerName(id)
-	local found, entityPlayer = EID:PlayersHaveCharacter(id, false)
+	local _, entityPlayer = EID:PlayersHaveCharacter(id, false)
 	if entityPlayer then return entityPlayer:GetName() end
 end
 
 ---Returns the name of a pill based on the pilleffect id
----@param pillID PillEffect
+---@param pillID PillEffect | integer
 ---@param isHorsepill boolean
 ---@return string
 function EID:getPillName(pillID, isHorsepill)
@@ -1117,10 +1117,9 @@ function EID:createItemIconObject(str)
 		local Type, Var, Sub = EID:SplitTVS(itemID)
 		if Type == 1 then return EID:getIcon("Player" .. Sub)
 		elseif Type == 5 then
-			if Var == 100 then return EID:createItemIconObject("Collectible" .. Sub)
-			elseif Var == 350 then return EID:createItemIconObject("Trinket" .. Sub)
-			elseif Var == 300 then return EID:createItemIconObject("Card" .. Sub)
-			elseif Var == 70 then return EID:createItemIconObject("Pill" .. Sub)
+			local iconName = EID:GetIconNameByVariant(Var)
+			if iconName then
+				return EID:createItemIconObject(iconName .. Sub)
 			end
 		end
 	end
@@ -1191,7 +1190,7 @@ end
 ---Searches through the given string and replaces Icon placeholders with icons.
 ---Returns 2 values. the string without the placeholders but with an accurate space between lines. And a table of all Inline Sprites
 ---@param text string
----@param renderBulletPointIcon boolean
+---@param renderBulletPointIcon boolean?
 ---@return string, [EID_Icon, integer, function?][]
 function EID:filterIconMarkup(text, renderBulletPointIcon)
 	local spriteTable = {}
@@ -1217,13 +1216,14 @@ function EID:filterIconMarkup(text, renderBulletPointIcon)
 end
 
 ---Renders a list of given inline sprite objects returned by the "EID:filterIconMarkup()" function
----@param spriteTable [EID_Icon, integer, fun(spriteObj:Sprite)?][]
+---@param spriteTable [EID_Icon, integer?, fun(spriteObj:Sprite)?][]
 ---@param posX integer
 ---@param posY integer
 function EID:renderInlineIcons(spriteTable, posX, posY)
 	for _, sprite in ipairs(spriteTable) do
 		local Xoffset = sprite[1][5] or -1
 		local Yoffset = sprite[1][6] or 0
+		local additionalXOffset = sprite[2] or 0
 		local spriteObj = (type(sprite[1][7]) == "function" and sprite[1][7]()) or sprite[1][7] or EID.InlineIconSprite
 		if sprite[1][2] >= 0 then
 			spriteObj:SetFrame(sprite[1][1], sprite[1][2])
@@ -1233,7 +1233,7 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 			spriteObj:Update()
 		end
 
-		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale, sprite[3], sprite[1][1], sprite[1][2])
+		EID:renderIcon(spriteObj, posX + additionalXOffset + Xoffset * EID.Scale, posY + Yoffset * EID.Scale, sprite[3], sprite[1][1], sprite[1][2])
 	end
 end
 
@@ -1241,9 +1241,9 @@ end
 ---@param spriteObj Sprite
 ---@param posX integer
 ---@param posY integer
----@param callback fun(spriteObj: Sprite)
----@param animName string
----@param animFrame integer
+---@param callback fun(spriteObj: Sprite) | nil
+---@param animName string | nil
+---@param animFrame integer | nil
 function EID:renderIcon(spriteObj, posX, posY, callback, animName, animFrame)
 	spriteObj.Scale = Vector(EID.Scale, EID.Scale)
 	spriteObj.Color = Color(1, 1, 1, EID.Config["Transparency"], 0, 0, 0)
@@ -1487,7 +1487,7 @@ end
 ---@param position Vector
 ---@param scale Vector
 ---@param kcolor KColor
----@param renderBulletPointIcon boolean
+---@param renderBulletPointIcon boolean?
 ---@return KColor
 function EID:renderString(str, position, scale, kcolor, renderBulletPointIcon)
 	str = EID:replaceShortMarkupStrings(str)
@@ -1583,18 +1583,18 @@ function EID:SplitTVS(tvsString)
 end
 
 ---Checks if any player has a given item ID (or anyone is a given player ID)
----@param Type EntityType
----@param Var integer
----@param Sub integer
----@return boolean
+---@param Type string | integer | EntityType 
+---@param Var integer | nil
+---@param Sub integer | nil
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayersHaveItem(Type, Var, Sub)
 	-- convert "5.100.69" format strings into type, var, sub
 	if type(Type) == "string" then
 		Type, Var, Sub = EID:SplitTVS(Type)
 	-- assume collectible if only Type was given
 	elseif Var == nil then Sub = Type; Type = 5; Var = 100 end
-	if Type == 1 then return EID:PlayersHaveCharacter(Sub)
-	elseif Type == 5 then
+	if Type == 1 and Sub then return EID:PlayersHaveCharacter(Sub)
+	elseif Type == 5 and Sub then
 		if Var == 100 then return EID:PlayersHaveCollectible(Sub)
 		elseif Var == 350 then return EID:PlayersHaveTrinket(Sub)
 		elseif Var == 300 then return EID:PlayersHaveCard(Sub)
@@ -1607,8 +1607,8 @@ end
 ---Checks if the given player has the given item ID (or is the given player ID)
 ---@param player EntityPlayer
 ---@param Type EntityType
----@param Var integer
----@param Sub integer
+---@param Var integer?
+---@param Sub integer?
 ---@return boolean
 function EID:PlayerHasItem(player, Type, Var, Sub)
 	-- convert "5.100.69" format strings into type, var, sub
@@ -1616,8 +1616,8 @@ function EID:PlayerHasItem(player, Type, Var, Sub)
 		Type, Var, Sub = EID:SplitTVS(Type)
 	-- assume collectible if only Type was given
 	elseif Var == nil then Sub = Type; Type = 5; Var = 100 end
-	if Type == 1 then return player:GetPlayerType() == Sub
-	elseif Type == 5 then
+	if Type == 1 and Sub then return player:GetPlayerType() == Sub
+	elseif Type == 5 and Sub then
 		if Var == 100 then return player:HasCollectible(Sub)
 		elseif Var == 350 then return player:HasTrinket(Sub)
 		elseif Var == 300 then return EID:PlayerHasCard(player, Sub)
@@ -1929,7 +1929,7 @@ end
 
 ---Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
 ---@param craftTable integer[] @Example: {1,1,1,2,2,3,3,3}
----@param indicateCompleteContent boolean
+---@param indicateCompleteContent boolean?
 ---@return string @Example: "3{{Crafting1}}2{{Crafting2}}3{{Crafting3}}"
 function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
@@ -2062,7 +2062,7 @@ function EID:setEntityData(entity, str, value)
 end
 
 ---Function to fix font compatibility. Resets config font to a value compatible with your current language
----@param forceRefresh boolean
+---@param forceRefresh boolean | nil
 ---@return boolean @True if the font was changed
 function EID:fixDefinedFont(forceRefresh)
 	local curLang = EID:getLanguage()
@@ -2293,7 +2293,7 @@ end
 ---Returns true if any player is pressing the given button (you can also specify any of the input functions)
 ---@generic BTN
 ---@param button BTN
----@param inputFunc fun(button: BTN, playerIndex: integer): boolean
+---@param inputFunc nil | fun(button: BTN, playerIndex: integer): boolean
 ---@return boolean, integer?
 function EID:PlayersActionPressed(button, inputFunc)
 	inputFunc = inputFunc or Input.IsActionPressed
@@ -2559,17 +2559,9 @@ function EID:getObjectIcon(descObj)
 	end
 
 	if descObj.ObjType == 5 then
-		if descObj.ObjVariant == 100 then
-			return EID:createItemIconObject("Collectible" .. descObj.ObjSubType)
-		elseif descObj.ObjVariant == 350 then
-			return EID:createItemIconObject("Trinket" .. descObj.ObjSubType)
-		elseif descObj.ObjVariant == 300 then
-			return EID:createItemIconObject("Card" .. descObj.ObjSubType)
-		elseif descObj.ObjVariant == 70 then
-			if descObj.ObjSubType >= 2049 then
-				return EID:createItemIconObject("Pill" .. (descObj.ObjSubType - 2048))
-			end
-			return EID:createItemIconObject("Pill" .. descObj.ObjSubType)
+		local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
+		if iconName then
+			return EID:createItemIconObject(iconName .. descObj.ObjSubType)
 		end
 	-- Handle Dice Room Floor
 	elseif descObj.ObjType == 1000 and descObj.ObjVariant == 76 then
@@ -2742,13 +2734,21 @@ end
 ---@return string
 function EID:GetIconStringByDescriptionObject(descObj)
 	if descObj and descObj.Icon then
-		if type(descObj.Icon) == "table" then 
-			local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
-			if iconName == "Card" or iconName == "Pill" then
-				return "{{" .. iconName .. (descObj.Icon[2] + 1) .. "}}"
+		-- icon object assigned to Icon attribute
+		if type(descObj.Icon) == "table" then
+			local subType = descObj.ObjSubType
+			if descObj.ObjType == 1 then
+				return "{{Player" .. (subType or "") .. "}}"
+			elseif descObj.ObjType == 5 then
+				local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
+				if iconName then
+					return "{{" .. iconName .. subType .. "}}"
+				end
+			elseif descObj.ObjType == 1000 and descObj.ObjVariant == 76 then
+				return "{{DiceFace" .. subType .. "}}"
 			end
-			return "{{" .. iconName .. descObj.Icon[2] .. "}}"
-		elseif type(descObj.Icon) == "string" then 
+		-- String assigned to Icon attribute
+		elseif type(descObj.Icon) == "string" then
 			---@diagnostic disable-next-line: return-type-mismatch
 			return descObj.Icon
 		end
@@ -2903,7 +2903,7 @@ function EID:UpdateAllPlayerLemegetonWisps()
 		end
 	end
 	-- Sort wisps by age (newest first), and leave just the IDs
-	for playerNum,wisps in pairs(EID.WispsPerPlayer) do
+	for playerNum, wisps in pairs(EID.WispsPerPlayer) do
 		table.sort(wisps, function(a, b) return a.FrameCount < b.FrameCount end)
 		for i,v in ipairs(wisps) do wisps[i] = v.SubType end
 	end
@@ -2916,7 +2916,7 @@ EID.GlitchedCrownCheck = {}
 function EID:WatchForGlitchedCrown()
 	if REPENTOGON then
 		-- In REPENTOGON, always check even without Glitched Crown, allowing to check 5+ Soul of Isaac usage, or Everything Jar
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
 
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
@@ -2935,17 +2935,18 @@ function EID:WatchForGlitchedCrown()
 	else
 		if not EID.collectiblesOwned[689] then return end
 
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
-		
+
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			local index = entity.InitSeed..entity.Index
 			-- Use InitSeed and Index to prevent any Diplopia weirdness
-			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
+			EID.GlitchedCrownCheck[curRoomIndex][index] = EID.GlitchedCrownCheck[curRoomIndex][index] or {}
 			-- Initialize the data about this pedestal showing its current item ID, if necessary
 			-- in order to sort the items displayed, while also trashing items that haven't shown up in a while, keep both "initial frame seen" and "last frame seen"
-			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
+			EID.GlitchedCrownCheck[curRoomIndex][index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
 			-- update the last frame seen for the pedestal's current collectible ID
-			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType][2] = EID.GameUpdateCount
+			EID.GlitchedCrownCheck[curRoomIndex][index][entity.SubType][2] = EID.GameUpdateCount
 		end
 	end
 end
@@ -2954,8 +2955,8 @@ end
 ---Example: "My {1} message" --> "My test message"
 ---varID can be omitted to replace {1} (or pass in a string table, to replace {1}, {2}, etc.)
 ---@param str string
----@param varID integer | integer[]
----@param newString? string | string[]
+---@param varID integer | integer[] | string | string[]
+---@param newString? string | string[] | integer
 function EID:ReplaceVariableStr(str, varID, newString)
 	if newString == nil then
 		newString = varID ---@diagnostic disable-line
@@ -3019,7 +3020,7 @@ end
 
 ---Simple decimal rounding, instead of just floor or ceil
 ---@param num number
----@param dp integer
+---@param dp integer?
 ---@return number
 function EID:SimpleRound(num, dp)
 	dp = dp or 2

@@ -12,8 +12,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.89
-EID.ModVersionCommit = "73a5cce"
+EID.ModVersion = 4.91
+EID.ModVersionCommit = "b10a18c"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -49,7 +49,7 @@ local pathsChecked = {}
 local altPathItemChecked = {}
 local alwaysUseLocalMode = false -- set to true after drawing a non-local mode description this frame
 EID.ForceRefreshCache = false -- set to true to force-refresh descriptions, currently used for potential transformation text changes
-EID.holdTabPlayer = 0
+EID.holdTabPlayer = nil
 EID.holdTabCounter = 0
 EID.DInfinityState = {}
 local forgottenDropTimer = 0
@@ -294,7 +294,7 @@ if EID.isRepentance then
 		-- (it also watches for item rerolls to fill the new entity's GetData)
 		-- POST_NEW_ROOM then handles putting the result in the entity's GetData
 		local curFrame = Isaac.GetFrameCount()
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		if curFrame == lastGetItemResult[2] then
 			if initialItemNext then lastGetItemResult[1] = selectedCollectible
 			elseif flipItemNext and lastGetItemResult[1] then
@@ -328,7 +328,7 @@ if EID.isRepentance then
 		flipItemNext = true
 		lastGetItemResult[4] = entity.InitSeed
 
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		local gridPos = game:GetRoom():GetGridIndex(entity.Position)
 
 		-- Update a Flip item's init seed after D6 rerolls or using Flip (aka Grid Index didn't change, Init Seed did)
@@ -355,7 +355,7 @@ if EID.isRepentance then
 		-- Only pedestals with indexes that were present at room load can be flip pedestals
 		-- Fixes shop restock machines and Diplopia... mostly. At least while you're in the room.
 		if EID:getEntityData(entity, "EID_FlipItemID") and entity.Index > EID.flipMaxIndex then
-			local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 			local gridPos = game:GetRoom():GetGridIndex(entity.Position)
 			local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed]
 			-- only wipe the data if the grid index matches (so Diplopia pedestals don't)
@@ -370,7 +370,7 @@ if EID.isRepentance then
 		-- also, reload our descriptions due to transformation progress changing upon Flip
 		EID.ForceRefreshCache = true
 		lastFrameGridChecked = Isaac.GetFrameCount()
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		if EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 			for _, pedestal in ipairs(pedestals) do
@@ -602,7 +602,7 @@ function EID:printDescription(desc, cachedID)
 	EID.lineHeight = EID.Config["LineHeight"]
 	if EID.Config["ShowItemIcon"] and desc.Icon then
 		offsetX = offsetX + 14
-		EID:renderInlineIcons({{desc.Icon,0}}, renderPos.X - 3 * EID.Scale, renderPos.Y - 4 * EID.Scale)
+		EID:renderInlineIcons({{desc.Icon}}, renderPos.X - 3 * EID.Scale, renderPos.Y - 4 * EID.Scale)
 	end
 
 	--Display ItemType / Charge
@@ -683,7 +683,7 @@ function EID:printDescription(desc, cachedID)
 			local transformLineHeight = EID.lineHeight
 			if EID.Config["TransformationIcons"] then
 				transformLineHeight = math.max(EID.lineHeight, transformSprite[4])
-				EID:renderInlineIcons({{transformSprite,0}}, renderPos.X, renderPos.Y)
+				EID:renderInlineIcons({{transformSprite}}, renderPos.X, renderPos.Y)
 			end
 			if EID.Config["TransformationText"] or EID.Config["TransformationProgress"] then
 				local transformationName = ""
@@ -775,7 +775,7 @@ EID.isDeathCertRoom = false
 if EID.isRepentance then
 	function EID:AssignFlipItems()
 		EID.flipMaxIndex = -1
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		if EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 			for _, pedestal in ipairs(pedestals) do
@@ -832,30 +832,40 @@ function EID:renderUnidentifiedPill(entity)
 		if alwaysUseLocalMode then return false
 		else alwaysUseLocalMode = true end
 	end
+	EID.isDisplaying = true
+
 	local pillColor = entity.SubType
 	if pillColor >= 2049 then
 		pillColor = pillColor - 2048
 	end
-	local pos = EID:getTextPosition()
+	local renderPos = EID:getTextPosition()
+	local textScale = Vector(EID.Scale, EID.Scale)
+	local offsetX = 0
 	if EID.CachingDescription then
 		table.insert(EID.CachedStrings, {})
 		table.insert(EID.CachedIcons, {})
-		table.insert(EID.CachedRenderPoses, Vector(pos.X, pos.Y))
+		table.insert(EID.CachedRenderPoses, Vector(renderPos.X, renderPos.Y))
 	end
 
 	local descriptionObj = EID:getDescriptionObj(entity.Type, entity.Variant, entity.SubType, entity, false)
-	descriptionObj.Name = EID:getDescriptionEntry("unidentifiedPill")
 	descriptionObj.Description = ""
 	descriptionObj.ShowWhenUnidentified = false
 	descriptionObj = EID:applyDescriptionModifier(descriptionObj, -999)
 
-	if EID.Config["ShowItemIcon"] then
-		descriptionObj.Name = "{{Pill"..pillColor.."}} "..descriptionObj.Name
+	if EID.Config["ShowItemIcon"] and descriptionObj.Icon then
+		offsetX = offsetX + 14
+		EID:renderInlineIcons({{descriptionObj.Icon}}, renderPos.X - 3 * EID.Scale, renderPos.Y - 4 * EID.Scale)
+		EID:renderInlineIcons({{EID.InlineIcons["SecretRoom"]}}, renderPos.X + 1 * EID.Scale, renderPos.Y - 4 * EID.Scale)
 	end
-	EID:renderString(descriptionObj.Name, pos + Vector(0,-1), Vector(EID.Scale, EID.Scale), EID:getErrorColor())
+	EID:renderString(
+		EID:getDescriptionEntry("unidentifiedPill"),
+		renderPos + (Vector(offsetX, -3) * EID.Scale),
+		textScale,
+		EID:getErrorColor()
+	)
 	if EID.Config["ShowItemDescription"] and descriptionObj.ShowWhenUnidentified then
-		pos.Y = pos.Y + EID.lineHeight * EID.Scale
-		EID:printBulletPoints(descriptionObj.Description, pos)
+		renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
+		EID:printBulletPoints(descriptionObj.Description, renderPos)
 	end
 end
 
@@ -895,7 +905,7 @@ function EID:renderIndicator(entity, playerNum)
 	end
 
 	-- Don't apply sprite.Color changes to Effects (Dice Floors, Card Reading Portals), use Arrow instead
-	if EID.Config["Indicator"] == "arrow" or entity.Type == 1000 or EID:IsGridEntity(entity) then
+	if EID.Config["Indicator"] == "arrow" or entity.Type == 1000 or sprite == nil then
 		ArrowSprite:RenderLayer(playerNum-1, arrowPos, nullVector, nullVector)
 	else
 		local colorMult = {1,1,1}
@@ -1174,7 +1184,7 @@ function EID:CheckStartOfRunWarnings()
 			if not EID:AreAchievementsAllowed() then
 				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 				demoDescObj.Name = EID:getDescriptionEntry("AchievementWarningTitle") or ""
-				demoDescObj.Description = EID:getDescriptionEntry("AchievementWarningText") or ""
+				demoDescObj.Description = ("{{AchievementLocked}} "..EID:getDescriptionEntry("AchievementWarningText")) or ""
 				EID:displayPermanentText(demoDescObj, "AchievementWarningTitle")
 				hasShownStartWarning = true
 			end
