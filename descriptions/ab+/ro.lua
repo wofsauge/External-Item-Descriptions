@@ -38,7 +38,7 @@ EID.descriptions[languageCode].collectibles={
 	{"15", "<3", "↑ {{Heart}} +1 Viață#{{HealingRed}} Viață plină"}, -- <3
 	{"16", "Ficat Crud", "↑ {{Heart}} +2 Inimi#{{HealingRed}} Viață plină"}, -- Raw Liver
 	{"17", "Cheia Schelet", "{{Key}} +99 Chei"}, -- Skeleton Key
-	{"18", "Un Leu", "{{Coin}} +100 Bănuți (99 fără "Buzunare Adânci")"}, -- A Dollar
+	{"18", "Un Leu", "{{Coin}} +100 Bănuți"}, -- A Dollar
 	{"19", "Boom!", "{{Bomb}} +10 Bombe"}, -- Boom!
 	{"20", "Transcendență", "Zbor"}, -- Transcendence
 	{"21", "Busola", "Arată iconițele pe hartă#Nu arată aspectul hărții"}, -- The Compass
@@ -575,7 +575,7 @@ EID.descriptions[languageCode].collectibles={
 	{"550", "Broken Shovel", "Mom's Foot constantly tries to stomp Isaac#Using the item stops the stomping for the room (or one Boss Rush wave)#{{Warning}} (Try to beat Boss Rush with it!)"}, -- Broken Shovel
 	{"551", "Broken Shovel", "Completes Mom's Shovel#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\""}, -- Broken Shovel
 	{"552", "Mom's Shovel", "Spawns a trapdoor to the next floor#10% chance for {{LadderRoom}} crawlspace trapdoor#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\""}, -- Mom's Shovel
-
+	}
 ---------- Modifiers ----------
 
 -- Effect of Car Battery on Active Items
