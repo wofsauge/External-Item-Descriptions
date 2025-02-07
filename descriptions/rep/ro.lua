@@ -480,7 +480,7 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 
 -- Book of Virtues wisp types
 EID.descriptions[languageCode].bookOfVirtuesWisps = {
-	[33] = "Inner ring wisp {{InnerWisp}}#Homing tears", -- The Bible
+	[33] = "Inner ring wisp {{InnerWisp}}#LAcrimi balistice", -- The Bible
 	[34] = "Middle ring wisp {{MiddleWisp}}#Double damage tears", -- The Book of Belial
 	[35] = "Inner ring wisp {{InnerWisp}}#3.5% chance for {{Fear}} fear tears#{{Collectible35}} Necronomicon effect when destroyed", -- The Necronomicon
 	[36] = "Outer ring wisp {{OuterWisp}}#2.5% chance for {{Collectible236}} E. Coli tears", -- The Poop
