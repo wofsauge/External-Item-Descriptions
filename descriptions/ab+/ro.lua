@@ -469,7 +469,7 @@ EID.descriptions[languageCode].collectibles={
 	{"444", "Lead Pencil", "Isaac shoots a cluster of tears every 15 tears#Tears in the cluster deal double damage"}, -- Lead Pencil
 	{"445", "Dog Tooth", "↑ {{Speed}} +0.1 Speed#↑ {{Damage}} +0.3 Damage#{{SecretRoom}}{{SuperSecretRoom}} A wolf howls in rooms adjacent to a Secret/Super Secret Room#{{LadderRoom}} A dog barks in rooms with a crawlspace under a rock"}, -- Dog Tooth
 	{"446", "Dead Tooth", "{{Poison}} While firing, Isaac is surrounded by a green aura that poisons enemies"}, -- Dead Tooth
-	{"447", "Linger Bean", "Firing without pause for 7.5 seconds spawns a poop cloud#The cloud deals Isaac's damage 5 times a second#The cloud lasts 15 seconds and can be moved by shooting it"}, -- Linger Bean
+	{"447", "Fasole Persistentă", "Firing without pause for 7.5 seconds spawns a poop cloud#The cloud deals Isaac's damage 5 times a second#The cloud lasts 15 seconds and can be moved by shooting it"}, -- Linger Bean
 	{"448", "Shard of Glass", "Upon taking damage:#{{Heart}} 25% chance to spawn a Red Heart#{{Collectible214}} 10% chance to get ↑ {{Range}} +5 Range and leave a trail of blood creep for the room"}, -- Shard of Glass
 	{"449", "Metal Plate", "{{SoulHeart}} +1 Soul Heart#{{Confusion}} Enemy bullets have a 25% chance to be reflected as concussive tears"}, -- Metal Plate
 	{"450", "Eye of Greed", "Every 20 tears, Isaac shoots a coin tear that deals double damage#Enemies hit with the coin get petrified and turn into gold#{{Coin}} Killing a gold enemy drops 1-4 coins#{{Warning}} Firing a coin tear costs 1 coin"}, -- Eye of Greed
