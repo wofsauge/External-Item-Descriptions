@@ -295,25 +295,25 @@ EID.descriptions[languageCode].collectibles={
 	{"272", "BBF", "Muscă prietenoasă explozivă#Explozia dă 60 daune#{{Warning}} Explozia îl poate răni pe Isaac"}, -- BBF
 	{"273", "Creierul lui Bob", "Se aruncă în direcția în care Isaac trage#Explodează când nimerește un inamic#{{Poison}} Explozia dă 60 daune și otrăvește inamicii#{{Warning}} Explozia îl poate răni pe Isaac"}, -- Bob's Brain
 	{"274", "Cel mai bun Prieten", "După luarea unei daune oferă un orbital cu distanță medie pentru cameră#Dă 75 daune de contact pe secundă"}, -- Best Bud
-	{"275", "Lil Brimstone", "{{Chargeable}} Familiar that charges and shoots a {{Collectible118}} blood beam#It deals 31.5 damage over 0.63 seconds"}, -- Lil Brimstone
-	{"276", "Isaac's Heart", "Isaac becomes invincible#Spawns a heart familiar that follows Isaac#{{Warning}} If the heart familiar gets hit, Isaac takes damage"}, -- Isaac's Heart
-	{"277", "Lil Haunt", "{{Fear}} Chases and fears enemies#Deals 4 contact damage per second"}, -- Lil Haunt
-	{"278", "Dark Bum", "{{Heart}} Picks up nearby Red Hearts#{{SoulHeart}} Spawns a Soul Heart or spider for every 1.5 Red Hearts picked up"}, -- Dark Bum
-	{"279", "Big Fan", "Large orbital#Deals 30 contact damage per second"}, -- Big Fan
-	{"280", "Sissy Longlegs", "Randomly spawns blue spiders in hostile rooms"}, -- Sissy Longlegs
-	{"281", "Punching Bag", "Decoy familiar#Enemies target him instead of Isaac"}, -- Punching Bag
-	{"282", "How to Jump", "Allows Isaac to jump over gaps and obstacles"}, -- How to Jump
-	{"283", "D100", "Reroll all pickups and pedestal items in the room, and all of Isaac's passive items"}, -- D100
-	{"284", "D4", "Reroll all of Isaac's passive items"}, -- D4
-	{"285", "D10", "Reroll all enemies in the room"}, -- D10
-	{"286", "Blank Card", "Triggers the effect of the rune or card Isaac holds without using it"}, -- Blank Card
-	{"287", "Book of Secrets", "{{Timer}} Grants one of these effects for the floor:#{{Collectible54}} Treasure Map#{{Collectible21}} Compass#{{Collectible246}} Blue Map"}, -- Book of Secrets
-	{"288", "Box of Spiders", "Spawns 1-4 blue spiders"}, -- Box of Spiders
-	{"289", "Red Candle", "Throws a red flame#It deals contact damage, blocks enemy tears, and disappears when it has dealt damage or blocked shots 5 times"}, -- Red Candle
-	{"290", "The Jar", "{{Heart}} Picking up Red Hearts while at full health stores up to 4 of them in the Jar#Using the item drops all stored hearts on the floor"}, -- The Jar
-	{"291", "Flush!", "Turns all non-boss enemies into poop#Instantly kills poop enemies and bosses"}, -- Flush!
-	{"292", "Satanic Bible", "{{BlackHeart}} +1 Black Heart"}, -- Satanic Bible
-	{"293", "Head of Krampus", "{{Collectible118}} Shoot a 4-way blood beam#They each deal 440 damage over 1.33 seconds"}, -- Head of Krampus
+	{"275", "Micul Brimstone", "{{Chargeable}} Familiar care încarcă și aruncă cu {{Collectible118}} brimstone#Provoacă 31.5 daune pe durata a 31.5 de secunde"}, -- Lil Brimstone
+	{"276", "Inima lui Isaac", "Isaac devine invincibil#Oferă un familiar inimă ce il urmărește pe Issaac#{{Warning}} Dacă familiarul este lovit, Isaac va fi vătămat"}, -- Isaac's Heart
+	{"277", "Micul Bântuit", "{{Fear}} Urmărește și provoacă teamă inamicilor#Provoacă 4 daue pe secundă"}, -- Lil Haunt
+	{"278", "Cerșetor îtunecat", "{{Heart}} Culege inimile roși din apropiere#{{SoulHeart}} Oferă Inimi Suflet sau păianjeni pentru fiecare 1.5 inimi colectate"}, -- Dark Bum
+	{"279", "Fan mare", "Orbital mare#Provoacă 30 de daune de contact pe secundă"}, -- Big Fan
+	{"280", "Sissy Picioare Mari", "Oferă păianjeni albaștrii aleatoriu în camerele neterminate"}, -- Sissy Longlegs
+	{"281", "Sac de Box", "Familiar momeală#Inamicii sunt atrași de el inloc de Isaac"}, -- Punching Bag
+	{"282", "Cum să sari", "Isaac poate sări peste găuri și obstacole"}, -- How to Jump
+	{"283", "D100", "Înlocuiește pickupruile, piedestalele din cameră și itemele pasive a le lui Isaac"}, -- D100
+	{"284", "D4", "Înlocuiește toate itemele pasive a le lui Isaac"}, -- D4
+	{"285", "D10", "Înlocuiește inamicii din cameră"}, -- D10
+	{"286", "Carte Albă", "Declanșează efectul cărții sau runei pe care Isaac o deține fără a o folosi"}, -- Blank Card
+	{"287", "Cartea Secretelor", "{{Timer}} Oferă pe durata etajului un efect dintre:#{{Collectible54}} Harta Comorilor#{{Collectible21}} Busolă#{{Collectible246}} Hartă Albastră"}, -- Book of Secrets
+	{"288", "BCutie cu Păianjeni", "Oferă 1-4 păianjeni albaștrii"}, -- Box of Spiders
+	{"289", "Lumânare Roșie", "Aruncă cu un foc roșu#Cauzează pagube, blochează proiectilele și dispare după a cauzat pagube sau a blocat 5 proiectile"}, -- Red Candle
+	{"290", "Borcanul", "{{Heart}} Colecteză până la 4 inimi roșii când viața este plină#Aruncă toate inimile colectate când este folosit"}, -- The Jar
+	{"291", "Flush!", "Transformă toți inamicii non-boss în rahat#Omoară instant toți inamicii și bossi rahat"}, -- Flush!
+	{"292", "Biblie Satanică", "{{BlackHeart}} +1 Inimă Neagră"}, -- Satanic Bible
+	{"293", "Capul lui Krampus", "{{Collectible118}} Trage cu o undă Brimstone în 4 direcții#Fiecare undă cauzează 440 de daune pe perioada a 1.33 de secunde"}, -- Head of Krampus
 	{"294", "Butter Bean", "Knocks back nearby enemies and projectiles#10% chance to turn into the stronger {{Collectible484}} Wait What? when swapping it with a different active item and picking it up again"}, -- Butter Bean
 	{"295", "Magic Fingers", "Deals 2x Isaac's damage to all enemies#{{Coin}} Costs 1 coin"}, -- Magic Fingers
 	{"296", "Converter", "{{Heart}} Converts 2 Soul/Black Hearts into 1 heart container"}, -- Converter
@@ -869,28 +869,28 @@ EID.descriptions[languageCode].trinkets={
 ---------- Cards ----------
 
 EID.descriptions[languageCode].cards={
-	{"1", "0 - The Fool", "Teleports Isaac to the first room of the floor"}, -- 0 - The Fool
-	{"2", "I - The Magician", "{{Timer}} Homing tears for the room"}, -- I - The Magician
-	{"3", "II - The High Priestess", "Mom's Foot stomps on an enemy#Mom's Foot stomps Isaac if there are no enemies"}, -- II - The High Priestess
-	{"4", "III - The Empress", "{{Timer}} Receive for the room:#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +1.5 Damage"}, -- III - The Empress
-	{"5", "IV - The Emperor", "{{BossRoom}} Teleports Isaac to the Boss Room"}, -- IV - The Emperor
-	{"6", "V - The Hierophant", "{{SoulHeart}} Spawns 2 Soul Hearts"}, -- V - The Hierophant
-	{"7", "VI - The Lovers", "{{Heart}} Spawns 2 Red Hearts"}, -- VI - The Lovers
-	{"8", "VII - The Chariot", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot but deals 40 contact damage per second"}, -- VII - The Chariot
-	{"9", "VIII - Justice", "Spawns a random {{UnknownHeart}} heart, {{Coin}} coin, {{Bomb}} bomb and {{Key}} key"}, -- VIII - Justice
-	{"10", "IX - The Hermit", "{{Shop}} Teleports Isaac to the Shop"}, -- IX - The Hermit
-	{"11", "X - Wheel of Fortune", "Spawns a {{Slotmachine}} Slot Machine or {{FortuneTeller}} Fortune Machine"}, -- X - Wheel of Fortune
-	{"12", "XI - Strength", "{{Timer}} Receive for the room:#↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +0.3 Damage#↑ {{Damage}} x1.5 Damage multiplier#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- XI - Strength
-	{"13", "XII - The Hanged Man", "{{Timer}} Flight for the room"}, -- XII - The Hanged Man
-	{"14", "XIII - Death", "Deals 40 damage to all enemies in the room"}, -- XIII - Death
-	{"15", "XIV - Temperance", "{{DonationMachine}} Spawns a Blood Donation Machine"}, -- XIV - Temperance
-	{"16", "XV - The Devil", "{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage"}, -- XV - The Devil
-	{"17", "XVI - The Tower", "Spawns 6 Troll Bombs"}, -- XVI - The Tower
-	{"18", "XVII - The Stars", "{{TreasureRoom}} Teleports Isaac to the Treasure Room"}, -- XVII - The Stars
-	{"19", "XVIII - The Moon", "{{SecretRoom}} Teleports Isaac to the Secret Room"}, -- XVIII - The Moon
-	{"20", "XIX - The Sun", "{{HealingRed}} Full health#Deals 100 damage to all enemies#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"}, -- XIX - The Sun
-	{"21", "XX - Judgement", "Spawns a Beggar or Devil Beggar#2% chance to spawn a special Beggar"}, -- XX - Judgement
-	{"22", "XXI - The World", "{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"}, -- XXI - The World
+	{"1", "0 - Nebunul", "Isaac este teleportat în prima cameră a etajului"}, -- 0 - The Fool
+	{"2", "I - Magicianul", "{{Timer}} Lacrimi balistice pe durata camerei"}, -- I - The Magician
+	{"3", "II - Marea Preoteasă", "Piciorul mamei cade pe inamici#Piciorul cade pe Isaac dacă nu sunt inamici"}, -- II - The High Priestess
+	{"4", "III - Împărăteasa", "{{Timer}} Pe durata camerei:#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +1.5 Daune"}, -- III - The Empress
+	{"5", "IV - Împăratul", "{{BossRoom}} Isaac este teleportat în Camera Șefului"}, -- IV - The Emperor
+	{"6", "V - Marele Preot", "{{SoulHeart}} Oferă 2 Inimi Suflet"}, -- V - The Hierophant
+	{"7", "VI - Îndrăgostiții", "{{Heart}} Oferă 2 Inmi Roșii"}, -- VI - The Lovers
+	{"8", "VII - Faetonul", "{{Timer}} Pentru 6 secude:#↑ {{Speed}} +0.28 Viteză#Invincibilitate#Isaac nu poate trage, dar provoacă 40 de daune de contact pe secundă"}, -- VII - The Chariot
+	{"9", "VIII - Dreptate", "Oferă aleatoriu {{UnknownHeart}} o inimă, {{Coin}} un bănuț, {{Bomb}} o bombă și {{Key}} o cheie"}, -- VIII - Justice
+	{"10", "IX - Eremitul", "{{Shop}} Isaac este teleportat la magazin"}, -- IX - The Hermit
+	{"11", "X - Roata norocului", "Oferă o {{Slotmachine}} Păcănea sau {{FortuneTeller}} Mașina Viitorului"}, -- X - Wheel of Fortune
+	{"12", "XI - Forța", "{{Timer}} Pe durata camerei:#↑ {{Heart}} +1 Viață#↑ {{Speed}} +0.3 Viteză#↑ {{Damage}} +0.3 Daune#↑ {{Damage}} x1.5 Daune#↑ {{Range}} +5.25 Rază de atac#↑ +0.5 Înălțimea lacrimilor"}, -- XI - Strength
+	{"13", "XII - Spânzuratul", "{{Timer}} Zbor pe durata camerei"}, -- XII - The Hanged Man
+	{"14", "XIII - Moartea", "Provoacă 40 de daune tuturor inamicilor din cameră"}, -- XIII - Death
+	{"15", "XIV - Echilibrul", "{{DonationMachine}} Oferă un Donator de Sânge"}, -- XIV - Temperance
+	{"16", "XV - Diavolul", "{{Timer}} Pe durata camerei:#↑ {{Damage}} +2 Daune"}, -- XV - The Devil
+	{"17", "XVI - Turnul", "Oferă 6 Bombe Troll"}, -- XVI - The Tower
+	{"18", "XVII - Steaua", "{{TreasureRoom}} Isaac este teleportat în Camera Comorilor"}, -- XVII - The Stars
+	{"19", "XVIII - Luna", "{{SecretRoom}} Isaac este teleporat în Camera Secretă"}, -- XVIII - The Moon
+	{"20", "XIX - Soarele", "{{HealingRed}} Vindecă inimile#Provoacă 100 de daune tuturor inamicilor din cameră#{{Timer}} Dezvăluie harta pe durata etajului (cu excepția {{SuperSecretRoom}} Camerei Super Secrete)"}, -- XIX - The Sun
+	{"21", "XX - Judecata", "Oferă un cerșetor sau un cerșetor diavol#2% șansă pentru un cerșetor special"}, -- XX - Judgement
+	{"22", "XXI - Lumea", "{{Timer}} Dezvăluie harta pe durata etajului (cu excepția {{SuperSecretRoom}} Camerei Super Secrete)"}, -- XXI - The World
 	{"23", "2 of Clubs", "{{Bomb}} Doubles Isaac's number of bombs"}, -- 2 of Clubs
 	{"24", "2 of Diamonds", "{{Coin}} Doubles Isaac's number of coins"}, -- 2 of Diamonds
 	{"25", "2 of Spades", "{{Key}} Doubles Isaac's number of keys"}, -- 2 of Spades
