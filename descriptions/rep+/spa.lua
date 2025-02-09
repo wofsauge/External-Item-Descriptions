@@ -58,6 +58,9 @@ local trinkets = {
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
+---------- Conditions ----------
+EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catcher (Greed) - In Rep+, the dream preview works in greed mode as well, so no changes needed
+
 -- Table that contains commonly used descriptions for abyss synergies
 local abyssPresets = {
 	noEffect = "Sin efectos",
