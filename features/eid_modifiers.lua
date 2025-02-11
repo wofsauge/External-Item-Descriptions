@@ -14,10 +14,8 @@ function EID:TabReleased() return EID.TabHeldLastFrame and not EID.TabHeldThisFr
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
 EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_VOID] = true
 EID.collectiblesToCheck["5.300.41"] = true -- Black Rune
-local maxSlot = 1
 -- Repentance modifiers
 if EID.isRepentance then
-	maxSlot = 3
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_SPINDOWN_DICE] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_MOMS_BOX] = true
@@ -459,7 +457,7 @@ if EID.isRepentance then
 		for p = 1,#EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[p]
 			local playerID = player:GetPlayerType()
-			local playerName = player:GetName()
+			local playerName = EID:getPlayerName(player:GetPlayerType())
 
 			local playerStats = {}
 			playerStats[1] = EID:SimpleRound((player.MoveSpeed * 4.5) - 2)
@@ -920,12 +918,13 @@ if EID.isRepentance then
 	local function GlitchedCrownCallback(descObj)
 		if not descObj.Entity or inGlitchedCrown then return descObj end
 		local entity = descObj.Entity
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
 
-		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][descObj.Entity.InitSeed .. descObj.Entity.Index] then
+		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][pedestalID] then
 			-- this table has collectible ID keys that define the first frame and most recent frame that that ID has been seen on this pedestal
 			-- we need to filter out items that haven't been seen in a while (due to a reroll perhaps), then sort by first frame
-			local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
+
 			local items = EID.GlitchedCrownCheck[curRoomIndex][pedestalID]
 			local sortedItems = {}
 			for id, frames in pairs(items) do
