@@ -55,7 +55,7 @@ def addUpdatedTables(languageCode, dlc):
         # Add language table
         lua.execute('EID.descriptions["'+languageCode+'"] = {}')
         # Add all tables that are assumed to exist already in ab+
-        updatedTables = ["collectibles", "trinkets"]
+        updatedTables = ["collectibles", "trinkets", "ConditionalDescs"]
         if dlc == "rep":
             updatedTables += ["cards", "pills", "carBattery", "BFFSSynergies", "CharacterInfo", "ConditionalDescs", "VoidNames", "custom"]
         if dlc == "rep+":

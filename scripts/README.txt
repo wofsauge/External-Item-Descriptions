@@ -24,10 +24,10 @@ The source code of the application can be found here:
 https://github.com/wofsauge/IsaacSavegameReader
 
 SHA-256 Hash:
-dd7815fb169af32c038ed84dad89db1c6b2cb7f3fac855964aabc4830d9b0e6e
+e8e981f32451d54128c148cf0757ccdf734b3cd34e1bb600beb89825ea16260b
 
 Virus total scan:
-https://www.virustotal.com/gui/file/dd7815fb169af32c038ed84dad89db1c6b2cb7f3fac855964aabc4830d9b0e6e/detection
+https://www.virustotal.com/gui/file/e8e981f32451d54128c148cf0757ccdf734b3cd34e1bb600beb89825ea16260b
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -53,7 +53,7 @@ El código fuente de la aplicación se encuentra aquí:
 https://github.com/wofsauge/IsaacSavegameReader
 
 SHA-256 Hash:
-dd7815fb169af32c038ed84dad89db1c6b2cb7f3fac855964aabc4830d9b0e6e
+e8e981f32451d54128c148cf0757ccdf734b3cd34e1bb600beb89825ea16260b
 
 Virus total scan:
-https://www.virustotal.com/gui/file/dd7815fb169af32c038ed84dad89db1c6b2cb7f3fac855964aabc4830d9b0e6e/detection
+https://www.virustotal.com/gui/file/e8e981f32451d54128c148cf0757ccdf734b3cd34e1bb600beb89825ea16260b
