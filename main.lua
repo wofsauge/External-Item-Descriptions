@@ -1496,15 +1496,20 @@ function EID:OnRender()
 					elseif closest.Type == 1000 and closest.Variant == 76 then
 						EID:addDescriptionToPrint(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1, closest))
 					-- Handle Card Reading Portals
-					elseif closest.Type == 1000 and closest.Variant == 161 and closest.SubType <= 2 then
-						local subtypeToCard = {18, 5, 19}
-						-- Reuse the descriptions of The Emperor/Stars/Moon, so no localization needed
-						local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest)
-						-- Card Reading's name
-						descriptionObj.Name = EID:getObjectName(5, 100, 660)
-						-- Only keep the first line of the description (to avoid Tarot Cloth effects or Planetarium mention on The Stars)
-						descriptionObj.Description = string.sub(descriptionObj.Description, 1, string.find(descriptionObj.Description, "#"))
-						EID:addDescriptionToPrint(descriptionObj)
+					elseif closest.Type == 1000 and closest.Variant == 161 then
+						if closest.SubType <= 2 or (EID.isRepentancePlus and closest.SubType == 3) then 
+							local subtypeToCard = {18, 5, 19}
+							if EID.isRepentancePlus then
+								subtypeToCard = {18, 5, 19, 10}
+							end
+							-- Reuse the descriptions of The Emperor/Stars/Moon/Hermit, so no localization needed
+							local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest)
+							-- Card Reading's name
+							descriptionObj.Name = EID:getObjectName(5, 100, 660)
+							-- Only keep the first line of the description (to avoid Tarot Cloth effects or Planetarium mention on The Stars)
+							descriptionObj.Description = string.sub(descriptionObj.Description, 1, string.find(descriptionObj.Description, "#"))
+							EID:addDescriptionToPrint(descriptionObj)
+						end
 					-- Handle Crane Game
 					elseif closest.Type == 6 and closest.Variant == 16 then
 						if EID.CraneItemType[tostring(closest.InitSeed)] or EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] then

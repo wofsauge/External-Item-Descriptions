@@ -1005,7 +1005,12 @@ function EID:hasDescription(entity)
 		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize") and not entity:GetSprite():IsPlaying("OutOfPrizes") and (EID.CraneItemType[entity.InitSeed.."Drop"..entity.DropSeed] or EID.CraneItemType[tostring(entity.InitSeed)])
 	end
 	if entity.Type == 1000 then
-		if (entity.Variant == 161 and entity.SubType <= 2) or (entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"]) then
+		if entity.Variant == 161 then
+			if entity.SubType <= 2 or (EID.isRepentancePlus and entity.SubType == 3) then
+				isAllowed = true
+			end
+		end
+		if entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"] then
 			isAllowed = true
 		end
 	end

@@ -5,12 +5,12 @@ import xml.etree.ElementTree as ET
 
 GENERATE_REP_PLUS = True
 
-filePath = "..\\..\\resources-dlc3\\"
-writeToFile = "features/eid_xmldata.lua"
+filePath = "..\\..\\..\\..\\resources-dlc3\\"
+writeToFile = "../../features/eid_xmldata.lua"
 
 if GENERATE_REP_PLUS:
-    filePath = "..\\..\\extracted_resources\\resources\\"
-    writeToFile = "features/eid_xmldata_rep+.lua"
+    filePath = "..\\..\\..\\..\\extracted_resources\\resources\\"
+    writeToFile = "../../features/eid_xmldata_rep+.lua"
 
 # take second element for sort
 def sortByID(elem):
