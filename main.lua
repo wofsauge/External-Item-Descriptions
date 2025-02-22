@@ -1462,7 +1462,6 @@ function EID:OnRender()
 
 			for _,closest in ipairs(inRangeEntities) do
 				if not EID:IsGridEntity(closest) then
-					print(closest.Type.."."..closest.Variant.."."..closest.SubType)
 					--Handle GetData Entities (specific)
 					if EID.Config["EnableEntityDescriptions"] and EID:getEntityData(closest, "EID_Description") then
 						local desc = EID:getEntityData(closest, "EID_Description")
