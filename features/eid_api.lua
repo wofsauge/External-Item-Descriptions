@@ -407,7 +407,7 @@ end
 ---@param description string
 ---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addEntity(id, variant, subtype, entityName, description, language)
-	subtype = subtype or nil
+	subtype = subtype or -1
 	language = language or "en_us"
 	if id == EntityType.ENTITY_EFFECT then
 		EID.effectList[variant] = true
@@ -738,8 +738,24 @@ function EID:getDescriptionEntry(objTable, objIdentifier, noFallback)
 		else return EID.descriptions[EID:getLanguage()][objTable] or EID.descriptions["en_us"][objTable] end
 	else
 		local translatedTable = EID.descriptions[EID:getLanguage()][objTable]
-		if noFallback then return translatedTable and translatedTable[objIdentifier]
-		else return (translatedTable and translatedTable[objIdentifier]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objIdentifier]) end
+		local description
+		if noFallback then description = translatedTable and translatedTable[objIdentifier]
+		else description = (translatedTable and translatedTable[objIdentifier]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objIdentifier]) end
+		--Try looking for a -1 that would encompass all subtypes of the variant
+		if not description then
+			local subtype
+			for i = string.len(objIdentifier), 1, -1 do
+				if string.sub(objIdentifier, i, i) == "." then
+					subtype = string.sub(objIdentifier, i + 1, -1)
+					objIdentifier = string.gsub(objIdentifier, "." .. subtype, "") .. ".-1"
+					if subtype ~= "-1" then
+						return EID:getDescriptionEntry(objTable, objIdentifier, noFallback)
+					end
+					break
+				end
+			end
+		end
+		return description
 	end
 end
 
@@ -1588,7 +1604,7 @@ function EID:SplitTVS(tvsString)
 end
 
 ---Checks if any player has a given item ID (or anyone is a given player ID)
----@param Type string | integer | EntityType 
+---@param Type string | integer | EntityType
 ---@param Var integer | nil
 ---@param Sub integer | nil
 ---@return boolean, EntityPlayer?, integer?
