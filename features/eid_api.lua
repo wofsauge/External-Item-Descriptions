@@ -37,6 +37,8 @@ setmetatable(__eidEntityDescriptions,
 	end })
 ---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
+EID.Pathfinder = require("features.pathfinder.luafinding")
+
 local nullVector = Vector(0,0)
 local game = Game()
 local maxCardID = Card.NUM_CARDS - 1
@@ -3115,4 +3117,37 @@ function EID:IsItemHidden(entity)
 		return true
 	end
 	return false
+end
+
+---Returns true if the position at the given grid location is valid for pathfinding.
+---gridPosition is a table with an x and y entry. Its derived from the FindVector class of "LuaFindings" module (pathfinder)
+---@param gridPosition table
+---@return boolean
+function EID:EvaluateLocation(gridPosition)
+	local room = game:GetRoom()
+	local width = room:GetGridWidth()
+	local height = room:GetGridHeight()
+	if gridPosition.x < 1 or gridPosition.y < 1 or gridPosition.x >= height-1 or gridPosition.y >= width - 1 then
+		return false
+	end
+	local gridIndex = gridPosition.x * room:GetGridWidth() + gridPosition.y
+	local collision = room:GetGridCollision(gridIndex)
+	return collision == GridCollisionClass.COLLISION_NONE or collision == GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER
+end
+
+---Returns true if an unobstructed path between the start and end position exists.
+---Obstructions can be something like Rocks, Pits, Walls, etc.
+---@param startPos Vector
+---@param endPos Vector
+---@return boolean
+function EID:HasPathToPosition(startPos, endPos)
+	-- divide by 40 to convert from world to grid coords
+	local room = game:GetRoom()
+	local width = room:GetGridWidth()
+	local startGI = room:GetGridIndex(startPos)
+	local endGI = room:GetGridIndex(endPos)
+	-- convert GridIndex into Grid X,Y coordinates and calculate path
+	local pathfinderObj = EID.Pathfinder(Vector(startGI%width, math.floor(startGI/width)), Vector(endGI%width, math.floor(endGI/width)), EID.EvaluateLocation)
+	-- return true if it has a path
+	return pathfinderObj:GetPath() ~= nil
 end

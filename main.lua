@@ -1138,7 +1138,6 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.CollectibleSpawnedThisFrame, PickupVariant.PICKUP_COLLECTIBLE)
 
 -- Pathchecking
-local pathCheckerEntity = nil
 local lastPathfindFrame = -1
 
 local function attemptPathfind(entity)
@@ -1146,18 +1145,13 @@ local function attemptPathfind(entity)
 		pathsChecked[entity.InitSeed] = true
 		return true
 	end
-	-- Don't reattempt pathfinding more than 3 times a second, unless this is a new entity
-	if pathsChecked[entity.InitSeed] == false and EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
+	-- Don't reattempt pathfinding more than 2 times a second, unless this is a new entity
+	if pathsChecked[entity.InitSeed] == false and EID.GameUpdateCount - lastPathfindFrame < 15 then return false end
 
-	-- Spawn a Fireplace entity to attempt a pathfind to the target pickup, then remove it afterwards
-	pathCheckerEntity = game:Spawn(33, 0, EID.player.Position, nullVector, EID.player, 6969, 4354)
-	EID:setEntityData(pathCheckerEntity, "EID_Pathfinder", true)
-	pathCheckerEntity.Visible = false
-	local successful = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
+	local successful = EID:HasPathToPosition(EID.player.Position, entity.Position)
 	pathsChecked[entity.InitSeed] = successful
-	pathCheckerEntity:Remove()
-	pathCheckerEntity = nil
 	lastPathfindFrame = EID.GameUpdateCount
+
 	return successful
 end
 
