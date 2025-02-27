@@ -648,25 +648,137 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[729] = "Single room stationary wisp", -- Decap Attack
 }
 
--- Special Locust effects when Item was eaten by Abyss
-EID.descriptions[languageCode].abyssSynergies = {
-	[2] = "Three normal locusts", -- The Inner Eye
-	[3] = "Purple homing locust", -- Spoon Bender
-	[4] = "Red large locust that deals triple damage", -- Cricket's Head
-	[6] = "Yellow fast short range locust that deals damage more quickly", -- Number One
-	[7] = "Red locust that deals double damage", -- Blood of the Martyr
-	[10] = "Two gray locusts that deal half damage", -- Halo of Flies
-	[13] = "Green locust that poisons enemies", -- The Virus
-	[103] = "Green locust that poisons enemies", -- The Common Cold
-	[118] = "Gray larger locust that is otherwise normal", -- Brimstone
-	[149] = "Large, slow, green locust that deals 1.5x Isaac's damage and poisons enemies", -- Ipecac
-	[153] = "Four normal locusts", -- Mutant Spider
-	[257] = "Orange, burning locust that sets enemies on fire", -- Fire Mind
-	[305] = "Green locust that poisons enemies", -- Scorpio
-	[374] = "Cyan, glowing locust that can spawn beams of light that deal deal 3x Isaac's damage", -- Holy Light
-	[494] = "Light blue locust with arcs of electricity that deal 0.1 damage per arc", -- Jacob's Ladder
-	[559] = "Light blue locust with arcs of electricity that deal 0.1 damage per arc", -- 120 Volt
+---------- Abyss Locust description parts ----------
+EID.descriptions[languageCode].AbyssTexts = {
+	InfoText = "{amount} x{size}{speed} locust ({dmg})", -- values inside {} brackets will be replaced with text parts below
+	Chance = " ({1}% Chance)", -- {1} will be replaced with the chance
+	SpeedSlow = "slow", -- Speed < 1
+	SpeedFast = "fast", -- Speed > 1
+	SpeedDash = "dashing", -- Speed >= 6
+	SizeSmall = "small", -- Size < 1
+	SizeBig = "big", -- Size > 1
+	DamageMult = "{1}x Isaac's damage", -- {1} will be replaced with the calculated damage multiplier 
 }
+
+---------- Abyss Locust special effects ----------
+--- Special locust effects that dont correspond to TearFlags.
+--- Displays an icon in front of the description that shows an item with the same effect
+EID.descriptions[languageCode].AbyssLocustEffects = {
+[0] = "{{Bomb}} Explodes when dealing damage",
+[1] = "{{QuestionMark}} Random locust effect",
+-- 2 = Multiple locusts act like one. Uninteresting info for the player in my opinion
+[3] = "{{Collectible284}} Reroll enemy when dealing damage",
+[4] = "{{Collectible35}} Damages all enemies when dealing damage",
+[5] = "{{Collectible638}} Erases an enemy when dealing damage",
+[6] = "{{Collectible114}} Knife spining around locust when its attacking",
+[7] = "{{Collectible611}} Uses Larynx scream, damaging enemies nearby",
+[8] = "{{Collectible399}} Spawns a Maw of the Void ring",
+[9] = "{{Collectible522}} Gains a projectile repelling aura when charging",
+[10] = "{{Collectible447}} Spawns poison farts when dealing damage",
+[11] = "{{Collectible447}} Spawns a fart when dealing damage",
+[12] = "{{Collectible118}} Spawns an anti-gravity brimstone when dealing damage",
+[13] = "{{Collectible317}} Spawns green creep when dealing damage",
+[14] = "{{Collectible56}} Spawns yellow creep when dealing damage",
+[15] = "{{Collectible214}} Spawns red creep when dealing damage",
+[16] = "{{Collectible178}} Spawns blue creep when dealing damage",
+[17] = "{{Collectible420}} Randomly spawns a pentagram",
+[18] = "{{Collectible144}} Gains +0.25 damage for each pickup consumed. Maximum of 25 pickups",
+}
+
+
+-- list of Tear flag descriptions used for Abyss locust effect description
+EID.descriptions[languageCode].TearFlagNames = {
+	[0] = "spectral",                 -- Ouija board type tear (goes thru obstacles)
+    [1] = "piercing",                 -- Cupid's arrow type tear (goes thru enemy)
+    [2] = "homing",                   -- Spoon bender type tear (homes to enemy)
+    [3] = "slowing",                  -- Spider bite type tear (slows on contact)
+    [4] = "poison",                   -- Common cold type tear (poisons on contact)
+    [5] = "petrify",                  -- Mom's contact type tear (freezes on contact)
+    [6] = "split",                    -- Parasite type tear (splits on collision)
+    [7] = "grow by range",            -- Lump of coal type tear (grows by range)
+    [8] = "boomerang",                -- My reflection type tear (returns back)
+    [9] = "persistent",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+    [10] = "wiggle movement",         -- Wiggle worm type tear (wiggles)
+    [11] = "spawn fly on hit",        -- Mulligan type tear (creates fly on hit)
+    [12] = "explosive",               -- IPECAC type tear (explodes on hit)
+    [13] = "charming",                -- Mom's Eyeshadow tear
+    [14] = "confusion",               -- Iron Bar tear
+    [15] = "enemies drop hearts",     -- These tears cause enemy to drop hearts if killed (33% chance)
+    [16] = "orbit around player",     -- Used for Little Planet (orbit arounds the player)
+    [17] = "waits before moving",     -- Anti gravity type tear (floats in place for some time before finally moving) (unset after first update)
+    [18] = "split into 4 on hit",     -- Splits into 4 smaller tears if it hits the ground
+    [19] = "bounce of enemies",       -- Bounce off of enemies, walls, rocks (Higher priority than PERSISTENT & PIERCING)
+    [20] = "fear",                    -- Mom's Perfume type tear of fear (fear on contact)
+    [21] = "shrink",                  -- Proptosis tears start large and shrink
+    [22] = "burn",                    -- Fire Mind tears cause Burn effect on enemies
+    [23] = "enemy and pickup magnet", -- Attracts enemies and pickups
+    [24] = "knockback",               -- Tear impact pushes enemies back further
+    [25] = "pulsating",               -- Makes the tear pulse
+    [26] = "spiral movement",         -- Makes the tear path spiral
+    [27] = "oval shape",              -- Makes the tear oval in the direction of travel
+    [28] = "sad bomb",                -- Used by Bombs (Sad Bomb)
+    [29] = "butt bomb",               -- Used by Bombs (Butt Bomb)
+    [30] = "square movement",         -- Used for Hook Worm
+    [31] = "damage dealing aura",     -- Used for GodHead (they will have a glow around them)
+    [32] = "slowing + color enemy black", -- Used for Gish player tears (to color enemy black on slowing)
+    [33] = "green creep on hit", -- Mysterious Liquid tears spawn damaging green creep when hit
+    [34] = "shielded",                -- Lost Contact tears, block enemy projectiles
+    [35] = "glitter bomb",            -- Used by Bombs (Glitter Bomb)
+    [36] = "scatter bomb",            -- Used for Scatter bombs
+    [37] = "sticky",                  -- Used for Sticky bombs and Explosivo tears
+    [38] = "loops around screen",     -- Tears loop around the screen
+    [39] = "spawn light beam on hit", -- Create damaging light beam on hit
+    [40] = "coin drop on hit",        -- Used by Bumbo, spawns a coin when tear hits
+    [41] = "black hp drop on hit",    -- Enemy drops a black hp when dies
+    [42] = "tractor beam",            -- Tear with this flag will follow parent player's beam
+    [43] = "shrink enemies",          -- God's flesh flag to minimize enemies
+    [44] = "create coin on hit",      -- Greed coin tears that has a chance to generate a coin when hit
+    [45] = "cross bomb",              -- Bomber Boy
+    [46] = "big spiral movement",     -- Ouroboros Worm, big radius oscilating tears
+    [47] = "permanent confusion on hit",   -- Glaucoma tears, permanently confuses enemies
+    [48] = "booger",                  -- Booger tears, stick and do damage over time
+    [49] = "spawn spiders or fly on hit",               -- Egg tears, leave creep and spawns spiders or flies
+    [50] = "can break grid entities on hit",            -- Sulfuric Acid tears, can break grid entities
+    [51] = "spawn 1-2 bone shards on enemy death",                    -- Bone tears, splits in 2
+    [52] = "piecing + gain double damage & homing afterwards", -- Belial tears, piecing tears gets double damage + homing
+    [53] = "turn enemies into gold on touch",           -- Midas touch tears
+    [54] = "burst into 10 tears on hit",                -- Needle tears
+    [55] = "electicity on hit",           -- Jacobs ladder tears
+    [56] = "Summon big horn hand on hit", -- Little Horn tears
+    [57] = "connected with electicity",   -- Technology Zero
+    [58] = "bounces of eachother",        -- Pop!
+    [59] = "absorb others",               -- Hungry Tears
+    [60] = "lasershot",               -- Trisagion, generates a laser on top of the tear
+    [61] = "skip on ground",          -- Flat Stone
+    [62] = "burst split",             -- Haemolacria
+    [63] = "creep trail",             -- Bob's Bladder
+    [64] = "punch effect on hit",     -- Knockout Drops
+    [65] = "freeze enemy on death",   -- Uranus
+    [66] = "enemy and pickup magnet", -- Lodestone
+    [67] = "bait effect on hit",       -- Rotten Tomato
+    [68] = "Eye of the Occult",       -- Eye of the Occult
+    [69] = "narrow orbit movement",   -- Orbiting tears with a more narrow and stable orbit (used by Saturnus and Immaculate Heart)
+    [70] = "break rocks",             -- Rock tears, chance to break rocks, deal extra damage to rock type enemies
+    [71] = "90 degree movement",      -- Brain Worm, tears turn and go horizontally when moving past an enemy
+    [72] = "blood bomb",              -- Blood Bombs, leave blood creep on the ground
+    [73] = "turn enemy into poop",    -- E. Coli tears, turn enemies into poop
+    [74] = "coin drop on death",      -- Killed enemies have a chance to drop a random coin (Reverse Hanged Man)
+    [75] = "brimstone bomb",          -- Brimstone Bombs, explosion creates a brimstone cross
+    [76] = "black hole on hit",       -- Rift tears, creates a black hole on impact
+    [77] = "stick to enemy and multiply on enemy death",  -- Spore tears, stick to enemies and multiply on enemy death
+    [78] = "ghost bomb",              -- Ghost bombs
+    [79] = "card drop on death",      -- Killed enemies will drop a random tarot card
+    [80] = "rune drop on death",      -- Killed enemies will drop a random rune
+    [81] = "teleport enemy on hit",   -- Hit enemies will teleport to a different part of the room
+    [82] = "decelerate over time",    -- Decelerate over time
+    [83] = "accelerate over time",    -- Accelerate over time
+    [104] = "bounce (walls only)",    -- Similar to TEAR_BOUNCE but only bounces off walls, not enemies
+	[106] = "extra damage from behind + bleeding",   -- Deals extra damage from behind and inflicts bleeding
+}
+
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+-- Kept in for backwards compatibility
+EID.descriptions[languageCode].abyssSynergies = {}
 
 -- Effect of Car battery on Active Items
 local repCarBattery = {

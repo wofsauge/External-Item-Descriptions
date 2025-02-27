@@ -51,7 +51,6 @@ end
 
 -- Abyss, Birthright Book of Belial, Binge Eater
 if EID.isRepentance then
-	EID:AddItemConditional("5.100", 706, nil, { locTable = "abyssSynergies", lineColor = "ColorRed" }, false) -- Abyss (no item reminder)
 	EID:AddItemConditional("5.100", 59, nil, { locTable = "bookOfBelialBuffs" })                         -- Belial Birthright
 	EID:AddItemConditional("5.100", 664, nil, { locTable = "bingeEaterBuffs" })                          -- Binge Eater
 	EID:AddItemConditional({22, 23, 24, 25, 26, 346, 456, 707}, 664, "Binge Eater Healing") -- Binge Eater (Heals 2 hearts)

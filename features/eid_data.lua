@@ -1307,3 +1307,12 @@ EID.BoC.ComponentShifts = {
 	{0x00000011, 0x0000000F, 0x00000017},
 	{0x00000011, 0x0000000F, 0x0000001A}
 }
+	
+-- list of multipliers for Abyss locust damages
+EID.QualityToLocustDamageMultiplier = {
+	[0] = 0.5,
+	[1] = 0.75,
+	[2] = 1,
+	[3] = 1.5,
+	[4] = 2,
+}
