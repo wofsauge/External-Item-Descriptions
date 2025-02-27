@@ -58,7 +58,7 @@ local repCollectibles={
 	[110] = {"110", "Mamas Kontakte", "↑ {{Range}} +1.5 Reichweite#20% Chance, versteinerte Tränen zu schießen#{{Luck}} Bei 20 Glück 50%ige Chance"}, -- Mom's Contacts
 	[114] = {"114", "Mamas Messer", "Isaacs Tränen werden durch ein werfbares Messer ersetzt#{{Damage}} Das Messer verursacht 2x Isaacs Schaden beim Halten und begrenzt sich bei 1/3 Ladung auf 6x Schaden#Weitere Aufladung erhöht nur die Wurfweite#Schaden reduziert sich auf 2x beim Zurückkehren zu Isaac"}, -- Mom's Knife
 	[115] = {"115", "Ouija-Brett", "↑ {{Tears}} +0.5 Tränen#Spektrale Tränen"}, -- Ouija Board
-	[118] = {"118", "Schwefel", "↓ {{Tears}} x0.33 Feuerratenmultiplikator#{{Chargeable}} Isaacs Tränen werden durch einen aufladbaren Blutstrahl ersetzt##{{Damage}} Er verursacht 9x Isaacs Schaden über 0.63 Sekunden"}, -- Brimstone
+	[118] = {"118", "Schwefel", "↓ {{Tears}} x0.33 Feuerratenmultiplikator#{{Chargeable}} Isaacs Tränen werden durch einen aufladbaren Blutstrahl ersetzt#{{Damage}} Er verursacht 9x Isaacs Schaden über 0.63 Sekunden"}, -- Brimstone
 	[121] = {"121", "Seltsamer Pilz (Groß)", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} +1 Schaden#↑ {{Range}} +1.5 Reichweite#↓ {{Speed}} -0.2 Geschwindigkeit"}, -- Odd Mushroom (Large)
 	[123] = {"123", "Monsterhandbuch", "{{Timer}} Spawnt für den Raum ein zufälliges Begleittier"}, -- Monster Manual
 	[126] = {"126", "Rasierklinge", "↑ {{Damage}} +1.2 Schaden für den Raum#{{Warning}} Verursacht 1 Herz Schaden an Isaac#Nach dem ersten Gebrauch im Raum nur noch ein halbes Herz#{{Heart}} Entfernt zuerst Rote Herzen"}, -- Razor Blade
@@ -689,25 +689,138 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[729] = "Stationärer Einzelraum-Wisp", -- Decap Attack
 }
 
--- Special Locust effects when Item was eaten by Abyss
-EID.descriptions[languageCode].abyssSynergies = {
-	[2] = "Drei normale Heuschrecken", -- The Inner Eye
-	[3] = "Lila heimische Heuschrecke", -- Spoon Bender
-	[4] = "Rote große Heuschrecke, die dreifachen Schaden verursacht", -- Cricket's Head
-	[6] = "Gelbe, schnelle Nahbereichsheuschrecke, die schnelleren Schaden verursacht", -- Number One
-	[7] = "Rote Heuschrecke, die doppelten Schaden verursacht", -- Blood of the Martyr
-	[10] = "Zwei graue Heuschrecken, die halben Schaden verursachen", -- Halo of Flies
-	[13] = "Grüne Heuschrecke, die Feinde vergiftet", -- The Virus
-	[103] = "Grüne Heuschrecke, die Feinde vergiftet", -- The Common Cold
-	[118] = "Graue größere Heuschrecke, die ansonsten normal ist", -- Brimstone
-	[149] = "Große, langsame, grüne Heuschrecke, die 1,5x Isaacs Schaden verursacht und Feinde vergiftet", -- Ipecac
-	[153] = "Vier normale Heuschrecken", -- Mutant Spider
-	[257] = "Orange brennende Heuschrecke, die Feinde in Brand setzt", -- Fire Mind
-	[305] = "Grüne Heuschrecke, die Feinde vergiftet", -- Scorpio
-	[374] = "Cyan leuchtende Heuschrecke, die Lichtstrahlen erzeugen kann, die 3x Isaacs Schaden verursachen", -- Holy Light
-	[494] = "Hellblaue Heuschrecke mit Lichtbögen, die 0,1 Schaden pro Tick verursachen", -- Jacob's Ladder
-	[559] = "Hellblaue Heuschrecke mit Lichtbögen, die 0,1 Schaden pro Tick verursachen", -- 120 Volt
+---------- Abyss Locust description parts ----------
+EID.descriptions[languageCode].AbyssTexts = {
+	InfoText = "{amount} x{size}{speed} Heuschrecke ({dmg})", -- values inside {} brackets will be replaced with text parts below
+	Chance = " ({1}% Chance)", -- {1} will be replaced with the chance
+	SpeedSlow = "schnelle", -- Speed < 1
+	SpeedFast = "langsame", -- Speed > 1
+	SpeedDash = "flotte", -- Speed >= 6
+	SizeSmall = "kleine", -- Size < 1
+	SizeBig = "große", -- Size > 1
+	DamageMult = "{1}x Isaac's Schaden", -- {1} will be replaced with the calculated damage multiplier 
 }
+
+---------- Abyss Locust special effects ----------
+--- Special locust effects that dont correspond to TearFlags.
+--- Displays an icon in front of the description that shows an item with the same effect
+EID.descriptions[languageCode].AbyssLocustEffects = {
+	[0] = "{{Bomb}} Explodiert, wenn es Schaden verursacht",
+	[1] = "{{QuestionMark}} Zufälliger Heuschrecken Effekt",
+	-- 2 = Multiple locusts act like one. Uninteresting info for the player in my opinion
+	[3] = "{{Collectible284}} Feind neu würfeln, wenn es Schaden verursacht",
+	[4] = "{{Collectible35}} Fügt allen Feinden Schaden zu, wenn es Schaden verursacht",
+	[5] = "{{Collectible638}} Löscht einen Gegner aus, wenn es Schaden verursacht",
+	[6] = "{{Collectible114}} Messer dreht sich um Heuschrecke, wenn es angreift",
+	[7] = "{{Collectible611}} Nutzt Kehlkopfschrei, der Gegner in der Nähe verletzt",
+	[8] = "{{Collectible399}} Beschwört einen \"Schlund der Leere\" Ring",
+	[9] = "{{Collectible522}} Erhält beim Angriff eine Aura, die Geschosse abwehrt",
+	[10] = "{{Collectible447}} Erzeugt giftigen Furz, wenn es Schaden verursacht",
+	[11] = "{{Collectible447}} Erzeugt einen Furz, wenn es Schaden verursacht",
+	[12] = "{{Collectible118}} Spawns an anti-gravity brimstone, wenn es Schaden verursacht",
+	[13] = "{{Collectible317}} Erzeugt grüne Pfütze, wenn es Schaden verursacht",
+	[14] = "{{Collectible56}} Erzeugt gelbe Pfütze, wenn es Schaden verursacht",
+	[15] = "{{Collectible214}} Erzeugt rote Pfütze, wenn es Schaden verursacht",
+	[16] = "{{Collectible178}} Erzeugt blaue Pfütze, wenn es Schaden verursacht",
+	[17] = "{{Collectible420}} Erzeugt zufällig ein Pentagramm",
+	[18] = "{{Collectible144}} Erhält +0.25 Schaden für jedes konsumiertes Pickup. Maximal 25 Pickups",
+}
+
+
+-- list of Tear flag descriptions used for Abyss locust effect description
+EID.descriptions[languageCode].TearFlagNames = {
+	[0] = "gespensterhaft",                 -- Ouija board type tear (goes thru obstacles)
+    [1] = "durchdringend",                 -- Cupid's arrow type tear (goes thru enemy)
+    [2] = "zielsuchend",                   -- Spoon bender type tear (homes to enemy)
+    [3] = "Verlangsamung",                  -- Spider bite type tear (slows on contact)
+    [4] = "Gift",                   -- Common cold type tear (poisons on contact)
+    [5] = "versteinern",                  -- Mom's contact type tear (freezes on contact)
+    [6] = "spaltet sich",                    -- Parasite type tear (splits on collision)
+    [7] = "wächst durch Reichweite",            -- Lump of coal type tear (grows by range)
+    [8] = "Bumerang",                -- My reflection type tear (returns back)
+    [9] = "Ausdauernd",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+    [10] = "Schlängelbewegung",         -- Wiggle worm type tear (wiggles)
+    [11] = "Beschwört Fliege bei Treffer",        -- Mulligan type tear (creates fly on hit)
+    [12] = "Explosiv",               -- IPECAC type tear (explodes on hit)
+    [13] = "bezaubernd",                -- Mom's Eyeshadow tear
+    [14] = "verwirrend",               -- Iron Bar tear
+    [15] = "Gegner lassen Herzen fallen",     -- These tears cause enemy to drop hearts if killed (33% chance)
+    [16] = "Kreist um Spieler",     -- Used for Little Planet (orbit arounds the player)
+    [17] = "Wartet bevor es sich bewegt",     -- Anti gravity type tear (floats in place for some time before finally moving) (unset after first update)
+    [18] = "Aufteilung in 4 bei Treffer",     -- Splits into 4 smaller tears if it hits the ground
+    [19] = "Abprallen von Feinden",       -- Bounce off of enemies, walls, rocks (Higher priority than PERSISTENT & PIERCING)
+    [20] = "Angst",                    -- Mom's Perfume type tear of fear (fear on contact)
+    [21] = "Verkleinernd",                  -- Proptosis tears start large and shrink
+    [22] = "Brennend",                    -- Fire Mind tears cause Burn effect on enemies
+    [23] = "Feind und Pickup-Magnet", -- Attracts enemies and pickups
+    [24] = "Rückstoß",               -- Tear impact pushes enemies back further
+    [25] = "pulsierend",               -- Makes the tear pulse
+    [26] = "Spiralbewegung",         -- Makes the tear path spiral
+    [27] = "ovale Form",              -- Makes the tear oval in the direction of travel
+    [28] = "Traurige Bombe",                -- Used by Bombs (Sad Bomb)
+    [29] = "Po Bombe",               -- Used by Bombs (Butt Bomb)
+    [30] = "Eckige Bewegung",         -- Used for Hook Worm
+    [31] = "Schaden verursachende Aura",     -- Used for GodHead (they will have a glow around them)
+    [32] = "Verlangsamung + färbt Feind Schwarz", -- Used for Gish player tears (to color enemy black on slowing)
+    [33] = "Erzeugt grüne Pfütze bei Treffer", -- Mysterious Liquid tears spawn damaging green creep when hit
+    [34] = "Geschützt",                -- Lost Contact tears, block enemy projectiles
+    [35] = "Glitzer Bombe",            -- Used by Bombs (Glitter Bomb)
+    [36] = "Streuungsbombe",            -- Used for Scatter bombs
+    [37] = "klebrig",                  -- Used for Sticky bombs and Explosivo tears
+    [38] = "Endlosschleife um den Bildschirm",     -- Tears loop around the screen
+    [39] = "Erzeugt Lichtstrahl bei Treffer", -- Create damaging light beam on hit
+    [40] = "Erzeugt Geld bei Treffer",        -- Used by Bumbo, spawns a coin when tear hits
+    [41] = "Erzeugt schwarzes Herz bei Mord",    -- Enemy drops a black hp when dies
+    [42] = "Traktorstrahl",            -- Tear with this flag will follow parent player's beam
+    [43] = "Feinde schrumpfen",          -- God's flesh flag to minimize enemies
+    [44] = "Erzeugt Geld bei Treffer",      -- Greed coin tears that has a chance to generate a coin when hit
+    [45] = "Kreuz Bombe",              -- Bomber Boy
+    [46] = "Große Spiralbewegung",     -- Ouroboros Worm, big radius oscilating tears
+    [47] = "Dauerhafte Verwirrung bei Treffer",   -- Glaucoma tears, permanently confuses enemies
+    [48] = "Popel",                  -- Booger tears, stick and do damage over time
+    [49] = "Erzeugt Spinne oder Fliege bei Treffer",               -- Egg tears, leave creep and spawns spiders or flies
+    [50] = "Kann Steine bei Treffer zerstören",            -- Sulfuric Acid tears, can break grid entities
+    [51] = "Erzeugt 1-2 Knochensplitter bei Mord",                    -- Bone tears, splits in 2
+    [52] = "durchdringend + anschließend doppelter Schaden und verfolgen", -- Belial tears, piecing tears gets double damage + homing
+    [53] = "Feinde bei Berührung in Gold verwandeln",           -- Midas touch tears
+    [54] = "Erzeugt kreisförmig 10 Tränen bei Treffer",                -- Needle tears
+    [55] = "Elektrizität bei Treffer",           -- Jacobs ladder tears
+    [56] = "Beschwört Große Hornhand bei Treffer", -- Little Horn tears
+    [57] = "verbunden mit Elektrizität",   -- Technology Zero
+    [58] = "prallt von einander ab",        -- Pop!
+    [59] = "Absorbiert andere",               -- Hungry Tears
+    [60] = "Laserangriff",               -- Trisagion, generates a laser on top of the tear
+    [61] = "hüpft auf Boden",          -- Flat Stone
+    [62] = "kreisförmige Spaltung",             -- Haemolacria
+    [63] = "Pfützenspur",             -- Bob's Bladder
+    [64] = "Schlageffekt bei Treffer",     -- Knockout Drops
+    [65] = "Gefriert Gegner bei Mord",   -- Uranus
+    [66] = "Gegner und Pickup Magnet", -- Lodestone
+    [67] = "Köderwirkung bei Treffer",       -- Rotten Tomato
+    [68] = "Auge des Okkulten",       -- Eye of the Occult
+    [69] = "enge Umlaufbahn",   -- Orbiting tears with a more narrow and stable orbit (used by Saturnus and Immaculate Heart)
+    [70] = "Zerstört Steine",             -- Rock tears, chance to break rocks, deal extra damage to rock type enemies
+    [71] = "90 Grad Bewegung",      -- Brain Worm, tears turn and go horizontally when moving past an enemy
+    [72] = "Blut Bombe",              -- Blood Bombs, leave blood creep on the ground
+    [73] = "Feind in Kacke verwandeln",    -- E. Coli tears, turn enemies into poop
+    [74] = "Erzeugt Münze bei Mord",      -- Killed enemies have a chance to drop a random coin (Reverse Hanged Man)
+    [75] = "Schwefelbombe",          -- Brimstone Bombs, explosion creates a brimstone cross
+    [76] = "Schwarzes Loch bei Treffer",       -- Rift tears, creates a black hole on impact
+    [77] = "Klebt an Feind und vermehrt sich beim Tod des Feindes",  -- Spore tears, stick to enemies and multiply on enemy death
+    [78] = "Geister Bombe",              -- Ghost bombs
+    [79] = "Erzeugt Karte bei Mord",      -- Killed enemies will drop a random tarot card
+    [80] = "Erzeugt Rune bei Mord",      -- Killed enemies will drop a random rune
+    [81] = "Teleportiere Gegner bei Treffer",   -- Hit enemies will teleport to a different part of the room
+    [82] = "Langsamer über die Zeit",    -- Decelerate over time
+    [83] = "Schneller über die Zeit",    -- Accelerate over time
+    [104] = "Prallt ab (nur Wände)",    -- Similar to TEAR_BOUNCE but only bounces off walls, not enemies
+	[106] = "zusätzlicher Schaden von Hinten + Blutungen",   -- Deals extra damage from behind and inflicts bleeding
+}
+
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+-- Kept in for backwards compatibility
+EID.descriptions[languageCode].abyssSynergies = {}
+
 
 -- Effect of Car battery on Active Items
 local repCarBattery = {
@@ -903,6 +1016,8 @@ local repCards={
 	[12] = {"12", "XI - Die Kraft", "{{Timer}} Erhalte für den Raum:#↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0,3 Geschwindigkeit#↑ {{Damage}} +0,3 Schaden#↑ {{Damage}} x1,5 Schadensmultiplikator#↑ {{Range}} +2,5 Reichweite"}, -- XI - Strength
 	[16] = {"16", "XV - Der Teufel", "{{Timer}} Erhalte für den Raum:#↑ {{Damage}} +2 Schaden"}, -- XV - The Devil
 	[18] = {"18", "XVII - Die Sterne", "{{TreasureRoom}} Teleportiert Isaac zum Schatzraum#{{Planetarium}} Falls es ein Planetarium gibt, teleportiert es dorthin stattdessen"}, -- XVII - The Stars
+	[20] = {"20", "XIX - Die Sonne", "{{HealingRed}} Volles Leben#Fügt allen Gegnern 100 Schaden zu#{{Timer}} Voller Mapping-Effekt für das Stockwerk (außer {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Geheimer Raum)#{{CurseDarkness}} Entfernt Fluch der Dunkelheit"}, -- XIX - The Sun
+	[22] = {"22", "XXI - Die Welt", "{{Timer}} Voller Mapping-Effekt für das Stockwerk (außer {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Geheimer Raum)"}, -- XXI - The World
 	[27] = {"27", "Karo Ass", "{{Bomb}} Verwandelt alle Pickups, Truhen und nicht-Boss-Gegner in zufällige Bomben"}, -- Ace of Clubs
 	[28] = {"28", "Kreuz Ass", "{{Coin}} Verwandelt alle Pickups, Truhen und nicht-Boss-Gegner in zufällige Münzen"}, -- Ace of Diamonds
 	[29] = {"29", "Pik Ass", "{{Key}} Verwandelt alle Pickups, Truhen und nicht-Boss-Gegner in zufällige Schlüssel"}, -- Ace of Spades
@@ -1133,6 +1248,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.70"] = "Pille",
 	["5.90"] = "Batterie",
 	["5.300"] = "Karte",
+	["5.301"] = "Rune", -- not a real ID
 	["9.-1"] = "Gegnergeschoss",
 	["999.-1"] = "Gitterobjekt",
 	["1000.0"] = "Effekt",
@@ -1144,22 +1260,26 @@ EID.descriptions[languageCode].GlitchedItemText = {
 ---------- Misc. Text ----------
 
 EID.descriptions[languageCode].poopSpells = {
-	{"Poop", "Normales Poop, das Aufsammelbares fallen lassen kann"},
-	{"Corny Poop", "Spawnt blaue Fliegen, solange es intakt ist"},
-	{"Burning Poop", "Verursacht Kontakt-Schaden, solange es intakt ist#Hinterlässt Feuer, wenn es zerstört wird"},
-	{"Stone Poop", "Kann 3 Mal Schaden verursachen, wenn es geworfen wird#Benötigt viele Treffer, um zerstört zu werden"},
-	{"Stinky Poop", "Erzeugt eine giftige Wolke#{{Warning}} Die Wolke explodiert, wenn sie Feuer berührt!"},
-	{"Black Poop", "{{Slow}} Erzeugt verlangsamenden Creep#{{Confusion}} Verursacht 10 Schaden und verwirrt alle Gegner, wenn sie zerstört wird"},
-	{"Holy Poop", "{{Collectible543}} Erzeugt einen weißen Poop#Solange innerhalb der Aura des Poops:#↑ {{Damage}} x1.2 Schadensmultiplikator#↑ {{Tears}} x2.5 Schussrate-Multiplikator#Homing-Tränen#Chance, Schaden zu blockieren"},
-	{"Brown Creep", "Hinterlässt eine Spur von Creep#Das Stehen auf dem Creep erhöht Isaacs Schussrate und Schaden#Wenn der Creep andere Poops berührt, übernimmt er ihre Eigenschaften"},
-	{"Fart", "Stößt nahegelegene Gegner und Geschosse zurück und erzeugt eine giftige Wolke#{{Warning}} Die Wolke explodiert, wenn sie Feuer berührt!"},
-	{"Bomb", "Normale werfbare Bombe"},
-	{"Explosive Diarrhea", "Isaac lässt schnell 5 brennende Bomben erscheinen"},
+	{"Kacke", "Normales Kacke, das Aufsammelbares fallen lassen kann"},
+	{"Körnige Kacke", "Spawnt blaue Fliegen, solange es intakt ist"},
+	{"Brennende Kacke", "Verursacht Kontakt-Schaden, solange es intakt ist#Hinterlässt Feuer, wenn es zerstört wird"},
+	{"Steinige Kacke", "Kann 3 Mal Schaden verursachen, wenn es geworfen wird#Benötigt viele Treffer, um zerstört zu werden"},
+	{"Stinkende Kacke", "Erzeugt eine giftige Wolke#{{Warning}} Die Wolke explodiert, wenn sie Feuer berührt!"},
+	{"Schwarze Kacke", "{{Slow}} Erzeugt verlangsamenden Creep#{{Confusion}} Verursacht 10 Schaden und verwirrt alle Gegner, wenn sie zerstört wird"},
+	{"Heilige Kacke", "{{Collectible543}} Erzeugt einen weißen Kacke#Solange innerhalb der Aura des Kacke:#↑ {{Damage}} x1.2 Schadensmultiplikator#↑ {{Tears}} x2.5 Schussrate-Multiplikator#Homing-Tränen#Chance, Schaden zu blockieren"},
+	{"Braune Pfütze", "Hinterlässt eine Spur von Creep#Das Stehen auf dem Creep erhöht Isaacs Schussrate und Schaden#Wenn der Creep andere Poops berührt, übernimmt er ihre Eigenschaften"},
+	{"Furz", "Stößt nahegelegene Gegner und Geschosse zurück und erzeugt eine giftige Wolke#{{Warning}} Die Wolke explodiert, wenn sie Feuer berührt!"},
+	{"Bombe", "Normale werfbare Bombe"},
+	{"Explosiver Durchfall", "Isaac lässt schnell 5 brennende Bomben erscheinen"},
+
+	--Undetected poop, for Poop API
+	--[Poop name in code] = {Icon, Name, Description}
+	["Unknown"] = {"{{PoopSpell1}}", "Unbekannte Kacke", "Unbekannter Effekt"}
 }
 
 EID.descriptions[languageCode].itemPoolFor = "Pool für Gegenstand:"
 EID.descriptions[languageCode].itemPoolNames = {
-	[0] = "Schatz", "Shop", "Boss", "Teufel", "Engel", "Geheimnis", "Bibliothek", "Shell Game", "Goldene Truhe", "Rote Truhe", "Bettler", "Dämonenbettler", "Fluch", "Schlüsselmeister", "Batterie-Bum", "Mamas Truhe", "Gier Schatz", "Gier Boss", "Gier Shop", "Gier Teufel", "Gier Engel", "Gier Fluch", "Gier Geheimnis", "Cranium-Spiel", "Ultra-Geheimnis", "Bomben-Bum", "Planetarium", "Alte Truhe", "Baby-Shop", "Holztruhe", "Verdorbener Bettler",
+	[0] = "Schatz", "Shop", "Boss", "Teufel", "Engel", "Geheimnis", "Bibliothek", "Shell Game", "Goldene Truhe", "Rote Truhe", "Bettler", "Dämonenbettler", "Fluch", "Schlüsselmeister", "Batterie-Bettler", "Mamas Truhe", "Gier Schatz", "Gier Boss", "Gier Shop", "Gier Teufel", "Gier Engel", "Gier Fluch", "Gier Geheimnis", "Cranium-Spiel", "Ultra-Geheimnis", "Bomben-Bum", "Planetarium", "Alte Truhe", "Baby-Shop", "Holztruhe", "Verdorbener Bettler",
 }
 
 EID.descriptions[languageCode].VoidShopText = "Wenn sofort nach dem Aufsammeln absorbiert, erhältst du:"
@@ -1213,6 +1333,15 @@ EID.descriptions[languageCode].AchievementWarningText = "Erfolge sind deaktivier
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID ist für die neueste Steam-Version aktualisiert#Ihre Spielversion wird nicht offiziell unterstützt, daher sind einige Beschreibungen und Funktionen möglicherweise ungenau#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modifizierte Gegenstände können die Berechnung der Crafting-Rezepte ungenau machen!#Installiere REPENTOGON für verbesserte Unterstützung modifizierter Rezepte#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
 
+-- Strings for Tainted Cain's pedestal salvaging; the non-base lines will have the corresponding icon automatically
+EID.descriptions[languageCode].TaintedCainPedestalBase = "Verwandelt sich bei Berührung in 3-8 zufällige Pickups"
+EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "Verwandelt sich bei Berührung in {{BlinkBirthright}}6-16{{CR}} zufällige Pickups"
+EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Garantiert ein {n} {1}" -- Room type spawns
+EID.descriptions[languageCode].TaintedCainPedestalBonus = "33% Chance für ein extra {1}" -- "Safety Cap" type spawns
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "66% Chance für ein extra Pickup"
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToeBirthright = "66% Chance für {{BlinkBirthright}}2{{CR}} extra Pickups"
+EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "Herzen sind 80% unwahrscheinlicher"
+
 EID.descriptions[languageCode].ResultsWithX = "(Ergebnisse mit {1})"
 
 -- Conditional descriptions
@@ -1231,11 +1360,38 @@ local repBFFSSynergies = {
 }
 EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
 
--- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
+---------- Character Info ----------
 local repCharacterInfo = {
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
-	}
+	[4] = {"???", "Kann keine roten Herzen haben#{{SoulHeart}} HP-Up Items geben Seelenherzen#{{DevilRoom}} Teufelsgeschäfte, die 1 oder 2 Rote Herzen kosten würden, kosten stattdessen 1 oder 2 Seelenherzen#Kacke zerstören erzeugt 1 blaue Fliege"},
+	[8] = {"Lazarus", "Ein mal pro Ebene, wenn du stirbst:#Wiederauferstehen als Auferstandener Lazarus#Verliere 1 roten Herz Container#↑ {{Damage}} +0.5 Schaden"},
+	[11] = {"Auferstandener Lazarus", "Erhöhte Werte und x1.4 Schadensmultiplikator#Beim Betreten einer neuen Ebene, verwandelt sich zurück in Lazarus"},
+	[12] = {"Dunkler Judas", "{{Damage}} x2 Schadensmultiplikator#Kann keine roten Herzen haben#{{BlackHeart}} Health ups grant Black Hearts#{{Player3}} Counts as Judas for completion marks"},
+	--[14] = {"Hüter", "{{CoinHeart}} Heal by picking up coins#Maximum of 3 Coin Hearts#Heart pickups are turned into Blue Flies#{{DevilRoom}} Devil deals cost 15 or 30 coins"},
+	--[18] = {"Bethanie", "{{SoulHeart}} Use Soul Hearts to charge your active item#Can't use Soul Hearts as health"},
+	--[19] = {"Jakob", "Control Jakob and Esau at the same time#Both characters drop a bomb when one is used#Esau stays in place while holding {{ButtonRT}}#{{ButtonLT}} uses Jakob's active, {{ButtonRB}} uses Esau's active, hold {{ButtonRT}} to use their card/pill#When there's a choice between items, Jakob and Esau can grab two simultaneously"},
+	--[20] = {"Esau", "Control Jakob and Esau at the same time#Both characters drop a bomb when one is used#Esau stays in place while holding {{ButtonRT}}#{{ButtonLT}} uses Jakob's active, {{ButtonRB}} uses Esau's active, hold {{ButtonRT}} to use their card/pill#When there's a choice between items, Jakob and Esau can grab two simultaneously"},
+	
+	--[21] = {"Befleckter Isaac", "Item pedestals cycle between 2 options#You can only carry 8 passive items#Change which item will be dropped for a 9th item with {{ButtonRT}}"},
+	[22] = {"Befleckte Magdalene", "Gesundheit über 2 Rote Herzen wird langsam abgebaut#Führt bei Kontakt einen Nahkampfangriff für 6x Schaden aus#{{HalfRedHeart}} Chance für Feinde, halbe rote Herzen fallen zu lassen, die nach 2 Sekunden verschwinden#Herz wird bei Nahkampftötung garantiert#{{Sammelbares45}} Doppelt so viel Heilung aus nicht-aufnehmbaren Quellen#{{AngelDevilChance}} Schaden, der durch das Ablassen von Herzen verursacht wird, wirkt sich nicht auf die Chance auf einen Teufelsschlag aus"},
+	[23] = {"Befleckter Cain", "Das Berühren eines Items verwandelt es in mehrere Pickups"},
+	[24] = {"Befleckter Judas", "Kann keine roten Herzen haben#{{BlackHeart}} HP-Up Items geben schwarze Herzen"},
+	--[25] = {"Befleckter ???", "Bombs are replaced with Poop Spells#{{Crafting29}} Doing damage spawns poop pickups#{{Collectible715}} You can store the next spell for later by using Hold"},
+	--[26] = {"Befleckte Eve", "Holding Fire converts your hearts into Clot familiars#Different Heart types spawn Clots with more health and tear effects#Clots lose health over time#Clots stay in place while holding {{ButtonRT}}#At half a heart left with no Clots, you gain a Mom's Knife-like attack until you heal and leave the room"},
+	--[27] = {"Befleckter Samson", "Dealing or taking damage builds up Berserk mode#{{Timer}} When you go berserk, receive for 5 seconds:#↑ {{Speed}} +0.4 Speed#↓ {{Tears}} x0.5 Fire rate multiplier#↑ {{Tears}} +2 Fire rate#↑ {{Damage}} +3 Damage#Restricts attacks to a melee that reflects shots#{{Timer}} Each kill increases the duration by 1 second and grants brief invincibility"},
+	--[28] = {"Befleckter Azazel", "When you start charging, you sneeze blood#Hitting an enemy with the sneeze halves your charge time#The sneeze deals 1.5x Azazel's damage#{{BrimstoneCurse}} Affected enemies take extra damage from Brimstone beams#On death, cursed enemies explode and pass on the curse to nearby enemies"},
+	--[29] = {"Befleckter Lazarus", "Lazarus has two states, each with their own items and health#Clearing a room/wave or using Flip switches to the other state"},
+	--[30] = {"Befleckte Eden", "When you take damage, reroll your stats, items, trinket, and consumables#Items reroll into an item from the same item pool#Self-damage doesn't reroll"},
+	--[31] = {"Befleckter Lost", "{{Card51}} Cards that spawn have a 10% chance to be Holy Card#Quality {{Quality2}} or less items have a 20% chance to be rerolled#Only \"offensive\" items can spawn"},
+	--[32] = {"Befleckter Lilith", "Pressing Fire launches a short-range fetus melee attack that does 3x damage#Holding Fire keeps the fetus out shooting tears towards the nearest enemy"},
+	--[33] = {"Befleckter Hüter", "Maximum of 2 Coin Hearts#Enemies drop coins that disappear in 2 seconds#Most item pedestals cost 15 coins#Devil deals and Angel items cost 15 or 30 coins#Shops don't require a key and have increased stock"},
+	[34] = {"Befleckter Apollyon", ""},
+	--[35] = {"Befleckter Vergessener", "The Forgotten is an immobile bone pile that is picked up and thrown by The Soul for 3x damage#Only The Soul can take damage#Bombs are placed at Forgotten's location#Can't have Red Hearts#{{SoulHeart}} Health ups grant Soul Hearts"},
+	--[36] = {"Befleckte Bethanie", "{{Heart}} Use Red Hearts to charge your active item#Can't have Red Hearts#{{SoulHeart}} Health ups grant Soul Hearts and blood charges#Stat increases are only 75% effective"},
+	--[37] = {"Befleckter Jakob", "Dark Esau chases you, charging towards you when close#The charge does a lot of damage to enemies#If he hits you, you turn into a ghost that dies in one hit for the rest of the floor#While a ghost, one devil deal per room can be taken for free"},
+	--[38] = {"Toter befleckter Lazarus", "Lazarus has two states, each with their own items and health#Clearing a room/wave or using Flip switches to the other state"},
+	--[39] = {"Befleckte Seele von Jakob", "Flight#Spectral tears#{{Warning}} No health#{{Warning}} Die if hit by Dark Esau#{{DevilRoom}} One devil deal per room can be taken for free#Turn back into Tainted Jakob in the next floor"},
+	--[40] = {"Befleckte vergessene Seele", "The Forgotten is an immobile bone pile that is picked up and thrown by The Soul for 3x damage#Only The Soul can take damage#Bombs are placed at Forgotten's location#Can't have Red Hearts#{{SoulHeart}} Health ups grant Soul Hearts"},
+}
 EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
 
 
@@ -1251,6 +1407,6 @@ if EID.enableDebug then
 end
 
 if REPENTOGON then
-	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "Donation Machine", "Next achievement at {1} coins, {2} coins remaining#{{Luck}} 2% chance for +1 Luck when donating#{{AngelRoom}} Donating 10 coins increases Angel Room chance"}
-	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Greed Donation Machine", "Next achievement at {1} coins, {2} coins remaining"}
+	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "Spendenmaschine", "Nächster Erfolg bei {1} Münzen, noch {2} Münzen#{{Luck}} 2% Chance für +1 Glück nach Spende#{{AngelRoom}} 10 Münzen spenden erhöht Engelraum-Chance"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Gier Spendenmaschine", "Nächster Erfolg bei {1} Münzen, noch {2} Münzen"}
 end
