@@ -375,7 +375,7 @@ EID.descriptions[languageCode].collectibles={
 	{"321", "삼손의 쇠사슬", "캐릭터와 연결되어 이동하며 접촉하는 적에게 초당 10.7의 피해를 줍니다."}, -- Samson's Chains
 	{"322", "누더기 아기", "공격방향으로 소지중인 패밀리어과 같은 효과의 눈물을 발사합니다.#발사할 수 있는 패밀리어가 없는 경우 공격력 3.5의 눈물을 발사합니다."}, -- Mongo Baby
 	{"323", "아이작의 눈물", "사용 시 캐릭터 기준 8방향으로 눈물을 발사합니다.#눈물을 발사할 때마다 충전량이 증가합니다."}, -- Isaac's Tears
-	{"324", "", "사용 시 {{SecretRoom}}비밀방, {{SuperSecretRoom}}일급 비밀방, {{TreasureRoom}}보물방, {{ErrorRoom}}오류방 중 하나로 순간이동합니다."}, -- Undefined
+	{"324", "", "사용 시 {{SecretRoom}}비밀방, {{SuperSecretRoom}}일급 비밀방, {{TreasureRoom}}보물방, {{ErrorRoom}}오류방 중 하나로 순간이동합니다.#{{Blank}} {{ColorGray}}(블랙마켓의 경우 1%)"}, -- Undefined
 	{"325", "가위", "사용 시 머리가 분리됩니다.#분리된 머리는 제자리에서 공격방향으로 공격력 3.5의 눈물을 발사합니다."}, -- Scissors
 	{"326", "생명의 숨결", "사용 키를 누르고 있으면 충전량이 줄어들며 충전량이 모두 줄어들면 1초간 무적 상태가 됩니다.#무적 상태가 끝나도 키를 누르면 체력 반 칸의 피해를 입습니다."}, -- Breath of Life
 	{"327", "즉석사진", "피격 시 {{HalfHeart}}빨간하트가 반칸 이하일 때 5초간 무적 상태가 됩니다.#Chest 스테이지 진입에 필요한 아이템입니다."}, -- The Polaroid
@@ -859,7 +859,7 @@ EID.descriptions[languageCode].cards={
 	{"49", "주사위 파편", "그 방의 모든 아이템과 픽업을 다른 아이템으로 바꿉니다."}, -- Dice Shard
 	{"50", "비상 연락처", "엄마손 2개가 랜덤 적에게 떨어져 적을 붙잡습니다."}, -- Emergency Contact
 	{"51", "신성한 카드", "{{HolyMantle}} 사용한 방에서 피격 시 피해를 1회 무시하는 방어막을 제공합니다.#25% 확률로 Holy Card를 드랍합니다."}, -- Holy Card
-	{"52", "거대한 성장", "{{Timer}} 사용 시 그 방에서:#{{DamageSmall}}공격력 +7#{{RangeSmall}}사거리 +30"}, -- Huge Growth
+	{"52", "거대한 성장", "{{Timer}} 사용 시 그 방에서:#{{DamageSmall}}공격력 +7#{{RangeSmall}}사거리 +30#장애물을 부술 수 있습니다."}, -- Huge Growth
 	{"53", "고대의 부름", "카드를 3개 드랍합니다."}, -- Ancient Recall
 	{"54", "시간 여행", "{{Timer}} 사용 시 그 방에서:#{{SpeedSmall}}이동속도 +0.5#{{ShotspeedSmall}}탄속 -1#{{Slow}} 그 방의 모든 적들이 영구적으로 느려집니다."}, -- Era Walk
 }

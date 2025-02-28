@@ -31,11 +31,13 @@ local collectibles = {
 	[510] = {"510", "정신착란", "{{DeliriumSmall}} 사용 시 Delirium 버전의 아군 보스를 소환합니다.#소환된 보스는 방을 나가도 유지되나 재사용 시 이전에 소환한 보스는 사라집니다.#소환된 보스에 따라서 충전량이 달라집니다."}, -- Delirious
 	-- Change: added "Tears leave a pool of creep on impact"
 	[560] = {"560", "너무 아파", "피격 시 캐릭터 기준 10방향으로 공격력 +25의 눈물을 발사하며 그 방에서 {{TearsSmall}}연사(+상한)가 +1.2씩 증가합니다.#{{Blank}} (2회 피격 시부터 {{TearsSmall}}+0.4)#그 방에서 공격이 무언가에 부딪힐 때 빨간 장판이 생깁니다.#장판은 지상의 적에게 초당 30의 피해를 줍니다."}, -- It Hurts
-	[593] = {"593", "화성", "이동키를 두번 누르면 누른 방향으로 돌진하여 접촉한 적에게 공격력 x4 +8의 피해를 줍니다.#돌진 중 장애물에 부딪힐 시 주변의 적을 밀쳐냅니다.#{{TimerSmall}} (쿨타임 3초/{{Collectible130}}{{Collectible181}}1초)"}, -- Mars
+	[593] = {"593", "화성", "이동키를 두번 누르면 누른 방향으로 돌진하여 접촉한 적에게 공격력 x4 +8의 피해를 줍니다.#돌진 중 적 및 장애물에 부딪힐 시 작은 원형 지진파를 발생시킵니다.#{{TimerSmall}} (쿨타임 3초/{{Collectible130}}{{Collectible181}}1초)"}, -- Mars
 	-- Change: Heals 2 hearts instead of 1/2
 	[594] = {"594", "목성", "↑ {{Heart}}최대 체력 +2#↓ {{SpeedSmall}}이동속도 -0.3#이동하지 않으면 이동속도가 0.5 증가하며, 증가한 상태에서 이동 시 공격력 x0.5의 {{Poison}}독가스를 발사하고 이동속도가 다시 감소합니다.#캐릭터가 독구름에 면역이 됩니다."}, -- Jupiter
 	-- Change: Complete rewrite
 	[632] = {"632", "사악한 부적", "↑ {{LuckSmall}}행운 +2#!!! 캐릭터가 이하 효과에 면역:#{{Burning}} 모닥불 및 화염 피해#{{Confusion}} 혼란#{{Fear}} 공포#{{Slow}} 거미줄#{{Poison}} 독구름#적의 장판에 닿아도 1초 이내에 벗어나면 피해를 받지 않습니다."}, -- Evil Charm
+	-- Change: added shop portals
+	[660] = {"660", "카드점", "스테이지 첫 방에 색상에 따라 특정한 장소로 이동할 수 있는 포탈이 생성됩니다.#방을 나가면 포탈이 사라집니다.#{{ColorRed}}빨강: {{CR}}{{BossRoom}}보스방#{{Blank}} {{ColorBlue}}파랑: {{CR}}{{SecretRoom}}비밀방#{{Blank}} {{ColorYellow}}노랑: {{CR}}{{TreasureRoom}}보물방#{{Blank}} {{ColorGreen}}초록: {{CR}}{{Shop}}상점"}, -- Card Reading
 	-- Change: Complete rewrite
 	[681] = {"681", "꼬마 포탈", "{{Throwable}} 공격키를 2번 연속 누르면 공격 방향으로 날아가며;#접촉한 적에게 피해를 주고 픽업에 접촉 시 픽업을 파란 아군 파리로 바꿉니다.#여러 개의 픽업을 바꿀 시 차원의 방으로 이동하는 포탈을 생성합니다.#차원의 방은 현재 게임 내내, 스테이지 이동 시에도 유지됩니다.#스테이지 진입 시 포탈이 다시 복원됩니다."}, -- Lil Portal
 	-- Change: tem quality now impacts the damage of the summoned locust. Locusts now inherit many different effects based on the item destroyed by Abyss.
@@ -60,6 +62,13 @@ local trinkets = {
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
+
+---------- Cards ----------
+local cards={
+	[38] = {"38", "벨카노", "{{Collectible706}} 그 방에서 심연의 파리 3마리를 소환합니다."}, -- Berkano
+}
+EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
+
 ---------- Conditions ----------
 EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catcher (Greed) - In Rep+, the dream preview works in greed mode as well, so no changes needed
 
@@ -69,11 +78,14 @@ local wisps = {
 }
 EID:updateDescriptionsViaTable(wisps, EID.descriptions[languageCode].bookOfVirtuesWisps)
 
--- TODO abyss locusts
-local locusts = {
-
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+local abyssSynergies = {
+	[706] = "서로 다른 효과를 가진 심연의 파리 x16 소환", -- Abyss
 }
---EID:updateDescriptionsViaTable(locusts, EID.descriptions[languageCode].abyssSynergies)
+
+-- Remove all entries from Repentance file, and only add special descriptions relevant to Repentance+
+EID.descriptions[languageCode].abyssSynergies = {}
+EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then

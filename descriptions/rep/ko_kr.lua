@@ -746,25 +746,135 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 }
 
 -- Special Locust effects when Item was eaten by Abyss
-EID.descriptions[languageCode].abyssSynergies = {
-	[2] = "파리를 3마리 소환합니다.",
-	[3] = "적이 있는 방향으로 알아서 돌진합니다.",
-	[4] = "공격력이 3배 높은 파리를 소환합니다.",
-	[6] = "이동속도가 빠르고 돌진 거리가 낮습니다.",
-	[7] = "공격력이 2배 높은 파리를 소환합니다.",
-	[10] = "공격력이 2배 낮은 파리를 2마리 소환합니다.",
-	[13] = "파리가 적을 {{Poison}}중독시킵니다.",
-	[103] = "파리가 적을 {{Poison}}중독시킵니다.",
-	[118] = "크기가 큰 파리를 소환합니다.",
-	[149] = "공격력이 1.5배 높고 이동속도가 낮으며 적을 {{Poison}}중독시킵니다.",
-	[153] = "파리를 4마리 소환합니다.",
-	[257] = "파리가 적에게 {{Burning}}화상을 입힙니다.",
-	[305] = "파리가 적을 {{Poison}}중독시킵니다.",
-	[374] = "파리가 적과 접촉 시 공격력 3배의 빛줄기를 떨어뜨립니다.",
-	[389] = "파리가 적 처치 시 확률적으로 룬을 드랍합니다.",
-	[494] = "파리가 적과 접촉 시 공격력 0.1의 전류를 방출합니다.",
-	[559] = "파리가 적과 접촉 시 공격력 0.1의 전류를 방출합니다.",
+EID.descriptions[languageCode].AbyssTexts = {
+	InfoText = "{speed}{size}파리 x{amount} ({dmg})", -- values inside {} brackets will be replaced with text parts below
+	Chance = " ({1}% 확률)", -- {1} will be replaced with the chance
+	SpeedSlow = "느린 ", -- Speed < 1
+	SpeedFast = "빠른 ", -- Speed > 1
+	SpeedDash = "매우 빠른 ", -- Speed >= 6
+	SizeSmall = "소형 ", -- Size < 1
+	SizeBig = "대형 ", -- Size > 1
+	DamageMult = "{{DamageSmall}}x{1}", -- {1} will be replaced with the calculated damage multiplier
 }
+
+---------- Abyss Locust special effects ----------
+--- Special locust effects that dont correspond to TearFlags.
+--- Displays an icon in front of the description that shows an item with the same effect
+EID.descriptions[languageCode].AbyssLocustEffects = {
+[0] = "{{Bomb}} 명중 시 폭발",
+[1] = "{{QuestionMark}} 랜덤 심연의 파리 효과",
+-- 2 = Multiple locusts act like one. Uninteresting info for the player in my opinion
+[3] = "{{Collectible284}} 명중 시 적을 바꿈",
+[4] = "{{Collectible35}} 명중 시 광역 피해",
+[5] = "{{Collectible638}} 명중 시 그 적을 이번 게임에서 제외",
+[6] = "{{Collectible114}} 돌진 중 회전하는 칼을 두름",
+[7] = "{{Collectible611}} 주변의 적에게 작은 후두 피해",
+[8] = "{{Collectible399}} 검은 고리 소환",
+[9] = "{{Collectible522}} 돌진 중 탄환 반사",
+[10] = "{{Collectible447}} 명중 시 독구름 소환",
+[11] = "{{Collectible447}} 명중 시 방귀 소환",
+[12] = "{{Collectible118}} 명중 시 혈사 소용돌이 소환",
+[13] = "{{Collectible317}} 명중 시 독장판 생성 ",
+[14] = "{{Collectible56}} 명중 시 오줌 장판 생성",
+[15] = "{{Collectible214}} 명중 시 피장판 생성",
+[16] = "{{Collectible178}} 명중 시 성수 생성 ",
+[17] = "{{Collectible420}} 랜덤 간격으로 작은 마법진 생성",
+[18] = "{{Collectible144}} 흡수한 픽업 당 {{DamageSmall}} +0.25 (최대 25개)",
+}
+
+-- list of Tear flag descriptions used for Abyss locust effect description
+EID.descriptions[languageCode].TearFlagNames = {
+	[0] = "{{Collectible115}} 지형/장애물 관통",                 -- Ouija board type tear (goes thru obstacles)
+  [1] = "{{Collectible48}} 적 관통",                 -- Cupid's arrow type tear (goes thru enemy)
+  [2] = "{{Collectible3}} 유도성",                   -- Spoon bender type tear (homes to enemy)
+  [3] = "{{Collectible89}} 명중 시 둔화",                  -- Spider bite type tear (slows on contact)
+  [4] = "{{Collectible103}} 명중 시 중독",                   -- Common cold type tear (poisons on contact)
+  [5] = "{{Collectible110}} 명중 시 석화",                  -- Mom's contact type tear (freezes on contact)
+  [6] = "{{Collectible104}} 2분할",                    -- Parasite type tear (splits on collision)
+  [7] = "{{Collectible132}} 거리비례 강화",            -- Lump of coal type tear (grows by range)
+  [8] = "{{Collectible5}} 부메랑",                -- My reflection type tear (returns back)
+  [9] = "{{Collectible169}} 초과 피해량 보존",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+  [10] = "{{Trinket10}} 파동 곡선",         -- Wiggle worm type tear (wiggles)
+  [11] = "{{Collectible151}} 명중 시 자폭 파리 소환",        -- Mulligan type tear (creates fly on hit)
+  [12] = "{{Collectible149}} 명중 시 폭발",               -- IPECAC type tear (explodes on hit)
+  [13] = "{{Collectible200}} 명중 시 매혹",                -- Mom's Eyeshadow tear
+  [14] = "{{Collectible201}} 명중 시 혼란",               -- Iron Bar tear
+  [15] = "{{Heart}} 처치 시 하트 드랍",     -- These tears cause enemy to drop hearts if killed (33% chance)
+  [16] = "{{Collectible233}} 공전형",     -- Used for Little Planet (orbit arounds the player)
+  [17] = "{{Collectible222}} 지연성",     -- Anti gravity type tear (floats in place for some time before finally moving) (unset after first update)
+  [18] = "{{Collectible224}} 4분할",     -- Splits into 4 smaller tears if it hits the ground
+  [19] = "{{Collectible221}} 탄성",       -- Bounce off of enemies, walls, rocks (Higher priority than PERSISTENT & PIERCING)
+  [20] = "{{Collectible228}} 명중 시 공포",                    -- Mom's Perfume type tear of fear (fear on contact)
+  [21] = "{{Collectible261}} 거리비례 약화",                  -- Proptosis tears start large and shrink
+  [22] = "{{Collectible257}} 명중 시 화상",                    -- Fire Mind tears cause Burn effect on enemies
+  [23] = "{{Collectible315}} 적 및 픽업 유인", -- Attracts enemies and pickups
+  [24] = "{{Collectible309}} 추가 넉백",               -- Tear impact pushes enemies back further
+  [25] = "{{Trinket9}} 파동",               -- Makes the tear pulse
+  [26] = "{{Trinket11}} 나선",         -- Makes the tear path spiral
+  [27] = "{{Trinket12}} 납작",              -- Makes the tear oval in the direction of travel
+  [28] = "{{Collectible220}} 눈물 폭탄",                -- Used by Bombs (Sad Bomb)
+  [29] = "{{Collectible209}} 똥폭탄",               -- Used by Bombs (Butt Bomb)
+  [30] = "{{Trinket26}} 지그재그",         -- Used for Hook Worm
+  [31] = "{{Collectible331}} 주변에 후광이 생김",     -- Used for GodHead (they will have a glow around them)
+  [32] = "{{Collectible231}} 명중 시 둔화", -- Used for Gish player tears (to color enemy black on slowing)
+  [33] = "{{Collectible317}} 명중 시 녹장판", -- Mysterious Liquid tears spawn damaging green creep when hit
+  [34] = "{{Collectible213}} 탄환 방어",                -- Lost Contact tears, block enemy projectiles
+  [35] = "{{Collectible432}} 반짝이 폭탄",            -- Used by Bombs (Glitter Bomb)
+  [36] = "{{Collectible366}} 분산 폭탄",            -- Used for Scatter bombs
+  [37] = "{{Collectible401}} 접착 + 지연 폭발",                  -- Used for Sticky bombs and Explosivo tears
+  [38] = "{{Collectible369}} 벽 통과 시 반대편으로 이동",     -- Tears loop around the screen
+  [39] = "{{Collectible374}} 명중 시 빛줄기 소환", -- Create damaging light beam on hit
+  [40] = "{{Collectible385}} 적 명중 시 동전 소환",        -- Used by Bumbo, spawns a coin when tear hits
+  [41] = "{{Collectible393}} 처치 시 블랙하트 소환",    -- Enemy drops a black hp when dies
+  [42] = "{{Collectible397}} 캐릭터 종속",            -- Tear with this flag will follow parent player's beam
+  [43] = "{{Collectible398}} 명중 시 소형화",          -- God's flesh flag to minimize enemies
+  [44] = "{{Collectible429}} 명중 시 동전 생성",      -- Greed coin tears that has a chance to generate a coin when hit
+  [45] = "{{Collectible353}} 봄버맨",              -- Bomber Boy
+  [46] = "{{Trinket9}} 거대 나선",     -- Ouroboros Worm, big radius oscilating tears
+  [47] = "{{Collectible460}} 명중 시 지속성 둔화",   -- Glaucoma tears, permanently confuses enemies
+  [48] = "{{Collectible459}} 접착 + 지속 피해",                  -- Booger tears, stick and do damage over time
+  [49] = "{{Collectible461}} 명중 시 자폭 파리 or 거미",               -- Egg tears, leave creep and spawns spiders or flies
+  [50] = "{{Collectible463}} 장애물 파괴",            -- Sulfuric Acid tears, can break grid entities
+  [51] = "{{Collectible453}} 명중 시 1~2개의 뼛조각 눈물 발사",                    -- Bone tears, splits in 2
+  [52] = "{{Collectible462}} 관통 후 유도 + 2x{{DamageSmall}}", -- Belial tears, piecing tears gets double damage + homing
+  [53] = "{{Collectible202}} 명중 시 황금화",           -- Midas touch tears
+  [54] = "{{Collectible496}} 명중 시 즉사 + 10방향 눈물",                -- Needle tears
+  [55] = "{{Collectible494}} 전류",           -- Jacobs ladder tears
+  [56] = "{{Collectible503}} 명중 시 Big Horn의 손 소환", -- Little Horn tears
+  [57] = "{{Collectible524}} 연결성 레이저",   -- Technology Zero
+  [58] = "{{Collectible529}} 반사형",        -- Pop!
+  [59] = "{{Collectible532}} 다른 눈물을 흡수",               -- Hungry Tears
+  [60] = "{{Collectible533}} 눈물형 레이저",               -- Trisagion, generates a laser on top of the tear
+  [61] = "{{Collectible540}} 바닥을 튐",          -- Flat Stone
+  [62] = "{{Collectible531}} 명중 시 파열",             -- Haemolacria
+  [63] = "{{Trinket71}} 독장판",             -- Bob's Bladder
+  [64] = "{{Collectible637}} 명중 시 펀치 + 추가 넉백",     -- Knockout Drops
+  [65] = "{{Collectible596}} 냉기 + 처치 시 빙결",   -- Uranus
+  [66] = "{{Collectible617}} 명중 시 자력", -- Lodestone
+  [67] = "{{Collectible618}} 명중 시 표식",       -- Rotten Tomato
+  [68] = "{{Collectible572}} 원격 조종",       -- Eye of the Occult
+  [69] = "{{Collectible595}} 강한 공전",   -- Orbiting tears with a more narrow and stable orbit (used by Saturnus and Immaculate Heart)
+  [70] = "{{Collectible592}} 장애물 파괴",             -- Rock tears, chance to break rocks, deal extra damage to rock type enemies
+  [71] = "{{Trinket144}} 직각 유도",      -- Brain Worm, tears turn and go horizontally when moving past an enemy
+  [72] = "{{Collectible614}} 혈액 폭탄",              -- Blood Bombs, leave blood creep on the ground
+  [73] = "{{Collectible236}} 명중 시 똥으로 변환",    -- E. Coli tears, turn enemies into poop
+  [74] = "처치 시 동전 소환",      -- Killed enemies have a chance to drop a random coin (Reverse Hanged Man)
+  [75] = "{{Collectible646}} 유황 폭탄",          -- Brimstone Bombs, explosion creates a brimstone cross
+  [76] = "{{Collectible606}} 명중 시 소형 블랙홀 소환",       -- Rift tears, creates a black hole on impact
+  [77] = "{{Collectible553}} 접착 + 지연 포자",  -- Spore tears, stick to enemies and multiply on enemy death
+  [78] = "{{Collectible727}} 유령 폭탄",              -- Ghost bombs
+  [79] = "처치 시 카드 드랍",      -- Killed enemies will drop a random tarot card
+  [80] = "처치 시 룬 드랍",      -- Killed enemies will drop a random rune
+  [81] = "명중 시 적을 그 방 랜덤 위치로 이동",   -- Hit enemies will teleport to a different part of the room
+  [82] = "감속",    -- Decelerate over time
+  [83] = "가속",    -- Accelerate over time
+  [104] = "탄성 (벽 한정)",    -- Similar to TEAR_BOUNCE but only bounces off walls, not enemies
+	[106] = "{{Collectible506}}후방 명중 시 추가 피해 + 출혈",   -- Deals extra damage from behind and inflicts bleeding
+}
+
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+-- Kept in for backwards compatibility
+EID.descriptions[languageCode].abyssSynergies = {}
 
 -- Effect of Car battery on Active Items
 local repCarBattery = {
@@ -1007,7 +1117,7 @@ local repCards={
 	[42] = {"42", "혼돈 카드", "{{ColorOrange}}캐릭터의 몸통이 바라보는 방향{{CR}}으로 카드를 던지며 카드에 맞은 적은 즉사합니다.#!!! Delirium 및 The Beast는 면역"}, -- Chaos Card
 	[44] = {"44", "규칙 카드", "게임에 관한 문장을 화면에 출력합니다."}, -- Rules Card
 	[51] = {"51", "신성한 카드", "{{HolyMantle}} 피격 시 피해를 1회 무시하는 방어막을 제공합니다.#이 방어막은 중첩되지 않으며 피격 시까지 유지됩니다."}, -- Holy Card
-	[52] = {"52", "거대한 성장", "사용 시 그 방에서:#{{DamageSmall}}공격력 +7#{{RangeSmall}}사거리 +3"}, -- Huge Growth
+	[52] = {"52", "거대한 성장", "{{Timer}} 사용 시 그 방에서:#{{DamageSmall}}공격력 +7#{{RangeSmall}}사거리 +3#장애물을 부술 수 있습니다."}, -- Huge Growth
 	-- Repentance
 	[55] = {"55", "룬 조각", "랜덤 룬 효과를 발동합니다.#발동되는 룬의 효과는 기존의 열화판의 형태로 발동됩니다."}, -- Rune Shard
 	[56] = {"56", "0 - 바보?", "소지중인 하트와 픽업을 모두 드랍합니다."}, -- 0 - The Fool?
