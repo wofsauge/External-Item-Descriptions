@@ -60,6 +60,9 @@ local trinkets = {
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
+---------- Conditions ----------
+EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catcher (Greed) - In Rep+, the dream preview works in greed mode as well, so no changes needed
+
 local wisps = {
 	-- TODO check damage and hp
 	[441] = "{{MiddleWisp}} {{ColorYellow}}중앙 x1{{CR}}/{{Heart}}:2#{{Chargeable}}충전형 혈사포를 발사합니다. ({{DamageSmall}}:3)#{{Collectible441}}아이템 발동 중 혈사포를 같이 발사합니다.", -- Mega Blast

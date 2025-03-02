@@ -19,7 +19,7 @@ local repCollectibles={
 	[5] = {"5", "Il Mio Riflesso", "↑ {{Damage}} +1.5 Danni#↑ {{Range}} +1.5 Gittata#↑ {{Range}} x2 Moltiplicatore Gittata#↑ {{Shotspeed}} x1.6 Moltiplicatore Velocità Colpi#↓ {{Luck}} -1 Fortuna#Le lacrime ottengono un effetto boomerang"}, -- My Reflection
 	[6] = {"6", "La Numero Uno", "↑ {{Tears}} +1.5 Lacrime#↓ {{Range}} -1.5 Gittata #↓ {{Range}} x0.8 Moltiplicatore Gittata"}, -- Number One
 	[12] = {"12", "Fungo Magico", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.3 Velocità#↑ {{Damage}} +0.3 Danni#↑ {{Damage}} x1.5 Moltiplicatore Danni#↑ {{Range}} +2.5 Gittata#Aumento Statura#{{HealingRed}} Salute al massimo"},
-	[13] = {"13", "Il Virus", "↑ {Speed}} +0.2 Velocità#{{Poison}} Toccare i nemici li avvelena#Il PG infligge 48 danni da contatto al secondo"}, -- The Virus
+	[13] = {"13", "Il Virus", "↑ {{Speed}} +0.2 Velocità#{{Poison}} Toccare i nemici li avvelena#Il PG infligge 48 danni da contatto al secondo"}, -- The Virus
 	[14] = {"14", "Iniezione di Ferocia", "↑ {{Speed}} +0.3 Velocità#↑ {{Range}} +2.5 Gittata"}, -- Roid Rage
 	[18] = {"18", "Un Dollaro", "{{Coin}} +100 Monete"}, -- A Dollar
 	[22] = {"22", "Pranzo", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore"}, -- Lunch
@@ -57,7 +57,7 @@ local repCollectibles={
 	[101] = {"101", "L'Aureola", "↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.3 Velocità#↑ {{Tears}} +0.2 Lacrime#↑ {{Damage}} +0.3 Danni#↑ {{Range}} +1.5 Gittata#{{HealingRed}} Cura di 1 cuore"}, -- The Halo
 	[106] = {"106", "Sig. Mega", "↑ {{Bomb}} x1.85 danni delle bombe#{{Bomb}} +5 Bombe"}, -- Mr. Mega
 	[107] = {"107", "Forbici Seghettate", "{{Timer}} Conferisce fino all'uscita dalla stanza:#Volo#Il corpo di Isaac si separa dalla testa e attacca i nemici con 23.5 danni da contatto al secondo"}, -- The Pinking Shears
-	[110] = {"110", "Lentine di Mamma", "↑ {{Range}} +1.5 Gitttata#20% di chance di sparare lacrime pietrificanti#{{Luck}} 50% di chance con 20 di Fortuna"}, -- Mom's Contacts
+	[110] = {"110", "Lentine di Mamma", "↑ {{Range}} +1.5 Gittata#20% di chance di sparare lacrime pietrificanti#{{Luck}} 50% di chance con 20 di Fortuna"}, -- Mom's Contacts
 	[114] = {"114", "Coltello di Mamma", "Le lacrime di Isaac vengono rimpiazzate da un coltello lanciabile#{{Damage}} Il coltello infligge i danni di Isaac x2 mentre viene tenuto e si massimizza a x6 ad 1/3 della carica#I danni si riducono a x2 quando ritorna ad Isaac"}, -- Mom's Knife
 	[115] = {"115", "Tavola Ouija", "↑ {{Tears}} +0.5 Lacrime#Lacrime spettrali"}, -- Ouija Board
 	[118] = {"118", "Zolfo Fuso", "↓ {{Tears}} x0.33 Moltiplicatore Rateo di Fuoco#{{Chargeable}} Le lacrime di Isaac vengono rimpiazzate da un raggio di sangue caricabile"}, -- Brimstone
@@ -125,7 +125,7 @@ local repCollectibles={
 	[278] = {"278", "Scroccoscuro", "{{Heart}} Raccoglie i Cuori Rossi nelle vicinanze#Genera 1 Cuore Nero, runa, carta, pillola, o ragno per ogni 1.5 Cuori Rossi raccolti"}, -- Dark Bum
 	[280] = {"280", "Sorellina Gambalunga", "Genera ad intervalli casuali ragni blu nelle stanze ostili#{{Charm}} Ammalia i nemici con cui viene in contatto"}, -- Sissy Longlegs
 	[283] = {"283", "D100", "Raddoppia 1 consumabile nella stanza#Rilancia Velocità, Lacrime, Danni, Gittata e gli oggetti passivi di Isaac#Rilancia tutti i piedistalli, consumabili e rocce nella stanza#Fa ripartire la stanza, resuscita tutti i nemici e li rilancia"}, -- D100
-	[285] = {"285", "D10", "Regredisce utti i nemici nella stanza#Ad esempio, tutte le Mosche Rosse diventano Mosche Nere"}, -- D10
+	[285] = {"285", "D10", "Regredisce tutti i nemici nella stanza#Ad esempio, tutte le Mosche Rosse diventano Mosche Nere"}, -- D10
 	[286] = {"286", "Carta Vuota", "Attiva l'effetto della carta tenuta da Isaac senza usarla"}, -- Blank Card
 	[287] = {"287", "Libro dei Segreti", "Evidenzia le rocce colorate e le rocce cunicolo nella stanza#{{Timer}} Conferisce uno dei seguenti effetti fino all'uscita dal piano:#{{Collectible54}} \"Mappa del Tesoro\"#{{Collectible21}} \"La Bussola\"#{{Collectible246}} \"Mappa Blu\"#Conferisce solo effetti non già attivi#{{Collectible76}} Se tutti gli effetti sono attivi, conferisce \"Vista a Raggi X\""}, -- Book of Secrets
 	[288] = {"288", "Scatola di Ragni", "Genera 4-8 ragni blu"}, -- Box of Spiders
@@ -162,7 +162,7 @@ local repCollectibles={
 	[345] = {"345", "Sintolio", "↑ {{Damage}} +1 Danni#↑ {{Range}} +5.25 Gittata#↑ +0.5 Altezza Lacrime"}, -- Synthoil
 	[346] = {"346", "Uno Snack", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore"}, -- A Snack
 	[349] = {"349", "Nichelino di Legno", "{{Coin}} Circa il 59% di chance di generare 1 moneta casuale"}, -- Wooden Nickel
-	[352] = {"352", "Cannone di Vetro", "{{Damage} Spara una grossa lacrima penetrante + spettrale che infligge i danni di Isaac x10#{{Warning}} Subire danni mentre viene tenuto:#↓ Rimuove 2 cuori extra di salute#↓ Rompe il cannone per tot stanze#↑ {{Range}} +1.5 Gittata e lascia una scia di sangue fino all'uscita dalla stanza#Il danno extra non può uccidere Isaac#I danni autoinflitti non attivano l'effetto"}, -- Glass Canon
+	[352] = {"352", "Cannone di Vetro", "{{Damage}} Spara una grossa lacrima penetrante + spettrale che infligge i danni di Isaac x10#{{Warning}} Subire danni mentre viene tenuto:#↓ Rimuove 2 cuori extra di salute#↓ Rompe il cannone per tot stanze#↑ {{Range}} +1.5 Gittata e lascia una scia di sangue fino all'uscita dalla stanza#Il danno extra non può uccidere Isaac#I danni autoinflitti non attivano l'effetto"}, -- Glass Canon
 	[354] = {"354", "Crack Jack", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore#{{Trinket}} Genera 1 ninnolo"}, -- Crack Jacks
 	[355] = {"355", "Perle di Mamma", "↑ {{Range}} +2.5 Gittata#↑ {{Luck}} +1 Fortuna#{{SoulHeart}} +1 Cuore Celeste"}, -- Mom's Pearl
 	[360] = {"360", "Incubo", "Spara lacrime con gli stessi effetti di quelle di Isaac#{{Damage}} Infligge il 75% dei danni di Isaac"}, -- Incubus
@@ -399,7 +399,7 @@ local repCollectibles={
 	[704] = {"704", "Violenza!", "{{Battery}} Si carica infliggendo danni#{{Timer}} Conferisce per 5 secondi:#↑ {{Speed}} +0.4 Velocità#↓ {{Tears}} x0.5 Moltiplicatore Rateo di Fuoco#↑ {{Tears}} +2 Rateo di Fuoco#↑ {{Damage}} +3 Danni#Limita gli attacchi ad uno in mischia che riflette i proiettili#{{Timer}} Ogni uccisione incrementa la durata di 1 secondo e conferisce brevemente invincibilità"}, -- Berserk!
 	[705] = {"705", "Arti Oscure", "{{Timer}} Conferisce per 1 secondo (o finché non si spara):↑ {{Speed}} +1 Velocità#Isaac può passare attraverso i nemici/proiettili e li paralizza#Finito l'effetto danneggia i nemici paralizzati, rimuove i proiettili paralizzati e crea una zaffata nella posizione di Isaac#Gli attacchi e la zaffata sono tanto più potenti quanti più nemici/proiettili vengono colpiti"}, -- Dark Arts
 	[706] = {"706", "Abisso", "Consuma tutti i piedistalli nella stanza e genera un famiglio locusta per ciascuno di essi#Le locuste infliggono i danni di Isaac 2-3 volte ad attacco#Alcuni oggetti se consumati generano una locusta speciale"}, -- Abyss
-	[707] = {"707", "Cena", "↑ {{Heart}} +1 Salutr#{{HealingRed}} Cura di 1 cuore"}, -- Supper
+	[707] = {"707", "Cena", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore"}, -- Supper
 	[708] = {"708", "Pinzatrice", "↑ {{Damage}} +1 Danni#Tutte le lacrime di Isaac vengono sparate dall'occhio destro"}, -- Stapler
 	[709] = {"709", "Suplex!", "Isaac scatta nella direzione in cui si sta muovendo#Scattare verso un nemico o un boss lo raccoglie e lo schianta a terra#Lo schianto infligge danni e genera scosse sismiche in base alla statura di Isaac#Durante lo scatto e lo schianto si è invincibili"}, -- Suplex!
 	[710] = {"710", "Sacco del Fai da Te", "Raccoglie fino a 8 consumabili che non possono essere buttati a terra#Usare l'oggetto con 8 consuambili nel sacco assembla un oggetto#La qualità dell'oggetto si basa sulla qualità dei consumabili"}, -- Bag of Crafting
@@ -451,7 +451,7 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[127] = "↑ {{Damage}} +2 Danni per il piano successivo", -- Forget me Now
 	[133] = "↑ {{Damage}} +0.5 Danni", -- Guppy's Paw
 	[135] = "↑ {{Damage}} +0.66 Danni temporanei per ciascun uso", -- IV Bag
-	[147] = "Il piccone ha una robustezza e spinta maggiore, può venire usato più rapidamente, {{Burning}} mette a fuoco i nemici e quando distrugge cacche e ostacoli butta a terra più consumabili", -- Notched Axe
+	[147] = "Il piccone ha una robustezza e spinta maggiore, può venire usato più rapidamente, {{Burning}} incendia i nemici e quando distrugge cacche o ostacoli butta a terra più consumabili", -- Notched Axe
 	[186] = "Invoca anche gli effetti di {{Collectible126}} \"Lametta\"", -- Blood Rights
 	[282] = "Lascia una scia di fuoco che infligge danni da contatto e che {{Burning}} mette a fuoco i nemici", -- How to Jump
 	[290] = "Usare l'oggetto consuma un cuore, conferisce un {{Damage}} aumento dei danni e lascia una scia di sangue per terra", -- The Jar
@@ -663,9 +663,9 @@ EID.descriptions[languageCode].abyssSynergies = {
 	[118] = "Locusta grigia più grossa ma normale in tutti gli altri aspetti", -- Brimstone
 	[149] = "Locusta verde, grossa e lenta che infligge x1.5 dei danni di Isaac e avvelena i nemici", -- Ipecac
 	[153] = "4 locuste normali", -- Mutant Spider
-	[257] = "Locusta arancione e fiammeggiante che mette a fuoco i nemici", -- Fire Mind
+	[257] = "Locusta arancione e incandescente che incendia i nemici", -- Fire Mind
 	[305] = "Locusta verde che avvelena i nemici", -- Scorpio
-	[374] = "Locusta celeste e lucente che può generare raggi di luce che infliggono x3 dei danni di Isaac", -- Holy Light
+	[374] = "Locusta turchese e lucente che può generare raggi di luce che infliggono x3 dei danni di Isaac", -- Holy Light
 	[494] = "Locusta blu chiaro con scariche elettriche che infliggono 0.1 danni a scossa", -- Jacob's Ladder
 	[559] = "Locusta blu chiaro con scariche elettriche che infliggono 0.1 danni a scossa", -- 120 Volt
 }
@@ -1053,8 +1053,8 @@ local repPills={
 	[38] = {"37", "Rétro Visione", "{{Timer}} Rende lo schermo pixellato per 30 secondi"},
 	[42] = {"41", "Ho Sonno...", "{{Slow}} Rallenta Isaac e tutti i nemici nella stanza"}, -- I'm Drowsy...
 	[43] = {"42", "Sono Euforico!!!", "{{Timer}} Velocizza Isaac e tutti i nemici nella stanza#Si attiva nuovamente dopo 30 e 60 secondi"}, -- I'm Excited!!!
-	[48] = {"47", "Meno Velocità Colpi", "↓ {Shotspeed}} -0.15 Velocità Colpi"}, -- Shot Speed Down
-	[49] = {"48", "Più Velocità Colpi", "↑ {Shotspeed}} +0.15 Velocità Colpi"}, -- Shot Speed Up
+	[48] = {"47", "Meno Velocità Colpi", "↓ {{Shotspeed}} -0.15 Velocità Colpi"}, -- Shot Speed Down
+	[49] = {"48", "Più Velocità Colpi", "↑ {{Shotspeed}} +0.15 Velocità Colpi"}, -- Shot Speed Up
 	[50] = {"49", "Pillola Sperimentale", "↑ Aumenta 1 statistica casuale#↓ Diminuisce 1 statistica casuale"}, -- Experimental Pill
 	[9999] = {"", "Pillola Dorata", "Effetto di una pillola casuale#Chance di autodistruggersi dopo qualche uso"}, -- golden Pill
 }
@@ -1143,7 +1143,7 @@ local repCharacterInfo = {
 	[36] = {"Betania Corrotta", "{{Heart}} Per caricare l'oggetto attivo usa Cuori Rossi#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti e cariche sanguinee#Gli aumenti di statistica hanno un'efficacia del 75%"},
 	[37] = {"Giacobbe Corrotto", "Viene inseguito da Esaù Oscuro, caricando verso di lui a distanza ravvicinata#La carica infligge danni ingenti ai nemici#Se lo colpisce, diventa per il resto del piano uno spirito che muore in un colpo#Mentre è uno spirito può stringere gratuitamente un patto con il diavolo per stanza"},
 	[38] = {"Lazzaro Morto Corrotto", "Lazzaro ha due stadi, ciascuno con i suoi oggetti e salute#Completare una stanza/ondata o usare \"Limbo\" richiama l'altro personaggio"},
-	[39] = {"Giacobbe Corrotto 2", "Volo#Lacrime spettrali#{{Warning}} Salute nulla#{{Warning}} Se colpito da Esaù Oscuro muore#{{DevilRoom}} Può stringere gratuitamente un patto con il diavolo per stanza#Al piano successivo ritorna ad essere Giacobbe Corrotto"},
+	[39] = {"L'Anima di Giacobbe Corrotta", "Volo#Lacrime spettrali#{{Warning}} Salute nulla#{{Warning}} Se colpito da Esaù Oscuro muore#{{DevilRoom}} Può stringere gratuitamente un patto con il diavolo per stanza#Al piano successivo ritorna ad essere Giacobbe Corrotto"},
 	[40] = {"L'Anima Corrotta", "Il Dimenticato è una pila d'ossa immobile che viene raccolta e lanciata da L'Anima, infliggendo x3 di danni#Solo L'Anima può subire danni#Le bombe vengono piazzate nella posizione di Il Dimenticato#Non può avere Cuori Rossi#{{SoulHeart}} Gli aumenti di salute conferiscono Cuori Celesti"},
 }
 EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
@@ -1188,8 +1188,8 @@ EID.descriptions[languageCode].birthright ={
 	{"Betania Corrotta", "", "Genera 4 fiammelle di oggetti casuali di Qualità {{Quality3}} e {{Quality4}} con salute molto più elevata del normale"},
 	{"Giacobbe Corrotto", "", "Esaù Oscuro si scinde in due, creando un clone d'ombra di sé stesso#Entrambi gli Esaù caricano sempre nello stesso momento#{{Collectible722}} Il tempo di attesa di \"Anima Sola\" è ridotto a 10 secondi#Usare \"Anima Sola\" incatena entrambi gli Esaù per 6.67 secondi"},
 	{"Lazzaro Morto Corrotto", "", "La forma inattiva di Lazzaro Corrotto appare come un secondo personaggio spettrale#È invincibile e infligge il 25% dei danni#Entrambe le forme ricevono \"Primogenitura\""},
-	{"Giacobbe Corrotto 2", "", ""},
-	{"L'Anima Corrotta", "", "{{Collectible714}} L'Anima Corrotta ottiene l'abilità \"Richiamo\" per recuperare da lontano Il Dimenticato Corrotto#L'Anima è invincibile durante il richiamo di Il Dimenticato"},
+	{"L'Anima di Giacobbe Corrotta", "", "Esaù Oscuro si scinde in due, creando un clone d'ombra di sé stesso#Entrambi gli Esaù caricano sempre nello stesso momento#{{Collectible722}} Il tempo di attesa di \"Anima Sola\" è ridotto a 10 secondi#Usare \"Anima Sola\" incatena entrambi gli Esaù per 6.67 secondi"},
+	{"L'Anima Dimenticata Corrotta", "", "{{Collectible714}} L'Anima Corrotta ottiene l'abilità \"Richiamo\" per recuperare da lontano Il Dimenticato Corrotto#L'Anima è invincibile durante il richiamo di Il Dimenticato"},
 }
 
 ---------- Glitched Item Descriptions ----------
