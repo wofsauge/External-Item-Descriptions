@@ -650,8 +650,11 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 
 ---------- Abyss Locust description parts ----------
 EID.descriptions[languageCode].AbyssTexts = {
-	InfoText = "{amount} {size}{speed}locust ({dmg})", -- values inside {} brackets will be replaced with text parts below
-	InfoTextPlural = "{amount} {size}{speed}locusts ({dmg})", -- Will be shown when more than 1 locust will spawn
+ 	-- values inside {} brackets will be replaced with text parts below
+	-- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
+	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
+	InfoText = "{amount} {size}{speed}locust{pluralize} ({dmg})",
+	InfoTextPlural = nil, -- Can be used by translators to provide a pluralized version of the InfoText
 	Chance = " ({1}% Chance)", -- {1} will be replaced with the chance
 	SpeedSlow = "slow ", -- Speed < 1
 	SpeedFast = "fast ", -- Speed > 1
