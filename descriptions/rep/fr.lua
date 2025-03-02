@@ -176,7 +176,7 @@ local repCollectibles={
 	[323] = {"323", "Bocal de Larmes", "Projette 8 larmes qui infligent {{ColorLime}}dégâts +5{{ColorWhite}} en cercle autour d'Isaac#Chaque larme tirée par Isaac recharge une barre de l'objet"},
 	[324] = {"324", "erreur", "{{Blank}} Téléporte Isaac vers l'une de ces salles :#{{TreasureRoom}} Salle du Trésor#{{SecretRoom}} Salle Secrète#{{SuperSecretRoom}} Salle Super Secrète#Salle d'Erreur"},
 	[325] = {"325", "Paire de Ciseaux", "Sépare la tête d'Isaac de son corps#Le joueur contrôle le corps#La tête est immobile et tire en même temps que le corps"},
-	[326] = {"326", "Souffle de Vie", "Maintenir le bouton d'utilisation vide la barre de charge#Quand elle est vide, Isaac devient invulnérable pour une seconde et invoque des rayons de lumière au contact#Effectuer un blocage parfait envoie des rayons de lumière en croix#{{Warning}} Rester appuyé trop longtemps inflige des dégâts à Isaac"}, -- Breath of Life
+	[326] = {"326", "Souffle de Vie", "Maintenir [Utiliser] vide la barre de charge#Une fois vide, Isaac devient invulnérable 1 seconde et crée des rayons de lumière au contact#Effectuer un blocage parfait envoie des rayons de lumière en croix#{{Warning}} Appuyer trop longtemps inflige des dégâts à Isaac"}, -- Breath of Life
 	[327] = {"327", "Le Positif", "Subir un dégât à un demi-cœur rouge ou moins rend Isaac invulnérable pendant 5 secondes#Permet d'entrer dans le {{ColorTransform}}Coffre"},
 	[328] = {"328", "Le Négatif", "↑ Dégâts {{ColorLime}}+1.0#Subir un dégât à un demi-cœur rouge ou moins inflige 40 dégâts à tous les ennemis de la salle#Permet d'entrer dans la {{ColorTransform}}Chambre Noire"}, -- The Negative
 	[330] = {"330", "Lait de Soja", "↑ Débit {{ColorLime}}x5.5#↓ Dégâts {{ColorError}}-80%#Réduit grandement le recul infligé par les larmes d'Isaac"}, -- Soy Milk
@@ -750,6 +750,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 ---------- Abyss Locust description parts ----------
 EID.descriptions[languageCode].AbyssTexts = {
 	InfoText = "{amount} {size} locuste {speed} ({dmg})", -- values inside {} brackets will be replaced with text parts below
+	InfoTextPlural = "{amount} {size} locustes {speed} ({dmg})", -- Will be shown when more than 1 locust will spawn
 	Chance = " ({1}%{{LuckSmall}})", -- {1} will be replaced with the chance
 	SpeedSlow = "lent", -- Speed < 1
 	SpeedFast = "rapide", -- Speed > 1
@@ -781,7 +782,7 @@ EID.descriptions[languageCode].AbyssLocustEffects = {
 [15] = "Répand une flaque toxique au contact",
 [16] = "Répand une flaque toxique au contact",
 [17] = "Crée des pentagrammes au sol qui infligent des dégâts",
-[18] = "Mange les ressources au contact et gagne {{ColorLime}}dégâts +0.25{{CR}} par ressource mangée (max. 25)",
+[18] = "Mange les ressources au contact et gagne {{ColorLime}}dégâts +0.25{{ColorRed}} par ressource mangée (max. 25)",
 }
 
 
@@ -851,7 +852,7 @@ EID.descriptions[languageCode].TearFlagNames = {
     [61] = "Rebondit sur le sol",          -- Flat Stone
     [62] = "Éclate au contact",             -- Haemolacria
     [63] = "Répand une flaque toxique",             -- Bob's Bladder
-    [64] = "Inflige beaucoup de recul au contact",     -- Knockout Drops
+    [64] = "Inflige du recul au contact",     -- Knockout Drops
     [65] = "Gèle les ennemis qu'il tue",   -- Uranus
     [66] = "Attire les ennemis et les ressources", -- Lodestone
     [67] = "Les ennemis touchés par ce locuste sont pris pour cible par les autres",       -- Rotten Tomato
