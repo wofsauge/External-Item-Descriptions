@@ -747,25 +747,137 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 
 }
 
--- Special Locust effects when Item was eaten by Abyss
-EID.descriptions[languageCode].abyssSynergies = {
-	[2] = "Invoque trois locustes normaux", -- The Inner Eye
-	[3] = "Invoque un locuste violet autoguidé", -- Spoon Bender
-	[4] = "Invoque un gros locuste rouge qui inflige 3x les dégâts d'Isaac", -- Cricket's Head
-	[6] = "Invoque un locuste jaune rapide à courte portée qui inflige des dégâts plus vite", -- Number One
-	[7] = "Invoque un locuste rouge qui inflige 2x les dégâts d'Isaac", -- Blood of the Martyr
-	[10] = "Invoque deux locustes gris qui infligent 50% de dégâts", -- Halo of Flies
-	[13] = "Invoque un locuste vert qui empoisonne les ennemis", -- The Virus
-	[103] = "Invoque un locuste vert qui empoisonne les ennemis", -- The Common Cold
-	[118] = "Invoque un locuste gris plus gros qui n'a pas d'autre particularité", -- Brimstone
-	[149] = "Invoque un locuste vert, gros et lent qui inflige 1.5x les dégâts d'Isaac et empoisonne les ennemis", -- Ipecac
-	[153] = "Invoque 4 locustes normaux", -- Mutant Spider
-	[257] = "Invoque un locuste orange qui enflamme les ennemis", -- Fire Mind
-	[305] = "Invoque un locuste vert qui empoisonne les ennemis", -- Scorpio
-	[374] = "Invoque un locuste bleu clair, invoque des rayons de lumière qui infligent 3x les dégâts d'Isaac", -- Holy Light
-	[494] = "Invoque un locuste électrisé qui inflige 0.1 dégâts par tick", -- Jacob's Ladder
-	[559] = "Invoque un locuste électrisé qui inflige 0.1 dégâts par tick ", -- 120 Volt
+---------- Abyss Locust description parts ----------
+EID.descriptions[languageCode].AbyssTexts = {
+	InfoText = "{amount} {size} locuste {speed} ({dmg})", -- values inside {} brackets will be replaced with text parts below
+	Chance = " ({1}%{{LuckSmall}})", -- {1} will be replaced with the chance
+	SpeedSlow = "lent", -- Speed < 1
+	SpeedFast = "rapide", -- Speed > 1
+	SpeedDash = "très rapide", -- Speed >= 6
+	SizeSmall = "petit", -- Size < 1
+	SizeBig = "gros", -- Size > 1
+	DamageMult = "Dégâts x{1}", -- {1} will be replaced with the calculated damage multiplier 
 }
+
+---------- Abyss Locust special effects ----------
+--- Special locust effects that dont correspond to TearFlags.
+--- Displays an icon in front of the description that shows an item with the same effect
+EID.descriptions[languageCode].AbyssLocustEffects = {
+[0] = "Explose au contact",
+[1] = "Effets aléatoires",
+-- 2 = Multiple locusts act like one. Uninteresting info for the player in my opinion
+[3] = "Rejoue les ennemis au contact",
+[4] = "Inflige des dégâts de masse au contact",
+[5] = "Efface les ennemis au contact",
+[6] = "Brandit un couteau",
+[7] = "Inflige des dégâts de zone au contact",
+[8] = "Crée un cercle noir au contact",
+[9] = "Repousse les ennmis et projectiles lorsqu'il se déplace",
+[10] = "Crée un pet toxique au contact",
+[11] = "Pète au contact",
+[12] = "Crache un rayon laser au contact",
+[13] = "Répand une flaque toxique au contact",
+[14] = "Répand une flaque toxique au contact",
+[15] = "Répand une flaque toxique au contact",
+[16] = "Répand une flaque toxique au contact",
+[17] = "Crée des pentagrammes au sol qui infligent des dégâts",
+[18] = "Mange les ressources au contact et gagne {{ColorLime}}dégâts +0.25{{CR}} par ressource mangée (max. 25)",
+}
+
+
+-- list of Tear flag descriptions used for Abyss locust effect description
+EID.descriptions[languageCode].TearFlagNames = {
+	[0] = "Traverse les obstacles",                 -- Ouija board type tear (goes thru obstacles)
+    [1] = "Transperce les ennemis",                 -- Cupid's arrow type tear (goes thru enemy)
+    [2] = "Autoguidé",                   -- Spoon bender type tear (homes to enemy)
+    [3] = "Ralentit les ennemis au contact",                  -- Spider bite type tear (slows on contact)
+    [4] = "Empoisonne les ennemis au contact",                   -- Common cold type tear (poisons on contact)
+    [5] = "Pétrifie les ennemis au contact",                  -- fMom's contact type tear (freezes on contact)
+    [6] = "Se divise au contact",                    -- Parasite type tear (splits on collision)
+    [7] = "Grandit selon sa distance à Isaac",            -- Lump of coal type tear (grows by range)
+    [8] = "Revient comme un boomerang",                -- My reflection type tear (returns back)
+    [9] = "Traverse les ennemis qu'il tue",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+    [10] = "Se déplace en zig-zag",         -- Wiggle worm type tear (wiggles)
+    [11] = "Invoque une mouche au contact",        -- Mulligan type tear (creates fly on hit)
+    [12] = "Explose au contact",               -- IPECAC type tear (explodes on hit)
+    [13] = "Envoûte les ennemis au contact",                -- Mom's Eyeshadow tear
+    [14] = "Étourdit les ennemis au contact",               -- Iron Bar tear
+    [15] = "Fait apparaître un cœur s'il tue un ennemi",     -- These tears cause enemy to drop hearts if killed (33% chance)
+    [16] = "Orbite autour d'Isaac",     -- Used for Little Planet (orbit arounds the player)
+    [17] = "Attaque avec un délai",     -- Anti gravity type tear (floats in place for some time before finally moving) (unset after first update)
+    [18] = "Se divise en 4 au contact",     -- Splits into 4 smaller tears if it hits the ground
+    [19] = "Rebondit contre les ennemis, les murs et les obstacles",       -- Bounce off of enemies, walls, rocks (Higher priority than PERSISTENT & PIERCING)
+    [20] = "Terrifie les ennemis au contact",                    -- Mom's Perfume type tear of fear (fear on contact)
+    [21] = "Rapetisse quand il est lancé",                  -- Proptosis tears start large and shrink
+    [22] = "Brûle les ennemis au contact",                    -- Fire Mind tears cause Burn effect on enemies
+    [23] = "Attire les ennemis et les ressources", -- Attracts enemies and pickups
+    [24] = "Inflige du recul au contact",               -- Tear impact pushes enemies back further
+    [25] = "Grandit et rapetisse rapidement",               -- Makes the tear pulse
+    [26] = "Se déplace en spirale",         -- Makes the tear path spiral
+    [27] = "Est élargi sur les côtés",              -- Makes the tear oval in the direction of travel
+    [28] = "Bombe pleureuse",                -- Used by Bombs (Sad Bomb)
+    [29] = "Bombe bronze",               -- Used by Bombs (Butt Bomb)
+    [30] = "Se déplace en carré",         -- Used for Hook Worm
+    [31] = "Est entouré d'une aura qui inflige des dégâts",     -- Used for GodHead (they will have a glow around them)
+    [32] = "Ralentit les ennemis au contact", -- Used for Gish player tears (to color enemy black on slowing)
+    [33] = "Répand une flaque toxique au contact", -- Mysterious Liquid tears spawn damaging green creep when hit
+    [34] = "Détruit les projectiles au contact",                -- Lost Contact tears, block enemy projectiles
+    [35] = "Bombe à paillette",            -- Used by Bombs (Glitter Bomb)
+    [36] = "Bombe à fragmentation",            -- Used for Scatter bombs
+    [37] = "Colle aux ennemis",                  -- Used for Sticky bombs and Explosivo tears
+    [38] = "Traverse les bords de l'écran",     -- Tears loop around the screen
+    [39] = "Crée des rayons de lumière au contact", -- Create damaging light beam on hit
+    [40] = "Fait apparaître une pièce au contact",        -- Used by Bumbo, spawns a coin when tear hits
+    [41] = "Fait apparaître un cœur noir s'il tue un ennemi",    -- Enemy drops a black hp when dies
+    [42] = "Suit le rayon de lumière",            -- Tear with this flag will follow parent player's beam
+    [43] = "Rapetisse les ennemis au contact",          -- God's flesh flag to minimize enemies
+    [44] = "Fait apparaître une pièce au contact",      -- Greed coin tears that has a chance to generate a coin when hit
+    [45] = "Explose en croix au contact",              -- Bomber Boy
+    [46] = "Se déplace en grandes spirales",     -- Ouroboros Worm, big radius oscilating tears
+    [47] = "Étourdit les ennemis de manière permanente au contact",   -- Glaucoma tears, permanently confuses enemies
+    [48] = "Se colle aux ennemis",                  -- Booger tears, stick and do damage over time
+    [49] = "Invoque une mouche ou araignée bleue au contact",               -- Egg tears, leave creep and spawns spiders or flies
+    [50] = "Détruit les obstacles au contact",            -- Sulfuric Acid tears, can break grid entities
+    [51] = "Tuer un ennemi projette des os",                    -- Bone tears, splits in 2
+    [52] = "Transperce les ennemis puis devient autoguidé", -- Belial tears, piecing tears gets double damage + homing
+    [53] = "Transforme les ennemis en or au contact",           -- Midas touch tears
+    [54] = "Éclate en 10 larmes au contact",                -- Needle tears
+    [55] = "Crée des arcs électriques au contact",           -- Jacobs ladder tears
+    [56] = "Invoque la main de Grosse Corne au contact", -- Little Horn tears
+    [57] = "Reliés par des arcs électriques",   -- Technology Zero
+    [58] = "Rebondit sur les autres",        -- Pop!
+    [59] = "Absorbe les autres",               -- Hungry Tears
+    [60] = "Laser de lumière",               -- Trisagion, generates a laser on top of the tear
+    [61] = "Rebondit sur le sol",          -- Flat Stone
+    [62] = "Éclate au contact",             -- Haemolacria
+    [63] = "Répand une flaque toxique",             -- Bob's Bladder
+    [64] = "Inflige beaucoup de recul au contact",     -- Knockout Drops
+    [65] = "Gèle les ennemis qu'il tue",   -- Uranus
+    [66] = "Attire les ennemis et les ressources", -- Lodestone
+    [67] = "Les ennemis touchés par ce locuste sont pris pour cible par les autres",       -- Rotten Tomato
+    [68] = "Œil Occulte",       -- Eye of the Occult
+    [69] = "Orbite autour d'Isaac",   -- Orbiting tears with a more narrow and stable orbit (used by Saturnus and Immaculate Heart)
+    [70] = "Détruit les obstacles au contact",             -- Rock tears, chance to break rocks, deal extra damage to rock type enemies
+    [71] = "Tourne à 90° pour toucher un ennemi manqué",      -- Brain Worm, tears turn and go horizontally when moving past an enemy
+    [72] = "Hémoglobombe",              -- Blood Bombs, leave blood creep on the ground
+    [73] = "Transforme les ennemis en caca au contact",    -- E. Coli tears, turn enemies into poop
+    [74] = "Tuer un ennemi fait apparaître une pièce",      -- Killed enemies have a chance to drop a random coin (Reverse Hanged Man)
+    [75] = "Bombe soufre",          -- Brimstone Bombs, explosion creates a brimstone cross
+    [76] = "Crée un trou noir au contact",       -- Rift tears, creates a black hole on impact
+    [77] = "Colle aux ennemis et se multiplie s'il les tue",  -- Spore tears, stick to enemies and multiply on enemy death
+    [78] = "Bombe fantôme",              -- Ghost bombs
+    [79] = "Tuer un ennemi fait apparaître une carte",      -- Killed enemies will drop a random tarot card
+    [80] = "Tuer un ennemi fait apparaître une rune",      -- Killed enemies will drop a random rune
+    [81] = "Téléporte les ennemis au contact",   -- Hit enemies will teleport to a different part of the room
+    [82] = "Décélère progressivement",    -- Decelerate over time
+    [83] = "Accélère progressivement",    -- Accelerate over time
+    [104] = "Rebondit contre les murs",    -- Similar to TEAR_BOUNCE but only bounces off walls, not enemies
+	[106] = "Inflige davantage de dégâts et fait saigner les ennemis qu'il touche par derrière",   -- Deals extra damage from behind and inflicts bleeding
+}
+
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+-- Kept in for backwards compatibility
+EID.descriptions[languageCode].abyssSynergies = {}
 
 
 -- Effect of Car battery on Active Items
