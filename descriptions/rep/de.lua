@@ -691,13 +691,14 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 
 ---------- Abyss Locust description parts ----------
 EID.descriptions[languageCode].AbyssTexts = {
-	InfoText = "{amount} x{size}{speed} Heuschrecke ({dmg})", -- values inside {} brackets will be replaced with text parts below
+	InfoText = "Eine {size}{speed}Heuschrecke ({dmg})", -- values inside {} brackets will be replaced with text parts below.
+	InfoTextPlural = "{amount} {size}{speed}Heuschrecken ({dmg})", -- Will be shown when more than 1 locust will spawn
 	Chance = " ({1}% Chance)", -- {1} will be replaced with the chance
-	SpeedSlow = "schnelle", -- Speed < 1
-	SpeedFast = "langsame", -- Speed > 1
-	SpeedDash = "flotte", -- Speed >= 6
-	SizeSmall = "kleine", -- Size < 1
-	SizeBig = "große", -- Size > 1
+	SpeedSlow = "schnelle ", -- Speed < 1
+	SpeedFast = "langsame ", -- Speed > 1
+	SpeedDash = "flotte ", -- Speed >= 6
+	SizeSmall = "kleine ", -- Size < 1
+	SizeBig = "große ", -- Size > 1
 	DamageMult = "{1}x Isaac's Schaden", -- {1} will be replaced with the calculated damage multiplier 
 }
 
