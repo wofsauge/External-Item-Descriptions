@@ -1050,13 +1050,13 @@ if EID.isRepentance then
 
 		-- size
 		local scaleText = ""
-		if scale < 1 then scaleText = EID:getDescriptionEntry("AbyssTexts", "SizeSmall") .. " "
-		elseif scale > 1 then scaleText = EID:getDescriptionEntry("AbyssTexts", "SizeBig") .. " " end
+		if scale < 1 then scaleText = EID:getDescriptionEntry("AbyssTexts", "SizeSmall")
+		elseif scale > 1 then scaleText = EID:getDescriptionEntry("AbyssTexts", "SizeBig") end
 		-- speed
 		local speedText = ""
-		if speed < 1 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedSlow") .. " "
-		elseif speed >=6 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedDash") .. " "
-		elseif speed > 1 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedFast") .. " " end
+		if speed < 1 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedSlow")
+		elseif speed >=6 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedDash")
+		elseif speed > 1 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedFast") end
 
 		-- overview / headline
 		local infoText = EID:getDescriptionEntry("AbyssTexts", amount > 1 and "InfoTextPlural" or "InfoText")

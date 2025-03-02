@@ -653,11 +653,11 @@ EID.descriptions[languageCode].AbyssTexts = {
 	InfoText = "{amount} {size}{speed}locust ({dmg})", -- values inside {} brackets will be replaced with text parts below
 	InfoTextPlural = "{amount} {size}{speed}locusts ({dmg})", -- Will be shown when more than 1 locust will spawn
 	Chance = " ({1}% Chance)", -- {1} will be replaced with the chance
-	SpeedSlow = "slow", -- Speed < 1
-	SpeedFast = "fast", -- Speed > 1
-	SpeedDash = "dashing", -- Speed >= 6
-	SizeSmall = "small", -- Size < 1
-	SizeBig = "big", -- Size > 1
+	SpeedSlow = "slow ", -- Speed < 1
+	SpeedFast = "fast ", -- Speed > 1
+	SpeedDash = "dashing ", -- Speed >= 6
+	SizeSmall = "small ", -- Size < 1
+	SizeBig = "big ", -- Size > 1
 	DamageMult = "{1}x Isaac's damage", -- {1} will be replaced with the calculated damage multiplier 
 }
 
