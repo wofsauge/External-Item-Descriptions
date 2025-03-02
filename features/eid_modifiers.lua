@@ -1010,29 +1010,29 @@ if EID.isRepentance then
 	end
 
 	local function AbyssCallback(descObj)
-		local textColor= "{{ColorRed}}"
+		local textColor = "{{ColorRed}}"
 		-- Display explicit "abyssSynergies" table entry, if present
 		local overrideDesc = EID:getDescriptionEntry("abyssSynergies", descObj.ObjSubType)
 		if overrideDesc then
-			EID:appendToDescription(descObj, "#{{Collectible706}} ".. textColor .. overrideDesc)
+			EID:appendToDescription(descObj, "#{{Collectible706}} " .. textColor .. overrideDesc)
 			return descObj
 		end
-		-- Display default description, if no XML entry exists
-		if not EID.XMLLocusts or not EID.XMLLocusts[descObj.ObjSubType] then
-			return descObj
-		end
-		-- Display automatically generated description otherwise
+		-- Display automatically generated description
 
-		-- Get locust Data. Format: {Color, numLocusts, size, speed, locustFlags1, locustFlags2, tearFlags1, tearFlags2, procChance}
-		local locustData = EID.XMLLocusts[descObj.ObjSubType]
+		-- Default locust Data
+		local locustData = { "default", 1, 1, 1, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, 1, 1, 1, 1, 1, 0 }
+		-- Check if an XML entry exists and load if exists
+		if EID.XMLLocusts and EID.XMLLocusts[descObj.ObjSubType] then
+			locustData = EID.XMLLocusts[descObj.ObjSubType]
+		end
 		local descriptionText = ""
 		--local colors = locustData[1]     -- colors flag: useless info right now
 		local amount = locustData[2]
 		local scale = locustData[3]
 		local speed = locustData[4]
-		local locustFlags1 = locustData[5]  -- array
-		local locustFlags2 = locustData[6]  -- array
-		local locustFlags3 = locustData[7]  -- array
+		local locustFlags1 = locustData[5] -- array
+		local locustFlags2 = locustData[6] -- array
+		local locustFlags3 = locustData[7] -- array
 		local tearFlags1 = locustData[8] -- array
 		local tearFlags2 = locustData[9] -- array
 		local tearFlags3 = locustData[10] -- array
@@ -1050,16 +1050,17 @@ if EID.isRepentance then
 
 		-- size
 		local scaleText = ""
-		if scale < 1 then scaleText = " " .. EID:getDescriptionEntry("AbyssTexts", "SizeSmall")
-		elseif scale > 1 then scaleText = " " .. EID:getDescriptionEntry("AbyssTexts", "SizeBig") end
+		if scale < 1 then scaleText = EID:getDescriptionEntry("AbyssTexts", "SizeSmall") .. " "
+		elseif scale > 1 then scaleText = EID:getDescriptionEntry("AbyssTexts", "SizeBig") .. " " end
 		-- speed
 		local speedText = ""
-		if speed < 1 then speedText = " " .. EID:getDescriptionEntry("AbyssTexts", "SpeedSlow")
-		elseif speed >=6 then speedText = " " .. EID:getDescriptionEntry("AbyssTexts", "SpeedDash")
-		elseif speed > 1 then speedText = " " .. EID:getDescriptionEntry("AbyssTexts", "SpeedFast") end
+		if speed < 1 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedSlow") .. " "
+		elseif speed >=6 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedDash") .. " "
+		elseif speed > 1 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedFast") .. " " end
 
 		-- overview / headline
-		descriptionText = "#{{Collectible706}} " .. textColor .. EID:getDescriptionEntry("AbyssTexts", "InfoText")
+		local infoText = EID:getDescriptionEntry("AbyssTexts", amount > 1 and "InfoTextPlural" or "InfoText")
+		descriptionText = "#{{Collectible706}} " .. textColor .. infoText
 		descriptionText = EID:ReplaceVariableStr(descriptionText, "amount", amount)
 		descriptionText = EID:ReplaceVariableStr(descriptionText, "size", scaleText)
 		descriptionText = EID:ReplaceVariableStr(descriptionText, "speed", speedText)
