@@ -748,8 +748,11 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 
 -- Special Locust effects when Item was eaten by Abyss
 EID.descriptions[languageCode].AbyssTexts = {
-	InfoText = "{speed}{size}파리 x{amount} ({dmg})", -- values inside {} brackets will be replaced with text parts below
-	InfoTextPlural = "{speed}{size}파리 x{amount} ({dmg})", -- Will be shown when more than 1 locust will spawn
+	-- values inside {} brackets will be replaced with text parts below
+	-- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
+	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
+	InfoText = "{speed}{size}파리 x{amount} ({dmg})",
+	InfoTextPlural = nil, -- Can be used by translators to provide a pluralized version of the InfoText
 	Chance = " ({1}% 확률)", -- {1} will be replaced with the chance
 	SpeedSlow = "느린 ", -- Speed < 1
 	SpeedFast = "빠른 ", -- Speed > 1

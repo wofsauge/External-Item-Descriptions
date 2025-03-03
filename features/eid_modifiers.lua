@@ -1059,7 +1059,7 @@ if EID.isRepentance then
 		elseif speed > 1 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedFast") end
 
 		-- overview / headline
-		local infoText = EID:getDescriptionEntry("AbyssTexts", amount > 1 and "InfoTextPlural" or "InfoText")
+		local infoText = amount > 1 and EID:getDescriptionEntry("AbyssTexts", "InfoTextPlural") or EID:getDescriptionEntry("AbyssTexts", "InfoText")
 		descriptionText = "#{{Collectible706}} " .. textColor .. infoText
 		descriptionText = EID:ReplaceVariableStr(descriptionText, "amount", amount)
 		descriptionText = EID:ReplaceVariableStr(descriptionText, "size", scaleText)
@@ -1081,6 +1081,8 @@ if EID.isRepentance then
 		descriptionText = descriptionText .. GetFlagString(2, "TearFlagNames", tearFlags2, procChance1, procChance2, procChance3)
 		descriptionText = descriptionText .. GetFlagString(3, "TearFlagNames", tearFlags3, procChance1, procChance2, procChance3)
 
+		local plural = amount > 1 and EID:getDescriptionEntry("Pluralize") or ""
+		descriptionText = EID:ReplaceVariableStr(descriptionText, "pluralize", plural)
 		-- Put everything together
 		EID:appendToDescription(descObj, descriptionText)
 
