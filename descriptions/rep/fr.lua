@@ -749,13 +749,16 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 
 ---------- Abyss Locust description parts ----------
 EID.descriptions[languageCode].AbyssTexts = {
-	InfoText = "{amount} {size} locuste {speed} ({dmg})", -- values inside {} brackets will be replaced with text parts below
+ 	-- values inside {} brackets will be replaced with text parts below
+	-- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
+	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
+	InfoText = "{amount} {size} locuste{pluralize} {speed} ({dmg})", -- values inside {} brackets will be replaced with text parts below
 	InfoTextPlural = "{amount} {size} locustes {speed} ({dmg})", -- Will be shown when more than 1 locust will spawn
 	Chance = " ({1}%{{LuckSmall}})", -- {1} will be replaced with the chance
-	SpeedSlow = "lent", -- Speed < 1
-	SpeedFast = "rapide", -- Speed > 1
-	SpeedDash = "très rapide", -- Speed >= 6
-	SizeSmall = "petit", -- Size < 1
+	SpeedSlow = "lent{pluralize}", -- Speed < 1
+	SpeedFast = "rapide{pluralize}", -- Speed > 1
+	SpeedDash = "très rapide{pluralize}", -- Speed >= 6
+	SizeSmall = "petit{pluralize}", -- Size < 1
 	SizeBig = "gros", -- Size > 1
 	DamageMult = "Dégâts x{1}", -- {1} will be replaced with the calculated damage multiplier 
 }
@@ -765,7 +768,7 @@ EID.descriptions[languageCode].AbyssTexts = {
 --- Displays an icon in front of the description that shows an item with the same effect
 EID.descriptions[languageCode].AbyssLocustEffects = {
 [0] = "Explose au contact",
-[1] = "Effets aléatoires",
+[1] = "Effet aléatoire",
 -- 2 = Multiple locusts act like one. Uninteresting info for the player in my opinion
 [3] = "Rejoue les ennemis au contact",
 [4] = "Inflige des dégâts de masse au contact",
@@ -839,7 +842,7 @@ EID.descriptions[languageCode].TearFlagNames = {
     [48] = "Se colle aux ennemis",                  -- Booger tears, stick and do damage over time
     [49] = "Invoque une mouche ou araignée bleue au contact",               -- Egg tears, leave creep and spawns spiders or flies
     [50] = "Détruit les obstacles au contact",            -- Sulfuric Acid tears, can break grid entities
-    [51] = "Tuer un ennemi projette des os",                    -- Bone tears, splits in 2
+    [51] = "Le sennemis tués par ce locuste éclatent en fragments d'os",                    -- Bone tears, splits in 2
     [52] = "Transperce les ennemis puis devient autoguidé", -- Belial tears, piecing tears gets double damage + homing
     [53] = "Transforme les ennemis en or au contact",           -- Midas touch tears
     [54] = "Éclate en 10 larmes au contact",                -- Needle tears
