@@ -37,6 +37,8 @@ setmetatable(__eidEntityDescriptions,
 	end })
 ---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
+EID.Pathfinder = require("features.pathfinder.luafinding")
+
 local nullVector = Vector(0,0)
 local game = Game()
 local maxCardID = Card.NUM_CARDS - 1
@@ -407,7 +409,7 @@ end
 ---@param description string
 ---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addEntity(id, variant, subtype, entityName, description, language)
-	subtype = subtype or nil
+	subtype = subtype or -1
 	language = language or "en_us"
 	if id == EntityType.ENTITY_EFFECT then
 		EID.effectList[variant] = true
@@ -738,8 +740,24 @@ function EID:getDescriptionEntry(objTable, objIdentifier, noFallback)
 		else return EID.descriptions[EID:getLanguage()][objTable] or EID.descriptions["en_us"][objTable] end
 	else
 		local translatedTable = EID.descriptions[EID:getLanguage()][objTable]
-		if noFallback then return translatedTable and translatedTable[objIdentifier]
-		else return (translatedTable and translatedTable[objIdentifier]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objIdentifier]) end
+		local description
+		if noFallback then description = translatedTable and translatedTable[objIdentifier]
+		else description = (translatedTable and translatedTable[objIdentifier]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objIdentifier]) end
+		--Try looking for a -1 that would encompass all subtypes of the variant
+		if not description then
+			local subtype
+			for i = string.len(objIdentifier), 1, -1 do
+				if string.sub(objIdentifier, i, i) == "." then
+					subtype = string.sub(objIdentifier, i + 1, -1)
+					objIdentifier = string.gsub(objIdentifier, "." .. subtype, "") .. ".-1"
+					if subtype ~= "-1" then
+						return EID:getDescriptionEntry(objTable, objIdentifier, noFallback)
+					end
+					break
+				end
+			end
+		end
+		return description
 	end
 end
 
@@ -1005,7 +1023,12 @@ function EID:hasDescription(entity)
 		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize") and not entity:GetSprite():IsPlaying("OutOfPrizes") and (EID.CraneItemType[entity.InitSeed.."Drop"..entity.DropSeed] or EID.CraneItemType[tostring(entity.InitSeed)])
 	end
 	if entity.Type == 1000 then
-		if (entity.Variant == 161 and entity.SubType <= 2) or (entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"]) then
+		if entity.Variant == 161 then
+			if entity.SubType <= 2 or (EID.isRepentancePlus and entity.SubType == 3) then
+				isAllowed = true
+			end
+		end
+		if entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"] then
 			isAllowed = true
 		end
 	end
@@ -1583,7 +1606,7 @@ function EID:SplitTVS(tvsString)
 end
 
 ---Checks if any player has a given item ID (or anyone is a given player ID)
----@param Type string | integer | EntityType 
+---@param Type string | integer | EntityType
 ---@param Var integer | nil
 ---@param Sub integer | nil
 ---@return boolean, EntityPlayer?, integer?
@@ -3094,4 +3117,37 @@ function EID:IsItemHidden(entity)
 		return true
 	end
 	return false
+end
+
+---Returns true if the position at the given grid location is valid for pathfinding.
+---gridPosition is a table with an x and y entry. Its derived from the FindVector class of "LuaFindings" module (pathfinder)
+---@param gridPosition table
+---@return boolean
+function EID:EvaluateLocation(gridPosition)
+	local room = game:GetRoom()
+	local width = room:GetGridWidth()
+	local height = room:GetGridHeight()
+	if gridPosition.x < 1 or gridPosition.y < 1 or gridPosition.x >= height-1 or gridPosition.y >= width - 1 then
+		return false
+	end
+	local gridIndex = gridPosition.x * room:GetGridWidth() + gridPosition.y
+	local collision = room:GetGridCollision(gridIndex)
+	return collision == GridCollisionClass.COLLISION_NONE or collision == GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER
+end
+
+---Returns true if an unobstructed path between the start and end position exists.
+---Obstructions can be something like Rocks, Pits, Walls, etc.
+---@param startPos Vector
+---@param endPos Vector
+---@return boolean
+function EID:HasPathToPosition(startPos, endPos)
+	-- divide by 40 to convert from world to grid coords
+	local room = game:GetRoom()
+	local width = room:GetGridWidth()
+	local startGI = room:GetGridIndex(startPos)
+	local endGI = room:GetGridIndex(endPos)
+	-- convert GridIndex into Grid X,Y coordinates and calculate path
+	local pathfinderObj = EID.Pathfinder(Vector(startGI%width, math.floor(startGI/width)), Vector(endGI%width, math.floor(endGI/width)), EID.EvaluateLocation)
+	-- return true if it has a path
+	return pathfinderObj:GetPath() ~= nil
 end

@@ -35,6 +35,8 @@ local collectibles = {
 	[594] = {"594", "Jupiter", "↓ Vitesse {{ColorError}}-0.3#{{Heart}} +2 réceptacles de cœur#{{HealingRed}} Soigne 2 cœurs rouges#Immunise Isaac contre le poison#Rester immobile accumule de la vitesse, se déplacer relâche un nuage de gaz empoisonné"}, -- Jupiter
 	-- Change: Complete rewrite
 	[632] = {"632", "Pendentif Maléfique", "↑ Chance {{ColorLime}}+2.0#Immunise Isaac contre les toiles d'araignée, les dégâts de feu, le poison, la terreur et la confusion#Les flaques n'infligent de dégâts à Isaac qu'au bout d'une seconde"},
+	-- Change: Added Shop vortex
+	[660] = {"660", "Cartomancie", "Fait apparaître deux vortex dans la première salle de chaque étage#Entrer dans un vortex téléporte Isaac :#{{Blank}} {{ColorRed}}Rouge {{ColorWhite}}= Salle du Boss#{{Blank}} {{ColorYellow}}Jaune {{ColorWhite}}= Salle du Trésor#{{Blank}} {{ColorBlue}}Bleu {{ColorWhite}} = Salle Secrète#{{Blank}} {{ColorGreen}}Vert {{ColorWhite}} = Boutique#Quitter la salle fait disparaître les vortex"}, --  Card Reading
 	-- Change: Complete rewrite
 	[681] = {"681", "P'tit Vortex", "Appuyer 2 fois sur un bouton de tir projette le vortex#Inflige des dégâts de contact et consomme les ressources sur son chemin#Chaque ressource absorbée augmente sa taille, ses dégâts et fait apparaître une mouche bleue#Consommer 3 ressources fait apparaître un vortex vers une salle spéciale dont le contenu persiste pour le reste de la partie"}, -- Lil Portal
 
@@ -58,8 +60,26 @@ local trinkets = {
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
+---------- Cards ----------
+
+local cards = {
+	-- Change: Complete rewrite
+	[38] = {"38", "Berkano", "Invoque 3 locustes abyssaux#{{Timer}} L'effet dure une salle"}, -- Berkano
+}
+EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
+
+
 ---------- Conditions ----------
 EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catcher (Greed) - In Rep+, the dream preview works in greed mode as well, so no changes needed
+
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+local abyssSynergies = {
+	[706] = "Invoque 16 locustes différents", -- Abyss
+}
+
+-- Remove all entries from Repentance file, and only add special descriptions relevant to Repentance+
+EID.descriptions[languageCode].abyssSynergies = {}
+EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
 
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them

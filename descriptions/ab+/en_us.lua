@@ -144,7 +144,7 @@ EID.descriptions[languageCode].collectibles={
 	{"121", "Odd Mushroom (Large)", "↑ {{EmptyHeart}} +1 Empty heart container#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +0.25 Range#↑ +0.5 Tear height#↓ {{Speed}} -0.1 Speed"}, -- Odd Mushroom (Large)
 	{"122", "Whore of Babylon", "When on half a Red Heart or less:#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +1.5 Damage"}, -- Whore of Babylon
 	{"123", "Monster Manual", "{{Timer}} Spawns a random familiar for the room"}, -- Monster Manual
-	{"124", "Dead Sea Scrolls", "Triggers a random active item effect"}, -- Dead Sea Scrolls
+	{"124", "Dead Sea Scrolls", "Triggers a random active item effect#Chooses the effect from a fixed list of items"}, -- Dead Sea Scrolls
 	{"125", "Bobby-Bomb", "{{Bomb}} +5 Bombs#Homing bombs"}, -- Bobby-Bomb
 	{"126", "Razor Blade", "↑ {{Damage}} +1.2 Damage for the room#{{Warning}} Deals 1 heart of damage to Isaac#{{Heart}} Removes Red Hearts first"}, -- Razor Blade
 	{"127", "Forget Me Now", "Rerolls and restarts the entire floor"}, -- Forget Me Now

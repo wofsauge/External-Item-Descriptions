@@ -12,8 +12,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.91
-EID.ModVersionCommit = "b10a18c"
+EID.ModVersion = 4.92
+EID.ModVersionCommit = "535f493"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -22,7 +22,6 @@ EID.coopMainPlayers = {} -- The primary Player Entity for each controller being 
 EID.coopAllPlayers = {} -- Every Player Entity (includes Esau, T.Forgotten)
 EID.controllerIndexes = {} -- A table to map each controller index to their player number for coloring indicators
 EID.isMultiplayer = false -- Used to color P1's highlight/outline indicators (single player just uses white)
-EID.isOnlineMultiplayer = false -- Set to true to disable code functions that might cause desyncs
 EID.BoC = {}
 
 -- general variables
@@ -816,13 +815,6 @@ function EID:onNewRoom()
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
-
-function EID:onCmd(command, _)
-	if command == "netstart" then -- the game somehow propagates that command correctly to the callback...
-		EID.isOnlineMultiplayer = true
-	end
-end 
-EID:AddCallback(ModCallbacks.MC_EXECUTE_CMD, EID.onCmd)
 ---------------------------------------------------------------------------
 ---------------------------Handle Rendering--------------------------------
 
@@ -1138,26 +1130,20 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.CollectibleSpawnedThisFrame, PickupVariant.PICKUP_COLLECTIBLE)
 
 -- Pathchecking
-local pathCheckerEntity = nil
 local lastPathfindFrame = -1
 
 local function attemptPathfind(entity)
-	if (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) or EID.isOnlineMultiplayer then
+	if (EID.Config["DisableObstructionOnFlight"] and EID.player.CanFly) then
 		pathsChecked[entity.InitSeed] = true
 		return true
 	end
-	-- Don't reattempt pathfinding more than 3 times a second, unless this is a new entity
-	if pathsChecked[entity.InitSeed] == false and EID.GameUpdateCount - lastPathfindFrame < 10 then return false end
+	-- Don't reattempt pathfinding more than 2 times a second, unless this is a new entity
+	if pathsChecked[entity.InitSeed] == false and EID.GameUpdateCount - lastPathfindFrame < 15 then return false end
 
-	-- Spawn a Fireplace entity to attempt a pathfind to the target pickup, then remove it afterwards
-	pathCheckerEntity = game:Spawn(33, 0, EID.player.Position, nullVector, EID.player, 6969, 4354)
-	EID:setEntityData(pathCheckerEntity, "EID_Pathfinder", true)
-	pathCheckerEntity.Visible = false
-	local successful = pathCheckerEntity:ToNPC().Pathfinder:HasPathToPos(entity.Position, false)
+	local successful = EID:HasPathToPosition(EID.player.Position, entity.Position)
 	pathsChecked[entity.InitSeed] = successful
-	pathCheckerEntity:Remove()
-	pathCheckerEntity = nil
 	lastPathfindFrame = EID.GameUpdateCount
+
 	return successful
 end
 
@@ -1496,15 +1482,20 @@ function EID:OnRender()
 					elseif closest.Type == 1000 and closest.Variant == 76 then
 						EID:addDescriptionToPrint(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1, closest))
 					-- Handle Card Reading Portals
-					elseif closest.Type == 1000 and closest.Variant == 161 and closest.SubType <= 2 then
-						local subtypeToCard = {18, 5, 19}
-						-- Reuse the descriptions of The Emperor/Stars/Moon, so no localization needed
-						local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest)
-						-- Card Reading's name
-						descriptionObj.Name = EID:getObjectName(5, 100, 660)
-						-- Only keep the first line of the description (to avoid Tarot Cloth effects or Planetarium mention on The Stars)
-						descriptionObj.Description = string.sub(descriptionObj.Description, 1, string.find(descriptionObj.Description, "#"))
-						EID:addDescriptionToPrint(descriptionObj)
+					elseif closest.Type == 1000 and closest.Variant == 161 then
+						if closest.SubType <= 2 or (EID.isRepentancePlus and closest.SubType == 3) then 
+							local subtypeToCard = {18, 5, 19}
+							if EID.isRepentancePlus then
+								subtypeToCard = {18, 5, 19, 10}
+							end
+							-- Reuse the descriptions of The Emperor/Stars/Moon/Hermit, so no localization needed
+							local descriptionObj = EID:getDescriptionObj(5, 300, subtypeToCard[closest.SubType+1], closest)
+							-- Card Reading's name
+							descriptionObj.Name = EID:getObjectName(5, 100, 660)
+							-- Only keep the first line of the description (to avoid Tarot Cloth effects or Planetarium mention on The Stars)
+							descriptionObj.Description = string.sub(descriptionObj.Description, 1, string.find(descriptionObj.Description, "#"))
+							EID:addDescriptionToPrint(descriptionObj)
+						end
 					-- Handle Crane Game
 					elseif closest.Type == 6 and closest.Variant == 16 then
 						if EID.CraneItemType[tostring(closest.InitSeed)] or EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] then
@@ -1512,11 +1503,12 @@ function EID:OnRender()
 								if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
 									EID:addQuestionMarkDescription(closest)
 								end
-							end
-							local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
-							local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID, closest)
+							else
+								local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
+								local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID, closest)
 
-							EID:addDescriptionToPrint(descriptionObj)
+								EID:addDescriptionToPrint(descriptionObj)
+							end
 						end
 					--Handle Broken Shovel
 					elseif closest.Type == 5 and closest.Variant == 110 then
@@ -1534,11 +1526,13 @@ function EID:OnRender()
 							local isHideUncollected = EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(closest.SubType)
 							local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil
 							EID:addQuestionMarkDescription(closest, description)
+						else
+							local descriptionObj = EID:getDescriptionObjByEntity(closest)
+							EID:addDescriptionToPrint(descriptionObj)
 						end
-						local descriptionObj = EID:getDescriptionObjByEntity(closest)
-						EID:addDescriptionToPrint(descriptionObj)
-
 					elseif closest.Variant == PickupVariant.PICKUP_TAROTCARD then
+						local descriptionObj = EID:getDescriptionObjByEntity(closest)
+						local wasHidden = false
 						--Handle Cards & Runes
 						if EID:getEntityData(closest, "EID_DontHide") ~= true then
 							local isSoulstone = closest.SubType >= 81 and closest.SubType <= 97
@@ -1547,43 +1541,52 @@ function EID:OnRender()
 							local obstructed = ((not isSoulstone and not EID.Config["DisplayObstructedCardInfo"]) or
 							(not EID.Config["DisplayObstructedSoulstoneInfo"] and isSoulstone)) and
 							(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
-							if isOptionsSpawn or hideinShop or obstructed then
+							if (isOptionsSpawn or hideinShop or obstructed) and not descriptionObj.ShowWhenUnidentified then
+								-- Render Questionmark
 								EID:addQuestionMarkDescription(closest)
+								wasHidden = true
 							end
 						end
 						local isCantrippedCard = game.Challenge == 43 and closest.SubType > 32768
 						if isCantrippedCard then
-							local descriptionObj = EID:getDescriptionObj(5, 100, closest.SubType - 32768, closest)
+							-- Convert into item description for CanTripped Challenge
+							descriptionObj = EID:getDescriptionObj(5, 100, closest.SubType - 32768, closest)
 							EID:addDescriptionToPrint(descriptionObj)
-						else
-							local descriptionObj = EID:getDescriptionObjByEntity(closest)
+						elseif not wasHidden then
+							-- Show card / Rune description
 							EID:addDescriptionToPrint(descriptionObj)
 						end
 
 					elseif closest.Variant == PickupVariant.PICKUP_PILL then
 						--Handle Pills
+						local wasHidden = false
 						if EID:getEntityData(closest, "EID_DontHide") ~= true then
 							local hideinShop = closest:ToPickup():IsShopItem() and not EID.Config["DisplayPillInfoShop"]
 							local isOptionsSpawn = EID.isRepentance and not EID.Config["DisplayPillInfoOptions?"] and closest:ToPickup().OptionsPickupIndex > 0
 							local obstructed = not EID.Config["DisplayObstructedPillInfo"] and
 							(not pathsChecked[closest.InitSeed] and not attemptPathfind(closest))
 							if isOptionsSpawn or hideinShop or obstructed then
+								-- Render Questionmark
 								EID:addQuestionMarkDescription(closest)
+								wasHidden = true
 							end
 						end
+						if not wasHidden then
+							local pillColor = closest.SubType
+							local pool = game:GetItemPool()
+							local identified = pool:IsPillIdentified(pillColor) and not EID.Config["OnlyShowPillWhenUsedAtLeastOnce"]
+							if EID.isRepentance and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
+							local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
+							local wasUsed = EID:WasPillUsed(pillColor)
 
-						local pillColor = closest.SubType
-						local pool = game:GetItemPool()
-						local identified = pool:IsPillIdentified(pillColor) and not EID.Config["OnlyShowPillWhenUsedAtLeastOnce"]
-						if EID.isRepentance and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
-						local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
-						local wasUsed = EID:WasPillUsed(pillColor)
-
-						if (identified or wasUsed or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
-							local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor, closest)
-							EID:addDescriptionToPrint(descEntry)
-						else
-							EID:addDescriptionToPrint({ Description = "UnidentifiedPill", Entity = closest})
+							if (identified or wasUsed or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
+								-- show identified pill
+								local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor, closest)
+								EID:addDescriptionToPrint(descEntry)
+							else
+								-- show unidentified pill description
+								EID:addDescriptionToPrint({ Description = "UnidentifiedPill", Entity = closest})
+							end
 						end
 					elseif EID.Config["EnableEntityDescriptions"] then
 						--Handle Entities (omni)
