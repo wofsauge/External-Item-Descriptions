@@ -1191,6 +1191,13 @@ function EID:CheckPosModifiers()
 	end
 	-- the other modifiers don't need to be ran as frequently
 	if EID.GameRenderCount % 30 ~= 0 then return end
+
+	-- Repentance+ pushes a lot of UI lower, so we have to push the description lower as well to avoid overlapping
+	if EID.isRepentancePlus then
+		EID:addTextPosModifier("Repentance+", Vector(0,10))
+	else
+		EID:removeTextPosModifier("Repentance+")
+	end
 	-- Greed Mode small right adjustment
 	if game:IsGreedMode() then
 		EID:addTextPosModifier("Greed Mode Horizontal", Vector(8,0))
