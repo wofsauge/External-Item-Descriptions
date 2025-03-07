@@ -1045,7 +1045,7 @@ if EID.isRepentance then
 
 		-- base damage via Quality and multiplier
 		local damageText = EID:getDescriptionEntry("AbyssTexts", "DamageMult")
-		local dmg = (EID.QualityToLocustDamageMultiplier[descObj.Quality] or 1) * damageMultiplier1
+		local dmg = (EID.isRepentancePlus and EID.QualityToLocustDamageMultiplier[descObj.Quality] or 1) * damageMultiplier1
 		damageText = EID:ReplaceVariableStr(damageText, dmg)
 
 		-- size
