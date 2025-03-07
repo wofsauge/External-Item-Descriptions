@@ -141,6 +141,10 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
+	if id == -1 then
+		print("EID Error: Trying to add collectible description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	local modName = EID._currentMod
 	-- Glitched Items exception so they don't have a mod name
 	if id > 4294960000 then modName = nil end
@@ -156,6 +160,10 @@ end
 function EID:addTrinket(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
+	if id == -1 then
+		print("EID Error: Trying to add trinket description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description, EID._currentMod}
 end
@@ -168,6 +176,10 @@ end
 function EID:addCharacterInfo(characterId, description, playerName, language)
 	playerName = playerName or "Modded Character"
 	language = language or "en_us"
+	if characterId == -1 then
+		print("EID Error: Trying to add character description to id = -1, which is not allowed! (Name: "..tostring(playerName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("CharacterInfo", language)
 	EID.descriptions[language].CharacterInfo[characterId] = {playerName, description}
 end
@@ -216,6 +228,10 @@ end
 function EID:addCard(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
+	if id == -1 then
+		print("EID Error: Trying to add card description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description, EID._currentMod}
 end
@@ -242,6 +258,10 @@ end
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
+	if id == -1 then
+		print("EID Error: Trying to add pill description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("pills", language)
 	EID:CreateDescriptionTableIfMissing("horsepills", language)
 	EID.descriptions[language].pills[id+1] = {id, itemName, description, EID._currentMod}
@@ -260,6 +280,10 @@ function EID:addHorsePill(id, description, itemName, language)
 	if not EID.isRepentance then return end
 	itemName = itemName or nil
 	language = language or "en_us"
+	if id == -1 then
+		print("EID Error: Trying to add horsepill description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("horsepills", language)
 	EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
 end
@@ -283,6 +307,10 @@ end
 function EID:addBirthright(characterId, description, playerName, language)
 	playerName = playerName or nil
 	language = language or "en_us"
+	if characterId == -1 then
+		print("EID Error: Trying to add Birthright description to id = -1, which is not allowed! (Name: "..tostring(characterId).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("birthright", language)
 	EID.descriptions[language].birthright[characterId + 1] = {playerName, "", description}
 end

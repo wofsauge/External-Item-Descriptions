@@ -211,6 +211,16 @@ EID:addColor("ColorBlackBlink", nil, function(color)
 -- Test: Pill effect unidentifyable
 EID:SetPillEffectUnidentifyable(24, true) -- set "I can see forever" to always be unidentifyable
 
+-- Test: Write error for id = -1
+EID:addCollectible(-1, "Desc", "Fail")
+EID:addTrinket(-1, "Desc", "Fail")
+EID:addCharacterInfo(-1, "Desc", "Fail")
+EID:addCard(-1, "Desc", "Fail")
+EID:addPill(-1, "Desc", "Fail")
+EID:addHorsePill(-1, "Desc", "Fail")
+EID:addBirthright(-1, "Desc", "Fail")
+
+
 local function onDebugRender()
 	EID:renderHUDLocationIndicators()
 
