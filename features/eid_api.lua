@@ -772,7 +772,9 @@ function EID:getDescriptionEntry(objTable, objIdentifier, noFallback)
 		if noFallback then description = translatedTable and translatedTable[objIdentifier]
 		else description = (translatedTable and translatedTable[objIdentifier]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objIdentifier]) end
 		--Try looking for a -1 that would encompass all subtypes of the variant
-		if not description then
+		-- Safety check for if the identifier contains "."(dot) 1-2 times and only contains numbers
+		local strNoDots, numDots = string.gsub(objIdentifier, "%.","")
+		if not description and tonumber(strNoDots) and (numDots == 1 or numDots == 2) then
 			local subtype
 			for i = string.len(objIdentifier), 1, -1 do
 				if string.sub(objIdentifier, i, i) == "." then
