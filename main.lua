@@ -1,4 +1,4 @@
-if EID and EID.Name then print("Error: Two instances of EID found! Please uninstall one of them!") return end -- If EID is already loaded, warn the user and dont load the second one.
+if EID and EID.Name then print("EID Error: Two instances of EID found! Please uninstall one of them!") return end -- If EID is already loaded, warn the user and dont load the second one.
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
@@ -12,8 +12,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.92
-EID.ModVersionCommit = "535f493"
+EID.ModVersion = 4.94
+EID.ModVersionCommit = "7aba985"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -129,7 +129,7 @@ if EID.isRepentance then
 	for _,lang in ipairs(EID.Languages) do
 		local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
 		if not wasSuccessful and not string.find(err, "not found") then
-			Isaac.ConsoleOutput("Load rep "..lang.." failed: "..tostring(err))
+			EID:WriteErrorMsg("Load rep "..lang.." failed: "..tostring(err))
 		end
 	end
 	local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
@@ -142,7 +142,7 @@ if EID.isRepentance then
 		for _,lang in ipairs(EID.Languages) do
 			local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
 			if not wasSuccessful and not string.find(err, "not found") then
-				Isaac.ConsoleOutput("Load rep+ "..lang.." failed: "..tostring(err))
+				EID:WriteErrorMsg("Load rep+ "..lang.." failed: "..tostring(err))
 			end
 		end
 		local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
@@ -182,16 +182,16 @@ if not success then
 	if EID.isRepentance then
 		success = EID:loadFont("../mods/"..modfolder.."/resources/font/eid_"..fontFile..".fnt")
 		if not success then
-			Isaac.ConsoleOutput("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
-			Isaac.ConsoleOutput("File not found (absolute path): "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt\n")
-			Isaac.ConsoleOutput("File not found (relative path): ../mods/"..modfolder.."/resources/font/eid_"..fontFile..".fnt")
+			EID:WriteErrorMsg("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
+			EID:WriteErrorMsg("File not found (absolute path): "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt\n")
+			EID:WriteErrorMsg("File not found (relative path): ../mods/"..modfolder.."/resources/font/eid_"..fontFile..".fnt")
 			return
 		else
 			EID.modPath = "../mods/"..modfolder.."/"
 		end
 	else
-		Isaac.ConsoleOutput("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
-		Isaac.ConsoleOutput("File does not exist: "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
+		EID:WriteErrorMsg("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
+		EID:WriteErrorMsg("File does not exist: "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
 		return
 	end
 end
@@ -1191,6 +1191,13 @@ function EID:CheckPosModifiers()
 	end
 	-- the other modifiers don't need to be ran as frequently
 	if EID.GameRenderCount % 30 ~= 0 then return end
+
+	-- Repentance+ pushes a lot of UI lower, so we have to push the description lower as well to avoid overlapping
+	if EID.isRepentancePlus then
+		EID:addTextPosModifier("Repentance+", Vector(0,10))
+	else
+		EID:removeTextPosModifier("Repentance+")
+	end
 	-- Greed Mode small right adjustment
 	if game:IsGreedMode() then
 		EID:addTextPosModifier("Greed Mode Horizontal", Vector(8,0))
@@ -1864,7 +1871,7 @@ function EID:OnGameStart(isSave)
 			local isDefaultConfig = true
 			for key, value in pairs(EID.Config) do
 				if type(value) ~= type(EID.DefaultConfig[key]) and not configIgnoreList[key] then
-					print("EID Warning! : Config value '"..key.."' has wrong data-type. Resetting it to default...")
+					EID:WriteDebugMsg("EID Warning: Config value '"..key.."' has wrong data-type. Resetting it to default...")
 					EID.Config[key] = EID.DefaultConfig[key]
 				end
 				if EID.DefaultConfig[key] ~= value then

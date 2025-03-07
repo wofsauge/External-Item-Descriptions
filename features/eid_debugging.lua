@@ -17,7 +17,7 @@ function EID:countEntries(t)
 end
 EID:countEntries(EID.descriptions["en_us"])
 local enUSEntries = count
-print("en_us entries: "..enUSEntries)
+EID:WriteDebugMsg("en_us entries: "..enUSEntries)
 
 
 local maxChecklimit = {["tarotClothBuffs"] = 2}
@@ -34,7 +34,7 @@ local ignoreNodesWithName = {["fonts"] = true}
 
 
 for _, lang in ipairs(languageFilesToCheck) do
-	print("Now checking integrity of languagefile: " .. lang)
+	EID:WriteDebugMsg("Now checking integrity of languagefile: " .. lang)
 	-- Generic function to compare two tables
 	function EID:compareTables(table1, table2, prevKey, progress)
 		local checkLimit = EID:getMaxCheckLimit(prevKey)
@@ -44,10 +44,10 @@ for _, lang in ipairs(languageFilesToCheck) do
 			if not (ignoreNodesWithName[k] or checkLimit < 0) then
 				-- only evaluate nodes that are not listed in this table
 				if not table2[k] then
-					print(" Table '" .. prevKey .. "' does not contain key: " .. k)
+					EID:WriteDebugMsg(" Table '" .. prevKey .. "' does not contain key: " .. k)
 					progress[2] = progress[2] + 1
 				elseif type(table2[k]) ~= type(table1[k]) then
-					-- print("Type mismatch in table '" .. prevKey .. "', key: " .. k)
+					-- EID:WriteDebugMsg("Type mismatch in table '" .. prevKey .. "', key: " .. k)
 					progress[2] = progress[2] + 1
 				elseif type(table2[k]) == "table" then
 				  EID:compareTables(table1[k], table2[k], prevKey.."->"..k, progress)
@@ -59,7 +59,7 @@ for _, lang in ipairs(languageFilesToCheck) do
 						local filteredSpriteText, spriteTable = EID:filterIconMarkup(textPart[1])
 
 						if string.find(filteredSpriteText, "{{") or string.find(filteredSpriteText, "}}") then
-							print(" Table '" ..
+							EID:WriteDebugMsg(" Table '" ..
 							prevKey .. "' entry '" .. k .. "' does contain a broken markup object: '" .. table2[k])
 							progress[1] = progress[1] - 2
 							progress[2] = progress[2] + 1
@@ -67,7 +67,7 @@ for _, lang in ipairs(languageFilesToCheck) do
 						else
 							for _, sprite in ipairs(spriteTable) do
 								if sprite[1][1] == "ERROR" then
-									print(" Table '" ..
+									EID:WriteDebugMsg(" Table '" ..
 									prevKey ..
 									"' entry '" .. k .. "' does contain a bad icon markup in string: '" .. table2[k])
 									progress[1] = progress[1] - 2
@@ -86,8 +86,8 @@ for _, lang in ipairs(languageFilesToCheck) do
 	EID:compareTables(EID.descriptions["en_us"], EID.descriptions[lang], lang, progress)
 
 	local errors = (enUSEntries - progress[1])-progress[2]
-	print("Errors found: "..errors .." / "..enUSEntries)
-	print("Translation progress: "..((enUSEntries-errors)/enUSEntries*100).."%")
+	EID:WriteDebugMsg("Errors found: "..errors .." / "..enUSEntries)
+	EID:WriteDebugMsg("Translation progress: "..((enUSEntries-errors)/enUSEntries*100).."%")
 
 end
 
@@ -210,6 +210,16 @@ EID:addColor("ColorBlackBlink", nil, function(color)
 )
 -- Test: Pill effect unidentifyable
 EID:SetPillEffectUnidentifyable(24, true) -- set "I can see forever" to always be unidentifyable
+
+-- Test: Write error for id = -1
+EID:addCollectible(-1, "Desc", "Fail")
+EID:addTrinket(-1, "Desc", "Fail")
+EID:addCharacterInfo(-1, "Desc", "Fail")
+EID:addCard(-1, "Desc", "Fail")
+EID:addPill(-1, "Desc", "Fail")
+EID:addHorsePill(-1, "Desc", "Fail")
+EID:addBirthright(-1, "Desc", "Fail")
+
 
 local function onDebugRender()
 	EID:renderHUDLocationIndicators()

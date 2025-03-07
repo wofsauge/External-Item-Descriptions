@@ -141,6 +141,10 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add collectible description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	local modName = EID._currentMod
 	-- Glitched Items exception so they don't have a mod name
 	if id > 4294960000 then modName = nil end
@@ -156,6 +160,10 @@ end
 function EID:addTrinket(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add trinket description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description, EID._currentMod}
 end
@@ -168,6 +176,10 @@ end
 function EID:addCharacterInfo(characterId, description, playerName, language)
 	playerName = playerName or "Modded Character"
 	language = language or "en_us"
+	if characterId == -1 then
+		EID:WriteErrorMsg("Trying to add character description to id = -1, which is not allowed! (Name: "..tostring(playerName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("CharacterInfo", language)
 	EID.descriptions[language].CharacterInfo[characterId] = {playerName, description}
 end
@@ -216,6 +228,10 @@ end
 function EID:addCard(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add card description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description, EID._currentMod}
 end
@@ -242,6 +258,10 @@ end
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
 	language = language or "en_us"
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add pill description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("pills", language)
 	EID:CreateDescriptionTableIfMissing("horsepills", language)
 	EID.descriptions[language].pills[id+1] = {id, itemName, description, EID._currentMod}
@@ -260,6 +280,10 @@ function EID:addHorsePill(id, description, itemName, language)
 	if not EID.isRepentance then return end
 	itemName = itemName or nil
 	language = language or "en_us"
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add horsepill description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("horsepills", language)
 	EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
 end
@@ -283,6 +307,10 @@ end
 function EID:addBirthright(characterId, description, playerName, language)
 	playerName = playerName or nil
 	language = language or "en_us"
+	if characterId == -1 then
+		EID:WriteErrorMsg("Trying to add Birthright description to id = -1, which is not allowed! (Name: "..tostring(characterId).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("birthright", language)
 	EID.descriptions[language].birthright[characterId + 1] = {playerName, "", description}
 end
@@ -529,7 +557,7 @@ function EID:loadFont(fontFileName)
 	EID.font:SetMissingCharacter(2)
 	---@diagnostic enable
 	if not EID.font:IsLoaded() then
-		Isaac.DebugString("EID - ERROR: Could not load font from '" .. EID.modPath .. "resources/font/default.fnt" .. "'")
+		EID:WriteErrorMsg("Could not load font from '" .. EID.modPath .. "resources/font/default.fnt" .. "'")
 		return false
 	end
 	return true
@@ -744,7 +772,9 @@ function EID:getDescriptionEntry(objTable, objIdentifier, noFallback)
 		if noFallback then description = translatedTable and translatedTable[objIdentifier]
 		else description = (translatedTable and translatedTable[objIdentifier]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objIdentifier]) end
 		--Try looking for a -1 that would encompass all subtypes of the variant
-		if not description then
+		-- Safety check for if the identifier contains "."(dot) 1-2 times and only contains numbers
+		local strNoDots, numDots = string.gsub(objIdentifier, "%.","")
+		if not description and tonumber(strNoDots) and (numDots == 1 or numDots == 2) then
 			local subtype
 			for i = string.len(objIdentifier), 1, -1 do
 				if string.sub(objIdentifier, i, i) == "." then
@@ -3150,4 +3180,16 @@ function EID:HasPathToPosition(startPos, endPos)
 	local pathfinderObj = EID.Pathfinder(Vector(startGI%width, math.floor(startGI/width)), Vector(endGI%width, math.floor(endGI/width)), EID.EvaluateLocation)
 	-- return true if it has a path
 	return pathfinderObj:GetPath() ~= nil
+end
+
+---Prints a message in both the console and the Log file, to make important messages from EID stand out everywhere
+---@param str string
+function EID:WriteDebugMsg(str)
+	print(str)
+	Isaac.DebugString(str)
+end
+---Prints an error message in both the console and the Log file, to make important messages from EID stand out everywhere
+---@param str string
+function EID:WriteErrorMsg(str)
+	EID:WriteDebugMsg("EID ERROR: " .. str)
 end
