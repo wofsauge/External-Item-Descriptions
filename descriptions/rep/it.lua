@@ -75,7 +75,7 @@ local repCollectibles={
 	[152] = {"152", "Tecnologia 2", "↓ {{Tears}} x0.67 Moltiplicatore Rateo di Fuoco#Rimpiazza le lacrime dell'occhio destro di Isaac con un laser costante#{{Damage}} Il laser infligge il 20% dei danni di Isaac per tocco"}, -- Technology 2
 	[153] = {"153", "Ragno Mutante", "↓ {{Tears}} x0.42 Moltiplicatore Rateo di Fuoco#Isaac spara 4 lacrime alla volta"}, -- Mutant Spider
 	[155] = {"155", "Il Guardone", "↑ {{Damage}} x1.35 Moltiplicatore Danni per l'occhio sinistro#Levita intorno alla stanza#Infligge 17.1 danni da contatto al secondo"}, -- The Peeper
-	[158] = {"158", "Sfera di Cristallo", "Genera 1 {{SoulHeart}} Cuore Celeste, 1 {{Rune}} runa o 1 {{Card}} carta#{{Timer}} Effetto di mappatura completa fino all'uscita dal piano (escluse le {{SuperSecretRoom}} Stanze Super Segrete)#Mentre viene tenuto:#{{PlanetariumChance}} +15% di chance di un Planetario#{{PlanetariumChance}} +100% se è stata saltata una {{TreasureRoom}} Stanza dei Tesori"}, -- Crystal Ball
+	[158] = {"158", "Sfera di Cristallo", "Genera 1 {{SoulHeart}} Cuore Celeste, 1 {{Rune}} runa o 1 {{Card}} carta#{{Timer}} Effetto di mappatura completa fino all'uscita dal piano (escluse le {{SuperSecretRoom}}{{UltraSecretRoom}} Stanze Super/Ultra Segrete)#Mentre viene tenuto:#{{PlanetariumChance}} +15% di chance di un Planetario#{{PlanetariumChance}} +100% se è stata saltata una {{TreasureRoom}} Stanza dei Tesori"}, -- Crystal Ball
 	[169] =	{"169", "Polifemo", "↑ {{Damage}} +4 Danni#↑ {{Damage}} x2 Moltiplicatore Danni#↓ {{Tears}} x0.42 Moltiplicatore Rateo di Fuoco#Le lacrime penetrano i nemici uccisi in caso di danni avanzanti"}, -- Polyphemus
 	[171] = {"171", "Chiappe Ragnesche", "{{Slow}} Rallenta i nemici per 4 secondi#Infligge 10 danni a tutti i nemici##I nemici uccisi dall'oggetto generano ragni blu"}, -- Spider Butt
 	[172] = {"172", "Lama Sacrificale", "Orbitale#Blocca i proiettili nemici#Infligge 112.5 danni al secondo"}, -- Sacrificial Dagger
@@ -100,7 +100,7 @@ local repCollectibles={
 	[219] = {"219", "Cerotto Vecchio", "↑ {{EmptyHeart}} +1 Portacuori vuoto#{{Heart}} Subire danni ha il 20% di chance di generare 1 Cuore Rosso"}, -- Old Bandage
 	[222] =	{"222", "Anti-Gravità", "↑ {{Tears}} +1 Rateo di Fuoco#Tenere premuto il tasto di fuoco fa sì che le lacrime levitino a mezz'aria#Rilasciare il tasto di fuoco le lancia nella direzione verso cui erano state sparate"}, -- Anti-Gravity
 	[223] = {"223", "Piromane", "{{Bomb}} +5 Bombe#Immunità alle esplosioni e al fuoco#{{HalfHeart}} Le esplosioni curano Isaac di mezzo cuore invece di danneggiarlo"}, -- Pyromaniac
-	[224] = {"224", "Corpo di Cricket", "↑ {{Tears}} +0.5 Rateo di Fuoco#↓ {{Range}} x0.8 Moltiplicatore Gittata#Quando le lacrime colpiscono si scindono in 4#Le lacrime scisse infliggono la metà dei danni"}, -- Cricket's Body
+	[224] = {"224", "Corpo di Cricket", "↑ {{Tears}} +0.5 Rateo di Fuoco#↓ {{Range}} x0.8 Moltiplicatore Gittata#Quando le lacrime colpiscono si dividono in 4#Le lacrime divise infliggono la metà dei danni"}, -- Cricket's Body
 	[225] = {"225", "Latex", "{{SoulHeart}} Subire danni ha una chance di generare un Cuore Celeste#{{Luck}} +2% di chance per punto Fortuna#{{HalfHeart}} I nemici hanno una chance di lasciare mezzo Cuore Rosso quando muoiono"}, -- Gimpy
 	[226] = {"226", "Loto Nero", "↑ {{Heart}} +1 Salute#{{HealingRed}} Cura di 1 cuore#{{SoulHeart}} +1 Cuore Celeste#{{BlackHeart}} +1 Cuore Nero"}, -- Black Lotus
 	[228] = {"228", "Profumo di Mamma", "↑ {{Tears}} +0.5 Rateo d fuoco#{{Fear}} 15% di chance di sparare lacrime spaventose"}, -- Moms Perfume
@@ -323,13 +323,13 @@ local repCollectibles={
 	[628] = {"628", "Certificato di Morte", "{{Warning}} MONOUSO {{Warning}}#Teletrasporta Isaac in un piano che contiene ogni oggetto del gioco#Scegliere un oggetto da questo piano teletrasporta Isaac nella stanza da cui è venuto"}, -- Death Certificate
 	[629] = {"629", "Mosca-Bot", "Spara lacrime scudo per distruggere i proiettili nemici"}, -- Bot Fly
 	[630] = {"630", "", "<Item does not exist>"},
-	[631] = {"631", "Mannaia", "Scinde ciascun nemico nella stanza in 2 versioni più piccole con meno salute"}, -- Meat Cleaver
+	[631] = {"631", "Mannaia", "Divide ciascun nemico nella stanza in 2 versioni più piccole con meno salute"}, -- Meat Cleaver
 	[632] = {"632", "Nazar", "↑ {{Luck}} +2 Fortuna#Immunità a {{Burning}} fuoco, {{Confusion}} confusione, {{Fear}} paura, e {{Poison}} veleno"}, -- Evil Charm
 	[633] = {"633", "Dogma", "↑ {{Speed}} +0.1 Velocità#↑ {{Damage}} +2 Danni#Volo e un singolo uso di {{HolyMantleSmall}} \"Manto Sacro\"#{{Heart}} Cura Isaac con Cuori Rossi e Celesti se ha meno di 6 cuori"}, -- Dogma
 	[634] = {"634", "Purgatorio", "Nelle stanze ostili vengono generate crepe rosse nel terreno#Camminare sopra le crepe evoca fantasmi esplosivi a ricerca"}, -- Purgatory
 	[635] = {"635", "Feticcio", "Genera un famiglio che si muove nella direzione in cui Isaac spara#Se usato, Isaac si scambia di posto con il famiglio e diventa invincibile per poco tempo#Teletrasportarsi ad un nemico o certi ostacoli può danneggiarli o distruggerli"}, -- Stitches
 	[636] = {"636", "Tasto R", "{{Warning}} MONOUSO {{Warning}}#Ripristina la partita#Vengono mantenuti tutti gli oggetti, ninnoli, statistiche e consumabili collezionati#Il timer non viene azzerato"}, -- R Key
-	[637] = {"637", "Pugno nell'Occhio", "{{Confusion}} 10% di chance di sparare in pugno che infligge confusione e una spinta poderosa#{{Luck}} 100% di chance con 9 di Fortuna#I nemici subiscono danni quando vengono spinti verso un muro/ostacolo"}, -- Knockout Drops
+	[637] = {"637", "Pugno nell'Occhio", "{{Confusion}} 10% di chance di sparare un pugno che infligge confusione e una spinta poderosa#{{Luck}} 100% di chance con 9 di Fortuna#I nemici subiscono danni quando vengono spinti verso un muro/ostacolo"}, -- Knockout Drops
 	[638] = {"638", "Gomma per Cancellare", "Lancia una gomma da cancellare che uccide istantemente un nemico#Impedisce per il resto della partita la generazione del nemico cancellato#Infligge 15 danni ai boss#Può essere usato una volta per piano"}, -- Eraser
 	[639] = {"639", "Cuore Schifoso", "{{RottenHeart}} +1 Cuore Marcio"}, -- Yuck Heart
 	[640] = {"640", "Urna di Anime", "Genera un getto infuocato#Uccidere un nemico aggiunge una carica all'urna"}, -- Urn of Souls
@@ -337,7 +337,7 @@ local repCollectibles={
 	[642] = {"642", "Pelle Magica", "Genera un oggetto dalla categoria di oggetti della stanza corrente#{{BrokenHeart}} Trasforma 1 Portacuori o 1 Cuore Osseo o 2 Cuori Celesti in 1 Cuore Spezzato#{{Warning}} Se Isasc non lo tiene può rimpiazzare oggetti futuri {{ColorSilver}}(33% dopo 1 uso, 50% dopo 2, 100% dopo 3)#Le chance sono minori se \"Pelle Magica\" è  su un piedistallo nel piano corrente#{{Player10}} Monouso per Lo Smarrito"}, -- Magic Skin
 	[643] = {"643", "Rivelazione", "{{SoulHeart}} +2 Cuori Celesti#Volo#{{Chargeable}} Raggio sacro dai danni elevati#Non rimpiazza le lacrime di Isaac"}, -- Revelation
 	[644] = {"644", "Premio di Consolazione", "↑ Aumenta la più bassa tra  Velocità, Rateo di Fuoco, Danni, e Gittata#Genera tra 3 {{Coin}} monete, 1 {{Bomb}} bomba, o 1 {{Key}} chiave in base a cosa Isaac ha di meno"}, -- Consolation Prize
-	[645] = {"645", "Minitoma", "Grosso orbitale che  blocca i proiettili#Infligge 3.5 danni da contatto al secondo#Dopo aver subito 3 colpi si scinde in versione più piccole di se stessi#Le versioni piú piccole si sfaldano in ragni blu#Resuscita 5 secondi dopo la sua sparizione totale"}, -- Tinytoma
+	[645] = {"645", "Minitoma", "Grosso orbitale che  blocca i proiettili#Infligge 3.5 danni da contatto al secondo#Dopo aver subito 3 colpi si dividono in versione più piccole di se stessi#Le versioni piú piccole si sfaldano in ragni blu#Resuscita 5 secondi dopo la sua sparizione totale"}, -- Tinytoma
 	[646] = {"646", "Bombe Zolfo Fuso", "{{Bomb}} +5 Bombe#{{Collectible118}} Le bombe di Isaac rilasciano dei raggi di zolfo fuso in 4 direzioni#I raggi non feriscono Isaac"}, -- Brimstone Bombs
 	[647] = {"647", "4.5 Volt", "Completare le stanze non carica più gli oggetti attivi#Infliggere danni ai nemici riempie lentamente la barra di carica#I danni richiesti per le cariche aumentano ad ogni piano"}, -- 4.5 Volt
 	[648] = {"648", "", "<Item does not exist>"},
@@ -373,7 +373,7 @@ local repCollectibles={
 	[678] = {"678", "Taglio Cesareo", "{{Chargeable}} Rimpiazza le lacrime di Isaac con un attacco caricato che spara feti spettrali e a ricerca#{{Damage}} I feti infliggono i danni di Isaac x2.8 al secondo"}, -- C Section
 	[679] = {"679", "Mini Abbadon", "{{Collectible399}} Famiglio che carica e rilascia un cerchio di \"Fauci dell'Oblio\" che infligge 52.5 danni in un 1 secondo"}, -- Lil Abaddon
 	[680] = {"680", "Vendetta di Montezuma", "{{Chargeable}} Sparare carica un raggio posteriore a corto raggio dai danni elevati#Non rimpiazza la lacrime di Isaac"}, -- Montezumàs Revenge
-	[681] = {"681", "Mini Portale", "Infligge danni da contatto e vola in avanti#Dissipa i consumabili lungo la via#Ogni consumabile dissipato ne aumenta le dimensioni e i danni, e genera 1 mosca blu#Dissipare 4 consumabili genera un portale per una stanza inesplorata"}, -- Lil Portal
+	[681] = {"681", "Mini Portale", "Infligge danni da contatto e vola in avanti#Mangia i consumabili lungo la via#Ogni consumabile mangiato ne aumenta le dimensioni e i danni, e genera 1 mosca blu#Mangiare 4 consumabili genera un portale per una stanza inesplorata"}, -- Lil Portal
 	[682] = {"682", "Amico Verme", "A volte sbuca dal terreno per afferrare un nemico#I nemici afferrati subiscono 8 danni al secondo, vengono rallentati e non possono muoversi"}, -- Worm Friend
 	[683] = {"683", "Speroni Ossei", "Quando i nemici muoiono generano schegge d'ossa#Le ossa bloccano i proiettili e infliggono danni da contatto"}, -- Bone Spurs
 	[684] = {"684", "Anima Affamata", "Uccidere un nemico ha una chance di generare un fantasma#I fantasmi inseguono i nemici, infliggono danni da contatto ed esplodono dopo 5 secondi#Isaac non subisce danni dalle loro esplosioni"}, -- Hungry Soul
@@ -457,7 +457,7 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[290] = "Usare l'oggetto consuma un cuore, conferisce un {{Damage}} aumento dei danni e lascia una scia di sangue per terra", -- The Jar
 	[295] = "Ha una chance di invocare gli effetti di {{Collectible555}} \"Lametta Dorata\"", -- Magic Fingers
 	[297] = "Insieme alle ricompense ordinarie conferisce permanentemente un famiglio demoniaco", -- Pandora's Box
-	[323] = "Spara invece 10 lacrime e sono perforanti + spettrali con un potenziamento dei danni", -- Isaac's Tears
+	[323] = "Spara invece 10 lacrime e sono penetranti + spettrali con un potenziamento dei danni", -- Isaac's Tears
 	[326] = "Mentre Isaac è invincibile invece di generare luce ha un'aura fiammeggiante#{{Damage}} Più Danni temporanei e con una parata perfetta invoca gli effetti di {{Collectible35}} \"Il Necronomicon\"", -- Breath of Life
 	[352] = "Se infranto attiva {{Collectible34}} \"Il libro di Belial\"#L'aumento dei danni persiste fino alla riparazione del cannone", -- Glass Cannon
 	[475] = "Se Giuda ha una vita extra resuscita come Giuda Oscuro", -- Plan C
@@ -621,7 +621,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[611] = "Fiammella dell'anello mediano {{MiddleWisp}}#Salute e danni aumentano in base alle cariche", -- Larynx
 	[622] = "Fiammella dell'anello mediano {{MiddleWisp}}#Rimpiazza tutte le fiammelle con 3 fiammelle normali", -- Genesis
 	[623] = "Fiammella dell'anello medianosNessun effetto speciale", -- Sharp Key
-	[631] = "Fiammella dell'anello mediano {{MiddleWisp}}#Scinde tutte le fiammelle a metà (metà dei danni)#Se scisse le fiammelle per una terza volta vengono distrutte", -- Meat Cleaver
+	[631] = "Fiammella dell'anello mediano {{MiddleWisp}}#Divide tutte le fiammelle a metà (metà dei danni)#Le fiammelle divise per una terza volta vengono distrutte", -- Meat Cleaver
 	[635] = "Fiammella per una singola stanza#Genera una fiammella stazionaria nella posizione di Isaac prima di venire teletrasportato (fino a 6 fiammelle)", -- Stitches
 	[636] = "Nessuna fiammella", -- R Key
 	[638] = "Fiammella dell'anello mediano {{MiddleWisp}}#Immunità ai proiettili#Al contatto con i nemici che non sono boss", -- Eraser
@@ -650,25 +650,141 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[729] = "Fiammella stazionaria per una singola stanza", -- Decap Attack
 }
 
--- Special Locust effects when Item was eaten by Abyss
-EID.descriptions[languageCode].abyssSynergies = {
-	[2] = "3 locuste normali", -- The Inner Eye
-	[3] = "Locusta viola a ricerca", -- Spoon Bender
-	[4] = "Grossa locusta rossa che infligge il triplo dei danni", -- Cricket's Head
-	[6] = "Locusta gialla rapida a corto raggio che infligge danni più rapidamente", -- Number One
-	[7] = "Locusta rossa che infligge il doppio dei danni", -- Blood of the Martyr
-	[10] = "2 locuste grigie che infliggono metà dei danni", -- Halo of Flies
-	[13] = "Locusta verde che avvelena i nemici", -- The Virus
-	[103] = "Locusta verde che avvelena i nemici", -- The Common Cold
-	[118] = "Locusta grigia più grossa ma normale in tutti gli altri aspetti", -- Brimstone
-	[149] = "Locusta verde, grossa e lenta che infligge x1.5 dei danni di Isaac e avvelena i nemici", -- Ipecac
-	[153] = "4 locuste normali", -- Mutant Spider
-	[257] = "Locusta arancione e incandescente che incendia i nemici", -- Fire Mind
-	[305] = "Locusta verde che avvelena i nemici", -- Scorpio
-	[374] = "Locusta turchese e lucente che può generare raggi di luce che infliggono x3 dei danni di Isaac", -- Holy Light
-	[494] = "Locusta blu chiaro con scariche elettriche che infliggono 0.1 danni a scossa", -- Jacob's Ladder
-	[559] = "Locusta blu chiaro con scariche elettriche che infliggono 0.1 danni a scossa", -- 120 Volt
+---------- Abyss Locust description parts ----------
+EID.descriptions[languageCode].AbyssTexts = {
+	-- values inside {} brackets will be replaced with text parts below
+   -- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
+   -- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
+   InfoText = "{amount} {size} locusta/e {speed} ({dmg})",
+   InfoTextPlural = "{amount} {size} locusta/e {speed} ({dmg})", -- Can be used by translators to provide a pluralized version of the InfoText
+   Chance = " ({1}% Chance)", -- {1} will be replaced with the chance
+   SpeedSlow = "lenta/e", -- Speed < 1
+   SpeedFast = "rapida/e", -- Speed > 1
+   SpeedDash = "velocissima/e", -- Speed >= 6
+   SizeSmall = "piccola/e", -- Size < 1
+   SizeBig = "grossa/e", -- Size > 1
+   DamageMult = "x{1} danni di Isaac", -- {1} will be replaced with the calculated damage multiplier
 }
+
+---------- Abyss Locust special effects ----------
+--- Special locust effects that dont correspond to TearFlags.
+--- Displays an icon in front of the description that shows an item with the same effect
+EID.descriptions[languageCode].AbyssLocustEffects = {
+[0] = "{{Bomb}} Se infligge danni esplode",
+[1] = "{{QuestionMark}} Effetto di una locusta casuale",
+-- 2 = Multiple locusts act like one. Uninteresting info for the player in my opinion
+[3] = "{{Collectible284}} Se infligge danni rilancia i nemici",
+[4] = "{{Collectible35}} Se infligge danni danneggia tutti i nemici",
+[5] = "{{Collectible638}} Se infligge danni cancella un nemico",
+[6] = "{{Collectible114}} Un coltello gira attorno alla locusta quando attacca",
+[7] = "{{Collectible611}} Usa l'urlo di \"Laringe\", danneggiando i nemici vicini",
+[8] = "{{Collectible399}} Genera un anello di \"Fauci dell'Oblio\"",
+[9] = "{{Collectible522}} Ottiene un'aura che respinge i proiettili se caricata",
+[10] = "{{Collectible447}} Se infligge danni genera scorregge velenosi",
+[11] = "{{Collectible447}} Se infligge danni genera una scorreggia",
+[12] = "{{Collectible118}} Se infligge danni genera un raggio di zolfo fuso anti-gravità",
+[13] = "{{Collectible317}} Se infligge danni genera del liquido verde",
+[14] = "{{Collectible56}} Se infligge danni genera del liquido giallo",
+[15] = "{{Collectible214}} Se infligge danni genera del liquido rosso",
+[16] = "{{Collectible178}} Se infligge danni genera del liquido blu",
+[17] = "{{Collectible420}} Genera casualmente un \"Pentagramma\"",
+[18] = "{{Collectible144}} Ottiene +0.25 danni per ogni consumabile mangiato. Massimale di 25 consumabili",
+}
+
+
+-- list of Tear flag descriptions used for Abyss locust effect description
+EID.descriptions[languageCode].TearFlagNames = {
+	[0] = "Spettrale",                 -- Ouija board type tear (goes thru obstacles)
+    [1] = "Penetrante",                 -- Cupid's arrow type tear (goes thru enemy)
+    [2] = "A ricerca",                   -- Spoon bender type tear (homes to enemy)
+    [3] = "Rallentante",                  -- Spider bite type tear (slows on contact)
+    [4] = "Velenosa",                   -- Common cold type tear (poisons on contact)
+    [5] = "Pietrificante",                  -- Mom's contact type tear (freezes on contact)
+    [6] = "Si divide",                    -- Parasite type tear (splits on collision)
+    [7] = "Cresce con la gittata",            -- Lump of coal type tear (grows by range)
+    [8] = "Boomerang",                -- My reflection type tear (returns back)
+    [9] = "Persistente",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+    [10] = "Movimento ondulato",         -- Wiggle worm type tear (wiggles)
+    [11] = "Quando colpisce genera una mosca",        -- Mulligan type tear (creates fly on hit)
+    [12] = "Esplosiva",               -- IPECAC type tear (explodes on hit)
+    [13] = "Ammaliante",                -- Mom's Eyeshadow tear
+    [14] = "Stordente",               -- Iron Bar tear
+    [15] = "I nemici lasciano cuori",     -- These tears cause enemy to drop hearts if killed (33% chance)
+    [16] = "Orbita attorno al personaggio",     -- Used for Little Planet (orbit arounds the player)
+    [17] = "Rimane ferma prima di muoversi",     -- Anti gravity type tear (floats in place for some time before finally moving) (unset after first update)
+    [18] = "Quando colpisce si divide in 4",     -- Splits into 4 smaller tears if it hits the ground
+    [19] = "Rimbalza via dai nemici",       -- Bounce off of enemies, walls, rocks (Higher priority than PERSISTENT & PIERCING)
+    [20] = "Spaventosa",                    -- Mom's Perfume type tear of fear (fear on contact)
+    [21] = "Rimpiccolisce con la gittata",                  -- Proptosis tears start large and shrink
+    [22] = "Bruciante",                    -- Fire Mind tears cause Burn effect on enemies
+    [23] = "Calamita per nemici e consumabili", -- Attracts enemies and pickups
+    [24] = "Respingente",               -- Tear impact pushes enemies back further
+    [25] = "Pulsante",               -- Makes the tear pulse
+    [26] = "Movimento a spirale",         -- Makes the tear path spiral
+    [27] = "Forma ovale",              -- Makes the tear oval in the direction of travel
+    [28] = "Bomba triste",                -- Used by Bombs (Sad Bomb)
+    [29] = "Bomba popò",               -- Used by Bombs (Butt Bomb)
+    [30] = "Movimento angolare",         -- Used for Hook Worm
+    [31] = "Aura che infligge danni",     -- Used for GodHead (they will have a glow around them)
+    [32] = "Rallentante e colora di nero i nemici", -- Used for Gish player tears (to color enemy black on slowing)
+    [33] = "Quando colpisce genera liquido verde", -- Mysterious Liquid tears spawn damaging green creep when hit
+    [34] = "Scherma dai proiettili",                -- Lost Contact tears, block enemy projectiles
+    [35] = "Bomba glitterata",            -- Used by Bombs (Glitter Bomb)
+    [36] = "Bomba a grappolo",            -- Used for Scatter bombs
+    [37] = "Bomba appiccicosa",                  -- Used for Sticky bombs and Explosivo tears
+    [38] = "Attraversa lo schermo",     -- Tears loop around the screen
+    [39] = "Quando colpisce genera un raggio di luce", -- Create damaging light beam on hit
+    [40] = "Quando colpisce lascia una moneta",        -- Used by Bumbo, spawns a coin when tear hits
+    [41] = "Quando uccide lascia un cuore nero",    -- Enemy drops a black hp when dies
+    [42] = "Raggio traente",            -- Tear with this flag will follow parent player's beam
+    [43] = "Rimpicciolente",          -- God's flesh flag to minimize enemies
+    [44] = "Quando colpisce genera una moneta",      -- Greed coin tears that has a chance to generate a coin when hit
+    [45] = "Bomba con esplosione a croce",              -- Bomber Boy
+    [46] = "Grande movimento a spirale",     -- Ouroboros Worm, big radius oscilating tears
+    [47] = "Quando colpisce stordisce permanentemente",   -- Glaucoma tears, permanently confuses enemies
+    [48] = "Caccola",                  -- Booger tears, stick and do damage over time
+    [49] = "Quando colpisce genera ragni o mosca",               -- Egg tears, leave creep and spawns spiders or flies
+    [50] = "Quando colpisce può distruggere ostacoli",            -- Sulfuric Acid tears, can break grid entities
+    [51] = "Quando uccide genera 1-2 schegge d'ossa",                    -- Bone tears, splits in 2
+    [52] = "penetrante e poi a ricerca con danni doppi", -- Belial tears, piecing tears gets double damage + homing
+    [53] = "Al contatto trasforma in oro i nemici",           -- Midas touch tears
+    [54] = "Quando colpisce scoppia in 10 lacrime",                -- Needle tears
+    [55] = "Quando colpisce genera scosse",           -- Jacobs ladder tears
+    [56] = "Quando colpisce evoca mano di \"Grande Corno\"", -- Little Horn tears
+    [57] = "Connessa tramite scosse",   -- Technology Zero
+    [58] = "Rimbalza tra loro",        -- Pop!
+    [59] = "Assorbe le altre",               -- Hungry Tears
+    [60] = "Colpo laser",               -- Trisagion, generates a laser on top of the tear
+    [61] = "Saltella sul terreno",          -- Flat Stone
+    [62] = "Scoppio multiplo",             -- Haemolacria
+    [63] = "Scia di liquido",             -- Bob's Bladder
+    [64] = "Quando colpisce attiva effetto pugno",     -- Knockout Drops
+    [65] = "Quando uccide congela i nemici",   -- Uranus
+    [66] = "Calamita per nemici e consumabili", -- Lodestone
+    [67] = "Marchia i nemici",       -- Rotten Tomato
+    [68] = "\"Occhio dell'Occulto\"",       -- Eye of the Occult
+    [69] = "Orbita ridotta",   -- Orbiting tears with a more narrow and stable orbit (used by Saturnus and Immaculate Heart)
+    [70] = "Spacca le rocce",             -- Rock tears, chance to break rocks, deal extra damage to rock type enemies
+    [71] = "Movimento di 90°",      -- Brain Worm, tears turn and go horizontally when moving past an enemy
+    [72] = "Bomba di sangue",              -- Blood Bombs, leave blood creep on the ground
+    [73] = "Trasforma i nemici in cacca",    -- E. Coli tears, turn enemies into poop
+    [74] = "Quando uccide lascia una moneta",      -- Killed enemies have a chance to drop a random coin (Reverse Hanged Man)
+    [75] = "Bomba di zolfo fuso",          -- Brimstone Bombs, explosion creates a brimstone cross
+    [76] = "Quando colpisce genera buco nero",       -- Rift tears, creates a black hole on impact
+    [77] = "Appiccicosa e quando uccide si sdoppia",  -- Spore tears, stick to enemies and multiply on enemy death
+    [78] = "Bomba fantasma",              -- Ghost bombs
+    [79] = "Quando uccide lascia carta",      -- Killed enemies will drop a random tarot card
+    [80] = "Quando uccide lascia runa",      -- Killed enemies will drop a random rune
+    [81] = "Quando colpisce teletrasporta i nemici",   -- Hit enemies will teleport to a different part of the room
+    [82] = "Con il tempo rallenta",    -- Decelerate over time
+    [83] = "Con il tempo accellera",    -- Accelerate over time
+    [104] = "Rimbalza sui muri",    -- Similar to TEAR_BOUNCE but only bounces off walls, not enemies
+	[106] = "danni extra da dietro e causa sanguinamento",   -- Deals extra damage from behind and inflicts bleeding
+}
+
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+-- Kept in for backwards compatibility
+EID.descriptions[languageCode].abyssSynergies = {}
 
 -- Effect of Car battery on Active Items
 local repCarBattery = {
@@ -702,9 +818,9 @@ local repCarBattery = {
 	[687] = {" un ", " 2 ", "mostro amichevole casuale che imita", "{{CR}}mostri amichevoli casuali che imitano"}, -- Friend Finder
 	[704] = "Dura 10 secondi, ma uccidere un nemico massimizza il tempo rimanente fino a 5 secondi", -- Berserk!
 	[705] = {1, 2}, -- Dark Arts
-	[712] = {" un ", " 2 ", "orbitale che conferisce", "{{CR}}orbitali che conferiscono"}, -- Lemegeton
+	[712] = {" un ", " 2 ", "Orbitale che conferisce", "{{CR}}orbitali che conferiscono"}, -- Lemegeton
 	[713] = {"mezzo cuore", "cuore", "un grumo", "2 {{CR}}grumi"}, -- Sumptorium
-	[719] = {" un ", " 2 ", "oggetto/consumabile del Negozio comprabile", "{{CR}}oggetti/consumabili del Negozio comprabili"}, -- Keeper's Box
+	[719] = {" un ", " 2 ", "Oggetto/consumabile del Negozio comprabile", "{{CR}}oggetti/consumabili del Negozio comprabili"}, -- Keeper's Box
 	[720] = "Genera una cacca insieme ai consumabili", -- Everything Jar
 	[722] = "Incatena 2 nemici#Se c'è solo un nemico lo incatena per 10 secondi#Usare nuovamente \"Anima Sola\" libera il nemico più vicino", -- Anima Sola
 	[723] = {"1", "2"}, -- Spindown Dice
@@ -752,7 +868,7 @@ local repBFFSSynergies = {
 	["5.100.626"] = {25, 50}, -- Knife Piece 1
 	["5.100.627"] = {25, 50}, -- Knife Piece 2
 	["5.100.629"] = {3, 6}, -- Bot Fly
-	["5.100.635"] = "Se usato spara 8 lacrime dalla posizione del giocatore", -- Stitches
+	["5.100.635"] = "Se usato spara 8 lacrime dalla posizione del personaggio", -- Stitches
 	["5.100.645"] = {3.5, 7}, -- Tinytoma
 	["5.100.649"] = {3, 6, 2, 4}, -- Fruity Plum
 	["5.100.650"] = "Danni da contatto raddoppiati", -- Plum Flute
@@ -842,7 +958,7 @@ local repTrinkets={
 	[159] = {"159", "Chiave Dorata", "{{Key}} +1 Chiave quando viene raccolto#{{GoldenChest}} Rimpiazza tutti i bauli (eccetto quelli Vecchi/Mega) con bauli dorati#{{GoldenChest}} I bauli dorati possono contenere carte, pillole o ninnoli extra"}, -- Gilded Key
 	[160] = {"160", "Sacco Fortunato", "{{GrabBag}} Entrare in nuovo piano genera un sacco"}, -- Lucky Sack
 	[161] = {"161", "Corona Empia", "Genera una {{TreasureRoom}} Stanza del Tesoro e un {{Shop}} Negozio in \"Sheol\""}, -- Wicked Crown
-	[162] = {"162", "Moncherino di Azazel", "{{Player7}} Completare una stanza ha il 50% di chance di trasformare il giocatore in Azazel#{{Timer}} L'effetto dura fino al completamento e all'uscita dalla stanza"}, -- Azazel's Stump
+	[162] = {"162", "Moncherino di Azazel", "{{Player7}} Completare una stanza ha il 50% di chance di trasformare il personaggio in Azazel#{{Timer}} L'effetto dura fino al completamento e all'uscita dalla stanza"}, -- Azazel's Stump
 	[163] = {"163", "Tarzanello", "Tutte le Cacchine sono amichevoli#Completare una stanza genera 1 Cacchina casuale"}, -- Dingle Berry
 	[164] = {"164", "Munizioni Giocattolo", "{{Bomb}} Genera 1 bomba extra per ogni bomba piazzata"}, -- Ring Cap
 	[165] = {"165", "No No!", "Da \"Utero\" in poi rimpiazza tutte le monete e chiavi generate con una bomba, cuore, pillola, carta, ninnolo, pila, o mosca nemica"}, -- Nuh Uh!
@@ -970,19 +1086,19 @@ local repCards={
 	[82] = {"82", "Anima di Maddalena", "{{Timer}} Conferisce fino all'uscita dalla stanza:#{{HalfHeart}} I nemici uccisi lasciano mezzi Cuori Rossi che spariscono dopo 2 secondi"}, -- Soul of Magdalene
 	[83] = {"83", "Anima di Caino", "Apre tutte le porte nella stanza#{{Collectible580}} Crea Stanza Rosse in ogni muro in cui è possibile"}, -- Soul of Cain
 	[84] = {"84", "Anima di Giuda", "{{Collectible705}} Attiva \"Arti Oscure\" per la durata di 3 secondi#↑ {{Damage}} Più Danni temporanei per ogni nemico/proiettile colpito"}, -- Soul of Judas
-	[85] = {"85", "Anima di ???", "{{Poison}} Rilascia 8 scorregge con liquido marrone, per poi generare rapidamente 7 Bombe Popò#Rimanere sul liquido conferisce:#↑ {{Tears}} +1.5 Rateo di Fuoco#↑ {{Damage}} +1 Danni"}, -- Soul of ???
+	[85] = {"85", "Anima di ???", "{{Poison}} Rilascia 8 scorregge velenose con liquido marrone, per poi generare rapidamente 7 Bombe Popò#Rimanere sul liquido conferisce:#↑ {{Tears}} +1.5 Rateo di Fuoco#↑ {{Damage}} +1 Danni"}, -- Soul of ???
 	[86] = {"86", "Anima di Eva", "{{Timer}} 14 famigli di \"Uccello Morto\" attaccano in volo i nemici fino alla loro morte o all'uscita dalla stanza"}, -- Soul of Eve
 	[87] = {"87", "Anima di Sansone", "{{Collectible704}} Attiva \"Violenza!\" per 10 secondi#{{Timer}} Ogni uccisione incrementa la durata di 1 secondo"}, -- Soul of Samson
 	[88] = {"88", "Anima di Azazel", "{{Collectible441}} Spara un raggio di \"Mega Sbotto\" per 7.5 secondi"}, -- Soul of Azazel
 	[89] = {"89", "Anima di Lazzaro", "Isaac muore e resuscita subito dopo con mezzo cuore#Se si subiscono danni letali questo oggetto viene usato automaticamente (opera come una vita extra)"}, -- Soul of Lazarus
 	[90] = {"90", "Anima di Eden", "Rilancia i piedistalli e i consumabili nella stanza#Gli oggetti rilanciati appartengono a categorie di oggetti casuali"}, -- Soul of Eden
-	[91] = {"91", "Anima dello Smarrito", "{{Player10}} Trasforma il giocatore in Lo Smarrito fino all'uscita dalla stanza#Permette di prendere gratuitamente 1 {{DevilRoom}} oggetto della Stanza del Diavolo#Permette di aprire gratuitamente la porta per \"Mausoleo\" o \"Gehenna\""}, -- Soul of the Lost
+	[91] = {"91", "Anima dello Smarrito", "{{Player10}} Trasforma il personaggio in Lo Smarrito fino all'uscita dalla stanza#Permette di prendere gratuitamente 1 {{DevilRoom}} oggetto della Stanza del Diavolo#Permette di aprire gratuitamente la porta per \"Mausoleo\" o \"Gehenna\""}, -- Soul of the Lost
 	[92] = {"92", "Anima di Lilith", "Conferisce permanentemente un famiglio casuale"}, -- Soul of Lilith
 	[93] = {"93", "Anima del Mercante", "{{Coin}} Genera 3-25 monete casuali"}, -- Soul of the Keeper
 	[94] = {"94", "Anima di Apollion", "Genera 15 locuste casuali"}, -- Soul of Apollyon
 	[95] = {"95", "Anima del Dimenticato", "{{Player16}} Genera Il Dimenticato come personaggio secondario fino all'uscita dalla stanza"}, -- Soul of the Forgotten
 	[96] = {"96", "Anima di Betania", "{{Collectible584}} Genera 6 fiammelle casuali di \"Libro delle Virtù\""}, -- Soul of Bethany
-	[97] = {"97", "Anima di Giacobbe ed Esaù", "{{Player20}} Genera Esaù come personaggio secondario fino all'uscita dalla stanza#Viene generato con lo stesso numero di oggetti passivi del giocatore"}, -- Soul of Jacob and Esau
+	[97] = {"97", "Anima di Giacobbe ed Esaù", "{{Player20}} Genera Esaù come personaggio secondario fino all'uscita dalla stanza#Viene generato con lo stesso numero di oggetti passivi del personaggio"}, -- Soul of Jacob and Esau
 }
 EID:updateDescriptionsViaTable(repCards, EID.descriptions[languageCode].cards)
 
@@ -1186,9 +1302,9 @@ EID.descriptions[languageCode].birthright ={
 	{"Apollion Corrotto", "", "Finché il tasto di fuoco viene premuto le locuste danneggiano incessantemente i nemici senza ritornare"},
 	{"Il Dimenticato Corrotto", "", "{{Collectible714}} L'Anima Corrotta ottiene l'abilità \"Richiamo\" per recuperare da lontano Il Dimenticato Corrotto#L'Anima è invincibile durante il richiamo di Il Dimenticato"},
 	{"Betania Corrotta", "", "Genera 4 fiammelle di oggetti casuali di Qualità {{Quality3}} e {{Quality4}} con salute molto più elevata del normale"},
-	{"Giacobbe Corrotto", "", "Esaù Oscuro si scinde in due, creando un clone d'ombra di sé stesso#Entrambi gli Esaù caricano sempre nello stesso momento#{{Collectible722}} Il tempo di attesa di \"Anima Sola\" è ridotto a 10 secondi#Usare \"Anima Sola\" incatena entrambi gli Esaù per 6.67 secondi"},
+	{"Giacobbe Corrotto", "", "Esaù Oscuro si divide in due, creando un clone d'ombra di sé stesso#Entrambi gli Esaù caricano sempre nello stesso momento#{{Collectible722}} Il tempo di attesa di \"Anima Sola\" è ridotto a 10 secondi#Usare \"Anima Sola\" incatena entrambi gli Esaù per 6.67 secondi"},
 	{"Lazzaro Morto Corrotto", "", "La forma inattiva di Lazzaro Corrotto appare come un secondo personaggio spettrale#È invincibile e infligge il 25% dei danni#Entrambe le forme ricevono \"Primogenitura\""},
-	{"L'Anima di Giacobbe Corrotta", "", "Esaù Oscuro si scinde in due, creando un clone d'ombra di sé stesso#Entrambi gli Esaù caricano sempre nello stesso momento#{{Collectible722}} Il tempo di attesa di \"Anima Sola\" è ridotto a 10 secondi#Usare \"Anima Sola\" incatena entrambi gli Esaù per 6.67 secondi"},
+	{"L'Anima di Giacobbe Corrotta", "", "Esaù Oscuro si divide in due, creando un clone d'ombra di sé stesso#Entrambi gli Esaù caricano sempre nello stesso momento#{{Collectible722}} Il tempo di attesa di \"Anima Sola\" è ridotto a 10 secondi#Usare \"Anima Sola\" incatena entrambi gli Esaù per 6.67 secondi"},
 	{"L'Anima Dimenticata Corrotta", "", "{{Collectible714}} L'Anima Corrotta ottiene l'abilità \"Richiamo\" per recuperare da lontano Il Dimenticato Corrotto#L'Anima è invincibile durante il richiamo di Il Dimenticato"},
 }
 
@@ -1354,7 +1470,7 @@ local repConditions = {
 	["5.100.580"] = "{{GreedMode}} Nella Modalità Avido può raramente creare delle stanze speciali#{{SuperSecretRoom}} Può essere d'aiuto nel trovare Stanze Super Segrete", -- Red Key (Greed)
 	["5.300.83"] = "{{GreedMode}} Nella Modalità Avido può raramente creare delle stanze speciali#{{SuperSecretRoom}} Può essere d'aiuto nel trovare Stanze Super Segrete", -- Soul of Cain (Greed)
 	["5.100.514"] = {"Fa sì che alcuni nemici o proiettili si blocchino ad intermittenza per poco tempo#I proiettili bloccati spariscono"}, -- Broken Modem (Greed)
-	["5.350.162"] = {"{{Player7}} Completare una stanza ha il 50% di chance di trasformare il giocatore in Azazel#{{Timer}} L'effetto dura fino al completamento di un'altra ondata"}, -- Azazel's Stump (Greed)
+	["5.350.162"] = {"{{Player7}} Completare una stanza ha il 50% di chance di trasformare il personaggio in Azazel#{{Timer}} L'effetto dura fino al completamento di un'altra ondata"}, -- Azazel's Stump (Greed)
 	
 	
 	------ ACHIEVEMENT CHECKS ------
@@ -1430,7 +1546,7 @@ local repConditions = {
 	["1000.76.1"] = "{{Warning}} Rilancia solo il personaggio che ha attivato il dado", -- Dice Room 1 (Co-op)
 	["1000.76.6"] = "{{Warning}} In co-op vengono rilanciati tutti gli oggetti dei personaggi!", -- Dice Room 6 (Co-op)
 	["5.100.45"] = "Cura gli altri giocatori di mezzo cuore", -- Yum Heart (Co-Op)
-	["5.350.125"] = "I raggi si estendono anche ai giocatori", -- Extension Cord (Co-Op)
+	["5.350.125"] = "I raggi si estendono anche agli altri giocatori", -- Extension Cord (Co-Op)
 	
 	["5.100.245"] = "Rimuove la penalità nel rateo di fuoco di {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
 	["20/20"] = "Nessuna penalità nel rateo di fuoco con {1}", -- 20/20 + Mutant Spider, The Inner Eye, Polyphemus
