@@ -1505,13 +1505,22 @@ function EID:OnRender()
 						end
 					-- Handle Crane Game
 					elseif closest.Type == 6 and closest.Variant == 16 then
-						if EID.CraneItemType[tostring(closest.InitSeed)] or EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] then
+						local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
+						-- REPENTOGON lets us get the prize collectible directly
+						if REPENTOGON then
+							collectibleID = closest:ToSlot():GetPrizeCollectible()
+						end
+						if collectibleID then
+							local wasHidden = false
 							if EID:getEntityData(closest, "EID_DontHide") ~= true then
-								if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
+								if (EID.Config["DisableOnCurse"] and EID:hasCurseBlind())
+								or (EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(collectibleID))
+								or (EID.Config["DisableOnAprilFoolsChallenge"] and game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
 									EID:addQuestionMarkDescription(closest)
+									wasHidden = true;
 								end
-							else
-								local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
+							end
+							if not wasHidden then
 								local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID, closest)
 
 								EID:addDescriptionToPrint(descriptionObj)

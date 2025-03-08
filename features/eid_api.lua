@@ -1050,7 +1050,12 @@ function EID:hasDescription(entity)
 			(EID.isRepentance and EID:getEntityData(entity, "EID_FlipItemID") and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP)))
 	end
 	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and EID.isRepentance then
-		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize") and not entity:GetSprite():IsPlaying("OutOfPrizes") and (EID.CraneItemType[entity.InitSeed.."Drop"..entity.DropSeed] or EID.CraneItemType[tostring(entity.InitSeed)])
+		if REPENTOGON then
+			isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("OutOfPrizes") and entity:ToSlot():GetPrizeCollectible() ~= -1 			
+		else
+			isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("OutOfPrizes") and (EID.CraneItemType[entity.InitSeed.."Drop"..entity.DropSeed] or EID.CraneItemType[tostring(entity.InitSeed)])
+		end
+
 	end
 	if entity.Type == 1000 then
 		if entity.Variant == 161 then
