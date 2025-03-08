@@ -1516,7 +1516,9 @@ function EID:OnRender()
 								if (EID.Config["DisableOnCurse"] and EID:hasCurseBlind())
 								or (EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(collectibleID))
 								or (EID.Config["DisableOnAprilFoolsChallenge"] and game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
-									EID:addQuestionMarkDescription(closest)
+									local isHideUncollected = EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(collectibleID)
+									local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil		
+									EID:addQuestionMarkDescription(closest, description)
 									wasHidden = true;
 								end
 							end
