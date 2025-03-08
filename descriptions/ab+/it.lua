@@ -144,7 +144,7 @@ EID.descriptions[languageCode].collectibles={
 	{"121", "Buffungo (Grande)", "↑ {{EmptyHeart}} +1 Portacuore#↑ {{Damage}} +0.3 Danni#↑ {{Range}} +0.25 Gittata#↑ +0.5 Altezza Lacrime#↓ {{Speed}} -0.1 Velocità"},
 	{"122", "Meretrice di Babilonia", "Quando si è a mezzo Cuore Rosso o meno:#↑ {{Speed}} +0.3 Velocità#↑ {{Damage}} +1.5 Danni"},
 	{"123", "Manuale dei Mostri", "{{Timer}} Genera un famiglio casuale fino all'uscita dalla stanza"},
-	{"124", "Pergamene del Mar Morto", "Attiva l'effetto di un oggetto attivo casuale#Scegli l'effetto da un elenco definito di oggetti"},
+	{"124", "Pergamene del Mar Morto", "Attiva l'effetto di un oggetto attivo casuale#Sceglie l'effetto da un elenco definito di oggetti"},
 	{"125", "Bobby-Bomba", "{{Bomb}} +5 Bombe#Bombe a ricerca"},
 	{"126", "Lametta", "↑ {{Damage}} +1.2 Danni#{{Warning}} Infligge 1 cuore di danni ad Isaac#{{Heart}} Rimuove per primi i Cuori Rossi"},
 	{"127", "NonTiRicordarDiMe", "{{Warning}} MONOUSO {{Warning}}#Rilancia e fa ripartire l'intero piano"},
@@ -162,7 +162,7 @@ EID.descriptions[languageCode].collectibles={
 	{"139", "Borsetta di Mamma", "{{Trinket}} Isaac può tenere 2 ninnoli"},
 	{"140", "Maledizione di Bob", "{{Bomb}} +5 Bombe#{{Poison}} Le bombe  di Isaac avvelenano i nemici poison enemies colpiti dall'esplosione"},
 	{"141", "Reginello", "{{Coin}} Genera 7 monete casuali"},
-	{"142", "Scapolare", "{{SoulHeart}} Isaac ottiene 1 Cuore Celeste quando i danni lo riducono a mezzo cuore#Può avvenire solo una volta a stanza#Uscire e rientrare nella stanza permette di attivare nuovamente l'effetto"},
+	{"142", "Scapolare", "{{SoulHeart}} Isaac ottiene 1 Cuore Celeste quando i danni lo riducono a mezzo cuore#Può avvenire solo 1 volta a stanza#Uscire e rientrare nella stanza permette di attivare nuovamente l'effetto"},
 	{"143", "Speed Ball", "↑ {{Speed}} +0.3 Velocità#↑ {{Shotspeed}} +0.2 Velocità Colpi"},
 	{"144", "Amico Scrocco", "{{Coin}} Raccoglie monete nelle vicinanze#Genera in cambio consumabili casuali"},
 	{"145", "Testa di Guppy", "Evoca 2-4 mosche blu"},
@@ -481,7 +481,7 @@ EID.descriptions[languageCode].collectibles={
 	{"456", "Spuntino di Mezzanotte", "↑ {{Heart}} +1 Salute"},
 	{"457", "Testa Conica", "{{SoulHeart}} +1 Cuore Celeste#20% di chance di annullare i danni subiti"},
 	{"458", "Ombelico", "{{Trinket}} Permette ad Isaac di portare 2 ninnoli#{{Trinket}} Genera 1 ninnolo casuale"},
-	{"459", "Sinusite", "20% di chance di sparare una caccola appiccicosa#{{Damage}} Le caccole infliggono i danni di Isaac una volta al secondo e rimangono incollate per 60 secondi#{{Luck}} Non è influenzato dalla Fortuna"},
+	{"459", "Sinusite", "20% di chance di sparare una caccola appiccicosa#{{Damage}} Le caccole infliggono i danni di Isaac 1 volta al secondo e rimangono incollate per 60 secondi#{{Luck}} Non è influenzato dalla Fortuna"},
 	{"460", "Glaucoma", "{{Confusion}} 5% di chance di sparare lacrime stordenti#Scurisce leggermente lo schermo"},
 	{"461", "Parassitoide", "15% di chance di sparare sacche ovali#{{Luck}} 50% di chance con 5 di Fortuna#{{Slow}} Quando le sacche ovali colpiscono generano del liquido rallentante e un ragno o mosca blu"},
 	{"462", "Occhio di Belial", "↑ {{Range}} +1.5 Gittata#↑ +1 Altezza Lacrime#Lacrime penetranti#Colpire un nemico rende la lacrima a ricerca e ne raddoppia i danni"},
@@ -557,7 +557,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Lacrifagia", "Le lacrime di Isaac rallentano progressivamente, per poi fermarsi e scoppiare in 8 lacrime più piccole#Le lacrime possono fondersi tra loro per ingrandirsi"},
 	{"533", "Trisagion", "Rimpiazza le lacrime di Isaac con raggi di luce penetranti#I raggi infliggono il 33% dei danni ma possono colpire più volte i nemici"},
 	{"534", "Zainetto", "Permette ad Isaac di tenere 2 oggetti attivi#Gli oggetti possono eessere scambiati con il tasto di rilascio ({{ButtonRT}})"},
-	{"535", "Copertina", "{{Heart}} Cura 1 cuore#{{SoulHeart}} +1 Cuore Celeste#{{HolyMantle}} Entrare in una stnaza boss conferisce uno scudo di \"Manto Sacro\" (previene i danni per una volta)"},
+	{"535", "Copertina", "{{Heart}} Cura 1 cuore#{{SoulHeart}} +1 Cuore Celeste#{{HolyMantle}} Entrare in una stnaza boss conferisce uno scudo di \"Manto Sacro\" (previene i danni per 1 volta)"},
 	{"536", "Altare Sacrificale", "{{Warning}} MONOUSO {{Warning}}#Sacrifica fino a 2 famigli e genera un oggetto del Diavolo per ogni sacrificio#{{Coin}} Trasforma i ragni/mosche blu in monete"},
 	{"537", "Mini Conato", "{{Pill}} Quando viene raccolto genera una pillola casuale#Spara una striscia di liquido#Il tipo di liquido cambia ad ogni uso di una pillola"},
 	{"538", "Biglie", "{{Trinket}} Genera 3 ninnoli casuali#{{Collectible479}} Subire danni ha il 10% di chance di consumare il ninnolo tenuto da Isaac e di conferire permanentemente i suoi effetti"},
@@ -834,7 +834,7 @@ EID.descriptions[languageCode].trinkets={
 	{"95", "Dente Nero", "{{Poison}} 3% di chance di sparare lacrime dentate velenose#Il dente infligge i danni di Isaac x2"},
 	{"96", "Verme Uroboro", "↑ {{Range}} +4 Gittata#↑ +2 Altezza Lacrime#Lacrime spettrali#Chance di lacrime a ricerca#{{Luck}} 100% di chance con 9 di Fortuna#Le lacrime di Isaac si muovono velocemente a spirale"},
 	{"97", "Tonsilla", "Subire danni 12-20 volte genera un famiglio che blocca i proiettili#Si massimizza a 2 famigli"},
-	{"98", "Pepita Verde", "10% di chance di sparare lacrime adesive a ricerca#{{Damage}} Le caccole infliggono i danni di Isaac una volta al secondo#Le lacrime si incollano per 60 secondi"},
+	{"98", "Pepita Verde", "10% di chance di sparare lacrime adesive a ricerca#{{Damage}} Le caccole infliggono i danni di Isaac 1 volta al secondo#Le lacrime si incollano per 60 secondi"},
 	{"99", "Super Palla", "10% chance di sparare lacrime rimbalzanti"},
 	{"100", "Lampadina Vivida", "Tenere un oggetto attivo totalmente carico conferisce:#↑ {{Speed}} +0.25 Velocità#↑ {{Tears}} +0.2 Lacrime#↑ {{Damage}} +0.5 Danni#↑ {{Range}} +0.75 Gittata#↑ {{Shotspeed}} +0.1 Velocità Colpi#↑ {{Luck}} +1 Fortuna"},
 	{"101", "Lampadina Fioca", "Tenere un oggetto attivo totalmente scarico conferisce:#↑ {{Speed}} +0.5 Velocità#↑ {{Tears}} +0.4 Lacrime#↑ {{Damage}} +1.5 Danni#↑ {{Range}} +1.5 Gittata#↑ {{Shotspeed}} +0.3 Velocità Colpi#↑ {{Luck}} +2 Fortuna"},
@@ -920,7 +920,7 @@ EID.descriptions[languageCode].cards={
 	{"48", "Carta ?", "Concede un uso gratuito dell'oggetto attivo di Isaac"},
 	{"49", "Scheggia di Dado", "Rilancia tutti i piedistalli e i consumabili nella stanza"},
 	{"50", "Contatto di Emergenza", "Due mani di Mamma scendono giù e afferrano un nemico ciascuno"},
-	{"51", "Carta Sacra", "{{HolyMantle}} Scudo di \"Manto Sacro\" fino all'uscita dalla stanza (previene i danni per una volta)#25% di chance di generare un'altra \"Carta Sacra\""},
+	{"51", "Carta Sacra", "{{HolyMantle}} Scudo di \"Manto Sacro\" fino all'uscita dalla stanza (previene i danni per 1 volta)#25% di chance di generare un'altra \"Carta Sacra\""},
 	{"52", "Crescita Gigante", "{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Damage}} +7 Danni#↑ {{Range}} +30 Gittata#Aumento Statura#Permette ad Isaac di distruggere le rocce camminandoci sopra"},
 	{"53", "Richiamo Antico", "{{Card}} Genera 3 carte casuali"},
 	{"54", "Passo Epocale", "{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Speed}} +0.5 Velocità#↓ {{Shotspeed}} -1 Velocità Colpi#{{Slow}} Rallenta i nemici"},
@@ -1028,7 +1028,7 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[7] = {"Azazel", "Volo##{{Collectible118}} Al posto delle lacrime \"Zolfo Fuso\" dal corto raggio"},
 	[8] = {"Lazzaro", "Quando muore resuscita come Lazzaro Risorto con 1 Portacuori"},
 	[9] = {"Eden", "Ogni partita inizia con statistiche e oggetti casuali"},
-	[10] = {"Lo Smarrito", "Volo#Lacrime spettrali#{{Warning}} Niente Salute#{{DevilRoom}} I patti con il diavolo possono essere stretti gratuitamente una volta per stanza"},
+	[10] = {"Lo Smarrito", "Volo#Lacrime spettrali#{{Warning}} Niente Salute#{{DevilRoom}} I patti con il diavolo possono essere stretti gratuitamente 1 volta per stanza"},
 	[11] = {"Lazzaro Risorto", "Statistiche aumentate e x1.2 Moltiplicatore Danni"},
 	[12] = {"Giuda Oscuro", "{{Damage}} x2 Moltiplicatore Danni#Può ottenere Cuori Rossi#{{Player3}} Conta come Giuda per gli obiettivi"},
 	[13] = {"Lilith", "Non può sparare lacrime#{{Collectible360}} Il suo \"Incubo\" spara per lei"},
@@ -1295,7 +1295,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.81"] = "I personaggi che non hanno Cuori Rossi vengono portati ad 1 Cuore Celeste/Nero", -- Dead Cat
 	["5.100.316"] = "{1} rimuove l'effetto di teletrasporto", -- Cursed Eye
 	["5.100.260"] = "Rimuove l'effetto di teletrasporto di {1}", -- Black Candle
-	["Void Single Use"] = "Gli oggetti monouso vengono attivati una volta sola", -- Single Use Actives + Void
+	["Void Single Use"] = "Gli oggetti monouso vengono attivati per 1 volta sola", -- Single Use Actives + Void
 	["? Card Single Use"] = "Dopo l'uso di \"Carta ?\" gli oggetti monouso spariranno", -- Single Use Actives + ? Card
 	["5.300.48"] = "Teletrasporta nella Stanza I AM ERROR#\"Carta Vuota\" e \"Carta ?\" verranno distrutte", -- Blank Card + ? Card
 	["? + Blank Pedestal"] = "Usare \"Carta ?\" con \"Carta Vuota\" teletrasporta nella Stanza I AM ERROR e distrugge ambo le carte", -- Looking at Blank Card with ? Card
