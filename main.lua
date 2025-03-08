@@ -1513,10 +1513,8 @@ function EID:OnRender()
 						if collectibleID then
 							local wasHidden = false
 							if EID:getEntityData(closest, "EID_DontHide") ~= true then
-								if (EID.Config["DisableOnCurse"] and EID:hasCurseBlind())
-								or (EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(collectibleID))
-								or (EID.Config["DisableOnAprilFoolsChallenge"] and game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
-									local isHideUncollected = EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(collectibleID)
+								local isHideUncollected = EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(collectibleID)
+								if (EID.Config["DisableOnCurse"] and EID:hasCurseBlind()) or (isHideUncollected) or (EID.Config["DisableOnAprilFoolsChallenge"] and game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
 									local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil		
 									EID:addQuestionMarkDescription(closest, description)
 									wasHidden = true;
@@ -1524,7 +1522,6 @@ function EID:OnRender()
 							end
 							if not wasHidden then
 								local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID, closest)
-
 								EID:addDescriptionToPrint(descriptionObj)
 							end
 						end
