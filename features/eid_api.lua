@@ -3166,8 +3166,11 @@ function EID:EvaluateLocation(gridPosition)
 		return false
 	end
 	local gridIndex = gridPosition.x * room:GetGridWidth() + gridPosition.y
-	local collision = room:GetGridCollision(gridIndex)
-	return collision == GridCollisionClass.COLLISION_NONE or collision == GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER
+	-- GridPath contains a value that defines if a poisiton is walkable by the ingame pathfinder
+	-- numbers bigger 900 are considered not walkable (spikes, rocks, pits, grimaces, etc.)
+	-- numbers smaller 900 are walkable but less preferable. 0 is most preferable
+	local collision = room:GetGridPath(gridIndex)
+	return collision <= 900
 end
 
 ---Returns true if an unobstructed path between the start and end position exists.
