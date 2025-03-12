@@ -310,8 +310,8 @@ function EID:ClosestCharCheck(modifierText, playerTypes, includeTainted)
 	end
 	
 	-- The closest player does not apply the modifier; check for players that do get this modifier
-	for i = 1, #EID.coopAllPlayers do
-		local t = EID.coopAllPlayers[i]:GetPlayerType()
+	for _, player in ipairs(EID.coopAllPlayers) do
+		local t = player:GetPlayerType()
 		if EID:ArrayContains(playerTypes, t) or (includeTainted and EID:ArrayContains(playerTypes, EID.TaintedToRegularID[t])) then
 			table.insert(EID.DifferentEffectPlayers, t)
 		end
@@ -320,8 +320,7 @@ function EID:ClosestCharCheck(modifierText, playerTypes, includeTainted)
 end
 
 function EID:PlayersHaveGoldenBomb()
-	for i = 1, #EID.coopAllPlayers do
-		local player = EID.coopAllPlayers[i]
+	for _, player in ipairs(EID.coopAllPlayers) do
 		if player:HasGoldenBomb() then
 			return true
 		end
@@ -364,8 +363,7 @@ function EID:CheckForNoRedHealthPlayer()
 		local player = EID.ItemReminderPlayerEntity
 		return EID.NoRedHeartsPlayerIDs[player:GetPlayerType()]
 	else
-		for i = 1, #EID.coopAllPlayers do
-			local player = EID.coopAllPlayers[i]
+		for _, player in ipairs(EID.coopAllPlayers) do
 			if EID.NoRedHeartsPlayerIDs[player:GetPlayerType()] then
 				return true
 			end
@@ -379,8 +377,7 @@ function EID:CheckForTaintedPlayer()
 		local player = EID.ItemReminderPlayerEntity
 		return EID.TaintedIDs[player:GetPlayerType()]
 	else
-		for i = 1, #EID.coopAllPlayers do
-			local player = EID.coopAllPlayers[i]
+		for _, player in ipairs(EID.coopAllPlayers) do
 			if EID.TaintedIDs[player:GetPlayerType()] then
 				return true
 			end
@@ -390,15 +387,14 @@ function EID:CheckForTaintedPlayer()
 end
 
 -- Check if we have characters with Schoolbag or a pocket active item
-function EID:CheckForMultipleActives(descObj, onlyChargeablePockets)
+function EID:CheckForMultipleActives(_, onlyChargeablePockets)
 	if EID.InsideItemReminder then
 		local player = EID.ItemReminderPlayerEntity
 		if player:HasCollectible(534) then return 534 end
 		local id = player:GetPlayerType()
 		if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return player:GetActiveItem(2) end
 	else
-		for i = 1, #EID.coopAllPlayers do
-			local player = EID.coopAllPlayers[i]
+		for _, player in ipairs(EID.coopAllPlayers) do
 			if player:HasCollectible(534) then return 534 end
 			local id = player:GetPlayerType()
 			if EID.isRepentance and (EID.PocketActivePlayerIDs[id] == 0 or (not onlyChargeablePockets and EID.PocketActivePlayerIDs[id])) then return player:GetActiveItem(2) end
@@ -416,8 +412,7 @@ function EID:CheckForPocketActives()
 		local player = EID.ItemReminderPlayerEntity
 		return EID.PocketActivePlayerIDs[player:GetPlayerType()]
 	else
-		for i = 1, #EID.coopAllPlayers do
-			local player = EID.coopAllPlayers[i]
+		for _, player in ipairs(EID.coopAllPlayers) do
 			if EID.PocketActivePlayerIDs[player:GetPlayerType()] then return true end
 		end
 	end
@@ -430,14 +425,14 @@ function EID:CheckForCarBattery(descObj)
 	return descObj.ObjSubType
 end
 -- When we're looking at a Car Battery pedestal, check our actives for having an effect or no effect
-function EID:CheckActivesForCarBattery(descObj)
+function EID:CheckActivesForCarBattery(_)
 	if EID.InsideItemReminder then return false end
 	for k,v in pairs(EID.CarBatteryPedestalWhitelist) do
 		if v and EID:PlayersHaveCollectible(k) then return k end
 	end
 	return false
 end
-function EID:CheckActivesForNoCarBattery(descObj)
+function EID:CheckActivesForNoCarBattery(_)
 	if EID.InsideItemReminder then return false end
 	for k,v in pairs(EID.CarBatteryNoSynergy) do
 		if v and EID:PlayersHaveCollectible(k) then return k end
@@ -458,21 +453,21 @@ function EID:CheckForHiveMind(descObj)
 end
 
 -- When we're looking at a BFFS pedestal, check our familiars for having an effect (only finds the earliest one)
-function EID:CheckFamiliarsForBFFS(descObj)
+function EID:CheckFamiliarsForBFFS(_)
 	if EID.InsideItemReminder then return false end
 	for k,v in pairs(EID.BFFSPedestalWhitelist) do
 		if v and EID:PlayersHaveCollectible(k) then return "5.100." .. k end
 	end
 	return false
 end
-function EID:CheckFamiliarsForHiveMind(descObj)
+function EID:CheckFamiliarsForHiveMind(_)
 	if EID.InsideItemReminder then return false end
 	for k,v in pairs(EID.BFFSPedestalWhitelist) do
 		if EID.HiveMindFamiliars[k] and v and EID:PlayersHaveCollectible(k) then return "5.100." .. k end
 	end
 	return false
 end
-function EID:CheckFamiliarsForNoBFFS(descObj)
+function EID:CheckFamiliarsForNoBFFS(_)
 	if EID.InsideItemReminder then return false end
 	for k,v in pairs(EID.BFFSNoSynergy) do
 		if v and EID:PlayersHaveCollectible(k) then return k end

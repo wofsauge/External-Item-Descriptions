@@ -16,6 +16,7 @@ If you enjoy this mod and want to help on it, check it out on GitHub: https://gi
 - **Korean**: by Blackcreamtea, 리셰(kohashiwakaba)
 - **Polish**: by Rickyy, Kennyluz, MERITT, DimonoKingoKongo
 - **Portuguese**: by Marcelino Cruz
+- **Romanian**: by  ed._.096, MHI
 - **Russian**: by hell2Pay, fly_6, Dezzelshipc and Sekaz
 - **Spanish**: by Lidia Arroyo Purroy, MartinFierro, maintained by AutisticGoat (Kotry)
 - **Brazilian - Portuguese**: by LuanRoger and NotZin02

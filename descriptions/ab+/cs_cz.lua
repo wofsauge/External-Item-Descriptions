@@ -856,8 +856,8 @@ EID.descriptions[languageCode].pills={
 EID.descriptions[languageCode].sacrificeHeader = "[Další Odměna za Obětování]"
 
 EID.descriptions[languageCode].sacrifice={
-	{"1", "", "{{Coin}} 50% šance na 1 minci#{{Bomb}} 100% šance na 1 Bombu, pokud jsi zabili Bosse v Basementu 1 pod 1 minutu"},
-	{"2", "", "{{Coin}} 50% šance na 1 minci#{{Bomb}} 100% šance na 1 Bombu, pokud jsi zabili Bosse v Basementu 1 pod 1 minutu"},
+	{"1", "", "{{Coin}} 50% šance na 1 minci#{{Bomb}} 100% šance na 1 Bombu, pokud jsi zabil Bosse v Basementu 1 pod 1 minutu"},
+	{"2", "", "{{Coin}} 50% šance na 1 minci#{{Bomb}} 100% šance na 1 Bombu, pokud jsi zabil Bosse v Basementu 1 pod 1 minutu"},
 	{"3", "", "{{AngelChance}} 67% šance na zvýšenou šanci na Andělskou Místnost"},
 	{"4", "", "{{Chest}} 50% šance na 1 náhodnou truhlu"},
 	{"5", "", "{{Coin}} 33% šance na 3 mince#{{AngelChance}} 67% šance na zvýšenou šanci na Andělskou Místnost"},

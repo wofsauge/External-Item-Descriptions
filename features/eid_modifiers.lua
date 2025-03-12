@@ -14,10 +14,8 @@ function EID:TabReleased() return EID.TabHeldLastFrame and not EID.TabHeldThisFr
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
 EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_VOID] = true
 EID.collectiblesToCheck["5.300.41"] = true -- Black Rune
-local maxSlot = 1
 -- Repentance modifiers
 if EID.isRepentance then
-	maxSlot = 3
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_SPINDOWN_DICE] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_MOMS_BOX] = true
@@ -28,6 +26,7 @@ if EID.isRepentance then
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_FLIP] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_GLITCHED_CROWN] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_ABYSS] = true
 end
 EID.collectiblesOwned = {}
 EID.collectiblesAbsorbed = {}
@@ -920,12 +919,13 @@ if EID.isRepentance then
 	local function GlitchedCrownCallback(descObj)
 		if not descObj.Entity or inGlitchedCrown then return descObj end
 		local entity = descObj.Entity
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
 
-		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][descObj.Entity.InitSeed .. descObj.Entity.Index] then
+		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][pedestalID] then
 			-- this table has collectible ID keys that define the first frame and most recent frame that that ID has been seen on this pedestal
 			-- we need to filter out items that haven't been seen in a while (due to a reroll perhaps), then sort by first frame
-			local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
+
 			local items = EID.GlitchedCrownCheck[curRoomIndex][pedestalID]
 			local sortedItems = {}
 			for id, frames in pairs(items) do
@@ -980,6 +980,114 @@ if EID.isRepentance then
 		inGlitchedCrown = false
 		return descObj
 	end
+	
+	-----------------------------
+	-- Abyss Locust Handling-----
+	-----------------------------
+	local function GetChanceString(effectID, chance1, chance2, chance3)
+		local chanceText = ""
+		local chance = (effectID == 3 and chance3 < 1 and chance3) or (effectID == 2 and chance2 < 1 and chance2) or chance1 or 1
+		if chance ~= 1 then
+			chanceText = EID:getDescriptionEntry("AbyssTexts", "Chance")
+			chanceText = EID:ReplaceVariableStr(chanceText, math.floor(chance * 100))
+		end
+		return chanceText
+	end
+
+	local function GetFlagString(id, tableName, flagArray, chance1, chance2, chance3)
+		local text = ""
+		for _, locustFlag in ipairs(flagArray) do
+			local locustEffectText = EID:getDescriptionEntry(tableName, locustFlag)
+			if locustEffectText then
+				text = text .. "#{{ColorRed}}" .. locustEffectText .. GetChanceString(id, chance1, chance2, chance3)
+			end
+			if not EID.isRepentancePlus then
+				-- In Repentance, there is a bug where only the first flag of the array is able to trigger
+				return text
+			end
+		end
+		return text
+	end
+
+	local function AbyssCallback(descObj)
+		local textColor = "{{ColorRed}}"
+		-- Display explicit "abyssSynergies" table entry, if present
+		local overrideDesc = EID:getDescriptionEntry("abyssSynergies", descObj.ObjSubType)
+		if overrideDesc then
+			EID:appendToDescription(descObj, "#{{Collectible706}} " .. textColor .. overrideDesc)
+			return descObj
+		end
+		-- Display automatically generated description
+
+		-- Default locust Data
+		local locustData = { "default", 1, 1, 1, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, 1, 1, 1, 1, 1, 0 }
+		-- Check if an XML entry exists and load if exists
+		if EID.XMLLocusts and EID.XMLLocusts[descObj.ObjSubType] then
+			locustData = EID.XMLLocusts[descObj.ObjSubType]
+		end
+		local descriptionText = ""
+		--local colors = locustData[1]     -- colors flag: useless info right now
+		local amount = locustData[2]
+		local scale = locustData[3]
+		local speed = locustData[4]
+		local locustFlags1 = locustData[5] -- array
+		local locustFlags2 = locustData[6] -- array
+		local locustFlags3 = locustData[7] -- array
+		local tearFlags1 = locustData[8] -- array
+		local tearFlags2 = locustData[9] -- array
+		local tearFlags3 = locustData[10] -- array
+		local procChance1 = locustData[11]
+		local procChance2 = locustData[12]
+		local procChance3 = locustData[13]
+		local damageMultiplier1 = locustData[14]
+		local damageMultiplier2 = locustData[15]
+		--local mutexFlags2 = locustData[16]     -- mutex flag: useless info right now
+
+		-- base damage via Quality and multiplier
+		local damageText = EID:getDescriptionEntry("AbyssTexts", "DamageMult")
+		local dmg = (EID.isRepentancePlus and EID.QualityToLocustDamageMultiplier[descObj.Quality] or 1) * damageMultiplier1
+		damageText = EID:ReplaceVariableStr(damageText, dmg)
+
+		-- size
+		local scaleText = ""
+		if scale < 1 then scaleText = EID:getDescriptionEntry("AbyssTexts", "SizeSmall")
+		elseif scale > 1 then scaleText = EID:getDescriptionEntry("AbyssTexts", "SizeBig") end
+		-- speed
+		local speedText = ""
+		if speed < 1 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedSlow")
+		elseif speed >=6 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedDash")
+		elseif speed > 1 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedFast") end
+
+		-- overview / headline
+		local infoText = amount > 1 and EID:getDescriptionEntry("AbyssTexts", "InfoTextPlural") or EID:getDescriptionEntry("AbyssTexts", "InfoText")
+		descriptionText = "#{{Collectible706}} " .. textColor .. infoText
+		descriptionText = EID:ReplaceVariableStr(descriptionText, "amount", amount)
+		descriptionText = EID:ReplaceVariableStr(descriptionText, "size", scaleText)
+		descriptionText = EID:ReplaceVariableStr(descriptionText, "speed", speedText)
+		descriptionText = EID:ReplaceVariableStr(descriptionText, "dmg", damageText)
+
+		-- damage multiplier based on proc chance
+		if damageMultiplier2 ~= 1 then
+			local dmgText2 = EID:ReplaceVariableStr(EID:getDescriptionEntry("AbyssTexts", "DamageMult"), damageMultiplier2)
+			descriptionText = descriptionText .. "#"..textColor  .. dmgText2 .. GetChanceString(1, procChance1, procChance2, procChance3)
+		end
+		-- create list of locust effect descriptions
+		descriptionText = descriptionText .. GetFlagString(1, "AbyssLocustEffects", locustFlags1, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(2, "AbyssLocustEffects", locustFlags2, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(3, "AbyssLocustEffects", locustFlags3, procChance1, procChance2, procChance3)
+
+		-- create list of tear effect descriptions
+		descriptionText = descriptionText .. GetFlagString(1, "TearFlagNames", tearFlags1, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(2, "TearFlagNames", tearFlags2, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(3, "TearFlagNames", tearFlags3, procChance1, procChance2, procChance3)
+
+		local plural = amount > 1 and EID:getDescriptionEntry("Pluralize") or ""
+		descriptionText = EID:ReplaceVariableStr(descriptionText, "pluralize", plural)
+		-- Put everything together
+		EID:appendToDescription(descObj, descriptionText)
+
+		return descObj
+	end
 
 	--------------------------------
 	-- Although individual conditions/callbacks work well for mods to be able to add through the API,
@@ -1010,6 +1118,7 @@ if EID.isRepentance then
 			
 			if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then table.insert(callbacks, TaintedCainPedestalCallback) end
 			if EID.collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
+			if EID.collectiblesOwned[706] then table.insert(callbacks, AbyssCallback) end
 			if EID.Config["SpindownDiceResults"] > 0 and (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723]) and descObj.ObjSubType ~= 668 then
 				goingToSpindown = true
 				table.insert(callbacks, SpindownDiceCallback)
