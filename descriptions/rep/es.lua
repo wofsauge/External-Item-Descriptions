@@ -1,8 +1,8 @@
----------------------------------------
------  Basic spanish descriptions -----
----------------------------------------
+--------------------------------------
+----- Basic Spanish descriptions -----
+--------------------------------------
 
--- Last Sync with en_us: 01.15.2022
+-- Last Sync with en: 01.15.2022
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -10,7 +10,7 @@
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
-local languageCode = "spa"
+local languageCode = "es"
 
 local repCollectibles={
 	[2] = {"2", "El Ojo Interior", "Disparo triple#↓ {{Tears}} Lágrimas -49%"},

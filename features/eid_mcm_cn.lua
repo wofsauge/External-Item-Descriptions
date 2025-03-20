@@ -24,7 +24,7 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         {"Current %+ English","当前语言+英文"},
         {"Language","语言"},
         {"Auto","自动"},
-        {"Chinese","中文"},
+        {"Chinese (Simplified)","中文"},
         {"English","英文"},
         {"Bulgarian","保加利亚语"},
         {"Czech","捷克语"},

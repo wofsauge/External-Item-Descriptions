@@ -1,6 +1,6 @@
----------------------------------------
------  Basic Spanish descriptions -----
----------------------------------------
+--------------------------------------
+----- Basic Chinese descriptions -----
+--------------------------------------
 
 -- FORMAT: Item ID | Name | Description
 
@@ -8,37 +8,39 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "spa"
+local languageCode = "zh-CN"
 
 ---------- Collectibles ----------
 
 local collectibles = {
 	-- Change: added "Creep persists until you exit the room"
-	[56] = {"56", "Accidente de Limón", "Crea una piscina de limonada#La limonada Inflige 24 de daño por segundo#esta persiste hasta que abandones la habitacion"}, -- Accidente de Limón
+	[56] = {"56", "烦事柠檬", "留下一摊水迹#水迹每秒造成24点伤害#水迹在离开房间前持续存在"}, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
-	[117] = {"117", "Ave Muerta", "Tras ser golpeado genera un pajaro que ataca a los enemigos#El pajaro inflige 4.3 de daño de contacto por segundo#Persiste entre habitaciones si el jugador esta a 1/2 corazon"}, -- Ave Muerta
+	[117] = {"117", "死鸟", "受伤时, 生成1只攻击敌人的鸟#鸟每秒造成4.3点接触伤害#角色只有半心时, 切换房间也持续存在"}, -- Dead Bird
 	-- Change: Complete rewrite
-	[351] = {"351", "Mega Frijol", "Causa 100 de daño y petrifica a los enemigos en la habitacion#{{Poison}} Causa 5 de daño y envenena a cualquier enemigo cercano#Puede abrir cuartos secretos y destruir rocas"}, -- Mega Frijol
+	[351] = {"351", "超级豆子", "使房间中所有敌人石化并造成100点伤害#{{Poison}} 造成5点伤害并使附近敌人中毒#向角色移动方向发出岩石波#岩石波可打开隐藏房和粉碎岩石"}, -- Mega Bean
+	-- Change: "10%" to "20%"
+	[398] = {"398", "神体蘑菇", "20%几率发射使敌人缩小的泪弹#缩小的敌人可以被踩死"}, -- God's Flesh
 	-- Change: Complete rewrite
-	[436] = {"436", "¡Leche!", "Bloquea proyectiles Enemigos#{{Tears}} Tras bloquear 10 disparos, se rompera y aumentara tus lagrimas durante el resto del nivel"}, -- ¡Leche!
+	[436] = {"436", "牛奶！", "阻挡弹幕#{{Tears}} 受击10次后, 破裂并在本层获得射速提升"}, -- Milk!
 	-- Change: Complete rewrite
-	[447] = {"447", "Frijol Persistente", "Disparar por 4 segundos sin parar genera una nube de popo#La nube aumenta su tamaño luego de diez segundos#La nube hace menos daño al ser mas grande#Puede ser movida disparandole"}, -- Frijol Persistente
+	[447] = {"447", "流连豆", "每连续发射4秒时, 生成一朵便便云#10秒内尺寸不断变大#尺寸越大伤害越低#可通过射击便便云使其移动"}, -- Linger Bean
 	-- Change: added " and fires radial bursts of tears"
-	[470] = {"470", "Shhh", "Rebota por la habitación#Inflige 30 de Daño de contacto por segundo#Se detiene cuando Isaac dispara#Al detenerse bloquea proyectiles y dispara rafagas de lagrimas en un radio"}, -- Shhh
+	[470] = {"470", "死寂宝宝", "在房间中四处漂浮#每秒造成30点接触伤害#角色发射时停止移动#停下来时可阻挡弹幕并散射泪弹"}, -- Hushy
 	-- Change: added "Turns item pedestals into glitched items"
-	[481] = {"481", "Dataminer", "↑ Mejora una estadística aleatoria#↓ Reduce una estadística aleatoria#{{Timer}} Efecto aleatorio de lágrima para la habitación actual#Vuelve los objetos de pedestales en objetos corrompidos#{{Blank}} Corrompe la musica y los graficos en la habitacion"}, -- Dataminer
+	[481] = {"481", "数据破解", "↑ 随机属性提升#↓ 随机属性降低#{{Timer}} 当前房间中随机泪弹效果#将底座道具变为错误道具#{{Blank}} 损坏当前房间中的所有贴图和音乐"}, -- Dataminer
 	-- Change: Complete rewrite
-	[510] = {"510", "Delirious", "Genera una version Delirium amistosa de un Jefe#Se mantiene entre Habitaciones#{{Warning}} Solo un jefe puede existir a la vez#Las cargas del objeto se basan en la calidad del jefe generado previamente"}, -- Delirious
+	[510] = {"510", "精神错乱", "生成1个友好的精神错乱版的头目#切换房间持续存在#{{Warning}} 一次只能激活1个头目#道具充能取决于上次生成的头目品质"}, -- Delirious
 	-- Change: added "Tears leave a pool of creep on impact"
-	[560] = {"560", "Duele..", "{{Timer}} Al recibir daño, recibe por la habitacion:#↑ {{Tears}} Lagrimas +1.2 con el primer golpe#↑ {{Tears}} Lagrimas +0.4 por cada golpe adicional#Libera un anillo de 10 lagrimas alrededor de Isaac#Las lagrimas dejan un charco de creep al impactar"}, -- ¡Eso duele!
+	[560] = {"560", "好疼", "{{Timer}} 受伤时, 在当前房间中获得:#↑ {{Tears}} 首次受伤射速+1.2#↑ {{Tears}} 后续受伤射速+0.4#在角色周围释放10颗泪弹#泪弹击中时留下水迹"}, -- It Hurts
 	-- Change: Heals 2 hearts instead of 1/2
-	[594] = {"594", "Júpiter", "↑ {{EmptyHeart}} +2 Contenedores de Corazón Vacíos#↓ {{Speed}} Velocidad -0.3#{{HealingRed}} Cura 2 corazones#{{Speed}} Bonus de velocidad +0.5 al quedarse quieto#{{Poison}} Libera nubes de veneno al moverse#{{Poison}} inmunidad al Veneno"}, -- Júpiter
+	[594] = {"594", "木星", "↑ {{EmptyHeart}} +2空心之容器#↓ {{Speed}} 移速-0.3#{{HealingRed}} 治疗2红心#{{Speed}} 静止不动时, 移速逐渐升高至+0.5#{{Poison}} 移动时释放毒气#{{Poison}} 免疫中毒"}, -- Jupiter
 	-- Change: Complete rewrite
-	[632] = {"632", "Nazar", "↑ {{Luck}} Suerte +2#Inmunidad a efectos de {{Burning}} Quemadura, {{Confusion}} Confusión, {{Fear}} Miedo, {{Slow}} Telarañas y {{Poison}} Veneno#Otorga 1 segundo de inmunidad al creep"}, -- Amuleto Maldito
+	[632] = {"632", "邪眼护符", "↑ {{Luck}} 幸运+2#免疫{{Burning}}火焰伤害, {{Confusion}}混乱, {{Fear}}恐惧, {{Slow}}蜘蛛网, {{Poison}}毒气效果#获得1秒水迹免疫"}, -- Evil Charm
 	-- Change: Complete rewrite
-	[681] = {"681", "Portal Pequeño", "Disparar 2 veces en una dirección lanza el portal#Inflige daño por contacto al ser lanzado#Consume los recolectables a su paso#Cada uno aumentará su tamaño, daño, y generará una Mosca Azul#Consumir 2-3 recolectables genera un portal a una habitacion especial y el familiar desaparece por el resto del nivel#El contenido de la habitacion persiste por el resto de la partida"}, -- Portal Pequeño
+	[681] = {"681", "黑洞宝宝", "双击发射键可发射传送门#发射后造成接触伤害#消耗经过的掉落物#消耗掉落物会提升其尺寸, 伤害并生成1只蓝苍蝇#消耗2-3掉落物生成至特殊房间的传送门, 跟班在本层后续中消失#房间中的内容本局持续存在"}, -- Lil Portal
 	-- Change: Added info about the damage based on item quality
-	[706] = {"706", "Abismo", "Consume todo objeto dentro de la habitacion y genera una langosta familiar por objeto#Algunos objetos generan una langosta especial al ser consumidos#{{Damage}} Las langostas infligen tu daño multiplicado por la calidad del objeto consumido:#{{Quality0}} - 0.5x#{{Quality1}} - 0.75x#{{Quality2}} - 1.0x#{{Quality3}} - 1.5x#{{Quality4}} - 2.0x"}, -- Abismo	
+	[706] = {"706", "无底坑", "消耗房间中所有底座道具并对应生成蝗虫跟班#一些道具会生成特殊蝗虫#{{Damage}} 蝗虫造成1x角色伤害, 并根据道具品质修正:#{{Quality0}} - 0.5x#{{Quality1}} - 0.75x#{{Quality2}} - 1.0x#{{Quality3}} - 1.5x#{{Quality4}} - 2.0x"}, -- Abyss
 }
 EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].collectibles)
 
@@ -46,15 +48,15 @@ EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].coll
 
 local trinkets = {
 	-- Change: added ", {{Trinket135}} A Lighter"
-	[53] = {"53", "La garrapata", "{{HealingRed}} Cura 1 corazón al entrar a una {{BossRoom}} Sala de Jefe#El jefe comienza con -15% de vida#{{Warning}} Al ser recogido, no puede ser soltado#Solo es quitado con {{Trinket41}} la Cerilla {{Trinket135}} el Mechero, o tragándotelo"}, -- La garrapata
+	[53] = {"53", "血虱", "{{HealingRed}} 进入{{BossRoom}}头目房时, 治疗1红心#头目血量-15%#{{Warning}} 捡起后, 无法被其他饰品替换#只能被{{Trinket41}}火柴棍, {{Trinket135}}打火机移除或吞下"}, -- Tick
 	-- Change: Changed "12-20 times" to "6-12 times"
-	[97] = {"97", "Amígdala", "Recibir daño 6-12 veces genera un familiar que bloquea proyectiles#Limite de 2 familiares a la vez"}, -- Amígdala
+	[97] = {"97", "扁桃体", "受伤6-12次后, 获得阻挡弹幕的跟班#最多+2个跟班"}, -- Tonsil
 	-- Change: added "Bombs deal 15% more damage"
-	[133] = {"133", "Fusible corto", "Las bombas colocadas explotan más rápido#Las bombas hacen un 15% mas de daño"}, -- Fusible corto
+	[133] = {"133", "短引线", "角色的炸弹爆炸更快#炸弹造成的伤害提高15%"}, -- Short Fuse
 	-- Change: "2%" to "5%"
-	[104] = {"104", "Hueso de los deseos", "Probabilidad de 5% de destruirse y generar un objeto al ser golpeado"}, -- Hueso de los deseos
+	[104] = {"104", "许愿骨", "受伤时, 5%几率被摧毁并生成1底座道具"}, -- Wish Bone
 	-- Change: "2%" to "5%"
-	[105] = {"105", "Bolsa del almuerzo", "Probabilidad de 5% de destruirse y generar {{Collectible22}} Almuerzo al ser golpeado"}, -- Bolsa del almuerzo
+	[105] = {"105", "午餐袋", "{{Collectible22}} 受伤时, 5%几率被摧毁并生成午餐"}, -- Bag Lunch
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
@@ -63,39 +65,38 @@ EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catc
 
 -- Table that contains commonly used descriptions for abyss synergies
 local abyssPresets = {
-	noEffect = "Sin efectos",
-	normalTwo = "Dos langostas normales",
-	smallFour = "Cuatro langostas pequeñas",
-	blackFear = "Langostas negras que asustan a los enemigos",
-	blueConfuse = "Langostas azules que empujan y confunden a los enemigos",
-	blueFreeze = "Langostas azules que congelan a los enemigos",
-	cyanDestroyProjectiles = "Langosta cian que destruye proyectiles enemigos",
-	cyanElectricity = "Langosta cian que crea arcos de electricidad causando 0.1 de daño por tick",
-	grayConfuse = "Langosta gris que confunde a los enemigos",
-	grayPetrify = "Langosta gris que petrifica a los enemigos",
-	grayMagnetize = "Langosta gris que magnetiza a los enemigos",
-	graySlow = "Langosta gris claro que ralentiza enemigos",
-	grayBones = "Langosta gris claro que crea 1-3 fragmentos de hueso tras golpear enemigos",
-	greenPoison = "Langosta verde que envenena a los enemigos",
-	pinkMimic = "Langosta rosa que imita aleatoriamente los efectos de otras langostas especiales",
-	pinkCharm = "Langosta rosa que encanta a los enemigos",
-	purpleHoming = "Langosta morada teledirigida",
-	orangeBurn = "Langosta ardiente que incendia a los enemigos",
-	redBleed = "Langosta rojiza que inflige sangrado a los enemigos",
-	redLarge = "Langosta rojiza grande",
-	whiteBeam = "Langosta blanca brillante que puede generar rayos de luz que infligen el triple del daño de Isaac",
-	whiteGodhead = "Langosta blanca brillante con un aura que inflige 2 de daño por tick a los enemigos dentro",
-	yellowExplode = "Langosta amarilla explosiva",
-	yellowPoisonExplode = "Langosta amarilla que envenena a los enemigos y explota",
-	yellowMimicExplode = "Langosta amarilla que explota e imita aleatoriamente los efectos de otras langostas especiales",
+	noEffect = "无特殊效果",
+	normalTwo = "2只普通蝗虫",
+	smallFour = "4只小型蝗虫",
+	blackFear = "黑色蝗虫, 使敌人恐惧",
+	blueConfuse = "蓝色蝗虫, 击退敌人并使其混乱",
+	blueFreeze = "蓝色蝗虫, 冻结敌人",
+	cyanDestroyProjectiles = "青色蝗虫, 阻挡敌人弹幕",
+	cyanElectricity = "淡蓝色蝗虫, 带有电弧, 每个电弧造成0.1点伤害",
+	grayConfuse = "灰色蝗虫, 使敌人混乱",
+	grayPetrify = "灰色蝗虫, 使敌人石化",
+	grayMagnetize = "灰色蝗虫, 使敌人磁化",
+	graySlow = "淡灰色蝗虫, 使敌人减速",
+	grayBones = "淡灰色蝗虫, 击中敌人时产生1-3个骨片",
+	greenPoison = "绿色蝗虫, 使敌人中毒",
+	pinkMimic = "粉色蝗虫, 触发随机特效",
+	pinkCharm = "粉色蝗虫, 魅惑敌人",
+	purpleHoming = "紫色跟踪蝗虫",
+	orangeBurn = "橙色蝗虫, 使敌人燃烧",
+	redBleed = "暗红色蝗虫, 使敌人流血",
+	redLarge = "较大的红色蝗虫",
+	whiteBeam = "白色蝗虫, 生成造成3x角色伤害的光束",
+	whiteGodhead = "白色蝗虫, 带有伤害光环, 造成每秒60点伤害",
+	yellowExplode = "黄色蝗虫, 接触敌人时有几率爆炸",
+	yellowPoisonExplode = "黄色蝗虫, 使敌人中毒, 接触敌人时有几率爆炸",
+	yellowMimicExplode = "黄色蝗虫, 触发随机特效, 接触敌人时有几率爆炸",
 }
 
--- Special Locust effects when Item was eaten by Abyss
 local abyssSynergies = {
 	[4] = abyssPresets.noEffect, -- Cricket's Head
-	[6] = "Langosta veloz que inflige daño rapidamente", -- Number One
+	[6] = "较快的红色蝗虫, 造成伤害更快", -- Number One
 	[7] = abyssPresets.noEffect, -- Blood of the Martyr
-	[10] = "Dos langostas cian que destruyen proyectiles enemigos", -- Halo of Flies
+	[10] = "2只青色蝗虫, 阻挡敌人弹幕", -- Halo of Flies
 	[12] = abyssPresets.redLarge, -- Magic Mushroom
 	[19] = abyssPresets.yellowExplode, -- Boom!
 	[37] = abyssPresets.yellowExplode, -- Mr. Boom
@@ -112,22 +113,22 @@ local abyssSynergies = {
 	[66] = abyssPresets.graySlow, -- The Hourglass
 	[68] = abyssPresets.cyanElectricity, -- Technology
 	[69] = abyssPresets.redLarge, -- Chocolate Milk
-	[71] = "Langosta roja pequeña", -- Mini Mush
+	[71] = "较小的红色蝗虫", -- Mini Mush
 	[73] = abyssPresets.cyanDestroyProjectiles, -- Cube of Meat
 	[77] = abyssPresets.cyanDestroyProjectiles, -- My Little Unicorn
 	[89] = abyssPresets.graySlow, -- Spider Bite
 	[95] = abyssPresets.cyanElectricity, -- Robo Baby
 	[99] = abyssPresets.graySlow, -- Little Gish
 	[100] = abyssPresets.purpleHoming, -- Little Steven
-	[104] = "Una Langosta roja normal y dos langostas rojas pequeñas", -- The Parasite
+	[104] = "1只正常红色蝗虫和2只较小的红色蝗虫", -- The Parasite
 	[106] = abyssPresets.yellowExplode, -- Mr. Mega
 	[108] = abyssPresets.cyanDestroyProjectiles, -- The Wafer
 	[110] = abyssPresets.grayPetrify, -- Mom's Contacts
 	[111] = abyssPresets.greenPoison, -- The Bean
 	[112] = abyssPresets.cyanDestroyProjectiles, -- Guardian Angel
-	[114] = "Langosta roja grande que ataca rapidamente", -- Mom's Knife
+	[114] = "较大的红色蝗虫, 攻击更快", -- Mom's Knife
 	[116] = abyssPresets.cyanElectricity, -- 9 Volt
-	[118] = "Langosta negra grande", -- Brimstone
+	[118] = "较大的黑色蝗虫", -- Brimstone
 	[124] = abyssPresets.pinkMimic, -- Dead Sea Scrolls
 	[125] = abyssPresets.yellowExplode, -- Bobby-Bomb
 	[136] = abyssPresets.yellowExplode, -- Best Friend
@@ -142,10 +143,10 @@ local abyssSynergies = {
 	[169] = abyssPresets.redLarge, -- Polyphemus
 	[171] = abyssPresets.graySlow, -- Spider Butt
 	[172] = abyssPresets.cyanDestroyProjectiles, -- Sacrificial Dagger
-	[178] = "Langosta blanca brillante que puede generar rayos de luz que infligen el triple del daño de Isaac", -- Holy Water
+	[178] = "白色蝗虫, 使敌人石化, 生成造成3x角色伤害的光束", -- Holy Water
 	[180] = abyssPresets.greenPoison, -- The Black Bean
 	[181] = abyssPresets.whiteBeam, -- White Pony
-	[182] = "Langosta blanca, lenta, brillante y teledirigida que puede generar rayos de luz que infligen el triple del daño de Isaac", -- Sacred Heart
+	[182] = "较慢的白色追踪蝗虫, 生成造成3x角色伤害的光束", -- Sacred Heart
 	[187] = abyssPresets.cyanDestroyProjectiles, -- Guppy's Hairball
 	[190] = abyssPresets.yellowExplode, -- Pyro
 	[191] = abyssPresets.pinkMimic, -- 3 Dollar Bill
@@ -161,7 +162,7 @@ local abyssSynergies = {
 	[224] = abyssPresets.smallFour, -- Cricket's Body
 	[228] = abyssPresets.blackFear, -- Mom's Perfume
 	[230] = abyssPresets.blackFear, -- Abaddon
-	[231] = "Langosta negra que ralentiza a los enemigos", -- Ball of Tar
+	[231] = "黑色蝗虫, 使敌人减速", -- Ball of Tar
 	[232] = abyssPresets.graySlow, -- Stop Watch
 	[242] = abyssPresets.cyanDestroyProjectiles, -- Infamy
 	[243] = abyssPresets.cyanDestroyProjectiles, -- Trinity Shield
@@ -169,7 +170,7 @@ local abyssSynergies = {
 	[245] = abyssPresets.normalTwo, -- 20/20
 	[248] = abyssPresets.redLarge, -- Hive Mind
 	[250] = abyssPresets.yellowExplode, -- BOGO Bombs
-	[256] = "Langosta amarilla ardiente que incendia a los enemigos y explota", -- Hot Bombs
+	[256] = "黄色蝗虫, 使敌人燃烧, 接触敌人时有几率爆炸", -- Hot Bombs
 	[258] = abyssPresets.pinkMimic, -- Missing No.
 	[259] = abyssPresets.blackFear, -- Dark Matter
 	[264] = abyssPresets.purpleHoming, -- Smart Fly
@@ -180,7 +181,7 @@ local abyssSynergies = {
 	[273] = abyssPresets.yellowPoisonExplode, -- Bob's Brain
 	[276] = abyssPresets.blueConfuse, -- Isaac's Heart
 	[277] = abyssPresets.blackFear, -- Lil Haunt
-	[279] = "Langosta cian grande y muy lenta que destruye proyectiles enemigos", -- Big Fan
+	[279] = "大型青色缓慢蝗虫, 阻挡敌人弹幕", -- Big Fan
 	[281] = abyssPresets.cyanDestroyProjectiles, -- Punching Bag
 	[289] = abyssPresets.orangeBurn, -- Red Candle
 	[294] = abyssPresets.blueConfuse, -- Butter Bean
@@ -188,25 +189,25 @@ local abyssSynergies = {
 	[300] = abyssPresets.blueConfuse, -- Aries
 	[303] = abyssPresets.cyanDestroyProjectiles, -- Virgo
 	[309] = abyssPresets.blueConfuse, -- Pisces
-	[310] = "Langosta negra, grande y lenta", -- Eve's Mascara
+	[310] = "较慢的大型黑色蝗虫", -- Eve's Mascara
 	[313] = abyssPresets.cyanDestroyProjectiles, -- Holy Mantle
 	[315] = abyssPresets.grayMagnetize, -- Strange Attractor
 	[317] = abyssPresets.greenPoison, -- Mysterious Liquid
 	[326] = abyssPresets.cyanDestroyProjectiles, -- Breath of Life
-	[330] = "Langosta pequeña extremadamente veloz que inflige daño rapidamente", -- Soy Milk
+	[330] = "小型红色快速蝗虫, 造成伤害更快", -- Soy Milk
 	[331] = abyssPresets.whiteGodhead, -- Godhead
-	[336] = "Langosta roja lenta", -- Dead Onion
+	[336] = "红色缓慢蝗虫", -- Dead Onion
 	[337] = abyssPresets.graySlow, -- Broken Watch
 	[338] = abyssPresets.grayPetrify, -- Boomerang
 	[347] = abyssPresets.normalTwo, -- Diplopia
 	[350] = abyssPresets.greenPoison, -- Toxic Shock
-	[351] = "Langosta verde que envenena, empuja y confunde a los enemigos", -- Mega Bean
+	[351] = "绿色蝗虫, 击退敌人并使其中毒和混乱", -- Mega Bean
 	[353] = abyssPresets.yellowExplode, -- Bomber Boy
 	[356] = abyssPresets.cyanElectricity, -- Car Battery
 	[360] = abyssPresets.normalTwo, -- Incubus
 	[363] = abyssPresets.cyanDestroyProjectiles, -- Sworn Protector
-	[366] = "Dos langostas amarillas que explotan", -- Scatter Bombs
-	[367] = "Langosta amarilla que ralentiza a los enemigos y explota", -- Sticky Bombs
+	[366] = "2只黄色蝗虫, 接触敌人时有几率爆炸", -- Scatter Bombs
+	[367] = "黄色蝗虫, 使敌人减速, 接触敌人时有几率爆炸", -- Sticky Bombs
 	[371] = abyssPresets.yellowExplode, -- Curse of the Tower
 	[372] = abyssPresets.cyanElectricity, -- Charged Baby
 	[374] = abyssPresets.whiteBeam, -- Holy Light
@@ -217,11 +218,11 @@ local abyssSynergies = {
 	[391] = abyssPresets.pinkCharm, -- Betrayal
 	[393] = abyssPresets.greenPoison, -- Serpent's Kiss
 	[395] = abyssPresets.cyanElectricity, -- Tech X
-	[398] = "Langosta azul que encoje a los enemigos", -- God's Flesh
+	[398] = "蓝色蝗虫, 缩小敌人", -- God's Flesh
 	[401] = abyssPresets.yellowExplode, -- Explosivo
 	[402] = abyssPresets.pinkMimic, -- Chaos
 	[403] = abyssPresets.pinkMimic, -- Spider Mod
-	[404] = "Langosta cian que envenena a los enemigos y destruye proyectiles enemigos", -- Farting Baby
+	[404] = "青色蝗虫, 使敌人中毒, 阻挡敌人弹幕", -- Farting Baby
 	[405] = abyssPresets.pinkMimic, -- GB Bug
 	[415] = abyssPresets.whiteBeam, -- Crown of Light
 	[417] = abyssPresets.whiteGodhead, -- Succubus
@@ -231,7 +232,7 @@ local abyssSynergies = {
 	[425] = abyssPresets.graySlow, -- Night Light
 	[427] = abyssPresets.yellowExplode, -- Mine Crafter
 	[432] = abyssPresets.yellowMimicExplode, -- Glitter Bombs
-	[441] = "Langosta negra grande", -- Mega Blast
+	[441] = "较大的黑色蝗虫", -- Mega Blast
 	[446] = abyssPresets.greenPoison, -- Dead Tooth
 	[448] = abyssPresets.redBleed, -- Shard of Glass
 	[449] = abyssPresets.cyanDestroyProjectiles, -- Metal Plate
@@ -240,9 +241,9 @@ local abyssSynergies = {
 	[459] = abyssPresets.greenPoison, -- Sinus Infection
 	[460] = abyssPresets.grayConfuse, -- Glaucoma
 	[466] = abyssPresets.greenPoison, -- Contagion
-	[473] = "Langosta roja grande y lenta", -- Big Chubby
+	[473] = "较大较慢的红色蝗虫", -- Big Chubby
 	[478] = abyssPresets.grayPetrify, -- Pause
-	[483] = "Langosta amarilla grande que explota", -- Mama Mega
+	[483] = "较大的黄色蝗虫, 接触敌人时有几率爆炸", -- Mama Mega
 	[488] = abyssPresets.pinkMimic, -- Metronome
 	[495] = abyssPresets.orangeBurn, -- Ghost Pepper
 	[497] = abyssPresets.grayConfuse, -- Camo Undies
@@ -251,7 +252,7 @@ local abyssSynergies = {
 	[508] = abyssPresets.redBleed, -- Mom's Razor
 	[510] = abyssPresets.pinkMimic, -- Delirious
 	[512] = abyssPresets.grayMagnetize, -- Black Hole
-	[514] = "Langosta gris que petrifica y confunde a los enemigos", -- Broken Modem
+	[514] = "灰色蝗虫, 使敌人石化和混乱", -- Broken Modem
 	[517] = abyssPresets.yellowExplode, -- Fast Bombs
 	[519] = abyssPresets.pinkMimic, -- Lil Delirium
 	[520] = abyssPresets.cyanElectricity, -- Jumper Cables
@@ -267,13 +268,13 @@ local abyssSynergies = {
 	[549] = abyssPresets.grayBones, -- Brittle Bones
 	[553] = abyssPresets.greenPoison, -- Mucomycosis
 	[554] = abyssPresets.blackFear, -- 2Spooky
-	[561] = "Langosta pequeña y veloz que inflige daño rapidamente", -- Almond Milk
+	[561] = "小型红色快速蝗虫, 造成伤害更快", -- Almond Milk
 	[563] = abyssPresets.yellowMimicExplode, -- Nancy Bombs
 	[568] = abyssPresets.cyanDestroyProjectiles, -- Divine Intervention
 	[570] = abyssPresets.pinkMimic, -- Playdough Cookie
 	[574] = abyssPresets.whiteGodhead, -- Monstrance
 	[575] = abyssPresets.graySlow, -- The Intruder
-	[577] = "Dos langostas cian que destruyen proyectiles enemigos", -- Damocles
+	[577] = "2只青色蝗虫, 阻挡敌人弹幕", -- Damocles
 	[581] = abyssPresets.cyanDestroyProjectiles, -- Psy Fly
 	[583] = abyssPresets.yellowExplode, -- Rocket in a Jar
 	[591] = abyssPresets.pinkCharm, -- Venus
@@ -287,9 +288,9 @@ local abyssSynergies = {
 	[617] = abyssPresets.grayMagnetize, -- Lodestone
 	[618] = abyssPresets.pinkCharm, -- Rotten Tomato
 	[622] = abyssPresets.pinkMimic, -- Genesis
-	[625] = "Langosta roja grande que ataca rapidamente", -- Mega Mush
+	[625] = "大型红色蝗虫, 攻击更快", -- Mega Mush
 	[629] = abyssPresets.cyanDestroyProjectiles, -- Bot Fly
-	[631] = "Dos langostas rojas pequeñas", -- Meat Cleaver
+	[631] = "2只小型红色蝗虫", -- Meat Cleaver
 	[637] = abyssPresets.blueConfuse, -- Knockout Drops
 	[640] = abyssPresets.orangeBurn, -- Urn of Souls
 	[645] = abyssPresets.cyanDestroyProjectiles, -- Tinytoma
@@ -300,13 +301,12 @@ local abyssSynergies = {
 	[683] = abyssPresets.grayBones, -- Bone Spurs
 	[689] = abyssPresets.pinkMimic, -- Glitched Crown
 	[690] = abyssPresets.blueConfuse, -- Belly Jelly
-	[693] = "Tres langostas cian que destruyen proyectiles enemigos", -- The Swarm
+	[693] = "3只青色蝗虫, 阻挡敌人弹幕", -- The Swarm
 	[698] = abyssPresets.normalTwo, -- Twisted Pair
 	[721] = abyssPresets.pinkMimic, -- TMTRAINER
 	[727] = abyssPresets.yellowExplode, -- Ghost Bombs
-	[706] = "Genera 16 langostas de diferentes colores y efectos", -- Abyss
+	[706] = "16只不同效果的蝗虫", -- Abyss
 }
-
 EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
 
 

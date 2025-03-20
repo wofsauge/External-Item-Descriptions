@@ -1,6 +1,6 @@
----------------------------------------
+----------------------------------
 ----- Ukrainian descriptions -----
----------------------------------------
+----------------------------------
 
 -- Last Sync with English version: 25.10.2023
 
@@ -9,7 +9,7 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  !!! = Warning
-local languageCode = "uk_ua"
+local languageCode = "uk"
 
 local repCollectibles={
 	[2] = {"2", "Внутрiшнє Око", "Потрiйний пострiл#↓ {{Tears}} -49% Скорострільність знижено"},
