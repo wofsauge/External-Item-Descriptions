@@ -1,6 +1,6 @@
---------------------------------------
------  Basic Polish descriptions -----
---------------------------------------
+-------------------------------------
+----- Basic Polish descriptions -----
+-------------------------------------
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
