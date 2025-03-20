@@ -1,6 +1,6 @@
-------------------------------------------
------  Basic Portuguese descriptions  ----
-------------------------------------------
+-----------------------------------------
+----- Basic Portuguese descriptions -----
+-----------------------------------------
 
 -- FORMAT: Item ID | Name| Description
 
@@ -18,7 +18,7 @@ EID.descriptions[languageCode].custom = {} -- table for custom entity descriptio
 EID.descriptions[languageCode].languageName = "Portuguese (AB+)"
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+EID.descriptions[languageCode].fonts = EID.descriptions["en"].fonts
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={

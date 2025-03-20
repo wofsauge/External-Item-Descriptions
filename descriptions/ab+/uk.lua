@@ -1,6 +1,6 @@
----------------------------------------
-----  Basic Ukrainian descriptions ----
----------------------------------------
+----------------------------------------
+----- Basic Ukrainian descriptions -----
+----------------------------------------
 
 -- FORMAT: Item ID | Name | Description
 
@@ -8,9 +8,9 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "uk_ua"
+local languageCode = "uk"
 
--- init uk_ua table
+-- init uk table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Ukrainian"

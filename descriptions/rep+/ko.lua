@@ -1,6 +1,6 @@
----------------------------------------
------  Basic Korean descriptions -----
----------------------------------------
+-------------------------------------
+----- Basic Korean descriptions -----
+-------------------------------------
 
 -- FORMAT: Item ID | Name | Description
 
@@ -8,7 +8,7 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "ko_kr"
+local languageCode = "ko"
 
 ---------- Collectibles ----------
 
@@ -60,7 +60,7 @@ local trinkets = {
 	[105] = {"105", "점심 도시락", "!!! 일회용#피격 시 5% 확률로 {{Collectible22}}Lunch ({{Heart}}최대 체력 +1) 아이템을 생성합니다."}, -- Bag Lunch
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "짧은 도화선", "!!! 폭탄이 터지는 속도가 빨라집니다.#{{Bomb}} 폭탄 피해량 +15%"}, -- Short Fuse
-	-- exclusive to ko_kr
+	-- exclusive to ko
 	[135] = {"135", "라이터", "{{Burning}} 방 입장 시 20%의 확률로 그 방의 적에게 2초간 화상을 입힙니다.#{{LuckSmall}} 행운 40 이상일 때 100% 확률#{{Trinket53}} 흡수하지 않은 Tick 장신구를 제거할 수 있습니다."}, -- A Lighter
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)

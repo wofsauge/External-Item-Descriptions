@@ -3,7 +3,7 @@
 -----  By: LuanRoger, NotZin0 and JorgeLNJunior  -----
 ------------------------------------------------------
 
--- Last Sync with en_us: 13.06.2022
+-- Last Sync with en: 13.06.2022
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -13,7 +13,7 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
-local languageCode = "pt_br"
+local languageCode = "pt-BR"
 
 local repCollectibles={
 	[2] = {"2", "", "Disparo triplo#↓ {{Tears}} -49% Taxa de Disparo"},

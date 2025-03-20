@@ -1,8 +1,8 @@
----------------------------------------
------  Basic Korean descriptions  -----
----------------------------------------
+-------------------------------------
+----- Basic Korean descriptions -----
+-------------------------------------
 
--- Last Sync with en_us or update: 2024-11-18
+-- Last Sync with en or update: 2024-11-18
 
 -- FORMAT: Item ID | Name | Description
 
@@ -12,9 +12,9 @@
 
 -- 스탯 순서: 체력 - 빨간하트 - 블랙하트 - 소울하트 - 공격력 - 연사 - 사거리 - 이동속도 - 탄속 - 행운 - 효과
 
-local languageCode = "ko_kr"
+local languageCode = "ko"
 
--- init ko_kr table
+-- init ko table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Korean"

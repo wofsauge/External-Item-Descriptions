@@ -1,6 +1,16 @@
-local languageCode = "ko_kr"
+-------------------------------------
+----- Basic Korean descriptions -----
+-------------------------------------
 
--- Last Sync with en_us or update: 2024-11-18
+-- Last Sync with en or update: 2024-11-18
+
+-- FORMAT: Item ID | Name | Description
+
+-- Special character markup:
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
+-- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
+
+local languageCode = "ko"
 
 local repCollectibles={
 	-- Original

@@ -1,6 +1,6 @@
----------------------------------------
------  Basic French descriptions  -----
----------------------------------------
+-------------------------------------
+----- Basic French descriptions -----
+-------------------------------------
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text

@@ -1,5 +1,5 @@
 ---------------------------------------
------  Basic Japanese descriptions ----
+----- Basic Japanese descriptions -----
 ---------------------------------------
 -- Last Update: 2024-11-18
 
@@ -8,9 +8,9 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "ja_jp"
+local languageCode = "ja"
 
--- init ja_jp table
+-- init ja table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Japanese"

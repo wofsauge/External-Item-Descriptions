@@ -2,7 +2,7 @@ if EID and EID.Name then print("EID Error: Two instances of EID found! Please un
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
-EID.Languages = {"en_us", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_nl", "uk_ua", "el_gr", "ro_ro", "vi"}
+EID.Languages = {"en", "fr", "pt", "pt-BR", "ru", "es", "it", "bg", "pl", "de", "tr", "ko", "zh-CN", "ja", "cs", "nl", "uk", "el", "ro", "vi"}
 EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
@@ -630,8 +630,8 @@ function EID:printDescription(desc, cachedID)
 		curName = desc.Name
 		if EID.Config["TranslateItemName"] ~= 2 then
 			local curLanguage = EID.Config["Language"]
-			if EID:getLanguage() ~= "en_us" then
-				EID.Config["Language"] = "en_us"
+			if EID:getLanguage() ~= "en" then
+				EID.Config["Language"] = "en"
 				local englishName = desc.PermanentTextEnglish or EID:getObjectName(desc.ObjType, desc.ObjVariant, desc.ObjSubType)
 				EID.Config["Language"] = curLanguage
 				if EID.Config["TranslateItemName"] == 1 then

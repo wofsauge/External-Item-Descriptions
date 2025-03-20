@@ -1,14 +1,17 @@
----------------------------------------
------  Basic Spanish descriptions -----
----------------------------------------
+--------------------------------------
+----- Basic Spanish descriptions -----
+--------------------------------------
 
--- FORMAT: Item ID | Name | Description
+-- Last Sync with en: 14.04.2025
+
+-- FORMAT: Item ID | Name| Description
+-- '#' = starts new line of text
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line  |  ! = Warning
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "spa"
+local languageCode = "es"
 
 ---------- Collectibles ----------
 

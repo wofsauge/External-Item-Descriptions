@@ -35,7 +35,7 @@ dlcs = ["ab+", "rep", "rep+"]
 maxChecklimit = {"tarotClothBuffs": 2, "carBattery": 2, "BFFSSynergies": 2}
 
 
-# count en_us entries for stats
+# count English entries for stats
 def count_entries(t):
     count = 0
     for k in t:
@@ -62,7 +62,7 @@ def addUpdatedTables(languageCode, dlc):
             updatedTables += ["abyssSynergies"]
 
         # korean uses some additional addititve tables
-        if languageCode == "ko_kr":
+        if languageCode == "ko":
             if dlc == "rep":
                 updatedTables += ["dice", "MCM"]
             else:
@@ -113,15 +113,15 @@ en_us_entries = {}
 for dlc in dlcs:
     lua.execute('REPENTOGON = true; EID = {}; EID.descriptions = {}; function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
     g = lua.globals()
-    addUpdatedTables("en_us", dlc)
+    addUpdatedTables("en", dlc)
 
     # Read English language files first
-    englishFile = glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/en_us.lua", recursive=True)[0]
+    englishFile = glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/en.lua", recursive=True)[0]
     print("reading:", englishFile)
     lua.execute(open(englishFile, "r", encoding="UTF-8").read())
 
-    en_us_entries[dlc] = count_entries(g.EID['descriptions']['en_us'])
-    print("en_us "+dlc+" entries:", en_us_entries[dlc])
+    en_us_entries[dlc] = count_entries(g.EID['descriptions']['en'])
+    print("en "+dlc+" entries:", en_us_entries[dlc])
 
 
     langFiles = []
@@ -131,7 +131,7 @@ for dlc in dlcs:
         langFiles += glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/*.lua", recursive=True)
     # Read other language files
     for file in langFiles:
-        if "en_us" not in file and "transformations" not in file:
+        if "en" not in file and "transformations" not in file:
             languageCode = os.path.basename(file).replace(".lua","")
             print("reading:",file)
             addUpdatedTables(languageCode, dlc)
@@ -141,7 +141,7 @@ for dlc in dlcs:
 
             # Evaluate language for completeness
             print(f"Evaluating language '{languageCode}'..")
-            errorCount = compare_tables(g.EID['descriptions']['en_us'], g.EID['descriptions'][languageCode], languageCode+"("+dlc+")")
+            errorCount = compare_tables(g.EID['descriptions']['en'], g.EID['descriptions'][languageCode], languageCode+"("+dlc+")")
             percentage = (en_us_entries[dlc] - errorCount) / en_us_entries[dlc] * 100
             languageProgress[languageCode][dlc] = [percentage, errorCount]
             print(f"{Red}Errors found: {errorCount} / {en_us_entries[dlc]}{Color_Off}\n\n")

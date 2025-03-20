@@ -56,8 +56,8 @@ function EID:BoCSGetSearchValue()
 end
 
 EID:AddCallback("EIDCallbacks.SEARCH_NAME_CONVERSION", function(_, searchString)
-	-- TODO : make english search inside ko_kr language setting (priotity low though)
-	if EID:getLanguage() == "ko_kr" then
+	-- TODO : make english search inside korean language setting (priotity low though)
+	if EID:getLanguage() == "ko" then
 		return EID.engKeystrokeToKor(searchString)
 	end
 end)

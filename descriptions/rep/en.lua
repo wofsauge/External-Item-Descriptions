@@ -1,6 +1,6 @@
----------------------------------------
------  Basic English descriptions -----
----------------------------------------
+--------------------------------------
+----- Basic English descriptions -----
+--------------------------------------
 
 -- FORMAT: Item ID | Name | Description
 
@@ -8,7 +8,7 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "en_us"
+local languageCode = "en"
 
 ---------- Collectibles ----------
 

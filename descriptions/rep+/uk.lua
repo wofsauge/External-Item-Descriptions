@@ -1,10 +1,10 @@
----------------------------------------
------  Ukrainian descriptions -----
----------------------------------------
+----------------------------------
+----- Ukrainian descriptions -----
+----------------------------------
 
 -- Last Sync with English version: 29.11.2024
 
-local languageCode = "uk_ua"
+local languageCode = "uk"
 
 ---------- Collectibles ----------
 
