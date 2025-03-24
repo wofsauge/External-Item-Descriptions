@@ -429,7 +429,7 @@ EID:updateDescriptionsViaTable(repCollectibles, EID.descriptions[languageCode].c
 ---------- Modifiers ----------
 
 -- Buffs caused by Binge Eater
--- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon infront of each buff-bulletpoint
+-- Note: "#" will be replaced with "#{{Collectible664}} " automatically, in order to add Binge eater icon in front of each buff-bulletpoint
 EID.descriptions[languageCode].bingeEaterBuffs = {
 	[22] = "↑ {{Tears}} Lágrimas +0.5#↑ {{Range}} Alcance +1.5#↑ {{Damage}} Daño temporal +3.6#↓ {{Speed}} Velocidad -0.03", -- Lunch
 	[23] = "↑ {{Tears}} Lágrimas +0.5#↑ {{Shotspeed}} Vel. de lágrimas +0.2#↑ {{Damage}} Daño temporal +3.6#↓ {{Speed}} Velocidad -0.03", -- Dinner
@@ -442,7 +442,7 @@ EID.descriptions[languageCode].bingeEaterBuffs = {
 }
 
 -- Buffs caused by Book of Belial with Judas' Birthright
--- Note: "#" will be replaced with "#{{Collectible34}} " automatically, in order to add Book of Belial icon infront of each buff-bulletpoint
+-- Note: "#" will be replaced with "#{{Collectible34}} " automatically, in order to add Book of Belial icon in front of each buff-bulletpoint
 EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[40] = "También activa el efecto de {{Collectible35}} El Necronomicón", -- Kamikaze!
 	[126] = "También activa el efecto de {{Collectible35}} El Necronomicón", -- Razor Blade
@@ -653,15 +653,15 @@ EID.descriptions[languageCode].AbyssTexts = {
  	-- values inside {} brackets will be replaced with text parts below
 	-- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
 	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
-	InfoText = "{amount} {size}{pluralize} langosta{pluralize} {speed}{pluralize} ({dmg})",
+	InfoText = "{amount} langosta{pluralize} {size}{pluralize} {speed}{pluralize} ({dmg})",
 	InfoTextPlural = "s", -- Can be used by translators to provide a pluralized version of the InfoText
 	Chance = " ({1}% de probabilidad)", -- {1} will be replaced with the chance
 	SpeedSlow = "lenta", -- Speed < 1
-	SpeedFast = "rapida", -- Speed > 1
-	SpeedDash = "rapidisima", -- Speed >= 6
+	SpeedFast = "rápida", -- Speed > 1
+	SpeedDash = "súper rápida", -- Speed >= 6
 	SizeSmall = "pequeña", -- Size < 1
 	SizeBig = "grande", -- Size > 1
-	DamageMult = "{1} veces tu daño", -- {1} will be replaced with the calculated damage multiplier 
+	DamageMult = "Inflige tu daño x{1}", -- {1} will be replaced with the calculated damage multiplier 
 }
 
 ---------- Abyss Locust special effects ----------
@@ -791,7 +791,7 @@ local repCarBattery = {
 	[83] = {" medio", "1"}, -- The Nail
 	[263] = "Se activa 2 veces", -- Clear Rune
 	[283] = {1, 2, "recolectable", "{{CR}}recolectables"}, -- D100
-	[285] = "a todos", "2 veces {{CR}}a todos" -- D10
+	[285] = {"a todos", "2 veces {{CR}}a todos"}, -- D10
 	[288] = {"4-8", "8-16"}, -- Box of Spiders
 	[293] = {200, 400}, -- Head of Krampus
 	[296] = {1, 2, " corazón", " {{CR}}corazones", 1, 2, "contenedor", "{{CR}}contenedores"}, -- Converter
@@ -918,9 +918,9 @@ local repTrinkets={
 	[98] = {"98", "Duende de Naríz", "5% de probabilidad de disparar lágrimas de moco teledirigidas#{{Damage}} Los mocos infligen tu daño una vez cada segundo#Los mocos se pegan durante 10 segundos#"}, -- Nose Goblin
 	[101] = {"101", "Bombilla Muerta", "Otorga al tener un objeto activo descargado:#↑ {{Speed}} Velocidad +0.5#↑ {{Tears}} Lágrimas +0.5#↑ {{Damage}} Daño +1.5#↑ {{Range}} Alcance +1.5#↑ {{Shotspeed}} Vel. de lágrimas +0.3#↑ {{Luck}} Suerte +2"}, -- Dim Bulb
 	[107] = {"107", "Corazón de Cuervo", "El daño recibido afecta a los corazones rojos antes que los de alma o negros#{{Warning}} El daño a corazones rojos puede reducir la probabilidad de salas del Diablo/Ángel"}, -- Crow Heart
-	[110] = {"110", "Dólar de Plata", "{{Shop}} Las tiendas aparecen en el Útero y en el Cadaver"}, -- Silver Dollar
+	[110] = {"110", "Dólar de Plata", "{{Shop}} Las tiendas aparecerán en el Útero y en el Cadaver"}, -- Silver Dollar
 	[111] = {"111", "Corona Sangrienta", "{{TreasureRoom}} Las salas del tesoro aparecen en el Útero y en el Cadaver"}, -- Bloody Crown
-	[119] = {"119", "Célula Madre", "{{HealingRed}} Entrar a un nuevo piso cura la mitad de tus corazones rojos/de hueso#{{HealingRed}} Cura medio corazón mínimo"}, -- Stem Cell
+	[119] = {"119", "Célula madre", "{{HealingRed}} Entrar a un nuevo piso cura la mitad de tus corazones rojos/de hueso#{{HealingRed}} Cura medio corazón mínimo"}, -- Stem Cell
 	[125] = {"125", "Cable de Extensión", "Conecta a los familiares entre si con rayos de electricidad#Los rayos infligen 6 de daño"}, -- Extension Cord
 	[128] = {"128", "Hueso del Dedo", "{{EmptyBoneHeart}} 4% de probabilidad de obtener un corazón de hueso al recibir daño"}, -- Finger Bone
 	[129] = {"129", "Rompemandíbulas", "{{Damage}} 10% de probabilidad de disparar dientes que infligen 3.2 veces tu daño#{{Luck}} 100% de probabilidad con 9 de suerte"}, -- Jawbreaker
@@ -1010,9 +1010,9 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[46] = { "{{HalfHeart}} Medio corazón", "{{Heart}} Un corazón", "{{Heart}} Un corazón y medio" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
 	[53] = {
-		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a la {{BossRoom}} Sala del Jefe#-{{ColorGold}}30{{CR}}% de salud del jefe#{{ColorGold}} ¡Removible!",
+		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a la {{BossRoom}} Sala del Jefe#-{{ColorGold}}30{{CR}}% de salud del jefe#{{ColorGold}} Removible",
 		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a la {{BossRoom}} Sala del Jefe#-{{ColorGold}}30{{CR}}% de salud del jefe#{{Warning}} Una vez tomado, no lo podrás soltar#Sólo se remueve con {{Trinket41}} La cerilla o tragándolo",
-		"{{HealingRed}} Cura {{ColorGold}}3{{CR}} Corazones rojos al entrar a la {{BossRoom}} Sala del Jefe#-{{ColorGold}}30{{CR}}% de salud del jefe#{{ColorGold}} ¡Removible!",
+		"{{HealingRed}} Cura {{ColorGold}}3{{CR}} Corazones rojos al entrar a la {{BossRoom}} Sala del Jefe#-{{ColorGold}}30{{CR}}% de salud del jefe#{{ColorGold}} Removible",
 	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
 	[64] = { "{{ArrowUp}} Los aumentos de estadísticas son duplicados", "Los aumentos de estadísticas son triplicados", "Los aumentos de estadísticas son cuadruplicados", },
@@ -1021,7 +1021,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	-- NO!
 	[88] = { "Evita que aparezcan los objetos de calidad {{Quality0}}" },
 	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
-	[159] = { "{{GoldenChest}} Reemplaza todos los cofres (excepto los viejos y megacofres con cofres dorados#Los cofres dorados pueden contener cartas, píldoras y trinkets extra" },
+	[159] = { "{{GoldenChest}} Remplaza todos los cofres (excepto los viejos y megacofres) con cofres dorados#Los cofres dorados pueden contener cartas, píldoras y trinkets extra" },
 	-- The Twins
 	[183] = { "Podrá copiar/otorgar 2 familiares", "Podrá copiar/otorgar 2 familiares", "Podrá copiar/otorgar 3 familiares" },
 }
@@ -1143,21 +1143,21 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 -- There's some odd behavior with Blank Card + Tarot Cloth not doubling some cards
 -- These will be appended after Blank Card recharge time and "Blank Card effect:"
 EID.descriptions[languageCode].tarotClothBlankCardBuffs = {
-	[11] = "Genera 1 máquina", -- X - Wheel of Fortune
+	[11] = "Genera una máquina", -- X - Wheel of Fortune
 	[12] = "No duplica las mejoras de estadisticas", -- XI - Strength
 	[14] = "Inflige 40 de daño", -- XIII - Death
-	[15] = "Genera 1 máquina", -- XIV - Temperance
+	[15] = "Genera una máquina", -- XIV - Temperance
 	[16] = "Daño +2", -- XV - The Devil
 	[20] = "Inflige 200 de daño", -- XIX - The Sun
-	[21] = "Genera 1 mendigo", -- XX - Judgement
+	[21] = "Genera un mendigo", -- XX - Judgement
 	[56] = "Suelta 3 objetos", -- 0 - The Fool?
 	[64] = "Genera 2-7 cofres", -- VIII - Justice?
 	[65] = "No genera una moneda adicional", -- IX - The Hermit?
-	[66] = "Activa 1 efecto", -- X - Wheel of Fortune?
+	[66] = "Activa un efecto", -- X - Wheel of Fortune?
 	[68] = "Dura 30 segundos", -- XII - The Hanged Man?
 	[72] = "Genera 7 grupos", -- XVI - The Tower?
-	[73] = "Elimina 1 objeto y genera 2", -- XVII - The Stars?
-	[76] = "Genera 1 máquina", -- XX - Judgement?
+	[73] = "Remueve un objeto y genera 2", -- XVII - The Stars?
+	[76] = "Genera una máquina", -- XX - Judgement?
 }
 
 ---------- Pills ----------
@@ -1395,8 +1395,8 @@ EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "Los corazones s
 
 ---------- Misc. Text ----------
 
-EID.descriptions[languageCode].ResultsWithX = "(Resultado con {1})"
-EID.descriptions[languageCode].VariableCharge = "carga de {1}:"
+EID.descriptions[languageCode].ResultsWithX = "(Resulta en {1})"
+EID.descriptions[languageCode].VariableCharge = "Carga de {1}:"
 
 EID.descriptions[languageCode].poopSpells = {
 	{"Caca", "Caca normal, puede generar recolectables"},
