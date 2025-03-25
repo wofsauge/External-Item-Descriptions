@@ -18,7 +18,7 @@ local collectibles = {
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
 	[117] = {"117", "Uccello Morto", "Venire colpito genera un uccello#L'uccello infligge 4.3 danni da contatto al secondo#Persiste fra le stanze se Isaac ha mezzo cuore"}, -- Dead Bird
 	-- Change: Complete rewrite
-	[351] = {"351", "Mega Fagiolo", "Infligge 100 danni e pietrifica tutti i nemici nella stanza#{{Poison}} Infligge 5 danni e avvelena i nemici nelle vicinanze#Può aprire stanze segrete e rompere rocce"}, -- Mega Bean
+	[351] = {"351", "Mega Fagiolo", "{{Petrify}} Infligge 100 danni e pietrifica tutti i nemici nella stanza#{{Poison}} Infligge 5 danni e avvelena i nemici nelle vicinanze#Può aprire stanze segrete e rompere rocce"}, -- Mega Bean
 	-- Change: Complete rewrite
 	[436] = {"436", "Latte!", "Blocca i proiettili nemici#{{Tears}} Dopo 10 colpi, si rompe e conferisce più Lacrime per il resto del piano"}, -- Milk!
 	-- Change: Complete rewrite
