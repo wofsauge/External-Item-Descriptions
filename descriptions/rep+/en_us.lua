@@ -18,7 +18,7 @@ local collectibles = {
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
 	[117] = {"117", "Dead Bird", "Taking damage spawns a bird that attacks enemies#The bird deals 4.3 contact damage per second#Persists between rooms if player is at 1/2 hearts"}, -- Dead Bird
 	-- Change: Complete rewrite
-	[351] = {"351", "Mega Bean", "Deals 100 damage and petrifies all enemies in the room#{{Poison}} Deals 5 damage and poisons any enemies nearby#Can open secret rooms and break rocks"}, -- Mega Bean
+	[351] = {"351", "Mega Bean", "{{Petrify}} Deals 100 damage and petrifies all enemies in the room#{{Poison}} Deals 5 damage and poisons any enemies nearby#Can open secret rooms and break rocks"}, -- Mega Bean
 	-- Change: Complete rewrite
 	[436] = {"436", "Milk!", "Blocks enemy projectiles#{{Tears}} After 10 hits, it breaks and grants a Tears up for the remainder of the floor"}, -- Milk!
 	-- Change: Complete rewrite
