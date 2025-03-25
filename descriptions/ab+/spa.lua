@@ -19,6 +19,7 @@ EID.descriptions[languageCode].languageName = "Spanish"
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
 ---------- Collectibles ----------
+
 EID.descriptions[languageCode].collectibles={
 	{"1", "Cebolla triste", "↑ {{Tears}} Lágrimas +0.7"},
 	{"2", "El Ojo Interior", "Disparo triple#↓ {{Tears}} Menos lágrimas"},
@@ -575,6 +576,7 @@ EID.descriptions[languageCode].collectibles={
 }
 
 ---------- Trinkets ----------
+
 EID.descriptions[languageCode].trinkets={
 	{"1", "Moneda tragada", "Generas 1 moneda cuando te golpean"},
 	{"2", "Caca petrificada", "Las cacas dejan caer más recolectables"},
