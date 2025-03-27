@@ -897,12 +897,15 @@ EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].
 local repTrinkets={
 	[10] = {"10", "Gusano Ondulante", "↑ {{Tears}} Lágrimas +0.4#Lágrimas espectrales#Las lágrimas se mueven en ondas"}, -- Wiggle Worm
 	[11] = {"11", "Gusano Circular", "↑ {{Tears}} Lágrimas +0.47#Lágrimas espectrales#Las lágrimas se mueven en espiral a gran velocidad"}, -- Ring Worm
+	[14] = {"14", "Callo", "Otorga inmunidad a las espinas de suelo y el fluido#No previene el daño al tocar las espinas en {{SacrificeRoom}} la sala de Sacrificio y {{Collectible692}} espinas especiales en la sala del Diablo"}, -- Callus
 	[15] = {"15", "Roca de la suerte", "{{Coin}} 33% de probabilidad de generar monedas al destruir rocas"}, -- Lucky Rock
 	[16] = {"16", "Uña del pie de Mamá", "El Pie de Mamá cae en un lugar aleatorio de la habitación cada 20 segundos"}, -- Mom's Toenail
+	[19] = {"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los cofres dorados sin usar llaves#{{MegaChest}} Los mega cofres si requieren llaves para abrirlos"}, -- Paper Clip
 	[24] = {"24", "Moneda de Trasero", "{{Coin}} 20% de probabilidad de generar una moneda al destruir una caca#Soltarás un pedo al recoger una moneda#{{Poison}} Los pedos empujan y envenenan a los enemigos"}, -- Butt Penny
+	[25] = {"25", "Dulce misterioso", "Te tiras un pedo o generas una caca cada 30 segundos#Los pedos infligen 6 de daño y empujan proyectiles"}, -- Mysterious Candy
 	[26] = {"26", "Gusano Cuadrado", "↑ {{Tears}} Lágrimas +0.4#↑ {{Range}} Alcance +1.5#Lágrimas espectrales#Las lágrimas se mueven en ángulos"}, -- Hook Worm
 	[32] = {"32", "Monguis", "25% de probabilidad de activar un efecto de hongo aleatorio para la habitación actual"}, -- Liberty Cap
-	[33] = {"33", "Cordón umbilical", "Al tener medio corazón o menos:#{{Collectible100}} Otorga un pequeño Steven#{{Collectible318}} Gran probabilidad de que aparezca un familiar Géminis al recibir daño"}, -- Umbilical Cord
+	[33] = {"33", "Cordón umbilical", "Al tener medio corazón rojo o menos:#{{Collectible100}} Otorga un pequeño Steven#Puedes tener corazones de alma o negros{{Collectible318}} Gran probabilidad de que aparezca un familiar Géminis al recibir daño"}, -- Umbilical Cord
 	[39] = {"39", "Cáncer", "↑ {{Tears}} Lágrimas +1"}, -- Cancer
 	[48] = {"48", "Una Página Faltante", "Al recibir daño, 5% de probabilidad de infligir 80 de daño a los enemigos de la habitación#{{BlackHeart}} Los corazones negros y los efectos similares al Necronomicon infligen el doble de daño"}, -- A Missing Page
 	[49] = {"49", "Moneda Sangrienta", "{{HalfHeart}} 25% de probabilidad de generar medio corazón al recoger monedas#Mayor probabilidad al recoger monedas de mayor valor"}, -- Bloody Penny

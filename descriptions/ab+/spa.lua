@@ -741,16 +741,16 @@ EID.descriptions[languageCode].trinkets={
 	{"2", "Popó petrificado", "50% de probabilidad de obtener recolectables al romper cacas"}, -- Petrified Poop
 	{"3", "Batería AAA", "{{Battery}} Se necesita 1 carga menos en los objetos activos"}, -- AAA Battery
 	{"4", "Control Remoto Roto", "{{Collectible44}} Usar un objeto activo te teletransporta a una habitación aleatoria"}, -- Broken Remote
-	{"5", "Corazón Purpura", "Doble de probabilidad de encontrar enemigos campeones"}, -- Purple Heart
+	{"5", "Corazón Purpura", "Doble de probabilidad de encontrar enemigos y jefes campeones"}, -- Purple Heart
 	{"6", "Imán roto", "{{Coin}} Atrae las monedas hacia ti"}, -- Broken Magnet
-	{"7", "Cuenta de rosario", "{{AngelChance}} Aumenta la probabilidad de encontrar {{AngelRoom}} Salas de Ángel#Aumenta la probabilidad de encontrar {{Collectible33}} La Bíblia en {{Shop}} Tiendas y {{Library}} Bibliotecas"}, -- Rosary Bead
-	{"8", "Cartucho", "{{Timer}} 5% de probabilidad al recibir daño de recibir por 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Matar 2 enemigos cura medio corazón#{{Fear}} Asusta a los enemigos de la habitación"}, -- Cartridge
+	{"7", "Cuenta de rosario", "{{AngelChance}} 75% de probabilidad de que la Sala del Diablo sea reemplazada por una {{AngelRoom}} Sala de Ángel#Aumenta la probabilidad de encontrar {{Collectible33}} La Bíblia en {{Shop}} Tiendas y {{Library}} Bibliotecas"}, -- Rosary Bead
+	{"8", "Cartucho", "{{Timer}} 5% de probabilidad al recibir daño de recibir por 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón al matar enemigos#{{Fear}} Asusta a los enemigos de la habitación"}, -- Cartridge
 	{"9", "Gusano de Pulso", "Las lágrimas aumentan y disminuyen su tamaño#Afecta a la hitbox de la lágrima"}, -- Pulse Worm
-	{"10", "Gusano Ondulante", "↑ {{Tears}} Lágrimas +0.3#Las lágrimas se mueven en ondas"}, -- Wiggle Worm
+	{"10", "Gusano Ondulante", "↑ {{Tears}} Lágrimas +0.4#Las lágrimas se mueven en ondas"}, -- Wiggle Worm
 	{"11", "Gusano Circular", "Las lágrimas se mueven en espiral a gran velocidad"}, -- Ring Worm
 	{"12", "Gusano plano", "Lágrimas 50% más grandes#Aumenta el retroceso"}, -- Flat Worm
 	{"13", "Tarjeta de crédito", "{{Shop}} Permite llevarse un objeto de la tienda gratis"}, -- Credit Card
-	{"14", "Callo", "Otorga inmunidad a las espinas y el fluido"}, -- Callus
+	{"14", "Callo", "Otorga inmunidad a las espinas de suelo y el fluido"}, -- Callus
 	{"15", "Roca de la suerte", "{{Coin}} Genera monedas al destruir rocas"}, -- Lucky Rock
 	{"16", "Uña del pie de Mamá", "El pie de mamá cae aleatoriamente en la habitación cada 60 segundos"}, -- Mom's Toenail
 	{"17", "Pintalabios negro", "{{BlackHeart}} +5% de probabilidad de reemplazar los corazones de alma por corazones negros"}, -- Black Lipstick
@@ -758,10 +758,10 @@ EID.descriptions[languageCode].trinkets={
 	{"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los cofres dorados sin usar llaves"}, -- Paper Clip
 	{"20", "Pata de mono", "{{BlackHeart}} Al tener medio corazón, deja caer un corazón negro#{{Danger}} Desaparece luego de 3 usos"}, -- Monkey Paw
 	{"21", "Papel misterioso", "Otorga aleatoriamente el efecto de:#{{Collectible327}} La Polaroid#{{Collectible328}} El Negativo#{{Trinket48}} Una página perdida#{{Trinket23}} Cartel de desaparición"}, -- Mysterious Paper
-	{"22", "Cola de Demonio", "{{Heart}} Disminuye a 20% la probabilidad de generar corazones rojos#{{BlackHeart}} Convierte los corazones rojos en corazones negros#{{Key}} Aumenta la probabilidad de generar llaves"}, -- Daemon's Tail
-	{"23", "Cartel de Desaparecido", "{{SacrificeRoom}} Reaparecerás como {{Player10}} El Perdido al morir"}, -- Missing Poster
-	{"24", "Moneda de Trasero", "{{Coin}} +20% de probabilidad de generar monedas al romper caca#Recoger monedas hará que te tires pedos"}, -- Butt Penny
-	{"25", "Dulce misterioso", "Te tiras un pedo o generas una caca cada 30 segundos"}, -- Mysterious Candy
+	{"22", "Cola de Demonio", "{{Heart}} Disminuye a 20% la probabilidad de generar corazones#{{BlackHeart}} Convierte los corazones en corazones negros#{{Key}} Aumenta la probabilidad de generar llaves"}, -- Daemon's Tail
+	{"23", "Cartel de Desaparecido", "{{SacrificeRoom}} Reaparecerás como {{Player10}} El Perdido al morir en una sala de Sacrificio#También puede usarse en otras salas una vez desbloqueado {{Player10}} El Perdido"}, -- Missing Poster
+	{"24", "Moneda de Trasero", "{{Coin}} +20% de probabilidad de generar monedas al romper una caca#Recoger monedas hará que te tires pedos"}, -- Butt Penny
+	{"25", "Dulce misterioso", "Te tiras un pedo o generas una caca cada 30 segundos#También puede activarse al recibir daño"}, -- Mysterious Candy
 	{"26", "Gusano Cuadrado", "↑ {{Range}} Alcance +10#Las lágrimas se mueven en ángulos rectos"}, -- Hook Worm
 	{"27", "Gusano Fugáz", "↑ {{Shotspeed}} Vel. de lágrimas +0.5"}, -- Whip Worm
 	{"28", "Anj roto", "{{Player4}} 22% de probabilidad de reaparecer como \"???\" al morir"}, -- Broken Ankh
@@ -769,10 +769,10 @@ EID.descriptions[languageCode].trinkets={
 	{"30", "Ojo Rojo", "{{Poison}} 10% de probabilidad de disparar lágrimas venenosas#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Pinky Eye
 	{"31", "Chincheta", "10% de probabilidad de disparar lágrimas perforantes y espectrales#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Push Pin
 	{"32", "Monguis", "25% de probabilidad de obtener un efecto de champiñón aleatorio durante la habitación#Puede revelar las habitaciones especiales en el mapa"}, -- Liberty Cap
-	{"33", "Cordón umbilical", "{{Timer}} Genera un {{Collectible 100}} Pequeño Steven para la sala cuando tu salud es reducida a medio corazón"}, -- Umbilical Cord
-	{"34", "Corazón de niño", "{{UnknownHeart}} 10% de probabilidad de que la recompensa de la sala sea un corazón aleatorio#{{Heart}} 33% de probabilidad de obtener corazones extra de los cofres, las rocas marcadas y las máquinas destruidas"}, -- Child's Heart
+	{"33", "Cordón umbilical", "{{Timer}} Genera un {{Collectible 100}} Pequeño Steven para la sala cuando tu salud es reducida a medio corazón rojo"}, -- Umbilical Cord
+	{"34", "Corazón de niño", "{{UnknownHeart}} 10% de probabilidad de que la recompensa de la sala sea un corazón aleatorio#{{Heart}} 33% de probabilidad de obtener corazones extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Child's Heart
 	{"35", "Cuerno Curvo", "↑ {{Damage}} Daño +2"}, -- Cuerno Curvo
-	{"36", "Llave oxidada", "{{Key}} 10% de probabilidad de que la recompensa de la sala sea una llave#{{Key}} 33% de probabilidad de obtener llaves extra de los cofres, las rocas marcadas y las máquinas destruidas"}, -- Rusted Key
+	{"36", "Llave oxidada", "{{Key}} 10% de probabilidad de que la recompensa de la sala sea una llave#{{Key}} 33% de probabilidad de obtener llaves extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Rusted Key
 	{"37", "Pezuña de cabra", "↑ {{Speed}} Velocidad +0.15"}, -- Pezuña de cabra
 	{"38", "Perla de Mamá", "+10% de probabilidad de que los corazones se generen como {{SoulHeart}} Corazones de Alma, {{BlackHeart}} Corazones Negros o {{EmptyBoneHeart}} Corazones de Hueso"}, -- Mom's Pearl
 	{"39", "Cáncer", "↑ {{Tears}} Lágrimas +2"}, -- Cáncer
