@@ -741,16 +741,16 @@ EID.descriptions[languageCode].trinkets={
 	{"2", "Popó petrificado", "50% de probabilidad de obtener recolectables al romper cacas"}, -- Petrified Poop
 	{"3", "Batería AAA", "{{Battery}} Se necesita 1 carga menos en los objetos activos"}, -- AAA Battery
 	{"4", "Control Remoto Roto", "{{Collectible44}} Usar un objeto activo te teletransporta a una habitación aleatoria"}, -- Broken Remote
-	{"5", "Corazón Purpura", "Doble de probabilidad de encontrar enemigos campeones"}, -- Purple Heart
+	{"5", "Corazón Purpura", "Doble de probabilidad de encontrar enemigos y jefes campeones"}, -- Purple Heart
 	{"6", "Imán roto", "{{Coin}} Atrae las monedas hacia ti"}, -- Broken Magnet
-	{"7", "Cuenta de rosario", "{{AngelChance}} Aumenta la probabilidad de encontrar {{AngelRoom}} Salas de Ángel#Aumenta la probabilidad de encontrar {{Collectible33}} La Bíblia en {{Shop}} Tiendas y {{Library}} Bibliotecas"}, -- Rosary Bead
-	{"8", "Cartucho", "{{Timer}} 5% de probabilidad al recibir daño de recibir por 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Matar 2 enemigos cura medio corazón#{{Fear}} Asusta a los enemigos de la habitación"}, -- Cartridge
+	{"7", "Cuenta de rosario", "{{AngelChance}} 75% de probabilidad de que la Sala del Diablo sea reemplazada por una {{AngelRoom}} Sala de Ángel#Aumenta la probabilidad de encontrar {{Collectible33}} La Bíblia en {{Shop}} Tiendas y {{Library}} Bibliotecas"}, -- Rosary Bead
+	{"8", "Cartucho", "{{Timer}} 5% de probabilidad al recibir daño de recibir por 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón al matar enemigos#{{Fear}} Asusta a los enemigos de la habitación"}, -- Cartridge
 	{"9", "Gusano de Pulso", "Las lágrimas aumentan y disminuyen su tamaño#Afecta a la hitbox de la lágrima"}, -- Pulse Worm
-	{"10", "Gusano Ondulante", "↑ {{Tears}} Lágrimas +0.3#Las lágrimas se mueven en ondas"}, -- Wiggle Worm
+	{"10", "Gusano Ondulante", "↑ {{Tears}} Lágrimas +0.4#Las lágrimas se mueven en ondas"}, -- Wiggle Worm
 	{"11", "Gusano Circular", "Las lágrimas se mueven en espiral a gran velocidad"}, -- Ring Worm
 	{"12", "Gusano plano", "Lágrimas 50% más grandes#Aumenta el retroceso"}, -- Flat Worm
 	{"13", "Tarjeta de crédito", "{{Shop}} Permite llevarse un objeto de la tienda gratis"}, -- Credit Card
-	{"14", "Callo", "Otorga inmunidad a las espinas y el fluido"}, -- Callus
+	{"14", "Callo", "Otorga inmunidad a las espinas de suelo y el fluido"}, -- Callus
 	{"15", "Roca de la suerte", "{{Coin}} Genera monedas al destruir rocas"}, -- Lucky Rock
 	{"16", "Uña del pie de Mamá", "El pie de mamá cae aleatoriamente en la habitación cada 60 segundos"}, -- Mom's Toenail
 	{"17", "Pintalabios negro", "{{BlackHeart}} +5% de probabilidad de reemplazar los corazones de alma por corazones negros"}, -- Black Lipstick
@@ -758,10 +758,10 @@ EID.descriptions[languageCode].trinkets={
 	{"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los cofres dorados sin usar llaves"}, -- Paper Clip
 	{"20", "Pata de mono", "{{BlackHeart}} Al tener medio corazón, deja caer un corazón negro#{{Danger}} Desaparece luego de 3 usos"}, -- Monkey Paw
 	{"21", "Papel misterioso", "Otorga aleatoriamente el efecto de:#{{Collectible327}} La Polaroid#{{Collectible328}} El Negativo#{{Trinket48}} Una página perdida#{{Trinket23}} Cartel de desaparición"}, -- Mysterious Paper
-	{"22", "Cola de Demonio", "{{Heart}} Disminuye a 20% la probabilidad de generar corazones rojos#{{BlackHeart}} Convierte los corazones rojos en corazones negros#{{Key}} Aumenta la probabilidad de generar llaves"}, -- Daemon's Tail
-	{"23", "Cartel de Desaparecido", "{{SacrificeRoom}} Reaparecerás como {{Player10}} El Perdido al morir"}, -- Missing Poster
-	{"24", "Moneda de Trasero", "{{Coin}} +20% de probabilidad de generar monedas al romper caca#Recoger monedas hará que te tires pedos"}, -- Butt Penny
-	{"25", "Dulce misterioso", "Te tiras un pedo o generas una caca cada 30 segundos"}, -- Mysterious Candy
+	{"22", "Cola de Demonio", "{{Heart}} Disminuye a 20% la probabilidad de generar corazones#{{BlackHeart}} Convierte los corazones en corazones negros#{{Key}} Aumenta la probabilidad de generar llaves"}, -- Daemon's Tail
+	{"23", "Cartel de Desaparecido", "{{SacrificeRoom}} Reaparecerás como {{Player10}} El Perdido al morir en una sala de Sacrificio#También puede usarse en otras salas una vez desbloqueado {{Player10}} El Perdido"}, -- Missing Poster
+	{"24", "Moneda de Trasero", "{{Coin}} +20% de probabilidad de generar monedas al romper una caca#Recoger monedas hará que te tires pedos"}, -- Butt Penny
+	{"25", "Dulce misterioso", "Te tiras un pedo o generas una caca cada 30 segundos#También puede activarse al recibir daño"}, -- Mysterious Candy
 	{"26", "Gusano Cuadrado", "↑ {{Range}} Alcance +10#Las lágrimas se mueven en ángulos rectos"}, -- Hook Worm
 	{"27", "Gusano Fugáz", "↑ {{Shotspeed}} Vel. de lágrimas +0.5"}, -- Whip Worm
 	{"28", "Anj roto", "{{Player4}} 22% de probabilidad de reaparecer como \"???\" al morir"}, -- Broken Ankh
@@ -769,75 +769,75 @@ EID.descriptions[languageCode].trinkets={
 	{"30", "Ojo Rojo", "{{Poison}} 10% de probabilidad de disparar lágrimas venenosas#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Pinky Eye
 	{"31", "Chincheta", "10% de probabilidad de disparar lágrimas perforantes y espectrales#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Push Pin
 	{"32", "Monguis", "25% de probabilidad de obtener un efecto de champiñón aleatorio durante la habitación#Puede revelar las habitaciones especiales en el mapa"}, -- Liberty Cap
-	{"33", "Cordón umbilical", "{{Timer}} Genera un {{Collectible 100}} Pequeño Steven para la sala cuando tu salud es reducida a medio corazón"}, -- Umbilical Cord
-	{"34", "Corazón de niño", "{{UnknownHeart}} 10% de probabilidad de que la recompensa de la sala sea un corazón aleatorio#{{Heart}} 33% de probabilidad de obtener corazones extra de los cofres, las rocas marcadas y las máquinas destruidas"}, -- Child's Heart
+	{"33", "Cordón umbilical", "{{Timer}} Genera un {{Collectible 100}} Pequeño Steven para la sala cuando tu salud es reducida a medio corazón rojo"}, -- Umbilical Cord
+	{"34", "Corazón de niño", "{{UnknownHeart}} 10% de probabilidad de que la recompensa de la sala sea un corazón aleatorio#{{Heart}} 33% de probabilidad de obtener corazones extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Child's Heart
 	{"35", "Cuerno Curvo", "↑ {{Damage}} Daño +2"}, -- Cuerno Curvo
-	{"36", "Llave oxidada", "{{Key}} 10% de probabilidad de que la recompensa de la sala sea una llave#{{Key}} 33% de probabilidad de obtener llaves extra de los cofres, las rocas marcadas y las máquinas destruidas"}, -- Rusted Key
+	{"36", "Llave oxidada", "{{Key}} 10% de probabilidad de que la recompensa de la sala sea una llave#{{Key}} 33% de probabilidad de obtener llaves extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Rusted Key
 	{"37", "Pezuña de cabra", "↑ {{Speed}} Velocidad +0.15"}, -- Pezuña de cabra
 	{"38", "Perla de Mamá", "+10% de probabilidad de que los corazones se generen como {{SoulHeart}} Corazones de Alma, {{BlackHeart}} Corazones Negros o {{EmptyBoneHeart}} Corazones de Hueso"}, -- Mom's Pearl
 	{"39", "Cáncer", "↑ {{Tears}} Lágrimas +2"}, -- Cáncer
 	{"40", "Parche rojo", "{{Timer}} 20% de probabilidad de obtener ↑ {{Damage}} Daño +1.8 al recibir daño#{{Suerte}} 100% de probabilidad con 8 de suerte"}, -- Red Patch
-	{"41", "Fósforo", "{{Bomb}} 10% de probabilidad de que la recompensa de la sala sea una bomba#{{Bomb}} 33% de probabilidad de obtener bombas extra de los cofres, las rocas marcadas y las máquinas destruidas#{{Warning}} Remueve {{Trinket53}} la garrapata"}, -- Match Stick
-	{"42", "Dedo de la Suerte", "↑ {{Luck}} Suerte +1"},
-	{"43", "Cráneo maldito", "Al recibir daño estando a medio corazón, serás teletransportado a una habitación aleatoria"}, -- Cursed Skull
-	{"44", "Tapa de Seguridad", "{{Pill}} 10% de probabilidad de que la recompensa de la sala sea una pildora#{{Pill}} 33% de probabilidad de obtener pildoras extra de los cofres, las rocas marcadas y las máquinas destruidas"}, -- Safety Cap
-	{"45", "As de Espadas", "{{Card}} 10% de probabilidad de que la recompensa de la sala sea una carta#{{Card}} 33% de probabilidad de obtener cartas extra de los cofres, las rocas marcadas y las máquinas destruidas"}, -- Ace of Spades
+	{"41", "Fósforo", "{{Bomb}} 10% de probabilidad de que la recompensa de la sala sea una bomba#{{Bomb}} 33% de probabilidad de obtener bombas extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos#{{Warning}} Remueve {{Trinket53}} la garrapata"}, -- Match Stick
+	{"42", "Dedo de la Suerte", "↑ {{Luck}} Suerte +1#Más probabilida de recompensa de salas#33% de probabilidad de obtener un recolectable extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Lucky Toe
+	{"43", "Cráneo maldito", "Si quedas a medio corazón al recibir daño, serás teletransportado a una habitación aleatoria"}, -- Cursed Skull
+	{"44", "Tapa de Seguridad", "{{Pill}} 10% de probabilidad de que la recompensa de la sala sea una pildora#{{Pill}} 33% de probabilidad de obtener pildoras extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Safety Cap
+	{"45", "As de Espadas", "{{Card}} 10% de probabilidad de que la recompensa de la sala sea una carta#{{Card}} 33% de probabilidad de obtener cartas extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Ace of Spades
 	{"46", "Tenedor de Isaac", "{{HealingRed}} Probabilidad del 10% de curar medio corazón al limpiar una habitación#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Tenedor de Isaac
 	{"47", "", "<Este trinket no existe>"},
-	{"48", "Una Página Faltante", "5% de probabilidad de infligir 40 de daño a toda la habitación al recibir daño"}, -- Una Página Faltante
+	{"48", "Una Página Faltante", "5% de probabilidad de infligir 40 de daño a toda la habitación al recibir daño#{{Luck}} 50% de probabilidad con 60 de suerte"}, -- Una Página Faltante
 	{"49", "Moneda Sangrienta", "{{HalfHeart}} 50% de probabilidad de generar medio corazón al recoger una moneda"}, -- Bloody Penny
 	{"50", "Moneda Quemada", "{{Bomb}} 50% de probabilidad de generar bombas al recoger una moneda"}, -- Burnt Penny
 	{"51", "Moneda Plana", "{{Key}} 50% de probabilidad de generar llaves al recoger una moneda"}, -- Flat Penny
-	{"52", "Moneda Falsificada", "{{Coin}} 50% de probabilidad de duplicar el valor de las monedas al recogerlas"}, -- Counterfeit Penny
+	{"52", "Moneda Falsificada", "{{Coin}} 50% de probabilidad de incrementar +1 el valor de las monedas al recogerlas"}, -- Counterfeit Penny
 	{"53", "Garrapata", "{{HealingRed}} Cura 1 corazón rojo al entrar a una {{BossRoom}} Sala de Jefe#El jefe comienza con -15% de vida#{{Warning}} Al recogerlo, no puede ser soltado#Solo es removido con el {{Trinket41}} Fósforo o tragándolo"}, -- Tick
 	{"54", "Cabeza de Isaac", "Familiar con lágrimas penetrantes#Inflige 3.5 de daño"}, -- Isaac's Head
 	{"55", "La fe de Maggy", "{{EternalHeart}} Otorga un Corazón Eterno al entrar a una nueva planta"}, -- Maggy's Faith
 	{"56", "Lengua de Judas", "{{DevilRoom}} Reduce los precios de los pactos del Diablo a un corazón#{{SoulHeart}} No reduce los pactos de 3 Corazones de Alma"}, -- Judas' Tongue
-	{"57", "Alma de ???", "Familiar que rebota por la habitación#Dispara en la misma dirección que el jugador#Inflige 3.5 de daño"}, -- ???'s Soul
-	{"58", "Mechón de Sansón", "[[Timer}} Matar a un enemigo tiene 1/15 de probabilidad de otorgar ↑ {{Damage}} Daño +0.5 por la habitación#{{Luck}} 100% de probabilidad con 10 de suerte"}, -- Samson's Lock
+	{"57", "Alma de ???", "Familiar que rebota por la habitación#Dispara en la misma dirección que el jugador#Inflige 3.5 de daño#Tiene lágrimas espectrales y teledirigidas"}, -- ???'s Soul
+	{"58", "Mechón de Sansón", "{{Timer}} Matar a un enemigo tiene 1/15 de probabilidad de otorgar ↑ {{Damage}} Daño +0.5 por la habitación#{{Luck}} 100% de probabilidad con 10 de suerte"}, -- Samson's Lock
 	{"59", "Ojo de Caín", "{{Collectible21}} 25% de probabilidad de revelar los iconos del mapa al empezar un nuevo piso#{{Luck}} 100% de probabilidad con 3 de suerte"}, -- Cain's Eye
 	{"60", "Pata del Ave de Eva", "{{Collectible117}} 5% de probabilidad de generar un pájaro muerto al matar un enemigo#{{Luck}} 100% de probabilidad con 8 de suerte"}, -- Eve's Bird Foot
 	{"61", "La Mano izquierda", "{{RedChest}} Reemplaza todos los cofres por cofres rojos"}, -- La Mano izquierda
 	{"62", "Rocas brillantes", "Las rocas marcadas y de trampilla brillan cada 10 segundos"}, -- Shiny Rock
 	{"63", "Tijeras de Seguridad", "{{Bomb}} Convierte las bombas troll en bombas recolectables"}, -- Safety Scissors
 	{"64", "Gusano de Arcoíris", "Otorga un efecto de gusano aleatorio cada 3 segundos"}, -- Rainbow Worm
-	{"65", "Gusano Estirado", "↑ {{Range}} Alcance x2#↓ {{Tearsize}} Tamaño de lágrima x0.5"}, -- Tape Worm
-	{"66", "Gusano Perezoso", "↑ {{Range}} Alcance +4#↑ {{Tearsize}} Tamaño de lágrima +2#↓ {{Shotspeed}} Vel. de lágrimas -0.4#"}, -- Lazy Worm
-	{"67", "Dado Roto", "Recibir daño tiene un 50% de probabilidad de activar uno de los siguientes efectos:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible386}} D12 #{{Collectible166}} D20"},
+	{"65", "Gusano Estirado", "↑ {{Range}} Alcance x2#↓ Altura de lágrima x0.5"}, -- Tape Worm
+	{"66", "Gusano Perezoso", "↑ {{Range}} Alcance +4#↑ Altura de lágrima +2#↓ {{Shotspeed}} Vel. de lágrimas -0.5#"}, -- Lazy Worm
+	{"67", "Dado Roto", "Recibir daño activa uno de los siguientes efectos:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible386}} D12 #{{Collectible166}} D20"},
 	{"68", "Súper Imán", "Los recolectables y los enemigos serán atraidos hacia ti"}, -- Super Magnet
 	{"69", "Polaroid Desvanecida", "Te camufla de forma aleatoria#{{Confusion}} Confunde a los enemigos"}, -- Faded Polaroid
 	{"70", "Piojo", "Genera aleatoriamente una araña azul en habitaciónes hostiles"}, -- Louse
 	{"71", "Vejiga de Bob", "Las bombas sueltan fluido"}, -- Bob's Bladder
-	{"72", "Batería de Reloj", "{{Battery}} 6.66% de probabilidad de reemplazar la recompensa de la habitación por una batería#{{Battery}} +10% de probabilidad de que los recolectables sean baterías#{{Battery}} 5% de probabilidad de añadir una carga al objeto activo al limpiar una habitación"}, -- Watch Battery
-	{"73", "Detonador", "{{Bomb}} 10% de probabilidad de que las explosiones generen bombas recolectables"}, -- Blasting Cap
+	{"72", "Batería de Reloj", "{{Battery}} +6.67% de probabilidad de reemplazar la recompensa de la habitación por una batería#{{Battery}} +2% de probabilidad de que los recolectables sean baterías#{{Battery}} 5% de probabilidad de añadir una carga al objeto activo al limpiar una habitación"}, -- Watch Battery
+	{"73", "Detonador", "{{Bomb}} 10% de probabilidad de que las bombas generen bombas recolectables al explotar#Bombas troll generadas por {{Collectible65}} Recetario de Anarquista, {{Collectible371}} Maldición de la torre y {{Card17}} La Torre "}, -- Blasting Cap
 	{"74", "Detector de Clavos", "{{LadderRoom}} +0.5% de probabilidad de encontrar trampillas al destruir rocas"}, -- Stud Finder
 	{"75", "Error", "Otorga un efecto de trinket aleatorio cada habitación"}, -- Error
-	{"76", "Ficha de póker", "Al abrir un cofre:#↑ 50% de probabilidad de conseguir más recolectables#↓ 50% de probabilidad de generar una mosca azul"}, -- Poker Chip
+	{"76", "Ficha de póker", "Al abrir un cofre:#↑ 50% de probabilidad de conseguir más recolectables#↓ 50% de probabilidad de generar una mosca roja"}, -- Poker Chip
 	{"77", "Ampolla", "Aumenta el empuje"}, -- Blister
 	{"78", "Segunda mano", "Duplica la duración de efectos en los enemigos"}, -- Second Hand
 	{"79", "Sin final, sin nombre", "25% de probabilidad al usar una {{Rune}} runa, {{Pill}} píldora o {{Card}} carta de generar una copia"}, -- Endless Nameless
 	{"80", "Pluma Negra", "↑ {{Damage}} Daño +0.2 por cada objeto \"malvado\" que tengas"}, -- Black Feather
 	{"81", "Furia del Ciego", "La invencibilidad tras recibir daño dura el doble"}, -- Blind Rage
-	{"82", "Herradura de oro", "{{TreasureRoom}} +15% de posibilidad de obtener dos salas del tesoro en el siguiente piso"}, -- Golden Horse Shoe
+	{"82", "Herradura de oro", "{{TreasureRoom}} +15% de posibilidad de obtener dos objetos en la sala del tesoro en pisos siguientes"}, -- Golden Horse Shoe
 	{"83", "Llave de Tienda", "{{Shop}} Permite abrir las tiendas gratis"}, -- Store Key
 	{"84", "Costilla de Codicia", "{{Coin}} Genera 5% mas monedas y menos corazones como recompensa de habitación#Greed y Super Greed ya no aparecerán en la {{Shop}} Tienda y en la {{SecretRoom}} Habitación Secreta"}, -- Rib of Greed
-	{"85", "Karma", "{{DonationMachine}} 33% de probabilidad al usar una Máquina de Donación de:#{{HealingRed}} Curar 1 corazón (40%)#{{Coin}} Generar 1 moneda (40%)#{{Luck}} +1 de Suerte (15%)#{{Beggar}} Generar un Mendigo (5%)"}, -- Karma
+	{"85", "Karma", "{{DonationMachine}} 33% de probabilidad, al usar una Máquina de Donación, de:#{{HealingRed}} Curar 1 corazón (40%)#{{Coin}} Generar 1 moneda (40%)#{{Luck}} +1 de Suerte (15%)#{{Beggar}} Generar un Mendigo (5%)"}, -- Karma
 	{"86", "Mini-Larva", "Genera una mosca azul al romper una caca"}, -- Lil Larva
 	{"87", "Medallón de Mamá", "{{HealingRed}} Cura medio corazón al usar llaves#{{Heart}} Convierte los medios corazones en corazones enteros"}, -- Mom's Locket
 	{"88", "¡NO!", "Previene que aparezcan objetos activos"}, -- NO!
 	{"89", "Correa de Niño", "Los familiares se mantendrán cerca"}, -- Child Leash
-	{"90", "Detonador café", "La caca explota al ser destruida, infligiendo 100 de daño"}, -- Brown Cap
+	{"90", "Detonador café", "La caca explota al ser destruida, infligiendo 60 de daño#No afecta a cacas rojas"}, -- Brown Cap
 	{"91", "Meconio", "33% de probabilidad de encontrar cacas negras#{{BlackHeart}} 5% de probabilidad de generar un corazón negro al romper una caca negra"}, -- Meconium
-	{"92", "Corona Quebrada", "↑ {{Tears}} Lágrimas +0.2#↑ Multiplica las estadisticas x1.33 si se encuentran por encima del valor base"}, -- Cracked Crown
+	{"92", "Corona Quebrada", "↑ {{Tears}} Lágrimas x0.8#↑ Multiplica las estadisticas x1.33 si se encuentran por encima del valor base"}, -- Cracked Crown
 	{"93", "Pañal usado", "15% de probabilidad por habitación de volver amistosas a todas las moscas enemigas"}, -- Used Diaper
-	{"94", "Cola de pescado", "Duplica todas las moscas azules y arañas generadas"}, -- Fish Tail
-	{"95", "Diente negro", "{{Poison}} 3% de probabilidad de disparar un diente negro venenoso#Los dientes infligen el doble de tu daño"}, -- Black Tooth
-	{"96", "Gusano Ouroboros", "↑ {{Range}} +4 de Alcance#↑ {{Tearsize}} Tamaño de lágrima +2#Lágrimas espectrales#Probabilidad de disparar lágrimas teledirigidas#{{Luck}} 100% de probabilidad con 9 de suerte#Las lágrimas se mueven rapidamente en espiral"}, -- Ouroboros Worm
+	{"94", "Cola de pescado", "Duplica todas las moscas azules y arañas azules generadas"}, -- Fish Tail
+	{"95", "Diente negro", "{{Poison}} 3% de probabilidad de disparar un diente negro venenoso#Los dientes infligen el doble de tu daño#{{Luck}} 100% de probabilidad con 32 de suerte"}, -- Black Tooth
+	{"96", "Gusano Ouroboros", "↑ {{Range}} +4 de Alcance#↑ Altura de lágrima +2#Lágrimas espectrales#Probabilidad de disparar lágrimas teledirigidas#{{Luck}} 100% de probabilidad con 9 de suerte#Las lágrimas se mueven rapidamente en espiral"}, -- Ouroboros Worm
 	{"97", "Angina", "Recibir daño 12-20 veces genera un familiar que bloquea proyectiles#Limite de 2 familiares"}, -- Tonsil
-	{"98", "Duende de Naríz", "10% de probabilidad de disparar lágrimas de moco teledirigidas#{{Damage}} Los mocos infligen tu daño una vez cada segundo#Los mocos se pegan durante 60 segundos"}, -- Nose Goblin
+	{"98", "Duende de Naríz", "10% de probabilidad de disparar lágrimas de moco#{{Damage}} Los mocos infligen tu daño una vez cada segundo#Los mocos se pegan durante 60 segundos#50% de probabilidad de que los mocos sean teledirijidos"}, -- Nose Goblin
 	{"99", "Super Bola", "10% de probabilidad de disparar lágrimas que rebotan"}, -- Super Ball
-	{"100", "Bombilla Vibrante", "Otorga al tener un objeto activo cargado:#↑ {{Speed}} Velocidad +0.25#↑ {{Tears}} Lágrimas +0.2#↑ {{Damage}} Daño +0.5#↑ {{Range}} Alcance +0.75#↑ {{Shotspeed}} Vel. de lágrimas +0.1#↑ {{Luck}} +1 de Suerte"}, -- Vibrant Bulb
-	{"101", "Bombilla Muerta", "Otorga al tener un objeto activo descargado:#↑ {{Speed}} Velocidad +0.5#↑ {{Tears}} Lágrimas +0.4#↑ {{Damage}} Daño +1.5#↑ {{Range}} Alcance +1.5#↑ {{Shotspeed}} Vel. de lágrimas +0.3#↑ {{Luck}} +2 de Suerte"}, -- Dim Bulb
+	{"100", "Bombilla Vibrante", "Otorga al tener un objeto activo cargado:#↑ {{Speed}} Velocidad +0.25#↑ {{Tears}} Lágrimas +0.2#↑ {{Damage}} Daño +0.5#↑ {{Range}} Alcance +0.75#↑ {{Shotspeed}} Vel. de lágrimas +0.1#↑ Altura de lágrima +0.5#↑ {{Luck}} +1 de Suerte"}, -- Vibrant Bulb
+	{"101", "Bombilla Muerta", "Otorga al tener un objeto activo descargado:#↑ {{Speed}} Velocidad +0.5#↑ {{Tears}} Lágrimas +0.4#↑ {{Damage}} Daño +1.5#↑ {{Range}} Alcance +1.5#↑ {{Shotspeed}} Vel. de lágrimas +0.3#↑ Altura de lágrima +1#↑ {{Luck}} +2 de Suerte"}, -- Dim Bulb
 	{"102", "Carta Dividida", "{{SecretRoom}} +1 Sala Secreta adicional en cada planta"}, -- Fragmented Card
 	{"103", "¡Igualdad!", "Convierte los recolectables en sus versiones dobles al tener el mismo número de {{Coin}} monedas, {{Key}} llaves y {{Bomb}} bombas"}, -- Equality!
 	{"104", "Hueso de los deseos", "2% de probabilidad de consumir el trinket y generar un objeto al recibir daño"}, -- Wish Bone
