@@ -1321,12 +1321,21 @@ end
 ---@param text string
 ---@return string, string?
 function EID:handleBulletpointIcon(text)
-	local firstWord = EID:removeColorMarkup(string.match(text, "([^%s]+)"))
-	if EID:getIcon(firstWord) ~= EID.InlineIcons["ERROR"] and string.find(firstWord, "{{.-}}")~=nil then
-		if not EID.Config["StatAndPickupBulletpoints"] and EID.StatPickupBulletpointBlacklist[firstWord] then
-			return "\007", firstWord
+	-- Find the position where '}}' is followed by a space or letter
+	local firstMarkupPos, _ = string.find(text, "{{.-}}")
+	local startPos, endPos = string.find(text, "}}%s")
+
+	-- check if string starts with markup and has 
+	if firstMarkupPos and startPos and firstMarkupPos == 1 then
+		-- The split should be right after '}}', so adjust the position
+		local firstWord = string.sub(text, 1, endPos - 1)
+		firstWord = EID:removeColorMarkup(firstWord)
+		if EID:getIcon(firstWord) ~= EID.InlineIcons["ERROR"] and string.find(firstWord, "{{.-}}")~=nil then
+			if not EID.Config["StatAndPickupBulletpoints"] and EID.StatPickupBulletpointBlacklist[firstWord] then
+				return "\007", firstWord
+			end
+			return firstWord
 		end
-		return firstWord
 	end
 	return "\007"
 end

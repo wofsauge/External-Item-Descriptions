@@ -753,14 +753,17 @@ function EID:printBulletPoints(description, renderPos)
 			if i == 1 then
 				local bpIcon, rejectedIcon = EID:handleBulletpointIcon(lineToPrint)
 				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
-					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
+					lineToPrint = string.gsub(lineToPrint, bpIcon, "", 1)
 					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor, true)
 				else
-					if rejectedIcon then lineToPrint = string.gsub(lineToPrint, rejectedIcon .. " ", "", 1) end
+					if rejectedIcon then lineToPrint = string.gsub(lineToPrint, rejectedIcon, "", 1) end
 					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
 				end
 				EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
 			end
+			-- Remove leading spaces
+			lineToPrint = lineToPrint:match('^%s*(.*)')
+			-- render text
 			textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
 				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 		end
