@@ -5,7 +5,7 @@
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
--- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
+-- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line  |  ! = Warning
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
 local languageCode = "spa"
@@ -54,9 +54,9 @@ local trinkets = {
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "Fusible corto", "Las bombas colocadas explotan más rápido#Las bombas hacen un 15% mas de daño"}, -- Fusible corto
 	-- Change: "2%" to "5%"
-	[104] = {"104", "Hueso de los deseos", "Probabilidad de 5% de destruirse y generar un objeto al ser golpeado"}, -- Hueso de los deseos
+	[104] = {"104", "Hueso de los deseos", "5% de probabilidad de destruirse y generar un objeto al ser golpeado"}, -- Hueso de los deseos
 	-- Change: "2%" to "5%"
-	[105] = {"105", "Bolsa del almuerzo", "Probabilidad de 5% de destruirse y generar {{Collectible22}} Almuerzo al ser golpeado"}, -- Bolsa del almuerzo
+	[105] = {"105", "Bolsa del almuerzo", "5% de probabilidad de destruirse y generar {{Collectible22}} Almuerzo al ser golpeado"}, -- Bolsa del almuerzo
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
@@ -64,7 +64,7 @@ EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets
 
 local cards = {
 	-- Change: Complete rewrite
-	[38] = {"38", "Berkano", "{{Collectible706}} Summons 3 Abyss locusts for the room"}, -- Berkano
+	[38] = {"38", "Berkano", "{{Collectible706}} Invoca 3 langostas del Abismo durante la habitación"}, -- Berkano
 }
 EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
 
