@@ -1,9 +1,9 @@
 ---------------------------------------
 -----  Basic Spanish descriptions -----
---- Last Sync with en_us: pending -----
 ---------------------------------------
 
 -- FORMAT: Item ID | Name | Description
+
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line  |  ! = Warning
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
@@ -107,7 +107,7 @@ local repCollectibles={
 	[232] = {"232", "Cronómetro", "↑ {{Speed}} Velocidad +0.3#{{Slow}} Ralentiza un 80% a los enemigos de forma permanente"}, -- Cronómetro
 	[233] = {"233", "Mini-Planeta", "↑ {{Range}} Alcance +6.5#Lágrimas espectrales#Las lágrimas orbitan a tu alrededor"}, -- Tiny Planet
 	[245] = {"245", "20/20", "↓ {{Damage}} Daño x0.8#Disparas 2 lágrimas a la vez"}, -- 20/20
-	[248] = {"248", "Mente colmena", "Duplica el daño de las moscas y arañas azules#Las moscas y arañas familiares se vuelven más fuertes"}, -- Hive Mind
+	[248] = {"248", "Mente colmena", "Duplica el daño de las moscas y arañas azules#Aumenta el daño de las moscas y arañas familiares"}, -- Hive Mind
 	[253] = {"253", "Costra mágica", "↑ {{Heart}} +1 de Vida#↑ {{Luck}} Suerte +1#{{HealingRed}} Cura 1 corazón"}, -- Magic Scab
 	[254] = {"254", "Coágulo", "Otorga para el ojo izquierdo:#↑ {{Damage}} Daño +1#↑ {{Range}} Alcance +1.5"}, -- Blood Clot
 	[256] = {"256", "Bombas Ardientes", "{{Bomb}} +5 Bombas#{{Burning}} Tus bombas infligen daño por contacto#{{Burning}} Tus bombas dejan una llama al explotar#{{Burning}} Otorga inmunidad al fuego (excepto proyectiles)"}, -- Hot Bombs
@@ -120,7 +120,7 @@ local repCollectibles={
 	[274] = {"274", "Mejor amigo", "Al recibir daño, genera un orbital de alcance medio durante la sala#Inflige 150 de daño por contacto cada segundo"}, -- Best Bud
 	[275] = {"275", "Mini-Azufre", "{{Chargeable}} Familiar que carga y dispara un {{Collectible118}} rayo de sangre#El rayo inflige 24 de daño cada 0.63 segundos"}, -- Lil Brimstone
 	[276] = {"276", "Corazón de Isaac", "Te vuelves invulnerable#{{Chargeable}} El familiar carga al disparar, al soltar el botón de disparo, el corazón: #Disparará 8 lágrimas#Soltará Creep rojo#Empujará enemigos y proyectiles#{{Warning}} Recibirás daño si golpéan al familiar corazón"}, -- Isaac's Heart
-	[278] = {"278", "Pordiosero oscuro", "{{Heart}} Recoge los corazones rojos cercanos#Tras recoger 1.5 corazones rojos, genera:#{{SoulHeart}}/{{BlackHeart}} 1 corazón de alma/negro#{{Pill}} Una píldora#{{Card}} Una Carta#{{Rune}} Una runa#o Una araña"}, -- Dark Bum
+	[278] = {"278", "Pordiosero oscuro", "{{Heart}} Recoge los corazones rojos cercanos#Tras recoger 1.5 corazones rojos, genera:#{{SoulHeart}}/{{BlackHeart}} 1 Corazón de alma o negro#{{Pill}} Una píldora#{{Card}} Una Carta#{{Rune}} Una runa#o una araña"}, -- Dark Bum
 	[280] = {"280", "Sissy patitas-largas", "Invoca arañas azules en habitaciones hostiles de forma aleatoria#{{Charm}} Encanta a los enemigos al contacto"}, -- Sissy Longlegs
 	[283] = {"283", "D100", "Duplica 1 recolectable aleatorio en la sala#Cambia tus objetos pasivos y tus estadisticas#Cambia los objetos en pedestales, los recolectables y las rocas en la sala#Reinicia la sala, regenera y degrada a los enemigos de la sala"}, -- D100
 	[285] = {"285", "D10", "Degrada a todos los enemigos en la sala#Por ejemplo, las moscas rojas se convierten en moscas negras"}, -- D10
@@ -133,7 +133,7 @@ local repCollectibles={
 	[293] = {"293", "Cabeza de Krampus", "{{Collectible118}} Dispara un rayo de sangre en 4 direcciones#Cada rayo inflige 200 de daño cada 1.33 segundos"}, -- Head of Krampus
 	[294] = {"294", "Frijol Mantequilla", "Repele a los enemigos y proyectiles cercanos#Inflige 10 de daño a los enemigos lanzados contra obstáculos"}, -- Butter Bean
 	[295] = {"295", "Dedos mágicos", "Inflige el doble de tu daño + 10 a toda la habitación#{{Coin}} Usarlo cuesta 1 moneda"}, -- Magic Fingers
-	[296] = {"296", "Conversor", "{{Heart}} Convierte 1 Corazón Negro/de Alma en un Contenedor de corazón"}, -- Converter
+	[296] = {"296", "Conversor", "{{Heart}} Convierte 1 Corazón Negro o de Alma en un Contenedor de corazón"}, -- Converter
 	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
 	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
 	[297] = {"297", "Caja de Pandora", "{{NoLB}}Genera recompensas en base al piso actual:#B1: 2 {{SoulHeart}}; B2: 2 {{Key}} + {{Bomb}}#C1: 1 objeto {{BossRoom}}; C2: B1+C1#D1: 4 {{SoulHeart}}; D2: 30 {{Coin}}#W1: 2 objetos {{BossRoom}}; W2: {{Collectible33}}#Sheol: 1 objeto {{DevilRoom}} + {{BlackHeart}}; Catedral: 1 objeto {{AngelRoom}} + {{SoulHeart}}#Cofre: 1 {{Coin}}#Casa: {{Collectible580}}"}, -- Pandora's Box
@@ -153,7 +153,7 @@ local repCollectibles={
 	[328] = {"328", "El negativo", "↑ {{Damage}} Daño +1#Al recibir daño teniendo medio o ningun corazón rojo:#Inflige 40 de daño a todos los enemigos en la habitación"}, -- El negativo
 	[330] = {"330", "Leche de Soya", "↑ {{Tears}} Lágrimas x5.5#↓ {{Damage}} Daño x0.2%#↓ {{Tearsize}} Tamaño de lágrimas -0.3#Reduce el empuje de forma drástica"}, -- Soy Milk
 	[331] = {"331", "Deidad", "↑ {{Damage}} Daño +0.5#↓ {{Tears}} Lágrimas -0.3#↓ {{Shotspeed}} Vel. de lágrimas -0.3#Lágrimas teledirigidas#Las lágrimas obtienen un aura que inflige 60 de daño cada segundo"}, -- Deidad
-	[336] = {"336", "Cebolla muerta", "↑ {{Tearsize}} Tamaño de lágrimas +0.22#↓ {{Range}} Alcance -1.5#↓ {{Shotspeed}} Vel. de lágrimas -0.4#Lágrimas espectrales y penetrantes"}, -- Dead Onion
+	[336] = {"336", "Cebolla muerta", "↑ {{Tearsize}} Tamaño de lágrimas +0.22#↓ {{Range}} Alcance -1.5#↓ {{Shotspeed}} Vel. de lágrimas -0.4#Otorga lágrimas perforantes y espectrales"}, -- Dead Onion
 	[339] = {"339", "El Gancho", "↑ {{Range}} Alcance +1.5#↑ {{Shotspeed}} Vel. de lágrimas +0.16#{{BlackHeart}} +1 Corazón negro"}, -- El gancho
 	[342] = {"342", "Hongo azul", "↑ {{Heart}} +1 de Vida#↑ {{Tears}} Lágrimas +0.7#↓ {{Shotspeed}} Vel. de lágrimas -0.16#{{HealingRed}} Cura 1 corazón"}, -- Blue Cap
 	[344] = {"344", "Caja de Fósforos", "{{BlackHeart}} +1 Corazón negro#{{Bomb}} Genera 2-3 bombas#Genera el trinket {{Trinket41}} Cerilla "}, -- Match Book
@@ -298,7 +298,7 @@ local repCollectibles={
 	[605] = {"605", "Cuchara de Helado", "↑ {{Damage}} Daño x1.35 para el ojo derecho#{{Timer}} Invoca un familiar {{Collectible155}} Fisgón en la habitación actual#El Fisgón inflige 36 de daño por contacto cada segundo y deja un rastro de fluido"}, -- The Scooper
 	[606] = {"606", "Grieta Ocular", "5% de probabilidad de disparar lágrimas que crean grietas donde caen#{{Luck}} 20% de probabilidad con 15 de suerte#Infligen 3 veces tu daño cada segundo#Atraen enemigos cercanos, recolectables y proyectiles"}, -- Ocular Rift
 	[607] = {"607", "Bebé Hervido", "Familiar que dispara grupos de lágrimas de manera caótica#Inflige 3.5 o 5.25 de daño por lágrima"}, -- Boiled Baby
-	[608] = {"608", "Bebé Congelado", "Familiar que dispara lágrimas congelantes que infligen 3.5 de daño#{{Freezing}} Congela a los enemigos al matarlos"}, -- Freezer Baby
+	[608] = {"608", "Bebé Congelado", "Dispara lágrimas congelantes que infligen 3.5 de daño#{{Freezing}} Congela a los enemigos al matarlos"}, -- Freezer Baby
 	[609] = {"609", "D6 Eterno", "Cambia todos los objetos de la habitación#25% de probabilidad de eliminar los objetos"}, -- Eternal D6
 	[610] = {"610", "Pecho de Ave", "Familiar que ataca al primer enemigo que te golpée#Lanza una ola de rocas#Después persigue a los enemigos infligiendo 6.5 de daño por contacto cada segundo"}, -- Bird Cage
 	[611] = {"611", "Laringe", "Te hace gritar, dañando y alejando a los enemigos cercanos#Cuantas más cargas tenga el objeto, más potente será el grito"}, -- Laringe
@@ -328,7 +328,7 @@ local repCollectibles={
 	[635] = {"635", "Puntos de sutura", "Genera un familiar que se mueve en la dirección de tus disparos#Al usarlo, intercambias la posición con el familiar y ganas una invencibilidad corta#Teletransportarse en cosas puede dañarlas o destruirlas"}, -- Stitches
 	[636] = {"636", "Tecla R", "Reinicia la partida actual#Mantendrás tus objetos, trinkets, estadisticas y recolectables#No reinicia el tiempo de la partida"}, -- R Key
 	[637] = {"637", "Gotas de impacto", "{{Confusion}} 10% de probabilidad de disparar un puño con mucho empuje y que confunde a los enemigos#{{Luck}} 100% de probabilidad con 9 de suerte"}, -- Knockout Drops
-	[638] = {"638", "Goma de borrar", "Lanza una goma de borrar que mata instantáneamente a un enemigo#Evita que ese enemigo reaparezca en el resto de la partida#Inflige 15 de daño a los jefes#Solo puede usarse una vez por piso"}, -- Goma de borrar
+	[638] = {"638", "Goma de borrar", "Lanza una goma que borra a un enemigo#Los enemigos borrados no apareceran durante el resto de la partida#Inflige 15 de daño a los jefes#Solo puede usarse una vez por piso"}, -- Goma de borrar
 	[639] = {"639", "Corazón asqueroso", "{{RottenHeart}} +1 Corazón podrido"}, -- Yuck Heart
 	[640] = {"640", "Urna de almas", "Lanza llamas azules#Gana cargas por cada enemigo que mates"}, -- Urna de almas
 	[641] = {"641", "Aceldama", "Crea una cadena de lágrimas detrás al entrar en habitaciones hostiles#Las lágrimas infligen 3.5 de daño"}, -- Akeldama
@@ -354,7 +354,7 @@ local repCollectibles={
 	[661] = {"661", "Quintillizos", "Matar a un enemigo genera un familiar torreta en ese lugar#Hasta 5 familiares"}, -- Quints
 	[662] = {"662", "", "<Este objeto no existe>"}, -- Pacifist (Cut item)
 	[663] = {"663", "Con uñas y dientes", "Te vuelve invencible durante 1 segundo cada 6 segundos#Resplandece antes de activarse"}, -- Con uñas y dientes
-	[664] = {"664", "Comedor compulsivo", "↑ {{Heart}} +1 de Vida#{{HealingRed}} Salud al maximo#Los pedestales de objetos alternan entre el objeto original y un objeto de comida#Tomar el objeto de comida otorga:#{{HealingRed}} Cura 2 corazones#↑ {{Damage}} Daño temporal +3.6#↑ Dos mejoras de estadísticas, dependen del item de comida#↓ {{Speed}} Velocidad -0.03"}, -- Binge Eater
+	[664] = {"664", "Comedor compulsivo", "↑ {{Heart}} +1 de Vida#{{HealingRed}} Salud al maximo#Los pedestales de objetos alternan entre el objeto original y un objeto de comida#Tomar el objeto de comida otorga:#{{HealingRed}} Cura 2 corazones#↑ {{Damage}} Daño temporal +3.6#↑ Dos mejoras de estadísticas (Dependen del objeto de comida)#↓ {{Speed}} Velocidad -0.03"}, -- Binge Eater
 	[665] = {"665", "El ojo de Guppy", "Revela el contenido de los {{Chest}} cofres, {{GrabBag}} sacos, tenderos y hogueras antes de ser abiertos o destruidos"}, -- Guppy's Eye
 	[666] = {"666", "", "<Este objeto no existe>"},
 	[667] = {"667", "Hombre de Paja", "{{Player14}} Genera un Keeper compañero#{{DevilRoom}} Los objetos de pacto del Diablo costaran monedas si esta vivo#Al morir:#Genera arañas azules#Elimina todo objeto que haya recogido y a si mismo de tu inventario#{{Warning}} Puede tomar objetos de eventos de progresión"}, -- Straw Man
@@ -653,14 +653,14 @@ EID.descriptions[languageCode].AbyssTexts = {
  	-- values inside {} brackets will be replaced with text parts below
 	-- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
 	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
-	InfoText = "{amount} langosta{pluralize} {size}{pluralize} {speed}{pluralize} ({dmg})",
+	InfoText = "{amount} langosta{pluralize}{size}{pluralize}{speed}{pluralize} ({dmg})",
 	InfoTextPlural = "s", -- Can be used by translators to provide a pluralized version of the InfoText
 	Chance = " ({1}% de probabilidad)", -- {1} will be replaced with the chance
-	SpeedSlow = "lenta", -- Speed < 1
-	SpeedFast = "rápida", -- Speed > 1
-	SpeedDash = "súper rápida", -- Speed >= 6
-	SizeSmall = "pequeña", -- Size < 1
-	SizeBig = "grande", -- Size > 1
+	SpeedSlow = " lenta", -- Speed < 1
+	SpeedFast = " rápida", -- Speed > 1
+	SpeedDash = " súper rápida", -- Speed >= 6
+	SizeSmall = " pequeña", -- Size < 1
+	SizeBig = " grande", -- Size > 1
 	DamageMult = "Inflige tu daño x{1}", -- {1} will be replaced with the calculated damage multiplier 
 }
 
@@ -671,7 +671,7 @@ EID.descriptions[languageCode].AbyssLocustEffects = {
 [0] = "{{Bomb}} Explota al infligir daño",
 [1] = "{{QuestionMark}} Efecto de langosta aleatorio",
 -- 2 = Multiple locusts act like one. Uninteresting info for the player in my opinion
-[3] = "{{Collectible284}} Reroll enemigo al infligir daño",
+[3] = "{{Collectible284}} Cambia al enemigo tras infligir daño",
 [4] = "{{Collectible35}} Daña a todos los enemigos al infligir daño",
 [5] = "{{Collectible638}} Borra un enemigo al infligir daño",
 [6] = "{{Collectible114}} Un cuchillo orbita la langosta mientras ataca",
@@ -897,15 +897,15 @@ EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].
 local repTrinkets={
 	[10] = {"10", "Gusano Ondulante", "↑ {{Tears}} Lágrimas +0.4#Lágrimas espectrales#Las lágrimas se mueven en ondas"}, -- Wiggle Worm
 	[11] = {"11", "Gusano Circular", "↑ {{Tears}} Lágrimas +0.47#Lágrimas espectrales#Las lágrimas se mueven en espiral a gran velocidad"}, -- Ring Worm
-	[14] = {"14", "Callo", "Otorga inmunidad a las espinas de suelo y el fluido#No previene el daño al tocar las espinas en {{SacrificeRoom}} la sala de Sacrificio y {{Collectible692}} espinas especiales en la sala del Diablo"}, -- Callus
+	[14] = {"14", "Callo", "Otorga inmunidad a las espinas de suelo y el fluido#No previene el daño al tocar las espinas especiales en {{SacrificeRoom}} la sala de Sacrificio y {{Collectible692}} la sala del Diablo"}, -- Callus
 	[15] = {"15", "Roca de la suerte", "{{Coin}} 33% de probabilidad de generar monedas al destruir rocas"}, -- Lucky Rock
 	[16] = {"16", "Uña del pie de Mamá", "El Pie de Mamá cae en un lugar aleatorio de la habitación cada 20 segundos"}, -- Mom's Toenail
-	[19] = {"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los cofres dorados sin usar llaves#{{MegaChest}} Los mega cofres si requieren llaves para abrirlos"}, -- Paper Clip
+	[19] = {"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los cofres dorados sin usar llaves#{{MegaChest}} Los mega cofres aun requerirán llaves para abrirlos"}, -- Paper Clip
 	[24] = {"24", "Moneda de Trasero", "{{Coin}} 20% de probabilidad de generar una moneda al destruir una caca#Soltarás un pedo al recoger una moneda#{{Poison}} Los pedos empujan y envenenan a los enemigos"}, -- Butt Penny
-	[25] = {"25", "Dulce misterioso", "Te tiras un pedo o generas una caca cada 30 segundos#Los pedos infligen 6 de daño y empujan proyectiles"}, -- Mysterious Candy
+	[25] = {"25", "Dulce misterioso", "Te tiras un pedo o generas una caca cada 30 segundos#Los pedos infligen 6 de daño y empujan a los proyectiles"}, -- Mysterious Candy
 	[26] = {"26", "Gusano Cuadrado", "↑ {{Tears}} Lágrimas +0.4#↑ {{Range}} Alcance +1.5#Lágrimas espectrales#Las lágrimas se mueven en ángulos"}, -- Hook Worm
 	[32] = {"32", "Monguis", "25% de probabilidad de activar un efecto de hongo aleatorio para la habitación actual"}, -- Liberty Cap
-	[33] = {"33", "Cordón umbilical", "Al tener medio corazón rojo o menos:#{{Collectible100}} Otorga un pequeño Steven#Puedes tener corazones de alma o negros{{Collectible318}} Gran probabilidad de que aparezca un familiar Géminis al recibir daño"}, -- Umbilical Cord
+	[33] = {"33", "Cordón umbilical", "Al tener medio o ningún corazón rojo:#{{Collectible100}} Otorga un pequeño Steven#{{Collectible318}} 30% de probabilidad de otorgar un familiar Géminis al recibir daño#{{Luck}} 100% de probabilidad con 35 de suerte"}, -- Umbilical Cord
 	[39] = {"39", "Cáncer", "↑ {{Tears}} Lágrimas +1"}, -- Cancer
 	[48] = {"48", "Una Página Faltante", "Al recibir daño, 5% de probabilidad de infligir 80 de daño a los enemigos de la habitación#{{BlackHeart}} Los corazones negros y los efectos similares al Necronomicon reciben +40 de daño extra"}, -- A Missing Page
 	[49] = {"49", "Moneda Sangrienta", "{{HalfHeart}} 25% de probabilidad de generar medio corazón al recoger monedas#Mayor probabilidad al recoger monedas de mayor valor"}, -- Bloody Penny
@@ -1563,16 +1563,16 @@ local repConditions = {
 	["5.100.201"] = "Rellena por completo la carga de {1}", -- Iron Bar + Notched Axe
 	["5.350.172"] = "{1} remueve el efecto de teletransportación", -- Cursed Penny + Black Candle
 	["5.100.501 (Deep Pockets)"] = "+1 contenedor por cada 100 monedas superando las 99", -- Greed's Gullet + Deep Pockets
-	["? Card Single Use"] = "Los objetos de un solo uso pueden activarse multiples veces con la ¿? Carta", -- Single Use Actives + ? Card
+	["? Card Single Use"] = "Permite usar multiples veces los objetos de un solo uso", -- Single Use Actives + ? Card
 	["Both Peppers"] = "Con {1}, la probabilidad de disparar una llama será de 12.5%#Será de 100% al tener 7 de suerte", -- Ghost Pepper + Bird's Eye
 	["Black Feather"] = "↑ {{Damage}} Daño +0.5", -- Black Feather items
 	["Hemoptysis"] = "Funciona con {1}", -- Hemoptysis + Brimstone items
 	["5.100.600"] = "Lagrimas x1.2 para {1}", -- Eye Drops (items and some players)
-	["5.100.482"] = "Los personajes contaminados cambian por otros personajes contaminados", -- Clicker
+	["5.100.482"] = "Los personajes contaminados cambiarán por otros personajes contaminados", -- Clicker
 	
 	["4.5 Volt Timed"] = "No afecta a las recargas", -- 4.5 Volt + Timed Recharges
 	["4.5 Volt Multiple"] = "El activo secundario solo obtiene carga si el activo primario está cargado", -- 4.5 Volt + Schoolbag/Pocket Actives
-	["Bulb Zero"] = "Objetos activos que no requieran cargas no cuentan", -- Vibrant/Dim Bulb + zero charge actives
+	["Bulb Zero"] = "No tiene efecto con objetos activos sin cargas", -- Vibrant/Dim Bulb + zero charge actives
 	
 	["Brimstone Proptosis"] = "El rayo inflige 6 veces tu daño a quemarropa, disminuyendo con la distancia",
 	["Brimstone Ipecac"] = "El rayo obtiene +2 daño y explota al impactar con enemigos y obstaculos",
