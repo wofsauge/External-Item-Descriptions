@@ -890,7 +890,7 @@ EID.descriptions[languageCode].cards={
 	{"18", "XVII - The Stars", "{{TreasureRoom}} Teleports Isaac to the Treasure Room"}, -- XVII - The Stars
 	{"19", "XVIII - The Moon", "{{SecretRoom}} Teleports Isaac to the Secret Room"}, -- XVIII - The Moon
 	{"20", "XIX - The Sun", "{{HealingRed}} Full health#Deals 100 damage to all enemies#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"}, -- XIX - The Sun
-	{"21", "XX - Judgement", "Spawns a Beggar or Devil Beggar#2% chance to spawn a special Beggar"}, -- XX - Judgement
+	{"21", "XX - Judgement", "{{Beggar}} Spawns a Beggar#{{DemonBeggar}} 33% chance for it to be a Devil Beggar#2% chance for it to be a Key Master or Bomb Bum"}, -- XX - Judgement
 	{"22", "XXI - The World", "{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"}, -- XXI - The World
 	{"23", "2 of Clubs", "{{Bomb}} Doubles Isaac's number of bombs"}, -- 2 of Clubs
 	{"24", "2 of Diamonds", "{{Coin}} Doubles Isaac's number of coins"}, -- 2 of Diamonds
@@ -942,7 +942,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[15] = {" a ", " 2 ", " Machine", " {{CR}}Machines", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XIV - Temperance (+ Greed version)
 	[17] = {6, 12}, -- XVI - The Tower
 	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {" a ", " 2 ", "Beggar ", "{{CR}}Beggars ", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
+	[21] = {" a Beggar", " 2 {{CR}}Beggars", " it ", " {{CR}}each ", " it ", " {{CR}}each "}, -- XX - Judgement
 	[23] = {"Doubles", "Quadruples"}, -- 2 of Clubs
 	[24] = {"Doubles", "Quadruples"}, -- 2 of Diamonds
 	[25] = {"Doubles", "Quadruples"}, -- 2 of Spades
