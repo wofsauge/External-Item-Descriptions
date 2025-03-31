@@ -890,7 +890,7 @@ EID.descriptions[languageCode].cards={
 	{"18", "XVII - Le Stelle", "{{TreasureRoom}} Teletrasporta Isaac nella Stanza dei Tesori"},
 	{"19", "XVIII - La Luna", "{{SecretRoom}} Teletrasporta Isaac nella Stanza Segreta"},
 	{"20", "XIX - Il Sole", "{{HealingRed}} Salute al massimo#Infligge 100 danni a tutti i nemici#{{Timer}} Effetto di mappatura completa fino all'uscita dal piano (eccetto la {{SuperSecretRoom}} Stanza Super Segreta)"},
-	{"21", "XX - Il Giudizio", "Genera un Mendicante o Mendicacuori#2% di chance di generare un Mendicante speciale"},
+	{"21", "XX - Il Giudizio", "Genera un Mendicante#{{DemonBeggar}} 33% di chance che sia un Mendicacuori#2% di chance che sia un Chiavaiolo o uno Scroccabombe"},
 	{"22", "XXI - Il Mondo", "{{Timer}} Effetto di mappatura completa fino all'uscita dal piano (eccetto la {{SuperSecretRoom}} Stanza Super Segreta)"},
 	{"23", "2 di Fiori", "{{Bomb}} Duplica il numero di bombe di Isaac"},
 	{"24", "2 di Quadri", "{{Coin}} Duplica il numero di monete di Isaac"},
@@ -939,10 +939,10 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[11] = {" una ", " 2 ", "Macchina", "{{CR}}Macchine"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
-	[15] = {" una ", " 2 ", "Macchina", " {{CR}}Macchine"},-- XIV - Temperance (+ Greed version) TENERE CONTO DI RENDIZIONE DI "DEVIL BEGGAR", ALTRIMENTI AGGIUNGERE OPZIONE 
+	[15] = {" una ", " 2 ", "Macchina", " {{CR}}Macchine", "un Mendicacuore", "2 {{CR}}Mendicacuori"},-- XIV - Temperance (+ Greed version) 
 	[17] = {6, 12}, -- XVI - The Tower
 	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {" un ", " 2 ", "Mendicante ", "{{CR}}Mendicanti "}, -- XX - Judgement TENERE CONTO DI RENDIZIONE DI "DEVIL BEGGAR", ALTRIMENTI AGGIUNGERE OPZIONE 
+	[21] = {" un Mendicante", " 2 {{CR}}Mendicanti", "sia un Mendicauori", "siano 2 {{CR}}Mendicacuori", "sia un Chiavaiolo o uno Scroccabombe", "siano 2 {{CR}}Chiavaioli o Scroccabombe"}, -- XX - Judgement
 	[23] = {"Duplica", "Quadruplica"}, -- 2 of Clubs
 	[24] = {"Duplica", "Quadruplica"}, -- 2 of Diamonds
 	[25] = {"Duplica", "Quadruplica"}, -- 2 of Spades
