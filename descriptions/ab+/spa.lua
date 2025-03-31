@@ -66,7 +66,7 @@ EID.descriptions[languageCode].collectibles={
 	{"43", "", "<Este objeto no existe>"},
 	{"44", "¡Teletransporte!", "Te teletransporta a una habitación aleatoria (excepto a la habitación I AM ERROR)"}, -- Teleport!
 	{"45", "Delicioso Corazón", "{{HealingRed}} Cura 1 corazón"}, -- Delicioso Corazón
-	{"46", "Pie de la suerte", "↑ {{Luck}} +1 de Suerte#+8% de probabilidad de generar un recolectable tras limpiar una habitación#Aumenta la probabilidad de ganar al apostar"}, -- Lucky Foot
+	{"46", "Pie de la suerte", "↑ {{Luck}} Suerte +1#+8% de probabilidad de generar un recolectable tras limpiar una habitación#Aumenta la probabilidad de ganar al apostar"}, -- Lucky Foot
 	{"47", "Control Remoto de Doctor", "{{Collectible168}} Al activarse, invoca un ataque aéreo controlable#{{Damage}} Los cohetes infligen 20 veces tu daño"}, -- Doctor's Remote
 	{"48", "Flecha de Cupido", "Lágrimas penetrantes"}, -- Flecha de Cupido
 	{"49", "Kamehame... ¡¿Eeeeeeh?!", "Reemplaza el siguiente disparo por un rayo#Inflige 26 veces tu daño durante 0.9 segundos"}, -- Shoop da Whoop!
@@ -113,7 +113,7 @@ EID.descriptions[languageCode].collectibles={
 	{"90", "La Roca pequeña", "↑ {{Tears}} Lágrimas +0.2#↑ {{Damage}} Daño +1#↓ {{Speed}} Velocidad -0.2"}, -- La Roca pequeña
 	{"91", "Sombrero de espeleólogo", "Revela el tipo de habitaciónes adyacentes#{{SecretRoom}} {{SuperSecretRoom}} Puede revelar las Salas secretas y súper secretas"}, -- Spelunker Hat
 	{"92", "Súper Vendaje", "↑ {{Heart}} +1 de Vida#{{HealingRed}} Cura 1 corazón#{{SoulHeart}} +2 Corazones de Alma"}, -- Súper Vendaje
-	{"93", "El Gamekid", "{{Timer}} Otorga durante 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Matar 2 enemigos cura medio corazón#{{Fear}} Asusta a todos los enemigos en la sala"}, -- The Gamekid
+	{"93", "El Gamekid", "{{Timer}} Otorga durante 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón al matar enemigos#{{Fear}} Asusta a todos los enemigos en la sala"}, -- The Gamekid
 	{"94", "Bolsa de centavos", "{{Coin}} Genera una moneda aleatoria cada 2 habitaciones"}, -- Bolsa de centavos
 	{"95", "Robo-Baby", "Dispara lásers que infligen 3.5 de daño"}, -- Robo-Baby
 	{"96", "Pequeño C.H.A.D.", "{{HalfHeart}} Genera medio corazón rojo cada 3 habitaciones"}, -- Little C.H.A.D.
@@ -273,7 +273,7 @@ EID.descriptions[languageCode].collectibles={
 	{"250", "Bombas 2x1", "{{Bomb}} Convierte todas las bombas recolectables en bombas dobles"}, -- Bogo Bombs
 	{"251", "Mazo inicial", "{{Card}} Genera una carta al recogerlo#Permite llevar 2 cartas#Convierte todas las píldoras en cartas"}, -- Starter Deck
 	{"252", "Pequeña bolsa", "{{Pill}} Genera una píldora al recogerlo#Permite llevar 2 píldoras#Convierte todas las cartas en píldoras"}, -- Little Baggy
-	{"253", "Costra mágica", "↑ {{Heart}} +1 de Vida#↑ {{Luck}} +1 de suerte"}, -- Magic Scab
+	{"253", "Costra mágica", "↑ {{Heart}} +1 de Vida#↑ {{Luck}} Suerte +1"}, -- Magic Scab
 	{"254", "Coágulo", "Otorga para el ojo izquierdo:#↑ {{Damage}} Daño +1#↑ {{Range}} Alcance +5"}, -- Blood Clot
 	{"255", "Tornillo", "↑ {{Tears}} Lágrimas +0.5#↑ {{Shotspeed}} Vel. de lágrimas +0.2"}, -- Screw
 	{"256", "Bombas Ardientes", "{{Bomb}} +5 Bombas#{{Burning}} Tus bombas dejan una llama al explotar"}, -- Hot Bombs
@@ -293,7 +293,7 @@ EID.descriptions[languageCode].collectibles={
 	{"270", "Sanguijuela", "Persigue a los enemigos#{{HealingRed}} Te cura medio corazón tras matar a un enemigo#Inflige 3.2 de daño por contacto cada segundo"}, -- Leech
 	{"271", "Bolsa misteriosa", "Genera recolectables aleatorios cada 5-6 habitaciones"}, -- Bolsa misteriosa
 	{"272", "Mosca Hermosa", "Mosca explosiva aliada#La explosión inflige 60 de daño#{{Warning}} La explosión puede herir al jugador"}, -- BBF
-	{"273", "Cerebro de Bob", "{{Throwable}} Familiar lanzable#{{Poison}} La explosión inflige 60 de daño y envenena a enemigos#{{Warning}} La explosión puede herir al jugador"}, -- Bob's Brain
+	{"273", "Cerebro de Bob", "{{Throwable}} Familiar lanzable#{{Poison}} La explosión inflige 60 de daño y envenena a los enemigos cercanos#{{Warning}} La explosión puede herir al jugador"}, -- Bob's Brain
 	{"274", "Gran Amigo", "Al recibir daño, genera un orbital de alcance medio durante la sala#Inflige 75 de daño por contacto cada segundo"}, -- Best Bud
 	{"275", "Mini-Azufre", "{{Chargeable}} Familiar que carga y dispara un {{Collectible118}} rayo de sangre#El rayo inflige 31.5 de daño cada 0.63 segundos"}, -- Lil Brimstone
 	{"276", "Corazón de Isaac", "Te vuelves invulnerable#{{Warning}} Recibirás daño si golpéan al familiar corazón"}, -- Isaac's Heart
@@ -461,7 +461,7 @@ EID.descriptions[languageCode].collectibles={
 	{"436", "¡Leche!", "{{Tears}} Recibir daño aumenta tus lágrimas durante la habitación actual"}, -- Milk!
 	{"437", "D7", "Reinicia la habitación actual#Permite obtener multiples recompensas de la misma habitación#Al usarlo tras luchar contra Greed, convierte la habitación en una tienda"}, -- D7
 	{"438", "Chupón", "↑ {{Tears}} Lágrimas +0.75#↑ Reduce tu tamaño#{{SoulHeart}} +1 Corazón de alma"}, -- Binky
-	{"439", "Caja de Mamá", "Genera un trinket aleatorio#↑ {{Luck}} +1 de suerte#{{Trinket}} Potencia los efectos de los trinkets"}, -- Mom's Box
+	{"439", "Caja de Mamá", "{{Trinket}} Genera un trinket aleatorio#Al tenerlo:#↑ {{Luck}} Suerte +1#{{Trinket}} Potencia los efectos de los trinkets"}, -- Mom's Box
 	{"440", "Piedra de Riñón", "↑ {{Tearsize}} Tamaño de lágrimas +2#↓ {{Speed}} Velocidad -0.2#↓ {{Range}} Alcance -17#Ocasionalmente dejas de disparar para cargar una rafaga de lágrimas y una piedra del riñón"}, -- Kidney Stone
 	{"441", "Mega Ráfaga", "{{Timer}} Dispara un gran láser de Mega Satán durante 15 segundos#El láser persiste entre habitaciones y plantas"}, -- Mega Blast
 	{"442", "Corona del Príncipe Oscuro", "Otorga al tener un corazón rojo lleno:#↑ {{Tears}} Lágrimas +0.75#↑ {{Range}} Alcance +1.5#↑ {{Tearsize}} Tamaño de lágrimas +1#↑ {{Shotspeed}} Vel. de lágrimas +0.2"}, -- Dark Prince's Crown
@@ -508,13 +508,13 @@ EID.descriptions[languageCode].collectibles={
 	{"483", "¡Mamá Mega!", "Afecta a todo el piso actual#Destruye todos los obstaculos de la habitación#Inflige 200 de daño a todos los enemigos#{{SecretRoom}}/{{SuperSecretRoom}} Abre las habitaciónes secretas y súper secretas#Abre la Boss rush/puerta de Hush sin importar el tiempo"}, -- Mama Mega!
 	{"484", "Espera... ¿qué?", "Al usarlo, empuja a los enemigos y genera una ola de rocas#La ola de rocas puede abrir habitaciones o romper piedras"}, -- Wait What?
 	{"485", "Moneda Doblada", "50% de probabilidad de duplicar todos los objetos, recolectables y cofres en la habitación#50% de probabilidad de eliminar los objetos y recolectables de la habitación y soltar una moneda"}, -- Crooked Penny
-	{"486", "Hoja sin Filo", "Te inflige daño sin perder ningún corazón#Activa los efectos de los objetos que tengas que requieran recibir daño"},
+	{"486", "Hoja sin Filo", "Te inflige daño sin perder ningún corazón#Activa los efectos de tus objetos que requieran recibir daño"},
 	{"487", "Pelador de Papas", "{{Heart}} A cambio de un contenedor de corazón, otorga:#↑ {{Damage}} Daño +0.2#{{Collectible73}} Un Cubo de carne#{{Timer}} Otorga durante la habitación:#↑ {{Range}} Alcance +5#{{Collectible214}} Dejas un rastro de fluido rojo en el suelo"}, -- Potato Peeler
 	{"488", "Metrónomo", "Otorga un efecto de objeto aleatorio en cada habitación"},
 	{"489", "D infinito", "Activa un efecto de dado aleatorio por cada uso"}, -- D Infinito
 	{"490", "Alma de Edén", "Genera 2 objetos aleatorios del grupo de la habitación actual"}, -- Eden's Soul
 	{"491", "Bebé ácido", "{{Pill}} Genera una píldora aleatoria cada 3 habitaciones#{{Poison}} Usar una píldora envenena a todos los enemigos en la habitación"}, -- Acid Baby
-	{"492", "YO LISTEN!", "↑ {{Luck}} +1 de Suerte#Señala la ubicación de {{SecretRoom}} salas secretas, rocas marcadas y {{LadderRoom}} trampillas"}, -- YO LISTEN!
+	{"492", "YO LISTEN!", "↑ {{Luck}} Suerte +1#Señala la ubicación de {{SecretRoom}} salas secretas, rocas marcadas y {{LadderRoom}} trampillas"}, -- YO LISTEN!
 	{"493", "Adrenalina", "Otorga por cada contenedor de corazón vacío:#↑ {{Damage}} Daño +0.2"}, -- Adrenaline
 	{"494", "Escalera de Jacob", "Las lágrimas generan 1-2 rayos eléctricos al impactar#Los rayos infligen la mitad de tu daño"}, -- Escalera de Jacob
 	{"495", "Pimiento fantasma", "Probabilidad de disparar un fuego rojo que inflige daño y bloquea proyectiles#El fuego persiste hasta bloquear 5 disparos o infligir daño 5 veces"}, -- Ghost Pepper
@@ -555,7 +555,7 @@ EID.descriptions[languageCode].collectibles={
 	{"530", "Lista de la muerte", "Otorga una recompensa tras matar enemigos {{DeathMark}} marcados en el orden indicado"}, -- Death's List
 	{"531", "Hemolacria", "↑ {{Damage}} Daño x1.31#↓ {{Tears}} Lágrimas x0.5#Las lágrimas vuelan en un arco y explotan en lágrimas más pequeñas al impacto"}, -- Haemolacria
 	{"532", "Lacrifagia", "Las lágrimas se ralentizan mientras viajan#Al detenerse, explotan en 8 lágrimas pequeñas#Las lágrimas pueden acumularse, volviendose más grandes"}, -- Lachryphagy
-	{"533", "Trisagio", "Remplaza tus lñagrimas por rayos perforantes de luz blanca#Los rayos infligen 33% de tu daño, pero impactan veces"}, -- Trisagion
+	{"533", "Trisagio", "Remplaza tus lágrimas por rayos perforantes de luz blanca#Los rayos infligen 33% de tu daño, pero impactan multiples veces"}, -- Trisagion
 	{"534", "Mochila", "Permite llevar hasta 2 objetos activos#Pulsa la tecla de soltar objetos ({{ButtonRT}}) para cambiar entre objetos activos"}, -- Schoolbag
 	{"535", "Manto", "{{SoulHeart}} +1 Corazón de alma#{{Heart}} Cura un corazón rojo#Otorga un {{HolyMantle}} Escudo Sagrado al entrar en una {{BossRoom}} sala del jefe"}, -- Manto
 	{"536", "Altar de sacrificio", "Permite sacrificar hasta 2 familiares para generar un objeto de {{DevilRoom}} pacto del Diablo por sacrificio#{{Coin}} Convierte las arañas o moscas azules en monedas"}, -- Sacrificial Altar
@@ -778,13 +778,13 @@ EID.descriptions[languageCode].trinkets={
 	{"39", "Cáncer", "↑ {{Tears}} Lágrimas +2"}, -- Cáncer
 	{"40", "Parche rojo", "{{Timer}} 20% de probabilidad de obtener ↑ {{Damage}} Daño +1.8 al recibir daño#{{Suerte}} 100% de probabilidad con 8 de suerte"}, -- Red Patch
 	{"41", "Fósforo", "{{Bomb}} 10% de probabilidad de que la recompensa de la sala sea una bomba#{{Bomb}} 33% de probabilidad de obtener bombas extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos#{{Warning}} Remueve {{Trinket53}} la garrapata"}, -- Match Stick
-	{"42", "Dedo de la Suerte", "↑ {{Luck}} +1 de Suerte#+8% de probabilidad de obtener una recompensa de sala#33% de probabilidad de obtener un recolectable extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Lucky Toe
+	{"42", "Dedo de la Suerte", "↑ {{Luck}} Suerte +1#+8% de probabilidad de obtener una recompensa de sala#33% de probabilidad de obtener un recolectable extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Lucky Toe
 	{"43", "Cráneo maldito", "Si quedas a medio corazón al recibir daño, serás teletransportado a una habitación aleatoria"}, -- Cursed Skull
 	{"44", "Tapa de Seguridad", "{{Pill}} 10% de probabilidad de que la recompensa de la sala sea una pildora#{{Pill}} 33% de probabilidad de obtener pildoras extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Safety Cap
 	{"45", "As de Espadas", "{{Card}} 10% de probabilidad de que la recompensa de la sala sea una carta#{{Card}} 33% de probabilidad de obtener cartas extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Ace of Spades
 	{"46", "Tenedor de Isaac", "{{HealingRed}} Probabilidad del 10% de curar medio corazón al limpiar una habitación#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Tenedor de Isaac
 	{"47", "", "<Este trinket no existe>"},
-	{"48", "Una Página Faltante", "5% de probabilidad de infligir 40 de daño a toda la habitación al recibir daño"), -- Una Página Faltante
+	{"48", "Una Página Faltante", "5% de probabilidad de infligir 40 de daño a toda la habitación al recibir daño"}, -- Una Página Faltante
 	{"49", "Moneda Sangrienta", "{{HalfHeart}} 50% de probabilidad de generar medio corazón al recoger una moneda"}, -- Bloody Penny
 	{"50", "Moneda Quemada", "{{Bomb}} 50% de probabilidad de generar bombas al recoger una moneda"}, -- Burnt Penny
 	{"51", "Moneda Plana", "{{Key}} 50% de probabilidad de generar llaves al recoger una moneda"}, -- Flat Penny
@@ -803,13 +803,13 @@ EID.descriptions[languageCode].trinkets={
 	{"64", "Gusano de Arcoíris", "Otorga un efecto de gusano aleatorio cada 3 segundos"}, -- Rainbow Worm
 	{"65", "Gusano Estirado", "↑ {{Range}} Alcance x2#↓ Altura de lágrima x0.5"}, -- Tape Worm
 	{"66", "Gusano Perezoso", "↑ {{Range}} Alcance +4#↑ Altura de lágrima +2#↓ {{Shotspeed}} Vel. de lágrimas -0.5"}, -- Lazy Worm
-	{"67", "Dado Roto", "Recibir daño activa uno de los siguientes efectos:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible386}} D12 #{{Collectible166}} D20"},
+	{"67", "Dado Roto", "Recibir daño activa uno de los siguientes efectos:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible386}} D12 #{{Collectible166}} D20"}, -- Cracked Dice
 	{"68", "Súper Imán", "Los recolectables y los enemigos serán atraidos hacia ti"}, -- Super Magnet
 	{"69", "Polaroid Desvanecida", "Te camufla de forma aleatoria#{{Confusion}} Confunde a los enemigos"}, -- Faded Polaroid
 	{"70", "Piojo", "Genera aleatoriamente una araña azul en habitaciónes hostiles"}, -- Louse
 	{"71", "Vejiga de Bob", "Las bombas sueltan fluido"}, -- Bob's Bladder
 	{"72", "Batería de Reloj", "{{Battery}} +6.67% de probabilidad de reemplazar la recompensa de la habitación por una batería#{{Battery}} +2% de probabilidad de que los recolectables sean baterías#{{Battery}} 5% de probabilidad de añadir una carga al objeto activo al limpiar una habitación"}, -- Watch Battery
-	{"73", "Detonador", "{{Bomb}} 10% de probabilidad de que las bombas generen bombas recolectables al explotar#Bombas troll generadas por {{Collectible65}} Recetario de Anarquista, {{Collectible371}} Maldición de la torre y {{Card17}} La Torre "}, -- Blasting Cap
+	{"73", "Detonador", "{{Bomb}} 10% de probabilidad de que las bombas generen bombas recolectables al explotar#Bombas troll generadas por {{Collectible65}} Recetario de Anarquista, {{Collectible371}} Maldición de la torre y {{Card17}} La Torre"}, -- Blasting Cap
 	{"74", "Detector de Clavos", "{{LadderRoom}} +0.5% de probabilidad de encontrar trampillas al destruir rocas"}, -- Stud Finder
 	{"75", "Error", "Otorga un efecto de trinket aleatorio cada habitación"}, -- Error
 	{"76", "Ficha de póker", "Al abrir un cofre:#↑ 50% de probabilidad de conseguir más recolectables#↓ 50% de probabilidad de generar una mosca roja"}, -- Poker Chip
@@ -821,7 +821,7 @@ EID.descriptions[languageCode].trinkets={
 	{"82", "Herradura de oro", "{{TreasureRoom}} +15% de posibilidad de generar dos objetos en la sala del tesoro en los pisos siguientes"}, -- Golden Horse Shoe
 	{"83", "Llave de Tienda", "{{Shop}} Permite abrir las tiendas gratis"}, -- Store Key
 	{"84", "Costilla de Codicia", "{{Coin}} Genera 5% mas monedas y menos corazones como recompensa de habitación#Greed y Super Greed ya no aparecerán en la {{Shop}} Tienda y en la {{SecretRoom}} Habitación Secreta"}, -- Rib of Greed
-	{"85", "Karma", "{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón (40%)#{{Coin}} Generar 1 moneda (40%)#{{Luck}} +1 de Suerte (15%)#{{Beggar}} Generar un Mendigo (5%)"}, -- Karma
+	{"85", "Karma", "{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón (40%)#{{Coin}} Generar 1 moneda (40%)#{{Luck}} Suerte +1 (15%)#{{Beggar}} Generar un Mendigo (5%)"}, -- Karma
 	{"86", "Mini-Larva", "Genera una mosca azul al romper una caca"}, -- Lil Larva
 	{"87", "Medallón de Mamá", "{{HealingRed}} Cura medio corazón al usar llaves#{{Heart}} Convierte los medios corazones en corazones enteros"}, -- Mom's Locket
 	{"88", "¡NO!", "Previene que aparezcan objetos activos"}, -- NO!
@@ -890,7 +890,7 @@ EID.descriptions[languageCode].cards={
 	{"18", "XVII - Las Estrellas", "{{TreasureRoom}} Te teletransporta a la sala del tesoro"},
 	{"19", "XVIII - La Luna", "{{SecretRoom}} Te teletransporta a la habitación secreta"},
 	{"20", "XIX - El Sol", "{{HealingRed}} Salud al maximo#Inflige 100 de daño a todos los enemigos#Revela el mapa completo del piso (excepto la {{SuperSecretRoom}} Habitación Super Secreta)"},
-	{"21", "XX - Juicio", "{{Beggar}} Genera un mendigo o un mendigo demoníaco#2% de probabilidad de generar un mendigo especial"},
+	{"21", "XX - Juicio", "{{Beggar}} Genera un mendigo#{{DemonBeggar}} 33% de probabilidad de generar un mendigo demoníaco#2% de probabilidad de generar un mendigo de llaves o de bombas"},
 	{"22", "XXI - El Mundo", "Revela el mapa completo del piso (excepto la {{SuperSecretRoom}} Habitación Super Secreta)"},
 	{"23", "2 de tréboles", "{{Bomb}} Duplica tus bombas"},
 	{"24", "2 de diamantes", "{{Coin}} Duplica tus monedas"},
@@ -942,7 +942,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[15] = {" una ", " 2 ", " máquina", " {{CR}}máquinas", "mendigo demoníaco", "{{CR}}mendigos demoníacos"}, -- XIV - Templanza (+ la versión de Greed)
 	[17] = {6, 12}, -- XVI - La Torre
 	[20] = {100, 200}, -- XIX - El Sol
-	[21] = {" un ", " 2 ", "mendigo ", "{{CR}}mendigos ", "mendigo demoníaco", "{{CR}}mendigos demoníacos"}, -- XX - Juicio
+	[21] = {" un mendigo ", " 2 {{CR}}mendigos ", "generar ", "{{CR}}generar tambien ", "generar ", "{{CR}}generar tambien "}, -- XX - Judgement
 	[23] = {"Duplica", "Cuadruplica"}, -- 2 de tréboles
 	[24] = {"Duplica", "Cuadruplica"}, -- 2 de diamantes
 	[25] = {"Duplica", "Cuadruplica"}, -- 2 de picas
