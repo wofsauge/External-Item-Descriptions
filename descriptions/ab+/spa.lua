@@ -1098,7 +1098,7 @@ EID.descriptions[languageCode].Pluralize = "s"
 
 EID.descriptions[languageCode].VoidText = "Otorga al absorberlo:"
 -- {1} will become the number text (like "{1} Tears" -> "+0.5 Tears")
-EID.descriptions[languageCode].VoidNames = {"{{Speed}} Velocidad {1}", "{{Tears}} Lágrimas {1}", "{{Damage}} Daño {1}", "{{Range}} Alcance {1}", "{{Shotspeed}} Vel. de tiro {1}", "{{Luck}} Suerte {1}"}
+EID.descriptions[languageCode].VoidNames = {"{{Speed}} Velocidad {1}", "{{Tears}} Lágrimas {1}", "{{Damage}} Daño {1}", "{{Range}} Alcance {1}", "{{Shotspeed}} Vel. de lágrimas {1}", "{{Luck}} Suerte {1}"}
 
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} Daño +4", "↑ {{Tears}} Vel. de tiro -4", "↑ {{Speed}} Velocidad +0.5", "↑ {{Range}} Alcance +7.5#↑ {{Tearsize}} Tamaño de lágrimas +1"}
 
@@ -1118,7 +1118,7 @@ EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} UN SOLO USO {{Warnin
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
-	--having a line with "+1" and then another with "+{1}" is a workaround for spanish lol
+	-- Having a line with "+1" and then another with "+{1}" is a workaround for spanish lol
 	["Red to Soul"] = {
 	"↑ {{Heart}} +1 de Vida", "{{SoulHeart}} +1 Corazón de Alma",
 	"↑ {{Heart}} +{1} de Vida", "{{SoulHeart}} +{1} Corazones de Alma",
@@ -1188,7 +1188,7 @@ EID.descriptions[languageCode].ItemReminder = {
 
 -- https://wofsauge.github.io/IsaacDocs/rep/enums/RoomType.html
 -- Includes Repentance room types for localization convenience
-EID.descriptions[languageCode].RoomTypeNames = { "Sala regular", "Tienda", "Sala de error", "Sala del tesoro", "Sala del jefe", "Sala de minijefe", "Sala secreta", "Sala súper secreta", "Arcade", "Sala maldita", "Sala de desafío", "Library", "Sala de sacrificio", "Sala del Diablo", "Sala del Ángel", "Mini-sótano", "Sala de Avalancha de jefes", "Habitación de Isaac", "Barren Room", "Sala de cofres", "Sala de dados", "Mercado negro", "Sala de salida", "Planetario", "Teleporter Entrance", "Entrada de teletransporte", "Trampilla de la ruta alterna", "Sala de la Llave Azul", "Sala ultra secreta",
+EID.descriptions[languageCode].RoomTypeNames = { "Sala regular", "Tienda", "Sala de I AM ERROR", "Sala del tesoro", "Sala de Jefe", "Sala de minijefe", "Sala secreta", "Sala súper secreta", "Arcade", "Sala maldita", "Sala de desafío", "Librería", "Sala del sacrificio", "Sala del Diablo", "Sala del Ángel", "Mini-sótano", "Sala del desafío de Jefes", "Habitación de Isaac", "Barren Room", "Sala de cofres", "Sala de dados", "Mercado negro", "Habitación de salida", "Planetario", "Entrada de teletransportador", "Salida de teletransportador", "Trampilla de la ruta alterna", "Sala de la Llave Azul", "Sala ultra secreta",
 -- Not technically room types but still potentially useful to have localized
 [666] = "Sala del Diablo/Ángel", [1024] = "Sala roja", [1025] = "Sala roja especial" }
 
@@ -1197,7 +1197,7 @@ EID.descriptions[languageCode].PickupNames = {
 	["5.0"] = "Ninguno",
 
 	["5.10"] = "{{Heart}} Corazón",
-	["5.10.1"] = "{{Heart}} Corazón", ["5.10.2"] = "{{HalfHeart}} Medio corazón", ["5.10.3"] = "{{SoulHeart}} Corazón de alma", ["5.10.4"] = "{{EternalHeart}} Corazón eterno", ["5.10.5"] = "{{Heart}} Corazón doble", ["5.10.6"] = "{{BlackHeart}} Corazón negro", ["5.10.7"] = "{{GoldHeart}} Corazón dorado", ["5.10.8"] = "{{HalfSoulHeart}} Medio corazón de alma", ["5.10.9"] = "{{Heart}} Corazón aterrado", ["5.10.10"] = "{{BlendedHeart}} Corazón dividido", ["5.10.11"] = "{{EmptyBoneHeart}} Corazón de hueso", ["5.10.12"] = "{{RottenHeart}} Corazón podrido",
+	["5.10.1"] = "{{Heart}} Corazón", ["5.10.2"] = "{{HalfHeart}} Medio corazón", ["5.10.3"] = "{{SoulHeart}} Corazón de alma", ["5.10.4"] = "{{EternalHeart}} Corazón eterno", ["5.10.5"] = "{{Heart}} Corazón doble", ["5.10.6"] = "{{BlackHeart}} Corazón negro", ["5.10.7"] = "{{GoldHeart}} Corazón de oro", ["5.10.8"] = "{{HalfSoulHeart}} Medio corazón de alma", ["5.10.9"] = "{{Heart}} Corazón asustado", ["5.10.10"] = "{{BlendedHeart}} Corazón mezclado", ["5.10.11"] = "{{EmptyBoneHeart}} Corazón de hueso", ["5.10.12"] = "{{RottenHeart}} Corazón podrido",
 
 	["5.20"] = "{{Coin}} Moneda",
 	["5.20.1"] = "{{Crafting8}} Moneda", ["5.20.2"] = "{{Crafting9}} Níquel", ["5.20.3"] = "{{Crafting10}} 10 centavos", ["5.20.4"] = "{{Crafting8}} Moneda doble", ["5.20.5"] = "{{Crafting11}} Moneda de la suerte", ["5.20.6"] = "{{Crafting9}} Níquel pegajoso", ["5.20.7"] = "{{Crafting26}} Moneda dorada",
@@ -1206,13 +1206,13 @@ EID.descriptions[languageCode].PickupNames = {
 	["5.30.1"] = "{{Crafting12}} Llave", ["5.30.2"] = "{{Crafting13}} Llave dorada", ["5.30.3"] = "{{Crafting12}} Llavero", ["5.30.4"] = "{{Crafting14}} Llave cargada",
 
 	["5.40"] = "{{Bomb}} Bomba",
-	["5.40.1"] = "{{Crafting15}} Bomba", ["5.40.2"] = "{{Crafting15}} Bomba doble", ["5.40.3"] = "{{Crafting15}} Bomba troll", ["5.40.4"] = "{{Crafting16}} Bomba dorada", ["5.40.5"] = "{{Crafting15}} Bomba megatroll", ["5.40.7"] = "{{Crafting17}} Giga bomba",
+	["5.40.1"] = "{{Crafting15}} Bomba", ["5.40.2"] = "{{Crafting15}} Bomba doble", ["5.40.3"] = "{{Crafting15}} Bomba troll", ["5.40.4"] = "{{Crafting16}} Bomba dorada", ["5.40.5"] = "{{Crafting15}} Bomba megatroll", ["5.40.7"] = "{{Crafting17}} Bomba gigante",
 	
 	["5.42"] = "{{Crafting29}} Recursos de caca", ["5.42.1"] = "{{Crafting29}} Recursos de caca grandes",
 
 	["5.90"] = "{{Battery}} Batería",
 	["5.90.0"] = "{{Crafting19}} Batería", --AB+ didn't have subtypes for batteries
-	["5.90.1"] = "{{Crafting19}} Batería pequeña", ["5.90.2"] = "{{Crafting18}} Micro Batería", ["5.90.3"] = "{{Crafting20}} Mega batería", ["5.90.4"] = "{{Crafting28}} Batería dorada",
+	["5.90.1"] = "{{Crafting19}} Batería pequeña", ["5.90.2"] = "{{Crafting18}} Mini Batería", ["5.90.3"] = "{{Crafting20}} Mega batería", ["5.90.4"] = "{{Crafting28}} Batería dorada",
 
 	["5.50"] = "{{Chest}} Cofre", ["5.51"] = "{{BombChest}} Cofre de piedra", ["5.52"] = "{{SpikedChest}} Cofre con espinas", ["5.53"] = "{{EternalChest}} Cofre eterno", ["5.54"] = "{{MimicChest}} Cofre mímico", ["5.55"] = "{{OldChest}} Cofre viejo", ["5.56"] = "{{WoodenChest}} Cofre de madera", ["5.57"] = "{{MegaChest}} Mega cofre", ["5.58"] = "{{HauntedChest}} Cofre embrujado", ["5.60"] = "{{GoldenChest}} Cofre dorado", ["5.360"] = "{{RedChest}} Cofre rojo",
 
@@ -1286,7 +1286,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.135 (PHD)"] = "Genera 2-3 monedas al tener {1}", -- IV Bag PHD
 	["Keeper 0-1"] = "Genera 0-1 moneda como {1}", -- IV Bag/Piggy Bank Keeper
 	["5.100.549"] = "{1} solo obtendrá ↑ {{Tears}} Lágrimas +0.4 al recogerlo", -- Brittle Bones (Keeper+Lost)
-	["5.100.501"] = "{1} podrá obtener más Contenedores de moneda", -- Greed's Gullet
+	["5.100.501"] = "Permite a {1} obtener más contenedores de salud", -- Greed's Gullet
 	["5.100.230 (Keeper)"] = "{{Warning}} {1} solo morirá", -- Abaddon
 	
 
