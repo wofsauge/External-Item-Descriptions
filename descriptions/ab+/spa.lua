@@ -428,7 +428,7 @@ EID.descriptions[languageCode].collectibles={
 	{"403", "SpiderMod", "Permite ver el daño de tus lágrimas y la barra de vida de los enemigos#Inflige efectos aleatorios al tocar a un enemigo#Suelta baterías de forma aleatoria"}, -- Spider Mod
 	{"404", "Bebé Tira-Pedos", "Bloquea proyectiles#Al bloquear un proyectil: 10% de probabilidad de tirarse un pedo y {{Charm}} encantar, {{Poison}} envenenar o empujar a los enemigos cercanos"}, -- Farting Baby
 	{"405", "Error crítico", "Rebota por la habitaciòn#Inflige 120 de daño por contacto cada segundo y aplica un efecto aleatorio a los enemigos"}, -- GB Bug
-	{"406", "D8", "Multlipica tus estadísticas entre x0.5 y x2#Afecta al daño, las lágrimas, el Alcance y la velocidad"},
+	{"406", "D8", "Multlipica tus estadísticas entre ↓ x0.5 y ↑ x2#Afecta al daño, las lágrimas, el Alcance y la velocidad"}, -- D8
 	{"407", "Pureza", "↑ Potencia una estadística dependiendo del color del aura#Al recibir daño, remueve el efecto y otorga un aura nueva en la siguiente sala#{{ColorYellow}}Amarillo{{CR}} = {{Speed}} Velocidad +0.5#{{ColorBlue}}Azul{{CR}} = {{Tears}} Lágrimas +4#{{ColorRed}}Rojo{{CR}} = {{Damage}} Daño +4#{{ColorOrange}}Naranja{{CR}} = {{Range}} Alcance +7.5, {{Tearsize}} Tamaño de lágrimas +1"}, -- Pureza
 	{"408", "Athame", "Genera un anillo láser negro a tu alrededor al recibir daño#El anillo inflige 30 veces tu daño#{{BlackHeart}} Probabilidad de soltar un corazón negro al matar enemigos con él"}, -- Athame
 	{"409", "Recipiente vacío", "{{BlackHeart}} +2 corazones negros#{{EmptyHeart}} Al no tener corazones rojos:#Permite volar#Cada 40 segundos al estar en una habitación hostil, otorga un escudo durante 10 segundos"}, -- Empty Vessel
@@ -557,7 +557,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Lacrifagia", "Las lágrimas se ralentizan mientras viajan#Al detenerse, explotan en 8 lágrimas pequeñas#Las lágrimas pueden acumularse, volviendose más grandes"}, -- Lachryphagy
 	{"533", "Trisagio", "Remplaza tus lágrimas por rayos perforantes de luz blanca#Los rayos infligen 33% de tu daño, pero impactan multiples veces"}, -- Trisagion
 	{"534", "Mochila", "Permite llevar hasta 2 objetos activos#Pulsa la tecla de soltar objetos ({{ButtonRT}}) para cambiar entre objetos activos"}, -- Schoolbag
-	{"535", "Manto", "{{SoulHeart}} +1 Corazón de alma#{{Heart}} Cura un corazón rojo#Otorga un {{HolyMantle}} Escudo Sagrado al entrar en una {{BossRoom}} sala del jefe"}, -- Manto
+	{"535", "Manto", "{{SoulHeart}} +1 Corazón de alma#{{Heart}} Cura un corazón rojo#{{HolyMantle}} Otorga un Escudo Sagrado al entrar en una {{BossRoom}} sala del jefe"}, -- Blanket
 	{"536", "Altar de sacrificio", "Permite sacrificar hasta 2 familiares para generar un objeto de {{DevilRoom}} pacto del Diablo por sacrificio#{{Coin}} Convierte las arañas o moscas azules en monedas"}, -- Sacrificial Altar
 	{"537", "Mini-vómitos", "{{Pill}} Genera una píldora aleatoria al recogerlo#Familiar que deja un rastro de fluido#El tipo de fluido depende del tipo de píldora"}, -- Lil Spewer
 	{"538", "Canicas", "{{Trinket}} Genera 3 trinkets aleatorios#{{Collectible479}} Al recibir daño, 10% de probabilidad de consumir tu trinket y otorgar sus efectos permanentemente"}, -- Marbles
@@ -890,7 +890,7 @@ EID.descriptions[languageCode].cards={
 	{"18", "XVII - Las Estrellas", "{{TreasureRoom}} Te teletransporta a la sala del tesoro"},
 	{"19", "XVIII - La Luna", "{{SecretRoom}} Te teletransporta a la habitación secreta"},
 	{"20", "XIX - El Sol", "{{HealingRed}} Salud al maximo#Inflige 100 de daño a todos los enemigos#Revela el mapa completo del piso (excepto la {{SuperSecretRoom}} Habitación Super Secreta)"},
-	{"21", "XX - Juicio", "{{Beggar}} Genera un mendigo#{{DemonBeggar}} 33% de probabilidad de generar un mendigo demoníaco#2% de probabilidad de generar un mendigo de llaves o de bombas"},
+	{"21", "XX - Juicio", "{{Beggar}} Genera un mendigo#{{DemonBeggar}} 33% de probabilidad de generar un mendigo demoníaco#2% de probabilidad de generar un mendigo de llaves o de bombas"}, -- XX - Judgement
 	{"22", "XXI - El Mundo", "Revela el mapa completo del piso (excepto la {{SuperSecretRoom}} Habitación Super Secreta)"},
 	{"23", "2 de tréboles", "{{Bomb}} Duplica tus bombas"},
 	{"24", "2 de diamantes", "{{Coin}} Duplica tus monedas"},
@@ -942,7 +942,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[15] = {" una ", " 2 ", " máquina", " {{CR}}máquinas", "mendigo demoníaco", "{{CR}}mendigos demoníacos"}, -- XIV - Templanza (+ la versión de Greed)
 	[17] = {6, 12}, -- XVI - La Torre
 	[20] = {100, 200}, -- XIX - El Sol
-	[21] = {" un mendigo ", " 2 {{CR}}mendigos ", "generar ", "{{CR}}generar tambien ", "generar ", "{{CR}}generar tambien "}, -- XX - Judgement
+	[21] = {" un mendigo ", " 2 {{CR}}mendigos ", "generar ", "{{CR}}tambien generar ", "generar ", "{{CR}}tambien generar "}, -- XX - Judgement
 	[23] = {"Duplica", "Cuadruplica"}, -- 2 de tréboles
 	[24] = {"Duplica", "Cuadruplica"}, -- 2 de diamantes
 	[25] = {"Duplica", "Cuadruplica"}, -- 2 de picas
@@ -1094,7 +1094,7 @@ EID.descriptions[languageCode].transformations={
 ---------- Misc. text ----------
 
 -- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = ""
+EID.descriptions[languageCode].Pluralize = "s"
 
 EID.descriptions[languageCode].VoidText = "Otorga al absorberlo:"
 -- {1} will become the number text (like "{1} Tears" -> "+0.5 Tears")
