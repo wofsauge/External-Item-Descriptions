@@ -529,7 +529,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[164] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella per una singola stanza", -- The Candle
 	[166] = "Fiammella dell'anello mediano {{MiddleWisp}}#Distrugge tutti i consumabili nella stanza, ognuno di questi con una chance di generare una fiammella casuale", -- D20
 	[171] = "Fiammella dell'anello mediano {{MiddleWisp}}#7.5% di chance di {{Slow}} lacrime rallentanti", -- Spider Butt
-	[175] = "Fiammella dell'anello mediano {{MiddleWisp}}#Le fiammelle aprono bauli/porte chiusi che toccano, incluse le porte per Mega Satana, Ascesa, e Carcassa#Le fiammelle si donano da sole ai {{KeyBeggar}} Chiavai", -- Dad's Key
+	[175] = "Fiammella dell'anello mediano {{MiddleWisp}}#Le fiammelle aprono bauli/porte chiusi che toccano, incluse le porte per Mega Satana, Ascesa, e Carcassa#Le fiammelle si donano da sole ai {{KeyBeggar}} Chiavaiolo", -- Dad's Key
 	[177] = "Genera 1 fiammella in base alla ricompensa vinta", -- Portable Slot
 	[181] = "Fiammella dell'anello mediano {{MiddleWisp}}#10% di chance di {{Collectible374}} lacrime di \"Luce Santa\"", -- White Pony
 	[186] = "Fiammella dell'anello mediano {{MiddleWisp}}#Fiammella dalla salute elevata", -- Blood Rights
@@ -1047,6 +1047,9 @@ local repCards={
 	[12] = {"12", "XI - Forza", "{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.3 Velocità#↑ {{Damage}} +0.3 Danni#↑ {{Damage}} x1.5 Moltiplicatore Danni#↑ {{Range}} +2.5 Gittata"}, -- XI - Strength
 	[16] = {"16", "XV - Il Diavolo", "{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Damage}} +2 Danni"}, -- XV - The Devil
 	[18] = {"18", "XVII - Le Stelle", "{{TreasureRoom}} Teletrasporta Isaac nella Stanza dei Tesori#{{Planetarium}} Se c'è un Planetario, lo teletrasporta lì"}, -- XVII - The Stars
+	[20] = {"20", "XIX - Il Sole", "{{HealingRed}} Salute al massimo#Infligge 100 danni a tutti i nemici#{{Timer}} Effetto di mappatura completa fino all'uscita dal piano (eccetto per la Stanza {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Segreta)#{{CurseDarkness}} Rimuove Malediz. del Buio"}, -- XIX - The Sun
+	[21] = {"21", "XX - Il Giudizio", "Genera un Mendicante#{{DemonBeggar}} 33% di chance che sia un Mendicacuori#5% di chance che sia un Chiavaiolo, Scroccabombe, Elettrizzato o Mendicadavere"}, -- XX - Judgement
+	[22] = {"22", "XXI - Il Mondo", "{{Timer}} Effetto di mappatura completa fino all'uscita dal piano (eccetto per la Stanza {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Segreta)"}, -- XXI - The World
 	[27] = {"27", "Asso di Fiori", "{{Bomb}} Converte tutti i consumabili, bauli e nemici che non sono boss in bombe"}, -- Ace of Clubs
 	[28] = {"28", "Asso di Quadri", "{{Coin}} Converte tutti i consumabili, bauli e nemici che non sono boss in monete"}, -- Ace of Diamonds
 	[29] = {"29", "Asso di Picche", "{{Key}} Converte tutti i consumabili, bauli e nemici che non sono boss in chiavi"}, -- Ace of Spades
@@ -1124,7 +1127,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "Se non si è ancora entrati nella Stanza dei Tesori, avrà 2 oggetti tra cui scegliere", -- XVII - The Stars
 	[20] = {100, 400}, -- XIX - The Sun
-	[21] = {" una ", " 2 ", "Mendicante ", "{{CR}}Mendicanti "}, -- XX - Judgement TENERE IN CONSIDERAZIONE TRADUZIONE DEVIL BEGGAR PER INSERIRE ALTRE OPZIONI
+	[21] = {" un Mendicante", " 2 {{CR}}Mendicanti", "sia un Mendicauori", "siano 2 {{CR}}Mendicacuori", "sia un Chiavaiolo, Scroccabombe, Elettrizzato o Mendicadavere", "siano 2 {{CR}}Chiavaioli, Scroccabombe, Elettrizzati o Mendicadaveri"}, -- XX - Judgement
 	[56] = "Insieme ai consumabili butta a terra 6 degli oggetti di Isaac più recenti", -- 0 - The Fool?
 	[59] = {2, 3}, -- III - The Empress?
 	[61] = {2, 3}, -- V - The Hierophant?
@@ -1419,7 +1422,7 @@ EID.descriptions[languageCode].poopSpells = {
 
 EID.descriptions[languageCode].itemPoolFor = "Categoria/e dell'oggetto:"
 EID.descriptions[languageCode].itemPoolNames = {
-	[0] = "Tesoro", "Negozio", "Boss", "Diavolo", "Angelo", "Segreta", "Biblioteca", "Truffaldino", "Baule Dorato", "Baule Rosso", "Mendicante", "Mendicacuori", "Maledetta", "Chiavaio", "Elettrizzato", "Baule di Mamma", "Tesoro - Avido", "Boss - Avido", "Negozio - Avido", "Diavolo - Avido", "Angelo - Avido", "Maledetta - Avido", "Segreta - Avido", "Gioco della Gru", "Ultra Segreta", "Scroccabombe", "Planetario", "Vecchio Baule", "Negozio di Bebè", "Baule di Legno", "Mendicarcassa",
+	[0] = "Tesoro", "Negozio", "Boss", "Diavolo", "Angelo", "Segreta", "Biblioteca", "Truffaldino", "Baule Dorato", "Baule Rosso", "Mendicante", "Mendicacuori", "Maledetta", "Chiavaiolo", "Elettrizzato", "Baule di Mamma", "Tesoro - Avido", "Boss - Avido", "Negozio - Avido", "Diavolo - Avido", "Angelo - Avido", "Maledetta - Avido", "Segreta - Avido", "Gioco della Gru", "Ultra Segreta", "Scroccabombe", "Planetario", "Vecchio Baule", "Negozio di Bebè", "Baule di Legno", "Mendicadavere",
 }
 
 EID.descriptions[languageCode].VoidShopText = "Se assorbito subito dopo venir preso:"
