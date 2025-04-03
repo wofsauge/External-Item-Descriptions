@@ -31,8 +31,8 @@ local repCollectibles={
 	[37] = {"37", "Sr. Buum", "Genera una gran bomba a tus pies que inflige 185 de daño"}, -- Mr. Boom
 	[40] = {"40", "¡Kamikaze!", "Provoca una gran explosión en la ubicación del jugador#Inflige 185 de daño#{{Warning}} La explosión daña al jugador"}, -- Kamikaze!
 	[41] = {"41", "Toallita de Mamá", "{{Fear}} Asusta a todos los enemigos en la habitación durante 5 segundos#Genera una mosca azul"}, -- Mom's Pad
-	[42] = {"42", "Cabeza podrida de Bob", "{{Throwable}} Cabeza explosiva lanzable#{{Poison}} Crea una nube de veneno tras explotar#Inflige tu daño + 185"}, -- Bob's Rotten Head
-	[46] = {"46", "Pie de la suerte", "↑ {{Luck}} Suerte +1#Más probabilidad de ganar al apostar#Aumenta las posibilidades de generar recompenzas tras limpiar una habitación#Cambia las píldoras malas por buenas"}, -- Lucky Foot
+	[42] = {"42", "Cabeza podrida de Bob", "{{Throwable}} Cabeza explosiva lanzable#{{Poison}} Genera una nube de veneno al explotar#Inflige tu daño + 185"}, -- Bob's Rotten Head
+	[46] = {"46", "Pie de la suerte", "↑ {{Luck}} Suerte +1#Más probabilidad de ganar al apostar#Aumenta las probabilidades de generar recompensas tras limpiar una habitación#Cambia las píldoras malas por buenas"}, -- Lucky Foot
 	[49] = {"49", "Kamehame... ¡¿Eeeeeeh?!", "Reemplaza el siguiente disparo por un rayo#Inflige 24 veces tu daño durante 0.83 segundos"}, -- Shoop da Whoop!
 	[52] = {"52", "Dr. Fetus", "¡Lágrimas bomba!#↓ {{Tears}} Lágrimas x0.4%#{{Damage}} Las bombas hacen 10 veces tu daño#{{Damage}} Si esto resulta en +60 de daño, infligirán tu daño x5 + 30"}, -- Dr. Fetus
 	[53] = {"53", "Magneto", "Atrae a los recolectables cercanos hacia el jugador#Abre cofres a distancia, ignorando el daño de los cofres de pinchos"}, -- Magneto
@@ -65,15 +65,15 @@ local repCollectibles={
 	[129] = {"129", "Cubo de manteca", "↑ {{Heart}} +2 de Vida#↓ {{Speed}} Velocidad -0.2"}, -- Bucket of Lard
 	[138] = {"138", "Estigma", "↑ {{Heart}} +1 de Vida#↑ {{Damage}} Daño +0.3#{{HealingRed}} Cura 1 corazón"}, -- Stigmata
 	[139] = {"139", "Bolso de Mamá", "{{Trinket}} Genera 1 trinket aleatorio#{{Trinket}} Permite llevar 2 trinkets"}, -- Bolso de Mamá
-	[140] = {"140", "Maldición de Bob", "{{Bomb}} +5 Bombas#{{Poison}} Tus bombas crean una nube de veneno#{{Poison}} Otorga inmunidad al veneno"}, -- Maldición de Bob
-	[142] = {"142", "Escapulario", "{{SoulHeart]] +1 Corazón de alma al recibir daño teniendo medio corazón#Solo puede activarse una vez por habitación#{{Warning}} No se activa con las [[DonationMachine}} máquinas de donación"}, -- Scapular
+	[140] = {"140", "Maldición de Bob", "{{Bomb}} +5 Bombas#{{Poison}} Tus bombas generan una nube de veneno#{{Poison}} Otorga inmunidad al veneno"}, -- Bob's Curse
+	[142] = {"142", "Escapulario", "{{SoulHeart}} +1 Corazón de alma al recibir daño teniendo medio corazón#Solo puede activarse una vez por habitación#{{Warning}} No se activa con las {{DonationMachine}} máquinas de donación"}, -- Scapular
 	[147] = {"147", "Hacha de Notch", "Rompe las rocas y daña a los enemigos al contacto#Golpear con el hacha reduce sus cargas#Se recarga al avanzar al siguiente piso"}, -- Hacha de Notch
 	[148] = {"148", "Infestación", "Genera 2-6 moscas azules al recibir daño"}, -- Infestation
 	[149] = {"149", "Ipecac", "↑ {{Damage}} Daño +40#↓ {{Tears}} Lágrimas x0.33#↓ {{Range}} Alcance x0.8#↓ {{Shotspeed}} Vel. de lágrimas x0.8#Lágrimas explosivas#{{Poison}} Lágrimas venenosas"}, -- Ipecac
 	[152] = {"152", "Tecnología 2", "↓ {{Tears}} Lágrimas x0.67#Remplaza tu ojo derecho con un laser continuo#{{Damage}} El laser inflige 2 veces tu daño cada segundo"}, -- Technology 2
 	[153] = {"153", "Araña mutante", "↓ {{Tears}} Lágrimas x0.42#Disparo cuádruple"}, -- Mutant Spider
 	[155] = {"155", "El fisgón", "↑ {{Damage}} Daño x1.35 para el ojo izquierdo#Flota por la habitación#Inflige 17.1 de daño por contacto cada segundo"}, -- The Peeper
-	[158] = {"158", "Bola de cristal", "Puede generar:#Un {{SoulHeart}} Corazón de Alma, {{Rune}} runa o {{Card}} carta#{{Timer}} Revela el mapa del piso actual(excepto {{SuperSecretRoom}}{{UltraSecretRoom}} las Habitaciones Súper/Ultra Secretas)#Al tenerlo:#↑ {{PlanetariumChance}} Posibilidad de planetarios +15%#↑ {{PlanetariumChance}} Posibilidad de planetarios +100% si te saltas la habitación del tesoro"}, -- Crystal Ball
+	[158] = {"158", "Bola de cristal", "Puede generar:#Un {{SoulHeart}} Corazón de Alma, {{Rune}} runa o {{Card}} carta#{{Timer}} Revela el mapa del piso actual(excepto {{SuperSecretRoom}}{{UltraSecretRoom}} las Habitaciones Súper/Ultra Secretas)#Al tenerlo:#↑ {{PlanetariumChance}} Probabilidad de planetarios +15%#↑ {{PlanetariumChance}} Probabilidad de planetarios +100% si te saltas la habitación del tesoro"}, -- Crystal Ball
 	[169] = {"169", "Polifemo", "↑ {{Damage}} Daño +4#↑ {{Damage}} Daño x2#↓ {{Tears}} Lágrimas x0.42"}, -- Polyphemus
 	[171] = {"171", "Trasero Aracnido", "{{Slow}} Ralentiza a los enemigos durante 4 segundos#Inflige 10 de daño a todos los enemigos#Eliminar enemigos con él genera arañas azules"}, -- Culo de araña
 	[172] = {"172", "Daga de Sacrificio", "Cuchillo orbital#Bloquea proyectiles enemigos#Inflige 112.5 de daño por contacto cada segundo"}, -- Sacrificial Dagger
@@ -131,7 +131,7 @@ local repCollectibles={
 	[291] = {"291", "¡Flush!", "Convierte a los enemigos comunes en caca#Mata de forma instantánea a enemigos y jefes de caca#Extingue fuegos#Convierte en suelo las fosas de lava"}, -- ¡Flus-flus!
 	[292] = {"292", "Biblia Satánica", "{{BlackHeart}} +1 Corazón negro#{{Warning}} Usarlo antes de la pelea contra el jefe reemplaza la recompensa del jefe por un objeto de pacto del diablo#{{AngelChance}} Tomar un objeto de pacto impedirá que aparezcan {{AngelRoom}} Salas del ángel"}, -- Satanic Bible
 	[293] = {"293", "Cabeza de Krampus", "{{Collectible118}} Dispara un rayo de sangre en 4 direcciones#Cada rayo inflige 200 de daño cada 1.33 segundos"}, -- Head of Krampus
-	[294] = {"294", "Frijol Mantequilla", "Repele a los enemigos y proyectiles cercanos#Inflige 10 de daño a los enemigos lanzados contra obstáculos"}, -- Butter Bean
+	[294] = {"294", "Frijol Mantequilla", "Empuja a los enemigos y proyectiles cercanos#Inflige 10 de daño a los enemigos lanzados contra obstáculos"}, -- Butter Bean
 	[295] = {"295", "Dedos mágicos", "Inflige el doble de tu daño + 10 a toda la habitación#{{Coin}} Usarlo cuesta 1 moneda"}, -- Magic Fingers
 	[296] = {"296", "Conversor", "{{Heart}} Convierte 1 Corazón Negro o de Alma en un Contenedor de corazón"}, -- Converter
 	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
@@ -198,7 +198,7 @@ local repCollectibles={
 	[426] = {"426", "Fan obsesionado", "Familiar que sigue tus movimientos con 0.66 segundos de retraso#Inflige 30 de daño por contacto cada segundo"}, -- Obsessed Fan
 	[430] = {"430", "Mosca Papá", "Familiar que sigue tus movimientos con 0.66 segundos de retraso#{{Damage}} Dispara lágrimas que infligen tu daño a enemigos cercanos"}, -- Papa Fly
 	[431] = {"431", "Bebé multidimensional", "Sigue tus movimientos con 0,66 segundos de retraso#Las lágrimas que lo traspasen se dividen y ganan una mejora de alcance y velocidad"}, -- Multidimensional Baby
-	[432] = {"432", "Bombas Brillantes", "{{Bomb}} +5 Bombas#Las bombas tienen un 63% de probabilidad de generar un recolectable al explotar#La posibilidad se reduce en 1% por cada recolectable generado en el piso#{{Charm}} Las bombas tienen un 15% de posibilidad de encantar a los enemigos al explotar"}, -- Glitter Bombs
+	[432] = {"432", "Bombas Brillantes", "{{Bomb}} +5 Bombas#Las bombas tienen un 63% de probabilidad de generar un recolectable al explotar#La probabilidad se reduce en 1% por cada recolectable generado en el piso#{{Charm}} Las bombas tienen un 15% de probabilidad de encantar a los enemigos al explotar"}, -- Glitter Bombs
 	[433] = {"433", "Mi sombra", "Una pequeña sombra seguirá al jugador#{{Timer}} Se creará un Charger oscuro por sala cuando un enemigo toque la sombra#El Charger inflige 8.7 de daño por contacto"}, -- My Shadow
 	[437] = {"437", "D7", "Reinicia la habitación y vuelve a generar los enemigos#Permite obtener multiples recompensas de la misma habitación"}, -- D7
 	[440] = {"440", "Piedra de Riñón", "Ocasionalmente dejas de disparar para cargar una rafaga de lágrimas y una piedra del riñón"}, -- Kidney Stone
@@ -225,7 +225,7 @@ local repCollectibles={
 	[494] = {"494", "Escalera de Jacob", "Las lágrimas generan un rayo eléctrico al impactar#Los rayos infligen la mitad de tu daño#Los rayos saltan entre enemigos"}, -- Jacob's Ladder
 	[495] = {"495", "Pimiento fantasma", "8% de probabilidad de disparar un fuego azul que inflige daño y bloquea proyectiles#{{Luck}} 50% de probabilidad con 10 de suerte#El fuego se encoje hasta desaparecer tras 2 segundos"}, -- Ghost Pepper
 	[496] = {"496", "Eutanasia", "3.33% de probabilidad de disparar agujas#{{Luck}} 25% de probabilidad con 13 de suerte#Las agujas matan a los enemigos normales de un golpe, disparando otras 10 agujas#Infligen el triple de tu daño contra jefes"}, -- Euthanasia
-	[497] = {"497", "Interior Camuflado", "{{Confusion}} Al entrar a una habitación te camufla y aturde a los enemigos hasta que dispares#↑ {{Speed}} Velocidad +0.5 al estar camuflado#Al descamuflarse: #Todos los enemigos serán dañados#↑ {{Damage}} Más daño por la sala#↑ {{Tears}} Más lágrimas por la sala"}, -- Camo Undies
+	[497] = {"497", "Interior Camuflado", "{{Confusion}} Al entrar a una habitación te camufla y confunde a los enemigos hasta que dispares#↑ {{Speed}} Velocidad +0.5 al estar camuflado#Al descamuflarse: #Todos los enemigos serán dañados#↑ {{Damage}} Más daño por la sala#↑ {{Tears}} Más lágrimas por la sala"}, -- Camo Undies
 	[500] = {"500", "Bolsa de Bolsas", "Genera un saco cada 7-8 salas"}, -- Sack of Sacks
 	[501] = {"501", "Esófago de Codicia", "{{Heart}} Otorga 1 contenedor de corazón por cada 25 monedas que tengas"}, -- Greed's Gullet
 	[503] = {"503", "Cuernito", "5% de probabilidad de disparar una lágrima que invoca una mano de Big Horn#{{Luck}} 20% de probabilidad con 15 de suerte#La mano mata al instante a enemigos normales e inflige 3.5 de daño a los jefes#Infliges 7 de daño por contacto cada segundo"}, -- Little Horn
@@ -248,7 +248,7 @@ local repCollectibles={
 	[555] = {"555", "Cuchilla dorada", "{{Coin}} A cambio de 5 monedas, otorga en la habitación actual:#↑ {{Damage}} Daño +1.2"}, -- Golden Razor
 	[556] = {"556", "Sulfuro", "{{Collectible118}} Activa el efecto de Azufre en la habitación actual#Usarlo repetidas veces incrementa el daño y el tamaño del rayo"}, -- Sulfur
 	[557] = {"557", "Galleta de la suerte", "Puede generar: #Una fortuna #{{SoulHeart}} Un Corazón de Alma#{{Rune}} Una Runa o Piedra de alma{{Card}} Una Carta#{{Trinket}} Un Trinket"}, -- Fortune Cookie
-	[558] = {"558", "Dolor de ojo", "Posibilidad de disparar 1-3 lágrimas adicionales en direcciones aleatorias"}, -- Eye Sore
+	[558] = {"558", "Dolor de ojo", "Probabilidad de disparar 1-3 lágrimas adicionales en direcciones aleatorias"}, -- Eye Sore
 	[559] = {"559", "120 voltios", "Da descargas de energía a los enemigos cercanos#{{Damage}} La electricidad inflige 3.75 veces tu daño cada segundo#Los rayos pueden saltar entre enemigos"}, -- 120 Volt
 	[560] = {"560", "Duele...", "{{Timer}} Tras ser golpeado, otorga por la habitación:#↑ {{Tears}} Lágrimas +1.2 con el primer golpe#↑ {{Tears}} Lágrimas +0.4 por cada golpe adicional#Libera un círculo de 10 lágrimas a tu alrededor"}, -- It Hurts
 	[561] = {"561", "Leche de almendras", "↑ {{Tears}} Lágrimas x4#↓ {{Damage}} Daño x0.3#↓ {{Tearsize}} Tamaño de lágrima -0.16#{{Trinket64}} Las lágrimas ganan los efectos aleatorios de los trinkets de gusano"}, -- Almond Milk
@@ -275,9 +275,9 @@ local repCollectibles={
 	[582] = {"582", "Seta ondulada", "↑ {{Shotspeed}} Vel. de lágrimas +0.75#↓ {{Speed}} Velocidad -0.03#Distorsiona la pantalla#Efecto acumulable#Limpiar o abandonar salas reduce los efectos"}, -- Wavy Cap
 	[583] = {"583", "Cohete en un jarro", "{{Bomb}} +5 Bombas#Colocar una bomba al disparar lanzará un cohete a la dirección donde dispares"}, -- Cohete en un jarro
 	[584] = {"584", "El libro de las virtudes", "Invoca un fuego orbital que dispara lágrimas espectrales que puede destruirse#Puede combinarse con un segundo objeto activo para crear fuegos temáticos#Cambia la primera sala del diablo por la del ángel"}, -- El libro de las virtudes
-	[585] = {"585", "Caja de alabastro", "Genera: #{{SoulHeart}} 3 Corazones de alma#{{AngelRoom}} Dos objetos de la Sala del Ángel#{{SoulHeart}} Sólo se carga con Corazones de alma"}, -- Caja de alabastro
-	[586] = {"586", "La escalerilla", "Genera una escalera al inicio de cada piso#{{AngelRoom}} La escalera lleva a una tienda de sala del ángel"}, -- Escalera de mano
-	[587] = {"587", "", "<Este objeto no existe>"}, -- Menorah (Unused but skripted)
+	[585] = {"585", "Caja de alabastro", "{{SoulHeart}} Se carga al recoger corazones de alma#Genera: #{{SoulHeart}} 3 Corazones de alma#{{AngelRoom}} Dos objetos aleatorios de la Sala del Ángel"}, -- Alabaster Box
+	[586] = {"586", "La escalerilla", "Genera una escalera al inicio de cada piso#{{AngelRoom}} La escalera lleva a una tienda del ángel"}, -- Escalera de mano
+	[587] = {"587", "", "<Este objeto no existe>"}, -- Menorah (Cut item)
 	[588] = {"588", "Sol", "{{BossRoom}} Revela el lugar de la sala del jefe #Tras derrotar al jefe:#Activa la carta {{Card20}} El Sol#Recarga el objeto activo#Otorga lo siguiente para el resto del piso:↑{{Damage}} Daño +3#↑ {{Luck}} Suerte +1"}, -- Sol
 	[589] = {"589", "Luna", "Agrega una {{SecretRoom}} habitación secreta y una {{SuperSecretRoom}} súper secreta adicional a cada piso#Las habitaciones secretas contienen un rayo de luz que al tocarlo otorga lo siguiente: #↑ {{Tears}} Lágrimas +1 al tocar el primer rayo#↑ {{Tears}} Lágrimas +0.5 al tocar los siguientes rayos#{{HalfSoulHeart}} Medio Corazón de alma"}, -- Luna
 	[590] = {"590", "Mercurius", "↑ {{Speed}} Velocidad +0.4#La mayoría de puertas se mantendrán abiertas permanentemente"}, -- Mercurius
@@ -285,7 +285,7 @@ local repCollectibles={
 	[592] = {"592", "Terra", "↑ {{Damage}} Daño +1#Reemplaza tus lágrimas por rocas#Infligen daño variable#Pueden destruir obstáculos#Aumenta el empuje"}, -- Terra
 	[593] = {"593", "Mars", "Embiste al pulsar dos veces la tecla de movimiento#te vuelves invulnerable e infliges {{Damage}} 4 veces tu daño +8#{{Timer}} 3 segundos de recarga"}, -- Mars
 	[594] = {"594", "Júpiter", "{{EmptyHeart}} +2 contenedores de corazón#↓ {{Speed}} Velocidad -0.3#{{HealingRed}} Cura medio corazón#↑ {{Speed}} Bonus de velocidad +0.5 al quedarse quieto#{{Poison}} Suelta una nube de veneno al moverse otra vez#{{Poison}} Otorga inmunidad al veneno"}, -- Jupiter
-	[595] = {"595", "Saturnus", "Al entrar en una habitación, 7 lágrimas orbitarán a tu alrededor#Estas lágrimas duran 13 segundos e infligen 1.5 veces tu daño +5#Posibilidad de atrapar proyectiles enemigos en la órbita"}, -- Saturnus
+	[595] = {"595", "Saturnus", "Al entrar en una habitación, 7 lágrimas orbitarán a tu alrededor#Estas lágrimas duran 13 segundos e infligen 1.5 veces tu daño +5#Probabilidad de atrapar proyectiles enemigos en la órbita"}, -- Saturnus
 	[596] = {"596", "Uranus", "Otorga lágrimas de hielo que:#{{Slow}} Ralentizan a los enemigos#{{Freezing}} Congela a los enemigos al matarlos#Empujar enemigos congelados hará que se deslicen y exploten en 10 trozos de hielo"}, -- Uranus
 	[597] = {"597", "Neptunus", "{{Chargeable}} Cargable (Automático)#Al no disparar, se empezará a cargar un ataque#Disparar hará que sueltes una ráfaga de lágrimas hasta que dispares a tu cadencia regular#Dejar de disparar recargará el ataque"}, -- Neptuno
 	[598] = {"598", "Pluto", "↑ {{Tears}} Lágrimas +0.7#Encoge mucho a Isaac, permitiendo que pase entre objetos#Los proyectiles puede pasarte por encima"}, -- Pluto
@@ -359,7 +359,7 @@ local repCollectibles={
 	[666] = {"666", "", "<Este objeto no existe>"},
 	[667] = {"667", "Hombre de Paja", "{{Player14}} Genera un Keeper compañero#{{DevilRoom}} Los objetos de pacto del Diablo costaran monedas si esta vivo#Al morir:#Genera arañas azules#Elimina todo objeto que haya recogido y a si mismo de tu inventario#{{Warning}} Puede tomar objetos de eventos de progresión"}, -- Straw Man
 	[668] = {"668", "Nota de Papá", "Tomarlo iniciará la ruta de ascenso hasta Casa#{{Trinket}} Transformará todos los trinkets dejados en la {{BossRoom}} Sala del jefe o la {{TreasureRoom}} Sala del tesoro en una {{Card78}} Llave rota"}, -- Nota de papá
-	[669] = {"669", "Salchicha", "↑ {{Heart}} +1 corazón#↑ {{Speed}} Velocidad +0.2#↑ {{Damage}} Daño +0.5#↑ {{Tears}} Lágrimas +0.5#↑ {{Range}} Alcance +2.5#↑ {{Shotspeed}} Vel. de lágrimas +0.6#↑ {{Luck}} Suerte +1#{{HealingRed}} Salud al maximo#↑ {{AngelDevilChance}} Posibilidad de sala de Diablo/Ángel +6.9%#↑ {{PlanetariumChance}} Posibilidad de Planetario +6.9% "}, -- Sausage
+	[669] = {"669", "Salchicha", "↑ {{Heart}} +1 corazón#↑ {{Speed}} Velocidad +0.2#↑ {{Damage}} Daño +0.5#↑ {{Tears}} Lágrimas +0.5#↑ {{Range}} Alcance +2.5#↑ {{Shotspeed}} Vel. de lágrimas +0.6#↑ {{Luck}} Suerte +1#{{HealingRed}} Salud al maximo#↑ {{AngelDevilChance}} Probabilidad de sala de Diablo/Ángel +6.9%#↑ {{PlanetariumChance}} Probabilidad de Planetario +6.9% "}, -- Sausage
 	[670] = {"670", "¿Opciones?", "Permite elegir entre dos recompensas de habitación"}, -- Options?
 	[671] = {"671", "Corazón de Caramelo", "↑ Otorga una mejora aleatoria permanente de estadísticas al recoger un {{Heart}} corazón rojo#{{Heart}} Genera un corazón rojo"}, -- Candy Heart
 	[672] = {"672", "Una Libra de Carne", "{{DevilRoom}} Los pactos del diablo ahora cuestan monedas#{{Shop}} Los objetos de las tiendas cuestan contenedores de corazón#Los recolectables en las tiendas son gratis pero están rodeados con espinas"}, -- A Pound of Flesh
@@ -506,7 +506,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[86] = "Fuego orbital central {{MiddleWisp}}#Lágrimas de dientes", -- Monstro's Tooth
 	[93] = "Fuego orbital interior {{InnerWisp}}#Disparos anti-gravedad#Probabilidad de disparar lágrimas {{Fear}} asustadoras", -- The Gamekid
 	[97] = "Genera 1 de 8 fuegos: {{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#Los efectos explosivos son comunes", -- The Book of Sin
-	[102] = "Fuego orbital interior {{InnerWisp}}#Genera 1 de 6 fuegos de distinto color con distintos efectos#Posibilidad de envenenar, petrificar, confundir, lanzar disparos de Bombas Troll, O generar una araña enemiga al destruírse#Los 6 fuegos generan {{Pill}} píldoras al destruirse", -- Mom's Bottle of Pills
+	[102] = "Fuego orbital interior {{InnerWisp}}#Genera 1 de 6 fuegos de distinto color con distintos efectos#Probabilidad de envenenar, petrificar, confundir, lanzar disparos de Bombas Troll, O generar una araña enemiga al destruírse#Los 6 fuegos generan {{Pill}} píldoras al destruirse", -- Mom's Bottle of Pills
 	[105] = "Fuego orbital central {{MiddleWisp}}#Genera un fuego extra por cada objeto cambiado", -- The D6
 	[107] = "Fuego orbital interior {{InnerWisp}}#Lágrimas perforantes", -- The Pinking Shears
 	[111] = "Fuego orbital exterior {{OuterWisp}}#Pedo venenoso al destruirse", -- The Bean
@@ -525,8 +525,8 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[158] = "Fuego orbital central {{MiddleWisp}}#Fuego de alta salud que dispara a enemigos cercanos", -- Crystal Ball
 	[160] = "Fuego orbital central {{MiddleWisp}}#Genera un rayo de luz al contacto", -- Crack the Sky
 	[164] = "Fuego orbital central {{MiddleWisp}}#Fuego que dura una sola habitación", -- The Candle
-	[166] = "Fuego orbital central {{MiddleWisp}}#Destruye todos los recolectables en la habitación#Posibilidad de generar un fuego aleatorio por cada recolectable destruido", -- D20
-	[171] = "Fuego orbital central {{MiddleWisp}}#7.5% de posibilidad de disparar lágrimas {{Slow}} ralentizadoras", -- Spider Butt
+	[166] = "Fuego orbital central {{MiddleWisp}}#Destruye todos los recolectables en la habitación#Probabilidad de generar un fuego aleatorio por cada recolectable destruido", -- D20
+	[171] = "Fuego orbital central {{MiddleWisp}}#7.5% de probabilidad de disparar lágrimas {{Slow}} ralentizadoras", -- Spider Butt
 	[175] = "Fuego orbital central {{MiddleWisp}}#Los fuegos abren cofres/puertas al contacto#Puede abrir las puertas a Mega Satán, Cadaver y al Ascenso#Los fuegos se donan a si mismos a los {{KeyBeggar}} Mendigos de llaves", -- Dad's Key
 	[177] = "Genera un fuego basado en la recompensa de la habitación", -- Portable Slot
 	[181] = "Fuego orbital central {{MiddleWisp}}#10% de probabilidad de disparar lágrimas de {{Collectible374}} Luz Sagrada", -- White Pony
@@ -541,12 +541,12 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[287] = "Fuego orbital central {{MiddleWisp}}#Activa el efecto del {{Collectible675}} Orbe roto al destruise", -- Book of Secrets
 	[288] = "Fuego orbital exterior {{OuterWisp}}#Genera fuegos en vez de arañás#Generan una araña azul al destruirse", -- Box of Spiders
 	[289] = "Fuego orbital central {{MiddleWisp}}#Fuego de una sola habitación#Lágrimas de flamas rojas", -- Red Candle
-	[290] = "Fuego orbital central {{MiddleWisp}}#Convierte los corazones recolectados en fuegos#Posibilidad de generar {{HalfHeart}} medio corazón al destruirse", -- The Jar
+	[290] = "Fuego orbital central {{MiddleWisp}}#Convierte los corazones recolectados en fuegos#Probabilidad de generar {{HalfHeart}} medio corazón al destruirse", -- The Jar
 	[291] = "Fuego orbital central {{MiddleWisp}}#Genera un fuego extra por cada enemigo transformado en caca", -- Flush!
-	[292] = "Fuego orbital central {{MiddleWisp}}#+10% de posibilidad de {{AngelDevilChance}} sala del Diablo/Ángel por cada fuego de la Biblia Satánica", -- Satanic Bible
+	[292] = "Fuego orbital central {{MiddleWisp}}#+10% de probabilidad de {{AngelDevilChance}} sala del Diablo/Ángel por cada fuego de la Biblia Satánica", -- Satanic Bible
 	[293] = "Fuego orbital central {{MiddleWisp}}#Dispara un {{Collectible118}} rayo en 4 direcciones al destruirse", -- Head of Krampus
 	[294] = "Fuego orbital interior {{InnerWisp}}#Fuego de baja salud#Dura una sola habitación#No puede disparar lágrimas#Efecto del Frijol Mantequilla al destruirse", -- Butter Bean
-	[295] = "Fuego orbital interior {{InnerWisp}}#Posibilidad de soltar una {{Coin}} moneda al destruirse", -- Magic Fingers
+	[295] = "Fuego orbital interior {{InnerWisp}}#Probabilidad de soltar una {{Coin}} moneda al destruirse", -- Magic Fingers
 	[296] = "Fuego orbital central {{MiddleWisp}}#Fuego de alta salud que puede curarse con {{Heart}} corazones rojos", -- Converter
 	[297] = "Fuego orbital central {{MiddleWisp}}#Genera de 0 a 8 fuegos, dependiendo del numero de planta actual", -- Pandora's Box
 	[298] = "Fuego orbital central {{MiddleWisp}}#No puede disparar lágrimas#Inmune al daño por contacto#No inflige daño por contacto hasta que el Paso de unicornio se active", -- Unicorn Stump, Hasta acá lo voy a dejar por el momento, cuando me despierte y limpie continuaré
@@ -677,7 +677,7 @@ EID.descriptions[languageCode].AbyssLocustEffects = {
 [6] = "{{Collectible114}} Un cuchillo orbita la langosta mientras ataca",
 [7] = "{{Collectible611}} Libera un grito de Laringe, dañando a los enemigos cercanos",
 [8] = "{{Collectible399}} Genera un aro de Fauces del Vacío",
-[9] = "{{Collectible522}} Obtiene un aura que repele disparos al cargar",
+[9] = "{{Collectible522}} Obtiene un aura que empuja a los proyectiles al cargar",
 [10] = "{{Collectible447}} Suelta pedos venenosos al infligir daño",
 [11] = "{{Collectible447}} Suelta un pedo al infligir daño",
 [12] = "{{Collectible118}} Genera un rayo de sangre al infligir daño",
@@ -696,8 +696,8 @@ EID.descriptions[languageCode].TearFlagNames = {
     [1] = "Perforante",													-- Cupid's arrow type tear (goes thru enemy)
     [2] = "Teledirigida",												-- Spoon bender type tear (homes to enemy)
     [3] = "Ralentizante",												-- Spider bite type tear (slows on contact)
-    [4] = "Envenena",													-- Common cold type tear (poisons on contact)
-    [5] = "Petrifica",													-- Mom's contact type tear (freezes on contact)
+    [4] = "Envenena a los enemigos",									-- Common cold type tear (poisons on contact)
+    [5] = "Petrifica a los enemigos",									-- Mom's contact type tear (freezes on contact)
     [6] = "Se dispersa al impacto",										-- Parasite type tear (splits on collision)
     [7] = "Aumenta su tamaño al moverse",								-- Lump of coal type tear (grows by range)
     [8] = "Boomerang",													-- My reflection type tear (returns back)
@@ -739,7 +739,7 @@ EID.descriptions[languageCode].TearFlagNames = {
     [44] = "Genera una moneda al impacto",								-- Greed coin tears that has a chance to generate a coin when hit
     [45] = "Bomba cruz",												-- Bomber Boy
     [46] = "Movimiento en espiral grande",								-- Ouroboros Worm, big radius oscilating tears
-    [47] = "Confunde a los enemigos",									-- Glaucoma tears, permanently confuses enemies
+    [47] = "Confunde a los enemigos",										-- Glaucoma tears, permanently confuses enemies
     [48] = "Se pega a los enemigos",									-- Booger tears, stick and do damage over time
     [49] = "Genera arañas o moscas al impacto",							-- Egg tears, leave creep and spawns spiders or flies
     [50] = "Puede romper rocas al impacto",								-- Sulfuric Acid tears, can break grid entities
@@ -756,7 +756,7 @@ EID.descriptions[languageCode].TearFlagNames = {
     [61] = "Rebota en el suelo",										-- Flat Stone
     [62] = "Se dispersa al impactar",									-- Haemolacria
     [63] = "Deja un rastro de fluido",									-- Bob's Bladder
-    [64] = "Empuja y aturde a los enemigos",							-- Knockout Drops
+    [64] = "Empuja y confunde a los enemigos",							-- Knockout Drops
     [65] = "Matar a un enemigo lo congela",								-- Uranus
     [66] = "Atrae a enemigos y recolectables",							-- Lodestone
     [67] = "Los enemigos atacarán al enemigo afectado",					-- Rotten Tomato
@@ -1335,23 +1335,23 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	[0] = "{{Damage}} Daño", "{{Tears}} Lágrimas", "{{Shotspeed}} Vel. de lágrimas", "{{Range}} Alcance", "Velocidad", "Efectos de lágrima", "Color de lágrima", "Vuelo", "Tipo de ataque", "Familiares", "Suerte", "Tamaño", "Color", "Contenido de cofres", [16] = "Todas las estadísticas",
 
 	-- Attribute triggers
-	active = "Al usarse:#",
-	pickup_collected = "Al tomar un recolectable:#", --chance to?
-	enemy_kill = "Al matar, Posibilidad de:#",
-	damage_taken = "Al recibir daño:#", --chance to?
-	entity_spawned = "Cuando un {{ColorGray}}{T1}{{ColorText}} Se genera:#",
-	tear_fire = "Al disparar una lágrima, posibilidad de:#",
-	enemy_hit = "Al golpear un enemigo, posibilidad de:#",
-	room_clear = "Al limpiar una sala:#", --chance to?
+	active = "Al activarse:#",
+	pickup_collected = "Al recoger un recolectable:#",
+	enemy_kill = "Al matar un enemigo, probabilidad de 20% de:#",
+	damage_taken = "Al recibir daño:#",
+	entity_spawned = "Cuando se genera un {{ColorGray}}{T1}{{ColorText}}:#",
+	tear_fire = "Al disparar una lágrima, probabilidad de 5% de:#",
+	enemy_hit = "Al golpear un enemigo, probabilidad de 5% de:#",
+	room_clear = "Al limpiar una sala:#",
 	chain = "Que:{{CR}} ",
 
 	-- Attribute effects
-	area_damage = "Hace {1} de daño en el área",
-	add_temporary_effect = "Gana {1} Durante la sala",
-	convert_entities = "Convierte todos los {{ColorGray}}{1}{{ColorText}} de la sala en {{ColorGray}}{2}{{ColorText}}",
+	area_damage = "Inflige {1} de daño en un área de {2}",
+	add_temporary_effect = "Otorga {1} durante la sala",
+	convert_entities = "Convierte todos los {{ColorGray}}{1}{{ColorText}} en la sala en {{ColorGray}}{2}{{ColorText}}",
 	use_active_item = "Usa {1}",
 	spawn_entity = "Genera un {{ColorGray}}{1}{{ColorText}}",
-	fart = "Suelta un pedo de tamaño {1}",
+	fart = "Suelta un pedo en un área de {1}",
 	
 	-- Generic entity names not obtained from entities2.xml
 	-- This could also be a place to localize entity names; this table is read from before EID.XMLEntityNames
@@ -1367,7 +1367,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.300"] = "carta",
 	["5.301"] = "runa", -- not a real ID
 	["9.-1"] = "proyectil enemigo",
-	["999.-1"] = "grid object",
+	["999.-1"] = "objeto de grílla",
 	["1000.0"] = "efecto",
 
 	-- Text for the base item that is granted
@@ -1387,7 +1387,7 @@ EID.descriptions[languageCode].CraftingPreviewKey = "Vista Previa:"
 EID.descriptions[languageCode].CraftingMore = "...+{1} mas"
 -- {1} will be converted into the number of available items
 EID.descriptions[languageCode].CraftingNumAvailableItems = "{1} de 8 objetos disponibles"
-EID.descriptions[languageCode].CraftingWarningAvailableItems = "Needs at least 8 to show crafting recipes!"
+EID.descriptions[languageCode].CraftingWarningAvailableItems = "¡Necesitas tener al menos 8 para mostrar las recetas!"
 -- {1} will be converted into the name of the key that toggles the BoC visibility
 EID.descriptions[languageCode].CraftingIsHidden = "Actualmente Oculto (Presiona {1} para mostrar)"
 -- {1} will be converted into the name of the key that toggles the BoC Search
@@ -1428,10 +1428,10 @@ EID.descriptions[languageCode].poopSpells = {
 
 EID.descriptions[languageCode].itemPoolFor = "Grupos de Objeto:"
 EID.descriptions[languageCode].itemPoolNames = {
-	[0] = "Tesoro", "Tienda", "Jefe", "Diablo", "Angel", "Secreta", "Biblioteca", "Trile", "Cofre Dorado", "Cofre Rojo", "Mendigo", "Mendigo Demoníaco", "Maldición", "Mendigo de llaves", "Mendigo de Baterias", "Cofre de Mamá", "Tesoro", "Tienda Greed", "Jefe Greed", "Diablo Greed", "Angel Greed", "Maldición Greed", "Secreta Greed", "Juego de la Grua", "Ultra Secreta", "Mendigo de Bombas", "Planetario", "Cofre Antiguo", "Tienda de Bebés", "Cofre de Madera", "Mendigo Podrido",
+	[0] = "Tesoro", "Tienda", "Jefe", "Diablo", "Angel", "Secreta", "Biblioteca", "Trile", "Cofre Dorado", "Cofre Rojo", "Mendigo", "Mendigo Demoníaco", "Maldición", "Mendigo de llaves", "Mendigo de Baterias", "Cofre de Mamá", "Tesoro", "Tienda Codicia", "Jefe Codicia", "Diablo Codicia", "Angel Codicia", "Maldición Codicia", "Secreta Codicia", "Juego de la Grua", "Ultra Secreta", "Mendigo de Bombas", "Planetario", "Cofre Antiguo", "Tienda de Bebés", "Cofre de Madera", "Mendigo Podrido",
 }
 
-EID.descriptions[languageCode].VoidShopText = "Si se absorbe justo después de tomarlo, ganarás:"
+EID.descriptions[languageCode].VoidShopText = "Si se absorbe justo después de tomarlo, otorga:"
 EID.descriptions[languageCode].VoidOptionText = " será absorbido en su lugar"
 EID.descriptions[languageCode].VoidNames = {"de Velocidad", "de Lágrimas ", "de Daño", "de Alcance", "de Vel. de lágrimas ", "de Suerte"}
 
@@ -1475,9 +1475,9 @@ local repConditions = {
 	["5.100.344"] = {"{{BlackHeart}} +1 Corazón negro#{{Bomb}} Genera 3 bombas"}, -- Match Book (Greed)
 	["5.300.74"] = {"Te teletransporta a la primer habitacion de la planta"}, -- The Moon? (Greed)
 	["5.100.416"] = {"{{Coin}} Aumenta el limite de monedas a 999"}, -- Deep Pockets (Greed)
-	["5.100.566"] = {"{{HalfSoulHeart}} + medio Corazón de Alma al entrar a un nuevo piso#!!! La pesadilla de transición de nivel muestra objetos equivocados en el Modo Greed"}, -- Dream Catcher (Greed)
-	["5.100.580"] = "{{GreedMode}} Raramente genera habitaciónes especiales en el Modo Greed#{{SuperSecretRoom}} Aún ayuda a encontrar la habitación Super Secreta", -- Red Key (Greed)
-	["5.300.83"] = "{{GreedMode}} Raramente genera habitaciónes especiales en el Modo Greed#{{SuperSecretRoom}} Aún ayuda a encontrar la habitación Super Secreta", -- Soul of Cain (Greed)
+	["5.100.566"] = {"{{HalfSoulHeart}} Otorga medio corazón de alma al entrar a un nuevo piso#{{Warning}} La pesadilla de transición de nivel muestra objetos equivocados en el Modo Codicia"}, -- Dream Catcher (Greed)
+	["5.100.580"] = "{{GreedMode}} Raramente genera habitaciónes especiales en el Modo Codicia#{{SuperSecretRoom}} Aún ayuda a encontrar la habitación Super Secreta", -- Red Key (Greed)
+	["5.300.83"] = "{{GreedMode}} Raramente genera habitaciónes especiales en el Modo Codicia#{{SuperSecretRoom}} Aún ayuda a encontrar la habitación Super Secreta", -- Soul of Cain (Greed)
 	["5.100.514"] = {"Provoca que algunos enemigos y proyectiles se detengan de forma aleatoria#Los proyectiles detenidos desaparecen"}, -- Broken Modem (Greed)
 	["5.350.162"] = {"{{Player7}} Completar una oleada tiene un 50% de probabilidad de convertirte en Azazel#{{Timer}} El efecto dura hasta completar otra oleada"}, -- Azazel's Stump (Greed)
 
@@ -1487,7 +1487,7 @@ local repConditions = {
 
 
 	------ SPECIFIC CHARACTER SYNERGIES/CHANGES ------
-	["5.100.642"] = {"!!! UN SOLO USO !!!#Genera un objeto del grupo de la habitación actual"}, -- Magic Skin + Lost
+	["5.100.642"] = {"{{Warning}} UN SOLO USO {{Warning}}#Genera un objeto del grupo de la habitación actual"}, -- Magic Skin + Lost
 	["5.100.240"] = "{1} mantendrá los canbios de estadisticas al soltarlo", -- Experimental Treatment + Tainted Isaac
 	["5.100.644"] = "{1} mantendrá las bonificaciónes de estadisticas al soltarlo", -- Consolation Prize + Tainted Isaac
 	["5.100.549"] = {"↑ {{Tears}} Lágrimas +0.4"}, -- Brittle Bones (Keeper+Lost)
@@ -1616,5 +1616,5 @@ end
 
 if REPENTOGON then
 	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "Máquina de Donación", "Proximo logro en {1} monedas, monedas restantes: {2}#{{Luck}} 2% de probabilidad de obtener +1 de suerte al donar#{{AngelRoom}} Donar 10 monedas incrementa la probabilidad de encontrar salas de Angel"}
-	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Máquina de Donación (Greed)", "Proximo logro en {1} monedas, monedas restantes: {2}"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Máquina de Donación (Codicia)", "Proximo logro en {1} monedas, monedas restantes: {2}"}
 end
