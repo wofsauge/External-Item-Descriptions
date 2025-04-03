@@ -221,7 +221,7 @@ EID.descriptions[languageCode].collectibles={
 	{"198", "Caja", "Genera 1 recolectable de cada tipo"}, -- Caja
 	{"199", "Llave de Mamá", "{{Key}} +2 Llaves#Los cofres contienen más recolectables"}, -- Llave de Mamá
 	{"200", "Sombra de ojos de Mamá", "{{Charm}} 10% de probabilidad de disparar lágrimas encantadoras#{{Luck}} 100% de probabilidad con 27 de suerte"}, -- Mom's Eyeshadow
-	{"201", "Barra de hierro", "↑ {{Damage}} Daño +0.3#{{Confusion}} 10% de probabilidad de disparar lágrimas aturdidoras#{{Luck}} 100% de probabilidad con 27 de suerte"}, -- Iron Bar
+	{"201", "Barra de hierro", "↑ {{Damage}} Daño +0.3#{{Confusion}} 10% de probabilidad de disparar lágrimas que confunden#{{Luck}} 100% de probabilidad con 27 de suerte"}, -- Iron Bar
 	{"202", "Toque de Midas", "Convierte a los enemigos en estatuas de oro al tocarlos#Inflige daño por contacto basado en tu cantidad de monedas#{{Coin}} Los enemigos dorados dejan caer monedas al morir#Mayor probabilidad de que la caca que genéres sea dorada"}, -- Midas' Touch
 	{"203", "Paquete modesto", "Reemplaza los recolectables por sus versiones dobles"}, -- Humbleing Bundle
 	{"204", "Riñonera", "50% de probabilidad de soltar un recolectable aleatorio tras recibir daño"}, -- Fanny Pack
@@ -229,7 +229,7 @@ EID.descriptions[languageCode].collectibles={
 	{"206", "Guillotina", "↑ {{Tears}} Más lágrimas#↑ {{Damage}} Daño +1#Convierte tu cabeza en un orbital#Disparas desde la cabeza#La cabeza inflige 105 de daño por contacto cada segundo"}, -- Guillotine
 	{"207", "Bola de vendas", "NVL1: Orbital#{{Charm}} NVL2: Orbital que dispara lágrimas encantadoras#{{Charm}} NVL3: Bandage girl#{{Charm}} NVL4: Bandage girl NVL2"}, -- Ball of Bandages
 	{"208", "Cinturón de campeón", "↑ {{Damage}} Daño +1#+15% de probabilidad de encontrar enemigos campeones#No aumenta la probabilidad de encontrar jefes campeones"}, -- Champion Belt
-	{"209", "Bombas de Trasero", "{{Bomb}} +5 Bombas#{{Confusion}} Las explosiones dañan y aturden a todos los enemigos en la habitación"}, -- Butt Bombs
+	{"209", "Bombas de Trasero", "{{Bomb}} +5 Bombas#{{Confusion}} Las explosiones dañan y confunden a todos los enemigos en la habitación"}, -- Butt Bombs
 	{"210", "Hoja roída", "Otorga invencibilidad tras quedarte quieto por 1 segundo"}, -- Gnawed Leaf
 	{"211", "Bebé-araña", "Genera 1-2 arañas azules al recibir daño"}, -- Spiderbaby
 	{"212", "Collar de Guppy", "50% de probabilidad de reaparecer con medio corazón tras morir"}, -- Guppy's Collar
@@ -247,7 +247,7 @@ EID.descriptions[languageCode].collectibles={
 	{"224", "Cuerpo de Cricket", "↑ {{Tears}} Lágrimas +1#↑ {{Tearsize}} Tamaño de lágrimas x1.2#↓ {{Range}} Alcance -10#Las lágrimas se dividen en 4 al impactar#Las lágrimas divididas infligen la mitad de daño"}, -- Cricket's Body
 	{"225", "Máscara BDSM", "{{SoulHeart}} Probabilidad de generar un corazón de alma al recibir daño#{{HalfHeart}} Probabilidad de que los enemigos dejen caer medio corazón rojo al morir"}, -- Gimpy
 	{"226", "Loto Negra", "↑ {{Heart}} +1 de Vida#↑ {{SoulHeart}} +1 Corazón de alma#↑ {{BlackHeart}} +1 Corazón negro"}, -- Black Lotus
-	{"227", "El Cochinito", "{{Coin}}+3 monedas#{{Coin}} Genera 1-2 monedas al recibir daño"}, -- El Cochinito
+	{"227", "El Cochinito", "{{Coin}} +3 monedas#{{Coin}} Genera 1-2 monedas al recibir daño"}, -- Piggy Bank
 	{"228", "Perfume de Mamá", "↑ {{Tears}} Lágrimas +1#{{Fear}} 15% de probabilidad de disparar lágrimas que asustan a los enemigos"},  -- Mom's Perfume
 	{"229", "Pulmón de Monstro", "↓ {{Tears}} Lágrimas x0.23#{{Chargeable}} Otorga un ataque cargado que escupirá una ráfaga de lágrimas rojas, similar a Monstro"}, -- Monstro's Lung
 	{"230", "Abaddón", "#↑ {{Speed}} Velocidad +0.2#↑ {{Damage}} Daño +1.5#↓ {{EmptyHeart}} Remueve todos tus contenedores de corazón#↑ {{BlackHeart}} +6 Corazones negros#{{Fear}} 15% de probabilidad de disparar lágrimas que asustan a los enemigos"}, -- Abaddon
@@ -314,7 +314,7 @@ EID.descriptions[languageCode].collectibles={
 	{"291", "¡Flush!", "Convierte a los enemigos comunes en caca#Mata de forma instantánea a enemigos y jefes de caca"}, -- ¡Flush!
 	{"292", "Biblia Satánica", "{{BlackHeart}} +1 Corazón negro"}, -- Satanic Bible
 	{"293", "Cabeza de Krampus", "{{Collectible118}} Dispara un rayo de Azufre en 4 direcciones#Los rayos infligen 440 de daño cada 1.33 segundos"}, -- Head of Krampus
-	{"294", "Frijol Mantequilla", "Repele a los enemigos y proyectiles cercanos#10% de probabilidad de convertirse en {{Collectible484}} Espera, ¿qué? tras intercambiarlo por otro objeto activo y volverlo a recoger"}, -- Butter Bean
+	{"294", "Frijol Mantequilla", "Empuja a los enemigos y proyectiles cercanos#10% de probabilidad de convertirse en {{Collectible484}} Espera, ¿qué? tras intercambiarlo por otro objeto activo y volverlo a recoger"}, -- Butter Bean
 	{"295", "Dedos mágicos", "Inflige el doble de tu daño a toda la habitación#{{Coin}} Usarlo cuesta 1 moneda"}, -- Magic Fingers
 	{"296", "Conversor", "{{Heart}} Convierte 2 Corazones Negros o de Alma en un Contenedor de corazón"}, -- Converter
 	-- NOTE FOR LOCALIZERS: There is code to highlight the text of your current floor
@@ -357,10 +357,10 @@ EID.descriptions[languageCode].collectibles={
 	{"332", "Harapos de Lázaro", "{{Player11}} Reaparece como Lázaro Resucitado tras morir"}, -- Lazarus' Rags
 	{"333", "La Mente", "Revela completamente el mapa"}, -- The Mind
 	{"334", "El Cuerpo", "↑ {{Heart}} +3 de Vida"}, -- El Cuerpo
-	{"335", "El Alma", "+ {{SoulHeart}} 2 corazones de alma#Otorga un aura que repele a enemigos y proyectiles"}, -- The Soul
+	{"335", "El Alma", "+ {{SoulHeart}} 2 corazones de alma#Otorga un aura que empuja a enemigos y proyectiles"}, -- The Soul
 	{"336", "Cebolla Muerta", "↑ {{Range}} Alcance +0.25#↑ {{Tearsize}} Tamaño de lágrima x1.5#↓ {{Tearsize}} Tamaño de lágrima -0.5#↓ {{Shotspeed}} Vel. de lágrimas -0.4#Otorga lágrimas perforantes y espectrales"},
 	{"337", "Reloj roto", "{{Slow}} Ralentiza la habitación cada cuatro salas#13% de probabilidad de acelerar la habitación"}, -- Broken Watch
-	{"338", "El Búmeran", "Boomerang lanzable#Aturde a los enemigos e inflige el doble de tu daño#Puede recoger y acercar objetos"}, -- The Boomerang
+	{"338", "El Búmeran", "Boomerang lanzable#Confunde a los enemigos e inflige el doble de tu daño#Puede recoger y acercar objetos"}, -- The Boomerang
 	{"339", "El Gancho", "↑ {{Range}} Alcance +5.25#↑ {{Tearsize}} Tamaño de lágrimas +0.5#↑ {{Shotspeed}} Vel. de lágrimas +0.16#↑ {{BlackHeart}} +1 Corazón negro"}, -- Safety Pin
 	{"340", "Píldora de Cafeína", "↑ {{Speed}} Velocidad +0.3#↑ Reduce tu tamaño#{{Pill}} Genera una píldora aleatoria al tomarlo"}, -- Caffeine Pill
 	{"341", "Foto destruida", "↑ {{Tears}} Lágrimas +0.7#↑ {{Shotspeed}} Vel. de lágrimas +0.16%"}, -- Torn Photo
@@ -459,7 +459,7 @@ EID.descriptions[languageCode].collectibles={
 	{"434", "Jarra de Moscas", "Matar un enemigo añadirá una mosca azul al tarro#Máximo de 20 moscas#Usar el Tarro liberará las moscas que tengas"}, -- Jar of Flies
 	{"435", "Mini-Loki", "Dispara 4 lágrimas en un patrón de cruz que infligen 3.5 de daño"}, -- Lil Loki
 	{"436", "¡Leche!", "{{Tears}} Recibir daño aumenta tus lágrimas durante la habitación actual"}, -- Milk!
-	{"437", "D7", "Reinicia la habitación actual#Permite obtener multiples recompensas de la misma habitación#Al usarlo tras luchar contra Greed, convierte la habitación en una tienda"}, -- D7
+	{"437", "D7", "Reinicia la habitación actual#Permite obtener multiples recompensas de la misma habitación#Al usarlo tras luchar contra Codicia, convierte la habitación en una tienda"}, -- D7
 	{"438", "Chupón", "↑ {{Tears}} Lágrimas +0.75#↑ Reduce tu tamaño#{{SoulHeart}} +1 Corazón de alma"}, -- Binky
 	{"439", "Caja de Mamá", "{{Trinket}} Genera un trinket aleatorio#Al tenerlo:#↑ {{Luck}} Suerte +1#{{Trinket}} Potencia los efectos de los trinkets"}, -- Mom's Box
 	{"440", "Piedra de Riñón", "↑ {{Tearsize}} Tamaño de lágrimas +2#↓ {{Speed}} Velocidad -0.2#↓ {{Range}} Alcance -17#Ocasionalmente dejas de disparar para cargar una rafaga de lágrimas y una piedra del riñón"}, -- Kidney Stone
@@ -519,7 +519,7 @@ EID.descriptions[languageCode].collectibles={
 	{"494", "Escalera de Jacob", "Las lágrimas generan 1-2 rayos eléctricos al impactar#Los rayos infligen la mitad de tu daño"}, -- Escalera de Jacob
 	{"495", "Pimiento fantasma", "Probabilidad de disparar un fuego rojo que inflige daño y bloquea proyectiles#El fuego persiste hasta bloquear 5 disparos o infligir daño 5 veces"}, -- Ghost Pepper
 	{"496", "Eutanasia", "3.33% de probabilidad de disparar jeringas#100% de probabilidad con 15 de suerte#Las agujas matan a los enemigos normales de un golpe, disparando 10 lágrimas alrededor#{{Damage}} Inflige el triple de tu daño contra jefes"}, -- Euthanasia
-	{"497", "Interior Camuflado", "{{Confusion}} Al entrar a una habitación te camufla y aturde a los enemigos hasta que dispares"}, -- Camo Undies
+	{"497", "Interior Camuflado", "{{Confusion}} Al entrar a una habitación te camufla y confunde a los enemigos hasta que dispares"}, -- Camo Undies
 	{"498", "Dualidad", "{{AngelDevilChance}} Genera una sala de Ángel y de Diablo#Entrar en una sala hará desaparecer la otra"}, -- Duality
 	{"499", "Eucaristía", "↑ {{AngelChance}} 100% de probabilidad de encontrar salas de Ángel"}, -- Eucharist
 	{"500", "Bolsa de Bolsas", "Genera un saco cada 5-6 habitaciónes"}, -- Sack of Sacks
@@ -535,7 +535,7 @@ EID.descriptions[languageCode].collectibles={
 	{"510", "Delirious", "{{Timer}} Genera una versión aliada de Delirium en la habitación actual"}, -- Delirious
 	{"511", "Mosca Enojada", "Orbita alrededor de un enemigo aleatorio hasta que muera#Inflige 30 de daño por contacto cada segundo"}, -- Mosca Enojada
 	{"512", "Agujero negro", "Agujero negro lanzable que atrae todo#Inflige 6 de daño por segundo#Destruye rocas cercanas#Dura 6 segundos"}, -- Agujero negro
-	{"513", "Bozo", "↑ {{Damage}} Daño +0.1#↑ {{SoulHeart}} +1 Corazón de alma#{{Charm}} Encanta o asusta a un enemigo de forma aleatoria#Posibilidad de generar una caca arcoíris al recibir daño"}, -- Bozo
+	{"513", "Bozo", "↑ {{Damage}} Daño +0.1#↑ {{SoulHeart}} +1 Corazón de alma#{{Charm}} Encanta o asusta a un enemigo de forma aleatoria#Probabilidad de generar una caca arcoíris al recibir daño"}, -- Bozo
 	{"514", "Modem Roto", "Probabilidad de congelar momentaneamente a enemigos y proyectiles#25% de probabilidad de generar el duplicar las recompensas de la habitación"}, -- Broken Modem
 	{"515", "Regalo misterioso", "Genera un objeto aleatorio del grupo de la habitación actual#Probabilidad de generar:#{{Collectible132}} Un trozo de carbón#{{Collectible36}} La Caca"}, -- Mystery Gift
 	{"516", "Aspersor", "Genera un Aspersor que dispara lágrimas con tus efectos a su alrededor"}, -- Sprinkler
@@ -615,7 +615,7 @@ EID.descriptions[languageCode].carBattery = {
 	[288] = {"1-4", "2-8"}, -- Caja de arañas
 	[292] = {1, 2}, -- Biblia satánica
 	[293] = {440, 880}, -- Cabeza de Krampus
-	[294] = "Mayor retroceso", -- Frijol Mantequilla
+	[294] = "Mayor empuje", -- Frijol Mantequilla
 	[298] = {6, 12}, -- Paso de Unicornio
 	[348] = "Se activa 2 veces", -- Placebo
 	[349] = "Se activa 2 veces", -- Moneda de Madera
@@ -748,7 +748,7 @@ EID.descriptions[languageCode].trinkets={
 	{"9", "Gusano de Pulso", "Las lágrimas aumentan y disminuyen su tamaño#Afecta a la hitbox de la lágrima"}, -- Pulse Worm
 	{"10", "Gusano Ondulante", "↑ {{Tears}} Lágrimas +0.4#Las lágrimas se mueven en ondas"}, -- Wiggle Worm
 	{"11", "Gusano Circular", "Las lágrimas se mueven en espiral a gran velocidad"}, -- Ring Worm
-	{"12", "Gusano plano", "Lágrimas 50% más grandes#Aumenta el retroceso"}, -- Flat Worm
+	{"12", "Gusano plano", "Lágrimas 50% más grandes#Aumenta el empuje"}, -- Flat Worm
 	{"13", "Tarjeta de crédito", "{{Shop}} Permite llevarse un objeto de la tienda gratis"}, -- Credit Card
 	{"14", "Callo", "Otorga inmunidad a las espinas de suelo y el fluido"}, -- Callus
 	{"15", "Roca de la suerte", "{{Coin}} Genera monedas al destruir rocas"}, -- Lucky Rock
@@ -756,7 +756,7 @@ EID.descriptions[languageCode].trinkets={
 	{"17", "Pintalabios negro", "{{BlackHeart}} +5% de probabilidad de reemplazar los corazones de alma por corazones negros"}, -- Black Lipstick
 	{"18", "Folleto Biblico", "{{EternalHeart}} +3% de probabilidad de encontrar corazones eternos"}, -- Bible Tract
 	{"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los cofres dorados sin usar llaves"}, -- Paper Clip
-	{"20", "Pata de mono", "{{BlackHeart}} Al tener medio corazón, deja caer un corazón negro#{{Danger}} Desaparece luego de 3 usos"}, -- Monkey Paw
+	{"20", "Pata de mono", "{{BlackHeart}} Al tener medio corazón, deja caer un corazón negro#{{Warning}} Desaparece luego de 3 usos"}, -- Monkey Paw
 	{"21", "Papel misterioso", "Otorga aleatoriamente el efecto de:#{{Collectible327}} La Polaroid#{{Collectible328}} El Negativo#{{Trinket48}} Una página perdida#{{Trinket23}} Cartel de desaparición"}, -- Mysterious Paper
 	{"22", "Cola de Demonio", "{{Heart}} Disminuye a 20% la probabilidad de generar corazones#{{BlackHeart}} Convierte los corazones en corazones negros#{{Key}} Aumenta la probabilidad de generar llaves"}, -- Daemon's Tail
 	{"23", "Cartel de Desaparecido", "{{Player10}} Reaparecerás como El Perdido al morir"}, -- Missing Poster
@@ -818,9 +818,9 @@ EID.descriptions[languageCode].trinkets={
 	{"79", "Sin final, sin nombre", "25% de probabilidad al usar una {{Rune}} runa, {{Pill}} píldora o {{Card}} carta de generar una copia"}, -- Endless Nameless
 	{"80", "Pluma Negra", "↑ {{Damage}} Daño +0.2 por cada objeto \"malvado\" que tengas"}, -- Black Feather
 	{"81", "Furia del Ciego", "La invencibilidad tras recibir daño dura el doble"}, -- Blind Rage
-	{"82", "Herradura de oro", "{{TreasureRoom}} +15% de posibilidad de generar dos objetos en la sala del tesoro en los pisos siguientes"}, -- Golden Horse Shoe
+	{"82", "Herradura de oro", "{{TreasureRoom}} +15% de probabilidad de generar dos objetos en la sala del tesoro en los pisos siguientes"}, -- Golden Horse Shoe
 	{"83", "Llave de Tienda", "{{Shop}} Permite abrir las tiendas gratis"}, -- Store Key
-	{"84", "Costilla de Codicia", "{{Coin}} Genera 5% mas monedas y menos corazones como recompensa de habitación#Greed y Super Greed ya no aparecerán en la {{Shop}} Tienda y en la {{SecretRoom}} Habitación Secreta"}, -- Rib of Greed
+	{"84", "Costilla de Codicia", "{{Coin}} Genera 5% mas monedas y menos corazones como recompensa de habitación#Codicia y Super Codicia ya no aparecerán en la {{Shop}} Tienda y en la {{SecretRoom}} Habitación Secreta"}, -- Rib of Greed
 	{"85", "Karma", "{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón (40%)#{{Coin}} Generar 1 moneda (40%)#{{Luck}} Suerte +1 (15%)#{{Beggar}} Generar un Mendigo (5%)"}, -- Karma
 	{"86", "Mini-Larva", "Genera una mosca azul al romper una caca"}, -- Lil Larva
 	{"87", "Medallón de Mamá", "{{HealingRed}} Cura medio corazón al usar llaves#{{Heart}} Convierte los medios corazones en corazones enteros"}, -- Mom's Locket
@@ -939,7 +939,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[11] = {" una ", " 2 ", "máquina", "{{CR}}máquinas", "máquina", "{{CR}}máquinas"}, -- X - La Rueda de la Fortuna
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Fuerza
 	[14] = {40, 80}, -- XIII - Muerte
-	[15] = {" una ", " 2 ", " máquina", " {{CR}}máquinas", "mendigo demoníaco", "{{CR}}mendigos demoníacos"}, -- XIV - Templanza (+ la versión de Greed)
+	[15] = {" una ", " 2 ", " máquina", " {{CR}}máquinas", "mendigo demoníaco", "{{CR}}mendigos demoníacos"}, -- XIV - Templanza (+ la versión de Codicia)
 	[17] = {6, 12}, -- XVI - La Torre
 	[20] = {100, 200}, -- XIX - El Sol
 	[21] = {" un mendigo ", " 2 {{CR}}mendigos ", "generar ", "{{CR}}tambien generar ", "generar ", "{{CR}}tambien generar "}, -- XX - Judgement
@@ -1167,7 +1167,7 @@ EID.descriptions[languageCode].RedToX = {
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Ejemplo de nombre de objeto",
 	DemoObjectTransformation = "Ejemplo de transformación",
-	DemoObjectText = "Este texto está en español#¡Una descripción larga y genial para demostrar los saltos de línea causados por el tamaño de texto de EID!#\1 Esta linea también es genial#Esta linea te ama {{Heart}}#{{AngelDevilChance}} Esta línea puede ser tu ángel o tu demonio#\1 {{Damage}} Aumento de estadísticas +1",
+	DemoObjectText = "Este texto está en español#¡Una descripción larga y genial para demostrar los saltos de línea causados por el tamaño del texto de EID!#\1 Esta linea también es genial#Esta linea te ama {{Heart}}#{{AngelDevilChance}} Esta línea puede ser tu ángel o tu demonio#\1 {{Damage}} Aumento de estadísticas +1",
 }
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
@@ -1251,13 +1251,13 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 	------ GREED MODE ------
 	["Room to Wave"] = {"limpiar", "completar", "habitación", "oleada", "sala", "oleada"}, -- convert room clear effects to wave clear effects
-	["No Champion Drops"] = "{{Danger}} ¡Los campeones no soltarán recolectables en el Modo Codicia!", -- Champion Belt / Purple Heart
+	["No Champion Drops"] = "{{Warning}} ¡Los campeones no soltarán recolectables en el Modo Codicia!", -- Champion Belt / Purple Heart
 	["5.300.15"] = {"{{DemonBeggar}} Genera un Mendigo Demoníaco"}, -- Temperance (Greed)
 	["5.300.19"] = {"Te teletransporta a la sala inicial del piso actual"}, -- The Moon (Greed)
 	["5.300.20"] = {"{{HealingRed}} Salud al maximo#Inflige 100 de daño a todos los enemigos"}, -- XIX - The Sun (Greed)
 	["5.100.483 (Greed)"] = "{{GreedMode}} Solo se activará una vez por habitación", -- Mama Mega (Greed)
-	["5.100.535"] = "{{GreedMode}} No otorga Escudo contra los Jefes, solo contra Ultra Greed", -- Blanket (Greed)
-	["5.350.120"] = "{{GreedMode}} No otorga cargas contra los Jefes, solo contra Ultra Greed", -- Hairpin (Greed)
+	["5.100.535"] = "{{GreedMode}} No otorga Escudo contra los Jefes, solo contra Ultra Codicia", -- Blanket (Greed)
+	["5.350.120"] = "{{GreedMode}} No otorga cargas contra los Jefes, solo contra Ultra Codicia", -- Hairpin (Greed)
 	["5.100.246"] = {"{{SuperSecretRoom}} Revela la ubicación de la Sala Súper Secreta en el mapa"}, -- Blue Map (Greed)
 	["5.100.333"] = {"{{SuperSecretRoom}} Revela la ubicación de la Sala Súper Secreta en el mapa"}, -- The Mind (Greed)
 	["5.100.514"] = {"Provoca que algunos enemigos y proyectiles se congelen momentaneamente de forma aleatoria"}, -- Broken Modem (Greed)
@@ -1267,7 +1267,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.350.44"] = {"{{Pill}} 33% de probabilidad de obtener una pildora extra de los cofres, rocas marcadas, y máquinas destruidas"}, -- Safety Cap
 	["5.350.45"] = {"{{Card}} 33% de probabilidad de obtener una carta extra de los cofres, rocas marcadas, y máquinas destruidas"}, -- Ace of Spades
 	["5.350.72"] = {"{{Battery}} +10% de probabilidad de obtener una bateria#{{Battery}} 5% de probabilidad de añadir 1 carga a tu objeto activo al completar una oleada"}, -- Watch Battery
-	["5.100.297 (Greed)"] = {"Genera recompensas en base al piso actual:#Sotano: 2{{Bomb}} + 2{{Key}}#Cuevas: Objeto de Jefe + 2{{SoulHeart}}#Profundidades: 20{{Coin}}#Matriz: 2 Objetos de Jefe#Sheol: Objeto de Diablo + 1{{BlackHeart}}#La Tienda/Ultra Greed: 1{{Coin}}"}, -- Pandora's Box
+	["5.100.297 (Greed)"] = {"Genera recompensas en base al piso actual:#Sotano: 2{{Bomb}} + 2{{Key}}#Cuevas: Objeto de Jefe + 2{{SoulHeart}}#Profundidades: 20{{Coin}}#Matriz: 2 Objetos de Jefe#Sheol: Objeto de Diablo + 1{{BlackHeart}}#La Tienda/Ultra Codicia: 1{{Coin}}"}, -- Pandora's Box
 	
 	
 	------ ACHIEVEMENT CHECKS ------
