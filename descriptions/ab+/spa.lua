@@ -139,7 +139,7 @@ EID.descriptions[languageCode].collectibles={
 	{"116", "9 Voltios", "{{Battery}} Carga automaticamente la primera barra de los objetos activos#{{Battery}} Carga por completo el objeto activo actual"}, -- 9 Volt
 	{"117", "Ave Muerta", "Invoca un pajaro que ataca a los enemigos tras recibir daño#El pájaro inflige 4.3 de daño por contacto cada segundo"}, -- Dead Bird
 	{"118", "Azufre", "↓ {{Tears}} Lágrimas x0.33#{{Chargeable}} Reemplaza tus lágrimas por un rayo de sangre cargable#{{Damage}} Inflige 13 veces tu daño cada 0.9 segundos"}, -- Brimstone
-	{"119", "Bolsa de Sangre", "↑ {{Heart}} +1 de Vida#↑ {{Speed}} +0,3 de velocidad#{{HealingRed}} Cura 4 corazones"}, -- Bolsa de Sangre
+	{"119", "Bolsa de Sangre", "↑ {{Heart}} +1 de Vida#↑ {{Speed}} +0.3 de velocidad#{{HealingRed}} Cura 4 corazones"}, -- Bolsa de Sangre
 	{"120", "Hongo Raro (Delgado)", "↑ {{Speed}} Velocidad +0.3#↑ {{Tears}} Lágrimas +1.7#↓ {{Damage}} Daño x0.9#↓ {{Damage}} Daño -0.4"}, -- Odd Mushroom (Thin)
 	{"121", "Hongo Raro (Largo)", "↑ {{EmptyHeart}} +1 Contenedor de corazón vacío#↑ {{Damage}} Daño +0.3#↑ {{Range}} Alcance +0.25#↑ {{Tearsize}} Tamaño de lágrimas +0.5#↓ {{Speed}} Velocidad -0.1"}, -- Odd Mushroom (Large)
 	{"122", "Ramera de Babilonia", "Al tener medio corazón o menos:#↑ {{Speed}} Velocidad +0.3#↑ {{Damage}} Daño +1.5"}, -- Whore of Babylon
@@ -233,13 +233,13 @@ EID.descriptions[languageCode].collectibles={
 	{"210", "Hoja roída", "Otorga invencibilidad tras quedarte quieto por 1 segundo"}, -- Gnawed Leaf
 	{"211", "Bebé-araña", "Genera 1-2 arañas azules al recibir daño"}, -- Spiderbaby
 	{"212", "Collar de Guppy", "50% de probabilidad de reaparecer con medio corazón tras morir"}, -- Guppy's Collar
-	{"213", "Lentilla perdida", "↓ {{Shotspeed}} Vel. de lágrimas -0.16#Las lágrimas pueden bloquear proyectiles enemigos"}, -- Lost Contact
-	{"214", "Anémico", "↑ {{Range}} Alcance +5 #{{Timer}} Cuando te golpean, deja un rastro de fluido en el suelo durante la habitación#El fluido inflige 6 de daño cada segundo"}, -- Anemic
+	{"213", "Lentilla perdida", "↓ {{Shotspeed}} Vel. de lágrimas -0.16#Las lágrimas bloquean proyectiles enemigos"}, -- Lost Contact
+	{"214", "Anémico", "↑ {{Range}} Alcance +5 #{{Timer}} Al recibir daño, deja un rastro de fluido en el suelo durante la habitación#El fluido inflige 6 de daño cada segundo"}, -- Anemic
 	{"215", "Cabeza de cabra", "↑ {{AngelDevilChance}} 100% de probabilidad de encontrar salas de Ángel/Diablo"}, -- Goat Head
 	{"216", "Manto Ceremonial", "↑ {{Damage}} Daño +1#{{BlackHeart}} +3 Corazones negros"}, -- Ceremonial Robes
 	{"217", "Peluca de Mamá", "{{HealingRed}} Cura 1 corazón#5% de probabilidad de generar una araña azul al disparar#{{Luck}} 100% de probabilidad con 10 de suerte"}, -- Mom's Wig
 	{"218", "Placenta", "↑ {{Heart}} +1 de Vida#{{HealingRed}} 50% de probabilidad de curar medio corazón cada minuto"}, -- Placenta
-	{"219", "Vendaje Viejo", "↑ {{EmptyHeart}} +1 Contenedor de corazón#10% de probabilidad de soltar corazones al recibir daño"}, -- Old Bandage
+	{"219", "Vendaje Viejo", "↑ {{EmptyHeart}} +1 Contenedor de corazón#{{Heart}} Al recibir daño, 10% de probabilidad de generar corazones"}, -- Old Bandage
 	{"220", "Bombas Tristes", "{{Bomb}} +5 Bombas#Tus bombas disparan 10 lágrimas en un circulo al explotar"}, -- Sad Bombs
 	{"221", "Pegamento Elástico", "Las lágrimas rebotan al chocar contra paredes, enemigos y obstáculos"}, -- Rubber Cement
 	{"222", "Anti-Gravedad", "↑ {{Tears}} Lágrimas +2#Disparar de forma continua suspende las lágrimas en el aire#Soltar el boton de disparo las libera en la dirección que fueron disparadas"}, -- Anti-Gravity
@@ -465,9 +465,9 @@ EID.descriptions[languageCode].collectibles={
 	{"440", "Piedra de Riñón", "↑ {{Tearsize}} Tamaño de lágrimas +2#↓ {{Speed}} Velocidad -0.2#↓ {{Range}} Alcance -17#Ocasionalmente dejas de disparar para cargar una rafaga de lágrimas y una piedra del riñón"}, -- Kidney Stone
 	{"441", "Mega Ráfaga", "{{Timer}} Dispara un gran láser de Mega Satán durante 15 segundos#El láser persiste entre habitaciones y plantas"}, -- Mega Blast
 	{"442", "Corona del Príncipe Oscuro", "Otorga al tener un corazón rojo lleno:#↑ {{Tears}} Lágrimas +0.75#↑ {{Range}} Alcance +1.5#↑ {{Tearsize}} Tamaño de lágrimas +1#↑ {{Shotspeed}} Vel. de lágrimas +0.2"}, -- Dark Prince's Crown
-	{"443", "¡Manzana!", "↑ {{Tears}} Lágrimas +0,3#{{Damage}} 6.66% de probabilidad de disparar cuchillas que infligen 4 veces tu daño#{{Luck}} 100% de probabilidad con 14 de suerte"}, -- Apple!
+	{"443", "¡Manzana!", "↑ {{Tears}} Lágrimas +0.3#{{Damage}} 6.66% de probabilidad de disparar cuchillas que infligen 4 veces tu daño#{{Luck}} 100% de probabilidad con 14 de suerte"}, -- Apple!
 	{"444", "Lápiz", "Dispara un cúmulo de lágrimas cada 15 lágrimas#Las lágrimas del cúmulo infligen el doble de daño"}, -- Lead Pencil
-	{"445", "Diente de Perro", "↑ {{Speed}} Velocidad +0.1#↑ {{Damage}} Daño +0.3#{{SecretRoom}}{{SuperSecretRoom}} Se oirá un aullido al entrar en una habitación adyacente a una sala secreta o super secreta#{{LadderRoom}} Se oirá un ladrido si hay una trampilla bajo una roca"}, -- Diente de Perro
+	{"445", "Diente de Perro", "↑ {{Speed}} Velocidad +0.1#↑ {{Damage}} Daño +0.3#{{SecretRoom}}/{{SuperSecretRoom}} Se oirá un aullido al entrar en una habitación adyacente a una sala secreta o super secreta#{{LadderRoom}} Se oirá un ladrido si hay una trampilla bajo una roca"}, -- Diente de Perro
 	{"446", "Diente Muerto", "{{Poison}} Al disparar, otorga un aura que envenena a los enemigos cercanos"}, -- Dead Tooth
 	{"447", "Frijol Persistente", "Disparar durante 7.5 segundos genera una nube de gas#La nube inflige tu daño 5 veces por segundo#La nube persiste por 15 segundos y puede ser movida al dispararle"}, -- Linger Bean
 	{"448", "Pedazo de vidrio", "Al recibir daño: #{{Heart}} 25% de probabilidad de generar un corazón rojo#{{Collectible214}} 10% de probabilidad de obtener ↑ {{Range}} Alcance +5 y dejar un rastro de fluido por la habitación"}, -- Shard of Glass
@@ -499,7 +499,7 @@ EID.descriptions[languageCode].collectibles={
 	{"474", "Amígdala", "Bloquea proyectiles enemigos"}, -- Tonsil
 	{"475", "Plan C", "Inflige 9.999.999 de daño a todos los enemigos#{{Warning}} Te mata 3 segundos después"}, -- Plan C
 	{"476", "D1", "Duplica un recolectable aleatorio en la habitación actual"}, -- D1
-	{"477", "Vacío", "Consume todos los objetos en pedestales de la habitación#Objeto activo: Se añade el efecto al de Vacío(Apilando los efectos)#↑ Objeto pasivo: Mejora 2 estadisticas aleatorias"}, -- Void
+	{"477", "Vacío", "Consume todos los objetos en pedestales de la habitación#↑ Objeto pasivo: Mejora 2 estadisticas aleatorias#Objeto activo: Añade el efecto del objeto al de Vacío (Los efectos se apilan)"}, -- Void
 	{"478", "Pausa", "Congela a todos los enemigos en la habitación hasta que vuelvas a disparar#Los enemigos congelados aun pueden hacer daño#Los enemigos se descongelan tras 30 segundos"}, -- Pause
 	{"479", "Fundidora", "{{Trinket}} Consume tu trinket y otorga su efecto de forma permanente#{{Trinket}} Aparecen más trinkets"}, -- Smelter
 	{"480", "Abono", "Convierte los recolectables en moscas o arañas azules#Duplica las moscas y arañas azules que tengas#Genera una mosca o araña azul si no tienes ninguna"}, -- Compost
@@ -526,7 +526,7 @@ EID.descriptions[languageCode].collectibles={
 	{"501", "Esófago de Codicia", "Otorga 1 contenedor de corazón por cada 25 monedas obtenidas tras recoger el objeto"}, -- Greed's Gullet
 	{"502", "Grano grande", "Ocasionalmente dispara una lágrima blanca#{{Slow}} La lágrima blanca inflige el doble de tu daño y suelta fluido ralentizante#Dispara una lagrima blanca al recibir daño"}, -- Large Zit
 	{"503", "Cuernito", "5% de probabilidad de disparar una lágrima que mata instantaneamente a los enemigos normales#{{Luck}} 20% de probabilidad con 15 de suerte#Infliges 3.5 de daño por contacto"}, -- Little Horn
-	{"504", "Nugget café", "Genera una mosca torreta que dispara a los enemigos#Cada disparo inflige 2 de daño"}, -- Brown Nugget
+	{"504", "Nugget café", "Genera una mosca torreta que dispara a los enemigos#Inflige 2 de daño por disparo"}, -- Brown Nugget
 	{"505", "Poke Go", "Probabilidad de generar un enemigo aliado al entrar a una habitación hostil"}, -- Poke Go
 	{"506", "Apuñala espaldas", "{{BleedingOut}} Golpear a un enemigo por detrás inflige el doble de daño y causa sangrado#El sangrado inflige el 10% de la vida total de los enemigos cada 5 segundos"}, -- Backstabber
 	{"507", "Pajilla afilada", "{{Damage}} Inflige tu daño +10% de la vida máxima del enemigo a todos los enemigos en la habitación#{{HalfHeart}} Probabilidad de soltar medio corazón al infligir daño"}, -- Sharp Straw
@@ -742,7 +742,7 @@ EID.descriptions[languageCode].trinkets={
 	{"3", "Batería AAA", "{{Battery}} Se necesita 1 carga menos en los objetos activos"}, -- AAA Battery
 	{"4", "Control Remoto Roto", "{{Collectible44}} Usar un objeto activo te teletransporta a una habitación aleatoria"}, -- Broken Remote
 	{"5", "Corazón Purpura", "Doble de probabilidad de encontrar enemigos y jefes campeones"}, -- Purple Heart
-	{"6", "Imán roto", "{{Coin}} Atrae las monedas hacia ti"}, -- Broken Magnet
+	{"6", "Imán roto", "{{Coin}} Atrae las monedas hacia el jugador"}, -- Broken Magnet
 	{"7", "Cuenta de rosario", "{{AngelChance}} 75% de probabilidad de reemplazar la {{DevilRoom}} Sala del Diablo por una {{AngelRoom}} Sala del Ángel#Aumenta la probabilidad de encontrar {{Collectible33}} La Bíblia en {{Shop}} Tiendas y {{Library}} Bibliotecas"}, -- Rosary Bead
 	{"8", "Cartucho", "{{Timer}} 5% de probabilidad al recibir daño de recibir por 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón al matar enemigos#{{Fear}} Asusta a los enemigos de la habitación"}, -- Cartridge
 	{"9", "Gusano de Pulso", "Las lágrimas aumentan y disminuyen su tamaño#Afecta a la hitbox de la lágrima"}, -- Pulse Worm
@@ -804,7 +804,7 @@ EID.descriptions[languageCode].trinkets={
 	{"65", "Gusano Estirado", "↑ {{Range}} Alcance x2#↓ Altura de lágrima x0.5"}, -- Tape Worm
 	{"66", "Gusano Perezoso", "↑ {{Range}} Alcance +4#↑ Altura de lágrima +2#↓ {{Shotspeed}} Vel. de lágrimas -0.5"}, -- Lazy Worm
 	{"67", "Dado Roto", "Recibir daño activa uno de los siguientes efectos:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible386}} D12 #{{Collectible166}} D20"}, -- Cracked Dice
-	{"68", "Súper Imán", "Los recolectables y los enemigos serán atraidos hacia ti"}, -- Super Magnet
+	{"68", "Súper Imán", "Atrae a los recolectables y enemigos hacia el jugador"}, -- Super Magnet
 	{"69", "Polaroid Desvanecida", "Te camufla de forma aleatoria#{{Confusion}} Confunde a los enemigos"}, -- Faded Polaroid
 	{"70", "Piojo", "Genera aleatoriamente una araña azul en habitaciónes hostiles"}, -- Louse
 	{"71", "Vejiga de Bob", "Las bombas sueltan fluido"}, -- Bob's Bladder
@@ -822,7 +822,7 @@ EID.descriptions[languageCode].trinkets={
 	{"83", "Llave de Tienda", "{{Shop}} Permite abrir las tiendas gratis"}, -- Store Key
 	{"84", "Costilla de Codicia", "{{Coin}} Genera 5% mas monedas y menos corazones como recompensa de habitación#Codicia y Super Codicia ya no aparecerán en la {{Shop}} Tienda y en la {{SecretRoom}} Habitación Secreta"}, -- Rib of Greed
 	{"85", "Karma", "{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón (40%)#{{Coin}} Generar 1 moneda (40%)#{{Luck}} Suerte +1 (15%)#{{Beggar}} Generar un Mendigo (5%)"}, -- Karma
-	{"86", "Mini-Larva", "Genera una mosca azul al romper una caca"}, -- Lil Larva
+	{"86", "Mini-Larva", "Romper caca genera una mosca azul"}, -- Lil Larva
 	{"87", "Medallón de Mamá", "{{HealingRed}} Cura medio corazón al usar llaves#{{Heart}} Convierte los medios corazones en corazones enteros"}, -- Mom's Locket
 	{"88", "¡NO!", "Previene que aparezcan objetos activos"}, -- NO!
 	{"89", "Correa de Niño", "Los familiares se mantendrán cerca"}, -- Child Leash
@@ -1100,7 +1100,7 @@ EID.descriptions[languageCode].VoidText = "Otorga al absorberlo:"
 -- {1} will become the number text (like "{1} Tears" -> "+0.5 Tears")
 EID.descriptions[languageCode].VoidNames = {"{{Speed}} Velocidad {1}", "{{Tears}} Lágrimas {1}", "{{Damage}} Daño {1}", "{{Range}} Alcance {1}", "{{Shotspeed}} Vel. de lágrimas {1}", "{{Luck}} Suerte {1}"}
 
-EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} Daño +4", "↑ {{Tears}} Vel. de tiro -4", "↑ {{Speed}} Velocidad +0.5", "↑ {{Range}} Alcance +7.5#↑ {{Tearsize}} Tamaño de lágrimas +1"}
+EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} Daño +4", "↑ {{Tears}} Vel. de lágrimas -4", "↑ {{Speed}} Velocidad +0.5", "↑ {{Range}} Alcance +7.5#↑ {{Tearsize}} Tamaño de lágrimas +1"}
 
 EID.descriptions[languageCode].CrookedPennyHeads = "Cara"
 EID.descriptions[languageCode].CrookedPennyTails = "Cruz"
