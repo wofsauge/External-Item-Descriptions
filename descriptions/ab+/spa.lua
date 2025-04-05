@@ -1250,7 +1250,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	
 	
 	------ GREED MODE ------
-	["Room to Wave"] = {"limpiar", "completar", "habitación", "oleada", "sala", "oleada"}, -- convert room clear effects to wave clear effects
+	["Room to Wave"] = {"Limpiar", "Completar", "limpiar", "completar", "habitación", "oleada", "habitaciones", "oleadas", "sala", "oleada", "salas", "oleadas"}, -- convert room clear effects to wave clear effects
 	["No Champion Drops"] = "{{Warning}} ¡Los campeones no soltarán recolectables en el Modo Codicia!", -- Champion Belt / Purple Heart
 	["5.300.15"] = {"{{DemonBeggar}} Genera un Mendigo Demoníaco"}, -- Temperance (Greed)
 	["5.300.19"] = {"Te teletransporta a la sala inicial del piso actual"}, -- The Moon (Greed)
