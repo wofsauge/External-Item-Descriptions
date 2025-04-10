@@ -651,7 +651,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 ---------- Abyss Locust description parts ----------
 EID.descriptions[languageCode].AbyssTexts = {
  	-- values inside {} brackets will be replaced with text parts below
-	-- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
+	-- Abyss texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
 	InfoText = "{amount} {size}{speed}locust{pluralize} ({dmg})",
 	InfoTextPlural = nil, -- Can be used by translators to provide a pluralized version of the InfoText
@@ -1313,13 +1313,14 @@ EID.descriptions[languageCode].birthright ={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
-	AddBlackHearts = "{{BlackHeart}} {1} Black Heart",
-	AddBombs = "{{Bomb}} {1} Bomb",
-	AddCoins = "{{Coin}} {1} Coin",
-	AddHearts = "{{HealingRed}} Heals {1} heart",
-	AddKeys = "{{Key}} {1} Key",
-	AddMaxHearts = "{{EmptyHeart}} {1} Heart container",
-	AddSoulHearts = "{{SoulHeart}} {1} Soul Heart",
+	-- These texts are affected by the PluralizeFunction (ab+ file)
+	AddBlackHearts = "{{BlackHeart}} {1} Black Heart{pluralize}",
+	AddBombs = "{{Bomb}} {1} Bomb{pluralize}",
+	AddCoins = "{{Coin}} {1} Coin{pluralize}",
+	AddHearts = "{{HealingRed}} Heals {1} heart{pluralize}",
+	AddKeys = "{{Key}} {1} Key{pluralize}",
+	AddMaxHearts = "{{EmptyHeart}} {1} Heart container{pluralize}",
+	AddSoulHearts = "{{SoulHeart}} {1} Soul Heart{pluralize}",
 
 	-- Cache Flag names
 	cacheFlagStart = "May affect ",

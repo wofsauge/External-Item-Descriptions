@@ -868,8 +868,12 @@ EID.descriptions[languageCode].transformations={
 }
 
 ---------- Misc. text ----------
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = ""
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
+-- Each language can do their own algorithm to modify the given text to their needs
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- TODO: Not Implemented right now...
+	return text
+end
 
 EID.descriptions[languageCode].VoidText = "Si lo absorbes, ganarás:"
 EID.descriptions[languageCode].VoidNames = {"de Velocidad {{Speed}}", "de Lágrimas {{Tears}}", "de Daño {{Damage}}", "de Alcance {{Range}}", "de Vel. de tiro {{Shotspeed}}", "de Suerte {{Luck}}"}
@@ -922,6 +926,7 @@ EID.descriptions[languageCode].PickupNames = {
 
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
+	-- These texts are affected by the PluralizeFunction (ab+ file)
 
 	--haveing a line with "+1" and then another with "+{1}" is a workaround to spanish itself lol
 	["Red to Soul"] = {

@@ -1194,6 +1194,7 @@ EID.descriptions[languageCode].birthright ={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
+	-- These texts are affected by the PluralizeFunction (ab+ file)
 	AddBlackHearts = "{{BlackHeart}} {1} Black Heart",
 	AddBombs = "{{Bomb}} {1} Bomb",
 	AddCoins = "{{Coin}} {1} Coin",

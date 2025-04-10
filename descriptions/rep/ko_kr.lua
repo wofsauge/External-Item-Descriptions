@@ -749,7 +749,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 -- Special Locust effects when Item was eaten by Abyss
 EID.descriptions[languageCode].AbyssTexts = {
 	-- values inside {} brackets will be replaced with text parts below
-	-- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
+	-- Abyss texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
 	InfoText = "{speed}{size}파리 x{amount} ({dmg})",
 	InfoTextPlural = nil, -- Can be used by translators to provide a pluralized version of the InfoText
@@ -1305,6 +1305,7 @@ EID.descriptions[languageCode].horsepills={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
+	-- These texts are affected by the PluralizeFunction (ab+ file)
 	AddBlackHearts = "{{BlackHeart}}블랙하트 {1}",
 	AddBombs = "{{Bomb}}폭탄 {1}",
 	AddCoins = "{{Coin}}동전 {1}",
