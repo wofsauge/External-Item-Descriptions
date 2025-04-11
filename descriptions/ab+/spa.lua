@@ -1097,7 +1097,10 @@ EID.descriptions[languageCode].transformations={
 -- Each language can do their own algorithm to modify the given text to their needs
 EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
 	-- replace {pluralize} placeholders inside the text with an "s"
-	return EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
+	text = EID:ReplaceVariableStr(text, "plural_s", amount > 1 and "s" or "")
+	text = EID:ReplaceVariableStr(text, "plural_es", amount > 1 and "es" or "")
+	text = EID:ReplaceVariableStr(text, "plural_zon", amount > 1 and "zones" or "zón")
+	return text
 end
 
 EID.descriptions[languageCode].VoidText = "Otorga al absorberlo:"
@@ -1123,44 +1126,31 @@ EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} UN SOLO USO {{Warnin
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
-	-- Having a line with "+1" and then another with "+{1}" is a workaround for spanish lol
+	-- cora{plural_zon} will automatically replace corazón with corazones if it's > 1
 	["Red to Soul"] = {
-	"↑ {{Heart}} +1 de Vida", "{{SoulHeart}} +1 Corazón de Alma",
-	"↑ {{Heart}} +{1} de Vida", "{{SoulHeart}} +{1} Corazones de Alma",
-	"↑ {{EmptyHeart}} +1 contenedor de corazón vacío", "{{SoulHeart}} +1 Corazón de Alma",
-	"↑ {{EmptyHeart}} +{1} contenedores de corazón vacíos", "{{SoulHeart}} +{1} Corazones de Alma",
-	"↓ {{EmptyHeart}} -1 de Vida", "↓ {{SoulHeart}} -1 Corazón de Alma",
-	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{SoulHeart}} {1} Corazones de Alma"},
+	"↑ {{Heart}} +{1} de Vida", "{{SoulHeart}} +{1} Cora{plural_zon} de Alma",
+	"↑ {{EmptyHeart}} +{1} contenedor{plural_es} de corazón vacío{plural_s}", "{{SoulHeart}} +{1} Cora{plural_zon} de Alma",
+	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{SoulHeart}} {1} Cora{plural_zon} de Alma"},
 	
 	["Red to Black"] = {
-	"↑ {{Heart}} +1 de Vida", "{{BlackHeart}} +1 Corazón Negro",
-	"↑ {{Heart}} +{1} de Vida", "{{BlackHeart}} +{1} Corazones Negros",
-	"↑ {{EmptyHeart}} +1 contenedor de corazón vacío", "{{BlackHeart}} +1 Corazón Negro",
-	"↑ {{EmptyHeart}} +{1} contenedores de corazón vacíos", "{{BlackHeart}} +{1} Corazones Negros",
-	"↓ {{EmptyHeart}} -1 de Vida", "↓ {{BlackHeart}} -1 Corazón Negro",
-	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{BlackHeart}} {1} Corazones Negros"},
+	"↑ {{Heart}} +{1} de Vida", "{{BlackHeart}} +{1} Corazon{plural_es} Negro{plural_s}",
+	"↑ {{EmptyHeart}} +{1} contenedor{plural_es} de corazón vacío{plural_s}", "{{BlackHeart}} +{1} Cora{plural_zon} Negro{plural_s}",
+	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{BlackHeart}} {1} Cora{plural_zon} Negro{plural_s}"},
 	
 	["Red to Bone"] = {
-	"↑ {{Heart}} +1 de Vida", "{{BoneHeart}} +1 Corazón de Hueso",
-	"↑ {{Heart}} +{1} de Vida", "{{BoneHeart}} +{1} Corazones de Hueso",
-	"↑ {{EmptyHeart}} +1 contenedor de corazón vacío", "{{EmptyBoneHeart}} +1 Corazón de Hueso Vacío",
-	"↑ {{EmptyHeart}} +{1} contenedores de corazón vacíos", "{{EmptyBoneHeart}} +{1} Corazones de Hueso Vacíos",
-	"↓ {{EmptyHeart}} -1 de Vida", "↓ {{EmptyBoneHeart}} -1 Corazón de Hueso",
-	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{EmptyBoneHeart}} {1} Corazones de Hueso"},
+	"↑ {{Heart}} +{1} de Vida", "{{BoneHeart}} +{1} Cora{plural_zon} de Hueso",
+	"↑ {{EmptyHeart}} +{1} contenedor{plural_es} de corazón vacío{plural_s}", "{{EmptyBoneHeart}} +{1} Cora{plural_zon} de Hueso Vacío{plural_s}",
+	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{EmptyBoneHeart}} {1} Cora{plural_zon} de Hueso"},
 	
 	["Red to Coin"] = {
-	"↑ {{Heart}} +1 de Vida", "{{CoinHeart}} +1 Corazón de Moneda",
-	"↑ {{Heart}} +{1} de Vida", "{{CoinHeart}} +{1} Corazones de Moneda",
+	"↑ {{Heart}} +{1} de Vida", "{{CoinHeart}} +{1} Cora{plural_zon} de Moneda",
 
-	"↑ {{EmptyHeart}} +1 contenedor de corazón vacío", "{{EmptyCoinHeart}} +1 Corazón de Moneda Vacío",
-	"↑ {{EmptyHeart}} +{1} contenedores de corazón vacíos", "{{EmptyCoinHeart}} +{1} Corazones de Moneda Vacíos",
+	"↑ {{EmptyHeart}} +{1} contenedor{plural_es} de corazón vacío{plural_s}", "{{EmptyCoinHeart}} +{1} Cora{plural_zon} de Moneda Vacíos",
 
-	"{{HealingRed}} Cura 1 corazón", "{{HealingCoin}} Cura 1 Corazón de Moneda",
-	"{{HealingRed}} Cura {1} corazones", "{{HealingCoin}} Cura {1} Corazones de Moneda",
+	"{{HealingRed}} Cura {1} cora{plural_zon}", "{{HealingCoin}} Cura {1} Cora{plural_zon} de Moneda",
 	"{{HealingRed}} Cura medio corazón", "{{HealingCoin}} Cura medio Corazón de Moneda",
 	"{{HealingRed}}", "{{HealingCoin}}",
-	"↓ {{EmptyHeart}} -1 de Vida", "↓ {{EmptyCoinHeart}} -1 Corazón de Moneda",
-	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{EmptyCoinHeart}} {1} Corazones de Moneda"}, -- Red HP to Coin Hearts
+	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{EmptyCoinHeart}} {1} Cora{plural_zon} de Moneda"}, -- Red HP to Coin Hearts
 	
 	["Red to None"] = {
 	"↑ {{Heart}} +1 de Vida", "",
