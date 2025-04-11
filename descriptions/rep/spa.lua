@@ -178,7 +178,7 @@ local repCollectibles={
 	[384] = {"384", "Pequeño Gurdy", "{{Chargeable}} Familiar lanzable que rebota por la habitación#La velocidad depende del tiempo de carga#Inflige 5-20 de daño por contacto dependiendo de su velocidad"}, -- Lil Gurdy
 	[386] = {"386", "D12", "Cambia los obstaculos de la sala por otros obstaculos aleatorios (e.j. caca, TNT, espinas, piedras, etc.)#Pequeña probabilidad de cambiar obstaculos por botones, killswitches, mazmorras o trampillas"}, -- D12
 	[389] = {"389", "Bolsa de Runas", "{{Rune}} Genera una runa o piedra de alma aleatoria cada 7-8 habitaciones"}, -- Rune Bag
-	[391] = {"391", "Traición", "Los enemigos podrán dispararse entre sí, empezando a pelear entre ellos"}, -- Traición
+	[391] = {"391", "Traición", "Los enemigos podrán herirse entre sí, empezando a pelear entre ellos"}, -- Betrayal
 	[393] = {"393", "Beso de Serpiente", "{{Poison}} 15% de probabilidad de disparar lágrimas venenosas#{{Poison}} Envenena a los enemigos al contacto#{{BlackHeart}} Los enemigos envenenados por contacto pueden soltar un corazón negro al morir"}, -- Serpent's Kiss
 	[394] = {"394", "En la Mira", "↑ {{Tears}} Lágrimas +0.7#↑ {{Range}} Alcance +3#Dispara lágrimas automáticamente hacia la cruz roja controlable del suelo#Los familiares disparan hacia la cruz#Puedes dejar de disparar presionando el boton de soltar ({{ButtonRT}})"}, -- Marked
 	[395] = {"395", "Tech X", "{{Chargeable}} Reemplaza tus lágrimas por un anillo láser cargable#El tamaño del anillo aumenta hasta 100% con el tiempo de carga"}, -- Tech X
@@ -190,7 +190,7 @@ local repCollectibles={
 	[407] = {"407", "Pureza", "↑ Potencia una estadística dependiendo del color del aura#Al recibir daño, remueve el efecto y otorga un aura nueva en la siguiente sala#{{ColorYellow}}Amarillo{{CR}} = {{Speed}} Velocidad +0.5#{{ColorBlue}}Azul{{CR}} = {{Tears}} Lágrimas +2#{{ColorRed}}Rojo{{CR}} = {{Damage}} Daño +4#{{ColorOrange}}Naranja{{CR}} = {{Range}} Alcance +3"}, -- Purity
 	[408] = {"408", "Athame", "25% de probabilidad de crear un anillo negro alrededor de un enemigo al matarlo#Inflige 30 veces tu daño cada 2 segundos#{{Luck}} +2.5% de probabilidad por punto de suerte"}, -- Athame
 	[415] = {"415", "Corona de la luz", "{{SoulHeart}} +2 Corazones de alma#Al tener la salud al maximo, recibirás:#↑ {{Damage}} Daño x2#↓ {{Shotspeed}} Vel. de lágrimas -0.3#Recibir daño remueve el efecto"}, -- Crown Of Light
-	[416] = {"416", "Bolsillos profundos", "{{Coin}} Si no ha habido recompensa en la habitación, genera 1-3 monedas#{{Coin}} Aumenta el limite de monedas a 999"}, -- Deep Pockets
+	[416] = {"416", "Bolsillos profundos", "{{Coin}} Aumenta el limite de monedas a 999#{{Coin}} Genera 1-3 monedas si no se ha generado una recompensa de habitación"}, -- Deep Pockets
 	[417] = {"417", "Súcubo", "Familiar que rebota por la habitación rodeado de un aura#El aura inflige 7.5-10 de daño cada segundo a los enemigos#↑ {{Damage}} Daño x1.5l al quedarse dentro del aura"}, -- Succubus
 	[419] = {"419", "Teletransporte 2.0", "Te teletransporta a una habitación sin explorar#Jerarquía: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}>{{IsaacsRoom}}>{{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"}, -- Teletransporte 2.0
 	[421] = {"421", "Frijol Rojo", "{{Charm}} Encanta a los enemigos cercanos"}, -- Frijol Rojo
@@ -225,7 +225,7 @@ local repCollectibles={
 	[494] = {"494", "Escalera de Jacob", "Las lágrimas generan un rayo eléctrico al impactar#Los rayos infligen la mitad de tu daño#Los rayos saltan entre enemigos"}, -- Jacob's Ladder
 	[495] = {"495", "Pimiento fantasma", "8% de probabilidad de disparar un fuego azul que inflige daño y bloquea proyectiles#{{Luck}} 50% de probabilidad con 10 de suerte#El fuego se encoje hasta desaparecer tras 2 segundos"}, -- Ghost Pepper
 	[496] = {"496", "Eutanasia", "3.33% de probabilidad de disparar agujas#{{Luck}} 25% de probabilidad con 13 de suerte#Las agujas matan a los enemigos normales de un golpe, disparando otras 10 agujas#Infligen el triple de tu daño contra jefes"}, -- Euthanasia
-	[497] = {"497", "Interior Camuflado", "{{Confusion}} Al entrar a una habitación te camufla y confunde a los enemigos hasta que dispares#↑ {{Speed}} Velocidad +0.5 al estar camuflado#Al descamuflarse: #Todos los enemigos serán dañados#↑ {{Damage}} Más daño por la sala#↑ {{Tears}} Más lágrimas por la sala"}, -- Camo Undies
+	[497] = {"497", "Interior Camuflado", "{{Confusion}} Al entrar a una habitación te camufla y confunde a los enemigos hasta que dispares#↑ {{Speed}} Velocidad +0.5 al estar camuflado#Al descamuflarse: #Inflige daño a enemigos cercanos#{{Timer}} Aumenta temporalmente las lágrimas y el daño por la sala"}, -- Camo Undies
 	[500] = {"500", "Bolsa de Bolsas", "Genera un saco cada 7-8 salas"}, -- Sack of Sacks
 	[501] = {"501", "Esófago de Codicia", "{{Heart}} Otorga 1 contenedor de corazón por cada 25 monedas que tengas"}, -- Greed's Gullet
 	[503] = {"503", "Cuernito", "5% de probabilidad de disparar una lágrima que invoca una mano de Big Horn#{{Luck}} 20% de probabilidad con 15 de suerte#La mano mata al instante a enemigos normales e inflige 3.5 de daño a los jefes#Infliges 7 de daño por contacto cada segundo"}, -- Little Horn
@@ -244,7 +244,7 @@ local repCollectibles={
 	[549] = {"549", "Huesos frágiles", "{{EmptyBoneHeart}} Reemplaza todos tus contenedores de corazón por 6 corazones de hueso#Al perder un corazón de hueso:#↑ {{Tears}} Lágrimas +0.4#Dispara 8 lágrimas de hueso a tu alrededor"}, -- Brittle Bones
 	[552] = {"552", "Pala de Mamá", "Genera una trampilla para saltar el piso#{{LadderRoom}} Genera una trampilla a una mazmorra al usarla sobre la decoración del suelo#Úsala en el montón de tierra en  \"Cuarto Oscuro\"#"}, -- Pala de Mamá
 	[553] = {"553", "Mucormicosis", "25% de probabilidad de disparar esporas pegajosas#Las esporas explotan tras 2.5 segundos, infligiendo daño, envenenando a enemigos cercanos y soltando más esporas"}, --  Mucormycosis
-	[554] = {"554", "Tengo miedo", "{{Fear}} Asusta a los enemigos en un radio pequeño a tu alrededor"}, -- Tengo miedo
+	[554] = {"554", "Tengo miedo", "{{Fear}} Asusta a los enemigos en un corto radio a tu alrededor"}, -- 2Spooky
 	[555] = {"555", "Cuchilla dorada", "{{Coin}} A cambio de 5 monedas, otorga en la habitación actual:#↑ {{Damage}} Daño +1.2"}, -- Golden Razor
 	[556] = {"556", "Sulfuro", "{{Collectible118}} Activa el efecto de Azufre en la habitación actual#Usarlo repetidas veces incrementa el daño y el tamaño del rayo"}, -- Sulfur
 	[557] = {"557", "Galleta de la suerte", "Puede generar: #Una fortuna #{{SoulHeart}} Un Corazón de Alma#{{Rune}} Una Runa o Piedra de alma{{Card}} Una Carta#{{Trinket}} Un Trinket"}, -- Fortune Cookie
@@ -406,7 +406,7 @@ local repCollectibles={
 	[713] = {"713", "Sumptorium", "Convierte medio corazón en un coágulo familiar#Los coágulos disparan tus lagrimas y pueden ser destruidos#El tipo de coágulos, daño, salud y efectos varian con los tipos de corazones#{{Player26}} Eva contaminada los convierte al disparar por cierto tiempo, usar el objeto de nuevo restaura su PV"}, --  Sumptorium
 	[714] = {"714", "Llamado", "{{Player35}} Devuelve el cuerpo de Forgotten desde culquier distancia#El alma es invencible mientras vuelve el cuerpo"}, -- Recall
 	[715] = {"715", "Frasco", "Guarda una caca bomba dentro para usarla más tarde"}, -- Bote
-	[716] = {"716", "Bolsa de Keeper", "#Genera {{Coin}} 3 monedas y {{Key}} una llave#{{Shop}} Gastar 3 monedas en la tienda otorga: #{{Speed}} Velocidad +0.03#{{Damage}} Daño +0.5#{{Range}} Alcance +0.25"}, -- Keeper's Sack
+	[716] = {"716", "Bolsa de Keeper", "#Genera {{Coin}} 3 monedas y {{Key}} una llave#{{Shop}} Gastar 3 monedas en la tienda otorga: #↑ {{Speed}} Velocidad +0.03#↑ {{Damage}} Daño +0.5#↑ {{Range}} Alcance +0.25"}, -- Keeper's Sack
 	[717] = {"717", "Parientes de Keeper", "Las rocas y jarrones generan 2 arañas azules al romperlos#Las rocas pueden generar ocasionalmente arañas azules en habitaciónes hostiles"}, -- Pariente de Keeper
 	[718] = {"718", "", "<Este objeto no existe>"}, -- Keepers Robe (Cut item)
 	[719] = {"719", "Caja de Keeper", "{{Shop}} Genera un objeto o recolectable de tienda aleatorio para comprar"}, -- Keeper's Box
@@ -417,7 +417,7 @@ local repCollectibles={
 	[724] = {"724", "Hipercoagulación", "{{Heart}} Tras recibir daño, sueltas medio o un corazón rojo (dependiendo de la cantidad de daño)#Los corazones soltados desaparecen tras 1.5 segundos"}, -- Hypercoagulation
 	[725] = {"725", "IBS", "Parpadeas rojo tras infligir suficiente daño#Soltar el boton de ataque mientras parpadeas:#Arroja una caca aleatoria#Genera un fluido potenciador#{{Poison}} Suelta un gas venenoso#Genera 5 bombas troll"}, -- IBS
 	[726] = {"726", "Hemoptisis", "Estornudas sangre al pulsar dos veces el botón de disparo#Inflige 1.5 veces tu daño a los enemigos delante de ti#Enfriamiento de un segundo#{{BrimstoneCurse}} Los enemigos afectados reciben daño extra de los rayos de Azufre"}, -- Hemoptysis
-	[727] = {"727", "Bombas Fantasma", "{{Bomb}} +5 Bombas#Las bombas generan fantasmas#Los fantasmas infligen 2 veces tu daño y explotan tras 10 segundos"}, -- Ghost Bombs
+	[727] = {"727", "Bombas Fantasma", "{{Bomb}} +5 Bombas#Las bombas generan fantasmas#Los fantasmas infligen 2 veces tu daño y explotan luego de 10 segundos"}, -- Ghost Bombs
 	[728] = {"728", "Gello", "Genera un familiar demoníaco atado a ti#Copia tus lágrimas, estadísticas y efectos#{{Damage}} Sus lágrimas infligen el 75% de tu daño"}, -- Gello
 	[729] = {"729", "Ataque Decapitado", "Lanza tu cabeza y te permite disparar lágrimas desde donde caiga#Recuperas la cabeza al pisarla o reactivar el objeto"}, -- Ataque de decapitación
 	[730] = {"730", "Ojo de Vidrio", "↑ {{Damage}} Daño +0.75#↑ {{Luck}} Suerte +1"}, -- Glass Eye
@@ -651,7 +651,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 ---------- Abyss Locust description parts ----------
 EID.descriptions[languageCode].AbyssTexts = {
  	-- values inside {} brackets will be replaced with text parts below
-	-- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
+	-- Abyss texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
 	InfoText = "Genera una langosta{size}{speed} ({dmg})",
 	InfoTextPlural = "Genera {amount} langostas{size}{speed} ({dmg})", -- Can be used by translators to provide a pluralized version of the InfoText
@@ -739,7 +739,7 @@ EID.descriptions[languageCode].TearFlagNames = {
     [44] = "Genera una moneda al impacto",								-- Greed coin tears that has a chance to generate a coin when hit
     [45] = "Bomba cruz",												-- Bomber Boy
     [46] = "Movimiento en espiral grande",								-- Ouroboros Worm, big radius oscilating tears
-    [47] = "Confunde a los enemigos",										-- Glaucoma tears, permanently confuses enemies
+    [47] = "Confunde a los enemigos",									-- Glaucoma tears, permanently confuses enemies
     [48] = "Se pega a los enemigos",									-- Booger tears, stick and do damage over time
     [49] = "Genera arañas o moscas al impacto",							-- Egg tears, leave creep and spawns spiders or flies
     [50] = "Puede romper rocas al impacto",								-- Sulfuric Acid tears, can break grid entities
@@ -777,7 +777,7 @@ EID.descriptions[languageCode].TearFlagNames = {
     [82] = "Reduce su velocidad con el tiempo",							-- Decelerate over time
     [83] = "Aumenta su velocidad con el tiempo",						-- Accelerate over time
     [104] = "Rebota en las paredes",									-- Similar to TEAR_BOUNCE but only bounces off walls, not enemies
-	[106] = "Daño extra + sangrado al atacar por la espalda",			-- Deals extra damage from behind and inflicts bleeding
+	[106] = "Inflige daño extra y causa sangrado por detrás",			-- Deals extra damage from behind and inflicts bleeding
 }
 
 -- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
@@ -1322,13 +1322,14 @@ EID.descriptions[languageCode].birthright ={ -- TO DO(check for discrepancies)
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
-	AddBlackHearts = "{{BlackHeart}} {1} Corazón/zones negro/s",
-	AddBombs = "{{Bomb}} {1} Bomba/s",
-	AddCoins = "{{Coin}} {1} Moneda/s",
-	AddHearts = "{{Heart}} Cura {1} Corazón/es rojo/s",
-	AddKeys = "{{Key}} {1} Llave/s",
-	AddMaxHearts = "{{EmptyHeart}} {1} Contendor/es de Corazón",
-	AddSoulHearts = "{{SoulHeart}} {1} Corazón/zones de alma",
+	-- These texts are affected by the PluralizeFunction (ab+ file)
+	AddBlackHearts = "{{BlackHeart}} +{1} Corazon{plural_es} negro{pluralize}",
+	AddBombs = "{{Bomb}} {1} Bomba{pluralize}",
+	AddCoins = "{{Coin}} {1} Moneda{pluralize}",
+	AddHearts = "{{Heart}} Cura {1} Corazon{plural_es} rojo{pluralize}",
+	AddKeys = "{{Key}} {1} Llave{pluralize}",
+	AddMaxHearts = "{{EmptyHeart}} +{1} Contenedor{plural_es} de Corazón",
+	AddSoulHearts = "{{SoulHeart}} +{1} Corazon{plural_es} de alma",
 
 	-- Cache Flag names
 	cacheFlagStart = "Puede afectar ",
@@ -1433,7 +1434,7 @@ EID.descriptions[languageCode].itemPoolNames = {
 
 EID.descriptions[languageCode].VoidShopText = "Si se absorbe justo después de tomarlo, otorga:"
 EID.descriptions[languageCode].VoidOptionText = " será absorbido en su lugar"
-EID.descriptions[languageCode].VoidNames = {"de Velocidad", "de Lágrimas ", "de Daño", "de Alcance", "de Vel. de lágrimas ", "de Suerte"}
+EID.descriptions[languageCode].VoidNames = {"de Velocidad", "de Lágrimas", "de Daño", "de Alcance", "de Vel. de lágrimas", "de Suerte"}
 
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} Daño +4", "↑ {{Tears}} Lágrimas +2", "↑ {{Speed}} Velocidad +0.5", "↑ {{Range}} Alcance +3"}
 
@@ -1447,8 +1448,8 @@ EID.descriptions[languageCode].GlitchedCrownToggleInfo = "(Presiona {{CONFIG_BoC
 EID.descriptions[languageCode].GlowingHourglassTransformed = "Se volverá Reloj de Arena Brillante en la próxima planta"
 
 EID.descriptions[languageCode].FalsePHDHeart = "{{BlackHeart}} Genera 1 corazón negro"
-EID.descriptions[languageCode].FalsePHDDamage = "{{Damage}} Daño +0.6"
-EID.descriptions[languageCode].FalsePHDHorseDamage = "{{Damage}} Daño +1.2"
+EID.descriptions[languageCode].FalsePHDDamage = "↑ {{Damage}} Daño +0.6"
+EID.descriptions[languageCode].FalsePHDHorseDamage = "↑ {{Damage}} Daño +1.2"
 
 EID.descriptions[languageCode].ExperimentalPillPHD = "No disminuye estadisticas"
 EID.descriptions[languageCode].ExperimentalPillFalsePHD = "Sin aumento aleatorio de estadistica"
@@ -1577,7 +1578,7 @@ local repConditions = {
 	
 	["Brimstone Proptosis"] = "El rayo inflige 6 veces tu daño a quemarropa, disminuyendo con la distancia",
 	["Brimstone Ipecac"] = "El rayo obtiene +2 daño y explota al impactar con enemigos y obstaculos",
-	["Brimstone Pop!"] = "Rayo más corto que libera {1} lágrimas al final",
+	["Brimstone Pop!"] = "Rayo más corto que libera lágrimas de {1} al final",
 	["Eye of Belial Dr. Fetus"] = "Las bombas atraviezan, infligiendo 2.5 veces tu daño",
 	["Spirit Sword C Section"] = "{1} tiene prioridad#Los fetos sostienen espadas y realizan ataques giratorios",
 	["Spirit Sword Mom's Knife"] = "{1} tiene prioridad#El ataque giratorio lanza la espada hacia adelante",
