@@ -18,7 +18,7 @@ local collectibles = {
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
 	[117] = {"117", "죽은 새", "피격 시 적을 따라다니며 접촉한 적에게 초당 4.3의 피해를 줍니다.#{{HalfHeart}} 빨간하트가 반칸 이하일 때 항상 발동"}, -- Dead Bird
 	-- Change: Complete rewrite
-	[351] = {"351", "대빵 큰 콩", "사용 시 그 방의 장애물을 파괴하고 적에게 100의 폭발 + 석화 피해를 주며;#{{ArrowGrayRight}} {{Poison}}캐릭터 주변의 적에 초당 5의 추가 독성 피해를 줍니다.#{{BossRoom}} 보스방에서 사용 시 D2(6스테이지)의 경우 보스러시가, W2(8스테이지)의 경우 Blue Womb으로 향하는 문이 열립니다."}, -- Mega Bean
+	[351] = {"351", "대빵 큰 콩", "{{Petrify}} 사용 시 그 방의 장애물을 파괴하고 적에게 100의 폭발 + 석화 피해를 주며;#{{ArrowGrayRight}} {{Poison}}캐릭터 주변의 적에 초당 5의 추가 독성 피해를 줍니다.#{{BossRoom}} 보스방에서 사용 시 D2(6스테이지)의 경우 보스러시가, W2(8스테이지)의 경우 Blue Womb으로 향하는 문이 열립니다."}, -- Mega Bean
 	-- Change : Up to 2 items
 	[381] = {"381", "에덴의 축복", "↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤 아이템을 하나 들고 시작합니다.#{{Blank}} {{ColorGray}}(최대 2개)"}, -- Eden's Blessing
 	-- Change: Complete rewrite
@@ -31,7 +31,7 @@ local collectibles = {
 	-- Change: added "Turns item pedestals into glitched items"
 	[481] = {"481", "데이터마이너", "{{ArrowUpDown}} 사용 시 능력치가 랜덤으로 증가하거나 감소, 그 방에서 랜덤 효과가 부여되며;#{{ArrowGrayRight}} {{Collectible721}}그 방의 아이템을 오류 아이템으로 바꿉니다.#!!! 그 방의 스프라이트가 망가집니다."}, -- Dataminer
 	-- Change: Complete rewrite
-	[510] = {"510", "정신착란", "{{DeliriumSmall}} 사용 시 Delirium 버전의 아군 보스를 소환합니다.#소환된 보스는 방을 나가도 유지되나 재사용 시 이전에 소환한 보스는 사라집니다.#소환된 보스에 따라서 충전량이 달라집니다."}, -- Delirious
+	[510] = {"510", "정신착란", "{{Friendly}} {{DeliriumSmall}} 사용 시 Delirium 버전의 아군 보스를 소환합니다.#소환된 보스는 방을 나가도 유지되나 재사용 시 이전에 소환한 보스는 사라집니다.#소환된 보스에 따라서 충전량이 달라집니다."}, -- Delirious
 	-- Change: added "Tears leave a pool of creep on impact"
 	[560] = {"560", "너무 아파", "피격 시 캐릭터 기준 10방향으로 공격력 +25의 눈물을 발사하며;#{{ArrowGrayRight}} 그 방에서 {{TearsSmall}}연사(+상한) +1.2#{{Blank}} (2회 피격 시부터 {{TearsSmall}}+0.4)#그 방에서 공격이 무언가에 부딪힐 때 빨간 장판이 생깁니다.#장판은 지상의 적에게 초당 30의 피해를 줍니다."}, -- It Hurts
 	[593] = {"593", "화성", "이동키를 두번 누르면 누른 방향으로 돌진하여 접촉한 적에게 공격력 x4 +8의 피해를 줍니다.#{{ArrowGrayRight}} 돌진 중 적 및 장애물에 부딪힐 시 작은 원형 지진파를 발생시킵니다.#{{TimerSmall}} (쿨타임 3초/{{Collectible130}}{{Collectible181}}1초)"}, -- Mars
