@@ -656,11 +656,11 @@ EID.descriptions[languageCode].AbyssTexts = {
 	InfoText = "Genera una langosta{size}{speed} ({dmg})",
 	InfoTextPlural = "Genera {amount} langostas{size}{speed} ({dmg})", -- Can be used by translators to provide a pluralized version of the InfoText
 	Chance = " ({1}% de probabilidad)", -- {1} will be replaced with the chance
-	SpeedSlow = " lenta{pluralize}", -- Speed < 1
-	SpeedFast = " rápida{pluralize}", -- Speed > 1
-	SpeedDash = " súper rápida{pluralize}", -- Speed >= 6
-	SizeSmall = " pequeña{pluralize}", -- Size < 1
-	SizeBig = " grande{pluralize}", -- Size > 1
+	SpeedSlow = " lenta{plural_s}", -- Speed < 1
+	SpeedFast = " rápida{plural_s}", -- Speed > 1
+	SpeedDash = " súper rápida{plural_s}", -- Speed >= 6
+	SizeSmall = " pequeña{plural_s}", -- Size < 1
+	SizeBig = " grande{plural_s}", -- Size > 1
 	DamageMult = "Inflige tu daño x{1}", -- {1} will be replaced with the calculated damage multiplier
 }
 
@@ -1323,13 +1323,13 @@ EID.descriptions[languageCode].birthright ={ -- TO DO(check for discrepancies)
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
 	-- These texts are affected by the PluralizeFunction (ab+ file)
-	AddBlackHearts = "{{BlackHeart}} +{1} Corazon{plural_es} negro{pluralize}",
-	AddBombs = "{{Bomb}} {1} Bomba{pluralize}",
-	AddCoins = "{{Coin}} {1} Moneda{pluralize}",
-	AddHearts = "{{Heart}} Cura {1} Corazon{plural_es} rojo{pluralize}",
-	AddKeys = "{{Key}} {1} Llave{pluralize}",
+	AddBlackHearts = "{{BlackHeart}} +{1} Cora{plural_zon} negro{plural_s}",
+	AddBombs = "{{Bomb}} {1} Bomba{plural_s}",
+	AddCoins = "{{Coin}} {1} Moneda{plural_s}",
+	AddHearts = "{{Heart}} Cura {1} Cora{plural_zon} rojo{plural_s}",
+	AddKeys = "{{Key}} {1} Llave{plural_s}",
 	AddMaxHearts = "{{EmptyHeart}} +{1} Contenedor{plural_es} de Corazón",
-	AddSoulHearts = "{{SoulHeart}} +{1} Corazon{plural_es} de alma",
+	AddSoulHearts = "{{SoulHeart}} +{1} Cora{plural_zon} de alma",
 
 	-- Cache Flag names
 	cacheFlagStart = "Puede afectar ",
