@@ -720,8 +720,13 @@ EID.descriptions[languageCode].transformations={
 }
 
 ---------- MISC ----------
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = ""
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
+-- Each language can do their own algorithm to modify the given text to their needs
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	text = EID:ReplaceVariableStr(text, "plural_n", amount > 1 and "e" or "") -- add "n" to word
+	text = EID:ReplaceVariableStr(text, "plural_en", amount > 1 and "en" or "") -- add "en" to word
+	return text
+end
 
 EID.descriptions[languageCode].VoidText = "Wenn absorbiert, erhalte:"
 -- {1} will become the number text (like "{1} Tränen" -> "+0.5 Tränen")

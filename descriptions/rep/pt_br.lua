@@ -995,6 +995,7 @@ EID.descriptions[languageCode].horsepills={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
+	-- These texts are affected by the PluralizeFunction (ab+ file)
 	AddBlackHearts = "{{BlackHeart}} {1} Coração Negro",
 	AddBombs = "{{Bomb}} {1} Bomba",
 	AddCoins = "{{Coin}} {1} Moeda",

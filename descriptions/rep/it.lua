@@ -653,7 +653,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 ---------- Abyss Locust description parts ----------
 EID.descriptions[languageCode].AbyssTexts = {
 	-- values inside {} brackets will be replaced with text parts below
-   -- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
+	-- Abyss texts are affected by the PluralizeFunction (ab+ file)
    -- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
    InfoText = "{amount} {size} locusta/e {speed} ({dmg})",
    InfoTextPlural = "{amount} {size} locusta/e {speed} ({dmg})", -- Can be used by translators to provide a pluralized version of the InfoText
@@ -1315,6 +1315,7 @@ EID.descriptions[languageCode].birthright ={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
+	-- These texts are affected by the PluralizeFunction (ab+ file)
 	AddBlackHearts = "{{BlackHeart}} {1} Cuore/i Nero/i",
 	AddBombs = "{{Bomb}} {1} Bomba/e",
 	AddCoins = "{{Coin}} {1} Moneta/e",

@@ -3199,14 +3199,27 @@ function EID:HasPathToPosition(startPos, endPos)
 	return pathfinderObj:GetPath() ~= nil
 end
 
+---Applies language specific modifiers that aim to pluralize a text
+---@param text string
+---@param amount integer
+function EID:TryPluralizeString(text, amount)
+	local func = EID:getDescriptionEntry("PluralizeFunction")
+	if type(func) == "function" then
+		return func(text,amount)
+	end
+	return text
+end
+
 ---Prints a message in both the console and the Log file, to make important messages from EID stand out everywhere
 ---@param str string
 function EID:WriteDebugMsg(str)
 	print(str)
 	Isaac.DebugString(str)
 end
+
 ---Prints an error message in both the console and the Log file, to make important messages from EID stand out everywhere
 ---@param str string
 function EID:WriteErrorMsg(str)
 	EID:WriteDebugMsg("EID ERROR: " .. str)
 end
+

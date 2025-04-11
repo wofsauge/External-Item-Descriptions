@@ -750,7 +750,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 ---------- Abyss Locust description parts ----------
 EID.descriptions[languageCode].AbyssTexts = {
  	-- values inside {} brackets will be replaced with text parts below
-	-- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
+	-- Abyss texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
 	InfoText = "{amount} {size} locuste{pluralize} {speed} ({dmg})", -- values inside {} brackets will be replaced with text parts below
 	InfoTextPlural = "{amount} {size} locustes {speed} ({dmg})", -- Will be shown when more than 1 locust will spawn
@@ -1376,13 +1376,14 @@ EID.descriptions[languageCode].horsepills={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
-	AddBlackHearts = "{{BlackHeart}} {1} cœur(s) noir(s)",
-	AddBombs = "{{Bomb}} {1} bombe(s)",
-	AddCoins = "{{Coin}} {1} pièce(s)",
-	AddHearts = "Heals {{Heart}} {1} cœur(s) rouge(s)",
-	AddKeys = "{{Key}} {1} clé(s)",
-	AddMaxHearts = "{{EmptyHeart}} {1} réceptacle(s) de cœur",
-	AddSoulHearts = "{{SoulHeart}} {1} cœur(s) d'âme",
+	-- These texts are affected by the PluralizeFunction (ab+ file)
+	AddBlackHearts = "{{BlackHeart}} {1} cœur{pluralize} noir{pluralize}",
+	AddBombs = "{{Bomb}} {1} bombe{pluralize}",
+	AddCoins = "{{Coin}} {1} pièce{pluralize}",
+	AddHearts = "Heals {{Heart}} {1} cœur{pluralize} rouge{pluralize}",
+	AddKeys = "{{Key}} {1} clé{pluralize}",
+	AddMaxHearts = "{{EmptyHeart}} {1} réceptacle{pluralize} de cœur",
+	AddSoulHearts = "{{SoulHeart}} {1} cœur{pluralize} d'âme",
 
 	-- Cache Flag names
 	cacheFlagStart = "Peut influencer ",

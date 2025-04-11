@@ -872,8 +872,12 @@ EID.descriptions[languageCode].transformations={
 }
 
 ---------- MISC ----------
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = ""
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
+-- Each language can do their own algorithm to modify the given text to their needs
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- TODO: Not Implemented right now...
+	return text
+end
 
 EID.descriptions[languageCode].VoidText = "Se absorvido, ganha:"
 EID.descriptions[languageCode].VoidNames = {"Velocidade", "Lágrimas", "Dano", "Alcance", "Velocidade de Disparo", "Sorte"}
