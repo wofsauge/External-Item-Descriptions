@@ -290,7 +290,7 @@ EID.descriptions[languageCode].collectibles={
 	{"267", "Robo-Baby 2.0", "Dispara láseres#Inflige 3.5 de daño por disparo#Se mueve en la diercción que estes disparando"}, -- Robo-Baby 2.0
 	{"268", "Bebé Podrido", "Genera moscas azules al disparar"}, -- Bebé Podrido
 	{"269", "Bebé sin Cabeza", "Deja un rastro de fluido en el suelo#El fluido inflige 6 de daño por contacto cada segundo"}, -- Headless Baby
-	{"270", "Sanguijuela", "Persigue a los enemigos#{{HealingRed}} Te cura medio corazón tras matar a un enemigo#Inflige 3.2 de daño por contacto cada segundo"}, -- Leech
+	{"270", "Sanguijuela", "Persigue a los enemigos#{{HealingRed}} Cura medio corazón al matar un enemigo#Inflige 3.2 de daño por contacto cada segundo"}, -- Leech
 	{"271", "Bolsa misteriosa", "Genera recolectables aleatorios cada 5-6 habitaciones"}, -- Bolsa misteriosa
 	{"272", "Mosca Hermosa", "Mosca explosiva aliada#La explosión inflige 60 de daño#{{Warning}} La explosión puede herir al jugador"}, -- BBF
 	{"273", "Cerebro de Bob", "{{Throwable}} Familiar lanzable#{{Poison}} La explosión inflige 60 de daño y envenena a los enemigos cercanos#{{Warning}} La explosión puede herir al jugador"}, -- Bob's Brain
@@ -519,7 +519,7 @@ EID.descriptions[languageCode].collectibles={
 	{"494", "Escalera de Jacob", "Las lágrimas generan 1-2 rayos eléctricos al impactar#Los rayos infligen la mitad de tu daño"}, -- Escalera de Jacob
 	{"495", "Pimiento fantasma", "Probabilidad de disparar un fuego rojo que inflige daño y bloquea proyectiles#El fuego persiste hasta bloquear 5 disparos o infligir daño 5 veces"}, -- Ghost Pepper
 	{"496", "Eutanasia", "3.33% de probabilidad de disparar jeringas#100% de probabilidad con 15 de suerte#Las agujas matan a los enemigos normales de un golpe, disparando 10 lágrimas alrededor#{{Damage}} Inflige el triple de tu daño contra jefes"}, -- Euthanasia
-	{"497", "Interior Camuflado", "{{Confusion}} Al entrar a una habitación te camufla y confunde a los enemigos hasta que dispares"}, -- Camo Undies
+	{"497", "Interior Camuflado", "{{Confusion}} Al entrar a una habitación confunde a los enemigos hasta que dispares"}, -- Camo Undies
 	{"498", "Dualidad", "{{AngelDevilChance}} Genera una sala de Ángel y de Diablo#Entrar en una sala hará desaparecer la otra"}, -- Duality
 	{"499", "Eucaristía", "↑ {{AngelChance}} 100% de probabilidad de encontrar salas de Ángel"}, -- Eucharist
 	{"500", "Bolsa de Bolsas", "Genera un saco cada 5-6 habitaciónes"}, -- Sack of Sacks
@@ -744,7 +744,7 @@ EID.descriptions[languageCode].trinkets={
 	{"5", "Corazón Purpura", "Doble de probabilidad de encontrar enemigos y jefes campeones"}, -- Purple Heart
 	{"6", "Imán roto", "{{Coin}} Atrae las monedas hacia el jugador"}, -- Broken Magnet
 	{"7", "Cuenta de rosario", "{{AngelChance}} 75% de probabilidad de reemplazar la {{DevilRoom}} Sala del Diablo por una {{AngelRoom}} Sala del Ángel#Aumenta la probabilidad de encontrar {{Collectible33}} La Bíblia en {{Shop}} Tiendas y {{Library}} Bibliotecas"}, -- Rosary Bead
-	{"8", "Cartucho", "{{Timer}} 5% de probabilidad al recibir daño de recibir por 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón al matar enemigos#{{Fear}} Asusta a los enemigos de la habitación"}, -- Cartridge
+	{"8", "Cartucho", "{{Timer}} 5% de probabilidad al ser golpeado de activar el efecto de {{Collectible93}} El Gamekid durante 6.5 segundos"}, -- Cartridge
 	{"9", "Gusano de Pulso", "Las lágrimas aumentan y disminuyen su tamaño#Afecta a la hitbox de la lágrima"}, -- Pulse Worm
 	{"10", "Gusano Ondulante", "↑ {{Tears}} Lágrimas +0.4#Las lágrimas se mueven en ondas"}, -- Wiggle Worm
 	{"11", "Gusano Circular", "Las lágrimas se mueven en espiral a gran velocidad"}, -- Ring Worm
@@ -1093,8 +1093,12 @@ EID.descriptions[languageCode].transformations={
 
 ---------- Misc. text ----------
 
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = "s"
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them, make it nil to not pluralize
+-- Each language can do their own algorithm to modify the given text to their needs
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- replace {pluralize} placeholders inside the text with an "s"
+	return EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
+end
 
 EID.descriptions[languageCode].VoidText = "Otorga al absorberlo:"
 -- {1} will become the number text (like "{1} Tears" -> "+0.5 Tears")
@@ -1114,7 +1118,8 @@ EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorLime}}{1}{{CR}}
 EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} UN SOLO USO {{Warning}}"
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
--- {1} = number of hearts, {2} = plural character
+-- {1} = number of hearts, {pluralize} = plural character
+-- These texts are affected by the PluralizeFunction (ab+ file)
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
@@ -1158,6 +1163,7 @@ EID.descriptions[languageCode].RedToX = {
 	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{EmptyCoinHeart}} {1} Corazones de Moneda"}, -- Red HP to Coin Hearts
 	
 	["Red to None"] = {
+	"↑ {{Heart}} +1 de Vida", "",
 	"↑ {{Heart}} +{1} de Vida", "",
 	"↑ {{EmptyHeart}} +1 contenedor de corazón vacío", "",
 	"↑ {{EmptyHeart}} +{1} contenedores de corazón vacíos", "",
