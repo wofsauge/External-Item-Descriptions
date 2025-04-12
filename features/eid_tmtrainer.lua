@@ -23,19 +23,24 @@ local actions = { [0] = "use_active_item", "add_temporary_effect", "convert_enti
 local triggers = { [0] = "active", "tear_fire", "enemy_hit", "enemy_kill", "damage_taken", "room_clear", "entity_spawned", "pickup_collected", "chain" }
 
 local function entityToName(Type, Variant, plural)
-	plural = plural or false
 	-- -1 is often used as an "any of this type", even if there's only one of that type, so converting it to 0 can help find names
 	-- the string.format is in case this receives the type/variant as a Lua float
 	local e = string.format("%d",Type) .. "." .. string.format("%d",Variant)
 	local eWithZero = string.gsub(e, "-1", "0")
 	
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
-	local pluralize = EID:getDescriptionEntry("Pluralize")
 	local name = localizedNames[e] or localizedNames[eWithZero] or EID:GetEntityXMLName(Type, Variant, 0) or e
 
 	--print out entities with no name yet
-	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)")
-	elseif plural then name = name .. pluralize end
+	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)") end
+
+	-- pluralize Entity name
+	if plural then
+		name = name .."{pluralize}"
+		name = EID:TryPluralizeString(name, 2)
+		-- remove temporary variable, if language did not replace it
+		name = EID:ReplaceVariableStr(name, "pluralize", "")
+	end
 
 	return name
 end
@@ -54,7 +59,6 @@ function EID:CheckGlitchedItemConfig(id)
 	
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
 	local localizedNamesEnglish = EID:getDescriptionEntryEnglish("GlitchedItemText")
-	local pluralize = EID:getDescriptionEntry("Pluralize")
 	local attributes = "#"
 	
 	-- Check the base item config for the Hearts/Bombs/Coins/Keys this item adds,
@@ -85,9 +89,10 @@ function EID:CheckGlitchedItemConfig(id)
 				local prefix = "↑ "
 				if val > 0 then s = "+" .. s else prefix = "↓ " end
 				attributes = attributes .. prefix .. EID:ReplaceVariableStr(localizedNames[v] or localizedNamesEnglish[v], 1, s)
-				if val ~= 1 and val ~= -1 then attributes = attributes .. pluralize end
 				attributes = attributes .. "#"
 			end
+			-- pluralize
+			attributes = EID:TryPluralizeString(attributes, val)
 		end
 	end
 	
