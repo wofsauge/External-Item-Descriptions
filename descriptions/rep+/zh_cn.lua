@@ -62,6 +62,14 @@ local trinkets = {
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
+---------- Cards ----------
+
+local cards = {
+	-- Change: Complete rewrite
+	[38] = {"38", "Berkano", "{{Collectible706}} 在当前房间中，生成3个无底坑蝗虫"}, -- Berkano
+}
+EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
+
 ---------- Conditions ----------
 EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catcher (Greed) - In Rep+, the dream preview works in greed mode as well, so no changes needed
 
