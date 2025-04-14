@@ -364,7 +364,7 @@ EID.descriptions[languageCode].collectibles={
 	{"339", "El Gancho", "↑ {{Range}} Alcance +5.25#↑ {{Tearsize}} Tamaño de lágrimas +0.5#↑ {{Shotspeed}} Vel. de lágrimas +0.16#↑ {{BlackHeart}} +1 Corazón negro"}, -- Safety Pin
 	{"340", "Píldora de Cafeína", "↑ {{Speed}} Velocidad +0.3#↑ Reduce tu tamaño#{{Pill}} Genera una píldora aleatoria al tomarlo"}, -- Caffeine Pill
 	{"341", "Foto destruida", "↑ {{Tears}} Lágrimas +0.7#↑ {{Shotspeed}} Vel. de lágrimas +0.16%"}, -- Torn Photo
-	{"342", "Hongo Azul", "↑ {{Heart}} +1 de Vida#↑ {{Tears}} Lágrimas +0.7#↓ {{Shotspeed}} Vel. de lágrimas -16%"}, -- Hongo Azul
+	{"342", "Hongo Azul", "↑ {{Heart}} +1 de Vida#↑ {{Tears}} Lágrimas +0.7#↓ {{Shotspeed}} Vel. de lágrimas  -0.16"}, -- Blue Cap
 	{"343", "Llave de casa", "↑ {{Luck}} Suerte +1#↑ {{SoulHeart}} +1 Corazón de alma#{{Key}} Genera 2 llaves"}, -- Latch Key
 	{"344", "Caja de Fósforos", "{{BlackHeart}} +1 Corazón negro#{{Bomb}} Genera 3 bombas"}, -- Match Book
 	{"345", "Synthol", "↑ {{Damage}} Daño +1#↑ {{Range}} Alcance +5.25#↑ {{Tearsize}} Tamaño de lágrimas +0.5"}, -- Synthoil
@@ -497,7 +497,7 @@ EID.descriptions[languageCode].collectibles={
 	{"472", "Rey bebé", "Hace que lo sigan otros familiares#Se detiene cuando disparas#Se teletransporta hacia ti cuando dejas de disparar"}, -- King Baby
 	{"473", "Gran Chubby", "Carga lentamente hacia adelante#Bloquea proyectiles#Inflige 40.5 de daño por contacto"}, -- Big Chubby
 	{"474", "Amígdala", "Bloquea proyectiles enemigos"}, -- Tonsil
-	{"475", "Plan C", "Inflige 9.999.999 de daño a todos los enemigos#{{Warning}} Te mata 3 segundos después"}, -- Plan C
+	{"475", "Plan C", "Inflige 9.999.999 de daño a todos los enemigos#{{Warning}} Moriras 3 segundos después de usarlo {{Warning}}"}, -- Plan C
 	{"476", "D1", "Duplica un recolectable aleatorio en la habitación actual"}, -- D1
 	{"477", "Vacío", "Consume todos los objetos en pedestales de la habitación#↑ Objeto pasivo: Mejora 2 estadisticas aleatorias#Objeto activo: Añade el efecto del objeto al de Vacío (Los efectos se apilan)"}, -- Void
 	{"478", "Pausa", "Congela a todos los enemigos en la habitación hasta que vuelvas a disparar#Los enemigos congelados aun pueden hacer daño#Los enemigos se descongelan tras 30 segundos"}, -- Pause
@@ -563,17 +563,17 @@ EID.descriptions[languageCode].collectibles={
 	{"538", "Canicas", "{{Trinket}} Genera 3 trinkets aleatorios#{{Collectible479}} Al recibir daño, 10% de probabilidad de consumir tu trinket y otorgar sus efectos permanentemente"}, -- Marbles
 	{"539", "Huevo misterioso", "Genera un enemigo encantado al recibir daño#Genera aliados más fuertes cuantas más habitaciones limpies sin recibir daño"}, -- Mystery Egg
 	{"540", "Piedra plana", "Las lágrimas rebotan en el suelo e infligen daño por rebote a los enemigos cercanos"}, -- Flat Stone
-	{"541", "Médula", "{{BoneHeart}} Genera 3 corazones rojos#{{EmptyBoneHeart}} +1 Corazón de hueso"}, -- Marrow
+	{"541", "Médula", "{{Heart}} Genera 3 corazones rojos#{{EmptyBoneHeart}} +1 Corazón de hueso"}, -- Marrow
 	{"542", "Costilla deslizante", "Orbital#Refleja projectiles enemigos"}, -- Costilla deslizante
 	{"543", "Suelo Santificado", "Al recibir daño, genera una caca blanca con un aura#El aura otorga lo siguiente:#↑ {{Tears}} Lágrimas x2#50% de probabilidad de ignorar el daño recibido"}, -- Hallowed Ground
 	{"544", "Costilla con Punta", "Levita en frente del jugador#Inflige 6 veces tu daño por segundo"}, -- Pointy Rib
 	{"545", "Libro de los Muertos", "Genera un hueso orbital o Bonies aliados por cada enemigo derrotado en la habitación#Máximo de 8 invocaciones"}, -- Libro de los Muertos
 	{"546", "Anillo de papá", "Otorga un aura que petrifica a los enemigos cercanos"}, -- Dad's Ring
-	{"547", "Papeles del divorcio", "↑ {{Tears}} Lágrimas +0.7#{{EmptyBoneHeart}} +1 un Corazón de hueso#Genera el trinket {{Trinket21}} Papel misterioso"}, -- Divorce Papers
+	{"547", "Papeles del divorcio", "↑ {{Tears}} Lágrimas +0.7#{{EmptyBoneHeart}} +1 Corazón de hueso#Genera el trinket {{Trinket21}} Papel misterioso"}, -- Divorce Papers
 	{"548", "Hueso de Mandíbula", "Familiar boomerang#Inflige 7 de daño por contacto#Puede recoger y acercar objetos"}, -- Jaw Bone
 	{"549", "Huesos frágiles", "{{EmptyBoneHeart}} Reemplaza todos tus contenedores de corazón por 6 corazones de hueso#Al perder un corazón de hueso:#↑ {{Tears}} Lágrimas +0.5#Dispara 8 lágrimas de hueso a tu alrededor"}, -- Brittle Bones
-	{"550", "Pala rota", "Los pies de mamá te atacarán constantemente#Al usarlo, los pies dejarán de caer en esta habitación#{{Warning}} (¡Intenta ganar la Boss Rush con esto!)"}, -- Pala rota
-	{"551", "Pala rota", "Segunda parte de la pala rota#{{Warning}} Úsala en el montón de tierra en la \"Dark Room\"(La sala oscura)"}, -- Pala rota
+	{"550", "Pala rota", "Los pies de mamá te atacarán constantemente#Al usarlo, los pies dejarán de caer en esta habitación#{{Warning}} (¡Intenta ganar la Boss Rush con esto!)"}, -- Broken Shovel
+	{"551", "Pala rota", "Segunda parte de la pala rota#{{Warning}} Úsala en el montón de tierra en la \"Sala Oscura\""}, -- Broken Shovel
 	{"552", "Pala de Mamá", "Genera una trampilla hacia el siguiente nivel#{{LadderRoom}} 10% de probabilidad de generar una trampilla a una mazmorra#{{Warning}} Úsala en el montón de tierra en la \"Dark Room\"(La sala oscura)"}, -- Mom's Shovel
 }
 
@@ -1126,7 +1126,7 @@ EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} UN SOLO USO {{Warnin
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
-	-- cora{plural_zon} will automatically replace corazón with corazones if it's > 1
+	-- cora{plural_zon} will automatically replace "corazón" with "corazones" if it's > 1
 	["Red to Soul"] = {
 	"↑ {{Heart}} +{1} de Vida", "{{SoulHeart}} +{1} Cora{plural_zon} de Alma",
 	"↑ {{EmptyHeart}} +{1} contenedor{plural_es} de corazón vacío{plural_s}", "{{SoulHeart}} +{1} Cora{plural_zon} de Alma",
@@ -1153,10 +1153,8 @@ EID.descriptions[languageCode].RedToX = {
 	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{EmptyCoinHeart}} {1} Cora{plural_zon} de Moneda"}, -- Red HP to Coin Hearts
 	
 	["Red to None"] = {
-	"↑ {{Heart}} +1 de Vida", "",
 	"↑ {{Heart}} +{1} de Vida", "",
-	"↑ {{EmptyHeart}} +1 contenedor de corazón vacío", "",
-	"↑ {{EmptyHeart}} +{1} contenedores de corazón vacíos", "",
+	"↑ {{EmptyHeart}} +{1} contenedor{plural_es} de corazón vacío{plural_s}", "",
 	"↓ {{EmptyHeart}} {1} de Vida", ""}, -- Red HP to None (The Lost)
 }
 
