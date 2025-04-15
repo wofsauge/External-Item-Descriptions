@@ -8,7 +8,7 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "zh_cn"
+local languageCode = "zh-CN"
 
 ---------- Collectibles ----------
 

@@ -1,6 +1,6 @@
----------------------------------------
------  Basic German descriptions  -----
----------------------------------------
+-------------------------------------
+----- Basic German descriptions -----
+-------------------------------------
 
 -- FORMAT: Item ID | Name | Description
 
@@ -1354,13 +1354,13 @@ EID.descriptions[languageCode].ResultsWithX = "(Ergebnisse mit {1})"
 -- Tables with two or more entries are find-replace pairs
 local repConditions={
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from en and continue translating from that
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
 local repBFFSSynergies = {
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from en and continue translating from that
 }
 EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
 

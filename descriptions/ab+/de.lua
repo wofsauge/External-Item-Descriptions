@@ -1,6 +1,6 @@
----------------------------------------
------  Basic German descriptions  -----
----------------------------------------
+-------------------------------------
+----- Basic German descriptions -----
+-------------------------------------
 
 -- FORMAT: Item ID | Name | Description
 
@@ -16,7 +16,7 @@ EID.descriptions[languageCode].custom = {} -- table for custom entity descriptio
 EID.descriptions[languageCode].languageName = "German (WIP)"
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+EID.descriptions[languageCode].fonts = EID.descriptions["en"].fonts
 
 ---------- Collectibles ----------
 
@@ -582,21 +582,21 @@ EID.descriptions[languageCode].collectibles={
 -- Effect of Car battery on Active Items
 EID.descriptions[languageCode].carBattery = {
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from en and continue translating from that
 }
 
 ---------- Trinkets ----------
 
 EID.descriptions[languageCode].trinkets={
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from en and continue translating from that
 }
 
 ---------- Cards ----------
 
 EID.descriptions[languageCode].cards={
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from en and continue translating from that
 }
 
 --[[ Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
@@ -638,7 +638,7 @@ EID.descriptions[languageCode].unidentifiedPill = "Unidentifizierte Pille"
 
 EID.descriptions[languageCode].pills={
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from en and continue translating from that
 }
 
 ---------- Character Info ----------
@@ -817,7 +817,7 @@ EID.descriptions[languageCode].PickupNames = {
 -- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple)
 EID.descriptions[languageCode].tarotClothBuffsAB = {
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from en and continue translating from that
 }
 
 -- Conditional descriptions
@@ -830,12 +830,12 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.34"] = "x1.5 Schadens-Multiplikator", -- Book of Belial
 	["5.300.16"] = "x1.5 Schadens-Multiplikator", -- XV - The Devil
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from en and continue translating from that
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from en and continue translating from that
 }
 
 -- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
@@ -844,5 +844,5 @@ EID.descriptions[languageCode].BFFSSynergies = {
 -- The numbers are provided to make this a quick reference for Player IDs
 EID.descriptions[languageCode].CharacterInfo = {
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from en and continue translating from that
 }

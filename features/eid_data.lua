@@ -873,18 +873,40 @@ EID.GoldenTrinketData = {
 }
 
 EID.BreakUtf8CharsLanguage = {
-	['zh_cn'] = true
+	['zh-CN'] = true
 }
 
 -- Map the game's built-in language option strings to EID's
 EID.LanguageMap = {
-	["jp"] = "ja_jp",
-	["es"] = "spa",
+	["jp"] = "ja",
+	["es"] = "es",
 	["de"] = "de",
 	["fr"] = "fr",
 	["ru"] = "ru",
-	["kr"] = "ko_kr",
-	["zh"] = "zh_cn",
+	["kr"] = "ko",
+	["zh"] = "zh-CN",
+}
+
+EID.DeprecatedLanguageCodeToNewLanguageCode = {
+	["bul"] = "bg",
+	["cs_cz"] = "cs",
+	["de"] = "de",
+	["el_gr"] = "el",
+	["en_us"] = "en",
+	["spa"] = "es",
+	["fr"] = "fr",
+	["it"] = "it",
+	["ja_jp"] = "ja",
+	["ko_kr"] = "ko",
+	["nl_nl"] = "nl",
+	["pl"] = "pl",
+	["pt_br"] = "pt-BR",
+	["pt"] = "pt",
+	["ro_ro"] = "ro",
+	["ru"] = "ru",
+	["tr_tr"] = "tr",
+	["uk_ua"] = "uk",
+	["zh_cn"] = "zh-CN",
 }
 
 EID.MarkupSizeMap = {

@@ -1,6 +1,6 @@
-----------------------------------------------------
------  Basic Brazilian Portuguese descriptions  -----
-----------------------------------------------------
+---------------------------------------------------
+----- Basic Brazilian Portuguese descriptions -----
+---------------------------------------------------
 
 -- FORMAT: Item ID | Name | Description
 
@@ -10,15 +10,15 @@
 
 -- Brazilian Portuguese letters: ãÃ áÁ àÀ âÂ çÇ éÉ êÊ íÍ õÕ óÓ ôÔ úÚ
 
-local languageCode = "pt_br"
+local languageCode = "pt-BR"
 
--- init pt_br table
+-- init pt-BR table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Brazilian Portuguese"
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+EID.descriptions[languageCode].fonts = EID.descriptions["en"].fonts
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={

@@ -1,6 +1,6 @@
----------------------------------------
+------------------------------------
 ----- Basic Czech descriptions -----
----------------------------------------
+------------------------------------
 
 -- Last Update: 02.12.2024
 
@@ -9,7 +9,7 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
-local languageCode = "cs_cz"
+local languageCode = "cs"
 
 local repCollectibles={
 	[2] = {"2", "Vnitřní Oko", "Trojitý výstřel#↓ {{Tears}} -49% Méně Slz"},
