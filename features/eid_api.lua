@@ -916,17 +916,20 @@ function EID:getObjectName(Type, Variant, SubType)
 			name = tableEntry[2]
 		end
 	end
+	local fallbackName = Type.."."..Variant.."."..SubType
 	if tableName == "collectibles" then
-		if EID.itemConfig:GetCollectible(SubType) == nil then return Type.."."..Variant.."."..SubType end
+		if EID.itemConfig:GetCollectible(SubType) == nil then return fallbackName end
 		local vanillaName = EID.itemConfig:GetCollectible(SubType).Name
 		local englishName = EID.descriptions["en_us"][tableName][SubType] and EID.descriptions["en_us"][tableName][SubType][2]
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "trinkets" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
+		if EID.itemConfig:GetTrinket(adjustedSubtype) == nil then return fallbackName end
 		local vanillaName = EID.itemConfig:GetTrinket(adjustedSubtype).Name
 		local englishName = EID.descriptions["en_us"][tableName][adjustedSubtype] and EID.descriptions["en_us"][tableName][adjustedSubtype][2]
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "cards" then
+		if EID.itemConfig:GetCard(SubType) == nil then return fallbackName end
 		local vanillaName = EID.itemConfig:GetCard(SubType).Name
 		local englishName = EID.descriptions["en_us"][tableName][SubType] and EID.descriptions["en_us"][tableName][SubType][2]
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
@@ -941,9 +944,9 @@ function EID:getObjectName(Type, Variant, SubType)
 		return EID:getPlayerName(SubType)
 	elseif tableName == "custom" then
 		local xmlName = EID:GetEntityXMLName(Type, Variant, SubType)
-		return name or xmlName or Type.."."..Variant.."."..SubType
+		return name or xmlName or fallbackName
 	end
-	return Type.."."..Variant.."."..SubType
+	return fallbackName
 end
 
 ---Returns the name of a player based on their ID
@@ -995,16 +998,16 @@ end
 ---@return string
 function EID:getXMLDescription(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
-	local desc= nil
 	if SubType == 0 then return "(no description available)" end
+	local itemConfig = nil
 	if tableName == "collectibles" then
-		desc = EID.itemConfig:GetCollectible(SubType).Description
+		itemConfig = EID.itemConfig:GetCollectible(SubType)
 	elseif tableName == "trinkets" then
-		desc = EID.itemConfig:GetTrinket(SubType).Description
-	elseif tableName == "cards" then
-		desc = EID.itemConfig:GetCard(SubType).Description
+		itemConfig = EID.itemConfig:GetTrinket(SubType)
+	elseif tableName == "cards" and EID.itemConfig:GetCard(SubType) then
+		itemConfig = EID.itemConfig:GetCard(SubType)
 	end
-	return desc or "(no description available)"
+	return itemConfig and itemConfig.Description or "(no description available)"
 end
 
 ---Check if an entity is part of the describable entities

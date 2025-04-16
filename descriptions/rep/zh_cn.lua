@@ -648,24 +648,135 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[729] = "单房间不动魂火", -- Decap Attack
 }
 
--- Special Locust effects when Item was eaten by Abyss
-EID.descriptions[languageCode].abyssSynergies = {
-	[2] = "3只普通蝗虫", -- The Inner Eye
-	[3] = "紫色追踪蝗虫", -- Spoon Bender
-	[4] = "红色大型蝗虫, 造成3倍伤害", -- Cricket's Head
-	[6] = "黄色短距离快速蝗虫, 快速造成伤害", -- Number One
-	[7] = "红色蝗虫, 造成2倍伤害", -- Blood of the Martyr
-	[10] = "2只灰色蝗虫, 造成一半伤害", -- Halo of Flies
-	[13] = "绿色蝗虫, 使敌人中毒", -- The Virus
-	[103] = "绿色蝗虫, 使敌人中毒", -- The Common Cold
-	[118] = "较大的灰色蝗虫, 其他属性正常", -- Brimstone
-	[149] = "缓慢的大型绿色蝗虫, 造成1.5x角色伤害并使敌人中毒", -- Ipecac
-	[153] = "4只普通蝗虫", -- Mutant Spider
-	[257] = "橙色蝗虫, 使敌人燃烧", -- Fire Mind
-	[305] = "绿色蝗虫, 使敌人中毒", -- Scorpio
-	[374] = "青色蝗虫, 生成造成3x角色伤害的光束", -- Holy Light
-	[494] = "淡蓝色蝗虫, 带有电弧, 每个电弧造成0.1点伤害", -- Jacob's Ladder
-	[559] = "淡蓝色蝗虫, 带有电弧, 每个电弧造成0.1点伤害", -- 120 Volt
+---------- Abyss Locust description parts ----------
+EID.descriptions[languageCode].AbyssTexts = {
+ 	-- values inside {} brackets will be replaced with text parts below
+	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
+	InfoText = "{amount}只{size}{speed}蝗虫({dmg})",
+	InfoTextPlural = nil, -- Can be used by translators to provide a pluralized version of the InfoText
+	Chance = "({1}%几率)", -- {1} will be replaced with the chance
+	SpeedSlow = "缓慢", -- Speed < 1
+	SpeedFast = "较快", -- Speed > 1
+	SpeedDash = "非常快", -- Speed >= 6
+	SizeSmall = "小型", -- Size < 1
+	SizeBig = "大型", -- Size > 1
+	DamageMult = "{1}x角色伤害", -- {1} will be replaced with the calculated damage multiplier 
+}
+
+---------- Abyss Locust special effects ----------
+--- Special locust effects that dont correspond to TearFlags.
+--- Displays an icon in front of the description that shows an item with the same effect
+EID.descriptions[languageCode].AbyssLocustEffects = {
+[0] = "{{Bomb}}接触敌人时爆炸",
+[1] = "{{QuestionMark}}随机蝗虫效果",
+-- 2 = Multiple locusts act like one. Uninteresting info for the player in my opinion
+[3] = "{{Collectible285}}在接触敌人时触发退化效果",
+[4] = "{{Collectible35}}在接触敌人时触发全屏伤害效果",
+[5] = "{{Collectible638}}在接触敌人时触发永久擦除效果",
+[6] = "{{Collectible114}}在发动攻击时携带一把旋转的菜刀",
+[7] = "{{Collectible611}}在接触敌人时触发一次微型的音波",
+[8] = "{{Collectible399}}在接触敌人时触发一次微型的黑色血激光环",
+[9] = "{{Collectible522}}在发动攻击时带有强烈的泪弹排斥效果",
+[10] = "{{Collectible447}}在接触敌人时触发一次微型的毒屁",
+[11] = "{{Collectible447}}在接触敌人时触发一次微型的击退屁",
+[12] = "{{Collectible118}}在接触敌人时产生一道微型的反重力硫磺火漩涡",
+[13] = "{{Collectible317}}在接触敌人时产生绿色水迹",
+[14] = "{{Collectible56}}在接触敌人时产生黄色水迹",
+[15] = "{{Collectible214}}在接触敌人时产生红色水迹",
+[16] = "{{Collectible178}}在接触敌人时产生蓝色水迹",
+[17] = "{{Collectible420}}在接触敌人时产生一个微型的黑色粉末魔法阵",
+[18] = "{{Collectible144}}每吞噬一个掉落物会增加0.25的固定伤害，累计吞噬25个掉落物后不再吞噬",
+}
+
+
+-- list of Tear flag descriptions used for Abyss locust effect description
+EID.descriptions[languageCode].TearFlagNames = {
+	[0] = "{{Collectible115}}灵体",                 -- Ouija board type tear (goes thru obstacles)
+    [1] = "{{Collectible48}}穿刺",                 -- Cupid's arrow type tear (goes thru enemy)
+    [2] = "{{Collectible3}}追踪",                   -- Spoon bender type tear (homes to enemy)
+    [3] = "{{Collectible89}}减速",                  -- Spider bite type tear (slows on contact)
+    [4] = "{{Collectible103}}毒性",                   -- Common cold type tear (poisons on contact)
+    [5] = "{{Collectible110}}石化",                  -- Mom's contact type tear (freezes on contact)
+    [6] = "{{Collectible104}}分裂",                    -- Parasite type tear (splits on collision)
+    [7] = "{{Collectible132}}越远伤害越高",            -- Lump of coal type tear (grows by range)
+    [8] = "{{Collectible5}}回旋",                -- My reflection type tear (returns back)
+    [9] = "{{Collectible169}}巨人",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+    [10] = "{{Trinket10}}蠕动虫",         -- Wiggle worm type tear (wiggles)
+    [11] = "{{Collectible151}}击中敌人生成一只蓝苍蝇",        -- Mulligan type tear (creates fly on hit)
+    [12] = "{{Collectible149}}爆炸",               -- IPECAC type tear (explodes on hit)
+    [13] = "{{Collectible200}}魅惑",                -- Mom's Eyeshadow tear
+    [14] = "{{Collectible201}}眩晕",               -- Iron Bar tear
+    [15] = "{{Heart}}击杀敌人时掉落心",     -- These tears cause enemy to drop hearts if killed (33% chance)
+    [16] = "{{Collectible233}}环绕",     -- Used for Little Planet (orbit arounds the player)
+    [17] = "{{Collectible222}}反重力",     -- Anti gravity type tear (floats in place for some time before finally moving) (unset after first update)
+    [18] = "{{Collectible224}}四向分裂",     -- Splits into 4 smaller tears if it hits the ground
+    [19] = "{{Collectible221}}弹跳",       -- Bounce off of enemies, walls, rocks (Higher priority than PERSISTENT & PIERCING)
+    [20] = "{{Collectible228}}恐惧",                    -- Mom's Perfume type tear of fear (fear on contact)
+    [21] = "{{Collectible261}}逐渐缩小",                  -- Proptosis tears start large and shrink
+    [22] = "{{Collectible257}}燃烧",                    -- Fire Mind tears cause Burn effect on enemies
+    [23] = "{{Collectible315}}磁化", -- Attracts enemies and pickups
+    [24] = "{{Collectible309}}击退",               -- Tear impact pushes enemies back further
+    [25] = "{{Trinket9}}波动虫",               -- Makes the tear pulse
+    [26] = "{{Trinket11}}环形虫",         -- Makes the tear path spiral
+    [27] = "{{Trinket12}}扁形虫",              -- Makes the tear oval in the direction of travel
+    [28] = "{{Collectible220}}悲伤炸弹",                -- Used by Bombs (Sad Bomb)
+    [29] = "{{Collectible209}}屁股炸弹",               -- Used by Bombs (Butt Bomb)
+    [30] = "{{Trinket26}}钩形虫",         -- Used for Hook Worm
+    [31] = "{{Collectible331}}神性",     -- Used for GodHead (they will have a glow around them)
+    [32] = "{{Collectible231}}焦油球", -- Used for Gish player tears (to color enemy black on slowing)
+    [33] = "{{Collectible317}}神秘液体", -- Mysterious Liquid tears spawn damaging green creep when hit
+    [34] = "{{Collectible213}}护盾",                -- Lost Contact tears, block enemy projectiles
+    [35] = "{{Collectible432}}闪光炸弹",            -- Used by Bombs (Glitter Bomb)
+    [36] = "{{Collectible366}}分裂炸弹",            -- Used for Scatter bombs
+    [37] = "{{Collectible367}}粘性",                  -- Used for Sticky bombs and Explosivo tears
+    [38] = "{{Collectible369}}连续统",     -- Tears loop around the screen
+    [39] = "{{Collectible374}}圣光", -- Create damaging light beam on hit
+    [40] = "{{Collectible385}}击中敌人生成硬币",        -- Used by Bumbo, spawns a coin when tear hits
+    [41] = "{{Collectible393}}击杀敌人时掉落黑心",    -- Enemy drops a black hp when dies
+    [42] = "{{Collectible397}}牵引光束",            -- Tear with this flag will follow parent player's beam
+    [43] = "{{Collectible398}}缩小敌人",          -- God's flesh flag to minimize enemies
+    [44] = "{{Collectible429}}击中敌人生成硬币",      -- Greed coin tears that has a chance to generate a coin when hit
+    [45] = "{{Collectible353}}击中敌人生成硬币十字爆炸",              -- Bomber Boy
+    [46] = "{{Trinket96}}衔尾虫",     -- Ouroboros Worm, big radius oscilating tears
+    [47] = "{{Collectible460}}使被击中的敌人获得混乱效果",   -- Glaucoma tears, permanently confuses enemies
+    [48] = "{{Collectible459}}鼻窦炎",                  -- Booger tears, stick and do damage over time
+    [49] = "{{Collectible461}}击中敌人生成蓝苍蝇或蓝蜘蛛",               -- Egg tears, leave creep and spawns spiders or flies
+    [50] = "{{Collectible463}}硫酸",            -- Sulfuric Acid tears, can break grid entities
+    [51] = "{{Collectible453}}分裂骨头",                    -- Bone tears, splits in 2
+    [52] = "{{Collectible426}}穿透敌人后获得追踪效果", -- Belial tears, piecing tears gets double damage + homing
+    [53] = "{{Collectible202}}金化",           -- Midas touch tears
+    [54] = "{{Collectible496}}安乐死",                -- Needle tears
+    [55] = "{{Collectible494}}电弧",           -- Jacobs ladder tears
+    [56] = "{{Collectible503}}召唤巨角恶魔的手", -- Little Horn tears
+    [57] = "{{Collectible524}}电弧连接",   -- Technology Zero
+    [58] = "{{Collectible529}}眼球",        -- Pop!
+    [59] = "{{Collectible532}}食泪",               -- Hungry Tears
+    [60] = "{{Collectible533}}三圣颂",               -- Trisagion, generates a laser on top of the tear
+    [61] = "{{Collectible540}}弹跳",          -- Flat Stone
+    [62] = "{{Collectible531}}泪血症",             -- Haemolacria
+    [63] = "{{Trinket71}}鲍勃的膀胱",             -- Bob's Bladder
+    [64] = "{{Collectible637}}击退",     -- Knockout Drops
+    [65] = "{{Freezing}}冻结",   -- Uranus
+    [66] = "{{Collectible617}}磁化", -- Lodestone
+    [67] = "{{Collectible618}}诱饵",       -- Rotten Tomato
+    [68] = "{{Collectible572}}玄秘魔眼",       -- Eye of the Occult
+    [69] = "{{Collectible595}}环形轨道运动",   -- Orbiting tears with a more narrow and stable orbit (used by Saturnus and Immaculate Heart)
+    [70] = "{{Collectible592}}碎岩",             -- Rock tears, chance to break rocks, deal extra damage to rock type enemies
+    [71] = "{{Trinket144}}脑形虫",      -- Brain Worm, tears turn and go horizontally when moving past an enemy
+    [72] = "{{Collectible614}}鲜血炸弹 ",              -- Blood Bombs, leave blood creep on the ground
+    [73] = "{{Collectible236}}接触敌人时，使其变成大便",    -- E. Coli tears, turn enemies into poop
+    [74] = "击杀敌人生成硬币",      -- Killed enemies have a chance to drop a random coin (Reverse Hanged Man)
+    [75] = "{{Collectible646}}硫磺火炸弹",          -- Brimstone Bombs, explosion creates a brimstone cross
+    [76] = "{{Collectible606}}生成裂隙",       -- Rift tears, creates a black hole on impact
+    [77] = "{{Collectible553}}黏住敌人并在敌人死亡时分裂",  -- Spore tears, stick to enemies and multiply on enemy death
+    [78] = "{{Collectible727}}幽灵炸弹",              -- Ghost bombs
+    [79] = "{{Card}}击杀敌人掉落随机卡牌",      -- Killed enemies will drop a random tarot card
+    [80] = "{{Rune}}击杀敌人掉落随机符文",      -- Killed enemies will drop a random rune
+    [81] = "使被击中的敌人传送",   -- Hit enemies will teleport to a different part of the room
+    [82] = "随时间减速",    -- Decelerate over time
+    [83] = "随时间加速",    -- Accelerate over time
+    [104] = "{{Collectible221}}弹跳(不会在命中敌人时弹跳)",    -- Similar to TEAR_BOUNCE but only bounces off walls, not enemies
+	[106] = "{{Collectible506}}从背后攻击造成更多伤害并造成流血",   -- Deals extra damage from behind and inflicts bleeding
 }
 
 -- Effect of Car battery on Active Items
