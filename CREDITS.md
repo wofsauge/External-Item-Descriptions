@@ -22,6 +22,7 @@ If you enjoy this mod and want to help on it, check it out on GitHub: https://gi
 - **Brazilian - Portuguese**: by LuanRoger and NotZin02
 - **Turkish**: by Cagdas Salur, Mert Dutal
 - **Ukrainian**: by x3xto
+- **Vietnamese**: by Hanzo
 
 
 # Special Thanks to
