@@ -776,7 +776,7 @@ EID.descriptions[languageCode].trinkets={
 	{"37", "Pezuña de cabra", "↑ {{Speed}} Velocidad +0.15"}, -- Pezuña de cabra
 	{"38", "Perla de Mamá", "+10% de probabilidad de que los corazones se generen como {{SoulHeart}} Corazones de Alma, {{BlackHeart}} Corazones Negros o {{EmptyBoneHeart}} Corazones de Hueso"}, -- Mom's Pearl
 	{"39", "Cáncer", "↑ {{Tears}} Lágrimas +2"}, -- Cáncer
-	{"40", "Parche rojo", "{{Timer}} 20% de probabilidad de obtener ↑ {{Damage}} Daño +1.8 al recibir daño#{{Suerte}} 100% de probabilidad con 8 de suerte"}, -- Red Patch
+	{"40", "Parche rojo", "{{Timer}} 20% de probabilidad de obtener ↑ {{Damage}} Daño +1.8 al recibir daño#{{Luck}} 100% de probabilidad con 8 de suerte"}, -- Red Patch
 	{"41", "Fósforo", "{{Bomb}} 10% de probabilidad de que la recompensa de la sala sea una bomba#{{Bomb}} 33% de probabilidad de obtener bombas extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos#{{Warning}} Remueve {{Trinket53}} la garrapata"}, -- Match Stick
 	{"42", "Dedo de la Suerte", "↑ {{Luck}} Suerte +1#+8% de probabilidad de obtener una recompensa de sala#33% de probabilidad de obtener un recolectable extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Lucky Toe
 	{"43", "Cráneo maldito", "Si quedas a medio corazón al recibir daño, serás teletransportado a una habitación aleatoria"}, -- Cursed Skull
@@ -890,7 +890,7 @@ EID.descriptions[languageCode].cards={
 	{"18", "XVII - Las Estrellas", "{{TreasureRoom}} Te teletransporta a la sala del tesoro"},
 	{"19", "XVIII - La Luna", "{{SecretRoom}} Te teletransporta a la habitación secreta"},
 	{"20", "XIX - El Sol", "{{HealingRed}} Salud al maximo#Inflige 100 de daño a todos los enemigos#Revela el mapa completo del piso (excepto la {{SuperSecretRoom}} Habitación Super Secreta)"},
-	{"21", "XX - Juicio", "{{Beggar}} Genera un mendigo#{{DemonBeggar}} 33% de probabilidad de generar un mendigo demoníaco#2% de probabilidad de generar un mendigo de llaves o de bombas"}, -- XX - Judgement
+	{"21", "XX - Juicio", "{{Beggar}} Genera un mendigo#{{DemonBeggar}} 33% de probabilidad de generar un mendigo demoníaco#{{KeyBeggar}}/{{BombBeggar}} 2% de probabilidad de generar un mendigo de llaves o de bombas"}, -- XX - Judgement
 	{"22", "XXI - El Mundo", "Revela el mapa completo del piso (excepto la {{SuperSecretRoom}} Habitación Super Secreta)"},
 	{"23", "2 de tréboles", "{{Bomb}} Duplica tus bombas"},
 	{"24", "2 de diamantes", "{{Coin}} Duplica tus monedas"},
@@ -931,32 +931,32 @@ EID.descriptions[languageCode].cards={
 -- Tables with one entry will completely replace the original description
 -- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple) ]]
 EID.descriptions[languageCode].tarotClothBuffsAB = {
-	[4] = {0.3, 0.6, 1.5, 3}, -- III - La Emperatriz
-	[6] = {2, 4}, -- V - El Sumo Sacerdote
-	[7] = {2, 4}, -- VI - Los Enamorados
-	[8] = {6, 12}, -- VII - El Carruaje
-	[9] = {"Genera {{ColorShinyPurple}}2{{CR}} {{UnknownHeart}} corazones, {{Coin}} monedas, {{Bomb}} bombas y {{Key}} llaves al azar"}, -- VIII - Justicia
-	[11] = {" una ", " 2 ", "máquina", "{{CR}}máquinas", "máquina", "{{CR}}máquinas"}, -- X - La Rueda de la Fortuna
-	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Fuerza
-	[14] = {40, 80}, -- XIII - Muerte
-	[15] = {" una ", " 2 ", " máquina", " {{CR}}máquinas", "mendigo demoníaco", "{{CR}}mendigos demoníacos"}, -- XIV - Templanza (+ la versión de Codicia)
-	[17] = {6, 12}, -- XVI - La Torre
-	[20] = {100, 200}, -- XIX - El Sol
-	[21] = {" un mendigo ", " 2 {{CR}}mendigos ", "generar ", "{{CR}}tambien generar ", "generar ", "{{CR}}tambien generar "}, -- XX - Judgement
-	[23] = {"Duplica", "Cuadruplica"}, -- 2 de tréboles
-	[24] = {"Duplica", "Cuadruplica"}, -- 2 de diamantes
-	[25] = {"Duplica", "Cuadruplica"}, -- 2 de picas
-	[26] = {"Duplica", "Cuadruplica"}, -- 2 de corazones
+	[4] = {0.3, 0.6, 1.5, 3}, -- III - The Empress
+	[6] = {2, 4}, -- V - The Hierophant
+	[7] = {2, 4}, -- VI - The Lovers
+	[8] = {6, 12}, -- VII - The Chariot
+	[9] = {"Genera {{ColorShinyPurple}}2{{CR}} {{UnknownHeart}} corazones, {{Coin}} monedas, {{Bomb}} bombas y {{Key}} llaves al azar"}, -- VIII - Justice
+	[11] = {" una ", " 2 ", "máquina", "{{CR}}maquinas"," o una", " {{CR}}o", "máquina", "{{CR}}maquinas"}, -- X - Wheel of Fortune
+	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
+	[14] = {40, 80}, -- XIII - Death
+	[15] = {" una ", " 2 ", " máquina", " {{CR}}máquinas", "mendigo demoníaco", "{{CR}}mendigos demoníacos"}, -- XIV - Temperance (+ Greed version)
+	[17] = {6, 12}, -- XVI - The Tower
+	[20] = {100, 200}, -- XIX - The Sun
+	[21] = {"Genera un mendigo", "{{CR}}Genera {{ColorShinyPurple}}2{{CR}} mendigos", "generar ", "{{CR}}que uno sea ", "generar:", "{{CR}}que uno sea:"}, -- XX - Judgement
+	[23] = {"Duplica", "Cuadruplica"}, -- 2 of Clubs
+	[24] = {"Duplica", "Cuadruplica"}, -- 2 of Diamonds
+	[25] = {"Duplica", "Cuadruplica"}, -- 2 of Spades
+	[26] = {"Duplica", "Cuadruplica"}, -- 2 of Hearts
 	[33] = {"Duplica", "Cuadruplica"}, -- Jera
 	[35] = {1, 2}, -- Dagaz
 	[37] = {"los ", "2 veces {{CR}}los "}, -- Perthro
 	[38] = {3, 6, 3, 6}, -- Berkano
 	[39] = {30, 60}, -- Algiz
-	[40] = "Activa 2 efectos de runa e intenta duplicarse a si mismo 2 veces", -- Runa en blanco
-	[41] = {40, 80}, -- Runa negra
-	[46] = {10, 20}, -- Rey suicida
-	[48] = {"el ", "2 veces {{CR}}el "}, -- ¿? Carta
-	[53] = {3, 6}, -- Recuerdo Antiguo
+	[40] = "Activa 2 efectos de runa e intenta duplicarse a si mismo 2 veces", -- Blank Rune
+	[41] = {40, 80}, -- Black Rune
+	[46] = {10, 20}, -- Suicide King
+	[48] = {"el ", "2 veces {{CR}}el "}, -- ? Card
+	[53] = {3, 6}, -- Ancient Recall
 }
 
 ---------- Pills ----------
@@ -968,7 +968,7 @@ EID.descriptions[languageCode].pills={
 	{"1", "Mal viaje", "{{Warning}} Inflige 1 corazón de daño"},
 	{"2", "Bolas de acero", "{{SoulHeart}} +2 corazones de alma"},
 	{"3", "Las bombas son llaves", "Intercambia el número de {{Bomb}} bombas por el de {{Key}} llaves"},
-	{"4", "Diarrea explosiva", "Invoca 5 bombas troll"},
+	{"4", "Diarrea explosiva", "Genera 5 bombas troll en tu posición"},
 	{"5", "Salud completa", "{{HealingRed}} Salud al maximo"},
 	{"6", "Menos salud", "↓ {{EmptyHeart}} -1 Contenedor de corazón"},
 	{"7", "Más salud", "↑ {{EmptyHeart}} +1 contenedor de corazón vacío"},
@@ -984,7 +984,7 @@ EID.descriptions[languageCode].pills={
 	{"17", "Menos suerte", "↓ {{Luck}} Suerte -1"} ,
 	{"18", "Más suerte", "↑ {{Luck}} Suerte +1"},
 	{"19", "Telepíldoras", "Te teletransporta a una habitación aleatoria"},
-	{"20", "¡48 Horas de energía!", "{{Battery}} Recarga por completo tu objeto activo#{{Battery}} Genera 1-2 baterías"},
+	{"20", "¡48 Horas de energía!", "{{Battery}} Recarga completamente el objeto activo#{{Battery}} Genera 1-2 baterías"},
 	{"21", "Hematémesis", "{{Warning}} Drena todos los corazones menos el último#{{Heart}} Genera 1-4 corazones rojos"},
 	{"22", "Parálisis", "Congelado!#No puedes moverte ni disparar durante 2 segundos"},
 	{"23", "¡Puedo ver para siempre!", "{{SecretRoom}} Abre las entradas de las habitaciones secretas del nivel actual"},
