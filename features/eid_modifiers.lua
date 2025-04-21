@@ -351,7 +351,8 @@ local function HealthUpCallback(descObj)
 		-- check if we just made the description blank
 		if descObj.Description:gsub("#", "") == "" then
 			local noEffectStr = EID:getDescriptionEntry("ConditionalDescs", "No Effect")
-			descObj.Description = EID:GetPlayerIcon(playerType) .. " " .. EID:ReplaceVariableStr(noEffectStr, EID:getPlayerName(playerType))
+			local playerName = "{{ColorIsaac}}"..EID:getPlayerName(playerType) .. "{{CR}}"
+			descObj.Description = EID:GetPlayerIcon(playerType) .. " " .. EID:ReplaceVariableStr(noEffectStr, playerName)
 		end
 	end
 	

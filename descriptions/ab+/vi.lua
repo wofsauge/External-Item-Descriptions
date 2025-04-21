@@ -1218,7 +1218,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedMode}} Không có hiệu ứng trong Chế độ Tham Lam",
 	["No Effect (Copies)"] = "Không có hiệu ứng bổ sung từ nhiều bản sao", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "Không có hiệu ứng bổ sung lên bạn đồng hành", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "Không có hiệu ứng với nhân vật không thể có Trái Tim Đỏ",
 	["Different Effect"] = "{{ColorSilver}}Hiệu ứng khác với {1}{{CR}}",
 	["Dies on Use"] = "{{Warning}} {1} chết khi sử dụng", -- for Razor Blade and such as The Lost	
 
