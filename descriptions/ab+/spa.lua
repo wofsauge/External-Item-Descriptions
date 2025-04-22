@@ -1238,7 +1238,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedMode}} Sin efecto en el Modo Codicia",
 	["No Effect (Copies)"] = "Tener multiples copias no otorga efectos adicionales", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "Sin efecto adicional en familiares", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "Ningún efecto en personajes que no pueden tener Corazones rojos",
 	["Different Effect"] = "{{ColorSilver}}Efecto diferente para {1}{{CR}}",
 	["Dies on Use"] = "{{Warning}} {1} morirá al usarlo", -- for Razor Blade and such as The Lost
 	

@@ -119,7 +119,7 @@ EID:AddPlayerConditional(230, 14, "Keeper")     -- Keeper + Abaddon
 EID:AddPlayerConditional(152, 2, "Technology 2 One Eye") -- Cain + Technology 2
 EID:AddPlayerConditional(122, 5, nil, nil, false) -- Eve + Whore of Babylon
 
-EID:AddClosestPlayerConditional({15, 16, 20, 22, 23, 24, 25, 26, 45, 60, 92, 108, 133, 142, 146, 159, 173, 179, 184, 185, 205, 218, 226, 296, 301, 312, 334, 346, 428, 442, 448, 456, 487, 493, 501, "5.350.14", "5.350.46", "5.350.55", "5.350.56", "5.350.107", "5.350.128"}, 10, "No Effect Replace", {layer = 10000}) -- Useless Lost items replace
+EID:AddClosestPlayerConditional({20, 45, 60, 92, 108, 133, 142, 146, 159, 173, 179, 184, 185, 205, 226, 296, 301, 312, 428, 442, 448, 487, 493, 501, "5.350.14", "5.350.46", "5.350.55", "5.350.56", "5.350.107", "5.350.128"}, 10, "No Effect Replace", {layer = 10000}) -- Useless Lost items replace
 EID:AddPlayerConditional({126, 135, 186}, 10, "Dies on Use", {layer = 10000}) -- Lethal Lost items warning
 EID:AddClosestPlayerConditional({108, 122, 296}, 14, "No Effect Replace")  -- Useless Keeper items (The Wafer, Converter, Whore) replace
 if EID.isRepentance then
