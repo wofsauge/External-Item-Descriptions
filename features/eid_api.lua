@@ -1031,10 +1031,15 @@ function EID:hasDescription(entity)
 	local isAllowed = false
 	local entityString = entity.Type .. "." .. entity.Variant .. "." .. entity.SubType
 
+	-- dont describe entity when EID_Hide data is set
+	if EID:getEntityData(entity, "EID_Hide") then
+		return false
+	end
+
 	if EID.IgnoredEntities[entity.Type .. "." .. entity.Variant] or EID.IgnoredEntities[entityString] then return false end
 
 	if EID.Config["EnableEntityDescriptions"] and EID:getTableName(entity.Type, entity.Variant, entity.SubType) == "custom" then
-		isAllowed = __eidEntityDescriptions[entityString] ~= nil
+		isAllowed = isAllowed or __eidEntityDescriptions[entityString] ~= nil
 		isAllowed = isAllowed or EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil
 		isAllowed = isAllowed or EID:getEntityData(entity, "EID_Description") ~= nil
 	end
@@ -1061,12 +1066,15 @@ function EID:hasDescription(entity)
 		end
 
 	end
+
 	if entity.Type == 1000 then
+		-- Handle Card Reading Portals
 		if entity.Variant == 161 then
 			if entity.SubType <= 2 or (EID.isRepentancePlus and entity.SubType == 3) then
 				isAllowed = true
 			end
 		end
+		-- Dice floor information
 		if entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"] then
 			isAllowed = true
 		end
