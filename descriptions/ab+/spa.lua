@@ -357,7 +357,7 @@ EID.descriptions[languageCode].collectibles={
 	{"332", "Harapos de Lázaro", "{{Player11}} Reaparece como Lázaro Resucitado tras morir"}, -- Lazarus' Rags
 	{"333", "La Mente", "Revela completamente el mapa"}, -- The Mind
 	{"334", "El Cuerpo", "↑ {{Heart}} +3 de Vida"}, -- El Cuerpo
-	{"335", "El Alma", "+ {{SoulHeart}} 2 corazones de alma#Otorga un aura que empuja a enemigos y proyectiles"}, -- The Soul
+	{"335", "El Alma", "{{SoulHeart}} +2 Corazones de alma#Otorga un aura que empuja a enemigos y proyectiles"}, -- The Soul
 	{"336", "Cebolla Muerta", "↑ {{Range}} Alcance +0.25#↑ {{Tearsize}} Tamaño de lágrima x1.5#↓ {{Tearsize}} Tamaño de lágrima -0.5#↓ {{Shotspeed}} Vel. de lágrimas -0.4#Otorga lágrimas perforantes y espectrales"},
 	{"337", "Reloj roto", "{{Slow}} Ralentiza la habitación cada cuatro salas#13% de probabilidad de acelerar la habitación"}, -- Broken Watch
 	{"338", "El Búmeran", "Boomerang lanzable#Confunde a los enemigos e inflige el doble de tu daño#Puede recoger y acercar objetos"}, -- The Boomerang
@@ -510,7 +510,7 @@ EID.descriptions[languageCode].collectibles={
 	{"485", "Moneda Doblada", "50% de probabilidad de duplicar todos los objetos, recolectables y cofres en la habitación#50% de probabilidad de eliminar los objetos y recolectables de la habitación y soltar una moneda"}, -- Crooked Penny
 	{"486", "Hoja sin Filo", "Te inflige daño sin perder ningún corazón#Activa los efectos de tus objetos que requieran recibir daño"},
 	{"487", "Pelador de Papas", "{{Heart}} A cambio de un contenedor de corazón, otorga:#↑ {{Damage}} Daño +0.2#{{Collectible73}} Un Cubo de carne#{{Timer}} Otorga durante la habitación:#↑ {{Range}} Alcance +5#{{Collectible214}} Dejas un rastro de fluido rojo en el suelo"}, -- Potato Peeler
-	{"488", "Metrónomo", "Otorga un efecto de objeto aleatorio en cada habitación"},
+	{"488", "Metrónomo", "{{Timer}} Otorga el efecto de un objeto aleatorio durante la habitación"}, -- Metronome
 	{"489", "D infinito", "Activa un efecto de dado aleatorio por cada uso"}, -- D Infinito
 	{"490", "Alma de Edén", "Genera 2 objetos aleatorios del grupo de la habitación actual"}, -- Eden's Soul
 	{"491", "Bebé ácido", "{{Pill}} Genera una píldora aleatoria cada 3 habitaciones#{{Poison}} Usar una píldora envenena a todos los enemigos en la habitación"}, -- Acid Baby
@@ -739,9 +739,9 @@ EID.descriptions[languageCode].BFFSSynergies = {
 EID.descriptions[languageCode].trinkets={
 	{"1", "Moneda tragada", "{{Coin}} Genera 1 moneda al recibir daño"}, -- Swallowed Penny
 	{"2", "Popó petrificado", "50% de probabilidad de obtener recolectables al romper cacas"}, -- Petrified Poop
-	{"3", "Batería AAA", "{{Battery}} Se necesita 1 carga menos en los objetos activos"}, -- AAA Battery
+	{"3", "Batería AAA", "{{Battery}} Los objetos activos necesitan 1 carga menos"}, -- AAA Battery
 	{"4", "Control Remoto Roto", "{{Collectible44}} Usar un objeto activo te teletransporta a una habitación aleatoria"}, -- Broken Remote
-	{"5", "Corazón Purpura", "Doble de probabilidad de encontrar enemigos y jefes campeones"}, -- Purple Heart
+	{"5", "Corazón Purpura", "Duplica la probabilidad de encontrar enemigos y jefes campeones"}, -- Purple Heart
 	{"6", "Imán roto", "{{Coin}} Atrae las monedas hacia el jugador"}, -- Broken Magnet
 	{"7", "Cuenta de rosario", "{{AngelChance}} 75% de probabilidad de reemplazar la {{DevilRoom}} Sala del Diablo por una {{AngelRoom}} Sala del Ángel#Aumenta la probabilidad de encontrar {{Collectible33}} La Bíblia en {{Shop}} Tiendas y {{Library}} Bibliotecas"}, -- Rosary Bead
 	{"8", "Cartucho", "{{Timer}} 5% de probabilidad al ser golpeado de activar el efecto de {{Collectible93}} El Gamekid durante 6.5 segundos"}, -- Cartridge
@@ -870,60 +870,60 @@ EID.descriptions[languageCode].trinkets={
 ---------- Cards ----------
 
 EID.descriptions[languageCode].cards={
-	{"1", "0 - El Bufón", "Te teletransporta a la primer habitación del piso actual"},
-	{"2", "I - El Mago", "{{Timer}} Otorga durante la habitación actual:#Lágrimas teledirigidas"},
-	{"3", "II - La Suma Sacerdotisa", "El Pie de Mamá aplastará a un enemigo#Te aplastará si no hay enemigos"},
-	{"4", "III - La Emperatriz", "{{Timer}} Otorga durante la habitación actual:#↑ {{Speed}} Velocidad +0.3#↑ {{Damage}} Daño +1.5"},
-	{"5", "IV - El Emperador", "{{BossRoom}} Te teletransporta a la Sala de Jefe"},
-	{"6", "V - El Sumo Sacerdote", "{{SoulHeart}} Genera 2 corazones de alma"},
-	{"7", "VI - Los Enamorados", "{{Heart}} Genera 2 corazones rojos"},
-	{"8", "VII - El Carruaje", "{{Timer}} Otorga durante 6 segundos:#↑ {{Speed}} Velocidad +0.28#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto"},
-	{"9", "VIII - Justicia", "Genera {{UnknownHeart}} un corazón, {{Coin}} una moneda, {{Bomb}} una bomba y {{Key}} una llave al azar"},
-	{"10", "IX - El Ermitaño", "{{Shop}} Te teletransporta a la tienda"},
-	{"11", "X - La Rueda de la Fortuna", "Genera una {{Slotmachine}} máquina tragaperras o una {{FortuneTeller}} máquina de la fortuna"},
-	{"12", "XI - Fuerza", "{{Timer}} Otorga durante la habitación actual:#↑ {{Heart}} +1 de Vida#↑ {{Speed}} Velocidad +0.3#↑{{Range}} Alcance +5.25#↑ {{Damage}} Daño +50% y +0.3"},
-	{"13", "XII - El Colgado", "{{Timer}} Permite volar durante la habitación actual"},
-	{"14", "XIII - Muerte", "{{Collectible35}} Inflige 40 de daño a todos los enemigos en la habitación"},
-	{"15", "XIV - Templanza", "{{BloodDonationMachine}} Genera una máquina de donación de sangre"},
-	{"16", "XV - El Diablo", "{{Timer}} Otorga durante la habitación actual:#↑ {{Damage}} Daño +2"},
-	{"17", "XVI - La Torre", "Invoca 6 bombas troll"},
-	{"18", "XVII - Las Estrellas", "{{TreasureRoom}} Te teletransporta a la sala del tesoro"},
-	{"19", "XVIII - La Luna", "{{SecretRoom}} Te teletransporta a la habitación secreta"},
-	{"20", "XIX - El Sol", "{{HealingRed}} Salud al maximo#Inflige 100 de daño a todos los enemigos#Revela el mapa completo del piso (excepto la {{SuperSecretRoom}} Habitación Super Secreta)"},
+	{"1", "0 - El Bufón", "Te teletransporta a la primer habitación del piso actual"}, -- 0 - The Fool
+	{"2", "I - El Mago", "{{Timer}} Lágrimas teledirigidas durante la habitación actual"}, -- I - The Magician
+	{"3", "II - La Suma Sacerdotisa", "El Pie de Mamá aplastará a un enemigo#Te aplastará si no hay enemigos"}, -- II - The High Priestess
+	{"4", "III - La Emperatriz", "{{Timer}} Otorga durante la habitación actual:#↑ {{Speed}} Velocidad +0.3#↑ {{Damage}} Daño +1.5"}, -- III - The Empress
+	{"5", "IV - El Emperador", "{{BossRoom}} Te teletransporta a la Sala de Jefe"}, -- IV - The Emperor
+	{"6", "V - El Hierofante", "{{SoulHeart}} Genera 2 corazones de alma"}, -- V - The Hierophant
+	{"7", "VI - Los Enamorados", "{{Heart}} Genera 2 corazones rojos"}, -- VI - The Lovers
+	{"8", "VII - El Carruaje", "{{Timer}} Otorga durante 6 segundos:#↑ {{Speed}} Velocidad +0.28#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto"}, -- VII - The Chariot
+	{"9", "VIII - Justicia", "Genera {{UnknownHeart}} un corazón, {{Coin}} una moneda, {{Bomb}} una bomba y {{Key}} una llave al azar"}, -- VIII - Justice
+	{"10", "IX - El Ermitaño", "{{Shop}} Te teletransporta a la tienda"}, -- IX - The Hermit
+	{"11", "X - La Rueda de la Fortuna", "Genera una {{Slotmachine}} Máquina Tragaperras o una {{FortuneTeller}} Máquina de la Fortuna"}, -- X - Wheel of Fortune
+	{"12", "XI - Fuerza", "{{Timer}} Otorga durante la habitación actual:#↑ {{Heart}} +1 de Vida#↑ {{Speed}} Velocidad +0.3#↑ {{Damage}} Daño +0.3#↑ {{Damage}} Daño x1.5#↑{{Range}} Alcance +5.25#↑ Tamaño de lágrimas +0.5"}, -- XI - Strength
+	{"13", "XII - El Colgado", "{{Timer}} Permite volar durante la habitación actual"}, -- XII - The Hanged Man
+	{"14", "XIII - Muerte", "Inflige 40 de daño a todos los enemigos en la habitación"}, -- XIII - Death
+	{"15", "XIV - Templanza", "{{BloodDonationMachine}} Genera una máquina de donación de sangre"}, -- XIV - Temperance
+	{"16", "XV - El Diablo", "{{Timer}} Otorga durante la habitación actual:#↑ {{Damage}} Daño +2"}, -- XV - The Devil
+	{"17", "XVI - La Torre", "Invoca 6 bombas troll"}, -- XVI - The Tower
+	{"18", "XVII - Las Estrellas", "{{TreasureRoom}} Te teletransporta a la sala del tesoro"}, -- XVII - The Stars
+	{"19", "XVIII - La Luna", "{{SecretRoom}} Te teletransporta a la habitación secreta"}, -- XVIII - The Moon
+	{"20", "XIX - El Sol", "{{HealingRed}} Salud al maximo#Inflige 100 de daño a todos los enemigos#Revela el mapa completo del piso (excepto la {{SuperSecretRoom}} Habitación Super Secreta)"}, -- XIX - The Sun
 	{"21", "XX - Juicio", "{{Beggar}} Genera un mendigo#{{DemonBeggar}} 33% de probabilidad de generar un mendigo demoníaco#{{KeyBeggar}}/{{BombBeggar}} 2% de probabilidad de generar un mendigo de llaves o de bombas"}, -- XX - Judgement
-	{"22", "XXI - El Mundo", "Revela el mapa completo del piso (excepto la {{SuperSecretRoom}} Habitación Super Secreta)"},
-	{"23", "2 de tréboles", "{{Bomb}} Duplica tus bombas"},
-	{"24", "2 de diamantes", "{{Coin}} Duplica tus monedas"},
-	{"25", "2 de picas", "{{Key}} Duplica tus llaves"},
-	{"26", "2 de corazones", "{{HealingRed}} Duplica tus Corazones Rojos {{ColorSilver}}(No duplica contenedores){{CR}}"},
-	{"27", "As de tréboles", "{{Bomb}} Convierte todos los recolectables en bombas aleatorias"},
-	{"28", "As de diamantes", "{{Coin}} Convierte todos los recolectables en monedas aleatorias"},
-	{"29", "As de picas", "{{Key}} Convierte todos los recolectables en llaves aleatorias"},
-	{"30", "As de corazones", "{{UnknownHeart}} Convierte todos los recolectables en corazones aleatorios"},
-	{"31", "Joker", "{{AngelDevilChance}} Te teletransporta a la sala de Diablo/Ángel"},
-	{"32", "Hagalaz", "Destruye todas las rocas de la habitación"},
-	{"33", "Jera", "Duplica todos los recolectables en la habitación"},
-	{"34", "Ehwaz", "{{Crawlspace}} Genera una trampilla#{{LadderRoom}} 8% de probabilidad de generar una trampilla a una mazmorra"},
-	{"35", "Dagaz", "{{SoulHeart}} +1 Corazón de alma#{{CurseCursed}} Remueve las maldiciónes del piso actual"},
-	{"36", "Ansuz", "{{Timer}} Revela el mapa completo de la planta actual"},
-	{"37", "Perthro", "{{Collectible105}} Cambia los objetos de pedestal en la habitación"},
-	{"38", "Berkano", "Genera 3 arañas azules y 3 moscas azules"},
-	{"39", "Algiz", "{{Timer}} Otorga invencibilidad durante 30 segundos"},
-	{"40", "Runa en blanco", "Efecto de runa aleatorio#25% de probabilidad de duplicarse a si mismo"},
-	{"41", "Runa negra", "Inflige 40 de daño a todos los enemigos#{{Collectible477}} Consume los objetos de pedestal en la sala y potencia una estadística aleatoria por cada objeto consumido#Convierte los recolectables en la sala en moscas azules"},
-	{"42", "Carta del caos", "Carta lanzable que mata a cualquier enemigo al instante (excepto Delirium)"},
-	{"43", "Tarjeta de crédito", "Elimina el precio de todos los objetos en la tienda actual o la {{DevilRoom}} Sala del Diablo, haciendo que todo sea gratis"},
-	{"44", "Carta de reglas", "Al usarlo muestra consejos \"útiles\" "},
-	{"45", "Una Carta Contra la Humanidad", "Llena toda la habitación de caca"},
-	{"46", "Rey suicida", "Te mata instantáneamente y genera 10 recolectables/objetos en el suelo#Los objetos generados serán del grupo de la habitación actual"},
-	{"47", "Carta Sal Libre de Prisión", "Abre todas las puertas de la habitación actual"},
-	{"48", "¿? Carta", "Activa el efecto de tu objeto activo sin gastar cargas"},
-	{"49", "Fragmento de Dado", "Cambia los objetos de pedestal y los recolectables en la habitación actual"},
-	{"50", "Contacto de emergencia", "Invoca a 2 Manos de Mamá para que sujeten a un enemigo cada una"},
-	{"51", "Carta sagrada", "Otorga un escudo de {{Collectible313}} Manto Sagrado para la habitación actual#25% de probabilidad de generar otra Carta Sagrada"},
-	{"52", "Gran Crecimiento", "Durante la habitación actual, recibes: #↑ {{Damage}} Daño +7#↑ {{Range}} Alcance +30#↑ +Tamaño#Permite romper rocas caminando sobre ellas"},
-	{"53", "Recuerdo Antiguo", "{{Card}} Genera 3 cartas aleatorias"},
-	{"54", "Caminando una Era", "Otorga durante la habitación actual: #↑ {{Speed}} Velocidad +0.5#{{Shotspeed}} Vel. de tiro 0.40#Ralentiza a los enemigos"},
+	{"22", "XXI - El Mundo", "Revela el mapa completo del piso actual (excepto la {{SuperSecretRoom}} Habitación Super Secreta)"}, -- XXI - The World
+	{"23", "2 de Tréboles", "{{Bomb}} Duplica tus bombas"}, -- 2 of Clubs
+	{"24", "2 de Diamantes", "{{Coin}} Duplica tus monedas"}, -- 2 of Diamonds
+	{"25", "2 de Picas", "{{Key}} Duplica tus llaves"}, -- 2 of Spades
+	{"26", "2 de Corazones", "{{HealingRed}} Duplica tus Corazones Rojos {{ColorSilver}}(No duplica contenedores){{CR}}"},
+	{"27", "As de Tréboles", "{{Bomb}} Convierte todos los recolectables en bombas aleatorias"}, -- Ace of Clubs
+	{"28", "As de Diamantes", "{{Coin}} Convierte todos los recolectables en monedas aleatorias"}, -- Ace of Diamonds
+	{"29", "As de Picas", "{{Key}} Convierte todos los recolectables en llaves aleatorias"}, -- Ace of Spades
+	{"30", "As de Corazones", "{{UnknownHeart}} Convierte todos los recolectables en corazones aleatorios"}, -- Ace of Hearts
+	{"31", "Joker", "{{AngelDevilChance}} Te teletransporta a la sala de Diablo/Ángel"}, -- Joker
+	{"32", "Hagalaz", "Destruye todas las rocas de la habitación actual"}, -- Hagalaz
+	{"33", "Jera", "Duplica todos los recolectables en la habitación"}, -- Jera
+	{"34", "Ehwaz", "{{Crawlspace}} Genera una trampilla#{{LadderRoom}} 8% de probabilidad de generar una trampilla a una mazmorra"}, -- Ehwaz
+	{"35", "Dagaz", "{{SoulHeart}} +1 Corazón de alma#{{CurseCursed}} Remueve las maldiciónes del piso actual"}, -- Dagaz
+	{"36", "Ansuz", "{{Timer}} Revela el mapa completo del piso actual"}, -- Ansuz
+	{"37", "Perthro", "{{Collectible105}} Cambia los objetos en pedestales en la habitación"}, -- Perthro
+	{"38", "Berkano", "Genera 3 arañas azules y 3 moscas azules"}, -- Berkano
+	{"39", "Algiz", "{{Timer}} Otorga invencibilidad durante 30 segundos"}, -- Algiz
+	{"40", "Runa en blanco", "Efecto de runa aleatorio#25% de probabilidad de duplicarse a si mismo"}, -- Blank Rune
+	{"41", "Runa negra", "Inflige 40 de daño a todos los enemigos#{{Collectible477}} Consume los objetos de pedestal en la sala y potencia una estadística aleatoria por cada objeto consumido#Convierte los recolectables en la sala en moscas azules"}, -- Black Rune
+	{"42", "Carta del caos", "Carta lanzable que mata a cualquier enemigo al instante (excepto Delirium)"}, -- Chaos Card
+	{"43", "Tarjeta de crédito", "Elimina el precio de todos los objetos en la tienda actual o la {{DevilRoom}} Sala del Diablo, haciendo que todo sea gratis"}, -- Credit Card
+	{"44", "Carta de reglas", "Al usarlo, muestra consejos \"útiles\""}, -- Rules Card
+	{"45", "Una Carta Contra la Humanidad", "Llena toda la habitación de caca"}, -- A Card Against Humanity
+	{"46", "Rey suicida", "Te mata instantáneamente y genera 10 recolectables/objetos en el suelo#Los objetos generados serán del grupo de la habitación actual"}, -- Suicide King
+	{"47", "Carta Sal Libre de Prisión", "Abre todas las puertas de la habitación actual"}, -- Get Out Of Jail Free Card
+	{"48", "¿? Carta", "Activa tu objeto activo sin consumir cargas"}, -- ? Card
+	{"49", "Fragmento de Dado", "Cambia los objetos en pedestales y recolectables en la habitación"}, -- Dice Shard
+	{"50", "Contacto de emergencia", "Invoca 2 Manos de Mamá para que sujeten a un enemigo cada una"}, -- Emergency Contact
+	{"51", "Carta sagrada", "{{HolyMantle}} Otorga un escudo de Manto Sagrado para la habitación actual#25% de probabilidad de generar otra Carta Sagrada"}, -- Holy Card
+	{"52", "Gran Crecimiento", "{{Timer}} Otorga durante la habitación actual:#↑ {{Damage}} Daño +7#↑ {{Range}} Alcance +30#↑ +Tamaño#Permite romper rocas caminando sobre ellas"}, -- Huge Growth
+	{"53", "Recuerdo Antiguo", "{{Card}} Genera 3 cartas aleatorias"}, -- Ancient Recall
+	{"54", "Caminando una Era", "{{Timer}} Otorga durante la habitación actual:#↑ {{Speed}} Velocidad +0.5#{{Shotspeed}} Vel. de lágrimas -1#Ralentiza a los enemigos"}, -- Era Walk
 }
 
 --[[ Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
@@ -936,10 +936,10 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[7] = {2, 4}, -- VI - The Lovers
 	[8] = {6, 12}, -- VII - The Chariot
 	[9] = {"Genera {{ColorShinyPurple}}2{{CR}} {{UnknownHeart}} corazones, {{Coin}} monedas, {{Bomb}} bombas y {{Key}} llaves al azar"}, -- VIII - Justice
-	[11] = {" una ", " 2 ", "máquina", "{{CR}}maquinas"," o una", " {{CR}}o", "máquina", "{{CR}}maquinas"}, -- X - Wheel of Fortune
+	[11] = {" una ", " 2 ", "Máquina", "{{CR}}Maquinas"," o una", " {{CR}}o tambien una", "Máquina", "{{CR}}Maquinas"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
-	[15] = {" una ", " 2 ", " máquina", " {{CR}}máquinas", "mendigo demoníaco", "{{CR}}mendigos demoníacos"}, -- XIV - Temperance (+ Greed version)
+	[15] = {" una ", " 2 ", " Máquina", " {{CR}}Máquinas", "mendigo demoníaco", "{{CR}}mendigos demoníacos"}, -- XIV - Temperance (+ Greed version)
 	[17] = {6, 12}, -- XVI - The Tower
 	[20] = {100, 200}, -- XIX - The Sun
 	[21] = {"Genera un mendigo", "{{CR}}Genera {{ColorShinyPurple}}2{{CR}} mendigos", "generar ", "{{CR}}que uno sea ", "generar:", "{{CR}}que uno sea:"}, -- XX - Judgement
@@ -952,7 +952,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[37] = {"los ", "2 veces {{CR}}los "}, -- Perthro
 	[38] = {3, 6, 3, 6}, -- Berkano
 	[39] = {30, 60}, -- Algiz
-	[40] = "Activa 2 efectos de runa e intenta duplicarse a si mismo 2 veces", -- Blank Rune
+	[40] = "Activa 2 efectos de runa aleatorios e intenta duplicarse a si mismo 2 veces", -- Blank Rune
 	[41] = {40, 80}, -- Black Rune
 	[46] = {10, 20}, -- Suicide King
 	[48] = {"el ", "2 veces {{CR}}el "}, -- ? Card
@@ -964,53 +964,53 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 EID.descriptions[languageCode].unidentifiedPill = "Píldora sin identificar"
 
 EID.descriptions[languageCode].pills={
-	{"0", "Vaya pedo", "{{Poison}} Genera una nube de gas"},
-	{"1", "Mal viaje", "{{Warning}} Inflige 1 corazón de daño"},
-	{"2", "Bolas de acero", "{{SoulHeart}} +2 corazones de alma"},
-	{"3", "Las bombas son llaves", "Intercambia el número de {{Bomb}} bombas por el de {{Key}} llaves"},
-	{"4", "Diarrea explosiva", "Genera 5 bombas troll en tu posición"},
-	{"5", "Salud completa", "{{HealingRed}} Salud al maximo"},
-	{"6", "Menos salud", "↓ {{EmptyHeart}} -1 Contenedor de corazón"},
-	{"7", "Más salud", "↑ {{EmptyHeart}} +1 contenedor de corazón vacío"},
-	{"8", "Encontré Píldoras", "Sin efecto"},
-	{"9", "Pubertad", "Sin efecto#Consumir 3 te transforma en Adulto:#↑ {{Heart}} +1 de Vida"},
-	{"10", "Mosca bonita", "Añade 1 mosca orbital"},
-	{"11", "Menos Alcance", "↓ {{Range}} Alcance -2"},
-	{"12", "Más Alcance", "↑ {{Range}} Alcance +2.5"},
-	{"13", "Menos velocidad", "↓ {{Speed}} Velocidad -0.12"},
-	{"14", "Más velocidad", "↑ {{Speed}} Valocidad +0.15"},
-	{"15", "Menos lágrimas", "↓ {{Tears}} Lágrimas -0.28"},
-	{"16", "Más lágrimas", "↑ {{Tears}} Lágrimas +0.35"},
-	{"17", "Menos suerte", "↓ {{Luck}} Suerte -1"} ,
-	{"18", "Más suerte", "↑ {{Luck}} Suerte +1"},
-	{"19", "Telepíldoras", "Te teletransporta a una habitación aleatoria"},
-	{"20", "¡48 Horas de energía!", "{{Battery}} Recarga completamente el objeto activo#{{Battery}} Genera 1-2 baterías"},
-	{"21", "Hematémesis", "{{Warning}} Drena todos los corazones menos el último#{{Heart}} Genera 1-4 corazones rojos"},
-	{"22", "Parálisis", "Congelado!#No puedes moverte ni disparar durante 2 segundos"},
-	{"23", "¡Puedo ver para siempre!", "{{SecretRoom}} Abre las entradas de las habitaciones secretas del nivel actual"},
-	{"24", "Feromonas", "{{Charm}} Encanta a todos los enemigos de la habitación"},
-	{"25", "Amnesia", "{{CurseLost}} Oculta el mapa"},
-	{"26", "Fiesta de limonada", "Genera un charco que daña a los enemigos"},
-	{"27", "¿Eres un mago?", "{{Timer}} Disparas en diagonal durante 60 segundos"},
-	{"28", "¡Percs!", "{{Timer}} Solo recibirás la mitad del daño durante la habitación actual"},
-	{"29", "¡Adicto!", "{{Timer}} Aumenta el daño recibido a un corazón durante la habitación actual"},
-	{"30", "Relaxante", "Genera una caca al moverte durante 2 segundos"},
-	{"31", "¿¿??", "{{CurseMaze}} Maldición del Laberinto durante todo el nivel"},
-	{"32", "Una te hace grande", "Aumenta tu tamaño#No afecta a tu hitbox"},
-	{"33", "Una te hace pequeño", "Reduce tu tamaño#Reduce el tamaño de tu hitbox"},
-	{"34", "¡Infestado!", "Genera 1 mosca azul por cada caca en la habitación"},
-	{"35", "¿Infestado?", "Genera 1 araña azul por cada enemigo en la habitación#Genera 1-3 arañas cuando no hay enemigos"},
-	{"36", "¡Píldora de Poder!", "{{Timer}} Otorga durante 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Matar 2 enemigos cura medio corazón#{{Fear}} Asusta a todos los enemigos en la habitación"},
-	{"37", "Visión Retro", "{{Timer}} Pixelea la pantalla 3 veces durante 30 segundos"},
-	{"38", "¡Amigos hasta el fin!", "Invoca 3 moscas aliadas"},
-	{"39", "X-Lax", "Genera una piscina de fluido resbaladizo"},
-	{"40", "Algo está mal...", "{{Slow}} Genera una piscina de fluido ralentizante"},
-	{"41", "Tengo mucho sueño...", "{{Slow}} Ralentiza a todos los enemigos en la habitación"},
-	{"42", "¡¡TENGO MUCHA ENERGÍA!!", "Acelera a todos los enemigos en la habitación"},
-	{"43", "¡Glup!", "{{Trinket}} Consume el trinket actual y otorga su efecto de forma permanente"},
-	{"44", "¡Horf!", "{{Collectible149}} Dispara una lágrima de Ipecac"},
-	{"45", "¡Es como si caminara sobre el sol!", "{{Timer}} Otorga durante 6 segundos:#Invencibilidad#No puedes disparar (Sin daño por contacto)"},
-	{"46", "¡Vurp!", "Genera la última píldora usada anterior a esta"},
+	{"0", "Vaya pedo", "Te tiras un pedo!#{{Poison}} Envenena a los enemigos cercanos"}, -- Bad Gas
+	{"1", "Mal viaje", "{{Warning}} Te inflige 1 corazón de daño#Se vuelve una pildora de \"Salud completa\" al tener 1 corazón o menos"}, -- Bad Trip
+	{"2", "Bolas de acero", "{{SoulHeart}} +2 corazones de alma"}, -- Balls of Steel
+	{"3", "Las bombas son llaves", "Intercambia el número de {{Bomb}} bombas por el de {{Key}} llaves"}, -- Bombs are Key
+	{"4", "Diarrea explosiva", "Genera 5 bombas encendidas en tu posición"}, -- Explosive Diarrhea
+	{"5", "Salud completa", "{{HealingRed}} Salud al maximo"}, -- Full Health
+	{"6", "Menos salud", "↓ {{EmptyHeart}} -1 Contenedor de corazón#Se vuelve una pildora de \"Más salud\" al tener 1 contenedor o menos"}, -- Health Down
+	{"7", "Más salud", "↑ {{EmptyHeart}} +1 contenedor de corazón vacío"}, -- Health Up
+	{"8", "Encontré Píldoras", "Sin efecto"}, -- I Found Pills
+	{"9", "Pubertad", "Sin efecto#Consumir 3 te transforma en Adulto:#↑ {{Heart}} +1 de Vida"}, -- Puberty
+	{"10", "Mosca bonita", "+1 Mosca orbital"}, -- Pretty Fly
+	{"11", "Menos Alcance", "↓ {{Range}} Alcance -2"}, -- Range Down
+	{"12", "Más Alcance", "↑ {{Range}} Alcance +2.5"}, -- Range Up
+	{"13", "Menos velocidad", "↓ {{Speed}} Velocidad -0.12"}, -- Speed Down
+	{"14", "Más velocidad", "↑ {{Speed}} Valocidad +0.15"}, -- Speed Up
+	{"15", "Menos lágrimas", "↓ {{Tears}} Lágrimas -0.28"}, -- Tears Down
+	{"16", "Más lágrimas", "↑ {{Tears}} Lágrimas +0.35"}, -- Tears Up
+	{"17", "Menos suerte", "↓ {{Luck}} Suerte -1"} , -- Luck Down
+	{"18", "Más suerte", "↑ {{Luck}} Suerte +1"}, -- Luck Up
+	{"19", "Telepíldoras", "Te teletransporta a una habitación aleatoria#{{ErrorRoom}} Probabilidad menor de teletransportarte a la habitación de \"I AM ERROR\""}, -- Telepills
+	{"20", "¡48 Horas de energía!", "{{Battery}} Recarga completamente el objeto activo#{{Battery}} Genera 1-2 baterías"}, -- 48 Hour Energy!
+	{"21", "Hematémesis", "{{Warning}} Drena todos los corazones menos el último#{{Heart}} Genera 1-4 corazones rojos"}, -- Hematemesis
+	{"22", "Parálisis", "Congelado!#No puedes moverte ni disparar durante 2 segundos"}, -- Paralysis
+	{"23", "¡Puedo ver para siempre!", "{{SecretRoom}} Abre las entradas de las habitaciones secretas en el piso actual"}, -- I can see forever!
+	{"24", "Feromonas", "{{Charm}} Encanta a todos los enemigos de la habitación"}, -- Pheromones
+	{"25", "Amnesia", "{{CurseLost}} Oculta el mapa del piso actual"}, -- Amnesia
+	{"26", "Fiesta de limonada", "Genera un gran charco en el suelo que daña a los enemigos"}, -- Lemon Party
+	{"27", "¿Eres un Mago?", "{{Timer}} Disparas en diagonal durante 60 segundos"}, -- R U A Wizard?
+	{"28", "¡Percs!", "{{Timer}} Reduce el daño recibido a medio corazón durante la habitación actual"}, -- Percs!
+	{"29", "¡Adicto!", "{{Timer}} Aumenta el daño recibido a un corazón durante la habitación actual"}, -- Addicted!
+	{"30", "Relaxante", "Genera una caca al moverte durante 2 segundos"}, -- Re-Lax
+	{"31", "¿¿??", "{{CurseMaze}} Maldición del Laberinto durante el piso actual"}, -- ???
+	{"32", "Una te hace grande", "Aumenta tu tamaño#No afecta a tu hitbox"}, -- One makes you larger
+	{"33", "Una te hace pequeño", "Reduce tu tamaño#Reduce el tamaño de tu hitbox"}, -- One makes you small
+	{"34", "¡Infestado!", "Genera 1 mosca azul por cada caca en la habitación"}, -- Infested!
+	{"35", "¿Infestado?", "Genera 1 araña azul por cada enemigo en la habitación#Genera 1-3 arañas cuando no hay enemigos"}, -- Infested?
+	{"36", "¡Píldora de Poder!", "{{Timer}} Otorga durante 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón al matar enemigos#{{Fear}} Asusta a todos los enemigos en la habitación"}, -- Power Pill!
+	{"37", "Visión Retro", "{{Timer}} Pixelea la pantalla 3 veces durante 30 segundos"}, -- Retro Vision
+	{"38", "¡Amigos hasta el fin!", "Genera 3 moscas azules"}, -- Friends Till The End!
+	{"39", "X-Lax", "Genera una piscina de fluido resbaladizo"}, -- X-Lax
+	{"40", "Algo está mal...", "{{Slow}} Genera una piscina de fluido ralentizante"}, -- Something's wrong...
+	{"41", "Tengo mucho sueño...", "{{Slow}} Ralentiza a todos los enemigos en la habitación"}, -- I'm Drowsy...
+	{"42", "¡¡TENGO MUCHA ENERGÍA!!", "Acelera a todos los enemigos en la habitación"}, -- I'm Excited!!
+	{"43", "¡Glup!", "{{Trinket}} Consume el trinket actual y otorga sus efectos de forma permanente"}, -- Gulp!
+	{"44", "¡Horf!", "{{Collectible149}} Dispara una lágrima de Ipecac"}, -- Horf!
+	{"45", "¡Es como si caminara sobre el sol!", "{{Timer}} Otorga durante 6 segundos:#Invencibilidad#No puedes disparar (Sin daño por contacto)"}, -- Feels like I'm walking on sunshine!
+	{"46", "¡Vurp!", "Genera la última píldora usada anterior a esta"}, -- Vurp!
 }
 
 ---------- Character Info ----------
