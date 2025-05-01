@@ -651,13 +651,13 @@ function EID:printDescription(desc, cachedID)
 		curName = curName.." - {{Quality"..desc.Quality.."}}"
 	end
 	-- Display Last Pool for Collectible for full reroll effects (icon)
-	if (EID.isRepentance and not EID.isRepentancePlus) and EID.Config["ShowItemPoolIcon"] and (desc.ObjType == 5 and desc.ObjVariant == 100) then
+	if desc.ItemPoolType and EID.Config["ShowItemPoolIcon"] then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
 			if not EID.Config["ShowQuality"] then
 				curName = curName.." - "
 			end
-			curName = curName..""..(EID.ItemPoolTypeToMarkup[game:GetItemPool():GetLastPool()] or "{{ItemPoolTreasure}}")
+			curName = curName..""..(EID.ItemPoolTypeToMarkup[desc.ItemPoolType] or "{{ItemPoolTreasure}}")
 		end
 	end
 	-- Display the mod this item is from
@@ -720,10 +720,10 @@ function EID:printDescription(desc, cachedID)
 		end
 	end
 	-- Display Last Pool for Collectible for full reroll effects (name)
-	if (EID.isRepentance and not EID.isRepentancePlus) and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] and (desc.ObjType and desc.ObjType == 5 and desc.ObjVariant and desc.ObjVariant == 100) then
+	if desc.ItemPoolType and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
-			local lastPool = game:GetItemPool():GetLastPool()
+			local lastPool = desc.ItemPoolType
 
 			local poolName = ""
 			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")

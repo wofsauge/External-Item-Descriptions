@@ -654,6 +654,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.ModName = tableEntry and tableEntry[4]
 	description.Quality = EID:getObjectQuality(description)
 	description.Icon = EID:getObjectIcon(description)
+	description.ItemPoolType = EID:getObjectItemPool(description)
 	EID:getObjectItemTypeAndCharge(description)
 	
 	EID.DifferentEffectPlayers = {}
@@ -2615,6 +2616,23 @@ function EID:getObjectQuality(descObj)
 	local subType = tonumber(descObj.ObjSubType) ---@cast subType number
 	if EID.isRepentance and descObj.ObjType == 5 and descObj.ObjVariant == 100 and EID.itemConfig:GetCollectible(subType) then
 		return tonumber(EID.itemConfig:GetCollectible(subType).Quality)
+	end
+end
+
+---Returns the item pool of the described entity
+---@param descObj EID_DescObj
+---@return integer?
+function EID:getObjectItemPool(descObj)
+	local subType = tonumber(descObj.ObjSubType) ---@cast subType number
+	if EID.isRepentance and descObj.ObjType == 5 and descObj.ObjVariant == 100 then
+		if EID.isRepentancePlus then
+			-- TODO (maybe will require REPENTOGON?)
+			-- Since D4 exploit is completely fixed in 1.9.7.11, this is no longer viable for full-reroll effect
+			-- (still useful for initial item pool from rooms though)
+			return game:GetItemPool():GetLastPool() -- remove this if item pool function should not appear on 1.9.7.11 patch
+		else
+			return game:GetItemPool():GetLastPool()
+		end
 	end
 end
 
