@@ -96,7 +96,7 @@ EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].t
 
 ---------- Pills ----------
 local horsepills={
-	[25] = {"25", "건망증", "{{CurseLostSmall}} Lost 저주에 걸리며 맵을 볼 수 없습니다.#{{ColorYellow}}알약의 효과가 다시 가려집니다."}, -- Amnesia
+	[26] = {"25", "건망증", "{{CurseLostSmall}} Lost 저주에 걸리며 맵을 볼 수 없습니다.#{{ColorYellow}}알약의 효과가 다시 가려집니다."}, -- Amnesia
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 
