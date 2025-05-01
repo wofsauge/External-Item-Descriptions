@@ -1961,3 +1961,8 @@ Isaac.DebugString("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVe
 Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 print("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")
+
+-- Run EID compatibility Callback. Useful for mods that load before EID
+if EID.isRepentance then
+	Isaac.RunCallback("EID_POST_LOAD")
+end
