@@ -3,7 +3,7 @@
 
 import xml.etree.ElementTree as ET
 
-GENERATE_REP_PLUS = False
+GENERATE_REP_PLUS = True
 
 filePath = "..\\..\\resources-dlc3\\"
 writeToFile = "features/eid_xmldata.lua"
