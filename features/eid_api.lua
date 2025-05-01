@@ -2623,7 +2623,6 @@ end
 ---@param descObj EID_DescObj
 ---@return integer?
 function EID:getObjectItemPool(descObj)
-	local subType = tonumber(descObj.ObjSubType) ---@cast subType number
 	if EID.isRepentance and descObj.ObjType == 5 and descObj.ObjVariant == 100 then
 		if EID.isRepentancePlus then
 			-- TODO (maybe will require REPENTOGON?)

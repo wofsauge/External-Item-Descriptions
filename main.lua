@@ -1767,6 +1767,12 @@ function EID:OnUsePill(pillEffectID, player, useFlags)
 
 	-- for tracking used pills, ignore gold pills and no animation pills, since those dont show what pull you used
 	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then return end
+
+	-- in Repentance+, Amnesia horse pill unidentifies all pills
+	if EID.isRepentancePlus and pillColor > PillColor.PILL_GIANT_FLAG and pillEffectID == PillEffect.PILLEFFECT_AMNESIA then
+		EID.UsedPillColors = {}
+	end
+
 	EID.UsedPillColors[tostring(pillColor)] = true
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
