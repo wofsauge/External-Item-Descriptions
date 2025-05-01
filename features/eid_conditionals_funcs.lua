@@ -609,7 +609,10 @@ function EID:applyConditionals(descObj)
 
 					-- Table with 1 entry = replace
 					elseif #text == 1 then
-						descObj.Description = EID:ReplaceVariableStr(text[1], variableText)
+						local iconStr = ""
+						if bulletpoint then iconStr = iconStr .. "{{" .. bulletpoint .. "}} " end
+						if cond.lineColor then iconStr = iconStr .. "{{" .. cond.lineColor .. "}}" end
+						descObj.Description = iconStr.. EID:ReplaceVariableStr(text[1], variableText)
 						
 					-- Table with 2+ entries = find and replace pairs
 					-- Entry 1 is replaced with entry 2, entry 3 is replaced with entry 4, etc.

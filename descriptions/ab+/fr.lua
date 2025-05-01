@@ -1094,7 +1094,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedModeSmall}} Aucun effet en mode Avarice",
 	["No Effect (Copies)"] = "Avoir plusieurs exemplaires ne cumule pas les effets", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "Aucun effet bonus pour les familiers", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "Aucun effet pour les personnages sans cœurs rouges",
 	["Different Effect"] = "{{ColorSilver}}(Effet différent avec {1}{{ColorSilver}})",
 	["Dies on Use"] = "{{Warning}} Tue {1} si utilisé",
 

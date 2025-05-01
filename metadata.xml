@@ -35,7 +35,7 @@ The Steam-Workshop version of this mod is compatible with Afterbirth+, Repentanc
 Supported Languages:
 Chinese, Czech, Dutch, English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Brazilian-Portuguese, Romanian, Russian, Spanish, Turkish, Ukrainian, Vietnamese
 
-To change the language, just edit the "Language" setting in the configuration. We recommend to install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]'Mod Config Menu Pure'[/url] to easily change the configuration ingame.
+To change the language, just edit the &quot;Language&quot; setting in the configuration. We recommend to install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]'Mod Config Menu Pure'[/url] to easily change the configuration ingame.
 
 [img]https://i.imgur.com/RVtZEqp.png[/img]
 For [b]Steam users[/b], simply press the &quot;Subscribe&quot; button on the mod's Steam Workshop page. This will automatically install the mod for you.
@@ -56,7 +56,7 @@ There are multiple Versions of the mod, depending on which DLCs you have install
 [img]https://i.imgur.com/jrdGbna.png[/img]
 [url=https://github.com/wofsauge/External-Item-Descriptions/blob/master/CREDITS.md]Check out the credits here[/url]
 </description>
-    <version>4.95</version>
+    <version>4.96</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
