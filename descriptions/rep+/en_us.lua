@@ -38,7 +38,7 @@ local collectibles = {
 	-- Change: added "Tears leave a pool of creep on impact"
 	[560] = { "560", "It Hurts", "{{Timer}} When taking damage, receive for the room:#↑ {{Tears}} +1.2 Fire rate on the first hit#↑ {{Tears}} +0.4 Fire rate for each additional hit#Releases a ring of 10 tears around Isaac#Tears leave a pool of creep on impact" }, -- It Hurts
 	-- Change: Added ring of fire on impact description
-	[593] = { "593", "Mars", "Double-tapping a movement key makes Isaac dash#{{Damage}} During a dash, Isaac is invincible and deals 4x his damage +8#{{Timer}} 3 seconds cooldown#{{Burn}}Creates a ring of fire on impact" }, -- Mars
+	[593] = { "593", "Mars", "Double-tapping a movement key makes Isaac dash#{{Damage}} During a dash, Isaac is invincible and deals 4x his damage +8#{{Timer}} 3 seconds cooldown#{{Burn}} Creates a ring of fire on impact" }, -- Mars
 	-- Change: Heals 2 hearts instead of 1/2
 	[594] = { "594", "Jupiter", "↑ {{EmptyHeart}} +2 Empty heart containers#↓ {{Speed}} -0.3 Speed#{{HealingRed}} Heals 2 heart#{{Speed}} Speed builds up to +0.5 while standing still#{{Poison}} Moving releases poison clouds#{{Poison}} Poison immunity" }, -- Jupiter
 	-- Change: Complete rewrite
