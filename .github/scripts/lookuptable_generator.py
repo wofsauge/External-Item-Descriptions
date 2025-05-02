@@ -28,31 +28,36 @@ locusts = []
 locustColors = []
 
 recipeIngredients = {}
-# Poop, Penny
 recipeIngredients["_"] = 29
-recipeIngredients["."] = 8
-# Red, Soul, Black Heart
-recipeIngredients["h"] = 1
-recipeIngredients["s"] = 2
-recipeIngredients["b"] = 3
-# Key, Bomb, Card
-recipeIngredients["/"] = 12
-recipeIngredients["v"] = 15
-recipeIngredients["["] = 21
-# Gold Heart, Eternal Heart, Pill
-recipeIngredients["g"] = 5
-recipeIngredients["e"] = 4
-recipeIngredients["("] = 22
-# Rotten Heart, Gold Key, Giga Bomb
-recipeIngredients["r"] = 7
-recipeIngredients["|"] = 13
-recipeIngredients["V"] = 17
-# Gold Bomb, Bone Heart
-recipeIngredients["^"] = 16
-recipeIngredients["B"] = 6
-# Dice Shard, Cracked Key
-recipeIngredients["?"] = 24
-recipeIngredients["~"] = 25
+recipeIngredients["h"] = 1 # Red Heart
+recipeIngredients["s"] = 2 # Soul Heart
+recipeIngredients["b"] = 3 # Black Heart
+recipeIngredients["e"] = 4 # Eternal Heart
+recipeIngredients["g"] = 5 # Gold Heart
+recipeIngredients["B"] = 6 # Bone Heart
+recipeIngredients["r"] = 7 # Rotten Heart
+recipeIngredients["."] = 8 # Penny
+recipeIngredients["o"] = 9 # Nickel
+recipeIngredients["O"] = 10 # Dime
+recipeIngredients["Q"] = 11 # Lucky Penny
+recipeIngredients["/"] = 12 # Key
+recipeIngredients["|"] = 13 # Golden Key
+recipeIngredients["%"] = 14 # Charged Key
+recipeIngredients["v"] = 15 # Bomb
+recipeIngredients["^"] = 16 # Golden Bomb
+recipeIngredients["V"] = 17 # Giga Bomb
+recipeIngredients["1"] = 18 # Micro Battery
+recipeIngredients["2"] = 19 # Lil Battery
+recipeIngredients["3"] = 20 # Mega Battery
+recipeIngredients["["] = 21 # Card
+recipeIngredients["("] = 22 # Pill
+recipeIngredients[">"] = 23 # Rune
+recipeIngredients["?"] = 24 # Dice Shard
+recipeIngredients["~"] = 25 # Cracked Key
+recipeIngredients["$"] = 26 # Golden Penny
+recipeIngredients["{"] = 27 # Golden Pill
+recipeIngredients["4"] = 28 # Golden Battery
+recipeIngredients["_"] = 29 # Poop Nugget
 
 # Read recipes.xml
 recipesXML = ET.parse(filePath+'recipes.xml').getroot()
