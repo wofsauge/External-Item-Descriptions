@@ -50,7 +50,7 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[681] = { "681", "Lil Portal", "Double-tapping a fire button launches the portal#Deals contact damage when launched#Consumes pickups in its path#Each pickup consumed increases its size, damage, and spawns a blue fly#Consuming 2-3 pickups spawns a portal to a special room and the familiar disappears for the rest of the floor#The content of the room persists for the rest of the run" }, -- Lil Portal
 	-- Change: Added into for first usage
-	[685] = { "685", "Jar of Wisps", "Spawns a random wisp#Spawns one additional wisp with each use, up to 12#First use will grant 2 wisps" }, -- Jar of Wisps
+	[685] = { "685", "Jar of Wisps", "Spawns 2 random wisps#Spawns one additional wisp with each use, up to 12" }, -- Jar of Wisps
 	-- Change: Added info about the damage based on item quality
 	[706] = { "706", "Abyss", "Consumes all item pedestals in the room and spawns a locust familiar for each one#Some items spawn a special locust when consumed#{{Damage}} Locusts deal Isaac's damage multiplied by the item quality consumed:#{{Quality0}} - 0.5x#{{Quality1}} - 0.75x#{{Quality2}} - 1.0x#{{Quality3}} - 1.5x#{{Quality4}} - 2.0x" }, -- Abyss
 }
