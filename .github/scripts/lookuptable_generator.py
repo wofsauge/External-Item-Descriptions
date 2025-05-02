@@ -226,6 +226,7 @@ for itemid, data in itemIDToPool.items():
     newfile.write("["+str(itemid)+"] = "+str(data).replace("[","{").replace("]","}")+", ")
 newfile.write("}\n\n")
 
+newfile.write("--Metadata found in Pocketitems.xml\n")
 newfile.write("EID.pillMetadata = {")
 for pill in pillMetadatas:
     newfile.write("["+pill['id']+"] = {class=\""+str(pill['class'])+"\"}, ")
