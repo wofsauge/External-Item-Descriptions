@@ -1022,28 +1022,26 @@ if EID.isRepentance then
 		-- Display automatically generated description
 
 		-- Default locust Data
-		local locustData = { "default", 1, 1, 1, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, 1, 1, 1, 1, 1, 0 }
+		local locustData = { 1, 1, 1, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, 1, 1, 1, 1, 1 }
 		-- Check if an XML entry exists and load if exists
 		if EID.XMLLocusts and EID.XMLLocusts[descObj.ObjSubType] then
 			locustData = EID.XMLLocusts[descObj.ObjSubType]
 		end
 		local descriptionText = ""
-		--local colors = locustData[1]     -- colors flag: useless info right now
-		local amount = locustData[2]
-		local scale = locustData[3]
-		local speed = locustData[4]
-		local locustFlags1 = locustData[5] -- array
-		local locustFlags2 = locustData[6] -- array
-		local locustFlags3 = locustData[7] -- array
-		local tearFlags1 = locustData[8] -- array
-		local tearFlags2 = locustData[9] -- array
-		local tearFlags3 = locustData[10] -- array
-		local procChance1 = locustData[11]
-		local procChance2 = locustData[12]
-		local procChance3 = locustData[13]
-		local damageMultiplier1 = locustData[14]
-		local damageMultiplier2 = locustData[15]
-		--local mutexFlags2 = locustData[16]     -- mutex flag: useless info right now
+		local amount = locustData[1]
+		local scale = locustData[2]
+		local speed = locustData[3]
+		local locustFlags1 = locustData[4] -- array
+		local locustFlags2 = locustData[5] -- array
+		local locustFlags3 = locustData[6] -- array
+		local tearFlags1 = locustData[7] -- array
+		local tearFlags2 = locustData[8] -- array
+		local tearFlags3 = locustData[9] -- array
+		local procChance1 = locustData[10]
+		local procChance2 = locustData[11]
+		local procChance3 = locustData[12]
+		local damageMultiplier1 = locustData[13]
+		local damageMultiplier2 = locustData[14]
 
 		-- base damage via Quality and multiplier
 		local damageText = EID:getDescriptionEntry("AbyssTexts", "DamageMult")
