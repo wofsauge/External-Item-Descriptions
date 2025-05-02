@@ -654,6 +654,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.ModName = tableEntry and tableEntry[4]
 	description.Quality = EID:getObjectQuality(description)
 	description.Icon = EID:getObjectIcon(description)
+	description.ItemPoolType = EID:getObjectItemPool(description)
 	EID:getObjectItemTypeAndCharge(description)
 	
 	EID.DifferentEffectPlayers = {}
@@ -1030,10 +1031,15 @@ function EID:hasDescription(entity)
 	local isAllowed = false
 	local entityString = entity.Type .. "." .. entity.Variant .. "." .. entity.SubType
 
+	-- dont describe entity when EID_Hide data is set
+	if EID:getEntityData(entity, "EID_Hide") then
+		return false
+	end
+
 	if EID.IgnoredEntities[entity.Type .. "." .. entity.Variant] or EID.IgnoredEntities[entityString] then return false end
 
 	if EID.Config["EnableEntityDescriptions"] and EID:getTableName(entity.Type, entity.Variant, entity.SubType) == "custom" then
-		isAllowed = __eidEntityDescriptions[entityString] ~= nil
+		isAllowed = isAllowed or __eidEntityDescriptions[entityString] ~= nil
 		isAllowed = isAllowed or EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil
 		isAllowed = isAllowed or EID:getEntityData(entity, "EID_Description") ~= nil
 	end
@@ -1060,12 +1066,15 @@ function EID:hasDescription(entity)
 		end
 
 	end
+
 	if entity.Type == 1000 then
+		-- Handle Card Reading Portals
 		if entity.Variant == 161 then
 			if entity.SubType <= 2 or (EID.isRepentancePlus and entity.SubType == 3) then
 				isAllowed = true
 			end
 		end
+		-- Dice floor information
 		if entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"] then
 			isAllowed = true
 		end
@@ -2615,6 +2624,22 @@ function EID:getObjectQuality(descObj)
 	local subType = tonumber(descObj.ObjSubType) ---@cast subType number
 	if EID.isRepentance and descObj.ObjType == 5 and descObj.ObjVariant == 100 and EID.itemConfig:GetCollectible(subType) then
 		return tonumber(EID.itemConfig:GetCollectible(subType).Quality)
+	end
+end
+
+---Returns the item pool of the described entity
+---@param descObj EID_DescObj
+---@return integer?
+function EID:getObjectItemPool(descObj)
+	if EID.isRepentance and descObj.ObjType == 5 and descObj.ObjVariant == 100 then
+		if EID.isRepentancePlus then
+			-- TODO (maybe will require REPENTOGON?)
+			-- Since D4 exploit is completely fixed in 1.9.7.11, this is no longer viable for full-reroll effect
+			-- (still useful for initial item pool from rooms though)
+			return game:GetItemPool():GetLastPool() -- remove this if item pool function should not appear on 1.9.7.11 patch
+		else
+			return game:GetItemPool():GetLastPool()
+		end
 	end
 end
 

@@ -2,8 +2,10 @@
 # YOU DONT HAVE TO RUN THIS FILE YOURSELF! THE RESULTING DATA IS SHIPPED WITH THE MOD ALREADY!
 
 import xml.etree.ElementTree as ET
+from pathlib import Path
+import re
 
-GENERATE_REP_PLUS = False
+GENERATE_REP_PLUS = True
 
 filePath = "..\\..\\resources-dlc3\\"
 writeToFile = "features/eid_xmldata.lua"
@@ -113,7 +115,20 @@ for entity in entitiesXML.findall('entity'):
     entityNames.append({ "id": theID, "name": theName })
 
 # Read locusts.xml
-locustsXML = ET.parse(filePath+'locusts.xml').getroot()
+file_path = Path(filePath+'locusts.xml')
+file_content = file_path.read_text()
+# remove usage of "&" sign, which is not allowed in XML files
+file_content = file_content.replace("&", "+")
+# remove duplicated scale attributes
+content = []
+for line in  file_content.split("\n"):
+    attrs = re.findall(r'(scale)=\"[\d\.]*\"', line)
+    if len(attrs) > 1:
+        line = re.sub(r'(scale)=\"[\d\.]*\"', "", line, 1)
+    content.append(line)
+file_content = '\n'.join(content)
+
+locustsXML = ET.ElementTree(ET.fromstring(file_content)).getroot()
 for color in locustsXML.findall('color'):
     name = color.get('name')
     c_r = color.get('r') or 0
@@ -129,7 +144,7 @@ for locust in locustsXML.findall('locust'):
     # locust entries can have multiple colors defined
     color = locust.get('color') or "default"
     colors = []
-    for c in color.split("&"):
+    for c in color.split("+"):
         colors.append(c.split("-")[len(c.split("-"))-1])
 
     scale = locust.get('scale') or 1
