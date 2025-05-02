@@ -28,7 +28,6 @@ locusts = []
 locustColors = []
 
 recipeIngredients = {}
-recipeIngredients["_"] = 29
 recipeIngredients["h"] = 1 # Red Heart
 recipeIngredients["s"] = 2 # Soul Heart
 recipeIngredients["b"] = 3 # Black Heart
