@@ -970,8 +970,12 @@ EID.descriptions[languageCode].transformations={
 
 
 ---------- MISC ----------
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = "s"
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them, make it nil to not pluralize
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- French plural
+	-- replace {pluralize} placeholders inside the text with an "s"
+	return EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
+end
 
 EID.descriptions[languageCode].VoidText = "Si absorbé :"
 EID.descriptions[languageCode].VoidNames = {"Vitesse {{ColorLime}}{1}", "Débit {{ColorLime}}{1}", "Dégâts {{ColorLime}}{1}", "Portée {{ColorLime}}{1}", "Vitesse des tirs {{ColorLime}}{1}", "Chance {{ColorLime}}{1}"}
@@ -990,29 +994,30 @@ EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorSilver}}({1} ob
 EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} USAGE UNIQUE {{Warning}}"
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
--- {1} = number of hearts, {2} = plural character
+-- {1} = number of hearts, {pluralize} = plural character
+-- These texts are affected by the PluralizeFunction (ab+ file)
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
-	["Red to Soul"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{SoulHeart}} +{1} cœur{2} d'âme",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{SoulHeart}} +{1} cœur{2} d'âme",
-	"↓ {1} réceptacle{2} de cœur", "↓ {1} cœur{2}"},
+	["Red to Soul"] = {"{{Heart}} +{1} réceptacle{pluralize} de cœur", "{{SoulHeart}} +{1} cœur{pluralize} d'âme",
+	"{{EmptyHeart}} +{1} réceptacle{pluralize} de cœur", "{{SoulHeart}} +{1} cœur{pluralize} d'âme",
+	"↓ {1} réceptacle{pluralize} de cœur", "↓ {1} cœur{pluralize}"},
 
-	["Red to Black"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{BlackHeart}} +{1} cœur{2} noir{2}",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{BlackHeart}} +{1} cœur{2} noir{2}",
-	"↓ {1} réceptacle{2} de cœur", "↓ {1} cœur{2}"},
+	["Red to Black"] = {"{{Heart}} +{1} réceptacle{pluralize} de cœur", "{{BlackHeart}} +{1} cœur{pluralize} noir{pluralize}",
+	"{{EmptyHeart}} +{1} réceptacle{pluralize} de cœur", "{{BlackHeart}} +{1} cœur{pluralize} noir{pluralize}",
+	"↓ {1} réceptacle{pluralize} de cœur", "↓ {1} cœur{pluralize}"},
 
-	["Red to Bone"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{BoneHeart}} +{1} cœur{2} d'os",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{EmptyBoneHeart}} +{1} cœur{2} d'os", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} cœur{2}",
-	"↓ {1} réceptacle{2} de cœur", "↓ {1} cœur{2} d'os",
+	["Red to Bone"] = {"{{Heart}} +{1} réceptacle{pluralize} de cœur", "{{BoneHeart}} +{1} cœur{pluralize} d'os",
+	"{{EmptyHeart}} +{1} réceptacle{pluralize} de cœur", "{{EmptyBoneHeart}} +{1} cœur{pluralize} d'os", "↓ -{1} réceptacle{pluralize} de cœur", "↓ -{1} cœur{pluralize}",
+	"↓ {1} réceptacle{pluralize} de cœur", "↓ {1} cœur{pluralize} d'os",
 	"{{HealingRed}}", "{{HealingBone}}"}, -- Red HP to Bone Hearts
 
-	["Red to Coin"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{CoinHeart}} +{1} réceptacle{2} de pièce",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{EmptyCoinHeart}} +{1} réceptacle{2} de pièce", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} réceptacle{2} de pièce",
-	"↓ {1} réceptacle{2} de cœur", "↓ {1} réceptacle{2} de pièce",
-	"{{HealingRed}} Soigne {1} cœur{2} rouge{2}", "{{HealingCoin}} Soigne {1} pièce{2}", "{{HealingRed}} Soigne un demi-cœur rouge", "{{HealingCoin}} Soigne 1 pièce", "{{HealingRed}}", "{{HealingCoin}}"},
+	["Red to Coin"] = {"{{Heart}} +{1} réceptacle{pluralize} de cœur", "{{CoinHeart}} +{1} réceptacle{pluralize} de pièce",
+	"{{EmptyHeart}} +{1} réceptacle{pluralize} de cœur", "{{EmptyCoinHeart}} +{1} réceptacle{pluralize} de pièce", "↓ -{1} réceptacle{pluralize} de cœur", "↓ -{1} réceptacle{pluralize} de pièce",
+	"↓ {1} réceptacle{pluralize} de cœur", "↓ {1} réceptacle{pluralize} de pièce",
+	"{{HealingRed}} Soigne {1} cœur{pluralize} rouge{pluralize}", "{{HealingCoin}} Soigne {1} pièce{pluralize}", "{{HealingRed}} Soigne un demi-cœur rouge", "{{HealingCoin}} Soigne 1 pièce", "{{HealingRed}}", "{{HealingCoin}}"},
 
-	["Red to None"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "", "{{EmptyHeart}} +{1} réceptacle{2} de cœur", "", "↓ {1} réceptacle{2} de cœur", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {"{{Heart}} +{1} réceptacle{pluralize} de cœur", "", "{{EmptyHeart}} +{1} réceptacle{pluralize} de cœur", "", "↓ {1} réceptacle{pluralize} de cœur", ""}, -- Red HP to None (The Lost)
 }
 
 EID.descriptions[languageCode].MCM = {
@@ -1089,7 +1094,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedModeSmall}} Aucun effet en mode Avarice",
 	["No Effect (Copies)"] = "Avoir plusieurs exemplaires ne cumule pas les effets", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "Aucun effet bonus pour les familiers", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "Aucun effet pour les personnages sans cœurs rouges",
 	["Different Effect"] = "{{ColorSilver}}(Effet différent avec {1}{{ColorSilver}})",
 	["Dies on Use"] = "{{Warning}} Tue {1} si utilisé",
 

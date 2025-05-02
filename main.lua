@@ -1,8 +1,8 @@
-if EID and EID.Name then print("Error: Two instances of EID found! Please uninstall one of them!") return end -- If EID is already loaded, warn the user and dont load the second one.
+if EID and EID.Name then print("EID Error: Two instances of EID found! Please uninstall one of them!") return end -- If EID is already loaded, warn the user and dont load the second one.
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
-EID.Languages = {"en_us", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_nl", "uk_ua", "el_gr", "ro_ro"}
+EID.Languages = {"en_us", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_nl", "uk_ua", "el_gr", "ro_ro", "vi"}
 EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
@@ -12,8 +12,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.92
-EID.ModVersionCommit = "535f493"
+EID.ModVersion = 4.96
+EID.ModVersionCommit = "8a8443a"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -129,7 +129,7 @@ if EID.isRepentance then
 	for _,lang in ipairs(EID.Languages) do
 		local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
 		if not wasSuccessful and not string.find(err, "not found") then
-			Isaac.ConsoleOutput("Load rep "..lang.." failed: "..tostring(err))
+			EID:WriteErrorMsg("Load rep "..lang.." failed: "..tostring(err))
 		end
 	end
 	local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
@@ -142,7 +142,7 @@ if EID.isRepentance then
 		for _,lang in ipairs(EID.Languages) do
 			local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
 			if not wasSuccessful and not string.find(err, "not found") then
-				Isaac.ConsoleOutput("Load rep+ "..lang.." failed: "..tostring(err))
+				EID:WriteErrorMsg("Load rep+ "..lang.." failed: "..tostring(err))
 			end
 		end
 		local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
@@ -182,16 +182,16 @@ if not success then
 	if EID.isRepentance then
 		success = EID:loadFont("../mods/"..modfolder.."/resources/font/eid_"..fontFile..".fnt")
 		if not success then
-			Isaac.ConsoleOutput("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
-			Isaac.ConsoleOutput("File not found (absolute path): "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt\n")
-			Isaac.ConsoleOutput("File not found (relative path): ../mods/"..modfolder.."/resources/font/eid_"..fontFile..".fnt")
+			EID:WriteErrorMsg("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
+			EID:WriteErrorMsg("File not found (absolute path): "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt\n")
+			EID:WriteErrorMsg("File not found (relative path): ../mods/"..modfolder.."/resources/font/eid_"..fontFile..".fnt")
 			return
 		else
 			EID.modPath = "../mods/"..modfolder.."/"
 		end
 	else
-		Isaac.ConsoleOutput("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
-		Isaac.ConsoleOutput("File does not exist: "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
+		EID:WriteErrorMsg("EID WAS NOT ABLE TO LOAD THE FONT!!!!!!!! Please contact the mod creator!\n")
+		EID:WriteErrorMsg("File does not exist: "..EID.modPath .. "resources/font/eid_"..fontFile..".fnt")
 		return
 	end
 end
@@ -651,13 +651,13 @@ function EID:printDescription(desc, cachedID)
 		curName = curName.." - {{Quality"..desc.Quality.."}}"
 	end
 	-- Display Last Pool for Collectible for full reroll effects (icon)
-	if EID.isRepentance and EID.Config["ShowItemPoolIcon"] and (desc.ObjType == 5 and desc.ObjVariant == 100) then
+	if desc.ItemPoolType and EID.Config["ShowItemPoolIcon"] then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
 			if not EID.Config["ShowQuality"] then
 				curName = curName.." - "
 			end
-			curName = curName..""..(EID.ItemPoolTypeToMarkup[game:GetItemPool():GetLastPool()] or "{{ItemPoolTreasure}}")
+			curName = curName..""..(EID.ItemPoolTypeToMarkup[desc.ItemPoolType] or "{{ItemPoolTreasure}}")
 		end
 	end
 	-- Display the mod this item is from
@@ -720,10 +720,10 @@ function EID:printDescription(desc, cachedID)
 		end
 	end
 	-- Display Last Pool for Collectible for full reroll effects (name)
-	if EID.isRepentance and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] and (desc.ObjType and desc.ObjType == 5 and desc.ObjVariant and desc.ObjVariant == 100) then
+	if desc.ItemPoolType and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
-			local lastPool = game:GetItemPool():GetLastPool()
+			local lastPool = desc.ItemPoolType
 
 			local poolName = ""
 			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")
@@ -753,14 +753,17 @@ function EID:printBulletPoints(description, renderPos)
 			if i == 1 then
 				local bpIcon, rejectedIcon = EID:handleBulletpointIcon(lineToPrint)
 				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
-					lineToPrint = string.gsub(lineToPrint, bpIcon .. " ", "", 1)
+					lineToPrint = string.gsub(lineToPrint, bpIcon, "", 1)
 					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor, true)
 				else
-					if rejectedIcon then lineToPrint = string.gsub(lineToPrint, rejectedIcon .. " ", "", 1) end
+					if rejectedIcon then lineToPrint = string.gsub(lineToPrint, rejectedIcon, "", 1) end
 					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
 				end
 				EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
 			end
+			-- Remove leading spaces
+			lineToPrint = lineToPrint:match('^%s*(.*)')
+			-- render text
 			textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
 				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 		end
@@ -1191,6 +1194,13 @@ function EID:CheckPosModifiers()
 	end
 	-- the other modifiers don't need to be ran as frequently
 	if EID.GameRenderCount % 30 ~= 0 then return end
+
+	-- Repentance+ pushes a lot of UI lower, so we have to push the description lower as well to avoid overlapping
+	if EID.isRepentancePlus then
+		EID:addTextPosModifier("Repentance+", Vector(0,10))
+	else
+		EID:removeTextPosModifier("Repentance+")
+	end
 	-- Greed Mode small right adjustment
 	if game:IsGreedMode() then
 		EID:addTextPosModifier("Greed Mode Horizontal", Vector(8,0))
@@ -1498,15 +1508,23 @@ function EID:OnRender()
 						end
 					-- Handle Crane Game
 					elseif closest.Type == 6 and closest.Variant == 16 then
-						if EID.CraneItemType[tostring(closest.InitSeed)] or EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] then
+						local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
+						-- REPENTOGON lets us get the prize collectible directly
+						if REPENTOGON then
+							collectibleID = closest:ToSlot():GetPrizeCollectible()
+						end
+						if collectibleID then
+							local wasHidden = false
 							if EID:getEntityData(closest, "EID_DontHide") ~= true then
-								if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (game.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then
-									EID:addQuestionMarkDescription(closest)
+								local isHideUncollected = EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(collectibleID)
+								if (EID.Config["DisableOnCurse"] and EID:hasCurseBlind()) or (isHideUncollected) or (EID.Config["DisableOnAprilFoolsChallenge"] and game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
+									local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil		
+									EID:addQuestionMarkDescription(closest, description)
+									wasHidden = true;
 								end
-							else
-								local collectibleID = EID.CraneItemType[closest.InitSeed.."Drop"..closest.DropSeed] or EID.CraneItemType[tostring(closest.InitSeed)]
+							end
+							if not wasHidden then
 								local descriptionObj = EID:getDescriptionObj(5, 100, collectibleID, closest)
-
 								EID:addDescriptionToPrint(descriptionObj)
 							end
 						end
@@ -1749,6 +1767,12 @@ function EID:OnUsePill(pillEffectID, player, useFlags)
 
 	-- for tracking used pills, ignore gold pills and no animation pills, since those dont show what pull you used
 	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then return end
+
+	-- in Repentance+, Amnesia horse pill unidentifies all pills
+	if EID.isRepentancePlus and pillColor > PillColor.PILL_GIANT_FLAG and pillEffectID == PillEffect.PILLEFFECT_AMNESIA then
+		EID.UsedPillColors = {}
+	end
+
 	EID.UsedPillColors[tostring(pillColor)] = true
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
@@ -1864,7 +1888,7 @@ function EID:OnGameStart(isSave)
 			local isDefaultConfig = true
 			for key, value in pairs(EID.Config) do
 				if type(value) ~= type(EID.DefaultConfig[key]) and not configIgnoreList[key] then
-					print("EID Warning! : Config value '"..key.."' has wrong data-type. Resetting it to default...")
+					EID:WriteDebugMsg("EID Warning: Config value '"..key.."' has wrong data-type. Resetting it to default...")
 					EID.Config[key] = EID.DefaultConfig[key]
 				end
 				if EID.DefaultConfig[key] ~= value then
@@ -1937,3 +1961,8 @@ Isaac.DebugString("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVe
 Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 print("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")
+
+-- Run EID compatibility Callback. Useful for mods that load before EID
+if EID.isRepentance then
+	Isaac.RunCallback("EID_POST_LOAD")
+end

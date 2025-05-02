@@ -301,7 +301,7 @@ EID.descriptions[languageCode].collectibles={
 	{"278", "Dark Bum", "{{Heart}} Picks up nearby Red Hearts#{{SoulHeart}} Spawns a Seelenherz or spider for every 1.5 Red Hearts picked up"}, -- Dark Bum
 	{"279", "Big Fan", "Large orbital#Deals 30 contact damage per second"}, -- Big Fan
 	{"280", "Sissy Longlegs", "Randomly spawns blue spiders in hostile rooms"}, -- Sissy Longlegs
-	{"281", "Punching Bag", "Decoy familiar#Enemies target him instead of Isaac"}, -- Punching Bag
+	{"281", "Boxsack", "Lockvogel#Feinde zielen auf ihn statt auf Isaac"}, -- Punching Bag
 	{"282", "How to Jump", "Allows Isaac to jump over gaps and obstacles"}, -- How to Jump
 	{"283", "D100", "Reroll all pickups and pedestal items in the room, and all of Isaac's passive items"}, -- D100
 	{"284", "D4", "Reroll all of Isaac's passive items"}, -- D4
@@ -351,7 +351,7 @@ EID.descriptions[languageCode].collectibles={
 	{"326", "Breath of Life", "Holding down the USE button empties the charge bar#Isaac is temporarily invincible when the charge bar is empty#{{Warning}} Holding it for too long deals damage to Isaac"}, -- Breath of Life
 	{"327", "The Polaroid", "Taking damage at half a Red Heart or none makes isaac temporarily invincible"}, -- The Polaroid
 	{"328", "The Negative", "Taking damage at half a Red Heart or none damages all enemies in the room"}, -- The Negative
-	{"329", "The Ludovico Technique", "Replaces Isaac's tears with one giant controllable tear"}, -- The Ludovico Technique
+	{"329", "Die Ludovico-Technik", "Ersetzt Isaac's Tränen mit einer großen steuerbaren Träne"}, -- The Ludovico Technique
 	{"330", "Soy Milk", "↑ {{Tears}} x4 Tears multiplier#↑ {{Tears}} -2 Tränenverzögerung#↓ {{Damage}} x0.2 Schadens-Multiplikator#↓ {{Tearsize}} x0.5 Tear size"}, -- Soy Milk
 	{"331", "Godhead", "↑ {{Damage}} +0.5 Schaden#↑ {{Range}} +1.2 Reichweite#↑ +0.8 Tränenhöhe#↓ {{Tears}} -0.3 Tränen#↓ {{Shotspeed}} -0.3 Schusstempo#Zielsuchende Tränen#{{Damage}} Tränen gain an aura that deals 4.5x Isaac's damage per second"}, -- Godhead
 	{"332", "Lazarus' Rags", "{{Player11}} When dead, revive as Lazarus (Risen)"}, -- Lazarus' Rags
@@ -446,7 +446,7 @@ EID.descriptions[languageCode].collectibles={
 	{"421", "Kidney Bean", "{{Charm}} Charms and deals 5 damage to all enemies in close range"}, -- Kidney Bean
 	{"422", "Glowing Hour Glass", "Brings Isaac back to the previous room and reverses all actions done in the room the item was used in"}, -- Glowing Hour Glass
 	{"423", "Circle of Protection", "Surrounds Isaac with a large halo that deals his damage on contact per second#Chance to reflect enemy projectiles"}, -- Circle of Protection
-	{"424", "Sack Head", "Pickups have a 33% chance to be replaced with a sack#Spawns a sack"}, -- Sack Head
+	{"424", "Sack Head", "Pickups have a chance to be replaced with a {{GrabBag}}sack:#{{Coin}}: 10%, {{Bomb}}{{Key}}{{Pill}}{{Rune}}{{Battery}}: 20%#{{GrabBag}} Spawns a sack"}, -- Sack Head
 	{"425", "Night Light", "{{Slow}} Spawns a slowing cone of light in front of Isaac"}, -- Night Light
 	{"426", "Obsessed Fan", "Mimics Isaac's exact movement on a 3 second delay#Deals 30 contact damage per second"}, -- Obsessed Fan
 	{"427", "Mine Crafter", "Spawns a pushable TNT barrel#Using the item a second time in the same room remotely detonates the barrel"}, -- Mine Crafter
@@ -504,7 +504,7 @@ EID.descriptions[languageCode].collectibles={
 	{"479", "Smelter", "{{Trinket}} Consumes Isaac's held trinkets and grants their effects permanently#Increases the spawn rate of trinkets"}, -- Smelter
 	{"480", "Compost", "Converts pickups into blue flies or spiders#Doubles all blue flies and spiders#Spawns 1 blue fly or spider if Isaac has none"}, -- Compost
 	{"481", "Dataminer", "↑ Random stat up#↓ Random stat down#{{Timer}} Random tear effects für diesen Raum#{{Blank}} Corrupts all sprites and music in the room"}, -- Dataminer
-	{"482", "Clicker", "Changes your character to a random character#Removes the most recent item collected"}, -- Clicker
+	{"482", "Klicker", "Ändert deinen Charakter in einen anderen zufälligen Charakter#Entfernt das zuletzt gesammelte Objekt"}, -- Clicker
 	{"483", "Mama Mega!", "Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens the door to Boss-Ansturm, Hush and all Geheimräume#Having a golden bomb when using the item consumes it and allows for another use of Mama Mega"}, -- Mama Mega!
 	{"484", "Wait What?", "Upon use, pushes enemies away and spawns a rock wave around Isaac#The rock wave can open rooms and break rocks"}, -- Wait What?
 	{"485", "Crooked Penny", "50% chance to double all items, pickups and chests in room#50% chance to remove items / pickups in room and spawn 1 coin"}, -- Crooked Penny
@@ -720,8 +720,13 @@ EID.descriptions[languageCode].transformations={
 }
 
 ---------- MISC ----------
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = ""
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
+-- Each language can do their own algorithm to modify the given text to their needs
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	text = EID:ReplaceVariableStr(text, "plural_n", amount > 1 and "e" or "") -- add "n" to word
+	text = EID:ReplaceVariableStr(text, "plural_en", amount > 1 and "en" or "") -- add "en" to word
+	return text
+end
 
 EID.descriptions[languageCode].VoidText = "Wenn absorbiert, erhalte:"
 -- {1} will become the number text (like "{1} Tränen" -> "+0.5 Tränen")

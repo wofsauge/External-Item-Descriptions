@@ -326,18 +326,19 @@ local function HealthUpCallback(descObj)
 		-- find/replace Health Up lines
 		local numHearts = EID.HealthUpData[typeVarSub] or 1
 		local text = EID:getDescriptionEntry("RedToX", "Red to " .. heartType)
-		local plural = ""; if numHearts ~= 1 and numHearts ~= -1 then plural = EID:getDescriptionEntry("Pluralize") end
 		
 		local pos = 1
 		while pos <= #text do
 			-- replace {1} with the number of hearts and {2} with the plural character
-			local toFind = EID:ReplaceVariableStr(text[pos], {numHearts, plural})
+			local toFind = EID:ReplaceVariableStr(text[pos], numHearts)
 			if text[pos + 1] then
-				local replaceWith = EID:ReplaceVariableStr(text[pos + 1], {numHearts, plural})
+				local replaceWith = EID:ReplaceVariableStr(text[pos + 1], numHearts)
 				descObj.Description = EID:SimpleReplace(descObj.Description, tostring(toFind), replaceWith, 1)
 			end
 			pos = pos + 2
 		end
+		-- pluralize
+		descObj.Description = EID:TryPluralizeString(descObj.Description, numHearts)
 		
 		-- remove HealingRed lines entirely for Soul/Black/None health chars
 		descObj.Description = descObj.Description .. "#" -- gsub finds final lines better if the desc ends with a line break
@@ -350,7 +351,8 @@ local function HealthUpCallback(descObj)
 		-- check if we just made the description blank
 		if descObj.Description:gsub("#", "") == "" then
 			local noEffectStr = EID:getDescriptionEntry("ConditionalDescs", "No Effect")
-			descObj.Description = EID:GetPlayerIcon(playerType) .. " " .. EID:ReplaceVariableStr(noEffectStr, EID:getPlayerName(playerType))
+			local playerName = "{{ColorIsaac}}"..EID:getPlayerName(playerType) .. "{{CR}}"
+			descObj.Description = EID:GetPlayerIcon(playerType) .. " " .. EID:ReplaceVariableStr(noEffectStr, playerName)
 		end
 	end
 	
@@ -1045,7 +1047,7 @@ if EID.isRepentance then
 
 		-- base damage via Quality and multiplier
 		local damageText = EID:getDescriptionEntry("AbyssTexts", "DamageMult")
-		local dmg = (EID.QualityToLocustDamageMultiplier[descObj.Quality] or 1) * damageMultiplier1
+		local dmg = (EID.isRepentancePlus and EID.QualityToLocustDamageMultiplier[descObj.Quality] or 1) * damageMultiplier1
 		damageText = EID:ReplaceVariableStr(damageText, dmg)
 
 		-- size
@@ -1081,8 +1083,8 @@ if EID.isRepentance then
 		descriptionText = descriptionText .. GetFlagString(2, "TearFlagNames", tearFlags2, procChance1, procChance2, procChance3)
 		descriptionText = descriptionText .. GetFlagString(3, "TearFlagNames", tearFlags3, procChance1, procChance2, procChance3)
 
-		local plural = amount > 1 and EID:getDescriptionEntry("Pluralize") or ""
-		descriptionText = EID:ReplaceVariableStr(descriptionText, "pluralize", plural)
+		-- pluralize
+		descriptionText = EID:TryPluralizeString(descriptionText, amount)
 		-- Put everything together
 		EID:appendToDescription(descObj, descriptionText)
 

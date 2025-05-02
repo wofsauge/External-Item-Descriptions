@@ -1115,11 +1115,12 @@ EID.descriptions[languageCode].horsepills={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
+	-- These texts are affected by the PluralizeFunction (ab+ file)
 	AddBlackHearts = "{{BlackHeart}} {1} Černé Srdce",
-	AddBombs = "{{Bomb}} {1} Bomba",
+	AddBombs = "{{Bomb}} {1} Bomb{plural_ay}",
 	AddCoins = "{{Coin}} {1} Mince",
 	AddHearts = "Vyéčí {{Heart}} {1} Červené Srdce",
-	AddKeys = "{{Key}} {1} Klíč",
+	AddKeys = "{{Key}} {1} Klíč{plural_e}",
 	AddMaxHearts = "{{EmptyHeart}} {1} Místo pro srdce",
 	AddSoulHearts = "{{SoulHeart}} {1} Duševní Srdce",
 
