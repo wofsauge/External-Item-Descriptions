@@ -706,37 +706,37 @@ if EID.isRepentance then
 		return descObj
 	end
 	
-	local function VariableCharge(descObj, metadata, collID, chargeText)
+	local function VariableCharge(descObj, config, collID, chargeText)
 		local text = EID:getDescriptionEntry(chargeText or "VariableCharge")
-		if text ~= nil and metadata ~= nil and metadata.mimiccharge and metadata.mimiccharge ~= -1 then
+		if text ~= nil and config ~= nil and config.MimicCharge and config.MimicCharge ~= -1 and descObj.SubType ~= 48 then
 			text = EID:ReplaceVariableStr(text, 1, "{{NameOnlyC" .. collID .. "}}")
-			EID:appendToDescription(descObj, "#{{ColorSilver}}{{Collectible" .. collID .. "}} " .. text .. " {{"..metadata.mimiccharge.."}}{{Battery}}")
+			EID:appendToDescription(descObj, "#{{Collectible" .. collID .. "}} " .. text .. " {{"..config.MimicCharge.."}}{{Battery}}")
 		end
 	end
 	
 	local hasTarot = false
 	-- Handle Blank Card description addition
 	local function BlankCardCallback(descObj)
-		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 286, "BlankCardCharge")
+		VariableCharge(descObj, EID.itemConfig:GetCard(descObj.ObjSubType), 286)
 		-- If the player has Tarot Cloth and Blank Card, display additional text
 		if hasTarot then
 			local text = EID:getDescriptionEntry("BlankCardEffect")
 			local buffText = EID:getDescriptionEntry("tarotClothBlankCardBuffs", descObj.ObjSubType)
-			if buffText then EID:appendToDescription(descObj, "#{{ColorSilver}}{{Collectible286}} " .. text .. " " .. buffText) end
+			if buffText then EID:appendToDescription(descObj, "#{{Collectible286}} " .. text .. " " .. buffText) end
 		end
 		return descObj
 	end
 
 	-- Handle Clear Rune description addition
 	local function ClearRuneCallback(descObj)
-		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 263, "ClearRuneCharge")
+		VariableCharge(descObj, EID.itemConfig:GetCard(descObj.ObjSubType), 263)
 		return descObj
 	end
 
 	-- Handle Placebo description addition
 	local function PlaceboCallback(descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
-		VariableCharge(descObj, EID.pillMetadata[adjustedID-1], 348, "PlaceboCharge")
+		VariableCharge(descObj, EID.itemConfig:GetPillEffect(adjustedID-1), 348)
 		return descObj
 	end
 	
@@ -1130,14 +1130,14 @@ if EID.isRepentance then
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
 			hasTarot = EID.collectiblesOwned[451]
 
-			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
-			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
+			if EID.collectiblesOwned[286] and EID.itemConfig:GetCard(descObj.ObjSubType) and EID.itemConfig:GetCard(descObj.ObjSubType):IsCard() then table.insert(callbacks, BlankCardCallback) end
+			if EID.collectiblesOwned[263] and EID.itemConfig:GetCard(descObj.ObjSubType) and EID.itemConfig:GetCard(descObj.ObjSubType):IsRune() then table.insert(callbacks, ClearRuneCallback) end
 			if descObj.ObjSubType == 80 then table.insert(callbacks, WildCardCallback) end
 			if descObj.ObjSubType == 73 then table.insert(callbacks, TheStarsCallback) end
 		-- Pill Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
 			if EID.collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
-			if EID.collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
+			if EID.collectiblesOwned[348] and EID.itemConfig:GetPillEffect(descObj.ObjSubType) then table.insert(callbacks, PlaceboCallback) end
 			table.insert(callbacks, ExperimentalPillCallback)
 
 			if EID.pillPlayer == nil and #EID.coopAllPlayers > 1 then
