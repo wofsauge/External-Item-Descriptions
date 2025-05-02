@@ -75,8 +75,8 @@ EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets
 ---------- Cards ----------
 
 local cards = {
-	-- Change: Added "1% chance to spawn a Crane Game instead"
-	[11] = { "11", "X - Wheel of Fortune", "Spawns a {{Slotmachine}} Slot Machine or {{FortuneTeller}} Fortune Machine#{{CraneGame}} 1% chance to spawn a Crane Game" }, -- X - Wheel of Fortune
+	-- Change: Added "1% chance for it to be a Crane Game"
+	[11] = { "11", "X - Wheel of Fortune", "{{Slotmachine}} Spawns a Slot Machine#{{FortuneTeller}} 24% chance for it to be a Fortune Telling Machine#{{CraneGame}} 1% chance for it to be a Crane Game" }, -- X - Wheel of Fortune
 	-- Change: Complete rewrite
 	[38] = { "38", "Berkano", "{{Collectible706}} Summons 3 Abyss locusts for the room" },                                                                            -- Berkano
 }
@@ -84,7 +84,7 @@ EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
 
 local tarotClothBuffs = {
 	-- Change: Added Crane Game
-	[11] = { " a ", " 2 ", "Slot Machine", "{{CR}}Slot Machines", "Fortune Machine", "{{CR}}Fortune Machines", "Crane Game", "{{CR}}Crane Games" }, -- X - Wheel of Fortune
+	[11] = {" a Slot Machine", " 2 {{CR}}Slot Machines", " it ", " {{CR}}each ", " it ", " {{CR}}each "}, -- X - Wheel of Fortune
 }
 EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].tarotClothBuffs)
 
