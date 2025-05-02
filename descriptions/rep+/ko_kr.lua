@@ -11,7 +11,6 @@
 local languageCode = "ko_kr"
 
 -- 1.7.9.11 Conditional todos
--- T.Maggy + Sharp Plug
 -- T.??? + Bombs are Key
 
 ---------- Collectibles ----------
@@ -24,7 +23,7 @@ local collectibles = {
 	-- Change: added "ability to block shots"
 	[281] = {"281", "샌드백", "방 안을 돌아다니며 6초 간격으로 적을 유인합니다.#적의 탄환을 막아줍니다."}, -- Punching Bag
 	-- Change:
-	[329] = {"329", "루도비코 요법", "↑ {{ShotspeedSmall}} 탄속 +0.2#공격이 공격키로 조종 가능한 원격 눈물 공격으로 변경됩니다."}, -- The Ludovico Technique
+	[329] = {"329", "루도비코 요법", "↑ {{ShotspeedSmall}}탄속 +0.2#공격이 공격키로 조종 가능한 원격 눈물 공격으로 변경됩니다."}, -- The Ludovico Technique
 	-- Change:
 	[350] = {"350", "독성 쇼크", "{{Poison}} 방 입장 시 그 방의 적에게 공격력 x2의 피해를 줍니다.#적 처치시 초록 장판이 생깁니다.#장판은 지상의 적에게 초당 30의 피해를 줍니다."}, -- Toxic Shock
 	-- Change: Complete rewrite
@@ -41,7 +40,7 @@ local collectibles = {
 	-- Change: added "Turns item pedestals into glitched items"
 	[481] = {"481", "데이터마이너", "{{ArrowUpDown}} 사용 시 능력치가 랜덤으로 증가하거나 감소, 그 방에서 랜덤 효과가 부여되며;#{{ArrowGrayRight}} {{Collectible721}}그 방의 아이템을 오류 아이템으로 바꿉니다.#!!! 그 방의 스프라이트가 망가집니다."}, -- Dataminer
 	-- Change:
-	{"482", "클리커", "사용 시 가장 최근에 획득한 패시브 아이템을 50%의 확률로 제거하고;#{{ArrowGrayRight}} 캐릭터를 다른 랜덤 캐릭터로 바꿉니다."}, -- Clicker
+	[482] = {"482", "클리커", "사용 시 가장 최근에 획득한 패시브 아이템을 50%의 확률로 제거하고;#{{ArrowGrayRight}} 캐릭터를 다른 랜덤 캐릭터로 바꿉니다."}, -- Clicker
 	-- Change: Complete rewrite
 	[510] = {"510", "정신착란", "{{Friendly}} {{DeliriumSmall}} 사용 시 Delirium 버전의 아군 보스를 소환합니다.#소환된 보스는 방을 나가도 유지되나 체력이 서서히 감소합니다.#재사용 시 이전에 소환한 보스는 사라집니다."}, -- Delirious
 	-- Change: added "Tears leave a pool of creep on impact"
@@ -84,13 +83,13 @@ EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets
 
 ---------- Cards ----------
 local cards={
-	[11] = {"11", "X - 운명의 수레바퀴", "{{Slotmachine}} 도박기계 혹은 {{FortuneTeller}}운세기계를 생성합니다.#{{CraneGame}} {{ColorGray}}1%의 확률로 크레인 게임을 대신 소환"}, -- X - Wheel of Fortune
+	[11] = {"11", "X - 운명의 수레바퀴", "{{Slotmachine}} 도박기계를 소환합니다.#{{ArrowGrayRight}} {{FortuneTeller}} 24%의 확률로 운세기계가 대신 등장#{{ArrowGrayRight}} {{CraneGame}} 1%의 확률로 크레인게임이 대신 등장"}, -- X - Wheel of Fortune
 	[38] = {"38", "벨카노", "{{Collectible706}} 그 방에서 심연의 파리 3마리를 소환합니다."}, -- Berkano
 }
 EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
 
 local tarotClothBuffs={
-	[11] = {"{{Slotmachine}} 도박기계 혹은 {{FortuneTeller}}운세기계를 {{ColorShinyPurple}}2개{{CR}} 생성합니다.#{{CraneGame}} {{ColorGray}}1%의 확률로 크레인 게임을 대신 소환"}, -- Wheel of Fortune
+	[11] = {"{{Slotmachine}} 도박기계를 {{ColorShinyPurple}}2개{{CR}} 소환합니다.#{{ArrowGrayRight}} {{FortuneTeller}} 각각 24%의 확률로 운세기계가 대신 등장#{{ArrowGrayRight}} {{CraneGame}} 각각 1%의 확률로 크레인게임이 대신 등장"}, -- Wheel of Fortune
 }
 EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].tarotClothBuffs)
 
@@ -102,6 +101,12 @@ EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsep
 
 ---------- Conditions ----------
 EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catcher (Greed) - In Rep+, the dream preview works in greed mode as well, so no changes needed
+
+local conditions = {
+	-- Change: Removed info about Infinte usage of Yum Heart, because its fixed. Now, bleeding hearts provide only half the charge of a regilar heart container
+	["5.100.205 (Tainted Magdalene)"] = "고정 체력이 아닌 하트는 부족한 충전량 한칸 당 체력 {{BlinkYellowRed}}1칸{{CR}}을 깎습니다.", -- Sharp Plug + Tainted Magdalene
+}
+EID:updateDescriptionsViaTable(conditions, EID.descriptions[languageCode].ConditionalDescs)
 
 local wisps = {
 	[111] = "{{OuterWisp}} {{ColorOrange}}외부 x1{{CR}}/{{Heart}}:1#일반 눈물을 발사합니다. ({{DamageSmall}}:1.5)#{{Poison}}꺼지면 독방귀를 뀝니다.#방을 나가면 사라집니다.", -- The Bean
