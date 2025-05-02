@@ -82,7 +82,7 @@ local cards = {
 }
 EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
 
-local tarotClothBuffs{
+local tarotClothBuffs = {
 	-- Change: Added Crane Game
 	[11] = { " una ", " 2 ", "Máquina", "{{CR}}Maquinas"," o una", " o ", "Máquina", "{{CR}}Maquinas", "un Juego", "2 {{CR}}Juegos" }, -- X - Wheel of Fortune
 }
