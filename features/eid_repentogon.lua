@@ -135,7 +135,7 @@ function EID:hasDescription(entity)
 			EventCounter.DONATION_MACHINE_COUNTER
 		local maxDonations = isGreed and 1000 or 999
 		local totalDonations = Isaac.GetPersistentGameData():GetEventCounter(eventCounter)
-	
+
 		return EID.Config["RGON_DonationMachineDescriptions"] and totalDonations < maxDonations
 	end
 	return oldReturnVal
