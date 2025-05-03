@@ -791,7 +791,7 @@ EID.descriptions[languageCode].cards={
 	{"8", "VII - Le Chariot", "↑ Vitesse {{ColorLime}}+0.28#Isaac devient invulnérable et inflige 40 dégâts de contact par seconde#{{Timer}} L'effet dure 6 secondes"},
 	{"9", "VIII - La Justice", "Fait apparaître une clé, une bombe, une pièce et un cœur"},
 	{"10", "IX - L'Ermite", "Téléporte Isaac dans le Shop {{Shop}}"},
-	{"11", "X - La Roue de Fortune", "Fait apparaître une machine à sous {{Slotmachine}} ou une diseuse de bonne aventure {{FortuneTeller}}"},
+	{"11", "X - La Roue de Fortune", "Fait apparaître 1 des machines suivantes:#Machine à sous {{Slotmachine}} {{ColorSilver}}(75%)#Diseuse de bonne aventure {{FortuneTeller}} {{ColorSilver}} (24%)"},
 	{"12", "XI - La Force", "{{Heart}} +1 réceptacle de cœur#↑ Dégâts {{ColorLime}}+0.3 x1.5#↑ Vitesse {{ColorLime}}+0.3#↑ Portée {{ColorLime}}+5.25#{{Timer}} L'effet dure une salle"},
 	{"13", "XII - Le Pendu", "Permet à Isaac de voler#{{Timer}} L'effet dure une salle"},
 	{"14", "XIII - La Mort", "Inflige 40 dégâts à tous les ennemis de la salle"},
@@ -849,7 +849,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[15] = {" une ", " 2 ", " machine", " {{CR}}machines", "mendiant démoniaque", "{{CR}}mendiants démoniaques"}, -- XIV - Temperance (+ Greed version)
 	[17] = {6, 12}, -- XVI - The Tower
 	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {" un ", " 2 ", "mendiant ", "{{CR}}mendiants ", "mendiant démoniaque", "{{CR}}mendiants démoniaques"}, -- XX - Judgement
+	[21] = {"un mendiant", "2 {{ColorWhite}} mendiants"}, -- XX - Judgement
 	[23] = {"2", "4"}, -- 2 of Clubs
 	[24] = {"2", "4"}, -- 2 of Diamonds
 	[25] = {"2", "4"}, -- 2 of Spades
@@ -895,7 +895,7 @@ EID.descriptions[languageCode].pills={
 	{"22", "Paralysie", "Empêche toute action pendant 2 secondes"},
 	{"23", "Sésame, ouvre-toi !", "Ouvre les entrées des Secret {{SecretRoom}} et Super Secret Rooms {{SuperSecretRoom}} de l'étage"},
 	{"24", "Phéromones", "Envoûte tous les ennemis de la salle"},
-	{"25", "Amnésie", "Masque la carte pour la durée de l'étage"},
+	{"25", "Amnésie", "Masque la carte de l'étage"},
 	{"26", "Petite fuite...", "Répand une large flaque sur le sol qui inflige des dégâts de contact aux ennemis"},
 	{"27", "C'est louche...", "Isaac tire en diagonale pendant 60 secondes"},
 	{"28", "Anesthésie", "Les dégâts subis sont réduits à un demi-cœur pour la durée d'une salle"},
@@ -1094,7 +1094,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedModeSmall}} Aucun effet en mode Avarice",
 	["No Effect (Copies)"] = "Avoir plusieurs exemplaires ne cumule pas les effets", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "Aucun effet bonus pour les familiers", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "Aucun effet pour les personnages sans cœurs rouges",
 	["Different Effect"] = "{{ColorSilver}}(Effet différent avec {1}{{ColorSilver}})",
 	["Dies on Use"] = "{{Warning}} Tue {1} si utilisé",
 

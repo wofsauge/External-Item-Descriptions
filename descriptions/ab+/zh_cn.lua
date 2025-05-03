@@ -1216,7 +1216,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedMode}} 贪婪模式中无效果",
 	["No Effect (Copies)"] = "多个重复品无额外效果", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "对跟班没有额外效果", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "对不能拥有红心的角色无效果",
 	["Different Effect"] = "{{ColorSilver}}对{1}有不同效果{{CR}}",
 	["Dies on Use"] = "{{Warning}} 使用时{1}死亡", -- for Razor Blade and such as The Lost
 

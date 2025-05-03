@@ -77,6 +77,7 @@ EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catc
 local abyssSynergies = {
 	[706] = "16只不同效果的蝗虫", -- Abyss
 }
+EID.descriptions[languageCode].abyssSynergies = {}
 EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
 
 

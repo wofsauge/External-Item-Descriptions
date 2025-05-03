@@ -351,7 +351,8 @@ local function HealthUpCallback(descObj)
 		-- check if we just made the description blank
 		if descObj.Description:gsub("#", "") == "" then
 			local noEffectStr = EID:getDescriptionEntry("ConditionalDescs", "No Effect")
-			descObj.Description = EID:GetPlayerIcon(playerType) .. " " .. EID:ReplaceVariableStr(noEffectStr, EID:getPlayerName(playerType))
+			local playerName = "{{ColorIsaac}}"..EID:getPlayerName(playerType) .. "{{CR}}"
+			descObj.Description = EID:GetPlayerIcon(playerType) .. " " .. EID:ReplaceVariableStr(noEffectStr, playerName)
 		end
 	end
 	
@@ -705,37 +706,37 @@ if EID.isRepentance then
 		return descObj
 	end
 	
-	local function VariableCharge(descObj, metadata, collID, chargeText)
+	local function VariableCharge(descObj, config, collID, chargeText)
 		local text = EID:getDescriptionEntry(chargeText or "VariableCharge")
-		if text ~= nil and metadata ~= nil and metadata.mimiccharge and metadata.mimiccharge ~= -1 then
+		if text ~= nil and config ~= nil and config.MimicCharge and config.MimicCharge ~= -1 and descObj.SubType ~= 48 then
 			text = EID:ReplaceVariableStr(text, 1, "{{NameOnlyC" .. collID .. "}}")
-			EID:appendToDescription(descObj, "#{{ColorSilver}}{{Collectible" .. collID .. "}} " .. text .. " {{"..metadata.mimiccharge.."}}{{Battery}}")
+			EID:appendToDescription(descObj, "#{{Collectible" .. collID .. "}} " .. text .. " {{"..config.MimicCharge.."}}{{Battery}}")
 		end
 	end
 	
 	local hasTarot = false
 	-- Handle Blank Card description addition
 	local function BlankCardCallback(descObj)
-		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 286, "BlankCardCharge")
+		VariableCharge(descObj, EID.itemConfig:GetCard(descObj.ObjSubType), 286)
 		-- If the player has Tarot Cloth and Blank Card, display additional text
 		if hasTarot then
 			local text = EID:getDescriptionEntry("BlankCardEffect")
 			local buffText = EID:getDescriptionEntry("tarotClothBlankCardBuffs", descObj.ObjSubType)
-			if buffText then EID:appendToDescription(descObj, "#{{ColorSilver}}{{Collectible286}} " .. text .. " " .. buffText) end
+			if buffText then EID:appendToDescription(descObj, "#{{Collectible286}} " .. text .. " " .. buffText) end
 		end
 		return descObj
 	end
 
 	-- Handle Clear Rune description addition
 	local function ClearRuneCallback(descObj)
-		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 263, "ClearRuneCharge")
+		VariableCharge(descObj, EID.itemConfig:GetCard(descObj.ObjSubType), 263)
 		return descObj
 	end
 
 	-- Handle Placebo description addition
 	local function PlaceboCallback(descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
-		VariableCharge(descObj, EID.pillMetadata[adjustedID-1], 348, "PlaceboCharge")
+		VariableCharge(descObj, EID.itemConfig:GetPillEffect(adjustedID-1), 348)
 		return descObj
 	end
 	
@@ -1021,28 +1022,26 @@ if EID.isRepentance then
 		-- Display automatically generated description
 
 		-- Default locust Data
-		local locustData = { "default", 1, 1, 1, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, 1, 1, 1, 1, 1, 0 }
+		local locustData = { 1, 1, 1, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, 1, 1, 1, 1, 1 }
 		-- Check if an XML entry exists and load if exists
 		if EID.XMLLocusts and EID.XMLLocusts[descObj.ObjSubType] then
 			locustData = EID.XMLLocusts[descObj.ObjSubType]
 		end
 		local descriptionText = ""
-		--local colors = locustData[1]     -- colors flag: useless info right now
-		local amount = locustData[2]
-		local scale = locustData[3]
-		local speed = locustData[4]
-		local locustFlags1 = locustData[5] -- array
-		local locustFlags2 = locustData[6] -- array
-		local locustFlags3 = locustData[7] -- array
-		local tearFlags1 = locustData[8] -- array
-		local tearFlags2 = locustData[9] -- array
-		local tearFlags3 = locustData[10] -- array
-		local procChance1 = locustData[11]
-		local procChance2 = locustData[12]
-		local procChance3 = locustData[13]
-		local damageMultiplier1 = locustData[14]
-		local damageMultiplier2 = locustData[15]
-		--local mutexFlags2 = locustData[16]     -- mutex flag: useless info right now
+		local amount = locustData[1]
+		local scale = locustData[2]
+		local speed = locustData[3]
+		local locustFlags1 = locustData[4] -- array
+		local locustFlags2 = locustData[5] -- array
+		local locustFlags3 = locustData[6] -- array
+		local tearFlags1 = locustData[7] -- array
+		local tearFlags2 = locustData[8] -- array
+		local tearFlags3 = locustData[9] -- array
+		local procChance1 = locustData[10]
+		local procChance2 = locustData[11]
+		local procChance3 = locustData[12]
+		local damageMultiplier1 = locustData[13]
+		local damageMultiplier2 = locustData[14]
 
 		-- base damage via Quality and multiplier
 		local damageText = EID:getDescriptionEntry("AbyssTexts", "DamageMult")
@@ -1129,14 +1128,14 @@ if EID.isRepentance then
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
 			hasTarot = EID.collectiblesOwned[451]
 
-			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
-			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
+			if EID.collectiblesOwned[286] and EID.itemConfig:GetCard(descObj.ObjSubType) and EID.itemConfig:GetCard(descObj.ObjSubType):IsCard() then table.insert(callbacks, BlankCardCallback) end
+			if EID.collectiblesOwned[263] and EID.itemConfig:GetCard(descObj.ObjSubType) and EID.itemConfig:GetCard(descObj.ObjSubType):IsRune() then table.insert(callbacks, ClearRuneCallback) end
 			if descObj.ObjSubType == 80 then table.insert(callbacks, WildCardCallback) end
 			if descObj.ObjSubType == 73 then table.insert(callbacks, TheStarsCallback) end
 		-- Pill Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
 			if EID.collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
-			if EID.collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
+			if EID.collectiblesOwned[348] and EID.itemConfig:GetPillEffect(descObj.ObjSubType) then table.insert(callbacks, PlaceboCallback) end
 			table.insert(callbacks, ExperimentalPillCallback)
 
 			if EID.pillPlayer == nil and #EID.coopAllPlayers > 1 then

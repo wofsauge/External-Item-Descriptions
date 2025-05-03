@@ -2,7 +2,7 @@ if EID and EID.Name then print("EID Error: Two instances of EID found! Please un
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
-EID.Languages = {"en_us", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_nl", "uk_ua", "el_gr", "ro_ro"}
+EID.Languages = {"en_us", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_nl", "uk_ua", "el_gr", "ro_ro", "vi"}
 EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
@@ -12,8 +12,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.95
-EID.ModVersionCommit = "7aba985"
+EID.ModVersion = 4.97
+EID.ModVersionCommit = "253aa4f"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -651,13 +651,13 @@ function EID:printDescription(desc, cachedID)
 		curName = curName.." - {{Quality"..desc.Quality.."}}"
 	end
 	-- Display Last Pool for Collectible for full reroll effects (icon)
-	if EID.isRepentance and EID.Config["ShowItemPoolIcon"] and (desc.ObjType == 5 and desc.ObjVariant == 100) then
+	if desc.ItemPoolType and EID.Config["ShowItemPoolIcon"] then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
 			if not EID.Config["ShowQuality"] then
 				curName = curName.." - "
 			end
-			curName = curName..""..(EID.ItemPoolTypeToMarkup[game:GetItemPool():GetLastPool()] or "{{ItemPoolTreasure}}")
+			curName = curName..""..(EID.ItemPoolTypeToMarkup[desc.ItemPoolType] or "{{ItemPoolTreasure}}")
 		end
 	end
 	-- Display the mod this item is from
@@ -720,10 +720,10 @@ function EID:printDescription(desc, cachedID)
 		end
 	end
 	-- Display Last Pool for Collectible for full reroll effects (name)
-	if EID.isRepentance and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] and (desc.ObjType and desc.ObjType == 5 and desc.ObjVariant and desc.ObjVariant == 100) then
+	if desc.ItemPoolType and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() and not itemConfig:HasTags(ItemConfig.TAG_QUEST) then
-			local lastPool = game:GetItemPool():GetLastPool()
+			local lastPool = desc.ItemPoolType
 
 			local poolName = ""
 			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")
@@ -1767,6 +1767,12 @@ function EID:OnUsePill(pillEffectID, player, useFlags)
 
 	-- for tracking used pills, ignore gold pills and no animation pills, since those dont show what pull you used
 	if EID.isRepentance and (pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then return end
+
+	-- in Repentance+, Amnesia horse pill unidentifies all pills
+	if EID.isRepentancePlus and pillColor > PillColor.PILL_GIANT_FLAG and pillEffectID == PillEffect.PILLEFFECT_AMNESIA then
+		EID.UsedPillColors = {}
+	end
+
 	EID.UsedPillColors[tostring(pillColor)] = true
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
@@ -1955,3 +1961,8 @@ Isaac.DebugString("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVe
 Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 print("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")
+
+-- Run EID compatibility Callback. Useful for mods that load before EID
+if EID.isRepentance then
+	Isaac.RunCallback("EID_POST_LOAD")
+end
