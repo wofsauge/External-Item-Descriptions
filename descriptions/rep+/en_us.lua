@@ -38,7 +38,7 @@ local collectibles = {
 	-- Change: added "Tears leave a pool of creep on impact"
 	[560] = { "560", "It Hurts", "{{Timer}} When taking damage, receive for the room:#↑ {{Tears}} +1.2 Fire rate on the first hit#↑ {{Tears}} +0.4 Fire rate for each additional hit#Releases a ring of 10 tears around Isaac#Tears leave a pool of creep on impact" }, -- It Hurts
 	-- Change: Added ring of fire on impact description
-	[593] = { "593", "Mars", "Double-tapping a movement key makes Isaac dash#{{Damage}} During a dash, Isaac is invincible and deals 4x his damage +8#{{Timer}} 3 seconds cooldown#{{Burn}} Creates a ring of fire on impact" }, -- Mars
+	[593] = { "593", "Mars", "Double-tapping a movement key makes Isaac dash#{{Damage}} During a dash, Isaac is invincible and deals 4x his damage +8#{{Timer}} 3 seconds cooldown#{{Burning}} Creates a ring of fire on impact" }, -- Mars
 	-- Change: Heals 2 hearts instead of 1/2
 	[594] = { "594", "Jupiter", "↑ {{EmptyHeart}} +2 Empty heart containers#↓ {{Speed}} -0.3 Speed#{{HealingRed}} Heals 2 heart#{{Speed}} Speed builds up to +0.5 while standing still#{{Poison}} Moving releases poison clouds#{{Poison}} Poison immunity" }, -- Jupiter
 	-- Change: Complete rewrite
@@ -50,7 +50,7 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[681] = { "681", "Lil Portal", "Double-tapping a fire button launches the portal#Deals contact damage when launched#Consumes pickups in its path#Each pickup consumed increases its size, damage, and spawns a blue fly#Consuming 2-3 pickups spawns a portal to a special room and the familiar disappears for the rest of the floor#The content of the room persists for the rest of the run" }, -- Lil Portal
 	-- Change: Added into for first usage
-	[685] = { "685", "Jar of Wisps", "Spawns a random wisp#Spawns one additional wisp with each use, up to 12#First use will grant 2 wisps" }, -- Jar of Wisps
+	[685] = { "685", "Jar of Wisps", "Spawns 2 random wisps#Spawns one additional wisp with each use, up to 12" }, -- Jar of Wisps
 	-- Change: Added info about the damage based on item quality
 	[706] = { "706", "Abyss", "Consumes all item pedestals in the room and spawns a locust familiar for each one#Some items spawn a special locust when consumed#{{Damage}} Locusts deal Isaac's damage multiplied by the item quality consumed:#{{Quality0}} - 0.5x#{{Quality1}} - 0.75x#{{Quality2}} - 1.0x#{{Quality3}} - 1.5x#{{Quality4}} - 2.0x" }, -- Abyss
 }
@@ -75,8 +75,8 @@ EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets
 ---------- Cards ----------
 
 local cards = {
-	-- Change: Added "1% chance to spawn a Crane Game instead"
-	[11] = { "11", "X - Wheel of Fortune", "Spawns a {{Slotmachine}} Slot Machine or {{FortuneTeller}} Fortune Machine#{{CraneGame}} 1% chance to spawn a Crane Game" }, -- X - Wheel of Fortune
+	-- Change: Added "1% chance for it to be a Crane Game"
+	[11] = { "11", "X - Wheel of Fortune", "{{Slotmachine}} Spawns a Slot Machine#{{FortuneTeller}} 24% chance for it to be a Fortune Telling Machine#{{CraneGame}} 1% chance for it to be a Crane Game" }, -- X - Wheel of Fortune
 	-- Change: Complete rewrite
 	[38] = { "38", "Berkano", "{{Collectible706}} Summons 3 Abyss locusts for the room" },                                                                            -- Berkano
 }
@@ -84,7 +84,7 @@ EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
 
 local tarotClothBuffs = {
 	-- Change: Added Crane Game
-	[11] = { " a ", " 2 ", "Slot Machine", "{{CR}}Slot Machines", "Fortune Machine", "{{CR}}Fortune Machines", "Crane Game", "{{CR}}Crane Games" }, -- X - Wheel of Fortune
+	[11] = {" a Slot Machine", " 2 {{CR}}Slot Machines", " it ", " {{CR}}each ", " it ", " {{CR}}each "}, -- X - Wheel of Fortune
 }
 EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].tarotClothBuffs)
 
@@ -92,7 +92,7 @@ EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].t
 
 local horsepills = {
 	-- Change: Forgets all previously identified pills
-	{ "25", "Amnesia", "{{CurseLost}} Hides the floor map#{{Pill}} Forgets all previously identified pills" }, -- Amnesia
+	[26] = { "25", "Amnesia", "{{CurseLost}} Hides the floor map#{{Pill}} Forgets all previously identified pills" }, -- Amnesia
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 

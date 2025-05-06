@@ -133,9 +133,10 @@ function EID:hasDescription(entity)
 		local isGreed = entity.Variant == 11
 		local eventCounter = isGreed and EventCounter.GREED_DONATION_MACHINE_COUNTER or
 			EventCounter.DONATION_MACHINE_COUNTER
+		local maxDonations = isGreed and 1000 or 999
 		local totalDonations = Isaac.GetPersistentGameData():GetEventCounter(eventCounter)
 
-		return EID.Config["RGON_DonationMachineDescriptions"] and totalDonations < 1000
+		return EID.Config["RGON_DonationMachineDescriptions"] and totalDonations < maxDonations
 	end
 	return oldReturnVal
 end
@@ -164,7 +165,7 @@ local requirementsGreedDonationMachine = {
 	{ 439,  Achievement.EVE_HOLDS_RAZOR_BLADE },
 	{ 500,  Achievement.GREEDIER },
 	{ 666,  Achievement.STORE_KEY },
-	{ 879,  Achievement.THE_LOST_HOLDS_HOLY_MANTLE },
+	{ 879,  Achievement.LOST_HOLDS_HOLY_MANTLE },
 	{ 999,  Achievement.GENEROSITY },
 	{ 1000, Achievement.KEEPER }
 }
