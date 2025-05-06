@@ -84,7 +84,7 @@ EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
 
 local tarotClothBuffs = {
 	-- Change: Added Crane Game
-	[11] = { " una ", " 2 ", "Máquina", "{{CR}}Maquinas","generar una", " {CR}que una sea una", "Máquina", "{{CR}}Maquinas", "generar un", "{{CR}}que una sea un" }, -- X - Wheel of Fortune
+	[11] = { " una ", " 2 ", "Máquina", "{{CR}}Maquinas","generar una", " {CR}que una sea una", "generar un", "{{CR}}que una sea un" }, -- X - Wheel of Fortune
 }
 EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].tarotClothBuffs)
 
