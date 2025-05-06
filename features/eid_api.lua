@@ -236,18 +236,8 @@ function EID:addCard(id, description, itemName, language)
 	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description, EID._currentMod}
 end
 
----Adds a metadata for a card. Used for Blank Card/Clear Rune.
----@param id Card
----@param mimicCharge integer @Range: [1, 12]
----@param isRune? boolean @Whether the card is a rune
+-- DEPRECATED! Does nothing! Don't use!
 function EID:addCardMetadata(id, mimicCharge, isRune)
-	if isRune then
-		EID.blankCardHidden[id] = true
-		EID.runeIDs[id] = true
-	end
-	EID.cardMetadata[id] = {
-		mimiccharge = type(mimicCharge) == "number" and mimicCharge or -1
-	}
 end
 
 ---Adds a description for a PillEffect id
@@ -290,11 +280,10 @@ end
 
 ---Adds a metadata for a pilleffect. Used for Placebo/False PHD
 ---@param id PillEffect
----@param mimicCharge integer @Range: [1, 12]
+---@param mimicCharge integer @DEPRECATED, does nothing
 ---@param class? EID_PillClass @Default: "0". With False PHD, "3-" gives +0.6 Damage, "2-" and "1-" spawn a Black Heart
 function EID:addPillMetadata(id, mimicCharge, class)
 	EID.pillMetadata[id] = {
-		mimiccharge = type(mimicCharge) == "number" and mimicCharge or -1,
 		class = class or "0",
 	}
 end

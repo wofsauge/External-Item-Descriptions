@@ -38,7 +38,7 @@ local collectibles = {
 	-- Change: added "Tears leave a pool of creep on impact"
 	[560] = { "560", "Duele..", "{{Timer}} Recibir daño otorga durante la habitacion:#↑ {{Tears}} Lágrimas +1.2 con el primer golpe#↑ {{Tears}} Lágrimas +0.4 por cada golpe adicional#Libera un anillo de 10 lágrimas a tu alrededor#Las lagrimas dejan un charco de fluido" }, -- ¡Eso duele!
 	-- Change: Added ring of fire on impact description
-	[593] = { "593", "Mars", "Embiste al pulsar dos veces la tecla de movimiento#Al embestir: te vuelves invulnerable e infliges {{Damage}} 4 veces tu daño +8#{{Timer}} 3 segundos de recarga#{{Burn}} Genera un aro de fuego al impacto" }, -- Mars
+	[593] = { "593", "Mars", "Embiste al pulsar dos veces la tecla de movimiento#Al embestir: te vuelves invulnerable e infliges {{Damage}} 4 veces tu daño +8#{{Timer}} 3 segundos de recarga#{{Burning}} Genera un aro de fuego al impacto" }, -- Mars
 	-- Change: Heals 2 hearts instead of 1/2
 	[594] = { "594", "Júpiter", "↑ {{EmptyHeart}} +2 Contenedores de corazón vacíos#↓ {{Speed}} Velocidad -0.3#{{HealingRed}} Cura 2 corazones#{{Speed}} +0.5 de Velocidad adicional al quedarte quieto#{{Poison}} Libera nubes de veneno al moverse#{{Poison}} Inmunidad al Veneno" }, -- Júpiter
 	-- Change: Complete rewrite
@@ -82,7 +82,7 @@ local cards = {
 }
 EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
 
-local tarotClothBuffs{
+local tarotClothBuffs = {
 	-- Change: Added Crane Game
 	[11] = { " una ", " 2 ", "Máquina", "{{CR}}Maquinas"," o una", " o ", "Máquina", "{{CR}}Maquinas", "un Juego", "2 {{CR}}Juegos" }, -- X - Wheel of Fortune
 }

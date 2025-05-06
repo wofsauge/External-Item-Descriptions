@@ -38,7 +38,7 @@ local collectibles = {
 	-- Change: added "Tears leave a pool of creep on impact"
 	[560] = { "560", "Das tut weh", "{{Timer}} Beim Erleiden von Schaden, erhalte für den Raum:#↑ {{Tears}} +1.2 Feuerrate beim ersten Treffer#↑ {{Tears}} +0.4 Feuerrate bei jeden weiteren Treffer#Lässt einen Ring aus 10 Tränen um Isaac entstehen#Tränen hinterlassen beim Aufprall eine Pfütze" }, -- It Hurts
 	-- Change: Added ring of fire on impact description
-	[593] = { "593", "Mars", "Durch zweimaliges Tippen auf eine Bewegungstaste sprintet Isaac#{{Damage}} Während eines Sprints ist Isaac unbesiegbar und verursacht das Vierfache seines Schadens +8#{{Timer}} 3 Sekunden Abklingzeit#{{Burn}} Erzeugt beim Aufprall einen Feuerring" }, -- Mars
+	[593] = { "593", "Mars", "Durch zweimaliges Tippen auf eine Bewegungstaste sprintet Isaac#{{Damage}} Während eines Sprints ist Isaac unbesiegbar und verursacht das Vierfache seines Schadens +8#{{Timer}} 3 Sekunden Abklingzeit#{{Burning}} Erzeugt beim Aufprall einen Feuerring" }, -- Mars
 	-- Change: Heals 2 hearts instead of 1/2
 	[594] = { "594", "Jupiter", "↑ {{EmptyHeart}} +2 Leere Herzcontainer#↓ {{Speed}} -0.3 Geschwindigkeit#{{HealingRed}} Heilt 2 Herzen#{{Speed}} Geschwindigkeit erhöht sich auf +0.5, wenn man stillsteht#{{Poison}} Bewegung setzt Giftwolken frei#{{Poison}} Gift Immunität" }, -- Jupiter
 	-- Change: Complete rewrite
