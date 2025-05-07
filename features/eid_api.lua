@@ -2114,7 +2114,7 @@ end
 ---@param entity Entity
 ---@return any?
 function EID:getEntityData(entity, str)
-	if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:GetData() ~= nil then
+	if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:GetData() ~= nil and type(entity:GetData()) == "table" then
 		return entity:GetData()[str]
 	end
 	return nil
@@ -2124,7 +2124,7 @@ end
 ---@param str string
 ---@param value any
 function EID:setEntityData(entity, str, value)
-	if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:GetData() ~= nil then
+	if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:GetData() ~= nil and type(entity:GetData()) == "table" then
 		entity:GetData()[str] = value
 	end
 end
