@@ -92,7 +92,7 @@ EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].t
 
 local horsepills = {
 	-- Change: Forgets all previously identified pills
-	{ "25", "Amnesie", "{{CurseLost}} Versteckt die Ebenen-Karte#{{Pill}} Vergesse alle zuvor identifizierten Pillen" }, -- Amnesia
+	[26] = { "25", "Amnesie", "{{CurseLost}} Versteckt die Ebenen-Karte#{{Pill}} Vergesse alle zuvor identifizierten Pillen" }, -- Amnesia
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 

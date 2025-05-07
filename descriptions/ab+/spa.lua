@@ -1139,7 +1139,7 @@ EID.descriptions[languageCode].RedToX = {
 	
 	["Red to Bone"] = {
 	"↑ {{Heart}} +{1} de Vida", "{{BoneHeart}} +{1} Cora{plural_zon} de Hueso",
-	"↑ {{EmptyHeart}} +{1} contenedor{plural_es} de corazón vacío{plural_s}", "{{EmptyBoneHeart}} +{1} Cora{plural_zon} de Hueso Vacío{plural_s}",
+	"↑ {{EmptyHeart}} +{1} contenedor{plural_es} de corazón vacío{plural_s}", "{{EmptyBoneHeart}} +{1} Cora{plural_zon} de Hueso Vacío{plural_s}", "{{HealingRed}}", "{{HealingBone}}",
 	"↓ {{EmptyHeart}} {1} de Vida", "↓ {{EmptyBoneHeart}} {1} Cora{plural_zon} de Hueso"},
 	
 	["Red to Coin"] = {

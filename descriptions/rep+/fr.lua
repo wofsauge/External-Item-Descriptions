@@ -86,7 +86,7 @@ EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
  
 local horsepills = {
 	-- Change: Forgets all previously identified pills
-	{ "25", "Amnésie", "Masque la carte de l'étage#Oublie toutes les pilules déjà identifiées" }, -- Amnesia
+	[26] = { "25", "Amnésie", "Masque la carte de l'étage#Oublie toutes les pilules déjà identifiées" }, -- Amnesia
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 
