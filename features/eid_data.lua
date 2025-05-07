@@ -555,7 +555,7 @@ EID.InlineIcons = {
 	["Shrink"] = {"StatusEffects", 8, 10, 9, 0, 1},
 	["BleedingOut"] = {"StatusEffects", 9, 8, 9, 0, 1},
 	["Bait"] = {"StatusEffects", 10, 10, 9, 0, 1},
-	["Chained"] = {"StatusEffects", 11, 8, 11, 0, 0},
+	["Chained"] = {"StatusEffects", 11, 8, 9, 0, 1},
 	["Freezing"] = {"StatusEffects", 12, 10, 9, 0, 1},
 	["Magnetize"] = {"StatusEffects", 13, 10, 9, 0, 1},
 	["BrimstoneCurse"] = {"StatusEffects", 14, 10, 9, 0, 1},
@@ -923,6 +923,7 @@ EID.MarkupSizeMap = {
 	["{{MegaSatan}}"] = "{{MegaSatanSmall}}",
 	["{{Satan}}"] = "{{SatanSmall}}",
 	["{{Hush}}"] = "{{HushSmall}}",
+	["{{Beast}}"] = "{{BeastSmall}}",
 
 	["{{Timer}}"] = "{{TimerSmall}}",
 	["{{VictoryLap}}"] = "{{VictoryLapSmall}}",
