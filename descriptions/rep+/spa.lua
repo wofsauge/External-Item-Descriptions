@@ -76,7 +76,7 @@ EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets
 
 local cards = {
 	-- Change: Added 1% chance to spawn a Crane Game
-	[11] = { "11", "X - La Rueda de la Fortuna", "Genera una {{Slotmachine}} Máquina Tragaperras o una {{FortuneTeller}} Máquina de la Fortuna#{{CraneGame}} 1% de probabilidad de generar un Juego de la Grua" }, -- X - Wheel of Fortune
+	[11] = { "11", "X - La Rueda de la Fortuna", "Genera una {{Slotmachine}} Máquina Tragaperras#{{FortuneTeller}} 24% de probabilidad de generar una Máquina de la Fortuna#{{CraneGame}} 1% de probabilidad de generar un Juego de la Grua" }, -- X - Wheel of Fortune
 	-- Change: Complete rewrite
 	[38] = { "38", "Berkano", "{{Collectible706}} Invoca 3 langostas del Abismo durante la habitación" }, -- Berkano
 }
@@ -84,7 +84,7 @@ EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
 
 local tarotClothBuffs = {
 	-- Change: Added Crane Game
-	[11] = { " una ", " 2 ", "Máquina", "{{CR}}Maquinas"," o una", " o ", "Máquina", "{{CR}}Maquinas", "un Juego", "2 {{CR}}Juegos" }, -- X - Wheel of Fortune
+	[11] = { " una ", " 2 ", "Máquina", "{{CR}}Maquinas","generar una", " {CR}que una sea una", "generar un", "{{CR}}que una sea un" }, -- X - Wheel of Fortune
 }
 EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].tarotClothBuffs)
 
@@ -92,7 +92,7 @@ EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].t
 
 local horsepills = {
 	-- Change: Forgets all previously identified pills
-	{ "25", "Amnesia", "{{CurseLost}} Oculta el mapa del piso actual#{{Pill}} Olvida las pildoras previamente identificadas" }, -- Amnesia
+	[26] = { "25", "Amnesia", "{{CurseLost}} Oculta el mapa del piso actual#{{Pill}} Olvida las pildoras previamente identificadas" }, -- Amnesia
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 

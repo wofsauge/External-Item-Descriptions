@@ -880,7 +880,7 @@ EID.descriptions[languageCode].cards={
 	{"8", "VII - El Carruaje", "{{Timer}} Otorga durante 6 segundos:#↑ {{Speed}} Velocidad +0.28#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto"}, -- VII - The Chariot
 	{"9", "VIII - Justicia", "Genera {{UnknownHeart}} un corazón, {{Coin}} una moneda, {{Bomb}} una bomba y {{Key}} una llave al azar"}, -- VIII - Justice
 	{"10", "IX - El Ermitaño", "{{Shop}} Te teletransporta a la tienda"}, -- IX - The Hermit
-	{"11", "X - La Rueda de la Fortuna", "Genera una {{Slotmachine}} Máquina Tragaperras o una {{FortuneTeller}} Máquina de la Fortuna"}, -- X - Wheel of Fortune
+	{"11", "X - La Rueda de la Fortuna", "Genera una {{Slotmachine}} Máquina Tragaperras#{{FortuneTeller}} 24% de probabilidad de generar una Máquina de la Fortuna"}, -- X - Wheel of Fortune
 	{"12", "XI - Fuerza", "{{Timer}} Otorga durante la habitación actual:#↑ {{Heart}} +1 de Vida#↑ {{Speed}} Velocidad +0.3#↑ {{Damage}} Daño +0.3#↑ {{Damage}} Daño x1.5#↑{{Range}} Alcance +5.25#↑ Tamaño de lágrimas +0.5"}, -- XI - Strength
 	{"13", "XII - El Colgado", "{{Timer}} Permite volar durante la habitación actual"}, -- XII - The Hanged Man
 	{"14", "XIII - Muerte", "Inflige 40 de daño a todos los enemigos en la habitación"}, -- XIII - Death
@@ -936,7 +936,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[7] = {2, 4}, -- VI - The Lovers
 	[8] = {6, 12}, -- VII - The Chariot
 	[9] = {"Genera {{ColorShinyPurple}}2{{CR}} {{UnknownHeart}} corazones, {{Coin}} monedas, {{Bomb}} bombas y {{Key}} llaves al azar"}, -- VIII - Justice
-	[11] = {" una ", " 2 ", "Máquina", "{{CR}}Maquinas"," o una", " {{CR}}o tambien una", "Máquina", "{{CR}}Maquinas"}, -- X - Wheel of Fortune
+	[11] = {" una ", " 2 ", "Máquina", "{{CR}}Maquinas","generar una", "{{CR}}que una sea una"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
 	[15] = {" una ", " 2 ", " Máquina", " {{CR}}Máquinas", "mendigo demoníaco", "{{CR}}mendigos demoníacos"}, -- XIV - Temperance (+ Greed version)
