@@ -1123,7 +1123,7 @@ EID.descriptions[languageCode].RedToX = {
 
 	["Red to Black"] = {"↑ {{Heart}} +{1}心之容器", "{{BlackHeart}} +{1}黑心",
 	"↑ {{EmptyHeart}} +{1}空心之容器", "{{BlackHeart}} +{1}黑心",
-	"↓ {{EmptyHeart}} {1}心之容器", "↓ {{SoulHeart}} {1}黑心"},
+	"↓ {{EmptyHeart}} {1}心之容器", "↓ {{BlackHeart}} {1}黑心"},
 
 	["Red to Bone"] = {"↑ {{Heart}} +{1}心之容器", "{{BoneHeart}} +{1}骨心",
 	"↑ {{EmptyHeart}} +{1}空心之容器", "{{EmptyBoneHeart}} +{1}骨心", "{{HealingRed}}", "{{HealingBone}}",

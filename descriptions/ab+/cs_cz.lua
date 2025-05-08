@@ -1106,7 +1106,7 @@ EID.descriptions[languageCode].RedToX = {
 	
 	["Red to Black"] = {"↑ {{Heart}} +{1} Zdraví", "{{BlackHeart}} +{1} Černé Srdce",
 	"↑ {{EmptyHeart}} +{1} Místo na srdce", "{{BlackHeart}} +{1} Černé Srdce",
-	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{SoulHeart}} {1} Černé Srdce"},
+	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{BlackHeart}} {1} Černé Srdce"},
 	
 	["Red to Bone"] = {"↑ {{Heart}} +{1} Zdraví", "{{BoneHeart}} +{1} Kostěné Srdce",
 	"↑ {{EmptyHeart}} +{1} Místo na srdce", "{{EmptyBoneHeart}} +{1} Prázdné kostěné srdce", "{{HealingRed}}", "{{HealingBone}}",

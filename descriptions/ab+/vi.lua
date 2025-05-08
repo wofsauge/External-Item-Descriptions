@@ -1125,7 +1125,7 @@ EID.descriptions[languageCode].RedToX = {
 	
 	["Red to Black"] = {"↑ {{Heart}} +{1} Máu", "{{BlackHeart}} +{1} Trái Tim Đen{2}",
 	"↑ {{EmptyHeart}} +{1} Ô trái tim trống{2}", "{{BlackHeart}} +{1} Trái Tim Đen{2}",
-	"↓ {{EmptyHeart}} {1} Máu", "↓ {{SoulHeart}} {1} Trái Tim Đen{2}"},
+	"↓ {{EmptyHeart}} {1} Máu", "↓ {{BlackHeart}} {1} Trái Tim Đen{2}"},
 	
 	["Red to Bone"] = {"↑ {{Heart}} +{1} Máu", "{{BoneHeart}} +{1} Trái Tim Xương{2}",
 	"↑ {{EmptyHeart}} +{1} Ô trái tim trống{2}", "{{EmptyBoneHeart}} +{1} Ô Trái Tim Xương trống{2}", "{{HealingRed}}", "{{HealingBone}}",
