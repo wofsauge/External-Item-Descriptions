@@ -818,7 +818,7 @@ EID.descriptions[languageCode].cards={
 	{"8", "VII - 전차", "{{Collectible77}} 6초간 무적 상태가 되며 접촉한 적에게 40의 피해를 줍니다."}, -- VII - The Chariot
 	{"9", "VIII - 정의", "{{Heart}}하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠를 하나씩 드랍합니다."}, -- VIII - Justice
 	{"10", "IX - 은둔자", "{{Shop}} 상점으로 순간이동합니다."}, -- IX - The Hermit
-	{"11", "X - 운명의 수레바퀴", "{{Slotmachine}} 도박기계 혹은 {{FortuneTeller}}운세기계를 생성합니다."}, -- X - Wheel of Fortune
+	{"11", "X - 운명의 수레바퀴", "{{Slotmachine}} 도박기계를 소환합니다.#{{ArrowGrayRight}} {{FortuneTeller}} 25%의 확률로 운세기계가 대신 등장"}, -- X - Wheel of Fortune
 	{"12", "XI - 힘", "{{Timer}} 사용 시 그 방에서:#{{ArrowGrayRight}} {{Heart}}최대 체력 +1#{{ArrowGrayRight}} {{DamageSmall}}공격력 +0.3#{{ArrowGrayRight}} {{DamageSmall}}공격력 배율 +50%#{{ArrowGrayRight}} {{RangeSmall}}사거리 +5.25#{{ArrowGrayRight}} 눈물 높이 +0.5#{{ArrowGrayRight}} {{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
 	{"13", "XII - 매달린 남자", "{{Collectible20}} 그 방에서 비행 능력을 얻습니다."}, -- XII - The Hanged Man
 	{"14", "XIII - 죽음", "{{Collectible35}} 그 방의 적에게 40의 피해를 줍니다."}, -- XIII - Death
@@ -1088,7 +1088,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[7] = {2, 4}, -- VI - The Lovers
 	[8] = {6, 12}, -- VII - The Chariot
 	[9] = {"{{Heart}}하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠를 {{ColorShinyPurple}}2{{CR}}개씩 드랍합니다."}, -- VIII - Justice
-	[11] = {"{{Slotmachine}}도박기계 혹은 {{FortuneTeller}}운세기계를 2개 생성합니다."}, -- X - Wheel of Fortune
+	[11] = {"{{Slotmachine}} 도박기계를 2개 소환합니다.#{{ArrowGrayRight}} {{FortuneTeller}} 각각 25%의 확률로 운세기계가 대신 등장"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
 	[15] = {"하나", "2개"}, -- XIV - Temperance

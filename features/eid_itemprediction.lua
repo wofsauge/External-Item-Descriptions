@@ -326,7 +326,7 @@ function EID:D1Prediction(rng)
 			if specialCards[poss[sel].SubType] then
 				local objName = EID:getObjectName(5, poss[sel].Variant, poss[sel].SubType)
 				return "{{" .. variantToName[poss[sel].Variant] .. poss[sel].SubType .. "}} " .. objName
-			elseif EID.runeIDs[poss[sel].SubType] then
+			elseif EID.itemConfig:GetCard(poss[sel].SubType):IsRune() then
 				fullID = "5.301"
 			end
 		end
