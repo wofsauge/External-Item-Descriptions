@@ -117,6 +117,7 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 ---@field Entity Entity?
 ---@field ShowWhenUnidentified boolean?
 ---@field PermanentTextEnglish string?
+---@field IgnoreBulletPointIconConfig boolean?
 ---@field ItemType integer?
 ---@field ChargeType integer?
 ---@field Charges integer? @Max charges
@@ -1321,7 +1322,7 @@ end
 ---Also returns the first word if it was rejected (so it can be removed from the line)
 ---@param text string
 ---@return string, string?
-function EID:handleBulletpointIcon(text)
+function EID:handleBulletpointIcon(text, ignoreBPConfig)
 	-- Find the position where '}}' is followed by a space or letter
 	local firstMarkupPos, _ = string.find(text, "{{.-}}")
 	local startPos, endPos = string.find(text, "}}%s")
@@ -1332,7 +1333,7 @@ function EID:handleBulletpointIcon(text)
 		local firstWord = string.sub(text, 1, endPos - 1)
 		firstWord = EID:removeColorMarkup(firstWord)
 		if EID:getIcon(firstWord) ~= EID.InlineIcons["ERROR"] and string.find(firstWord, "{{.-}}")~=nil then
-			if not EID.Config["StatAndPickupBulletpoints"] and EID.StatPickupBulletpointBlacklist[firstWord] then
+			if ignoreBPConfig and not EID.Config["StatAndPickupBulletpoints"] and EID.StatPickupBulletpointBlacklist[firstWord] then
 				return "\007", firstWord
 			end
 			return firstWord
