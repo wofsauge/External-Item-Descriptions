@@ -1325,3 +1325,28 @@ EID.QualityToLocustDamageMultiplier = {
 	[3] = 1.5,
 	[4] = 2,
 }
+
+EID.WispData = {
+	-- Indicates Wisps created by items, that only last 1 room
+	SingleRoom = {
+		[164] = true, -- The Candle
+		[289] = true, -- Red Candle
+		[294] = true, -- Butter Bean
+		[338] = true, -- The Boomerang
+		[484] = true, -- Wait What?
+		[504] = true, -- Brown Nugget
+		[604] = true, -- Mom's Bracelet
+		[709] = true, -- Suplex!
+	},
+	-- Indicates items, that dont create any wisps at all
+	NoWisp = {
+		[636] = true, -- R Key
+		[653] = true, -- Vade Retro
+		[713] = true, -- Sumptorium
+	}
+}
+
+if EID.isRepentancePlus then
+	EID.WispData.SingleRoom[111] = true -- The Bean
+	EID.WispData.SingleRoom[421] = true -- Kidney Bean
+end

@@ -117,14 +117,6 @@ local abyssSynergies = {
 EID.descriptions[languageCode].abyssSynergies = {}
 EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
 
-local bookOfVirtuesWisps = {
-	-- Added expiration information
-	[111] = "Outer ring wisp {{OuterWisp}}#{{Poison}} Poison fart when destroyed#Wisp gets removed when changing rooms",                    -- The Bean
-	-- Added expiration information
-	[421] =	"Middle ring wisp {{MiddleWisp}}#{{Charm}} Charm tears#{{Charm}} Charm fart when destroyed#Wisp gets removed when changing rooms",      -- Kidney Bean
-}
-EID:updateDescriptionsViaTable(bookOfVirtuesWisps, EID.descriptions[languageCode].bookOfVirtuesWisps)
-
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
