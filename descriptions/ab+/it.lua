@@ -156,7 +156,7 @@ EID.descriptions[languageCode].collectibles={
 	{"133", "Zampa di Guppy", "{{SoulHeart}} Converte 1 Portacuori in 3 Cuori Celesti"},
 	{"134", "Coda di Guppy", "{{Chest}} 33% di chance di rimpiazzare la ricompensa per completamento stanza con un baule#33% di chance di non generare alcuna ricompensa per completamento stanza"},
 	{"135", "Flebo", "{{Coin}} Ferisce Isaac per mezzo cuore e genera 1-2 monete"},
-	{"136", "Amico del Cuore", "Genera un'esca di Isaac che attrae i nemici ed esplode dopo 5 secondi"},
+	{"136", "Amico del Cuore", "Genera un Isaac finto che attrae i nemici ed esplode dopo 5 secondi"},
 	{"137", "Detonatore", "{{Bomb}} +5 Bombe#Le bombe di Isaac non esplodono più automaticamente#Usare l'oggetto fa detonare tutte le bombe di Isaac contemporaneamente"},
 	{"138", "Stimmate", "↑ {{Heart}} +1 Salute#↑ {{Damage}} +0.3 Danni"},
 	{"139", "Borsetta di Mamma", "{{Trinket}} Isaac può tenere 2 ninnoli"},
@@ -184,7 +184,7 @@ EID.descriptions[languageCode].collectibles={
 	{"161", "Ankh", "{{Player4}} Una volta morto Isaac resuscita nella forma di ??? (Bimbo Blu)"},
 	{"162", "Croce Celtica", "Subire danni ha il 20% di chance di rendere Isaac temporaneamente invincibile#{{Luck}} 100% di chance con 27 di Fortuna"},
 	{"163", "Bebè Fantasma", "Spara lacrime spettrali#Infligge 3.5 danni a lacrima"},
-	{"164", "La Candela", "Fa scagliare una fiamma blu#La fiamma infligge danni da contatto, blocca le lacrime nemiche, e svanisce dopo 2 secondi"},
+	{"164", "La Candela", "Fa scagliare una fiamma blu#La fiamma infligge danni da contatto, blocca i proiettili nemici, e svanisce dopo 2 secondi"},
 	{"165", "Gatto a Nove Code", "↑ {{Damage}} +1 Danni#↑ {{Shotspeed}} +0.23 Velocità Colpi"},
 	{"166", "D20", "Rilancia tutti i consumabili nella stanza"},
 	{"167", "Bebè Arlecchino", "Spara due lacrime in una traiettoria a forma di V#Infligge 4 danni a lacrima"},
@@ -301,12 +301,12 @@ EID.descriptions[languageCode].collectibles={
 	{"278", "Scroccoscuro", "{{Heart}} Raccoglie i Cuori Rossi nelle vicinanze#{{SoulHeart}} Genera 1 Cuore Celeste o un ragno per ogni 1.5 Cuori Rossi raccolti"},
 	{"279", "Grande Fan", "Grosso orbitale#Infligge 30 danni al secondo"},
 	{"280", "Sorellina Gambalunga", "Genera ad intervalli casuali ragni blu nelle stanze ostili"},
-	{"281", "Sacco da Boxe", "Famiglio esca#I nemici bersagliano lui al posto di Isaac"},
+	{"281", "Sacco da Boxe", "Famiglio diversivo#I nemici bersagliano lui al posto di Isaac"},
 	{"282", "Come Saltare", "Permette ad Isaac di saltare sopra varchi e ostacoli"},
 	{"283", "D100", "Rilancia tutti i consumabili e i piedistalli nella stanza, e tutti gli oggetti passivi di Isaac"},
 	{"284", "D4", "Rilancia tutti gli oggetti passivi di Isaac"},
 	{"285", "D10", "Rilancia tutti i nemici nella stanza"},
-	{"286", "Carta Vuota", "Attiva l'effetto della carta o della runa tenuta da Isaac senza usarla"},
+	{"286", "Carta Bianca", "Attiva l'effetto della carta o della runa tenuta da Isaac senza usarla"},
 	{"287", "Libro dei Segreti", "{{Timer}} Conferisce uno dei seguenti effetti fino all'uscita dal piano:#{{Collectible54}} \"Mappa del Tesoro\"#{{Collectible21}} \"La Bussola\"#{{Collectible246}} \"Mappa Blu\""},
 	{"288", "Scatola di Ragni", "Genera 1-4 ragni blu"},
 	{"289", "Candela Rossa", "Lancia una fiamma rossa#La fiamma sparisce dopo aver inflitto danni o bloccato 5 proiettili"},
@@ -880,7 +880,7 @@ EID.descriptions[languageCode].cards={
 	{"8", "VII - Il Carro", "{{Timer}} Conferisce per 6 secondi:#↑ {{Speed}} +0.28 Velocità#Invincibilità#Isaac non può sparare ma infligge 40 danni da contatto al secondo"},
 	{"9", "VIII - Giustizia", "Genera 1 {{UnknownHeart}} cuore, {{Coin}} moneta, {{Bomb}} bomba e {{Key}} chiave casuali"},
 	{"10", "IX - L'Eremita", "{{Shop}} Teletrasporta Isaac nel negozio"},
-	{"11", "X - Ruota della Fortuna", "Genera una {{Slotmachine}} Slot Machine o {{FortuneTeller}} Macchina della Fortuna"},
+	{"11", "X - Ruota della Fortuna", "Genera una {{Slotmachine}} Slot Machine#{{FortuneTeller}} 25% di chance che sia una Macchina dei Desideri"},
 	{"12", "XI - Forza", "{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Heart}} +1 Salute#↑ {{Speed}} +0.3 Velocità#↑ {{Damage}} +0.3 Danni#↑ {{Damage}} x1.5 Moltiplicatore Danni#↑ {{Range}} +5.25 Gittata#↑ +0.5 Altezza Lacrime"},
 	{"13", "XII - L'Appeso", "{{Timer}} Volo fino all'uscita dalla stanza"},
 	{"14", "XIII - Morte", "Infligge 40 danni a tutti i nemici nella stanza"},
@@ -900,7 +900,7 @@ EID.descriptions[languageCode].cards={
 	{"28", "Asso di Quadri", "{{Coin}} Converte tutti i consumabili in monete casuali"},
 	{"29", "Asso di Picche", "{{Key}} Converte tutti i consumabili in chiavi casuali"},
 	{"30", "Asso di Cuori", "{{Heart}} Converte tutti i consumabili in bombe casuali"},
-	{"31", "Joker", "{{AngelDevilChance}} Teletrasporta Isaac nella Stanza del Diavolo o dell'Angelo"},
+	{"31", "Jolly", "{{AngelDevilChance}} Teletrasporta Isaac nella Stanza del Diavolo o dell'Angelo"},
 	{"32", "Hagalaz", "Distrugge tutte le rocce nella stanza"},
 	{"33", "Jera", "Duplica tutti i consumabili nella stanza"},
 	{"34", "Ehwaz", "Genera una botola per il prossimo piano#{{LadderRoom}} 8% di chance di una botola con cunicolo"},
@@ -936,7 +936,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[7] = {2, 4}, -- VI - The Lovers
 	[8] = {6, 12}, -- VII - The Chariot
 	[9] = {"Genera {{ColorShinyPurple}}2{{CR}} {{UnknownHeart}} cuori, {{Coin}} monete, {{Bomb}} bombe e {{Key}} chiavi casuali"}, -- VIII - Justice
-	[11] = {" una ", " 2 ", "Macchina", "{{CR}}Macchine"}, -- X - Wheel of Fortune
+	[11] = {" una ", " 2 ", "Macchina", "{{CR}}Macchine"," sia una Macchina dei Desideri", " siano 2 {{CR}}Macchine dei Desideri"}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
 	[15] = {" una ", " 2 ", "Macchina", " {{CR}}Macchine", "un Mendicacuore", "2 {{CR}}Mendicacuori"},-- XIV - Temperance (+ Greed version) 
@@ -1301,8 +1301,8 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.260"] = "Rimuove l'effetto di teletrasporto di {1}", -- Black Candle
 	["Void Single Use"] = "Gli oggetti monouso vengono attivati per 1 volta sola", -- Single Use Actives + Void
 	["? Card Single Use"] = "Dopo l'uso di \"Carta ?\" gli oggetti monouso spariranno", -- Single Use Actives + ? Card
-	["5.300.48"] = "Teletrasporta nella Stanza I AM ERROR#\"Carta Vuota\" e \"Carta ?\" verranno distrutte", -- Blank Card + ? Card
-	["? + Blank Pedestal"] = "Usare \"Carta ?\" con \"Carta Vuota\" teletrasporta nella Stanza I AM ERROR e distrugge ambo le carte", -- Looking at Blank Card with ? Card
+	["5.300.48"] = "Teletrasporta nella Stanza I AM ERROR#\"Carta Bianca\" e \"Carta ?\" verranno distrutte", -- Blank Card + ? Card
+	["? + Blank Pedestal"] = "Usare \"Carta ?\" con \"Carta Bianca\" teletrasporta nella Stanza I AM ERROR e distrugge ambo le carte", -- Looking at Blank Card with ? Card
 	["5.100.208"] = {20, 35, 5, 20}, -- Champion Belt + Hard Mode
 	["5.100.521"] = "{{Collectible376}} Gli oggetti gratuiti non verranno riforniti", -- Coupon + Restock/Greed
 	["Black Feather"] = "↑ {{Damage}} +0.2 Danni", -- Black Feather items
