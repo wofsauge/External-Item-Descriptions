@@ -975,6 +975,12 @@ EID.RoomShapeToMarkup = { "{{Room}}", "{{RoomSmallHorizontal}}", "{{RoomSmallVer
 EID.RoomTypeToMarkup = { "{{Room}}", "{{Shop}}", "{{ErrorRoom}}", "{{TreasureRoom}}", "{{BossRoom}}", "{{MiniBoss}}", "{{SecretRoom}}", "{{SuperSecretRoom}}", "{{ArcadeRoom}}", "{{CursedRoom}}", "{{ChallengeRoom}}", "{{Library}}", "{{SacrificeRoom}}", "{{DevilRoom}}", "{{AngelRoom}}", "{{LadderRoom}}", "{{Room}}" --[[boss rush]], "{{IsaacsRoom}}", "{{BarrenRoom}}", "{{ChestRoom}}", "{{DiceRoom}}", "{{Shop}}", "{{Room}}", --[[Black Market / Greed Exit]] "{{Planetarium}}", "{{Teleporter}}","{{Teleporter}}", "{{Room}}", "{{Room}}" --[[Blue Key rooms]], "{{UltraSecretRoom}}" }
 EID.ItemPoolTypeToMarkup = { [0] = "{{ItemPoolTreasure}}", "{{ItemPoolShop}}", "{{ItemPoolBoss}}", "{{ItemPoolDevil}}", "{{ItemPoolAngel}}", "{{ItemPoolSecret}}", "{{ItemPoolLibrary}}", "{{ItemPoolShellGame}}", "{{ItemPoolGoldenChest}}", "{{ItemPoolRedChest}}", "{{ItemPoolBeggar}}", "{{ItemPoolDemonBeggar}}", "{{ItemPoolCurse}}", "{{ItemPoolKeyMaster}}", "{{ItemPoolBombBum}}", "{{ItemPoolMomsChest}}", "{{ItemPoolGreedTreasure}}", "{{ItemPoolGreedShop}}", "{{ItemPoolGreedBoss}}", "{{ItemPoolGreedDevil}}", "{{ItemPoolGreedAngel}}", "{{ItemPoolGreedCurse}}", "{{ItemPoolGreedSecret}}", "{{ItemPoolCraneGame}}", "{{ItemPoolUltraSecret}}", "{{ItemPoolBatteryBum}}", "{{ItemPoolPlanetarium}}", "{{ItemPoolOldChest}}", "{{ItemPoolBabyShop}}", "{{ItemPoolWoodenChest}}", "{{ItemPoolRottenBeggar}}"}
 
+-- Background icon markup substrings
+EID.MarkupBackgroundKeywords = {
+	["Virtues"] = "gfx/ui/hud_bookofvirtues.png",
+}
+
+
 -- additional offset of the textbox to the entity position. Only applies in local description mode.
 -- If a function returns a value, it will be used as the offset
 EID.LocalModePositionOffset = {
@@ -1319,3 +1325,28 @@ EID.QualityToLocustDamageMultiplier = {
 	[3] = 1.5,
 	[4] = 2,
 }
+
+EID.WispData = {
+	-- Indicates Wisps created by items, that only last 1 room
+	SingleRoom = {
+		[164] = true, -- The Candle
+		[289] = true, -- Red Candle
+		[294] = true, -- Butter Bean
+		[338] = true, -- The Boomerang
+		[484] = true, -- Wait What?
+		[504] = true, -- Brown Nugget
+		[604] = true, -- Mom's Bracelet
+		[709] = true, -- Suplex!
+	},
+	-- Indicates items, that dont create any wisps at all
+	NoWisp = {
+		[636] = true, -- R Key
+		[653] = true, -- Vade Retro
+		[713] = true, -- Sumptorium
+	}
+}
+
+if EID.isRepentancePlus then
+	EID.WispData.SingleRoom[111] = true -- The Bean
+	EID.WispData.SingleRoom[421] = true -- Kidney Bean
+end

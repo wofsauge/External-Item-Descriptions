@@ -427,30 +427,6 @@ if EID.isRepentance then
 		return descObj
 	end
 
-	-- Handle Book of Virtues description addition
-	local function BookOfVirtuesCallback(descObj)
-		-- Display players' current active item's wisp effect when looking at a Book of Virtues pedestal
-		if descObj.ObjSubType == 584 and not EID.InsideItemReminder then
-			for i = 1,#EID.coopAllPlayers do
-				local player = EID.coopAllPlayers[i]
-				local active = player:GetActiveItem()
-				local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", active)
-				if wispType ~= nil then
-					local iconStr = "#{{Collectible" .. active .. "}} "
-					EID:appendToDescription(descObj, iconStr..wispType:gsub("#",iconStr))
-				end
-			end
-		-- Display wisp effect of a pedestal / your active while holding Book of Virtues
-		else
-			local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", descObj.ObjSubType)
-			if wispType ~= nil then
-				local iconStr = "#{{Collectible584}} "
-				EID:appendToDescription(descObj, iconStr..wispType:gsub("#",iconStr))
-			end
-		end
-		return descObj
-	end
-
 	-- 3 coins, 1 bomb, 1 key, 1 soul heart, 2 red hearts
 	local consolationPickups = { "5.20", "5.40", "5.30", "5.10.3", "5.10" }
 	local consolationQuantity = { "3", "1", "1", "1", "2" }
@@ -991,17 +967,18 @@ if EID.isRepentance then
 		local chance = (effectID == 3 and chance3 < 1 and chance3) or (effectID == 2 and chance2 < 1 and chance2) or chance1 or 1
 		if chance ~= 1 then
 			chanceText = EID:getDescriptionEntry("AbyssTexts", "Chance")
-			chanceText = EID:ReplaceVariableStr(chanceText, math.floor(chance * 100))
+			local chancePercent = string.format("%.2f", chance * 100):gsub("%.?0+$", "") -- formated and without trailing zeros
+			chanceText = EID:ReplaceVariableStr(chanceText, chancePercent)
 		end
 		return chanceText
 	end
 
-	local function GetFlagString(id, tableName, flagArray, chance1, chance2, chance3)
+	local function GetFlagString(id, tableName, color, flagArray, chance1, chance2, chance3)
 		local text = ""
 		for _, locustFlag in ipairs(flagArray) do
 			local locustEffectText = EID:getDescriptionEntry(tableName, locustFlag)
 			if locustEffectText then
-				text = text .. "#{{ColorRed}}" .. locustEffectText .. GetChanceString(id, chance1, chance2, chance3)
+				text = text .. "#".. color .. locustEffectText .. GetChanceString(id, chance1, chance2, chance3)
 			end
 			if not EID.isRepentancePlus then
 				-- In Repentance, there is a bug where only the first flag of the array is able to trigger
@@ -1072,14 +1049,14 @@ if EID.isRepentance then
 			descriptionText = descriptionText .. "#"..textColor  .. dmgText2 .. GetChanceString(1, procChance1, procChance2, procChance3)
 		end
 		-- create list of locust effect descriptions
-		descriptionText = descriptionText .. GetFlagString(1, "AbyssLocustEffects", locustFlags1, procChance1, procChance2, procChance3)
-		descriptionText = descriptionText .. GetFlagString(2, "AbyssLocustEffects", locustFlags2, procChance1, procChance2, procChance3)
-		descriptionText = descriptionText .. GetFlagString(3, "AbyssLocustEffects", locustFlags3, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(1, "AbyssLocustEffects", textColor, locustFlags1, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(2, "AbyssLocustEffects", textColor, locustFlags2, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(3, "AbyssLocustEffects", textColor, locustFlags3, procChance1, procChance2, procChance3)
 
 		-- create list of tear effect descriptions
-		descriptionText = descriptionText .. GetFlagString(1, "TearFlagNames", tearFlags1, procChance1, procChance2, procChance3)
-		descriptionText = descriptionText .. GetFlagString(2, "TearFlagNames", tearFlags2, procChance1, procChance2, procChance3)
-		descriptionText = descriptionText .. GetFlagString(3, "TearFlagNames", tearFlags3, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(1, "TearFlagNames", textColor, tearFlags1, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(2, "TearFlagNames", textColor, tearFlags2, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(3, "TearFlagNames", textColor, tearFlags3, procChance1, procChance2, procChance3)
 
 		-- pluralize
 		descriptionText = EID:TryPluralizeString(descriptionText, amount)
@@ -1088,7 +1065,135 @@ if EID.isRepentance then
 
 		return descObj
 	end
+	---------------------------------------
+	---- Book of Virtues Wisp Handling-----
+	---------------------------------------
 
+	local function BookOfVirtuesWispDescriptionBuilder(descObj, itemID)
+		local textColor = "{{ColorPastelBlue}}"
+		-- Get explicit "bookOfVirtuesWisps" table entry, if present
+		local additionalDesc = EID:getDescriptionEntry("bookOfVirtuesWisps", itemID)
+
+		-- Display automatically generated description
+
+		-- Check if an XML entry exists and load if exists
+		if not EID.XMLWisps or not EID.XMLWisps[itemID] then
+			if additionalDesc then -- try to display additional Description if available
+				EID:appendToDescription(descObj, "#{{VirtuesCollectible"..itemID.."}} " .. textColor .. additionalDesc)
+			end
+			return descObj
+		end
+		-- Disable removal of stat up icons for this description object
+		descObj.IgnoreBulletPointIconConfig = true
+
+		-- read xml data
+		local wispData = EID.XMLWisps[itemID]
+		local descriptionText = ""
+		local hp = wispData[1]
+		local layer = wispData[2]
+		local damage = wispData[3]
+		local stageDamage = wispData[4]
+		local damageMultiplier2 = wispData[5]
+		local shotSpeed = wispData[6]
+		local fireDelay = wispData[7]
+		local procChance = wispData[8]
+		local canShoot = wispData[9] and fireDelay ~= -1
+		local amount = wispData[10]
+		local tearFlags = wispData[11] -- array
+		local tearFlags2 = wispData[12] -- array
+
+		-- Display "No Wisp" text if defined. else, display more detailed description
+		if EID.WispData.NoWisp[itemID] then
+			local noWispsText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "NoWisps")
+			descriptionText = "#{{VirtuesCollectible"..itemID.."}} " .. textColor .. noWispsText
+		else
+			-- base damage via damage, stage damage and firedelay
+			local damageText = ""
+			if canShoot then
+				damageText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Damage")
+				local dmg = (damage + (stageDamage * (game:GetLevel():GetAbsoluteStage() - 1))) * (30 / fireDelay)
+				local dmgTxt = string.format("%.2f", dmg):gsub("%.?0+$", "") -- formated and without trailing zeros
+				damageText = EID:ReplaceVariableStr(damageText, dmgTxt)
+			else
+				-- Display "Cant Shoot" text instead of damage values
+				damageText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "CantShoot")
+			end
+
+			-- HP Text
+			local hpText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Health")
+			hpText = EID:ReplaceVariableStr(hpText, hp)
+
+			-- layer
+			local ringTable = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Ring")
+			local ringText = ringTable[layer] or ringTable[1]
+			-- overview / headline
+			descriptionText = "#{{VirtuesCollectible"..itemID.."}} " .. textColor .. ringText
+			descriptionText = EID:ReplaceVariableStr(descriptionText, "amount", amount ~= 0 and amount or "")
+
+			-- HP and damage text
+			local statText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "StatDescription")
+			statText = EID:ReplaceVariableStr(statText, "health", textColor .. hpText) -- TODO: Fix issue where color definition before icon definition causes 1 extra space
+			statText = EID:ReplaceVariableStr(statText, "damage", damageText)
+			descriptionText = descriptionText .. "#" .. statText
+
+			-- Single room warning
+			if EID.WispData.SingleRoom[itemID] then
+				local singleRoomText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "SingleRoom")
+				descriptionText = descriptionText .. "#{{Warning}} " .. textColor .. singleRoomText
+			end
+
+			if canShoot then
+				-- shot speed
+				if shotSpeed ~= 1 then
+					local shotSpeedText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Shotspeed")
+					local shotSpeedtxt = string.format("%.2f", shotSpeed * 100):gsub("%.?0+$", "") -- formated and without trailing zeros
+					shotSpeedText = EID:ReplaceVariableStr(shotSpeedText, shotSpeedtxt)
+					descriptionText = descriptionText .. "#{{Shotspeed}} " .. textColor .. shotSpeedText
+				end
+	
+				-- damage multiplier based on proc chance
+				if damageMultiplier2 ~= 1 then
+					local dmgText2 = EID:ReplaceVariableStr(EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Damage"),
+						damageMultiplier2)
+					descriptionText = descriptionText ..
+					"#" .. textColor .. "dmg" .. dmgText2 .. GetChanceString(2, procChance, procChance, 0)
+				end
+				-- create list of tear effect descriptions
+				descriptionText = descriptionText .. GetFlagString(1, "TearFlagNames", "{{Shotspeed}} " .. textColor, tearFlags, procChance, procChance)
+				descriptionText = descriptionText .. GetFlagString(2, "TearFlagNames", "{{Shotspeed}} " .. textColor, tearFlags2, procChance, procChance)
+			end
+		end
+
+		-- add additional descriptions. Do a loop to ensure correct line color
+		if additionalDesc then
+			for line in string.gmatch(additionalDesc, "([^#]+)") do
+				descriptionText = descriptionText .. "#" .. textColor .. line
+			end
+		end
+
+		-- pluralize
+		descriptionText = EID:TryPluralizeString(descriptionText, amount)
+		-- Put everything together
+		EID:appendToDescription(descObj, descriptionText)
+		return descObj
+	end
+
+	-- Handle Book of Virtues description addition
+	local function BookOfVirtuesCallback(descObj)
+		-- Display players' current active item's wisp effect when looking at a Book of Virtues pedestal
+		if descObj.ObjSubType == 584 and not EID.InsideItemReminder then
+			for i = 1,#EID.coopAllPlayers do
+				local player = EID.coopAllPlayers[i]
+				local activeItemID = player:GetActiveItem()
+				if activeItemID > 0 then
+					descObj = BookOfVirtuesWispDescriptionBuilder(descObj, activeItemID)
+				end
+			end
+			return descObj
+		end
+		-- Display wisp effect of a pedestal / your active while holding Book of Virtues
+		return BookOfVirtuesWispDescriptionBuilder(descObj, descObj.ObjSubType)
+	end
 	--------------------------------
 	-- Although individual conditions/callbacks work well for mods to be able to add through the API,
 	-- As we kept adding callbacks for vanilla items, a lot of code got repeated over and over

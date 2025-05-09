@@ -723,8 +723,10 @@ EID.descriptions[languageCode].transformations={
 -- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
 -- Each language can do their own algorithm to modify the given text to their needs
 EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	text = EID:ReplaceVariableStr(text, "singular_r", amount > 1 and "" or "r") -- add "r" to word if singular
 	text = EID:ReplaceVariableStr(text, "plural_n", amount > 1 and "e" or "") -- add "n" to word
 	text = EID:ReplaceVariableStr(text, "plural_en", amount > 1 and "en" or "") -- add "en" to word
+	text = EID:ReplaceVariableStr(text, "plural_s", amount > 1 and "s" or "") -- add "s" to word
 	return text
 end
 

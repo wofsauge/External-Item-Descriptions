@@ -1129,7 +1129,7 @@ EID.descriptions[languageCode].RedToX = {
 
 	["Red to Black"] = {"↑ {{Heart}} +{1} Salute", "{{BlackHeart}} +{1} Cuore/i Nero/i",
 	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{BlackHeart}} +{1} Cuore/i Nero/i",
-	"↓ {{EmptyHeart}} {1} Salute", "↓ {{SoulHeart}} {1} Cuore/i Nero/i"},
+	"↓ {{EmptyHeart}} {1} Salute", "↓ {{BlackHeart}} {1} Cuore/i Nero/i"},
 
 	["Red to Bone"] = {"↑ {{Heart}} +{1} Salute", "{{BoneHeart}} +{1} Cuore/i Osseo/i",
 	"↑ {{EmptyHeart}} +{1} Portacuori vuoto/i", "{{EmptyBoneHeart}} +{1} Cuore/i Osseo/i Vuoto/i", "{{HealingRed}}", "{{HealingBone}}", -- Red HP to Bone Hearts

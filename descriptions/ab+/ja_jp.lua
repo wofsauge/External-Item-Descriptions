@@ -1129,7 +1129,7 @@ EID.descriptions[languageCode].RedToX = {
 	
 	["Red to Black"] = {"↑ 最大体力 +{1}", "黒ハート +{1}",
 	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{BlackHeart}} +{1} Black Heart{pluralize}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Black Heart{pluralize}"},
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{BlackHeart}} {1} Black Heart{pluralize}"},
 	
 	["Red to Bone"] = {"↑ 最大体力 +{1}", "骨ハート +{1}",
 	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{EmptyBoneHeart}} +{1} Empty Bone Heart{pluralize}", "{{HealingRed}}", "{{HealingBone}}",

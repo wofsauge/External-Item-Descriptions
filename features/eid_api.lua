@@ -117,6 +117,7 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 ---@field Entity Entity?
 ---@field ShowWhenUnidentified boolean?
 ---@field PermanentTextEnglish string?
+---@field IgnoreBulletPointIconConfig boolean?
 ---@field ItemType integer?
 ---@field ChargeType integer?
 ---@field Charges integer? @Max charges
@@ -1168,6 +1169,7 @@ end
 ---@return EID_Icon?
 function EID:createItemIconObject(str)
 	local item = nil
+	local backgroundImage = ""
 	local subTypeIdentifier = 0
 
 	-- Check for {{Item#.##.###}} markup; easiest way to handle it is to just call this function again
@@ -1182,7 +1184,16 @@ function EID:createItemIconObject(str)
 			end
 		end
 	end
-	
+
+	-- Add background image to Icon, if the keyword can be found in the markup string
+	for keyword, imagePath in pairs(EID.MarkupBackgroundKeywords) do
+		if string.find(str, keyword) then
+			str = string.gsub(str, keyword, "")
+			backgroundImage = imagePath
+			break
+		end
+	end
+
 	---@diagnostic disable
 	local collID,numReplace = string.gsub(str, "Collectible", "")
 	if numReplace > 0 and collID ~= "" and tonumber(collID) ~= nil then
@@ -1205,19 +1216,19 @@ function EID:createItemIconObject(str)
 		return {"Pills", tonumber(pillID % 2048)-1, 9, 8, 0, 1, EID.CardPillSprite}
 	end
 	---@diagnostic enable
-
 	if item == nil then
 		return nil
 	end
-	if dynamicSpriteCache[str] then
-		return dynamicSpriteCache[str]
+	if dynamicSpriteCache[backgroundImage .. str] then
+		return dynamicSpriteCache[backgroundImage .. str]
 	else
 		local spriteDummy = Sprite()
 		spriteDummy:Load("gfx/eid_inline_icons.anm2", true)
+		spriteDummy:ReplaceSpritesheet(0, backgroundImage)
 		spriteDummy:ReplaceSpritesheet(1, item.GfxFileName)
 		spriteDummy:LoadGraphics()
-		local newDynamicSprite = {"ItemIcon", subTypeIdentifier, 11, 8, -2, -2, spriteDummy}
-		dynamicSpriteCache[str] = newDynamicSprite
+		local newDynamicSprite = { "ItemIcon", subTypeIdentifier, 11, 8, -2, -2, spriteDummy }
+		dynamicSpriteCache[backgroundImage .. str] = newDynamicSprite
 		return newDynamicSprite
 	end
 end
@@ -1321,7 +1332,7 @@ end
 ---Also returns the first word if it was rejected (so it can be removed from the line)
 ---@param text string
 ---@return string, string?
-function EID:handleBulletpointIcon(text)
+function EID:handleBulletpointIcon(text, ignoreBPConfig)
 	-- Find the position where '}}' is followed by a space or letter
 	local firstMarkupPos, _ = string.find(text, "{{.-}}")
 	local startPos, endPos = string.find(text, "}}%s")
@@ -1332,7 +1343,7 @@ function EID:handleBulletpointIcon(text)
 		local firstWord = string.sub(text, 1, endPos - 1)
 		firstWord = EID:removeColorMarkup(firstWord)
 		if EID:getIcon(firstWord) ~= EID.InlineIcons["ERROR"] and string.find(firstWord, "{{.-}}")~=nil then
-			if not EID.Config["StatAndPickupBulletpoints"] and EID.StatPickupBulletpointBlacklist[firstWord] then
+			if ignoreBPConfig and not EID.Config["StatAndPickupBulletpoints"] and EID.StatPickupBulletpointBlacklist[firstWord] then
 				return "\007", firstWord
 			end
 			return firstWord

@@ -730,16 +730,16 @@ function EID:printDescription(desc, cachedID)
 			local poolDescTable = EID:getDescriptionEntry("itemPoolNames")
 			poolName = "{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolTreasure}}")..poolDescTable[lastPool] .. "{{CR}}#"
 
-			renderPos = EID:printBulletPoints(poolName, renderPos)
+			renderPos = EID:printBulletPoints(poolName, renderPos, desc.IgnoreBulletPointIconConfig)
 		end
 	end
 
 	if EID.Config["ShowItemDescription"] then
-		EID:printBulletPoints(desc.Description, renderPos)
+		EID:printBulletPoints(desc.Description, renderPos, desc.IgnoreBulletPointIconConfig)
 	end
 end
 
-function EID:printBulletPoints(description, renderPos)
+function EID:printBulletPoints(description, renderPos, ignoreBPConfig)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
 	local textScale = Vector(EID.Scale, EID.Scale)
 	description = EID:replaceNameMarkupStrings(description)
@@ -751,7 +751,7 @@ function EID:printBulletPoints(description, renderPos)
 		for i, lineToPrint in ipairs(formatedLines) do
 			-- render bulletpoint
 			if i == 1 then
-				local bpIcon, rejectedIcon = EID:handleBulletpointIcon(lineToPrint)
+				local bpIcon, rejectedIcon = EID:handleBulletpointIcon(lineToPrint, ignoreBPConfig)
 				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
 					lineToPrint = string.gsub(lineToPrint, bpIcon, "", 1)
 					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor, true)
@@ -860,7 +860,7 @@ function EID:renderUnidentifiedPill(entity)
 	)
 	if EID.Config["ShowItemDescription"] and descriptionObj.ShowWhenUnidentified then
 		renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
-		EID:printBulletPoints(descriptionObj.Description, renderPos)
+		EID:printBulletPoints(descriptionObj.Description, renderPos, descriptionObj.IgnoreBulletPointIconConfig)
 	end
 end
 

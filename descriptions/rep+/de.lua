@@ -116,15 +116,6 @@ local abyssSynergies = {
 EID.descriptions[languageCode].abyssSynergies = {}
 EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
 
-local bookOfVirtuesWisps = {
-	-- Added expiration information
-	[111] = "Außen-Ring Irrlicht {{OuterWisp}}#{{Poison}} Gift-Furz wenn zerstört#Irrlicht wird zerstört wenn der Raum verlassen wird",                    -- The Bean
-	-- Added expiration information
-	[421] =	"Mittel-Ring Irrlicht {{MiddleWisp}}#{{Charm}} Verzaubernde Tränen#{{Charm}} Verzaubernder Furz wenn zerstört#Irrlicht wird zerstört wenn der Raum verlassen wird",      -- Kidney Bean
-}
-EID:updateDescriptionsViaTable(bookOfVirtuesWisps, EID.descriptions[languageCode].bookOfVirtuesWisps)
-
-
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
 	EID.descriptions[languageCode].repPlusCollectibles = collectibles
