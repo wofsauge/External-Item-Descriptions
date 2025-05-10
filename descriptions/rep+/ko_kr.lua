@@ -108,14 +108,6 @@ local conditions = {
 }
 EID:updateDescriptionsViaTable(conditions, EID.descriptions[languageCode].ConditionalDescs)
 
-local wisps = {
-	[111] = "{{OuterWisp}} {{ColorOrange}}외부 x1{{CR}}/{{Heart}}:1#일반 눈물을 발사합니다. ({{DamageSmall}}:1.5)#{{Poison}}꺼지면 독방귀를 뀝니다.#방을 나가면 사라집니다.", -- The Bean
-	[421] = "{{MiddleWisp}} {{ColorYellow}}중앙 x1{{CR}}/{{Heart}}:2#일반 눈물을 발사합니다. ({{DamageSmall}}:3)#{{Charm}}꺼지면 매혹 방귀를 뀝니다.#방을 나가면 사라집니다.", -- Kidney Bean
-	-- TODO check damage and hp
-	[441] = "{{MiddleWisp}} {{ColorYellow}}중앙 x1{{CR}}/{{Heart}}:2#{{Chargeable}}충전형 혈사포를 발사합니다. ({{DamageSmall}}:3)#{{Collectible441}}아이템 발동 중 혈사포를 같이 발사합니다.", -- Mega Blast
-}
-EID:updateDescriptionsViaTable(wisps, EID.descriptions[languageCode].bookOfVirtuesWisps)
-
 -- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
 local abyssSynergies = {
 	[706] = "서로 다른 효과를 가진 심연의 파리 x16 소환", -- Abyss
