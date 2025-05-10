@@ -125,7 +125,7 @@ EID.descriptions[languageCode].collectibles={
 	{"102", "Boccetta di Mamma", "{{Pill}} Genera 1 pillola"},
 	{"103", "Il Raffreddore", "{{Poison}} 25% di chance di sparare lacrime velenose#{{Luck}} 100% di chance con 12 di Fortuna"},
 	{"104", "Il Parassita", "Al contatto le lacrime si dividono in 2#Le lacrime divise infliggono metà dei danni"},
-	{"105", "Il D6", "Rilancia i piedistalli nella stanza corrente"},
+	{"105", "Il D6", "Risorteggia i piedistalli nella stanza corrente"},
 	{"106", "Mr. Mega", "↑ {{Bomb}} x1.83 danni delle bombe#{{Bomb}} +5 Bombe"},
 	{"107", "Forbici Seghettate", "{{Timer}} Conferisce fino all'uscita dalla stanza:#Volo#Il corpo di Isaac si separa dalla testa e attacca i nemici con 82.5 danni da contatto al secondo"},
 	{"108", "L'Ostia", "Riduce la maggior parte dei danni presi a mezzo cuore"},
@@ -147,7 +147,7 @@ EID.descriptions[languageCode].collectibles={
 	{"124", "Pergamene del Mar Morto", "Attiva l'effetto di un oggetto attivo casuale#Sceglie l'effetto da un elenco definito di oggetti"},
 	{"125", "Bobby-Bomba", "{{Bomb}} +5 Bombe#Bombe a ricerca"},
 	{"126", "Lametta", "↑ {{Damage}} +1.2 Danni#{{Warning}} Infligge 1 cuore di danni ad Isaac#{{Heart}} Rimuove per primi i Cuori Rossi"},
-	{"127", "NonTiRicordarDiMe", "{{Warning}} MONOUSO {{Warning}}#Rilancia e fa ripartire l'intero piano"},
+	{"127", "NonTiRicordarDiMe", "{{Warning}} MONOUSO {{Warning}}#Risorteggia e fa ripartire l'intero piano"},
 	{"128", "Forever Alone", "Mosca orbitale a lunga distanza#Infligge 30 danni da contatto al secondo"},
 	{"129", "Secchio di Lardo", "↑ {{EmptyHeart}} +2 Portacuori vuoti#↓ {{Speed}} -0.2 Velocità#{{HealingRed}} Cura di mezzo cuore"},
 	{"130", "Un Pony", "{{Speed}} Imposta la Velocità ad almeno 1.5#Volo mentre viene tenuto#Usare l'oggetto fa scattare Isaac nella direzione in cui si sta muovendo"},
@@ -186,7 +186,7 @@ EID.descriptions[languageCode].collectibles={
 	{"163", "Bebè Fantasma", "Spara lacrime spettrali#Infligge 3.5 danni a lacrima"},
 	{"164", "La Candela", "Fa scagliare una fiamma blu#La fiamma infligge danni da contatto, blocca i proiettili nemici, e svanisce dopo 2 secondi"},
 	{"165", "Gatto a Nove Code", "↑ {{Damage}} +1 Danni#↑ {{Shotspeed}} +0.23 Velocità Colpi"},
-	{"166", "D20", "Rilancia tutti i consumabili nella stanza"},
+	{"166", "D20", "Risorteggia tutti i consumabili nella stanza"},
 	{"167", "Bebè Arlecchino", "Spara due lacrime in una traiettoria a forma di V#Infligge 4 danni a lacrima"},
 	{"168", "Epic Fetus", "Al posto delle lacrime appare un mirino direzionabile#Un missile colpisce il mirino dopo 1.5 secondi#Infligge i danni di Isaac x20"},
 	{"169", "Polifemo", "↑ {{Damage}} +4 Danni#↑ {{Damage}} x2 Moltiplicatore Danni#↓ {{Tears}} Meno Lacrime#Le lacrime penetrano i nemici uccisi in caso di danni residui"},
@@ -278,7 +278,7 @@ EID.descriptions[languageCode].collectibles={
 	{"255", "Vite", "↑ {{Tears}} +0.5 Lacrime#↑ {{Shotspeed}} +0.2 Velocità Colpi"},
 	{"256", "Bombe Incendiarie", "{{Bomb}} +5 Bombe#{{Burning}} Le bombe di Isaac lasciano una fiamma quando esplodono"},
 	{"257", "Mente in Fiamme", "{{Burning}} Le lacrime di Isaac appiccano fuoco ai nemici#10% di chance che le lacrime esplodano all'impatto con il nemico#{{Luck}} 100% di chance con 13 di Fortuna#{{Warning}} Le esplosioni possono ferire Isaac"},
-	{"258", "Missing No.", "Ad ogni nuovo piano rilancia tutti gli oggetti e statistiche di Isaac quando viene raccolto e ad ogni nuovo piano"},
+	{"258", "Missing No.", "Risorteggia tutti gli oggetti e statistiche di Isaac quando viene raccolto e ad ogni nuovo piano"},
 	{"259", "Materia Oscura", "↑ {{Damage}} +1 Danni#{{Fear}} 33% di chance di sparare lacrime spaventoso#{{Luck}} 100% di chance con 20 di Fortuna"},
 	{"260", "Candela Nera", "{{CurseBlind}} Immunità alle maledizioni#{{BlackHeart}} +1 Cuori Neri#{{AngelDevilChance}} +15% di chance di una Stanza del Diavolo/dell'Angelo"},
 	{"261", "Proptosi", "↑ {{Damage}} x2 Moltiplicatore Danni#↓ I danni inflitti dalle lacrime diminuiscono con la distanza percorsa"},
@@ -303,9 +303,9 @@ EID.descriptions[languageCode].collectibles={
 	{"280", "Sorellina Gambalunga", "Genera ad intervalli casuali ragni blu nelle stanze ostili"},
 	{"281", "Sacco da Boxe", "Famiglio diversivo#I nemici bersagliano lui al posto di Isaac"},
 	{"282", "Come Saltare", "Permette ad Isaac di saltare sopra varchi e ostacoli"},
-	{"283", "D100", "Rilancia tutti i consumabili e i piedistalli nella stanza, e tutti gli oggetti passivi di Isaac"},
-	{"284", "D4", "Rilancia tutti gli oggetti passivi di Isaac"},
-	{"285", "D10", "Rilancia tutti i nemici nella stanza"},
+	{"283", "D100", "Risorteggia tutti i consumabili e i piedistalli nella stanza, e tutti gli oggetti passivi di Isaac"},
+	{"284", "D4", "Risorteggia tutti gli oggetti passivi di Isaac"},
+	{"285", "D10", "Risorteggia tutti i nemici nella stanza"},
 	{"286", "Carta Bianca", "Attiva l'effetto della carta o della runa tenuta da Isaac senza usarla"},
 	{"287", "Libro dei Segreti", "{{Timer}} Conferisce uno dei seguenti effetti fino all'uscita dal piano:#{{Collectible54}} \"Mappa del Tesoro\"#{{Collectible21}} \"La Bussola\"#{{Collectible246}} \"Mappa Blu\""},
 	{"288", "Scatola di Ragni", "Genera 1-4 ragni blu"},
@@ -408,7 +408,7 @@ EID.descriptions[languageCode].collectibles={
 	{"383", "Detonatore di Lacrime", "Divide tutte le lacrime di Isaac presenti sullo schermo in cerchi da 6 lacrime"},
 	{"384", "Mini Gastrina", "{{Chargeable}} Si getta e rimbalza per la stanza ad una velocità che dipende dalla quantità di carica#Infligge dai 5 ai 90 danni da contatto al secondo in base alla velocità"},
 	{"385", "Bumbo", "{{Coin}} Raccolgie le monete nelle vicinanze#Aumenta di livello dopo aver raccolto 6, 12, e 24 monete#Lv2: Chance di generare un oggetto a completamento stanza#Lv3: Spara lacrime capaci di generare monete quando colpiscono#Lv4: Insegue i nemici, occasionalmente lascia una bomba, se raccoglie monete può generare un oggetto"},
-	{"386", "D12", "Rilancia gli ostacoli in altri ostacoli casuali (ad es. cacca, vasi, TNT, cacca rossa, blocchi di pietra etc.)"},
+	{"386", "D12", "Risorteggia gli ostacoli in altri ostacoli casuali (ad es. cacca, vasi, TNT, cacca rossa, blocchi di pietra etc.)"},
 	{"387", "Incensiere", "{{Slow}} Famiglio circondato da un grande alone che rallenta i nemici e i proiettili al suo interno"},
 	{"388", "Scrocchiave", "{{Key}} Raccoglie chiavi nelle vicinanze#{{Chest}} In cambio genera bauli casuali"},
 	{"389", "Sacco di Rune", "{{Rune}} Genera 1 runa casuale ogni 5-6 stanze"},
@@ -428,7 +428,7 @@ EID.descriptions[languageCode].collectibles={
 	{"403", "Ragno Moddato", "Mostra le barre di salute e i danni subiti di tutti i nemici#Al contatto con i nemici infligge effetti di stato casuali#Genera pile ad intervalli casuali"},
 	{"404", "Bebè Scoreggione", "Blocca i proiettili#Se colpito, 10% di chance di scorreggiare e di {{Charm}} ammaliare, {{Poison}} avvelenare o respingere i nemici"},
 	{"405", "Bug Rompigioco", "Rimbalza per la stanza#Infligge 120 danni al secondo e al contatto con i nemici applica effetti di stato casuale"},
-	{"406", "D8", "Moltiplica le statistiche dei danni, lacrime, gittata e velocità di Isaac in un range tra il x0.5 e il x2#I moltiplicatori vengono rilanciati ad ogni uso"},
+	{"406", "D8", "Moltiplica le statistiche dei danni, lacrime, gittata e velocità di Isaac in un range tra il x0.5 e il x2#I moltiplicatori vengono risorteggiati ad ogni uso"},
 	{"407", "Purezza", "Dona un'aura colorata ad Isaac, a seconda dell'aura vi sono vantaggi diversi#L'aura cambia subendo danni#Rosso = +4.0 di Danno#Blue = -4 di Intervallo fra le lacrime#Giallo = +0.5 di Velocità#Arancione = +7.5 di Gittata"},
 	{"408", "Athame", "Subire danni crea un anello di zolfo fuso nero attorno ad Isaac#{{BlackHeart}} I nemici uccisi dall'anello hanno una chance del 15% di lasciare 1 Cuore Nero"},
 	{"409", "Recipiente Vuoto", "{{BlackHeart}} +2 Cuori Neri#{{EmptyHeart}} Quando Isaac non ha Cuori Rossi:#Volo#Per ogni 40 secondi passati in una stanza ostile si ottiene uno scudo per 10 secondi"},
@@ -459,7 +459,7 @@ EID.descriptions[languageCode].collectibles={
 	{"434", "Barattolo di Mosche", "Uccidere un nemico aggiunge 1 mosca blu nelle giara, fino a un totale di 20#Usare l'oggetto libera tutte le mosche"},
 	{"435", "Mini Loki", "Spara 4 lacrime in un pattern a croce#Infligge 3.5 danni a lacrima"},
 	{"436", "Latte!", "{{Tears}} Subire danni conferisce più Lacrime per il resto della stanza"},
-	{"437", "D7", "Ripristina la stanza e resuscita tutti i nemici#Può essere usato per ottenere più ricompense per completamento stanza da una singola stanza#Se usata dopo una lotta con Avarizia, rilancia la stanza in un ordinario Negozio/Stanza Segreta"},
+	{"437", "D7", "Ripristina la stanza e resuscita tutti i nemici#Può essere usato per ottenere più ricompense per completamento stanza da una singola stanza#Se usata dopo una lotta con Avarizia, risorteggia la stanza in un ordinario Negozio/Stanza Segreta"},
 	{"438", "Ciuccio", "↑ {{Tears}} +0.75 Lacrime#↑ Diminuzione Statura#{{SoulHeart}} +1 Cuore Celeste"},
 	{"439", "Scatola di Mamma", "{{Trinket}} Genera 1 ninnolo casuale#Mentre viene tenuto:#↑ {{Luck}} +1 Fortuna#{{Trinket}} Raddoppia gli effetti dei ninnoli"},
 	{"440", "Calcolo Renale", "↑ +2 Altezza Lacrime#↓ {{Speed}} -0.2 Velocità#↓ {{Range}} -17 Gittata#Isaac occasionalmente smette di sparare e carica un attacco che rilascia uno scroscio di lacrime e un calcolo renale"},
@@ -544,7 +544,7 @@ EID.descriptions[languageCode].collectibles={
 	{"519", "Mini Delirio", "Si trasforma ogni 10 secondi in un famiglio casuale"},
 	{"520", "Morsetti", "Uccidere 15 enemies aggiunge 1 carica all'oggetto attivo"},
 	{"521", "Coupon", "Rende gratuito un oggetto casuale nel {{Shop}} Negozio o nella {{DevilRoom}} Stanza del Diavolo#Tenere l'oggetto garantisce che almeno un oggetto nel Negozio sia in saldo"},
-	{"522", "Telecinesi", "Ferma tutti i proiettili che si avvicinano ad Isaac per 3 secondi e in seguito li rilancia via"},
+	{"522", "Telecinesi", "Ferma tutti i proiettili che si avvicinano ad Isaac per 3 secondi e in seguito li risorteggia via"},
 	{"523", "Scatola per Traslochi", "Conserva tutti i consumabili e oggetti della stanza corrente#Usare di nuovo l'oggetto butta a terra tutto nel piano#Permette ad Isaac di spostare tra le stanze la sua roba"},
 	{"524", "Tecnologia Zero", "Le lacrime di Isaac sono connesse tra loro da raggi d'elettricità#I raggi infliggono i danni di Isaac"},
 	{"525", "Lebbra", "Subire danni genera un orbitale che blocca i proiettili#Si massimizza a 3 orbitali#Gli orbitali vengono distrutti se subiscono troppi danni"},
@@ -597,7 +597,7 @@ EID.descriptions[languageCode].carBattery = {
 	[93] = {6.5, 13}, -- The Gamekid
 	[97] = {1, 2, "consumabile", "{{CR}}consumabili"}, -- The Book of Sin
 	[102] = {1, 2, "pillola", "{{CR}}pillole"}, -- Mom's Bottle of Pills
-	[105] = "Rilancia due volte, esaurendo più velocemente le categorie di oggetti", -- The D6
+	[105] = "Risorteggia due volte, esaurendo più velocemente le categorie di oggetti", -- The D6
 	[107] = "Genera due corpi", -- The Pinking Shears
 	[111] = {5, 10}, -- The Bean
 	[123] = {" un ", " due ", "famiglio casuale", "{{CR}}famigli casuali"}, -- Monster Manual
@@ -608,8 +608,8 @@ EID.descriptions[languageCode].carBattery = {
 	[158] = {1, 2, "Cuore Celeste", "{{CR}}Cuori Celesti", "runa", "{{CR}}rune", "carta", "{{CR}}carte"}, -- Crystal Ball
 	[160] = {5, 10}, -- Crack the Sky
 	[171] = {10, 20}, -- Spider Butt
-	[283] = "Rilancia due volte, aiutando con il progresso della trasfromazione ma esaurendo più velocemente le categorie di oggetti", -- D100
-	[284] = "Rilancia due volte, aiutando con il progresso della trasfromazione ma esaurendo più velocemente le categorie di oggetti", -- D4
+	[283] = "Risorteggia due volte, aiutando con il progresso della trasfromazione ma esaurendo più velocemente le categorie di oggetti", -- D100
+	[284] = "Risorteggia due volte, aiutando con il progresso della trasfromazione ma esaurendo più velocemente le categorie di oggetti", -- D4
 	[286] = "Lo attiva due volte", -- Blank Card
 	[287] = {"uno", "due"}, -- Book of Secrets
 	[288] = {"1-4", "2-8"}, -- Box of Spiders
@@ -906,7 +906,7 @@ EID.descriptions[languageCode].cards={
 	{"34", "Ehwaz", "Genera una botola per il prossimo piano#{{LadderRoom}} 8% di chance di una botola con cunicolo"},
 	{"35", "Dagaz", "{{SoulHeart}} +1 Cuore Celeste#{{CurseCursed}} Rimuove tutte le maledizioni fino all'uscita dal piano"},
 	{"36", "Ansuz", "{{Timer}} Effetto di mappatura completa fino all'uscita dal piano"},
-	{"37", "Perthro", "Rilancia tutti i piedistalli nella stanza"},
+	{"37", "Perthro", "Risorteggia tutti i piedistalli nella stanza"},
 	{"38", "Berkano", "Evoca 3 ragni blu e 3 mosche blu"},
 	{"39", "Algiz", "{{Timer}} Rende Isaac invincibile per 30 secondi"},
 	{"40", "Runa Muta", "Attiva l'effetto di una runa casuale#Se usata 25% di chance di autoduplicarsi"},
@@ -918,7 +918,7 @@ EID.descriptions[languageCode].cards={
 	{"46", "Re Suicida", "Uccide istantaneamente Isaac e genera 10 consumabili o oggetti sul pavimento#Gli oggetti generati vengono dalla categoria di oggetti della stanza corrente"},
 	{"47", "Carta Esci Gratis di Prigione", "Apre tutte le porte nella stanza corrente"},
 	{"48", "Carta ?", "Concede un uso gratuito dell'oggetto attivo di Isaac"},
-	{"49", "Scheggia di Dado", "Rilancia tutti i piedistalli e i consumabili nella stanza"},
+	{"49", "Scheggia di Dado", "Risorteggia tutti i piedistalli e i consumabili nella stanza"},
 	{"50", "Contatto di Emergenza", "Due mani di Mamma scendono giù e afferrano un nemico ciascuno"},
 	{"51", "Carta Sacra", "{{HolyMantle}} Scudo di \"Manto Sacro\" fino all'uscita dalla stanza (previene i danni per 1 volta)#25% di chance di generare un'altra \"Carta Sacra\""},
 	{"52", "Crescita Gigante", "{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Damage}} +7 Danni#↑ {{Range}} +30 Gittata#Aumento Statura#Permette ad Isaac di distruggere le rocce camminandoci sopra"},
@@ -949,7 +949,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[26] = {"Duplica", "Quadruplica"}, -- 2 of Hearts
 	[33] = {"Duplica", "Quadruplica"}, -- Jera
 	[35] = {1, 2}, -- Dagaz
-	[37] = "Rilancia 2 volte", -- Perthro
+	[37] = "Risorteggia 2 volte", -- Perthro
 	[38] = {3, 6, 3, 6}, -- Berkano
 	[39] = {30, 60}, -- Algiz
 	[40] = "Attiva 2 effetti di rune e tenta di duplicarsi 2 volte", -- Blank Rune
@@ -1062,12 +1062,12 @@ EID.descriptions[languageCode].sacrifice={
 EID.descriptions[languageCode].diceHeader = "[Effetti della Stanza del Dado]"
 
 EID.descriptions[languageCode].dice={
-	{"1", "", "Rilancia tutti gli oggetti di Isaac in oggetti casuali della categoria di oggetti della stanza in cui erano stati ottenuti"},
-	{"2", "", "Rilancia tutti i consumabili nella stanza"},
-	{"3", "", "Rilancia tutti i consumabili e ninnoli nel piano#Non influisce sulla {{AngelDevilChance}} Stanza del Diavolo/dell'Angelo o sui {{LadderRoom}} cunicoli"},
-	{"4", "", "Rilancia tutti i piedistalli nel piano#Non influisce sulla {{AngelDevilChance}} Stanza del Diavolo/dell'Angelo o sui {{LadderRoom}} cunicoli"},
-	{"5", "", "Rilancia e ripristina il piano corrente"},
-	{"6", "", "Rilancia tutti gli oggetti di Isaac#Rilancia tutti i consumabili, ninnoli e piedistalli nel piano"},
+	{"1", "", "Risorteggia tutti gli oggetti di Isaac in oggetti casuali della categoria di oggetti della stanza in cui erano stati ottenuti"},
+	{"2", "", "Risorteggia tutti i consumabili nella stanza"},
+	{"3", "", "Risorteggia tutti i consumabili e ninnoli nel piano#Non influisce sulla {{AngelDevilChance}} Stanza del Diavolo/dell'Angelo o sui {{LadderRoom}} cunicoli"},
+	{"4", "", "Risorteggia tutti i piedistalli nel piano#Non influisce sulla {{AngelDevilChance}} Stanza del Diavolo/dell'Angelo o sui {{LadderRoom}} cunicoli"},
+	{"5", "", "Risorteggia e ripristina il piano corrente"},
+	{"6", "", "Risorteggia tutti gli oggetti di Isaac#Risorteggia tutti i consumabili, ninnoli e piedistalli nel piano"},
 }
 
 ---------- Transformations ----------
