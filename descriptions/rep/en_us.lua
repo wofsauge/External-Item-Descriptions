@@ -486,6 +486,7 @@ EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
 	StatDescription = "{{Heart}} {health} {{Damage}} {damage}",	-- {health} will be replaced with the health text, {damage} with the damage text or the "CantShoot" text
 	Health = "{1} health", 		-- {1} will be replaced with the health
 	Damage = "{1} dps",				-- {1} will be replaced with the calculated damage
+	Damage2 = "dmg", -- prepend text for damage multiplier based on proc chance
 	CantShoot = "Can't shoot!",
 	Shotspeed = "{1}% Shot speed", 				-- {1} will be replaced with the shot speed changes in %
 	Chance = " ({1}% Chance)",					-- {1} will be replaced with the chance
