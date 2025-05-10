@@ -2324,7 +2324,18 @@ function EID:getLanguage()
 		lang = "auto"
 	end
 	if lang == "auto" then
-		return Options and EID.LanguageMap[Options.Language] or "en_us"
+		local langToReturn = Options and EID.LanguageMap[Options.Language] or "en_us"
+		-- don't do any updating if on a Repentance version before v1.7.9b
+		if Isaac.RunCallback ~= nil then
+			local newLang
+			for _, callbackData in pairs(Isaac.GetCallbacks("EID_EVALUATE_AUTO_LANG")) do
+				local newString = callbackData.Function(callbackData.Mod, langToReturn)
+				if newString and type(newString) == "string" and EID.descriptions[newString] ~= nil then
+					langToReturn = newString
+				end
+			end
+		end
+		return langToReturn
 	end
 	---@cast lang EID_LanguageCode
 	return lang
