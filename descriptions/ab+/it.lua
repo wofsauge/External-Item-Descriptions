@@ -1085,7 +1085,7 @@ EID.descriptions[languageCode].transformations={
 	"Leviatano",		-- 9
 	"Serafino",			-- 10
 	"Super Scroccone",		-- 11
-	"Sapientino",			-- 12
+	"Secchione",			-- 12
 	"Bimbo Ragno",		-- 13
 	"Adulto",			-- 14
 	"Piedone"			-- 15
