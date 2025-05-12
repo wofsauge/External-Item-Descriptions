@@ -579,7 +579,6 @@ EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
 	StatDescription = "{{Heart}} {health} / {{DamageSmall}} {damage}",	-- {health} will be replaced with the health text, {damage} with the damage text or the "CantShoot" text
 	Health = "{1}", 		-- {1} will be replaced with the health
 	Damage = "{1} DPS",				-- {1} will be replaced with the calculated damage
-	Damage2 = "{{DamageSmall}} ", -- prepend text for damage multiplier based on proc chance
 	CantShoot = "공격불가",
 	Shotspeed = "탄속 {1}%", 				-- {1} will be replaced with the shot speed changes in %
 	Chance = " (확률 {1}%)",					-- {1} will be replaced with the chance
