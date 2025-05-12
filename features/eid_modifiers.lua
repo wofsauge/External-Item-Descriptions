@@ -1153,10 +1153,11 @@ if EID.isRepentance then
 	
 				-- damage multiplier based on proc chance
 				if damageMultiplier2 ~= 1 then
+					local damageText2 = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Damage2")
 					local dmgText2 = EID:ReplaceVariableStr(EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Damage"),
 						damageMultiplier2)
 					descriptionText = descriptionText ..
-					"#" .. textColor .. "dmg" .. dmgText2 .. GetChanceString(2, procChance, procChance, 0)
+					"#" .. textColor .. damageText2 .. dmgText2 .. GetChanceString(2, procChance, procChance, 0)
 				end
 				-- create list of tear effect descriptions
 				descriptionText = descriptionText .. GetFlagString(1, "TearFlagNames", "{{Shotspeed}} " .. textColor, tearFlags, procChance, procChance)
