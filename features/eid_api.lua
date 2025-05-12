@@ -93,6 +93,7 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 ---@field findReplace boolean? @If true, the text is replaced
 ---@field fullReplace boolean? @If true, description is fully replaced
 ---@field goldenOnly boolean? @If true, the description is modified only when the trinket is golden
+---@field additions number? @Add a value to the number in the text, similar to multiplier. Expects a table of 3 values, 1: double, 2: triple, 3: quadruple effect
 
 ---@class EID_Icon
 ---@field [1] string @Animation name
@@ -204,6 +205,31 @@ function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMult
 	elseif type(numbersToMultiply) == "number" then numbersToMultiply = {numbersToMultiply} end
 
 	EID.GoldenTrinketData[id] = {t = numbersToMultiply, mult = maxMultiplier, append = appendText and true}
+	if appendText then
+		EID:CreateDescriptionTableIfMissing("goldenTrinketEffects", language)
+		EID.descriptions[language].goldenTrinketEffects[id] = { appendText[1], appendText[1], appendText[2] or appendText[1] }
+	end
+end
+---Adds information about appending text and adding to numbers in a modded trinket's Golden/Mom's Box description. All three variables are optional, set to ""/0 or nil to not include them
+---@param appendText? string | string[] @Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
+---@param numbersToChange? number | number[] @The number inside the text that gets added towards. can be one number, or a table of numbers
+---@param additiveValues? number @Table of values that should be added to the number, if its doubled, tripled, or quadrupled
+-- Example: My modded trinket gives +5 range and when tripled, adds homing instead of tripling the range boost:
+--- ```lua
+--- EID:addGoldenTrinketMetadataAdditive(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 5, {1,2,3})
+--- ```
+
+function EID:addGoldenTrinketMetadataAdditive(id, appendText, numbersToChange, additiveValues, language)
+	language = language or "en_us"
+
+	if appendText == "" then appendText = nil
+	elseif type(appendText) == "string" then appendText = {appendText} end
+
+	if numbersToChange == 0 then numbersToChange = nil
+	elseif type(numbersToChange) == "number" then numbersToChange = {numbersToChange} end
+
+	additiveValues = type(additiveValues) == "number" and {additiveValues, additiveValues, additiveValues} or additiveValues or {1, 2, 3}
+	EID.GoldenTrinketData[id] = {t = numbersToChange, additions = additiveValues, mults = {1,1,1}, append = appendText and true}
 	if appendText then
 		EID:CreateDescriptionTableIfMissing("goldenTrinketEffects", language)
 		EID.descriptions[language].goldenTrinketEffects[id] = { appendText[1], appendText[1], appendText[2] or appendText[1] }

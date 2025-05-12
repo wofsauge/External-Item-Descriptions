@@ -580,6 +580,12 @@ if EID.isRepentance then
 				else multiplier = data.mults[1] end
 			elseif data.mult and ((isGolden and hasBox) or data.mult < 2) then multiplier = data.mult end
 
+			--custom additions table (manually defined)
+			local addition = 0
+			if data.additions then
+				addition = data.additions[textChoice]
+			end
+
 			--replacing numeric text based on our multiplier
 			if (data.t) then
 				for _,v in ipairs(data.t) do
@@ -592,7 +598,7 @@ if EID.isRepentance then
 								if multiplier == 2 then v = 16.5
 								elseif multiplier == 3 then v = (1/6)*100 end -- convert 17% to 33% or 50%
 							elseif v == 33 and (multiplier == 1.5 or multiplier == 3) then v = (1/3)*100 end -- convert 33% to 50% or 100%
-							return "{{ColorGold}}" .. string.format("%.4g",v*multiplier) .. "{{CR}}"
+							return "{{ColorGold}}" .. string.format("%.4g",v * multiplier + addition) .. "{{CR}}"
 						end
 					end)
 				end
