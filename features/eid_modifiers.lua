@@ -588,10 +588,10 @@ if EID.isRepentance then
 
 			--replacing numeric text based on our multiplier
 			if (data.t) then
-				for _,v in ipairs(data.t) do
+				--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
+				descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
 					count = 0
-					--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
-					descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
+					for _, v in ipairs(data.t) do
 						if (s == tostring(v) and count == 0) then
 							count = count + 1
 							if v == 17 then
@@ -600,8 +600,8 @@ if EID.isRepentance then
 							elseif v == 33 and (multiplier == 1.5 or multiplier == 3) then v = (1/3)*100 end -- convert 33% to 50% or 100%
 							return "{{ColorGold}}" .. string.format("%.4g",v * multiplier + addition) .. "{{CR}}"
 						end
-					end)
-				end
+					end
+				end)
 			end
 			--replacing a phrase, such as "half a heart"
 			if data.findReplace then
