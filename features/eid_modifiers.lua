@@ -580,22 +580,28 @@ if EID.isRepentance then
 				else multiplier = data.mults[1] end
 			elseif data.mult and ((isGolden and hasBox) or data.mult < 2) then multiplier = data.mult end
 
+			--custom additions table (manually defined)
+			local addition = 0
+			if data.additions then
+				addition = data.additions[textChoice]
+			end
+
 			--replacing numeric text based on our multiplier
 			if (data.t) then
-				for _,v in ipairs(data.t) do
+				--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
+				descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
 					count = 0
-					--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
-					descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
+					for _, v in ipairs(data.t) do
 						if (s == tostring(v) and count == 0) then
 							count = count + 1
 							if v == 17 then
 								if multiplier == 2 then v = 16.5
 								elseif multiplier == 3 then v = (1/6)*100 end -- convert 17% to 33% or 50%
 							elseif v == 33 and (multiplier == 1.5 or multiplier == 3) then v = (1/3)*100 end -- convert 33% to 50% or 100%
-							return "{{ColorGold}}" .. string.format("%.4g",v*multiplier) .. "{{CR}}"
+							return "{{ColorGold}}" .. string.format("%.4g",v * multiplier + addition) .. "{{CR}}"
 						end
-					end)
-				end
+					end
+				end)
 			end
 			--replacing a phrase, such as "half a heart"
 			if data.findReplace then
@@ -1153,10 +1159,8 @@ if EID.isRepentance then
 	
 				-- damage multiplier based on proc chance
 				if damageMultiplier2 ~= 1 then
-					local dmgText2 = EID:ReplaceVariableStr(EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Damage"),
-						damageMultiplier2)
-					descriptionText = descriptionText ..
-					"#" .. textColor .. "dmg" .. dmgText2 .. GetChanceString(2, procChance, procChance, 0)
+					local damageText2 = EID:ReplaceVariableStr(EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Damage"), damageMultiplier2)
+					descriptionText = descriptionText .. "#" .. textColor .. damageText2 .. GetChanceString(2, procChance, procChance, 0)
 				end
 				-- create list of tear effect descriptions
 				descriptionText = descriptionText .. GetFlagString(1, "TearFlagNames", "{{Shotspeed}} " .. textColor, tearFlags, procChance, procChance)
