@@ -278,7 +278,7 @@ EID.descriptions[languageCode].collectibles={
 	{"255", "Vite", "↑ {{Tears}} +0.5 Lacrime#↑ {{Shotspeed}} +0.2 Velocità Colpi"},
 	{"256", "Bombe Incendiarie", "{{Bomb}} +5 Bombe#{{Burning}} Le bombe di Isaac lasciano una fiamma quando esplodono"},
 	{"257", "Mente in Fiamme", "{{Burning}} Le lacrime di Isaac appiccano fuoco ai nemici#10% di chance che le lacrime esplodano all'impatto con il nemico#{{Luck}} 100% di chance con 13 di Fortuna#{{Warning}} Le esplosioni possono ferire Isaac"},
-	{"258", "Missing No.", "Risorteggia tutti gli oggetti e statistiche di Isaac quando viene raccolto e ad ogni nuovo piano"},
+	{"258", "Missing No.", "Quando viene raccolto e ad ogni nuovo piano risorteggia tutti gli oggetti e statistiche di Isaac"},
 	{"259", "Materia Oscura", "↑ {{Damage}} +1 Danni#{{Fear}} 33% di chance di sparare lacrime spaventoso#{{Luck}} 100% di chance con 20 di Fortuna"},
 	{"260", "Candela Nera", "{{CurseBlind}} Immunità alle maledizioni#{{BlackHeart}} +1 Cuori Neri#{{AngelDevilChance}} +15% di chance di una Stanza del Diavolo/dell'Angelo"},
 	{"261", "Proptosi", "↑ {{Damage}} x2 Moltiplicatore Danni#↓ I danni inflitti dalle lacrime diminuiscono con la distanza percorsa"},
