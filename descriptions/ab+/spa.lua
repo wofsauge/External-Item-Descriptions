@@ -155,7 +155,7 @@ EID.descriptions[languageCode].collectibles={
 	{"132", "Un Trozo de Carbón", "{{Damage}} El daño de tus lágrimas aumentará con la distancia recorrida"}, -- A Lump of Coal
 	{"133", "Pata de Guppy", "{{SoulHeart}} Convierte 1 contenedor de corazón en 3 corazones de alma"}, -- Guppy's Paw
 	{"134", "Cola de Guppy", "{{Chest}} 33% de probabilidad de remplazar la recompensa de habitación por un cofre#33% de probabilidad de eliminar la recompensa"}, -- Guppy's Tail
-	{"135", "Bolsa I.V.", "{{Coin}} Te inflige medio corazón de dano y genera 1-2 monedas#{{Heart}} Remueve primero los corazones rojos"}, -- IV Bag
+	{"135", "Bolsa I.V.", "{{Coin}} Te inflige medio corazón de daño y genera 1-2 monedas#{{Heart}} Remueve primero los corazones rojos"}, -- IV Bag
 	{"136", "Mejor Amigo", "Genera un señuelo que atrae a los enemigos y explota tras 5 segundos"}, -- Best Friend
 	{"137", "Detonador remoto", "{{Bomb}} +5 Bombas#Las bombas colocadas ya no explotarán automaticamente#Permite detonar las bombas colocadas de forma remota"}, -- Remote Detonator
 	{"138", "Estigma", "↑ {{Heart}} +1 de Vida#↑ {{Damage}} Daño +0.3"}, -- Estigma
