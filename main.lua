@@ -1616,16 +1616,15 @@ function EID:OnRender()
 				else -- Grid entities
 					local room = game:GetRoom()
 					if closest:GetType() == GridEntityType.GRID_SPIKES then
-						if room:GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
-							local desc = EID:getDescriptionObj(-999, -1, closest.VarData + 1, closest)
-							EID:addDescriptionToPrint(desc)
-						elseif EID.isRepentance and EID.Config["DisplaySanguineInfo"] and room:GetType() == RoomType.ROOM_DEVIL and
-							EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) then
+						if EID.isRepentance and closest:GetVariant() >= 100 and EID.Config["DisplaySanguineInfo"] then
 							local desc = EID:getDescriptionObj(5, 100, 692, closest, false)
-							desc.Description = EID:trimSanguineDesc(desc)
+							desc.Description = EID:trimSanguineDesc(closest, desc)
 							if desc.Description ~= "" then
 								EID:addDescriptionToPrint(desc)
 							end
+						elseif room:GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
+							local desc = EID:getDescriptionObj(-999, -1, closest.VarData + 1, closest)
+							EID:addDescriptionToPrint(desc)
 						end
 					end
 				end
