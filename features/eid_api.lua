@@ -2517,6 +2517,10 @@ function EID:evaluateTransformationProgress(transformation)
 						local currentCount = EID.TransformationProgress[id][transformation]
 						if tonumber(eSubType) ~= 584 and activesTable[tostring(eSubType)] then
 							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + activesTable[tostring(eSubType)]
+							-- If character is Bethany, undo the Book of Virtues getting counted here
+                            if EID.isRepentance and player:GetPlayerType() == PlayerType.PLAYER_BETHANY and tonumber(eSubType) == 584 then
+                                EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] - 1
+                            end
 						else
 							local collCount = player:GetCollectibleNum(eSubType, true)
 							if EID.PlayerItemInteractions[id].rerollItems then
