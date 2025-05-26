@@ -2515,7 +2515,7 @@ function EID:evaluateTransformationProgress(transformation)
 				if tonumber(eType) == EntityType.ENTITY_PICKUP then
 					if tonumber(eVariant) == PickupVariant.PICKUP_COLLECTIBLE then
 						local currentCount = EID.TransformationProgress[id][transformation]
-						if activesTable[tostring(eSubType)] then
+						if tonumber(eSubType) ~= 584 and activesTable[tostring(eSubType)] then
 							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + activesTable[tostring(eSubType)]
 						else
 							local collCount = player:GetCollectibleNum(eSubType, true)
