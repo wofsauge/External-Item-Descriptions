@@ -1659,7 +1659,8 @@ local function AddActiveItemProgress(player, isD4)
 	if isD4 then maxSlot = 1 end
 	for i = 0, maxSlot do
 		local itemIDStr = tostring(player:GetActiveItem(i))
-		if itemIDStr ~= "0" then
+		-- Book of Virtues does not count as an active item in Repentance
+		if itemIDStr ~= "0" and not (EID.isRepentance and itemIDStr == "584") then
 			EID:InitActiveItemInteraction(itemIDStr)
 			activesTable[itemIDStr] = activesTable[itemIDStr] + 1
 		end
