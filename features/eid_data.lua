@@ -41,9 +41,8 @@ EID.GridEntityWhitelist = {
 				EID.Config["DisplaySacrificeInfo"]
 		end,
 		function(gridEntity)
-			return EID.isRepentance and EID.Config["DisplaySanguineInfo"] and
-				Game():GetRoom():GetType() == RoomType.ROOM_DEVIL and
-				EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND)
+			return EID.isRepentance and gridEntity:GetVariant() >= 100 and
+				EID.Config["DisplaySanguineInfo"]
 		end,
 	},
 }
