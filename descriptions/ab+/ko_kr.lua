@@ -47,7 +47,11 @@ EID.descriptions[languageCode].fonts = {
 	{name="korean_soyanon", lineHeight=12, textboxWidth = 150},
 	{name="korean_soyanon_shadow", lineHeight=12, textboxWidth = 150},
 	{name="korean_galmoori9", lineHeight=12, textboxWidth = 150},
-	{name="korean_galmoori11", lineHeight=14, textboxWidth = 160}
+	{name="korean_galmoori11", lineHeight=14, textboxWidth = 160},
+	{name="korean_baekmukgulim10", lineHeight=12, textboxWidth = 150},
+	{name="korean_hatmuri9", lineHeight=12, textboxWidth = 150},
+	{name="korean_dotum", lineHeight=13, textboxWidth = 160},
+	{name="korean_gulim", lineHeight=13, textboxWidth = 160}
 }
 
 ---------- Collectibles ----------
