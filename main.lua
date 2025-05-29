@@ -1706,7 +1706,7 @@ end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 
 -- Watch for smelting trinkets; includes Gulp and Marbles
-local function OnUseSmelter(_, _, _, player)
+function EID:OnUseSmelter(_, _, _, player)
 	player = player or EID.player
 	local playerNum = EID:getPlayerID(player, true)
 	
@@ -1716,7 +1716,7 @@ local function OnUseSmelter(_, _, _, player)
 		if trinket > 0 then table.insert(EID.GulpedTrinkets[playerNum], trinket) end
 	end
 end
-EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseSmelter, CollectibleType.COLLECTIBLE_SMELTER)
+EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.OnUseSmelter, CollectibleType.COLLECTIBLE_SMELTER)
 
 -- Watch for Glowing Hourglass to revert certain variables
 local function OnUseGlowingHourglass(_, _, _, _)

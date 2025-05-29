@@ -83,6 +83,33 @@ end
 
 EID:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, EID.OnMenuRender)
 
+--------------------------Gulped items-----------------------------------
+
+-- REPENTOGON: Gulped trinkets can be read directly from the game
+function EID:ItemReminderHeldPlusGulped(player)
+	local newTable = {}
+	for i=0, 1 do
+		local trinket = player:GetTrinket(i)
+		if trinket > 0 then table.insert(newTable, trinket) end
+	end
+
+	-- Use GetSmeltedTrinkets() to aquire player smelted trinkets infos, instead of keeping a separate table
+	for id, dataTable in pairs(player:GetSmeltedTrinkets()) do
+		if dataTable then
+			local sumTrinket = dataTable.trinketAmount + dataTable.goldenTrinketAmount
+			if sumTrinket > 0 then
+				table.insert(newTable, id)
+			end
+		end
+	end
+	return newTable
+end
+
+-- Remove callback, since we dont need to track smelter usage in Repentogon
+EID:RemoveCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.OnUseSmelter)
+
+-- remove function. No longer needed
+function EID:UpdateAllPlayerTrinkets() end
 
 ---------------------------BAG OF CRAFTING-------------------------------
 -- Directly read bag of crafting content
