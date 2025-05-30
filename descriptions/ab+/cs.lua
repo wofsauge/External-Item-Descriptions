@@ -14,7 +14,7 @@ local languageCode = "cs"
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Czech"
-EID.descriptions[languageCode].alternativeLanguageCodes = {"cs_cz"}
+EID.descriptions[languageCode].alternativeLanguageCodes = {"czech", "cs_cz"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en"].fonts
@@ -1206,7 +1206,6 @@ EID.descriptions[languageCode].CharacterInfo = {
 
 EID.descriptions[languageCode].ConditionalDescs = {
 	------ GENERAL STRINGS ------
-	["5.300.48"] = "Teleportuje tě do JSEM ERROR místnosti#Prázdná Karta a ?-Karta bude zničena", -- Blank Card + Q Card
 	["Overridden"] = "Je přepsán předmětem {1}",
 	["Overrides"] = "Přepíše {1}",
 	["Almost No Effect"] = "Malý až žádný efekt pro {1}",
