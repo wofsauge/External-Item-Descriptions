@@ -13,7 +13,7 @@ local languageCode = "bg"
 -- init Bulgarian table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Bulgarian (WIP) (AB+)"
+EID.descriptions[languageCode].languageName = "Bulgarian (AB+ only)"
 EID.descriptions[languageCode].alternativeLanguageCodes = {"bulgarian", "bul"}
 
 -- Fonts to be used with this language pack
