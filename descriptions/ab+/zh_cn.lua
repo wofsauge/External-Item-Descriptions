@@ -1,5 +1,5 @@
 --------------------------------------
------  Basic Simplified Chinese descriptions  ---
+-----  Basic Chinese descriptions  ---
 --------------------------------------
 
 -- FORMAT: Item ID | Name | Description
