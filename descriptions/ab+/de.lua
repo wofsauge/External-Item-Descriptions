@@ -13,7 +13,7 @@ local languageCode = "de"
 -- init German table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "German"
+EID.descriptions[languageCode].languageName = "German (WIP)"
 EID.descriptions[languageCode].alternativeLanguageCodes = {"german"}
 
 -- Fonts to be used with this language pack

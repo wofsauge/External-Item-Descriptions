@@ -18,7 +18,7 @@ local languageCode = "el"
 -- init Greek table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Greek (AB+ only)"
+EID.descriptions[languageCode].languageName = "Greek (WIP) (AB+)"
 EID.descriptions[languageCode].alternativeLanguageCodes = {"greek", "el_gr"}
 
 -- Fonts to be used with this language pack

@@ -1,5 +1,5 @@
 --------------------------------------
------  Basic Chinese descriptions  ---
+-----  Basic Simplified Chinese descriptions  ---
 --------------------------------------
 
 -- FORMAT: Item ID | Name | Description
@@ -13,7 +13,7 @@ local languageCode = "zh_cn"
 -- init zh_cn table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Chinese (Simplified)"
+EID.descriptions[languageCode].languageName = "Simplified Chinese"
 EID.descriptions[languageCode].alternativeLanguageCodes = {"zh-CN", "schinese"}
 
 -- Fonts to be used with this languagepack
