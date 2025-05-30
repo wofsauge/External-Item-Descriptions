@@ -1206,7 +1206,6 @@ EID.descriptions[languageCode].CharacterInfo = {
 
 EID.descriptions[languageCode].ConditionalDescs = {
 	------ GENERAL STRINGS ------
-	["5.300.48"] = "Teleportuje tě do JSEM ERROR místnosti#Prázdná Karta a ?-Karta bude zničena", -- Blank Card + Q Card
 	["Overridden"] = "Je přepsán předmětem {1}",
 	["Overrides"] = "Přepíše {1}",
 	["Almost No Effect"] = "Malý až žádný efekt pro {1}",
