@@ -14,7 +14,7 @@ local languageCode = "nl"
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Dutch"
-EID.descriptions[languageCode].alternativeLanguageCodes = {"nl_nl", "nl_NL"}
+EID.descriptions[languageCode].alternativeLanguageCodes = {"dutch", "nl_nl"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}

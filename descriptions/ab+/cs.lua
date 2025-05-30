@@ -14,7 +14,7 @@ local languageCode = "cs"
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Czech"
-EID.descriptions[languageCode].alternativeLanguageCodes = {"cs_cz"}
+EID.descriptions[languageCode].alternativeLanguageCodes = {"czech", "cs_cz"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en"].fonts
