@@ -14,7 +14,7 @@ local languageCode = "vi"
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Vietnamese"
-EID.descriptions[languageCode].alternativeLanguageCodes = {"vi_vn"}
+EID.descriptions[languageCode].alternativeLanguageCodes = {"vietnamese"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="vi_vn"}, {name="vi_vnborderless"}}

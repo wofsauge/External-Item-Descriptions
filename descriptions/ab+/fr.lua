@@ -17,7 +17,7 @@ local languageCode = "fr"
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "French"
-EID.descriptions[languageCode].alternativeLanguageCodes = {}
+EID.descriptions[languageCode].alternativeLanguageCodes = {"french"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default", textboxWidth = 145}, {name="inverted", textboxWidth = 145}, {name="borderless", textboxWidth = 145}}

@@ -336,7 +336,7 @@ if MCMLoaded then
 				end
 				renderDummyDesc(true)
 			end,
-			Info = {"Changes the language.","Languages marked as WIP are incomplete."}
+			Info = {"Changes the language.","Languages marked as WIP are incomplete. Contributions welcome!"}
 		}
 	)
 	-- Item Name Language

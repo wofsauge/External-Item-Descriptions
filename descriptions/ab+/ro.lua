@@ -13,8 +13,8 @@ local languageCode = "ro"
 -- init Romanian table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Română"
-EID.descriptions[languageCode].alternativeLanguageCodes = {"ro_ro"}
+EID.descriptions[languageCode].languageName = "Romanian"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"romanian", "ro_ro"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}
