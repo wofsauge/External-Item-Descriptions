@@ -14,7 +14,7 @@ local languageCode = "zh_cn"
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Simplified Chinese"
-EID.descriptions[languageCode].alternativeLanguageCodes = {"zh-CN", "schinese"}
+EID.descriptions[languageCode].alternativeLanguageCodes = {"zh-CN", "schinese", "zh"}
 
 -- Fonts to be used with this languagepack
 EID.descriptions[languageCode].fonts = {{name = "cn_alt", lineHeight = 13, textboxWidth = 145}, {name = "cn_default", lineHeight = 13, textboxWidth = 140}, {name = "cn_old", lineHeight = 14, textboxWidth = 150}}

@@ -18,7 +18,7 @@ local languageCode = "ko"
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Korean"
-EID.descriptions[languageCode].alternativeLanguageCodes = {"koreana", "ko_kr"}
+EID.descriptions[languageCode].alternativeLanguageCodes = {"koreana", "kr", "ko_kr"}
 
 -- Fonts to be used with this languagepack
 --[[
