@@ -8,15 +8,16 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "bul"
+local languageCode = "bg"
 
--- init bul table
+-- init Bulgarian table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Bulgarian (WIP) (AB+)"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"bulgarian", "bul"}
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+EID.descriptions[languageCode].fonts = EID.descriptions["en"].fonts
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
@@ -171,7 +172,7 @@ EID.descriptions[languageCode].collectibles={
 	{"149", "Буркан с отрова", "Сълзите летят в дъга и избухват#Ефектът от отравяне#↑ {{Damage}} +40 щета#↓ {{Tears}} По-малко сълзи"},
 	{"150", "Трудна любов", "10% Шанс за изстрел на зъб с {{Damage}} 3.2x щети#{{Luck}} 100% шанс при 9 късмет"},
 	{"151", "Мълиганът", "1/6 шанс да призове муха когато сълзите докоснат чудовище"},
-	{"152", "Технология 2", "Безкраен лазер#↓ {{Damage}} -35% Щети#↓ {{Tears}} Период между сълзите x 2"}, -- AB+ en_us.lua claims Tear Delay x 2. Was there a tears down to Tech 2 before Repentance?? ~~Wiki also claims: "Tear delay is effectively doubled, as Isaac will do a bit of the animation to fire a right eye tear, but no tear will come out."
+	{"152", "Технология 2", "Безкраен лазер#↓ {{Damage}} -35% Щети#↓ {{Tears}} Период между сълзите x 2"}, -- AB+ en.lua claims Tear Delay x 2. Was there a tears down to Tech 2 before Repentance?? ~~Wiki also claims: "Tear delay is effectively doubled, as Isaac will do a bit of the animation to fire a right eye tear, but no tear will come out."
 	{"153", "Паяк Мутант", "Четворна стрелба#↓ {{Tears}} скорост на стреляне"},
 	{"154", "Химическо Изгаряне", "↑ {{Damage}} +2 Щети за лявото око"},
 	{"155", "Зъркелът", "Лети из стаята#Нанася щети при контакт"},
@@ -188,7 +189,7 @@ EID.descriptions[languageCode].collectibles={
 	{"166", "D20", "Променя пикъповете в стаята"},
 	{"167", "Бебе Арлекин", "Изтрелва V-образни сълзи"},
 	{"168", "Епичен Ембрион", "Сълзите се заменят с ракети!"},
-	{"169", "Полифем", "Мега сълзи!#↑ {{Damage}} Увеличена щета: (Щета + 4) x 2#↓ {{Tears}} 2 скорост на стреляне#Сълзите продължават след убито чудовище"},    -- Typed out exact Damage formula. The en_us desc is grossly incorrect in this regard (at least, 4 additional damage should be 8 if we are describing it that way).
+	{"169", "Полифем", "Мега сълзи!#↑ {{Damage}} Увеличена щета: (Щета + 4) x 2#↓ {{Tears}} 2 скорост на стреляне#Сълзите продължават след убито чудовище"},    -- Typed out exact Damage formula. The English desc is grossly incorrect in this regard (at least, 4 additional damage should be 8 if we are describing it that way).
 	{"170", "Татко Дълги Крака", "Крак който настъпва чудовищата в стаята"},   -- translation check: literal translation, leaves ambiguous what kind of spider the familiar is
 	{"171", "Паяшки задник", "забавя чудовищата за 4 секунди#Прави по 10 щети на всяко чудовище"},
 	{"172", "Жертвена кама", "Орбитален нож#Нанася много щети"},
@@ -252,7 +253,7 @@ EID.descriptions[languageCode].collectibles={
 	{"230", "Абадон", "↑ {{Damage}} 1.5 Щети#↑ {{Speed}} 0.2 скорост#Шанс да изплаши чудовищата#Маха всички червени сърца#+6 Черни сърца"},
 	{"231", "Топка смола", "{{Slow}} 10% шанс да изстреляте забавящи сълзи#{{Luck}} 100% шанс при 18 късмет#Оставяте слуз на пода която забавя чудовищата"},
 	{"232", "Секундомер", "При поемане на щети враговете в стаята трайно се забавят"},
-	{"233", "Малка планета", "Сълзи летят около вас в орбита#↑ +7 височина на сълзите"},   -- {{Range}} "Range way up!" claimed in en_us.lua. Due to that being related to tear height/tear falling speed, it will not be added here.
+	{"233", "Малка планета", "Сълзи летят около вас в орбита#↑ +7 височина на сълзите"},   -- {{Range}} "Range way up!" claimed in en.lua. Due to that being related to tear height/tear falling speed, it will not be added here.
 	{"234", "Нашествие 2", "Ще получите съюзнически паяк за всяко убито чудовище"},    -- see Infestation comment
 	{"235", "000", "<Не съществува>"},
 	{"236", "Ешерихия коли", "Превръща врага в ако при докосване"},
@@ -361,7 +362,7 @@ EID.descriptions[languageCode].collectibles={
 	{"339", "Безопасна игла", "↑ {{Range}} +5.25 Обхват на сълзите#↑ {{Shotspeed}} +0.16 Бързина на стреляне#+1 Черно Сърце#↑ 0.5 Височина на сълзите"},
 	{"340", "Кофеиново хапче", "↑ {{Speed}} 0.3 Бързина#Ставате по-малки#{{Pill}} Дава 1 произволно хапче"},
 	{"341", "Разкъсана фотография", "↑ {{Tears}} 0.7 скорост на стреляне#↑ {{Shotspeed}} 0.16 скорост на сълзите"},
-	{"342", "Синя шапка", "↑ 1 Червено сърце#↑ {{Tears}} 0.7 скорост на стреляне#↓ {{Shotspeed}} -0.16 скорост на сълзите"},   -- ~~en_us.lua: -16% Shot Speed down is wrong? (if it is always -0.16)
+	{"342", "Синя шапка", "↑ 1 Червено сърце#↑ {{Tears}} 0.7 скорост на стреляне#↓ {{Shotspeed}} -0.16 скорост на сълзите"},   -- ~~en.lua: -16% Shot Speed down is wrong? (if it is always -0.16)
 	{"343", "Ключ за външна врата", "↑ {{Luck}} +1 Късмет#+1 Духовно сърце#+2 ключа"},
 	{"344", "Кибритена кутия", "+1 Черно Сърце#+3 Бомби"},
 	{"345", "Синтетично масло", "↑ {{Damage}} 1.0 Щети#↑ {{Range}} 5.25 Обхват на сълзите#↑ 0.5 Височина на сълзите"},
@@ -434,11 +435,11 @@ EID.descriptions[languageCode].collectibles={
 	{"412", "Демонично зачатие", "След като нанесете достатъчно щети, вие постоянно ще получите дяволски спътник#Възможно е да получите няколко спътници"},
 	{"413", "Непорочно зачатие", "След като вземете достатъчно сърца, ще получите постоянно ангелски спътник#Възможно е да получите няколко спътници"},
 	{"414", "Повече опции", "2 елемента се появяват в златни стаи#Можете да вземете само един"},
-	{"415", "Корона от светлина", "+2 Духовни сърца#↑ {{Damage}} Щети X 2, ако нямате нито едно празно червено сърце#При поемане на щети бонусът се нулира и опреснява при преместване в друга стая"}, -- TODO: Add heart-dependent effects list-wise (straight up missing in this one); ~~en_us.lua has "Crown Of Light" capitalization
+	{"415", "Корона от светлина", "+2 Духовни сърца#↑ {{Damage}} Щети X 2, ако нямате нито едно празно червено сърце#При поемане на щети бонусът се нулира и опреснява при преместване в друга стая"}, -- TODO: Add heart-dependent effects list-wise (straight up missing in this one); ~~en.lua has "Crown Of Light" capitalization
 	{"416", "Дълбоки джобове", "Можете да носите 2 карти / руни / хапчета със себе си"},
 	{"417", "Сукуб", "Лети из стаята, има аура, която нанася щети на врагове#↑ {{Damage}} +50% щета, докато си в аурата"},
 	{"418", "Плодов пай", "Всяка сълза има произволен ефект"},
-	{"419", "Телепорт 2.0", "Телепортира се в произволна стая, в която все още не сте били#Последователност: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}>{{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}>{{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"}, -- ~~a couple of extra(?) spaces in en_us.lua
+	{"419", "Телепорт 2.0", "Телепортира се в произволна стая, в която все още не сте били#Последователност: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}>{{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}>{{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"}, -- ~~a couple of extra(?) spaces in en.lua
 	{"420", "Черен прах", "Оставяте черна следа на пода#Ако образувате кръг, ще създаде пентаграма, която нанася щети на враговете"},
 	{"421", "Бъбречен боб", "Прилага чар на близки врагове, когато се активира"},
 	{"422", "Светещ пясъчен часовник", "Ще ви отведе до предишната стая#Всичко наоколо възстановява първоначалното си състояние, което са имали, когато сте били в предишната стая"},
@@ -550,7 +551,7 @@ EID.descriptions[languageCode].collectibles={
 	{"528", "Ангелска призма", "Сълза, прелетяла през орбитална призма, ще се разцепи на 4 подобни сълзи"},
 	{"529", "Пук!", "Сега сълзите имат физика като билярдни топки"},
 	{"530", "Списък на смъртта", "Осигурява полезна награда, ако убивате врагове в реда, в който ще бъдат маркирани"},
-	{"531", "Хемолакрия", "Сълзите летят в дъга#При сблъсък те летят на фрагменти#↑ {{Damage}} 31% щети#↓ {{Tears}} - скорост на стреляне"}, -- ~~en_us.lua: markup items for stats missing! (this might not hold true in latest commits?)
+	{"531", "Хемолакрия", "Сълзите летят в дъга#При сблъсък те летят на фрагменти#↑ {{Damage}} 31% щети#↓ {{Tears}} - скорост на стреляне"}, -- ~~en.lua: markup items for stats missing! (this might not hold true in latest commits?)
 	{"532", "Лакрифагия", "Една сълза в полет се забавя#След спиране, тя избухва в малки сълзи#Можете да \"нахраните\" сълза, като стреляте по нея, тогава тя ще стане по-голяма"},
 	{"533", "Трисвятост", "Сълзите стават пронизващи лъчи светлина#(принцип, подобен на Brimstone)"},  -- a religious hymn name. word in translation formatted as an abstract concept rather than as an adjective (which should be more accurate, but less good sounding).
 	{"534", "Ученическа раница", "Позволява ви да носите 2 активни предмета#Сменяте ги с CTRL"},
@@ -711,13 +712,13 @@ EID.descriptions[languageCode].cards={
 	-- translations remaining: certain tokens (pickups, stats); on demand rune names and bosses
 	{"1", "0 - Глупакът", "Телепортира те обратно до стартовата стая на етажа"},
 	{"2", "I - Магьосникът", "Самонасочващи се сълзи за сегашната стая"},
-	{"3", "II - Върховната жрица", "Кракът на мама се стоварва върху някой враг!#!!! Ако няма врагове, се стоварва върху теб"},    -- ~~extra vs en_us.lua: "!!!If no enemies, it stomps on you"
+	{"3", "II - Върховната жрица", "Кракът на мама се стоварва върху някой враг!#!!! Ако няма врагове, се стоварва върху теб"},    -- ~~extra vs en.lua: "!!!If no enemies, it stomps on you"
 	{"4", "III - Императрицата", "За една стая: #↑ {{Damage}} +2.35 Щети#↑ {{Speed}} +0.3 Скорост"},
 	{"5", "IV - Императорът", "{{BossRoom}} Телепортира те до стаята на боса"},
 	{"6", "V - Йерофантът", "{{SoulHeart}} Пуска 2 духовни сърца"},
 	{"7", "VI - Влюбените", "{{Heart}} Пуска 2 червени сърца"},
 	{"8", "VII - Колесницата", "Неуязвимост + щета при контакт за 6 секунди"},
-	{"9", "VIII - Справедливост", "Създава 1 бомба, 1 ключ, 1 монета, 1 сърце (от случайни видове)"},  -- ~~extra vs en_us.lua: "... (of random types)"
+	{"9", "VIII - Справедливост", "Създава 1 бомба, 1 ключ, 1 монета, 1 сърце (от случайни видове)"},  -- ~~extra vs en.lua: "... (of random types)"
 	{"10", "IX - Отшелникът", "{{Shop}} Телепортира те до магазина"},
 	{"11", "X - Колелото на съдбата", "Създава {{Slotmachine}} игрална машина или {{FortuneTeller}} гадателска машина"},
 	{"12", "XI - Сила", "За една стая: #↑ {{Heart}} +1 Здраве#↑ {{Damage}} +0.3 Щети#↑ {{Damage}} +50% Щети#↑ {{Range}} +5.25 Обхват#↑ +0.5 Височина на сълзите#↑ {{Speed}} +0.3 Скорост"},
@@ -778,7 +779,7 @@ EID.descriptions[languageCode].pills={
 	{"4", "Екплозивна диария", "Създава 5 бомби в период от общо 5 секунди на моментната ти позиция"},
 	{"5", "Пълно здраве", "Запълва всички червени сърца"},
 	{"6", "По-малко здраве", "↓ {{Heart}} -1 контейнер за червено сърце#Превръща се в хапче \"Повече здраве\", ако имаш 1 контейнер или по-малко"},
-	{"7", "Повече здраве", "↑ {{EmptyHeart}} +1 празен контейнер за червено сърце"},   -- ~~en_us.lua is inconsistent here with the health down vs up descriptions
+	{"7", "Повече здраве", "↑ {{EmptyHeart}} +1 празен контейнер за червено сърце"},   -- ~~en.lua is inconsistent here with the health down vs up descriptions
 	{"8", "Намерих хапче", "Никакъв ефект"},
 	{"9", "Пубертет", "Само визуален ефект на пубертет#!!!3 такива дават трансформацията \"Възрастен\" (+1 червено сърце)"},
 	{"10", "Хубава муха", "Добавя 1 орбитална муха"},
@@ -792,7 +793,7 @@ EID.descriptions[languageCode].pills={
 	{"18", "Повече късмет", "↑ {{Luck}} +1 късмет"},
 	{"19", "Телехапче", "Телепортира те в произволна стая#{{ErrorRoom}} Малък шанс за телепорт до стаята I AM ERROR"},
 	{"20", "48-часова енергия!", "Напълно презарежда активната вещ#Създава 1-2 батерии"},
-	{"21", "Хематемеза", "{{EmptyHeart}} Изпразва всички налични контейнери за червени сърца освен едно#{{Heart}} Създава 1-4 червени сърца"}, -- extra markup icons vs en_us.lua
+	{"21", "Хематемеза", "{{EmptyHeart}} Изпразва всички налични контейнери за червени сърца освен едно#{{Heart}} Създава 1-4 червени сърца"}, -- extra markup icons vs en.lua
 	{"22", "Парализа", "Не можеш да се движиш за 2 секунди"},
 	{"23", "Мога да видя всичко!", "{{SecretRoom}} Отваря входовете към тайните стаи на този етаж"},   -- "forever" -> "everything" (meme can't be preserved anyway)
 	{"24", "Феромони", "{{Charm}} Очарова всички врагове в стаята"},
@@ -807,7 +808,7 @@ EID.descriptions[languageCode].pills={
 	{"33", "От едно ставаш по-малък", "Визуално се смаляваш#Зоната, в която могат да те ударят, също се смалява"},
 	{"34", "Заразен!", "Създава 1 съюзнически паяк от всяко ако в стаята (с минимум от 1)"},    -- pill name courtesy of google translate
 	{"35", "Заразен?", "Създава 1 съюзнически паяк за всеки враг в стаята#Създава 1-3 паяци, ако няма врагове"},
-	{"36", "Силово хапче!", "{{Collectible93}} Кратък ефект на неуязвимост"}, -- extra markup icon vs en_us.lua
+	{"36", "Силово хапче!", "{{Collectible93}} Кратък ефект на неуязвимост"}, -- extra markup icon vs en.lua
 	{"37", "Ретро визия", "Екранът става много по-пикселиран за 30 секунди"},
 	{"38", "Приятели до края!", "Създава 3 съюзнически мухи"},
 	{"39", "Екс-лакс", "Създава локва от хлъзгава течност"},
@@ -898,7 +899,7 @@ EID.descriptions[languageCode].ItemReminder = {
 EID.descriptions[languageCode].RoomTypeNames = { "Обикновена стая", "Магазин", "Стая I AM ERROR", "Златна стая", "Стая на боса", "Стая на минибос", "Тайна стая", "Супер тайна стая", "Аркадна стая", "Прокълната стая", "Стая с предизвикателство", "Библиотека", "Жертвена стая", "Дяволска стая", "Ангелска стая", "Тайник", "Поредица от босове", "Спалнята на Исаак", "Запустяла спалня", "Стая сандък", "Стая зар", "Черен пазар", "{{GreedMode}} Изходна стая", "Планетариум", "Вход на телепорт", "Изход на телепорт", "Люк към страничния път", "{{Trinket150}} Синя стая", "Ултра тайна стая",
 -- Not technically room types but still potentially useful to have localized
 [666] = "Ангелска/дяволска стая", [1024] = "Червена стая", [1025] = "Специална червена стая" }
--- if an icon gets added for Blue Key Room, remove the {{Trinket150}} markdown and possibly re-translate; respectively for (Greed Mode) Exit Room; good to suggest for en_us.lua?
+-- if an icon gets added for Blue Key Room, remove the {{Trinket150}} markdown and possibly re-translate; respectively for (Greed Mode) Exit Room; good to suggest for en.lua?
 
 -- currently used for D1
 EID.descriptions[languageCode].PickupNames = {

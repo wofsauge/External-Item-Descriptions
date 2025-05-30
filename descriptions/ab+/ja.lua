@@ -8,12 +8,13 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "ja_jp"
+local languageCode = "ja"
 
--- init ja_jp table
+-- init Japanese table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Japanese"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"japanese", "jp", "ja_jp"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default", lineHeight= 12}, {name="inverted", lineHeight = 12}, {name="borderless", lineHeight= 12}}

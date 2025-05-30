@@ -874,21 +874,6 @@ EID.GoldenTrinketData = {
 	[13] = {goldenOnly = true, fullReplace = true, mult=1}, [15] = {append = true}, [16] = {t={20}, mults={0.5, 0.333}}, [25] = {goldenOnly = true, findReplace = true, mult = 2},
 }
 
-EID.BreakUtf8CharsLanguage = {
-	['zh_cn'] = true
-}
-
--- Map the game's built-in language option strings to EID's
-EID.LanguageMap = {
-	["jp"] = "ja_jp",
-	["es"] = "spa",
-	["de"] = "de",
-	["fr"] = "fr",
-	["ru"] = "ru",
-	["kr"] = "ko_kr",
-	["zh"] = "zh_cn",
-}
-
 EID.MarkupSizeMap = {
 	["{{Damage}}"] = "{{DamageSmall}}",
 	["{{Speed}}"] = "{{SpeedSmall}}",

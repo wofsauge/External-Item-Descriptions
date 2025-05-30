@@ -3,7 +3,7 @@
 ----- Translated to Turkish by Çağdaş Salur -----
 -------------------------------------------------
 
--- Last Sync with en_us: 03.07.2021
+-- Last Sync with English: 03.07.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -11,7 +11,7 @@
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
-local languageCode = "tr_tr"
+local languageCode = "tr"
 
 local repCollectibles={
 	[5] = {"5", "Yansımam", "Bumerang efekti verır#↑ +1.5 Menzil#↑ +60% ekstra Menzil#↑ +0.6 Gözyaşı hızı#↑ +1 Gözyaşı yüksekliği"}, -- My Reflection

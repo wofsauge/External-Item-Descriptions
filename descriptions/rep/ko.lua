@@ -1,6 +1,6 @@
-local languageCode = "ko_kr"
+local languageCode = "ko"
 
--- Last Sync with en_us or update: 2024-11-18
+-- Last Sync with English or update: 2024-11-18
 
 local repCollectibles={
 	-- Original

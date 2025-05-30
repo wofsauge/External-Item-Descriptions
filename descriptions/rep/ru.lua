@@ -2,7 +2,7 @@
 ----- Basic Russian descriptions -----
 ---------------------------------------
 
--- Last Sync with en_us: 12.12.2021
+-- Last Sync with English: 12.12.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
