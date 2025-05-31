@@ -29,6 +29,10 @@ EID.descriptions[languageCode].languageName = "Korean"
 	korean_soyanon(소야논8) - A fancy font that that was used from former EID Korean. Shadow version available. Recommended LineHeight : 11
 	korean_galmoori9(갈무리9) - A font that inspired from Nintendo DS Korean font. Recommended LineHeight : 11
 	korean_galmoori11(갈무리11) - A font that inspired from Nintendo DS Korean font. Used for unofficial Korean mod by Blackcreamtea. Recommended LineHeight : 13
+	korean_baekmukgulim10(백묵굴림10) A font that improves readability. Recommended LineHeight : 12
+	korean_hatmuri9(햇무리9) - A font that improves readability. Recommended LineHeight : 12
+	korean_dotum(돋움) - A font that was used from former EID Korean. Recommended LineHeight : 13
+	korean_gulim(굴림) - A font that was used from former EID Korean. Recommended LineHeight : 13
 
 	korean_yoonwebdotum10, korean_galmoori9, korean_galmoori11 is added for community request.
 	eid_korean_hcrdotum_0.png is untouched due to game crashes for changing file names.
@@ -47,7 +51,11 @@ EID.descriptions[languageCode].fonts = {
 	{name="korean_soyanon", lineHeight=12, textboxWidth = 150},
 	{name="korean_soyanon_shadow", lineHeight=12, textboxWidth = 150},
 	{name="korean_galmoori9", lineHeight=12, textboxWidth = 150},
-	{name="korean_galmoori11", lineHeight=14, textboxWidth = 160}
+	{name="korean_galmoori11", lineHeight=14, textboxWidth = 160},
+	{name="korean_baekmukgulim10", lineHeight=12, textboxWidth = 150},
+	{name="korean_hatmuri9", lineHeight=12, textboxWidth = 150},
+	{name="korean_dotum", lineHeight=13, textboxWidth = 160},
+	{name="korean_gulim", lineHeight=13, textboxWidth = 160}
 }
 
 ---------- Collectibles ----------
