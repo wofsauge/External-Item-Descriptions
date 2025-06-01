@@ -1616,16 +1616,15 @@ function EID:OnRender()
 				else -- Grid entities
 					local room = game:GetRoom()
 					if closest:GetType() == GridEntityType.GRID_SPIKES then
-						if room:GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
-							local desc = EID:getDescriptionObj(-999, -1, closest.VarData + 1, closest)
-							EID:addDescriptionToPrint(desc)
-						elseif EID.isRepentance and EID.Config["DisplaySanguineInfo"] and room:GetType() == RoomType.ROOM_DEVIL and
-							EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) then
+						if EID.isRepentance and closest:GetVariant() >= 100 and EID.Config["DisplaySanguineInfo"] then
 							local desc = EID:getDescriptionObj(5, 100, 692, closest, false)
-							desc.Description = EID:trimSanguineDesc(desc)
+							desc.Description = EID:trimSanguineDesc(closest, desc)
 							if desc.Description ~= "" then
 								EID:addDescriptionToPrint(desc)
 							end
+						elseif room:GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"] then
+							local desc = EID:getDescriptionObj(-999, -1, closest.VarData + 1, closest)
+							EID:addDescriptionToPrint(desc)
 						end
 					end
 				end
@@ -1659,7 +1658,8 @@ local function AddActiveItemProgress(player, isD4)
 	if isD4 then maxSlot = 1 end
 	for i = 0, maxSlot do
 		local itemIDStr = tostring(player:GetActiveItem(i))
-		if itemIDStr ~= "0" then
+		-- Book of Virtues does not count as an active item in Repentance
+		if itemIDStr ~= "0" and not (EID.isRepentance and itemIDStr == "584") then
 			EID:InitActiveItemInteraction(itemIDStr)
 			activesTable[itemIDStr] = activesTable[itemIDStr] + 1
 		end
@@ -1706,7 +1706,7 @@ end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 
 -- Watch for smelting trinkets; includes Gulp and Marbles
-local function OnUseSmelter(_, _, _, player)
+function EID:OnUseSmelter(_, _, _, player)
 	player = player or EID.player
 	local playerNum = EID:getPlayerID(player, true)
 	
@@ -1716,7 +1716,7 @@ local function OnUseSmelter(_, _, _, player)
 		if trinket > 0 then table.insert(EID.GulpedTrinkets[playerNum], trinket) end
 	end
 end
-EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseSmelter, CollectibleType.COLLECTIBLE_SMELTER)
+EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.OnUseSmelter, CollectibleType.COLLECTIBLE_SMELTER)
 
 -- Watch for Glowing Hourglass to revert certain variables
 local function OnUseGlowingHourglass(_, _, _, _)
