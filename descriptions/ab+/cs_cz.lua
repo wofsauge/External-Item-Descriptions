@@ -554,7 +554,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Lachryfagie", "Slzy při cestování zpomalují#Po zastavení explodují v 8 menších slz#Slzy mohou být vstřeleny do jiných slz, čímž se zvětší"},
 	{"533", "Trisagion", "Střílíš průrazné záblesky světla#{{Damage}} Udělují 33% poškození, ale mohou zasáhnout nepřátele několikrát"},
 	{"534", "Školní Aktovka", "Umožňuje ti držet 2 aktivní předměty#Přepínej mezi nimi stisknutím tlačítka Drop (tlačítko 'drž' za \"The Forgotten\")"},
-	{"535", "Přikrývka", "{{SoulHeart}} +1 Duševní Srdce#{{Heart}} Léčí 1 Červené Srdce#{{Collectible313}} Uděluje štít při vstupu do místnosti s Bossem"},
+	{"535", "Přikrývka", "{{SoulHeart}} +1 Duševní Srdce#{{HealingRed}} Léčí 1 Červené Srdce#{{Collectible313}} Uděluje štít při vstupu do místnosti s Bossem"},
 	{"536", "Obětní Oltář", "Obětuje 1-2 spojence, aby vytvořil Ďábelský předmět#Promění tvé modré pavouky/mouchy na mince"},
 	{"537", "Maličký Plivač", "{{Pill}} Vytvoří náhodnou pilulku#Spojenec, který střílí řadu kaluží#Typ kaluže se změní pokaždé, když použiješ pilulku"},
 	{"538", "Kuličky", "{{Trinket}} Vytvoří 3 náhodné trinkety#{{Collectible479}} Utrpení poškození může spotřebovat tvůj trinket a přidá ti jeho efekt natrvalo"},
