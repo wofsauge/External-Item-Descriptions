@@ -2,7 +2,7 @@
 -----  Basic French descriptions -----
 --------------------------------------
 
--- Last Sync with en_us: 08.08.2021
+-- Last Sync with English: 08.08.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text

@@ -35,7 +35,7 @@ dlcs = ["ab+", "rep", "rep+"]
 maxChecklimit = {"tarotClothBuffs": 2, "carBattery": 2, "BFFSSynergies": 2}
 
 
-# count en_us entries for stats
+# count English entries for stats
 def count_entries(t):
     count = 0
     for k in t:
@@ -62,7 +62,7 @@ def addUpdatedTables(languageCode, dlc):
             updatedTables += ["abyssSynergies", "horsepills", "tarotClothBuffs", "bookOfVirtuesWisps"]
 
         # korean uses some additional addititve tables
-        if languageCode == "ko_kr":
+        if languageCode == "ko":
             if dlc == "rep":
                 updatedTables += ["dice", "MCM"]
             else:
@@ -109,19 +109,19 @@ def compare_tables(table1, table2, prev_key):
 
 
 languageProgress = {}
-en_us_entries = {}
+en_entries = {}
 for dlc in dlcs:
     lua.execute('REPENTOGON = true; EID = {}; EID.descriptions = {}; function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
     g = lua.globals()
-    addUpdatedTables("en_us", dlc)
+    addUpdatedTables("en", dlc)
 
     # Read English language files first
-    englishFile = glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/en_us.lua", recursive=True)[0]
+    englishFile = glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/en.lua", recursive=True)[0]
     print("reading:", englishFile)
     lua.execute(open(englishFile, "r", encoding="UTF-8").read())
 
-    en_us_entries[dlc] = count_entries(g.EID['descriptions']['en_us'])
-    print("en_us "+dlc+" entries:", en_us_entries[dlc])
+    en_entries[dlc] = count_entries(g.EID['descriptions']['en'])
+    print("English "+dlc+" entries:", en_entries[dlc])
 
 
     langFiles = []
@@ -131,7 +131,7 @@ for dlc in dlcs:
         langFiles += glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/*.lua", recursive=True)
     # Read other language files
     for file in langFiles:
-        if "en_us" not in file and "transformations" not in file:
+        if "en" not in file and "transformations" not in file:
             languageCode = os.path.basename(file).replace(".lua","")
             print("reading:",file)
             addUpdatedTables(languageCode, dlc)
@@ -141,16 +141,16 @@ for dlc in dlcs:
 
             # Evaluate language for completeness
             print(f"Evaluating language '{languageCode}'..")
-            errorCount = compare_tables(g.EID['descriptions']['en_us'], g.EID['descriptions'][languageCode], languageCode+"("+dlc+")")
-            percentage = (en_us_entries[dlc] - errorCount) / en_us_entries[dlc] * 100
+            errorCount = compare_tables(g.EID['descriptions']["en"], g.EID['descriptions'][languageCode], languageCode+"("+dlc+")")
+            percentage = (en_entries[dlc] - errorCount) / en_entries[dlc] * 100
             languageProgress[languageCode][dlc] = [percentage, errorCount]
-            print(f"{Red}Errors found: {errorCount} / {en_us_entries[dlc]}{Color_Off}\n\n")
+            print(f"{Red}Errors found: {errorCount} / {en_entries[dlc]}{Color_Off}\n\n")
 
 
 # Calculate total english entries
-total_en_us_entries = 0
-for entries in en_us_entries.values():
-    total_en_us_entries += entries
+total_en_entries = 0
+for entries in en_entries.values():
+    total_en_entries += entries
 
 # Write git Workflow summary
 gitWorkflowSummary = "### Translation progress\n| Language | Completion (AB+) |Completion (REP) |Completion (REP+) |Completion (Total) |\n|---|---|---|---|---|\n"
@@ -169,12 +169,12 @@ for lang in languageProgress.keys():
         else:
             print(
             f"\t{BWhite}{lang}({dlc}){Color_Off}\t\t{Red}DLC translation missing!{Color_Off}")
-            gitCompletionMessage = f"0% ({en_us_entries[dlc]} left)"
-            totalMissing += en_us_entries[dlc]
+            gitCompletionMessage = f"0% ({en_entries[dlc]} left)"
+            totalMissing += en_entries[dlc]
                 
         gitWorkflowSummary += f"| {gitCompletionMessage} "
     
-    totalPercent = round((total_en_us_entries - totalMissing) / total_en_us_entries * 100, 2)
+    totalPercent = round((total_en_entries - totalMissing) / total_en_entries * 100, 2)
     gitWorkflowSummary += f"|{totalPercent}% ({totalMissing}) "
     gitWorkflowSummary += "|\n"
 

@@ -2,7 +2,6 @@ if EID and EID.Name then print("EID Error: Two instances of EID found! Please un
 EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
-EID.Languages = {"en_us", "fr", "pt", "pt_br", "ru", "spa", "it", "bul", "pl", "de", "tr_tr", "ko_kr", "zh_cn", "ja_jp", "cs_cz", "nl_nl", "uk_ua", "el_gr", "ro_ro", "vi"}
 EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
 local game = Game()
@@ -101,13 +100,11 @@ end
 
 ------- Load all modules and other stuff ------
 
---transformation infos
-require("descriptions."..EID.GameVersion..".transformations")
---languages
-for _,lang in ipairs(EID.Languages) do
-	require("descriptions."..EID.GameVersion.."."..lang)
-end
-table.sort(EID.Languages)
+
+require("features.eid_api")
+
+require("features.eid_language_manager")
+EID:InitializeLanguagePacks()
 
 pcall(require,"scripts.eid_savegames")
 require("features.eid_mcm")
@@ -117,36 +114,15 @@ if EID.isRepentancePlus then
 else
 	require("features.eid_xmldata")
 end
-require("features.eid_api")
 require("features.eid_conditionals")
 require("features.eid_modifiers")
 require("features.eid_holdmapdesc")
 require("features.eid_itemprediction")
 
--- load Repentence descriptions
+-- load Repentance features
 if EID.isRepentance then
-	EID.GameVersion = "rep"
-	for _,lang in ipairs(EID.Languages) do
-		local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
-		if not wasSuccessful and not string.find(err, "not found") then
-			EID:WriteErrorMsg("Load rep "..lang.." failed: "..tostring(err))
-		end
-	end
-	local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
 	require("features.eid_bagofcrafting")
 	require("features.eid_tmtrainer")
-
-	-- Load Repentance+ DLC data 
-	if EID.isRepentancePlus then
-		EID.GameVersion = "rep+"
-		for _,lang in ipairs(EID.Languages) do
-			local wasSuccessful, err = pcall(require,"descriptions."..EID.GameVersion.."."..lang)
-			if not wasSuccessful and not string.find(err, "not found") then
-				EID:WriteErrorMsg("Load rep+ "..lang.." failed: "..tostring(err))
-			end
-		end
-		local _, _ = pcall(require,"descriptions."..EID.GameVersion..".transformations")
-	end
 end
 
 EID.LastRenderCallColor = EID:getTextColor()
@@ -630,8 +606,8 @@ function EID:printDescription(desc, cachedID)
 		curName = desc.Name
 		if EID.Config["TranslateItemName"] ~= 2 then
 			local curLanguage = EID.Config["Language"]
-			if EID:getLanguage() ~= "en_us" then
-				EID.Config["Language"] = "en_us"
+			if EID:getLanguage() ~= "en" then
+				EID.Config["Language"] = "en"
 				local englishName = desc.PermanentTextEnglish or EID:getObjectName(desc.ObjType, desc.ObjVariant, desc.ObjSubType)
 				EID.Config["Language"] = curLanguage
 				if EID.Config["TranslateItemName"] == 1 then

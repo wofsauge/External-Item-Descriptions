@@ -13,10 +13,11 @@ local languageCode = "ru"
 -- init ru table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Russian"
+EID.descriptions[languageCode].languageName = "Russian (WIP)"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"russian"}
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+EID.descriptions[languageCode].fonts = EID.descriptions["en"].fonts
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
