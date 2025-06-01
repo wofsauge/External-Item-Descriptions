@@ -68,7 +68,7 @@ EID.descriptions[languageCode].collectibles={
 	{"45", "Delicioso Corazón", "{{HealingRed}} Cura 1 corazón"}, -- Delicioso Corazón
 	{"46", "Pie de la suerte", "↑ {{Luck}} Suerte +1#+8% de probabilidad de generar un recolectable tras limpiar una habitación#Aumenta la probabilidad de ganar al apostar"}, -- Lucky Foot
 	{"47", "Control Remoto de Doctor", "{{Collectible168}} Al activarse, invoca un ataque aéreo controlable#{{Damage}} Los cohetes infligen 20 veces tu daño"}, -- Doctor's Remote
-	{"48", "Flecha de Cupido", "Lágrimas penetrantes"}, -- Flecha de Cupido
+	{"48", "Flecha de Cupido", "Lágrimas perforantes"}, -- Flecha de Cupido
 	{"49", "Kamehame... ¡¿Eeeeeeh?!", "Reemplaza el siguiente disparo por un rayo#Inflige 26 veces tu daño durante 0.9 segundos"}, -- Shoop da Whoop!
 	{"50", "Steven", "↑ {{Damage}} Daño +1"}, -- Steven
 	{"51", "Pentáculo", "↑ {{Damage}} Daño +1#↑ {{AngelDevilChance}} +10% de probabilidad de encontrar salas de Angel/Diablo"}, -- Pentagram
@@ -484,7 +484,7 @@ EID.descriptions[languageCode].collectibles={
 	{"459", "Infección sinusal", "20% de probabilidad de disparar lágrimas de moco#{{Damage}} Los mocos se pegan al enemigo durante 60 segundos e infligen tu daño cada segundo#{{Luck}} No es afectado por la suerte"}, -- Sinus Infection
 	{"460", "Glaucoma", "{{Confusion}} 5% de probabilidad de disparar lágrimas aturdidoras#Obscurece un poco la pantalla"}, -- Glaucoma
 	{"461", "Parasitoide", "15% de probabilidad de disparar sacos de huevos#{{Luck}} 50% de probabilidad con 5 de suerte#{{Slow}} Genera fluido ralentizante y una araña o mosca azul al impactar"}, -- Parasitoid
-	{"462", "Ojo de Belial", "↑ {{Range}} Alcance +1.5#↑ {{Tearsize}} Tamaño de lágrimas +1#lágrimas perforantes#Tras golpear un enemigo, las lágrimas infligen el doble de daño y se vuelven teledirigidas"}, -- Eye of Belial
+	{"462", "Ojo de Belial", "↑ {{Range}} Alcance +1.5#↑ {{Tearsize}} Tamaño de lágrimas +1#Lágrimas perforantes#Tras golpear un enemigo, las lágrimas infligen el doble de daño y se vuelven teledirigidas"}, -- Eye of Belial
 	{"463", "Ácido sulfúrico", "↑ {{Damage}} Daño +0.3#Probabilidad de disparar lágrimas ácidas que destruyen rocas y abren puertas"}, -- Ácido sulfúrico
 	{"464", "Glifo del equilibrio", "{{SoulHeart}} +2 Corazones de alma#Los enemigos campeones soltarán los recolectables que más necesites"},
 	{"465", "Mando Analógico", "↑ {{Tears}} Lágrimas +0.3#Permite disparar lágrimas en cualquier dirección"}, -- Mando Analógico
@@ -557,7 +557,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Lacrifagia", "Las lágrimas se ralentizan mientras viajan#Al detenerse, explotan en 8 lágrimas pequeñas#Las lágrimas pueden acumularse, volviendose más grandes"}, -- Lachryphagy
 	{"533", "Trisagio", "Remplaza tus lágrimas por rayos perforantes de luz blanca#Los rayos infligen 33% de tu daño, pero impactan multiples veces"}, -- Trisagion
 	{"534", "Mochila", "Permite llevar hasta 2 objetos activos#Pulsa la tecla de soltar objetos ({{ButtonRT}}) para cambiar entre objetos activos"}, -- Schoolbag
-	{"535", "Manto", "{{SoulHeart}} +1 Corazón de alma#{{Heart}} Cura un corazón rojo#{{HolyMantle}} Otorga un Escudo Sagrado al entrar en una {{BossRoom}} sala del jefe"}, -- Blanket
+	{"535", "Manto", "{{HealingRed}} Cura un corazón rojo#{{SoulHeart}} +1 Corazón de alma#{{HolyMantle}} Otorga un escudo de Manto Sagrado al entrar a una {{BossRoom}} sala de jefe"}, -- Blanket
 	{"536", "Altar de sacrificio", "Permite sacrificar hasta 2 familiares para generar un objeto de {{DevilRoom}} pacto del Diablo por sacrificio#{{Coin}} Convierte las arañas o moscas azules en monedas"}, -- Sacrificial Altar
 	{"537", "Mini-vómitos", "{{Pill}} Genera una píldora aleatoria al recogerlo#Familiar que deja un rastro de fluido#El tipo de fluido depende del tipo de píldora"}, -- Lil Spewer
 	{"538", "Canicas", "{{Trinket}} Genera 3 trinkets aleatorios#{{Collectible479}} Al recibir daño, 10% de probabilidad de consumir tu trinket y otorgar sus efectos permanentemente"}, -- Marbles
@@ -790,7 +790,7 @@ EID.descriptions[languageCode].trinkets={
 	{"51", "Moneda Plana", "{{Key}} 50% de probabilidad de generar llaves al recoger una moneda"}, -- Flat Penny
 	{"52", "Moneda Falsificada", "{{Coin}} 50% de probabilidad de incrementar +1 el valor de las monedas al recogerlas"}, -- Counterfeit Penny
 	{"53", "Garrapata", "{{HealingRed}} Cura 1 corazón rojo al entrar a una {{BossRoom}} Sala de Jefe#El jefe comienza con -15% de vida#{{Warning}} Al recogerlo, no puede ser soltado#Solo es removido con el {{Trinket41}} Fósforo o tragándolo"}, -- Tick
-	{"54", "Cabeza de Isaac", "Familiar con lágrimas penetrantes#Inflige 3.5 de daño"}, -- Isaac's Head
+	{"54", "Cabeza de Isaac", "Familiar con lágrimas perforantes#Inflige 3.5 de daño"}, -- Isaac's Head
 	{"55", "La fe de Maggy", "{{EternalHeart}} Otorga un Corazón Eterno al entrar a una nueva planta"}, -- Maggy's Faith
 	{"56", "Lengua de Judas", "{{DevilRoom}} Reduce los precios de los pactos del Diablo a un corazón#{{SoulHeart}} No reduce los pactos de 3 Corazones de Alma"}, -- Judas' Tongue
 	{"57", "Alma de ???", "Familiar que rebota por la habitación#Dispara en la misma dirección que el jugador#Inflige 3.5 de daño#Dispara lágrimas espectrales y teledirigidas"}, -- ???'s Soul
@@ -1007,7 +1007,7 @@ EID.descriptions[languageCode].pills={
 	{"40", "Algo está mal...", "{{Slow}} Genera una piscina de fluido ralentizante"}, -- Something's wrong...
 	{"41", "Tengo mucho sueño...", "{{Slow}} Ralentiza a todos los enemigos en la habitación"}, -- I'm Drowsy...
 	{"42", "¡¡TENGO MUCHA ENERGÍA!!", "Acelera a todos los enemigos en la habitación"}, -- I'm Excited!!
-	{"43", "¡Glup!", "{{Trinket}} Consume el trinket actual y otorga sus efectos de forma permanente"}, -- Gulp!
+	{"43", "¡Gulp!", "{{Trinket}} Consume el trinket actual y otorga sus efectos de forma permanente"}, -- Gulp!
 	{"44", "¡Horf!", "{{Collectible149}} Dispara una lágrima de Ipecac"}, -- Horf!
 	{"45", "¡Es como si caminara sobre el sol!", "{{Timer}} Otorga durante 6 segundos:#Invencibilidad#No puedes disparar (Sin daño por contacto)"}, -- Feels like I'm walking on sunshine!
 	{"46", "¡Vurp!", "Genera la última píldora usada anterior a esta"}, -- Vurp!
