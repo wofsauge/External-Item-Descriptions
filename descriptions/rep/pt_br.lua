@@ -3,7 +3,7 @@
 -----  By: LuanRoger, NotZin0 and JorgeLNJunior  -----
 ------------------------------------------------------
 
--- Last Sync with en_us: 13.06.2022
+-- Last Sync with English: 13.06.2022
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
