@@ -15,10 +15,11 @@ local languageCode = "pt_br"
 -- init pt_br table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Brazilian Portuguese"
+EID.descriptions[languageCode].languageName = "Brazilian Portuguese (WIP)"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"pt-BR", "brazilian"}
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
+EID.descriptions[languageCode].fonts = EID.descriptions["en"].fonts
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={
@@ -556,7 +557,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "", "As lágrimas diminuem enquanto viaja pela sala#Ao parar, eles explodem em 8 lágrimas menores#As lágrimas podem ser disparadas em outras lágrimas, aumentando-as"},
 	{"533", "", "Lágrimas são trocadas por feixes de luz#{{Damage}} Causa 33% de dano, mas pode atingir inimigos múltiplas vezes"},
 	{"534", "", "Permite segurar 2 itens ativos#Troque entre eles pressionando o botão de Soltar ({{ButtonRT}})"},
-	{"535", "", "{{SoulHeart}} +1 Coração de Alma#{{Heart}} Cura 1 Coração Vermelho#{{Collectible313}} Concede um escudo ao entrar na sala do chefe"},
+	{"535", "", "{{SoulHeart}} +1 Coração de Alma#{{HealingRed}} Cura 1 Coração Vermelho#{{Collectible313}} Concede um escudo ao entrar na sala do chefe"},
 	{"536", "", "Sacrifique 1-2 familiares para gerar um item de Acordo com o Diabo"},
 	{"537", "", "{{Pill}} +1 Pílula aleatória ao pegar#Familiar que dispara uma linha de rastro#O tipo de rastro muda toda vez que o jogador usa uma pílula"},
 	{"538", "", "{{Trinket}} Solta 3 trinkets aleatórios#{{Collectible479}} Ao receber dano, tem a chance de consumir permanentemente o trinket atual"},

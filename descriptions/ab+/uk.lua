@@ -8,12 +8,13 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "uk_ua"
+local languageCode = "uk"
 
--- init uk_ua table
+-- init Ukrainian table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Ukrainian"
+EID.descriptions[languageCode].languageName = "Ukrainian (WIP)"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"ukrainian", "uk_ua"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}
@@ -557,7 +558,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Сльозотеча", "Сльози персонажа поступово сповільнюються, зупиняються, а тоді вибухають на 8 менших#Сльози можуть об'єднуватись та ставити більшими"},
 	{"533", "Трисвяте", "Замінює сльози персонажа на пронизливі промені світла#Промені наносять 33% шкоди, але можуть вдаряти ворогів декілька разів"},
 	{"534", "Рюкзак", "Дозволяє персонажу тримати 2 активні предмети#Активні предмети можна міняти, використовуючи кнопку Скиду ({{ButtonRT}})"},
-	{"535", "Ковдра", "{{SoulHeart}} +1 серце Душі#{{Heart}} Відновлює 1 червоне серце#{{Collectible313}} При вході у кімнату боса, персонаж отримує ефект {{HolyMantleSmall}} Святої Мантії"},
+	{"535", "Ковдра", "{{SoulHeart}} +1 серце Душі#{{HealingRed}} Відновлює 1 червоне серце#{{Collectible313}} При вході у кімнату боса, персонаж отримує ефект {{HolyMantleSmall}} Святої Мантії"},
 	{"536", "Вівтар для жертвопринесень", "Принесіть у жертву 1-2 компаньйонів, щоб створити предмет Диявола за кожну пожертву#Перетворює синіх павуків та мух на монети"},
 	{"537", "Крихітка Ригачка", "{{Pill}} Створює випадкову пігулку#Випускає струмінь рідини#Тип рідини змінюється при кожному використанні пігулки"},
 	{"538", "Камінці", "{{Trinket}} Створює 3 випадкові брелки#{{Collectible479}} При отриманні шкоди, активний брелок може бути поглинутий та перенесений до інвентарю предметів, перманентно даючи свій ефект"},

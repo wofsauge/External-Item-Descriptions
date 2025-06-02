@@ -2,7 +2,7 @@
 ----- Basic Italian descriptions -----
 ---------------------------------------
 
--- Last Sync with en_us: 29.07.2021
+-- Last Sync with English: 29.07.2021
 
 -- FORMAT: Item ID | Name | Description
 
