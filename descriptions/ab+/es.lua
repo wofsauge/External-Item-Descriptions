@@ -519,7 +519,7 @@ EID.descriptions[languageCode].collectibles={
 	{"493", "Adrenalina", "Otorga por cada contenedor de corazón vacío:#↑ {{Damage}} Daño +0.2"}, -- Adrenaline
 	{"494", "Escalera de Jacob", "Las lágrimas generan 1-2 rayos eléctricos al impactar#Los rayos infligen la mitad de tu daño"}, -- Escalera de Jacob
 	{"495", "Pimiento fantasma", "Probabilidad de disparar un fuego rojo que inflige daño y bloquea proyectiles#El fuego persiste hasta bloquear 5 disparos o infligir daño 5 veces"}, -- Ghost Pepper
-	{"496", "Eutanasia", "3.33% de probabilidad de disparar jeringas#100% de probabilidad con 15 de suerte#Las jeringas matan a los enemigos normales de un golpe, disparando 10 lágrimas alrededor#{{Damage}} Inflige el triple de tu daño contra jefes"}, -- Euthanasia
+	{"496", "Eutanasia", "3.33% de probabilidad de disparar agujas#100% de probabilidad con 15 de suerte#Las agujas matan a los enemigos normales de un golpe, disparando 10 lágrimas alrededor#{{Damage}} Inflige el triple de tu daño contra jefes"}, -- Euthanasia
 	{"497", "Interior Camuflado", "{{Confusion}} Al entrar a una habitación confunde a los enemigos hasta que dispares"}, -- Camo Undies
 	{"498", "Dualidad", "{{AngelDevilChance}} Genera una sala de Ángel y de Diablo#Entrar en una sala hará desaparecer la otra"}, -- Duality
 	{"499", "Eucaristía", "↑ {{AngelChance}} 100% de probabilidad de encontrar salas de Ángel"}, -- Eucharist
