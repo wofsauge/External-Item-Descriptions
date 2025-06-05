@@ -3,7 +3,7 @@ local GLITCH_ITEM_FLAG = 4294967296
 local currentBlacklist
 local lastInputTime = 0
 local lastScrollDirection = 1 -- used for automatic scroll feature, if no description is visible for a category
-local autoScrollTriesLeft = -999 -- Stores how many tries the automatic category skip has left to do. This prevents infinite loops, when the player has no items
+local autoScrollTriesLeft = math.mininteger -- Stores how many tries the automatic category skip has left to do. This prevents infinite loops, when the player has no items
 local numAvailableDescriptionSlots = 0
 
 EID.ItemReminderBlacklist = { ["5.100.714"] = true, ["5.100.715"] = true } -- Dont display these in the Item reminder view
@@ -886,7 +886,7 @@ function EID:ItemReminderGetDescription()
 
 	-- Skip category if nothing is in it
 	if #EID.ItemReminderTempDescriptions == 0 then
-		if autoScrollTriesLeft == -999 then
+		if autoScrollTriesLeft == math.mininteger then
 			-- auto scroll was started
 			autoScrollTriesLeft = #EID.ItemReminderCategories - 1
 		end
@@ -908,11 +908,11 @@ function EID:ItemReminderGetDescription()
 			end
 		end
 		-- auto scroll was stopped. reset scroll value
-		autoScrollTriesLeft = -999
+		autoScrollTriesLeft = math.mininteger
 		EID.InsideItemReminder = false
 		return "{{Blank}}#{{Blank}} " .. EID:getDescriptionEntry("ItemReminder", "InventoryEmpty")
 	end
-	autoScrollTriesLeft = -999
+	autoScrollTriesLeft = math.mininteger
 
 	local finalHoldMapDesc = ""
 	EID.ItemReminderDisplayingScrollbar = false

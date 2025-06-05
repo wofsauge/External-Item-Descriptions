@@ -211,19 +211,6 @@ local function ItemCollectionPageCallback(descObj)
 	return descObj
 end
 
--- Handle Sacrifice room payout
-local function SacrificeRoomCallback(descObj)
-	local curCounter = descObj.ObjSubType or 1
-	if curCounter <= 2 then
-		--Remove B1 Bomb drop info when not on B1
-		if game:GetLevel():GetAbsoluteStage() > 1 then
-			local splitPoint = string.find(descObj.Description, '#', 1)
-			descObj.Description = descObj.Description:sub(1,splitPoint-1)
-		end
-	end
-	return descObj
-end
-
 -- Handle Black Feather dynamic damage up text
 local function BlackFeatherCallback(descObj)
 	for i = 1,#EID.coopAllPlayers do
@@ -1266,8 +1253,6 @@ end
 
 -- AFTERBIRTH+ OR REPENTANCE MODIFIERS
 local function EIDConditionsAB(descObj)
-	-- handle Sacrifice room
-	if descObj.ObjType == -999 and descObj.ObjVariant == -1 then return {SacrificeRoomCallback} end
 	-- currently, only pickup descriptions have modifiers
 	if descObj.ObjType ~= 5 then return false end
 
