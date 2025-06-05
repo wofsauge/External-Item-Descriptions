@@ -50,12 +50,12 @@ local repCollectibles={
 	[83] = {"83", "El clavo", "Al usarlo:#{{HalfBlackHeart}} + medio corazón negro#↓ {{Speed}} Velocidad -0.18#↑ {{Damage}} Daño +0.7#Inflige 40 de daño por contacto cada segundo#Permite romper rocas caminando sobre ellas"}, -- The Nail
 	[84] = {"84", "¡Necesitamos Ir Más Profundo!", "Genera una trampilla hacia el siguiente piso#{{LadderRoom}} Genera una trampilla a una mazmorra al usarse sobre la decoración del suelo"}, -- We Need To Go Deeper!
 	[87] = {"87", "Cuernos de Loki", "25% de probabilidad de disparar en 4 direcciones#{{Luck}} 100% de probabilidad con 15 de suerte"}, -- Loki's Horns
-	[91] = {"91", "Sombrero de espeleólogo", "Revela el tipo de habitaciónes adyacentes#{{SecretRoom}} {{SuperSecretRoom}} Revela las Salas secretas y súper secretas#Evita el daño de projectiles que caigan desde arriba"}, -- Spelunker Hat
+	[91] = {"91", "Sombrero de espeleólogo", "Revela el tipo de las habitaciónes adyacentes#{{SecretRoom}} Revela las habitaciónes secretas y súper secretas#Evita el daño de projectiles que caigan desde arriba"}, -- Spelunker Hat
 	[98] = {"98", "La reliquia", "{{SoulHeart}} Genera 1 corazón de alma cada 7-8 habitaciones"}, -- The Relic
 	[101] = {"101", "El Halo", "↑ {{Heart}} +1 de Vida#↑ {{Speed}} Velocidad +0.3#↑ {{Tears}} Lágrimas +0.2#↑ {{Damage}} Daño +0.3#↑ {{Range}} Alcance +1.5#{{HealingRed}} Cura 1 corazón"}, -- The Halo
 	[106] = {"106", "Sr. Mega", "↑ {{Bomb}} Daño de bombas x1.85#{{Bomb}} +5 Bombas"}, -- Sr. Mega
 	[107] = {"107", "Las Tijeras Dentadas", "{{Timer}} Durante la habitación actual:#Permite volar#Tu cuerpo se separa y ataca a los enemigos#El cuerpo inflige 23.5 de daño por contacto cada segundo"}, -- The Pinking Shears
-	[110] = {"110", "Lentillas de Mamá", "↑ {{Range}} Alcance +1.5#20% de probabilidad de disparar lágrimas petrificantes#{{Luck}} 50% de probabilidad con 20 de suerte"}, -- Mom's Contacts
+	[110] = {"110", "Lentillas de Mamá", "↑ {{Range}} Alcance +1.5#20% de probabilidad de disparar lágrimas petrificadoras#{{Luck}} 50% de probabilidad con 20 de suerte"}, -- Mom's Contacts
 	[114] = {"114", "Cuchillo de mamá", "{{Chargeable}} Reemplaza tus lágrimas por un cuchillo lanzable#{{Damage}} Al tenerlo en la mano inflige 2 veces tu daño, hasta 6 veces con 1/3 de carga#Cargar más el ataque sólo aumentará el alcance#El daño vuelve al doble al regresar"}, -- Mom's Knife
 	[115] = {"115", "Tabla Ouija", "↑ {{Tears}} Lágrimas +0.4#Lágrimas espectrales"}, -- Ouija Board
 	[118] = {"118", "Azufre", "↓ {{Tears}} Lágrimas x0.33#{{Chargeable}} Reemplaza tus lágrimas por un rayo de sangre cargable#{{Damage}} Inflige 9 veces tu daño cada 0.63 segundos"},
@@ -1229,7 +1229,7 @@ EID.descriptions[languageCode].horsepills={
 	{"33", "Una te hace pequeño", "Te haces mucho más pequeño#Tu hitbox se hace más pequeña"}, -- One makes you small
 	{"34", "¡Infestado!", "Genera 2 arañas azules por cada caca de la habitación"}, -- Infested!
 	{"35", "¿Infestado?", "Genera 2 arañas azules por cada enemigo de la habitación#Genera 2-6 arañas azules si no hay enemigos en la habitación"}, -- Infested?
-	{"36", "Píldora de visión", "{{Timer}} Otorga durante la habitación:#↑ {{Damage}} +7 de Daño#↑ {{Range}} +3 de Rango#{{Timer}} Recibes por 6.5 segundos:#Invincibilidad#Isaac no puede disparar pero hace 40 de daño por contacto cada segundo#{{HealingRed}} Matar 2 enemigos cura medio corazón#{{Fear}} Asusta a todos los enemigos en la habitación"}, -- Power Pill!
+	{"36", "Píldora de visión", "{{Timer}} Otorga durante la habitación:#↑ {{Damage}} +7 de Daño#↑ {{Range}} +3 de Rango#{{Timer}} Recibes por 6.5 segundos:#Invincibilidad#Isaac no puede disparar pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón rojo al matar un enemigo#{{Fear}} Asusta a todos los enemigos en la habitación"}, -- Power Pill!
 	{"37", "¡Visión retro!", "{{Timer}} Pixela la pantalla durante 30 segundos"}, -- Retro Vision
 	{"38", "¡Amigos hasta el fin!", "Invoca 6 moscas azules"}, -- Friends Till The End!
 	{"39", "X-Lax", "Genera una piscina de fluido resbaladizo persistente"}, -- X-Lax
