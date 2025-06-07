@@ -60,7 +60,6 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 ---| "pills" @ "5.70"
 ---| "horsepills" @ "5.70"
 ---| "horsepill" @ "5.70"
----| "sacrifice" @ "-999.-1"
 ---| "dice" @ "1000.76"
 ---| "entity" @ Indicates that a full entity identifier is used
 
@@ -519,7 +518,6 @@ function EID:getIDVariantString(typeName)
 	elseif typeName == "trinket" or typeName == "trinkets" then return "5.350"
 	elseif typeName == "card" or typeName == "cards" then return "5.300"
 	elseif typeName == "pill" or typeName == "pills" or typeName == "horsepills" or typeName == "horsepill" then return "5.70"
-	elseif typeName == "sacrifice" then return "-999.-1"
 	elseif typeName == "dice" then return "1000.76"
 	end
 	return nil
@@ -541,7 +539,6 @@ function EID:getTableName(Type, Variant, SubType)
 		else
 			return "horsepills"
 		end
-	elseif idString == "-999.-1" then return "sacrifice"
 	elseif idString == "1000.76" then return "dice"
 	elseif idString == "1.0" then return "players"
 	else return "custom"
@@ -832,8 +829,6 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 		if EID.isRepentance then
 			return (SubType & TrinketType.TRINKET_ID_MASK)
 		end
-	elseif tableName == "sacrifice" then
-		return math.min(#EID.descriptions["en"].sacrifice, SubType)
 	elseif tableName == "pills" or tableName == "horsepills" then
 		-- The effect of a pill varies depending on what player is looking at it in co-op
 		-- EID.pillPlayer is a way to recheck a pill for what different players will turn it into
@@ -937,8 +932,6 @@ function EID:getObjectName(Type, Variant, SubType)
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
 		return EID:getPillName(adjustedSubtype, tableName == "horsepills")
-	elseif tableName == "sacrifice" then
-		return EID:getDescriptionEntry("sacrificeHeader").." ("..SubType.."/"..#EID.descriptions["en"].sacrifice..")"
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
 	elseif tableName == "players" then
@@ -1019,14 +1012,7 @@ function EID:hasDescription(entity)
 	if not EID:EntitySanityCheck(entity) then return false end
 	
 	if EID:IsGridEntity(entity) then
-		if EID.GridEntityWhitelist[entity:GetType()] then
-			for _, func in ipairs(EID.GridEntityWhitelist[entity:GetType()]) do
-				if func(entity) then
-					return true
-				end
-			end
-		end
-		return false
+		return EID:CheckGridEntityHasDescription(entity)
 	end
 	local isAllowed = false
 	local entityString = entity.Type .. "." .. entity.Variant .. "." .. entity.SubType
@@ -1445,7 +1431,7 @@ function EID:replaceAllMarkupWithSpaces(text, checkBulletpoint)
 		end
 	end
 	-- iconsFound is used to make the next space after a markup icon be immune to line breaks, but only if it's just one icon with no other text
-	local iconsFound = 0; if text:gsub(" ", ""):gsub("{{.-}}","") ~= "" then iconsFound = -999 end
+	local iconsFound = 0; if text:gsub(" ", ""):gsub("{{.-}}","") ~= "" then iconsFound = math.mininteger end
 	
 	for word in string.gmatch(text, "{{.-}}") do
 		local lookup = EID:getIcon(word)

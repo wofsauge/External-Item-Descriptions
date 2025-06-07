@@ -112,9 +112,9 @@ EID.descriptions[languageCode].collectibles={
 	{"88", "Pequeño Chubby", "Embiste en la dirección de tus disparos#Inflige 52.5 de daño por contacto cada segundo"}, -- Little Chubby
 	{"89", "Picadura de araña", "{{Slow}} 25% de probabilidad de disparar lágrimas ralentizantes#{{Luck}} 100% de probabilidad con 15 de suerte"}, -- Picadura de araña
 	{"90", "La Roca pequeña", "↑ {{Tears}} Lágrimas +0.2#↑ {{Damage}} Daño +1#↓ {{Speed}} Velocidad -0.2"}, -- La Roca pequeña
-	{"91", "Sombrero de espeleólogo", "Revela el tipo de habitaciónes adyacentes#{{SecretRoom}} {{SuperSecretRoom}} Puede revelar las Salas secretas y súper secretas"}, -- Spelunker Hat
+	{"91", "Sombrero de espeleólogo", "Revela el tipo de las habitaciónes adyacentes#{{SecretRoom}} Revela las habitaciónes secretas y súper secretas"}, -- Spelunker Hat
 	{"92", "Súper Vendaje", "↑ {{Heart}} +1 de Vida#{{HealingRed}} Cura 1 corazón#{{SoulHeart}} +2 Corazones de Alma"}, -- Súper Vendaje
-	{"93", "El Gamekid", "{{Timer}} Otorga durante 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón al matar enemigos#{{Fear}} Asusta a todos los enemigos en la sala"}, -- The Gamekid
+	{"93", "El Gamekid", "{{Timer}} Otorga durante 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón rojo al matar un enemigo#{{Fear}} Asusta a todos los enemigos en la sala"}, -- The Gamekid
 	{"94", "Bolsa de centavos", "{{Coin}} Genera una moneda aleatoria cada 2 habitaciones"}, -- Bolsa de centavos
 	{"95", "Robo-Baby", "Dispara lásers que infligen 3.5 de daño"}, -- Robo-Baby
 	{"96", "Pequeño C.H.A.D.", "{{HalfHeart}} Genera medio corazón rojo cada 3 habitaciones"}, -- Little C.H.A.D.
@@ -131,7 +131,7 @@ EID.descriptions[languageCode].collectibles={
 	{"107", "Las Tijeras Dentadas", "{{Timer}} Durante la habitación actual:#Permite volar#Tu cuerpo se separa y ataca a los enemigos#El cuerpo inflige 82.5 de daño por contacto cada segundo"}, -- The Pinking Shears
 	{"108", "La Hostia", "Reduce todo el daño recibido a medio corazón"}, -- La Hostia
 	{"109", "Dinero = poder", "↑ {{Damage}} +0.04 de daño por cada {{Coin}} moneda que tengas"}, -- Dinero = poder
-	{"110", "Lentillas de Mamá", "↑ {{Range}} Alcance +0.25#↑ {{Tearsize}} Tamaño de lágrimas +0.5#20% de probabilidad de disparar lágrimas petrificantes#{{Luck}} 50% de probabilidad con 20 de suerte"}, -- Mom's Contacts
+	{"110", "Lentillas de Mamá", "↑ {{Range}} Alcance +0.25#↑ {{Tearsize}} Tamaño de lágrimas +0.5#20% de probabilidad de disparar lágrimas petrificadoras#{{Luck}} 50% de probabilidad con 20 de suerte"}, -- Mom's Contacts
 	{"111", "El frijol", "Pedo venenoso#{{Poison}} Eenvenena e inflige 5 de daño a los enemigos cercanos#El veneno inflige tu daño 6 veces"}, -- The Bean
 	{"112", "Ángel Guardián", "Familiar orbital#Acelera a los otros orbitales#Bloquea proyectiles#Inflige 105 de daño por contacto cada segundo"}, -- Guardian Angel
 	{"113", "Bebé Demonio", "Dispara automáticamente a los enemigos cercanos#Inflige 3 de daño por lágrima"}, -- Demon Baby
@@ -198,7 +198,7 @@ EID.descriptions[languageCode].collectibles={
 	{"174", "Bebé arcoiris", "Dispara lágrimas aleatorias que infligen 3-5 de daño"}, -- Rainbow Baby
 	{"175", "Llave de Papá", "Abre todas las puertas en la habitación actual#Puede abrir las {{SecretRoom}}/{{SuperSecretRoom}} Salas Secretas, {{ChallengeRoom}}/{{BossRushRoom}} Salas de Desafio y la puerta de Mega Satán"}, -- Dad's Key
 	{"176", "Células madre", "↑ {{Heart}} +1 de Vida#↑ {{Shotspeed}} Vel. de lágrimas +0.16"}, -- Stem Cells
-	{"177", "Tragamonedas portátil", "{{Coin}}Probabilidad de generar un recolectable aleatorio a cambio de una moneda"}, -- Portable Slot
+	{"177", "Tragamonedas portátil", "{{Coin}} Probabilidad de generar un recolectable aleatorio a cambio de una moneda"}, -- Portable Slot
 	{"178", "Agua bendita", "Genera un charco de agua bendita tras recibir daño#El charco inflige 24 de daño cada segundo"}, -- Holy Water
 	{"179", "Destino", "{{EternalHeart}} +1 Corazón eterno#Permite volar"}, -- Fate
 	{"180", "El frijol negro", "Te tiras un pedo al recibir daño#{{Poison}} El pedo envenena a los enemigos cercanos"}, -- The Black Bean
@@ -519,7 +519,7 @@ EID.descriptions[languageCode].collectibles={
 	{"493", "Adrenalina", "Otorga por cada contenedor de corazón vacío:#↑ {{Damage}} Daño +0.2"}, -- Adrenaline
 	{"494", "Escalera de Jacob", "Las lágrimas generan 1-2 rayos eléctricos al impactar#Los rayos infligen la mitad de tu daño"}, -- Escalera de Jacob
 	{"495", "Pimiento fantasma", "Probabilidad de disparar un fuego rojo que inflige daño y bloquea proyectiles#El fuego persiste hasta bloquear 5 disparos o infligir daño 5 veces"}, -- Ghost Pepper
-	{"496", "Eutanasia", "3.33% de probabilidad de disparar jeringas#100% de probabilidad con 15 de suerte#Las agujas matan a los enemigos normales de un golpe, disparando 10 lágrimas alrededor#{{Damage}} Inflige el triple de tu daño contra jefes"}, -- Euthanasia
+	{"496", "Eutanasia", "3.33% de probabilidad de disparar agujas#100% de probabilidad con 15 de suerte#Las agujas matan a los enemigos normales de un golpe, disparando 10 lágrimas alrededor#{{Damage}} Inflige el triple de tu daño contra jefes"}, -- Euthanasia
 	{"497", "Interior Camuflado", "{{Confusion}} Al entrar a una habitación confunde a los enemigos hasta que dispares"}, -- Camo Undies
 	{"498", "Dualidad", "{{AngelDevilChance}} Genera una sala de Ángel y de Diablo#Entrar en una sala hará desaparecer la otra"}, -- Duality
 	{"499", "Eucaristía", "↑ {{AngelChance}} 100% de probabilidad de encontrar salas de Ángel"}, -- Eucharist
@@ -810,7 +810,7 @@ EID.descriptions[languageCode].trinkets={
 	{"70", "Piojo", "Genera aleatoriamente una araña azul en habitaciónes hostiles"}, -- Louse
 	{"71", "Vejiga de Bob", "Las bombas sueltan fluido"}, -- Bob's Bladder
 	{"72", "Batería de Reloj", "{{Battery}} +6.67% de probabilidad de reemplazar la recompensa de la habitación por una batería#{{Battery}} +2% de probabilidad de que los recolectables sean baterías#{{Battery}} 5% de probabilidad de añadir una carga al objeto activo al limpiar una habitación"}, -- Watch Battery
-	{"73", "Detonador", "{{Bomb}} 10% de probabilidad de que las bombas generen bombas recolectables al explotar#Bombas troll generadas por {{Collectible65}} Recetario de Anarquista, {{Collectible371}} Maldición de la torre y {{Card17}} La Torre"}, -- Blasting Cap
+	{"73", "Detonador", "{{Bomb}} 10% de probabilidad de que las bombas generen bombas recolectables al explotar"}, -- Blasting Cap
 	{"74", "Detector de Clavos", "{{LadderRoom}} +0.5% de probabilidad de encontrar trampillas al destruir rocas"}, -- Stud Finder
 	{"75", "Error", "Otorga un efecto de trinket aleatorio cada habitación"}, -- Error
 	{"76", "Ficha de póker", "Al abrir un cofre:#↑ 50% de probabilidad de conseguir más recolectables#↓ 50% de probabilidad de generar una mosca roja"}, -- Poker Chip
@@ -1001,7 +1001,7 @@ EID.descriptions[languageCode].pills={
 	{"33", "Una te hace pequeño", "Reduce tu tamaño#Reduce el tamaño de tu hitbox"}, -- One makes you small
 	{"34", "¡Infestado!", "Genera 1 mosca azul por cada caca en la habitación"}, -- Infested!
 	{"35", "¿Infestado?", "Genera 1 araña azul por cada enemigo en la habitación#Genera 1-3 arañas cuando no hay enemigos"}, -- Infested?
-	{"36", "¡Píldora de Poder!", "{{Timer}} Otorga durante 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón al matar enemigos#{{Fear}} Asusta a todos los enemigos en la habitación"}, -- Power Pill!
+	{"36", "¡Píldora de Poder!", "{{Timer}} Otorga durante 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón rojo al matar un enemigo#{{Fear}} Asusta a todos los enemigos en la habitación"}, -- Power Pill!
 	{"37", "Visión Retro", "{{Timer}} Pixelea la pantalla 3 veces durante 30 segundos"}, -- Retro Vision
 	{"38", "¡Amigos hasta el fin!", "Genera 3 moscas azules"}, -- Friends Till The End!
 	{"39", "X-Lax", "Genera una piscina de fluido resbaladizo"}, -- X-Lax

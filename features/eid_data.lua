@@ -32,21 +32,6 @@ EID.effectList = {
 	["161"] = true,
 }
 
--- Grid entity types to be detected by EID
--- Add functions to the list to further filter the entries
-EID.GridEntityWhitelist = {
-	[GridEntityType.GRID_SPIKES] = {
-		function(gridEntity)
-			return Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and
-				EID.Config["DisplaySacrificeInfo"]
-		end,
-		function(gridEntity)
-			return EID.isRepentance and gridEntity:GetVariant() >= 100 and
-				EID.Config["DisplaySanguineInfo"]
-		end,
-	},
-}
-
 --maps the Player transformation from the enum PlayerForm to the internal transformation table
 -- Possible usages:		EID.TRANSFORMATION[ PlayerForm.PLAYERFORM_MUSHROOM ]
 -- 						EID.TRANSFORMATION.MUSHROOM

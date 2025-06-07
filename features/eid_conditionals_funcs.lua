@@ -551,7 +551,7 @@ function EID:applyConditionals(descObj)
 	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 	local typeVar = descObj.ObjType.."."..descObj.ObjVariant -- for general conditions (Tarot Cloth, Book of Virtues)
 	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype -- for specific conditions
-	local highestLayer = -999
+	local highestLayer = math.mininteger
 	local printedDescs = {}
 	
 	-- Combine specific+generic conditions into one table (in that order)
