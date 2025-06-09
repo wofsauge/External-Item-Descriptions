@@ -60,7 +60,7 @@ EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].coll
 
 local trinkets = {
 	-- Change: added ", {{Trinket135}} A Lighter"
-	[53] = { "53", "Tick", "{{HealingRed}} Heals 1 heart when entering a {{BossRoom}} Boss Room#-15% boss health#{{Warning}} Once picked up, it can't be removed#Only removeable with {{Trinket41}} Match Stick, {{Trinket135}} A Lighter, or gulping" }, -- Tick
+	[53] = { "53", "Tick", "{{HealingRed}} Heals 1 heart when entering a {{BossRoom}} Boss Room#-15% boss health#{{Warning}} Once picked up, it can't be removed#Only removeable with {{Trinket41}} Match Stick, {{Trinket135}} A Lighter or gulping" }, -- Tick
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = { "97", "Tonsil", "Taking damage 6-12 times spawns a projectile blocking familiar#Caps at 2 familiars" },                                                                                                                                   -- Tonsil
 	-- Change: added "Bombs deal 15% more damage"
@@ -71,6 +71,18 @@ local trinkets = {
 	[105] = { "105", "Bag Lunch", "{{Collectible22}} 5% chance to get destroyed and spawn Lunch when hit" },                                                                                                                                           -- Bag Lunch
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
+
+------- Golden Trinkets -------
+
+local goldenTrinketEffects = {
+	-- Tick (replace): added ", {{Trinket135}} A Lighter"
+	[53] = {
+		"{{HealingRed}} Heals {{ColorGold}}2{{CR}} hearts when entering a {{BossRoom}}Boss Room#-{{ColorGold}}30{{CR}}% boss health#{{ColorGold}}Removable!",
+		"{{HealingRed}} Heals {{ColorGold}}2{{CR}} hearts when entering a {{BossRoom}}Boss Room#-{{ColorGold}}30{{CR}}% boss health#{{Warning}} Once picked up, it can't be removed#Only removeable with {{Trinket41}}Match Stick, {{Trinket135}} A Lighter or gulping",
+		"{{HealingRed}} Heals {{ColorGold}}3{{CR}} hearts when entering a {{BossRoom}}Boss Room#-{{ColorGold}}30{{CR}}% boss health#{{ColorGold}}Removable!",
+	},
+}
+EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCode].goldenTrinketEffects)
 
 ---------- Cards ----------
 
