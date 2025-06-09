@@ -60,17 +60,29 @@ EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].coll
 
 local trinkets = {
 	-- Change: added ", {{Trinket135}} A Lighter"
-	[53] = { "53", "La garrapata", "{{HealingRed}} Cura 1 corazón al entrar a una {{BossRoom}} Sala de Jefe#El jefe comienza con -15% de vida#{{Warning}} Al ser recogido, no puede ser soltado#Solo es quitado con {{Trinket41}} la Cerilla {{Trinket135}} el Mechero, o tragándotelo" }, -- La garrapata
+	[53] = { "53", "La garrapata", "{{HealingRed}} Cura 1 corazón al entrar a una {{BossRoom}} Sala de Jefe#Reduce un 15% la salud del jefe#{{Warning}} Este trinket no puede ser soltado#Solo puedes deshacerte de él recogiendo {{Trinket41}} la Cerilla, {{Trinket135}} el Mechero o tragándolo" }, -- La garrapata
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = { "97", "Amígdala", "Recibir daño 6-12 veces genera un familiar que bloquea proyectiles#Limite de 2 familiares a la vez" }, -- Amígdala
-	-- Change: added "Bombs deal 15% more damage"
-	[133] = { "133", "Fusible corto", "Las bombas colocadas explotan más rápido#Las bombas hacen un 15% mas de daño" }, -- Fusible corto
 	-- Change: "2%" to "5%"
 	[104] = { "104", "Hueso de los deseos", "5% de probabilidad de destruirse y generar un objeto al ser golpeado" }, -- Hueso de los deseos
 	-- Change: "2%" to "5%"
 	[105] = { "105", "Bolsa del almuerzo", "5% de probabilidad de destruirse y generar {{Collectible22}} Almuerzo al ser golpeado" }, -- Bolsa del almuerzo
+	-- Change: added "Bombs deal 15% more damage"
+	[133] = { "133", "Fusible corto", "Las bombas colocadas explotan más rápido#Las bombas hacen un 15% mas de daño" }, -- Fusible corto
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
+
+------- Golden Trinkets -------
+
+local goldenTrinketEffects = {
+	-- Tick (replace): added ", {{Trinket135}} A Lighter"
+	[53] = {
+		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{ColorGold}}Puede ser soltado",
+		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{Warning}} Este trinket no puede ser soltado#Solo puedes deshacerte de él con {{Trinket41}} La cerilla, {{Trinket135}} el Mechero o tragándolo",
+		"{{HealingRed}} Cura {{ColorGold}}3{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{ColorGold}}Puede ser soltado",
+	},
+}
+EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCode].goldenTrinketEffects)
 
 ---------- Cards ----------
 
