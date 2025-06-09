@@ -1020,9 +1020,9 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[46] = { "{{HalfHeart}} Medio corazón", "{{Heart}} Un corazón", "{{Heart}} Un corazón y medio" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
 	[53] = {
-		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{ColorGold}} Puede ser soltado",
+		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{ColorGold}}Puede ser soltado",
 		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{Warning}} Este trinket no puede ser soltado#Solo puedes deshacerte de él con {{Trinket41}} La cerilla o tragándolo",
-		"{{HealingRed}} Cura {{ColorGold}}3{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{ColorGold}} Puede ser soltado",
+		"{{HealingRed}} Cura {{ColorGold}}3{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{ColorGold}}Puede ser soltado",
 	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
 	[64] = { "{{ArrowUp}} Duplíca los aumentos de estadísticas", "Triplíca los aumentos de estadísticas", "Cuadruplíca los aumentos de estadísticas", },
