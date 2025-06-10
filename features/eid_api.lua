@@ -173,6 +173,7 @@ end
 ---@param appendText? string | string[] @Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
 ---@param numbersToMultiply? number | number[] @The number inside the text that should be multiplied. can be one number, or a table of numbers
 ---@param maxMultiplier? number @Is what tripling (Golden+Mom's Box) should multiply the numbers by, normally 3. If it's less than 2, it also applies to doubling
+---@param language? EID_LanguageCode @Default: "en"
 -- Example: My modded trinket gives +0.5 range and when tripled, adds homing instead of tripling the range boost:
 --- ```lua
 --- EID:addGoldenTrinketMetadata(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 0.5, 2)
@@ -194,14 +195,15 @@ function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMult
 	end
 end
 ---Adds information about appending text and adding to numbers in a modded trinket's Golden/Mom's Box description. All three variables are optional, set to ""/0 or nil to not include them
+---@param id TrinketType
 ---@param appendText? string | string[] @Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
 ---@param numbersToChange? number | number[] @The number inside the text that gets added towards. can be one number, or a table of numbers
 ---@param additiveValues? number @Table of values that should be added to the number, if its doubled, tripled, or quadrupled
+---@param language? EID_LanguageCode @Default: "en"
 -- Example: My modded trinket gives +5 range and when tripled, adds homing instead of tripling the range boost:
 --- ```lua
 --- EID:addGoldenTrinketMetadataAdditive(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 5, {1,2,3})
 --- ```
-
 function EID:addGoldenTrinketMetadataAdditive(id, appendText, numbersToChange, additiveValues, language)
 	language = language or "en"
 
@@ -223,7 +225,6 @@ end
 ---Add a fully custom data table to the table of Golden Trinket effects.
 ---Check GoldenTrinketCallback in [eid_modifiers.lua](eid_modifiers.lua) to see the specifics of how it works.
 ---You may also want to add text entries into `EID.descriptions[languageCode].goldenTrinketEffects`
----<br><hr><br>
 ---@param id TrinketType
 ---@param dataTable EID_GoldenTrinketData
 function EID:addGoldenTrinketTable(id, dataTable)
@@ -247,6 +248,8 @@ function EID:addCard(id, description, itemName, language)
 end
 
 -- DEPRECATED! Does nothing! Don't use!
+---@deprecated
+---@diagnostic disable-next-line: unused-local
 function EID:addCardMetadata(id, mimicCharge, isRune)
 end
 
@@ -292,6 +295,7 @@ end
 ---@param id PillEffect
 ---@param mimicCharge integer @DEPRECATED, does nothing
 ---@param class? EID_PillClass @Default: "0". With False PHD, "3-" gives +0.6 Damage, "2-" and "1-" spawn a Black Heart
+---@diagnostic disable-next-line: unused-local
 function EID:addPillMetadata(id, mimicCharge, class)
 	EID.pillMetadata[id] = {
 		class = class or "0",
@@ -1005,8 +1009,9 @@ function EID:getXMLDescription(Type, Variant, SubType)
 end
 
 ---Check if an entity is part of the describable entities
----@param entity Entity
+---@param entity Entity | GridEntity
 ---@return boolean
+---@diagnostic disable: param-type-mismatch
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:hasDescription(entity)
 	if not EID:EntitySanityCheck(entity) then return false end
@@ -1681,7 +1686,7 @@ end
 
 ---Checks if the given player has the given item ID (or is the given player ID)
 ---@param player EntityPlayer
----@param Type EntityType
+---@param Type EntityType | string
 ---@param Var integer?
 ---@param Sub integer?
 ---@return boolean

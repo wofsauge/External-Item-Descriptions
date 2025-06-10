@@ -8,8 +8,15 @@ EID.TabDescThisFrame = false
 -- Some modifiers (e.g. Glitched Crown) want to know if Tab was pressed/released, rather than held
 EID.TabHeldThisFrame = false
 EID.TabHeldLastFrame = false
-function EID:TabPressed() return EID.TabHeldThisFrame and not EID.TabHeldLastFrame end
-function EID:TabReleased() return EID.TabHeldLastFrame and not EID.TabHeldThisFrame end
+
+-- Returns true if Tab was pressed this frame, false otherwise
+function EID:TabPressed()
+	return EID.TabHeldThisFrame and not EID.TabHeldLastFrame
+end
+-- Returns true if Tab was released this frame, false otherwise
+function EID:TabReleased()
+	return EID.TabHeldLastFrame and not EID.TabHeldThisFrame
+end
 
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
 EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_VOID] = true
@@ -32,6 +39,7 @@ EID.collectiblesOwned = {}
 EID.collectiblesAbsorbed = {}
 
 EID.LastCollectibleCheck = 0
+-- Check if any players own a collectible, returns true if at least one player has it
 function EID:CheckPlayersCollectibles()
 	-- recheck the players' owned collectibles periodically, not every frame
 	-- (has to be checked regularly due to mechanics like D4 / Tainted Eden)
