@@ -1874,6 +1874,7 @@ function EID:OnGameStart(isSave)
 		EID.Scale = EID.Config["Size"]
 		EID.ItemReminderSelectedCategory = EID.Config["ItemReminderDisplayMode"] == "NoOverview" and 1 or 0
 		
+		EID:AdjustLanguageConfigSetting()
 		EID:fixDefinedFont()
 		EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 	end
