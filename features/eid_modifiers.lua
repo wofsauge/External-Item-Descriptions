@@ -583,12 +583,14 @@ if EID.isRepentance then
 
 			--replacing numeric text based on our multiplier
 			if (data.t) then
+				local numReplacements = 0
 				--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
 				descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
 					count = 0
 					for _, v in ipairs(data.t) do
 						if (s == tostring(v) and count == 0) then
 							count = count + 1
+							numReplacements = numReplacements + 1
 							if v == 17 then
 								if multiplier == 2 then v = 16.5
 								elseif multiplier == 3 then v = (1/6)*100 end -- convert 17% to 33% or 50%
@@ -597,6 +599,7 @@ if EID.isRepentance then
 						end
 					end
 				end)
+				count = count + numReplacements
 			end
 			--replacing a phrase, such as "half a heart"
 			if data.findReplace then
