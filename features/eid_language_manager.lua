@@ -92,6 +92,32 @@ function EID:LoadLanguagePacks(gameVersion)
 end
 
 --- Initializes handling of alternative language codes for all languages
+function EID:AdjustLanguageConfigSetting()
+    if EID.Config["Language"] == "auto" then
+        -- If the language is set to "auto", we will not adjust the language codes
+        return
+    end
+
+    for _, languageCode in ipairs(EID.Languages) do
+        if languageCode == EID.Config["Language"] then
+            -- If the language is set to a valid language code, we will not adjust it
+            return
+        end
+        -- If the language is not set to a valid language code, we will adjust it
+        if EID.descriptions[languageCode] then
+            for _, altLanguageCode in ipairs(EID.descriptions[languageCode].alternativeLanguageCodes or {}) do
+                if altLanguageCode == EID.Config["Language"] then
+                    EID.Config["Language"] = languageCode
+                    return
+                end
+            end
+        end
+    end
+    EID:WriteErrorMsg("No valid language code found for '"..EID.Config["Language"].."', resetting to 'auto'")
+    EID.Config["Language"] = "auto"
+end
+
+--- Initializes handling of alternative language codes for all languages
 function EID:InitAltLanguageCodes()
     for _, languageCode in ipairs(EID.Languages) do
         if EID.descriptions[languageCode] and EID.descriptions[languageCode].alternativeLanguageCodes then

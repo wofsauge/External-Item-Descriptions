@@ -11,8 +11,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.98
-EID.ModVersionCommit = "9b736b6"
+EID.ModVersion = 4.99
+EID.ModVersionCommit = "a4a3a14"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -86,6 +86,12 @@ local hudBBSprite = Sprite()
 hudBBSprite:Load("gfx/eid_transform_icons.anm2", true)
 hudBBSprite:Play("boundingBox")
 
+local questionMarkSprite = Sprite()
+questionMarkSprite:Load("gfx/005.100_collectible.anm2",true)
+questionMarkSprite:ReplaceSpritesheet(1,"gfx/items/collectibles/questionmark.png")
+questionMarkSprite:LoadGraphics()
+
+
 
 EID.ModIndicator = { }
 -- Overwriting "RegisterMod" to track which mods are loading
@@ -133,6 +139,8 @@ local nullVector = Vector(0,0)
 ------------------------------- Load Font ---------------------------------
 local modfolder ='external item descriptions_836319872' --release mod folder name
 
+--- Function to get the current mod path
+--- @return string The absolute path to the current mod
 function EID:GetCurrentModPath()
 	if debug then
 		return string.sub(debug.getinfo(EID.GetCurrentModPath).source,2) .. "/../"
@@ -173,8 +181,7 @@ if not success then
 	end
 end
 
----------------------------------------------------------------------------
--------------Handle Resetting Floor Trackers--------------
+--- Function to reset all floor trackers when a new floor is entered
 function EID:onNewFloor()
 	pathsChecked = {}
 	if EID.isRepentance then
@@ -187,14 +194,7 @@ function EID:onNewFloor()
 end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EID.onNewFloor)
 
----------------------------------------------------------------------------
-------------------------Handle ALT FLOOR CHOICE----------------------------
-
-local questionMarkSprite = Sprite()
-questionMarkSprite:Load("gfx/005.100_collectible.anm2",true)
-questionMarkSprite:ReplaceSpritesheet(1,"gfx/items/collectibles/questionmark.png")
-questionMarkSprite:LoadGraphics()
-
+--- Function to check if a collectible pedestal is an alt path choice
 function EID:IsAltChoice(pickup)
 	-- do not run this while Curse of the Blind is active, since this function is really just a "is collectible pedestal a red question mark" check
 	if not EID.isRepentance or EID:hasCurseBlind() then
@@ -250,6 +250,9 @@ if EID.isRepentance then
 	local lastGetItemResult = {nil, nil, nil, nil} -- itemID, Frame, gridIndex, InitSeed
 	local lastFrameGridChecked = 0
 
+	--- Handle Flip Item positions and Crane Game item positions. Repentance Only function!
+	---@param selectedCollectible number
+	---@param itemPoolType number
 	function EID:postGetCollectible(selectedCollectible, itemPoolType)
 		-- Handle Crane Game
 		if itemPoolType == ItemPoolType.POOL_CRANE_GAME then
@@ -284,7 +287,11 @@ if EID.isRepentance then
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, EID.postGetCollectible)
 
-	-- Handle Flip Item spawn
+	--- Pre Room Entity Spawn callback to handle Flip item and pedestal spawning. Repentance Only function!
+	---@param entityType any
+	---@param variant any
+	---@param subtype any
+	---@param gridIndex any
 	function EID:preRoomEntitySpawn(entityType, variant, subtype, gridIndex)
 		flipItemNext = false
 		if entityType == 6 and variant == 14 then
@@ -299,6 +306,8 @@ if EID.isRepentance then
 	end
 	EID:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, EID.preRoomEntitySpawn)
 
+	--- Post Pickup Init callback to handle Flip item initialization. Repentance Only function!
+	---@param entity any
 	function EID:postPickupInitFlip(entity)
 		initialItemNext = false
 		flipItemNext = true
@@ -327,6 +336,8 @@ if EID.isRepentance then
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, EID.postPickupInitFlip, PickupVariant.PICKUP_COLLECTIBLE)
 
+	--- Check if a pedestal's index is valid for Flip items. Repentance Only function!
+	---@param entity any
 	function EID:CheckPedestalIndex(entity)
 		-- Only pedestals with indexes that were present at room load can be flip pedestals
 		-- Fixes shop restock machines and Diplopia... mostly. At least while you're in the room.
@@ -342,6 +353,7 @@ if EID.isRepentance then
 	EID:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, EID.CheckPedestalIndex, PickupVariant.PICKUP_COLLECTIBLE)
 
 	-- Before using Flip, swap all flippable pedestal's current item with the flip one (also, fix grid index if needed)
+	-- Repentance only function!
 	function EID:CheckFlipGridIndexes(collectibleType)
 		-- also, reload our descriptions due to transformation progress changing upon Flip
 		EID.ForceRefreshCache = true
@@ -366,7 +378,7 @@ if EID.isRepentance then
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckFlipGridIndexes, CollectibleType.COLLECTIBLE_FLIP)
 end
 
--- Watch for a Void absorbing active items
+-- MC_PRE_USE_ITEM callback to watch for Void absorbing active items
 function EID:CheckVoidAbsorbs(_, _, player)
 	player = player or EID.player
 	local playerID = EID:getPlayerID(player, true)
@@ -453,6 +465,7 @@ EID.CachedRenderPoses = {}
 EID.descriptionsToPrint = {}
 EID.entitiesToPrint = {}
 
+--- Reset the description cache, used when options change or when printing descriptions
 function EID:ResetDescCache()
 	EID.CachedIcons = {}
 	EID.CachedStrings = {}
@@ -461,7 +474,9 @@ function EID:ResetDescCache()
 	EID.previousDescs = {}
 end
 
-
+--- Add a description to the print queue
+---@param desc EID_DescObj | table -- The description object to add
+---@param insertLoc integer | nil
 function EID:addDescriptionToPrint(desc, insertLoc)
 	if desc.Entity and EID.entitiesToPrint[GetPtrHash(desc.Entity)] then return end
 	if #EID.descriptionsToPrint == EID.Config["MaxDescriptionsToDisplay"] and not insertLoc then return end
@@ -472,12 +487,17 @@ function EID:addDescriptionToPrint(desc, insertLoc)
 	if desc.Entity then EID.entitiesToPrint[GetPtrHash(desc.Entity)] = true end
 end
 
+--- Add a question mark description to the print queue
+---@param entity Entity
+---@param description string | nil
 function EID:addQuestionMarkDescription(entity, description)
 	EID:addDescriptionToPrint({ Icon = EID.InlineIcons["QuestionMark"], Description = description or "", Entity = entity})
 end
 
 local prevPrintFrame = 0
 
+--- Print all descriptions that are currently in the description table
+--- @param useCached boolean | nil - If true, will use the cached descriptions instead of printing new ones
 function EID:printDescriptions(useCached)
 	prevPrintFrame = EID.GameRenderCount
 
@@ -513,6 +533,7 @@ function EID:printDescriptions(useCached)
 	end
 end
 
+--- Print all descriptions that are currently in the description table
 function EID:printNewDescriptions()
 	EID.CachingDescription = true
 	EID:ResetDescCache()
@@ -533,11 +554,14 @@ function EID:printNewDescriptions()
 	end
 end
 
+--- Prints a description to the screen
+---@param desc EID_DescObj
+---@param cachedID integer | nil -- If this is a cached description, pass the index of the cached description
 function EID:printDescription(desc, cachedID)
 	EID:PositionLocalMode(desc.Entity)
 	-- Do not print this description if it has to be drawn in the top-left and we've already drawn a top-left desc this frame
 	if EID.CurrentScaleType == "Size" then
-		if alwaysUseLocalMode then return false
+		if alwaysUseLocalMode then return
 		else alwaysUseLocalMode = true end
 	end
 	EID.isDisplaying = true
@@ -716,6 +740,10 @@ function EID:printDescription(desc, cachedID)
 	end
 end
 
+--- Prints bullet points from a description string
+---@param description string - The description string to print
+---@param renderPos Vector - The position to render the bullet points at
+---@param ignoreBPConfig boolean - If true, will ignore the bullet point icon configuration
 function EID:printBulletPoints(description, renderPos, ignoreBPConfig)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
 	local textScale = Vector(EID.Scale, EID.Scale)
@@ -752,6 +780,7 @@ end
 EID.isMirrorRoom = false
 EID.isDeathCertRoom = false
 if EID.isRepentance then
+	--- Handle Flip Item in New Room. Repentance only function!
 	function EID:AssignFlipItems()
 		EID.flipMaxIndex = -1
 		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
@@ -766,6 +795,7 @@ if EID.isRepentance then
 			end
 		end
 	end
+	--- Handle MC_POST_NEW_ROOM for Repentance features
 	function EID:onNewRoomRep()
 		local level = game:GetLevel()
 		EID.isMirrorRoom = level:GetCurrentRoom():IsMirrorWorld()
@@ -779,7 +809,7 @@ if EID.isRepentance then
 	end
 	EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoomRep)
 end
-
+--- MC_POST_NEW_ROOM callback to handle new rooms, mostly Glowing Hour Glass rewinding and Grid Entities
 function EID:onNewRoom()
 	EID:CheckCurrentRoomGridEntities()
 	-- Store values here to be rewound after using Glowing Hour Glass
@@ -797,11 +827,15 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EID.onNewRoom)
 ---------------------------------------------------------------------------
 ---------------------------Handle Rendering--------------------------------
+-- RGB colors for each player's highlights (Red, Blue, Yellow, Green)
+local playerRGB = { {1,0.6,0.6}, {0.5,0.75,1}, {0.9, 0.9, 0.5}, {0.5,1,0.75} }
 
+--- Render an unidentified pill description
+---@param entity Entity
 function EID:renderUnidentifiedPill(entity)
 	EID:PositionLocalMode(entity)
 	if EID.CurrentScaleType == "Size" then
-		if alwaysUseLocalMode then return false
+		if alwaysUseLocalMode then return
 		else alwaysUseLocalMode = true end
 	end
 	EID.isDisplaying = true
@@ -841,10 +875,9 @@ function EID:renderUnidentifiedPill(entity)
 	end
 end
 
--- RGB colors for each player's highlights (Red, Blue, Yellow, Green)
-local playerRGB = { {1,0.6,0.6}, {0.5,0.75,1}, {0.9, 0.9, 0.5}, {0.5,1,0.75} }
-
+--- Render an indicator for an entity, such as a highlight or arrow
 ---@param entity Entity
+---@param playerNum integer - The player number to render the indicator for. Controls the arrow color
 function EID:renderIndicator(entity, playerNum)
 	if EID.Config["Indicator"] == "none" then
 		return
@@ -912,6 +945,7 @@ function EID:renderIndicator(entity, playerNum)
 	end
 end
 
+--- Position the description box in Local Mode, next to the item or entity
 ---@param entity Entity
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:PositionLocalMode(entity)
@@ -944,6 +978,7 @@ function EID:PositionLocalMode(entity)
 	end
 end
 
+--- Render HUD location indicators for debugging purposes
 function EID:renderHUDLocationIndicators()
 	local mousePos = Isaac.WorldToRenderPosition(Input.GetMousePosition(true)) * 2
 	Isaac.RenderScaledText("Mouse pos   X:"..mousePos.X.." Y:"..mousePos.Y, 100, 10, 0.5, 0.5, 1 ,1 ,1 ,1 )
@@ -960,6 +995,8 @@ end
 local lastMousePos = Vector(0,0)
 local lastMouseMove = 0
 
+--- Handle the HUD hover functionality, checking if the mouse is over any HUD elements
+--- @return EID_DescObj | nil - Returns the description object if the mouse is over a HUD element, otherwise nil
 function EID:handleHoverHUD()
 	local mousePos = Isaac.WorldToScreen(Input.GetMousePosition(true)) * 2
 	if mousePos:Distance(lastMousePos) > 2 then
@@ -982,6 +1019,7 @@ function EID:handleHoverHUD()
 	return nil
 end
 
+--- Set the player and coop player data for EID
 function EID:setPlayer()
 	local numPlayers = game:GetNumPlayers()
 	-- Old simple setPlayer, to reduce runtime in single player
@@ -1034,12 +1072,13 @@ end
 
 ---------------------------------------------------------------------------
 ---------------------------On Update Function------------------------------
--- Runs 30 times a second; doesn't update while paused
 
 local collSpawned = false
 EID.RecheckVoid = false
 EID.ShouldCheckWisp = false
 
+--- MC_POST_UPDATE callback that runs 30 times a second; doesn't update while paused
+--- Handles updating the game state and checking for new items
 function EID:onGameUpdate()
 	EID.GameUpdateCount = EID.GameUpdateCount + 1
 	EID:checkPlayersForMissingItems()
@@ -1128,6 +1167,7 @@ local function attemptPathfind(entity)
 end
 
 local hasShownStartWarning = false
+--- Check for start of run warnings, such as old game version or modded items
 function EID:CheckStartOfRunWarnings()
 	if EID.isRepentance and not EID.Config["DisableStartOfRunWarnings"] and game:GetFrameCount() < 10*30 then
 		-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
@@ -1228,6 +1268,7 @@ EID.lastDist = 0
 EID.OptionChanged = false
 EID.bagPlayer = nil
 
+--- Render function that runs every frame and handles the main EID rendering logic.
 function EID:OnRender()
 	-- Increases by 60 per second, ignores pauses
 	EID.GameRenderCount = EID.GameRenderCount + 1
@@ -1614,6 +1655,9 @@ end
 
 EID:AddCallback(ModCallbacks.MC_POST_RENDER, EID.OnRender)
 
+--- Add active item progress to the player's transformation progress.
+---@param player EntityPlayer
+---@param isD4 boolean
 local function AddActiveItemProgress(player, isD4)
 	EID.ForceRefreshCache = true
 	local playerID = EID:getPlayerID(player, true)
@@ -1635,10 +1679,12 @@ end
 -- Check the active items of every player for transformation progress (used at game start and after Genesis)
 local function CheckAllActiveItemProgress()
 	for i = 0, game:GetNumPlayers() - 1 do
-		AddActiveItemProgress(Isaac.GetPlayer(i))
+		AddActiveItemProgress(Isaac.GetPlayer(i), false)
 	end
 end
 
+--- OnGameStartGeneral is called when the game starts, either from a save or a new run.
+--- It initializes various EID tables and resets item interactions.
 local function OnGameStartGeneral(_,isSave)
 	EID:GetAllPassiveItems()
 	EID:GetTransformationsOfModdedItems()
@@ -1671,7 +1717,7 @@ local function OnUseD4(_, _, _, player)
 end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 
--- Watch for smelting trinkets; includes Gulp and Marbles
+-- MC_PRE_USE_ITEM callback to watch for smelting trinkets; includes Gulp and Marbles
 function EID:OnUseSmelter(_, _, _, player)
 	player = player or EID.player
 	local playerNum = EID:getPlayerID(player, true)
@@ -1684,7 +1730,7 @@ function EID:OnUseSmelter(_, _, _, player)
 end
 EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.OnUseSmelter, CollectibleType.COLLECTIBLE_SMELTER)
 
--- Watch for Glowing Hourglass to revert certain variables
+-- MC_PRE_USE_ITEM callback to watch for Glowing Hourglass to revert certain variables
 local function OnUseGlowingHourglass(_, _, _, _)
 	EID.absorbedItems = EID:CopyTable(preHourglassStatus.absorbedItems)
 	EID.PlayerItemInteractions = EID:CopyTable(preHourglassStatus.PlayerItemInteractions)
@@ -1721,6 +1767,10 @@ if EID.isRepentance then
 	EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, OnUseGeneral)
 end
 
+--- OnUsePill is called when a pill is used, and handles pill history tracking and Wild Card effects.
+---@param pillEffectID number The ID of the pill effect being used.
+---@param player EntityPlayer The player using the pill.
+---@param useFlags number Flags indicating how the pill was used (e.g., whether it was used with no animation).
 function EID:OnUsePill(pillEffectID, player, useFlags)
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
 	-- get the pill color by checking the player's pocket
@@ -1743,6 +1793,10 @@ function EID:OnUsePill(pillEffectID, player, useFlags)
 end
 EID:AddCallback(ModCallbacks.MC_USE_PILL, EID.OnUsePill)
 
+--- OnUseCard is called when a card is used, and handles card history tracking and Wild Card effects.
+---@param cardID number The ID of the card being used.
+---@param player EntityPlayer The player using the card.
+---@param useFlags number Flags indicating how the card was used (e.g., whether it was used with no animation).
 function EID:OnUseCard(cardID, player, useFlags)
 	player = player or EID.player --AB+ doesn't receive player in callback arguments!
 	EID:AddPickupToHistory("card", cardID, player, useFlags)
@@ -1771,6 +1825,11 @@ local configIgnoreList = {
 --------------------------------
 --------Handle Savedata---------
 --------------------------------
+
+
+--- OnGameStart is called when the game starts, either from a save or a new run.
+--- It initializes the config data if available.
+---@param isSave boolean Indicates whether the game is starting from a save or a new run.
 function EID:OnGameStart(isSave)
 	--Loading Moddata--
 	if EID:HasData() then
@@ -1874,13 +1933,14 @@ function EID:OnGameStart(isSave)
 		EID.Scale = EID.Config["Size"]
 		EID.ItemReminderSelectedCategory = EID.Config["ItemReminderDisplayMode"] == "NoOverview" and 1 or 0
 		
+		EID:AdjustLanguageConfigSetting()
 		EID:fixDefinedFont()
 		EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
 	end
 end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, EID.OnGameStart)
 
---Saving Moddata--
+--- OnGameExit saves the current EID configuration.
 function EID:OnGameExit()
 	if EID.isRepentance then
 		EID.Config["BagContent"] = EID.BoC.BagItems or {}
