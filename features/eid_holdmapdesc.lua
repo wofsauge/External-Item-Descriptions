@@ -1,4 +1,3 @@
-local game = Game()
 local GLITCH_ITEM_FLAG = 4294967296
 local currentBlacklist
 local lastInputTime = 0
@@ -32,7 +31,7 @@ EID.ItemReminderCategories = {
 			function(player) EID:ItemReminderHandleCharacterInfo(player) end
 		},
 		hideInOverview = function(_) -- hide character description from overview, if player is not in the starting room
-			return game:GetLevel():GetStartingRoomIndex() ~= game:GetLevel():GetCurrentRoomIndex()
+			return EID.game:GetLevel():GetStartingRoomIndex() ~= EID.game:GetLevel():GetCurrentRoomIndex()
 		end
 	},
 	{ id = "Special", entryGenerators = { function(player) EID:ItemReminderHandlePoopSpells(player) end, } },
@@ -168,7 +167,7 @@ EID.ItemReminderDescriptionModifier = {
 					local count = 2
 					local skip = 0
 					
-					local level = game:GetLevel()
+					local level = EID.game:GetLevel()
 					local stageNum = level:GetAbsoluteStage()
 					local inAscent = EID.isRepentance and (level:IsAscent() or level:IsPreAscent())
 					local final = not level:IsNextStageAvailable()
@@ -358,7 +357,7 @@ EID.ItemReminderDescriptionModifier = {
 		modifierFunction = function(descObj, _)
 			-- Rainbow Worm's trinket IDs it grants, in order
 			local rainbowWormEffects = { [0] = 9, 11, 65, 27, 10, 12, 26, 66, 96, 144 }
-			local trinketID = rainbowWormEffects[math.floor(game.TimeCounter / 30 / 3) % (EID.isRepentance and 10 or 8)]
+			local trinketID = rainbowWormEffects[math.floor(EID.game.TimeCounter / 30 / 3) % (EID.isRepentance and 10 or 8)]
 			descObj = EID:ItemReminderReplaceWithResult(descObj, trinketID, 350)
 			return true
 		end
@@ -366,7 +365,7 @@ EID.ItemReminderDescriptionModifier = {
 	["5.350.75"] = {   -- 404 Error
 		isHiddenInfo = true,
 		modifierFunction = function(descObj, _)
-			local seed = game:GetLevel():GetCurrentRoom():GetSpawnSeed()
+			local seed = EID.game:GetLevel():GetCurrentRoom():GetSpawnSeed()
 			local result = EID:RNGNext(seed, 2, 7, 25) % (EID.isRepentance and 189 or 128) + 1
 			descObj = EID:ItemReminderReplaceWithResult(descObj, result, 350)
 			return true
@@ -572,7 +571,7 @@ function EID:ItemReminderHandlePocketItems(player)
 		elseif heldPill > 0 then
 			-- Check if our held pill is identified
 			EID.pillPlayer = player
-			local identified = game:GetItemPool():IsPillIdentified(heldPill)
+			local identified = EID.game:GetItemPool():IsPillIdentified(heldPill)
 			if EID.isRepentance and heldPill % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
 			if (identified or EID.Config["ShowUnidentifiedPillDescriptions"]) then
 				EID:ItemReminderAddDescription(player, 5, 70, heldPill)

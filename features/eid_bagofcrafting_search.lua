@@ -1,7 +1,6 @@
 -- Valid values:
 --   0 -> Reset search query after search
 EID.BoCSLockMode = 0
-local game = Game()
 local locked = false
 
 local indexCharMapping = [[ ??????'????,-./0123456789?;?=???abcdefghijklmnopqrstuvwxyz[\]??]]
@@ -163,7 +162,7 @@ local function handleSearchInput()
 		return
 	end
 
-	local currentFrame = game:GetFrameCount()
+	local currentFrame = EID.game:GetFrameCount()
 	-- 30 Frames = 1 second
 	-- 15 = 500ms
 	if Input.IsButtonPressed(Keyboard.KEY_BACKSPACE, 0, true) and (
@@ -194,7 +193,7 @@ end
 
 --- Handles any input done related to Bag of Crafting search
 function EID:BoCSHandleInput()
-	if game:IsPaused() then
+	if EID.game:IsPaused() then
 		return
 	end
 

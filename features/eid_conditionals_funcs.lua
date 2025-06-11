@@ -1,4 +1,3 @@
-local game = Game()
 local modTextsAdded = 0
 local function newModdedCondition(text, language)
 	if text == nil then return nil end
@@ -329,11 +328,11 @@ function EID:PlayersHaveGoldenBomb()
 end
 
 function EID:IsGreedMode()
-	return game:IsGreedMode()
+	return EID.game:IsGreedMode()
 end
 
 function EID:IsGreedModePlusTarot()
-	return game:IsGreedMode() and EID:ConditionalItemCheck(451, true)
+	return EID:IsGreedMode() and EID:ConditionalItemCheck(451, true)
 end
 
 function EID:PlayersHaveRestock()
@@ -341,17 +340,17 @@ function EID:PlayersHaveRestock()
 end
 
 function EID:IsHardMode()
-	return game.Difficulty == 1 or game.Difficulty == 3
+	return EID.game.Difficulty == 1 or EID.game.Difficulty == 3
 end
 
 function EID:InStageNum(stageNum)
-	return game:GetLevel():GetAbsoluteStage() == stageNum
+	return EID.game:GetLevel():GetAbsoluteStage() == stageNum
 end
 function EID:InStageVoid()
 	return EID:InStageNum(12)
 end
 function EID:InStageNoTreasureRoom()
-	return game:GetLevel():GetAbsoluteStage() > 6
+	return EID.game:GetLevel():GetAbsoluteStage() > 6
 end
 function EID:InStageTheShop()
 	return EID:IsGreedMode() and EID:InStageNum(0)
@@ -516,7 +515,7 @@ end
 
 -- Check for multiple players existing for items like Yum Heart and Extension Cord, includes J&E and Strawmen
 function EID:MultiplePlayerCharacters()
-	return game:GetNumPlayers() > 1
+	return EID.game:GetNumPlayers() > 1
 end
 
 -- Check the bestiary/character list if we have REPENTOGON, to help avoid spoilers. Otherwise just return true

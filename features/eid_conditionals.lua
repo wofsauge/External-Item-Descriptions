@@ -1,5 +1,3 @@
-local game = Game()
-
 EID.DescriptionConditions = {}
 -- table of collectible IDs to periodically check if the players own. used by eid_modifiers.lua too
 EID.collectiblesToCheck = {}

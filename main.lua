@@ -4,7 +4,7 @@ EID = RegisterMod("External Item Descriptions", 1)
 EID.GameVersion = "ab+"
 EID.descriptions = {} -- Table that holds all translation strings
 EID.enableDebug = false
-local game = Game()
+EID.game = Game()
 EID.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil -- Repentance+ adds FontRenderSettings() class. We use this to check if the DLC is enabled. V1.9.7.7 added REPENTANCE_PLUS variable
 EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can be altered by any mod, so we save the value before anyone can alter it. V1.9.7.7 removed REPENTANCE variable, so we additionally check for Rep+
 
@@ -203,7 +203,7 @@ function EID:IsAltChoice(pickup)
 	if altPathItemChecked[pickup.InitSeed] ~= nil then
 		return altPathItemChecked[pickup.InitSeed]
 	end
-	if game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
+	if EID.game:GetRoom():GetType() ~= RoomType.ROOM_TREASURE then
 		altPathItemChecked[pickup.InitSeed] = false
 		return false
 	end
@@ -273,7 +273,7 @@ if EID.isRepentance then
 		-- (it also watches for item rerolls to fill the new entity's GetData)
 		-- POST_NEW_ROOM then handles putting the result in the entity's GetData
 		local curFrame = Isaac.GetFrameCount()
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local curRoomIndex = EID.game:GetLevel():GetCurrentRoomIndex()
 		if curFrame == lastGetItemResult[2] then
 			if initialItemNext then lastGetItemResult[1] = selectedCollectible
 			elseif flipItemNext and lastGetItemResult[1] then
@@ -313,8 +313,8 @@ if EID.isRepentance then
 		flipItemNext = true
 		lastGetItemResult[4] = entity.InitSeed
 
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-		local gridPos = game:GetRoom():GetGridIndex(entity.Position)
+		local curRoomIndex = EID.game:GetLevel():GetCurrentRoomIndex()
+		local gridPos = EID.game:GetRoom():GetGridIndex(entity.Position)
 
 		-- Update a Flip item's init seed after D6 rerolls or using Flip (aka Grid Index didn't change, Init Seed did)
 		if EID.flipItemPositions[curRoomIndex] and not EID.flipItemPositions[curRoomIndex][entity.InitSeed] then
@@ -342,8 +342,8 @@ if EID.isRepentance then
 		-- Only pedestals with indexes that were present at room load can be flip pedestals
 		-- Fixes shop restock machines and Diplopia... mostly. At least while you're in the room.
 		if EID:getEntityData(entity, "EID_FlipItemID") and entity.Index > EID.flipMaxIndex then
-			local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
-			local gridPos = game:GetRoom():GetGridIndex(entity.Position)
+			local curRoomIndex = EID.game:GetLevel():GetCurrentRoomIndex()
+			local gridPos = EID.game:GetRoom():GetGridIndex(entity.Position)
 			local flipEntry = EID.flipItemPositions[curRoomIndex] and EID.flipItemPositions[curRoomIndex][entity.InitSeed]
 			-- only wipe the data if the grid index matches (so Diplopia pedestals don't)
 			if flipEntry and gridPos == flipEntry[2] then EID.flipItemPositions[curRoomIndex][entity.InitSeed] = nil end
@@ -358,13 +358,13 @@ if EID.isRepentance then
 		-- also, reload our descriptions due to transformation progress changing upon Flip
 		EID.ForceRefreshCache = true
 		lastFrameGridChecked = Isaac.GetFrameCount()
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local curRoomIndex = EID.game:GetLevel():GetCurrentRoomIndex()
 		if EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 			for _, pedestal in ipairs(pedestals) do
 				local flipEntry = EID.flipItemPositions[curRoomIndex][pedestal.InitSeed]
 				if flipEntry then
-					local gridPos = game:GetRoom():GetGridIndex(pedestal.Position)
+					local gridPos = EID.game:GetRoom():GetGridIndex(pedestal.Position)
 					flipEntry[2] = gridPos
 					if collectibleType == CollectibleType.COLLECTIBLE_FLIP then
 						-- don't swap a flip shadow with an empty pedestal!
@@ -783,7 +783,7 @@ if EID.isRepentance then
 	--- Handle Flip Item in New Room. Repentance only function!
 	function EID:AssignFlipItems()
 		EID.flipMaxIndex = -1
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local curRoomIndex = EID.game:GetLevel():GetCurrentRoomIndex()
 		if EID.flipItemPositions[curRoomIndex] then
 			local pedestals = Isaac.FindByType(5, 100, -1, true, false)
 			for _, pedestal in ipairs(pedestals) do
@@ -797,7 +797,7 @@ if EID.isRepentance then
 	end
 	--- Handle MC_POST_NEW_ROOM for Repentance features
 	function EID:onNewRoomRep()
-		local level = game:GetLevel()
+		local level = EID.game:GetLevel()
 		EID.isMirrorRoom = level:GetCurrentRoom():IsMirrorWorld()
 		EID.isDeathCertRoom = EID:GetDimension(level) == 2
 		EID:BOCHandleCurseOfMaze()
@@ -914,7 +914,7 @@ function EID:renderIndicator(entity, playerNum)
 		ArrowSprite:RenderLayer(playerNum-1, arrowPos, nullVector, nullVector)
 	else
 		local colorMult = {1,1,1}
-		local framecount = entity.FrameCount or game:GetFrameCount()
+		local framecount = entity.FrameCount or EID.game:GetFrameCount()
 		if EID.isMultiplayer then colorMult = playerRGB[playerNum] end
 		if EID.Config["Indicator"] == "blink" then
 			local c = 255 - math.floor(255 * ((framecount % 40) / 40))
@@ -1001,9 +1001,9 @@ function EID:handleHoverHUD()
 	local mousePos = Isaac.WorldToScreen(Input.GetMousePosition(true)) * 2
 	if mousePos:Distance(lastMousePos) > 2 then
 		lastMousePos = mousePos
-		lastMouseMove = game:GetFrameCount()
+		lastMouseMove = EID.game:GetFrameCount()
 	end
-	if game:GetFrameCount() - lastMouseMove > 60 * 3 then
+	if EID.game:GetFrameCount() - lastMouseMove > 60 * 3 then
 		return nil
 	end
 	if EID.Config["ShowCursor"] then
@@ -1021,7 +1021,7 @@ end
 
 --- Set the player and coop player data for EID
 function EID:setPlayer()
-	local numPlayers = game:GetNumPlayers()
+	local numPlayers = EID.game:GetNumPlayers()
 	-- Old simple setPlayer, to reduce runtime in single player
 	if numPlayers == 1 or not EID.Config["CoopDescriptions"] then
 		local p = Isaac.GetPlayer(0)
@@ -1169,7 +1169,7 @@ end
 local hasShownStartWarning = false
 --- Check for start of run warnings, such as old game version or modded items
 function EID:CheckStartOfRunWarnings()
-	if EID.isRepentance and not EID.Config["DisableStartOfRunWarnings"] and game:GetFrameCount() < 10*30 then
+	if EID.isRepentance and not EID.Config["DisableStartOfRunWarnings"] and EID.game:GetFrameCount() < 10*30 then
 		-- Old Repentance version check; update this to check for the existence of the newest mod API function EID uses
 		-- 1.7.9b (Dec. 08, 2022): The IsAvailable function was added (checking for Isaac.RunCallback existing instead)
 		if Isaac.RunCallback == nil then
@@ -1219,7 +1219,7 @@ function EID:CheckPosModifiers()
 		EID:removeTextPosModifier("Repentance+")
 	end
 	-- Greed Mode small right adjustment
-	if game:IsGreedMode() then
+	if EID:IsGreedMode() then
 		EID:addTextPosModifier("Greed Mode Horizontal", Vector(8,0))
 	else
 		EID:removeTextPosModifier("Greed Mode Horizontal")
@@ -1535,7 +1535,7 @@ function EID:OnRender()
 							local wasHidden = false
 							if EID:getEntityData(closest, "EID_DontHide") ~= true then
 								local isHideUncollected = EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(collectibleID)
-								if (EID.Config["DisableOnCurse"] and EID:hasCurseBlind()) or (isHideUncollected) or (EID.Config["DisableOnAprilFoolsChallenge"] and game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
+								if (EID.Config["DisableOnCurse"] and EID:hasCurseBlind()) or (isHideUncollected) or (EID.Config["DisableOnAprilFoolsChallenge"] and EID.game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
 									local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil		
 									EID:addQuestionMarkDescription(closest, description)
 									wasHidden = true;
@@ -1583,7 +1583,7 @@ function EID:OnRender()
 								wasHidden = true
 							end
 						end
-						local isCantrippedCard = game.Challenge == 43 and closest.SubType > 32768
+						local isCantrippedCard = EID.game.Challenge == 43 and closest.SubType > 32768
 						if isCantrippedCard then
 							-- Convert into item description for CanTripped Challenge
 							descriptionObj = EID:getDescriptionObj(5, 100, closest.SubType - 32768, closest)
@@ -1609,7 +1609,7 @@ function EID:OnRender()
 						end
 						if not wasHidden then
 							local pillColor = closest.SubType
-							local pool = game:GetItemPool()
+							local pool = EID.game:GetItemPool()
 							local identified = pool:IsPillIdentified(pillColor) and not EID.Config["OnlyShowPillWhenUsedAtLeastOnce"]
 							if EID.isRepentance and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
 							local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
@@ -1678,7 +1678,7 @@ end
 
 -- Check the active items of every player for transformation progress (used at game start and after Genesis)
 local function CheckAllActiveItemProgress()
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		AddActiveItemProgress(Isaac.GetPlayer(i), false)
 	end
 end

@@ -4,7 +4,8 @@
 -- Use EID:addGridEntity() or EID:addGridEntityConditional() to add new entries to this table.
 -- Keys in this table are integers or type GridEntityType
 -- Each value is a list of tables with the keys "condition" and "callback", which act like modifiers 
--- and define when a description should be shown and how it should be modified. 
+-- and define when a description should be shown and how it should be modified.
+
 EID.GridEntityDescriptions = {
 }
 
@@ -90,7 +91,7 @@ end
 -- Handle Sacrifice room payout
 ----------------------------------------------------
 local function SacrificeRoomCondition(_)
-    return Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"]
+    return EID.game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"]
 end
 
 local function SacrificeRoomCallback(descObj)
@@ -103,7 +104,7 @@ local function SacrificeRoomCallback(descObj)
 	local curCounter = descObj.ObjSubType or 1
 	if curCounter <= 2 then
 		--Remove B1 Bomb drop info when not on B1
-		if Game():GetLevel():GetAbsoluteStage() > 1 then
+		if EID.game:GetLevel():GetAbsoluteStage() > 1 then
 			local splitPoint = string.find(descObj.Description, '#', 1)
 			descObj.Description = descObj.Description:sub(1,splitPoint-1)
 		end

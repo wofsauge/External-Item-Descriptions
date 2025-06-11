@@ -1,5 +1,4 @@
 -- This file is for various functions that are able to calculate the result effect that an item will have
-local game = Game()
 local variantToName = { [70] = "Pill", [100] = "Collectible", [300] = "Card", [350] = "Trinket" }
 
 -- XOR table used for RNG: https://www.jstatsoft.org/article/view/v008i14/xorshift.pdf
@@ -145,7 +144,7 @@ end
 -- Teleport! Destination Prediction --
 -- Returns text like "{{RoomIcon}} Room Type Name#Up 3, Left 2"
 function EID:Teleport1Prediction(rng)
-	local level = game:GetLevel()
+	local level = EID.game:GetLevel()
 	local currentRoomIndex = level:GetCurrentRoomDesc().SafeGridIndex
 	local possibleRooms = {}
     -- Search the 13x13 grid for valid teleport locations
@@ -192,7 +191,7 @@ local teleport2GreedOrder = { 1,5,2,4,10,23,8,666,3 }
 local teleport2Icons = { [1024] = "{{RedRoom}}", [1025] = "{{RedRoom}}", [666] = "{{AngelDevilChance}}" }
 
 function EID:Teleport2Prediction()
-	local level = game:GetLevel()
+	local level = EID.game:GetLevel()
 	local rooms = level:GetRooms()
 	local curDimension = EID:GetDimension(level)
 	--I AM ERROR Room always considered uncleared
@@ -215,7 +214,7 @@ function EID:Teleport2Prediction()
 	-- If in Pre-Ascent version (Dad's note) of Mausuleum/Gehenna, we dont teleport to I AM ERROR but Angel/Devil
 	if EID.isRepentance and level:IsPreAscent() then unclearedTypes[666] = true; unclearedTypes[3] = false end
 
-	local greed = game:IsGreedMode()
+	local greed = EID:IsGreedMode()
 	local roomOrder = (greed and teleport2GreedOrder) or teleport2Order
 	local roomNames = EID:getDescriptionEntry("RoomTypeNames")
 
@@ -336,7 +335,7 @@ function EID:D1Prediction(rng)
 		elseif poss[sel].Variant == 70 or poss[sel].Variant == 300 or poss[sel].Variant == 350 then
 			local objName = EID:getObjectName(5, poss[sel].Variant, poss[sel].SubType)
 			-- don't display the name of unidentified pills!
-			if poss[sel].Variant == 70 and not EID.Config["ShowUnidentifiedPillDescriptions"] and not game:GetItemPool():IsPillIdentified(poss[sel].SubType) then
+			if poss[sel].Variant == 70 and not EID.Config["ShowUnidentifiedPillDescriptions"] and not EID.game:GetItemPool():IsPillIdentified(poss[sel].SubType) then
 				objName = EID:getDescriptionEntry("unidentifiedPill")
 			end
 			return "{{" .. variantToName[poss[sel].Variant] .. poss[sel].SubType .. "}} " .. objName
@@ -419,7 +418,7 @@ function EID:CrookedPennyPrediction(rng, carBattery)
 	local seed = rng
 	-- Repentance makes a new seed by XORing the room's decoration seed
 	if EID.isRepentance then
-		local roomSeed = game:GetLevel():GetCurrentRoom():GetDecorationSeed()
+		local roomSeed = EID.game:GetLevel():GetCurrentRoom():GetDecorationSeed()
 		seed = seed ~ roomSeed
 		if seed == 0 then seed = 1 end
 		seed = EID:RNGNext(seed, 4) -- xorshift #4

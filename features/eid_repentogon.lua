@@ -2,13 +2,12 @@ if not REPENTOGON then
 	return
 end
 ---@diagnostic disable: duplicate-set-field
-local game = Game()
 local maxVanillaItemID = CollectibleType.NUM_COLLECTIBLES -- sanity backup
 
 -- REPENTOGON: Use PersistentGameData to determine item collection status
 -- Returns true if an item needs to be collected for the collection page
 function EID:requiredForCollectionPage(itemID)
-	if itemID >= maxVanillaItemID or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
+	if itemID >= maxVanillaItemID or EID.game:GetVictoryLap() > 0 or EID.game:GetSeeds():IsCustomRun() then return false end
 	return not Isaac.GetPersistentGameData():IsItemInCollection(itemID)
 end
 
@@ -129,7 +128,7 @@ function EID:BoCDetectBagContentShift() end
 -- read room items directly from room data when changing rooms, to ensure floor item counter doesnt desync
 function EID:BoCOnNewRoom_Repentogon(_)
 	EID.BoCOnNewRoom(_)
-	local lastRoomDesc = game:GetLevel():GetLastRoomDesc()
+	local lastRoomDesc = EID.game:GetLevel():GetLastRoomDesc()
 	local lastRoomEntities = lastRoomDesc:GetEntitiesSaveState()
 
 	local roomItems = {}

@@ -40,7 +40,6 @@ setmetatable(__eidEntityDescriptions,
 EID.Pathfinder = require("features.pathfinder.luafinding")
 
 local nullVector = Vector(0,0)
-local game = Game()
 local maxCardID = Card.NUM_CARDS - 1
 local maxPillID = PillColor.NUM_PILLS - 1
 local dynamicSpriteCache = {} -- used to store sprite objects of collectible icons etc.
@@ -573,7 +572,7 @@ end
 ---Returns true, if curse of blind is active
 ---@return boolean
 function EID:hasCurseBlind()
-	return game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND > 0
+	return EID.game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND > 0
 end
 
 ---Returns the current text position
@@ -840,7 +839,7 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 		if EID.isRepentance and SubType % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then
 			return 9999
 		end
-		local pool = game:GetItemPool()
+		local pool = EID.game:GetItemPool()
 		if EID.isRepentance and player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 			SubType = pool:GetPillEffect(SubType, player:GetOtherTwin() or player) + 1
 		else SubType = pool:GetPillEffect(SubType, player) + 1 end
@@ -1711,7 +1710,7 @@ end
 ---@param collectibleID CollectibleType
 ---@return boolean, EntityPlayer?, integer?
 function EID:PlayersHaveCollectible(collectibleID)
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(collectibleID) then
 			return true, player, i
@@ -1724,7 +1723,7 @@ end
 ---@param collectibleID CollectibleType
 ---@return boolean, EntityPlayer?
 function EID:PlayersVoidedCollectible(collectibleID)
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		return EID:PlayerVoidedCollectible(player, collectibleID)
 	end
@@ -1748,7 +1747,7 @@ end
 ---@param trinketID TrinketType
 ---@return boolean, EntityPlayer?, integer?
 function EID:PlayersHaveTrinket(trinketID)
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:HasTrinket(trinketID) then
 			return true, player, i
@@ -1761,7 +1760,7 @@ end
 ---@param cardID Card
 ---@return boolean, EntityPlayer?
 function EID:PlayersHaveCard(cardID)
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		return EID:PlayerHasCard(player, cardID)
 	end
@@ -1786,7 +1785,7 @@ end
 ---@param pillID PillColor
 ---@return boolean, EntityPlayer?
 function EID:PlayersHavePill(pillID)
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		return EID:PlayerHasPill(player, pillID)
 	end
@@ -1812,7 +1811,7 @@ end
 ---@param includeTainted? boolean @If true, doesn't care if the player is tainted or not
 ---@return boolean, EntityPlayer?, integer?
 function EID:PlayersHaveCharacter(playerType, includeTainted)
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:GetPlayerType() == playerType then
 			return true, player, i
@@ -1939,8 +1938,8 @@ function EID:isCollectibleAllowed(collectibleID)
 	if item == nil then return false
 	elseif item.Tags == nil then return true
 	else
-		if game:IsGreedMode() and item:HasTags(ItemConfig.TAG_NO_GREED) then return false
-		elseif game.Challenge > 0 and item:HasTags(ItemConfig.TAG_NO_CHALLENGE) then return false
+		if EID:IsGreedMode() and item:HasTags(ItemConfig.TAG_NO_GREED) then return false
+		elseif EID.game.Challenge > 0 and item:HasTags(ItemConfig.TAG_NO_CHALLENGE) then return false
 		else return true end
 		-- no need to check TAG_NO_DAILY because mods are disabled for Dailies
 	end
@@ -1954,7 +1953,7 @@ function EID:AreAchievementsAllowed()
 	-- (Fixes Tainted Lost's item pools, and potentially modded character's mechanics, ruining this check)
 	if EID.player:GetPlayerType() < 21 then
 		-- Challenge runs and TMTrainer might break the pool, so ignore them.
-		if not game:GetSeeds():IsCustomRun() and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
+		if not EID.game:GetSeeds():IsCustomRun() and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
 			---@diagnostic disable-next-line: undefined-field
 			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlocked(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
 			if not hasBookOfRevelationsUnlocked then
@@ -2114,8 +2113,8 @@ end
 
 ---@return Vector
 function EID:getScreenSize()
-	local room = game:GetRoom()
-	local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - game.ScreenShakeOffset
+	local room = EID.game:GetRoom()
+	local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - EID.game.ScreenShakeOffset
 
 	local rx = pos.X + 60 * 26 / 40
 	local ry = pos.Y + 140 * (26 / 40)
@@ -2268,7 +2267,7 @@ end
 ---@return boolean
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:requiredForCollectionPage(itemID)
-	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or itemID >= CollectibleType.NUM_COLLECTIBLES or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
+	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or itemID >= CollectibleType.NUM_COLLECTIBLES or EID.game:GetVictoryLap() > 0 or EID.game:GetSeeds():IsCustomRun() then return false end
 	return EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[itemID]
 end
 
@@ -2276,10 +2275,10 @@ end
 ---TODO: also check for D100 / MissingNo Item collections
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:checkPlayersForMissingItems()
-	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return end
+	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or EID.game:GetVictoryLap() > 0 or EID.game:GetSeeds():IsCustomRun() then return end
 	if EID.GameUpdateCount % 5 ~= 0 then return end
 
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player.QueuedItem.Item and EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[player.QueuedItem.Item.ID] then
 			table.insert(EID.CollectedItems, player.QueuedItem.Item.ID)
@@ -2293,7 +2292,7 @@ end
 ---@return integer
 function EID:getPlayerID(entityPlayer, lazarusAdjust)
 	if not entityPlayer then return 0 end
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if GetPtrHash(player) == GetPtrHash(entityPlayer) then
 			-- Dead Tainted Lazarus exceptions
@@ -2428,7 +2427,7 @@ EID.TransformationProgress = {}
 ---Given a transformation identifier, iterates over every player and count the number of items they have which count towards that transformation
 ---@param transformation string
 function EID:evaluateTransformationProgress(transformation)
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local id = EID:getPlayerID(player, true) -- Dead Tainted Lazarus exception
 		EID.TransformationProgress[id] = {}
@@ -2497,7 +2496,7 @@ end
 ---Create a list of all grid entities in the room that have an EID description
 function EID:CheckCurrentRoomGridEntities()
 	EID.CurrentRoomGridEntities = {}
-	local room = game:GetRoom()
+	local room = EID.game:GetRoom()
 	for i = 1, room:GetGridSize(), 1 do
 		local gridEntity = room:GetGridEntity(i)
 		if gridEntity and EID:hasDescription(gridEntity) then
@@ -2510,7 +2509,7 @@ EID.PlayerHeldPill = {}
 ---Workaround function to get the currently held pill of the players. Used to map Pill ID to pill color and vise versa
 function EID:evaluateHeldPill()
 	EID.PlayerHeldPill = {}
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		EID.PlayerHeldPill[i] = player:GetPill(0)
 		-- Magdalene starts with an identified pill. We need to account for that
@@ -2526,7 +2525,7 @@ local hadQueuedItem = {}
 ---Watch for a player's queued item (holding an item over their head) to track active item touches
 ---Used for Transformation Progress and for tracking Recently Touched Items
 function EID:evaluateQueuedItems()
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local id = EID:getPlayerID(player, true)
 		EID:InitItemInteractionIfAbsent(id)
@@ -2538,14 +2537,14 @@ function EID:evaluateQueuedItems()
 				EID:CheckCurrentRoomGridEntities()
 			end
 			hadQueuedItem[id] = player.QueuedItem.Item ~= nil
-			if EID.PlayerItemInteractions[id].LastTouch + 45 >= game:GetFrameCount() and player.QueuedItem.Item then
+			if EID.PlayerItemInteractions[id].LastTouch + 45 >= EID.game:GetFrameCount() and player.QueuedItem.Item then
 				return
 			else
 				EID.PlayerItemInteractions[id].LastTouch = 0
 			end
 
 			if not player.QueuedItem.Touched and player.QueuedItem.Item then
-				EID.PlayerItemInteractions[id].LastTouch = game:GetFrameCount()
+				EID.PlayerItemInteractions[id].LastTouch = EID.game:GetFrameCount()
 				local itemIDStr = tostring(player.QueuedItem.Item.ID)
 				-- Add touched active items to our transformation progress table
 				if player.QueuedItem.Item.Type == ItemType.ITEM_ACTIVE then
@@ -2594,7 +2593,7 @@ end
 ---(Fixes co-op bugs, compared to only initiating it for the toucher)
 ---@param itemIDStr string
 function EID:InitActiveItemInteraction(itemIDStr)
-	for playerID = 0, game:GetNumPlayers() - 1 do
+	for playerID = 0, EID.game:GetNumPlayers() - 1 do
 		EID:InitItemInteractionIfAbsent(playerID)
 		EID.PlayerItemInteractions[playerID].actives[itemIDStr] = EID.PlayerItemInteractions[playerID].actives[itemIDStr] or 0
 		EID.PlayerItemInteractions[playerID+666].actives[itemIDStr] = EID.PlayerItemInteractions[playerID+666].actives[itemIDStr] or 0
@@ -2621,9 +2620,9 @@ function EID:getObjectItemPool(descObj)
 			-- TODO (maybe will require REPENTOGON?)
 			-- Since D4 exploit is completely fixed in 1.9.7.11, this is no longer viable for full-reroll effect
 			-- (still useful for initial item pool from rooms though)
-			return game:GetItemPool():GetLastPool() -- remove this if item pool function should not appear on 1.9.7.11 patch
+			return EID.game:GetItemPool():GetLastPool() -- remove this if item pool function should not appear on 1.9.7.11 patch
 		else
-			return game:GetItemPool():GetLastPool()
+			return EID.game:GetItemPool():GetLastPool()
 		end
 	end
 end
@@ -2793,7 +2792,7 @@ end
 ---@param variant? integer @Default: 100 (Collectible)
 ---@return integer?
 function EID:GetItemSeed(player, id, variant)
-	if player == nil then return game:GetSeeds():GetStartSeed()
+	if player == nil then return EID.game:GetSeeds():GetStartSeed()
 	elseif variant == nil or variant == 100 then return player:GetCollectibleRNG(id):GetSeed()
 	elseif variant == 350 then return player:GetTrinketRNG(id):GetSeed()
 	elseif variant == 300 then return player:GetCardRNG(id):GetSeed()
@@ -2941,7 +2940,7 @@ end
 
 EID.OldestItemIndex = {}
 function EID:SetOldestItemIndex()
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		EID.RecentlyTouchedItems[i] = EID.RecentlyTouchedItems[i] or {}
 		if EID.OldestItemIndex[i] == nil then EID.OldestItemIndex[i] = #EID.RecentlyTouchedItems[i] + 1 end
 		-- set up Dead Tainted Lazarus to be oldest slot 1
@@ -2996,7 +2995,7 @@ EID.GlitchedCrownCheck = {}
 function EID:WatchForGlitchedCrown()
 	if REPENTOGON then
 		-- In REPENTOGON, always check even without Glitched Crown, allowing to check 5+ Soul of Isaac usage, or Everything Jar
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local curRoomIndex = EID.game:GetLevel():GetCurrentRoomIndex()
 		EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
 
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
@@ -3015,7 +3014,7 @@ function EID:WatchForGlitchedCrown()
 	else
 		if not EID.collectiblesOwned[689] then return end
 
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local curRoomIndex = EID.game:GetLevel():GetCurrentRoomIndex()
 		EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
 
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
@@ -3125,7 +3124,7 @@ end
 function EID:ClosestPlayerTo(entity)
 	local closestDist = 9999999
 	local closestPlayer = EID.player or Isaac.GetPlayer()
-	local numPlayers = game:GetNumPlayers()
+	local numPlayers = EID.game:GetNumPlayers()
 	if EID.InsideItemReminder then return EID.ItemReminderPlayerEntity end
 	if entity == nil or numPlayers == 1 then return closestPlayer end
 	
@@ -3170,7 +3169,7 @@ function EID:IsItemHidden(entity)
 	if (EID.Config["DisableOnCurse"] and EID:hasCurseBlind() and not entity:ToPickup().Touched and not EID.isDeathCertRoom)
 	or (EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(entity.SubType))
 	or (EID.Config["DisableOnAltPath"] and not entity:ToPickup().Touched and EID:IsAltChoice(entity))
-	or (EID.Config["DisableOnAprilFoolsChallenge"] and game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
+	or (EID.Config["DisableOnAprilFoolsChallenge"] and EID.game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
 		return true
 	end
 	return false
@@ -3181,7 +3180,7 @@ end
 ---@param gridPosition table
 ---@return boolean
 function EID:EvaluateLocation(gridPosition)
-	local room = game:GetRoom()
+	local room = EID.game:GetRoom()
 	local width = room:GetGridWidth()
 	local height = room:GetGridHeight()
 	if gridPosition.x < 1 or gridPosition.y < 1 or gridPosition.x >= height-1 or gridPosition.y >= width - 1 then
@@ -3202,7 +3201,7 @@ end
 ---@return boolean
 function EID:HasPathToPosition(startPos, endPos)
 	-- divide by 40 to convert from world to grid coords
-	local room = game:GetRoom()
+	local room = EID.game:GetRoom()
 	local width = room:GetGridWidth()
 	local startGI = room:GetGridIndex(startPos)
 	local endGI = room:GetGridIndex(endPos)

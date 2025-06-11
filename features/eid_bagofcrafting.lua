@@ -1,5 +1,3 @@
-local game = Game()
-
 require("features.eid_bagofcrafting_search")
 
 --these aren't local so that they can be saved and reloaded, or cleared in the Mod Config Menu
@@ -345,7 +343,7 @@ end
 
 local function calcHeldItems()
 	EID.BoC.InventoryQuery = {}
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, EID.game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		for j = 0, 3 do
 			local card = EID:getBagOfCraftingID(300, player:GetCard(j))
@@ -397,7 +395,7 @@ local function GameStartCrafting()
 			coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
 		end
 		-- Redo the entire item pool table, not just add modded items, in case of mods messing the vanilla ones up
-		local itemPool = game:GetItemPool()
+		local itemPool = EID.game:GetItemPool()
 		for _, poolNum in ipairs(bagOfCraftingPoolIDs) do
 			CraftingItemPools[poolNum+1] = {}
 			local thePool = itemPool:GetCollectiblesFromPool(poolNum)
@@ -777,10 +775,10 @@ end
 
 function EID:BOCHandleCurseOfMaze()
 	-- switches tracked room contents when rooms are switched by curse of maze
-	if game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_MAZE ~= LevelCurse.CURSE_OF_MAZE then
+	if EID.game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_MAZE ~= LevelCurse.CURSE_OF_MAZE then
 		return
 	end
-	local rooms = game:GetLevel():GetRooms()
+	local rooms = EID.game:GetLevel():GetRooms()
 	local changedRooms = {}
 	for i = 0, rooms.Size - 1 do
 		local roomDesc = rooms:Get(i)
@@ -807,7 +805,7 @@ function EID:handleBagOfCraftingUpdating()
 	-- don't do any updating if on a Repentance version before v1.7.9b
 	if (Isaac.RunCallback == nil) then return end
 	-- reset our calculated recipes when the game seed changes, or certain item's availability changes
-	local curSeed = game:GetSeeds():GetStartSeed()
+	local curSeed = EID.game:GetSeeds():GetStartSeed()
 	local updatedItemAvailability = false
 	-- check the availability of our tracked items, for Sacred Orb / TLost/LostBR
 	for k,v in pairs(lastItemStatus) do
@@ -911,7 +909,7 @@ end
 
 -- Check what pickups are available in this room
 function EID:BoCGetRoomPickupList()
-	local currentRoomDesc = game:GetLevel():GetCurrentRoomDesc()
+	local currentRoomDesc = EID.game:GetLevel():GetCurrentRoomDesc()
 	local curRoomIndex = currentRoomDesc.ListIndex
 	local pickups = Isaac.FindByType(5, -1, -1, true, false)
 
@@ -944,7 +942,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		return false
 	end
 	displayingRecipeList = false
-	if ((EID.isHidden or EID.CraftingIsHidden) and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting") or game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
+	if ((EID.isHidden or EID.CraftingIsHidden) and EID.MCMCompat_isDisplayingEIDTab ~= "Crafting") or EID.game.Challenge == Challenge.CHALLENGE_CANTRIPPED then
 		return false
 	elseif EID.Config["BagOfCraftingHideInBattle"] and (Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0) then
 		return false
@@ -952,7 +950,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		return false
 	elseif EID.Config["DisplayBagOfCrafting"] == "hold" and not string.find(EID.bagPlayer:GetSprite():GetAnimation(), "PickupWalk") then
 		return false
-	elseif game:GetRoom():GetFrameCount() < 2 then
+	elseif EID.game:GetRoom():GetFrameCount() < 2 then
 		return false
 	end
 

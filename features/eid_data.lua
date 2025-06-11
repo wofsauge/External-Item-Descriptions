@@ -675,7 +675,7 @@ EID.InlineIcons["Tearsize"] = EID.isRepentance and EID.InlineIcons["TearsizeREP"
 -- Function for handling colors that fade between multiple different colors (rainbow, gold, tarot cloth purple)
 local function SwagColors(colors, maxAnimTime)
 	maxAnimTime = maxAnimTime or 80
-	local animTime = Game():GetFrameCount() % maxAnimTime
+	local animTime = EID.game:GetFrameCount() % maxAnimTime
 	local colorFractions = (maxAnimTime - 1) / #colors
 	local subAnm = math.floor(animTime / (colorFractions + 1)) + 1
 	local primaryColorIndex = subAnm % (#colors + 1)
@@ -785,7 +785,7 @@ EID.InlineColors = {
 	-- Text will blink frequently
 	["ColorBlink"] = function(color)
 		local maxAnimTime = 40
-		local animTime = Game():GetFrameCount() % maxAnimTime
+		local animTime = EID.game:GetFrameCount() % maxAnimTime
 		color = EID:copyKColor(color) or EID:getTextColor()
 		if animTime < maxAnimTime / 2 then
 			color.Alpha = 1 * color.Alpha
@@ -797,7 +797,7 @@ EID.InlineColors = {
 	-- Text will fade in and out
 	["ColorFade"] = function(color)
 		local maxAnimTime = 30
-		local animTime = Game():GetFrameCount() % (maxAnimTime + 10)
+		local animTime = EID.game:GetFrameCount() % (maxAnimTime + 10)
 		color = EID:copyKColor(color) or EID:getTextColor()
 		if animTime < maxAnimTime / 2 then
 			color.Alpha = animTime / (maxAnimTime / 2) * color.Alpha

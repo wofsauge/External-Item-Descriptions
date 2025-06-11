@@ -1,5 +1,3 @@
-local game = Game()
-
 EID.TabPreviewID = 0
 -- Modifiers switching the previewed description can cause infinite loops or undesired text, use this to help prevent it
 EID.inModifierPreview = false
@@ -168,12 +166,12 @@ local pandoraGreedStages = {
 }
 
 local function PandorasBoxCallback(descObj)
-	local hasModifier = game:IsGreedMode() and EID:getDescriptionEntry("ConditionalDescs", "5.100.297 (Greed)", true)
+	local hasModifier = EID:IsGreedMode() and EID:getDescriptionEntry("ConditionalDescs", "5.100.297 (Greed)", true)
 
-	local level = game:GetLevel()
-	local stageNum = game:IsGreedMode() and level:GetStage() or level:GetAbsoluteStage()
+	local level = EID.game:GetLevel()
+	local stageNum = EID:IsGreedMode() and level:GetStage() or level:GetAbsoluteStage()
 
-	local stageTable = game:IsGreedMode() and pandoraGreedStages or pandoraStages
+	local stageTable = EID:IsGreedMode() and pandoraGreedStages or pandoraStages
 	local textBlockToUse = stageTable[stageNum][hasModifier and 3 or level:IsAltStage() and 2 or 1]
 
 	-- floor result information must be separated by line breaks or semicolons in localizations
@@ -829,7 +827,7 @@ if EID.isRepentance then
 	
 	-- Handle Tainted Cain pedestals
 	local function TaintedCainPedestalCallback(descObj)
-		if game.Challenge == Challenge.CHALLENGE_CANTRIPPED or EID.isDeathCertRoom or not descObj.Entity or not EID.Config["DisplayTCainSalvageResults"] then return descObj end
+		if EID.game.Challenge == Challenge.CHALLENGE_CANTRIPPED or EID.isDeathCertRoom or not descObj.Entity or not EID.Config["DisplayTCainSalvageResults"] then return descObj end
 		local item = EID.itemConfig:GetCollectible(descObj.ObjSubType)
 		if (item.Tags and item.Tags & ItemConfig.TAG_QUEST == ItemConfig.TAG_QUEST) then return descObj end
 		
@@ -846,8 +844,8 @@ if EID.isRepentance then
 			salvageDesc = "{{Player23}} ".. salvageDesc
 			
 			-- Guaranteed items from room type
-			local roomType = game:GetLevel():GetCurrentRoomDesc().Data.Type
-			local roomPool = game:GetItemPool():GetPoolForRoom(roomType, 69)
+			local roomType = EID.game:GetLevel():GetCurrentRoomDesc().Data.Type
+			local roomPool = EID.game:GetItemPool():GetPoolForRoom(roomType, 69)
 			if roomType ~= RoomType.ROOM_ERROR and EID.SalvageRoomTypes[roomPool] then
 				local newLine = EID.RoomTypeToMarkup[roomType] .. " " .. EID:getDescriptionEntry("TaintedCainPedestalGuaranteed")
 				newLine = EID:ReplaceVariableStr(newLine, 1, pickupNames[EID.SalvageRoomTypes[roomPool]]:gsub("{{[.-}}]+ ", ""))
@@ -898,7 +896,7 @@ if EID.isRepentance then
 	local function GlitchedCrownCallback(descObj)
 		if not descObj.Entity or inGlitchedCrown then return descObj end
 		local entity = descObj.Entity
-		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local curRoomIndex = EID.game:GetLevel():GetCurrentRoomIndex()
 		local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
 
 		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][pedestalID] then
@@ -1112,7 +1110,7 @@ if EID.isRepentance then
 			local damageText = ""
 			if canShoot then
 				damageText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Damage")
-				local dmg = (damage + (stageDamage * (game:GetLevel():GetAbsoluteStage() - 1))) * (30 / fireDelay)
+				local dmg = (damage + (stageDamage * (EID.game:GetLevel():GetAbsoluteStage() - 1))) * (30 / fireDelay)
 				local dmgTxt = string.format("%.2f", dmg):gsub("%.?0+$", "") -- formated and without trailing zeros
 				damageText = EID:ReplaceVariableStr(damageText, dmgTxt)
 			else
