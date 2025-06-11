@@ -333,7 +333,7 @@ function EID:IsGreedMode()
 end
 
 function EID:IsGreedModePlusTarot()
-	return game:IsGreedMode() and EID:ConditionalItemCheck(451, true)
+	return EID:IsGreedMode() and EID:ConditionalItemCheck(451, true)
 end
 
 function EID:PlayersHaveRestock()

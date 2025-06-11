@@ -1,3 +1,4 @@
+local game = Game()
 local showDebugChars = false
 
 
@@ -198,7 +199,7 @@ EID:removeIgnoredEntity(5,100,10) -- un-Ignore "Halo of flies" collectible entit
 EID:addColor("ColorTwitterBlue", KColor(0, 0.671875, 0.9296875, 1), nil)
 EID:addColor("ColorBlackBlink", nil, function(color)
 		local maxAnimTime = 30
-		local animTime = Game():GetFrameCount() % maxAnimTime
+		local animTime = game:GetFrameCount() % maxAnimTime
 		color = EID:copyKColor(color) or EID:getTextColor()
 		if animTime < maxAnimTime / 2 then
 			color = KColor(0, 0, 0, 1 * color.Alpha)

@@ -1,3 +1,5 @@
+local game = Game()
+
 --------------- Grid entity description modifiers ---------------
 
 -- Table containing grid entity description handlers
@@ -90,7 +92,7 @@ end
 -- Handle Sacrifice room payout
 ----------------------------------------------------
 local function SacrificeRoomCondition(_)
-    return Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"]
+    return game:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and EID.Config["DisplaySacrificeInfo"]
 end
 
 local function SacrificeRoomCallback(descObj)
@@ -103,7 +105,7 @@ local function SacrificeRoomCallback(descObj)
 	local curCounter = descObj.ObjSubType or 1
 	if curCounter <= 2 then
 		--Remove B1 Bomb drop info when not on B1
-		if Game():GetLevel():GetAbsoluteStage() > 1 then
+		if game:GetLevel():GetAbsoluteStage() > 1 then
 			local splitPoint = string.find(descObj.Description, '#', 1)
 			descObj.Description = descObj.Description:sub(1,splitPoint-1)
 		end

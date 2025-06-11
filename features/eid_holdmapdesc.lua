@@ -173,14 +173,14 @@ EID.ItemReminderDescriptionModifier = {
 					local inAscent = EID.isRepentance and (level:IsAscent() or level:IsPreAscent())
 					local final = not level:IsNextStageAvailable()
 					
-					if EID:IsGreedMode() then
+					if game:IsGreedMode() then
 						skip = 1
 						if stageNum == 5 then skip = 0 -- Depths 2 -> Womb 1
 						elseif stageNum == 7 or stageNum == 10 then skip = 2
 						elseif stageNum == 0 then count = 1 end -- Womb 1 -> Sheol, Sheol -> Chest
 					else
 						if final or stageNum == 12 then count = 1 -- Dark Room/Chest/The Void/Home/Corpse 2 doesn't display any more
-						elseif EID:IsGreedMode() then count = 2 -- prevent Greed Mode Sheol from behaving weird
+						elseif game:IsGreedMode() then count = 2 -- prevent Greed Mode Sheol from behaving weird
 						elseif stageNum == 8 then count = 3; skip = 1 -- Womb 2 displays Sheol and Cathe
 						elseif stageNum == 9 then count = 3 -- ??? displays Sheol and Cathe
 						elseif stageNum == 10 then skip = 1 end -- Sheol/Cathe skip one to display Dark Room/Chest
