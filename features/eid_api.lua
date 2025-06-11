@@ -336,7 +336,6 @@ end
 --- ```lua
 --- EID:assignTransformation("collectible", 1, "My Transformation")
 --- ```
---- <hr>
 ---@param targetType EID_TypeVariantAlias @Alias for a `Type.Variant` of entity
 ---@param targetIdentifier integer | string @If valid `targetType` is specified, `SubType` of the entity. Otherwise, the full entity identifier
 ---@param transformationString string @Transformation name
@@ -387,7 +386,6 @@ end
 ---```lua
 ---EID:removeTransformation("collectible", 1, "My Transformation")
 ---```
----<hr>
 ---@param targetType EID_TypeVariantAlias @Alias for a `Type.Variant` of entity
 ---@param targetIdentifier integer | string @If valid `targetType` is specified, `SubType` of the entity. Otherwise, the full entity identifier
 ---@param transformationString string @Transformation name
@@ -498,7 +496,6 @@ function EID:addColor(shortcut, kColor, callback)
 end
 
 ---Overrides all potentially displayed texts and permanently displays the given texts
----<br><hr>
 ---@see EID.hidePermanentText @Hides permanently displayed text object.
 ---@param descriptionObject EID_DescObj @Description object to display
 ---@param permName1 string
@@ -1609,7 +1606,6 @@ function EID:addDescriptionModifier(modifierName, condition, callback, position)
 end
 
 ---Removes a Description object modifier
----<br><hr><br>
 ---@see EID.addDescriptionModifier
 ---@param modifierName string
 function EID:removeDescriptionModifier(modifierName)
