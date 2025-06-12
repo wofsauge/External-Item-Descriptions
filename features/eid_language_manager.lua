@@ -51,6 +51,17 @@ EID.BreakUtf8CharsLanguage = {
 ---| "zh_cn" @Simplified Chinese
 --#endregion
 
+-- Map the game's built-in language option strings to EID's
+EID.LanguageMap = {
+	["jp"] = "ja",
+	["es"] = "es",
+	["de"] = "de",
+	["fr"] = "fr",
+	["ru"] = "ru",
+	["kr"] = "ko",
+	["zh"] = "zh_cn",
+}
+
 ---Get the current Language. Defaults to english if none is set.
 ---@return EID_LanguageCode
 function EID:getLanguage()
@@ -61,7 +72,7 @@ function EID:getLanguage()
 		lang = "auto"
 	end
 	if lang == "auto" then
-		local langToReturn = Options and Options.Language or "en" -- Use game language, if available.
+		local langToReturn = Options and EID.LanguageMap[Options.Language] or "en" -- Use game language, if available.
 		-- don't do any updating if on a Repentance version before v1.7.9b
 		if Isaac.RunCallback ~= nil then
 			for _, callbackData in pairs(Isaac.GetCallbacks("EID_EVALUATE_AUTO_LANG")) do
