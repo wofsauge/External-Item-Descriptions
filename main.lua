@@ -11,8 +11,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 4.100
-EID.ModVersionCommit = "c20341d"
+EID.ModVersion = 5.00
+EID.ModVersionCommit = "d44fa18"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -1983,10 +1983,10 @@ end
 require("features.eid_repentogon")
 
 Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-Isaac.DebugString("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")
+Isaac.DebugString("External Item Descriptions v"..string.format("%.2f", EID.ModVersion).."_"..EID.ModVersionCommit.." loaded.")
 Isaac.DebugString("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-print("External Item Descriptions v"..EID.ModVersion.."_"..EID.ModVersionCommit.." loaded.")
+print("External Item Descriptions v"..string.format("%.2f", EID.ModVersion).."_"..EID.ModVersionCommit.." loaded.")
 
 -- Run EID compatibility Callback. Useful for mods that load before EID
 if EID.isRepentance then
