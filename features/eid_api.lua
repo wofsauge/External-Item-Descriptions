@@ -122,10 +122,10 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 ---@param id CollectibleType
 ---@param description string
 ---@param itemName string?
----@param language EID_LanguageCode? @Default: "en"
+---@param language EID_LanguageCode? @Default: "en_us"
 function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 	if id == -1 then
 		EID:WriteErrorMsg("Trying to add collectible description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
 		return
@@ -141,10 +141,10 @@ end
 ---@param id TrinketType
 ---@param description string
 ---@param itemName? string
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addTrinket(id, description, itemName, language)
 	itemName = itemName or nil
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 	if id == -1 then
 		EID:WriteErrorMsg("Trying to add trinket description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
 		return
@@ -157,10 +157,10 @@ end
 ---@param characterId PlayerType
 ---@param description string
 ---@param playerName? string @Default: "Modded Character"
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addCharacterInfo(characterId, description, playerName, language)
 	playerName = playerName or "Modded Character"
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 	if characterId == -1 then
 		EID:WriteErrorMsg("Trying to add character description to id = -1, which is not allowed! (Name: "..tostring(playerName).."; Description: "..tostring(description)..")")
 		return
@@ -173,14 +173,14 @@ end
 ---@param appendText? string | string[] @Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
 ---@param numbersToMultiply? number | number[] @The number inside the text that should be multiplied. can be one number, or a table of numbers
 ---@param maxMultiplier? number @Is what tripling (Golden+Mom's Box) should multiply the numbers by, normally 3. If it's less than 2, it also applies to doubling
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 -- Example: My modded trinket gives +0.5 range and when tripled, adds homing instead of tripling the range boost:
 --- ```lua
 --- EID:addGoldenTrinketMetadata(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 0.5, 2)
 --- ```
 function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMultiplier, language)
 	maxMultiplier = maxMultiplier or 3
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 
 	if appendText == "" then appendText = nil
 	elseif type(appendText) == "string" then appendText = {appendText} end
@@ -199,13 +199,13 @@ end
 ---@param appendText? string | string[] @Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
 ---@param numbersToChange? number | number[] @The number inside the text that gets added towards. can be one number, or a table of numbers
 ---@param additiveValues? number @Table of values that should be added to the number, if its doubled, tripled, or quadrupled
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 -- Example: My modded trinket gives +5 range and when tripled, adds homing instead of tripling the range boost:
 --- ```lua
 --- EID:addGoldenTrinketMetadataAdditive(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 5, {1,2,3})
 --- ```
 function EID:addGoldenTrinketMetadataAdditive(id, appendText, numbersToChange, additiveValues, language)
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 
 	if appendText == "" then appendText = nil
 	elseif type(appendText) == "string" then appendText = {appendText} end
@@ -235,10 +235,10 @@ end
 ---@param id Card
 ---@param description string
 ---@param itemName? string
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addCard(id, description, itemName, language)
 	itemName = itemName or nil
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 	if id == -1 then
 		EID:WriteErrorMsg("Trying to add card description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
 		return
@@ -257,10 +257,10 @@ end
 ---@param id PillEffect
 ---@param description string
 ---@param itemName? string
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 	if id == -1 then
 		EID:WriteErrorMsg("Trying to add pill description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
 		return
@@ -278,11 +278,11 @@ end
 ---@param id PillEffect
 ---@param description string
 ---@param itemName? string
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addHorsePill(id, description, itemName, language)
 	if not EID.isRepentance then return end
 	itemName = itemName or nil
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 	if id == -1 then
 		EID:WriteErrorMsg("Trying to add horsepill description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
 		return
@@ -306,10 +306,10 @@ end
 ---@param characterId PlayerType
 ---@param description string
 ---@param playerName? string
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addBirthright(characterId, description, playerName, language)
 	playerName = playerName or nil
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 	if characterId == -1 then
 		EID:WriteErrorMsg("Trying to add Birthright description to id = -1, which is not allowed! (Name: "..tostring(characterId).."; Description: "..tostring(description)..")")
 		return
@@ -321,9 +321,9 @@ end
 ---Creates a new transformation with a given unique name and a display name
 ---@param uniqueName string
 ---@param displayName string
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:createTransformation(uniqueName, displayName, language)
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 	if EID.CustomTransformations[uniqueName] == nil then
 		EID.CustomTransformations[uniqueName] = {}
 	end
@@ -436,10 +436,10 @@ end
 ---@param subtype? integer @If `nil` or `-1`, it will affect all subtypes of that entity
 ---@param entityName string
 ---@param description string
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addEntity(id, variant, subtype, entityName, description, language)
 	subtype = subtype or -1
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 	if id == EntityType.ENTITY_EFFECT then
 		EID.effectList[variant] = true
 	end
@@ -470,13 +470,13 @@ end
 ---This spell should be added with the "Custom Poop API" library to actually appear in-game.
 ---Example:
 ---```lua
----EID:addCustomPoopSpell("MYPOOP", "I Made This Poop", "{{PoopSpell1}}", "Can be throwed to deal damage", "en")
+---EID:addCustomPoopSpell("MYPOOP", "I Made This Poop", "{{PoopSpell1}}", "Can be throwed to deal damage", "en_us")
 ---```
 ---@param token string @The name of the spell in the Custom Poop API code
 ---@param name string @The name of the spell as it should appear in the description
 ---@param icon string @Markup icon of the poop
 ---@param description string
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addCustomPoopSpell(token, name, icon, description, language)
 	EID.descriptions[language]["poopSpells"][token] = {icon, name, description, EID._currentMod}
 end
@@ -764,12 +764,12 @@ end
 function EID:getDescriptionEntry(objTable, objIdentifier, noFallback)
 	if not objIdentifier then
 		if noFallback then return EID.descriptions[EID:getLanguage()][objTable]
-		else return EID.descriptions[EID:getLanguage()][objTable] or EID.descriptions["en"][objTable] end
+		else return EID.descriptions[EID:getLanguage()][objTable] or EID.descriptions[EID.DefaultLanguageCode][objTable] end
 	else
 		local translatedTable = EID.descriptions[EID:getLanguage()][objTable]
 		local description
 		if noFallback then description = translatedTable and translatedTable[objIdentifier]
-		else description = (translatedTable and translatedTable[objIdentifier]) or (EID.descriptions["en"][objTable] and EID.descriptions["en"][objTable][objIdentifier]) end
+		else description = (translatedTable and translatedTable[objIdentifier]) or (EID.descriptions[EID.DefaultLanguageCode][objTable] and EID.descriptions[EID.DefaultLanguageCode][objTable][objIdentifier]) end
 		--Try looking for a -1 that would encompass all subtypes of the variant
 		-- Safety check for if the identifier contains "."(dot) 1-2 times and only contains numbers
 		local strNoDots, numDots = string.gsub(objIdentifier, "%.","")
@@ -796,9 +796,9 @@ end
 ---@return string
 function EID:getDescriptionEntryEnglish(objTable, objID)
 	if not objID then
-		return EID.descriptions["en"][objTable]
+		return EID.descriptions[EID.DefaultLanguageCode][objTable]
 	else
-		return EID.descriptions["en"][objTable] and EID.descriptions["en"][objTable][objID]
+		return EID.descriptions[EID.DefaultLanguageCode][objTable] and EID.descriptions[EID.DefaultLanguageCode][objTable][objID]
 	end
 end
 
@@ -892,7 +892,7 @@ function EID:getTransformationName(id)
 		-- get translated custom name
 		local customTransform = EID.CustomTransformations[id]
 		if customTransform ~= nil then
-			return customTransform[EID:getLanguage()] or customTransform["en"] or id
+			return customTransform[EID:getLanguage()] or customTransform[EID.DefaultLanguageCode] or id
 		end
 		return id
 	end
@@ -909,7 +909,7 @@ function EID:getObjectName(Type, Variant, SubType)
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
 	local name = nil
 	if tableEntry ~= nil then
-		if tableEntry[2] ~= nil and tableEntry[2] ~= "" and tableEntry[2] ~= EID.descriptions["en"][tableName][SubType] then
+		if tableEntry[2] ~= nil and tableEntry[2] ~= "" and tableEntry[2] ~= EID.descriptions[EID.DefaultLanguageCode][tableName][SubType] then
 			name = tableEntry[2]
 		end
 	end
@@ -917,18 +917,18 @@ function EID:getObjectName(Type, Variant, SubType)
 	if tableName == "collectibles" then
 		if EID.itemConfig:GetCollectible(SubType) == nil then return fallbackName end
 		local vanillaName = EID.itemConfig:GetCollectible(SubType).Name
-		local englishName = EID.descriptions["en"][tableName][SubType] and EID.descriptions["en"][tableName][SubType][2]
+		local englishName = EID.descriptions[EID.DefaultLanguageCode][tableName][SubType] and EID.descriptions[EID.DefaultLanguageCode][tableName][SubType][2]
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "trinkets" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
 		if EID.itemConfig:GetTrinket(adjustedSubtype) == nil then return fallbackName end
 		local vanillaName = EID.itemConfig:GetTrinket(adjustedSubtype).Name
-		local englishName = EID.descriptions["en"][tableName][adjustedSubtype] and EID.descriptions["en"][tableName][adjustedSubtype][2]
+		local englishName = EID.descriptions[EID.DefaultLanguageCode][tableName][adjustedSubtype] and EID.descriptions[EID.DefaultLanguageCode][tableName][adjustedSubtype][2]
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "cards" then
 		if EID.itemConfig:GetCard(SubType) == nil then return fallbackName end
 		local vanillaName = EID.itemConfig:GetCard(SubType).Name
-		local englishName = EID.descriptions["en"][tableName][SubType] and EID.descriptions["en"][tableName][SubType][2]
+		local englishName = EID.descriptions[EID.DefaultLanguageCode][tableName][SubType] and EID.descriptions[EID.DefaultLanguageCode][tableName][SubType][2]
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
@@ -981,7 +981,7 @@ function EID:getPillName(pillID, isHorsepill)
 	else
 		vanillaName = EID.itemConfig:GetPillEffect(pillID - 1).Name
 	end
-	name = name and name[2] or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en"][tableName][pillID][2] or vanillaName
+	name = name and name[2] or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions[EID.DefaultLanguageCode][tableName][pillID][2] or vanillaName
 	name = string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
 	return name
 end
@@ -1239,7 +1239,7 @@ function EID:getTransformationIcon(str)
 		return EID.InlineIcons["ERROR"]
 	end
 	if tonumber(str) ~= nil then
-		str = EID.descriptions["en"].transformations[tonumber(str + 1)]
+		str = EID.descriptions[EID.DefaultLanguageCode].transformations[tonumber(str + 1)]
 	end
 	local transformSprite = EID:getIcon(str:gsub(" ", ""))
 	if transformSprite[1] == "ERROR" then

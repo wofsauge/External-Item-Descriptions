@@ -4,7 +4,7 @@
 
 -- Last Sync with English version: 29.11.2024
 
-local languageCode = "uk"
+local languageCode = "uk_ua"
 
 ---------- Collectibles ----------
 

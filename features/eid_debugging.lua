@@ -4,7 +4,7 @@ local showDebugChars = false
 
 -- check integrity of language files
 
-local languageFilesToCheck = {"fr"} -- EID.Languages -- single file check example {"ko"}
+local languageFilesToCheck = {"fr"} -- EID.Languages -- single file check example {"ko_kr"}
 
 -- count English entries for stats
 local count = 0
@@ -16,7 +16,7 @@ function EID:countEntries(t)
 		end
 	end
 end
-EID:countEntries(EID.descriptions["en"])
+EID:countEntries(EID.descriptions[EID.DefaultLanguageCode])
 local enUSEntries = count
 EID:WriteDebugMsg("English entries: "..enUSEntries)
 
@@ -84,7 +84,7 @@ for _, lang in ipairs(languageFilesToCheck) do
 	end
 
 	local progress = { 0, 0 }
-	EID:compareTables(EID.descriptions["en"], EID.descriptions[lang], lang, progress)
+	EID:compareTables(EID.descriptions[EID.DefaultLanguageCode], EID.descriptions[lang], lang, progress)
 
 	local errors = (enUSEntries - progress[1])-progress[2]
 	EID:WriteDebugMsg("Errors found: "..errors .." / "..enUSEntries)

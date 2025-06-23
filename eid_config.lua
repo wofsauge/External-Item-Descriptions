@@ -2,24 +2,24 @@ EID.UserConfig = {
 	-------GENERAL---------
 	-- Change the language of the mod
 	-- Currently Supported: automatic = "auto"				(Default) Chooses the mod language based on your game's language settings(Rep), or defaults to English for ab+ users.
-	--						Bulgarian = "bg"				SPECIAL THANKS TO Gothika_47
+	--						Bulgarian = "bul"				SPECIAL THANKS TO Gothika_47
 	--						Chinese (Simplified) = "zh_cn"	SPECIAL THANKS TO Xheepey87, frto027
-	--						Czech = "cs"					SPECIAL THANKS TO domcizzz
-	--						Dutch = "nl"					SPECIAL THANKS TO SomethingMax
-	--						English = "en"					SPECIAL THANKS TO everyone!
+	--						Czech = "cs_cz"					SPECIAL THANKS TO domcizzz
+	--						Dutch = "nl_nl"					SPECIAL THANKS TO SomethingMax
+	--						English = "en_us"				SPECIAL THANKS TO everyone!
 	--						French = "fr"					SPECIAL THANKS TO biobak
 	--						German = "de"					SPECIAL THANKS TO Jake
-	--						Greek = "el"					SPECIAL THANKS TO vanillarat
+	--						Greek = "el_gr"					SPECIAL THANKS TO vanillarat
 	--						Italian = "it"					SPECIAL THANKS TO Denkishi, 2G
-	--						Japanese = "ja"					SPECIAL THANKS TO prefab
-	--						Korean = "ko"					SPECIAL THANKS TO Blackcreamtea, 리셰(kohashiwakaba)
+	--						Japanese = "ja_jp"				SPECIAL THANKS TO prefab
+	--						Korean = "ko_kr"				SPECIAL THANKS TO Blackcreamtea, 리셰(kohashiwakaba)
 	--						Polish = "pl"					SPECIAL THANKS TO Rickyy
 	--						Portuguese = "pt"				SPECIAL THANKS TO Marcelino Cruz
 	--						Brazilian Portuguese = "pt_br"	SPECIAL THANKS TO Marcelino Cruz
 	--						Russian = "ru"					SPECIAL THANKS TO hell2pay, fly_6
-	--						Spanish = "es"					SPECIAL THANKS TO Lidia Arroyo Purroy
-	--						Turkish = "tr"					SPECIAL THANKS TO Mert Dutal
-	--						Ukrainian = "uk"				SPECIAL THANKS TO x3xto
+	--						Spanish = "spa"					SPECIAL THANKS TO Lidia Arroyo Purroy
+	--						Turkish = "tr_tr"				SPECIAL THANKS TO Mert Dutal
+	--						Ukrainian = "uk_ua"				SPECIAL THANKS TO x3xto
 	--
 	-- If you want to make a translation, please contact me :) (wofsauge)
 	--

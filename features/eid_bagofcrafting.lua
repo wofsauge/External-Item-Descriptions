@@ -1150,7 +1150,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		-- Nothing in our recipe list passed the test; try checking English names as a backup
 		if #IDsToCheck == 0 then
 			local curLang = EID:getLanguage()
-			EID.Config["Language"] = "en"
+			EID.Config["Language"] = EID.DefaultLanguageCode
 			for _,id in ipairs(sortedIDs) do
 				local searchValid = EID:BoCSCheckItemName(EID:getObjectName(5, 100, id))
 				if (searchValid) then table.insert(IDsToCheck, id) end

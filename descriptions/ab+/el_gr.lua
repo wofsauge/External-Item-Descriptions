@@ -13,13 +13,13 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "el"
+local languageCode = "el_gr"
 
 -- init Greek table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Greek (WIP) (AB+)"
-EID.descriptions[languageCode].alternativeLanguageCodes = {"greek", "el_gr"}
+EID.descriptions[languageCode].alternativeLanguageCodes = {"greek", "el"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}

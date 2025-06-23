@@ -631,8 +631,8 @@ function EID:printDescription(desc, cachedID)
 		curName = desc.Name
 		if EID.Config["TranslateItemName"] ~= 2 then
 			local curLanguage = EID.Config["Language"]
-			if EID:getLanguage() ~= "en" then
-				EID.Config["Language"] = "en"
+			if EID:getLanguage() ~= EID.DefaultLanguageCode then
+				EID.Config["Language"] = EID.DefaultLanguageCode
 				local englishName = desc.PermanentTextEnglish or EID:getObjectName(desc.ObjType, desc.ObjVariant, desc.ObjSubType)
 				EID.Config["Language"] = curLanguage
 				if EID.Config["TranslateItemName"] == 1 then

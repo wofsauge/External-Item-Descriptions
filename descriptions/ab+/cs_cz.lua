@@ -8,16 +8,16 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "cs"
+local languageCode = "cs_cz"
 
 -- init Czech table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Czech"
-EID.descriptions[languageCode].alternativeLanguageCodes = {"czech", "cs_cz"}
+EID.descriptions[languageCode].alternativeLanguageCodes = {"czech", "cs"}
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts = EID.descriptions["en"].fonts
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={

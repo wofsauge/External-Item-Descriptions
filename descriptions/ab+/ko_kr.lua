@@ -12,13 +12,13 @@
 
 -- 스탯 순서: 체력 - 빨간하트 - 블랙하트 - 소울하트 - 공격력 - 연사 - 사거리 - 이동속도 - 탄속 - 행운 - 효과
 
-local languageCode = "ko"
+local languageCode = "ko_kr"
 
 -- init Korean table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Korean"
-EID.descriptions[languageCode].alternativeLanguageCodes = {"koreana", "kr", "ko_kr"}
+EID.descriptions[languageCode].alternativeLanguageCodes = {"koreana", "kr", "ko"}
 
 -- Fonts to be used with this languagepack
 --[[

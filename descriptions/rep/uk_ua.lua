@@ -9,7 +9,7 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  !!! = Warning
-local languageCode = "uk"
+local languageCode = "uk_ua"
 
 local repCollectibles={
 	[2] = {"2", "Внутрiшнє Око", "Потрiйний пострiл#↓ {{Tears}} -49% Скорострільність знижено"},

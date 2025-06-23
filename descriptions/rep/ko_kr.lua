@@ -1,4 +1,4 @@
-local languageCode = "ko"
+local languageCode = "ko_kr"
 
 -- Last Sync with English or update: 2024-11-18
 
