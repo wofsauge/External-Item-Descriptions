@@ -798,7 +798,6 @@ local repTrinkets={
 	[110] = {"110", "Stříbrný Dolar", "{{Shop}} Obchody se nyní objeví v Lůně a Mrtvole"},
 	[111] = {"111", "Krvavá Koruna", "{{TreasureRoom}} Pokladnice se nyní objeví v Lůně a Mrtvole"}, -- Bloody Crown
 	[119] = {"119", "Kmenová Buňka", "Léčí polovinu tvých prázdných červených/kostěných srdcí při cestě do dalšího patra#Minimálně polovina srdce uzdravena"}, -- Stem Cell
-	[125] = {"125", "Prodlužovačka", "Propojuje tvé spojence paprsky elektřiny#Způsobí 6 poškození na paprsek"}, -- Extension Cord
 	[128] = {"128", "Kost z Prstu", "{{EmptyBoneHeart}} 4% šance získat Kostěné Srdce při poškození"}, -- Finger Bone
 	[129] = {"129", "Jawbreaker (bonbón)", "10% šance na vystřelení zubů#Zuby způsobí 3.2x tvého poškození#100% šance při 9 Štěstí"}, -- Jawbreaker
 	[130] = {"130", "Okousané Pero", "{{Slow}} 10% šance na vystřelení zpomalující slzy#{{Luck}} 100% šance při 18 Štěstí"}, -- Chewed Pen

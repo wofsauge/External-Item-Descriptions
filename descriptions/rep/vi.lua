@@ -922,7 +922,6 @@ local repTrinkets={
 	[110] = {"110", "Silver Dollar", "{{Shop}} Cửa hàng xuất hiện trong Womb và Corpse"}, -- Silver Dollar
 	[111] = {"111", "Bloody Crown", "{{TreasureRoom}} Phòng Kho báu xuất hiện trong Womb và Corpse"}, -- Bloody Crown
 	[119] = {"119", "Stem Cell", "{{HealingRed}} Vào tầng mới hồi nửa số Trái tim đỏ/Xương trống của Isaac#{{HealingRed}} Hồi tối thiểu nửa trái tim"}, -- Stem Cell
-	[125] = {"125", "Extension Cord", "Kết nối tất cả bạn đồng hành bằng tia điện#Tia gây 6 sát thương"}, -- Extension Cord
 	[128] = {"128", "Finger Bone", "{{EmptyBoneHeart}} Nhận sát thương có 4% cơ hội nhận Trái tim xương"}, -- Finger Bone
 	[129] = {"129", "Jawbreaker", "{{Damage}} 10% cơ hội bắn răng gây sát thương gấp 3.2 lần của Isaac#{{Luck}} 100% cơ hội ở 9 may mắn"}, -- Jawbreaker
 	[130] = {"130", "Chewed Pen", "{{Slow}} 10% cơ hội bắn nước mắt làm chậm#{{Luck}} 100% cơ hội ở 18 may mắn"}, -- Chewed Pen

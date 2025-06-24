@@ -937,7 +937,6 @@ local repTrinkets={
 	[111] = {"111", "피투성이 왕관", "{{TreasureRoom}} Womb/Corpse 스테이지에서 보물방이 등장합니다."}, -- Bloody Crown
 	[119] = {"119", "줄기 세포", "{{HealingRed}} 스테이지 진입 시 최대 체력의 절반을 회복합니다.#{{HealingRed}} 체력이 최대 체력의 절반을 넘을 시 체력을 반칸 회복합니다."}, -- Stem Cell
 	[121] = {"121", "나무 십자가", "{{HolyMantle}} 스테이지 당 1번 피해를 무시하는 보호막을 생성합니다.#!!! {{Card51}}Holy Card로 생성된 보호막이 있을 경우 생성되지 않습니다."}, -- Wooden Cross
-	[125] = {"125", "연장 코드", "{{ColorCyan}}모든 캐릭터{{CR}}와 패밀리어 사이에 전류 레이저가 흐르며;#{{ArrowGrayRight}} 레이저에 접촉한 적은 초당 6의 피해를 받습니다."}, -- Extension Cord
 	[128] = {"128", "손가락 뼈", "{{EmptyBoneHeart}} 피격 시 5% 확률로 뼈하트를 획득합니다."}, -- Finger Bone
 	-- Repentance
 	[129] = {"129", "눈깔사탕", "{{Collectible150}} 10%의 확률로 공격력 x3.2의 공격이 나갑니다.#{{LuckSmall}} 행운 9 이상일 때 100% 확률"}, -- Jawbreaker
