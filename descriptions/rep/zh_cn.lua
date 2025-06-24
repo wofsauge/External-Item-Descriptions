@@ -762,6 +762,10 @@ EID.descriptions[languageCode].TearFlagNames = {
 	[106] = "{{Collectible506}}从背后攻击造成更多伤害并造成流血",   -- Deals extra damage from behind and inflicts bleeding
 }
 
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+-- Kept in for backwards compatibility
+EID.descriptions[languageCode].abyssSynergies = {}
+
 -- Effect of Car battery on Active Items
 local repCarBattery = {
 	[34] = {2, 3}, -- The Book of Belial
