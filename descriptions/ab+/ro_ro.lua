@@ -8,13 +8,13 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  # = Starts a new line
 -- More can be found here: https://github.com/wofsauge/External-Item-Descriptions/wiki/Markup
 
-local languageCode = "ro"
+local languageCode = "ro_ro"
 
 -- init Romanian table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Romanian"
-EID.descriptions[languageCode].alternativeLanguageCodes = {"romanian", "ro_ro"}
+EID.descriptions[languageCode].alternativeLanguageCodes = {"romanian", "ro"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}

@@ -9,7 +9,7 @@
 
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
-local languageCode = "cs"
+local languageCode = "cs_cz"
 
 local repCollectibles={
 	[2] = {"2", "Vnitřní Oko", "Trojitý výstřel#↓ {{Tears}} -49% Méně Slz"},

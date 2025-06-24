@@ -198,5 +198,5 @@ end
 -- this made more sense when this file was only executed when --luadebug was present
 -- https://www.youtube.com/watch?v=msDuNZyYAIQ
 if (debug and os.date("%m/%d") == "04/01") then
-	EID.descriptions["en"].sacrifice[1][3] = "{{Coin}} 50% chance of winning 1 coin at Sacrifice#75% chance if you're a genetic freak#!!! If you add Kurt Angle to the mix, your chances of winning drastically go down"
+	EID.descriptions[EID.DefaultLanguageCode].sacrifice[1][3] = "{{Coin}} 50% chance of winning 1 coin at Sacrifice#75% chance if you're a genetic freak#!!! If you add Kurt Angle to the mix, your chances of winning drastically go down"
 end

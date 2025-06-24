@@ -17,7 +17,7 @@ EID.descriptions[languageCode].languageName = "German (WIP)"
 EID.descriptions[languageCode].alternativeLanguageCodes = {"german"}
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts = EID.descriptions["en"].fonts
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
 ---------- Collectibles ----------
 

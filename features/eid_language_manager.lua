@@ -1,24 +1,27 @@
+-- Variable that contains the default language code of the mod (English)
+EID.DefaultLanguageCode = "en_us"
+
 -- List of all valid languages
 EID.Languages = {
-    "en", -- English
+    "en_us", -- English
     "fr", -- French
     "pt",   -- Portuguese
     "pt_br", -- Brazilian Portuguese
     "ru", -- Russian
-    "es", -- Spanish
+    "spa", -- Spanish
     "it", -- Italian
-    "bg", -- Bulgarian
+    "bul", -- Bulgarian
     "pl", -- Polish
     "de", -- German
-    "tr", -- Turkish
-    "ko", -- Korean
+    "tr_tr", -- Turkish
+    "ko_kr", -- Korean
     "zh_cn", -- Simplified Chinese
-    "ja", -- Japanese
-    "cs", -- Czech
-    "nl", -- Dutch
-    "uk", -- Ukrainian
-    "el", -- Greek
-    "ro", -- Romanian
+    "ja_jp", -- Japanese
+    "cs_cz", -- Czech
+    "nl_nl", -- Dutch
+    "uk_ua", -- Ukrainian
+    "el_gr", -- Greek
+    "ro_ro", -- Romanian
     "vi" -- Vietnamese
 }
 
@@ -29,36 +32,36 @@ EID.BreakUtf8CharsLanguage = {
 
 --#region Luadoc definitions
 ---@alias EID_LanguageCode
----| "bg" @Bulgarian
----| "cs" @Czech
+---| "bul" @Bulgarian
+---| "cs_cz" @Czech
 ---| "de" @German
----| "el" @Greek
----| "en" @English
----| "es" @Spanish
+---| "el_gr" @Greek
+---| "en_us" @English
+---| "spa" @Spanish
 ---| "fr" @French
 ---| "it" @Italian
----| "ja" @Japanese
----| "ko" @Korean
----| "nl" @Dutch
+---| "ja_jp" @Japanese
+---| "ko_kr" @Korean
+---| "nl_nl" @Dutch
 ---| "pl" @Polish
 ---| "pt_br" @Brasilian Portuguese
 ---| "pt" @Portuguese
----| "ro" @Romanian
+---| "ro_ro" @Romanian
 ---| "ru" @Russian
----| "tr" @Turkish
----| "uk" @Ukrainian
+---| "tr_tr" @Turkish
+---| "uk_ua" @Ukrainian
 ---| "vi" @Vietnamese
 ---| "zh_cn" @Simplified Chinese
 --#endregion
 
 -- Map the game's built-in language option strings to EID's
 EID.LanguageMap = {
-	["jp"] = "ja",
-	["es"] = "es",
+	["jp"] = "ja_jp",
+	["es"] = "spa",
 	["de"] = "de",
 	["fr"] = "fr",
 	["ru"] = "ru",
-	["kr"] = "ko",
+	["kr"] = "ko_kr",
 	["zh"] = "zh_cn",
 }
 
@@ -72,7 +75,7 @@ function EID:getLanguage()
 		lang = "auto"
 	end
 	if lang == "auto" then
-		local langToReturn = Options and EID.LanguageMap[Options.Language] or "en" -- Use game language, if available.
+		local langToReturn = Options and EID.LanguageMap[Options.Language] or EID.DefaultLanguageCode -- Use game language, if available.
 		-- don't do any updating if on a Repentance version before v1.7.9b
 		if Isaac.RunCallback ~= nil then
 			for _, callbackData in pairs(Isaac.GetCallbacks("EID_EVALUATE_AUTO_LANG")) do
@@ -92,7 +95,7 @@ end
 function EID:LoadLanguagePacks(gameVersion)
     --transformation infos
     local _, _ = pcall(require, "descriptions." .. gameVersion .. ".transformations")
-    --languages
+    --load languages
     for _, languageCode in ipairs(EID.Languages) do
         local wasSuccessful, err = pcall(require, "descriptions." .. gameVersion .. "." .. languageCode)
         if not wasSuccessful and not string.find(err, "not found") then

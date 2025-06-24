@@ -625,7 +625,7 @@ function EID:ItemReminderHandlePoopSpells(player)
 
 					local ignoreExisting = false
 					if customPoop == nil then --If the poop still doesn't exist, use the unkown one instead
-						customPoop = EID:getDescriptionEntry("poopSpells")["Unknown"] or EID.descriptions["en"]["poopSpells"]["Unknown"]
+						customPoop = EID:getDescriptionEntry("poopSpells")["Unknown"] or EID.descriptions[EID.DefaultLanguageCode]["poopSpells"]["Unknown"]
 						ignoreExisting = true
 					end
 

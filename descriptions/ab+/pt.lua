@@ -19,7 +19,7 @@ EID.descriptions[languageCode].languageName = "Portuguese (WIP) (AB+)"
 EID.descriptions[languageCode].alternativeLanguageCodes = {"portuguese"}
 
 -- Fonts to be used with this language pack
-EID.descriptions[languageCode].fonts = EID.descriptions["en"].fonts
+EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
 ---------- Collectibles ----------
 EID.descriptions[languageCode].collectibles={

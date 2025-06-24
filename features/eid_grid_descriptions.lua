@@ -22,10 +22,10 @@ EID.GridEntityWhitelist = setmetatable({}, {
 ---@param variant integer
 ---@param name string
 ---@param description string
----@param language? EID_LanguageCode @Default: "en"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addGridEntity(type, variant, name, description, language)
 	variant = variant or 0
-	language = language or "en"
+	language = language or EID.DefaultLanguageCode
 
 	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["-999." .. type .. "." .. variant] = {
@@ -96,10 +96,10 @@ local function SacrificeRoomCondition(_)
 end
 
 local function SacrificeRoomCallback(descObj)
-	descObj.ObjSubType = math.min(#EID.descriptions["en"].sacrifice, descObj.Entity.VarData + 1)
+	descObj.ObjSubType = math.min(#EID.descriptions[EID.DefaultLanguageCode].sacrifice, descObj.Entity.VarData + 1)
 	-- Get sacrifice name by subtype
 	descObj.Name = EID:getDescriptionEntry("sacrificeHeader") ..
-	" (" .. descObj.ObjSubType .. "/" .. #EID.descriptions["en"].sacrifice .. ")"
+	" (" .. descObj.ObjSubType .. "/" .. #EID.descriptions[EID.DefaultLanguageCode].sacrifice .. ")"
 
 	descObj.Description = EID:getDescriptionEntry("sacrifice", descObj.ObjSubType)[3]
 	local curCounter = descObj.ObjSubType or 1

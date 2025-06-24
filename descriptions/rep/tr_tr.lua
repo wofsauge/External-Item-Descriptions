@@ -11,7 +11,7 @@
 -- Special character markup:
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 
-local languageCode = "tr"
+local languageCode = "tr_tr"
 
 local repCollectibles={
 	[5] = {"5", "Yansımam", "Bumerang efekti verır#↑ +1.5 Menzil#↑ +60% ekstra Menzil#↑ +0.6 Gözyaşı hızı#↑ +1 Gözyaşı yüksekliği"}, -- My Reflection
