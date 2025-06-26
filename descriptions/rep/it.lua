@@ -2,7 +2,7 @@
 ----- Basic Italian descriptions -----
 ---------------------------------------
 
--- Last Sync with English: 29.07.2021
+-- Last Sync with English: 26.06.25
 
 -- FORMAT: Item ID | Name | Description
 
@@ -36,7 +36,7 @@ local repCollectibles={
 	[42] = {"42", "Testa Marcia di Bob", "Usare l'oggetto e sparare in una direzione fa scagliare la testa#{{Poison}} La testa esplode nel luogo in cui atterra e crea una nube velenosa#Infligge i danni di Isaac + 185"}, -- Bob's Rotten Head
 	[45] = {"45", "Cuore Gustoso", "{{HealingRed}} Cura di 1 cuore#{{HalfHeart}} Cura altri giocatori di mezzo cuore"}, -- Yum Heart
 	[46] = {"46", "Piede Fortunato", "↑ {{Luck}} +1 Fortuna#Maggiori chance di vittoria nel gioco d'azzardo#Aumenta le chance di una ricompensa a completamento stanza#Trasforma le pillole negative in positive"}, -- Lucky Foot
-	[49] = {"49", "Shoop da Whoop!", "{{Collectible118}}Usare l'oggetto e sparare in una direzione aziona un laser dai danni elevati#Infligge 24x i danni di Isaac in 0.83 secondi"}, -- Shoop da Whoop!
+	[49] = {"49", "Shoop da Whoop!", "Il prossimo colpo è sostituito da un raggio#Infligge i danni di Isaac x24 per 0.83 secondi"}, -- Shoop da Whoop!
 	[52] = {"52", "Dr. Fetus", "↓ {{Tears}} x0.4 Moltiplicatore Rateo di Fuoco#{{Bomb}} Isaac spara bombe al posto delle lacrime#{{Damage}} Tali bombe infliggono x10 di danni delle lacrime di Isaac#Se infliggerebbero 60 danni o più, infliggono invece x5 di danni +30"}, -- Dr. Fetus
 	[53] = {"53", "Magneto", "Isaac attrae a sé i consumabili#Apre i bauli da due caselle di distanza, ignorando i danni dei Bauli Puntuti"}, -- Magneto
 	[55] = {"55", "Occhio di Mamma", "50% di chance di sparare una lacrima extra dietro di sé#{{Luck}} 100% di chance con 5 di Fortuna"}, -- Mom's Eye
@@ -80,7 +80,7 @@ local repCollectibles={
 	[169] =	{"169", "Polifemo", "↑ {{Damage}} +4 Danni#↑ {{Damage}} x2 Moltiplicatore Danni#↓ {{Tears}} x0.42 Moltiplicatore Rateo di Fuoco#Le lacrime penetrano i nemici uccisi in caso di danni avanzanti"}, -- Polyphemus
 	[171] = {"171", "Chiappe Ragnesche", "{{Slow}} Rallenta i nemici per 4 secondi#Infligge 10 danni a tutti i nemici##I nemici uccisi dall'oggetto generano ragni blu"}, -- Spider Butt
 	[172] = {"172", "Lama Sacrificale", "Orbitale#Blocca i proiettili nemici#Infligge 112.5 danni al secondo"}, -- Sacrificial Dagger
-	[173] = {"173", "Mitra", "{{SoulHeart}} 33% di possibilità che i Cuori Rossi vengano generati come Cuori Celesti"}, -- Mitre
+	[173] = {"173", "Mitra", "{{SoulHeart}} 33% di chance che i Cuori Rossi vengano generati come Cuori Celesti"}, -- Mitre
 	[176] = {"176", "Cellule Staminali", "↑ {{Heart}} +1 Salute#↑ {{Shotspeed}} +0.16 Velocità Colpi#{{HealingRed}} Cura di 1 cuore"}, -- Stem Cells
 	[178] = {"178", "Acqua Santa", "{{Throwable}} Si lancia nella direzione in cui Isaac spara#Si infrange e una volta colpito un nemico infligge 7 danni#{{Petrify}} Lascia una pozza di liquido pietrificante e danneggiante"}, -- Holy Water
 	[180] = {"180", "Il Fagiolo Nero", "Quando Isaac viene danneggiato scorreggia per più volte#{{Poison}} Le scorregge lasciano nubi velenose e respingono i proiettili"}, -- The Black Bean
@@ -530,7 +530,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[147] = "Chance di generare dalla cacca fiammelle fecali e dalle rocce 1 tra 5 fiammelle minerarie:#{{Collectible132}} Carbone, {{Collectible201}} Ferro, {{Collectible202}} Oro, {{Collectible68}} Pietrarossa, {{Collectible415}} Diamante", -- Notched Axe
 	[160] = "Al contatto con i nemici evoca un raggio di luce", -- Crack the Sky
 	[166] = "Distrugge tutti i consumabili nella stanza, ognuno di questi con una chance di generare una fiammella casuale", -- D20
-	[175] = "Le fiammelle aprono bauli/porte chiuse al contatto, incluse le porte di Mega Satana, Ascesa e Cadavere#Le fiammelle si donano ai {{KeyBeggar}} Mendicachiavi", -- Dad's Key
+	[175] = "Le fiammelle aprono bauli/porte chiuse al contatto, incluse le porte di Mega Satana, Ascesa e Carcassa#Le fiammelle si donano agli {{KeyBeggar}} Scroccachiavi da sole", -- Dad's Key
 	[177] = "Genera 1 fiammella in base alla ricompensa vinta", -- Portable Slot
 	[263] = "Se distrutta lascia 1 {{Rune}} runa", -- Clear Rune
 	[283] = "Risorteggia tutte le fiammellle e genera 1 fiammella casuale#Non risorteggia \"Libro delle Virtù\"", -- D100
@@ -1024,7 +1024,7 @@ local repCards={
 	[16] = {"16", "XV - Il Diavolo", "{{Timer}} Conferisce fino all'uscita dalla stanza:#↑ {{Damage}} +2 Danni"}, -- XV - The Devil
 	[18] = {"18", "XVII - Le Stelle", "{{TreasureRoom}} Teletrasporta Isaac nella Stanza dei Tesori#{{Planetarium}} Se c'è un Planetario, lo teletrasporta lì"}, -- XVII - The Stars
 	[20] = {"20", "XIX - Il Sole", "{{HealingRed}} Salute al massimo#Infligge 100 danni a tutti i nemici#{{Timer}} Effetto di mappatura completa fino all'uscita dal piano (eccetto per la Stanza {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Segreta)#{{CurseDarkness}} Rimuove Malediz. del Buio"}, -- XIX - The Sun
-	[21] = {"21", "XX - Il Giudizio", "Genera un Mendicante#{{DemonBeggar}} 33% di chance che sia un Mendicacuori#5% di chance che sia un Chiavaiolo, Scroccabombe, Elettrizzato o Mendicadavere"}, -- XX - Judgement
+	[21] = {"21", "XX - Il Giudizio", "Genera un Mendicante#{{DemonBeggar}} 33% di chance che sia un Mendicacuori#5% di chance che sia uno Scroccachiavi, Scroccabombe, Elettrizzato o Mendicadavere"}, -- XX - Judgement
 	[22] = {"22", "XXI - Il Mondo", "{{Timer}} Effetto di mappatura completa fino all'uscita dal piano (eccetto per la Stanza {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Segreta)"}, -- XXI - The World
 	[27] = {"27", "Asso di Fiori", "{{Bomb}} Converte tutti i consumabili, bauli e nemici che non sono boss in bombe"}, -- Ace of Clubs
 	[28] = {"28", "Asso di Quadri", "{{Coin}} Converte tutti i consumabili, bauli e nemici che non sono boss in monete"}, -- Ace of Diamonds
@@ -1103,7 +1103,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "Se non si è ancora entrati nella Stanza dei Tesori, avrà 2 oggetti tra cui scegliere", -- XVII - The Stars
 	[20] = {100, 400}, -- XIX - The Sun
-	[21] = {" un Mendicante", " 2 {{CR}}Mendicanti", "sia un Mendicauori", "siano 2 {{CR}}Mendicacuori", "sia un Chiavaiolo, Scroccabombe, Elettrizzato o Mendicadavere", "siano 2 {{CR}}Chiavaioli, Scroccabombe, Elettrizzati o Mendicadaveri"}, -- XX - Judgement
+	[21] = {" un Mendicante", " 2 {{CR}}Mendicanti", "sia un Mendicauori", "siano 2 {{CR}}Mendicacuori", "sia uno Scroccachiavi, Scroccabombe, Elettrizzato o Mendicadavere", "siano 2 {{CR}}Scroccachiavi, Scroccabombe, Elettrizzati o Mendicadaveri"}, -- XX - Judgement
 	[56] = "Insieme ai consumabili butta a terra 6 degli oggetti di Isaac più recenti", -- 0 - The Fool?
 	[59] = {2, 3}, -- III - The Empress?
 	[61] = {2, 3}, -- V - The Hierophant?
@@ -1399,7 +1399,7 @@ EID.descriptions[languageCode].poopSpells = {
 
 EID.descriptions[languageCode].itemPoolFor = "Categoria/e dell'oggetto:"
 EID.descriptions[languageCode].itemPoolNames = {
-	[0] = "Tesoro", "Negozio", "Boss", "Diavolo", "Angelo", "Segreta", "Biblioteca", "Truffaldino", "Baule Dorato", "Baule Rosso", "Mendicante", "Mendicacuori", "Maledetta", "Chiavaiolo", "Elettrizzato", "Baule di Mamma", "Tesoro - Avido", "Boss - Avido", "Negozio - Avido", "Diavolo - Avido", "Angelo - Avido", "Maledetta - Avido", "Segreta - Avido", "Macchina dei Premi", "Ultra Segreta", "Scroccabombe", "Planetario", "Vecchio Baule", "Negozio di Bebè", "Baule di Legno", "Mendicadavere",
+	[0] = "Tesoro", "Negozio", "Boss", "Diavolo", "Angelo", "Segreta", "Biblioteca", "Truffaldino", "Baule Dorato", "Baule Rosso", "Mendicante", "Mendicacuori", "Maledetta", "Scroccachiavi", "Elettrizzato", "Baule di Mamma", "Tesoro - Avido", "Boss - Avido", "Negozio - Avido", "Diavolo - Avido", "Angelo - Avido", "Maledetta - Avido", "Segreta - Avido", "Macchina dei Premi", "Ultra Segreta", "Scroccabombe", "Planetario", "Vecchio Baule", "Negozio di Bebè", "Baule di Legno", "Mendicadavere",
 }
 
 EID.descriptions[languageCode].VoidShopText = "Se assorbito subito dopo venir preso:"
