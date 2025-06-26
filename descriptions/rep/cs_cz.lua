@@ -798,7 +798,6 @@ local repTrinkets={
 	[110] = {"110", "Stříbrný Dolar", "{{Shop}} Obchody se nyní objeví v Lůně a Mrtvole"},
 	[111] = {"111", "Krvavá Koruna", "{{TreasureRoom}} Pokladnice se nyní objeví v Lůně a Mrtvole"}, -- Bloody Crown
 	[119] = {"119", "Kmenová Buňka", "Léčí polovinu tvých prázdných červených/kostěných srdcí při cestě do dalšího patra#Minimálně polovina srdce uzdravena"}, -- Stem Cell
-	[125] = {"125", "Prodlužovačka", "Propojuje tvé spojence paprsky elektřiny#Způsobí 6 poškození na paprsek"}, -- Extension Cord
 	[128] = {"128", "Kost z Prstu", "{{EmptyBoneHeart}} 4% šance získat Kostěné Srdce při poškození"}, -- Finger Bone
 	[129] = {"129", "Jawbreaker (bonbón)", "10% šance na vystřelení zubů#Zuby způsobí 3.2x tvého poškození#100% šance při 9 Štěstí"}, -- Jawbreaker
 	[130] = {"130", "Okousané Pero", "{{Slow}} 10% šance na vystřelení zpomalující slzy#{{Luck}} 100% šance při 18 Štěstí"}, -- Chewed Pen
@@ -922,6 +921,9 @@ local repCards={
 	[12] = {"12", "XI - Síla", "Pro aktuální místnost poskytuje: #↑ {{Heart}} +1 Zvýšení Zdraví#↑ {{Damage}} +0.3 Větší Poškození#↑ {{Damage}} +50% Poškození#↑ {{Range}} +5.25 Větší Dostřel#↑ {{Speed}} +0.3 Zvýšení Rychlosti"}, -- XI - Strength
 	[16] = {"16", "XV - Ďábel", "↑ {{Damage}} +2 Větší Poškození pro aktuální místnost"},
 	[18] = {"18", "XVII - Hvězda", "{{TreasureRoom}} Teleportuje tě do Pokladnice#{{Planetarium}} Pokud tady je Planetárium, teleportuje tě to tam"},
+	[20] = {"20", "XIX - Slunce", "{{HealingRed}} Plné zdraví#Udělí 100 poškození všem nepřátelům#{{Timer}} Plný efekt mapování pro celé patro (kromě {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra tajné místnosti)#{{CurseDarkness}} Odstraní prokletí temnoty"}, -- XIX - The Sun
+	[21] = {"21", "XX - Soud", "{{Beggar}} Vytvoří žebráka#{{DemonBeggar}} 33% šance na Démoního žebráka#5% šance na klíčníka, bombového žebráka, baterkového žebráka nebo shnilého žebráka"}, -- XX - Judgement
+	[22] = {"22", "XXI - Svět", "{{Timer}} Plný efekt mapování pro celé patro (kromě {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra tajné místnosti)"}, -- XXI - The World
 	[27] = {"27", "Křížové Eso", "{{Bomb}} Promění všechny pickupy, truhly a ne-bossové nepřátele v bomby"}, -- Ace of Clubs
 	[28] = {"28", "Kárové Eso", "{{Coin}} Promění všechny pickupy, truhly a ne-bossové nepřátele v mince"}, -- Ace of Diamonds
 	[29] = {"29", "Pikové Eso", "{{Key}} Promění všechny pickupy, truhly a ne-bossové nepřátele v klíče"}, -- Ace of Spades
@@ -1233,7 +1235,7 @@ EID.descriptions[languageCode].FalsePHDHorseDamage = "{{Damage}} +1.2 Větší P
 EID.descriptions[languageCode].PandorasBoxStrangeKeyEffect = "Namísto toho spotřebuje klíč a vytvoří 6 předmětů z náhodných seznamů předmětů"
 
 EID.descriptions[languageCode].AchievementWarningTitle = "{{ColorYellow}}!!! VAROVÁNÍ !!!"
-EID.descriptions[languageCode].AchievementWarningText = "Achievementy jsou zakázány!#Abys  povolil postup a achievementy, musíš nejprve zabít mámu (Hloubka II) bez aktivovaných modů.#(If you've defeated Mom, this message is a bug and can be ignored)#(Pokud jsi porazil mámu, tato zpráva je chyba a lze ji ignorovat)#(Toto varování lze vypnout v konfiguraci)"
+EID.descriptions[languageCode].AchievementWarningText = "Achievementy jsou zakázány!#Abys povolil postup a achievementy, musíš nejprve zabít mámu (Hloubka II) bez aktivovaných modů.#(Pokud jsi porazil mámu, tato zpráva je chyba a lze ji ignorovat)#(Toto varování lze vypnout v konfiguraci)"
 
 EID.descriptions[languageCode].OldGameVersionWarningText = "Tvoje verze Repentance není aktuální!#Oficiálně je podporována pouze ta nejnovější verze (1.7.9b)#(Toto varování lze vypnout v konfiguraci)"
 
@@ -1505,6 +1507,160 @@ local repConditions = {
 	["Binge Eater Healing"] = {"Vyléčí 1 srdce", "Vyléčí {{BlinkGreen}}2{{CR}} srdce", "+4 krevní nabití", "+{{BlinkGreen}}6{{CR}} krevní nabití"},
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
+
+-- list of Tear flag descriptions used for Abyss locust effect description
+EID.descriptions[languageCode].TearFlagNames = {
+	[0] = "spektrální",                 -- Ouija board type tear (goes thru obstacles)
+    [1] = "pronikavé",                 -- Cupid's arrow type tear (goes thru enemy)
+    [2] = "naváděcí",                   -- Spoon bender type tear (homes to enemy)
+    [3] = "zpomalující",                  -- Spider bite type tear (slows on contact)
+    [4] = "jedovaté",                   -- Common cold type tear (poisons on contact)
+    [5] = "zkameňující",                  -- Mom's contact type tear (freezes on contact)
+    [6] = "rozdělující",                    -- Parasite type tear (splits on collision)
+    [7] = "rostoucí s doletem",            -- Lump of coal type tear (grows by range)
+    [8] = "bumerang",                -- My reflection type tear (returns back)
+    [9] = "zůstavající",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+    [10] = "vlnivý pohyb",         -- Wiggle worm type tear (wiggles)
+    [11] = "vytvoří mušku při zásahu",        -- Mulligan type tear (creates fly on hit)
+    [12] = "výbušné",               -- IPECAC type tear (explodes on hit)
+    [13] = "okouzlující",                -- Mom's Eyeshadow tear
+    [14] = "zmatující",               -- Iron Bar tear
+    [15] = "nepřátelé dropují srdce",     -- These tears cause enemy to drop hearts if killed (33% chance)
+    [16] = "orbitují kolem hráče",     -- Used for Little Planet (orbit arounds the player)
+    [17] = "Anti-gravitační",     	      -- Anti gravity type tear (floats in place for some time before finally moving) (unset after first update)
+    [18] = "rozdělí se na 4 při zásahu",     -- Splits into 4 smaller tears if it hits the ground
+    [19] = "odrazí se od nepřátel",       -- Bounce off of enemies, walls, rocks (Higher priority than PERSISTENT & PIERCING)
+    [20] = "strach",                    -- Mom's Perfume type tear of fear (fear on contact)
+    [21] = "smrsknou",                  -- Proptosis tears start large and shrink
+    [22] = "zapalují",                    -- Fire Mind tears cause Burn effect on enemies
+    [23] = "magnet na pickupy a nepřátele", -- Attracts enemies and pickups
+    [24] = "knockback",               -- Tear impact pushes enemies back further
+    [25] = "pulzující",               -- Makes the tear pulse
+    [26] = "krouživý pohyb",         -- Makes the tear path spiral
+    [27] = "oválný tvar",              -- Makes the tear oval in the direction of travel
+    [28] = "smutná bomba",                -- Used by Bombs (Sad Bomb)
+    [29] = "prdelní bomba",               -- Used by Bombs (Butt Bomb)
+    [30] = "čtvercový pohyb",         -- Used for Hook Worm
+    [31] = "aura způsobující poškození",     -- Used for GodHead (they will have a glow around them)
+    [32] = "zpomalení + nabarví nepřítele černě", -- Used for Gish player tears (to color enemy black on slowing)
+    [33] = "zelená kaluž při zásahu", -- Mysterious Liquid tears spawn damaging green creep when hit
+    [34] = "obrněné",                -- Lost Contact tears, block enemy projectiles
+    [35] = "třpytivá bomba",            -- Used by Bombs (Glitter Bomb)
+    [36] = "rozptylová bomba",            -- Used for Scatter bombs
+    [37] = "lepkavé",                  -- Used for Sticky bombs and Explosivo tears
+    [38] = "dělá smyčky po obrazovce",     -- Tears loop around the screen
+    [39] = "při zásahu se objeví světelný paprsek", -- Create damaging light beam on hit
+    [40] = "vytvoří mince při zásahu",        -- Used by Bumbo, spawns a coin when tear hits
+    [41] = "vytvoří černé srdce při zásahu",    -- Enemy drops a black hp when dies
+    [42] = "vlečný paprsek",            -- Tear with this flag will follow parent player's beam
+    [43] = "zmenší nepřátele",          -- God's flesh flag to minimize enemies
+    [44] = "vytvoří mince při zásahu",      -- Greed coin tears that has a chance to generate a coin when hit
+    [45] = "křížová bomba",              -- Bomber Boy
+    [46] = "velký spirálový pohyb",     -- Ouroboros Worm, big radius oscilating tears
+    [47] = "trvalé zmatení při zásahu",   -- Glaucoma tears, permanently confuses enemies
+    [48] = "sopel",                  -- Booger tears, stick and do damage over time
+    [49] = "při zásahu se objeví pavouci nebo muška",               -- Egg tears, leave creep and spawns spiders or flies
+    [50] = "může při zásahu přerušit entity z mřížky",            -- Sulfuric Acid tears, can break grid entities
+    [51] = "po smrti nepřítele se objeví 1-2 úlomky kostí",                    -- Bone tears, splits in 2
+    [52] = "průrazné + dvojnásobné poškození a následné navádění", -- Belial tears, piecing tears gets double damage + homing
+    [53] = "promění nepřátele ve zlato na dotek",           -- Midas touch tears
+    [54] = "při úderu se rozptýlí na 10 slz",                -- Needle tears
+    [55] = "elektřina při úderu",           -- Jacobs ladder tears
+    [56] = "při úderu přivolá ruku Velkýho Horna", -- Little Horn tears
+    [57] = "elektricky propojeno",   -- Technology Zero
+    [58] = "odráží se od sebe navzájem",        -- Pop!
+    [59] = "absorbuje ostatní",               -- Hungry Tears
+    [60] = "laserový výstřel",               -- Trisagion, generates a laser on top of the tear
+    [61] = "skáče žabky na zemi",          -- Flat Stone
+    [62] = "roztržení rozdělením",             -- Haemolacria
+    [63] = "plazivá kaluž",             -- Bob's Bladder
+    [64] = "efekt úderu při zásahu",     -- Knockout Drops
+    [65] = "zmrazí nepřítele po smrti",   -- Uranus
+    [66] = "magnet na pickupy a nepřátele", -- Lodestone
+    [67] = "účinek návnady při zásahu",       -- Rotten Tomato
+    [68] = "Oko okultismu",       -- Eye of the Occult
+    [69] = "pohyb na úzké oběžné dráze",   -- Orbiting tears with a more narrow and stable orbit (used by Saturnus and Immaculate Heart)
+    [70] = "láme kameny",             -- Rock tears, chance to break rocks, deal extra damage to rock type enemies
+    [71] = "Pohyb o 90 stupňů",      -- Brain Worm, tears turn and go horizontally when moving past an enemy
+    [72] = "krvavé bomby",              -- Blood Bombs, leave blood creep on the ground
+    [73] = "promění nepřítele v hovno",    -- E. Coli tears, turn enemies into poop
+    [74] = "vytvoří mince při smrti",      -- Killed enemies have a chance to drop a random coin (Reverse Hanged Man)
+    [75] = "brimstonová bomba",          -- Brimstone Bombs, explosion creates a brimstone cross
+    [76] = "černá díra při zásahu",       -- Rift tears, creates a black hole on impact
+    [77] = "přilepí se k nepříteli a po jeho smrti se množí",  -- Spore tears, stick to enemies and multiply on enemy death
+    [78] = "strašidelná bomba",              -- Ghost bombs
+    [79] = "vytvoří karty při smrti",      -- Killed enemies will drop a random tarot card
+    [80] = "vytvoří runu při smrti",      -- Killed enemies will drop a random rune
+    [81] = "teleportuje nepřítele při zásahu",   -- Hit enemies will teleport to a different part of the room
+    [82] = "zpomaluje v průběhu času",    -- Decelerate over time
+    [83] = "zrychluje v průběhu času",    -- Accelerate over time
+    [104] = "odrazuje (pouze od stěn)",    -- Similar to TEAR_BOUNCE but only bounces off walls, not enemies
+	[106] = "extra poškození zezadu + krvácení",   -- Deals extra damage from behind and inflicts bleeding
+}
+
+-- Book of Virtues wisp types
+EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
+	-- values inside {} brackets will be replaced with text parts below
+	-- Wisp texts are affected by the PluralizeFunction (ab+ file)
+	-- The placeholder therefore can be used in all parts that make up the wisp descriptions
+	StatDescription = "{{Heart}} {health} {{Damage}} {damage}",	-- {health} will be replaced with the health text, {damage} with the damage text or the "CantShoot" text
+	Health = "{1} zdraví", 		-- {1} will be replaced with the health
+	Damage = "{1} dps",				-- {1} will be replaced with the calculated damage
+	CantShoot = "Nemůže střílet!",
+	Shotspeed = "{1}% Rychlost střely", 				-- {1} will be replaced with the shot speed changes in %
+	Chance = " ({1}% Šance)",					-- {1} will be replaced with the chance
+	SingleRoom = "Bludička pro jednu místnost",
+	NoWisps = "Žádné bludičky",
+	Ring = {
+		[-1] = "{amount} nehybná bludička/y{pluralize}",
+		[0] = "{amount} bludička/y ve vnitřním kruhu{pluralize} {{InnerWisp}}",
+		[1] = "{amount} bludička/y v prostředním kruhu{pluralize} {{MiddleWisp}}",
+		[2] = "{amount} bludička/y ve vnějším kruhu{pluralize} {{OuterWisp}}",
+	},
+}
+
+---------- Abyss Locust description parts ----------
+EID.descriptions[languageCode].AbyssTexts = {
+ 	-- values inside {} brackets will be replaced with text parts below
+	-- Abyss texts are affected by the PluralizeFunction (ab+ file)
+	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
+	InfoText = "{amount} {size}{speed}kobylka{pluralize} ({dmg})",
+	InfoTextPlural = nil, -- Can be used by translators to provide a pluralized version of the InfoText
+	Chance = " ({1}% Šance)", -- {1} will be replaced with the chance
+	SpeedSlow = "pomalá", -- Speed < 1
+	SpeedFast = "rychlá", -- Speed > 1
+	SpeedDash = "svižná", -- Speed >= 6
+	SizeSmall = "malá", -- Size < 1
+	SizeBig = "velká", -- Size > 1
+	DamageMult = "{1}x Izákovo poškození", -- {1} will be replaced with the calculated damage multiplier 
+}
+
+
+---------- Abyss Locust special effects ----------
+--- Special locust effects that dont correspond to TearFlags.
+--- Displays an icon in front of the description that shows an item with the same effect
+EID.descriptions[languageCode].AbyssLocustEffects = {
+[0] = "{{Bomb}} Exploduje při způsobení poškození",
+[1] = "{{QuestionMark}} Náhodný efekt kobylky",
+-- 2 = Více kobylek se chová jako jedna. Podle mého názoru nezajímavá informace pro hráče.
+[3] = "{{Collectible284}} Přetočí nepřítele při způsobování poškození",
+[4] = "{{Collectible35}} Při způsobování poškození poškozuje všechny nepřátele",
+[5] = "{{Collectible638}} Vymaže nepřítele při způsobení poškození",
+[6] = "{{Collectible114}} Nůž se točí kolem kobylky, když útočí",
+[7] = "{{Collectible611}} Používá Hrtanův výkřik, který poškozuje nepřátele v okolí",
+[8] = "{{Collectible399}} Vytvoří prstenec Chřtánu Prázdnoty",
+[9] = "{{Collectible522}} Při nabíjení získává auru odpuzující projektily",
+[10] = "{{Collectible447}} Při způsobování poškození se objevují otrávené prdy",
+[11] = "{{Collectible447}} Při způsobení poškození vyvolá prd",
+[12] = "{{Collectible118}} Při způsobení poškození vytvoří antigravitační brimstone",
+[13] = "{{Collectible317}} Při způsobování poškození se objeví zelená kaluž",
+[14] = "{{Collectible56}} Při způsobování poškození se objeví žlutá kaluž",
+[15] = "{{Collectible214}} Při způsobování poškození se objeví červená kaluž",
+[16] = "{{Collectible178}} Při způsobování poškození se objeví modrá kaluž",
+[17] = "{{Collectible420}} Náhodně se objeví pentagram",
+[18] = "{{Collectible144}} Získá +0,25 k poškození za každou spotřebovaný pickup. Maximálně 25 pickupů",
+}
+
 
 ---------- Texty Craftovacího Pytlíku ----------
 EID.descriptions[languageCode].CraftingBagContent = "Pytlík:"

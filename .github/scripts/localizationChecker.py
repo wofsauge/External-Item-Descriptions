@@ -27,13 +27,19 @@ Cyan='\033[0;36m'         # Cyan
 White='\033[0;37m'        # White
 BWhite='\033[1;37m'       # Bold White
 
-ignoreNodesWithName = {"fonts"}
+ignoreNodesWithName = {"fonts", "alternativeLanguageCodes"}
 ignoreTypeMissmatchNodesWithName = {"ConditionalDescs", "BFFSSynergies"}
 
 dlcs = ["ab+", "rep", "rep+"]
 
-maxChecklimit = {"tarotClothBuffs": 2, "carBattery": 2, "BFFSSynergies": 2}
+maxChecklimit = {"tarotClothBuffs": 1, "carBattery": 1, "BFFSSynergies": 1}
 
+ignoreErrors = {
+"fr(rep)->collectibles->49", # No number to change in text
+"fr(rep)->ConditionalDescs->5.300.83", # not applicable
+"fr(rep+)->tarotClothBuffs->11", # Not needed, since pluralization is already handles in rep file
+"zh_cn(rep+)->tarotClothBuffs->11", # Not needed
+}
 
 # count English entries for stats
 def count_entries(t):
@@ -80,6 +86,9 @@ def compare_tables(table1, table2, prev_key):
             # dont evaluate nodes that are listed in this table
             continue
         if k not in table2:
+            if prev_key+"->"+str(k) in ignoreErrors:
+                # ignore this error
+                continue
             print(f"\tTable '{prev_key}' does not contain entry: {k}")
             errorCount += 1
             # table is missing. add all missing entries as error
@@ -100,6 +109,9 @@ def compare_tables(table1, table2, prev_key):
                     ignoreError = True
                     break
             if not ignoreError:
+                if prev_key+"->"+str(k) in ignoreErrors:
+                    # ignore this error
+                    continue
                 print(f"\tType mismatch in table '{prev_key}', key: {k}")
                 errorCount += 1
 

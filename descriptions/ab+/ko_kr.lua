@@ -809,7 +809,7 @@ EID.descriptions[languageCode].trinkets={
 	{"122", "버터!", "액티브 아이템 사용 시 사용한 액티브 아이템을 내려놓습니다.#피격 시 2% 확률로 소지중인 패시브 아이템 중 하나를 내려놓습니다."}, -- Butter!
 	{"123", "세공 깃털", "{{AngelRoom}} Uriel/Gabriel이 Key Piece 대신 천사방 아이템을 드랍합니다.#!!! 한 종류의 Key Piece만 소지 시 Key Piece를 드랍합니다."}, -- Filigree Feather
 	{"124", "문 받침대", "방에 입장 시 들어왔던 문이 닫히지 않습니다."}, -- Door Stop
-	{"125", "연장 코드", "캐릭터와 패밀리어 사이에 전류 레이저가 흐르며 레이저에 접촉한 적은 초당 6의 피해를 받습니다."}, -- Extension Cord
+	{"125", "연장 코드", "{{ColorCyan}}모든 캐릭터{{CR}}와 패밀리어 사이에 전류 레이저가 흐르며;#{{ArrowGrayRight}} 레이저에 접촉한 적은 초당 6의 피해를 받습니다."}, -- Extension Cord
 	{"126", "썩은 동전", "동전 획득 시 파란 아군 파리를 소환합니다."}, -- Rotten Penny
 	{"127", "아기 초능력자", "패밀리어의 공격에 유도 효과가 생깁니다."}, -- Baby-Bender
 	{"128", "손가락 뼈", "{{EmptyBoneHeart}} 피격 시 2% 확률로 뼈하트를 획득합니다."}, -- Finger Bone

@@ -870,7 +870,6 @@ local repTrinkets={
 	[110] = {"110", "Silberdollar", "{{Shop}} Shops erscheinen in der Womb und Corpse"},
 	[111] = {"111", "Blutige Krone", "{{TreasureRoom}} Schatzräume erscheinen in der Womb und im Leichnam"}, -- Bloody Crown
 	[119] = {"119", "Stammzelle", "{{Heart}} Beim Betreten einer neuen Ebene heilen sich die leeren roten/Knochenherzen von Isaac um die Hälfte#{{HalfHeart}} Heilt mindestens ein halbes Herz"}, -- Stem Cell
-	[125] = {"125", "Verlängerungskabel", "Verbindet alle Begleiter mit elektrischen Strahlen#Die Strahlen verursachen 6 Schaden#Die Strahlen springen auch zwischen Koop-Spielern (einschließlich Jacob & Esau)"}, -- Extension Cord
 	[128] = {"128", "Fingerknochen", "{{EmptyBoneHeart}} Schaden nehmen hat eine 4%ige Chance, ein Knochenherz zu gewähren"}, -- Finger Bone
 	[129] = {"129", "Kieferbrecher", "{{Damage}} 10%ige Chance, Zähne abzufeuern, die 3,2x Isaacs Schaden zufügen#{{Luck}} 100%ige Chance bei 9 Glück"}, -- Jawbreaker
 	[130] = {"130", "Zerkauter Stift", "{{Slow}} 10%ige Chance, verlangsamende Tränen abzufeuern#{{Luck}} 100%ige Chance bei 18 Glück"}, -- Chewed Pen

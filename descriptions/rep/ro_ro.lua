@@ -805,7 +805,6 @@ local repTrinkets={
 	[110] = {"110", "Dolar de Argint", "{{Shop}} Magazinele apar în  \"Womb\" și \"Corpse\""}, -- Silver Dollar
 	[111] = {"111", "Coroană Însângerată", "{{TreasureRoom}} Camera Comorilor apare în \"Womb\" și \"Corpse\""}, -- Bloody Crown
 	[119] = {"119", "Celule Stem", "{{HealingRed}} Intrarea într-un etaj nou jumătate din Inimile Roșii/Os goale a lui Isaac#{{HealingRed}} Vindecă minim jumătate de inimă"}, -- Stem Cell
-	[125] = {"125", "Prelungitor", "Conectează toți familiarii cu electricitate#Raza de curent provoacă 6 daune"}, -- Extension Cord
 	[128] = {"128", "Osul Degetului", "{{EmptyBoneHeart}} Vătămarea are o șansă de 4% ca Isaac să primească o Inimă Os"}, -- Finger Bone
 	[129] = {"129", "Sfarmă-fălciz", "{{Damage}} 10% Șansă arunci cu dinți care provoacă 3.2x daune#{{Luck}} 100% Șansă la 9 noroc"}, -- Jawbreaker
 	[130] = {"130", "Pix Ros", "{{Slow}} 10% Șansă să arunci cu lacrimi ce încetinesc inamicii#{{Luck}} 100% Șansă la 18 noroc"}, -- Chewed Pen

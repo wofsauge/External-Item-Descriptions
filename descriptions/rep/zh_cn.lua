@@ -762,6 +762,10 @@ EID.descriptions[languageCode].TearFlagNames = {
 	[106] = "{{Collectible506}}从背后攻击造成更多伤害并造成流血",   -- Deals extra damage from behind and inflicts bleeding
 }
 
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+-- Kept in for backwards compatibility
+EID.descriptions[languageCode].abyssSynergies = {}
+
 -- Effect of Car battery on Active Items
 local repCarBattery = {
 	[34] = {2, 3}, -- The Book of Belial
@@ -899,7 +903,6 @@ local repTrinkets={
 	[110] = {"110", "银币", "{{Shop}} 商店会出现在子宫和尸宫中"},
 	[111] = {"111", "染血王冠", "{{TreasureRoom}} 宝箱房会出现在子宫和尸宫中"}, -- Bloody Crown
 	[119] = {"119", "干细胞", "{{HealingRed}} 进入新层时, 治疗一半空心之容器/空骨心#{{HealingRed}} 至少治疗半红心"}, -- Stem Cell
-	[125] = {"125", "扩接电线", "使跟班以电束相连#电束造成6点伤害"}, -- Stem Cell
 	[128] = {"128", "指骨", "{{EmptyBoneHeart}} 受伤时, 4%几率获得骨心"}, -- Finger Bone
 	[129] = {"129", "崩掉牙", "{{Damage}} 10%几率发射牙齿, 造成3.2x角色伤害#{{Luck}} 幸运9: 100%几率"}, --  Jawbreaker
 	[130] = {"130", "嚼烂的笔", "{{Slow}} 10%几率发射减速泪弹#{{Luck}} 幸运18: 100%几率"}, --  Chewed Pen
