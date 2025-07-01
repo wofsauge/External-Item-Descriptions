@@ -1,7 +1,7 @@
 ---------------------------------------
 -----  Basic Japanese descriptions ----
 ---------------------------------------
--- Last Update: 2024-11-18
+-- Last Update: 2025-07-01
 
 -- FORMAT: Item ID | Name | Description
 -- Special character markup:
@@ -1094,11 +1094,12 @@ EID.descriptions[languageCode].transformations={
 
 ---------- MISC ----------
 
--- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them, make it nil to not pluralize
 -- Each language can do their own algorithm to modify the given text to their needs
 EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
-	-- TODO: Not Implemented right now...
-	return text
+	-- English plural is very easy. Simply put an "s" at the end of specific words, if amount > 1
+	-- replace {pluralize} placeholders inside the text with an "s"
+	return EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
 end
 
 EID.descriptions[languageCode].VoidText = "吸収した時："
@@ -1300,6 +1301,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.81"] = "赤ハートを持てないキャラは 青／黒ハートを1個にする", -- Dead Cat
 --  ["5.100.316"] = "{1}removes the teleportation effect", -- Cursed Eye
 --  ["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
+	["Void Single Use"] = "使い切りアイテムは 一度だけ発動できる", -- Single Use Actives + Void
 	["? Card Single Use"] = "使い切りアイテムは ？カードを使うと消失する", -- Single Use Actives + ? Card
 	["5.300.48"] = "I AM ERRORにテレポート#白紙のカードと？カード 両方が消失する", -- Blank Card + ? Card
 	["? + Blank Pedestal"] = "白紙のカードで？カードを 使うと、I _AM_ERRORに テレポートし、両カード共 消失する", -- Looking at Blank Card with ? Card
@@ -1343,6 +1345,3 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.10"] = "お店が無い場合、ランダムな 部屋にテレポートする", -- IX - The Hermit (Womb and below)
 	
 }
-
-
-
