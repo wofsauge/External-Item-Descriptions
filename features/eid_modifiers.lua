@@ -576,9 +576,14 @@ if EID.isRepentance then
 			elseif data.mult and ((isGolden and hasBox) or data.mult < 2) then multiplier = data.mult end
 
 			--custom additions table (manually defined)
+			-- index 1 is 2x, index 2 is 3x, index 3 is 4x
 			local addition = 0
 			if data.additions then
-				addition = data.additions[textChoice]
+				if hasBox then
+					addition = data.additions[textChoice-1] or 0
+				else
+					addition = data.additions[textChoice]
+				end
 			end
 
 			--replacing numeric text based on our multiplier
