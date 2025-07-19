@@ -11,8 +11,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 5.00
-EID.ModVersionCommit = "d44fa18"
+EID.ModVersion = 5.02
+EID.ModVersionCommit = "5b90f91"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -1205,7 +1205,9 @@ end
 function EID:CheckPosModifiers()
 	-- HUD offset adjustment, done every frame so it looks nice while changing the option
 	if Options then
-		EID:addTextPosModifier("HudOffset", Vector(((Options.HUDOffset * 10) * 2) - 20, (Options.HUDOffset * 10) - 10))
+		-- Read the HUD offset from the Options table if it exists. 
+		-- +3 Y to avoid overlapping with the shadow of the charge bar hud
+		EID:addTextPosModifier("HudOffset", Vector(20, 12) * (Options.HUDOffset - 1) + Vector(0, 3))
 	else
 		EID:addTextPosModifier("HudOffset", Vector((EID.Config["HUDOffset"] * 2) - 20, EID.Config["HUDOffset"] - 10))
 	end
@@ -1214,20 +1216,20 @@ function EID:CheckPosModifiers()
 
 	-- Repentance+ pushes a lot of UI lower, so we have to push the description lower as well to avoid overlapping
 	if EID.isRepentancePlus then
-		EID:addTextPosModifier("Repentance+", Vector(0,10))
+		EID:addTextPosModifier("Repentance+", Vector(0, 10))
 	else
 		EID:removeTextPosModifier("Repentance+")
 	end
 	-- Greed Mode small right adjustment
 	if game:IsGreedMode() then
-		EID:addTextPosModifier("Greed Mode Horizontal", Vector(8,0))
+		EID:addTextPosModifier("Greed Mode Horizontal", Vector(8, 0))
 	else
 		EID:removeTextPosModifier("Greed Mode Horizontal")
 	end
 	if not EID.isRepentance then
 		-- AB+ Schoolbag adjustment
 		if EID.player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
-			EID:addTextPosModifier("Schoolbag", Vector(0,30))
+			EID:addTextPosModifier("Schoolbag", Vector(0, 30))
 		else
 			EID:removeTextPosModifier("Schoolbag")
 		end
