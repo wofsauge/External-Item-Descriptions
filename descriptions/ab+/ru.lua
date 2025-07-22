@@ -577,6 +577,167 @@ EID.descriptions[languageCode].collectibles={
 	{"552", "Мамина лопата", "При использовании создает на полу люк на следующий уровень#!!! Используйте лопату в куче грязи на уровне \"Темная Комната\"#!!! Открывает кое-что крутое"},
 }
 
+---------- Modifiers ----------
+
+-- Effect of Car Battery on Active Items
+-- TODO: Needs translation!
+EID.descriptions[languageCode].carBattery = {
+	["No Effect"] = "No effect",
+	[35] = {40, 80}, -- The Necronomicon
+	[37] = { " a ", " 2 ", "bomb", "{{CR}}bombs" }, -- Mr. Boom
+	[38] = {10, 20}, -- Tammy's Head
+	[45] = {1, 2, "heart", "{{CR}}hearts"}, -- Yum Heart
+	[58] = {10, 20}, -- Book of Shadows
+	[65] = {6, 12}, -- Anarchist's Cookbook
+	[66] = {8, 16}, -- The Hourglass
+	[77] = {6, 12}, -- My Little Unicorn
+	[78] = {1, 2}, -- Book of Revelations
+	[83] = {1, 2}, -- The Nail
+	[85] = {1, 2, "card", "{{CR}}cards"}, -- Deck of Cards
+	[86] = {120, 240}, -- Monstro's Tooth
+	[93] = {6.5, 13}, -- The Gamekid
+	[97] = {" a ", " 2 ", "pickup", "{{CR}}pickups"}, -- The Book of Sin
+	[102] = {1, 2, "pill", "{{CR}}pills"}, -- Mom's Bottle of Pills
+	[105] = "Rerolls twice, draining item pools faster", -- The D6
+	[107] = "Spawns two bodies", -- The Pinking Shears
+	[111] = {5, 10}, -- The Bean
+	[123] = {" a ", " 2 ", "familiar", "{{CR}}familiars"}, -- Monster Manual
+	[124] = {" a ", " 2 ", "effect", "{{CR}}effects"}, -- Dead Sea Scrolls
+	[136] = {" a ", " 2 ", "Isaac", "{{CR}}Isaacs"}, -- Best Friend
+	[145] = {"2-4", "4-8"}, -- Guppy's Head
+	[146] = {1, 2, " Heart", " {{CR}}Hearts"}, -- Prayer Card (should this just say +1 health...)
+	[158] = {" a ", " 2 ", " Heart", " {{CR}}Hearts", "rune", "{{CR}}runes", "card", "{{CR}}cards"}, -- Crystal Ball
+	[160] = {5, 10}, -- Crack the Sky
+	[171] = {10, 20}, -- Spider Butt
+	[283] = "Rerolls twice, helping with transformation progress but draining item pools faster", -- D100
+	[284] = "Rerolls twice, helping with transformation progress but draining item pools faster", -- D4
+	[286] = "Triggers it twice", -- Blank Card
+	[287] = {"one", "two"}, -- Book of Secrets
+	[288] = {"1-4", "2-8"}, -- Box of Spiders
+	[292] = {1, 2}, -- Satanic Bible
+	[293] = {440, 880}, -- Head of Krampus
+	[294] = "Increased knockback", -- Butter Bean
+	[298] = {6, 12}, -- Unicorn Stump
+	[348] = "Triggers it twice", -- Placebo
+	[349] = "Triggers the chance twice", -- Wooden Nickel
+	[351] = {5, 10}, -- Mega Bean
+	[357] = {"Duplicates", "Triplicates"}, -- Box of Friends
+	[383] = {6, 36}, -- Tear Detonator
+	[421] = {5, 10}, -- Kidney Bean
+	[427] = {" a ", " 2 ", "barrel", "{{CR}}barrels", "barrel", "{{CR}}barrels"}, -- Mine Crafter
+	[439] = {" a ", " 2 ", "trinket", "{{CR}}trinkets"}, -- Mom's Box
+	[476] = {" a ", " 2 ", "pickup", "{{CR}}pickups"}, -- D1
+	[477] = "Activates every absorbed active item twice", -- Void
+	[480] = {"Doubles", "Quadruples"}, -- Compost
+	[481] = "Two stat ups and stat downs", -- Dataminer
+	[482] = "Changes your character twice and removes two items", -- Clicker
+	[485] = "25% chance to quadruple, 25% chance to double and remove the originals, 50% chance to remove", -- Crooked Penny
+	[486] = {"effects", "{{CR}}effects {{BlinkYellowGreen}}twice"}, -- Dull Razor
+	[488] = "Activates twice, but only the second effect stays", -- Metronome
+	[489] = {" a ", " 2 ", "effect", "{{CR}}effects"}, -- D Infinity
+	[504] = {" a ", " 2 ", "turret", "{{CR}}turrets"}, -- Brown Nugget
+	[507] = "Triggers twice", -- Sharp Straw
+	[510] = {" a ", " 2 ", "version", "{{CR}}versions"}, -- Delirious
+	[516] = {" a ", " 2 ", "Sprinkler", "{{CR}}Sprinklers"}, -- Sprinkler
+	[521] = {"one", "two", "item", "{{CR}}items"}, -- Coupon
+	[523] = "Swaps box contents with room pickups", -- Moving Box
+	[545] = {8, 16}, -- Book of the Dead
+	[550] = "Stops stomps for two rooms (or Boss Rush waves)", -- Broken Shovel
+}
+
+-- Effect of BFFS! on Familiars
+-- TODO: Translations need proof reading!
+EID.descriptions[languageCode].BFFSSynergies = {
+	["No Effect"] = "Никакого эффекта от {1}",
+	["5.100.8"] = {3.5, 7}, -- Brother Bobby
+	["5.100.57"] = {75, 150}, -- Distant Admiration
+	["5.100.67"] = {3.5, 7}, -- Sister Maggy
+	["5.100.73"] = "Урон удвоился", -- Cube of Meat
+	["5.100.88"] = {52.5, 105}, -- Little Chubby
+	["5.100.94"] = {"2", "1-2"}, -- Sack of Pennies
+	["5.100.95"] = {3.5, 7}, -- Robo-Baby
+	["5.100.96"] = {"3", "2-3"}, -- Little C.H.A.D.
+	["5.100.98"] = {"5-6", "4-5"}, -- The Relic
+	["5.100.99"] = {3.5, 7}, -- Little Gish
+	["5.100.100"] = {3.5, 7}, -- Little Steven
+	["5.100.107"] = {82.5, 165}, -- The Pinking Shears
+	["5.100.112"] = {105, 210}, -- Guardian Angel
+	["5.100.113"] = {3, 6}, -- Demon Baby
+	["5.100.117"] = {4.3, 8.6}, -- Dead Bird
+	["5.100.128"] = {30, 60}, -- Forever Alone
+	["5.100.131"] = {"3", "2-3"}, -- Bomb Bag
+	["5.100.144"] = {"3-4", "3"}, -- Bum Friend
+	["5.100.155"] = {17, 34}, -- The Peeper
+	["5.100.163"] = {3.5, 7}, -- Ghost Baby
+	["5.100.167"] = {4, 8}, -- Harlequin Baby
+	["5.100.170"] = {40, 80}, -- Daddy Longlegs
+	["5.100.172"] = {225, 450}, -- Sacrificial Dagger
+	["5.100.174"] = {"3-5", "6-10"}, -- Rainbow Baby
+	["5.100.187"] = "Урон удвоился", -- Guppy's Hairball
+	["5.100.188"] = {3.5, 7, 7.5, 15}, -- Abel (includes Cain's Rep synergy)
+	["5.100.206"] = {105, 210}, -- Guillotine
+	["5.100.207"] = "Урон удвоился", -- Ball of Bandages
+	["5.100.264"] = {22.5, 45}, -- Smart Fly
+	["5.100.266"] = "Порождает дополнительного Синего Паука", -- Juicy Sack
+	["5.100.267"] = {3.5, 7}, -- Robo-Baby 2.0
+	["5.100.270"] = {3.2, 6.4}, -- Leech
+	["5.100.271"] = {"5-6", "4-5"}, -- Mystery Sack
+	["5.100.272"] = {60, 85}, -- BBF
+	["5.100.273"] = {60, 85}, -- Bob's Brain
+	["5.100.274"] = {75, 150}, -- Best Bud
+	["5.100.275"] = {31.5, 63}, -- Lil Brimstone
+	["5.100.277"] = {4, 8}, -- Lil Haunt
+	["5.100.279"] = {30, 60}, -- Big Fan
+	["5.100.318"] = {6, 12}, -- Gemini
+	-- Description does not contain reference to "Isaac's damage" in the russian translation
+	-- ["5.100.319"] = {"Isaac's damage", "double {{CR}}Isaac's damage"}, -- Cain's Other Eye
+	["5.100.320"] = {37.5, 75}, -- ???'s Only Friend
+	["5.100.321"] = {10.7, 21.4}, -- Samson's Chains
+	["5.100.322"] = {3.5, 7}, -- Mongo Baby
+	["5.100.325"] = {3.5, 7}, -- Scissors
+	["5.100.360"] = "Урон удвоился", -- Incubus
+	["5.100.361"] = "Урон удвоился", -- Fate's Reward
+	["5.100.362"] = {35, 44}, -- Lil Chest
+	["5.100.363"] = {105, 210}, -- Sworn Protector
+	["5.100.364"] = {45, 90}, -- Friend Zone
+	["5.100.365"] = {105, 210}, -- Lost Fly
+	["5.100.372"] = "Более высокий шанс появления батарей", -- Charged Baby
+	["5.100.384"] = {"5-90", "10-180"}, -- Lil Gurdy
+	["5.100.385"] = "Урон удвоился", -- Bumbo
+	["5.100.388"] = "Сундуки появляются чаще", -- Key Bum
+	["5.100.389"] = {"5-6", "4-5"}, -- Rune Bag
+	["5.100.390"] = {10, 20}, -- Seraphim
+	["5.100.403"] = "Более высокий шанс появления батарей", -- Spider Mod
+	["5.100.405"] = {120, 240}, -- GB Bug
+	["5.100.417"] = "Аура повреждения увеличивается, но аура увеличения урона не увеличивается", -- Succubus
+	["5.100.426"] = {30, 60}, -- Obsessed Fan
+	-- Description does not contain reference to "Isaac's damage" in the russian translation
+	--["5.100.430"] = {"Isaac's damage", "double {{CR}}Isaac's damage"}, -- Papa Fly
+	["5.100.435"] = {3.5, 7}, -- Lil Loki
+	["5.100.468"] = {30, 60}, -- Shade
+	["5.100.470"] = {30, 60}, -- Hushy
+	["5.100.471"] = {3.5, 7}, -- Lil Monstro
+	["5.100.473"] = {40.5, 81}, -- Big Chubby
+	["5.100.491"] = {"3", "2-3"}, -- Acid Baby
+	["5.100.500"] = {"5-6", "4-5"}, -- Sack of Sacks
+	["5.100.508"] = {3, 6}, -- Mom's Razor
+	["5.100.509"] = {3.5, 7, 30, 60}, -- Bloodshot Eye
+	["5.100.511"] = {30, 60}, -- Angry Fly
+	["5.100.518"] = "Урон удвоился", -- Buddy in a Box
+	["5.100.519"] = "Урон удвоился", -- Lil Delirium
+	["5.100.525"] = {35, 70}, -- Leprosy
+	["5.100.526"] = "Урон от контакта с всадником удваивается", -- 7 Seals
+	["5.100.537"] = "Увеличивает размер крипа, но не урон", -- Lil Spewer
+	["5.100.539"] = "Создаёт вариант врага-чемпиона", -- Mystery Egg
+	["5.100.544"] = {6, 12}, -- Pointy Rib
+	["5.100.545"] = "Контактное повреждение орбитальной кости удваивается", -- Book of the Dead
+	["5.100.548"] = {7, 14}, -- Jaw Bone
+	
+	["5.350.54"] = {3.5, 7}, --- Isaac's Head
+	["5.350.57"] = {3.5, 7}, --- ???'s Soul
+	["Lilith"] = "Урон инкуба удваивается", -- Incubus (for BFFS pedestal)
+}
+
 ---------- Trinkets ----------
 EID.descriptions[languageCode].trinkets={
 	{"1", "Проглоченный пенни", "При получении вами урона, на пол падает монетка"},
@@ -818,6 +979,33 @@ EID.descriptions[languageCode].pills={
 	{"44", "Хорф!", "Делает один выстрел рвотным корнем"},
 	{"45", "Похоже, я иду на рассвет!", " Короткая неуязвимость"},
 	{"46", "Вурп!", "Дает последнюю использованную пилюлю"}
+}
+
+---------- Character Info ----------
+-- These descriptions are shown in the Item Reminder
+-- The character names here are also used in getPlayerName to provide localized character names
+-- The numbers are provided to make this a quick reference for Player IDs
+
+-- TODO: Translations need proof reading!
+EID.descriptions[languageCode].CharacterInfo = {
+	[0] = {"Исаак", ""},
+	[1] = {"Магдалина", ""},
+	[2] = {"Каин", ""},
+	[3] = {"Иуда", ""},
+	[4] = {"???", "Не может иметь Красных Сердец#{{SoulHeart}} Увеличение здоровья дарует Сердца Души"},
+	[5] = {"Ева", ""},
+	[6] = {"Самсон", ""},
+	[7] = {"Азазель", "Полет#{{Collectible118}} ближнемагистральный. Сера вместо слёз"},
+	[8] = {"Лазарь", "Один раз за этаж, когда ты умираешь:#Воскресаешь как Воскресший Лазарь#Теряешь 1 контейнер Красного Сердца"},
+	[9] = {"Эдем", "Начинайте со случайных характеристик и предметов в каждой игре"},
+	[10] = {"Потерянный", "Полет#Спектральные слёзы#{{Warning}} Нет здоровья#{{DevilRoom}} Одну дьявольскую сделку на комнату можно взять бесплатно"},
+	[11] = {"Воскресший Лазарь", "Увеличенные характеристики и множитель урона x1.2#При входе на новый этаж превращаешься обратно в Лазаря"},
+	[12] = {"Темный Иуда", "{{Damage}} x2 Множитель урона#{{Player3}} Считается Иудой для отметок прохождения"},
+	[13] = {"Лилит", "Не могу стрелять слезами#{{Collectible360}} Ее Инкуб стреляет за нее"},
+	[14] = {"Хранитель", "{{CoinHeart}} Лечится, подбирая монеты#Максимум 2 Монетных Сердца#Подбираемые сердца превращаются в Синих Мух"},
+	[15] = {"Аполлион", ""},
+	[16] = {"Забытые", "У вас есть атака ближнего боя, которую можно заряжать и бросать#{{BoneHeart}} Может вмещать до 6 Костяных Сердец#{{Player17}} Нажмите {{ButtonRT}}, чтобы переключиться на Душу#{{SoulHeart}} Душа может вмещать до 6 Душ/Черных Сердец и обладает способностью летать и вызывать спектральные слезы#Душа прикована к небольшому радиусу вокруг Забытого"},
+	[17] = {"Забытая душа", "У вас есть атака ближнего боя, которую можно заряжать и бросать#{{BoneHeart}} Может вмещать до 6 Костяных Сердец#{{Player17}} Нажмите {{ButtonRT}}, чтобы переключиться на Душу#{{SoulHeart}} Душа может вмещать до 6 Душ/Черных Сердец и обладает способностью летать и вызывать спектральные слезы#Душа прикована к небольшому радиусу вокруг Забытого"},
 }
 
 ---------- Sacrifice Room ----------
