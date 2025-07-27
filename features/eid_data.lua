@@ -1,3 +1,5 @@
+local game = Game()
+
 EID.ButtonToIconMap = {
 	[ButtonAction.ACTION_SHOOTUP] = "{{ButtonY}}",
 	[ButtonAction.ACTION_SHOOTDOWN] = "{{ButtonA}}",
@@ -30,22 +32,6 @@ end
 EID.effectList = {
 	["76"] = true,
 	["161"] = true,
-}
-
--- Grid entity types to be detected by EID
--- Add functions to the list to further filter the entries
-EID.GridEntityWhitelist = {
-	[GridEntityType.GRID_SPIKES] = {
-		function(gridEntity)
-			return Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and
-				EID.Config["DisplaySacrificeInfo"]
-		end,
-		function(gridEntity)
-			return EID.isRepentance and EID.Config["DisplaySanguineInfo"] and
-				Game():GetRoom():GetType() == RoomType.ROOM_DEVIL and
-				EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND)
-		end,
-	},
 }
 
 --maps the Player transformation from the enum PlayerForm to the internal transformation table
@@ -331,6 +317,7 @@ EID.InlineIcons = {
 	["WoodenChestRoomIcon"] = {"roomicons", 33, 6, 9, 0, 4},
 	["Teleporter"] = {"roomicons", 34, 9, 9, 0, 2},
 	["ErrorRoom"] = {"roomicons", 35, 9, 9, 0, 2},
+	["LilPortal"] = {"roomicons", 36, 8, 7, 0, 2},
 
 	-- Roomshape Icons
 	["Room"] = {"roomshape", 0, 10, 9, 0, 2},
@@ -543,20 +530,24 @@ EID.InlineIcons = {
 	["Player40"] = {"Players", 40, 15, 12, 2, 1, EID.PlayerSprite}, -- T. The Soul
 
 	-- Status effects
-	["Charm"] = {"StatusEffects", 0, 10, 9, 0, 1},
-	["Burning"] = {"StatusEffects", 1, 8, 9, 0, 1},
-	["Crown"] = {"StatusEffects", 2, 10, 9, 0, 3},
+	["Burning"] = {"StatusEffects", 0, 8, 9, 0, 1},
+	["Charm"] = {"StatusEffects", 1, 10, 9, 0, 1},
+	["Confusion"] = {"StatusEffects", 2, 10, 9, 0, 1},
 	["Fear"] = {"StatusEffects", 3, 10, 9, 0, 1},
-	["Poison"] = {"StatusEffects", 4, 8, 9, 0, 1},
-	["Slow"] = {"StatusEffects", 5, 10, 9, 0, 2},
-	["Magnetize"] = {"StatusEffects", 6, 10, 9, 0, 1},
-	["BrimstoneCurse"] = {"StatusEffects", 7, 10, 9, 0, 1},
-	["BleedingOut"] = {"StatusEffects", 8, 8, 9, 0, 1},
-	["Bait"] = {"StatusEffects", 9, 10, 9, 0, 1},
-	["Weakness"] = {"StatusEffects", 10, 10, 9, 0, 1},
-	["DeathMark"] = {"StatusEffects", 11, 10, 9, 0, 1},
-	["Confusion"] = {"StatusEffects", 12, 10, 9, 0, 1},
-	["Freezing"] = {"StatusEffects", 13, 10, 9, 0, 1},
+	["Petrify"] = {"StatusEffects", 4, 13, 9, 0, 1},
+	["Poison"] = {"StatusEffects", 5, 8, 9, 0, 1},
+	["Slow"] = {"StatusEffects", 6, 10, 9, 0, 2},
+	["Friendly"] = {"StatusEffects", 7, 12, 9, 0, 1},
+	["Shrink"] = {"StatusEffects", 8, 10, 9, 0, 1},
+	["BleedingOut"] = {"StatusEffects", 9, 8, 9, 0, 1},
+	["Bait"] = {"StatusEffects", 10, 10, 9, 0, 1},
+	["Chained"] = {"StatusEffects", 11, 8, 9, 0, 1},
+	["Freezing"] = {"StatusEffects", 12, 10, 9, 0, 1},
+	["Magnetize"] = {"StatusEffects", 13, 10, 9, 0, 1},
+	["BrimstoneCurse"] = {"StatusEffects", 14, 10, 9, 0, 1},
+	["Weakness"] = {"StatusEffects", 15, 10, 9, 0, 1},
+	["DeathMark"] = {"StatusEffects", 16, 10, 9, 0, 1},
+	["Crown"] = {"StatusEffects", 17, 10, 9, 0, 3},
 
 	-- Curses
 	["CurseDarkness"] = {"Curses", 0, 13, 11, 0, -1},
@@ -589,17 +580,19 @@ EID.InlineIcons = {
 	["BlueBaby"] = {"Boss", 7, 16, 13, 0, -1},
 	["TheLamb"] = {"Boss", 8, 20, 13, 0, -1},
 	["MegaSatan"] = {"Boss", 9, 19, 16, 0, -3},
+	["Beast"] = {"Boss", 10, 16, 15, 0, -2},
 	-- Boss (Small)
-	["MomBossSmall"] = {"Boss", 10, 10, 10, 0},
-	["MomsHeartSmall"] = {"Boss", 11, 9, 10, 0},
-	["IsaacSmall"] = {"Boss", 12, 10, 8, 0, 2},
-	["BlueBabySmall"] = {"Boss", 13, 10, 8, 0, 2},
-	["DeliriumSmall"] = {"Boss", 14, 10, 9, 0, 1},
-	["TheLambSmall"] = {"Boss", 15, 14, 9, 0, 1},
-	["MotherSmall"] = {"Boss", 16, 10, 9, 0, 1},
-	["MegaSatanSmall"] = {"Boss", 17, 13, 9, 0, 1},
-	["SatanSmall"] = {"Boss", 18, 12, 9, 0, 1},
-	["HushSmall"] = {"Boss", 19, 11, 9, 0, 1},
+	["MomBossSmall"] = {"Boss", 11, 10, 10, 0},
+	["MomsHeartSmall"] = {"Boss", 12, 9, 10, 0},
+	["IsaacSmall"] = {"Boss", 13, 10, 8, 0, 2},
+	["BlueBabySmall"] = {"Boss", 14, 10, 8, 0, 2},
+	["DeliriumSmall"] = {"Boss", 15, 10, 9, 0, 1},
+	["TheLambSmall"] = {"Boss", 16, 14, 9, 0, 1},
+	["MotherSmall"] = {"Boss", 17, 10, 9, 0, 1},
+	["MegaSatanSmall"] = {"Boss", 18, 13, 9, 0, 1},
+	["SatanSmall"] = {"Boss", 19, 12, 9, 0, 1},
+	["HushSmall"] = {"Boss", 20, 11, 9, 0, 1},
+	["BeastSmall"] = {"Boss", 21, 12, 10, 0, 0},
 
 	-- ItemPoolTypes
 	["ItemPoolTreasure"] = {"ItemPools", 0, 11, 11, 0, 0},
@@ -684,7 +677,7 @@ EID.InlineIcons["Tearsize"] = EID.isRepentance and EID.InlineIcons["TearsizeREP"
 -- Function for handling colors that fade between multiple different colors (rainbow, gold, tarot cloth purple)
 local function SwagColors(colors, maxAnimTime)
 	maxAnimTime = maxAnimTime or 80
-	local animTime = Game():GetFrameCount() % maxAnimTime
+	local animTime = game:GetFrameCount() % maxAnimTime
 	local colorFractions = (maxAnimTime - 1) / #colors
 	local subAnm = math.floor(animTime / (colorFractions + 1)) + 1
 	local primaryColorIndex = subAnm % (#colors + 1)
@@ -794,7 +787,7 @@ EID.InlineColors = {
 	-- Text will blink frequently
 	["ColorBlink"] = function(color)
 		local maxAnimTime = 40
-		local animTime = Game():GetFrameCount() % maxAnimTime
+		local animTime = game:GetFrameCount() % maxAnimTime
 		color = EID:copyKColor(color) or EID:getTextColor()
 		if animTime < maxAnimTime / 2 then
 			color.Alpha = 1 * color.Alpha
@@ -806,7 +799,7 @@ EID.InlineColors = {
 	-- Text will fade in and out
 	["ColorFade"] = function(color)
 		local maxAnimTime = 30
-		local animTime = Game():GetFrameCount() % (maxAnimTime + 10)
+		local animTime = game:GetFrameCount() % (maxAnimTime + 10)
 		color = EID:copyKColor(color) or EID:getTextColor()
 		if animTime < maxAnimTime / 2 then
 			color.Alpha = animTime / (maxAnimTime / 2) * color.Alpha
@@ -868,21 +861,6 @@ EID.GoldenTrinketData = {
 	[13] = {goldenOnly = true, fullReplace = true, mult=1}, [15] = {append = true}, [16] = {t={20}, mults={0.5, 0.333}}, [25] = {goldenOnly = true, findReplace = true, mult = 2},
 }
 
-EID.BreakUtf8CharsLanguage = {
-	['zh_cn'] = true
-}
-
--- Map the game's built-in language option strings to EID's
-EID.LanguageMap = {
-	["jp"] = "ja_jp",
-	["es"] = "spa",
-	["de"] = "de",
-	["fr"] = "fr",
-	["ru"] = "ru",
-	["kr"] = "ko_kr",
-	["zh"] = "zh_cn",
-}
-
 EID.MarkupSizeMap = {
 	["{{Damage}}"] = "{{DamageSmall}}",
 	["{{Speed}}"] = "{{SpeedSmall}}",
@@ -916,6 +894,7 @@ EID.MarkupSizeMap = {
 	["{{MegaSatan}}"] = "{{MegaSatanSmall}}",
 	["{{Satan}}"] = "{{SatanSmall}}",
 	["{{Hush}}"] = "{{HushSmall}}",
+	["{{Beast}}"] = "{{BeastSmall}}",
 
 	["{{Timer}}"] = "{{TimerSmall}}",
 	["{{VictoryLap}}"] = "{{VictoryLapSmall}}",
@@ -966,6 +945,12 @@ EID.TransformationData = {
 EID.RoomShapeToMarkup = { "{{Room}}", "{{RoomSmallHorizontal}}", "{{RoomSmallVertical}}", "{{RoomLongVertical}}", "{{RoomLongThinVertical}}","{{RoomLongHorizontal}}", "{{RoomLongThinHorizontal}}", "{{RoomXL}}", "{{RoomLTopLeft}}", "{{RoomL}}", "{{RoomLBottomLeft}}", "{{RoomLBottomRight}}" }
 EID.RoomTypeToMarkup = { "{{Room}}", "{{Shop}}", "{{ErrorRoom}}", "{{TreasureRoom}}", "{{BossRoom}}", "{{MiniBoss}}", "{{SecretRoom}}", "{{SuperSecretRoom}}", "{{ArcadeRoom}}", "{{CursedRoom}}", "{{ChallengeRoom}}", "{{Library}}", "{{SacrificeRoom}}", "{{DevilRoom}}", "{{AngelRoom}}", "{{LadderRoom}}", "{{Room}}" --[[boss rush]], "{{IsaacsRoom}}", "{{BarrenRoom}}", "{{ChestRoom}}", "{{DiceRoom}}", "{{Shop}}", "{{Room}}", --[[Black Market / Greed Exit]] "{{Planetarium}}", "{{Teleporter}}","{{Teleporter}}", "{{Room}}", "{{Room}}" --[[Blue Key rooms]], "{{UltraSecretRoom}}" }
 EID.ItemPoolTypeToMarkup = { [0] = "{{ItemPoolTreasure}}", "{{ItemPoolShop}}", "{{ItemPoolBoss}}", "{{ItemPoolDevil}}", "{{ItemPoolAngel}}", "{{ItemPoolSecret}}", "{{ItemPoolLibrary}}", "{{ItemPoolShellGame}}", "{{ItemPoolGoldenChest}}", "{{ItemPoolRedChest}}", "{{ItemPoolBeggar}}", "{{ItemPoolDemonBeggar}}", "{{ItemPoolCurse}}", "{{ItemPoolKeyMaster}}", "{{ItemPoolBombBum}}", "{{ItemPoolMomsChest}}", "{{ItemPoolGreedTreasure}}", "{{ItemPoolGreedShop}}", "{{ItemPoolGreedBoss}}", "{{ItemPoolGreedDevil}}", "{{ItemPoolGreedAngel}}", "{{ItemPoolGreedCurse}}", "{{ItemPoolGreedSecret}}", "{{ItemPoolCraneGame}}", "{{ItemPoolUltraSecret}}", "{{ItemPoolBatteryBum}}", "{{ItemPoolPlanetarium}}", "{{ItemPoolOldChest}}", "{{ItemPoolBabyShop}}", "{{ItemPoolWoodenChest}}", "{{ItemPoolRottenBeggar}}"}
+
+-- Background icon markup substrings
+EID.MarkupBackgroundKeywords = {
+	["Virtues"] = "gfx/ui/hud_bookofvirtues.png",
+}
+
 
 -- additional offset of the textbox to the entity position. Only applies in local description mode.
 -- If a function returns a value, it will be used as the offset
@@ -1082,11 +1067,6 @@ EID.HealthTypesWithoutHealing["None"] = true
 
 -- Character IDs that have a pocket active (0 = normal, 1 = timed, 2 = special)
 EID.PocketActivePlayerIDs = { [22] = 0, [23] = 2, [24] = 1, [25] = 2, [26] = 1, [29] = 0, [34] = 0, [36] = 0, [37] = 1, [38] = 0, [39] = 1 }
-
--- Cards that don't work with Blank Card in Repentance (Note: ? Card is blacklisted here, don't use this for determining what is a card)
-EID.blankCardHidden = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[48]=true,[49]=true,[50]=true,[55]=true,[78]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
--- Cards that are treated as runes
-EID.runeIDs = {[32]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,[41]=true,[55]=true,[81]=true,[82]=true,[83]=true,[84]=true,[85]=true,[86]=true,[87]=true,[88]=true,[89]=true,[90]=true,[91]=true,[92]=true,[93]=true,[94]=true,[95]=true,[96]=true,[97]=true,}
 
 -- "Evil" item IDs for Black Feather
 EID.blackFeatherItems = {[215]=true,[216]=true,[230]=true,[260]=true,[262]=true,[339]=true,[344]=true}
@@ -1316,3 +1296,28 @@ EID.QualityToLocustDamageMultiplier = {
 	[3] = 1.5,
 	[4] = 2,
 }
+
+EID.WispData = {
+	-- Indicates Wisps created by items, that only last 1 room
+	SingleRoom = {
+		[164] = true, -- The Candle
+		[289] = true, -- Red Candle
+		[294] = true, -- Butter Bean
+		[338] = true, -- The Boomerang
+		[484] = true, -- Wait What?
+		[504] = true, -- Brown Nugget
+		[604] = true, -- Mom's Bracelet
+		[709] = true, -- Suplex!
+	},
+	-- Indicates items, that dont create any wisps at all
+	NoWisp = {
+		[636] = true, -- R Key
+		[653] = true, -- Vade Retro
+		[713] = true, -- Sumptorium
+	}
+}
+
+if EID.isRepentancePlus then
+	EID.WispData.SingleRoom[111] = true -- The Bean
+	EID.WispData.SingleRoom[421] = true -- Kidney Bean
+end

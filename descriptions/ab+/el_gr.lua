@@ -15,10 +15,11 @@
 
 local languageCode = "el_gr"
 
--- init en_us table
+-- init Greek table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Greek"
+EID.descriptions[languageCode].languageName = "Greek (WIP) (AB+)"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"greek", "el"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}
@@ -562,7 +563,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Λαχρυφία", "Τα δάκρυα του Ισαάκ σταδιακά επιβραδύνονται, σταματάνε, και εκρήγνυνται σε 8 μικρότερα δάκρυα#Τα δάκρυα μπορούν να ενωθούν και να μεγαλώσουν"},
 	{"533", "Τρισάγιο", "Αντικαθιστά τα δάκρυα του Ισαάκ με διαπεραστικές δέσμες φωτός#Οι δέσμες κάνουν 33% ζημιά αλλά πληγώνουν εχθρούς πολλαπλές φορές"},
 	{"534", "Σχολική Τσάντα", "Επιτρέπει στον Ισαάκ να κρατάει 2 ενεργά αντικείμενα#Μπορείς να επιλέξεις το άλλο αντικείμενο πατώντας το κουμπί 'Άφησε'({{ButtonRT}})"},
-	{"535", "Κουβέρτα", "{{SoulHeart}} +1 Ψυχική Καρδιά#{{Heart}} Θεραπέυει 1 Κόκκινη Καρδιά#{{Collectible313}} Μπαίνοντας σε ένα Δωμάτιο Αφεντικού προσφέρει μία {{HolyMantleSmall}} ασπίδα Αγίου Μανδύα"},
+	{"535", "Κουβέρτα", "{{SoulHeart}} +1 Ψυχική Καρδιά#{{HealingRed}} Θεραπέυει 1 Κόκκινη Καρδιά#{{Collectible313}} Μπαίνοντας σε ένα Δωμάτιο Αφεντικού προσφέρει μία {{HolyMantleSmall}} ασπίδα Αγίου Μανδύα"},
 	{"536", "Θυσιαστικός Βωμός", "Θυσιάζει μέχρι και 2 βοηθούς και εμφανίζει ένα Διαβολικό αντικείμενο για κάθε θυσία#Μετατρέπει μπλε αράχνες/μύγες σε κέρματα"},
 	{"537", "Μικρούλης Χτύπος", "{{Pill}} Εμφανίζει ένα τυχαίο χάπι όταν αποκτηθεί#Ρίχνει μία γραμμή ερπυσμού#Το είδος ερπυσμού αλλάζει με κάθε χρήση χαπιού"},
 	{"538", "Μπίλιες", "{{Trinket}} Εμφανίζει 3 τυχαία μπιχλιμπίδια#{{Collectible479}} Όταν πληγώνεσαι μπορεί να 'καταπιείς' το μπιχλιμπίδι που κρατάς, κερδίζοντας τα πλεονεκτήματά και τα μειονεκτήματά του μόνιμα"},

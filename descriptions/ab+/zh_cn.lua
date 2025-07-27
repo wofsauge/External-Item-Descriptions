@@ -13,7 +13,8 @@ local languageCode = "zh_cn"
 -- init zh_cn table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Chinese"
+EID.descriptions[languageCode].languageName = "Simplified Chinese"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"zh-CN", "schinese", "zh"}
 
 -- Fonts to be used with this languagepack
 EID.descriptions[languageCode].fonts = {{name = "cn_alt", lineHeight = 13, textboxWidth = 145}, {name = "cn_default", lineHeight = 13, textboxWidth = 140}, {name = "cn_old", lineHeight = 14, textboxWidth = 150}}
@@ -1087,9 +1088,12 @@ EID.descriptions[languageCode].transformations={
 
 
 ---------- MISC ----------
-
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = ""
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
+-- Each language can do their own algorithm to modify the given text to their needs
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- TODO: Not Implemented right now...
+	return text
+end
 
 EID.descriptions[languageCode].VoidText = "若吸收, 则获得:"
 -- {1} will become the number text (like "{1} Tears up" -> "+0.5 Tears up")
@@ -1110,6 +1114,7 @@ EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} 一次性 {{Warning}
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
 -- {1} = number of hearts, {2} = plural character
+-- These texts are affected by the PluralizeFunction (ab+ file)
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
@@ -1119,7 +1124,7 @@ EID.descriptions[languageCode].RedToX = {
 
 	["Red to Black"] = {"↑ {{Heart}} +{1}心之容器", "{{BlackHeart}} +{1}黑心",
 	"↑ {{EmptyHeart}} +{1}空心之容器", "{{BlackHeart}} +{1}黑心",
-	"↓ {{EmptyHeart}} {1}心之容器", "↓ {{SoulHeart}} {1}黑心"},
+	"↓ {{EmptyHeart}} {1}心之容器", "↓ {{BlackHeart}} {1}黑心"},
 
 	["Red to Bone"] = {"↑ {{Heart}} +{1}心之容器", "{{BoneHeart}} +{1}骨心",
 	"↑ {{EmptyHeart}} +{1}空心之容器", "{{EmptyBoneHeart}} +{1}骨心", "{{HealingRed}}", "{{HealingBone}}",
@@ -1212,7 +1217,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedMode}} 贪婪模式中无效果",
 	["No Effect (Copies)"] = "多个重复品无额外效果", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "对跟班没有额外效果", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "对不能拥有红心的角色无效果",
 	["Different Effect"] = "{{ColorSilver}}对{1}有不同效果{{CR}}",
 	["Dies on Use"] = "{{Warning}} 使用时{1}死亡", -- for Razor Blade and such as The Lost
 

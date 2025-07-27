@@ -1,7 +1,7 @@
 ---------------------------------------
 ----- Basic Japanese descriptions -----
 ---------------------------------------
--- Last Update: 2024-11-18
+-- Last Update: 2025-07-01
 
 -- FORMAT: Item ID | Name | Description
 -- Special character markup:
@@ -73,7 +73,7 @@ local repCollectibles={
     [142] = {"142", "スカプラリオ", "残り体力が半ハートに なった時、青ハートを 1個付与する#効果は1部屋で1回のみ 有効だが、部屋に入り 直すと再度有効化する#!!! 献血では機能しない"}, --Scapular
     [147] = {"147", "大斧", "障害物やドアの破壊、 敵への攻撃が可能な斧#64回分のチャージがあり、 破壊時に1チャージ、 攻撃時に2チャージ消費#使用／非使用は切替可能#フロア移動時にチャージ 全回復"}, -- Notched Axe
     [148] = {"148", "感染者", "ダメージを受けるたび、 青ハエが2～6匹スポーン"}, -- Infestation
-    [149] = {"149", "吐き気薬", "涙が毒爆弾に置き換わる#↑ 攻撃力　 +40#↓ 弾速　　 -0.2#↓ 連射速度 -67%#↓ 射程　　 -20%"}, -- Ipecac
+    [149] = {"149", "吐き気薬", "涙が毒爆弾に置き換わる#↑ 攻撃力　 +40#↓ 弾速　　 x0.8#↓ 連射速度 -67%#↓ 射程　　 -20%"}, -- Ipecac
     [152] = {"152", "テクノロジー２", "右目の涙が連続照射の 貫通レーザーに置き換わる#レーザーは攻撃力ｘ0.13の ダメージを与える#↓ 連射速度 -33%"}, -- Technology 2
     [153] = {"153", "ミュータント スパイダー", "クアッドショットの涙#↓ 連射速度 -58%"}, -- Mutant Spider
     [155] = {"155", "ノゾキ魔", "目玉が部屋を飛び回り、 敵の弾をブロックし、 接触した敵に毎秒17の ダメージを与える#↑ 左目の攻撃力 +35%"}, -- The Peeper
@@ -487,194 +487,287 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 }
 
 -- Book of Virtues wisp types
+EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
+	-- values inside {} brackets will be replaced with text parts below
+	-- Wisp texts are affected by the PluralizeFunction (ab+ file)
+	-- The placeholder therefore can be used in all parts that make up the wisp descriptions
+	StatDescription = "{{Heart}} {health} {{Damage}} {damage}",	-- {health} will be replaced with the health text, {damage} with the damage text or the "CantShoot" text
+	Health = "体力：{1}", 		-- {1} will be replaced with the health
+	Damage = "DPS：{1}",				-- {1} will be replaced with the calculated damage
+	CantShoot = "涙攻撃なし",
+	Shotspeed = "弾速：{1}%", 				-- {1} will be replaced with the shot speed changes in %
+	Chance = "（確率{1}%）",					-- {1} will be replaced with the chance
+	SingleRoom = "その部屋でのみ有効",
+	NoWisps = "ウィスプなし",
+	Ring = {
+		[-1] = "固定のウィスプ x{amount}",
+		[0] = "内側{{InnerWisp}}のウィスプ x{amount}",
+		[1] = "中心{{MiddleWisp}}のウィスプ x{amount}",
+		[2] = "外側{{OuterWisp}}のウィスプ x{amount}",
+	},
+}
+
+-- Old table that now is used to store additional information and effects for Book of Virtues Wisps
 EID.descriptions[languageCode].bookOfVirtuesWisps = {
-    [33] = "ホーミング効果の涙", -- The Bible
-    [34] = "2倍ダメージの涙", -- The Book of Belial
-    [35] = "3.5%の確率で恐怖効果#破壊時、ネクロノミコン効果", -- The Necronomicon
-    [36] = "2.5%の確率で敵をうんちに", -- The Poop
-    [37] = "破壊時、{{Collectible366}}拡散ボムを スポーン　　", -- Mr. Boom
+    [35] = "破壊時にネクロノミコン効果", -- The Necronomicon
+    [37] = "破壊時に{{Collectible366}}拡散ボム", -- Mr. Boom
     [38] = "不正確な高速連射の涙", -- Tammy's Head
-    [39] = "5%の確率で石化効果", -- Mom's Bra
-    [40] = "爆発する涙#破壊時に爆発", -- Kamikaze!
-    [41] = "7.5%の確率で恐怖効果", -- Mom's Pad
-    [42] = "7.5%の確率で{{Collectible149}}吐き気薬", -- Bob's Rotten Head
-    [44] = "涙が10%の確率で敵を テレポートさせる#5秒おきに姿を消す", -- Teleport!
-    [45] = "倒した敵が20%の確率で 赤ハートを落とす", -- Yum Heart
-    [47] = "0.5倍ダメージ#使用時、照準地点に 3発の爆発涙を発射する", -- Doctor's Remote
-    [49] = "涙攻撃なし#使用時、同時にレーザー 攻撃を放つ", -- Shoop da Whoop!
-    [56] = "短射程・高速連射の涙#レモン汁を床に垂らし、 敵にダメージを与える", -- Lemon Mishap
-    [58] = "敵の弾で破壊されない", -- Book of Shadows
-    [65] = "破壊時、トロル爆弾を スポーンする", -- Anarchist Cookbook
-    [66] = "破壊時、全ての敵を 3秒間スロー状態にする", -- The Hourglass
+    [40] = "破壊時に爆発", -- Kamikaze!
+    [47] = "使用時、照準地点に 3発の爆発涙を発射する", -- Doctor's Remote
+    [49] = "使用時、同時にレーザー攻撃", -- Shoop da Whoop!
+    [56] = "レモン汁を床に垂らし、 敵にダメージを与える", -- Lemon Mishap
+    [58] = "敵の弾で破壊されない#{{Collectible58}}使用時、ダメージ無効", -- Book of Shadows
+    [65] = "破壊時にトロル爆弾を スポーンする", -- Anarchist Cookbook
+    [66] = "破壊時に全ての敵を 3秒間スロー状態にする", -- The Hourglass
     [77] = "強い接触ダメージ", -- My Little Unicorn
-    [78] = "涙攻撃なし#破壊時、{{Collectible526}}7つの封印の 使い魔をその部屋に居る 間付与する", -- Book of Revelations
-    [83] = "強いノックバックの涙", -- The Nail
-    [84] = "骨の涙", -- We Need to Go Deeper!
-    [85] = "破壊時、ランダムな カードをスポーン", -- Deck of Cards
-    [86] = "4倍ダメージ／低速連射の涙", -- Monstro's Tooth
-    [93] = "{{Collectible222}}アンチグラビティの涙#一定確率で恐怖効果", -- The Gamekid
+    [78] = "破壊時に{{Collectible526}}7つの封印の 使い魔をその部屋に居る 間付与する", -- Book of Revelations
+    [85] = "破壊時にランダムな カードをスポーン", -- Deck of Cards
     [97] = "七つの大罪に基づいた 七種類のウィスプ#いくつかのウィスプは、 破壊時に、トロル爆弾・ ホーミング爆弾・ピルを スポーンする", -- The Book of Sin
     [102] = "六種類のウィスプ#毒／石化／混乱／火傷 効果を持つウィスプ#ヒット時トロル爆弾を 落とすウィスプ#破壊時に敵性のクモを スポーンするウィスプ#六種類とも、破壊時に ピルをスポーンする", -- Mom's Bottle of Pills
     [105] = "リロールされたアイテム ごとにウィスプを追加", -- The D6
-    [107] = "貫通効果の涙", -- The Pinking Shears
-    [111] = "破壊時、毒おならを放つ", -- The Bean
+    [111] = "破壊時に毒おならを放つ", -- The Bean
     [123] = "ランダムな特殊効果の涙", -- Monster Manual
     [124] = "発動したアイテムに 応じた効果のウィスプ", -- Dead Sea Scrolls
-    [126] = "高耐久", -- Razor Blade
-    [127] = "次のフロアに居る間、 壊れないウィスプを 付与する", -- Forget Me Now
-    [130] = "涙攻撃なし#ウィスプが攻撃方向に 突進する", -- A Pony
-    [133] = "高耐久ｘ3", -- Guppy's Paw
-    [135] = "特殊効果なし", -- IV Bag
-    [136] = "7.5%の確率で標的化効果#標的化した敵は、他の 敵から攻撃される", -- Best Friend
+    [130] = "ウィスプが攻撃方向に 突進する", -- A Pony
     [137] = "起爆した爆弾1個につき ウィスプを1個スポーン#使用ボタンを押すと、 ウィスプの涙が爆発する", -- Remote Detonator
-    [145] = "青ハエの代わりに ウィスプがスポーン#破壊時、青ハエをスポーン", -- Guppy's Head
-    [146] = "ホーミング効果の涙", -- Prayer Card
+    [145] = "青ハエの代わりに ウィスプがスポーン#破壊時に青ハエをスポーン", -- Guppy's Head
     [147] = "障害物を破壊すると、 鉱石をテーマにした 五種類のウィスプが 一定確率でスポーン#以下のアイテムに似た 効果を持つ：#{{Collectible132}}石炭{{Collectible201}}鉄{{Collectible202}}金{{Collectible68}}赤石 {{Collectible415}}ダイアモンド", -- Notched Axe
-    [158] = "高耐久#自動照準の涙", -- Crystal Ball
     [160] = "接触時、光線攻撃が発生", -- Crack the Sky
-    [164] = "スポーンしたウィスプは その部屋でのみ有効", -- The Candle
     [166] = "ピックアップをリロール する代わりに、それらを 破壊し、同数のウィスプ をスポーン", -- D20
-    [171] = "7.5%の確率でスロー効果", -- Spider Butt
     [175] = "ウィスプをドア・宝箱に 接触させると、その鍵を 解除する#奇妙なドア・肉ドア・ メガサタンのドアも 解除できる", -- Dad's Key
     [177] = "スロットの報酬に応じて 各種ウィスプをスポーン#特殊効果あり：{{Collectible125}}爆弾／ {{Collectible175}}鍵／{{Collectible102}}ピル／{{Collectible145}}ハエ", -- Portable Slot
-    [181] = "10%の確率で{{Collectible374}}聖なる光の涙", -- White Pony
-    [186] = "高耐久", -- Blood Rights
-    [192] = "ホーミング効果の涙", -- Telepathy for Dummies
-    [263] = "倒した敵が15%の確率で ルーンを落とす#破壊時、ルーンをスポーン", -- Clear Rune
-    [282] = "ジャンプの開始地点に 固定のウィスプを残す#最大6つまでで、その 部屋でのみ有効", -- How to Jump
+    [263] = "破壊時にルーンをスポーン", -- Clear Rune
     [283] = "ウィスプをリロールし、 ランダムなウィスプを 一つ付与#美徳の書はリロール されない", -- D100
     [284] = "全てのウィスプを削除し、 リロールされたアイテム 2個につき1つのランダムな ウィスプをスポーンする#美徳の書はリロール されない", -- D4
     [285] = "10%の確率で敵をリロール する涙", -- D10
-    [286] = "倒した敵が15%の確率で カードを落とす#破壊時、カードをスポーン", -- Blank Card
-    [287] = "破壊時、{{Collectible675}}ひび割れた オーブの効果が発動する#※全ドア開放・一部屋 マッピング・ｘ岩破壊", -- Book of Secrets
-    [288] = "青クモの代わりに ウィスプがスポーン#破壊時、青クモをスポーン", -- Box of Spiders
-    [289] = "涙の代わりに小さな ロウソクの炎を放つ#その部屋でのみ有効", -- Red Candle
-    [290] = "保存したハートを消費 してウィスプを生成する#破壊時、一定確率で 半赤ハートを落とす", -- The Jar
+    [286] = "破壊時にカードをスポーン", -- Blank Card
+    [287] = "破壊時に{{Collectible675}}ひび割れた オーブの効果が発動 （全ドア開放・一部屋 マッピング・ｘ岩破壊）", -- Book of Secrets
+    [288] = "青クモの代わりに ウィスプがスポーン#破壊時に青クモをスポーン", -- Box of Spiders
+    [290] = "保存したハートを消費 してウィスプを生成する#破壊時に一定確率で 半赤ハートを落とす", -- The Jar
     [291] = "うんちにした敵1体に つき、ウィスプを1つ スポーンする", -- Flush!
     [292] = "悪魔部屋の出現率が、 邪悪な聖書ウィスプ 一つにつき10%増加", -- Satanic Bible
-    [293] = "破壊時、四方向に レーザー攻撃", -- Head of Krampus
-    [294] = "涙攻撃なし#破壊時、おならを放つ#その部屋でのみ有効", -- Butter Bean
-    [295] = "破壊時、一定確率で コインがスポーン", -- Magic Fingers
-    [296] = "特殊効果なし", -- Converter
-    [297] = "特殊効果なし", -- Pandora's Box
-    [298] = "涙攻撃なし#接触ダメージを与えない (接触では破壊されない)#アイテムを使用すると 接触ダメージが有効化", -- Unicorn Stump
-    [323] = "3秒間寿命のウィスプｘ6", -- Isaac's Tears
+    [293] = "破壊時に四方向に レーザー攻撃", -- Head of Krampus
+    [294] = "破壊時におならを放つ", -- Butter Bean
+    [295] = "破壊時に一定確率で コインがスポーン", -- Magic Fingers
+    [296] = "赤ハートでウィスプの 体力を回復できる", -- Converter
+    [297] = "下層のフロアほど スポーン数増（0～8）", -- Pandora's Box
+    [298] = "接触ダメージを与えない (接触では破壊されない)#アイザックが無敵状態時、 敵にダメージを与える", -- Unicorn Stump
+    [323] = "ウィスプの寿命は3秒", -- Isaac's Tears
     [324] = "{{Collectible570}}プレイドークッキーの涙", -- Undefined
     [325] = "弧を描いて飛ぶ涙", -- Scissors
     [326] = "ダメージを防いだ時、 ウィスプｘ4をスポーン", -- Breath of Life
-    [338] = "ブーメラン涙#その部屋でのみ有効", -- The Boomerang
     [347] = "ダブルショットの涙#ウィスプを2倍にする", -- Diplopia
-    [348] = "破壊時、ピルをスポーン", -- Placebo
-    [349] = "破壊時、50%の確率で コインをスポーン", -- Wooden Nickel
-    [351] = "アイテム使用時、メガ豆 ウィスプが地割れを放つ#破壊時、石化と毒効果を 持つおならを放つ", -- Mega Bean
+    [348] = "破壊時にピルをスポーン", -- Placebo
+    [349] = "破壊時に50%の確率で コインをスポーン", -- Wooden Nickel
+    [351] = "アイテム使用時、メガ豆 ウィスプが地割れを放つ#破壊時に石化と毒効果を 持つおならを放つ", -- Mega Bean
     [352] = "ガラスの大砲ウィスプの 一つが壊されると、他の 全ても同時に壊される#破壊されるまで有効", -- Glass Cannon
     [357] = "ウィスプを複製する#その部屋でのみ有効", -- Box of Friends
     [382] = "捕獲した敵が死ぬと、 そのタイプに応じた ウィスプがスポーン#ノーマル涙／爆発涙／ ブリムストーン攻撃／ ホーミング涙の四種", -- Friendly Ball
-    [383] = "ウィスプの涙も分裂可能#ウィスプの分裂した涙は アイザックの攻撃力を 引き継ぐ#破壊時、それ自身と他の 涙を分裂させる#破壊されるまで有効", -- Tear Detonator
+    [383] = "ウィスプの涙も分裂可能#ウィスプの分裂した涙は アイザックの攻撃力を 引き継ぐ#破壊時にそれ自身と他の 涙を分裂させる#破壊されるまで有効", -- Tear Detonator
     [386] = "涙が障害物に当たると、 5%の確率でその障害物を リロールする", -- D12
-    [396] = "涙攻撃なし#ポータルをウィスプが 周回する", -- Ventricle Razor
+    [396] = "ポータルをウィスプが 周回する", -- Ventricle Razor
     [406] = "ランダムな攻撃力と 連射速度の涙", -- D8
-    [419] = "涙が20%の確率で敵を テレポートさせる#5秒おきに姿を消す", -- Teleport 2.0
-    [421] = "破壊時、チャーム効果の おならを放つ", -- Kidney Bean
-    [422] = "30%の確率で石化効果", -- Glowing Hour Glass
-    [427] = "部屋をゆっくりと漂い、 アイザックが涙で撃つと 爆発するウィスプ#涙攻撃・接触ダメージなし", -- Mine Crafter
+    [421] = "破壊時にチャーム効果の おならを放つ", -- Kidney Bean
+    [422] = "前の部屋で破壊された ウィスプが復活する", -- Glowing Hour Glass
+    [427] = "部屋をゆっくりと漂い、 アイザックが涙で撃つと 爆発するウィスプ#接触ダメージなし", -- Mine Crafter
     [434] = "青ハエの代わりに ウィスプがスポーン#最大5匹のハエで1つの ウィスプを生成する#消費したハエが多いほど 攻撃力と耐久が増加する", -- Jar of Flies
     [437] = "ウィスプがダメージを 受けた時、一度だけ D7の効果が発動する", -- D7
-    [439] = "特殊効果なし", -- Mom's Box
     [441] = "{{Collectible275}}小さなブリムストーン で攻撃するウィスプ#メガブラスト使用時、 全てのメガブラスト ウィスプも常時発射", -- Mega Blast
-    [475] = "高火力のウィスプｘ8", -- Plan C
     [476] = "複製対象が無い場合、 ウィスプを二つ同時に スポーンする", -- D1
     [477] = "ボイドに取り込んだ アクティブアイテムの ウィスプをスポーン#ボイド自身はウィスプを スポーンしない", -- Void
-    [478] = "破壊時、敵と弾を3秒間 停止させる", -- Pause
-    [479] = "破壊時、一定確率で トリンケットをスポーン", -- Smelter
+    [478] = "破壊時に敵と弾を3秒間 停止させる", -- Pause
+    [479] = "破壊時に一定確率で トリンケットをスポーン", -- Smelter
     [480] = "ピックアップ破壊時に ウィスプをスポーン#破壊したピックアップの 数が多いほどウィスプの 耐久値が増加する", -- Compost
     [481] = "5%の確率で涙が敵を ランダムなウィスプに 変化させる", -- Dataminer
     [482] = "ランダムなウィスプ", -- Clicker
-    [483] = "破壊時、金トロル爆弾を スポーンするウィスプｘ8", -- Mama Mega!
-    [484] = "涙攻撃なし#破壊時、周囲に地割れを 起こす#その部屋でのみ有効", -- Wait What?
-    [485] = "破壊時、50/50の確率で 他の全てのウィスプを 複製または破壊する", -- Crooked Penny
-    [486] = "涙攻撃なし#一定確率でアイザックの ダメージを肩代わりして 消滅する", -- Dull Razor
+    [483] = "破壊時に金トロル爆弾を スポーンする", -- Mama Mega!
+    [484] = "破壊時に地割れを起こす", -- Wait What?
+    [485] = "破壊時に50/50の確率で 他の全てのウィスプを 複製または破壊する", -- Crooked Penny
+    [486] = "一定確率でアイザックの ダメージを肩代わりして 消滅する", -- Dull Razor
     [487] = "破壊されない#敵を追いかけ、涙で 自動的に攻撃する#接触ダメージを与えず、 弾をブロックしない", -- Potato Peeler
     [488] = "発動したアイテムに 応じた効果のウィスプが スポーンする", -- Metronome
     [489] = "選択されたダイスの効果に 応じたウィスプがスポーン", -- D Infinity
     [490] = "ランダムなウィスプ#破壊された後、部屋を クリアするとランダムな ウィスプにリスポーン", -- Eden's Soul
-    [504] = "高速連射・自動照準の涙#その部屋でのみ有効", -- Brown Nugget
-    [507] = "ストローの効果で敵を 倒した時、一定確率で ウィスプをスポーン", -- Sharp Straw
-    [510] = "いずれかの涙：#{{Collectible229}}モンストロの肺#{{Collectible268}}腐ったベイビー#{{Collectible87}}ロキのツノ#{{Collectible118}}ブリムストーン", -- Delirious
-    [512] = "{{Collectible315}}謎の引力の涙", -- Black Hole
+    [504] = "高速・自動照準の涙", -- Brown Nugget
+    [507] = "ストローでダメージを 与えた時、敵の位置に ウィスプがスポーン", -- Sharp Straw
+    [510] = "いずれかの涙：#{{Collectible229}} モンストロの肺#{{Collectible268}} 腐ったベイビー#{{Collectible87}} ロキのツノ#{{Collectible118}} ブリムストーン", -- Delirious
     [515] = "ランダムなウィスプ#破壊された後、部屋を クリアするとランダムな ウィスプにリスポーン", -- Mystery Gift
     [516] = "スプリンクラーの涙", -- Sprinkler
     [521] = "トリプルショットの涙#お店で買い物をすると クーポンのウィスプが 全て破壊される", -- Coupon
     [522] = "捕らえた敵の弾を ウィスプに変換する", -- Telekinesis
-    [523] = "中身を展開した時のみ ウィスプをスポーンする#破壊時、ランダムな ピックアップをスポーン", -- Moving Box
-    [527] = "涙攻撃なし#部屋をクリアした時、 ドア／宝箱の鍵を解除し、 消滅する", -- Mr. ME!
+    [523] = "中身を展開した時のみ ウィスプをスポーンする#破壊時にランダムな ピックアップをスポーン", -- Moving Box
+    [527] = "部屋をクリアした時、 ドア／宝箱の鍵を解除し、 消滅する", -- Mr. ME!
     [536] = "ウィスプを半赤ハートに 変換する#生贄に捧げた後、一つの ウィスプをスポーン", -- Sacrificial Altar
-    [545] = "破壊時、友好的なボニーを スポーンする", -- Book of the Dead
+    [545] = "破壊時に友好的なボニーを スポーンする", -- Book of the Dead
     [550] = "涙が10%の確率でママの 踏み潰し攻撃を起こす", -- Broken Shovel
-    [552] = "二種のウィスプ：#涙が10%の確率でママの 踏み潰し攻撃を起こす#高耐久・涙攻撃なし", -- Mom's Shovel
-    [555] = "15%の確率で{{Collectible202}}ミダス タッチの涙", -- Golden Razor
+    [552] = "涙が10%の確率でママの 踏み潰し攻撃を起こす", -- Mom's Shovel
     [556] = "短射程のブリムストーン", -- Sulfur
     [557] = "フォーチュンクッキーの ウィスプ一つにつき運+0.2", -- Fortune Cookie
-    [577] = "特殊効果なし", -- Damocles
     [578] = "レモン汁を床に垂らし、 敵にダメージを与える", -- Free Lemonade
     [580] = "新しい部屋に入った時、 一定確率で{{Collectible580}}レッドキー 効果が発動", -- Red Key
     [582] = "一つしか保持できない", -- Wavy Cap
     [584] = "特殊効果なし", -- Book of Virtues
-    [585] = "通常のウィスプｘ8", -- Alabaster Box
-    [604] = "投げた障害物の落下地点を 3つのウィスプが周回する#10%の確率で混乱効果#その部屋でのみ有効", -- Mom's Bracelet
-    [605] = "特殊効果なし", -- The Scooper
+    [585] = "中心{{MiddleWisp}}の空いた枠を埋める ウィスプ（最大8）", -- Alabaster Box
+    [604] = "投げた障害物の落下地点を 3つのウィスプが周回する", -- Mom's Bracelet
     [609] = "破壊されない#使用時、50%の確率で 全てのエターナルD6 ウィスプが破壊される", -- Eternal D6
     [611] = "チャージ量に応じた 攻撃力と耐久値の ウィスプがスポーン", -- Larynx
     [622] = "全てのウィスプを取り 除き、通常のウィスプを 3つスポーンする", -- Genesis
-    [623] = "特殊効果なし", -- Sharp Key
     [631] = "全てのウィスプを二分割#攻撃力と耐久値は半分に#三回目の分割で消滅", -- Meat Cleaver
-    [635] = "位置交換時、固定された ウィスプを残す#最大6つまでスポーン", -- Stitches
-    [636] = "ウィスプなし", -- R Key
-    [638] = "接触した敵にケシゴム 効果を適用する", -- Eraser
-    [639] = "涙攻撃なし#部屋クリア時、青ハエを スポーンする", -- Yuck Heart
+    [635] = "人形の位置にウィスプが スポーン（最大6）", -- Stitches
+    [638] = "敵の弾で破壊されない#接触した敵にケシゴム 効果を適用し消滅", -- Eraser
+    [639] = "部屋クリア時、青ハエを スポーンする", -- Yuck Heart
     [640] = "一定確率で青い炎を放つ", -- Urn of Souls
-    [642] = "毒の涙", -- Magic Skin
     [650] = "召喚したベビープラムの 動きをコピーする", -- Plum Flute
-    [653] = "ウィスプなし#幽霊が涙を放つ", -- Vade Retro
+    [653] = "幽霊が涙を放つ", -- Vade Retro
     [655] = "回転中のみ現れる", -- Spin to Win
     [685] = "スポーン量2倍+1", -- Jar of Wisps
     [687] = "ランダムなウィスプ", -- Friend Finder
-    [703] = "特殊効果なし", -- Esau Jr.
-    [704] = "高耐久#涙攻撃なし", -- Berserk
-    [705] = "アイテムの効果で倒した 敵一体につきウィスプを 一つスポーン#その部屋でのみ有効", -- Dark Arts
-    [706] = "高耐久#涙攻撃なし", -- Abyss
-    [709] = "着地点を3つのウィスプが 周回する#その部屋でのみ有効", -- Suplex
+    [705] = "アイテムの効果で倒した 敵一体につきウィスプを 一つスポーン", -- Dark Arts
+    [709] = "着地点を3つのウィスプが 周回する", -- Suplex
     [710] = "クラフト時、ランダムな ウィスプをスポーンする", -- Bag of Crafting
-    [711] = "特殊効果なし", -- Flip
-    [712] = "アイテムウィスプが ホーミング効果の涙を放つ", -- Lemegeton
-    [713] = "ウィスプなし", -- Sumptorium
-    [719] = "倒した敵が20%の確率で コインを落とす", -- Keeper's Box
+    [712] = "アイテムウィスプが ホーミング涙を放つ", -- Lemegeton
+    [719] = "", -- Keeper's Box
     [720] = "ランダムなウィスプ", -- Everything Jar
     [722] = "拘束した敵をウィスプが 周回し、自動攻撃する#敵が倒されると消滅", -- Anima Sola
     [723] = "全てのウィスプを同じ タイプのウィスプに リロールする", -- Spindown Dice
     [728] = "全てのウィスプがゲローに 連動する", -- Gello
-    [729] = "投げた頭の位置に固定 ウィスプがスポーンする#その部屋でのみ有効", -- Decap Attack
 }
 
--- Special Locust effects when Item was eaten by Abyss
-EID.descriptions[languageCode].abyssSynergies = {
-    [2] = "ノーマルイナゴｘ3", -- The Inner Eye
-    [3] = "ホーミングイナゴ", -- Spoon Bender
-    [4] = "3倍ダメージの大型イナゴ", -- Cricket's Head
-    [6] = "高速・短射程のイナゴ", -- Number One
-    [7] = "2倍ダメージのイナゴ", -- Blood of the Martyr
-    [10] = "0.5倍ダメージのイナゴｘ2", -- Halo of Flies
-    [13] = "毒を持つイナゴ", -- The Virus
-    [103] = "毒を持つイナゴ", -- The Common Cold
-    [118] = "大型のイナゴ", -- Brimstone
-    [149] = "毒を持ち、ゆっくり飛ぶ 大型のイナゴ#攻撃力ｘ1.5のダメージ", -- Ipecac
-    [153] = "ノーマルイナゴｘ4", -- Mutant Spider
-    [257] = "火傷を与えるイナゴ", -- Fire Mind
-    [305] = "毒を持つイナゴ", -- Scorpio
-    [374] = "{{Collectible374}}聖なる光を一定確率で 発動するイナゴ#聖なる光は攻撃力ｘ3の ダメージを与える", -- Holy Light
-    [494] = "近くの敵に放電して ダメージを与えるイナゴ", -- Jacob's Ladder
-    [559] = "近くの敵に放電して ダメージを与えるイナゴ", -- 120 Volt
+---------- Abyss Locust description parts ----------
+EID.descriptions[languageCode].AbyssTexts = {
+ 	-- values inside {} brackets will be replaced with text parts below
+	-- Abyss texts are affected by the PluralizeFunction (ab+ file)
+	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
+	InfoText = "{size}{speed}イナゴ x{amount} （{dmg}）",
+	InfoTextPlural = nil, -- Can be used by translators to provide a pluralized version of the InfoText
+	Chance = "（確率{1}%）", -- {1} will be replaced with the chance
+	SpeedSlow = "遅い", -- Speed < 1
+	SpeedFast = "早い", -- Speed > 1
+	SpeedDash = "高速", -- Speed >= 6
+	SizeSmall = "小型の", -- Size < 1
+	SizeBig = "大型の", -- Size > 1
+	DamageMult = "攻撃力x{1}のダメージ", -- {1} will be replaced with the calculated damage multiplier 
 }
+
+---------- Abyss Locust special effects ----------
+--- Special locust effects that dont correspond to TearFlags.
+--- Displays an icon in front of the description that shows an item with the same effect
+EID.descriptions[languageCode].AbyssLocustEffects = {
+[0] = "{{Bomb}} 衝突時に爆発する",
+[1] = "{{QuestionMark}} ランダムな効果が発生",
+-- 2 = Multiple locusts act like one. Uninteresting info for the player in my opinion
+[3] = "{{Collectible285}} 攻撃時に敵をリロールする",
+[4] = "{{Collectible35}} 攻撃時にネクロノミコン 効果が発動",
+[5] = "{{Collectible638}} 攻撃時にケシゴム効果が 発動し、敵消滅",
+[6] = "{{Collectible114}} ナイフを振り回しながら攻撃",
+[7] = "{{Collectible611}} 攻撃時にラリンクスの 叫びが発動し、範囲攻撃",
+[8] = "{{Collectible399}} 攻撃時にブリムストーンの リングが発生",
+[9] = "{{Collectible522}} オーラが敵の弾を跳ね返す",
+[10] = "{{Collectible447}} 攻撃時に毒のおならを放つ",
+[11] = "{{Collectible447}} 攻撃時におならを放つ",
+[12] = "{{Collectible118}} アンチグラビティ型の ブリムストーンが発動",
+[13] = "{{Collectible317}} 攻撃時、毒液を床にまき、 触れた敵にダメージ",
+[14] = "{{Collectible56}} 攻撃時、尿を床にまき、 触れた敵にダメージ",
+[15] = "{{Collectible214}} 攻撃時、血液を床にまき、 触れた敵にダメージ",
+[16] = "{{Collectible178}} 攻撃時、聖水を床にまき、 触れた敵にダメージ",
+[17] = "{{Collectible420}} 五芒星が浮かび上がり、 触れた敵にダメージ",
+[18] = "{{Collectible144}} ピックアップを吸収 するたびダメージ+0.25 （最大25個吸収）",
+}
+
+
+-- list of Tear flag descriptions used for Abyss locust effect description
+EID.descriptions[languageCode].TearFlagNames = {
+	[0] = "透過",                 -- Ouija board type tear (goes thru obstacles)
+    [1] = "貫通",                 -- Cupid's arrow type tear (goes thru enemy)
+    [2] = "ホーミング",                   -- Spoon bender type tear (homes to enemy)
+    [3] = "スロー付与",                  -- Spider bite type tear (slows on contact)
+    [4] = "毒を付与",                   -- Common cold type tear (poisons on contact)
+    [5] = "敵を石化",                  -- Mom's contact type tear (freezes on contact)
+    [6] = "分裂",                    -- Parasite type tear (splits on collision)
+    [7] = "飛距離に応じて膨らむ",            -- Lump of coal type tear (grows by range)
+    [8] = "ブーメラン涙",                -- My reflection type tear (returns back)
+    [9] = "減衰して貫通",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+    [10] = "波打ち移動",         -- Wiggle worm type tear (wiggles)
+    [11] = "攻撃時にハエをスポーン",        -- Mulligan type tear (creates fly on hit)
+    [12] = "爆発涙 {{Collectible149}}",               -- IPECAC type tear (explodes on hit)
+    [13] = "チャーム付与",                -- Mom's Eyeshadow tear
+    [14] = "混乱を付与",               -- Iron Bar tear
+    [15] = "敵を倒すとハートを スポーン",     -- These tears cause enemy to drop hearts if killed (33% chance)
+    [16] = "アイザックを周回",     -- Used for Little Planet (orbit arounds the player)
+    [17] = "アンチグラビティ効果",     	      -- Anti gravity type tear (floats in place for some time before finally moving) (unset after first update)
+    [18] = "衝突時に4分裂",     -- Splits into 4 smaller tears if it hits the ground
+    [19] = "衝突時に跳ね返る",       -- Bounce off of enemies, walls, rocks (Higher priority than PERSISTENT & PIERCING)
+    [20] = "恐怖を付与",                    -- Mom's Perfume type tear of fear (fear on contact)
+    [21] = "飛距離に応じて縮む",                  -- Proptosis tears start large and shrink
+    [22] = "火傷を付与",                    -- Fire Mind tears cause Burn effect on enemies
+    [23] = "敵とピックアップを 吸い寄せる", -- Attracts enemies and pickups
+    [24] = "ノックバック効果",               -- Tear impact pushes enemies back further
+    [25] = "拡縮しながら移動",               -- Makes the tear pulse
+    [26] = "渦巻状に飛ぶ",         -- Makes the tear path spiral
+    [27] = "楕円型",              -- Makes the tear oval in the direction of travel
+    [28] = "サッド ボム",                -- Used by Bombs (Sad Bomb)
+    [29] = "ケツ爆弾",               -- Used by Bombs (Butt Bomb)
+    [30] = "矩形波",         -- Used for Hook Worm
+    [31] = "オーラを放ちダメージ",     -- Used for GodHead (they will have a glow around them)
+    [32] = "スロー付与", -- Used for Gish player tears (to color enemy black on slowing)
+    [33] = "攻撃時、毒液を床にまく", -- Mysterious Liquid tears spawn damaging green creep when hit
+    [34] = "敵の弾をブロック",                -- Lost Contact tears, block enemy projectiles
+    [35] = "キラキラボム",            -- Used by Bombs (Glitter Bomb)
+    [36] = "拡散ボム",            -- Used for Scatter bombs
+    [37] = "粘着",                  -- Used for Sticky bombs and Explosivo tears
+    [38] = "画面端ループ",     -- Tears loop around the screen
+    [39] = "攻撃時、光線が降り注ぐ", -- Create damaging light beam on hit
+    [40] = "攻撃時にコインがスポーン",        -- Used by Bumbo, spawns a coin when tear hits
+    [41] = "敵を倒すと黒ハートを スポーン",    -- Enemy drops a black hp when dies
+    [42] = "トラクタービーム",            -- Tear with this flag will follow parent player's beam
+    [43] = "敵を収縮させる",          -- God's flesh flag to minimize enemies
+    [44] = "攻撃時にコインがスポーン",      -- Greed coin tears that has a chance to generate a coin when hit
+    [45] = "ボンバーボーイ",              -- Bomber Boy
+    [46] = "渦巻状に飛ぶ",     -- Ouroboros Worm, big radius oscilating tears
+    [47] = "混乱を付与",   -- Glaucoma tears, permanently confuses enemies
+    [48] = "敵にくっつく",                  -- Booger tears, stick and do damage over time
+    [49] = "攻撃時にハエ／クモをスポーン",               -- Egg tears, leave creep and spawns spiders or flies
+    [50] = "障害物を破壊",            -- Sulfuric Acid tears, can break grid entities
+    [51] = "攻撃時、骨が飛び散る",                    -- Bone tears, splits in 2
+    [52] = "貫通・2倍ダメージ・ホーミング", -- Belial tears, piecing tears gets double damage + homing
+    [53] = "敵を黄金化",           -- Midas touch tears
+    [54] = "10発の涙を拡散",                -- Needle tears
+    [55] = "攻撃時に放電",           -- Jacobs ladder tears
+    [56] = "ビッグホーンを召喚", -- Little Horn tears
+    [57] = "攻撃時に放電",   -- Technology Zero
+    [58] = "互いに反発",        -- Pop!
+    [59] = "吸収する",               -- Hungry Tears
+    [60] = "攻撃時、光線が降り注ぐ",               -- Trisagion, generates a laser on top of the tear
+    [61] = "床を跳ねる",          -- Flat Stone
+    [62] = "はじけ散る",             -- Haemolacria
+    [63] = "毒液をまく",             -- Bob's Bladder
+    [64] = "ノックバック効果",     -- Knockout Drops
+    [65] = "倒した敵を凍結",   -- Uranus
+    [66] = "敵とピックアップを 吸い寄せる", -- Lodestone
+    [67] = "敵を標的化させる",       -- Rotten Tomato
+    [68] = "オカルトの目",       -- Eye of the Occult
+    [69] = "アイザックを周回",   -- Orbiting tears with a more narrow and stable orbit (used by Saturnus and Immaculate Heart)
+    [70] = "岩を破壊する",             -- Rock tears, chance to break rocks, deal extra damage to rock type enemies
+    [71] = "90度ターンして敵に向かう",      -- Brain Worm, tears turn and go horizontally when moving past an enemy
+    [72] = "ブラッド ボム",              -- Blood Bombs, leave blood creep on the ground
+    [73] = "敵をうんちにする",    -- E. Coli tears, turn enemies into poop
+    [74] = "倒した敵がコインを落とす",      -- Killed enemies have a chance to drop a random coin (Reverse Hanged Man)
+    [75] = "ブリムストーン ボム",          -- Brimstone Bombs, explosion creates a brimstone cross
+    [76] = "攻撃時、ブラックホールが 発生",       -- Rift tears, creates a black hole on impact
+    [77] = "胞子が拡散する",  -- Spore tears, stick to enemies and multiply on enemy death
+    [78] = "ゴースト ボム",              -- Ghost bombs
+    [79] = "倒した敵がカードを落とす",      -- Killed enemies will drop a random tarot card
+    [80] = "倒した敵がルーンを落とす",      -- Killed enemies will drop a random rune
+    [81] = "敵をテレポートさせる",   -- Hit enemies will teleport to a different part of the room
+    [82] = "時間経過で減速",    -- Decelerate over time
+    [83] = "時間経過で加速",    -- Accelerate over time
+    [104] = "壁で跳ね返る",    -- Similar to TEAR_BOUNCE but only bounces off walls, not enemies
+	[106] = "敵を出血状態にする",   -- Deals extra damage from behind and inflicts bleeding
+}
+
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+-- Kept in for backwards compatibility
+EID.descriptions[languageCode].abyssSynergies = {}
 
 -- Effect of Car battery on Active Items
 local repCarBattery = {
@@ -937,6 +1030,9 @@ local repCards={
     [12] = {"12", "XI - 力", "その部屋に居る間：#↑ 最大体力 +1#↑ 攻撃力　 +0.3#↑ 攻撃力　 +50%#↑ 射程　　 +2.5#↑ 移動速度 +0.3"}, -- XI - Strength
 	[16] = {"16", "XV - 悪魔", "その部屋に居る間：#↑ 攻撃力 +2"},
 	[18] = {"18", "XVII - 星", "{{TreasureRoom}} トレジャールームに テレポート#{{Planetarium}} プラネタリウムがある場合、 そちらにテレポート"},
+	[20] = {"20", "XIX - 太陽", "全ての敵に100ダメージ#体力全回復#フルマッピング効果#{{CurseDarkness}} 闇の呪いを取り除く"}, -- XIX - The Sun
+	[21] = {"21", "XX - 審判", "乞食か悪魔乞食をスポーン#低確率で鍵／爆弾／電池／ 腐った乞食もスポーン"}, -- XX - Judgement
+	[22] = {"22", "XXI - 世界", "フルマッピング効果"}, -- XXI - The World
     [27] = {"27", "クラブのエース", "全てのピックアップ・ 宝箱・ボス以外の敵を 爆弾に変換する"}, -- Ace of Clubs
     [28] = {"28", "ダイアのエース", "全てのピックアップ・ 宝箱・ボス以外の敵を コインに変換する"}, -- Ace of Diamonds
     [29] = {"29", "スペードのエース", "全てのピックアップ・ 宝箱・ボス以外の敵を 鍵に変換する"}, -- Ace of Spades
@@ -1022,13 +1118,13 @@ EID.descriptions[languageCode].tarotClothBuffs = {
     [64] = {"2～4個", "4～14個"}, -- VIII - Justice?
 	[65] = "コインを1枚追加", -- IX - The Hermit?
 	[66] = {"ランダムなダイス部屋の 効果を{{ColorShinyPurple}}2回{{CR}}発動する"}, -- X - Wheel of Fortune?
+
 	[68] = {"30秒間", "60秒間"}, -- XII - The Hanged Man?
     [70] = {"5連続", "10連続"}, -- XIV - Temperance?
     [72] = {"7ヶ所", "14ヶ所"}, -- XVI - The Tower?
     [73] = {"最も古いパッシブアイテム （初期アイテムを除く）を {{ColorShinyPurple}}2個{{CR}}削除する#現在の部屋のアイテム プールからランダムな アイテムを{{ColorShinyPurple}}4個{{CR}}スポーン"}, -- XVII - The Stars?
     [76] = {"リロールマシーンを {{ColorShinyPurple}}2つ{{CR}}スポーンする"}, -- XX - Judgement?
 }
-
 
 -- There's some odd behavior with Blank Card + Tarot Cloth not doubling some cards
 -- These will be appended after Blank Card recharge time and "Blank Card effect:"
@@ -1202,6 +1298,7 @@ EID.descriptions[languageCode].birthright ={
 
 EID.descriptions[languageCode].GlitchedItemText = {
     -- Item Config info
+	-- These texts are affected by the PluralizeFunction (ab+ file)
     AddBlackHearts = "{1} 黒ハート",
     AddBombs = "{1} 爆弾",
     AddCoins = "{1} コイン",
@@ -1300,6 +1397,10 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Fart", "敵と弾をノックバックし、 毒ガスを発生させる#!!! 毒ガスは引火・爆発する"},
 	{"Bomb", "ノーマルなうんち爆弾"},
 	{"Explosive Diarrhea", "アイザックの尻から 点火済みの爆弾が 5連続スポーンする"},
+
+	--Undetected poop, for Poop API
+	--[Poop name in code] = {Icon, Name, Description}
+	["Unknown"] = {"{{PoopSpell1}}", "Unknown Poop", "The effects of the poop are Unknown"}
 }
 
 EID.descriptions[languageCode].itemPoolFor = "アイテムプール:"
@@ -1336,6 +1437,7 @@ EID.descriptions[languageCode].AchievementWarningText = "実績無効！#実績�
 EID.descriptions[languageCode].OldGameVersionWarningText = "ゲームがアップデート されていません#最新バージョンのみが サポートされています#この警告は設定で無効に できます"
 EID.descriptions[languageCode].ModdedRecipesWarningText = "MODのアイテムが原因で クラフトレシピの表示が 不正確になる可能性が あります#その場合、Item Probability モードか、非表示にして ください#この警告は設定で無効に できます"
 
+
 -- Conditional descriptions - DO NOT TRANSLATE THE FIRST PART IN ["BRACKETS"]
 -- Strings will be appended to the original description
 -- Tables with one entry will completely replace the original description
@@ -1370,9 +1472,9 @@ local repConditions = {
 	["5.100.694 (Keeper)"] = {"↓ 壊れたハート +1#↑ 壊れたハート1個につき 攻撃力 +0.25#キーパーに致命的な ダメージが与えられる時、 代わりに、1個の壊れた ハートを追加し、全ての 敵に40ダメージを与える#壊れたハートが3個 溜まると死ぬ"}, -- Heartbreak + Normal Keeper
 	["5.100.694 (Tainted Keeper)"] = {"{1}：#{{Warning}} このアイテムを取得すると 一撃で死ぬ状態に陥る#↓ 壊れたハート +1#↑ 壊れたハート1個につき 攻撃力 +0.25#汚染キーパーに致命的な ダメージが与えられる時、 代わりに、1個の壊れた ハートを追加し、全ての 敵に40ダメージを与える#壊れたハートが2個 溜まると死ぬ"}, -- Heartbreak + Tainted Keeper
 --  ["5.100.501"] = "{1} can gain additional coin containers#Health up items can grant an extra container per 25 coins", -- Greed's Gullet + Keeper
-    ["5.100.188"] = "{1}の場合7.5", -- Cain + Abel
+--  ["5.100.188"] = "{1}の場合7.5", -- Cain + Abel
 	["5.100.360"] = "{1}の場合100%", -- Lilith + Incubus
-    ["5.100.728"] = "{1}の場合100%", -- Lilith + Gello
+--  ["5.100.728"] = "{1}の場合100%", -- Lilith + Gello
 	["5.100.230 (Keeper)"] = "{1}：　　　 最大体力を1にする", -- Abaddon
 	["5.100.230 (Bethany)"] = "{1}：　　　 最大体力を1、残り体力を 半赤ハートにする", -- Abaddon
 	["5.100.230 (Tainted Bethany)"] = "{1}：　　　 ブラッドチャージは 失わない", -- Abaddon
@@ -1477,7 +1579,6 @@ local repConditions = {
 	["Binge Eater Healing"] = {"体力を1回復", "体力を{{BlinkGreen}}2{{CR}}回復", "ブラッドチャージ +4", "ブラッドチャージ {{BlinkGreen}}+6{{CR}}"},
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
-
 
 
 

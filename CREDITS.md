@@ -4,7 +4,7 @@ If you enjoy this mod and want to help on it, check it out on GitHub: https://gi
 
 # Languages
 - **Bulgarian**: by TST_Gogo_, Gothika_47
-- **Chinese**: by Xheepey87, frto027
+- **Chinese (Simplified)**: by Xheepey87, frto027
 - **Czech**: by David Kapitančik. Picus, domcizzz
 - **Dutch**: by SomethingMax
 - **English**: by Wofsauge, Buurazu, Ma-rcx, AutisticGoat (Kotry), ...
@@ -17,11 +17,12 @@ If you enjoy this mod and want to help on it, check it out on GitHub: https://gi
 - **Polish**: by Rickyy, Kennyluz, MERITT, DimonoKingoKongo
 - **Portuguese**: by Marcelino Cruz
 - **Romanian**: by  ed._.096, MHI
-- **Russian**: by hell2Pay, fly_6, Dezzelshipc and Sekaz
+- **Russian**: by hell2Pay, fly_6, Dezzelshipc, Sekaz and rama2xl (aka. SimpleRose)
 - **Spanish**: by Lidia Arroyo Purroy, MartinFierro, maintained by AutisticGoat (Kotry)
-- **Brazilian - Portuguese**: by LuanRoger and NotZin02
+- **Brazilian Portuguese**: by LuanRoger and NotZin02
 - **Turkish**: by Cagdas Salur, Mert Dutal
 - **Ukrainian**: by x3xto
+- **Vietnamese**: by Hanzo
 
 
 # Special Thanks to

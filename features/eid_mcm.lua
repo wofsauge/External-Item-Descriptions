@@ -280,7 +280,7 @@ if MCMLoaded then
 	MCM.AddSpace("EID", "Info")
 	MCM.AddText("EID", "Info", function() return "External Item Descriptions" end)
 	MCM.AddSpace("EID", "Info")
-	MCM.AddText("EID", "Info", function() return "Version "..EID.ModVersion .."_"..EID.ModVersionCommit.." ("..EID.GameVersion..")" end)
+	MCM.AddText("EID", "Info", function() return "Version "..string.format("%.2f", EID.ModVersion) .."_"..EID.ModVersionCommit.." ("..EID.GameVersion..")" end)
 	MCM.AddSpace("EID", "Info")
 	MCM.AddText("EID", "Info", function() return "by Wofsauge" end)
 	MCM.AddSpace("EID", "Info")
@@ -336,7 +336,7 @@ if MCMLoaded then
 				end
 				renderDummyDesc(true)
 			end,
-			Info = {"Changes the language.","Languages marked as WIP are incomplete."}
+			Info = {"Changes the language.","Languages marked as WIP are incomplete. Contributions welcome!"}
 		}
 	)
 	-- Item Name Language

@@ -83,6 +83,33 @@ end
 
 EID:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, EID.OnMenuRender)
 
+--------------------------Gulped items-----------------------------------
+
+-- REPENTOGON: Gulped trinkets can be read directly from the game
+function EID:ItemReminderHeldPlusGulped(player)
+	local newTable = {}
+	for i=0, 1 do
+		local trinket = player:GetTrinket(i)
+		if trinket > 0 then table.insert(newTable, trinket) end
+	end
+
+	-- Use GetSmeltedTrinkets() to aquire player smelted trinkets infos, instead of keeping a separate table
+	for id, dataTable in pairs(player:GetSmeltedTrinkets()) do
+		if dataTable then
+			local sumTrinket = dataTable.trinketAmount + dataTable.goldenTrinketAmount
+			if sumTrinket > 0 then
+				table.insert(newTable, id)
+			end
+		end
+	end
+	return newTable
+end
+
+-- Remove callback, since we dont need to track smelter usage in Repentogon
+EID:RemoveCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.OnUseSmelter)
+
+-- remove function. No longer needed
+function EID:UpdateAllPlayerTrinkets() end
 
 ---------------------------BAG OF CRAFTING-------------------------------
 -- Directly read bag of crafting content
@@ -133,9 +160,10 @@ function EID:hasDescription(entity)
 		local isGreed = entity.Variant == 11
 		local eventCounter = isGreed and EventCounter.GREED_DONATION_MACHINE_COUNTER or
 			EventCounter.DONATION_MACHINE_COUNTER
+		local maxDonations = isGreed and 1000 or 999
 		local totalDonations = Isaac.GetPersistentGameData():GetEventCounter(eventCounter)
 
-		return EID.Config["RGON_DonationMachineDescriptions"] and totalDonations < 1000
+		return EID.Config["RGON_DonationMachineDescriptions"] and totalDonations < maxDonations
 	end
 	return oldReturnVal
 end
@@ -164,7 +192,7 @@ local requirementsGreedDonationMachine = {
 	{ 439,  Achievement.EVE_HOLDS_RAZOR_BLADE },
 	{ 500,  Achievement.GREEDIER },
 	{ 666,  Achievement.STORE_KEY },
-	{ 879,  Achievement.THE_LOST_HOLDS_HOLY_MANTLE },
+	{ 879,  Achievement.LOST_HOLDS_HOLY_MANTLE },
 	{ 999,  Achievement.GENEROSITY },
 	{ 1000, Achievement.KEEPER }
 }

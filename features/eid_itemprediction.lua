@@ -113,13 +113,11 @@ end
 --order of checking: 15% Pennies, 48% Damage, 58% Hearts, 63% Item, 65% Leviathan, 100% Nothing
 local sanguineResults = { { 0.15, 3 }, { 0.48, 2 }, { 0.58, 4 }, { 0.63, 5 }, { 0.65, 6 }, { 1, 1 } }
 -- This function both trims the desc to just a list of chances, and highlights the next result if allowed, since those two actions are very intertwined
-function EID:trimSanguineDesc(descObj)
-	local currentRoom = game:GetLevel():GetCurrentRoom()
-	local spikes = currentRoom:GetGridEntity(67)
+function EID:trimSanguineDesc(spikes, descObj)
 	if not spikes then return "" end -- don't display anything if we can't find the spikes!
 	local cheatResult = nil
 	if spikes and EID.Config["PredictionSanguineBond"] then
-		local spikeSeed = currentRoom:GetGridEntity(67):GetRNG():GetSeed()
+		local spikeSeed = spikes:GetRNG():GetSeed()
 		spikeSeed = EID:RNGNext(spikeSeed, 5, 9, 7)
 		spikeSeed = EID:RNGNext(spikeSeed, 0x01, 0x05, 0x13) -- magic disassembled numbers!
 		local nextFloat = EID:SeedToFloat(spikeSeed)
@@ -326,7 +324,7 @@ function EID:D1Prediction(rng)
 			if specialCards[poss[sel].SubType] then
 				local objName = EID:getObjectName(5, poss[sel].Variant, poss[sel].SubType)
 				return "{{" .. variantToName[poss[sel].Variant] .. poss[sel].SubType .. "}} " .. objName
-			elseif EID.runeIDs[poss[sel].SubType] then
+			elseif EID.itemConfig:GetCard(poss[sel].SubType):IsRune() then
 				fullID = "5.301"
 			end
 		end

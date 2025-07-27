@@ -2,7 +2,7 @@
 -----  Basic French descriptions -----
 --------------------------------------
 
--- Last Sync with en_us: 08.08.2021
+-- Last Sync with English: 08.08.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -750,7 +750,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 ---------- Abyss Locust description parts ----------
 EID.descriptions[languageCode].AbyssTexts = {
  	-- values inside {} brackets will be replaced with text parts below
-	-- As the last step, {pluralize} will be replaced with the "Pluralize" value. 
+	-- Abyss texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
 	InfoText = "{amount} {size} locuste{pluralize} {speed} ({dmg})", -- values inside {} brackets will be replaced with text parts below
 	InfoTextPlural = "{amount} {size} locustes {speed} ({dmg})", -- Will be shown when more than 1 locust will spawn
@@ -988,7 +988,6 @@ local repTrinkets={
 	[112] = {"112", "Microtransactions", "Des machines de réapprovisionnement {{RestockMachine}} apparaissent dans toutes les Salles du Trésor {{TreasureRoom}}"},
 	[119] = {"119", "Cellule Souche", "{{HealingRed}} Soigne la moitié des cœurs rouges d'Isaac au début de chaque étage {{ColorSilver}}(Au minimum un demi-cœur)"}, -- Stem Cell
 	[123] = {"123", "Plume Angélique", "Tuer {{ColorCyan}}Uriel{{ColorWhite}} ou {{ColorCyan}}Gabriel{{ColorWhite}} fait apparaître un objet angélique au lieu d'un {{ColorYellow}}Fragment de Clé {{Collectible238}}{{Collectible239}}"},
-	[125] = {"125", "Rallonge Électrique", "Relie Isaac et ses familiers par des arcs électriques"},
 	[128] = {"128", "Os de Doigt", "{{BoneHeart}} Subir un dégât a 5% de chances d'ajouter un cœur d'os aux PV d'Isaac"}, -- Finger Bone
 	[129] = {"129", "Boule de Mammouth", "Isaac tire parfois une dent qui inflige {{ColorLime}} dégâts x3#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 9 Chance)"}, --  Jawbreaker
 	[130] = {"130", "Stylo Mâchouillé", "Isaac tire parfois une larme ralentissante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 18 Chance)"}, --  Chewed Pen
@@ -1179,7 +1178,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[8] = {6, 12}, -- VII - The Chariot
 	[9] = {"Fait apparaître {{ColorShinyPurple}}2{{ColorWhite}} clés, {{ColorShinyPurple}}2{{ColorWhite}} bombes, {{ColorShinyPurple}}2{{ColorWhite}} pièces et {{ColorShinyPurple}}2{{ColorWhite}} cœurs"}, -- VIII - Justice
 	[10] = "Empêche Avarice d'apparaître dans la boutique et génère des objets à acheter s'il a déjà été vaincu dans la Boutique", -- IX - The Hermit
-	[11] = {"Fait apparaître {{ColorShinyPurple}}2{{ColorWhite}} machines à sous {{Slotmachine}}"}, -- X - Wheel of Fortune
+	[11] = {"une", "2"}, -- X - Wheel of Fortune
 	[12] = {"+1 réceptacle", "+2 {{ColorWhite}}réceptacles", "+0.3", "+0.6", "+0.3", "+0.6", "+2.5", "+5"}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
 	[15] = {"Fait apparaître {{ColorShinyPurple}}2{{ColorWhite}} banques du sang {{BloodDonationMachine}}"}, -- XIV - Temperance
@@ -1187,7 +1186,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "Propose un {{ColorShinyPurple}}choix entre 2 objets{{ColorWhite}} si elle n'a pas encore été visitée", -- XVII - The Stars
 	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {"Invoque {{ColorShinyPurple}}2{{ColorWhite}} mendiants"}, -- XX - Judgement
+	[21] = {"un mendiant", "2 {{ColorWhite}}mendiants"}, -- XX - Judgement
 	[56] = "Lâche également les 6 derniers objets ramassés", -- 0 - The Fool?
 	[59] = {2, 3}, -- III - The Empress?
 	[61] = {2, 3}, -- V - The Hierophant?
@@ -1218,6 +1217,8 @@ local repCards={
 	[18] = {"18", "XVII - L'Étoile", "Téléporte Isaac dans la Salle du Trésor {{TreasureRoom}}"},
 	[19] = {"19", "XVIII - La Lune", "Téléporte Isaac dans la Salle Secrète {{SecretRoom}}"},
 	[20] = {"20", "XIX - Le Soleil", "{{HealingRed}} Soin complet#Inflige 100 dégâts à tous les ennemis de la salle#Révèle l'intégralité de l'étage sur la carte#Retire le Fléau d'Obscurité"},
+	[21] = {"21", "XX - Le Jugement", "{{Beggar}} Invoque un mendiant#{{DemonBeggar}} 33% de chances d'être un mendiant démoniaque #5% de chances d'être un maître des clés, un clochard aux bombes, un clochard aux batteries ou un mendiant pourri"},
+	[22] = {"22", "XXI - Le Monde", "{{Timer}} Révèle l'intégralité de l'étage sur la carte (sauf Chambre {{SuperSecretRoom}} Super / {{UltraSecretRoom}} ultra secrète)"},
 	[27] = {"27", "As de Trèfle", "Transforme toutes les ressources, coffres et ennemis de la salle en bombes"},
 	[28] = {"28", "As de Carreau", "Transforme toutes les ressources, coffres et ennemis de la salle en pièces"},
 	[29] = {"29", "As de Pique", "Transforme toutes les ressources, coffres et ennemis de la salle en clés"},
@@ -1376,13 +1377,14 @@ EID.descriptions[languageCode].horsepills={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
-	AddBlackHearts = "{{BlackHeart}} {1} cœur(s) noir(s)",
-	AddBombs = "{{Bomb}} {1} bombe(s)",
-	AddCoins = "{{Coin}} {1} pièce(s)",
-	AddHearts = "Heals {{Heart}} {1} cœur(s) rouge(s)",
-	AddKeys = "{{Key}} {1} clé(s)",
-	AddMaxHearts = "{{EmptyHeart}} {1} réceptacle(s) de cœur",
-	AddSoulHearts = "{{SoulHeart}} {1} cœur(s) d'âme",
+	-- These texts are affected by the PluralizeFunction (ab+ file)
+	AddBlackHearts = "{{BlackHeart}} {1} cœur{pluralize} noir{pluralize}",
+	AddBombs = "{{Bomb}} {1} bombe{pluralize}",
+	AddCoins = "{{Coin}} {1} pièce{pluralize}",
+	AddHearts = "Heals {{Heart}} {1} cœur{pluralize} rouge{pluralize}",
+	AddKeys = "{{Key}} {1} clé{pluralize}",
+	AddMaxHearts = "{{EmptyHeart}} {1} réceptacle{pluralize} de cœur",
+	AddSoulHearts = "{{SoulHeart}} {1} cœur{pluralize} d'âme",
 
 	-- Cache Flag names
 	cacheFlagStart = "Peut influencer ",
