@@ -324,8 +324,9 @@ local function HealthUpCallback(descObj)
 		
 		local pos = 1
 		while pos <= #text do
-			-- replace {1} with the number of hearts and {2} with the plural character
+			-- replace {1} with the number of hearts and {pluralize} with the plural character
 			local toFind = EID:ReplaceVariableStr(text[pos], numHearts)
+			toFind = EID:TryPluralizeString(toFind, numHearts)
 			if text[pos + 1] then
 				local replaceWith = EID:ReplaceVariableStr(text[pos + 1], numHearts)
 				descObj.Description = EID:SimpleReplace(descObj.Description, tostring(toFind), replaceWith, 1)
