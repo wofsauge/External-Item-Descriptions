@@ -2458,8 +2458,10 @@ function EID:evaluateTransformationProgress(transformation)
 				local eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
 				if tonumber(eType) == EntityType.ENTITY_PICKUP then
 					if tonumber(eVariant) == PickupVariant.PICKUP_COLLECTIBLE then
-						local currentCount = EID.TransformationProgress[id][transformation]
-						if activesTable[tostring(eSubType)] then
+						-- Rep+ Exclusive: Only count a Transformation progress for Necromancer, if you own the Necronomicon
+						local isNecromancer = EID.isRepentancePlus and transformation == tostring(EID.TRANSFORMATION.NECROMANCER)
+
+						if not isNecromancer and activesTable[tostring(eSubType)] then
 							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + activesTable[tostring(eSubType)]
 						else
 							local collCount = player:GetCollectibleNum(eSubType, true)
@@ -2474,8 +2476,8 @@ function EID:evaluateTransformationProgress(transformation)
 							end
 						end
 						-- In AB+, only one copy of a given collectible is counted for trans
-						if not EID.isRepentance and EID.TransformationProgress[id][transformation] > currentCount + 1 then
-							EID.TransformationProgress[id][transformation] = currentCount + 1
+						if not EID.isRepentance and EID.TransformationProgress[id][transformation] > EID.TransformationProgress[id][transformation] + 1 then
+							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + 1
 						end
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_TRINKET and player:HasTrinket(eSubType) then
 						EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + player:GetTrinketMultiplier(eSubType)

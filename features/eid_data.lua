@@ -52,7 +52,8 @@ EID.TRANSFORMATION = {
 	["ADULT"] = 14,
 	["SPIDERBABY"] = 13,
 	["SUPERBUM"] = 11,
-	["STOMPY"] = 15
+	["STOMPY"] = 15,
+	["NECROMANCER"] = 16 -- added in Rep+
 }
 
 -- List of item Types
@@ -351,8 +352,9 @@ EID.InlineIcons = {
 	["SuperBum"] = {"Transformation11", 0, 16, 16, 0, -1, EID.IconSprite},
 	["Bookworm"] = {"Transformation12", 0, 16, 16, 0, -1, EID.IconSprite},
 	["SpiderBaby"] = {"Transformation13", 0, 16, 16, 0, -1, EID.IconSprite},
-	["Adult"] = {"Transformation14",0,16, 16, 0, -1, EID.IconSprite},
-	["Stompy"] = {"Transformation15",0,16, 16, 0, -1, EID.IconSprite},
+	["Adult"] = {"Transformation14", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Stompy"] = {"Transformation15", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Necromancer"] = {"Transformation16", 0, 16, 16, 0, -1, EID.IconSprite},
 
 	-- Quality
 	["Quality0"] = {"Quality", 0, 10, 10, 0, 0},

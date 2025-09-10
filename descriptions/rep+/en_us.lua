@@ -129,6 +129,9 @@ local abyssSynergies = {
 EID.descriptions[languageCode].abyssSynergies = {}
 EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
 
+---------- Transformations ----------
+EID.descriptions[languageCode].transformations[17] = "Necromancer" -- Add Necromancer transformation
+
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
