@@ -81,12 +81,26 @@ EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].coll
 ---------- Trinkets ----------
 
 local trinkets = {
+	[5] = {"5", "퍼플 하트 훈장", "!!! 적이 챔피언의 형태로 나올 확률이 2배로 증가합니다.#가능한 경우, 보스가 챔피언의 형태로 나올 확률이 증가합니다.#챔피언 몬스터 처치 시 보상 드랍 확률 +20%p#챔피언 몬스터 보상이 2배로 등장합니다."}, -- Purple Heart
+	[7] = {"7", "묵주 구슬", "↑ {{AngelChanceSmall}} 보스방 클리어로 악마방으로 향하는 문 등장 시 천사방으로 바뀝니다.#!!! {{Library}}책방과 {{Shop}}상점에서 {{Collectible33}}The Bible이 등장할 확률이 증가합니다."}, -- Rosary Bead
+	[16] = {"16", "엄마의 발톱", "클리어하지 않은 방에서 장신구를 버리면;#{{ArrowGrayRight}} 그 위치에 엄마발이 떨어집니다."}, -- Mom's Toenail
+	[23] = {"23", "실종 포스터", "!!! 일회용#{{Player10}} {{SacrificeRoom}}희생방에서 사망 시 전 방에서 The Lost 캐릭터로 해금 + 부활합니다.#The Lost 캐릭터 해금 이후에는 희생방이 아닌 다른 방에서의 사망 시에도 부활합니다.#{{SuperSecretRoom}} 스테이지 진입 시 33%의 확률로 일급비밀방의 위치를 보여줍니다."}, -- Missing Poster
 	-- Change: added ", {{Trinket135}} A Lighter"
 	[53] = {"53", "진드기", "!!! {{Trinket41}}/{{Trinket135}}/{{Collectible479}}를 제외한 {{ColorOrange}}교체 및 버리기 불가{{CR}}#방 입장 시 체력이 60 이상인 적의 체력을 15% 깎습니다.#{{HealingRed}} {{BossRoom}}보스방 입장 시 체력을 한칸 회복합니다."}, -- Tick
+	[66] = {"66", "게으른 벌레", "↑ {{DamageSmall}}공격력 +0.5#↓ {{ShotspeedSmall}}탄속 -0.5"}, -- Lazy Worm
+	[70] = {"70", "머릿니", "방 클리어 시 파란 아군 거미를 하나 소환합니다."}, -- Louse
+	[76] = {"76", "포커 칩", "{{Chest}} 상자에서 50% 확률로 픽업이 추가로 드랍되거나 Attack Fly가 나옵니다.#상자에서 아이템이 나올 때 더 높은 등급 + 랜덤 배열의 아이템으로 바뀝니다.#슬롯머신의 성공 확률 및 보상 빈도가 증가합니다."}, -- Poker Chip
+	[85] = {"85", "업보", "{{DonationJam}} 기부기계 고장 확률 감소#!!! {{DonationMachine}}기부기계/{{BloodDonationMachine}}{{Confessional}}헌혈기/{{Beggar}}거지/{{RestockMachine}}재입고에 기부 시 33%의 확률로 아래 효과 중 하나 발동:#{{ArrowGrayRight}} {{Coin}}동전 +1({{DonationMachine}}/{{Beggar}})#{{Blank}} {{Heart}}빨간하트 1칸 회복({{DonationMachine}}/{{Beggar}}/{{BloodDonationMachine}}{{Confessional}})#{{Blank}} {{LuckSmall}}행운 +1({{DonationMachine}}/{{Beggar}}/{{BloodDonationMachine}}{{Confessional}}/{{RestockMachine}})#{{Blank}} 거지 소환({{DonationMachine}}/{{BloodDonationMachine}}{{Confessional}})"}, -- Karma
+	[89] = {"89", "미아 방지끈", "패밀리어 피해량 +25%#패밀리어들 사이의 간격이 가까워집니다."}, -- Child Leash
+	[93] = {"93", "다 쓴 기저귀", "방 입장 시 33%의 확률로 파리류 적들이 공격하지 않거나 약해집니다.#방 클리어 시 파란 아군 파리를 하나 소환합니다."}, -- Used Diaper
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = {"97", "편도선", "6~12 피격 시 Tonsil을 획득합니다.#Tonsil은 캐릭터를 따라다니며 적의 탄환을 막아줍니다."}, -- Tonsil
+	[99] = {"99", "탱탱볼", "확률적으로 공격이 무언가에 부딪힐 때 반대 각도로 튕겨져 나갑니다."}, -- Super Ball
+	[103] = {"103", "똑같다!", "!!! 소지중인 동전, 폭탄, 열쇠의 개수가 모두 같을 때:#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +2#{{ArrowGrayRight}} {{Heart}}하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 픽업이 1+1로 나옵니다."}
 	[104] = {"104", "창사골", "!!! 일회용#피격 시 5% 확률로 그 방의 아이템을 하나 생성합니다."}, -- Wish Bone
 	[105] = {"105", "점심 도시락", "!!! 일회용#피격 시 5% 확률로 {{Collectible22}}Lunch ({{Heart}}최대 체력 +1) 아이템을 생성합니다."}, -- Bag Lunch
+	-- exclusive to ko_kr
+	[121] = {"121", "나무 십자가", "{{HolyMantle}} 스테이지 당 1번 피해를 무시하는 보호막을 생성합니다."}, -- Wooden Cross
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "짧은 도화선", "!!! 폭탄이 터지는 속도가 빨라집니다.#{{Bomb}} 폭탄 피해량 +15%"}, -- Short Fuse
 	-- exclusive to ko_kr
@@ -141,6 +155,9 @@ local abyssSynergies = {
 -- Remove all entries from Repentance file, and only add special descriptions relevant to Repentance+
 EID.descriptions[languageCode].abyssSynergies = {}
 EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
+
+---------- Transformations ----------
+EID.descriptions[languageCode].transformations[17] = "Necromancer" -- Add Necromancer transformation
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
