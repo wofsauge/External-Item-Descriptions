@@ -71,16 +71,41 @@ EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].coll
 ---------- Trinkets ----------
 
 local trinkets = {
+	-- Change: Added champion loot information
+	[5] = {"5", "Purple Heart", "2x chance for champion enemies#Champion enemies drop more loot"}, -- Purple Heart
+	-- Change: Added info about devil deals
+	[7] = { "7", "Rosary Bead", "{{AngelChance}} 50% higher Angel Room chance#{{Collectible33}} Higher chance to find The Bible in {{Shop}} Shops and {{Library}} Libraries#Forces {{DevilChance}}Devil Deals to be {{AngelChance}}Angel Deals"}, -- Rosary Bead
+	-- Change: added info about dropping the item
+	[16] = {"16", "Mom's Toenail", "Mom's Foot stomps a random spot in the room every 20 seconds#Dropping the trinket in combat will cause Mom's Foot to stomp its location"}, -- Mom's Toenail
+	-- Change: added Super Secret Room info
+	[23] = { "23", "Missing Poster", "{{Player10}} Respawn as The Lost on death#{{SuperSecretRoom}} 33% chance to reveal Super Secret Room on new floor"}, -- Missing Poster
 	-- Change: added ", {{Trinket135}} A Lighter"
 	[53] = { "53", "Tick", "{{HealingRed}} Heals 1 heart when entering a {{BossRoom}} Boss Room#-15% boss health#{{Warning}} Once picked up, it can't be removed#Only removeable with {{Trinket41}} Match Stick, {{Trinket135}} A Lighter or gulping" }, -- Tick
+	-- Change: added +0.5 damage
+	[66] = {"66", "Lazy Worm", "↑ {{Damage}} +0.5 Damage#↓ {{Shotspeed}} -0.5 Shot speed"}, -- Lazy Worm
+	-- Change: Complete rewrite
+	[70] = {"70", "Louse", "Spawns a blue spider on room clear"}, -- Louse
+	-- Change: Added more loot information
+	[76] = {"76", "Poker Chip", "↑ 50% chance for chests to spawn extra pickups#↓ 50% chance for chests to contain a single fly#Increases payout odds of slots and other machines#If chest contains an item, its forced to be quality 3 or higher#Chest content can occasionally be items outside the golden chest item pool"}, -- Poker Chip
+	-- Change: Added additional effects
+	[85] = {"85", "Karma", "{{DonationMachine}} Using any type of Donation Machine has a 33% chance to:#{{HealingRed}} Heal 1 heart (40%)#{{Coin}} Give 1 coin (40%)#{{Luck}} Grant +1 luck (15%)#{{Beggar}} Spawn a Beggar (5%)#Also affects Beggar donations and Restock machines"}, -- Karma
+	-- Change: Added damage up information
+	[89] = {"89", "Child Leash", "Familiars stay closer to Isaac#{{Damage}} Familiars gain small damage multiplier"}, -- Child Leash
+	-- Change: 33% chance, Spawns blue fly on new room
+	[93] = { "93", "Used Diaper", "33% chance per room for all fly enemies to become friendly#Spawns 1 blue fly when entering a new room"}, -- Used Diaper
 	-- Change: Changed "12-20 times" to "6-12 times"
-	[97] = { "97", "Tonsil", "Taking damage 6-12 times spawns a projectile blocking familiar#Caps at 2 familiars" },                                                                                                                                  -- Tonsil
+	[97] = { "97", "Tonsil", "Taking damage 6-12 times spawns a projectile blocking familiar#Caps at 2 familiars" }, -- Tonsil
+	-- Change: Added +2 Tears
+	[103] = {"103", "Equality!", "When Isaac's {{Coin}} coin, {{Bomb}} bomb and {{Key}} key counts are equal:#↑ {{Tears}} +2 Tears#Turns single pickups into double pickups"}, -- Equality!
 	-- Change: added "Bombs deal 15% more damage"
-	[133] = { "133", "Short Fuse", "Isaac's bombs explode faster#Bombs deal 15% more damage" },                                                                                                                                                       -- Short Fuse
+	[133] = { "133", "Short Fuse", "Isaac's bombs explode faster#Bombs deal 15% more damage" }, -- Short Fuse
 	-- Change: "2%" to "5%"
-	[104] = { "104", "Wish Bone", "5% chance to get destroyed and spawn a pedestal item when hit" },                                                                                                                                                  -- Wish Bone
+	[104] = { "104", "Wish Bone", "5% chance to get destroyed and spawn a pedestal item when hit" }, -- Wish Bone
 	-- Change: "2%" to "5%"
-	[105] = { "105", "Bag Lunch", "{{Collectible22}} 5% chance to get destroyed and spawn Lunch when hit" },                                                                                                                                          -- Bag Lunch
+	[105] = { "105", "Bag Lunch", "{{Collectible22}} 5% chance to get destroyed and spawn Lunch when hit" }, -- Bag Lunch
+	-- Change: Added coin type based information
+	[172] = {"172", "Cursed Penny", "Picking up a coin teleports Isaac to a random room#Can teleport to secret rooms#The type of coin affects the selected room type"}, -- Cursed Penny
+
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 

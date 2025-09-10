@@ -26,5 +26,6 @@ local transformations = {
 	["5.100.390"] = "10",	-- Seraphim: Seraphim
 	["5.100.519"] = "4",	-- Lil Delirium: Conjoined
 	["5.350.48"] = "16",	-- A Missing Page: Necromancer
+	["5.350.71"] = "8",		-- Bobs Bladder: Bob
 }
 EID:updateDescriptionsViaTable(transformations, EID.EntityTransformations)
