@@ -307,7 +307,7 @@ EID.descriptions[languageCode].collectibles={
 	{"244", "기계 0.5", "공격 시 캐릭터의 이마 쪽에서 보조 레이저가 발사됩니다."}, -- Tech.5
 	{"245", "시력 2.0", "공격이 2발로 나갑니다."}, -- 20/20
 	{"246", "파란 지도", "{{SecretRoom}} 맵에 비밀방, {{SuperSecretRoom}}일급비밀방의 위치가 표시됩니다."}, -- Blue Map
-	{"247", "베프들!", "패밀리어들의 피해량이 2배로 증가합니다."}, -- BFFS!
+	{"247", "베프들!", "패밀리어 피해량 x2"}, -- BFFS!
 	{"248", "군체의식", "파란 아군 파리 및 거미의 공격력이 2배로 증가합니다."}, -- Hive Mind
 	{"249", "추가 선택권", "{{BossRoom}} 보스방 보상 아이템이 2개가 나오며 하나를 선택하면 나머지는 사라집니다."}, -- There's Options
 	{"250", "1+1 폭탄", "{{Bomb}} 폭탄 픽업이 1+1로 나옵니다."}, -- BOGO Bombs
@@ -831,7 +831,7 @@ EID.descriptions[languageCode].cards={
 	{"12", "XI - 힘", "{{Timer}} 사용 시 그 방에서:#{{ArrowGrayRight}} {{Heart}}최대 체력 +1#{{ArrowGrayRight}} {{DamageSmall}}공격력 +0.3#{{ArrowGrayRight}} {{DamageSmall}}공격력 배율 +50%#{{ArrowGrayRight}} {{RangeSmall}}사거리 +5.25#{{ArrowGrayRight}} 눈물 높이 +0.5#{{ArrowGrayRight}} {{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
 	{"13", "XII - 매달린 남자", "{{Collectible20}} 그 방에서 비행 능력을 얻습니다."}, -- XII - The Hanged Man
 	{"14", "XIII - 죽음", "{{Collectible35}} 그 방의 적에게 40의 피해를 줍니다."}, -- XIII - Death
-	{"15", "XIV - 절제", "{{DonationMachine}} 헌혈기계를 하나 생성합니다."}, -- XIV - Temperance
+	{"15", "XIV - 절제", "{{BloodDonationMachine}} 헌혈기계를 하나 생성합니다."}, -- XIV - Temperance
 	{"16", "XV - 악마", "{{Collectible34}} 그 방에서 {{DamageSmall}}공격력 +2"}, -- XV - The Devil
 	{"17", "XVI - 탑", "{{Collectible65}} 방 안에 트롤폭탄을 6개 생성합니다."}, -- XVI - The Tower
 	{"18", "XVII - 별", "{{TreasureRoom}} 보물방으로 순간이동합니다."}, -- XVII - The Stars
@@ -1011,26 +1011,47 @@ EID.descriptions[languageCode].MCM={
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
 	-- For Korean, keep all description except lost, just icon changes
-	["Red to Soul"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{SoulHeart}}최대 체력 +{1}",
-	"↑ {{HealingRed}}빨간하트 +{1}", "",
-	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{SoulHeart}}최대 체력 +{1}",
-	"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{SoulHeart}}최대 체력 {1}"},
+	["Red to Soul"] = {
+		"{{ArrowGrayRight}} {{HealingRed}}", "{{HealingRed}}",
+		"↑ {{Heart}}최대 체력 +{1}", "↑ {{SoulHeart}}최대 체력 +{1}",
+		"↑ {{HealingRed}}빨간하트 +{1}", "",
+		"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{SoulHeart}}최대 체력 +{1}",
+		"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{SoulHeart}}최대 체력 {1}"
+	},
 
-	["Red to Black"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{BlackHeart}}최대 체력 +{1}",
-	"↑ {{HealingRed}}빨간하트 +{1}", "",
-	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{BlackHeart}}최대 체력 +{1}",
-	"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{BlackHeart}}최대 체력 {1}"},
+	["Red to Black"] = {
+		"{{ArrowGrayRight}} {{HealingRed}}", "{{HealingRed}}",
+		"↑ {{Heart}}최대 체력 +{1}", "↑ {{BlackHeart}}최대 체력 +{1}",
+		"↑ {{HealingRed}}빨간하트 +{1}", "",
+		"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{BlackHeart}}최대 체력 +{1}",
+		"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{BlackHeart}}최대 체력 {1}"
+	},
 
-	["Red to Bone"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{BoneHeart}}최대 체력 +{1}",
-	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{EmptyBoneHeart}}빈 최대 체력 +{1}",
-	"{{HealingRed}}", "{{HealingBone}}",
-	"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{EmptyBoneHeart}}최대 체력 {1}"}, -- Red HP to Bone Hearts
+	["Red to Bone"] = {
+		"{{ArrowGrayRight}} {{HealingRed}}", "{{HealingRed}}",
+		"↑ {{Heart}}최대 체력 +{1}", "↑ {{BoneHeart}}최대 체력 +{1}",
+		"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{EmptyBoneHeart}}빈 최대 체력 +{1}",
+		"{{HealingRed}}", "{{HealingBone}}",
+		"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{EmptyBoneHeart}}최대 체력 {1}"
+	}, -- Red HP to Bone Hearts
 
-	["Red to Coin"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{CoinHeart}}최대 체력 +{1}",
-	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{EmptyCoinHeart}}빈 최대 체력 +{1}",
-	"↑ {{HealingRed}}빨간하트 +{1}", "↑ {{HealingCoin}}빨간하트 +{1}", "반칸 회복", "한칸 회복", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{EmptyCoinHeart}}최대 체력 {1}"},
+	["Red to Coin"] = {
+		"{{ArrowGrayRight}} {{HealingRed}}", "{{HealingRed}}",
+		"↑ {{Heart}}최대 체력 +{1}", "↑ {{CoinHeart}}최대 체력 +{1}",
+		"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{EmptyCoinHeart}}빈 최대 체력 +{1}",
+		"↑ {{HealingRed}}빨간하트 +{1}", "↑ {{HealingCoin}}빨간하트 +{1}",
+		"반칸 회복", "한칸 회복",
+		"{{HealingRed}}", "{{HealingCoin}}",
+		"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{EmptyCoinHeart}}최대 체력 {1}"
+	},
 
-	["Red to None"] = {"↑ {{Heart}}최대 체력 +{1}", "", "↑ {{EmptyHeart}}빈 최대 체력{2} +{1}", "", "↓ {{EmptyHeart}}최대 체력 {1}", "", "↑ {{HealingRed}}빨간하트 +{1}", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {
+		"{{ArrowGrayRight}} {{HealingRed}}", "{{HealingRed}}",
+		"↑ {{Heart}}최대 체력 +{1}", "",
+		"↑ {{EmptyHeart}}빈 최대 체력{2} +{1}", "",
+		"↓ {{EmptyHeart}}최대 체력 {1}", "",
+		"↑ {{HealingRed}}빨간하트 +{1}", ""
+	}, -- Red HP to None (The Lost)
 }
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
