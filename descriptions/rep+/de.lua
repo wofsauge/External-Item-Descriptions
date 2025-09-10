@@ -92,7 +92,7 @@ EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].t
 
 local horsepills = {
 	-- Change: Forgets all previously identified pills
-	{ "25", "Amnesie", "{{CurseLost}} Versteckt die Ebenen-Karte#{{Pill}} Vergesse alle zuvor identifizierten Pillen" }, -- Amnesia
+	[26] = { "25", "Amnesie", "{{CurseLost}} Versteckt die Ebenen-Karte#{{Pill}} Vergesse alle zuvor identifizierten Pillen" }, -- Amnesia
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 
@@ -115,15 +115,6 @@ local abyssSynergies = {
 -- Remove all entries from Repentance file, and only add special descriptions relevant to Repentance+
 EID.descriptions[languageCode].abyssSynergies = {}
 EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
-
-local bookOfVirtuesWisps = {
-	-- Added expiration information
-	[111] = "Außen-Ring Irrlicht {{OuterWisp}}#{{Poison}} Gift-Furz wenn zerstört#Irrlicht wird zerstört wenn der Raum verlassen wird",                    -- The Bean
-	-- Added expiration information
-	[421] =	"Mittel-Ring Irrlicht {{MiddleWisp}}#{{Charm}} Verzaubernde Tränen#{{Charm}} Verzaubernder Furz wenn zerstört#Irrlicht wird zerstört wenn der Raum verlassen wird",      -- Kidney Bean
-}
-EID:updateDescriptionsViaTable(bookOfVirtuesWisps, EID.descriptions[languageCode].bookOfVirtuesWisps)
-
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then

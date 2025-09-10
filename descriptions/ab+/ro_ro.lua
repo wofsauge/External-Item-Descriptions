@@ -1,5 +1,5 @@
 ---------------------------------------
------  Basic English descriptions -----
+-----  Basic Romanian descriptions -----
 ---------------------------------------
 
 -- FORMAT: Item ID | Name | Description
@@ -10,10 +10,11 @@
 
 local languageCode = "ro_ro"
 
--- init en_us table
+-- init Romanian table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Română"
+EID.descriptions[languageCode].languageName = "Romanian"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"romanian", "ro"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}
@@ -557,7 +558,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Lachryphagy", "Isaac's tears progressively slow down, stop, then explode into 8 smaller tears#Tears can merge and become bigger"}, -- Lachryphagy
 	{"533", "Trisagion", "Replaces Isaac's tears with piercing beams of light#The beams deal 33% damage but can hit enemies multiple times"}, -- Trisagion
 	{"534", "Schoolbag", "Allows Isaac to hold 2 active items#The items can be swapped using the Drop button ({{ButtonRT}})"}, -- Schoolbag
-	{"535", "Blanket", "{{Heart}} Heals 1 heart#{{SoulHeart}} +1 Soul Heart#{{HolyMantle}} Entering a boss room grants a Holy Mantle shield (prevents damage once)"}, -- Blanket
+	{"535", "Blanket", "{{HealingRed}} Heals 1 heart#{{SoulHeart}} +1 Soul Heart#{{HolyMantle}} Entering a boss room grants a Holy Mantle shield (prevents damage once)"}, -- Blanket
 	{"536", "Sacrificial Altar", "Sacrifices up to 2 familiars and spawns a devil item for each sacrifice#{{Coin}} Turns blue spiders/flies into coins"}, -- Sacrificial Altar
 	{"537", "Lil Spewer", "{{Pill}} Spawns a random pill on pickup#Fires a line of creep#The type of creep changes with each pill use"}, -- Lil Spewer
 	{"538", "Marbles", "{{Trinket}} Spawns 3 random trinkets#{{Collectible479}} Taking damage has a 10% chance to consume Isaac's held trinket and grant its effects permanently"}, -- Marbles
@@ -1126,7 +1127,7 @@ EID.descriptions[languageCode].RedToX = {
 	
 	["Red to Black"] = {"↑ {{Heart}} +{1} Health", "{{BlackHeart}} +{1} Black Heart{pluralize}",
 	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{BlackHeart}} +{1} Black Heart{pluralize}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Black Heart{pluralize}"},
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{BlackHeart}} {1} Black Heart{pluralize}"},
 	
 	["Red to Bone"] = {"↑ {{Heart}} +{1} Health", "{{BoneHeart}} +{1} Bone Heart{pluralize}",
 	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{EmptyBoneHeart}} +{1} Empty Bone Heart{pluralize}", "{{HealingRed}}", "{{HealingBone}}",

@@ -47,7 +47,7 @@ end
 
 -- attributes we need to check on the glitched item's ItemConfig
 local itemConfigItemAttributes = { "AddMaxHearts", "AddHearts", "AddSoulHearts", "AddBlackHearts", "AddBombs", "AddCoins", "AddKeys", "CacheFlags" }
--- REPENTOGON's ProceduralItem functions, in the same order as en_us's VoidNames text we'll be using
+-- REPENTOGON's ProceduralItem functions, in the same order as English's VoidNames text we'll be using
 local getFunctions = { "GetSpeed", "GetFireDelay", "GetDamage", "GetRange", "GetShotSpeed", "GetLuck" }
 -- The items have a value between 0 and 1, and multiplied by these before being added to the player's stats
 local statMult = { 0.2, 1, 1, 1.5, 0.2, 1 }
@@ -198,5 +198,5 @@ end
 -- this made more sense when this file was only executed when --luadebug was present
 -- https://www.youtube.com/watch?v=msDuNZyYAIQ
 if (debug and os.date("%m/%d") == "04/01") then
-	EID.descriptions["en_us"].sacrifice[1][3] = "{{Coin}} 50% chance of winning 1 coin at Sacrifice#75% chance if you're a genetic freak#!!! If you add Kurt Angle to the mix, your chances of winning drastically go down"
+	EID.descriptions[EID.DefaultLanguageCode].sacrifice[1][3] = "{{Coin}} 50% chance of winning 1 coin at Sacrifice#75% chance if you're a genetic freak#!!! If you add Kurt Angle to the mix, your chances of winning drastically go down"
 end

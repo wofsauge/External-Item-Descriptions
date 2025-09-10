@@ -20,7 +20,7 @@ end
 -- Optional parameters: replaceText, language, extraTable
 -- Example usage: EID:addCondition(myDevilishItemID, EID.IsGreedMode, "{{GreedMode}} Reduces shop prices by 1 for each optional Nightmare wave completed")
 function EID:addCondition(ID, ownedID, text, replaceText, language, extraTable)
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
 	if replaceText then text = {text, replaceText} end
 	local modifierText = newModdedCondition(text, language)
 	if type(ownedID) ~= "function" then
@@ -37,7 +37,7 @@ end
 -- Optional parameters: text2, language, extraTable
 -- Example usage: EID:addSynergyCondition(myHappyLittleItemID, {CollectibleType.COLLECTIBLE_BRIMSTONE, CollectibleType.COLLECTIBLE_SULFUR}, "Turns your laser into a smiley face that charms enemies")
 function EID:addSynergyCondition(ID1, ID2, text1, text2, language, extraTable)
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
 	local modifierText1 = newModdedCondition(text1, language)
 	local modifierText2 = newModdedCondition(text2, language)
 	EID:AddSynergyConditional(ID1, ID2, modifierText1, modifierText2, extraTable)
@@ -49,7 +49,7 @@ end
 -- Optional parameters: replaceText, language, extraTable, includeTainted
 -- Example usage: EID:addPlayerCondition(myAngstyItemID, PlayerType.PLAYER_EVE, "Gives Eve extra mascara (2x Damage multiplier)")
 function EID:addPlayerCondition(ID, playerID, text, replaceText, language, extraTable, includeTainted)
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
 	if replaceText then text = {text, replaceText} end
 	local modifierText = newModdedCondition(text, language)
 	EID:AddPlayerConditional(ID, playerID, modifierText, extraTable, includeTainted)
@@ -61,7 +61,7 @@ end
 -- or, if you provide newNumber, it changes numberToDouble to that (technically, it's just a find/replace pair, any strings work)
 -- Example usage: EID:addToGeneralCondition(myVeryHealthyItemID, "bingeEaterBuffs", "↑ {{Speed}} +0.15 Speed#↓ {{Tears}} -0.5 Tears#↓ {{Damage}} -0.5 Damage")
 function EID:addToGeneralCondition(ID, locTable, text, numberToDouble, newNumber, language)
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
 	if numberToDouble then
 		newNumber = newNumber or numberToDouble * 2
 		text = { numberToDouble, newNumber, text }
@@ -103,7 +103,7 @@ end
 -- Shortcut function for adding BFFS conditions; this is slightly more complex since it supports trinkets
 -- Example usage: EID:addBFFSCondition(myBasicFamiliarID, nil, 3.5)
 function EID:addBFFSCondition(ID, text, numberToDouble, newNumber, language)
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
 	if numberToDouble then
 		newNumber = newNumber or numberToDouble * 2
 		text = { numberToDouble, newNumber, text }
@@ -119,7 +119,7 @@ end
 
 -- Shortcut function for adding Hive Mind conditions; by default, it will show with BFFS too, unless you pass in allowBFFS as false
 function EID:addHiveMindCondition(ID, text, numberToDouble, newNumber, language, allowBFFS)
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
 	if allowBFFS == nil then allowBFFS = true end
 	EID.HiveMindFamiliars[ID] = true
 	if not allowBFFS then EID.BFFSIgnore[ID] = true end
@@ -333,7 +333,7 @@ function EID:IsGreedMode()
 end
 
 function EID:IsGreedModePlusTarot()
-	return game:IsGreedMode() and EID:ConditionalItemCheck(451, true)
+	return EID:IsGreedMode() and EID:ConditionalItemCheck(451, true)
 end
 
 function EID:PlayersHaveRestock()
@@ -551,7 +551,7 @@ function EID:applyConditionals(descObj)
 	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 	local typeVar = descObj.ObjType.."."..descObj.ObjVariant -- for general conditions (Tarot Cloth, Book of Virtues)
 	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype -- for specific conditions
-	local highestLayer = -999
+	local highestLayer = math.mininteger
 	local printedDescs = {}
 	
 	-- Combine specific+generic conditions into one table (in that order)

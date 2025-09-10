@@ -13,10 +13,11 @@
 
 local languageCode = "fr"
 
--- init fr table
+-- init French table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "French"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"french"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default", textboxWidth = 145}, {name="inverted", textboxWidth = 145}, {name="borderless", textboxWidth = 145}}
@@ -801,8 +802,8 @@ EID.descriptions[languageCode].cards={
 	{"18", "XVII - L'Étoile", "Téléporte Isaac dans la Treasure Room {{TreasureRoom}}"},
 	{"19", "XVIII - La Lune", "Téléporte Isaac dans la Secret Room {{SecretRoom}}"},
 	{"20", "XIX - Le Soleil", "{{HealingRed}} Soin complet#Inflige 100 dégâts à tous les ennemis de la salle#Révèle l'intégralité de l'étage sur la carte"},
-	{"21", "XX - Le Jugement", "Invoque un mendiant"},
-	{"22", "XXI - Le Monde", "Révèle l'intégralité de l'étage sur la carte"},
+	{"21", "XX - Le Jugement", "{{Beggar}} Invoque un mendiant#{{DemonBeggar}} 33% de chances d'être un mendiant démoniaque #2% de chances d'être un mendiant clé ou bombe"},
+	{"22", "XXI - Le Monde", "{{Timer}} Révèle l'intégralité de l'étage sur la carte (sauf {{SuperSecretRoom}} Salle Super Secrète)"},
 	{"23", "2 de Trèfle", "Multiplie le nombre de bombes d'Isaac par 2#{{Bomb}} +2 bombes si Isaac ne possède aucune bombe"},
 	{"24", "2 de Carreau", "Multiplie le nombre de pièces d'Isaac par 2#{{Coin}} +2 pièces si Isaac ne possède aucune pièce"},
 	{"25", "2 de Pique", "Multiplie le nombre de clés d'Isaac par 2#{{Key}} +2 clés si Isaac ne possède aucune clé"},
@@ -1169,6 +1170,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.81"] = {"Réduit le nombre de réceptacles de cœurs rouges d'Isaac à 1","Retire tous les cœurs d'Isaac sauf 1", "réceptacle de cœur", "cœur"}, -- Dead Cat
 	["5.100.316"] = {"{{Warning}} Subir un dégât pendant le chargement de l'attaque téléporte Isaac dans une salle aléatoire", "Pas d'effet de téléportation avec la {1}"}, -- Cursed Eye
 	["5.100.260"] = "Retire l'effet de téléportation de {1}", -- Black Candle
+	["Void Single Use"] = "Les objets à usage unique ne sont activés qu'une seule fois", -- Single Use Actives + Void
 	["? Card Single Use"] = "Fait disparaître les objets à usage unique après les avoir utilisé", -- Single Use Actives + ? Card
 	["5.300.48"] = "Téléporte Isaac dans la salle d'erreur et détruit la {{ColorCard}}Carte ?{{CR}} et la {{ColorYellow}}Carte Blanche", -- Blank Card + ? Card
 	["? + Blank Pedestal"] = "Téléporte Isaac dans la salle d'erreur et détruit la {{ColorCard}}Carte ?{{CR}} et la {{ColorYellow}}Carte Blanche", -- Looking at Blank Card with ? Card
@@ -1185,9 +1187,9 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.523"] = "Compte comme un objet passif pour {1}", -- Moving Box + Void
 	["Mongo Babies"] = "Peut être imité par {1}", -- Mongo Baby + Baby Familiars
 	["Technology 2 One Eye"] = {"#Toutes les larmes d'Isaac sont tirées de l'œil droit", "", "Remplace complètement les larmes d'Isaac par le laser"},
-	-- ["Brimstone Proptosis"] = "Beams deal additional 2x damage at point blank range, decreasing with distance",
+	["Brimstone Proptosis"] = "Les lasers infligent 2x dégâts à bout portant, diminuant avec la distance",
 	["Brimstone Ipecac"] = "Isaac tire des larmes explosives pendant qu'il charge",
-	-- ["Proptosis Anti-Gravity"] = "Tears don't lose damage until they start moving",
+	["Proptosis Anti-Gravity"] = "Les larmes ne perdent pas de dégâts tant qu'elles ne bougent pas",
 	["Epic Fetus Soy Milk"] = "Réduit les dégâts du missile mais pas le temps entre les frappes",
 	["Eye of Belial Dr. Fetus"] = "Les bombes deviennent transperçantes mais pas autoguidées",
 	["Epic Fetus Brimstone"] = "{1} est prioritaire#Les fusées tirent 10 lasers",

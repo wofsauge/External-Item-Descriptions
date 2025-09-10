@@ -10,10 +10,11 @@
 
 local languageCode = "de"
 
--- init de table
+-- init German table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "German (WIP)"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"german"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
@@ -557,7 +558,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Lachryphagy", "Isaac's tears progressively slow down, stop, then explode into 8 smaller tears#Tränen can merge and become bigger"}, -- Lachryphagy
 	{"533", "Trisagion", "Replaces Isaac's tears with piercing beams of light#The beams deal 33% damage but can hit enemies multiple times"}, -- Trisagion
 	{"534", "Schoolbag", "Allows Isaac to hold 2 active items#The items can be swapped using the Drop button ({{ButtonRT}})"}, -- Schoolbag
-	{"535", "Blanket", "{{Heart}} Heals 1 heart#{{SoulHeart}} +1 Seelenherz#{{HolyMantle}} Entering a Bossraum grants a Holy Mantle shield (prevents damage once)"}, -- Blanket
+	{"535", "Blanket", "{{HealingRed}} Heals 1 heart#{{SoulHeart}} +1 Seelenherz#{{HolyMantle}} Entering a Bossraum grants a Holy Mantle shield (prevents damage once)"}, -- Blanket
 	{"536", "Sacrificial Altar", "Sacrifices up to 2 familiars and spawns a devil item for each sacrifice#{{Coin}} Turns blue spiders/flies into Münzen"}, -- Sacrificial Altar
 	{"537", "Lil Spewer", "{{Pill}} Spawns a random pill on pickup#Fires a line of creep#The type of creep changes with each pill use"}, -- Lil Spewer
 	{"538", "Marbles", "{{Trinket}} Spawns 3 random trinkets#{{Collectible479}} Taking damage has a 10% chance to consume Isaac's held trinket and grant its effects permanently"}, -- Marbles
@@ -582,21 +583,21 @@ EID.descriptions[languageCode].collectibles={
 -- Effect of Car battery on Active Items
 EID.descriptions[languageCode].carBattery = {
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from English and continue translating from that
 }
 
 ---------- Trinkets ----------
 
 EID.descriptions[languageCode].trinkets={
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from English and continue translating from that
 }
 
 ---------- Cards ----------
 
 EID.descriptions[languageCode].cards={
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from English and continue translating from that
 }
 
 --[[ Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
@@ -638,7 +639,7 @@ EID.descriptions[languageCode].unidentifiedPill = "Unidentifizierte Pille"
 
 EID.descriptions[languageCode].pills={
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from English and continue translating from that
 }
 
 ---------- Character Info ----------
@@ -723,8 +724,10 @@ EID.descriptions[languageCode].transformations={
 -- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
 -- Each language can do their own algorithm to modify the given text to their needs
 EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	text = EID:ReplaceVariableStr(text, "singular_r", amount > 1 and "" or "r") -- add "r" to word if singular
 	text = EID:ReplaceVariableStr(text, "plural_n", amount > 1 and "e" or "") -- add "n" to word
 	text = EID:ReplaceVariableStr(text, "plural_en", amount > 1 and "en" or "") -- add "en" to word
+	text = EID:ReplaceVariableStr(text, "plural_s", amount > 1 and "s" or "") -- add "s" to word
 	return text
 end
 
@@ -817,7 +820,7 @@ EID.descriptions[languageCode].PickupNames = {
 -- Tables with two or more entries are find-replace pairs (the new text will be colored Shiny Purple)
 EID.descriptions[languageCode].tarotClothBuffsAB = {
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from English and continue translating from that
 }
 
 -- Conditional descriptions
@@ -830,12 +833,12 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.34"] = "x1.5 Schadens-Multiplikator", -- Book of Belial
 	["5.300.16"] = "x1.5 Schadens-Multiplikator", -- XV - The Devil
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from English and continue translating from that
 }
 
 EID.descriptions[languageCode].BFFSSynergies = {
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from English and continue translating from that
 }
 
 -- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
@@ -844,5 +847,5 @@ EID.descriptions[languageCode].BFFSSynergies = {
 -- The numbers are provided to make this a quick reference for Player IDs
 EID.descriptions[languageCode].CharacterInfo = {
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from English and continue translating from that
 }

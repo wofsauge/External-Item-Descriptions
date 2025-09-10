@@ -72,6 +72,19 @@ local trinkets = {
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
+------- Golden Trinkets -------
+
+local goldenTrinketEffects = {
+	-- Tick (replace): added ", {{Trinket135}} A Lighter"
+	[53] = {
+		"{{HealingRed}} Entrer dans une salle de Boss {{BossRoom}} soigne {{ColorGold}}2{{ColorWhite}} cœurs rouges#Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#{{ColorGold}}Peut être retirée !",
+		"{{HealingRed}} Entrer dans une salle de Boss {{BossRoom}} soigne {{ColorGold}}2{{ColorWhite}} cœurs rouges#Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#{{Warning}} Ne peut être retirée qu'avec l'{{ColorYellow}}Allumette {{Trinket41}} ou briquet {{Trinket135}}",
+		"{{HealingRed}} Entrer dans une salle de Boss {{BossRoom}} soigne {{ColorGold}}3{{ColorWhite}} cœurs rouges#Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#{{ColorGold}}Peut être retirée !",
+	},
+}
+EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCode].goldenTrinketEffects)
+
+
 ---------- Cards ----------
 
 local cards = {
@@ -86,7 +99,7 @@ EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
  
 local horsepills = {
 	-- Change: Forgets all previously identified pills
-	{ "25", "Amnésie", "Masque la carte de l'étage#Oublie toutes les pilules déjà identifiées" }, -- Amnesia
+	[26] = { "25", "Amnésie", "Masque la carte de l'étage#Oublie toutes les pilules déjà identifiées" }, -- Amnesia
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 
@@ -108,14 +121,6 @@ local abyssSynergies = {
 -- Remove all entries from Repentance file, and only add special descriptions relevant to Repentance+
 EID.descriptions[languageCode].abyssSynergies = {}
 EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
-
-local bookOfVirtuesWisps = {
-	-- Added expiration information
-	[111] = "Le feu {{OuterWisp}} pète et empoisonne les ennemis à sa mort, et dure une salle",                    -- The Bean
-	-- Added expiration information
-	[421] =	"Le feu {{MiddleWisp}} pète et envoûte les ennemis à sa mort, et dure une salle",      -- Kidney Bean
-}
-EID:updateDescriptionsViaTable(bookOfVirtuesWisps, EID.descriptions[languageCode].bookOfVirtuesWisps)
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then

@@ -3,7 +3,7 @@
 -----  By: LuanRoger, NotZin0 and JorgeLNJunior  -----
 ------------------------------------------------------
 
--- Last Sync with en_us: 13.06.2022
+-- Last Sync with English: 13.06.2022
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -725,7 +725,6 @@ local repTrinkets={
 	[110] = {"110", "", "{{Shop}} Lojas vão aparecer no Womb e Corpse"}, -- Silver Dollar
 	[111] = {"111", "", "{{TreasureRoom}} Salas do item agora aparecem em the Womb e Corpse"}, -- Bloody Crown
 	[119] = {"119", "", "Cura metade dos seus Corações Vermelhos/Osso vazios ao viajar para o próximo andar#Mínimo de Meio Coração curado"}, -- Stem Cell
-	[125] = {"125", "", "Conecta seus familiares com raios de eleticidade#Causa 6 de dano por raio#Também funciona entre jogadores co-op (incluindo Jacob & Esau)"}, -- Extension Cord
 	[128] = {"128", "", "{{EmptyBoneHeart}} 5% de chance de ganhar um Coração de Osso ao receber dano"}, -- Finger Bone
 	[129] = {"129","","10% de chance de disparar dentes#Dentes causam 3.2x o seu dano#{{Luck}} 100% de chance com 9 de Sorte"}, --  Jawbreaker
 	[130] = {"130","","{{Slow}} 10% de chance de disparar lágrimas de lentidão#{{Luck}} 100% de chance com 18 de sorte"}, --  Chewed Pen

@@ -1,7 +1,7 @@
 ---------------------------------------
 -----  Basic Japanese descriptions ----
 ---------------------------------------
--- Last Update: 2024-11-18
+-- Last Update: 2025-07-01
 
 -- FORMAT: Item ID | Name | Description
 -- Special character markup:
@@ -10,10 +10,11 @@
 
 local languageCode = "ja_jp"
 
--- init ja_jp table
+-- init Japanese table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Japanese"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"japanese", "jp", "ja"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default", lineHeight= 12}, {name="inverted", lineHeight = 12}, {name="borderless", lineHeight= 12}}
@@ -1093,11 +1094,12 @@ EID.descriptions[languageCode].transformations={
 
 ---------- MISC ----------
 
--- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them, make it nil to not pluralize
 -- Each language can do their own algorithm to modify the given text to their needs
 EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
-	-- TODO: Not Implemented right now...
-	return text
+	-- English plural is very easy. Simply put an "s" at the end of specific words, if amount > 1
+	-- replace {pluralize} placeholders inside the text with an "s"
+	return EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
 end
 
 EID.descriptions[languageCode].VoidText = "吸収した時："
@@ -1129,7 +1131,7 @@ EID.descriptions[languageCode].RedToX = {
 	
 	["Red to Black"] = {"↑ 最大体力 +{1}", "黒ハート +{1}",
 	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{BlackHeart}} +{1} Black Heart{pluralize}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Black Heart{pluralize}"},
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{BlackHeart}} {1} Black Heart{pluralize}"},
 	
 	["Red to Bone"] = {"↑ 最大体力 +{1}", "骨ハート +{1}",
 	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{EmptyBoneHeart}} +{1} Empty Bone Heart{pluralize}", "{{HealingRed}}", "{{HealingBone}}",
@@ -1299,6 +1301,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.81"] = "赤ハートを持てないキャラは 青／黒ハートを1個にする", -- Dead Cat
 --  ["5.100.316"] = "{1}removes the teleportation effect", -- Cursed Eye
 --  ["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
+	["Void Single Use"] = "使い切りアイテムは 一度だけ発動できる", -- Single Use Actives + Void
 	["? Card Single Use"] = "使い切りアイテムは ？カードを使うと消失する", -- Single Use Actives + ? Card
 	["5.300.48"] = "I AM ERRORにテレポート#白紙のカードと？カード 両方が消失する", -- Blank Card + ? Card
 	["? + Blank Pedestal"] = "白紙のカードで？カードを 使うと、I _AM_ERRORに テレポートし、両カード共 消失する", -- Looking at Blank Card with ? Card
@@ -1342,6 +1345,3 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.10"] = "お店が無い場合、ランダムな 部屋にテレポートする", -- IX - The Hermit (Womb and below)
 	
 }
-
-
-

@@ -10,10 +10,11 @@
 
 local languageCode = "vi"
 
--- init en_us table
+-- init Vietnamese table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Vietnamese"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"vietnamese"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="vi_vn"}, {name="vi_vnborderless"}}
@@ -557,7 +558,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Lachryphagy", "Nước mắt của Isaac dần chậm lại, dừng, sau đó nổ thành 8 nước mắt nhỏ hơn#Nước mắt có thể hợp nhất và trở nên lớn hơn"}, -- Lachryphagy
 	{"533", "Trisagion", "Thay nước mắt của Isaac bằng tia sáng xuyên thấu#Tia gây 33% sát thương nhưng có thể trúng kẻ địch nhiều lần"}, -- Trisagion
 	{"534", "Schoolbag", "Cho phép Isaac giữ 2 vật phẩm kích hoạt#Các vật phẩm có thể được đổi bằng nút Thả ({{ButtonRT}})"}, -- Schoolbag
-	{"535", "Blanket", "{{Heart}} Hồi 1 trái tim#{{SoulHeart}} +1 Trái tim Linh hồn#{{HolyMantle}} Vào phòng trùm cấp một lá chắn Holy Mantle (ngăn sát thương một lần)"}, -- Blanket
+	{"535", "Blanket", "{{HealingRed}} Hồi 1 trái tim#{{SoulHeart}} +1 Trái tim Linh hồn#{{HolyMantle}} Vào phòng trùm cấp một lá chắn Holy Mantle (ngăn sát thương một lần)"}, -- Blanket
 	{"536", "Sacrificial Altar", "Hy sinh tối đa 2 bạn đồng hành và tạo một vật phẩm quỷ cho mỗi lần hy sinh#{{Coin}} Biến nhện/ruồi xanh thành đồng xu"}, -- Sacrificial Altar
 	{"537", "Lil Spewer", "{{Pill}} Tạo một viên thuốc ngẫu nhiên khi nhặt#Bắn một vệt chất lỏng#Loại chất lỏng thay đổi với mỗi lần sử dụng viên thuốc"}, -- Lil Spewer
 	{"538", "Marbles", "{{Trinket}} Tạo 3 món trang sức ngẫu nhiên#{{Collectible479}} Nhận sát thương có 10% cơ hội tiêu thụ món trang sức đang giữ của Isaac và cấp hiệu ứng của nó vĩnh viễn"}, -- Marbles
@@ -1125,7 +1126,7 @@ EID.descriptions[languageCode].RedToX = {
 	
 	["Red to Black"] = {"↑ {{Heart}} +{1} Máu", "{{BlackHeart}} +{1} Trái Tim Đen{2}",
 	"↑ {{EmptyHeart}} +{1} Ô trái tim trống{2}", "{{BlackHeart}} +{1} Trái Tim Đen{2}",
-	"↓ {{EmptyHeart}} {1} Máu", "↓ {{SoulHeart}} {1} Trái Tim Đen{2}"},
+	"↓ {{EmptyHeart}} {1} Máu", "↓ {{BlackHeart}} {1} Trái Tim Đen{2}"},
 	
 	["Red to Bone"] = {"↑ {{Heart}} +{1} Máu", "{{BoneHeart}} +{1} Trái Tim Xương{2}",
 	"↑ {{EmptyHeart}} +{1} Ô trái tim trống{2}", "{{EmptyBoneHeart}} +{1} Ô Trái Tim Xương trống{2}", "{{HealingRed}}", "{{HealingBone}}",

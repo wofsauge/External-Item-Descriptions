@@ -80,6 +80,17 @@ local trinkets = {
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
+------- Golden Trinkets -------
+
+local goldenTrinketEffects = {
+	-- Tick (replace): added ", {{Trinket135}} A Lighter"
+	[53] = {
+		"방 입장 시 체력이 60 이상인 적의 체력을 {{ColorGold}}30%{{CR}} 깎습니다.#{{HealingRed}} {{BossRoom}}보스방 입장 시 체력을 {{ColorGold}}두칸{{CR}} 회복합니다.",
+		"!!! {{Trinket41}}/{{Trinket135}}/{{Collectible479}}를 제외한 {{ColorOrange}}교체 및 버리기 불가{{CR}}#방 입장 시 체력이 60 이상인 적의 체력을 {{ColorGold}}30%{{CR}} 깎습니다.#{{HealingRed}} {{BossRoom}}보스방 입장 시 체력을 {{ColorGold}}두칸{{CR}} 회복합니다.",
+		"방 입장 시 체력이 60 이상인 적의 체력을 {{ColorGold}}30%{{CR}} 깎습니다.#{{HealingRed}} {{BossRoom}}보스방 입장 시 체력을 {{ColorGold}}세칸{{CR}} 회복합니다.",
+	},
+}
+EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCode].goldenTrinketEffects)
 
 ---------- Cards ----------
 local cards={
@@ -107,14 +118,6 @@ local conditions = {
 	["5.100.205 (Tainted Magdalene)"] = "고정 체력이 아닌 하트는 부족한 충전량 한칸 당 체력 {{BlinkYellowRed}}1칸{{CR}}을 깎습니다.", -- Sharp Plug + Tainted Magdalene
 }
 EID:updateDescriptionsViaTable(conditions, EID.descriptions[languageCode].ConditionalDescs)
-
-local wisps = {
-	[111] = "{{OuterWisp}} {{ColorOrange}}외부 x1{{CR}}/{{Heart}}:1#일반 눈물을 발사합니다. ({{DamageSmall}}:1.5)#{{Poison}}꺼지면 독방귀를 뀝니다.#방을 나가면 사라집니다.", -- The Bean
-	[421] = "{{MiddleWisp}} {{ColorYellow}}중앙 x1{{CR}}/{{Heart}}:2#일반 눈물을 발사합니다. ({{DamageSmall}}:3)#{{Charm}}꺼지면 매혹 방귀를 뀝니다.#방을 나가면 사라집니다.", -- Kidney Bean
-	-- TODO check damage and hp
-	[441] = "{{MiddleWisp}} {{ColorYellow}}중앙 x1{{CR}}/{{Heart}}:2#{{Chargeable}}충전형 혈사포를 발사합니다. ({{DamageSmall}}:3)#{{Collectible441}}아이템 발동 중 혈사포를 같이 발사합니다.", -- Mega Blast
-}
-EID:updateDescriptionsViaTable(wisps, EID.descriptions[languageCode].bookOfVirtuesWisps)
 
 -- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
 local abyssSynergies = {

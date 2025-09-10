@@ -10,10 +10,11 @@
 
 local languageCode = "cs_cz"
 
--- init cz table
+-- init Czech table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Czech"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"czech", "cs"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
@@ -554,7 +555,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Lachryfagie", "Slzy při cestování zpomalují#Po zastavení explodují v 8 menších slz#Slzy mohou být vstřeleny do jiných slz, čímž se zvětší"},
 	{"533", "Trisagion", "Střílíš průrazné záblesky světla#{{Damage}} Udělují 33% poškození, ale mohou zasáhnout nepřátele několikrát"},
 	{"534", "Školní Aktovka", "Umožňuje ti držet 2 aktivní předměty#Přepínej mezi nimi stisknutím tlačítka Drop (tlačítko 'drž' za \"The Forgotten\")"},
-	{"535", "Přikrývka", "{{SoulHeart}} +1 Duševní Srdce#{{Heart}} Léčí 1 Červené Srdce#{{Collectible313}} Uděluje štít při vstupu do místnosti s Bossem"},
+	{"535", "Přikrývka", "{{SoulHeart}} +1 Duševní Srdce#{{HealingRed}} Léčí 1 Červené Srdce#{{Collectible313}} Uděluje štít při vstupu do místnosti s Bossem"},
 	{"536", "Obětní Oltář", "Obětuje 1-2 spojence, aby vytvořil Ďábelský předmět#Promění tvé modré pavouky/mouchy na mince"},
 	{"537", "Maličký Plivač", "{{Pill}} Vytvoří náhodnou pilulku#Spojenec, který střílí řadu kaluží#Typ kaluže se změní pokaždé, když použiješ pilulku"},
 	{"538", "Kuličky", "{{Trinket}} Vytvoří 3 náhodné trinkety#{{Collectible479}} Utrpení poškození může spotřebovat tvůj trinket a přidá ti jeho efekt natrvalo"},
@@ -1106,7 +1107,7 @@ EID.descriptions[languageCode].RedToX = {
 	
 	["Red to Black"] = {"↑ {{Heart}} +{1} Zdraví", "{{BlackHeart}} +{1} Černé Srdce",
 	"↑ {{EmptyHeart}} +{1} Místo na srdce", "{{BlackHeart}} +{1} Černé Srdce",
-	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{SoulHeart}} {1} Černé Srdce"},
+	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{BlackHeart}} {1} Černé Srdce"},
 	
 	["Red to Bone"] = {"↑ {{Heart}} +{1} Zdraví", "{{BoneHeart}} +{1} Kostěné Srdce",
 	"↑ {{EmptyHeart}} +{1} Místo na srdce", "{{EmptyBoneHeart}} +{1} Prázdné kostěné srdce", "{{HealingRed}}", "{{HealingBone}}",
@@ -1205,7 +1206,6 @@ EID.descriptions[languageCode].CharacterInfo = {
 
 EID.descriptions[languageCode].ConditionalDescs = {
 	------ GENERAL STRINGS ------
-	["5.300.48"] = "Teleportuje tě do JSEM ERROR místnosti#Prázdná Karta a ?-Karta bude zničena", -- Blank Card + Q Card
 	["Overridden"] = "Je přepsán předmětem {1}",
 	["Overrides"] = "Přepíše {1}",
 	["Almost No Effect"] = "Malý až žádný efekt pro {1}",

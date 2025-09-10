@@ -2,7 +2,7 @@
 -----  Basic Korean descriptions  -----
 ---------------------------------------
 
--- Last Sync with en_us or update: 2024-11-18
+-- Last Sync with English or update: 2024-11-18
 
 -- FORMAT: Item ID | Name | Description
 
@@ -14,10 +14,11 @@
 
 local languageCode = "ko_kr"
 
--- init ko_kr table
+-- init Korean table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Korean"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"koreana", "kr", "ko"}
 
 -- Fonts to be used with this languagepack
 --[[
@@ -29,6 +30,10 @@ EID.descriptions[languageCode].languageName = "Korean"
 	korean_soyanon(소야논8) - A fancy font that that was used from former EID Korean. Shadow version available. Recommended LineHeight : 11
 	korean_galmoori9(갈무리9) - A font that inspired from Nintendo DS Korean font. Recommended LineHeight : 11
 	korean_galmoori11(갈무리11) - A font that inspired from Nintendo DS Korean font. Used for unofficial Korean mod by Blackcreamtea. Recommended LineHeight : 13
+	korean_baekmukgulim10(백묵굴림10) A font that improves readability. Recommended LineHeight : 12
+	korean_hatmuri9(햇무리9) - A font that improves readability. Recommended LineHeight : 12
+	korean_dotum(돋움) - A font that was used from former EID Korean. Recommended LineHeight : 13
+	korean_gulim(굴림) - A font that was used from former EID Korean. Recommended LineHeight : 13
 
 	korean_yoonwebdotum10, korean_galmoori9, korean_galmoori11 is added for community request.
 	eid_korean_hcrdotum_0.png is untouched due to game crashes for changing file names.
@@ -47,7 +52,11 @@ EID.descriptions[languageCode].fonts = {
 	{name="korean_soyanon", lineHeight=12, textboxWidth = 150},
 	{name="korean_soyanon_shadow", lineHeight=12, textboxWidth = 150},
 	{name="korean_galmoori9", lineHeight=12, textboxWidth = 150},
-	{name="korean_galmoori11", lineHeight=14, textboxWidth = 160}
+	{name="korean_galmoori11", lineHeight=14, textboxWidth = 160},
+	{name="korean_baekmukgulim10", lineHeight=12, textboxWidth = 150},
+	{name="korean_hatmuri9", lineHeight=12, textboxWidth = 150},
+	{name="korean_dotum", lineHeight=13, textboxWidth = 160},
+	{name="korean_gulim", lineHeight=13, textboxWidth = 160}
 }
 
 ---------- Collectibles ----------
@@ -593,7 +602,7 @@ EID.descriptions[languageCode].collectibles={
 	{"539", "이상한 알", "{{Friendly}} 피격 시 매혹된 아군 적을 소환합니다.#피격당하지 않고 방을 넘어갈수록 소환되는 적이 더욱 강해집니다."}, -- Mystery Egg
 	{"540", "납작한 돌", "눈물이 바닥을 튀면서 발사됩니다.#눈물의 최대 사거리가 캐릭터의 사거리보다 40% 더 멀리 나갑니다.#눈물이 튈 때 주변에 있는 적에게 공격력의 25%의 피해를 줍니다."}, -- Flat Stone
 	{"541", "골수", "↑ {{EmptyBoneHeart}}뼈하트 +1#{{Heart}} 빨간하트를 3개 드랍합니다."}, -- Marrow
-	{"542", "미끄러운 갈비뼈", "캐릭터 주위를 돌며 적의 탄환을 반사합니다."}, -- Slipped Rib
+	{"542", "빠진 갈비뼈", "캐릭터 주위를 돌며 적의 탄환을 반사합니다."}, -- Slipped Rib
 	{"543", "성지", "피격 시 오라를 가진 하얀 똥을 설치합니다.#오라 안에 있을 시 {{TearsSmall}}연사가 2배가 되며 피해를 확률적으로 무시합니다."}, -- Hallowed Ground
 	{"544", "날카로운 갈비뼈", "캐릭터가 보는 방향에서 앞뒤로 움직입니다.#접촉하는 적에게 초당 캐릭터의 공격력 x6의 피해를 줍니다."}, -- Pointy Rib
 	{"545", "망자의 책", "{{Friendly}} 사용 시 방에서 죽인 적의 수만큼 일회용 뼛조각 배리어를 생성하며 확률적으로 아군 해골 적을 소환합니다. (최대 8)"}, -- Book of the Dead
@@ -800,7 +809,7 @@ EID.descriptions[languageCode].trinkets={
 	{"122", "버터!", "액티브 아이템 사용 시 사용한 액티브 아이템을 내려놓습니다.#피격 시 2% 확률로 소지중인 패시브 아이템 중 하나를 내려놓습니다."}, -- Butter!
 	{"123", "세공 깃털", "{{AngelRoom}} Uriel/Gabriel이 Key Piece 대신 천사방 아이템을 드랍합니다.#!!! 한 종류의 Key Piece만 소지 시 Key Piece를 드랍합니다."}, -- Filigree Feather
 	{"124", "문 받침대", "방에 입장 시 들어왔던 문이 닫히지 않습니다."}, -- Door Stop
-	{"125", "연장 코드", "캐릭터와 패밀리어 사이에 전류 레이저가 흐르며 레이저에 접촉한 적은 초당 6의 피해를 받습니다."}, -- Extension Cord
+	{"125", "연장 코드", "{{ColorCyan}}모든 캐릭터{{CR}}와 패밀리어 사이에 전류 레이저가 흐르며;#{{ArrowGrayRight}} 레이저에 접촉한 적은 초당 6의 피해를 받습니다."}, -- Extension Cord
 	{"126", "썩은 동전", "동전 획득 시 파란 아군 파리를 소환합니다."}, -- Rotten Penny
 	{"127", "아기 초능력자", "패밀리어의 공격에 유도 효과가 생깁니다."}, -- Baby-Bender
 	{"128", "손가락 뼈", "{{EmptyBoneHeart}} 피격 시 2% 확률로 뼈하트를 획득합니다."}, -- Finger Bone
