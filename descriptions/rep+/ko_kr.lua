@@ -20,6 +20,12 @@ local collectibles = {
 	[56] = {"56", "레몬빛 실수", "사용 시 캐릭터의 주위에 노란 장판을 생성합니다.#장판은 지상의 적에게 초당 24의 피해를 주며 방을 나가기 전까지 유지됩니다."}, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
 	[117] = {"117", "죽은 새", "피격 시 적을 따라다니며 접촉한 적에게 초당 4.3의 피해를 줍니다.#{{HalfHeart}} 빨간하트가 반칸 이하일 때 항상 발동"}, -- Dead Bird
+	-- Change: tears up -> fire rate up
+	[120] = {"120", "이상한 버섯", "↓ {{DamageSmall}}공격력 {{ColorOrange}}증가량{{CR}} 배율 x0.9#↓ {{DamageSmall}}추가 공격력 -0.4#↑ {{TearsSmall}}연사(+상한) +1.7#↑ {{SpeedSmall}}이동속도 +0.3#캐릭터의 머리가 작아집니다."}, -- Odd Mushroom
+	-- Change: tears up -> fire rate up
+	[141] = {"141", "분장 소년", "{{Coin}} 동전 7개를 드랍합니다.#랜덤 페니류 장신구를 하나 드랍합니다."}, -- Pageant Boy
+	-- Change: tears up per use
+	[186] = {"186", "피의 권리", "{{EmptyHeart}} 사용 시 체력을 1칸 깎고;#{{ArrowGrayRight}} {{TearsSmall}} 연사 +0.15#{{ArrowGrayRight}} 그 방의 적에게 40의 피해를 줍니다.#!!! 그 방에서 연속적으로 사용 시 2번째 사용부터;#{{ArrowGrayRight}} {{TearsSmall}} 연사 +0.15#{{ArrowGrayRight}} 깎이는 체력이 반칸으로 줄어듭니다.#빨간하트를 우선적으로 깎습니다."}, -- Blood Rights
 	-- Change: added "ability to block shots"
 	[281] = {"281", "샌드백", "방 안을 돌아다니며 6초 간격으로 적을 유인합니다.#적의 탄환을 막아줍니다."}, -- Punching Bag
 	-- Change:
@@ -30,6 +36,8 @@ local collectibles = {
 	[351] = {"351", "대빵 큰 콩", "{{Petrify}} 사용 시 그 방의 장애물을 파괴하고 적에게 100의 폭발 + 석화 피해를 주며;#{{ArrowGrayRight}} {{Poison}}캐릭터 주변의 적에 초당 5의 추가 독성 피해를 줍니다.#{{BossRoom}} 보스방에서 사용 시 D2(6스테이지)의 경우 보스러시가, W2(8스테이지)의 경우 Blue Womb으로 향하는 문이 열립니다."}, -- Mega Bean
 	-- Change : Up to 2 items
 	[381] = {"381", "에덴의 축복", "↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤 아이템을 하나 들고 시작합니다.#{{Blank}} {{ColorGray}}(최대 2개)"}, -- Eden's Blessing
+	-- Change: Bomb damage +85(does not stack with mr. mega)
+	[420] = {"420", "검은 가루", "{{Bomb}} 폭탄 피해량 +85#{{Bomb}} 폭탄의 범위가 넓어집니다.#모닥불을 끄면 폭발합니다.#캐릭터가 지나간 곳에 검은 가루가 남으며;#{{ArrowGrayRight}} 가루로 원을 그리면 마법진이 생성됩니다.#마법진 위의 적에게 틱당 10의 피해를 줍니다."}, -- Black Powder
 	-- Change: Complete rewrite
 	[436] = {"436", "우유!", "캐릭터를 따라다니며 적의 탄환을 막아줍니다.#{{TearsSmall}} 10회 방어 시 사라지며 그 스테이지에서 연사(+상한) +1#스테이지 진입 시 복원됩니다."}, -- Milk!
 	-- Change: Complete rewrite
@@ -37,12 +45,16 @@ local collectibles = {
 	[461] = {"461", "기생자", "15%의 확률로 알주머니 공격이 나갑니다.#알주머니 명중 시 파란 아군 거미 또는 파리를 소환합니다.#{{LuckSmall}} 행운 5 이상일 때 50% 확률"}, -- Parasitoid
 	-- Change: added " and fires radial bursts of tears"
 	[470] = {"470", "허쉬", "대각선으로 이동하며 접촉하는 적에게 초당 30의 피해를 줍니다.#공격키를 누르고 있으면 움직이지 않는 대신 적의 탄환을 막으며;#{{ArrowGrayRight}} 8방향으로 공격력 6의 눈물을 발사합니다."}, -- Hushy
+	-- Change: extended timer for isaac's death for certain boss rooms
+	[475] = {"475", "플랜 C", "사용 시 그 방의 적에게 9,999,999의 피해를 주며 {{ColorRed}}3초 후 사망합니다{{CR}}.#{{ArrowGrayRight}} {{ColorGray}}(일부 보스방의 경우 사망하는 시점이 늦춰집니다.)"}, -- Plan C
 	-- Change: added "Turns item pedestals into glitched items"
 	[481] = {"481", "데이터마이너", "{{ArrowUpDown}} 사용 시 능력치가 랜덤으로 증가하거나 감소, 그 방에서 랜덤 효과가 부여되며;#{{ArrowGrayRight}} {{Collectible721}}그 방의 아이템을 오류 아이템으로 바꿉니다.#!!! 그 방의 스프라이트가 망가집니다."}, -- Dataminer
 	-- Change:
 	[482] = {"482", "클리커", "사용 시 가장 최근에 획득한 패시브 아이템을 50%의 확률로 제거하고;#{{ArrowGrayRight}} 캐릭터를 다른 랜덤 캐릭터로 바꿉니다."}, -- Clicker
 	-- Change: Complete rewrite
 	[510] = {"510", "정신착란", "{{Friendly}} {{DeliriumSmall}} 사용 시 Delirium 버전의 아군 보스를 소환합니다.#소환된 보스는 방을 나가도 유지되나 체력이 서서히 감소합니다.#재사용 시 이전에 소환한 보스는 사라집니다."}, -- Delirious
+	-- Change:
+	[554] = {"554", "넘나 무서운 것", "↑ {{TearsSmall}}연사 +0.5#↑ {{ShotspeedSmall}}탄속 +0.2#{{Fear}} 캐릭터와 가까이 있는 적을 도망가게 합니다."}, -- 2Spooky
 	-- Change: added "Tears leave a pool of creep on impact"
 	[560] = {"560", "너무 아파", "피격 시 캐릭터 기준 10방향으로 공격력 +25의 눈물을 발사하며;#{{ArrowGrayRight}} 그 방에서 {{TearsSmall}}연사(+상한) +1.2#{{Blank}} (2회 피격 시부터 {{TearsSmall}}+0.4)#그 방에서 공격이 무언가에 부딪힐 때 빨간 장판이 생깁니다.#장판은 지상의 적에게 초당 30의 피해를 줍니다."}, -- It Hurts
 	[593] = {"593", "화성", "이동키를 두번 누르면 누른 방향으로 돌진하여 접촉한 적에게 공격력 x4 +8의 피해를 줍니다.#{{ArrowGrayRight}} {{Burning}} 돌진 중 적 및 장애물에 부딪힐 시 주변의 적에게 10의 화염 피해를 줍니다.#{{TimerSmall}} (쿨타임 3초/{{Collectible130}}{{Collectible181}}1초)"}, -- Mars
@@ -50,6 +62,8 @@ local collectibles = {
 	[594] = {"594", "목성", "↑ {{Heart}}최대 체력 +2#↓ {{SpeedSmall}}이동속도 -0.3#{{Poison}} 이동하지 않으면 이동속도가 0.5 증가하며, 증가한 상태에서 이동 시 공격력 x0.5의 독가스를 발사하고 이동속도가 다시 감소합니다.#캐릭터가 독구름에 면역이 됩니다."}, -- Jupiter
 	-- Change: Complete rewrite
 	[632] = {"632", "사악한 부적", "↑ {{LuckSmall}}행운 +2#!!! 캐릭터가 이하 효과에 면역:#{{Burning}} 모닥불 및 화염 피해#{{Confusion}} 혼란#{{Fear}} 공포#{{Slow}} 거미줄#{{Poison}} 독구름#{{ArrowGrayRight}} 적의 장판에 닿아도 1초 이내에 벗어나면 피해를 받지 않습니다."}, -- Evil Charm
+	-- Change : removed +2 Soul Hearts
+	[643] = {"643", "계시", "비행 능력을 얻습니다.#{{Chargeable}} 공격키를 2.5초 이상 누르면 충전되며 공격키를 떼면 일직선 방향으로 레이저를 발사합니다.#레이저는 다단히트로 적에게 최대 15번의 피해를 줍니다."}, -- Revelation
 	-- Change: removed x1.5 dmg mult
 	[651] = {"651", "베들레헴의 별", "{{BossRoom}} 오라를 가지고 보스방이 있는 곳으로 이동합니다.#캐릭터가 오라 안에 있을 시:#{{ArrowGrayRight}} {{DamageSmall}}공격력 배율 x1.2#{{ArrowGrayRight}} {{TearsSmall}}연사 배율 x2.5#{{ArrowGrayRight}} 피해를 확률적으로 무시하고 공격에 유도 효과가 생깁니다."}, -- Star of Bethlehem
 	-- Change: added shop portals
