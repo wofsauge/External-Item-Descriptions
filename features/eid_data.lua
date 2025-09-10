@@ -981,6 +981,13 @@ if EID.isRepentance then
 	EID.CarBatteryNoSynergy[709] = true; EID.CarBatteryNoSynergy[710] = true; EID.CarBatteryNoSynergy[711] = true; EID.CarBatteryNoSynergy[714] = true;
 	EID.CarBatteryNoSynergy[715] = true; EID.CarBatteryNoSynergy[728] = true; EID.CarBatteryNoSynergy[729] = true;
 end
+if EID.isRepentancePlus then
+	EID.CarBatteryNoSynergy[164] = false -- The Candle
+	EID.CarBatteryNoSynergy[289] = false -- Red Candle
+	EID.CarBatteryNoSynergy[441] = false -- Mega Blast
+	EID.CarBatteryNoSynergy[728] = false -- Gello
+end
+
 -- Items that should show their Car Battery synergy while looking at a Car Battery pedestal
 -- Void, Crooked Penny, Metronome, Moving Box, Broken Shovel
 EID.CarBatteryPedestalWhitelist = { [477] = true, [485] = true, [488] = true, [523] = true, [550] = true }
