@@ -358,25 +358,15 @@ end
 
 ---Try to automatically assign vanilla transformations to the entity
 ---@param collectibleID CollectibleType
-function EID:tryAutodetectTransformationsCollectible(collectibleID) --?Should this be in API?
+function EID:tryAutodetectTransformationsCollectible(collectibleID)
 	if not EID.isRepentance then return end
 	local config = EID.itemConfig:GetCollectible(collectibleID)
-	local transformations = {}
-	transformations[EID.TRANSFORMATION.ANGEL] = config:HasTags(ItemConfig.TAG_ANGEL) or nil
-	transformations[EID.TRANSFORMATION.BOB] = config:HasTags(ItemConfig.TAG_BOB) or nil
-	transformations[EID.TRANSFORMATION.BOOKWORM] = config:HasTags(ItemConfig.TAG_BOOK) or nil
-	transformations[EID.TRANSFORMATION.CONJOINED] = config:HasTags(ItemConfig.TAG_BABY) or nil
-	transformations[EID.TRANSFORMATION.GUPPY] = config:HasTags(ItemConfig.TAG_GUPPY) or nil
-	transformations[EID.TRANSFORMATION.LEVIATHAN] = config:HasTags(ItemConfig.TAG_DEVIL) or nil
-	transformations[EID.TRANSFORMATION.LORD_OF_THE_FLIES] = config:HasTags(ItemConfig.TAG_FLY) or nil
-	transformations[EID.TRANSFORMATION.MOM] = config:HasTags(ItemConfig.TAG_MOM) or nil
-	transformations[EID.TRANSFORMATION.MUSHROOM] = config:HasTags(ItemConfig.TAG_MUSHROOM) or nil
-	transformations[EID.TRANSFORMATION.POOP] = config:HasTags(ItemConfig.TAG_POOP) or nil
-	transformations[EID.TRANSFORMATION.SPIDERBABY] = config:HasTags(ItemConfig.TAG_SPIDER) or nil
-	transformations[EID.TRANSFORMATION.SPUN] = config:HasTags(ItemConfig.TAG_SYRINGE) or nil
-	-- these dont have a tag : ADULT, STOMPY, SUPERBUM
-	for k, _ in pairs(transformations) do
-		EID:assignTransformation("collectible", collectibleID, k)
+
+	-- evaulate all transformations that have an ItemTag field
+	for transformIDString, data in pairs(EID.TransformationData) do
+		if data.ItemTag ~= nil and config:HasTags(data.ItemTag) then
+			EID:assignTransformation("collectible", collectibleID, transformIDString)
+		end
 	end
 end
 
@@ -2458,8 +2448,10 @@ function EID:evaluateTransformationProgress(transformation)
 				local eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
 				if tonumber(eType) == EntityType.ENTITY_PICKUP then
 					if tonumber(eVariant) == PickupVariant.PICKUP_COLLECTIBLE then
-						local currentCount = EID.TransformationProgress[id][transformation]
-						if activesTable[tostring(eSubType)] then
+						-- Rep+ Exclusive: Only count a Transformation progress for Necromancer, if you own the Necronomicon
+						local isNecromancer = EID.isRepentancePlus and transformation == tostring(EID.TRANSFORMATION.NECROMANCER)
+
+						if not isNecromancer and activesTable[tostring(eSubType)] then
 							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + activesTable[tostring(eSubType)]
 						else
 							local collCount = player:GetCollectibleNum(eSubType, true)
@@ -2474,8 +2466,8 @@ function EID:evaluateTransformationProgress(transformation)
 							end
 						end
 						-- In AB+, only one copy of a given collectible is counted for trans
-						if not EID.isRepentance and EID.TransformationProgress[id][transformation] > currentCount + 1 then
-							EID.TransformationProgress[id][transformation] = currentCount + 1
+						if not EID.isRepentance and EID.TransformationProgress[id][transformation] > EID.TransformationProgress[id][transformation] + 1 then
+							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + 1
 						end
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_TRINKET and player:HasTrinket(eSubType) then
 						EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + player:GetTrinketMultiplier(eSubType)
