@@ -925,24 +925,24 @@ EID.StatPickupBulletpointBlacklist = {
 }
 
 EID.TransformationData = {
-	-- Structure: [Internal Name of Transformation] = {NumNeeded = 3 (Default), VanillaForm = nil (default)}
-	[tostring(EID.TRANSFORMATION.GUPPY)] = {VanillaForm = PlayerForm.PLAYERFORM_GUPPY},
-	[tostring(EID.TRANSFORMATION.LORD_OF_THE_FLIES)] = {VanillaForm = PlayerForm.PLAYERFORM_LORD_OF_THE_FLIES},
-	[tostring(EID.TRANSFORMATION.MUSHROOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MUSHROOM},
-	[tostring(EID.TRANSFORMATION.ANGEL)] = {VanillaForm = PlayerForm.PLAYERFORM_ANGEL},
-	[tostring(EID.TRANSFORMATION.BOB)] = {VanillaForm = PlayerForm.PLAYERFORM_BOB},
-	[tostring(EID.TRANSFORMATION.SPUN)] = {VanillaForm = PlayerForm.PLAYERFORM_DRUGS},
-	[tostring(EID.TRANSFORMATION.MOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MOM},
-	[tostring(EID.TRANSFORMATION.CONJOINED)] = {VanillaForm = PlayerForm.PLAYERFORM_BABY},
-	[tostring(EID.TRANSFORMATION.LEVIATHAN)] = {VanillaForm = PlayerForm.PLAYERFORM_EVIL_ANGEL},
-	[tostring(EID.TRANSFORMATION.POOP)] = {VanillaForm = PlayerForm.PLAYERFORM_POOP},
-	[tostring(EID.TRANSFORMATION.BOOKWORM)] = {VanillaForm = PlayerForm.PLAYERFORM_BOOK_WORM},
+	-- Structure: [Internal Name of Transformation] = {NumNeeded = 3 (Default), VanillaForm = nil (default), ItemTag = nil (default)}
+	[tostring(EID.TRANSFORMATION.GUPPY)] = {VanillaForm = PlayerForm.PLAYERFORM_GUPPY, ItemTag = ItemConfig.TAG_GUPPY},
+	[tostring(EID.TRANSFORMATION.LORD_OF_THE_FLIES)] = {VanillaForm = PlayerForm.PLAYERFORM_LORD_OF_THE_FLIES, ItemTag = ItemConfig.TAG_FLY},
+	[tostring(EID.TRANSFORMATION.MUSHROOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MUSHROOM, ItemTag = ItemConfig.TAG_MUSHROOM},
+	[tostring(EID.TRANSFORMATION.ANGEL)] = {VanillaForm = PlayerForm.PLAYERFORM_ANGEL, ItemTag = ItemConfig.TAG_ANGEL},
+	[tostring(EID.TRANSFORMATION.BOB)] = {VanillaForm = PlayerForm.PLAYERFORM_BOB, ItemTag = ItemConfig.TAG_BOB},
+	[tostring(EID.TRANSFORMATION.SPUN)] = {VanillaForm = PlayerForm.PLAYERFORM_DRUGS, ItemTag = ItemConfig.TAG_SYRINGE},
+	[tostring(EID.TRANSFORMATION.MOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MOM, ItemTag = ItemConfig.TAG_MOM},
+	[tostring(EID.TRANSFORMATION.CONJOINED)] = {VanillaForm = PlayerForm.PLAYERFORM_BABY, ItemTag = ItemConfig.TAG_BABY},
+	[tostring(EID.TRANSFORMATION.LEVIATHAN)] = {VanillaForm = PlayerForm.PLAYERFORM_EVIL_ANGEL, ItemTag = ItemConfig.TAG_DEVIL},
+	[tostring(EID.TRANSFORMATION.POOP)] = {VanillaForm = PlayerForm.PLAYERFORM_POOP, ItemTag = ItemConfig.TAG_POOP},
+	[tostring(EID.TRANSFORMATION.BOOKWORM)] = {VanillaForm = PlayerForm.PLAYERFORM_BOOK_WORM, ItemTag = ItemConfig.TAG_BOOK},
 	[tostring(EID.TRANSFORMATION.ADULT)] = {VanillaForm = PlayerForm.PLAYERFORM_ADULTHOOD},
-	[tostring(EID.TRANSFORMATION.SPIDERBABY)] = {VanillaForm = PlayerForm.PLAYERFORM_SPIDERBABY},
+	[tostring(EID.TRANSFORMATION.SPIDERBABY)] = {VanillaForm = PlayerForm.PLAYERFORM_SPIDERBABY, ItemTag = ItemConfig.TAG_SPIDER},
 	[tostring(EID.TRANSFORMATION.SUPERBUM)] = {},
-	[tostring(EID.TRANSFORMATION.STOMPY)] = {VanillaForm = EID.isRepentance and PlayerForm.PLAYERFORM_STOMPY}
+	[tostring(EID.TRANSFORMATION.STOMPY)] = {VanillaForm = EID.isRepentance and PlayerForm.PLAYERFORM_STOMPY},
+	[tostring(EID.TRANSFORMATION.NECROMANCER)] = {VanillaForm = EID.isRepentancePlus and 15}, -- added in Rep+. Currently has no ENUM in vanilla
 }
-
 
 EID.RoomShapeToMarkup = { "{{Room}}", "{{RoomSmallHorizontal}}", "{{RoomSmallVertical}}", "{{RoomLongVertical}}", "{{RoomLongThinVertical}}","{{RoomLongHorizontal}}", "{{RoomLongThinHorizontal}}", "{{RoomXL}}", "{{RoomLTopLeft}}", "{{RoomL}}", "{{RoomLBottomLeft}}", "{{RoomLBottomRight}}" }
 EID.RoomTypeToMarkup = { "{{Room}}", "{{Shop}}", "{{ErrorRoom}}", "{{TreasureRoom}}", "{{BossRoom}}", "{{MiniBoss}}", "{{SecretRoom}}", "{{SuperSecretRoom}}", "{{ArcadeRoom}}", "{{CursedRoom}}", "{{ChallengeRoom}}", "{{Library}}", "{{SacrificeRoom}}", "{{DevilRoom}}", "{{AngelRoom}}", "{{LadderRoom}}", "{{Room}}" --[[boss rush]], "{{IsaacsRoom}}", "{{BarrenRoom}}", "{{ChestRoom}}", "{{DiceRoom}}", "{{Shop}}", "{{Room}}", --[[Black Market / Greed Exit]] "{{Planetarium}}", "{{Teleporter}}","{{Teleporter}}", "{{Room}}", "{{Room}}" --[[Blue Key rooms]], "{{UltraSecretRoom}}" }
