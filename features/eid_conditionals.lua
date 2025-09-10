@@ -274,6 +274,9 @@ if EID.isRepentance then
 	EID:AddSynergyConditional({577, 656}, {276, 313}, "Suicide 1", "Suicide 2") -- Damocles + Isaac's Heart, Holy Mantle
 	EID:AddSynergyConditional({577, 656, 475, "5.300.46"}, {674, 694}, "Suicide 1", "Suicide 2") -- Damocles, Plan C, Suicide King + Spirit Shackles, Heartbreak
 end
+if EID.isRepentancePlus then
+	EID:AddSynergyConditional(487, 207, "Potato Peeler + Ball of Bandages") -- Potato Peeler with Ball of Bandages
+end
 
 -- Actives with certain charge types interactions
 -- 9 Volt + 1 Room/Timed

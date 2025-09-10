@@ -126,8 +126,10 @@ EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCo
 local cards = {
 	-- Change: Added "1% chance for it to be a Crane Game"
 	[11] = { "11", "X - Wheel of Fortune", "{{Slotmachine}} Spawns a Slot Machine#{{FortuneTeller}} 24% chance for it to be a Fortune Telling Machine#{{CraneGame}} 1% chance for it to be a Crane Game" }, -- X - Wheel of Fortune
+	-- Change: Added stone enemies and shields
+	[32] = {"32", "Hagalaz", "Destroy all rocks and stone enemies in the room"}, -- Hagalaz
 	-- Change: Complete rewrite
-	[38] = { "38", "Berkano", "{{Collectible706}} Summons 3 Abyss locusts for the room" },                                                                                                               -- Berkano
+	[38] = { "38", "Berkano", "{{Collectible706}} Summons 3 Abyss locusts for the room" }, -- Berkano
 }
 EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
 
@@ -140,8 +142,22 @@ EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].t
 ---------- Pills ----------
 
 local horsepills = {
+	-- Change: Teleports to a special room instead of a random room
+	[20] = {"19", "Telepills", "Teleports Isaac to a special room"}, -- Telepills
 	-- Change: Forgets all previously identified pills
 	[26] = { "25", "Amnesia", "{{CurseLost}} Hides the floor map#{{Pill}} Forgets all previously identified pills" }, -- Amnesia
+	-- Change: Added full heal information
+	[29] = {"28", "Percs!", "{{HealingRed}} Full health#{{Timer}} Reduces all damage taken to half a heart for the room"}, -- Percs!
+	-- Change: Added broken heart
+	[30] = {"29", "Addicted!", "{{BrokenHeart}} +1 Broken Heart#{{Timer}} Increases all damage taken to a full heart for the room"}, -- Addicted!
+	-- Change: Added additional curses information
+	[32] = {"31", "???", "{{CurseMaze}} Curse of the Maze effect for the floor#Additional curses after multiple uses"}, -- ???
+	-- Change: affects whole floor
+	[42] = {"41", "I'm Drowsy...", "{{Slow}} Slows Isaac and all enemies for the whole floor"}, -- I'm Drowsy...
+	-- Change: affects whole floor
+	[43] = {"42", "I'm Excited!!", "Speeds up Isaac and all enemies for the whole floor#Triggers again after 30 and 60 seconds"}, --I'm Excited!!
+	-- Change: Forces the effect to be a golden trinket
+	[44] = {"43", "Gulp!", "Consumes Isaac's trinket and grants its {{ColorGold}}golden{{CR}} effect permanently"}, -- Gulp!
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 
@@ -170,6 +186,8 @@ EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catc
 local conditions = {
 	-- Change: Removed info about Infinte usage of Yum Heart, because its fixed. Now, bleeding hearts provide only half the charge of a regilar heart container
 	["5.100.205 (Tainted Magdalene)"] = "Bleeding hearts only provide half the charge of a regular heart container", -- Sharp Plug + Tainted Magdalene
+	-- Added ball of bandages synergy
+	["Potato Peeler + Ball of Bandages"] = {"{{Collectible73}} A Cube of Meat","{{Collectible207}} Ball of Bandages"}, -- Potato Peeler with Ball of Bandages
 }
 EID:updateDescriptionsViaTable(conditions, EID.descriptions[languageCode].ConditionalDescs)
 
