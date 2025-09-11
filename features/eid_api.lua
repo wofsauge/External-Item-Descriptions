@@ -3019,6 +3019,51 @@ function EID:WatchForGlitchedCrown()
 	end
 end
 
+EID.CachedCollectibleItemPools = {}
+
+function EID:GetPoolsForCollectible(collectibleType)
+	if not EID.isRepentance then return end
+
+	local poolTable = {}
+	if not REPENTOGON then
+		-- non-rgon : catch from xmldata
+		local CraftingItemPools = EID.XMLItemPools
+		local ItemPoolTypeToXMLPool = { -- did this in case for excluding greed pools
+			[0] = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+			10, 11, 12, 13, 14, 15,
+			16, 17, 18, 20, 21, 19, 22, -- greed pools
+			23, 24, 25, 26, 27, 28, 29, 30
+		}
+		for i = 0, ItemPoolType.NUM_ITEMPOOLS - 1 do
+			local xmlPool = ItemPoolTypeToXMLPool[i]
+			local t = CraftingItemPools[xmlPool + 1]
+			for _, element in ipairs(t) do
+				if element[1] == collectibleType and element[2] > 0 and not Isaac.GetItemConfig():GetCollectible(collectibleType).Hidden then
+					table.insert(poolTable, i)
+					break
+				end
+			end
+		end
+	else
+		-- rgon : catch from pool directly
+		local cached = EID.CachedCollectibleItemPools[collectibleType]
+		if cached then return cached end
+		local pool = game:GetItemPool()
+		local numPools = pool:GetNumItemPools()
+		for i = ItemPoolType.POOL_TREASURE, numPools - 1 do
+			local table = pool:GetCollectiblesFromPool(i)
+			for _, element in ipairs(table) do
+				if element.itemID == collectibleType and element.initialWeight > 0 and not Isaac.GetItemConfig():GetCollectible(collectibleType).Hidden then
+					table.insert(poolTable, i)
+					break
+				end
+			end
+		end
+	end
+	EID.CachedCollectibleItemPools[collectibleType] = poolTable
+	return poolTable
+end
+
 ---Replaces Variable placeholders in string with a given value
 ---Example: "My {1} message" --> "My test message"
 ---varID can be omitted to replace {1} (or pass in a string table, to replace {1}, {2}, etc.)
