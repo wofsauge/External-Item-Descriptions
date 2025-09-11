@@ -155,7 +155,7 @@ local horsepills = {
 	-- Change: affects whole floor
 	[42] = { "41", "Tengo mucho sueño...", "{{Slow}} Te ralentiza y a todos los enemigos durante el piso actual" }, -- I'm Drowsy...
 	-- Change: affects whole floor
-	[43] = { "42", "¡¡TENGO MUCHA ENERGÍA!!", "Te acelera y a todos los enemigos durante el piso actual#Reactiva el efecto luego de 30 y 60 segundos" }, --I'm Excited!!
+	[43] = { "42", "¡¡TENGO MUCHA ENERGÍA!!", "Te acelera y a todos los enemigos durante el piso actual" }, --I'm Excited!!
 	-- Change: Forces the effect to be a golden trinket
 	[44] = { "43", "¡Gulp!", "{{Trinket}} Consume el trinket actual y otorga sus efectos {{ColorGold}}mejorados{{CR}} de forma permanente" }, -- Gulp!
 }
