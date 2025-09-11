@@ -108,6 +108,7 @@ end
 
 
 require("features.eid_api")
+require("features.eid_modular_descriptions")
 require("features.eid_grid_descriptions")
 
 require("features.eid_language_manager")
