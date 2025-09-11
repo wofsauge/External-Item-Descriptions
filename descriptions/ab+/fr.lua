@@ -186,7 +186,7 @@ EID.descriptions[languageCode].collectibles={
 	{"161", "Ânkh", "Réincarne Isaac en {{ColorLightOrange}}???{{ColorWhite}} à sa mort"},
 	{"162", "Croix Celte", "Subir un dégât rend parfois Isaac temporairement invulnérable#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 27 Chance)"},
 	{"163", "Bébé Fantôme", "Tire des larmes spectrales#{{DamageSmall}} 3.5 dégâts par larme"},
-	{"164", "Bougie Bleue", "Lance une flamme bleue qui inflige des dégâts de contact, bloque les projectiles ennemis et disparaît après 2 secondes"},
+	{"164", "Bougie Bleue", "Lance une flamme bleue dans la direction choisie#Les flammes durent 2 secondes, bloquent les projectiles ennemis et infligent des dégâts de contact"},
 	{"165", "Chat à Neuf Queues", "↑ Dégâts {{ColorLime}}+1.0#↑ Vitesse des tirs {{ColorLime}}+0.23"},
 	{"166", "D20", "Rejoue toutes les ressources de la salle"},
 	{"167", "Bébé Arlequin", "Tire deux larmes écartées#{{DamageSmall}} 4 dégâts par larme"},
