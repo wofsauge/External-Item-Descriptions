@@ -576,20 +576,11 @@ EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
 	-- values inside {} brackets will be replaced with text parts below
 	-- Wisp texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the wisp descriptions
-	StatDescription = "{{Heart}} {health} / {{DamageSmall}} {damage}",	-- {health} will be replaced with the health text, {damage} with the damage text or the "CantShoot" text
-	Health = "{1}", 		-- {1} will be replaced with the health
-	Damage = "{1} DPS",				-- {1} will be replaced with the calculated damage
-	CantShoot = "공격불가",
+	StatDescription = "{ringIcon}{{Wisp}} {amount}|{{Heart}} {health}|{{Damage}} {damage}",	-- {ringIcon} will be replaced with an icon representing the wisp movement, {amount} with the number of wisps, {health} with the HP, {damage} with the damage or the "CantShoot" text
 	Shotspeed = "탄속 {1}%", 				-- {1} will be replaced with the shot speed changes in %
 	Chance = " (확률 {1}%)",					-- {1} will be replaced with the chance
 	SingleRoom = "방을 나가면 사라집니다.",
 	NoWisps = "위습 없음",
-	Ring = {
-		[-1] = "고정 x{amount}",
-		[0] = "{{InnerWisp}} {{ColorLime}}내부 x{amount}{{CR}}",
-		[1] = "{{MiddleWisp}} {{ColorYellow}}중앙 x{amount}{{CR}}",
-		[2] = "{{OuterWisp}} {{ColorOrange}}외부 x{amount}{{CR}}",
-	},
 }
 
 -- Book of Virtues wisp types

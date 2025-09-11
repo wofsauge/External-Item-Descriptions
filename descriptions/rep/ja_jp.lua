@@ -491,20 +491,11 @@ EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
 	-- values inside {} brackets will be replaced with text parts below
 	-- Wisp texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the wisp descriptions
-	StatDescription = "{{Heart}} {health} {{Damage}} {damage}",	-- {health} will be replaced with the health text, {damage} with the damage text or the "CantShoot" text
-	Health = "体力：{1}", 		-- {1} will be replaced with the health
-	Damage = "DPS：{1}",				-- {1} will be replaced with the calculated damage
-	CantShoot = "涙攻撃なし",
+	StatDescription = "{ringIcon}{{Wisp}} {amount}|{{Heart}} {health}|{{Damage}} {damage}",	-- {ringIcon} will be replaced with an icon representing the wisp movement, {amount} with the number of wisps, {health} with the HP, {damage} with the damage or the "CantShoot" text
 	Shotspeed = "弾速：{1}%", 				-- {1} will be replaced with the shot speed changes in %
 	Chance = "（確率{1}%）",					-- {1} will be replaced with the chance
 	SingleRoom = "その部屋でのみ有効",
 	NoWisps = "ウィスプなし",
-	Ring = {
-		[-1] = "固定のウィスプ x{amount}",
-		[0] = "内側{{InnerWisp}}のウィスプ x{amount}",
-		[1] = "中心{{MiddleWisp}}のウィスプ x{amount}",
-		[2] = "外側{{OuterWisp}}のウィスプ x{amount}",
-	},
 }
 
 -- Old table that now is used to store additional information and effects for Book of Virtues Wisps
