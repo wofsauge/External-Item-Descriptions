@@ -28,13 +28,13 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[351] = {"351", "Haricot Géant", "Isaac pète, ce qui pétrifie et inflige des dégâts à tous les ennemis de la salle, empoisonne les ennemis à proximité et détruit les obstacles et les portes"}, -- Mega Bean
 	
-	[420] = {"420", "Poudre Noire", "Marcher en cercle crée un pentagramme sur le sol qui inflige des dégâts aux ennemis qui se tiennent dessus#Augmente la taille des explosions d'Isaac#Éteindre un feu le fait exploser"},
+	[420] = {"420", "Poudre Noire", "Marcher en cercle crée un pentagramme au sol qui inflige des dégâts aux ennemis qui se tiennent dessus#Augmente la taille des explosions d'Isaac#Éteindre un feu le fait exploser"},
 	-- Change: Complete rewrite
-	[436] = {"436", "Tasse de Lait", "Suit Isaac et bloque les projectiles ennemis#Après 10 projectiles bloqués, donne {{ColorLime}}débit augmenté{{CR}} pour l'étage"}, -- Milk!
+	[436] = {"436", "Tasse de Lait", "Suit Isaac et bloque les projectiles ennemis#Après 10 projectiles bloqués, donne {{ColorLime}}débit +1{{CR}} pour l'étage"}, -- Milk!
 	-- Change: Complete rewrite
 	[447] = {"447", "Haricot Péteux", "Tirer pendant 4 secondes crée un nuage qui grandit pendant 10 secondes#Le nuage inflige des dégâts inverses à sa taille"}, -- Linger Bean
 	-- Change: added " and fires radial bursts of tears"
-	[470] = {"470", "P'tit Murmure", "Rebondit contre les murs de la salle et inflige des dégâts de contact#Tirer l'immobilise et le fait tirer des anneaux de larmes#{{DamageSmall}} 30 dégâts par seconde"}, -- Hushy
+	[470] = {"470", "P'tit Murmure", "Rebondit contre les murs de la salle et inflige des dégâts de contact#Tirer l'immobilise et lui fait tirer des anneaux de larmes#{{DamageSmall}} 30 dégâts par seconde"}, -- Hushy
 	
 	[475] = {"475", "Suppo de Satan", "Tue instantanément tous les ennemis et boss de la salle et tue Isaac quelques secondes après"},
 	-- Change: added "Turns item pedestals into glitched items"
@@ -42,7 +42,7 @@ local collectibles = {
 	-- Change: Reduced the chance of removing the most recent item to 50%
 	[482] = { "482", "Télécommande", "Transforme le personnage actuel en un autre personnage au hasard#50% de chances de retirer de l'inventaire le dernier objet passif obtenu" }, -- Clicker
 	-- Change: Complete rewrite
-	[510] = {"510", "Délire", "Invoque un boss amical qui persiste jusqu'à ce qu'il meure#Ne peut invoquer qu'un boss à la fois#La barre de charge dépend de la puissance du dernier boss invoqué"}, -- Delirious
+	[510] = {"510", "Délire", "Invoque un boss amical#Le boss meurt s'il subit trop de dégâts ou si Isaac en invoque un nouveau#La barre de charge dépend de la puissance du dernier boss invoqué"}, -- Delirious
 	
 	[554] = {"554", "BOUH", "↑ Débit {{ColorLime}}+0.5#↑ Vitesse des tirs {{ColorLime}}+0.2#Effraie les ennemis à proximité d'Isaac"}, --  2Spooky
 	-- Change: added "Tears leave a pool of creep on impact"
@@ -141,7 +141,7 @@ local horsepills = {
 	[30] = {"29", "Accro !", "{{BrokenHeart}} +1 Cœur brisé#Augmente les dégâts subis à un cœur entier pour une salle"},
 	[32] = {"31", "???", "Inflige le Fléau du Dédale pour l'étage#Utiliser la pilule à nouveau ajoute un fléau"},
 	[42] = {"41", "Somnolence", "Ralentit Isaac et les ennemis pour la durée d'un étage"},
-	[43] = {"42", "Gonflé à bloc !!!", "Accélère Isaac et les ennemis pour la durée d'un étage#L'effet se réactive après 30 et 60 secondes"},
+	[43] = {"42", "Gonflé à bloc !!!", "Accélère Isaac et les ennemis pour la durée d'un étage"},
 	[44] = {"43", "Gloups !", "Absorbe la babiole portée par Isaac et active son effet {{ColorGold}}doré{{ColorWhite}} de manière permanente"},
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
