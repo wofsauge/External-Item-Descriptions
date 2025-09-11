@@ -129,6 +129,8 @@ function EID:BoCDetectBagContentShift() end
 -- read room items directly from room data when changing rooms, to ensure floor item counter doesnt desync
 function EID:BoCOnNewRoom_Repentogon(_)
 	EID.BoCOnNewRoom(_)
+	if game.Challenge == 43 then return end -- dont track items in CanTripped Challenge
+
 	local lastRoomDesc = game:GetLevel():GetLastRoomDesc()
 	local lastRoomEntities = lastRoomDesc:GetEntitiesSaveState()
 

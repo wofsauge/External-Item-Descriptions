@@ -483,20 +483,11 @@ EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
 	-- values inside {} brackets will be replaced with text parts below
 	-- Wisp texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the wisp descriptions
-	StatDescription = "{{Heart}} {health} {{Damage}} {damage}",	-- {health} will be replaced with the health text, {damage} with the damage text or the "CantShoot" text
-	Health = "{1}血量", 		-- {1} will be replaced with the health
-	Damage = "{1}dps",				-- {1} will be replaced with the calculated damage
-	CantShoot = "无法发射泪弹！",
+	StatDescription = "{ringIcon}{{Wisp}} {amount}|{{Heart}} {health}|{{Damage}} {damage}",	-- {ringIcon} will be replaced with an icon representing the wisp movement, {amount} with the number of wisps, {health} with the HP, {damage} with the damage or the "CantShoot" text
 	Shotspeed = "{1}%弹速", 				-- {1} will be replaced with the shot speed changes in %
 	Chance = " ({1}%几率)",					-- {1} will be replaced with the chance
 	SingleRoom = "单房间魂火",
 	NoWisps = "无魂火",
-	Ring = {
-		[-1] = "{amount}个固定位置魂火",
-		[0] = "{amount}个内环魂火{{InnerWisp}}",
-		[1] = "{amount}个中环魂火{{MiddleWisp}}",
-		[2] = "{amount}个外环魂火{{OuterWisp}}",
-	},
 }
 
 -- Book of Virtues wisp types

@@ -483,21 +483,13 @@ EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
 	-- values inside {} brackets will be replaced with text parts below
 	-- Wisp texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the wisp descriptions
-	StatDescription = "{{Heart}} {health} {{Damage}} {damage}",	-- {health} will be replaced with the health text, {damage} with the damage text or the "CantShoot" text
-	Health = "{1} salud", 		-- {1} will be replaced with the health
-	Damage = "{1} dps",				-- {1} will be replaced with the calculated damage
-	CantShoot = "No puede disparar lágrimas",
+	StatDescription = "{ringIcon}{{Wisp}} {amount}|{{Heart}} {health}|{{Damage}} {damage}",	-- {ringIcon} will be replaced with an icon representing the wisp movement, {amount} with the number of wisps, {health} with the HP, {damage} with the damage or the "CantShoot" text
 	Shotspeed = "{1}% vel. de lágrimas", 			-- {1} will be replaced with the shot speed changes in %
 	Chance = " ({1}% de probabilidad)",					-- {1} will be replaced with the chance
 	SingleRoom = "Fuego de una sola habitación",
 	NoWisps = "No hay fuego",
-	Ring = {
-		[-1] = "{amount} Fuego{plural_s} estacionario{plural_s}",
-		[0] = "{amount} Fuego orbital{plural_es} interior {{InnerWisp}}",
-		[1] = "{amount} Fuego orbital{plural_es} central {{MiddleWisp}}",
-		[2] = "{amount} Fuego orbital{plural_es} exterior {{OuterWisp}}",
-	},
 }
+
 -- Book of Virtues wisp types
 EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[35] = "{{Collectible35}} Activa el efecto del Necronomicón al destruirse", -- The Necronomicon

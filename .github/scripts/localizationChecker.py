@@ -60,21 +60,15 @@ def addUpdatedTables(languageCode, dlc):
     if dlc != "ab+":
         # Add language table
         lua.execute('EID.descriptions["'+languageCode+'"] = {}')
-        # Add all tables that are assumed to exist already in ab+
-        updatedTables = ["collectibles", "cards", "trinkets", "ConditionalDescs"]
-        if dlc == "rep":
-            updatedTables += ["pills", "carBattery", "BFFSSynergies", "CharacterInfo", "ConditionalDescs", "VoidNames", "custom"]
-        if dlc == "rep+":
-            updatedTables += ["abyssSynergies", "horsepills", "tarotClothBuffs", "bookOfVirtuesWisps", "goldenTrinketEffects"]
 
-        # korean uses some additional addititve tables
-        if languageCode == "ko_kr":
-            if dlc == "rep":
-                updatedTables += ["dice", "MCM"]
-            else:
-                updatedTables += ["bookOfVirtuesWisps"]
-        for table in updatedTables:
-            lua.execute('EID.descriptions["'+languageCode+'"].'+table+' = {}')
+        # Add metatable to create missing tables on the fly
+        lua.execute('setmetatable(EID.descriptions["'+languageCode+'"], {\
+            __index = function(tbl, key)\
+                local newTbl = {}\
+                rawset(tbl, key, newTbl)\
+                return newTbl\
+            end\
+        })')
 
 # find entries in table2 that are missing or different than in table 1
 def compare_tables(table1, table2, prev_key):
