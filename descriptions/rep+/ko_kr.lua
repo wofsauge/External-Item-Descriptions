@@ -122,14 +122,21 @@ local trinkets = {
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
 ------- Golden Trinkets -------
+local goldenTrinketData = {
+	[85] = {fullReplace = nil, findReplace = true, mult = 3},
+}
+EID:updateDescriptionsViaTable(goldenTrinketData, EID.descriptions[languageCode].goldenTrinketData)
 
 local goldenTrinketEffects = {
+	--[7] = { "{{AngelChanceSmall}} 천사방 확률 추가 증가" },
+	--[14] = {"희생방 가시의 피해가 절반으로 감소합니다.", "모든 피해가 절반으로 감소합니다."},
 	-- Tick (replace): added ", {{Trinket135}} A Lighter"
 	[53] = {
 		"방 입장 시 체력이 60 이상인 적의 체력을 {{ColorGold}}30%{{CR}} 깎습니다.#{{HealingRed}} {{BossRoom}}보스방 입장 시 체력을 {{ColorGold}}두칸{{CR}} 회복합니다.",
 		"!!! {{Trinket41}}/{{Trinket135}}/{{Collectible479}}를 제외한 {{ColorOrange}}교체 및 버리기 불가{{CR}}#방 입장 시 체력이 60 이상인 적의 체력을 {{ColorGold}}30%{{CR}} 깎습니다.#{{HealingRed}} {{BossRoom}}보스방 입장 시 체력을 {{ColorGold}}두칸{{CR}} 회복합니다.",
 		"방 입장 시 체력이 60 이상인 적의 체력을 {{ColorGold}}30%{{CR}} 깎습니다.#{{HealingRed}} {{BossRoom}}보스방 입장 시 체력을 {{ColorGold}}세칸{{CR}} 회복합니다.",
 	},
+	[85] = { "행운 +1", "행운 +2", "행운 +3" },
 }
 EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCode].goldenTrinketEffects)
 
