@@ -1603,20 +1603,11 @@ EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
 	-- values inside {} brackets will be replaced with text parts below
 	-- Wisp texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the wisp descriptions
-	StatDescription = "{{Heart}} {health} {{Damage}} {damage}",	-- {health} will be replaced with the health text, {damage} with the damage text or the "CantShoot" text
-	Health = "{1} zdraví", 		-- {1} will be replaced with the health
-	Damage = "{1} dps",				-- {1} will be replaced with the calculated damage
-	CantShoot = "Nemůže střílet!",
+	StatDescription = "{ringIcon}{{Wisp}} {amount}|{{Heart}} {health}|{{Damage}} {damage}",	-- {ringIcon} will be replaced with an icon representing the wisp movement, {amount} with the number of wisps, {health} with the HP, {damage} with the damage or the "CantShoot" text
 	Shotspeed = "{1}% Rychlost střely", 				-- {1} will be replaced with the shot speed changes in %
 	Chance = " ({1}% Šance)",					-- {1} will be replaced with the chance
 	SingleRoom = "Bludička pro jednu místnost",
 	NoWisps = "Žádné bludičky",
-	Ring = {
-		[-1] = "{amount} nehybná bludička/y{pluralize}",
-		[0] = "{amount} bludička/y ve vnitřním kruhu{pluralize} {{InnerWisp}}",
-		[1] = "{amount} bludička/y v prostředním kruhu{pluralize} {{MiddleWisp}}",
-		[2] = "{amount} bludička/y ve vnějším kruhu{pluralize} {{OuterWisp}}",
-	},
 }
 
 ---------- Abyss Locust description parts ----------

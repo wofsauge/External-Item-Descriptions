@@ -630,9 +630,11 @@ EID.InlineIcons = {
 	["ItemPoolRottenBeggar"] = {"ItemPools", 30, 11, 11, 0, 0},
 
 	-- Wisps
-	["InnerWisp"] = {"Wisps", 0, 10, 9, 0, 2},
-	["MiddleWisp"] = {"Wisps", 1, 10, 9, 0, 2},
-	["OuterWisp"] = {"Wisps", 2, 10, 9, 0, 2},
+	["InnerWisp"] = {"Wisps", 0, 10, 10, 0, -3},
+	["MiddleWisp"] = {"Wisps", 1, 10, 10, 0, -3},
+	["OuterWisp"] = {"Wisps", 2, 10, 10, 0, -3},
+	["StationaryWisp"] = {"Wisps", 3, 10, 10, 0, -3},
+	["Wisp"] = {"Wisps", 4, 10, 10, 0, -3},
 
 	-- Dice Faces
 	["DiceFace1"] = {"DiceFaces", 0, 14, 14, 0, -1},
