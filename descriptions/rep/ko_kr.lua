@@ -258,7 +258,7 @@ local repCollectibles={
 	[481] = {"481", "데이터마이너", "{{ArrowUpDown}} 사용 시 능력치가 랜덤으로 증가하거나 감소하며;#{{ArrowGrayRight}} 그 방에서 랜덤 효과가 부여됩니다.#!!! 그 방의 스프라이트가 망가집니다."}, -- Dataminer
 	[483] = {"483", "맘마 메가!", "사용 시 그 스테이지에서 방 입장 시 그 방의 장애물을 파괴하고 적에게 200의 폭발 피해를 줍니다.#사용 후 {{BossRoom}}보스방 {{ColorOrange}}최초 입장 시{{CR}} D2(6스테이지)의 경우 보스러시가, W2(8스테이지)의 경우 Blue Womb으로 향하는 문이 열립니다."}, -- Mama Mega!
 	[486] = {"486", "무딘 면도칼", "사용 시 피해를 입지 않고 피격 시 발동 효과를 발동합니다."}, -- Dull Razor
-	[487] = {"487", "감자칼", "!!! {{NoLB}}사용 시 {{EmptyHeart}} 최대 체력 1칸을 깎으며 이하의 피격 효과 발동:#{{ArrowGrayRight}} {{DamageSmall}}공격력 +0.2#{{ArrowGrayRight}} {{Collectible73}}Cube of Meat +1#{{Timer}} 그 방에서:#{{ArrowGrayRight}} {{RangeSmall}}사거리 +1.5#{{ArrowGrayRight}} 캐릭터가 지나간 자리에 빨간 장판이 생기며 닿은 적은 초당 20의 피해를 받습니다."}, -- Potato Peeler
+	[487] = {"487", "감자칼", "!!! {{NoLB}}사용 시 {{EmptyHeart}} 최대 체력 1칸을 깎으며 이하의 피격 효과 발동:#{{ArrowGrayRight}} {{DamageSmall}}공격력 +0.2#{{ArrowGrayRight}} {{Collectible73}} A Cube of Meat +1#{{Timer}} 그 방에서:#{{ArrowGrayRight}} {{RangeSmall}}사거리 +1.5#{{ArrowGrayRight}} 캐릭터가 지나간 자리에 빨간 장판이 생기며 닿은 적은 초당 20의 피해를 받습니다."}, -- Potato Peeler
 	[488] = {"488", "메트로놈", "{{Timer}} 사용 시 그 방에서:#{{ArrowGrayRight}} 랜덤 아이템 효과를 발동합니다.#{{Blank}} (해금 여부 무관)#{{ArrowGrayRight}} {{ColorGray}}확률감소:{{Collectible622}}{{Collectible628}}#{{ArrowGrayRight}} {{ColorGray}}미발동: {{Collectible422}}{{Collectible475}}{{Collectible326}}{{Collectible482}}{{Collectible636}}"}, -- Metronome
 	[489] = {"489", "무한 주사위", "아래 중 원하는 주사위 아이템을 골라 사용할 수 있습니다:#{{Blank}} {{Collectible476}}{{Collectible284}}{{Collectible105}}{{Collectible609}}{{Collectible437}}{{Collectible406}}{{Collectible285}}{{Collectible386}}{{Collectible166}}{{Collectible283}}#{{Blank}} ( {{ButtonRT}}버튼으로 전환 가능)"}, -- D infinity
 	[491] = {"491", "산성 아기", "{{Pill}} 방 7개 클리어 시 알약을 하나 드랍합니다.#{{Poison}} 알약 사용 시 그 방의 적에게 10의 피해를 주며 3초간 중독시킵니다."}, -- Acid Baby
@@ -1245,8 +1245,8 @@ EID.descriptions[languageCode].horsepills={
 	{"25", "건망증", "{{CurseLostSmall}} Lost 저주에 걸리며 맵을 볼 수 없습니다."}, -- Amnesia
 	{"26", "레몬 파티", "사용 시 캐릭터의 주위에 {{ColorCyan}}범위가 매우 큰{{CR}} 노란 장판을 생성합니다.#장판은 지상의 적에게 초당 24의 피해를 줍니다."}, -- Lemon Party
 	{"27", "님 마술43?", "눈물이 {{ColorYellow}}60초{{CR}}간 대각선으로 나갑니다."}, -- R U A Wizard?
-	{"28", "진통제!", "그 방에서 캐릭터가 받는 모든 피해가 체력 반칸으로 고정됩니다."}, -- Percs!
-	{"29", "과다복용!", "그 방에서 캐릭터가 받는 모든 피해가 체력 1칸으로 고정됩니다."}, -- Addicted!
+	{"28", "진통제!", "그 방에서 캐릭터가 받는 모든 피해를 절반으로 줄여줍니다. (최소 반칸)"}, -- Percs!
+	{"29", "과다복용!", "그 방에서 캐릭터가 받는 모든 피해가 체력 1칸 이상으로 고정됩니다."}, -- Addicted!
 	{"30", "휴-식", "그 방에서 캐릭터의 위치에 똥을 {{ColorCyan}}더 많이{{CR}} 생성합니다."}, -- Re-Lax
 	{"31", "???", "{{CurseMazeSmall}} Maze 저주에 걸리며 방 이동 시 스테이지 안의 다른 방으로 순간이동하거나 두개의 랜덤 방의 위치가 서로 바뀝니다."}, -- ???
 	{"32", "커지는 알약", "캐릭터의 크기가 {{ColorCyan}}대폭{{CR}} 커집니다."}, -- One makes you larger
@@ -1258,8 +1258,8 @@ EID.descriptions[languageCode].horsepills={
 	{"38", "마지막까지 친구야!", "파란 아군 파리를 {{ColorCyan}}12{{CR}}마리 소환합니다."}, -- Friends Till The End!
 	{"39", "조절실패", "{{ColorYellow}}범위가 매우 큰{{CR}} 캐릭터가 미끄러지는 갈색 장판이 생성됩니다."}, -- X-Lax
 	{"40", "뭔가 잘못됐어...", "{{ColorCyan}}범위가 매우 큰{{CR}} 적을 {{Slow}}둔화시키는 검은 장판을 생성합니다."}, -- Something's wrong...
-	{"41", "완전 지루해...", "그 방에서 적과 캐릭터의 속도가 {{Slow}}느려집니다."}, -- I'm Drowsy...
-	{"42", "완전 재밌어!!!", "그 방, 30초, 60초마다 총 2번 적과 캐릭터의 속도가 빨라집니다."}, -- I'm Excited!!!
+	{"41", "완전 지루해...", "{{Slow}} 그 방에서 적과 캐릭터의 속도가 느려집니다."}, -- I'm Drowsy...
+	{"42", "완전 재밌어!!", "{{Timer}} 그 방, 30초, 60초마다 총 2번 적과 캐릭터의 속도가 빨라집니다."}, -- I'm Excited!!!
 	{"43", "꿀꺽!", "소지중인 장신구를 흡수해 효과를 영구적으로 얻습니다.#{{HealingRed}} {{ColorCyan}}장신구 흡수와 동시에 빨간하트 한칸을 회복합니다.{{CR}}"}, -- Gulp!
 	{"44", "퉤엣!", "바라보는 방향으로 폭발하는 독성 눈물을 {{ColorYellow}}여러 발{{CR}} 발사합니다."}, -- Horf!
 	{"45", "햇살 위를 걷는 기분이야!", "6초간 무적 상태가 되며 {{ColorCyan}}접촉한 적에게 20의 피해를 줍니다.{{CR}}"}, -- Feels like I'm walking on sunshine!

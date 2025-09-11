@@ -123,6 +123,7 @@ EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCo
 ---------- Cards ----------
 local cards={
 	[11] = {"11", "X - 운명의 수레바퀴", "{{Slotmachine}} 도박기계를 소환합니다.#{{ArrowGrayRight}} {{FortuneTeller}} 24%의 확률로 운세기계가 대신 등장#{{ArrowGrayRight}} {{CraneGame}} 1%의 확률로 크레인게임이 대신 등장"}, -- X - Wheel of Fortune
+	[32] = {"32", "하갈라즈", "그 방의 장애물을 제거합니다.#그 방의 돌 타입 적을 제거합니다."}, -- Hagalaz
 	[38] = {"38", "벨카노", "{{Collectible706}} 그 방에서 심연의 파리 3마리를 소환합니다."}, -- Berkano
 }
 EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
@@ -134,7 +135,22 @@ EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].t
 
 ---------- Pills ----------
 local horsepills={
+	-- Change: Teleports to a special room instead of a random room
+	[20] = {"19", "순간이동약", "스테이지 안의 {{ColorCyan}}랜덤 특수방{{CR}}으로 순간이동합니다."}, -- Telepills
+	-- Change: Forgets all previously identified pills
 	[26] = {"25", "건망증", "{{CurseLostSmall}} Lost 저주에 걸리며 맵을 볼 수 없습니다.#{{ColorYellow}}알약의 효과가 다시 가려집니다."}, -- Amnesia
+	-- Change: Added full heal information
+	[29] = {"28", "진통제!", "{{HealingRed}} {{ColorCyan}}체력을 모두 회복합니다.{{CR}}#{{Timer}} 그 방에서 캐릭터가 받는 모든 피해를 절반으로 줄여줍니다. (최소 반칸)"}, -- Percs!
+	-- Change: Added broken heart
+	[30] = {"29", "과다복용!", "↓ {{BrokenHeart}}{{ColorYellow}}소지 불가능 체력 +1{{CR}}#{{Timer}} 그 방에서 캐릭터가 받는 모든 피해가 체력 1칸 이상으로 고정됩니다."}, -- Addicted!
+	-- Change: Added additional curses information
+	[32] = {"31", "???", "{{CurseMazeSmall}} Maze 저주에 걸리며 방 이동 시 스테이지 안의 다른 방으로 순간이동하거나 두개의 랜덤 방의 위치가 서로 바뀝니다.#{{CurseCursedSmall}} {{ColorYellow}}다른 저주가 추가로 발동할 수 있습니다.{{CR}}"}, -- ???
+	-- Change: affects whole floor
+	[42] = {"41", "완전 지루해...", "{{Slow}} {{ColorCyan}}그 스테이지{{CR}}에서 적과 캐릭터의 속도가 느려집니다."}, -- I'm Drowsy...
+	-- Change: affects whole floor
+	[43] = {"42", "완전 재밌어!!", "!!! {{ColorYellow}}그 스테이지{{CR}}에서 적과 캐릭터의 속도가 빨라집니다.#!!! 30, 60초 이후 다시 발동"}, --I'm Excited!!
+	-- Change: Forces the effect to be a golden trinket
+	[44] = {"43", "꿀꺽!", "소지중인 장신구를 흡수해 효과를 영구적으로 얻습니다.#{{ColorCyan}}흡수된 장신구는 {{ColorGold}}황금{{ColorCyan}} 형태로 흡수됩니다."}, -- Gulp!
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 
@@ -163,6 +179,8 @@ EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catc
 local conditions = {
 	-- Change: Removed info about Infinte usage of Yum Heart, because its fixed. Now, bleeding hearts provide only half the charge of a regilar heart container
 	["5.100.205 (Tainted Magdalene)"] = "고정 체력이 아닌 하트는 부족한 충전량 한칸 당 체력 {{BlinkYellowRed}}1칸{{CR}}을 깎습니다.", -- Sharp Plug + Tainted Magdalene
+	-- Added ball of bandages synergy
+	["Potato Peeler + Ball of Bandages"] = {"{{Collectible73}} A Cube of Meat","{{Collectible207}} Ball of Bandages"}, -- Potato Peeler with Ball of Bandages
 }
 EID:updateDescriptionsViaTable(conditions, EID.descriptions[languageCode].ConditionalDescs)
 
