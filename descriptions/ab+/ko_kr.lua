@@ -168,7 +168,7 @@ EID.descriptions[languageCode].collectibles={
 	{"105", "주사위", "사용 시 그 방의 아이템을 다른 아이템으로 바꿉니다."}, -- The D6
 	{"106", "미스터 메가", "↑ {{Bomb}}폭탄 +5#폭탄 공격력 배율 x1.83#폭탄의 범위가 넓어집니다."}, -- Mr. Mega
 	{"107", "핑킹 가위", "{{Timer}} 사용 시 그 방에서:#{{ArrowGrayRight}} 비행 능력을 얻으며 몸이 분리됩니다.#{{ArrowGrayRight}} 분리된 몸은 적을 따라다니며 접촉한 적에게 초당 82.5의 피해를 줍니다."}, -- The Pinking Shears
-	{"108", "제병", "캐릭터가 받는 피해를 절반으로 줄여줍니다.#!!! 일부 피해는 해당 효과를 무시합니다."}, -- The Wafer
+	{"108", "제병", "캐릭터가 받는 피해를 절반으로 줄여줍니다. (최소 반칸)#!!! 일부 피해는 해당 효과를 무시합니다."}, -- The Wafer
 	{"109", "돈 = 힘", "동전 1개당 {{DamageSmall}}공격력 +0.04#{{Blank}} (최대 +3.96)"}, -- Money = Power
 	{"110", "엄마의 콘텍트렌즈", "↑ {{RangeSmall}}사거리 +0.25#↑ 눈물 높이 +0.5#{{Petrify}} 20%의 확률로 적을 멈추게 만드는 공격이 나갑니다.#{{LuckSmall}} 행운 20 이상일 때 50% 확률"}, -- Mom's Contacts
 	{"111", "콩", "{{Poison}} 사용 시 캐릭터 주변의 적을 중독시키는 독방귀를 뀝니다."}, -- The Bean
@@ -361,7 +361,7 @@ EID.descriptions[languageCode].collectibles={
 	{"298", "유니콘의 잘린 뿔", "{{Timer}} 사용 시 6.5초간:#{{ArrowGrayRight}} {{SpeedSmall}}이동속도 +0.28#{{ArrowGrayRight}} 공격불능 및 접촉공격불능 무적 상태가 됩니다."}, -- Unicorn Stump
 	{"299", "황소자리", "↓ {{SpeedSmall}}이동속도{{ColorOrange}}(상한){{CR}} -0.3#그 방에 적이 있는 동안 이동속도가 점점 증가합니다.#{{Collectible77}} 이동속도가 2.0이 되면 5초간 무적 상태가 됩니다."}, -- Taurus
 	{"300", "양자리", "↑ {{SpeedSmall}}이동속도 +0.25#높은 속도로 적과 접촉시 적에게 18의 피해를 줍니다."}, -- Aries
-	{"301", "게자리", "↑ {{SoulHeart}}소울하트 +3#{{Collectible108}} 피격 시 이후 그 방에서 받는 피해를 절반으로 줄여줍니다."}, -- Cancer
+	{"301", "게자리", "↑ {{SoulHeart}}소울하트 +3#{{Collectible108}} 피격 시 이후 그 방에서 받는 피해를 절반으로 줄여줍니다. (최소 반칸)"}, -- Cancer
 	{"302", "사자자리", "장애물을 부술 수 있습니다."}, -- Leo
 	{"303", "처녀자리", "{{Pill}} 부정적인 알약 효과가 등장하지 않습니다.#{{Collectible58}} 피격 시 일정 확률로 10초간 무적 상태가 됩니다.#{{LuckSmall}} 행운 10 이상일 때 100% 확률"}, -- Virgo
 	{"304", "천칭자리", "{{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 +6#{{ArrowUpDown}} {{DamageSmall}}공격력, {{TearsSmall}}연사, {{RangeSmall}}사거리, {{SpeedSmall}}이동속도가 항상 균등하게 조정됩니다."}, -- Libra
