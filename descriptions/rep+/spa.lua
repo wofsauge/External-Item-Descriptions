@@ -78,7 +78,7 @@ local trinkets = {
 	-- Change: added info about dropping the item
 	[16] = { "16", "Uña del pie de Mamá", "El Pie de Mamá pisoteará un lugar aleatorio de la habitación cada 60 segundos#Soltar el trinket en una habitación hostil hará que el Pie de Mamá pisotée en su ubicación" }, -- Mom's Toenail
 	-- Change: added Super Secret Room info
-	[23] = { "23", "Cartel de Desaparecido", "{{Player10}} Reaparecerás como \"El Perdido\" tras morir#{{SuperSecretRoom}} 33%  de probabilidad de revelar Super Secret Room on new floor" }, -- Missing Poster
+	[23] = { "23", "Cartel de Desaparecido", "{{Player10}} Reaparecerás como \"El Perdido\" tras morir#{{SuperSecretRoom}} 33% de probabilidad de revelar Habitaciones Super Secretas al cambiar de piso" }, -- Missing Poster
 	-- Change: added ", {{Trinket135}} A Lighter"
 	[53] = { "53", "La garrapata", "{{HealingRed}} Cura 1 corazón al entrar a una {{BossRoom}} Sala de Jefe#Reduce un 15% la salud del jefe#{{Warning}} Este trinket no puede ser soltado#Solo puedes deshacerte de él recogiendo {{Trinket41}} la Cerilla, {{Trinket135}} el Mechero o tragándolo" }, -- La garrapata
 	-- Change: added +0.5 damage
@@ -86,9 +86,9 @@ local trinkets = {
 	-- Change: Complete rewrite
 	[70] = { "70", "Piojo", "Genera una araña azul al completar habitaciones" }, -- Louse
 	-- Change: Added more loot information
-	[76] = { "76", "Ficha de póker", "Al abrir un cofre:#↑ 50% de probabilidad de conseguir más recolectables#↓ 50% de probabilidad de generar una mosca roja#Aumenta la probabilidad de obtener recompensas de las máquinas#Si el Cofre contiene un objeto, este será de calidad 3 o superior#Los Cofres ocasionalmente pueden tener objetos fuera de la golden chest item pool" }, -- Poker Chip
+	[76] = { "76", "Ficha de póker", "Al abrir un cofre:#↑ 50% de probabilidad de conseguir más recolectables#↓ 50% de probabilidad de generar una mosca roja#Aumenta la probabilidad de obtener recompensas de las máquinas#Si el Cofre contiene un objeto, este será de calidad 3 o superior#Los Cofres ocasionalmente pueden tener objetos fuera del \"Grupo de objetos\" del Cofre Dorado" }, -- Poker Chip
 	-- Change: Added additional effects
-	[85] = { "85", "Karma", "{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón (40%)#{{Coin}} Generar 1 moneda (40%)#{{Luck}} Suerte +1 (15%)#{{Beggar}} Generar un Mendigo (5%)#Tambien afecta a las donaciones de Mendigos y Máquinas de Reabastecimiento" }, -- Karma
+	[85] = { "85", "Karma", "{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón rojo {{ColorSilver}}(40%)#{{Coin}} Generar una moneda {{ColorSilver}}(40%)#{{Luck}} Suerte +1 {{ColorSilver}}(15%)#{{Beggar}} Generar un mendigo {{ColorSilver}}(5%)#Tambien afecta a las donaciones de Mendigos y Máquinas de Reabastecimiento" }, -- Karma
 	-- Change: Added damage up information
 	[89] = { "89", "Correa de Niño", "Mantiene a los familiares cerca del jugador#{{Damage}} Aumenta ligeramente el daño de los familiares" }, -- Child Leash
 	-- Change: 33% chance, Spawns blue fly on new room
@@ -118,6 +118,13 @@ local goldenTrinketEffects = {
 		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{Warning}} Este trinket no puede ser soltado#Solo puedes deshacerte de él con {{Trinket41}} La cerilla, {{Trinket135}} el Mechero o tragándolo",
 		"{{HealingRed}} Cura {{ColorGold}}3{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{ColorGold}}Puede ser soltado",
 	},
+	-- Karma
+	[85] = {
+		"{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar {{ColorGold}}2{{CR}} corazones rojos {{ColorSilver}}(40%)#{{Coin}} Generar {{ColorGold}}2{{CR}} monedas {{ColorSilver}}(40%)#{{Luck}} Suerte +{{ColorGold}}2 {{ColorSilver}}(15%)#{{Beggar}} Generar un mendigo {{ColorSilver}}(5%)#Tambien afecta a las donaciones de Mendigos y Máquinas de Reabastecimiento",
+		"{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar {{ColorGold}}2{{CR}} corazones rojos {{ColorSilver}}(40%)#{{Coin}} Generar {{ColorGold}}2{{CR}} monedas {{ColorSilver}}(40%)#{{Luck}} Suerte +{{ColorGold}}2 {{ColorSilver}}(15%)#{{Beggar}} Generar un mendigo {{ColorSilver}}(5%)#Tambien afecta a las donaciones de Mendigos y Máquinas de Reabastecimiento",
+		"{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar {{ColorGold}}3{{CR}} corazones rojos {{ColorSilver}}(40%)#{{Coin}} Generar {{ColorGold}}3{{CR}} monedas {{ColorSilver}}(40%)#{{Luck}} Suerte +{{ColorGold}}3 {{ColorSilver}}(15%)#{{Beggar}} Generar un mendigo {{ColorSilver}}(5%)#Tambien afecta a las donaciones de Mendigos y Máquinas de Reabastecimiento"
+	},
+
 }
 EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCode].goldenTrinketEffects)
 

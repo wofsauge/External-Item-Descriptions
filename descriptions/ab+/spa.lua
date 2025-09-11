@@ -738,9 +738,9 @@ EID.descriptions[languageCode].BFFSSynergies = {
 ---------- Trinkets ----------
 
 EID.descriptions[languageCode].trinkets={
-	{"1", "Moneda tragada", "{{Coin}} Genera 1 moneda al recibir daño"}, -- Swallowed Penny
+	{"1", "Moneda tragada", "{{Coin}} Genera una moneda al recibir daño"}, -- Swallowed Penny
 	{"2", "Popó petrificado", "50% de probabilidad de obtener recolectables al romper cacas"}, -- Petrified Poop
-	{"3", "Batería AAA", "{{Battery}} Los objetos activos necesitan 1 carga menos"}, -- AAA Battery
+	{"3", "Batería AAA", "{{Battery}} Los objetos activos necesitan una carga menos"}, -- AAA Battery
 	{"4", "Control Remoto Roto", "{{Collectible44}} Usar un objeto activo te teletransporta a una habitación aleatoria"}, -- Broken Remote
 	{"5", "Corazón Purpura", "Duplica la probabilidad de encontrar enemigos y jefes campeones"}, -- Purple Heart
 	{"6", "Imán roto", "{{Coin}} Atrae las monedas hacia el jugador"}, -- Broken Magnet
@@ -766,7 +766,7 @@ EID.descriptions[languageCode].trinkets={
 	{"26", "Gusano Cuadrado", "↑ {{Range}} Alcance +10#Las lágrimas se mueven en ángulos rectos"}, -- Hook Worm
 	{"27", "Gusano Fugáz", "↑ {{Shotspeed}} Vel. de lágrimas +0.5"}, -- Whip Worm
 	{"28", "Anj roto", "{{Player4}} 22% de probabilidad de reaparecer como \"???\" al morir"}, -- Broken Ankh
-	{"29", "Cabeza de Pez", "Genera una mosca azul al recibir daño"}, -- Cabeza de Pez
+	{"29", "Cabeza de Pez", "Genera una mosca azul al recibir daño"}, -- Fish Head
 	{"30", "Ojo Rojo", "{{Poison}} 10% de probabilidad de disparar lágrimas venenosas#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Pinky Eye
 	{"31", "Chincheta", "10% de probabilidad de disparar lágrimas perforantes y espectrales#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Push Pin
 	{"32", "Monguis", "25% de probabilidad de activar un efecto de hongo aleatorio para la habitación actual#Puede revelar la ubicación de habitaciones especiales en el mapa"}, -- Liberty Cap
@@ -792,7 +792,7 @@ EID.descriptions[languageCode].trinkets={
 	{"52", "Moneda Falsificada", "{{Coin}} 50% de probabilidad de incrementar +1 el valor de las monedas al recogerlas"}, -- Counterfeit Penny
 	{"53", "Garrapata", "{{HealingRed}} Cura 1 corazón rojo al entrar en una {{BossRoom}} Sala de Jefe#Reduce un 15% la salud del jefe#{{Warning}} Este trinket no puede ser soltado#Solo puedes deshacerte de él recogiendo {{Trinket41}} la Cerilla o tragándolo"}, -- Tick
 	{"54", "Cabeza de Isaac", "Familiar con lágrimas perforantes#Inflige 3.5 de daño"}, -- Isaac's Head
-	{"55", "La fe de Maggy", "{{EternalHeart}} Otorga un Corazón Eterno al entrar a un nuevo piso"}, -- Maggy's Faith
+	{"55", "La fe de Maggy", "{{EternalHeart}} +1 Corazón Eterno al cambiar de piso"}, -- Maggy's Faith
 	{"56", "Lengua de Judas", "{{DevilRoom}} Reduce los precios de los pactos del Diablo a un corazón#{{SoulHeart}} No reduce los pactos de 3 Corazones de Alma"}, -- Judas' Tongue
 	{"57", "Alma de ???", "Familiar que rebota por la habitación#Dispara en la misma dirección que el jugador#Inflige 3.5 de daño#Dispara lágrimas espectrales y teledirigidas"}, -- ???'s Soul
 	{"58", "Mechón de Sansón", "{{Timer}} Matar a un enemigo tiene 1/15 de probabilidad de otorgar ↑ {{Damage}} Daño +0.5 por la habitación#{{Luck}} 100% de probabilidad con 10 de suerte"}, -- Samson's Lock
@@ -822,7 +822,7 @@ EID.descriptions[languageCode].trinkets={
 	{"82", "Herradura de oro", "{{TreasureRoom}} +15% de probabilidad de generar dos objetos para elegír en futuras salas del tesoro"}, -- Golden Horse Shoe
 	{"83", "Llave de Tienda", "{{Shop}} Permite abrir las tiendas gratis"}, -- Store Key
 	{"84", "Costilla de Codicia", "{{Coin}} Genera 5% mas monedas y menos corazones como recompensa de habitación#Codicia y Super Codicia ya no aparecerán en la {{Shop}} Tienda y en la {{SecretRoom}} Habitación Secreta"}, -- Rib of Greed
-	{"85", "Karma", "{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón (40%)#{{Coin}} Generar 1 moneda (40%)#{{Luck}} Suerte +1 (15%)#{{Beggar}} Generar un Mendigo (5%)"}, -- Karma
+	{"85", "Karma", "{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón rojo {{ColorSilver}}(40%)#{{Coin}} Generar una moneda {{ColorSilver}}(40%)#{{Luck}} Suerte +1 {{ColorSilver}}(15%)#{{Beggar}} Generar un Mendigo {{ColorSilver}}(5%)"}, -- Karma
 	{"86", "Mini-Larva", "Romper caca genera una mosca azul"}, -- Lil Larva
 	{"87", "Medallón de Mamá", "{{HealingRed}} Cura medio corazón al usar llaves#{{Heart}} Convierte los medios corazones en corazones enteros"}, -- Mom's Locket
 	{"88", "¡NO!", "Previene que aparezcan objetos activos"}, -- NO!
