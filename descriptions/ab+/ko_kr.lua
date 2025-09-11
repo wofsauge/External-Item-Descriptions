@@ -707,7 +707,7 @@ EID.descriptions[languageCode].trinkets={
 	{"20", "원숭이 손", "{{BlackHeart}} 피격 시 전체 체력이 반칸 남았을때 블랙하트를 하나 드랍합니다.#!!! 3번 드랍 시 사라집니다."}, -- Monkey Paw
 	{"21", "신비한 종이", "!!! 피격 시 확률적으로 아래의 장신구 효과 중 하나를 발동합니다:#{{Collectible327}} The Polaroid#{{Collectible328}} The Negative#{{Trinket48}} A Missing Page#{{Trinket23}} Missing Poster"}, -- Mysterious Paper
 	{"22", "악마 꼬리", "{{Key}} 방 클리어 시 하트가 드랍될 때 80% 확률로 열쇠로 바뀝니다.#↓ 상자에서 하트가 드랍될 확률이 대폭 감소합니다.#{{BlackHeart}} 고정 드랍이 아닌 하트가 드랍될 때 열쇠로 바뀌지 않은 경우 100%의 확률로 블랙하트로 대체됩니다."}, -- Daemon's Tail
-	{"23", "실종 포스터", "!!! 일회용#{{Player10}} {{SacrificeRoom}}희생방에서 사망 시 전 방에서 The Lost 캐릭터로 부활함과 동시에 The Lost 캐릭터가 해금됩니다.#The Lost 캐릭터 해금 이후에는 희생방이 아닌 다른 방에서의 사망 시에도 부활합니다."}, -- Missing Poster
+	{"23", "실종 포스터", "!!! 일회용#{{Player10}} {{ColorYellow}}(해금 필요){{CR}} 사망 시 The Lost로 부활합니다."}, -- Missing Poster
 	{"24", "똥전", "{{Coin}} 똥 오브젝트에서 동전이 나올 확률이 20% 증가합니다.#동전 획득 시 적을 더 강하게 밀쳐내는 방귀를 뀝니다."}, -- Butt Penny
 	{"25", "이상한 초콜릿", "!!! 30초마다 일정 확률로:#{{ArrowGrayRight}} 똥을 싸거나;#{{ArrowGrayRight}} 적을 더 강하게 밀쳐내는 방귀를 뀝니다."}, -- Mysterious Candy
 	{"26", "꺾기벌레", "↑ {{RangeSmall}}사거리 +10#눈물이 지그재그로 날아갑니다."}, -- Hook Worm
@@ -1183,7 +1183,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.297 (Greed)"] = {"사용 시 스테이지마다 다른 보상을 드랍합니다.#Basement: 2{{Bomb}} + 2{{Key}}#Caves: {{BossRoom}} 1개 + 2{{SoulHeart}}#Depths: 20{{Coin}}#Womb: {{BossRoom}} 2개#Sheol: {{DevilRoom}} 1개 + 1{{BlackHeart}}#The Shop/Ultra Greed: 1{{Coin}}"}, -- Pandora's Box
 
 	------ ACHIEVEMENT CHECKS ------
-	["5.350.23"] = "!!! {{SacrificeRoom}}희생방에서 사망 시 The Lost 캐릭터가 해금됩니다.", -- Missing Poster (Unlock The Lost)
+	["5.350.23"] = "{{Player10}} {{SacrificeRoom}}희생방에서 사망 시 전 방에서 The Lost 캐릭터로 부활 + 해금됩니다.", -- Missing Poster (Unlock The Lost)
 	["5.100.297"] = {"{{Collectible523}}Moving Box 해금", "무효과"}, -- Pandora's Box unlocking Moving Box
 
 

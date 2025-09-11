@@ -25,7 +25,7 @@ local collectibles = {
 	-- Change: tears up -> fire rate up
 	[141] = {"141", "분장 소년", "{{Coin}} 동전 7개를 드랍합니다.#랜덤 페니류 장신구를 하나 드랍합니다."}, -- Pageant Boy
 	-- Change: tears up per use
-	[186] = {"186", "피의 권리", "{{EmptyHeart}} 사용 시 체력을 1칸 깎고;#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +0.48#{{ArrowGrayRight}} 그 방의 적에게 40의 피해를 줍니다.#!!! 그 방에서 연속적으로 사용 시 2번째 사용부터;#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +0.15#{{ArrowGrayRight}} 깎이는 체력이 반칸으로 줄어듭니다.#빨간하트를 우선적으로 깎습니다."}, -- Blood Rights
+	[186] = {"186", "피의 권리", "{{EmptyHeart}} 사용 시 체력을 1칸 깎고;#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +0.48#{{ArrowGrayRight}} 그 방의 적에게 40의 피해를 줍니다.#!!! 그 방에서 연속적으로 사용 시 2번째 사용부터;#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +0.15#{{ArrowGrayRight}} 깎이는 체력이 반칸으로 줄어듭니다.#빨간하트를 우선적으로 깎습니다.#증가된 연사 수치는 스테이지 진입 시 초기화됩니다."}, -- Blood Rights
 	-- Change: added "ability to block shots"
 	[281] = {"281", "샌드백", "방 안을 돌아다니며 6초 간격으로 적을 유인합니다.#적의 탄환을 막아줍니다."}, -- Punching Bag
 	-- Change:
@@ -37,7 +37,7 @@ local collectibles = {
 	-- Change : Up to 2 items
 	[381] = {"381", "에덴의 축복", "↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤 아이템을 하나 들고 시작합니다.#{{Blank}} {{ColorGray}}(최대 2개)"}, -- Eden's Blessing
 	-- Change: Bomb damage +85(does not stack with mr. mega)
-	[420] = {"420", "검은 가루", "{{Bomb}} 폭탄 피해량 +85#{{Bomb}} 폭탄의 범위가 넓어집니다.#모닥불을 끄면 폭발합니다.#캐릭터가 지나간 곳에 검은 가루가 남으며;#{{ArrowGrayRight}} 가루로 원을 그리면 마법진이 생성됩니다.#마법진 위의 적에게 4초간 최대 130의 피해를 줍니다."}, -- Black Powder
+	[420] = {"420", "검은 가루", "{{Bomb}} 폭탄 피해량 +85#{{Bomb}} 폭탄의 범위가 넓어집니다.#모닥불을 끄면 폭발합니다. (캐릭터 피해 없음)#캐릭터가 지나간 곳에 검은 가루가 남으며;#{{ArrowGrayRight}} 가루로 원을 그리면 마법진이 생성됩니다.#마법진 위의 적에게 4초간 최대 130의 피해를 줍니다."}, -- Black Powder
 	-- Change: Complete rewrite
 	[436] = {"436", "우유!", "캐릭터를 따라다니며 적의 탄환을 막아줍니다.#{{TearsSmall}} 10회 방어 시 사라지며 그 스테이지에서 연사(+상한) +1#스테이지 진입 시 복원됩니다."}, -- Milk!
 	-- Change: Complete rewrite
@@ -46,7 +46,7 @@ local collectibles = {
 	-- Change: added " and fires radial bursts of tears"
 	[470] = {"470", "허쉬", "대각선으로 이동하며 접촉하는 적에게 초당 30의 피해를 줍니다.#공격키를 누르고 있으면 움직이지 않는 대신 적의 탄환을 막으며;#{{ArrowGrayRight}} 8방향으로 공격력 6의 눈물을 발사합니다."}, -- Hushy
 	-- Change: extended timer for isaac's death for certain boss rooms
-	[475] = {"475", "플랜 C", "사용 시 그 방의 적에게 9,999,999의 피해를 주며 {{ColorRed}}3초 후 사망합니다{{CR}}.#{{ArrowGrayRight}} {{ColorGray}}(특정 보스 {{DeliriumSmall}}/{{MotherSmall}} 의 경우 10~12초 후 사망)"}, -- Plan C
+	[475] = {"475", "플랜 C", "사용 시 그 방의 적에게 9,999,999의 피해를 주며 {{ColorRed}}3초 후 사망합니다{{CR}}.#{{ArrowGrayRight}} {{ColorGray}}(특정 보스 {{DeliriumSmall}}/{{MotherSmall}} 의 경우 13~15초 후 사망)"}, -- Plan C
 	-- Change: added "Turns item pedestals into glitched items"
 	[481] = {"481", "데이터마이너", "{{ArrowUpDown}} 사용 시 능력치가 랜덤으로 증가하거나 감소, 그 방에서 랜덤 효과가 부여되며;#{{ArrowGrayRight}} {{Collectible721}}그 방의 아이템을 오류 아이템으로 바꿉니다.#!!! 그 방의 스프라이트가 망가집니다."}, -- Dataminer
 	-- Change:
@@ -81,21 +81,32 @@ EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].coll
 ---------- Trinkets ----------
 
 local trinkets = {
+	-- Change: Added champion loot information
 	[5] = {"5", "퍼플 하트 훈장", "!!! 적이 챔피언의 형태로 나올 확률이 2배로 증가합니다.#가능한 경우, 보스가 챔피언의 형태로 나올 확률이 증가합니다.#챔피언 몬스터 처치 시 보상 드랍 확률 +20%p#챔피언 몬스터 보상이 2배로 등장합니다."}, -- Purple Heart
-	[7] = {"7", "묵주 구슬", "↑ {{AngelChanceSmall}} 보스방 클리어로 악마방으로 향하는 문 등장 시 천사방으로 바뀝니다.#!!! {{Library}}책방과 {{Shop}}상점에서 {{Collectible33}}The Bible이 등장할 확률이 증가합니다."}, -- Rosary Bead
-	[16] = {"16", "엄마의 발톱", "클리어하지 않은 방에서 장신구를 버리면;#{{ArrowGrayRight}} 그 위치에 엄마발이 떨어집니다."}, -- Mom's Toenail
-	[23] = {"23", "실종 포스터", "!!! 일회용#{{Player10}} {{SacrificeRoom}}희생방에서 사망 시 전 방에서 The Lost 캐릭터로 해금 + 부활합니다.#The Lost 캐릭터 해금 이후에는 희생방이 아닌 다른 방에서의 사망 시에도 부활합니다.#{{SuperSecretRoom}} 스테이지 진입 시 33%의 확률로 일급비밀방의 위치를 보여줍니다."}, -- Missing Poster
+	-- Change: Added info about devil deals
+	[7] = {"7", "묵주 구슬", "{{AngelChanceSmall}} {{ColorOrange}}보스방 클리어로 악마방으로 향하는 문 등장 시{{CR}} 천사방으로 향하는 문으로 바뀝니다.#!!! {{Library}}책방과 {{Shop}}상점에서 {{Collectible33}}The Bible이 등장할 확률이 증가합니다."}, -- Rosary Bead
+	-- Change: added info about dropping the item
+	[16] = {"16", "엄마의 발톱", "클리어하지 않은 방에서 장신구를 버리면;#{{ArrowGrayRight}} {{MomBossSmall}} 그 위치에 엄마발이 떨어집니다."}, -- Mom's Toenail
+	-- Change: added Super Secret Room info
+	[23] = {"23", "실종 포스터", "!!! 일회용#{{Player10}} {{ColorYellow}}(해금 필요){{CR}} 사망 시 The Lost로 부활합니다.#{{SuperSecretRoom}} 스테이지 진입 시 33%의 확률로 일급비밀방의 위치를 보여줍니다."}, -- Missing Poster
 	-- Change: added ", {{Trinket135}} A Lighter"
 	[53] = {"53", "진드기", "!!! {{Trinket41}}/{{Trinket135}}/{{Collectible479}}를 제외한 {{ColorOrange}}교체 및 버리기 불가{{CR}}#방 입장 시 체력이 60 이상인 적의 체력을 15% 깎습니다.#{{HealingRed}} {{BossRoom}}보스방 입장 시 체력을 한칸 회복합니다."}, -- Tick
+	-- Change: added +0.5 damage
 	[66] = {"66", "게으른 벌레", "↑ {{DamageSmall}}공격력 +0.5#↓ {{ShotspeedSmall}}탄속 -0.5"}, -- Lazy Worm
+	-- Change: Complete rewrite
 	[70] = {"70", "머릿니", "방 클리어 시 파란 아군 거미를 하나 소환합니다."}, -- Louse
-	[76] = {"76", "포커 칩", "{{Chest}} 상자에서 50% 확률로 픽업이 추가로 드랍되거나 Attack Fly가 나옵니다.#상자에서 아이템이 나올 때 더 높은 등급 + 랜덤 배열의 아이템으로 바뀝니다.#슬롯머신의 성공 확률 및 보상 빈도가 증가합니다."}, -- Poker Chip
-	[85] = {"85", "업보", "{{DonationJam}} 기부기계 고장 확률 감소#!!! {{DonationMachine}}기부기계/{{BloodDonationMachine}}{{Confessional}}헌혈기/{{Beggar}}거지/{{RestockMachine}}재입고에 기부 시 33%의 확률로 아래 효과 중 하나 발동:#{{ArrowGrayRight}} {{Coin}}동전 +1({{DonationMachine}}/{{Beggar}})#{{Blank}} {{Heart}}빨간하트 1칸 회복({{DonationMachine}}/{{Beggar}}/{{BloodDonationMachine}}{{Confessional}})#{{Blank}} {{LuckSmall}}행운 +1({{DonationMachine}}/{{Beggar}}/{{BloodDonationMachine}}{{Confessional}}/{{RestockMachine}})#{{Blank}} 거지 소환({{DonationMachine}}/{{BloodDonationMachine}}{{Confessional}})"}, -- Karma
-	[89] = {"89", "미아 방지끈", "패밀리어 피해량 +25%#패밀리어들 사이의 간격이 가까워집니다."}, -- Child Leash
+	-- Change: Added more loot information
+	[76] = {"76", "포커 칩", "{{Chest}} 상자에서 50% 확률로 픽업이 추가로 드랍되거나 Attack Fly가 나옵니다.#상자에서 아이템이 나올 때 {{Quality3}}등급 + 랜덤 배열의 아이템이 나옵니다.#슬롯머신의 성공 확률 및 보상 빈도가 증가합니다."}, -- Poker Chip
+	-- Change: Added additional effects
+	[85] = {"85", "업보", "{{DonationJam}} 기부기계 고장 확률 감소#!!! {{DonationMachine}}기부기계/{{BloodDonationMachine}}{{Confessional}}헌혈기/{{Beggar}}거지/{{RestockMachine}}재입고에 기부 시 33%의 확률로 아래 효과 중 하나 발동:#{{ArrowGrayRight}} {{NoLB}}{{Coin}}동전 +1 ({{DonationMachine}}/{{Beggar}})#{{Blank}} {{NoLB}}{{Heart}}빨간하트 1칸 회복 ({{DonationMachine}}/{{Beggar}}/{{BloodDonationMachine}}{{Confessional}})#{{Blank}} {{NoLB}}{{LuckSmall}}행운 +1 ({{DonationMachine}}/{{Beggar}}/{{BloodDonationMachine}}{{Confessional}}/{{RestockMachine}})#{{Blank}} {{NoLB}}{{Beggar}}거지 소환 ({{DonationMachine}}/{{BloodDonationMachine}}{{Confessional}})"}, -- Karma
+	-- Change: Added damage up information
+	[89] = {"89", "미아 방지끈", "{{DamageSmall}} 패밀리어 피해량 +25%#패밀리어들 사이의 간격이 가까워집니다."}, -- Child 
+	-- Change: 33% chance, Spawns blue fly on new room
 	[93] = {"93", "다 쓴 기저귀", "방 입장 시 33%의 확률로 파리류 적들이 공격하지 않거나 약해집니다.#방 클리어 시 파란 아군 파리를 하나 소환합니다."}, -- Used Diaper
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = {"97", "편도선", "6~12 피격 시 Tonsil을 획득합니다.#Tonsil은 캐릭터를 따라다니며 적의 탄환을 막아줍니다."}, -- Tonsil
-	[99] = {"99", "탱탱볼", "확률적으로 공격이 무언가에 부딪힐 때 반대 각도로 튕겨져 나갑니다."}, -- Super Ball
+	[99] = {"99", "탱탱볼", "확률적으로 공격이 무언가에 부딪힐 때 반대 각도로 튕겨져 나갑니다.#{{LuckSmall}} 행운 18 이상일 때 100% 확률"}, -- Super Ball
+	-- Change: Added +2 Tears
 	[103] = {"103", "똑같다!", "!!! 소지중인 동전, 폭탄, 열쇠의 개수가 모두 같을 때:#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +2#{{ArrowGrayRight}} {{Heart}}하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 픽업이 1+1로 나옵니다."},
 	[104] = {"104", "창사골", "!!! 일회용#피격 시 5% 확률로 그 방의 아이템을 하나 생성합니다."}, -- Wish Bone
 	[105] = {"105", "점심 도시락", "!!! 일회용#피격 시 5% 확률로 {{Collectible22}}Lunch ({{Heart}}최대 체력 +1) 아이템을 생성합니다."}, -- Bag Lunch
@@ -105,6 +116,8 @@ local trinkets = {
 	[133] = {"133", "짧은 도화선", "!!! 폭탄이 터지는 속도가 빨라집니다.#{{Bomb}} 폭탄 피해량 +15%"}, -- Short Fuse
 	-- exclusive to ko_kr
 	[135] = {"135", "라이터", "{{Burning}} 방 입장 시 20%의 확률로 그 방의 적에게 2초간 화상을 입힙니다.#{{LuckSmall}} 행운 40 이상일 때 100% 확률#{{Trinket53}} 흡수하지 않은 Tick 장신구를 제거할 수 있습니다."}, -- A Lighter
+	-- Change: Added coin type based information
+	[172] = {"172", "저주받은 동전", "동전 획득 시 랜덤 방으로 순간이동합니다.#동전 종류에 따라 이동하는 방의 종류가 달라질 수 있음"}, -- Cursed Penny
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
 
@@ -167,6 +180,8 @@ local carBattery = {
 	[289] = "2개의 불꽃을 서로 다른 거리로 발사합니다.", -- Red Candle
 	-- Now 23 seconds, if you have car battery
 	[441] = {15, 23}, -- Mega Blast
+	-- 
+	[523] = {"3초간", "6초간", "3초가", "6초가"}, -- Telekinesis
 	-- Added info regarding doubled familiar
 	[728] = "등장하는 태아 +1", -- Gello
 }
@@ -180,7 +195,7 @@ local conditions = {
 	-- Change: Removed info about Infinte usage of Yum Heart, because its fixed. Now, bleeding hearts provide only half the charge of a regilar heart container
 	["5.100.205 (Tainted Magdalene)"] = "고정 체력이 아닌 하트는 부족한 충전량 한칸 당 체력 {{BlinkYellowRed}}1칸{{CR}}을 깎습니다.", -- Sharp Plug + Tainted Magdalene
 	-- Added ball of bandages synergy
-	["Potato Peeler + Ball of Bandages"] = {"{{Collectible73}} A Cube of Meat","{{Collectible207}} Ball of Bandages"}, -- Potato Peeler with Ball of Bandages
+	["Potato Peeler + Ball of Bandages"] = {"{{ArrowGrayRight}} {{Collectible73}} A Cube of Meat","{{ArrowGrayRight}} {{Collectible207}} Ball of Bandages"}, -- Potato Peeler with Ball of Bandages
 }
 EID:updateDescriptionsViaTable(conditions, EID.descriptions[languageCode].ConditionalDescs)
 
