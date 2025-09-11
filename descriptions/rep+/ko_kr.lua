@@ -25,7 +25,7 @@ local collectibles = {
 	-- Change: tears up -> fire rate up
 	[141] = {"141", "분장 소년", "{{Coin}} 동전 7개를 드랍합니다.#랜덤 페니류 장신구를 하나 드랍합니다."}, -- Pageant Boy
 	-- Change: tears up per use
-	[186] = {"186", "피의 권리", "{{EmptyHeart}} 사용 시 체력을 1칸 깎고;#{{ArrowGrayRight}} {{TearsSmall}} 연사 +0.15#{{ArrowGrayRight}} 그 방의 적에게 40의 피해를 줍니다.#!!! 그 방에서 연속적으로 사용 시 2번째 사용부터;#{{ArrowGrayRight}} {{TearsSmall}} 연사 +0.15#{{ArrowGrayRight}} 깎이는 체력이 반칸으로 줄어듭니다.#빨간하트를 우선적으로 깎습니다."}, -- Blood Rights
+	[186] = {"186", "피의 권리", "{{EmptyHeart}} 사용 시 체력을 1칸 깎고;#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +0.48#{{ArrowGrayRight}} 그 방의 적에게 40의 피해를 줍니다.#!!! 그 방에서 연속적으로 사용 시 2번째 사용부터;#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +0.15#{{ArrowGrayRight}} 깎이는 체력이 반칸으로 줄어듭니다.#빨간하트를 우선적으로 깎습니다."}, -- Blood Rights
 	-- Change: added "ability to block shots"
 	[281] = {"281", "샌드백", "방 안을 돌아다니며 6초 간격으로 적을 유인합니다.#적의 탄환을 막아줍니다."}, -- Punching Bag
 	-- Change:
@@ -37,7 +37,7 @@ local collectibles = {
 	-- Change : Up to 2 items
 	[381] = {"381", "에덴의 축복", "↑ {{TearsSmall}}연사 +0.7#다음 게임에서 랜덤 아이템을 하나 들고 시작합니다.#{{Blank}} {{ColorGray}}(최대 2개)"}, -- Eden's Blessing
 	-- Change: Bomb damage +85(does not stack with mr. mega)
-	[420] = {"420", "검은 가루", "{{Bomb}} 폭탄 피해량 +85#{{Bomb}} 폭탄의 범위가 넓어집니다.#모닥불을 끄면 폭발합니다.#캐릭터가 지나간 곳에 검은 가루가 남으며;#{{ArrowGrayRight}} 가루로 원을 그리면 마법진이 생성됩니다.#마법진 위의 적에게 틱당 10의 피해를 줍니다."}, -- Black Powder
+	[420] = {"420", "검은 가루", "{{Bomb}} 폭탄 피해량 +85#{{Bomb}} 폭탄의 범위가 넓어집니다.#모닥불을 끄면 폭발합니다.#캐릭터가 지나간 곳에 검은 가루가 남으며;#{{ArrowGrayRight}} 가루로 원을 그리면 마법진이 생성됩니다.#마법진 위의 적에게 4초간 최대 130의 피해를 줍니다."}, -- Black Powder
 	-- Change: Complete rewrite
 	[436] = {"436", "우유!", "캐릭터를 따라다니며 적의 탄환을 막아줍니다.#{{TearsSmall}} 10회 방어 시 사라지며 그 스테이지에서 연사(+상한) +1#스테이지 진입 시 복원됩니다."}, -- Milk!
 	-- Change: Complete rewrite
@@ -46,7 +46,7 @@ local collectibles = {
 	-- Change: added " and fires radial bursts of tears"
 	[470] = {"470", "허쉬", "대각선으로 이동하며 접촉하는 적에게 초당 30의 피해를 줍니다.#공격키를 누르고 있으면 움직이지 않는 대신 적의 탄환을 막으며;#{{ArrowGrayRight}} 8방향으로 공격력 6의 눈물을 발사합니다."}, -- Hushy
 	-- Change: extended timer for isaac's death for certain boss rooms
-	[475] = {"475", "플랜 C", "사용 시 그 방의 적에게 9,999,999의 피해를 주며 {{ColorRed}}3초 후 사망합니다{{CR}}.#{{ArrowGrayRight}} {{ColorGray}}(일부 보스방의 경우 사망하는 시점이 늦춰집니다.)"}, -- Plan C
+	[475] = {"475", "플랜 C", "사용 시 그 방의 적에게 9,999,999의 피해를 주며 {{ColorRed}}3초 후 사망합니다{{CR}}.#{{ArrowGrayRight}} {{ColorGray}}(특정 보스 {{DeliriumSmall}}/{{MotherSmall}} 의 경우 10~12초 후 사망)"}, -- Plan C
 	-- Change: added "Turns item pedestals into glitched items"
 	[481] = {"481", "데이터마이너", "{{ArrowUpDown}} 사용 시 능력치가 랜덤으로 증가하거나 감소, 그 방에서 랜덤 효과가 부여되며;#{{ArrowGrayRight}} {{Collectible721}}그 방의 아이템을 오류 아이템으로 바꿉니다.#!!! 그 방의 스프라이트가 망가집니다."}, -- Dataminer
 	-- Change:
@@ -96,7 +96,7 @@ local trinkets = {
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = {"97", "편도선", "6~12 피격 시 Tonsil을 획득합니다.#Tonsil은 캐릭터를 따라다니며 적의 탄환을 막아줍니다."}, -- Tonsil
 	[99] = {"99", "탱탱볼", "확률적으로 공격이 무언가에 부딪힐 때 반대 각도로 튕겨져 나갑니다."}, -- Super Ball
-	[103] = {"103", "똑같다!", "!!! 소지중인 동전, 폭탄, 열쇠의 개수가 모두 같을 때:#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +2#{{ArrowGrayRight}} {{Heart}}하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 픽업이 1+1로 나옵니다."}
+	[103] = {"103", "똑같다!", "!!! 소지중인 동전, 폭탄, 열쇠의 개수가 모두 같을 때:#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +2#{{ArrowGrayRight}} {{Heart}}하트, {{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 픽업이 1+1로 나옵니다."},
 	[104] = {"104", "창사골", "!!! 일회용#피격 시 5% 확률로 그 방의 아이템을 하나 생성합니다."}, -- Wish Bone
 	[105] = {"105", "점심 도시락", "!!! 일회용#피격 시 5% 확률로 {{Collectible22}}Lunch ({{Heart}}최대 체력 +1) 아이템을 생성합니다."}, -- Bag Lunch
 	-- exclusive to ko_kr
@@ -137,6 +137,25 @@ local horsepills={
 	[26] = {"25", "건망증", "{{CurseLostSmall}} Lost 저주에 걸리며 맵을 볼 수 없습니다.#{{ColorYellow}}알약의 효과가 다시 가려집니다."}, -- Amnesia
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
+
+---------- Car Battery ----------
+
+local carBattery = {
+	-- Now grants +4 damage instead of +3
+	[34] = {2, 4}, -- The Book of Belial
+	-- Added info regarding doubled attack
+	[47] = "미사일 +1", -- Doctor's Remote
+	-- Added info regarding doubled attack
+	[164] = "2개의 불꽃을 서로 다른 거리로 발사합니다.", -- The Candle
+	-- Added info regarding doubled attack
+	[289] = "2개의 불꽃을 서로 다른 거리로 발사합니다.", -- Red Candle
+	-- Now 23 seconds, if you have car battery
+	[441] = {15, 23}, -- Mega Blast
+	-- Added info regarding doubled familiar
+	[728] = "등장하는 태아 +1", -- Gello
+}
+EID:updateDescriptionsViaTable(carBattery, EID.descriptions[languageCode].carBattery)
+
 
 ---------- Conditions ----------
 EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catcher (Greed) - In Rep+, the dream preview works in greed mode as well, so no changes needed
