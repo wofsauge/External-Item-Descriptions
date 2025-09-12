@@ -11,6 +11,57 @@
 local languageCode = "en_us"
 
 ---------- Collectibles ----------
+local additionalInformations={
+	[13] = "{{Poison}} Touching enemies poisons them#Isaac deals 48 contact damage per second", -- The Virus
+	[30] = "Isaac deals 24 contact damage per second", -- Mom's Heels
+	[37] = "Drops a large bomb below Isaac which deals 185 damage", -- Mr. Boom
+	[40] = "Causes a big explosion at Isaac's location#Deals 185 damage", -- Kamikaze!
+	[41] = "{{Fear}} Fears all enemies in the room for 5 seconds#Spawns a blue fly", -- Mom's Pad
+	[42] = "Using the item and firing in a direction throws the head#{{Poison}} The head explodes where it lands and creates a poison cloud#Deals Isaac's damage + 185", -- Bob's Rotten Head
+	[46] = "Better chance to win while gambling#Increases room clearing drop chance#Turns bad pills into good ones", -- Lucky Foot
+	[49] = "The next shot is replaced with a beam#It deals 24x Isaac's damage over 0.83 seconds", -- Shoop da Whoop!
+	[52] = "{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 10x Isaac's tear damage#If that results in over 60 damage, they instead deal 5x damage +30", -- Dr. Fetus
+	[53] = "Pickups are attracted to Isaac#Opens chests from 2 tiles away, ignoring damage of Spike Chests", -- Magneto
+	[55] = "50% chance to shoot an extra tear backwards#{{Luck}} 100% chance at 5 luck", -- Mom's Eye
+	[59] = "{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage", -- The Book of Belial (Judas' Birthright)
+	[62] = "{{HealingRed}} Killing 13 enemies heals half a heart", -- Charm of the Vampire
+	[67] = "Shoots normal tears#Deals 6 damage per tear", -- Sister Maggy
+	[69] = "{{Chargeable}} Chargeable tears#{{Damage}} Damage scales with charge time, up to 4x", -- Chocolate Milk
+	[71] = "", -- Mini Mush (extra text removed)
+	[72] = "{{Collectible33}} The Bible is added to all item pools", -- Rosary
+	[78] = "Using the item replaces the floor's boss with a horseman", -- Book of Revelations
+	[83] = "Upon use:#{{HalfBlackHeart}} + Half Black Heart#{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage#↓ {{Speed}} -0.18 Speed#Isaac deals 40 contact damage per second#Allows Isaac to destroy rocks by walking into them", -- The Nail
+	[84] = "Opens a trapdoor to the next floor#{{LadderRoom}} Opens a crawlspace if used on a decorative floor tile (grass, small rocks, papers, gems, etc.)", -- We Need To Go Deeper!
+	[87] = "25% chance to shoot in 4 directions#{{Luck}} 100% chance at 15 luck", -- Loki's Horns
+	[91] = "Rooms on the map are revealed from further away#{{SecretRoom}} Can also reveal Secret and Super Secret Rooms#Prevents damage from falling projectiles", -- Spelunker Hat
+	[98] = "{{SoulHeart}} Spawns 1 Soul Heart every 7-8 rooms", -- The Relic
+
+    [107] = "{{Timer}} Receive for the room:#Flight#Isaac's body separates from his head and attacks enemies with 23.5 contact damage per second", -- The Pinking Shears
+    [110] = "{{Petrify}} 20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 luck", -- Mom's Contacts
+    [114] = "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and caps at 6x damage at 1/3 charge#Charging further only increases throwing range#Damage reduces to 2x when returning to Isaac", -- Mom's Knife
+    [118] = "{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam#{{Damage}} It deals 9x Isaac's damage over 0.63 seconds", -- Brimstone
+    [123] = "{{Timer}} Spawns a random familiar for the floor", -- Monster Manual
+    [126] = "↑ {{Damage}} +1.2 Damage for the room#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first", -- Razor Blade
+    [139] = "{{Trinket}} Isaac can hold 2 trinkets", -- Mom's Purse
+    [140] = "{{Poison}} Isaac's bombs create a cloud of poison#{{Poison}} Poison immunity", -- Bob's Curse
+    [142] = "{{SoulHeart}} Isaac gains 1 Soul Heart when damaged down to half a heart#Can only happen once per room#Exiting and re-entering the room allows the effect to trigger again#{{Warning}} Doesn't trigger from health donations", -- Scapular
+    [147] = "Using the item makes Isaac hold the axe#Holding the axe allows Isaac to break rocks, secret room entrances and damage enemies#Landing a hit with the axe reduces its charge#Entering a new floor fully recharges the axe", -- Notched Axe
+    [148] = "Taking damage spawns 2-6 blue flies", -- Infestation
+    [149] = "Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land", -- Ipecac
+    [152] = "Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 2x Isaac's damage per second", -- Technology 2
+    [153] = "Isaac shoots 4 tears at once", -- Mutant Spider
+    [155] = "↑ {{Damage}} x1.35 Damage multiplier for the left eye#Floats around the room#Deals 17.1 contact damage per second", -- The Peeper
+    [158] = "Spawns a {{SoulHeart}} Soul Heart, {{Rune}} rune or {{Card}} card#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}}{{UltraSecretRoom}} Super/Ultra Secret Room)#While held:#{{PlanetariumChance}} +15% Planetarium chance#{{PlanetariumChance}} +100% if a {{TreasureRoom}} Treasure Room was skipped", -- Crystal Ball
+    [169] = "Tears pierce killed enemies if there is leftover damage", -- Polyphemus
+    [171] = "{{Slow}} Slows down enemies for 4 seconds#Deals 10 damage to all enemies#Enemies killed by the item spawn blue spiders", -- Spider Butt
+    [172] = "Orbital#Blocks enemy shots#Deals 112.5 contact damage per second", -- Sacrificial Dagger
+    [173] = "{{SoulHeart}} 33% chance that Red Hearts spawn as Soul Hearts instead", -- Mitre
+    [178] = "{{Throwable}} Launches itself in the direction Isaac shoots#Breaks and deals 7 damage upon hitting an enemy#{{Petrify}} Leaves a pool of petrifying + damaging creep", -- Holy Water
+    [180] = "Isaac farts multiple times when damaged#{{Poison}} The farts leave poison clouds and deflects projectiles", -- The Black Bean
+    [186] = "Deals 40 damage to every enemy#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first", -- Blood Rights
+
+}
+EID:updateDescriptionsViaTable(additionalInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 local repCollectibles={
 	[2] = {"2", "The Inner Eye", "↓ {{Tears}} x0.51 Fire rate multiplier#Isaac shoots 3 tears at once"}, -- The Inner Eye
@@ -52,6 +103,7 @@ local repCollectibles={
 	[87] = {"87", "Loki's Horns", "25% chance to shoot in 4 directions#{{Luck}} 100% chance at 15 luck"}, -- Loki's Horns
 	[91] = {"91", "Spelunker Hat", "Rooms on the map are revealed from further away#{{SecretRoom}} Can also reveal Secret and Super Secret Rooms#Prevents damage from falling projectiles"}, -- Spelunker Hat
 	[98] = {"98", "The Relic", "{{SoulHeart}} Spawns 1 Soul Heart every 7-8 rooms"}, -- The Relic
+
 	[101] = {"101", "The Halo", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +1.5 Range#{{HealingRed}} Heals 1 heart"}, -- The Halo
 	[106] = {"106", "Mr. Mega", "↑ x1.85 Bomb damage#{{Bomb}} +5 Bombs"}, -- Mr. Mega
 	[107] = {"107", "The Pinking Shears", "{{Timer}} Receive for the room:#Flight#Isaac's body separates from his head and attacks enemies with 23.5 contact damage per second"}, -- The Pinking Shears
@@ -84,11 +136,12 @@ local repCollectibles={
 	[182] = {"182", "Sacred Heart", "↑ {{Heart}} +1 Health#↑ {{Damage}} x2.3 Damage multiplier#↑ {{Damage}} +1 Damage#↓ {{Tears}} -0.4 Tears#↓ {{Shotspeed}} -0.25 Shot speed#{{HealingRed}} Full health#Homing tears"}, -- Sacred Heart
 	[184] = {"184", "Holy Grail", "↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart#Flight"}, -- Holy Grail
 	[186] = {"186", "Blood Rights", "Deals 40 damage to every enemy#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first"}, -- Blood Rights
-	[189] = {"189", "SMB Super Fan", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.2 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +2.5 Range#{{HealingRed}} Full health"}, -- SMB Super Fan
+	[189] = {"189", "SMB Super Fan", "↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.3 Damage#↑ {{Speed}} +0.2 Speed#↑ {{Range}} +2.5 Range#↑ {{Heart}} +1 Health#{{HealingRed}} Full health"}, -- SMB Super Fan
 	[192] = {"192", "Telepathy for Dummies", "{{Timer}} Receive for the room:#↑ {{Range}} +3 Range#Homing tears"}, -- Telepathy for Dummies
-	[193] = {"193", "MEAT!", "↑ {{Heart}} +1 Health#↑ {{Damage}} +0.3 Damage#{{HealingRed}} Heals 1 heart"}, -- MEAT!
-	[194] = {"194", "Magic 8 Ball", "↑ {{Shotspeed}} +0.16 Shot speed#{{Card}} Spawns a card#{{PlanetariumChance}} +15% Planetarium chance"}, -- Magic 8 Ball
+	[193] = {"193", "MEAT!", "↑ {{Damage}} +0.3 Damage#↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart"}, -- MEAT!
+	[194] = {"194", "Magic 8 Ball", "↑ {{Shotspeed}} +0.16 Shot speed#{{Card}} Spawns 1 card#{{PlanetariumChance}} +15% Planetarium chance"}, -- Magic 8 Ball
 	[197] = {"197", "Jesus Juice", "↑ {{Damage}} +0.5 Damage#↑ {{Range}} +1.5 Range"}, -- Jesus Juice
+
 	[203] = {"203", "Humbleing Bundle", "Pickups have a 50% chance to be doubled"}, -- Humbleing Bundle
 	[205] = {"205", "Sharp Plug", "{{Battery}} Using an uncharged active item fully recharges it at the cost of half a heart per missing charge#{{Heart}} Removes Red Hearts first"}, -- Sharp Plug
 	[206] = {"206", "Guillotine", "↑ {{Tears}} +0.5 Fire rate#↑ {{Damage}} +1 Damage#Isaac's head becomes an orbital that shoots, doesn't take damage and deals 56 contact damage per second"}, -- Guillotine

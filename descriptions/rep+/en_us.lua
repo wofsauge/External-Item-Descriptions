@@ -11,6 +11,19 @@
 local languageCode = "en_us"
 
 ---------- Collectibles ----------
+local additionalInformations={
+	-- Change: added "Creep persists until you exit the room"
+	[56] = "Spills a pool of creep#The creep deals 24 damage per second#Creep persists until you exit the room", -- Lemon Mishap
+	-- Change: added "Persists between rooms if player is at 1/2 hearts"
+	[117] = "Taking damage spawns a bird that attacks enemies#The bird deals 4.3 contact damage per second#Persists between rooms if player is at 1/2 hearts", -- Dead Bird
+	-- Change: added "Spawns a random penny trinket"
+	[141] = "{{Coin}} Spawns 7 random coins#Spawns a random penny trinket", -- Pageant Boy
+	-- Change: added Fire rate information
+	[186] = "Deals 40 damage to every enemy#{{Tears}} +0.48 fire rate for current room#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first", -- Blood Rights
+	-- Change: added "Blocks enemy tears"
+	[281] = "Decoy familiar#Enemies target him instead of Isaac#Blocks enemy tears", -- Punching Bag
+}
+EID:updateDescriptionsViaTable(additionalInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 local collectibles = {
 	-- Change: added "Creep persists until you exit the room"
