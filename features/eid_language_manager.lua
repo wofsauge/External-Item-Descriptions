@@ -93,7 +93,9 @@ end
 
 --- Attempts to load all language packs from a given game version
 function EID:LoadLanguagePacks(gameVersion)
-    --transformation infos
+    --modular item informations
+    local _, _ = pcall(require, "descriptions." .. gameVersion .. ".item_stats")
+    --transformation informations
     local _, _ = pcall(require, "descriptions." .. gameVersion .. ".transformations")
     --load languages
     for _, languageCode in ipairs(EID.Languages) do
