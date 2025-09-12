@@ -168,7 +168,7 @@ local horsepills={
 	-- Change: affects whole floor
 	[42] = {"41", "완전 지루해...", "{{Slow}} {{ColorCyan}}그 스테이지{{CR}}에서 적과 캐릭터의 속도가 느려집니다."}, -- I'm Drowsy...
 	-- Change: affects whole floor
-	[43] = {"42", "완전 재밌어!!", "!!! {{ColorYellow}}그 스테이지{{CR}}에서 적과 캐릭터의 속도가 빨라집니다.#!!! 30, 60초 이후 다시 발동"}, --I'm Excited!!
+	[43] = {"42", "완전 재밌어!!", "!!! {{ColorYellow}}그 스테이지{{CR}}에서 적과 캐릭터의 속도가 빨라집니다."}, --I'm Excited!!
 	-- Change: Forces the effect to be a golden trinket
 	[44] = {"43", "꿀꺽!", "소지중인 장신구를 흡수해 효과를 영구적으로 얻습니다.#{{ColorCyan}}흡수된 장신구는 {{ColorGold}}황금{{ColorCyan}} 형태로 흡수됩니다."}, -- Gulp!
 }

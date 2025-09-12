@@ -155,7 +155,7 @@ local horsepills = {
 	-- Change: affects whole floor
 	[42] = {"41", "Ho Sonno...", "{{Slow}} Rallenta Isaac e tutti i nemici nella stanza"}, -- I'm Drowsy...
 	-- Change: affects whole floor
-	[43] = {"42", "Sono Euforico!!!", "Velocizza Isaac e i nemici per tutto il piano#Si attiva nuovamente dopo 30 e 60 secondi"}, --I'm Excited!!
+	[43] = {"42", "Sono Euforico!!!", "Velocizza Isaac e i nemici per tutto il piano"}, --I'm Excited!!
 	-- Change: Forces the effect to be a golden trinket
 	[44] = {"43", "Gulp!", "Consuma il ninnolo di Isaac e conferisce permanentemente gli effetti della versione {{ColorGold}}dorata{{CR}}"}, -- Gulp!
 }

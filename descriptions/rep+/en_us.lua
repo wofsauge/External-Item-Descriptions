@@ -155,7 +155,7 @@ local horsepills = {
 	-- Change: affects whole floor
 	[42] = {"41", "I'm Drowsy...", "{{Slow}} Slows Isaac and all enemies for the whole floor"}, -- I'm Drowsy...
 	-- Change: affects whole floor
-	[43] = {"42", "I'm Excited!!", "Speeds up Isaac and all enemies for the whole floor#Triggers again after 30 and 60 seconds"}, --I'm Excited!!
+	[43] = {"42", "I'm Excited!!", "Speeds up Isaac and all enemies for the whole floor"}, --I'm Excited!!
 	-- Change: Forces the effect to be a golden trinket
 	[44] = {"43", "Gulp!", "Consumes Isaac's trinket and grants its {{ColorGold}}golden{{CR}} effect permanently"}, -- Gulp!
 }
