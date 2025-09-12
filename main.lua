@@ -721,7 +721,6 @@ function EID:printDescription(desc, cachedID)
 		end
 	end
 	-- Display Possible Pool for Collectible
-	if EID.isRepentance and EID.Config["ShowItemPoolText"] then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
 		if itemConfig:IsCollectible() then
 			local pools = EID:GetPoolsForCollectible(desc.ObjSubType)

@@ -3019,8 +3019,12 @@ function EID:WatchForGlitchedCrown()
 	end
 end
 
+--- Cached table for item pool infos
 EID.CachedCollectibleItemPools = {}
 
+---Check Item Pools that contain certain collectible, updates EID.CachedCollectibleItemPools to returned value
+---@param collectibleType CollectibleType
+---@return table
 function EID:GetPoolsForCollectible(collectibleType)
 	if not EID.isRepentance then return end
 
@@ -3031,7 +3035,7 @@ function EID:GetPoolsForCollectible(collectibleType)
 		local ItemPoolTypeToXMLPool = { -- did this in case for excluding greed pools
 			[0] = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
 			10, 11, 12, 13, 14, 15,
-			16, 17, 18, 20, 21, 19, 22, -- greed pools
+			16, 17, 18, 20, 21, 19, 22, -- greed pools, enum does not match with xmldata
 			23, 24, 25, 26, 27, 28, 29, 30
 		}
 		for i = 0, ItemPoolType.NUM_ITEMPOOLS - 1 do

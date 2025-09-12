@@ -194,6 +194,10 @@ EID.UserConfig = {
 	-- REPENTANCE ONLY!!!
 	-- Default = false
 	["ShowItemPoolIcon"] = false,
+	-- Enables or disables collectible's item pool from which can be appeared
+	-- REPENTANCE ONLY!!!
+	-- Default = false
+	["ShowContainItemPool"] = false,
 	-- Enables or disables collectible's item pool name when collected below item name
 	-- REPENTANCE ONLY!!!
 	-- Default = false
