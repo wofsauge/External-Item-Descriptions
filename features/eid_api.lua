@@ -3078,6 +3078,22 @@ function EID:assignItemPoolMarkup(itemPoolType, str)
 	end
 end
 
+---Adds name for a item pool.
+---Normally this does nothing if REPENTOGON is not active
+---@param id ItemPoolType
+---@param poolName string
+---@param language EID_LanguageCode? @Default: "en_us"
+function EID:addItemPoolName(id, poolName, language)
+	poolName = poolName or nil
+	language = language or EID.DefaultLanguageCode
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add item pool name to id = -1, which is not allowed! (Name: "..tostring(poolName)")
+		return
+	end
+	EID:CreateDescriptionTableIfMissing("itemPoolNames", language)
+	EID.descriptions[language].itemPoolNames[id] = poolName
+end
+
 ---Replaces Variable placeholders in string with a given value
 ---Example: "My {1} message" --> "My test message"
 ---varID can be omitted to replace {1} (or pass in a string table, to replace {1}, {2}, etc.)
