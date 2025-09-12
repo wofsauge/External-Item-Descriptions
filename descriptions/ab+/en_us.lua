@@ -1098,8 +1098,13 @@ EID.descriptions[languageCode].transformations={
 -- Each language can do their own algorithm to modify the given text to their needs
 EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
 	-- English plural is very easy. Simply put an "s" at the end of specific words, if amount > 1
+	if amount > 1 then
+		text = text:gsub("Life", "Lives")
+	end
 	-- replace {pluralize} placeholders inside the text with an "s"
-	return EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
+	text = EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
+	text = EID:ReplaceVariableStr(text, "pluralize_y", amount > 1 and "ies" or "y")
+	return text
 end
 
 EID.descriptions[languageCode].VoidText = "If absorbed, gain:"
