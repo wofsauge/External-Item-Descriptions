@@ -3055,8 +3055,8 @@ function EID:GetPoolsForCollectible(collectibleType)
 		local pool = game:GetItemPool()
 		local numPools = pool:GetNumItemPools()
 		for i = ItemPoolType.POOL_TREASURE, numPools - 1 do
-			local table = pool:GetCollectiblesFromPool(i)
-			for _, element in ipairs(table) do
+			local t = pool:GetCollectiblesFromPool(i)
+			for _, element in ipairs(t) do
 				if element.itemID == collectibleType and element.initialWeight > 0 and not Isaac.GetItemConfig():GetCollectible(collectibleType).Hidden then
 					table.insert(poolTable, i)
 					break
