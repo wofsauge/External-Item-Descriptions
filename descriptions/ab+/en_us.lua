@@ -20,6 +20,140 @@ EID.descriptions[languageCode].alternativeLanguageCodes = {"english", "en"}
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}
 
 ---------- Collectibles ----------
+local C = CollectibleType
+EID.descriptions[languageCode].AdditionalInformations={
+	[2] = "Isaac shoots 3 tears at once", -- The Inner Eye
+	[5] = "Tears get a boomerang effect", -- My Reflection
+	[8] = "Shoots normal tears#Deals 3.5 damage per tear", -- Brother Bobby
+	[9] = "All fly enemies are friendly", -- Skatole
+	[10] = "Blocks enemy projectiles", -- Halo of Flies
+	[11] = "Isaac respawns with full health on death", -- 1up!
+	[13] = "{{Poison}} Touching enemies poisons them#{{BlackHeart}} Poisoned enemies can drop Black Hearts", -- The Virus
+	[21] = "Reveals icons on the map#Does not reveal the layout of the map", -- The Compass
+	[33] = "{{Timer}} Flight for the room#{{MomsHeart}} Kills Mom's Foot and Mom's Heart instantly#{{Warning}} Kills Isaac when used on Satan", -- The Bible
+	[34] = "{{AngelDevilChance}} +12.5% Devil/Angel Room chance while held#{{Timer}} Receive for the room:#↑ {{Damage}} +2 Damage", -- The Book of Belial
+	[35] = "Deals 40 damage to all enemies in the room", -- The Necronomicon
+	[36] = "Spawns one poop and knocks back enemies#Can be placed next to a pit and destroyed with a bomb to make a bridge", -- The Poop
+	[37] = "Drops a large bomb below Isaac which deals 110 damage", -- Mr. Boom
+	[38] = "Shoots 10 tears in a circle around Isaac#The tears copy Isaac's tear effects, plus 25 damage", -- Tammy's Head
+	[39] = "{{Petrify}} Petrifies all enemies in the room for 4 seconds", -- Mom's Bra
+	[40] = "Causes an explosion at Isaac's location#It deals 40 damage", -- Kamikaze!
+	[41] = "{{Fear}} Fears all enemies in the room for 5 seconds", -- Mom's Pad
+	[42] = "Using the item and firing in a direction throws the head#{{Poison}} The head explodes on impact and poisons enemies", -- Bob's Rotten Head
+	[44] = "Teleports Isaac into a random room, except I AM ERROR rooms", -- Teleport!
+	[46] = "+8% room clear reward chance#Better chance to win while gambling", -- Lucky Foot
+	[47] = "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#It deals 20x Isaac's damage", -- Doctor's Remote
+	[49] = "The next shot is replaced with a beam#It deals 26x Isaac's damage over 0.9 seconds", -- Shoop da Whoop!
+	[52] = "{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's damage + 30", -- Dr. Fetus
+	[53] = "Pickups are attracted to Isaac", -- Magneto
+	[55] = "50% chance to shoot an extra tear backwards#{{Luck}} 100% chance at 2 luck", -- Mom's Eye
+	[56] = "Spills a pool of creep#The creep deals 24 damage per second", -- Lemon Mishap
+	[57] = "Mid-range fly orbital#Deals 75 contact damage per second", -- Distant Admiration
+	[58] = "{{Timer}} Invincibility for 10 seconds", -- Book of Shadows
+	[60] = "Allows Isaac to cross 1-tile gaps", -- The Ladder
+	[62] = "{{HealingRed}} Killing 13 enemies heals half a heart", -- Charm of the Vampire
+	[63] = "{{Battery}} Active items can be overcharged to two full charges", -- The Battery
+	[64] = "{{Shop}} Shop items cost 50% less", -- Steam Sale
+	[65] = "Spawns 6 Troll Bombs near the center of the room", -- Anarchist Cookbook
+	[66] = "{{Slow}} Slows enemies down for 8 seconds", -- The Hourglass
+	[67] = "Shoots normal tears#Deals 3.5 damage per tear", -- Sister Maggy
+	[68] = "Isaac shoots lasers instead of tears", -- Technology
+	[69] = "{{Chargeable}} Chargeable tears#{{Damage}} Damage scales with charge time, up to 4x#{{Tears}} Max charge time is 2.5x tear delay", -- Chocolate Milk
+	[71] = "The tear height up and range down = slight range up", -- Mini Mush
+	[72] = "{{Collectible33}} The Bible is added to all item pools", -- Rosary
+	[73] = "Lv1: Orbital#Lv2: Shooting orbital#Lv3: Meat Boy#Lv4: Super Meat Boy", -- Cube of Meatr
+	[75] = "{{Pill}} Changes bad pills into good pills#{{BloodDonationMachine}} Blood Donation Machines give more {{Coin}} coins", -- PHD
+	[76] = "{{SecretRoom}} Opens all secret room entrances", -- X-Ray Vision
+	[77] = "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot but deals 40 contact damage per second", -- My Little Unicorn
+	[78] = "Using the item has a high chance to replace the floor's boss with a horseman", -- Book of Revelations
+	[81] = "Isaac respawns with 1 heart container on death#{{Warning}} Sets Isaac's heart containers to 1 when picked up", -- Dead Cat
+	[83] = "Upon use:#{{SoulHeart}} +1 Soul Heart#{{Timer}} Receive for the room:#↑ {{Damage}} +0.7 Damage#↓ {{Speed}} -0.18 Speed#Isaac deals 40 contact damage per second#Allows Isaac to destroy rocks by walking into them", -- The Nail
+	[84] ="Opens a trapdoor to the next floor#{{LadderRoom}} 10% chance to open a crawlspace trapdoor", -- We Need To Go Deeper!
+	[86] = "Monstro falls on an enemy and deals 120 damage#{{Warning}} Monstro falls on Isaac if the room has no enemies", -- Monstro's Tooth
+	[87] = "25% chance to shoot in 4 directions#{{Luck}} 100% chance at 7 luck", -- Loki's Horns
+	[88] = "Charges forward in the direction Isaac is shooting#Deals 52.5 contact damage per second", -- Little Chubby
+	[91] = "Reveals the room type of adjacent rooms#{{SecretRoom}} Can reveal Secret and Super Secret Rooms",
+	[93] = "{{Timer}} Receive for 6.5 seconds:#Invincibility#Isaac can't shoot but deals 40 contact damage per second#{{HealingRed}} Killing 2 enemies heals half a heart#{{Fear}} Fears all enemies in the room", -- The Gamekid
+	[94] = "{{Coin}} Spawns a random coin every 2 rooms", -- Sack of Pennies
+	[95] = "Shoots lasers#Deals 3.5 damage per shot", -- Robo-Baby
+	[96] = "{{HalfHeart}} Spawns a half Red Heart every 3 rooms", -- Little C.H.A.D.
+	[98] = "{{SoulHeart}} Spawns 1 Soul Heart every 5-6 rooms", -- The Relic
+	[99] = "{{Slow}} Shoots slowing tears#Deals 3.5 damage per tear", -- Little Gish
+	[100] = "Shoots homing tears#Deals 3.5 damage per tear", -- Little Steven
+
+	[103] = "{{Poison}} 25% chance to shoot poison tears#{{Luck}} 100% chance at 12 luck", -- The Common Cold
+	[104] = "Tears split in two on contact#Split tears deal half damage", -- The Parasite
+	[105] = "Rerolls pedestal items in the room", -- The D6
+	[107] = "{{Timer}} Receive for the room:#Flight#Isaac's body separates from his head and attacks enemies with 82.5 contact damage per second", -- The Pinking Shears
+	[108] = "Reduces most damage taken to half a heart", -- The Wafer
+	[109] = "↑ {{Damage}} +0.04 Damage for every {{Coin}} coin Isaac has", -- Money = Power
+	[110] = "{{Petrify}} 20% chance to shoot petrifying tears#{{Luck}} 50% chance at 20 luck", -- Mom's Contacts
+	[111] = "{{Poison}} Deals 5 damage to enemies nearby and poisons them#The poison deals Isaac's damage 6 times", -- The Bean
+	[112] = "Orbital#Speeds up all other orbitals#Blocks projectiles#Deals 105 contact damage per second", -- Guardian Angel
+	[113] = "Shoots enemies that get close to him#Deals 3 damage per tear", -- Demon Baby
+	[114] = "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and 6x at the furthest possible distance", -- Mom's Knife
+	[116] = "{{Battery}} Automatically charges the first bar of active items#{{Battery}} Fully recharges the active item on pickup", -- 9 Volt
+	[117] = "Taking damage spawns a bird that attacks enemies#The bird deals 4.3 contact damage per second", -- Dead Bird
+	[118] = "{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam#{{Damage}} It deals 13x Isaac's damage over 0.9 seconds", -- Brimstone
+	[122] = "When on half a Red Heart or less:#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +1.5 Damage", -- Whore of Babylon
+	[123] = "{{Timer}} Spawns a random familiar for the room", -- Monster Manual
+	[124] = "Triggers a random active item effect#Chooses the effect from a fixed list of items", -- Dead Sea Scrolls
+	[125] = "Homing bombs", -- Bobby-Bomb
+	[126] = "↑ {{Damage}} +1.2 Damage for the room#{{Warning}} Deals 1 heart of damage to Isaac#{{Heart}} Removes Red Hearts first", -- Razor Blade
+	[127] = "Rerolls and restarts the entire floor", -- Forget Me Now
+	[128] = "Long range fly orbital#Deals 30 contact damage per second", -- Forever Alone
+	[130] = "While held:#{{Speed}} Sets your Speed to at least 1.5#Flight#Upon use, dashes in the direction of Isaac's movement", -- A Pony
+	[131] = "{{Bomb}} Spawns 1 bomb pickup every 3 rooms", -- Bomb Bag
+	[132] = "{{Damage}} Tears deal more damage the further they travel", -- A Lump of Coal
+	[133] = "{{SoulHeart}} Converts 1 heart container into 3 Soul Hearts", -- Guppy's Paw
+	[134] = "{{Chest}} 33% chance to replace the room clear reward with a chest#33% chance to spawn no room clear reward", -- Guppy's Tail
+	[135] = "{{Coin}} Hurts Isaac for half a heart and spawns 1-2 coins#{{Heart}} Removes Red Hearts first", -- IV Bag
+	[136] = "Spawns a decoy Isaac that attracts enemies and explodes after 5 seconds", -- Best Friend
+	[137] = "Isaac's bombs no longer explode automatically#Upon use, detonates all of Isaac's bombs at once", -- Remote Detonator
+	[139] = "{{Trinket}} Isaac can hold 2 trinkets", -- Mom's Purse
+	[140] = "{{Poison}} Isaac's bombs poison enemies caught in the blast", -- Bob's Curse
+	[142] = "{{SoulHeart}} Isaac gains 1 Soul Heart when damaged down to half a heart#Can only happen once per room#Exiting and re-entering the room allows the effect to trigger again", -- Scapular
+	[144] = "{{Coin}} Picks up nearby coins#Spawns random pickups every 3-4 coins", -- Bum Friend
+	[147] = "{{Timer}} For the room, Isaac can break rocks and Secret Room walls by walking into them", -- Notched Axe
+	[148] = "Taking damage spawns 1-3 blue flies", -- Infestation
+	[149] = "Isaac's tears are shot in an arc#{{Poison}} The tears explode and poison enemies where they land", -- Ipecac
+	[150] = "{{Damage}} 10% chance to shoot teeth that deal 3.2x Isaac's damage#{{Luck}} 100% chance at 9 luck", -- Tough Love
+	[151] = "Tears have a 1/6 chance to spawn a blue fly when hitting an enemy", -- The Mulligan
+	[152] = "Replaces Isaac's right eye tears with a continuous laser#{{Damage}} It deals 3x Isaac's damage per second", -- Technology 2
+	[153] = "Isaac shoots 4 tears at once", -- Mutant Spider
+	[154] = "↑ {{Damage}} +2 Damage for the left eye", -- Chemical Peel
+	[155] = "Floats around the room#Deals 17 contact damage per second", -- The Peeper
+	[156] = "{{Battery}} Taking damage adds 1 charge to the active item", -- Habit
+	[157] = "↑ {{Damage}} Taking damage grants a damage up#Applies up to 6 times per floor#Lasts for the whole floor", -- Bloody Lust
+	[158] = "Spawns a {{SoulHeart}} Soul Heart, {{Rune}} rune or {{Card}} card#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)", -- Crystal Ball
+	[160] = "Spawns 5 beams of light near enemies#Each beam deals 8x Isaac's damage + 160 over 0.8 seconds", -- Crack the Sky
+	[161] = "{{Player4}} Respawn as ??? (Blue Baby) on death", -- Ankh
+	[162] = "Taking damage has a 20% chance to make Isaac temporarily invincible#{{Luck}} 100% chance at 27 luck", -- Celtic Cross
+	[163] = "Shoots spectral tears#Deals 3.5 damage per tear", -- Ghost Baby
+	[164] = "Throws a blue flame#It deals contact damage, blocks enemy tears, and despawns after 2 seconds", -- The Candle
+	[166] = "Rerolls all pickups in the room", -- D20
+	[167] = "Shoots two tears in a V-shaped pattern#Deals 4 damage per tear", -- Harlequin Baby
+	[168] = "Instead of shooting tears, aim a crosshair#A rocket lands on the crosshair after 1.5 seconds#{{Damage}} Rockets deal 20x Isaac's damage", -- Epic Fetus
+	[169] = "Tears pierce killed enemies if there is leftover damage", -- Polyphemus
+	[170] = "Stomps on a nearby enemy every 4 seconds#Deals 40 damage per second", -- Daddy Longlegs
+	[171] = "{{Slow}} Slows down enemies for 4 seconds#Deals 10 damage to all enemies", -- Spider Butt
+	[172] = "Orbital#Blocks enemy shots#Deals 225 contact damage per second", -- Sacrificial Dagger
+	[173] = "{{SoulHeart}} 50% chance that Red Hearts spawn as Soul Hearts instead", -- Mitre
+	[174] = "Shoots random tears#Deals 3-5 damage per tear", -- Rainbow Baby
+	[175] = "Opens all doors in the room, including {{SecretRoom}}{{SuperSecretRoom}}Secret Rooms, {{ChallengeRoom}}{{BossRushRoom}}Challenge Rooms, and the Mega Satan door", -- Dad's Key
+	[177] = "{{Coin}} Spend 1 coin for a chance to spawn a pickup", -- Portable Slot
+	[178] = "Taking damage spills a pool of creep#The creep deals 24 damage per second", -- Holy Water
+	[180] = "Isaac farts when damaged#{{Poison}} The fart poisons enemies", -- The Black Bean
+	[181] = "{{Speed}} Sets your Speed to at least 1.5#Flight while held#Using the item dashes in the direction of Isaac's movement, leaving behind beams of light", -- White Pony
+	[186] = "Deals 40 damage to every enemy#{{Warning}} Deals 1 heart of damage to Isaac#{{Heart}} Removes Red Hearts first", -- Blood Rights
+	[187] = "Moving swings the hairball around#The ball grows when it kills an enemy#It deals more damage the bigger it is", -- Guppy's Hairball
+	[188] = "Mirrors Isaac's movement#Shoots towards Isaac#Deals 3.5 damage per tear", -- Abel
+	[191] = "Isaac's tears get random effects every 2-3 seconds", -- 3 Dollar Bill
+	[192] = "{{Timer}} Homing tears for the room", -- Telepathy For Dummies
+	[198] = "Spawns 1 pickup of each type", -- Box
+	[199] = "Chests contain more pickups", -- Mom's Key
+	[200] = "{{Charm}} 10% chance to shoot charming tears#{{Luck}} 100% chance at 27 luck", -- Mom's Eyeshadow
+}
 
 EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ {{Tears}} +0.7 Tears"}, -- The Sad Onion
@@ -122,6 +256,7 @@ EID.descriptions[languageCode].collectibles={
 	{"98", "The Relic", "{{SoulHeart}} Spawns 1 Soul Heart every 5-6 rooms"}, -- The Relic
 	{"99", "Little Gish", "{{Slow}} Shoots slowing tears#Deals 3.5 damage per tear"}, -- Little Gish
 	{"100", "Little Steven", "Shoots homing tears#Deals 3.5 damage per tear"}, -- Little Steven
+
 	{"101", "The Halo", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +0.25 Range#↑ +0.5 Tear height"}, -- The Halo
 	{"102", "Mom's Bottle of Pills", "{{Pill}} Spawns 1 pill"}, -- Mom's Bottle of Pills
 	{"103", "The Common Cold", "{{Poison}} 25% chance to shoot poison tears#{{Luck}} 100% chance at 12 luck"}, -- The Common Cold
@@ -222,6 +357,7 @@ EID.descriptions[languageCode].collectibles={
 	{"198", "Box", "Spawns 1 pickup of each type"}, -- Box
 	{"199", "Mom's Key", "{{Key}} +2 Keys#Chests contain more pickups"}, -- Mom's Key
 	{"200", "Mom's Eyeshadow", "{{Charm}} 10% chance to shoot charming tears#{{Luck}} 100% chance at 27 luck"}, -- Mom's Eyeshadow
+
 	{"201", "Iron Bar", "↑ {{Damage}} +0.3 Damage#{{Confusion}} 10% chance to shoot concussive tears#{{Luck}} 100% chance at 27 luck"}, -- Iron Bar
 	{"202", "Midas' Touch", "{{Petrify}} Touching enemies petrifies them and turns them gold#Isaac deals contact damage based on his coin count#{{Coin}} Killing a golden enemy spawns coins#Poop spawned by Isaac has a high chance to be golden poop"}, -- Midas' Touch
 	{"203", "Humbleing Bundle", "Pickups spawned are doubled if possible"}, -- Humbleing Bundle
