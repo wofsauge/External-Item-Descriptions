@@ -3068,6 +3068,16 @@ function EID:GetPoolsForCollectible(collectibleType)
 	return poolTable
 end
 
+---Assign Item Pool Markup for Custom item pools
+---Normally this does nothing if REPENTOGON is not active
+---@param itemPoolType ItemPoolType
+---@param str String
+function EID:assignItemPoolMarkup(itemPoolType, str)
+	if str ~= nil and type(str) == "string" then
+		EID.ItemPoolTypeToMarkup[itemPoolType] = str
+	end
+end
+
 ---Replaces Variable placeholders in string with a given value
 ---Example: "My {1} message" --> "My test message"
 ---varID can be omitted to replace {1} (or pass in a string table, to replace {1}, {2}, etc.)
