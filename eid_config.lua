@@ -190,14 +190,14 @@ EID.UserConfig = {
 	-- REPENTANCE ONLY!!!
 	-- Default = true
 	["ShowQuality"] = true,
-	-- Enables or disables collectible's item pool when collected after item name
-	-- REPENTANCE ONLY!!!
-	-- Default = false
-	["ShowItemPoolIcon"] = false,
 	-- Enables or disables collectible's item pool from which can be appeared
 	-- REPENTANCE ONLY!!!
 	-- Default = false
 	["ShowContainItemPool"] = false,
+	-- Enables or disables collectible's item pool when collected after item name
+	-- REPENTANCE ONLY!!!
+	-- Default = false
+	["ShowItemPoolIcon"] = false,
 	-- Enables or disables collectible's item pool name when collected below item name
 	-- REPENTANCE ONLY!!!
 	-- Default = false
@@ -593,6 +593,7 @@ EID.DefaultConfig = {
 	["DisplayTrinketInfo"] = true,
 	["ItemNameColor"] = "ColorEIDObjName",
 	["ShowQuality"] = true,
+	["ShowContainItemPool"] = false,
 	["ShowItemPoolIcon"] = false,
 	["ShowItemPoolText"] = false,
 	["ItemPoolTextColor"] = "ColorSilver",
