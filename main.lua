@@ -726,7 +726,7 @@ function EID:printDescription(desc, cachedID)
 		if itemConfig:IsCollectible() then
 			local pools = EID:GetPoolsForCollectible(desc.ObjSubType)
 			if pools and #pools > 0 then
-				local poolName = "{{Collectible105}} {{NoLB}}"
+				local poolName = "{{ItemPool}} {{NoLB}}"
 
 				for _, pool in ipairs(pools) do
 					if EID.ItemPoolTypeToMarkup[pool] then
@@ -748,7 +748,7 @@ function EID:printDescription(desc, cachedID)
 			local poolName = ""
 			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")
 			local poolDescTable = EID:getDescriptionEntry("itemPoolNames")
-			poolName = "{{NoLB}}{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolTreasure}}")..poolDescTable[lastPool] .. "{{CR}}#"
+			poolName = "{{RolledItemPool}} {{NoLB}}{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolTreasure}}")..poolDescTable[lastPool] .. "{{CR}}#"
 
 			renderPos = EID:printBulletPoints(poolName, renderPos, desc.IgnoreBulletPointIconConfig)
 		end
