@@ -70,7 +70,7 @@ local repCollectibles={
 	[147] = {"147", "Hacha de Notch", "Rompe las rocas y daña a los enemigos al contacto#Golpear con el hacha reduce sus cargas#Se recarga al avanzar al siguiente piso"}, -- Hacha de Notch
 	[148] = {"148", "Infestación", "Genera 2-6 moscas azules al recibir daño"}, -- Infestation
 	[149] = {"149", "Ipecac", "↑ {{Damage}} Daño +40#↓ {{Tears}} Lágrimas x0.33#↓ {{Range}} Alcance x0.8#↓ {{Shotspeed}} Vel. de lágrimas x0.8#Lágrimas explosivas#{{Poison}} Lágrimas venenosas"}, -- Ipecac
-	[152] = {"152", "Tecnología 2", "↓ {{Tears}} Lágrimas x0.67#Remplaza tu ojo derecho con un laser continuo#{{Damage}} El laser inflige 2 veces tu daño cada segundo"}, -- Technology 2
+	[152] = {"152", "Tecnología 2", "↓ {{Tears}} Lágrimas x0.67#Remplaza tu ojo derecho con un láser continuo#{{Damage}} El láser inflige 2 veces tu daño cada segundo"}, -- Technology 2
 	[153] = {"153", "Araña mutante", "↓ {{Tears}} Lágrimas x0.42#Disparo cuádruple"}, -- Mutant Spider
 	[155] = {"155", "El fisgón", "↑ {{Damage}} Daño x1.35 para el ojo izquierdo#Flota por la habitación#Inflige 17.1 de daño por contacto cada segundo"}, -- The Peeper
 	[158] = {"158", "Bola de cristal", "Puede generar:#Un {{SoulHeart}} Corazón de Alma, {{Rune}} runa o {{Card}} carta#{{Timer}} Revela el mapa del piso actual(excepto {{SuperSecretRoom}}{{UltraSecretRoom}} las Habitaciones Súper/Ultra Secretas)#Al tenerlo:#↑ {{PlanetariumChance}} +15% de probabilidad de planetario#↑ {{PlanetariumChance}} +100% de probabilidad de planetario al saltear la habitación del tesoro"}, -- Crystal Ball
@@ -183,7 +183,7 @@ local repCollectibles={
 	[394] = {"394", "En la Mira", "↑ {{Tears}} Lágrimas +0.7#↑ {{Range}} Alcance +3#Dispara lágrimas automáticamente hacia la cruz roja controlable del suelo#Los familiares disparan hacia la cruz#Puedes dejar de disparar presionando el boton de soltar ({{ButtonRT}})"}, -- Marked
 	[395] = {"395", "Tech X", "{{Chargeable}} Reemplaza tus lágrimas por un anillo láser cargable#El tamaño del anillo aumenta hasta 100% con el tiempo de carga"}, -- Tech X
 	[397] = {"397", "Rayo tractor", "↑ {{Tears}} Lágrimas +1#↑ {{Range}} Alcance +2.5#↑ {{Shotspeed}} Vel. de lágrimas +0.16#Las lágrimas viajan siguiendo un rayo de luz enfrente del jugador"}, -- Tractor Beam
-	[399] = {"399", "Fauces del Vacío", "{{Chargeable}} Disparar por 2.35 segundos y soltar el boton crea un laser negro a tu alrededor#El aro inflige 30 veces tu daño cada 2 segundos"}, -- Maw of the Void
+	[399] = {"399", "Fauces del Vacío", "{{Chargeable}} Disparar por 2.35 segundos y soltar el boton crea un láser negro a tu alrededor#El aro inflige 30 veces tu daño cada 2 segundos"}, -- Maw of the Void
 	[401] = {"401", "Explosivo", "25% de probabilidad de disparar lágrimas pegajosas#Las lágrimas pegadas crecen y explotan, infligiendo tu daño +60 al detonar"}, -- Explosivo
 	[404] = {"404", "Bebé Tira-Pedos", "Bloquea proyectiles#Al bloquear un proyectil: 10% de probabilidad de tirarse un pedo y {{Charm}} encantar, {{Poison}} envenenar o empujar a los enemigos cercanos#Los pedos infligen 5-6 de daño"}, -- Farting Baby
 	[405] = {"405", "Error crítico", "{{Throwable}} Lanzable#Cambia los enemigos y recolectables que toca"}, -- GB Bug
@@ -269,7 +269,7 @@ local repCollectibles={
 	[576] = {"576", "Mente sucia", "Destruir cacas genera 1-4 caquitas amistosas#El tipo de las caquitas dependerá de la caca de origen#Reemplaza algunas rocas con caca"}, -- Dirty Mind
 	[577] = {"577", "Damocles", "Genera una espada sobre tu cabeza que duplica los objetos en pedestales y recompensas de mendigos#No duplica los objetos que tengan precio o provengan de cofres#{{Warning}} Tras recibir daño, probabilidad baja de que la espada te mate en un momento aleatorio"}, -- Damocles
 	[578] = {"578", "Limonada gratis", "Crea una gran piscina de limonada#La limonada inflige 24 de daño cada segundo"}, -- Free Lemonade
-	[579] = {"579", "Espada espiritual", "En lugar de lágrimas, tienes una espada#{{Damage}} Inflige 3 veces tu daño +3.5#{{Chargeable}} Tiene un ataque en giro + disparo de proyectil al cargarla#{{Heart}} Si tienes la vida al completo, dispara proyectiles con los ataques sin cargar"}, -- Espada espiritual
+	[579] = {"579", "Espada espiritual", "En lugar de lágrimas, tienes una espada#{{Damage}} Inflige 3 veces tu daño +3.5#{{Chargeable}} Tiene un ataque en giro + disparo de proyectil al cargarla#{{Heart}} Al tener la salud al maximo, dispara proyectiles con los ataques sin cargar"}, -- Espada espiritual
 	[580] = {"580", "Llave roja", "Crea una nueva habitación adyacente a una pared disponible, indicada por el contorno de una puerta#Las habitaciónes rojas pueden ser habitaciones especiales#Entrar en una habitación fuera del límite del mapa (13 x 13 habitaciones) te enviará a la habitación I AM ERROR."}, -- Llave roja
 	[581] = {"581", "Mosca psíquica", "Persigue y desvía proyectiles enemigos#Inflige 15 de daño por contacto cada segundo"}, -- Psy Fly
 	[582] = {"582", "Seta ondulada", "↑ {{Shotspeed}} Vel. de lágrimas +0.75#↓ {{Speed}} Velocidad -0.03#Distorsiona la pantalla#Efecto acumulable#Limpiar o abandonar salas reduce los efectos"}, -- Wavy Cap
@@ -333,7 +333,7 @@ local repCollectibles={
 	[640] = {"640", "Urna de almas", "Lanza llamas azules#Gana cargas por cada enemigo que mates"}, -- Urna de almas
 	[641] = {"641", "Aceldama", "Crea una cadena de lágrimas detrás al entrar en habitaciones hostiles#Las lágrimas infligen 3.5 de daño"}, -- Akeldama
 	[642] = {"642", "Piel mágica", "Genera un objeto del grupo de items de la habitación actual#{{BrokenHeart}} Convierte 1 contenedor de corazón o 2 corazones de alma en un corazón roto#{{Warning}} Reemplaza futuros objetos si no lo tienes{{ColorSilver}}(33% tras 1 uso, 50% tras 2, 100% tras 3)#Menor probabilidad si ya se generó en el piso actual"}, -- Magic Skin
-	[643] = {"643", "Revelación", "{{SoulHeart}} +2 Corazones de alma#Permite volar#{{Chargeable}} Lásar Sagrado cargable#El laser no reemplaza tus lágrimas"}, -- Revelation
+	[643] = {"643", "Revelación", "{{SoulHeart}} +2 Corazones de alma#Permite volar#{{Chargeable}} Láser Sagrado cargable#El láser no reemplaza tus lágrimas"}, -- Revelation
 	[644] = {"644", "Premio de consolación", "↑ Mejora tu estadística más baja#Puede generar 3 {{Coin}} monedas, 1 {{Bomb}} bomba, o 1 {{Key}} llave dependiendo de lo que tengas menos"}, -- Consolation Prize
 	[645] = {"645", "Minitoma", "Orbital que bloquea proyectiles#Inflige daño por contacto#Se divide en versiones más pequeñas tras 3 golpes#Al romperse, las versiones pequeñas se convierten en arañas azules#Reaparece 5 segundos después"}, -- Minitoma
 	[646] = {"646", "Bombas de azufre", "{{Bomb}} +5 Bombas#{{Collectible118}} Las bombas disparan 4 láseres de Azufre en forma de cruz#Los rayos no dañan a Isaac"}, -- Brimstone Bombs
@@ -483,21 +483,13 @@ EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
 	-- values inside {} brackets will be replaced with text parts below
 	-- Wisp texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the wisp descriptions
-	StatDescription = "{{Heart}} {health} {{Damage}} {damage}",	-- {health} will be replaced with the health text, {damage} with the damage text or the "CantShoot" text
-	Health = "{1} salud", 		-- {1} will be replaced with the health
-	Damage = "{1} dps",				-- {1} will be replaced with the calculated damage
-	CantShoot = "No puede disparar lágrimas",
+	StatDescription = "{ringIcon}{{Wisp}} {amount}|{{Heart}} {health}|{{Damage}} {damage}",	-- {ringIcon} will be replaced with an icon representing the wisp movement, {amount} with the number of wisps, {health} with the HP, {damage} with the damage or the "CantShoot" text
 	Shotspeed = "{1}% vel. de lágrimas", 			-- {1} will be replaced with the shot speed changes in %
 	Chance = " ({1}% de probabilidad)",					-- {1} will be replaced with the chance
 	SingleRoom = "Fuego de una sola habitación",
 	NoWisps = "No hay fuego",
-	Ring = {
-		[-1] = "{amount} Fuego{plural_s} estacionario{plural_s}",
-		[0] = "{amount} Fuego orbital{plural_es} interior {{InnerWisp}}",
-		[1] = "{amount} Fuego orbital{plural_es} central {{MiddleWisp}}",
-		[2] = "{amount} Fuego orbital{plural_es} exterior {{OuterWisp}}",
-	},
 }
+
 -- Book of Virtues wisp types
 EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[35] = "{{Collectible35}} Activa el efecto del Necronomicón al destruirse", -- The Necronomicon
@@ -873,8 +865,8 @@ local repTrinkets={
 	[10] = {"10", "Gusano Ondulante", "↑ {{Tears}} Lágrimas +0.4#Lágrimas espectrales#Las lágrimas se mueven en ondas"}, -- Wiggle Worm
 	[11] = {"11", "Gusano Circular", "↑ {{Tears}} Lágrimas +0.47#Lágrimas espectrales#Las lágrimas se mueven en espiral a gran velocidad"}, -- Ring Worm
 	[14] = {"14", "Callo", "Otorga inmunidad a las espinas de suelo y al fluido#{{Warning}} No previene el daño al tocar las espinas especiales en {{SacrificeRoom}} la sala de Sacrificio y {{Collectible692}} la sala del Diablo"}, -- Callus
-	[15] = {"15", "Roca de la suerte", "{{Coin}} 33% de probabilidad de generar monedas al destruir rocas"}, -- Lucky Rock
-	[16] = {"16", "Uña del pie de Mamá", "El Pie de Mamá caerá en un lugar aleatorio de la habitación cada 20 segundos"}, -- Mom's Toenail
+	[15] = {"15", "Roca de la suerte", "{{Coin}} 33% de probabilidad de generar una moneda al destruir rocas"}, -- Lucky Rock
+	[16] = {"16", "Uña del pie de Mamá", "El Pie de Mamá pisoteará un lugar aleatorio de la habitación cada 20 segundos"}, -- Mom's Toenail
 	[19] = {"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los cofres dorados sin usar llaves#{{MegaChest}} Los mega cofres seguirán requeriendo llaves para abrirse"}, -- Paper Clip
 	[24] = {"24", "Moneda de Trasero", "{{Coin}} 20% de probabilidad de generar una moneda al destruir una caca#Soltarás un pedo al recoger una moneda#{{Poison}} Los pedos empujan y envenenan a los enemigos"}, -- Butt Penny
 	[25] = {"25", "Dulce misterioso", "Generas una caca o sueltas un pedo cada 30 segundos#Los pedos infligen 6 de daño y empujan a los proyectiles"}, -- Mysterious Candy
@@ -917,7 +909,7 @@ local repTrinkets={
 	[137] = {"137", "Nomeolvides", "Al bajar a una nueva planta, se generan hasta cuatro recolectables no obtenidos de la planta anterior"}, -- Myosotis
 	[138] = {"138", "'M", "Usar un objeto activo lo reemplaza por otro"}, -- 'M
 	[139] = {"139", "Talismán gota", "{{Luck}} Suerte +4 para los efectos de lágrimas basados en la suerte"}, -- Teardrop Charm
-	[140] = {"140", "Manzana de Sodoma", "{{Heart}} Recoger corazones rojos puede convertirlos en arañas azules#Funciona incluso si tienes vida al completo#Puede convertir corazones necesarios para curarte"}, -- Apple of Sodom
+	[140] = {"140", "Manzana de Sodoma", "{{Heart}} Recoger corazones rojos puede convertirlos en arañas azules#Funciona incluso al tener la salud al maximo#Puede convertir corazones necesarios para curarte"}, -- Apple of Sodom
 	[141] = {"141", "Canción de cuna olvidada", "Duplica la velocidad de disparo de los familiares"}, -- Forgotten Lullaby
 	[142] = {"142", "Fe de Beth", "{{Collectible584}} Al inicio de cada planta, genera 4 fuegos fatuos del Libro de virtudes"}, -- Beth's Faith
 	[143] = {"143", "Condensador viejo", "Evita que el objeto activo se cargue al completar salas#{{Battery}} 20% de probabilidad de generar una batería al limpiar la habitación#{{Luck}} 33% de probabilidad con 5 de suerte"}, -- Old Capacitor
@@ -953,7 +945,7 @@ local repTrinkets={
 	[173] = {"173", "Tu alma", "{{DevilRoom}} Permite tomar objetos de pacto del Diablo gratis#{{Warning}} Tomar objetos de pacto aún afectará las probabilidades de pactos de Ángel"}, -- Your Soul
 	[174] = {"174", "Imán de número", "{{DevilChance}} +10% de probabilidad de pacto del diablo#Evita que Krampus aparezca en salas del Diáblo#Las habitaciónes del Diáblo seran mejoradas con mas pactos, corazones negros y enemigos"}, -- Number Magnet
 	[175] = {"175", "Llave extraña", "Abre el pasaje hacia ??? (Vientre azul) independientemente del tiempo#{{Collectible297}} Usar la Caja de Pandora consume la llave y genera 6 objetos de grupos aleatorias"}, -- Strange Key
-	[176] = {"176", "Mini coágulo", "Genera un coágulo familiar que imita tus movimientos#Copia tus estadisticas, tus efectos de lágrima y posee un 35% de tu daño#Se regenera cada habitación"}, -- Lil Clot
+	[176] = {"176", "Mini coágulo", "Genera un coágulo que imita tus movimientos#Copia tus estadisticas, tus efectos de lágrima y posee un 35% de tu daño#Se regenera cada habitación"}, -- Lil Clot
 	[177] = {"177", "Tatuaje temporal", "{{Chest}} Genera un cofre al completar una {{ChallengeRoom}} sala de desafío#{{BossRushRoom}} Genera un objeto al completar una sala de desafíos de jefe"}, -- Temporary Tattoo
 	[178] = {"178", "M80 tragado", "50% de probabilidad de explotar al recibir daño#No destruye máquinas de donación de sangre ni confesionarios, pero suelta recolectables como si lo hubiera hecho"}, -- Swallowed M80
 	[179] = {"179", "RC Remoto", "Los familiares imitan tus movimientos en lugar de seguirte#Soltar el trinket hará que se queden en el último lugar que estaban"}, -- RC Remote
@@ -963,7 +955,7 @@ local repTrinkets={
 	[183] = {"183", "Los gemelos", "50% de probabilidad de añadir o duplicar un familiar por habitación#Otorga un {{Collectible8}} Hermano Bobby o una {{Collectible67}} Hermana Maggy si no tienes familiares"}, -- The Twins
 	[184] = {"184", "Papeles de adopción", "{{Shop}} Las tiendas venden familiares por 10 monedas"}, -- Adoption Papers
 	[185] = {"185", "Pata de grillo", "17% de probabilidad de generar una langosta aleatoria al matar a un enemigo"}, -- Cricket Leg
-	[186] = {"186", "Mejor amigo de Apolión", "{{Collectible706}} Otorga 1 langosta de Abismo"}, -- Apollyon's Best Friend
+	[186] = {"186", "Mejor amigo de Apolión", "{{Collectible706}} Otorga una langosta de Abismo"}, -- Apollyon's Best Friend
 	[187] = {"187", "Lentes rotos", "{{TreasureRoom}} 50% de probabilidad de añadir un objeto adicional misterioso a la habitación del tesoro#50% de probabilidad de revelar el objeto misterioso en la ruta alternativa"}, -- Broken Glasses
 	[188] = {"188", "Cubo de hielo", "20% de probabilidad de petrificar a enemigos aleatorios al entrar en una habitación#{{Freezing}} Matar a un enemigo petrificado lo congela"}, -- Ice Cube
 	[189] = {"189", "Sello de Baphomet", "Matar a un enemigo otorga un escudo durante un segundo#Matar más enemigos aumenta la duración del escudo"}, --  Sigil of Baphomet
@@ -977,38 +969,88 @@ EID.descriptions[languageCode].quadrupledTrinket = "¡Efecto cuadruplicado!"
 -- Most trinkets that can be doubled or tripled just have the numbers in their description multiplied
 -- A few trinkets have odd edge cases where their effect completely changes, or is different depending on if it's Mom's Box or Golden
 EID.descriptions[languageCode].goldenTrinketEffects = {
+	-- Swallowed Penny
+	[1] = { "una moneda", "2 {{ColorWhite}}monedas", "3 {{ColorWhite}}monedas" },
+	-- AAA Battery
+	[3] = { "una carga", "2 {{ColorWhite}}cargas", "3 {{ColorWhite}}cargas" },
 	-- Broken Remote (replace with Teleport 2.0 info)
-	[4] = { "{{Collectible419}} Usar un objeto activo te teletransporta hacia {{ColorGold}}una habitación sin completar{{CR}}#Jerarquía: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}"}, -- Teleport 2.0
+	[4] = { "{{Collectible419}} Usar un objeto activo te teletransporta a {{ColorGold}}una habitación sin completar{{CR}}#Jerarquía: {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}>{{SacrificeRoom}}> {{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}>{{ChallengeRoom}}{{BossRushRoom}}>{{IsaacsRoom}}{{BarrenRoom}}> {{ArcadeRoom}}>{{ChestRoom}}>{{Planetarium}}>{{SecretRoom}}>{{DevilRoom}}{{AngelRoom}}>{{ErrorRoom}}" }, -- Teleport 2.0
 	-- Purple Heart 
-	[5] = { "Duplica", "Cuadruplica" },
+	[5] = { "Duplica", "Triplica", "Cuadruplica" },
 	-- Broken Magnet (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 for doubled
 	[6] = { "las monedas", "{{CR}}los {{ColorGold}}recolectables" },
 	-- Rosary Bead append
 	[7] = { "{{Collectible72}} Se añade el rosario a todos los grupos de objetos" },
+	-- Cartridge
+	[8] = { "¡Probabilidad Doble!", "¡Probabilidad Doble!", "¡Probabilidad triple!" },
 	-- Golden Store Credit: full replace
 	[13] = { "{{Shop}} {{ColorGold}}Probabilidad de tomar los objetos en la tienda de forma gratuita{{CR}}#Probabilidad de convertirse en una {{Trinket13}} Tarjeta de crédito normal tras cada compra" },
 	-- Lucky Rock append (Gold / Mom's Box / Both)
-	[15] = { "{{Coin}} Las rocas podrán soltar 2 monedas", "{{Coin}} Las rocas podrán soltar 2 monedas", "{{Coin}} Las rocas podrán soltar monedas" },
+	[15] = { "{{Coin}} Las rocas podrán soltar 2 monedas", "{{Coin}} Las rocas podrán soltar 2 monedas", "{{Coin}} Las rocas podrán soltar 3 monedas" },
+	-- Monkey Paw
+	[20] = { "un corazón negro", "2 {{CR}}corazones negros", "3 {{CR}}corazones negros" },
 	-- Golden Mysterious Candy makes Golden Poop
 	[25] = { "caca", "caca dorada" },
-	-- Golden Mysterious Candy makes Golden Poop
-	[46] = { "{{HalfHeart}} Medio corazón", "{{Heart}} Un corazón", "{{Heart}} Un corazón y medio" },
+	-- Fish Head
+	[29] = { "una mosca azul", "2 {{CR}}moscas azules", "3 {{CR}}moscas azules" },
+	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
+	[46] = { "medio corazón", "un corazón", "un corazón y medio" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
 	[53] = {
 		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{ColorGold}}Puede ser soltado",
 		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{Warning}} Este trinket no puede ser soltado#Solo puedes deshacerte de él con {{Trinket41}} La cerilla o tragándolo",
 		"{{HealingRed}} Cura {{ColorGold}}3{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{ColorGold}}Puede ser soltado",
 	},
+	-- Maggy's Faith
+	[55] = {
+		"{{Heart}} +1 {{ColorGold}}Contenedor de Corazón{{ColorWhite}} al cambiar de piso",
+		"{{Heart}} +1 {{ColorGold}}Contenedor de Corazón{{ColorWhite}} al cambiar de piso",
+		"{{Blank}} Otorga al cambiar de piso:#{{Heart}} {{ColorGold}}+1 Contenedor de Corazón#{{EternalHeart}} +1 Corazón Eterno"
+	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
 	[64] = { "{{ArrowUp}} Duplíca los aumentos de estadísticas", "Triplíca los aumentos de estadísticas", "Cuadruplíca los aumentos de estadísticas", },
+	-- Lice
+	[70] = { "una araña azul", "2 {{ColorWhite}}arañas azules", "3 {{ColorWhite}}arañas azules" },
+	-- Watch Battery
+	[72] = { "una carga", "2 {{ColorWhite}}cargas", "3 {{ColorWhite}}cargas" },
 	-- Error (append): Same behavior as Rainbow Worm
 	[75] = { "Duplica el efecto del trinket, de ser posible", "Triplica el efecto del trinket, de ser posible", "Cuadruplica el efecto del trinket, de ser posible", },
+	-- Second Hand
+	[78] = { "Duplica", "Triplica", "Cuadruplica" },
+	-- Blind Rage
+	[81] = { "Duplica", "Cuadruplica", "Sextuplica" },
+	-- Karma
+	[85] = {
+		"{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar {{ColorGold}}2{{CR}} corazones rojos {{ColorSilver}}(40%)#{{Coin}} Generar {{ColorGold}}2{{CR}} monedas {{ColorSilver}}(40%)#{{Luck}} Suerte +{{ColorGold}}2 {{ColorSilver}}(15%)#{{Beggar}} Generar un mendigo {{ColorSilver}}(5%)",
+		"{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar {{ColorGold}}2{{CR}} corazones rojos {{ColorSilver}}(40%)#{{Coin}} Generar {{ColorGold}}2{{CR}} monedas {{ColorSilver}}(40%)#{{Luck}} Suerte +{{ColorGold}}2 {{ColorSilver}}(15%)#{{Beggar}} Generar un mendigo {{ColorSilver}}(5%)",
+		"{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar {{ColorGold}}3{{CR}} corazones rojos {{ColorSilver}}(40%)#{{Coin}} Generar {{ColorGold}}3{{CR}} monedas {{ColorSilver}}(40%)#{{Luck}} Suerte +{{ColorGold}}3 {{ColorSilver}}(15%)#{{Beggar}} Generar un mendigo {{ColorSilver}}(5%)"
+	},
+	-- Lil' Larva
+	[86] = { "una mosca azul", "2 {{ColorWhite}}moscas azules", "3 {{ColorWhite}}moscas azules" },
 	-- NO!
 	[88] = { "Evita que aparezcan objetos de calidad {{Quality0}}" },
+	-- Rotten Penny
+	[126] = { "una mosca azul", "2 {{ColorWhite}}moscas azules", "3 {{ColorWhite}}moscas azules" },
+	-- Mother's Kiss
+	[156] = { "+1 Contenedor", "+2 {{ColorWhite}}Contenedores", "+3 {{ColorWhite}}Contenedores" },
 	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
 	[159] = { "{{GoldenChest}} Reemplaza todos los cofres (excepto los viejos y megacofres) con cofres dorados#Los cofres dorados pueden contener cartas, píldoras y trinkets extra" },
+	-- Lucky Bag
+	[160] = { "un saco", "2 {{ColorWhite}}sacos", "3 {{ColorWhite}}sacos" },
+	-- Dingleberry
+	[163] = { "una caquita amistosa", "2 {{ColorWhite}}caquitas amistosas", "2 {{ColorWhite}}caquitas amistosas" },
+	-- Ring Cap
+	[164] = { "una bomba adicional", "2 {{ColorWhite}}bombas adicionales", "3 {{ColorWhite}}bombas adicionales" },
+	-- Empty Heart
+	[168] = { "1 corazón", "2 {{ColorWhite}}corazones", "3 {{ColorWhite}}corazones" },
+	-- Child's Drawing
+	[169] = { "1 objeto", "2 {{ColorWhite}}objetos" },
+	-- Lil' Clot
+	[176] = { "un coágulo que imita", "2 {{ColorWhite}}coágulos que imitan", "3 {{ColorWhite}}coágulos que imitan" },
 	-- The Twins
 	[183] = { "Podrá copiar/otorgar 2 familiares", "Podrá copiar/otorgar 2 familiares", "Podrá copiar/otorgar 3 familiares" },
+	-- Apollyon's Best Friend
+	[186] = { "una langosta", "2 {{ColorWhite}}langostas", "3 {{ColorWhite}}langostas" },
 }
 
 --[[
@@ -1023,8 +1065,32 @@ in their goldenTrinketEffects
 ]]
 
 EID.descriptions[languageCode].goldenTrinketData = {
-	-- Purple Heart
-	[5] = {findReplace = true, mult = 2},
+	[1] = {findReplace = true}, --Swallowed Penny
+	[3] = {findReplace = true}, --Watch Battery
+	[5] = {findReplace = true, mult = 2}, --Purple Heart
+	[8] = {append = true}, -- Cartridge
+	[20] = {findReplace = true}, -- Monkey Paw
+	[29] = {findReplace = true}, -- Fish Head
+	[49] = {append = true}, -- Bloody Penny
+	[50] = {append = true}, -- Burnt Penny
+	[51] = {append = true}, -- Flat Penny
+	[52] = {append = true}, -- Counterfeit Penny
+	[55] = {fullReplace = true}, -- Maggy's Faith
+	[70] = {findReplace = true}, -- Lice
+	[72] = {findReplace = true}, -- Error
+	[78] = {findReplace = true}, -- Second Hand
+	[81] = {findReplace = true}, -- Blind Rage
+	[85] = {fullReplace = true}, -- Karma
+	[86] = {findReplace = true}, -- Lil' Larva
+	[126] = {findReplace = true}, -- Rotten Penny
+	[156] = {findReplace = true}, -- NO!
+	[160] = {findReplace = true}, -- Lucky Bag
+	[163] = {findReplace = true}, -- Dingleberry
+	[164] = {findReplace = true}, -- Ring Cap
+	[168] = {findReplace = true}, -- Empty Heart
+	[169] = {findReplace = true, mult = 2, goldenOnly = true}, -- Child's Drawing
+	[176] = {findReplace = true}, -- Lil' Clot
+	[186] = {findReplace = true}, -- Apollyon's Best Friend
 }
 
 ---------- Cards ----------
@@ -1158,7 +1224,7 @@ local repPills={
 	[13] = {"12", "Más Alcance", "↑ {{Range}} Alcance +1.25"}, -- Range Up
 	[38] = {"37", "¡Visión retro!", "{{Timer}} Pixela la pantalla durante 30 segundos"}, -- Retro Vision
 	[42] = {"41", "Tengo mucho sueño...", "{{Slow}} Te ralentiza a ti y a todos los enemigos de la habitación"}, -- I'm Drowsy...
-	[43] = {"42", "¡¡TENGO MUCHA ENERGÍA!!", "{{Timer}} Aumenta tu velocidad y la de todos los enemigos de la habitación#Reactiva el efecto tras 30 y 60 segundos"}, -- I'm Excited!!
+	[43] = {"42", "¡¡TENGO MUCHA ENERGÍA!!", "{{Timer}} Aumenta tu velocidad y la de todos los enemigos de la habitación#Reactiva el efecto luego de 30 y 60 segundos"}, -- I'm Excited!!
 	[48] = {"47", "Menos Vel. de lágrimas", "↓ {{Shotspeed}} Vel. de lágrimas -0.15"}, -- Shot speed Down
 	[49] = {"48", "Más Vel. de lágrimas", "↑ {{Shotspeed}} Vel. de lágrimas +0.15"}, -- Shot speed Up
 	[50] = {"49", "Píldora experimental", "↑ Aumenta una estadística aleatoria#↓ Disminuye una estadística aleatoria"}, -- Experimental Pill
@@ -1172,7 +1238,7 @@ EID.descriptions[languageCode].horsepills={
 	{"2", "Bolas de acero", "{{SoulHeart}} +4 Corazones de Alma"}, -- Balls of Steel
 	{"3", "Bombas son llaves", "Intercambia el número de {{Bomb}} bombas y de {{Key}} llaves#Aumenta el número de llaves y de bombas en un 50%#Las bombas y llaves doradas también se intercambian"}, -- Bombs are Key
 	{"4", "Diarrea explosiva", "Genera enormes bombas troll teledirigidas en tu posición"}, -- Explosive Diarrhea
-	{"5", "Salud completa", "{{SoulHeart}} +3 Corazones de Alma#{{HealingRed}} Vida al completo"}, -- Full Health
+	{"5", "Salud completa", "{{SoulHeart}} +3 Corazones de Alma#{{HealingRed}} Salud al maximo"}, -- Full Health
 	{"6", "Menos vida", "↓ {{EmptyHeart}} -2 de Vida#Se vuelve una pildora de Mas Vida al tener 1 o menos contenedores de corazón"}, -- Health Down
 	{"7", "Más vida", "↑ {{EmptyHeart}} +2 contenedores de corazón vacíos"}, -- Health Up
 	{"8", "Encontre pildoras", "Sin efecto"}, -- I Found Pills
@@ -1209,8 +1275,8 @@ EID.descriptions[languageCode].horsepills={
 	{"39", "X-Lax", "Genera una piscina de fluido resbaladizo persistente"}, -- X-Lax
 	{"40", "Algo anda mal...", "{{Slow}} Genera una piscina de fluido ralentizante persistente"}, -- Something's wrong...
 	{"41", "Tengo mucho sueño...", "{{Slow}} Te ralentiza a ti y a los enemigos de la habitación"}, -- I'm Drowsy...
-	{"42", "¡¡TENGO MUCHA ENERGÍA!!", "{{Timer}} Aumenta tu velocidad y la de los enemigos de la habitación#Se vuelve a activar tras 30 y 60 segundos"}, -- I'm Excited!!
-	{"43", "¡Glup!", "{{Trinket}} Consume el trinket actual y ganas su efecto de manera permanente"}, -- Gulp!
+	{"42", "¡¡TENGO MUCHA ENERGÍA!!", "{{Timer}} Aumenta tu velocidad y la de los enemigos de la habitación#Reactiva el efecto luego de 30 y 60 segundos"}, -- I'm Excited!!
+	{"43", "¡Gulp!", "{{Trinket}} Consume el trinket actual y otorga sus efectos de forma permanente"}, -- Gulp!
 	{"44", "¡Horf!", "Dispara un grupo de lágrimas de {{Collectible149}}Ipecac"}, -- Horf!
 	{"45", "¡Es como si caminara sobre el sol!", "{{Timer}} Otorga durante 6.5 segundos:#Invincibilidad#Isaac no puede disparar pero hace 40 de daño por contacto cada segundo#{{HealingRed}} Comer 2 enemigos cura medio corazón#{{Fear}} Asusta a todos los enemigos en la habitación"}, -- Feels like I'm walking on sunshine!
 	{"46", "¡Vurp!", "Genera la última píldora usada como una píldora para caballos"}, -- Vurp!
@@ -1565,7 +1631,7 @@ local repConditions = {
 	["Spirit Sword Technology"] = "La espada se vuelve un sable de luz que refleja proyectiles enemigos",
 	["Spirit Sword Ipecac"] = "La espada obtiene +6 de daño y envenena pero no explota#Los proyectiles de la espada si explotan",
 	["Ludovico Ipecac"] = "Las lágrimas obtienen +2 de daño pero no explotan ni envenenan",
-	["Technology Ipecac"] = "Los lasers obtienen +2 de daño y explotan al impactar",
+	["Technology Ipecac"] = "Los láseres obtienen +2 de daño y explotan al impactar",
 	["Eye of the Occult Beam"] = "Disparas de forma automatica con una mira que altera el camino del rayo",
 	
 	["Lullaby Clots"] = "(Incluyendo coágulos)",

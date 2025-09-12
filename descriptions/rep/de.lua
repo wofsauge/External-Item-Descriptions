@@ -523,21 +523,11 @@ EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
 	-- values inside {} brackets will be replaced with text parts below
 	-- Wisp texts are affected by the PluralizeFunction (ab+ file)
 	-- The placeholder therefore can be used in all parts that make up the wisp descriptions
-	StatDescription = "{{Heart}} {health} {{Damage}} {damage}",	-- {health} will be replaced with the health text, {damage} with the damage text or the "CantShoot" text
-	Health = "{1} Leben", 		-- {1} will be replaced with the health
-	Damage = "{1} DPS",				-- {1} will be replaced with the calculated damage
-	Damage2 = "dmg", -- prepend text for damage multiplier based on proc chance
-	CantShoot = "Schießt nicht!",
+	StatDescription = "{ringIcon}{{Wisp}} {amount}|{{Heart}} {health}|{{Damage}} {damage}",	-- {ringIcon} will be replaced with an icon representing the wisp movement, {amount} with the number of wisps, {health} with the HP, {damage} with the damage or the "CantShoot" text
 	Shotspeed = "{1}% Schussgeschwindigkeit", 				-- {1} will be replaced with the shot speed changes in %
 	Chance = " ({1}% Chance)",					-- {1} will be replaced with the chance
 	SingleRoom = "Einzelraum-Wisp{plural_s}",
 	NoWisps = "Kein Wisp",
-	Ring = {
-		[-1] = "{amount} stationäre{singular_r} Wisp{plural_s}",
-		[0] = "{amount} innere{singular_r} Ring-Wisp{plural_s} {{InnerWisp}}",
-		[1] = "{amount} mittlere{singular_r} Ring-Wisp{plural_s} {{MiddleWisp}}",
-		[2] = "{amount} äußere{singular_r} Ring-Wisp{plural_s} {{OuterWisp}}",
-	},
 }
 
 -- Old table that now is used to store additional information and effects for Book of Virtues Wisps

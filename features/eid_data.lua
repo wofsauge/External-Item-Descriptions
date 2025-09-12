@@ -52,7 +52,8 @@ EID.TRANSFORMATION = {
 	["ADULT"] = 14,
 	["SPIDERBABY"] = 13,
 	["SUPERBUM"] = 11,
-	["STOMPY"] = 15
+	["STOMPY"] = 15,
+	["NECROMANCER"] = 16 -- added in Rep+
 }
 
 -- List of item Types
@@ -351,8 +352,9 @@ EID.InlineIcons = {
 	["SuperBum"] = {"Transformation11", 0, 16, 16, 0, -1, EID.IconSprite},
 	["Bookworm"] = {"Transformation12", 0, 16, 16, 0, -1, EID.IconSprite},
 	["SpiderBaby"] = {"Transformation13", 0, 16, 16, 0, -1, EID.IconSprite},
-	["Adult"] = {"Transformation14",0,16, 16, 0, -1, EID.IconSprite},
-	["Stompy"] = {"Transformation15",0,16, 16, 0, -1, EID.IconSprite},
+	["Adult"] = {"Transformation14", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Stompy"] = {"Transformation15", 0, 16, 16, 0, -1, EID.IconSprite},
+	["Necromancer"] = {"Transformation16", 0, 16, 16, 0, -1, EID.IconSprite},
 
 	-- Quality
 	["Quality0"] = {"Quality", 0, 10, 10, 0, 0},
@@ -628,9 +630,11 @@ EID.InlineIcons = {
 	["ItemPoolRottenBeggar"] = {"ItemPools", 30, 11, 11, 0, 0},
 
 	-- Wisps
-	["InnerWisp"] = {"Wisps", 0, 10, 9, 0, 2},
-	["MiddleWisp"] = {"Wisps", 1, 10, 9, 0, 2},
-	["OuterWisp"] = {"Wisps", 2, 10, 9, 0, 2},
+	["InnerWisp"] = {"Wisps", 0, 10, 10, 0, -3},
+	["MiddleWisp"] = {"Wisps", 1, 10, 10, 0, -3},
+	["OuterWisp"] = {"Wisps", 2, 10, 10, 0, -3},
+	["StationaryWisp"] = {"Wisps", 3, 10, 10, 0, -3},
+	["Wisp"] = {"Wisps", 4, 10, 10, 0, -3},
 
 	-- Dice Faces
 	["DiceFace1"] = {"DiceFaces", 0, 14, 14, 0, -1},
@@ -923,24 +927,24 @@ EID.StatPickupBulletpointBlacklist = {
 }
 
 EID.TransformationData = {
-	-- Structure: [Internal Name of Transformation] = {NumNeeded = 3 (Default), VanillaForm = nil (default)}
-	[tostring(EID.TRANSFORMATION.GUPPY)] = {VanillaForm = PlayerForm.PLAYERFORM_GUPPY},
-	[tostring(EID.TRANSFORMATION.LORD_OF_THE_FLIES)] = {VanillaForm = PlayerForm.PLAYERFORM_LORD_OF_THE_FLIES},
-	[tostring(EID.TRANSFORMATION.MUSHROOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MUSHROOM},
-	[tostring(EID.TRANSFORMATION.ANGEL)] = {VanillaForm = PlayerForm.PLAYERFORM_ANGEL},
-	[tostring(EID.TRANSFORMATION.BOB)] = {VanillaForm = PlayerForm.PLAYERFORM_BOB},
-	[tostring(EID.TRANSFORMATION.SPUN)] = {VanillaForm = PlayerForm.PLAYERFORM_DRUGS},
-	[tostring(EID.TRANSFORMATION.MOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MOM},
-	[tostring(EID.TRANSFORMATION.CONJOINED)] = {VanillaForm = PlayerForm.PLAYERFORM_BABY},
-	[tostring(EID.TRANSFORMATION.LEVIATHAN)] = {VanillaForm = PlayerForm.PLAYERFORM_EVIL_ANGEL},
-	[tostring(EID.TRANSFORMATION.POOP)] = {VanillaForm = PlayerForm.PLAYERFORM_POOP},
-	[tostring(EID.TRANSFORMATION.BOOKWORM)] = {VanillaForm = PlayerForm.PLAYERFORM_BOOK_WORM},
+	-- Structure: [Internal Name of Transformation] = {NumNeeded = 3 (Default), VanillaForm = nil (default), ItemTag = nil (default)}
+	[tostring(EID.TRANSFORMATION.GUPPY)] = {VanillaForm = PlayerForm.PLAYERFORM_GUPPY, ItemTag = ItemConfig.TAG_GUPPY},
+	[tostring(EID.TRANSFORMATION.LORD_OF_THE_FLIES)] = {VanillaForm = PlayerForm.PLAYERFORM_LORD_OF_THE_FLIES, ItemTag = ItemConfig.TAG_FLY},
+	[tostring(EID.TRANSFORMATION.MUSHROOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MUSHROOM, ItemTag = ItemConfig.TAG_MUSHROOM},
+	[tostring(EID.TRANSFORMATION.ANGEL)] = {VanillaForm = PlayerForm.PLAYERFORM_ANGEL, ItemTag = ItemConfig.TAG_ANGEL},
+	[tostring(EID.TRANSFORMATION.BOB)] = {VanillaForm = PlayerForm.PLAYERFORM_BOB, ItemTag = ItemConfig.TAG_BOB},
+	[tostring(EID.TRANSFORMATION.SPUN)] = {VanillaForm = PlayerForm.PLAYERFORM_DRUGS, ItemTag = ItemConfig.TAG_SYRINGE},
+	[tostring(EID.TRANSFORMATION.MOM)] = {VanillaForm = PlayerForm.PLAYERFORM_MOM, ItemTag = ItemConfig.TAG_MOM},
+	[tostring(EID.TRANSFORMATION.CONJOINED)] = {VanillaForm = PlayerForm.PLAYERFORM_BABY, ItemTag = ItemConfig.TAG_BABY},
+	[tostring(EID.TRANSFORMATION.LEVIATHAN)] = {VanillaForm = PlayerForm.PLAYERFORM_EVIL_ANGEL, ItemTag = ItemConfig.TAG_DEVIL},
+	[tostring(EID.TRANSFORMATION.POOP)] = {VanillaForm = PlayerForm.PLAYERFORM_POOP, ItemTag = ItemConfig.TAG_POOP},
+	[tostring(EID.TRANSFORMATION.BOOKWORM)] = {VanillaForm = PlayerForm.PLAYERFORM_BOOK_WORM, ItemTag = ItemConfig.TAG_BOOK},
 	[tostring(EID.TRANSFORMATION.ADULT)] = {VanillaForm = PlayerForm.PLAYERFORM_ADULTHOOD},
-	[tostring(EID.TRANSFORMATION.SPIDERBABY)] = {VanillaForm = PlayerForm.PLAYERFORM_SPIDERBABY},
+	[tostring(EID.TRANSFORMATION.SPIDERBABY)] = {VanillaForm = PlayerForm.PLAYERFORM_SPIDERBABY, ItemTag = ItemConfig.TAG_SPIDER},
 	[tostring(EID.TRANSFORMATION.SUPERBUM)] = {},
-	[tostring(EID.TRANSFORMATION.STOMPY)] = {VanillaForm = EID.isRepentance and PlayerForm.PLAYERFORM_STOMPY}
+	[tostring(EID.TRANSFORMATION.STOMPY)] = {VanillaForm = EID.isRepentance and PlayerForm.PLAYERFORM_STOMPY},
+	[tostring(EID.TRANSFORMATION.NECROMANCER)] = {VanillaForm = EID.isRepentancePlus and 15}, -- added in Rep+. Currently has no ENUM in vanilla
 }
-
 
 EID.RoomShapeToMarkup = { "{{Room}}", "{{RoomSmallHorizontal}}", "{{RoomSmallVertical}}", "{{RoomLongVertical}}", "{{RoomLongThinVertical}}","{{RoomLongHorizontal}}", "{{RoomLongThinHorizontal}}", "{{RoomXL}}", "{{RoomLTopLeft}}", "{{RoomL}}", "{{RoomLBottomLeft}}", "{{RoomLBottomRight}}" }
 EID.RoomTypeToMarkup = { "{{Room}}", "{{Shop}}", "{{ErrorRoom}}", "{{TreasureRoom}}", "{{BossRoom}}", "{{MiniBoss}}", "{{SecretRoom}}", "{{SuperSecretRoom}}", "{{ArcadeRoom}}", "{{CursedRoom}}", "{{ChallengeRoom}}", "{{Library}}", "{{SacrificeRoom}}", "{{DevilRoom}}", "{{AngelRoom}}", "{{LadderRoom}}", "{{Room}}" --[[boss rush]], "{{IsaacsRoom}}", "{{BarrenRoom}}", "{{ChestRoom}}", "{{DiceRoom}}", "{{Shop}}", "{{Room}}", --[[Black Market / Greed Exit]] "{{Planetarium}}", "{{Teleporter}}","{{Teleporter}}", "{{Room}}", "{{Room}}" --[[Blue Key rooms]], "{{UltraSecretRoom}}" }
@@ -979,6 +983,13 @@ if EID.isRepentance then
 	EID.CarBatteryNoSynergy[709] = true; EID.CarBatteryNoSynergy[710] = true; EID.CarBatteryNoSynergy[711] = true; EID.CarBatteryNoSynergy[714] = true;
 	EID.CarBatteryNoSynergy[715] = true; EID.CarBatteryNoSynergy[728] = true; EID.CarBatteryNoSynergy[729] = true;
 end
+if EID.isRepentancePlus then
+	EID.CarBatteryNoSynergy[164] = false -- The Candle
+	EID.CarBatteryNoSynergy[289] = false -- Red Candle
+	EID.CarBatteryNoSynergy[441] = false -- Mega Blast
+	EID.CarBatteryNoSynergy[728] = false -- Gello
+end
+
 -- Items that should show their Car Battery synergy while looking at a Car Battery pedestal
 -- Void, Crooked Penny, Metronome, Moving Box, Broken Shovel
 EID.CarBatteryPedestalWhitelist = { [477] = true, [485] = true, [488] = true, [523] = true, [550] = true }

@@ -324,8 +324,9 @@ local function HealthUpCallback(descObj)
 		
 		local pos = 1
 		while pos <= #text do
-			-- replace {1} with the number of hearts and {2} with the plural character
+			-- replace {1} with the number of hearts and {pluralize} with the plural character
 			local toFind = EID:ReplaceVariableStr(text[pos], numHearts)
+			toFind = EID:TryPluralizeString(toFind, numHearts)
 			if text[pos + 1] then
 				local replaceWith = EID:ReplaceVariableStr(text[pos + 1], numHearts)
 				descObj.Description = EID:SimpleReplace(descObj.Description, tostring(toFind), replaceWith, 1)
@@ -1077,6 +1078,12 @@ if EID.isRepentance then
 	---------------------------------------
 	---- Book of Virtues Wisp Handling-----
 	---------------------------------------
+	local ringIconLookup = {
+		[-1] = "{{StationaryWisp}}",
+		[0] = "{{InnerWisp}}",
+		[1] = "{{MiddleWisp}}",
+		[2] = "{{OuterWisp}}"
+	}
 
 	local function BookOfVirtuesWispDescriptionBuilder(descObj, itemID)
 		local textColor = "{{ColorPastelBlue}}"
@@ -1117,33 +1124,25 @@ if EID.isRepentance then
 			descriptionText = "#{{VirtuesCollectible"..itemID.."}} " .. textColor .. noWispsText
 		else
 			-- base damage via damage, stage damage and firedelay
-			local damageText = ""
+			-- Display "-" text if it cant shoot
+			local damageText = "-"
 			if canShoot then
-				damageText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Damage")
 				local dmg = (damage + (stageDamage * (game:GetLevel():GetAbsoluteStage() - 1))) * (30 / fireDelay)
-				local dmgTxt = string.format("%.2f", dmg):gsub("%.?0+$", "") -- formated and without trailing zeros
-				damageText = EID:ReplaceVariableStr(damageText, dmgTxt)
-			else
-				-- Display "Cant Shoot" text instead of damage values
-				damageText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "CantShoot")
+				damageText = string.format("%.2f", dmg):gsub("%.?0+$", "") -- formated and without trailing zeros
 			end
 
 			-- HP Text
 			local hpText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Health")
 			hpText = EID:ReplaceVariableStr(hpText, hp)
 
-			-- layer
-			local ringTable = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Ring")
-			local ringText = ringTable[layer] or ringTable[1]
-			-- overview / headline
-			descriptionText = "#{{VirtuesCollectible"..itemID.."}} " .. textColor .. ringText
-			descriptionText = EID:ReplaceVariableStr(descriptionText, "amount", amount ~= 0 and amount or "")
-
 			-- HP and damage text
 			local statText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "StatDescription")
-			statText = EID:ReplaceVariableStr(statText, "health", textColor .. hpText) -- TODO: Fix issue where color definition before icon definition causes 1 extra space
+			statText = EID:ReplaceVariableStr(statText, "ringIcon", textColor .. ringIconLookup[layer] or ringIconLookup[1])
+			statText = EID:ReplaceVariableStr(statText, "amount", amount ~= 0 and amount or "") -- TODO: Fix issue where color definition before icon definition causes 1 extra space
+			statText = EID:ReplaceVariableStr(statText, "health", hp)
 			statText = EID:ReplaceVariableStr(statText, "damage", damageText)
-			descriptionText = descriptionText .. "#" .. statText
+			-- overview / headline
+			descriptionText = "#{{VirtuesCollectible"..itemID.."}} " .. textColor .. statText
 
 			-- Single room warning
 			if EID.WispData.SingleRoom[itemID] then

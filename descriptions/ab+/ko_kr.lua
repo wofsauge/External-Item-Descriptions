@@ -168,7 +168,7 @@ EID.descriptions[languageCode].collectibles={
 	{"105", "주사위", "사용 시 그 방의 아이템을 다른 아이템으로 바꿉니다."}, -- The D6
 	{"106", "미스터 메가", "↑ {{Bomb}}폭탄 +5#폭탄 공격력 배율 x1.83#폭탄의 범위가 넓어집니다."}, -- Mr. Mega
 	{"107", "핑킹 가위", "{{Timer}} 사용 시 그 방에서:#{{ArrowGrayRight}} 비행 능력을 얻으며 몸이 분리됩니다.#{{ArrowGrayRight}} 분리된 몸은 적을 따라다니며 접촉한 적에게 초당 82.5의 피해를 줍니다."}, -- The Pinking Shears
-	{"108", "제병", "캐릭터가 받는 피해를 절반으로 줄여줍니다.#!!! 일부 피해는 해당 효과를 무시합니다."}, -- The Wafer
+	{"108", "제병", "캐릭터가 받는 피해를 절반으로 줄여줍니다. (최소 반칸)#!!! 일부 피해는 해당 효과를 무시합니다."}, -- The Wafer
 	{"109", "돈 = 힘", "동전 1개당 {{DamageSmall}}공격력 +0.04#{{Blank}} (최대 +3.96)"}, -- Money = Power
 	{"110", "엄마의 콘텍트렌즈", "↑ {{RangeSmall}}사거리 +0.25#↑ 눈물 높이 +0.5#{{Petrify}} 20%의 확률로 적을 멈추게 만드는 공격이 나갑니다.#{{LuckSmall}} 행운 20 이상일 때 50% 확률"}, -- Mom's Contacts
 	{"111", "콩", "{{Poison}} 사용 시 캐릭터 주변의 적을 중독시키는 독방귀를 뀝니다."}, -- The Bean
@@ -307,7 +307,7 @@ EID.descriptions[languageCode].collectibles={
 	{"244", "기계 0.5", "공격 시 캐릭터의 이마 쪽에서 보조 레이저가 발사됩니다."}, -- Tech.5
 	{"245", "시력 2.0", "공격이 2발로 나갑니다."}, -- 20/20
 	{"246", "파란 지도", "{{SecretRoom}} 맵에 비밀방, {{SuperSecretRoom}}일급비밀방의 위치가 표시됩니다."}, -- Blue Map
-	{"247", "베프들!", "패밀리어들의 피해량이 2배로 증가합니다."}, -- BFFS!
+	{"247", "베프들!", "패밀리어 피해량 x2"}, -- BFFS!
 	{"248", "군체의식", "파란 아군 파리 및 거미의 공격력이 2배로 증가합니다."}, -- Hive Mind
 	{"249", "추가 선택권", "{{BossRoom}} 보스방 보상 아이템이 2개가 나오며 하나를 선택하면 나머지는 사라집니다."}, -- There's Options
 	{"250", "1+1 폭탄", "{{Bomb}} 폭탄 픽업이 1+1로 나옵니다."}, -- BOGO Bombs
@@ -361,7 +361,7 @@ EID.descriptions[languageCode].collectibles={
 	{"298", "유니콘의 잘린 뿔", "{{Timer}} 사용 시 6.5초간:#{{ArrowGrayRight}} {{SpeedSmall}}이동속도 +0.28#{{ArrowGrayRight}} 공격불능 및 접촉공격불능 무적 상태가 됩니다."}, -- Unicorn Stump
 	{"299", "황소자리", "↓ {{SpeedSmall}}이동속도{{ColorOrange}}(상한){{CR}} -0.3#그 방에 적이 있는 동안 이동속도가 점점 증가합니다.#{{Collectible77}} 이동속도가 2.0이 되면 5초간 무적 상태가 됩니다."}, -- Taurus
 	{"300", "양자리", "↑ {{SpeedSmall}}이동속도 +0.25#높은 속도로 적과 접촉시 적에게 18의 피해를 줍니다."}, -- Aries
-	{"301", "게자리", "↑ {{SoulHeart}}소울하트 +3#{{Collectible108}} 피격 시 이후 그 방에서 받는 피해를 절반으로 줄여줍니다."}, -- Cancer
+	{"301", "게자리", "↑ {{SoulHeart}}소울하트 +3#{{Collectible108}} 피격 시 이후 그 방에서 받는 피해를 절반으로 줄여줍니다. (최소 반칸)"}, -- Cancer
 	{"302", "사자자리", "장애물을 부술 수 있습니다."}, -- Leo
 	{"303", "처녀자리", "{{Pill}} 부정적인 알약 효과가 등장하지 않습니다.#{{Collectible58}} 피격 시 일정 확률로 10초간 무적 상태가 됩니다.#{{LuckSmall}} 행운 10 이상일 때 100% 확률"}, -- Virgo
 	{"304", "천칭자리", "{{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 +6#{{ArrowUpDown}} {{DamageSmall}}공격력, {{TearsSmall}}연사, {{RangeSmall}}사거리, {{SpeedSmall}}이동속도가 항상 균등하게 조정됩니다."}, -- Libra
@@ -564,7 +564,7 @@ EID.descriptions[languageCode].collectibles={
 	{"501", "탐욕의 식도", "동전 25개 당 {{EmptyHeart}}빈 최대 체력 +1#동전으로 늘어난 체력은 동전 소비 시 사라집니다."}, -- Greed's Gullet
 	{"502", "대왕 여드름", "확률적으로 적을 {{Slow}}둔화시키는 공격력 x2의 눈물이 나갑니다."}, -- Large Zit
 	{"503", "작은 뿔", "5%의 확률로 적을 즉사시키는 눈물이 나갑니다.#적에게 접촉 시 3.5의 피해를 줍니다."}, -- Little Horn
-	{"504", "갈색 너겟", "사용 시 그 자리에서 주위의 적을 공격하는 파란 파리를 소환합니다."}, -- Brown Nugget
+	{"504", "갈색 너겟", "사용 시 그 자리에서 주위의 적을 공격하는 파란 아군 파리를 소환합니다."}, -- Brown Nugget
 	{"505", "포켓 GO", "{{Friendly}} 방 입장 시 20%의 확률로 아래 중 하나의 아군 적을 소환합니다:#{{ArrowGrayRight}} Attack Fly#{{Blank}} Pooter#{{Blank}} One Tooth#{{Blank}} Fat Bat#{{Blank}} Frowning Gaper#{{Blank}} Vis"}, -- Poke Go
 	{"506", "배신자", "적을 뒤에서 공격할 시 2배의 피해를 입히고 {{BleedingOut}}출혈 상태로 만듭니다."}, -- BackStabber
 	{"507", "날카로운 빨대", "사용 시 그 방의 적에게 눈물 공격력 + 적 체력의 10%의 피해를 줍니다."}, -- Sharp Straw
@@ -602,7 +602,7 @@ EID.descriptions[languageCode].collectibles={
 	{"539", "이상한 알", "{{Friendly}} 피격 시 매혹된 아군 적을 소환합니다.#피격당하지 않고 방을 넘어갈수록 소환되는 적이 더욱 강해집니다."}, -- Mystery Egg
 	{"540", "납작한 돌", "눈물이 바닥을 튀면서 발사됩니다.#눈물의 최대 사거리가 캐릭터의 사거리보다 40% 더 멀리 나갑니다.#눈물이 튈 때 주변에 있는 적에게 공격력의 25%의 피해를 줍니다."}, -- Flat Stone
 	{"541", "골수", "↑ {{EmptyBoneHeart}}뼈하트 +1#{{Heart}} 빨간하트를 3개 드랍합니다."}, -- Marrow
-	{"542", "미끄러운 갈비뼈", "캐릭터 주위를 돌며 적의 탄환을 반사합니다."}, -- Slipped Rib
+	{"542", "빠진 갈비뼈", "캐릭터 주위를 돌며 적의 탄환을 반사합니다."}, -- Slipped Rib
 	{"543", "성지", "피격 시 오라를 가진 하얀 똥을 설치합니다.#오라 안에 있을 시 {{TearsSmall}}연사가 2배가 되며 피해를 확률적으로 무시합니다."}, -- Hallowed Ground
 	{"544", "날카로운 갈비뼈", "캐릭터가 보는 방향에서 앞뒤로 움직입니다.#접촉하는 적에게 초당 캐릭터의 공격력 x6의 피해를 줍니다."}, -- Pointy Rib
 	{"545", "망자의 책", "{{Friendly}} 사용 시 방에서 죽인 적의 수만큼 일회용 뼛조각 배리어를 생성하며 확률적으로 아군 해골 적을 소환합니다. (최대 8)"}, -- Book of the Dead
@@ -707,7 +707,7 @@ EID.descriptions[languageCode].trinkets={
 	{"20", "원숭이 손", "{{BlackHeart}} 피격 시 전체 체력이 반칸 남았을때 블랙하트를 하나 드랍합니다.#!!! 3번 드랍 시 사라집니다."}, -- Monkey Paw
 	{"21", "신비한 종이", "!!! 피격 시 확률적으로 아래의 장신구 효과 중 하나를 발동합니다:#{{Collectible327}} The Polaroid#{{Collectible328}} The Negative#{{Trinket48}} A Missing Page#{{Trinket23}} Missing Poster"}, -- Mysterious Paper
 	{"22", "악마 꼬리", "{{Key}} 방 클리어 시 하트가 드랍될 때 80% 확률로 열쇠로 바뀝니다.#↓ 상자에서 하트가 드랍될 확률이 대폭 감소합니다.#{{BlackHeart}} 고정 드랍이 아닌 하트가 드랍될 때 열쇠로 바뀌지 않은 경우 100%의 확률로 블랙하트로 대체됩니다."}, -- Daemon's Tail
-	{"23", "실종 포스터", "!!! 일회용#{{Player10}} {{SacrificeRoom}}희생방에서 사망 시 전 방에서 The Lost 캐릭터로 부활함과 동시에 The Lost 캐릭터가 해금됩니다.#The Lost 캐릭터 해금 이후에는 희생방이 아닌 다른 방에서의 사망 시에도 부활합니다."}, -- Missing Poster
+	{"23", "실종 포스터", "!!! 일회용#{{Player10}} {{ColorYellow}}(해금 필요){{CR}} 사망 시 The Lost로 부활합니다."}, -- Missing Poster
 	{"24", "똥전", "{{Coin}} 똥 오브젝트에서 동전이 나올 확률이 20% 증가합니다.#동전 획득 시 적을 더 강하게 밀쳐내는 방귀를 뀝니다."}, -- Butt Penny
 	{"25", "이상한 초콜릿", "!!! 30초마다 일정 확률로:#{{ArrowGrayRight}} 똥을 싸거나;#{{ArrowGrayRight}} 적을 더 강하게 밀쳐내는 방귀를 뀝니다."}, -- Mysterious Candy
 	{"26", "꺾기벌레", "↑ {{RangeSmall}}사거리 +10#눈물이 지그재그로 날아갑니다."}, -- Hook Worm
@@ -778,7 +778,7 @@ EID.descriptions[languageCode].trinkets={
 	{"91", "태변", "일반 똥이 확률적으로 검은 똥으로 대체됩니다.#{{BlackHeart}} 검은 똥 파괴시 확률적으로 블랙하트를 드랍합니다."}, -- Meconium
 	{"92", "금이 간 왕관", "↑ {{TearsSmall}}연사 +0.2#각 능력치가 캐릭터 기본 능력치보다 높을 시 각 능력치가 33% 증가합니다."}, -- Cracked Crown
 	{"93", "다 쓴 기저귀", "방 입장 시 확률적으로 파리류 적들이 공격하지 않거나 약해집니다."}, -- Used Diaper
-	{"94", "생선 꼬리", "아군 파란 파리 또는 거미의 소환량이 2배로 증가합니다."}, -- Fish Tail
+	{"94", "생선 꼬리", "파란 아군 거미 또는 파리의 소환량이 2배로 증가합니다."}, -- Fish Tail
 	{"95", "검은 이빨", "{{Poison}} 3%의 확률로 공격력 2배의 적을 중독시키는 공격이 나갑니다.#!!! {{LuckSmall}}행운 32 이상일 때 100% 확률"}, -- Black Tooth
 	{"96", "우주뱀 벌레", "↑ {{RangeSmall}}사거리 +4#↑ 눈물 높이 +2#눈물이 거대한 나선을 그리며 날아갑니다.#공격이 장애물을 관통합니다."}, -- Ouroboros Worm
 	{"97", "편도선", "{{Collectible474}} 12~20회 피격 시 Tonsil을 획득합니다.#{{Collectible474}} Tonsil은 캐릭터를 따라다니며 적의 탄환을 막아줍니다."}, -- Tonsil
@@ -831,7 +831,7 @@ EID.descriptions[languageCode].cards={
 	{"12", "XI - 힘", "{{Timer}} 사용 시 그 방에서:#{{ArrowGrayRight}} {{Heart}}최대 체력 +1#{{ArrowGrayRight}} {{DamageSmall}}공격력 +0.3#{{ArrowGrayRight}} {{DamageSmall}}공격력 배율 +50%#{{ArrowGrayRight}} {{RangeSmall}}사거리 +5.25#{{ArrowGrayRight}} 눈물 높이 +0.5#{{ArrowGrayRight}} {{SpeedSmall}}이동속도 +0.3"}, -- XI - Strength
 	{"13", "XII - 매달린 남자", "{{Collectible20}} 그 방에서 비행 능력을 얻습니다."}, -- XII - The Hanged Man
 	{"14", "XIII - 죽음", "{{Collectible35}} 그 방의 적에게 40의 피해를 줍니다."}, -- XIII - Death
-	{"15", "XIV - 절제", "{{DonationMachine}} 헌혈기계를 하나 생성합니다."}, -- XIV - Temperance
+	{"15", "XIV - 절제", "{{BloodDonationMachine}} 헌혈기계를 하나 생성합니다."}, -- XIV - Temperance
 	{"16", "XV - 악마", "{{Collectible34}} 그 방에서 {{DamageSmall}}공격력 +2"}, -- XV - The Devil
 	{"17", "XVI - 탑", "{{Collectible65}} 방 안에 트롤폭탄을 6개 생성합니다."}, -- XVI - The Tower
 	{"18", "XVII - 별", "{{TreasureRoom}} 보물방으로 순간이동합니다."}, -- XVII - The Stars
@@ -854,10 +854,10 @@ EID.descriptions[languageCode].cards={
 	{"35", "다가즈", "{{SoulHeart}} 소울하트 +1#{{CurseCursedSmall}} Labyrinth 및 특수 시드를 제외한 그 스테이지의 저주를 제거합니다."}, -- Dagaz
 	{"36", "엔수즈", "{{Collectible333}} 그 스테이지에서 맵에 특수방 위치, 비밀방 위치, 스테이지 구조가 표시됩니다."}, -- Ansuz
 	{"37", "페트로", "{{Collectible105}} 그 방의 아이템을 다른 아이템으로 바꿉니다."}, -- Perthro
-	{"38", "벨카노", "파란 아군 파리/거미를 3마리씩 소환합니다."}, -- Berkano
+	{"38", "벨카노", "파란 아군 거미 및 파리를 3마리씩 소환합니다."}, -- Berkano
 	{"39", "알기즈", "{{Collectible58}} 30초동안 무적 상태가 됩니다."}, -- Algiz
 	{"40", "비어있는 룬", "{{Rune}} 랜덤 룬 효과를 발동합니다.#25% 확률로 Blank Rune을 드랍합니다."}, -- Blank Rune
-	{"41", "검은 룬", "그 방의 아이템을 흡수하고 흡수한 만큼 랜덤 능력치가 2개씩 증가합니다.#그 방의 픽업을 흡수하고 흡수한 개수만큼 파란 아군 파리 및 거미를 소환합니다.#그 방의 적에게 40의 피해를 줍니다."}, -- Black Rune
+	{"41", "검은 룬", "그 방의 아이템을 흡수하고 흡수한 만큼 랜덤 능력치가 2개씩 증가합니다.#그 방의 픽업을 흡수하고 흡수한 개수만큼 파란 아군 거미 및 파리를 소환합니다.#그 방의 적에게 40의 피해를 줍니다."}, -- Black Rune
 	{"42", "혼돈 카드", "{{ColorOrange}}캐릭터의 몸통이 바라보는 방향{{CR}}으로 카드를 던지며 카드에 맞은 적은 즉사합니다.#!!! Delirium은 면역"}, -- Chaos Card
 	{"43", "신용카드", "{{Shop}}상점 또는 {{DevilRoom}}악마방에서 사용 시 모든 상품을 무료로 획득할 수 있습니다."}, -- Credit Card
 	{"44", "규칙 카드", "게임 힌트를 화면에 출력합니다."}, -- Rules Card
@@ -905,8 +905,8 @@ EID.descriptions[languageCode].pills={
 	{"25", "건망증", "{{CurseLostSmall}} Lost 저주에 걸리며 맵을 볼 수 없습니다."}, -- Amnesia
 	{"26", "레몬 파티", "사용 시 캐릭터의 주위에 커다란 노란 장판을 생성합니다.#장판은 지상의 적에게 초당 24의 피해를 줍니다."}, -- Lemon Party
 	{"27", "님 마술43?", "눈물이 30초간 대각선으로 나갑니다."}, -- R U A Wizard?
-	{"28", "진통제!", "그 방에서 캐릭터가 받는 모든 피해가 체력 반칸으로 고정됩니다."}, -- Percs!
-	{"29", "과다복용!", "그 방에서 캐릭터가 받는 모든 피해가 체력 한칸 이상으로 고정됩니다."}, -- Addicted!
+	{"28", "진통제!", "그 방에서 캐릭터가 받는 모든 피해를 절반으로 줄여줍니다. (최소 반칸)"}, -- Percs!
+	{"29", "과다복용!", "그 방에서 캐릭터가 받는 모든 피해가 체력 1칸 이상으로 고정됩니다."}, -- Addicted!
 	{"30", "휴-식", "2초간 캐릭터의 위치에 똥을 생성합니다."}, -- Re-Lax
 	{"31", "???", "{{CurseMazeSmall}} Maze 저주에 걸리며 방 이동 시 스테이지 안의 다른 방으로 순간이동하거나 두개의 랜덤 방의 위치가 서로 바뀝니다."}, -- ???
 	{"32", "커지는 알약", "캐릭터의 크기가 커집니다."}, -- One makes you larger
@@ -1011,26 +1011,47 @@ EID.descriptions[languageCode].MCM={
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
 	-- For Korean, keep all description except lost, just icon changes
-	["Red to Soul"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{SoulHeart}}최대 체력 +{1}",
-	"↑ {{HealingRed}}빨간하트 +{1}", "",
-	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{SoulHeart}}최대 체력 +{1}",
-	"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{SoulHeart}}최대 체력 {1}"},
+	["Red to Soul"] = {
+		"{{ArrowGrayRight}} {{HealingRed}}", "{{HealingRed}}",
+		"↑ {{Heart}}최대 체력 +{1}", "↑ {{SoulHeart}}최대 체력 +{1}",
+		"↑ {{HealingRed}}빨간하트 +{1}", "",
+		"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{SoulHeart}}최대 체력 +{1}",
+		"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{SoulHeart}}최대 체력 {1}"
+	},
 
-	["Red to Black"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{BlackHeart}}최대 체력 +{1}",
-	"↑ {{HealingRed}}빨간하트 +{1}", "",
-	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{BlackHeart}}최대 체력 +{1}",
-	"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{BlackHeart}}최대 체력 {1}"},
+	["Red to Black"] = {
+		"{{ArrowGrayRight}} {{HealingRed}}", "{{HealingRed}}",
+		"↑ {{Heart}}최대 체력 +{1}", "↑ {{BlackHeart}}최대 체력 +{1}",
+		"↑ {{HealingRed}}빨간하트 +{1}", "",
+		"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{BlackHeart}}최대 체력 +{1}",
+		"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{BlackHeart}}최대 체력 {1}"
+	},
 
-	["Red to Bone"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{BoneHeart}}최대 체력 +{1}",
-	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{EmptyBoneHeart}}빈 최대 체력 +{1}",
-	"{{HealingRed}}", "{{HealingBone}}",
-	"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{EmptyBoneHeart}}최대 체력 {1}"}, -- Red HP to Bone Hearts
+	["Red to Bone"] = {
+		"{{ArrowGrayRight}} {{HealingRed}}", "{{HealingRed}}",
+		"↑ {{Heart}}최대 체력 +{1}", "↑ {{BoneHeart}}최대 체력 +{1}",
+		"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{EmptyBoneHeart}}빈 최대 체력 +{1}",
+		"{{HealingRed}}", "{{HealingBone}}",
+		"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{EmptyBoneHeart}}최대 체력 {1}"
+	}, -- Red HP to Bone Hearts
 
-	["Red to Coin"] = {"↑ {{Heart}}최대 체력 +{1}", "↑ {{CoinHeart}}최대 체력 +{1}",
-	"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{EmptyCoinHeart}}빈 최대 체력 +{1}",
-	"↑ {{HealingRed}}빨간하트 +{1}", "↑ {{HealingCoin}}빨간하트 +{1}", "반칸 회복", "한칸 회복", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{EmptyCoinHeart}}최대 체력 {1}"},
+	["Red to Coin"] = {
+		"{{ArrowGrayRight}} {{HealingRed}}", "{{HealingRed}}",
+		"↑ {{Heart}}최대 체력 +{1}", "↑ {{CoinHeart}}최대 체력 +{1}",
+		"↑ {{EmptyHeart}}빈 최대 체력 +{1}", "↑ {{EmptyCoinHeart}}빈 최대 체력 +{1}",
+		"↑ {{HealingRed}}빨간하트 +{1}", "↑ {{HealingCoin}}빨간하트 +{1}",
+		"반칸 회복", "한칸 회복",
+		"{{HealingRed}}", "{{HealingCoin}}",
+		"↓ {{EmptyHeart}}최대 체력 {1}", "↓ {{EmptyCoinHeart}}최대 체력 {1}"
+	},
 
-	["Red to None"] = {"↑ {{Heart}}최대 체력 +{1}", "", "↑ {{EmptyHeart}}빈 최대 체력{2} +{1}", "", "↓ {{EmptyHeart}}최대 체력 {1}", "", "↑ {{HealingRed}}빨간하트 +{1}", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {
+		"{{ArrowGrayRight}} {{HealingRed}}", "{{HealingRed}}",
+		"↑ {{Heart}}최대 체력 +{1}", "",
+		"↑ {{EmptyHeart}}빈 최대 체력{2} +{1}", "",
+		"↓ {{EmptyHeart}}최대 체력 {1}", "",
+		"↑ {{HealingRed}}빨간하트 +{1}", ""
+	}, -- Red HP to None (The Lost)
 }
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
@@ -1162,7 +1183,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.297 (Greed)"] = {"사용 시 스테이지마다 다른 보상을 드랍합니다.#Basement: 2{{Bomb}} + 2{{Key}}#Caves: {{BossRoom}} 1개 + 2{{SoulHeart}}#Depths: 20{{Coin}}#Womb: {{BossRoom}} 2개#Sheol: {{DevilRoom}} 1개 + 1{{BlackHeart}}#The Shop/Ultra Greed: 1{{Coin}}"}, -- Pandora's Box
 
 	------ ACHIEVEMENT CHECKS ------
-	["5.350.23"] = "!!! {{SacrificeRoom}}희생방에서 사망 시 The Lost 캐릭터가 해금됩니다.", -- Missing Poster (Unlock The Lost)
+	["5.350.23"] = "{{Player10}} {{SacrificeRoom}}희생방에서 사망 시 전 방에서 The Lost 캐릭터로 부활 + 해금됩니다.", -- Missing Poster (Unlock The Lost)
 	["5.100.297"] = {"{{Collectible523}}Moving Box 해금", "무효과"}, -- Pandora's Box unlocking Moving Box
 
 
@@ -1364,7 +1385,7 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[11] = {"Lazarus Risen", "부활 이후의 나사로로 능력치가 증가되어 있습니다."},
 	[12] = {"Dark Judas", "{{DamageSmall}} 공격력 배율 x2#{{Player3}} 체크리스트는 Judas로 클리어한 것으로 인정됩니다."},
 	[13] = {"Lilith", "{{Collectible360}} 공격할 수 없으며 모든 공격을 Incubus가 대신해 줍니다."},
-	[14] = {"Keeper", "{{CoinHeart}} 체력이 하트가 아닌 코인으로 이루어져 있으며 2칸의 상한을 가집니다.#동전으로 체력 회복 가능#하트 픽업이 자폭 파리로 바뀝니다."},
+	[14] = {"Keeper", "{{CoinHeart}} 체력이 하트가 아닌 코인으로 이루어져 있으며 2칸의 상한을 가집니다.#동전으로 체력 회복 가능#하트 픽업이 파란 아군 파리로 바뀝니다."},
 	[15] = {"Apollyon", ""},
 	[16] = {"The Forgotten", "{{Chargeable}} 공격 키로 뼈를 휘두르며 충전 시 충전 거리만큼 뼈다귀를 부메랑처럼 던질 수 있습니다.#{{BoneHeart}} 최대 체력 = 뼈하트의 보정을 받으며 6칸의 상한을 가집니다.#{{ButtonRT}} (Ctrl)키로 영혼과 교체할 수 있으며 영혼은 지형 관통 눈물을 발사합니다.{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받으며 6칸의 상한을 가집니다.#영혼은 날아다닐 수 있으나 본체로부터 멀리 떨어질 수 없습니다."},
 	[17] = {"The Forgotten Soul", "{{Chargeable}} 공격 키로 뼈를 휘두르며 충전 시 충전 거리만큼 뼈다귀를 부메랑처럼 던질 수 있습니다.#{{BoneHeart}} 최대 체력 = 뼈하트의 보정을 받으며 6칸의 상한을 가집니다.#{{ButtonRT}} (Ctrl)키로 영혼과 교체할 수 있으며 영혼은 지형 관통 눈물을 발사합니다.{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받으며 6칸의 상한을 가집니다.#영혼은 날아다닐 수 있으나 본체로부터 멀리 떨어질 수 없습니다."},

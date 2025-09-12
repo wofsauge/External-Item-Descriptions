@@ -116,7 +116,7 @@ EID.descriptions[languageCode].collectibles={
 	{"92", "Súper Vendaje", "↑ {{Heart}} +1 de Vida#{{HealingRed}} Cura 1 corazón#{{SoulHeart}} +2 Corazones de Alma"}, -- Súper Vendaje
 	{"93", "El Gamekid", "{{Timer}} Otorga durante 6.5 segundos:#Invencibilidad#No puedes disparar, pero infliges 40 de daño por contacto cada segundo#{{HealingRed}} Probabilidad de curar medio corazón rojo al matar un enemigo#{{Fear}} Asusta a todos los enemigos en la sala"}, -- The Gamekid
 	{"94", "Bolsa de centavos", "{{Coin}} Genera una moneda aleatoria cada 2 habitaciones"}, -- Bolsa de centavos
-	{"95", "Robo-Baby", "Dispara lásers que infligen 3.5 de daño"}, -- Robo-Baby
+	{"95", "Robo-Baby", "Dispara láseres que infligen 3.5 de daño"}, -- Robo-Baby
 	{"96", "Pequeño C.H.A.D.", "{{HalfHeart}} Genera medio corazón rojo cada 3 habitaciones"}, -- Little C.H.A.D.
 	{"97", "El Libro del Pecado", "Genera un recolectable aleatorio"}, -- El Libro del Pecado
 	{"98", "La Reliquia", "{{SoulHeart}} Genera 1 corazón de alma cada 5-6 habitaciones"}, -- The Relic
@@ -422,7 +422,7 @@ EID.descriptions[languageCode].collectibles={
 	{"396", "Bisturí Ventricular", "Permite crear hasta dos portales para viajar entre ellos#Los portales pueden colocarse en diferentes habitaciones"}, -- Ventricle Razor
 	{"397", "Rayo tractor", "↑ {{Tears}} Lágrimas +0.5#↑ {{Range}} Alcance +5.25#↑ {{Tearsize}} Tamaño de lágrimas +0.5#↑ {{Shotspeed}} Vel. de lágrimas +0.16#Las lágrimas viajan siguiendo un rayo de luz enfrente del jugador"}, -- Tractor Beam
 	{"398", "Carne de Dioses", "Las lágrimas pueden encoger a los enemigos#Los enemigos encogidos pueden ser aplastados al caminar sobre ellos"}, -- God's Flesh
-	{"399", "Fauces del Vacío", "↑ {{Damage}} Daño +1#{{Chargeable}} Disparar por 2.35 segundos y soltar el boton genera un laser negro a tu alrededor#Inflige 30 veces tu daño cada 2 segundos#{{BlackHeart}} 5% de probabilidad de generar corazones negros al matar enemigos con el anillo negro"}, -- Maw of the Void
+	{"399", "Fauces del Vacío", "↑ {{Damage}} Daño +1#{{Chargeable}} Disparar por 2.35 segundos y soltar el boton genera un láser negro a tu alrededor#Inflige 30 veces tu daño cada 2 segundos#{{BlackHeart}} 5% de probabilidad de generar corazones negros al matar enemigos con el anillo negro"}, -- Maw of the Void
 	{"400", "Lanza del destino", "Sostienes una lanza al frente#{{Fear}} La lanza inflige el doble de tu daño y puede asustar a los enemigos al contacto"}, -- Spear of Destiny
 	{"401", "Explosivo", "25% de probabilidad de disparar lágrimas bomba pegajosas#Las lágrimas bomba pegajosas no infligen daño y explotan luego de unos segundos"}, -- Explosivo
 	{"402", "Caos", "Todos los objetos en pedestales seran elegidos de grupos aleatorios#Genera 1-6 recolectables aleatorios"}, -- Chaos
@@ -738,9 +738,9 @@ EID.descriptions[languageCode].BFFSSynergies = {
 ---------- Trinkets ----------
 
 EID.descriptions[languageCode].trinkets={
-	{"1", "Moneda tragada", "{{Coin}} Genera 1 moneda al recibir daño"}, -- Swallowed Penny
+	{"1", "Moneda tragada", "{{Coin}} Genera una moneda al recibir daño"}, -- Swallowed Penny
 	{"2", "Popó petrificado", "50% de probabilidad de obtener recolectables al romper cacas"}, -- Petrified Poop
-	{"3", "Batería AAA", "{{Battery}} Los objetos activos necesitan 1 carga menos"}, -- AAA Battery
+	{"3", "Batería AAA", "{{Battery}} Los objetos activos necesitan una carga menos"}, -- AAA Battery
 	{"4", "Control Remoto Roto", "{{Collectible44}} Usar un objeto activo te teletransporta a una habitación aleatoria"}, -- Broken Remote
 	{"5", "Corazón Purpura", "Duplica la probabilidad de encontrar enemigos y jefes campeones"}, -- Purple Heart
 	{"6", "Imán roto", "{{Coin}} Atrae las monedas hacia el jugador"}, -- Broken Magnet
@@ -753,7 +753,7 @@ EID.descriptions[languageCode].trinkets={
 	{"13", "Tarjeta de crédito", "{{Shop}} Permite llevarse un objeto de la tienda gratis"}, -- Credit Card
 	{"14", "Callo", "Otorga inmunidad a las espinas de suelo y el fluido"}, -- Callus
 	{"15", "Roca de la suerte", "{{Coin}} Genera monedas al destruir rocas"}, -- Lucky Rock
-	{"16", "Uña del pie de Mamá", "El Pie de Mamá caerá en un lugar aleatorio de la habitación cada 60 segundos"}, -- Mom's Toenail
+	{"16", "Uña del pie de Mamá", "El Pie de Mamá pisoteará un lugar aleatorio de la habitación cada 60 segundos"}, -- Mom's Toenail
 	{"17", "Pintalabios negro", "{{BlackHeart}} +5% de probabilidad de reemplazar los corazones de alma por corazones negros"}, -- Black Lipstick
 	{"18", "Folleto Biblico", "{{EternalHeart}} +3% de probabilidad de encontrar corazones eternos"}, -- Bible Tract
 	{"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los cofres dorados sin usar llaves"}, -- Paper Clip
@@ -766,10 +766,10 @@ EID.descriptions[languageCode].trinkets={
 	{"26", "Gusano Cuadrado", "↑ {{Range}} Alcance +10#Las lágrimas se mueven en ángulos rectos"}, -- Hook Worm
 	{"27", "Gusano Fugáz", "↑ {{Shotspeed}} Vel. de lágrimas +0.5"}, -- Whip Worm
 	{"28", "Anj roto", "{{Player4}} 22% de probabilidad de reaparecer como \"???\" al morir"}, -- Broken Ankh
-	{"29", "Cabeza de Pez", "Genera una mosca azul al recibir daño"}, -- Cabeza de Pez
+	{"29", "Cabeza de Pez", "Genera una mosca azul al recibir daño"}, -- Fish Head
 	{"30", "Ojo Rojo", "{{Poison}} 10% de probabilidad de disparar lágrimas venenosas#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Pinky Eye
 	{"31", "Chincheta", "10% de probabilidad de disparar lágrimas perforantes y espectrales#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Push Pin
-	{"32", "Monguis", "25% de probabilidad de activar un efecto de hongo aleatorio para la habitación actual#Puede revelar las habitaciones especiales en el mapa"}, -- Liberty Cap
+	{"32", "Monguis", "25% de probabilidad de activar un efecto de hongo aleatorio para la habitación actual#Puede revelar la ubicación de habitaciones especiales en el mapa"}, -- Liberty Cap
 	{"33", "Cordón umbilical", "{{Timer}} Genera un {{Collectible 100}} Pequeño Steven para la sala cuando tu salud es reducida a medio corazón rojo"}, -- Umbilical Cord
 	{"34", "Corazón de niño", "{{UnknownHeart}} 10% de probabilidad de que la recompensa de la sala sea un corazón aleatorio#{{Heart}} 33% de probabilidad de obtener corazones extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Child's Heart
 	{"35", "Cuerno Curvo", "↑ {{Damage}} Daño +2"}, -- Cuerno Curvo
@@ -792,7 +792,7 @@ EID.descriptions[languageCode].trinkets={
 	{"52", "Moneda Falsificada", "{{Coin}} 50% de probabilidad de incrementar +1 el valor de las monedas al recogerlas"}, -- Counterfeit Penny
 	{"53", "Garrapata", "{{HealingRed}} Cura 1 corazón rojo al entrar en una {{BossRoom}} Sala de Jefe#Reduce un 15% la salud del jefe#{{Warning}} Este trinket no puede ser soltado#Solo puedes deshacerte de él recogiendo {{Trinket41}} la Cerilla o tragándolo"}, -- Tick
 	{"54", "Cabeza de Isaac", "Familiar con lágrimas perforantes#Inflige 3.5 de daño"}, -- Isaac's Head
-	{"55", "La fe de Maggy", "{{EternalHeart}} Otorga un Corazón Eterno al entrar a un nuevo piso"}, -- Maggy's Faith
+	{"55", "La fe de Maggy", "{{EternalHeart}} +1 Corazón Eterno al cambiar de piso"}, -- Maggy's Faith
 	{"56", "Lengua de Judas", "{{DevilRoom}} Reduce los precios de los pactos del Diablo a un corazón#{{SoulHeart}} No reduce los pactos de 3 Corazones de Alma"}, -- Judas' Tongue
 	{"57", "Alma de ???", "Familiar que rebota por la habitación#Dispara en la misma dirección que el jugador#Inflige 3.5 de daño#Dispara lágrimas espectrales y teledirigidas"}, -- ???'s Soul
 	{"58", "Mechón de Sansón", "{{Timer}} Matar a un enemigo tiene 1/15 de probabilidad de otorgar ↑ {{Damage}} Daño +0.5 por la habitación#{{Luck}} 100% de probabilidad con 10 de suerte"}, -- Samson's Lock
@@ -822,11 +822,11 @@ EID.descriptions[languageCode].trinkets={
 	{"82", "Herradura de oro", "{{TreasureRoom}} +15% de probabilidad de generar dos objetos para elegír en futuras salas del tesoro"}, -- Golden Horse Shoe
 	{"83", "Llave de Tienda", "{{Shop}} Permite abrir las tiendas gratis"}, -- Store Key
 	{"84", "Costilla de Codicia", "{{Coin}} Genera 5% mas monedas y menos corazones como recompensa de habitación#Codicia y Super Codicia ya no aparecerán en la {{Shop}} Tienda y en la {{SecretRoom}} Habitación Secreta"}, -- Rib of Greed
-	{"85", "Karma", "{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón (40%)#{{Coin}} Generar 1 moneda (40%)#{{Luck}} Suerte +1 (15%)#{{Beggar}} Generar un Mendigo (5%)"}, -- Karma
+	{"85", "Karma", "{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón rojo {{ColorSilver}}(40%)#{{Coin}} Generar una moneda {{ColorSilver}}(40%)#{{Luck}} Suerte +1 {{ColorSilver}}(15%)#{{Beggar}} Generar un Mendigo {{ColorSilver}}(5%)"}, -- Karma
 	{"86", "Mini-Larva", "Romper caca genera una mosca azul"}, -- Lil Larva
 	{"87", "Medallón de Mamá", "{{HealingRed}} Cura medio corazón al usar llaves#{{Heart}} Convierte los medios corazones en corazones enteros"}, -- Mom's Locket
 	{"88", "¡NO!", "Previene que aparezcan objetos activos"}, -- NO!
-	{"89", "Correa de Niño", "Los familiares se mantendrán cerca del jugador"}, -- Child Leash
+	{"89", "Correa de Niño", "Mantiene a los familiares cerca del jugador"}, -- Child Leash
 	{"90", "Detonador café", "Las cacas explotan al ser destruidas, infligiendo 60 de daño#No afecta a las cacas rojas"}, -- Brown Cap
 	{"91", "Meconio", "33% de probabilidad de encontrar cacas negras#{{BlackHeart}} 5% de probabilidad de generar un corazón negro al romper una caca negra"}, -- Meconium
 	{"92", "Corona Quebrada", "↑ {{Tears}} Lágrimas x0.8#↑ Multiplica las estadisticas x1.33 si se encuentran por encima del valor base"}, -- Cracked Crown
@@ -840,7 +840,7 @@ EID.descriptions[languageCode].trinkets={
 	{"100", "Bombilla Vibrante", "Otorga al tener un objeto activo cargado:#↑ {{Speed}} Velocidad +0.25#↑ {{Tears}} Lágrimas +0.2#↑ {{Damage}} Daño +0.5#↑ {{Range}} Alcance +0.75#↑ {{Shotspeed}} Vel. de lágrimas +0.1#↑ Altura de lágrima +0.5#↑ {{Luck}} +1 de Suerte"}, -- Vibrant Bulb
 	{"101", "Bombilla Muerta", "Otorga al tener un objeto activo descargado:#↑ {{Speed}} Velocidad +0.5#↑ {{Tears}} Lágrimas +0.4#↑ {{Damage}} Daño +1.5#↑ {{Range}} Alcance +1.5#↑ {{Shotspeed}} Vel. de lágrimas +0.3#↑ Altura de lágrima +1#↑ {{Luck}} +2 de Suerte"}, -- Dim Bulb
 	{"102", "Carta Dividida", "{{SecretRoom}} +1 Sala Secreta adicional en cada planta"}, -- Fragmented Card
-	{"103", "¡Igualdad!", "Convierte los recolectables en sus versiones dobles al tener el mismo número de {{Coin}} monedas, {{Key}} llaves y {{Bomb}} bombas"}, -- Equality!
+	{"103", "¡Igualdad!", "Al tener el mismo número de {{Coin}} monedas, {{Bomb}} bombas y {{Key}} llaves:#Convierte los recolectables en sus versiones dobles"}, -- Equality!
 	{"104", "Hueso de los deseos", "2% de probabilidad de consumir el trinket y generar un objeto al recibir daño"}, -- Wish Bone
 	{"105", "Bolsa de Almuerzo", "2% de probabilidad de consumir el trinket y generar {{Collectible22}} Almuerzo al recibir daño"}, -- Bag Lunch
 	{"106", "Corcho Perdido", "Aumenta el radio de los rastros de fluido producidos por el jugador"}, -- Lost Cork
@@ -1332,9 +1332,9 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.70.28"] = "Disparas al frente y a ambos lados", -- R U A Wizard + The Wiz
 	["5.100.523"] = "Cuenta como objeto pasivo para {1}", -- Moving Box + Void
 	["Mongo Babies"] = "Puede ser imitado por {1}", -- Mongo Baby + Baby Familiars
-	["Technology 2 One Eye"] = "Al tener {1}, el laser remplazará tus lágrimas por completo",
+	["Technology 2 One Eye"] = "Al tener {1}, el láser remplazará tus lágrimas por completo",
 	["Brimstone Proptosis"] = "Los rayos infligen el doble de daño a quemarropa, y va disminuyendo con la distancia",
-	["Brimstone Ipecac"] = "Dispara lágrimas de Ipecac al cargar#+40 de daño para el laser",
+	["Brimstone Ipecac"] = "Dispara lágrimas de Ipecac al cargar#+40 de daño para el láser",
 	["Proptosis Anti-Gravity"] = "Las lágrimas estaticas no perderán daño hasta que se muevan",
 	["Epic Fetus Soy Milk"] = "No reduce el tiempo de la mira, pero si reduce drasticamente el daño del cohete",
 	["Eye of Belial Dr. Fetus"] = "Las bombas perforan, pero no cambian su curso ni infligen daño adicional",
