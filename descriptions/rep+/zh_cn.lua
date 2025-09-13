@@ -46,7 +46,7 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[510] = {"510", "精神错乱", "生成1个友好的精神错乱版的头目#切换房间持续存在#{{Warning}} 一次只能激活1个头目#生成的头目血量会随时间流失"}, -- Delirious
 	-- Change: added "{{Tears}} +0.5 Tears#{{Shotspeed}} +0.2 Shot speed"
-	[554] = { "554", "恐怖如斯", "{{Tears}} 射速+0.5#{{Shotspeed}} 弹速+0.2#{{Fear}} 使近距离的敌人恐惧" }, -- 2Spooky
+	[554] = { "554", "恐怖如斯", "↑ {{Tears}} 射速+0.5#↑ {{Shotspeed}} 弹速+0.2#{{Fear}} 使近距离的敌人恐惧"}, -- 2Spooky
 	-- Change: added "Tears leave a pool of creep on impact"
 	[560] = {"560", "好疼", "{{Timer}} 受伤时, 在当前房间中获得:#↑ {{Tears}} 首次受伤射速+1.2#↑ {{Tears}} 后续受伤射速+0.4#在角色周围释放10颗泪弹#泪弹击中时留下水迹"}, -- It Hurts
 	-- Change: Added ring of fire on impact description
@@ -109,6 +109,18 @@ local trinkets = {
 	[172] = {"172", "诅咒硬币", "{{Coin}} 拾起硬币时, 将角色传送至随机房间#可以传送至隐藏房#硬币类型影响传送的房间类型"}, -- Cursed Penny
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
+
+------- Golden Trinkets -------
+
+local goldenTrinketEffects = {
+	-- Tick (replace): added ", {{Trinket135}} A Lighter"
+	[53] = {
+		"{{HealingRed}} 进入{{BossRoom}}头目房时, 治疗{{ColorGold}}2{{CR}}红心#头目血量-{{ColorGold}}30{{CR}}%#{{ColorGold}}可以移除!",
+		"{{HealingRed}} 进入{{BossRoom}}头目房时, 治疗{{ColorGold}}3{{CR}}红心#头目血量-{{ColorGold}}30{{CR}}%#{{Warning}} 拾起后, 无法被其他饰品替换#只能被{{Trinket41}}火柴棍移除或吞下",
+		"{{HealingRed}} 进入{{BossRoom}}头目房时, 治疗{{ColorGold}}3{{CR}}红心#头目血量-{{ColorGold}}30{{CR}}%#{{ColorGold}}可以移除!",
+	},
+}
+EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCode].goldenTrinketEffects)
 
 ---------- Cards ----------
 
