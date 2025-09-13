@@ -24,7 +24,7 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         {"Current %+ English","当前语言+英文"},
         {"Language","语言"},
         {"Auto","自动"},
-        {"Chinese","中文"},
+        {"Simplified Chinese","简体中文"},
         {"English","英文"},
         {"Bulgarian","保加利亚语"},
         {"Czech","捷克语"},
@@ -59,7 +59,7 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
     })
     MCM.TranslateOptionsInfoTextWithTable("EID","General",{
         ["Changes the language."] = "更改语言",
-        ["Languages marked as WIP are incomplete."] = "标注WIP的语言尚未完成",
+        ["Languages marked as WIP are incomplete. Contributions welcome!"] = "标注WIP的语言尚未完成, 欢迎贡献翻译!",
         ["Displays item, trinket and character names in a different language than descriptions."] = "显示与描述不同语言的道具, 饰品和角色名称",
         ["Press this key to toggle the description display."] = "按此键以切换描述显示/隐藏",
         ["Press this button to toggle the description display (Left Stick or Right Stick recommended; most other buttons will not work)."] = "按此按钮以切换描述显示/隐藏(推荐左右摇杆; 其他多数按钮均无效)",
