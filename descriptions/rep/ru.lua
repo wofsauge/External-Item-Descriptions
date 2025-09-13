@@ -2,7 +2,7 @@
 ----- Basic Russian descriptions -----
 ---------------------------------------
 
--- Last Sync with en_us: 12.12.2021
+-- Last Sync with English: 12.12.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -997,6 +997,7 @@ EID.descriptions[languageCode].horsepills={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
+	-- These texts are affected by the PluralizeFunction (ab+ file)
 	AddBlackHearts = "{{BlackHeart}} {1} чёрных сердец",
 	AddBombs = "{{Bomb}} {1} бомб",
 	AddCoins = "{{Coin}} {1} монет",

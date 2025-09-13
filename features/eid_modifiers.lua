@@ -8,16 +8,21 @@ EID.TabDescThisFrame = false
 -- Some modifiers (e.g. Glitched Crown) want to know if Tab was pressed/released, rather than held
 EID.TabHeldThisFrame = false
 EID.TabHeldLastFrame = false
-function EID:TabPressed() return EID.TabHeldThisFrame and not EID.TabHeldLastFrame end
-function EID:TabReleased() return EID.TabHeldLastFrame and not EID.TabHeldThisFrame end
+
+-- Returns true if Tab was pressed this frame, false otherwise
+function EID:TabPressed()
+	return EID.TabHeldThisFrame and not EID.TabHeldLastFrame
+end
+-- Returns true if Tab was released this frame, false otherwise
+function EID:TabReleased()
+	return EID.TabHeldLastFrame and not EID.TabHeldThisFrame
+end
 
 -- List of collectible IDs for us to check if a player owns them; feel free to add to this in mods that add description modifiers!
 EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_VOID] = true
 EID.collectiblesToCheck["5.300.41"] = true -- Black Rune
-local maxSlot = 1
 -- Repentance modifiers
 if EID.isRepentance then
-	maxSlot = 3
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_SPINDOWN_DICE] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_MOMS_BOX] = true
@@ -28,11 +33,13 @@ if EID.isRepentance then
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_FLIP] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_GLITCHED_CROWN] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_ABYSS] = true
 end
 EID.collectiblesOwned = {}
 EID.collectiblesAbsorbed = {}
 
 EID.LastCollectibleCheck = 0
+-- Check if any players own a collectible, returns true if at least one player has it
 function EID:CheckPlayersCollectibles()
 	-- recheck the players' owned collectibles periodically, not every frame
 	-- (has to be checked regularly due to mechanics like D4 / Tainted Eden)
@@ -212,19 +219,6 @@ local function ItemCollectionPageCallback(descObj)
 	return descObj
 end
 
--- Handle Sacrifice room payout
-local function SacrificeRoomCallback(descObj)
-	local curCounter = descObj.ObjSubType or 1
-	if curCounter <= 2 then
-		--Remove B1 Bomb drop info when not on B1
-		if game:GetLevel():GetAbsoluteStage() > 1 then
-			local splitPoint = string.find(descObj.Description, '#', 1)
-			descObj.Description = descObj.Description:sub(1,splitPoint-1)
-		end
-	end
-	return descObj
-end
-
 -- Handle Black Feather dynamic damage up text
 local function BlackFeatherCallback(descObj)
 	for i = 1,#EID.coopAllPlayers do
@@ -327,18 +321,20 @@ local function HealthUpCallback(descObj)
 		-- find/replace Health Up lines
 		local numHearts = EID.HealthUpData[typeVarSub] or 1
 		local text = EID:getDescriptionEntry("RedToX", "Red to " .. heartType)
-		local plural = ""; if numHearts ~= 1 and numHearts ~= -1 then plural = EID:getDescriptionEntry("Pluralize") end
 		
 		local pos = 1
 		while pos <= #text do
-			-- replace {1} with the number of hearts and {2} with the plural character
-			local toFind = EID:ReplaceVariableStr(text[pos], {numHearts, plural})
+			-- replace {1} with the number of hearts and {pluralize} with the plural character
+			local toFind = EID:ReplaceVariableStr(text[pos], numHearts)
+			toFind = EID:TryPluralizeString(toFind, numHearts)
 			if text[pos + 1] then
-				local replaceWith = EID:ReplaceVariableStr(text[pos + 1], {numHearts, plural})
+				local replaceWith = EID:ReplaceVariableStr(text[pos + 1], numHearts)
 				descObj.Description = EID:SimpleReplace(descObj.Description, tostring(toFind), replaceWith, 1)
 			end
 			pos = pos + 2
 		end
+		-- pluralize
+		descObj.Description = EID:TryPluralizeString(descObj.Description, numHearts)
 		
 		-- remove HealingRed lines entirely for Soul/Black/None health chars
 		descObj.Description = descObj.Description .. "#" -- gsub finds final lines better if the desc ends with a line break
@@ -351,7 +347,8 @@ local function HealthUpCallback(descObj)
 		-- check if we just made the description blank
 		if descObj.Description:gsub("#", "") == "" then
 			local noEffectStr = EID:getDescriptionEntry("ConditionalDescs", "No Effect")
-			descObj.Description = EID:GetPlayerIcon(playerType) .. " " .. EID:ReplaceVariableStr(noEffectStr, EID:getPlayerName(playerType))
+			local playerName = "{{ColorIsaac}}"..EID:getPlayerName(playerType) .. "{{CR}}"
+			descObj.Description = EID:GetPlayerIcon(playerType) .. " " .. EID:ReplaceVariableStr(noEffectStr, playerName)
 		end
 	end
 	
@@ -426,30 +423,6 @@ if EID.isRepentance then
 		return descObj
 	end
 
-	-- Handle Book of Virtues description addition
-	local function BookOfVirtuesCallback(descObj)
-		-- Display players' current active item's wisp effect when looking at a Book of Virtues pedestal
-		if descObj.ObjSubType == 584 and not EID.InsideItemReminder then
-			for i = 1,#EID.coopAllPlayers do
-				local player = EID.coopAllPlayers[i]
-				local active = player:GetActiveItem()
-				local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", active)
-				if wispType ~= nil then
-					local iconStr = "#{{Collectible" .. active .. "}} "
-					EID:appendToDescription(descObj, iconStr..wispType:gsub("#",iconStr))
-				end
-			end
-		-- Display wisp effect of a pedestal / your active while holding Book of Virtues
-		else
-			local wispType = EID:getDescriptionEntry("bookOfVirtuesWisps", descObj.ObjSubType)
-			if wispType ~= nil then
-				local iconStr = "#{{Collectible584}} "
-				EID:appendToDescription(descObj, iconStr..wispType:gsub("#",iconStr))
-			end
-		end
-		return descObj
-	end
-
 	-- 3 coins, 1 bomb, 1 key, 1 soul heart, 2 red hearts
 	local consolationPickups = { "5.20", "5.40", "5.30", "5.10.3", "5.10" }
 	local consolationQuantity = { "3", "1", "1", "1", "2" }
@@ -459,7 +432,7 @@ if EID.isRepentance then
 		for p = 1,#EID.coopAllPlayers do
 			local player = EID.coopAllPlayers[p]
 			local playerID = player:GetPlayerType()
-			local playerName = player:GetName()
+			local playerName = EID:getPlayerName(player:GetPlayerType())
 
 			local playerStats = {}
 			playerStats[1] = EID:SimpleRound((player.MoveSpeed * 4.5) - 2)
@@ -603,22 +576,36 @@ if EID.isRepentance then
 				else multiplier = data.mults[1] end
 			elseif data.mult and ((isGolden and hasBox) or data.mult < 2) then multiplier = data.mult end
 
+			--custom additions table (manually defined)
+			-- index 1 is 2x, index 2 is 3x, index 3 is 4x
+			local addition = 0
+			if data.additions then
+				if hasBox then
+					addition = data.additions[textChoice-1] or 0
+				else
+					addition = data.additions[textChoice]
+				end
+			end
+
 			--replacing numeric text based on our multiplier
 			if (data.t) then
-				for _,v in ipairs(data.t) do
+				local numReplacements = 0
+				--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
+				descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
 					count = 0
-					--"%d*%.?%d+" will grab every number group (1, 10, 0.5), this will allow us to not replace the "1" in "10" erroneously
-					descObj.Description = string.gsub(descObj.Description, "%d*%.?%d+", function(s)
+					for _, v in ipairs(data.t) do
 						if (s == tostring(v) and count == 0) then
 							count = count + 1
+							numReplacements = numReplacements + 1
 							if v == 17 then
 								if multiplier == 2 then v = 16.5
 								elseif multiplier == 3 then v = (1/6)*100 end -- convert 17% to 33% or 50%
 							elseif v == 33 and (multiplier == 1.5 or multiplier == 3) then v = (1/3)*100 end -- convert 33% to 50% or 100%
-							return "{{ColorGold}}" .. string.format("%.4g",v*multiplier) .. "{{CR}}"
+							return "{{ColorGold}}" .. string.format("%.4g",v * multiplier + addition) .. "{{CR}}"
 						end
-					end)
-				end
+					end
+				end)
+				count = count + numReplacements
 			end
 			--replacing a phrase, such as "half a heart"
 			if data.findReplace then
@@ -705,37 +692,37 @@ if EID.isRepentance then
 		return descObj
 	end
 	
-	local function VariableCharge(descObj, metadata, collID, chargeText)
+	local function VariableCharge(descObj, config, collID, chargeText)
 		local text = EID:getDescriptionEntry(chargeText or "VariableCharge")
-		if text ~= nil and metadata ~= nil and metadata.mimiccharge and metadata.mimiccharge ~= -1 then
+		if text ~= nil and config ~= nil and config.MimicCharge and config.MimicCharge ~= -1 and descObj.SubType ~= 48 then
 			text = EID:ReplaceVariableStr(text, 1, "{{NameOnlyC" .. collID .. "}}")
-			EID:appendToDescription(descObj, "#{{ColorSilver}}{{Collectible" .. collID .. "}} " .. text .. " {{"..metadata.mimiccharge.."}}{{Battery}}")
+			EID:appendToDescription(descObj, "#{{Collectible" .. collID .. "}} " .. text .. " {{"..config.MimicCharge.."}}{{Battery}}")
 		end
 	end
 	
 	local hasTarot = false
 	-- Handle Blank Card description addition
 	local function BlankCardCallback(descObj)
-		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 286, "BlankCardCharge")
+		VariableCharge(descObj, EID.itemConfig:GetCard(descObj.ObjSubType), 286)
 		-- If the player has Tarot Cloth and Blank Card, display additional text
 		if hasTarot then
 			local text = EID:getDescriptionEntry("BlankCardEffect")
 			local buffText = EID:getDescriptionEntry("tarotClothBlankCardBuffs", descObj.ObjSubType)
-			if buffText then EID:appendToDescription(descObj, "#{{ColorSilver}}{{Collectible286}} " .. text .. " " .. buffText) end
+			if buffText then EID:appendToDescription(descObj, "#{{Collectible286}} " .. text .. " " .. buffText) end
 		end
 		return descObj
 	end
 
 	-- Handle Clear Rune description addition
 	local function ClearRuneCallback(descObj)
-		VariableCharge(descObj, EID.cardMetadata[descObj.ObjSubType], 263, "ClearRuneCharge")
+		VariableCharge(descObj, EID.itemConfig:GetCard(descObj.ObjSubType), 263)
 		return descObj
 	end
 
 	-- Handle Placebo description addition
 	local function PlaceboCallback(descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
-		VariableCharge(descObj, EID.pillMetadata[adjustedID-1], 348, "PlaceboCharge")
+		VariableCharge(descObj, EID.itemConfig:GetPillEffect(adjustedID-1), 348)
 		return descObj
 	end
 	
@@ -920,12 +907,13 @@ if EID.isRepentance then
 	local function GlitchedCrownCallback(descObj)
 		if not descObj.Entity or inGlitchedCrown then return descObj end
 		local entity = descObj.Entity
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
+		local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
 
-		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][descObj.Entity.InitSeed .. descObj.Entity.Index] then
+		if EID.GlitchedCrownCheck[curRoomIndex] and EID.GlitchedCrownCheck[curRoomIndex][pedestalID] then
 			-- this table has collectible ID keys that define the first frame and most recent frame that that ID has been seen on this pedestal
 			-- we need to filter out items that haven't been seen in a while (due to a reroll perhaps), then sort by first frame
-			local pedestalID = descObj.Entity.InitSeed .. descObj.Entity.Index
+
 			local items = EID.GlitchedCrownCheck[curRoomIndex][pedestalID]
 			local sortedItems = {}
 			for id, frames in pairs(items) do
@@ -980,7 +968,238 @@ if EID.isRepentance then
 		inGlitchedCrown = false
 		return descObj
 	end
+	
+	-----------------------------
+	-- Abyss Locust Handling-----
+	-----------------------------
+	local function GetChanceString(effectID, chance1, chance2, chance3)
+		local chanceText = ""
+		local chance = (effectID == 3 and chance3 < 1 and chance3) or (effectID == 2 and chance2 < 1 and chance2) or chance1 or 1
+		if chance ~= 1 then
+			chanceText = EID:getDescriptionEntry("AbyssTexts", "Chance")
+			local chancePercent = string.format("%.2f", chance * 100):gsub("%.?0+$", "") -- formated and without trailing zeros
+			chanceText = EID:ReplaceVariableStr(chanceText, chancePercent)
+		end
+		return chanceText
+	end
 
+	local function GetFlagString(id, tableName, color, flagArray, chance1, chance2, chance3)
+		local text = ""
+		for _, locustFlag in ipairs(flagArray) do
+			local locustEffectText = EID:getDescriptionEntry(tableName, locustFlag)
+			if locustEffectText then
+				text = text .. "#".. color .. locustEffectText .. GetChanceString(id, chance1, chance2, chance3)
+			end
+			if not EID.isRepentancePlus then
+				-- In Repentance, there is a bug where only the first flag of the array is able to trigger
+				return text
+			end
+		end
+		return text
+	end
+
+	local function AbyssCallback(descObj)
+		local textColor = "{{ColorRed}}"
+		-- Display explicit "abyssSynergies" table entry, if present
+		local overrideDesc = EID:getDescriptionEntry("abyssSynergies", descObj.ObjSubType)
+		if overrideDesc then
+			EID:appendToDescription(descObj, "#{{Collectible706}} " .. textColor .. overrideDesc)
+			return descObj
+		end
+		-- Display automatically generated description
+
+		-- Default locust Data
+		local locustData = { 1, 1, 1, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, { -1 }, 1, 1, 1, 1, 1 }
+		-- Check if an XML entry exists and load if exists
+		if EID.XMLLocusts and EID.XMLLocusts[descObj.ObjSubType] then
+			locustData = EID.XMLLocusts[descObj.ObjSubType]
+		end
+		local descriptionText = ""
+		local amount = locustData[1]
+		local scale = locustData[2]
+		local speed = locustData[3]
+		local locustFlags1 = locustData[4] -- array
+		local locustFlags2 = locustData[5] -- array
+		local locustFlags3 = locustData[6] -- array
+		local tearFlags1 = locustData[7] -- array
+		local tearFlags2 = locustData[8] -- array
+		local tearFlags3 = locustData[9] -- array
+		local procChance1 = locustData[10]
+		local procChance2 = locustData[11]
+		local procChance3 = locustData[12]
+		local damageMultiplier1 = locustData[13]
+		local damageMultiplier2 = locustData[14]
+
+		-- base damage via Quality and multiplier
+		local damageText = EID:getDescriptionEntry("AbyssTexts", "DamageMult")
+		local dmg = (EID.isRepentancePlus and EID.QualityToLocustDamageMultiplier[descObj.Quality] or 1) * damageMultiplier1
+		damageText = EID:ReplaceVariableStr(damageText, dmg)
+
+		-- size
+		local scaleText = ""
+		if scale < 1 then scaleText = EID:getDescriptionEntry("AbyssTexts", "SizeSmall")
+		elseif scale > 1 then scaleText = EID:getDescriptionEntry("AbyssTexts", "SizeBig") end
+		-- speed
+		local speedText = ""
+		if speed < 1 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedSlow")
+		elseif speed >=6 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedDash")
+		elseif speed > 1 then speedText = EID:getDescriptionEntry("AbyssTexts", "SpeedFast") end
+
+		-- overview / headline
+		local infoText = amount > 1 and EID:getDescriptionEntry("AbyssTexts", "InfoTextPlural") or EID:getDescriptionEntry("AbyssTexts", "InfoText")
+		descriptionText = "#{{Collectible706}} " .. textColor .. infoText
+		descriptionText = EID:ReplaceVariableStr(descriptionText, "amount", amount)
+		descriptionText = EID:ReplaceVariableStr(descriptionText, "size", scaleText)
+		descriptionText = EID:ReplaceVariableStr(descriptionText, "speed", speedText)
+		descriptionText = EID:ReplaceVariableStr(descriptionText, "dmg", damageText)
+
+		-- damage multiplier based on proc chance
+		if damageMultiplier2 ~= 1 then
+			local dmgText2 = EID:ReplaceVariableStr(EID:getDescriptionEntry("AbyssTexts", "DamageMult"), damageMultiplier2)
+			descriptionText = descriptionText .. "#"..textColor  .. dmgText2 .. GetChanceString(1, procChance1, procChance2, procChance3)
+		end
+		-- create list of locust effect descriptions
+		descriptionText = descriptionText .. GetFlagString(1, "AbyssLocustEffects", textColor, locustFlags1, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(2, "AbyssLocustEffects", textColor, locustFlags2, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(3, "AbyssLocustEffects", textColor, locustFlags3, procChance1, procChance2, procChance3)
+
+		-- create list of tear effect descriptions
+		descriptionText = descriptionText .. GetFlagString(1, "TearFlagNames", textColor, tearFlags1, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(2, "TearFlagNames", textColor, tearFlags2, procChance1, procChance2, procChance3)
+		descriptionText = descriptionText .. GetFlagString(3, "TearFlagNames", textColor, tearFlags3, procChance1, procChance2, procChance3)
+
+		-- pluralize
+		descriptionText = EID:TryPluralizeString(descriptionText, amount)
+		-- Put everything together
+		EID:appendToDescription(descObj, descriptionText)
+
+		return descObj
+	end
+	---------------------------------------
+	---- Book of Virtues Wisp Handling-----
+	---------------------------------------
+	local ringIconLookup = {
+		[-1] = "{{StationaryWisp}}",
+		[0] = "{{InnerWisp}}",
+		[1] = "{{MiddleWisp}}",
+		[2] = "{{OuterWisp}}"
+	}
+
+	local function BookOfVirtuesWispDescriptionBuilder(descObj, itemID)
+		local textColor = "{{ColorPastelBlue}}"
+		-- Get explicit "bookOfVirtuesWisps" table entry, if present
+		local additionalDesc = EID:getDescriptionEntry("bookOfVirtuesWisps", itemID)
+
+		-- Display automatically generated description
+
+		-- Check if an XML entry exists and load if exists
+		if not EID.XMLWisps or not EID.XMLWisps[itemID] then
+			if additionalDesc then -- try to display additional Description if available
+				EID:appendToDescription(descObj, "#{{VirtuesCollectible"..itemID.."}} " .. textColor .. additionalDesc)
+			end
+			return descObj
+		end
+		-- Disable removal of stat up icons for this description object
+		descObj.IgnoreBulletPointIconConfig = true
+
+		-- read xml data
+		local wispData = EID.XMLWisps[itemID]
+		local descriptionText = ""
+		local hp = wispData[1]
+		local layer = wispData[2]
+		local damage = wispData[3]
+		local stageDamage = wispData[4]
+		local damageMultiplier2 = wispData[5]
+		local shotSpeed = wispData[6]
+		local fireDelay = wispData[7]
+		local procChance = wispData[8]
+		local canShoot = wispData[9] and fireDelay ~= -1
+		local amount = wispData[10]
+		local tearFlags = wispData[11] -- array
+		local tearFlags2 = wispData[12] -- array
+
+		-- Display "No Wisp" text if defined. else, display more detailed description
+		if EID.WispData.NoWisp[itemID] then
+			local noWispsText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "NoWisps")
+			descriptionText = "#{{VirtuesCollectible"..itemID.."}} " .. textColor .. noWispsText
+		else
+			-- base damage via damage, stage damage and firedelay
+			-- Display "-" text if it cant shoot
+			local damageText = "-"
+			if canShoot then
+				local dmg = (damage + (stageDamage * (game:GetLevel():GetAbsoluteStage() - 1))) * (30 / fireDelay)
+				damageText = string.format("%.2f", dmg):gsub("%.?0+$", "") -- formated and without trailing zeros
+			end
+
+			-- HP Text
+			local hpText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Health")
+			hpText = EID:ReplaceVariableStr(hpText, hp)
+
+			-- HP and damage text
+			local statText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "StatDescription")
+			statText = EID:ReplaceVariableStr(statText, "ringIcon", textColor .. ringIconLookup[layer] or ringIconLookup[1])
+			statText = EID:ReplaceVariableStr(statText, "amount", amount ~= 0 and amount or "") -- TODO: Fix issue where color definition before icon definition causes 1 extra space
+			statText = EID:ReplaceVariableStr(statText, "health", hp)
+			statText = EID:ReplaceVariableStr(statText, "damage", damageText)
+			-- overview / headline
+			descriptionText = "#{{VirtuesCollectible"..itemID.."}} " .. textColor .. statText
+
+			-- Single room warning
+			if EID.WispData.SingleRoom[itemID] then
+				local singleRoomText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "SingleRoom")
+				descriptionText = descriptionText .. "#{{Warning}} " .. textColor .. singleRoomText
+			end
+
+			if canShoot then
+				-- shot speed
+				if shotSpeed ~= 1 then
+					local shotSpeedText = EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Shotspeed")
+					local shotSpeedtxt = string.format("%.2f", shotSpeed * 100):gsub("%.?0+$", "") -- formated and without trailing zeros
+					shotSpeedText = EID:ReplaceVariableStr(shotSpeedText, shotSpeedtxt)
+					descriptionText = descriptionText .. "#{{Shotspeed}} " .. textColor .. shotSpeedText
+				end
+	
+				-- damage multiplier based on proc chance
+				if damageMultiplier2 ~= 1 then
+					local damageText2 = EID:ReplaceVariableStr(EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Damage"), damageMultiplier2)
+					descriptionText = descriptionText .. "#" .. textColor .. damageText2 .. GetChanceString(2, procChance, procChance, 0)
+				end
+				-- create list of tear effect descriptions
+				descriptionText = descriptionText .. GetFlagString(1, "TearFlagNames", "{{Shotspeed}} " .. textColor, tearFlags, procChance, procChance)
+				descriptionText = descriptionText .. GetFlagString(2, "TearFlagNames", "{{Shotspeed}} " .. textColor, tearFlags2, procChance, procChance)
+			end
+		end
+
+		-- add additional descriptions. Do a loop to ensure correct line color
+		if additionalDesc then
+			for line in string.gmatch(additionalDesc, "([^#]+)") do
+				descriptionText = descriptionText .. "#" .. textColor .. line
+			end
+		end
+
+		-- pluralize
+		descriptionText = EID:TryPluralizeString(descriptionText, amount)
+		-- Put everything together
+		EID:appendToDescription(descObj, descriptionText)
+		return descObj
+	end
+
+	-- Handle Book of Virtues description addition
+	local function BookOfVirtuesCallback(descObj)
+		-- Display players' current active item's wisp effect when looking at a Book of Virtues pedestal
+		if descObj.ObjSubType == 584 and not EID.InsideItemReminder then
+			for i = 1,#EID.coopAllPlayers do
+				local player = EID.coopAllPlayers[i]
+				local activeItemID = player:GetActiveItem()
+				if activeItemID > 0 then
+					descObj = BookOfVirtuesWispDescriptionBuilder(descObj, activeItemID)
+				end
+			end
+			return descObj
+		end
+		-- Display wisp effect of a pedestal / your active while holding Book of Virtues
+		return BookOfVirtuesWispDescriptionBuilder(descObj, descObj.ObjSubType)
+	end
 	--------------------------------
 	-- Although individual conditions/callbacks work well for mods to be able to add through the API,
 	-- As we kept adding callbacks for vanilla items, a lot of code got repeated over and over
@@ -1010,6 +1229,7 @@ if EID.isRepentance then
 			
 			if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then table.insert(callbacks, TaintedCainPedestalCallback) end
 			if EID.collectiblesOwned[711] and EID:getEntityData(descObj.Entity, "EID_FlipItemID") then table.insert(callbacks, FlipCallback) end
+			if EID.collectiblesOwned[706] then table.insert(callbacks, AbyssCallback) end
 			if EID.Config["SpindownDiceResults"] > 0 and (EID.collectiblesOwned[723] or EID.collectiblesAbsorbed[723]) and descObj.ObjSubType ~= 668 then
 				goingToSpindown = true
 				table.insert(callbacks, SpindownDiceCallback)
@@ -1019,14 +1239,14 @@ if EID.isRepentance then
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
 			hasTarot = EID.collectiblesOwned[451]
 
-			if EID.collectiblesOwned[286] and not EID.blankCardHidden[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, BlankCardCallback) end
-			if EID.collectiblesOwned[263] and EID.runeIDs[descObj.ObjSubType] and EID.cardMetadata[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
+			if EID.collectiblesOwned[286] and EID.itemConfig:GetCard(descObj.ObjSubType) and EID.itemConfig:GetCard(descObj.ObjSubType):IsCard() then table.insert(callbacks, BlankCardCallback) end
+			if EID.collectiblesOwned[263] and EID.itemConfig:GetCard(descObj.ObjSubType) and EID.itemConfig:GetCard(descObj.ObjSubType):IsRune() then table.insert(callbacks, ClearRuneCallback) end
 			if descObj.ObjSubType == 80 then table.insert(callbacks, WildCardCallback) end
 			if descObj.ObjSubType == 73 then table.insert(callbacks, TheStarsCallback) end
 		-- Pill Callbacks
 		elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
 			if EID.collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
-			if EID.collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
+			if EID.collectiblesOwned[348] and EID.itemConfig:GetPillEffect(descObj.ObjSubType) then table.insert(callbacks, PlaceboCallback) end
 			table.insert(callbacks, ExperimentalPillCallback)
 
 			if EID.pillPlayer == nil and #EID.coopAllPlayers > 1 then
@@ -1048,8 +1268,6 @@ end
 
 -- AFTERBIRTH+ OR REPENTANCE MODIFIERS
 local function EIDConditionsAB(descObj)
-	-- handle Sacrifice room
-	if descObj.ObjType == -999 and descObj.ObjVariant == -1 then return {SacrificeRoomCallback} end
 	-- currently, only pickup descriptions have modifiers
 	if descObj.ObjType ~= 5 then return false end
 

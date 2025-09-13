@@ -51,7 +51,6 @@ end
 
 -- Abyss, Birthright Book of Belial, Binge Eater
 if EID.isRepentance then
-	EID:AddItemConditional("5.100", 706, nil, { locTable = "abyssSynergies", lineColor = "ColorRed" }, false) -- Abyss (no item reminder)
 	EID:AddItemConditional("5.100", 59, nil, { locTable = "bookOfBelialBuffs" })                         -- Belial Birthright
 	EID:AddItemConditional("5.100", 664, nil, { locTable = "bingeEaterBuffs" })                          -- Binge Eater
 	EID:AddItemConditional({22, 23, 24, 25, 26, 346, 456, 707}, 664, "Binge Eater Healing") -- Binge Eater (Heals 2 hearts)
@@ -120,7 +119,7 @@ EID:AddPlayerConditional(230, 14, "Keeper")     -- Keeper + Abaddon
 EID:AddPlayerConditional(152, 2, "Technology 2 One Eye") -- Cain + Technology 2
 EID:AddPlayerConditional(122, 5, nil, nil, false) -- Eve + Whore of Babylon
 
-EID:AddClosestPlayerConditional({15, 16, 20, 22, 23, 24, 25, 26, 45, 60, 92, 108, 133, 142, 146, 159, 173, 179, 184, 185, 205, 218, 226, 296, 301, 312, 334, 346, 428, 442, 448, 456, 487, 493, 501, "5.350.14", "5.350.46", "5.350.55", "5.350.56", "5.350.107", "5.350.128"}, 10, "No Effect Replace", {layer = 10000}) -- Useless Lost items replace
+EID:AddClosestPlayerConditional({20, 45, 60, 92, 108, 133, 142, 146, 159, 173, 179, 184, 185, 205, 226, 296, 301, 312, 428, 442, 448, 487, 493, 501, "5.350.14", "5.350.46", "5.350.55", "5.350.56", "5.350.107", "5.350.128"}, 10, "No Effect Replace", {layer = 10000}) -- Useless Lost items replace
 EID:AddPlayerConditional({126, 135, 186}, 10, "Dies on Use", {layer = 10000}) -- Lethal Lost items warning
 EID:AddClosestPlayerConditional({108, 122, 296}, 14, "No Effect Replace")  -- Useless Keeper items (The Wafer, Converter, Whore) replace
 if EID.isRepentance then
@@ -274,6 +273,9 @@ EID:AddSynergyConditional({475, "5.300.46"}, {210, 276, 313}, "Suicide 1", "Suic
 if EID.isRepentance then
 	EID:AddSynergyConditional({577, 656}, {276, 313}, "Suicide 1", "Suicide 2") -- Damocles + Isaac's Heart, Holy Mantle
 	EID:AddSynergyConditional({577, 656, 475, "5.300.46"}, {674, 694}, "Suicide 1", "Suicide 2") -- Damocles, Plan C, Suicide King + Spirit Shackles, Heartbreak
+end
+if EID.isRepentancePlus then
+	EID:AddSynergyConditional(487, 207, "Potato Peeler + Ball of Bandages") -- Potato Peeler with Ball of Bandages
 end
 
 -- Actives with certain charge types interactions

@@ -27,15 +27,21 @@ Cyan='\033[0;36m'         # Cyan
 White='\033[0;37m'        # White
 BWhite='\033[1;37m'       # Bold White
 
-ignoreNodesWithName = {"fonts"}
+ignoreNodesWithName = {"fonts", "alternativeLanguageCodes"}
 ignoreTypeMissmatchNodesWithName = {"ConditionalDescs", "BFFSSynergies"}
 
 dlcs = ["ab+", "rep", "rep+"]
 
-maxChecklimit = {"tarotClothBuffs": 2, "carBattery": 2, "BFFSSynergies": 2}
+maxChecklimit = {"tarotClothBuffs": 1, "carBattery": 1, "BFFSSynergies": 1}
 
+ignoreErrors = {
+"fr(rep)->collectibles->49", # No number to change in text
+"fr(rep)->ConditionalDescs->5.300.83", # not applicable
+"fr(rep+)->tarotClothBuffs->11", # Not needed, since pluralization is already handles in rep file
+"zh_cn(rep+)->tarotClothBuffs->11", # Not needed
+}
 
-# count en_us entries for stats
+# count English entries for stats
 def count_entries(t):
     count = 0
     for k in t:
@@ -54,19 +60,15 @@ def addUpdatedTables(languageCode, dlc):
     if dlc != "ab+":
         # Add language table
         lua.execute('EID.descriptions["'+languageCode+'"] = {}')
-        # Add all tables that are assumed to exist already in ab+
-        updatedTables = ["collectibles", "trinkets"]
-        if dlc == "rep":
-            updatedTables += ["cards", "pills", "carBattery", "BFFSSynergies", "CharacterInfo", "ConditionalDescs", "VoidNames", "custom"]
 
-        # korean uses some additional addititve tables
-        if languageCode == "ko_kr":
-            if dlc == "rep":
-                updatedTables += ["dice", "MCM"]
-            else:
-                updatedTables += ["bookOfVirtuesWisps"]
-        for table in updatedTables:
-            lua.execute('EID.descriptions["'+languageCode+'"].'+table+' = {}')
+        # Add metatable to create missing tables on the fly
+        lua.execute('setmetatable(EID.descriptions["'+languageCode+'"], {\
+            __index = function(tbl, key)\
+                local newTbl = {}\
+                rawset(tbl, key, newTbl)\
+                return newTbl\
+            end\
+        })')
 
 # find entries in table2 that are missing or different than in table 1
 def compare_tables(table1, table2, prev_key):
@@ -78,6 +80,9 @@ def compare_tables(table1, table2, prev_key):
             # dont evaluate nodes that are listed in this table
             continue
         if k not in table2:
+            if prev_key+"->"+str(k) in ignoreErrors:
+                # ignore this error
+                continue
             print(f"\tTable '{prev_key}' does not contain entry: {k}")
             errorCount += 1
             # table is missing. add all missing entries as error
@@ -98,6 +103,9 @@ def compare_tables(table1, table2, prev_key):
                     ignoreError = True
                     break
             if not ignoreError:
+                if prev_key+"->"+str(k) in ignoreErrors:
+                    # ignore this error
+                    continue
                 print(f"\tType mismatch in table '{prev_key}', key: {k}")
                 errorCount += 1
 
@@ -107,7 +115,7 @@ def compare_tables(table1, table2, prev_key):
 
 
 languageProgress = {}
-en_us_entries = {}
+english_entries = {}
 for dlc in dlcs:
     lua.execute('REPENTOGON = true; EID = {}; EID.descriptions = {}; function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
     g = lua.globals()
@@ -118,8 +126,8 @@ for dlc in dlcs:
     print("reading:", englishFile)
     lua.execute(open(englishFile, "r", encoding="UTF-8").read())
 
-    en_us_entries[dlc] = count_entries(g.EID['descriptions']['en_us'])
-    print("en_us "+dlc+" entries:", en_us_entries[dlc])
+    english_entries[dlc] = count_entries(g.EID['descriptions']['en_us'])
+    print("English "+dlc+" entries:", english_entries[dlc])
 
 
     langFiles = []
@@ -139,16 +147,16 @@ for dlc in dlcs:
 
             # Evaluate language for completeness
             print(f"Evaluating language '{languageCode}'..")
-            errorCount = compare_tables(g.EID['descriptions']['en_us'], g.EID['descriptions'][languageCode], languageCode+"("+dlc+")")
-            percentage = (en_us_entries[dlc] - errorCount) / en_us_entries[dlc] * 100
+            errorCount = compare_tables(g.EID['descriptions']["en_us"], g.EID['descriptions'][languageCode], languageCode+"("+dlc+")")
+            percentage = (english_entries[dlc] - errorCount) / english_entries[dlc] * 100
             languageProgress[languageCode][dlc] = [percentage, errorCount]
-            print(f"{Red}Errors found: {errorCount} / {en_us_entries[dlc]}{Color_Off}\n\n")
+            print(f"{Red}Errors found: {errorCount} / {english_entries[dlc]}{Color_Off}\n\n")
 
 
 # Calculate total english entries
-total_en_us_entries = 0
-for entries in en_us_entries.values():
-    total_en_us_entries += entries
+total_english_entries = 0
+for entries in english_entries.values():
+    total_english_entries += entries
 
 # Write git Workflow summary
 gitWorkflowSummary = "### Translation progress\n| Language | Completion (AB+) |Completion (REP) |Completion (REP+) |Completion (Total) |\n|---|---|---|---|---|\n"
@@ -167,12 +175,12 @@ for lang in languageProgress.keys():
         else:
             print(
             f"\t{BWhite}{lang}({dlc}){Color_Off}\t\t{Red}DLC translation missing!{Color_Off}")
-            gitCompletionMessage = f"0% ({en_us_entries[dlc]} left)"
-            totalMissing += en_us_entries[dlc]
+            gitCompletionMessage = f"0% ({english_entries[dlc]} left)"
+            totalMissing += english_entries[dlc]
                 
         gitWorkflowSummary += f"| {gitCompletionMessage} "
     
-    totalPercent = round((total_en_us_entries - totalMissing) / total_en_us_entries * 100, 2)
+    totalPercent = round((total_english_entries - totalMissing) / total_english_entries * 100, 2)
     gitWorkflowSummary += f"|{totalPercent}% ({totalMissing}) "
     gitWorkflowSummary += "|\n"
 

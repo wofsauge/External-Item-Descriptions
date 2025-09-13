@@ -2,7 +2,7 @@
 -----  Basic French descriptions -----
 --------------------------------------
 
--- Last Sync with en_us: 08.08.2021
+-- Last Sync with English: 08.08.2021
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -33,14 +33,14 @@ local repCollectibles={
 	[34] = {"34", "Livre de Bélial", "↑ Dégâts{{ColorLime}} +2#{{Timer}} L'effet dure une salle#{{DevilChance}} Chance de Pacte avec le Diable {{ColorLime}}+12.5%"}, -- Book of Belial
 	[37] = {"37", "M. Boum", "Place une grosse bombe à la position d'Isaac#L'explosion de la bombe inflige 185 dégâts"},
 	[40] = {"40", "Kamikaze !", "Déclenche une explosion à la position d'Isaac#{{Warning}} Inflige un demi-cœur de dégâts à Isaac"}, -- Kamikaze!
-	[41] = {"41", "Serviette de Maman", "Terrifie tous les ennemis dans la salle#Invoque une mouche bleue#{{Timer}} L'effet dure 5 secondes"},
+	[41] = {"41", "Serviette de Maman", "Terrifie tous les ennemis dans la salle#{{Timer}} L'effet dure 5 secondes#Invoque une mouche bleue"},
 	[42] = {"42", "Tête de Bob", "Bombe jetable#Crée un nuage de poison à l'endroit de l'explosion"}, -- Bob's Rotten Head
-	[44] = {"44", "Téléportation !", "Téléporte Isaac dans une salle aléatoire dans l'étage"}, -- Teleport
+	[44] = {"44", "Téléportation !", "Téléporte Isaac dans une salle au hasard dans l'étage"}, -- Teleport
 	[45] = {"45", "Joli Cœur", "{{HealingRed}} Soigne 1 cœur rouge"}, -- Yum Heart
 	[46] = {"46", "Pied Chanceux", "↑ Chance {{ColorLime}}+1#Augmente les chances de gagner aux jeux d'argent et d'obtenir des récompenses de salle#Les pilules n'ont plus d'effets négatifs"}, -- Lucky Foot
     [51] = {"51", "Pentagramme", "↑ Dégâts {{ColorLime}}+1.0#{{AngelDevilChanceSmall}} {{ColorLime}}+10%{{ColorWhite}} de chances de Pacte avec le Diable et d'Offrande des Anges"},
 	[52] = {"52", "Dr. Fœtus", "↓ Débit {{ColorError}}-60%#Remplace les larmes d'Isaac par des bombes"},
-    [53] = {"53", "Gros Aimant", "Isaac attire les ressources#Permet d'ouvrir les coffres à distance sans avoir besoin de les toucher"}, -- Magneto
+    [53] = {"53", "Gros Aimant", "Isaac attire les ressources#Permet d'ouvrir les coffres sans devoir les toucher"}, -- Magneto
 	[55] = {"55", "Œil de Maman", "Isaac tire parfois une larme additionnelle dans la direction opposée#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 5 Chance)"}, -- Mom's Eye
 	[59] = {"59", "Livre de Bélial (passif)", "<Cet objet n'existe pas>"}, -- The Book of Belial (Judas' Birthright version)
     [62] = {"62", "Morsure de Vampire", "↑ Dégâts {{ColorLime}}+0.3#{{HealingRed}} Tuer 13 ennemis soigne un demi-cœur rouge"}, -- Charm of the Vampire
@@ -53,7 +53,7 @@ local repCollectibles={
 	[72] = {"72", "Rosaire", "↑ Débit {{ColorLime}}+0.5#{{SoulHeart}} +3 cœurs d'âme#Ajoute {{ColorYellow}}La Bible{{ColorWhite}} {{Collectible33}} à toutes les banques d'objets"}, -- Rosary
 	[73] = {"73", "Cube de Viande", "Orbite autour d'Isaac, bloque les projectiles ennemis et inflige des dégâts de contact#Obtenir plusieurs fois cet objet l'améliore"},
 	[75] = {"75", "Doctorat", "{{HealingRed}} Soigne 2 cœurs rouges#Fait apparaître une pilule#Les pilules ne peuvent plus avoir d'effet négatif#Les banques du sang donnent une pièce de plus"},
-	[76] = {"76", "Lunettes à Rayon X", "Ouvre les entrées des salles Secrètes {{SecretRoom}} et Super Secrètes {{SuperSecretRoom}}"},
+	[76] = {"76", "Lunettes à Rayon X", "Ouvre les entrées des salles Secrètes et Super Secrètes"},
 	[77] = {"77", "Licorne Arc-En-Ciel", "{{Blank}} Pendant 6 secondes :#Rend Isaac invulnérable#↑ Vitesse {{ColorLime}}+0.28"}, -- My Little Unicorn
 	[78] = {"78", "Livre de la Révélation", "{{SoulHeart}} +1 cœur d'âme#Remplace le boss par un {{ColorCyan}}Cavalier de l'Apocalypse#Les Cavaliers ne peuvent apparaître qu'une fois par chapitre et ne peuvent pas remplacer les boss majeurs#{{AngelDevilChanceSmall}} {{ColorLime}}+17.5%{{ColorWhite}} de chances de Pacte avec le Diable ou d'Offrande des Anges"},
 	[79] = {"79", "Le Nombre de la Bête", "↑ Dégâts {{ColorLime}}+1.0#↑ Vitesse {{ColorLime}}+0.2#{{BlackHeart}} +1 cœur noir"}, -- The Mark
@@ -72,7 +72,7 @@ local repCollectibles={
 	[118] = {"118", "Soufre", "Remplace les larmes d'Isaac par une attaque chargée qui crache un laser de sang"},
 	[121] = {"121", "Champignon Suspect", "{{EmptyHeart}} +1 réceptacle de cœur#↑ Dégâts {{ColorLime}}+1.0#↑ Portée {{ColorLime}}+0.25#↓ Vitesse {{ColorError}}-0.2"}, -- Odd Mushroom (Large)
 	[123] = {"123", "Manuel des Monstres", "Invoque un familier au hasard#Le familier disparaît à l'étage suivant"}, -- Monster Manual
-	[126] = {"126", "Lame de Rasoir", "↑ Dégâts {{ColorLime}}+1.2#{{Warning}} Inflige 1 cœur de dégâts à Isaac {{ColorSilver}}(un demi-cœur par utilisation suivante dans la même salle)#Retire les cœurs rouges en priorité#{{Timer}} L'effet dure une salle"},
+	[126] = {"126", "Lame de Rasoir", "Inflige 1 cœur de dégâts à Isaac {{ColorSilver}}(un demi-cœur si réutilisé dans la même salle) {{ColorWhite}}et donne {{ColorLime}}Dégâts +1.2#Retire les cœurs rouges en priorité#{{Timer}} L'effet dure une salle"},
 	[129] = {"129", "Seau de Saindoux", "{{Heart}} +2 réceptacles de cœur#{{HealingRed}} Soigne un demi-cœur rouge#↓ Vitesse {{ColorError}}-0.2"}, -- Bucket of Lard
 	[135] = {"135", "Perfusion", "Inflige un demi-cœur de dégâts à Isaac et fait apparaître 1 ou 2 pièces#Retire les cœurs rouges en priorité"},
     [136] = {"136", "Mon Meilleur Ami", "Place une peluche qui attire les ennemis et explose après 5 secondes"},
@@ -81,7 +81,7 @@ local repCollectibles={
 	[140] = {"140", "Malédiction de Bob", "{{Bomb}} +5 bombes#Les bombes d'Isaac laissent un nuage de poison#Rend Isaac invulnérable aux nuages de poison"}, -- Bob's Curse
 	[142] = {"142", "Scapulaire", "Descendre à un demi-cœur de vie totale ajoute un cœur d'âme aux PV d'Isaac#L'effet ne se déclenche qu'une fois par salle#{{Warning}} L'effet ne se déclenche pas sur un don de sang"},
 	[144] = {"144", "Ami Mendiant", "Ramasse les pièces au sol et en convertit 3 ou 4 en une ressource ou un objet"},
-	[147] = {"147", "Pioche en Fer", "Donner un coup de pioche brise les obstacles et inflige des dégâts#Chaque touche avec la pioche la décharge partiellement#Ne peut être rechargée qu'au changement d'étage"}, -- Notched Axe
+	[147] = {"147", "Pioche en Fer", "Donner un coup de pioche brise les obstacles et inflige des dégâts#Chaque touche avec la pioche la décharge partiellement#Ne se recharge qu'au changement d'étage"}, -- Notched Axe
 	[148] = {"148", "Infestation", "Subir un dégât invoque 2 à 6 mouches bleues"}, -- Infestation
 	[149] = {"149", "Ipéca", "↑ Dégâts {{ColorLime}}+40#↓ Débit {{ColorError}}-67%#↓ Vitesse des tirs {{ColorError}}-0.2#Les larmes d'Isaac explosent au contact et empoisonnent les ennemis"}, -- Ipecac
 	[152] = {"152", "Technologie 2", "↓ Débit {{ColorError}}-33%#Remplace les larmes de l'œil droit d'Isaac par un laser continu#Le laser inflige 13% des dégâts d'Isaac"}, -- Technology 2
@@ -153,7 +153,7 @@ local repCollectibles={
 	[286] = {"286", "Carte Blanche", "Déclenche l'effet de la carte portée par Isaac sans la consommer#Le temps de recharge de l'objet dépend de la carte"},
 	[287] = {"287", "Livre des Secrets", "Active l'effet de la {{ColorYellow}}Carte au Trésor{{ColorWhite}} {{Collectible54}}, la {{ColorYellow}}Boussole{{ColorWhite}} {{Collectible21}} ou la {{ColorYellow}}Carte Perdue{{ColorWhite}} {{Collectible246}}#Ne donne que les effets qui ne sont pas déjà actifs#Quand tous les effets sont actifs, donne l'effet des {{ColorYellow}}Lunettes à Rayon X{{ColorWhite}} {{Collectible76}}#{{Timer}} L'effet dure un étage"}, -- Book of Secrets
 	[288] = {"288", "Boîte d'Araignées", "Fait apparaître 4 à 8 araignées bleues"}, -- Box of Spiders
-	[289] = {"289", "Bougie Rouge", "Lance une flamme rouge#La flamme disparaît après 10 secondes, ou après avoir infligé des dégâts ou bloqué des tirs 5 fois"}, -- Red Candle
+	[289] = {"289", "Bougie Rouge", "Lance une flamme rouge dans la direction choisie#Les flammes disparaîssent après 10 secondes, ou après avoir infligé des dégâts ou bloqué des tirs 5 fois"}, -- Red Candle
 	[291] = {"291", "Chasse d'Eau", "Tue instantanément les ennemis et boss cacas#Transforme les ennemis de la salle en cacas#Éteint les feux et inonde le sol de la salle#Transforme la lave en sol franchissable"}, -- Flush!
 	[292] = {"292", "Bible Satanique", "{{BlackHeart}} +1 cœur noir#Utiliser l'objet avant un combat de boss transforme la récompense du combat en un Pacte avec le Diable"}, -- Satanic Bible
 	[293] = {"293", "Head of Krampus", "Crache un laser de sang dans 4 directions"}, -- Head of Krampus
@@ -176,7 +176,7 @@ local repCollectibles={
 	[323] = {"323", "Bocal de Larmes", "Projette 8 larmes qui infligent {{ColorLime}}dégâts +5{{ColorWhite}} en cercle autour d'Isaac#Chaque larme tirée par Isaac recharge une barre de l'objet"},
 	[324] = {"324", "erreur", "{{Blank}} Téléporte Isaac vers l'une de ces salles :#{{TreasureRoom}} Salle du Trésor#{{SecretRoom}} Salle Secrète#{{SuperSecretRoom}} Salle Super Secrète#Salle d'Erreur"},
 	[325] = {"325", "Paire de Ciseaux", "Sépare la tête d'Isaac de son corps#Le joueur contrôle le corps#La tête est immobile et tire en même temps que le corps"},
-	[326] = {"326", "Souffle de Vie", "Maintenir le bouton d'utilisation vide la barre de charge#Quand elle est vide, Isaac devient invulnérable pour une seconde et invoque des rayons de lumière au contact#Effectuer un blocage parfait envoie des rayons de lumière en croix#{{Warning}} Rester appuyé trop longtemps inflige des dégâts à Isaac"}, -- Breath of Life
+	[326] = {"326", "Souffle de Vie", "Maintenir [Utiliser] vide la barre de charge#Une fois vide, Isaac devient invulnérable 1 seconde et crée des rayons de lumière au contact#Effectuer un blocage parfait envoie des rayons de lumière en croix#{{Warning}} Appuyer trop longtemps inflige des dégâts à Isaac"}, -- Breath of Life
 	[327] = {"327", "Le Positif", "Subir un dégât à un demi-cœur rouge ou moins rend Isaac invulnérable pendant 5 secondes#Permet d'entrer dans le {{ColorTransform}}Coffre"},
 	[328] = {"328", "Le Négatif", "↑ Dégâts {{ColorLime}}+1.0#Subir un dégât à un demi-cœur rouge ou moins inflige 40 dégâts à tous les ennemis de la salle#Permet d'entrer dans la {{ColorTransform}}Chambre Noire"}, -- The Negative
 	[330] = {"330", "Lait de Soja", "↑ Débit {{ColorLime}}x5.5#↓ Dégâts {{ColorError}}-80%#Réduit grandement le recul infligé par les larmes d'Isaac"}, -- Soy Milk
@@ -217,13 +217,13 @@ local repCollectibles={
 	[394] = {"394", "Ligne de Mire", "↑ Débit {{ColorLime}}+0.7#↑ Portée {{ColorLime}}+3.0#Isaac et ses familiers tirent automatiquement vers une cible déplaçable avec les boutons de tir#Appuyer sur le bouton {{ColorSilver}}[Lâcher]{{ColorWhite}} met en pause le tir automatique"}, -- Marked
 	[395] = {"395", "Tech X", "Remplace les larmes d'Isaac par des anneaux laser#La taille et les dégâts des anneaux augmentent avec la durée de la charge#100% de dégâts avec une charge complète"}, -- Tech X
 	[397] = {"397", "Rayon Tracteur", "↑ Débit {{ColorLime}}+1.0#↑ Portée {{ColorLime}}+1.5#↑ Vitesse des tirs {{ColorLime}}+0.16#Les larmes d'Isaac sont tractées par un rayon de lumière"},
-	[399] = {"399", "Gouffre du Néant", "Tirer pendant 3 secondes fait apparaître une croix rouge sur la tête d'Isaac#Relâcher les boutons de tir crée un anneau noir autour de lui qui inflige des dégâts de contact"}, -- Maw of the Void
+	[399] = {"399", "Gouffre du Néant", "Tirer pendant 3 secondes puis relâcher les boutons de tir crée un anneau noir autour d'Isaac qui inflige des dégâts de contact"}, -- Maw of the Void
 	[401] = {"401", "Explosivo", "25% de chances de tirer une larme collante qui explose après quelques secondes"}, -- Explosivo
-	[404] = {"404", "Bébé Péteur", "S'il est touché par un projectile ennemi, le familier pète et envoûte, empoisonne ou repousse les ennemis"}, -- Farting Baby
+	[404] = {"404", "Bébé Péteur", "Pète et envoûte, empoisonne ou repousse les ennemis s'il est touché par un projectile ennemi"}, -- Farting Baby
 	[405] = {"405", "Bug", "Peut être projeté avec un double appui sur un bouton de tir#Rejoue les ressources et ennemis avec lesquels il entre en contact"}, -- GB Bug
-	[407] = {"407", "Pureté", "↑ Augmente une stat en fonction de la couleur de l'aura qui entoure Isaac#{{Blank}} {{ColorRed}}Rouge{{ColorWhite}} = Dégâts {{ColorLime}}+4.0#{{Blank}} {{ColorCyan}}Bleu{{ColorWhite}} = Débit {{ColorLime}}+4.0#{{Blank}} {{ColorYellow}}Jaune{{ColorWhite}} = Vitesse {{ColorLime}}+0.5#{{Blank}} {{ColorOrange}}Orange{{ColorWhite}} = Portée {{ColorLime}}+3.0#Subir un dégât désactive l'effet pour une salle"},
+	[407] = {"407", "Pureté", "Entoure Isaac d'une aura :#{{Blank}} {{ColorRed}}Rouge{{ColorWhite}} = Dégâts {{ColorLime}}+4.0#{{Blank}} {{ColorCyan}}Bleu{{ColorWhite}} = Débit {{ColorLime}}+4.0#{{Blank}} {{ColorYellow}}Jaune{{ColorWhite}} = Vitesse {{ColorLime}}+0.5#{{Blank}} {{ColorOrange}}Orange{{ColorWhite}} = Portée {{ColorLime}}+3.0#Subir un dégât désactive l'effet pour une salle puis le change"},
 	[408] = {"408", "Athamé", "Entoure parfois les ennemis tués d'un cercle noir qui inflige des dégâts de contact aux autres ennemis#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 30 Chance)"}, -- Athame
-	[414] = {"414", "Plus d'Options", "Permet à Isaac de choisir entre deux objets dans les Salles du Trésor {{TreasureRoom}}"},
+	[414] = {"414", "Plus d'Options", "Permet à Isaac de choisir entre deux objets dans les Salles du Trésor"},
 	[415] = {"415", "Couronne de Lumière", "↑ Dégâts {{ColorLime}}x2#↓ Vitesse des tirs {{ColorError}}-0.3#{{SoulHeart}} +2 Cœurs d'âme#Subir un dégât désactive ces effets pour une salle#Les effets restent désactivés tant que tous les réceptacles de cœurs d'Isaac ne sont pas remplis"},
     [416] = {"416", "Poches Profondes", "Augmente la capacité du compteur de pièces à 999#Fait apparaître 1 à 3 pièces si terminer une salle n'aurait pas donné de récompense"}, -- Deep Pockets
 	[417] = {"417", "Succube", "Rebondit contre les murs entourée d'une aura#↑ Dégâts {{ColorLime}}+50%{{ColorWhite}} tant qu'Isaac reste dans l'aura#Inflige des dégâts aux ennemis dans l'aura"}, -- Succubus
@@ -249,10 +249,10 @@ local repCollectibles={
 	[455] = {"455", "Médaille de Papa", "↑ Portée {{ColorLime}}+0.38#Fait apparaître une pièce porte-bonheur"},
 	[456] = {"456", "Encas de Minuit", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soigne 1 cœur rouge"}, -- Midnight Snack
 	[458] = {"458", "Nombril", "Permet à Isaac de porter deux babioles#Fait apparaître une babiole"},
-	[459] = {"459", "Sinusite", "20% de chances de tirer une crotte de nez qui se colle aux ennemis et inflige des dégâts une fois par seconde#Les crottes de nez se décollent si l'ennemi meurt, s'enterre, saute hors de l'écran ou après 10 secondes"}, --Sinus Infection
+	[459] = {"459", "Sinusite", "20% de chances de tirer une crotte de nez qui se colle aux ennemis et inflige des dégâts une fois par seconde"}, --Sinus Infection
 	[462] = {"462", "Œil de Bélial", "↑ Portée {{ColorLime}}+1.5#Larmes transperçantes#Après avoir transpercé un ennemi, les larmes infligent {{ColorLime}}dégâts x2{{ColorWhite}} et deviennent autoguidées"},
 	[463] = {"463", "Acide Sulfurique", "↑ Dégâts {{ColorLime}}+0.3#Isaac tire parfois des larmes corrosives qui détruisent les obstacles, les portes et les entrées des salles Secrètes et Super Secrètes"},
-	[464] = {"464", "Marque d'Harmonie", "{{SoulHeart}} +2 cœurs d'âme#Les ressources lâchées par les ennemis d'élite et les récompenses de salle changent selon ce qui manque à Isaac"}, -- Glyph of Balance
+	[464] = {"464", "Marque d'Harmonie", "{{SoulHeart}} +2 cœurs d'âme#Change les récompenses de salle et d'ennemis d'élite selon ce qui manque à Isaac"}, -- Glyph of Balance
 	[468] = {"468", "Ombre", "Suit Isaac avec un délai#Après avoir infligé 666 dégâts de contact, elle disparait et permet à Isaac d'infliger des dégâts de contact#{{DamageSmall}} 75 dégâts par seconde"},
 	[472] = {"472", "Bébé Roi", "Tirer immobilise tous les familiers et les fait tirer en direction des ennemis#Arrêter de tirer téléporte les familiers à Isaac"}, -- King Baby
 	[474] = {"474", "Canon de Verre Brisé", "Se change en {{ColorYellow}}Canon de Verre"}, -- broken Glass Canon
@@ -272,7 +272,7 @@ local repCollectibles={
 	[497] = {"497", "Slip Camouflage", "Entrer dans une salle étourdit tous les ennemis et donne {{ColorLime}}vitesse +0.5#Tirer désactive l'effet, inflige des dégâts aux ennemis à proximité et donne {{ColorLime}}dégâts +10{{ColorWhite}} et {{ColorLime}}débit +10{{ColorWhite}} pendant 1 seconde"},
 	[498] = {"498", "Dualité", "Fait apparaître les portes de l'Antre du Diable et du Refuge des Anges si l'une des deux doit apparaître#Entrer dans une des salles fait disparaître l'autre#Ne garantit pas l'apparition des portes"},
 	[499] = {"499", "Eucharistie", "Garantit l'apparition des Refuges des Anges"},
-	[500] = {"500", "Sac de Sacs", "Fait apparaître un sachet {{GrabBag}} toutes les 7 ou 8 salles"},
+	[500] = {"500", "Sac de Sacs", "Fait apparaître un sachet toutes les 7 ou 8 salles"},
 	[501] = {"501", "Gosier d'Avarice", "{{Heart}} +1 réceptacle de cœur toutes les 25 pièces au compteur"},
 	[503] = {"503", "P'tite Corne", "Isaac tire parfois une larme qui tue les ennemis instantanément et inflige de gros dégâts aux boss#Permet à Isaac d'infliger des dégâts de contact#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(20% à 15 Chance)"}, -- Little Horn
 	[504] = {"504", "Bout de Crotte", "Invoque une mouche immobile qui tire sur les ennemis à proximité#{{DamageSmall}} 3.5 dégâts par larme"}, -- Brown Nugget
@@ -305,35 +305,35 @@ local repCollectibles={
 	[558] = {"558", "Les Yeux de la Tête", "Isaac tire parfois 1 à 3 larmes supplémentaires dans une direction aléatoire"}, --  Eye Sore
 	[559] = {"559", "120 Volts", "Électrocute les ennemis à proximité d'Isaac"}, --  120 Volt
 	[560] = {"560", "Motus", "Subir un dégât projette 10 larmes tout autour d'Isaac#↑ Débit {{ColorLime}}+1.2{{ColorWhite}} au premier dégât subi, {{ColorLime}}+0.4{{ColorWhite}} pour chaque dégât suivant"}, --  It Hurts
-	[561] = {"561", "Lait d'Amande", "↑ Débit {{ColorLime}}x4#↓ Dégâts {{ColorError}}x0.3#Donne aux larmes d'Isaac des effets de ver aléatoires"}, --  Almond Milk
+	[561] = {"561", "Lait d'Amande", "↑ Débit {{ColorLime}}x4#↓ Dégâts {{ColorError}}x0.3#Donne aux larmes d'Isaac des effets de ver au hasard"}, --  Almond Milk
 	[562] = {"562", "Au Fond du Trou", "Empêche les stats d'Isaac de diminuer pour le reste de la partie"}, --  Rock Bottom
 	[563] = {"563", "Bombes Fabuleuses", "{{Bomb}} +5 Bombes#Les bombes d'Isaac ont des effets aléatoires"}, --  Nancy Bombs
 	[564] = {"564", "Savonnette", "↑ Débit {{ColorLime}}+0.5#↑ Vitesse des tirs {{ColorLime}}+0.2#{{Warning}} Le sous-titre de l'objet est erronné, c'est bien le débit qui augmente"}, --  A Bar of Soap
 	[565] = {"565", "Chiot de Sang", "Pourchasse et inflige des dégâts aux ennemis#Après avoir tué assez d'ennemis, il s'énerve et peut aussi attaquer Isaac#Il peut être calmé si Isaac lui inflige assez de dégâts ou le fait exploser"}, --  Blood Puppy
 	[566] = {"566", "Attrape-Rêve", "{{HalfSoulHeart}} +1 demi-cœur d'âme à chaque nouvel étage#Révèle le boss et le contenu de la Salle du Trésor dans le cauchemar entre les étages"}, --  Dream Catcher
-	[567] = {"567", "Cierge Pascal", "↑ Débit {{ColorLime}}+0.4{{ColorWhite}} pour chaque salle terminée sans subir de dégâts {{ColorSilver}}(jusqu'à {{ColorLime}}débit +5{{ColorSilver}})#Subir un dégât remet le bonus à zéro"}, --  Paschal Candle
+	[567] = {"567", "Cierge Pascal", "↑ Débit {{ColorLime}}+0.4{{ColorWhite}} pour chaque salle terminée sans subir de dégâts {{ColorSilver}}(jusqu'à {{ColorLime}}débit +2{{ColorSilver}})#Subir un dégât remet le bonus à zéro"}, --  Paschal Candle
 	[568] = {"568", "Intervention Divine", "Appuyer 2 fois sur un bouton de tir invoque un bouclier qui repousse les ennemis et renvoie les projectiles et lasers#{{Timer}} L'effet dure 1 seconde#{{Timer}} 3 secondes de recharge"}, --  Divine Intervention
 	[569] = {"569", "Serment du Sang", "Au début de chaque étage, vide Isaac de tous ses cœurs rouges sans le tuer#Chaque cœur perdu augmente les dégâts et la vitesse pour l'étage#Chaque demi-cœur perdu compte comme un dégât individuel infligé à Isaac"}, --  Blood Oath
 	[570] = {"570", "Cookie en Pâte à Modeler", "Donne un effet différent à chaque larme d'Isaac"}, --  Playdough Cookie
-	[571] = {"571", "Chaussettes Orphelines", "↑ Vitesse {{ColorLime}}+0.3#{{SoulHeart}} +2 cœurs d'âme#Rend Isaac invulnérable aux flaques corrosives et aux piques"}, --  Orphan Socks
+	[571] = {"571", "Chaussettes Orphelines", "↑ Vitesse {{ColorLime}}+0.3#{{SoulHeart}} +2 cœurs d'âme#Rend Isaac invulnérable aux flaques et aux piques"}, --  Orphan Socks
 	[572] = {"572", "Œil Occulte", "↑ Dégâts {{ColorLime}}+1.0#↑ Portée {{ColorLime}}+7.5#↓ Vitesse des tirs {{ColorError}}-0.16#Permet de contrôler les larmes d'Isaac en vol"}, --  Eye of the Occult
 	[573] = {"573", "Cœur Immaculé", "↑ Dégâts {{ColorLime}}+20%#{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soin complet#20% de chances de tirer une larme spectrale bonus qui orbite autour d'Isaac"}, --  Immaculate Heart
 	[574] = {"574", "Monstrance", "Entoure Isaac de deux auras qui infligent des dégâts aux ennemis#L'aura intérieure inflige plus de dégâts que l'aura extérieure"}, --  Monstrance
 	[575] = {"575", "L'Envahisseur", "Se niche dans la tête d'Isaac et tire 4 larmes ralentissantes#Subir un dégât fait parfois sortir l'araignée#Une fois sortie, l'araignée tire deux fois plus vite et bondit sur les ennemis#{{LuckSmall}} Effet affecté par la statistique de chance#{{DamageSmall}} 1.5 dégâts par larme"}, --  The Intruder
 	[576] = {"576", "Coprophilie", "Détruire un caca fait apparaître 1 à 4 petits cacas amicaux#Leur type dépend du type de caca détruit#Tous les ennemis {{ColorCyan}}crottes{{ColorWhite}} deviennent amicaux#Remplace certains rochers par des cacas"}, --  Dirty Mind
-	[577] = {"577", "Damoclès", "Une fois utilisé, ajoute un objet gratuit à tous les futurs piédestaux#{{Warning}} Dès qu'Isaac subit un dégât, l'épée a une chance de tomber et  le tuer à chaque seconde qui passe#Une fois l'épée tombée, les objets sur piédestal ne sont plus doublés"}, --  Damocles
+	[577] = {"577", "Damoclès", "Une fois utilisé, ajoute un objet gratuit à tous les futurs piédestaux#{{Warning}} Dès qu'Isaac subit un dégât, l'épée peut tomber et le tuer à tout moment#Une fois l'épée tombée, les objets sur piédestal ne sont plus doublés"}, --  Damocles
 	[578] = {"578", "Carafe de Limonade", "Répand une grande flaque corrosive sur le sol"}, --  Free Lemonade
 	[579] = {"579", "Épée de l'Esprit", "↑ Dégâts {{ColorLime}}x3 +3.5#Remplace les larmes d'Isaac par une épée#Charger l'attaque fait tournoyer l'épée autour d'Isaac#Si les PV d'Isaac sont égaux ou supérieurs à ses réceptacles de cœur, l'épée tire des projectiles"}, --  Spirit Sword
-	[580] = {"580", "Clé Rouge", "Ouvre une porte vers une salle rouge dans les murs marqués d'une porte rouge#Les salles rouges peuvent être des salles spéciales#Entrer dans une salle en dehors de la grille de 13x13 téléporte Isaac dans la salle d'erreur"}, --  Red Key
+	[580] = {"580", "Clé Rouge", "Ouvre une porte vers une salle rouge dans les murs marqués d'une porte rouge#Les salles rouges peuvent être des salles spéciales#Sortir de la grille de 13x13 téléporte Isaac dans la salle d'erreur"}, --  Red Key
 	[581] = {"581", "Mouche Oracle", "Pourchasse et détruit les projectiles ennemis#Inflige des dégâts de contact#{{DamageSmall}} 15 dégâts par seconde"}, --  Psy Fly
 	[582] = {"582", "Psilocybe Cyanescens", "↑ Débit {{ColorLime}}+0.75#↓ Vitesse {{ColorError}}-0.03#Déforme l'écran#L'effet peut être cumulé"}, --  Wavy Cap
 	[583] = {"583", "Fusée en Bocal", "{{Bomb}} +5 Bombes#Poser une bombe en tirant la propulse dans la direction du tir"}, --  Rocket in a Jar
 	[584] = {"584", "Livre des Vertus", "Invoque un feu follet qui tire des larmes spectrales#Combiner le livre avec un autre objet activable invoque un feu follet spécial#Transforme le premier Pacte avec le Diable en Offrande des Anges"}, --  Book of Virtues
-	[585] = {"585", "Boîte d'Albâtre", "Doit être chargée avec des cœurs d'âme#Fait apparaître 2 objets angéliques et 3 cœurs d'âme {{ColorSilver}}(1 objet angélique et 2 cœurs d'âme si un Pacte avec le Diable a été signé)"}, --  Alabaster Box
+	[585] = {"585", "Boîte d'Albâtre", "Doit être chargée en ramassant des cœurs d'âme#Fait apparaître 2 objets angéliques et 3 cœurs d'âme {{ColorSilver}}(1 objet angélique et 2 cœurs d'âme si un Pacte avec le Diable a été signé)"}, --  Alabaster Box
 	[586] = {"586", "Échelle Vers les Cieux", "Fait apparaître une échelle vers une boutique angélique dans la première salle d'un étage#L'échelle disparaît quand Isaac quitte la salle où elle se trouve"}, --  The Stairway
 	[587] = {"587", "Menorah", "<Cet objet n'existe pas>"}, -- Menorah (Unused but skripted)
-	[588] = {"588", "Sol", "Révèle l'emplacement de la salle de boss {{BossRoom}}#Après avoir battu un boss:#↑ Dégâts {{ColorLime}}+3.0#↑ Chance {{ColorLime}}+1.0#Recharge entièrement l'objet activable#Retire tous les fléaux#Déclenche {{ColorCard}}XIX-Le Soleil {{Card20}}"}, --  Sol
-	[589] = {"589", "Luna", "Ajoute une salle secrète et super secrète à chaque étage#Révèle la position d'une des quatre salles secrètes#Ajoute une lumière dans les salles secrètes qui augmente le débit pour l'étage et donne un demi-cœur d'âme"}, --  Luna
+	[588] = {"588", "Sol", "Révèle l'emplacement de la salle de boss#Après avoir battu un boss:#↑ Dégâts {{ColorLime}}+3.0#↑ Chance {{ColorLime}}+1.0#Recharge entièrement l'objet activable#Retire tous les fléaux#Déclenche {{ColorCard}}XIX-Le Soleil {{Card20}}"}, --  Sol
+	[589] = {"589", "Luna", "Ajoute une salle secrète et super secrète à chaque étage#Révèle la position d'une des quatre salles secrètes#Une lumière dans les salles secrètes augmente le débit pour l'étage et donne un demi-cœur d'âme"}, --  Luna
 	[590] = {"590", "Mercurius", "↑ Vitesse {{ColorLime}}+0.4#Les portes restent ouvertes en permanence"}, --  Mercurius
 	[591] = {"591", "Venus", "{{Heart}} +1 réceptacle de cœur#{{HealingRed}} Soin complet#Envoûte les ennemis à proximité d'Isaac"}, --  Venus
 	[592] = {"592", "Terra", "↑ Dégâts {{ColorLime}}+1.0#Les larmes d'Isaac infligent des dégâts variables, repoussent les ennemis et détruisent les obstacles"}, --  Terra
@@ -345,7 +345,7 @@ local repCollectibles={
 	[598] = {"598", "Pluto", "↑ Débit {{ColorLime}}+0.7#Diminue fortement la taille d'Isaac et lui permet de passer entre les obstacles et sous certains projectiles"}, --  Pluto
 	[599] = {"599", "Tête Réduite", "Fait apparaître une Salle Maudite {{CursedRoom}} supplémentaire à chaque étage#Les Salles Maudites sont de meilleure qualité et contiennent une pièce"}, --  Voodoo Head
 	[600] = {"600", "Collyre", "↑ Débit {{ColorLime}}+40%{{ColorWhite}} pour l'œil gauche"}, --  Eye Drops
-	[601] = {"601", "Acte de Contrition", "↑ Débit {{ColorLime}}+0.7#{{EternalHeart}} +1 cœur éternel#Permet au Refuge des Anges d'apparaître même si un Pacte avec le Diable a été signé#Les chances d'ouvrir l'Antre du Diable ou le Refuge des Anges diminuent moins"}, --  Act of Contrition
+	[601] = {"601", "Acte de Contrition", "↑ Débit {{ColorLime}}+0.7#{{EternalHeart}} +1 cœur éternel#Permet au Refuge des Anges d'apparaître si un Pacte avec le Diable a été signé#Les chances d'ouvrir l'Antre du Diable ou le Refuge des Anges diminuent moins"}, --  Act of Contrition
 	[602] = {"602", "Carte de Membre", "Ouvre une trappe vers l'arrière-boutique dans chaque Boutique {{Shop}}#L'arrière-boutique peut proposer des babioles, des ressources et des objets de n'importe quelle banque"}, --  Member Card
 	[603] = {"603", "Batterie", "Fait apparaître 2 à 4 piles#Recharge complètement l'objet activable"}, --  Battery Pack
 	[604] = {"604", "Bracelet de Maman", "Permet à Isaac de soulever et lancer les obstacles#Les obstacles ramassés peuvent être transportés d'une salle à l'autre"}, --  Mom's Bracelet
@@ -366,7 +366,7 @@ local repCollectibles={
 	[619] = {"619", "Droit d'Aînesse", "A un effet différent pour chaque personnage"}, --  Birthright
 	[620] = {"620", "", "<Cet objet n'existe pas>"},
 	[621] = {"621", "Potage de Lentilles", "{{HealingRed}} Soin complet#↑ Dégâts {{ColorLime}}+21.6#Le bonus de dégâts diminue progressivement sur une période de 3 minutes jusqu'à retourner à zéro#Tuer des ennemis ralentit la diminution"}, --  Red Stew
-	[622] = {"622", "Genèse", "Retire tous les objets et ressources d'Isaac#Téléporte Isaac dans une pièce où il peut choisir entre 3 objets pour remplacer chaque objet perdu#Sortir de cette salle fait passer Isaac à l'étage suivant"}, --  Genesis
+	[622] = {"622", "Genèse", "Retire tous les objets et ressources d'Isaac#Téléporte Isaac dans une pièce où il peut choisir parmi 3 objets pour remplacer chaque objet perdu#Sortir de cette salle mène Isaac à l'étage suivant"}, --  Genesis
 	[623] = {"623", "Clé Aiguisée", "{{Key}} +5 Clés#Permet à Isaac de jeter une de ses clés pour infliger des dégâts, détruire des obstacles ou ouvrir des serrures#Tuer un ennemi avec une clé peut faire apparaître le contenu d'un coffre"}, --  Sharp Key
 	[624] = {"624", "Paquet d'Extension", "Fait apparaître 5 cartes"}, --  Booster Pack
 	[625] = {"625", "Méga Champi", "↑ Dégâts {{ColorLime}}x4#↑ Portée {{ColorLime}}+2#↓ Débit {{ColorError}}-1.9#Rend Isaac géant, invulnérable et lui permet de tout détruire au contact#{{Timer}} L'effet dure 30 secondes et persiste entre les salles"}, --  Mega Mush
@@ -395,7 +395,7 @@ local repCollectibles={
 	[648] = {"648", "Broyeur de Pilules", "<Cet objet n'existe pas>"},
 	[649] = {"649", "P'tite Prunelle", "Se propulse en diagonale, tire des larmes derrière elle et inflige des dégâts de contact#{{DamageSmall}} 3 dégâts par larme#{{Blank}} 6 dégâts par seconde"}, --  Fruity Plum
 	[650] = {"650", "Flute Prunelle", "Invoque une {{ColorCyan}}Prunelle{{ColorWhite}} amicale dans la salle#{{Timer}} L'effet dure 10 secondes"}, --  Plum Flute
-	[651] = {"651", "Étoile de Bethléem", "Se déplace lentement vers la salle de boss {{BossRoom}}#{{Blank}} Être dans son aura donne :#↑ Dégâts {{ColorLime}}x1.8#↑ Débit {{ColorLime}}x2.5#Larmes autoguidées#Chance de nullifier les dégâts subis"}, --  Star of Bethlehem
+	[651] = {"651", "Étoile de Bethléem", "Se déplace lentement vers la salle de boss#{{Blank}} Être dans son aura donne :#↑ Dégâts {{ColorLime}}x1.8#↑ Débit {{ColorLime}}x2.5#Larmes autoguidées#Chance de nullifier les dégâts subis"}, --  Star of Bethlehem
 	[652] = {"652", "Bébé Congelé", "Peut être poussé par Isaac#Ralentit les ennemis et inflige des dégâts de contact#Gèle les ennemis qu'il tue#{{DamageSmall}} 17.5 dégâts par seconde"}, --  Cube Baby
 	[653] = {"653", "Vade Retro", "Quand Isaac tient cet objet, tuer un ennemi invoque un fantôme rouge#Utiliser l'objet fait exploser les fantômes"}, --  Vade Retro
 	[654] = {"654", "Doctorat Falsifié", "{{BlackHeart}} +1 cœur noir#Convertit toutes les pilules en pilules négatives et les identifie#Les pilules qui diminuent les stats augmentent les dégâts#Les autres pilules font apparaître un cœur noir"}, --  False PHD
@@ -441,7 +441,7 @@ local repCollectibles={
 	[694] = {"694", "Brise-Cœur", "Brise 3 des cœurs d'Isaac#↑ Dégâts {{ColorLime}}+0.25{{ColorWhite}} pour chaque cœur brisé#Chaque coup fatal laisse Isaac en vie mais brise deux cœurs supplémentaires#Isaac meurt si tous ses cœurs sont brisés"}, --  Heartbreak
 	[695] = {"695", "Souffle de Sang", "{{Blank}} Subir un dégât donne :#↑ Débit augmenté#↑ Vitesse augmentée#{{Timer}} L'effet dure un étage"}, --  Bloody Gust
 	[696] = {"696", "Salvation", "Entoure Isaac d'un halo#Les ennemis qui restent assez longtemps dans le halo sont frappés d'un rayon de lumière en forme de croix#Le halo grandit à chaque dégât subi dans l'étage"}, --  Salvation
-	[697] = {"697", "Jumeau Évanescent", "Clone le boss de l'étage dans la Salle du Boss {{BossRoom}}#Tuer le clone donne un objet supplémentaire#Le boss et son clone sont plus lents et n'ont que 75% de leurs PV"}, --  Vanishing Twin
+	[697] = {"697", "Jumeau Évanescent", "Clone le boss de l'étage dans la Salle du Boss#Tuer le clone donne un objet supplémentaire#Le boss et son clone sont plus lents et n'ont que 75% de leurs PV"}, --  Vanishing Twin
 	[698] = {"698", "Jumeaux Malicieux", "Se placent aux côtés d'Isaac et tirent les mêmes larmes que lui#Infligent chacun 37.5% des dégâts d'Isaac"}, --  Twisted Pair
 	[699] = {"699", "Rage d'Azazel", "Toutes les 4 salles terminées, Isaac clignote en rouge et vomit un énorme laser de sang lorsqu'il rentre dans une salle hostile"}, --  Azazel's Rage
 	[700] = {"700", "Résonance", "Utiliser une carte, pilule ou rune déclenche aussi l'effet des 3 dernières#Ne fonctionne qu'avec celles utilisées après avoir obtenu l'objet"}, --  Echo Chamber
@@ -747,25 +747,141 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 
 }
 
--- Special Locust effects when Item was eaten by Abyss
-EID.descriptions[languageCode].abyssSynergies = {
-	[2] = "Invoque trois locustes normaux", -- The Inner Eye
-	[3] = "Invoque un locuste violet autoguidé", -- Spoon Bender
-	[4] = "Invoque un gros locuste rouge qui inflige 3x les dégâts d'Isaac", -- Cricket's Head
-	[6] = "Invoque un locuste jaune rapide à courte portée qui inflige des dégâts plus vite", -- Number One
-	[7] = "Invoque un locuste rouge qui inflige 2x les dégâts d'Isaac", -- Blood of the Martyr
-	[10] = "Invoque deux locustes gris qui infligent 50% de dégâts", -- Halo of Flies
-	[13] = "Invoque un locuste vert qui empoisonne les ennemis", -- The Virus
-	[103] = "Invoque un locuste vert qui empoisonne les ennemis", -- The Common Cold
-	[118] = "Invoque un locuste gris plus gros qui n'a pas d'autre particularité", -- Brimstone
-	[149] = "Invoque un locuste vert, gros et lent qui inflige 1.5x les dégâts d'Isaac et empoisonne les ennemis", -- Ipecac
-	[153] = "Invoque 4 locustes normaux", -- Mutant Spider
-	[257] = "Invoque un locuste orange qui enflamme les ennemis", -- Fire Mind
-	[305] = "Invoque un locuste vert qui empoisonne les ennemis", -- Scorpio
-	[374] = "Invoque un locuste bleu clair, invoque des rayons de lumière qui infligent 3x les dégâts d'Isaac", -- Holy Light
-	[494] = "Invoque un locuste électrisé qui inflige 0.1 dégâts par tick", -- Jacob's Ladder
-	[559] = "Invoque un locuste électrisé qui inflige 0.1 dégâts par tick ", -- 120 Volt
+---------- Abyss Locust description parts ----------
+EID.descriptions[languageCode].AbyssTexts = {
+ 	-- values inside {} brackets will be replaced with text parts below
+	-- Abyss texts are affected by the PluralizeFunction (ab+ file)
+	-- The placeholder therefore can be used in all parts that make up the abyss locust descriptions
+	InfoText = "{amount} {size} locuste{pluralize} {speed} ({dmg})", -- values inside {} brackets will be replaced with text parts below
+	InfoTextPlural = "{amount} {size} locustes {speed} ({dmg})", -- Will be shown when more than 1 locust will spawn
+	Chance = " ({1}%{{LuckSmall}})", -- {1} will be replaced with the chance
+	SpeedSlow = "lent{pluralize}", -- Speed < 1
+	SpeedFast = "rapide{pluralize}", -- Speed > 1
+	SpeedDash = "très rapide{pluralize}", -- Speed >= 6
+	SizeSmall = "petit{pluralize}", -- Size < 1
+	SizeBig = "gros", -- Size > 1
+	DamageMult = "Dégâts x{1}", -- {1} will be replaced with the calculated damage multiplier 
 }
+
+---------- Abyss Locust special effects ----------
+--- Special locust effects that dont correspond to TearFlags.
+--- Displays an icon in front of the description that shows an item with the same effect
+EID.descriptions[languageCode].AbyssLocustEffects = {
+[0] = "Explose au contact",
+[1] = "Effet aléatoire",
+-- 2 = Multiple locusts act like one. Uninteresting info for the player in my opinion
+[3] = "Rejoue les ennemis au contact",
+[4] = "Inflige des dégâts de masse au contact",
+[5] = "Efface les ennemis au contact",
+[6] = "Brandit un couteau",
+[7] = "Inflige des dégâts de zone au contact",
+[8] = "Crée un cercle noir au contact",
+[9] = "Repousse les ennmis et projectiles lorsqu'il se déplace",
+[10] = "Crée un pet toxique au contact",
+[11] = "Pète au contact",
+[12] = "Crache un rayon laser au contact",
+[13] = "Répand une flaque toxique au contact",
+[14] = "Répand une flaque toxique au contact",
+[15] = "Répand une flaque toxique au contact",
+[16] = "Répand une flaque toxique au contact",
+[17] = "Crée des pentagrammes au sol qui infligent des dégâts",
+[18] = "Mange les ressources au contact et gagne {{ColorLime}}dégâts +0.25{{ColorRed}} par ressource mangée (max. 25)",
+}
+
+
+-- list of Tear flag descriptions used for Abyss locust effect description
+EID.descriptions[languageCode].TearFlagNames = {
+	[0] = "Traverse les obstacles",                 -- Ouija board type tear (goes thru obstacles)
+    [1] = "Transperce les ennemis",                 -- Cupid's arrow type tear (goes thru enemy)
+    [2] = "Autoguidé",                   -- Spoon bender type tear (homes to enemy)
+    [3] = "Ralentit les ennemis au contact",                  -- Spider bite type tear (slows on contact)
+    [4] = "Empoisonne les ennemis au contact",                   -- Common cold type tear (poisons on contact)
+    [5] = "Pétrifie les ennemis au contact",                  -- fMom's contact type tear (freezes on contact)
+    [6] = "Se divise au contact",                    -- Parasite type tear (splits on collision)
+    [7] = "Grandit selon sa distance à Isaac",            -- Lump of coal type tear (grows by range)
+    [8] = "Revient comme un boomerang",                -- My reflection type tear (returns back)
+    [9] = "Traverse les ennemis qu'il tue",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+    [10] = "Se déplace en zig-zag",         -- Wiggle worm type tear (wiggles)
+    [11] = "Invoque une mouche au contact",        -- Mulligan type tear (creates fly on hit)
+    [12] = "Explose au contact",               -- IPECAC type tear (explodes on hit)
+    [13] = "Envoûte les ennemis au contact",                -- Mom's Eyeshadow tear
+    [14] = "Étourdit les ennemis au contact",               -- Iron Bar tear
+    [15] = "Fait apparaître un cœur s'il tue un ennemi",     -- These tears cause enemy to drop hearts if killed (33% chance)
+    [16] = "Orbite autour d'Isaac",     -- Used for Little Planet (orbit arounds the player)
+    [17] = "Attaque avec un délai",     -- Anti gravity type tear (floats in place for some time before finally moving) (unset after first update)
+    [18] = "Se divise en 4 au contact",     -- Splits into 4 smaller tears if it hits the ground
+    [19] = "Rebondit contre les ennemis, les murs et les obstacles",       -- Bounce off of enemies, walls, rocks (Higher priority than PERSISTENT & PIERCING)
+    [20] = "Terrifie les ennemis au contact",                    -- Mom's Perfume type tear of fear (fear on contact)
+    [21] = "Rapetisse quand il est lancé",                  -- Proptosis tears start large and shrink
+    [22] = "Brûle les ennemis au contact",                    -- Fire Mind tears cause Burn effect on enemies
+    [23] = "Attire les ennemis et les ressources", -- Attracts enemies and pickups
+    [24] = "Inflige du recul au contact",               -- Tear impact pushes enemies back further
+    [25] = "Grandit et rapetisse rapidement",               -- Makes the tear pulse
+    [26] = "Se déplace en spirale",         -- Makes the tear path spiral
+    [27] = "Est élargi sur les côtés",              -- Makes the tear oval in the direction of travel
+    [28] = "Bombe pleureuse",                -- Used by Bombs (Sad Bomb)
+    [29] = "Bombe bronze",               -- Used by Bombs (Butt Bomb)
+    [30] = "Se déplace en carré",         -- Used for Hook Worm
+    [31] = "Est entouré d'une aura qui inflige des dégâts",     -- Used for GodHead (they will have a glow around them)
+    [32] = "Ralentit les ennemis au contact", -- Used for Gish player tears (to color enemy black on slowing)
+    [33] = "Répand une flaque toxique au contact", -- Mysterious Liquid tears spawn damaging green creep when hit
+    [34] = "Détruit les projectiles au contact",                -- Lost Contact tears, block enemy projectiles
+    [35] = "Bombe à paillette",            -- Used by Bombs (Glitter Bomb)
+    [36] = "Bombe à fragmentation",            -- Used for Scatter bombs
+    [37] = "Colle aux ennemis",                  -- Used for Sticky bombs and Explosivo tears
+    [38] = "Traverse les bords de l'écran",     -- Tears loop around the screen
+    [39] = "Crée des rayons de lumière au contact", -- Create damaging light beam on hit
+    [40] = "Fait apparaître une pièce au contact",        -- Used by Bumbo, spawns a coin when tear hits
+    [41] = "Fait apparaître un cœur noir s'il tue un ennemi",    -- Enemy drops a black hp when dies
+    [42] = "Suit le rayon de lumière",            -- Tear with this flag will follow parent player's beam
+    [43] = "Rapetisse les ennemis au contact",          -- God's flesh flag to minimize enemies
+    [44] = "Fait apparaître une pièce au contact",      -- Greed coin tears that has a chance to generate a coin when hit
+    [45] = "Explose en croix au contact",              -- Bomber Boy
+    [46] = "Se déplace en grandes spirales",     -- Ouroboros Worm, big radius oscilating tears
+    [47] = "Étourdit les ennemis de manière permanente au contact",   -- Glaucoma tears, permanently confuses enemies
+    [48] = "Se colle aux ennemis",                  -- Booger tears, stick and do damage over time
+    [49] = "Invoque une mouche ou araignée bleue au contact",               -- Egg tears, leave creep and spawns spiders or flies
+    [50] = "Détruit les obstacles au contact",            -- Sulfuric Acid tears, can break grid entities
+    [51] = "Les ennemis tués par ce locuste éclatent en fragments d'os",                    -- Bone tears, splits in 2
+    [52] = "Transperce les ennemis puis devient autoguidé", -- Belial tears, piecing tears gets double damage + homing
+    [53] = "Transforme les ennemis en or au contact",           -- Midas touch tears
+    [54] = "Éclate en 10 larmes au contact",                -- Needle tears
+    [55] = "Crée des arcs électriques au contact",           -- Jacobs ladder tears
+    [56] = "Invoque la main de Grosse Corne au contact", -- Little Horn tears
+    [57] = "Reliés par des arcs électriques",   -- Technology Zero
+    [58] = "Rebondit sur les autres",        -- Pop!
+    [59] = "Absorbe les autres",               -- Hungry Tears
+    [60] = "Laser de lumière",               -- Trisagion, generates a laser on top of the tear
+    [61] = "Rebondit sur le sol",          -- Flat Stone
+    [62] = "Éclate au contact",             -- Haemolacria
+    [63] = "Répand une flaque toxique",             -- Bob's Bladder
+    [64] = "Inflige du recul au contact",     -- Knockout Drops
+    [65] = "Gèle les ennemis qu'il tue",   -- Uranus
+    [66] = "Attire les ennemis et les ressources", -- Lodestone
+    [67] = "Les ennemis touchés par ce locuste sont pris pour cible par les autres",       -- Rotten Tomato
+    [68] = "Œil Occulte",       -- Eye of the Occult
+    [69] = "Orbite autour d'Isaac",   -- Orbiting tears with a more narrow and stable orbit (used by Saturnus and Immaculate Heart)
+    [70] = "Détruit les obstacles au contact",             -- Rock tears, chance to break rocks, deal extra damage to rock type enemies
+    [71] = "Tourne à 90° pour toucher un ennemi manqué",      -- Brain Worm, tears turn and go horizontally when moving past an enemy
+    [72] = "Hémoglobombe",              -- Blood Bombs, leave blood creep on the ground
+    [73] = "Transforme les ennemis en caca au contact",    -- E. Coli tears, turn enemies into poop
+    [74] = "Tuer un ennemi fait apparaître une pièce",      -- Killed enemies have a chance to drop a random coin (Reverse Hanged Man)
+    [75] = "Bombe soufre",          -- Brimstone Bombs, explosion creates a brimstone cross
+    [76] = "Crée un trou noir au contact",       -- Rift tears, creates a black hole on impact
+    [77] = "Colle aux ennemis et se multiplie s'il les tue",  -- Spore tears, stick to enemies and multiply on enemy death
+    [78] = "Bombe fantôme",              -- Ghost bombs
+    [79] = "Tuer un ennemi fait apparaître une carte",      -- Killed enemies will drop a random tarot card
+    [80] = "Tuer un ennemi fait apparaître une rune",      -- Killed enemies will drop a random rune
+    [81] = "Téléporte les ennemis au contact",   -- Hit enemies will teleport to a different part of the room
+    [82] = "Décélère progressivement",    -- Decelerate over time
+    [83] = "Accélère progressivement",    -- Accelerate over time
+    [104] = "Rebondit contre les murs",    -- Similar to TEAR_BOUNCE but only bounces off walls, not enemies
+	[106] = "Inflige davantage de dégâts et fait saigner les ennemis qu'il touche par derrière",   -- Deals extra damage from behind and inflicts bleeding
+}
+
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+-- Kept in for backwards compatibility
+EID.descriptions[languageCode].abyssSynergies = {}
 
 
 -- Effect of Car battery on Active Items
@@ -872,7 +988,6 @@ local repTrinkets={
 	[112] = {"112", "Microtransactions", "Des machines de réapprovisionnement {{RestockMachine}} apparaissent dans toutes les Salles du Trésor {{TreasureRoom}}"},
 	[119] = {"119", "Cellule Souche", "{{HealingRed}} Soigne la moitié des cœurs rouges d'Isaac au début de chaque étage {{ColorSilver}}(Au minimum un demi-cœur)"}, -- Stem Cell
 	[123] = {"123", "Plume Angélique", "Tuer {{ColorCyan}}Uriel{{ColorWhite}} ou {{ColorCyan}}Gabriel{{ColorWhite}} fait apparaître un objet angélique au lieu d'un {{ColorYellow}}Fragment de Clé {{Collectible238}}{{Collectible239}}"},
-	[125] = {"125", "Rallonge Électrique", "Relie Isaac et ses familiers par des arcs électriques"},
 	[128] = {"128", "Os de Doigt", "{{BoneHeart}} Subir un dégât a 5% de chances d'ajouter un cœur d'os aux PV d'Isaac"}, -- Finger Bone
 	[129] = {"129", "Boule de Mammouth", "Isaac tire parfois une dent qui inflige {{ColorLime}} dégâts x3#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 9 Chance)"}, --  Jawbreaker
 	[130] = {"130", "Stylo Mâchouillé", "Isaac tire parfois une larme ralentissante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 18 Chance)"}, --  Chewed Pen
@@ -951,7 +1066,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	--Broken Remote
 	[4] = { "{{Collectible419}} Utiliser un objet activable téléporte Isaac dans {{ColorGold}}une salle inexplorée#Ordre de téléportation#{{Blank}} {{Room}}>{{BossRoom}}>{{SuperSecretRoom}}>{{Shop}}>{{TreasureRoom}}> {{SacrificeRoom}}>{{DiceRoom}}>{{Library}}>{{CursedRoom}}>{{MiniBoss}}> {{ChallengeRoom}}>{{IsaacsRoom}}>{{ArcadeRoom}}>{{ChestRoom}}>{{SecretRoom}}>#{{Blank}} {{DevilRoom}}{{AngelRoom}}>Salle d'erreur"}, -- Teleport 2.0
 	--Purple Heart
-	[5] = {"Double","Triple", "Quadruple"},
+	[5] = {"Double les chances","Triple {{ColorWhite}}les chances", "Quadruple {{ColorWhite}}les chances"},
 	-- Broken Magnet (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 for doubled
 	[6] = { "pièces", "ressources" },
 	-- Golden Store Credit: full replace
@@ -972,9 +1087,9 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[46] = { "un demi-cœur rouge", "un cœur rouge", "un cœur rouge et demi"},
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
 	[53] = {
-		"{{HealingRed}} Entrer dans une salle de Boss {{BossRoom}} soigne {{ColorGold}}2{{ColorWhite}} cœurs rouges#Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#{{ColorGold}}Peut être retirée !",
-		"{{HealingRed}} Entrer dans une salle de Boss {{BossRoom}} soigne {{ColorGold}}2{{ColorWhite}} cœurs rouges#Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#{{Warning}} Ne peut être retirée qu'avec l'{{ColorYellow}}Allumette {{Trinket41}}",
-		"{{HealingRed}} Entrer dans une salle de Boss {{BossRoom}} soigne {{ColorGold}}3{{ColorWhite}} cœurs rouges#Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#{{ColorGold}}Peut être retirée !",
+		"{{HealingRed}} Entrer dans une salle de Boss soigne {{ColorGold}}2{{ColorWhite}} cœurs rouges#Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#{{ColorGold}}Peut être retirée !",
+		"{{HealingRed}} Entrer dans une salle de Boss soigne {{ColorGold}}2{{ColorWhite}} cœurs rouges#Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#{{Warning}} Ne peut être retirée qu'avec l'{{ColorYellow}}Allumette {{Trinket41}}",
+		"{{HealingRed}} Entrer dans une salle de Boss soigne {{ColorGold}}3{{ColorWhite}} cœurs rouges#Retire {{ColorGold}}30{{ColorWhite}}% des PV des boss#{{ColorGold}}Peut être retirée !",
 	},
 	-- Maggy's Faith
 	[55] = {
@@ -1063,7 +1178,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[8] = {6, 12}, -- VII - The Chariot
 	[9] = {"Fait apparaître {{ColorShinyPurple}}2{{ColorWhite}} clés, {{ColorShinyPurple}}2{{ColorWhite}} bombes, {{ColorShinyPurple}}2{{ColorWhite}} pièces et {{ColorShinyPurple}}2{{ColorWhite}} cœurs"}, -- VIII - Justice
 	[10] = "Empêche Avarice d'apparaître dans la boutique et génère des objets à acheter s'il a déjà été vaincu dans la Boutique", -- IX - The Hermit
-	[11] = {"Fait apparaître {{ColorShinyPurple}}2{{ColorWhite}} machines à sous {{Slotmachine}}"}, -- X - Wheel of Fortune
+	[11] = {"une", "2"}, -- X - Wheel of Fortune
 	[12] = {"+1 réceptacle", "+2 {{ColorWhite}}réceptacles", "+0.3", "+0.6", "+0.3", "+0.6", "+2.5", "+5"}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
 	[15] = {"Fait apparaître {{ColorShinyPurple}}2{{ColorWhite}} banques du sang {{BloodDonationMachine}}"}, -- XIV - Temperance
@@ -1071,7 +1186,7 @@ EID.descriptions[languageCode].tarotClothBuffs = {
 	[17] = {6, 12}, -- XVI - The Tower
 	[18] = "Propose un {{ColorShinyPurple}}choix entre 2 objets{{ColorWhite}} si elle n'a pas encore été visitée", -- XVII - The Stars
 	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {"Invoque {{ColorShinyPurple}}2{{ColorWhite}} mendiants"}, -- XX - Judgement
+	[21] = {"un mendiant", "2 {{ColorWhite}}mendiants"}, -- XX - Judgement
 	[56] = "Lâche également les 6 derniers objets ramassés", -- 0 - The Fool?
 	[59] = {2, 3}, -- III - The Empress?
 	[61] = {2, 3}, -- V - The Hierophant?
@@ -1094,7 +1209,7 @@ local repCards={
 	[2] = {"2", "I - Le Bateleur", "↑ Portée {{ColorLime}}+3.0#Larmes autoguidées#{{Timer}} L'effet dure une salle"},
 	[3] = {"3", "II - La Papesse", "Un pied de {{ColorCyan}}Maman{{ColorWhite}} écrase l'ennemi de la salle avec le plus de PV#Dans une salle vide, le pied écrase Isaac"},
 	[4] = {"4", "III - L'Impératrice", "↑ Dégâts {{ColorLime}}+1.5#↑ Vitesse {{ColorLime}}+0.3#{{Timer}} L'effet dure une salle"},
-	[5] = {"5", "IV - L'Empereur", "Téléporte Isaac dans la salle du boss {{BossRoom}}"},
+	[5] = {"5", "IV - L'Empereur", "Téléporte Isaac dans la salle du boss "},
 	[10] = {"10", "IX - L'Ermite", "Téléporte Isaac à la Boutique {{Shop}}"},
 	[12] = {"12", "XI - La Force", "#{{Heart}} +1 réceptacle de cœur#↑ Dégâts {{ColorLime}}x1.5 +0.3#↑ Vitesse {{ColorLime}}+0.3#↑ Portée {{ColorLime}}+2.5#{{Timer}} L'effet dure une salle"}, -- XI - Strength
 	[16] = {"16", "XV - Le Diable", "↑ Dégâts {{ColorLime}}+2{{ColorWhite}}#{{Timer}} L'effet dure une salle"},
@@ -1102,6 +1217,8 @@ local repCards={
 	[18] = {"18", "XVII - L'Étoile", "Téléporte Isaac dans la Salle du Trésor {{TreasureRoom}}"},
 	[19] = {"19", "XVIII - La Lune", "Téléporte Isaac dans la Salle Secrète {{SecretRoom}}"},
 	[20] = {"20", "XIX - Le Soleil", "{{HealingRed}} Soin complet#Inflige 100 dégâts à tous les ennemis de la salle#Révèle l'intégralité de l'étage sur la carte#Retire le Fléau d'Obscurité"},
+	[21] = {"21", "XX - Le Jugement", "{{Beggar}} Invoque un mendiant#{{DemonBeggar}} 33% de chances d'être un mendiant démoniaque #5% de chances d'être un maître des clés, un clochard aux bombes, un clochard aux batteries ou un mendiant pourri"},
+	[22] = {"22", "XXI - Le Monde", "{{Timer}} Révèle l'intégralité de l'étage sur la carte (sauf Chambre {{SuperSecretRoom}} Super / {{UltraSecretRoom}} ultra secrète)"},
 	[27] = {"27", "As de Trèfle", "Transforme toutes les ressources, coffres et ennemis de la salle en bombes"},
 	[28] = {"28", "As de Carreau", "Transforme toutes les ressources, coffres et ennemis de la salle en pièces"},
 	[29] = {"29", "As de Pique", "Transforme toutes les ressources, coffres et ennemis de la salle en clés"},
@@ -1121,7 +1238,7 @@ local repCards={
 	[57] = {"57", "I - Le Bateleur ?", "Entoure Isaac d'une aura qui dévie les projectiles ennemis#{{Timer}} L'effet dure 60 secondes"},
 	[58] = {"58", "II - La Papesse ?", "Les pieds de {{ColorCyan}}Maman{{ColorWhite}} tentent d'écraser Isaac pendant 60 secondes"},
 	[59] = {"59", "III - L'Impératrice ?", "↑ Débit {{ColorLime}}+1.35#↓ Vitesse {{ColorError}}-0.1#{{Heart}} +2 réceptacles de cœur#{{Timer}} L'effet dure 60 secondes"},
-	[60] = {"60", "IV - L'Empereur ?", "Téléporte Isaac dans une salle de Boss {{BossRoom}} séparée du reste de l'étage#Le boss provient de deux étages plus profond#Battre le boss fait apparaître un objet"},
+	[60] = {"60", "IV - L'Empereur ?", "Téléporte Isaac dans une salle de Boss séparée du reste de l'étage#Le boss provient de deux étages plus profond#Battre le boss fait apparaître un objet"},
 	[61] = {"61", "V - Le Pape ?", "Fait apparaître 2 cœurs d'os"},
 	[62] = {"62", "VI - L'Amoureux ?", "Fait apparaître un objet qui provient de la banque d'objets de la salle#Convertit 1 réceptacle de cœur ou 2 cœurs d'âme en un cœur brisé"},
 	[63] = {"63", "VII - Le Chariot ?", "↑ Débit fortement augmenté#Transforme Isaac en une statue invulnérable#{{Timer}} L'effet dure 10 secondes"},
@@ -1260,13 +1377,14 @@ EID.descriptions[languageCode].horsepills={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
-	AddBlackHearts = "{{BlackHeart}} {1} cœur(s) noir(s)",
-	AddBombs = "{{Bomb}} {1} bombe(s)",
-	AddCoins = "{{Coin}} {1} pièce(s)",
-	AddHearts = "Heals {{Heart}} {1} cœur(s) rouge(s)",
-	AddKeys = "{{Key}} {1} clé(s)",
-	AddMaxHearts = "{{EmptyHeart}} {1} réceptacle(s) de cœur",
-	AddSoulHearts = "{{SoulHeart}} {1} cœur(s) d'âme",
+	-- These texts are affected by the PluralizeFunction (ab+ file)
+	AddBlackHearts = "{{BlackHeart}} {1} cœur{pluralize} noir{pluralize}",
+	AddBombs = "{{Bomb}} {1} bombe{pluralize}",
+	AddCoins = "{{Coin}} {1} pièce{pluralize}",
+	AddHearts = "Heals {{Heart}} {1} cœur{pluralize} rouge{pluralize}",
+	AddKeys = "{{Key}} {1} clé{pluralize}",
+	AddMaxHearts = "{{EmptyHeart}} {1} réceptacle{pluralize} de cœur",
+	AddSoulHearts = "{{SoulHeart}} {1} cœur{pluralize} d'âme",
 
 	-- Cache Flag names
 	cacheFlagStart = "Peut influencer ",

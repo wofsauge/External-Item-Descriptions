@@ -10,10 +10,11 @@
 
 local languageCode = "uk_ua"
 
--- init uk_ua table
+-- init Ukrainian table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Ukrainian"
+EID.descriptions[languageCode].languageName = "Ukrainian (WIP)"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"ukrainian", "uk"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}
@@ -557,7 +558,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Сльозотеча", "Сльози персонажа поступово сповільнюються, зупиняються, а тоді вибухають на 8 менших#Сльози можуть об'єднуватись та ставити більшими"},
 	{"533", "Трисвяте", "Замінює сльози персонажа на пронизливі промені світла#Промені наносять 33% шкоди, але можуть вдаряти ворогів декілька разів"},
 	{"534", "Рюкзак", "Дозволяє персонажу тримати 2 активні предмети#Активні предмети можна міняти, використовуючи кнопку Скиду ({{ButtonRT}})"},
-	{"535", "Ковдра", "{{SoulHeart}} +1 серце Душі#{{Heart}} Відновлює 1 червоне серце#{{Collectible313}} При вході у кімнату боса, персонаж отримує ефект {{HolyMantleSmall}} Святої Мантії"},
+	{"535", "Ковдра", "{{SoulHeart}} +1 серце Душі#{{HealingRed}} Відновлює 1 червоне серце#{{Collectible313}} При вході у кімнату боса, персонаж отримує ефект {{HolyMantleSmall}} Святої Мантії"},
 	{"536", "Вівтар для жертвопринесень", "Принесіть у жертву 1-2 компаньйонів, щоб створити предмет Диявола за кожну пожертву#Перетворює синіх павуків та мух на монети"},
 	{"537", "Крихітка Ригачка", "{{Pill}} Створює випадкову пігулку#Випускає струмінь рідини#Тип рідини змінюється при кожному використанні пігулки"},
 	{"538", "Камінці", "{{Trinket}} Створює 3 випадкові брелки#{{Collectible479}} При отриманні шкоди, активний брелок може бути поглинутий та перенесений до інвентарю предметів, перманентно даючи свій ефект"},
@@ -901,9 +902,12 @@ EID.descriptions[languageCode].transformations={
 
 
 ---------- MISC ----------
-
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = ""
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
+-- Each language can do their own algorithm to modify the given text to their needs
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- TODO: Not Implemented right now...
+	return text
+end
 
 EID.descriptions[languageCode].VoidText = "При поглинанні дає:"
 -- {1} will become the number text (like "{1} Tears up" -> "+0.5 Tears up")

@@ -3,7 +3,7 @@ local GLITCH_ITEM_FLAG = 4294967296
 local currentBlacklist
 local lastInputTime = 0
 local lastScrollDirection = 1 -- used for automatic scroll feature, if no description is visible for a category
-local autoScrollTriesLeft = -999 -- Stores how many tries the automatic category skip has left to do. This prevents infinite loops, when the player has no items
+local autoScrollTriesLeft = math.mininteger -- Stores how many tries the automatic category skip has left to do. This prevents infinite loops, when the player has no items
 local numAvailableDescriptionSlots = 0
 
 EID.ItemReminderBlacklist = { ["5.100.714"] = true, ["5.100.715"] = true } -- Dont display these in the Item reminder view
@@ -173,14 +173,14 @@ EID.ItemReminderDescriptionModifier = {
 					local inAscent = EID.isRepentance and (level:IsAscent() or level:IsPreAscent())
 					local final = not level:IsNextStageAvailable()
 					
-					if EID:IsGreedMode() then
+					if game:IsGreedMode() then
 						skip = 1
 						if stageNum == 5 then skip = 0 -- Depths 2 -> Womb 1
 						elseif stageNum == 7 or stageNum == 10 then skip = 2
 						elseif stageNum == 0 then count = 1 end -- Womb 1 -> Sheol, Sheol -> Chest
 					else
 						if final or stageNum == 12 then count = 1 -- Dark Room/Chest/The Void/Home/Corpse 2 doesn't display any more
-						elseif EID:IsGreedMode() then count = 2 -- prevent Greed Mode Sheol from behaving weird
+						elseif game:IsGreedMode() then count = 2 -- prevent Greed Mode Sheol from behaving weird
 						elseif stageNum == 8 then count = 3; skip = 1 -- Womb 2 displays Sheol and Cathe
 						elseif stageNum == 9 then count = 3 -- ??? displays Sheol and Cathe
 						elseif stageNum == 10 then skip = 1 end -- Sheol/Cathe skip one to display Dark Room/Chest
@@ -506,7 +506,8 @@ function EID:ItemReminderAddSpecialDescriptions(player)
 	end
 end
 
--- Information about the player character's traits
+-- Item Reminder function: Information about the player character's traits
+---@param player EntityPlayer
 function EID:ItemReminderHandleCharacterInfo(player)
 	local playerType = player:GetPlayerType()
 	local playerDesc = EID:getDescriptionEntry("CharacterInfo")[playerType]
@@ -515,7 +516,8 @@ function EID:ItemReminderHandleCharacterInfo(player)
 	end
 end
 
--- Passive Item Descriptions
+-- Item Reminder function: Passive Item Descriptions
+---@param player EntityPlayer
 function EID:ItemReminderHandleSelectedPassiveItem(player)
 	local playerNum = EID:getPlayerID(player, true)
 	if EID.RecentlyTouchedItems[playerNum] and #EID.RecentlyTouchedItems[playerNum] > 0 then
@@ -523,7 +525,8 @@ function EID:ItemReminderHandleSelectedPassiveItem(player)
 	end
 end
 
--- Active Item Descriptions
+-- Item Reminder function: Active Item Descriptions
+---@param player EntityPlayer
 function EID:ItemReminderHandleActiveItems(player)
 	-- limit number of active item descriptions to 2, since Slot 3 and 4 are handled seperately
 	for i = 0, 1 do
@@ -536,7 +539,8 @@ function EID:ItemReminderHandleActiveItems(player)
 	end
 end
 
--- pocket active
+-- Item Reminder function: pocket actives
+---@param player EntityPlayer
 function EID:ItemReminderHandlePocketActive(player)
 	if not EID.isRepentance or not EID:ItemReminderCanAddMoreToView() then return end
 	local pocketActive = player:GetActiveItem(2) or 0
@@ -545,7 +549,8 @@ function EID:ItemReminderHandlePocketActive(player)
 	end
 end
 
--- dice bag
+-- Item Reminder function: dice bag
+---@param player EntityPlayer
 function EID:ItemReminderHandleDiceBag(player)
 	if not EID.isRepentance or not EID:ItemReminderCanAddMoreToView()  then return end
 
@@ -555,7 +560,8 @@ function EID:ItemReminderHandleDiceBag(player)
 	end
 end
 
--- Pocket Item Descriptions
+-- Item Reminder function: Pocket Item Descriptions
+---@param player EntityPlayer
 function EID:ItemReminderHandlePocketItems(player)
 	for i = 0, 2 do
 		if not EID:ItemReminderCanAddMoreToView() then return end
@@ -576,7 +582,9 @@ function EID:ItemReminderHandlePocketItems(player)
 	end
 end
 
--- Held trinkets are added at the end of the table; use this table in descending order
+-- Item Reminder function: Held trinkets are added at the end of the table; use this table in descending order
+---@param player EntityPlayer
+---@diagnostic disable-next-line: duplicate-set-field
 function EID:ItemReminderHeldPlusGulped(player)
 	local playerNum = EID:getPlayerID(player, true)
 	local newTable = {}
@@ -587,12 +595,14 @@ function EID:ItemReminderHeldPlusGulped(player)
 	end
 	return newTable
 end
--- Trinket Descriptions
+-- Item Reminder function: Trinket Descriptions
+---@param player EntityPlayer
 function EID:ItemReminderHandleTrinkets(player)
 	EID:ItemReminderHandleItemPrinting(player, EID:ItemReminderHeldPlusGulped(player), 350, true)
 end
 
--- Tainted ??? Poop Descriptions
+-- Item Reminder function: Tainted ??? Poop Descriptions
+---@param player EntityPlayer
 function EID:ItemReminderHandlePoopSpells(player)
 	if EID.isRepentance and player:GetPlayerType() == 25 and EID:ItemReminderCanAddMoreToView() then
 		local poopInfo = EID:getDescriptionEntry("poopSpells")
@@ -615,7 +625,7 @@ function EID:ItemReminderHandlePoopSpells(player)
 
 					local ignoreExisting = false
 					if customPoop == nil then --If the poop still doesn't exist, use the unkown one instead
-						customPoop = EID:getDescriptionEntry("poopSpells")["Unknown"] or EID.descriptions["en_us"]["poopSpells"]["Unknown"]
+						customPoop = EID:getDescriptionEntry("poopSpells")["Unknown"] or EID.descriptions[EID.DefaultLanguageCode]["poopSpells"]["Unknown"]
 						ignoreExisting = true
 					end
 
@@ -646,13 +656,14 @@ function EID:ItemReminderHandlePoopSpells(player)
 	end
 end
 
--- Lemegeton wisp descriptions
+-- Item Reminder function: Lemegeton wisp descriptions
+---@param player EntityPlayer
 function EID:ItemReminderHandleLemegetonWisps(player)
 	local playerNum = EID:getPlayerID(player, true)
 	EID:ItemReminderHandleItemPrinting(player, EID.WispsPerPlayer[playerNum], 100, false)
 end
 
--- Handle scroll inputs
+-- Item Reminder function: Handle scroll inputs
 function EID:ItemReminderHandleInputs()
 	if EID.Config["ItemReminderEnabled"] and EID.Config["ItemReminderDisplayMode"] ~= "Classic" and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
 		if EID.Config["ItemReminderDisableInputs"] then EID.holdTabPlayer.ControlsCooldown = 2 end
@@ -695,10 +706,10 @@ function EID:ItemReminderHandleInputs()
 	end
 end
 
--- special list of all players, ignoring tainted forgotten ghost and coop babies
+-- Item Reminder function: special list of all players, ignoring tainted forgotten ghost and coop babies
 function EID:ItemReminderGetAllPlayers()
 	local filteredPlayerList = {}
-	for i, player in ipairs(EID.coopAllPlayers) do
+	for _, player in ipairs(EID.coopAllPlayers) do
 		if not (EID.isRepentance and player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B) and player:GetBabySkin() == -1 then
 			table.insert(filteredPlayerList, player)		
 		end
@@ -706,14 +717,20 @@ function EID:ItemReminderGetAllPlayers()
 	return filteredPlayerList
 end
 
+-- Item Reminder function: check if the currently selected category is scrollable
+---@return boolean
 function EID:IsScrollableCategorySelected()
 	return EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1].isScrollable
 end
 
+-- Item Reminder function: check if the given category is currently selected
+---@param categoryID integer
+---@return boolean
 function EID:IsCategorySelected(categoryID)
 	return EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1].id == categoryID
 end
 
+-- Item Reminder function: Resets data when initializing holding TAB
 function EID:ItemReminderHandleInitHoldTab()
 	local oldDisplayPlayer = EID.ItemReminderSelectedPlayer
 
@@ -734,6 +751,8 @@ function EID:ItemReminderHandleInitHoldTab()
 	end
 end
 
+--- Returns the title of the currently selected Item Reminder category.
+---@return string
 function EID:ItemReminderGetTitle()
 	local category = EID.ItemReminderCategories[EID.ItemReminderSelectedCategory + 1]
 
@@ -836,19 +855,21 @@ function EID:ItemReminderHandleItemPrinting(player, entryTable, itemVariant, des
 	
 	if descending then
 		local startIndex = (#entryTable - EID.ItemReminderSelectedItems[EID.ItemReminderSelectedCategory] - 1) % #entryTable
-		for i = 1, descsToDisplay do
+		for _ = 1, descsToDisplay do
 			EID:ItemReminderAddDescription(player, 5, itemVariant, entryTable[startIndex+1] % GLITCH_ITEM_FLAG)
 			startIndex = (startIndex - 1) % #entryTable
 		end
 	else
 		local startIndex = EID.ItemReminderSelectedItems[EID.ItemReminderSelectedCategory] % #entryTable
-		for i = 1, descsToDisplay do
+		for _ = 1, descsToDisplay do
 			EID:ItemReminderAddDescription(player, 5, itemVariant, entryTable[startIndex+1] % GLITCH_ITEM_FLAG)
 			startIndex = (startIndex + 1) % #entryTable
 		end
 	end
 end
 
+--- Generates the description for the Item Reminder, based on the currently selected category and player.
+---@return string
 function EID:ItemReminderGetDescription()
 	EID.InsideItemReminder = true
 	EID.ItemReminderTempDescriptions = {}
@@ -886,7 +907,7 @@ function EID:ItemReminderGetDescription()
 
 	-- Skip category if nothing is in it
 	if #EID.ItemReminderTempDescriptions == 0 then
-		if autoScrollTriesLeft == -999 then
+		if autoScrollTriesLeft == math.mininteger then
 			-- auto scroll was started
 			autoScrollTriesLeft = #EID.ItemReminderCategories - 1
 		end
@@ -908,11 +929,11 @@ function EID:ItemReminderGetDescription()
 			end
 		end
 		-- auto scroll was stopped. reset scroll value
-		autoScrollTriesLeft = -999
+		autoScrollTriesLeft = math.mininteger
 		EID.InsideItemReminder = false
 		return "{{Blank}}#{{Blank}} " .. EID:getDescriptionEntry("ItemReminder", "InventoryEmpty")
 	end
-	autoScrollTriesLeft = -999
+	autoScrollTriesLeft = math.mininteger
 
 	local finalHoldMapDesc = ""
 	EID.ItemReminderDisplayingScrollbar = false

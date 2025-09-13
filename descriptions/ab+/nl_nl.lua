@@ -10,10 +10,11 @@
 
 local languageCode = "nl_nl"
 
--- init nl_NL table
+-- init Dutch table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Dutch"
+EID.descriptions[languageCode].languageName = "Dutch (WIP) (AB+)"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"dutch", "nl"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}
@@ -559,7 +560,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Lachryphagy", "Isaac's tears progressively slow down, stop, then explode into 8 smaller tears#Tears can merge and become bigger"},
 	{"533", "Trisagion", "Replaces Isaac's tears with piercing beams of light#The beams deal 33% damage but can hit enemies multiple times"},
 	{"534", "Schoolbag", "Allows Isaac to hold 2 active items#The items can be swapped using the Drop button ({{ButtonRT}})"},
-	{"535", "Blanket", "{{SoulHeart}} +1 Soul Heart#{{Heart}} Heals 1 Red Heart#{{Collectible313}} Entering a boss room grants a {{HolyMantleSmall}} Holy Mantle shield"},
+	{"535", "Blanket", "{{SoulHeart}} +1 Soul Heart#{{HealingRed}} Heals 1 Red Heart#{{Collectible313}} Entering a boss room grants a {{HolyMantleSmall}} Holy Mantle shield"},
 	{"536", "Sacrificial Altar", "Sacrifices up to 2 familiars and spawns a Devil item for each sacrifice#Turns blue spiders/flies into coins"},
 	{"537", "Lil Spewer", "{{Pill}} Spawns a random pill on pickup#Fires a line of creep#The type of creep changes with each pill use"},
 	{"538", "Marbles", "{{Trinket}} Spawns 3 random trinkets#{{Collectible479}} Taking damage can remove Isaac's held trinket and grant its effects permanently"},

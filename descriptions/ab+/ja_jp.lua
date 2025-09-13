@@ -1,7 +1,7 @@
 ---------------------------------------
 -----  Basic Japanese descriptions ----
 ---------------------------------------
--- Last Update: 2024-11-18
+-- Last Update: 2025-07-01
 
 -- FORMAT: Item ID | Name | Description
 -- Special character markup:
@@ -10,10 +10,11 @@
 
 local languageCode = "ja_jp"
 
--- init ja_jp table
+-- init Japanese table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Japanese"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"japanese", "jp", "ja"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default", lineHeight= 12}, {name="inverted", lineHeight = 12}, {name="borderless", lineHeight= 12}}
@@ -1093,8 +1094,13 @@ EID.descriptions[languageCode].transformations={
 
 ---------- MISC ----------
 
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = ""
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them, make it nil to not pluralize
+-- Each language can do their own algorithm to modify the given text to their needs
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- English plural is very easy. Simply put an "s" at the end of specific words, if amount > 1
+	-- replace {pluralize} placeholders inside the text with an "s"
+	return EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
+end
 
 EID.descriptions[languageCode].VoidText = "吸収した時："
 -- {1} will become the number text (like "{1} Tears up" -> "+0.5 Tears up")
@@ -1114,27 +1120,28 @@ EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} 使い切りアイ�
 EID.descriptions[languageCode].BlackFeatherInformation = "現在{{ColorLime}}{1}{{CR}}個の対象アイテムを 所持（攻撃力 +{2}）"
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
--- {1} = number of hearts, {2} = plural character
+-- {1} = number of hearts, {pluralize} = plural character
+-- These texts are affected by the PluralizeFunction (ab+ file)
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
 	["Red to Soul"] = {"↑ 最大体力 +{1}", "青ハート +{1}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{SoulHeart}} +{1} Soul Heart{2}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Soul Heart{2}"},
+	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{SoulHeart}} +{1} Soul Heart{pluralize}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Soul Heart{pluralize}"},
 	
 	["Red to Black"] = {"↑ 最大体力 +{1}", "黒ハート +{1}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{BlackHeart}} +{1} Black Heart{2}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Black Heart{2}"},
+	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{BlackHeart}} +{1} Black Heart{pluralize}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{BlackHeart}} {1} Black Heart{pluralize}"},
 	
 	["Red to Bone"] = {"↑ 最大体力 +{1}", "骨ハート +{1}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{EmptyBoneHeart}} +{1} Empty Bone Heart{2}", "{{HealingRed}}", "{{HealingBone}}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyBoneHeart}} {1} Bone Heart{2}"}, -- Red HP to Bone Hearts
+	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{EmptyBoneHeart}} +{1} Empty Bone Heart{pluralize}", "{{HealingRed}}", "{{HealingBone}}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyBoneHeart}} {1} Bone Heart{pluralize}"}, -- Red HP to Bone Hearts
 	
 	["Red to Coin"] = {"↑ 最大体力 +{1}", "↑ 最大体力 +{1}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{EmptyCoinHeart}} +{1} Empty Coin Heart{2}",
-	"{{HealingRed}} Heals {1} heart{2}", "{{HealingCoin}} Heals {1} coin{2}", "{{HealingRed}} Heals half a heart", "{{HealingCoin}} Heals 1 coin", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyCoinHeart}} {1} Coin Heart{2}"}, -- Red HP to Coin Hearts
+	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{EmptyCoinHeart}} +{1} Empty Coin Heart{pluralize}",
+	"{{HealingRed}} Heals {1} heart{pluralize}", "{{HealingCoin}} Heals {1} coin{pluralize}", "{{HealingRed}} Heals half a heart", "{{HealingCoin}} Heals 1 coin", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyCoinHeart}} {1} Coin Heart{pluralize}"}, -- Red HP to Coin Hearts
 	
-	["Red to None"] = {"↑ 最大体力 +{1}", "", "↑ {{EmptyHeart}} +{1} Empty heart container{2}", "", "↓ {{EmptyHeart}} {1} Health", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {"↑ 最大体力 +{1}", "", "↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "", "↓ {{EmptyHeart}} {1} Health", ""}, -- Red HP to None (The Lost)
 }
 
 EID.descriptions[languageCode].MCM = {
@@ -1217,7 +1224,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedMode}} グリードモードでは効果なし",
 	["No Effect (Copies)"] = "複数所持でも効果なし", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "追加の効果なし", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "赤ハートを持てない キャラに効果なし",
 	["Different Effect"] = "{{ColorSilver}}{1}では効果が変化{{CR}}",
 	["Dies on Use"] = "{{Warning}} {1}で使うと死ぬ", -- for Razor Blade and such as The Lost
 	
@@ -1295,6 +1301,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.81"] = "赤ハートを持てないキャラは 青／黒ハートを1個にする", -- Dead Cat
 --  ["5.100.316"] = "{1}removes the teleportation effect", -- Cursed Eye
 --  ["5.100.260"] = "Removes the teleportation effect of {1}", -- Black Candle
+	["Void Single Use"] = "使い切りアイテムは 一度だけ発動できる", -- Single Use Actives + Void
 	["? Card Single Use"] = "使い切りアイテムは ？カードを使うと消失する", -- Single Use Actives + ? Card
 	["5.300.48"] = "I AM ERRORにテレポート#白紙のカードと？カード 両方が消失する", -- Blank Card + ? Card
 	["? + Blank Pedestal"] = "白紙のカードで？カードを 使うと、I _AM_ERRORに テレポートし、両カード共 消失する", -- Looking at Blank Card with ? Card
@@ -1338,6 +1345,3 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.10"] = "お店が無い場合、ランダムな 部屋にテレポートする", -- IX - The Hermit (Womb and below)
 	
 }
-
-
-

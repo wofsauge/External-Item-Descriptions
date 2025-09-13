@@ -37,16 +37,99 @@ setmetatable(__eidEntityDescriptions,
 	end })
 ---------------------------------------------------------------------------
 -------------------------Handle API Functions -----------------------------
+EID.Pathfinder = require("features.pathfinder.luafinding")
+
 local nullVector = Vector(0,0)
 local game = Game()
 local maxCardID = Card.NUM_CARDS - 1
 local maxPillID = PillColor.NUM_PILLS - 1
 local dynamicSpriteCache = {} -- used to store sprite objects of collectible icons etc.
 
--- Adds a description for a collectible. Optional parameters: itemName, language
+--#region Luadoc definitions
+
+---@alias EID_PillClass "3-"|"2-"|"1-"|"0"|"1+"|"2+"|"3+"
+
+---@alias EID_TypeVariantAlias
+---| "collectible" @ "5.100"
+---| "collectibles" @ "5.100"
+---| "trinket" @ "5.350"
+---| "trinkets" @ "5.350"
+---| "card" @ "5.300"
+---| "cards" @ "5.300"
+---| "pill" @ "5.70"
+---| "pills" @ "5.70"
+---| "horsepills" @ "5.70"
+---| "horsepill" @ "5.70"
+---| "dice" @ "1000.76"
+---| "entity" @ Indicates that a full entity identifier is used
+
+---@alias EID_Dimension
+---| 0 @Normal dimension
+---| 1 @Secondary dimension, used by Downpour mirror dimension and Mines escape sequence
+---| 2 @Death Certificate dimension
+
+---@class EID_GoldenTrinketData
+---@field t number[]? @The numbers inside the text that should be multiplied
+---@field mult number? @Max multiplier applied. assumed to be 3.
+---@field mults number[]? @Custom multipliers. A Missing Page's damage goes from 80 to 120 to 160; so its multipliers are 1.5 and 2, instead of 2 and 3
+---@field append boolean? @If true, text is added to the description
+---@field findReplace boolean? @If true, the text is replaced
+---@field fullReplace boolean? @If true, description is fully replaced
+---@field goldenOnly boolean? @If true, the description is modified only when the trinket is golden
+---@field additions number? @Add a value to the number in the text, similar to multiplier. Expects a table of 3 values, 1: double, 2: triple, 3: quadruple effect
+
+---@class EID_Icon
+---@field [1] string @Animation name
+---@field [2] integer @Animation frame
+---@field [3] integer @Width
+---@field [4] integer @Height
+---@field [5] integer? @Left offset
+---@field [6] integer? @Top offset
+---@field [7] Sprite @Sprite object
+
+---@class EID_DescObj
+---@field ObjType integer
+---@field ObjVariant integer
+---@field ObjSubType integer
+---@field fullItemString string @String in `Type.Variant.SubType` format
+---@field Name string
+---@field Description string
+---@field Transformation string
+---@field ModName string
+---@field Quality integer
+---@field Icon EID_Icon
+---@field Entity Entity?
+---@field ShowWhenUnidentified boolean?
+---@field PermanentTextEnglish string?
+---@field IgnoreBulletPointIconConfig boolean?
+---@field ItemType integer?
+---@field ChargeType integer?
+---@field Charges integer? @Max charges
+
+---@alias EID_Anchor "TOP"|"BOTTOM"|"LEFT"|"RIGHT"
+
+---@class EID_HudElement
+---@field x number
+---@field y number
+---@field width number
+---@field height number
+---@field anchors EID_Anchor[]
+---@field descriptionObj fun(): EID_DescObj
+
+--#endregion
+
+---Adds a description for a collectible.
+---@param id CollectibleType
+---@param description string
+---@param itemName string?
+---@param language EID_LanguageCode? @Default: "en_us"
 function EID:addCollectible(id, description, itemName, language)
 	itemName = itemName or nil
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add collectible description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	local modName = EID._currentMod
 	-- Glitched Items exception so they don't have a mod name
 	if id > 4294960000 then modName = nil end
@@ -54,32 +137,50 @@ function EID:addCollectible(id, description, itemName, language)
 	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description, modName}
 end
 
--- Adds a description for a trinket. Optional parameters: itemName, language
+---Adds a description for a trinket.
+---@param id TrinketType
+---@param description string
+---@param itemName? string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addTrinket(id, description, itemName, language)
 	itemName = itemName or nil
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add trinket description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description, EID._currentMod}
 end
 
--- Adds character specific information, which can be viewed in the Item Reminder
+---Adds character specific information, which can be viewed in the Item Reminder
+---@param characterId PlayerType
+---@param description string
+---@param playerName? string @Default: "Modded Character"
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addCharacterInfo(characterId, description, playerName, language)
 	playerName = playerName or "Modded Character"
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
+	if characterId == -1 then
+		EID:WriteErrorMsg("Trying to add character description to id = -1, which is not allowed! (Name: "..tostring(playerName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("CharacterInfo", language)
 	EID.descriptions[language].CharacterInfo[characterId] = {playerName, description}
 end
 
--- Adds information about appending text and multiplying numbers in a modded trinket's Golden/Mom's Box description. All three variables are optional, set to ""/0 or nil to not include them
--- appendText: Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
--- numbersToMultiply: The number inside the text that should be multiplied. can be one number, or a table of numbers
--- maxMultiplier: is what tripling (Golden+Mom's Box) should multiply the numbers by (normally 3)
--- (If it's less than 2, it also applies to doubling)
--- Example: My modded trinket gives +0.5 range and when tripled, adds homing instead of tripling the range boost
--- EID:addGoldenTrinketMetadata(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 0.5, 2)
+---Adds information about appending text and multiplying numbers in a modded trinket's Golden/Mom's Box description. All three variables are optional, set to ""/0 or nil to not include them
+---@param appendText? string | string[] @Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
+---@param numbersToMultiply? number | number[] @The number inside the text that should be multiplied. can be one number, or a table of numbers
+---@param maxMultiplier? number @Is what tripling (Golden+Mom's Box) should multiply the numbers by, normally 3. If it's less than 2, it also applies to doubling
+---@param language? EID_LanguageCode @Default: "en_us"
+-- Example: My modded trinket gives +0.5 range and when tripled, adds homing instead of tripling the range boost:
+--- ```lua
+--- EID:addGoldenTrinketMetadata(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 0.5, 2)
+--- ```
 function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMultiplier, language)
 	maxMultiplier = maxMultiplier or 3
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
 
 	if appendText == "" then appendText = nil
 	elseif type(appendText) == "string" then appendText = {appendText} end
@@ -93,38 +194,77 @@ function EID:addGoldenTrinketMetadata(id, appendText, numbersToMultiply, maxMult
 		EID.descriptions[language].goldenTrinketEffects[id] = { appendText[1], appendText[1], appendText[2] or appendText[1] }
 	end
 end
+---Adds information about appending text and adding to numbers in a modded trinket's Golden/Mom's Box description. All three variables are optional, set to ""/0 or nil to not include them
+---@param id TrinketType
+---@param appendText? string | string[] @Text to be appended onto the description. Can be one string, or a table of two strings; one for doubling and one for tripling
+---@param numbersToChange? number | number[] @The number inside the text that gets added towards. can be one number, or a table of numbers
+---@param additiveValues? number @Table of values that should be added to the number, if its doubled, tripled, or quadrupled
+---@param language? EID_LanguageCode @Default: "en_us"
+-- Example: My modded trinket gives +5 range and when tripled, adds homing instead of tripling the range boost:
+--- ```lua
+--- EID:addGoldenTrinketMetadataAdditive(Isaac.GetTrinketIdByName("Cool Trinket"), {"", "Homing tears"}, 5, {1,2,3})
+--- ```
+function EID:addGoldenTrinketMetadataAdditive(id, appendText, numbersToChange, additiveValues, language)
+	language = language or EID.DefaultLanguageCode
 
--- Add a fully custom data table to the table of Golden Trinket effects
--- Check the comments above EID.GoldenTrinketData in eid_data.lua for some info about what is possible
--- You may also want to add text entries into EID.descriptions[languageCode].goldenTrinketEffects
+	if appendText == "" then appendText = nil
+	elseif type(appendText) == "string" then appendText = {appendText} end
+
+	if numbersToChange == 0 then numbersToChange = nil
+	elseif type(numbersToChange) == "number" then numbersToChange = {numbersToChange} end
+
+	additiveValues = type(additiveValues) == "number" and {additiveValues, additiveValues, additiveValues} or additiveValues or {1, 2, 3}
+	EID.GoldenTrinketData[id] = {t = numbersToChange, additions = additiveValues, mults = {1,1,1}, append = appendText and true}
+	if appendText then
+		EID:CreateDescriptionTableIfMissing("goldenTrinketEffects", language)
+		EID.descriptions[language].goldenTrinketEffects[id] = { appendText[1], appendText[1], appendText[2] or appendText[1] }
+	end
+end
+
+---@see EID_GoldenTrinketData
+---Add a fully custom data table to the table of Golden Trinket effects.
+---Check GoldenTrinketCallback in [eid_modifiers.lua](eid_modifiers.lua) to see the specifics of how it works.
+---You may also want to add text entries into `EID.descriptions[languageCode].goldenTrinketEffects`
+---@param id TrinketType
+---@param dataTable EID_GoldenTrinketData
 function EID:addGoldenTrinketTable(id, dataTable)
 	EID.GoldenTrinketData[id] = dataTable
 end
 
--- Adds a description for a card/rune. Optional parameters: itemName, language
+---Adds a description for a card/rune
+---@param id Card
+---@param description string
+---@param itemName? string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addCard(id, description, itemName, language)
 	itemName = itemName or nil
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add card description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description, EID._currentMod}
 end
 
--- Adds a metadata for a card. Used for Blank Card/Clear Rune. Optional parameters: isRune
--- Avalilable values for mimicCharge : 1~12
+-- DEPRECATED! Does nothing! Don't use!
+---@deprecated
+---@diagnostic disable-next-line: unused-local
 function EID:addCardMetadata(id, mimicCharge, isRune)
-	if isRune then
-		EID.blankCardHidden[id] = true
-		EID.runeIDs[id] = true
-	end
-	EID.cardMetadata[id] = {
-		mimiccharge = type(mimicCharge) == "number" and mimicCharge or -1
-	}
 end
 
--- Adds a description for a pilleffect id. Optional parameters: itemName, language
+---Adds a description for a PillEffect id
+---@param id PillEffect
+---@param description string
+---@param itemName? string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addPill(id, description, itemName, language)
 	itemName = itemName or nil
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add pill description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("pills", language)
 	EID:CreateDescriptionTableIfMissing("horsepills", language)
 	EID.descriptions[language].pills[id+1] = {id, itemName, description, EID._currentMod}
@@ -134,51 +274,77 @@ function EID:addPill(id, description, itemName, language)
 	end
 end
 
+---Adds a horsepill-specific description for a PillEffect
+---@param id PillEffect
+---@param description string
+---@param itemName? string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addHorsePill(id, description, itemName, language)
 	if not EID.isRepentance then return end
 	itemName = itemName or nil
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add horsepill description to id = -1, which is not allowed! (Name: "..tostring(itemName).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("horsepills", language)
 	EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
 end
 
--- Adds a metadata for a pilleffect. Used for Placebo/False PHD. Optional parameters: class
--- Avalilable values for mimicCharge : 1~12
--- For class value, "3-" ~ "3+" are available, although False PHD only cares for negative values.
--- "3-" : Major negative effect - Gives +0.6 Damage / "2-", "1-" : Minor negative effect - Spawns a Black Heart
+---Adds a metadata for a pilleffect. Used for Placebo/False PHD
+---@param id PillEffect
+---@param mimicCharge integer @DEPRECATED, does nothing
+---@param class? EID_PillClass @Default: "0". With False PHD, "3-" gives +0.6 Damage, "2-" and "1-" spawn a Black Heart
+---@diagnostic disable-next-line: unused-local
 function EID:addPillMetadata(id, mimicCharge, class)
 	EID.pillMetadata[id] = {
-		mimiccharge = type(mimicCharge) == "number" and mimicCharge or -1,
 		class = class or "0",
 	}
 end
 
--- Adds a character specific description for the item "Birthright". Optional parameters: playerName, language
+---Adds a character specific description for the item "Birthright"
+---@param characterId PlayerType
+---@param description string
+---@param playerName? string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addBirthright(characterId, description, playerName, language)
 	playerName = playerName or nil
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
+	if characterId == -1 then
+		EID:WriteErrorMsg("Trying to add Birthright description to id = -1, which is not allowed! (Name: "..tostring(characterId).."; Description: "..tostring(description)..")")
+		return
+	end
 	EID:CreateDescriptionTableIfMissing("birthright", language)
 	EID.descriptions[language].birthright[characterId + 1] = {playerName, "", description}
 end
 
--- Creates a new transformation with a given unique name and a display name
+---Creates a new transformation with a given unique name and a display name
+---@param uniqueName string
+---@param displayName string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:createTransformation(uniqueName, displayName, language)
-	language = language or "en_us"
+	language = language or EID.DefaultLanguageCode
 	if EID.CustomTransformations[uniqueName] == nil then
 		EID.CustomTransformations[uniqueName] = {}
 	end
 	EID.CustomTransformations[uniqueName][language] = displayName
 end
 
--- Assigns transformations to an entity (Adds to existing transformations)
--- valid target types: [collectible, trinket, card, pill, entity]
--- when type = entity, targetIdentifier must be in the format "ID.Variant.subtype". for any other type, it can just be the id
--- EXAMPLE: EID:assignTransformation("collectible", 1, "My Transformation")
+---Assigns transformations to an entity (Adds to existing transformations)
+---Target entity identifier is in `Type.Variant.SubType` format and is formed based on `targetType` and `targetIdentifier`<br>
+---Example: adding "My Transformation" to Sad Onion:
+--- ```lua
+--- EID:assignTransformation("collectible", 1, "My Transformation")
+--- ```
+---@param targetType EID_TypeVariantAlias @Alias for a `Type.Variant` of entity
+---@param targetIdentifier integer | string @If valid `targetType` is specified, `SubType` of the entity. Otherwise, the full entity identifier
+---@param transformationString string @Transformation name
 function EID:assignTransformation(targetType, targetIdentifier, transformationString)
 	local entryID = EID:getIDVariantString(targetType)
 	if entryID ~= nil then
 		entryID = entryID.."."..targetIdentifier
 	else
+		---@cast targetIdentifier string
 		entryID = targetIdentifier
 	end
 	EID:removeEntryFromString(EID.CustomTransformAssignments, entryID, transformationString)
@@ -190,38 +356,35 @@ function EID:assignTransformation(targetType, targetIdentifier, transformationSt
 	EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
 end
 
--- Try to automatically assign vanilla transformations to the entity
+---Try to automatically assign vanilla transformations to the entity
+---@param collectibleID CollectibleType
 function EID:tryAutodetectTransformationsCollectible(collectibleID)
 	if not EID.isRepentance then return end
 	local config = EID.itemConfig:GetCollectible(collectibleID)
-	local transformations = {}
-	transformations[EID.TRANSFORMATION.ANGEL] = config:HasTags(ItemConfig.TAG_ANGEL) or nil
-	transformations[EID.TRANSFORMATION.BOB] = config:HasTags(ItemConfig.TAG_BOB) or nil
-	transformations[EID.TRANSFORMATION.BOOKWORM] = config:HasTags(ItemConfig.TAG_BOOK) or nil
-	transformations[EID.TRANSFORMATION.CONJOINED] = config:HasTags(ItemConfig.TAG_BABY) or nil
-	transformations[EID.TRANSFORMATION.GUPPY] = config:HasTags(ItemConfig.TAG_GUPPY) or nil
-	transformations[EID.TRANSFORMATION.LEVIATHAN] = config:HasTags(ItemConfig.TAG_DEVIL) or nil
-	transformations[EID.TRANSFORMATION.LORD_OF_THE_FLIES] = config:HasTags(ItemConfig.TAG_FLY) or nil
-	transformations[EID.TRANSFORMATION.MOM] = config:HasTags(ItemConfig.TAG_MOM) or nil
-	transformations[EID.TRANSFORMATION.MUSHROOM] = config:HasTags(ItemConfig.TAG_MUSHROOM) or nil
-	transformations[EID.TRANSFORMATION.POOP] = config:HasTags(ItemConfig.TAG_POOP) or nil
-	transformations[EID.TRANSFORMATION.SPIDERBABY] = config:HasTags(ItemConfig.TAG_SPIDER) or nil
-	transformations[EID.TRANSFORMATION.SPUN] = config:HasTags(ItemConfig.TAG_SYRINGE) or nil
-	-- these dont have a tag : ADULT, STOMPY, SUPERBUM
-	for k, _ in pairs(transformations) do
-		EID:assignTransformation("collectible", collectibleID, k)
+
+	-- evaulate all transformations that have an ItemTag field
+	for transformIDString, data in pairs(EID.TransformationData) do
+		if data.ItemTag ~= nil and config:HasTags(data.ItemTag) then
+			EID:assignTransformation("collectible", collectibleID, transformIDString)
+		end
 	end
 end
 
--- Removes a transformation of an entity
--- valid target types: [collectible, trinket, card, pill, entity]
--- when type = entity, targetIdentifier must be in the format "ID.Variant.subtype". for any other type, it can just be the id
--- EXAMPLE: EID:removeTransformation("collectible", 1, "My Transformation")
+---Removes a transformation of an entity
+---Target entity identifier is in `Type.Variant.SubType` format and is formed based on `targetType` and `targetIdentifier`<br>
+---Example: removing "My Transformation" from Sad Onion:
+---```lua
+---EID:removeTransformation("collectible", 1, "My Transformation")
+---```
+---@param targetType EID_TypeVariantAlias @Alias for a `Type.Variant` of entity
+---@param targetIdentifier integer | string @If valid `targetType` is specified, `SubType` of the entity. Otherwise, the full entity identifier
+---@param transformationString string @Transformation name
 function EID:removeTransformation(targetType, targetIdentifier, transformationString)
 	local entryID = EID:getIDVariantString(targetType)
 	if entryID ~= nil then
 		entryID = entryID.."."..targetIdentifier
 	else
+		---@cast targetIdentifier string
 		entryID = targetIdentifier
 	end
 	EID:removeEntryFromString(EID.CustomTransformRemovals, entryID, transformationString)
@@ -233,10 +396,13 @@ function EID:removeTransformation(targetType, targetIdentifier, transformationSt
 	EID:removeEntryFromString(EID.CustomTransformAssignments, entryID, transformationString)
 end
 
--- Removes a given value from the string inside a table. Example: "1,2,3", removing 2 will return "1,3"
+---Removes a given value from the string inside a table. Example: "1,2,3", removing 2 will return "1,3"
+---@param sourceTable table<any, string>
+---@param entryKey any
+---@param entryValue string
 function EID:removeEntryFromString(sourceTable, entryKey, entryValue)
 	if sourceTable[entryKey] == nil then return end
-	local newEntry = ""
+	local newEntry = "" ---@type string|nil
 	for str in string.gmatch(sourceTable[entryKey], "([^,]+)") do
 		local addToList = true
 		for removeStr in string.gmatch(entryValue, "([^,]+)") do
@@ -248,16 +414,22 @@ function EID:removeEntryFromString(sourceTable, entryKey, entryValue)
 			newEntry = newEntry..","..str
 		end
 	end
+	---@cast newEntry string
 	newEntry = newEntry:sub(2)
 	if newEntry == "" then newEntry = nil end
 	sourceTable[entryKey] = newEntry
 end
 
--- Adds a description for a an Entity. Optional parameters: language, transformations
--- when subtype is -1 or empty, it will affect all subtypes of that entity
+---Adds a description for a an arbitrary Entity
+---@param id EntityType
+---@param variant integer
+---@param subtype? integer @If `nil` or `-1`, it will affect all subtypes of that entity
+---@param entityName string
+---@param description string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addEntity(id, variant, subtype, entityName, description, language)
-	subtype = subtype or nil
-	language = language or "en_us"
+	subtype = subtype or -1
+	language = language or EID.DefaultLanguageCode
 	if id == EntityType.ENTITY_EFFECT then
 		EID.effectList[variant] = true
 	end
@@ -269,30 +441,42 @@ function EID:addEntity(id, variant, subtype, entityName, description, language)
 	}
 end
 
--- Adds a new icon object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your icon)
--- Shortcuts are case Sensitive! Shortcuts can be overriden with this function to allow for full control over everything
--- Setting "animationFrame" to -1 will play the animation. The spriteObject needs to be of class Sprite() and have an .anm2 loaded
--- default values: leftOffset= -1 , topOffset = 0
+---Adds a new icon object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your icon).
+---Shortcuts are case sensitive! Shortcuts can be overriden with this function to allow for full control over everything
+---@param shortcut string
+---@param animationName string
+---@param animationFrame integer @-1 to play the animation
+---@param width integer
+---@param height integer
+---@param leftOffset? integer @Default: -1
+---@param topOffset? integer @Default: 0
 function EID:addIcon(shortcut, animationName, animationFrame, width, height, leftOffset, topOffset, spriteObject)
 	leftOffset = leftOffset or -1
 	topOffset = topOffset or 0
 	EID.InlineIcons[shortcut] = {animationName, animationFrame, width, height, leftOffset, topOffset, spriteObject}
 end
 
--- Adds a custom poop spell to T???'s poop descriptions. This spell should be added with the "Custom Poop API" library to actually appear in-game.
--- Token is the name of the spell in the Custom Poop API code. Examples: "CORNY", "BURNING", "BOMB".
--- Name is the actual name you want to display. Examples: "Corny Poop", "Burning Poop", "Bomb".
--- Icon is the displayed poop icon. Should be a markup.
--- Description is the actual description showed to the player. Examples: "Spawns blue flies while intact", "Deals contact damage while intact#Leaves a fire behind when destroyed", "Normal throwable bomb".
--- Language is the language you want to add it to. Examples: "en_us", "spa", "ru".
--- EXAMPLE: EID:addCustomPoopSpell("MYPOOP", "I Made This Poop", "{{PoopSpell1}}", "Can be throwed to deal damage", "en_us")
+---Adds a custom poop spell to T???'s poop descriptions.
+---This spell should be added with the "Custom Poop API" library to actually appear in-game.
+---Example:
+---```lua
+---EID:addCustomPoopSpell("MYPOOP", "I Made This Poop", "{{PoopSpell1}}", "Can be throwed to deal damage", "en_us")
+---```
+---@param token string @The name of the spell in the Custom Poop API code
+---@param name string @The name of the spell as it should appear in the description
+---@param icon string @Markup icon of the poop
+---@param description string
+---@param language? EID_LanguageCode @Default: "en_us"
 function EID:addCustomPoopSpell(token, name, icon, description, language)
 	EID.descriptions[language]["poopSpells"][token] = {icon, name, description, EID._currentMod}
 end
 
--- Adds a new color object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your color)
--- Shortcuts are case Sensitive! Shortcuts can be overriden with this function to allow for full control over everything
--- Define a callback to let it be called when interpreting the color-markup. define a kColor otherwise for a simple color change
+---Adds a new color object with the shortcut defined in the "shortcut" variable (e.g. "{{shortcut}}" = your color)
+---Shortcuts are case sensitive! Shortcuts can be overriden with this function to allow for full control over everything
+---Either `kColor` or `callback` must be provided
+---@param shortcut string
+---@param kColor? KColor @Constant color
+---@param callback? fun(color:KColor):KColor @Called whenever the color markup is interpreted
 function EID:addColor(shortcut, kColor, callback)
 	if callback ~= nil then
 		EID.InlineColors[shortcut] = callback
@@ -301,32 +485,40 @@ function EID:addColor(shortcut, kColor, callback)
 	end
 end
 
--- Overrides all potentially displayed texts and permanently displays the given texts. Can be turned of again using the "EID:hidePermanentText()" function
+---Overrides all potentially displayed texts and permanently displays the given texts
+---@see EID.hidePermanentText @Hides permanently displayed text object.
+---@param descriptionObject EID_DescObj @Description object to display
+---@param permName1 string
+---@param permName2 string?
 function EID:displayPermanentText(descriptionObject, permName1, permName2)
 	descriptionObject.PermanentTextEnglish = EID:getDescriptionEntryEnglish(permName1, permName2)
 	EID.permanentDisplayTextObj = descriptionObject
 	EID.isDisplayingPermanent = true
 end
 
--- Hides permanently displayed text objects if they exist.
+---Hides permanently displayed text objects if they exist.
 function EID:hidePermanentText()
 	EID.permanentDisplayTextObj = nil
 	EID.isDisplayingPermanent = false
 end
 
--- function to turn entity type names into actual ingame ID.Variant pairs
+---Turns entity type names into actual ingame ID.Variant pairs
+---@param typeName EID_TypeVariantAlias
 function EID:getIDVariantString(typeName)
 	if typeName == "collectible" or typeName == "collectibles" then return "5.100"
 	elseif typeName == "trinket" or typeName == "trinkets" then return "5.350"
 	elseif typeName == "card" or typeName == "cards" then return "5.300"
 	elseif typeName == "pill" or typeName == "pills" or typeName == "horsepills" or typeName == "horsepill" then return "5.70"
-	elseif typeName == "sacrifice" then return "-999.-1"
 	elseif typeName == "dice" then return "1000.76"
 	end
 	return nil
 end
 
--- function to turn entity typ and variants into their EID table-name
+---Turns entity type and variant into their EID table-name
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return string
 function EID:getTableName(Type, Variant, SubType)
 	local idString = Type.."."..Variant
 	if idString == "5.100" then return "collectibles"
@@ -338,35 +530,41 @@ function EID:getTableName(Type, Variant, SubType)
 		else
 			return "horsepills"
 		end
-	elseif idString == "-999.-1" then return "sacrifice"
 	elseif idString == "1000.76" then return "dice"
 	elseif idString == "1.0" then return "players"
 	else return "custom"
 	end
 end
 
--- Loads a given font from a given file path and use it to render text
+---Loads a given font from a given file path and use it to render text
+---@param fontFileName string
+---@return boolean @True if the font was loaded successfully
 function EID:loadFont(fontFileName)
+	---@diagnostic disable
 	EID.font:Load(fontFileName, "") -- GoG Version of game somehow wants a string as the second argument
 	EID.font:SetMissingCharacter(2)
+	---@diagnostic enable
 	if not EID.font:IsLoaded() then
-		Isaac.DebugString("EID - ERROR: Could not load font from '" .. EID.modPath .. "resources/font/default.fnt" .. "'")
+		EID:WriteErrorMsg("Could not load font from '" .. EID.modPath .. "resources/font/default.fnt" .. "'")
 		return false
 	end
 	return true
 end
 
--- Returns if EID is displaying text right now
+---Returns if EID is displaying text right now
+---@return boolean
 function EID:isDisplayingText()
 	return EID.isDisplaying
 end
 
--- Returns true, if curse of blind is active
+---Returns true, if curse of blind is active
+---@return boolean
 function EID:hasCurseBlind()
 	return game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND > 0
 end
 
--- returns the current text position
+---Returns the current text position
+---@return Vector
 function EID:getTextPosition()
 	local posVector = Vector(EID.UsedPosition.X, EID.UsedPosition.Y)
 	-- Only apply position modifiers when not in Local Mode
@@ -378,43 +576,55 @@ function EID:getTextPosition()
 	return posVector
 end
 
--- Adds a text position modifier Vector, which will be applied to the text position variable
--- Useful to add small offsets. For example: for schoolbag HUD
+---Adds a text position modifier Vector, which will be applied to the text position variable.
+---Useful to add small offsets. For example: for schoolbag HUD
+---@param identifier string
+---@param modifierVector Vector
 function EID:addTextPosModifier(identifier, modifierVector)
 	EID.PositionModifiers[identifier] = modifierVector
 end
 
--- Removes a text position modifier Vector
--- Useful to remove small offsets. For example: for schoolbag HUD
+---Removes a text position modifier Vector
+---@param identifier string
 function EID:removeTextPosModifier(identifier)
 	EID.PositionModifiers[identifier] = nil
 end
 
--- Changes the initial position of all eid descriptions
--- Useful to totally alter and override the current initial Overlay position
+---Changes the initial position of all eid descriptions
+---Useful to totally alter and override the current initial Overlay position
+---@param newPosVector Vector
 function EID:alterTextPos(newPosVector)
 	EID.UsedPosition = newPosVector
 end
 
--- returns the entity that is currently described. returns last described entity if currently not displaying text
+---Returns the entity that is currently described. Returns last described entity if currently not displaying text
+---@return Entity?
 function EID:getLastDescribedEntity()
 	return EID.lastDescriptionEntity
 end
 
--- Appends a given string to the description of a given Description object
+---Appends a given string to the description of a given Description object
+---@param descObj EID_DescObj
+---@param appendString string
 function EID:appendToDescription(descObj, appendString)
 	descObj.Description = descObj.Description..appendString
 end
 
--- returns the description object of a specific entity
--- falls back to english if the objID isnt available
+---Returns the description object of a specific entity.
+---Falls back to english if the objID isnt available
+---@param entity Entity
 function EID:getDescriptionObjByEntity(entity)
 	return EID:getDescriptionObj(entity.Type, entity.Variant, entity.SubType, entity)
 end
 
--- returns the description object of the specified entity
--- falls back to english if the objID isnt available
--- entity is optional
+---Returns the description object of the specified entity.
+---Falls back to english if the objID isnt available
+---@param Type EntityType | integer
+---@param Variant integer
+---@param SubType integer
+---@param entity? Entity
+---@param checkModifiers? boolean @Default: true
+---@return EID_DescObj
 function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	local description = {}
 	description.ObjType = Type
@@ -432,6 +642,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.ModName = tableEntry and tableEntry[4]
 	description.Quality = EID:getObjectQuality(description)
 	description.Icon = EID:getObjectIcon(description)
+	description.ItemPoolType = EID:getObjectItemPool(description)
 	EID:getObjectItemTypeAndCharge(description)
 	
 	EID.DifferentEffectPlayers = {}
@@ -442,7 +653,11 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	return description
 end
 
--- returns description Object from the legacy mod descriptions if they exist
+---Returns description Object from the legacy mod descriptions if they exist
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return [string, string, string]?
 function EID:getLegacyModDescription(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local customDesc = __eidEntityDescriptions[Type.."."..Variant.."."..SubType]
@@ -460,7 +675,10 @@ function EID:getLegacyModDescription(Type, Variant, SubType)
 	return nil
 end
 
--- apply Description Modifier to a given description object
+---Apply Description Modifier to a given description object
+---@param description EID_DescObj
+---@param SubType integer
+---@return EID_DescObj
 function EID:applyDescriptionModifier(description, SubType)
 	for _,modifier in ipairs(EID.DescModifiers) do
 		local result = modifier.condition(description)
@@ -477,7 +695,9 @@ function EID:applyDescriptionModifier(description, SubType)
 	return description
 end
 
--- Returns the icon and mod name of a given EID description object as a preformatted description string
+---Returns the icon and mod name of a given EID description object as a preformatted description string
+---@param descObj EID_DescObj
+---@return string
 function EID:getModNameString(descObj)
 	local modString = ""
 	if EID.Config["ModIndicatorDisplay"] == "Both" or EID.Config["ModIndicatorDisplay"] == "Name only" then
@@ -491,7 +711,10 @@ function EID:getModNameString(descObj)
 	return modString
 end
 
--- Attempts to merge two given Description objects into one
+---Attempts to merge two given Description objects into one
+---@param oldDescObj EID_DescObj
+---@param newDescObj EID_DescObj
+---@return EID_DescObj
 function EID:mergeDescriptionObjects(oldDescObj, newDescObj)
 	for k,v in pairs(oldDescObj) do
 		if not newDescObj[k] then
@@ -501,6 +724,8 @@ function EID:mergeDescriptionObjects(oldDescObj, newDescObj)
 	return newDescObj
 end
 
+---Writes charge-related information to a given description object
+---@param descObj EID_DescObj
 function EID:getObjectItemTypeAndCharge(descObj)
 	if not (descObj.ObjType == 5 and descObj.ObjVariant == 100 and descObj.ObjSubType ~= nil) then
 		return
@@ -520,29 +745,59 @@ function EID:getObjectItemTypeAndCharge(descObj)
 	end
 end
 
--- returns the specified object table in the current language.
--- falls back to english if it doesnt exist, unless specified otherwise
-function EID:getDescriptionEntry(objTable, objID, noFallback)
-	if not objID then
+---Returns the specified object string in the current language.
+---Falls back to english if it doesnt exist, unless `noFallback` is true
+---@param objTable string
+---@param objIdentifier? integer | string
+---@param noFallback? boolean
+---@return string
+function EID:getDescriptionEntry(objTable, objIdentifier, noFallback)
+	if not objIdentifier then
 		if noFallback then return EID.descriptions[EID:getLanguage()][objTable]
-		else return EID.descriptions[EID:getLanguage()][objTable] or EID.descriptions["en_us"][objTable] end
+		else return EID.descriptions[EID:getLanguage()][objTable] or EID.descriptions[EID.DefaultLanguageCode][objTable] end
 	else
 		local translatedTable = EID.descriptions[EID:getLanguage()][objTable]
-		if noFallback then return translatedTable and translatedTable[objID]
-		else return (translatedTable and translatedTable[objID]) or (EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]) end
+		local description
+		if noFallback then description = translatedTable and translatedTable[objIdentifier]
+		else description = (translatedTable and translatedTable[objIdentifier]) or (EID.descriptions[EID.DefaultLanguageCode][objTable] and EID.descriptions[EID.DefaultLanguageCode][objTable][objIdentifier]) end
+		--Try looking for a -1 that would encompass all subtypes of the variant
+		-- Safety check for if the identifier contains "."(dot) 1-2 times and only contains numbers
+		local strNoDots, numDots = string.gsub(objIdentifier, "%.","")
+		if not description and tonumber(strNoDots) and (numDots == 1 or numDots == 2) then
+			local subtype
+			for i = string.len(objIdentifier), 1, -1 do
+				if string.sub(objIdentifier, i, i) == "." then
+					subtype = string.sub(objIdentifier, i + 1, -1)
+					objIdentifier = string.gsub(objIdentifier, "." .. subtype, "") .. ".-1"
+					if subtype ~= "-1" then
+						return EID:getDescriptionEntry(objTable, objIdentifier, noFallback)
+					end
+					break
+				end
+			end
+		end
+		return description
 	end
 end
 
+---Returns the specified object string in english.
+---@param objTable string
+---@param objID? any
+---@return string
 function EID:getDescriptionEntryEnglish(objTable, objID)
 	if not objID then
-		return EID.descriptions["en_us"][objTable]
+		return EID.descriptions[EID.DefaultLanguageCode][objTable]
 	else
-		return EID.descriptions["en_us"][objTable] and EID.descriptions["en_us"][objTable][objID]
+		return EID.descriptions[EID.DefaultLanguageCode][objTable] and EID.descriptions[EID.DefaultLanguageCode][objTable][objID]
 	end
 end
 
--- returns the description data table related to a given id, variant and subtype
--- falls back to english if it doesnt exist
+---Returns the description data table related to a given id, variant and subtype.
+---Falls back to english if it doesnt exist
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return string
 function EID:getDescriptionData(Type, Variant, SubType)
 	local fullString = Type.."."..Variant
 	local adjustedID = EID:getAdjustedSubtype(Type, Variant, SubType)
@@ -554,15 +809,17 @@ function EID:getDescriptionData(Type, Variant, SubType)
 	return moddedDesc or legacyModdedDescription or defaultDesc
 end
 
--- Returns an adjusted SubType id for special cases like Horse Pills and Golden Trinkets
+---Returns an adjusted SubType for special cases like Horse Pills and Golden Trinkets
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return integer
 function EID:getAdjustedSubtype(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	if tableName == "trinkets" then
 		if EID.isRepentance then
 			return (SubType & TrinketType.TRINKET_ID_MASK)
 		end
-	elseif tableName == "sacrifice" then
-		return math.min(#EID.descriptions["en_us"].sacrifice, SubType)
 	elseif tableName == "pills" or tableName == "horsepills" then
 		-- The effect of a pill varies depending on what player is looking at it in co-op
 		-- EID.pillPlayer is a way to recheck a pill for what different players will turn it into
@@ -578,8 +835,15 @@ function EID:getAdjustedSubtype(Type, Variant, SubType)
 	return SubType
 end
 
--- Get the transformation uniqueName / ID of a given entity
--- Example: EID:getTransformation(5,100,34)  will return "12" which is the id for Bookworm
+---Get the transformation uniqueName / ID of a given entity
+---Example:
+---```lua
+---EID:getTransformation(5,100,34) --Returns "12" which is the id for Bookworm
+---```
+---@param id EntityType
+---@param variant integer
+---@param subType integer
+---@return string
 function EID:getTransformation(id, variant, subType)
 	local adjustedSubtype = EID:getAdjustedSubtype(id, variant, subType)
 	local entityString = id.."."..variant.."."..adjustedSubtype
@@ -609,74 +873,90 @@ function EID:getTransformation(id, variant, subType)
 	return transformationList
 end
 
---Get the name of the given transformation by its uniqueName / ID
+---Get the name of the given transformation by its uniqueName / ID
+---@param id string
+---@return string
 function EID:getTransformationName(id)
 	local str = "Custom"
 	if tonumber(id) == nil then
 		-- get translated custom name
 		local customTransform = EID.CustomTransformations[id]
 		if customTransform ~= nil then
-			return customTransform[EID:getLanguage()] or customTransform["en_us"] or id
+			return customTransform[EID:getLanguage()] or customTransform[EID.DefaultLanguageCode] or id
 		end
 		return id
 	end
 	return EID:getDescriptionEntry("transformations")[tonumber(id) + 1] or str
 end
 
--- tries to get the ingame name of an item based on its ID
+---Tries to get the ingame name of an item based on its ID
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return string
 function EID:getObjectName(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
 	local name = nil
 	if tableEntry ~= nil then
-		if tableEntry[2] ~= nil and tableEntry[2] ~= "" and tableEntry[2] ~= EID.descriptions["en_us"][tableName][SubType] then
+		if tableEntry[2] ~= nil and tableEntry[2] ~= "" and tableEntry[2] ~= EID.descriptions[EID.DefaultLanguageCode][tableName][SubType] then
 			name = tableEntry[2]
 		end
 	end
+	local fallbackName = Type.."."..Variant.."."..SubType
 	if tableName == "collectibles" then
-		if EID.itemConfig:GetCollectible(SubType) == nil then return Type.."."..Variant.."."..SubType end
+		if EID.itemConfig:GetCollectible(SubType) == nil then return fallbackName end
 		local vanillaName = EID.itemConfig:GetCollectible(SubType).Name
-		local englishName = EID.descriptions["en_us"][tableName][SubType] and EID.descriptions["en_us"][tableName][SubType][2]
+		local englishName = EID.descriptions[EID.DefaultLanguageCode][tableName][SubType] and EID.descriptions[EID.DefaultLanguageCode][tableName][SubType][2]
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "trinkets" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
+		if EID.itemConfig:GetTrinket(adjustedSubtype) == nil then return fallbackName end
 		local vanillaName = EID.itemConfig:GetTrinket(adjustedSubtype).Name
-		local englishName = EID.descriptions["en_us"][tableName][adjustedSubtype] and EID.descriptions["en_us"][tableName][adjustedSubtype][2]
+		local englishName = EID.descriptions[EID.DefaultLanguageCode][tableName][adjustedSubtype] and EID.descriptions[EID.DefaultLanguageCode][tableName][adjustedSubtype][2]
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "cards" then
+		if EID.itemConfig:GetCard(SubType) == nil then return fallbackName end
 		local vanillaName = EID.itemConfig:GetCard(SubType).Name
-		local englishName = EID.descriptions["en_us"][tableName][SubType] and EID.descriptions["en_us"][tableName][SubType][2]
+		local englishName = EID.descriptions[EID.DefaultLanguageCode][tableName][SubType] and EID.descriptions[EID.DefaultLanguageCode][tableName][SubType][2]
 		return name or (not string.find(vanillaName, "^#") and vanillaName) or englishName or vanillaName
 	elseif tableName == "pills" or tableName == "horsepills" then
 		local adjustedSubtype = EID:getAdjustedSubtype(Type, Variant, SubType)
 		return EID:getPillName(adjustedSubtype, tableName == "horsepills")
-	elseif tableName == "sacrifice" then
-		return EID:getDescriptionEntry("sacrificeHeader").." ("..SubType.."/"..#EID.descriptions["en_us"].sacrifice..")"
 	elseif tableName == "dice" then
 		return EID:getDescriptionEntry("diceHeader").." ("..SubType..")"
 	elseif tableName == "players" then
 		return EID:getPlayerName(SubType)
 	elseif tableName == "custom" then
 		local xmlName = EID:GetEntityXMLName(Type, Variant, SubType)
-		return name or xmlName or Type.."."..Variant.."."..SubType
+		return name or xmlName or fallbackName
 	end
-	return Type.."."..Variant.."."..SubType
+	return fallbackName
 end
 
+---Returns the name of a player based on their ID
+---@param id PlayerType
+---@param altFallback? string
+---@return string
 function EID:getPlayerName(id, altFallback)
 	local playerInfo = EID:getDescriptionEntry("CharacterInfo")[id]
 	local birthrightInfo = EID.isRepentance and EID:getDescriptionEntry("birthright")[id+1]
 	return (playerInfo and playerInfo[1]) or (birthrightInfo and birthrightInfo[1]) or altFallback or EID:findPlayerName(id) or "???"
 end
 
--- Get the name of a given player ID by checking for a matching EntityPlayer
--- This is for modded characters, whose name is best found by doing EntityPlayer:GetName()
+---Get the name of a given player ID by checking for a matching EntityPlayer.
+---This is for modded characters, whose name is best found by doing EntityPlayer:GetName()
+---@param id PlayerType
+---@return string?
 function EID:findPlayerName(id)
-	local found, entityPlayer = EID:PlayersHaveCharacter(id, false)
+	local _, entityPlayer = EID:PlayersHaveCharacter(id, false)
 	if entityPlayer then return entityPlayer:GetName() end
 end
 
--- returns the name of a pill based on the pilleffect id
+---Returns the name of a pill based on the pilleffect id
+---@param pillID PillEffect | integer
+---@param isHorsepill boolean
+---@return string
 function EID:getPillName(pillID, isHorsepill)
 	local moddedDesc = EID:getDescriptionEntry("custom", "5.70."..pillID)
 	local legacyModdedDescription = EID:getLegacyModDescription(5, 70, pillID)
@@ -691,47 +971,53 @@ function EID:getPillName(pillID, isHorsepill)
 	else
 		vanillaName = EID.itemConfig:GetPillEffect(pillID - 1).Name
 	end
-	name = name and name[2] or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions["en_us"][tableName][pillID][2] or vanillaName
-	return string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
+	name = name and name[2] or (not string.find(vanillaName, "^#") and vanillaName) or EID.descriptions[EID.DefaultLanguageCode][tableName][pillID][2] or vanillaName
+	name = string.gsub(name,"I'm Excited!!!","I'm Excited!!") -- prevent markup trigger
+	return name
 end
 
--- tries to get the ingame description of an object, based on their description in the XML files
+---Tries to get the ingame description of an object, based on their description in the XML files
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return string
 function EID:getXMLDescription(Type, Variant, SubType)
 	local tableName = EID:getTableName(Type, Variant, SubType)
-	local desc= nil
 	if SubType == 0 then return "(no description available)" end
+	local itemConfig = nil
 	if tableName == "collectibles" then
-		desc = EID.itemConfig:GetCollectible(SubType).Description
+		itemConfig = EID.itemConfig:GetCollectible(SubType)
 	elseif tableName == "trinkets" then
-		desc = EID.itemConfig:GetTrinket(SubType).Description
-	elseif tableName == "cards" then
-		desc = EID.itemConfig:GetCard(SubType).Description
+		itemConfig = EID.itemConfig:GetTrinket(SubType)
+	elseif tableName == "cards" and EID.itemConfig:GetCard(SubType) then
+		itemConfig = EID.itemConfig:GetCard(SubType)
 	end
-	return desc or "(no description available)"
+	return itemConfig and itemConfig.Description or "(no description available)"
 end
 
--- check if an entity is part of the describable entities
+---Check if an entity is part of the describable entities
+---@param entity Entity | GridEntity
+---@return boolean
+---@diagnostic disable: param-type-mismatch
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:hasDescription(entity)
 	if not EID:EntitySanityCheck(entity) then return false end
 	
 	if EID:IsGridEntity(entity) then
-		if EID.GridEntityWhitelist[entity:GetType()] then
-			for _, func in ipairs(EID.GridEntityWhitelist[entity:GetType()]) do
-				if func(entity) then
-					return true
-				end
-			end
-		end
-		return false
+		return EID:CheckGridEntityHasDescription(entity)
 	end
 	local isAllowed = false
 	local entityString = entity.Type .. "." .. entity.Variant .. "." .. entity.SubType
 
+	-- dont describe entity when EID_Hide data is set
+	if EID:getEntityData(entity, "EID_Hide") then
+		return false
+	end
+
 	if EID.IgnoredEntities[entity.Type .. "." .. entity.Variant] or EID.IgnoredEntities[entityString] then return false end
 
 	if EID.Config["EnableEntityDescriptions"] and EID:getTableName(entity.Type, entity.Variant, entity.SubType) == "custom" then
-		isAllowed = __eidEntityDescriptions[entityString] ~= nil
+		isAllowed = isAllowed or __eidEntityDescriptions[entityString] ~= nil
 		isAllowed = isAllowed or EID:getDescriptionData(entity.Type, entity.Variant, entity.SubType) ~= nil
 		isAllowed = isAllowed or EID:getEntityData(entity, "EID_Description") ~= nil
 	end
@@ -745,22 +1031,38 @@ function EID:hasDescription(entity)
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TRINKET and EID.Config["DisplayTrinketInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_TAROTCARD and EID.Config["DisplayCardInfo"])
 		isAllowed = isAllowed or (entity.Variant == PickupVariant.PICKUP_PILL and EID.Config["DisplayPillInfo"])
+		---@diagnostic disable-next-line: return-type-mismatch
 		return isAllowed and (entity.SubType > 0 or
 			-- For Flip descriptions, allow 5.100.0 pedestals to have descriptions under VERY specific criteria!
 			(EID.isRepentance and EID:getEntityData(entity, "EID_FlipItemID") and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_FLIP)))
 	end
 	if entity.Type == 6 and entity.Variant == 16 and EID.Config["DisplayCraneInfo"] and EID.isRepentance then
-		isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("Prize") and not entity:GetSprite():IsPlaying("OutOfPrizes") and (EID.CraneItemType[entity.InitSeed.."Drop"..entity.DropSeed] or EID.CraneItemType[tostring(entity.InitSeed)])
+		if REPENTOGON then
+			isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("OutOfPrizes") and entity:ToSlot():GetPrizeCollectible() ~= -1 			
+		else
+			isAllowed = not entity:GetSprite():IsPlaying("Broken") and not entity:GetSprite():IsPlaying("OutOfPrizes") and (EID.CraneItemType[entity.InitSeed.."Drop"..entity.DropSeed] or EID.CraneItemType[tostring(entity.InitSeed)])
+		end
+
 	end
+
 	if entity.Type == 1000 then
-		if (entity.Variant == 161 and entity.SubType <= 2) or (entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"]) then
+		-- Handle Card Reading Portals
+		if entity.Variant == 161 then
+			if entity.SubType <= 2 or (EID.isRepentancePlus and entity.SubType == 3) then
+				isAllowed = true
+			end
+		end
+		-- Dice floor information
+		if entity.Variant == EffectVariant.DICE_FLOOR and EID.Config["DisplayDiceInfo"] then
 			isAllowed = true
 		end
 	end
 	return isAllowed
 end
 
--- Replaces shorthand-representations of a character with the internal reference
+---Replaces shorthand-representations of a character with the internal reference
+---@param text string
+---@return string
 function EID:replaceShortMarkupStrings(text)
 	for _, pair in ipairs(EID.TextReplacementPairs) do
 		text = string.gsub(text, pair[1], pair[2])
@@ -769,7 +1071,9 @@ function EID:replaceShortMarkupStrings(text)
 end
 
 local VariantToColorText = { [100] = "{{ColorYellow}}", [350] = "{{ColorYellow}}", [300] = "{{ColorCard}}", [70] = "{{ColorPill}}" }
--- Replaces name markup objects with the actual name
+---Replaces name markup objects with the actual name
+---@param text string
+---@return string
 function EID:replaceNameMarkupStrings(text)
 	for word in string.gmatch(text, "{{Name.-}}") do
 		local strTrimmed = string.gsub(word, "{{Name(.-)}}", function(a) return a end)
@@ -780,7 +1084,7 @@ function EID:replaceNameMarkupStrings(text)
 			showIcon = false
 		end
 		local indicator = string.sub(strTrimmed, 1, 1)
-		local id = tonumber(string.sub(strTrimmed, 2, -1))
+		local id = tonumber(string.sub(strTrimmed, 2, -1)) ---@cast id integer
 		local name = ""
 		if tonumber(indicator) then
 			local entityID = {}
@@ -814,14 +1118,18 @@ function EID:replaceNameMarkupStrings(text)
 	return text
 end
 
--- Generates a string with the defined pixel-length using a custom 1px wide character
--- This will only work for this specific custom font
+---Generates a string with the defined pixel-length using a custom 1px wide character.
+---This will only work for this specific custom font.
+---@param length integer
+---@return string
 function EID:generatePlaceholderString(length)
 	return string.rep("¤", length)
 end
 
--- Returns the inlineIcon object of a given Iconstring
--- can be used to validate an iconstring
+---Returns the inlineIcon object of a given Iconstring.
+---Can be used to validate an iconstring
+---@param str string
+---@return EID_Icon
 function EID:getIcon(str)
 	if str == nil then
 		return EID.InlineIcons["ERROR"]
@@ -829,22 +1137,27 @@ function EID:getIcon(str)
 	local strTrimmed = string.gsub(str,"{{(.-)}}",function(a) return a end )
 	if #strTrimmed <= #str then
 		local itemIconObj = EID:createItemIconObject(strTrimmed)
+		---@diagnostic disable-next-line: return-type-mismatch
 		if itemIconObj then return itemIconObj end
 
 		if type(EID.InlineIcons[strTrimmed]) == "function" then
 			return EID.InlineIcons[strTrimmed](str) or EID.InlineIcons["ERROR"]
 		end
 
+		---@diagnostic disable-next-line: return-type-mismatch
 		return EID.InlineIcons[strTrimmed] or EID.InlineIcons["ERROR"]
 	else
 		return EID.InlineIcons["ERROR"]
 	end
 end
 
--- Tries to read special markup used to generate icons for all Collectibles/Trinkets and the default Cards/Pills
--- Returns an inlineIcon Object or nil if no parsing was possible
+---Tries to read special markup used to generate icons for all Collectibles/Trinkets and the default Cards/Pills
+---Returns an inlineIcon Object or nil if no parsing was possible
+---@param str string
+---@return EID_Icon?
 function EID:createItemIconObject(str)
 	local item = nil
+	local backgroundImage = ""
 	local subTypeIdentifier = 0
 
 	-- Check for {{Item#.##.###}} markup; easiest way to handle it is to just call this function again
@@ -853,14 +1166,23 @@ function EID:createItemIconObject(str)
 		local Type, Var, Sub = EID:SplitTVS(itemID)
 		if Type == 1 then return EID:getIcon("Player" .. Sub)
 		elseif Type == 5 then
-			if Var == 100 then return EID:createItemIconObject("Collectible" .. Sub)
-			elseif Var == 350 then return EID:createItemIconObject("Trinket" .. Sub)
-			elseif Var == 300 then return EID:createItemIconObject("Card" .. Sub)
-			elseif Var == 70 then return EID:createItemIconObject("Pill" .. Sub)
+			local iconName = EID:GetIconNameByVariant(Var)
+			if iconName then
+				return EID:createItemIconObject(iconName .. Sub)
 			end
 		end
 	end
-	
+
+	-- Add background image to Icon, if the keyword can be found in the markup string
+	for keyword, imagePath in pairs(EID.MarkupBackgroundKeywords) do
+		if string.find(str, keyword) then
+			str = string.gsub(str, keyword, "")
+			backgroundImage = imagePath
+			break
+		end
+	end
+
+	---@diagnostic disable
 	local collID,numReplace = string.gsub(str, "Collectible", "")
 	if numReplace > 0 and collID ~= "" and tonumber(collID) ~= nil then
 		item = EID.itemConfig:GetCollectible(tonumber(collID))
@@ -881,29 +1203,33 @@ function EID:createItemIconObject(str)
 		if tonumber(pillID % 2048) > maxPillID then return EID.InlineIcons[str] or EID.InlineIcons["Pill"] end
 		return {"Pills", tonumber(pillID % 2048)-1, 9, 8, 0, 1, EID.CardPillSprite}
 	end
+	---@diagnostic enable
 	if item == nil then
 		return nil
 	end
-	if dynamicSpriteCache[str] then
-		return dynamicSpriteCache[str]
+	if dynamicSpriteCache[backgroundImage .. str] then
+		return dynamicSpriteCache[backgroundImage .. str]
 	else
 		local spriteDummy = Sprite()
 		spriteDummy:Load("gfx/eid_inline_icons.anm2", true)
+		spriteDummy:ReplaceSpritesheet(0, backgroundImage)
 		spriteDummy:ReplaceSpritesheet(1, item.GfxFileName)
 		spriteDummy:LoadGraphics()
-		local newDynamicSprite = {"ItemIcon", subTypeIdentifier, 11, 8, -2, -2, spriteDummy}
-		dynamicSpriteCache[str] = newDynamicSprite
+		local newDynamicSprite = { "ItemIcon", subTypeIdentifier, 11, 8, -2, -2, spriteDummy }
+		dynamicSpriteCache[backgroundImage .. str] = newDynamicSprite
 		return newDynamicSprite
 	end
 end
 
--- Returns the icon for a given transformation name or ID
+---Returns the icon for a given transformation name or ID
+---@param str string
+---@return EID_Icon
 function EID:getTransformationIcon(str)
 	if str == nil then
 		return EID.InlineIcons["ERROR"]
 	end
 	if tonumber(str) ~= nil then
-		str = EID.descriptions["en_us"].transformations[tonumber(str + 1)]
+		str = EID.descriptions[EID.DefaultLanguageCode].transformations[tonumber(str + 1)]
 	end
 	local transformSprite = EID:getIcon(str:gsub(" ", ""))
 	if transformSprite[1] == "ERROR" then
@@ -912,13 +1238,18 @@ function EID:getTransformationIcon(str)
 	return transformSprite
 end
 
--- Returns the width of a given string in Pixels
+---Returns the width of a given string in Pixels
+---@param str string
+---@return integer
 function EID:getStrWidth(str)
 	return EID.font:GetStringWidthUTF8(str)
 end
 
--- Searches thru the given string and replaces Iconplaceholders with icons.
--- Returns 2 values. the string without the placeholders but with an accurate space between lines. and a table of all Inline Sprites
+---Searches through the given string and replaces Icon placeholders with icons.
+---Returns 2 values. the string without the placeholders but with an accurate space between lines. And a table of all Inline Sprites
+---@param text string
+---@param renderBulletPointIcon boolean?
+---@return string, [EID_Icon, integer, function?][]
 function EID:filterIconMarkup(text, renderBulletPointIcon)
 	local spriteTable = {}
 	for word in string.gmatch(text, "{{.-}}") do
@@ -942,12 +1273,15 @@ function EID:filterIconMarkup(text, renderBulletPointIcon)
 	return text, spriteTable
 end
 
---renders a list of given inline sprite objects returned by the "EID:filterIconMarkup()" function
--- Table entry format: {EID.InlineIcons Object, Width of text preceeding the icon}
+---Renders a list of given inline sprite objects returned by the "EID:filterIconMarkup()" function
+---@param spriteTable [EID_Icon, integer?, fun(spriteObj:Sprite)?][]
+---@param posX integer
+---@param posY integer
 function EID:renderInlineIcons(spriteTable, posX, posY)
 	for _, sprite in ipairs(spriteTable) do
 		local Xoffset = sprite[1][5] or -1
 		local Yoffset = sprite[1][6] or 0
+		local additionalXOffset = sprite[2] or 0
 		local spriteObj = (type(sprite[1][7]) == "function" and sprite[1][7]()) or sprite[1][7] or EID.InlineIconSprite
 		if sprite[1][2] >= 0 then
 			spriteObj:SetFrame(sprite[1][1], sprite[1][2])
@@ -957,11 +1291,17 @@ function EID:renderInlineIcons(spriteTable, posX, posY)
 			spriteObj:Update()
 		end
 
-		EID:renderIcon(spriteObj, posX + sprite[2] + Xoffset * EID.Scale, posY + Yoffset * EID.Scale, sprite[3], sprite[1][1], sprite[1][2])
+		EID:renderIcon(spriteObj, posX + additionalXOffset + Xoffset * EID.Scale, posY + Yoffset * EID.Scale, sprite[3], sprite[1][1], sprite[1][2])
 	end
 end
 
--- helper function to render Icons in specific EID settins
+---Helper function to render Icons in specific EID settings
+---@param spriteObj Sprite
+---@param posX integer
+---@param posY integer
+---@param callback fun(spriteObj: Sprite) | nil
+---@param animName string | nil
+---@param animFrame integer | nil
 function EID:renderIcon(spriteObj, posX, posY, callback, animName, animFrame)
 	spriteObj.Scale = Vector(EID.Scale, EID.Scale)
 	spriteObj.Color = Color(1, 1, 1, EID.Config["Transparency"], 0, 0, 0)
@@ -976,24 +1316,38 @@ function EID:renderIcon(spriteObj, posX, posY, callback, animName, animFrame)
 	spriteObj:Render(Vector(posX, posY), nullVector, nullVector)
 end
 
--- Returns the icon used for the bulletpoint. It will look at the first word in the given string.
--- Also returns the first word if it was rejected (so it can be removed from the line)
-function EID:handleBulletpointIcon(text)
-	local firstWord = EID:removeColorMarkup(string.match(text, "([^%s]+)"))
-	if EID:getIcon(firstWord) ~= EID.InlineIcons["ERROR"] and string.find(firstWord, "{{.-}}")~=nil then
-		if not EID.Config["StatAndPickupBulletpoints"] and EID.StatPickupBulletpointBlacklist[firstWord] then
-			return "\007", firstWord
+---Returns the icon used for the bulletpoint. It will look at the first word in the given string.
+---Also returns the first word if it was rejected (so it can be removed from the line)
+---@param text string
+---@return string, string?
+function EID:handleBulletpointIcon(text, ignoreBPConfig)
+	-- Find the position where '}}' is followed by a space or letter
+	local firstMarkupPos, _ = string.find(text, "{{.-}}")
+	local startPos, endPos = string.find(text, "}}%s")
+
+	-- check if string starts with markup and has 
+	if firstMarkupPos and startPos and firstMarkupPos == 1 then
+		-- The split should be right after '}}', so adjust the position
+		local firstWord = string.sub(text, 1, endPos - 1)
+		firstWord = EID:removeColorMarkup(firstWord)
+		if EID:getIcon(firstWord) ~= EID.InlineIcons["ERROR"] and string.find(firstWord, "{{.-}}")~=nil then
+			if ignoreBPConfig and not EID.Config["StatAndPickupBulletpoints"] and EID.StatPickupBulletpointBlacklist[firstWord] then
+				return "\007", firstWord
+			end
+			return firstWord
 		end
-		return firstWord
 	end
 	return "\007"
 end
 
--- Gets a KColor from a Markup-string (example Input: "{{ColorText}}")
--- Returns the KColor object and a boolean value indicating if the given string was a color markup or not
 local colorFunc = nil
+---Gets a KColor from a Markup-string (example Input: "{{ColorText}}").
+---Returns the KColor object and a boolean value indicating if the given string was a color markup or not
+---@param str string
+---@param baseKColor KColor
+---@return KColor, boolean
 function EID:getColor(str, baseKColor)
-	local color = baseKColor
+	local color = baseKColor ---@type KColor | function
 	local isColorMarkup = false
 	if str ~= nil then
 		local strTrimmed = string.gsub(str,"{{(.-)}}",function(a) return a end, 1)
@@ -1011,21 +1365,25 @@ function EID:getColor(str, baseKColor)
 			isColorMarkup = type(EID.InlineColors[strTrimmed]) ~= type(nil)
 		end
 	end
+	---@cast color KColor
 	color = EID:copyKColor(color)
 	color.Alpha = math.min(color.Alpha, EID.Config["Transparency"])
 
 	return color, isColorMarkup
 end
 
--- Filters a given string and looks for Colormarkup. Splits the text into subsections limited by them.
--- Returns: Table of subsections of the text, their respective KColor, and the width of the subsection
+---Filters a given string and looks for Colormarkup. Splits the text into subsections limited by them.
+---Returns: Table of subsections of the text, their respective KColor, and the width of the subsection
+---@param text string
+---@param baseKColor KColor
+---@return [string, KColor, integer][]
 function EID:filterColorMarkup(text, baseKColor)
 	local textPartsTable = {}
 	local lastColor = baseKColor
 	local lastFunc = colorFunc
 	local lastPosition = 0
 	for word in string.gmatch(text, "{{.-}}") do
-		local textposition = string.find(text, word)
+		local textposition = string.find(text, word) ---@cast textposition integer
 		local lookup, isColor = EID:getColor(word, lastColor)
 		if isColor then
 			local preceedingText = string.sub(text, lastPosition, textposition - 1)
@@ -1042,7 +1400,9 @@ function EID:filterColorMarkup(text, baseKColor)
 	return textPartsTable
 end
 
--- A simple function to remove color markup, to preserve bulletpoint icons after start-of-line color markup
+---Removes color markup, preserves bulletpoint icons after start-of-line color markup
+---@param text string
+---@return string
 function EID:removeColorMarkup(text)
 	for word in string.gmatch(text, "{{Color.-}}") do
 		text = string.gsub(text, word, "", 1)
@@ -1050,7 +1410,10 @@ function EID:removeColorMarkup(text)
 	return text
 end
 
--- A simple function to replace all markup {{ }} with placeholder strings, to use in fitTextToWidth
+---Replaces all markup {{ }} with placeholder strings, to use in fitTextToWidth
+---@param text string
+---@param checkBulletpoint? boolean
+---@return string, integer?
 function EID:replaceAllMarkupWithSpaces(text, checkBulletpoint)
 	if checkBulletpoint then
 		-- Check for the text to just be a bulletpoint icon, which should be considered as zero width
@@ -1060,7 +1423,7 @@ function EID:replaceAllMarkupWithSpaces(text, checkBulletpoint)
 		end
 	end
 	-- iconsFound is used to make the next space after a markup icon be immune to line breaks, but only if it's just one icon with no other text
-	local iconsFound = 0; if text:gsub(" ", ""):gsub("{{.-}}","") ~= "" then iconsFound = -999 end
+	local iconsFound = 0; if text:gsub(" ", ""):gsub("{{.-}}","") ~= "" then iconsFound = math.mininteger end
 	
 	for word in string.gmatch(text, "{{.-}}") do
 		local lookup = EID:getIcon(word)
@@ -1074,8 +1437,11 @@ function EID:replaceAllMarkupWithSpaces(text, checkBulletpoint)
 	return text, iconsFound
 end
 
--- Fits a given string to a specific width
--- returns the string as a table of lines
+---Fits a given string to a specific width
+---@param str string
+---@param textboxWidth integer
+---@param breakUtf8Chars boolean
+---@return string[] @Input string split into lines
 function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	local formattedLines = {}
 	-- Lines with a {{NoLineBreak}} tag should be left in one continuous line
@@ -1182,10 +1548,14 @@ function EID:fitTextToWidth(str, textboxWidth, breakUtf8Chars)
 	return formattedLines
 end
 
--- Renders a given string using the EID Custom font. This will also apply any markup and render icons
--- needs to be called in a render Callback
--- args: string, Vector(int, int), Vector(float,float), KColor obj, bool
--- Returns the last used KColor
+---Renders a given string using the EID Custom font. This will also apply any markup and render icons
+---Should be called in a render callback
+---@param str string
+---@param position Vector
+---@param scale Vector
+---@param kcolor KColor
+---@param renderBulletPointIcon boolean?
+---@return KColor
 function EID:renderString(str, position, scale, kcolor, renderBulletPointIcon)
 	str = EID:replaceShortMarkupStrings(str)
 	local textPartsTable = EID:filterColorMarkup(str, kcolor)
@@ -1204,8 +1574,11 @@ function EID:renderString(str, position, scale, kcolor, renderBulletPointIcon)
 	return textPartsTable[#textPartsTable][2]
 end
 
--- Adds Description object modifiers.
--- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
+---Adds Description object modifiers such as Spindown dice or Tarot Cloth
+---@param modifierName string
+---@param condition fun(descObj: EID_DescObj): boolean
+---@param callback fun(descObj: EID_DescObj): EID_DescObj
+---@param position? integer
 function EID:addDescriptionModifier(modifierName, condition, callback, position)
 	position = position or #EID.DescModifiers + 1
 	for _,v in ipairs(EID.DescModifiers) do
@@ -1222,8 +1595,9 @@ function EID:addDescriptionModifier(modifierName, condition, callback, position)
 	})
 end
 
--- Removes a Description object modifier
--- Used for altering descriptions. Example: Spindown dice, Tarot Cloth, ...
+---Removes a Description object modifier
+---@see EID.addDescriptionModifier
+---@param modifierName string
 function EID:removeDescriptionModifier(modifierName)
 	for i,v in ipairs(EID.DescModifiers) do
 		if v["name"] == modifierName then
@@ -1233,7 +1607,11 @@ function EID:removeDescriptionModifier(modifierName)
 	end
 end
 
--- Interpolates between 2 KColors with a given fraction.
+---Interpolates between 2 KColors with a given fraction.
+---@param kColor1 KColor
+---@param kColor2 KColor
+---@param fraction number @Range: [0,1]
+---@return KColor
 function EID:interpolateColors(kColor1, kColor2, fraction)
 	local t =
 		KColor(
@@ -1245,6 +1623,10 @@ function EID:interpolateColors(kColor1, kColor2, fraction)
 	return t
 end
 
+---Replaces all values in `changeTable` with the values in `tableToUpdate`.
+---If a value is an empty string, it will be removed.
+---@param changeTable table
+---@param tableToUpdate table
 function EID:updateDescriptionsViaTable(changeTable, tableToUpdate)
 	for k,v in pairs(changeTable) do
 		if v == "" then
@@ -1255,7 +1637,9 @@ function EID:updateDescriptionsViaTable(changeTable, tableToUpdate)
 	end
 end
 
--- Converts e.g. "5.100.69" format strings into 5, 100, and 69; returns 0 for any not included
+---Converts e.g. "5.100.69" format strings into `5, 100, 69`. Returns 0 for any not included
+---@param tvsString string
+---@return integer, integer, integer
 function EID:SplitTVS(tvsString)
 	local Type, Var, Sub = 0, 0, 0
 	local tvsTable = {}
@@ -1264,15 +1648,19 @@ function EID:SplitTVS(tvsString)
 	return Type, Var, Sub
 end
 
--- Checks if any player has a given item ID (or anyone is a given player ID)
+---Checks if any player has a given item ID (or anyone is a given player ID)
+---@param Type string | integer | EntityType
+---@param Var integer | nil
+---@param Sub integer | nil
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayersHaveItem(Type, Var, Sub)
 	-- convert "5.100.69" format strings into type, var, sub
 	if type(Type) == "string" then
 		Type, Var, Sub = EID:SplitTVS(Type)
 	-- assume collectible if only Type was given
 	elseif Var == nil then Sub = Type; Type = 5; Var = 100 end
-	if Type == 1 then return EID:PlayersHaveCharacter(Sub)
-	elseif Type == 5 then
+	if Type == 1 and Sub then return EID:PlayersHaveCharacter(Sub)
+	elseif Type == 5 and Sub then
 		if Var == 100 then return EID:PlayersHaveCollectible(Sub)
 		elseif Var == 350 then return EID:PlayersHaveTrinket(Sub)
 		elseif Var == 300 then return EID:PlayersHaveCard(Sub)
@@ -1282,15 +1670,20 @@ function EID:PlayersHaveItem(Type, Var, Sub)
 	return false
 end
 
--- Checks if the given player has the given item ID (or is the given player ID)
+---Checks if the given player has the given item ID (or is the given player ID)
+---@param player EntityPlayer
+---@param Type EntityType | string
+---@param Var integer?
+---@param Sub integer?
+---@return boolean
 function EID:PlayerHasItem(player, Type, Var, Sub)
 	-- convert "5.100.69" format strings into type, var, sub
 	if type(Type) == "string" then
 		Type, Var, Sub = EID:SplitTVS(Type)
 	-- assume collectible if only Type was given
 	elseif Var == nil then Sub = Type; Type = 5; Var = 100 end
-	if Type == 1 then return player:GetPlayerType() == Sub
-	elseif Type == 5 then
+	if Type == 1 and Sub then return player:GetPlayerType() == Sub
+	elseif Type == 5 and Sub then
 		if Var == 100 then return player:HasCollectible(Sub)
 		elseif Var == 350 then return player:HasTrinket(Sub)
 		elseif Var == 300 then return EID:PlayerHasCard(player, Sub)
@@ -1300,7 +1693,9 @@ function EID:PlayerHasItem(player, Type, Var, Sub)
 	return false
 end
 
--- Checks if any player has a given collectible ID, for modifiers
+---Checks if any player has a given collectible ID, for modifiers
+---@param collectibleID CollectibleType
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayersHaveCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1311,7 +1706,9 @@ function EID:PlayersHaveCollectible(collectibleID)
 	return false
 end
 
--- Returns true, if any player has a given voided collectible
+---Returns true, if any player has a given voided collectible
+---@param collectibleID CollectibleType
+---@return boolean, EntityPlayer?
 function EID:PlayersVoidedCollectible(collectibleID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1320,16 +1717,22 @@ function EID:PlayersVoidedCollectible(collectibleID)
 	return false
 end
 
--- Returns true, if the player has a given voided collectible
+---Returns true, if the player has a given voided collectible
+---@param player EntityPlayer
+---@param collectibleID CollectibleType
+---@return boolean, EntityPlayer?
 function EID:PlayerVoidedCollectible(player, collectibleID)
 	local playerNum = EID:getPlayerID(player, true)
 	local isCollectibleAbsorbed = EID.absorbedItems[tostring(playerNum)] and EID.absorbedItems[tostring(playerNum)][tostring(collectibleID)]
 	if player:HasCollectible(477) and isCollectibleAbsorbed then
-		return true, player, i
+		return true, player
 	end
+	return false
 end
 
--- Checks if any player has a given trinket ID, for modifiers
+---Checks if any player has a given trinket ID, for modifiers
+---@param trinketID TrinketType
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayersHaveTrinket(trinketID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1340,7 +1743,9 @@ function EID:PlayersHaveTrinket(trinketID)
 	return false
 end
 
--- Returns true, if any player has a given card
+---Returns true, if any player has a given card
+---@param cardID Card
+---@return boolean, EntityPlayer?
 function EID:PlayersHaveCard(cardID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1349,7 +1754,10 @@ function EID:PlayersHaveCard(cardID)
 	return false
 end
 
--- Returns true, if the player has a given card
+---Returns true, if the player has a given card
+---@param player EntityPlayer
+---@param cardID Card
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayerHasCard(player, cardID)
 	local playerNum = EID:getPlayerID(player, true)
 	for j = 0, (EID.isRepentance and 3 or 1) do
@@ -1357,9 +1765,12 @@ function EID:PlayerHasCard(player, cardID)
 			return true, player, playerNum
 		end
 	end
+	return false
 end
 
--- Returns true, if any player has a given pill color
+---Returns true, if any player has a given pill color
+---@param pillID PillColor
+---@return boolean, EntityPlayer?
 function EID:PlayersHavePill(pillID)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1368,7 +1779,10 @@ function EID:PlayersHavePill(pillID)
 	return false
 end
 
--- Returns true, if the player has a given pill color
+---Returns true, if the player has a given pill color
+---@param player EntityPlayer
+---@param pillID PillColor
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayerHasPill(player, pillID)
 	local playerNum = EID:getPlayerID(player, true)
 	for j = 0, (EID.isRepentance and 3 or 1) do
@@ -1376,10 +1790,13 @@ function EID:PlayerHasPill(player, pillID)
 			return true, player, playerNum
 		end
 	end
+	return false
 end
 
--- Checks if someone is playing as a certain character, for modifiers
--- includeTainted means we don't care if the player is Tainted or not (for things that, say, apply to Lost/Tainted Lost)
+---Checks if someone is playing as a certain character, for modifiers
+---@param playerType PlayerType
+---@param includeTainted? boolean @If true, doesn't care if the player is tainted or not
+---@return boolean, EntityPlayer?, integer?
 function EID:PlayersHaveCharacter(playerType, includeTainted)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1393,7 +1810,9 @@ function EID:PlayersHaveCharacter(playerType, includeTainted)
 	return false
 end
 
--- Converts a given CollectibleID into the respective Spindown dice result
+---Converts a given CollectibleID into the respective Spindown dice result
+---@param collectibleID CollectibleType
+---@return CollectibleType
 function EID:getSpindownResult(collectibleID)
 	if collectibleID <= 0 or collectibleID > 4294960000 then return 0 end
 	local newID = collectibleID
@@ -1406,8 +1825,9 @@ function EID:getSpindownResult(collectibleID)
 	return newID
 end
 
--- Returns the maximum collectible id, including modded items
 local maxCollectibleID = nil -- cache after first use. this number will not change mid game
+---Returns the maximum collectible id, including modded items
+---@return CollectibleType
 function EID:GetMaxCollectibleID()
 	if maxCollectibleID then
 		return maxCollectibleID
@@ -1426,6 +1846,8 @@ function EID:GetMaxCollectibleID()
 end
 
 local maxTrinketID = nil
+---Returns the maximum trinket id, including modded trinkets
+---@return TrinketType
 function EID:GetMaxTrinketID()
 	if maxTrinketID then
 		return maxTrinketID
@@ -1443,6 +1865,7 @@ function EID:GetMaxTrinketID()
 	return id
 end
 
+---@return boolean
 function EID:DetectModdedItems()
 	if EID:GetMaxCollectibleID() > EID.XMLMaxItemID then
 		return true
@@ -1453,8 +1876,10 @@ function EID:DetectModdedItems()
 	return false
 end
 
--- REPENTANCE ONLY! Return whether the collectible is considered available
--- Bag of Crafting rerolls unavailable items; this function is kept brief to help BoC speed
+---REPENTANCE ONLY! Return whether the collectible is considered available.
+---Bag of Crafting rerolls unavailable items; this function is kept brief to help BoC speed
+---@param collectibleID CollectibleType
+---@return boolean
 function EID:isCollectibleAvailable(collectibleID)
 	if EID.itemAvailableStates[collectibleID] == nil then
 		EID.itemAvailableStates[collectibleID] = EID.itemConfig:GetCollectible(collectibleID):IsAvailable()
@@ -1462,9 +1887,11 @@ function EID:isCollectibleAvailable(collectibleID)
 	return EID.itemAvailableStates[collectibleID]
 end
 
--- REPENTANCE ONLY! Return our best guess on whether an achievement-locked collectible is unlocked
--- (Things like Tainted Lost and Sacred Orb give false negatives)
--- Spindown Dice skips over locked items, but not unavailable items
+---REPENTANCE ONLY! Return our best guess on whether an achievement-locked collectible is unlocked
+---(Things like Tainted Lost and Sacred Orb give false negatives)
+---Spindown Dice skips over locked items, but not unavailable items
+---@param collectibleID CollectibleType
+---@return boolean
 function EID:isCollectibleUnlocked(collectibleID)
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if item == nil then return false end
@@ -1489,8 +1916,10 @@ function EID:isCollectibleUnlocked(collectibleID)
 end
 EID.isCollectibleUnlockedAnyPool = EID.isCollectibleUnlocked -- old name before ItemConfig:IsAvailable was added
 
--- REPENTANCE ONLY! Return whether the collectible is completely disallowed by the current game mode
--- Bag of Crafting and Spindown Dice skip over disallowed items entirely
+---REPENTANCE ONLY! Return whether the collectible is completely disallowed by the current game mode.
+---Bag of Crafting and Spindown Dice skip over disallowed items entirely
+---@param collectibleID CollectibleType
+---@return boolean
 function EID:isCollectibleAllowed(collectibleID)
 	local item = EID.itemConfig:GetCollectible(collectibleID)
 	if item == nil then return false
@@ -1503,7 +1932,8 @@ function EID:isCollectibleAllowed(collectibleID)
 	end
 end
 
--- Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
+---Achievements Locked Check (do we have Cube of Meat or Book of Revelations unlocked?)
+---@return boolean
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:AreAchievementsAllowed()
 	-- Tainted characters have definitely beaten Mom!
@@ -1511,6 +1941,7 @@ function EID:AreAchievementsAllowed()
 	if EID.player:GetPlayerType() < 21 then
 		-- Challenge runs and TMTrainer might break the pool, so ignore them.
 		if not game:GetSeeds():IsCustomRun() and not EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
+			---@diagnostic disable-next-line: undefined-field
 			local hasBookOfRevelationsUnlocked = EID:isCollectibleUnlocked(CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS or CollectibleType.COLLECTIBLE_BOOK_REVELATIONS)
 			if not hasBookOfRevelationsUnlocked then
 				local hasCubeOfMeatUnlocked = EID:isCollectibleUnlocked(CollectibleType.COLLECTIBLE_CUBE_OF_MEAT)
@@ -1523,10 +1954,9 @@ function EID:AreAchievementsAllowed()
 	return true
 end
 
--- Returns the dimension ID the player is currently in.
--- 0: Normal Dimension
--- 1: Secondary dimension, used by Downpour mirror dimension and Mines escape sequence
--- 2: Death Certificate dimension
+---Returns the dimension ID the player is currently in.
+---@param level Level
+---@return EID_Dimension?
 function EID:GetDimension(level)
 	local roomIndex = level:GetCurrentRoomIndex()
 
@@ -1539,12 +1969,15 @@ function EID:GetDimension(level)
     return nil
 end
 
--- Converts a given table into a string containing the crafting icons of the table
--- Example input: {1,2,3,4,5,6,7,8}
--- Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
 local emptyPickupTable = {}
 for i=1, 29 do emptyPickupTable[i] = 0 end
 
+---Converts a given table into a string containing the crafting icons of the table
+---Example input: {1,2,3,4,5,6,7,8}
+---Result: "{{Crafting1}}{{Crafting2}}{{Crafting3}}{{Crafting4}}{{Crafting5}}{{Crafting6}}{{Crafting7}}{{Crafting8}}"
+---@param craftTable integer[]
+---@param indicateCompleteContent boolean
+---@return string
 function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
 	table.sort(sortedList, function(a, b) return a < b end)
@@ -1560,9 +1993,10 @@ function EID:tableToCraftingIconsFull(craftTable, indicateCompleteContent)
 	return iconString
 end
 
--- Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
--- Example input: {1,1,1,2,2,3,3,3}
--- Result: "3{{Crafting1}}2{{Crafting2}}3{{Crafting3}}"
+---Converts a given table into a string containing the crafting icons of the table, which are also grouped to reduce render lag
+---@param craftTable integer[] @Example: {1,1,1,2,2,3,3,3}
+---@param indicateCompleteContent boolean?
+---@return string @Example: "3{{Crafting1}}2{{Crafting2}}3{{Crafting3}}"
 function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	local sortedList = {table.unpack(craftTable)}
 	local filteredList = {table.unpack(emptyPickupTable)}
@@ -1588,11 +2022,14 @@ function EID:tableToCraftingIconsMerged(craftTable, indicateCompleteContent)
 	return iconString
 end
 
--- Checks how many of an item there are in the bag
--- Returns false if the item is not in the bag
--- Returns 0 if there are fewer than the target amount
--- Returns 1 if there are exactly the target amount
--- Returns 2 if there are more than the target amount
+---Checks how many of an item there are in the bag
+---@param itemID integer
+---@param itemCount integer
+---@return
+---|false @Item is not in the bag
+---| 0 @There are fewer items than the target amount
+---| 1 @There are exactly the target amount
+---| 2 @There are more items than the target amount
 function EID:bagContainsItem(itemID, itemCount)
 	local foundCount = 0
 	local bagItems = EID.BoC.BagItemsOverride or EID.BoC.BagItems
@@ -1613,8 +2050,10 @@ function EID:bagContainsItem(itemID, itemCount)
 	end
 end
 
--- Get the number of pickups in the given recipe table that are inside our bag
--- (For checking if a recipe is possible to create if you need to use every item in your bag)
+---Get the number of pickups in the given recipe table that are inside our bag
+---Is for checking if a recipe is possible to create if you need to use every item in your bag
+---@param craftTable integer[]
+---@return integer
 function EID:bagContainsCount(craftTable)
 	local count = 0
 	local ingredCount = {table.unpack(emptyPickupTable)}
@@ -1631,6 +2070,8 @@ function EID:bagContainsCount(craftTable)
 	return count
 end
 
+---@param hudElement EID_HudElement
+---@return EID_HudElement
 function EID:handleHUDElement(hudElement)
 	local alteredHudElement = {}
 	for k,v in pairs(hudElement) do
@@ -1657,6 +2098,7 @@ function EID:handleHUDElement(hudElement)
 	return alteredHudElement
 end
 
+---@return Vector
 function EID:getScreenSize()
 	local room = game:GetRoom()
 	local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - game.ScreenShakeOffset
@@ -1667,20 +2109,27 @@ function EID:getScreenSize()
 	return Vector(rx*2 + 13*26, ry*2 + 7*26)
 end
 
+---@param entity Entity
+---@return any?
 function EID:getEntityData(entity, str)
-	if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:GetData() ~= nil then
+	if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:GetData() ~= nil and type(entity:GetData()) == "table" then
 		return entity:GetData()[str]
 	end
 	return nil
 end
 
+---@param entity Entity
+---@param str string
+---@param value any
 function EID:setEntityData(entity, str, value)
-	if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:GetData() ~= nil then
+	if EID:EntitySanityCheck(entity) and not EID:IsGridEntity(entity) and entity:GetData() ~= nil and type(entity:GetData()) == "table" then
 		entity:GetData()[str] = value
 	end
 end
 
--- Function to fix font compatibility. Resets config font to a value compatible with your current language
+---Function to fix font compatibility. Resets config font to a value compatible with your current language
+---@param forceRefresh boolean | nil
+---@return boolean @True if the font was changed
 function EID:fixDefinedFont(forceRefresh)
 	local curLang = EID:getLanguage()
 	local curFont = EID.Config["FontType"]
@@ -1708,7 +2157,10 @@ function EID:fixDefinedFont(forceRefresh)
 	EID.Config["TextboxWidth"] = EID.descriptions[curLang].fonts[1].textboxWidth or EID.DefaultConfig["TextboxWidth"]
 	return true
 end
--- Check if a given font name is valid for the currently selected language
+
+---Check if a given font name is valid for the currently selected language
+---@param fontType string
+---@return boolean
 function EID:canUseFontType(fontType)
 	local curLang = EID:getLanguage()
 	for _, v in ipairs(EID.descriptions[curLang].fonts) do
@@ -1719,43 +2171,55 @@ function EID:canUseFontType(fontType)
 	return false
 end
 
--- Creates a copy of a KColor object. This prevents overwriting existing
+---Creates a copy of a KColor object. This prevents overwriting existing KColor objects
+---@param colorObj KColor
+---@return KColor
 function EID:copyKColor(colorObj)
 	return KColor(colorObj.Red, colorObj.Green, colorObj.Blue, colorObj.Alpha)
 end
 
--- Compares two KColors. Returns true if they are equal
+---Compares two KColors. Returns true if they are equal
+---@param c1 KColor
+---@param c2 KColor
+---@return boolean
 function EID:areColorsEqual(c1, c2)
 	return c1.Red == c2.Red and c1.Green == c2.Green and c1.Blue == c2.Blue and c1.Alpha == c2.Alpha
 end
 
--- Get KColor object of "Entity Name" texts
+---Get KColor object of "Entity Name" texts
+---@return KColor, boolean
 function EID:getNameColor()
 	return EID:getColor(EID.Config["ItemNameColor"], EID.InlineColors["ColorEIDObjName"])
 end
 
--- Get KColor object of "Description" texts
+---Get KColor object of "Description" texts
+---@return KColor, boolean
 function EID:getTextColor()
 	return EID:getColor(EID.Config["TextColor"], EID.InlineColors["ColorEIDText"])
 end
 
--- Get KColor object of "Transformation" texts
+---Get KColor object of "Transformation" texts
+---@return KColor, boolean
 function EID:getTransformationColor()
 	return EID:getColor(EID.Config["TransformationColor"], EID.InlineColors["ColorEIDTransform"])
 end
 
--- Get KColor object of "Error" texts
+---Get KColor object of "Error" texts
+---@return KColor, boolean
 function EID:getErrorColor()
 	return EID:getColor(EID.Config["ErrorColor"], EID.InlineColors["ColorEIDError"])
 end
 
--- Specify the name of the mod which will be displayed next to the item name
--- By default EID takes the mod name
+---Specify the name of the mod which will be displayed next to the item name
+---By default EID takes the mod name
+---@param newName string
 function EID:setModIndicatorName(newName)
 	EID.ModIndicator[EID._currentMod].Name = newName
 end
 
--- Set an icon for the mod which will be displayed next to the item name
+---Set an icon for the mod which will be displayed next to the item name
+---@param iconMarkup string
+---@param override? boolean @Default: true
 function EID:setModIndicatorIcon(iconMarkup, override)
 	if override == nil then override = true end -- overide previous value if not specified
 	if EID.ModIndicator[EID._currentMod].Icon ~= nil and override == false then return end
@@ -1763,31 +2227,39 @@ function EID:setModIndicatorIcon(iconMarkup, override)
 end
 
 EID.Coroutines = {}
--- Add a coroutine to be ran 60 times a second
+---Add a coroutine to be ran 60 times a second
+---@param name string
+---@param func fun()
+---@param overwrite? boolean @Default: false
 function EID:addCoroutine(name, func, overwrite)
 	if overwrite or EID.Coroutines[name] == nil then EID.Coroutines[name] = coroutine.create(func) end
 end
 
+---Remove a coroutine from the coroutine list
+---@param name string
 function EID:removeCoroutine(name)
 	EID.Coroutines[name] = nil
 end
 
--- ran 60 times a second in main game render
+---Resumes all coroutines.
+---Ran 60 times a second in main game render
 function EID:resumeCoroutines()
 	for k,v in pairs(EID.Coroutines) do
 		if coroutine.resume(v) == false then EID:removeCoroutine(k) end
 	end
 end
 
--- Returns true if an item needs to be collected for the collection page
+---Returns true if an item needs to be collected for the collection page
+---@param itemID CollectibleType
+---@return boolean
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:requiredForCollectionPage(itemID)
 	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or itemID >= CollectibleType.NUM_COLLECTIBLES or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
 	return EID.SaveGame[EID.Config["SaveGameNumber"]].ItemNeedsPickup[itemID]
 end
 
--- Updates the item collection state of the players, based on the QueuedItem value.
--- TODO: also check for D100 / MissingNo Item collections
+---Updates the item collection state of the players, based on the QueuedItem value.
+---TODO: also check for D100 / MissingNo Item collections
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:checkPlayersForMissingItems()
 	if not EID.SaveGame or EID.Config["SaveGameNumber"] == 0 or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return end
@@ -1802,6 +2274,9 @@ function EID:checkPlayersForMissingItems()
 	end
 end
 
+---@param entityPlayer EntityPlayer
+---@param lazarusAdjust? boolean
+---@return integer
 function EID:getPlayerID(entityPlayer, lazarusAdjust)
 	if not entityPlayer then return 0 end
 	for i = 0, game:GetNumPlayers() - 1 do
@@ -1826,25 +2301,16 @@ function EID:getPlayerID(entityPlayer, lazarusAdjust)
 	return 0
 end
 
--- Get the current Language. Defaults to english if none is set.
-function EID:getLanguage()
-	local lang = EID.Config["Language"]
-	-- Reset invalid languages (like en_us_detailed)
-	if EID.descriptions[lang] == nil then
-		EID.Config["Language"] = "auto"
-		lang = "auto"
-	end
-	if lang == "auto" then
-		return Options and EID.LanguageMap[Options.Language] or "en_us"
-	end
-	return lang
-end
-
+---@param itemID CollectibleType
 function EID:AddToCollectiblesToCheckList(itemID)
 	EID.collectiblesToCheck[itemID] = true
 end
 
--- Add a specific entity to be ignored by EID. Set entitySubType to -1 in order to ignore all entities with this type+variant combi
+---Add a specific entity to be ignored by EID.
+---Set entitySubType to -1 in order to ignore all entities with this type+variant combination.
+---@param entityType EntityType
+---@param entityVariant integer
+---@param entitySubType integer
 function EID:addIgnoredEntity(entityType, entityVariant, entitySubType)
 	if entitySubType == -1 then
 		EID.IgnoredEntities[entityType.."."..entityVariant] = true
@@ -1853,7 +2319,10 @@ function EID:addIgnoredEntity(entityType, entityVariant, entitySubType)
 	end
 end
 
--- Remove a specific entity from the ignored List of EID.
+---Remove a specific entity from the ignored List of EID.
+---@param entityType EntityType
+---@param entityVariant integer
+---@param entitySubType integer
 function EID:removeIgnoredEntity(entityType, entityVariant, entitySubType)
 	if entitySubType == -1 then
 		EID.IgnoredEntities[entityType.."."..entityVariant] = nil
@@ -1862,7 +2331,8 @@ function EID:removeIgnoredEntity(entityType, entityVariant, entitySubType)
 	end
 end
 
--- Returns if this is a frame we should refresh our descriptions
+---Returns if this is a frame we should refresh our descriptions
+---@return boolean
 function EID:RefreshThisFrame()
 	if EID.GameRenderCount % (60 / EID.Config["RefreshRate"]) == 0 then
 		return true
@@ -1870,7 +2340,11 @@ function EID:RefreshThisFrame()
 	return false
 end
 
--- Returns true if any player is pressing the given button (you can also specify any of the input functions)
+---Returns true if any player is pressing the given button (you can also specify any of the input functions)
+---@generic BTN
+---@param button BTN
+---@param inputFunc nil | fun(button: BTN, playerIndex: integer): boolean
+---@return boolean, integer?
 function EID:PlayersActionPressed(button, inputFunc)
 	inputFunc = inputFunc or Input.IsActionPressed
 	for k,v in pairs(EID.controllerIndexes) do
@@ -1879,6 +2353,9 @@ function EID:PlayersActionPressed(button, inputFunc)
 	return false
 end
 
+---Replaces markup icons with ones of a different size based on the current config
+---@param description string
+---@return string
 function EID:replaceMarkupSize(description)
 	if EID.Config["StatChangeIcons"] == false then
 		description = string.gsub(description, "{{ArrowUp}} ({{[.-}}]+)", "{{ArrowUp}} ")
@@ -1900,8 +2377,8 @@ function EID:replaceMarkupSize(description)
 	return description
 end
 
--- Creates a table that contains all objects a transformation is associated with.
 EID.TransformationLookup = {}
+-- Creates a table that contains all objects a transformation is associated with.
 function EID:buildTransformationTables()
 	EID.TransformationLookup = {}
 	for entityString, transformationData in pairs(EID.EntityTransformations) do
@@ -1921,6 +2398,9 @@ function EID:buildTransformationTables()
 	end
 end
 
+---@param entityString string
+---@param transformString string
+---@param addToList? boolean
 function EID:alterTransformationLookup(entityString, transformString, addToList)
 	for transformation in string.gmatch(transformString, '([^,]+)') do
 		if EID.TransformationLookup[transformation] == nil then
@@ -1930,8 +2410,9 @@ function EID:alterTransformationLookup(entityString, transformString, addToList)
 	end
 end
 
--- Given a transformation identifier, itterate over every player and count the number of items they have which count towards that transformation
 EID.TransformationProgress = {}
+---Given a transformation identifier, iterates over every player and count the number of items they have which count towards that transformation
+---@param transformation string
 function EID:evaluateTransformationProgress(transformation)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -1967,8 +2448,10 @@ function EID:evaluateTransformationProgress(transformation)
 				local eType, eVariant, eSubType = entityString:match("([^.]+).([^.]+).([^.]+)")
 				if tonumber(eType) == EntityType.ENTITY_PICKUP then
 					if tonumber(eVariant) == PickupVariant.PICKUP_COLLECTIBLE then
-						local currentCount = EID.TransformationProgress[id][transformation]
-						if activesTable[tostring(eSubType)] then
+						-- Rep+ Exclusive: Only count a Transformation progress for Necromancer, if you own the Necronomicon
+						local isNecromancer = EID.isRepentancePlus and transformation == tostring(EID.TRANSFORMATION.NECROMANCER)
+
+						if not isNecromancer and activesTable[tostring(eSubType)] then
 							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + activesTable[tostring(eSubType)]
 						else
 							local collCount = player:GetCollectibleNum(eSubType, true)
@@ -1983,8 +2466,8 @@ function EID:evaluateTransformationProgress(transformation)
 							end
 						end
 						-- In AB+, only one copy of a given collectible is counted for trans
-						if not EID.isRepentance and EID.TransformationProgress[id][transformation] > currentCount + 1 then
-							EID.TransformationProgress[id][transformation] = currentCount + 1
+						if not EID.isRepentance and EID.TransformationProgress[id][transformation] > EID.TransformationProgress[id][transformation] + 1 then
+							EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + 1
 						end
 					elseif tonumber(eVariant) == PickupVariant.PICKUP_TRINKET and player:HasTrinket(eSubType) then
 						EID.TransformationProgress[id][transformation] = EID.TransformationProgress[id][transformation] + player:GetTrinketMultiplier(eSubType)
@@ -1999,7 +2482,7 @@ function EID:evaluateTransformationProgress(transformation)
 	end
 end
 
--- Create a list of all grid entities in the room that have an EID description
+---Create a list of all grid entities in the room that have an EID description
 function EID:CheckCurrentRoomGridEntities()
 	EID.CurrentRoomGridEntities = {}
 	local room = game:GetRoom()
@@ -2011,8 +2494,8 @@ function EID:CheckCurrentRoomGridEntities()
 	end
 end
 
--- Workaround function to get the currently held pill of the players. Used to map Pill ID to pill color and vise versa
 EID.PlayerHeldPill = {}
+---Workaround function to get the currently held pill of the players. Used to map Pill ID to pill color and vise versa
 function EID:evaluateHeldPill()
 	EID.PlayerHeldPill = {}
 	for i = 0, game:GetNumPlayers() - 1 do
@@ -2025,11 +2508,11 @@ function EID:evaluateHeldPill()
 	end
 end
 
--- Watch for a player's queued item (holding an item over their head) to track active item touches
--- Used for Transformation Progress and for tracking Recently Touched Items
 EID.PlayerItemInteractions = {}
 EID.RecentlyTouchedItems = {}
 local hadQueuedItem = {}
+---Watch for a player's queued item (holding an item over their head) to track active item touches
+---Used for Transformation Progress and for tracking Recently Touched Items
 function EID:evaluateQueuedItems()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -2077,7 +2560,8 @@ function EID:evaluateQueuedItems()
 	end
 end
 
--- if the player ItemInteraction table doesnt exist, create it with its init values
+---If the player ItemInteraction table doesnt exist, create it with its init values
+---@param playerID integer
 function EID:InitItemInteractionIfAbsent(playerID)
 	playerID = playerID % 666 -- dead tainted lazarus exception
 	if not EID.PlayerItemInteractions[playerID] then
@@ -2093,8 +2577,10 @@ function EID:InitItemInteractionIfAbsent(playerID)
 	EID.RecentlyTouchedItems[playerID] = EID.RecentlyTouchedItems[playerID] or {}
 	EID.RecentlyTouchedItems[playerID+666] = EID.RecentlyTouchedItems[playerID+666] or {}
 end
--- initialize a touched active item to 0 count for all players
--- (Fixes co-op bugs, compared to only initiating it for the toucher)
+
+---Initialize a touched active item to 0 count for all players
+---(Fixes co-op bugs, compared to only initiating it for the toucher)
+---@param itemIDStr string
 function EID:InitActiveItemInteraction(itemIDStr)
 	for playerID = 0, game:GetNumPlayers() - 1 do
 		EID:InitItemInteractionIfAbsent(playerID)
@@ -2104,15 +2590,36 @@ function EID:InitActiveItemInteraction(itemIDStr)
 end
 
 
--- Returns the quality of the described entity
+---Returns the quality of the described entity
+---@param descObj EID_DescObj
+---@return integer?
 function EID:getObjectQuality(descObj)
-	if EID.isRepentance and descObj.ObjType == 5 and descObj.ObjVariant == 100 and EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)) then
-		return tonumber(EID.itemConfig:GetCollectible(tonumber(descObj.ObjSubType)).Quality)
+	local subType = tonumber(descObj.ObjSubType) ---@cast subType number
+	if EID.isRepentance and descObj.ObjType == 5 and descObj.ObjVariant == 100 and EID.itemConfig:GetCollectible(subType) then
+		return tonumber(EID.itemConfig:GetCollectible(subType).Quality)
 	end
 end
 
--- Returns the Inline Icon definition object for a given object.
+---Returns the item pool of the described entity
+---@param descObj EID_DescObj
+---@return integer?
+function EID:getObjectItemPool(descObj)
+	if EID.isRepentance and descObj.ObjType == 5 and descObj.ObjVariant == 100 then
+		if EID.isRepentancePlus then
+			-- TODO (maybe will require REPENTOGON?)
+			-- Since D4 exploit is completely fixed in 1.9.7.11, this is no longer viable for full-reroll effect
+			-- (still useful for initial item pool from rooms though)
+			return game:GetItemPool():GetLastPool() -- remove this if item pool function should not appear on 1.9.7.11 patch
+		else
+			return game:GetItemPool():GetLastPool()
+		end
+	end
+end
+
 EID.ObjectIcon = {}
+---Returns the Inline Icon definition object for a given object.
+---@param descObj EID_DescObj
+---@return EID_Icon?
 function EID:getObjectIcon(descObj)
 	-- custom object icon
 	if EID.ObjectIcon[descObj.ObjType.."."..descObj.ObjVariant.."."..descObj.ObjSubType] then
@@ -2120,35 +2627,39 @@ function EID:getObjectIcon(descObj)
 	end
 
 	if descObj.ObjType == 5 then
-		if descObj.ObjVariant == 100 then
-			return EID:createItemIconObject("Collectible" .. descObj.ObjSubType)
-		elseif descObj.ObjVariant == 350 then
-			return EID:createItemIconObject("Trinket" .. descObj.ObjSubType)
-		elseif descObj.ObjVariant == 300 then
-			return EID:createItemIconObject("Card" .. descObj.ObjSubType)
-		elseif descObj.ObjVariant == 70 then
-			if descObj.ObjSubType >= 2049 then
-				return EID:createItemIconObject("Pill" .. (descObj.ObjSubType - 2048))
-			end
-			return EID:createItemIconObject("Pill" .. descObj.ObjSubType)
+		local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
+		if iconName then
+			return EID:createItemIconObject(iconName .. descObj.ObjSubType)
 		end
 	-- Handle Dice Room Floor
 	elseif descObj.ObjType == 1000 and descObj.ObjVariant == 76 then
+		---@diagnostic disable-next-line: return-type-mismatch
 		return EID.InlineIcons["DiceFace" .. descObj.ObjSubType]
 	end
 end
 
--- Adds an EID Icon to an Object
+---Adds an EID Icon to an Object
+---@param eType EntityType
+---@param eVariant integer
+---@param eSubType integer
+---@param iconName string
 function EID:AddIconToObject(eType, eVariant, eSubType, iconName)
 	EID.ObjectIcon[eType.."."..eVariant.."."..eSubType] = EID.InlineIcons[iconName]
 end
 
--- Set a pilleffect to be permanently unidentifyable by EID
+---Set a pilleffect to be permanently unidentifyable by EID
+---@param pillEffectID PillEffect
+---@param isUnidentifyable boolean
 function EID:SetPillEffectUnidentifyable(pillEffectID, isUnidentifyable)
 	EID.UnidentifyablePillEffects[pillEffectID + 1] = isUnidentifyable or nil
 end
 
--- Add pickup usage to history of pickups used by the player
+---Add pickup usage to history of pickups used by the player
+---@param pickupType "pill" | "card"
+---@param effectID PillEffect | Card
+---@param player EntityPlayer
+---@param useFlags UseFlag
+---@param pillColorID? PillColor @Only used for pills
 function EID:AddPickupToHistory(pickupType, effectID, player, useFlags, pillColorID)
 	-- don't add mimiced or noannouncer cards/pills to Echo Chamber history
 	local allowEchoChamber = true
@@ -2166,6 +2677,10 @@ end
 EID.WildCardEffects = {}
 EID.WildCardPillColor = {}
 EID.TemporaryWildCardEffects = {} -- resets every frame
+
+---@param effectID string @Identifier in `Type.Variant.SubType` format
+---@param player EntityPlayer
+---@param pillColor? PillColor
 function EID:TrackWildCardEffects(effectID, player, pillColor)
 	local playerID = EID:getPlayerID(player, true)
 	-- ? Card exception; both it and the active it used are ignored by Wild Card
@@ -2177,12 +2692,16 @@ function EID:TrackWildCardEffects(effectID, player, pillColor)
 		EID.WildCardPillColor[playerID] = pillColor -- doesn't matter that much so just set it here
 	end
 end
+
 function EID:UpdateWildCardEffects()
 	for k,v in pairs(EID.TemporaryWildCardEffects) do EID.WildCardEffects[k] = v end
 	EID.TemporaryWildCardEffects = {}
 end
 
--- Render a sprite of an entity
+---Render a sprite of an entity
+---@param entity Entity
+---@param sprite Sprite
+---@param position Vector
 function EID:RenderEntity(entity, sprite, position)
 	if entity.Type == 5 and entity.Variant == 100 then
 		sprite:RenderLayer(1, position, nullVector, nullVector)
@@ -2193,7 +2712,7 @@ function EID:RenderEntity(entity, sprite, position)
 	end
 end
 
--- Tries to get the Vanilla transformations of modded items based on Tags
+---Tries to get the Vanilla transformations of modded items based on Tags
 function EID:GetTransformationsOfModdedItems()
 	if not EID.isRepentance then return end
 	local numCollectibles = EID:GetMaxCollectibleID()
@@ -2202,7 +2721,8 @@ function EID:GetTransformationsOfModdedItems()
 	end
 end
 
--- Collects items that the player got after using D4 item
+---Collects items that the player got after using D4 item
+---@param player EntityPlayer
 function EID:CollectRerolledItemsOfPlayer(player)
 	if maxCollectibleID == nil then maxCollectibleID = EID:GetMaxCollectibleID() end
 	local playerID = EID:getPlayerID(player, true)
@@ -2216,34 +2736,50 @@ function EID:CollectRerolledItemsOfPlayer(player)
 end
 
 
--- Returns true if a given entity is a grid entity
+---Returns true if a given entity is a grid entity
+---@param entity Entity | GridEntity
 function EID:IsGridEntity(entity)
 	return entity.Type == nil
 end
 
--- Returns true, if the given entity is a valid game object and actually is something useful to process. Sometimes the game sends weird shit so this function is needed to catch bullshit
+---Returns true, if the given entity is a valid game object and actually is something useful to process.
+---Sometimes the game sends weird shit so this function is needed to catch bullshit
+---@return boolean
 function EID:EntitySanityCheck(entity)
 	return entity ~= nil and type(entity) == "userdata"
 end
 
--- returns true if the given pill color was used at least once in this game
+---Returns true if the given pill color was used at least once in this game
+---@param pillColor PillColor
+---@return boolean
 function EID:WasPillUsed(pillColor)
 	return EID.UsedPillColors[tostring(pillColor)] ~= nil
 end
 
--- returns the name of the given entity
+---Returns the name of the given entity
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return string
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:GetEntityXMLName(Type, Variant, SubType)
 	return EID.XMLEntityNames[Type.."."..Variant] or EID.XMLEntityNames[Type.."."..Variant.."."..SubType]
 end
 
+---@param tvsString string @Entity identifier in `Type.Variant.SubType` format
+---@return string
 ---@diagnostic disable-next-line: duplicate-set-field
 function EID:GetEntityXMLNameByString(tvsString)
 	local Type, Var, Sub = EID:SplitTVS(tvsString)
 	return EID:GetEntityXMLName(Type, Var, Sub)
 end
 
--- Get an item's RNG seed. We have no use for the RNG object itself because every other function it can do will advance the item's RNG, altering the game state
+---Get an item's RNG seed.
+---We have no use for the RNG object itself because every other function it can do will advance the item's RNG, altering the game state
+---@param player EntityPlayer
+---@param id CollectibleType | TrinketType | Card | PillEffect
+---@param variant? integer @Default: 100 (Collectible)
+---@return integer?
 function EID:GetItemSeed(player, id, variant)
 	if player == nil then return game:GetSeeds():GetStartSeed()
 	elseif variant == nil or variant == 100 then return player:GetCollectibleRNG(id):GetSeed()
@@ -2253,34 +2789,54 @@ function EID:GetItemSeed(player, id, variant)
 end
 
 local variantToName = { [70] = "Pill", [100] = "Collectible", [300] = "Card", [350] = "Trinket" }
+---@param variant
+---| 70 @Pill
+---| 100 @Collectible
+---| 300 @Card
+---| 350 @Trinket
 function EID:GetIconNameByVariant(variant)
 	return variantToName[variant]
 end
 
+---@param descObj EID_DescObj
+---@return string
 function EID:GetIconStringByDescriptionObject(descObj)
 	if descObj and descObj.Icon then
-		if type(descObj.Icon) == "table" then 
-			local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
-			if iconName == "Card" or iconName == "Pill" then
-				return "{{" .. iconName .. (descObj.Icon[2] + 1) .. "}}"
+		-- icon object assigned to Icon attribute
+		if type(descObj.Icon) == "table" then
+			local subType = descObj.ObjSubType
+			if descObj.ObjType == 1 then
+				return "{{Player" .. (subType or "") .. "}}"
+			elseif descObj.ObjType == 5 then
+				local iconName = EID:GetIconNameByVariant(descObj.ObjVariant)
+				if iconName then
+					return "{{" .. iconName .. subType .. "}}"
+				end
+			elseif descObj.ObjType == 1000 and descObj.ObjVariant == 76 then
+				return "{{DiceFace" .. subType .. "}}"
 			end
-			return "{{" .. iconName .. descObj.Icon[2] .. "}}"
-		elseif type(descObj.Icon) == "string" then 
+		-- String assigned to Icon attribute
+		elseif type(descObj.Icon) == "string" then
+			---@diagnostic disable-next-line: return-type-mismatch
 			return descObj.Icon
 		end
 	end
 	return "{{Blank}}"
 end
 
--- returns the markup for a given player ID or type. If no icon was found, returns the customTransformation icon markup
+---Returns the markup for a given player ID or type.
+---If no icon was found, returns the customTransformation icon markup
+---@param playerID integer
+---@param altFallback? string
 function EID:GetPlayerIcon(playerID, altFallback)
 	local fallback = altFallback or "{{CustomTransformation}}"
 	
 	return EID:getIcon("Player" .. playerID) ~= EID.InlineIcons["ERROR"] and "{{Player" .. playerID .. "}}" or fallback
 end
 
--- returns a list of all passive item ids
 local passiveItems = nil -- cache of all passive item ids
+---Returns a list of all passive item ids
+---@return integer[]
 function EID:GetAllPassiveItems()
 	if passiveItems then
 		return passiveItems
@@ -2293,8 +2849,12 @@ function EID:GetAllPassiveItems()
 			table.insert(passiveItems, i)
 		end
 	end
+	return passiveItems
 end
+
 local activeItems = nil -- cache of all active item ids
+---Returns a list of all active item ids
+---@return integer[]
 function EID:GetAllActiveItems()
 	if activeItems then
 		return activeItems
@@ -2307,9 +2867,11 @@ function EID:GetAllActiveItems()
 			table.insert(activeItems, i)
 		end
 	end
+	return activeItems
 end
 
--- Updates the EID.RecentlyTouchedItems table to include the players currently held passive items
+---Updates the EID.RecentlyTouchedItems table to include the players currently held passive items
+---@return table
 function EID:UpdateAllPlayerPassiveItems()
 	local passives = EID:GetAllPassiveItems()
 	local listUpdatedForPlayers = {}
@@ -2320,7 +2882,7 @@ function EID:UpdateAllPlayerPassiveItems()
 		if player == nil then
 			return listUpdatedForPlayers -- dont evaluate when bad data is present
 		end
-		
+		---@cast player EntityPlayer
 		local playerNum = EID:getPlayerID(player, true)
 		
 		-- remove items the player no longer has. reverse iteration to make deletion easier
@@ -2364,6 +2926,7 @@ function EID:UpdateAllPlayerPassiveItems()
 	end
 	return listUpdatedForPlayers
 end
+
 EID.OldestItemIndex = {}
 function EID:SetOldestItemIndex()
 	for i = 0, game:GetNumPlayers() - 1 do
@@ -2375,12 +2938,13 @@ function EID:SetOldestItemIndex()
 end
 
 EID.GulpedTrinkets = {}
--- Check for gulped trinkets that have been removed (e.g. perfection, walnut)
+---Check for gulped trinkets that have been removed (e.g. perfection, walnut)
 function EID:UpdateAllPlayerTrinkets()
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
 		if player == nil then return end
-		
+
+		---@cast player EntityPlayer
 		local playerNum = EID:getPlayerID(player, true)
 		if EID.GulpedTrinkets[playerNum] == nil then return end
 		
@@ -2394,7 +2958,7 @@ function EID:UpdateAllPlayerTrinkets()
 end
 
 EID.WispsPerPlayer = {}
--- This is automatically called shortly after main.lua sees a Lemegeton get used, and when the Item Reminder is opened
+---This is automatically called shortly after main.lua sees a Lemegeton get used, and when the Item Reminder is opened
 function EID:UpdateAllPlayerLemegetonWisps()
 	EID.WispsPerPlayer = {}
 	
@@ -2407,26 +2971,26 @@ function EID:UpdateAllPlayerLemegetonWisps()
 		end
 	end
 	-- Sort wisps by age (newest first), and leave just the IDs
-	for playerNum,wisps in pairs(EID.WispsPerPlayer) do
+	for playerNum, wisps in pairs(EID.WispsPerPlayer) do
 		table.sort(wisps, function(a, b) return a.FrameCount < b.FrameCount end)
 		for i,v in ipairs(wisps) do wisps[i] = v.SubType end
 	end
 end
 
--- This table holds, for each pedestal in the room, a table of item IDs that have been on that pedestal, and timestamps of when they were first and last seen
--- The Glitched Crown callback when describing the pedestal will sort by first timestamp, and delete entries with too old of a last timestamp (like after a reroll)
+---This table holds, for each pedestal in the room, a table of item IDs that have been on that pedestal, and timestamps of when they were first and last seen
+---The Glitched Crown callback when describing the pedestal will sort by first timestamp, and delete entries with too old of a last timestamp (like after a reroll)
 EID.GlitchedCrownCheck = {}
--- Watch pedestals for being a Glitched Crown style pedestal that flips between items too quickly to display descriptions for
+---Watch pedestals for being a Glitched Crown style pedestal that flips between items too quickly to display descriptions for
 function EID:WatchForGlitchedCrown()
 	if REPENTOGON then
 		-- In REPENTOGON, always check even without Glitched Crown, allowing to check 5+ Soul of Isaac usage, or Everything Jar
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
 
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
 			-- Use InitSeed and Index to prevent any Diplopia weirdness
 			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
-			local pickup = entity:ToPickup()
+			local pickup = entity:ToPickup() ---@cast pickup EntityPickup
 			local cycle = pickup:GetCollectibleCycle()
 			if #cycle > 1 then
 				for i, subType in ipairs(cycle) do
@@ -2439,27 +3003,31 @@ function EID:WatchForGlitchedCrown()
 	else
 		if not EID.collectiblesOwned[689] then return end
 
-		local curRoomIndex = game:GetLevel():GetCurrentRoomDesc().ListIndex
+		local curRoomIndex = game:GetLevel():GetCurrentRoomIndex()
 		EID.GlitchedCrownCheck[curRoomIndex] = EID.GlitchedCrownCheck[curRoomIndex] or {}
-		
+
 		for _, entity in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+			local index = entity.InitSeed..entity.Index
 			-- Use InitSeed and Index to prevent any Diplopia weirdness
-			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index] or {}
+			EID.GlitchedCrownCheck[curRoomIndex][index] = EID.GlitchedCrownCheck[curRoomIndex][index] or {}
 			-- Initialize the data about this pedestal showing its current item ID, if necessary
 			-- in order to sort the items displayed, while also trashing items that haven't shown up in a while, keep both "initial frame seen" and "last frame seen"
-			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
+			EID.GlitchedCrownCheck[curRoomIndex][index][entity.SubType] = EID.GlitchedCrownCheck[curRoomIndex][index][entity.SubType] or {EID.GameUpdateCount, EID.GameUpdateCount}
 			-- update the last frame seen for the pedestal's current collectible ID
-			EID.GlitchedCrownCheck[curRoomIndex][entity.InitSeed..entity.Index][entity.SubType][2] = EID.GameUpdateCount
+			EID.GlitchedCrownCheck[curRoomIndex][index][entity.SubType][2] = EID.GameUpdateCount
 		end
 	end
 end
 
--- Replaces Variable placeholders in string with a given value
--- Example: "My {1} message" --> "My test message"
--- varID can be omitted to replace {1} (or pass in a string table, to replace {1}, {2}, etc.)
+---Replaces Variable placeholders in string with a given value
+---Example: "My {1} message" --> "My test message"
+---varID can be omitted to replace {1} (or pass in a string table, to replace {1}, {2}, etc.)
+---@param str string
+---@param varID integer | integer[] | string | string[]
+---@param newString? string | string[] | integer
 function EID:ReplaceVariableStr(str, varID, newString)
 	if newString == nil then
-		newString = varID
+		newString = varID ---@diagnostic disable-line
 		varID = 1
 	end
 	if type(str) ~= "string" or newString == nil then return str end
@@ -2474,7 +3042,10 @@ function EID:ReplaceVariableStr(str, varID, newString)
 	end
 end
 
--- deep table copy, copied from http://lua-users.org/wiki/CopyTable
+---deep table copy, copied from http://lua-users.org/wiki/CopyTable
+---@generic T
+---@param orig T
+---@return T
 function EID:CopyTable(orig)
     local orig_type = type(orig)
     local copy
@@ -2489,7 +3060,12 @@ function EID:CopyTable(orig)
     end
     return copy
 end
--- super simple table concatenation: https://www.tutorialspoint.com/concatenation-of-tables-in-lua-programming
+
+---Super simple table concatenation: https://www.tutorialspoint.com/concatenation-of-tables-in-lua-programming
+---@generic T
+---@param t1 T[]
+---@param t2 T[]
+---@return T[]
 function EID:ConcatTables(t1, t2)
 	for i = 1, #t2 do
 		t1[#t1 + 1] = t2[i]
@@ -2497,21 +3073,32 @@ function EID:ConcatTables(t1, t2)
 	return t1
 end
 
--- thing to fix find/replace pairs with hyphens (like "1-2") or pluses (like +1 Health) breaking because of special characters
--- https://stackoverflow.com/questions/29072601/lua-string-gsub-with-a-hyphen
+---Thing to fix find/replace pairs with hyphens (like "1-2") or pluses (like +1 Health) breaking because of special characters
+---https://stackoverflow.com/questions/29072601/lua-string-gsub-with-a-hyphen
+---@param str string
+---@param what string
+---@param with string
+---@param count integer
+---@return string, integer
 function EID:SimpleReplace(str, what, with, count)
 	what = string.gsub(what, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1") -- escape pattern
 	with = string.gsub(with, "[%%]", "%%%%")                       -- escape replacement
 	return string.gsub(str, what, with, count)
 end
 
--- simple decimal rounding, instead of just floor or ceil
+---Simple decimal rounding, instead of just floor or ceil
+---@param num number
+---@param dp integer?
+---@return number
 function EID:SimpleRound(num, dp)
 	dp = dp or 2
 	local mult = 10^dp
 	return math.floor(num * mult + 0.5)/mult
 end
 
+---@param t any[]
+---@param value any
+---@return boolean
 function EID:ArrayContains(t, value)
 	for _,v in ipairs(t) do
 		if v == value then return true end
@@ -2520,7 +3107,9 @@ function EID:ArrayContains(t, value)
 end
 
 
--- Find the closest player to the given entity
+---Find the closest player to the given entity
+---@param entity Entity
+---@return EntityPlayer
 function EID:ClosestPlayerTo(entity)
 	local closestDist = 9999999
 	local closestPlayer = EID.player or Isaac.GetPlayer()
@@ -2530,6 +3119,7 @@ function EID:ClosestPlayerTo(entity)
 	
 	for i = 1, #EID.coopAllPlayers do
 		local player = EID.coopAllPlayers[i]
+		---@cast player EntityPlayer
 		local dist = player.Position:Distance(entity.Position)
 		if dist < closestDist and player then
 			closestDist = dist
@@ -2540,7 +3130,9 @@ function EID:ClosestPlayerTo(entity)
 	return closestPlayer
 end
 
--- Creates a description table for a given language to prevent outdated languages from breaking EID API functions for mods
+---Creates a description table for a given language to prevent outdated languages from breaking EID API functions for mods
+---@param tableName string
+---@param language EID_LanguageCode
 function EID:CreateDescriptionTableIfMissing(tableName, language)
 	if language and not EID.descriptions[language] then
 		EID.descriptions[language] = {}
@@ -2550,7 +3142,9 @@ function EID:CreateDescriptionTableIfMissing(tableName, language)
 	end
 end
 
--- returns true if the given pedestal-entity is hidden (questionmark sprite)
+---Returns true if the given pedestal-entity is hidden (questionmark sprite)
+---@param entity Entity
+---@return boolean
 function EID:IsItemHidden(entity)
 	if EID:getEntityData(entity, "EID_DontHide") == true then
 		return false
@@ -2569,3 +3163,64 @@ function EID:IsItemHidden(entity)
 	end
 	return false
 end
+
+---Returns true if the position at the given grid location is valid for pathfinding.
+---gridPosition is a table with an x and y entry. Its derived from the FindVector class of "LuaFindings" module (pathfinder)
+---@param gridPosition table
+---@return boolean
+function EID:EvaluateLocation(gridPosition)
+	local room = game:GetRoom()
+	local width = room:GetGridWidth()
+	local height = room:GetGridHeight()
+	if gridPosition.x < 1 or gridPosition.y < 1 or gridPosition.x >= height-1 or gridPosition.y >= width - 1 then
+		return false
+	end
+	local gridIndex = gridPosition.x * room:GetGridWidth() + gridPosition.y
+	-- GridPath contains a value that defines if a poisiton is walkable by the ingame pathfinder
+	-- numbers bigger 900 are considered not walkable (spikes, rocks, pits, grimaces, etc.)
+	-- numbers smaller 900 are walkable but less preferable. 0 is most preferable
+	local collision = room:GetGridPath(gridIndex)
+	return collision <= 900
+end
+
+---Returns true if an unobstructed path between the start and end position exists.
+---Obstructions can be something like Rocks, Pits, Walls, etc.
+---@param startPos Vector
+---@param endPos Vector
+---@return boolean
+function EID:HasPathToPosition(startPos, endPos)
+	-- divide by 40 to convert from world to grid coords
+	local room = game:GetRoom()
+	local width = room:GetGridWidth()
+	local startGI = room:GetGridIndex(startPos)
+	local endGI = room:GetGridIndex(endPos)
+	-- convert GridIndex into Grid X,Y coordinates and calculate path
+	local pathfinderObj = EID.Pathfinder(Vector(startGI%width, math.floor(startGI/width)), Vector(endGI%width, math.floor(endGI/width)), EID.EvaluateLocation)
+	-- return true if it has a path
+	return pathfinderObj:GetPath() ~= nil
+end
+
+---Applies language specific modifiers that aim to pluralize a text
+---@param text string
+---@param amount integer
+function EID:TryPluralizeString(text, amount)
+	local func = EID:getDescriptionEntry("PluralizeFunction")
+	if type(func) == "function" then
+		return func(text,amount)
+	end
+	return text
+end
+
+---Prints a message in both the console and the Log file, to make important messages from EID stand out everywhere
+---@param str string
+function EID:WriteDebugMsg(str)
+	print(str)
+	Isaac.DebugString(str)
+end
+
+---Prints an error message in both the console and the Log file, to make important messages from EID stand out everywhere
+---@param str string
+function EID:WriteErrorMsg(str)
+	EID:WriteDebugMsg("EID ERROR: " .. str)
+end
+

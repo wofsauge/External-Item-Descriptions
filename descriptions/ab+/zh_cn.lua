@@ -2,8 +2,6 @@
 -----  Basic Chinese descriptions  ---
 --------------------------------------
 
--- Last Update: 2024.11.17
-
 -- FORMAT: Item ID | Name | Description
 
 -- Special character markup:
@@ -15,7 +13,8 @@ local languageCode = "zh_cn"
 -- init zh_cn table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Chinese"
+EID.descriptions[languageCode].languageName = "Simplified Chinese"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"zh-CN", "schinese", "zh"}
 
 -- Fonts to be used with this languagepack
 EID.descriptions[languageCode].fonts = {{name = "cn_alt", lineHeight = 13, textboxWidth = 145}, {name = "cn_default", lineHeight = 13, textboxWidth = 140}, {name = "cn_old", lineHeight = 14, textboxWidth = 150}}
@@ -422,7 +421,7 @@ EID.descriptions[languageCode].collectibles={
 	{"395", "科技X", "{{Chargeable}} 角色的泪弹由可蓄力的激光环取代#激光环尺寸随蓄力时间增加"},
 	{"396", "心室手术刀", "创造最多2个传送门#可以在不同房间放置"},
 	{"397", "牵引光束", "↑ {{Tears}} 射速+0.5#↑ {{Range}} 射程+5.25#↑ 泪弹高度+0.5#↑ {{Shotspeed}} 弹速+0.16#角色的泪弹受角色面前的光束指引"},
-	{"398", "神体蘑菇", "泪弹能使敌人缩小#缩小的敌人可以被踩死"},
+	{"398", "神体蘑菇", "10%几率发射使敌人缩小的泪弹#缩小的敌人可以被踩死"},
 	{"399", "虚空之喉", "↑ {{Damage}} 伤害+1#{{Chargeable}} 持续发射泪弹2.35秒后, 松开发射键会产生黑硫磺火圈#黑圈在2秒内造成30x角色伤害#{{BlackHeart}} 被黑圈击杀的敌人有5%几率掉落1黑心"},
 	{"400", "命运之矛", "在角色面前生成一根矛#{{Fear}} 每秒造成约8.57x角色伤害, 几率使接触到的敌人恐惧"},
 	{"401", "爆炸物", "25%几率发射粘性炸弹泪弹#泪弹击中时不造成伤害, 几秒后爆炸"},
@@ -858,7 +857,7 @@ EID.descriptions[languageCode].trinkets={
 	{"117", "征服蝗虫", "进入有敌人的房间时, 生成1-4只攻击蝗虫#每只蝗虫造成2x角色伤害"},
 	{"118", "蝙蝠翅膀", "{{Timer}} 击杀敌人后, 5%几率在当前房间中获得飞行"},
 	{"119", "干细胞", "{{HealingRed}} 进入新一层时, 治疗半红心"},
-	{"120", "发夹", "Boss战开始时将主动道具充能"},
+	{"120", "发夹", "头目战开始时将主动道具充能"},
 	{"121", "木十字架", "{{Collectible313}} 阻挡每层第一次受到的伤害"},
 	{"122", "黄油！", "使用主动道具会使其以底座道具的形式掉在地上#受伤时, 2%几率掉落角色持有的被动道具"},
 	{"123", "银丝羽毛", "天使头目掉落正常道具而不是钥匙部件"},
@@ -1089,9 +1088,12 @@ EID.descriptions[languageCode].transformations={
 
 
 ---------- MISC ----------
-
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = ""
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
+-- Each language can do their own algorithm to modify the given text to their needs
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- TODO: Not Implemented right now...
+	return text
+end
 
 EID.descriptions[languageCode].VoidText = "若吸收, 则获得:"
 -- {1} will become the number text (like "{1} Tears up" -> "+0.5 Tears up")
@@ -1112,6 +1114,7 @@ EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} 一次性 {{Warning}
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
 -- {1} = number of hearts, {2} = plural character
+-- These texts are affected by the PluralizeFunction (ab+ file)
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
@@ -1121,7 +1124,7 @@ EID.descriptions[languageCode].RedToX = {
 
 	["Red to Black"] = {"↑ {{Heart}} +{1}心之容器", "{{BlackHeart}} +{1}黑心",
 	"↑ {{EmptyHeart}} +{1}空心之容器", "{{BlackHeart}} +{1}黑心",
-	"↓ {{EmptyHeart}} {1}心之容器", "↓ {{SoulHeart}} {1}黑心"},
+	"↓ {{EmptyHeart}} {1}心之容器", "↓ {{BlackHeart}} {1}黑心"},
 
 	["Red to Bone"] = {"↑ {{Heart}} +{1}心之容器", "{{BoneHeart}} +{1}骨心",
 	"↑ {{EmptyHeart}} +{1}空心之容器", "{{EmptyBoneHeart}} +{1}骨心", "{{HealingRed}}", "{{HealingBone}}",
@@ -1149,7 +1152,7 @@ EID.descriptions[languageCode].ItemReminder = {
 		Wisps = "所罗门魔典魂火",
 		Special = "特殊",
 		Actives = "持有的主动道具",
-		Pockets = "持有的次要主动道具",
+		Pockets = "持有的口袋道具",
 		Trinkets = "持有的饰品",
 		Passives = "持有的被动道具",
 		Character = "角色信息",
@@ -1214,7 +1217,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedMode}} 贪婪模式中无效果",
 	["No Effect (Copies)"] = "多个重复品无额外效果", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "对跟班没有额外效果", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "对不能拥有红心的角色无效果",
 	["Different Effect"] = "{{ColorSilver}}对{1}有不同效果{{CR}}",
 	["Dies on Use"] = "{{Warning}} 使用时{1}死亡", -- for Razor Blade and such as The Lost
 
@@ -1301,7 +1303,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Black Feather"] = "↑ {{Damage}} 伤害+0.2", -- Black Feather items
 
 	["Bulb Multiple"] = "只检查主要主动道具", -- Vibrant/Dim Bulb + Schoolbag/Pocket Actives
-	["Bulb Zero"] = "无充能主动道具能触发灯泡", -- Vibrant/Dim Bulb + zero charge actives
+	["Bulb Zero"] = "零充能的主动道具能触发灯泡", -- Vibrant/Dim Bulb + zero charge actives
 	["5.350.101 (Timed)"] = "对时间充能的主动道具来说基本没用", -- Dim Bulb + Timed Recharges
 	["5.100.122"] = "{1}: 处于1红心时触发", -- Whore of Babylon + Eve
 

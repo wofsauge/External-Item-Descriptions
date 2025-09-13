@@ -6,6 +6,8 @@
     <description>[img]https://i.imgur.com/l9nbaxP.png[/img]
 This mod displays detailed information about all items, trinkets, cards, runes and pills DIRECTLY onto your screen. Say goodbye to your browser tab with platinumgod or the wiki open ;)
 
+The Steam-Workshop version of this mod is compatible with Afterbirth+, Repentance, Repentogon and Repentance+. There are also versions for [url=https://github.com/wofsauge/External-Item-Descriptions#versions]Rebirth or Afterbirth[/url], as well as [url=https://github.com/wofsauge/External-Item-Descriptions/wiki/How-to-install-the-mod]Epic Games, GoG and other sources[/url].
+
 [img]https://i.imgur.com/bRGqujD.png[/img] [url=https://discord.gg/HhD4vMM4bZ]Need help or want to chat? Join our Discord server![/url]
 [img]https://i.imgur.com/P6a8043.png[/img] [url=https://github.com/wofsauge/External-Item-Descriptions]Check this project out on GitHub![/url]
 
@@ -29,13 +31,16 @@ This mod displays detailed information about all items, trinkets, cards, runes a
 [b]Press F2 to hide/show the descriptions![/b]
 
 [img]https://i.imgur.com/NqSBJqj.png[/img]
-[img]https://i.imgur.com/mJshXnR.png[/img]
+[img]https://i.imgur.com/nl8lCfN.png[/img]
 Supported Languages:
-Chinese, Czech, Dutch, English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Brazilian-Portuguese, Turkish, Ukrainian
+Chinese, Czech, Dutch, English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Brazilian-Portuguese, Romanian, Russian, Spanish, Turkish, Ukrainian, Vietnamese
+
+To change the language, just edit the &quot;Language&quot; setting in the configuration. We recommend to install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]'Mod Config Menu Pure'[/url] to easily change the configuration ingame.
 
 [img]https://i.imgur.com/RVtZEqp.png[/img]
 For [b]Steam users[/b], simply press the &quot;Subscribe&quot; button on the mod's Steam Workshop page. This will automatically install the mod for you.
 For [b]manual mod installation[/b], read this tutorial &quot;[url=https://github.com/wofsauge/External-Item-Descriptions/wiki/How-to-install-the-mod]How to install the mod[/url]&quot;
+
 If you have problems installing use the [url=https://wofsauge.github.io/IsaacDocs/rep/faq/interactive_FAQ.html]Interactive FAQ[/url].
 [img]https://i.imgur.com/PFTZnfC.png[/img]
 Simply install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]'Mod Config Menu Pure'[/url]. You can use it to configure the mod while playing.
@@ -44,14 +49,14 @@ Alternatively, edit the `eid_config.lua` file like described [url=https://github
 
 [img]https://i.imgur.com/vUP4whT.png[/img]
 There are multiple Versions of the mod, depending on which DLCs you have installed.
-You are currently looking at the version for Afterbirth+ and Repentance.
+[b]You are currently looking at the version for Afterbirth+ and Repentance.[/b]
 
-[url=https://github.com/wofsauge/External-Item-Descriptions#versions]Alternative versions for all other DLCs, or for manual installation purposes can be found here[/url]
+[url=https://github.com/wofsauge/External-Item-Descriptions#versions]Click here for the Rebirth or Afterbirth Versions[/url]
 
 [img]https://i.imgur.com/jrdGbna.png[/img]
 [url=https://github.com/wofsauge/External-Item-Descriptions/blob/master/CREDITS.md]Check out the credits here[/url]
 </description>
-    <version>4.87</version>
+    <version>5.5</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

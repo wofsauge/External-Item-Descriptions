@@ -58,7 +58,7 @@ local repCollectibles={
 	[110] = {"110", "Mamas Kontakte", "↑ {{Range}} +1.5 Reichweite#20% Chance, versteinerte Tränen zu schießen#{{Luck}} Bei 20 Glück 50%ige Chance"}, -- Mom's Contacts
 	[114] = {"114", "Mamas Messer", "Isaacs Tränen werden durch ein werfbares Messer ersetzt#{{Damage}} Das Messer verursacht 2x Isaacs Schaden beim Halten und begrenzt sich bei 1/3 Ladung auf 6x Schaden#Weitere Aufladung erhöht nur die Wurfweite#Schaden reduziert sich auf 2x beim Zurückkehren zu Isaac"}, -- Mom's Knife
 	[115] = {"115", "Ouija-Brett", "↑ {{Tears}} +0.5 Tränen#Spektrale Tränen"}, -- Ouija Board
-	[118] = {"118", "Schwefel", "↓ {{Tears}} x0.33 Feuerratenmultiplikator#{{Chargeable}} Isaacs Tränen werden durch einen aufladbaren Blutstrahl ersetzt##{{Damage}} Er verursacht 9x Isaacs Schaden über 0.63 Sekunden"}, -- Brimstone
+	[118] = {"118", "Schwefel", "↓ {{Tears}} x0.33 Feuerratenmultiplikator#{{Chargeable}} Isaacs Tränen werden durch einen aufladbaren Blutstrahl ersetzt#{{Damage}} Er verursacht 9x Isaacs Schaden über 0.63 Sekunden"}, -- Brimstone
 	[121] = {"121", "Seltsamer Pilz (Groß)", "↑ {{Heart}} +1 Gesundheit#↑ {{Damage}} +1 Schaden#↑ {{Range}} +1.5 Reichweite#↓ {{Speed}} -0.2 Geschwindigkeit"}, -- Odd Mushroom (Large)
 	[123] = {"123", "Monsterhandbuch", "{{Timer}} Spawnt für den Raum ein zufälliges Begleittier"}, -- Monster Manual
 	[126] = {"126", "Rasierklinge", "↑ {{Damage}} +1.2 Schaden für den Raum#{{Warning}} Verursacht 1 Herz Schaden an Isaac#Nach dem ersten Gebrauch im Raum nur noch ein halbes Herz#{{Heart}} Entfernt zuerst Rote Herzen"}, -- Razor Blade
@@ -519,195 +519,276 @@ EID.descriptions[languageCode].bookOfBelialBuffs = {
 	[729] = "Solange der Kopf abgetrennt ist:#↑ {{Tears}} x3 Feuerratenmultiplikator#↑ {{Damage}} +2 Schaden", -- Decap Attack
 }
 
--- Book of Virtues wisp types
-EID.descriptions[languageCode].bookOfVirtuesWisps = {
-	[33] = "Innere Ring-Wisp#Lenkende Tränen", -- The Bible
-	[34] = "Mittlere Ring-Wisp#Doppelschaden-Tränen", -- The Book of Belial
-	[35] = "Innere Ring-Wisp#3,5% Chance für {{Fear}} Furcht-Tränen#{{Collectible35}} Necronomicon-Effekt beim Zerstören", -- The Necronomicon
-	[36] = "Äußere Ring-Wisp#2,5% Chance für {{Collectible236}} E. Coli-Tränen", -- The Poop
-	[37] = "Mittlere Ring-Wisp#Wirft gestreute lenkbare Bomben beim Zerstören", -- Mr. Boom
-	[38] = "Äußere Ring-Wisp#Schnelle, ungenaue Tränen", -- Tammy's Head
-	[39] = "Mittlere Ring-Wisp#5% Chance für versteinerte Tränen", -- Mom's Bra
-	[40] = "Mittlere Ring-Wisp#Explosive Tränen#Explodiert beim Zerstören", -- Kamikaze!
-	[41] = "Mittlere Ring-Wisp#7,5% Chance für {{Fear}} Furcht-Tränen", -- Mom's Pad
-	[42] = "Mittlere Ring-Wisp#7,5% Chance für {{Collectible149}} Ipecac-Tränen", -- Bob's Rotten Head
-	[44] = "Mittlere Ring-Wisp#10% Chance, dass Tränen Feinde teleportieren#Wisps flackern alle 5 Sekunden", -- Teleport!
-	[45] = "Mittlere Ring-Wisp#20% Chance, dass Feinde bei Tod 1 {{Heart}} Rotes Herz fallen lassen", -- Yum Heart
-	[47] = "Mittlere Ring-Wisp#Schießt 3 explosive Tränen zum Fadenkreuz bei Verwendung", -- Doctor's Remote
-	[49] = "Äußere Ring-Wisp#Kann keine Tränen schießen#Feuert bei Verwendung einen Strahl ab", -- Shoop da Whoop!
-	[56] = "Mittlere Ring-Wisp#Schnelle, geringe Reichweite Tränen#Wisp tropft gelbes Kriechen", -- Lemon Mishap
-	[58] = "Mittlere Ring-Wisp#Niedrige HP, aber immun gegen Geschosse#Immun gegen Schaden während {{Collectible58}}-Effekt", -- Book of Shadows
-	[65] = "Mittlere Ring-Wisp#Lässt eine Trollbombe fallen beim Zerstören", -- Anarchist Cookbook
-	[66] = "Mittlere Ring-Wisp#{{Slow}} Verlangsamt Gegner für 3 Sekunden beim Zerstören", -- The Hourglass
-	[77] = "Mittlere Ring-Wisp#Zusätzlicher Kontakt-Schaden", -- My Little Unicorn
-	[78] = "Innere Ring-Wisp#Kann keine Tränen schießen#Beschwört eine Heuschrecke für den Raum beim Zerstören", -- Book of Revelations
-	[83] = "Innere Ring-Wisp#Doppelschaden- und Rückstoßtränen", -- The Nail
-	[84] = "Mittlere Ring-Wisp#Kein besonderer Effekt", -- We Need to Go Deeper!
-	[85] = "Innere Ring-Wisp#Lässt eine {{Card}}-Karte fallen beim Zerstören", -- Deck of Cards
-	[86] = "Mittlere Ring-Wisp#Zahnlaser-Tränen", -- Monstro's Tooth
-	[93] = "Innere Ring-Wisp#Antigravitations-Tränen#Chance für {{Fear}} Furcht-Tränen", -- The Gamekid
-	[97] = "Beschwört 1 von 8 Wisps:#{{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#{{Warning}} Explosive Effekte sind wahrscheinlich", -- The Book of Sin
-	[102] = "Innere Ring-Wisp#Beschwört 1 von 6 Wisps:#normale Tränen, die beim Zerstören eine feindliche Spinne beschwören oder Chance auf Gift, Versteinern, Verwirrung, Verbrennen, Trollbomben-Tränen#Alle 6 lassen beim Zerstören eine {{Pill}}-Pille fallen", -- Mom's Bottle of Pills
-	[105] = "Mittlere Ring-Wisp#+1 Wisp pro umgerolltem Gegenstand", -- The D6
-	[107] = "Innere Ring-Wisp#Durchdringende Tränen", -- The Pinking Shears
-	[111] = "Äußere Ring-Wisp#{{Poison}} Giftiger Furz beim Zerstören", -- The Bean
-	[123] = "Innere Ring-Wisp#Zufällige Tränen", -- Monster Manual
-	[124] = "Beschwört den Wisp des imitierten Gegenstands", -- Dead Sea Scrolls
-	[126] = "Mittlere Ring-Wisp#Wisps mit hoher LP", -- Razor Blade
-	[127] = "Mittlere Ring-Wisp#Unendlicher LP-Wisp für den neuen Raum", -- Forget Me Now
-	[130] = "Mittlere Ring-Wisp#Kann keine Tränen schießen#Wisps laden in die Richtung auf, in die Isaac schießt", -- A Pony
-	[133] = "Mittlere Ring-Wisp#Beschwört 3 Wisps mit hoher LP", -- Guppy's Paw
-	[135] = "Äußere Ring-Wisp#Wisp mit niedriger LP", -- IV Bag
-	[136] = "Mittlere Ring-Wisp#7,5% Chance für {{Bait}} markierte Tränen#Markierte Feinde werden von anderen Feinden angegriffen", -- Best Friend
-	[137] = "Innere Ring-Wisp#+1 Wisp pro detonierte Bombe#Tränen des Wisps können auch ferngezündet werden", -- Remote Detonator
-	[145] = "Äußere Ring-Wisp#Wisps werden anstelle von Fliegen beschworen#Beschwört eine blaue Fliege beim Zerstören", -- Guppy's Head
-	[146] = "Innere Ring-Wisp#Lenkende Tränen", -- Prayer Card
-	[147] = "Chance, Dip-Wisps aus Kacke und 1 von 5 Mineral-Wisps aus Felsen zu beschwören:#{{Collectible132}} Kohle, {{Collectible201}} Eisen, {{Collectible202}} Gold, {{Collectible68}} Rotstein, {{Collectible415}} Diamant", -- Notched Axe
-	[158] = "Mittlere Ring-Wisp#Wisp mit hoher LP, der auf nahegelegene Feinde schießt", -- Crystal Ball
-	[160] = "Mittlere Ring-Wisp#Ruft bei Berührung einen Lichtstrahl herbei", -- Crack the Sky
-	[164] = "Mittlere Ring-Wisp#Einzelraum-Wisp", -- The Candle
-	[166] = "Mittlere Ring-Wisp#Zerstört alle Pickups im Raum, mit einer Chance, für jeden eine zufällige Wisp zu beschwören", -- D20
-	[171] = "Mittlere Ring-Wisp#7,5% Chance für {{Slow}} langsame Tränen", -- Spider Butt
-	[175] = "Mittlere Ring-Wisp#Wisps öffnen verschlossene Truhen/Türen bei Berührung, einschließlich der Türen zum Mega Satan, Aufstieg und Leichnam#Wisps spenden sich selbst an {{KeyBeggar}} Schlüsselmeister", -- Dad's Key
-	[177] = "Beschwört einen Wisp basierend auf der gewonnenen Belohnung", -- Portable Slot
-	[181] = "Mittlere Ring-Wisp#10% Chance für {{Collectible374}} Heilige Licht-Tränen", -- White Pony
-	[186] = "Mittlere Ring-Wisp#Wisp mit hoher LP", -- Blood Rights
-	[192] = "Mittlere Ring-Wisp#Lenkende Tränen", -- Telepathy for Dummies
-	[263] = "Mittlere Ring-Wisp#15% Chance, dass Feinde bei Tod eine {{Rune}} Rune fallen lassen#Lässt eine {{Rune}} Rune fallen beim Zerstören", -- Clear Rune
-	[282] = "Beschwört bis zu 6 stationäre Wisps für den Raum", -- How to Jump
-	[283] = "Rerollt alle Wisps und beschwört 1 zufälligen Wisp herbei#Rerollt nicht Book of Virtues", -- D100
-	[284] = "Entfernt alle Wisps und beschwört einen zufälligen Wisp für jeweils 2 besessene Gegenstände herbei#Rerollt nicht Book of Virtues", -- D4
-	[285] = "Mittlere Ring-Wisp#10% Chance auf D10-Effekt-Tränen", -- D10
-	[286] = "Mittlere Ring-Wisp#15% Chance, dass Feinde beim Tod eine {{Card}} Karte fallen lassen#Beschwört eine {{Card}} Karte herbei, wenn zerstört", -- Blank Card
-	[287] = "Mittlere Ring-Wisp#{{Collectible675}} Cracked Orb-Effekt beim Zerstören", -- Book of Secrets
-	[288] = "Äußere Ring-Wisp#Anstelle von Spinnen werden Wisps beschworen#Beschwört eine blaue Spinne herbei, wenn zerstört", -- Box of Spiders
-	[289] = "Mittlere Ring-Wisp#Einzelraum-Wisp#Tränen mit rotem Flammenmuster", -- Red Candle
-	[290] = "Mittlere Ring-Wisp#Erzeugt pro Herz einen Wisp anstelle sie als Pickups fallen zu lassen#Chance, eine {{HalfHeart}} halbe Rote Herz zu beschwören, wenn zerstört", -- The Jar
-	[291] = "Mittlere Ring-Wisp#Beschwört einen zusätzlichen Wisp pro weggespültem Feind", -- Flush!
-	[292] = "Mittlere Ring-Wisp#+10% {{AngelDevilChance}} Devil/Angel Room Chance pro satanischem Bibel-Wisp", -- Satanic Bible
-	[293] = "Mittlere Ring-Wisp#Feuert einen {{Collectible118}} Brimstone-Strahl in 4 Richtungen ab, wenn zerstört", -- Head of Krampus
-	[294] = "Innere Ring-Wisp#Wisp mit niedriger LP für Einzelraum#Kann keine Tränen schießen#Butter Bean-Effekt beim Zerstören", -- Butter Bean
-	[295] = "Innere Ring-Wisp#Chance, eine {{Coin}} Münze fallen zu lassen, wenn zerstört", -- Magic Fingers
-	[296] = "Mittlere Ring-Wisp#Wisp mit höherer LP, der mit {{Heart}} roten Herzen geheilt werden kann", -- Converter
-	[297] = "Mittlere Ring-Wisp#Beschwört 0-8 Wisps, abhängig vom Stockwerk", -- Pandora's Box
-	[298] = "Mittlere Ring-Wisp#Kann keine Tränen schießen#Immun gegen Berührungsschaden#Verursacht keinen Berührungsschaden, es sei denn, Einhorn-Stumpf oder ein ähnlicher Effekt ist aktiv", -- Unicorn Stump
-	[323] = "Mittlere Ring-Wisp#Beschwört 6 Wisps herbei#3 Sekunden Lebensdauer", -- Isaac's Tears
-	[324] = "Mittlere Ring-Wisp#{{Collectible570}} Playdough Cookie-Tränen", -- Undefined
-	[325] = "Mittlere Ring-Wisp#Bogenschuss-Clustertränen", -- Scissors
-	[326] = "Innere Ring-Wisp#Beschwört 4 Wisps bei perfektem Block", -- Breath of Life
-	[338] = "Mittlere Ring-Wisp#Einzelraum-Wisp#Bumerangtränen", -- The Boomerang
-	[347] = "Mittlere Ring-Wisp#Wisps mit hoher LP und {{Collectible245}} 20/20-Tränen#Dupliziert alle anderen Wisps", -- Diplopia
-	[348] = "Mittlere Ring-Wisp#Beschwört eine {{Pill}} Pille herbei, wenn zerstört", -- Placebo
-	[349] = "Mittlere Ring-Wisp#50% Chance, eine {{Coin}} Münze fallen zu lassen, wenn zerstört", -- Wooden Nickel
-	[351] = "Mittlere Ring-Wisp#Sendet beim Gebrauch eine Felswelle aus#Versteinert + {{Poison}} Giftfurz beim Zerstören", -- Mega Bean
-	[352] = "Mittlere Ring-Wisp#Wisp mit niedriger LP, der zwischen Räumen bestehen bleibt#Alle Glass Cannon Wisps werden zerstört, wenn einer zerstört wird", -- Glass Cannon
-	[357] = "Mittlere Ring-Wisp#Kein besonderer Effekt#Dupliziert alle Wisps für den Raum", -- Box of Friends
-	[382] = "Mittlere Ring-Wisp#Freundliche Gegner beschwören je nach ihren Angriffen einen von 4 Wisps herbei, mit normalen, lenkenden, explosiven oder Brimstone-Tränen beim Tod#Dupliziert alle anderen Wisps", -- Friendly Ball
-	[383] = "Mittlere Ring-Wisp#Tränen des Wisps können detoniert werden und verwandeln sich in 6 von Isaacs Tränen#Besteht zwischen Räumen fort#Explodiert in Isaacs Tränen, wenn zerstört", -- Tear Detonator
-	[386] = "Mittlere Ring-Wisp#5% Chance, dass Tränen Felsen, Urnen, Schädel oder Pilze umrollen", -- D12
-	[396] = "Kann keine Tränen schießen#Jedes Portal hat 1 Wisp", -- Ventricle Razor
-	[406] = "Mittlere Ring-Wisp#Zufälliger Schaden und Feuerrate", -- D8
-	[419] = "Mittlere Ring-Wisp#20% Chance, dass Tränen Feinde teleportieren#Wisps flimmern alle 5 Sekunden", -- Teleport 2.0
-	[421] = "Mittlere Ring-Wisp#{{Charm}} Charm Tränen#{{Charm}} Charm-Furz beim Zerstören", -- Kidney Bean
-	[422] = "Mittlere Ring-Wisp#30% Chance auf versteinernde Tränen#Beschwört alle Wisps neu herbei, die im vorherigen Raum zerstört wurden", -- Glowing Hourglass
-	[427] = "Springt im Raum herum und explodiert, wenn von Isaac getroffen#Kann keine Tränen schießen oder Berührungsschaden verursachen", -- Mine Crafter
-	[434] = "Mittlere Ring-Wisp#Anstelle von Fliegen werden Wisps beschworen#Bis zu 5 Fliegen ergeben 1 Wisp mit erhöhter Gesundheit und Schaden", -- Jar of Flies
-	[437] = "Mittlere Ring-Wisp#D7-Effekt, wenn er zum ersten Mal getroffen wird", -- D7
-	[439] = "Mittlere Ring-Wisp#Kein besonderer Effekt", -- Mom's Box
-	[441] = "Mittlere Ring-Wisp#{{Chargeable}} Aufladbare Brimstone-Tränen#Schießt kontinuierlich während eines Mega-Blasts", -- Mega Blast
-	[475] = "Mittlere Ring-Wisp#Beschwört 8 Wisps mit hohem Schaden, die nach dem Tod bleiben", -- Plan C
-	[476] = "Mittlere Ring-Wisp#Beschwört einen zweiten Wisp, wenn keine Aufnahme dupliziert wurde", -- D1
-	[477] = "Beschwört die Wisps aller absorbierten Aktivgegenstände herbei#Beschwört selbst keinen Wisp herbei", -- Void
-	[478] = "Mittlere Ring-Wisp#Pausiert alle Feinde und Schüsse für 3 Sekunden beim Zerstören", -- Pause
-	[479] = "Mittlere Ring-Wisp#Chance, eine {{Trinket}} Trinket herbeizubeschwören, wenn zerstört", -- Smelter
-	[480] = "Mittlere Ring-Wisp#Erhöhte LP für jeden umgewandelten Pickup#Beschwört nur einen Wisp herbei, wenn mindestens ein Pickup umgewandelt wurde", -- Compost
-	[481] = "Mittlere Ring-Wisp#5% Chance, dass Tränen Feinde in zufällige Wisps verwandeln", -- Dataminer
-	[482] = "Beschwört einen zufälligen Wisp herbei", -- Clicker
-	[483] = "Mittlere Ring-Wisp#Beschwört 8 Wisps herbei, die beim Zerstören eine goldene Trollbombe fallen lassen", -- Mama Mega!
-	[484] = "Mittlere Ring-Wisp#Einzelraum-Wisp#Kann keine Tränen schießen#Wait What?-Effekt beim Zerstören", -- Wait What?
-	[485] = "Mittlere Ring-Wisp#Alle Crooked Penny Wisps werden zerstört oder dupliziert, wenn einer beschädigt wird", -- Crooked Penny
-	[486] = "Mittlere Ring-Wisp#Kann keine Tränen schießen#Chance, dass Isaac keinen Schaden nimmt und dafür zerstört wird", -- Dull Razor
-	[487] = "Unzerstörbarer, permanenter Wisp#Verfolgt Feinde, um sie zu beschießen#Blockiert keine Schüsse und verursacht keinen Berührungsschaden", -- Potato Peeler
-	[488] = "Beschwört den Wisp des nachgeahmten Gegenstands herbei (zufälliger Wisp, wenn kein Aktivgegenstand)", -- Metronome
-	[489] = "Mittlere Ring-Wisp#Beschwört einen normalen Wisp herbei#Zusätzlicher Effekt basierend auf dem nachgeahmten Würfel", -- D Infinity
-	[490] = "Beschwört einen zufälligen Wisp herbei#Beschwört sich nach dem Leeren eines Raums neu, wenn zerstört", -- Eden's Soul
-	[504] = "Mittlere Ring-Wisp#Einzelraum-Wisp#Schnelle, schwache, gezielte Tränen", -- Brown Nugget
-	[507] = "Äußere Ring-Wisp#Chance, bei einem Kill einen Wisp zu beschwören", -- Sharp Straw
-	[510] = "Mittlere Ring-Wisp#{{Collectible229}} Monstro's Lung, {{Collectible268}} Rotten Baby, {{Collectible87}} Loki's Horns oder {{Collectible118}} Brimstone-Tränen", -- Delirious
-	[512] = "Mittlere Ring-Wisp#Magnetische Tränen", -- Black Hole
-	[515] = "Beschwört einen zufälligen Wisp herbei#Beschwört sich nach dem Leeren eines Raums neu, wenn zerstört", -- Mystery Gift
-	[516] = "Mittlere Ring-Wisp#Schnelle Tränen#Tränen schießen in 8 Richtungen wie ein Sprinkler", -- Sprinkler
-	[521] = "Mittlere Ring-Wisp#Dreifachschuss#Der Kauf von etwas zerstört alle Coupon-Wisps", -- Coupon
-	[522] = "Äußere Ring-Wisp#Gefangene Projektile verwandeln sich in Wisps", -- Telekinesis
-	[523] = "Mittlere Ring-Wisp#Wisp wird nur beim Ablegen von Gegenständen beschworen#Beschwört einen zufälligen Pickup beim Zerstören", -- Moving Box
-	[527] = "Mittlere Ring-Wisp#Kann keine Tränen schießen#Beim Raumklar öffnen Wisps Truhen/Türen", -- Mr. ME!
-	[536] = "Mittlere Ring-Wisp#Wandelt alle Wisps in {{HalfHeart}} halbe Rote Herzen um#Beschwört einen Wisp mit hoher LP und hohem Schaden bei Opferung", -- Sacrificial Altar
-	[545] = "Innere Ring-Wisp#Beschwört einen freundlichen Bony herbei, wenn zerstört", -- Book of the Dead
-	[550] = "Mittlere Ring-Wisp#10% Chance, dass Tränen dazu führen, dass Mom auf den Feind stampft", -- Broken Shovel
-	[552] = "Mittlere Ring-Wisp#10% Chance, dass Tränen dazu führen, dass Mom auf den Feind stampft#Beschwört auch einen Wisp mit hoher LP herbei, der keine Tränen schießen kann", -- Mom's Shovel
-	[555] = "Mittlere Ring-Wisp#15% Chance für {{Collectible202}} Midas' Touch-Tränen", -- Golden Razor
-	[556] = "Mittlere Ring-Wisp#Kurzreichweite {{Collectible118}} Brimstone-Tränen", -- Sulfur
-	[557] = "Mittlere Ring-Wisp#↑ {{Luck}} +0,2 Glück pro Fortune Cookie-Wisp", -- Fortune Cookie
-	[577] = "Mittlere Ring-Wisp#Kein besonderer Effekt", -- Damocles
-	[578] = "Mittlere Ring-Wisp#Wisp tropft gelbes Creep", -- Free Lemonade
-	[580] = "Mittlere Ring-Wisp#Chance, Rote Türen zu erstellen, wenn ein neuer Raum betreten wird", -- Red Key
-	[582] = "Mittlere Ring-Wisp#Niedriger Schaden Tränen#Maximal 1 Wavy Cap-Wisp", -- Wavy Cap
-	[584] = "Kein Nutzen bei mehreren Kopien", -- Book of Virtues
-	[585] = "Mittlere Ring-Wisp#Beschwört 8 normale Wisps", -- Alabaster Box
-	[604] = "Zählt als mittlere Ring-Wisp#Einzelraum-Wisp#Beschwört 3 Wisps herbei, wo etwas landet#10% Chance für {{Confusion}} Verwirrungstränen", -- Mom's Bracelet
-	[605] = "Mittlere Ring-Wisp#Kein besonderer Effekt", -- The Scooper
-	[609] = "Mittlere Ring-Wisp#Nur 50% Wahrscheinlichkeit, einen unbesiegbaren Wisp herbeizubeschwören#50% Chance, dass alle Eternal D6-Wisps beim Gebrauch zerstört werden", -- Eternal D6
-	[611] = "Mittlere Ring-Wisp#Gesundheits- und Schadenssteigerung basierend auf Ladungen", -- Larynx
-	[622] = "Mittlere Ring-Wisps#Kein besonderer Effekt", -- Sharp Key
-	[623] = "Mittlere Ring-WispsKein besonderer Effekt", -- Sharp Key
-	[631] = "Mittlere Ring-Wisp#Teilt alle Wisps in der Hälfte (halbiert den Schaden)#Wisps werden zerstört, wenn sie zum dritten Mal geteilt werden", -- Meat Cleaver
-	[635] = "Einzelraum-Wisp#Beschwört einen stationären Wisp an Isaacs Position, bevor er teleportiert wird (bis zu 6 Wisps)", -- Stitches
-	[636] = "Kein Wisp", -- R Key
-	[638] = "Mittlere Ring-Wisp#Immun gegen Projektile#Löscht Nicht-Boss-Gegner bei Berührung aus", -- Eraser
-	[639] = "Mittlere Ring-Wisp#Beschwört blaue Fliegen herbei, anstatt Tränen zu schießen", -- Yuck Heart
-	[640] = "Mittlere Ring-Wisp#Chance für blaue Flammentränen", -- Urn of Souls
-	[642] = "Mittlere Ring-Wisp#Gifttränen", -- Magic Skin
-	[650] = "Mittlere Ring-Wisp#Wenn Baby Plum diagonal springt, sind alle Plum Flute-Wisps unbesiegbar und tun dies ebenfalls", -- Plum Flute
-	[653] = "Keine Wisps#Rote Geister können Tränen schießen", -- Vade Retro
-	[655] = "Mittlere Ring-Wisp#Temporäre Wisps während der Verwendung#Schnelle Tränen", -- Spin to Win
-	[685] = "Verdreifacht die beschworenen Wisps", -- Jar of Wisps
-	[687] = "Beschwört einen zufälligen Wisp herbei", -- Friend Finder
-	[703] = "Mittlere Ring-Wisp#Kein besonderer Effekt", -- Esau Jr.
-	[704] = "Mittlere Ring-Wisp#Wisp mit hoher LP#Kann keine Tränen schießen", -- Berserk!
-	[705] = "Mittlere Ring-Wisp#Einzelraum-Wisp pro getötetem Feind", -- Dark Arts
-	[706] = "Mittlere Ring-Wisp#Wisp mit hoher LP#Kann keine Tränen schießen", -- Abyss
-	[709] = "Einzelraum-Wisp#Beschwört 3 Wisps herbei, wo Isaac landet", -- Suplex!
-	[710] = "Beschwört einen zufälligen Wisp beim Handwerk", -- Bag of Crafting
-	[711] = "Mittlere Ring-Wisp#Wisp mit hoher LP", -- Flip
-	[712] = "Die Wisp-Items schießen homing Tränen", -- Lemegeton
-	[713] = "Kein Wisp", -- Sumptorium
-	[719] = "Mittlere Ring-Wisp#20% Chance, dass Feinde beim Töten eine {{Coin}} Münze fallen lassen", -- Keeper's Box
-	[720] = "Beschwört einen zufälligen Wisp herbei", -- Everything Jar
-	[722] = "Orbitiert um den geketteten Feind und schießt auf ihn#Wisp stirbt, wenn der Feind stirbt", -- Anima Sola
-	[723] = "Mittlere Ring-Wisp#Beschwört einen zufälligen Wisp herbei und würfelt alle Wisps in den Typ um", -- Spindown Dice
-	[728] = "Mittlere Ring-Wisp#Alle Wisps umkreisen Gello, solange er aktiv ist", -- Gello
-	[729] = "Stationärer Einzelraum-Wisp", -- Decap Attack
+EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
+	-- values inside {} brackets will be replaced with text parts below
+	-- Wisp texts are affected by the PluralizeFunction (ab+ file)
+	-- The placeholder therefore can be used in all parts that make up the wisp descriptions
+	StatDescription = "{ringIcon}{{Wisp}} {amount}|{{Heart}} {health}|{{Damage}} {damage}",	-- {ringIcon} will be replaced with an icon representing the wisp movement, {amount} with the number of wisps, {health} with the HP, {damage} with the damage or the "CantShoot" text
+	Shotspeed = "{1}% Schussgeschwindigkeit", 				-- {1} will be replaced with the shot speed changes in %
+	Chance = " ({1}% Chance)",					-- {1} will be replaced with the chance
+	SingleRoom = "Einzelraum-Wisp{plural_s}",
+	NoWisps = "Kein Wisp",
 }
 
--- Special Locust effects when Item was eaten by Abyss
-EID.descriptions[languageCode].abyssSynergies = {
-	[2] = "Drei normale Heuschrecken", -- The Inner Eye
-	[3] = "Lila heimische Heuschrecke", -- Spoon Bender
-	[4] = "Rote große Heuschrecke, die dreifachen Schaden verursacht", -- Cricket's Head
-	[6] = "Gelbe, schnelle Nahbereichsheuschrecke, die schnelleren Schaden verursacht", -- Number One
-	[7] = "Rote Heuschrecke, die doppelten Schaden verursacht", -- Blood of the Martyr
-	[10] = "Zwei graue Heuschrecken, die halben Schaden verursachen", -- Halo of Flies
-	[13] = "Grüne Heuschrecke, die Feinde vergiftet", -- The Virus
-	[103] = "Grüne Heuschrecke, die Feinde vergiftet", -- The Common Cold
-	[118] = "Graue größere Heuschrecke, die ansonsten normal ist", -- Brimstone
-	[149] = "Große, langsame, grüne Heuschrecke, die 1,5x Isaacs Schaden verursacht und Feinde vergiftet", -- Ipecac
-	[153] = "Vier normale Heuschrecken", -- Mutant Spider
-	[257] = "Orange brennende Heuschrecke, die Feinde in Brand setzt", -- Fire Mind
-	[305] = "Grüne Heuschrecke, die Feinde vergiftet", -- Scorpio
-	[374] = "Cyan leuchtende Heuschrecke, die Lichtstrahlen erzeugen kann, die 3x Isaacs Schaden verursachen", -- Holy Light
-	[494] = "Hellblaue Heuschrecke mit Lichtbögen, die 0,1 Schaden pro Tick verursachen", -- Jacob's Ladder
-	[559] = "Hellblaue Heuschrecke mit Lichtbögen, die 0,1 Schaden pro Tick verursachen", -- 120 Volt
+-- Old table that now is used to store additional information and effects for Book of Virtues Wisps
+EID.descriptions[languageCode].bookOfVirtuesWisps = {
+	[35] = "{{Collectible35}} Necronomicon-Effekt beim Zerstören", -- The Necronomicon
+	[37] = "Wirft gestreute lenkbare Bomben beim Zerstören", -- Mr. Boom
+	[38] = "Ungenaue Tränen", -- Tammy's Head
+	[40] = "Explodiert beim Zerstören", -- Kamikaze!
+	[47] = "Schießt 3 explosive Tränen zum Fadenkreuz bei Verwendung", -- Doctor's Remote
+	[49] = "Feuert bei Verwendung einen Strahl ab", -- Shoop da Whoop!
+	[56] = "Wisp tropft gelbes Kriechen", -- Lemon Mishap
+	[58] = "Immun gegen Geschosse#Immun gegen Schaden während {{Collectible58}}-Effekt", -- Book of Shadows
+	[65] = "Lässt eine Trollbombe fallen beim Zerstören", -- Anarchist Cookbook
+	[66] = "{{Slow}} Verlangsamt Gegner für 3 Sekunden beim Zerstören", -- The Hourglass
+	[77] = "Zusätzlicher Kontakt-Schaden", -- My Little Unicorn
+	[78] = "Beschwört eine Heuschrecke für den Raum beim Zerstören", -- Book of Revelations
+	[85] = "Lässt eine {{Card}}-Karte fallen beim Zerstören", -- Deck of Cards
+	[97] = "Beschwört 1 von 8 Wisps:#{{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#{{Warning}} Explosive Effekte sind wahrscheinlich", -- The Book of Sin
+	[102] = "Beschwört 1 von 6 Wisps:#normale Tränen, die beim Zerstören eine feindliche Spinne beschwören oder Chance auf Gift, Versteinern, Verwirrung, Verbrennen, Trollbomben-Tränen#Alle 6 lassen beim Zerstören eine {{Pill}}-Pille fallen", -- Mom's Bottle of Pills
+	[105] = "+1 Wisp pro umgerolltem Gegenstand", -- The D6
+	[111] = "{{Poison}} Giftiger Furz beim Zerstören", -- The Bean
+	[123] = "Zufällige Tränen", -- Monster Manual
+	[124] = "Beschwört den Wisp des imitierten Gegenstands", -- Dead Sea Scrolls
+	[130] = "Stürmt in die Richtung, in die Isaac schießt", -- A Pony
+	[137] = "+1 Wisp pro detonierte Bombe#Tränen des Wisps können auch ferngezündet werden", -- Remote Detonator
+	[145] = "Wisps werden anstelle von Fliegen beschworen#Beschwört eine blaue Fliege beim Zerstören", -- Guppy's Head
+	[147] = "Chance, Dip-Wisps aus Kacke und 1 von 5 Mineral-Wisps aus Felsen zu beschwören:#{{Collectible132}} Kohle, {{Collectible201}} Eisen, {{Collectible202}} Gold, {{Collectible68}} Rotstein, {{Collectible415}} Diamant", -- Notched Axe
+	[160] = "Ruft bei Berührung einen Lichtstrahl herbei", -- Crack the Sky
+	[166] = "Zerstört alle Pickups im Raum, mit einer Chance, für jeden eine zufällige Wisp zu beschwören", -- D20
+	[175] = "Wisps öffnen verschlossene Truhen/Türen bei Berührung, einschließlich der Türen zum Mega Satan, Aufstieg und Leichnam#Wisps spenden sich selbst an {{KeyBeggar}} Schlüsselmeister", -- Dad's Key
+	[177] = "Beschwört einen Wisp basierend auf der gewonnenen Belohnung", -- Portable Slot
+	[263] = "Lässt eine {{Rune}} Rune fallen beim Zerstören", -- Clear Rune
+	[283] = "Rerollt alle Wisps und beschwört 1 zufälligen Wisp herbei#Rerollt nicht Book of Virtues", -- D100
+	[284] = "Entfernt alle Wisps und beschwört einen zufälligen Wisp für jeweils 2 besessene Gegenstände herbei#Rerollt nicht Book of Virtues", -- D4
+	[285] = "10% Chance auf D10-Effekt-Tränen", -- D10
+	[286] = "Beschwört eine {{Card}} Karte herbei, wenn zerstört", -- Blank Card
+	[287] = "{{Collectible675}} Cracked Orb-Effekt beim Zerstören", -- Book of Secrets
+	[288] = "Anstelle von Spinnen werden Wisps beschworen#Beschwört eine blaue Spinne herbei, wenn zerstört", -- Box of Spiders
+	[290] = "Erzeugt pro Herz einen Wisp anstelle sie als Pickups fallen zu lassen#Chance, eine {{HalfHeart}} halbe Rote Herz zu beschwören, wenn zerstört", -- The Jar
+	[291] = "Beschwört einen zusätzlichen Wisp pro weggespültem Feind", -- Flush!
+	[292] = "+10% {{AngelDevilChance}} Devil/Angel Room Chance pro satanischem Bibel-Wisp", -- Satanic Bible
+	[293] = "Feuert einen {{Collectible118}} Brimstone-Strahl in 4 Richtungen ab, wenn zerstört", -- Head of Krampus
+	[294] = "Butter Bean-Effekt beim Zerstören", -- Butter Bean
+	[295] = "Chance, eine {{Coin}} Münze fallen zu lassen, wenn zerstört", -- Magic Fingers
+	[296] = "Kann mit {{Heart}} roten Herzen geheilt werden kann", -- Converter
+	[297] = "Beschwört 0-8 Wisps, abhängig vom Stockwerk", -- Pandora's Box
+	[298] = "Immun gegen Berührungsschaden#Verursacht keinen Berührungsschaden, es sei denn, Einhorn-Stumpf oder ein ähnlicher Effekt ist aktiv", -- Unicorn Stump
+	[323] = "3 Sekunden Lebensdauer", -- Isaac's Tears
+	[324] = "{{Collectible570}} Playdough Cookie-Tränen", -- Undefined
+	[325] = "Bogenschuss-Clustertränen", -- Scissors
+	[326] = "Beschwört 4 Wisps bei perfektem Block", -- Breath of Life
+	[347] = "{{Collectible245}} 20/20-Tränen#Dupliziert alle anderen Wisps", -- Diplopia
+	[348] = "Beschwört eine {{Pill}} Pille herbei, wenn zerstört", -- Placebo
+	[349] = "50% Chance, eine {{Coin}} Münze fallen zu lassen, wenn zerstört", -- Wooden Nickel
+	[351] = "Sendet beim Gebrauch eine Felswelle aus#Versteinert + {{Poison}} Giftfurz beim Zerstören", -- Mega Bean
+	[352] = "Alle Glass Cannon Wisps werden zerstört, wenn einer zerstört wird", -- Glass Cannon
+	[357] = "Dupliziert alle Wisps für den Raum", -- Box of Friends
+	[382] = "Freundliche Gegner beschwören je nach ihren Angriffen einen von 4 Wisps herbei, mit normalen, lenkenden, explosiven oder Brimstone-Tränen beim Tod#Dupliziert alle anderen Wisps", -- Friendly Ball
+	[383] = "Tränen des Wisps können detoniert werden und verwandeln sich in 6 von Isaacs Tränen#Explodiert in Isaacs Tränen, wenn zerstört", -- Tear Detonator
+	[386] = "5% Chance, dass Tränen Felsen, Urnen, Schädel oder Pilze umrollen", -- D12
+	[396] = "Jedes Portal hat 1 Wisp", -- Ventricle Razor
+	[406] = "Zufälliger Schaden und Feuerrate", -- D8
+	[421] = "{{Charm}} Charm-Furz beim Zerstören", -- Kidney Bean
+	[422] = "Beschwört alle Wisps neu herbei, die im vorherigen Raum zerstört wurden", -- Glowing Hourglass
+	[427] = "Springt im Raum herum und explodiert, wenn von Isaac getroffen#Kann keinen Berührungsschaden verursachen", -- Mine Crafter
+	[434] = "Anstelle von Fliegen werden Wisps beschworen#Bis zu 5 Fliegen ergeben 1 Wisp mit erhöhter Gesundheit und Schaden", -- Jar of Flies
+	[437] = "D7-Effekt, wenn er zum ersten Mal getroffen wird", -- D7
+	[441] = "{{Chargeable}} Aufladbare Brimstone-Tränen#Schießt kontinuierlich während eines Mega-Blasts", -- Mega Blast
+	[476] = "Beschwört einen zweiten Wisp, wenn keine Aufnahme dupliziert wurde", -- D1
+	[477] = "Beschwört die Wisps aller absorbierten Aktivgegenstände herbei#Beschwört selbst keinen Wisp herbei", -- Void
+	[478] = "Pausiert alle Feinde und Schüsse für 3 Sekunden beim Zerstören", -- Pause
+	[479] = "Chance, eine {{Trinket}} Trinket herbeizubeschwören, wenn zerstört", -- Smelter
+	[480] = "Erhöhte LP für jeden umgewandelten Pickup#Beschwört nur einen Wisp herbei, wenn mindestens ein Pickup umgewandelt wurde", -- Compost
+	[481] = "5% Chance, dass Tränen Feinde in zufällige Wisps verwandeln", -- Dataminer
+	[482] = "Beschwört einen zufälligen Wisp herbei", -- Clicker
+	[483] = "Lässt eine goldene Trollbombe fallen beim Zerstören", -- Mama Mega!
+	[484] = "Wait What?-Effekt beim Zerstören", -- Wait What?
+	[485] = "Alle Crooked Penny Wisps werden zerstört oder dupliziert, wenn einer beschädigt wird", -- Crooked Penny
+	[486] = "Chance, dass Isaac keinen Schaden nimmt und dafür zerstört wird", -- Dull Razor
+	[487] = "Unzerstörbarer, permanenter Wisp#Verfolgt Feinde, um sie zu beschießen#Blockiert keine Schüsse und verursacht keinen Berührungsschaden", -- Potato Peeler
+	[488] = "Beschwört den Wisp des nachgeahmten Gegenstands herbei (zufälliger Wisp, wenn kein Aktivgegenstand)", -- Metronome
+	[489] = "Zusätzlicher Effekt basierend auf dem nachgeahmten Würfel", -- D Infinity
+	[490] = "Beschwört einen zufälligen Wisp herbei#Beschwört sich nach dem Leeren eines Raums neu, wenn zerstört", -- Eden's Soul
+	[504] = "Gezielte Tränen", -- Brown Nugget
+	[507] = "Chance, bei einem Kill einen Wisp zu beschwören", -- Sharp Straw
+	[510] = "{{Collectible229}} Monstro's Lung, {{Collectible268}} Rotten Baby, {{Collectible87}} Loki's Horns oder {{Collectible118}} Brimstone-Tränen", -- Delirious
+	[515] = "Beschwört einen zufälligen Wisp herbei#Beschwört sich nach dem Leeren eines Raums neu, wenn zerstört", -- Mystery Gift
+	[516] = "Tränen schießen in 8 Richtungen wie ein Sprinkler", -- Sprinkler
+	[521] = "Dreifachschuss#Der Kauf von etwas zerstört alle Coupon-Wisps", -- Coupon
+	[522] = "Gefangene Projektile verwandeln sich in Wisps", -- Telekinesis
+	[523] = "Wisp wird nur beim Ablegen von Gegenständen beschworen#Beschwört einen zufälligen Pickup beim Zerstören", -- Moving Box
+	[527] = "Beim Raumklar öffnen Wisps Truhen/Türen", -- Mr. ME!
+	[536] = "Wandelt alle Wisps in {{HalfHeart}} halbe Rote Herzen um", -- Sacrificial Altar
+	[545] = "Beschwört einen freundlichen Bony herbei, wenn zerstört", -- Book of the Dead
+	[550] = "10% Chance, dass Tränen dazu führen, dass Mom auf den Feind stampft", -- Broken Shovel
+	[552] = "10% Chance, dass Tränen dazu führen, dass Mom auf den Feind stampft", -- Mom's Shovel
+	[556] = "Kurzreichweite {{Collectible118}} Brimstone-Tränen", -- Sulfur
+	[557] = "↑ {{Luck}} +0,2 Glück pro Fortune Cookie-Wisp", -- Fortune Cookie
+	[578] = "Wisp tropft gelbes Creep", -- Free Lemonade
+	[580] = "Chance, Rote Türen zu erstellen, wenn ein neuer Raum betreten wird", -- Red Key
+	[582] = "Maximal 1 Wavy Cap-Wisp", -- Wavy Cap
+	[584] = "Kein Nutzen bei mehreren Kopien", -- Book of Virtues
+	[604] = "Beschwört 3 Wisps herbei, wo etwas landet", -- Mom's Bracelet
+	[609] = "Nur 50% Wahrscheinlichkeit, einen unbesiegbaren Wisp herbeizubeschwören#50% Chance, dass alle Eternal D6-Wisps beim Gebrauch zerstört werden", -- Eternal D6
+	[611] = "Gesundheits- und Schadenssteigerung basierend auf Ladungen", -- Larynx
+	[622] = "Ersetzt alle Wisps mit 3 normalen Wisps", -- Genesis
+	[631] = "Teilt alle Wisps in der Hälfte (halbiert den Schaden)#Wisps werden zerstört, wenn sie zum dritten Mal geteilt werden", -- Meat Cleaver
+	[638] = "Immun gegen Projektile#Löscht Nicht-Boss-Gegner bei Berührung aus", -- Eraser
+	[639] = "Beschwört blaue Fliegen herbei, anstatt Tränen zu schießen", -- Yuck Heart
+	[640] = "Chance für blaue Flammentränen", -- Urn of Souls
+	[650] = "Wenn Baby Plum diagonal springt, sind alle Plum Flute-Wisps unbesiegbar und tun dies ebenfalls", -- Plum Flute
+	[653] = "Rote Geister können Tränen schießen", -- Vade Retro
+	[655] = "Temporäre Wisps während der Verwendung", -- Spin to Win
+	[685] = "Verdreifacht die beschworenen Wisps", -- Jar of Wisps
+	[687] = "Beschwört einen zufälligen Wisp herbei", -- Friend Finder
+	[705] = "Einzelner Raum Wisp pro getötetem Feind", -- Dark Arts
+	[709] = "Beschwört 3 Wisps herbei, wo Isaac landet", -- Suplex!
+	[710] = "Beschwört einen zufälligen Wisp beim Herstellen", -- Bag of Crafting
+	[712] = "Die Wisp-Items schießen homing Tränen", -- Lemegeton
+	[719] = "20% Chance, dass Feinde beim Töten eine {{Coin}} Münze fallen lassen", -- Keeper's Box
+	[720] = "Beschwört einen zufälligen Wisp herbei", -- Everything Jar
+	[722] = "Orbitiert um den geketteten Feind und schießt auf ihn#Wisp stirbt, wenn der Feind stirbt", -- Anima Sola
+	[723] = "Beschwört einen zufälligen Wisp herbei und würfelt alle Wisps in den Typ um", -- Spindown Dice
+	[728] = "Alle Wisps umkreisen Gello, solange er aktiv ist", -- Gello
 }
+
+---------- Abyss Locust description parts ----------
+EID.descriptions[languageCode].AbyssTexts = {
+	-- values inside {} brackets will be replaced with text parts below
+	-- Abyss texts are affected by the PluralizeFunction (ab+ file)
+	InfoText = "Eine {size}{speed}Heuschrecke ({dmg})",
+	InfoTextPlural = "{amount} {size}{speed}Heuschrecken ({dmg})", -- Can be used by translators to provide a pluralized version of the InfoText
+	Chance = " ({1}% Chance)", -- {1} will be replaced with the chance
+	SpeedSlow = "schnelle ", -- Speed < 1
+	SpeedFast = "langsame ", -- Speed > 1
+	SpeedDash = "flotte ", -- Speed >= 6
+	SizeSmall = "kleine ", -- Size < 1
+	SizeBig = "große ", -- Size > 1
+	DamageMult = "{1}x Isaac's Schaden", -- {1} will be replaced with the calculated damage multiplier 
+}
+
+---------- Abyss Locust special effects ----------
+--- Special locust effects that dont correspond to TearFlags.
+--- Displays an icon in front of the description that shows an item with the same effect
+EID.descriptions[languageCode].AbyssLocustEffects = {
+	[0] = "{{Bomb}} Explodiert, wenn es Schaden verursacht",
+	[1] = "{{QuestionMark}} Zufälliger Heuschrecken Effekt",
+	-- 2 = Multiple locusts act like one. Uninteresting info for the player in my opinion
+	[3] = "{{Collectible284}} Feind neu würfeln, wenn es Schaden verursacht",
+	[4] = "{{Collectible35}} Fügt allen Feinden Schaden zu, wenn es Schaden verursacht",
+	[5] = "{{Collectible638}} Löscht einen Gegner aus, wenn es Schaden verursacht",
+	[6] = "{{Collectible114}} Messer dreht sich um Heuschrecke, wenn es angreift",
+	[7] = "{{Collectible611}} Nutzt Kehlkopfschrei, der Gegner in der Nähe verletzt",
+	[8] = "{{Collectible399}} Beschwört einen \"Schlund der Leere\" Ring",
+	[9] = "{{Collectible522}} Erhält beim Angriff eine Aura, die Geschosse abwehrt",
+	[10] = "{{Collectible447}} Erzeugt giftigen Furz, wenn es Schaden verursacht",
+	[11] = "{{Collectible447}} Erzeugt einen Furz, wenn es Schaden verursacht",
+	[12] = "{{Collectible118}} Spawns an anti-gravity brimstone, wenn es Schaden verursacht",
+	[13] = "{{Collectible317}} Erzeugt grüne Pfütze, wenn es Schaden verursacht",
+	[14] = "{{Collectible56}} Erzeugt gelbe Pfütze, wenn es Schaden verursacht",
+	[15] = "{{Collectible214}} Erzeugt rote Pfütze, wenn es Schaden verursacht",
+	[16] = "{{Collectible178}} Erzeugt blaue Pfütze, wenn es Schaden verursacht",
+	[17] = "{{Collectible420}} Erzeugt zufällig ein Pentagramm",
+	[18] = "{{Collectible144}} Erhält +0.25 Schaden für jedes konsumiertes Pickup. Maximal 25 Pickups",
+}
+
+
+-- list of Tear flag descriptions used for Abyss locust effect description
+EID.descriptions[languageCode].TearFlagNames = {
+	[0] = "gespensterhaft",                 -- Ouija board type tear (goes thru obstacles)
+    [1] = "durchdringend",                 -- Cupid's arrow type tear (goes thru enemy)
+    [2] = "zielsuchend",                   -- Spoon bender type tear (homes to enemy)
+    [3] = "Verlangsamung",                  -- Spider bite type tear (slows on contact)
+    [4] = "Gift",                   -- Common cold type tear (poisons on contact)
+    [5] = "versteinern",                  -- Mom's contact type tear (freezes on contact)
+    [6] = "spaltet sich",                    -- Parasite type tear (splits on collision)
+    [7] = "wächst durch Reichweite",            -- Lump of coal type tear (grows by range)
+    [8] = "Bumerang",                -- My reflection type tear (returns back)
+    [9] = "Ausdauernd",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+    [10] = "Schlängelbewegung",         -- Wiggle worm type tear (wiggles)
+    [11] = "Beschwört Fliege bei Treffer",        -- Mulligan type tear (creates fly on hit)
+    [12] = "Explosiv",               -- IPECAC type tear (explodes on hit)
+    [13] = "bezaubernd",                -- Mom's Eyeshadow tear
+    [14] = "verwirrend",               -- Iron Bar tear
+    [15] = "Gegner lassen Herzen fallen",     -- These tears cause enemy to drop hearts if killed (33% chance)
+    [16] = "Kreist um Spieler",     -- Used for Little Planet (orbit arounds the player)
+    [17] = "Anti-Gravitation",     -- Anti gravity type tear (floats in place for some time before finally moving) (unset after first update)
+    [18] = "Aufteilung in 4 bei Treffer",     -- Splits into 4 smaller tears if it hits the ground
+    [19] = "Abprallen von Feinden",       -- Bounce off of enemies, walls, rocks (Higher priority than PERSISTENT & PIERCING)
+    [20] = "Angst",                    -- Mom's Perfume type tear of fear (fear on contact)
+    [21] = "Verkleinernd",                  -- Proptosis tears start large and shrink
+    [22] = "Brennend",                    -- Fire Mind tears cause Burn effect on enemies
+    [23] = "Feind und Pickup-Magnet", -- Attracts enemies and pickups
+    [24] = "Rückstoß",               -- Tear impact pushes enemies back further
+    [25] = "pulsierend",               -- Makes the tear pulse
+    [26] = "Spiralbewegung",         -- Makes the tear path spiral
+    [27] = "ovale Form",              -- Makes the tear oval in the direction of travel
+    [28] = "Traurige Bombe",                -- Used by Bombs (Sad Bomb)
+    [29] = "Po Bombe",               -- Used by Bombs (Butt Bomb)
+    [30] = "Eckige Bewegung",         -- Used for Hook Worm
+    [31] = "Schaden verursachende Aura",     -- Used for GodHead (they will have a glow around them)
+    [32] = "Verlangsamung + färbt Feind Schwarz", -- Used for Gish player tears (to color enemy black on slowing)
+    [33] = "Erzeugt grüne Pfütze bei Treffer", -- Mysterious Liquid tears spawn damaging green creep when hit
+    [34] = "Geschützt",                -- Lost Contact tears, block enemy projectiles
+    [35] = "Glitzer Bombe",            -- Used by Bombs (Glitter Bomb)
+    [36] = "Streuungsbombe",            -- Used for Scatter bombs
+    [37] = "klebrig",                  -- Used for Sticky bombs and Explosivo tears
+    [38] = "Endlosschleife um den Bildschirm",     -- Tears loop around the screen
+    [39] = "Erzeugt Lichtstrahl bei Treffer", -- Create damaging light beam on hit
+    [40] = "Erzeugt Geld bei Treffer",        -- Used by Bumbo, spawns a coin when tear hits
+    [41] = "Erzeugt schwarzes Herz bei Mord",    -- Enemy drops a black hp when dies
+    [42] = "Traktorstrahl",            -- Tear with this flag will follow parent player's beam
+    [43] = "Feinde schrumpfen",          -- God's flesh flag to minimize enemies
+    [44] = "Erzeugt Geld bei Treffer",      -- Greed coin tears that has a chance to generate a coin when hit
+    [45] = "Kreuz Bombe",              -- Bomber Boy
+    [46] = "Große Spiralbewegung",     -- Ouroboros Worm, big radius oscilating tears
+    [47] = "Dauerhafte Verwirrung bei Treffer",   -- Glaucoma tears, permanently confuses enemies
+    [48] = "Popel",                  -- Booger tears, stick and do damage over time
+    [49] = "Erzeugt Spinne oder Fliege bei Treffer",               -- Egg tears, leave creep and spawns spiders or flies
+    [50] = "Kann Steine bei Treffer zerstören",            -- Sulfuric Acid tears, can break grid entities
+    [51] = "Erzeugt 1-2 Knochensplitter bei Mord",                    -- Bone tears, splits in 2
+    [52] = "durchdringend + anschließend doppelter Schaden und verfolgen", -- Belial tears, piecing tears gets double damage + homing
+    [53] = "Feinde bei Berührung in Gold verwandeln",           -- Midas touch tears
+    [54] = "Erzeugt kreisförmig 10 Tränen bei Treffer",                -- Needle tears
+    [55] = "Elektrizität bei Treffer",           -- Jacobs ladder tears
+    [56] = "Beschwört Große Hornhand bei Treffer", -- Little Horn tears
+    [57] = "verbunden mit Elektrizität",   -- Technology Zero
+    [58] = "prallt von einander ab",        -- Pop!
+    [59] = "Absorbiert andere",               -- Hungry Tears
+    [60] = "Laserangriff",               -- Trisagion, generates a laser on top of the tear
+    [61] = "hüpft auf Boden",          -- Flat Stone
+    [62] = "kreisförmige Spaltung",             -- Haemolacria
+    [63] = "Pfützenspur",             -- Bob's Bladder
+    [64] = "Schlageffekt bei Treffer",     -- Knockout Drops
+    [65] = "Gefriert Gegner bei Mord",   -- Uranus
+    [66] = "Gegner und Pickup Magnet", -- Lodestone
+    [67] = "Köderwirkung bei Treffer",       -- Rotten Tomato
+    [68] = "Auge des Okkulten",       -- Eye of the Occult
+    [69] = "enge Umlaufbahn",   -- Orbiting tears with a more narrow and stable orbit (used by Saturnus and Immaculate Heart)
+    [70] = "Zerstört Steine",             -- Rock tears, chance to break rocks, deal extra damage to rock type enemies
+    [71] = "90 Grad Bewegung",      -- Brain Worm, tears turn and go horizontally when moving past an enemy
+    [72] = "Blut Bombe",              -- Blood Bombs, leave blood creep on the ground
+    [73] = "Feind in Kacke verwandeln",    -- E. Coli tears, turn enemies into poop
+    [74] = "Erzeugt Münze bei Mord",      -- Killed enemies have a chance to drop a random coin (Reverse Hanged Man)
+    [75] = "Schwefelbombe",          -- Brimstone Bombs, explosion creates a brimstone cross
+    [76] = "Schwarzes Loch bei Treffer",       -- Rift tears, creates a black hole on impact
+    [77] = "Klebt an Feind und vermehrt sich beim Tod des Feindes",  -- Spore tears, stick to enemies and multiply on enemy death
+    [78] = "Geister Bombe",              -- Ghost bombs
+    [79] = "Erzeugt Karte bei Mord",      -- Killed enemies will drop a random tarot card
+    [80] = "Erzeugt Rune bei Mord",      -- Killed enemies will drop a random rune
+    [81] = "Teleportiere Gegner bei Treffer",   -- Hit enemies will teleport to a different part of the room
+    [82] = "Langsamer über die Zeit",    -- Decelerate over time
+    [83] = "Schneller über die Zeit",    -- Accelerate over time
+    [104] = "Prallt ab (nur Wände)",    -- Similar to TEAR_BOUNCE but only bounces off walls, not enemies
+	[106] = "zusätzlicher Schaden von Hinten + Blutungen",   -- Deals extra damage from behind and inflicts bleeding
+}
+
+-- Special Locust effects when Item was eaten by Abyss. Entries here will override the auto-generated descriptions
+-- Kept in for backwards compatibility
+EID.descriptions[languageCode].abyssSynergies = {}
+
 
 -- Effect of Car battery on Active Items
 local repCarBattery = {
@@ -779,7 +860,6 @@ local repTrinkets={
 	[110] = {"110", "Silberdollar", "{{Shop}} Shops erscheinen in der Womb und Corpse"},
 	[111] = {"111", "Blutige Krone", "{{TreasureRoom}} Schatzräume erscheinen in der Womb und im Leichnam"}, -- Bloody Crown
 	[119] = {"119", "Stammzelle", "{{Heart}} Beim Betreten einer neuen Ebene heilen sich die leeren roten/Knochenherzen von Isaac um die Hälfte#{{HalfHeart}} Heilt mindestens ein halbes Herz"}, -- Stem Cell
-	[125] = {"125", "Verlängerungskabel", "Verbindet alle Begleiter mit elektrischen Strahlen#Die Strahlen verursachen 6 Schaden#Die Strahlen springen auch zwischen Koop-Spielern (einschließlich Jacob & Esau)"}, -- Extension Cord
 	[128] = {"128", "Fingerknochen", "{{EmptyBoneHeart}} Schaden nehmen hat eine 4%ige Chance, ein Knochenherz zu gewähren"}, -- Finger Bone
 	[129] = {"129", "Kieferbrecher", "{{Damage}} 10%ige Chance, Zähne abzufeuern, die 3,2x Isaacs Schaden zufügen#{{Luck}} 100%ige Chance bei 9 Glück"}, -- Jawbreaker
 	[130] = {"130", "Zerkauter Stift", "{{Slow}} 10%ige Chance, verlangsamende Tränen abzufeuern#{{Luck}} 100%ige Chance bei 18 Glück"}, -- Chewed Pen
@@ -903,6 +983,8 @@ local repCards={
 	[12] = {"12", "XI - Die Kraft", "{{Timer}} Erhalte für den Raum:#↑ {{Heart}} +1 Gesundheit#↑ {{Speed}} +0,3 Geschwindigkeit#↑ {{Damage}} +0,3 Schaden#↑ {{Damage}} x1,5 Schadensmultiplikator#↑ {{Range}} +2,5 Reichweite"}, -- XI - Strength
 	[16] = {"16", "XV - Der Teufel", "{{Timer}} Erhalte für den Raum:#↑ {{Damage}} +2 Schaden"}, -- XV - The Devil
 	[18] = {"18", "XVII - Die Sterne", "{{TreasureRoom}} Teleportiert Isaac zum Schatzraum#{{Planetarium}} Falls es ein Planetarium gibt, teleportiert es dorthin stattdessen"}, -- XVII - The Stars
+	[20] = {"20", "XIX - Die Sonne", "{{HealingRed}} Volles Leben#Fügt allen Gegnern 100 Schaden zu#{{Timer}} Voller Mapping-Effekt für das Stockwerk (außer {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Geheimer Raum)#{{CurseDarkness}} Entfernt Fluch der Dunkelheit"}, -- XIX - The Sun
+	[22] = {"22", "XXI - Die Welt", "{{Timer}} Voller Mapping-Effekt für das Stockwerk (außer {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Geheimer Raum)"}, -- XXI - The World
 	[27] = {"27", "Karo Ass", "{{Bomb}} Verwandelt alle Pickups, Truhen und nicht-Boss-Gegner in zufällige Bomben"}, -- Ace of Clubs
 	[28] = {"28", "Kreuz Ass", "{{Coin}} Verwandelt alle Pickups, Truhen und nicht-Boss-Gegner in zufällige Münzen"}, -- Ace of Diamonds
 	[29] = {"29", "Pik Ass", "{{Key}} Verwandelt alle Pickups, Truhen und nicht-Boss-Gegner in zufällige Schlüssel"}, -- Ace of Spades
@@ -1090,13 +1172,14 @@ EID.descriptions[languageCode].horsepills={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
-	AddBlackHearts = "{{BlackHeart}} {1} Schwarzes Herz",
-	AddBombs = "{{Bomb}} {1} Bombe",
-	AddCoins = "{{Coin}} {1} Münze",
-	AddHearts = "Heilt {{Heart}} {1} Herz",
+	-- These texts are affected by the PluralizeFunction (ab+ file)
+	AddBlackHearts = "{{BlackHeart}} {1} Schwarzes Herz{plural_en}",
+	AddBombs = "{{Bomb}} {1} Bombe{plural_n}",
+	AddCoins = "{{Coin}} {1} Münze{plural_n}",
+	AddHearts = "Heilt {{Heart}} {1} Herz{plural_en}",
 	AddKeys = "{{Key}} {1} Schlüssel",
 	AddMaxHearts = "{{EmptyHeart}} {1} Herz-Container",
-	AddSoulHearts = "{{SoulHeart}} {1} Seelenherz",
+	AddSoulHearts = "{{SoulHeart}} {1} Seelenherz{plural_en}",
 
 	-- Cache Flag names
 	cacheFlagStart = "Kann beeinflussen ",
@@ -1133,6 +1216,7 @@ EID.descriptions[languageCode].GlitchedItemText = {
 	["5.70"] = "Pille",
 	["5.90"] = "Batterie",
 	["5.300"] = "Karte",
+	["5.301"] = "Rune", -- not a real ID
 	["9.-1"] = "Gegnergeschoss",
 	["999.-1"] = "Gitterobjekt",
 	["1000.0"] = "Effekt",
@@ -1144,22 +1228,26 @@ EID.descriptions[languageCode].GlitchedItemText = {
 ---------- Misc. Text ----------
 
 EID.descriptions[languageCode].poopSpells = {
-	{"Poop", "Normales Poop, das Aufsammelbares fallen lassen kann"},
-	{"Corny Poop", "Spawnt blaue Fliegen, solange es intakt ist"},
-	{"Burning Poop", "Verursacht Kontakt-Schaden, solange es intakt ist#Hinterlässt Feuer, wenn es zerstört wird"},
-	{"Stone Poop", "Kann 3 Mal Schaden verursachen, wenn es geworfen wird#Benötigt viele Treffer, um zerstört zu werden"},
-	{"Stinky Poop", "Erzeugt eine giftige Wolke#{{Warning}} Die Wolke explodiert, wenn sie Feuer berührt!"},
-	{"Black Poop", "{{Slow}} Erzeugt verlangsamenden Creep#{{Confusion}} Verursacht 10 Schaden und verwirrt alle Gegner, wenn sie zerstört wird"},
-	{"Holy Poop", "{{Collectible543}} Erzeugt einen weißen Poop#Solange innerhalb der Aura des Poops:#↑ {{Damage}} x1.2 Schadensmultiplikator#↑ {{Tears}} x2.5 Schussrate-Multiplikator#Homing-Tränen#Chance, Schaden zu blockieren"},
-	{"Brown Creep", "Hinterlässt eine Spur von Creep#Das Stehen auf dem Creep erhöht Isaacs Schussrate und Schaden#Wenn der Creep andere Poops berührt, übernimmt er ihre Eigenschaften"},
-	{"Fart", "Stößt nahegelegene Gegner und Geschosse zurück und erzeugt eine giftige Wolke#{{Warning}} Die Wolke explodiert, wenn sie Feuer berührt!"},
-	{"Bomb", "Normale werfbare Bombe"},
-	{"Explosive Diarrhea", "Isaac lässt schnell 5 brennende Bomben erscheinen"},
+	{"Kacke", "Normales Kacke, das Aufsammelbares fallen lassen kann"},
+	{"Körnige Kacke", "Spawnt blaue Fliegen, solange es intakt ist"},
+	{"Brennende Kacke", "Verursacht Kontakt-Schaden, solange es intakt ist#Hinterlässt Feuer, wenn es zerstört wird"},
+	{"Steinige Kacke", "Kann 3 Mal Schaden verursachen, wenn es geworfen wird#Benötigt viele Treffer, um zerstört zu werden"},
+	{"Stinkende Kacke", "Erzeugt eine giftige Wolke#{{Warning}} Die Wolke explodiert, wenn sie Feuer berührt!"},
+	{"Schwarze Kacke", "{{Slow}} Erzeugt verlangsamenden Creep#{{Confusion}} Verursacht 10 Schaden und verwirrt alle Gegner, wenn sie zerstört wird"},
+	{"Heilige Kacke", "{{Collectible543}} Erzeugt einen weißen Kacke#Solange innerhalb der Aura des Kacke:#↑ {{Damage}} x1.2 Schadensmultiplikator#↑ {{Tears}} x2.5 Schussrate-Multiplikator#Homing-Tränen#Chance, Schaden zu blockieren"},
+	{"Braune Pfütze", "Hinterlässt eine Spur von Creep#Das Stehen auf dem Creep erhöht Isaacs Schussrate und Schaden#Wenn der Creep andere Poops berührt, übernimmt er ihre Eigenschaften"},
+	{"Furz", "Stößt nahegelegene Gegner und Geschosse zurück und erzeugt eine giftige Wolke#{{Warning}} Die Wolke explodiert, wenn sie Feuer berührt!"},
+	{"Bombe", "Normale werfbare Bombe"},
+	{"Explosiver Durchfall", "Isaac lässt schnell 5 brennende Bomben erscheinen"},
+
+	--Undetected poop, for Poop API
+	--[Poop name in code] = {Icon, Name, Description}
+	["Unknown"] = {"{{PoopSpell1}}", "Unbekannte Kacke", "Unbekannter Effekt"}
 }
 
 EID.descriptions[languageCode].itemPoolFor = "Pool für Gegenstand:"
 EID.descriptions[languageCode].itemPoolNames = {
-	[0] = "Schatz", "Shop", "Boss", "Teufel", "Engel", "Geheimnis", "Bibliothek", "Shell Game", "Goldene Truhe", "Rote Truhe", "Bettler", "Dämonenbettler", "Fluch", "Schlüsselmeister", "Batterie-Bum", "Mamas Truhe", "Gier Schatz", "Gier Boss", "Gier Shop", "Gier Teufel", "Gier Engel", "Gier Fluch", "Gier Geheimnis", "Cranium-Spiel", "Ultra-Geheimnis", "Bomben-Bum", "Planetarium", "Alte Truhe", "Baby-Shop", "Holztruhe", "Verdorbener Bettler",
+	[0] = "Schatz", "Shop", "Boss", "Teufel", "Engel", "Geheimnis", "Bibliothek", "Shell Game", "Goldene Truhe", "Rote Truhe", "Bettler", "Dämonenbettler", "Fluch", "Schlüsselmeister", "Batterie-Bettler", "Mamas Truhe", "Gier Schatz", "Gier Boss", "Gier Shop", "Gier Teufel", "Gier Engel", "Gier Fluch", "Gier Geheimnis", "Cranium-Spiel", "Ultra-Geheimnis", "Bomben-Bum", "Planetarium", "Alte Truhe", "Baby-Shop", "Holztruhe", "Verdorbener Bettler",
 }
 
 EID.descriptions[languageCode].VoidShopText = "Wenn sofort nach dem Aufsammeln absorbiert, erhältst du:"
@@ -1213,6 +1301,15 @@ EID.descriptions[languageCode].AchievementWarningText = "Erfolge sind deaktivier
 EID.descriptions[languageCode].OldGameVersionWarningText = "EID ist für die neueste Steam-Version aktualisiert#Ihre Spielversion wird nicht offiziell unterstützt, daher sind einige Beschreibungen und Funktionen möglicherweise ungenau#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
 EID.descriptions[languageCode].ModdedRecipesWarningText = "Modifizierte Gegenstände können die Berechnung der Crafting-Rezepte ungenau machen!#Installiere REPENTOGON für verbesserte Unterstützung modifizierter Rezepte#(Diese Warnung kann in der Konfiguration deaktiviert werden)"
 
+-- Strings for Tainted Cain's pedestal salvaging; the non-base lines will have the corresponding icon automatically
+EID.descriptions[languageCode].TaintedCainPedestalBase = "Verwandelt sich bei Berührung in 3-8 zufällige Pickups"
+EID.descriptions[languageCode].TaintedCainPedestalBaseBirthright = "Verwandelt sich bei Berührung in {{BlinkBirthright}}6-16{{CR}} zufällige Pickups"
+EID.descriptions[languageCode].TaintedCainPedestalGuaranteed = "Garantiert ein {n} {1}" -- Room type spawns
+EID.descriptions[languageCode].TaintedCainPedestalBonus = "33% Chance für ein extra {1}" -- "Safety Cap" type spawns
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToe = "66% Chance für ein extra Pickup"
+EID.descriptions[languageCode].TaintedCainPedestalLuckyToeBirthright = "66% Chance für {{BlinkBirthright}}2{{CR}} extra Pickups"
+EID.descriptions[languageCode].TaintedCainPedestalDaemonsTail = "Herzen sind 80% unwahrscheinlicher"
+
 EID.descriptions[languageCode].ResultsWithX = "(Ergebnisse mit {1})"
 
 -- Conditional descriptions
@@ -1221,21 +1318,48 @@ EID.descriptions[languageCode].ResultsWithX = "(Ergebnisse mit {1})"
 -- Tables with two or more entries are find-replace pairs
 local repConditions={
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from English and continue translating from that
 }
 EID:updateDescriptionsViaTable(repConditions, EID.descriptions[languageCode].ConditionalDescs)
 
 local repBFFSSynergies = {
 	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
+	-- Copy & Paste entries from English and continue translating from that
 }
 EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
 
--- TODO: make these more consistent with other descs, add icons, and is there any traits of the characters missing?
+---------- Character Info ----------
 local repCharacterInfo = {
-	-- Not yet Translated!
-	-- Copy & Paste entries from en_us and continue translating from that
-	}
+	[4] = {"???", "Kann keine roten Herzen haben#{{SoulHeart}} HP-Up Items geben Seelenherzen#{{DevilRoom}} Teufelsgeschäfte, die 1 oder 2 Rote Herzen kosten würden, kosten stattdessen 1 oder 2 Seelenherzen#Kacke zerstören erzeugt 1 blaue Fliege"},
+	[8] = {"Lazarus", "Ein mal pro Ebene, wenn du stirbst:#Wiederauferstehen als Auferstandener Lazarus#Verliere 1 roten Herz Container#↑ {{Damage}} +0.5 Schaden"},
+	[11] = {"Auferstandener Lazarus", "Erhöhte Werte und x1.4 Schadensmultiplikator#Beim Betreten einer neuen Ebene, verwandelt sich zurück in Lazarus"},
+	[12] = {"Dunkler Judas", "{{Damage}} x2 Schadensmultiplikator#Kann keine roten Herzen haben#{{BlackHeart}} Health ups grant Black Hearts#{{Player3}} Counts as Judas for completion marks"},
+	--[14] = {"Hüter", "{{CoinHeart}} Heal by picking up coins#Maximum of 3 Coin Hearts#Heart pickups are turned into Blue Flies#{{DevilRoom}} Devil deals cost 15 or 30 coins"},
+	--[18] = {"Bethanie", "{{SoulHeart}} Use Soul Hearts to charge your active item#Can't use Soul Hearts as health"},
+	--[19] = {"Jakob", "Control Jakob and Esau at the same time#Both characters drop a bomb when one is used#Esau stays in place while holding {{ButtonRT}}#{{ButtonLT}} uses Jakob's active, {{ButtonRB}} uses Esau's active, hold {{ButtonRT}} to use their card/pill#When there's a choice between items, Jakob and Esau can grab two simultaneously"},
+	--[20] = {"Esau", "Control Jakob and Esau at the same time#Both characters drop a bomb when one is used#Esau stays in place while holding {{ButtonRT}}#{{ButtonLT}} uses Jakob's active, {{ButtonRB}} uses Esau's active, hold {{ButtonRT}} to use their card/pill#When there's a choice between items, Jakob and Esau can grab two simultaneously"},
+	
+	--[21] = {"Befleckter Isaac", "Item pedestals cycle between 2 options#You can only carry 8 passive items#Change which item will be dropped for a 9th item with {{ButtonRT}}"},
+	[22] = {"Befleckte Magdalene", "Gesundheit über 2 Rote Herzen wird langsam abgebaut#Führt bei Kontakt einen Nahkampfangriff für 6x Schaden aus#{{HalfRedHeart}} Chance für Feinde, halbe rote Herzen fallen zu lassen, die nach 2 Sekunden verschwinden#Herz wird bei Nahkampftötung garantiert#{{Sammelbares45}} Doppelt so viel Heilung aus nicht-aufnehmbaren Quellen#{{AngelDevilChance}} Schaden, der durch das Ablassen von Herzen verursacht wird, wirkt sich nicht auf die Chance auf einen Teufelsschlag aus"},
+	[23] = {"Befleckter Cain", "Das Berühren eines Items verwandelt es in mehrere Pickups"},
+	[24] = {"Befleckter Judas", "Kann keine roten Herzen haben#{{BlackHeart}} HP-Up Items geben schwarze Herzen"},
+	--[25] = {"Befleckter ???", "Bombs are replaced with Poop Spells#{{Crafting29}} Doing damage spawns poop pickups#{{Collectible715}} You can store the next spell for later by using Hold"},
+	--[26] = {"Befleckte Eve", "Holding Fire converts your hearts into Clot familiars#Different Heart types spawn Clots with more health and tear effects#Clots lose health over time#Clots stay in place while holding {{ButtonRT}}#At half a heart left with no Clots, you gain a Mom's Knife-like attack until you heal and leave the room"},
+	--[27] = {"Befleckter Samson", "Dealing or taking damage builds up Berserk mode#{{Timer}} When you go berserk, receive for 5 seconds:#↑ {{Speed}} +0.4 Speed#↓ {{Tears}} x0.5 Fire rate multiplier#↑ {{Tears}} +2 Fire rate#↑ {{Damage}} +3 Damage#Restricts attacks to a melee that reflects shots#{{Timer}} Each kill increases the duration by 1 second and grants brief invincibility"},
+	--[28] = {"Befleckter Azazel", "When you start charging, you sneeze blood#Hitting an enemy with the sneeze halves your charge time#The sneeze deals 1.5x Azazel's damage#{{BrimstoneCurse}} Affected enemies take extra damage from Brimstone beams#On death, cursed enemies explode and pass on the curse to nearby enemies"},
+	--[29] = {"Befleckter Lazarus", "Lazarus has two states, each with their own items and health#Clearing a room/wave or using Flip switches to the other state"},
+	--[30] = {"Befleckte Eden", "When you take damage, reroll your stats, items, trinket, and consumables#Items reroll into an item from the same item pool#Self-damage doesn't reroll"},
+	--[31] = {"Befleckter Lost", "{{Card51}} Cards that spawn have a 10% chance to be Holy Card#Quality {{Quality2}} or less items have a 20% chance to be rerolled#Only \"offensive\" items can spawn"},
+	--[32] = {"Befleckter Lilith", "Pressing Fire launches a short-range fetus melee attack that does 3x damage#Holding Fire keeps the fetus out shooting tears towards the nearest enemy"},
+	--[33] = {"Befleckter Hüter", "Maximum of 2 Coin Hearts#Enemies drop coins that disappear in 2 seconds#Most item pedestals cost 15 coins#Devil deals and Angel items cost 15 or 30 coins#Shops don't require a key and have increased stock"},
+	[34] = {"Befleckter Apollyon", ""},
+	--[35] = {"Befleckter Vergessener", "The Forgotten is an immobile bone pile that is picked up and thrown by The Soul for 3x damage#Only The Soul can take damage#Bombs are placed at Forgotten's location#Can't have Red Hearts#{{SoulHeart}} Health ups grant Soul Hearts"},
+	--[36] = {"Befleckte Bethanie", "{{Heart}} Use Red Hearts to charge your active item#Can't have Red Hearts#{{SoulHeart}} Health ups grant Soul Hearts and blood charges#Stat increases are only 75% effective"},
+	--[37] = {"Befleckter Jakob", "Dark Esau chases you, charging towards you when close#The charge does a lot of damage to enemies#If he hits you, you turn into a ghost that dies in one hit for the rest of the floor#While a ghost, one devil deal per room can be taken for free"},
+	--[38] = {"Toter befleckter Lazarus", "Lazarus has two states, each with their own items and health#Clearing a room/wave or using Flip switches to the other state"},
+	--[39] = {"Befleckte Seele von Jakob", "Flight#Spectral tears#{{Warning}} No health#{{Warning}} Die if hit by Dark Esau#{{DevilRoom}} One devil deal per room can be taken for free#Turn back into Tainted Jakob in the next floor"},
+	--[40] = {"Befleckte vergessene Seele", "The Forgotten is an immobile bone pile that is picked up and thrown by The Soul for 3x damage#Only The Soul can take damage#Bombs are placed at Forgotten's location#Can't have Red Hearts#{{SoulHeart}} Health ups grant Soul Hearts"},
+}
 EID:updateDescriptionsViaTable(repCharacterInfo, EID.descriptions[languageCode].CharacterInfo)
 
 
@@ -1251,6 +1375,6 @@ if EID.enableDebug then
 end
 
 if REPENTOGON then
-	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "Donation Machine", "Next achievement at {1} coins, {2} coins remaining#{{Luck}} 2% chance for +1 Luck when donating#{{AngelRoom}} Donating 10 coins increases Angel Room chance"}
-	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Greed Donation Machine", "Next achievement at {1} coins, {2} coins remaining"}
+	EID.descriptions[languageCode].custom["6.8.0"] = {"0", "Spendenmaschine", "Nächster Erfolg bei {1} Münzen, noch {2} Münzen#{{Luck}} 2% Chance für +1 Glück nach Spende#{{AngelRoom}} 10 Münzen spenden erhöht Engelraum-Chance"}
+	EID.descriptions[languageCode].custom["6.11.0"] = {"0", "Gier Spendenmaschine", "Nächster Erfolg bei {1} Münzen, noch {2} Münzen"}
 end

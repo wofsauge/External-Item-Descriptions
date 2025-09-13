@@ -13,10 +13,11 @@
 
 local languageCode = "fr"
 
--- init fr table
+-- init French table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "French"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"french"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default", textboxWidth = 145}, {name="inverted", textboxWidth = 145}, {name="borderless", textboxWidth = 145}}
@@ -68,9 +69,9 @@ EID.descriptions[languageCode].collectibles={
 	{"44", "Téléportation !", "Téléporte Isaac dans une salle au hasard#Ne peut pas téléporter dans la salle I AM ERROR"},
 	{"45", "Joli Cœur", "{{HealingRed}} Soigne 1 cœur rouge"},
 	{"46", "Pied Chanceux", "↑ Chance {{ColorLime}}+1.0#↑ Augmente les chances de gagner aux jeux de hasard"},
-	{"47", "Télécommande du Docteur", "Utiliser l'objet affiche un curseur déplaçable#Un missile frappe la position du curseur après 2 secondes"},
+	{"47", "Télécommande du Docteur", "Utiliser l'objet affiche un curseur déplaçable#Un missile frappe le curseur après 2 secondes"},
 	{"48", "Flèche de Cupidon", "Larmes transperçantes"},
-	{"49", "Super Laser de la Mort", "Utiliser l'objet puis appuyer sur un bouton de tir crache un laser dans la direction choisie"},
+	{"49", "Super Laser de la Mort", "Crache un laser dans la direction choisie"},
 	{"50", "Steven", "↑ Dégâts {{ColorLime}}+1.0"},
 	{"51", "Pentagramme", "↑ Dégâts {{ColorLime}}+1.0#{{AngelDevilChanceSmall}} {{ColorLime}}+10%{{ColorWhite}} de chances de Devil Deal et Angel Room"},
 	{"52", "Dr. Fœtus", "↓ Délai de tir {{ColorError}}x2.5#Les larmes d'Isaac sont remplacées par des bombes"},
@@ -118,7 +119,7 @@ EID.descriptions[languageCode].collectibles={
 	{"94", "Bourse", "Fait apparaître une pièce toutes les 2 salles"},
 	{"95", "Robo-Bébé", "Tire des lasers#{{DamageSmall}} 3.5 dégâts par laser"},
 	{"96", "P'tit C.H.A.D", "Fait apparaître un demi-cœur toutes les 3 salles"},
-	{"97", "Livre du Péché", "Fait apparaître une ressource aléatoire"},
+	{"97", "Livre du Péché", "Fait apparaître une ressource au hasard"},
 	{"98", "Relique", "Fait apparaître un cœur d'âme toutes les 5 ou 6 salles"},
 	{"99", "P'tit Gish", "Tire des larmes ralentissantes#{{DamageSmall}} 3.5 dégâts par larme"},
 	{"100", "P'tit Steven", "Tire des larmes autoguidées#{{DamageSmall}} 3.5 dégâts par larme"},
@@ -153,7 +154,7 @@ EID.descriptions[languageCode].collectibles={
 	{"129", "Seau de Saindoux", "{{EmptyHeart}} +2 réceptacles de cœur#{{HealingRed}} Soigne un demi-cœur rouge#↓ Vitesse {{ColorError}}-0.2"},
 	{"130", "Poney Noir", "↑ Vitesse =1.5#Permet à Isaac de voler#Utiliser l'objet déclenche une ruée dans la direction où se déplace Isaac#Isaac est invulnérable durant la ruée"},
 	{"131", "Sac de Bombes", "Fait apparaître une bombe toutes les 3 salles"},
-	{"132", "Morceau de Charbon", "Augmente les dégâts des larmes selon la distance qu'elles parcourent"},
+	{"132", "Morceau de Charbon", "Augmente les dégâts des larmes d'Isaac selon la distance qu'elles parcourent"},
 	{"133", "Patte de Guppy", "Convertit 1 réceptacle de cœur en 3 cœurs d'âme"},
 	{"134", "Queue de Guppy", "{{ColorLime}}33%{{ColorWhite}} de chances de remplacer la récompense d'une salle par un coffre#{{ColorError}}33%{{ColorWhite}} de chances d'annuler la récompense d'une salle"},
 	{"135", "Perfusion", "Inflige un demi-cœur de dégâts à Isaac et fait apparaître 2 à 3 pièces"},
@@ -185,11 +186,11 @@ EID.descriptions[languageCode].collectibles={
 	{"161", "Ânkh", "Réincarne Isaac en {{ColorLightOrange}}???{{ColorWhite}} à sa mort"},
 	{"162", "Croix Celte", "Subir un dégât rend parfois Isaac temporairement invulnérable#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(100% à 27 Chance)"},
 	{"163", "Bébé Fantôme", "Tire des larmes spectrales#{{DamageSmall}} 3.5 dégâts par larme"},
-	{"164", "Bougie Bleue", "Lance une flamme bleue qui inflige des dégâts de contact, bloque les projectiles ennemis et disparaît après 2 secondes"},
+	{"164", "Bougie Bleue", "Lance une flamme bleue dans la direction choisie#Les flammes durent 2 secondes, bloquent les projectiles ennemis et infligent des dégâts de contact"},
 	{"165", "Chat à Neuf Queues", "↑ Dégâts {{ColorLime}}+1.0#↑ Vitesse des tirs {{ColorLime}}+0.23"},
 	{"166", "D20", "Rejoue toutes les ressources de la salle"},
 	{"167", "Bébé Arlequin", "Tire deux larmes écartées#{{DamageSmall}} 4 dégâts par larme"},
-	{"168", "Super Fœtus", "Les larmes d'Isaac sont remplacées par un curseur déplaçable avec les boutons de tir#Un missile frappe le sol à l'emplacement du curseur après 1.5 secondes"},
+	{"168", "Super Fœtus", "Les larmes d'Isaac sont remplacées par un curseur déplaçable#Un missile frappe le sol à l'emplacement du curseur après 1.5 secondes"},
 	{"169", "Polyphème", "↑ Dégâts {{ColorLime}}x2 +4#↓ Débit diminué#Les larmes qui tuent un ennemi le transpercent"},
 	{"170", "Le Faucheux", "Écrase un ennemi au hasard toutes les 4 secondes#{{DamageSmall}} 40 dégâts par coup"},
 	{"171", "Filière d'Araignée", "Ralentit tous les ennemis pendant 4 secondes#Inflige 10 dégâts à tous les ennemis"},
@@ -311,7 +312,7 @@ EID.descriptions[languageCode].collectibles={
 	{"287", "Livre des Secrets", "Donne l'effet de {{ColorYellow}}Treasure Map{{ColorWhite}} {{Collectible54}}, {{ColorYellow}}The Compass{{ColorWhite}} {{Collectible21}} ou {{ColorYellow}}Blue Map{{ColorWhite}} {{Collectible246}}#{{Timer}} L'effet dure un étage"},
 	{"288", "Boîte d'Araignées", "Invoque 1 à 4 araignées bleues"},
 	{"289", "Bougie Rouge", "Lance une flamme rouge#La flamme disparaît après avoir infligé des dégâts ou bloqué des tirs 5 fois"},
-	{"290", "Bocal en Verre", "Ramasser un cœur rouge quand tous les réceptacles de cœurs rouges d'Isaac sont pleins le met dans le bocal#Utiliser l'objet sort tous les cœurs rouges du bocal et les place sur le sol"},
+	{"290", "Bocal en Verre", "Ramasser un cœur rouge quand tous les réceptacles de cœur d'Isaac sont pleins le met dans le bocal#Utiliser l'objet sort tous les cœurs rouges du bocal et les place sur le sol"},
 	{"291", "Chasse d'Eau", "Tue instantanément tous les ennemis et boss cacas#Transforme les ennemis en cacas"},
 	{"292", "Bible Satanique", "{{BlackHeart}} +1 cœur noir"},
 	{"293", "Tête de Krampus", "Crache un laser de sang dans 4 directions#Les lasers ont 50% de chances de tourner pendant l'attaque"},
@@ -408,16 +409,16 @@ EID.descriptions[languageCode].collectibles={
 	{"384", "P'tit Boris", "Charge quand Isaac tire, puis se propulse à travers la salle et rebondit contre les murs quand les boutons de tirs sont relâchés"},
 	{"385", "Bumbo", "Ramasse les pièces au sol#Évolue et change de capacités après avoir ramassé assez de pièces#Peut faire apparaître une ressource pour chaque pièce ramassée"},
 	{"386", "D12", "Rejoue tous les rochers de la salle"},
-	{"387", "Encensoir", "Suit Isaac entouré d'une aura de lumière qui ralentit les ennemis et projectiles qui y entrent"},
-	{"388", "Cléchard", "Ramasse les clés au sol et fait parfois apparaître des coffres en échange"},
+	{"387", "Encensoir", "Suit Isaac et ralentit les ennemis et projectiles qui entrent dans son aura"},
+	{"388", "Cléchard", "Ramasse les clés au sol et fait parfois apparaître un coffre en échange"},
 	{"389", "Sac de Runes", "Fait apparaître une rune toutes les 5 ou 6 salles"},
 	{"390", "Séraphin", "Tire des larmes autoguidées#{{DamageSmall}} 10 dégâts par larme"},
 	{"391", "Trahison", "Subir un dégât envoûte tous les ennemis de la salle"},
-	{"392", "Zodiaque", "Donne à Isaac l'effet d'un objet du zodiaque aléatoire#L'effet accordé change à chaque étage"},
+	{"392", "Zodiaque", "Donne à Isaac l'effet d'un objet du zodiaque au hasard#L'effet accordé change à chaque étage"},
 	{"393", "Baiser du Serpent", "Les larmes ont une chance d'empoisonner les ennemis#Entrer en contact avec un ennemi l'empoisonne#Les ennemis qui meurent sous l'effet du poison ont 20% de chances de lâcher un cœur noir"},
 	{"394", "Ligne de Mire", "↑ Débit {{ColorLime}}+0.7#↑ Hauteur des larmes {{ColorLime}}+0.3#↑ Portée {{ColorLime}}+3.15#Isaac tire automatiquement en direction d'une cible rouge  avec les boutons de tir"},
 	{"395", "Tech X", "Les larmes d'Isaac sont remplacées par des anneaux laser#La taille des anneaux augmente avec la durée de la charge"},
-	{"396", "Scalpel Ventriculaire", "Utiliser l'objet place un trou orange ou bleu au sol#Si les deux sont posés, entrer dans l'un des trous téléporte Isaac à l'autre#Placer un nouveau trou remplace le plus ancien des deux"},
+	{"396", "Scalpel Ventriculaire", "Utiliser l'objet place un trou orange ou bleu au sol#Si les deux sont posés, entrer dans l'un des trous téléporte Isaac à l'autre"},
 	{"397", "Rayon Tracteur", "↑ Hauteur des larmes {{ColorLime}}+0.5#↑ Débit {{ColorLime}}+0.5#↑ Portée {{ColorLime}}+5.25#↑ Vitesse des tirs {{ColorLime}}+0.16#Les larmes d'Isaac volent en ligne droite en suivant un rayon de lumière#Se déplacer sur les côtés déplace également les larmes"},
 	{"398", "Chair des Dieux", "Isaac tire parfois une larme rétrécissante#Marcher sur un ennemi rétréci le tue#Les ennemis retrouvent leur taille après 5 secondes"},
 	{"399", "Gouffre du Néant", "↑ Dégâts {{ColorLime}}+1.0#Tirer pendant 3 secondes fait apparaître une croix rouge sur la tête d'Isaac#Relâcher les boutons de tir crée un anneau noir autour de lui qui inflige des dégâts de contact#Les ennemis tués avec le halo noir ont une chance de lâcher un cœur noir"},
@@ -425,17 +426,17 @@ EID.descriptions[languageCode].collectibles={
 	{"401", "Explosivo", "25% de chances de tirer une larme collante#Les larmes collantes s'attachent aux ennemis et explosent après quelques secondes"},
 	{"402", "Chaos", "Tous les futurs objets proviendront d'une banque d'objet aléatoire au lieu de celle de la salle où ils sont générés#Fait apparaître 1 à 6 ressources"},
 	{"403", "Roboraignée", "Affiche les PV des ennemis#Inflige un effet aléatoire aux ennemis qui entrent en contact avec elle#Fait parfois apparaître une pile"},
-	{"404", "Bébé Péteur", "Bloque les projectiles ennemis#S'il est touché par un projectile ennemi, le familier pète et envoûte, empoisonne ou repousse les ennemis"},
+	{"404", "Bébé Péteur", "Bloque les projectiles ennemis#Pète et envoûte, empoisonne ou repousse les ennemis lorsqu'il est touché par un de leurs projectile"},
 	{"405", "Bug", "Rebondit contre les murs de la salle#Inflige des dégâts et un effet aléatoire aux ennemis avec lesquels il entre en contact#Rejoue parfois les ressources avec lesquelles il entre en contact#{{DamageSmall}} 120 dégâts par seconde"},
 	{"406", "D8", "Rejoue les stats de dégâts, débit, portée et vitesse d'Isaac"},
-	{"407", "Pureté", "{{Blank}} Augmente une stat en fonction de la couleur de l'aura qui entoure Isaac#{{Blank}} {{ColorRed}}Rouge{{ColorWhite}} = Dégâts {{ColorLime}}+4.0#{{Blank}} {{ColorCyan}}Bleu{{ColorWhite}} = Débit {{ColorLime}}+4.0#{{Blank}} {{ColorYellow}}Jaune{{ColorWhite}} = Vitesse {{ColorLime}}+0.5#{{Blank}} {{ColorOrange}}Orange{{ColorWhite}} = Portée {{ColorLime}}+7.5#Subir un dégât fait disparaître l'effet pour la durée d'une salle"},
+	{"407", "Pureté", "{{Blank}} Entoure Isaac d'une aura :#{{Blank}} {{ColorRed}}Rouge{{ColorWhite}} = Dégâts {{ColorLime}}+4.0#{{Blank}} {{ColorCyan}}Bleu{{ColorWhite}} = Débit {{ColorLime}}+4.0#{{Blank}} {{ColorYellow}}Jaune{{ColorWhite}} = Vitesse {{ColorLime}}+0.5#{{Blank}} {{ColorOrange}}Orange{{ColorWhite}} = Portée {{ColorLime}}+7.5#Subir un dégât fait disparaître l'effet pour la durée d'une salle"},
 	{"408", "Athamé", "Subir un dégât entoure Isaac d'un anneau noir qui inflige des dégâts de contact aux ennemis#Les ennemis tués par le halo noir ont une chance de lâcher un cœur noir"},
-	{"409", "Flacon Vide", "{{BlackHeart}} +2 cœurs noirs#Quand Isaac n'a pas de cœurs rouges, il peut voler et devient brièvement invulnérable toutes les 40 secondes"},
+	{"409", "Flacon Vide", "{{BlackHeart}} +2 cœurs noirs#Quand Isaac n'a pas de cœurs rouges, il devient brièvement invulnérable toutes les 40 secondes et peut voler"},
 	{"410", "Mauvais Œil", "Isaac tire parfois un œil qui se déplace lentement en ligne droite#L'œil tire des larmes identiques à celles d'Isaac#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(10% à 20 Chance)"},
 	{"411", "Sang Salace", "↑ Dégâts {{ColorLime}}+0.5{{ColorWhite}} pour chaque ennemi tué dans une salle#Plafonne à {{ColorLime}}dégâts +5 {{ColorSilver}}(10 ennemis tués)#Le bonus persiste pour la durée d'une salle"},
 	{"412", "Conception Impure", "Subir suffisamment de dégâts invoque un familier démoniaque permanent#Peut invoquer jusqu'à 4 familiers {{ColorSilver}}(90 dégâts subis)"},
 	{"413", "Immaculée Conception", "Ramasser 15 cœurs invoque un familier angélique permanent#Peut invoquer jusqu'à 5 familiers"},
-	{"414", "Plus d'Options", "Permet à Isaac de choisir entre deux objets dans les Treasure Rooms {{TreasureRoom}}"},
+	{"414", "Plus d'Options", "Permet à Isaac de choisir entre deux objets dans les Treasure Rooms"},
 	{"415", "Couronne de Lumière", "{{SoulHeart}} +2 Cœurs d'âme#↑ Dégâts {{ColorLime}}+100%#↑ Portée {{ColorLime}}+5.25#↑ Vitesse des tirs {{ColorError}}-0.3#Subir un dégât désactive ces effets pour la durée d'une salle#Les effets restent désactivés tant que tous les réceptacles de cœurs d'Isaac ne sont pas remplis"},
 	{"416", "Poches Profondes", "Permet à Isaac de porter 2 cartes, pilules ou runes"},
 	{"417", "Succube", "Rebondit à travers la salle entourée d'une aura qui donne {{ColorLime}}Dégâts +50%{{ColorWhite}} à Isaac et inflige des dégâts aux ennemis"},
@@ -445,7 +446,7 @@ EID.descriptions[languageCode].collectibles={
 	{"421", "Haricot Rouge", "Isaac pète, envoûte et inflige 5 dégâts aux ennemis à proximité"},
 	{"422", "Sablier Luisant", "Remonte le temps et ramène Isaac dans la salle précédente#Annule toutes les actions faites, les dégâts subis, les ressources ramassées dans la salle où l'objet a été utilisé"},
 	{"423", "Cercle de Protection", "Entoure Isaac d'un halo de lumière qui inflige des dégâts de contact et peut renvoyer les projectiles ennemis"},
-	{"424", "Sac en Papier", "Les pièces ont 10% de chances d'être converties en sachet {{GrabBag}}#Les autres ressources ont 20% de chances d'être converties en sachet {{GrabBag}}#Fait apparaître un sachet "},
+	{"424", "Sac en Papier", "10% de chances de convertir les pièces en sachet#20% de chances de convertir les autres ressources en sachet#Fait apparaître un sachet"},
 	{"425", "Veilleuse", "Éclaire dans la direction des mouvements d'Isaac#Ralentit les ennemis et projectiles pris dans le rayon de lumière"},
 	{"426", "Admiratrice Obsessionnelle", "Suit Isaac avec un délai#Inflige des dégâts de contact#{{DamageSmall}} 30 dégâts par seconde"},
 	{"427", "Bloc de TNT", "Place un baril de TNT qui peut être déplacé#Utiliser l'objet une seconde fois fait exploser le baril à distance"},
@@ -480,17 +481,17 @@ EID.descriptions[languageCode].collectibles={
 	{"456", "Encas de Minuit", "{{Heart}} +1 réceptacle de cœur"},
 	{"457", "Crâne d'Œuf", "{{SoulHeart}} +1 cœur d'âme#20% de chances de nullifier un dégât subi"},
 	{"458", "Nombril", "Permet à Isaac de porter deux trinkets#Fait apparaître un trinket"},
-	{"459", "Sinusite", "20% de chances de tirer une crotte de nez#Les crottes de nez se collent aux ennemis et infligent des dégâts une fois par seconde#Les crottes de nez se décollent si l'ennemi meurt, s'enterre, saute hors de l'écran ou au bout de 60 secondes"},
+	{"459", "Sinusite", "20% de chances de tirer une crotte de nez qui se colle aux ennemis et inflige des dégâts une fois par seconde"},
 	{"460", "Glaucome", "Isaac tire parfois une larme étourdissante#L'effet infligé aux ennemis par ces larmes est permanent#L'effet infligé aux boss est long mais temporaire"},
 	{"461", "Parasitoïde", "Isaac tire parfois un cocon#Toucher un ennemi avec un cocon invoque 1 ou 2 mouches ou araignées bleues et répand une flaque ralentissante#{{LuckSmall}} Effet affecté par la statistique de chance#{{Blank}} {{ColorSilver}}(50% à 5 Chance)"},
 	{"462", "Œil de Bélial", "Larmes transperçantes#Après avoir transpercé un ennemi, les larmes infligent {{ColorLime}}dégâts x2{{ColorWhite}} et deviennent autoguidées"},
 	{"463", "Acide Sulfurique", "↑ Dégâts {{ColorLime}}+0.3#Isaac tire parfois des larmes corrosives#Les larmes corrosives détruisent les obstacles, les portes et les entrées des Secret Rooms {{SecretRoom}} et Super Secret Rooms {{SuperSecretRoom}}"},
-	{"464", "Marque d'Harmonie", "{{SoulHeart}} +2 cœurs d'âme#Les ressources lâchées par les ennemis d'élite changent selon ce qui manque à Isaac"},
+	{"464", "Marque d'Harmonie", "{{SoulHeart}} +2 cœurs d'âme#Change les ressources lâchées par les ennemis d'élite selon ce qui manque à Isaac"},
 	{"465", "Stick Analogique", "↑ Débit {{ColorLime}}+0.35#Permet à Isaac de tirer en diagonale {{ColorSilver}}(Clavier/boutons)#Permet à Isaac de tirer dans n'importe quelle direction {{ColorSilver}}(Joystick)"},
 	{"466", "Contagion", "Le premier ennemi tué dans une salle explose et empoisonne les ennemis à proximité#Les ennemis tués par le poison explosent à leur tour"},
 	{"467", "Doigt Accusateur", "Inflige des dégâts aux ennemis qu'il vise#Peut éteindre les feux et détruire les cacas#{{DamageSmall}} Inflige 10% des dégâts d'Isaac"},
 	{"468", "Ombre", "Suit Isaac avec un délai#Après avoir infligé 600 dégâts de contact, elle est absorbée par Isaac et lui permet d'infliger des dégâts de contact#{{DamageSmall}} 30 dégâts par seconde"},
-	{"469", "Dépression", "Suit Isaac et répand une traînée d'eau qui inflige des dégâts de contact#Les ennemis qui entrent en contact avec le nuage se font parfois frapper par un rayon de lumière"},
+	{"469", "Dépression", "Suit Isaac et répand une traînée d'eau qui inflige des dégâts de contact#Les ennemis qui entrent en contact avec le nuage sont parfois frappés par un rayon de lumière"},
 	{"470", "P'tit Murmure", "Rebondit contre les murs de la salle et inflige des dégâts de contact#Tirer l'immobilise#{{DamageSmall}} 30 dégâts par seconde"},
 	{"471", "P'tit Monstro", "Charge et crache une gerbe de larmes#{{DamageSmall}} 3.5 dégâts par larme"},
 	{"472", "Bébé Roi", "Tirer immobilise tous les familiers#Arrêter de tirer téléporte les familiers à Isaac"},
@@ -533,7 +534,7 @@ EID.descriptions[languageCode].collectibles={
 	{"509", "Nœnœil", "Orbite autour d'Isaac et inflige des dégâts de contact#Tire une larme toutes les 2 secondes#{{DamageSmall}} 30 dégâts par seconde#{{Blank}} 3.5 dégâts par larme"},
 	{"510", "Délire", "Invoque un boss allié#{{Timer}} L'effet dure une salle"},
 	{"511", "Mouche Enragée", "Orbite un ennemi et inflige des dégâts de contact#Attaque parfois l'ennemi qu'elle orbite#{{DamageSmall}} 30 dégâts par seconde"},
-	{"512", "Trou Noir", "Permet à Isaac de lancer un trou noir qui attire tout dans la salle, inflige des dégâts de contact et détruit les rochers à proximité"},
+	{"512", "Trou Noir", "Lance un trou noir qui attire tout dans la salle, inflige des dégâts de contact et détruit les rochers à proximité"},
 	{"513", "Bozo", "↑ Dégâts {{ColorLime}}+0.1#{{SoulHeart}} +1 cœur d'âme#Envoûte ou terrifie parfois un ennemi#Subir un dégât fait parfois apparaître un caca arc-en-ciel"},
 	{"514", "Routeur Cassé", "Paralyse parfois les ennemis et projectiles#25% de chances de dupliquer une récompense de salle#{{LuckSmall}} Effet affecté par la statistique de chance"},
 	{"515", "Cadeau Surprise", "Fait apparaître un objet aléatoire qui provient de la banque d'objets de la salle où il a été ouvert#Peut faire apparaître {{ColorYellow}}A Lump of Coal{{ColorWhite}}{{Collectible132}} ou {{ColorYellow}}The Poop{{ColorWhite}}{{Collectible36}} à la place#{{LuckSmall}} Effet affecté par la statistique de chance"},
@@ -597,7 +598,7 @@ EID.descriptions[languageCode].carBattery = {
 	[85] = {"une carte", "2 {{ColorWhite}}cartes"}, -- Deck of Cards
 	[86] = "{{BlinkYellowGreen}}Double{{ColorWhite}} les dégâts infligés par Monstro", -- Monstro's Tooth
 	[93] = {6.5, 13}, -- The Gamekid
-	[97] = {"une ressource aléatoire", "2{{ColorWhite}} ressources aléatoires"},
+	[97] = {"une ressource", "2{{ColorWhite}} ressources"},
 	[102] = {"une pilule", "2{{ColorWhite}} pilules"}, --Mom's Bottle of Pills
 	[105] = {"Rejoue", "{{ColorWhite}}Rejoue{{ColorYellow}} deux fois"}, -- D6
 	[107] = {"Permet à Isaac de voler#{{BlinkYellowGreen}}2{{ColorWhite}} corps d'Isaac se séparent de sa tête, pourchassent les ennemis et infligent des dégâts de contact"}, -- The Pinking Shears
@@ -785,13 +786,13 @@ EID.descriptions[languageCode].cards={
 	{"2", "I - Le Bateleur", "Larmes autoguidées#{{Timer}} L'effet dure une salle"},
 	{"3", "II - La Papesse", "Le pied de {{ColorCyan}}Mom{{ColorWhite}} écrase l'ennemi de la salle avec le plus de PV#Dans une salle vide, le pied écrase Isaac"},
 	{"4", "III - L'Impératrice", "↑ Dégâts {{ColorLime}}+1.5#↑ Vitesse {{ColorLime}}+0.3#{{Timer}} L'effet dure une salle"},
-	{"5", "IV - L'Empereur", "Téléporte Isaac dans la Boss Room {{BossRoom}}"},
+	{"5", "IV - L'Empereur", "Téléporte Isaac dans la Boss Room"},
 	{"6", "V - Le Pape", "Fait apparaître 2 cœurs d'âme"},
 	{"7", "VI - L'Amoureux", "Fait apparaître 2 cœurs rouges"},
 	{"8", "VII - Le Chariot", "↑ Vitesse {{ColorLime}}+0.28#Isaac devient invulnérable et inflige 40 dégâts de contact par seconde#{{Timer}} L'effet dure 6 secondes"},
 	{"9", "VIII - La Justice", "Fait apparaître une clé, une bombe, une pièce et un cœur"},
 	{"10", "IX - L'Ermite", "Téléporte Isaac dans le Shop {{Shop}}"},
-	{"11", "X - La Roue de Fortune", "Fait apparaître une machine à sous {{Slotmachine}} ou une diseuse de bonne aventure {{FortuneTeller}}"},
+	{"11", "X - La Roue de Fortune", "Fait apparaître 1 des machines suivantes:#Machine à sous {{Slotmachine}} {{ColorSilver}}(75%)#Diseuse de bonne aventure {{FortuneTeller}} {{ColorSilver}} (24%)"},
 	{"12", "XI - La Force", "{{Heart}} +1 réceptacle de cœur#↑ Dégâts {{ColorLime}}+0.3 x1.5#↑ Vitesse {{ColorLime}}+0.3#↑ Portée {{ColorLime}}+5.25#{{Timer}} L'effet dure une salle"},
 	{"13", "XII - Le Pendu", "Permet à Isaac de voler#{{Timer}} L'effet dure une salle"},
 	{"14", "XIII - La Mort", "Inflige 40 dégâts à tous les ennemis de la salle"},
@@ -801,8 +802,8 @@ EID.descriptions[languageCode].cards={
 	{"18", "XVII - L'Étoile", "Téléporte Isaac dans la Treasure Room {{TreasureRoom}}"},
 	{"19", "XVIII - La Lune", "Téléporte Isaac dans la Secret Room {{SecretRoom}}"},
 	{"20", "XIX - Le Soleil", "{{HealingRed}} Soin complet#Inflige 100 dégâts à tous les ennemis de la salle#Révèle l'intégralité de l'étage sur la carte"},
-	{"21", "XX - Le Jugement", "Invoque un mendiant"},
-	{"22", "XXI - Le Monde", "Révèle l'intégralité de l'étage sur la carte"},
+	{"21", "XX - Le Jugement", "{{Beggar}} Invoque un mendiant#{{DemonBeggar}} 33% de chances d'être un mendiant démoniaque #2% de chances d'être un mendiant clé ou bombe"},
+	{"22", "XXI - Le Monde", "{{Timer}} Révèle l'intégralité de l'étage sur la carte (sauf {{SuperSecretRoom}} Salle Super Secrète)"},
 	{"23", "2 de Trèfle", "Multiplie le nombre de bombes d'Isaac par 2#{{Bomb}} +2 bombes si Isaac ne possède aucune bombe"},
 	{"24", "2 de Carreau", "Multiplie le nombre de pièces d'Isaac par 2#{{Coin}} +2 pièces si Isaac ne possède aucune pièce"},
 	{"25", "2 de Pique", "Multiplie le nombre de clés d'Isaac par 2#{{Key}} +2 clés si Isaac ne possède aucune clé"},
@@ -849,7 +850,7 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[15] = {" une ", " 2 ", " machine", " {{CR}}machines", "mendiant démoniaque", "{{CR}}mendiants démoniaques"}, -- XIV - Temperance (+ Greed version)
 	[17] = {6, 12}, -- XVI - The Tower
 	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {" un ", " 2 ", "mendiant ", "{{CR}}mendiants ", "mendiant démoniaque", "{{CR}}mendiants démoniaques"}, -- XX - Judgement
+	[21] = {"un mendiant", "2 {{ColorWhite}} mendiants"}, -- XX - Judgement
 	[23] = {"2", "4"}, -- 2 of Clubs
 	[24] = {"2", "4"}, -- 2 of Diamonds
 	[25] = {"2", "4"}, -- 2 of Spades
@@ -895,7 +896,7 @@ EID.descriptions[languageCode].pills={
 	{"22", "Paralysie", "Empêche toute action pendant 2 secondes"},
 	{"23", "Sésame, ouvre-toi !", "Ouvre les entrées des Secret {{SecretRoom}} et Super Secret Rooms {{SuperSecretRoom}} de l'étage"},
 	{"24", "Phéromones", "Envoûte tous les ennemis de la salle"},
-	{"25", "Amnésie", "Masque la carte pour la durée de l'étage"},
+	{"25", "Amnésie", "Masque la carte de l'étage"},
 	{"26", "Petite fuite...", "Répand une large flaque sur le sol qui inflige des dégâts de contact aux ennemis"},
 	{"27", "C'est louche...", "Isaac tire en diagonale pendant 60 secondes"},
 	{"28", "Anesthésie", "Les dégâts subis sont réduits à un demi-cœur pour la durée d'une salle"},
@@ -970,8 +971,12 @@ EID.descriptions[languageCode].transformations={
 
 
 ---------- MISC ----------
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = "s"
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them, make it nil to not pluralize
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- French plural
+	-- replace {pluralize} placeholders inside the text with an "s"
+	return EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
+end
 
 EID.descriptions[languageCode].VoidText = "Si absorbé :"
 EID.descriptions[languageCode].VoidNames = {"Vitesse {{ColorLime}}{1}", "Débit {{ColorLime}}{1}", "Dégâts {{ColorLime}}{1}", "Portée {{ColorLime}}{1}", "Vitesse des tirs {{ColorLime}}{1}", "Chance {{ColorLime}}{1}"}
@@ -990,29 +995,30 @@ EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorSilver}}({1} ob
 EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} USAGE UNIQUE {{Warning}}"
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
--- {1} = number of hearts, {2} = plural character
+-- {1} = number of hearts, {pluralize} = plural character
+-- These texts are affected by the PluralizeFunction (ab+ file)
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
-	["Red to Soul"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{SoulHeart}} +{1} cœur{2} d'âme",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{SoulHeart}} +{1} cœur{2} d'âme",
-	"↓ {1} réceptacle{2} de cœur", "↓ {1} cœur{2}"},
+	["Red to Soul"] = {"{{Heart}} +{1} réceptacle{pluralize} de cœur", "{{SoulHeart}} +{1} cœur{pluralize} d'âme",
+	"{{EmptyHeart}} +{1} réceptacle{pluralize} de cœur", "{{SoulHeart}} +{1} cœur{pluralize} d'âme",
+	"↓ {1} réceptacle{pluralize} de cœur", "↓ {1} cœur{pluralize}"},
 
-	["Red to Black"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{BlackHeart}} +{1} cœur{2} noir{2}",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{BlackHeart}} +{1} cœur{2} noir{2}",
-	"↓ {1} réceptacle{2} de cœur", "↓ {1} cœur{2}"},
+	["Red to Black"] = {"{{Heart}} +{1} réceptacle{pluralize} de cœur", "{{BlackHeart}} +{1} cœur{pluralize} noir{pluralize}",
+	"{{EmptyHeart}} +{1} réceptacle{pluralize} de cœur", "{{BlackHeart}} +{1} cœur{pluralize} noir{pluralize}",
+	"↓ {1} réceptacle{pluralize} de cœur", "↓ {1} cœur{pluralize}"},
 
-	["Red to Bone"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{BoneHeart}} +{1} cœur{2} d'os",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{EmptyBoneHeart}} +{1} cœur{2} d'os", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} cœur{2}",
-	"↓ {1} réceptacle{2} de cœur", "↓ {1} cœur{2} d'os",
+	["Red to Bone"] = {"{{Heart}} +{1} réceptacle{pluralize} de cœur", "{{BoneHeart}} +{1} cœur{pluralize} d'os",
+	"{{EmptyHeart}} +{1} réceptacle{pluralize} de cœur", "{{EmptyBoneHeart}} +{1} cœur{pluralize} d'os", "↓ -{1} réceptacle{pluralize} de cœur", "↓ -{1} cœur{pluralize}",
+	"↓ {1} réceptacle{pluralize} de cœur", "↓ {1} cœur{pluralize} d'os",
 	"{{HealingRed}}", "{{HealingBone}}"}, -- Red HP to Bone Hearts
 
-	["Red to Coin"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "{{CoinHeart}} +{1} réceptacle{2} de pièce",
-	"{{EmptyHeart}} +{1} réceptacle{2} de cœur", "{{EmptyCoinHeart}} +{1} réceptacle{2} de pièce", "↓ -{1} réceptacle{2} de cœur", "↓ -{1} réceptacle{2} de pièce",
-	"↓ {1} réceptacle{2} de cœur", "↓ {1} réceptacle{2} de pièce",
-	"{{HealingRed}} Soigne {1} cœur{2} rouge{2}", "{{HealingCoin}} Soigne {1} pièce{2}", "{{HealingRed}} Soigne un demi-cœur rouge", "{{HealingCoin}} Soigne 1 pièce", "{{HealingRed}}", "{{HealingCoin}}"},
+	["Red to Coin"] = {"{{Heart}} +{1} réceptacle{pluralize} de cœur", "{{CoinHeart}} +{1} réceptacle{pluralize} de pièce",
+	"{{EmptyHeart}} +{1} réceptacle{pluralize} de cœur", "{{EmptyCoinHeart}} +{1} réceptacle{pluralize} de pièce", "↓ -{1} réceptacle{pluralize} de cœur", "↓ -{1} réceptacle{pluralize} de pièce",
+	"↓ {1} réceptacle{pluralize} de cœur", "↓ {1} réceptacle{pluralize} de pièce",
+	"{{HealingRed}} Soigne {1} cœur{pluralize} rouge{pluralize}", "{{HealingCoin}} Soigne {1} pièce{pluralize}", "{{HealingRed}} Soigne un demi-cœur rouge", "{{HealingCoin}} Soigne 1 pièce", "{{HealingRed}}", "{{HealingCoin}}"},
 
-	["Red to None"] = {"{{Heart}} +{1} réceptacle{2} de cœur", "", "{{EmptyHeart}} +{1} réceptacle{2} de cœur", "", "↓ {1} réceptacle{2} de cœur", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {"{{Heart}} +{1} réceptacle{pluralize} de cœur", "", "{{EmptyHeart}} +{1} réceptacle{pluralize} de cœur", "", "↓ {1} réceptacle{pluralize} de cœur", ""}, -- Red HP to None (The Lost)
 }
 
 EID.descriptions[languageCode].MCM = {
@@ -1089,7 +1095,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedModeSmall}} Aucun effet en mode Avarice",
 	["No Effect (Copies)"] = "Avoir plusieurs exemplaires ne cumule pas les effets", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "Aucun effet bonus pour les familiers", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "Aucun effet pour les personnages sans cœurs rouges",
 	["Different Effect"] = "{{ColorSilver}}(Effet différent avec {1}{{ColorSilver}})",
 	["Dies on Use"] = "{{Warning}} Tue {1} si utilisé",
 
@@ -1165,6 +1170,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.81"] = {"Réduit le nombre de réceptacles de cœurs rouges d'Isaac à 1","Retire tous les cœurs d'Isaac sauf 1", "réceptacle de cœur", "cœur"}, -- Dead Cat
 	["5.100.316"] = {"{{Warning}} Subir un dégât pendant le chargement de l'attaque téléporte Isaac dans une salle aléatoire", "Pas d'effet de téléportation avec la {1}"}, -- Cursed Eye
 	["5.100.260"] = "Retire l'effet de téléportation de {1}", -- Black Candle
+	["Void Single Use"] = "Les objets à usage unique ne sont activés qu'une seule fois", -- Single Use Actives + Void
 	["? Card Single Use"] = "Fait disparaître les objets à usage unique après les avoir utilisé", -- Single Use Actives + ? Card
 	["5.300.48"] = "Téléporte Isaac dans la salle d'erreur et détruit la {{ColorCard}}Carte ?{{CR}} et la {{ColorYellow}}Carte Blanche", -- Blank Card + ? Card
 	["? + Blank Pedestal"] = "Téléporte Isaac dans la salle d'erreur et détruit la {{ColorCard}}Carte ?{{CR}} et la {{ColorYellow}}Carte Blanche", -- Looking at Blank Card with ? Card
@@ -1181,9 +1187,9 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.523"] = "Compte comme un objet passif pour {1}", -- Moving Box + Void
 	["Mongo Babies"] = "Peut être imité par {1}", -- Mongo Baby + Baby Familiars
 	["Technology 2 One Eye"] = {"#Toutes les larmes d'Isaac sont tirées de l'œil droit", "", "Remplace complètement les larmes d'Isaac par le laser"},
-	-- ["Brimstone Proptosis"] = "Beams deal additional 2x damage at point blank range, decreasing with distance",
+	["Brimstone Proptosis"] = "Les lasers infligent 2x dégâts à bout portant, diminuant avec la distance",
 	["Brimstone Ipecac"] = "Isaac tire des larmes explosives pendant qu'il charge",
-	-- ["Proptosis Anti-Gravity"] = "Tears don't lose damage until they start moving",
+	["Proptosis Anti-Gravity"] = "Les larmes ne perdent pas de dégâts tant qu'elles ne bougent pas",
 	["Epic Fetus Soy Milk"] = "Réduit les dégâts du missile mais pas le temps entre les frappes",
 	["Eye of Belial Dr. Fetus"] = "Les bombes deviennent transperçantes mais pas autoguidées",
 	["Epic Fetus Brimstone"] = "{1} est prioritaire#Les fusées tirent 10 lasers",
