@@ -2278,7 +2278,7 @@ end
 ---@param lazarusAdjust? boolean
 ---@return integer
 function EID:getPlayerID(entityPlayer, lazarusAdjust)
-	if not entityPlayer then return 0 end
+	if not EID:EntitySanityCheck(entityPlayer) then return 0 end
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if GetPtrHash(player) == GetPtrHash(entityPlayer) then
