@@ -659,6 +659,7 @@ function EID:printDescription(desc, cachedID)
 				curName = curName.." - "
 			end
 			curName = curName..""..(EID.ItemPoolTypeToMarkup[desc.ItemPoolType] or "{{ItemPoolTreasure}}")
+			curName = curName..""..(EID.ItemPoolTypeToMarkup[desc.ItemPoolType] or "{{ItemPoolUnknown}}")
 		end
 	end
 	-- Display the mod this item is from
@@ -748,7 +749,7 @@ function EID:printDescription(desc, cachedID)
 			local poolName = ""
 			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")
 			local poolDescTable = EID:getDescriptionEntry("itemPoolNames")
-			poolName = "{{RolledItemPool}} {{NoLB}}{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolTreasure}}")..poolDescTable[lastPool] .. "{{CR}}#"
+			poolName = "{{RolledItemPool}} {{NoLB}}{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolUnknown}}")..(poolDescTable[lastPool] or "Modded item pool") .. "{{CR}}#"
 
 			renderPos = EID:printBulletPoints(poolName, renderPos, desc.IgnoreBulletPointIconConfig)
 		end

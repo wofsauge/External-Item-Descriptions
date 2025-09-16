@@ -629,6 +629,8 @@ EID.InlineIcons = {
 	["ItemPoolWoodenChest"] = {"ItemPools", 29, 11, 11, 0, 0},
 	["ItemPoolRottenBeggar"] = {"ItemPools", 30, 11, 11, 0, 0},
 
+	["ItemPoolUnknown"] = {"Misc", 20, 11, 11, 0, 0},
+
 	-- Wisps
 	["InnerWisp"] = {"Wisps", 0, 10, 10, 0, -3},
 	["MiddleWisp"] = {"Wisps", 1, 10, 10, 0, -3},
