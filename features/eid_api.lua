@@ -3087,7 +3087,7 @@ function EID:addItemPoolName(id, poolName, language)
 	poolName = poolName or nil
 	language = language or EID.DefaultLanguageCode
 	if id == -1 then
-		EID:WriteErrorMsg("Trying to add item pool name to id = -1, which is not allowed! (Name: "..tostring(poolName)")
+		EID:WriteErrorMsg("Trying to add item pool name to id = -1, which is not allowed! (Name: "..tostring(poolName)..")
 		return
 	end
 	EID:CreateDescriptionTableIfMissing("itemPoolNames", language)
