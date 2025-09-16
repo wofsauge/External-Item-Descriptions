@@ -3027,6 +3027,8 @@ EID.CachedCollectibleItemPools = {}
 ---@return table
 function EID:GetPoolsForCollectible(collectibleType)
 	if not EID.isRepentance then return end
+	local cached = EID.CachedCollectibleItemPools[collectibleType]
+	if cached then return cached end
 
 	local poolTable = {}
 	if not REPENTOGON then
@@ -3050,8 +3052,6 @@ function EID:GetPoolsForCollectible(collectibleType)
 		end
 	else
 		-- rgon : catch from pool directly
-		local cached = EID.CachedCollectibleItemPools[collectibleType]
-		if cached then return cached end
 		local pool = game:GetItemPool()
 		local numPools = pool:GetNumItemPools()
 		for i = ItemPoolType.POOL_TREASURE, numPools - 1 do
