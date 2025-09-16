@@ -158,9 +158,9 @@ local goldenTrinketEffects = {
 	[40] = {"20", "33", "50"},
 	-- Match Stick (replace):
 	[41] = {
-		"{{Bomb}} 20{{CR}}% chance for the room clear reward to be a bomb#{{Bomb}} {{ColorGold}}66{{CR}}% chance for a bonus bomb from chests, tinted rocks, and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick"},
-		"{{Bomb}} 20{{CR}}% chance for the room clear reward to be a bomb#{{Bomb}} {{ColorGold}}66{{CR}}% chance for a bonus bomb from chests, tinted rocks, and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick"},
-		"{{Bomb}} 50{{CR}}% chance for the room clear reward to be a bomb#{{Bomb}} {{ColorGold}}100{{CR}}% chance for a bonus bomb from chests, tinted rocks, and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick"},
+		"{{Bomb}} 20{{CR}}% chance for the room clear reward to be a bomb#{{Bomb}} {{ColorGold}}66{{CR}}% chance for a bonus bomb from chests, tinted rocks, and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick",
+		"{{Bomb}} 20{{CR}}% chance for the room clear reward to be a bomb#{{Bomb}} {{ColorGold}}66{{CR}}% chance for a bonus bomb from chests, tinted rocks, and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick",
+		"{{Bomb}} 50{{CR}}% chance for the room clear reward to be a bomb#{{Bomb}} {{ColorGold}}100{{CR}}% chance for a bonus bomb from chests, tinted rocks, and destroyed machines#{{Warning}} Removes {{Trinket53}} Tick",
 	},
 	-- Cursed Skull (replace):
 	[43] = {
