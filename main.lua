@@ -658,7 +658,6 @@ function EID:printDescription(desc, cachedID)
 			if not EID.Config["ShowQuality"] then
 				curName = curName.." - "
 			end
-			curName = curName..""..(EID.ItemPoolTypeToMarkup[desc.ItemPoolType] or "{{ItemPoolTreasure}}")
 			curName = curName..""..(EID.ItemPoolTypeToMarkup[desc.ItemPoolType] or "{{ItemPoolUnknown}}")
 		end
 	end
