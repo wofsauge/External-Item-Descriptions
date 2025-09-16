@@ -748,7 +748,8 @@ function EID:printDescription(desc, cachedID)
 			local poolName = ""
 			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")
 			local poolDescTable = EID:getDescriptionEntry("itemPoolNames")
-			poolName = "{{RolledItemPool}} {{NoLB}}{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolUnknown}}")..(poolDescTable[lastPool] or "Modded item pool") .. "{{CR}}#"
+			local poolDescTableEng = EID:getDescriptionEntryEnglish("itemPoolNames")
+			poolName = "{{RolledItemPool}} {{NoLB}}{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolUnknown}}")..(poolDescTable[lastPool] or poolDescTableEng[lastPool] or "Modded item pool") .. "{{CR}}#"
 
 			renderPos = EID:printBulletPoints(poolName, renderPos, desc.IgnoreBulletPointIconConfig)
 		end
