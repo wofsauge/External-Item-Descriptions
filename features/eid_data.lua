@@ -869,8 +869,10 @@ EID.GoldenTrinketData = {
 	[13] = {goldenOnly = true, fullReplace = true, mult=1}, [15] = {append = true}, [16] = {t={20}, mults={0.5, 0.333}}, [25] = {goldenOnly = true, findReplace = true, mult = 2},
 }
 if EID.isRepentancePlus then
+	EID.GoldenTrinketData[86] = {t={1}} -- Lil Larva can be tripled now
 	EID.GoldenTrinketData[100] = {t={1,0.75,0.5,0.25,0.2,0.1}} -- Vibrant Bulb
 	EID.GoldenTrinketData[101] = {t={2,1.5,1.5,0.5,0.4,0.3}} -- Dim Bulb
+	EID.GoldenTrinketData[163] = {t={1}} -- Dingle Berry can be tripled now
 end
 
 EID.MarkupSizeMap = {
