@@ -658,7 +658,7 @@ function EID:printDescription(desc, cachedID)
 			if not EID.Config["ShowQuality"] then
 				curName = curName.." - "
 			end
-			curName = curName..""..(EID.ItemPoolTypeToMarkup[desc.ItemPoolType] or "{{ItemPoolTreasure}}")
+			curName = curName..""..(EID.ItemPoolTypeToMarkup[desc.ItemPoolType] or "{{ItemPoolUnknown}}")
 		end
 	end
 	-- Display the mod this item is from
@@ -720,6 +720,25 @@ function EID:printDescription(desc, cachedID)
 			end
 		end
 	end
+	-- Display Possible Pool for Collectible
+	if EID.isRepentance and EID.Config["ShowContainItemPool"] and (desc.ObjType == 5 and desc.ObjVariant == 100 and desc.ObjSubType ~= nil) then
+		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
+		if itemConfig:IsCollectible() then
+			local pools = EID:GetPoolsForCollectible(desc.ObjSubType)
+			if pools and #pools > 0 then
+				local poolName = "{{ItemPool}} {{NoLB}}"
+
+				for _, pool in ipairs(pools) do
+					if EID.ItemPoolTypeToMarkup[pool] then
+						poolName = poolName .. "" .. EID.ItemPoolTypeToMarkup[pool]
+					end
+				end
+
+				renderPos = EID:printBulletPoints(poolName, renderPos, desc.IgnoreBulletPointIconConfig)
+			end
+		end
+	end
+
 	-- Display Last Pool for Collectible for full reroll effects (name)
 	if desc.ItemPoolType and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
@@ -729,7 +748,8 @@ function EID:printDescription(desc, cachedID)
 			local poolName = ""
 			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")
 			local poolDescTable = EID:getDescriptionEntry("itemPoolNames")
-			poolName = "{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolTreasure}}")..poolDescTable[lastPool] .. "{{CR}}#"
+			local poolDescTableEng = EID:getDescriptionEntryEnglish("itemPoolNames")
+			poolName = "{{RolledItemPool}} {{NoLB}}{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolUnknown}}")..(poolDescTable[lastPool] or poolDescTableEng[lastPool] or "Modded item pool") .. "{{CR}}#"
 
 			renderPos = EID:printBulletPoints(poolName, renderPos, desc.IgnoreBulletPointIconConfig)
 		end
