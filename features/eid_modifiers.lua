@@ -609,12 +609,14 @@ if EID.isRepentance then
 			end
 			--replacing a phrase, such as "half a heart", with a double or tripled version
 			--the table should be 3 entries long (can also be 6, 9, etc. for multiple find+replaces)
+			--it can be 2 entries long if there's no triple effect
 			--If you need to differentiate between Golden and Mom's, use fullReplace
 			if data.findReplace then
 				local textTable = EID:getDescriptionEntry("goldenTrinketEffects", trinketID)
 				if textTable then
 					for i=1,#textTable,3 do
-						descObj.Description, count = string.gsub(descObj.Description, textTable[i], "{{ColorGold}}" .. textTable[i+multiplier-1] .. "{{ColorText}}", 1)
+						local newText = textTable[math.min(i+multiplier-1, #textTable)]
+						descObj.Description, count = string.gsub(descObj.Description, textTable[i], "{{ColorGold}}" .. newText .. "{{ColorText}}", 1)
 					end
 				end
 			end
