@@ -754,7 +754,7 @@ EID.descriptions[languageCode].trinkets={
 	{"14", "Callus", "Immune to creep and floor spikes"}, -- Callus
 	{"15", "Lucky Rock", "{{Coin}} Destroying rocks spawns coins"}, -- Lucky Rock
 	{"16", "Mom's Toenail", "Mom's Foot stomps a random spot in the room every 60 seconds"}, -- Mom's Toenail
-	{"17", "Black Lipstick", "{{BlackHeart}} +5% chance for random Soul Hearts to spawn as Black Hearts"}, -- Black Lipstick
+	{"17", "Black Lipstick", "{{BlackHeart}} +10% chance for random Soul Hearts to spawn as Black Hearts"}, -- Black Lipstick
 	{"18", "Bible Tract", "{{EternalHeart}} +3% chance for Eternal Hearts"}, -- Bible Tract
 	{"19", "Paper Clip", "{{GoldenChest}} Gold chests can be opened for free"}, -- Paper Clip
 	{"20", "Monkey Paw", "{{BlackHeart}} Spawns 1 Black Heart when Isaac's health is reduced to half a heart#{{Warning}} Disappears after spawning 3 Black Hearts"}, -- Monkey Paw
