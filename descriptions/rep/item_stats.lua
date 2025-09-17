@@ -23,8 +23,8 @@ local repentanceItemStats = {
     [C_ID .. 62] = { Damage = 0.3 }, -- Charm of the Vampire
     [C_ID .. 71] = { Speed = 0.3, Range = 2.5, SizeDown = 1 }, -- Mini Mush
     [C_ID .. 72] = { Tears = 0.5, SoulHeart = 3 }, -- Rosary
-    [C_ID .. 79] = { Speed = 0.2, Damage = 1, BlackHeart = 1 }, -- Mark
-    [C_ID .. 80] = { Tears = 0.7, Damage = 0.5, BlackHeart = 2 }, -- Pact
+    [C_ID .. 79] = { Speed = 0.2, Damage = 1, BlackHeart = 1 }, -- The Mark
+    [C_ID .. 80] = { Tears = 0.7, Damage = 0.5, BlackHeart = 2 }, -- The Pact
 
     [C_ID .. 101] = { RedHeart = 1, Speed = 0.3, Tears = 0.2, Damage = 0.3, Range = 1.5, HealingRed = 1 }, -- The Halo
     [C_ID .. 106] = { BombDamage = 1.85, Bomb = 5 }, -- Mr. Mega

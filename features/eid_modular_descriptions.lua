@@ -4,6 +4,7 @@
 -- IsMultiplier indicates if the stat is a multiplier (e.g. TearsMultiplier) and should be formatted with "x" instead of "+".
 -- HideSign indicates if the sign (+/-/x) should be hidden for the stat value
 EID.StatisticsData = {
+    -- Player Stats
     { ID = "Tears",               Arrow = true,                 Icon = "{{Tears}}" },
     { ID = "TearsMultiplier",     Arrow = true,                 Icon = "{{Tears}}",     IsMultiplier = true },
     { ID = "TearHeight",          Arrow = true },
@@ -22,27 +23,43 @@ EID.StatisticsData = {
     { ID = "Life",                Arrow = true },
     { ID = "SizeUp",              Arrow = true },
     { ID = "SizeDown",            Arrow = true },
+    { ID = "Flight", },
+
+    -- Health related
     { ID = "RedHeart",            Arrow = true,                 Icon = "{{Heart}}" },
     { ID = "FullHealth",          Icon = "{{HealingRed}}",      HideSign = true },
     { ID = "HealingRed",          Icon = "{{HealingRed}}",      HideSign = true },
     { ID = "SoulHeart",           Icon = "{{SoulHeart}}" },
     { ID = "BlackHeart",          Icon = "{{BlackHeart}}" },
-    { ID = "BoneHeart",           Icon = "{{BoneHeart}}" },
+    { ID = "BoneHeart",           Icon = "{{EmptyBoneHeart}}" },
     { ID = "EternalHeart",        Icon = "{{EternalHeart}}" },
     { ID = "GoldenHeart",         Icon = "{{GoldenHeart}}" },
     { ID = "EmptyHeart",        Icon = "{{EmptyHeart}}" },
+
+    -- Pickups / Spawns
     { ID = "Coin",                Icon = "{{Coin}}" },
     { ID = "Bomb",                Icon = "{{Bomb}}" },
     { ID = "Key",                 Icon = "{{Key}}" },
+    { ID = "CoinBombKey",},
     { ID = "Card",                Icon = "{{Card}}",      HideSign = true  }, -- TODO: Make more specific for spawned/held
     { ID = "Pill",                Icon = "{{Pill}}",            HideSign = true }, -- TODO: Make more specific for spawned/held
     { ID = "Battery",             Icon = "{{Battery}}",         HideSign = true }, -- TODO: Make more specific for spawned/held
-    { ID = "Flies", },                                                           -- TODO: Blue Flies and Spiders need better support
-    { ID = "Flight", },
+
+    -- Room chances
     { ID = "AngelDevilChance",    Icon = "{{AngelDevilChance}}" },
     { ID = "DevilChance",         Icon = "{{DevilChance}}" },
     { ID = "AngelChance",         Icon = "{{AngelChance}}" },
-    { ID = "PlanetariumChance",         Icon = "{{PlanetariumChance}}" },
+    { ID = "PlanetariumChance",   Icon = "{{PlanetariumChance}}" },
+
+    -- Familiars
+    { ID = "Flies", },
+    { ID = "Orbital", },
+    { ID = "BlockProjectiles", HideSign = true },
+    { ID = "DamagePerTear", HideSign = true },
+    { ID = "DamagePerShot", HideSign = true },
+    { ID = "ContactDamagePerSecond", HideSign = true },
+
+    -- Dynamic Spawns
     {
         ID = "Spawns",
         IsSubCategory = true,
@@ -56,60 +73,23 @@ EID.StatisticsData = {
         }
     },
 }
--- English text patterns for stats
--- TODO: Move into language files and add support for other languages
-local statPatterns = {
-    Tears = "{value} Tears",
-    TearsMultiplier = "{value} Tears multiplier",
-    TearHeight = "{value} Tear Height",
-    TearSize = "{value} Tear size",
-    TearDelay = "{value} Tear Delay",
-    FireRateMultiplier = "{value} Fire rate multiplier", -- Repentance exclusive?
-    Damage = "{value} Damage",
-    DamageMultiplier = "{value} Damage multiplier",
-    BombDamage = "{value} Bomb Damage",
-    Speed = "{value} Speed",
-    Range = "{value} Range",
-    RangeMultiplier = "{value} Range multiplier",
-    Luck = "{value} Luck",
-    ShotSpeed = "{value} Shot speed",
-    ShotSpeedMultiplier = "{value} Shot speed multiplier",
-    Life = "{value} Life",
-    SizeUp = "Size up",
-    SizeDown = "Size down",
-    RedHeart = "{value} Health",
-    SoulHeart = "{value} Soul Heart{pluralize}",
-    BlackHeart = "{value} Black Heart{pluralize}",
-    BoneHeart = "{value} Bone Heart{pluralize}",
-    EternalHeart = "{value} Eternal Heart{pluralize}",
-    GoldenHeart = "{value} Golden Heart{pluralize}",
-    EmptyHeart = "{value} Empty Heart container{pluralize}",
-    FullHealth = "Full health",
-    HealingRed = "Heals {value} heart{pluralize}",
-    Coin = "{value} Coin{pluralize}", -- TODO: Differentiate between spawned and held?
-    Bomb = "{value} Bomb{pluralize}", -- TODO: Differentiate between spawned and held?
-    Key = "{value} Key{pluralize}", -- TODO: Differentiate between spawned and held?
-    Card = "Spawns {value} card{pluralize}", -- TODO: Differentiate between spawned and held?
-    Pill = "Spawns {value} pill{pluralize}", -- TODO: Differentiate between spawned and held?
-    Battery = "Spawns {value} battery{pluralize}", -- TODO: Differentiate between spawned and held?
-    Flies = "{value} Fly orbital{pluralize}",
-    Flight = "Flight",
-    AngelDevilChance = "{value}% Devil/Angel Room chance",
-    DevilChance = "{value}% Devil Room chance",
-    AngelChance = "{value}% Angel Room chance",
-    PlanetariumChance = "{value}% Planetarium chance",
-    Spawns = {
-        BASE_TEXT = "Spawns {value}",
-        RandomPickup = "{value} random pickup{pluralize}",
-        RandomHeart = "{value} random heart{pluralize}",
-        RandomCoin = "{value} random coin{pluralize}",
-        Card = "{value} card{pluralize}",
-        Pill = "{value} pill{pluralize}",
-        Battery = "{value} batter{pluralize_y}",
-        BlueFly = "{value} blue fl{pluralize_y}",
-        BlueSpider = "{value} blue spider{pluralize}",
-    }
-}
+
+-- DEBUG: Validate Stat table entry existance
+function EID:ValidateItemStatEntries()
+    for itemID, itemStatsEntry in pairs(EID.ItemStats) do
+        for key, _ in pairs(itemStatsEntry) do
+            local found = false
+            for _, statDataEntry in ipairs(EID.StatisticsData) do
+                if statDataEntry.ID == key then
+                    found = true
+                end
+            end
+            if not found then
+                print("[ERROR] Unknown item stat key '"..key.."' in entry :", itemID)
+            end
+        end
+    end
+end
 
 -- Tries to generate a description for an item based on its stats defined in EID.ItemStats
 -- Returns an empty string if no stats are defined for the item
@@ -130,13 +110,13 @@ function EID:GenerateDescription(itemID)
     for _, statDataEntry in ipairs(sortedStats) do
         -- append to descriptions
         local value = itemStatsTable[statDataEntry.ID]
-        local textFragment = statPatterns[statDataEntry.ID]
+        local textFragment = EID:getDescriptionEntry("ModularDescriptions", statDataEntry.ID)
         if statDataEntry.IsSubCategory then
             if type(textFragment) == "table" and textFragment.BASE_TEXT then
                 textFragment = textFragment.BASE_TEXT
             end
             for subStatID, subValue in pairs(itemStatsTable[statDataEntry.ID]) do
-                local subTextFragment = statPatterns[statDataEntry.ID][subStatID]
+                local subTextFragment = EID:getDescriptionEntry("ModularDescriptions", statDataEntry.ID)[subStatID]
                 local subTextEntry = EID:GenerateStatDescriptionText(statDataEntry, subValue, subTextFragment)
 
                 -- add icon of subentry to the beginning of the text
@@ -160,6 +140,30 @@ end
 function EID:GenerateStatDescriptionText(statDataEntry, value, textFragment)
     local isMultiplier = statDataEntry.IsMultiplier
 
+    if textFragment then
+        -- if the value is a table, we handle it as a range of values
+        if  type(value) == "table" then
+            local rangeValue = tostring(value[1]) .. "-" .. tostring(value[2])
+            textFragment = textFragment:gsub("{value}", rangeValue)
+            value = value[2] -- for pluralization, take the maximum value
+        else
+            -- If value is not of type number, we assume 1
+            if type(value) ~= "number" then
+                value = 1
+            end
+            -- formated and without trailing zeros
+            local formattedValue = string.format("%.2f", value):gsub("%.?0+$", "")
+
+            -- Handle sign
+            if not statDataEntry.HideSign then
+                local sign = isMultiplier and "x" or value > 0 and "+" or ""
+                formattedValue = sign .. formattedValue
+            end
+            -- Put formatted value into text fragment
+            textFragment = textFragment:gsub("{value}", formattedValue)
+        end
+    end
+
     -- arrow up/down and icon decoration
     local decoration = ""
     if statDataEntry.Arrow then
@@ -172,26 +176,6 @@ function EID:GenerateStatDescriptionText(statDataEntry, value, textFragment)
     end
     if statDataEntry.Icon and type(statDataEntry.Icon) ~= "table" then
         decoration = decoration .. statDataEntry.Icon
-    end
-
-    if textFragment then
-        -- if the value is a table, we handle it as a range of values
-        if  type(value) == "table" then
-            local rangeValue = tostring(value[1]) .. "-" .. tostring(value[2])
-            textFragment = textFragment:gsub("{value}", rangeValue)
-            value = value[2] -- for pluralization, take the maximum value
-        else
-            -- formated and without trailing zeros
-            local formattedValue = string.format("%.2f", value):gsub("%.?0+$", "")
-
-            -- Handle sign
-            if not statDataEntry.HideSign then
-                local sign = isMultiplier and "x" or value > 0 and "+" or ""
-                formattedValue = sign .. formattedValue
-            end
-            -- Put formatted value into text fragment
-            textFragment = textFragment:gsub("{value}", formattedValue)
-        end
     end
 
     local text = (decoration or "") .. " " .. (textFragment or "") .. "#"
@@ -218,7 +202,7 @@ function EID:CompareGeneralizedDescriptions(type, variant, subtype)
         return true
     end
     -- Append additional informations
-    local additionalInfo = EID:getDescriptionEntry("AdditionalInformations", subtype)
+    local additionalInfo = EID:getDescriptionEntry("AdditionalInformations", type .. "." .. variant .. "." .. subtype)
     if additionalInfo then
         if generated ~= "" then
             generated = generated .. "#" .. additionalInfo
