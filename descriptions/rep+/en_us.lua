@@ -119,7 +119,7 @@ local goldenTrinketEffects = {
 	-- Callus (append):
 	[14] = { "{{SacrificeRoom}} Reduces the damage of sacrifice room spikes to half a heart", "{{Collectible108}} Reduces most damage taken to half a heart" },
 	-- Mom's Toenail (find replace):
-	[16] = {"stomp", "{{CR}}stomp {{ColorGold}}twice", "{{CR}}stomp {{ColorGold}}3 times"},
+	[16] = {"location", "{{CR}}location {{ColorGold}}twice", "{{CR}}location {{ColorGold}}3 times"},
 	-- Paper Clip (find replace):
 	[19] = {"Gold chests", "{{CR}}Gold chests {{ColorGold}}and Locked Blocks", "{{CR}}Gold chests, {{ColorGold}}Locked Blocks and Locked Doors"},
 	-- Mysterious Paper (find replace):
