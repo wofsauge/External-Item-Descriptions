@@ -260,7 +260,7 @@ local goldenTrinketEffects = {
 	-- Duct Tape (append):
 	[109] = {"Tapping the drop button will cycle trough various familiar formations"},
 	-- Silver Dollar (find replace):
-	[110] = {"Shops", "Upgraded shops", "Upgraded shops"},
+	[110] = {"Shops", "Upgraded shops"},
 	-- Bloody Crown (append):
 	[111] = {"They will contain 2 Items for Isaac to choose from"},
 	-- Pay To Win (append):
@@ -281,11 +281,11 @@ local goldenTrinketEffects = {
 	-- Bat Wing (find replace):
 	[118] = { 5, 10, 15 },
 	-- Stem Cell (find replace):
-	[119] = {"half", "all", "all"},
+	[119] = {"half", "all"},
 	-- Hairpin (find replace):
-	[120] = {"fully recharges", "overcharges", "overcharges"},
+	[120] = {"fully recharges", "overcharges"},
 	-- Wooden Cross (find replace):
-	[121] = {"a Holy shield", "2{{CR}} Holy shields", "2{{CR}} Holy shields"},
+	[121] = {"a Holy shield", "2{{CR}} Holy shields"},
 	-- Butter! (find replace):
 	[122] = { 2, 4, 6},
 	-- Filigree Feather (append):
@@ -319,7 +319,7 @@ local goldenTrinketEffects = {
 	-- 'M (append):
 	[138] = {"10% chance of fully charging the rolled item", "20% chance of fully charging the rolled item"},
 	-- Apple of Sodom (find replace):
-	[140] = {"picked up Red Hearts", "any {{CR}}picked up Hearts", "any {{CR}}picked up Hearts"},
+	[140] = {"picked up Red Hearts", "any {{CR}}picked up Hearts"},
 	-- Forgotten Lullaby (find replace):
 	[141] = { 2, 2.5, 3 },
 	-- Brain Worm (append):
