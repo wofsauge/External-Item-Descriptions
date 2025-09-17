@@ -855,8 +855,8 @@ EID.GoldenTrinketData = {
 	[88] = {append = true}, [90] = {t={100}, mult=2}, [92] = 20, [96] = {t={0.4, 1.5}}, [132] = {t={25}, mult=4}, [139] = {t={4},mults={1.5,2}}, [142] = {t={4}, mult=2},
 	-- Old Capacitor (hard cap of 33% chance), Perfection, Mom's Lock, Dice Bag, Mother's Kiss
 	[143] = {t={20}, mult=1.65}, [145] = 10, [153] = {t={25}, mult=4}, [154] = {t={50}, mult=2}, [156] = {t={1,1}},
-	-- Gilded Key (Golden = no +1 key; probably a bug), Lucky Sack, Azazel's Stump (50/67/100), Dingle Berry, Ring Cap
-	[159] = {goldenOnly = true, fullReplace = true, mult=1}, [160] = 1, [162] = {t={50}, mults={1.32, 2}}, [163] = {t={1},mult=2}, [164] = 1,
+	-- Gilded Key (Golden = no +1 key; probably a bug), Lucky Sack, Azazel's Stump (33/50/100), Dingle Berry, Ring Cap
+	[159] = {goldenOnly = true, fullReplace = true, mult=1}, [160] = 1, [162] = {t={33}, mults={1.5, 3}}, [163] = {t={1},mult=2}, [164] = 1,
 	-- Modeling Clay, Polished Bone (25, 33, 50), Hollow Heart, Kid's Drawing, Crystal Key
 	[166] = {t={50},mult=2}, [167] = {t={25}, mults={1.32, 2}}, [168] = 1, [169] = {t={1}, goldenOnly = true, mult = 2}, [170] = {t={33}, mults={1.5,3}},
 	-- Lil Clot, Swallowed M80, The Twins (effect chance rolls multiple times), Cricket Leg (17%, 1 in 6), Apollyon's Best Friend, Broken Glasses
