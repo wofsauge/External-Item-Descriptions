@@ -76,7 +76,7 @@ local trinkets = {
 	-- Change: Added info about devil deals
 	[7] = { "7", "Rosary Bead", "{{AngelChance}} 50% higher Angel Room chance#{{Collectible33}} Higher chance to find The Bible in {{Shop}} Shops and {{Library}} Libraries#Forces {{DevilChance}}Devil Deals to be {{AngelChance}}Angel Deals"}, -- Rosary Bead
 	-- Change: added info about dropping the item
-	[16] = {"16", "Mom's Toenail", "Mom's Foot stomps a random spot in the room every 20 seconds#Dropping the trinket in combat will cause Mom's Foot to stomp its location"}, -- Mom's Toenail
+	[16] = {"16", "Mom's Toenail", "Dropping the trinket in combat will cause Mom's Foot to stomp its location"}, -- Mom's Toenail
 	-- Change: added Super Secret Room info
 	[23] = { "23", "Missing Poster", "{{Player10}} Respawn as The Lost on death#{{SuperSecretRoom}} 33% chance to reveal Super Secret Room on new floor"}, -- Missing Poster
 	-- Change: added ", {{Trinket135}} A Lighter"
@@ -179,7 +179,7 @@ local goldenTrinketEffects = {
 	-- ???'s Soul (find replace):
 	[57] = {"Familiar that bounces", "{{ColorGold}}Two{{CR}} familiars that bounce", "{{ColorGold}}Three{{CR}} familiars that bounce"},
 	-- Samson's Lock (find replace):
-	[58] = {"1/15", "13{{CR}}%", "25{{CR}}%"},
+	[58] = {"6.66", "13{{CR}}%", "25{{CR}}%"},
 	-- Eve's Bird Foot (find replace):
 	[60] = {"5", "10", "15"},
 	-- The Left Hand (append):
