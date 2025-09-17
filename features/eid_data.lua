@@ -868,6 +868,10 @@ EID.GoldenTrinketData = {
 	-- Golden Store Credit, Lucky Rock (effect chance rolls multiple times), Mom's Toenail (20 -> 10 -> 6.66), Mysterious Candy (golden = golden poop)
 	[13] = {goldenOnly = true, fullReplace = true, mult=1}, [15] = {append = true}, [16] = {t={20}, mults={0.5, 0.333}}, [25] = {goldenOnly = true, findReplace = true, mult = 2},
 }
+if EID.isRepentancePlus then
+	EID.GoldenTrinketData[100] = {t={1,0.75,0.5,0.25,0.2,0.1}} -- Vibrant Bulb
+	EID.GoldenTrinketData[101] = {t={2,1.5,1.5,0.5,0.4,0.3}} -- Dim Bulb
+end
 
 EID.MarkupSizeMap = {
 	["{{Damage}}"] = "{{DamageSmall}}",
