@@ -835,7 +835,7 @@ EID.descriptions[languageCode].trinkets={
 	{"95", "Black Tooth", "{{Poison}} 3% chance to shoot poison tooth tears#The tooth deals 2x Isaac's damage"}, -- Black Tooth
 	{"96", "Ouroboros Worm", "↑ {{Range}} +4 Range#↑ +2 Tear height#Spectral tears#Chance for homing tears#{{Luck}} 100% chance at 9 luck#Isaac's tears move quickly in a spiral pattern"}, -- Ouroboros Worm
 	{"97", "Tonsil", "Taking damage 12-20 times spawns a projectile blocking familiar#Disappears after spawning 2 familiars"}, -- Tonsil
-	{"98", "Nose Goblin", "10% chance to shoot a sticky tears#50% Chance for it to be homing#{{Damage}} Boogers deal Isaac's damage once per second#Boogers stick for 60 seconds"}, -- Nose Goblin
+	{"98", "Nose Goblin", "10% chance to shoot a sticky tear#50% chance for it to be homing#{{Damage}} Boogers deal Isaac's damage once per second#Boogers stick for 60 seconds"}, -- Nose Goblin
 	{"99", "Super Ball", "10% chance to shoot bouncing tears"}, -- Super Ball
 	{"100", "Vibrant Bulb", "Holding a fully charged active item grants:#↑ {{Speed}} +0.25 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.5 Damage#↑ {{Range}} +0.75 Range#↑ {{Shotspeed}} +0.1 Shot speed#↑ {{Luck}} +1 Luck"}, -- Vibrant Bulb
 	{"101", "Dim Bulb", "Holding a completely uncharged active item grants:#↑ {{Speed}} +0.5 Speed#↑ {{Tears}} +0.4 Tears#↑ {{Damage}} +1.5 Damage#↑ {{Range}} +1.5 Range#↑ {{Shotspeed}} +0.3 Shot speed#↑ {{Luck}} +2 Luck"}, -- Dim Bulb
