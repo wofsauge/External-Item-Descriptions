@@ -86,7 +86,7 @@ local trinkets = {
 	-- Change: added ", {{Trinket135}} A Lighter"
 	[53] = { "53", "ダニ", "ボスを含む、HP60以上の 敵のHPを15%減少させる#ボス部屋に入った時、 赤ハート1個回復#!!! 取得すると取り外せない#{{Trinket41}}マッチ棒か{{Trinket135}}ライターで 除去可能"}, -- Tick
 	-- Change: added +0.5 damage
-	[66] = {"66", "なまけワーム", "↑ 攻撃力 +0.5#↓ 弾速　 -0.4"}, -- Lazy Worm
+	[66] = {"66", "なまけワーム", "↑ 攻撃力 +0.5#↓ 弾速　 -0.5"}, -- Lazy Worm
 	-- Change: Now spawns a blue spider when completing a combat room
 	[70] = {"70", "寄生虫", "部屋クリア時に青クモがスポーン"}, -- Louse
 	-- Change: Added more loot information
@@ -121,9 +121,9 @@ EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets
 
 local goldenTrinketEffects = {
 	-- Purple Heart: (find + replace)
-	[5] = { "50", "66", "75" },
+	[5] = { 2, 3, 4,  50, 66, 75 },
 	-- Callus: (append)
-	[14] = { "生贄部屋のダメージを 半ハートに軽減する", "生贄部屋のダメージを 半ハートに軽減する", "{{Collectible108}} 受けるダメージを 半ハートに軽減する" },
+	[14] = { "生贄部屋のダメージを 半ハートに軽減する", "{{Collectible108}} 受けるダメージを 半ハートに軽減する" },
 	-- Mom's Toenail: (find + replace)
 	[16] = { "発生", "2回{{CR}}発生", "3回{{CR}}発生" },
 	-- Paper Clip: (append)
@@ -131,71 +131,48 @@ local goldenTrinketEffects = {
 	-- Mysterious Paper: (fullReplace)
 	[21] = {
 		"{{Collectible327}} ポラロイドと#{{Collectible328}} ネガティブ#{{Blank}} または#{{Trinket23}} 尋ね人ポスターと#{{Trinket48}} 失くしたページ の効果が{{ColorGold}}セットで{{CR}} ランダムに発動する",
-		"{{Collectible327}} ポラロイドと#{{Collectible328}} ネガティブ#{{Blank}} または#{{Trinket23}} 尋ね人ポスターと#{{Trinket48}} 失くしたページ の効果が{{ColorGold}}セットで{{CR}} ランダムに発動する",
 		"{{Collectible327}} ポラロイドと#{{Collectible328}} ネガティブ#{{Blank}} または#{{Trinket23}} 尋ね人ポスターと#{{Trinket48}} 失くしたページ の効果が{{ColorGold}}セットで{{CR}} ランダムに発動する"
 	},
 	-- Daemon's Tail: (append)
 	[22] = { "青／紫色の焚き火が 黒ハートをスポーン" },
 	-- Missing Poster: (find + replace)
-	[23] = { "33", "66", "100" },
+	[23] = { 33, 66, 100 },
 	-- Broken Ankh: (find + replace)
-	[28] = { "22.22", "33", "50" },
+	[28] = { 22.22, 33, 50 },
 	-- Pinky Eye: (fullReplace)
 	[30] = { "{{ColorGold}}20%{{CR}}の確率で毒の涙を放つ#運で発射確率アップ", "{{ColorGold}}20%{{CR}}の確率で毒の涙を放つ#運で発射確率アップ", "{{ColorGold}}33%{{CR}}の確率で毒の涙を放つ#運で発射確率アップ", },
 	-- Push Pin: (full replace)
 	[31] = { "{{ColorGold}}20%{{CR}}の確率で涙に貫通・ 透過効果を付与#運で発射確率アップ", "{{ColorGold}}20%{{CR}}の確率で涙に貫通・ 透過効果を付与#運で発射確率アップ", "{{ColorGold}}33%{{CR}}の確率で涙に貫通・ 透過効果を付与#運で発射確率アップ", },
 	-- Umbilical Cord: (fullReplace)
 	[33] = { "半赤ハート", "1赤ハート", "1.5赤ハート", },
-	-- Child's Heart: (fullReplace)
-	[34] = {
-		"部屋クリア時の報酬が {{ColorGold}}20%{{CR}}の確率で赤ハートに 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}66%{{CR}}の確率で赤ハートが 追加でスポーンする",
-		"部屋クリア時の報酬が {{ColorGold}}20%{{CR}}の確率で赤ハートに 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}66%{{CR}}の確率で赤ハートが 追加でスポーンする",
-		"部屋クリア時の報酬が {{ColorGold}}50%{{CR}}の確率で赤ハートに 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}100%{{CR}}の確率で赤ハートが 追加でスポーンする",
-	},
-	-- Rusted Key: (fullReplace)
-	[36] = {
-		"部屋クリア時の報酬が {{ColorGold}}20%{{CR}}の確率で鍵に置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}66%{{CR}}の確率で鍵が追加で スポーンする",
-		"部屋クリア時の報酬が {{ColorGold}}20%{{CR}}の確率で鍵に置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}66%{{CR}}の確率で鍵が追加で スポーンする",
-		"部屋クリア時の報酬が {{ColorGold}}50%{{CR}}の確率で鍵に置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}100%{{CR}}の確率で鍵が追加で スポーンする",
-	},
+	-- Child's Heart: (find + replace)
+	[34] = { 10, 20, 50,  33, 66, 100 },
+	-- Rusted Key: (find + replace)
+	[36] = { 10, 20, 50,  33, 66, 100 },
 	-- Red Patch: (fullReplace)
 	[40] = {
 		"ダメージを受けた時、 一定確率で攻撃力 +1.8#確率：運0={{ColorGold}}33%{{CR}}、13=100%#効果はスタック可能で、 その部屋でのみ有効",
-		"ダメージを受けた時、 一定確率で攻撃力 +1.8#確率：運0={{ColorGold}}33%{{CR}}、13=100%#効果はスタック可能で、 その部屋でのみ有効",
 		"ダメージを受けた時、 一定確率で攻撃力 +1.8#確率：運0={{ColorGold}}50%{{CR}}、10=100%#効果はスタック可能で、 その部屋でのみ有効"
 	},
-	-- Match Stick: (fullReplace)
-	[41] = {
-		"部屋クリア時の報酬が {{ColorGold}}20%{{CR}}の確率で爆弾に 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}66%{{CR}}の確率で爆弾が 追加でスポーンする#!!! {{Trinket53}}ダニを除去できる",
-		"部屋クリア時の報酬が {{ColorGold}}20%{{CR}}の確率で爆弾に 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}66%{{CR}}の確率で爆弾が 追加でスポーンする#!!! {{Trinket53}}ダニを除去できる",
-		"部屋クリア時の報酬が {{ColorGold}}50%{{CR}}の確率で爆弾に 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}100%{{CR}}の確率で爆弾が 追加でスポーンする#!!! {{Trinket53}}ダニを除去できる"
-	},
+	-- Match Stick: (find + replace)
+	[41] = { 10, 20, 50,  33, 66, 100 },
 	-- Cursed Skull: (fullReplace)
 	[43] = {
 		"ダメージを受け、残りの 体力が半ハートになると ランダムで{{ColorGold}}特殊な部屋{{CR}}に テレポートする",
-		"ダメージを受け、残りの 体力が半ハートになると ランダムで{{ColorGold}}特殊な部屋{{CR}}に テレポートする",
 		"ダメージを受け、残りの 体力が{{ColorGold}}ハート1個{{CR}}になると ランダムで{{ColorGold}}特殊な部屋{{CR}}に テレポートする"
 	},
-	-- Safety Cap: (fullReplace)
-	[44] = {
-		"部屋クリア時の報酬が {{ColorGold}}20%{{CR}}の確率でピルに 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}66%{{CR}}の確率でピルが 追加でスポーンする",
-		"部屋クリア時の報酬が {{ColorGold}}20%{{CR}}の確率でピルに 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}66%{{CR}}の確率でピルが 追加でスポーンする",
-		"部屋クリア時の報酬が {{ColorGold}}50%{{CR}}の確率でピルに 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}100%{{CR}}の確率でピルが 追加でスポーンする",
-	},
-	-- Ace of Spades: (fullReplace)
-	[45] = {
-		"部屋クリア時の報酬が {{ColorGold}}20%{{CR}}の確率でカードに 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}66%{{CR}}の確率でカードが 追加でスポーンする",
-		"部屋クリア時の報酬が {{ColorGold}}20%{{CR}}の確率でカードに 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}66%{{CR}}の確率でカードが 追加でスポーンする",
-		"部屋クリア時の報酬が {{ColorGold}}50%{{CR}}の確率でカードに 置き換わる#宝箱・ｘ岩・破壊した 機械・殺した乞食から、 {{ColorGold}}100%{{CR}}の確率でカードが 追加でスポーンする",
-	},
+	-- Safety Cap: (find + replace)
+	[44] = { 10, 20, 50,  33, 66, 100 },
+	-- Ace of Spades: (find + replace)
+	[45] = { 10, 20, 50,  33, 66, 100 },
 	-- Bloody Penny: (find + replace)
-	[49] = { "25", "50", "75" },
+	[49] = { 25, 50, 75 },
 	-- Burnt Penny: (find + replace)
-	[50] = { "25", "50", "75" },
+	[50] = { 25, 50, 75 },
 	-- Flat Penny: (find + replace)
-	[51] = { "25", "50", "75" },
+	[51] = { 25, 50, 75 },
 	-- Counterfeit Penny: (find + replace)
-	[52] = { "1", "2", "3" },
+	[52] = { 1, 2, 3 },
 	-- Tick (replace): added ", {{Trinket135}} A Lighter"
 	[53] = {
 		"ボスのHPが{{ColorGold}}30{{CR}}%減少#ボス部屋に入った時、 赤ハート{{ColorGold}}2{{CR}}個回復#{{ColorGold}}取り外せる！",
@@ -205,25 +182,23 @@ local goldenTrinketEffects = {
 	-- Isaac's Head: (append)
 	[54] = { "ダメージがアイザックの 攻撃力と同一にアップ", "ダメージがアイザックの 攻撃力と同一にアップ", "ダメージがアイザックの 攻撃力x1.5にアップ" },
 	-- Judas' Tongue: (full replace)
-	[56] = { "悪魔取引のコストを {{ColorGold}}赤／青{{CR}}ハート1個に割り引く", "悪魔取引のコストを {{ColorGold}}赤／青{{CR}}ハート1個に割り引く", "悪魔取引のコストを {{ColorGold}}赤／青{{CR}}ハート1個に割り引く#{{ColorGold}}トゲを踏む悪魔取引は、 必ず一回目で成功する" },
+	[56] = { "悪魔取引のコストを {{ColorGold}}赤／青{{CR}}ハート1個に割り引く", "悪魔取引のコストを {{ColorGold}}赤／青{{CR}}ハート1個に割り引く#{{ColorGold}}トゲを踏む悪魔取引は、 必ず一回目で成功する" },
 	-- ???'s Soul: (find + replace)
 	[57] = { "付与", "{{ColorGold}}2体{{CR}}付与", "{{ColorGold}}3体{{CR}}付与" },
 	-- Samson's Lock: (full replace)
-	[58] = { "敵を倒した時、{{ColorGold}}13%{{CR}}の確率で 攻撃力 +0.5（最大 +5）#運で発動確率アップ#その部屋でのみ有効", "敵を倒した時、{{ColorGold}}13%{{CR}}の確率で 攻撃力 +0.5（最大 +5）#運で発動確率アップ#その部屋でのみ有効", "敵を倒した時、{{ColorGold}}25%{{CR}}の確率で 攻撃力 +0.5（最大 +5）#運で発動確率アップ#その部屋でのみ有効" },
+	[58] = { "敵を倒した時、{{ColorGold}}13%{{CR}}の確率で 攻撃力 +0.5（最大 +5）#運で発動確率アップ#その部屋でのみ有効", "敵を倒した時、{{ColorGold}}25%{{CR}}の確率で 攻撃力 +0.5（最大 +5）#運で発動確率アップ#その部屋でのみ有効" },
 	-- Cain's Eye: (full replace)
-	[59] = { "フロア開始時、{{ColorGold}}50%{{CR}}の確率で {{Collectible21}}コンパスの効果を付与#運で発動確率アップ", "フロア開始時、{{ColorGold}}50%{{CR}}の確率で {{Collectible21}}コンパスの効果を付与#運で発動確率アップ", "フロア開始時、{{ColorGold}}75%{{CR}}の確率で {{Collectible21}}コンパスの効果を付与#運で発動確率アップ" },
+	[59] = { "フロア開始時、{{ColorGold}}50%{{CR}}の確率で {{Collectible21}}コンパスの効果を付与#運で発動確率アップ", "フロア開始時、{{ColorGold}}75%{{CR}}の確率で {{Collectible21}}コンパスの効果を付与#運で発動確率アップ" },
 	-- Eve's Bird Foot: (full replace)
-	[60] = { "敵を倒した時、{{ColorGold}}10%{{CR}}の確率で {{Collectible117}}鳥の死体が現れる#運で出現確率アップ", "敵を倒した時、{{ColorGold}}10%{{CR}}の確率で {{Collectible117}}鳥の死体が現れる#運で出現確率アップ", "敵を倒した時、{{ColorGold}}15%{{CR}}の確率で {{Collectible117}}鳥の死体が現れる#運で出現確率アップ" },
+	[60] = { "敵を倒した時、{{ColorGold}}10%{{CR}}の確率で {{Collectible117}}鳥の死体が現れる#運で出現確率アップ", "敵を倒した時、{{ColorGold}}15%{{CR}}の確率で {{Collectible117}}鳥の死体が現れる#運で出現確率アップ" },
 	-- The Left Hand: (append)
-	[61] = { "赤宝箱に追加の報酬", "赤宝箱に追加の報酬", "赤宝箱に報酬が追加され、 敵クモが出なくなる" },
+	[61] = { "赤宝箱に追加の報酬", "赤宝箱に報酬が追加され、 敵クモが出なくなる" },
 	-- Shiny Rock: (full replace)
-	[62] = { "ｘ岩とクロールスペース 付きの岩、{{ColorGold}}隠し部屋の壁{{CR}}が 10秒おきに点滅", "ｘ岩とクロールスペース 付きの岩、{{ColorGold}}隠し部屋の壁{{CR}}が 10秒おきに点滅", "ｘ岩とクロールスペース 付きの岩、{{ColorGold}}隠し部屋の壁{{CR}}が {{ColorGold}}5秒{{CR}}おきに点滅" },
+	[62] = { "ｘ岩とクロールスペース 付きの岩、{{ColorGold}}隠し部屋の壁{{CR}}が 10秒おきに点滅", "ｘ岩とクロールスペース 付きの岩、{{ColorGold}}隠し部屋の壁{{CR}}が {{ColorGold}}5秒{{CR}}おきに点滅" },
 	-- Safety Scissors: (append)
 	[63] = { "↓ 爆発する敵の爆発範囲" },
-	-- Lazy Worm: (find + replace)
-	[66] = { "0.5", "1", "1.5" },
 	-- Cracked Dice: (find + replace)
-	[67] = { "50", "75", "100" },
+	[67] = { 50, 75, 100 },
 	-- Super Magnet: (full replace)
 	[68] = { "ピックアップ／{{ColorGold}}サック／ トリンケット{{CR}}、敵が アイザックに引き寄せ られるようになる", "ピックアップ／{{ColorGold}}サック／ トリンケット{{CR}}、敵が アイザックに引き寄せ られるようになる", "ピックアップ／{{ColorGold}}サック／ トリンケット／宝箱{{CR}}、 敵がアイザックに引き 寄せられるようになる" },
 	-- Faded Polaroid: (append)
@@ -231,11 +206,11 @@ local goldenTrinketEffects = {
 	-- Bob's Bladder: (append)
 	[71] = { "↑ 液体の範囲" },
 	-- Poker Chip: (append)
-	[76] = { "ギャンブルの報酬2倍", "ギャンブルの報酬2倍", "ギャンブルの報酬3倍" },
+	[76] = { "ギャンブルの報酬2倍", "ギャンブルの報酬3倍" },
 	-- Endless Nameless: (find + replace)
-	[79] = { "25", "33", "50" },
+	[79] = { 25, 33, 50 },
 	-- Store Key: (append)
-	[83] = { "質の悪いお店の生成を防ぐ", "質の悪いお店の生成を防ぐ", "お店の質が良くなる" },
+	[83] = { "質の悪いお店の生成を防ぐ", "お店の質が良くなる" },
 	-- Rib of Greed: (append)
 	[84] = { "レアなコインの出現率↑" },
 	-- Karma: (full replace)
@@ -249,19 +224,19 @@ local goldenTrinketEffects = {
 	-- Mom's Locket: (find + replace)
 	[87] = { "半赤ハート 回復", "{{CR}}赤ハートを {{ColorGold}}1個{{CR}}回復", "{{CR}}赤ハートを {{ColorGold}}1.5個{{CR}}回復" },
 	-- Child Leash: (find + replace)
-	[89] = { "25", "50", "75" },
-	-- Meconium: (full replace)
-	[91] = { "{{ColorGold}}66%{{CR}}の確率で、うんちが 黒うんちに置き換わる#黒うんちから{{ColorGold}}7%{{CR}}の確率で 黒ハートがスポーンする", "{{ColorGold}}66%{{CR}}の確率で、うんちが 黒うんちに置き換わる#黒うんちから{{ColorGold}}7%{{CR}}の確率で 黒ハートがスポーンする", "{{ColorGold}}100%{{CR}}の確率で、うんちが 黒うんちに置き換わる#黒うんちから{{ColorGold}}10%{{CR}}の確率で 黒ハートがスポーンする" },
+	[89] = { 25, 50, 75 },
+	-- Meconium: (find + replace)
+	[91] = { 33, 66, 100,  5, 7, 10 },
 	-- Fish Tail: (append)
-	[94] = { "20%の確率で3倍スポーン", "20%の確率で3倍スポーン", "20%の確率で4倍スポーン" },
+	[94] = { "20%の確率で3倍スポーン", "20%の確率で4倍スポーン" },
 	-- Tonsil: (find + replace)
 	[97] = { "2体", "3体", "4体" },
 	-- Nose Goblin: (find + replace)
-	[98] = { "10", "20", "30" },
+	[98] = { 10, 20, 30 },
 	-- Fragmented Card: (append)
-	[102] = { "隠し部屋を一つマッピング", "隠し部屋を一つマッピング", "隠し部屋を二つマッピング" },
+	[102] = { "隠し部屋を一つマッピング", "隠し部屋を二つマッピング" },
 	-- Crow Heart: (append)
-	[107] = { "ダメージを受けても、 25%の確率で出現率が 下がらない", "ダメージを受けても、 25%の確率で出現率が 下がらない", "ダメージを受けても、 50%の確率で出現率が 下がらない" },
+	[107] = { "ダメージを受けても、 25%の確率で出現率が 下がらない", "ダメージを受けても、 50%の確率で出現率が 下がらない" },
 	-- Duct Tape: (append)
 	[109] = { "ドロップボタンを押すたび 使い魔の陣形が変化する" },
 	-- Silver Dollar: (append)
@@ -287,52 +262,50 @@ local goldenTrinketEffects = {
 	-- Wooden Cross: (find + replace)
 	[121] = { "一度だけ", "二回まで", "二回まで" },
 	-- Filigree Feather: (append)
-	[123] = { "半青ハートが追加スポーン", "半青ハートが追加スポーン", "青ハート1個が追加スポーン" },
+	[123] = { "半青ハートが追加スポーン", "青ハート1個が追加スポーン" },
 	-- Door Stop: (append)
-	[124] = { "ボスラッシュのドアにも有効", "ボスラッシュのドアにも有効", "ボスラッシュとチャレンジ ルームのドアにも有効" },
+	[124] = { "ボスラッシュのドアにも有効", "ボスラッシュとチャレンジ ルームのドアにも有効" },
 	-- Rotten Penny: (find + replace)
 	[126] = { "スポーン", "2匹{{CR}}スポーン", "3匹{{CR}}スポーン" },
 	-- Baby-Bender: (append)
-	[127] = { "{{Trinket144}} ブレインワーム効果を追加", "{{Trinket144}} ブレインワーム効果を追加", "{{Trinket144}} ブレインワームと#{{Trinket65}} {{ColorGold}}さなだワームの効果を追加{{CR}}" },
+	[127] = { "{{Trinket144}} ブレインワーム効果を追加", "{{Trinket144}} ブレインワームと#{{Trinket65}} {{ColorGold}}さなだワームの効果を追加{{CR}}" },
 	-- Blessed Penny: (find + replace)
-	[131] = { "17", "25", "30" },
+	[131] = { 17, 25, 30 },
 	-- Short Fuse: (find + replace)
-	[133] = { "15", "30", "50" },
+	[133] = { 15, 30, 50 },
 	-- Gigante Bean: (append)
-	[134] = { "おならのノックバック 効果を強化", "おならのノックバック 効果を強化", "おならのノックバックを 強化し、敵を混乱させる 効果も追加する" },
+	[134] = { "おならのノックバック 効果を強化", "おならのノックバックを 強化し、敵を混乱させる 効果も追加する" },
 	-- A Lighter: (find + replace)
-	[135] = { "20", "33", "50" },
+	[135] = { 20, 33, 50 },
 	-- Broken Padlock: (append)
-	[136] = { "アーケード、メガサタン、 チャレンジルームのドアも 開けるようになる", "アーケード、メガサタン、 チャレンジルームのドアも 開けるようになる", "アーケード、メガサタン、 チャレンジ、ボス部屋の ドアも開けるようになる" },
+	[136] = { "アーケード、メガサタン、 チャレンジルームのドアも 開けるようになる", "アーケード、メガサタン、 チャレンジ、ボス部屋の ドアも開けるようになる" },
 	-- 'M: (append)
-	[138] = { "リロールされたアイテムが 10%の確率でフルチャージ", "リロールされたアイテムが 10%の確率でフルチャージ", "リロールされたアイテムが 20%の確率でフルチャージ" },
+	[138] = { "リロールされたアイテムが 10%の確率でフルチャージ", "リロールされたアイテムが 20%の確率でフルチャージ" },
 	-- Apple of Sodom: (append)
 	[140] = { "赤ハート以外でも有効" },
 	-- Forgotten Lullaby: (find + replace)
-	[141] = { "2", "2.5", "3" },
+	[141] = { 2, 2.5, 3 },
 	-- Brain Worm: (append)
-	[144] = { "25%の確率で貫通効果を付与", "25%の確率で貫通効果を付与", "50%の確率で貫通効果を付与", },
+	[144] = { "25%の確率で貫通効果を付与", "50%の確率で貫通効果を付与", },
 	-- Devil's Crown: (append)
-	[146] = { "25%の確率で悪魔部屋が 特別な構成に置き換わる", "25%の確率で悪魔部屋が 特別な構成に置き換わる", "33%の確率で悪魔部屋が 特別な構成に置き換わる", },
+	[146] = { "25%の確率で悪魔部屋が 特別な構成に置き換わる", "33%の確率で悪魔部屋が 特別な構成に置き換わる", },
 	-- Charged Penny: (find + replace)
 	[147] = { "1チャージ", "2チャージ", "3チャージ" },
 	-- Friendship Necklace: (append)
 	[148] = { "周回速度がアップ" },
 	-- Panic Button: (append)
-	[149] = { "10%の確率でチャージ消費なし", "10%の確率でチャージ消費なし", "20%の確率でチャージ消費なし" },
+	[149] = { "10%の確率でチャージ消費なし", "20%の確率でチャージ消費なし" },
 	-- Blue Key: (append)
-	[150] = { "青い部屋のクリア報酬2倍", "青い部屋のクリア報酬2倍", "青い部屋のクリア報酬3倍" },
+	[150] = { "青い部屋のクリア報酬2倍", "青い部屋のクリア報酬3倍" },
 	-- Flat File: (append)
 	[151] = { "ボスのトゲ攻撃も無害化" },
 	-- Telescope Lens: (full replace)
 	[152] = {
 		"プラネタリウムの出現率{{ColorGold}}+18%{{CR}}#プラネタリウムに未訪問の 場合、追加で+15%#子宮／コープスフロアでも プラネタリウムが出現可能に",
-		"プラネタリウムの出現率{{ColorGold}}+18%{{CR}}#プラネタリウムに未訪問の 場合、追加で+15%#子宮／コープスフロアでも プラネタリウムが出現可能に",
 		"プラネタリウムの出現率{{ColorGold}}+33%{{CR}}#プラネタリウムに未訪問の 場合、追加で+15%#子宮／コープス／{{ColorGold}}シェオル／ 大聖堂{{CR}}でもプラネタリウムが 出現可能に"
 	},
 	-- Holy Crown: (append)
 	[155] = {
-		"追加で生成されるトレジャー ルームのアイテムが二択に なり、お店の質も良くなる",
 		"追加で生成されるトレジャー ルームのアイテムが二択に なり、お店の質も良くなる",
 		"追加で生成されるトレジャー ルームのアイテムが二択化し、 お店の質が良くなり、位置が マッピングされる"
 	},
@@ -347,51 +320,44 @@ local goldenTrinketEffects = {
 	-- Wicked Crown: (append)
 	[161] = {
 		"追加で生成されるトレジャー ルームのアイテムが二択に なり、お店の質も良くなる",
-		"追加で生成されるトレジャー ルームのアイテムが二択に なり、お店の質も良くなる",
 		"追加で生成されるトレジャー ルームのアイテムが二択化し、 お店の質が良くなり、位置が マッピングされる"
 	},
-	-- Azazel's Stump: (find + replace)
-	[162] = { "33", "50", "100" },
 	-- Nuh Uh!: (append)
-	[165] = { "爆弾とハートは10%の確率で ダブルバージョンになる", "爆弾とハートは10%の確率で ダブルバージョンになる", "爆弾とハートは20%の確率で ダブルバージョンになる" },
+	[165] = { "爆弾とハートは10%の確率で ダブルバージョンになる", "爆弾とハートは20%の確率で ダブルバージョンになる" },
 	-- Keeper's Bargain: (full replace)
 	[171] = {
-		"悪魔取引のコストが、 {{ColorGold}}100%{{CR}}の確率でハートから コインに置き換わる",
 		"悪魔取引のコストが、 {{ColorGold}}100%{{CR}}の確率でハートから コインに置き換わる",
 		"悪魔取引のコストが、 {{ColorGold}}100%{{CR}}の確率でハートから コインに置き換わる#{{ColorGold}}悪魔取引のアイテムが セール価格になる確率アップ{{CR}}"
 	},
 	-- Cursed Penny: (append)
 	[172] = { "特殊な部屋にテレポート する確率がアップ" },
 	-- Your Soul: (append)
-	[173] = { "10%の確率で消滅しない", "10%の確率で消滅しない", "20%の確率で消滅しない" },
+	[173] = { "10%の確率で消滅しない", "20%の確率で消滅しない" },
 	-- Strange Key: (full replace)
 	[175] = {
-		"時間制限を過ぎていても ハッシュに挑める#{{ColorGold}}???フロアで、鍵を消費 せずに宝箱やドアを開ける{{CR}}#{{Collectible297}} パンドラの箱を使うと 一緒に消費され、通常 効果の代わりに以下の 効果が発生する#ランダムなプールから {{ColorGold}}8個{{CR}}のアイテムをスポーン",
 		"時間制限を過ぎていても ハッシュに挑める#{{ColorGold}}???フロアで、鍵を消費 せずに宝箱やドアを開ける{{CR}}#{{Collectible297}} パンドラの箱を使うと 一緒に消費され、通常 効果の代わりに以下の 効果が発生する#ランダムなプールから {{ColorGold}}8個{{CR}}のアイテムをスポーン",
 		"時間制限を過ぎていても ハッシュに挑める#{{ColorGold}}???フロアで、鍵を消費 せずに宝箱やドアを開ける{{CR}}#{{Collectible297}} パンドラの箱を使うと 一緒に消費され、通常 効果の代わりに以下の 効果が発生する#ランダムなプールから {{ColorGold}}10個{{CR}}のアイテムをスポーン"
 	},
 	-- Temporary Tattoo: (append)
-	[177] = { "チャレンジルームをクリア した時、ランダムで一つの ステータスがアップ", "チャレンジルームをクリア した時、ランダムで一つの ステータスがアップ", "チャレンジルームをクリア した時、ランダムで二つの ステータスがアップ", },
+	[177] = { "チャレンジルームをクリア した時、ランダムで一つの ステータスがアップ", "チャレンジルームをクリア した時、ランダムで二つの ステータスがアップ", },
 	-- RC Remote: (append)
-	[179] = { "使い魔に毎秒8.6の 接触ダメージを追加", "使い魔に毎秒8.6の 接触ダメージを追加", "使い魔に毎秒21.4の 接触ダメージを追加",},
+	[179] = { "使い魔に毎秒8.6の 接触ダメージを追加", "使い魔に毎秒21.4の 接触ダメージを追加",},
 	-- Found Soul: (find + replace)
 	[180] = { "攻撃力のみ0.5倍", "{{CR}}攻撃力のみ{{ColorGold}}0.75倍{{CR}}", "攻撃力の制限なし" },
 	-- Expansion Pack: (full replace)
 	[181] = {
-		"アクティブアイテムを 使用すると、追加で ランダムなアクティブ アイテム{{ColorGold}}2種{{CR}}の効果が 発動する#追加されるアイテムは チャージ容量が1～2の ものに限られる ",
 		"アクティブアイテムを 使用すると、追加で ランダムなアクティブ アイテム{{ColorGold}}2種{{CR}}の効果が 発動する#追加されるアイテムは チャージ容量が1～2の ものに限られる ",
 		"アクティブアイテムを 使用すると、追加で ランダムなアクティブ アイテム{{ColorGold}}3種{{CR}}の効果が 発動する#追加されるアイテムは 2種がチャージ容量1～2、 {{ColorGold}}1種は3{{CR}}のものに限られる "
 	},
 	-- Beth's Essence: (full replace)
 	[182] = {
 		"天使部屋に入った時、 ウィスプが5つスポーン#{{ColorGold}}50%の確率で特殊効果 付きのウィスプになる{{CR}}#乞食に寄付すると、 25%の確率で{{ColorGold}}特殊効果 付き{{CR}}ウィスプがスポーン",
-		"天使部屋に入った時、 ウィスプが5つスポーン#{{ColorGold}}50%の確率で特殊効果 付きのウィスプになる{{CR}}#乞食に寄付すると、 25%の確率で{{ColorGold}}特殊効果 付き{{CR}}ウィスプがスポーン",
 		"天使部屋に入った時、 ウィスプが5つスポーン#{{ColorGold}}100%の確率で特殊効果 付きのウィスプになる{{CR}}#乞食に寄付すると、 25%の確率で{{ColorGold}}特殊効果 付き{{CR}}ウィスプがスポーン",
 	},
 	-- Adoption Papers: (append)
-	[184] = { "使い魔は必ずセール価格に", "使い魔は必ずセール価格に", "使い魔は必ずセール価格に#{{Card92}} {{ColorGold}}リリスのソウルも販売{{CR}}" },
+	[184] = { "使い魔は必ずセール価格に", "使い魔は必ずセール価格に#{{Card92}} {{ColorGold}}リリスのソウルも販売{{CR}}" },
 	-- Ice Cube: (find + replace)
-	[188] = { "20", "33", "50" },
+	[188] = { 20, 33, 50 },
 	-- Sigil of Baphomet: (find + replace)
 	[189] = { "1秒間", "1.5秒間", "2秒間" },
 }
@@ -410,13 +376,13 @@ local goldenTrinketData = {
 	[30] = {fullReplace = true}, -- Pinky Eye
 	[31] = {fullReplace = true}, -- Push Pin
 	[33] = {findReplace = true}, -- Umbilical Cord
-	[34] = {fullReplace = true}, -- Child's Heart
-	[36] = {fullReplace = true}, -- Rusted Key
+	[34] = {findReplace = true}, -- Child's Heart
+	[36] = {findReplace = true}, -- Rusted Key
 	[40] = {fullReplace = true}, -- Red Patch
 	[41] = {fullReplace = true}, -- Match Stick
 	[43] = {fullReplace = true}, -- Cursed Skull
-	[44] = {fullReplace = true}, -- Safety Cap
-	[45] = {fullReplace = true}, -- Ace of Spades
+	[44] = {findReplace = true}, -- Safety Cap
+	[45] = {findReplace = true}, -- Ace of Spades
 	[49] = {findReplace = true}, -- Bloody Penny
 	[50] = {findReplace = true}, -- Burnt Penny
 	[51] = {findReplace = true}, -- Flat Penny
@@ -430,7 +396,6 @@ local goldenTrinketData = {
 	[61] = {append = true}, -- The Left Hand
 	[62] = {fullReplace = true}, -- Shiny Rock
 	[63] = {append = true}, -- Safety Scissors
-	[66] = {findReplace = true}, -- Lazy Worm
 	[67] = {findReplace = true}, -- Cracked Dice
 	[68] = {fullReplace = true}, -- Super Magnet
 	[69] = {append = true}, -- Faded Polaroid
@@ -443,7 +408,7 @@ local goldenTrinketData = {
 	[86] = {findReplace = true}, -- Lil Larva
 	[87] = {findReplace = true}, -- Mom's Locket
 	[89] = {findReplace = true}, -- Child Leash
-	[91] = {fullReplace = true}, -- Meconium
+	[91] = {findReplace = true}, -- Meconium
 	[93] = 1, -- Used Diaper
 	[94] = {append = true}, -- Fish Tail
 	[95] = 3, -- Black Tooth
@@ -500,8 +465,6 @@ local goldenTrinketData = {
 	[158] = {t={2}, mults={1.5, 2}}, -- Torn Pocket
 	[159] = {fullReplace = true}, -- Gilded Key
 	[161] = {append = true}, -- Wicked Crown
-	[162] = {findReplace = true}, -- Azazel's Stump
-	[163] = 1, -- Dingle Berry
 	[165] = {append = true}, -- Nuh Uh!
 	[171] = {fullReplace = true}, -- Keeper's Bargain
 	[172] = {append = true}, -- Cursed Penny
