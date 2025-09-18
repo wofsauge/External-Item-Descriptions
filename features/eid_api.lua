@@ -3019,6 +3019,81 @@ function EID:WatchForGlitchedCrown()
 	end
 end
 
+--- Cached table for item pool infos
+EID.CachedCollectibleItemPools = {}
+
+---Check Item Pools that contain certain collectible, updates EID.CachedCollectibleItemPools to returned value
+---@param collectibleType CollectibleType
+---@return table
+function EID:GetPoolsForCollectible(collectibleType)
+	if not EID.isRepentance then return end
+	local cached = EID.CachedCollectibleItemPools[collectibleType]
+	if cached then return cached end
+
+	local poolTable = {}
+	if not REPENTOGON then
+		-- non-rgon : catch from xmldata
+		local CraftingItemPools = EID.XMLItemPools
+		local ItemPoolTypeToXMLPool = { -- did this in case for excluding greed pools
+			[0] = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+			10, 11, 12, 13, 14, 15,
+			16, 17, 18, 20, 21, 19, 22, -- greed pools, enum does not match with xmldata
+			23, 24, 25, 26, 27, 28, 29, 30
+		}
+		for i = 0, ItemPoolType.NUM_ITEMPOOLS - 1 do
+			local xmlPool = ItemPoolTypeToXMLPool[i]
+			local t = CraftingItemPools[xmlPool + 1]
+			for _, element in ipairs(t) do
+				if element[1] == collectibleType and element[2] > 0 and not Isaac.GetItemConfig():GetCollectible(collectibleType).Hidden then
+					table.insert(poolTable, i)
+					break
+				end
+			end
+		end
+	else
+		-- rgon : catch from pool directly
+		local pool = game:GetItemPool()
+		local numPools = pool:GetNumItemPools()
+		for i = ItemPoolType.POOL_TREASURE, numPools - 1 do
+			local t = pool:GetCollectiblesFromPool(i)
+			for _, element in ipairs(t) do
+				if element.itemID == collectibleType and element.initialWeight > 0 and not Isaac.GetItemConfig():GetCollectible(collectibleType).Hidden then
+					table.insert(poolTable, i)
+					break
+				end
+			end
+		end
+	end
+	EID.CachedCollectibleItemPools[collectibleType] = poolTable
+	return poolTable
+end
+
+---Assign Item Pool Markup for Custom item pools
+---Normally this does nothing if REPENTOGON is not active
+---@param itemPoolType ItemPoolType
+---@param str String
+function EID:assignItemPoolMarkup(itemPoolType, str)
+	if str ~= nil and type(str) == "string" then
+		EID.ItemPoolTypeToMarkup[itemPoolType] = str
+	end
+end
+
+---Adds name for a item pool.
+---Normally this does nothing if REPENTOGON is not active
+---@param id ItemPoolType
+---@param poolName string
+---@param language EID_LanguageCode? @Default: "en_us"
+function EID:addItemPoolName(id, poolName, language)
+	poolName = poolName or nil
+	language = language or EID.DefaultLanguageCode
+	if id == -1 then
+		EID:WriteErrorMsg("Trying to add item pool name to id = -1, which is not allowed! (Name: "..tostring(poolName)..")")
+		return
+	end
+	EID:CreateDescriptionTableIfMissing("itemPoolNames", language)
+	EID.descriptions[language].itemPoolNames[id] = poolName
+end
+
 ---Replaces Variable placeholders in string with a given value
 ---Example: "My {1} message" --> "My test message"
 ---varID can be omitted to replace {1} (or pass in a string table, to replace {1}, {2}, etc.)

@@ -658,7 +658,7 @@ function EID:printDescription(desc, cachedID)
 			if not EID.Config["ShowQuality"] then
 				curName = curName.." - "
 			end
-			curName = curName..""..(EID.ItemPoolTypeToMarkup[desc.ItemPoolType] or "{{ItemPoolTreasure}}")
+			curName = curName..""..(EID.ItemPoolTypeToMarkup[desc.ItemPoolType] or "{{ItemPoolUnknown}}")
 		end
 	end
 	-- Display the mod this item is from
@@ -720,6 +720,25 @@ function EID:printDescription(desc, cachedID)
 			end
 		end
 	end
+	-- Display Possible Pool for Collectible
+	if EID.isRepentance and EID.Config["ShowContainItemPool"] and (desc.ObjType == 5 and desc.ObjVariant == 100 and desc.ObjSubType ~= nil) then
+		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
+		if itemConfig:IsCollectible() then
+			local pools = EID:GetPoolsForCollectible(desc.ObjSubType)
+			if pools and #pools > 0 then
+				local poolName = "{{ItemPool}} {{NoLB}}"
+
+				for _, pool in ipairs(pools) do
+					if EID.ItemPoolTypeToMarkup[pool] then
+						poolName = poolName .. "" .. EID.ItemPoolTypeToMarkup[pool]
+					end
+				end
+
+				renderPos = EID:printBulletPoints(poolName, renderPos, desc.IgnoreBulletPointIconConfig)
+			end
+		end
+	end
+
 	-- Display Last Pool for Collectible for full reroll effects (name)
 	if desc.ItemPoolType and not EID.InsideItemReminder and EID.Config["ShowItemPoolText"] then
 		local itemConfig = EID.itemConfig:GetCollectible(desc.ObjSubType)
@@ -729,7 +748,8 @@ function EID:printDescription(desc, cachedID)
 			local poolName = ""
 			local poolDescPrepend = EID:getDescriptionEntry("itemPoolFor")
 			local poolDescTable = EID:getDescriptionEntry("itemPoolNames")
-			poolName = "{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolTreasure}}")..poolDescTable[lastPool] .. "{{CR}}#"
+			local poolDescTableEng = EID:getDescriptionEntryEnglish("itemPoolNames")
+			poolName = "{{RolledItemPool}} {{NoLB}}{{"..EID.Config["ItemPoolTextColor"].."}}"..poolDescPrepend..""..(EID.ItemPoolTypeToMarkup[lastPool] or "{{ItemPoolUnknown}}")..(poolDescTable[lastPool] or poolDescTableEng[lastPool] or "Modded item pool") .. "{{CR}}#"
 
 			renderPos = EID:printBulletPoints(poolName, renderPos, desc.IgnoreBulletPointIconConfig)
 		end
@@ -1084,7 +1104,7 @@ function EID:onGameUpdate()
 	EID:checkPlayersForMissingItems()
 	EID:evaluateQueuedItems()
 	EID:evaluateHeldPill()
-	
+
 	EID.TabHeldLastFrame = EID.TabHeldThisFrame
 	EID.TabHeldThisFrame = EID:PlayersActionPressed(EID.Config["BagOfCraftingToggleKey"])
 
@@ -1108,14 +1128,14 @@ function EID:onGameUpdate()
 
 		EID.RecheckVoid = true
 	end
-	
+
 	-- Check player items for starting items
 	if EID.ShouldCheckStartingItems then
 		EID:UpdateAllPlayerPassiveItems()
 		EID:SetOldestItemIndex()
 		EID.ShouldCheckStartingItems = false
 	end
-	
+
 	if EID.isRepentance then
 		EID:WatchForGlitchedCrown()
 		EID:UpdateWildCardEffects()
@@ -1205,7 +1225,7 @@ end
 function EID:CheckPosModifiers()
 	-- HUD offset adjustment, done every frame so it looks nice while changing the option
 	if Options then
-		-- Read the HUD offset from the Options table if it exists. 
+		-- Read the HUD offset from the Options table if it exists.
 		-- +3 Y to avoid overlapping with the shadow of the charge bar hud
 		EID:addTextPosModifier("HudOffset", Vector(20, 12) * (Options.HUDOffset - 1) + Vector(0, 3))
 	else
@@ -1513,7 +1533,7 @@ function EID:OnRender()
 						EID:addDescriptionToPrint(EID:getDescriptionObj(closest.Type, closest.Variant, closest.SubType+1, closest))
 					-- Handle Card Reading Portals
 					elseif closest.Type == 1000 and closest.Variant == 161 then
-						if closest.SubType <= 2 or (EID.isRepentancePlus and closest.SubType == 3) then 
+						if closest.SubType <= 2 or (EID.isRepentancePlus and closest.SubType == 3) then
 							local subtypeToCard = {18, 5, 19}
 							if EID.isRepentancePlus then
 								subtypeToCard = {18, 5, 19, 10}
@@ -1538,7 +1558,7 @@ function EID:OnRender()
 							if EID:getEntityData(closest, "EID_DontHide") ~= true then
 								local isHideUncollected = EID.Config["HideUncollectedItemDescriptions"] and EID:requiredForCollectionPage(collectibleID)
 								if (EID.Config["DisableOnCurse"] and EID:hasCurseBlind()) or (isHideUncollected) or (EID.Config["DisableOnAprilFoolsChallenge"] and game.Challenge == Challenge.CHALLENGE_APRILS_FOOL) then
-									local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil		
+									local description = isHideUncollected and EID:getDescriptionEntry("CollectionPageInfo") or nil
 									EID:addQuestionMarkDescription(closest, description)
 									wasHidden = true;
 								end
@@ -1720,10 +1740,10 @@ end
 EID:AddCallback(ModCallbacks.MC_USE_ITEM, OnUseD4, CollectibleType.COLLECTIBLE_D4)
 
 -- MC_PRE_USE_ITEM callback to watch for smelting trinkets; includes Gulp and Marbles
-function EID:OnUseSmelter(_, _, _, player)
+function EID:OnUseSmelter(_, _, player)
 	player = player or EID.player
 	local playerNum = EID:getPlayerID(player, true)
-	
+
 	EID.GulpedTrinkets[playerNum] = EID.GulpedTrinkets[playerNum] or {}
 	for i=0,1 do
 		local trinket = player:GetTrinket(i)
@@ -1836,7 +1856,7 @@ function EID:OnGameStart(isSave)
 	--Loading Moddata--
 	if EID:HasData() then
 		local savedEIDConfig = json.decode(Isaac.LoadModData(EID))
-		
+
 		-- JSON saves integer table keys as strings. we need to transform them back... used in OnGameStart
 		local function ConvertSavedTable(tableName)
 			for playerID, data in pairs(savedEIDConfig[tableName] or {}) do
@@ -1851,7 +1871,7 @@ function EID:OnGameStart(isSave)
 				EID[tableName][tonumber(playerID)] = convertedData
 			end
 		end
-		
+
 		-- collection progress
 		EID.CollectedItems = savedEIDConfig["CollectedItems"] or {}
 		if EID.SaveGame and savedEIDConfig["SaveGameNumber"] > 0 then
@@ -1878,19 +1898,19 @@ function EID:OnGameStart(isSave)
 			EID.UsedPillColors = savedEIDConfig["UsedPillColors"] or {}
 			EID.absorbedItems = savedEIDConfig["AbsorbedItems"] or {}
 		end
-		
+
 		if EID.isRepentance then
 			EID.BoC.BagItems = {}
 			EID.BoC.LearnedRecipes = {}
 			EID.CraneItemType = {}
 			EID.flipItemPositions = {}
-			
+
 			if isSave then
 				EID.BoC.BagItems = savedEIDConfig["BagContent"] or {}
 				EID.BoC.LearnedRecipes = savedEIDConfig["BagLearnedRecipes"] or {}
 				EID.BoC.RoomQueries = savedEIDConfig["BagFloorContent"] or {}
 				EID.CraneItemType = savedEIDConfig["CraneItemType"] or {}
-				
+
 				-- turn list back into dict because json cant save dict indices.
 				local flipItemTable = {}
 				for _, v in ipairs(savedEIDConfig["FlipItemPositions"]) do
@@ -1934,7 +1954,7 @@ function EID:OnGameStart(isSave)
 		EID.UsedPosition = Vector(EID.Config["XPosition"], EID.Config["YPosition"])
 		EID.Scale = EID.Config["Size"]
 		EID.ItemReminderSelectedCategory = EID.Config["ItemReminderDisplayMode"] == "NoOverview" and 1 or 0
-		
+
 		EID:AdjustLanguageConfigSetting()
 		EID:fixDefinedFont()
 		EID:loadFont(EID.modPath .. "resources/font/eid_"..EID.Config["FontType"]..".fnt")
