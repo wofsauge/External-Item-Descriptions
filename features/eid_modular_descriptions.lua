@@ -87,8 +87,26 @@ function EID:ValidateItemStatEntries()
             if not found then
                 print("[ERROR] Unknown item stat key '"..key.."' in entry :", itemID)
             end
-        end
-    end
+
+-- DEBUG: Compares an update table of a newr DLC with the previous DLC entries, to find duplicates or redundancies
+function EID:CompareWithPreviousDLC(newTable, oldTable)
+	for k, newValue in pairs(newTable) do
+		if oldTable[k] then
+            if type(oldTable[k]) == "table" then
+                local entriesEqual = true
+	            for k2, v2 in pairs(oldTable[k]) do
+                    if v2 ~= newValue[k2] then
+                        entriesEqual = false
+                    end
+                end
+                if entriesEqual then
+                    print("Table entry '"..k.."' is a duplicate!")
+                end
+            elseif oldTable[k] == newValue then
+                print("Table contains duplicate base-entry ("..k.."):", newValue)
+            end
+		end
+	end
 end
 
 -- Tries to generate a description for an item based on its stats defined in EID.ItemStats
