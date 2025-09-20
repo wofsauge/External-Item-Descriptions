@@ -25,21 +25,23 @@ EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {na
 -- Table containing basic sentences and templates used to generate basic descriptions
 EID.descriptions["en_us"].ModularDescriptions = {
     -- Player Stats
-    Tears = "{value} Tears",
     TearsMultiplier = "{value} Tears multiplier",
+    Tears = "{value} Tears",
     TearHeight = "{value} Tear Height",
+    TearSizeMultiplier = "{value} Tear size",
     TearSize = "{value} Tear size",
     TearDelay = "{value} Tear Delay",
     FireRateMultiplier = "{value} Fire rate multiplier", -- Repentance exclusive?
-    Damage = "{value} Damage",
+    FireRate = "{value} Fire rate", -- Repentance exclusive?
     DamageMultiplier = "{value} Damage multiplier",
+    Damage = "{value} Damage",
     BombDamage = "{value} Bomb Damage",
     Speed = "{value} Speed",
-    Range = "{value} Range",
     RangeMultiplier = "{value} Range multiplier",
+    Range = "{value} Range",
     Luck = "{value} Luck",
-    ShotSpeed = "{value} Shot speed",
     ShotSpeedMultiplier = "{value} Shot speed multiplier",
+    ShotSpeed = "{value} Shot speed",
     Life = "{value} Life",
     SizeUp = "Size up",
     SizeDown = "Size down",
@@ -63,24 +65,26 @@ EID.descriptions["en_us"].ModularDescriptions = {
     PlanetariumChance = "{value}% Planetarium chance",
 
     -- Pickups / Spawns
-    Coin = "{value} Coin{pluralize}", -- TODO: Differentiate between spawned and held?
-    Bomb = "{value} Bomb{pluralize}", -- TODO: Differentiate between spawned and held?
-    Key = "{value} Key{pluralize}", -- TODO: Differentiate between spawned and held?
-    CoinBombKey= "{value} {{Coin}} coin{pluralize}, {{Bomb}} bomb{pluralize} and {{Key}} ke{pluralize_y}",
-    Card = "Spawns {value} card{pluralize}", -- TODO: Differentiate between spawned and held?
-    Pill = "Spawns {value} pill{pluralize}", -- TODO: Differentiate between spawned and held?
-    Battery = "Spawns {value} battery{pluralize}", -- TODO: Differentiate between spawned and held?
+    Coin = "{value} Coin{pluralize}",
+    Bomb = "{value} Bomb{pluralize}",
+    Key = "{value} Key{pluralize}",
+    CoinBombKey= "{value} {{Coin}} coin{pluralize}, {{Bomb}} bomb{pluralize} and {{Key}} key{pluralize}",
     -- Dynamic Spawns
     Spawns = {
-        BASE_TEXT = "Spawns {value}",
-        RandomPickup = "{value} random pickup{pluralize}",
-        RandomHeart = "{value} random heart{pluralize}",
-        RandomCoin = "{value} random coin{pluralize}",
-        Card = "{value} card{pluralize}",
-        Pill = "{value} pill{pluralize}",
-        Battery = "{value} batter{pluralize_y}",
-        BlueFly = "{value} blue fl{pluralize_y}",
-        BlueSpider = "{value} blue spider{pluralize}",
+        RandomPickup = "Spawns {value} random pickup{pluralize}",
+        RandomTrinket = "Spawns {value} random trinket{pluralize}",
+        RandomHeart = "Spawns {value} random heart{pluralize}",
+    	RedHeart = "Spawns {value} Red Heart{pluralize}",
+    	SoulHeart = "Spawns {value} Soul Heart{pluralize}",
+    	Bomb = "Spawns {value} bomb{pluralize}",
+    	Key = "Spawns {value} key{pluralize}",
+        RandomCoin = "Spawns {value} random coin{pluralize}",
+        Card = "Spawns {value} card{pluralize}",
+        Pill = "Spawns {value} pill{pluralize}",
+        Rune = "Spawns {value} rune{pluralize}",
+        Battery = "Spawns {value} batter{pluralize_y}",
+        BlueFly = "Spawns {value} blue fl{pluralize_y}",
+        BlueSpider = "Spawns {value} blue spider{pluralize}",
     },
     -- Familiars
     Flies = "{value} Fly orbital{pluralize}",
@@ -88,6 +92,7 @@ EID.descriptions["en_us"].ModularDescriptions = {
     BlockProjectiles = "Blocks enemy projectiles",
     DamagePerTear = "Deals {value} damage per tear",
     DamagePerShot = "Deals {value} damage per shot",
+    DamagePerSecond = "Deals {value} damage per second",
     ContactDamagePerSecond = "Deals {value} contact damage per second",
 }
 
@@ -95,6 +100,7 @@ EID.descriptions["en_us"].ModularDescriptions = {
 local C_ID = "5.100."
 EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 2] = "Isaac shoots 3 tears at once", -- The Inner Eye
+	[C_ID .. 3] = "Homing tears", -- Spoon Bender
 	[C_ID .. 5] = "Tears get a boomerang effect", -- My Reflection
 	[C_ID .. 8] = "Shoots normal tears", -- Brother Bobby
 	[C_ID .. 9] = "All fly enemies are friendly", -- Skatole
@@ -114,9 +120,11 @@ EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 44] = "Teleports Isaac into a random room, except I AM ERROR rooms", -- Teleport!
 	[C_ID .. 46] = "+8% room clear reward chance#Better chance to win while gambling", -- Lucky Foot
 	[C_ID .. 47] = "{{Collectible168}} On use, start aiming a crosshair#A missile lands on the crosshair after 1.5 seconds#It deals 20x Isaac's damage", -- Doctor's Remote
+	[C_ID .. 48] = "Piercing tears", -- Cupid's Arrow
 	[C_ID .. 49] = "The next shot is replaced with a beam#It deals 26x Isaac's damage over 0.9 seconds", -- Shoop da Whoop!
 	[C_ID .. 52] = "{{Bomb}} Isaac shoots bombs instead of tears#{{Damage}} Those bombs deal 5x Isaac's damage + 30", -- Dr. Fetus
 	[C_ID .. 53] = "Pickups are attracted to Isaac", -- Magneto
+	[C_ID .. 54] = "Reveals the floor layout#Does not reveal room icons", -- Treasure Map
 	[C_ID .. 55] = "50% chance to shoot an extra tear backwards#{{Luck}} 100% chance at 2 luck", -- Mom's Eye
 	[C_ID .. 56] = "Spills a pool of creep#The creep deals 24 damage per second", -- Lemon Mishap
 	[C_ID .. 57] = "Mid-range fly orbital", -- Distant Admiration
@@ -143,6 +151,7 @@ EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 86] = "Monstro falls on an enemy and deals 120 damage#{{Warning}} Monstro falls on Isaac if the room has no enemies", -- Monstro's Tooth
 	[C_ID .. 87] = "25% chance to shoot in 4 directions#{{Luck}} 100% chance at 7 luck", -- Loki's Horns
 	[C_ID .. 88] = "Charges forward in the direction Isaac is shooting", -- Little Chubby
+	[C_ID .. 89] = "{{Slow}} 25% chance to shoot slowing tears#{{Luck}} 100% chance at 15 luck", -- Spider Bite
 	[C_ID .. 91] = "Reveals the room type of adjacent rooms#{{SecretRoom}} Can reveal Secret and Super Secret Rooms",
 	[C_ID .. 93] = "{{Timer}} Receive for 6.5 seconds:#Invincibility#Isaac can't shoot but deals 40 contact damage per second#{{HealingRed}} Killing 2 enemies heals half a heart#{{Fear}} Fears all enemies in the room", -- The Gamekid
 	[C_ID .. 94] = "{{Coin}} Spawns a random coin every 2 rooms", -- Sack of Pennies
@@ -163,6 +172,7 @@ EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 112] = "Speeds up all other orbitals", -- Guardian Angel
 	[C_ID .. 113] = "Shoots enemies that get close to him", -- Demon Baby
 	[C_ID .. 114] = "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and 6x at the furthest possible distance", -- Mom's Knife
+    [C_ID .. 115] = "Spectral tears", -- Ouija Board
 	[C_ID .. 116] = "{{Battery}} Automatically charges the first bar of active items#{{Battery}} Fully recharges the active item on pickup", -- 9 Volt
 	[C_ID .. 117] = "Taking damage spawns a bird that attacks enemies", -- Dead Bird
 	[C_ID .. 118] = "{{Chargeable}} Isaac's tears are replaced by a chargeable blood beam#{{Damage}} It deals 13x Isaac's damage over 0.9 seconds", -- Brimstone
@@ -197,6 +207,7 @@ EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 156] = "{{Battery}} Taking damage adds 1 charge to the active item", -- Habit
 	[C_ID .. 157] = "↑ {{Damage}} Taking damage grants a damage up#Applies up to 6 times per floor#Lasts for the whole floor", -- Bloody Lust
 	[C_ID .. 158] = "Spawns a {{SoulHeart}} Soul Heart, {{Rune}} rune or {{Card}} card#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)", -- Crystal Ball
+    [C_ID .. 159] = "Spectral tears", -- Spirit of the Night
 	[C_ID .. 160] = "Spawns 5 beams of light near enemies#Each beam deals 8x Isaac's damage + 160 over 0.8 seconds", -- Crack the Sky
 	[C_ID .. 161] = "{{Player4}} Respawn as ??? (Blue Baby) on death", -- Ankh
 	[C_ID .. 162] = "Taking damage has a 20% chance to make Isaac temporarily invincible#{{Luck}} 100% chance at 27 luck", -- Celtic Cross
@@ -215,6 +226,7 @@ EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 178] = "Taking damage spills a pool of creep#The creep deals 24 damage per second", -- Holy Water
 	[C_ID .. 180] = "Isaac farts when damaged#{{Poison}} The fart poisons enemies", -- The Black Bean
 	[C_ID .. 181] = "{{Speed}} Sets your Speed to at least 1.5#Flight while held#Using the item dashes in the direction of Isaac's movement, leaving behind beams of light", -- White Pony
+    [C_ID .. 185] = "Spectral tears", -- Dead Dove
 	[C_ID .. 186] = "Deals 40 damage to every enemy#{{Warning}} Deals 1 heart of damage to Isaac#{{Heart}} Removes Red Hearts first", -- Blood Rights
 	[C_ID .. 187] = "Moving swings the hairball around#The ball grows when it kills an enemy#It deals more damage the bigger it is", -- Guppy's Hairball
 	[C_ID .. 188] = "Mirrors Isaac's movement#Shoots towards Isaac", -- Abel
@@ -448,7 +460,7 @@ EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 446] = "{{Poison}} While firing, Isaac is surrounded by a green aura that poisons enemies", -- Dead Tooth
 	[C_ID .. 447] = "Firing without pause for 7.5 seconds spawns a poop cloud#The cloud deals Isaac's damage 5 times a second#The cloud lasts 15 seconds and can be moved by shooting it", -- Linger Bean
 	[C_ID .. 448] = "Upon taking damage:#{{Heart}} 25% chance to spawn a Red Heart#{{Collectible214}} 10% chance to get ↑ {{Range}} +5 Range and leave a trail of blood creep for the room", -- Shard of Glass
-	[C_ID .. 449] = "{{SoulHeart}} +1 Soul Heart#{{Confusion}} Enemy bullets have a 25% chance to be reflected as concussive tears", -- Metal Plate
+	[C_ID .. 449] = "{{Confusion}} Enemy bullets have a 25% chance to be reflected as concussive tears", -- Metal Plate
 	[C_ID .. 450] = "Every 20 tears, Isaac shoots a coin tear that deals double damage#{{Petrify}} Enemies hit with the coin get petrified and turn into gold#{{Coin}} Killing a gold enemy drops 1-4 coins#{{Warning}} Firing a coin tear costs 1 coin", -- Eye of Greed
 	[C_ID .. 451] = "{{Card}} Card effects are doubled or enhanced", -- Tarot Cloth
 	[C_ID .. 452] = "Taking damage shoots 10 tears in a circle around Isaac#The tears deal Isaac's damage + 25", -- Varicose Veins
@@ -649,11 +661,10 @@ EID.descriptions[languageCode].collectibles={
 	{"94", "Sack of Pennies", "{{Coin}} Spawns a random coin every 2 rooms"}, -- Sack of Pennies
 	{"95", "Robo-Baby", "Shoots lasers#Deals 3.5 damage per shot"}, -- Robo-Baby
 	{"96", "Little C.H.A.D.", "{{HalfHeart}} Spawns a half Red Heart every 3 rooms"}, -- Little C.H.A.D.
-	{"97", "The Book of Sin", "Spawns a random pickup"}, -- The Book of Sin
+	{"97", "The Book of Sin", "Spawns 1 random pickup"}, -- The Book of Sin
 	{"98", "The Relic", "{{SoulHeart}} Spawns 1 Soul Heart every 5-6 rooms"}, -- The Relic
 	{"99", "Little Gish", "{{Slow}} Shoots slowing tears#Deals 3.5 damage per tear"}, -- Little Gish
 	{"100", "Little Steven", "Shoots homing tears#Deals 3.5 damage per tear"}, -- Little Steven
-
 	{"101", "The Halo", "↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.3 Damage#↑ {{Range}} +0.25 Range#↑ +0.5 Tear height"}, -- The Halo
 	{"102", "Mom's Bottle of Pills", "{{Pill}} Spawns 1 pill"}, -- Mom's Bottle of Pills
 	{"103", "The Common Cold", "{{Poison}} 25% chance to shoot poison tears#{{Luck}} 100% chance at 12 luck"}, -- The Common Cold
@@ -754,7 +765,6 @@ EID.descriptions[languageCode].collectibles={
 	{"198", "Box", "Spawns 1 pickup of each type"}, -- Box
 	{"199", "Mom's Key", "{{Key}} +2 Keys#Chests contain more pickups"}, -- Mom's Key
 	{"200", "Mom's Eyeshadow", "{{Charm}} 10% chance to shoot charming tears#{{Luck}} 100% chance at 27 luck"}, -- Mom's Eyeshadow
-
 	{"201", "Iron Bar", "↑ {{Damage}} +0.3 Damage#{{Confusion}} 10% chance to shoot concussive tears#{{Luck}} 100% chance at 27 luck"}, -- Iron Bar
 	{"202", "Midas' Touch", "{{Petrify}} Touching enemies petrifies them and turns them gold#Isaac deals contact damage based on his coin count#{{Coin}} Killing a golden enemy spawns coins#Poop spawned by Isaac has a high chance to be golden poop"}, -- Midas' Touch
 	{"203", "Humbleing Bundle", "Pickups spawned are doubled if possible"}, -- Humbleing Bundle
@@ -828,7 +838,7 @@ EID.descriptions[languageCode].collectibles={
 	{"271", "Mystery Sack", "Spawns a random pickup every 5-6 rooms"}, -- Mystery Sack
 	{"272", "BBF", "Friendly exploding fly#The explosion deals 60 damage#{{Warning}} The explosion can hurt Isaac"}, -- BBF
 	{"273", "Bob's Brain", "Dashes in the direction Isaac is shooting#Explodes when it hits an enemy#{{Poison}} The explosion deals 60 damage and poisons enemies#{{Warning}} The explosion can hurt Isaac"}, -- Bob's Brain
-	{"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#It deals 75 contact damage per second"}, -- Best Bud
+	{"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#Deals 75 contact damage per second"}, -- Best Bud
 	{"275", "Lil Brimstone", "{{Chargeable}} Familiar that charges and shoots a {{Collectible118}} blood beam#It deals 31.5 damage over 0.63 seconds"}, -- Lil Brimstone
 	{"276", "Isaac's Heart", "Isaac becomes invincible#Spawns a heart familiar that follows Isaac#{{Warning}} If the heart familiar gets hit, Isaac takes damage"}, -- Isaac's Heart
 	{"277", "Lil Haunt", "{{Fear}} Chases and fears enemies#Deals 4 contact damage per second"}, -- Lil Haunt

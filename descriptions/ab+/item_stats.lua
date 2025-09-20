@@ -42,16 +42,17 @@ EID.ItemStats = {
     [C_ID .. 52] = { TearsMultiplier = 0.4 }, -- Dr. Fetus
     [C_ID .. 57] = { ContactDamagePerSecond = 75 }, -- Distant Admiration
 	[C_ID .. 67] = { TearFlags = { [TearFlags.TEAR_NORMAL] = 1 }, DamagePerTear = 3.5 }, -- Sister Maggy
+    [C_ID .. 70] = { Speed = 0.4, Damage = 1 }, -- Growth Hormones
     [C_ID .. 71] = { Speed = 0.3, TearHeight = 1.5, SizeDown = 1, Range = -4.25 }, -- Mini Mush
     [C_ID .. 72] = { SoulHeart = 3 }, -- Rosary
     [C_ID .. 74] = { Coin = 25 }, -- A Quarter
-    [C_ID .. 75] = { RedHeart = 2, HealingRed = 2, Pill = 1 }, -- PHD
+    [C_ID .. 75] = { HealingRed = 2, Spawns = {Pill = 1} }, -- PHD
     [C_ID .. 78] = { SoulHeart = 1, AngelDevilChance = 17.5 }, -- Book of Revelations
     [C_ID .. 79] = { Speed = 0.2, Damage = 1, SoulHeart = 1 }, -- The Mark
     [C_ID .. 80] = { Tears = 0.7, Damage = 0.5, SoulHeart = 2 }, -- The Pact
     [C_ID .. 81] = { Life = 9 }, -- Dead Cat
     [C_ID .. 82] = { Speed = 0.3, Flight = 1 }, -- Lord of the Pit
-    [C_ID .. 85] = { Card = 1 }, -- Deck of Cards
+    [C_ID .. 85] = { Spawns = {Card = 1} }, -- Deck of Cards
     [C_ID .. 88] = { ContactDamagePerSecond = 52.5 }, -- Little Chubby
     [C_ID .. 89] = { TearFlags = { [TearFlags.TEAR_SLOW] = 0.25 } }, -- Spider Bite
     [C_ID .. 90] = { Tears = 0.2, Damage = 1, Speed = -0.2 }, -- Small Rock
@@ -125,7 +126,7 @@ EID.ItemStats = {
     [C_ID .. 220] = { Bomb = 5}, -- Sad Bombs
     [C_ID .. 222] = { TearDelay = -2 }, -- Anti-Gravity
     [C_ID .. 223] = { Bomb = 5}, -- Pyromaniac
-    [C_ID .. 224] = { TearDelay = -1, TearSize = 1.2, Range = -10,  }, -- Cricket's Body
+    [C_ID .. 224] = { TearDelay = -1, TearSizeMultiplier = 1.2, Range = -10,  }, -- Cricket's Body
     [C_ID .. 226] = { RedHeart = 1, SoulHeart = 1, BlackHeart = 1}, -- Black Lotus
     [C_ID .. 227] = { Coin = 3 }, -- Piggy Bank
     [C_ID .. 228] = { TearDelay = -1}, -- Mom's Perfume
@@ -133,7 +134,7 @@ EID.ItemStats = {
     [C_ID .. 230] = { Speed = 0.2, Damage = 1.5, BlackHeart = 6 }, -- Abaddon
     [C_ID .. 232] = { Speed = 0.3 }, -- Stop Watch
     [C_ID .. 233] = { TearHeight = 7 }, -- Tiny Planet
-    [C_ID .. 237] = { Damage = 1.5, Tears = -0.3, TearSize =2 }, -- Death's Touch
+    [C_ID .. 237] = { Damage = 1.5, Tears = -0.3, TearSizeMultiplier =2 }, -- Death's Touch
     [C_ID .. 238] = { AngelChance = 25 }, -- Key Piece 1
     [C_ID .. 239] = { AngelChance = 25 }, -- Key Piece 2
     [C_ID .. 251] = { Spawns = { Card = 1 }  }, -- Starter Deck
@@ -147,10 +148,12 @@ EID.ItemStats = {
     [C_ID .. 261] = { DamageMultiplier = 2 }, -- Proptosis
     [C_ID .. 262] = { BlackHeart = 1 }, -- Missing Page 2
     [C_ID .. 264] = { Orbital = true, ContactDamagePerSecond = 22.5 },  -- Smart Fly
+    [C_ID .. 267] = { DamagePerShot = 3.5 },  -- Robo Baby 2.0
+    [C_ID .. 270] = { DamagePerSecond = 3.2 },  -- Leech
     [C_ID .. 274] = { ContactDamagePerSecond = 75 },  -- Best Bud
     [C_ID .. 277] = { ContactDamagePerSecond = 4 },  -- Lil Haunt
     [C_ID .. 279] = { ContactDamagePerSecond = 30 },  -- Big Fan
-    [C_ID .. 288] = { Spawns={BlueSpider={1,4}} }, -- Box of Spiders
+    [C_ID .. 288] = { Spawns = { BlueSpider= { 1 , 4 } } }, -- Box of Spiders
     [C_ID .. 292] = { BlackHeart = 1}, -- Satanic Bible
     [C_ID .. 299] = { Speed = -0.3 }, -- Taurus
 
@@ -160,28 +163,28 @@ EID.ItemStats = {
     [C_ID .. 304] = { CoinBombKey = 6 }, -- Libra
     [C_ID .. 306] = { Speed = 0.2 }, -- Sagittarius
     [C_ID .. 307] = { RedHeart = 1, Speed = 0.1, TearDelay = -1, Damage = 0.5, Range = 1.5, CoinBombKey = 1 }, -- Capricorn
-    [C_ID .. 309] = { TearDelay = -1, TearSize = 1.25 }, -- Pisces
+    [C_ID .. 309] = { TearDelay = -1, TearSizeMultiplier = 1.25 }, -- Pisces
     [C_ID .. 310] = { DamageMultiplier = 2, ShotSpeed = -0.5, TearsMultiplier = 0.5 }, -- Eve's Mascara
     [C_ID .. 312] = { RedHeart = 1, HealingRed = 1 }, -- Maggy's Bow
     [C_ID .. 314] = { RedHeart = 1, Speed = -0.4 }, -- Thunder Thighs
     [C_ID .. 318] = { ContactDamagePerSecond = 6 },  -- Gemini
     [C_ID .. 320] = { ContactDamagePerSecond = 37.5 },  -- ???'s Only Friend
     [C_ID .. 321] = { ContactDamagePerSecond = 10.7 },  -- Samson's Chains
-    [C_ID .. 330] = { TearsMultiplier = 4, TearDelay = -2, DamageMultiplier = 0.2, TearSize = 0.5 }, -- Soy Milk
+    [C_ID .. 330] = { TearsMultiplier = 4, TearDelay = -2, DamageMultiplier = 0.2, TearSizeMultiplier = 0.5 }, -- Soy Milk
     [C_ID .. 331] = { Damage = 0.5, Range = 1.2, Tears = -0.3,TearHeight = 0.8, ShotSpeed = -0.3 }, -- Godhead
     [C_ID .. 334] = { RedHeart = 3 }, -- The Body
     [C_ID .. 335] = { SoulHeart = 2 }, -- The Soul
-    [C_ID .. 336] = { Range = 0.25, TearSize = 1.5, TearHeight = -0.5, ShotSpeed = -0.4 }, -- Dead Onion
+    [C_ID .. 336] = { Range = 0.25, TearSizeMultiplier = 1.5, TearHeight = -0.5, ShotSpeed = -0.4 }, -- Dead Onion
     [C_ID .. 339] = { Range = 5.25, TearHeight = 0.5, ShotSpeed = 0.16, BlackHeart = 1 }, -- Safety Pin
-    [C_ID .. 340] = { Speed = 0.3, SizeDown = 1, Spawns = {RandomPill = 1}  }, -- Caffeine Pill
+    [C_ID .. 340] = { Speed = 0.3, SizeDown = 1, Spawns = { Pill = 1}  }, -- Caffeine Pill
     [C_ID .. 341] = { Tears = 0.7, ShotSpeed = 0.16,  }, -- Torn Photo
     [C_ID .. 342] = { RedHeart = 1, Tears = 0.7, ShotSpeed = -0.16,  }, -- Blue Cap
-    [C_ID .. 343] = { Luck = 1, SoulHeart = 1, Spawns = { Keys = 2}  }, -- Latch Key
-    [C_ID .. 344] = { BlackHeart = 1, Spawns = { Bombs = 3} }, -- Match Book
+    [C_ID .. 343] = { Luck = 1, SoulHeart = 1, Spawns = { Key = 2}  }, -- Latch Key
+    [C_ID .. 344] = { BlackHeart = 1, Spawns = { Bomb = 3} }, -- Match Book
     [C_ID .. 345] = { Damage = 1, Range = 5.25, TearHeight = 0.5 }, -- Synthoil
     [C_ID .. 346] = { RedHeart = 1 }, -- A Snack
     [C_ID .. 353] = { Bomb = 5 }, -- Bomber Boy
-    [C_ID .. 354] = { RedHeart = 1, Spawns = { Trinket = 1 } }, -- Crack Jacks
+    [C_ID .. 354] = { RedHeart = 1, Spawns = { RandomTrinket = 1 } }, -- Crack Jacks
     [C_ID .. 355] = { Range = 1.25, Luck = 1, TearHeight = 0.5 }, -- Mom's Pearls
     [C_ID .. 359] = { Damage = 1.5 }, -- 8 Inch Nails
     [C_ID .. 363] = { Orbital = true, ContactDamagePerSecond = 105 },  -- Sworn Protector
@@ -190,9 +193,9 @@ EID.ItemStats = {
     [C_ID .. 366] = { Bomb = 5 }, -- Scatter Bombs
     [C_ID .. 367] = { Bomb = 5 }, -- Sticky Bombs
     [C_ID .. 369] = { Range = 2.25, TearHeight = 1.5,  }, -- Continuum
-    [C_ID .. 370] = { Tears = 0.7, Range = 5.25, TearHeight = 0.5, Spawns = {RandomHearts = 3}  }, -- Mr. Dolly
+    [C_ID .. 370] = { Tears = 0.7, Range = 5.25, TearHeight = 0.5, Spawns = {RandomHeart = 3}  }, -- Mr. Dolly
     [C_ID .. 376] = { Spawns = { RandomPickup = 3 } }, -- Restock
-    [C_ID .. 379] = { TearSize = 2 }, -- Pupula Duplex
+    [C_ID .. 379] = { TearSizeMultiplier = 2 }, -- Pupula Duplex
     [C_ID .. 380] = { Coin = 5 }, -- Pay To Play
     [C_ID .. 381] = { Tears = 0.7 }, -- Eden's Blessing
     [C_ID .. 390] = { DamagePerTear = 10 }, -- Seraphim
@@ -238,7 +241,7 @@ EID.ItemStats = {
     [C_ID .. 517] = { Bomb = 7 }, -- Fast Bombs
     [C_ID .. 531] = { DamageMultiplier = 1.31, TearsMultiplier = 0.5, TearDelay = 10  }, -- Haemolacria
     [C_ID .. 535] = { HealingRed = 1, SoulHeart = 1 }, -- Blanket
-    [C_ID .. 538] = { Spawns = { RandomPickup = 3 } }, -- Marbles
+    [C_ID .. 538] = { Spawns = { RandomTrinket = 3 } }, -- Marbles
     [C_ID .. 541] = { BoneHeart = 1, Spawns = { RedHeart = 3 } }, -- Marrow
     [C_ID .. 542] = { Orbital = true }, -- Slipped Rib
     [C_ID .. 547] = { Tears = 0.7, BoneHeart = 1 }, -- Divorce Papers
