@@ -5,21 +5,22 @@
 -- HideSign indicates if the sign (+/-/x) should be hidden for the stat value
 EID.StatisticsData = {
     -- Player Stats
-    ["Tears"] = { Priority = 9990, Arrow = true, Icon = "{{Tears}}" },
-    ["TearsMultiplier"] = { Priority = 9980, Arrow = true, Icon = "{{Tears}}", IsMultiplier = true },
-    ["TearHeight"] = { Priority = 9970, Arrow = true },
-    ["TearSize"] = { Priority = 9960, Arrow = true, Icon = "{{Tearsize}}", IsMultiplier = true },
-    ["TearDelay"] = { Priority = 9950, Arrow = true, Icon = "{{Tears}}" },
-    ["FireRate"] = { Priority = 9940, Arrow = true, Icon = "{{Tears}}" },
-    ["FireRateMultiplier"] = { Priority = 9930, Arrow = true, Icon = "{{Tears}}", IsMultiplier = true },
-    ["Damage"] = { Priority = 9890, Arrow = true, Icon = "{{Damage}}" },
-    ["DamageMultiplier"] = { Priority = 9880, Arrow = true, Icon = "{{Damage}}", IsMultiplier = true },
+    ["TearsMultiplier"] = { Priority = 9990, Arrow = true, Icon = "{{Tears}}", IsMultiplier = true },
+    ["Tears"] = { Priority = 9980, Arrow = true, Icon = "{{Tears}}" },
+    ["TearDelay"] = { Priority = 9970, Arrow = true, Icon = "{{Tears}}" },
+    ["FireRateMultiplier"] = { Priority = 9960, Arrow = true, Icon = "{{Tears}}", IsMultiplier = true },
+    ["FireRate"] = { Priority = 9950, Arrow = true, Icon = "{{Tears}}" },
+    ["TearHeight"] = { Priority = 9940, Arrow = true },
+    ["TearSizeMultiplier"] = { Priority = 9930, Arrow = true, Icon = "{{Tearsize}}", IsMultiplier = true },
+    ["TearSize"] = { Priority = 9920, Arrow = true, Icon = "{{Tearsize}}" },
+    ["DamageMultiplier"] = { Priority = 9890, Arrow = true, Icon = "{{Damage}}", IsMultiplier = true },
+    ["Damage"] = { Priority = 9880, Arrow = true, Icon = "{{Damage}}" },
     ["BombDamage"] = { Priority = 9870, Arrow = true, Icon = "{{Bomb}}", IsMultiplier = true },
     ["Speed"] = { Priority = 9790, Arrow = true, Icon = "{{Speed}}" },
-    ["Range"] = { Priority = 9780, Arrow = true, Icon = "{{Range}}" },
-    ["RangeMultiplier"] = { Priority = 9770, Arrow = true, Icon = "{{Range}}", IsMultiplier = true },
-    ["ShotSpeed"] = { Priority = 9690, Arrow = true, Icon = "{{Shotspeed}}" },
-    ["ShotSpeedMultiplier"] = { Priority = 9680, Arrow = true, Icon = "{{Shotspeed}}", IsMultiplier = true },
+    ["RangeMultiplier"] = { Priority = 9780, Arrow = true, Icon = "{{Range}}", IsMultiplier = true },
+    ["Range"] = { Priority = 9770, Arrow = true, Icon = "{{Range}}" },
+    ["ShotSpeedMultiplier"] = { Priority = 9690, Arrow = true, Icon = "{{Shotspeed}}", IsMultiplier = true },
+    ["ShotSpeed"] = { Priority = 9680, Arrow = true, Icon = "{{Shotspeed}}" },
     ["Luck"] = { Priority = 9590, Arrow = true, Icon = "{{Luck}}" },
     ["Life"] = { Priority = 9580, Arrow = true },
     ["SizeUp"] = { Priority = 9570, Arrow = true },
@@ -42,9 +43,6 @@ EID.StatisticsData = {
     ["Bomb"] = { Priority = 7980, Icon = "{{Bomb}}" },
     ["Key"] = { Priority = 7970, Icon = "{{Key}}" },
     ["CoinBombKey"] = { Priority = 7960, },
-    ["Card"] = { Priority = 7950, Icon = "{{Card}}", HideSign = true },        -- TODO: Make more specific for spawned/held
-    ["Pill"] = { Priority = 7940, Icon = "{{Pill}}", HideSign = true },        -- TODO: Make more specific for spawned/held
-    ["Battery"] = { Priority = 7930, Icon = "{{Battery}}", HideSign = true },  -- TODO: Make more specific for spawned/held
 
     -- Room chances
     ["AngelDevilChance"] = { Priority = 6990, Icon = "{{AngelDevilChance}}" },
@@ -69,12 +67,15 @@ EID.StatisticsData = {
         Icon = {
             RandomHeart = "{{UnknownHeart}}",
             RandomTrinket = "{{Trinket}}",
+            RedHeart = "{{Heart}}",
             SoulHeart = "{{SoulHeart}}",
             BlackHeart = "{{BlackHeart}}",
             BoneHeart = "{{EmptyBoneHeart}}",
             EternalHeart = "{{EternalHeart}}",
             GoldenHeart = "{{GoldenHeart}}",
             EmptyHeart = "{{EmptyHeart}}",
+            Bomb = "{{Bomb}}",
+            Key = "{{Key}}",
             RandomCoin = "{{Coin}}",
             Card = "{{Card}}",
             Pill = "{{Pill}}",
@@ -268,6 +269,9 @@ local mismatchCounter = 0
 
 -- DEBUG ignore entries list, which are automated correctly, but maybe have different order of lines
 local ignoreList = {
+    ["5.100.4"] = true,
+    ["5.100.5"] = true,
+    ["5.100.6"] = true,
     ["5.100.12"] = true,
     ["5.100.59"] = true,
     ["5.100.70"] = true,
@@ -291,6 +295,7 @@ local ignoreList = {
     ["5.100.182"] = true,
     ["5.100.184"] = true,
     ["5.100.185"] = true,
+    ["5.100.194"] = true,
 
     ["5.100.215"] = true,
     ["5.100.219"] = true,
@@ -304,6 +309,35 @@ local ignoreList = {
     ["5.100.260"] = true,
     ["5.100.263"] = true,
     ["5.100.267"] = true,
+    ["5.100.281"] = true,
+
+    ["5.100.302"] = true,
+    ["5.100.307"] = true,
+    ["5.100.310"] = true,
+    ["5.100.314"] = true,
+    ["5.100.330"] = true,
+    ["5.100.331"] = true,
+    ["5.100.340"] = true,
+    ["5.100.342"] = true,
+    ["5.100.354"] = true,
+    ["5.100.363"] = true,
+    ["5.100.365"] = true,
+    
+    ["5.100.402"] = true,
+    ["5.100.404"] = true,
+    ["5.100.433"] = true,
+    ["5.100.439"] = true,
+    ["5.100.445"] = true,
+    ["5.100.451"] = true,
+    ["5.100.458"] = true,
+    ["5.100.470"] = true,
+    ["5.100.473"] = true,
+    ["5.100.499"] = true,
+
+    ["5.100.511"] = true,
+    ["5.100.531"] = true,
+    ["5.100.541"] = true,
+    ["5.100.548"] = true,
 }
 
 function EID:CompareGeneralizedDescriptions(type, variant, subtype)
